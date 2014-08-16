@@ -197,8 +197,10 @@ var Aircraft=Fiber.extend(function() {
         }
 
         if(control == "altitude") {
-          this.mode = "cruise";
-          this.requested.runway  = null;
+          if(this.mode == "landing" || this.mode == "cruise") {
+            this.mode = "cruise";
+            this.requested.runway  = null;
+          }
           if(data.length == 2)
             this.requested.altitude = number * 100; // convert from 10 to 1000, 01 to 1
           if(data.length == 1)
@@ -272,6 +274,41 @@ var Aircraft=Fiber.extend(function() {
         this.mode = "taxi";
 
         this.taxi_start = game_time();
+
+      }
+
+      if(mode == "t") {
+
+        if(this.category != "departure") {
+          console.log("attempted to take off an aircraft that needs to arrive");
+          return false;
+        }
+
+        if(!this.isLanded()) {
+          console.log("attempted to re-takeoff an aircraft");
+          return false;
+        }
+
+        if(this.mode != "waiting") {
+          console.log("attempted to takeoff from wrong mode");
+          return false;
+        }
+
+        if(this.requested.altitude <= 0) {
+          console.log("attempted to takeoff without setting altitude");
+          return false;
+        }
+
+        var runway = airport_get().getRunway(this.requested.runway);
+
+        if(runway.isWaiting(this, this.requested.runway) != 0) {
+          console.log("attempted to skip other waiting aircraft");
+          return false;
+        }
+
+        if(runway.removeQueue(this, this.requested.runway)) {
+          this.mode = "takeoff";
+        }
 
       }
 
@@ -382,20 +419,6 @@ var Aircraft=Fiber.extend(function() {
         this.mode = "cruise";
       }
 
-      if(this.mode == "cruise") {
-        this.target.heading = this.requested.heading;
-        this.target.turn = this.requested.turn;
-
-        this.target.altitude = this.requested.altitude;
-        this.target.expedite = this.requested.expedite;
-
-        this.target.speed = this.requested.speed;
-        this.target.speed = clamp(this.model.speed.min, this.target.speed, this.model.speed.max);
-
-        this.target.altitude = Math.max(1000, this.target.altitude);
-
-        if(this.speed < this.model.speed.min) this.target.altitude = 0;
-      }
       if(this.mode == "landing") {
         if(offset[1] > 0.1) this.target.heading  = offset_angle - angle;
         else this.target.heading = -angle;
@@ -418,6 +441,7 @@ var Aircraft=Fiber.extend(function() {
       }
       if(this.mode == "waiting") {
         var runway = airport_get().getRunway(this.requested.runway);
+        console.log(this.requested.runway);
         var position = runway.getPosition(this.requested.runway);
 
         this.position[0] = position[0];
@@ -425,6 +449,27 @@ var Aircraft=Fiber.extend(function() {
 
         this.heading     = runway.angle;
         if(runway.getEnd(this.requested.runway) == 0) this.heading += Math.PI*2;
+      }
+      if(this.mode == "cruise" || this.mode == "takeoff") {
+        this.target.heading = this.requested.heading;
+        this.target.turn = this.requested.turn;
+
+        this.target.altitude = this.requested.altitude;
+        this.target.expedite = this.requested.expedite;
+
+        this.target.speed = this.requested.speed;
+        this.target.speed = clamp(this.model.speed.min, this.target.speed, this.model.speed.max);
+
+        this.target.altitude = Math.max(1000, this.target.altitude);
+
+        if(this.speed < this.model.speed.min) this.target.altitude = 0;
+      }
+      if(this.mode == "takeoff") {
+        var runway = airport_get().getRunway(this.requested.runway);
+
+        this.heading     = runway.angle;
+        if(runway.getEnd(this.requested.runway) == 0) this.heading += Math.PI*2;
+        if(this.altitude > 10) this.mode = "cruise";
       }
     },
     updatePhysics: function() {

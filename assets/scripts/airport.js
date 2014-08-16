@@ -20,7 +20,15 @@ var Runway=Position.extend(function(base) {
     },
     addQueue: function(aircraft, end) {
       end = this.getEnd(end);
-      this.waiting[end].push(aircraft);
+      this.waiting[end].unshift(aircraft);
+    },
+    removeQueue: function(aircraft, end) {
+      end = this.getEnd(end);
+      if(this.waiting[end][0] == aircraft) {
+        this.waiting[end].shift(aircraft);
+        return true;
+      }
+      return false;
     },
     isWaiting: function(aircraft, end) {
       end = this.getEnd(end);
@@ -138,6 +146,7 @@ var Airport=Fiber.extend(function() {
       });
     },
     getRunway: function(name) {
+      if(!name) return null;
       name = name.toLowerCase();
       for(var i=0;i<this.runways.length;i++) {
         if(this.runways[i].name[0].toLowerCase() == name) return this.runways[i];
