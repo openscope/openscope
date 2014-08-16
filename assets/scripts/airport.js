@@ -20,12 +20,15 @@ var Runway=Position.extend(function(base) {
     },
     addQueue: function(aircraft, end) {
       end = this.getEnd(end);
-      this.waiting[end].unshift(aircraft);
+      this.waiting[end].push(aircraft);
     },
     removeQueue: function(aircraft, end) {
       end = this.getEnd(end);
       if(this.waiting[end][0] == aircraft) {
         this.waiting[end].shift(aircraft);
+        if(this.waiting[end].length >= 1) {
+          this.waiting[end][0].moveForward();
+        }
         return true;
       }
       return false;
@@ -85,7 +88,7 @@ var Runway=Position.extend(function(base) {
       return offset;
     },
     parse: function(data) {
-      base.parse.call(this, data);
+      if(data.position) this.position = data.position;
 
       if(data.name) this.name = data.name;
       if(data.name_offset) this.name_offset = data.name_offset;
@@ -164,8 +167,8 @@ function airport_init_pre() {
 }
 
 function airport_init() {
-  airport_load("ksra");
-  airport_set("ksra");
+  airport_load("kdbg");
+  airport_set("kdbg");
 }
 
 function airport_load(icao) {

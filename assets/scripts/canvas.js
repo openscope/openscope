@@ -101,8 +101,8 @@ function canvas_draw_runway(cc, runway) {
 }
 
 function canvas_draw_runways(cc) {
-  cc.strokeStyle = "rgba(255, 255, 255, 0.8)";
-  cc.fillStyle   = "rgba(255, 255, 255, 0.8)";
+  cc.strokeStyle = "rgba(255, 255, 255, 0.4)";
+  cc.fillStyle   = "rgba(255, 255, 255, 0.4)";
   cc.lineWidth   = 4;
   var airport=airport_get();
   cc.beginPath();
@@ -181,11 +181,11 @@ function canvas_draw_info(cc, aircraft) {
     else
       cc.translate(0, -height2 - 12);
 
-    cc.fillStyle = "rgba(71, 105, 88, 0.5)";
+    cc.fillStyle = "rgba(71, 105, 88, 0.9)";
     if(prop.input.callsign.length > 1 && aircraft.matchCallsign(prop.input.callsign.substr(0, prop.input.callsign.length - 1)))
-      cc.fillStyle = "rgba(128, 105, 88, 0.5)";
+      cc.fillStyle = "rgba(128, 105, 88, 0.9)";
     if(prop.input.callsign.length > 0 && aircraft.matchCallsign(prop.input.callsign))
-      cc.fillStyle = "rgba(128, 200, 255, 0.5)";
+      cc.fillStyle = "rgba(64, 128, 224, 0.9)";
 
     cc.fillRect(-width2, -height2, width, height);
 

@@ -112,6 +112,8 @@ var Aircraft=Fiber.extend(function() {
       this.html = $("<li class='strip'></li>");
 
       this.html.append("<span class='callsign'>" + this.getCallsign() + "</span>");
+      this.html.append("<span class='heading'>" + round(this.heading) + "</span>");
+      this.html.append("<span class='altitude'>-</span>");
 
       if(this.category == "arrival") this.html.addClass("arrival");
       else                           this.html.addClass("departure");
@@ -201,10 +203,7 @@ var Aircraft=Fiber.extend(function() {
             this.mode = "cruise";
             this.requested.runway  = null;
           }
-          if(data.length == 2)
-            this.requested.altitude = number * 100; // convert from 10 to 1000, 01 to 1
-          if(data.length == 1)
-            this.requested.altitude = number * 1000; // convert from 1 or 1 to 1000
+          this.requested.altitude = number * 1000;
           this.requested.expedite = expedite;
         } else if(control == "heading") {
           this.mode = "cruise";
@@ -265,8 +264,6 @@ var Aircraft=Fiber.extend(function() {
           return false;
         }
 
-        this.selectRunway();
-
         var runway = airport_get().getRunway(this.requested.runway);
 
         runway.addQueue(this, this.requested.runway);
@@ -315,7 +312,11 @@ var Aircraft=Fiber.extend(function() {
       // ABORT
 
       if(mode == "a") {
-        this.requested.runway   = null;
+        if(this.mode == "landing") {
+          this.requested.runway   = null;
+        } else if(this.mode == "takeoff") {
+          
+        }
       }
 
       return true;
@@ -337,9 +338,16 @@ var Aircraft=Fiber.extend(function() {
       if(data.heading)  this.requested.heading = data.heading;
       if(data.altitude) this.requested.altitude = data.altitude;
       if(data.speed)    this.requested.speed = data.speed;
+      else              this.requested.speed = this.model.speed.cruise;
 
       if(this.category == "departure" && this.isLanded()) {
         this.mode = "apron";
+      }
+     
+    },
+    complete: function(data) {
+      if(this.category == "departure" && this.isLanded()) {
+        this.selectRunway();
       }
     },
     selectRunway: function() {
@@ -352,6 +360,11 @@ var Aircraft=Fiber.extend(function() {
       if(this.history.length > 10) {
         this.history.splice(0, this.history.length-10);
       }
+    },
+    moveForward: function() {
+      this.mode = "taxi";
+      this.taxi_delay = 50;
+      this.taxi_start = game_time();
     },
     isLanded: function() {
       if(this.altitude < 5) return true;
@@ -392,7 +405,7 @@ var Aircraft=Fiber.extend(function() {
 
       var angle = null;
 
-      if(this.requested.runway && !this.isTaxiing()) {
+      if(this.requested.runway && this.mode == "cruise" && this.category == "arrival") {
         airport = airport_get();
         runway  = airport.getRunway(this.requested.runway);
 
@@ -441,16 +454,15 @@ var Aircraft=Fiber.extend(function() {
       }
       if(this.mode == "waiting") {
         var runway = airport_get().getRunway(this.requested.runway);
-        console.log(this.requested.runway);
         var position = runway.getPosition(this.requested.runway);
 
         this.position[0] = position[0];
         this.position[1] = position[1];
 
         this.heading     = runway.angle;
-        if(runway.getEnd(this.requested.runway) == 0) this.heading += Math.PI*2;
+        if(runway.getEnd(this.requested.runway) == 1) this.heading += Math.PI;
       }
-      if(this.mode == "cruise" || this.mode == "takeoff") {
+      if(this.mode == "cruise") {
         this.target.heading = this.requested.heading;
         this.target.turn = this.requested.turn;
 
@@ -467,9 +479,25 @@ var Aircraft=Fiber.extend(function() {
       if(this.mode == "takeoff") {
         var runway = airport_get().getRunway(this.requested.runway);
 
-        this.heading     = runway.angle;
-        if(runway.getEnd(this.requested.runway) == 0) this.heading += Math.PI*2;
-        if(this.altitude > 10) this.mode = "cruise";
+        this.target.heading = runway.angle;
+
+        if(runway.getEnd(this.requested.runway) == 1) this.target.heading += Math.PI;
+        
+        this.requested.heading = this.target.heading;
+        
+        if(this.speed < this.model.speed.min) {
+          this.target.altitude = 0;
+          this.altitude = 0;
+        } else {
+          this.target.altitude = this.requested.altitude;
+        }
+
+        this.target.speed = this.model.speed.cruise;
+
+        if(this.altitude > 200 && this.target.speed > this.model.speed.min) {
+          this.mode = "cruise";
+          this.requested.runway = null;
+        }
       }
     },
     updatePhysics: function() {
@@ -499,10 +527,10 @@ var Aircraft=Fiber.extend(function() {
         var distance = null;
         var expedite_factor = 1.7;
         this.trend = 0;
-        if(this.target.altitude < this.altitude - 0.01) {
+        if(this.target.altitude < this.altitude - 0.02) {
           distance = -this.model.rate.descent * game_delta() / expedite_factor;
           this.trend -= 1;
-        } else if(this.target.altitude > this.altitude + 0.01) {
+        } else if(this.target.altitude > this.altitude + 0.02) {
           distance =  this.model.rate.ascent  * game_delta() / expedite_factor;
           this.trend = 1;
         }
@@ -513,6 +541,8 @@ var Aircraft=Fiber.extend(function() {
           if(abs(offset) < abs(distance)) this.altitude = this.target.altitude;
           else this.altitude += distance;
         }
+        
+        if(this.isLanded()) this.trend = 0;
 
         // SPEED
 
@@ -546,7 +576,7 @@ var Aircraft=Fiber.extend(function() {
         var other_land = other.isLanded();
         var this_land  = this.isLanded();
 
-        if(((other_land || this_land) && !(other_land && this_land)) || (!other_land && !this_land)) {
+        if((!other_land && !this_land)) {
           if((distance2d(this.position, other.position) < 4.8) &&      // closer than 3 miles
              (abs(this.altitude - other.altitude) < 990)) {           // less than 1k feet
             warning = true;
@@ -554,21 +584,30 @@ var Aircraft=Fiber.extend(function() {
         } else {
           var airport = airport_get();
           if((airport.getRunway(other.requested.runway) === airport.getRunway(this.requested.runway)) &&     // on the same runway
-             (distance2d(this.position, other.position) < 10) &&       // closer than 2km
+             (distance2d(this.position, other.position) < 10) &&      // closer than 10km
              (abs(angle_offset(this.heading, other.heading)) > 10)) { // different directions
             warning = true;
           }
         }
         if((distance2d(this.position, other.position) < 0.05) &&      // closer than 50 meters
-           (abs(this.altitude - other.altitude) < 50)) {           // less than 50 feet
+           (abs(this.altitude - other.altitude) < 50) &&
+           (other.isVisible() && this.isVisible())) {           // less than 50 feet
           this.hit = true;
         }
       }
       this.warning = warning;
     },
+    updateStrip: function() {
+      if(this.isTaxiing())
+        this.html.find(".heading").text(this.requested.runway);
+      else
+        this.html.find(".heading").text(round(degrees(this.requested.heading)));
+      this.html.find(".altitude").text(round(this.requested.altitude));
+    },
     update: function() {
       this.updateTarget();
       this.updatePhysics();
+      this.updateStrip();
     }
   };
 });
@@ -602,10 +641,15 @@ function aircraft_complete() {
       altitude: start[i][2]
     });
   }
+  aircraft_add_departing();
+}
+
+function aircraft_add_departing() {
   aircraft_new({
     icao: "B738",
     category: "departure",
   });
+  setTimeout(aircraft_add_departing, crange(0, Math.random(), 1, 20000, 120000));
 }
 
 function aircraft_airline_new() {
@@ -646,6 +690,8 @@ function aircraft_new(options) {
   options.airline  = aircraft_airline_new();
   options.callsign = aircraft_callsign_new();
   var aircraft = new Aircraft(options);
+
+  aircraft.complete();
   
   prop.aircraft.list.push(aircraft);
 }
@@ -662,7 +708,7 @@ function aircraft_get_nearest(position) {
   var distance = Infinity;
   for(var i=0;i<prop.aircraft.list.length;i++) {
     var d = distance2d(prop.aircraft.list[i].position, position);
-    if(d < distance) {
+    if(d < distance && prop.aircraft.list[i].isVisible() && !prop.aircraft.list[i].hit) {
       distance = d;
       nearest = i;
     }
@@ -674,6 +720,16 @@ function aircraft_add(model) {
   prop.aircraft.models[model.icao.toLowerCase()] = model;
 }
 
+function aircraft_visible(aircraft) {
+  var width2  = pixels_to_km((prop.canvas.size.width / 2)  + 50);
+  var height2 = pixels_to_km((prop.canvas.size.height / 2) + 50);
+  if(((aircraft.position[0] < -width2  || aircraft.position[0] > width2)) ||
+     ((aircraft.position[1] < -height2 || aircraft.position[1] > height2))) {
+    return false;
+  }
+  return true;
+}
+
 function aircraft_update() {
   for(var i=0;i<prop.aircraft.list.length;i++) {
     prop.aircraft.list[i].update();
@@ -683,10 +739,18 @@ function aircraft_update() {
   }
   for(var i=prop.aircraft.list.length-1;i>=0;i--) {
     var remove = false;
-    if(prop.aircraft.list[i].isStopped() && prop.aircraft.list[i].category == "arrival")
+    if(!aircraft_visible(prop.aircraft.list[i]) && prop.aircraft.list[i].category == "departure") {
+      console.log("departing aircraft no longer visible");
       remove = true;
-    if(prop.aircraft.list[i].hit && prop.aircraft.list[i].isLanded())
+    }
+    if(prop.aircraft.list[i].isStopped() && prop.aircraft.list[i].category == "arrival") {
+      console.log("arriving aircraft no longer moving");
       remove = true;
+    }
+    if(prop.aircraft.list[i].hit && prop.aircraft.list[i].isLanded()) {
+      console.log("aircraft hit and on the ground");
+      remove = true;
+    }
     if(remove) {
       prop.aircraft.list[i].cleanup();
       prop.aircraft.list.splice(i, 1);

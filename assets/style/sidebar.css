@@ -14,6 +14,23 @@
   padding: 10px;
 }
 
-#sidebar #strips li {
+#sidebar #strips .strip {
   list-style-type: none;
+
+  position: relative;
+}
+
+#sidebar #strips .strip .heading {
+  text-align: center;
+
+  position: absolute;
+  left: 0;
+  width: 100%;
+}
+
+#sidebar #strips .strip .altitude {
+  text-align: right;
+
+  position: absolute;
+  right: 0;
 }

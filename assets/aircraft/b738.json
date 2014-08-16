@@ -3,9 +3,9 @@
   "icao": "B738",
   "rate": {
     "turn":       1.2,
-    "ascent":     1100,
+    "ascent":     1200,
     "descent":    2000,
-    "accelerate": 4,
+    "accelerate": 7,
     "decelerate": 3
   },
   "runway": {
