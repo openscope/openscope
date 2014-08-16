@@ -1,0 +1,19 @@
+
+#sidebar {
+  background-color: rgba(0,0,0,0.5);
+  color: #ddd;
+
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 250px;
+  height: calc(100% - 36px);
+}
+
+#sidebar #strips {
+  padding: 10px;
+}
+
+#sidebar #strips li {
+  list-style-type: none;
+}

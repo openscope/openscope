@@ -1,0 +1,15 @@
+{
+  "name": "Debug airport with a single runway",
+  "icao": "KSRA",
+  "runways":[
+    {
+      "name":        ["9", "27"],
+      "name_offset": [[0, 0], [0, 0]],
+      "position":    [0, 3],
+      "angle":       90,
+      "length":      8,
+      "glideslope":  [3, 3],
+      "ils":         [false, false]
+    }
+  ]
+}

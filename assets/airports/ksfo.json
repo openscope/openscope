@@ -1,0 +1,30 @@
+{
+  "name": "San Francisco International Airport",
+  "icao": "KDBG",
+  "runways":[
+    {
+      "name":        ["36R", "18L"],
+      "name_offset": [[1.2, 0], [1.0, 0]],
+      "position":    [0.8, 0],
+      "angle":       0,
+      "length":      12,
+      "ils":         [true, false]
+    },
+    {
+      "name":        ["36L", "18R"],
+      "name_offset": [[-1.2, 0], [-1.2, 0]],
+      "position":    [-0.8, -1],
+      "angle":       0,
+      "length":      10,
+      "ils":         [true, false]
+    },
+    {
+      "name":        ["22", "4"],
+      "name_offset": [[0, 0], [-0.2, 0.2]],
+      "position":    [0, 0],
+      "angle":       223,
+      "length":      12,
+      "ils":         [false, false]
+    }
+  ]
+}
