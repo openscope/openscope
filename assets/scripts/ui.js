@@ -1,7 +1,7 @@
 
 function ui_init_pre() {
   prop.ui = {};
-  prop.ui.scale = 7; // pixels per km
+  prop.ui.scale = 8; // pixels per km
 }
 
 function pixels_to_km(pixels) {

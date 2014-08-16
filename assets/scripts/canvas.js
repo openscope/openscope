@@ -78,8 +78,23 @@ function canvas_draw_runway(cc, runway) {
 
   cc.rotate(angle);
 
+  cc.strokeStyle = "#899";
+  cc.beginPath();
   cc.moveTo(0, -length2);
   cc.lineTo(0,  length2);
+  cc.stroke();
+
+  cc.strokeStyle = "#465";
+  cc.lineWidth = 2;
+  cc.beginPath();
+  
+  cc.moveTo(0, -length2);
+  cc.lineTo(0, -length2 - km(20));
+
+  cc.moveTo(0,  length2);
+  cc.lineTo(0,  length2 + km(20));
+
+  cc.stroke();
 
   var text_height = 8;
   cc.textAlign    = "center";
@@ -105,13 +120,11 @@ function canvas_draw_runways(cc) {
   cc.fillStyle   = "rgba(255, 255, 255, 0.4)";
   cc.lineWidth   = 4;
   var airport=airport_get();
-  cc.beginPath();
   for(var i=0;i<airport.runways.length;i++) {
     cc.save();
     canvas_draw_runway(cc, airport.runways[i]);
     cc.restore();
   }
-  cc.stroke();
 }
 
 function canvas_draw_aircraft(cc, aircraft) {
@@ -260,6 +273,18 @@ function canvas_update_post() {
 
   //
 
+  cc=canvas_get("info");
+
+  cc.font = "10px monoOne, monospace";
+
+  cc.save();
+  canvas_clear(cc);
+  cc.translate(round(prop.canvas.size.width/2), round(prop.canvas.size.height/2));
+  canvas_draw_all_info(cc);
+  cc.restore();
+
+  //
+
   cc=canvas_get("aircraft");
 
   cc.save();
@@ -271,40 +296,6 @@ function canvas_update_post() {
   cc.restore();
 
   //
-
-  cc=canvas_get("info");
-
-  cc.font = "10px monoOne, monospace";
-
-  cc.save();
-  canvas_clear(cc);
-  cc.translate(round(prop.canvas.size.width/2), round(prop.canvas.size.height/2));
-
-  canvas_draw_all_info(cc);
-  if(false) {
-    var size  = 8;
-    var size2 = size / 2;
-
-    var r = "2";
-    var runway = airport_get().getRunway(r);
-    offset = runway.getOffset(prop.input.click, r, true);
-
-    var angle = runway.getAngle(r);
-
-    angle = Math.atan2(-offset[0], offset[1]) + angle;
-    //  console.log(mod(degrees(angle), 360));
-
-    if(false) {
-      cc.translate(km(prop.input.click[0]), km(-prop.input.click[1]));
-      cc.rotate(angle);
-      cc.fillRect(-size2, -size2, size, size);
-      cc.beginPath();
-      cc.moveTo(0, 0);
-      cc.lineTo(0, km(distance2d([0, 0], offset)));
-      cc.stroke();
-    }
-  }
-  cc.restore();
 
   prop.canvas.dirty = false;
 }

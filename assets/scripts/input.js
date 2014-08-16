@@ -59,6 +59,7 @@ function input_change() {
 }
 
 function input_parse() {
+  $(".strip").removeClass("active");
   prop.input.callsign = "";
   prop.input.data     = "";
   var c = prop.input.command;
@@ -66,6 +67,13 @@ function input_parse() {
   if(!s || s.length == 0) return;
   if(s.length >= 1) prop.input.callsign = s[0];
   if(s.length >= 2) prop.input.data     = s.slice(1).join(" ");
+
+  for(var i=0;i<prop.aircraft.list.length;i++) {
+    var aircraft=prop.aircraft.list[i];
+    if(aircraft.matchCallsign(prop.input.callsign)) {
+      aircraft.html.addClass("active");
+    }
+  }
 }
 
 function input_keydown(e) {

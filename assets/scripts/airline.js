@@ -25,5 +25,6 @@ function airline_load(icao) {
 
 function airline_get(icao) {
   icao = icao.toLowerCase();
+  console.log(icao);
   return prop.airline.airlines[icao];
 }

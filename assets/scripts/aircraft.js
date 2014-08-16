@@ -93,6 +93,7 @@ var Aircraft=Fiber.extend(function() {
       this.requested = {
         heading:  0,
         turn:     "auto", // "left", "right", or "auto"
+        hold:     false,
         altitude: 0,
         expedite: false,
         speed:    0,
@@ -114,9 +115,15 @@ var Aircraft=Fiber.extend(function() {
       this.html.append("<span class='callsign'>" + this.getCallsign() + "</span>");
       this.html.append("<span class='heading'>" + round(this.heading) + "</span>");
       this.html.append("<span class='altitude'>-</span>");
+      this.html.append("<span class='aircraft'>" + this.model.icao + "</span>");
 
-      if(this.category == "arrival") this.html.addClass("arrival");
-      else                           this.html.addClass("departure");
+      if(this.category == "arrival") {
+        this.html.addClass("arrival");
+        this.html.attr("title", "Scheduled for arrival");
+      } else {
+        this.html.addClass("departure");
+        this.html.attr("title", "Scheduled for departure");
+      }
 
       $("#strips").append(this.html);
 
@@ -146,79 +153,113 @@ var Aircraft=Fiber.extend(function() {
       var data = "";
       if(s.length >= 1) mode = s[0].toLowerCase();
       if(s.length >= 2) data = s.slice(1).join(" ").toLowerCase();
-      if(mode.length != 1) {
+      if(mode.length < 1) {
         console.log("invalid mode '" + mode + "'");
         return false;
       }
 
-      // CLEARED
+      // ALTITUDE
 
-      if(mode == "c") {
-        var control = "";
+      if("altitude".indexOf(mode) == 0) {
         var items = data.match(/\S+/g);
         var expedite = false;
+
+        if(!items || items.length == 0) return false;
+
+        if(items.length >= 1) data = items[0];
+        if(items.length >= 2) {
+          if(items[1] == "x" || ("expedite").indexOf(items[1]) == 0) {
+            expedite = true;
+          } else {
+            console.log("expected 'x', 'ex', or 'expedite' after altitude");
+            return false;
+          }
+        }
+
+        if(data.length > 2) {
+          console.log("expected altitude to be one or two digits long");
+          return false;
+        }
+
+        var number = parseInt(data);
+        if(isNaN(number)) {
+          console.log("expected an altitude following 'a', got '"+data+"'");
+          return false;
+        }
+
+        if(this.mode == "landing" || this.mode == "cruise") {
+          this.mode = "cruise";
+          this.requested.runway  = null;
+        }
+        this.requested.altitude = number * 1000;
+        this.requested.expedite = expedite;
+      }
+      
+      // CLEARED TO HEADING
+
+      if("clear".indexOf(mode) == 0 || "heading".indexOf(mode) == 0) {
+        var items = data.match(/\S+/g);
         var turn = "auto";
 
         if(!items || items.length == 0) return false;
 
         if(items.length >= 1) data = items[0];
         if(items.length >= 2) {
-          if(data.length <= 2) { // altitude
-            if(items[1] == "x" || ("expedite").indexOf(items[1]) == 0) {
-              expedite = true;
-            } else {
-              console.log("expected 'x', 'ex', or 'expedite' after altitude");
-              return false;
-            }
-          } else if(data.length == 3) { // heading
-            if(items[1] == "l" || ("left").indexOf(items[1]) == 0) {
-              turn = "left";
-            } else if(items[1] == "r" || ("right").indexOf(items[1]) == 0) {
-              turn = "right";
-            } else {
-              console.log("expected 'l', 'left', 'r', 'right', or nothing after heading");
-              return false;
-            }
+          if(items[1] == "l" || ("left").indexOf(items[1]) == 0) {
+            turn = "left";
+          } else if(items[1] == "r" || ("right").indexOf(items[1]) == 0) {
+            turn = "right";
           } else {
-            console.log("expected an altitude");
+            console.log("expected 'l', 'left', 'r', 'right', or nothing after heading");
             return false;
           }
         }
 
-        if(data.length == 3) {
-          control = "heading";
-        } else if(data.length == 2 || data.length == 1) {
-          control = "altitude";
-        } else {
-          console.log("invalid length of " + data.length + " of '" + data + "', expected 2 or 3");
+        if(data.length > 3) {
+          console.log("expected heading to be one to three digits long");
           return false;
         }
 
         var number = parseInt(data);
         if(isNaN(number)) {
-          console.log("expected a number following 'c', got '"+data+"'");
+          console.log("expected a heading following 'h', got '"+data+"'");
           return false;
         }
 
-        if(control == "altitude") {
-          if(this.mode == "landing" || this.mode == "cruise") {
-            this.mode = "cruise";
-            this.requested.runway  = null;
-          }
-          this.requested.altitude = number * 1000;
-          this.requested.expedite = expedite;
-        } else if(control == "heading") {
-          if(this.mode == "landing" || this.mode == "cruise") {
-            this.mode = "cruise";
-          }
-          this.requested.heading = radians(number);
-          this.requested.turn    = turn;
+        if(this.mode == "landing" || this.mode == "cruise") {
+          this.mode = "cruise";
         }
+        this.requested.heading = radians(number);
+        this.requested.turn    = turn;
+        this.requested.hold    = false;
+      }
+      
+      // HOLD
+
+      if("hold".indexOf(mode) == 0) {
+        var items = data.match(/\S+/g);
+        var direction = "auto";
+
+        if(!items || items.length == 0) return false;
+
+        if(items.length >= 1) data = items[0];
+
+        if(data == "l" || ("left").indexOf(data) == 0) {
+          direction = "left";
+        } else if(data == "r" || ("right").indexOf(data) == 0) {
+          direction = "right";
+        } else {
+          console.log("expected 'l', 'left', 'r', 'right' after hold command");
+          return false;
+        }
+
+        this.requested.turn = direction;
+        this.requested.hold = true;
       }
       
       // SPEED
 
-      if(mode == "s") {
+      if("speed".indexOf(mode) == 0) {
         var number = parseInt(data);
 
         if(isNaN(number)) {
@@ -231,7 +272,7 @@ var Aircraft=Fiber.extend(function() {
 
       // LAND
 
-      if(mode == "l") {
+      if("land".indexOf(mode) == 0) {
 
         if(this.category != "arrival") {
           console.log("attempted to land an aircraft that needs to takeoff and depart");
@@ -250,13 +291,14 @@ var Aircraft=Fiber.extend(function() {
           return false;
         }
 
-        this.requested.runway = data.toLowerCase();
+        this.requested.runway = data.toUpperCase();
+        this.requested.hold    = false;
 
       }
 
       // WAIT
 
-      if(mode == "w") {
+      if("wait".indexOf(mode) == 0) {
 
         if(this.category != "departure") {
           console.log("attempted to take off an aircraft that needs to arrive");
@@ -278,7 +320,7 @@ var Aircraft=Fiber.extend(function() {
 
       }
 
-      if(mode == "t") {
+      if("takeoff".indexOf(mode) == 0) {
 
         if(this.category != "departure") {
           console.log("attempted to take off an aircraft that needs to arrive");
@@ -313,10 +355,13 @@ var Aircraft=Fiber.extend(function() {
 
       }
 
-      // ABORT
+      // GO AROUND
 
-      if(mode == "a") {
+      if("goaround".indexOf(mode) == 0) {
         if(this.mode == "landing") {
+          var runway = airport_get().getRunway(this.requested.runway);
+          console.log(this.mode);
+          this.requested.heading = runway.getAngle(this.requested.runway);
           this.requested.runway   = null;
         } else if(this.mode == "takeoff") {
           
@@ -347,6 +392,7 @@ var Aircraft=Fiber.extend(function() {
       else              this.requested.speed = this.model.speed.cruise;
 
       if(this.category == "departure" && this.isLanded()) {
+        this.speed = 0;
         this.mode = "apron";
       }
      
@@ -357,7 +403,7 @@ var Aircraft=Fiber.extend(function() {
       }
     },
     selectRunway: function() {
-      this.requested.runway = airport_get().selectRunway(this.model.runway.takeoff);
+      this.requested.runway = airport_get().selectRunway(this.model.runway.takeoff).toUpperCase();
       if(!this.requested.runway) return;
       this.taxi_delay = airport_get().getRunway(this.requested.runway).taxiDelay(this.requested.runway);
     },
@@ -424,8 +470,8 @@ var Aircraft=Fiber.extend(function() {
 
           var landing_zone_offset = 0.5;
 
-          glideslope_altitude = clamp(0, runway.getGlideslopeAltitude(offset[1] + landing_zone_offset, this.requested.runway), 4000);
-          glideslope_window   = abs(runway.getGlideslopeAltitude(offset[1] + landing_zone_offset, this.requested.runway, radians(20)));
+          glideslope_altitude = runway.getGlideslopeAltitude(offset[1] + landing_zone_offset, this.requested.runway);
+          glideslope_window   = abs(runway.getGlideslopeAltitude(offset[1] + landing_zone_offset, this.requested.runway, radians(1)));
 
           if((abs(this.altitude - glideslope_altitude) < glideslope_window) && (offset_angle < radians(30))) {
             this.mode = "landing";
@@ -452,6 +498,7 @@ var Aircraft=Fiber.extend(function() {
 //        this.target.heading = angle;
 
         this.target.altitude     = glideslope_altitude;
+        this.target.expedite     = true;
         this.target.speed        = this.model.speed.landing;
         if(this.altitude < 10) this.target.speed = 0;
       }
@@ -484,6 +531,13 @@ var Aircraft=Fiber.extend(function() {
         this.target.altitude = Math.max(1000, this.target.altitude);
 
         if(this.speed < this.model.speed.min) this.target.altitude = 0;
+      }
+      if(this.requested.hold) {
+        if(this.requested.turn == "right") {
+          this.target.heading = this.heading + Math.PI/4;
+        } else if(this.requested.turn == "left") {
+          this.target.heading = this.heading - Math.PI/4;
+        }
       }
       if(this.mode == "takeoff") {
         var runway = airport_get().getRunway(this.requested.runway);
@@ -558,7 +612,7 @@ var Aircraft=Fiber.extend(function() {
         var difference = null;
         if(this.target.speed < this.speed - 0.01) {
           difference = -this.model.rate.decelerate * game_delta() / 2;
-          if(this.isLanded()) difference *= 1.5;
+          if(this.isLanded()) difference *= 2;
         } else if(this.target.speed > this.speed + 0.01) {
           difference =  this.model.rate.accelerate * game_delta() / 2;
         }
@@ -572,6 +626,11 @@ var Aircraft=Fiber.extend(function() {
 
       if(!this.position) return;
       var angle = this.heading;
+      this.position[0] += (sin(angle) * (this.speed * 0.000514)) * game_delta();
+      this.position[1] += (cos(angle) * (this.speed * 0.000514)) * game_delta();
+
+      var wind_drift = [0, 0];
+
       this.position[0] += (sin(angle) * (this.speed * 0.000514)) * game_delta();
       this.position[1] += (cos(angle) * (this.speed * 0.000514)) * game_delta();
     },
@@ -607,13 +666,17 @@ var Aircraft=Fiber.extend(function() {
       this.warning = warning;
     },
     updateStrip: function() {
-      if(this.isTaxiing())
+      this.html.find(".heading").removeClass("runway hold");
+      if(this.isTaxiing() || this.mode == "landing") {
         this.html.find(".heading").text(this.requested.runway);
-      else if(this.mode == "landing")
-        this.html.find(".heading").text(this.requested.runway);
-      else
+        this.html.find(".heading").addClass("runway");
+      } else if(this.requested.hold) {
+        this.html.find(".heading").text("hold "+this.requested.turn);
+        this.html.find(".heading").addClass("hold");
+      } else {
         this.html.find(".heading").text(round(degrees(this.requested.heading)));
-      this.html.find(".altitude").text(round(this.target.altitude));
+      }
+      this.html.find(".altitude").text(round(this.requested.altitude));
     },
     update: function() {
       this.updateTarget();
@@ -668,23 +731,7 @@ function aircraft_add_departing() {
 function aircraft_airline_new() {
   var airlines = [
     "UAL",
-    "DLH",
-    "VRD",
-    "VEX",
-    "QFA",
-    "QTR",
-    "AAL",
-    "AFL",
-    "AIB",
-    "SMX",
     "BAW",
-    "MPE",
-    "CLX",
-    "BWA",
-    "CPA",
-    "GLR",
-    "DAL",
-    "HAL",
   ];
   return choose(airlines);
 }

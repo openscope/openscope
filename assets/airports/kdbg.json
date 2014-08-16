@@ -1,6 +1,10 @@
 {
   "name": "Debug airport",
   "icao": "KDBG",
+  "wind": {
+    "angle": 20,
+    "speed": 5
+  },
   "runways":[
     {
       "name":        ["36R", "18L"],
@@ -8,6 +12,7 @@
       "position":    [0.8, 0],
       "angle":       0,
       "length":      6,
+      "delay":       [10, 30],
       "ils":         [true, false]
     },
     {
@@ -16,6 +21,7 @@
       "position":    [-0.8, -1],
       "angle":       0,
       "length":      4,
+      "delay":       [10, 30],
       "ils":         [true, false]
     },
     {
@@ -24,6 +30,7 @@
       "position":    [15, 0],
       "angle":       223,
       "length":      5,
+      "delay":       [120, 80],
       "ils":         [false, false]
     },
     {
@@ -32,6 +39,7 @@
       "position":    [0, 6],
       "angle":       270,
       "length":      5,
+      "delay":       [80, 80],
       "ils":         [false, false]
     },
     {
@@ -40,17 +48,69 @@
       "position":    [0, -6],
       "angle":       90,
       "length":      4,
+      "delay":       [80, 80],
       "ils":         [false, false]
     }
   ],
-  "departures": ["DAL", "DLH", "AAL"],
+  "departures": {
+    "airlines": ["UAL", "BAW"],
+    "frequency": [1, 3]
+  },
   "arrivals": [
     {
-      "angle":     0,
+      "heading":   180,
+      "airlines":  ["UAL", "BAW"],
+      "frequency": [4, 6],
+      "altitude":  4000
+    },
+    {
+      "angle":     90,
       "heading":   135,
       "airlines":  ["UAL", "BAW"],
-      "frequency": 2,
+      "frequency": [4, 6],
+      "altitude":  6000
+    },
+    {
+      "angle":     270,
+      "heading":   45,
+      "airlines":  ["UAL", "BAW"],
+      "frequency": [5, 8],
       "altitude":  5000
+    },
+    {
+      "angle":     270,
+      "heading":   0,
+      "airlines":  ["UAL", "BAW"],
+      "frequency": [5, 8],
+      "altitude":  6000
+    },
+    {
+      "angle":     180,
+      "heading":   270,
+      "airlines":  ["UAL", "BAW"],
+      "frequency": [6, 8],
+      "altitude":  8000
+    },
+    {
+      "angle":     270,
+      "heading":   0,
+      "airlines":  ["UAL", "BAW"],
+      "frequency": [9, 15],
+      "altitude":  5000
+    },
+    {
+      "angle":     315,
+      "heading":   90,
+      "airlines":  ["UAL", "BAW"],
+      "frequency": [10, 15],
+      "altitude":  9000
+    },
+    {
+      "angle":     315,
+      "heading":   180,
+      "airlines":  ["UAL", "BAW"],
+      "frequency": [5, 10],
+      "altitude":  7000
     }
   ]
 }

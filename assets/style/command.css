@@ -1,13 +1,12 @@
 
 #command {
-  background-color: rgba(0,0,0,0.5);
+  background-color: rgba(0,0,0,0.7);
   color: #ddd;
-  font-size: 115%;
 
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 100%;
+  width: calc(100% - 250px);
   height: 36px;
   padding: 0 20px;
 }

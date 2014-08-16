@@ -39,12 +39,12 @@ function game_speedup() {
   return prop.game.speedup;
 }
 
-function game_timeout(func, delay, data) {
-  prop.game.timeouts.push([func, game_time()+delay, data, delay, false]);
+function game_timeout(func, delay, that, data) {
+  prop.game.timeouts.push([func, game_time()+delay, data, delay, false, that]);
 }
 
-function game_interval(func, delay, data) {
-  prop.game.timeouts.push([func, game_time()+delay, data, delay, true]);
+function game_interval(func, delay, that, data) {
+  prop.game.timeouts.push([func, game_time()+delay, data, delay, true, that]);
 }
 
 function game_update_pre() {
@@ -57,7 +57,7 @@ function game_update_pre() {
     var remove  = false;
     var timeout = prop.game.timeouts[i];
     if(game_time() > timeout[1]) {
-      timeout[0](timeout[2]);
+      timeout[0].call(timeout[5], timeout[2]);
       if(timeout[4]) {
         timeout[1] += timeout[3]; 
       } else {
