@@ -10,6 +10,8 @@ function game_init_pre() {
   prop.game.time=time();
   prop.game.delta=0;
 
+  prop.game.timeouts=[];
+
   $(window).blur(function() {
 //    prop.game.focused=false;
   });
@@ -37,12 +39,36 @@ function game_speedup() {
   return prop.game.speedup;
 }
 
+function game_timeout(func, delay, data) {
+  prop.game.timeouts.push([func, game_time()+delay, data, delay, false]);
+}
+
+function game_interval(func, delay, data) {
+  prop.game.timeouts.push([func, game_time()+delay, data, delay, true]);
+}
+
 function game_update_pre() {
-  prop.game.delta=Math.min(delta()*prop.game.speedup, 1);
+  prop.game.delta=Math.min(delta()*prop.game.speedup, 100);
   if(game_paused()) {
     prop.game.delta=0;
   }
   prop.game.time+=prop.game.delta;
+  for(var i=prop.game.timeouts.length-1;i>=0;i--) {
+    var remove  = false;
+    var timeout = prop.game.timeouts[i];
+    if(game_time() > timeout[1]) {
+      timeout[0](timeout[2]);
+      if(timeout[4]) {
+        timeout[1] += timeout[3]; 
+      } else {
+        remove=true;
+      }
+    }
+    if(remove) {
+      prop.game.timeouts.splice(i, 1);
+      i-=1;
+    }
+  }
 }
 
 function game_complete() {

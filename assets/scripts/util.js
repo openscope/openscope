@@ -151,12 +151,13 @@ function choose(l) {
   return l[Math.floor(Math.random()*l.length)];
 }
 
-function mod(x,y) {
-  var z=x+0;
-  x=x%y;
-  if(x < 0)
-    x=(y-x)-2;
-  return x;
+function mod(a, b) {
+  return ((a%b)+b)%b;
+};
+
+function lpad(n, width) {
+  var x = "0000000000000" + n;
+  return x.substr(x.length-width, width);
 }
 
 function angle_offset(a, b) {

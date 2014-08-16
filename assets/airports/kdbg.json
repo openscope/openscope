@@ -19,11 +19,11 @@
       "ils":         [true, false]
     },
     {
-      "name":        ["22", "4"],
+      "name":        ["20", "2"],
       "name_offset": [[0, 0], [-0.2, 0.2]],
-      "position":    [0, 0],
+      "position":    [15, 0],
       "angle":       223,
-      "length":      8,
+      "length":      5,
       "ils":         [false, false]
     },
     {
@@ -31,7 +31,7 @@
       "name_offset": [[0, 0], [0, 0]],
       "position":    [0, 6],
       "angle":       270,
-      "length":      4,
+      "length":      5,
       "ils":         [false, false]
     },
     {
@@ -41,6 +41,16 @@
       "angle":       90,
       "length":      4,
       "ils":         [false, false]
+    }
+  ],
+  "departures": ["DAL", "DLH", "AAL"],
+  "arrivals": [
+    {
+      "angle":     0,
+      "heading":   135,
+      "airlines":  ["UAL", "BAW"],
+      "frequency": 2,
+      "altitude":  5000
     }
   ]
 }

@@ -224,10 +224,10 @@ function canvas_draw_info(cc, aircraft) {
     }
 
     cc.textAlign = "right";
-    cc.fillText(round(aircraft.altitude * 0.01), -separation, line_height);
+    cc.fillText(lpad(round(aircraft.altitude * 0.01), 2), -separation, line_height);
 
     cc.textAlign = "left";
-    cc.fillText(round(aircraft.speed * 0.1), separation, line_height);
+    cc.fillText(lpad(round(aircraft.speed * 0.1), 2), separation, line_height);
 
     cc.textAlign = "center";
     cc.fillText(aircraft.airline + aircraft.callsign, 0, -line_height);
@@ -280,11 +280,30 @@ function canvas_update_post() {
   canvas_clear(cc);
   cc.translate(round(prop.canvas.size.width/2), round(prop.canvas.size.height/2));
 
-  var size  = 20;
-  var size2 = size / 2;
-
   canvas_draw_all_info(cc);
-//  cc.fillRect(km(prop.input.click[0])-size2, km(-prop.input.click[1])-size2, size, size);
+  if(false) {
+    var size  = 8;
+    var size2 = size / 2;
+
+    var r = "2";
+    var runway = airport_get().getRunway(r);
+    offset = runway.getOffset(prop.input.click, r, true);
+
+    var angle = runway.getAngle(r);
+
+    angle = Math.atan2(-offset[0], offset[1]) + angle;
+    //  console.log(mod(degrees(angle), 360));
+
+    if(false) {
+      cc.translate(km(prop.input.click[0]), km(-prop.input.click[1]));
+      cc.rotate(angle);
+      cc.fillRect(-size2, -size2, size, size);
+      cc.beginPath();
+      cc.moveTo(0, 0);
+      cc.lineTo(0, km(distance2d([0, 0], offset)));
+      cc.stroke();
+    }
+  }
   cc.restore();
 
   prop.canvas.dirty = false;

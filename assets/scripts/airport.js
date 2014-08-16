@@ -8,7 +8,7 @@ var Runway=Position.extend(function(base) {
       this.name        = [null, null];
       this.name_offset = [[0, 0], [0, 0]];
       this.length      = 1;
-      this.glideslope  = [3, 3];
+      this.glideslope  = [radians(3), radians(3)];
       this.angle       = 0;
       this.ils         = [false, false];
       this.delay       = [2, 2];
@@ -51,28 +51,38 @@ var Runway=Position.extend(function(base) {
       var offset = [0, 0];
       offset[0]  = (-cos(this.angle) * position[0]) + (sin(this.angle) * position[1]);
       offset[1]  = ( sin(this.angle) * position[0]) + (cos(this.angle) * position[1]);
-      offset[1] *= -1;
+//      offset[1] *= -1;
 
-      if(end == 1) {
+      if(end == 0) {
         offset[0] *= -1;
         offset[1] *= -1;
       }
 
-      if(length) offset[1] -= this.length / 2;
+      if(length) {
+        offset[1] -= this.length / 2;
+      }
       return offset;
 
+    },
+    getAngle: function(end) {
+      end = this.getEnd(end);
+      if(end == 0) return this.angle + Math.PI;
+      return this.angle;
     },
     getGlideslopeAltitude: function(distance, end, glideslope) {
       end = this.getEnd(end);
       if(!glideslope) glideslope = this.glideslope[end];
+      glideslope = abs(glideslope);
       distance = Math.max(0, distance);
-      var rise = tan(glideslope) * 0.5;
+      var rise = tan(glideslope);
       return rise * distance * 3280;
     },
     getEnd: function(name) {
       if(typeof name == typeof 0) return name;
-      if(this.name[0].toLowerCase() == name) return 0;
-      if(this.name[1].toLowerCase() == name) return 1;
+      if(typeof name == typeof "") {
+        if(this.name[0].toLowerCase() == name.toLowerCase()) return 0;
+        if(this.name[1].toLowerCase() == name.toLowerCase()) return 1;
+      }
       return 0;
     },
     getPosition: function(end) {
@@ -110,9 +120,17 @@ var Airport=Fiber.extend(function() {
     init: function(options) {
       if(!options) options={};
 
-      this.name    = null;
-      this.icao    = null;
-      this.runways = [];
+      this.name     = null;
+      this.icao     = null;
+      this.runways  = [];
+
+      this.departures = [];
+      this.arrivals   = [];
+
+      this.wind     = {
+        speed: 10,
+        angle: 0
+      };
       
       this.parse(options);
       if(options.url) {
@@ -120,21 +138,68 @@ var Airport=Fiber.extend(function() {
       }
 
     },
+    getWind: function() {
+      return this.wind;
+    },
     parse: function(data) {
       if(data.name) this.name = data.name;
       if(data.icao) this.icao = data.icao;
+
       if(data.runways) {
         for(var i=0;i<data.runways.length;i++) {
           this.runways.push(new Runway(data.runways[i]));
         }
       }
+
+      if(data.departures) this.departures = data.departures;
+
+      if(data.arrivals) {
+        for(var i=0;i<data.arrivals.length;i++) {
+          var arrival = data.arrivals[i];
+          arrival.angle      = radians(arrival.angle);
+          arrival.heading    = radians(arrival.heading);
+          arrival.frequency *= 60;
+          game_interval(this.addAircraftArrival, arrival.frequency, arrival);
+          this.arrivals.push(arrival);
+        }
+      }
+    },
+    addAircraftArrival: function(arrival) {
+      var position = [0, 0];
+      var width    = pixels_to_km((prop.canvas.size.width / 2)  - 100);
+      var height   = pixels_to_km((prop.canvas.size.height / 2) - 100);
+      var distance = Math.min(width, height);
+      position[0] += sin(arrival.angle) * distance;
+      position[1] += cos(arrival.angle) * distance;
+
+      distance    += Math.max(width, height) + pixels_to_km(200);
+      position[0] += sin(arrival.heading) * distance;
+      position[1] += cos(arrival.heading) * distance;
+      aircraft_new({
+        position:  position,
+        heading:   arrival.heading + Math.PI,
+        altitude:  arrival.altitude,
+        airline:   choose(arrival.airlines),
+      });
     },
     selectRunway: function(length) {
       if(!length) length = 0;
+      var wind = this.getWind();
+      var headwind = {};
       for(var i=0;i<this.runways.length;i++) {
         var runway = this.runways[i];
-        if(runway.length > length) return choose(runway.name);
+        headwind[runway.name[0]] =  Math.cos(runway.angle - wind.angle) * wind.speed;
+        headwind[runway.name[1]] = -Math.cos(runway.angle - wind.angle) * wind.speed;
       }
+      var best_runway = "";
+      var best_runway_headwind = -Infinity;
+      for(var i in headwind) {
+        if(headwind[i] > best_runway_headwind && this.getRunway(i).length > length) {
+          best_runway = i;
+          best_runway_headwind = headwind[i];
+        }
+      }
+      return best_runway;
     },
     load: function(url) {
       this.content = new Content({

@@ -159,6 +159,8 @@ var Aircraft=Fiber.extend(function() {
         var expedite = false;
         var turn = "auto";
 
+        if(!items || items.length == 0) return false;
+
         if(items.length >= 1) data = items[0];
         if(items.length >= 2) {
           if(data.length <= 2) { // altitude
@@ -206,7 +208,9 @@ var Aircraft=Fiber.extend(function() {
           this.requested.altitude = number * 1000;
           this.requested.expedite = expedite;
         } else if(control == "heading") {
-          this.mode = "cruise";
+          if(this.mode == "landing" || this.mode == "cruise") {
+            this.mode = "cruise";
+          }
           this.requested.heading = radians(number);
           this.requested.turn    = turn;
         }
@@ -331,6 +335,8 @@ var Aircraft=Fiber.extend(function() {
 
       if(data.category) this.category = data.category;
 
+      if(!data.speed) data.speed = this.model.speed.cruise;
+
       if(data.heading)  this.heading = data.heading;
       if(data.altitude) this.altitude = data.altitude;
       if(data.speed)    this.speed = data.speed;
@@ -351,7 +357,7 @@ var Aircraft=Fiber.extend(function() {
       }
     },
     selectRunway: function() {
-      this.requested.runway = airport_get().selectRunway();
+      this.requested.runway = airport_get().selectRunway(this.model.runway.takeoff);
       if(!this.requested.runway) return;
       this.taxi_delay = airport_get().getRunway(this.requested.runway).taxiDelay(this.requested.runway);
     },
@@ -405,42 +411,45 @@ var Aircraft=Fiber.extend(function() {
 
       var angle = null;
 
-      if(this.requested.runway && this.mode == "cruise" && this.category == "arrival") {
-        airport = airport_get();
-        runway  = airport.getRunway(this.requested.runway);
+      if(this.requested.runway) {
+        if((this.mode == "landing" || this.mode == "cruise") && this.category == "arrival") {
+          airport = airport_get();
+          runway  = airport.getRunway(this.requested.runway);
+          
+          offset = runway.getOffset(this.position, this.requested.runway, true);
 
-        angle = runway.angle;
-        var end = runway.getEnd(this.requested.runway, this.requested.runway);
-        if(end == 0) angle += Math.PI;
+          offset_angle = Math.atan2(offset[0], offset[1]);
 
-        offset = runway.getOffset(this.position, this.requested.runway, true);
+          angle = runway.getAngle(this.requested.runway) + Math.PI;
 
-        offset_angle = Math.atan2(offset[0], offset[1]);
-        
-        var landing_zone_offset = 0.5;
-        glideslope_altitude = runway.getGlideslopeAltitude(offset[1] + landing_zone_offset, this.requested.runway);
-        glideslope_window   = runway.getGlideslopeAltitude(offset[1] + landing_zone_offset, this.requested.runway, radians(1.5));
+          var landing_zone_offset = 0.5;
 
-        if((abs(this.altitude - glideslope_altitude) < glideslope_window) &&
-           (offset_angle < radians(30)) ||
-           (this.altitude < 50)) {
+          glideslope_altitude = clamp(0, runway.getGlideslopeAltitude(offset[1] + landing_zone_offset, this.requested.runway), 4000);
+          glideslope_window   = abs(runway.getGlideslopeAltitude(offset[1] + landing_zone_offset, this.requested.runway, radians(20)));
+
+          if((abs(this.altitude - glideslope_altitude) < glideslope_window) && (offset_angle < radians(30))) {
+            this.mode = "landing";
+          } else if(this.altitude < 50 && this.mode == "landing") {
+            this.mode = "landing";
+          } else {
+            this.mode = "cruise";
+          }
           this.mode = "landing";
-        } else {
-          this.mode = "cruise";
         }
       } else if(this.mode == "landing" || this.mode == "cruise") {
         this.mode = "cruise";
       }
 
       if(this.mode == "landing") {
-        if(offset[1] > 0.1) this.target.heading  = offset_angle - angle;
+        if(offset[1] > 0.05) this.target.heading  = -(offset_angle - angle);
         else this.target.heading = -angle;
 
-        if(offset[1] > 0.1) {
-          this.target.heading = crange(-2, offset[0], 2, -radians(45), radians(45)) - angle;
+        if(offset[1] > 0.05) {
+          this.target.heading = crange(-2, offset[0], 2, radians(45), -radians(45)) + angle;
         } else {
-          this.target.heading = -angle;
+          this.target.heading = angle;
         }
+//        this.target.heading = angle;
 
         this.target.altitude     = glideslope_altitude;
         this.target.speed        = this.model.speed.landing;
@@ -600,9 +609,11 @@ var Aircraft=Fiber.extend(function() {
     updateStrip: function() {
       if(this.isTaxiing())
         this.html.find(".heading").text(this.requested.runway);
+      else if(this.mode == "landing")
+        this.html.find(".heading").text(this.requested.runway);
       else
         this.html.find(".heading").text(round(degrees(this.requested.heading)));
-      this.html.find(".altitude").text(round(this.requested.altitude));
+      this.html.find(".altitude").text(round(this.target.altitude));
     },
     update: function() {
       this.updateTarget();
@@ -621,6 +632,7 @@ function aircraft_init_pre() {
 
 function aircraft_init() {
   aircraft_load("B738");
+  aircraft_load("CONC");
 }
 
 function aircraft_complete() {
@@ -645,11 +657,12 @@ function aircraft_complete() {
 }
 
 function aircraft_add_departing() {
+  return;
   aircraft_new({
-    icao: "B738",
+    icao: "CONC",
     category: "departure",
   });
-  setTimeout(aircraft_add_departing, crange(0, Math.random(), 1, 20000, 120000));
+  game_timeout(aircraft_add_departing, crange(0, Math.random(), 1, 60, 120));
 }
 
 function aircraft_airline_new() {
@@ -685,10 +698,16 @@ function aircraft_callsign_new() {
 }
 
 function aircraft_new(options) {
+  if(!options.airline) options.airline = aircraft_airline_new();
+  if(!options.callsign) options.callsign = aircraft_callsign_new();
+
+  if(!options.icao) {
+    options.icao = choose(airline_get(options.airline).aircraft);
+  }
   var icao = options.icao.toLowerCase();
+
   options.model = prop.aircraft.models[icao];
-  options.airline  = aircraft_airline_new();
-  options.callsign = aircraft_callsign_new();
+
   var aircraft = new Aircraft(options);
 
   aircraft.complete();
@@ -721,8 +740,8 @@ function aircraft_add(model) {
 }
 
 function aircraft_visible(aircraft) {
-  var width2  = pixels_to_km((prop.canvas.size.width / 2)  + 50);
-  var height2 = pixels_to_km((prop.canvas.size.height / 2) + 50);
+  var width2  = pixels_to_km((prop.canvas.size.width / 2)  + 80);
+  var height2 = pixels_to_km((prop.canvas.size.height / 2) + 80);
   if(((aircraft.position[0] < -width2  || aircraft.position[0] > width2)) ||
      ((aircraft.position[1] < -height2 || aircraft.position[1] > height2))) {
     return false;

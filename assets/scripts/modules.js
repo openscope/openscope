@@ -14,6 +14,7 @@ var MODULES=[
 
   "input",
 
+  "airline",
   "aircraft",
   "airport",
 

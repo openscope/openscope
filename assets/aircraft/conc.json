@@ -1,0 +1,21 @@
+{
+  "name": "Concorde",
+  "icao": "CONC",
+  "rate": {
+    "turn":       0.3,
+    "ascent":     4000,
+    "descent":    2000,
+    "accelerate": 4,
+    "decelerate": 4
+  },
+  "runway": {
+    "takeoff": 3.6,
+    "landing": 4.0
+  },
+  "speed":{
+    "min":     150,
+    "max":     1000,
+    "landing": 170,
+    "cruise":  250
+  }
+}
