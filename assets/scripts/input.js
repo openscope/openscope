@@ -46,6 +46,7 @@ function input_init() {
 }
 
 function input_complete() {
+  return;
   $("#command").val(prop.aircraft.list[0].getCallsign() + " turn left 130 turn right 213 climb 43");
   input_change();
   input_run();
