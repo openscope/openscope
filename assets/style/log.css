@@ -8,7 +8,6 @@
   left: 0;
   bottom: 36px;
   width: calc(100% - 250px);
-  padding-right: 250px;
 }
 
 #log .item {
