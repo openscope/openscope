@@ -8,6 +8,8 @@ var MODULES=[
   "get",
   "ui",
   
+  "tutorial",
+
   "base",
 
   "game",

@@ -5,6 +5,7 @@ function ui_init_pre() {
 }
 
 function ui_init() {
+
   $(".fast-forwards").click(function() {
     if(prop.game.speedup != 1) {
       prop.game.speedup = 1;
@@ -13,6 +14,10 @@ function ui_init() {
       prop.game.speedup = 3;
       $(".fast-forwards").addClass("active");
     }
+  });
+
+  $(".start-tutorial").click(function() {
+    tutorial_toggle();
   });
 
   $(".pause-toggle").click(function() {
