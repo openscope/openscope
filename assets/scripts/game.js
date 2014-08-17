@@ -7,7 +7,7 @@ function game_init_pre() {
 
   prop.game.speedup=1;
 
-  prop.game.time=time();
+  prop.game.time=0;
   prop.game.delta=0;
 
   prop.game.timeouts=[];

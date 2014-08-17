@@ -1,6 +1,10 @@
 {
   "name": "United Airlines",
+  "callsign": {
+    "name": "United",
+    "length": 3
+  },
   "aircraft": [
-    "B738"
+    ["B738", 1]
   ]
 }

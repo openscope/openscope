@@ -1,6 +1,18 @@
 {
   "name": "British Airways",
+  "callsign": {
+    "name": "Speedbird",
+    "length": 3
+  },
   "aircraft": [
-    "B738"
+    ["B734", 19 ],
+
+    ["B744", 55 ],
+
+    ["B772", 3  ],
+    ["B77E", 43 ],
+    ["B77W", 12 ],
+
+    ["B788", 7 ]
   ]
 }

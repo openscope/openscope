@@ -1,0 +1,22 @@
+{
+  "name": "Boeing 747-400",
+  "icao": "B744",
+  "wake": "heavy",
+  "rate": {
+    "turn":       0.8,
+    "ascent":     1000,
+    "descent":    2000,
+    "accelerate": 4,
+    "decelerate": 2
+  },
+  "runway": {
+    "takeoff": 3.2,
+    "landing": 4.0
+  },
+  "speed":{
+    "min":     135,
+    "max":     250,
+    "landing": 150,
+    "cruise":  250
+  }
+}

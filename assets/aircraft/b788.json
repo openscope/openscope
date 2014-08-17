@@ -1,0 +1,22 @@
+{
+  "name": "Boeing 787-8 Dreamliner",
+  "icao": "B788",
+  "wake": "heavy",
+  "rate": {
+    "turn":       1.4,
+    "ascent":     1700,
+    "descent":    2500,
+    "accelerate": 7,
+    "decelerate": 4
+  },
+  "runway": {
+    "takeoff": 3.1,
+    "landing": 4.0
+  },
+  "speed":{
+    "min":     120,
+    "max":     250,
+    "landing": 130,
+    "cruise":  250
+  }
+}

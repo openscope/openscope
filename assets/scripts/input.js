@@ -80,7 +80,7 @@ function input_keydown(e) {
   if(e.which == 13) { // enter key
     input_parse();
     if(input_run()) {
-      prop.input.history.unshift(prop.input.command);
+      prop.input.history.unshift(prop.input.callsign);
       $("#command").val("");
       prop.input.command = "";
       input_parse();

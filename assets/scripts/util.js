@@ -182,3 +182,47 @@ function average() {
   for(var i=0;i<arguments.length;i++) sum += arguments[i];
   return sum / arguments.length;
 }
+
+function heading_to_string(heading) {
+  return round(mod(degrees(heading), 360));
+}
+
+var radio_names = {
+  0:"zero",
+  1:"one",
+  2:"two",
+  3:"three",
+  4:"four",
+  5:"five",
+  6:"six",
+  7:"seven",
+  8:"eight",
+  9:"niner",
+};
+
+var radio_runway_names = clone(radio_names);
+
+radio_runway_names.l = "left";
+radio_runway_names.c = "center";
+radio_runway_names.r = "right";
+
+function radio(input) {
+  input = input + "";
+  input = input.toLowerCase();
+  var s = [];
+  for(var i=0;i<input.length;i++) {
+    s.push(radio_names[input[i]]);
+  }
+  return s.join(" ");
+}
+
+function radio_runway(input) {
+  input = input + "";
+  input = input.toLowerCase();
+  var s = [];
+  for(var i=0;i<input.length;i++) {
+    s.push(radio_runway_names[input[i]]);
+  }
+  return s.join(" ");
+}
+

@@ -3,6 +3,7 @@
 @import "canvas.css";
 
 @import "command.css";
+@import "log.css";
 @import "sidebar.css";
 
 html,body {

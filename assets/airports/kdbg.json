@@ -1,5 +1,6 @@
 {
   "name": "Debug airport",
+  "radio": "Debug",
   "icao": "KDBG",
   "wind": {
     "angle": 20,
@@ -25,28 +26,19 @@
       "ils":         [true, false]
     },
     {
-      "name":        ["20", "2"],
-      "name_offset": [[0, 0], [-0.2, 0.2]],
-      "position":    [15, 0],
-      "angle":       223,
-      "length":      5,
-      "delay":       [120, 80],
+      "name":        ["19", "1"],
+      "name_offset": [[0, 0], [0, 0]],
+      "position":    [4, 0],
+      "angle":       190,
+      "length":      7,
+      "delay":       [120, 90],
       "ils":         [false, false]
     },
     {
-      "name":        ["27R", "9L"],
+      "name":        ["11R", "29L"],
       "name_offset": [[0, 0], [0, 0]],
-      "position":    [0, 6],
-      "angle":       270,
-      "length":      5,
-      "delay":       [80, 80],
-      "ils":         [false, false]
-    },
-    {
-      "name":        ["9R", "27L"],
-      "name_offset": [[0, 0], [0, 0]],
-      "position":    [0, -6],
-      "angle":       90,
+      "position":    [-1, -6],
+      "angle":       112,
       "length":      4,
       "delay":       [80, 80],
       "ils":         [false, false]

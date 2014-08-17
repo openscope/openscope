@@ -18,8 +18,9 @@ function canvas_init_pre() {
 
 function canvas_init() {
   canvas_add("navaids");
-  canvas_add("aircraft");
   canvas_add("info");
+  canvas_add("aircraft");
+  canvas_add("compass");
 }
 
 function canvas_complete() {
@@ -134,6 +135,11 @@ function canvas_draw_aircraft(cc, aircraft) {
   var size = 3;
 
   cc.fillStyle   = "rgba(224, 224, 224, 1.0)";
+  if(prop.input.callsign.length > 1 && aircraft.matchCallsign(prop.input.callsign.substr(0, prop.input.callsign.length - 1)))
+    cc.fillStyle = "rgba(255, 224, 191, 1.0)";
+  if(prop.input.callsign.length > 0 && aircraft.matchCallsign(prop.input.callsign))
+    cc.fillStyle = "rgba(128, 191, 255, 1.0)";
+
   if(aircraft.warning)
     cc.fillStyle = "rgba(224, 128, 128, 1.0)";
   if(aircraft.hit)
@@ -258,6 +264,38 @@ function canvas_draw_all_info(cc) {
   }
 }
 
+function canvas_draw_compass(cc) {
+  cc.translate(round(prop.canvas.size.width/2), round(prop.canvas.size.height/2));
+  var size    = 128;
+  var size2   = size / 2;
+  var padding = 32;
+
+  var dot     = 8;
+
+  cc.translate(-size2-padding, -size2-padding);
+  cc.strokeStyle = "rgba(255, 255, 255, 0.5)"
+  cc.fillStyle = "rgba(255, 255, 255, 1.0)"
+  cc.lineWidth = 4;
+  
+  cc.beginPath();
+  cc.arc(0, 0, dot/2, 0, Math.PI*2);
+  cc.fill()
+
+  cc.beginPath();
+
+  cc.arc(0, 0, size2, 0, Math.PI*2);
+  cc.stroke();
+
+  cc.beginPath();
+  cc.moveTo(0, 0);
+  cc.rotate(airport_get().getWind().angle - Math.PI);
+  cc.lineTo(0, crange(0, airport_get().getWind().speed, 20, 0, size2-dot));
+  cc.strokeStyle = "rgba(255, 255, 255, 1.0)"
+  cc.lineWidth = 2;
+  cc.stroke();
+
+}
+
 function canvas_update_post() {
   var cc=canvas_get("navaids");
 
@@ -267,8 +305,23 @@ function canvas_update_post() {
   if(prop.canvas.dirty || true) {
     canvas_clear(cc);
     cc.translate(round(prop.canvas.size.width/2), round(prop.canvas.size.height/2));
+    
+    cc.save();
     canvas_draw_runways(cc);
+    cc.restore();
   }
+  cc.restore();
+
+  // compass
+
+  cc=canvas_get("compass");
+
+  cc.font = "10px monoOne, monospace";
+
+  cc.save();
+  canvas_clear(cc);
+  cc.translate(round(prop.canvas.size.width/2), round(prop.canvas.size.height/2));
+  canvas_draw_compass(cc);
   cc.restore();
 
   //

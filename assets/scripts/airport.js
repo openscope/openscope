@@ -121,6 +121,7 @@ var Airport=Fiber.extend(function() {
       if(!options) options={};
 
       this.name     = null;
+      this.radio    = null;
       this.icao     = null;
       this.runways  = [];
 
@@ -142,11 +143,19 @@ var Airport=Fiber.extend(function() {
 
     },
     getWind: function() {
-      return this.wind;
+      var wind = clone(this.wind);
+      var s = 1;
+      var angle_factor = Math.sin((s + game_time()) * 0.5) + Math.sin((s + game_time()) * 2);
+      var s = 100;
+      var speed_factor = Math.sin((s + game_time()) * 0.5) + Math.sin((s + game_time()) * 2);
+      wind.angle += crange(-1, angle_factor, 1, radians(-10), radians(10));
+      wind.speed *= crange(-1, speed_factor, 1, 0.8, 1.2);
+      return wind;
     },
     parse: function(data) {
-      if(data.name) this.name = data.name;
-      if(data.icao) this.icao = data.icao;
+      if(data.name) this.name   = data.name;
+      if(data.radio) this.radio = data.radio;
+      if(data.icao) this.icao   = data.icao;
 
       if(data.runways) {
         for(var i=0;i<data.runways.length;i++) {
@@ -213,7 +222,7 @@ var Airport=Fiber.extend(function() {
         altitude:  arrival.altitude,
         airline:   choose(arrival.airlines),
       });
-      game_timeout(this.addAircraftArrival, crange(0, Math.random(), 1, arrival.frequency[0], arrival.frequency[1]), this, arrival);
+      game_timeout(this.addAircraftArrival, crange(0, Math.random(), 1, arrival.frequency[0], arrival.frequency[1]), this, [arrival, offset]);
     },
     selectRunway: function(length) {
       if(!length) length = 0;

@@ -1,0 +1,76 @@
+
+.strip {
+  background-color: rgba(255, 255, 255, 0.0);
+
+  border-left: 4px solid transparent;
+
+  list-style-type: none;
+  position: relative;
+  padding: 3px 10px;
+  margin-bottom: 5px;
+  margin-left: 0;
+  margin-right: 0;
+
+  transition: margin-left 0.5s ease, margin-right 0.5s ease, background-color 0.1s ease, box-shadow 0.2s ease;
+}
+
+.strip:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.strip.active {
+  background-color: rgba(255, 255, 255, 0.2);
+
+  box-shadow: 0 1px 7px rgba(0, 0, 0, 1);
+
+  margin-left: -5px;
+  margin-right: 5px;
+}
+
+.strip.arrival {
+  border-color: rgba(224, 128, 128, 0.8);
+}
+
+.strip.departure {
+  border-color: rgba(128, 255, 255, 0.8);
+}
+
+.strip .aircraft {
+  display: block;
+  font-style: italic;
+}
+
+.strip .heading {
+  text-align: center;
+
+  position: absolute;
+  padding-right: 5px;
+  left: 50%;
+  width: 80px;
+  margin-left: -40px;
+}
+
+.strip .runway {
+  color: #8cf;
+  font-style: italic;
+}
+
+.strip .hold {
+  color: #f76;
+  font-style: italic;
+}
+
+.strip .taxi {
+  color: #f8e;
+}
+
+.strip .waiting {
+  color: #7f6;
+}
+
+.strip .altitude {
+  text-align: right;
+
+  position: absolute;
+  right: 10px;
+}
