@@ -7,6 +7,8 @@ var Model=Fiber.extend(function() {
       this.name = null;
       this.icao = null;
 
+      this.wake = null;
+
       this.rate = {
         turn:       0, // radians per second
         ascent:     0, // feet per second
@@ -35,6 +37,8 @@ var Model=Fiber.extend(function() {
     parse: function(data) {
       if(data.name) this.name = data.name;
       if(data.icao) this.icao = data.icao;
+
+      if(data.wake) this.wake = data.wake;
 
       if(data.rate) {
         this.rate         = data.rate;
@@ -151,8 +155,15 @@ var Aircraft=Fiber.extend(function() {
     getCallsign: function() {
       return (this.airline + this.callsign).toUpperCase();
     },
-    getRadioCallsign: function() {
-      return airline_get(this.airline).callsign.name + " " + this.callsign.toUpperCase();
+    getRadioCallsign: function(condensed) {
+      var heavy = "";
+      if(this.model.wake == "heavy") heavy = " heavy"
+      var callsign = this.callsign;
+      if(condensed) {
+        var length = 2;
+        callsign = callsign.substr(callsign.length - length);
+      }
+      return airline_get(this.airline).callsign.name + " " + callsign.toUpperCase() + heavy;
     },
     runCommand: function(command) {
       command = command.toLowerCase();
@@ -223,7 +234,8 @@ var Aircraft=Fiber.extend(function() {
         current = "";
       }
 
-      var response = "";
+      var response = [];
+      var response_end = "roger";
 
       for(var i=0;i<commands.length;i+=1) {
         var pair    = commands[i];
@@ -233,10 +245,21 @@ var Aircraft=Fiber.extend(function() {
         if(pair.length == 2) data = pair[1];
 
         var retval  = this.run(command, data);
-        if(retval) response += " " + retval[1];
+        if(retval) {
+          response.push(retval[1]);
+          if(retval[2]) response_end = retval[2];
+        }
       }
-      
-      if(response) console.log(response.substr(1));
+
+      if(commands.length == 0) {
+        response     = ["not understood"];
+        response_end = "say again";
+      }
+
+      if(response.length >= 1) {
+        if(response_end) response_end = ", " + response_end;
+        ui_log(this.getRadioCallsign() + " " + response.join(", ") + response_end);
+      }
 
       return true;
     },
@@ -262,7 +285,7 @@ var Aircraft=Fiber.extend(function() {
 
       else if("abort".indexOf(command) == 0)    command = "abort";
 
-      else return ["fail", "not understood"];
+      else return ["fail", "not understood", "say again"];
 
       if(command == "heading")
         return this.runHeading(data);
@@ -286,20 +309,25 @@ var Aircraft=Fiber.extend(function() {
       var heading   = parseInt(split[0]);
       var direction = "auto";
 
-      if(split.length == 0) return ["fail", "heading not understood"];
+      if(split.length == 0) return ["fail", "heading not understood", "say again"];
 
       if(split.length >= 2) {
         direction = split[0];
         heading = parseInt(split[1]);
       }
 
-      if(isNaN(heading)) return ["fail", "heading not understood"];
+      if(isNaN(heading)) return ["fail", "heading not understood", "say again"];
 
       if(this.mode == "landing")
         this.cancelLanding();
       
       this.requested.heading = radians(heading);
       this.requested.turn    = direction;
+      
+      if(direction == "auto") direction  = "";
+      else                    direction += " ";
+
+      return ["ok", "turn "+direction+"heading " + heading_to_string(this.requested.heading), "roger"];
     },
     runAltitude: function(data) {
       var split     = data.split(" ");
@@ -307,18 +335,39 @@ var Aircraft=Fiber.extend(function() {
       var altitude = parseInt(split[0]);
       var expedite = false;
 
-      if(split.length >= 2 && ((split[1].length >= 1 && "expedite".indexOf(split[1]) == 0) || split[1] == "x")) expedite = true;
+      data = split[0];
 
-      if(isNaN(altitude)) return ["fail", "altitude not understood"];
+      function isExpedite(s) {
+        if((s.length >= 1 && "expedite".indexOf(s) == 0) || s == "x") return true;
+        return false;
+      }
+
+      if(split.length >= 2 && isExpedite(split[1])) {
+        expedite = true;
+      }
+
+      if(isNaN(altitude)) {
+        if(isExpedite(split[0])) {
+          this.requested.expedite = true;
+          return ["ok", radio_trend("altitude", this.altitude, this.requested.altitude) + " " + this.requested.altitude + " expedite"];
+        }
+        return ["fail", "altitude not understood"];
+      }
 
       if(this.mode == "landing")
         this.cancelLanding();
       
       var factor = 1;
-      if(data.length <= 2) factor = 1000;
+      if(data.length == 1) factor = 1000;
+      if(data.length == 2) factor = 100;
 
       this.requested.altitude = altitude * factor;
       this.requested.expedite = expedite;
+
+      if(expedite) expedite = " expedite";
+      else         expedite = "";
+
+      return ["ok", radio_trend("altitude", this.altitude, this.requested.altitude) + " " + this.requested.altitude + expedite];
     },
     runSpeed: function(data) {
       var speed = parseInt(data);
@@ -328,38 +377,43 @@ var Aircraft=Fiber.extend(function() {
       if(this.mode == "landing")
         this.cancelLanding();
       
-      this.requested.speed = speed;
+      this.requested.speed = clamp(this.model.speed.min, speed, this.model.speed.max);
+
+      return ["ok", radio_trend("speed", this.speed, this.requested.speed) + " " + this.requested.speed + " knots"];
+
     },
     runWait: function(data) {
-      if(this.category != "departure") return ["fail", "this is an arriving aircraft"];
+      if(this.category != "departure") return ["fail", "inbound"];
 
-      if(this.mode == "taxi") return ["fail", "already taxiing"];
+      if(this.mode == "taxi") return ["fail", "already taxiing to " + radio_runway(this.requested.runway)];
 
       if(this.mode == "waiting") return ["fail", "already waiting"];
 
       if(this.mode != "apron") return ["fail", "wrong mode"];
 
       var runway = airport_get().getRunway(this.requested.runway);
+
       runway.addQueue(this, this.requested.runway);
 
       this.mode = "taxi";
       this.taxi_start = game_time();
 
+      return ["ok", "line up and wait runway " + radio_runway(this.requested.runway)];
     },
     runTakeoff: function(data) {
-      if(this.category != "departure") return ["fail", "this is an arriving aircraft"];
+      if(this.category != "departure") return ["fail", "inbound", "over"];
 
-      if(this.mode != "waiting") return ["fail", "not ready yet"];
+      if(!this.isLanded()) return ["fail", "already airborne", "over"];
+      if(this.mode != "waiting") return ["fail", "taxi to runway " + radio_runway(this.requested.runway) + " not yet complete", "over"];
 
       var runway = airport_get().getRunway(this.requested.runway);
 
       if(runway.removeQueue(this, this.requested.runway)) {
         this.mode = "takeoff";
-        return ["ok", "taking off"];
+        return ["ok", "taking off runway " + radio_runway(this.requested.runway), ""];
       } else {
-//        var waiting = runway.isWaiting(this, this.requested.runway);
-//        ui_log(this.getRadioCallsign(), "number "+waiting+" behind "+runway.waiting[runway.getEnd(this.requested.runway)][waiting+1].getCallsign());
-        return ["fail", "not first"];
+        var waiting = runway.isWaiting(this, this.requested.runway);
+        return ["fail", "number "+waiting+" behind "+runway.waiting[runway.getEnd(this.requested.runway)][waiting+1].getCallsign(), ""];
       }
 
     },
@@ -368,16 +422,21 @@ var Aircraft=Fiber.extend(function() {
 
       if(!runway) {
 //        ui_log(this.getRadioCallsign(), "no such runway at "+airport_get().name);
-        return ["fail", "invalid runway"];;
+        return ["fail", "no runway " + radio_runway(data)];
       }
 
       this.requested.runway = data.toUpperCase();
+      this.requested.turn   = "auto";
       this.requested.hold   = false;
+      
+      return ["ok", "land runway " + radio_runway(data) + " at " + airport_get().name, "roger"];
       
     },
     runAbort: function(data) {
       this.cancelLanding();
       this.requested.altitude = Math.max(2000, round((this.altitude / 1000) + 1) * 1000);
+      
+      return ["ok", "go around, hold heading " + heading_to_string(this.requested.heading) + " at " + this.requested.altitude + " feet", ""];
     },
     cancelLanding: function() {
       if(this.requested.runway && (this.mode == "landing" || this.mode == "cruise")) {
