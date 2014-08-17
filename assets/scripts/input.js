@@ -62,11 +62,25 @@ function input_parse() {
   $(".strip").removeClass("active");
   prop.input.callsign = "";
   prop.input.data     = "";
+
   var c = prop.input.command;
-  var s = c.match(/\S+/g);
-  if(!s || s.length == 0) return;
-  if(s.length >= 1) prop.input.callsign = s[0];
-  if(s.length >= 2) prop.input.data     = s.slice(1).join(" ");
+  var i;
+  var skip=false;
+  var data=false;
+
+  for(i=0;i<c.length;i++) {
+    if(c[i] == " " && prop.input.data.length == 0 && prop.input.callsign.length != 0) {
+      skip=true;
+    }
+    if(skip && c[i] != " ") {
+      skip=false;
+      data=true;
+    }
+    if(!skip) {
+      if(data) prop.input.data += c[i];
+      else prop.input.callsign += c[i];
+    }
+  }
 
   for(var i=0;i<prop.aircraft.list.length;i++) {
     var aircraft=prop.aircraft.list[i];
@@ -138,6 +152,7 @@ function input_history_next() {
 function input_run() {
   var matches = 0;
   var match   = -1;
+
   for(var i=0;i<prop.aircraft.list.length;i++) {
     var aircraft=prop.aircraft.list[i];
     if(aircraft.matchCallsign(prop.input.callsign)) {
@@ -145,8 +160,10 @@ function input_run() {
       match    = i;
     }
   }
+
   if(matches > 1) return false;
   if(match == -1) return false;
+
   var aircraft = prop.aircraft.list[match];
   return aircraft.runCommand(prop.input.data);
 }

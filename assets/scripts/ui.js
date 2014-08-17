@@ -24,6 +24,6 @@ function ui_log(message) {
     setTimeout(function() {
       html.remove();
     }, 1000);
-  }, 2, window, html);
+  }, 4, window, html);
   console.log(message);
 }
