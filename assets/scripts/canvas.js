@@ -271,33 +271,45 @@ function canvas_draw_all_info(cc) {
 
 function canvas_draw_compass(cc) {
   cc.translate(round(prop.canvas.size.width/2), round(prop.canvas.size.height/2));
-  var size    = 128;
+  var size    = 80;
   var size2   = size / 2;
-  var padding = 32;
+  var padding = 16;
 
   var dot     = 8;
 
   cc.translate(-size2-padding, -size2-padding);
-  cc.strokeStyle = "rgba(255, 255, 255, 0.5)"
-  cc.fillStyle = "rgba(255, 255, 255, 1.0)"
   cc.lineWidth = 4;
   
+  cc.fillStyle = "rgba(255, 255, 255, 0.5)"
+  cc.beginPath();
+  cc.arc(0, 0, size2, 0, Math.PI*2);
+  cc.fill();
+
+  cc.fillStyle = "rgba(255, 255, 255, 1.0)"
   cc.beginPath();
   cc.arc(0, 0, dot/2, 0, Math.PI*2);
   cc.fill()
 
-  cc.beginPath();
-
-  cc.arc(0, 0, size2, 0, Math.PI*2);
-  cc.stroke();
-
+  cc.save();
   cc.beginPath();
   cc.moveTo(0, 0);
   cc.rotate(airport_get().getWind().angle - Math.PI);
-  cc.lineTo(0, crange(0, airport_get().getWind().speed, 20, 0, size2-dot));
+  cc.lineTo(0, crange(0, airport_get().getWind().speed, 15, 0, size2-dot));
   cc.strokeStyle = "rgba(255, 255, 255, 1.0)"
   cc.lineWidth = 2;
   cc.stroke();
+  cc.restore();
+
+  cc.fillStyle = "rgba(0, 0, 0, 0.5)"
+  cc.textAlign = "center";
+  cc.textBaseline = "top";
+  for(var i=0;i<4;i++) {
+    var angle = (i / 4) * 360;
+    cc.save();
+    cc.rotate((i / 4) * (Math.PI * 2));
+    cc.fillText(angle, 0, -size2+6);
+    cc.restore();
+  }
 
 }
 
@@ -321,7 +333,7 @@ function canvas_update_post() {
 
   cc=canvas_get("compass");
 
-  cc.font = "10px monoOne, monospace";
+  cc.font = "bold 10px monoOne, monospace";
 
   cc.save();
   canvas_clear(cc);
