@@ -200,6 +200,13 @@ var radio_names = {
   9:"niner",
 };
 
+var radio_compass_names = {
+  "n":"north",
+  "w":"west",
+  "s":"south",
+  "e":"east",
+};
+
 var radio_runway_names = clone(radio_names);
 
 radio_runway_names.l = "left";
@@ -226,6 +233,16 @@ function radio_runway(input) {
   return s.join(" ");
 }
 
+function radio_compass(input) {
+  input = input + "";
+  input = input.toLowerCase();
+  var s = [];
+  for(var i=0;i<input.length;i++) {
+    s.push(radio_compass_names[input[i]]);
+  }
+  return s.join(" ");
+}
+
 function radio_trend(category, measured, target) {
   var CATEGORIES = {
     "altitude": ["descend to", "ascend to", "maintaining"],
@@ -234,4 +251,14 @@ function radio_trend(category, measured, target) {
   if(measured > target) return CATEGORIES[category][0];
   if(measured < target) return CATEGORIES[category][1];
   return CATEGORIES[category][2];
+}
+
+var DIRECTIONS = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"];
+
+function compass_direction(angle) {
+  angle /= Math.PI*2;
+  angle = mod(angle, 1);
+  angle *= 8;
+  angle = DIRECTIONS[round(angle)];
+  return angle;
 }

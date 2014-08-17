@@ -132,8 +132,12 @@ var Aircraft=Fiber.extend(function() {
       }
 
       if((this.category == "arrival") && game_time() > 2) {
-//      if(this.category == "arrival") {
-        ui_log(airport_get().radio+" tower, "+airline_get(this.airline).callsign.name+" "+radio(this.callsign)+", over");
+        var position = "";
+        var distance = round(distance2d([0, 0], this.position) * 0.62);
+        position += distance + " mile" + s(distance);
+        var angle = Math.atan2(this.position[0], this.position[1]);
+        position += " " + radio_compass(compass_direction(-this.heading));
+        ui_log(airport_get().radio+" tower, "+airline_get(this.airline).callsign.name+" "+radio(this.callsign)+" in your airspace "+position+", over");
       }
 
       $("#strips").append(this.html);

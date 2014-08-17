@@ -6,6 +6,8 @@
 @import "log.css";
 @import "sidebar.css";
 
+@import "loading.css";
+
 html,body {
   height: 100%;
   width: 100%;

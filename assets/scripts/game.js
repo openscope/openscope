@@ -13,11 +13,11 @@ function game_init_pre() {
   prop.game.timeouts=[];
 
   $(window).blur(function() {
-//    prop.game.focused=false;
+    prop.game.focused=false;
   });
 
   $(window).focus(function() {
-//    prop.game.focused=true;
+    prop.game.focused=true;
   });
 
 }

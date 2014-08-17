@@ -15,7 +15,9 @@ function load_item_add() {
   prop.load.items.total+=1;
 }
 
-function load_done() {
-  $("#loading").fadeOut(1000);
-  $("#loading").css("pointerEvents","none");
+function load_complete() {
+  setTimeout(function() {
+    $("#loading").fadeOut(1000);
+    $("#loading").css("pointerEvents","none");
+  }, 200);
 }
