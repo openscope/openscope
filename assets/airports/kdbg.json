@@ -31,16 +31,16 @@
       "position":    [4, 0],
       "angle":       190,
       "length":      7,
-      "delay":       [120, 90],
+      "delay":       [30, 20],
       "ils":         [false, false]
     },
     {
-      "name":        ["11R", "29L"],
+      "name":        ["11", "29"],
       "name_offset": [[0, 0], [0, 0]],
       "position":    [-1, -6],
       "angle":       112,
       "length":      4,
-      "delay":       [80, 80],
+      "delay":       [20, 20],
       "ils":         [false, false]
     }
   ],
