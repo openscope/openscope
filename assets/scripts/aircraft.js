@@ -155,258 +155,239 @@ var Aircraft=Fiber.extend(function() {
       return airline_get(this.airline).callsign.name + " " + this.callsign.toUpperCase();
     },
     runCommand: function(command) {
-      var s = command.match(/\S+/g);
-      if(!s) {
-        return false;
+      command = command.toLowerCase();
+      var COMMANDS = [
+        "turn",
+
+        "heading",
+
+        "altitude",
+        "climb",
+        "descend",
+        
+        "speed",
+        "slow",
+
+        "wait",
+        "taxi",
+        
+        "takeoff",
+        "depart",
+
+        "land",
+
+        "abort"
+      ];
+
+      var strings  = [""];
+      var skipping = false;
+      for(var i=0;i<command.length;i++) {
+        var c = command[i];
+        if(c == " ") {
+          skipping = true;
+          continue;
+        }
+        if(skipping) {
+          skipping = false;
+          strings.push("");
+        }
+        strings[strings.length-1] += c;
       }
-      var mode = "";
-      var data = "";
-      if(s.length >= 1) mode = s[0].toLowerCase();
-      if(s.length >= 2) data = s.slice(1).join(" ").toLowerCase();
-      if(mode.length < 1) {
-        ui_log(this.getRadioCallsign(), "instruction not understood, say again");
-        return true;
-      }
-
-      // ALTITUDE
-
-      if("altitude".indexOf(mode) == 0 || "descend".indexOf(mode) == 0 || "ascend".indexOf(mode) == 0 || ("climb".indexOf(mode) == 0 && mode.length >= 3)) {
-        var items = data.match(/\S+/g);
-        var expedite = false;
-
-        if(!items || items.length == 0) return false;
-
-        if(items.length >= 1) data = items[0];
-        if(items.length >= 2) {
-          expedite = true;
-        }
-
-        if(data.length > 3) {
-          ui_log(this.getRadioCallsign(), "altitude not understood, say again");
-          return true;
-        }
-
-        var number = parseInt(data);
-        if(isNaN(number)) {
-          ui_log(this.getRadioCallsign(), "altitude not understood, say again");
-          return true;
-        }
-
-        if(this.mode == "landing" || this.mode == "cruise") {
-          this.mode = "cruise";
-          this.requested.runway  = null;
-        }
-        if(data.length >= 2)
-          this.requested.altitude = number * 100;
-        else
-          this.requested.altitude = number * 1000;
-        this.requested.expedite = expedite;
-        
-        if(expedite) expedite = " expedite";
-        else expedite = "";
-
-        if(this.mode == "cruise") {
-          if(this.requested.altitude < this.altitude)
-            ui_log(this.getRadioCallsign(), "descend to "+round(this.requested.altitude)+" feet"+expedite+", roger");
-          else if(this.requested.altitude > this.altitude)
-            ui_log(this.getRadioCallsign(), "ascend to "+round(this.requested.altitude)+" feet"+expedite+", roger");
-          else
-            ui_log(this.getRadioCallsign(), "maintain "+round(this.requested.altitude)+" feet");
-        } else if(this.mode == "takeoff" || this.mode == "apron" || this.mode == "waiting" || this.mode == "taxi") {
-          ui_log(this.getRadioCallsign(), "altitude set "+round(this.requested.altitude)+" feet"+expedite+", roger");
-        }
-
-      } else if("hold".indexOf(mode) == 0) {
-        // HOLD
-        var direction = "auto";
-
-        if(data == "l" || ("left").indexOf(data) == 0) {
-          direction = "left";
-        } else if(data == "r" || ("right").indexOf(data) == 0) {
-          direction = "right";
-        } else {
-          ui_log(this.getRadioCallsign(), "hold direction not understood, say again");
-          return true;
-        }
-
-        this.requested.turn = direction;
-        this.requested.hold = true;
-        
-        ui_log(this.getRadioCallsign(), "hold "+direction+" at "+this.requested.altitude+" feet, roger");
-
-      } else if("speed".indexOf(mode) == 0 || "slow".indexOf(mode) == 0) {
-        // SPEED
-        var number = parseInt(data);
-
-        if(isNaN(number)) {
-          ui_log(this.getRadioCallsign(), "airspeed not understood, say again");
-          return true;
-        }
-        
-        this.requested.speed = number;
-        
-        if(this.requested.speed < this.speed)
-          ui_log(this.getRadioCallsign(), "reduce speed to "+this.requested.speed);
-        else if(this.requested.speed > this.speed)
-          ui_log(this.getRadioCallsign(), "increase speed to "+this.requested.speed);
-        else
-          ui_log(this.getRadioCallsign(), "maintain "+this.requested.speed+" knots");
-
-      } else if("land".indexOf(mode) == 0) {
-        // LAND
-
-        if(this.category != "arrival") {
-          ui_log(this.getRadioCallsign(), "is an outbound aircraft");
-          return true;
-        }
-
-        if(this.isLanded()) {
-          ui_log(this.getRadioCallsign(), "already on the ground");
-          return true;
-        }
-
-        var runway = airport_get().getRunway(data);
-
-        if(!runway) {
-          ui_log(this.getRadioCallsign(), "no such runway at "+airport_get().name);
-//          console.log("invalid runway '" + data + "'");
-          return true;
-        }
-
-        this.requested.runway = data.toUpperCase();
-        this.requested.hold    = false;
-        
-        ui_log(this.getRadioCallsign(), "landing on runway "+radio_runway(this.requested.runway)+", roger");
-
-      } else if("wait".indexOf(mode) == 0) {
-        // WAIT
-
-        if(this.category != "departure") {
-          ui_log(this.getRadioCallsign(), ", we are inbound");
-          return true;
-        }
-
-        if(!this.isLanded()) {
-          console.log("attempted to re-takeoff an aircraft");
-          return true;
-        }
-
-        var runway = airport_get().getRunway(this.requested.runway);
-
-        runway.addQueue(this, this.requested.runway);
-
-        this.mode = "taxi";
-
-        this.taxi_start = game_time();
-
-        ui_log(this.getRadioCallsign(), "line up and wait runway "+radio_runway(this.requested.runway)+", roger");
-
-      } else if("takeoff".indexOf(mode) == 0) {
-        // TAKEOFF
-
-        if(this.category != "departure") {
-          ui_log(this.getRadioCallsign(), "already airborne");
-          return true;
-        }
-
-        if(!this.isLanded()) {
-          ui_log(this.getRadioCallsign(), "already airborne");
-          return true;
-        }
-
-        if(this.mode != "waiting") {
-          ui_log(this.getRadioCallsign(), "still taxiing to runway");
-          return true;
-        }
-
-        if(this.requested.altitude <= 0) {
-          ui_log(this.getRadioCallsign(), "awaiting altitude assignment before departure");
-          return true;
-        }
-
-        var runway = airport_get().getRunway(this.requested.runway);
-
-        if(runway.removeQueue(this, this.requested.runway)) {
-          this.mode = "takeoff";
-        } else {
-          var waiting = runway.isWaiting(this, this.requested.runway);
-          ui_log(this.getRadioCallsign(), "number "+waiting+" behind "+runway.waiting[runway.getEnd(this.requested.runway)][waiting+1].getCallsign());
-          return true;
-        }
-
-        ui_log(this.getRadioCallsign(), "takeoff runway "+radio_runway(this.requested.runway)+", altitude "+this.requested.altitude+", roger");
-
-      } else if("clear".indexOf(mode) == 0 || "heading".indexOf(mode) == 0 || "turn".indexOf(mode) == 0) {
-      // CLEARED TO HEADING
-        var items = data.match(/\S+/g);
-        var turn = "auto";
-
-        if(!items || items.length == 0) return false;
-
-        var swap=false;
-
-        if(items.length >= 1) data = items[0];
-        if(items.length >= 2) {
-          if(items[1] == "l" || ("left").indexOf(items[1]) == 0) {
-            turn = "left";
-          } else if(items[1] == "r" || ("right").indexOf(items[1]) == 0) {
-            turn = "right";
-          } else if(items[0] == "l" || ("left").indexOf(items[0]) == 0) {
-            turn = "left";
-            swap = true;
-          } else if(items[0] == "r" || ("right").indexOf(items[0]) == 0) {
-            turn = "right";
-            swap = true;
-          } else {
-            ui_log(this.getRadioCallsign(), "heading not understood, say again");
-            return true;
+      
+      var commands = [];
+      var concat   = false;
+      var current  = "";
+      for(var i=0;i<strings.length;i++) {
+        var string = strings[i];
+        var is_command = false;
+        for(var j=0;j<COMMANDS.length;j++) {
+          if(COMMANDS[j].indexOf(string) == 0) {
+            is_command = true;
+            break;
           }
         }
-
-        if(swap) data = items[1];
-
-        if(data.length > 3) {
-          ui_log(this.getRadioCallsign(), "heading not understood, say again");
-          return true;
+        if(!is_command) {
+          current += " " + string;
+        } else {
+          if(current) {
+            current = current.substr(1);
+            commands[commands.length-1].push(current);
+            current = "";
+          }
+          commands.push([string]);
         }
-
-        var number = parseInt(data);
-        if(isNaN(number)) {
-          ui_log(this.getRadioCallsign(), "heading not understood, say again");
-          return true;
-        }
-
-        if(this.mode == "landing" || this.mode == "cruise") {
-          this.mode = "cruise";
-        }
-        this.requested.heading = radians(number);
-        this.requested.turn    = turn;
-        this.requested.hold    = false;
-
-        var direction = "";
-        if(turn != "auto")
-          direction = " towards the "+turn;
-
-        if(this.mode == "cruise")
-          ui_log(this.getRadioCallsign(), "turn heading "+heading_to_string(this.requested.heading)+direction+", roger");
-        else if(this.isTaxiing() || this.mode == "takeoff")
-          ui_log(this.getRadioCallsign(), "turn heading "+heading_to_string(this.requested.heading)+direction+" after takeoff");
-
-      } else if("goaround".indexOf(mode) == 0) {
-        // GO AROUND
-        if(this.mode == "landing") {
-          var runway = airport_get().getRunway(this.requested.runway);
-          this.requested.heading = runway.getAngle(this.requested.runway) + Math.PI;
-          ui_log(this.getRadioCallsign(), "going around, maintain heading " + heading_to_string(this.requested.heading)+" at "+this.requested.altitude+" feet");
-          this.requested.runway   = null;
-        } else if(this.mode == "takeoff") {
-          
-        }
-      } else {
-        ui_log(this.getRadioCallsign(), "say again");
+      }
+      if(current && commands.length >= 1) {
+        current = current.substr(1);
+        commands[commands.length-1].push(current);
+        current = "";
       }
 
+      var response = "";
+
+      for(var i=0;i<commands.length;i+=1) {
+        var pair    = commands[i];
+
+        var command = pair[0];
+        var data    = "";
+        if(pair.length == 2) data = pair[1];
+
+        var retval  = this.run(command, data);
+        if(retval) response += " " + retval[1];
+      }
+      
+      if(response) console.log(response.substr(1));
+
       return true;
+    },
+    run: function(command, data) {
+
+      if("turn".indexOf(command) == 0)          command = "heading";
+      else if("heading".indexOf(command) == 0)  command = "heading";
+
+      else if("altitude".indexOf(command) == 0) command = "altitude";
+      else if("climb".indexOf(command) == 0)    command = "altitude";
+      else if("descend".indexOf(command) == 0)  command = "altitude";
+
+      else if("slow".indexOf(command) == 0)     command = "speed";
+      else if("speed".indexOf(command) == 0)    command = "speed";
+
+      else if("wait".indexOf(command) == 0)     command = "wait";
+      else if("taxi".indexOf(command) == 0)     command = "wait";
+
+      else if("takeoff".indexOf(command) == 0)  command = "takeoff";
+      else if("depart".indexOf(command) == 0)   command = "takeoff";
+
+      else if("land".indexOf(command) == 0)     command = "land";
+
+      else if("abort".indexOf(command) == 0)    command = "abort";
+
+      else return ["fail", "not understood"];
+
+      if(command == "heading")
+        return this.runHeading(data);
+      else if(command == "altitude")
+        return this.runAltitude(data);
+      else if(command == "speed")
+        return this.runSpeed(data);
+      else if(command == "wait")
+        return this.runWait(data);
+      else if(command == "takeoff")
+        return this.runTakeoff(data);
+      else if(command == "land")
+        return this.runLanding(data);
+      else if(command == "abort")
+        return this.runAbort(data);
+
+    },
+    runHeading: function(data) {
+      var split     = data.split(" ");
+
+      var heading   = parseInt(split[0]);
+      var direction = "auto";
+
+      if(split.length == 0) return ["fail", "heading not understood"];
+
+      if(split.length >= 2) {
+        direction = split[0];
+        heading = parseInt(split[1]);
+      }
+
+      if(isNaN(heading)) return ["fail", "heading not understood"];
+
+      if(this.mode == "landing")
+        this.cancelLanding();
+      
+      this.requested.heading = radians(heading);
+      this.requested.turn    = direction;
+    },
+    runAltitude: function(data) {
+      var split     = data.split(" ");
+
+      var altitude = parseInt(split[0]);
+      var expedite = false;
+
+      if(split.length >= 2 && ((split[1].length >= 1 && "expedite".indexOf(split[1]) == 0) || split[1] == "x")) expedite = true;
+
+      if(isNaN(altitude)) return ["fail", "altitude not understood"];
+
+      if(this.mode == "landing")
+        this.cancelLanding();
+      
+      var factor = 1;
+      if(data.length <= 2) factor = 1000;
+
+      this.requested.altitude = altitude * factor;
+      this.requested.expedite = expedite;
+    },
+    runSpeed: function(data) {
+      var speed = parseInt(data);
+
+      if(isNaN(speed)) return ["fail", "speed not understood"];
+
+      if(this.mode == "landing")
+        this.cancelLanding();
+      
+      this.requested.speed = speed;
+    },
+    runWait: function(data) {
+      if(this.category != "departure") return ["fail", "this is an arriving aircraft"];
+
+      if(this.mode == "taxi") return ["fail", "already taxiing"];
+
+      if(this.mode == "waiting") return ["fail", "already waiting"];
+
+      if(this.mode != "apron") return ["fail", "wrong mode"];
+
+      var runway = airport_get().getRunway(this.requested.runway);
+      runway.addQueue(this, this.requested.runway);
+
+      this.mode = "taxi";
+      this.taxi_start = game_time();
+
+    },
+    runTakeoff: function(data) {
+      if(this.category != "departure") return ["fail", "this is an arriving aircraft"];
+
+      if(this.mode != "waiting") return ["fail", "not ready yet"];
+
+      var runway = airport_get().getRunway(this.requested.runway);
+
+      if(runway.removeQueue(this, this.requested.runway)) {
+        this.mode = "takeoff";
+        return ["ok", "taking off"];
+      } else {
+//        var waiting = runway.isWaiting(this, this.requested.runway);
+//        ui_log(this.getRadioCallsign(), "number "+waiting+" behind "+runway.waiting[runway.getEnd(this.requested.runway)][waiting+1].getCallsign());
+        return ["fail", "not first"];
+      }
+
+    },
+    runLanding: function(data) {
+      var runway = airport_get().getRunway(data);
+
+      if(!runway) {
+//        ui_log(this.getRadioCallsign(), "no such runway at "+airport_get().name);
+        return ["fail", "invalid runway"];;
+      }
+
+      this.requested.runway = data.toUpperCase();
+      this.requested.hold   = false;
+      
+    },
+    runAbort: function(data) {
+      this.cancelLanding();
+      this.requested.altitude = Math.max(2000, round((this.altitude / 1000) + 1) * 1000);
+    },
+    cancelLanding: function() {
+      if(this.requested.runway && (this.mode == "landing" || this.mode == "cruise")) {
+        var runway = airport_get().getRunway(this.requested.runway);
+        if(this.mode == "landing")
+          this.requested.heading = runway.getAngle(this.requested.runway) + Math.PI;
+        this.requested.runway  = null;
+        return true;
+      }
+      return false;
     },
     parse: function(data) {
       if(data.position) this.position = data.position;
@@ -510,10 +491,10 @@ var Aircraft=Fiber.extend(function() {
 
           var landing_zone_offset = 0.5;
 
-          glideslope_altitude = clamp(runway.getGlideslopeAltitude(offset[1] + landing_zone_offset, this.requested.runway), 5000);
-          glideslope_window   = abs(runway.getGlideslopeAltitude(offset[1] + landing_zone_offset, this.requested.runway, radians(1)));
+          glideslope_altitude = clamp(0, runway.getGlideslopeAltitude(offset[1] + landing_zone_offset, this.requested.runway), 5000);
+          glideslope_window   = abs(runway.getGlideslopeAltitude(offset[1] + landing_zone_offset, this.requested.runway, radians(2)));
 
-          if((abs(this.altitude - glideslope_altitude) < glideslope_window) && (offset_angle < radians(20))) {
+          if((abs(this.altitude - glideslope_altitude) < glideslope_window) && (offset_angle < radians(15))) {
             this.mode = "landing";
           } else if(this.altitude < 50 && this.mode == "landing") {
             this.mode = "landing";
@@ -715,25 +696,38 @@ var Aircraft=Fiber.extend(function() {
 
       heading.attr("title", "");
 
-      if(this.isTaxiing() || this.mode == "landing") {
+      if(this.isTaxiing() || this.mode == "landing" || this.requested.runway) {
         heading.text(this.requested.runway);
 
         heading.addClass("runway");
         heading.attr("title", "On the ground pending taxi clearance");
-        altitude.text("waiting");
+
+        altitude.text("no ILS");
         altitude.addClass("runway");
 
+        if(this.mode == "apron") {
+          altitude.text("ready");
+        }
+        
         if(this.mode == "taxi") {
           heading.addClass("taxi");
           heading.attr("title", "Taxi to runway "+this.requested.runway+" in progress");
+          altitude.text("taxi");
         }
+
         if(this.mode == "waiting") {
           heading.addClass("waiting");
           heading.attr("title", "Waiting for takeoff clearance");
         }
 
+        if(this.mode == "waiting" || this.mode == "takeoff") {
+          altitude.text(round(this.requested.altitude));
+          altitude.removeClass("runway");
+        }
+
         if(this.mode == "landing") {
-          altitude.text(degrees(runway.glideslope[runway.getEnd(this.requested.runway)]).toFixed(2));
+          var runway = airport_get().getRunway(this.requested.runway);
+          altitude.text("ILS locked");
         }
 
       } else if(this.requested.hold) {
@@ -741,7 +735,7 @@ var Aircraft=Fiber.extend(function() {
         heading.addClass("hold");
         heading.attr("title", "Maintaining hold circle");
 
-        altitude.text(degrees(runway.glideslope[runway.getEnd(this.requested.runway)]).toFixed(2));
+        altitude.text(round(this.requested.altitude));
       } else {
         var hdg = heading_to_string(this.requested.heading);
         heading.html(hdg + "&deg;");

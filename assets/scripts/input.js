@@ -45,6 +45,12 @@ function input_init() {
   $("#command").on("input", input_change);
 }
 
+function input_complete() {
+  $("#command").val(prop.aircraft.list[0].getCallsign() + " turn left 130 turn right 213 climb 43");
+  input_change();
+  input_run();
+}
+
 function input_select(callsign) {
   if(callsign) $("#command").val(callsign + " ");
   else $("#command").val("");
@@ -81,6 +87,8 @@ function input_parse() {
       else prop.input.callsign += c[i];
     }
   }
+  
+  if(prop.input.callsign.length == 0) return;
 
   for(var i=0;i<prop.aircraft.list.length;i++) {
     var aircraft=prop.aircraft.list[i];

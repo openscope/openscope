@@ -233,6 +233,11 @@ function canvas_draw_info(cc, aircraft) {
       cc.lineTo(0,   5);
       cc.lineTo(-3,  2);
 
+      if(aircraft.requested.expedite && aircraft.mode != "landing") {
+        cc.moveTo(0,   5);
+        cc.lineTo(3,   2);
+      }
+
       cc.stroke();
       cc.restore();
     } else {
