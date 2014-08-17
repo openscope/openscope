@@ -10,6 +10,10 @@ html, body {
   position: relative;
 }
 
+html.paused #canvases {
+  opacity: 0.5;
+}
+
 canvas {
   position: absolute;
   top: 0;

@@ -19,5 +19,5 @@ function load_complete() {
   setTimeout(function() {
     $("#loading").fadeOut(1000);
     $("#loading").css("pointerEvents","none");
-  }, 200);
+  }, 500);
 }

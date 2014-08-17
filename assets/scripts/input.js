@@ -10,6 +10,8 @@ function input_init_pre() {
   prop.input.history_item = null;
 
   prop.input.click    = [0, 0];
+  
+  prop.input.positions = "";
 }
 
 function input_init() {
@@ -33,6 +35,11 @@ function input_init() {
         input_select();
       }
     }
+    position = [pixels_to_km(position[0]), pixels_to_km(position[1])];
+    position[0] = parseFloat(position[0].toFixed(2));
+    position[1] = parseFloat(position[1].toFixed(2));
+    prop.input.positions += "["+position.join(",")+"]";
+    console.log(position);
     e.preventDefault();
     return(false);
   });

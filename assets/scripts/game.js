@@ -22,6 +22,28 @@ function game_init_pre() {
 
 }
 
+function game_pause() {
+  prop.game.paused = true;
+  $(".pause-toggle").addClass("active");
+  $(".pause-toggle").attr("title", "Resume simulation");
+  $("html").addClass("paused");
+}
+
+function game_unpause() {
+  prop.game.paused = false;
+  $(".pause-toggle").removeClass("active");
+  $(".pause-toggle").attr("title", "Pause simulation");
+  $("html").removeClass("paused");
+}
+
+function game_pause_toggle() {
+  if(prop.game.paused) {
+    game_unpause();
+  } else {
+    game_pause();
+  }
+}
+
 function game_paused() {
   return !prop.game.focused || prop.game.paused;
 }
@@ -51,6 +73,8 @@ function game_update_pre() {
   prop.game.delta=Math.min(delta()*prop.game.speedup, 100);
   if(game_paused()) {
     prop.game.delta=0;
+  } else {
+    $("html").removeClass("paused");
   }
   prop.game.time+=prop.game.delta;
   for(var i=prop.game.timeouts.length-1;i>=0;i--) {

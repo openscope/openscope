@@ -3,8 +3,44 @@
   "radio": "Debug",
   "icao": "KDBG",
   "wind": {
-    "angle": 20,
-    "speed": 5
+    "angle": -10,
+    "speed": 8
+  },
+  "fixes":{
+    "ROMNY": [ -187.17,    -96     ],
+    "ROKME": [ -138.17,     64     ],
+    "HERMN": [ -187.17,     37.33  ],
+    "NEPIC": [ -61.83,      21     ],
+    "MENIO": [ -13.83,     -1.5    ],
+    "PONKE": [ -29.5,       5.67   ],
+    "WETOR": [  12.17,     -11.33  ],
+    "DIVEC": [  47.5,      -24.67  ],
+    "FAITH": [  97.17,     -47.33  ],
+    "DUMBO": [  83.5,      -64.33  ],
+    "CEPIN": [  93.17,     -5.67   ],
+    "MEHTA": [  164.83,    -51.33  ],
+    "WOODS": [  118.17,    -92     ],
+    "AXMUL": [  173.5,      18.67  ],
+    "ROGGE": [  173.17,     82     ],
+    "BERKS": [  92.83,      46.33  ],
+    "PORTE": [  33.17,      59.67  ],
+    "QUITE": [  13.5,       45.67  ],
+    "BOBAK": [  8.83,       22.33  ],
+    "LOCMT": [  0,          18     ],
+    "RANDM": [ -2.83,       46.33  ],
+    "MUSTE": [ -36.83,      73     ],
+    "PRONU": [  26.83,      79.67  ],
+    "ENCAB": [ -7.5,        88.33  ],
+    "LESOT": [ -84.17,      56     ],
+    "GUSTO": [ -99.5,      -101.67 ],
+    "LENVO": [ -49.5,      -71.67  ],
+    "FALSE": [ -65.5,      -35     ],
+    "EXCIT": [  37.83,     -95     ],
+    "LEFTE": [  22.17,     -48.67  ],
+    "ABOFA": [ -2.83,      -66     ],
+    "JSATO": [  103.17,    -83     ],
+    "KAITO": [  1.83,      -23     ],
+    "GOODY": [ -1.5,       -20     ]
   },
   "runways":[
     {
@@ -53,56 +89,56 @@
       "heading":   180,
       "airlines":  ["UAL", "BAW"],
       "frequency": [4, 6],
-      "altitude":  4000
+      "altitude":  [4000, 6000]
     },
     {
       "angle":     90,
       "heading":   135,
       "airlines":  ["UAL", "BAW"],
       "frequency": [4, 6],
-      "altitude":  6000
+      "altitude":  [6000, 8000]
     },
     {
       "angle":     270,
       "heading":   45,
       "airlines":  ["UAL", "BAW"],
       "frequency": [5, 8],
-      "altitude":  5000
+      "altitude":  [5000, 7000]
     },
     {
       "angle":     270,
       "heading":   0,
       "airlines":  ["UAL", "BAW"],
       "frequency": [5, 8],
-      "altitude":  6000
+      "altitude":  [5000, 8000]
     },
     {
       "angle":     180,
       "heading":   270,
       "airlines":  ["UAL", "BAW"],
       "frequency": [6, 8],
-      "altitude":  8000
+      "altitude":  [6000, 8000]
     },
     {
       "angle":     270,
       "heading":   0,
       "airlines":  ["UAL", "BAW"],
       "frequency": [9, 15],
-      "altitude":  5000
+      "altitude":  [5000, 6000]
     },
     {
       "angle":     315,
       "heading":   90,
       "airlines":  ["UAL", "BAW"],
       "frequency": [10, 15],
-      "altitude":  9000
+      "altitude":  [7000, 9000]
     },
     {
       "angle":     315,
       "heading":   180,
       "airlines":  ["UAL", "BAW"],
       "frequency": [5, 10],
-      "altitude":  7000
+      "altitude":  [6000, 7000]
     }
   ]
 }

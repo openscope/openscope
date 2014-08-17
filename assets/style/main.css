@@ -2,6 +2,9 @@
 @import "reset.css";
 @import "canvas.css";
 
+@import "controls.css";
+@import "pause.css";
+
 @import "command.css";
 @import "log.css";
 @import "sidebar.css";

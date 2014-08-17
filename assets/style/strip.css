@@ -16,6 +16,7 @@
 
 .strip:hover {
   background-color: rgba(255, 255, 255, 0.1);
+  cursor: pointer;
 }
 
 .strip.active {
@@ -61,11 +62,11 @@
 }
 
 .strip .taxi {
-  color: #f8e;
+/*  color: #f8e;*/
 }
 
 .strip .waiting {
-  color: #7f6;
+/*  color: #7f6;*/
 }
 
 .strip .altitude {
@@ -73,4 +74,12 @@
 
   position: absolute;
   right: 10px;
+}
+
+.strip .speed {
+  text-align: right;
+
+  position: absolute;
+  right: 10px;
+  bottom: 3px;
 }
