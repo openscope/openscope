@@ -39,17 +39,17 @@ function game_init_pre() {
 
 function game_get_score() {
   var score = 0;
-  score += prop.game.score.arrival * 5;
-  score += prop.game.score.departure * 5;
+  score += prop.game.score.arrival * 10;
+  score += prop.game.score.departure * 10;
   
   score -= prop.game.score.failed_arrival * 20;
 
-  score -= prop.game.score.warning * 10;
-  score -= prop.game.score.hit * 100;
+  score -= prop.game.score.warning * 5;
+  score -= prop.game.score.hit * 50;
 
-  score -= prop.game.score.abort.landing * 15;
+  score -= prop.game.score.abort.landing * 5;
 
-  score -= prop.game.score.abort.taxi * 10;
+  score -= prop.game.score.abort.taxi * 2;
 
   return score;
 }
