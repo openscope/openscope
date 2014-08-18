@@ -192,6 +192,9 @@ function input_run() {
   } else if(prop.input.callsign == "timewarp") {
     game_timewarp_toggle();
     return true;
+  } else if(prop.input.callsign == "clear") {
+    localStorage.clear();
+    location.reload();
   } else if(prop.input.callsign == "airport") {
     if(prop.input.data) {
       if(prop.input.data.toLowerCase() in prop.airport.airports) {
