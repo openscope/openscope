@@ -266,7 +266,6 @@ var Airport=Fiber.extend(function() {
 
       var arrival = args[0];
       var offset = args[1];
-      console.log(offset);
       if(!offset) offset = 1;
 
       var position = [0, 0];

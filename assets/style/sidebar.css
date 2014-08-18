@@ -9,8 +9,26 @@
   top: 0;
   right: 0;
   width: 250px;
-  height: 100%;
-  overflow-y: auto;
+  height: calc(100% - 36px);
+  overflow-y: scroll;
+}
+
+#sidebar::-webkit-scrollbar {
+  width: 8px;
+  padding: 2px;
+}
+
+#sidebar::-webkit-scrollbar-thumb {
+  width: 4px;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+#sidebar::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+#sidebar::-webkit-scrollbar-thumb:active {
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 #sidebar #strips {

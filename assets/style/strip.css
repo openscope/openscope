@@ -9,7 +9,7 @@
   padding: 3px 10px;
   margin-bottom: 5px;
   margin-left: 0;
-  margin-right: 0;
+  margin-right: -3px;
 
   transition: margin-left 0.1s ease, margin-right 0.1s ease, background-color 0.05s ease, box-shadow 0.05s ease;
 }

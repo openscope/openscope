@@ -285,6 +285,8 @@ var Aircraft=Fiber.extend(function() {
         ui_log(this.getRadioCallsign() + " " + response.join(", ") + response_end);
       }
 
+      this.updateStrip();
+
       return true;
     },
     run: function(command, data) {
@@ -523,6 +525,7 @@ var Aircraft=Fiber.extend(function() {
         return ["ok", "maintain heading " + heading_to_string(this.requested.heading) + " at " + this.requested.altitude + " feet", ""];
       } else if(this.requested.runway) {
         if(this.category == "departure") {
+          var runway = airport_get().getRunway(this.requested.runway);
           var waiting = runway.isWaiting(this, this.requested.runway);
           if(this.mode == "taxi" && waiting != 0) {
             this.mode = "apron";
@@ -555,6 +558,7 @@ var Aircraft=Fiber.extend(function() {
       if(this.requested.fix) {
         this.requested.fix = null;
         this.requested.heading = round(this.heading);
+        this.updateStrip();
         return true;
       }
       return false;
@@ -573,6 +577,7 @@ var Aircraft=Fiber.extend(function() {
 
         this.requested.runway  = null;
         this.mode = "cruise";
+        this.updateStrip();
         return true;
       }
       return false;
@@ -602,12 +607,13 @@ var Aircraft=Fiber.extend(function() {
         this.speed = 0;
         this.mode = "apron";
       }
-     
+
     },
     complete: function(data) {
       if(this.category == "departure" && this.isLanded()) {
         this.selectRunway();
       }
+      this.updateStrip();
     },
     selectRunway: function(runway) {
       if(!runway) {
@@ -617,6 +623,7 @@ var Aircraft=Fiber.extend(function() {
         this.requested.runway = runway.toUpperCase();
       }
       this.taxi_delay = airport_get().getRunway(this.requested.runway).taxiDelay(this.requested.runway);
+      this.updateStrip();
     },
     pushHistory: function() {
       this.history.push([this.position[0], this.position[1]]);
@@ -697,17 +704,23 @@ var Aircraft=Fiber.extend(function() {
           glideslope_window   = abs(runway.getGlideslopeAltitude(offset[1] + landing_zone_offset, this.requested.runway, radians(1)));
           
           if((abs(this.altitude - glideslope_altitude) < glideslope_window) && (abs(offset_angle) < radians(30))) {
+            if(this.mode != "landing") this.updateStrip();
             this.mode = "landing";
           } else if(this.altitude < 300 && this.mode == "landing") {
+            if(this.mode != "landing") this.updateStrip();
             this.mode = "landing";
           } else {
             if(this.mode == "landing") {
+              this.updateStrip();
               this.cancelLanding();
               ui_log(this.getRadioCallsign() + " aborting landing, lost ILS");
+              console.log("aborted landing after ILS lost");
+              prop.game.score.abort.landing += 1;
             }
           }
         }
       } else if(this.mode == "landing" || this.mode == "cruise") {
+        if(this.mode != "cruise") this.updateStrip();
         this.mode = "cruise";
       }
 
@@ -721,7 +734,6 @@ var Aircraft=Fiber.extend(function() {
         }
 
         this.target.altitude     = glideslope_altitude;
-        this.target.expedite     = true;
         this.target.speed        = crange(5, offset[1], 15, this.model.speed.landing, this.requested.start_speed);
         if(this.altitude < 10) this.target.speed = 0;
       }
@@ -731,6 +743,7 @@ var Aircraft=Fiber.extend(function() {
         if(elapsed > this.taxi_delay) {
           this.mode = "waiting";
           was_taxi = true;
+          this.updateStrip();
         }
       }
       if(this.mode == "waiting") {
@@ -745,6 +758,7 @@ var Aircraft=Fiber.extend(function() {
 
         if(runway.isWaiting(this, this.requested.runway) == 0 && was_taxi == true) {
           ui_log(this.getRadioCallsign(), "ready for takeoff runway "+radio_runway(this.requested.runway));
+          this.updateStrip();
         }
       }
       if(this.mode == "cruise") {
@@ -794,6 +808,7 @@ var Aircraft=Fiber.extend(function() {
         this.target.speed = this.model.speed.cruise;
 
         if(this.altitude > 200 && this.target.speed > this.model.speed.min) {
+          this.updateStrip();
           this.mode = "cruise";
           this.requested.runway = null;
         }
@@ -828,9 +843,11 @@ var Aircraft=Fiber.extend(function() {
         this.trend = 0;
         if(this.target.altitude < this.altitude - 0.02) {
           distance = -this.model.rate.descent * game_delta() / expedite_factor;
+          if(this.mode == "landing") distance *= 3;
           this.trend -= 1;
         } else if(this.target.altitude > this.altitude + 0.02) {
           distance =  this.model.rate.ascent  * game_delta() / expedite_factor;
+          if(this.mode == "landing") distance *= 1.5;
           this.trend = 1;
         }
         if(distance) {
@@ -901,12 +918,12 @@ var Aircraft=Fiber.extend(function() {
           hit = true;
         }
       }
-      if(warning && !this.warning && other.warning) {
+      if(warning && !this.warning) {
         console.log("too close to another aircraft");
         ui_log(true, this.getCallsign() + " is too close to " + other.getCallsign());
         prop.game.score.warning += 1;
       }
-      if(hit && !this.hit && other.hit) {
+      if(hit && !this.hit) {
         console.log("hit another aircraft");
         ui_log(true, this.getCallsign() + " hit " + other.getCallsign());
         prop.game.score.hit += 1;
@@ -993,7 +1010,6 @@ var Aircraft=Fiber.extend(function() {
     update: function(p) {
       this.updateTarget();
       this.updatePhysics();
-      this.updateStrip();
     }
   };
 });
@@ -1155,19 +1171,19 @@ function aircraft_update() {
     var remove = false;
     var aircraft = prop.aircraft.list[i];
     if(!aircraft_visible(aircraft) && aircraft.category == "departure") {
-      ui_log(aircraft.getCallsign() + " leaving radar coverage");
+      ui_log(aircraft.getRadioCallsign() + " leaving radar coverage");
       prop.game.score.departure += 1;
       console.log("departing aircraft no longer visible");
       remove = true;
     }
     if(!aircraft_visible(aircraft, 3) && aircraft.category == "arrival") {
-      ui_log(aircraft.getCallsign() + " leaving radar coverage");
+      ui_log(aircraft.getRadioCallsign() + " leaving radar coverage");
       prop.game.score.failed_arrival += 1;
       console.log("arriving aircraft no longer visible. YU FAIL");
       remove = true;
     }
     if(aircraft.isStopped() && aircraft.category == "arrival") {
-      ui_log(aircraft.getCallsign() + " switching to ground, good day");
+      ui_log(aircraft.getRadioCallsign() + " switching to ground, good day");
       prop.game.score.arrival += 1;
       console.log("arriving aircraft no longer moving");
       remove = true;

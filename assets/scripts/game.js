@@ -34,7 +34,7 @@ function game_init_pre() {
       taxi: 0
     }
   };
-
+  
 }
 
 function game_get_score() {
@@ -51,6 +51,13 @@ function game_get_score() {
 
   score -= prop.game.score.abort.taxi * 10;
 
+  return score;
+}
+
+function game_get_weighted_score() {
+  var score = game_get_score();
+  score     = score / (game_time() / 60);
+  score    *= 500;
   return score;
 }
 
@@ -123,9 +130,9 @@ function game_clear_timeout(to) {
 
 function game_update_pre() {
   var score = game_get_score();
-  $("#score").text(score);
+  $("#score").text(round(score));
 
-  if(score < 0)
+  if(score < -0.51)
     $("#score").addClass("negative");
   else
     $("#score").removeClass("negative");
