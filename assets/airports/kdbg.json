@@ -4,7 +4,7 @@
   "radio": "Debug",
   "icao": "KDBG",
   "wind": {
-    "angle": 100,
+    "angle": 0,
     "speed": 8
   },
   "fixes":{
