@@ -680,8 +680,8 @@ var Aircraft=Fiber.extend(function() {
 
       if(this.mode == "landing") {
 
-        if(offset[1] > 0.05) {
-          var xoffset = crange(0.5, this.model.rate.turn, 5, 7, 2);
+        if(offset[1] > 0.01) {
+          var xoffset = crange(0.5, this.model.rate.turn, 5, 6, 1);
           this.target.heading = crange(-xoffset, offset[0], xoffset, radians(45), -radians(45)) + angle;
         } else {
           this.target.heading = angle;
@@ -942,7 +942,7 @@ var Aircraft=Fiber.extend(function() {
       speed.prop("title", title);
       
     },
-    update: function() {
+    update: function(p) {
       this.updateTarget();
       this.updatePhysics();
       this.updateStrip();
@@ -959,16 +959,32 @@ function aircraft_init_pre() {
 }
 
 function aircraft_init() {
+  // AIRBUS
+  aircraft_load("a318");
+  aircraft_load("a319");
+  aircraft_load("a320");
+  aircraft_load("a321");
+  aircraft_load("a380");
+
+  // BOEING
   aircraft_load("b734");
   aircraft_load("b738");
+  aircraft_load("b739");
 
   aircraft_load("b744");
+
+  aircraft_load("b752");
+  aircraft_load("b753");
+
+  aircraft_load("b763");
+  aircraft_load("b764");
 
   aircraft_load("b772");
   aircraft_load("b77e");
   aircraft_load("b77w");
   aircraft_load("b788");
 
+  // CONCORDE...
   aircraft_load("conc");
 }
 
@@ -1005,6 +1021,8 @@ function aircraft_new(options) {
     options.icao = airline_get_aircraft(options.airline);
   }
   var icao = options.icao.toLowerCase();
+
+  console.log(icao);
 
   options.model = prop.aircraft.models[icao];
 

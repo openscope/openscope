@@ -34,8 +34,6 @@
 
   padding: 5px 10px;
   margin-bottom: 2px;
-
-  transition: background-color 0.05s ease;
 }
 
 #airport-switch .airport .icao {
@@ -47,5 +45,14 @@
 #airport-switch .airport:hover {
   background-color: rgba(255, 255, 255, 0.1);
   cursor: pointer;
+}
+
+#airport-switch .airport.active {
+  background-color: #354;
+  cursor: pointer;
+}
+
+#airport-switch .airport.active:hover {
+  cursor: auto;
 }
 

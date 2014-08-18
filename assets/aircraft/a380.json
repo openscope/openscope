@@ -1,0 +1,22 @@
+{
+  "name": "Airbus A380-800",
+  "icao": "A380",
+  "wake": "heavy",
+  "rate": {
+    "turn":       0.7,
+    "ascent":     1500,
+    "descent":    2000,
+    "accelerate": 6,
+    "decelerate": 4
+  },
+  "runway": {
+    "takeoff": 2.9,
+    "landing": 3.7
+  },
+  "speed":{
+    "min":     125,
+    "max":     250,
+    "landing": 135,
+    "cruise":  250
+  }
+}

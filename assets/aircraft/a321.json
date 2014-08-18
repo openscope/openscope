@@ -1,0 +1,22 @@
+{
+  "name": "Airbus A321",
+  "icao": "A321",
+  "wake": "medium",
+  "rate": {
+    "turn":       1.1,
+    "ascent":     1800,
+    "descent":    2000,
+    "accelerate": 6,
+    "decelerate": 4
+  },
+  "runway": {
+    "takeoff": 2.5,
+    "landing": 3.2
+  },
+  "speed":{
+    "min":     120,
+    "max":     250,
+    "landing": 135,
+    "cruise":  250
+  }
+}

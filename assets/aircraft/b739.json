@@ -1,0 +1,22 @@
+{
+  "name": "Boeing 737-900",
+  "icao": "B739",
+  "wake": "medium",
+  "rate": {
+    "turn":       1.2,
+    "ascent":     1200,
+    "descent":    2000,
+    "accelerate": 7,
+    "decelerate": 3
+  },
+  "runway": {
+    "takeoff": 3.0,
+    "landing": 3.8
+  },
+  "speed":{
+    "min":     130,
+    "max":     250,
+    "landing": 135,
+    "cruise":  250
+  }
+}

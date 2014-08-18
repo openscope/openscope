@@ -1,0 +1,22 @@
+{
+  "name": "Boeing 767-300",
+  "icao": "B763",
+  "wake": "heavy",
+  "rate": {
+    "turn":       1.2,
+    "ascent":     1500,
+    "descent":    2500,
+    "accelerate": 8,
+    "decelerate": 4
+  },
+  "runway": {
+    "takeoff": 2.5,
+    "landing": 3.0
+  },
+  "speed":{
+    "min":     120,
+    "max":     250,
+    "landing": 140,
+    "cruise":  250
+  }
+}

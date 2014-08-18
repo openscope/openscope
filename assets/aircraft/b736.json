@@ -1,0 +1,22 @@
+{
+  "name": "Boeing 737-600",
+  "icao": "B736",
+  "wake": "medium",
+  "rate": {
+    "turn":       1.4,
+    "ascent":     1600,
+    "descent":    2100,
+    "accelerate": 7,
+    "decelerate": 3
+  },
+  "runway": {
+    "takeoff": 1.7,
+    "landing": 2.2
+  },
+  "speed":{
+    "min":     110,
+    "max":     250,
+    "landing": 125,
+    "cruise":  250
+  }
+}

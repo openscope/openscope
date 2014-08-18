@@ -40,7 +40,7 @@
     "LEFTE": [  22.17,     -48.67  ],
     "ABOFA": [ -2.83,      -66     ],
     "JSATO": [  103.17,    -83     ],
-    "KAITO": [  1.83,      -23     ],
+    "KAITO": [ -0.9,       -27     ],
     "GOODY": [ -1.5,       -20     ]
   },
   "runways":[
@@ -96,28 +96,28 @@
       "angle":     90,
       "heading":   135,
       "airlines":  ["UAL", "BAW"],
-      "frequency": [4, 6],
+      "frequency": [2, 4],
       "altitude":  [6000, 8000]
     },
     {
       "angle":     270,
       "heading":   45,
       "airlines":  ["UAL", "BAW"],
-      "frequency": [5, 8],
+      "frequency": [2, 4],
       "altitude":  [5000, 7000]
     },
     {
       "angle":     270,
       "heading":   0,
       "airlines":  ["UAL", "BAW"],
-      "frequency": [5, 8],
+      "frequency": [2, 4],
       "altitude":  [5000, 8000]
     },
     {
       "angle":     180,
       "heading":   270,
       "airlines":  ["UAL", "BAW"],
-      "frequency": [6, 8],
+      "frequency": [2, 5],
       "altitude":  [6000, 8000]
     },
     {
@@ -131,7 +131,7 @@
       "angle":     315,
       "heading":   180,
       "airlines":  ["UAL", "BAW"],
-      "frequency": [5, 10],
+      "frequency": [3, 5],
       "altitude":  [6000, 7000]
     }
   ]

@@ -16,6 +16,21 @@ function input_init_pre() {
 
 function input_init() {
 
+  $(window).keydown(function(e) {
+    if(e.which == 27) {
+      if(prop.tutorial.open) tutorial_close();
+      else if($("#airport-switch").hasClass("open")) ui_airport_close();
+    }
+    if(!prop.tutorial.open) return;
+    if(e.which == 33) {
+      tutorial_prev()
+      e.preventDefault();
+    } else if(e.which == 34) {
+      tutorial_next()
+      e.preventDefault();
+    }
+  });
+
   $("#canvases").mousemove(function(e) {
     var position = [e.pageX, -e.pageY];
     position[0] -= prop.canvas.size.width / 2;
@@ -90,8 +105,8 @@ function input_parse() {
       data=true;
     }
     if(!skip) {
-      if(data) prop.input.data += c[i];
-      else prop.input.callsign += c[i];
+      if(data) prop.input.data += c[i].toLowerCase();
+      else prop.input.callsign += c[i].toLowerCase();
     }
   }
   
@@ -165,21 +180,27 @@ function input_history_next() {
 }
 
 function input_run() {
-  if(prop.input.callsign.toLowerCase() == "version") {
+  if(prop.input.callsign == "version") {
     ui_log("Air Traffic Control simulator version " + prop.version.join("."));
     return true;
-  } else if(prop.input.callsign.toLowerCase() == "tutorial") {
+  } else if(prop.input.callsign == "tutorial") {
     tutorial_toggle();
     return true;
-  } else if(prop.input.callsign.toLowerCase() == "airport") {
+  } else if(prop.input.callsign == "pause") {
+    game_pause_toggle();
+    return true;
+  } else if(prop.input.callsign == "timewarp") {
+    game_timewarp_toggle();
+    return true;
+  } else if(prop.input.callsign == "airport") {
     if(prop.input.data) {
       if(prop.input.data.toLowerCase() in prop.airport.airports) {
         airport_set(prop.input.data);
       } else {
-        ui_airport_open();
+        ui_airport_toggle();
       }
     } else {
-      ui_airport_open();
+      ui_airport_toggle();
     }
     return true;
   }
@@ -195,8 +216,14 @@ function input_run() {
     }
   }
 
-  if(matches > 1) return false;
-  if(match == -1) return false;
+  if(matches > 1) {
+    ui_log("multiple aircraft match the callsign, say again");
+    return true;
+  }
+  if(match == -1) {
+    ui_log("no such aircraft, say again");
+    return true;
+  }
 
   var aircraft = prop.aircraft.list[match];
   return aircraft.runCommand(prop.input.data);

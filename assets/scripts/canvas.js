@@ -342,9 +342,9 @@ function canvas_draw_compass(cc) {
 function canvas_update_post() {
   if(prop.canvas.dirty || !game_paused()) {
     var elapsed = game_time() - airport_get().start;
-    var alpha   = crange(0.5, elapsed, 2, 0, 1);
+    var alpha   = crange(0.1, elapsed, 0.4, 0, 1);
     var cc=canvas_get("navaids");
-    var fading  = (elapsed < 2.5);
+    var fading  = (elapsed < 1);
 
     cc.font = "9px monoOne, monospace";
 

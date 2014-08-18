@@ -1,0 +1,22 @@
+{
+  "name": "Airbus A318",
+  "icao": "A318",
+  "wake": "medium",
+  "rate": {
+    "turn":       1.5,
+    "ascent":     1900,
+    "descent":    2100,
+    "accelerate": 7,
+    "decelerate": 4
+  },
+  "runway": {
+    "takeoff": 1.8,
+    "landing": 2.3
+  },
+  "speed":{
+    "min":     110,
+    "max":     250,
+    "landing": 120,
+    "cruise":  250
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "Airbus A319",
+  "icao": "A319",
+  "wake": "medium",
+  "rate": {
+    "turn":       1.4,
+    "ascent":     1600,
+    "descent":    1800,
+    "accelerate": 6.5,
+    "decelerate": 4
+  },
+  "runway": {
+    "takeoff": 2.1,
+    "landing": 2.9
+  },
+  "speed":{
+    "min":     110,
+    "max":     250,
+    "landing": 125,
+    "cruise":  250
+  }
+}

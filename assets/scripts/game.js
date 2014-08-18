@@ -22,6 +22,18 @@ function game_init_pre() {
 
 }
 
+function game_timewarp_toggle() {
+  if(prop.game.speedup != 1) {
+    prop.game.speedup = 1;
+    $(".fast-forwards").removeClass("active");
+    $(".fast-forwards").prop("title", "Set time warp to 5");
+  } else {
+    prop.game.speedup = 5;
+    $(".fast-forwards").addClass("active");
+    $(".fast-forwards").prop("title", "Reset time warp");
+  }
+}
+
 function game_pause() {
   prop.game.paused = true;
   $(".pause-toggle").addClass("active");

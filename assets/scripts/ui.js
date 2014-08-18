@@ -1,7 +1,7 @@
 
 function ui_init_pre() {
   prop.ui = {};
-  prop.ui.scale = 6; // pixels per km
+  prop.ui.scale = 5; // pixels per km
 }
 
 function ui_init() {
@@ -9,15 +9,7 @@ function ui_init() {
   $(".fast-forwards").prop("title", "Set time warp to 5");
   
   $(".fast-forwards").click(function() {
-    if(prop.game.speedup != 1) {
-      prop.game.speedup = 1;
-      $(".fast-forwards").removeClass("active");
-      $(".fast-forwards").prop("title", "Set time warp to 5");
-    } else {
-      prop.game.speedup = 5;
-      $(".fast-forwards").addClass("active");
-      $(".fast-forwards").prop("title", "Reset time warp");
-    }
+    game_timewarp_toggle();
   });
 
   $(".switch-airport").click(function() {
@@ -47,14 +39,17 @@ function ui_complete() {
   for(var i=0;i<airports.length;i++) {
     var airport = prop.airport.airports[airports[i]];
 
-    var html = $("<li class='airport'><span class='icao'>" + airport.icao + "</span><span class='name'>" + airport.name + "</span></li>");
+    var html = $("<li class='airport icao-"+airport.icao.toLowerCase()+"'><span class='icao'>" + airport.icao + "</span><span class='name'>" + airport.name + "</span></li>");
     
+    html.click(airport.icao.toLowerCase(), function(e) {
+      if(e.data != airport_get().icao) {
+        airport_set(e.data);
+        ui_airport_close();
+      }
+    });
+
     $("#airport-switch .list").append(html);
 
-    html.click(airport.icao, function(e) {
-      airport_set(e.data);
-      ui_airport_close();
-    });
   }
 }
 
@@ -83,6 +78,9 @@ function ui_log(message) {
 }
 
 function ui_airport_open() {
+  $(".airport").removeClass("active");
+  $(".airport.icao-"+airport_get().icao.toLowerCase()).addClass("active");
+
   $("#airport-switch").addClass("open");
   $(".switch-airport").addClass("active");
 }
