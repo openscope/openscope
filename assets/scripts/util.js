@@ -151,6 +151,27 @@ function choose(l) {
   return l[Math.floor(Math.random()*l.length)];
 }
 
+function choose_weight(l) {
+  if(l.length == 0) return;
+  if(typeof l[0] != typeof []) return choose(l);
+  // l = [[item, weight], [item, weight] ... ];
+  var weight  = 0;
+  for(var i=0;i<l.length;i++) {
+    weight += l[i][1];
+  }
+  var random = Math.random() * weight;
+  weight     = 0;
+  for(var i=0;i<l.length;i++) {
+    weight += l[i][1];
+    if(weight > random) {
+      return l[i][0];
+    }
+  }
+  console.log("OHSHIT");
+  return(null);
+}
+
+
 function mod(a, b) {
   return ((a%b)+b)%b;
 };
@@ -198,6 +219,34 @@ var radio_names = {
   7:"seven",
   8:"eight",
   9:"niner",
+  a:"alpha",
+  b:"bravo",
+  c:"charlie",
+  d:"delta",
+  e:"echo",
+  f:"foxtrot",
+  g:"golf",
+  h:"hotel",
+  i:"india",
+  j:"juliet",
+  k:"kilo",
+  l:"lima",
+  m:"mike",
+  n:"november",
+  o:"oscar",
+  p:"papa",
+  q:"quebec",
+  r:"romeo",
+  s:"sierra",
+  t:"tango",
+  u:"uniform",
+  v:"victor",
+  w:"whiskey",
+  x:"x-ray",
+  y:"yankee",
+  z:"zulu",
+  "-":"dash",
+  ".":"point",
 };
 
 var radio_compass_names = {

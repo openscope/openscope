@@ -228,7 +228,7 @@ var Airport=Fiber.extend(function() {
       if(this.departures) {
         var r = crange(0, Math.random(), 1, 1, 3);
         if(Math.random() > 0.9)
-          r = crange(0, Math.random(), 1, 1, 8);
+          r = crange(0, Math.random(), 1, 1, 6);
         for(var i=0;i<r;i++) {
           this.timeout.departure = game_timeout(this.addAircraftDeparture, Math.random() * 0.1, this, false);
         }
@@ -240,11 +240,11 @@ var Airport=Fiber.extend(function() {
           var arrival = this.arrivals[i];
 
           var delay = Math.random() * 0.1;
-          if(Math.random() > 0.6) {
+          if(Math.random() > 0.8) {
             delay = crange(0, Math.random(), 1, arrival.frequency[0], arrival.frequency[1]);
             this.arrivals[i].timeout = game_timeout(this.addAircraftArrival, delay, this, [arrival]);
           } else {
-            this.arrivals[i].timeout = game_timeout(this.addAircraftArrival, delay, this, [arrival, crange(0, Math.random(), 1, 0.6, 0.8)]);
+            this.arrivals[i].timeout = game_timeout(this.addAircraftArrival, delay, this, [arrival, crange(0, Math.random(), 1, 0.4, 0.7)]);
           }
         }
       }
@@ -256,7 +256,7 @@ var Airport=Fiber.extend(function() {
       if(game_time() - this.start < 2) message = false;
       aircraft_new({
         category:  "departure",
-        airline:   choose(this.departures.airlines),
+        airline:   choose_weight(this.departures.airlines),
         message:   message
       });
       if(timeout)
@@ -297,7 +297,7 @@ var Airport=Fiber.extend(function() {
         position:  position,
         heading:   heading + Math.PI,
         altitude:  altitude,
-        airline:   choose(arrival.airlines),
+        airline:   choose_weight(arrival.airlines),
         message:   message
       });
       

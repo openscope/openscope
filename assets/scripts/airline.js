@@ -32,18 +32,8 @@ function airline_get(icao) {
 function airline_get_aircraft(icao) {
   var airline     = airline_get(icao);
   var aircraft    = airline.aircraft;
-  var weight_sum  = 0;
-  for(var i=0;i<aircraft.length;i++) {
-    weight_sum += aircraft[i][1];
-  }
-  var random = Math.random() * weight_sum;
-  weight_sum=0;
-  for(var i=0;i<aircraft.length;i++) {
-    weight_sum += aircraft[i][1];
-    if(weight_sum > random) {
-      return aircraft[i][0];
-    }
-  }
+
+  return choose_weight(aircraft);
 }
 
 function airline_ready() {

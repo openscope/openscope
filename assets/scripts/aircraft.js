@@ -261,6 +261,10 @@ var Aircraft=Fiber.extend(function() {
       var response = [];
       var response_end = "roger";
 
+      var deferred = [];
+
+      var DEFERRED_COMMANDS = ["takeoff"];
+
       for(var i=0;i<commands.length;i+=1) {
         var pair    = commands[i];
 
@@ -268,11 +272,33 @@ var Aircraft=Fiber.extend(function() {
         var data    = "";
         if(pair.length == 2) data = pair[1];
 
+        if(DEFERRED_COMMANDS.indexOf(command) == 0) {
+          deferred.push(pair);
+          continue;
+        }
+
         var retval  = this.run(command, data);
         if(retval) {
           response.push(retval[1]);
           if(retval[2]) response_end = retval[2];
         }
+
+      }
+
+      for(var i=0;i<deferred.length;i+=1) {
+        var pair    = deferred[i];
+
+        var command = pair[0];
+        var data    = "";
+        if(pair.length == 2) data = pair[1];
+
+        var retval  = this.run(command, data);
+
+        if(retval) {
+          response.push(retval[1]);
+          if(retval[2]) response_end = retval[2];
+        }
+
       }
 
       if(commands.length == 0) {
@@ -506,7 +532,7 @@ var Aircraft=Fiber.extend(function() {
       }
 
       if(this.requested.runway == data.toUpperCase()) {
-        return ["fail", "already landing on " + radio_runway(data), "over"];
+        return ["fail", "already landing on runway " + radio_runway(data), "over"];
       }
 
       this.requested.runway = data.toUpperCase();
@@ -721,7 +747,10 @@ var Aircraft=Fiber.extend(function() {
             var m = false;
             if(this.mode != "landing") m=true;
             this.mode = "landing";
-            if(m) this.updateStrip();
+            if(m) {
+              this.updateStrip();
+              this.requested.turn = "auto";
+            }
           } else if(this.altitude < 300 && this.mode == "landing") {
             this.mode = "landing";
           } else {
