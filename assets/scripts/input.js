@@ -165,6 +165,25 @@ function input_history_next() {
 }
 
 function input_run() {
+  if(prop.input.callsign.toLowerCase() == "version") {
+    ui_log("Air Traffic Control simulator version " + prop.version.join("."));
+    return true;
+  } else if(prop.input.callsign.toLowerCase() == "tutorial") {
+    tutorial_toggle();
+    return true;
+  } else if(prop.input.callsign.toLowerCase() == "airport") {
+    if(prop.input.data) {
+      if(prop.input.data.toLowerCase() in prop.airport.airports) {
+        airport_set(prop.input.data);
+      } else {
+        ui_airport_open();
+      }
+    } else {
+      ui_airport_open();
+    }
+    return true;
+  }
+
   var matches = 0;
   var match   = -1;
 

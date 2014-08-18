@@ -11,7 +11,7 @@
   margin-left: 0;
   margin-right: 0;
 
-  transition: margin-left 0.5s ease, margin-right 0.5s ease, background-color 0.1s ease, box-shadow 0.2s ease;
+  transition: margin-left 0.1s ease, margin-right 0.1s ease, background-color 0.05s ease, box-shadow 0.05s ease;
 }
 
 .strip:hover {

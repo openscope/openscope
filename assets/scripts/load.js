@@ -5,6 +5,8 @@ function load_init_pre() {
     done: 0,
     total: 0
   };
+
+  $("#loading").append("<div class='version'>" + prop.version_string + "</div>")
 }
 
 function load_item_done() {

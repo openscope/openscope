@@ -318,6 +318,7 @@ function tutorial_open() {
   $("#tutorial").addClass("open");
   $(".toggle-tutorial").addClass("active");
   $(".toggle-tutorial").prop("title", "Close tutorial");
+  tutorial_update_content();
 }
 
 function tutorial_close() {

@@ -22,3 +22,11 @@
 #loading h2 {
   font-style: italic;
 }
+
+#loading .version {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: auto;
+  padding: 10px;
+}
