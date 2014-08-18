@@ -124,14 +124,14 @@ var Aircraft=Fiber.extend(function() {
       this.html.append("<span class='aircraft'>" + this.model.icao + "</span>");
       this.html.append("<span class='speed'>-</span>");
 
-      this.html.find(".aircraft").attr("title", this.model.name);
+      this.html.find(".aircraft").prop("title", this.model.name);
 
       if(this.category == "arrival") {
         this.html.addClass("arrival");
-        this.html.attr("title", "Scheduled for arrival");
+        this.html.prop("title", "Scheduled for arrival");
       } else {
         this.html.addClass("departure");
-        this.html.attr("title", "Scheduled for departure");
+        this.html.prop("title", "Scheduled for departure");
       }
 
       if((this.category == "arrival") && game_time() > 2) {
@@ -178,7 +178,6 @@ var Aircraft=Fiber.extend(function() {
       command = command.toLowerCase();
       var COMMANDS = [
         "turn",
-
         "heading",
 
         "altitude",
@@ -382,8 +381,7 @@ var Aircraft=Fiber.extend(function() {
         this.cancelLanding();
       
       var factor = 1;
-      if(data.length == 1) factor = 1000;
-      if(data.length == 2) factor = 100;
+      if(data.length <= 2) factor = 1000;
 
       this.requested.altitude = clamp(1000, altitude * factor, 10000);
       this.requested.expedite = expedite;
@@ -439,7 +437,7 @@ var Aircraft=Fiber.extend(function() {
         return ["ok", "taking off runway " + radio_runway(this.requested.runway), ""];
       } else {
         var waiting = runway.isWaiting(this, this.requested.runway);
-        return ["fail", "number "+waiting+" behind "+runway.waiting[runway.getEnd(this.requested.runway)][waiting+1].getCallsign(), ""];
+        return ["fail", "number "+waiting+" behind "+runway.waiting[runway.getEnd(this.requested.runway)][waiting+1].getRadioCallsign(), ""];
       }
 
     },
@@ -481,7 +479,7 @@ var Aircraft=Fiber.extend(function() {
       
       this.requested.fix = data.toUpperCase();
 
-      return ["ok", "fix " + this.requested.fix, ""];
+      return ["ok", "navigate to " + this.requested.fix, "roger"];
     },
     cancelFix: function() {
       if(this.requested.fix) this.requested.fix = null;
@@ -657,7 +655,7 @@ var Aircraft=Fiber.extend(function() {
         if(runway.getEnd(this.requested.runway) == 1) this.heading += Math.PI;
 
         if(runway.isWaiting(this, this.requested.runway) == 0 && was_taxi == true) {
-          ui_log(this.getCallsign(), "ready for takeoff runway "+radio_runway(this.requested.runway));
+          ui_log(this.getRadioCallsign(), "ready for takeoff runway "+radio_runway(this.requested.runway));
         }
       }
       if(this.mode == "cruise") {
@@ -883,19 +881,19 @@ var Aircraft=Fiber.extend(function() {
       } else if(this.requested.hold) {
         heading.text("hold "+this.requested.turn);
         heading.addClass("hold");
-        heading.attr("title", "Maintaining hold circle");
+        heading.prop("title", "Maintaining hold circle");
 
         altitude.text(round(this.requested.altitude));
       } else {
         var hdg = heading_to_string(this.requested.heading);
         heading.html(hdg + "&deg;");
-        heading.attr("title", "Holding "+hdg+" degrees");
+        heading.prop("title", "Holding "+hdg+" degrees");
 
         altitude.text(round(this.requested.altitude));
       }
 
-      heading.attr("title",  title);
-      altitude.attr("title", title);
+      heading.prop("title",  title);
+      altitude.prop("title", title);
       
     },
     update: function() {
@@ -928,44 +926,6 @@ function aircraft_init() {
   aircraft_load("conc");
 }
 
-function aircraft_complete() {
-  var start = [
-    [[-60, 0],   90,  3000],
-    [[60, 0],   270,  3000],
-    [[-20, -20], 45,  2000],
-  ];
-  for(var i=0;i<start.length;i++) {
-    break;
-//    if(Math.random() > 0.2) continue;
-    aircraft_new({
-      icao: "B738",
-      position: start[i][0],
-      heading: radians(start[i][1]),
-      speed: 200,
-      category: "arrival",
-      altitude: start[i][2]
-    });
-  }
-  aircraft_add_departing();
-}
-
-function aircraft_add_departing() {
-  return;
-  aircraft_new({
-    icao: "CONC",
-    category: "departure",
-  });
-  game_timeout(aircraft_add_departing, crange(0, Math.random(), 1, 60, 120));
-}
-
-function aircraft_airline_new() {
-  var airlines = [
-    "UAL",
-    "BAW",
-  ];
-  return choose(airlines);
-}
-
 function aircraft_generate_callsign(airline) {
   var callsign_length = airline_get(airline).callsign.length;
   var callsign = "";
@@ -993,7 +953,6 @@ function aircraft_callsign_new(airline) {
 }
 
 function aircraft_new(options) {
-  if(!options.airline) options.airline = aircraft_airline_new();
   if(!options.callsign) options.callsign = aircraft_callsign_new(options.airline);
 
   if(!options.icao) {

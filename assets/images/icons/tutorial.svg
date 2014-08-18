@@ -14,7 +14,7 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.48.5 r10040"
-   sodipodi:docname="help.svg">
+   sodipodi:docname="tutorial.svg">
   <defs
      id="defs4" />
   <sodipodi:namedview
@@ -24,9 +24,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1"
-     inkscape:cx="17.491012"
-     inkscape:cy="16.951118"
+     inkscape:zoom="4"
+     inkscape:cx="39.328911"
+     inkscape:cy="21.253115"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -34,7 +34,10 @@
      inkscape:window-height="727"
      inkscape:window-x="0"
      inkscape:window-y="20"
-     inkscape:window-maximized="0">
+     inkscape:window-maximized="0"
+     inkscape:snap-global="true"
+     showguides="true"
+     inkscape:guide-bbox="true">
     <inkscape:grid
        type="xygrid"
        id="grid2985"
@@ -42,6 +45,22 @@
        visible="true"
        enabled="true"
        snapvisiblegridlinesonly="true" />
+    <sodipodi:guide
+       orientation="0,1"
+       position="18,22"
+       id="guide3842" />
+    <sodipodi:guide
+       orientation="0,1"
+       position="18,14"
+       id="guide3844" />
+    <sodipodi:guide
+       orientation="1,0"
+       position="12,18"
+       id="guide3846" />
+    <sodipodi:guide
+       orientation="1,0"
+       position="24,18"
+       id="guide3848" />
   </sodipodi:namedview>
   <metadata
      id="metadata7">
@@ -62,15 +81,14 @@
      transform="translate(0,-1016.3622)">
     <path
        style="fill:#ffffff;fill-opacity:1;stroke:none"
-       d="m 14,1030.3622 3,0 -2,4 2,4 -3,0 -2,-4 z"
-       id="rect3759"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="ccccccc" />
+       d="m 12,1032.3622 6,-3 6,3 -6,3 z"
+       id="path3850"
+       inkscape:connector-curvature="0" />
     <path
-       sodipodi:nodetypes="ccccccc"
        inkscape:connector-curvature="0"
-       id="path3861"
-       d="m 22,1030.3622 -3,0 2,4 -2,4 3,0 2,-4 z"
-       style="fill:#ffffff;fill-opacity:1;stroke:none" />
+       id="path3852"
+       d="m 14,1036.3622 0,-2 4,2 4,-2 0,2 -4,2 z"
+       style="fill:#ffffff;fill-opacity:1;stroke:none"
+       sodipodi:nodetypes="ccccccc" />
   </g>
 </svg>

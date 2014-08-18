@@ -125,8 +125,15 @@ var Airport=Fiber.extend(function() {
       this.icao     = null;
 
       this.runways  = [];
+      
+      this.runway   = null;
 
       this.fixes    = {};
+      
+      this.timeout  = {
+        runway: null,
+        departure: null
+      };
 
       this.departures = {
         airlines: [],
@@ -143,7 +150,7 @@ var Airport=Fiber.extend(function() {
       if(options.url) {
         this.load(options.url);
       }
-
+      
     },
     getWind: function() {
       var wind = clone(this.wind);
@@ -151,8 +158,8 @@ var Airport=Fiber.extend(function() {
       var angle_factor = Math.sin((s + game_time()) * 0.5) + Math.sin((s + game_time()) * 2);
       var s = 100;
       var speed_factor = Math.sin((s + game_time()) * 0.5) + Math.sin((s + game_time()) * 2);
-      wind.angle += crange(-1, angle_factor, 1, radians(-10), radians(10));
-      wind.speed *= crange(-1, speed_factor, 1, 0.8, 1.2);
+      wind.angle += crange(-1, angle_factor, 1, radians(-4), radians(4));
+      wind.speed *= crange(-1, speed_factor, 1, 0.9, 1.05);
       return wind;
     },
     parse: function(data) {
@@ -198,6 +205,19 @@ var Airport=Fiber.extend(function() {
           this.arrivals.push(arrival);
         }
       }
+
+    },
+    set: function() {
+      this.updateRunway();
+      this.addAircraft();
+    },
+    unset: function() {
+      for(var i=0;i<this.arrivals.length;i++) {
+        if(this.arrivals[i].timeout)
+          game_clear_timeout(this.arrivals[i].timeout);
+      }
+      if(this.timeout.departure) game_clear_timeout(this.timeout.departure);
+      if(this.timeout.runway) game_clear_timeout(this.timeout.runway);
     },
     addAircraft: function() {
       if(this.departures) {
@@ -205,7 +225,7 @@ var Airport=Fiber.extend(function() {
         if(Math.random() > 0.9)
           r = crange(0, Math.random(), 1, 1, 8);
         for(var i=0;i<r;i++) {
-          game_timeout(this.addAircraftDeparture, Math.random() * 0.1, this, false);
+          this.timeout.departure = game_timeout(this.addAircraftDeparture, Math.random() * 0.1, this, false);
         }
         this.addAircraftDeparture(true);
       }
@@ -215,9 +235,12 @@ var Airport=Fiber.extend(function() {
           var arrival = this.arrivals[i];
 
           var delay = Math.random() * 0.1;
-          if(Math.random() > 0.6)
+          if(Math.random() > 0.6) {
             delay = crange(0, Math.random(), 1, arrival.frequency[0], arrival.frequency[1]);
-          game_timeout(this.addAircraftArrival, delay, this, [arrival, crange(0, Math.random(), 1, 0.6, 0.8)]);
+            this.arrivals[i].timeout = game_timeout(this.addAircraftArrival, delay, this, [arrival]);
+          } else {
+            this.arrivals[i].timeout = game_timeout(this.addAircraftArrival, delay, this, [arrival, crange(0, Math.random(), 1, 0.6, 0.8)]);
+          }
         }
       }
 
@@ -229,7 +252,7 @@ var Airport=Fiber.extend(function() {
         airline:   choose(this.departures.airlines),
       });
       if(timeout)
-        game_timeout(this.addAircraftDeparture, crange(0, Math.random(), 1, this.departures.frequency[0], this.departures.frequency[1]), this);
+        this.timeout.departure = game_timeout(this.addAircraftDeparture, crange(0, Math.random(), 1, this.departures.frequency[0], this.departures.frequency[1]), this);
     },
     addAircraftArrival: function(args) {
       var arrival = args[0];
@@ -247,7 +270,7 @@ var Airport=Fiber.extend(function() {
       position[1] += cos(arrival.heading) * distance * offset;
 
       var altitude = crange(0, Math.random(), 1, arrival.altitude[0] / 1000, arrival.altitude[1] / 1000);
-      altitude     = round(altitude) * 1000;
+      altitude     = round(altitude * 2) * 500;
 
       aircraft_new({
         category:  "arrival",
@@ -256,14 +279,15 @@ var Airport=Fiber.extend(function() {
         altitude:  altitude,
         airline:   choose(arrival.airlines),
       });
-      game_timeout(this.addAircraftArrival, crange(0, Math.random(), 1, arrival.frequency[0], arrival.frequency[1]), this, [arrival, offset]);
+      
+      arrival.timeout = game_timeout(this.addAircraftArrival, crange(0, Math.random(), 1, arrival.frequency[0], arrival.frequency[1]), this, [arrival, offset]);
     },
-    selectRunway: function(length) {
+    updateRunway: function() {
       if(!length) length = 0;
       var wind = this.getWind();
       var headwind = {};
       function ra(n) {
-        var deviation = radians(30);
+        var deviation = radians(10);
         return n + crange(0, Math.random(), 1, -deviation, deviation);
       }
       for(var i=0;i<this.runways.length;i++) {
@@ -279,7 +303,11 @@ var Airport=Fiber.extend(function() {
           best_runway_headwind = headwind[i];
         }
       }
-      return best_runway;
+      this.runway = best_runway;
+      this.timeout.runway = game_timeout(this.updateRunway, Math.random() * 30, this);
+    },
+    selectRunway: function(length) {
+      return this.runway;
     },
     load: function(url) {
       this.content = new Content({
@@ -340,7 +368,7 @@ function airport_add(airport) {
 
 function airport_set(icao) {
   prop.airport.current = prop.airport.airports[icao.toLowerCase()];
-  prop.airport.current.addAircraft();
+  prop.airport.current.set();
 }
 
 function airport_get(icao) {

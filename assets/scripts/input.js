@@ -39,7 +39,6 @@ function input_init() {
     position[0] = parseFloat(position[0].toFixed(2));
     position[1] = parseFloat(position[1].toFixed(2));
     prop.input.positions += "["+position.join(",")+"]";
-    console.log(position);
     e.preventDefault();
     return(false);
   });

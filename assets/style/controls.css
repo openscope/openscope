@@ -24,7 +24,8 @@
   opacity: 0.6;
 }
 
-#controls .control.fast-forwards.active {
+#controls .control.fast-forwards.active,
+#controls .control.start-tutorial.active {
   box-shadow: 0 -4px 0 #38f;
 }
 

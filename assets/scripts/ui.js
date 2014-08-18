@@ -6,13 +6,17 @@ function ui_init_pre() {
 
 function ui_init() {
 
+  $(".fast-forwards").prop("title", "Set time warp to 5");
+  
   $(".fast-forwards").click(function() {
     if(prop.game.speedup != 1) {
       prop.game.speedup = 1;
       $(".fast-forwards").removeClass("active");
+      $(".fast-forwards").prop("title", "Set time warp to 5");
     } else {
-      prop.game.speedup = 3;
+      prop.game.speedup = 5;
       $(".fast-forwards").addClass("active");
+      $(".fast-forwards").prop("title", "Reset time warp");
     }
   });
 
@@ -49,7 +53,7 @@ function ui_log(message) {
     setTimeout(function() {
       html.remove();
     }, 1000);
-  }, 4, window, html);
-  console.log(message);
+  }, 10, window, html);
+  console.log("MESSAGE: " + message);
 }
 

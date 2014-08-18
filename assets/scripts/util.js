@@ -245,7 +245,7 @@ function radio_compass(input) {
 
 function radio_trend(category, measured, target) {
   var CATEGORIES = {
-    "altitude": ["descend to", "ascend to", "maintaining"],
+    "altitude": ["descend to", "climb to",  "maintaining"],
     "speed":    ["set speed",  "set speed", "maintaining"]
   };
   if(measured > target) return CATEGORIES[category][0];
