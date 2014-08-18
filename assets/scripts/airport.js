@@ -275,7 +275,7 @@ var Airport=Fiber.extend(function() {
       position[0] += sin(arrival.angle) * distance;
       position[1] += cos(arrival.angle) * distance;
 
-      distance     = Math.max(width, height) - Math.min(width, height) + pixels_to_km(300);
+      distance     = (Math.max(width, height) - Math.min(width, height)) * 2 + pixels_to_km(300);
       position[0] += sin(arrival.heading) * distance * offset;
       position[1] += cos(arrival.heading) * distance * offset;
 

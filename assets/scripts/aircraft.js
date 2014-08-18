@@ -489,6 +489,7 @@ var Aircraft=Fiber.extend(function() {
 
       if(runway.removeQueue(this, this.requested.runway)) {
         this.mode = "takeoff";
+        prop.game.score.windy_takeoff += -Math.min(this.getWind(), 0);
         return ["ok", "taking off runway " + radio_runway(this.requested.runway), ""];
       } else {
         var waiting = runway.isWaiting(this, this.requested.runway);
@@ -550,7 +551,7 @@ var Aircraft=Fiber.extend(function() {
 
       if(data == "log") {
         window.aircraft = this;
-        return ["ok", "variable: aircraft", "over"];
+        return ["ok", "in the console, look at the variable &lsquo;aircraft&rsquo;", "over"];
       }
       
     },
@@ -670,6 +671,19 @@ var Aircraft=Fiber.extend(function() {
       }
       return true;
     },
+    getWind: function() {
+      if(!this.requested.runway) return 0;
+      var airport = airport_get();
+      var wind    = airport.wind;
+      var runway  = airport.getRunway(this.requested.runway);
+
+      var angle   =  abs(angle_offset(runway.getAngle(this.requested.runway), wind.angle));
+      var head    =  crange(0, angle, Math.PI, -1, 1);
+      
+      angle       =  abs(angle_offset(runway.getAngle(this.requested.runway) - Math.PI/2, wind.angle));
+      var cross   = -abs(crange(0, angle, Math.PI, 1, -1)) * 1.5;
+      return (cross + head) * wind.speed;
+    },
     updateTarget: function() {
       var airport = airport_get();
       var runway  = null;
@@ -730,15 +744,24 @@ var Aircraft=Fiber.extend(function() {
       if(this.mode == "landing") {
 
         if(offset[1] > 0.01) {
-          var xoffset = crange(0.5, this.model.rate.turn, 5, 6, 1);
+          var xoffset = crange(0.7, this.model.rate.turn, 5, 7, 1);
+          xoffset    *= crange(this.model.speed.landing, this.speed, this.model.speed.cruise, 0.7, 1);
           this.target.heading = crange(-xoffset, offset[0], xoffset, radians(45), -radians(45)) + angle;
         } else {
           this.target.heading = angle;
         }
 
+        var s = this.target.speed;
+
         this.target.altitude     = glideslope_altitude;
-        this.target.speed        = crange(5, offset[1], 15, this.model.speed.landing, this.requested.start_speed);
-        if(this.altitude < 10) this.target.speed = 0;
+        this.target.speed        = crange(5, offset[1], 30, this.model.speed.landing, this.requested.start_speed);
+
+        if(this.altitude < 10) {
+          if(s > 10) {
+            prop.game.score.windy_landing += -Math.min(this.getWind(), 0);
+          }
+          this.target.speed = 0;
+        }
       }
       var was_taxi = false;
       if(this.mode == "taxi") {
@@ -912,24 +935,24 @@ var Aircraft=Fiber.extend(function() {
           if((airport.getRunway(other.requested.runway) === airport.getRunway(this.requested.runway)) &&     // on the same runway
              (distance2d(this.position, other.position) < 10) &&      // closer than 10km
              (abs(angle_offset(this.heading, other.heading)) > 10)) { // different directions
+            if(!this.warning) {
+              console.log("too close to another aircraft");
+              ui_log(true, this.getCallsign() + " is too close to " + other.getCallsign());
+              prop.game.score.warning += 1;
+            }
             warning = true;
           }
         }
         if((distance2d(this.position, other.position) < 0.05) &&      // closer than 50 meters
            (abs(this.altitude - other.altitude) < 50) &&
            (other.isVisible() && this.isVisible())) {
+          if(!this.hit) {
+            console.log("hit another aircraft");
+            ui_log(true, this.getCallsign() + " hit " + other.getCallsign());
+            prop.game.score.hit += 1;
+          }
           hit = true;
         }
-      }
-      if(warning && !this.warning) {
-        console.log("too close to another aircraft");
-        ui_log(true, this.getCallsign() + " is too close to " + other.getCallsign());
-        prop.game.score.warning += 1;
-      }
-      if(hit && !this.hit) {
-        console.log("hit another aircraft");
-        ui_log(true, this.getCallsign() + " hit " + other.getCallsign());
-        prop.game.score.hit += 1;
       }
       this.warning = warning;
       this.hit     = hit;

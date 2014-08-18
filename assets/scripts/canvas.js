@@ -312,7 +312,7 @@ function canvas_draw_compass(cc) {
   cc.arc(0, 0, size2, 0, Math.PI*2);
   cc.fill();
 
-  cc.fillStyle = "#ddd";
+  cc.fillStyle = "rgba(255, 255, 255, 0.7)";
   cc.beginPath();
   cc.arc(0, 0, dot/2, 0, Math.PI*2);
   cc.fill()
@@ -322,7 +322,7 @@ function canvas_draw_compass(cc) {
   cc.moveTo(0, 0);
   cc.rotate(airport_get().wind.angle - Math.PI);
   cc.lineTo(0, crange(0, airport_get().wind.speed, 15, 0, size2-dot));
-  cc.strokeStyle = "#ddd"
+  cc.strokeStyle = "rgba(255, 255, 255, 0.7)";
   cc.lineWidth = 2;
   cc.stroke();
   cc.restore();

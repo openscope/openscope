@@ -64,8 +64,12 @@ function km(kilometers) {
 function ui_log(message) {
   message = arguments[0];
   var warn = false;
-  if(arguments[1] == true) warn = true;
-  else if(arguments.length >= 2) message += ", "+arguments[1];
+  if(arguments[0] == true) {
+    warn = true;
+    message = arguments[1];
+  } else if(arguments.length >= 2) {
+    message += ", "+arguments[1];
+  }
 
 //  $("#log").append("<span class='item'><span class='from'>"+from+"</span><span class='message'>"+message+"</span></span>");
   var html = $("<span class='item'><span class='message'>"+message+"</span></span>");

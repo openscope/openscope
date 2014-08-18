@@ -24,6 +24,9 @@ function game_init_pre() {
     arrival: 0,
     departure: 0,
 
+    windy_landing: 0,
+    windy_takeoff: 0,
+
     failed_arrival: 0,
 
     warning: 0,
@@ -42,6 +45,9 @@ function game_get_score() {
   score += prop.game.score.arrival * 10;
   score += prop.game.score.departure * 10;
   
+  score -= prop.game.score.windy_landing * 0.5;
+  score -= prop.game.score.windy_takeoff * 0.5;
+
   score -= prop.game.score.failed_arrival * 20;
 
   score -= prop.game.score.warning * 5;

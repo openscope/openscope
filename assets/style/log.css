@@ -2,8 +2,6 @@
 #log {
   pointer-events: none;
 
-  opacity: 0.5;
-
   font-size: 80%;
 
   position: absolute;
@@ -13,13 +11,19 @@
 }
 
 #log .item {
-  opacity: 1;
+  opacity: 0.5;
+
   transition: opacity 1s ease;
 
   color: #ddd;
 
   display: block;
   padding: 3px 5px;
+}
+
+#log .item.warn {
+  color: #f64;
+  opacity: 1;
 }
 
 #log .item.hidden {
