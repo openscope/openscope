@@ -272,12 +272,19 @@ var Airport=Fiber.extend(function() {
       var width    = pixels_to_km((prop.canvas.size.width / 2)  - 50);
       var height   = pixels_to_km((prop.canvas.size.height / 2) - 50);
       var distance = Math.min(width, height);
-      position[0] += sin(arrival.angle) * distance;
-      position[1] += cos(arrival.angle) * distance;
+
+      var wobble   = radians(5);
+
+      var angle    = arrival.angle + crange(0, Math.random(), 1, -wobble, wobble);
+
+      position[0] += sin(angle) * distance;
+      position[1] += cos(angle) * distance;
+      
+      var heading  = arrival.heading + crange(0, Math.random(), 1, -wobble, wobble);
 
       distance     = (Math.max(width, height) - Math.min(width, height)) * 3 + pixels_to_km(300);
-      position[0] += sin(arrival.heading) * distance * offset;
-      position[1] += cos(arrival.heading) * distance * offset;
+      position[0] += sin(heading) * distance * offset;
+      position[1] += cos(heading) * distance * offset;
 
       var altitude = crange(0, Math.random(), 1, arrival.altitude[0] / 1000, arrival.altitude[1] / 1000);
       altitude     = round(altitude * 2) * 500;
@@ -288,7 +295,7 @@ var Airport=Fiber.extend(function() {
       aircraft_new({
         category:  "arrival",
         position:  position,
-        heading:   arrival.heading + Math.PI,
+        heading:   heading + Math.PI,
         altitude:  altitude,
         airline:   choose(arrival.airlines),
         message:   message

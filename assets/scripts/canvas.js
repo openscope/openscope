@@ -312,7 +312,7 @@ function canvas_draw_compass(cc) {
   cc.arc(0, 0, size2, 0, Math.PI*2);
   cc.fill();
 
-  cc.fillStyle = "rgba(255, 255, 255, 0.7)";
+  cc.fillStyle = "rgba(255, 255, 255, 1.0)";
   cc.beginPath();
   cc.arc(0, 0, dot/2, 0, Math.PI*2);
   cc.fill()
@@ -326,6 +326,8 @@ function canvas_draw_compass(cc) {
   cc.lineWidth = 2;
   cc.stroke();
   cc.restore();
+
+  cc.fillStyle = "rgba(255, 255, 255, 0.7)";
 
   cc.textAlign = "center";
   cc.textBaseline = "top";
