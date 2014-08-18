@@ -218,7 +218,8 @@ function radio(input) {
   input = input.toLowerCase();
   var s = [];
   for(var i=0;i<input.length;i++) {
-    s.push(radio_names[input[i]]);
+    var c = radio_names[input[i]];
+    if(c) s.push(c);
   }
   return s.join(" ");
 }
@@ -228,7 +229,8 @@ function radio_runway(input) {
   input = input.toLowerCase();
   var s = [];
   for(var i=0;i<input.length;i++) {
-    s.push(radio_runway_names[input[i]]);
+    var c = radio_runway_names[input[i]];
+    if(c) s.push(c);
   }
   return s.join(" ");
 }
@@ -238,7 +240,8 @@ function radio_compass(input) {
   input = input.toLowerCase();
   var s = [];
   for(var i=0;i<input.length;i++) {
-    s.push(radio_compass_names[input[i]]);
+    var c = radio_compass_names[input[i]];
+    if(c) s.push(c);
   }
   return s.join(" ");
 }

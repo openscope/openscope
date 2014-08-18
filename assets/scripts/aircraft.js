@@ -473,7 +473,8 @@ var Aircraft=Fiber.extend(function() {
       var runway = airport_get().getRunway(data);
 
       if(!runway) {
-        return ["fail", "no runway " + radio_runway(data), "say again"];
+        if(!data) return ["fail", "runway not understood", "say again"];
+        else      return ["fail", "no runway " + radio_runway(data), "say again"];
       }
 
       this.requested.runway = data.toUpperCase();
