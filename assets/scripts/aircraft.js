@@ -522,6 +522,7 @@ var Aircraft=Fiber.extend(function() {
         if(this.mode == "landing")
           this.requested.heading = runway.getAngle(this.requested.runway) + Math.PI;
         this.requested.runway  = null;
+        this.mode = "cruise";
         return true;
       }
       return false;
@@ -638,17 +639,20 @@ var Aircraft=Fiber.extend(function() {
 
           angle = runway.getAngle(this.requested.runway) + Math.PI;
 
-          var landing_zone_offset = 0.5;
+          var landing_zone_offset = crange(1, runway.length, 5, 0.1, 0.5);
 
           glideslope_altitude = clamp(0, runway.getGlideslopeAltitude(offset[1] + landing_zone_offset, this.requested.runway), this.altitude);
           glideslope_window   = abs(runway.getGlideslopeAltitude(offset[1] + landing_zone_offset, this.requested.runway, radians(1)));
           
           if((abs(this.altitude - glideslope_altitude) < glideslope_window) && (abs(offset_angle) < radians(30))) {
             this.mode = "landing";
-          } else if(this.altitude < 50 && this.mode == "landing") {
+          } else if(this.altitude < 300 && this.mode == "landing") {
             this.mode = "landing";
           } else {
-            this.mode = "cruise";
+            if(this.mode == "landing") {
+              this.cancelLanding();
+              ui_log(this.getRadioCallsign() + " aborting landing, lost ILS");
+            }
           }
         }
       } else if(this.mode == "landing" || this.mode == "cruise") {
@@ -656,8 +660,6 @@ var Aircraft=Fiber.extend(function() {
       }
 
       if(this.mode == "landing") {
-        if(offset[1] > 0.05) this.target.heading  = -(offset_angle - angle);
-        else this.target.heading = -angle;
 
         if(offset[1] > 0.05) {
           var xoffset = crange(0.5, this.model.rate.turn, 5, 5, 1);
@@ -665,7 +667,6 @@ var Aircraft=Fiber.extend(function() {
         } else {
           this.target.heading = angle;
         }
-//        this.target.heading = angle;
 
         this.target.altitude     = glideslope_altitude;
         this.target.expedite     = true;
@@ -795,7 +796,7 @@ var Aircraft=Fiber.extend(function() {
         var difference = null;
         if(this.target.speed < this.speed - 0.01) {
           difference = -this.model.rate.decelerate * game_delta() / 2;
-          if(this.isLanded()) difference *= 2;
+          if(this.isLanded()) difference *= 3.5;
         } else if(this.target.speed > this.speed + 0.01) {
           difference  = this.model.rate.accelerate * game_delta() / 2;
           difference *= crange(0, this.speed, this.model.speed.min, 2, 1);
