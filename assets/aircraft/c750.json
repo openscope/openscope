@@ -1,0 +1,22 @@
+{
+  "name": "Cessna Citation X",
+  "icao": "C750",
+  "wake": "light",
+  "rate": {
+    "turn":       1.2,
+    "ascent":     2200,
+    "descent":    2500,
+    "accelerate": 10,
+    "decelerate": 5
+  },
+  "runway": {
+    "takeoff": 2.8,
+    "landing": 3.5
+  },
+  "speed":{
+    "min":     120,
+    "max":     400,
+    "landing": 135,
+    "cruise":  250
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "Cessna 337 Super Skymaster",
+  "icao": "C337",
+  "wake": "light",
+  "rate": {
+    "turn":       2.5,
+    "ascent":     900,
+    "descent":    1500,
+    "accelerate": 4,
+    "decelerate": 3
+  },
+  "runway": {
+    "takeoff": 1.0,
+    "landing": 1.7
+  },
+  "speed":{
+    "min":     50,
+    "max":     170,
+    "landing": 60,
+    "cruise":  150
+  }
+}

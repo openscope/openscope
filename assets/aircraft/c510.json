@@ -1,0 +1,22 @@
+{
+  "name": "Cessna Citation Mustang",
+  "icao": "C510",
+  "wake": "light",
+  "rate": {
+    "turn":       1.3,
+    "ascent":     2500,
+    "descent":    3000,
+    "accelerate": 10,
+    "decelerate": 5
+  },
+  "runway": {
+    "takeoff": 2.5,
+    "landing": 3.2
+  },
+  "speed":{
+    "min":     120,
+    "max":     300,
+    "landing": 130,
+    "cruise":  250
+  }
+}

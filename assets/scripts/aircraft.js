@@ -165,7 +165,12 @@ var Aircraft=Fiber.extend(function() {
       return false;
     },
     getCallsign: function() {
-      return (this.airline + this.callsign).toUpperCase();
+      return (this.getAirline() + this.callsign).toUpperCase();
+    },
+    getAirline: function() {
+      var icao = airline_get(this.airline).icao;
+      if(icao) return icao;
+      return this.airline.toUpperCase();
     },
     getRadioCallsign: function(condensed) {
       var heavy = "";
@@ -357,6 +362,7 @@ var Aircraft=Fiber.extend(function() {
       
       this.requested.heading = radians(heading);
       this.requested.turn    = direction;
+      this.requested.hold    = false;
       
       if(direction == "auto") direction  = "";
       else                    direction += " ";
@@ -512,9 +518,15 @@ var Aircraft=Fiber.extend(function() {
         this.cancelFix();
         return ["ok", "maintain heading " + heading_to_string(this.requested.heading) + " at " + this.requested.altitude + " feet", ""];
       } else if(this.requested.runway) {
-        this.cancelLanding();
-        this.requested.altitude = Math.max(2000, round((this.altitude / 1000) + 1) * 1000);
-        return ["ok", "go around, hold heading " + heading_to_string(this.requested.heading) + " at " + this.requested.altitude + " feet", ""];
+        if(this.isTaxiing()) {
+          this.mode = "apron";
+          this.taxi_start = 0;
+          return ["ok", "taxi back to terminal", "roger"]
+        } else {
+          this.cancelLanding();
+          this.requested.altitude = Math.max(2000, round((this.altitude / 1000) + 1) * 1000);
+          return ["ok", "go around, hold heading " + heading_to_string(this.requested.heading) + " at " + this.requested.altitude + " feet", ""];
+        }
       }
     },
     runDebug: function(data) {
@@ -933,7 +945,7 @@ var Aircraft=Fiber.extend(function() {
         heading.text(this.requested.fix);
         heading.addClass("hold");
       } else if(this.requested.hold) {
-        heading.text(this.requested.hold);
+        heading.text("hold "+this.requested.turn);
         heading.addClass("hold");
       }
 
@@ -959,15 +971,28 @@ function aircraft_init_pre() {
 }
 
 function aircraft_init() {
+  // CESSNA
+  aircraft_load("c208");
+
+  aircraft_load("c337");
+
+  aircraft_load("c510");
+
+  aircraft_load("c550");
+
+  aircraft_load("c750");
+
   // AIRBUS
   aircraft_load("a318");
   aircraft_load("a319");
   aircraft_load("a320");
   aircraft_load("a321");
+
   aircraft_load("a380");
 
   // BOEING
   aircraft_load("b734");
+  aircraft_load("b737");
   aircraft_load("b738");
   aircraft_load("b739");
 
@@ -990,9 +1015,19 @@ function aircraft_init() {
 
 function aircraft_generate_callsign(airline) {
   var callsign_length = airline_get(airline).callsign.length;
-  var callsign = "";
-  callsign += round((Math.random() * 8) + 1) + "";
-  for(var i=0;i<callsign_length - 1;i++) callsign += round((Math.random() * 9)) + "";
+  var alpha           = airline_get(airline).callsign.alpha;
+  var callsign        = "";
+
+  var list = "0123456789";
+  
+  callsign += choose(list.substr(1));
+  if(alpha) {
+    for(var i=0;i<callsign_length - 3;i++) callsign += choose(list)
+    list = "abcdefghijklmnopqrstuvwxyz";
+    for(var i=0;i<2;i++) callsign += choose(list)
+  } else {
+    for(var i=0;i<callsign_length - 1;i++) callsign += choose(list)
+  }
   return callsign;
 }
 
@@ -1021,8 +1056,6 @@ function aircraft_new(options) {
     options.icao = airline_get_aircraft(options.airline);
   }
   var icao = options.icao.toLowerCase();
-
-  console.log(icao);
 
   options.model = prop.aircraft.models[icao];
 

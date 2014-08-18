@@ -7,6 +7,7 @@ function airline_init_pre() {
 function airline_init() {
   airline_load("UAL");
   airline_load("BAW");
+  airline_load("CESSNA");
 }
 
 function airline_load(icao) {
@@ -41,6 +42,17 @@ function airline_get_aircraft(icao) {
     weight_sum += aircraft[i][1];
     if(weight_sum > random) {
       return aircraft[i][0];
+    }
+  }
+}
+
+function airline_ready() {
+  for(var i in prop.airline.airlines) {
+    var airline = prop.airline.airlines[i];
+    for(var j=0;j<airline.aircraft.length;j++) {
+      if(!(airline.aircraft[j][0].toLowerCase() in prop.aircraft.models)) {
+        console.warn("Airline "+i.toUpperCase()+" uses nonexistent aircraft "+airline.aircraft[j][0]+", expect errors");
+      }
     }
   }
 }

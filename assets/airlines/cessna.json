@@ -1,0 +1,20 @@
+{
+  "name": "Cessna",
+  "icao": "N",
+  "callsign": {
+    "name": "Cessna",
+    "length": 5,
+    "alpha": true
+  },
+  "aircraft": [
+    ["C337", 10 ],
+
+    ["C208", 5  ],
+
+    ["C510", 5  ],
+
+    ["C550", 10 ],
+
+    ["C750", 4  ]
+  ]
+}

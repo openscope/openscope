@@ -82,7 +82,7 @@
     }
   ],
   "departures": {
-    "airlines": ["UAL", "BAW"],
+    "airlines": ["UAL", "BAW", "cessna"],
     "frequency": [1, 3]
   },
   "arrivals": [

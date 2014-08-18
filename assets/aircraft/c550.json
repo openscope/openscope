@@ -1,0 +1,22 @@
+{
+  "name": "Cessna Citation II",
+  "icao": "C550",
+  "wake": "light",
+  "rate": {
+    "turn":       1.2,
+    "ascent":     2200,
+    "descent":    2500,
+    "accelerate": 8,
+    "decelerate": 4
+  },
+  "runway": {
+    "takeoff": 2.8,
+    "landing": 3.5
+  },
+  "speed":{
+    "min":     120,
+    "max":     300,
+    "landing": 130,
+    "cruise":  250
+  }
+}

@@ -281,7 +281,7 @@ function canvas_draw_info(cc, aircraft) {
     cc.fillText(lpad(round(aircraft.speed * 0.1), 2), separation, line_height);
 
     cc.textAlign = "center";
-    cc.fillText(aircraft.airline + aircraft.callsign, 0, -line_height);
+    cc.fillText(aircraft.getCallsign(), 0, -line_height);
 
     cc.restore();
   }

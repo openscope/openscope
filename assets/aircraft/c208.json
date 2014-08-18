@@ -1,0 +1,22 @@
+{
+  "name": "Cessna 208 Caravan",
+  "icao": "C208",
+  "wake": "medium",
+  "rate": {
+    "turn":       1.8,
+    "ascent":     1700,
+    "descent":    2500,
+    "accelerate": 8,
+    "decelerate": 4
+  },
+  "runway": {
+    "takeoff": 1.5,
+    "landing": 2.1
+  },
+  "speed":{
+    "min":     80,
+    "max":     200,
+    "landing": 90,
+    "cruise":  170
+  }
+}
