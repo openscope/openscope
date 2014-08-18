@@ -482,8 +482,12 @@ var Aircraft=Fiber.extend(function() {
       return ["ok", "navigate to " + this.requested.fix, "roger"];
     },
     cancelFix: function() {
-      if(this.requested.fix) this.requested.fix = null;
-      this.requested.heading = round(this.heading);
+      if(this.requested.fix) {
+        this.requested.fix = null;
+        this.requested.heading = round(this.heading);
+        return true;
+      }
+      return false;
     },
     cancelLanding: function() {
       if(this.requested.runway && (this.mode == "landing" || this.mode == "cruise")) {
@@ -606,9 +610,9 @@ var Aircraft=Fiber.extend(function() {
           var landing_zone_offset = 0.5;
 
           glideslope_altitude = clamp(0, runway.getGlideslopeAltitude(offset[1] + landing_zone_offset, this.requested.runway), this.altitude);
-          glideslope_window   = abs(runway.getGlideslopeAltitude(offset[1] + landing_zone_offset, this.requested.runway, radians(2)));
-
-          if((abs(this.altitude - glideslope_altitude) < glideslope_window) && (offset_angle < radians(15))) {
+          glideslope_window   = abs(runway.getGlideslopeAltitude(offset[1] + landing_zone_offset, this.requested.runway, radians(1)));
+          
+          if((abs(this.altitude - glideslope_altitude) < glideslope_window) && (abs(offset_angle) < radians(30))) {
             this.mode = "landing";
           } else if(this.altitude < 50 && this.mode == "landing") {
             this.mode = "landing";
@@ -625,7 +629,8 @@ var Aircraft=Fiber.extend(function() {
         else this.target.heading = -angle;
 
         if(offset[1] > 0.05) {
-          this.target.heading = crange(-2, offset[0], 2, radians(45), -radians(45)) + angle;
+          var xoffset = crange(0.5, this.model.rate.turn, 5, 5, 1);
+          this.target.heading = crange(-xoffset, offset[0], xoffset, radians(45), -radians(45)) + angle;
         } else {
           this.target.heading = angle;
         }
@@ -867,7 +872,6 @@ var Aircraft=Fiber.extend(function() {
         }
 
         if(this.mode == "landing") {
-          var runway = airport_get().getRunway(this.requested.runway);
           altitude.text("ILS locked");
 
           speed.text(this.model.speed.landing);
