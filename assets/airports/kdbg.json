@@ -121,13 +121,6 @@
       "altitude":  [6000, 8000]
     },
     {
-      "angle":     270,
-      "heading":   0,
-      "airlines":  ["UAL", "BAW"],
-      "frequency": [9, 15],
-      "altitude":  [5000, 6000]
-    },
-    {
       "angle":     315,
       "heading":   90,
       "airlines":  ["UAL", "BAW"],
