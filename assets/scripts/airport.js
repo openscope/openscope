@@ -266,6 +266,7 @@ var Airport=Fiber.extend(function() {
 
       var arrival = args[0];
       var offset = args[1];
+      console.log(offset);
       if(!offset) offset = 1;
 
       var position = [0, 0];
@@ -294,7 +295,7 @@ var Airport=Fiber.extend(function() {
         message:   message
       });
       
-      arrival.timeout = game_timeout(this.addAircraftArrival, crange(0, Math.random(), 1, arrival.frequency[0], arrival.frequency[1]), this, [arrival, offset]);
+      arrival.timeout = game_timeout(this.addAircraftArrival, crange(0, Math.random(), 1, arrival.frequency[0], arrival.frequency[1]), this, [arrival]);
     },
     updateRunway: function() {
       if(!length) length = 0;

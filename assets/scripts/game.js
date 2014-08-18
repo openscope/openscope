@@ -20,6 +20,38 @@ function game_init_pre() {
     prop.game.focused=true;
   });
 
+  prop.game.score = {
+    arrival: 0,
+    departure: 0,
+
+    failed_arrival: 0,
+
+    warning: 0,
+    hit: 0,
+
+    abort: {
+      landing: 0,
+      taxi: 0
+    }
+  };
+
+}
+
+function game_get_score() {
+  var score = 0;
+  score += prop.game.score.arrival * 5;
+  score += prop.game.score.departure * 5;
+  
+  score -= prop.game.score.failed_arrival * 20;
+
+  score -= prop.game.score.warning * 10;
+  score -= prop.game.score.hit * 100;
+
+  score -= prop.game.score.abort.landing * 15;
+
+  score -= prop.game.score.abort.taxi * 10;
+
+  return score;
 }
 
 function game_timewarp_toggle() {
@@ -90,6 +122,14 @@ function game_clear_timeout(to) {
 }
 
 function game_update_pre() {
+  var score = game_get_score();
+  $("#score").text(score);
+
+  if(score < 0)
+    $("#score").addClass("negative");
+  else
+    $("#score").removeClass("negative");
+
   prop.game.delta=Math.min(delta()*prop.game.speedup, 100);
   if(game_paused()) {
     prop.game.delta=0;
