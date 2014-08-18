@@ -316,15 +316,15 @@ function tutorial_complete() {
 function tutorial_open() {
   prop.tutorial.open = true;
   $("#tutorial").addClass("open");
-  $(".start-tutorial").addClass("active");
-  $(".start-tutorial").prop("title", "Close tutorial");
+  $(".toggle-tutorial").addClass("active");
+  $(".toggle-tutorial").prop("title", "Close tutorial");
 }
 
 function tutorial_close() {
   prop.tutorial.open = false;
   $("#tutorial").removeClass("open");
-  $(".start-tutorial").removeClass("active");
-  $(".start-tutorial").prop("title", "Open tutorial");
+  $(".toggle-tutorial").removeClass("active");
+  $(".toggle-tutorial").prop("title", "Open tutorial");
   tutorial_move();
 }
 
@@ -339,15 +339,15 @@ function tutorial_next() {
     return;
   }
   prop.tutorial.step = clamp(0, prop.tutorial.step + 1, prop.tutorial.steps.length - 1);
-  tutorial_update();
+  tutorial_update_content();
 }
 
 function tutorial_prev() {
   prop.tutorial.step = clamp(0, prop.tutorial.step - 1, prop.tutorial.steps.length - 1);
-  tutorial_update();
+  tutorial_update_content();
 }
 
-function tutorial_update() {
+function tutorial_update_content() {
   var step = tutorial_get();
 
   $("#tutorial h1").html(step.title);
@@ -376,7 +376,7 @@ function tutorial_move() {
 //  left += step.padding[0];
 //  top  += step.padding[1];
 
-  $("#tutorial").offset({top: top, left: left});
+  $("#tutorial").offset({top: round(top), left: round(left)});
 }
 
 function tutorial_toggle() {

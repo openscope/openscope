@@ -4,43 +4,40 @@
   right: 250px;
   bottom: 0;
   height: 36px;
-  width: 108px;
 
   z-index: 100;
 }
 
 #controls .control {
   display: inline-block;
-  opacity: 0.5;
-  transition: opacity 0.08s ease;
+  width: 36px;
+  margin: 0;
+
+  transition: box-shadow 0.1s ease;
 }
 
-#controls .control:hover {
+#controls .control img {
+  opacity: 0.5;
+  transition: opacity 0.1s ease;
+}
+
+#controls .control:hover img {
   opacity: 0.9;
   cursor: pointer;
 }
 
-#controls .control:active {
+#controls .control:active img {
   opacity: 0.6;
 }
 
-#controls .control.fast-forwards.active,
-#controls .control.start-tutorial.active {
+#controls .control:hover {
+  box-shadow: 0 -4px 0 rgba(128, 255, 255, 0.3);
+}
+
+#controls .control.active {
   box-shadow: 0 -4px 0 #38f;
 }
 
 #controls .control.pause-toggle.active {
   box-shadow: 0 -4px 0 #f87;
-}
-
-#controls .control.pause-toggle {
-  position: absolute;
-  top: 0;
-  right: 36px;
-}
-
-#controls .control.start-tutorial {
-  position: absolute;
-  top: 0;
-  right: 0;
 }

@@ -121,8 +121,10 @@ var Airport=Fiber.extend(function() {
       if(!options) options={};
 
       this.name     = null;
-      this.radio    = null;
       this.icao     = null;
+      this.radio    = null;
+
+      this.level    = null;
 
       this.runways  = [];
       
@@ -164,8 +166,10 @@ var Airport=Fiber.extend(function() {
     },
     parse: function(data) {
       if(data.name) this.name   = data.name;
-      if(data.radio) this.radio = data.radio;
       if(data.icao) this.icao   = data.icao;
+      if(data.radio) this.radio = data.radio;
+
+      if(data.level) this.level = data.level;
 
       if(data.runways) {
         for(var i=0;i<data.runways.length;i++) {
@@ -208,6 +212,7 @@ var Airport=Fiber.extend(function() {
 
     },
     set: function() {
+      this.start = game_time();
       this.updateRunway();
       this.addAircraft();
     },
@@ -247,17 +252,22 @@ var Airport=Fiber.extend(function() {
     },
     addAircraftDeparture: function(timeout) {
       if(timeout == undefined) timeout=false;
+      var message = true;
+      if(game_time() - this.start < 2) message = false;
       aircraft_new({
         category:  "departure",
         airline:   choose(this.departures.airlines),
+        message:   message
       });
       if(timeout)
         this.timeout.departure = game_timeout(this.addAircraftDeparture, crange(0, Math.random(), 1, this.departures.frequency[0], this.departures.frequency[1]), this);
     },
     addAircraftArrival: function(args) {
+
       var arrival = args[0];
       var offset = args[1];
       if(!offset) offset = 1;
+
       var position = [0, 0];
       var width    = pixels_to_km((prop.canvas.size.width / 2)  - 50);
       var height   = pixels_to_km((prop.canvas.size.height / 2) - 50);
@@ -272,12 +282,16 @@ var Airport=Fiber.extend(function() {
       var altitude = crange(0, Math.random(), 1, arrival.altitude[0] / 1000, arrival.altitude[1] / 1000);
       altitude     = round(altitude * 2) * 500;
 
+      var message = true;
+      if(game_time() - this.start < 2) message = false;
+
       aircraft_new({
         category:  "arrival",
         position:  position,
         heading:   arrival.heading + Math.PI,
         altitude:  altitude,
         airline:   choose(arrival.airlines),
+        message:   message
       });
       
       arrival.timeout = game_timeout(this.addAircraftArrival, crange(0, Math.random(), 1, arrival.frequency[0], arrival.frequency[1]), this, [arrival, offset]);
@@ -349,6 +363,7 @@ function airport_init_pre() {
 
 function airport_init() {
   airport_load("kdbg");
+  airport_load("ksra");
 }
 
 function airport_ready() {
@@ -357,6 +372,10 @@ function airport_ready() {
 
 function airport_load(icao) {
   icao = icao.toLowerCase();
+  if(icao in prop.airport.airports) {
+    console.log(icao + ": already loaded");
+    return;
+  }
   var airport=new Airport({icao: icao, url: "assets/airports/"+icao+".json"});
   airport_add(airport);
   return airport;
@@ -367,8 +386,19 @@ function airport_add(airport) {
 }
 
 function airport_set(icao) {
-  prop.airport.current = prop.airport.airports[icao.toLowerCase()];
+  icao = icao.toLowerCase();
+  if(!(icao in prop.airport.airports)) {
+    console.log(icao + ": no such airport");
+    return;
+  }
+  if(prop.airport.current) {
+    prop.airport.current.unset();
+    aircraft_remove_all();
+  }
+  prop.airport.current = prop.airport.airports[icao];
   prop.airport.current.set();
+  
+  prop.canvas.dirty = true;
 }
 
 function airport_get(icao) {

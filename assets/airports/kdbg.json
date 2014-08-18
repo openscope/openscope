@@ -1,5 +1,6 @@
 {
   "name": "Debug airport",
+  "level": "hard",
   "radio": "Debug",
   "icao": "KDBG",
   "wind": {
@@ -45,7 +46,7 @@
   "runways":[
     {
       "name":        ["36R", "18L"],
-      "name_offset": [[0.5, 0], [0.2, 0]],
+      "name_offset": [[0.8, 0], [0.2, 0]],
       "position":    [0.8, 0],
       "angle":       0,
       "length":      6,
@@ -54,7 +55,7 @@
     },
     {
       "name":        ["36L", "18R"],
-      "name_offset": [[-0.5, 0], [-0.5, 0]],
+      "name_offset": [[-0.8, 0], [-0.8, 0]],
       "position":    [-0.8, -1],
       "angle":       0,
       "length":      4,
@@ -63,8 +64,8 @@
     },
     {
       "name":        ["19", "1"],
-      "name_offset": [[0, 0], [0, 0]],
-      "position":    [4, 0],
+      "name_offset": [[0, 0], [0.4, 0]],
+      "position":    [5, 0],
       "angle":       190,
       "length":      7,
       "delay":       [30, 20],
@@ -73,7 +74,7 @@
     {
       "name":        ["11", "29"],
       "name_offset": [[0, 0], [0, 0]],
-      "position":    [-1, -6],
+      "position":    [-1, -7.5],
       "angle":       112,
       "length":      4,
       "delay":       [20, 20],

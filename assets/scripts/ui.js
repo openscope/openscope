@@ -20,7 +20,11 @@ function ui_init() {
     }
   });
 
-  $(".start-tutorial").click(function() {
+  $(".switch-airport").click(function() {
+    ui_airport_toggle();
+  });
+
+  $(".toggle-tutorial").click(function() {
     tutorial_toggle();
   });
 
@@ -31,6 +35,27 @@ function ui_init() {
   $("#paused img").click(function() {
     game_unpause();
   });
+}
+
+function ui_complete() {
+  var airports = []
+
+  for(var i in prop.airport.airports) airports.push(i);
+
+  airports.sort();
+  
+  for(var i=0;i<airports.length;i++) {
+    var airport = prop.airport.airports[airports[i]];
+
+    var html = $("<li class='airport'><span class='icao'>" + airport.icao + "</span><span class='name'>" + airport.name + "</span></li>");
+    
+    $("#airport-switch .list").append(html);
+
+    html.click(airport.icao, function(e) {
+      airport_set(e.data);
+      ui_airport_close();
+    });
+  }
 }
 
 function pixels_to_km(pixels) {
@@ -57,3 +82,17 @@ function ui_log(message) {
   console.log("MESSAGE: " + message);
 }
 
+function ui_airport_open() {
+  $("#airport-switch").addClass("open");
+  $(".switch-airport").addClass("active");
+}
+
+function ui_airport_close() {
+  $("#airport-switch").removeClass("open");
+  $(".switch-airport").removeClass("active");
+}
+
+function ui_airport_toggle() {
+  if($("#airport-switch").hasClass("open")) ui_airport_close();
+  else                                      ui_airport_open();
+}

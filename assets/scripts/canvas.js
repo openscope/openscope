@@ -307,12 +307,12 @@ function canvas_draw_compass(cc) {
   cc.translate(-size2-padding, -size2-padding);
   cc.lineWidth = 4;
   
-  cc.fillStyle = "rgba(128, 150, 145, 0.9)"
+  cc.fillStyle = "rgba(0, 0, 0, 0.7)";
   cc.beginPath();
   cc.arc(0, 0, size2, 0, Math.PI*2);
   cc.fill();
 
-  cc.fillStyle = "rgba(255, 255, 255, 1.0)"
+  cc.fillStyle = "#ddd";
   cc.beginPath();
   cc.arc(0, 0, dot/2, 0, Math.PI*2);
   cc.fill()
@@ -320,9 +320,9 @@ function canvas_draw_compass(cc) {
   cc.save();
   cc.beginPath();
   cc.moveTo(0, 0);
-  cc.rotate(airport_get().getWind().angle - Math.PI);
-  cc.lineTo(0, crange(0, airport_get().getWind().speed, 15, 0, size2-dot));
-  cc.strokeStyle = "rgba(255, 255, 255, 1.0)"
+  cc.rotate(airport_get().wind.angle - Math.PI);
+  cc.lineTo(0, crange(0, airport_get().wind.speed, 15, 0, size2-dot));
+  cc.strokeStyle = "#ddd"
   cc.lineWidth = 2;
   cc.stroke();
   cc.restore();
@@ -341,24 +341,31 @@ function canvas_draw_compass(cc) {
 
 function canvas_update_post() {
   if(prop.canvas.dirty || !game_paused()) {
+    var elapsed = game_time() - airport_get().start;
+    var alpha   = crange(0.5, elapsed, 2, 0, 1);
     var cc=canvas_get("navaids");
+    var fading  = (elapsed < 2.5);
 
     cc.font = "9px monoOne, monospace";
 
-    cc.save();
-    if(prop.canvas.dirty) {
+    if(prop.canvas.dirty || fading) {
+      cc.save();
+
       canvas_clear(cc);
       cc.translate(round(prop.canvas.size.width/2), round(prop.canvas.size.height/2));
       
       cc.save();
+      cc.globalAlpha = alpha;
       canvas_draw_runways(cc);
       cc.restore();
 
       cc.save();
+      cc.globalAlpha = alpha;
       canvas_draw_fixes(cc);
       cc.restore();
+      
+      cc.restore();
     }
-    cc.restore();
 
     // compass
 
@@ -366,11 +373,15 @@ function canvas_update_post() {
 
     cc.font = "bold 10px monoOne, monospace";
 
-    cc.save();
-    canvas_clear(cc);
-    cc.translate(round(prop.canvas.size.width/2), round(prop.canvas.size.height/2));
-    canvas_draw_compass(cc);
-    cc.restore();
+    if(prop.canvas.dirty || fading) {
+      cc.save();
+
+      canvas_clear(cc);
+      cc.translate(round(prop.canvas.size.width/2), round(prop.canvas.size.height/2));
+      canvas_draw_compass(cc);
+
+      cc.restore();
+    }
 
     //
 
@@ -379,22 +390,26 @@ function canvas_update_post() {
     cc.font = "10px monoOne, monospace";
 
     cc.save();
+    
+    cc.globalAlpha = alpha;
     canvas_clear(cc);
     cc.translate(round(prop.canvas.size.width/2), round(prop.canvas.size.height/2));
     canvas_draw_all_info(cc);
+    
     cc.restore();
 
     //
 
     cc=canvas_get("aircraft");
 
-    cc.save();
     if(prop.canvas.dirty || canvas_should_draw() || true) {
+      cc.save();
+      cc.globalAlpha = alpha;
       canvas_clear(cc);
       cc.translate(round(prop.canvas.size.width/2), round(prop.canvas.size.height/2));
       canvas_draw_all_aircraft(cc);
+      cc.restore();
     }
-    cc.restore();
 
     //
 

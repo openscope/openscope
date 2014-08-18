@@ -6,7 +6,6 @@ var MODULES=[
   "-util",
   "-animation",
   "get",
-  "ui",
   
   "tutorial",
 
@@ -21,6 +20,8 @@ var MODULES=[
   "airport",
 
   "canvas",
+
+  "ui",
 
   "load"
 ];

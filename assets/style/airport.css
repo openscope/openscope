@@ -1,0 +1,49 @@
+
+#airport-switch {
+  background-color: rgba(15, 25, 20, 1);
+
+  box-shadow: 0 0 0 6px rgba(31, 65, 48, 1.0);
+  border-radius: 1px;
+
+  color: #ddd;
+  font-size: 12px;
+
+  position: absolute;
+  padding: 12px 15px;
+  top: 20%;
+  left: 50%;
+  margin-left: -240px;
+  width: 480px;
+  height: auto;
+
+  opacity: 0;
+  
+  pointer-events: none;
+
+  transition: opacity 0.5s ease;
+}
+
+#airport-switch.open {
+  pointer-events: auto;
+
+  opacity: 1;
+}
+
+#airport-switch .airport {
+  list-style-type: none;
+
+  padding: 5px 10px;
+  margin-bottom: 2px;
+}
+
+#airport-switch .airport .icao {
+  display: inline-block;
+  width: 7em;
+  font-weight: bold;
+}
+
+#airport-switch .airport:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+}
+

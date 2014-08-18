@@ -1,15 +1,80 @@
 {
-  "name": "Debug airport with a single runway",
+  "name": "Single runway airport",
+  "level": "medium",
+  "radio": "Sirra",
   "icao": "KSRA",
+  "wind": {
+    "angle": 90,
+    "speed": 5
+  },
+  "fixes":{
+    "ROKME": [ -50,  -2 ],
+    "HERMN": [ -100, -4 ],
+    "NEPIC": [ -80,  -3 ],
+    "MENIO": [ -80,   3 ],
+    "PONKE": [ -100,  4 ],
+    "WETOR": [ -50,   2 ],
+    "DUMBO": [  50,   2 ],
+    "CEPIN": [  100,  4 ],
+    "MEHTA": [  80,   3 ],
+    "WOODS": [  80,  -3 ],
+    "AXMUL": [  100, -4 ],
+    "ROGGE": [  50,  -2 ],
+    "ROGGE": [ -20, -10 ],
+    "ROMNY": [ -20,  10 ],
+    "DIVEC": [  20, -10 ],
+    "FAITH": [  20,  10 ]
+  },
   "runways":[
     {
-      "name":        ["9", "27"],
-      "name_offset": [[0, 0], [0, 0]],
-      "position":    [0, 3],
-      "angle":       90,
-      "length":      8,
-      "glideslope":  [3, 3],
-      "ils":         [false, false]
+      "name":        ["27L", "9R"],
+      "position":    [0, -1],
+      "angle":       270,
+      "length":      6,
+      "delay":       [20, 20],
+      "ils":         [true, false]
+    },
+    {
+      "name":        ["27R", "9L"],
+      "position":    [0, 1],
+      "angle":       270,
+      "length":      6,
+      "delay":       [20, 20],
+      "ils":         [true, false]
+    }
+  ],
+  "departures": {
+    "airlines": ["BAW"],
+    "frequency": [1, 3]
+  },
+  "arrivals": [
+    {
+      "angle":     45,
+      "heading":   270,
+      "airlines":  ["BAW"],
+      "frequency": [3, 5],
+      "altitude":  [4000, 6000]
+    },
+    {
+      "angle":     135,
+      "heading":   270,
+      "airlines":  ["BAW"],
+      "frequency": [3, 5],
+      "altitude":  [4000, 6000]
+    },
+    {
+      "angle":     45,
+      "heading":   90,
+      "airlines":  ["BAW"],
+      "frequency": [3, 5],
+      "altitude":  [4000, 6000]
+    },
+    {
+      "angle":     135,
+      "heading":   90,
+      "airlines":  ["BAW"],
+      "frequency": [3, 5],
+      "altitude":  [4000, 6000]
     }
   ]
 }
