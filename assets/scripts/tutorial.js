@@ -62,7 +62,8 @@ function tutorial_init_pre() {
     title:    "Taxiing",
     text:     ["Now type in &lsquo;taxi&rsquo; or &lsquo;wait&rsquo; into the command box after the callsign and hit Return;",
                "the messages area above it will show that the aircraft is taxiing to runway {RUNWAY} in",
-               "preparation for takeoff."
+               "preparation for takeoff. (If you&rsquo;d like, you can force the aircraft to taxi to a different runway by",
+               "entering the runway name after &lsquo;taxi&rsquo; or &lsquo;wait&rsquo;.)"
                ].join(" "),
     parse:    function(t) {
       return t.replace("{RUNWAY}", prop.aircraft.list[0].requested.runway);
