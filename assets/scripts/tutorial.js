@@ -31,7 +31,7 @@ function tutorial_init_pre() {
 
   prop.tutorial.open  = false;
 
-  var tutorial_position = [0.1, 0.9];
+  var tutorial_position = [0.1, 0.8];
 
   tutorial_step({
     title:    "Welcome!",
@@ -127,8 +127,8 @@ function tutorial_init_pre() {
 
   tutorial_step({
     title:    "Moving aircraft",
-    text:     ["Now wait until the aircraft {CALLSIGN} has taken off. Click on it and type &lsquo;turn right 90&rsquo; into the command box.",
-               "It should start turning to the right; if the turn isn&rsquo;t immediately visible, you can click",
+    text:     ["Now wait until the aircraft {CALLSIGN} has taken off. Click on it and type &lsquo;turn 90&rsquo; into the command box.",
+               "It should start turning to the east (ninety degrees); if the turn isn&rsquo;t immediately visible, you can click",
                "the speedup button on the right side of the input box (it&rsquo;s two small arrows pointing towards the right).",
                "Don&rsquo;t forget to click it again to go back to 1x speed."
                ].join(" "),
@@ -154,7 +154,7 @@ function tutorial_init_pre() {
 
   tutorial_step({
     title:    "Altitude hints",
-    text:     ["Remember how you typed &lsquo;climb 5000&rsquo; before? If the parameter (&lsquo;5000&rsquo; here) is one or two characters long,",
+    text:     ["Remember how you typed &lsquo;climb 5000&rsquo; before? If the parameter for the &lsquo;climb&rsquo; command (&lsquo;5000&rsquo; here) is one or two characters long,",
                "the number is multiplied by 1000. This means that &lsquo;climb 5&rsquo; is the same as &lsquo;climb 5000&rsquo;. It&rsquo;s there",
                "to reduce the amount of typing. Likewise, &lsquo;c 5&rsquo; can be used in place of &lsquo;climb 5&rsquo;."
                ].join(" "),
@@ -168,14 +168,13 @@ function tutorial_init_pre() {
   tutorial_step({
     title:    "Heading hints",
     text:     ["When you typed &lsquo;turn 90&rsquo;, the aircraft turned to the right to face 90 degrees (due East).",
-               "In this case, the shortest turn was to the right; if you&rsquo;d said &lsquo;turn 270&rsquo; (due West),",
-               "the aircraft would have turned left. This is usually the desired behavior, but if you want to force it to turn",
+               "In this case, the shortest turn was to the right. This is usually the desired behavior, but if you want to force the aircraft to turn",
                "in a specific direction, you can prefix the direction with &lsquo;left&rsquo; or &lsquo;right&rsquo;.",
                "Like the altitude command, the heading command also has an alias of its own: &lsquo;heading&rsquo; can be used",
                "in place of &lsquo;turn&rsquo;."
                ].join(" "),
     parse:    function(t) {
-      return t.replace("{CALLSIGN}", prop.aircraft.list[0].getCallsign());
+      return t.replace("{DIRECTION}", prop.aircraft.list[0].getCallsign());
     },
     side:     "left",
     position: tutorial_position
@@ -184,7 +183,8 @@ function tutorial_init_pre() {
   tutorial_step({
     title:    "Fixes",
     text:     ["Instead of guiding each aircraft based on heading, you can also assign each aircraft to a navigational",
-               "fix. Just use the command &lsquo;fix&rsquo; and the name of a fix, and the aircraft will fly towards that.",
+               "fix (shown on the map as a small triangle). Just use the command &lsquo;fix&rsquo; and the name of a fix",
+               "(shown onscreen underneath the fix icon), and the aircraft will fly towards that.",
                "After it&rsquo;s reached the fix, it will cancel the fix and continue flying in the same direction."
                ].join(" "),
     parse:    function(t) {

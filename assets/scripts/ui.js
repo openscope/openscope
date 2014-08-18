@@ -80,8 +80,8 @@ function ui_log(message) {
     html.addClass("hidden");
     setTimeout(function() {
       html.remove();
-    }, 1000);
-  }, 10, window, html);
+    }, 10000);
+  }, 3, window, html);
 //  console.log("MESSAGE: " + message);
 }
 

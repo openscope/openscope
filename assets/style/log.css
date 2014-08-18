@@ -11,9 +11,9 @@
 }
 
 #log .item {
-  opacity: 0.5;
+  opacity: 0.8;
 
-  transition: opacity 1s ease;
+  transition: opacity 10s ease;
 
   color: #ddd;
 
