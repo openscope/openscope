@@ -31,7 +31,7 @@ function tutorial_init_pre() {
 
   prop.tutorial.open  = false;
 
-  var tutorial_position = [0.1, 0.8];
+  var tutorial_position = [0.1, 0.85];
 
   tutorial_step({
     title:    "Welcome!",
