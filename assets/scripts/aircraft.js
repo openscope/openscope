@@ -889,6 +889,7 @@ var Aircraft=Fiber.extend(function() {
             speed.addClass("runway");
           } else if(this.mode == "waiting") {
             altitude.text("waiting");
+            altitude.addClass("runway");
 
             speed.text("-");
             speed.addClass("runway");
