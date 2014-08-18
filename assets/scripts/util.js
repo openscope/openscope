@@ -260,8 +260,8 @@ var DIRECTIONS = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"];
 
 function compass_direction(angle) {
   angle /= Math.PI*2;
-  angle = mod(angle, 1);
-  angle *= 8;
+  angle = round(mod(angle, 1) * 8);
+  if(angle == 8) return "NW";
   angle = DIRECTIONS[round(angle)];
   return angle;
 }

@@ -17,6 +17,6 @@
     "min":     110,
     "max":     250,
     "landing": 120,
-    "cruise":  250
+    "cruise":  200
   }
 }

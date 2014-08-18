@@ -141,7 +141,7 @@ var Aircraft=Fiber.extend(function() {
           var distance = round(distance2d([0, 0], this.position) * 0.62);
           position += distance + " mile" + s(distance);
           var angle = Math.atan2(this.position[0], this.position[1]);
-          position += " " + radio_compass(compass_direction(-this.heading));
+          position += " " + radio_compass(compass_direction(angle));
           ui_log(airport_get().radio+" tower, "+airline_get(this.airline).callsign.name+" "+radio(this.callsign)+" in your airspace "+position+", over");
         } else if(this.category == "departure") {
           ui_log(airport_get().radio+" tower, "+airline_get(this.airline).callsign.name+" "+radio(this.callsign)+" awaiting taxi instructions, over");
