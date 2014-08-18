@@ -278,6 +278,21 @@ function tutorial_init_pre() {
   });
 
   tutorial_step({
+    title:    "Score",
+    text:     ["The lower-right corner of the page has a small number in it; this is your score.",
+               "Whenever you successfully route an aircraft to the ground or out of the screen, you get score;",
+               "if you direct the aircraft to a runway with a strong crosswind or tailwind, you&rsquo;ll lose score.",
+               "Furthermore, if two aircraft get too close or you ignore an arriving aircraft, you will also lose score.",
+               "If you&rsquo;d like, you can just ignore the score; it doesn&rsquo;t have any effect with the simulation."
+               ].join(" "),
+    parse:    function(t) {
+      return t.replace("{CALLSIGN}", prop.aircraft.list[0].getCallsign());
+    },
+    side:     "left",
+    position: tutorial_position
+  });
+
+  tutorial_step({
     title:    "Good job!",
     text:     ["If you&rsquo;ve gone through this entire tutorial, you should do pretty good with the pressure.",
                "Side note: the closest two aircraft can get is 3 miles and 1000 foot separation. Keep them further than",
