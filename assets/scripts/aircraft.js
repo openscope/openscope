@@ -194,6 +194,8 @@ var Aircraft=Fiber.extend(function() {
         "hold",
         "circle",
 
+        "fix",
+
         "wait",
         "taxi",
         
@@ -202,9 +204,9 @@ var Aircraft=Fiber.extend(function() {
 
         "land",
 
-        "fix",
+        "abort",
 
-        "abort"
+        "debug"
       ];
 
       var strings  = [""];
@@ -304,9 +306,11 @@ var Aircraft=Fiber.extend(function() {
 
       else if("land".indexOf(command) == 0)     command = "land";
 
+      else if("fix".indexOf(command) == 0)      command = "fix";
+
       else if("abort".indexOf(command) == 0)    command = "abort";
 
-      else if("fix".indexOf(command) == 0)      command = "fix";
+      else if("debug".indexOf(command) == 0)    command = "debug";
 
       else return ["fail", "not understood", "say again"];
 
@@ -318,6 +322,8 @@ var Aircraft=Fiber.extend(function() {
         return this.runSpeed(data);
       else if(command == "hold")
         return this.runHold(data);
+      else if(command == "fix")
+        return this.runFix(data);
       else if(command == "wait")
         return this.runWait(data);
       else if(command == "takeoff")
@@ -326,8 +332,8 @@ var Aircraft=Fiber.extend(function() {
         return this.runLanding(data);
       else if(command == "abort")
         return this.runAbort(data);
-      else if(command == "fix")
-        return this.runFix(data);
+      else if(command == "debug")
+        return this.runDebug(data);
 
     },
     runHeading: function(data) {
@@ -427,6 +433,19 @@ var Aircraft=Fiber.extend(function() {
 
       return ["ok", "circling towards the " + this.requested.turn + " at " + this.requested.altitude + " feet", "roger"];
     },
+    runFix: function(data) {
+      this.cancelLanding();
+
+      var fix = airport_get().getFix(data);
+
+      if(!fix) {
+        return ["fail", "no fix found with name of " + data.toUpperCase(), "say again"];
+      }
+      
+      this.requested.fix = data.toUpperCase();
+
+      return ["ok", "navigate to " + this.requested.fix, "roger"];
+    },
     runWait: function(data) {
       if(this.category != "departure") return ["fail", "inbound"];
 
@@ -498,18 +517,13 @@ var Aircraft=Fiber.extend(function() {
         return ["ok", "go around, hold heading " + heading_to_string(this.requested.heading) + " at " + this.requested.altitude + " feet", ""];
       }
     },
-    runFix: function(data) {
-      this.cancelLanding();
+    runDebug: function(data) {
 
-      var fix = airport_get().getFix(data);
-
-      if(!fix) {
-        return ["fail", "no fix found with name of " + data.toUpperCase(), "say again"];
+      if(data == "log") {
+        window.aircraft = this;
+        return ["ok", "variable: aircraft", "over"];
       }
       
-      this.requested.fix = data.toUpperCase();
-
-      return ["ok", "navigate to " + this.requested.fix, "roger"];
     },
     cancelFix: function() {
       if(this.requested.fix) {
@@ -639,6 +653,8 @@ var Aircraft=Fiber.extend(function() {
           offset = runway.getOffset(this.position, this.requested.runway, true);
 
           offset_angle = Math.atan2(offset[0], offset[1]);
+          
+          this.offset_angle = offset_angle;
 
           angle = runway.getAngle(this.requested.runway) + Math.PI;
 
@@ -665,7 +681,7 @@ var Aircraft=Fiber.extend(function() {
       if(this.mode == "landing") {
 
         if(offset[1] > 0.05) {
-          var xoffset = crange(0.5, this.model.rate.turn, 5, 5, 1);
+          var xoffset = crange(0.5, this.model.rate.turn, 5, 7, 2);
           this.target.heading = crange(-xoffset, offset[0], xoffset, radians(45), -radians(45)) + angle;
         } else {
           this.target.heading = angle;
