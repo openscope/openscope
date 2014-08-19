@@ -59,7 +59,8 @@ function input_init() {
   });
 
   $(window).keydown(function() {
-    $("#command").focus();
+    if(!game_paused())
+      $("#command").focus();
   });
   
   $("#command").keydown(input_keydown);
@@ -112,11 +113,19 @@ function input_parse() {
   
   if(prop.input.callsign.length == 0) return;
 
+  var number = 0;
+  var match  = null;
+
   for(var i=0;i<prop.aircraft.list.length;i++) {
     var aircraft=prop.aircraft.list[i];
     if(aircraft.matchCallsign(prop.input.callsign)) {
+      number += 1;
+      match = aircraft;
       aircraft.html.addClass("active");
     }
+  }
+  if(number == 1) {
+    $("#sidebar").scrollTop(round(match.html.position().top + ($(window).height() / 3)));
   }
 }
 

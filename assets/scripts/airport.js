@@ -226,7 +226,7 @@ var Airport=Fiber.extend(function() {
     },
     addAircraft: function() {
       if(this.departures) {
-        var r = crange(0, Math.random(), 1, 1, 3);
+        var r = crange(0, Math.random(), 1, 1, 2);
         if(Math.random() > 0.9)
           r = crange(0, Math.random(), 1, 1, 6);
         for(var i=0;i<r;i++) {
@@ -239,13 +239,12 @@ var Airport=Fiber.extend(function() {
         for(var i=0;i<this.arrivals.length;i++) {
           var arrival = this.arrivals[i];
 
-          var delay = Math.random() * 0.1;
-          if(Math.random() > 0.7) {
-            delay = crange(0, Math.random(), 1, arrival.frequency[0], arrival.frequency[1]);
-            this.arrivals[i].timeout = game_timeout(this.addAircraftArrival, delay, this, [arrival]);
-          } else {
-            this.arrivals[i].timeout = game_timeout(this.addAircraftArrival, delay, this, [arrival, crange(0, Math.random(), 1, 0.3, 0.7)]);
+          var delay = crange(0, Math.random(), 1, arrival.frequency[0], arrival.frequency[1]);
+          if(Math.random() > 0.3) {
+            delay = Math.random() * 0.1;
+            game_timeout(this.addAircraftArrival, delay, this, [arrival, null, false]);
           }
+          this.arrivals[i].timeout = game_timeout(this.addAircraftArrival, delay, this, [arrival, crange(0, Math.random(), 1, 0.3, 0.7)]);
         }
       }
 
@@ -265,7 +264,9 @@ var Airport=Fiber.extend(function() {
     addAircraftArrival: function(args) {
 
       var arrival = args[0];
-      var offset = args[1];
+      var offset  = args[1];
+      var timeout = args[2];
+      if(timeout == undefined) timeout=false;
       if(!offset) offset = 1;
 
       var position = [0, 0];
@@ -301,7 +302,8 @@ var Airport=Fiber.extend(function() {
         message:   message
       });
       
-      arrival.timeout = game_timeout(this.addAircraftArrival, crange(0, Math.random(), 1, arrival.frequency[0], arrival.frequency[1]), this, [arrival]);
+      if(timeout)
+        arrival.timeout = game_timeout(this.addAircraftArrival, crange(0, Math.random(), 1, arrival.frequency[0], arrival.frequency[1]), this, [arrival]);
     },
     updateRunway: function() {
       if(!length) length = 0;
