@@ -187,8 +187,12 @@ function canvas_draw_aircraft(cc, aircraft) {
 
     cc.fillStyle = "rgba(255, 255, 255, 1.0)";
 
-    var w = prop.canvas.size.width/2 -  30;
-    var h = prop.canvas.size.height/2 - 30;
+    var t = crange(0, distance2d(
+      [clamp(-w, km(aircraft.position[0]), w), clamp(-h, -km(aircraft.position[1]), h)],
+      [          km(aircraft.position[0]),               -km(aircraft.position[1])    ]), 30,
+                  0, 50);
+    var w = prop.canvas.size.width/2 -  t;
+    var h = prop.canvas.size.height/2 - t;
 
     cc.translate(clamp(-w, km(aircraft.position[0]), w), clamp(-h, -km(aircraft.position[1]), h));
 

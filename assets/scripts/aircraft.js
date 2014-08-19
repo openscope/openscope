@@ -516,6 +516,7 @@ var Aircraft=Fiber.extend(function() {
       if(runway.removeQueue(this, this.requested.runway)) {
         this.mode = "takeoff";
         prop.game.score.windy_takeoff += -Math.min(this.getWind(), 0);
+        this.requested.heading = runway.getAngle(this.requested.runway) + Math.PI;
         return ["ok", "taking off runway " + radio_runway(this.requested.runway), ""];
       } else {
         var waiting = runway.isWaiting(this, this.requested.runway);
@@ -863,9 +864,9 @@ var Aircraft=Fiber.extend(function() {
         this.target.speed = this.model.speed.cruise;
 
         if(this.altitude > 200 && this.target.speed > this.model.speed.min) {
-          this.updateStrip();
           this.mode = "cruise";
           this.requested.runway = null;
+          this.updateStrip();
         }
       }
     },
