@@ -190,7 +190,11 @@ function input_run() {
     game_pause_toggle();
     return true;
   } else if(prop.input.callsign == "timewarp") {
-    game_timewarp_toggle();
+    if(prop.input.data) {
+      prop.game.speedup = parseInt(prop.input.data);
+    } else {
+      game_timewarp_toggle();
+    }
     return true;
   } else if(prop.input.callsign == "clear") {
     localStorage.clear();

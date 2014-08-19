@@ -49,14 +49,14 @@
   },
   "arrivals": [
     {
-      "angle":     45,
+      "angle":    -45,
       "heading":   270,
       "airlines":  ["BAW"],
       "frequency": [3, 5],
       "altitude":  [4000, 6000]
     },
     {
-      "angle":     135,
+      "angle":     225,
       "heading":   270,
       "airlines":  ["BAW"],
       "frequency": [3, 5],

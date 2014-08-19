@@ -240,11 +240,11 @@ var Airport=Fiber.extend(function() {
           var arrival = this.arrivals[i];
 
           var delay = Math.random() * 0.1;
-          if(Math.random() > 0.8) {
+          if(Math.random() > 0.7) {
             delay = crange(0, Math.random(), 1, arrival.frequency[0], arrival.frequency[1]);
             this.arrivals[i].timeout = game_timeout(this.addAircraftArrival, delay, this, [arrival]);
           } else {
-            this.arrivals[i].timeout = game_timeout(this.addAircraftArrival, delay, this, [arrival, crange(0, Math.random(), 1, 0.4, 0.7)]);
+            this.arrivals[i].timeout = game_timeout(this.addAircraftArrival, delay, this, [arrival, crange(0, Math.random(), 1, 0.3, 0.7)]);
           }
         }
       }
@@ -282,7 +282,7 @@ var Airport=Fiber.extend(function() {
       
       var heading  = arrival.heading + crange(0, Math.random(), 1, -wobble, wobble);
 
-      distance     = (Math.max(width, height) - Math.min(width, height)) * 3 + pixels_to_km(300);
+      distance     = ((Math.max(width, height) - Math.min(width, height)) + distance2d(position, [0, 0]) + pixels_to_km(100)) * 1.5;
       position[0] += sin(heading) * distance * offset;
       position[1] += cos(heading) * distance * offset;
 
