@@ -295,7 +295,7 @@ var Airport=Fiber.extend(function() {
       aircraft_new({
         category:  "arrival",
         position:  position,
-        heading:   heading + Math.PI,
+        heading:   arrival.heading + Math.PI,
         altitude:  altitude,
         airline:   choose_weight(arrival.airlines),
         message:   message

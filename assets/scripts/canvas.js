@@ -163,9 +163,9 @@ function canvas_draw_aircraft(cc, aircraft) {
 
   cc.fillStyle   = "rgba(224, 224, 224, 1.0)";
   if(prop.input.callsign.length > 1 && aircraft.matchCallsign(prop.input.callsign.substr(0, prop.input.callsign.length - 1)))
-    cc.fillStyle = "rgba(255, 224, 191, 1.0)";
+    cc.fillStyle = "rgba(224, 210, 180, 1.0)";
   if(prop.input.callsign.length > 0 && aircraft.matchCallsign(prop.input.callsign))
-    cc.fillStyle = "rgba(128, 191, 255, 1.0)";
+    cc.fillStyle = "rgba(255, 255, 255, 1.0)";
 
   if(aircraft.warning)
     cc.fillStyle = "rgba(224, 128, 128, 1.0)";
@@ -212,8 +212,6 @@ function canvas_draw_info(cc, aircraft) {
   if(!aircraft.hit) {
     cc.save();
 
-    cc.translate(round(km(aircraft.position[0])), -round(km(aircraft.position[1])));
-
     cc.textBaseline = "middle";
 
     var width  = 60;
@@ -222,20 +220,70 @@ function canvas_draw_info(cc, aircraft) {
     var height  = 35;
     var height2 = height / 2;
 
+    var bar_width = 4;
+
+    var match        = false;
+    var almost_match = false;
+
+    if(prop.input.callsign.length > 1 && aircraft.matchCallsign(prop.input.callsign.substr(0, prop.input.callsign.length - 1)))
+      almost_match = true;
+    if(prop.input.callsign.length > 0 && aircraft.matchCallsign(prop.input.callsign))
+      match = true;
+
+    if(match) {
+      cc.save();
+      cc.strokeStyle = "rgba(120, 140, 130, 1.0)";
+      cc.lineWidth = 2;
+      var a = [km(aircraft.position[0]), -km(aircraft.position[1])];
+      var h = aircraft.html.outerHeight();
+      var b = [prop.canvas.size.width / 2 - 10, -(prop.canvas.size.height / 2) + aircraft.html.offset().top + h / 2];
+      var angle = Math.atan2(a[0] - b[0], a[1] - b[1]);
+      var distance = 10;
+      cc.beginPath();
+      cc.moveTo(sin(angle) * -distance + a[0], cos(angle) * -distance + a[1]);
+      cc.lineTo(b[0], b[1]);
+      cc.stroke();
+      
+      cc.beginPath();
+      cc.moveTo(b[0], b[1] - h / 2);
+      cc.lineTo(b[0], b[1] + h / 2);
+      cc.lineWidth = 4;
+      cc.stroke();
+      cc.restore();
+    }
+    
+    cc.translate(round(km(aircraft.position[0])), -round(km(aircraft.position[1])));
+
     if(-km(aircraft.position[1]) + prop.canvas.size.height/2 < height * 1.5)
       cc.translate(0,  height2 + 12);
     else
       cc.translate(0, -height2 - 12);
 
+    cc.translate(bar_width / 2, 0);
+
     cc.fillStyle = "rgba(71, 105, 88, 0.9)";
-    if(prop.input.callsign.length > 1 && aircraft.matchCallsign(prop.input.callsign.substr(0, prop.input.callsign.length - 1)))
-      cc.fillStyle = "rgba(128, 105, 88, 0.9)";
-    if(prop.input.callsign.length > 0 && aircraft.matchCallsign(prop.input.callsign))
-      cc.fillStyle = "rgba(64, 128, 224, 0.9)";
+    if(almost_match)
+      cc.fillStyle = "rgba(95, 95, 88, 0.9)";
+    if(match) {
+      cc.fillStyle = "rgba(120, 150, 140, 0.9)";
+    }
 
     cc.fillRect(-width2, -height2, width, height);
 
+    var alpha = 0.6;
+    if(match) alpha = 0.9;
+
+    if(aircraft.category == "departure")
+      cc.fillStyle = "rgba(128, 255, 255, " + alpha + ")";
+    else
+      cc.fillStyle = "rgba(224, 128, 128, " + alpha + ")";
+
+    cc.fillRect(-width2-bar_width, -height2, bar_width, height);
+
     cc.fillStyle   = "rgba(255, 255, 255, 0.8)";
+    if(match)
+      cc.fillStyle   = "rgba(255, 255, 255, 0.9)";
+
     cc.strokeStyle = cc.fillStyle;
 
     cc.translate(0, 1);

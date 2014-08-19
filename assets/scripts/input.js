@@ -130,10 +130,10 @@ function input_keydown(e) {
       input_parse();
     }
     prop.input.history_item = null;
-  } else if(e.which == 38) { // up arrow
+  } else if(e.which == 38) {
     input_history_prev();
     e.preventDefault();
-  } else if(e.which == 40) { // up arrow
+  } else if(e.which == 40) {
     input_history_next();
     e.preventDefault();
   }
