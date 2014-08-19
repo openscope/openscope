@@ -160,18 +160,45 @@ function canvas_draw_aircraft(cc, aircraft) {
   if(!aircraft.isVisible()) return;
 
   var size = 3;
+  var almost_match = false;
+  var match        = false;
+
+  if(prop.input.callsign.length > 1 && aircraft.matchCallsign(prop.input.callsign.substr(0, prop.input.callsign.length - 1)))
+    almost_match = true;
+  if(prop.input.callsign.length > 0 && aircraft.matchCallsign(prop.input.callsign))
+    match = true;
 
   cc.fillStyle   = "rgba(224, 224, 224, 1.0)";
-  if(prop.input.callsign.length > 1 && aircraft.matchCallsign(prop.input.callsign.substr(0, prop.input.callsign.length - 1)))
+  if(almost_match)
     cc.fillStyle = "rgba(224, 210, 180, 1.0)";
-  if(prop.input.callsign.length > 0 && aircraft.matchCallsign(prop.input.callsign))
+  if(match)
     cc.fillStyle = "rgba(255, 255, 255, 1.0)";
 
   if(aircraft.warning)
     cc.fillStyle = "rgba(224, 128, 128, 1.0)";
   if(aircraft.hit)
     cc.fillStyle = "rgba(255, 64, 64, 1.0)";
+
   cc.strokeStyle = cc.fillStyle;
+
+  if(match) {
+
+    cc.save();
+
+    cc.fillStyle = "rgba(255, 255, 255, 1.0)";
+
+    var w = prop.canvas.size.width/2 -  30;
+    var h = prop.canvas.size.height/2 - 30;
+
+    cc.translate(clamp(-w, km(aircraft.position[0]), w), clamp(-h, -km(aircraft.position[1]), h));
+
+    cc.beginPath();
+    cc.arc(0, 0, round(size * 1.5), 0, Math.PI * 2);
+    cc.fill();
+
+    cc.restore();
+
+  }
 
   cc.translate(km(aircraft.position[0]), -km(aircraft.position[1]));
 
@@ -179,6 +206,7 @@ function canvas_draw_aircraft(cc, aircraft) {
     cc.save();
 
     var tail_length = 10;
+    if(match) tail_length = 15;
     var angle       = aircraft.heading;
     var end         = [-sin(angle) * tail_length, cos(angle) * tail_length];
 
@@ -192,6 +220,7 @@ function canvas_draw_aircraft(cc, aircraft) {
   cc.beginPath();
   cc.arc(0, 0, size, 0, Math.PI * 2);
   cc.fill();
+
 }
 
 function canvas_draw_all_aircraft(cc) {
@@ -230,7 +259,7 @@ function canvas_draw_info(cc, aircraft) {
     if(prop.input.callsign.length > 0 && aircraft.matchCallsign(prop.input.callsign))
       match = true;
 
-    if(match) {
+    if(match && false) {
       cc.save();
       cc.strokeStyle = "rgba(120, 140, 130, 1.0)";
       cc.lineWidth = 2;
