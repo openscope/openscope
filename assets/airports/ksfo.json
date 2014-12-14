@@ -7,22 +7,27 @@
     "speed": 5
   },
   "fixes": {
-    "NEPIC": [ 14,    -1.68      ],
-    "DUYET": [ 20,    -3.00      ],
-    "HEMAN": [ 30,    -5.20      ],
-    "ROKME": [ 42,    -7.84      ],
-    "WETOR": [ 50,    -9.60      ],
-    "PONKE": [ 58,    -11.36     ],
-    "DIVEC": [ 66,    -13.12     ],
-    "FAITH": [ 74,    -14.88     ]
+    "NEPIC": [ 18,    -2.56      ],
+    "DUYET": [ 24,    -3.88      ],
+    "HEMAN": [ 34,    -6.08      ],
+    "ROKME": [ 46,    -8.72      ],
+    "WETOR": [ 54,    -10.48     ],
+    "PONKE": [ 62,    -12.24     ],
+    "DIVEC": [ 70,    -14.00     ],
+    "FAITH": [ 78,    -15.76     ],
+    "AXMUL": [ 22,     1.56      ],
+    "CEPIN": [ 35,    -1.30      ],
+    "DUMBA": [ 48,    -4.16      ],
+    "MEHTA": [ 70,    -9.00      ],
+    "MENLO": [ 44,    -20.00     ]
   },
   "runways":[
     {
       "name":        ["28R", "10L"],
       "name_offset": [[2, 0], [-2, 0]],
-      "position":    [3, 3],
+      "position":    [3, 6],
       "angle":       283,
-      "length":      12,
+      "length":      18,
       "ils":         [true, false]
     },
     {
@@ -30,7 +35,7 @@
       "name_offset": [[2, 0], [-2, 0]],
       "position":    [3, 1],
       "angle":       283,
-      "length":      11,
+      "length":      17,
       "ils":         [true, false]
     },
     {
@@ -38,15 +43,15 @@
       "name_offset": [[1, 0], [1, 0]],
       "position":    [6, 1],
       "angle":       193,
-      "length":      8,
+      "length":      14,
       "ils":         [false, false]
     },
     {
       "name":        ["1R", "19L"],
       "name_offset": [[-1, 0], [-1, 0]],
-      "position":    [4, 1],
+      "position":    [1, 2],
       "angle":       193,
-      "length":      8,
+      "length":      14,
       "ils":         [false, false]
     }
   ]
