@@ -90,7 +90,7 @@ function tutorial_init_pre() {
     text:     ["Now the aircraft is ready to take off. Click the aircraft again (or press up arrow once)",
                "and type &lsquo;takeoff&rsquo; to clear the aircraft to take off. It should slowly move",
                "down the runway; when it's going fast enough, it should lift off the ground and you should",
-               "see its altitude increasing. Meanwhile, click the arrow on the right."
+               "see its altitude increasing. Meanwhile, read the next step."
                ].join(" "),
     parse:    function(t) {
       return t.replace("{RUNWAY}", prop.aircraft.list[0].requested.runway);
