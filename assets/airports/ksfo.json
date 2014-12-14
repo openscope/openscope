@@ -1,6 +1,6 @@
 {
   "name": "San Francisco International Airport",
-  "icao": "KDBG",
+  "icao": "KSFO",
   "runways":[
     {
       "name":        ["36R", "18L"],
