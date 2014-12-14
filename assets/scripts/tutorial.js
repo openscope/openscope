@@ -143,7 +143,7 @@ function tutorial_init_pre() {
     title:    "Altitude aliases",
     text:     ["You can also assign altitudes with the &lsquo;climb&rsquo; command. This command also has aliases (other commands that have different",
                "names but act identically). Running the command &lsquo;climb&rsquo; is the same as the commands &lsquo;descend&rsquo;,",
-               "&lsquo;descend&rsquo;, or &lsquo;altitude&rsquo;; use whichever feels correct in your situation."
+               "&lsquo;clear&rsquo;, or &lsquo;altitude&rsquo;; use whichever feels correct in your situation."
                ].join(" "),
     parse:    function(t) {
       return t.replace("{CALLSIGN}", prop.aircraft.list[0].getCallsign());
