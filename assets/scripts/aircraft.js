@@ -508,6 +508,7 @@ var Aircraft=Fiber.extend(function() {
       if(this.category != "departure") return ["fail", "inbound", "over"];
 
       if(!this.isLanded()) return ["fail", "already airborne", "over"];
+      if(this.mode =="apron") return ["fail", "no runway selected. taxi first", "over"];
       if(this.mode != "waiting") return ["fail", "taxi to runway " + radio_runway(this.requested.runway) + " not yet complete", "over"];
 
       if(this.requested.altitude <= 0) return ["fail", "no altitude clearance assigned", "over"];
@@ -1025,6 +1026,8 @@ var Aircraft=Fiber.extend(function() {
           }
         } else {
           if(this.mode == "apron") {
+            heading.text("apron");
+            
             altitude.text("ready");
             altitude.addClass("runway");
 
