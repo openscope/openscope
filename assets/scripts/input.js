@@ -165,7 +165,7 @@ function input_history_prev() {
   prop.input.history_item += 1;
   input_history_clamp();
 
-  var command = prop.input.history[prop.input.history_item];
+  var command = prop.input.history[prop.input.history_item] + ' ';
   $("#command").val(command);
   input_change();
 }
