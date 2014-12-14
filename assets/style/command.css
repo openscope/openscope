@@ -10,4 +10,8 @@
   height: 36px;
   padding: 0 18px;
   padding-right: 428px;
+
+  -webkit-user-select: text;
+  -moz-select: text;
+  user-select: text;
 }
