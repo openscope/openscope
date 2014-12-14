@@ -30,7 +30,7 @@ var Model=Fiber.extend(function() {
       };
 
       this.parse(options);
-      
+
       if(options.url) this.load(options.url);
 
     },
@@ -85,6 +85,7 @@ var Aircraft=Fiber.extend(function() {
 
       this.history     = [];
 
+      this.notice      = false;
       this.warning     = false;
       this.hit         = false;
 
@@ -192,7 +193,7 @@ var Aircraft=Fiber.extend(function() {
         "climb",
         "clear",
         "descend",
-        
+
         "speed",
         "slow",
 
@@ -203,7 +204,7 @@ var Aircraft=Fiber.extend(function() {
 
         "wait",
         "taxi",
-        
+
         "takeoff",
         "depart",
 
@@ -228,7 +229,7 @@ var Aircraft=Fiber.extend(function() {
         }
         strings[strings.length-1] += c;
       }
-      
+
       var commands = [];
       var concat   = false;
       var current  = "";
@@ -387,11 +388,11 @@ var Aircraft=Fiber.extend(function() {
       if(this.mode == "landing")
         this.cancelLanding();
       this.cancelFix();
-      
+
       this.requested.heading = radians(heading);
       this.requested.turn    = direction;
       this.requested.hold    = false;
-      
+
       if(direction == "auto") direction  = "";
       else                    direction += " ";
 
@@ -430,7 +431,7 @@ var Aircraft=Fiber.extend(function() {
 
       if(this.mode == "landing")
         this.cancelLanding();
-      
+
       var factor = 1;
       if(data.length <= 2) factor = 1000;
 
@@ -449,7 +450,7 @@ var Aircraft=Fiber.extend(function() {
 
       if(this.mode == "landing")
         this.cancelLanding();
-      
+
       this.requested.speed = clamp(this.model.speed.min, speed, this.model.speed.max);
 
       return ["ok", radio_trend("speed", this.speed, this.requested.speed) + " " + this.requested.speed + " knots"];
@@ -459,9 +460,9 @@ var Aircraft=Fiber.extend(function() {
       if("left".indexOf(data) == 0 && data.length >= 1) this.requested.turn = "left";
       else if("right".indexOf(data) == 0 && data.length >= 1) this.requested.turn = "right";
       else return ["fail", "hold direction not understood", "say again"];
-        
+
       this.requested.hold = true;
-      
+
       this.cancelFix();
       this.cancelLanding();
 
@@ -475,7 +476,7 @@ var Aircraft=Fiber.extend(function() {
       if(!fix) {
         return ["fail", "no fix found with name of " + data.toUpperCase(), "say again"];
       }
-      
+
       this.requested.fix = data.toUpperCase();
 
       return ["ok", "navigate to " + this.requested.fix, "roger"];
@@ -541,11 +542,11 @@ var Aircraft=Fiber.extend(function() {
       this.requested.hold   = false;
 
       this.requested.start_speed = this.speed;
-      
+
       this.cancelFix();
-      
+
       return ["ok", "land runway " + radio_runway(data) + " at " + airport_get().name, "roger"];
-      
+
     },
     runAbort: function(data) {
       if(this.requested.fix) {
@@ -580,7 +581,7 @@ var Aircraft=Fiber.extend(function() {
         window.aircraft = this;
         return ["ok", "in the console, look at the variable &lsquo;aircraft&rsquo;", "over"];
       }
-      
+
     },
     cancelFix: function() {
       if(this.requested.fix) {
@@ -706,7 +707,7 @@ var Aircraft=Fiber.extend(function() {
 
       var angle   =  abs(angle_offset(runway.getAngle(this.requested.runway), wind.angle));
       var head    =  crange(0, angle, Math.PI, -1, 1);
-      
+
       angle       =  abs(angle_offset(runway.getAngle(this.requested.runway) - Math.PI/2, wind.angle));
       var cross   = -abs(crange(0, angle, Math.PI, 1, -1)) * 1.5;
       return (cross + head) * wind.speed;
@@ -718,7 +719,7 @@ var Aircraft=Fiber.extend(function() {
       var offset = null;
 
       var offset_angle = null;
-      
+
       var glideslope_altitude = null;
       var glideslope_window   = null;
 
@@ -730,11 +731,11 @@ var Aircraft=Fiber.extend(function() {
         if((this.mode == "landing" || this.mode == "cruise") && this.category == "arrival") {
           airport = airport_get();
           runway  = airport.getRunway(this.requested.runway);
-          
+
           offset = runway.getOffset(this.position, this.requested.runway, true);
 
           offset_angle = Math.atan2(offset[0], offset[1]);
-          
+
           this.offset_angle = offset_angle;
 
           angle = runway.getAngle(this.requested.runway) + Math.PI;
@@ -743,7 +744,7 @@ var Aircraft=Fiber.extend(function() {
 
           glideslope_altitude = clamp(0, runway.getGlideslopeAltitude(offset[1] + landing_zone_offset, this.requested.runway), this.altitude);
           glideslope_window   = abs(runway.getGlideslopeAltitude(offset[1] + landing_zone_offset, this.requested.runway, radians(1)));
-          
+
           if((abs(this.altitude - glideslope_altitude) < glideslope_window) && (abs(offset_angle) < radians(30))) {
             var m = false;
             if(this.mode != "landing") m=true;
@@ -909,11 +910,11 @@ var Aircraft=Fiber.extend(function() {
         if(distance) {
           if(this.target.expedite) distance *= expedite_factor;
           var offset = this.altitude - this.target.altitude;
-          
+
           if(abs(offset) < abs(distance)) this.altitude = this.target.altitude;
           else this.altitude += distance;
         }
-        
+
         if(this.isLanded()) this.trend = 0;
 
         // SPEED
@@ -928,7 +929,7 @@ var Aircraft=Fiber.extend(function() {
         }
         if(difference) {
           var offset = this.speed - this.target.speed;
-          
+
           if(abs(offset) < abs(difference)) this.speed = this.target.speed;
           else this.speed += difference;
         }
@@ -946,6 +947,7 @@ var Aircraft=Fiber.extend(function() {
     },
     updateWarning: function() {
       if(this.isTaxiing()) return;
+      var notice  = false;
       var warning = false;
       var hit     = false;
       for(var i=0;i<prop.aircraft.list.length;i++) {
@@ -957,7 +959,7 @@ var Aircraft=Fiber.extend(function() {
 
         if((!other_land && !this_land)) {
           if((distance2d(this.position, other.position) < 4.8) &&      // closer than 3 miles
-             (abs(this.altitude - other.altitude) < 990)) {           // less than 1k feet
+             (abs(this.altitude - other.altitude) < 100)) {           // less than 1k feet
             warning = true;
           }
         } else {
@@ -1061,7 +1063,7 @@ var Aircraft=Fiber.extend(function() {
       heading.prop("title",  title);
       altitude.prop("title", title);
       speed.prop("title", title);
-      
+
     },
     update: function(p) {
       this.updateTarget();
@@ -1127,7 +1129,7 @@ function aircraft_generate_callsign(airline) {
   var callsign        = "";
 
   var list = "0123456789";
-  
+
   callsign += choose(list.substr(1));
   if(alpha) {
     for(var i=0;i<callsign_length - 3;i++) callsign += choose(list)
@@ -1170,7 +1172,7 @@ function aircraft_new(options) {
   var aircraft = new Aircraft(options);
 
   aircraft.complete();
-  
+
   prop.aircraft.list.push(aircraft);
 }
 
