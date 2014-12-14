@@ -958,8 +958,12 @@ var Aircraft=Fiber.extend(function() {
         var this_land  = this.isLanded();
 
         if((!other_land && !this_land)) {
-          if((distance2d(this.position, other.position) < 4.8) &&      // closer than 3 miles
-             (abs(this.altitude - other.altitude) < 100)) {           // less than 1k feet
+          if((distance2d(this.position, other.position) < 5.5) &&     // closer than ~4 miles
+             (abs(this.altitude - other.altitude) < 1500)) {          // less than 1.5k feet
+            notice = true;
+          }
+          if((distance2d(this.position, other.position) < 4.8) &&     // closer than 3 miles
+             (abs(this.altitude - other.altitude) < 990)) {           // less than 1k feet
             warning = true;
           }
         } else {
@@ -986,6 +990,8 @@ var Aircraft=Fiber.extend(function() {
           hit = true;
         }
       }
+
+      this.notice  = notice;
       this.warning = warning;
       this.hit     = hit;
     },

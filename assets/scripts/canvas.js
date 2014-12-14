@@ -88,7 +88,7 @@ function canvas_draw_runway(cc, runway) {
   cc.strokeStyle = "#465";
   cc.lineWidth = 2;
   cc.beginPath();
-  
+
   cc.moveTo(0, -length2);
   cc.lineTo(0, -length2 - km(20));
 
@@ -221,6 +221,15 @@ function canvas_draw_aircraft(cc, aircraft) {
     cc.restore();
   }
 
+  if(aircraft.notice) {
+    cc.save();
+    cc.strokeStyle = cc.fillStyle;
+    cc.beginPath();
+    cc.arc(0, 0, km(4.8), 0, Math.PI * 2);
+    cc.stroke();
+    cc.restore();
+  }
+
   cc.beginPath();
   cc.arc(0, 0, size, 0, Math.PI * 2);
   cc.fill();
@@ -276,7 +285,7 @@ function canvas_draw_info(cc, aircraft) {
       cc.moveTo(sin(angle) * -distance + a[0], cos(angle) * -distance + a[1]);
       cc.lineTo(b[0], b[1]);
       cc.stroke();
-      
+
       cc.beginPath();
       cc.moveTo(b[0], b[1] - h / 2);
       cc.lineTo(b[0], b[1] + h / 2);
@@ -284,7 +293,7 @@ function canvas_draw_info(cc, aircraft) {
       cc.stroke();
       cc.restore();
     }
-    
+
     cc.translate(round(km(aircraft.position[0])), -round(km(aircraft.position[1])));
 
     if(-km(aircraft.position[1]) + prop.canvas.size.height/2 < height * 1.5)
@@ -387,7 +396,7 @@ function canvas_draw_compass(cc) {
 
   cc.translate(-size2-padding, -size2-padding);
   cc.lineWidth = 4;
-  
+
   cc.fillStyle = "rgba(0, 0, 0, 0.7)";
   cc.beginPath();
   cc.arc(0, 0, size2, 0, Math.PI*2);
@@ -436,7 +445,7 @@ function canvas_update_post() {
 
       canvas_clear(cc);
       cc.translate(round(prop.canvas.size.width/2), round(prop.canvas.size.height/2));
-      
+
       cc.save();
       cc.globalAlpha = alpha;
       canvas_draw_runways(cc);
@@ -446,7 +455,7 @@ function canvas_update_post() {
       cc.globalAlpha = alpha;
       canvas_draw_fixes(cc);
       cc.restore();
-      
+
       cc.restore();
     }
 
@@ -473,12 +482,12 @@ function canvas_update_post() {
     cc.font = "10px monoOne, monospace";
 
     cc.save();
-    
+
     cc.globalAlpha = alpha;
     canvas_clear(cc);
     cc.translate(round(prop.canvas.size.width/2), round(prop.canvas.size.height/2));
     canvas_draw_all_info(cc);
-    
+
     cc.restore();
 
     //
