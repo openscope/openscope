@@ -429,7 +429,7 @@ function canvas_update_post() {
     var cc=canvas_get("navaids");
     var fading  = (elapsed < 1);
 
-    cc.font = "9px monoOne, monospace";
+    cc.font = "11px monoOne, monospace";
 
     if(prop.canvas.dirty || fading) {
       cc.save();
