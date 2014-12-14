@@ -1,6 +1,7 @@
 {
   "name": "San Francisco International Airport",
   "level": "hard",
+  "radio": "San Francisco",
   "icao": "KDBG",
   "wind": {
     "angle": 130,
@@ -61,7 +62,7 @@
       ["baw", 9],
       ["cessna", 2]
     ],
-    "frequency": [1, 3]
+    "frequency": [4, 7]
   },
   "arrivals": [
     {
