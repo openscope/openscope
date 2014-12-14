@@ -1,30 +1,108 @@
 {
   "name": "San Francisco International Airport",
+  "level": "hard",
+  "radio": "San Francisco",
   "icao": "KSFO",
+  "wind": {
+    "angle": 270,
+    "speed": 8
+  },
+  "fixes":{
+    "GOODY": [ -1.5,       -20     ]
+  },
   "runways":[
     {
       "name":        ["36R", "18L"],
-      "name_offset": [[1.2, 0], [1.0, 0]],
+      "name_offset": [[0.8, 0], [0.2, 0]],
       "position":    [0.8, 0],
       "angle":       0,
-      "length":      12,
+      "length":      6,
+      "delay":       [10, 30],
       "ils":         [true, false]
+    }
+  ],
+  "departures": {
+    "airlines": [
+      ["ual", 3],
+      ["baw", 5],
+      ["cessna", 4]
+    ],
+    "frequency": [1, 3]
+  },
+  "arrivals": [
+    {
+      "heading":   180,
+      "airlines":  [
+        ["ual", 3],
+        ["baw", 1],
+        ["cessna", 2]
+      ],
+      "frequency": [4, 6],
+      "altitude":  [4000, 6000]
     },
     {
-      "name":        ["36L", "18R"],
-      "name_offset": [[-1.2, 0], [-1.2, 0]],
-      "position":    [-0.8, -1],
-      "angle":       0,
-      "length":      10,
-      "ils":         [true, false]
+      "angle":     90,
+      "heading":   135,
+      "airlines":  [
+        ["ual", 2],
+        ["baw", 5],
+        ["cessna", 1]
+      ],
+      "frequency": [2, 4],
+      "altitude":  [6000, 8000]
     },
     {
-      "name":        ["22", "4"],
-      "name_offset": [[0, 0], [-0.2, 0.2]],
-      "position":    [0, 0],
-      "angle":       223,
-      "length":      12,
-      "ils":         [false, false]
+      "angle":     270,
+      "heading":   45,
+      "airlines":  [
+        ["ual", 2],
+        ["baw", 5],
+        ["cessna", 20]
+      ],
+      "frequency": [2, 4],
+      "altitude":  [5000, 7000]
+    },
+    {
+      "angle":     270,
+      "heading":   0,
+      "airlines":  [
+        ["ual", 5],
+        ["baw", 1],
+        ["cessna", 3]
+      ],
+      "frequency": [2, 4],
+      "altitude":  [5000, 8000]
+    },
+    {
+      "angle":     180,
+      "heading":   270,
+      "airlines":  [
+        ["cessna", 20]
+      ],
+      "frequency": [2, 5],
+      "altitude":  [3000, 5000]
+    },
+    {
+      "angle":     45,
+      "heading":   90,
+      "airlines":  [
+        ["ual", 10],
+        ["baw", 1],
+        ["cessna", 20]
+      ],
+      "frequency": [10, 15],
+      "altitude":  [7000, 9000]
+    },
+    {
+      "angle":     315,
+      "heading":   180,
+      "airlines":  [
+        ["ual", 10],
+        ["baw", 10],
+        ["cessna", 1]
+      ],
+      "frequency": [3, 5],
+      "altitude":  [6000, 7000]
     }
   ]
 }

@@ -10,7 +10,7 @@ function input_init_pre() {
   prop.input.history_item = null;
 
   prop.input.click    = [0, 0];
-  
+
   prop.input.positions = "";
 }
 
@@ -62,7 +62,7 @@ function input_init() {
     if(!game_paused())
       $("#command").focus();
   });
-  
+
   $("#command").keydown(input_keydown);
   $("#command").on("input", input_change);
 }
@@ -110,7 +110,7 @@ function input_parse() {
       else prop.input.callsign += c[i].toLowerCase();
     }
   }
-  
+
   if(prop.input.callsign.length == 0) return;
 
   var number = 0;
@@ -125,12 +125,13 @@ function input_parse() {
     }
   }
   if(number == 1) {
-    $("#sidebar").scrollTop(round(match.html.position().top + ($(window).height() / 3)));
+//    $("#sidebar").scrollTop(round(match.html.position().top + ($(window).height() / 3)));
   }
 }
 
 function input_keydown(e) {
   if(e.which == 13) { // enter key
+    console.log('you hit enter');
     input_parse();
     if(input_run()) {
       prop.input.history.unshift(prop.input.callsign);
@@ -140,9 +141,11 @@ function input_keydown(e) {
     }
     prop.input.history_item = null;
   } else if(e.which == 38) {
+    console.log('you hit the up arrow');
     input_history_prev();
     e.preventDefault();
   } else if(e.which == 40) {
+    console.log('you hit the down arrow');
     input_history_next();
     e.preventDefault();
   }
