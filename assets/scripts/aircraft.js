@@ -263,7 +263,7 @@ var Aircraft=Fiber.extend(function() {
       }
 
       var response = [];
-      var response_end = "roger";
+      var response_end = "";
 
       var deferred = [];
 
@@ -471,7 +471,7 @@ var Aircraft=Fiber.extend(function() {
       this.cancelFix();
       this.cancelLanding();
 
-      return ["ok", "circling towards the " + this.requested.turn + " at " + this.requested.altitude + " feet", "roger"];
+      return ["ok", "circling towards the " + this.requested.turn + " at " + this.requested.altitude + " feet"];
     },
     runFix: function(data) {
       this.cancelLanding();
@@ -521,7 +521,10 @@ var Aircraft=Fiber.extend(function() {
 
       if(runway.removeQueue(this, this.requested.runway)) {
         this.mode = "takeoff";
-        prop.game.score.windy_takeoff += -Math.min(this.getWind(), 0);
+        var wind_score = -Math.min(this.getWind(), 0)
+        prop.game.score.windy_takeoff += wind_score;
+        if(wind_score)
+          ui_log(true, this.getCallsign() + ' taking off with a tailwind');
         if(this.requested.heading == -1)
           this.requested.heading = runway.getAngle(this.requested.runway) + Math.PI;
         return ["ok", "cleared for takeoff", ""];
@@ -568,7 +571,7 @@ var Aircraft=Fiber.extend(function() {
             console.log("aborted taxi to runway");
             ui_log(true, this.getCallsign() + " aborted taxi to runway");
             prop.game.score.abort.taxi += 1;
-            return ["ok", "taxi back to terminal", "roger"];
+            return ["ok", "taxi back to terminal"];
           } else {
             return ["fail", "cannot taxi back to terminal", "over"];
           }
@@ -960,8 +963,8 @@ var Aircraft=Fiber.extend(function() {
         var other = prop.aircraft.list[i];
         if(this == other) continue;
 
-        var other_land = other.isLanded();
-        var this_land  = this.isLanded();
+        var other_land = other.isLanded()  || other.altitude < 990;
+        var this_land  = this.isLanded()   || this.altitude < 990;
 
         if((!other_land && !this_land)) {
           if((distance2d(this.position, other.position) < 5.5) &&     // closer than ~4 miles

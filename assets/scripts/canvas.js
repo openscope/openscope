@@ -527,6 +527,7 @@ function canvas_update_post() {
     }
 
     cc.save();
+    cc.globalAlpha = alpha;
     cc.translate(round(prop.canvas.size.width/2), round(prop.canvas.size.height/2));
     canvas_draw_runway_labels(cc);
     cc.restore();
