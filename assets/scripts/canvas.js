@@ -455,7 +455,9 @@ function canvas_update_post() {
   var elapsed = game_time() - airport_get().start;
   var alpha   = crange(0.1, elapsed, 0.4, 0, 1);
 
-  if(prop.canvas.dirty || (!game_paused() && prop.time.frames % 30 == 0) || elapsed < 1) {
+  var framestep = Math.round(crange(1, prop.game.speedup, 10, 30, 1));
+
+  if(prop.canvas.dirty || (!game_paused() && prop.time.frames % framestep == 0) || elapsed < 1) {
     var cc=canvas_get("navaids");
     var fading  = (elapsed < 1);
 
