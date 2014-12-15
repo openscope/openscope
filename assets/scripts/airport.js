@@ -374,6 +374,7 @@ function airport_init() {
   airport_load("kdbg");
   airport_load("ksra");
   airport_load("ksfo");
+  airport_load("kmsp");
 }
 
 function airport_ready() {
