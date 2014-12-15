@@ -378,7 +378,8 @@ function airport_init() {
 }
 
 function airport_ready() {
-  airport_set("kdbg");
+  if(!('atc-last-airport' in localStorage)) airport_set('kdbg');
+  else airport_set();
 }
 
 function airport_load(icao) {
@@ -397,7 +398,13 @@ function airport_add(airport) {
 }
 
 function airport_set(icao) {
+  if(!icao) {
+    if(!('atc-last-airport' in localStorage)) return;
+    else icao = localStorage['atc-last-airport'];
+  }
   icao = icao.toLowerCase();
+
+  localStorage['atc-last-airport'] = icao;
   if(!(icao in prop.airport.airports)) {
     console.log(icao + ": no such airport");
     return;

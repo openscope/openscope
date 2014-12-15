@@ -28,7 +28,7 @@ var MODULES=[
 ];
 
 // saved as prop.version and prop.version_string
-var VERSION=[2,1,3];
+var VERSION=[2, 1, 4];
 
 // are you using a main loop? (you must call update() afterward disable/reenable)
 var UPDATE=true;
@@ -254,9 +254,15 @@ function update() {
     call_module("*","complete");
     prop.complete=true;
   }
-  call_module("*","update_pre");
-  call_module("*","update");
-  call_module("*","update_post");
+//  call_module("*","update_pre");
+//  call_module("*","update");
+//  call_module("*","update_post");
+
+  game_update_pre();
+  aircraft_update();
+
+  canvas_update_post();
+
   if(UPDATE)
     requestAnimationFrame(update);
   prop.time.frames+=1;
