@@ -187,37 +187,36 @@ var Aircraft=Fiber.extend(function() {
       }
       return airline_get(this.airline).callsign.name + " " + callsign.toUpperCase() + heavy;
     },
+    COMMANDS: [
+      "turn",
+      "heading",
+
+      "altitude",
+      "climb",
+      "clear",
+      "descend",
+
+      "speed",
+      "slow",
+
+      "hold",
+      "circle",
+
+      "fix",
+
+      "wait",
+      "taxi",
+
+      "takeoff",
+
+      "land",
+
+      "abort",
+
+      "debug"
+    ],
     runCommand: function(command) {
       command = command.toLowerCase();
-      var COMMANDS = [
-        "turn",
-        "heading",
-
-        "altitude",
-        "climb",
-        "clear",
-        "descend",
-
-        "speed",
-        "slow",
-
-        "hold",
-        "circle",
-
-        "fix",
-
-        "wait",
-        "taxi",
-
-        "takeoff",
-
-        "land",
-
-        "abort",
-
-        "debug"
-      ];
-
       var strings  = [""];
       var skipping = false;
       for(var i=0;i<command.length;i++) {
@@ -239,8 +238,8 @@ var Aircraft=Fiber.extend(function() {
       for(var i=0;i<strings.length;i++) {
         var string = strings[i];
         var is_command = false;
-        for(var j=0;j<COMMANDS.length;j++) {
-          if(COMMANDS[j].indexOf(string) == 0) {
+        for(var j=0;j<this.COMMANDS.length;j++) {
+          if(this.COMMANDS[j].indexOf(string) == 0) {
             is_command = true;
             break;
           }
