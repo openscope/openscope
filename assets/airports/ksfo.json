@@ -41,7 +41,7 @@
       "ils":         [true, false]
     },
     {
-      "name":        ["1L", "19R"],
+      "name":        ["19L", "1R"],
       "name_offset": [[1, 0], [1, 0]],
       "position":    [6, 1],
       "angle":       193,
@@ -49,7 +49,7 @@
       "ils":         [false, false]
     },
     {
-      "name":        ["1R", "19L"],
+      "name":        ["19R", "1L"],
       "name_offset": [[-1, 0], [-1, 0]],
       "position":    [1, 2],
       "angle":       193,
@@ -59,7 +59,7 @@
   ],
   "departures": {
     "airlines": [
-      ["ual", 11], 
+      ["ual", 11],
       ["baw", 9],
       ["cessna", 2]
     ],
