@@ -7,12 +7,29 @@
     "speed": 5
   },
   "fixes": {
-    "CAXUN": [ -45,   39     ],
-    "TELEX": [ -55,   46     ],
-    "KRSTL": [ -26,  -51     ],
-    "REPRE": [ -48,  -85     ],
-    "EBBEE": [ -14,  -40     ],
-    "ZETAL": [ -35,  -75     ]
+    "CAXUN": [ -45,  39     ],
+    "TELEX": [ -55,  46     ],
+
+
+    "KRSTL": [ -21, -41     ],
+    "REPRE": [ -37, -69     ],
+
+    "EBBEE": [ -14, -40     ],
+    "ZETAL": [ -30, -68     ],
+
+
+    "HENEB": [  37,  55     ],
+    "RIVRA": [  55,  85     ],
+
+    "ZALPO": [  41,  53     ],
+    "ROSLY": [  59,  83     ],
+
+
+    "MEALS": [  38, -25     ],
+    "ZACHS": [  67, -42     ],
+
+    "ZULAB": [  45, -15     ],
+    "MALDE": [  73, -32     ]
   },
   "runways":[
     {
@@ -58,6 +75,7 @@
   },
   "arrivals": [
     {
+      "angle":     30,
       "heading":   180,
       "airlines":  [
         ["ual", 3],
@@ -79,7 +97,7 @@
       "altitude":  [6000, 8000]
     },
     {
-      "angle":     270,
+      "angle":     200,
       "heading":   45,
       "airlines":  [
         ["ual", 2],
