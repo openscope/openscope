@@ -70,11 +70,15 @@ function game_get_weighted_score() {
 }
 
 function game_timewarp_toggle() {
-  if(prop.game.speedup != 1) {
+  if(prop.game.speedup == 5) {
     prop.game.speedup = 1;
     $(".fast-forwards").removeClass("active");
+    $(".fast-forwards").prop("title", "Set time warp to 2");
+  } else if(prop.game.speedup == 1){
+    prop.game.speedup = 2;
+    $(".fast-forwards").addClass("active");
     $(".fast-forwards").prop("title", "Set time warp to 5");
-  } else {
+  }else {
     prop.game.speedup = 5;
     $(".fast-forwards").addClass("active");
     $(".fast-forwards").prop("title", "Reset time warp");
