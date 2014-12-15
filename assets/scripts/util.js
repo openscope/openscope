@@ -205,7 +205,9 @@ function average() {
 }
 
 function heading_to_string(heading) {
-  return round(mod(degrees(heading), 360));
+  heading = round(mod(degrees(heading), 360));
+  if(heading == 0) heading = 360;
+  return heading;
 }
 
 var radio_names = {
