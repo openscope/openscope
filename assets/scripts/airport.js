@@ -259,7 +259,7 @@ var Airport=Fiber.extend(function() {
         message:   message
       });
       if(timeout)
-        this.timeout.departure = game_timeout(this.addAircraftDeparture, crange(0, Math.random(), 1, this.departures.frequency[0], this.departures.frequency[1]), this, true);
+        this.timeout.departure = game_timeout(this.addAircraftDeparture, crange(0, Math.random(), 1, this.departures.frequency[0] / prop.game.frequency, this.departures.frequency[1] / prop.game.frequency), this, true);
     },
     addAircraftArrival: function(args) {
 
@@ -303,7 +303,7 @@ var Airport=Fiber.extend(function() {
       });
 
       if(timeout)
-        arrival.timeout = game_timeout(this.addAircraftArrival, crange(0, Math.random(), 1, arrival.frequency[0], arrival.frequency[1]), this, [arrival, offset, true]);
+        arrival.timeout = game_timeout(this.addAircraftArrival, crange(0, Math.random(), 1, arrival.frequency[0] / prop.game.frequency, arrival.frequency[1] / prop.game.frequency), this, [arrival, offset, true]);
     },
     updateRunway: function() {
       if(!length) length = 0;
