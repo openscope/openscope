@@ -6,7 +6,7 @@ An ATC simulator in HTML5.
 
 MIT.
 
-Note: the license was formerly CC0; it was set before I was familiar with licensing optins.
+Note: the license was formerly CC0; it was set before I was familiar with licensing options.
 
 ## Exceptions
 
