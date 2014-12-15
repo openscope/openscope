@@ -203,7 +203,8 @@ var Aircraft=Fiber.extend(function() {
       "circle",
 
       "fix",
-      "fix",
+      "track",
+      "direct",
 
       "takeoff",
 
@@ -343,6 +344,8 @@ var Aircraft=Fiber.extend(function() {
       else if("land".indexOf(command) == 0)     command = "land";
 
       else if("fix".indexOf(command) == 0)      command = "fix";
+      else if("track".indexOf(command) == 0)    command = "track";
+      else if("direct".indexOf(command) == 0)   command = "direct";
 
       else if("abort".indexOf(command) == 0)    command = "abort";
 
@@ -1045,7 +1048,7 @@ var Aircraft=Fiber.extend(function() {
         } else {
           if(this.mode == "apron") {
             heading.text("apron");
-            
+
             altitude.text("ready");
             altitude.addClass("runway");
 
