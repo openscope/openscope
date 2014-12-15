@@ -1,7 +1,7 @@
 {
   "name": "San Francisco International Airport",
   "level": "hard",
-  "icao": "KDBG",
+  "icao": "KSFO",
   "wind": {
     "angle": 130,
     "speed": 5
