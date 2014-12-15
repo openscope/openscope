@@ -176,8 +176,8 @@ function tab_completion_cycle(opt) {
     i = (i >= matches.length-1) ? 0 : i+1;
   }
   $("#command").val(matches[i]);
-  prop.input.command = matches[i];
-  prop.input.tab_compl.cycle_item = i; 
+  prop.input.command = matches[i] + ' ';
+  prop.input.tab_compl.cycle_item = i;
   input_parse();
 }
 
