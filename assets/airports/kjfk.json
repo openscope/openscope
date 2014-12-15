@@ -3,8 +3,8 @@
   "level": "hard",
   "icao": "KJFK",
   "wind": {
-    "angle": 225,
-    "speed": 5
+    "angle": 180,
+    "speed": 6
   },
   "fixes": {
     "CAXUN": [ -45,  39     ],
