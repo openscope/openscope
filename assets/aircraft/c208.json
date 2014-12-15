@@ -3,7 +3,7 @@
   "icao": "C208",
   "wake": "medium",
   "rate": {
-    "turn":       1.8,
+    "turn":       2.5,
     "ascent":     1700,
     "descent":    2500,
     "accelerate": 8,

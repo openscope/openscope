@@ -3,7 +3,7 @@
   "icao": "C750",
   "wake": "light",
   "rate": {
-    "turn":       1.2,
+    "turn":       1.8,
     "ascent":     2200,
     "descent":    2500,
     "accelerate": 10,

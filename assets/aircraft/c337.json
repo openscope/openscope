@@ -3,7 +3,7 @@
   "icao": "C337",
   "wake": "light",
   "rate": {
-    "turn":       2.5,
+    "turn":       5.0,
     "ascent":     900,
     "descent":    1500,
     "accelerate": 4,

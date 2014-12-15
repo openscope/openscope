@@ -3,7 +3,7 @@
   "icao": "C510",
   "wake": "light",
   "rate": {
-    "turn":       1.3,
+    "turn":       4.3,
     "ascent":     2500,
     "descent":    3000,
     "accelerate": 10,

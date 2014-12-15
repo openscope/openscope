@@ -65,7 +65,7 @@
   ],
   "departures": {
     "airlines": [
-      ["ual", 3], 
+      ["ual", 3],
       ["baw", 5],
       ["cessna", 4]
     ],
@@ -79,7 +79,7 @@
         ["baw", 1],
         ["cessna", 2]
       ],
-      "frequency": [4, 6],
+      "frequency": [8, 10],
       "altitude":  [4000, 6000]
     },
     {
@@ -90,7 +90,7 @@
         ["baw", 5],
         ["cessna", 1]
       ],
-      "frequency": [2, 4],
+      "frequency": [5, 10],
       "altitude":  [6000, 8000]
     },
     {
@@ -101,7 +101,7 @@
         ["baw", 5],
         ["cessna", 20]
       ],
-      "frequency": [2, 4],
+      "frequency": [5, 10],
       "altitude":  [5000, 7000]
     },
     {
@@ -112,7 +112,7 @@
         ["baw", 1],
         ["cessna", 3]
       ],
-      "frequency": [2, 4],
+      "frequency": [5, 10],
       "altitude":  [5000, 8000]
     },
     {
@@ -121,7 +121,7 @@
       "airlines":  [
         ["cessna", 20]
       ],
-      "frequency": [2, 5],
+      "frequency": [10, 20],
       "altitude":  [3000, 5000]
     },
     {

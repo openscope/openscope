@@ -3,7 +3,7 @@
   "icao": "C550",
   "wake": "light",
   "rate": {
-    "turn":       1.2,
+    "turn":       3.2,
     "ascent":     2200,
     "descent":    2500,
     "accelerate": 8,
