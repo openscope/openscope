@@ -161,7 +161,7 @@
         ["baw", 10],
         ["cessna", 1]
       ],
-      "frequency": [3, 5],
+      "frequency": [10, 15],
       "altitude":  [6000, 7000]
     }
   ]
