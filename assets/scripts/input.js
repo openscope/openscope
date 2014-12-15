@@ -137,7 +137,6 @@ function input_parse() {
 
 function input_keydown(e) {
   if(e.which == 13) { // enter key
-    console.log('you hit enter');
     input_parse();
     if(input_run()) {
       prop.input.history.unshift(prop.input.callsign);
@@ -148,11 +147,9 @@ function input_keydown(e) {
     }
     prop.input.history_item = null;
   } else if(e.which == 38) {
-    console.log('you hit the up arrow');
     input_history_prev();
     e.preventDefault();
   } else if(e.which == 40) {
-    console.log('you hit the down arrow');
     input_history_next();
     e.preventDefault();
   } else if(e.which == 9) { // tab key
