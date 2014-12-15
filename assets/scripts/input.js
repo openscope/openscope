@@ -23,6 +23,22 @@ function input_init() {
       if(prop.tutorial.open) tutorial_close();
       else if($("#airport-switch").hasClass("open")) ui_airport_close();
     }
+    if(e.which == 187) {
+      prop.ui.scale *= 1/0.9;
+      localStorage['atc-scale'] = prop.ui.scale;
+      prop.canvas.dirty = true;
+      return false;
+    } else if(e.which == 189) {
+      prop.ui.scale *= 0.9;
+      localStorage['atc-scale'] = prop.ui.scale;
+      prop.canvas.dirty = true;
+      return false;
+    } else if(e.which == 48) {
+      prop.ui.scale = 5;
+      localStorage['atc-scale'] = prop.ui.scale;
+      prop.canvas.dirty = true;
+      return false;
+    }
     if(!prop.tutorial.open) return;
     if(e.which == 33) {
       tutorial_prev()

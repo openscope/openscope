@@ -1234,10 +1234,9 @@ function aircraft_add(model) {
 
 function aircraft_visible(aircraft, factor) {
   if(!factor) factor=1;
-  var width2  = pixels_to_km((prop.canvas.size.width / 2)  + 80)*factor;
-  var height2 = pixels_to_km((prop.canvas.size.height / 2) + 80)*factor;
-  if(((aircraft.position[0] < -width2  || aircraft.position[0] > width2)) ||
-     ((aircraft.position[1] < -height2 || aircraft.position[1] > height2))) {
+  var size = 100 * factor;
+  if(((aircraft.position[0] < -size || aircraft.position[0] > size)) ||
+     ((aircraft.position[1] < -size || aircraft.position[1] > size))) {
     return false;
   }
   return true;
