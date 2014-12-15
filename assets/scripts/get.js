@@ -102,6 +102,7 @@ var Content=function(options) {
     this.tries+=1;
     var that=this;
     this.status="download";
+    prop.load.message = this.url;
     setTimeout(function() {
       if(that.type == "json")
         that.getJSON();
