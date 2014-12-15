@@ -3,11 +3,16 @@
   "level": "hard",
   "icao": "KJFK",
   "wind": {
-    "angle": 315,
+    "angle": 225,
     "speed": 5
   },
   "fixes": {
-    "FAITH": [ 78,    -15.76     ]
+    "CAXUN": [ -45,   39     ],
+    "TELEX": [ -55,   46     ],
+    "KRSTL": [ -26,  -51     ],
+    "REPRE": [ -48,  -85     ],
+    "EBBEE": [ -14,  -40     ],
+    "ZETAL": [ -35,  -75     ]
   },
   "runways":[
     {
