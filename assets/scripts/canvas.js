@@ -148,6 +148,29 @@ function canvas_draw_runway_labels(cc) {
   }
 }
 
+function canvas_draw_scale(cc) {
+  cc.fillStyle   = "rgba(255, 255, 255, 0.8)";
+  cc.strokeStyle = "rgba(255, 255, 255, 0.8)";
+
+  var offset = 10;
+  var height = 5;
+  var length = round(km(10));
+
+  cc.translate(0.5, 0.5);
+
+  cc.lineWidth = 1;
+  cc.moveTo(prop.canvas.size.width - offset, offset);
+  cc.lineTo(prop.canvas.size.width - offset, offset + height);
+  cc.lineTo(prop.canvas.size.width - offset - length, offset + height);
+  cc.lineTo(prop.canvas.size.width - offset - length, offset);
+  cc.stroke();
+
+  cc.translate(-0.5, -0.5);
+
+  cc.textAlign = 'center';
+  cc.fillText('10 km', prop.canvas.size.width - offset - length * 0.5, offset + height + 17);
+}
+
 function canvas_draw_fix(cc, name, fix) {
   cc.beginPath();
   cc.moveTo( 0, -5);
@@ -530,6 +553,11 @@ function canvas_update_post() {
     cc.globalAlpha = alpha;
     cc.translate(round(prop.canvas.size.width/2), round(prop.canvas.size.height/2));
     canvas_draw_runway_labels(cc);
+    cc.restore();
+
+    cc.save();
+    cc.globalAlpha = alpha;
+    canvas_draw_scale(cc);
     cc.restore();
 
     //
