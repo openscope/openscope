@@ -116,6 +116,10 @@ var Aircraft=Fiber.extend(function() {
         speed:    0
       };
 
+      this.emergency = {
+
+      };
+
       this.parse(options);
 
       this.html = $("<li class='strip'></li>");
@@ -206,7 +210,6 @@ var Aircraft=Fiber.extend(function() {
         "taxi",
 
         "takeoff",
-        "depart",
 
         "land",
 
@@ -336,7 +339,6 @@ var Aircraft=Fiber.extend(function() {
       else if("taxi".indexOf(command) == 0)     command = "wait";
 
       else if("takeoff".indexOf(command) == 0)  command = "takeoff";
-      else if("depart".indexOf(command) == 0)   command = "takeoff";
 
       else if("land".indexOf(command) == 0)     command = "land";
 
