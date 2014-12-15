@@ -116,6 +116,8 @@ function input_parse() {
   var number = 0;
   var match  = null;
 
+  prop.canvas.dirty = true;
+
   for(var i=0;i<prop.aircraft.list.length;i++) {
     var aircraft=prop.aircraft.list[i];
     if(aircraft.matchCallsign(prop.input.callsign)) {
@@ -125,7 +127,7 @@ function input_parse() {
     }
   }
   if(number == 1) {
-//    $("#sidebar").scrollTop(round(match.html.position().top + ($(window).height() / 3)));
+    $("#sidebar").scrollTop(round(match.html.position().top + ($(window).height() / 3)));
   }
 }
 
@@ -140,6 +142,7 @@ function input_keydown(e) {
       input_parse();
     }
     prop.input.history_item = null;
+    prop.canvas.dirty = true;
   } else if(e.which == 38) {
     console.log('you hit the up arrow');
     input_history_prev();

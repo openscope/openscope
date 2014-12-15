@@ -520,7 +520,8 @@ var Aircraft=Fiber.extend(function() {
       if(runway.removeQueue(this, this.requested.runway)) {
         this.mode = "takeoff";
         prop.game.score.windy_takeoff += -Math.min(this.getWind(), 0);
-        this.requested.heading = runway.getAngle(this.requested.runway) + Math.PI;
+        if(this.requested.heading == -1)
+          this.requested.heading = runway.getAngle(this.requested.runway) + Math.PI;
         return ["ok", "cleared for takeoff", ""];
       } else {
         var waiting = runway.isWaiting(this, this.requested.runway);
