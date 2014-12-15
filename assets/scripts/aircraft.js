@@ -424,7 +424,7 @@ var Aircraft=Fiber.extend(function() {
       if(isNaN(altitude)) {
         if(isExpedite(split[0])) {
           this.requested.expedite = true;
-          return ["ok", radio_trend("altitude", this.altitude, this.requested.altitude) + " " + this.requested.altitude + " expedite" + after, "roger"];
+          return ["ok", radio_trend("altitude", this.altitude, this.requested.altitude) + " " + this.requested.altitude + " expedite" + after];
         }
         return ["fail", "altitude not understood", "say again"];
       }
@@ -441,7 +441,7 @@ var Aircraft=Fiber.extend(function() {
       if(expedite) expedite = " expedite";
       else         expedite = "";
 
-      return ["ok", radio_trend("altitude", this.altitude, this.requested.altitude) + " " + this.requested.altitude + expedite + after, "roger"];
+      return ["ok", radio_trend("altitude", this.altitude, this.requested.altitude) + " " + this.requested.altitude + expedite + after];
     },
     runSpeed: function(data) {
       var speed = parseInt(data);
@@ -479,7 +479,7 @@ var Aircraft=Fiber.extend(function() {
 
       this.requested.fix = data.toUpperCase();
 
-      return ["ok", "navigate to " + this.requested.fix, "roger"];
+      return ["ok", "navigate to " + this.requested.fix];
     },
     runWait: function(data) {
       if(this.category != "departure") return ["fail", "inbound"];
@@ -518,7 +518,7 @@ var Aircraft=Fiber.extend(function() {
         this.mode = "takeoff";
         prop.game.score.windy_takeoff += -Math.min(this.getWind(), 0);
         this.requested.heading = runway.getAngle(this.requested.runway) + Math.PI;
-        return ["ok", "taking off runway " + radio_runway(this.requested.runway), ""];
+        return ["ok", "takeoff", ""];
       } else {
         var waiting = runway.isWaiting(this, this.requested.runway);
         return ["fail", "number "+waiting+" behind "+runway.waiting[runway.getEnd(this.requested.runway)][waiting+1].getRadioCallsign(), ""];
@@ -545,7 +545,7 @@ var Aircraft=Fiber.extend(function() {
 
       this.cancelFix();
 
-      return ["ok", "land runway " + radio_runway(data) + " at " + airport_get().name, "roger"];
+      return ["ok", "land runway " + radio_runway(data) + " at " + airport_get().name];
 
     },
     runAbort: function(data) {
