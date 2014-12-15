@@ -416,6 +416,9 @@ function airport_set(icao) {
   prop.airport.current = prop.airport.airports[icao];
   prop.airport.current.set();
 
+  $('#airport').text(prop.airport.current.icao.toUpperCase());
+  $('#airport').attr("title", prop.airport.current.name);
+
   prop.canvas.dirty = true;
 }
 
