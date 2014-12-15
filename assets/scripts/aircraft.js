@@ -402,7 +402,7 @@ var Aircraft=Fiber.extend(function() {
       else                    direction += " ";
 
       if(this.isTakeoff())
-        return ['ok', 'turn ' + direction + 'heading ' + heading_to_string(this.requested.heading) + ' after departure', ''];
+        return ['ok', 'after departure, turn ' + direction + 'heading ' + heading_to_string(this.requested.heading), ''];
 
       return ['ok', 'turn ' + direction + 'heading ' + heading_to_string(this.requested.heading), ''];
     },
@@ -427,7 +427,7 @@ var Aircraft=Fiber.extend(function() {
         if(isExpedite(split[0])) {
           this.requested.expedite = true;
           if(this.isTakeoff())
-            return ['ok', radio_trend('altitude', this.altitude, this.requested.altitude) + " " + this.requested.altitude + ' expedite after departure'];
+            return ['ok', 'after departure, ' + radio_trend('altitude', this.altitude, this.requested.altitude) + " " + this.requested.altitude + ' expedite'];
 
           return ['ok', radio_trend('altitude', this.altitude, this.requested.altitude) + " " + this.requested.altitude + ' expedite'];
         }
@@ -447,7 +447,7 @@ var Aircraft=Fiber.extend(function() {
       else         expedite = "";
 
       if(this.isTakeoff())
-        return ['ok', radio_trend('altitude', this.altitude, this.requested.altitude) + ' ' + this.requested.altitude + expedite + ' after departure'];
+        return ['ok', 'after departure, ' + radio_trend('altitude', this.altitude, this.requested.altitude) + ' ' + this.requested.altitude + expedite];
 
       return ['ok', radio_trend('altitude', this.altitude, this.requested.altitude) + ' ' + this.requested.altitude + expedite];
     },

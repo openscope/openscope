@@ -3,9 +3,9 @@ var Step = Fiber.extend(function() {
   return {
     init: function(options) {
       if(!options) options = {};
-      
+
       this.title    = options.title || "?";
-      
+
       this.text     = options.text || "?";
 
       this.parse     = options.parse || null;
@@ -52,7 +52,10 @@ function tutorial_init_pre() {
                "and the strip will move to the left and change color. This means that the aircraft is selected."
                ].join(" "),
     parse:    function(t) {
-      return t.replace("{CALLSIGN}", prop.aircraft.list[0].getCallsign());
+      if(prop.aircraft.list.length > 0)
+        return t.replace("{CALLSIGN}", prop.aircraft.list[0].getCallsign());
+      else
+        return t.replace('{CALLSIGN}', 'there aren\'t any right now');
     },
     side:     "left",
     position: tutorial_position
@@ -372,7 +375,7 @@ function tutorial_update_content() {
   $("#tutorial").removeClass("left right");
   if(step.side == "left") $("#tutorial").addClass("left");
   else if(step.side == "right") $("#tutorial").addClass("right");
-  
+
   tutorial_move();
 }
 
