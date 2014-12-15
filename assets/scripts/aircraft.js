@@ -204,10 +204,10 @@ var Aircraft=Fiber.extend(function() {
 
       "fix",
 
+      "takeoff",
+
       "wait",
       "taxi",
-
-      "takeoff",
 
       "land",
 
