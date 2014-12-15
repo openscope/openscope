@@ -12,6 +12,8 @@ function input_init_pre() {
   prop.input.click    = [0, 0];
 
   prop.input.positions = "";
+
+  prop.input.tab_compl = {};
 }
 
 function input_init() {
@@ -82,6 +84,7 @@ function input_select(callsign) {
 }
 
 function input_change() {
+  tab_completion_reset();
   var value = $("#command").val();
   prop.input.command = value;
   input_parse();
@@ -140,6 +143,7 @@ function input_keydown(e) {
       prop.input.history.unshift(prop.input.callsign);
       $("#command").val("");
       prop.input.command = "";
+      tab_completion_reset();
       input_parse();
     }
     prop.input.history_item = null;
@@ -151,7 +155,58 @@ function input_keydown(e) {
     console.log('you hit the down arrow');
     input_history_next();
     e.preventDefault();
+  } else if(e.which == 9) { // tab key
+    if(!prop.input.tab_compl.matches) {
+      tab_completion_match();
+    }
+    tab_completion_cycle({backwards: e.shiftKey});
+    e.preventDefault();
   }
+}
+
+function tab_completion_cycle(opt) {
+  var matches = prop.input.tab_compl.matches;
+  if(!matches || matches.length === 0) {
+    return;
+  }
+  var i = prop.input.tab_compl.cycle_item;
+  if(opt.backwards) {
+    i = (i <= 0) ? matches.length-1 : i-1;
+  } else {
+    i = (i >= matches.length-1) ? 0 : i+1;
+  }
+  $("#command").val(matches[i]);
+  prop.input.command = matches[i];
+  prop.input.tab_compl.cycle_item = i; 
+  input_parse();
+}
+
+function tab_completion_match() {
+  var val = $("#command").val();
+  var matches;
+  var aircrafts = prop.aircraft.list;
+  if(prop.input.callsign) {
+    aircrafts = aircrafts.filter(function(a) {
+      return a.matchCallsign(prop.input.callsign);
+    });
+  }
+  matches = aircrafts.map(function(a) {
+    return a.getCallsign();
+  });
+  if(aircrafts.length === 1 && (prop.input.data || val[val.length-1] === ' ')){
+    matches = aircrafts[0].COMMANDS.filter(function(c) {
+      return c.toLowerCase().indexOf(prop.input.data.toLowerCase()) === 0;
+    }).map(function(c) {
+      return val.substring(0, prop.input.callsign.length+1) + c;
+    });
+  }
+  tab_completion_reset();
+  prop.input.tab_compl.matches = matches;
+  prop.input.tab_compl.cycle_item = -1;
+}
+
+function tab_completion_reset() {
+  prop.input.tab_compl = {};
 }
 
 function input_history_clamp() {
