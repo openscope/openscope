@@ -7,6 +7,8 @@ function airline_init_pre() {
 function airline_init() {
   airline_load("UAL");
   airline_load("BAW");
+  airline_load("AAL");
+  airline_load("AWE");
   airline_load("CESSNA");
 }
 
