@@ -493,7 +493,7 @@ var Aircraft=Fiber.extend(function() {
 
       }
 
-      return ["ok", "navigate to " + this.requested.fix];
+      return ["ok", "navigate to " + this.requested.fix.join(', ')];
     },
     runWait: function(data) {
       if(this.category != "departure") return ["fail", "inbound"];
@@ -870,6 +870,7 @@ var Aircraft=Fiber.extend(function() {
             this.requested.fix.splice(0, 1);
           else
             this.cancelFix();
+          this.updateStrip();
         } else {
           this.target.heading = Math.atan2(a, b) - Math.PI;
         }
