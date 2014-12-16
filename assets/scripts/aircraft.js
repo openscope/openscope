@@ -344,8 +344,8 @@ var Aircraft=Fiber.extend(function() {
       else if("land".indexOf(command) == 0)     command = "land";
 
       else if("fix".indexOf(command) == 0)      command = "fix";
-      else if("track".indexOf(command) == 0)    command = "track";
-      else if("direct".indexOf(command) == 0)   command = "direct";
+      else if("track".indexOf(command) == 0)    command = "fix";
+      else if("direct".indexOf(command) == 0)   command = "fix";
 
       else if("abort".indexOf(command) == 0)    command = "abort";
 
