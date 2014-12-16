@@ -1,9 +1,11 @@
 {
   "name": "US Airways",
+
   "callsign": {
     "name": "Cactus",
     "length": 3
   },
+
   "aircraft": [
     ["A319", 93 ],
     ["A320", 63 ],
@@ -16,6 +18,5 @@
     ["B762", 5 ],
 
     ["E190", 20 ]
-
   ]
 }
