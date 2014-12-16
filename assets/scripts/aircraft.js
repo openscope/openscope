@@ -1131,6 +1131,7 @@ function aircraft_init() {
   aircraft_load("b752");
   aircraft_load("b753");
 
+  aircraft_load("b762");
   aircraft_load("b763");
   aircraft_load("b764");
 
@@ -1138,6 +1139,10 @@ function aircraft_init() {
   aircraft_load("b77e");
   aircraft_load("b77w");
   aircraft_load("b788");
+
+  // EMBRAER
+  aircraft_load("e170");
+  aircraft_load("e190");
 
   // CONCORDE...
   aircraft_load("conc");
