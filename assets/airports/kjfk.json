@@ -34,32 +34,32 @@
   "runways":[
     {
       "name":        ["31R", "13L"],
-      "name_offset": [[2, -2], [-2, 0]],
-      "position":    [-2, 0],
+      "name_offset": [[0, 0], [0, 0]],
+      "position":    [-0.5, 0.2],
       "angle":       301,
       "length":      3,
       "ils":         [true, false]
     },
     {
       "name":        ["22L", "4R"],
-      "name_offset": [[2, 0], [-1, 0]],
-      "position":    [6, 0],
+      "name_offset": [[0, 0], [0, 0]],
+      "position":    [3, 0],
       "angle":       211,
       "length":      2.5,
       "ils":         [true, false]
     },
     {
       "name":        ["31L", "13R"],
-      "name_offset": [[2, -1], [-2, 0]],
-      "position":    [3, 6],
+      "name_offset": [[0, 0], [0, 0]],
+      "position":    [0.8, 2],
       "angle":       301,
       "length":      4.4,
       "ils":         [true, false]
     },
     {
       "name":        ["22R", "4L"],
-      "name_offset": [[1, 0], [-1, 0]],
-      "position":    [3, 0],
+      "name_offset": [[0, 0], [0, 0]],
+      "position":    [2, 0],
       "angle":       211,
       "length":      3.4,
       "ils":         [true, false]

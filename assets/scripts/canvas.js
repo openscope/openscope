@@ -108,7 +108,7 @@ function canvas_draw_runway_label(cc, runway) {
 
   cc.rotate(angle);
 
-  var text_height = 8;
+  var text_height = 14;
   cc.textAlign    = "center";
   cc.textBaseline = "middle";
 
