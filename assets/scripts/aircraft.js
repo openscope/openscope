@@ -180,6 +180,7 @@ var Aircraft=Fiber.extend(function() {
     getRadioCallsign: function(condensed) {
       var heavy = "";
       if(this.model.wake == "heavy") heavy = " heavy"
+      if(this.model.wake == "super") heavy = " super"
       var callsign = this.callsign;
       if(condensed) {
         var length = 2;
@@ -1117,7 +1118,7 @@ function aircraft_init() {
   aircraft_load("a320");
   aircraft_load("a321");
 
-  aircraft_load("a380");
+  aircraft_load("a388");
 
   // BOEING
   aircraft_load("b734");
@@ -1130,6 +1131,7 @@ function aircraft_init() {
   aircraft_load("b752");
   aircraft_load("b753");
 
+  aircraft_load("b762");
   aircraft_load("b763");
   aircraft_load("b764");
 
@@ -1137,6 +1139,10 @@ function aircraft_init() {
   aircraft_load("b77e");
   aircraft_load("b77w");
   aircraft_load("b788");
+
+  // EMBRAER
+  aircraft_load("e170");
+  aircraft_load("e190");
 
   // CONCORDE...
   aircraft_load("conc");
