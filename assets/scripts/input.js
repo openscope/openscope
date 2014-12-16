@@ -237,7 +237,7 @@ function input_history_prev() {
   input_history_clamp();
 
   var command = prop.input.history[prop.input.history_item] + ' ';
-  $("#command").val(command);
+  $("#command").val(command.toUpperCase());
   input_change();
 }
 
