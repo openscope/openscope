@@ -23,7 +23,6 @@ function input_init() {
       if(prop.tutorial.open) tutorial_close();
       else if($("#airport-switch").hasClass("open")) ui_airport_close();
     }
-    console.log(e);
     if(e.which == 189) {
       prop.ui.scale *= 0.9;
       localStorage['atc-scale'] = prop.ui.scale;
