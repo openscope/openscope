@@ -296,7 +296,7 @@ var Airport=Fiber.extend(function() {
       });
 
       if(timeout)
-        arrival.timeout = game_timeout(this.addAircraftArrival, crange(0, Math.random(), 1, arrival.frequency[0] / prop.game.frequency, arrival.frequency[1] / prop.game.frequency), this, [arrival, offset, true]);
+        arrival.timeout = game_timeout(this.addAircraftArrival, crange(0, Math.random(), 1, arrival.frequency[0] / prop.game.frequency, arrival.frequency[1] / prop.game.frequency), this, [arrival, null, true]);
     },
     updateRunway: function() {
       if(!length) length = 0;

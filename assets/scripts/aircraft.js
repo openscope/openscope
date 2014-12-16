@@ -456,8 +456,8 @@ var Aircraft=Fiber.extend(function() {
 
       if(isNaN(speed)) return ["fail", "speed not understood", "say again"];
 
-      if(this.mode == "landing")
-        this.cancelLanding();
+//      if(this.mode == "landing")
+//        this.cancelLanding();
 
       this.requested.speed = clamp(this.model.speed.min, speed, this.model.speed.max);
 
@@ -559,6 +559,7 @@ var Aircraft=Fiber.extend(function() {
       this.requested.runway = data.toUpperCase();
       this.requested.turn   = "auto";
       this.requested.hold   = false;
+      this.requested.speed  = -1;
 
       this.requested.start_speed = this.speed;
 
@@ -804,7 +805,8 @@ var Aircraft=Fiber.extend(function() {
         var s = this.target.speed;
 
         this.target.altitude     = glideslope_altitude;
-        this.target.speed        = crange(5, offset[1], 30, this.model.speed.landing, this.requested.start_speed);
+        if(this.requested.speed > 0) this.requested.start_speed = this.requested.speed;
+        this.target.speed        = crange(3, offset[1], 10, this.model.speed.landing, this.requested.start_speed);
 
         if(this.altitude < 10) {
           if(s > 10) {
