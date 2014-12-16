@@ -1,7 +1,7 @@
 {
   "name": "Airbus A380-800",
-  "icao": "A380",
-  "wake": "heavy",
+  "icao": "A388",
+  "wake": "super",
   "rate": {
     "turn":       0.7,
     "ascent":     1500,

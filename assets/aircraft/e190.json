@@ -1,0 +1,22 @@
+{
+  "name": "Embraer 190/195",
+  "icao": "E190",
+  "wake": "medium",
+  "rate": {
+    "turn":       1.5,
+    "ascent":     1900,
+    "descent":    2100,
+    "accelerate": 7,
+    "decelerate": 4
+  },
+  "runway": {
+    "takeoff": 1.5,
+    "landing": 1.2
+  },
+  "speed":{
+    "min":     110,
+    "max":     250,
+    "landing": 120,
+    "cruise":  200
+  }
+}
