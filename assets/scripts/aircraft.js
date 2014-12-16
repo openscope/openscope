@@ -180,6 +180,7 @@ var Aircraft=Fiber.extend(function() {
     getRadioCallsign: function(condensed) {
       var heavy = "";
       if(this.model.wake == "heavy") heavy = " heavy"
+      if(this.model.wake == "super") heavy = " super"
       var callsign = this.callsign;
       if(condensed) {
         var length = 2;
@@ -1117,7 +1118,7 @@ function aircraft_init() {
   aircraft_load("a320");
   aircraft_load("a321");
 
-  aircraft_load("a380");
+  aircraft_load("a388");
 
   // BOEING
   aircraft_load("b734");
