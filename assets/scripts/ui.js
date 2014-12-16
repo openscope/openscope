@@ -8,7 +8,7 @@ function ui_init_pre() {
 
 function ui_init() {
 
-  $(".fast-forwards").prop("title", "Set time warp to 5");
+  $(".fast-forwards").prop("title", "Set time warp to 2");
 
   $(".fast-forwards").click(function() {
     game_timewarp_toggle();
