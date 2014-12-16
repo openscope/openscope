@@ -218,8 +218,7 @@ var Aircraft=Fiber.extend(function() {
       "debug"
     ],
     runCommand: function(command) {
-      command = command.toLowerCase();
-      var strings  = command.split(" ")
+      var strings  = command.toLowerCase().split(" ")
 
       var commands = [];
       var concat   = false;
