@@ -198,7 +198,6 @@ var Airport=Fiber.extend(function() {
         for(var i=0;i<data.arrivals.length;i++) {
           var arrival = data.arrivals[i];
           if(!arrival.angle) arrival.angle = arrival.heading;
-          arrival.angle         = radians(arrival.angle);
           arrival.heading       = radians(arrival.heading);
           arrival.frequency[0] *= 60;
           arrival.frequency[1] *= 60;
@@ -244,7 +243,7 @@ var Airport=Fiber.extend(function() {
             delay = Math.random() * 0.1;
             game_timeout(this.addAircraftArrival, delay, this, [arrival, null, false]);
           }
-          this.arrivals[i].timeout = game_timeout(this.addAircraftArrival, delay, this, [arrival, crange(0, Math.random(), 1, 0.3, 0.7), true]);
+          this.arrivals[i].timeout = game_timeout(this.addAircraftArrival, delay, this, [arrival, crange(0, Math.random(), 1, 0.5, 0.8), true]);
         }
       }
 
@@ -262,7 +261,6 @@ var Airport=Fiber.extend(function() {
         this.timeout.departure = game_timeout(this.addAircraftDeparture, crange(0, Math.random(), 1, this.departures.frequency[0] / prop.game.frequency, this.departures.frequency[1] / prop.game.frequency), this, true);
     },
     addAircraftArrival: function(args) {
-
       var arrival = args[0];
       var offset  = args[1];
       var timeout = args[2] > 0.5;
@@ -276,14 +274,9 @@ var Airport=Fiber.extend(function() {
 
       var wobble   = radians(5);
 
-      var angle    = arrival.angle + crange(0, Math.random(), 1, -wobble, wobble);
-
-      position[0] += sin(angle) * distance;
-      position[1] += cos(angle) * distance;
-
       var heading  = arrival.heading + crange(0, Math.random(), 1, -wobble, wobble);
 
-      distance     = ((Math.max(width, height) - Math.min(width, height)) + distance2d(position, [0, 0]) + pixels_to_km(100)) * 1.5;
+      distance     = 150;
       position[0] += sin(heading) * distance * offset;
       position[1] += cos(heading) * distance * offset;
 
@@ -303,7 +296,7 @@ var Airport=Fiber.extend(function() {
       });
 
       if(timeout)
-        arrival.timeout = game_timeout(this.addAircraftArrival, crange(0, Math.random(), 1, arrival.frequency[0] / prop.game.frequency, arrival.frequency[1] / prop.game.frequency), this, [arrival, offset, true]);
+        arrival.timeout = game_timeout(this.addAircraftArrival, crange(0, Math.random(), 1, arrival.frequency[0] / prop.game.frequency, arrival.frequency[1] / prop.game.frequency), this, [arrival, null, true]);
     },
     updateRunway: function() {
       if(!length) length = 0;
@@ -375,6 +368,7 @@ function airport_init() {
   airport_load("ksra");
   airport_load("ksfo");
   airport_load("kmsp");
+  airport_load("kjfk");
 }
 
 function airport_ready() {

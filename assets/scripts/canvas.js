@@ -68,7 +68,7 @@ function canvas_should_draw() {
 
 // DRAW
 
-function canvas_draw_runway(cc, runway) {
+function canvas_draw_runway(cc, runway, mode) {
   var length2 = round(km(runway.length / 2));
   var angle   = runway.angle;
 
@@ -79,23 +79,25 @@ function canvas_draw_runway(cc, runway) {
 
   cc.rotate(angle);
 
-  cc.strokeStyle = "#899";
-  cc.beginPath();
-  cc.moveTo(0, -length2);
-  cc.lineTo(0,  length2);
-  cc.stroke();
+  if(!mode) {
+    cc.strokeStyle = "#899";
+    cc.beginPath();
+    cc.moveTo(0, -length2);
+    cc.lineTo(0,  length2);
+    cc.stroke();
+  } else {
+    cc.strokeStyle = "#465";
+    cc.lineWidth = 2;
+    cc.beginPath();
 
-  cc.strokeStyle = "#465";
-  cc.lineWidth = 2;
-  cc.beginPath();
+    cc.moveTo(0, -length2);
+    cc.lineTo(0, -length2 - km(20));
 
-  cc.moveTo(0, -length2);
-  cc.lineTo(0, -length2 - km(20));
+    cc.moveTo(0,  length2);
+    cc.lineTo(0,  length2 + km(20));
 
-  cc.moveTo(0,  length2);
-  cc.lineTo(0,  length2 + km(20));
-
-  cc.stroke();
+    cc.stroke();
+  }
 }
 
 function canvas_draw_runway_label(cc, runway) {
@@ -106,7 +108,7 @@ function canvas_draw_runway_label(cc, runway) {
 
   cc.rotate(angle);
 
-  var text_height = 8;
+  var text_height = 14;
   cc.textAlign    = "center";
   cc.textBaseline = "middle";
 
@@ -133,7 +135,12 @@ function canvas_draw_runways(cc) {
   var airport=airport_get();
   for(var i=0;i<airport.runways.length;i++) {
     cc.save();
-    canvas_draw_runway(cc, airport.runways[i]);
+    canvas_draw_runway(cc, airport.runways[i], true);
+    cc.restore();
+  }
+  for(var i=0;i<airport.runways.length;i++) {
+    cc.save();
+    canvas_draw_runway(cc, airport.runways[i], false);
     cc.restore();
   }
 }
@@ -154,21 +161,23 @@ function canvas_draw_scale(cc) {
 
   var offset = 10;
   var height = 5;
-  var length = round(km(10));
+
+  var length = round(1 / prop.ui.scale * 50)
+  var px_length = round(km(length));
 
   cc.translate(0.5, 0.5);
 
   cc.lineWidth = 1;
   cc.moveTo(prop.canvas.size.width - offset, offset);
   cc.lineTo(prop.canvas.size.width - offset, offset + height);
-  cc.lineTo(prop.canvas.size.width - offset - length, offset + height);
-  cc.lineTo(prop.canvas.size.width - offset - length, offset);
+  cc.lineTo(prop.canvas.size.width - offset - px_length, offset + height);
+  cc.lineTo(prop.canvas.size.width - offset - px_length, offset);
   cc.stroke();
 
   cc.translate(-0.5, -0.5);
 
   cc.textAlign = 'center';
-  cc.fillText('10 km', prop.canvas.size.width - offset - length * 0.5, offset + height + 17);
+  cc.fillText(length + ' km', prop.canvas.size.width - offset - px_length * 0.5, offset + height + 17);
 }
 
 function canvas_draw_fix(cc, name, fix) {

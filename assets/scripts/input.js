@@ -23,6 +23,22 @@ function input_init() {
       if(prop.tutorial.open) tutorial_close();
       else if($("#airport-switch").hasClass("open")) ui_airport_close();
     }
+    console.log(e);
+    if(e.which == 189) {
+      prop.ui.scale *= 0.9;
+      localStorage['atc-scale'] = prop.ui.scale;
+      prop.canvas.dirty = true;
+      return false;
+    } else if(e.which == 187) {
+      if(e.shiftKey) {
+        prop.ui.scale *= 1/0.9;
+      } else {
+        prop.ui.scale = 5;
+      }
+      localStorage['atc-scale'] = prop.ui.scale;
+      prop.canvas.dirty = true;
+      return false;
+    }
     if(!prop.tutorial.open) return;
     if(e.which == 33) {
       tutorial_prev()
@@ -172,7 +188,7 @@ function tab_completion_cycle(opt) {
   } else {
     i = (i >= matches.length-1) ? 0 : i+1;
   }
-  $("#command").val(matches[i]);
+  $("#command").val(matches[i] + " ");
   prop.input.command = matches[i];
   prop.input.tab_compl.cycle_item = i;
   input_parse();

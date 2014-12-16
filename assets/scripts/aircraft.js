@@ -456,8 +456,8 @@ var Aircraft=Fiber.extend(function() {
 
       if(isNaN(speed)) return ["fail", "speed not understood", "say again"];
 
-      if(this.mode == "landing")
-        this.cancelLanding();
+//      if(this.mode == "landing")
+//        this.cancelLanding();
 
       this.requested.speed = clamp(this.model.speed.min, speed, this.model.speed.max);
 
@@ -493,7 +493,7 @@ var Aircraft=Fiber.extend(function() {
 
       }
 
-      return ["ok", "navigate to " + this.requested.fix];
+      return ["ok", "navigate to " + this.requested.fix.join(', ')];
     },
     runWait: function(data) {
       if(this.category != "departure") return ["fail", "inbound"];
@@ -559,6 +559,7 @@ var Aircraft=Fiber.extend(function() {
       this.requested.runway = data.toUpperCase();
       this.requested.turn   = "auto";
       this.requested.hold   = false;
+      this.requested.speed  = -1;
 
       this.requested.start_speed = this.speed;
 
@@ -804,7 +805,8 @@ var Aircraft=Fiber.extend(function() {
         var s = this.target.speed;
 
         this.target.altitude     = glideslope_altitude;
-        this.target.speed        = crange(5, offset[1], 30, this.model.speed.landing, this.requested.start_speed);
+        if(this.requested.speed > 0) this.requested.start_speed = this.requested.speed;
+        this.target.speed        = crange(3, offset[1], 10, this.model.speed.landing, this.requested.start_speed);
 
         if(this.altitude < 10) {
           if(s > 10) {
@@ -868,6 +870,7 @@ var Aircraft=Fiber.extend(function() {
             this.requested.fix.splice(0, 1);
           else
             this.cancelFix();
+          this.updateStrip();
         } else {
           this.target.heading = Math.atan2(a, b) - Math.PI;
         }
@@ -1234,10 +1237,9 @@ function aircraft_add(model) {
 
 function aircraft_visible(aircraft, factor) {
   if(!factor) factor=1;
-  var width2  = pixels_to_km((prop.canvas.size.width / 2)  + 80)*factor;
-  var height2 = pixels_to_km((prop.canvas.size.height / 2) + 80)*factor;
-  if(((aircraft.position[0] < -width2  || aircraft.position[0] > width2)) ||
-     ((aircraft.position[1] < -height2 || aircraft.position[1] > height2))) {
+  var size = 100 * factor;
+  if(((aircraft.position[0] < -size || aircraft.position[0] > size)) ||
+     ((aircraft.position[1] < -size || aircraft.position[1] > size))) {
     return false;
   }
   return true;

@@ -2,12 +2,14 @@
 function ui_init_pre() {
   prop.ui = {};
   prop.ui.scale = 5; // pixels per km
+
+  if('atc-scale' in localStorage) prop.ui.scale = localStorage['atc-scale'];
 }
 
 function ui_init() {
 
   $(".fast-forwards").prop("title", "Set time warp to 5");
-  
+
   $(".fast-forwards").click(function() {
     game_timewarp_toggle();
   });
@@ -35,12 +37,12 @@ function ui_complete() {
   for(var i in prop.airport.airports) airports.push(i);
 
   airports.sort();
-  
+
   for(var i=0;i<airports.length;i++) {
     var airport = prop.airport.airports[airports[i]];
 
     var html = $("<li class='airport icao-"+airport.icao.toLowerCase()+"'><span class='icao'>" + airport.icao + "</span><span class='name'>" + airport.name + "</span></li>");
-    
+
     html.click(airport.icao.toLowerCase(), function(e) {
       if(e.data != airport_get().icao) {
         airport_set(e.data);

@@ -1,0 +1,88 @@
+{
+  "name": "John F Kennedy International Airport",
+  "level": "hard",
+  "icao": "KJFK",
+  "wind": {
+    "angle": 180,
+    "speed": 6
+  },
+  "fixes": {
+    "CAXUN": [ -45,  39     ],
+    "TELEX": [ -55,  46     ],
+
+
+    "KRSTL": [ -21, -41     ],
+    "REPRE": [ -37, -69     ],
+
+    "EBBEE": [ -14, -40     ],
+    "ZETAL": [ -30, -68     ],
+
+
+    "HENEB": [  37,  55     ],
+    "RIVRA": [  55,  85     ],
+
+    "ZALPO": [  41,  53     ],
+    "ROSLY": [  59,  83     ],
+
+
+    "MEALS": [  38, -25     ],
+    "ZACHS": [  67, -42     ],
+
+    "ZULAB": [  45, -15     ],
+    "MALDE": [  73, -32     ]
+  },
+  "runways":[
+    {
+      "name":        ["31R", "13L"],
+      "name_offset": [[0, 0], [0, 0]],
+      "position":    [-0.5, 0.2],
+      "angle":       301,
+      "length":      3,
+      "ils":         [true, false]
+    },
+    {
+      "name":        ["22L", "4R"],
+      "name_offset": [[0, 0], [0, 0]],
+      "position":    [3, 0],
+      "angle":       211,
+      "length":      2.5,
+      "ils":         [true, false]
+    },
+    {
+      "name":        ["31L", "13R"],
+      "name_offset": [[0, 0], [0, 0]],
+      "position":    [0.8, 2],
+      "angle":       301,
+      "length":      4.4,
+      "ils":         [true, false]
+    },
+    {
+      "name":        ["22R", "4L"],
+      "name_offset": [[0, 0], [0, 0]],
+      "position":    [2, 0],
+      "angle":       211,
+      "length":      3.4,
+      "ils":         [true, false]
+    }
+  ],
+  "departures": {
+    "airlines": [
+      ["ual", 3],
+      ["baw", 5],
+      ["cessna", 4]
+    ],
+    "frequency": [1, 3]
+  },
+  "arrivals": [
+    {
+      "heading":   180,
+      "airlines":  [
+        ["ual", 3],
+        ["baw", 1],
+        ["cessna", 2]
+      ],
+      "frequency": [4, 6],
+      "altitude":  [4000, 6000]
+    }
+  ]
+}
