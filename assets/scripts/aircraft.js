@@ -97,7 +97,7 @@ var Aircraft=Fiber.extend(function() {
       this.mode        = "cruise";  // "apron", "taxi", "waiting", "takeoff", "cruise", or "landing"
 
       this.requested = {
-        heading:  -1,
+        heading:  null,
         turn:     "auto", // "left", "right", or "auto"
         fix:      [],
         hold:     false,
@@ -109,7 +109,7 @@ var Aircraft=Fiber.extend(function() {
       };
 
       this.target = {
-        heading:  0,
+        heading:  null,
         turn:     "auto",
         altitude: 0,
         expedite: false,
@@ -524,7 +524,7 @@ var Aircraft=Fiber.extend(function() {
         prop.game.score.windy_takeoff += wind_score;
         if(wind_score)
           ui_log(true, this.getCallsign() + ' taking off with a tailwind');
-        if(this.requested.heading == -1)
+        if(this.requested.heading == null)
           this.requested.heading = runway.getAngle(this.requested.runway) + Math.PI;
         return ["ok", "cleared for takeoff", ""];
       } else {
