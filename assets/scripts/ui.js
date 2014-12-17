@@ -1,7 +1,8 @@
 
 function ui_init_pre() {
   prop.ui = {};
-  prop.ui.scale = 5; // pixels per km
+  prop.ui.scale_default = 5; // pixels per km
+  prop.ui.scale         = prop.ui.scale_default;
 
   if('atc-scale' in localStorage) prop.ui.scale = localStorage['atc-scale'];
 }

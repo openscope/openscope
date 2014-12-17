@@ -32,7 +32,7 @@ function input_init() {
       if(e.shiftKey) {
         prop.ui.scale *= 1/0.9;
       } else {
-        prop.ui.scale = 5;
+        prop.ui.scale = prop.ui.scale_default;
       }
       localStorage['atc-scale'] = prop.ui.scale;
       prop.canvas.dirty = true;
