@@ -60,11 +60,9 @@ function input_init() {
   });
 
   $("#canvases").mousedown(function(e) {
-    if(e.which  == 2){
+    if(e.which  == 2) {
       e.preventDefault();
-      prop.ui.scale = prop.ui.scale_default;
-      localStorage['atc-scale'] = prop.ui.scale;
-      prop.canvas.dirty = true;
+      ui_zoom_reset();
     } else {
       var position = [e.pageX, -e.pageY];
       position[0] -= prop.canvas.size.width / 2;
