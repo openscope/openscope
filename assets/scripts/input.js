@@ -24,18 +24,14 @@ function input_init() {
       else if($("#airport-switch").hasClass("open")) ui_airport_close();
     }
     if(e.which == 189) {
-      prop.ui.scale *= 0.9;
-      localStorage['atc-scale'] = prop.ui.scale;
-      prop.canvas.dirty = true;
+      ui_zoom_out();
       return false;
     } else if(e.which == 187) {
       if(e.shiftKey) {
-        prop.ui.scale *= 1/0.9;
+        ui_zoom_in();
       } else {
-        prop.ui.scale = prop.ui.scale_default;
+        ui_zoom_reset();
       }
-      localStorage['atc-scale'] = prop.ui.scale;
-      prop.canvas.dirty = true;
       return false;
     }
     if(!prop.tutorial.open) return;
@@ -50,11 +46,10 @@ function input_init() {
 
   $("#canvases").bind("DOMMouseScroll mousewheel", function(e) {
     if (e.originalEvent.wheelDelta > 0 || e.originalEvent.detail < 0) {
-      prop.ui.scale *= 1/0.9;
+      ui_zoom_in();
     } else {
-      prop.ui.scale *= 0.9;
+      ui_zoom_out();
     }
-    prop.canvas.dirty = true;
   });
 
   $("#canvases").mousemove(function(e) {

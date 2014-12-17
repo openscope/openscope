@@ -7,6 +7,26 @@ function ui_init_pre() {
   if('atc-scale' in localStorage) prop.ui.scale = localStorage['atc-scale'];
 }
 
+function ui_zoom_out() {
+  prop.ui.scale *= 0.9;
+  ui_after_zoom();
+}
+
+function ui_zoom_in() {
+  prop.ui.scale /= 0.9;
+  ui_after_zoom();
+}
+
+function ui_zoom_reset() {
+  prop.ui.scale = prop.ui.scale_default;
+  ui_after_zoom();
+}
+
+function ui_after_zoom() {
+  localStorage['atc-scale'] = prop.ui.scale;
+  prop.canvas.dirty = true;
+}
+
 function ui_init() {
 
   $(".fast-forwards").prop("title", "Set time warp to 2");
