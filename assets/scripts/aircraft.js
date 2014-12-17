@@ -96,6 +96,8 @@ var Aircraft=Fiber.extend(function() {
       this.category    = "arrival"; // or "departure"
       this.mode        = "cruise";  // "apron", "taxi", "waiting", "takeoff", "cruise", or "landing"
 
+      //requested represents the actual commands received by the tower. These
+      //may be a heading, a fix and so on
       this.requested = {
         heading:  null,
         turn:     null, // null, "left", or right"
@@ -108,6 +110,9 @@ var Aircraft=Fiber.extend(function() {
         start_speed: 0
       };
 
+      //target represents what the pilot makes of the tower's commands. It is
+      //most important when the plane is in a 'guided' situation, that is it is
+      //not given a heading directly, but has a fix or is following an ILS path
       this.target = {
         heading:  null,
         turn:     null,
