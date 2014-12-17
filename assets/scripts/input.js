@@ -65,23 +65,30 @@ function input_init() {
   });
 
   $("#canvases").mousedown(function(e) {
-    var position = [e.pageX, -e.pageY];
-    position[0] -= prop.canvas.size.width / 2;
-    position[1] += prop.canvas.size.height / 2;
-    var nearest = aircraft_get_nearest([pixels_to_km(position[0]), pixels_to_km(position[1])]);
-    if(nearest[0]) {
-      if(nearest[1] < pixels_to_km(80)) {
-        input_select(nearest[0].getCallsign().toUpperCase());
-      } else {
-        input_select();
+    if(e.which  == 2){
+      e.preventDefault();
+      prop.ui.scale = prop.ui.scale_default;
+      localStorage['atc-scale'] = prop.ui.scale;
+      prop.canvas.dirty = true;
+    } else {
+      var position = [e.pageX, -e.pageY];
+      position[0] -= prop.canvas.size.width / 2;
+      position[1] += prop.canvas.size.height / 2;
+      var nearest = aircraft_get_nearest([pixels_to_km(position[0]), pixels_to_km(position[1])]);
+      if(nearest[0]) {
+        if(nearest[1] < pixels_to_km(80)) {
+          input_select(nearest[0].getCallsign().toUpperCase());
+        } else {
+          input_select();
+        }
       }
+      position = [pixels_to_km(position[0]), pixels_to_km(position[1])];
+      position[0] = parseFloat(position[0].toFixed(2));
+      position[1] = parseFloat(position[1].toFixed(2));
+      prop.input.positions += "["+position.join(",")+"]";
+      e.preventDefault();
+      return(false);
     }
-    position = [pixels_to_km(position[0]), pixels_to_km(position[1])];
-    position[0] = parseFloat(position[0].toFixed(2));
-    position[1] = parseFloat(position[1].toFixed(2));
-    prop.input.positions += "["+position.join(",")+"]";
-    e.preventDefault();
-    return(false);
   });
 
   $(window).keydown(function() {
