@@ -47,6 +47,14 @@ function input_init() {
       e.preventDefault();
     }
   });
+  
+  $("#canvases").bind("DOMMouseScroll mousewheel", function(e) {
+      if (e.originalEvent.wheelDelta > 0 || e.originalEvent.detail < 0) {
+          prop.ui.scale *= 1/0.9;
+      } else {
+          prop.ui.scale *= 0.9;
+      }
+  });
 
   $("#canvases").mousemove(function(e) {
     var position = [e.pageX, -e.pageY];
