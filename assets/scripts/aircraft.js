@@ -98,7 +98,7 @@ var Aircraft=Fiber.extend(function() {
 
       this.requested = {
         heading:  null,
-        turn:     "auto", // "left", "right", or "auto"
+        turn:     null, // null, "left", or right"
         fix:      [],
         hold:     false,
         altitude: 0,
@@ -110,7 +110,7 @@ var Aircraft=Fiber.extend(function() {
 
       this.target = {
         heading:  null,
-        turn:     "auto",
+        turn:     null,
         altitude: 0,
         expedite: false,
         speed:    0
@@ -366,7 +366,7 @@ var Aircraft=Fiber.extend(function() {
       var split     = data.split(" ");
 
       var heading   = parseInt(split[0]);
-      var direction = "auto";
+      var direction = null;
 
       if(split.length == 0) return ["fail", "heading not understood", "say again"];
 
@@ -385,7 +385,7 @@ var Aircraft=Fiber.extend(function() {
       this.requested.turn    = direction;
       this.requested.hold    = false;
 
-      if(direction == "auto") direction  = "";
+      if(direction == null) direction  = "";
       else                    direction += " ";
 
       if(this.isTakeoff())
@@ -546,7 +546,7 @@ var Aircraft=Fiber.extend(function() {
       }
 
       this.requested.runway = data.toUpperCase();
-      this.requested.turn   = "auto";
+      this.requested.turn   = null;
       this.requested.hold   = false;
       this.requested.speed  = null;
 
@@ -760,7 +760,7 @@ var Aircraft=Fiber.extend(function() {
             this.mode = "landing";
             if(m) {
               this.updateStrip();
-              this.requested.turn = "auto";
+              this.requested.turn = null;
             }
           } else if(this.altitude < 300 && this.mode == "landing") {
             this.mode = "landing";
@@ -900,9 +900,9 @@ var Aircraft=Fiber.extend(function() {
           var offset = angle_offset(this.target.heading, this.heading);
           if(abs(offset) < turn_amount) {
             this.heading = this.target.heading;
-          } else if((offset < 0 && this.target.turn == "auto") || this.target.turn == "left") {
+          } else if((offset < 0 && this.target.turn == null) || this.target.turn == "left") {
             this.heading -= turn_amount;
-          } else if((offset > 0 && this.target.turn == "auto") || this.target.turn == "right") {
+          } else if((offset > 0 && this.target.turn == null) || this.target.turn == "right") {
             this.heading += turn_amount;
           }
         }
