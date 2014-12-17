@@ -767,9 +767,7 @@ var Aircraft=Fiber.extend(function() {
               this.updateStrip();
               this.requested.turn = null;
             }
-          } else if(this.altitude < 300 && this.mode == "landing") {
-            this.mode = "landing";
-          } else {
+          } else if(this.altitude >= 300) {
             if(this.mode == "landing") {
               this.updateStrip();
               this.cancelLanding();
