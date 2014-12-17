@@ -1,14 +1,15 @@
 
 function ui_init_pre() {
   prop.ui = {};
-  prop.ui.scale = 5; // pixels per km
+  prop.ui.scale_default = 5; // pixels per km
+  prop.ui.scale         = prop.ui.scale_default;
 
   if('atc-scale' in localStorage) prop.ui.scale = localStorage['atc-scale'];
 }
 
 function ui_init() {
 
-  $(".fast-forwards").prop("title", "Set time warp to 5");
+  $(".fast-forwards").prop("title", "Set time warp to 2");
 
   $(".fast-forwards").click(function() {
     game_timewarp_toggle();

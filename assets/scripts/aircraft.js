@@ -466,6 +466,8 @@ var Aircraft=Fiber.extend(function() {
     runFix: function(data) {
       this.cancelLanding();
 
+      this.requested.fix = [];
+
       data = data.split(/\s+/);
       console.log(data);
 
