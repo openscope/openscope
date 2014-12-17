@@ -47,13 +47,14 @@ function input_init() {
       e.preventDefault();
     }
   });
-  
+
   $("#canvases").bind("DOMMouseScroll mousewheel", function(e) {
-      if (e.originalEvent.wheelDelta > 0 || e.originalEvent.detail < 0) {
-          prop.ui.scale *= 1/0.9;
-      } else {
-          prop.ui.scale *= 0.9;
-      }
+    if (e.originalEvent.wheelDelta > 0 || e.originalEvent.detail < 0) {
+      prop.ui.scale *= 1/0.9;
+    } else {
+      prop.ui.scale *= 0.9;
+    }
+    prop.canvas.dirty = true;
   });
 
   $("#canvases").mousemove(function(e) {
