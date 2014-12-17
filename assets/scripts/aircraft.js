@@ -754,7 +754,7 @@ var Aircraft=Fiber.extend(function() {
           glideslope_altitude = clamp(0, runway.getGlideslopeAltitude(offset[1] + landing_zone_offset, this.requested.runway), this.altitude);
           glideslope_window   = abs(runway.getGlideslopeAltitude(offset[1] + landing_zone_offset, this.requested.runway, radians(1)));
 
-          if((abs(this.altitude - glideslope_altitude) < glideslope_window) && (abs(offset_angle) < radians(30))) {
+          if((abs(this.altitude - glideslope_altitude) < glideslope_window) && (abs(offset_angle) < radians(30)) && offset[1] < 40) {
             var m = false;
             if(this.mode != "landing") m=true;
             this.mode = "landing";

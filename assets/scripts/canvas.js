@@ -75,6 +75,8 @@ function canvas_draw_runway(cc, runway, mode) {
   var size  = 20;
   var size2 = size / 2;
 
+  var ils = 40; // max distance for ils lock
+
   cc.translate(round(km(runway.position[0])), -round(km(runway.position[1])));
 
   cc.rotate(angle);
@@ -91,10 +93,10 @@ function canvas_draw_runway(cc, runway, mode) {
     cc.beginPath();
 
     cc.moveTo(0, -length2);
-    cc.lineTo(0, -length2 - km(20));
+    cc.lineTo(0, -length2 - km(ils));
 
     cc.moveTo(0,  length2);
-    cc.lineTo(0,  length2 + km(20));
+    cc.lineTo(0,  length2 + km(ils));
 
     cc.stroke();
   }
