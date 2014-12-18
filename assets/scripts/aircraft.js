@@ -437,7 +437,7 @@ var Aircraft=Fiber.extend(function() {
 
       if(isNaN(heading)) return ["fail", "heading not understood", "say again"];
 
-      if(this.mode == "landing")
+      if(this.requested.navmode == "rwy")
         this.cancelLanding();
       this.cancelFix();
 
@@ -681,12 +681,14 @@ var Aircraft=Fiber.extend(function() {
         }
 
         this.requested.navmode = null;
-        this.requested.runway = null;
         this.mode = "cruise";
         this.updateStrip();
+        this.requested.runway = null;
         return true;
+      } else {
+        this.requested.runway = null;
+        return false;
       }
-      return false;
     },
     parse: function(data) {
       if(data.position) this.position = data.position;
