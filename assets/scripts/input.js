@@ -52,11 +52,9 @@ function input_init() {
 
   $("#canvases").bind("DOMMouseScroll mousewheel", function(e) {
     if (e.originalEvent.wheelDelta > 0 || e.originalEvent.detail < 0) {
-      //ui_zoom_in();
-      prop.canvas.panY += 4;
+      ui_zoom_in();
     } else {
-      //ui_zoom_out();
-      prop.canvas.panX -= 4;
+      ui_zoom_out();
     }
   });
 

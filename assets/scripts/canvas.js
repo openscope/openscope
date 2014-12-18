@@ -251,7 +251,7 @@ function canvas_draw_aircraft(cc, aircraft) {
     var w = prop.canvas.size.width/2 -  t;
     var h = prop.canvas.size.height/2 - t;
 
-    cc.translate(clamp(-w, km(aircraft.position[0]), w) + prop.canvas.panX, clamp(-h, -km(aircraft.position[1]), h) + prop.canvas.panY);
+    cc.translate(clamp(-w, km(aircraft.position[0]) + prop.canvas.panX, w), clamp(-h, -km(aircraft.position[1]) + prop.canvas.panY, h));
 
     cc.beginPath();
     cc.arc(0, 0, round(size * 1.5), 0, Math.PI * 2);
