@@ -17,7 +17,7 @@ function input_init_pre() {
 
   prop.input.mouseDelta = [0, 0];
   prop.input.mouseDown = [0, 0];
-  isMouseDown = false;
+  prop.input.isMouseDown = false;
 }
 
 function input_init() {
@@ -57,16 +57,16 @@ function input_init() {
   });
 
   $("#canvases").mousemove(function(e) {
-    if(isMouseDown){
-      mouseDelta = [e.pageX - mouseDown[0], e.pageY - mouseDown[1]];
-      prop.canvas.panX = mouseDelta[0];
-      prop.canvas.panY = mouseDelta[1];
+    if(prop.input.isMouseDown){
+      prop.input.mouseDelta = [e.pageX - prop.input.mouseDown[0], e.pageY - prop.input.mouseDown[1]];
+      prop.canvas.panX = prop.input.mouseDelta[0];
+      prop.canvas.panY = prop.input.mouseDelta[1];
       prop.canvas.dirty = true;
     }
   });
 
   $("#canvases").mouseup(function(e) {
-    isMouseDown = false;
+    prop.input.isMouseDown = false;
   });
 
   $("#canvases").mousedown(function(e) {
@@ -75,8 +75,8 @@ function input_init() {
       ui_zoom_reset();
     } else if(e.which ==1){
       // Record mouse down position for panning
-      mouseDown = [e.pageX - prop.canvas.panX, e.pageY - prop.canvas.panY];
-      isMouseDown = true;
+      prop.input.mouseDown = [e.pageX - prop.canvas.panX, e.pageY - prop.canvas.panY];
+      prop.input.isMouseDown = true;
 
       // Aircraft label selection
       var position = [e.pageX, -e.pageY];
