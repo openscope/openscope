@@ -650,6 +650,7 @@ var Aircraft=Fiber.extend(function() {
         this.requested.fix = []
         this.requested.heading = round(this.heading);
         this.updateStrip();
+        this.requested.navmode = null;
         return true;
       }
       return false;
