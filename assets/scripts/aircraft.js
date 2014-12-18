@@ -548,7 +548,7 @@ var Aircraft=Fiber.extend(function() {
       this.requested.runway = data.toUpperCase();
       this.requested.turn   = "auto";
       this.requested.hold   = false;
-      this.requested.speed  = -1;
+      this.requested.speed  = null;
 
       this.requested.start_speed = this.speed;
 
