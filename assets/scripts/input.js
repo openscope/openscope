@@ -14,6 +14,12 @@ function input_init_pre() {
   prop.input.positions = "";
 
   prop.input.tab_compl = {};
+
+  mainLayerX = 0;
+  mouseDeltaY = 0;
+  mouseDownX = 0;
+  mouseDownY=0;
+  isMouseDown = false;
 }
 
 function input_init() {
@@ -46,28 +52,44 @@ function input_init() {
 
   $("#canvases").bind("DOMMouseScroll mousewheel", function(e) {
     if (e.originalEvent.wheelDelta > 0 || e.originalEvent.detail < 0) {
-      ui_zoom_in();
+      //ui_zoom_in();
+      prop.canvas.panY += 4;
     } else {
-      ui_zoom_out();
+      //ui_zoom_out();
+      prop.canvas.panX -= 4;
     }
   });
 
   $("#canvases").mousemove(function(e) {
-    var position = [e.pageX, -e.pageY];
-    position[0] -= prop.canvas.size.width / 2;
-    position[1] += prop.canvas.size.height / 2;
-    prop.input.click = [pixels_to_km(position[0]), pixels_to_km(position[1])];
+    mouseDeltaX = e.pageX - mouseDownX;
+    mouseDeltaY = e.pageY - mouseDownY;
+
+    if(isMouseDown){
+      prop.canvas.panX = mouseDeltaX;
+      prop.canvas.panY = mouseDeltaY;
+      prop.canvas.dirty = true;
+    }
+  });
+
+  $("#canvases").mouseup(function(e) {
+    isMouseDown = false;
   });
 
   $("#canvases").mousedown(function(e) {
     if(e.which  == 2) {
       e.preventDefault();
       ui_zoom_reset();
-    } else {
+    } else if(e.which ==1){
+      // Record mouse down position for panning
+      mouseDownX = e.pageX - prop.canvas.panX;
+      mouseDownY = e.pageY - prop.canvas.panY;
+      isMouseDown = true;
+
+      // Aircraft label selection
       var position = [e.pageX, -e.pageY];
       position[0] -= prop.canvas.size.width / 2;
       position[1] += prop.canvas.size.height / 2;
-      var nearest = aircraft_get_nearest([pixels_to_km(position[0]), pixels_to_km(position[1])]);
+      var nearest = aircraft_get_nearest([pixels_to_km(position[0] - prop.canvas.panX), pixels_to_km(position[1] + prop.canvas.panY)]);
       if(nearest[0]) {
         if(nearest[1] < pixels_to_km(80)) {
           input_select(nearest[0].getCallsign().toUpperCase());

@@ -4,6 +4,9 @@ function canvas_init_pre() {
 
   prop.canvas.contexts={};
 
+  prop.canvas.panY=0;
+  prop.canvas.panX=0;
+
   // resize canvas to fit window?
   prop.canvas.resize=true;
   prop.canvas.size={ // all canvases are the same size
@@ -77,7 +80,7 @@ function canvas_draw_runway(cc, runway, mode) {
 
   var ils = 40; // max distance for ils lock
 
-  cc.translate(round(km(runway.position[0])), -round(km(runway.position[1])));
+  cc.translate(round(km(runway.position[0])) + prop.canvas.panX, -round(km(runway.position[1])) + prop.canvas.panY);
 
   cc.rotate(angle);
 
@@ -106,7 +109,7 @@ function canvas_draw_runway_label(cc, runway) {
   var length2 = round(km(runway.length / 2)) + 0.5;
   var angle   = runway.angle;
 
-  cc.translate(round(km(runway.position[0])), -round(km(runway.position[1])));
+  cc.translate(round(km(runway.position[0])) + prop.canvas.panX, -round(km(runway.position[1])) + prop.canvas.panY);
 
   cc.rotate(angle);
 
@@ -203,7 +206,7 @@ function canvas_draw_fixes(cc) {
   var airport=airport_get();
   for(var i in airport.fixes) {
     cc.save();
-    cc.translate(round(km(airport.fixes[i][0])), -round(km(airport.fixes[i][1])));
+    cc.translate(round(km(airport.fixes[i][0])) + prop.canvas.panX, -round(km(airport.fixes[i][1])) + prop.canvas.panY);
     canvas_draw_fix(cc, i, airport.fixes[i]);
     cc.restore();
   }
@@ -248,7 +251,7 @@ function canvas_draw_aircraft(cc, aircraft) {
     var w = prop.canvas.size.width/2 -  t;
     var h = prop.canvas.size.height/2 - t;
 
-    cc.translate(clamp(-w, km(aircraft.position[0]), w), clamp(-h, -km(aircraft.position[1]), h));
+    cc.translate(clamp(-w, km(aircraft.position[0]), w) + prop.canvas.panX, clamp(-h, -km(aircraft.position[1]), h) + prop.canvas.panY);
 
     cc.beginPath();
     cc.arc(0, 0, round(size * 1.5), 0, Math.PI * 2);
@@ -258,7 +261,7 @@ function canvas_draw_aircraft(cc, aircraft) {
 
   }
 
-  cc.translate(km(aircraft.position[0]), -km(aircraft.position[1]));
+  cc.translate(km(aircraft.position[0]) + prop.canvas.panX, -km(aircraft.position[1]) + prop.canvas.panY);
 
   if(!aircraft.hit) {
     cc.save();
@@ -348,7 +351,7 @@ function canvas_draw_info(cc, aircraft) {
       cc.restore();
     }
 
-    cc.translate(round(km(aircraft.position[0])), -round(km(aircraft.position[1])));
+    cc.translate(round(km(aircraft.position[0])) + prop.canvas.panX, -round(km(aircraft.position[1])) + prop.canvas.panY);
 
     if(-km(aircraft.position[1]) + prop.canvas.size.height/2 < height * 1.5)
       cc.translate(0,  height2 + 12);
