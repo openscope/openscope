@@ -15,10 +15,8 @@ function input_init_pre() {
 
   prop.input.tab_compl = {};
 
-  mainLayerX = 0;
-  mouseDeltaY = 0;
-  mouseDownX = 0;
-  mouseDownY=0;
+  prop.input.mouseDelta = [0, 0];
+  prop.input.mouseDown = [0, 0];
   isMouseDown = false;
 }
 
@@ -59,12 +57,10 @@ function input_init() {
   });
 
   $("#canvases").mousemove(function(e) {
-    mouseDeltaX = e.pageX - mouseDownX;
-    mouseDeltaY = e.pageY - mouseDownY;
-
     if(isMouseDown){
-      prop.canvas.panX = mouseDeltaX;
-      prop.canvas.panY = mouseDeltaY;
+      mouseDelta = [e.pageX - mouseDown[0], e.pageY - mouseDown[1]];
+      prop.canvas.panX = mouseDelta[0];
+      prop.canvas.panY = mouseDelta[1];
       prop.canvas.dirty = true;
     }
   });
@@ -79,8 +75,7 @@ function input_init() {
       ui_zoom_reset();
     } else if(e.which ==1){
       // Record mouse down position for panning
-      mouseDownX = e.pageX - prop.canvas.panX;
-      mouseDownY = e.pageY - prop.canvas.panY;
+      mouseDown = [e.pageX - prop.canvas.panX, e.pageY - prop.canvas.panY];
       isMouseDown = true;
 
       // Aircraft label selection
