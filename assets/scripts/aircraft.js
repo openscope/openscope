@@ -124,6 +124,7 @@ var Aircraft=Fiber.extend(function() {
        * category "departure"                 category "arrival"
        */
 
+
       //requested represents the actual commands received by the tower. These
       //may be a heading, a fix and so on
       this.requested = {
