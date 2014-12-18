@@ -767,15 +767,13 @@ var Aircraft=Fiber.extend(function() {
               this.updateStrip();
               this.requested.turn = null;
             }
-          } else if(this.altitude >= 300) {
-            if(this.mode == "landing") {
-              this.updateStrip();
-              this.cancelLanding();
-              ui_log(this.getRadioCallsign() + " aborting landing, lost ILS");
-              if(distance2d(runway.position, this.position) < 10) {
-                console.log("aborted landing after ILS lost");
-                prop.game.score.abort.landing += 1;
-              }
+          } else if(this.altitude >= 300 && this.mode == "landing") {
+            this.updateStrip();
+            this.cancelLanding();
+            ui_log(this.getRadioCallsign() + " aborting landing, lost ILS");
+            if(distance2d(runway.position, this.position) < 10) {
+              console.log("aborted landing after ILS lost");
+              prop.game.score.abort.landing += 1;
             }
           }
         }
