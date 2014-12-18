@@ -14,6 +14,10 @@ function input_init_pre() {
   prop.input.positions = "";
 
   prop.input.tab_compl = {};
+
+  prop.input.mouseDelta = [0, 0];
+  prop.input.mouseDown = [0, 0];
+  prop.input.isMouseDown = false;
 }
 
 function input_init() {
@@ -53,21 +57,32 @@ function input_init() {
   });
 
   $("#canvases").mousemove(function(e) {
-    var position = [e.pageX, -e.pageY];
-    position[0] -= prop.canvas.size.width / 2;
-    position[1] += prop.canvas.size.height / 2;
-    prop.input.click = [pixels_to_km(position[0]), pixels_to_km(position[1])];
+    if(prop.input.isMouseDown){
+      prop.input.mouseDelta = [e.pageX - prop.input.mouseDown[0], e.pageY - prop.input.mouseDown[1]];
+      prop.canvas.panX = prop.input.mouseDelta[0];
+      prop.canvas.panY = prop.input.mouseDelta[1];
+      prop.canvas.dirty = true;
+    }
+  });
+
+  $("#canvases").mouseup(function(e) {
+    prop.input.isMouseDown = false;
   });
 
   $("#canvases").mousedown(function(e) {
     if(e.which  == 2) {
       e.preventDefault();
       ui_zoom_reset();
-    } else {
+    } else if(e.which ==1){
+      // Record mouse down position for panning
+      prop.input.mouseDown = [e.pageX - prop.canvas.panX, e.pageY - prop.canvas.panY];
+      prop.input.isMouseDown = true;
+
+      // Aircraft label selection
       var position = [e.pageX, -e.pageY];
       position[0] -= prop.canvas.size.width / 2;
       position[1] += prop.canvas.size.height / 2;
-      var nearest = aircraft_get_nearest([pixels_to_km(position[0]), pixels_to_km(position[1])]);
+      var nearest = aircraft_get_nearest([pixels_to_km(position[0] - prop.canvas.panX), pixels_to_km(position[1] + prop.canvas.panY)]);
       if(nearest[0]) {
         if(nearest[1] < pixels_to_km(80)) {
           input_select(nearest[0].getCallsign().toUpperCase());
