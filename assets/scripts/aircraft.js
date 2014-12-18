@@ -273,7 +273,13 @@ var Aircraft=Fiber.extend(function() {
       "debug"
     ],
     runCommand: function(command) {
-      var strings  = command.toLowerCase().split(" ")
+      var s        = command.toLowerCase().split(" ")
+
+      var strings  = [];
+
+      for(var i=0;i<s.length;i++) {
+        if(s[i]) strings.push(s[i]);
+      }
 
       var commands = [];
       var concat   = false;
@@ -519,6 +525,10 @@ var Aircraft=Fiber.extend(function() {
       return ["ok", "circling towards the " + this.requested.turn + " at " + this.requested.altitude + " feet"];
     },
     runFix: function(data) {
+      if(data.length == 0) {
+        return ["fail", "fix name not understood", "say again"];
+      }
+
       this.cancelLanding();
 
       this.requested.navmode = "fix";
