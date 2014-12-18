@@ -529,9 +529,8 @@ var Aircraft=Fiber.extend(function() {
         return ["fail", "fix name not understood", "say again"];
       }
 
+      this.cancelFix();
       this.cancelLanding();
-
-      this.requested.fix = [];
 
       data = data.split(/\s+/);
       console.log(data);
@@ -544,11 +543,14 @@ var Aircraft=Fiber.extend(function() {
           return ["fail", "no fix found with name of " + data[i].toUpperCase(), "say again"];
         }
 
+        if(i == 0) {
+          this.requested.fix = [];
+          this.requested.navmode = "fix";
+        }
+
         this.requested.fix.push(data[i].toUpperCase());
 
       }
-
-      this.requested.navmode = "fix";
 
       return ["ok", "navigate to " + this.requested.fix.join(', ')];
     },
