@@ -531,7 +531,6 @@ var Aircraft=Fiber.extend(function() {
 
       this.cancelLanding();
 
-      this.requested.navmode = "fix";
       this.requested.fix = [];
 
       data = data.split(/\s+/);
@@ -541,12 +540,15 @@ var Aircraft=Fiber.extend(function() {
         var fix = airport_get().getFix(data[i]);
 
         if(!fix) {
+          this.requested.fix = [];
           return ["fail", "no fix found with name of " + data[i].toUpperCase(), "say again"];
         }
 
         this.requested.fix.push(data[i].toUpperCase());
 
       }
+
+      this.requested.navmode = "fix";
 
       return ["ok", "navigate to " + this.requested.fix.join(', ')];
     },
