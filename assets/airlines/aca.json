@@ -1,0 +1,19 @@
+{
+  "name": "Air Canada",
+
+  "callsign": {
+    "name": "Air Canada",
+    "length": 3
+  },
+
+  "aircraft": [
+    ["A319", 18 ],
+    ["A320", 41 ],
+    ["A321", 10 ],
+
+    ["B772", 6 ],
+    ["B77e", 17 ],
+
+    ["E190", 45 ]
+  ]
+}

@@ -8,9 +8,9 @@ function airline_init() {
   airline_load("UAL");
   airline_load("BAW");
   airline_load("AAL");
-  //  disabled because of adblockers
-  //  airline_load("AWE");
+  airline_load("AWE");
   airline_load("CESSNA");
+  airline_load("ACA");
 }
 
 function airline_load(icao) {
