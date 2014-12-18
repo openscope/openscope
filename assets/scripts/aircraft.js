@@ -779,8 +779,8 @@ var Aircraft=Fiber.extend(function() {
             }
           }
         }
-      } else if(this.mode == "landing" || this.mode == "cruise") {
-        if(this.mode != "cruise") this.updateStrip();
+      } else if(this.mode == "landing") {
+        this.updateStrip();
         this.mode = "cruise";
       }
 
