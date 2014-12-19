@@ -292,10 +292,21 @@ function input_run() {
   } else if(prop.input.callsign == "tutorial") {
     tutorial_toggle();
     return true;
+  } else if(prop.input.callsign == "auto") {
+    aircraft_toggle_auto();
+    if(prop.aircraft.auto.enabled) {
+      ui_log('automatic controller ENGAGED');
+    } else {
+      ui_log('automatic controller OFF');
+    }
+    return true;
   } else if(prop.input.callsign == "pause") {
     game_pause_toggle();
     return true;
-  } else if(prop.input.callsign == "timewarp") {
+  } else if(prop.input.callsign == "timewarp" ||
+            prop.input.callsign == "speedup" ||
+            prop.input.callsign == "timescale" ||
+            prop.input.callsign == "slowmo") {
     if(prop.input.data) {
       prop.game.speedup = parseInt(prop.input.data);
     } else {

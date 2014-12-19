@@ -93,6 +93,8 @@ var Aircraft=Fiber.extend(function() {
       this.taxi_start    = 0;
       this.taxi_delay    = 0;
 
+      this.rules       = "ifr";
+
       this.category    = "arrival"; // or "departure"
       this.mode        = "cruise";  // "apron", "taxi", "waiting", "takeoff", "cruise", or "landing"
       // where:
@@ -1156,7 +1158,15 @@ var Aircraft=Fiber.extend(function() {
       speed.prop("title", title);
 
     },
+
+    updateAuto: function() {
+
+    },
+
     update: function(p) {
+      if(prop.aircraft.auto.enabled) {
+        this.updateAuto();
+      }
       this.updateTarget();
       this.updatePhysics();
     }
@@ -1169,6 +1179,15 @@ function aircraft_init_pre() {
   prop.aircraft.callsigns = [];
   prop.aircraft.list = [];
   prop.aircraft.current  = null;
+
+  prop.aircraft.auto = {
+    enabled: false,
+  };
+
+}
+
+function aircraft_auto_toggle() {
+  prop.aircraft.auto.enabled = !prop.aircraft.auto.enabled;
 }
 
 function aircraft_init() {

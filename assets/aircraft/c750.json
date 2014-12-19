@@ -18,5 +18,9 @@
     "max":     400,
     "landing": 135,
     "cruise":  250
+  },
+  "capability": {
+    "ils": true,
+    "fix": true
   }
 }
