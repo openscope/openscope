@@ -365,6 +365,7 @@ function airport_init_pre() {
 }
 
 function airport_init() {
+  // Add your airports here
   airport_load("kdbg");
   airport_load("ksra");
   airport_load("ksfo");
