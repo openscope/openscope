@@ -897,17 +897,17 @@ var Aircraft=Fiber.extend(function() {
       } else {
         this.target.heading = this.requested.heading;
         this.target.turn = this.requested.turn;
-
-        this.target.altitude = this.requested.altitude;
-        this.target.expedite = this.requested.expedite;
-
-        this.target.speed = this.requested.speed;
-        this.target.speed = clamp(this.model.speed.min, this.target.speed, this.model.speed.max);
-
-        this.target.altitude = Math.max(1000, this.target.altitude);
-
-        if(this.speed < this.model.speed.min) this.target.altitude = 0;
       }
+
+      this.target.altitude = this.requested.altitude;
+      this.target.expedite = this.requested.expedite;
+
+      this.target.speed = this.requested.speed;
+      this.target.speed = clamp(this.model.speed.min, this.target.speed, this.model.speed.max);
+
+      this.target.altitude = Math.max(1000, this.target.altitude);
+
+      if(this.speed < this.model.speed.min) this.target.altitude = 0;
 
       //finally, taxi overrides everything
       var was_taxi = false;
