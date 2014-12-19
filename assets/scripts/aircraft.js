@@ -522,7 +522,11 @@ var Aircraft=Fiber.extend(function() {
       this.requested.navmode = "hold";
 
       this.cancelFix();
-      this.cancelLanding();
+      if(this.mode == "landing")
+        this.cancelLanding();
+
+      if(this.isTakeoff())
+        return ["ok", "after departure, will circle towards the " + this.requested.turn];
 
       return ["ok", "circling towards the " + this.requested.turn + " at " + this.requested.altitude + " feet"];
     },
