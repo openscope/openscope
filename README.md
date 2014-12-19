@@ -2,6 +2,11 @@
 
 An ATC simulator in HTML5.
 
+## Privacy
+
+Page hits are tracked with Google Analytics; feel free to use an
+adblocker. The tracking is used only to get the number of page hits.
+
 ## License
 
 MIT.
@@ -16,6 +21,10 @@ The following files are NOT MIT licensed:
   under the Apache license. Thanks, LinkedIn! (Boy, I never thought
   I'd say _that_.)
 
+<!--
+
 ## Donate
 
 bitcoin: 1PLsixE3eYPL86VJJEV3t1E6LTVvmVHoe3
+
+-->
