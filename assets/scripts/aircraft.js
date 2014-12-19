@@ -903,13 +903,16 @@ var Aircraft=Fiber.extend(function() {
         this.target.turn = this.requested.turn;
       }
 
-      this.target.altitude = this.requested.altitude;
-      this.target.expedite = this.requested.expedite;
+      if(this.mode != "landing") {
+        this.target.altitude = this.requested.altitude;
+        this.target.expedite = this.requested.expedite;
 
-      this.target.speed = this.requested.speed;
-      this.target.speed = clamp(this.model.speed.min, this.target.speed, this.model.speed.max);
+        this.target.altitude = Math.max(1000, this.target.altitude);
 
-      this.target.altitude = Math.max(1000, this.target.altitude);
+        this.target.speed = this.requested.speed;
+        this.target.speed = clamp(this.model.speed.min, this.target.speed, this.model.speed.max);
+
+      }
 
       if(this.speed < this.model.speed.min) this.target.altitude = 0;
 
