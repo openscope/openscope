@@ -1,8 +1,7 @@
 {
-  "name": "San Francisco International Airport",
+  "name": "San Francisco International Airport (WIP)",
   "level": "hard",
   "radio": "San Francisco",
-  "icao": "KDBG",
   "icao": "KSFO",
   "wind": {
     "angle": 130,
@@ -26,34 +25,34 @@
   "runways":[
     {
       "name":        ["28R", "10L"],
-      "name_offset": [[2, 0], [-2, 0]],
-      "position":    [3, 6],
+      "name_offset": [[1, 0], [-1, 1]],
+      "position":    [0, 0.5],
       "angle":       283,
-      "length":      18,
+      "length":      3.6,
       "ils":         [true, false]
     },
     {
       "name":        ["28L", "10R"],
-      "name_offset": [[2, 0], [-2, 0]],
-      "position":    [3, 1],
+      "name_offset": [[1, -1], [-1, 0]],
+      "position":    [0, 0],
       "angle":       283,
-      "length":      17,
+      "length":      3.4,
       "ils":         [true, false]
     },
     {
-      "name":        ["19L", "1R"],
+      "name":        ["19L", "01R"],
       "name_offset": [[1, 0], [1, 0]],
-      "position":    [6, 1],
+      "position":    [0.8, 0.3],
       "angle":       193,
-      "length":      14,
+      "length":      2.6,
       "ils":         [false, false]
     },
     {
-      "name":        ["19R", "1L"],
+      "name":        ["19R", "01L"],
       "name_offset": [[-1, 0], [-1, 0]],
-      "position":    [1, 2],
+      "position":    [0.4, 0.3],
       "angle":       193,
-      "length":      14,
+      "length":      2.3,
       "ils":         [false, false]
     }
   ],
