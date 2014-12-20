@@ -366,11 +366,16 @@ function airport_init_pre() {
 
 function airport_init() {
   // Add your airports here
+
+  // DEBUG AIRPORTS
   airport_load("kdbg");
   airport_load("ksra");
+
+  // REAL AIRPORTS
   airport_load("ksfo");
   airport_load("kmsp");
   airport_load("kjfk");
+//  airport_load("ksna");
 }
 
 function airport_ready() {

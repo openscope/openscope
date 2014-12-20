@@ -300,7 +300,9 @@ var Aircraft=Fiber.extend(function() {
         } else {
           if(current) {
             current = current.substr(1);
-            commands[commands.length-1].push(current);
+            if(commands.length != 0) {
+              commands[commands.length-1].push(current);
+            }
             current = "";
           }
           commands.push([string]);
