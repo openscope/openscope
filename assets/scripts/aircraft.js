@@ -1219,6 +1219,9 @@ function aircraft_init() {
   aircraft_load("a320");
   aircraft_load("a321");
 
+  aircraft_load("a332");
+  aircraft_load("a333");
+
   aircraft_load("a388");
 
   // BOEING
