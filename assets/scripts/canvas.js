@@ -78,7 +78,7 @@ function canvas_draw_runway(cc, runway, mode) {
   var size  = 20;
   var size2 = size / 2;
 
-  var ils = 40; // max distance for ils lock
+  var ils = 20; // max distance for ils lock
 
   cc.translate(round(km(runway.position[0])) + prop.canvas.panX, -round(km(runway.position[1])) + prop.canvas.panY);
 
@@ -86,6 +86,7 @@ function canvas_draw_runway(cc, runway, mode) {
 
   if(!mode) {
     cc.strokeStyle = "#899";
+    cc.lineWidth = 2.8;
     cc.beginPath();
     cc.moveTo(0, -length2);
     cc.lineTo(0,  length2);
