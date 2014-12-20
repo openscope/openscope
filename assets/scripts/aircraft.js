@@ -538,7 +538,6 @@ var Aircraft=Fiber.extend(function() {
 
       this.cancelFix();
       if(this.mode != "waiting" && this.mode != "takeoff" ){
-        ui_log("Mode : in if ");
         this.cancelLanding();
       }
 
