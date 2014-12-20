@@ -347,7 +347,6 @@ var Aircraft=Fiber.extend(function() {
         var command = pair[0];
         var data    = "";
         if(pair.length == 2) data = pair[1];
-
         var retval  = this.run(command, data);
 
         if(retval) {
@@ -538,7 +537,10 @@ var Aircraft=Fiber.extend(function() {
       }
 
       this.cancelFix();
-      this.cancelLanding();
+      if(this.mode != "waiting" && this.mode != "takeoff" ){
+        ui_log("Mode : in if ");
+        this.cancelLanding();
+      }
 
       data = data.split(/\s+/);
       console.log(data);
@@ -838,6 +840,7 @@ var Aircraft=Fiber.extend(function() {
         if(this.mode == "landing")
           this.target.altitude = glideslope_altitude;
 
+        // lock  ILS if at the right angle and altitude
         if(abs(this.altitude - glideslope_altitude) < glideslope_window && abs(offset_angle) < radians(30) && offset[1] < 40) {
           //plane is on the glide slope
           var m = false;
