@@ -537,7 +537,7 @@ var Aircraft=Fiber.extend(function() {
       }
 
       this.cancelFix();
-      if(this.mode != "waiting" && this.mode != "takeoff" && this.mode != "apron"){
+      if(this.mode != "waiting" && this.mode != "takeoff" && this.mode != "apron" && this.mode != "taxi"){
         this.cancelLanding();
       }
 
