@@ -105,6 +105,8 @@ function ui_log(message) {
       html.remove();
     }, 10000);
   }, 3, window, html);
+  sayText(message);
+  
 //  console.log("MESSAGE: " + message);
 }
 
