@@ -63,7 +63,7 @@
       "ils":         [true, false]
     },
     {
-      "name":        ["19", "1"],
+      "name":        ["19", "01"],
       "name_offset": [[0, 0], [0.4, 0]],
       "position":    [1.6, 0.5],
       "angle":       190,
