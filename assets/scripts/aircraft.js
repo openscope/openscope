@@ -1335,12 +1335,9 @@ function aircraft_add(model) {
 
 function aircraft_visible(aircraft, factor) {
   if(!factor) factor=1;
-  var size = airport_get().ctr_radius * factor;
-  if(((aircraft.position[0] < -size || aircraft.position[0] > size)) ||
-     ((aircraft.position[1] < -size || aircraft.position[1] > size))) {
-    return false;
-  }
-  return true;
+  if((Math.pow(aircraft.position[0],2) + Math.pow(aircraft.position[1], 2)) < Math.pow((airport_get().ctr_radius * factor), 2))
+    return true;
+  return false;
 }
 
 function aircraft_remove_all() {
