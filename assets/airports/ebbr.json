@@ -4,7 +4,7 @@
 "radio":"Brussels",
 "icao":"EBBR",
 "iata":"BRU",
-"iac":"http://www.belgocontrol.be/website/eaip/eAIP_Main/html/eAIP/EB-AD-2.EBBR-en-GB.html",
+"eiap":"http://www.belgocontrol.be/website/eaip/eAIP_Main/html/eAIP/EB-AD-2.EBBR-en-GB.html",
 "wind":{
 "angle":230,
 "speed":6
