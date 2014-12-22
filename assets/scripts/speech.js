@@ -13,7 +13,7 @@ function speech_init() {
 function speech_say(textToSay) {
   if(prop.speech.synthesis != null && prop.speech.enabled) {
     // Split numbers into individual digits e.g. Speedbird 666 -> Speedbird 6 6 6
-    textToSay = textToSay.replace(/[0-9]{,4}/g, "$& ").replace(/\s0/g, " zero");
+    textToSay = textToSay.replace(/[0-9]/g, "$& ").replace(/\s0/g, " zero");
     prop.speech.synthesis.speak(new SpeechSynthesisUtterance(textToSay));
   }
 }
