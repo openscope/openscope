@@ -161,7 +161,7 @@ var Airport=Fiber.extend(function() {
         angle: 0
       };
 
-      this.ctr_radius  = 0;
+      this.ctr_radius  = 80;
 
       this.parse(options);
       if(options.url) {
