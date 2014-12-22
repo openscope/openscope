@@ -842,6 +842,7 @@ var Aircraft=Fiber.extend(function() {
           this.target.altitude = glideslope_altitude;
 
         var ils = runway.getILSDistance(this.requested.runway);
+        if(!runway.getILS(this.requested.runway) || !ils) ils = 40;
 
         // lock  ILS if at the right angle and altitude
         if(abs(this.altitude - glideslope_altitude) < glideslope_window && abs(offset_angle) < radians(30) && offset[1] < ils) {

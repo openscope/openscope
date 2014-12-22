@@ -98,7 +98,7 @@ function canvas_draw_runway(cc, runway, mode) {
       ils = runway.ils_distance[1];
       cc.lineWidth = 3;
     } else {
-      ils = 20;
+      ils = 40;
       cc.lineWidth = 0.8;
     }
 
@@ -111,7 +111,7 @@ function canvas_draw_runway(cc, runway, mode) {
       ils = runway.ils_distance[0];
       cc.lineWidth = 3;
     } else {
-      ils = 20;
+      ils = 40;
       cc.lineWidth = 0.8;
     }
 

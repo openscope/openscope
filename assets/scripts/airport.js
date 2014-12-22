@@ -386,11 +386,14 @@ function airport_init() {
   airport_load("kdbg");
   airport_load("ksra");
 
-  // REAL AIRPORTS
+  // K*
   airport_load("ksfo");
   airport_load("kmsp");
   airport_load("kjfk");
 //  airport_load("ksna");
+
+  // E*
+  airport_load("ebbr");
 }
 
 function airport_ready() {
