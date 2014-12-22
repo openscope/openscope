@@ -3,6 +3,7 @@
   "level": "hard",
   "radio": "San Francisco",
   "icao": "KSFO",
+  "ctr_radius": 80,
   "wind": {
     "angle": 130,
     "speed": 5

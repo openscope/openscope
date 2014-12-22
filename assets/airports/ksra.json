@@ -3,6 +3,7 @@
   "level": "medium",
   "radio": "Sirra",
   "icao": "KSRA",
+  "ctr_radius": 80,
   "wind": {
     "angle": 90,
     "speed": 5

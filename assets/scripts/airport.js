@@ -148,6 +148,8 @@ var Airport=Fiber.extend(function() {
         angle: 0
       };
 
+      this.ctr_radius  = 0;
+
       this.parse(options);
       if(options.url) {
         this.load(options.url);
@@ -168,7 +170,7 @@ var Airport=Fiber.extend(function() {
       if(data.name) this.name   = data.name;
       if(data.icao) this.icao   = data.icao;
       if(data.radio) this.radio = data.radio;
-
+      if(data.ctr_radius) this.ctr_radius = data.ctr_radius;
       if(data.level) this.level = data.level;
 
       if(data.runways) {
