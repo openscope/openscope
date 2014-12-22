@@ -1,30 +1,33 @@
 
-var speech = window.speechSynthesis;
-var speech_enabled = false;
-
 function speech_init() {
-  if('atc-speech-enabled' in localStorage && localStorage['atc-speech-enabled'] == 'true')
-    speech_enabled = true;
+  prop.speech = {};
+  prop.speech.synthesis = window.speechSynthesis;
+  prop.speech.enabled = false;
+
+  if('atc-speech-enabled' in localStorage && localStorage['atc-speech-enabled'] == 'true') {
+    prop.speech.enabled = true;
+    $(".speech-toggle").addClass("active");
+  }
 }
 
-function sayText(textToSay) {
-  if(speech != null && speech_enabled) {
+function speech_say(textToSay) {
+  if(prop.speech.synthesis != null && prop.speech.enabled) {
     // Split numbers into individual digits e.g. Speedbird 666 -> Speedbird 6 6 6
-    textToSay = textToSay.replace(/[0-9]/g,"$& ").replace(/0/g, "zero");
-    speech.speak(new SpeechSynthesisUtterance(textToSay));
+    textToSay = textToSay.replace(/[0-9]{,4}/g, "$& ").replace(/\s0/g, " zero");
+    prop.speech.synthesis.speak(new SpeechSynthesisUtterance(textToSay));
   }
 }
 
 function speech_toggle() {
-  speech_enabled = !speech_enabled;
+  prop.speech.enabled = !prop.speech.enabled;
 
-  if(speech_enabled) {
+  if(prop.speech.enabled) {
     $(".speech-toggle").addClass("active");
   } else {
     $(".speech-toggle").removeClass("active");
-    speech.cancel();
+    prop.speech.synthesis.cancel();
   }
 
-  localStorage['atc-speech-enabled'] = speech_enabled;
+  localStorage['atc-speech-enabled'] = prop.speech.enabled;
 
 }

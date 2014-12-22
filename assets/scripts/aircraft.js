@@ -205,7 +205,7 @@ var Aircraft=Fiber.extend(function() {
           position += " " + radio_compass(compass_direction(angle));
           ui_log(airport_get().radio+" tower, "+airline_get(this.airline).callsign.name+" "+radio(this.callsign)+" in your airspace "+position+", over");
         } else if(this.category == "departure") {
-          ui_log(airport_get().radio + ', ' + this.getRadioCallsign() + " request taxi");
+          ui_log(airport_get().radio + ', ' + this.getRadioCallsign() + ", request taxi");
         }
       }
 
@@ -363,7 +363,7 @@ var Aircraft=Fiber.extend(function() {
 
       if(response.length >= 1) {
         if(response_end) response_end = ", " + response_end;
-        ui_log(this.getRadioCallsign() + " " + response.join(", ") + response_end);
+        ui_log(this.getRadioCallsign() + ", " + response.join(", ") + response_end);
       }
 
       this.updateStrip();
@@ -584,7 +584,7 @@ var Aircraft=Fiber.extend(function() {
       this.mode = "taxi";
       this.taxi_start = game_time();
 
-      return ["ok", "taxi to and hold at runway " + radio_runway(this.requested.runway)];
+      return ["ok", "taxi to runway " + radio_runway(this.requested.runway)];
     },
     runTakeoff: function(data) {
       if(this.category != "departure") return ["fail", "inbound", "over"];

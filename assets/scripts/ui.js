@@ -110,7 +110,7 @@ function ui_log(message) {
     }, 10000);
   }, 3, window, html);
 
-  sayText(message);
+  speech_say(message);
 
 //  console.log("MESSAGE: " + message);
 }

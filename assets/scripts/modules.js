@@ -5,7 +5,9 @@
 var MODULES=[
   "-util",
   "-animation",
-  "-speech",
+
+  "speech",
+
   "get",
 
   "tutorial",
