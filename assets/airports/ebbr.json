@@ -5,6 +5,7 @@
   "icao": "EBBR",
   "iata": "BRU",
   "eiap": "http://www.belgocontrol.be/website/eaip/eAIP_Main/html/eAIP/EB-AD-2.EBBR-en-GB.html",
+  "ctr_radius": 80,
   "wind": {
     "angle": 230,
     "speed": 6
