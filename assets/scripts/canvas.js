@@ -78,8 +78,6 @@ function canvas_draw_runway(cc, runway, mode) {
   var size  = 20;
   var size2 = size / 2;
 
-  var ils = 20; // max distance for ils lock
-
   cc.translate(round(km(runway.position[0])) + prop.canvas.panX, -round(km(runway.position[1])) + prop.canvas.panY);
 
   cc.rotate(angle);
@@ -93,16 +91,35 @@ function canvas_draw_runway(cc, runway, mode) {
     cc.stroke();
   } else {
     cc.strokeStyle = "#465";
-    cc.lineWidth = 2;
-    cc.beginPath();
 
+    var ils = null;
+
+    if(runway.ils[1] && runway.ils_distance[1]) {
+      ils = runway.ils_distance[1];
+      cc.lineWidth = 3;
+    } else {
+      ils = 40;
+      cc.lineWidth = 0.8;
+    }
+
+    cc.beginPath();
     cc.moveTo(0, -length2);
     cc.lineTo(0, -length2 - km(ils));
+    cc.stroke();
 
+    if(runway.ils[0] && runway.ils_distance[0]) {
+      ils = runway.ils_distance[0];
+      cc.lineWidth = 3;
+    } else {
+      ils = 40;
+      cc.lineWidth = 0.8;
+    }
+
+    cc.beginPath();
     cc.moveTo(0,  length2);
     cc.lineTo(0,  length2 + km(ils));
-
     cc.stroke();
+
   }
 }
 
@@ -489,6 +506,15 @@ function canvas_draw_compass(cc) {
 
 }
 
+function canvas_draw_ctr(cc) {
+  cc.translate(round(prop.canvas.size.width/2), round(prop.canvas.size.height/2));
+  cc.translate(prop.canvas.panX, prop.canvas.panY);
+  cc.fillStyle = "rgba(200, 255, 200, 0.04)";
+  cc.beginPath();
+  cc.arc(0, 0, airport_get().ctr_radius*prop.ui.scale, 0, Math.PI*2);
+  cc.fill();
+}
+
 function canvas_update_post() {
   var elapsed = game_time() - airport_get().start;
   var alpha   = crange(0.1, elapsed, 0.4, 0, 1);
@@ -520,45 +546,34 @@ function canvas_update_post() {
       cc.restore();
     }
 
-    // compass
+    // Controlled traffic region - (CTR)
+    cc.save();
+    canvas_draw_ctr(cc);
+    cc.restore();
 
-//    cc=canvas_get("compass");
+    // Compass
 
     cc.font = "bold 10px monoOne, monospace";
 
     if(prop.canvas.dirty || fading || true) {
       cc.save();
-
-//      canvas_clear(cc);
       cc.translate(round(prop.canvas.size.width/2), round(prop.canvas.size.height/2));
       canvas_draw_compass(cc);
-
       cc.restore();
     }
 
-    //
-
-//    cc=canvas_get("info");
-
     cc.font = "10px monoOne, monospace";
-
     cc.save();
-
     cc.globalAlpha = alpha;
-//    canvas_clear(cc);
     cc.translate(round(prop.canvas.size.width/2), round(prop.canvas.size.height/2));
     canvas_draw_all_info(cc);
 
     cc.restore();
 
-    //
-
-//    cc=canvas_get("aircraft");
 
     if(prop.canvas.dirty || canvas_should_draw() || true) {
       cc.save();
       cc.globalAlpha = alpha;
-//      canvas_clear(cc);
       cc.translate(round(prop.canvas.size.width/2), round(prop.canvas.size.height/2));
       canvas_draw_all_aircraft(cc);
       cc.restore();
@@ -574,8 +589,6 @@ function canvas_update_post() {
     cc.globalAlpha = alpha;
     canvas_draw_scale(cc);
     cc.restore();
-
-    //
 
     prop.canvas.dirty = false;
   }

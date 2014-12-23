@@ -35,6 +35,10 @@ function ui_init() {
     game_timewarp_toggle();
   });
 
+  $(".speech-toggle").click(function() {
+    speech_toggle();
+  });
+
   $(".switch-airport").click(function() {
     ui_airport_toggle();
   });
@@ -105,6 +109,9 @@ function ui_log(message) {
       html.remove();
     }, 10000);
   }, 3, window, html);
+
+  speech_say(message);
+
 //  console.log("MESSAGE: " + message);
 }
 

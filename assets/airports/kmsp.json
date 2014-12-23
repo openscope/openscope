@@ -3,6 +3,7 @@
   "level": "hard",
   "radio": "Minneapolis",
   "icao": "KMSP",
+  "ctr_radius": 80,
   "wind": {
     "angle": 300,
     "speed": 8
@@ -27,40 +28,44 @@
   },
   "runways": [
     {
-      "name":        ["30R", "12L"],
-      "name_offset": [[1, 0], [1.2, 0.4]],
-      "position":    [4, 1],
-      "angle":       300,
-      "length":      8,
-      "delay":       [10, 30],
-      "ils":         [true, false]
+      "name":         ["30R", "12L"],
+      "name_offset":  [[1, 0], [1.2, 0.4]],
+      "position":     [4, 1],
+      "angle":        300,
+      "length":       8,
+      "delay":        [10, 30],
+      "ils":          [true, false],
+      "ils_distance": [40, 20]
     },
     {
-      "name":        ["30L", "12R"],
-      "name_offset": [[0.8, -0.2], [1.6, 0.4]],
-      "position":    [1, -1],
-      "angle":       300,
-      "length":      10,
-      "delay":       [10, 30],
-      "ils":         [true, false]
+      "name":         ["30L", "12R"],
+      "name_offset":  [[0.8, -0.2], [1.6, 0.4]],
+      "position":     [1, -1],
+      "angle":        300,
+      "length":       10,
+      "delay":        [10, 30],
+      "ils":          [true, false],
+      "ils_distance": [40, 20]
     },
     {
-      "name":        ["22", "4"],
-      "name_offset": [[0, 0], [0, 0.8]],
-      "position":    [0, -0.4],
-      "angle":       225,
-      "length":      11,
-      "delay":       [30, 20],
-      "ils":         [true, false]
+      "name":         ["22", "4"],
+      "name_offset":  [[0, 0], [0, 0.8]],
+      "position":     [0, -0.4],
+      "angle":        225,
+      "length":       11,
+      "delay":        [30, 20],
+      "ils":          [true, false],
+      "ils_distance": [20, 20]
     },
     {
-      "name":        ["35", "17"],
-      "name_offset": [[0, 0], [-1.8, -2]],
-      "position":    [-4.2, -2.4],
-      "angle":       350,
-      "length":      8,
-      "delay":       [20, 20],
-      "ils":         [true, false]
+      "name":         ["35", "17"],
+      "name_offset":  [[0, 0], [-1.8, -2]],
+      "position":     [-4.2, -2.4],
+      "angle":        350,
+      "length":       8,
+      "delay":        [20, 20],
+      "ils":          [true, false],
+      "ils_distance": [20, 20]
     }
   ],
   "departures": {

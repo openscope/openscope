@@ -5,15 +5,16 @@ var Runway=Position.extend(function(base) {
       if(!options) options={};
       base.init.call(this, options);
 
-      this.name        = [null, null];
-      this.name_offset = [[0, 0], [0, 0]];
-      this.length      = 1;
-      this.glideslope  = [radians(3), radians(3)];
-      this.angle       = 0;
-      this.ils         = [false, false];
-      this.delay       = [2, 2];
+      this.name         = [null, null];
+      this.name_offset  = [[0, 0], [0, 0]];
+      this.length       = 1;
+      this.glideslope   = [radians(3), radians(3)];
+      this.angle        = 0;
+      this.ils          = [false, false];
+      this.ils_distance = [null, null];
+      this.delay        = [2, 2];
 
-      this.waiting     = [[], []];
+      this.waiting      = [[], []];
 
       this.parse(options);
 
@@ -69,6 +70,16 @@ var Runway=Position.extend(function(base) {
       if(end == 0) return this.angle + Math.PI;
       return this.angle;
     },
+    getILS: function(end) {
+      end = this.getEnd(end);
+      if(end == 0) return this.ils[0];
+      return this.ils[1];
+    },
+    getILSDistance: function(end) {
+      end = this.getEnd(end);
+      if(end == 0) return this.ils_distance[0];
+      return this.ils_distance[1];
+    },
     getGlideslopeAltitude: function(distance, end, glideslope) {
       end = this.getEnd(end);
       if(!glideslope) glideslope = this.glideslope[end];
@@ -110,6 +121,8 @@ var Runway=Position.extend(function(base) {
 
       if(data.ils) this.ils = data.ils;
 
+      if(data.ils_distance) this.ils_distance = data.ils_distance;
+
       if(data.delay) this.delay = data.delay;
     },
   };
@@ -148,6 +161,8 @@ var Airport=Fiber.extend(function() {
         angle: 0
       };
 
+      this.ctr_radius  = 80;
+
       this.parse(options);
       if(options.url) {
         this.load(options.url);
@@ -168,7 +183,7 @@ var Airport=Fiber.extend(function() {
       if(data.name) this.name   = data.name;
       if(data.icao) this.icao   = data.icao;
       if(data.radio) this.radio = data.radio;
-
+      if(data.ctr_radius) this.ctr_radius = data.ctr_radius;
       if(data.level) this.level = data.level;
 
       if(data.runways) {
@@ -366,11 +381,17 @@ function airport_init_pre() {
 
 function airport_init() {
   // Add your airports here
+
+  // DEBUG AIRPORTS
   airport_load("kdbg");
   airport_load("ksra");
+
+  // K*
   airport_load("ksfo");
   airport_load("kmsp");
   airport_load("kjfk");
+//  airport_load("ksna");
+
   airport_load("ebbr");
 }
 

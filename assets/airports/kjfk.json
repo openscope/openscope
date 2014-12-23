@@ -3,6 +3,7 @@
   "level": "hard",
   "radio": "Kennedy",
   "icao": "KJFK",
+  "ctr_radius": 80,
   "wind": {
     "angle": 180,
     "speed": 6
