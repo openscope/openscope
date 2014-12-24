@@ -97,6 +97,8 @@ var Aircraft=Fiber.extend(function() {
 
       this.inside_ctr = false;
 
+      this.position_history = [];
+
       this.category    = "arrival"; // or "departure"
       this.mode        = "cruise";  // "apron", "taxi", "waiting", "takeoff", "cruise", or "landing"
       // where:
@@ -1037,6 +1039,13 @@ var Aircraft=Fiber.extend(function() {
       }
 
       if(!this.position) return;
+
+      // Trailling
+      if(this.position_history.length == 0) this.position_history.push([this.position[0], this.position[1], game_time()/game_speedup()]);
+      else if(abs((game_time()/game_speedup()) - this.position_history[this.position_history.length-1][2]) > 4/game_speedup()) {
+        this.position_history.push([this.position[0], this.position[1], game_time()/game_speedup()]);
+      }
+
       var angle = this.heading;
       this.position[0] += (sin(angle) * (this.speed * 0.000514)) * game_delta();
       this.position[1] += (cos(angle) * (this.speed * 0.000514)) * game_delta();

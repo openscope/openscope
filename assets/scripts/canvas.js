@@ -238,6 +238,22 @@ function canvas_draw_aircraft(cc, aircraft) {
   var almost_match = false;
   var match        = false;
 
+  // Trailling
+  var trailling_length = 12;
+  cc.restore();
+  for (i = 0; i < aircraft.position_history.length; i++) {
+      cc.save();
+      cc.fillStyle = "rgba(255, 255, 255," + 1/((trailling_length)-i) + ")";
+      cc.translate(km(aircraft.position_history[i][0]) + prop.canvas.panX, -km(aircraft.position_history[i][1]) + prop.canvas.panY);
+      cc.beginPath();
+      cc.arc(0, 0, size/2.5, 0, Math.PI * 2);
+      cc.fill();
+      cc.restore();
+  }
+  cc.save();
+  if(aircraft.position_history.length > trailling_length) aircraft.position_history = aircraft.position_history.slice(aircraft.position_history.length - trailling_length, aircraft.position_history.length);
+
+  // Aircraft
   if(prop.input.callsign.length > 1 && aircraft.matchCallsign(prop.input.callsign.substr(0, prop.input.callsign.length - 1)))
     almost_match = true;
   if(prop.input.callsign.length > 0 && aircraft.matchCallsign(prop.input.callsign))
@@ -308,7 +324,6 @@ function canvas_draw_aircraft(cc, aircraft) {
   cc.beginPath();
   cc.arc(0, 0, size, 0, Math.PI * 2);
   cc.fill();
-
 }
 
 function canvas_draw_all_aircraft(cc) {
