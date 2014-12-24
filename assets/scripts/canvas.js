@@ -509,10 +509,32 @@ function canvas_draw_compass(cc) {
 function canvas_draw_ctr(cc) {
   cc.translate(round(prop.canvas.size.width/2), round(prop.canvas.size.height/2));
   cc.translate(prop.canvas.panX, prop.canvas.panY);
-  cc.fillStyle = "rgba(200, 255, 200, 0.04)";
+  cc.fillStyle = "rgba(200, 255, 200, 0.02)";
   cc.beginPath();
   cc.arc(0, 0, airport_get().ctr_radius*prop.ui.scale, 0, Math.PI*2);
   cc.fill();
+
+  cc.beginPath();
+  cc.arc(0, 0, airport_get().ctr_radius*prop.ui.scale, 0, Math.PI*2);
+  cc.linewidth = 1;
+  cc.strokeStyle = "rgba(200, 255, 200, 0.25)";
+  cc.stroke();
+
+  cc.beginPath();
+  cc.arc(0, 0, airport_get().ctr_radius*prop.ui.scale*0.75, 0, Math.PI*2);
+  cc.strokeStyle = "rgba(200, 255, 200, 0.1)";
+  cc.stroke();
+
+  cc.beginPath();
+  cc.arc(0, 0, airport_get().ctr_radius*prop.ui.scale*0.50, 0, Math.PI*2);
+  cc.strokeStyle = "rgba(200, 255, 200, 0.1)";
+  cc.stroke();
+
+  cc.beginPath();
+  cc.arc(0, 0, airport_get().ctr_radius*prop.ui.scale*0.25, 0, Math.PI*2);
+  cc.strokeStyle = "rgba(200, 255, 200, 0.1)";
+  cc.stroke();
+
 }
 
 function canvas_update_post() {
