@@ -228,7 +228,7 @@ function tutorial_init_pre() {
     title:    "Landing, part 1",
     text:     ["You can land a plane with the &lsquo;land&rsquo; command, followed by a runway",
                "name. Before you can land a plane, though, it must be facing the runway, not be offset",
-               "from it horizontally more than about 20 degrees, and be at about tree to four thousand",
+               "from it horizontally more than about 20 degrees, and be at about three to four thousand",
                "feet altitude. Since it takes a while for aircraft to turn, you can reduce the speed with",
                "the &lsquo;speed&rsquo; or &lsquo;slow&rsquo; command (example: &lsquo;{CALLSIGN} speed 200&rsquo;)",
                "to give yourself a bit more time."
