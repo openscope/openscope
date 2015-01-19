@@ -393,6 +393,7 @@ function airport_init() {
 //  airport_load("ksna");
 
   airport_load("ebbr");
+  airport_load("eddh");
 }
 
 function airport_ready() {

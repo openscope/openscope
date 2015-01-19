@@ -1,0 +1,95 @@
+{
+  "name": "Hamburg Airport",
+  "level": "medium",
+  "radio": "Hamburg",
+  "icao": "EDDH",
+  "iata": "HAM",
+  "ctr_radius": 80,
+  "wind": {
+    "angle": 230,
+    "speed": 6
+  },
+  "_comment": "Source (STAR): http://nav.vatsim-germany.org/files/edww/charts/eddh/public/EDDH_AIO.pdf",
+  "fixes": {
+    "RIBSO":[-55,20],
+    "TOPRA":[-42,22],
+    "LBE":[-40,2],
+    "NOLGO":[14,-22],
+    "HAM":[20,4],
+    "BOGMU":[22,40],
+    "LUB":[50,33],
+    "RARUP":[52,2]
+  },
+  "runways": [
+    {
+      "name": ["05", "23"],
+      "name_offset": [[0, 0], [0, 0]],
+      "position": [0, 0],
+      "angle": 49,
+      "length": 3.250,
+      "delay": [10, 30],
+      "ils": [true, true]
+    },
+    {
+      "name": ["15","33"],
+      "name_offset": [[0, 0], [0, 0]],
+      "position": [0.3, 1.4],
+      "angle": 152,
+      "length": 3.666,
+      "delay": [10, 30],
+      "ils": [true, false]
+    }
+  ],
+  "departures": {
+    "airlines": [
+      ["ual", 3],
+      ["baw", 5],
+      ["cessna", 4]
+    ],
+    "frequency": [1, 3]
+  },
+  "arrivals":[
+    {
+      "angle": 250,
+      "heading": 105,
+      "airlines": [
+        ["ual", 2],
+        ["baw", 5],
+        ["cessna", 20]
+      ],
+      "frequency": [5, 10],
+      "altitude": [5000, 7000]
+    },
+    {
+      "angle": 110,
+      "heading": 270,
+      "airlines":[
+        ["ual", 5],
+        ["baw", 1],
+        ["cessna", 3]
+      ],
+      "frequency": [5, 10],
+      "altitude": [5000, 8000]
+    },
+    {
+      "angle": 210,
+      "heading": 30,
+      "airlines": [
+        ["cessna", 20]
+      ],
+      "frequency": [10, 20],
+      "altitude": [3000, 5000]
+    },
+    {
+      "angle": 315,
+      "heading": 180,
+      "airlines": [
+        ["ual", 10],
+        ["baw", 10],
+        ["cessna", 1]
+      ],
+      "frequency": [10, 15],
+      "altitude": [6000, 7000]
+    }
+  ]
+}
