@@ -325,7 +325,7 @@ var Aircraft=Fiber.extend(function() {
 
       var deferred = [];
 
-      var DEFERRED_COMMANDS = ["takeoff"];
+      var DEFERRED_COMMANDS = ["takeoff", "to"];
 
       for(var i=0;i<commands.length;i+=1) {
         var pair    = commands[i];
