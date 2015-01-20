@@ -269,6 +269,7 @@ var Aircraft=Fiber.extend(function() {
       "direct",
 
       "takeoff",
+      "to",
 
       "wait",
       "taxi",
@@ -395,6 +396,7 @@ var Aircraft=Fiber.extend(function() {
       else if("taxi".indexOf(command) == 0)     command = "wait";
 
       else if("takeoff".indexOf(command) == 0)  command = "takeoff";
+      else if("to".indexOf(command) == 0)       command = "takeoff";
 
       else if("land".indexOf(command) == 0)     command = "land";
 
