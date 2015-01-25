@@ -197,6 +197,9 @@ function input_keydown(e) {
     }
     tab_completion_cycle({backwards: e.shiftKey});
     e.preventDefault();
+  } else if(e.which == 27) { // ESC
+    $("#command").val("");
+    e.preventDefault();
   }
 }
 
