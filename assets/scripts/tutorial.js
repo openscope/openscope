@@ -270,8 +270,9 @@ function tutorial_init_pre() {
   tutorial_step({
     title:    "Wind sock",
     text:     ["In the lower right corner of the map is a small circle with a line; the line shows the direction",
-               "the wind is coming from. If it&rsquo;s pointing straight up, the wind is blowing from the North",
-               "to the South. Aircraft are assigned to different takeoff runways accordingly."
+               "the wind is going to. If it&rsquo;s pointing straight down, the wind is blowing from the North",
+               "to the South. Aircraft are assigned to different takeoff runways accordingly. If it is shown in",
+               "red, the wind is two times stronger.",
                ].join(" "),
     parse:    function(t) {
       return t.replace("{CALLSIGN}", prop.aircraft.list[0].getCallsign());

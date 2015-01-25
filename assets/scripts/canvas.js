@@ -498,16 +498,22 @@ function canvas_draw_compass(cc) {
   cc.fill()
 
   // Wind direction & speed
-  // Temporary fix for high winds
-  if(airport_get().wind.speed > 8) windspeed_line = 8;
-  else windspeed_line = airport_get().wind.speed;
+  if(airport_get().wind.speed > 8) {
+    windspeed_line = airport_get().wind.speed/2;
+    highwind = true;
+  } else {
+    windspeed_line = airport_get().wind.speed;
+    highwind = false;
+  }
   cc.save();
-  cc.translate(dot/2 * Math.sin(airport_get().wind.angle), -dot/2 * Math.cos(airport_get().wind.angle));
+  cc.translate(-dot/2 * Math.sin(airport_get().wind.angle), dot/2 * Math.cos(airport_get().wind.angle));
   cc.beginPath();
   cc.moveTo(0, 0);
-  cc.rotate(airport_get().wind.angle - Math.PI);
+  cc.rotate(airport_get().wind.angle);
   cc.lineTo(0, crange(0, windspeed_line, 15, 0, size2-dot));
-  cc.strokeStyle = "rgba(255, 255, 255, 0.7)";
+  // Color wind sock red for high-wind
+  if(highwind) cc.strokeStyle = "rgba(255, 0, 0, 0.7)";
+  else cc.strokeStyle = "rgba(255, 255, 255, 0.7)";
   cc.lineWidth = 2;
   cc.stroke();
   cc.restore();
