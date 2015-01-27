@@ -207,7 +207,7 @@ var Aircraft=Fiber.extend(function() {
           position += distance + " mile" + s(distance);
           var angle = Math.atan2(this.position[0], this.position[1]);
           position += " " + radio_compass(compass_direction(angle));
-          ui_log(airport_get().radio+" tower, "+airline_get(this.airline).callsign.name+" "+radio(this.callsign)+" in your airspace "+position+", over");
+          ui_log(airport_get().radio+" tower, "+aircraft.getRadioCallsign()+" in your airspace "+position+", over");
           this.inside_ctr = true;
         } else if(this.category == "departure") {
           ui_log(airport_get().radio + ', ' + this.getRadioCallsign() + ", request taxi");
@@ -1388,7 +1388,7 @@ function aircraft_update() {
       position += distance + " mile" + s(distance);
       var angle = Math.atan2(aircraft.position[0], aircraft.position[1]);
       position += " " + radio_compass(compass_direction(angle));
-      ui_log(airport_get().radio+" tower, "+airline_get(aircraft.airline).callsign.name+" "+radio(aircraft.callsign)+" in your airspace "+position+", over");
+      ui_log(airport_get().radio+" tower, "+aircraft.getRadioCallsign()+" in your airspace "+position+", over");
       aircraft.inside_ctr = true;
     }
     if(aircraft.isStopped() && aircraft.category == "arrival") {
