@@ -247,7 +247,7 @@ var Aircraft=Fiber.extend(function() {
         var length = 2;
         callsign = callsign.substr(callsign.length - length);
       }
-      return airline_get(this.airline).callsign.name + " " + callsign.toUpperCase() + heavy;
+      return airline_get(this.airline).callsign.name + " " + radio(callsign.toUpperCase()) + heavy;
     },
     COMMANDS: [
       "turn",
