@@ -451,7 +451,7 @@ var Aircraft=Fiber.extend(function() {
         this.cancelLanding();
       this.cancelFix();
 
-      this.requested.navmode = "heading"
+      this.requested.navmode = "heading";
       this.requested.heading = radians(heading);
       this.requested.turn    = direction;
       this.requested.hold    = false;
