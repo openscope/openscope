@@ -292,15 +292,33 @@ var Aircraft=Fiber.extend(function() {
       var commands = [];
       var concat   = false;
       var current  = "";
+      var previous = "";
+
       for(var i=0;i<strings.length;i++) {
         var string = strings[i];
         var is_command = false;
-        for(var j=0;j<this.COMMANDS.length;j++) {
-          if(this.COMMANDS[j].indexOf(string) == 0) {
-            is_command = true;
-            break;
+        
+        if(previous.indexOf("t") == 0 && (string.indexOf("l") == 0 || string.indexOf("r") == 0)) {
+          // Workaround:
+          // Previous command was probably "t/turn".
+          // Must be followed by either a direction or a heading, so no command.
+          //
+          // As it also may be "to/takeoff", we also check that the current command
+          // is "l/left" or "r/right" to hopefully prevent side-effects.
+          //
+          // If this would not be checked here, it would not be possible to use "l"
+          // as a shortcut for "left", as it would be recognized as the command "land".
+          //
+          // Do nothing here.
+        } else {
+          for(var j=0;j<this.COMMANDS.length;j++) {
+            if(this.COMMANDS[j].indexOf(string) == 0) {
+              is_command = true;
+              break;
+            }
           }
         }
+
         if(!is_command) {
           current += " " + string;
         } else {
@@ -313,6 +331,8 @@ var Aircraft=Fiber.extend(function() {
           }
           commands.push([string]);
         }
+
+        previous = string;
       }
       if(current && commands.length >= 1) {
         current = current.substr(1);
@@ -445,13 +465,19 @@ var Aircraft=Fiber.extend(function() {
         heading = parseInt(split[1]);
       }
 
+      // translate any direction that starts with "l" or "r" to left/right
+      if(direction != null) {
+        if(direction.indexOf("l") == 0) direction = "left";
+        if(direction.indexOf("r") == 0) direction = "right";
+      }
+
       if(isNaN(heading)) return ["fail", "heading not understood", "say again"];
 
       if(this.requested.navmode == "rwy")
         this.cancelLanding();
       this.cancelFix();
 
-      this.requested.navmode = "heading"
+      this.requested.navmode = "heading";
       this.requested.heading = radians(heading);
       this.requested.turn    = direction;
       this.requested.hold    = false;
