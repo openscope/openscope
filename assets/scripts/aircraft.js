@@ -1015,7 +1015,11 @@ var Aircraft=Fiber.extend(function() {
         // TURNING
 
         if(this.altitude > 10) {
-          var turn_amount = this.model.rate.turn * game_delta();
+          // Perform standard turns 3 deg/s or 25 deg bank, whichever
+          // requires less bank angle.
+          // Formula based on http://aviation.stackexchange.com/a/8013
+          var turn_rate = clamp(0, 1 / (this.speed / 8.883031), 0.0523598776);
+          var turn_amount = turn_rate * game_delta();
           var offset = angle_offset(this.target.heading, this.heading);
           if(abs(offset) < turn_amount) {
             this.heading = this.target.heading;
