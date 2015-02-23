@@ -569,29 +569,25 @@ var Aircraft=Fiber.extend(function() {
         return ["fail", "fix name not understood", "say again"];
       }
 
+      data = data.split(/\s+/);
+      var fixes = [];
+      for(var i=0;i<data.length;i++) {
+        var fix = airport_get().getFix(data[i]);
+
+        if(!fix) {
+          return ["fail", "no fix found with name of " + data[i].toUpperCase(), "say again"];
+        }
+        fixes.push(data[i].toUpperCase());
+      }
+
       this.cancelFix();
       if(this.mode != "waiting" && this.mode != "takeoff" && this.mode != "apron" && this.mode != "taxi"){
         this.cancelLanding();
       }
 
-      data = data.split(/\s+/);
-
-      for(var i=0;i<data.length;i++) {
-        var fix = airport_get().getFix(data[i]);
-
-        if(!fix) {
-          this.requested.fix = [];
-          return ["fail", "no fix found with name of " + data[i].toUpperCase(), "say again"];
-        }
-
-        if(i == 0) {
-          this.requested.fix = [];
-          this.requested.navmode = "fix";
-        }
-
-        this.requested.fix.push(data[i].toUpperCase());
-
-      }
+      this.requested.fix = fixes;
+      this.requested.navmode = "fix";
+      this.requested.turn = null;
 
       return ["ok", "navigate to " + this.requested.fix.join(', ')];
     },
