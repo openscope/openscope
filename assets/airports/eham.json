@@ -1,5 +1,5 @@
 {
-  "name": "Amsterdam Airport Schiphol",
+  "name": "Amsterdam Schiphol Airport",
   "level": "hard",
   "radio": "Amsterdam",
   "icao": "EHAM",
@@ -11,28 +11,27 @@
   },
   "_comment": "Source: http://www.ais-netherlands.nl/aim/2015-02-19-AIRAC/eAIP/html/eAIP/EH-AD-2.EHAM-en-GB.html#eham-ad-2.24",
   "fixes": {
-    "SPL":[-0.97   ,2.69],
-    "HDR":[0.11    ,66.48],
-    "PAM":[22.54   ,2.97],
-    "RTM":[-19.44  ,-37.11],
-    "SPY":[6.16    ,25.78],
-    "CH": [-14.18  ,-9.70],
-    "OA": [-0.74   ,18.02],
-    "WP": [18.47   ,2.02],
-    "NV": [0.05    ,-17.39],
-    "STD":[-35.75  ,-62.90],
-    "EHV":[41.95   ,-95.46],
-    "RKN":[137.34  ,-19.39],
-    "EEL":[130.66  ,95.00],
-    "HSD":[-62.23 ,-64.97],
-    "COA":[-28.08  ,-106.56]
+    "HDR":[0.19    ,66.5],
+    "PAM":[36.44   ,2.97],
+    "RTM":[-31.44  ,-37.12],
+    "SPY":[9.96    ,25.79],
+    "CH": [-22.93  ,-9.70],
+    "OA": [-1.19   ,18.03],
+    "WP": [29.86   ,2.02],
+    "NV": [0.08    ,-17.4],
+    "STD":[-57.8   ,-62.92],
+    "EHV":[67.83   ,-95.49],
+    "RKN":[222.05  ,-19.4],
+    "EEL":[211.24  ,95.03],
+    "HSD":[-100.61 ,-64.99],
+    "COA":[-45.40  ,-106.6]
 
   },
   "runways": [
     {
       "name": ["04", "22"],
       "name_offset": [[0, 0], [0, 0]],
-      "position": [2.01, -0.09],
+      "position": [3.24, -0.09],
       "angle": 41 ,
       "length": 2.014,
       "delay": [30, 50],
@@ -41,121 +40,136 @@
     {
       "name": ["06","24"],
       "name_offset": [[0, 0], [0, 0]],
-      "position": [-0.47, -1.24],
-      "angle": 57.92,
+      "position": [-0.75, -1.23],
+      "angle": 58,
       "length": 3.500,
       "delay": [30, 10],
       "ils": [true, false],
-      "ils_distance": [28, 20]
+      "ils_distance": [15, 20]
     },
     {
       "name": ["09", "27"],
       "name_offset": [[0, 0], [0, 0]],
-      "position": [0.57, 1.05],
+      "position": [0.91, 1.05],
       "angle": 87,
       "length": 3.453,
       "delay": [40, 50],
       "ils": [false, true],
-      "ils_distance": [40, 28]
+      "ils_distance": [40, 15]
     },
     {
       "name": ["18C","36C"],
       "name_offset": [[0, 0], [0, 0]],
-      "position": [-1.73, 1.18],
+      "position": [-2.80, 1.18],
       "angle": 183,
       "length": 3.300,
       "delay": [50, 70],
       "ils": [true, true],
-      "ils_distance": [28, 28]
+      "ils_distance": [15, 15]
     },
     {
       "name": ["18L", "36R"],
       "name_offset": [[0, 0], [0, 0]],
-      "position": [1.05, -0.50],
-      "angle": 183.25,
+      "position": [1.61, -0.50],
+      "angle": 183,
       "length": 3.400,
       "delay": [40, 30],
       "ils": [false, true],
-      "ils_distance": [40, 28]
+      "ils_distance": [40, 15]
     },
     {
       "name": ["18R","36L"],
       "name_offset": [[0, 0], [0, 0]],
-      "position": [-3.69, 4.06],
+      "position": [-5.97, 4.06],
       "angle": 183,
       "length": 3.3800,
       "delay": [80, 120],
       "ils": [true, false],
-      "ils_distance": [28, 20]
+      "ils_distance": [15, 20]
     }
   ],
   "departures": {
     "airlines": [
-      ["ual",   2],
-      ["aca",   2],
-      ["awe",   2],
-      ["baw",   2],
-      ["cessna",1],
-      ["klc",   3],
-      ["klm",   5],
-      ["ual",   2]
+      ["ual", 3],
+      ["baw", 5],
+      ["cessna", 4]
     ],
-    "frequency": [1, 2]
+    "frequency": [1, 3]
   },
   "arrivals": [
     {
-      "angle": 114,
-      "heading": 294,
-      "airlines": [
-        ["ual",   3],
-        ["aca",   3],
-        ["awe",   3],
-        ["baw",   3],
-        ["klc",   1],
-        ["klm",   5],
-        ["ual",   3]
+      "heading":   180,
+      "airlines":  [
+        ["ual", 3],
+        ["baw", 1],
+        ["cessna", 2]
       ],
-      "frequency": [3, 6],
-      "altitude": [7000, 9000]
+      "frequency": [8, 10],
+      "altitude":  [4000, 6000]
     },
     {
-      "angle": 274,
-      "heading": 70,
-      "airlines": [
-        ["ual",   1],
-        ["aca",   1],
-        ["awe",   1],
-        ["baw",   1],
-        ["klc",   5],
-        ["klm",   5],
-        ["ual",   1]
+      "angle":     90,
+      "heading":   135,
+      "airlines":  [
+        ["ual", 2],
+        ["baw", 5],
+        ["cessna", 1]
       ],
       "frequency": [5, 10],
-      "altitude": [4000, 7000]
+      "altitude":  [6000, 8000]
     },
     {
-      "angle": 42,
-      "heading": 222,
-      "airlines": [
-        ["ual", 1],
-        ["aca", 1],
-        ["awe", 1],
+      "angle":     270,
+      "heading":   45,
+      "airlines":  [
+        ["ual", 2],
+        ["baw", 5],
+        ["cessna", 20]
+      ],
+      "frequency": [5, 10],
+      "altitude":  [5000, 7000]
+    },
+    {
+      "angle":     270,
+      "heading":   0,
+      "airlines":  [
+        ["ual", 5],
         ["baw", 1],
-        ["klc", 5],
-        ["klm", 5],
-        ["ual", 1]
+        ["cessna", 3]
       ],
-      "frequency": [4, 9],
-      "altitude": [4000, 7000]
+      "frequency": [5, 10],
+      "altitude":  [5000, 8000]
     },
     {
-      "angle": 270,
-      "heading": 90,
-      "airlines": [
-        ["cessna",   1]
+      "angle":     180,
+      "heading":   270,
+      "airlines":  [
+        ["cessna", 20]
       ],
-      "frequency": [5, 16],
-      "altitude": [3000, 5000]
+      "frequency": [10, 20],
+      "altitude":  [3000, 5000]
+    },
+    {
+      "angle":     45,
+      "heading":   90,
+      "airlines":  [
+        ["ual", 10],
+        ["baw", 1],
+        ["cessna", 20]
+      ],
+      "frequency": [10, 15],
+      "altitude":  [7000, 9000]
+    },
+    {
+      "angle":     315,
+      "heading":   180,
+      "airlines":  [
+        ["ual", 10],
+        ["baw", 10],
+        ["cessna", 1]
+      ],
+      "frequency": [3, 5],
+      "altitude":  [6000, 7000]
     }
   ]
 }

@@ -11,8 +11,6 @@ function airline_init() {
   airline_load("AWE");
   airline_load("CESSNA");
   airline_load("ACA");
-  airline_load("KLM");
-  airline_load("KLC");
 }
 
 function airline_load(icao) {
