@@ -1,0 +1,10 @@
+{
+  "name": "KLM Cityhopper",
+  "callsign": {
+    "name": "KLM",
+    "length": 3
+  },
+  "aircraft": [
+    ["E190", 30 ]
+  ]
+}
