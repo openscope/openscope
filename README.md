@@ -7,6 +7,9 @@ An ATC simulator in HTML5.
 Page hits are tracked with Google Analytics; feel free to use an
 adblocker. The tracking is used only to get the number of page hits.
 
+## Contributing
+
+Just create a pull request and I'll get to it. Thanks for helping!
 ## License
 
 MIT.
