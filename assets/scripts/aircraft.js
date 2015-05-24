@@ -1244,8 +1244,15 @@ function aircraft_auto_toggle() {
 }
 
 function aircraft_init() {
+  //ATR
+  aircraft_load("at43");
+  
+  aircraft_load("at72");
+
   // CESSNA
   aircraft_load("c208");
+  
+  aircraft_load("c140");
 
   aircraft_load("c337");
 
@@ -1256,11 +1263,11 @@ function aircraft_init() {
   aircraft_load("c750");
 
   // AIRBUS
+  aircraft_load("a306");
   aircraft_load("a318");
   aircraft_load("a319");
   aircraft_load("a320");
   aircraft_load("a321");
-
   aircraft_load("a332");
   aircraft_load("a333");
 
@@ -1288,10 +1295,20 @@ function aircraft_init() {
 
   // EMBRAER
   aircraft_load("e170");
+  aircraft_load("e50p");
+  aircraft_load("e55p");
+  aircraft_load("e135");
+  aircraft_load("e545");
   aircraft_load("e190");
 
   // CONCORDE...
   aircraft_load("conc");
+  
+  // DOUGLAS
+    aircraft_load("md11");
+	aircraft_load("dc10");
+ // FOKKER
+	aircraft_load("f100");
 }
 
 function aircraft_generate_callsign(airline) {

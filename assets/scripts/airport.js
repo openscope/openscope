@@ -392,6 +392,7 @@ function airport_init() {
   airport_load("kjfk");
 //  airport_load("ksna");
 
+  airport_load("sbgr");
   airport_load("ebbr");
   airport_load("eddh");
   airport_load("eham");

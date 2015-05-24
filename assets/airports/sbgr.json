@@ -1,0 +1,105 @@
+{
+  "name": "Aeroporto Internacional de São Paulo/Guarulhos",
+  "level": "hard",
+  "radio": "Guarulhos",
+  "icao": "SBGR",
+  "iata": "GRU",
+  "ctr_radius": 80,
+  "wind": {
+    "angle": 230,
+    "speed": 10
+  },
+  "fixes": {
+    "TUCA":[-15.90,1.2],
+    "VUSTA":[-30.63,2.5],
+	"ISIMU":[12.63,-40.47],
+	"ESDAR":[17.01,-1.47],
+	"VURAK":[42.01,-3.80],
+	"ANSUG":[26.01,15.80],
+	"RAFA":[15.01,-12.80],
+	"E100":[100.00,0.00],
+	"W100":[-100.00,0.00],
+	"S100":[0.00,-100.00]
+  },
+  "runways": [
+    {
+      "name": ["9L", "27R"],
+      "name_offset": [[0, 0], [0, 0]],
+      "position": [1.0, 1.0],
+      "angle": 95.00,
+      "length": 3.700,
+      "delay": [10, 30],
+      "ils": [true, true]
+    },
+    {
+      "name": ["9R", "27L"],
+      "name_offset": [[0, 0], [0, 0]],
+      "position": [1.343, -0.757],
+      "angle": 95.00,
+      "length": 3.221,
+      "delay": [40, 20],
+      "ils": [true, false]
+    }
+  ],
+  "departures": {
+    "airlines": [
+      ["tam", 17],
+      ["glo", 17],
+      ["azu", 12],
+	  ["ava", 12],
+	  ["embraer", 5],
+	  ["aal", 1]
+    ],
+    "frequency": [1, 3]
+  },
+  "arrivals":[
+    {
+      "angle": 230,
+      "heading": 105,
+      "airlines": [
+        ["glo", 10],
+        ["tam", 10],
+        ["azu", 5],
+		["embraer", 1],
+		["aal", 2]
+      ],
+      "frequency": [10, 30],
+      "altitude": [5000, 7000]
+    },
+    {
+      "angle": 180,
+      "heading": 270,
+      "airlines":[
+        ["ava", 5],
+        ["baw", 1],
+		["glo", 5],
+		["embraer", 1],
+        ["tam", 3]
+      ],
+      "frequency": [5, 10],
+      "altitude": [5000, 8000]
+    },
+    {
+      "angle": 90,
+      "heading": 30,
+      "airlines": [
+        ["cessna", 2],
+		["embraer", 2]
+      ],
+      "frequency": [10, 20],
+      "altitude": [3000, 5000]
+    },
+    {
+      "angle": 230,
+      "heading": 180,
+      "airlines": [
+        ["glo", 10],
+        ["tam", 10],
+		["embraer", 1],
+        ["aal", 1]
+      ],
+      "frequency": [10, 15],
+      "altitude": [6000, 7000]
+    }
+  ]
+}

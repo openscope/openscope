@@ -1,0 +1,19 @@
+{
+  "name": "Federal Express",
+  "callsign": {
+    "name": "FedEx",
+    "length": 3
+  },
+  "aircraft": [
+    ["A306", 71 ],
+
+    ["B752", 112 ],
+
+    ["B763", 19 ],
+
+    ["DC10", 58],
+    
+    ["MD11", 60 ]
+
+  ]
+}

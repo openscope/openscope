@@ -1,0 +1,17 @@
+{
+  "name": "Avianca",
+  "callsign": {
+    "name": "Avianca",
+    "length": 3
+  },
+  "aircraft": [
+    ["A319", 4 ],
+
+    ["A320", 19 ],
+
+    ["A318", 11],
+    
+    ["F100", 10 ]
+
+  ]
+}

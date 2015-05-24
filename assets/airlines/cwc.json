@@ -1,0 +1,13 @@
+{
+  "name": "Centurion Air Cargo",
+  "callsign": {
+    "name": "CWC",
+    "length": 3
+  },
+  "aircraft": [
+    ["B744", 4 ],
+    
+    ["MD11", 3 ]
+
+  ]
+}
