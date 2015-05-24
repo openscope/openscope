@@ -1,0 +1,26 @@
+{
+  "name": "Embraer Phenom 300",
+  "icao": "E55P",
+  "wake": "light",
+  "rate": {
+    "turn":       4.3,
+    "ascent":     2500,
+    "descent":    3000,
+    "accelerate": 10,
+    "decelerate": 5
+  },
+  "runway": {
+    "takeoff": 2.5,
+    "landing": 3.2
+  },
+  "speed":{
+    "min":     120,
+    "max":     400,
+    "landing": 130,
+    "cruise":  200
+  },
+  "capability": {
+    "ils": true,
+    "fix": true
+  }
+}

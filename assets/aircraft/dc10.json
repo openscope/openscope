@@ -1,0 +1,26 @@
+{
+  "name": "McDonnel Douglas DC-10",
+  "icao": "DC10",
+  "wake": "heavy",
+  "rate": {
+    "turn":       1.1,
+    "ascent":     1300,
+    "descent":    2500,
+    "accelerate": 7,
+    "decelerate": 4
+  },
+  "runway": {
+    "takeoff": 3.1,
+    "landing": 3.8
+  },
+  "speed":{
+    "min":     120,
+    "max":     250,
+    "landing": 140,
+    "cruise":  200
+  },
+  "capability": {
+    "ils": true,
+    "fix": true
+  }
+}

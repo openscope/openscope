@@ -1,0 +1,161 @@
+{
+  "name": "Amsterdam Airport Schiphol",
+  "level": "hard",
+  "radio": "Amsterdam",
+  "icao": "EHAM",
+  "iata": "AMS",
+  "ctr_radius": 80,
+  "wind": {
+    "angle": 230,
+    "speed": 6
+  },
+  "_comment": "Source: http://www.ais-netherlands.nl/aim/2015-02-19-AIRAC/eAIP/html/eAIP/EH-AD-2.EHAM-en-GB.html#eham-ad-2.24",
+  "fixes": {
+    "SPL":[-0.97   ,2.69],
+    "HDR":[0.11    ,66.48],
+    "PAM":[22.54   ,2.97],
+    "RTM":[-19.44  ,-37.11],
+    "SPY":[6.16    ,25.78],
+    "CH": [-14.18  ,-9.70],
+    "OA": [-0.74   ,18.02],
+    "WP": [18.47   ,2.02],
+    "NV": [0.05    ,-17.39],
+    "STD":[-35.75  ,-62.90],
+    "EHV":[41.95   ,-95.46],
+    "RKN":[137.34  ,-19.39],
+    "EEL":[130.66  ,95.00],
+    "HSD":[-62.23 ,-64.97],
+    "COA":[-28.08  ,-106.56]
+
+  },
+  "runways": [
+    {
+      "name": ["04", "22"],
+      "name_offset": [[0, 0], [0, 0]],
+      "position": [2.01, -0.09],
+      "angle": 41 ,
+      "length": 2.014,
+      "delay": [30, 50],
+      "ils": [false, false]
+    },
+    {
+      "name": ["06","24"],
+      "name_offset": [[0, 0], [0, 0]],
+      "position": [-0.47, -1.24],
+      "angle": 57.92,
+      "length": 3.500,
+      "delay": [30, 10],
+      "ils": [true, false],
+      "ils_distance": [28, 20]
+    },
+    {
+      "name": ["09", "27"],
+      "name_offset": [[0, 0], [0, 0]],
+      "position": [0.57, 1.05],
+      "angle": 87,
+      "length": 3.453,
+      "delay": [40, 50],
+      "ils": [false, true],
+      "ils_distance": [40, 28]
+    },
+    {
+      "name": ["18C","36C"],
+      "name_offset": [[0, 0], [0, 0]],
+      "position": [-1.73, 1.18],
+      "angle": 183,
+      "length": 3.300,
+      "delay": [50, 70],
+      "ils": [true, true],
+      "ils_distance": [28, 28]
+    },
+    {
+      "name": ["18L", "36R"],
+      "name_offset": [[0, 0], [0, 0]],
+      "position": [1.05, -0.50],
+      "angle": 183.25,
+      "length": 3.400,
+      "delay": [40, 30],
+      "ils": [false, true],
+      "ils_distance": [40, 28]
+    },
+    {
+      "name": ["18R","36L"],
+      "name_offset": [[0, 0], [0, 0]],
+      "position": [-3.69, 4.06],
+      "angle": 183,
+      "length": 3.3800,
+      "delay": [80, 120],
+      "ils": [true, false],
+      "ils_distance": [28, 20]
+    }
+  ],
+  "departures": {
+    "airlines": [
+      ["ual",   2],
+      ["aca",   2],
+      ["awe",   2],
+      ["baw",   2],
+      ["cessna",1],
+      ["klc",   3],
+      ["klm",   5],
+      ["ual",   2]
+    ],
+    "frequency": [1, 2]
+  },
+  "arrivals": [
+    {
+      "angle": 114,
+      "heading": 294,
+      "airlines": [
+        ["ual",   3],
+        ["aca",   3],
+        ["awe",   3],
+        ["baw",   3],
+        ["klc",   1],
+        ["klm",   5],
+        ["ual",   3]
+      ],
+      "frequency": [3, 6],
+      "altitude": [7000, 9000]
+    },
+    {
+      "angle": 274,
+      "heading": 70,
+      "airlines": [
+        ["ual",   1],
+        ["aca",   1],
+        ["awe",   1],
+        ["baw",   1],
+        ["klc",   5],
+        ["klm",   5],
+        ["ual",   1]
+      ],
+      "frequency": [5, 10],
+      "altitude": [4000, 7000]
+    },
+    {
+      "angle": 42,
+      "heading": 222,
+      "airlines": [
+        ["ual", 1],
+        ["aca", 1],
+        ["awe", 1],
+        ["baw", 1],
+        ["klc", 5],
+        ["klm", 5],
+        ["ual", 1]
+      ],
+      "frequency": [4, 9],
+      "altitude": [4000, 7000]
+    },
+    {
+      "angle": 270,
+      "heading": 90,
+      "airlines": [
+        ["cessna",   1]
+      ],
+      "frequency": [5, 16],
+      "altitude": [3000, 5000]
+    }
+  ]
+}

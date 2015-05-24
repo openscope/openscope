@@ -1,0 +1,26 @@
+{
+  "name": "ATR 72-500",
+  "icao": "AT72",
+  "wake": "medium",
+  "rate": {
+    "turn":       2.8,
+    "ascent":     2100,
+    "descent":    2500,
+    "accelerate": 7,
+    "decelerate": 5
+  },
+  "runway": {
+    "takeoff": 1.9,
+    "landing": 2.2
+  },
+  "speed":{
+    "min":     110,
+    "max":     250,
+    "landing": 100,
+    "cruise":  170
+  },
+  "capability": {
+    "ils": true,
+    "fix": true
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "name": "ATR 42-300",
+  "icao": "AT43",
+  "wake": "medium",
+  "rate": {
+    "turn":       2.5,
+    "ascent":     1700,
+    "descent":    2500,
+    "accelerate": 7,
+    "decelerate": 6
+  },
+  "runway": {
+    "takeoff": 1.8,
+    "landing": 2.1
+  },
+  "speed":{
+    "min":     110,
+    "max":     250,
+    "landing": 100,
+    "cruise":  170
+  },
+  "capability": {
+    "ils": true,
+    "fix": true
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "name": "Gol Linhas Aereas",
+  "callsign": {
+    "name": "Gol",
+    "length": 3
+  },
+  "aircraft": [
+    ["B737", 33 ],
+
+    ["B738", 97 ]
+
+  ]
+}

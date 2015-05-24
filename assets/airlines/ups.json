@@ -1,0 +1,19 @@
+{
+  "name": "UPS - United Parcel Service",
+  "callsign": {
+    "name": "UPS",
+    "length": 3
+  },
+  "aircraft": [
+    ["A306", 52 ],
+
+    ["B752", 75 ],
+
+    ["B763", 59 ],
+
+    ["B744", 13],
+    
+    ["MD11", 38 ]
+
+  ]
+}

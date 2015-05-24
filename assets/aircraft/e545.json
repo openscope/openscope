@@ -1,0 +1,26 @@
+{
+  "name": "Embraer Legacy 600",
+  "icao": "E545",
+  "wake": "light",
+  "rate": {
+    "turn":       3.2,
+    "ascent":     2700,
+    "descent":    2500,
+    "accelerate": 10,
+    "decelerate": 6
+  },
+  "runway": {
+    "takeoff": 2.2,
+    "landing": 3.0
+  },
+  "speed":{
+    "min":     110,
+    "max":     400,
+    "landing": 100,
+    "cruise":  200
+  },
+  "capability": {
+    "ils": true,
+    "fix": true
+  }
+}
