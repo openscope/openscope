@@ -1252,7 +1252,7 @@ function aircraft_init() {
   // CESSNA
   aircraft_load("c208");
   
-  aircraft_load("c140");
+  //  aircraft_load("c140");
 
   aircraft_load("c337");
 
