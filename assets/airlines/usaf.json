@@ -1,0 +1,11 @@
+{
+  "name": "United States Air Force",
+  "callsign": {
+    "name": "USAF",
+    "length": 3
+  },
+  "aircraft": [
+    ["C130", 275 ],
+	["C5", 76 ]
+  ]
+}

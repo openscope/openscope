@@ -1,0 +1,26 @@
+{
+  "name": "Tupolev 154",
+  "icao": "T154",
+  "wake": "medium",
+  "rate": {
+    "turn":       1.1,
+    "ascent":     2000,
+    "descent":    2200,
+    "accelerate": 9,
+    "decelerate": 4
+  },
+  "runway": {
+    "takeoff": 1.7,
+    "landing": 2.8
+  },
+  "speed":{
+    "min":     145,
+    "max":     250,
+    "landing": 155,
+    "cruise":  200
+  },
+  "capability": {
+    "ils": true,
+    "fix": true
+  }
+}

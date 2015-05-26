@@ -1,0 +1,26 @@
+{
+  "name": "Antonov 124 Ruslan",
+  "icao": "A124",
+  "wake": "heavy",
+  "rate": {
+    "turn":       0.7,
+    "ascent":     1000,
+    "descent":    2000,
+    "accelerate": 4,
+    "decelerate": 2
+  },
+  "runway": {
+    "takeoff": 3.3,
+    "landing": 3.7
+  },
+  "speed":{
+    "min":     145,
+    "max":     250,
+    "landing": 160,
+    "cruise":  200
+  },
+  "capability": {
+    "ils": true,
+    "fix": true
+  }
+}

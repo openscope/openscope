@@ -1,0 +1,26 @@
+{
+  "name": "Embraer 120 Brasília",
+  "icao": "E120",
+  "wake": "light",
+  "rate": {
+    "turn":       2.0,
+    "ascent":     1200,
+    "descent":    1500,
+    "accelerate": 6,
+    "decelerate": 3
+  },
+  "runway": {
+    "takeoff": 0.8,
+    "landing": 1.5
+  },
+  "speed":{
+    "min":     90,
+    "max":     249,
+    "landing": 95,
+    "cruise":  180
+  },
+  "capability": {
+    "ils": true,
+    "fix": true
+  }
+}

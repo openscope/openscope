@@ -5,6 +5,7 @@ function airline_init_pre() {
 }
 
 function airline_init() {
+  // Civil Airlines
   airline_load("UAL");
   airline_load("BAW");
   airline_load("AAL");
@@ -18,10 +19,22 @@ function airline_init() {
   airline_load("AVA");
   airline_load("AZU");
   airline_load("EMBRAER");
+  airline_load("DAL");
+  airline_load("AFL");
+  airline_load("SBI");
+  airline_load("TSO");
+  airline_load("SVR");
+  airline_load("UTA");
+  
+  // Cargo Airlines
   airline_load("FDX");
   airline_load("UPS");
   airline_load("CWC");
-  airline_load("DAL");
+  
+  // Military Air Forces
+  airline_load("RFF");
+  airline_load("FAB");
+  airline_load("USAF");
 }
 
 function airline_load(icao) {

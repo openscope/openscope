@@ -1,0 +1,17 @@
+{
+  "name": "Russian Air Force",
+  "callsign": {
+    "name": "Russian Air Force",
+    "length": 3
+  },
+  "aircraft": [
+    ["AN12", 53 ],
+	["AN24", 96 ],
+	["AN72", 25 ],
+	["A124", 25 ],
+	["T154", 17 ],
+	["IL76", 20 ],
+	["L410", 18 ]
+
+  ]
+}

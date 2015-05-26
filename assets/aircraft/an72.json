@@ -1,0 +1,26 @@
+{
+  "name": "Antonov 72",
+  "icao": "AN72",
+  "wake": "medium",
+  "rate": {
+    "turn":       1.2,
+    "ascent":     2100,
+    "descent":    1800,
+    "accelerate": 8,
+    "decelerate": 4
+  },
+  "runway": {
+    "takeoff": 1.8,
+    "landing": 2.0
+  },
+  "speed":{
+    "min":     130,
+    "max":     249,
+    "landing": 140,
+    "cruise":  250
+  },
+  "capability": {
+    "ils": true,
+    "fix": true
+  }
+}
