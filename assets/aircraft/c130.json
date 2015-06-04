@@ -1,0 +1,26 @@
+{
+  "name": "Lockheed C-130 Hercules",
+  "icao": "C130",
+  "wake": "medium",
+  "rate": {
+    "turn":       1.0,
+    "ascent":     1830,
+    "descent":    2100,
+    "accelerate": 7,
+    "decelerate": 5
+  },
+  "runway": {
+    "takeoff": 1.7,
+    "landing": 2.0
+  },
+  "speed":{
+    "min":     120,
+    "max":     250,
+    "landing": 125,
+    "cruise":  190
+  },
+  "capability": {
+    "ils": true,
+    "fix": true
+  }
+}

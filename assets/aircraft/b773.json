@@ -1,0 +1,26 @@
+{
+  "name": "Boeing 777-300",
+  "icao": "B773",
+  "wake": "heavy",
+  "rate": {
+    "turn":       0.8,
+    "ascent":     1100,
+    "descent":    2200,
+    "accelerate": 5.5,
+    "decelerate": 3.2
+  },
+  "runway": {
+    "takeoff": 2.4,
+    "landing": 3.0
+  },
+  "speed":{
+    "min":     130,
+    "max":     250,
+    "landing": 140,
+    "cruise":  200
+  },
+  "capability": {
+    "ils": true,
+    "fix": true
+  }
+}

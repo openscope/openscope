@@ -1,0 +1,26 @@
+{
+  "name": "Embraer 110 Bandeirante",
+  "icao": "E110",
+  "wake": "light",
+  "rate": {
+    "turn":       1.7,
+    "ascent":     1200,
+    "descent":    1800,
+    "accelerate": 5,
+    "decelerate": 3
+  },
+  "runway": {
+    "takeoff": 0.7,
+    "landing": 1.2
+  },
+  "speed":{
+    "min":     80,
+    "max":     249,
+    "landing": 90,
+    "cruise":  180
+  },
+  "capability": {
+    "ils": true,
+    "fix": true
+  }
+}

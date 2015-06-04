@@ -1,0 +1,26 @@
+{
+  "name": "Antonov 12",
+  "icao": "AN12",
+  "wake": "medium",
+  "rate": {
+    "turn":       1.5,
+    "ascent":     1960,
+    "descent":    2200,
+    "accelerate": 5,
+    "decelerate": 4
+  },
+  "runway": {
+    "takeoff": 1.7,
+    "landing": 1.5
+  },
+  "speed":{
+    "min":     115,
+    "max":     249,
+    "landing": 130,
+    "cruise":  190
+  },
+  "capability": {
+    "ils": true,
+    "fix": true
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "name": "Boeing 737-500",
+  "icao": "B735",
+  "wake": "medium",
+  "rate": {
+    "turn":       1.6,
+    "ascent":     1500,
+    "descent":    1900,
+    "accelerate": 7,
+    "decelerate": 5
+  },
+  "runway": {
+    "takeoff": 1.9,
+    "landing": 2.4
+  },
+  "speed":{
+    "min":     130,
+    "max":     250,
+    "landing": 140,
+    "cruise":  200
+  },
+  "capability": {
+    "ils": true,
+    "fix": true
+  }
+}

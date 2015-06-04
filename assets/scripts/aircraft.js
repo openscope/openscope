@@ -1242,22 +1242,21 @@ function aircraft_auto_toggle() {
 function aircraft_init() {
   //ATR
   aircraft_load("at43");
-  
   aircraft_load("at72");
 
   // CESSNA
   aircraft_load("c208");
-  
-  //  aircraft_load("c140");
-
   aircraft_load("c337");
-
   aircraft_load("c510");
-
   aircraft_load("c550");
-
   aircraft_load("c750");
 
+  // ANTONOV
+  aircraft_load("a124");
+  aircraft_load("an12");
+  aircraft_load("an24");
+  aircraft_load("an72");
+  
   // AIRBUS
   aircraft_load("a306");
   aircraft_load("a318");
@@ -1271,6 +1270,7 @@ function aircraft_init() {
 
   // BOEING
   aircraft_load("b734");
+  aircraft_load("b735");
   aircraft_load("b737");
   aircraft_load("b738");
   aircraft_load("b739");
@@ -1285,11 +1285,14 @@ function aircraft_init() {
   aircraft_load("b764");
 
   aircraft_load("b772");
+  aircraft_load("b773");
   aircraft_load("b77e");
   aircraft_load("b77w");
   aircraft_load("b788");
 
   // EMBRAER
+  aircraft_load("e110");
+  aircraft_load("e120");
   aircraft_load("e170");
   aircraft_load("e50p");
   aircraft_load("e55p");
@@ -1301,10 +1304,20 @@ function aircraft_init() {
   aircraft_load("conc");
   
   // DOUGLAS
-    aircraft_load("md11");
+  aircraft_load("md11");
 	aircraft_load("dc10");
+	
  // FOKKER
 	aircraft_load("f100");
+	
+	
+  // MISC
+  aircraft_load("l410");
+  aircraft_load("il76");
+  aircraft_load("t154");
+  aircraft_load("c130");
+  aircraft_load("c5");
+  
 }
 
 function aircraft_generate_callsign(airline) {
