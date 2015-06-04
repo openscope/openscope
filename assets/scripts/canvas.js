@@ -352,7 +352,20 @@ function canvas_draw_info(cc, aircraft) {
     var height  = 35;
     var height2 = height / 2;
 
-    var bar_width = 4;
+    var bar_width = width / 15;
+    var bar_width2 = bar_width / 2;
+    
+    var ILS_enabled = aircraft.requested.runway && aircraft.category == "arrival";
+    var lock_size = height / 3;
+    var lock_offset = lock_size / 8;
+    var pi = Math.PI;
+    var point1 = lock_size - bar_width2;
+
+  	//angle for the clipping mask
+    var a = point1 - lock_offset;
+    var b = bar_width2;
+  	//var c = Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2));  
+    var clipping_mask_angle = Math.atan(b / a);
 
     var match        = false;
     var almost_match = false;
@@ -400,7 +413,33 @@ function canvas_draw_info(cc, aircraft) {
       cc.fillStyle = "rgba(120, 150, 140, 0.9)";
     }
 
-    cc.fillRect(-width2, -height2, width, height);
+  	//Background fill and clip for ILS Lock Indicator
+    if (ILS_enabled)
+    {
+      cc.save();
+      cc.beginPath();
+
+      cc.moveTo(-width2, height2);
+      cc.lineTo(width2, height2);
+      cc.lineTo(width2, -height2);
+      cc.lineTo(-width2, -height2);
+
+      //side cutout
+      cc.lineTo(-width2, -point1);
+      cc.arc(-width2 - bar_width2, -lock_offset, lock_size / 2 + bar_width2, clipping_mask_angle - pi / 2, 0);
+      cc.lineTo(-width2 + lock_size / 2, lock_offset);
+      cc.arc(-width2 - bar_width2, lock_offset, lock_size / 2 + bar_width2, 0, pi / 2 - clipping_mask_angle);
+      cc.closePath();
+
+      cc.strokeStyle = cc.fillStyle;
+      cc.stroke();
+      cc.clip();
+      cc.fillRect(-width2, -height2, width, height);
+
+      cc.restore();
+    }
+    else
+      cc.fillRect(-width2, -height2, width, height);
 
     var alpha = 0.6;
     if(match) alpha = 0.9;
@@ -410,7 +449,47 @@ function canvas_draw_info(cc, aircraft) {
     else
       cc.fillStyle = "rgba(224, 128, 128, " + alpha + ")";
 
-    cc.fillRect(-width2-bar_width, -height2, bar_width, height);
+  	//sideBar ILS Lock Indicator
+    if (ILS_enabled)
+    {
+      var pi_slice = pi / 24;
+
+      cc.translate(-width2 - bar_width2, 0);
+
+      cc.lineWidth = bar_width;
+      cc.strokeStyle = cc.fillStyle;
+
+      //top arc
+      cc.beginPath();
+      cc.arc(0, -lock_offset, lock_size / 2, -pi_slice, pi + pi_slice, true);
+      cc.moveTo(0, -lock_size / 2);
+      cc.lineTo(0, -height2);
+      cc.stroke();
+
+      //bottom arc
+      cc.beginPath();
+      cc.arc(0, lock_offset, lock_size / 2, pi_slice, pi - pi_slice);
+      cc.moveTo(0, lock_size - bar_width);
+      cc.lineTo(0, height2);
+      cc.stroke();
+
+      cc.translate(width2 + bar_width2, 0);
+
+      //ILS locked
+      if (aircraft.mode == "landing")
+      {
+        cc.fillStyle = "white";
+        cc.translate(-width2 - bar_width2, 0);
+
+        cc.beginPath();
+        // arc(x,y,radius,startAngle,endAngle, clockwise);
+        cc.arc(0, 0, lock_size / 5, 0, pi * 2);
+        cc.fill();
+        cc.translate(width2 + bar_width2, 0);
+      }
+    }
+    else
+      cc.fillRect(-width2 - bar_width, -height2, bar_width, height);
 
     cc.fillStyle   = "rgba(255, 255, 255, 0.8)";
     if(match)
