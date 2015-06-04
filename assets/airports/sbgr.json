@@ -10,34 +10,39 @@
     "speed": 10
   },
   "fixes": {
-    "TUCA":[-15.90,1.2],
+    "IG":[-10.90,-1.9],
+	"MAE":[-20.90,-5.5],
+	"PLUS":[-40.90,-7.5],
+	"ELLE":[-50.90,7.5],
+	"IB":[-30.0,-10.5],
+	"NEVE":[40.0,6.8],
     "VUSTA":[-30.63,2.5],
 	"ISIMU":[12.63,-40.47],
-	"ESDAR":[17.01,-1.47],
+	"IS":[15.0,2.7],
 	"VURAK":[42.01,-3.80],
 	"ANSUG":[26.01,15.80],
 	"RAFA":[15.01,-12.80],
-	"E100":[100.00,0.00],
-	"W100":[-100.00,0.00],
-	"S100":[0.00,-100.00]
+	"E80":[80.00,0.00],
+	"W80":[-80.00,0.00],
+	"S80":[0.00,-80.00]
   },
   "runways": [
     {
       "name": ["9L", "27R"],
       "name_offset": [[0, 0], [0, 0]],
-      "position": [1.0, 1.0],
-      "angle": 95.00,
+      "position": [0.0, 0.0],
+      "angle": 80.00,
       "length": 3.700,
-      "delay": [10, 30],
+      "delay": [5, 30],
       "ils": [true, true]
     },
     {
       "name": ["9R", "27L"],
       "name_offset": [[0, 0], [0, 0]],
-      "position": [1.343, -0.757],
-      "angle": 95.00,
-      "length": 3.221,
-      "delay": [40, 20],
+      "position": [-0.5, -0.757],
+      "angle": 80.00,
+      "length": 3.0,
+      "delay": [8, 40],
       "ils": [true, false]
     }
   ],
@@ -47,23 +52,29 @@
       ["glo", 17],
       ["azu", 12],
 	  ["ava", 12],
+	  ["fdx", 2],
+	  ["dal", 4],
+	  ["ups", 2],
+	  ["ual", 4],
 	  ["embraer", 5],
-	  ["aal", 1]
+	  ["fab", 1],
+	  ["aal", 4]
     ],
-    "frequency": [1, 3]
+    "frequency": [1, 2]
   },
   "arrivals":[
     {
-      "angle": 230,
-      "heading": 105,
+      "angle": 90,
+      "heading": 90,
       "airlines": [
         ["glo", 10],
         ["tam", 10],
         ["azu", 5],
 		["embraer", 1],
+		["fab", 1],
 		["aal", 2]
       ],
-      "frequency": [10, 30],
+      "frequency": [2, 10],
       "altitude": [5000, 7000]
     },
     {
@@ -76,7 +87,7 @@
 		["embraer", 1],
         ["tam", 3]
       ],
-      "frequency": [5, 10],
+      "frequency": [4, 8],
       "altitude": [5000, 8000]
     },
     {
@@ -86,11 +97,11 @@
         ["cessna", 2],
 		["embraer", 2]
       ],
-      "frequency": [10, 20],
+      "frequency": [5, 20],
       "altitude": [3000, 5000]
     },
     {
-      "angle": 230,
+      "angle": 10,
       "heading": 180,
       "airlines": [
         ["glo", 10],
@@ -98,7 +109,24 @@
 		["embraer", 1],
         ["aal", 1]
       ],
-      "frequency": [10, 15],
+      "frequency": [3, 10],
+      "altitude": [6000, 7000]
+    },
+	{
+      "angle": 0,
+      "heading": 140,
+      "airlines": [
+        ["glo", 10],
+        ["tam", 10],
+		["azu", 10],
+		["ava", 10],
+		["fab", 1],
+		["embraer", 2],
+		["dal", 2],
+		["fdx", 2],
+        ["aal", 2]
+      ],
+      "frequency": [5, 20],
       "altitude": [6000, 7000]
     }
   ]

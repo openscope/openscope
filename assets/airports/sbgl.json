@@ -1,0 +1,123 @@
+{
+  "name": "Aeroporto Internacional Tom Jobim",
+  "level": "hard",
+  "radio": "Galeao",
+  "icao": "SBGL",
+  "iata": "GIG",
+  "ctr_radius": 80,
+  "wind": {
+    "angle": 160,
+    "speed": 3
+  },
+  "fixes": {
+    "GILO":[40,-66],
+    "XOGAR":[-5,48.0],
+	"VUPIP":[102,0.0],
+	"BAGU":[-50.01,-4.47],
+	"FRAN":[-50.01,12.47],
+	"UBNEK":[-78.01,12.47],
+	"PCX":[48.5,9.6],	
+	"CAX":[-14.0,14.6],
+	"MENT":[-32.0,35.0],
+	"AFS":[-20.0,-2.6],
+	"YLA":[20.00,4.80],
+	"UGRAD":[-78.50,-12.80],
+	"PP2":[12.00,-16.0]
+  },
+  "runways": [
+    {
+      "name": ["10", "28"],
+      "name_offset": [[0.5, 0.5], [0, 0]],
+      "position": [1.0, 1.0],
+      "angle": 80.00,
+      "length": 4.000,
+      "delay": [10, 45],
+      "ils": [true, true]
+    },
+    {
+      "name": ["15", "33"],
+      "name_offset": [[-0.5, -0.2], [0, 0]],
+      "position": [-0.2, -1.7],
+      "angle": 140.00,
+      "length": 3.221,
+      "delay": [15, 30],
+      "ils": [true, false]
+    }
+  ],
+  "departures": {
+    "airlines": [
+      ["tam", 30],
+      ["glo", 30],
+      ["azu", 24],
+	  ["ava", 24],
+	  ["embraer", 10],
+	  ["aal", 2]
+    ],
+    "frequency": [1, 15]
+  },
+  "arrivals":[
+    {
+      "angle": 30,
+      "heading": 315,
+      "airlines": [
+        ["glo", 20],
+        ["tam", 20],
+        ["azu", 15],
+		["embraer", 5],
+		["aal", 4]
+      ],
+      "frequency": [50, 100],
+      "altitude": [5000, 7000]
+    },
+    {
+      "angle": 160,
+      "heading": 45,
+      "airlines":[
+        ["ava", 20],
+        ["baw", 2],
+		["glo", 20],
+		["embraer", 4],
+        ["tam", 20]
+      ],
+      "frequency": [1, 20],
+      "altitude": [5000, 8000]
+    },
+    {
+      "angle": 90,
+      "heading": 140,
+      "airlines": [
+        ["cessna", 20],
+		["glo", 20],
+        ["tam", 20],		
+		["embraer", 20],
+		["azu", 50]
+      ],
+      "frequency": [10, 80],
+      "altitude": [3000, 5000]
+    },
+    {
+      "angle": 230,
+      "heading": 240,
+      "airlines": [
+        ["glo", 10],
+        ["tam", 10],
+		["embraer", 1],
+        ["aal", 1]
+      ],
+      "frequency": [10, 40],
+      "altitude": [9000, 10000]
+    },
+	    {
+      "angle": 230,
+      "heading": 270,
+      "airlines": [
+        ["glo", 10],
+        ["tam", 10],
+		["embraer", 1],
+        ["cessna", 1]
+      ],
+      "frequency": [1, 40],
+      "altitude": [9000, 10000]
+    }
+  ]
+}

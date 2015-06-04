@@ -1,0 +1,26 @@
+{
+  "name": "Lockheed C-5 Galaxy ",
+  "icao": "C5",
+  "wake": "heavy",
+  "rate": {
+    "turn":       0.8,
+    "ascent":     1000,
+    "descent":    2000,
+    "accelerate": 4,
+    "decelerate": 2
+  },
+  "runway": {
+    "takeoff": 2.5,
+    "landing": 3.5
+  },
+  "speed":{
+    "min":     150,
+    "max":     250,
+    "landing": 160,
+    "cruise":  200
+  },
+  "capability": {
+    "ils": true,
+    "fix": true
+  }
+}
