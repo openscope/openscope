@@ -2,6 +2,8 @@
 function ui_init_pre() {
   prop.ui = {};
   prop.ui.scale_default = 8; // pixels per km
+  prop.ui.scale_max = 80; // max scale
+  prop.ui.scale_min = 1; // min scale
   prop.ui.scale         = prop.ui.scale_default;
 
   if('atc-scale' in localStorage) prop.ui.scale = localStorage['atc-scale'];
@@ -9,11 +11,13 @@ function ui_init_pre() {
 
 function ui_zoom_out() {
   prop.ui.scale *= 0.9;
+  if(prop.ui.scale < prop.ui.scale_min) prop.ui.scale = prop.ui.scale_min;
   ui_after_zoom();
 }
 
 function ui_zoom_in() {
   prop.ui.scale /= 0.9;
+  if(prop.ui.scale > prop.ui.scale_max) prop.ui.scale = prop.ui.scale_max;
   ui_after_zoom();
 }
 

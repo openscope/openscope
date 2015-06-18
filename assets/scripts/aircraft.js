@@ -219,6 +219,12 @@ var Aircraft=Fiber.extend(function() {
       this.html.click(this, function(e) {
         input_select(e.data.getCallsign());
       });
+      
+      this.html.dblclick(this, function (e) {
+        prop.canvas.panX = 0 - round(km(e.data.position[0]));
+        prop.canvas.panY = round(km(e.data.position[1]));
+        prop.canvas.dirty = true;
+      });
 
     },
     cleanup: function() {
