@@ -177,6 +177,7 @@ function mod(a, b) {
 };
 
 function lpad(n, width) {
+  if (n.toString().length >= width) return n.toString();
   var x = "0000000000000" + n;
   return x.substr(x.length-width, width);
 }
