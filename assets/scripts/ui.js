@@ -10,15 +10,21 @@ function ui_init_pre() {
 }
 
 function ui_zoom_out() {
+  var lastpos = [round(pixels_to_km(prop.canvas.panX)), round(pixels_to_km(prop.canvas.panY))];
   prop.ui.scale *= 0.9;
   if(prop.ui.scale < prop.ui.scale_min) prop.ui.scale = prop.ui.scale_min;
   ui_after_zoom();
+  prop.canvas.panX = round(km(lastpos[0]));
+  prop.canvas.panY = round(km(lastpos[1]));
 }
 
 function ui_zoom_in() {
+  var lastpos = [round(pixels_to_km(prop.canvas.panX)), round(pixels_to_km(prop.canvas.panY))];
   prop.ui.scale /= 0.9;
   if(prop.ui.scale > prop.ui.scale_max) prop.ui.scale = prop.ui.scale_max;
   ui_after_zoom();
+  prop.canvas.panX = round(km(lastpos[0]));
+  prop.canvas.panY = round(km(lastpos[1]));
 }
 
 function ui_zoom_reset() {
