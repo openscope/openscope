@@ -885,6 +885,7 @@ var Aircraft=Fiber.extend(function() {
           if(m) {
             this.updateStrip();
             this.requested.turn = null;
+            this.target.turn = null;
           }
 
           if(offset[1] > 0.01) {
@@ -932,6 +933,7 @@ var Aircraft=Fiber.extend(function() {
           this.updateStrip();
         } else {
           this.target.heading = Math.atan2(a, b) - Math.PI;
+          this.target.turn = null;
         }
       } else if(this.requested.navmode == "hold") {
         if(this.requested.turn == "right") {
