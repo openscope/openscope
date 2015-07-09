@@ -909,6 +909,9 @@ var Aircraft=Fiber.extend(function() {
             console.log("aborted landing after ILS lost");
             prop.game.score.abort.landing += 1;
           }
+        } else {
+          this.target.heading = this.requested.heading;
+          this.target.turn = this.requested.turn;
         }
 
         //this has to be outside of the glide slope if, as the plane is no
