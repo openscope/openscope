@@ -1084,11 +1084,6 @@ var Aircraft=Fiber.extend(function() {
       var angle = this.heading;
       this.position[0] += (sin(angle) * (this.speed * 0.000514)) * game_delta();
       this.position[1] += (cos(angle) * (this.speed * 0.000514)) * game_delta();
-
-      var wind_drift = [0, 0];
-
-      this.position[0] += (sin(angle) * (this.speed * 0.000514)) * game_delta();
-      this.position[1] += (cos(angle) * (this.speed * 0.000514)) * game_delta();
     },
     updateWarning: function() {
       if(this.isTaxiing()) return;
