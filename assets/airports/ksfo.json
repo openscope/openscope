@@ -5,7 +5,7 @@
   "icao": "KSFO",
   "ctr_radius": 80,
   "wind": {
-    "angle": 130,
+    "angle": 310,
     "speed": 5
   },
   "fixes": {
