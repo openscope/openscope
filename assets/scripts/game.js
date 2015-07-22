@@ -7,7 +7,7 @@ function game_init_pre() {
 
   prop.game.speedup=1;
 
-  prop.game.frequency = 0.5;
+  prop.game.frequency=1;
 
   prop.game.time=0;
   prop.game.delta=0;
