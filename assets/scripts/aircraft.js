@@ -219,6 +219,12 @@ var Aircraft=Fiber.extend(function() {
       this.html.click(this, function(e) {
         input_select(e.data.getCallsign());
       });
+      
+      this.html.dblclick(this, function (e) {
+        prop.canvas.panX = 0 - round(km(e.data.position[0]));
+        prop.canvas.panY = round(km(e.data.position[1]));
+        prop.canvas.dirty = true;
+      });
 
     },
     cleanup: function() {
@@ -879,6 +885,7 @@ var Aircraft=Fiber.extend(function() {
           if(m) {
             this.updateStrip();
             this.requested.turn = null;
+            this.target.turn = null;
           }
 
           if(offset[1] > 0.01) {
@@ -902,6 +909,9 @@ var Aircraft=Fiber.extend(function() {
             console.log("aborted landing after ILS lost");
             prop.game.score.abort.landing += 1;
           }
+        } else {
+          this.target.heading = this.requested.heading;
+          this.target.turn = this.requested.turn;
         }
 
         //this has to be outside of the glide slope if, as the plane is no
@@ -926,6 +936,7 @@ var Aircraft=Fiber.extend(function() {
           this.updateStrip();
         } else {
           this.target.heading = Math.atan2(a, b) - Math.PI;
+          this.target.turn = null;
         }
       } else if(this.requested.navmode == "hold") {
         if(this.requested.turn == "right") {
@@ -1009,7 +1020,11 @@ var Aircraft=Fiber.extend(function() {
         // TURNING
 
         if(this.altitude > 10) {
-          var turn_amount = this.model.rate.turn * game_delta();
+          // Perform standard turns 3 deg/s or 25 deg bank, whichever
+          // requires less bank angle.
+          // Formula based on http://aviation.stackexchange.com/a/8013
+          var turn_rate = clamp(0, 1 / (this.speed / 8.883031), 0.0523598776);
+          var turn_amount = turn_rate * game_delta();
           var offset = angle_offset(this.target.heading, this.heading);
           if(abs(offset) < turn_amount) {
             this.heading = this.target.heading;

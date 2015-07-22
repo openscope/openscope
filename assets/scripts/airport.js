@@ -1,10 +1,9 @@
-
-var Runway=Position.extend(function(base) {
+var Runway=Fiber.extend(function(base) {
   return {
     init: function(options) {
       if(!options) options={};
-      base.init.call(this, options);
 
+      this.position     = [0, 0];
       this.name         = [null, null];
       this.name_offset  = [[0, 0], [0, 0]];
       this.length       = 1;
@@ -109,7 +108,10 @@ var Runway=Position.extend(function(base) {
       return offset;
     },
     parse: function(data) {
-      if(data.position) this.position = data.position;
+      if(data.position) {
+        var coord = new Position(data.position, data.reference_position);
+        this.position = coord.position;
+      }
 
       if(data.name) this.name = data.name;
       if(data.name_offset) this.name_offset = data.name_offset;
@@ -180,6 +182,7 @@ var Airport=Fiber.extend(function() {
       return wind;
     },
     parse: function(data) {
+      if(data.position) this.position = new Position(data.position);
       if(data.name) this.name   = data.name;
       if(data.icao) this.icao   = data.icao;
       if(data.radio) this.radio = data.radio;
@@ -188,13 +191,15 @@ var Airport=Fiber.extend(function() {
 
       if(data.runways) {
         for(var i=0;i<data.runways.length;i++) {
+          data.runways[i].reference_position = this.position;
           this.runways.push(new Runway(data.runways[i]));
         }
       }
 
       if(data.fixes) {
         for(var i in data.fixes) {
-          this.fixes[i] = data.fixes[i];
+          var coord = new Position(data.fixes[i], this.position);
+          this.fixes[i] = coord.position;
         }
       }
 
@@ -348,7 +353,13 @@ var Airport=Fiber.extend(function() {
         that: this,
         callback: function(status, data) {
           if(status == "ok") {
-            this.parse(data);
+            try {
+              log('Parsing data');
+              this.parse(data);
+            }
+            catch (e) {
+              log(e.message);
+            }
           }
         }
       });
@@ -395,7 +406,7 @@ function airport_init() {
   airport_load("ebbr");
   airport_load("eddh");
   airport_load("eham");
-  
+
 //  BRAZIL AIRPORTS
   airport_load("sbgr");
   airport_load("sbgl");
