@@ -108,9 +108,19 @@ var Runway=Fiber.extend(function(base) {
       return offset;
     },
     parse: function(data) {
+      
       if(data.position) {
         var coord = new Position(data.position, data.reference_position);
         this.position = coord.position;
+      } else if(data.end) {
+        var coord_start = new Position(data.end[0], data.reference_position);
+        var coord_end   = new Position(data.end[1], data.reference_position);
+        this.position   = [average(coord_start.x, coord_end.x), average(coord_start.y, coord_end.y)];
+        this.length     = Math.sqrt(
+          Math.abs((coord_start.x + coord_start.x) - (coord_end.x + coord_end.x)) + 
+            Math.abs((coord_start.y + coord_start.y) - (coord_end.y + coord_end.y)));
+        this.angle      = Math.atan2(coord_start.x - coord_end.x, coord_start.y - coord_end.y);
+        console.log(this.angle, this.length);
       }
 
       if(data.name) this.name = data.name;
@@ -401,6 +411,7 @@ function airport_init() {
   airport_load("ksfo");
   airport_load("kmsp");
   airport_load("kjfk");
+  airport_load("klax");
 //  airport_load("ksna");
 
   airport_load("ebbr");
