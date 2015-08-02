@@ -297,21 +297,18 @@ var Airport=Fiber.extend(function() {
       if(timeout == undefined) timeout=false;
       if(!offset) offset = 1;
 
-      var position = [0, 0];
-      var width    = pixels_to_km((prop.canvas.size.width / 2)  - 50);
-      var height   = pixels_to_km((prop.canvas.size.height / 2) - 50);
-      var distance = Math.min(width, height);
-
+      // Set heading within 15 degrees of specified
       var wobble   = radians(15);
+      var heading  = arrival.heading + random(-wobble, wobble);
 
-      var heading  = arrival.heading + crange(0, Math.random(), 1, -wobble, wobble);
+      // Set location 2-18km inside of the radar coverage line
+      var distance = (2*this.ctr_radius - 18) * offset + random(16);
+      var position = [0, 0];
+      position[0] += sin(heading) * distance;
+      position[1] += cos(heading) * distance;
 
-      wobble       = crange(0, Math.random(), 1, -8, 8);
-      distance     = 150;
-      position[0] += sin(heading) * distance * offset + wobble;
-      position[1] += cos(heading) * distance * offset + wobble;
-
-      var altitude = crange(0, Math.random(), 1, arrival.altitude[0] / 1000, arrival.altitude[1] / 1000);
+      var altitude = random(arrival.altitude[0] / 1000,
+                            arrival.altitude[1] / 1000);
       altitude     = round(altitude * 2) * 500;
 
       var message = true;
