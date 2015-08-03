@@ -642,7 +642,7 @@ var Aircraft=Fiber.extend(function() {
         return ["ok", "cleared for takeoff", ""];
       } else {
         var waiting = runway.isWaiting(this, this.requested.runway);
-        return ["fail", "number "+waiting+" behind "+runway.waiting[runway.getEnd(this.requested.runway)][waiting+1].getRadioCallsign(), ""];
+        return ["fail", "number "+waiting+" behind "+runway.waiting[runway.getEnd(this.requested.runway)][waiting-1].getRadioCallsign(), ""];
       }
 
     },
