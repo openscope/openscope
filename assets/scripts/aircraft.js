@@ -795,6 +795,15 @@ var Aircraft=Fiber.extend(function() {
     isLanded: function() {
       if(this.altitude < 5) return true;
     },
+    isPrecisionGuided: function() {
+      // Whether this aircraft is elegible for reduced separation
+      //
+      // If the game ever distinguishes between ILS/MLS/LAAS
+      // approaches and visual/localizer/VOR/etc. this should
+      // distinguish between them.  Until then, presume landing is via
+      // ILS with appropriate procedures in place.
+      return (this.mode == "landing");
+    },
     isStopped: function() {
       if(this.isLanded() && this.speed < 5) return true;
     },
@@ -1090,42 +1099,76 @@ var Aircraft=Fiber.extend(function() {
       this.position[1] += (cos(angle) * (this.speed * 0.000514)) * game_delta();
     },
     updateWarning: function() {
-      if(this.isTaxiing()) return;
+      // Check this aircraft for violation of separation minima against all
+      // other aircraft.
+
+      // Ignore other aircraft while taxiing
+      if (this.isTaxiing()) return;
+
       var notice  = false;
       var warning = false;
       var hit     = false;
+
       for(var i=0;i<prop.aircraft.list.length;i++) {
         var other = prop.aircraft.list[i];
         if(this == other) continue;
 
-        var other_land = other.isLanded()  || other.altitude < 990;
-        var this_land  = this.isLanded()   || this.altitude < 990;
+        var distance = distance2d(this.position, other.position);
 
-        if((!other_land && !this_land)) {
-          if((distance2d(this.position, other.position) < 5.5) &&     // closer than ~4 miles
-             (abs(this.altitude - other.altitude) < 1500)) {          // less than 1.5k feet
-            notice = true;
-          }
-          if((distance2d(this.position, other.position) < 4.8) &&     // closer than 3 miles
-             (abs(this.altitude - other.altitude) < 990)) {           // less than 1k feet
-            warning = true;
-          }
-        } else {
+        // Check if the aircraft are on a potential collision course
+        // on the runway
+        if ((this.isLanded() || this.altitude < 990) &&
+            (other.isLanded() || (other.altitude < 990)))
+        {
           var airport = airport_get();
-          if((airport.getRunway(other.requested.runway) === airport.getRunway(this.requested.runway)) &&     // on the same runway
-             (distance2d(this.position, other.position) < 10) &&      // closer than 10km
-             (abs(angle_offset(this.heading, other.heading)) > 10)) { // different directions
-            if(!this.warning) {
-              console.log("too close to another aircraft");
-              ui_log(true, this.getCallsign() + " is too close to " + other.getCallsign());
+
+          // Check for the same runway, headings differing by more
+          // than 30 degrees and under about 6 miles
+          if ((this.requested.runway != null) &&
+              (airport.getRunway(other.requested.runway) ===
+               airport.getRunway(this.requested.runway)) &&
+              (abs(angle_offset(this.heading, other.heading)) > 0.5236) &&
+              (distance < 10))
+          {
+            if (!this.warning) {
+              ui_log(true, this.getCallsign()
+                     + " appears on a collision course with another"
+                     + " aircraft on the same runway");
               prop.game.score.warning += 1;
+              this.warning = true;
             }
             warning = true;
+          } else {
+            this.warning = false;
           }
         }
-        if((distance2d(this.position, other.position) < 0.05) &&      // closer than 50 meters
-           (abs(this.altitude - other.altitude) < 50) &&
-           (other.isVisible() && this.isVisible())) {
+
+        // Ignore aircraft below about 1000 feet
+        // Allows realistic departure separation via heading
+        if (other.altitude < 990) continue;
+
+        var altitude = abs(this.altitude - other.altitude);
+
+        // Reduced separation horizontal minima during precision
+        // guided approaches
+        if (this.isPrecisionGuided() && other.isPrecisionGuided) {
+          // Notice at 3500 feet horizontal and 1500 feet vertical
+          if ((distance < 1.067) && (altitude < 1500)) notice = true;
+
+          // Warning at 3000 feet and 1000 feet vertical
+          if ((distance < 0.914) && (altitude < 1000)) warning = true;
+        }
+        // Standard separation
+        else {
+          // Notice at 4 miles horizontal and 1500 feet vertical
+          if ((distance < 5.5) && (altitude < 1500)) notice = true;
+          // Warning within 3 miles horizontal and 1000 feet vertical
+          if ((distance < 4.8) && (altitude < 1000)) warning = true;
+        }
+
+        // Collide within 160 feet
+        if (((distance < 0.05) && (altitude < 160)) &&
+            other.isVisible() && this.isVisible()) {
           if(!this.hit) {
             console.log("hit another aircraft");
             ui_log(true, this.getCallsign() + " hit " + other.getCallsign());
