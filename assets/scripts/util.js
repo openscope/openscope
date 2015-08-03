@@ -317,3 +317,12 @@ function compass_direction(angle) {
   angle = DIRECTIONS[round(angle)];
   return angle;
 }
+
+// Return a random number within the given interval
+// With one argument return a number between 0 and argument
+// With no arguments return a number between 0 and 1
+function random(low, high) {
+  if (low == null) return Math.random();
+  if (high == null) return Math.random() * low;
+  return (low + (Math.random() * (high - low)));
+}
