@@ -1118,6 +1118,7 @@ var Aircraft=Fiber.extend(function() {
         // Check if the aircraft are on a potential collision course
         // on the runway
         if ((this.isLanded() || this.altitude < 990) &&
+            !other.isTaxiing() &&
             (other.isLanded() || (other.altitude < 990)))
         {
           var airport = airport_get();
