@@ -1132,8 +1132,8 @@ var Aircraft=Fiber.extend(function() {
           {
             if (!this.warning) {
               ui_log(true, this.getCallsign()
-                     + " appears on a collision course with another"
-                     + " aircraft on the same runway");
+                     + " appears on a collision course with " + other.getCallsign()
+                     + " on the same runway");
               prop.game.score.warning += 1;
               this.warning = true;
             }
