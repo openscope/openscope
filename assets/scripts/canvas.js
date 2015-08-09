@@ -26,6 +26,23 @@ function canvas_init() {
   canvas_add("compass");
 }
 
+function canvas_adjust_hidpi() {
+  dpr = window.devicePixelRatio || 1;
+  console.log("devicePixelRatio:"+dpr);
+  if(dpr > 1) {
+    hidefCanvas = $("#navaids-canvas").get(0);
+    w = $(hidefCanvas).width();
+    h = $(hidefCanvas).height();
+    $(hidefCanvas).attr('width', w * dpr);
+    $(hidefCanvas).attr('height', h * dpr);
+    $(hidefCanvas).css('width', w );
+    $(hidefCanvas).css('height', h );
+    ctx = hidefCanvas.getContext("2d");
+    ctx.scale(dpr, dpr);
+    prop.canvas.contexts["navaids"] = ctx;
+  }
+}
+
 function canvas_complete() {
   setTimeout(function() {
     prop.canvas.dirty = true;
@@ -45,6 +62,7 @@ function canvas_resize() {
     prop.canvas.contexts[i].canvas.width=prop.canvas.size.width;
   }
   prop.canvas.dirty = true;
+  canvas_adjust_hidpi();
 }
 
 function canvas_add(name) {
@@ -240,6 +258,9 @@ function canvas_draw_aircraft(cc, aircraft) {
 
   // Trailling
   var trailling_length = 12;
+  dpr = window.devicePixelRatio || 1;
+  if (dpr > 1) 
+    trailling_length *= round(dpr);
   cc.restore();
   for (i = 0; i < aircraft.position_history.length; i++) {
       cc.save();
