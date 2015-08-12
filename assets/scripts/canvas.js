@@ -262,15 +262,16 @@ function canvas_draw_aircraft(cc, aircraft) {
   if (dpr > 1) 
     trailling_length *= round(dpr);
   cc.restore();
-  for (i = 0; i < aircraft.position_history.length; i++) {
-      cc.save();
-      cc.fillStyle = "rgba(255, 255, 255," + 1/((trailling_length)-i) + ")";
-      cc.translate(km(aircraft.position_history[i][0]) + prop.canvas.panX, -km(aircraft.position_history[i][1]) + prop.canvas.panY);
-      cc.beginPath();
-      cc.arc(0, 0, size/2.5, 0, Math.PI * 2);
-      cc.fill();
-      cc.restore();
+
+  cc.save();
+  cc.fillStyle = "rgb(255, 255, 255)";
+  length = aircraft.position_history.length;
+  for (i = 0; i < length; i++) {
+      cc.globalAlpha = 1 / (length - i);
+      cc.fillRect(km(aircraft.position_history[i][0]) + prop.canvas.panX, -km(aircraft.position_history[i][1]) + prop.canvas.panY, 2, 2);
   }
+  cc.restore();
+
   cc.save();
   if(aircraft.position_history.length > trailling_length) aircraft.position_history = aircraft.position_history.slice(aircraft.position_history.length - trailling_length, aircraft.position_history.length);
 
@@ -351,11 +352,13 @@ function canvas_draw_all_aircraft(cc) {
   cc.fillStyle   = "rgba(224, 224, 224, 1.0)";
   cc.strokeStyle = "rgba(224, 224, 224, 1.0)";
   cc.lineWidth   = 2;
+  // console.time('canvas_draw_all_aircraft')
   for(var i=0;i<prop.aircraft.list.length;i++) {
     cc.save();
     canvas_draw_aircraft(cc, prop.aircraft.list[i]);
     cc.restore();
   }
+  // console.timeEnd('canvas_draw_all_aircraft')
 }
 
 function canvas_draw_info(cc, aircraft) {
