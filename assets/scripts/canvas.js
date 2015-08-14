@@ -314,7 +314,11 @@ function canvas_draw_aircraft(cc, aircraft) {
     cc.fill();
 
     cc.restore();
-
+  }
+  
+  // Draw the future path
+  if((aircraft.warning || match) && !aircraft.isTaxiing()) {
+    canvas_draw_future_track(cc, aircraft);
   }
 
   cc.translate(km(aircraft.position[0]) + prop.canvas.panX, -km(aircraft.position[1]) + prop.canvas.panY);
@@ -346,6 +350,50 @@ function canvas_draw_aircraft(cc, aircraft) {
   cc.beginPath();
   cc.arc(0, 0, size, 0, Math.PI * 2);
   cc.fill();
+}
+
+// Run physics updates into the future, draw magenta track
+function canvas_draw_future_track(cc, aircraft) {
+  twin = $.extend(true, {}, aircraft);
+  twin.updateStrip = function(){}; // ignore any calls to updateStrip() for the twin
+  save_delta = prop.game.delta;
+  prop.game.delta = 5;
+  future_track = [];
+  for(i = 0; i < 60; i++) {
+    twin.update();
+    ils_locked = twin.requested.runway && twin.category == "arrival" && twin.mode == "landing";
+    future_track.push([twin.position[0], twin.position[1], ils_locked]);
+    if( ils_locked && twin.altitude < 500)
+      break;
+  }
+  prop.game.delta = save_delta;
+  cc.save();
+  cc.strokeStyle = "rgba(255, 0, 255, 0.3)"; // magenta
+  cc.lineWidth = 2;
+  cc.beginPath();
+  was_locked = false;
+  lockedStroke = "rgba(255, 0, 255, 0.6)";
+  length = future_track.length;
+  for (i = 0; i < length; i++) {
+      ils_locked = future_track[i][2];
+      x = km(future_track[i][0]) + prop.canvas.panX ;
+      y = -km(future_track[i][1]) + prop.canvas.panY;
+      if(ils_locked && !was_locked) {
+        cc.lineTo(x, y);
+        cc.stroke(); // end the current path, start a new path with lockedStroke
+        cc.strokeStyle = lockedStroke;
+        cc.beginPath();
+        cc.moveTo(x, y);
+        was_locked = true;
+        continue;
+      }
+      if( i==0 )
+        cc.moveTo(x, y);
+      else 
+        cc.lineTo(x, y);
+  }
+  cc.stroke();
+  cc.restore();
 }
 
 function canvas_draw_all_aircraft(cc) {
