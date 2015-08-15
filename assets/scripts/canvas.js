@@ -281,6 +281,11 @@ function canvas_draw_aircraft(cc, aircraft) {
   if(prop.input.callsign.length > 0 && aircraft.matchCallsign(prop.input.callsign))
     match = true;
 
+  // Draw the future path
+  if((aircraft.warning || match) && !aircraft.isTaxiing()) {
+    canvas_draw_future_track(cc, aircraft);
+  }
+
   cc.fillStyle   = "rgba(224, 224, 224, 1.0)";
   if(almost_match)
     cc.fillStyle = "rgba(224, 210, 180, 1.0)";
@@ -316,11 +321,6 @@ function canvas_draw_aircraft(cc, aircraft) {
     cc.restore();
   }
   
-  // Draw the future path
-  if((aircraft.warning || match) && !aircraft.isTaxiing()) {
-    canvas_draw_future_track(cc, aircraft);
-  }
-
   cc.translate(km(aircraft.position[0]) + prop.canvas.panX, -km(aircraft.position[1]) + prop.canvas.panY);
 
   if(!aircraft.hit) {
@@ -368,11 +368,17 @@ function canvas_draw_future_track(cc, aircraft) {
   }
   prop.game.delta = save_delta;
   cc.save();
-  cc.strokeStyle = "rgba(255, 0, 255, 0.3)"; // magenta
+
+  if(aircraft.category == "departure") {
+    cc.strokeStyle = "rgba(128, 255, 255, 0.6)";
+  } else {
+    cc.strokeStyle = "rgba(224, 128, 128, 0.6)";
+    lockedStroke   = "rgba(224, 128, 128, 1.0)";
+  }
+  
   cc.lineWidth = 2;
   cc.beginPath();
   was_locked = false;
-  lockedStroke = "rgba(255, 0, 255, 0.6)";
   length = future_track.length;
   for (i = 0; i < length; i++) {
       ils_locked = future_track[i][2];
@@ -382,6 +388,7 @@ function canvas_draw_future_track(cc, aircraft) {
         cc.lineTo(x, y);
         cc.stroke(); // end the current path, start a new path with lockedStroke
         cc.strokeStyle = lockedStroke;
+        cc.lineWidth = 3;
         cc.beginPath();
         cc.moveTo(x, y);
         was_locked = true;
@@ -762,13 +769,6 @@ function canvas_update_post() {
     }
 
     cc.font = "10px monoOne, monospace";
-    cc.save();
-    cc.globalAlpha = alpha;
-    cc.translate(round(prop.canvas.size.width/2), round(prop.canvas.size.height/2));
-    canvas_draw_all_info(cc);
-
-    cc.restore();
-
 
     if(prop.canvas.dirty || canvas_should_draw() || true) {
       cc.save();
@@ -777,6 +777,12 @@ function canvas_update_post() {
       canvas_draw_all_aircraft(cc);
       cc.restore();
     }
+
+    cc.save();
+    cc.globalAlpha = alpha;
+    cc.translate(round(prop.canvas.size.width/2), round(prop.canvas.size.height/2));
+    canvas_draw_all_info(cc);
+    cc.restore();
 
     cc.save();
     cc.globalAlpha = alpha;
