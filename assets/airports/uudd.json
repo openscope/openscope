@@ -54,7 +54,7 @@
   },
   "arrivals": [
     {
-      "heading":   180,
+      "radial":   180,
       "airlines":  [
         ["rff", 2],
 		["afl", 30],
@@ -67,7 +67,7 @@
       "altitude":  [4000, 6000]
     },
 	{
-      "heading":   300,
+      "radial":   300,
       "airlines":  [
         ["rff", 2],
 		["afl", 30],
@@ -80,7 +80,7 @@
       "altitude":  [6000, 7000]
     },
     {
-      "angle":     270,
+      "radial":    270,
       "heading":   0,
       "airlines":  [
         ["rff", 2],

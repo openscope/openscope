@@ -77,7 +77,8 @@
   },
   "arrivals": [
     {
-      "heading":   180,
+      "radial":    180,
+      "heading":   360,
       "airlines":  [
         ["ual", 3],
         ["baw", 1],

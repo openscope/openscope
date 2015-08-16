@@ -50,29 +50,29 @@
   },
   "arrivals": [
     {
-      "angle":    -45,
-      "heading":   270,
+      "radial":    45,
+      "heading":   225,
       "airlines":  ["BAW"],
       "frequency": [3, 5],
       "altitude":  [4000, 6000]
     },
     {
-      "angle":     225,
-      "heading":   270,
+      "radial":    135,
+      "heading":   315,
       "airlines":  ["BAW"],
       "frequency": [3, 5],
       "altitude":  [4000, 6000]
     },
     {
-      "angle":     45,
-      "heading":   90,
+      "radial":    225,
+      "heading":   45,
       "airlines":  ["BAW"],
       "frequency": [3, 5],
       "altitude":  [4000, 6000]
     },
     {
-      "angle":     135,
-      "heading":   90,
+      "radial":    315,
+      "heading":   135,
       "airlines":  ["BAW"],
       "frequency": [3, 5],
       "altitude":  [4000, 6000]

@@ -64,8 +64,8 @@
   },
   "arrivals":[
     {
-      "angle": 90,
-      "heading": 90,
+      "radial": 90,
+      "heading": 270,
       "airlines": [
         ["glo", 10],
         ["tam", 10],
@@ -75,11 +75,11 @@
 		["aal", 2]
       ],
       "frequency": [2, 10],
-      "altitude": [5000, 7000]
+      "altitude": [6000, 8000]
     },
     {
-      "angle": 180,
-      "heading": 270,
+      "radial": 180,
+      "heading": 360,
       "airlines":[
         ["ava", 5],
         ["baw", 1],
@@ -91,8 +91,8 @@
       "altitude": [5000, 8000]
     },
     {
-      "angle": 90,
-      "heading": 30,
+      "radial": 90,
+      "heading": 270,
       "airlines": [
         ["cessna", 2],
 		["embraer", 2]
@@ -101,8 +101,8 @@
       "altitude": [3000, 5000]
     },
     {
-      "angle": 10,
-      "heading": 180,
+      "radial": 20,
+      "heading": 200,
       "airlines": [
         ["glo", 10],
         ["tam", 10],
@@ -113,8 +113,8 @@
       "altitude": [6000, 7000]
     },
 	{
-      "angle": 0,
-      "heading": 140,
+      "radial": 340,
+      "heading": 160,
       "airlines": [
         ["glo", 10],
         ["tam", 10],
