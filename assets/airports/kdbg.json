@@ -92,18 +92,8 @@
   },
   "arrivals": [
     {
-      "heading":   180,
-      "airlines":  [
-        ["ual", 3],
-        ["baw", 1],
-        ["cessna", 2]
-      ],
-      "frequency": [8, 10],
-      "altitude":  [4000, 6000]
-    },
-    {
-      "angle":     90,
-      "heading":   135,
+      "radial":    90,
+      "heading":   270,
       "airlines":  [
         ["ual", 2],
         ["baw", 5],
@@ -113,8 +103,19 @@
       "altitude":  [6000, 8000]
     },
     {
-      "angle":     270,
-      "heading":   45,
+      "radial":    180,
+      "heading":   360,
+      "airlines":  [
+        ["ual", 3],
+        ["baw", 1],
+        ["cessna", 2]
+      ],
+      "frequency": [8, 10],
+      "altitude":  [4000, 6000]
+    },
+    {
+      "radial":    270,
+      "heading":   90,
       "airlines":  [
         ["ual", 2],
         ["baw", 5],
@@ -124,8 +125,8 @@
       "altitude":  [5000, 7000]
     },
     {
-      "angle":     270,
-      "heading":   0,
+      "radial":    360,
+      "heading":   180,
       "airlines":  [
         ["ual", 5],
         ["baw", 1],
@@ -135,8 +136,8 @@
       "altitude":  [5000, 8000]
     },
     {
-      "angle":     180,
-      "heading":   270,
+      "radial":    45,
+      "heading":   225,
       "airlines":  [
         ["cessna", 20]
       ],
@@ -144,8 +145,8 @@
       "altitude":  [3000, 5000]
     },
     {
-      "angle":     45,
-      "heading":   90,
+      "radial":    135,
+      "heading":   315,
       "airlines":  [
         ["ual", 10],
         ["baw", 1],
@@ -155,8 +156,8 @@
       "altitude":  [7000, 9000]
     },
     {
-      "angle":     315,
-      "heading":   180,
+      "radial":    225,
+      "heading":   45,
       "airlines":  [
         ["ual", 10],
         ["baw", 10],
@@ -164,6 +165,17 @@
       ],
       "frequency": [10, 15],
       "altitude":  [6000, 7000]
+    },
+    {
+      "radial":    315,
+      "heading":   135,
+      "airlines":  [
+        ["ual", 1],
+        ["baw", 10],
+        ["cessna", 1]
+      ],
+      "frequency": [10, 15],
+      "altitude":  [7000, 9000]
     }
   ]
 }

@@ -227,8 +227,9 @@ var Airport=Fiber.extend(function() {
       if(data.arrivals) {
         for(var i=0;i<data.arrivals.length;i++) {
           var arrival = data.arrivals[i];
-          if(!arrival.angle) arrival.angle = arrival.heading;
+          if(!arrival.heading) arrival.heading = (arrival.radial + 180) % 360;
           arrival.heading       = radians(arrival.heading);
+          arrival.radial        = radians(arrival.radial);
           arrival.frequency[0] *= 60;
           arrival.frequency[1] *= 60;
 
@@ -299,13 +300,13 @@ var Airport=Fiber.extend(function() {
 
       // Set heading within 15 degrees of specified
       var wobble   = radians(15);
-      var heading  = arrival.heading + random(-wobble, wobble);
+      var radial   = arrival.radial + random(-wobble, wobble);
 
       // Set location 2-18km inside of the radar coverage line
       var distance = (2*this.ctr_radius - 18) * offset + random(16);
       var position = [0, 0];
-      position[0] += sin(heading) * distance;
-      position[1] += cos(heading) * distance;
+      position[0] += sin(radial) * distance;
+      position[1] += cos(radial) * distance;
 
       var altitude = random(arrival.altitude[0] / 1000,
                             arrival.altitude[1] / 1000);
@@ -317,7 +318,7 @@ var Airport=Fiber.extend(function() {
       aircraft_new({
         category:  "arrival",
         position:  position,
-        heading:   arrival.heading + Math.PI,
+        heading:   arrival.heading,
         altitude:  altitude,
         airline:   choose_weight(arrival.airlines),
         message:   message
