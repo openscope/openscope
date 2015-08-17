@@ -657,15 +657,12 @@ var Aircraft=Fiber.extend(function() {
       if(this.requested.runway == data.toUpperCase()) {
         return ["fail", "already landing on runway " + radio_runway(data), "over"];
       }
-
+      this.cancelFix();
       this.requested.navmode = "rwy";
       this.requested.runway = data.toUpperCase();
       this.requested.turn   = null;
       //this.requested.speed  = null;
-
       this.requested.start_speed = this.speed;
-
-      this.cancelFix();
 
       return ["ok", "land runway " + radio_runway(data) + " at " + airport_get().radio];
 
@@ -706,7 +703,7 @@ var Aircraft=Fiber.extend(function() {
     cancelFix: function() {
       if(this.requested.navmode == "fix") {
         this.requested.fix = []
-        this.requested.heading = round(this.heading);
+        this.requested.heading = this.heading;
         this.updateStrip();
         this.requested.navmode = "heading";
         return true;
