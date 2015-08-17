@@ -116,9 +116,7 @@ var Runway=Fiber.extend(function(base) {
         var coord_start = new Position(data.end[0], data.reference_position);
         var coord_end   = new Position(data.end[1], data.reference_position);
         this.position   = [average(coord_start.x, coord_end.x), average(coord_start.y, coord_end.y)];
-        this.length     = Math.sqrt(
-          Math.abs((coord_start.x + coord_start.x) - (coord_end.x + coord_end.x)) + 
-            Math.abs((coord_start.y + coord_start.y) - (coord_end.y + coord_end.y)));
+        this.length     = coord_start.distanceTo(coord_end);
         this.angle      = Math.atan2(coord_start.x - coord_end.x, coord_start.y - coord_end.y);
         console.log(this.angle, this.length);
       }
