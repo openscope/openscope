@@ -1,3 +1,107 @@
+var zlsa = {atc: {}};
+
+zlsa.atc.ArrivalFactory = function(airport, options) {
+  return new zlsa.atc.Arrival(airport, options);
+};
+
+zlsa.atc.Arrival = Fiber.extend(function(base) {
+  return {
+    init: function(airport, options) {
+      this.airport = airport;
+
+      this.airlines = [];
+      this.altitude = 0;
+      this.frequency = [0, 0];
+      this.heading = 0;
+      this.radial = 0;
+      this.speed = null;
+
+      this.timeout = null;
+
+      this.parse(options);
+    },
+    parse: function(options) {
+      this.airlines = options.airlines;
+
+      if(typeof options.altitude == typeof 0)
+        this.altitude = [options.altitude, options.altitude];
+      else
+        this.altitude = options.altitude;
+
+      this.frequency[0] = options.frequency[0] * 60;
+      this.frequency[1] = options.frequency[1] * 60;
+
+      if(!options.heading)
+        options.heading = (options.radial + 180) % 360;
+
+      this.heading = radians(options.heading);
+      this.radial = radians(options.radial);
+      this.speed = options.speed;
+    },
+    // Stop this arrival from running.  Generally called when
+    // switching to another airport.
+    stop: function() {
+      if(this.timeout)
+          game_clear_timeout(this.timeout);
+    },
+    // Start this arrival, spawning initial aircraft as appropriate
+    start: function() {
+      var delay = random(this.frequency[0], this.frequency[1]);
+
+      if(Math.random() > 0.3) {
+        delay = Math.random() * 0.1;
+        game_timeout(this.spawnAircraft, delay, this, [null, false]);
+      }
+      this.timeout =
+        game_timeout(this.spawnAircraft, delay, this, [random(0.5, 0.8), true]);
+    },
+
+    // Create an aircraft and schedule next arrival if appropriate
+    spawnAircraft: function(args) {
+      var offset  = args[0];
+      var timeout = args[1];
+      if(timeout == undefined) timeout=false;
+      if(!offset) offset = 1;
+
+      // Set heading within 15 degrees of specified
+      var wobble   = radians(15);
+      var radial   = this.radial + random(-wobble, wobble);
+
+      // Set location 2-18km inside of the radar coverage line
+      var distance = (2*this.airport.ctr_radius - 18) * offset + random(16);
+      var position = [0, 0];
+      position[0] += sin(radial) * distance;
+      position[1] += cos(radial) * distance;
+
+      var altitude = random(this.altitude[0] / 1000,
+                            this.altitude[1] / 1000);
+      altitude     = round(altitude * 2) * 500;
+
+      var message = true;
+      if(game_time() - this.airport.start < 2) message = false;
+
+      aircraft_new({
+        category:  "arrival",
+        airline:   choose_weight(this.airlines),
+        altitude:  altitude,
+        heading:   this.heading,
+        message:   message,
+        position:  position,
+        speed:     this.speed
+      });
+
+      if(timeout) {
+        this.timeout =
+          game_timeout(this.spawnAircraft,
+                       random(this.frequency[0] / prop.game.frequency,
+                              this.frequency[1] / prop.game.frequency),
+                       this,
+                       [null, true]);
+      }
+    }
+  };
+});
+
 var Runway=Fiber.extend(function(base) {
   return {
     init: function(options) {
@@ -224,17 +328,7 @@ var Airport=Fiber.extend(function() {
 
       if(data.arrivals) {
         for(var i=0;i<data.arrivals.length;i++) {
-          var arrival = data.arrivals[i];
-          if(!arrival.heading) arrival.heading = (arrival.radial + 180) % 360;
-          arrival.heading       = radians(arrival.heading);
-          arrival.radial        = radians(arrival.radial);
-          arrival.frequency[0] *= 60;
-          arrival.frequency[1] *= 60;
-
-          if(typeof arrival.altitude == typeof 0)
-            arrival.altitude = [arrival.altitude, arrival.altitude];
-
-          this.arrivals.push(arrival);
+          this.arrivals.push(zlsa.atc.ArrivalFactory(this, data.arrivals[i]));
         }
       }
 
@@ -246,8 +340,7 @@ var Airport=Fiber.extend(function() {
     },
     unset: function() {
       for(var i=0;i<this.arrivals.length;i++) {
-        if(this.arrivals[i].timeout)
-          game_clear_timeout(this.arrivals[i].timeout);
+        this.arrivals[i].stop();
       }
       if(this.timeout.departure) game_clear_timeout(this.timeout.departure);
       if(this.timeout.runway) game_clear_timeout(this.timeout.runway);
@@ -265,14 +358,7 @@ var Airport=Fiber.extend(function() {
 
       if(this.arrivals) {
         for(var i=0;i<this.arrivals.length;i++) {
-          var arrival = this.arrivals[i];
-
-          var delay = crange(0, Math.random(), 1, arrival.frequency[0], arrival.frequency[1]);
-          if(Math.random() > 0.3) {
-            delay = Math.random() * 0.1;
-            game_timeout(this.addAircraftArrival, delay, this, [arrival, null, false]);
-          }
-          this.arrivals[i].timeout = game_timeout(this.addAircraftArrival, delay, this, [arrival, crange(0, Math.random(), 1, 0.5, 0.8), true]);
+          this.arrivals[i].start();
         }
       }
 
@@ -288,42 +374,6 @@ var Airport=Fiber.extend(function() {
       });
       if(timeout)
         this.timeout.departure = game_timeout(this.addAircraftDeparture, crange(0, Math.random(), 1, this.departures.frequency[0] / prop.game.frequency, this.departures.frequency[1] / prop.game.frequency), this, true);
-    },
-    addAircraftArrival: function(args) {
-      var arrival = args[0];
-      var offset  = args[1];
-      var timeout = args[2] > 0.5;
-      if(timeout == undefined) timeout=false;
-      if(!offset) offset = 1;
-
-      // Set heading within 15 degrees of specified
-      var wobble   = radians(15);
-      var radial   = arrival.radial + random(-wobble, wobble);
-
-      // Set location 2-18km inside of the radar coverage line
-      var distance = (2*this.ctr_radius - 18) * offset + random(16);
-      var position = [0, 0];
-      position[0] += sin(radial) * distance;
-      position[1] += cos(radial) * distance;
-
-      var altitude = random(arrival.altitude[0] / 1000,
-                            arrival.altitude[1] / 1000);
-      altitude     = round(altitude * 2) * 500;
-
-      var message = true;
-      if(game_time() - this.start < 2) message = false;
-
-      aircraft_new({
-        category:  "arrival",
-        position:  position,
-        heading:   arrival.heading,
-        altitude:  altitude,
-        airline:   choose_weight(arrival.airlines),
-        message:   message
-      });
-
-      if(timeout)
-        arrival.timeout = game_timeout(this.addAircraftArrival, crange(0, Math.random(), 1, arrival.frequency[0] / prop.game.frequency, arrival.frequency[1] / prop.game.frequency), this, [arrival, null, true]);
     },
     updateRunway: function() {
       if(!length) length = 0;
