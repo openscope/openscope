@@ -322,6 +322,7 @@ function compass_direction(angle) {
 // With one argument return a number between 0 and argument
 // With no arguments return a number between 0 and 1
 function random(low, high) {
+  if (low == high) return low;
   if (low == null) return Math.random();
   if (high == null) return Math.random() * low;
   return (low + (Math.random() * (high - low)));
