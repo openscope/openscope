@@ -207,7 +207,7 @@ var Airport=Fiber.extend(function() {
       if(data.fixes) {
         for(var i in data.fixes) {
           var coord = new Position(data.fixes[i], this.position);
-          this.fixes[i] = coord.position;
+          this.fixes[i.toUpperCase()] = coord.position;
         }
       }
 
@@ -372,11 +372,7 @@ var Airport=Fiber.extend(function() {
     },
     getFix: function(name) {
       if(!name) return null;
-      name = name.toLowerCase();
-      for(var i in this.fixes) {
-        if(i.toLowerCase() == name) return this.fixes[i];
-      }
-      return null;
+      return this.fixes[name.toUpperCase()] || null;
     },
     getRunway: function(name) {
       if(!name) return null;
