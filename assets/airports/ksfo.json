@@ -3,6 +3,7 @@
   "level": "hard",
   "radio": "San Francisco",
   "icao": "KSFO",
+  "magnetic_north": 13.7,
   "ctr_radius": 80,
   "position": ["N37.6195", "W122.3738333"],
   "wind": {
@@ -53,7 +54,6 @@
       "name_offset": [[0, 0.3], [0, 0.3]],
       "oldposition":  [0, 0.229],
       "end":    [ ["N37.6135324", "W122.3571410"], ["N37.6287386", "W122.3933911"]],
-      "angle":       298,
       "length":      3.62,
       "ils":         [true, false]
     },
@@ -62,7 +62,6 @@
       "name_offset": [[0, -0.2], [0, -0.3]],
       "oldposition":    [0, 0],
       "end":    [["N37.6117091", "W122.3583420"], ["N37.6262900", "W122.3931054"]],
-      "angle":       298,
       "length":      3.47,
       "ils":         [true, false]
     },
@@ -71,7 +70,6 @@
       "name_offset": [[0.3, -0.1], [0.4, 0]],
       "oldposition":    [0.8, 0.3],
       "end":    [["N37.6273412","W122.3671104" ], ["N37.6063291", "W122.3810404"] ],
-      "angle":       208,
       "length":      2.64,
       "ils":         [false, false]
     },
@@ -80,7 +78,6 @@
       "name_offset": [[-0.3, 0], [-0.3, 0.1]],
       "oldposition":    [0.4, 0.3],
       "end":    [["N37.6264803", "W122.3706090"], ["N37.6078970","W122.3829280"]], 
-      "angle":       208,
       "length":      2.33,
       "ils":         [false, false]
     }
