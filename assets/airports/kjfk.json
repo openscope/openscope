@@ -69,23 +69,107 @@
   ],
   "departures": {
     "airlines": [
-      ["ual", 3],
-      ["baw", 5],
-      ["cessna", 4]
+      ["dal", 24],
+      ["aal", 14],
+      ["baw", 2],
+      ["ual", 2],
+      ["cessna", 1]
     ],
-    "frequency": [1, 3]
+    "type": "cyclic",
+    "offset": 0,
+    "frequency": [5, 75]
   },
   "arrivals": [
     {
-      "radial":    180,
-      "heading":   360,
-      "airlines":  [
-        ["ual", 3],
+      "_name": "CAMRN Four",
+      "radial": 200,
+      "speed": 250,
+      "type": "wave",
+      "offset": 15,
+      "frequency": 10,
+      "altitude": 10000,
+      "airlines": [
+        ["dal", 12],
+        ["aal", 7],
         ["baw", 1],
-        ["cessna", 2]
-      ],
-      "frequency": [4, 6],
-      "altitude":  [4000, 6000]
+        ["ual", 1]
+      ]
+    },
+    {
+      "_name": "KINGSTON ONE",
+      "radial": 325,
+      "speed": 250,
+      "type": "wave",
+      "offset": 0,
+      "frequency": 10,
+      "altitude": 10000,
+      "airlines": [
+        ["dal", 12],
+        ["aal", 7],
+        ["baw", 1],
+        ["ual", 1]
+      ]
+    },
+    {
+      "_name": "LENDY SIX",
+      "radial": 290,
+      "speed": 250,
+      "type": "cyclic",
+      "offset": 25,
+      "frequency": [5, 15],
+      "altitude": 10000,
+      "airlines": [
+        ["dal", 12],
+        ["aal", 7],
+        ["baw", 1],
+        ["ual", 1]
+      ]
+    },
+    {
+      "_name": "PAWLING TWO",
+      "radial": 360,
+      "heading": 170,
+      "speed": 250,
+      "type": "cyclic",
+      "offset": 45,
+      "frequency": [2, 14],
+      "altitude": 10000,
+      "airlines": [
+        ["dal", 12],
+        ["aal", 7],
+        ["baw", 1],
+        ["ual", 1]
+      ]
+    },
+    {
+      "_name": "ROBER ONE",
+      "radial": 60,
+      "speed": 250,
+      "type": "cyclic",
+      "offset": 8,
+      "frequency": [2, 14],
+      "altitude": 9000,
+      "airlines": [
+        ["dal", 12],
+        ["aal", 7],
+        ["baw", 1],
+        ["ual", 1]
+      ]
+    },
+    {
+      "_name": "PARCH ONE",
+      "radial": 80,
+      "speed": 250,
+      "type": "cyclic",
+      "offset": 55,
+      "frequency": [2, 14],
+      "altitude": 10000,
+      "airlines": [
+        ["dal", 12],
+        ["aal", 7],
+        ["baw", 1],
+        ["ual", 1]
+      ]
     }
   ]
 }

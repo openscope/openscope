@@ -302,6 +302,157 @@ zlsa.atc.ArrivalWave = zlsa.atc.ArrivalCyclic.extend(function(base) {
   };
 });
 
+zlsa.atc.DepartureFactory = function(airport, options) {
+  if (options.type) {
+    if (options.type == 'random')
+      return new zlsa.atc.DepartureRandom(airport, options);
+    if (options.type == 'cyclic')
+      return new zlsa.atc.DepartureCyclic(airport, options);
+    if (options.type == 'wave')
+      return new zlsa.atc.DepartureWave(airport, options);
+    throw "Unsupported departure type: " + options.type;
+  }
+
+  return new zlsa.atc.DepartureDefault(airport, options);
+};
+
+zlsa.atc.DepartureBase = Fiber.extend(function(base) {
+  return {
+    init: function(airport, options) {
+      this.airport = airport;
+
+      this.airlines = [];
+      this.frequency = [0, 0];
+
+      this.timeout = null;
+
+      this.parse(options);
+    },
+    // Supported Departure options
+    // airlines: {array of array} List of airlines with weight for each
+    // frequency: {array or integer} Frequency in aircraft/hour or range of frequencies
+    parse: function(options) {
+      this.airlines = options.airlines;
+
+      if (typeof options.frequency == typeof 0)
+        this.frequency = [options.frequency, options.frequency]
+      else
+        this.frequency = options.frequency;
+    },
+    // Stop this departure from running.  Generally called when
+    // switching to another airport.
+    stop: function() {
+      if(this.timeout)
+          game_clear_timeout(this.timeout);
+    },
+    // Start this departure, spawning initial aircraft as appropriate
+    start: function() {
+      var r = random(1, 2);
+      if(Math.random() > 0.9)
+        r = random(1, 6);
+      for(var i=0;i<r;i++) {
+        game_timeout(this.spawnAircraft, Math.random() * 0.1, this, false);
+      }
+      this.spawnAircraft(true);
+    },
+
+    // Create an aircraft and schedule next departure if appropriate
+    spawnAircraft: function(timeout) {
+      if(timeout == undefined) timeout=false;
+      var message = true;
+      if(game_time() - this.start < 2) message = false;
+      aircraft_new({
+        category:  "departure",
+        airline:   choose_weight(this.airlines),
+        message:   message
+      });
+      if(timeout)
+        this.timeout = game_timeout(this.spawnAircraft,
+                                    this.nextInterval(),
+                                    this,
+                                    true);
+    },
+    nextInterval: function() {
+      // Frequency in minutes per aircraft
+      return random((this.frequency[0] * 60) / prop.game.frequency,
+                    (this.frequency[1] * 60) / prop.game.frequency);
+    }
+  };
+});
+
+zlsa.atc.DepartureDefault = zlsa.atc.DepartureBase;
+
+zlsa.atc.DepartureRandom = zlsa.atc.DepartureBase.extend(function (base) {
+  return {
+    nextInterval: function () {
+      return random((3600 / this.frequency[1]) / prop.game.frequency,
+                    (3600 / this.frequency[0]) / prop.game.frequency);
+    },
+  };
+});
+
+zlsa.atc.DepartureCyclic = zlsa.atc.DepartureBase.extend(function (base) {
+  return {
+    init: function(airport, options) {
+      this.period = 60*60;
+      this.offset = -15 * 60; // Start at the peak
+
+      base.init.call(this, airport, options);
+
+      this._amplitude = (3600 / this.frequency[0]) / 2;
+      this._average = (3600/this.frequency[0] + 3600/this.frequency[1]) / 2;
+    },
+    // Additional supported options
+    // period: {integer} Optionally specify the length of a cycle in minutes
+    // offset: {integer} Optionally specify when the cycle peaks in minutes
+    parse: function(options) {
+      base.parse.call(this, options);
+      if (options.period)
+        this.period = options.period * 60;
+      if (options.offset)
+        this.offset = -this.period/4 + options.offset * 60;
+    },
+    nextInterval: function() {
+      return (this._amplitude *
+        Math.sin(Math.PI*2 * ((game_time() + this.offset)/this.period))
+        + this._average) / prop.game.frequency;
+    },
+  };
+});
+
+zlsa.atc.DepartureWave = zlsa.atc.DepartureCyclic.extend(function(base) {
+  return {
+    init: function(airport, options) {
+      base.init.call(this, airport, options);
+
+      // Time between aircraft in the wave
+      this._separation = 10;
+
+      // Aircraft per wave
+      this._count = Math.floor(this._average/3600 * this.period);
+
+      if ((this.period / this._separation) < this._count) {
+        console.log("Reducing average departure frequency from " +
+                    this._average +
+                    "/hour to maintain minimum interval");
+        this._count = Math.floor(3600 / this._separation);
+      }
+
+      // length of a wave in seconds
+      this._waveLength = this._separation * this._count - 1;
+
+      // Offset to have center of wave at 0 time
+      this._offset = (this._waveLength - this._separation)/2 + this.offset;
+    },
+    nextInterval: function() {
+      var position = (game_time() + this._offset) % this.period;
+      if (position >= this._waveLength)
+        return this.period - position;
+      return this._separation / prop.game.frequency;
+    },
+  };
+});
+
 var Runway=Fiber.extend(function(base) {
   return {
     init: function(options) {
@@ -521,9 +672,7 @@ var Airport=Fiber.extend(function() {
       }
 
       if(data.departures) {
-        this.departures = data.departures;
-        this.departures.frequency[0] *= 60;
-        this.departures.frequency[1] *= 60;
+        this.departures = zlsa.atc.DepartureFactory(this, data.departures);
       }
 
       if(data.arrivals) {
@@ -542,18 +691,12 @@ var Airport=Fiber.extend(function() {
       for(var i=0;i<this.arrivals.length;i++) {
         this.arrivals[i].stop();
       }
-      if(this.timeout.departure) game_clear_timeout(this.timeout.departure);
+      this.departures.stop();
       if(this.timeout.runway) game_clear_timeout(this.timeout.runway);
     },
     addAircraft: function() {
       if(this.departures) {
-        var r = crange(0, Math.random(), 1, 1, 2);
-        if(Math.random() > 0.9)
-          r = crange(0, Math.random(), 1, 1, 6);
-        for(var i=0;i<r;i++) {
-          this.timeout.departure = game_timeout(this.addAircraftDeparture, Math.random() * 0.1, this, false);
-        }
-        this.addAircraftDeparture(true);
+        this.departures.start();
       }
 
       if(this.arrivals) {
@@ -562,18 +705,6 @@ var Airport=Fiber.extend(function() {
         }
       }
 
-    },
-    addAircraftDeparture: function(timeout) {
-      if(timeout == undefined) timeout=false;
-      var message = true;
-      if(game_time() - this.start < 2) message = false;
-      aircraft_new({
-        category:  "departure",
-        airline:   choose_weight(this.departures.airlines),
-        message:   message
-      });
-      if(timeout)
-        this.timeout.departure = game_timeout(this.addAircraftDeparture, crange(0, Math.random(), 1, this.departures.frequency[0] / prop.game.frequency, this.departures.frequency[1] / prop.game.frequency), this, true);
     },
     updateRunway: function() {
       if(!length) length = 0;
