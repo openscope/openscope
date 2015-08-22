@@ -262,9 +262,9 @@ zlsa.atc.ArrivalCyclic = zlsa.atc.ArrivalBase.extend(function(base) {
         this.offset = -this.period/4 + options.offset * 60;
     },
     nextInterval: function() {
-      return this._amplitude *
+      return (this._amplitude *
         Math.sin(Math.PI*2 * ((game_time() + this.offset)/this.period))
-        + this._average;
+        + this._average) / prop.game.frequency;
     }
   };
 });
@@ -297,7 +297,7 @@ zlsa.atc.ArrivalWave = zlsa.atc.ArrivalCyclic.extend(function(base) {
       var position = (game_time() + this._offset) % this.period;
       if (position >= this._waveLength)
         return this.period - position;
-      return this._separation;
+      return this._separation / prop.game.frequency;
     },
   };
 });
