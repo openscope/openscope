@@ -88,6 +88,13 @@ var Position=Fiber.extend(function() {
         this.position = [this.x, this.y];
       }
     },
+    distanceTo: function(point) {
+      return this.distanceToPoint(this.latitude,
+                                  this.longitude,
+                                  point.latitude,
+                                  point.longitude);
+    },
+    // The distance in km between two locations
     distanceToPoint: function(lat_a, lng_a, lat_b, lng_b) {
       var d_lat = radians(lat_a - lat_b);
       var d_lng = radians(lng_a - lng_b);

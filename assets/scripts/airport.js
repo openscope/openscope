@@ -116,9 +116,7 @@ var Runway=Fiber.extend(function(base) {
         var coord_start = new Position(data.end[0], data.reference_position, data.magnetic_north);
         var coord_end   = new Position(data.end[1], data.reference_position, data.magnetic_north);
         this.position   = [average(coord_start.x, coord_end.x), average(coord_start.y, coord_end.y)];
-        this.length     = Math.sqrt(
-          Math.abs((coord_start.x + coord_start.x) - (coord_end.x + coord_end.x)) + 
-            Math.abs((coord_start.y + coord_start.y) - (coord_end.y + coord_end.y)));
+        this.length     = coord_start.distanceTo(coord_end);
         this.angle      = Math.atan2(coord_start.x - coord_end.x, coord_start.y - coord_end.y);
         console.log(this.angle, this.length);
       }
@@ -214,7 +212,7 @@ var Airport=Fiber.extend(function() {
           var coord = new Position(data.fixes[i],
                                    this.position,
                                    this.magnetic_north);
-          this.fixes[i] = coord.position;
+          this.fixes[i.toUpperCase()] = coord.position;
         }
       }
 
@@ -379,11 +377,7 @@ var Airport=Fiber.extend(function() {
     },
     getFix: function(name) {
       if(!name) return null;
-      name = name.toLowerCase();
-      for(var i in this.fixes) {
-        if(i.toLowerCase() == name) return this.fixes[i];
-      }
-      return null;
+      return this.fixes[name.toUpperCase()] || null;
     },
     getRunway: function(name) {
       if(!name) return null;
