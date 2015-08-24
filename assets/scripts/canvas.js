@@ -239,6 +239,7 @@ function canvas_draw_fixes(cc) {
   cc.fillStyle   = "rgba(255, 255, 255, 0.4)";
   cc.lineWidth   = 2;
   cc.lineJoin    = "round";
+  cc.font = "10px monoOne, monospace";
   var airport=airport_get();
   for(var i in airport.fixes) {
     cc.save();
