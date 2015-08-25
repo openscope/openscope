@@ -1109,8 +1109,15 @@ var Aircraft=Fiber.extend(function() {
       for(var i=0;i<prop.aircraft.list.length;i++) {
         var other = prop.aircraft.list[i];
         if(this == other) continue;
-
-        var distance = distance2d(this.position, other.position);
+        
+        // Fast 2D bounding box check to see if distance must be > 10; no violation can occur in this case.
+        // Variation of:
+        // http://gamedev.stackexchange.com/questions/586/what-is-the-fastest-way-to-work-out-2d-bounding-box-intersection
+        dx = Math.abs(this.position[0] - other.position[0]);
+        dy = Math.abs(this.position[1] - other.position[1]);
+        if((dx > 10) || (dy > 10)) continue; 
+        // Calculate the real distance for subsequent checks; reuse dx and dy
+        var distance = Math.sqrt((dx*dx) + (dy*dy));
 
         // Check if the aircraft are on a potential collision course
         // on the runway
