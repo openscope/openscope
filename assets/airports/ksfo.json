@@ -89,20 +89,21 @@
     "airlines": [
       ["ual", 11],
       ["baw", 9],
-      ["cessna", 2]
+      ["ups", 2]
     ],
-    "frequency": [4, 7]
+    "frequency": [2.8, 3.2]
   },
   "arrivals": [
     {
       "radial":    45,
-      "heading":   225,
+      "heading":   200,
       "airlines":  [
-        ["ual", 10],
+        ["ual", 1],
         ["baw", 1],
-        ["cessna", 20]
+        ["dal", 1],
+        ["aal", 1]
       ],
-      "frequency": [10, 15],
+      "frequency": [6, 8],
       "altitude":  [7000, 9000]
     },
     {
@@ -113,61 +114,31 @@
         ["baw", 5],
         ["cessna", 1]
       ],
-      "frequency": [2, 4],
-      "altitude":  [6000, 8000]
+      "frequency": [10, 15],
+      "altitude":  [8000, 10000]
     },
     {
-      "radial":    180,
-      "heading":   360,
+      "radial":    145,
+      "heading":   325,
       "airlines":  [
         ["ual", 4],
         ["baw", 3],
-        ["cessna", 1]
+        ["dal", 2],
+        ["aca", 1]
       ],
-      "frequency": [4, 6],
-      "altitude":  [7000, 9000]
-    },
-    {
-      "radial":    180,
-      "heading":   360,
-      "airlines":  [
-        ["cessna", 20]
-      ],
-      "frequency": [2, 5],
-      "altitude":  [3000, 5000]
-    },
-    {
-      "radial":    225,
-      "heading":   45,
-      "airlines":  [
-        ["ual", 5],
-        ["baw", 1],
-        ["cessna", 1]
-      ],
-      "frequency": [2, 4],
-      "altitude":  [5000, 8000]
-    },
-    {
-      "radial":    270,
-      "heading":   90,
-      "airlines":  [
-        ["ual", 2],
-        ["baw", 5],
-        ["cessna", 20]
-      ],
-      "frequency": [2, 4],
-      "altitude":  [5000, 7000]
+      "frequency": [3.5, 4],
+      "altitude":  [8000, 10000]
     },
     {
       "radial":    315,
-      "heading":   135,
+      "heading":   130,
       "airlines":  [
         ["ual", 10],
         ["baw", 10],
         ["cessna", 1]
       ],
-      "frequency": [3, 5],
-      "altitude":  [6000, 7000]
+      "frequency": [8, 10],
+      "altitude":  [8000, 10000]
     }
   ]
 }
