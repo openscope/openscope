@@ -1156,7 +1156,7 @@ var Aircraft=Fiber.extend(function() {
 
         // Reduced separation horizontal minima during precision
         // guided approaches
-        if (this.isPrecisionGuided() && other.isPrecisionGuided) {
+        if (this.isPrecisionGuided() && other.isPrecisionGuided()) {
           // Notice at 3500 feet horizontal and 1500 feet vertical
           if ((distance < 1.067) && (altitude < 1500)) notice = true;
 
