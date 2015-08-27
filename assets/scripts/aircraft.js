@@ -890,6 +890,7 @@ var Aircraft=Fiber.extend(function() {
         this.offset_angle = offset_angle;
 
         angle = runway.getAngle(this.requested.runway) + Math.PI;
+        if (angle > (2*Math.PI)) angle -= 2*Math.PI;
 
         var landing_zone_offset = crange(1, runway.length, 5, 0.1, 0.5);
 
@@ -903,21 +904,28 @@ var Aircraft=Fiber.extend(function() {
         if(!runway.getILS(this.requested.runway) || !ils) ils = 40;
 
         // lock  ILS if at the right angle and altitude
-        if(abs(this.altitude - glideslope_altitude) < glideslope_window && abs(offset_angle) < radians(30) && offset[1] < ils) {
+        if ((abs(this.altitude - glideslope_altitude) < glideslope_window)
+            && (abs(offset_angle) < radians(10))
+            && (offset[1] < ils)) {
           //plane is on the glide slope
-          var m = false;
-          if(this.mode != "landing") m=true;
-          this.mode = "landing";
-          if(m) {
+          if(this.mode != "landing") {
+            this.mode = "landing";
+            if (abs(this.requested.heading - angle) > radians(30)) {
+              ui_log(true,
+                     this.getRadioCallsign() +
+                       " landing intercept vector was greater than 30 degrees");
+              prop.game.score.violation += 1;
+            }
             this.updateStrip();
             this.requested.turn = null;
             this.target.turn = null;
           }
 
-          if(offset[1] > 0.01) {
-            var xoffset = crange(0.7, this.model.rate.turn, 5, 7, 1);
-            xoffset    *= crange(this.model.speed.landing, this.speed, this.model.speed.cruise, 0.7, 1);
-            this.target.heading = crange(-xoffset, offset[0], xoffset, radians(45), -radians(45)) + angle;
+          // Steer to within 3m of the centerline while at least 200m out
+          if(offset[1] > 0.2 && abs(offset[1]) > 0.003) {
+            this.target.heading = clamp(radians(-30),
+                                        -12 * offset_angle,
+                                        radians(30)) + angle;
           } else {
             this.target.heading = angle;
           }

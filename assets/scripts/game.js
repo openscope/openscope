@@ -37,7 +37,9 @@ function game_init_pre() {
     abort: {
       landing: 0,
       taxi: 0
-    }
+    },
+
+    violation: 0,
   };
 
 }
@@ -58,6 +60,8 @@ function game_get_score() {
   score -= prop.game.score.abort.landing * 5;
 
   score -= prop.game.score.abort.taxi * 2;
+
+  score -= prop.game.score.violation;
 
   return score;
 }
