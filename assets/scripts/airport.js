@@ -325,7 +325,7 @@ var Airport=Fiber.extend(function() {
       if(timeout)
         arrival.timeout = game_timeout(this.addAircraftArrival, crange(0, Math.random(), 1, arrival.frequency[0] / prop.game.frequency, arrival.frequency[1] / prop.game.frequency), this, [arrival, null, true]);
     },
-    updateRunway: function() {
+    updateRunway: function(length) {
       if(!length) length = 0;
       var wind = this.getWind();
       var headwind = {};
