@@ -633,10 +633,8 @@ var Aircraft=Fiber.extend(function() {
 
       if(runway.removeQueue(this, this.requested.runway)) {
         this.mode = "takeoff";
-        var wind_score = -Math.min(this.getWind(), 0)
-        prop.game.score.windy_takeoff += wind_score;
-        if(wind_score)
-          ui_log(true, this.getCallsign() + ' taking off with a tailwind');
+        prop.game.score.windy_takeoff += this.scoreWind('taking off');
+
         if(this.requested.heading == null)
           this.requested.heading = runway.getAngle(this.requested.runway) + Math.PI;
         return ["ok", "cleared for takeoff", ""];
@@ -832,17 +830,39 @@ var Aircraft=Fiber.extend(function() {
       return true;
     },
     getWind: function() {
-      if(!this.requested.runway) return 0;
+      if (!this.requested.runway) return {cross: 0, head: 0};
       var airport = airport_get();
       var wind    = airport.wind;
       var runway  = airport.getRunway(this.requested.runway);
 
-      var angle   =  abs(angle_offset(runway.getAngle(this.requested.runway), wind.angle));
-      var head    =  crange(0, angle, Math.PI, -1, 1);
+      var angle   =  abs(angle_offset(runway.getAngle(this.requested.runway), wind.angle + Math.PI));
 
-      angle       =  abs(angle_offset(runway.getAngle(this.requested.runway) - Math.PI/2, wind.angle));
-      var cross   = -abs(crange(0, angle, Math.PI, 1, -1)) * 1.5;
-      return (cross + head) * wind.speed;
+      return {
+        cross: Math.sin(angle) * wind.speed,
+        head: Math.cos(angle) * wind.speed
+      };
+    },
+    scoreWind: function(action) {
+      var score = 0;
+      var components = this.getWind();
+      if (components.cross >= 20) {
+        score += 2;
+        ui_log(true, this.getCallsign()+' '+action+' with major crosswind');
+      }
+      else if (components.cross >= 10) {
+        score += 1;
+        ui_log(true, this.getCallsign()+' '+action+' with crosswind');
+      }
+
+      if (components.head <= -10) {
+        score += 2;
+        ui_log(true, this.getCallsign()+' '+action+' with major tailwind');
+      }
+      else if (components.head <= -1) {
+        score += 1;
+        ui_log(true, this.getCallsign()+' '+action+' with tailwind');
+      }
+      return score;
     },
     updateTarget: function() {
       var airport = airport_get();
@@ -924,9 +944,6 @@ var Aircraft=Fiber.extend(function() {
         //longer on the glide slope once it is on the runway (as the runway is
         //behind the ILS marker)
         if(this.altitude < 10) {
-          if(s > 10) {
-            prop.game.score.windy_landing += -Math.min(this.getWind(), 0);
-          }
           this.target.speed = 0;
         }
       } else if(this.requested.navmode == "fix") {
@@ -1503,6 +1520,7 @@ function aircraft_update() {
       aircraft.inside_ctr = true;
     }
     if(aircraft.isStopped() && aircraft.category == "arrival") {
+      prop.game.score.windy_landing += aircraft.scoreWind('landed');
       ui_log(aircraft.getRadioCallsign() + " switching to ground, good day");
       prop.game.score.arrival += 1;
       console.log("arriving aircraft no longer moving");
