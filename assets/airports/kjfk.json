@@ -121,7 +121,7 @@
       "speed": 250,
       "type": "wave",
       "offset": 15,
-      "frequency": 10,
+      "frequency": 8,
       "altitude": 10000,
       "airlines": [
         ["dal", 12],
@@ -136,7 +136,7 @@
       "speed": 250,
       "type": "wave",
       "offset": 0,
-      "frequency": 10,
+      "frequency": 8,
       "altitude": 10000,
       "airlines": [
         ["dal", 12],
@@ -182,7 +182,7 @@
       "speed": 250,
       "type": "cyclic",
       "offset": 8,
-      "frequency": [2, 14],
+      "frequency": [2, 10],
       "altitude": 9000,
       "airlines": [
         ["dal", 12],
@@ -197,7 +197,7 @@
       "speed": 250,
       "type": "cyclic",
       "offset": 55,
-      "frequency": [2, 14],
+      "frequency": [2, 10],
       "altitude": 10000,
       "airlines": [
         ["dal", 12],
