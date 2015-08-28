@@ -21,7 +21,7 @@ var Position=Fiber.extend(function() {
     //   Decimal degrees - 'N47.112388112'
     //   Decimal minutes - 'N38d38.109808'
     //   Decimal seconds - 'N58d27m12.138'
-    init: function(coordinates, reference) {
+    init: function(coordinates, reference, magnetic_north) {
       if(!coordinates) coordinates=[];
 
       this.latitude = 0;
@@ -29,6 +29,8 @@ var Position=Fiber.extend(function() {
       this.elevation = 0;
 
       this.reference_position = reference;
+      this.magnetic_north = magnetic_north;
+      if (!this.magnetic_north) this.magnetic_north = 0;
       this.x = 0;
       this.y = 0;
       this.position = [this.x, this.y];
@@ -75,6 +77,14 @@ var Position=Fiber.extend(function() {
         if (this.reference_position.latitude > this.latitude) {
           this.y = -1 * this.y;
         }
+
+        // Adjust to use magnetic north instead of true north
+        var t = Math.atan2(this.y, this.x);
+        var r = Math.sqrt(this.x*this.x, this.y*this.y);
+        t += this.magnetic_north;
+        this.x = r * Math.cos(t);
+        this.y = r * Math.sin(t);
+
         this.position = [this.x, this.y];
       }
     },
