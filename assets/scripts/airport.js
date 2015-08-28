@@ -269,10 +269,16 @@ zlsa.atc.ArrivalCyclic = zlsa.atc.ArrivalBase.extend(function(base) {
   };
 });
 
-zlsa.atc.ArrivalWave = zlsa.atc.ArrivalCyclic.extend(function(base) {
+zlsa.atc.ArrivalWave = zlsa.atc.ArrivalBase.extend(function(base) {
   return {
     init: function(airport, options) {
+      this.period = 60*60;
+      this.offset = 0;
+
       base.init.call(this, airport, options);
+
+      // Average number of aircraft per hour
+      this._average = (this.frequency[0] + this.frequency[1]) / 2;
 
       // Time in seconds for 7.5 nmi in-trail separation
       this._separation = Math.ceil(7.5/this.speed * 3600);
@@ -290,8 +296,22 @@ zlsa.atc.ArrivalWave = zlsa.atc.ArrivalCyclic.extend(function(base) {
       // length of a wave in seconds
       this._waveLength = this._separation * this._count - 1;
 
-      // Offset to have center of wave at 0 time
-      this._offset = (this._waveLength - this._separation)/2 + this.offset;
+      // Offset to have center of wave at 0 time and _offset always positive
+      this._offset = this._waveLength/2;
+      this._offset -= this.offset;
+      while (this._offset < 0) this._offset += this.period;
+    },
+    // Additional supported options
+    // period: {integer} Optionally specify the length of a cycle in minutes
+    // offset: {integer} Optionally specify the center of the wave in minutes
+    parse: function(options) {
+      base.parse.call(this, options);
+      if (options.period)
+        this.period = options.period * 60;
+      if (this.period <= 0)
+        throw "Period must be greater than 0";
+      if (options.offset)
+        this.offset += options.offset * 60;
     },
     nextInterval: function() {
       var position = (game_time() + this._offset) % this.period;
