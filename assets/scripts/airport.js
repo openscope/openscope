@@ -1,3 +1,478 @@
+var zlsa = {atc: {}};
+
+zlsa.atc.ArrivalFactory = function(airport, options) {
+  if (options.type) {
+    if (options.type == 'random')
+      return new zlsa.atc.ArrivalBase(airport, options);
+    if (options.type == 'cyclic')
+      return new zlsa.atc.ArrivalCyclic(airport, options);
+    if (options.type == 'wave')
+      return new zlsa.atc.ArrivalWave(airport, options);
+    throw "Unsupported arrival type: " + options.type;
+  }
+
+  return new zlsa.atc.ArrivalDefault(airport, options);
+};
+
+zlsa.atc.ArrivalDefault = Fiber.extend(function(base) {
+  return {
+    init: function(airport, options) {
+      this.airport = airport;
+
+      this.airlines = [];
+      this.altitude = 0;
+      this.frequency = [0, 0];
+      this.heading = 0;
+      this.radial = 0;
+      this.speed = null;
+
+      this.timeout = null;
+
+      this.parse(options);
+    },
+    parse: function(options) {
+      this.airlines = options.airlines;
+
+      if(typeof options.altitude == typeof 0)
+        this.altitude = [options.altitude, options.altitude];
+      else
+        this.altitude = options.altitude;
+
+      this.frequency[0] = options.frequency[0] * 60;
+      this.frequency[1] = options.frequency[1] * 60;
+
+      if(!options.heading)
+        options.heading = (options.radial + 180) % 360;
+
+      this.heading = radians(options.heading);
+      this.radial = radians(options.radial);
+      this.speed = options.speed;
+    },
+    // Stop this arrival from running.  Generally called when
+    // switching to another airport.
+    stop: function() {
+      if(this.timeout)
+          game_clear_timeout(this.timeout);
+    },
+    // Start this arrival, spawning initial aircraft as appropriate
+    start: function() {
+      var delay = random(this.frequency[0], this.frequency[1]);
+
+      if(Math.random() > 0.3) {
+        delay = Math.random() * 0.1;
+        game_timeout(this.spawnAircraft, delay, this, [null, false]);
+      }
+      this.timeout =
+        game_timeout(this.spawnAircraft, delay, this, [random(0.5, 0.8), true]);
+    },
+
+    // Create an aircraft and schedule next arrival if appropriate
+    spawnAircraft: function(args) {
+      var offset  = args[0];
+      var timeout = args[1];
+      if(timeout == undefined) timeout=false;
+      if(!offset) offset = 1;
+
+      // Set heading within 15 degrees of specified
+      var wobble   = radians(15);
+      var radial   = this.radial + random(-wobble, wobble);
+
+      // Set location 2-18km inside of the radar coverage line
+      var distance = (2*this.airport.ctr_radius - 18) * offset + random(16);
+      var position = [0, 0];
+      position[0] += sin(radial) * distance;
+      position[1] += cos(radial) * distance;
+
+      var altitude = random(this.altitude[0] / 1000,
+                            this.altitude[1] / 1000);
+      altitude     = round(altitude * 2) * 500;
+
+      var message = true;
+      if(game_time() - this.airport.start < 2) message = false;
+
+      aircraft_new({
+        category:  "arrival",
+        airline:   choose_weight(this.airlines),
+        altitude:  altitude,
+        heading:   this.heading,
+        message:   message,
+        position:  position,
+        speed:     this.speed
+      });
+
+      if(timeout) {
+        this.timeout =
+          game_timeout(this.spawnAircraft,
+                       this.nextInterval(),
+                       this,
+                       [null, true]);
+      }
+    },
+    nextInterval: function() {
+      return random(this.frequency[0] / prop.game.frequency,
+                    this.frequency[1] / prop.game.frequency);
+    }
+  };
+});
+
+zlsa.atc.ArrivalBase = Fiber.extend(function(base) {
+  return {
+    init: function(airport, options) {
+      this.airport = airport;
+
+      this.airlines = [];
+      this.altitude = [1000, 1000];
+      this.frequency = [0, 0];
+      this.heading = null;
+      this.radial = [0, 0];
+      this.speed = 200;
+
+      this.timeout = null;
+
+      this.parse(options);
+    },
+    // Supported Arrival options
+    // airlines: {array of array} List of airlines with weight for each
+    // altitude: {array or integer} Altitude in feet or range of altitudes
+    // frequency: {array or integer} Frequency in aircraft/hour or range of frequencies
+    // heading: {array or integer} Heading in degrees or range of headings
+    // radial: {array or integer} Radial in degrees or range of radials
+    // speed: {integer} Speed in knots of spawned aircraft
+    parse: function(options) {
+      this.airlines = options.airlines;
+
+      if(typeof options.altitude == typeof 0)
+        this.altitude = [options.altitude, options.altitude];
+      else
+        this.altitude = options.altitude;
+
+      if (typeof options.frequency == typeof 0)
+        this.frequency = [options.frequency, options.frequency]
+      else
+        this.frequency = options.frequency;
+
+      if (typeof options.heading == typeof 0)
+        this.heading = [radians(options.heading), radians(options.heading)];
+      else if (options.heading) {
+        this.heading[0] = radians(options.heading[0]);
+        this.heading[1] = radians(options.heading[1]);
+      }
+
+      if (typeof options.radial == typeof 0)
+        this.radial = [radians(options.radial), radians(options.radial)];
+      else {
+        this.radial[0] = radians(options.radial[0]);
+        this.radial[1] = radians(options.radial[1]);
+      }
+
+      if (options.speed)
+        this.speed = options.speed;
+    },
+    // Stop this arrival from running.  Generally called when
+    // switching to another airport.
+    stop: function() {
+      if(this.timeout)
+          game_clear_timeout(this.timeout);
+    },
+    // Start this arrival, spawning initial aircraft as appropriate
+    start: function() {
+      var delay = random(0, 3600 / this.frequency[0]);
+
+      if(Math.random() > 0.3) {
+        delay = Math.random() * 0.1;
+        game_timeout(this.spawnAircraft, delay, this, [null, false]);
+      }
+      this.timeout =
+        game_timeout(this.spawnAircraft, delay, this, [random(0.5, 0.8), true]);
+    },
+
+    // Create an aircraft and schedule next arrival if appropriate
+    spawnAircraft: function(args) {
+      var offset  = args[0];
+      var timeout = args[1];
+      if(timeout == undefined) timeout=false;
+      if(!offset) offset = 1;
+
+      // Set heading within 15 degrees of specified
+      var radial   = random(this.radial[0], this.radial[1])
+
+      var heading = null
+      if (this.heading)
+        heading = random(this.heading[0], this.heading[1]);
+      else
+        heading = radial + Math.PI;
+
+      // Set location 2km inside of the radar coverage line
+      var distance = (2*this.airport.ctr_radius - 2) * offset;
+      var position = [0, 0];
+      position[0] += sin(radial) * distance;
+      position[1] += cos(radial) * distance;
+
+      var altitude = random(this.altitude[0] / 1000,
+                            this.altitude[1] / 1000);
+      altitude     = round(altitude * 2) * 500;
+
+      var message = true;
+      if(game_time() - this.airport.start < 2) message = false;
+
+      aircraft_new({
+        category:  "arrival",
+        airline:   choose_weight(this.airlines),
+        altitude:  altitude,
+        heading:   heading,
+        message:   message,
+        position:  position,
+        speed:     this.speed
+      });
+
+      if(timeout) {
+        this.timeout =
+          game_timeout(this.spawnAircraft,
+                       this.nextInterval(),
+                       this,
+                       [null, true]);
+      }
+    },
+    nextInterval: function() {
+      return random((3600 / this.frequency[1]) * prop.game.frequency,
+                    (3600 / this.frequency[0]) * prop.game.frequency);
+    }
+  };
+});
+
+zlsa.atc.ArrivalCyclic = zlsa.atc.ArrivalBase.extend(function(base) {
+  return {
+    init: function(airport, options) {
+      this.period = 60*60;
+      this.offset = -15 * 60; // Start at the peak
+
+      base.init.call(this, airport, options);
+
+      this._amplitude = (3600 / this.frequency[0]) / 2;
+      this._average = (3600/this.frequency[0] + 3600/this.frequency[1]) / 2;
+    },
+    // Additional supported options
+    // period: {integer} Optionally specify the length of a cycle in minutes
+    // offset: {integer} Optionally specify when the cycle peaks in minutes
+    parse: function(options) {
+      base.parse.call(this, options);
+      if (options.period)
+        this.period = options.period * 60;
+      if (options.offset)
+        this.offset = -this.period/4 + options.offset * 60;
+    },
+    nextInterval: function() {
+      return (this._amplitude *
+        Math.sin(Math.PI*2 * ((game_time() + this.offset)/this.period))
+        + this._average) / prop.game.frequency;
+    }
+  };
+});
+
+zlsa.atc.ArrivalWave = zlsa.atc.ArrivalBase.extend(function(base) {
+  return {
+    init: function(airport, options) {
+      this.period = 60*60;
+      this.offset = 0;
+
+      base.init.call(this, airport, options);
+
+      // Average number of aircraft per hour
+      this._average = (this.frequency[0] + this.frequency[1]) / 2;
+
+      // Time in seconds for 7.5 nmi in-trail separation
+      this._separation = Math.ceil(7.5/this.speed * 3600);
+
+      // Aircraft per wave
+      this._count = Math.floor(this._average/3600 * this.period);
+
+      if ((this.period / this._separation) < this._count) {
+        console.log("Reducing average arrival frequency from " +
+                    this._average +
+                    "/hour to maintain minimum in trail separation");
+        this._count = Math.floor(3600 / this._separation);
+      }
+
+      // length of a wave in seconds
+      this._waveLength = this._separation * this._count - 1;
+
+      // Offset to have center of wave at 0 time and _offset always positive
+      this._offset = this._waveLength/2;
+      this._offset -= this.offset;
+      while (this._offset < 0) this._offset += this.period;
+    },
+    // Additional supported options
+    // period: {integer} Optionally specify the length of a cycle in minutes
+    // offset: {integer} Optionally specify the center of the wave in minutes
+    parse: function(options) {
+      base.parse.call(this, options);
+      if (options.period)
+        this.period = options.period * 60;
+      if (this.period <= 0)
+        throw "Period must be greater than 0";
+      if (options.offset)
+        this.offset += options.offset * 60;
+    },
+    nextInterval: function() {
+      var position = (game_time() + this._offset) % this.period;
+      if (position >= this._waveLength)
+        return this.period - position;
+      return this._separation / prop.game.frequency;
+    },
+  };
+});
+
+zlsa.atc.DepartureFactory = function(airport, options) {
+  if (options.type) {
+    if (options.type == 'random')
+      return new zlsa.atc.DepartureRandom(airport, options);
+    if (options.type == 'cyclic')
+      return new zlsa.atc.DepartureCyclic(airport, options);
+    if (options.type == 'wave')
+      return new zlsa.atc.DepartureWave(airport, options);
+    throw "Unsupported departure type: " + options.type;
+  }
+
+  return new zlsa.atc.DepartureDefault(airport, options);
+};
+
+zlsa.atc.DepartureBase = Fiber.extend(function(base) {
+  return {
+    init: function(airport, options) {
+      this.airport = airport;
+
+      this.airlines = [];
+      this.frequency = [0, 0];
+
+      this.timeout = null;
+
+      this.parse(options);
+    },
+    // Supported Departure options
+    // airlines: {array of array} List of airlines with weight for each
+    // frequency: {array or integer} Frequency in aircraft/hour or range of frequencies
+    parse: function(options) {
+      this.airlines = options.airlines;
+
+      if (typeof options.frequency == typeof 0)
+        this.frequency = [options.frequency, options.frequency]
+      else
+        this.frequency = options.frequency;
+    },
+    // Stop this departure from running.  Generally called when
+    // switching to another airport.
+    stop: function() {
+      if(this.timeout)
+          game_clear_timeout(this.timeout);
+    },
+    // Start this departure, spawning initial aircraft as appropriate
+    start: function() {
+      var r = random(1, 2);
+      if(Math.random() > 0.9)
+        r = random(1, 6);
+      for(var i=0;i<r;i++) {
+        game_timeout(this.spawnAircraft, Math.random() * 0.1, this, false);
+      }
+      this.spawnAircraft(true);
+    },
+
+    // Create an aircraft and schedule next departure if appropriate
+    spawnAircraft: function(timeout) {
+      if(timeout == undefined) timeout=false;
+      var message = true;
+      if(game_time() - this.start < 2) message = false;
+      aircraft_new({
+        category:  "departure",
+        airline:   choose_weight(this.airlines),
+        message:   message
+      });
+      if(timeout)
+        this.timeout = game_timeout(this.spawnAircraft,
+                                    this.nextInterval(),
+                                    this,
+                                    true);
+    },
+    nextInterval: function() {
+      // Frequency in minutes per aircraft
+      return random((this.frequency[0] * 60) / prop.game.frequency,
+                    (this.frequency[1] * 60) / prop.game.frequency);
+    }
+  };
+});
+
+zlsa.atc.DepartureDefault = zlsa.atc.DepartureBase;
+
+zlsa.atc.DepartureRandom = zlsa.atc.DepartureBase.extend(function (base) {
+  return {
+    nextInterval: function () {
+      return random((3600 / this.frequency[1]) / prop.game.frequency,
+                    (3600 / this.frequency[0]) / prop.game.frequency);
+    },
+  };
+});
+
+zlsa.atc.DepartureCyclic = zlsa.atc.DepartureBase.extend(function (base) {
+  return {
+    init: function(airport, options) {
+      this.period = 60*60;
+      this.offset = -15 * 60; // Start at the peak
+
+      base.init.call(this, airport, options);
+
+      this._amplitude = (3600 / this.frequency[0]) / 2;
+      this._average = (3600/this.frequency[0] + 3600/this.frequency[1]) / 2;
+    },
+    // Additional supported options
+    // period: {integer} Optionally specify the length of a cycle in minutes
+    // offset: {integer} Optionally specify when the cycle peaks in minutes
+    parse: function(options) {
+      base.parse.call(this, options);
+      if (options.period)
+        this.period = options.period * 60;
+      if (options.offset)
+        this.offset = -this.period/4 + options.offset * 60;
+    },
+    nextInterval: function() {
+      return (this._amplitude *
+        Math.sin(Math.PI*2 * ((game_time() + this.offset)/this.period))
+        + this._average) / prop.game.frequency;
+    },
+  };
+});
+
+zlsa.atc.DepartureWave = zlsa.atc.DepartureCyclic.extend(function(base) {
+  return {
+    init: function(airport, options) {
+      base.init.call(this, airport, options);
+
+      // Time between aircraft in the wave
+      this._separation = 10;
+
+      // Aircraft per wave
+      this._count = Math.floor(this._average/3600 * this.period);
+
+      if ((this.period / this._separation) < this._count) {
+        console.log("Reducing average departure frequency from " +
+                    this._average +
+                    "/hour to maintain minimum interval");
+        this._count = Math.floor(3600 / this._separation);
+      }
+
+      // length of a wave in seconds
+      this._waveLength = this._separation * this._count - 1;
+
+      // Offset to have center of wave at 0 time
+      this._offset = (this._waveLength - this._separation)/2 + this.offset;
+    },
+    nextInterval: function() {
+      var position = (game_time() + this._offset) % this.period;
+      if (position >= this._waveLength)
+        return this.period - position;
+      return this._separation / prop.game.frequency;
+    },
+  };
+});
+
 var Runway=Fiber.extend(function(base) {
   return {
     init: function(options) {
@@ -222,24 +697,12 @@ var Airport=Fiber.extend(function() {
       }
 
       if(data.departures) {
-        this.departures = data.departures;
-        this.departures.frequency[0] *= 60;
-        this.departures.frequency[1] *= 60;
+        this.departures = zlsa.atc.DepartureFactory(this, data.departures);
       }
 
       if(data.arrivals) {
         for(var i=0;i<data.arrivals.length;i++) {
-          var arrival = data.arrivals[i];
-          if(!arrival.heading) arrival.heading = (arrival.radial + 180) % 360;
-          arrival.heading       = radians(arrival.heading);
-          arrival.radial        = radians(arrival.radial);
-          arrival.frequency[0] *= 60;
-          arrival.frequency[1] *= 60;
-
-          if(typeof arrival.altitude == typeof 0)
-            arrival.altitude = [arrival.altitude, arrival.altitude];
-
-          this.arrivals.push(arrival);
+          this.arrivals.push(zlsa.atc.ArrivalFactory(this, data.arrivals[i]));
         }
       }
 
@@ -251,84 +714,22 @@ var Airport=Fiber.extend(function() {
     },
     unset: function() {
       for(var i=0;i<this.arrivals.length;i++) {
-        if(this.arrivals[i].timeout)
-          game_clear_timeout(this.arrivals[i].timeout);
+        this.arrivals[i].stop();
       }
-      if(this.timeout.departure) game_clear_timeout(this.timeout.departure);
+      this.departures.stop();
       if(this.timeout.runway) game_clear_timeout(this.timeout.runway);
     },
     addAircraft: function() {
       if(this.departures) {
-        var r = crange(0, Math.random(), 1, 1, 2);
-        if(Math.random() > 0.9)
-          r = crange(0, Math.random(), 1, 1, 6);
-        for(var i=0;i<r;i++) {
-          this.timeout.departure = game_timeout(this.addAircraftDeparture, Math.random() * 0.1, this, false);
-        }
-        this.addAircraftDeparture(true);
+        this.departures.start();
       }
 
       if(this.arrivals) {
         for(var i=0;i<this.arrivals.length;i++) {
-          var arrival = this.arrivals[i];
-
-          var delay = crange(0, Math.random(), 1, arrival.frequency[0], arrival.frequency[1]);
-          if(Math.random() > 0.3) {
-            delay = Math.random() * 0.1;
-            game_timeout(this.addAircraftArrival, delay, this, [arrival, null, false]);
-          }
-          this.arrivals[i].timeout = game_timeout(this.addAircraftArrival, delay, this, [arrival, crange(0, Math.random(), 1, 0.5, 0.8), true]);
+          this.arrivals[i].start();
         }
       }
 
-    },
-    addAircraftDeparture: function(timeout) {
-      if(timeout == undefined) timeout=false;
-      var message = true;
-      if(game_time() - this.start < 2) message = false;
-      aircraft_new({
-        category:  "departure",
-        airline:   choose_weight(this.departures.airlines),
-        message:   message
-      });
-      if(timeout)
-        this.timeout.departure = game_timeout(this.addAircraftDeparture, crange(0, Math.random(), 1, this.departures.frequency[0] / prop.game.frequency, this.departures.frequency[1] / prop.game.frequency), this, true);
-    },
-    addAircraftArrival: function(args) {
-      var arrival = args[0];
-      var offset  = args[1];
-      var timeout = args[2] > 0.5;
-      if(timeout == undefined) timeout=false;
-      if(!offset) offset = 1;
-
-      // Set heading within 15 degrees of specified
-      var wobble   = radians(15);
-      var radial   = arrival.radial + random(-wobble, wobble);
-
-      // Set location 2-18km inside of the radar coverage line
-      var distance = (2*this.ctr_radius - 18) * offset + random(16);
-      var position = [0, 0];
-      position[0] += sin(radial) * distance;
-      position[1] += cos(radial) * distance;
-
-      var altitude = random(arrival.altitude[0] / 1000,
-                            arrival.altitude[1] / 1000);
-      altitude     = round(altitude * 2) * 500;
-
-      var message = true;
-      if(game_time() - this.start < 2) message = false;
-
-      aircraft_new({
-        category:  "arrival",
-        position:  position,
-        heading:   arrival.heading,
-        altitude:  altitude,
-        airline:   choose_weight(arrival.airlines),
-        message:   message
-      });
-
-      if(timeout)
-        arrival.timeout = game_timeout(this.addAircraftArrival, crange(0, Math.random(), 1, arrival.frequency[0] / prop.game.frequency, arrival.frequency[1] / prop.game.frequency), this, [arrival, null, true]);
     },
     updateRunway: function(length) {
       if(!length) length = 0;
