@@ -109,11 +109,11 @@ var Runway=Fiber.extend(function(base) {
     },
     parse: function(data) {
       if(data.position) {
-        var coord = new Position(data.position, data.reference_position);
+        var coord = new Position(data.position, data.reference_position, data.magnetic_north);
         this.position = coord.position;
       } else if(data.end) {
-        var coord_start = new Position(data.end[0], data.reference_position);
-        var coord_end   = new Position(data.end[1], data.reference_position);
+        var coord_start = new Position(data.end[0], data.reference_position, data.magnetic_north);
+        var coord_end   = new Position(data.end[1], data.reference_position, data.magnetic_north);
         this.position   = [average(coord_start.x, coord_end.x), average(coord_start.y, coord_end.y)];
         this.length     = coord_start.distanceTo(coord_end);
         this.angle      = Math.atan2(coord_end.x - coord_start.x,
@@ -191,6 +191,8 @@ var Airport=Fiber.extend(function() {
     },
     parse: function(data) {
       if(data.position) this.position = new Position(data.position);
+      if(data.magnetic_north) this.magnetic_north = radians(data.magnetic_north);
+      if(!this.magnetic_north) this.magnetic_north = 0;
       if(data.name) this.name   = data.name;
       if(data.icao) this.icao   = data.icao;
       if(data.radio) this.radio = data.radio;
@@ -200,13 +202,16 @@ var Airport=Fiber.extend(function() {
       if(data.runways) {
         for(var i=0;i<data.runways.length;i++) {
           data.runways[i].reference_position = this.position;
+          data.runways[i].magnetic_north = this.magnetic_north;
           this.runways.push(new Runway(data.runways[i]));
         }
       }
 
       if(data.fixes) {
         for(var i in data.fixes) {
-          var coord = new Position(data.fixes[i], this.position);
+          var coord = new Position(data.fixes[i],
+                                   this.position,
+                                   this.magnetic_north);
           this.fixes[i.toUpperCase()] = coord.position;
         }
       }
