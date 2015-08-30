@@ -1,0 +1,13 @@
+{
+  "name": "Southwest Airlines",
+  "callsign": {
+    "name": "Southwest",
+    "length": 3
+  },
+  "aircraft": [
+    ["B733", 121],
+    ["B735",  12],
+    ["B737", 460],
+    ["B738",  98]
+  ]
+}

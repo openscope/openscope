@@ -16,6 +16,7 @@ function airline_init() {
   airline_load("KLM");
   airline_load("KLC");
   airline_load("DAL");
+  airline_load("AIRTAXI");
   airline_load("LIGHTGA");
   airline_load("FASTGA");
   airline_load("SAS");
@@ -38,6 +39,8 @@ function airline_init() {
   airline_load("SBI");
   airline_load("SVR");
   airline_load("TYA");
+  airline_load("ASA");
+  airline_load("SWA");
 
   // Cargo Airlines
   airline_load("FDX");
