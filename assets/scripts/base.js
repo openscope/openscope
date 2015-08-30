@@ -80,7 +80,7 @@ var Position=Fiber.extend(function() {
 
         // Adjust to use magnetic north instead of true north
         var t = Math.atan2(this.y, this.x);
-        var r = Math.sqrt(this.x*this.x, this.y*this.y);
+        var r = Math.sqrt(this.x*this.x + this.y*this.y);
         t += this.magnetic_north;
         this.x = r * Math.cos(t);
         this.y = r * Math.sin(t);
