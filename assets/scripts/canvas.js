@@ -249,6 +249,20 @@ function canvas_draw_fixes(cc) {
   }
 }
 
+function canvas_draw_separation_indicator(cc, aircraft) {
+  // Draw a trailing indicator 2.5 NM (4.6km) behind landing aircraft to help with traffic spacing
+  var rwy = airport_get().getRunway(aircraft.requested.runway);
+  var angle = rwy.getAngle();
+  cc.strokeStyle = "rgba(224, 128, 128, 0.8)";
+  cc.lineWidth = 3;
+  cc.translate(km(aircraft.position[0]) + prop.canvas.panX, -km(aircraft.position[1]) + prop.canvas.panY);
+  cc.rotate(angle);
+  cc.beginPath();
+  cc.moveTo(-5, -km(4.6));
+  cc.lineTo(+5, -km(4.6));
+  cc.stroke();
+}
+
 function canvas_draw_aircraft(cc, aircraft) {
 
   if(!aircraft.isVisible()) return;
@@ -276,6 +290,12 @@ function canvas_draw_aircraft(cc, aircraft) {
   cc.save();
   if(aircraft.position_history.length > trailling_length) aircraft.position_history = aircraft.position_history.slice(aircraft.position_history.length - trailling_length, aircraft.position_history.length);
 
+  if( aircraft.isPrecisionGuided() && aircraft.altitude > 1000) {
+    cc.save();
+    canvas_draw_separation_indicator(cc, aircraft);
+    cc.restore();
+  }
+    
   // Aircraft
   if(prop.input.callsign.length > 1 && aircraft.matchCallsign(prop.input.callsign.substr(0, prop.input.callsign.length - 1)))
     almost_match = true;
