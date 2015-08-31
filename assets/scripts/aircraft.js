@@ -1436,6 +1436,8 @@ function aircraft_init() {
   aircraft_load("at72");
 
   // CESSNA
+  aircraft_load("c172");
+  aircraft_load("c182");
   aircraft_load("c208");
   aircraft_load("c337");
   aircraft_load("c510");
@@ -1503,8 +1505,10 @@ function aircraft_init() {
 	
 	
   // MISC
+  aircraft_load("be36");
   aircraft_load("l410");
   aircraft_load("il76");
+  aircraft_load("p28a");
   aircraft_load("t154");
   aircraft_load("c130");
   aircraft_load("c5");
