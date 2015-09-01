@@ -1174,18 +1174,24 @@ var Aircraft=Fiber.extend(function() {
         // Reduced separation horizontal minima during precision
         // guided approaches
         if (this.isPrecisionGuided() && other.isPrecisionGuided()) {
-          // Notice at 3500 feet horizontal and 1500 feet vertical
-          if ((distance < 1.067) && (altitude < 1500)) notice = true;
-
-          // Warning at 3000 feet and 1000 feet vertical
-          if ((distance < 0.914) && (altitude < 1000)) warning = true;
+          if(this.requested.runway != other.requested.runway) {
+            // Notice at 3500 feet horizontal and 1500 feet vertical
+            if ((distance < 1.067) && (altitude < 1500)) notice = true;
+            // Warning at 3000 feet and 1000 feet vertical
+            if ((distance < 0.914) && (altitude < 1000)) warning = true;
+          } else  { 
+            // Notice at 2.8nm horizontal and 1500 feet vertical 
+            if ((distance < 5.2) && (altitude < 1500)) notice = true;
+            // Warning within 2.5nm horizontal and 1000 feet vertical
+            if ((distance < 4.6) && (altitude < 1000)) warning = true;
+          }
         }
         // Standard separation
         else {
-          // Notice at 4 miles horizontal and 1500 feet vertical
-          if ((distance < 5.5) && (altitude < 1500)) notice = true;
-          // Warning within 3 miles horizontal and 1000 feet vertical
-          if ((distance < 4.8) && (altitude < 1000)) warning = true;
+          // Notice at 4nm horizontal and 1500 feet vertical
+          if ((distance < 7.4) && (altitude < 1500)) notice = true;
+          // Warning within 3nm horizontal and 1000 feet vertical
+          if ((distance < 5.6) && (altitude < 1000)) warning = true;
         }
 
         // Collide within 160 feet
