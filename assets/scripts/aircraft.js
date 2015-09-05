@@ -918,6 +918,7 @@ var Aircraft=Fiber.extend(function() {
             }
             this.updateStrip();
             this.requested.turn = null;
+            this.requested.heading = angle;
             this.target.turn = null;
           }
 
