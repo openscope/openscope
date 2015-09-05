@@ -381,7 +381,7 @@ function canvas_draw_future_track(cc, aircraft) {
   prop.game.delta = 5;
   future_track = [];
   for(i = 0; i < 60; i++) {
-    twin.update();
+    twin.update(true);
     ils_locked = twin.requested.runway && twin.category == "arrival" && twin.mode == "landing";
     future_track.push([twin.position[0], twin.position[1], ils_locked]);
     if( ils_locked && twin.altitude < 500)
