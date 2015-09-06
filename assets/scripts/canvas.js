@@ -375,8 +375,8 @@ function canvas_draw_aircraft(cc, aircraft) {
 
 // Run physics updates into the future, draw magenta track
 function canvas_draw_future_track(cc, aircraft) {
-  twin = $.extend(true, {}, aircraft);
-  twin.updateStrip = function(){}; // ignore any calls to updateStrip() for the twin
+  var twin = $.extend(true, {}, aircraft);
+  twin.projected = true;
   save_delta = prop.game.delta;
   prop.game.delta = 5;
   future_track = [];

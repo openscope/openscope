@@ -97,6 +97,11 @@ var Aircraft=Fiber.extend(function() {
 
       this.inside_ctr = false;
 
+      // Set to true when simulating future movements of the aircraft
+      // Should be checked before updating global state such as score
+      // or HTML.
+      this.projected = false;
+
       this.position_history = [];
 
       this.category    = "arrival"; // or "departure"
@@ -716,16 +721,10 @@ var Aircraft=Fiber.extend(function() {
           this.requested.heading = runway.getAngle(this.requested.runway) + Math.PI;
         }
 
-        if(distance2d(runway.position, this.position) < 10) {
-          console.log("aborted landing");
-          ui_log(true, this.getCallsign() + " aborted landing");
-          prop.game.score.abort.landing += 1;
-        }
-
-        this.requested.navmode = null;
+        this.requested.navmode = "heading";
         this.mode = "cruise";
-        this.updateStrip();
         this.requested.runway = null;
+        this.updateStrip();
         return true;
       } else {
         this.requested.runway = null;
@@ -890,6 +889,7 @@ var Aircraft=Fiber.extend(function() {
         this.offset_angle = offset_angle;
 
         angle = runway.getAngle(this.requested.runway) + Math.PI;
+        if (angle > (2*Math.PI)) angle -= 2*Math.PI;
 
         var landing_zone_offset = crange(1, runway.length, 5, 0.1, 0.5);
 
@@ -903,21 +903,31 @@ var Aircraft=Fiber.extend(function() {
         if(!runway.getILS(this.requested.runway) || !ils) ils = 40;
 
         // lock  ILS if at the right angle and altitude
-        if(abs(this.altitude - glideslope_altitude) < glideslope_window && abs(offset_angle) < radians(30) && offset[1] < ils) {
+        if ((abs(this.altitude - glideslope_altitude) < glideslope_window)
+            && (abs(offset_angle) < radians(10))
+            && (offset[1] < ils)) {
           //plane is on the glide slope
-          var m = false;
-          if(this.mode != "landing") m=true;
-          this.mode = "landing";
-          if(m) {
+          if(this.mode != "landing") {
+            this.mode = "landing";
+            if (!this.projected &&
+                (abs(this.requested.heading - angle) > radians(30)))
+            {
+              ui_log(true,
+                     this.getRadioCallsign() +
+                       " landing intercept vector was greater than 30 degrees");
+              prop.game.score.violation += 1;
+            }
             this.updateStrip();
             this.requested.turn = null;
+            this.requested.heading = angle;
             this.target.turn = null;
           }
 
-          if(offset[1] > 0.01) {
-            var xoffset = crange(0.7, this.model.rate.turn, 5, 7, 1);
-            xoffset    *= crange(this.model.speed.landing, this.speed, this.model.speed.cruise, 0.7, 1);
-            this.target.heading = crange(-xoffset, offset[0], xoffset, radians(45), -radians(45)) + angle;
+          // Steer to within 3m of the centerline while at least 200m out
+          if(offset[1] > 0.2 && abs(offset[1]) > 0.003) {
+            this.target.heading = clamp(radians(-30),
+                                        -12 * offset_angle,
+                                        radians(30)) + angle;
           } else {
             this.target.heading = angle;
           }
@@ -930,9 +940,10 @@ var Aircraft=Fiber.extend(function() {
         } else if(this.altitude >= 300 && this.mode == "landing") {
           this.updateStrip();
           this.cancelLanding();
-          ui_log(this.getRadioCallsign() + " aborting landing, lost ILS");
-          if(distance2d(runway.position, this.position) < 10) {
-            console.log("aborted landing after ILS lost");
+          if (!this.projected)
+          {
+            ui_log(true,
+                   this.getRadioCallsign() + " aborting landing, lost ILS");
             prop.game.score.abort.landing += 1;
           }
         } else {
@@ -1005,7 +1016,10 @@ var Aircraft=Fiber.extend(function() {
         this.heading     = runway.angle;
         if(runway.getEnd(this.requested.runway) == 1) this.heading += Math.PI;
 
-        if(runway.isWaiting(this, this.requested.runway) == 0 && was_taxi == true) {
+        if (!this.projected &&
+            (runway.isWaiting(this, this.requested.runway) == 0) &&
+            (was_taxi == true))
+        {
           ui_log(this.getRadioCallsign(), "ready for takeoff runway "+radio_runway(this.requested.runway));
           this.updateStrip();
         }
@@ -1211,6 +1225,7 @@ var Aircraft=Fiber.extend(function() {
       this.hit     = hit;
     },
     updateStrip: function() {
+      if (this.projected) return;
       var heading  = this.html.find(".heading");
       var altitude = this.html.find(".altitude");
       var speed    = this.html.find(".speed");
@@ -1293,7 +1308,7 @@ var Aircraft=Fiber.extend(function() {
 
     },
 
-    update: function(p) {
+    update: function() {
       if(prop.aircraft.auto.enabled) {
         this.updateAuto();
       }
