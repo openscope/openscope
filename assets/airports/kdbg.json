@@ -88,6 +88,9 @@
       ["baw", 5],
       ["cessna", 4]
     ],
+    "destinations": [
+      20, 65, 110, 155, 200, 245, 290, 335
+    ],
     "frequency": [1, 3]
   },
   "arrivals": [

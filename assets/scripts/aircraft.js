@@ -83,6 +83,7 @@ var Aircraft=Fiber.extend(function() {
 
       this.radial      = 0;
       this.distance    = 0;
+      this.destination = null;
 
       this.trend       = 0;
 
@@ -196,6 +197,10 @@ var Aircraft=Fiber.extend(function() {
       this.html.append("<span class='heading'>" + round(this.heading) + "</span>");
       this.html.append("<span class='altitude'>-</span>");
       this.html.append("<span class='aircraft'>" + this.model.icao + "</span>");
+      if (this.destination)
+        this.html.append("<span class='destination'>" +
+                         heading_to_string(this.destination) +
+                         "</span>");
       this.html.append("<span class='speed'>-</span>");
 
       this.html.find(".aircraft").prop("title", this.model.name);
@@ -273,9 +278,19 @@ var Aircraft=Fiber.extend(function() {
         this.requested.heading = this.radial;
         this.requested.turn    = null;
         this.requested.hold    = false;
+        this.requested.altitude = 20000;
+        this.requested.speed = 480;
+
         if (this.category == "departure") {
-          this.radioCall("leaving radar coverage");
-          prop.game.score.departure += 1;
+          // Within 5 degrees of destination heading
+          if (abs(this.radial - this.destination) < 0.08726) {
+            this.radioCall("leaving radar coverage");
+            prop.game.score.departure += 1;
+          }
+          else {
+            this.radioCall("leaving radar coverage outside departure window", true);
+            prop.game.score.departure -= 1;
+          }
         }
         if (this.category == "arrival") {
           this.radioCall("leaving radar coverage as arrival", true);
@@ -805,6 +820,8 @@ var Aircraft=Fiber.extend(function() {
       if(data.altitude) this.requested.altitude = data.altitude;
       if(data.speed)    this.requested.speed = data.speed;
       else              this.requested.speed = this.model.speed.cruise;
+
+      if(data.destination) this.destination = data.destination;
 
       if(this.category == "departure" && this.isLanded()) {
         this.speed = 0;

@@ -342,6 +342,7 @@ zlsa.atc.DepartureBase = Fiber.extend(function(base) {
       this.airport = airport;
 
       this.airlines = [];
+      this.destinations = [0];
       this.frequency = [0, 0];
 
       this.timeout = null;
@@ -351,6 +352,7 @@ zlsa.atc.DepartureBase = Fiber.extend(function(base) {
     // Supported Departure options
     // airlines: {array of array} List of airlines with weight for each
     // frequency: {array or integer} Frequency in aircraft/hour or range of frequencies
+    // destinations: {array of integer} List of headings for departures
     parse: function(options) {
       this.airlines = options.airlines;
 
@@ -358,6 +360,13 @@ zlsa.atc.DepartureBase = Fiber.extend(function(base) {
         this.frequency = [options.frequency, options.frequency]
       else
         this.frequency = options.frequency;
+
+      if (options.destinations) {
+        this.destinations = [];
+        for (var i=0;i<options.destinations.length;i++) {
+            this.destinations.push(radians(options.destinations[i]));
+        }
+      }
     },
     // Stop this departure from running.  Generally called when
     // switching to another airport.
@@ -383,6 +392,7 @@ zlsa.atc.DepartureBase = Fiber.extend(function(base) {
       if(game_time() - this.start < 2) message = false;
       aircraft_new({
         category:  "departure",
+        destination: choose(this.destinations),
         airline:   choose_weight(this.airlines),
         message:   message
       });
@@ -635,10 +645,8 @@ var Airport=Fiber.extend(function() {
         departure: null
       };
 
-      this.departures = {
-        airlines: [],
-        frequency: 1
-      };
+      this.departures = null;
+
       this.arrivals   = [];
 
       this.wind     = {

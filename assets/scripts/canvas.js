@@ -263,13 +263,42 @@ function canvas_draw_separation_indicator(cc, aircraft) {
   cc.stroke();
 }
 
+function canvas_draw_aircraft_departure_window(cc, aircraft) {
+  cc.save();
+  cc.strokeStyle = "rgba(128, 255, 255, 0.9)";
+  cc.beginPath();
+  var angle = aircraft.destination - Math.PI/2;
+  cc.arc(prop.canvas.panX,
+         prop.canvas.panY,
+         km(airport_get().ctr_radius),
+         angle - 0.08726,
+         angle + 0.08726);
+  cc.stroke();
+  cc.restore();
+}
+
 function canvas_draw_aircraft(cc, aircraft) {
+  var almost_match = false;
+  var match        = false;
+
+  if ((prop.input.callsign.length > 1) &&
+      (aircraft.matchCallsign(prop.input.callsign.substr(0, prop.input.callsign.length - 1))))
+  {
+    almost_match = true;
+  }
+  if((prop.input.callsign.length > 0) &&
+     (aircraft.matchCallsign(prop.input.callsign)))
+  {
+    match = true;
+  }
+
+  if (match && (aircraft.destination != null)) {
+    canvas_draw_aircraft_departure_window(cc, aircraft);
+  }
 
   if(!aircraft.isVisible()) return;
 
   var size = 3;
-  var almost_match = false;
-  var match        = false;
 
   // Trailling
   var trailling_length = 12;
@@ -302,13 +331,8 @@ function canvas_draw_aircraft(cc, aircraft) {
     canvas_draw_separation_indicator(cc, aircraft);
     cc.restore();
   }
-    
-  // Aircraft
-  if(prop.input.callsign.length > 1 && aircraft.matchCallsign(prop.input.callsign.substr(0, prop.input.callsign.length - 1)))
-    almost_match = true;
-  if(prop.input.callsign.length > 0 && aircraft.matchCallsign(prop.input.callsign))
-    match = true;
 
+  // Aircraft
   // Draw the future path
   if((aircraft.warning || match) && !aircraft.isTaxiing()) {
     canvas_draw_future_track(cc, aircraft);
