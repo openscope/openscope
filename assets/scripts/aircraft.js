@@ -97,6 +97,11 @@ var Aircraft=Fiber.extend(function() {
 
       this.inside_ctr = false;
 
+      // Set to true when simulating future movements of the aircraft
+      // Should be checked before updating global state such as score
+      // or HTML.
+      this.projected = false;
+
       this.position_history = [];
 
       this.category    = "arrival"; // or "departure"
@@ -858,7 +863,7 @@ var Aircraft=Fiber.extend(function() {
       }
       return score;
     },
-    updateTarget: function(projected) {
+    updateTarget: function() {
       var airport = airport_get();
       var runway  = null;
 
@@ -904,7 +909,7 @@ var Aircraft=Fiber.extend(function() {
           //plane is on the glide slope
           if(this.mode != "landing") {
             this.mode = "landing";
-            if (!projected &&
+            if (!this.projected &&
                 (abs(this.requested.heading - angle) > radians(30)))
             {
               ui_log(true,
@@ -935,7 +940,7 @@ var Aircraft=Fiber.extend(function() {
         } else if(this.altitude >= 300 && this.mode == "landing") {
           this.updateStrip();
           this.cancelLanding();
-          if (!projected)
+          if (!this.projected)
           {
             ui_log(true,
                    this.getRadioCallsign() + " aborting landing, lost ILS");
@@ -1011,7 +1016,7 @@ var Aircraft=Fiber.extend(function() {
         this.heading     = runway.angle;
         if(runway.getEnd(this.requested.runway) == 1) this.heading += Math.PI;
 
-        if (!projected &&
+        if (!this.projected &&
             (runway.isWaiting(this, this.requested.runway) == 0) &&
             (was_taxi == true))
         {
@@ -1041,7 +1046,7 @@ var Aircraft=Fiber.extend(function() {
         }
       }
     },
-    updatePhysics: function(projected) {
+    updatePhysics: function() {
       if(this.isTaxiing()) return;
       if(this.hit) {
         this.altitude -= 90 * game_delta(); // 90fps fall rate?...
@@ -1220,6 +1225,7 @@ var Aircraft=Fiber.extend(function() {
       this.hit     = hit;
     },
     updateStrip: function() {
+      if (this.projected) return;
       var heading  = this.html.find(".heading");
       var altitude = this.html.find(".altitude");
       var speed    = this.html.find(".speed");
@@ -1298,17 +1304,16 @@ var Aircraft=Fiber.extend(function() {
 
     },
 
-    updateAuto: function(projected) {
+    updateAuto: function() {
 
     },
 
-    update: function(projected) {
-      if (projected == null) projected=false;
+    update: function() {
       if(prop.aircraft.auto.enabled) {
-        this.updateAuto(projected);
+        this.updateAuto();
       }
-      this.updateTarget(projected);
-      this.updatePhysics(projected);
+      this.updateTarget();
+      this.updatePhysics();
     }
   };
 });
