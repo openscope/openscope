@@ -647,6 +647,7 @@ var Airport=Fiber.extend(function() {
       };
 
       this.ctr_radius  = 80;
+      this.ctr_ceiling = 10000;
 
       this.parse(options);
       if(options.url) {
@@ -672,6 +673,7 @@ var Airport=Fiber.extend(function() {
       if(data.icao) this.icao   = data.icao;
       if(data.radio) this.radio = data.radio;
       if(data.ctr_radius) this.ctr_radius = data.ctr_radius;
+      if(data.ctr_ceiling) this.ctr_ceiling = data.ctr_ceiling;
       if(data.level) this.level = data.level;
 
       if(data.runways) {

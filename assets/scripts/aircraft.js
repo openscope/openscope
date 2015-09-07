@@ -267,6 +267,12 @@ var Aircraft=Fiber.extend(function() {
       // Leaving the center
       else {
         this.hideStrip();
+
+        // Fly away!
+        this.requested.navmode = "heading";
+        this.requested.heading = this.radial;
+        this.requested.turn    = null;
+        this.requested.hold    = false;
         if (this.category == "departure") {
           this.radioCall("leaving radar coverage");
           prop.game.score.departure += 1;
@@ -582,7 +588,8 @@ var Aircraft=Fiber.extend(function() {
       var factor = 1;
       if(data.length <= 2) factor = 1000;
 
-      this.requested.altitude = clamp(1000, altitude * factor, 10000);
+      this.requested.altitude = clamp(1000, altitude * factor,
+                                      airport_get().ctr_ceiling + 1000);
       this.requested.expedite = expedite;
 
       if(expedite) expedite = " expedite";
@@ -1191,7 +1198,8 @@ var Aircraft=Fiber.extend(function() {
                                 this.position[1]*this.position[1]);
       this.radial = Math.atan2(this.position[0], this.position[1]);
 
-      var inside = (this.distance <= airport_get().ctr_radius);
+      var inside = (this.distance <= airport_get().ctr_radius &&
+                    this.altitude <= airport_get().ctr_ceiling);
       if (inside != this.inside_ctr)
         this.crossBoundary(inside);
     },
