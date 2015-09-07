@@ -1214,6 +1214,7 @@ var Aircraft=Fiber.extend(function() {
       this.distance = Math.sqrt(this.position[0]*this.position[0] +
                                 this.position[1]*this.position[1]);
       this.radial = Math.atan2(this.position[0], this.position[1]);
+      if (this.radial < 0) this.radial += Math.PI*2;
 
       var inside = (this.distance <= airport_get().ctr_radius &&
                     this.altitude <= airport_get().ctr_ceiling);
