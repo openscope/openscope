@@ -100,6 +100,9 @@
       ["klm",   5],
       ["ual",   2]
     ],
+    "destinations": [
+      60, 85, 145, 180, 245, 330
+    ],
     "frequency": [1, 2]
   },
   "arrivals": [
