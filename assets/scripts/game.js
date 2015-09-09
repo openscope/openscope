@@ -22,6 +22,7 @@ function game_init_pre() {
     prop.game.focused=true;
   });
 
+  prop.game.last_score = 0;
   prop.game.score = {
     arrival: 0,
     departure: 0,
@@ -148,12 +149,14 @@ function game_clear_timeout(to) {
 
 function game_update_pre() {
   var score = game_get_score();
-  $("#score").text(round(score));
-
-  if(score < -0.51)
-    $("#score").addClass("negative");
-  else
-    $("#score").removeClass("negative");
+  if (score != prop.game.last_score) {
+    $("#score").text(round(score));
+    if(score < -0.51)
+      $("#score").addClass("negative");
+    else
+      $("#score").removeClass("negative");
+    prop.game.last_score = score;
+  }
 
   prop.game.delta=Math.min(delta()*prop.game.speedup, 100);
   if(game_paused()) {

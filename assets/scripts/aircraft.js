@@ -995,7 +995,7 @@ var Aircraft=Fiber.extend(function() {
           if(this.mode != "landing") {
             this.mode = "landing";
             if (!this.projected &&
-                (abs(this.requested.heading - angle) > radians(30)))
+                (abs(angle_offset(this.requested.heading, angle)) > radians(30)))
             {
               ui_log(true,
                      this.getRadioCallsign() +
