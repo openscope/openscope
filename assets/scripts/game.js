@@ -55,7 +55,7 @@ function game_get_score() {
   score -= prop.game.score.windy_takeoff * 0.5;
 
   score -= prop.game.score.failed_arrival * 20;
-  score -= prop.game.score.failed_departure * 20;
+  score -= prop.game.score.failed_departure * 2;
 
   score -= prop.game.score.warning * 5;
   score -= prop.game.score.hit * 50;
