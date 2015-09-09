@@ -86,7 +86,8 @@
     "airlines": [
       ["ual", 3],
       ["baw", 5],
-      ["cessna", 4]
+      ["fastga", 4],
+      ["lightga", 1]
     ],
     "destinations": [
       20, 65, 110, 155, 200, 245, 290, 335

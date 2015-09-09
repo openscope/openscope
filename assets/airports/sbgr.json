@@ -81,9 +81,9 @@
     {
       "radial": 90,
       "heading": 270,
+      "speed": 120,
       "airlines": [
-        ["cessna", 2],
-        ["embraer", 2]
+        ["lightga", 1]
       ],
       "frequency": [5, 20],
       "altitude": [3000, 5000]

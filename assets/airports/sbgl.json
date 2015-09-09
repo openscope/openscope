@@ -116,11 +116,20 @@
       "airlines": [
         ["glo", 10],
         ["tam", 10],
-        ["embraer", 1],
-        ["cessna", 1]
+        ["fastga", 2]
       ],
       "frequency": [1, 40],
       "altitude": [7000, 8000]
+    },
+    {
+      "radial": 230,
+      "heading": 50,
+      "speed": 120,
+      "airlines": [
+        ["lightga", 1]
+      ],
+      "frequency": [10, 60],
+      "altitude": [3000, 5000]
     }
   ]
 }
