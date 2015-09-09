@@ -26,6 +26,7 @@ function airline_init() {
   airline_load("SVR");
   airline_load("UTA");
   airline_load("LIGHTGA");
+  airline_load("FASTGA");
 
   // Cargo Airlines
   airline_load("FDX");
