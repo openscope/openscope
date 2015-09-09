@@ -110,7 +110,7 @@
       ["ual", 2],
       ["fastga", 1]
     ],
-    "departures": [
+    "destinations": [
       20, 70, 100, 215, 340, 275
     ],
     "type": "cyclic",

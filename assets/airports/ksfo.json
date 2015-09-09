@@ -88,7 +88,7 @@
       ["baw", 9],
       ["ups", 2]
     ],
-    "departures": [
+    "destinations": [
       67, 170, 340
     ],
     "frequency": [2.8, 3.2]

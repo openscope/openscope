@@ -133,7 +133,7 @@
       ["fastga", 2],
       ["lightga", 2]
     ],
-    "departures": [
+    "destinations": [
        22, 110, 210, 245, 340
     ],
     "frequency": [1, 3]

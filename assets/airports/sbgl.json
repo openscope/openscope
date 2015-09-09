@@ -53,7 +53,7 @@
       ["embraer", 10],
       ["aal", 2]
     ],
-    "departures": [
+    "destinations": [
       60, 125, 135, 205, 210
     ],
     "frequency": [1, 15]
