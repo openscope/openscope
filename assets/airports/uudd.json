@@ -50,6 +50,9 @@
       ["svr", 30],
       ["sbi", 30]
     ],
+    "departures": [
+      165, 245, 325
+    ],
     "frequency": [1, 5]
   },
   "arrivals": [

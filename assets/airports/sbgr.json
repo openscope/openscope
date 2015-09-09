@@ -60,6 +60,9 @@
       ["fab", 1],
       ["aal", 4]
     ],
+    "departures": [
+      45, 65, 115, 155, 315
+    ],
     "frequency": [1, 2]
   },
   "arrivals":[

@@ -110,6 +110,9 @@
       ["ual", 2],
       ["cessna", 1]
     ],
+    "departures": [
+      20, 70, 100, 215, 340, 275
+    ],
     "type": "cyclic",
     "offset": 0,
     "frequency": [5, 75]
