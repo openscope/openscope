@@ -1171,11 +1171,8 @@ var Aircraft=Fiber.extend(function() {
                      + " appears on a collision course with " + other.getCallsign()
                      + " on the same runway");
               prop.game.score.warning += 1;
-              this.warning = true;
             }
             warning = true;
-          } else {
-            this.warning = false;
           }
         }
 
