@@ -1,3 +1,31 @@
+zlsa.atc.Conflict = Fiber.extend(function() {
+  return {
+    init: function(first, second) {
+      this.aircraft = [first, second];
+      this.distance = distance2d(this.aircraft[0].position,
+                                 this.aircraft[1].position);
+
+      this.conflicts = {};
+
+      this.aircraft[0].addConflict(this, aircraft[1]);
+      this.aircraft[1].addConflict(this, aircraft[0]);
+    },
+    update: function() {
+      this.distance = vlen(vsub(this.aircraft[0].position,
+                                this.aircraft[1].position));
+
+      // Check if the separation is now beyond the bounding box check
+      if (this.distance > 14.2) {
+        this.remove();
+        return;
+      }
+    },
+    remove: function() {
+      this.aircraft[0].removeConflict(this, aircraft[1]);
+      this.aircraft[1].removeConflict(this, aircraft[0]);
+    }
+  };
+});
 
 var Model=Fiber.extend(function() {
   return {
@@ -119,6 +147,8 @@ var Aircraft=Fiber.extend(function() {
       this.rules       = "ifr";
 
       this.inside_ctr = false;
+
+      this.conflicts = {};
 
       // Set to true when simulating future movements of the aircraft
       // Should be checked before updating global state such as score
@@ -1619,6 +1649,22 @@ var Aircraft=Fiber.extend(function() {
       }
       this.updateTarget();
       this.updatePhysics();
+    },
+
+    addConflict: function(conflict, other) {
+      this.conflicts[other] = conflict;
+    },
+
+    checkConflict: function(other) {
+      if (this.conflicts[other]) {
+        this.conflicts[other].update();
+        return true;
+      }
+      return false;
+    },
+
+    removeConflict: function(other) {
+      delete this.conflicts[other];
     }
   };
 });
@@ -1839,6 +1885,27 @@ function aircraft_update() {
   }
   for(var i=0;i<prop.aircraft.list.length;i++) {
     prop.aircraft.list[i].updateWarning();
+    for(var j=i+1;j<prop.aircraft.list.length;j++) {
+      var that = prop.aircraft.list[i];
+      var other = prop.aircraft.list[j];
+
+      if (that.checkViolation(other)) {
+        continue;
+      }
+
+      // Fast 2D bounding box check, there are no conflicts over 10km apart
+      // no violation can occur in this case.
+      // Variation of:
+      // http://gamedev.stackexchange.com/questions/586/what-is-the-fastest-way-to-work-out-2d-bounding-box-intersection
+      var dx = Math.abs(this.position[0] - other.position[0]);
+      var dy = Math.abs(this.position[1] - other.position[1]);
+      if ((dx > 10) || (dy > 10)) {
+        continue;
+      }
+      else {
+        new zlsa.atc.Conflict(that, other);
+      }
+    }
   }
   for(var i=prop.aircraft.list.length-1;i>=0;i--) {
     var remove = false;
