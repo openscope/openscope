@@ -373,7 +373,7 @@ function canvas_draw_aircraft(cc, aircraft) {
   cc.fill();
 }
 
-// Run physics updates into the future, draw magenta track
+// Run physics updates into the future, draw future track
 function canvas_draw_future_track(cc, aircraft) {
   var twin = $.extend(true, {}, aircraft);
   twin.projected = true;
@@ -396,6 +396,7 @@ function canvas_draw_future_track(cc, aircraft) {
     cc.strokeStyle = "rgba(224, 128, 128, 0.6)";
     lockedStroke   = "rgba(224, 128, 128, 1.0)";
   }
+  cc.globalCompositeOperation = "screen";
   
   cc.lineWidth = 2;
   cc.beginPath();
@@ -421,7 +422,27 @@ function canvas_draw_future_track(cc, aircraft) {
         cc.lineTo(x, y);
   }
   cc.stroke();
+  canvas_draw_future_track_fixes(cc, twin, future_track);
   cc.restore();
+}
+
+// Draw dashed line from last coordinate of future track through
+// any later requested fixes.
+function canvas_draw_future_track_fixes( cc, aircraft, future_track) {
+  if (aircraft.requested.fix.length == 0) return;
+  var start = future_track.length - 1;
+  var x = km(future_track[start][0]) + prop.canvas.panX;
+  var y = -km(future_track[start][1]) + prop.canvas.panY;
+  cc.beginPath();
+  cc.moveTo(x, y);
+  cc.setLineDash([3,10]);
+  for(i=0; i<aircraft.requested.fix.length; i++) {
+    var fix = airport_get().getFix(aircraft.requested.fix[i]);
+    var fx = km(fix[0]) + prop.canvas.panX;
+    var fy = -km(fix[1]) + prop.canvas.panY;
+    cc.lineTo(fx, fy);
+  }
+  cc.stroke();
 }
 
 function canvas_draw_all_aircraft(cc) {
