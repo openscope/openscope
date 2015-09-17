@@ -1,3 +1,37 @@
+zlsa.atc.Options = Fiber.extend(function (base) {
+  return {
+    init: function () {
+      this._options = {};
+      this.addOption({
+        name: 'drawProjectedPaths',
+        defaultValue: 'selected',
+        description: 'Draw aircraft projected path',
+        type: 'select',
+        data: [['Always', 'always'],
+               ['Selected', 'selected'],
+               ['Never', 'never']]
+      });
+    },
+    addOption: function(data) {
+      this._options[data.name] = data;
+      if ('zlsa.atc.option.'+data.name in localStorage)
+        this[data.name] = localStorage['zlsa.atc.option.'+data.name];
+      else
+        this[data.name] = data.defaultValue;
+    },
+    getDescriptions: function() {
+      return this._options;
+    },
+    get: function(name) {
+      return this[name];
+    },
+    set: function(name, value) {
+      localStorage['zlsa.atc.option.'+name] = value;
+      this[name] = value;
+      return value;
+    },
+  };
+});
 
 function game_init_pre() {
   prop.game={};
@@ -45,6 +79,7 @@ function game_init_pre() {
     restrictions: 0
   };
 
+  prop.game.option = new zlsa.atc.Options();
 }
 
 function game_get_score() {

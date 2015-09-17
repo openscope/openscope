@@ -1,5 +1,3 @@
-var zlsa = {atc: {}};
-
 zlsa.atc.ArrivalFactory = function(airport, options) {
   if (options.type) {
     if (options.type == 'random')

@@ -393,7 +393,10 @@ function canvas_draw_aircraft(cc, aircraft) {
 
   // Aircraft
   // Draw the future path
-  if((aircraft.warning || match) && !aircraft.isTaxiing()) {
+  if ((prop.game.option.get('drawProjectedPaths') == 'always') ||
+      ((prop.game.option.get('drawProjectedPaths') == 'selected') &&
+       ((aircraft.warning || match) && !aircraft.isTaxiing())))
+  {
     canvas_draw_future_track(cc, aircraft);
   }
 
