@@ -236,6 +236,8 @@ var Aircraft=Fiber.extend(function() {
       this.html.remove();
     },
     matchCallsign: function(callsign) {
+      if( callsign === '*')
+        return true;
       callsign = callsign.toLowerCase();
       var this_callsign = this.getCallsign().toLowerCase();
       if(this_callsign.indexOf(callsign) == 0) return true;
