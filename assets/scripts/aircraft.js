@@ -569,7 +569,7 @@ var Aircraft=Fiber.extend(function() {
       this.requested.navmode = "hold";
 
       this.cancelFix();
-      if(this.mode == "landing")
+      if(this.requested.navmode == "rwy")
         this.cancelLanding();
 
       if(this.isTakeoff())
