@@ -88,6 +88,9 @@
       ["baw", 9],
       ["ups", 2]
     ],
+    "destinations": [
+      67, 170, 340
+    ],
     "frequency": [2.8, 3.2]
   },
   "arrivals": [
@@ -132,7 +135,7 @@
       "airlines":  [
         ["ual", 10],
         ["baw", 10],
-        ["cessna", 1]
+        ["fastga", 1]
       ],
       "frequency": [8, 10],
       "altitude":  [8000, 10000]

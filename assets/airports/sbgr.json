@@ -60,6 +60,9 @@
       ["fab", 1],
       ["aal", 4]
     ],
+    "destinations": [
+      45, 65, 115, 155, 315
+    ],
     "frequency": [1, 2]
   },
   "arrivals":[
@@ -78,9 +81,9 @@
     {
       "radial": 90,
       "heading": 270,
+      "speed": 120,
       "airlines": [
-        ["cessna", 2],
-        ["embraer", 2]
+        ["lightga", 1]
       ],
       "frequency": [5, 20],
       "altitude": [3000, 5000]
