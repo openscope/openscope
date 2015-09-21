@@ -1,0 +1,14 @@
+{
+  "name": "AeroMexico",
+  "icao": "AMX",
+  "callsign": {
+    "name": "AeroMexico",
+    "length": 3
+  },
+  "aircraft": [
+    ["B788", 7  ],
+    ["B762", 2  ],
+	["B763", 1  ],
+	["B772", 4  ]
+  ]
+}

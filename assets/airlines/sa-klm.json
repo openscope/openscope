@@ -1,0 +1,15 @@
+{
+  "name": "KLM",
+  "icao": "KLM",
+  "callsign": {
+    "name": "KLM",
+    "length": 3
+  },
+
+  "aircraft": [
+
+    ["B744", 25 ],
+	["B772", 15 ],
+	["B773", 10 ]
+  ]
+}

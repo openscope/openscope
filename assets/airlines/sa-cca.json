@@ -1,0 +1,18 @@
+{
+  "name": "Air China",
+  "icao": "CCA",
+  "callsign": {
+    "name": "Air China",
+    "length": 3
+  },
+
+  "aircraft": [
+
+    ["A332", 30 ],
+	["A333", 19 ],
+	["B744", 7  ],
+	["B748", 6  ],
+	["B772", 10 ],
+    ["B773", 20 ]
+  ]
+}

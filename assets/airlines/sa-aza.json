@@ -1,0 +1,14 @@
+{
+  "name": "Alitalia",
+  "icao": "AZA",
+  "callsign": {
+    "name": "Alitalia",
+    "length": 3
+  },
+
+  "aircraft": [
+
+    ["A332", 12 ],
+	["B77E", 10 ]
+  ]
+}

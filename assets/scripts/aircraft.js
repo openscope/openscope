@@ -1457,6 +1457,9 @@ function aircraft_init() {
   aircraft_load("a321");
   aircraft_load("a332");
   aircraft_load("a333");
+  
+  aircraft_load("a343");
+  aircraft_load("a346");
 
   aircraft_load("a388");
 
@@ -1468,7 +1471,9 @@ function aircraft_init() {
   aircraft_load("b739");
 
   aircraft_load("b744");
+  aircraft_load("b748");
 
+  
   aircraft_load("b752");
   aircraft_load("b753");
 

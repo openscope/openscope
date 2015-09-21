@@ -1,0 +1,16 @@
+{
+  "name": "LAN Airlines",
+  "icao": "LAN",
+  "callsign": {
+    "name": "LAN",
+    "length": 3
+  },
+
+  "aircraft": [
+
+    ["A320", 14 ],
+	["B762", 8 ],
+	["B763", 24 ],
+	["B788", 5 ]
+  ]
+}

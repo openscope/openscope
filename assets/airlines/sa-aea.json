@@ -1,0 +1,14 @@
+{
+  "name": "Air Europa",
+  "icao": "AEA",
+  "callsign": {
+    "name": "Europa",
+    "length": 3
+  },
+
+  "aircraft": [
+
+    ["A332", 12 ],
+	["A333", 2 ]
+  ]
+}

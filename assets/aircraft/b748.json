@@ -1,0 +1,26 @@
+{
+  "name": "Boeing 747-8i",
+  "icao": "B748",
+  "wake": "heavy",
+  "rate": {
+    "turn":       0.9,
+    "ascent":     1200,
+    "descent":    2000,
+    "accelerate": 6,
+    "decelerate": 3
+  },
+  "runway": {
+    "takeoff": 3.0,
+    "landing": 3.5
+  },
+  "speed":{
+    "min":     130,
+    "max":     250,
+    "landing": 145,
+    "cruise":  200
+  },
+  "capability": {
+    "ils": true,
+    "fix": true
+  }
+}
