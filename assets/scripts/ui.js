@@ -2,19 +2,29 @@
 function ui_init_pre() {
   prop.ui = {};
   prop.ui.scale_default = 8; // pixels per km
+  prop.ui.scale_max = 80; // max scale
+  prop.ui.scale_min = 1; // min scale
   prop.ui.scale         = prop.ui.scale_default;
 
   if('atc-scale' in localStorage) prop.ui.scale = localStorage['atc-scale'];
 }
 
 function ui_zoom_out() {
+  var lastpos = [round(pixels_to_km(prop.canvas.panX)), round(pixels_to_km(prop.canvas.panY))];
   prop.ui.scale *= 0.9;
+  if(prop.ui.scale < prop.ui.scale_min) prop.ui.scale = prop.ui.scale_min;
   ui_after_zoom();
+  prop.canvas.panX = round(km(lastpos[0]));
+  prop.canvas.panY = round(km(lastpos[1]));
 }
 
 function ui_zoom_in() {
+  var lastpos = [round(pixels_to_km(prop.canvas.panX)), round(pixels_to_km(prop.canvas.panY))];
   prop.ui.scale /= 0.9;
+  if(prop.ui.scale > prop.ui.scale_max) prop.ui.scale = prop.ui.scale_max;
   ui_after_zoom();
+  prop.canvas.panX = round(km(lastpos[0]));
+  prop.canvas.panY = round(km(lastpos[1]));
 }
 
 function ui_zoom_reset() {

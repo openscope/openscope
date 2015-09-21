@@ -177,6 +177,7 @@ function mod(a, b) {
 };
 
 function lpad(n, width) {
+  if (n.toString().length >= width) return n.toString();
   var x = "0000000000000" + n;
   return x.substr(x.length-width, width);
 }
@@ -315,4 +316,14 @@ function compass_direction(angle) {
   if(angle == 8) return "NW";
   angle = DIRECTIONS[round(angle)];
   return angle;
+}
+
+// Return a random number within the given interval
+// With one argument return a number between 0 and argument
+// With no arguments return a number between 0 and 1
+function random(low, high) {
+  if (low == high) return low;
+  if (low == null) return Math.random();
+  if (high == null) return Math.random() * low;
+  return (low + (Math.random() * (high - low)));
 }

@@ -1,0 +1,18 @@
+{
+  "name": "FastGA",
+  "icao": "N",
+  "callsign": {
+    "name": "November",
+    "length": 5,
+    "alpha": true
+  },
+  "aircraft": [
+    ["E50P", 1],
+    ["E55P", 1],
+    ["E545", 1],
+    ["E135", 1],
+    ["C510", 1],
+    ["C550", 2],
+    ["C750", 1]
+  ]
+}

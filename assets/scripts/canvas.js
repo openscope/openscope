@@ -26,6 +26,23 @@ function canvas_init() {
   canvas_add("compass");
 }
 
+function canvas_adjust_hidpi() {
+  dpr = window.devicePixelRatio || 1;
+  console.log("devicePixelRatio:"+dpr);
+  if(dpr > 1) {
+    hidefCanvas = $("#navaids-canvas").get(0);
+    w = $(hidefCanvas).width();
+    h = $(hidefCanvas).height();
+    $(hidefCanvas).attr('width', w * dpr);
+    $(hidefCanvas).attr('height', h * dpr);
+    $(hidefCanvas).css('width', w );
+    $(hidefCanvas).css('height', h );
+    ctx = hidefCanvas.getContext("2d");
+    ctx.scale(dpr, dpr);
+    prop.canvas.contexts["navaids"] = ctx;
+  }
+}
+
 function canvas_complete() {
   setTimeout(function() {
     prop.canvas.dirty = true;
@@ -45,6 +62,7 @@ function canvas_resize() {
     prop.canvas.contexts[i].canvas.width=prop.canvas.size.width;
   }
   prop.canvas.dirty = true;
+  canvas_adjust_hidpi();
 }
 
 function canvas_add(name) {
@@ -221,6 +239,7 @@ function canvas_draw_fixes(cc) {
   cc.fillStyle   = "rgba(255, 255, 255, 0.4)";
   cc.lineWidth   = 2;
   cc.lineJoin    = "round";
+  cc.font = "10px monoOne, monospace";
   var airport=airport_get();
   for(var i in airport.fixes) {
     cc.save();
@@ -230,45 +249,107 @@ function canvas_draw_fixes(cc) {
   }
 }
 
+function canvas_draw_separation_indicator(cc, aircraft) {
+  // Draw a trailing indicator 2.5 NM (4.6km) behind landing aircraft to help with traffic spacing
+  var rwy = airport_get().getRunway(aircraft.requested.runway);
+  var angle = rwy.getAngle(aircraft.requested.runway);
+  cc.strokeStyle = "rgba(224, 128, 128, 0.8)";
+  cc.lineWidth = 3;
+  cc.translate(km(aircraft.position[0]) + prop.canvas.panX, -km(aircraft.position[1]) + prop.canvas.panY);
+  cc.rotate(angle);
+  cc.beginPath();
+  cc.moveTo(-5, -km(4.6));
+  cc.lineTo(+5, -km(4.6));
+  cc.stroke();
+}
+
+function canvas_draw_aircraft_departure_window(cc, aircraft) {
+  cc.save();
+  cc.strokeStyle = "rgba(128, 255, 255, 0.9)";
+  cc.beginPath();
+  var angle = aircraft.destination - Math.PI/2;
+  cc.arc(prop.canvas.panX,
+         prop.canvas.panY,
+         km(airport_get().ctr_radius),
+         angle - 0.08726,
+         angle + 0.08726);
+  cc.stroke();
+  cc.restore();
+}
+
 function canvas_draw_aircraft(cc, aircraft) {
+  var almost_match = false;
+  var match        = false;
+
+  if ((prop.input.callsign.length > 1) &&
+      (aircraft.matchCallsign(prop.input.callsign.substr(0, prop.input.callsign.length - 1))))
+  {
+    almost_match = true;
+  }
+  if((prop.input.callsign.length > 0) &&
+     (aircraft.matchCallsign(prop.input.callsign)))
+  {
+    match = true;
+  }
+
+  if (match && (aircraft.destination != null)) {
+    canvas_draw_aircraft_departure_window(cc, aircraft);
+  }
 
   if(!aircraft.isVisible()) return;
 
   var size = 3;
-  var almost_match = false;
-  var match        = false;
 
   // Trailling
   var trailling_length = 12;
+  dpr = window.devicePixelRatio || 1;
+  if (dpr > 1) 
+    trailling_length *= round(dpr);
   cc.restore();
-  for (i = 0; i < aircraft.position_history.length; i++) {
-      cc.save();
-      cc.fillStyle = "rgba(255, 255, 255," + 1/((trailling_length)-i) + ")";
-      cc.translate(km(aircraft.position_history[i][0]) + prop.canvas.panX, -km(aircraft.position_history[i][1]) + prop.canvas.panY);
-      cc.beginPath();
-      cc.arc(0, 0, size/2.5, 0, Math.PI * 2);
-      cc.fill();
-      cc.restore();
+
+  cc.save();
+  if (!aircraft.inside_ctr)
+    cc.fillStyle   = "rgb(224, 224, 224)";
+  else
+    cc.fillStyle = "rgb(255, 255, 255)";
+
+  length = aircraft.position_history.length;
+  for (i = 0; i < length; i++) {
+    if (!aircraft.inside_ctr)
+      cc.globalAlpha = 0.3 / (length - i);
+    else
+      cc.globalAlpha = 1 / (length - i);
+    cc.fillRect(km(aircraft.position_history[i][0]) + prop.canvas.panX, -km(aircraft.position_history[i][1]) + prop.canvas.panY, 2, 2);
   }
+  cc.restore();
+
   cc.save();
   if(aircraft.position_history.length > trailling_length) aircraft.position_history = aircraft.position_history.slice(aircraft.position_history.length - trailling_length, aircraft.position_history.length);
 
+  if( aircraft.isPrecisionGuided() && aircraft.altitude > 1000) {
+    cc.save();
+    canvas_draw_separation_indicator(cc, aircraft);
+    cc.restore();
+  }
+
   // Aircraft
-  if(prop.input.callsign.length > 1 && aircraft.matchCallsign(prop.input.callsign.substr(0, prop.input.callsign.length - 1)))
-    almost_match = true;
-  if(prop.input.callsign.length > 0 && aircraft.matchCallsign(prop.input.callsign))
-    match = true;
+  // Draw the future path
+  if((aircraft.warning || match) && !aircraft.isTaxiing()) {
+    canvas_draw_future_track(cc, aircraft);
+  }
 
-  cc.fillStyle   = "rgba(224, 224, 224, 1.0)";
-  if(almost_match)
+  if (!aircraft.inside_ctr)
+    cc.fillStyle   = "rgba(224, 224, 224, 0.3)";
+  else if (almost_match)
     cc.fillStyle = "rgba(224, 210, 180, 1.0)";
-  if(match)
+  else if (match)
     cc.fillStyle = "rgba(255, 255, 255, 1.0)";
-
-  if(aircraft.warning)
+  else if (aircraft.warning)
     cc.fillStyle = "rgba(224, 128, 128, 1.0)";
-  if(aircraft.hit)
+  else if (aircraft.hit)
     cc.fillStyle = "rgba(255, 64, 64, 1.0)";
+  else
+    cc.fillStyle   = "rgba(224, 224, 224, 1.0)";
 
   cc.strokeStyle = cc.fillStyle;
 
@@ -276,7 +357,10 @@ function canvas_draw_aircraft(cc, aircraft) {
 
     cc.save();
 
-    cc.fillStyle = "rgba(255, 255, 255, 1.0)";
+    if (!aircraft.inside_ctr)
+      cc.fillStyle = "rgba(255, 255, 255, 0.3)";
+    else
+      cc.fillStyle = "rgba(255, 255, 255, 1.0)";
 
     var t = crange(0, distance2d(
       [clamp(-w, km(aircraft.position[0]), w), clamp(-h, -km(aircraft.position[1]), h)],
@@ -292,9 +376,8 @@ function canvas_draw_aircraft(cc, aircraft) {
     cc.fill();
 
     cc.restore();
-
   }
-
+  
   cc.translate(km(aircraft.position[0]) + prop.canvas.panX, -km(aircraft.position[1]) + prop.canvas.panY);
 
   if(!aircraft.hit) {
@@ -326,15 +409,89 @@ function canvas_draw_aircraft(cc, aircraft) {
   cc.fill();
 }
 
+// Run physics updates into the future, draw future track
+function canvas_draw_future_track(cc, aircraft) {
+  var twin = $.extend(true, {}, aircraft);
+  twin.projected = true;
+  save_delta = prop.game.delta;
+  prop.game.delta = 5;
+  future_track = [];
+  for(i = 0; i < 60; i++) {
+    twin.update();
+    ils_locked = twin.requested.runway && twin.category == "arrival" && twin.mode == "landing";
+    future_track.push([twin.position[0], twin.position[1], ils_locked]);
+    if( ils_locked && twin.altitude < 500)
+      break;
+  }
+  prop.game.delta = save_delta;
+  cc.save();
+
+  if(aircraft.category == "departure") {
+    cc.strokeStyle = "rgba(128, 255, 255, 0.6)";
+  } else {
+    cc.strokeStyle = "rgba(224, 128, 128, 0.6)";
+    lockedStroke   = "rgba(224, 128, 128, 1.0)";
+  }
+  cc.globalCompositeOperation = "screen";
+  
+  cc.lineWidth = 2;
+  cc.beginPath();
+  was_locked = false;
+  length = future_track.length;
+  for (i = 0; i < length; i++) {
+      ils_locked = future_track[i][2];
+      x = km(future_track[i][0]) + prop.canvas.panX ;
+      y = -km(future_track[i][1]) + prop.canvas.panY;
+      if(ils_locked && !was_locked) {
+        cc.lineTo(x, y);
+        cc.stroke(); // end the current path, start a new path with lockedStroke
+        cc.strokeStyle = lockedStroke;
+        cc.lineWidth = 3;
+        cc.beginPath();
+        cc.moveTo(x, y);
+        was_locked = true;
+        continue;
+      }
+      if( i==0 )
+        cc.moveTo(x, y);
+      else 
+        cc.lineTo(x, y);
+  }
+  cc.stroke();
+  canvas_draw_future_track_fixes(cc, twin, future_track);
+  cc.restore();
+}
+
+// Draw dashed line from last coordinate of future track through
+// any later requested fixes.
+function canvas_draw_future_track_fixes( cc, aircraft, future_track) {
+  if (aircraft.requested.fix.length == 0) return;
+  var start = future_track.length - 1;
+  var x = km(future_track[start][0]) + prop.canvas.panX;
+  var y = -km(future_track[start][1]) + prop.canvas.panY;
+  cc.beginPath();
+  cc.moveTo(x, y);
+  cc.setLineDash([3,10]);
+  for(i=0; i<aircraft.requested.fix.length; i++) {
+    var fix = airport_get().getFix(aircraft.requested.fix[i]);
+    var fx = km(fix[0]) + prop.canvas.panX;
+    var fy = -km(fix[1]) + prop.canvas.panY;
+    cc.lineTo(fx, fy);
+  }
+  cc.stroke();
+}
+
 function canvas_draw_all_aircraft(cc) {
   cc.fillStyle   = "rgba(224, 224, 224, 1.0)";
   cc.strokeStyle = "rgba(224, 224, 224, 1.0)";
   cc.lineWidth   = 2;
+  // console.time('canvas_draw_all_aircraft')
   for(var i=0;i<prop.aircraft.list.length;i++) {
     cc.save();
     canvas_draw_aircraft(cc, prop.aircraft.list[i]);
     cc.restore();
   }
+  // console.timeEnd('canvas_draw_all_aircraft')
 }
 
 function canvas_draw_info(cc, aircraft) {
@@ -352,7 +509,20 @@ function canvas_draw_info(cc, aircraft) {
     var height  = 35;
     var height2 = height / 2;
 
-    var bar_width = 4;
+    var bar_width = width / 15;
+    var bar_width2 = bar_width / 2;
+    
+    var ILS_enabled = aircraft.requested.runway && aircraft.category == "arrival";
+    var lock_size = height / 3;
+    var lock_offset = lock_size / 8;
+    var pi = Math.PI;
+    var point1 = lock_size - bar_width2;
+
+  	//angle for the clipping mask
+    var a = point1 - lock_offset;
+    var b = bar_width2;
+  	//var c = Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2));  
+    var clipping_mask_angle = Math.atan(b / a);
 
     var match        = false;
     var almost_match = false;
@@ -393,28 +563,100 @@ function canvas_draw_info(cc, aircraft) {
 
     cc.translate(bar_width / 2, 0);
 
-    cc.fillStyle = "rgba(71, 105, 88, 0.9)";
-    if(almost_match)
-      cc.fillStyle = "rgba(95, 95, 88, 0.9)";
-    if(match) {
+    if (!aircraft.inside_ctr)
+      cc.fillStyle = "rgba(71, 105, 88, 0.3)";
+    else if (match)
       cc.fillStyle = "rgba(120, 150, 140, 0.9)";
-    }
+    else if(almost_match)
+      cc.fillStyle = "rgba(95, 95, 88, 0.9)";
+    else
+      cc.fillStyle = "rgba(71, 105, 88, 0.9)";
 
-    cc.fillRect(-width2, -height2, width, height);
+    //Background fill and clip for ILS Lock Indicator
+    if (ILS_enabled)
+    {
+      cc.save();
+      cc.beginPath();
+
+      cc.moveTo(-width2, height2);
+      cc.lineTo(width2, height2);
+      cc.lineTo(width2, -height2);
+      cc.lineTo(-width2, -height2);
+
+      //side cutout
+      cc.lineTo(-width2, -point1);
+      cc.arc(-width2 - bar_width2, -lock_offset, lock_size / 2 + bar_width2, clipping_mask_angle - pi / 2, 0);
+      cc.lineTo(-width2 + lock_size / 2, lock_offset);
+      cc.arc(-width2 - bar_width2, lock_offset, lock_size / 2 + bar_width2, 0, pi / 2 - clipping_mask_angle);
+      cc.closePath();
+
+      cc.strokeStyle = cc.fillStyle;
+      cc.stroke();
+      cc.clip();
+      cc.fillRect(-width2, -height2, width, height);
+
+      cc.restore();
+    }
+    else
+      cc.fillRect(-width2, -height2, width, height);
 
     var alpha = 0.6;
-    if(match) alpha = 0.9;
+    if (!aircraft.inside_ctr) alpha = 0.3;
+    else if (match) alpha = 0.9;
 
     if(aircraft.category == "departure")
       cc.fillStyle = "rgba(128, 255, 255, " + alpha + ")";
     else
       cc.fillStyle = "rgba(224, 128, 128, " + alpha + ")";
 
-    cc.fillRect(-width2-bar_width, -height2, bar_width, height);
+  	//sideBar ILS Lock Indicator
+    if (ILS_enabled)
+    {
+      var pi_slice = pi / 24;
 
-    cc.fillStyle   = "rgba(255, 255, 255, 0.8)";
-    if(match)
+      cc.translate(-width2 - bar_width2, 0);
+
+      cc.lineWidth = bar_width;
+      cc.strokeStyle = cc.fillStyle;
+
+      //top arc
+      cc.beginPath();
+      cc.arc(0, -lock_offset, lock_size / 2, -pi_slice, pi + pi_slice, true);
+      cc.moveTo(0, -lock_size / 2);
+      cc.lineTo(0, -height2);
+      cc.stroke();
+
+      //bottom arc
+      cc.beginPath();
+      cc.arc(0, lock_offset, lock_size / 2, pi_slice, pi - pi_slice);
+      cc.moveTo(0, lock_size - bar_width);
+      cc.lineTo(0, height2);
+      cc.stroke();
+
+      cc.translate(width2 + bar_width2, 0);
+
+      //ILS locked
+      if (aircraft.mode == "landing")
+      {
+        cc.fillStyle = "white";
+        cc.translate(-width2 - bar_width2, 0);
+
+        cc.beginPath();
+        // arc(x,y,radius,startAngle,endAngle, clockwise);
+        cc.arc(0, 0, lock_size / 5, 0, pi * 2);
+        cc.fill();
+        cc.translate(width2 + bar_width2, 0);
+      }
+    }
+    else
+      cc.fillRect(-width2 - bar_width, -height2, bar_width, height);
+
+    if (!aircraft.inside_ctr)
+      cc.fillStyle   = "rgba(255, 255, 255, 0.6)";
+    else if(match)
       cc.fillStyle   = "rgba(255, 255, 255, 0.9)";
+    else
+      cc.fillStyle   = "rgba(255, 255, 255, 0.8)";
 
     cc.strokeStyle = cc.fillStyle;
 
@@ -611,13 +853,6 @@ function canvas_update_post() {
     }
 
     cc.font = "10px monoOne, monospace";
-    cc.save();
-    cc.globalAlpha = alpha;
-    cc.translate(round(prop.canvas.size.width/2), round(prop.canvas.size.height/2));
-    canvas_draw_all_info(cc);
-
-    cc.restore();
-
 
     if(prop.canvas.dirty || canvas_should_draw() || true) {
       cc.save();
@@ -626,6 +861,12 @@ function canvas_update_post() {
       canvas_draw_all_aircraft(cc);
       cc.restore();
     }
+
+    cc.save();
+    cc.globalAlpha = alpha;
+    cc.translate(round(prop.canvas.size.width/2), round(prop.canvas.size.height/2));
+    canvas_draw_all_info(cc);
+    cc.restore();
 
     cc.save();
     cc.globalAlpha = alpha;

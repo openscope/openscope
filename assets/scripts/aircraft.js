@@ -81,6 +81,10 @@ var Aircraft=Fiber.extend(function() {
       this.altitude    = 0;
       this.speed       = 0;
 
+      this.radial      = 0;
+      this.distance    = 0;
+      this.destination = null;
+
       this.trend       = 0;
 
       this.history     = [];
@@ -96,6 +100,11 @@ var Aircraft=Fiber.extend(function() {
       this.rules       = "ifr";
 
       this.inside_ctr = false;
+
+      // Set to true when simulating future movements of the aircraft
+      // Should be checked before updating global state such as score
+      // or HTML.
+      this.projected = false;
 
       this.position_history = [];
 
@@ -188,6 +197,10 @@ var Aircraft=Fiber.extend(function() {
       this.html.append("<span class='heading'>" + round(this.heading) + "</span>");
       this.html.append("<span class='altitude'>-</span>");
       this.html.append("<span class='aircraft'>" + this.model.icao + "</span>");
+      if (this.destination)
+        this.html.append("<span class='destination'>" +
+                         heading_to_string(this.destination) +
+                         "</span>");
       this.html.append("<span class='speed'>-</span>");
 
       this.html.find(".aircraft").prop("title", this.model.name);
@@ -219,12 +232,75 @@ var Aircraft=Fiber.extend(function() {
       this.html.click(this, function(e) {
         input_select(e.data.getCallsign());
       });
-
+      
+      this.html.dblclick(this, function (e) {
+        prop.canvas.panX = 0 - round(km(e.data.position[0]));
+        prop.canvas.panY = round(km(e.data.position[1]));
+        prop.canvas.dirty = true;
+      });
+      if (this.category == "arrival")
+        this.html.hide(0);
+      if (this.category == "departure")
+        this.inside_ctr = true;
     },
     cleanup: function() {
       this.html.remove();
     },
+    // Called when the aircraft crosses the center boundary
+    crossBoundary: function(inbound) {
+      this.inside_ctr = inbound;
+      if (this.projected)
+        return;
+      // Crossing into the center
+      if (inbound) {
+        this.showStrip();
+        if (this.category == "arrival") {
+          var position = "";
+          var distance = round(this.distance * 0.62);
+          position += distance + " mile" + s(distance);
+          position += " " + radio_compass(compass_direction(this.radial));
+          var altitude = " ";
+          if (abs(this.altitude - this.requested.altitude) > 100) {
+            altitude += "leaving " + (Math.floor(this.altitude / 100) * 100) +
+              " for " + (Math.floor(this.requested.altitude / 100) * 100);
+          } else {
+            altitude += "at " + (Math.floor(this.altitude / 100) * 100);
+          }
+          this.radioCall(position + altitude);
+        }
+      }
+      // Leaving the center
+      else {
+        this.hideStrip();
+
+        // Fly away!
+        this.requested.navmode = "heading";
+        this.requested.heading = this.radial;
+        this.requested.turn    = null;
+        this.requested.hold    = false;
+        this.requested.altitude = 20000;
+        this.requested.speed = 480;
+
+        if (this.category == "departure") {
+          // Within 5 degrees of destination heading
+          if (abs(this.radial - this.destination) < 0.08726) {
+            this.radioCall("leaving radar coverage");
+            prop.game.score.departure += 1;
+          }
+          else {
+            this.radioCall("leaving radar coverage outside departure window", true);
+            prop.game.score.departure -= 1;
+          }
+        }
+        if (this.category == "arrival") {
+          this.radioCall("leaving radar coverage as arrival", true);
+          prop.game.score.failed_arrival += 1;
+        }
+      }
+    },
     matchCallsign: function(callsign) {
+      if( callsign === '*')
+        return true;
       callsign = callsign.toLowerCase();
       var this_callsign = this.getCallsign().toLowerCase();
       if(this_callsign.indexOf(callsign) == 0) return true;
@@ -248,6 +324,9 @@ var Aircraft=Fiber.extend(function() {
         callsign = callsign.substr(callsign.length - length);
       }
       return airline_get(this.airline).callsign.name + " " + radio(callsign.toUpperCase()) + heavy;
+    },
+    hideStrip: function() {
+      this.html.hide(600);
     },
     COMMANDS: [
       "turn",
@@ -281,6 +360,8 @@ var Aircraft=Fiber.extend(function() {
       "debug"
     ],
     runCommand: function(command) {
+      if (!this.inside_ctr)
+        return true;
       var s        = command.toLowerCase().split(" ")
 
       var strings  = [];
@@ -524,7 +605,8 @@ var Aircraft=Fiber.extend(function() {
       var factor = 1;
       if(data.length <= 2) factor = 1000;
 
-      this.requested.altitude = clamp(1000, altitude * factor, 10000);
+      this.requested.altitude = clamp(1000, altitude * factor,
+                                      airport_get().ctr_ceiling + 1000);
       this.requested.expedite = expedite;
 
       if(expedite) expedite = " expedite";
@@ -569,29 +651,25 @@ var Aircraft=Fiber.extend(function() {
         return ["fail", "fix name not understood", "say again"];
       }
 
+      data = data.split(/\s+/);
+      var fixes = [];
+      for(var i=0;i<data.length;i++) {
+        var fix = airport_get().getFix(data[i]);
+
+        if(!fix) {
+          return ["fail", "no fix found with name of " + data[i].toUpperCase(), "say again"];
+        }
+        fixes.push(data[i].toUpperCase());
+      }
+
       this.cancelFix();
       if(this.mode != "waiting" && this.mode != "takeoff" && this.mode != "apron" && this.mode != "taxi"){
         this.cancelLanding();
       }
 
-      data = data.split(/\s+/);
-
-      for(var i=0;i<data.length;i++) {
-        var fix = airport_get().getFix(data[i]);
-
-        if(!fix) {
-          this.requested.fix = [];
-          return ["fail", "no fix found with name of " + data[i].toUpperCase(), "say again"];
-        }
-
-        if(i == 0) {
-          this.requested.fix = [];
-          this.requested.navmode = "fix";
-        }
-
-        this.requested.fix.push(data[i].toUpperCase());
-
-      }
+      this.requested.fix = fixes;
+      this.requested.navmode = "fix";
+      this.requested.turn = null;
 
       return ["ok", "navigate to " + this.requested.fix.join(', ')];
     },
@@ -631,16 +709,14 @@ var Aircraft=Fiber.extend(function() {
 
       if(runway.removeQueue(this, this.requested.runway)) {
         this.mode = "takeoff";
-        var wind_score = -Math.min(this.getWind(), 0)
-        prop.game.score.windy_takeoff += wind_score;
-        if(wind_score)
-          ui_log(true, this.getCallsign() + ' taking off with a tailwind');
+        prop.game.score.windy_takeoff += this.scoreWind('taking off');
+
         if(this.requested.heading == null)
           this.requested.heading = runway.getAngle(this.requested.runway) + Math.PI;
         return ["ok", "cleared for takeoff", ""];
       } else {
         var waiting = runway.isWaiting(this, this.requested.runway);
-        return ["fail", "number "+waiting+" behind "+runway.waiting[runway.getEnd(this.requested.runway)][waiting+1].getRadioCallsign(), ""];
+        return ["fail", "number "+waiting+" behind "+runway.waiting[runway.getEnd(this.requested.runway)][waiting-1].getRadioCallsign(), ""];
       }
 
     },
@@ -655,15 +731,12 @@ var Aircraft=Fiber.extend(function() {
       if(this.requested.runway == data.toUpperCase()) {
         return ["fail", "already landing on runway " + radio_runway(data), "over"];
       }
-
+      this.cancelFix();
       this.requested.navmode = "rwy";
       this.requested.runway = data.toUpperCase();
       this.requested.turn   = null;
       //this.requested.speed  = null;
-
       this.requested.start_speed = this.speed;
-
-      this.cancelFix();
 
       return ["ok", "land runway " + radio_runway(data) + " at " + airport_get().radio];
 
@@ -704,7 +777,7 @@ var Aircraft=Fiber.extend(function() {
     cancelFix: function() {
       if(this.requested.navmode == "fix") {
         this.requested.fix = []
-        this.requested.heading = round(this.heading);
+        this.requested.heading = this.heading;
         this.updateStrip();
         this.requested.navmode = "heading";
         return true;
@@ -719,16 +792,10 @@ var Aircraft=Fiber.extend(function() {
           this.requested.heading = runway.getAngle(this.requested.runway) + Math.PI;
         }
 
-        if(distance2d(runway.position, this.position) < 10) {
-          console.log("aborted landing");
-          ui_log(true, this.getCallsign() + " aborted landing");
-          prop.game.score.abort.landing += 1;
-        }
-
-        this.requested.navmode = null;
+        this.requested.navmode = "heading";
         this.mode = "cruise";
-        this.updateStrip();
         this.requested.runway = null;
+        this.updateStrip();
         return true;
       } else {
         this.requested.runway = null;
@@ -755,6 +822,8 @@ var Aircraft=Fiber.extend(function() {
       if(data.altitude) this.requested.altitude = data.altitude;
       if(data.speed)    this.requested.speed = data.speed;
       else              this.requested.speed = this.model.speed.cruise;
+
+      if(data.destination) this.destination = data.destination;
 
       if(this.category == "departure" && this.isLanded()) {
         this.speed = 0;
@@ -793,6 +862,15 @@ var Aircraft=Fiber.extend(function() {
     isLanded: function() {
       if(this.altitude < 5) return true;
     },
+    isPrecisionGuided: function() {
+      // Whether this aircraft is elegible for reduced separation
+      //
+      // If the game ever distinguishes between ILS/MLS/LAAS
+      // approaches and visual/localizer/VOR/etc. this should
+      // distinguish between them.  Until then, presume landing is via
+      // ILS with appropriate procedures in place.
+      return (this.mode == "landing");
+    },
     isStopped: function() {
       if(this.isLanded() && this.speed < 5) return true;
     },
@@ -824,17 +902,53 @@ var Aircraft=Fiber.extend(function() {
       return true;
     },
     getWind: function() {
-      if(!this.requested.runway) return 0;
+      if (!this.requested.runway) return {cross: 0, head: 0};
       var airport = airport_get();
       var wind    = airport.wind;
       var runway  = airport.getRunway(this.requested.runway);
 
-      var angle   =  abs(angle_offset(runway.getAngle(this.requested.runway), wind.angle));
-      var head    =  crange(0, angle, Math.PI, -1, 1);
+      var angle   =  abs(angle_offset(runway.getAngle(this.requested.runway), wind.angle + Math.PI));
 
-      angle       =  abs(angle_offset(runway.getAngle(this.requested.runway) - Math.PI/2, wind.angle));
-      var cross   = -abs(crange(0, angle, Math.PI, 1, -1)) * 1.5;
-      return (cross + head) * wind.speed;
+      return {
+        cross: Math.sin(angle) * wind.speed,
+        head: Math.cos(angle) * wind.speed
+      };
+    },
+    radioCall: function(msg, alert) {
+      if (this.projected) return;
+      var call = airport_get().radio + " tower, " +
+        this.getRadioCallsign() + " " +msg;
+      if (alert)
+        ui_log(true, call);
+      else
+        ui_log(call);
+    },
+    scoreWind: function(action) {
+      var score = 0;
+      var components = this.getWind();
+      if (components.cross >= 20) {
+        score += 2;
+        ui_log(true, this.getCallsign()+' '+action+' with major crosswind');
+      }
+      else if (components.cross >= 10) {
+        score += 1;
+        ui_log(true, this.getCallsign()+' '+action+' with crosswind');
+      }
+
+      if (components.head <= -10) {
+        score += 2;
+        ui_log(true, this.getCallsign()+' '+action+' with major tailwind');
+      }
+      else if (components.head <= -1) {
+        score += 1;
+        ui_log(true, this.getCallsign()+' '+action+' with tailwind');
+      }
+      return score;
+    },
+    showStrip: function() {
+      this.html.detach();
+      $("#strips").append(this.html);
+      this.html.show(600);
     },
     updateTarget: function() {
       var airport = airport_get();
@@ -862,6 +976,7 @@ var Aircraft=Fiber.extend(function() {
         this.offset_angle = offset_angle;
 
         angle = runway.getAngle(this.requested.runway) + Math.PI;
+        if (angle > (2*Math.PI)) angle -= 2*Math.PI;
 
         var landing_zone_offset = crange(1, runway.length, 5, 0.1, 0.5);
 
@@ -875,20 +990,31 @@ var Aircraft=Fiber.extend(function() {
         if(!runway.getILS(this.requested.runway) || !ils) ils = 40;
 
         // lock  ILS if at the right angle and altitude
-        if(abs(this.altitude - glideslope_altitude) < glideslope_window && abs(offset_angle) < radians(30) && offset[1] < ils) {
+        if ((abs(this.altitude - glideslope_altitude) < glideslope_window)
+            && (abs(offset_angle) < radians(10))
+            && (offset[1] < ils)) {
           //plane is on the glide slope
-          var m = false;
-          if(this.mode != "landing") m=true;
-          this.mode = "landing";
-          if(m) {
+          if(this.mode != "landing") {
+            this.mode = "landing";
+            if (!this.projected &&
+                (abs(angle_offset(this.requested.heading, angle)) > radians(30)))
+            {
+              ui_log(true,
+                     this.getRadioCallsign() +
+                       " landing intercept vector was greater than 30 degrees");
+              prop.game.score.violation += 1;
+            }
             this.updateStrip();
             this.requested.turn = null;
+            this.requested.heading = angle;
+            this.target.turn = null;
           }
 
-          if(offset[1] > 0.01) {
-            var xoffset = crange(0.7, this.model.rate.turn, 5, 7, 1);
-            xoffset    *= crange(this.model.speed.landing, this.speed, this.model.speed.cruise, 0.7, 1);
-            this.target.heading = crange(-xoffset, offset[0], xoffset, radians(45), -radians(45)) + angle;
+          // Steer to within 3m of the centerline while at least 200m out
+          if(offset[1] > 0.2 && abs(offset[1]) > 0.003) {
+            this.target.heading = clamp(radians(-30),
+                                        -12 * offset_angle,
+                                        radians(30)) + angle;
           } else {
             this.target.heading = angle;
           }
@@ -901,20 +1027,21 @@ var Aircraft=Fiber.extend(function() {
         } else if(this.altitude >= 300 && this.mode == "landing") {
           this.updateStrip();
           this.cancelLanding();
-          ui_log(this.getRadioCallsign() + " aborting landing, lost ILS");
-          if(distance2d(runway.position, this.position) < 10) {
-            console.log("aborted landing after ILS lost");
+          if (!this.projected)
+          {
+            ui_log(true,
+                   this.getRadioCallsign() + " aborting landing, lost ILS");
             prop.game.score.abort.landing += 1;
           }
+        } else {
+          this.target.heading = this.requested.heading;
+          this.target.turn = this.requested.turn;
         }
 
         //this has to be outside of the glide slope if, as the plane is no
         //longer on the glide slope once it is on the runway (as the runway is
         //behind the ILS marker)
         if(this.altitude < 10) {
-          if(s > 10) {
-            prop.game.score.windy_landing += -Math.min(this.getWind(), 0);
-          }
           this.target.speed = 0;
         }
       } else if(this.requested.navmode == "fix") {
@@ -930,6 +1057,7 @@ var Aircraft=Fiber.extend(function() {
           this.updateStrip();
         } else {
           this.target.heading = Math.atan2(a, b) - Math.PI;
+          this.target.turn = null;
         }
       } else if(this.requested.navmode == "hold") {
         if(this.requested.turn == "right") {
@@ -975,7 +1103,10 @@ var Aircraft=Fiber.extend(function() {
         this.heading     = runway.angle;
         if(runway.getEnd(this.requested.runway) == 1) this.heading += Math.PI;
 
-        if(runway.isWaiting(this, this.requested.runway) == 0 && was_taxi == true) {
+        if (!this.projected &&
+            (runway.isWaiting(this, this.requested.runway) == 0) &&
+            (was_taxi == true))
+        {
           ui_log(this.getRadioCallsign(), "ready for takeoff runway "+radio_runway(this.requested.runway));
           this.updateStrip();
         }
@@ -1013,7 +1144,11 @@ var Aircraft=Fiber.extend(function() {
         // TURNING
 
         if(this.altitude > 10) {
-          var turn_amount = this.model.rate.turn * game_delta();
+          // Perform standard turns 3 deg/s or 25 deg bank, whichever
+          // requires less bank angle.
+          // Formula based on http://aviation.stackexchange.com/a/8013
+          var turn_rate = clamp(0, 1 / (this.speed / 8.883031), 0.0523598776);
+          var turn_amount = turn_rate * game_delta();
           var offset = angle_offset(this.target.heading, this.heading);
           if(abs(offset) < turn_amount) {
             this.heading = this.target.heading;
@@ -1078,48 +1213,98 @@ var Aircraft=Fiber.extend(function() {
       this.position[0] += (sin(angle) * (this.speed * 0.000514)) * game_delta();
       this.position[1] += (cos(angle) * (this.speed * 0.000514)) * game_delta();
 
-      var wind_drift = [0, 0];
+      this.distance = Math.sqrt(this.position[0]*this.position[0] +
+                                this.position[1]*this.position[1]);
+      this.radial = Math.atan2(this.position[0], this.position[1]);
+      if (this.radial < 0) this.radial += Math.PI*2;
 
-      this.position[0] += (sin(angle) * (this.speed * 0.000514)) * game_delta();
-      this.position[1] += (cos(angle) * (this.speed * 0.000514)) * game_delta();
+      var inside = (this.distance <= airport_get().ctr_radius &&
+                    this.altitude <= airport_get().ctr_ceiling);
+      if (inside != this.inside_ctr)
+        this.crossBoundary(inside);
     },
     updateWarning: function() {
-      if(this.isTaxiing()) return;
+      // Check this aircraft for violation of separation minima against all
+      // other aircraft.
+
+      // Ignore other aircraft while taxiing
+      if (this.isTaxiing()) return;
+
       var notice  = false;
       var warning = false;
       var hit     = false;
+
       for(var i=0;i<prop.aircraft.list.length;i++) {
         var other = prop.aircraft.list[i];
         if(this == other) continue;
+        
+        // Fast 2D bounding box check to see if distance must be > 10; no violation can occur in this case.
+        // Variation of:
+        // http://gamedev.stackexchange.com/questions/586/what-is-the-fastest-way-to-work-out-2d-bounding-box-intersection
+        dx = Math.abs(this.position[0] - other.position[0]);
+        dy = Math.abs(this.position[1] - other.position[1]);
+        if((dx > 10) || (dy > 10)) continue; 
+        // Calculate the real distance for subsequent checks; reuse dx and dy
+        var distance = Math.sqrt((dx*dx) + (dy*dy));
 
-        var other_land = other.isLanded()  || other.altitude < 990;
-        var this_land  = this.isLanded()   || this.altitude < 990;
-
-        if((!other_land && !this_land)) {
-          if((distance2d(this.position, other.position) < 5.5) &&     // closer than ~4 miles
-             (abs(this.altitude - other.altitude) < 1500)) {          // less than 1.5k feet
-            notice = true;
-          }
-          if((distance2d(this.position, other.position) < 4.8) &&     // closer than 3 miles
-             (abs(this.altitude - other.altitude) < 990)) {           // less than 1k feet
-            warning = true;
-          }
-        } else {
+        // Check if the aircraft are on a potential collision course
+        // on the runway
+        if ((this.isLanded() || this.altitude < 990) &&
+            !other.isTaxiing() &&
+            (other.isLanded() || (other.altitude < 990)))
+        {
           var airport = airport_get();
-          if((airport.getRunway(other.requested.runway) === airport.getRunway(this.requested.runway)) &&     // on the same runway
-             (distance2d(this.position, other.position) < 10) &&      // closer than 10km
-             (abs(angle_offset(this.heading, other.heading)) > 10)) { // different directions
-            if(!this.warning) {
-              console.log("too close to another aircraft");
-              ui_log(true, this.getCallsign() + " is too close to " + other.getCallsign());
+
+          // Check for the same runway, headings differing by more
+          // than 30 degrees and under about 6 miles
+          if ((this.requested.runway != null) &&
+              (airport.getRunway(other.requested.runway) ===
+               airport.getRunway(this.requested.runway)) &&
+              (abs(angle_offset(this.heading, other.heading)) > 0.5236) &&
+              (distance < 10))
+          {
+            if (!this.warning) {
+              ui_log(true, this.getCallsign()
+                     + " appears on a collision course with " + other.getCallsign()
+                     + " on the same runway");
               prop.game.score.warning += 1;
             }
             warning = true;
           }
         }
-        if((distance2d(this.position, other.position) < 0.05) &&      // closer than 50 meters
-           (abs(this.altitude - other.altitude) < 50) &&
-           (other.isVisible() && this.isVisible())) {
+
+        // Ignore aircraft below about 1000 feet
+        // Allows realistic departure separation via heading
+        if (other.altitude < 990) continue;
+
+        var altitude = abs(this.altitude - other.altitude);
+
+        // Reduced separation horizontal minima during precision
+        // guided approaches
+        if (this.isPrecisionGuided() && other.isPrecisionGuided()) {
+          if(this.requested.runway != other.requested.runway) {
+            // Notice at 3500 feet horizontal and 1500 feet vertical
+            if ((distance < 1.067) && (altitude < 1500)) notice = true;
+            // Warning at 3000 feet and 1000 feet vertical
+            if ((distance < 0.914) && (altitude < 1000)) warning = true;
+          } else  { 
+            // Notice at 2.8nm horizontal and 1500 feet vertical 
+            if ((distance < 5.2) && (altitude < 1500)) notice = true;
+            // Warning within 2.5nm horizontal and 1000 feet vertical
+            if ((distance < 4.6) && (altitude < 1000)) warning = true;
+          }
+        }
+        // Standard separation
+        else {
+          // Notice at 4nm horizontal and 1500 feet vertical
+          if ((distance < 7.4) && (altitude < 1500)) notice = true;
+          // Warning within 3nm horizontal and 1000 feet vertical
+          if ((distance < 5.6) && (altitude < 1000)) warning = true;
+        }
+
+        // Collide within 160 feet
+        if (((distance < 0.05) && (altitude < 160)) &&
+            other.isVisible() && this.isVisible()) {
           if(!this.hit) {
             console.log("hit another aircraft");
             ui_log(true, this.getCallsign() + " hit " + other.getCallsign());
@@ -1134,6 +1319,7 @@ var Aircraft=Fiber.extend(function() {
       this.hit     = hit;
     },
     updateStrip: function() {
+      if (this.projected) return;
       var heading  = this.html.find(".heading");
       var altitude = this.html.find(".altitude");
       var speed    = this.html.find(".speed");
@@ -1216,7 +1402,7 @@ var Aircraft=Fiber.extend(function() {
 
     },
 
-    update: function(p) {
+    update: function() {
       if(prop.aircraft.auto.enabled) {
         this.updateAuto();
       }
@@ -1249,6 +1435,8 @@ function aircraft_init() {
   aircraft_load("at72");
 
   // CESSNA
+  aircraft_load("c172");
+  aircraft_load("c182");
   aircraft_load("c208");
   aircraft_load("c337");
   aircraft_load("c510");
@@ -1308,19 +1496,21 @@ function aircraft_init() {
   aircraft_load("conc");
   
   // DOUGLAS
-    aircraft_load("md11");
+  aircraft_load("md11");
 	aircraft_load("dc10");
 	
  // FOKKER
 	aircraft_load("f100");
 	
 	
- // MISC
+  // MISC
+  aircraft_load("be36");
   aircraft_load("l410");
   aircraft_load("il76");
+  aircraft_load("p28a");
   aircraft_load("t154");
   aircraft_load("c130");
-  aircraft_load("g5");
+  aircraft_load("c5");
   
 }
 
@@ -1427,27 +1617,9 @@ function aircraft_update() {
   for(var i=prop.aircraft.list.length-1;i>=0;i--) {
     var remove = false;
     var aircraft = prop.aircraft.list[i];
-    if(!aircraft_visible(aircraft) && aircraft.category == "departure" && aircraft.inside_ctr) {
-      ui_log(aircraft.getRadioCallsign() + " leaving radar coverage");
-      prop.game.score.departure += 1;
-      console.log("departing aircraft no longer visible");
-      aircraft.inside_ctr = false;
-    }
-    if(!aircraft_visible(aircraft) && aircraft.category == "arrival" && aircraft.inside_ctr) {
-      ui_log(aircraft.getRadioCallsign() + " leaving radar coverage");
-      console.log("arriving aircraft no longer visible. YU FAIL");
-      aircraft.inside_ctr = false;
-    }
-    if(aircraft.category == "arrival" && aircraft_visible(aircraft) && !aircraft.inside_ctr) {
-      var position = "";
-      var distance = round(distance2d([0, 0], aircraft.position) * 0.62);
-      position += distance + " mile" + s(distance);
-      var angle = Math.atan2(aircraft.position[0], aircraft.position[1]);
-      position += " " + radio_compass(compass_direction(angle));
-      ui_log(airport_get().radio+" tower, "+aircraft.getRadioCallsign()+" in your airspace "+position+", over");
-      aircraft.inside_ctr = true;
-    }
+    var is_visible = aircraft_visible(aircraft);
     if(aircraft.isStopped() && aircraft.category == "arrival") {
+      prop.game.score.windy_landing += aircraft.scoreWind('landed');
       ui_log(aircraft.getRadioCallsign() + " switching to ground, good day");
       prop.game.score.arrival += 1;
       console.log("arriving aircraft no longer moving");
@@ -1461,7 +1633,6 @@ function aircraft_update() {
     // Clean up the screen from aircraft that are too far
     if(!aircraft_visible(aircraft,2) && !aircraft.inside_ctr){
       if(aircraft.category == "arrival") {
-        prop.game.score.failed_arrival += 1;
         remove = true;
       }
       else if(aircraft.category == "departure") {

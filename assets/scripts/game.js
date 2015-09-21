@@ -7,7 +7,7 @@ function game_init_pre() {
 
   prop.game.speedup=1;
 
-  prop.game.frequency = 0.5;
+  prop.game.frequency=1;
 
   prop.game.time=0;
   prop.game.delta=0;
@@ -22,6 +22,7 @@ function game_init_pre() {
     prop.game.focused=true;
   });
 
+  prop.game.last_score = 0;
   prop.game.score = {
     arrival: 0,
     departure: 0,
@@ -30,6 +31,7 @@ function game_init_pre() {
     windy_takeoff: 0,
 
     failed_arrival: 0,
+    failed_departure: 0,
 
     warning: 0,
     hit: 0,
@@ -37,7 +39,9 @@ function game_init_pre() {
     abort: {
       landing: 0,
       taxi: 0
-    }
+    },
+
+    violation: 0,
   };
 
 }
@@ -51,6 +55,7 @@ function game_get_score() {
   score -= prop.game.score.windy_takeoff * 0.5;
 
   score -= prop.game.score.failed_arrival * 20;
+  score -= prop.game.score.failed_departure * 2;
 
   score -= prop.game.score.warning * 5;
   score -= prop.game.score.hit * 50;
@@ -58,6 +63,8 @@ function game_get_score() {
   score -= prop.game.score.abort.landing * 5;
 
   score -= prop.game.score.abort.taxi * 2;
+
+  score -= prop.game.score.violation;
 
   return score;
 }
@@ -142,12 +149,14 @@ function game_clear_timeout(to) {
 
 function game_update_pre() {
   var score = game_get_score();
-  $("#score").text(round(score));
-
-  if(score < -0.51)
-    $("#score").addClass("negative");
-  else
-    $("#score").removeClass("negative");
+  if (score != prop.game.last_score) {
+    $("#score").text(round(score));
+    if(score < -0.51)
+      $("#score").addClass("negative");
+    else
+      $("#score").removeClass("negative");
+    prop.game.last_score = score;
+  }
 
   prop.game.delta=Math.min(delta()*prop.game.speedup, 100);
   if(game_paused()) {

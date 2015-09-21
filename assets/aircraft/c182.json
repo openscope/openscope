@@ -1,0 +1,25 @@
+{
+  "name": "Cessna 182 Skylane",
+  "icao": "C182",
+  "wake": "light",
+  "rate": {
+    "ascent":     924,
+    "descent":    1820,
+    "accelerate": 4,
+    "decelerate": 3
+  },
+  "runway": {
+    "takeoff": 0.460,
+    "landing": 0.410
+  },
+  "speed":{
+    "min":     49,
+    "max":     150,
+    "landing": 65,
+    "cruise":  145
+  },
+  "capability": {
+    "ils": false,
+    "fix": false
+  }
+}

@@ -330,6 +330,14 @@ function input_run() {
       ui_airport_toggle();
     }
     return true;
+  } else if(prop.input.callsign == "rate") {
+    if (prop.input.data) {
+      var freq = parseFloat(prop.input.data);
+      if (freq && freq > 0) {
+        prop.game.frequency = freq;
+      }
+    }
+    return true;
   }
 
   var matches = 0;

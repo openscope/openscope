@@ -95,16 +95,19 @@
       ["aca",   2],
       ["awe",   2],
       ["baw",   2],
-      ["cessna",1],
+      ["lightga",1],
       ["klc",   3],
       ["klm",   5],
       ["ual",   2]
+    ],
+    "destinations": [
+      60, 85, 145, 180, 245, 330
     ],
     "frequency": [1, 2]
   },
   "arrivals": [
     {
-      "angle": 114,
+      "radial": 114,
       "heading": 294,
       "airlines": [
         ["ual",   3],
@@ -119,8 +122,8 @@
       "altitude": [7000, 9000]
     },
     {
-      "angle": 274,
-      "heading": 70,
+      "radial": 224,
+      "heading": 44,
       "airlines": [
         ["ual",   1],
         ["aca",   1],
@@ -131,10 +134,10 @@
         ["ual",   1]
       ],
       "frequency": [5, 10],
-      "altitude": [4000, 7000]
+      "altitude": [6000, 9000]
     },
     {
-      "angle": 42,
+      "radial": 42,
       "heading": 222,
       "airlines": [
         ["ual", 1],
@@ -149,7 +152,7 @@
       "altitude": [4000, 7000]
     },
     {
-      "angle": 270,
+      "radial": 270,
       "heading": 90,
       "airlines": [
         ["cessna",   1]
