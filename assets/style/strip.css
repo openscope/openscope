@@ -76,6 +76,18 @@
   right: 10px;
 }
 
+.strip .destination {
+  text-align: center;
+  color: #8cf;
+
+  position: absolute;
+  padding-right: 5px;
+  left: 50%;
+  bottom: 3px;
+  width: 80px;
+  margin-left: -40px;
+}
+
 .strip .speed {
   text-align: right;
 

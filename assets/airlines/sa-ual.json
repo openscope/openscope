@@ -1,0 +1,16 @@
+{
+  "name": "United Airlines",
+  "icao": "UAE",
+  "callsign": {
+    "name": "United",
+    "length": 3
+  },
+
+  "aircraft": [
+
+    ["B763", 35 ],
+	["B764", 16 ],
+	["B788", 12 ],
+	["B772", 19 ]
+  ]
+}

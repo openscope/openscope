@@ -1,0 +1,26 @@
+{
+  "name": "Airbus A340-300",
+  "icao": "A343",
+  "wake": "heavy",
+  "rate": {
+    "turn":       0.7,
+    "ascent":     1200,
+    "descent":    2000,
+    "accelerate": 4,
+    "decelerate": 3
+  },
+  "runway": {
+    "takeoff": 2.9,
+    "landing": 3.3
+  },
+  "speed":{
+    "min":     145,
+    "max":     250,
+    "landing": 150,
+    "cruise":  200
+  },
+  "capability": {
+    "ils": true,
+    "fix": true
+  }
+}

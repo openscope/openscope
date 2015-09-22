@@ -81,6 +81,10 @@ var Aircraft=Fiber.extend(function() {
       this.altitude    = 0;
       this.speed       = 0;
 
+      this.radial      = 0;
+      this.distance    = 0;
+      this.destination = null;
+
       this.trend       = 0;
 
       this.history     = [];
@@ -193,6 +197,10 @@ var Aircraft=Fiber.extend(function() {
       this.html.append("<span class='heading'>" + round(this.heading) + "</span>");
       this.html.append("<span class='altitude'>-</span>");
       this.html.append("<span class='aircraft'>" + this.model.icao + "</span>");
+      if (this.destination)
+        this.html.append("<span class='destination'>" +
+                         heading_to_string(this.destination) +
+                         "</span>");
       this.html.append("<span class='speed'>-</span>");
 
       this.html.find(".aircraft").prop("title", this.model.name);
@@ -230,10 +238,65 @@ var Aircraft=Fiber.extend(function() {
         prop.canvas.panY = round(km(e.data.position[1]));
         prop.canvas.dirty = true;
       });
-
+      if (this.category == "arrival")
+        this.html.hide(0);
+      if (this.category == "departure")
+        this.inside_ctr = true;
     },
     cleanup: function() {
       this.html.remove();
+    },
+    // Called when the aircraft crosses the center boundary
+    crossBoundary: function(inbound) {
+      this.inside_ctr = inbound;
+      if (this.projected)
+        return;
+      // Crossing into the center
+      if (inbound) {
+        this.showStrip();
+        if (this.category == "arrival") {
+          var position = "";
+          var distance = round(this.distance * 0.62);
+          position += distance + " mile" + s(distance);
+          position += " " + radio_compass(compass_direction(this.radial));
+          var altitude = " ";
+          if (abs(this.altitude - this.requested.altitude) > 100) {
+            altitude += "leaving " + (Math.floor(this.altitude / 100) * 100) +
+              " for " + (Math.floor(this.requested.altitude / 100) * 100);
+          } else {
+            altitude += "at " + (Math.floor(this.altitude / 100) * 100);
+          }
+          this.radioCall(position + altitude);
+        }
+      }
+      // Leaving the center
+      else {
+        this.hideStrip();
+
+        // Fly away!
+        this.requested.navmode = "heading";
+        this.requested.heading = this.radial;
+        this.requested.turn    = null;
+        this.requested.hold    = false;
+        this.requested.altitude = 20000;
+        this.requested.speed = 480;
+
+        if (this.category == "departure") {
+          // Within 5 degrees of destination heading
+          if (abs(this.radial - this.destination) < 0.08726) {
+            this.radioCall("leaving radar coverage");
+            prop.game.score.departure += 1;
+          }
+          else {
+            this.radioCall("leaving radar coverage outside departure window", true);
+            prop.game.score.departure -= 1;
+          }
+        }
+        if (this.category == "arrival") {
+          this.radioCall("leaving radar coverage as arrival", true);
+          prop.game.score.failed_arrival += 1;
+        }
+      }
     },
     matchCallsign: function(callsign) {
       if( callsign === '*')
@@ -261,6 +324,9 @@ var Aircraft=Fiber.extend(function() {
         callsign = callsign.substr(callsign.length - length);
       }
       return airline_get(this.airline).callsign.name + " " + radio(callsign.toUpperCase()) + heavy;
+    },
+    hideStrip: function() {
+      this.html.hide(600);
     },
     COMMANDS: [
       "turn",
@@ -294,6 +360,8 @@ var Aircraft=Fiber.extend(function() {
       "debug"
     ],
     runCommand: function(command) {
+      if (!this.inside_ctr)
+        return true;
       var s        = command.toLowerCase().split(" ")
 
       var strings  = [];
@@ -537,7 +605,8 @@ var Aircraft=Fiber.extend(function() {
       var factor = 1;
       if(data.length <= 2) factor = 1000;
 
-      this.requested.altitude = clamp(1000, altitude * factor, 10000);
+      this.requested.altitude = clamp(1000, altitude * factor,
+                                      airport_get().ctr_ceiling + 1000);
       this.requested.expedite = expedite;
 
       if(expedite) expedite = " expedite";
@@ -754,6 +823,8 @@ var Aircraft=Fiber.extend(function() {
       if(data.speed)    this.requested.speed = data.speed;
       else              this.requested.speed = this.model.speed.cruise;
 
+      if(data.destination) this.destination = data.destination;
+
       if(this.category == "departure" && this.isLanded()) {
         this.speed = 0;
         this.mode = "apron";
@@ -843,6 +914,15 @@ var Aircraft=Fiber.extend(function() {
         head: Math.cos(angle) * wind.speed
       };
     },
+    radioCall: function(msg, alert) {
+      if (this.projected) return;
+      var call = airport_get().radio + " tower, " +
+        this.getRadioCallsign() + " " +msg;
+      if (alert)
+        ui_log(true, call);
+      else
+        ui_log(call);
+    },
     scoreWind: function(action) {
       var score = 0;
       var components = this.getWind();
@@ -864,6 +944,11 @@ var Aircraft=Fiber.extend(function() {
         ui_log(true, this.getCallsign()+' '+action+' with tailwind');
       }
       return score;
+    },
+    showStrip: function() {
+      this.html.detach();
+      $("#strips").append(this.html);
+      this.html.show(600);
     },
     updateTarget: function() {
       var airport = airport_get();
@@ -1127,6 +1212,16 @@ var Aircraft=Fiber.extend(function() {
       var angle = this.heading;
       this.position[0] += (sin(angle) * (this.speed * 0.000514)) * game_delta();
       this.position[1] += (cos(angle) * (this.speed * 0.000514)) * game_delta();
+
+      this.distance = Math.sqrt(this.position[0]*this.position[0] +
+                                this.position[1]*this.position[1]);
+      this.radial = Math.atan2(this.position[0], this.position[1]);
+      if (this.radial < 0) this.radial += Math.PI*2;
+
+      var inside = (this.distance <= airport_get().ctr_radius &&
+                    this.altitude <= airport_get().ctr_ceiling);
+      if (inside != this.inside_ctr)
+        this.crossBoundary(inside);
     },
     updateWarning: function() {
       // Check this aircraft for violation of separation minima against all
@@ -1340,6 +1435,8 @@ function aircraft_init() {
   aircraft_load("at72");
 
   // CESSNA
+  aircraft_load("c172");
+  aircraft_load("c182");
   aircraft_load("c208");
   aircraft_load("c337");
   aircraft_load("c510");
@@ -1360,6 +1457,9 @@ function aircraft_init() {
   aircraft_load("a321");
   aircraft_load("a332");
   aircraft_load("a333");
+  
+  aircraft_load("a343");
+  aircraft_load("a346");
 
   aircraft_load("a388");
 
@@ -1371,7 +1471,9 @@ function aircraft_init() {
   aircraft_load("b739");
 
   aircraft_load("b744");
+  aircraft_load("b748");
 
+  
   aircraft_load("b752");
   aircraft_load("b753");
 
@@ -1407,8 +1509,10 @@ function aircraft_init() {
 	
 	
   // MISC
+  aircraft_load("be36");
   aircraft_load("l410");
   aircraft_load("il76");
+  aircraft_load("p28a");
   aircraft_load("t154");
   aircraft_load("c130");
   aircraft_load("c5");
@@ -1519,26 +1623,6 @@ function aircraft_update() {
     var remove = false;
     var aircraft = prop.aircraft.list[i];
     var is_visible = aircraft_visible(aircraft);
-    if(!is_visible && aircraft.category == "departure" && aircraft.inside_ctr) {
-      ui_log(aircraft.getRadioCallsign() + " leaving radar coverage");
-      prop.game.score.departure += 1;
-      console.log("departing aircraft no longer visible");
-      aircraft.inside_ctr = false;
-    }
-    if(!is_visible && aircraft.category == "arrival" && aircraft.inside_ctr) {
-      ui_log(aircraft.getRadioCallsign() + " leaving radar coverage");
-      console.log("arriving aircraft no longer visible. YU FAIL");
-      aircraft.inside_ctr = false;
-    }
-    if(aircraft.category == "arrival" && is_visible && !aircraft.inside_ctr) {
-      var position = "";
-      var distance = round(distance2d([0, 0], aircraft.position) * 0.62);
-      position += distance + " mile" + s(distance);
-      var angle = Math.atan2(aircraft.position[0], aircraft.position[1]);
-      position += " " + radio_compass(compass_direction(angle));
-      ui_log(airport_get().radio+" tower, "+aircraft.getRadioCallsign()+" in your airspace "+position+", over");
-      aircraft.inside_ctr = true;
-    }
     if(aircraft.isStopped() && aircraft.category == "arrival") {
       prop.game.score.windy_landing += aircraft.scoreWind('landed');
       ui_log(aircraft.getRadioCallsign() + " switching to ground, good day");
@@ -1554,7 +1638,6 @@ function aircraft_update() {
     // Clean up the screen from aircraft that are too far
     if(!aircraft_visible(aircraft,2) && !aircraft.inside_ctr){
       if(aircraft.category == "arrival") {
-        prop.game.score.failed_arrival += 1;
         remove = true;
       }
       else if(aircraft.category == "departure") {

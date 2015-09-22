@@ -263,13 +263,42 @@ function canvas_draw_separation_indicator(cc, aircraft) {
   cc.stroke();
 }
 
+function canvas_draw_aircraft_departure_window(cc, aircraft) {
+  cc.save();
+  cc.strokeStyle = "rgba(128, 255, 255, 0.9)";
+  cc.beginPath();
+  var angle = aircraft.destination - Math.PI/2;
+  cc.arc(prop.canvas.panX,
+         prop.canvas.panY,
+         km(airport_get().ctr_radius),
+         angle - 0.08726,
+         angle + 0.08726);
+  cc.stroke();
+  cc.restore();
+}
+
 function canvas_draw_aircraft(cc, aircraft) {
+  var almost_match = false;
+  var match        = false;
+
+  if ((prop.input.callsign.length > 1) &&
+      (aircraft.matchCallsign(prop.input.callsign.substr(0, prop.input.callsign.length - 1))))
+  {
+    almost_match = true;
+  }
+  if((prop.input.callsign.length > 0) &&
+     (aircraft.matchCallsign(prop.input.callsign)))
+  {
+    match = true;
+  }
+
+  if (match && (aircraft.destination != null)) {
+    canvas_draw_aircraft_departure_window(cc, aircraft);
+  }
 
   if(!aircraft.isVisible()) return;
 
   var size = 3;
-  var almost_match = false;
-  var match        = false;
 
   // Trailling
   var trailling_length = 12;
@@ -279,11 +308,18 @@ function canvas_draw_aircraft(cc, aircraft) {
   cc.restore();
 
   cc.save();
-  cc.fillStyle = "rgb(255, 255, 255)";
+  if (!aircraft.inside_ctr)
+    cc.fillStyle   = "rgb(224, 224, 224)";
+  else
+    cc.fillStyle = "rgb(255, 255, 255)";
+
   length = aircraft.position_history.length;
   for (i = 0; i < length; i++) {
+    if (!aircraft.inside_ctr)
+      cc.globalAlpha = 0.3 / (length - i);
+    else
       cc.globalAlpha = 1 / (length - i);
-      cc.fillRect(km(aircraft.position_history[i][0]) + prop.canvas.panX, -km(aircraft.position_history[i][1]) + prop.canvas.panY, 2, 2);
+    cc.fillRect(km(aircraft.position_history[i][0]) + prop.canvas.panX, -km(aircraft.position_history[i][1]) + prop.canvas.panY, 2, 2);
   }
   cc.restore();
 
@@ -295,28 +331,25 @@ function canvas_draw_aircraft(cc, aircraft) {
     canvas_draw_separation_indicator(cc, aircraft);
     cc.restore();
   }
-    
-  // Aircraft
-  if(prop.input.callsign.length > 1 && aircraft.matchCallsign(prop.input.callsign.substr(0, prop.input.callsign.length - 1)))
-    almost_match = true;
-  if(prop.input.callsign.length > 0 && aircraft.matchCallsign(prop.input.callsign))
-    match = true;
 
+  // Aircraft
   // Draw the future path
   if((aircraft.warning || match) && !aircraft.isTaxiing()) {
     canvas_draw_future_track(cc, aircraft);
   }
 
-  cc.fillStyle   = "rgba(224, 224, 224, 1.0)";
-  if(almost_match)
+  if (!aircraft.inside_ctr)
+    cc.fillStyle   = "rgba(224, 224, 224, 0.3)";
+  else if (almost_match)
     cc.fillStyle = "rgba(224, 210, 180, 1.0)";
-  if(match)
+  else if (match)
     cc.fillStyle = "rgba(255, 255, 255, 1.0)";
-
-  if(aircraft.warning)
+  else if (aircraft.warning)
     cc.fillStyle = "rgba(224, 128, 128, 1.0)";
-  if(aircraft.hit)
+  else if (aircraft.hit)
     cc.fillStyle = "rgba(255, 64, 64, 1.0)";
+  else
+    cc.fillStyle   = "rgba(224, 224, 224, 1.0)";
 
   cc.strokeStyle = cc.fillStyle;
 
@@ -324,7 +357,10 @@ function canvas_draw_aircraft(cc, aircraft) {
 
     cc.save();
 
-    cc.fillStyle = "rgba(255, 255, 255, 1.0)";
+    if (!aircraft.inside_ctr)
+      cc.fillStyle = "rgba(255, 255, 255, 0.3)";
+    else
+      cc.fillStyle = "rgba(255, 255, 255, 1.0)";
 
     var t = crange(0, distance2d(
       [clamp(-w, km(aircraft.position[0]), w), clamp(-h, -km(aircraft.position[1]), h)],
@@ -527,14 +563,16 @@ function canvas_draw_info(cc, aircraft) {
 
     cc.translate(bar_width / 2, 0);
 
-    cc.fillStyle = "rgba(71, 105, 88, 0.9)";
-    if(almost_match)
-      cc.fillStyle = "rgba(95, 95, 88, 0.9)";
-    if(match) {
+    if (!aircraft.inside_ctr)
+      cc.fillStyle = "rgba(71, 105, 88, 0.3)";
+    else if (match)
       cc.fillStyle = "rgba(120, 150, 140, 0.9)";
-    }
+    else if(almost_match)
+      cc.fillStyle = "rgba(95, 95, 88, 0.9)";
+    else
+      cc.fillStyle = "rgba(71, 105, 88, 0.9)";
 
-  	//Background fill and clip for ILS Lock Indicator
+    //Background fill and clip for ILS Lock Indicator
     if (ILS_enabled)
     {
       cc.save();
@@ -563,7 +601,8 @@ function canvas_draw_info(cc, aircraft) {
       cc.fillRect(-width2, -height2, width, height);
 
     var alpha = 0.6;
-    if(match) alpha = 0.9;
+    if (!aircraft.inside_ctr) alpha = 0.3;
+    else if (match) alpha = 0.9;
 
     if(aircraft.category == "departure")
       cc.fillStyle = "rgba(128, 255, 255, " + alpha + ")";
@@ -612,9 +651,12 @@ function canvas_draw_info(cc, aircraft) {
     else
       cc.fillRect(-width2 - bar_width, -height2, bar_width, height);
 
-    cc.fillStyle   = "rgba(255, 255, 255, 0.8)";
-    if(match)
+    if (!aircraft.inside_ctr)
+      cc.fillStyle   = "rgba(255, 255, 255, 0.6)";
+    else if(match)
       cc.fillStyle   = "rgba(255, 255, 255, 0.9)";
+    else
+      cc.fillStyle   = "rgba(255, 255, 255, 0.8)";
 
     cc.strokeStyle = cc.fillStyle;
 

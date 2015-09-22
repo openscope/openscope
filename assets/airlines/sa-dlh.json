@@ -1,0 +1,15 @@
+{
+  "name": "Lufthansa",
+  "icao": "DLH",
+  "callsign": {
+    "name": "Lufthansa",
+    "length": 3
+  },
+
+  "aircraft": [
+
+    ["B744", 17 ],
+	["B748", 19 ],
+	["A346", 24 ]
+  ]
+}

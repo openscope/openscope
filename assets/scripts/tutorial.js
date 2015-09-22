@@ -119,7 +119,8 @@ function tutorial_init_pre() {
     title:    "Aircraft strips, part 2",
     text:     ["The top row from the left shows the aircraft&rsquo;s callsign, its assigned heading",
                "(or its runway if it&rsquo;s in the process of taking off or landing), and its assigned altitude.",
-               "The bottom row shows the model ({MODEL} here, which is a {MODELNAME}) and its assigned speed."
+               "The bottom row shows the model ({MODEL} here, which is a {MODELNAME}), it's destination,",
+               "and its assigned speed."
                ].join(" "),
     parse:    function(t) {
       return t.replace("{MODEL}", prop.aircraft.list[0].model.icao).replace("{MODELNAME}", prop.aircraft.list[0].model.name);
@@ -130,13 +131,31 @@ function tutorial_init_pre() {
 
   tutorial_step({
     title:    "Moving aircraft",
-    text:     ["Now wait until the aircraft {CALLSIGN} has taken off. Click on it and type &lsquo;turn 90&rsquo; into the command box.",
-               "It should start turning to the east (ninety degrees); if the turn isn&rsquo;t immediately visible, you can click",
+    text:     ["Now wait until the aircraft {CALLSIGN} has taken off. Click on it and type &lsquo;turn {ANGLE}&rsquo; into the command box.",
+               "It should start turning towards its destination; if the turn isn&rsquo;t immediately visible, you can click",
                "the speedup button on the right side of the input box (it&rsquo;s two small arrows pointing towards the right).",
                "Don&rsquo;t forget to click it again to go back to 1x speed."
                ].join(" "),
     parse:    function(t) {
-      return t.replace("{CALLSIGN}", prop.aircraft.list[0].getCallsign());
+      return t.
+        replace("{CALLSIGN}", prop.aircraft.list[0].getCallsign()).
+        replace("{ANGLE}", heading_to_string(prop.aircraft.list[0].destination));
+    },
+    side:     "left",
+    position: tutorial_position
+  });
+
+  tutorial_step({
+    title:    "Departure destinations",
+    text:     ["If you zoom out (using the mouse wheel or the - key) and click",
+               "on the aircraft {CALLSIGN} you will see a blue arc in the",
+               "direction it is heading.  This is it's departure destination,",
+               "your goal is to direct every departure through their own",
+               "destination."
+               ].join(" "),
+    parse:    function(t) {
+      return t.
+        replace("{CALLSIGN}", prop.aircraft.list[0].getCallsign());
     },
     side:     "left",
     position: tutorial_position
@@ -170,14 +189,17 @@ function tutorial_init_pre() {
 
   tutorial_step({
     title:    "Heading hints",
-    text:     ["When you typed &lsquo;turn 90&rsquo;, the aircraft turned to the right to face 90 degrees (due East).",
-               "In this case, the shortest turn was to the right. This is usually the desired behavior, but if you want to force the aircraft to turn",
-               "in a specific direction, you can prefix the direction with &lsquo;left&rsquo; or &lsquo;right&rsquo;.",
-               "Like the altitude command, the heading command also has an alias of its own: &lsquo;heading&rsquo; can be used",
+    text:     ["When you typed &lsquo;turn {ANGLE}&rsquo;, the aircraft turned",
+               "the shortest direction to face {ANGLE} degrees.  This is",
+               "usually the desired behavior, but if you want to force the",
+               "aircraft to turn in a specific direction, you can prefix the",
+               "direction with &lsquo;left&rsquo; or &lsquo;right&rsquo;.",
+               "Like the altitude command, the heading command also has an ",
+               "alias of its own: &lsquo;heading&rsquo; can be used",
                "in place of &lsquo;turn&rsquo;."
                ].join(" "),
     parse:    function(t) {
-      return t.replace("{DIRECTION}", prop.aircraft.list[0].getCallsign());
+      return t.replace(/{ANGLE}/g, heading_to_string(prop.aircraft.list[0].destination));
     },
     side:     "left",
     position: tutorial_position
@@ -199,8 +221,10 @@ function tutorial_init_pre() {
 
   tutorial_step({
     title:    "Bon voyage, aircraft!",
-    text:     ["When the aircraft flies off the edge of the screen, it will automatically remove itself from the list on the right.",
-               "Congratulations, you&rsquo;ve successfully taken off one aircraft."
+    text:     ["When the aircraft flies through the blue arc, it will ",
+               "automatically remove itself from the list on the right.",
+               "Congratulations, you&rsquo;ve successfully taken off one",
+               "aircraft."
                ].join(" "),
     parse:    function(t) {
       return t.replace("{CALLSIGN}", prop.aircraft.list[0].getCallsign());

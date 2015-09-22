@@ -95,10 +95,13 @@
       ["aca",   2],
       ["awe",   2],
       ["baw",   2],
-      ["cessna",1],
+      ["lightga",1],
       ["klc",   3],
       ["klm",   5],
       ["ual",   2]
+    ],
+    "destinations": [
+      60, 85, 145, 180, 245, 330
     ],
     "frequency": [1, 2]
   },

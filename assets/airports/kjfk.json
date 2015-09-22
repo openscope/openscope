@@ -108,7 +108,10 @@
       ["aal", 14],
       ["baw", 2],
       ["ual", 2],
-      ["cessna", 1]
+      ["fastga", 1]
+    ],
+    "destinations": [
+      20, 70, 100, 215, 340, 275
     ],
     "type": "cyclic",
     "offset": 0,
