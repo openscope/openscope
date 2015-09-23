@@ -96,7 +96,7 @@
   "arrivals": [
     {
       "radial":    45,
-      "heading":   200,
+      "fixes":   ["MOVDD", "RISTI", "CEDES", "ARCHI"],
       "airlines":  [
         ["ual", 1],
         ["baw", 1],
@@ -108,7 +108,7 @@
     },
     {
       "radial":    90,
-      "heading":   270,
+      "fixes":    ["FAITH"],
       "airlines":  [
         ["ual", 2],
         ["baw", 5],
@@ -119,7 +119,7 @@
     },
     {
       "radial":    145,
-      "heading":   325,
+      "fixes":    ["SKUNK", "BOLDR", "MENLO"],
       "airlines":  [
         ["ual", 4],
         ["baw", 3],
@@ -131,7 +131,7 @@
     },
     {
       "radial":    315,
-      "heading":   130,
+      "fixes":    ["PYE", "DUXBY", "SFO"],
       "airlines":  [
         ["ual", 10],
         ["baw", 10],

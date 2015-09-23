@@ -23,6 +23,7 @@ zlsa.atc.ArrivalDefault = Fiber.extend(function(base) {
       this.altitude = 0;
       this.frequency = [0, 0];
       this.heading = 0;
+      this.fixes = [];
       this.radial = 0;
       this.speed = null;
 
@@ -45,6 +46,8 @@ zlsa.atc.ArrivalDefault = Fiber.extend(function(base) {
         options.heading = (options.radial + 180) % 360;
 
       this.heading = radians(options.heading);
+      if( options.fixes )
+        this.fixes = options.fixes;
       this.radial = radians(options.radial);
       this.speed = options.speed;
     },
@@ -95,6 +98,7 @@ zlsa.atc.ArrivalDefault = Fiber.extend(function(base) {
         airline:   choose_weight(this.airlines),
         altitude:  altitude,
         heading:   this.heading,
+        fixes:     this.fixes.slice(),
         message:   message,
         position:  position,
         speed:     this.speed

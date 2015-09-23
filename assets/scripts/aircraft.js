@@ -824,6 +824,11 @@ var Aircraft=Fiber.extend(function() {
       else              this.requested.speed = this.model.speed.cruise;
 
       if(data.destination) this.destination = data.destination;
+      if(data.fixes && data.fixes.length > 0) {
+        this.requested.fix = data.fixes;
+        this.requested.turn = null;
+        this.requested.navmode = "fix";
+      }
 
       if(this.category == "departure" && this.isLanded()) {
         this.speed = 0;
