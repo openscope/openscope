@@ -825,7 +825,7 @@ var Aircraft=Fiber.extend(function() {
 
       if(data.destination) this.destination = data.destination;
       if(data.fixes && data.fixes.length > 0) {
-        this.requested.fix = data.fixes;
+        this.requested.fix = data.fixes.slice();
         this.requested.turn = null;
         this.requested.navmode = "fix";
       }

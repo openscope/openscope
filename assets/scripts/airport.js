@@ -98,7 +98,7 @@ zlsa.atc.ArrivalDefault = Fiber.extend(function(base) {
         airline:   choose_weight(this.airlines),
         altitude:  altitude,
         heading:   this.heading,
-        fixes:     this.fixes.slice(),
+        fixes:     this.fixes,
         message:   message,
         position:  position,
         speed:     this.speed
