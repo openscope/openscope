@@ -4,132 +4,207 @@
   "radio": "Guarulhos",
   "icao": "SBGR",
   "iata": "GRU",
-  "ctr_radius": 80,
+  "ctr_radius": 82,
+  "position": ["S23.430383", "W46.472943"],
   "wind": {
-    "angle": 230,
-    "speed": 10
+    "angle": 75,
+    "speed": 10,
+"_comment": "Source (STAR): http://download.diegolima.org/Cartas%20Aereas/app_dep/sbgr.pdf"
   },
-  "fixes": {
-    "IG":[-10.90,-1.9],
-    "MAE":[-20.90,-5.5],
-    "PLUS":[-40.90,-7.5],
-    "ELLE":[-50.90,7.5],
-    "IB":[-30.0,-10.5],
-    "NEVE":[40.0,6.8],
-    "VUSTA":[-30.63,2.5],
-    "ISIMU":[12.63,-40.47],
-    "IS":[15.0,2.7],
-    "VURAK":[42.01,-3.80],
-    "ANSUG":[26.01,15.80],
-    "RAFA":[15.01,-12.80],
-    "E80":[80.00,0.00],
-    "W80":[-80.00,0.00],
-    "S80":[0.00,-80.00]
+  "fixes": { 
+    "BUVGU": ["S23d45m30.00", "W046d49m24.60"],
+	"CURSE": ["S24d09m12", "W047d09m76"],
+	"DAD":["S23d42m20.00", "W46d36m5.00"],
+    "GURU":["S23d40m2", "W046d22m8"],
+	"CGO":["S23d37m65.00", "W046d39m28.00"],
+    "PER":["S23d25m14.00", "W46d45m21.00"],
+	"BCO":["S23d24m23.00", "W46d23m7.00"],
+    "PP":["S16d8m37.00", "W48d53m37.00"],
+	"IS":["S23d32m41.00", "W46d42m42.00"],
+	"IG":["S23d27m43.00", "W46d34m24.00"],
+	"RDE":["S23d53m7", "W046d31m8"],
+	"SAT":["S23d59m0", "W046d15m8"],
+	"CPN":["S23d00m5", "W047d07m8"],
+	"JACO":["S23d11m3", "W046d56m4"],
+	"STN":["S23d29m3", "W046d55m4"],
+	"IG":["S23d27m7", "W046d34m4"],
+	"NOGUR":["S23d17m2", "W045d59m3"],
+	"PLUS":["S23d28m7", "W046d37m8"],
+	"GUACA":["S23d08m9", "W046d40m0"],
+	"SCB":["S23d30m4", "W047d22m7"],
+	"ELLE":["S23d21m9", "W046d45m1"],
+	"TEXAS":["S23d05m6", "W046d10m3"],	
+	"BGC":["S22d58m8", "W046d32m3"],
+	"NEVE":["S23d20m0", "W046d07m7"],
+	"CAMP":["S23d16m1", "W046d11m7"],
+	"LOPES":["S23d27m7", "W045d54m9"]
+	
   },
+  
   "runways": [
     {
       "name": ["9L", "27R"],
       "name_offset": [[0, 0], [0, 0]],
-      "position": [0.0, 0.0],
-      "angle": 80.00,
+      "end": [["S23.434155", "W46.483944"], ["S23.424492", "W46.448037"]],
       "length": 3.700,
-      "delay": [5, 30],
+      "delay": [10, 50],
       "ils": [true, true]
     },
     {
       "name": ["9R", "27L"],
       "name_offset": [[0, 0], [0, 0]],
-      "position": [-0.5, -0.757],
-      "angle": 80.00,
-      "length": 3.0,
-      "delay": [8, 40],
+      "end": [["S23.438742", "W46.487079"], ["S23.431098", "W46.458924"]],
+      "length": 2.900,
+      "delay": [15, 60],
       "ils": [true, false]
     }
   ],
+  
   "departures": {
     "airlines": [
-      ["tam", 17],
-      ["glo", 17],
-      ["azu", 12],
-      ["ava", 12],
-      ["fdx", 2],
-      ["dal", 4],
-      ["ups", 2],
-      ["ual", 4],
-      ["embraer", 5],
-      ["fab", 1],
-      ["aal", 4]
+      ["TAM", 60],
+      ["GLO", 60],
+      ["AZU", 30],
+      ["EMBRAER", 3],
+      ["UPS", 1],
+	  ["FDX", 1],
+      ["SA-ACA", 2],
+      ["SA-AAL", 5],
+	  ["SA-AEA", 2],
+	  ["SA-AFR", 5],
+	  ["SA-AMX", 2],
+	  ["SA-AVA", 2],
+	  ["SA-AZA", 4],
+	  ["SA-BAW", 5],
+	  ["SA-CCA", 2],
+	  ["SA-DLH", 5],
+	  ["SA-IBE", 5],
+	  ["SA-KAL", 1],
+	  ["SA-KLM", 3],
+	  ["SA-LAN", 7],
+	  ["SA-UAE", 3],
+	  ["SA-UAL", 5],
+	  ["FAB", 1]
     ],
     "destinations": [
-      45, 65, 115, 155, 315
+      45, 115, 155, 240, 315
     ],
-    "frequency": [1, 2]
+    "frequency": [1, 15]
   },
   "arrivals":[
     {
       "radial": 20,
       "heading": 200,
       "airlines": [
-        ["glo", 10],
-        ["tam", 10],
-        ["embraer", 1],
-        ["aal", 1]
+      ["TAM", 3],
+      ["GLO", 3],
+      ["AZU", 2],
+      ["EMBRAER", 1],
+      ["UPS", 1],
+	  ["FDX", 1],
+      ["SA-ACA", 1],
+      ["SA-AAL", 1],
+	  ["SA-AEA", 1],
+	  ["SA-AFR", 1],
+	  ["SA-AMX", 1],
+	  ["SA-AVA", 1],
+	  ["SA-AZA", 1],
+	  ["SA-BAW", 1],
+	  ["SA-CCA", 1],
+	  ["SA-DLH", 1],
+	  ["SA-IBE", 1],
+	  ["SA-KAL", 1],
+	  ["SA-KLM", 1],
+	  ["SA-LAN", 1],
+	  ["SA-UAE", 1],
+	  ["SA-UAL", 1],
+	  ["FAB", 1]
       ],
-      "frequency": [3, 10],
-      "altitude": [6000, 7000]
+      "frequency": [15, 20],
+      "altitude": [7000, 8000]
     },
+	
     {
       "radial": 90,
       "heading": 270,
       "speed": 120,
       "airlines": [
-        ["lightga", 1]
+        ["TAM", 1]
       ],
-      "frequency": [5, 20],
+      "frequency": [10, 20],
       "altitude": [3000, 5000]
     },
+	
     {
       "radial": 90,
       "heading": 270,
       "airlines": [
-        ["glo", 10],
-        ["tam", 10],
-        ["azu", 5],
-        ["embraer", 1],
-        ["fab", 1],
-        ["aal", 2]
+      ["TAM", 3],
+      ["GLO", 3],
+      ["AZU", 3],
+	  ["ONE", 3],
+	  ["FAB", 1]
       ],
-      "frequency": [2, 10],
+      "frequency": [15, 30],
       "altitude": [6000, 8000]
+    },
+	    {
+      "radial": 270,
+      "heading": 90,
+      "airlines":[
+      ["TAM", 3],
+      ["GLO", 3],
+      ["AZU", 3],
+	  ["ONE", 2],
+	  ["FAB", 1]
+      ],
+	  
+      "frequency": [15, 30],
+      "altitude": [5000, 8000]
     },
     {
       "radial": 180,
       "heading": 360,
       "airlines":[
-        ["ava", 5],
-        ["baw", 1],
-        ["glo", 5],
-        ["embraer", 1],
-        ["tam", 3]
+      ["TAM", 3],
+      ["GLO", 3],
+      ["AZU", 3],
+	  ["ONE", 2],
+	  ["FAB", 1]
       ],
-      "frequency": [4, 8],
+	  
+      "frequency": [15, 30],
       "altitude": [5000, 8000]
     },
     {
       "radial": 340,
       "heading": 160,
       "airlines": [
-        ["glo", 10],
-        ["tam", 10],
-        ["azu", 10],
-        ["ava", 10],
-        ["fab", 1],
-        ["embraer", 2],
-        ["dal", 2],
-        ["fdx", 2],
-        ["aal", 2]
+     ["TAM", 3],
+      ["GLO", 3],
+      ["AZU", 2],
+      ["EMBRAER", 1],
+      ["UPS", 1],
+	  ["FDX", 1],
+      ["SA-ACA", 1],
+      ["SA-AAL", 1],
+	  ["SA-AEA", 1],
+	  ["SA-AFR", 1],
+	  ["SA-AMX", 1],
+	  ["SA-AVA", 1],
+	  ["SA-AZA", 1],
+	  ["SA-BAW", 1],
+	  ["SA-CCA", 1],
+	  ["SA-DLH", 1],
+	  ["SA-IBE", 1],
+	  ["SA-KAL", 1],
+	  ["SA-KLM", 1],
+	  ["SA-LAN", 1],
+	  ["SA-UAE", 1],
+	  ["SA-UAL", 1],
+	  ["FAB", 1]
       ],
-      "frequency": [5, 20],
+      "frequency": [10, 30],
       "altitude": [6000, 7000]
     }
   ]
