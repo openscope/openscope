@@ -243,6 +243,24 @@ var Aircraft=Fiber.extend(function() {
       if (this.category == "departure")
         this.inside_ctr = true;
     },
+    // Ignore fixes further away from the origin than the aircraft
+    setArrivalFixes: function(fixes) {
+      var aircraft_dist = distance2d(this.position, [0,0]);
+      var closerFixes = fixes.filter( function(f) {
+        var fix = airport_get().getFix(f);
+        return distance2d(fix, [0,0]) < aircraft_dist;
+      });
+      // Revert to heading mode if all fixes are eliminated (eg. spawn close to origin)
+      if(closerFixes.length == 0) {
+        this.requested.navmode = "heading";
+        this.requested.heading = Math.atan2(this.position[0], this.position[1]) + Math.PI;
+      } else {
+        this.requested.navmode = "fix";
+        this.requested.fix = closerFixes;
+        this.requested.turn = null;
+      }
+    },
+    
     cleanup: function() {
       this.html.remove();
     },
@@ -824,11 +842,8 @@ var Aircraft=Fiber.extend(function() {
       else              this.requested.speed = this.model.speed.cruise;
 
       if(data.destination) this.destination = data.destination;
-      if(data.fixes && data.fixes.length > 0) {
-        this.requested.fix = data.fixes.slice();
-        this.requested.turn = null;
-        this.requested.navmode = "fix";
-      }
+      if(data.fixes && data.fixes.length > 0)
+        this.setArrivalFixes(data.fixes);
 
       if(this.category == "departure" && this.isLanded()) {
         this.speed = 0;
