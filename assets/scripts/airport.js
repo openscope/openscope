@@ -128,6 +128,7 @@ zlsa.atc.ArrivalBase = Fiber.extend(function(base) {
       this.altitude = [1000, 1000];
       this.frequency = [0, 0];
       this.heading = null;
+      this.fixes = [];
       this.radial = [0, 0];
       this.speed = 200;
 
@@ -140,6 +141,7 @@ zlsa.atc.ArrivalBase = Fiber.extend(function(base) {
     // altitude: {array or integer} Altitude in feet or range of altitudes
     // frequency: {array or integer} Frequency in aircraft/hour or range of frequencies
     // heading: {array or integer} Heading in degrees or range of headings
+    // fixes: {array} Set of fixes to traverse (eg. for STARs)
     // radial: {array or integer} Radial in degrees or range of radials
     // speed: {integer} Speed in knots of spawned aircraft
     parse: function(options) {
@@ -161,6 +163,8 @@ zlsa.atc.ArrivalBase = Fiber.extend(function(base) {
         this.heading[0] = radians(options.heading[0]);
         this.heading[1] = radians(options.heading[1]);
       }
+      if (options.fixes)
+        this.fixes = options.fixes;
 
       if (typeof options.radial == typeof 0)
         this.radial = [radians(options.radial), radians(options.radial)];
@@ -224,6 +228,7 @@ zlsa.atc.ArrivalBase = Fiber.extend(function(base) {
         airline:   choose_weight(this.airlines),
         altitude:  altitude,
         heading:   heading,
+        fixes:     this.fixes,
         message:   message,
         position:  position,
         speed:     this.speed
