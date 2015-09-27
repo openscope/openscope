@@ -209,7 +209,7 @@ zlsa.atc.ArrivalBase = Fiber.extend(function(base) {
       if(start_flag) // At start, spawn aircraft closer but outside ctr_radius
         distance = this.airport.ctr_radius + random(10, 20);
       else
-        distance = 2*this.airport.ctr_radius - random(2, 18);
+        distance = 2*this.airport.ctr_radius - 2;
       var position = [sin(radial) * distance, cos(radial) * distance];
 
       var altitude = random(this.altitude[0] / 1000,
