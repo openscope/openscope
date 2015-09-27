@@ -248,6 +248,8 @@ var Aircraft=Fiber.extend(function() {
       var aircraft_dist = distance2d(this.position, [0,0]);
       var closerFixes = fixes.filter( function(f) {
         var fix = airport_get().getFix(f);
+        if( fix == null )
+          throw "Fix not found: " + f;
         return distance2d(fix, [0,0]) < aircraft_dist;
       });
       // Revert to heading mode if all fixes are eliminated (eg. spawn close to origin)
