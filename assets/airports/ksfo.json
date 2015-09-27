@@ -109,7 +109,8 @@
   },
   "arrivals": [
     {
-      "radial":    45,
+      "radial":   45,
+      "heading":  170,
       "speed":    250,
       "fixes":   ["MOVDD", "RISTI", "CEDES", "ARCHI"],
       "airlines":  [

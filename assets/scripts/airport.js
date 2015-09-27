@@ -63,28 +63,26 @@ zlsa.atc.ArrivalDefault = Fiber.extend(function(base) {
 
       if(Math.random() > 0.3) {
         delay = Math.random() * 0.1;
-        game_timeout(this.spawnAircraft, delay, this, [null, false]);
+        game_timeout(this.spawnAircraft, delay, this, [false, false]);
       }
       this.timeout =
-        game_timeout(this.spawnAircraft, delay, this, [random(0.5, 0.8), true]);
+        game_timeout(this.spawnAircraft, delay, this, [true, true]);
     },
 
     // Create an aircraft and schedule next arrival if appropriate
     spawnAircraft: function(args) {
-      var offset  = args[0];
-      var timeout = args[1];
-      if(timeout == undefined) timeout=false;
-      if(!offset) offset = 1;
+      var start_flag   = args[0];
+      var timeout_flag = args[1] || false;
 
       // Set heading within 15 degrees of specified
       var wobble   = radians(15);
       var radial   = this.radial + random(-wobble, wobble);
-
-      // Set location 2-18km inside of the radar coverage line
-      var distance = (2*this.airport.ctr_radius - 18) * offset + random(16);
-      var position = [0, 0];
-      position[0] += sin(radial) * distance;
-      position[1] += cos(radial) * distance;
+      var distance;
+      if(start_flag) // At start, spawn aircraft closer but outside ctr_radius
+        distance = this.airport.ctr_radius + random(10, 20);
+      else
+        distance = 2*this.airport.ctr_radius - random(2, 18);
+      var position = [sin(radial) * distance, cos(radial) * distance];
 
       var altitude = random(this.altitude[0] / 1000,
                             this.altitude[1] / 1000);
@@ -104,12 +102,12 @@ zlsa.atc.ArrivalDefault = Fiber.extend(function(base) {
         speed:     this.speed
       });
 
-      if(timeout) {
+      if(timeout_flag) {
         this.timeout =
           game_timeout(this.spawnAircraft,
                        this.nextInterval(),
                        this,
-                       [null, true]);
+                       [false, true]);
       }
     },
     nextInterval: function() {
@@ -188,33 +186,31 @@ zlsa.atc.ArrivalBase = Fiber.extend(function(base) {
 
       if(Math.random() > 0.3) {
         delay = Math.random() * 0.1;
-        game_timeout(this.spawnAircraft, delay, this, [null, false]);
+        game_timeout(this.spawnAircraft, delay, this, [false, false]);
       }
       this.timeout =
-        game_timeout(this.spawnAircraft, delay, this, [random(0.5, 0.8), true]);
+        game_timeout(this.spawnAircraft, delay, this, [true, true]);
     },
 
     // Create an aircraft and schedule next arrival if appropriate
     spawnAircraft: function(args) {
-      var offset  = args[0];
-      var timeout = args[1];
-      if(timeout == undefined) timeout=false;
-      if(!offset) offset = 1;
+      var start_flag   = args[0];
+      var timeout_flag = args[1] || false;
 
       // Set heading within 15 degrees of specified
       var radial   = random(this.radial[0], this.radial[1])
 
-      var heading = null
+      var heading = null;
       if (this.heading)
         heading = random(this.heading[0], this.heading[1]);
       else
         heading = radial + Math.PI;
-
-      // Set location 2km inside of the radar coverage line
-      var distance = (2*this.airport.ctr_radius - 2) * offset;
-      var position = [0, 0];
-      position[0] += sin(radial) * distance;
-      position[1] += cos(radial) * distance;
+      var distance;
+      if(start_flag) // At start, spawn aircraft closer but outside ctr_radius
+        distance = this.airport.ctr_radius + random(10, 20);
+      else
+        distance = 2*this.airport.ctr_radius - random(2, 18);
+      var position = [sin(radial) * distance, cos(radial) * distance];
 
       var altitude = random(this.altitude[0] / 1000,
                             this.altitude[1] / 1000);
@@ -234,7 +230,7 @@ zlsa.atc.ArrivalBase = Fiber.extend(function(base) {
         speed:     this.speed
       });
 
-      if(timeout) {
+      if(timeout_flag) {
         this.timeout =
           game_timeout(this.spawnAircraft,
                        this.nextInterval(),
