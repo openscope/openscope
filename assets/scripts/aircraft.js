@@ -1171,7 +1171,7 @@ var Aircraft=Fiber.extend(function() {
 
         // TURNING
 
-        if(this.altitude > 10) {
+        if(this.altitude > 10 && this.heading != this.target.heading) {
           // Perform standard turns 3 deg/s or 25 deg bank, whichever
           // requires less bank angle.
           // Formula based on http://aviation.stackexchange.com/a/8013
