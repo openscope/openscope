@@ -2,6 +2,7 @@
 /*global prop:true, km:false, crange:false, clamp:false, lpad:false, airport_get:false, game_time:false, game_paused:false, time:false, round:false  */
 
 function canvas_init_pre() {
+  "use strict";
   prop.canvas={};
 
   prop.canvas.contexts={};
@@ -21,6 +22,7 @@ function canvas_init_pre() {
 }
 
 function canvas_init() {
+  "use strict";
   canvas_add("navaids");
   canvas_add("info");
   canvas_add("aircraft");
@@ -28,6 +30,7 @@ function canvas_init() {
 }
 
 function canvas_adjust_hidpi() {
+  "use strict";
   var dpr = window.devicePixelRatio || 1;
   console.log("devicePixelRatio:"+dpr);
   if(dpr > 1) {
@@ -45,6 +48,7 @@ function canvas_adjust_hidpi() {
 }
 
 function canvas_complete() {
+  "use strict";
   setTimeout(function() {
     prop.canvas.dirty = true;
   }, 500);
@@ -52,6 +56,7 @@ function canvas_complete() {
 }
 
 function canvas_resize() {
+  "use strict";
   if(prop.canvas.resize) {
     prop.canvas.size.width  = $(window).width();
     prop.canvas.size.height = $(window).height();
@@ -67,19 +72,23 @@ function canvas_resize() {
 }
 
 function canvas_add(name) {
+  "use strict";
   $("#canvases").append("<canvas id='"+name+"-canvas'></canvas>");
   prop.canvas.contexts[name]=$("#"+name+"-canvas").get(0).getContext("2d");
 }
 
 function canvas_get(name) {
+  "use strict";
   return(prop.canvas.contexts[name]);
 }
 
 function canvas_clear(cc) {
+  "use strict";
   cc.clearRect(0,0,prop.canvas.size.width,prop.canvas.size.height);
 }
 
 function canvas_should_draw() {
+  "use strict";
   var elapsed = time() - prop.canvas.last;
   if(elapsed > (1/prop.game.speedup)) {
     prop.canvas.last = time();
@@ -91,6 +100,7 @@ function canvas_should_draw() {
 // DRAW
 
 function canvas_draw_runway(cc, runway, mode) {
+  "use strict";
   var length2 = round(km(runway.length / 2));
   var angle   = runway.angle;
 
@@ -139,6 +149,7 @@ function canvas_draw_runway(cc, runway, mode) {
 }
 
 function canvas_draw_runway_label(cc, runway) {
+  "use strict";
   var length2 = round(km(runway.length / 2)) + 0.5;
   var angle   = runway.angle;
 
@@ -167,6 +178,7 @@ function canvas_draw_runway_label(cc, runway) {
 }
 
 function canvas_draw_runways(cc) {
+  "use strict";
   cc.strokeStyle = "rgba(255, 255, 255, 0.4)";
   cc.fillStyle   = "rgba(255, 255, 255, 0.4)";
   cc.lineWidth   = 4;
@@ -185,6 +197,7 @@ function canvas_draw_runways(cc) {
 }
 
 function canvas_draw_runway_labels(cc) {
+  "use strict";
   cc.fillStyle   = "rgba(255, 255, 255, 0.8)";
   var airport=airport_get();
   for(var i=0;i<airport.runways.length;i++) {
@@ -195,6 +208,7 @@ function canvas_draw_runway_labels(cc) {
 }
 
 function canvas_draw_scale(cc) {
+  "use strict";
   cc.fillStyle   = "rgba(255, 255, 255, 0.8)";
   cc.strokeStyle = "rgba(255, 255, 255, 0.8)";
 
@@ -220,6 +234,7 @@ function canvas_draw_scale(cc) {
 }
 
 function canvas_draw_fix(cc, name, fix) {
+  "use strict";
   cc.beginPath();
   cc.moveTo( 0, -5);
   cc.lineTo( 4,  3);
@@ -233,6 +248,7 @@ function canvas_draw_fix(cc, name, fix) {
 }
 
 function canvas_draw_fixes(cc) {
+  "use strict";
   cc.strokeStyle = "rgba(255, 255, 255, 0.4)";
   cc.fillStyle   = "rgba(255, 255, 255, 0.4)";
   cc.lineWidth   = 2;
@@ -248,6 +264,7 @@ function canvas_draw_fixes(cc) {
 }
 
 function canvas_draw_separation_indicator(cc, aircraft) {
+  "use strict";
   // Draw a trailing indicator 2.5 NM (4.6km) behind landing aircraft to help with traffic spacing
   var rwy = airport_get().getRunway(aircraft.requested.runway);
   var angle = rwy.getAngle(aircraft.requested.runway);
@@ -262,6 +279,7 @@ function canvas_draw_separation_indicator(cc, aircraft) {
 }
 
 function canvas_draw_aircraft_departure_window(cc, aircraft) {
+  "use strict";
   cc.save();
   cc.strokeStyle = "rgba(128, 255, 255, 0.9)";
   cc.beginPath();
@@ -276,6 +294,7 @@ function canvas_draw_aircraft_departure_window(cc, aircraft) {
 }
 
 function canvas_draw_aircraft(cc, aircraft) {
+  "use strict";
   var almost_match = false;
   var match        = false;
 
@@ -405,6 +424,7 @@ function canvas_draw_aircraft(cc, aircraft) {
 
 // Run physics updates into the future, draw future track
 function canvas_draw_future_track(cc, aircraft) {
+  "use strict";
   var twin = $.extend(true, {}, aircraft);
   twin.projected = true;
   var save_delta = prop.game.delta;
@@ -461,6 +481,7 @@ function canvas_draw_future_track(cc, aircraft) {
 // Draw dashed line from last coordinate of future track through
 // any later requested fixes.
 function canvas_draw_future_track_fixes( cc, aircraft, future_track) {
+  "use strict";
   if (aircraft.requested.fix.length === 0) return;
   var start = future_track.length - 1;
   var x = km(future_track[start][0]) + prop.canvas.panX;
@@ -478,6 +499,7 @@ function canvas_draw_future_track_fixes( cc, aircraft, future_track) {
 }
 
 function canvas_draw_all_aircraft(cc) {
+  "use strict";
   cc.fillStyle   = "rgba(224, 224, 224, 1.0)";
   cc.strokeStyle = "rgba(224, 224, 224, 1.0)";
   cc.lineWidth   = 2;
@@ -491,6 +513,7 @@ function canvas_draw_all_aircraft(cc) {
 }
 
 function canvas_draw_info(cc, aircraft) {
+  "use strict";
 
   if(!aircraft.isVisible()) return;
 
@@ -707,6 +730,7 @@ function canvas_draw_info(cc, aircraft) {
 }
 
 function canvas_draw_all_info(cc) {
+  "use strict";
   for(var i=0;i<prop.aircraft.list.length;i++) {
     cc.save();
     canvas_draw_info(cc, prop.aircraft.list[i]);
@@ -715,6 +739,7 @@ function canvas_draw_all_info(cc) {
 }
 
 function canvas_draw_compass(cc) {
+  "use strict";
   cc.translate(round(prop.canvas.size.width/2), round(prop.canvas.size.height/2));
   var size    = 80;
   var size2   = size / 2;
@@ -772,6 +797,7 @@ function canvas_draw_compass(cc) {
 }
 
 function canvas_draw_ctr(cc) {
+  "use strict";
   cc.translate(round(prop.canvas.size.width/2), round(prop.canvas.size.height/2));
   cc.translate(prop.canvas.panX, prop.canvas.panY);
   cc.fillStyle = "rgba(200, 255, 200, 0.02)";
@@ -803,6 +829,7 @@ function canvas_draw_ctr(cc) {
 }
 
 function canvas_update_post() {
+  "use strict";
   var elapsed = game_time() - airport_get().start;
   var alpha   = crange(0.1, elapsed, 0.4, 0, 1);
 
