@@ -305,7 +305,6 @@ function canvas_draw_aircraft(cc, aircraft) {
   dpr = window.devicePixelRatio || 1;
   if (dpr > 1) 
     trailling_length *= round(dpr);
-  cc.restore();
 
   cc.save();
   if (!aircraft.inside_ctr)
@@ -323,7 +322,6 @@ function canvas_draw_aircraft(cc, aircraft) {
   }
   cc.restore();
 
-  cc.save();
   if(aircraft.position_history.length > trailling_length) aircraft.position_history = aircraft.position_history.slice(aircraft.position_history.length - trailling_length, aircraft.position_history.length);
 
   if( aircraft.isPrecisionGuided() && aircraft.altitude > 1000) {
