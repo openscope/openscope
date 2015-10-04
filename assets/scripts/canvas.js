@@ -35,8 +35,8 @@ function canvas_adjust_hidpi() {
   console.log("devicePixelRatio:"+dpr);
   if(dpr > 1) {
     var hidefCanvas = $("#navaids-canvas").get(0);
-    var w = $(hidefCanvas).width();
-    var h = $(hidefCanvas).height();
+    var w = prop.canvas.size.width;
+    var h = prop.canvas.size.height;
     $(hidefCanvas).attr('width', w * dpr);
     $(hidefCanvas).attr('height', h * dpr);
     $(hidefCanvas).css('width', w );
