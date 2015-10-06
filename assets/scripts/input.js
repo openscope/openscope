@@ -21,16 +21,18 @@ function input_init_pre() {
 }
 
 function input_init() {
-
+  // For firefox see: https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/keyCode
+  var is_firefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
   $(window).keydown(function(e) {
     if(e.which == 27) {
       if(prop.tutorial.open) tutorial_close();
       else if($("#airport-switch").hasClass("open")) ui_airport_close();
     }
-    if(e.which == 189) {
+    // Minus key to zoom out, plus to zoom in
+    if(e.which == 189 || (is_firefox && e.which == 173)) {
       ui_zoom_out();
       return false;
-    } else if(e.which == 187) {
+    } else if(e.which == 187 || (is_firefox && e.which == 61)) {
       if(e.shiftKey) {
         ui_zoom_in();
       } else {
