@@ -733,7 +733,11 @@ var Aircraft=Fiber.extend(function() {
 
         if(this.requested.heading == null)
           this.requested.heading = runway.getAngle(this.requested.runway) + Math.PI;
-        return ["ok", "cleared for takeoff", ""];
+        //
+        var wind = airport_get().getWind();
+        var wind_dir = round(degrees(wind.angle));
+        return ["ok", "winds " + wind_dir + " at " + round(wind.speed) + 
+            " knots, runway " + radio_runway(this.requested.runway) + " cleared for takeoff"];
       } else {
         var waiting = runway.isWaiting(this, this.requested.runway);
         return ["fail", "number "+waiting+" behind "+runway.waiting[runway.getEnd(this.requested.runway)][waiting-1].getRadioCallsign(), ""];
@@ -742,7 +746,6 @@ var Aircraft=Fiber.extend(function() {
     },
     runLanding: function(data) {
       var runway = airport_get().getRunway(data);
-
       if(!runway) {
         if(!data) return ["fail", "runway not understood", "say again"];
         else      return ["fail", "no runway " + radio_runway(data), "say again"];
@@ -757,12 +760,13 @@ var Aircraft=Fiber.extend(function() {
       this.requested.turn   = null;
       //this.requested.speed  = null;
       this.requested.start_speed = this.speed;
-
-      return ["ok", "land runway " + radio_runway(data) + " at " + airport_get().radio];
+      var wind = airport_get().getWind();
+      var wind_dir = round(degrees(wind.angle));
+      return ["ok", "winds " + wind_dir + " at " + round(wind.speed) + 
+          " knots, runway " + radio_runway(this.requested.runway) + " cleared to land" ];
 
     },
     runAbort: function(data) {
-
       if(this.mode == "taxi") {
         this.mode = "apron";
         this.taxi_start = 0;
