@@ -824,7 +824,7 @@ function airport_init() {
   airport_load("ksfo");
   airport_load("kmsp");
   airport_load("kjfk");
-  // airport_load("klax");
+  airport_load("klax");
 //  airport_load("ksna");
 
   airport_load("ebbr");
