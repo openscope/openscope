@@ -1488,6 +1488,7 @@ function aircraft_init() {
   // BOEING
   aircraft_load("b734");
   aircraft_load("b735");
+  aircraft_load("b736");
   aircraft_load("b737");
   aircraft_load("b738");
   aircraft_load("b739");
@@ -1541,9 +1542,13 @@ function aircraft_init() {
   
 }
 
-function aircraft_generate_callsign(airline) {
-  var callsign_length = airline_get(airline).callsign.length;
-  var alpha           = airline_get(airline).callsign.alpha;
+function aircraft_generate_callsign(airline_name) {
+  console.log("aircraft_generate_callsign:" + airline_name );
+  var airline = airline_get(airline_name);
+  if( !airline )
+    throw "Airline not found:" + airline_name;
+  var callsign_length = airline.callsign.length;
+  var alpha           = airline.callsign.alpha;
   var callsign        = "";
 
   var list = "0123456789";
