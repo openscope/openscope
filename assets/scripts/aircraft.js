@@ -1357,8 +1357,6 @@ var Aircraft=Fiber.extend(function() {
       altitude.removeClass("runway hold");
       speed.removeClass("runway");
 
-      var title = "";
-
       if(this.requested.runway) {
         heading.addClass("runway");
         heading.text(this.requested.runway);
@@ -1420,11 +1418,6 @@ var Aircraft=Fiber.extend(function() {
         heading.text("hold "+this.requested.turn);
         heading.addClass("hold");
       }
-
-      heading.prop("title",  title);
-      altitude.prop("title", title);
-      speed.prop("title", title);
-
     },
 
     updateAuto: function() {
