@@ -104,7 +104,7 @@
       "altitude":  [7000, 9000]
     },
     {
-      "radial":    360,                       HERE!!!!!!!!!!!
+      "radial":    360,
       "heading":   180,
       "airlines":  [
         ["afl", 6],
