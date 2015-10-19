@@ -1,0 +1,15 @@
+{
+  "name": "Norwegian Air Shuttle",
+  "callsign": {
+    "name": "Nor Shuttle",
+    "length": 3
+  },
+  "aircraft": [
+    ["B733", 5 ],
+
+    ["B738", 90 ],
+
+    ["B788", 8 ]
+
+  ]
+}
