@@ -24,9 +24,6 @@ function canvas_init_pre() {
 function canvas_init() {
   "use strict";
   canvas_add("navaids");
-  canvas_add("info");
-  canvas_add("aircraft");
-  canvas_add("compass");
 }
 
 function canvas_adjust_hidpi() {
@@ -901,6 +898,73 @@ function canvas_update_post() {
     canvas_draw_scale(cc);
     cc.restore();
 
+    cc.save();
+    cc.globalAlpha = alpha;
+    canvas_draw_directions(cc);
+    cc.restore();
+
     prop.canvas.dirty = false;
   }
+}
+
+function canvas_draw_directions(cc) {
+  if (game_paused())
+    return;
+
+  var callsign = prop.input.callsign.toUpperCase();
+  if (callsign.length === 0) {
+    return;
+  }
+
+  // Get the selected aircraft.
+  var aircraft = prop.aircraft.list.filter(function(p) {
+    return p.isVisible() && p.getCallsign().toUpperCase() === callsign;
+  })[0];
+  if (!aircraft) {
+    return;
+  }
+
+  var pos = to_canvas_pos(aircraft.position);
+  var rectPos = [0, 0];
+  var rectSize = [prop.canvas.size.width, prop.canvas.size.height];
+
+  cc.save();
+  cc.strokeStyle = "rgba(224, 224, 224, 0.7)";
+  cc.fillStyle = "rgb(255, 255, 255)";
+  cc.textAlign    = "center";
+  cc.textBaseline = "middle";
+
+  for (var alpha = 0; alpha < 360; alpha++) {
+    var dir = [sin(radians(alpha)), -cos(radians(alpha))];
+    var p = positive_intersection_with_rect(pos, dir, rectPos, rectSize);
+    if (p) {
+      var markLen = (alpha % 5 === 0 ?
+                     (alpha % 10 === 0 ? 16 : 12) :
+                     8);
+      var markWeight = (alpha % 30 === 0 ?  2 : 1);
+
+      var dx = - markLen * dir[0];
+      var dy = - markLen * dir[1];
+
+      cc.lineWidth = markWeight;
+      cc.beginPath();
+      cc.moveTo(p[0], p[1]);
+      var markX = p[0] + dx;
+      var markY = p[1] + dy;
+      cc.lineTo(markX, markY);
+      cc.stroke();
+
+      if (alpha % 10 === 0) {
+        cc.font = (alpha % 30 === 0 ?
+                   "bold 10px monoOne, monospace" :
+                   "10px monoOne, monospace");
+        var text = "" + alpha;
+        var textWidth = cc.measureText(text).width;
+        cc.fillText(text,
+                    markX - dir[0] * (textWidth / 2 + 4),
+                    markY - dir[1] * 7);
+      }
+    }
+  }
+  cc.restore();
 }
