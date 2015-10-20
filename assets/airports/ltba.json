@@ -1,0 +1,164 @@
+{
+  "name": "Atatürk International Airport  (WIP)",
+  "level": "hard",
+  "radio": "Istanbul",
+  "icao": "LTBA",
+  "magnetic_north": 3.6,
+  "position": ["N40.976898", "E28.814600"],
+  "ctr_radius": 80,
+  "wind": {
+    "angle": 025,
+    "speed": 6
+  },
+  "fixes": {
+    
+    "IST": ["N41.057201", "E28.806400"],
+    "CEK": ["N41.005798", "E28.528099"],
+    "BKZ": ["N41.126900", "E29.142799"],
+    "SBH": ["N40.899700", "E29.320400"],
+    "YAA": ["N40.474998", "E29.207500"]
+  },
+  "runways": [
+    {
+      "_reference":  "https://www.ourairports.com/airports/LTBA/pilot-info.html",
+      "name":         ["35R", "17L"],
+      "name_offset":  [[1, 0], [0, 0.4]],
+      "end":    [ ["N40.971388", "E28.815833"], ["N40.996333", "E28.808500"] ],
+      "angle":        354,
+      "length":       3,
+      "ils":          [true, true]
+    },
+    {
+      "name":         ["35L", "17R"],
+      "name_offset":  [[0, -0.2], [0, 0.4]],
+      "end":    [ ["N40.969333", "E28.807000"], ["N40.996333", "E28.806000"] ],
+      "angle":        354,
+      "length":       3,
+      "ils":          [true, true]
+    },
+    {
+      "name":         ["23", "5"],
+      "name_offset":  [[0, 0], [0, 0]],
+      "end":    [ ["N40.977833", "E28.836167"], ["N40.966333", "E28.811333"]],
+      "angle":        235,
+      "length":       2.3,
+      "ils":          [true, true]
+    }
+  ],
+  "departures": {
+    "airlines": [
+      ["aca", 4],
+      ["afl", 6],
+      ["baw", 4],
+      ["thy", 2],
+      ["dal", 4],
+      ["fdx", 7],
+      ["klm", 5],
+      ["tso", 11],
+      ["ups", 8],
+      ["fastga", 10],
+      ["lightga", 11]
+    ],
+    "destinations": [
+       20, 110, 150, 225, 295
+    ],
+    "frequency": [2, 5]
+  },
+  "arrivals": [
+    {
+      "radial":    90,
+      "heading":   270,
+      "airlines":  [
+        ["tso", 11],
+        ["lightga", 11],
+        ["afl", 6],
+        ["fastga", 10]
+      ],
+      "frequency": [5, 12],
+      "altitude":  [6000, 9000]
+    },
+    {
+      "radial":    180,
+      "heading":   360,
+      "airlines":  [
+        ["thy", 2],
+        ["fdx", 7],
+        ["lightga", 11]
+      ],
+      "frequency": [8, 10],
+      "altitude":  [5000, 7000]
+    },
+    {
+      "radial":    270,
+      "heading":   90,
+      "airlines":  [
+        ["aca", 4],
+        ["baw", 4],
+        ["thy", 2],
+        ["dal", 4],
+        ["fdx", 7],
+        ["klm", 5],
+        ["fastga", 10]
+      ],
+      "frequency": [5, 9],
+      "altitude":  [7000, 9000]
+    },
+    {
+      "radial":    360,
+      "heading":   180,
+      "airlines":  [
+        ["afl", 6],
+        ["baw", 4],
+        ["thy", 2],
+        ["dal", 4],
+        ["fdx", 7],
+        ["klm", 5],
+        ["tso", 11],
+        ["ups", 8],
+        ["fastga", 10]
+      ],
+      "frequency": [5, 10],
+      "altitude":  [5000, 8000]
+    },
+    {
+      "radial":    180,
+      "heading":   360,
+      "speed":     120,
+      "airlines":  [
+        ["lightga", 20]
+      ],
+      "frequency": [10, 20],
+      "altitude":  [3000, 5000]
+    },
+    {
+      "radial":    45,
+      "heading":   225,
+      "airlines":  [
+        ["ups", 8],
+        ["thy", 2],
+        ["fastga", 20]
+      ],
+      "frequency": [10, 15],
+      "altitude":  [7000, 9000]
+    },
+    {
+      "radial":    315,
+      "heading":   135,
+      "airlines":  [
+        ["afl", 6],
+        ["baw", 4],
+        ["thy", 2],
+        ["dal", 4],
+        ["fdx", 7],
+        ["klm", 5],
+        ["tso", 11],
+        ["ups", 8],
+        ["fastga", 10],
+        ["aca", 4],
+        ["lightga", 11]
+      ],
+      "frequency": [3, 5],
+      "altitude":  [6000, 8000]
+    }
+  ]
+}
