@@ -823,7 +823,39 @@ function canvas_draw_ctr(cc) {
   cc.arc(0, 0, airport_get().ctr_radius*prop.ui.scale*0.25, 0, Math.PI*2);
   cc.strokeStyle = "rgba(200, 255, 200, 0.1)";
   cc.stroke();
+}
 
+// Draw range rings for ENGM airport to assist in point merge
+function canvas_draw_engm_range_rings(cc) {
+  "use strict";
+  cc.strokeStyle = "rgba(200, 255, 200, 0.3)";
+  cc.setLineDash([3,6]);
+  canvas_draw_range_ring(cc, "BAVAD","GM428","GM432");
+  canvas_draw_range_ring(cc, "TITLA","GM418","GM422");
+  canvas_draw_range_ring(cc, "INSUV","GM403","GM416");
+  canvas_draw_range_ring(cc, "VALPU","GM410","GM402");
+}
+
+function canvas_draw_range_ring(cc, fix_origin, fix1, fix2) {
+  "use strict";
+  var arpt = airport_get();
+  var origin = arpt.getFix(fix_origin);
+  var f1 = arpt.getFix(fix1);
+  var f2 = arpt.getFix(fix2);
+  var minDist = Math.min( distance2d(origin, f1), distance2d(origin, f2));
+  var halfPI = Math.PI / 2;
+  var extend_ring = radians(10);
+  var start_angle = Math.atan2(f1[0] - origin[0], f1[1] - origin[1]) - halfPI - extend_ring;
+  var end_angle = Math.atan2(f2[0] - origin[0], f2[1] - origin[1]) - halfPI + extend_ring;
+  var x = round(km(origin[0])) + prop.canvas.panX;
+  var y = -round(km(origin[1])) + prop.canvas.panY;
+  // 5NM = 9.27km
+  var radius = 9.27;
+  for( var i=0; i<4; i++) {
+    cc.beginPath();
+    cc.arc(x, y, km(minDist - (i*radius)), start_angle, end_angle);
+    cc.stroke();
+  }
 }
 
 function canvas_update_post() {
@@ -862,6 +894,14 @@ function canvas_update_post() {
     cc.save();
     canvas_draw_ctr(cc);
     cc.restore();
+    
+    // Special markings for ENGM point merge
+    if( airport_get().icao === "ENGM" ) {
+      cc.save();
+      cc.translate(round(prop.canvas.size.width/2), round(prop.canvas.size.height/2));
+      canvas_draw_engm_range_rings(cc);
+      cc.restore();
+    }
 
     // Compass
 
