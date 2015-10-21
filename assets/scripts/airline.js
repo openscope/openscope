@@ -28,6 +28,8 @@ function airline_init() {
   airline_load("LIGHTGA");
   airline_load("FASTGA");
   airline_load("ONE");
+  airline_load("SAS");
+  airline_load("NAX");
 
   // Cargo Airlines
   airline_load("FDX");

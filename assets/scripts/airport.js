@@ -830,6 +830,8 @@ function airport_init() {
   airport_load("ebbr");
   airport_load("eddh");
   airport_load("eham");
+  airport_load("engm");
+
 
 //  BRAZIL AIRPORTS
   airport_load("sbgr");
