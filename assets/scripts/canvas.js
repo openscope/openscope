@@ -1,5 +1,5 @@
 // jshint latedef:nofunc, undef:true, eqnull:true, eqeqeq:true, browser:true, jquery:true, devel:true
-/*global prop:true, km:false, crange:false, clamp:false, lpad:false, airport_get:false, game_time:false, game_paused:false, time:false, round:false  */
+/*global prop:true, km:false, crange:false, clamp:false, lpad:false, airport_get:false, game_time:false, game_paused:false, time:false, round:false, distance2d:false, radians:false  */
 
 function canvas_init_pre() {
   "use strict";
@@ -320,7 +320,7 @@ function canvas_draw_aircraft(cc, aircraft) {
   // Trailling
   var trailling_length = 12;
   var dpr = window.devicePixelRatio || 1;
-  if (dpr > 1) 
+  if (dpr > 1)
     trailling_length *= round(dpr);
 
   cc.save();
@@ -388,7 +388,7 @@ function canvas_draw_aircraft(cc, aircraft) {
 
     cc.restore();
   }
-  
+
   cc.translate(km(aircraft.position[0]) + prop.canvas.panX, -km(aircraft.position[1]) + prop.canvas.panY);
 
   if(!aircraft.hit) {
@@ -447,7 +447,7 @@ function canvas_draw_future_track(cc, aircraft) {
     lockedStroke   = "rgba(224, 128, 128, 1.0)";
   }
   cc.globalCompositeOperation = "screen";
-  
+
   cc.lineWidth = 2;
   cc.beginPath();
   var was_locked = false;
@@ -468,7 +468,7 @@ function canvas_draw_future_track(cc, aircraft) {
       }
       if( i === 0 )
         cc.moveTo(x, y);
-      else 
+      else
         cc.lineTo(x, y);
   }
   cc.stroke();
@@ -528,7 +528,7 @@ function canvas_draw_info(cc, aircraft) {
 
     var bar_width = width / 15;
     var bar_width2 = bar_width / 2;
-    
+
     var ILS_enabled = aircraft.requested.runway && aircraft.category === "arrival";
     var lock_size = height / 3;
     var lock_offset = lock_size / 8;
@@ -538,7 +538,7 @@ function canvas_draw_info(cc, aircraft) {
   	//angle for the clipping mask
     var a = point1 - lock_offset;
     var b = bar_width2;
-  	//var c = Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2));  
+  	//var c = Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2));
     var clipping_mask_angle = Math.atan(b / a);
 
     var match        = false;
@@ -894,7 +894,7 @@ function canvas_update_post() {
     cc.save();
     canvas_draw_ctr(cc);
     cc.restore();
-    
+
     // Special markings for ENGM point merge
     if( airport_get().icao === "ENGM" ) {
       cc.save();
