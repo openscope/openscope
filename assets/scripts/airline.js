@@ -61,6 +61,8 @@ function airline_init() {
   airline_load("SA-UAL");
   
   airline_load("DLH");
+  
+  airline_load("THY");
 
 }
 

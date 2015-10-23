@@ -1545,8 +1545,10 @@ function aircraft_init() {
 function aircraft_generate_callsign(airline_name) {
   console.log("aircraft_generate_callsign:" + airline_name );
   var airline = airline_get(airline_name);
-  if( !airline )
-    throw "Airline not found:" + airline_name;
+  if(!airline) {
+    console.warn("Airline not found:" + airline_name);
+    return 'airline-' + airline_name + '-not-found';
+  }
   var callsign_length = airline.callsign.length;
   var alpha           = airline.callsign.alpha;
   var callsign        = "";
