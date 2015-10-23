@@ -1,0 +1,87 @@
+{
+  "name": "Munich Airport",
+  "level": "medium",
+  "radio": "Munich",
+  "icao": "EDDM",
+  "iata": "MUC",
+  "ctr_radius": 80,
+  "wind": {
+    "angle": 80,
+    "speed": 3
+  },
+  "runways":[
+    {
+      "name":        ["26L", "8R"],
+      "position":    [-1, -1],
+      "angle":       262,
+      "length":      4,
+      "delay":       [20, 20],
+      "ils":         [true, true]
+    },
+    {
+      "name":        ["26R", "8L"],
+      "position":    [1, 2],
+      "angle":       262,
+      "length":      4,
+      "delay":       [20, 20],
+      "ils":         [true, true]
+    }
+  ],
+  "fixes":{
+    "MAGAT": [ -40.5,  -3.8 ],
+    "BEGEN": [ -42.5,  -6.9 ],
+    "GUDEG": [ 42.5,  7.8 ],
+    "NELBI": [ 40.5,  4.8 ],
+    "DM030": [ -60,  10 ],
+    "SITKU": [ -54,  25 ],
+    "TEGBA": [ -64,  45 ],
+    "GIVMI": [ -61,  75 ],
+    "INPUD": [ -30,  65 ],
+    "EVIVA": [ -10,  67 ],
+    "DM035": [ -23,  42 ],
+    "ANKER": [ 29,  48 ],
+    "AKINI": [ 43,  90 ],
+    "LANDU": [ 75,  54 ],
+    "DM020": [ 70,  -25 ],
+    "ROTIN": [ 74,  -75 ],
+    "OBAXA": [ -15, -65 ],
+    "OBIKA": [ -32, -45 ],
+    "TILGO": [ -43, -44 ],
+    "MAH": [ -70, -20 ],
+    "MUN": [ 4, -38 ]
+  },
+  "departures": {
+    "airlines": ["BAW"],
+    "frequency": [1, 3]
+  },
+  "arrivals": [
+    {
+      "angle":    -45,
+      "heading":   270,
+      "airlines":  ["BAW"],
+      "frequency": [3, 5],
+      "altitude":  [4000, 6000]
+    },
+    {
+      "angle":     225,
+      "heading":   270,
+      "airlines":  ["BAW"],
+      "frequency": [3, 5],
+      "altitude":  [4000, 6000]
+    },
+    {
+      "angle":     45,
+      "heading":   90,
+      "airlines":  ["BAW"],
+      "frequency": [3, 5],
+      "altitude":  [4000, 6000]
+    },
+    {
+      "angle":     135,
+      "heading":   90,
+      "airlines":  ["BAW"],
+      "frequency": [3, 5],
+      "altitude":  [4000, 6000]
+    }
+  ]
+}

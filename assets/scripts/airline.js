@@ -12,6 +12,7 @@ function airline_init() {
   airline_load("AWE");
   airline_load("CESSNA");
   airline_load("ACA");
+
   airline_load("KLM");
   airline_load("KLC");
   airline_load("GLO");
@@ -59,6 +60,8 @@ function airline_init() {
   airline_load("SA-UAE");
   airline_load("SA-UAL");
   
+  airline_load("DLH");
+
 }
 
 function airline_load(icao) {
