@@ -825,7 +825,7 @@ function airport_init() {
   airport_load("kmsp");
   airport_load("kjfk");
   airport_load("klax");
-//  airport_load("ksna");
+  //  airport_load("ksna");
 
   airport_load("ebbr");
   airport_load("eddh");
@@ -833,12 +833,15 @@ function airport_init() {
   airport_load("engm");
   airport_load("eddm");
 
-//  BRAZIL AIRPORTS
+  //  BRAZIL AIRPORTS
   airport_load("sbgr");
   airport_load("sbgl");
 
-//  RUSSIA AIRPORTS
+  //  RUSSIA AIRPORTS
   airport_load("uudd");
+
+  airport_load("ltba");
+
 }
 
 function airport_ready() {
