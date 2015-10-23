@@ -845,7 +845,7 @@ function airport_init() {
 }
 
 function airport_ready() {
-  if(!('atc-last-airport' in localStorage) || !(localStorage['atc-last-airport'] in prop.airport.airports)) airport_set('kdbg');
+  if(!('atc-last-airport' in localStorage) || !(localStorage['atc-last-airport'] in prop.airport.airports)) airport_set('ksfo');
   else airport_set();
 }
 
