@@ -676,18 +676,20 @@ var Aircraft=Fiber.extend(function() {
         return ["fail", "fix name not understood"];
       }
       
-      var fix = airport_get().getFix(data);
+      var fixname = data.toUpperCase(),
+          fix = airport_get().getFix(fixname);
+
       if (!fix) {
-        return ["fail", "no fix found with name of " + data.toUpperCase(), "say again"];
+        return ["fail", "no fix found with name of " + fixname, "say again"];
       }
 
       // can issue this command if not in fix mode, then will run exactly as with "fix"
       // or with multiple fixes, then the sequence is rewritten
-      if (this.requested.navmode != "fix" || data.split(' ').length > 1) {
+      if (this.requested.navmode != "fix" || fixname.indexOf(' ').length > 0) {
         return this.runFix(data);
       }
       
-      var fix_pos = this.requested.fix.indexOf(fix);
+      var fix_pos = this.requested.fix.indexOf(fixname);
       if (fix_pos == -1) {
         return this.runFix(data);
       }
@@ -697,7 +699,7 @@ var Aircraft=Fiber.extend(function() {
       }
 
       this.requested.fix = this.requested.fix.slice(fix_pos);
-      return ["ok", "shortcut direct to" + fix.toUpperCase() + " then proceed continue"];
+      return ["ok", "shortcut direct to " + fixname + " then continue the sequence"];
     },
     runFix: function(data) {
       if(data.length == 0) {
