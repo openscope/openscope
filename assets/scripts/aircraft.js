@@ -695,11 +695,11 @@ var Aircraft=Fiber.extend(function() {
       }
 
       if (fix_pos == 0) {
-        return ["fail", "already going to "+ fix.toUpperCase()];
+        return ["fail", "already going to "+ fixname.toUpperCase()];
       }
 
       this.requested.fix = this.requested.fix.slice(fix_pos);
-      return ["ok", "cleared direct " + fix.toUpperCase()];
+      return ["ok", "cleared direct " + fixname.toUpperCase()];
     },
     runFix: function(data) {
       if(data.length == 0) {
