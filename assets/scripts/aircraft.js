@@ -690,11 +690,11 @@ var Aircraft=Fiber.extend(function() {
         return this.runFix(data);
       }
 
-      this.requested.fix = this.requested.fix.slice(fix_pos);
       if (fix_pos == 0) {
         return ["fail", "already going to "+ fix.toUpperCase()];
       }
 
+      this.requested.fix = this.requested.fix.slice(fix_pos);
       return ["ok", "shortcut direct to" + fix.toUpperCase() + " then proceed continue"];
     },
     runFix: function(data) {
