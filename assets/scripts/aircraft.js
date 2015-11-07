@@ -699,7 +699,7 @@ var Aircraft=Fiber.extend(function() {
       }
 
       this.requested.fix = this.requested.fix.slice(fix_pos);
-      return ["ok", "shortcut direct to " + fixname + " then continue the sequence"];
+      return ["ok", "cleared direct " + fix.toUpperCase()];
     },
     runFix: function(data) {
       if(data.length == 0) {
