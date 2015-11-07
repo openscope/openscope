@@ -523,7 +523,8 @@ var Aircraft=Fiber.extend(function() {
 
       else if("fix".indexOf(command) == 0)      command = "fix";
       else if("track".indexOf(command) == 0)    command = "fix";
-      else if("direct".indexOf(command) == 0)   command = "fix";
+      
+      else if("direct".indexOf(command) == 0)   command = "direct";
 
       else if("abort".indexOf(command) == 0)    command = "abort";
 
@@ -541,6 +542,8 @@ var Aircraft=Fiber.extend(function() {
         return this.runHold(data);
       else if(command == "fix")
         return this.runFix(data);
+      else if(command == "direct")
+        return this.runDirect(data);
       else if(command == "wait")
         return this.runWait(data);
       else if(command == "takeoff")
@@ -665,6 +668,34 @@ var Aircraft=Fiber.extend(function() {
         return ["ok", "after departure, will circle towards the " + this.requested.turn];
 
       return ["ok", "circling towards the " + this.requested.turn + " at " + this.requested.altitude + " feet"];
+    },
+    runDirect: function(data) {
+      if(data.length == 0) {
+        return ["fail", "fix name not understood"];
+      }
+      
+      var fix = airport_get().getFix(data);
+      if (!fix) {
+        return ["fail", "no fix found with name of " + data.toUpperCase(), "say again"];
+      }
+
+      // can issue this command if not in fix mode, then will run exactly as with "fix"
+      // or with multiple fixes, then the sequence is rewritten
+      if (this.requested.navmode != "fix" || data.split(' ').length > 1) {
+        return this.runFix(data);
+      }
+      
+      var fix_pos = this.requested.fix.indexOf(fix);
+      if (fix_pos == -1) {
+        return this.runFix(data);
+      }
+
+      this.requested.fix = this.requested.fix.slice(fix_pos);
+      if (fix_pos == 0) {
+        return ["fail", "already going to "+ fix.toUpperCase()];
+      }
+
+      return ["ok", "shortcut direct to" + fix.toUpperCase() + " then proceed continue"];
     },
     runFix: function(data) {
       if(data.length == 0) {
