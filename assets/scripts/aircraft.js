@@ -366,6 +366,7 @@ var Aircraft=Fiber.extend(function() {
       "fix",
       "track",
       "direct",
+      "dct",
 
       "takeoff",
       "to",
@@ -525,6 +526,7 @@ var Aircraft=Fiber.extend(function() {
       else if("track".indexOf(command) == 0)    command = "fix";
       
       else if("direct".indexOf(command) == 0)   command = "direct";
+      else if("dct".indexOf(command) == 0)      command = "direct";
 
       else if("abort".indexOf(command) == 0)    command = "abort";
 
