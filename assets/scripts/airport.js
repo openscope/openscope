@@ -348,6 +348,7 @@ zlsa.atc.DepartureBase = Fiber.extend(function(base) {
 
       this.airlines = [];
       this.destinations = [0];
+      this.sids = {};
       this.frequency = [0, 0];
 
       this.timeout = null;
@@ -366,6 +367,20 @@ zlsa.atc.DepartureBase = Fiber.extend(function(base) {
       else
         this.frequency = options.frequency;
 
+      if(options.sids) {
+        this.sids = options.sids;
+        for(var s in this.sids) {
+          if(this.sids.hasOwnProperty(s)) {
+            // Check each SID fix and log if not found in the airport fix list
+            var fixList = this.sids[s];
+            for(var i=0; i<fixList.length; i++) {
+              var fixname = fixList[i];
+              if(!this.airport.fixes[fixname])
+                console.log("SID " + s + " fix not found: " + fixname);
+            }
+          }
+        }
+      }
       if (options.destinations) {
         this.destinations = [];
         for (var i=0;i<options.destinations.length;i++) {
@@ -608,7 +623,7 @@ var Runway=Fiber.extend(function(base) {
         this.length     = coord_start.distanceTo(coord_end);
         this.angle      = Math.atan2(coord_end.x - coord_start.x,
                                      coord_end.y - coord_start.y);
-        console.log(this.angle, this.length);
+        //console.log(this.angle, this.length);
       }
 
       if(data.name) this.name = data.name;
@@ -794,6 +809,10 @@ var Airport=Fiber.extend(function() {
     getFix: function(name) {
       if(!name) return null;
       return this.fixes[name.toUpperCase()] || null;
+    },
+    getSID: function(name) {
+      if(!name) return null;
+      return this.departures.sids[name.toUpperCase()] || null;
     },
     getRunway: function(name) {
       if(!name) return null;

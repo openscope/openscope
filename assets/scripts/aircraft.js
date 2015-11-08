@@ -232,7 +232,7 @@ var Aircraft=Fiber.extend(function() {
       this.html.click(this, function(e) {
         input_select(e.data.getCallsign());
       });
-      
+
       this.html.dblclick(this, function (e) {
         prop.canvas.panX = 0 - round(km(e.data.position[0]));
         prop.canvas.panY = round(km(e.data.position[1]));
@@ -262,7 +262,7 @@ var Aircraft=Fiber.extend(function() {
         this.requested.turn = null;
       }
     },
-    
+
     cleanup: function() {
       this.html.remove();
     },
@@ -364,6 +364,7 @@ var Aircraft=Fiber.extend(function() {
       "circle",
 
       "fix",
+      "sid",
       "track",
       "direct",
 
@@ -398,7 +399,7 @@ var Aircraft=Fiber.extend(function() {
       for(var i=0;i<strings.length;i++) {
         var string = strings[i];
         var is_command = false;
-        
+
         if(previous.indexOf("t") == 0 && (string.indexOf("l") == 0 || string.indexOf("r") == 0)) {
           // Workaround:
           // Previous command was probably "t/turn".
@@ -524,6 +525,7 @@ var Aircraft=Fiber.extend(function() {
       else if("fix".indexOf(command) == 0)      command = "fix";
       else if("track".indexOf(command) == 0)    command = "fix";
       else if("direct".indexOf(command) == 0)   command = "fix";
+      else if("sid".indexOf(command) == 0)   command = "sid";
 
       else if("abort".indexOf(command) == 0)    command = "abort";
 
@@ -541,6 +543,8 @@ var Aircraft=Fiber.extend(function() {
         return this.runHold(data);
       else if(command == "fix")
         return this.runFix(data);
+      else if(command == "sid")
+        return this.runSID(data);
       else if(command == "wait")
         return this.runWait(data);
       else if(command == "takeoff")
@@ -693,6 +697,25 @@ var Aircraft=Fiber.extend(function() {
 
       return ["ok", "navigate to " + this.requested.fix.join(', ')];
     },
+    runSID: function(data) {
+      if(this.category != "departure") {
+        return ["fail", "inbound", "over"];
+      }
+      if(data.length == 0) {
+        return ["fail", "SID name not understood", "say again"];
+      }
+      var sidName = data;
+      var fixes = airport_get().getSID(sidName);
+      if(!fixes) {
+        return ["fail", "no SID found with name of " + sidName.toUpperCase(), "say again"];
+      }
+      this.cancelFix();
+      this.requested.fix = fixes.slice();
+      this.requested.navmode = "fix";
+      this.requested.turn = null;
+
+      return ["ok", "cleared to destination via " + sidName.toUpperCase()];
+    },
     runWait: function(data) {
       if(this.category != "departure") return ["fail", "inbound"];
 
@@ -736,7 +759,7 @@ var Aircraft=Fiber.extend(function() {
         //
         var wind = airport_get().getWind();
         var wind_dir = round(degrees(wind.angle));
-        return ["ok", "winds " + wind_dir + " at " + round(wind.speed) + 
+        return ["ok", "winds " + wind_dir + " at " + round(wind.speed) +
             " knots, runway " + radio_runway(this.requested.runway) + " cleared for takeoff"];
       } else {
         var waiting = runway.isWaiting(this, this.requested.runway);
@@ -762,7 +785,7 @@ var Aircraft=Fiber.extend(function() {
       this.requested.start_speed = this.speed;
       var wind = airport_get().getWind();
       var wind_dir = round(degrees(wind.angle));
-      return ["ok", "winds " + wind_dir + " at " + round(wind.speed) + 
+      return ["ok", "winds " + wind_dir + " at " + round(wind.speed) +
           " knots, runway " + radio_runway(this.requested.runway) + " cleared to land" ];
 
     },
@@ -1266,13 +1289,13 @@ var Aircraft=Fiber.extend(function() {
       for(var i=0;i<prop.aircraft.list.length;i++) {
         var other = prop.aircraft.list[i];
         if(this == other) continue;
-        
+
         // Fast 2D bounding box check to see if distance must be > 10; no violation can occur in this case.
         // Variation of:
         // http://gamedev.stackexchange.com/questions/586/what-is-the-fastest-way-to-work-out-2d-bounding-box-intersection
         dx = Math.abs(this.position[0] - other.position[0]);
         dy = Math.abs(this.position[1] - other.position[1]);
-        if((dx > 10) || (dy > 10)) continue; 
+        if((dx > 10) || (dy > 10)) continue;
         // Calculate the real distance for subsequent checks; reuse dx and dy
         var distance = Math.sqrt((dx*dx) + (dy*dy));
 
@@ -1316,8 +1339,8 @@ var Aircraft=Fiber.extend(function() {
             if ((distance < 1.067) && (altitude < 1500)) notice = true;
             // Warning at 3000 feet and 1000 feet vertical
             if ((distance < 0.914) && (altitude < 1000)) warning = true;
-          } else  { 
-            // Notice at 2.8nm horizontal and 1500 feet vertical 
+          } else  {
+            // Notice at 2.8nm horizontal and 1500 feet vertical
             if ((distance < 5.2) && (altitude < 1500)) notice = true;
             // Warning within 2.5nm horizontal and 1000 feet vertical
             if ((distance < 4.6) && (altitude < 1000)) warning = true;
@@ -1470,7 +1493,7 @@ function aircraft_init() {
   aircraft_load("an12");
   aircraft_load("an24");
   aircraft_load("an72");
-  
+
   // AIRBUS
   aircraft_load("a306");
   aircraft_load("a318");
@@ -1479,7 +1502,7 @@ function aircraft_init() {
   aircraft_load("a321");
   aircraft_load("a332");
   aircraft_load("a333");
-  
+
   aircraft_load("a343");
   aircraft_load("a346");
 
@@ -1496,7 +1519,7 @@ function aircraft_init() {
   aircraft_load("b744");
   aircraft_load("b748");
 
-  
+
   aircraft_load("b752");
   aircraft_load("b753");
 
@@ -1522,15 +1545,15 @@ function aircraft_init() {
 
   // CONCORDE...
   aircraft_load("conc");
-  
+
   // DOUGLAS
   aircraft_load("md11");
 	aircraft_load("dc10");
-	
+
  // FOKKER
 	aircraft_load("f100");
-	
-	
+
+
   // MISC
   aircraft_load("be36");
   aircraft_load("l410");
@@ -1539,7 +1562,7 @@ function aircraft_init() {
   aircraft_load("t154");
   aircraft_load("c130");
   aircraft_load("c5");
-  
+
 }
 
 function aircraft_generate_callsign(airline_name) {
@@ -1684,7 +1707,7 @@ function aircraft_update() {
 // Calculate the turn initiation distance for an aircraft to navigate between two fixes.
 // References:
 // - http://www.ohio.edu/people/uijtdeha/ee6900_fms_00_overview.pdf, Fly-by waypoint
-// - The Avionics Handbook, ch 15 
+// - The Avionics Handbook, ch 15
 function aircraft_turn_initiation_distance(a, fix) {
   if(a.requested.fix.length <= 1) // if there are no subsequent fixes, fly over 'fix'
     return 0;
