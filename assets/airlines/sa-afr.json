@@ -1,0 +1,16 @@
+{
+  "name": "Air France",
+  "icao": "AFR",
+  "callsign": {
+    "name": "Air France",
+    "length": 3
+  },
+
+  "aircraft": [
+
+    ["B744", 4 ],
+	["B772", 25 ],
+	["B773", 39 ],
+	["A332", 15 ]
+  ]
+}

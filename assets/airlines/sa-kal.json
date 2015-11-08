@@ -1,0 +1,15 @@
+{
+  "name": "Korean Air",
+  "icao": "KAL",
+  "callsign": {
+    "name": "KoreanAir",
+    "length": 3
+  },
+
+  "aircraft": [
+
+    ["B744", 30 ],
+	["B772", 17 ],
+	["B773", 17 ]
+  ]
+}

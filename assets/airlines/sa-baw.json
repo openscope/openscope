@@ -1,0 +1,15 @@
+{
+  "name": "British Airways",
+  "icao": "BAW",
+  "callsign": {
+    "name": "Speedbird",
+    "length": 3
+  },
+
+  "aircraft": [
+
+    ["B744", 42 ],
+	["B772", 46 ],
+	["B773", 12 ]
+  ]
+}

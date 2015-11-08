@@ -1,0 +1,16 @@
+{
+  "name": "American Airlines",
+  "icao": "AAL",
+  "callsign": {
+    "name": "American",
+    "length": 3
+  },
+
+  "aircraft": [
+
+    ["B763", 57 ],
+	["B772", 47 ],
+	["B773", 17 ],
+	["B788", 6 ]
+  ]
+}

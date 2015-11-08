@@ -1,0 +1,15 @@
+{
+  "name": "Iberia",
+  "icao": "IBE",
+  "callsign": {
+    "name": "Iberia",
+    "length": 3
+  },
+
+  "aircraft": [
+
+    ["A343", 7 ],
+	["A346", 17 ],
+	["A333", 8 ]
+  ]
+}

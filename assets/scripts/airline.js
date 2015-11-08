@@ -12,6 +12,7 @@ function airline_init() {
   airline_load("AWE");
   airline_load("CESSNA");
   airline_load("ACA");
+
   airline_load("KLM");
   airline_load("KLC");
   airline_load("GLO");
@@ -27,6 +28,9 @@ function airline_init() {
   airline_load("UTA");
   airline_load("LIGHTGA");
   airline_load("FASTGA");
+  airline_load("ONE");
+  airline_load("SAS");
+  airline_load("NAX");
 
   // Cargo Airlines
   airline_load("FDX");
@@ -37,6 +41,29 @@ function airline_init() {
   airline_load("RFF");
   airline_load("FAB");
   airline_load("USAF");
+  
+    // Internationals to South America
+  airline_load("SA-ACA");
+  airline_load("SA-AAL");
+  airline_load("SA-AEA");
+  airline_load("SA-AFR");
+  airline_load("SA-AMX");
+  airline_load("SA-AVA");
+  airline_load("SA-AZA");
+  airline_load("SA-BAW");
+  airline_load("SA-CCA");
+  airline_load("SA-DLH");
+  airline_load("SA-IBE");
+  airline_load("SA-KAL");
+  airline_load("SA-KLM");
+  airline_load("SA-LAN");
+  airline_load("SA-UAE");
+  airline_load("SA-UAL");
+  
+  airline_load("DLH");
+  
+  airline_load("THY");
+
 }
 
 function airline_load(icao) {

@@ -243,6 +243,26 @@ var Aircraft=Fiber.extend(function() {
       if (this.category == "departure")
         this.inside_ctr = true;
     },
+    // Ignore fixes further away from the origin than the aircraft
+    setArrivalFixes: function(fixes) {
+      var aircraft_dist = distance2d(this.position, [0,0]);
+      var closerFixes = fixes.filter( function(f) {
+        var fix = airport_get().getFix(f);
+        if( fix == null )
+          throw "Fix not found: " + f;
+        return distance2d(fix, [0,0]) < aircraft_dist;
+      });
+      // Revert to heading mode if all fixes are eliminated (eg. spawn close to origin)
+      if(closerFixes.length == 0) {
+        this.requested.navmode = "heading";
+        this.requested.heading = Math.atan2(this.position[0], this.position[1]) + Math.PI;
+      } else {
+        this.requested.navmode = "fix";
+        this.requested.fix = closerFixes;
+        this.requested.turn = null;
+      }
+    },
+    
     cleanup: function() {
       this.html.remove();
     },
@@ -503,7 +523,8 @@ var Aircraft=Fiber.extend(function() {
 
       else if("fix".indexOf(command) == 0)      command = "fix";
       else if("track".indexOf(command) == 0)    command = "fix";
-      else if("direct".indexOf(command) == 0)   command = "fix";
+      
+      else if("direct".indexOf(command) == 0)   command = "direct";
 
       else if("abort".indexOf(command) == 0)    command = "abort";
 
@@ -521,6 +542,8 @@ var Aircraft=Fiber.extend(function() {
         return this.runHold(data);
       else if(command == "fix")
         return this.runFix(data);
+      else if(command == "direct")
+        return this.runDirect(data);
       else if(command == "wait")
         return this.runWait(data);
       else if(command == "takeoff")
@@ -638,13 +661,41 @@ var Aircraft=Fiber.extend(function() {
       this.requested.navmode = "hold";
 
       this.cancelFix();
-      if(this.mode == "landing")
+      if(this.requested.navmode == "rwy")
         this.cancelLanding();
 
       if(this.isTakeoff())
         return ["ok", "after departure, will circle towards the " + this.requested.turn];
 
       return ["ok", "circling towards the " + this.requested.turn + " at " + this.requested.altitude + " feet"];
+    },
+    runDirect: function(data) {
+      if(data.length == 0) {
+        return ["fail", "fix name not understood"];
+      }
+      
+      var fix = airport_get().getFix(data);
+      if (!fix) {
+        return ["fail", "no fix found with name of " + data.toUpperCase(), "say again"];
+      }
+
+      // can issue this command if not in fix mode, then will run exactly as with "fix"
+      // or with multiple fixes, then the sequence is rewritten
+      if (this.requested.navmode != "fix" || data.split(' ').length > 1) {
+        return this.runFix(data);
+      }
+      
+      var fix_pos = this.requested.fix.indexOf(fix);
+      if (fix_pos == -1) {
+        return this.runFix(data);
+      }
+
+      this.requested.fix = this.requested.fix.slice(fix_pos);
+      if (fix_pos == 0) {
+        return ["fail", "already going to "+ fix.toUpperCase()];
+      }
+
+      return ["ok", "shortcut direct to" + fix.toUpperCase() + " then proceed continue"];
     },
     runFix: function(data) {
       if(data.length == 0) {
@@ -713,7 +764,11 @@ var Aircraft=Fiber.extend(function() {
 
         if(this.requested.heading == null)
           this.requested.heading = runway.getAngle(this.requested.runway) + Math.PI;
-        return ["ok", "cleared for takeoff", ""];
+        //
+        var wind = airport_get().getWind();
+        var wind_dir = round(degrees(wind.angle));
+        return ["ok", "winds " + wind_dir + " at " + round(wind.speed) + 
+            " knots, runway " + radio_runway(this.requested.runway) + " cleared for takeoff"];
       } else {
         var waiting = runway.isWaiting(this, this.requested.runway);
         return ["fail", "number "+waiting+" behind "+runway.waiting[runway.getEnd(this.requested.runway)][waiting-1].getRadioCallsign(), ""];
@@ -722,7 +777,6 @@ var Aircraft=Fiber.extend(function() {
     },
     runLanding: function(data) {
       var runway = airport_get().getRunway(data);
-
       if(!runway) {
         if(!data) return ["fail", "runway not understood", "say again"];
         else      return ["fail", "no runway " + radio_runway(data), "say again"];
@@ -737,12 +791,13 @@ var Aircraft=Fiber.extend(function() {
       this.requested.turn   = null;
       //this.requested.speed  = null;
       this.requested.start_speed = this.speed;
-
-      return ["ok", "land runway " + radio_runway(data) + " at " + airport_get().radio];
+      var wind = airport_get().getWind();
+      var wind_dir = round(degrees(wind.angle));
+      return ["ok", "winds " + wind_dir + " at " + round(wind.speed) + 
+          " knots, runway " + radio_runway(this.requested.runway) + " cleared to land" ];
 
     },
     runAbort: function(data) {
-
       if(this.mode == "taxi") {
         this.mode = "apron";
         this.taxi_start = 0;
@@ -824,6 +879,8 @@ var Aircraft=Fiber.extend(function() {
       else              this.requested.speed = this.model.speed.cruise;
 
       if(data.destination) this.destination = data.destination;
+      if(data.fixes && data.fixes.length > 0)
+        this.setArrivalFixes(data.fixes);
 
       if(this.category == "departure" && this.isLanded()) {
         this.speed = 0;
@@ -1048,7 +1105,9 @@ var Aircraft=Fiber.extend(function() {
         var fix = airport_get().getFix(this.requested.fix[0]);
         var a = this.position[0] - fix[0];
         var b = this.position[1] - fix[1];
-        if(distance2d(this.position, fix) < 0.5) {
+        distance_to_fix = distance2d(this.position, fix);
+        if((distance_to_fix < 0.5) ||
+          ((distance_to_fix < 10) && (distance_to_fix < aircraft_turn_initiation_distance(this, fix)))) {
 //          ui_log(this.getRadioCallsign() + " passed over " + this.requested.fix.toUpperCase() + ", will maintain heading " + heading_to_string(this.requested.heading) + " at " + this.requested.altitude + " feet");
           if(this.requested.fix.length > 1)
             this.requested.fix.splice(0, 1);
@@ -1143,7 +1202,7 @@ var Aircraft=Fiber.extend(function() {
 
         // TURNING
 
-        if(this.altitude > 10) {
+        if(this.altitude > 10 && this.heading != this.target.heading) {
           // Perform standard turns 3 deg/s or 25 deg bank, whichever
           // requires less bank angle.
           // Formula based on http://aviation.stackexchange.com/a/8013
@@ -1210,8 +1269,9 @@ var Aircraft=Fiber.extend(function() {
       }
 
       var angle = this.heading;
-      this.position[0] += (sin(angle) * (this.speed * 0.000514)) * game_delta();
-      this.position[1] += (cos(angle) * (this.speed * 0.000514)) * game_delta();
+      var scaleSpeed = this.speed * 0.000514444 * game_delta(); // knots to m/s
+      this.position[0] += sin(angle) * scaleSpeed;
+      this.position[1] += cos(angle) * scaleSpeed;
 
       this.distance = Math.sqrt(this.position[0]*this.position[0] +
                                 this.position[1]*this.position[1]);
@@ -1328,8 +1388,6 @@ var Aircraft=Fiber.extend(function() {
       altitude.removeClass("runway hold");
       speed.removeClass("runway");
 
-      var title = "";
-
       if(this.requested.runway) {
         heading.addClass("runway");
         heading.text(this.requested.runway);
@@ -1391,11 +1449,6 @@ var Aircraft=Fiber.extend(function() {
         heading.text("hold "+this.requested.turn);
         heading.addClass("hold");
       }
-
-      heading.prop("title",  title);
-      altitude.prop("title", title);
-      speed.prop("title", title);
-
     },
 
     updateAuto: function() {
@@ -1457,18 +1510,24 @@ function aircraft_init() {
   aircraft_load("a321");
   aircraft_load("a332");
   aircraft_load("a333");
+  
+  aircraft_load("a343");
+  aircraft_load("a346");
 
   aircraft_load("a388");
 
   // BOEING
   aircraft_load("b734");
   aircraft_load("b735");
+  aircraft_load("b736");
   aircraft_load("b737");
   aircraft_load("b738");
   aircraft_load("b739");
 
   aircraft_load("b744");
+  aircraft_load("b748");
 
+  
   aircraft_load("b752");
   aircraft_load("b753");
 
@@ -1514,9 +1573,15 @@ function aircraft_init() {
   
 }
 
-function aircraft_generate_callsign(airline) {
-  var callsign_length = airline_get(airline).callsign.length;
-  var alpha           = airline_get(airline).callsign.alpha;
+function aircraft_generate_callsign(airline_name) {
+  console.log("aircraft_generate_callsign:" + airline_name );
+  var airline = airline_get(airline_name);
+  if(!airline) {
+    console.warn("Airline not found:" + airline_name);
+    return 'airline-' + airline_name + '-not-found';
+  }
+  var callsign_length = airline.callsign.length;
+  var alpha           = airline.callsign.alpha;
   var callsign        = "";
 
   var list = "0123456789";
@@ -1645,4 +1710,29 @@ function aircraft_update() {
       i-=1;
     }
   }
+}
+
+// Calculate the turn initiation distance for an aircraft to navigate between two fixes.
+// References:
+// - http://www.ohio.edu/people/uijtdeha/ee6900_fms_00_overview.pdf, Fly-by waypoint
+// - The Avionics Handbook, ch 15 
+function aircraft_turn_initiation_distance(a, fix) {
+  if(a.requested.fix.length <= 1) // if there are no subsequent fixes, fly over 'fix'
+    return 0;
+  var speed = a.speed * 0.514444; // convert knots to m/s
+  var bank_angle = radians(25); // assume nominal bank angle of 25 degrees for all aircraft
+  var g = 9.81;                 // acceleration due to gravity, m/s*s
+  var nextfix = airport_get().getFix(a.requested.fix[1]);
+  var nominal_new_course = Math.atan2(nextfix[0] - fix[0], nextfix[1] - fix[1]);
+  if( nominal_new_course < 0 ) nominal_new_course += Math.PI * 2;
+  var current_heading = a.heading;
+  if (current_heading < 0) current_heading += Math.PI * 2;
+  var course_change = Math.abs(degrees(current_heading) - degrees(nominal_new_course));
+  if (course_change > 180) course_change = 360 - course_change;
+  course_change = radians(course_change);
+  //
+  var turn_radius = speed*speed / (g * Math.tan(bank_angle));  // meters
+  var l2 = speed; // meters, bank establishment in 1s
+  var turn_initiation_distance = turn_radius * Math.tan(course_change/2) + l2;
+  return turn_initiation_distance / 1000; // convert m to km
 }
