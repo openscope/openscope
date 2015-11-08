@@ -103,7 +103,7 @@
     "destinations": [
       45, 70, 210, 240, 310, 355
     ],
-    "frequency": [1, 25]
+    "frequency": [1, 4.5]
   },
   
   "arrivals":[
