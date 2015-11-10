@@ -107,65 +107,71 @@
   ],
   "departures": {
     "airlines": [
+      ["sbi", 96],
+      ["svr", 38],
+      ["afl", 27],
+      ["mov", 16],
+      ["rlu", 15],
       ["rff", 4],
-      ["orb", 4],
-      ["uta", 30],
-      ["svr", 30],
-      ["sbi", 50]
+      ["dlh", 7],
+      ["baw", 2]
     ],
     "destinations": [
       80, 153, 200, 245, 300, 345
     ],
-    "frequency": [1, 5]
+    "frequency": [1, 3.8]
   },
   "arrivals": [
     {
       "radial":   80,
       "airlines":  [
-        ["rff", 2],
-        ["orb", 4],
-        ["uta", 20],
-        ["svr", 10],
-        ["sbi", 35]
+        ["sbi", 96],
+        ["svr", 38],
+        ["afl", 15],
+        ["mov", 16],
+        ["rlu", 15],
+        ["rff", 5]
       ],
-      "frequency": [1, 3],
-      "altitude":  [4000, 6000]
+      "frequency": [1, 15],
+      "altitude":  [8000, 10000]
     },
     {
       "radial":   140,
       "airlines":  [
-        ["orb", 4],
-        ["uta", 20],
-        ["svr", 20],
-        ["sbi", 35]
+        ["sbi", 96],
+        ["svr", 38],
+        ["afl", 27],
+        ["mov", 16],
+        ["rlu", 15],
       ],
-      "frequency": [1, 10],
-      "altitude":  [4000, 6000]
+      "frequency": [1, 23],
+      "altitude":  [5000, 7000]
     },
     {
       "radial":    270,
       "heading":   0,
       "airlines":  [
-        ["rff", 2],
-        ["orb", 4],
-        ["uta", 20],
-        ["svr", 10],
-        ["sbi", 35]
+        ["sbi", 96],
+        ["svr", 38],
+        ["afl", 27],
+        ["mov", 16],
+        ["rlu", 15]
       ],
-      "frequency": [1, 7],
-      "altitude":  [5000, 8000]
+      "frequency": [1, 23],
+      "altitude":  [8000, 10000]
     },
     {
       "radial":   340,
       "airlines":  [
-        ["rff", 2],
-        ["orb", 4],
-        ["uta", 20],
-        ["svr", 10],
-        ["sbi", 25]
+        ["sbi", 96],
+        ["svr", 38],
+        ["afl", 27],
+        ["mov", 16],
+        ["rlu", 15],
+        ["rff", 4]
       ],
-      "frequency": [1, 10],
-      "altitude":  [6000, 7000]
+      "frequency": [1, 15],
+      "altitude":  [8000, 10000]
     }
   ]
 }
