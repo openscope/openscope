@@ -4,41 +4,71 @@
   "radio": "Galeao",
   "icao": "SBGL",
   "iata": "GIG",
-  "ctr_radius": 80,
+  "ctr_radius": 115,
+  "position": ["S22.813391", "W43.249464"],
   "wind": {
     "angle": 160,
     "speed": 3
   },
+    "_comment": "Waypoints base on real and virtual charts http://download.diegolima.org/Cartas%20Aereas/app_dep/sbgl.pdf",
+    "_comment": "1 block fix > FICO 15 ARRIVAL ZANA>AROB>PCX>IRIM>FICO",
+    "_comment": "2 block fix > LOCK 15 ARRIVAL TUBO>COTA>MADU>LOCK",
+    "_comment": "3 block fix > MARICA ARRIVAL MAC>MIRA>MRC>LIME",
+    "_comment": "4 block fix > NARA10A ARRIVAL JOBIM>PAI>GATI>NARA>IT",
+    
   "fixes": {
-    "GILO":[40,-66],
-    "XOGAR":[-5,48.0],
-    "VUPIP":[102,0.0],
-    "BAGU":[-50.01,-4.47],
-    "FRAN":[-50.01,12.47],
-    "UBNEK":[-78.01,12.47],
-    "PCX":[48.5,9.6],
-    "CAX":[-14.0,14.6],
-    "MENT":[-32.0,35.0],
-    "AFS":[-20.0,-2.6],
-    "YLA":[20.00,4.80],
-    "UGRAD":[-78.50,-12.80],
-    "PP2":[12.00,-16.0]
+    "ABSAL": ["S21.92166", "W43.35691"],
+    "ALCIR": ["S22.46499", "W42.32333"],
+    "ASGAT": ["S21.93250", "W43.47883"],
+    "AWAKE": ["S22.13733", "W42.57316"],
+    "BITAK": ["S23.63016", "W43.63799"],
+    "BOTOM": ["S23.27833", "W44.06866"],
+    "COSME": ["S23.27683", "W45.10716"],
+    "DACIR": ["S23.05200", "W43.20922"],
+    "ESORA": ["S21.90599", "W43.16899"],
+    "FIGOS": ["S22.30916", "W42.42516"],
+    "GORDO": ["S22.03600", "W43.74283"],
+    "JOBIM": ["S21.77983", "W44.28816"],
+    "LIME":  ["S23.01833", "W43.2"],
+    "GATI":  ["S22.7675",  "W43.70138"],
+    "PCX":   ["S22.7025",  "W42.85138"],
+    "SCR":   ["S22.95",    "W43.71861"],
+    "AROB":  ["S22.70027", "W42.55111"],
+    "BOTE":  ["S23.45222", "W43.65166"],
+    "CAX":   ["S22.76833", "W43.33333"],
+    "COTA":  ["S22.81861", "W43.95222"],
+    "FICO":  ["S22.58499", "W43.33361"],
+    "IRIM":  ["S22.66888", "W42.98555"],
+    "IT":    ["S22.81888", "W43.35194"],
+    "JOBIM": ["S21.76888", "W44.28416"],
+    "LOCK":  ["S22.71777", "W43.40138"],
+    "LUNAT": ["S22.23333", "W43.98416"],
+    "MAC":   ["S22.33527", "W41.76694"],
+    "MADU":  ["S22.75055", "W43.61888"],
+    "MIRA":  ["S22.86861", "W42.41888"],
+    "MRC":   ["S22.96694", "W42.88472"],
+    "NARA":  ["S22.86861", "W43.53416"],
+    "NATU":  ["S22.65222", "W43.50222"],
+    "PAI":   ["S22.45055", "W43.83444"],
+    "PAKU":  ["S23.16833", "W43.68583"],
+    "PP":    ["S22.88333", "W43.15249"],
+    "TUBO":  ["S22.90222", "W44.33333"],
+    "YLA":   ["S22.78388", "W43.16694"],
+    "ZANA":  ["S22.38472", "W42.15249"]            
   },
   "runways": [
     {
       "name": ["10", "28"],
       "name_offset": [[0.5, 0.5], [0, 0]],
-      "position": [1.0, 1.0],
-      "angle": 80.00,
-      "length": 4.000,
+      "end": [["S22.802024", "W43.255822"], ["S22.791962", "W43.217130"]],
+      "length": 3.420,
       "delay": [10, 45],
       "ils": [true, true]
     },
     {
       "name": ["15", "33"],
       "name_offset": [[-0.5, -0.2], [0, 0]],
-      "position": [-0.2, -1.7],
-      "angle": 140.00,
+      "end": [["S22.812162", "W43.264156"], ["S22.829418", "W43.237875"]],
       "length": 3.221,
       "delay": [15, 30],
       "ils": [true, false]
@@ -46,28 +76,56 @@
   ],
   "departures": {
     "airlines": [
-      ["tam", 30],
-      ["glo", 30],
-      ["azu", 24],
-      ["ava", 24],
-      ["embraer", 10],
-      ["aal", 2]
+      ["TAM", 60],
+      ["GLO", 60],
+      ["AZU", 30],
+      ["EMBRAER", 3],
+      ["UPS", 1],
+      ["FDX", 1],
+      ["SA-ACA", 2],
+      ["SA-AAL", 5],
+      ["SA-AEA", 2],
+      ["SA-AFR", 5],
+      ["SA-AMX", 2],
+      ["SA-AVA", 2],
+      ["SA-AZA", 4],
+      ["SA-BAW", 5],
+      ["SA-CCA", 2],
+      ["SA-DLH", 5],
+      ["SA-IBE", 5],
+      ["SA-KAL", 1],
+      ["SA-KLM", 3],
+      ["SA-LAN", 7],
+      ["SA-UAE", 3],
+      ["SA-UAL", 5],
+      ["FAB", 1]
     ],
     "destinations": [
-      60, 125, 135, 205, 210
+      45, 70, 210, 240, 310, 355
     ],
-    "frequency": [1, 15]
+    "frequency": [1, 4.5]
   },
+  
   "arrivals":[
     {
       "radial": 30,
       "heading": 210,
       "airlines": [
-        ["glo", 20],
-        ["tam", 20],
-        ["azu", 15],
-        ["embraer", 5],
-        ["aal", 4]
+      ["SA-AEA", 2],
+      ["SA-AFR", 5],
+      ["SA-AZA", 4],
+      ["SA-DLH", 5],
+      ["SA-IBE", 5],      
+      ["SA-BAW", 5],      
+      ["SA-CCA", 2],
+      ["SA-UAE", 3],
+      ["SA-KAL", 1],
+      ["SA-KLM", 3],      
+      ["TAM", 60],
+      ["GLO", 60],
+      ["AZU", 30],
+      ["ONE", 30],
+      ["EMBRAER", 3]
       ],
       "frequency": [50, 100],
       "altitude": [5000, 7000]
@@ -76,11 +134,10 @@
       "radial": 90,
       "heading": 270,
       "airlines": [
-        ["cessna", 20],
-        ["glo", 20],
-        ["tam", 20],
-        ["embraer", 20],
-        ["azu", 50]
+      ["TAM", 60],
+      ["GLO", 60],
+      ["AZU", 30],
+      ["ONE", 30]
       ],
       "frequency": [10, 80],
       "altitude": [3000, 5000]
@@ -89,11 +146,18 @@
       "radial": 160,
       "heading": 340,
       "airlines":[
-        ["ava", 20],
-        ["baw", 2],
-        ["glo", 20],
-        ["embraer", 4],
-        ["tam", 20]
+      ["TAM", 60],
+      ["GLO", 60],
+      ["AZU", 30],
+      ["UPS", 1],
+      ["FDX", 1],
+      ["SA-ACA", 2],
+      ["SA-AAL", 5],
+      ["SA-AMX", 2],
+      ["SA-AVA", 2],
+      ["SA-LAN", 7],
+      ["SA-UAL", 5],
+      ["FAB", 1]
       ],
       "frequency": [1, 20],
       "altitude": [5000, 8000]
@@ -102,24 +166,13 @@
       "radial": 230,
       "heading": 50,
       "airlines": [
-        ["glo", 10],
-        ["tam", 10],
-        ["embraer", 1],
-        ["aal", 1]
+      ["TAM", 60],
+      ["GLO", 60],
+      ["AZU", 30],
+      ["ONE", 30]
       ],
       "frequency": [10, 40],
       "altitude": [9000, 10000]
-    },
-    {
-      "radial": 230,
-      "heading": 50,
-      "airlines": [
-        ["glo", 10],
-        ["tam", 10],
-        ["fastga", 2]
-      ],
-      "frequency": [1, 40],
-      "altitude": [7000, 8000]
     },
     {
       "radial": 230,

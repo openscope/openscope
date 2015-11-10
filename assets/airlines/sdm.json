@@ -1,0 +1,14 @@
+{
+  "name": "Rossiya Airlines",
+  "callsign": {
+    "name": "Russia",
+    "length": 4
+  },
+  "aircraft": [
+    ["A319", 22 ],
+    ["A320", 11 ],
+    ["IL96", 8],
+    ["T154", 3],
+    ["T204", 15]
+  ]
+}
