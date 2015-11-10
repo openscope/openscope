@@ -53,7 +53,6 @@
       ["dal", 4],
       ["fdx", 7],
       ["klm", 5],
-      ["tso", 11],
       ["ups", 8],
       ["fastga", 10],
       ["lightga", 11]
@@ -68,7 +67,6 @@
       "radial":    90,
       "heading":   270,
       "airlines":  [
-        ["tso", 11],
         ["lightga", 11],
         ["afl", 6],
         ["fastga", 10]
@@ -112,7 +110,6 @@
         ["dal", 4],
         ["fdx", 7],
         ["klm", 5],
-        ["tso", 11],
         ["ups", 8],
         ["fastga", 10]
       ],
@@ -150,7 +147,6 @@
         ["dal", 4],
         ["fdx", 7],
         ["klm", 5],
-        ["tso", 11],
         ["ups", 8],
         ["fastga", 10],
         ["aca", 4],
