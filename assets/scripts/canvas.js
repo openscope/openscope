@@ -263,6 +263,33 @@ function canvas_draw_fixes(cc) {
   }
 }
 
+function canvas_draw_sids(cc) {
+  "use strict";
+  var departure_colour = "rgba(128, 255, 255, 0.6)";
+  cc.strokeStyle = departure_colour;
+  cc.fillStyle = departure_colour;
+  cc.setLineDash([1,10]);
+  cc.font = "italic 14px monoOne, monospace";
+  var airport = airport_get();
+  for(var s in airport.departures.sids) {
+    var fixList = airport.departures.sids[s];
+    var fx, fy;
+    for(var i=0; i<fixList.length; i++) {
+      var fix = airport.getFix(fixList[i]);
+      fx = km(fix[0]) + prop.canvas.panX;
+      fy = -km(fix[1]) + prop.canvas.panY;
+      if(i === 0) {
+        cc.beginPath();
+        cc.moveTo(fx, fy);
+      } else {
+        cc.lineTo(fx, fy);
+      }
+    }
+    cc.stroke();
+    cc.fillText(s, fx+10, fy);
+  }
+}
+
 function canvas_draw_separation_indicator(cc, aircraft) {
   "use strict";
   // Draw a trailing indicator 2.5 NM (4.6km) behind landing aircraft to help with traffic spacing
@@ -885,6 +912,7 @@ function canvas_update_post() {
       cc.save();
       cc.globalAlpha = alpha;
       canvas_draw_fixes(cc);
+      canvas_draw_sids(cc);
       cc.restore();
 
       cc.restore();
