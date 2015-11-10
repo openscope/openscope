@@ -1,0 +1,13 @@
+{
+  "name": "Nordwind Airlines",
+  "callsign": {
+    "name": "Nordland",
+    "length": 3
+  },
+  "aircraft": [
+    ["A321", 8 ],
+    ["B738", 5 ],
+    ["B763", 8 ],
+    ["B77E", 3 ]
+  ]
+}

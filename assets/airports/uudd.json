@@ -109,7 +109,9 @@
     "airlines": [
       ["rff", 4],
       ["afl", 30],
-      ["tso", 30],
+      ["sdm", 10],
+      ["orb", 4],
+      ["nws", 5],
       ["uta", 30],
       ["svr", 30],
       ["sbi", 30]
@@ -121,16 +123,32 @@
   },
   "arrivals": [
     {
-      "radial":   180,
+      "radial":   80,
       "airlines":  [
         ["rff", 2],
         ["afl", 30],
-        ["tso", 20],
+        ["sdm", 10],
+        ["orb", 4],
+        ["nws", 5],
         ["uta", 20],
         ["svr", 10],
         ["sbi", 15]
       ],
-      "frequency": [1, 5],
+      "frequency": [1, 3],
+      "altitude":  [4000, 6000]
+    },
+    {
+      "radial":   140,
+      "airlines":  [
+        ["afl", 10],
+        ["sdm", 10],
+        ["orb", 4],
+        ["nws", 5],
+        ["uta", 20],
+        ["svr", 20],
+        ["sbi", 25]
+      ],
+      "frequency": [1, 10],
       "altitude":  [4000, 6000]
     },
     {
@@ -139,25 +157,29 @@
       "airlines":  [
         ["rff", 2],
         ["afl", 30],
-        ["tso", 20],
+        ["sdm", 10],
+        ["orb", 4],
+        ["nws", 5],
+        ["uta", 20],
+        ["svr", 10],
+        ["sbi", 15]
+      ],
+      "frequency": [1, 7],
+      "altitude":  [5000, 8000]
+    },
+    {
+      "radial":   340,
+      "airlines":  [
+        ["rff", 2],
+        ["afl", 30],
+        ["sdm", 10],
+        ["orb", 4],
+        ["nws", 5],
         ["uta", 20],
         ["svr", 10],
         ["sbi", 15]
       ],
       "frequency": [1, 10],
-      "altitude":  [5000, 8000]
-    },
-    {
-      "radial":   300,
-      "airlines":  [
-        ["rff", 2],
-        ["afl", 30],
-        ["tso", 20],
-        ["uta", 20],
-        ["svr", 10],
-        ["sbi", 15]
-      ],
-      "frequency": [1, 5],
       "altitude":  [6000, 7000]
     }
   ]
