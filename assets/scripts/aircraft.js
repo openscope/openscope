@@ -1568,12 +1568,14 @@ function aircraft_init() {
 	
   // MISC
   aircraft_load("be36");
-  aircraft_load("l410");
-  aircraft_load("il76");
-  aircraft_load("p28a");
-  aircraft_load("t154");
   aircraft_load("c130");
   aircraft_load("c5");
+  aircraft_load("il76");
+  aircraft_load("il96");
+  aircraft_load("l410");
+  aircraft_load("p28a");
+  aircraft_load("t154");
+  aircraft_load("t204");
   
 }
 

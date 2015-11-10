@@ -31,7 +31,6 @@ function airline_init() {
 
   // Russian
   airline_load("AFL");
-  airline_load("NWS");
   airline_load("ORB");
   airline_load("SBI");
   airline_load("SDM");
