@@ -885,6 +885,45 @@ function canvas_draw_range_ring(cc, fix_origin, fix1, fix2) {
   }
 }
 
+function canvas_draw_restricted(cc) {
+  "use strict";
+  
+  cc.strokeStyle = "rgba(225, 225, 255, 0.5)";
+  cc.fillStyle   = "rgba(205, 205, 255, 0.4)";
+  cc.lineWidth   = Math.max(prop.ui.scale / 3, 2);
+  cc.lineJoin    = "round";
+  cc.font = "10px monoOne, monospace";
+  
+  var airport=airport_get();
+  for(var i in airport.restricted_areas) {
+    var area = airport.restricted_areas[i],
+        coords = area['coordinates'];
+    cc.save();
+    cc.translate(prop.canvas.panX, prop.canvas.panY);
+    cc.beginPath();
+    for (var v in coords) {
+      //console.log(coords[v]);
+      cc.lineTo(round(km(coords[v].position[0])), -round(km(coords[v].position[1])), v);
+    }
+    
+    cc.closePath();
+    cc.stroke();
+    
+    cc.textAlign    = "center";
+    cc.textBaseline = "top";
+    var height = (area.height == "inf" ? 'UNL' : area.height);
+
+    var height_shift = 0;
+    if (area.name) {
+      height_shift = -12;
+      cc.fillText(area.name, round(km(area.center[0])), -round(km(area.center[1])));
+    }
+    
+    cc.fillText(height, round(km(area.center[0])), -12-round(km(area.center[1])));
+    cc.restore();
+  }
+}
+
 function canvas_update_post() {
   "use strict";
   var elapsed = game_time() - airport_get().start;
@@ -906,6 +945,7 @@ function canvas_update_post() {
 
       cc.save();
       cc.globalAlpha = alpha;
+      canvas_draw_restricted(cc);
       canvas_draw_runways(cc);
       cc.restore();
 

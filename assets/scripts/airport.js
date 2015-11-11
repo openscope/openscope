@@ -46,8 +46,10 @@ zlsa.atc.ArrivalDefault = Fiber.extend(function(base) {
         options.heading = (options.radial + 180) % 360;
 
       this.heading = radians(options.heading);
+      
       if( options.fixes )
         this.fixes = options.fixes;
+
       this.radial = radians(options.radial);
       this.speed = options.speed;
     },
@@ -659,6 +661,7 @@ var Airport=Fiber.extend(function() {
       this.runway   = null;
 
       this.fixes    = {};
+      this.restricted_areas = [];
 
       this.timeout  = {
         runway: null,
@@ -703,7 +706,7 @@ var Airport=Fiber.extend(function() {
       if(data.ctr_radius) this.ctr_radius = data.ctr_radius;
       if(data.ctr_ceiling) this.ctr_ceiling = data.ctr_ceiling;
       if(data.level) this.level = data.level;
-
+      
       if(data.runways) {
         for(var i=0;i<data.runways.length;i++) {
           data.runways[i].reference_position = this.position;
@@ -718,6 +721,32 @@ var Airport=Fiber.extend(function() {
                                    this.position,
                                    this.magnetic_north);
           this.fixes[i.toUpperCase()] = coord.position;
+        }
+      }
+
+      if(data.restricted) {
+        var r = data.restricted,
+          self = this;
+        for(var i in r) {
+          var obj = {};
+          if (r[i].name) obj.name = r[i].name;
+          obj.height = r[i].height || Infinity;
+          obj.coordinates = $.map(r[i].coordinates, function(v) {
+            return new Position(v, self.position, self.magnetic_north);
+          });
+
+          var coords = obj.coordinates,
+              coords_max = coords[0].position,
+              coords_min = coords[0].position;
+          for (var i in coords) {
+            var v = coords[i].position;
+            coords_max = [Math.max(v[0], coords_max[0]), Math.max(v[1], coords_max[1])];
+            coords_min = [Math.min(v[0], coords_min[0]), Math.min(v[1], coords_min[1])];
+          };
+
+          obj.center = [(coords_max[0] + coords_min[0]) / 2, (coords_max[1] + coords_min[1]) / 2];
+
+          self.restricted_areas.push(obj);
         }
       }
 
@@ -805,6 +834,9 @@ var Airport=Fiber.extend(function() {
           }
         }
       });
+    },
+    getRestrictedAreas: function() {
+      return this.restricted_areas || null;
     },
     getFix: function(name) {
       if(!name) return null;
