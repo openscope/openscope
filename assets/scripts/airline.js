@@ -15,22 +15,27 @@ function airline_init() {
 
   airline_load("KLM");
   airline_load("KLC");
+  airline_load("DAL");
+  airline_load("LIGHTGA");
+  airline_load("FASTGA");
+  airline_load("SAS");
+  airline_load("NAX");
+
+  // South American
+  airline_load("ONE");
   airline_load("GLO");
   airline_load("TAM");
   airline_load("AVA");
   airline_load("AZU");
   airline_load("EMBRAER");
-  airline_load("DAL");
+
+  // Russian
   airline_load("AFL");
+  airline_load("MOV");
+  airline_load("RLU");
   airline_load("SBI");
-  airline_load("TSO");
   airline_load("SVR");
-  airline_load("UTA");
-  airline_load("LIGHTGA");
-  airline_load("FASTGA");
-  airline_load("ONE");
-  airline_load("SAS");
-  airline_load("NAX");
+  airline_load("TYA");
 
   // Cargo Airlines
   airline_load("FDX");

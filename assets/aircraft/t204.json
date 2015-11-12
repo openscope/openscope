@@ -1,0 +1,26 @@
+{
+  "name": "Tu-204-300",
+  "icao": "T204",
+  "wake": "medium",
+  "rate": {
+    "turn":       1.1,
+    "ascent":     1800,
+    "descent":    2100,
+    "accelerate": 8,
+    "decelerate": 4
+  },
+  "runway": {
+    "takeoff": 1.9,
+    "landing": 2.8
+  },
+  "speed":{
+    "min":     110,
+    "max":     250,
+    "landing": 125,
+    "cruise":  200
+  },
+  "capability": {
+    "ils": true,
+    "fix": true
+  }
+}

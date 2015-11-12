@@ -367,6 +367,7 @@ var Aircraft=Fiber.extend(function() {
       "sid",
       "track",
       "direct",
+      "dct",
 
       "takeoff",
       "to",
@@ -524,8 +525,9 @@ var Aircraft=Fiber.extend(function() {
 
       else if("fix".indexOf(command) == 0)      command = "fix";
       else if("track".indexOf(command) == 0)    command = "fix";
-      else if("direct".indexOf(command) == 0)   command = "fix";
-      else if("sid".indexOf(command) == 0)   command = "sid";
+      else if("sid".indexOf(command) == 0)      command = "sid";
+      else if("direct".indexOf(command) == 0)   command = "direct";
+      else if("dct".indexOf(command) == 0)      command = "direct";
 
       else if("abort".indexOf(command) == 0)    command = "abort";
 
@@ -545,6 +547,8 @@ var Aircraft=Fiber.extend(function() {
         return this.runFix(data);
       else if(command == "sid")
         return this.runSID(data);
+      else if(command == "direct")
+        return this.runDirect(data);
       else if(command == "wait")
         return this.runWait(data);
       else if(command == "takeoff")
@@ -669,6 +673,36 @@ var Aircraft=Fiber.extend(function() {
         return ["ok", "after departure, will circle towards the " + this.requested.turn];
 
       return ["ok", "circling towards the " + this.requested.turn + " at " + this.requested.altitude + " feet"];
+    },
+    runDirect: function(data) {
+      if(data.length == 0) {
+        return ["fail", "fix name not understood"];
+      }
+
+      var fixname = data.toUpperCase(),
+          fix = airport_get().getFix(fixname);
+
+      if (!fix) {
+        return ["fail", "no fix found with name of " + fixname, "say again"];
+      }
+
+      // can issue this command if not in fix mode, then will run exactly as with "fix"
+      // or with multiple fixes, then the sequence is rewritten
+      if (this.requested.navmode != "fix" || fixname.indexOf(' ').length > 0) {
+        return this.runFix(data);
+      }
+
+      var fix_pos = this.requested.fix.indexOf(fixname);
+      if (fix_pos == -1) {
+        return this.runFix(data);
+      }
+
+      if (fix_pos == 0) {
+        return ["fail", "already going to "+ fixname];
+      }
+
+      this.requested.fix = this.requested.fix.slice(fix_pos);
+      return ["ok", "cleared direct " + fixname];
     },
     runFix: function(data) {
       if(data.length == 0) {
@@ -1556,13 +1590,17 @@ function aircraft_init() {
 
   // MISC
   aircraft_load("be36");
-  aircraft_load("l410");
-  aircraft_load("il76");
-  aircraft_load("p28a");
-  aircraft_load("t154");
   aircraft_load("c130");
   aircraft_load("c5");
-
+  aircraft_load("il76");
+  aircraft_load("il96");
+  aircraft_load("l410");
+  aircraft_load("p28a");
+  aircraft_load("t154");
+  aircraft_load("t204");
+  
+  aircraft_load("c130");
+  aircraft_load("c5");
 }
 
 function aircraft_generate_callsign(airline_name) {
