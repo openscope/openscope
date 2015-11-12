@@ -888,8 +888,8 @@ function canvas_draw_range_ring(cc, fix_origin, fix1, fix2) {
 function canvas_draw_restricted(cc) {
   "use strict";
   
-  cc.strokeStyle = "rgba(225, 225, 255, 0.5)";
-  cc.fillStyle   = "rgba(205, 205, 255, 0.4)";
+  cc.strokeStyle = "rgba(225, 225, 255, 0.25)";
+  cc.fillStyle   = "rgba(205, 205, 255, 0.35)";
   cc.lineWidth   = Math.max(prop.ui.scale / 3, 2);
   cc.lineJoin    = "round";
   cc.font = "10px monoOne, monospace";
