@@ -738,17 +738,20 @@ var Aircraft=Fiber.extend(function() {
       if(data.length == 0) {
         return ["fail", "SID name not understood", "say again"];
       }
-      var sidName = data;
-      var fixes = airport_get().getSID(sidName);
+      
+      var sid_name = data.toUpperCase(),
+          fixes = airport_get().getSID(sid_name);
+      
       if(!fixes) {
-        return ["fail", "no SID found with name of " + sidName.toUpperCase(), "say again"];
+        return ["fail", "no SID found with name of " + sid_name, "say again"];
       }
+      
       this.cancelFix();
       this.requested.fix = fixes.slice();
       this.requested.navmode = "fix";
       this.requested.turn = null;
 
-      return ["ok", "cleared to destination via " + sidName.toUpperCase()];
+      return ["ok", "cleared to destination via " + sid_name];
     },
     runWait: function(data) {
       if(this.category != "departure") return ["fail", "inbound"];
@@ -773,6 +776,7 @@ var Aircraft=Fiber.extend(function() {
 
       return ["ok", "taxi to runway " + radio_runway(this.requested.runway)];
     },
+    
     runTakeoff: function(data) {
       if(this.category != "departure") return ["fail", "inbound", "over"];
 
