@@ -1,0 +1,12 @@
+{
+  "name": "NordStar",
+  "callsign": {
+    "name": "Taimyr",
+    "length": 3
+  },
+  "aircraft": [
+    ["at43", 5 ],
+    ["B735", 1 ],
+    ["B738", 9 ]
+  ]
+}

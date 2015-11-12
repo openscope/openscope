@@ -1,0 +1,10 @@
+{
+  "name": "RusLine",
+  "callsign": {
+    "name": "Rusline",
+    "length": 3
+  },
+  "aircraft": [
+    ["e135", 20 ]
+  ]
+}

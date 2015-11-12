@@ -1,0 +1,11 @@
+{
+  "name": "VIM Avia",
+  "callsign": {
+    "name": "VIM Avia",
+    "length": 3
+  },
+  "aircraft": [
+    ["A319", 4 ],
+    ["B752", 6 ]
+  ]
+}
