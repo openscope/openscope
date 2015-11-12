@@ -245,7 +245,7 @@
     "sids": {
       "KARTI": ["DM", "WT", "GEKLA", "RUGEL", "BESTA", "KN"],
       "ERMAL": ["DM", "LO", "ERMAL"],
-      "VENEV": ["DW", "DEE", "DK", "FV"],
+      "VENEV": ["DW", "DD149", "DEE", "DK", "FV"],
       "CHERU": ["DM", "WT", "GEKLA", "DAKLO", "SF"],
       "NOGTI": ["DM", "WT", "GEKLA", "DAKLO", "NOGTI"],
       "RELTO": ["DM", "RAMEK", "OKREM", "RELTO"]
