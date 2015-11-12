@@ -897,13 +897,13 @@ function canvas_draw_restricted(cc) {
   var airport=airport_get();
   for(var i in airport.restricted_areas) {
     var area = airport.restricted_areas[i],
-        coords = area['coordinates'];
+        coords = area.coordinates;
     cc.save();
     cc.translate(prop.canvas.panX, prop.canvas.panY);
     cc.beginPath();
     for (var v in coords) {
       //console.log(coords[v]);
-      cc.lineTo(round(km(coords[v].position[0])), -round(km(coords[v].position[1])), v);
+      cc.lineTo(round(km(coords[v][0])), -round(km(coords[v][1])), v);
     }
     
     cc.closePath();

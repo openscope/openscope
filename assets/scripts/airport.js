@@ -732,14 +732,15 @@ var Airport=Fiber.extend(function() {
           if (r[i].name) obj.name = r[i].name;
           obj.height = r[i].height || Infinity;
           obj.coordinates = $.map(r[i].coordinates, function(v) {
-            return new Position(v, self.position, self.magnetic_north);
+            return (new Position(v, self.position, self.magnetic_north)).position;
           });
 
           var coords = obj.coordinates,
-              coords_max = coords[0].position,
-              coords_min = coords[0].position;
+              coords_max = coords[0],
+              coords_min = coords[0];
+              
           for (var i in coords) {
-            var v = coords[i].position;
+            var v = coords[i]; //.position;
             coords_max = [Math.max(v[0], coords_max[0]), Math.max(v[1], coords_max[1])];
             coords_min = [Math.min(v[0], coords_min[0]), Math.min(v[1], coords_min[1])];
           };
