@@ -277,7 +277,7 @@
         ["rlu", 15]
       ],
       "frequency": [1, 18],
-      "altitude":  [5000, 7000]
+      "altitude":  [8000, 10000]
     },
     {
       "radial":    280,
