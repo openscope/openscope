@@ -89,6 +89,8 @@ var Aircraft=Fiber.extend(function() {
 
       this.history     = [];
 
+      this.restricted = [];
+
       this.notice      = false;
       this.warning     = false;
       this.hit         = false;
@@ -1394,7 +1396,7 @@ var Aircraft=Fiber.extend(function() {
       }
 
       // restricted areas
-      // 
+      console.log(prop.airport);
 
       this.notice  = notice;
       this.warning = warning;
