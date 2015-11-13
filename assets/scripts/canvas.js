@@ -362,16 +362,11 @@ function canvas_draw_aircraft(cc, aircraft) {
       cc.globalAlpha = 0.3 / (length - i);
     else
       cc.globalAlpha = 1 / (length - i);
-    cc.fillRect(km(aircraft.position_history[i][0]) + prop.canvas.panX,
-       -km(aircraft.position_history[i][1]) + prop.canvas.panY, 2, 2);
+    cc.fillRect(km(aircraft.position_history[i][0]) + prop.canvas.panX, -km(aircraft.position_history[i][1]) + prop.canvas.panY, 2, 2);
   }
   cc.restore();
 
-  if(aircraft.position_history.length > trailling_length)
-      aircraft.position_history =
-         aircraft.position_history.slice(aircraft.position_history.length
-             - trailling_length, aircraft.position_history.length);
-
+  if(aircraft.position_history.length > trailling_length) aircraft.position_history = aircraft.position_history.slice(aircraft.position_history.length - trailling_length, aircraft.position_history.length);
 
   if( aircraft.isPrecisionGuided() && aircraft.altitude > 1000) {
     cc.save();
@@ -412,8 +407,7 @@ function canvas_draw_aircraft(cc, aircraft) {
     var w = prop.canvas.size.width/2;
     var h = prop.canvas.size.height/2;
 
-    cc.translate(clamp(-w, km(aircraft.position[0]) + prop.canvas.panX, w),
-        clamp(-h, -km(aircraft.position[1]) + prop.canvas.panY, h));
+    cc.translate(clamp(-w, km(aircraft.position[0]) + prop.canvas.panX, w), clamp(-h, -km(aircraft.position[1]) + prop.canvas.panY, h));
 
     cc.beginPath();
     cc.arc(0, 0, round(size * 1.5), 0, Math.PI * 2);
@@ -422,8 +416,7 @@ function canvas_draw_aircraft(cc, aircraft) {
     cc.restore();
   }
 
-  cc.translate(km(aircraft.position[0]) + prop.canvas.panX,
-    -km(aircraft.position[1]) + prop.canvas.panY);
+  cc.translate(km(aircraft.position[0]) + prop.canvas.panX, -km(aircraft.position[1]) + prop.canvas.panY);
 
   if(!aircraft.hit) {
     cc.save();
