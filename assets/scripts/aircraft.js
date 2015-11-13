@@ -888,27 +888,16 @@ var Aircraft=Fiber.extend(function() {
       }
     },
     parse: function(data) {
-      if(data.position) this.position = data.position;
-
-      if(data.model) this.model = data.model;
-
-      if(data.airline)  this.airline = data.airline;
-      if(data.callsign) this.callsign = data.callsign;
-
-      if(data.category) this.category = data.category;
+      for (var k in 'position model airline callsign category heading altitude speed destination'.split(' ')) {
+        if (data[k]) this[k] = data[k];
+      }
 
       if(!data.speed) data.speed = this.model.speed.cruise;
 
-      if(data.heading)  this.heading = data.heading;
-      if(data.altitude) this.altitude = data.altitude;
-      if(data.speed)    this.speed = data.speed;
-
       if(data.heading)  this.requested.heading = data.heading;
       if(data.altitude) this.requested.altitude = data.altitude;
-      if(data.speed)    this.requested.speed = data.speed;
-      else              this.requested.speed = this.model.speed.cruise;
+      this.requested.speed = data.speed || this.model.speed.cruise;
 
-      if(data.destination) this.destination = data.destination;
       if(data.fixes && data.fixes.length > 0)
         this.setArrivalFixes(data.fixes);
 
@@ -1403,6 +1392,9 @@ var Aircraft=Fiber.extend(function() {
           hit = true;
         }
       }
+
+      // restricted areas
+      // 
 
       this.notice  = notice;
       this.warning = warning;
