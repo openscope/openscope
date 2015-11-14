@@ -89,7 +89,7 @@
   "restricted": [
       {
         "name": "UUP-63, 52", 
-        "height": "inf",
+        "height": "Infinity",
         "coordinates": [
           ["N55.7844040", "E37.1407187"], 
           ["N55.7974886", "E37.1639919"], 
@@ -144,7 +144,7 @@
       }, 
       {
         "name": "UUR-341", 
-        "height": "inf",
+        "height": "Infinity",
         "coordinates": [
           ["N55.3446153", "E36.7114302"], 
           ["N55.3727277", "E36.8054928"], 
@@ -189,7 +189,7 @@
       }, 
       {
         "name": "UUP-53", 
-        "height": "inf",
+        "height": "Infinity",
         "coordinates": [
           ["N55.6118564", "E37.4925667"], 
           ["N55.5831874", "E37.5645645"], 
