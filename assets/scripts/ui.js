@@ -41,28 +41,18 @@ function ui_init() {
 
   $(".fast-forwards").prop("title", "Set time warp to 2");
 
-  $(".fast-forwards").click(function() {
-    game_timewarp_toggle();
-  });
-
-  $(".speech-toggle").click(function() {
-    speech_toggle();
-  });
-
-  $(".switch-airport").click(function() {
-    ui_airport_toggle();
-  });
-
-  $(".toggle-tutorial").click(function() {
-    tutorial_toggle();
-  });
-
-  $(".pause-toggle").click(function() {
-    game_pause_toggle();
-  });
-
-  $("#paused img").click(function() {
-    game_unpause();
+  var switches = {
+    ".fast-forwards": game_timewarp_toggle,
+    ".speech-toggle": speech_toggle,
+    ".switch-airport": ui_airport_toggle,
+    ".toggle-tutorial": tutorial_toggle,
+    ".pause-toggle": game_pause_toggle,
+    "#paused img": game_unpause,
+    ".toggle-restricted-areas": canvas_restricted_toggle,
+    ".toggle-sids": canvas_sids_toggle
+  }
+  $.each(switches, function(selector, fn) {
+    $(selector).on('click', function(evt) { fn(evt); });
   });
 }
 

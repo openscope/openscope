@@ -19,6 +19,8 @@ function canvas_init_pre() {
 
   prop.canvas.last = time();
   prop.canvas.dirty = true;
+  prop.canvas.draw_restricted = true;
+  prop.canvas.draw_sids = true;
 }
 
 function canvas_init() {
@@ -265,6 +267,8 @@ function canvas_draw_fixes(cc) {
 
 function canvas_draw_sids(cc) {
   "use strict";
+  if (!prop.canvas.draw_sids) return;
+
   var departure_colour = "rgba(128, 255, 255, 0.6)";
   cc.strokeStyle = departure_colour;
   cc.fillStyle = departure_colour;
@@ -887,6 +891,8 @@ function canvas_draw_range_ring(cc, fix_origin, fix1, fix2) {
 
 function canvas_draw_restricted(cc) {
   "use strict";
+  if (!prop.canvas.draw_restricted) return;
+
   cc.strokeStyle = "rgba(150, 200, 255, 0.3)";
   cc.fillStyle   = "rgba(150, 200, 255, 0.4)";
   cc.lineWidth   = Math.max(prop.ui.scale / 3, 2);
@@ -1009,4 +1015,14 @@ function canvas_update_post() {
 
     prop.canvas.dirty = false;
   }
+}
+
+function canvas_restricted_toggle(evt) {
+  $(evt.target).closest('.control').toggleClass('warning-button active');
+  prop.canvas.draw_restricted = !prop.canvas.draw_restricted;
+}
+
+function canvas_sids_toggle(evt) {
+  $(evt.target).closest('.control').toggleClass('active');
+  prop.canvas.draw_sids = !prop.canvas.draw_sids;
 }
