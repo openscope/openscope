@@ -1411,8 +1411,10 @@ var Aircraft=Fiber.extend(function() {
 
           if (!area.range || area.range <= 0) {
             var st = point_in_poly(this.position, area.data.coordinates);
-            if (st)
+            if (st) {
               warning = true;
+              prop.game.score.warning += 1;
+            }
             area.range = distance_to_poly(this.position, area.data.coordinates); // calc here
             console.log(this.getCallsign(), 'in', area.range, 'from', area.data.name, area.data.height, this.altitude, 'inside?', st);
           //console.log(game_time(), this.getCallsign(), area.data.name, area.data.height, this.altitude, area.range);
