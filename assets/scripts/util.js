@@ -364,6 +364,27 @@ function vnorm(v) {
   return [-v[1], v[0]];
 }
 
+/*
+solution by @culebron
+turn poly edge into a vector.
+the edge vector scaled by j and its normal vector scaled by i meet
+if the edge vector points between the vertices,
+then normal is the shortest distance.
+--------
+x1 + x2 * i == x3 + x4 * j
+y1 + y2 * i == y3 + y4 * j
+0 < j < 1
+--------
+
+i = (y3 + j y4 - y1) / y2
+
+x1 + x2 y3 / y2 + j x2 y4 / y2 - x2 y1 / y2 == x3 + j x4
+
+j x2 y4 / y2 - j x4 == x3 - x1 - x2 y3 / y2 + x2 y1 / y2
+
+j = (x3 - x1 - x2 y3 / y2 + x2 y1 / y2) / (x2 y4 / y2 - x4)
+i = (y3 + j y4 - y1) / y2
+*/
 function distance_to_poly(point, poly) {
   var dists = $.map(poly, function(p1, i) {
     var prev = (i == 0 ? poly.length : i) - 1,
