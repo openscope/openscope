@@ -80,6 +80,7 @@ var Aircraft=Fiber.extend(function() {
       this.heading     = 0;
       this.altitude    = 0;
       this.speed       = 0;
+      this.ds          = 0;
 
       this.radial      = 0;
       this.distance    = 0;
@@ -89,8 +90,8 @@ var Aircraft=Fiber.extend(function() {
 
       this.history     = [];
 
-      this.restricted = [];
-
+      this.restricted = {list: [], updated: 0};
+      
       this.notice      = false;
       this.warning     = false;
       this.hit         = false;
@@ -187,9 +188,14 @@ var Aircraft=Fiber.extend(function() {
         speed:    0
       };
 
-      this.emergency = {
+      this.emergency = {};
 
-      };
+      // Setting up links to restricted areas 
+      var ra = prop.airport.current.restricted_areas; 
+      for (var i in ra) {
+        this.restricted.list.push({data: ra[i], range: null});
+      }
+
 
       this.parse(options);
 
@@ -218,9 +224,9 @@ var Aircraft=Fiber.extend(function() {
       if(options.message) {
         if(this.category == "arrival" && aircraft_visible(this) && !this.inside_ctr) {
           var position = "";
-          var distance = round(distance2d([0, 0], this.position) * 0.62);
+          var distance = round(vlen(this.position) * 0.62);
           position += distance + " mile" + s(distance);
-          var angle = Math.atan2(this.position[0], this.position[1]);
+          var angle = vradial(this.position);
           position += " " + radio_compass(compass_direction(angle));
           ui_log(airport_get().radio+" tower, "+this.getRadioCallsign()+" in your airspace "+position+", over");
           this.inside_ctr = true;
@@ -257,7 +263,7 @@ var Aircraft=Fiber.extend(function() {
       // Revert to heading mode if all fixes are eliminated (eg. spawn close to origin)
       if(closerFixes.length == 0) {
         this.requested.navmode = "heading";
-        this.requested.heading = Math.atan2(this.position[0], this.position[1]) + Math.PI;
+        this.requested.heading = vradial(this.position) + Math.PI;
       } else {
         this.requested.navmode = "fix";
         this.requested.fix = closerFixes;
@@ -890,11 +896,12 @@ var Aircraft=Fiber.extend(function() {
       }
     },
     parse: function(data) {
-      for (var k in 'position model airline callsign category heading altitude speed destination'.split(' ')) {
-        if (data[k]) this[k] = data[k];
+      var keys = 'position model airline callsign category heading altitude destination'.split(' ');
+      for (var i in keys) {
+        if (data[keys[i]]) this[keys[i]] = data[keys[i]];
       }
 
-      if(!data.speed) data.speed = this.model.speed.cruise;
+      if(data.speed) this.speed = data.speed;
 
       if(data.heading)  this.requested.heading = data.heading;
       if(data.altitude) this.requested.altitude = data.altitude;
@@ -1049,8 +1056,8 @@ var Aircraft=Fiber.extend(function() {
 
         offset = runway.getOffset(this.position, this.requested.runway, true);
 
-        offset_angle = Math.atan2(offset[0], offset[1]);
-
+        offset_angle = vradial(offset);
+        
         this.offset_angle = offset_angle;
 
         angle = runway.getAngle(this.requested.runway) + Math.PI;
@@ -1123,10 +1130,9 @@ var Aircraft=Fiber.extend(function() {
           this.target.speed = 0;
         }
       } else if(this.requested.navmode == "fix") {
-        var fix = airport_get().getFix(this.requested.fix[0]);
-        var a = this.position[0] - fix[0];
-        var b = this.position[1] - fix[1];
-        distance_to_fix = distance2d(this.position, fix);
+        var fix = airport_get().getFix(this.requested.fix[0]),
+            vector_to_fix = vsub(this.position, fix),
+            distance_to_fix = distance2d(this.position, fix);
         if((distance_to_fix < 0.5) ||
           ((distance_to_fix < 10) && (distance_to_fix < aircraft_turn_initiation_distance(this, fix)))) {
 //          ui_log(this.getRadioCallsign() + " passed over " + this.requested.fix.toUpperCase() + ", will maintain heading " + heading_to_string(this.requested.heading) + " at " + this.requested.altitude + " feet");
@@ -1136,7 +1142,7 @@ var Aircraft=Fiber.extend(function() {
             this.cancelFix();
           this.updateStrip();
         } else {
-          this.target.heading = Math.atan2(a, b) - Math.PI;
+          this.target.heading = vradial(vector_to_fix) - Math.PI;
           this.target.turn = null;
         }
       } else if(this.requested.navmode == "hold") {
@@ -1291,12 +1297,11 @@ var Aircraft=Fiber.extend(function() {
 
       var angle = this.heading;
       var scaleSpeed = this.speed * 0.000514444 * game_delta(); // knots to m/s
-      this.position[0] += sin(angle) * scaleSpeed;
-      this.position[1] += cos(angle) * scaleSpeed;
+      this.ds = scaleSpeed;
+      this.position = vsum(this.position, vscale([sin(angle), cos(angle)], scaleSpeed));
 
-      this.distance = Math.sqrt(this.position[0]*this.position[0] +
-                                this.position[1]*this.position[1]);
-      this.radial = Math.atan2(this.position[0], this.position[1]);
+      this.distance = vlen(this.position);
+      this.radial = vlen(this.position);
       if (this.radial < 0) this.radial += Math.PI*2;
 
       var inside = (this.distance <= airport_get().ctr_radius &&
@@ -1322,12 +1327,9 @@ var Aircraft=Fiber.extend(function() {
         // Fast 2D bounding box check to see if distance must be > 10; no violation can occur in this case.
         // Variation of:
         // http://gamedev.stackexchange.com/questions/586/what-is-the-fastest-way-to-work-out-2d-bounding-box-intersection
-        dx = Math.abs(this.position[0] - other.position[0]);
-        dy = Math.abs(this.position[1] - other.position[1]);
-        if((dx > 10) || (dy > 10)) continue;
-        // Calculate the real distance for subsequent checks; reuse dx and dy
-        var distance = Math.sqrt((dx*dx) + (dy*dy));
-
+        var distance = vlen(vsub(this.position, other.position));
+        if(distance > 10) continue;
+        
         // Check if the aircraft are on a potential collision course
         // on the runway
         if ((this.isLanded() || this.altitude < 990) &&
@@ -1396,7 +1398,27 @@ var Aircraft=Fiber.extend(function() {
       }
 
       // restricted areas
-      console.log(prop.airport);
+      if (this.position) {
+        for (i in this.restricted.list) {
+          var area = this.restricted.list[i];
+          if (area.data.height < this.altitude) {
+            area.range = null;
+            continue;
+          }
+          if (area.range) {
+            area.range -= this.ds;
+          }
+
+          if (!area.range || area.range <= 0) {
+            var st = point_in_poly(this.position, area.data.coordinates);
+            if (st)
+              warning = true;
+            area.range = distance_to_poly(this.position, area.data.coordinates); // calc here
+            console.log(this.getCallsign(), 'in', area.range, 'from', area.data.name, area.data.height, this.altitude, 'inside?', st);
+          //console.log(game_time(), this.getCallsign(), area.data.name, area.data.height, this.altitude, area.range);
+          }
+        }
+      } 
 
       this.notice  = notice;
       this.warning = warning;
@@ -1688,9 +1710,7 @@ function aircraft_add(model) {
 
 function aircraft_visible(aircraft, factor) {
   if(!factor) factor=1;
-  if((Math.pow(aircraft.position[0],2) + Math.pow(aircraft.position[1], 2)) < Math.pow((airport_get().ctr_radius * factor), 2))
-    return true;
-  return false;
+  return (vlen(aircraft.position) < airport_get().ctr_radius * factor);
 }
 
 function aircraft_remove_all() {
@@ -1751,7 +1771,7 @@ function aircraft_turn_initiation_distance(a, fix) {
   var bank_angle = radians(25); // assume nominal bank angle of 25 degrees for all aircraft
   var g = 9.81;                 // acceleration due to gravity, m/s*s
   var nextfix = airport_get().getFix(a.requested.fix[1]);
-  var nominal_new_course = Math.atan2(nextfix[0] - fix[0], nextfix[1] - fix[1]);
+  var nominal_new_course = vradial(vsub(nextfix, fix));
   if( nominal_new_course < 0 ) nominal_new_course += Math.PI * 2;
   var current_heading = a.heading;
   if (current_heading < 0) current_heading += Math.PI * 2;

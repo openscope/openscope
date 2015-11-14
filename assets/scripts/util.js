@@ -72,8 +72,9 @@ function normalize(v,length) {
   ]);
 }
 
-function fl(n) {
-  return Math.floor(n);
+function fl(n, number) {
+  number = number || 1;
+  return Math.floor(n / number) * number;
 }
 
 function randint(l,h) {
@@ -85,6 +86,10 @@ function elements(obj) {
   for(var i in obj)
     n+=1;
   return n;
+}
+
+function len(obj) {
+  return elements(obj);
 }
 
 function s(i) {
@@ -327,3 +332,90 @@ function random(low, high) {
   if (high == null) return Math.random() * low;
   return (low + (Math.random() * (high - low)));
 }
+
+function vlen(v) {
+  return Math.sqrt(v[0]*v[0] + v[1] * v[1]);
+}
+
+function vsum(v1, v2) {
+  return [v1[0] + v2[0], v1[1] + v2[1]];
+}
+
+function vsub(v1, v2) {
+  return [v1[0] - v2[0], v1[1] - v2[1]];
+}
+
+function vscale(v, factor) {
+  return [v[0] * factor, v[1] * factor];
+}
+
+function vradial(v) {
+  return Math.atan2(v[0], v[1]);
+}
+
+function vturn(radians, v) {
+  if (!v) {
+    v = [1, 1];
+  }
+  return [v[0] * sin(radians), v[1] * cos(radians)];
+}
+
+function vnorm(v) {
+  return [-v[1], v[0]];
+}
+
+function distance_to_poly(point, poly) {
+  var dists = $.map(poly, function(p1, i) {
+    var prev = (i == 0 ? poly.length : i) - 1,
+        p2 = poly[prev],
+        line = vsub(p2, p1);
+
+    if (vlen(line) == 0)
+      return vlen(vsub(point, p1));
+
+    var norm = vnorm(line),
+        x1 = point[0],
+        x2 = norm[0],
+        x3 = p1[0],
+        x4 = line[0],
+        y1 = point[1],
+        y2 = norm[1],
+        y3 = p1[1],
+        y4 = line[1],
+
+        j = (x3 - x1 - x2 * y3 / y2 + x2 * y1 / y2) / (x2 * y4 / y2 - x4),
+        i;
+
+      if (j < 0 || j > 1)
+        return Math.min(
+          vlen(vsub(point, p1)),
+          vlen(vsub(point, p2)));
+
+      i = (y3 + j * y4 - y1) / y2;
+
+      return vlen(vscale(norm, i));
+  });
+
+  return Math.min.apply(null, dists);
+}
+
+
+// source: https://github.com/substack/point-in-polygon/
+function point_in_poly(point, vs) {
+    // ray-casting algorithm based on
+    // http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html
+    
+    var x = point[0], y = point[1];
+    
+    var inside = false;
+    for (var i = 0, j = vs.length - 1; i < vs.length; j = i++) {
+        var xi = vs[i][0], yi = vs[i][1];
+        var xj = vs[j][0], yj = vs[j][1];
+        
+        var intersect = ((yi > y) != (yj > y))
+            && (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
+        if (intersect) inside = !inside;
+    }
+    
+    return inside;
+};

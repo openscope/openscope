@@ -39,8 +39,7 @@ zlsa.atc.ArrivalDefault = Fiber.extend(function(base) {
       else
         this.altitude = options.altitude;
 
-      this.frequency[0] = options.frequency[0] * 60;
-      this.frequency[1] = options.frequency[1] * 60;
+      this.frequency = vscale(options.frequency, 60);
 
       if(!options.heading)
         options.heading = (options.radial + 180) % 360;
@@ -552,8 +551,7 @@ var Runway=Fiber.extend(function(base) {
       end = this.getEnd(end);
       position = [position[0], position[1]];
 
-      position[0] -= this.position[0];
-      position[1] -= this.position[1];
+      position = vsub(position, this.position);
 
       var offset = [0, 0];
       offset[0]  = (-cos(this.angle) * position[0]) + (sin(this.angle) * position[1]);
@@ -561,8 +559,7 @@ var Runway=Fiber.extend(function(base) {
 //      offset[1] *= -1;
 
       if(end == 0) {
-        offset[0] *= -1;
-        offset[1] *= -1;
+        offset = vscale(offset, -1);
       }
 
       if(length) {
@@ -605,13 +602,12 @@ var Runway=Fiber.extend(function(base) {
     getPosition: function(end) {
       end = this.getEnd(end);
       var offset = [this.position[0], this.position[1]];
-      if(end == 0) {
-        offset[0] -= sin(this.angle) * (this.length / 2);
-        offset[1] -= cos(this.angle) * (this.length / 2);
-      } else {
-        offset[0] += sin(this.angle) * (this.length / 2);
-        offset[1] += cos(this.angle) * (this.length / 2);
-      }
+      offset = vsum(offset,
+          vscale(
+            vturn(this.angle),
+            (this.length / 2) * (end == 0 ? -1 : 1)
+          )
+        );
       return offset;
     },
     parse: function(data) {
@@ -621,11 +617,9 @@ var Runway=Fiber.extend(function(base) {
       } else if(data.end) {
         var coord_start = new Position(data.end[0], data.reference_position, data.magnetic_north);
         var coord_end   = new Position(data.end[1], data.reference_position, data.magnetic_north);
-        this.position   = [average(coord_start.x, coord_end.x), average(coord_start.y, coord_end.y)];
-        this.length     = coord_start.distanceTo(coord_end);
-        this.angle      = Math.atan2(coord_end.x - coord_start.x,
-                                     coord_end.y - coord_start.y);
-        //console.log(this.angle, this.length);
+        this.position   = vscale(vsum(coord_start.position, coord_end.position), 0.5);
+        this.length     = vlen(vsub(coord_start, coord_end));
+        this.angle      = vradial(vsub(coord_end.position, coord_start.position));
       }
 
       if(data.name) this.name = data.name;
@@ -730,9 +724,11 @@ var Airport=Fiber.extend(function() {
         for(var i in r) {
           var obj = {};
           if (r[i].name) obj.name = r[i].name;
-          obj.height = r[i].height || Infinity;
+          var h = r[i].height;
+          obj.height = Number(h) || Infinity;
+          console.log(obj.name, 'altitude: ' + obj.height)
           obj.coordinates = $.map(r[i].coordinates, function(v) {
-            return (new Position(v, self.position, self.magnetic_north)).position;
+            return [(new Position(v, self.position, self.magnetic_north)).position];
           });
 
           var coords = obj.coordinates,
@@ -745,8 +741,7 @@ var Airport=Fiber.extend(function() {
             coords_min = [Math.min(v[0], coords_min[0]), Math.min(v[1], coords_min[1])];
           };
 
-          obj.center = [(coords_max[0] + coords_min[0]) / 2, (coords_max[1] + coords_min[1]) / 2];
-
+          obj.center = vscale(vsum(coords_max, coords_min), 0.5);
           self.restricted_areas.push(obj);
         }
       }

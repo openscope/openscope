@@ -243,12 +243,12 @@
     ],
     "frequency": [1, 3.8],
     "sids": {
-      "KARTI": ["DM", "WT", "GEKLA", "RUGEL", "BESTA", "KN"],
-      "ERMAL": ["DM", "LO", "ERMAL"],
+      "KARTI": ["WT", "GEKLA", "RUGEL", "BESTA", "KN"],
+      "ERMAL": ["LO", "ERMAL"],
       "VENEV": ["DW", "DD149", "DEE", "DK", "FV"],
-      "CHERU": ["DM", "WT", "GEKLA", "DAKLO", "SF"],
-      "NOGTI": ["DM", "WT", "GEKLA", "DAKLO", "NOGTI"],
-      "RELTO": ["DM", "RAMEK", "OKREM", "RELTO"]
+      "CHERU": ["WT", "GEKLA", "DAKLO", "SF"],
+      "NOGTI": ["WT", "GEKLA", "DAKLO", "NOGTI"],
+      "RELTO": ["RAMEK", "OKREM", "NEMOR", "RELTO"]
     }
   },
   "arrivals": [

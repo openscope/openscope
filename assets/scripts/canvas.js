@@ -888,8 +888,8 @@ function canvas_draw_range_ring(cc, fix_origin, fix1, fix2) {
 function canvas_draw_restricted(cc) {
   "use strict";
   
-  cc.strokeStyle = "rgba(225, 225, 255, 0.25)";
-  cc.fillStyle   = "rgba(205, 205, 255, 0.35)";
+  cc.strokeStyle = "rgba(200, 200, 255, 0.25)";
+  cc.fillStyle   = "rgba(200, 200, 255, 0.35)";
   cc.lineWidth   = Math.max(prop.ui.scale / 3, 2);
   cc.lineJoin    = "round";
   cc.font = "10px monoOne, monospace";
@@ -911,7 +911,7 @@ function canvas_draw_restricted(cc) {
     
     cc.textAlign    = "center";
     cc.textBaseline = "top";
-    var height = (area.height == "inf" ? 'UNL' : area.height);
+    var height = (area.height == Infinity ? 'UNL' : area.height);
 
     var height_shift = 0;
     if (area.name) {
