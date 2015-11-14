@@ -1301,7 +1301,7 @@ var Aircraft=Fiber.extend(function() {
       this.position = vsum(this.position, vscale([sin(angle), cos(angle)], scaleSpeed));
 
       this.distance = vlen(this.position);
-      this.radial = vlen(this.position);
+      this.radial = vradial(this.position);
       if (this.radial < 0) this.radial += Math.PI*2;
 
       var inside = (this.distance <= airport_get().ctr_radius &&
