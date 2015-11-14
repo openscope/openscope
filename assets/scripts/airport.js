@@ -724,8 +724,7 @@ var Airport=Fiber.extend(function() {
         for(var i in r) {
           var obj = {};
           if (r[i].name) obj.name = r[i].name;
-          var h = r[i].height;
-          obj.height = Number(h) || Infinity;
+          obj.height = parseElevation(r[i].height);
           console.log(obj.name, 'altitude: ' + obj.height)
           obj.coordinates = $.map(r[i].coordinates, function(v) {
             return [(new Position(v, self.position, self.magnetic_north)).position];

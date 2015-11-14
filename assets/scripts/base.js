@@ -49,16 +49,7 @@ var Position=Fiber.extend(function() {
       this.longitude = this.parseCoordinate(coordinates[1]);
 
       if (coordinates[2] != null) {
-        var alt = /^(\d+(\.\d+)?)(m|ft)$/.exec(coordinates[2]);
-        if (alt == null) {
-          log('Unable to parse elevation ' + coordinates[2]);
-          return;
-        }
-        if (alt[3] == 'm') {
-          this.elevation = parseFloat(alt[1]) / 0.3048;
-        } else {
-          this.elevation = parseFloat(alt[1]);
-        }
+        this.elevation = parseElevation(coordinates[2]);
       }
 
       if (this.reference_position != null) {

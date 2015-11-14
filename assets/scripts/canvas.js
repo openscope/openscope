@@ -887,9 +887,8 @@ function canvas_draw_range_ring(cc, fix_origin, fix1, fix2) {
 
 function canvas_draw_restricted(cc) {
   "use strict";
-  
-  cc.strokeStyle = "rgba(200, 200, 255, 0.25)";
-  cc.fillStyle   = "rgba(200, 200, 255, 0.35)";
+  cc.strokeStyle = "rgba(150, 200, 255, 0.3)";
+  cc.fillStyle   = "rgba(150, 200, 255, 0.4)";
   cc.lineWidth   = Math.max(prop.ui.scale / 3, 2);
   cc.lineJoin    = "round";
   cc.font = "10px monoOne, monospace";
@@ -902,8 +901,7 @@ function canvas_draw_restricted(cc) {
     cc.translate(prop.canvas.panX, prop.canvas.panY);
     cc.beginPath();
     for (var v in coords) {
-      //console.log(coords[v]);
-      cc.lineTo(round(km(coords[v][0])), -round(km(coords[v][1])), v);
+      cc.lineTo(round(km(coords[v][0])), -round(km(coords[v][1])));
     }
     
     cc.closePath();
@@ -911,15 +909,15 @@ function canvas_draw_restricted(cc) {
     
     cc.textAlign    = "center";
     cc.textBaseline = "top";
-    var height = (area.height == Infinity ? 'UNL' : area.height);
+    var height = (area.height == Infinity ? 'UNL' : 'FL' + Math.ceil(area.height / 1000)*10);
 
     var height_shift = 0;
     if (area.name) {
       height_shift = -12;
-      cc.fillText(area.name, round(km(area.center[0])), -round(km(area.center[1])));
+      cc.fillText(area.name, round(km(area.center[0])), - round(km(area.center[1])));
     }
     
-    cc.fillText(height, round(km(area.center[0])), -12-round(km(area.center[1])));
+    cc.fillText(height, round(km(area.center[0])), height_shift - round(km(area.center[1])));
     cc.restore();
   }
 }

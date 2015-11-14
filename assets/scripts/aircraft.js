@@ -90,7 +90,7 @@ var Aircraft=Fiber.extend(function() {
 
       this.history     = [];
 
-      this.restricted = {list: [], updated: 0};
+      this.restricted = {list: []};
       
       this.notice      = false;
       this.warning     = false;
@@ -193,7 +193,8 @@ var Aircraft=Fiber.extend(function() {
       // Setting up links to restricted areas 
       var ra = prop.airport.current.restricted_areas; 
       for (var i in ra) {
-        this.restricted.list.push({data: ra[i], range: null});
+        this.restricted.list.push({
+          data: ra[i], range: null, inside: false});
       }
 
 
@@ -1398,6 +1399,7 @@ var Aircraft=Fiber.extend(function() {
       }
 
       // restricted areas
+      // players are penalized for each area entry
       if (this.position) {
         for (i in this.restricted.list) {
           var area = this.restricted.list[i];
@@ -1412,16 +1414,23 @@ var Aircraft=Fiber.extend(function() {
           if (!area.range || area.range <= 0) {
             var st = point_in_poly(this.position, area.data.coordinates);
             if (st) {
-              warning = true;
-              prop.game.score.warning += 1;
+              if (!area.inside) {
+                prop.game.score.warning += 1;
+                area.inside = true;
+              }
+            } else {
+              area.inside = false;
             }
+
             area.range = distance_to_poly(this.position, area.data.coordinates); // calc here
             console.log(this.getCallsign(), 'in', area.range, 'from', area.data.name, area.data.height, this.altitude, 'inside?', st);
-          //console.log(game_time(), this.getCallsign(), area.data.name, area.data.height, this.altitude, area.range);
           }
         }
+        $.each(this.restricted.list, function(k, v) {
+          warning = warning || v.inside;
+        })
       } 
-
+      
       this.notice  = notice;
       this.warning = warning;
       this.hit     = hit;

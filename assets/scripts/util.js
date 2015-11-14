@@ -440,3 +440,17 @@ function point_in_poly(point, vs) {
     
     return inside;
 };
+
+function endsWith(str, suffix) {
+  return str.indexOf(suffix, str.length - suffix.length) !== -1;  
+}
+
+function parseElevation(ele) {
+  var alt = /^(Infinity|(\d+(\.\d+)?)(m|ft))$/.exec(ele);
+  if (alt == null) {
+    log('Unable to parse elevation ' + ele);
+    return;
+  }
+  if (alt[1] == 'Infinity') return Infinity;
+  return parseFloat(alt[2]) / (alt[4] == 'm' ? 0.3048 : 1);
+}
