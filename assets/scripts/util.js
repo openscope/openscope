@@ -376,45 +376,54 @@ y1 + y2 * i == y3 + y4 * j
 0 < j < 1
 --------
 
-i = (y3 + j y4 - y1) / y2
-
+i == (y3 + j y4 - y1) / y2
 x1 + x2 y3 / y2 + j x2 y4 / y2 - x2 y1 / y2 == x3 + j x4
-
 j x2 y4 / y2 - j x4 == x3 - x1 - x2 y3 / y2 + x2 y1 / y2
-
 j = (x3 - x1 - x2 y3 / y2 + x2 y1 / y2) / (x2 y4 / y2 - x4)
 i = (y3 + j y4 - y1) / y2
+
+i == (x3 + j x4 - x1) / x2
+y1 + y2 x3 / x2 + j y2 x4 / x2 - y2 x1 / x2 == y3 + j y4
+j y2 x4 / x2 - j y4 == y3 - y1 - y2 x3 / x2 + y2 x1 / x2
+j = (y3 - y1 - y2 x3 / x2 + y2 x1 / x2) / (y2 x4 / x2 - y4)
+i = (x3 + j x4 - x1) / x2
 */
 function distance_to_poly(point, poly) {
-  var dists = $.map(poly, function(p1, i) {
+  var dists = $.map(poly, function(vertex1, i) {
     var prev = (i == 0 ? poly.length : i) - 1,
-        p2 = poly[prev],
-        line = vsub(p2, p1);
+        vertex2 = poly[prev],
+        edge = vsub(vertex2, vertex1);
 
-    if (vlen(line) == 0)
-      return vlen(vsub(point, p1));
+    if (vlen(edge) == 0)
+      return vlen(vsub(point, vertex1));
 
-    var norm = vnorm(line),
+    // point + normal * i == vertex1 + edge * j
+    var norm = vnorm(edge),
         x1 = point[0],
         x2 = norm[0],
-        x3 = p1[0],
-        x4 = line[0],
+        x3 = vertex1[0],
+        x4 = edge[0],
         y1 = point[1],
         y2 = norm[1],
-        y3 = p1[1],
-        y4 = line[1],
+        y3 = vertex1[1],
+        y4 = edge[1],
+        i, j;
 
-        j = (x3 - x1 - x2 * y3 / y2 + x2 * y1 / y2) / (x2 * y4 / y2 - x4),
-        i;
-
-      if (j < 0 || j > 1)
-        return Math.min(
-          vlen(vsub(point, p1)),
-          vlen(vsub(point, p2)));
-
+    if (y2 != 0) {
+      j = (x3 - x1 - x2 * y3 / y2 + x2 * y1 / y2) / (x2 * y4 / y2 - x4);
       i = (y3 + j * y4 - y1) / y2;
+    }
+    else if (x2 != 0) { // normal can't be zero unless the edge has 0 length
+      j = (y3 - y1 - y2 * x3 / x2 + y2 * x1 / x2) / (y2 * x4 / x2 - y4);
+      i = (x3 + j * x4 - x1) / x2;
+    }          
 
-      return vlen(vscale(norm, i));
+    if (j < 0 || j > 1 || j == null)
+      return Math.min(
+        vlen(vsub(point, vertex1)),
+        vlen(vsub(point, vertex2)));
+
+    return vlen(vscale(norm, i));
   });
 
   return Math.min.apply(null, dists);
