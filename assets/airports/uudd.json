@@ -10,7 +10,7 @@
 
   "wind": {
     "angle": 0,
-    "speed": 2
+    "speed": 2402
   },
   "fixes": {
     "ABMAS": ["N55d35m49", "E37d51m05"],
@@ -223,6 +223,7 @@
       "radial":   102,
       "type": "wave",
       "fixes":   ["RELTO", "NEMOR", "AO", "OKMEL"],
+      "speed": 240,
       "airlines":  [
         ["sbi", 96],
         ["svr", 38],
@@ -238,6 +239,7 @@
       "radial":   195,
       "type": "wave",
       "fixes": ["KUPAR", "DMD", "RAPAG"],
+      "speed": 240,
       "airlines":  [
         ["sbi", 96],
         ["svr", 38],
@@ -251,7 +253,7 @@
     {
       "radial": 340,
       "fixes": ["KN", "BESTA", "RUGEL", "GEKLA", "ABMAS", "RAPAG"],
-      "heading":   0,
+      "speed": 240,
       "airlines":  [
         ["sbi", 30],
         ["svr", 30],
