@@ -9,8 +9,8 @@
   "position": ["N55.408611", "E37.906389"],
 
   "wind": {
-    "angle": 0,
-    "speed": 2402
+    "angle": 2,
+    "speed": 5
   },
   "fixes": {
     "ABMAS": ["N55d35m49", "E37d51m05"],

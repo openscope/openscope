@@ -1446,8 +1446,6 @@ var Aircraft=Fiber.extend(function() {
                 distance_to_poly(this.position, area.data.coordinates));
             }
             area.inside = new_inside;
-            
-            console.log(this.getCallsign(), 'in', area.range, 'from', area.data.name, area.data.height, this.altitude, 'inside?', new_inside);
           }
         }
         // raise warning if in at least one restricted area
