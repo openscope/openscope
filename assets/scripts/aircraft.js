@@ -1416,11 +1416,15 @@ var Aircraft=Fiber.extend(function() {
             var st = point_in_poly(this.position, area.data.coordinates);
             if (st && !area.inside) {
               prop.game.score.warning += 1;
-              area.range = 5; // if a plane got into restricted area, don't check it too often
+              area.range = this.speed * 1.85 / 3.6 * 50 / 1000; // check in 50 seconds
+              // speed is kts, range is km.
+              // if a plane got into restricted area, don't check it too often
             }
             else {
-              // don't calculate more often than every 1km
-              area.range = Math.max(1, distance_to_poly(this.position, area.data.coordinates));
+              // don't calculate more often than every 10 seconds
+              area.range = Math.max(
+                this.speed * 1.85 / 36 / 1000 * 10,
+                distance_to_poly(this.position, area.data.coordinates));
             }
             area.inside = st;
             
