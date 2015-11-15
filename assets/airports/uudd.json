@@ -208,7 +208,6 @@
     "destinations": [
       77, 85, 175, 255, 350
     ],
-    "type": "wave",
     "frequency": [1, 3.8],
     "sids": {
       "KARTI": ["WT", "GEKLA", "RUGEL", "BESTA", "KN"],
@@ -221,7 +220,6 @@
   "arrivals": [
     {
       "radial":   102,
-      "type": "wave",
       "fixes":   ["RELTO", "NEMOR", "AO", "OKMEL"],
       "speed": 240,
       "airlines":  [
@@ -237,7 +235,6 @@
     },
     {
       "radial":   195,
-      "type": "wave",
       "fixes": ["KUPAR", "DMD", "RAPAG"],
       "speed": 240,
       "airlines":  [
