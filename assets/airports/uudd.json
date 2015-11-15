@@ -4,7 +4,8 @@
   "radio": "Domodedovo",
   "icao": "UUDD",
   "ctr_radius": 70,
-  "magnetic_north": 0, // 10.8, commented until #244 is fixed
+  "magnetic_north": 0, 
+  "_comment": "magnetic north is 10.8, but set to 0 until #244 is fixed",
   "position": ["N55.408611", "E37.906389"],
 
   "wind": {
