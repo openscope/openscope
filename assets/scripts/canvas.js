@@ -972,3 +972,9 @@ function canvas_update_post() {
     prop.canvas.dirty = false;
   }
 }
+
+
+function canvas_sids_toggle(evt) {
+  $(evt.target).closest('.control').toggleClass('active');
+  prop.canvas.draw_sids = !prop.canvas.draw_sids;
+}
