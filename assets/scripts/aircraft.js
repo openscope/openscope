@@ -1405,6 +1405,7 @@ var Aircraft=Fiber.extend(function() {
           var area = this.restricted.list[i];
           if (area.data.height < this.altitude) {
             area.range = null;
+            area.inside = false;
             continue;
           }
           if (area.range) {
@@ -1413,16 +1414,16 @@ var Aircraft=Fiber.extend(function() {
 
           if (!area.range || area.range <= 0) {
             var st = point_in_poly(this.position, area.data.coordinates);
-            if (st) {
-              if (!area.inside) {
-                prop.game.score.warning += 1;
-                area.inside = true;
-              }
-            } else {
-              area.inside = false;
+            if (st && !area.inside) {
+              prop.game.score.warning += 1;
+              area.range = 5; // if a plane got into restricted area, don't check it too often
             }
-
-            area.range = distance_to_poly(this.position, area.data.coordinates); // calc here
+            else {
+              // don't calculate more often than every 1km
+              area.range = Math.max(1, distance_to_poly(this.position, area.data.coordinates));
+            }
+            area.inside = st;
+            
             console.log(this.getCallsign(), 'in', area.range, 'from', area.data.name, area.data.height, this.altitude, 'inside?', st);
           }
         }
