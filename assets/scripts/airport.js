@@ -851,6 +851,7 @@ function airport_init() {
   airport_load("eham");
   airport_load("engm");
   airport_load("eddm");
+  airport_load("eidw");
 
   //  BRAZIL AIRPORTS
   airport_load("sbgr");
