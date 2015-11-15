@@ -421,10 +421,10 @@ function canvas_draw_aircraft(cc, aircraft) {
   if(!aircraft.hit) {
     cc.save();
 
-    var tail_length = 10;
+    var tail_length = aircraft.speed / 15;
     if(match) tail_length = 15;
     var angle       = aircraft.heading;
-    var end         = [-Math.sin(angle) * tail_length, Math.cos(angle) * tail_length];
+    var end         = [Math.sin(angle) * tail_length, -Math.cos(angle) * tail_length];
 
     cc.beginPath();
     cc.moveTo(0, 0);
