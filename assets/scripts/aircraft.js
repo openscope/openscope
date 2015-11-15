@@ -1402,19 +1402,38 @@ var Aircraft=Fiber.extend(function() {
       // players are penalized for each area entry
       if (this.position) {
         for (i in this.restricted.list) {
+          /*
+          Polygon matching procedure:
+
+          1. Filter polygons by aircraft altitude
+          2. For other polygons, measure distance to it (distance_to_poly), then
+          substract travelled distance every turn
+              If distance is about less than 10 seconds of flight,
+              assign distance equal to 10 seconds of flight,
+              otherwise planes flying along the border of entering at shallow angle
+              will cause too many checks.
+          3. if distance has reached 0, check if the aircraft is within the poly.
+              If not, redo #2.
+          */
           var area = this.restricted.list[i];
+
+          // filter only those relevant by height
           if (area.data.height < this.altitude) {
             area.range = null;
             area.inside = false;
             continue;
           }
+
+          // count distance untill the next check
           if (area.range) {
             area.range -= this.ds;
           }
 
+          // recalculate for new areas or those that should be checked
           if (!area.range || area.range <= 0) {
-            var st = point_in_poly(this.position, area.data.coordinates);
-            if (st && !area.inside) {
+            var new_inside = point_in_poly(this.position, area.data.coordinates);
+            // ac has just entered the area: .inside is still false, but st is true
+            if (new_inside && !area.inside) {
               prop.game.score.warning += 1;
               area.range = this.speed * 1.85 / 3.6 * 50 / 1000; // check in 50 seconds
               // speed is kts, range is km.
@@ -1426,11 +1445,12 @@ var Aircraft=Fiber.extend(function() {
                 this.speed * 1.85 / 36 / 1000 * 10,
                 distance_to_poly(this.position, area.data.coordinates));
             }
-            area.inside = st;
+            area.inside = new_inside;
             
-            console.log(this.getCallsign(), 'in', area.range, 'from', area.data.name, area.data.height, this.altitude, 'inside?', st);
+            console.log(this.getCallsign(), 'in', area.range, 'from', area.data.name, area.data.height, this.altitude, 'inside?', new_inside);
           }
         }
+        // raise warning if in at least one restricted area
         $.each(this.restricted.list, function(k, v) {
           warning = warning || v.inside;
         })
