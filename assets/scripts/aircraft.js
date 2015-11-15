@@ -1434,7 +1434,7 @@ var Aircraft=Fiber.extend(function() {
             var new_inside = point_in_poly(this.position, area.data.coordinates);
             // ac has just entered the area: .inside is still false, but st is true
             if (new_inside && !area.inside) {
-              prop.game.score.warning += 1;
+              prop.game.score.restrictions += 1;
               area.range = this.speed * 1.85 / 3.6 * 50 / 1000; // check in 50 seconds
               // speed is kts, range is km.
               // if a plane got into restricted area, don't check it too often
