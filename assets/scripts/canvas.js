@@ -932,7 +932,6 @@ function canvas_draw_restricted(cc) {
   if (!prop.canvas.draw_restricted) return;
 
   cc.strokeStyle = "rgba(150, 200, 255, 0.3)";
-  cc.fillStyle   = "transparent";
   cc.lineWidth   = Math.max(prop.ui.scale / 3, 2);
   cc.lineJoin    = "round";
   cc.font = "10px monoOne, monospace";
@@ -942,7 +941,9 @@ function canvas_draw_restricted(cc) {
   cc.translate(prop.canvas.panX, prop.canvas.panY);
   for(var i in airport.restricted_areas) {
     var area = airport.restricted_areas[i];
+    cc.fillStyle   = "transparent";
     canvas_draw_poly(cc, area.coordinates);
+    cc.fillStyle   = "rgba(150, 200, 255, .4)";
     
     cc.textAlign    = "center";
     cc.textBaseline = "top";
