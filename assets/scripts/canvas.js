@@ -19,6 +19,8 @@ function canvas_init_pre() {
 
   prop.canvas.last = time();
   prop.canvas.dirty = true;
+  prop.canvas.draw_restricted = true;
+  prop.canvas.draw_sids = true;
 }
 
 function canvas_init() {
@@ -265,6 +267,8 @@ function canvas_draw_fixes(cc) {
 
 function canvas_draw_sids(cc) {
   "use strict";
+  if (!prop.canvas.draw_sids) return;
+
   var departure_colour = "rgba(128, 255, 255, 0.6)";
   cc.strokeStyle = departure_colour;
   cc.fillStyle = departure_colour;
@@ -885,6 +889,45 @@ function canvas_draw_range_ring(cc, fix_origin, fix1, fix2) {
   }
 }
 
+function canvas_draw_restricted(cc) {
+  "use strict";
+  if (!prop.canvas.draw_restricted) return;
+
+  cc.strokeStyle = "rgba(150, 200, 255, 0.3)";
+  cc.fillStyle   = "rgba(150, 200, 255, 0.4)";
+  cc.lineWidth   = Math.max(prop.ui.scale / 3, 2);
+  cc.lineJoin    = "round";
+  cc.font = "10px monoOne, monospace";
+  
+  var airport=airport_get();
+  for(var i in airport.restricted_areas) {
+    var area = airport.restricted_areas[i],
+        coords = area.coordinates;
+    cc.save();
+    cc.translate(prop.canvas.panX, prop.canvas.panY);
+    cc.beginPath();
+    for (var v in coords) {
+      cc.lineTo(round(km(coords[v][0])), -round(km(coords[v][1])));
+    }
+    
+    cc.closePath();
+    cc.stroke();
+    
+    cc.textAlign    = "center";
+    cc.textBaseline = "top";
+    var height = (area.height == Infinity ? 'UNL' : 'FL' + Math.ceil(area.height / 1000)*10);
+
+    var height_shift = 0;
+    if (area.name) {
+      height_shift = -12;
+      cc.fillText(area.name, round(km(area.center[0])), - round(km(area.center[1])));
+    }
+    
+    cc.fillText(height, round(km(area.center[0])), height_shift - round(km(area.center[1])));
+    cc.restore();
+  }
+}
+
 function canvas_update_post() {
   "use strict";
   var elapsed = game_time() - airport_get().start;
@@ -906,6 +949,7 @@ function canvas_update_post() {
 
       cc.save();
       cc.globalAlpha = alpha;
+      canvas_draw_restricted(cc);
       canvas_draw_runways(cc);
       cc.restore();
 
@@ -971,4 +1015,9 @@ function canvas_update_post() {
 
     prop.canvas.dirty = false;
   }
+}
+
+function canvas_restricted_toggle(evt) {
+  $(evt.target).closest('.control').toggleClass('warning-button active');
+  prop.canvas.draw_restricted = !prop.canvas.draw_restricted;
 }

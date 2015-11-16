@@ -42,6 +42,7 @@ function game_init_pre() {
     },
 
     violation: 0,
+    restrictions: 0
   };
 
 }
@@ -61,10 +62,10 @@ function game_get_score() {
   score -= prop.game.score.hit * 50;
 
   score -= prop.game.score.abort.landing * 5;
-
   score -= prop.game.score.abort.taxi * 2;
 
   score -= prop.game.score.violation;
+  score -= prop.game.score.restrictions * 10;
 
   return score;
 }
