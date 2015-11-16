@@ -1494,7 +1494,7 @@ var Aircraft=Fiber.extend(function() {
               hit = true;
               if (!this.hit) {
                 console.log("hit terrain");
-                ui_log(true, this.getCallsign() + " collided with terrain in flight level");
+                ui_log(true, this.getCallsign() + " collided with terrain in controlled flight");
                 prop.game.score.hit += 1;
               }
             } else {
