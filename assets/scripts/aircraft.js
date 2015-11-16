@@ -92,6 +92,20 @@ var Aircraft=Fiber.extend(function() {
 
       this.restricted = {list: []};
       
+      if (prop.airport.current.terrain) {
+        var terrain = prop.airport.current.terrain;
+        this.terrain_ranges = {};
+        this.terrain_level = 0;
+        for (var k in terrain) {
+          this.terrain_ranges[k] = {};
+          for (var j in terrain[k]) {
+            this.terrain_ranges[k][j] = Infinity;
+          }
+        }
+      } else {
+        this.terrain_ranges = false;
+      }
+      
       this.notice      = false;
       this.warning     = false;
       this.hit         = false;
@@ -1309,6 +1323,7 @@ var Aircraft=Fiber.extend(function() {
                     this.altitude <= airport_get().ctr_ceiling);
       if (inside != this.inside_ctr)
         this.crossBoundary(inside);
+
     },
     updateWarning: function() {
       // Check this aircraft for violation of separation minima against all
@@ -1454,6 +1469,42 @@ var Aircraft=Fiber.extend(function() {
         })
       } 
       
+      if (this.terrain_ranges && !this.isLanded()) {
+        var terrain = prop.airport.current.terrain,
+            prev_level = this.terrain_ranges[this.terrain_level],
+
+            ele = Math.ceil(this.altitude / 1000) * 1000,
+            curr_ranges = this.terrain_ranges[ele];
+
+        if (ele != this.terrain_level) {
+          for (var lev in prev_level) {
+            prev_level[lev] = Infinity;
+          }
+          this.terrain_level = ele;
+        }
+        
+        for (var id in curr_ranges) {
+          curr_ranges[id] -= this.ds;
+          //console.log(curr_ranges[id]);
+
+          if (curr_ranges[id] < 0 || curr_ranges[id] == Infinity) {
+            var area = terrain[ele][id];
+            if (point_in_poly(this.position, area)) {
+              this.altitude = 0;
+              hit = true;
+              if (!this.hit) {
+                console.log("hit terrain");
+                ui_log(true, this.getCallsign() + " collided with terrain in flight level");
+                prop.game.score.hit += 1;
+              }
+            } else {
+              curr_ranges[id] = Math.max(.2, distance_to_poly(this.position, area));
+              console.log(this.getCallsign(), 'in', curr_ranges[id], 'km from', id);
+            }
+          }
+        }
+      }
+
       this.notice  = notice;
       this.warning = warning;
       this.hit     = hit;

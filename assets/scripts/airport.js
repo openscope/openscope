@@ -46,7 +46,7 @@ zlsa.atc.ArrivalDefault = Fiber.extend(function(base) {
 
       this.heading = radians(options.heading);
       
-      if( options.fixes )
+      if(options.fixes)
         this.fixes = options.fixes;
 
       this.radial = radians(options.radial);
@@ -700,6 +700,11 @@ var Airport=Fiber.extend(function() {
       if(data.ctr_radius) this.ctr_radius = data.ctr_radius;
       if(data.ctr_ceiling) this.ctr_ceiling = data.ctr_ceiling;
       if(data.level) this.level = data.level;
+      this.has_terrain = false || data.has_terrain;
+
+      if (this.has_terrain) {
+        this.loadTerrain();
+      }
       
       if(data.runways) {
         for(var i=0;i<data.runways.length;i++) {
@@ -811,6 +816,36 @@ var Airport=Fiber.extend(function() {
     },
     selectRunway: function(length) {
       return this.runway;
+    },
+    parseTerrain: function(data) {
+      var apt = this;
+      this.terrain = {};
+      for (var h in data) {
+        this.terrain[h] = {};
+        for (var id in data[h]) {
+          this.terrain[h][id] = $.map(data[h][id].points, function(pt) {
+            return [(new Position(pt, apt.position, apt.magnetic_north)).position];
+          })
+        }
+      }
+    },
+    loadTerrain: function() {
+      var terrain = new Content({
+        type: "json",
+        url:  'assets/airports/terrain/' + this.icao.toLowerCase() + '.json',
+        that: this,
+        callback: function(status, data) {
+          if(status == "ok") {
+            try {
+              log('Parsing terrain');
+              this.parseTerrain(data);
+            }
+            catch (e) {
+              log(e.message);
+            }
+          }
+        }
+      });
     },
     load: function(url) {
       this.content = new Content({
