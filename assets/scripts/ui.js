@@ -5,6 +5,18 @@ function ui_init_pre() {
   prop.ui.scale_max = 80; // max scale
   prop.ui.scale_min = 1; // min scale
   prop.ui.scale         = prop.ui.scale_default;
+  prop.ui.terrain = {
+    colors: {
+      1000: '26, 150, 65',
+      2000: '119, 194, 92',
+      3000: '255, 255, 192',
+      4000: '253, 201, 128',
+      5000: '240, 124, 74',
+      6000: '126, 61, 21'
+    },
+    border_opacity: 1,
+    fill_opacity: .05
+  };
 
   if('atc-scale' in localStorage) prop.ui.scale = localStorage['atc-scale'];
 }
@@ -49,8 +61,10 @@ function ui_init() {
     ".pause-toggle": game_pause_toggle,
     "#paused img": game_unpause,
     ".toggle-restricted-areas": canvas_restricted_toggle,
-    ".toggle-sids": canvas_sids_toggle
-  }
+    ".toggle-sids": canvas_sids_toggle,
+    ".toggle-terrain": canvas_terrain_toggle
+  };
+
   $.each(switches, function(selector, fn) {
     $(selector).on('click', function(evt) { fn(evt); });
   });

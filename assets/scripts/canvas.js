@@ -906,15 +906,6 @@ function canvas_draw_terrain(cc) {
   "use strict";
   if (!prop.canvas.draw_terrain) return;
 
-  var colors = {
-    1000: 'rgba( 26, 150, 65, 1.00 )',
-    2000: 'rgba( 119, 194, 92, 1.00 )',
-    3000: 'rgba( 255, 255, 192, 1.00 )',
-    4000: 'rgba( 253, 201, 128, 1.00 )',
-    5000: 'rgba( 240, 124, 74, 1.00 )',
-    6000: 'rgba( 126, 61, 21, 1.00 )'
-  }
-
   cc.strokeStyle = 'rgba(255,255,255,.4)';
   cc.fillStyle = 'rgba(255,255,255,.2)';
   cc.lineWidth = clamp(.5, (prop.ui.scale / 10), 2);
@@ -924,8 +915,11 @@ function canvas_draw_terrain(cc) {
   cc.save();
   cc.translate(prop.canvas.panX, prop.canvas.panY);
   for (var l in airport.terrain) {
-    cc.strokeStyle = colors[l];
-    cc.fillStyle = colors[l].replace('1.00', '.05');
+    var color = 'rgba('
+      + prop.ui.terrain.colors[l] + ', ';
+
+    cc.strokeStyle = color + prop.ui.terrain.border_opacity + ')';
+    cc.fillStyle = color + prop.ui.terrain.fill_opacity + ')';
 
     for (var id in airport.terrain[l])
       canvas_draw_poly(cc, airport.terrain[l][id]);
@@ -1063,4 +1057,9 @@ function canvas_restricted_toggle(evt) {
 function canvas_sids_toggle(evt) {
   $(evt.target).closest('.control').toggleClass('active');
   prop.canvas.draw_sids = !prop.canvas.draw_sids;
+}
+
+function canvas_terrain_toggle(evt) {
+  $(evt.target).closest('.control').toggleClass('active');
+  prop.canvas.draw_terrain = !prop.canvas.draw_terrain;
 }
