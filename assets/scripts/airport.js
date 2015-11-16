@@ -964,8 +964,15 @@ function airport_set(icao) {
   prop.airport.current = prop.airport.airports[icao];
   prop.airport.current.set();
 
-  $('#airport').text(prop.airport.current.icao.toUpperCase());
-  $('#airport').attr("title", prop.airport.current.name);
+  $('#airport')
+    .text(prop.airport.current.icao.toUpperCase())
+    .attr("title", prop.airport.current.name);
+
+  $('.toggle-restricted-areas').toggleClass('hidden', 
+    (prop.airport.current.restricted_areas || []).length < 1);
+
+  $('.toggle-sids').toggleClass('hidden', 
+    $.isEmptyObject(prop.airport.current.departures.sids));
 
   prop.canvas.dirty = true;
 
