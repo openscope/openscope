@@ -819,6 +819,7 @@ var Airport=Fiber.extend(function() {
         that: this,
         callback: function(status, data) {
           if(status == "ok") {
+            console.log('loaded', data);
             try {
               log('Parsing data');
               this.parse(data);
@@ -927,7 +928,12 @@ function airport_set(icao) {
     aircraft_remove_all();
   }
   prop.airport.current = prop.airport.airports[icao];
-  prop.airport.current.set();
+  if (prop.airport.current.terrain == null) {
+    prop.airport.current.loadTerrain();
+  }
+  else {
+    prop.airport.current.set();
+  }
 
   $('#airport').text(prop.airport.current.icao.toUpperCase());
   $('#airport').attr("title", prop.airport.current.name);

@@ -48,7 +48,7 @@ function ui_init() {
     ".toggle-tutorial": tutorial_toggle,
     ".pause-toggle": game_pause_toggle,
     "#paused img": game_unpause,
-    ".toggle-restricted-areas": canvas_restricted_toggle
+    ".toggle-restricted-areas": canvas_restricted_toggle,
     ".toggle-sids": canvas_sids_toggle
   }
   $.each(switches, function(selector, fn) {
