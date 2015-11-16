@@ -968,6 +968,9 @@ function airport_set(icao) {
   $('#airport').attr("title", prop.airport.current.name);
 
   prop.canvas.dirty = true;
+
+  $('.toggle-terrain').toggleClass('hidden', 
+    $.isEmptyObject(prop.airport.current.terrain));
 }
 
 function airport_get(icao) {
