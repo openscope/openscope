@@ -21,6 +21,7 @@ function canvas_init_pre() {
   prop.canvas.dirty = true;
   prop.canvas.draw_restricted = true;
   prop.canvas.draw_sids = true;
+  prop.canvas.draw_terrain = true;
 }
 
 function canvas_init() {
@@ -889,6 +890,37 @@ function canvas_draw_range_ring(cc, fix_origin, fix1, fix2) {
   }
 }
 
+function canvas_draw_terrain(cc) {
+  "use strict";
+  if (!prop.canvas.draw_terrain) return;
+
+  var colors = {
+
+  }
+
+  cc.strokeStyle = 'rgba(255,255,255,.4)';
+  cc.fillStyle = 'rgba(255,255,255,.2)';
+  cc.lineWidth = clamp(.5, (prop.ui.scale / 10), 2);
+  cc.lineJoin = 'round';
+
+  var airport = airport_get();
+  cc.save();
+  cc.translate(prop.canvas.panX, prop.canvas.panY);
+  for (var l in airport.terrain) {
+    for (var id in airport.terrain[l]) {
+      cc.beginPath();
+      var coords = airport.terrain[l][id];
+      for (var v in coords) {
+        cc.lineTo(km(coords[v][0]), -km(coords[v][1]));
+      }
+    
+      cc.closePath();
+      cc.stroke();
+      cc.fill();
+    }
+  }
+  cc.restore();
+}
 function canvas_draw_restricted(cc) {
   "use strict";
   if (!prop.canvas.draw_restricted) return;
@@ -949,6 +981,7 @@ function canvas_update_post() {
 
       cc.save();
       cc.globalAlpha = alpha;
+      canvas_draw_terrain(cc);
       canvas_draw_restricted(cc);
       canvas_draw_runways(cc);
       cc.restore();
