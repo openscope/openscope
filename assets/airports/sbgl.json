@@ -6,6 +6,7 @@
   "iata": "GIG",
   "ctr_radius": 115,
   "position": ["S22.813391", "W43.249464"],
+  "has_terrain": true,
   "wind": {
     "angle": 160,
     "speed": 3
