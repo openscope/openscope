@@ -818,8 +818,16 @@ var Airport=Fiber.extend(function() {
       return this.runway;
     },
     parseTerrain: function(data) {
-      console.log('terrain', data);
-      this.terrain = data;
+      var apt = this;
+      this.terrain = {};
+      for (var h in data) {
+        this.terrain[h] = {};
+        for (var id in data[h]) {
+          this.terrain[h][id] = $.map(data[h][id].points, function(pt) {
+            return [(new Position(pt, apt.position, apt.magnetic_north)).position];
+          })
+        }
+      }
     },
     loadTerrain: function() {
       var terrain = new Content({
