@@ -39,6 +39,10 @@
 }
 
 #controls .control.speed-5, #controls .warning-button {
-  box-shadow: 0 -4px 0 #F76;
+  box-shadow: 0 -4px 0 rgba(255, 119, 102, 1);
+}
+
+#controls .control.speed-5:hover, #controls .warning-button:hover {
+  box-shadow: 0 -4px 0 rgba(255, 119, 102, .5);
 }
 
