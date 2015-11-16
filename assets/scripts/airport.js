@@ -823,7 +823,7 @@ var Airport=Fiber.extend(function() {
       for (var h in data) {
         this.terrain[h] = {};
         for (var id in data[h]) {
-          this.terrain[h][id] = $.map(data[h][id].points, function(pt) {
+          this.terrain[h][id] = $.map(data[h][id].coords, function(pt) {
             return [(new Position(pt, apt.position, apt.magnetic_north)).position];
           })
         }

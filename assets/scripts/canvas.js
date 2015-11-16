@@ -26,10 +26,10 @@ function canvas_init_pre() {
 
 function canvas_init() {
   "use strict";
+  canvas_add("compass");
   canvas_add("navaids");
   canvas_add("info");
   canvas_add("aircraft");
-  canvas_add("compass");
 }
 
 function canvas_adjust_hidpi() {
@@ -890,12 +890,29 @@ function canvas_draw_range_ring(cc, fix_origin, fix1, fix2) {
   }
 }
 
+function canvas_draw_poly(cc, poly) {
+  cc.beginPath();
+
+  for (var v in poly) {
+    cc.lineTo(km(poly[v][0]), -km(poly[v][1]));
+  }
+
+  cc.closePath();
+  cc.stroke();
+  cc.fill();
+}
+
 function canvas_draw_terrain(cc) {
   "use strict";
   if (!prop.canvas.draw_terrain) return;
 
   var colors = {
-
+    1000: 'rgba( 26, 150, 65, 1.00 )',
+    2000: 'rgba( 119, 194, 92, 1.00 )',
+    3000: 'rgba( 255, 255, 192, 1.00 )',
+    4000: 'rgba( 253, 201, 128, 1.00 )',
+    5000: 'rgba( 240, 124, 74, 1.00 )',
+    6000: 'rgba( 126, 61, 21, 1.00 )'
   }
 
   cc.strokeStyle = 'rgba(255,255,255,.4)';
@@ -907,18 +924,13 @@ function canvas_draw_terrain(cc) {
   cc.save();
   cc.translate(prop.canvas.panX, prop.canvas.panY);
   for (var l in airport.terrain) {
-    for (var id in airport.terrain[l]) {
-      cc.beginPath();
-      var coords = airport.terrain[l][id];
-      for (var v in coords) {
-        cc.lineTo(km(coords[v][0]), -km(coords[v][1]));
-      }
-    
-      cc.closePath();
-      cc.stroke();
-      cc.fill();
-    }
+    cc.strokeStyle = colors[l];
+    cc.fillStyle = colors[l].replace('1.00', '.05');
+
+    for (var id in airport.terrain[l])
+      canvas_draw_poly(cc, airport.terrain[l][id]);
   }
+
   cc.restore();
 }
 function canvas_draw_restricted(cc) {
@@ -926,24 +938,17 @@ function canvas_draw_restricted(cc) {
   if (!prop.canvas.draw_restricted) return;
 
   cc.strokeStyle = "rgba(150, 200, 255, 0.3)";
-  cc.fillStyle   = "rgba(150, 200, 255, 0.4)";
+  cc.fillStyle   = "transparent";
   cc.lineWidth   = Math.max(prop.ui.scale / 3, 2);
   cc.lineJoin    = "round";
   cc.font = "10px monoOne, monospace";
   
   var airport=airport_get();
+  cc.save();
+  cc.translate(prop.canvas.panX, prop.canvas.panY);
   for(var i in airport.restricted_areas) {
-    var area = airport.restricted_areas[i],
-        coords = area.coordinates;
-    cc.save();
-    cc.translate(prop.canvas.panX, prop.canvas.panY);
-    cc.beginPath();
-    for (var v in coords) {
-      cc.lineTo(round(km(coords[v][0])), -round(km(coords[v][1])));
-    }
-    
-    cc.closePath();
-    cc.stroke();
+    var area = airport.restricted_areas[i];
+    canvas_draw_poly(cc, area.coordinates);
     
     cc.textAlign    = "center";
     cc.textBaseline = "top";
@@ -956,8 +961,8 @@ function canvas_draw_restricted(cc) {
     }
     
     cc.fillText(height, round(km(area.center[0])), height_shift - round(km(area.center[1])));
-    cc.restore();
   }
+  cc.restore();
 }
 
 function canvas_update_post() {
