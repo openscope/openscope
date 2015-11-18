@@ -818,15 +818,37 @@ var Airport=Fiber.extend(function() {
       return this.runway;
     },
     parseTerrain: function(data) {
+      // terrain must be in geojson format
       var apt = this;
-      this.terrain = {};
-      for (var h in data) {
-        this.terrain[h] = {};
-        for (var id in data[h]) {
-          this.terrain[h][id] = $.map(data[h][id].coords, function(pt) {
-            return [(new Position(pt, apt.position, apt.magnetic_north)).position];
-          })
+      apt.terrain = {};
+      for (var i in data.features) {
+        var f = data.features[i],
+            ele = round(f.properties.elevation / .3048 / 1000); // Kft
+
+        if (!apt.terrain[ele]) {
+          apt.terrain[ele] = [];
         }
+
+        var multipoly = f.geometry.coordinates;
+        if (f.geometry.type == 'LineString') {
+          multipoly = [[multipoly]];
+        }
+        if (f.geometry.type == 'Polygon') {
+          multipoly = [multipoly];
+        }
+
+        $.each(multipoly, function(i, poly) {
+          // multipoly contains several polys
+          // each poly has 1st outer ring and other rings are holes
+          var parsed_poly = $.map(poly, function(line_string) {
+            return [$.map(line_string, function(pt) {
+              var pos = new Position(pt, apt.position, apt.magnetic_north);
+              pos.parse4326();
+              return [pos.position];
+            })];
+          });
+          this.terrain[ele].push(parsed_poly);
+        });
       }
     },
     loadTerrain: function() {

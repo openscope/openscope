@@ -52,32 +52,40 @@ var Position=Fiber.extend(function() {
         this.elevation = parseElevation(coordinates[2]);
       }
 
+      // this function (parse4326) is moved to be able to call it if point is
+      // EPSG:4326, numeric decimal, like those from GeoJSON
       if (this.reference_position != null) {
-        this.x = this.distanceToPoint(this.reference_position.latitude,
-                                      this.reference_position.longitude,
-                                      this.reference_position.latitude,
-                                      this.longitude);
-        if (this.reference_position.longitude > this.longitude) {
-          this.x = 0 - this.x;
-        }
-
-        this.y = this.distanceToPoint(this.reference_position.latitude,
-                                      this.reference_position.longitude,
-                                      this.latitude,
-                                      this.reference_position.longitude);
-        if (this.reference_position.latitude > this.latitude) {
-          this.y = -1 * this.y;
-        }
-
-        // Adjust to use magnetic north instead of true north
-        var t = Math.atan2(this.y, this.x);
-        var r = Math.sqrt(this.x*this.x + this.y*this.y);
-        t += this.magnetic_north;
-        this.x = r * Math.cos(t);
-        this.y = r * Math.sin(t);
-
-        this.position = [this.x, this.y];
+        parse4326();
       }
+    },
+    parse4326: function() {
+      // if coordinates were in WGS84 EPSG:4326 (signed decimal lat/lon -12.123,83.456)
+      // parse them
+      this.x = this.distanceToPoint(this.reference_position.latitude,
+                                    this.reference_position.longitude,
+                                    this.reference_position.latitude,
+                                    this.longitude);
+      if (this.reference_position.longitude > this.longitude) {
+        this.x *= -1;
+      }
+
+      this.y = this.distanceToPoint(this.reference_position.latitude,
+                                    this.reference_position.longitude,
+                                    this.latitude,
+                                    this.reference_position.longitude);
+      if (this.reference_position.latitude > this.latitude) {
+        this.y *= -1;
+      }
+
+      // Adjust to use magnetic north instead of true north
+      var t = Math.atan2(this.y, this.x);
+      var r = Math.sqrt(this.x*this.x + this.y*this.y);
+      t += this.magnetic_north;
+      this.x = r * Math.cos(t);
+      this.y = r * Math.sin(t);
+
+      this.position = [this.x, this.y];
+
     },
     distanceTo: function(point) {
       return this.distanceToPoint(this.latitude,
@@ -107,14 +115,14 @@ var Position=Fiber.extend(function() {
       }
       var ret = parseFloat(match[2]);
       if (match[5] != null) {
-        ret = ret + parseFloat(match[5])/60;
+        ret += parseFloat(match[5])/60;
         if (match[8] != null) {
-          ret = ret + parseFloat(match[8])/3600;
+          ret += parseFloat(match[8])/3600;
         }
       }
 
       if (/[SW]/.test(match[1])) {
-        ret = ret * -1;
+        ret *= -1;
       }
       return ret;
     },
