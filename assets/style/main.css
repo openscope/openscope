@@ -42,3 +42,7 @@ html {
   -moz-select: text;
   user-select: text;
 }
+
+.hidden {
+  display: none !important;
+}
