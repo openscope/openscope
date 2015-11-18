@@ -985,21 +985,22 @@ function airport_set(icao) {
   }
   prop.airport.current = prop.airport.airports[icao];
   prop.airport.current.set();
+  var airport = prop.airport.current;
 
   $('#airport')
     .text(prop.airport.current.icao.toUpperCase())
-    .attr("title", prop.airport.current.name);
+    .attr("title", airport.name);
 
   $('.toggle-restricted-areas').toggleClass('hidden', 
-    (prop.airport.current.restricted_areas || []).length < 1);
+    (airport.restricted_areas || []).length < 1);
 
   $('.toggle-sids').toggleClass('hidden', 
-    $.isEmptyObject(prop.airport.current.departures.sids));
+    $.isEmptyObject(airport.departures.sids));
 
   prop.canvas.dirty = true;
 
   $('.toggle-terrain').toggleClass('hidden', 
-    $.isEmptyObject(prop.airport.current.terrain));
+    $.isEmptyObject(airport.terrain));
 }
 
 function airport_get(icao) {
