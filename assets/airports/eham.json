@@ -28,6 +28,7 @@
     "HSD":[-62.23 ,-64.97],
     "COA":[-28.08  ,-106.56],
     
+    "ARTIP":  ["N52d30m40.37",  "E005d34m08.69"],
     "BERGI":  ["N52d44m55.50",  "E004d21m32.15"],
     "ANDIK":  ["N52d44m21.85",  "E005d16m13.76"],
     "IVLUT":  ["N52d14m38.81",  "E005d15m25.06"],
@@ -36,10 +37,25 @@
     "WOODY":  ["N51d24m20.00",  "E004d21m59.00"],
     "SONEB":  ["N52d01m25.00",  "E006d45m51.00"],
     "GORLO":  ["N51d55m26.64",  "E003d10m18.61"],
+    "NYKER":  ["N52d13m49.40",  "E005d31m43.69"],
+    "ARNEM":  ["N52d05m47.21",  "E006d04m35.77"],
+    "RIVER":  ["N51d54m45.95",  "E004d07m57.34"],
+    "DENUT":  ["N51d14m10.00",  "E003d39m27.00"],
+    "REDFA":  ["N52d06m53.00",  "E002d29m17.00"],
+    "SULUT":  ["N52d26m52.53",  "E003d25m15.83"],
+    "SUGOL":  ["N52d31m31.84",  "E003d58m02.46"],
+    "OMORU":  ["N52d21m10.41",  "E005d16m20.16"],
+    "LILSI":  ["N52d28m23.75",  "E005d20m54.00"],
+    
     "EH006":  ["N52d35m26.65",  "E004d32m46.44"],
     "EH015":  ["N52d35m27.19",  "E004d44m04.33"],
     "EH606":  ["N52d25m20.79",  "E004d23m16.49"],
-    "EH621":  ["N52d27m45.73",  "E004d43m15.95"]
+    "EH621":  ["N52d27m45.73",  "E004d43m15.95"],
+    "EH005":  ["N52d15m25.78",  "E004d41m50.99"],
+    "EH008":  ["N52d12m30.00",  "E004d46m00.00"],
+    "EH026":  ["N52d10m16.94",  "E004d52m11.23"],
+    "EH028":  ["N52d21m28.05",  "E004d25m15.71"]
+  
 
   },
   "runways": [
@@ -114,15 +130,24 @@
       ["klm",   5],
       ["ual",   2]
     ],
+"sids": {
+  "ANDIK":  ["EH005", "EH008", "EH026", "PAM", "ANDIK"],
+  "ARNEM":  ["EH005", "EH008", "EH026", "IVLUT", "NYKER", "ARNEM"],
+  "BERGI":  ["EH005", "CH", "EH028", "BERGI"],
+  "LEKKO":  ["EH005", "NV", "LEKKO"],
+  "GORLO":  ["CH", "GORLO"]
+},
     "destinations": [
-      60, 85, 145, 180, 245, 330
+      30, 180, 245, 340
     ],
     "frequency": [1, 2]
   },
   "arrivals": [
     {
-      "radial": 114,
-      "heading": 294,
+      "radial": 54,
+      "fixes": ["EEL", "ARTIP"],
+      "heading": 234,
+      "speed": 250,
       "airlines": [
         ["ual",   3],
         ["aca",   3],
@@ -133,11 +158,13 @@
         ["ual",   3]
       ],
       "frequency": [3, 6],
-      "altitude": [7000, 9000]
+      "altitude": [7000, 10000]
     },
     {
-      "radial": 224,
-      "heading": 44,
+      "radial": 212,
+      "heading": 16,
+      "speed": 250,
+      "fixes": ["DENUT", "HSD", "RIVER"],
       "airlines": [
         ["ual",   1],
         ["aca",   1],
@@ -148,11 +175,13 @@
         ["ual",   1]
       ],
       "frequency": [5, 10],
-      "altitude": [6000, 9000]
+      "altitude": [7000, 10000]
     },
     {
-      "radial": 42,
-      "heading": 222,
+      "radial": 262,
+      "heading": 60,
+      "speed": 250,
+      "fixes":  ["REDFA", "SULUT", "SUGOL"],
       "airlines": [
         ["ual", 1],
         ["aca", 1],
@@ -163,16 +192,16 @@
         ["ual", 1]
       ],
       "frequency": [4, 9],
-      "altitude": [4000, 7000]
+      "altitude": [7000, 10000]
     },
     {
-      "radial": 270,
-      "heading": 90,
+      "radial": 110,
+      "heading": 290,
       "airlines": [
         ["cessna",   1]
       ],
       "frequency": [5, 16],
-      "altitude": [3000, 5000]
+      "altitude": [1000, 2000]
     }
   ]
 }
