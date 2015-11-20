@@ -914,16 +914,28 @@ function canvas_draw_terrain(cc) {
   var airport = airport_get();
   cc.save();
   cc.translate(prop.canvas.panX, prop.canvas.panY);
-  for (var l in airport.terrain) {
+  $.each(airport.terrain, function(ele, terrain_level) {
     var color = 'rgba('
-      + prop.ui.terrain.colors[l] + ', ';
+      + prop.ui.terrain.colors[ele] + ', ';
 
     cc.strokeStyle = color + prop.ui.terrain.border_opacity + ')';
     cc.fillStyle = color + prop.ui.terrain.fill_opacity + ')';
 
-    for (var id in airport.terrain[l])
-      canvas_draw_poly(cc, airport.terrain[l][id]);
-  }
+    $.each(terrain_level, function(k, v) {
+      cc.beginPath();
+      $.each(v, function(j, v2) {
+        for (var v in v2) {
+          if (v == 0)
+            cc.moveTo(km(v2[v][0]), -km(v2[v][1]));
+          else 
+            cc.lineTo(km(v2[v][0]), -km(v2[v][1]));
+        }
+        cc.closePath();
+      });
+      cc.stroke();
+      cc.fill();
+    });
+  });
 
   cc.restore();
 }

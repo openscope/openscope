@@ -840,21 +840,24 @@ var Airport=Fiber.extend(function() {
         $.each(multipoly, function(i, poly) {
           // multipoly contains several polys
           // each poly has 1st outer ring and other rings are holes
-          var parsed_poly = $.map(poly, function(line_string) {
-            return [$.map(line_string, function(pt) {
-              var pos = new Position(pt, apt.position, apt.magnetic_north);
-              pos.parse4326();
-              return [pos.position];
-            })];
-          });
-          this.terrain[ele].push(parsed_poly);
+          apt.terrain[ele].push($.map(poly, function(line_string) { 
+            return [
+              $.map(line_string,
+                function(pt) {
+                  var pos = new Position(pt, apt.position, apt.magnetic_north);
+                  pos.parse4326();
+                  return [pos.position];
+                }
+              )
+            ];
+          }));
         });
       }
     },
     loadTerrain: function() {
       var terrain = new Content({
         type: "json",
-        url:  'assets/airports/terrain/' + this.icao.toLowerCase() + '.json',
+        url:  'assets/airports/terrain/' + this.icao.toLowerCase() + '.geojson',
         that: this,
         callback: function(status, data) {
           if(status == "ok") {
@@ -985,6 +988,7 @@ function airport_set(icao) {
   }
   prop.airport.current = prop.airport.airports[icao];
   prop.airport.current.set();
+
   var airport = prop.airport.current;
 
   $('#airport')
