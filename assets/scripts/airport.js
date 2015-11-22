@@ -995,16 +995,16 @@ function airport_set(icao) {
     .text(prop.airport.current.icao.toUpperCase())
     .attr("title", airport.name);
 
-  $('.toggle-restricted-areas').toggleClass('hidden', 
-    (airport.restricted_areas || []).length < 1);
+  $('.toggle-restricted-areas').toggle(
+    (prop.airport.current.restricted_areas || []).length);
 
-  $('.toggle-sids').toggleClass('hidden', 
-    $.isEmptyObject(airport.departures.sids));
+  $('.toggle-sids').toggle(
+    !$.isEmptyObject(prop.airport.current.departures.sids));
 
   prop.canvas.dirty = true;
 
-  $('.toggle-terrain').toggleClass('hidden', 
-    $.isEmptyObject(airport.terrain));
+  $('.toggle-terrain').toggle(
+    !$.isEmptyObject(prop.airport.current.terrain));
 }
 
 function airport_get(icao) {
