@@ -1500,7 +1500,7 @@ var Aircraft=Fiber.extend(function() {
               }
             } else {
               curr_ranges[id] = Math.max(.2, status.distance);
-              console.log(this.getCallsign(), 'in', curr_ranges[id], 'km from', id, area[0].length);
+              // console.log(this.getCallsign(), 'in', curr_ranges[id], 'km from', id, area[0].length);
             }
           }
         }
