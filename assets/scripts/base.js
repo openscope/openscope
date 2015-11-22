@@ -55,6 +55,8 @@ var Position=Fiber.extend(function() {
       // this function (parse4326) is moved to be able to call it if point is
       // EPSG:4326, numeric decimal, like those from GeoJSON
       if (this.reference_position != null) {
+        this.x = this.longitude;
+        this.y = this.latitude;
         this.parse4326();
       }
     },
@@ -87,7 +89,6 @@ var Position=Fiber.extend(function() {
       this.y = r * Math.sin(t);
 
       this.position = [this.x, this.y];
-
     },
     distanceTo: function(point) {
       return this.distanceToPoint(this.latitude,

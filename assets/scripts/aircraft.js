@@ -1473,7 +1473,7 @@ var Aircraft=Fiber.extend(function() {
         var terrain = prop.airport.current.terrain,
             prev_level = this.terrain_ranges[this.terrain_level],
 
-            ele = Math.ceil(this.altitude / 1000) * 1000,
+            ele = ceil(this.altitude, 1000),
             curr_ranges = this.terrain_ranges[ele];
 
         if (ele != this.terrain_level) {
@@ -1488,8 +1488,9 @@ var Aircraft=Fiber.extend(function() {
           //console.log(curr_ranges[id]);
 
           if (curr_ranges[id] < 0 || curr_ranges[id] == Infinity) {
-            var area = terrain[ele][id];
-            if (point_in_poly(this.position, area)) {
+            var area = terrain[ele][id],
+                status = point_to_mpoly(this.position, area, id);
+            if (status.inside) {
               this.altitude = 0;
               hit = true;
               if (!this.hit) {
@@ -1498,8 +1499,8 @@ var Aircraft=Fiber.extend(function() {
                 prop.game.score.hit += 1;
               }
             } else {
-              curr_ranges[id] = Math.max(.2, distance_to_poly(this.position, area));
-              console.log(this.getCallsign(), 'in', curr_ranges[id], 'km from', id);
+              curr_ranges[id] = Math.max(.2, status.distance);
+              console.log(this.getCallsign(), 'in', curr_ranges[id], 'km from', id, area[0].length);
             }
           }
         }

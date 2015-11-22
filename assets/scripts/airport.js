@@ -823,7 +823,7 @@ var Airport=Fiber.extend(function() {
       apt.terrain = {};
       for (var i in data.features) {
         var f = data.features[i],
-            ele = round(f.properties.elevation / .3048 / 1000); // Kft
+            ele = round(f.properties.elevation / .3048, 1000); // m => ft, rounded to 1K (but not divided)
 
         if (!apt.terrain[ele]) {
           apt.terrain[ele] = [];
