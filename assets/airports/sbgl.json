@@ -147,7 +147,7 @@
       "altitude": [8000, 10000]
     },
     {
-      "radial": 330,
+      "radial": 310,
       "speed": 250,
       "fixes": ["LUNAT", "PAI", "GATI"],
       "airlines": [
@@ -181,7 +181,7 @@
       "altitude": [9000, 10000]
     },
     {
-      "radial": 270,
+      "radial": 260,
       "speed": 250,
       "fixes": ["TUBO", "COTA", "GATI"],
       "airlines": [
