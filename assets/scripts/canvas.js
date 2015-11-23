@@ -927,7 +927,7 @@ function canvas_draw_terrain(cc) {
   var airport = airport_get();
   cc.save();
   cc.translate(prop.canvas.panX, prop.canvas.panY);
-  $.each(airport.terrain, function(ele, terrain_level) {
+  $.each(airport.terrain || [], function(ele, terrain_level) {
     var color = 'rgba('
       + prop.ui.terrain.colors[ele] + ', ';
 
