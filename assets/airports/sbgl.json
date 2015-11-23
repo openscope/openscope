@@ -82,13 +82,13 @@
   ],
   "departures": {
     "sids": {
-      "BOTOM/15":   ["PP", "LIME", "BOTOM"],
-      "AGUA/10":    ["YLA", "MRC", "AGUA"],
-      "PAIOL/15":   ["PP", "LIME", "BITAK"],
-      "MARICA/10":   ["YLA", "MRC", "REBET"],
-      "ABSAL/10":   ["YLA", "PCX", "ABSAL"],
-      "POKA/15":   ["PP", "PCX", "POKA"],
-      "MAC/10":   ["YLA", "MRC", "AGUA", "MAC"]
+      "BOTOM":  ["PP", "LIME", "BOTOM"],
+      "AGUA":   ["YLA", "MRC", "AGUA"],
+      "PAIOL":  ["PP", "LIME", "BITAK"],
+      "MARICA": ["YLA", "MRC", "REBET"],
+      "ABSAL":  ["YLA", "PCX", "ABSAL"],
+      "POKA":   ["PP", "PCX", "POKA"],
+      "MAC":    ["YLA", "MRC", "AGUA", "MAC"]
     },
     "airlines": [
       ["TAM", 60],
