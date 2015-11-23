@@ -265,14 +265,14 @@ function canvas_draw_fixes(cc) {
     cc.strokeStyle = "rgba(0, 0, 0, 0.67)";
     cc.fillStyle   = "rgba(0, 0, 0, 0.67)";
     cc.globalCompositeOperation = 'destination-out';
-    cc.lineWidth   = 5;
+    cc.lineWidth   = 4;
     
     canvas_draw_fix(cc, i, airport.fixes[i]);
 
     cc.strokeStyle = "rgba(255, 255, 255, 0)";
     cc.fillStyle   = "rgba(255, 255, 255, 0.4)";
     cc.globalCompositeOperation = 'source-over';
-    cc.lineWidth   = 2;
+    cc.lineWidth   = 1;
 
     canvas_draw_fix(cc, i, airport.fixes[i]);
     cc.restore();
