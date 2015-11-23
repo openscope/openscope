@@ -1,0 +1,174 @@
+{ "name": "Dublin Airport",
+  "level": "medium",
+  "radio": "Dublin",
+  "icao": "EIDW",
+  "ctr_radius": 80,
+  "position": ["N53d25m17.00", "W6d16m12.00"],
+  "wind": {
+    "angle": 100,
+    "speed": 15
+  },
+  "fixes": {
+    "OLAPO": ["N53d46m49.00", "W7d17m41.00"],
+    "OSGAR": ["N53d02m57.90", "W7d16m12.80"],
+    "BAGSO": ["N53d40m48.00", "W5d30m00.00"],
+    "LIPGO": ["N53d03m50.10", "W5d30m00.00"],
+    "SUROX": ["N53d59m48.00", "W6d59m36.50"],
+    "LIFFY": ["N53d28m48.30", "W5d30m00.00"],
+    "ABIDO": ["N52d28m43.70", "W5d47m44.10"],
+    "DUB": ["N53d29m57.80", "W6d18m25.60"],
+    
+    "EKREN": ["N53d38m43.00", "W5d45m53.10"],
+    "ELBON": ["N53d35m34.10", "W6d09m21.60"],
+    "ASDER": ["N53d33m46.70", "W6d22m26.40"],
+    "AKIVA": ["N53d38m56.00", "W6d27m09.60"],
+    "EPIDU": ["N53d49m03.50", "W6d35m54.80"],
+    "ADNAL": ["N53d41m53.90", "W6d35m41.50"],
+    "APRUT": ["N53d41m49.00", "W6d45m34.90"],
+    "DW865": ["N53d38m42.80", "W6d53m58.40"],
+    "DW866": ["N53d33m29.10", "W6d58m27.20"],
+    "NEKIL": ["N53d31m16.60", "W6d40m23.60"],
+    
+    "RUBAR": ["N53d08m08.90", "W5d48m05.40"],
+    "DETAX": ["N53d14m30.70", "W6d12m35.60"],
+    "BERMO": ["N53d17m38.90", "W6d24m50.80"],
+    "DIRUM": ["N53d00m09.70", "W6d39m40.00"],
+    "KANUS": ["N53d06m30.50", "W6d26m52.10"],
+    "BABON": ["N53d13m03.30", "W6d30m56.50"],
+    "BIVDI": ["N53d10m59.50", "W6d40m05.60"],
+    "DW754": ["N53d12m02.30", "W6d49m42.60"],
+    "DW755": ["N53d15m54.20", "W6d57m04.50"],
+    "OSLEX": ["N53d21m55.80", "W6d41m44.50"],
+    
+    "DW931": ["N53d29m45.00", "W6d08m23.20"],
+    "DW679": ["N53d20m23.00", "W6d11m32.00"],
+    "LEMTA": ["N53d43m34.30", "W6d03m11.60"],
+    "DODIG": ["N53d57m46.00", "W6d29m34.00"],
+    "SUROX": ["N53d59m48.00", "W6d59m36.50"],
+    "KISHA": ["N53d29m01.70", "W5d38m21.60"],
+    "LIFFY": ["N53d28m48.30", "W5d30m00.00"],
+    "IRDEX": ["N53d11m45.10", "W6d03m50.10"],
+    "ERVAD": ["N53d06m47.10", "W6d04m40.40"],
+    "ABIDO": ["N52d28m43.70", "W5d47m44.10"],
+    
+    "RISAP": ["N53d26m27.40", "W6d38m13.20"],
+    "LAPMO": ["N53d24m11.00", "W5d56m44.10"],
+    "GANET": ["N53d26m06.50", "W6d31m33.80"],
+    "MAXEV": ["N53d24m33.50", "W6d03m17.30"],
+    "RW10": ["N53d25m20.80", "W6d17m24.30"],
+    "RW28": ["N53d25m12.90", "W6d15m02.10"],
+    
+    "BAPDA": ["N53d37m40.00", "W6d24m03.70"],
+    "INTOP": ["N53d13m27.40", "W6d06m32.40"]
+  },
+  "runways":[
+    {
+      "name":        ["10", "28"],
+      "name_offset": [[0, 0], [0, 0]],
+      "end":    [["N53d25m20.75", "W6d17m24.27"], ["N53d25m12.94", "W6d15m02.08"]],
+      "length":      2.637,
+      "ils":         [true, true]
+    },
+    {
+      "name":        ["16", "34"],
+      "name_offset": [[0, 0], [0, 0]],
+      "end":    [["N53d26m13.16", "W6d15m43.12"], ["N53d25m11.66", "W6d14m58.54"]],
+      "length":      2.072,
+      "ils":         [true, true]
+    }
+  ],
+  "departures": {
+    "airlines": [
+      ["ein", 15],
+      ["ryr", 10],
+      ["baw", 5],
+      ["dlh", 5],
+      ["aal", 3],
+      ["aca", 3],
+      ["dal", 3],
+      ["ual", 3],
+      ["klm", 1]
+    ],
+    "sids": {
+      "SUROX": ["DW931", "LEMTA", "DODIG", "SUROX"],
+      "LIFFY": ["DW931", "KISHA", "LIFFY"],
+      "ABIDO": ["DW679", "IRDEX", "ERVAD", "ABIDO"]
+    },
+    "destinations": [
+      95, 170, 325
+    ],
+    "type": "random",
+    "offset": 0,
+    "frequency": 30
+  },
+  "arrivals": [
+    {
+      "_name":  "OLAPO",
+      "radial":   300,
+      "speed":    250,
+      "fixes":    ["OLAPO", "EPIDU", "ADNAL", "APRUT", "DW865", "DW866", "NEKIL"],
+      "airlines":  [
+        ["ein", 4],
+        ["aal", 3],
+        ["aca", 2],
+        ["dal", 2],
+        ["ual", 2]
+      ],
+      "type": "wave",
+      "offset": 0,
+      "frequency": 5,
+      "altitude":  10000
+    },
+    {
+      "_name":  "OSGAR",
+      "radial":   240,
+      "speed":    250,
+      "fixes":   ["OSGAR", "DIRUM", "KANUS", "BABON", "BIVDI", "DW754", "DW755", "OSLEX"],
+      "airlines":  [
+        ["ein", 4],
+        ["aal", 3],
+        ["aca", 2],
+        ["dal", 2],
+        ["ual", 2]
+      ],
+      "type": "random",
+      "offset": 0,
+      "frequency": 5,
+      "altitude":  10000
+    },
+    {
+      "_name":  "LIPGO",
+      "radial":   135,
+      "speed":    250,
+      "fixes":    ["LIPGO", "RUBAR", "DETAX", "BERMO", "BABON", "BIVDI", "DW754", "DW755", "OSLEX"],
+      "airlines":  [
+        ["ein", 5],
+        ["ryr", 5],
+        ["baw", 3],
+        ["dlh", 3],
+        ["klm", 1]
+      ],
+      "type": "random",
+      "offset": 0,
+      "frequency": 10,
+      "altitude":  10000
+    },
+    {
+      "_name":  "BAGSO",
+      "radial":   70,
+      "speed":    250,
+      "fixes":    ["BAGSO", "EKREN", "ELBON", "ASDER", "AKIVA", "ADNAL", "APRUT", "DW865", "DW866", "NEKIL"],
+      "airlines":  [
+        ["ein", 5],
+        ["ryr", 5],
+        ["baw", 3],
+        ["dlh", 3],
+        ["klm", 1]
+      ],
+      "type": "wave",
+      "offset": 0,
+      "frequency": 10,
+      "altitude":  10000
+    }
+  ]
+}

@@ -67,6 +67,7 @@ var Model=Fiber.extend(function() {
 });
 
 var Aircraft=Fiber.extend(function() {
+
   return {
     init: function(options) {
       if(!options) options={};
@@ -371,58 +372,66 @@ var Aircraft=Fiber.extend(function() {
     hideStrip: function() {
       this.html.hide(600);
     },
-    COMMANDS: [
-      "turn",
-      "heading",
+    
+    COMMANDS: {
+        abort: {func: 'runAbort'},
 
-      "altitude",
-      "climb",
-      "clear",
-      "descend",
+        altitude: {
+          func: 'runAltitude',
+          synonyms: 'a c climb clear descend'.split(' ')},
 
-      "speed",
-      "slow",
+        debug: {func: 'runDebug'},
 
-      "hold",
-      "circle",
+        direct: {
+          func: 'runDirect',
+          synonyms: ['dct']},
 
-      "fix",
-      "sid",
-      "track",
-      "direct",
-      "dct",
+        fix: {
+          func: 'runFix',
+          synonyms: ['f', 'track']},
 
-      "takeoff",
-      "to",
+        heading: {
+          func: 'runHeading',
+          synonyms: ['t', 'h', 'turn']},
 
-      "wait",
-      "taxi",
+        hold: {
+          func: 'runHold',
+          synonyms: ['circle']},
 
-      "land",
+        land: {func: 'runLanding',
+          synonyms: ['l']},
 
-      "abort",
+        sid: {func: 'runSID'},
 
-      "debug"
-    ],
+        speed: {
+          func: 'runSpeed',
+          synonyms: ['slow', 'sp']},
+
+        takeoff: {
+          func: 'runTakeoff',
+          synonyms: ['to']},
+
+        wait: {
+          func: 'runWait',
+          synonyms: ['w', 'taxi']}
+      },
+    
     runCommand: function(command) {
       if (!this.inside_ctr)
         return true;
       var s        = command.toLowerCase().split(" ")
 
-      var strings  = [];
-
-      for(var i=0;i<s.length;i++) {
-        if(s[i]) strings.push(s[i]);
-      }
+      var strings  = $.map(s, function(v) {
+        if (v.length > 0) return v; });
 
       var commands = [];
       var concat   = false;
       var current  = "";
       var previous = "";
 
-      for(var i=0;i<strings.length;i++) {
-        var string = strings[i];
-        var is_command = false;
+      for(var i in strings) {
+        var string = strings[i],
+            is_command = false;
 
         if(previous.indexOf("t") == 0 && (string.indexOf("l") == 0 || string.indexOf("r") == 0)) {
           // Workaround:
@@ -437,8 +446,9 @@ var Aircraft=Fiber.extend(function() {
           //
           // Do nothing here.
         } else {
-          for(var j=0;j<this.COMMANDS.length;j++) {
-            if(this.COMMANDS[j].indexOf(string) == 0) {
+          for(var k in this.COMMANDS) {
+            if (k == string || (this.COMMANDS[k].synonyms && 
+                this.COMMANDS[k].synonyms.indexOf(string) >= 0)) {
               is_command = true;
               break;
             }
@@ -523,66 +533,21 @@ var Aircraft=Fiber.extend(function() {
       return true;
     },
     run: function(command, data) {
+      var call_func;
 
-      if("turn".indexOf(command) == 0)          command = "heading";
-      else if("heading".indexOf(command) == 0)  command = "heading";
+      if (this.COMMANDS[command]) {
+        call_func = this.COMMANDS[command].func;
+      }
+      else {
+        $.each(this.COMMANDS, function(k, v) {
+          if (v.synonyms && v.synonyms.indexOf(command) >= 0) { call_func = v.func; }
+        });
+      }
 
-      else if("altitude".indexOf(command) == 0) command = "altitude";
-      else if("climb".indexOf(command) == 0)    command = "altitude";
-      else if("clear".indexOf(command) == 0)    command = "altitude";
-      else if("descend".indexOf(command) == 0)  command = "altitude";
+      if (!call_func) 
+        return ["fail", "not understood", "say again"];
 
-      else if("slow".indexOf(command) == 0)     command = "speed";
-      else if("speed".indexOf(command) == 0)    command = "speed";
-
-      else if("hold".indexOf(command) == 0)     command = "hold";
-      else if("circle".indexOf(command) == 0)   command = "hold";
-
-      else if("wait".indexOf(command) == 0)     command = "wait";
-      else if("taxi".indexOf(command) == 0)     command = "wait";
-
-      else if("takeoff".indexOf(command) == 0)  command = "takeoff";
-      else if("to".indexOf(command) == 0)       command = "takeoff";
-
-      else if("land".indexOf(command) == 0)     command = "land";
-
-      else if("fix".indexOf(command) == 0)      command = "fix";
-      else if("track".indexOf(command) == 0)    command = "fix";
-      else if("sid".indexOf(command) == 0)      command = "sid";
-      else if("direct".indexOf(command) == 0)   command = "direct";
-      else if("dct".indexOf(command) == 0)      command = "direct";
-
-      else if("abort".indexOf(command) == 0)    command = "abort";
-
-      else if("debug".indexOf(command) == 0)    command = "debug";
-
-      else return ["fail", "not understood", "say again"];
-
-      if(command == "heading")
-        return this.runHeading(data);
-      else if(command == "altitude")
-        return this.runAltitude(data);
-      else if(command == "speed")
-        return this.runSpeed(data);
-      else if(command == "hold")
-        return this.runHold(data);
-      else if(command == "fix")
-        return this.runFix(data);
-      else if(command == "sid")
-        return this.runSID(data);
-      else if(command == "direct")
-        return this.runDirect(data);
-      else if(command == "wait")
-        return this.runWait(data);
-      else if(command == "takeoff")
-        return this.runTakeoff(data);
-      else if(command == "land")
-        return this.runLanding(data);
-      else if(command == "abort")
-        return this.runAbort(data);
-      else if(command == "debug")
-        return this.runDebug(data);
-
+      return this[call_func].apply(this, [data]);
     },
     runHeading: function(data) {
       var split     = data.split(" ");

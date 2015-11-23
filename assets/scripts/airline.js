@@ -20,6 +20,8 @@ function airline_init() {
   airline_load("FASTGA");
   airline_load("SAS");
   airline_load("NAX");
+  airline_load("EIN");
+  airline_load("RYR");
 
   // South American
   airline_load("ONE");
