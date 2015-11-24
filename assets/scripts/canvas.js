@@ -270,7 +270,7 @@ function canvas_draw_fixes(cc) {
     canvas_draw_fix(cc, i, airport.fixes[i]);
 
     cc.strokeStyle = "rgba(255, 255, 255, 0)";
-    cc.fillStyle   = "rgba(255, 255, 255, 0.4)";
+    cc.fillStyle   = "rgba(255, 255, 255, 0.5)";
     cc.globalCompositeOperation = 'source-over';
     cc.lineWidth   = 1;
 

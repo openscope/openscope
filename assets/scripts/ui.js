@@ -15,7 +15,7 @@ function ui_init_pre() {
       6000: '126, 61, 21'
     },
     border_opacity: 1,
-    fill_opacity: .05
+    fill_opacity: .1
   };
 
   if('atc-scale' in localStorage) prop.ui.scale = localStorage['atc-scale'];
