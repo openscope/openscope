@@ -997,7 +997,7 @@ function airport_set(icao) {
     .attr("title", airport.name);
 
   $('.toggle-restricted-areas').toggle(
-    (prop.airport.current.restricted_areas || []).length);
+    (prop.airport.current.restricted_areas || []).length > 0);
 
   $('.toggle-sids').toggle(
     !$.isEmptyObject(prop.airport.current.departures.sids));
