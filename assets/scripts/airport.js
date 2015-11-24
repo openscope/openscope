@@ -655,6 +655,7 @@ var Airport=Fiber.extend(function() {
       this.runway   = null;
 
       this.fixes    = {};
+      this.real_fixes = {};
       this.restricted_areas = [];
 
       this.timeout  = {
@@ -707,7 +708,7 @@ var Airport=Fiber.extend(function() {
       }
       
       if(data.runways) {
-        for(var i=0;i<data.runways.length;i++) {
+        for(var i in data.runways) {
           data.runways[i].reference_position = this.position;
           data.runways[i].magnetic_north = this.magnetic_north;
           this.runways.push(new Runway(data.runways[i]));
@@ -716,11 +717,16 @@ var Airport=Fiber.extend(function() {
 
       if(data.fixes) {
         for(var i in data.fixes) {
-          var coord = new Position(data.fixes[i],
+          var name = i.toUpperCase(),
+              coord = new Position(data.fixes[i],
                                    this.position,
                                    this.magnetic_north);
-          this.fixes[i.toUpperCase()] = coord.position;
+          this.fixes[name] = coord.position;
+          if (i.indexOf('_') != 0) {
+            this.real_fixes[name] = coord.position;
+          }
         }
+
       }
 
       if(data.restricted) {
