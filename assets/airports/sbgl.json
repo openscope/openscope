@@ -87,7 +87,7 @@
       "PAIOL":  ["PP", "LIME", "BITAK"],
       "ABSAL":  ["YLA", "PCX", "ABSAL"],
       "POKA":   ["YLA", "PCX", "POKA"],
-      "MAC":    ["YLA", "IRIM", "ALCIR", "MAC"]
+      "MAC":    ["YLA", "PCX", "ALCIR", "MAC"]
     },
     "airlines": [
       ["TAM", 60],
