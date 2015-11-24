@@ -37,8 +37,14 @@ function clone(obj) {
 
 var sin_cache={};
 
-function round(n) {
-  return Math.round(n);
+function ceil(n, factor) {
+  factor = factor || 1;
+  return Math.ceil(n / factor) * factor;
+}
+
+function round(n, factor) {
+  factor = factor || 1;
+  return Math.round(n / factor) * factor;
 }
 
 function abs(n) {
@@ -72,8 +78,9 @@ function normalize(v,length) {
   ]);
 }
 
-function fl(n) {
-  return Math.floor(n);
+function fl(n, number) {
+  number = number || 1;
+  return Math.floor(n / number) * number;
 }
 
 function randint(l,h) {
@@ -85,6 +92,10 @@ function elements(obj) {
   for(var i in obj)
     n+=1;
   return n;
+}
+
+function len(obj) {
+  return elements(obj);
 }
 
 function s(i) {
@@ -326,4 +337,155 @@ function random(low, high) {
   if (low == null) return Math.random();
   if (high == null) return Math.random() * low;
   return (low + (Math.random() * (high - low)));
+}
+
+function vlen(v) {
+  return Math.sqrt(v[0]*v[0] + v[1] * v[1]);
+}
+
+function vsum(v1, v2) {
+  return [v1[0] + v2[0], v1[1] + v2[1]];
+}
+
+function vsub(v1, v2) {
+  return [v1[0] - v2[0], v1[1] - v2[1]];
+}
+
+function vscale(v, factor) {
+  return [v[0] * factor, v[1] * factor];
+}
+
+function vradial(v) {
+  return Math.atan2(v[0], v[1]);
+}
+
+function vturn(radians, v) {
+  if (!v) {
+    v = [1, 1];
+  }
+  return [v[0] * sin(radians), v[1] * cos(radians)];
+}
+
+function vnorm(v) {
+  return [-v[1], v[0]];
+}
+
+/*
+solution by @culebron
+turn poly edge into a vector.
+the edge vector scaled by j and its normal vector scaled by i meet
+if the edge vector points between the vertices,
+then normal is the shortest distance.
+--------
+x1 + x2 * i == x3 + x4 * j
+y1 + y2 * i == y3 + y4 * j
+0 < j < 1
+--------
+
+i == (y3 + j y4 - y1) / y2
+x1 + x2 y3 / y2 + j x2 y4 / y2 - x2 y1 / y2 == x3 + j x4
+j x2 y4 / y2 - j x4 == x3 - x1 - x2 y3 / y2 + x2 y1 / y2
+j = (x3 - x1 - x2 y3 / y2 + x2 y1 / y2) / (x2 y4 / y2 - x4)
+i = (y3 + j y4 - y1) / y2
+
+i == (x3 + j x4 - x1) / x2
+y1 + y2 x3 / x2 + j y2 x4 / x2 - y2 x1 / x2 == y3 + j y4
+j y2 x4 / x2 - j y4 == y3 - y1 - y2 x3 / x2 + y2 x1 / x2
+j = (y3 - y1 - y2 x3 / x2 + y2 x1 / x2) / (y2 x4 / x2 - y4)
+i = (x3 + j x4 - x1) / x2
+*/
+function distance_to_poly(point, poly) {
+  var dists = $.map(poly, function(vertex1, i) {
+    var prev = (i == 0 ? poly.length : i) - 1,
+        vertex2 = poly[prev],
+        edge = vsub(vertex2, vertex1);
+
+    if (vlen(edge) == 0)
+      return vlen(vsub(point, vertex1));
+
+    // point + normal * i == vertex1 + edge * j
+    var norm = vnorm(edge),
+        x1 = point[0],
+        x2 = norm[0],
+        x3 = vertex1[0],
+        x4 = edge[0],
+        y1 = point[1],
+        y2 = norm[1],
+        y3 = vertex1[1],
+        y4 = edge[1],
+        i, j;
+
+    if (y2 != 0) {
+      j = (x3 - x1 - x2 * y3 / y2 + x2 * y1 / y2) / (x2 * y4 / y2 - x4);
+      i = (y3 + j * y4 - y1) / y2;
+    }
+    else if (x2 != 0) { // normal can't be zero unless the edge has 0 length
+      j = (y3 - y1 - y2 * x3 / x2 + y2 * x1 / x2) / (y2 * x4 / x2 - y4);
+      i = (x3 + j * x4 - x1) / x2;
+    }          
+
+    if (j < 0 || j > 1 || j == null)
+      return Math.min(
+        vlen(vsub(point, vertex1)),
+        vlen(vsub(point, vertex2)));
+
+    return vlen(vscale(norm, i));
+  });
+
+  return Math.min.apply(null, dists);
+}
+
+
+function point_to_mpoly(point, mpoly) {
+  /* returns: boolean inside/outside & distance to the polygon */
+  var k, ring, inside = false;
+  for (var k in mpoly) {
+    ring = mpoly[k];
+    if (point_in_poly(point, ring)) {
+      if (k == 0)  
+        inside = true; // if inside outer ring, remember that and wait till the end
+      else // if by change in one of inner rings, it's out of poly, return distance to the inner ring
+        return {inside: false, distance: distance_to_poly(point, ring)}
+    }
+  }
+  // if not matched to inner circles, return the match to outer and distance to it
+  return {inside: inside, distance: distance_to_poly(point, mpoly[0])};
+}
+
+// source: https://github.com/substack/point-in-polygon/
+function point_in_poly(point, vs) {
+    // ray-casting algorithm based on
+    // http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html
+    
+    var x = point[0],
+        y = point[1],
+        i,
+        j = vs.length - 1,
+        inside = false;
+
+    for (i in vs) {
+        var xi = vs[i][0], yi = vs[i][1];
+        var xj = vs[j][0], yj = vs[j][1];
+        
+        var intersect = ((yi > y) != (yj > y))
+            && (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
+        if (intersect) inside = !inside;
+        j = i;
+    }
+    
+    return inside;
+};
+
+function endsWith(str, suffix) {
+  return str.indexOf(suffix, str.length - suffix.length) !== -1;  
+}
+
+function parseElevation(ele) {
+  var alt = /^(Infinity|(\d+(\.\d+)?)(m|ft))$/.exec(ele);
+  if (alt == null) {
+    log('Unable to parse elevation ' + ele);
+    return;
+  }
+  if (alt[1] == 'Infinity') return Infinity;
+  return parseFloat(alt[2]) / (alt[4] == 'm' ? 0.3048 : 1);
 }

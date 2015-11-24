@@ -19,14 +19,17 @@ function canvas_init_pre() {
 
   prop.canvas.last = time();
   prop.canvas.dirty = true;
+  prop.canvas.draw_restricted = true;
+  prop.canvas.draw_sids = true;
+  prop.canvas.draw_terrain = true;
 }
 
 function canvas_init() {
   "use strict";
+  canvas_add("compass");
   canvas_add("navaids");
   canvas_add("info");
   canvas_add("aircraft");
-  canvas_add("compass");
 }
 
 function canvas_adjust_hidpi() {
@@ -241,23 +244,36 @@ function canvas_draw_fix(cc, name, fix) {
   cc.lineTo(-4,  3);
   cc.closePath();
   cc.fill();
+  cc.stroke();
 
   cc.textAlign    = "center";
   cc.textBaseline = "top";
+  cc.strokeText(name, 0, 6);
   cc.fillText(name, 0, 6);
 }
 
 function canvas_draw_fixes(cc) {
   "use strict";
-  cc.strokeStyle = "rgba(255, 255, 255, 0.4)";
-  cc.fillStyle   = "rgba(255, 255, 255, 0.4)";
-  cc.lineWidth   = 2;
   cc.lineJoin    = "round";
   cc.font = "10px monoOne, monospace";
   var airport=airport_get();
   for(var i in airport.fixes) {
     cc.save();
     cc.translate(round(km(airport.fixes[i][0])) + prop.canvas.panX, -round(km(airport.fixes[i][1])) + prop.canvas.panY);
+
+    // draw outline (draw with eraser)
+    cc.strokeStyle = "rgba(0, 0, 0, 0.67)";
+    cc.fillStyle   = "rgba(0, 0, 0, 0.67)";
+    cc.globalCompositeOperation = 'destination-out';
+    cc.lineWidth   = 4;
+    
+    canvas_draw_fix(cc, i, airport.fixes[i]);
+
+    cc.strokeStyle = "rgba(255, 255, 255, 0)";
+    cc.fillStyle   = "rgba(255, 255, 255, 0.5)";
+    cc.globalCompositeOperation = 'source-over';
+    cc.lineWidth   = 1;
+
     canvas_draw_fix(cc, i, airport.fixes[i]);
     cc.restore();
   }
@@ -265,6 +281,8 @@ function canvas_draw_fixes(cc) {
 
 function canvas_draw_sids(cc) {
   "use strict";
+  if (!prop.canvas.draw_sids) return;
+
   var departure_colour = "rgba(128, 255, 255, 0.6)";
   cc.strokeStyle = departure_colour;
   cc.fillStyle = departure_colour;
@@ -421,10 +439,10 @@ function canvas_draw_aircraft(cc, aircraft) {
   if(!aircraft.hit) {
     cc.save();
 
-    var tail_length = 10;
+    var tail_length = aircraft.speed / 15;
     if(match) tail_length = 15;
     var angle       = aircraft.heading;
-    var end         = [-Math.sin(angle) * tail_length, Math.cos(angle) * tail_length];
+    var end         = [Math.sin(angle) * tail_length, -Math.cos(angle) * tail_length];
 
     cc.beginPath();
     cc.moveTo(0, 0);
@@ -885,6 +903,88 @@ function canvas_draw_range_ring(cc, fix_origin, fix1, fix2) {
   }
 }
 
+function canvas_draw_poly(cc, poly) {
+  cc.beginPath();
+
+  for (var v in poly) {
+    cc.lineTo(km(poly[v][0]), -km(poly[v][1]));
+  }
+
+  cc.closePath();
+  cc.stroke();
+  cc.fill();
+}
+
+function canvas_draw_terrain(cc) {
+  "use strict";
+  if (!prop.canvas.draw_terrain) return;
+
+  cc.strokeStyle = 'rgba(255,255,255,.4)';
+  cc.fillStyle = 'rgba(255,255,255,.2)';
+  cc.lineWidth = clamp(.5, (prop.ui.scale / 10), 2);
+  cc.lineJoin = 'round';
+
+  var airport = airport_get();
+  cc.save();
+  cc.translate(prop.canvas.panX, prop.canvas.panY);
+  $.each(airport.terrain || [], function(ele, terrain_level) {
+    var color = 'rgba('
+      + prop.ui.terrain.colors[ele] + ', ';
+
+    cc.strokeStyle = color + prop.ui.terrain.border_opacity + ')';
+    cc.fillStyle = color + prop.ui.terrain.fill_opacity + ')';
+
+    $.each(terrain_level, function(k, v) {
+      cc.beginPath();
+      $.each(v, function(j, v2) {
+        for (var v in v2) {
+          if (v == 0)
+            cc.moveTo(km(v2[v][0]), -km(v2[v][1]));
+          else 
+            cc.lineTo(km(v2[v][0]), -km(v2[v][1]));
+        }
+        cc.closePath();
+      });
+      cc.stroke();
+      cc.fill();
+    });
+  });
+
+  cc.restore();
+}
+function canvas_draw_restricted(cc) {
+  "use strict";
+  if (!prop.canvas.draw_restricted) return;
+
+  cc.strokeStyle = "rgba(150, 200, 255, 0.3)";
+  cc.lineWidth   = Math.max(prop.ui.scale / 3, 2);
+  cc.lineJoin    = "round";
+  cc.font = "10px monoOne, monospace";
+  
+  var airport=airport_get();
+  cc.save();
+  cc.translate(prop.canvas.panX, prop.canvas.panY);
+  for(var i in airport.restricted_areas) {
+    var area = airport.restricted_areas[i];
+    cc.fillStyle   = "transparent";
+    canvas_draw_poly(cc, area.coordinates);
+    cc.fillStyle   = "rgba(150, 200, 255, .4)";
+    
+    cc.textAlign    = "center";
+    cc.textBaseline = "top";
+    var height = (area.height == Infinity ? 'UNL' : 'FL' + Math.ceil(area.height / 1000)*10);
+
+    var height_shift = 0;
+    if (area.name) {
+      height_shift = -12;
+      cc.fillText(area.name, round(km(area.center[0])), - round(km(area.center[1])));
+    }
+    
+    cc.fillText(height, round(km(area.center[0])), height_shift - round(km(area.center[1])));
+  }
+  cc.restore();
+}
+
 function canvas_update_post() {
   "use strict";
   var elapsed = game_time() - airport_get().start;
@@ -906,6 +1006,8 @@ function canvas_update_post() {
 
       cc.save();
       cc.globalAlpha = alpha;
+      canvas_draw_terrain(cc);
+      canvas_draw_restricted(cc);
       canvas_draw_runways(cc);
       cc.restore();
 

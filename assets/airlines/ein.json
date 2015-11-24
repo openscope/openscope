@@ -1,0 +1,15 @@
+{
+  "name": "Aer Lingus",
+  "callsign": {
+    "name": "Shamrock",
+    "length": 3
+  },
+  "aircraft": [
+    ["A319", 4 ],
+    ["A320", 33 ],
+    ["A321", 3 ],
+
+    ["A332", 4  ],
+    ["A333", 4  ]
+  ]
+}

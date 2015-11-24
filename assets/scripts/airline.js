@@ -20,6 +20,8 @@ function airline_init() {
   airline_load("FASTGA");
   airline_load("SAS");
   airline_load("NAX");
+  airline_load("EIN");
+  airline_load("RYR");
 
   // South American
   airline_load("ONE");
@@ -31,11 +33,11 @@ function airline_init() {
 
   // Russian
   airline_load("AFL");
-  airline_load("ORB");
+  airline_load("MOV");
+  airline_load("RLU");
   airline_load("SBI");
-  airline_load("SDM");
   airline_load("SVR");
-  airline_load("UTA");
+  airline_load("TYA");
 
   // Cargo Airlines
   airline_load("FDX");

@@ -34,11 +34,15 @@
   box-shadow: 0 -4px 0 rgba(128, 255, 255, 0.3);
 }
 
-#controls .control.speed-2{
+#controls .control.speed-2, #controls .active{
   box-shadow: 0 -4px 0 #38f;
 }
 
-#controls .control.speed-5{
-  box-shadow: 0 -4px 0 #F76;
+#controls .control.speed-5, #controls .warning-button {
+  box-shadow: 0 -4px 0 rgba(255, 119, 102, 1);
+}
+
+#controls .control.speed-5:hover, #controls .warning-button:hover {
+  box-shadow: 0 -4px 0 rgba(255, 119, 102, .5);
 }
 

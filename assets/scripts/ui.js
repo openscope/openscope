@@ -5,6 +5,18 @@ function ui_init_pre() {
   prop.ui.scale_max = 80; // max scale
   prop.ui.scale_min = 1; // min scale
   prop.ui.scale         = prop.ui.scale_default;
+  prop.ui.terrain = {
+    colors: {
+      1000: '26, 150, 65',
+      2000: '119, 194, 92',
+      3000: '255, 255, 192',
+      4000: '253, 201, 128',
+      5000: '240, 124, 74',
+      6000: '126, 61, 21'
+    },
+    border_opacity: 1,
+    fill_opacity: .1
+  };
 
   if('atc-scale' in localStorage) prop.ui.scale = localStorage['atc-scale'];
 }
@@ -41,28 +53,20 @@ function ui_init() {
 
   $(".fast-forwards").prop("title", "Set time warp to 2");
 
-  $(".fast-forwards").click(function() {
-    game_timewarp_toggle();
-  });
+  var switches = {
+    ".fast-forwards": game_timewarp_toggle,
+    ".speech-toggle": speech_toggle,
+    ".switch-airport": ui_airport_toggle,
+    ".toggle-tutorial": tutorial_toggle,
+    ".pause-toggle": game_pause_toggle,
+    "#paused img": game_unpause,
+    ".toggle-restricted-areas": canvas_restricted_toggle,
+    ".toggle-sids": canvas_sids_toggle,
+    ".toggle-terrain": canvas_terrain_toggle
+  };
 
-  $(".speech-toggle").click(function() {
-    speech_toggle();
-  });
-
-  $(".switch-airport").click(function() {
-    ui_airport_toggle();
-  });
-
-  $(".toggle-tutorial").click(function() {
-    tutorial_toggle();
-  });
-
-  $(".pause-toggle").click(function() {
-    game_pause_toggle();
-  });
-
-  $("#paused img").click(function() {
-    game_unpause();
+  $.each(switches, function(selector, fn) {
+    $(selector).on('click', function(evt) { fn(evt); });
   });
 }
 
@@ -141,4 +145,19 @@ function ui_airport_close() {
 function ui_airport_toggle() {
   if($("#airport-switch").hasClass("open")) ui_airport_close();
   else                                      ui_airport_open();
+}
+
+function canvas_restricted_toggle(evt) {
+  $(evt.target).closest('.control').toggleClass('warning-button active');
+  prop.canvas.draw_restricted = !prop.canvas.draw_restricted;
+}
+
+function canvas_sids_toggle(evt) {
+  $(evt.target).closest('.control').toggleClass('active');
+  prop.canvas.draw_sids = !prop.canvas.draw_sids;
+}
+
+function canvas_terrain_toggle(evt) {
+  $(evt.target).closest('.control').toggleClass('active');
+  prop.canvas.draw_terrain = !prop.canvas.draw_terrain;
 }
