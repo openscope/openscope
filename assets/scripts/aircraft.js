@@ -702,19 +702,16 @@ var Aircraft=Fiber.extend(function() {
         return ["fail", "fix name not understood", "say again"];
       }
 
-      data = data.split(/\s+/);
+      data = data.toUpperCase().split(/\s+/);
       
       var last_fix, fail,  
           fixes = $.map(data, function(fixname) {
             var fix = airport_get().getFix(fixname);
-
             if(!fix) {
-              fail = ["fail", "no fix found with name of " + data[i].toUpperCase(), "say again"];
+              fail = ["fail", "no fix found with name of " + fixname, "say again"];
               return;
             }
             
-            fixname = fixname.toUpperCase();
-
             // to avoid repetition, compare name with the previous fix
             if (fixname == last_fix) return;
             last_fix = fixname;
