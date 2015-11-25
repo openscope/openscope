@@ -780,7 +780,7 @@ var Aircraft=Fiber.extend(function() {
 
       return ["ok", "cleared to proceed to " 
           + this.requested.fix.slice(previous_num).join(' ')
-          + " after " + previous_fixes.join(' ')];
+          + " after " + previous_fixes.pop()];
     },
     runWait: function(data) {
       if(this.category != "departure") return ["fail", "inbound"];
