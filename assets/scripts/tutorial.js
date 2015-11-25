@@ -220,13 +220,11 @@ function tutorial_init_pre() {
   });
 
   tutorial_step({
-    title:    "Standard departures",
-    text:     ["It would take too much time to guide every aircraft naming all fixes, which often repeat.",
-               "If you can see a departing aircraft icon in the bottom, then the airport navigation has",
-               "Standard instrumental departures (SIDs), the routes where departing aircrafts can fly.",
-               "To assign SID, type &lsquo;sid&rsquo; and the name of a SID",
-               "(shown next to the blue dashed path). SIDs work just like sets of fixes."
-               
+    title:    "Shortcuts",
+    text:     ["You can give an aircraft a shortcut in a chain of fixes by issuing &lsquo;direct&rsquo;",
+               "command (or &lsquo;dct&rsquo;). Also you can add more fixes in a track with",
+               "&lsquo;proceed&rsquo; (&lsquo;pr&rsquo;) command. Send departing aircrafts ",
+               "via a Standard Instrumental Departure (SID), shown in the map, by &lsquo;sid&rsquo; command."
                ].join(" "),
     parse:    function(t) {
       return t.replace("{CALLSIGN}", prop.aircraft.list[0].getCallsign());

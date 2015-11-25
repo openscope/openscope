@@ -398,8 +398,13 @@ var Aircraft=Fiber.extend(function() {
           func: 'runHold',
           synonyms: ['circle']},
 
-        land: {func: 'runLanding',
+        land: {
+          func: 'runLanding',
           synonyms: ['l']},
+
+        proceed: {
+          func: 'runProceed',
+          synonyms: ['pr']},
 
         sid: {func: 'runSID'},
 
@@ -682,7 +687,7 @@ var Aircraft=Fiber.extend(function() {
 
       var fix_pos = this.requested.fix.indexOf(fixname);
       if (fix_pos == -1) {
-        return this.runFix(data);
+        return ["fail", "not navigating to fix " + fixname];
       }
 
       if (fix_pos == 0) {
@@ -697,16 +702,23 @@ var Aircraft=Fiber.extend(function() {
         return ["fail", "fix name not understood", "say again"];
       }
 
-      data = data.split(/\s+/);
-      var fixes = [];
-      for(var i=0;i<data.length;i++) {
-        var fix = airport_get().getFix(data[i]);
+      data = data.toUpperCase().split(/\s+/);
+      
+      var last_fix, fail,  
+          fixes = $.map(data, function(fixname) {
+            var fix = airport_get().getFix(fixname);
+            if(!fix) {
+              fail = ["fail", "no fix found with name of " + fixname, "say again"];
+              return;
+            }
+            
+            // to avoid repetition, compare name with the previous fix
+            if (fixname == last_fix) return;
+            last_fix = fixname;
+            return fixname;
+          });
 
-        if(!fix) {
-          return ["fail", "no fix found with name of " + data[i].toUpperCase(), "say again"];
-        }
-        fixes.push(data[i].toUpperCase());
-      }
+      if (fail) return fail;
 
       this.cancelFix();
       if(this.mode != "waiting" && this.mode != "takeoff" && this.mode != "apron" && this.mode != "taxi"){
@@ -740,6 +752,32 @@ var Aircraft=Fiber.extend(function() {
       this.requested.turn = null;
 
       return ["ok", "cleared to destination via " + sid_name];
+    },
+    runProceed: function(data) {
+      if (this.requested.navmode != "fix") {
+        return ["fail", "not navigating to any fix"];
+      }
+      
+      if(data.length == 0) {
+        return ["fail", "fix name not understood"];
+      }
+
+      data = data.toUpperCase();
+      var previous_fixes = this.requested.fix.slice(),
+          previous_num = previous_fixes.length,
+          result = this.runFix(this.requested.fix.concat(data).join(' '));
+
+      if (result[0] == "fail") {
+        return result;
+      }
+
+      if (this.requested.fix.length == previous_num) {
+        return ["fail", "already navigating to " + data];
+      }
+
+      return ["ok", "cleared to proceed to " 
+          + this.requested.fix.slice(previous_num).join(' ')
+          + " after " + previous_fixes.pop()];
     },
     runWait: function(data) {
       if(this.category != "departure") return ["fail", "inbound"];
