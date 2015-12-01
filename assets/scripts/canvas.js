@@ -948,8 +948,8 @@ function canvas_draw_terrain(cc) {
         }
         cc.closePath();
       });
-      cc.stroke();
       cc.fill();
+      cc.stroke();
     });
   });
 
@@ -963,24 +963,20 @@ function canvas_draw_terrain(cc) {
       box_height = 5;
       
   cc.font = "10px monoOne, monospace";
+  cc.lineWidth = 1;
 
   for (var i = 1000; i <= max_elevation; i += 1000) {
     cc.save();
     cc.translate(width / 2 - 140 - (max_elevation - i) / 1000 * box_width, -height/2+offset);
-
     cc.beginPath();
-    cc.moveTo(0, 0);
-    cc.lineTo(0, box_height);
-    cc.lineTo(box_width - 1, box_height);
-    cc.lineTo(box_width - 1, 0);
-    cc.lineTo(0, 0);
+    cc.rect(0, 0, box_width - 1, box_height);
     cc.closePath();
 
     // in the map, terrain of higher levels has fill of all the lower levels
     // so we need to fill it below exactly as in the map
     for (var j = 0; j <= i; j += 1000) {
       cc.fillStyle = 'rgba('
-          + prop.ui.terrain.colors[i] + ', '
+          + prop.ui.terrain.colors[j] + ', '
           + prop.ui.terrain.fill_opacity + ')';
       cc.fill();
     }
