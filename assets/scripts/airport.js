@@ -556,7 +556,7 @@ var Runway=Fiber.extend(function(base) {
       var offset = [0, 0];
       offset[0]  = (-cos(this.angle) * position[0]) + (sin(this.angle) * position[1]);
       offset[1]  = ( sin(this.angle) * position[0]) + (cos(this.angle) * position[1]);
-//      offset[1] *= -1;
+      //      offset[1] *= -1;
 
       if(end == 0) {
         offset = vscale(offset, -1);
@@ -599,16 +599,17 @@ var Runway=Fiber.extend(function(base) {
       }
       return 0;
     },
+    getPositions: function() {
+      return [this.getPosition(0), this.getPosition(1)];
+    },
     getPosition: function(end) {
       end = this.getEnd(end);
-      var offset = [this.position[0], this.position[1]];
-      offset = vsum(offset,
+      return vsum(this.position,
           vscale(
             vturn(this.angle),
             (this.length / 2) * (end == 0 ? -1 : 1)
           )
         );
-      return offset;
     },
     parse: function(data) {
       if(data.position) {
