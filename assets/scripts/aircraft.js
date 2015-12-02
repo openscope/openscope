@@ -1211,7 +1211,7 @@ var Aircraft=Fiber.extend(function() {
             (runway.isWaiting(this, this.requested.runway) == 0) &&
             (was_taxi == true))
         {
-          ui_log(this.getRadioCallsign(), "ready for takeoff runway "+radio_runway(this.requested.runway));
+          ui_log(this.getRadioCallsign(), "ready for departure runway "+radio_runway(this.requested.runway));
           this.updateStrip();
         }
       }
