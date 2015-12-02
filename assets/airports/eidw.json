@@ -5,8 +5,8 @@
   "ctr_radius": 80,
   "position": ["N53d25m17.00", "W6d16m12.00"],
   "wind": {
-    "angle": 100,
-    "speed": 15
+    "angle": 120,
+    "speed": 8
   },
   "fixes": {
     "OLAPO": ["N53d46m49.00", "W7d17m41.00"],
@@ -16,6 +16,11 @@
     "SUROX": ["N53d59m48.00", "W6d59m36.50"],
     "LIFFY": ["N53d28m48.30", "W5d30m00.00"],
     "ABIDO": ["N52d28m43.70", "W5d47m44.10"],
+    "INKUR": ["N53d35m51.30", "W7d23m28.60"],
+    "PELIG": ["N53d11m58.50", "W7d20m00.00"],
+    "DEXEN": ["N53d16m49.40", "W5d30m00.00"],
+    "OLONO": ["N52d43m23.10", "W6d46m44.40"],
+    "ROTEV": ["N54d01m43.70", "W6d03m58.40"],
     "DUB": ["N53d29m57.80", "W6d18m25.60"],
     
     "EKREN": ["N53d38m43.00", "W5d45m53.10"],
@@ -50,7 +55,11 @@
     "IRDEX": ["N53d11m45.10", "W6d03m50.10"],
     "ERVAD": ["N53d06m47.10", "W6d04m40.40"],
     "ABIDO": ["N52d28m43.70", "W5d47m44.10"],
-    
+    "DWS78": ["N53d14m06.00", "W6d25m04.00"],
+    "NITIL": ["N53d28m00.00", "W6d37m55.00"],
+    "DW555": ["N53d20m13.70", "W5d53m44.00"],
+    "NEPOD": ["N52d56m57.20", "W6d10m29.80"],
+
     "RISAP": ["N53d26m27.40", "W6d38m13.20"],
     "LAPMO": ["N53d24m11.00", "W5d56m44.10"],
     "GANET": ["N53d26m06.50", "W6d31m33.80"],
@@ -92,10 +101,15 @@
     "sids": {
       "SUROX": ["DW931", "LEMTA", "DODIG", "SUROX"],
       "LIFFY": ["DW931", "KISHA", "LIFFY"],
-      "ABIDO": ["DW679", "IRDEX", "ERVAD", "ABIDO"]
+      "ABIDO": ["DW679", "IRDEX", "ERVAD", "ABIDO"],
+      "INKUR": ["DW679", "DWS78", "NITIL", "INKUR"],
+      "PELIG": ["DW679", "DWS78", "PELIG"],
+      "DEXEN": ["MAXEV", "DW555", "DEXEN"],
+      "OLONO": ["DW679", "IRDEX", "ERVAD", "NEPOD", "OLONO"],
+      "ROTEV": ["DW931", "LEMTA", "ROTEV"]
     },
     "destinations": [
-      95, 170, 325
+      85, 162, 323, 10, 106, 200, 251, 285
     ],
     "type": "random",
     "offset": 0,
@@ -148,7 +162,7 @@
         ["dlh", 3],
         ["klm", 1]
       ],
-      "type": "random",
+      "type": "wave",
       "offset": 0,
       "frequency": 10,
       "altitude":  10000
@@ -165,7 +179,7 @@
         ["dlh", 3],
         ["klm", 1]
       ],
-      "type": "wave",
+      "type": "random",
       "offset": 0,
       "frequency": 10,
       "altitude":  10000
