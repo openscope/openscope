@@ -1,0 +1,11 @@
+{
+  "name": "CityJet",
+  "icao": "BCY",
+  "callsign": {
+    "name": "City-Ireland",
+    "length": 3
+  },
+  "aircraft": [
+    ["RJ85", 18 ]
+  ]
+}
