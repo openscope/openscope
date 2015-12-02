@@ -1,0 +1,12 @@
+{
+  "name": "Germanwings",
+  "callsign": {
+    "name": "Germanwings",
+    "length": 3,
+    "alpha": true
+  },
+  "aircraft": [
+    ["A319", 43],
+    ["A320", 19]
+  ]
+}
