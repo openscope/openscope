@@ -1,0 +1,13 @@
+{
+  "name": "Aerolineas Argentinas",
+  "callsign": {
+    "name": "Argentina",
+    "length": 4
+  },
+  "aircraft": [
+    ["A332", 6 ],
+    ["A343", 7 ],
+    ["B737", 21 ],
+    ["B738", 20  ]
+  ]
+}
