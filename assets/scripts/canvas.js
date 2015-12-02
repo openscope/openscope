@@ -967,7 +967,7 @@ function canvas_draw_terrain(cc) {
 
   for (var i = 1000; i <= max_elevation; i += 1000) {
     cc.save();
-    cc.translate(width / 2 - 140 - (max_elevation - i) / 1000 * box_width, -height/2+offset);
+    cc.translate(width / 2 - 140 - (max_elevation - i) / 1000 * (box_width + .5), -height/2+offset);
     cc.beginPath();
     cc.rect(0, 0, box_width - 1, box_height);
     cc.closePath();
