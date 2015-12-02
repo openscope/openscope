@@ -1707,7 +1707,7 @@ function aircraft_init() {
   aircraft_load("p28a");
   aircraft_load("t154");
   aircraft_load("t204");
-  
+  aircraft_load("rj85");
   aircraft_load("c130");
   aircraft_load("c5");
 }
