@@ -924,10 +924,13 @@ function canvas_draw_terrain(cc) {
   cc.lineWidth = clamp(.5, (prop.ui.scale / 10), 2);
   cc.lineJoin = 'round';
 
-  var airport = airport_get();
+  var airport = airport_get(),
+      max_elevation = 0;
   cc.save();
   cc.translate(prop.canvas.panX, prop.canvas.panY);
+
   $.each(airport.terrain || [], function(ele, terrain_level) {
+    max_elevation = Math.max(max_elevation, ele);
     var color = 'rgba('
       + prop.ui.terrain.colors[ele] + ', ';
 
@@ -945,12 +948,59 @@ function canvas_draw_terrain(cc) {
         }
         cc.closePath();
       });
-      cc.stroke();
       cc.fill();
+      cc.stroke();
     });
   });
 
   cc.restore();
+
+  if (max_elevation == 0) return;
+  var offset = 10,
+      width = prop.canvas.size.width,
+      height = prop.canvas.size.height,
+      box_width = 30,
+      box_height = 5;
+      
+  cc.font = "10px monoOne, monospace";
+  cc.lineWidth = 1;
+
+  for (var i = 1000; i <= max_elevation; i += 1000) {
+    cc.save();
+    // translate coordinates for every block to not use these X & Y twice in rect and text
+    // .5 in X and Y coordinates are used to make 1px rectangle fit exactly into 1 px
+    // and not be blurred
+    cc.translate(width / 2 - 140.5 - (max_elevation - i) / 1000 * (box_width + 1), -height/2+offset+.5);
+    cc.beginPath();
+    cc.rect(0, 0, box_width - 1, box_height);
+    cc.closePath();
+
+    // in the map, terrain of higher levels has fill of all the lower levels
+    // so we need to fill it below exactly as in the map
+    for (var j = 0; j <= i; j += 1000) {
+      cc.fillStyle = 'rgba('
+          + prop.ui.terrain.colors[j] + ', '
+          + prop.ui.terrain.fill_opacity + ')';
+      cc.fill();
+    }
+
+    cc.strokeStyle = 'rgba('
+      + prop.ui.terrain.colors[i] + ', '
+      + prop.ui.terrain.border_opacity + ')';
+
+    cc.stroke();
+
+    // write elevation signs only for the outer elevations
+    if (i == max_elevation || i == 1000) {
+      cc.fillStyle = '#fff';
+      cc.textAlign    = "center";
+      cc.textBaseline = "top";
+      cc.fillText(i + "'", box_width / 2 + .5, offset + 2);
+    }
+
+    cc.restore();
+  }
+
 }
 function canvas_draw_restricted(cc) {
   "use strict";
@@ -1016,6 +1066,7 @@ function canvas_update_post() {
       canvas_draw_fixes(cc);
       canvas_draw_sids(cc);
       cc.restore();
+
 
       cc.restore();
     }
