@@ -380,7 +380,7 @@ function canvas_draw_aircraft(cc, aircraft) {
       cc.globalAlpha = 0.3 / (length - i);
     else
       cc.globalAlpha = 1 / (length - i);
-    cc.fillRect(km(aircraft.position_history[i][0]) + prop.canvas.panX, -km(aircraft.position_history[i][1]) + prop.canvas.panY, 2, 2);
+    cc.fillRect(km(aircraft.position_history[i][0]) + prop.canvas.panX - 1, - km(aircraft.position_history[i][1]) + prop.canvas.panY - 1, 2, 2);
   }
   cc.restore();
 
