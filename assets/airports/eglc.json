@@ -66,8 +66,8 @@
   "departures": {
     "airlines": [
       ["bcy", 10],
-      ["baw", 3],
-      ["fastga", 5]
+      ["baw", 5],
+      ["fastga", 8]
     ],
     "sids": {
       "DOVER": ["GINTI", "DET", "DVR"],
@@ -89,12 +89,12 @@
       "fixes":    ["LOGAN", "JACKO", "TRIPO", "RIDLY", "SND"],
       "airlines": [
         ["bcy", 10],
-        ["baw", 5],
-        ["fastga", 3]
+        ["baw", 10],
+        ["fastga", 5]
       ],
-      "type": "cyclic",
+      "type": "wave",
       "offset": 0,
-      "frequency": 10,
+      "frequency": 20,
       "altitude": 10000
     },
     {
@@ -102,14 +102,14 @@
       "speed":    250,
       "fixes":    ["SOVAT", "TEBLO", "SANDY", "BONDY", "ALKIN"],
       "airlines":[
-        ["bcy", 10],
-        ["baw", 5],
+        ["bcy", 5],
+        ["baw", 10],
         ["fastga", 3]
       ],
       "type": "random",
       "offset": 0,
-      "frequency": 10,
-      "altitude": [8000, 9000]
+      "frequency": 15,
+      "altitude": 10000
     },
     {
       "radial": 280,
@@ -117,13 +117,12 @@
       "fixes":    ["WCO", "BOMBO", "BKY", "BRAIN", "MAYLA", "SND"],
       "airlines": [
         ["bcy", 10],
-        ["baw", 5],
-        ["fastga", 20],
-        ["lightga", 20]
+        ["baw", 1],
+        ["fastga", 20]
       ],
-      "type": "wave",
-      "offset": 0,
-      "frequency": 20,
+      "type": "random",
+      "offset": 10,
+      "frequency": 15,
       "altitude": 10000
     }
   ]
