@@ -967,7 +967,10 @@ function canvas_draw_terrain(cc) {
 
   for (var i = 1000; i <= max_elevation; i += 1000) {
     cc.save();
-    cc.translate(width / 2 - 140 - (max_elevation - i) / 1000 * (box_width + .5), -height/2+offset);
+    // translate coordinates for every block to not use these X & Y twice in rect and text
+    // .5 in X and Y coordinates are used to make 1px rectangle fit exactly into 1 px
+    // and not be blurred
+    cc.translate(width / 2 - 140.5 - (max_elevation - i) / 1000 * (box_width + 1), -height/2+offset+.5);
     cc.beginPath();
     cc.rect(0, 0, box_width - 1, box_height);
     cc.closePath();
@@ -992,11 +995,10 @@ function canvas_draw_terrain(cc) {
       cc.fillStyle = '#fff';
       cc.textAlign    = "center";
       cc.textBaseline = "top";
-      cc.fillText(i + "'", box_width / 2, offset + 2);
+      cc.fillText(i + "'", box_width / 2 + .5, offset + 2);
     }
 
     cc.restore();
-
   }
 
 }
