@@ -7,7 +7,7 @@
   "position": ["S34d49m19.92", "W58d32m8.8"],
   "wind": {
     "angle": 109,
-    "speed": 8
+    "speed": 6
   },
   "fixes": {
     "EZE02": ["S34d58m27.40", "W58d37m27.28"],
@@ -46,10 +46,8 @@
     "EGEPA": ["S35d23m40.00", "W59d24m34.00"],
     "VANAR": ["S34d19m28.00", "W58d45m44.00"],
 
-    "C": ["S34d49m1.00", "W58d33m53.00"],
-    "OC": ["S34d48m17.00", "W58d37m60.00"],
-    "A": ["S34d50m29.00", "W58d31m20.00"],
-    "OA": ["S34d53m25.00", "W58d30m21.00"],
+    "OC": ["S34d49m1.00", "W58d33m53.00"],
+    "OA": ["S34d50m29.00", "W58d31m20.00"],
     "ARSOT": ["S34d45m37.00", "W58d53m51.00"],
     "GESTA": ["S35d04m52.00", "W58d26m44.00"],
 
@@ -83,10 +81,10 @@
   "departures": {
     "airlines": [
       ["arg", 20],
-      ["tam", 10],
-      ["sa-aal", 5],
-      ["sa-afr", 3],
-      ["sa-amx", 1],
+      ["tam", 7],
+      ["sa-aal", 7],
+      ["sa-afr", 5],
+      ["sa-amx", 3],
       ["sa-ava", 2],
       ["sa-aza", 2],
       ["sa-baw", 3],
@@ -95,7 +93,7 @@
       ["sa-lan", 15],
       ["sa-uae", 1],
       ["sa-ual", 4],
-      ["sa-klm", 1]
+      ["sa-klm", 5]
     ],
     "sids": {
       "ATOVO": ["EZE12", "EZE97", "EZE70", "EZE02", "EZE10", "EZE19", "EZE20", "EZE26", "ATOVO"],
@@ -117,16 +115,16 @@
       "speed": 250,
       "fixes": ["SNT", "ARSOT"],
       "airlines":  [
-        ["sa-aal", 7],
-        ["sa-amx", 3],
+        ["sa-aal", 10],
+        ["sa-amx", 5],
         ["sa-ava", 5],
-        ["sa-ual", 5],
-        ["sa-lan", 8],
-        ["arg", 10]
+        ["sa-ual", 8],
+        ["sa-lan", 5],
+        ["arg", 5]
       ],
-      "type": "wave",
+      "type": "random",
       "offset": 0,
-      "frequency": 50,
+      "frequency": 20,
       "altitude": 10000
     },
     {
@@ -139,13 +137,13 @@
       ],
       "type": "random",
       "offset": 0,
-      "frequency": 20,
+      "frequency": 10,
       "altitude": 10000
     },
     {
       "radial": 100,
       "speed": 250,
-      "fixes": ["ESLAN", "PTA", "EZE"],
+      "fixes": ["ESLAN", "PTA", "ILM", "PAL", "ENO", "ARSOT"],
       "airlines":  [
         ["arg", 10],
         ["sa-lan", 5],
@@ -161,10 +159,10 @@
     {
       "radial": 45,
       "speed": 250,
-      "fixes": ["PAPIX", "EZE"],
+      "fixes": ["PAPIX", "PAL", "ENO", "ARSOT"],
       "airlines":  [
         ["arg", 10],
-        ["tam", 5],
+        ["tam", 8],
         ["sa-afr", 3],
         ["sa-klm", 1],
         ["sa-ibe", 3],
