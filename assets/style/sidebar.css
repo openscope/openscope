@@ -13,22 +13,22 @@
   overflow-y: scroll;
 }
 
-#sidebar::-webkit-scrollbar {
+.nice-scrollbar::-webkit-scrollbar {
   width: 8px;
   padding: 2px;
 }
 
-#sidebar::-webkit-scrollbar-thumb {
+.nice-scrollbar::-webkit-scrollbar-thumb {
   width: 4px;
-  background-color: rgba(255, 255, 255, 0.1);
-}
-
-#sidebar::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(255, 255, 255, 0.3);
-}
-
-#sidebar::-webkit-scrollbar-thumb:active {
   background-color: rgba(255, 255, 255, 0.2);
+}
+
+.nice-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+.nice-scrollbar::-webkit-scrollbar-thumb:active {
+  background-color: rgba(255, 255, 255, 0.3);
 }
 
 #sidebar #strips {
