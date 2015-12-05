@@ -360,10 +360,17 @@ function vradial(v) {
 }
 
 function vturn(radians, v) {
-  if (!v) {
-    v = [1, 1];
-  }
-  return [v[0] * sin(radians), v[1] * cos(radians)];
+  if (!v) v = [0, 1];
+  var 
+    x = v[0],
+    y = v[1],
+    cs = Math.cos(-radians),
+    sn = Math.sin(-radians)
+    ;
+  return [
+      x * cs - y * sn,
+      x * sn + y * cs
+  ];
 }
 
 function vnorm(v) {

@@ -570,18 +570,15 @@ var Runway=Fiber.extend(function(base) {
     },
     getAngle: function(end) {
       end = this.getEnd(end);
-      if(end == 0) return this.angle + Math.PI;
-      return this.angle;
+      return this.angle + (end == 1 ? Math.PI : 0);
     },
     getILS: function(end) {
       end = this.getEnd(end);
-      if(end == 0) return this.ils[0];
-      return this.ils[1];
+      return this.ils[end];
     },
     getILSDistance: function(end) {
       end = this.getEnd(end);
-      if(end == 0) return this.ils_distance[0];
-      return this.ils_distance[1];
+      return this.ils_distance[end];
     },
     getGlideslopeAltitude: function(distance, end, glideslope) {
       end = this.getEnd(end);
@@ -601,14 +598,13 @@ var Runway=Fiber.extend(function(base) {
     },
     getPosition: function(end) {
       end = this.getEnd(end);
-      var offset = [this.position[0], this.position[1]];
-      offset = vsum(offset,
+
+      return vsum(this.position,
           vscale(
             vturn(this.angle),
             (this.length / 2) * (end == 0 ? -1 : 1)
           )
         );
-      return offset;
     },
     parse: function(data) {
       if(data.position) {

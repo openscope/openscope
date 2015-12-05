@@ -312,7 +312,7 @@ function canvas_draw_separation_indicator(cc, aircraft) {
   "use strict";
   // Draw a trailing indicator 2.5 NM (4.6km) behind landing aircraft to help with traffic spacing
   var rwy = airport_get().getRunway(aircraft.requested.runway);
-  var angle = rwy.getAngle(aircraft.requested.runway);
+  var angle = rwy.getAngle(aircraft.requested.runway) + Math.PI;
   cc.strokeStyle = "rgba(224, 128, 128, 0.8)";
   cc.lineWidth = 3;
   cc.translate(km(aircraft.position[0]) + prop.canvas.panX, -km(aircraft.position[1]) + prop.canvas.panY);
@@ -442,11 +442,11 @@ function canvas_draw_aircraft(cc, aircraft) {
     var tail_length = aircraft.speed / 15;
     if(match) tail_length = 15;
     var angle       = aircraft.heading;
-    var end         = [Math.sin(angle) * tail_length, -Math.cos(angle) * tail_length];
+    var end         = vscale(vturn(angle), tail_length);
 
     cc.beginPath();
     cc.moveTo(0, 0);
-    cc.lineTo(end[0], end[1]);
+    cc.lineTo(end[0], -end[1]);
     cc.stroke();
     cc.restore();
   }
