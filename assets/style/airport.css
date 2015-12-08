@@ -1,58 +1,58 @@
 
 #airport-switch {
-  background-color: rgba(15, 25, 20, 1);
-
-  box-shadow: 0 0 0 6px rgba(31, 65, 48, 1.0);
-  border-radius: 1px;
-
-  color: #ddd;
-  font-size: 12px;
-
   position: absolute;
-  padding: 12px 15px;
-  top: 20%;
-  left: 50%;
-  margin-left: -240px;
-  width: 480px;
-  height: auto;
-
+  top: 10%;
+  bottom: 10%;
+  left: 0;
+  right: 0;
   opacity: 0;
-  
   pointer-events: none;
-
   transition: opacity 0.5s ease;
 }
-
 #airport-switch.open {
   pointer-events: auto;
-
   opacity: 1;
 }
 
-#airport-switch .airport {
+#airport-switch > div {
+  background-color: rgba(15, 25, 20, 1);
+  border: 6px solid rgba(31, 65, 48, 1.0);
+  box-shadow: 0 0 50px -10px rgba(0,0,0,.3);
+  border-radius: 6px;
+  color: #ddd;
+  font-size: 12px;
+  padding: 12px 15px;
+  margin: 0 auto;
+  width: 90%;
+  max-width: 500px;
+  height: 100%;
+  overflow-y: auto;
+}
+
+#airport-switch li {
   list-style-type: none;
 
   padding: 5px 10px;
   margin-bottom: 2px;
 }
 
-#airport-switch .airport .icao {
+#airport-switch li .icao {
   display: inline-block;
   width: 7em;
   font-weight: bold;
 }
 
-#airport-switch .airport:hover {
+#airport-switch li:hover {
   background-color: rgba(255, 255, 255, 0.1);
   cursor: pointer;
 }
 
-#airport-switch .airport.active {
+#airport-switch li.active {
   background-color: #354;
   cursor: pointer;
 }
 
-#airport-switch .airport.active:hover {
+#airport-switch li.active:hover {
   cursor: auto;
 }
 
