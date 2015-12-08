@@ -819,7 +819,7 @@ var Aircraft=Fiber.extend(function() {
         prop.game.score.windy_takeoff += this.scoreWind('taking off');
 
         if(this.requested.heading == null)
-          this.requested.heading = runway.getAngle(this.requested.runway) + Math.PI;
+          this.requested.heading = runway.getAngle(this.requested.runway);
         //
         var wind = airport_get().getWind();
         var wind_dir = round(degrees(wind.angle));
@@ -900,7 +900,7 @@ var Aircraft=Fiber.extend(function() {
         var runway = airport_get().getRunway(this.requested.runway);
         if(this.mode == "landing") {
           this.requested.altitude = Math.max(2000, round((this.altitude / 1000)) * 1000);
-          this.requested.heading = runway.getAngle(this.requested.runway) + Math.PI;
+          this.requested.heading = runway.getAngle(this.requested.runway);
         }
 
         this.requested.navmode = "heading";
@@ -1010,7 +1010,7 @@ var Aircraft=Fiber.extend(function() {
       var wind    = airport.wind;
       var runway  = airport.getRunway(this.requested.runway);
 
-      var angle   =  abs(angle_offset(runway.getAngle(this.requested.runway), wind.angle + Math.PI));
+      var angle   =  abs(angle_offset(runway.getAngle(this.requested.runway), wind.angle));
 
       return {
         cross: Math.sin(angle) * wind.speed,
@@ -1078,7 +1078,7 @@ var Aircraft=Fiber.extend(function() {
         
         this.offset_angle = offset_angle;
 
-        angle = runway.getAngle(this.requested.runway) + Math.PI;
+        angle = runway.getAngle(this.requested.runway);
         if (angle > (2*Math.PI)) angle -= 2*Math.PI;
 
         var landing_zone_offset = crange(1, runway.length, 5, 0.1, 0.5);
@@ -1203,9 +1203,7 @@ var Aircraft=Fiber.extend(function() {
 
         this.position[0] = position[0];
         this.position[1] = position[1];
-
-        this.heading     = runway.angle;
-        if(runway.getEnd(this.requested.runway) == 1) this.heading += Math.PI;
+        this.heading     = runway.getAngle(this.requested.runway);
 
         if (!this.projected &&
             (runway.isWaiting(this, this.requested.runway) == 0) &&
@@ -1219,7 +1217,7 @@ var Aircraft=Fiber.extend(function() {
       if(this.mode == "takeoff") {
         var runway = airport_get().getRunway(this.requested.runway);
 
-        this.target.heading = runway.getAngle(this.requested.runway) + Math.PI;
+        this.target.heading = runway.getAngle(this.requested.runway);
 
         if(this.speed < this.model.speed.min) {
           this.target.altitude = 0;
