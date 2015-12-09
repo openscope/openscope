@@ -177,7 +177,6 @@ function canvas_draw_runway_label(cc, runway) {
   cc.translate(round(km(runway.name_offset[1][0])), -round(km(runway.name_offset[1][1])));
   cc.fillText(runway.name[1], 0, 0);
   cc.restore();
-
 }
 
 function canvas_draw_runways(cc) {
@@ -769,7 +768,6 @@ function canvas_draw_info(cc, aircraft) {
 
     cc.restore();
   }
-
 }
 
 function canvas_draw_all_info(cc) {
@@ -836,38 +834,41 @@ function canvas_draw_compass(cc) {
     cc.fillText(angle, 0, -size2+6);
     cc.restore();
   }
-
 }
 
 function canvas_draw_ctr(cc) {
   "use strict";
+  
+  //Draw a gentle fill color with border within the bounds of the airport's ctr_radius
   cc.translate(round(prop.canvas.size.width/2), round(prop.canvas.size.height/2));
   cc.translate(prop.canvas.panX, prop.canvas.panY);
   cc.fillStyle = "rgba(200, 255, 200, 0.02)";
   cc.beginPath();
   cc.arc(0, 0, airport_get().ctr_radius*prop.ui.scale, 0, Math.PI*2);
   cc.fill();
-
-  cc.beginPath();
-  cc.arc(0, 0, airport_get().ctr_radius*prop.ui.scale, 0, Math.PI*2);
+  //Draw the outline circle
+	cc.beginPath();
   cc.linewidth = 1;
-  cc.strokeStyle = "rgba(200, 255, 200, 0.25)";
-  cc.stroke();
+	cc.arc(0, 0, airport_get().ctr_radius*prop.ui.scale, 0, Math.PI*2);
+	cc.strokeStyle = "rgba(200, 255, 200, 0.25)";
+	cc.stroke();
 
-  cc.beginPath();
-  cc.arc(0, 0, airport_get().ctr_radius*prop.ui.scale*0.75, 0, Math.PI*2);
-  cc.strokeStyle = "rgba(200, 255, 200, 0.1)";
-  cc.stroke();
+  // Check if range ring characteristics are defined for this airport
+  if(airport_get().hasOwnProperty("rr_radius_nm")) {
+  	var rangeRingRadius = airport_get().rr_radius_nm *  1.852;	//convert input param from nm to km
+  }
+  else {
+  	var rangeRingRadius = airport_get().ctr_radius / 4;	//old method
+  }
 
-  cc.beginPath();
-  cc.arc(0, 0, airport_get().ctr_radius*prop.ui.scale*0.50, 0, Math.PI*2);
-  cc.strokeStyle = "rgba(200, 255, 200, 0.1)";
-  cc.stroke();
-
-  cc.beginPath();
-  cc.arc(0, 0, airport_get().ctr_radius*prop.ui.scale*0.25, 0, Math.PI*2);
-  cc.strokeStyle = "rgba(200, 255, 200, 0.1)";
-  cc.stroke();
+  //Fill up airport's ctr_radius with rings of the specified radius
+  for(var i=1; i*rangeRingRadius < airport_get().ctr_radius; i++) {
+	  cc.beginPath();
+	  cc.linewidth = 1;
+		cc.arc(0, 0, rangeRingRadius*prop.ui.scale*i, 0, Math.PI*2);
+		cc.strokeStyle = "rgba(200, 255, 200, 0.1)";
+		cc.stroke();
+  }
 }
 
 // Draw range rings for ENGM airport to assist in point merge
@@ -1000,8 +1001,8 @@ function canvas_draw_terrain(cc) {
 
     cc.restore();
   }
-
 }
+
 function canvas_draw_restricted(cc) {
   "use strict";
   if (!prop.canvas.draw_restricted) return;
