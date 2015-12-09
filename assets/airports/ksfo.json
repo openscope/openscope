@@ -5,6 +5,8 @@
   "icao": "KSFO",
   "magnetic_north": 13.7,
   "ctr_radius": 80,
+  "rr_radius_nm": 5.0,
+  "rr_center": ["N37.6195", "W122.3738333"],
   "has_terrain": true,
   "position": ["N37.6195", "W122.3738333"],
   "wind": {
