@@ -696,6 +696,8 @@ var Airport=Fiber.extend(function() {
       if(data.radio) this.radio = data.radio;
       if(data.ctr_radius) this.ctr_radius = data.ctr_radius;
       if(data.ctr_ceiling) this.ctr_ceiling = data.ctr_ceiling;
+      if(data.rr_radius_nm) this.rr_radius_nm = data.rr_radius_nm;
+      if(data.rr_center) this.rr_center = data.rr_center;
       if(data.level) this.level = data.level;
       this.has_terrain = false || data.has_terrain;
 
