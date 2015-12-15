@@ -71,7 +71,8 @@ function ui_init() {
 }
 
 function ui_complete() {
-  var airports = []
+  var airports = [];
+  var icon = '&#9992;';
 
   for(var i in prop.airport.airports) airports.push(i);
 
@@ -79,8 +80,32 @@ function ui_complete() {
 
   for(var i=0;i<airports.length;i++) {
     var airport = prop.airport.airports[airports[i]];
+    var difficulty = '';
+    switch (airport.level) {
+    case 'beginner':
+      difficulty = icon;
+      break;
+    case 'easy':
+      difficulty = icon.repeat(2);
+      break;
+    case 'medium':
+      difficulty = icon.repeat(3);
+      break;
+    case 'hard':
+      difficulty = icon.repeat(4);
+      break;
+    case 'expert':
+      difficulty = icon.repeat(5);
+      break;
+    default:
+      difficulty = '?';
+      break;
+    }
 
-    var html = $("<li class='airport icao-"+airport.icao.toLowerCase()+"'><span class='icao'>" + airport.icao + "</span><span class='name'>" + airport.name + "</span></li>");
+    var html = $("<li class='airport icao-"+airport.icao.toLowerCase()+"'>" +
+                 "<span class='difficulty'>" + difficulty + "</span>" +
+                 "<span class='icao'>" + airport.icao + "</span>" +
+                 "<span class='name'>" + airport.name + "</span></li>");
 
     html.click(airport.icao.toLowerCase(), function(e) {
       if(e.data != airport_get().icao) {
