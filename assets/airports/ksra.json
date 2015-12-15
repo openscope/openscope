@@ -1,6 +1,6 @@
 {
   "name": "Single runway airport (WIP)",
-  "level": "medium",
+  "level": "hard",
   "radio": "Sirra",
   "icao": "KSRA",
   "ctr_radius": 80,
