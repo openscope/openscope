@@ -1,6 +1,6 @@
 {
   "name": "Los Angeles International Airport",
-  "level": "hard",
+  "level": "medium",
   "radio": "Los Angeles",
   "icao": "KLAX",
   "magnetic_north": 12.3,

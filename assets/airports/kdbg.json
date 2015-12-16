@@ -1,6 +1,6 @@
 {
   "name": "Debug airport",
-  "level": "hard",
+  "level": "medium",
   "radio": "Debug",
   "icao": "KDBG",
   "ctr_radius": 80,

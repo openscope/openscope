@@ -36,6 +36,15 @@
   margin-bottom: 2px;
 }
 
+#airport-switch li .difficulty {
+  display: inline-block;
+  width: 3.5em;
+  font-weight: bold;
+  font-size: 120%;
+  margin-right: 0.25em;
+  text-align: center;
+}
+
 #airport-switch li .icao {
   display: inline-block;
   width: 7em;

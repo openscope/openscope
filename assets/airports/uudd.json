@@ -1,6 +1,6 @@
 {
   "name": "Moscow Domodedovo Airport",
-  "level": "hard",
+  "level": "easy",
   "radio": "Domodedovo",
   "icao": "UUDD",
   "ctr_radius": 70,

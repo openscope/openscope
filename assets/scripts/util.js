@@ -35,6 +35,19 @@ function clone(obj) {
     };
 }());
 
+// String repetition copied from http://stackoverflow.com/a/5450113
+if (!String.prototype.hasOwnProperty("repeat")) {
+  String.prototype.repeat = function(count) {
+    if (count < 1) return '';
+    var result = '', pattern = this.valueOf();
+    while (count > 1) {
+        if (count & 1) result += pattern;
+        count >>= 1, pattern += pattern;
+    }
+    return result + pattern;
+  };
+}
+
 var sin_cache={};
 
 function ceil(n, factor) {

@@ -1,5 +1,5 @@
 { "name": "Dublin Airport",
-  "level": "medium",
+  "level": "easy",
   "radio": "Dublin",
   "icao": "EIDW",
   "ctr_radius": 80,

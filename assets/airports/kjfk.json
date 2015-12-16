@@ -1,6 +1,6 @@
 {
   "name": "John F Kennedy International Airport (WIP)",
-  "level": "hard",
+  "level": "medium",
   "radio": "Kennedy",
   "icao": "KJFK",
   "ctr_radius": 80,
