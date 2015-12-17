@@ -764,7 +764,11 @@ function canvas_draw_info(cc, aircraft) {
     cc.fillText(lpad(round(aircraft.altitude * 0.01), 2), -separation, line_height);
 
     cc.textAlign = "left";
-    cc.fillText(lpad(round(aircraft.speed * 0.1), 2), separation, line_height);
+    var speed = aircraft.speed;
+    if (prop.game.option.get('simplifySpeeds') == 'no') {
+        speed *= 1 + (aircraft.altitude * 0.000016);
+    }
+    cc.fillText(lpad(round(speed * 0.1), 2), separation, line_height);
 
     cc.textAlign = "center";
     cc.fillText(aircraft.getCallsign(), 0, -line_height);

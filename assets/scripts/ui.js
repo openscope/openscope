@@ -74,7 +74,8 @@ function ui_init() {
   for (var key in descriptions) {
     var opt = descriptions[key];
     if (opt.type == 'select') {
-      options.append("<span class='option-description'>" +
+      var container = $('<div class="option"></div>');
+      container.append("<span class='option-description'>" +
                      opt.description + "</span>");
       var sel_span = $("<span class='option-selector option-type-select'></span>");
       var selector = $("<select id='opt-" + opt.name +
@@ -92,7 +93,8 @@ function ui_init() {
         prop.game.option.set($(this).data('name'), $(this).val());
       });
       sel_span.append(selector);
-      options.append(sel_span);
+      container.append(sel_span);
+      options.append(container);
     }
   }
 

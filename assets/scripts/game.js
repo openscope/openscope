@@ -11,6 +11,17 @@ zlsa.atc.Options = Fiber.extend(function (base) {
                ['Selected', 'selected'],
                ['Never', 'never']]
       });
+      this.addOption({
+        name: 'simplifySpeeds',
+        defaultValue: 'yes',
+        description: 'Use simplified airspeeds',
+        help: 'Controls use of a simplified calculation which results in'
+          + ' aircraft always moving across the ground at the speed assigned.'
+          + ' In reality aircraft will move faster as they increase altitude.',
+        type: 'select',
+        data: [['Yes', 'yes'],
+               ['No', 'no']]
+      });
     },
     addOption: function(data) {
       this._options[data.name] = data;
