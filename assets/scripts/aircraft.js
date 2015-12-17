@@ -1313,6 +1313,10 @@ var Aircraft=Fiber.extend(function() {
 
       var angle = this.heading;
       var scaleSpeed = this.speed * 0.000514444 * game_delta(); // knots to m/s
+      if (prop.game.option.get('simplifySpeeds') == 'no') {
+        // Calculate the true air speed as indicated airspeed * 1.6% per 1000'
+        scaleSpeed *= 1 + (this.altitude * 0.000016);
+      }
       this.ds = scaleSpeed;
       this.position = vsum(this.position, vscale([sin(angle), cos(angle)], scaleSpeed));
 
