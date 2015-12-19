@@ -926,7 +926,6 @@ function airport_init() {
 
   // DEBUG AIRPORTS
   airport_load("kdbg");
-  airport_load("ksra");
 
   // K*
   airport_load("ksfo");
