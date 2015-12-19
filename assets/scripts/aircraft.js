@@ -81,6 +81,7 @@ var Aircraft=Fiber.extend(function() {
       this.heading     = 0;
       this.altitude    = 0;
       this.speed       = 0;
+      this.groundSpeed = 0;
       this.ds          = 0;
 
       this.radial      = 0;
@@ -1316,9 +1317,28 @@ var Aircraft=Fiber.extend(function() {
       if (prop.game.option.get('simplifySpeeds') == 'no') {
         // Calculate the true air speed as indicated airspeed * 1.6% per 1000'
         scaleSpeed *= 1 + (this.altitude * 0.000016);
+
+        // Calculate movement including wind assuming wind speed
+        // increases 2% per 1000'
+        var wind = airport_get().wind;
+        var vector;
+        if (this.isLanded()) {
+          vector = vscale([sin(angle), cos(angle)], scaleSpeed);
+        }
+        else {
+          vector = vsum(vscale([sin(wind.angle + Math.PI), cos(wind.angle + Math.PI)],
+                               wind.speed * 0.000514444 * game_delta()),
+                        vscale([sin(angle), cos(angle)], scaleSpeed));
+        }
+        this.ds = vlen(vector);
+        this.groundSpeed = this.ds / 0.000514444 / game_delta();
+        this.position = vsum(this.position, vector);
       }
-      this.ds = scaleSpeed;
-      this.position = vsum(this.position, vscale([sin(angle), cos(angle)], scaleSpeed));
+      else {
+        this.ds = scaleSpeed;
+        this.groundSpeed = this.speed;
+        this.position = vsum(this.position, vscale([sin(angle), cos(angle)], scaleSpeed));
+      }
 
       this.distance = vlen(this.position);
       this.radial = vradial(this.position);
