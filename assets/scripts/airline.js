@@ -92,19 +92,47 @@ function airline_get(icao) {
   return prop.airline.airlines[icao];
 }
 
-function airline_get_aircraft(icao) {
+function airline_get_aircraft(icao, fleet) {
   var airline     = airline_get(icao);
-  var aircraft    = airline.aircraft;
 
-  return choose_weight(aircraft);
+  if (fleet) {
+    try {
+      return choose_weight(airline.fleets[fleet.toLowerCase()]);
+    }
+    catch (e) {
+      console.log("Unable to find fleet " + fleet + " for airline " + icao);
+      throw e;
+    }
+  }
+  else {
+    try {
+      return choose_weight(airline.fleets['default']);
+    }
+    catch (e) {
+      return choose_weight(airline.aircraft);
+    }
+  }
 }
 
 function airline_ready() {
   for(var i in prop.airline.airlines) {
     var airline = prop.airline.airlines[i];
-    for(var j=0;j<airline.aircraft.length;j++) {
-      if(!(airline.aircraft[j][0].toLowerCase() in prop.aircraft.models)) {
-        console.warn("Airline "+i.toUpperCase()+" uses nonexistent aircraft "+airline.aircraft[j][0]+", expect errors");
+    if (airline.aircraft) {
+      for(var j=0;j<airline.aircraft.length;j++) {
+        if(!(airline.aircraft[j][0].toLowerCase() in prop.aircraft.models)) {
+          console.warn("Airline "+i.toUpperCase()+" uses nonexistent aircraft "+airline.aircraft[j][0]+", expect errors");
+        }
+      }
+    }
+    if (airline.fleets) {
+      for (var f in airline.fleets) {
+        for(var j=0;j<airline.fleets[f].length;j++) {
+          if(!(airline.fleets[f][j][0].toLowerCase() in prop.aircraft.models)) {
+            console.warn("Airline "+i.toUpperCase()
+                         +" uses nonexistent aircraft "+airline.fleets[f][j][0]
+                         +", expect errors");
+          }
+        }
       }
     }
   }

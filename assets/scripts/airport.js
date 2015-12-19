@@ -90,9 +90,19 @@ zlsa.atc.ArrivalDefault = Fiber.extend(function(base) {
       var message = true;
       if(game_time() - this.airport.start < 2) message = false;
 
+      var airline = choose_weight(this.airlines);
+      var fleet = null;
+      var idx = airline.indexOf('/');
+      if (idx > 0) {
+        var arr = airline.split('/', 2);
+        airline = arr[0];
+        fleet = arr[1];
+      }
+
       aircraft_new({
         category:  "arrival",
-        airline:   choose_weight(this.airlines),
+        airline:   airline,
+        fleet:     fleet,
         altitude:  altitude,
         heading:   this.heading,
         fixes:     this.fixes,
@@ -218,9 +228,19 @@ zlsa.atc.ArrivalBase = Fiber.extend(function(base) {
       var message = true;
       if(game_time() - this.airport.start < 2) message = false;
 
+      var airline = choose_weight(this.airlines);
+      var fleet = null;
+      var idx = airline.indexOf('/');
+      if (idx > 0) {
+        var arr = airline.split('/', 2);
+        airline = arr[0];
+        fleet = arr[1];
+      }
+
       aircraft_new({
         category:  "arrival",
-        airline:   choose_weight(this.airlines),
+        airline:   airline,
+        fleet:     fleet,
         altitude:  altitude,
         heading:   heading,
         fixes:     this.fixes,
@@ -409,10 +429,21 @@ zlsa.atc.DepartureBase = Fiber.extend(function(base) {
       if(timeout == undefined) timeout=false;
       var message = true;
       if(game_time() - this.start < 2) message = false;
+
+      var airline = choose_weight(this.airlines);
+      var fleet = null;
+      var idx = airline.indexOf('/');
+      if (idx > 0) {
+        var arr = airline.split('/', 2);
+        airline = arr[0];
+        fleet = arr[1];
+      }
+
       aircraft_new({
         category:  "departure",
         destination: choose(this.destinations),
-        airline:   choose_weight(this.airlines),
+        airline:   airline,
+        fleet:     fleet,
         message:   message
       });
       if(timeout)
