@@ -50,8 +50,6 @@ function airline_init() {
   airline_load("USAF");
   
     // Internationals to South America
-  airline_load("SA-ACA");
-  airline_load("SA-AAL");
   airline_load("SA-AEA");
   airline_load("SA-AFR");
   airline_load("SA-AMX");
