@@ -1760,7 +1760,7 @@ function aircraft_new(options) {
   if(!options.callsign) options.callsign = aircraft_callsign_new(options.airline);
 
   if(!options.icao) {
-    options.icao = airline_get_aircraft(options.airline);
+    options.icao = airline_get_aircraft(options.airline, options.fleet);
   }
   var icao = options.icao.toLowerCase();
 
