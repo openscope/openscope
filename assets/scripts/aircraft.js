@@ -324,6 +324,7 @@ var Aircraft=Fiber.extend(function() {
         this.requested.hold    = false;
         this.requested.altitude = 20000;
         this.requested.speed = 480;
+        this.requested.fix = [];
 
         if (this.category == "departure") {
           // Within 5 degrees of destination heading
