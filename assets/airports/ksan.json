@@ -1,0 +1,156 @@
+{
+  "name": "San Diego International Airport",
+  "level": "easy",
+  "radio": "San Diego",
+  "icao": "KSAN",
+  "ctr_radius": 80,
+  "rr_radius_nm": 5.0,
+  "position": ["N32.734", "W117.190", "5m"],
+  "magnetic_north": 12.3,
+  "wind": {
+    "angle": 300,
+    "speed": 8
+  },
+  "fixes": {
+    "MELDY": ["N33d05.36", "W117d41.63"],
+    "PEBLE": ["N33d10.92", "W117d50.17"],
+    "POGGI":  ["N32d36.62", "W116d58.75"],
+    "BROWS": ["N32d37.87", "W116d46.20"],
+    "JLI":   ["N33d08.43", "W116d35.16"],
+    "IPL":   ["N32d44.93", "W115d30.51"],
+    "BOKNE": ["N32d58.41", "W117d21.71"],
+    "MAFAN": ["N33d04.10", "W117d25.78"],
+    "LNSAY": ["N33d08.77", "W117d29.17"],
+    "FALC":  ["N33d15.68", "W117d34.11"],
+    "HARBR": ["N33d14.28", "W117d51.38"],
+    "LOWMA": ["N32°39'16.71", "W117°16'5.79"],
+    "PILLO": ["N32d46.22", "W116d28.11"],
+    "BARET": ["N32d46.45", "W116d40.65"],
+    "IFHEJ": ["N32d39.60", "W116d53.28"],
+    "SARGS": ["N32d46.90", "W117d23.37"],
+    "VYDDA": ["N32d40.30", "W116d56.15"]
+  },
+  "runways": [
+    {
+      "name":        ["09", "27"],
+      "name_offset": [[0, 0], [0, 0]],
+      "end": [
+        ["N32.7371218", "W117.2043558"],
+        ["N32.7300016", "W117.1749719"]
+      ],
+      "length":      2.865,
+      "ils":         [true, false]
+    }
+  ],
+  "departures": {
+    "airlines": [
+      ["swa", 35],
+      ["aal", 12],
+      ["ual", 9],
+      ["asa", 8],
+      ["dal", 8],
+      ["airtaxi", 12],
+      ["lightga", 5]
+    ],
+    "type": "cyclic",
+    "offset": 0,
+    "period": 30,
+    "frequency": [13, 24],
+    "destinations": [
+      35, 317, 296, 82
+    ],
+    "sids": {
+      "BORDER": ["POGGI", "BROWS", "JLI"],
+      "LNSAY": ["BOKNE", "MAFAN", "LNSAY", "FALC"],
+      "PEBLE": ["SARGS", "MELDY", "PEBLE"],
+      "POGGI": ["LOWMA", "POGGI", "BROWS"]
+    }
+  },
+  "arrivals": [
+    {
+      "_name": "General arrivals",
+      "radial": [0, 359],
+      "type": "random",
+      "speed": null,
+      "frequency": [1, 2],
+      "altitude": [1500, 5000],
+      "airlines": [["lightga", 1]]
+    },
+    {
+      "_name": "BARET FIVE",
+      "radial": 55,
+      "speed": 250,
+      "type": "cyclic",
+      "offset": 12,
+      "period": 23,
+      "frequency": [3, 12],
+      "altitude": 10000,
+      "fixes": ["BARET", "IFHEJ", "VYDDA"],
+      "airlines": [
+        ["swa", 35],
+        ["aal", 12],
+        ["ual", 9],
+        ["asa", 8],
+        ["dal", 8],
+        ["airtaxi", 12]
+      ]
+    },
+    {
+      "_name": "HUBRD ONE",
+      "radial": 310,
+      "heading": 140,
+      "speed": 250,
+      "type": "cyclic",
+      "offset": 10,
+      "period": 21,
+      "frequency": [2, 8],
+      "altitude": 10000,
+      "airlines": [
+        ["swa", 35],
+        ["aal", 12],
+        ["ual", 9],
+        ["asa", 8],
+        ["dal", 8],
+        ["airtaxi", 12]
+      ]
+    },
+    {
+      "_name": "SHAMU ONE",
+      "radial": 290,
+      "heading": 115,
+      "speed": 250,
+      "type": "cyclic",
+      "offset": 15,
+      "period": 18,
+      "frequency": [1, 4],
+      "altitude": 10000,
+      "airlines": [
+        ["swa", 35],
+        ["aal", 12],
+        ["ual", 9],
+        ["asa", 8],
+        ["dal", 8],
+        ["airtaxi", 12]
+      ]
+    },
+    {
+      "_name": "LYNDI FOUR",
+      "radial": 80,
+      "speed": 250,
+      "type": "cyclic",
+      "offset": 8,
+      "period": 15,
+      "frequency": [1, 4],
+      "altitude": 10000,
+      "fixes": ["PILLO", "VYDDA"],
+      "airlines": [
+        ["swa", 35],
+        ["aal", 12],
+        ["ual", 9],
+        ["asa", 8],
+        ["dal", 8],
+        ["airtaxi", 12]
+      ]
+    }
+  ]
+}

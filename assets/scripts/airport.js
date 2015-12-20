@@ -957,13 +957,13 @@ function airport_init() {
 
   // DEBUG AIRPORTS
   airport_load("kdbg");
-  airport_load("ksra");
 
   // K*
   airport_load("ksfo");
   airport_load("kmsp");
   airport_load("kjfk");
   airport_load("klax");
+  airport_load("ksan");
   //  airport_load("ksna");
 
   airport_load("ebbr");
