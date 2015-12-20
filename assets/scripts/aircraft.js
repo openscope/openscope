@@ -2,14 +2,19 @@ zlsa.atc.Conflict = Fiber.extend(function() {
   return {
     init: function(first, second) {
       this.aircraft = [first, second];
-      this.distance = distance2d(this.aircraft[0].position,
-                                 this.aircraft[1].position);
+
+      this.distance = vlen(vsub(first.position, second.position));
+      this.altitude = abs(first.altitude - second.altitude);
+
+      this.collided = false;
 
       this.conflicts = {};
       this.violations = {};
 
       this.aircraft[0].addConflict(this, second);
       this.aircraft[1].addConflict(this, first);
+
+      this.update();
     },
 
     /**
@@ -50,6 +55,7 @@ zlsa.atc.Conflict = Fiber.extend(function() {
     update: function() {
       this.distance = vlen(vsub(this.aircraft[0].position,
                                 this.aircraft[1].position));
+      this.altitude = abs(this.aircraft[0].altitude - this.aircraft[1].altitude);
 
       // Check if the separation is now beyond the bounding box check
       if (this.distance > 14.2) {
@@ -58,6 +64,13 @@ zlsa.atc.Conflict = Fiber.extend(function() {
       }
 
       this.checkRunwayCollision();
+
+      // Ignore aircraft below about 1000 feet
+      if ((this.aircraft[0].altitude < 990) ||
+          (this.aircraft[1].altitude < 990))
+        return;
+
+      this.checkProximity();
     },
 
     remove: function() {
@@ -96,6 +109,71 @@ zlsa.atc.Conflict = Fiber.extend(function() {
       }
     },
 
+    /**
+     * Check for physical proximity and trigger crashes if necessary
+     */
+    checkProximity: function() {
+      var conflict = false;
+      var violation = false;
+
+      // Reduced horizontal separation minima during precision
+      // guided approaches
+      if (this.aircraft[0].isPrecisionGuided() &&
+          this.aircraft[1].isPrecisionGuided())
+      {
+        if (this.aircraft[0].requested.runway != this.aircraft[1].requested.runway)
+        {
+          // Notice at 3500 feet horizontal and 1500 feet vertical
+          if ((this.distance < 1.067) && (this.altitude < 1500))
+            conflict = true;
+          // Warning at 3000 feet and 1000 feet vertical
+          if ((this.distance < 0.914) && (this.altitude < 1000))
+            violation = true;
+        }
+        else
+        {
+          // Notice at 2.8nm horizontal and 1500 feet vertical
+          if ((this.distance < 5.2) && (this.altitude < 1500))
+            conflict = true;
+          // Warning within 2.5nm horizontal and 1000 feet vertical
+          if ((this.distance < 4.6) && (this.altitude < 1000))
+            violation = true;
+        }
+      }
+      // Standard separation
+      else {
+        // Notice at 4nm horizontal and 1500 feet vertical
+        if ((this.distance < 7.4) && (this.altitude < 1500))
+          conflict = true;
+        // Violation within 3nm horizontal and 1000 feet vertical
+        if ((this.distance < 5.6) && (this.altitude < 1000))
+          violation = true;
+      }
+
+      if (conflict)
+        this.conflicts.proximityConflict = true;
+      else
+        this.conflicts.proximityConflict = false;
+
+      if (violation)
+        this.violations.proximityViolation = true;
+      else
+        this.violations.proximityViolation = false;
+
+      // Collide within 160 feet
+      if (!this.collided &&
+          ((this.distance < 0.05) && (this.altitude < 160)) &&
+          (this.aircraft[0].isVisible() && this.aircraft[1].isVisible()))
+      {
+        this.collided = true;
+        ui_log(true,
+               this.aircraft[0].getCallsign() + " collided with "
+               + this.aircraft[1].getCallsign());
+        prop.game.score.hit += 1;
+        this.aircraft[0].hit = true;
+        this.aircraft[1].hit = true;
+      }
+    }
   };
 });
 
@@ -1454,66 +1532,10 @@ var Aircraft=Fiber.extend(function() {
 
     },
     updateWarning: function() {
-      // Check this aircraft for violation of separation minima against all
-      // other aircraft.
-
       // Ignore other aircraft while taxiing
       if (this.isTaxiing()) return;
 
-      var notice  = false;
       var warning = false;
-      var hit     = false;
-
-      for(var i=0;i<prop.aircraft.list.length;i++) {
-        var other = prop.aircraft.list[i];
-        if(this == other) continue;
-
-        // Fast 2D bounding box check to see if distance must be > 10; no violation can occur in this case.
-        // Variation of:
-        // http://gamedev.stackexchange.com/questions/586/what-is-the-fastest-way-to-work-out-2d-bounding-box-intersection
-        var distance = vlen(vsub(this.position, other.position));
-        if(distance > 10) continue;
-
-        // Ignore aircraft below about 1000 feet
-        // Allows realistic departure separation via heading
-        if (other.altitude < 990) continue;
-
-        var altitude = abs(this.altitude - other.altitude);
-
-        // Reduced separation horizontal minima during precision
-        // guided approaches
-        if (this.isPrecisionGuided() && other.isPrecisionGuided()) {
-          if(this.requested.runway != other.requested.runway) {
-            // Notice at 3500 feet horizontal and 1500 feet vertical
-            if ((distance < 1.067) && (altitude < 1500)) notice = true;
-            // Warning at 3000 feet and 1000 feet vertical
-            if ((distance < 0.914) && (altitude < 1000)) warning = true;
-          } else  {
-            // Notice at 2.8nm horizontal and 1500 feet vertical
-            if ((distance < 5.2) && (altitude < 1500)) notice = true;
-            // Warning within 2.5nm horizontal and 1000 feet vertical
-            if ((distance < 4.6) && (altitude < 1000)) warning = true;
-          }
-        }
-        // Standard separation
-        else {
-          // Notice at 4nm horizontal and 1500 feet vertical
-          if ((distance < 7.4) && (altitude < 1500)) notice = true;
-          // Warning within 3nm horizontal and 1000 feet vertical
-          if ((distance < 5.6) && (altitude < 1000)) warning = true;
-        }
-
-        // Collide within 160 feet
-        if (((distance < 0.05) && (altitude < 160)) &&
-            other.isVisible() && this.isVisible()) {
-          if(!this.hit) {
-            console.log("hit another aircraft");
-            ui_log(true, this.getCallsign() + " hit " + other.getCallsign());
-            prop.game.score.hit += 1;
-          }
-          hit = true;
-        }
-      }
 
       // restricted areas
       // players are penalized for each area entry
@@ -1594,8 +1616,8 @@ var Aircraft=Fiber.extend(function() {
                 status = point_to_mpoly(this.position, area, id);
             if (status.inside) {
               this.altitude = 0;
-              hit = true;
               if (!this.hit) {
+                this.hit = true;
                 console.log("hit terrain");
                 ui_log(true, this.getCallsign() + " collided with terrain in controlled flight");
                 prop.game.score.hit += 1;
@@ -1608,9 +1630,7 @@ var Aircraft=Fiber.extend(function() {
         }
       }
 
-      this.notice  = notice;
       this.warning = warning;
-      this.hit     = hit;
     },
     updateStrip: function() {
       if (this.projected) return;
