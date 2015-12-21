@@ -1,0 +1,18 @@
+# Jekyll is only used for documentation at this point
+layouts_dir:  ./documentation/_layouts
+data_dir:     ./documentation/_data
+includes_dir: ./documentation/_includes
+
+# Enable Github flavored markdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+
+# Set default values for documentation
+defaults:
+  -
+    scope:
+      path: "documentation"
+      type: "pages"
+    values:
+      layout: "documentation"
