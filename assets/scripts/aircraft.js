@@ -1327,9 +1327,21 @@ var Aircraft=Fiber.extend(function() {
           vector = vscale([sin(angle), cos(angle)], scaleSpeed);
         }
         else {
-          vector = vsum(vscale([sin(wind.angle + Math.PI), cos(wind.angle + Math.PI)],
+          var crab_angle = 0;
+
+          // Compensate for crosswind while tracking a fix or on ILS
+          if (this.requested.navmode == "fix" || this.mode == "landing")
+          {
+            var offset = angle_offset(this.heading, wind.angle + Math.PI);
+            crab_angle = Math.asin((wind.speed * Math.sin(offset)) /
+                                   this.speed);
+          }
+          vector = vsum(vscale([sin(wind.angle + Math.PI),
+                                cos(wind.angle + Math.PI)],
                                wind.speed * 0.000514444 * game_delta()),
-                        vscale([sin(angle), cos(angle)], scaleSpeed));
+                        vscale([sin(angle + crab_angle),
+                                cos(angle + crab_angle)],
+                               scaleSpeed));
         }
         this.ds = vlen(vector);
         this.groundSpeed = this.ds / 0.000514444 / game_delta();
