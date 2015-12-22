@@ -82,6 +82,7 @@ var Aircraft=Fiber.extend(function() {
       this.altitude    = 0;
       this.speed       = 0;
       this.groundSpeed = 0;
+      this.groundTrack = 0;
       this.ds          = 0;
 
       this.radial      = 0;
@@ -1345,11 +1346,13 @@ var Aircraft=Fiber.extend(function() {
         }
         this.ds = vlen(vector);
         this.groundSpeed = this.ds / 0.000514444 / game_delta();
+        this.groundTrack = Math.atan2(vector[0], vector[1]);
         this.position = vsum(this.position, vector);
       }
       else {
         this.ds = scaleSpeed;
         this.groundSpeed = this.speed;
+        this.groundTrack = this.heading;
         this.position = vsum(this.position, vscale([sin(angle), cos(angle)], scaleSpeed));
       }
 
