@@ -31,8 +31,12 @@ You lose 20 points for every arriving aircraft that leaves the area
 (and therefore hadn't landed).
 
 ## Warning
-Every time two aircraft come within 3 miles and 1000 feet of vertical
-separation, 5 points are lost.
+Any time a warning is issued for an aircraft 5 points are lost.  The
+most common warning is when two aircraft are separated by less 3
+nautical miles or less than 1000 feet of altitude.  However there are
+a number of situations where aircraft can be separated by less, for
+complete details refer to the
+[aircraft separation rules](aircraft-separation.html)
 
 ## Collisions
 50 points are lost whenever two aircraft collide (within 50 or so feet
