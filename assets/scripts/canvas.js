@@ -400,13 +400,15 @@ function canvas_draw_aircraft(cc, aircraft) {
     canvas_draw_future_track(cc, aircraft);
   }
 
+  var alerts = aircraft.hasAlerts();
+
   if (!aircraft.inside_ctr)
     cc.fillStyle   = "rgba(224, 224, 224, 0.3)";
   else if (almost_match)
     cc.fillStyle = "rgba(224, 210, 180, 1.0)";
   else if (match)
     cc.fillStyle = "rgba(255, 255, 255, 1.0)";
-  else if (aircraft.warning)
+  else if (aircraft.warning || alerts[1])
     cc.fillStyle = "rgba(224, 128, 128, 1.0)";
   else if (aircraft.hit)
     cc.fillStyle = "rgba(255, 64, 64, 1.0)";
@@ -453,7 +455,7 @@ function canvas_draw_aircraft(cc, aircraft) {
     cc.restore();
   }
 
-  if(aircraft.notice) {
+  if(aircraft.notice || alerts[0]) {
     cc.save();
     cc.strokeStyle = cc.fillStyle;
     cc.beginPath();
