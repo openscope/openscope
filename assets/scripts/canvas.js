@@ -441,9 +441,9 @@ function canvas_draw_aircraft(cc, aircraft) {
   if(!aircraft.hit) {
     cc.save();
 
-    var tail_length = aircraft.speed / 15;
+    var tail_length = aircraft.groundSpeed / 15;
     if(match) tail_length = 15;
-    var angle       = aircraft.heading;
+    var angle       = aircraft.groundTrack;
     var end         = vscale(vturn(angle), tail_length);
 
     cc.beginPath();
