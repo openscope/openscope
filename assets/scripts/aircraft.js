@@ -74,8 +74,8 @@ zlsa.atc.Conflict = Fiber.extend(function() {
     },
 
     remove: function() {
-      this.aircraft[0].removeConflict(this, aircraft[1]);
-      this.aircraft[1].removeConflict(this, aircraft[0]);
+      this.aircraft[0].removeConflict(this.aircraft[1]);
+      this.aircraft[1].removeConflict(this.aircraft[0]);
     },
 
     /**
