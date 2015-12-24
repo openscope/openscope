@@ -1731,12 +1731,12 @@ var Aircraft=Fiber.extend(function() {
     },
 
     addConflict: function(conflict, other) {
-      this.conflicts[other] = conflict;
+      this.conflicts[other.getCallsign()] = conflict;
     },
 
     checkConflict: function(other) {
-      if (this.conflicts[other]) {
-        this.conflicts[other].update();
+      if (this.conflicts[other.getCallsign()]) {
+        this.conflicts[other.getCallsign()].update();
         return true;
       }
       return false;
@@ -1754,7 +1754,7 @@ var Aircraft=Fiber.extend(function() {
     },
 
     removeConflict: function(other) {
-      delete this.conflicts[other];
+      delete this.conflicts[other.getCallsign()];
     },
   };
 });
@@ -1975,12 +1975,13 @@ function aircraft_update() {
   }
   for(var i=0;i<prop.aircraft.list.length;i++) {
     prop.aircraft.list[i].updateWarning();
-    for(var j=i+1;j<prop.aircraft.list.length;j++) {
+
+    InnerLoop: for (var j=i+1;j<prop.aircraft.list.length;j++) {
       var that = prop.aircraft.list[i];
       var other = prop.aircraft.list[j];
 
       if (that.checkConflict(other)) {
-        continue;
+        continue InnerLoop;
       }
 
       // Fast 2D bounding box check, there are no conflicts over 10km apart
@@ -1990,7 +1991,7 @@ function aircraft_update() {
       var dx = Math.abs(that.position[0] - other.position[0]);
       var dy = Math.abs(that.position[1] - other.position[1]);
       if ((dx > 10) || (dy > 10)) {
-        continue;
+        continue InnerLoop;
       }
       else {
         new zlsa.atc.Conflict(that, other);
