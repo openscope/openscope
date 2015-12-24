@@ -11,8 +11,8 @@ While in flight if there is not a more specific rule which applies
 then aircraft must be separated by at least 3nm laterally or 1000 feet
 vertically.
 
-A notice will occur for aircraft which are within 4nm laterally
-and 1500 feet vertically.
+A notice will occur for aircraft which do not have sufficient vertical
+separation and are within 4nm laterally.
 
 Collisions occur when an aircraft is within approximately 160 feet of
 another aircraft.
@@ -25,7 +25,7 @@ are assigned to the same runway but have opposite headings.
 ## Reduced lateral separation during runway approach
 
 Standard vertical separation may be applied if the specified lateral
-separation can't be guaranteed.
+separation isn't maintained.
 
 ### Same runway
 
