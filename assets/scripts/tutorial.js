@@ -48,7 +48,7 @@ function tutorial_init_pre() {
     title:    "Departing aircraft",
     text:     ["Let&rsquo;s route some planes out of here. On the right side of the screen, there",
                "should be a strip with a blue bar on the left, meaning the strip represents a departing aircraft.",
-               "Click the first one ({CALLSIGN}); the aircraft&rsquo;s callsign will appear in the command entry box",
+               "Click the first one ({CALLSIGN}). The aircraft&rsquo;s callsign will appear in the command entry box",
                "and the strip will move to the left and change color. This means that the aircraft is selected."
                ].join(" "),
     parse:    function(t) {
@@ -64,8 +64,8 @@ function tutorial_init_pre() {
   tutorial_step({
     title:    "Taxiing",
     text:     ["Now type in &lsquo;taxi&rsquo; or &lsquo;wait&rsquo; into the command box after the callsign and hit Return;",
-               "the messages area above it will show that the aircraft is taxiing to runway {RUNWAY} in",
-               "preparation for takeoff. (If you&rsquo;d like, you can force the aircraft to taxi to a different runway by",
+               "the messages area above it will show that the aircraft is taxiing to runway {RUNWAY} for takeoff.",
+               "(If you&rsquo;d like, you can force the aircraft to taxi to a different runway by",
                "entering the runway name after &lsquo;taxi&rsquo; or &lsquo;wait&rsquo;.)"
                ].join(" "),
     parse:    function(t) {
@@ -77,9 +77,10 @@ function tutorial_init_pre() {
 
   tutorial_step({
     title:    "Takeoff, part 1",
-    text:     ["When it appears at the start of runway {RUNWAY} (which may take a couple of seconds), click it (or press the up arrow once)",
-               "and type in &lsquo;climb 5000&rsquo;. This clears the aircraft to climb to five thousand",
-               "feet after it takes off. (This step must be done before clearing the aircraft to take off, just as in real life.)"
+    text:     ["When it appears at the start of runway {RUNWAY} (which may take a couple of seconds), click it to select it",
+               "(or press ctrl + up arrow), then press the up arrow and type &lsquo;5000&rsquo;. This clears the aircraft to ",
+               "climb to five thousand feet after it takes off. (This step must be done before clearing the aircraft to take off,",
+               " just as in real life.)"
                ].join(" "),
     parse:    function(t) {
       return t.replace("{RUNWAY}", prop.aircraft.list[0].requested.runway);
@@ -90,10 +91,10 @@ function tutorial_init_pre() {
 
   tutorial_step({
     title:    "Takeoff, part 2",
-    text:     ["Now the aircraft is ready to take off. Click the aircraft again (or press up arrow once)",
-               "and type &lsquo;takeoff&rsquo; to clear the aircraft to take off. It should slowly move",
-               "down the runway; when it's going fast enough, it should lift off the ground and you should",
-               "see its altitude increasing. Meanwhile, read the next step."
+    text:     ["Now the aircraft is ready to take off. Click the aircraft again (or press ctrl + up arrow)",
+               "and type &lsquo;takeoff&rsquo; (or &lsquo;to&rsquo;) to clear the aircraft for take off.",
+               "Once it's going fast enough, it should lift off the ground and you should see its altitude",
+               "increasing. Meanwhile, read the next step."
                ].join(" "),
     parse:    function(t) {
       return t.replace("{RUNWAY}", prop.aircraft.list[0].requested.runway);
@@ -105,7 +106,7 @@ function tutorial_init_pre() {
   tutorial_step({
     title:    "Aircraft strips, part 1",
     text:     ["On the right, there&rsquo;s a row of strips, one for each aircraft.",
-               "Each strip has a bar on its left side, blue for departing aircraft and",
+               "Each strip has a bar on its left side, colored blue for departures and",
                "red for arrivals."
                ].join(" "),
     parse:    function(t) {
@@ -117,10 +118,9 @@ function tutorial_init_pre() {
 
   tutorial_step({
     title:    "Aircraft strips, part 2",
-    text:     ["The top row from the left shows the aircraft&rsquo;s callsign, its assigned heading",
-               "(or its runway if it&rsquo;s in the process of taking off or landing), and its assigned altitude.",
-               "The bottom row shows the model ({MODEL} here, which is a {MODELNAME}), it's destination,",
-               "and its assigned speed."
+    text:     ["The top row shows the aircraft&rsquo;s callsign, what it's doing (parked at apron,",
+               "using a runway, flying to a fix, etc), and its assigned altitude. The bottom row shows the model",
+               "({MODEL} here, which is a {MODELNAME}), and its assigned heading and speed."
                ].join(" "),
     parse:    function(t) {
       return t.replace("{MODEL}", prop.aircraft.list[0].model.icao).replace("{MODELNAME}", prop.aircraft.list[0].model.name);
@@ -131,14 +131,15 @@ function tutorial_init_pre() {
 
   tutorial_step({
     title:    "Moving aircraft",
-    text:     ["Now wait until the aircraft {CALLSIGN} has taken off. Click on it and type &lsquo;turn {ANGLE}&rsquo; into the command box.",
-               "It should start turning towards its destination; if the turn isn&rsquo;t immediately visible, you can click",
-               "the speedup button on the right side of the input box (it&rsquo;s two small arrows pointing towards the right).",
-               "Don&rsquo;t forget to click it again to go back to 1x speed."
+    text:     ["Once {CALLSIGN} has taken off, click it and type &lsquo;fh{ANGLE}&rsquo; into the command box (for",
+               "&ldquo;fly heading {ANGLE}&rdquo;). It should start turning that heading; if the turn isn&rsquo;t",
+               "immediately visible, you can click the speedup button on the right side of the input box (it&rsquo;s two",
+               "small arrows pointing towards the right). Don&rsquo;t forget to click it again to go back to 1x speed."
                ].join(" "),
     parse:    function(t) {
       return t.
         replace("{CALLSIGN}", prop.aircraft.list[0].getCallsign()).
+        replace("{ANGLE}", heading_to_string(prop.aircraft.list[0].destination)).
         replace("{ANGLE}", heading_to_string(prop.aircraft.list[0].destination));
     },
     side:     "left",
@@ -149,8 +150,8 @@ function tutorial_init_pre() {
     title:    "Departure destinations",
     text:     ["If you zoom out (using the mouse wheel or the - key) and click",
                "on the aircraft {CALLSIGN} you will see a blue arc in the",
-               "direction it is heading.  This is it's departure destination,",
-               "your goal is to direct every departure through their own",
+               "direction it is heading.  This is its departure destination,",
+               "your goal is to direct every departure through their filed",
                "destination."
                ].join(" "),
     parse:    function(t) {
@@ -162,10 +163,10 @@ function tutorial_init_pre() {
   });
 
   tutorial_step({
-    title:    "Altitude aliases",
-    text:     ["You can also assign altitudes with the &lsquo;climb&rsquo; command. This command also has aliases (other commands that have different",
-               "names but act identically). Running the command &lsquo;climb&rsquo; is the same as the commands &lsquo;descend&rsquo;,",
-               "&lsquo;clear&rsquo;, or &lsquo;altitude&rsquo;; use whichever feels correct in your situation."
+    title:    "Basic Control Instructions: Altitude",
+    text:     ["Altitudes are assigned using the up/down arrows. Altitudes may be entered in feet, hundreds of feet, or thousands of feet.",
+               "This means that &lsquo;^5&rsquo; is the same as &lsquo;^50&rsquo; is the same as &lsquo;^5000&rsquo;. This should make it",
+               "easy to type the commands quickly. Note that climb (&lsquo;^&rsquo;) and descend (&lsquo;v&rsquo;) may be used interchangeably."
                ].join(" "),
     parse:    function(t) {
       return t.replace("{CALLSIGN}", prop.aircraft.list[0].getCallsign());
@@ -175,28 +176,24 @@ function tutorial_init_pre() {
   });
 
   tutorial_step({
-    title:    "Altitude hints",
-    text:     ["Remember how you typed &lsquo;climb 5000&rsquo; before? If the parameter for the &lsquo;climb&rsquo; command (&lsquo;5000&rsquo; here) is one or two characters long,",
-               "the number is multiplied by 1000. This means that &lsquo;climb 5&rsquo; is the same as &lsquo;climb 5000&rsquo;. It&rsquo;s there",
-               "to reduce the amount of typing. Likewise, &lsquo;c 5&rsquo; can be used in place of &lsquo;climb 5&rsquo;."
+    title:    "Basic Control Instructions: Radar Vectors",
+    text:     ["Radar vectors are an air traffic controller's way of telling aircraft to fly a specific magnetic heading. Previously, we've typed",
+               "&lsquo;fh{ANGLE}&rsquo;, the aircraft turned the shortest direction to face {ANGLE} degrees. You may want to specify a turn direction,",
+               "which you can do with the left and right arrows, followed by the heading."
                ].join(" "),
     parse:    function(t) {
-      return t.replace("{CALLSIGN}", prop.aircraft.list[0].getCallsign());
+      return t.replace(/{ANGLE}/g, heading_to_string(prop.aircraft.list[0].destination));
     },
     side:     "left",
     position: tutorial_position
   });
 
   tutorial_step({
-    title:    "Heading hints",
-    text:     ["When you typed &lsquo;turn {ANGLE}&rsquo;, the aircraft turned",
-               "the shortest direction to face {ANGLE} degrees.  This is",
-               "usually the desired behavior, but if you want to force the",
-               "aircraft to turn in a specific direction, you can prefix the",
-               "direction with &lsquo;left&rsquo; or &lsquo;right&rsquo;.",
-               "Like the altitude command, the heading command also has an ",
-               "alias of its own: &lsquo;heading&rsquo; can be used",
-               "in place of &lsquo;turn&rsquo;."
+    title:    "Basic Control Instructions: Speed",
+    text:     ["Speed control is the TRACON controller's best friend. Making good use of speed control can help keep the pace manageable and allow",
+               "you to carefully squeeze aircraft closer and closer to minimums while still maintaining safety. To enter speed instructions, use the",
+               "&lsquo;+&rsquo; and &lsquo;-&rsquo; keys on the numpad, followed by the speed, in knots. Note that this assigned speed is indicated",
+               "airspeed, and our radar scope can only display groundspeed; so, the values may be different."
                ].join(" "),
     parse:    function(t) {
       return t.replace(/{ANGLE}/g, heading_to_string(prop.aircraft.list[0].destination));
@@ -207,10 +204,9 @@ function tutorial_init_pre() {
 
   tutorial_step({
     title:    "Fixes",
-    text:     ["Instead of guiding each aircraft based on heading, you can also assign each aircraft to a navigational",
-               "fix (shown on the map as a small triangle). Just use the command &lsquo;fix&rsquo; and the name of a fix",
-               "(shown onscreen underneath the fix icon), and the aircraft will fly towards that.",
-               "After it&rsquo;s reached the fix, it will cancel the fix and continue flying in the same direction."
+    text:     ["Instead of guiding each aircraft based on heading, you can also clear each aircraft to proceed to a fix or navaid (shown on the map",
+               "as a small triangle). Just use the command &lsquo;fix&rsquo; and the name of a fix, and the aircraft will fly to it. Upon passing the",
+               "fix, it will continue flying along its present heading."
                ].join(" "),
     parse:    function(t) {
       return t.replace("{CALLSIGN}", prop.aircraft.list[0].getCallsign());
@@ -250,10 +246,10 @@ function tutorial_init_pre() {
   tutorial_step({
     title:    "Arrivals",
     text:     ["Now, onto arrivals. Click on any arriving aircraft in the radar screen; after",
-               "you&rsquo;ve selected it, use the &lsquo;climb&rsquo; and the &lsquo;turn&rsquo;",
-               "commands to guide it to be in front of a runway. You&rsquo;ll want to put it",
-               "quite a bit in front of the runway to give yourself a bit of breathing room.",
-               "While the aircraft maneuvers to face the correct direction, go to the next step."
+               "you&rsquo;ve selected it, use the arrow keys to change heading and altitude in",
+               "order to guide it to be in front of a runway. Make sure to get the aircraft down to",
+               "around 4,000ft, and 10-15 nautical miles (2 range rings) away from the airport.",
+               "While you work the airplane, read the next step."
                ].join(" "),
     parse:    function(t) {
       return t.replace("{CALLSIGN}", prop.aircraft.list[0].getCallsign());
@@ -263,13 +259,11 @@ function tutorial_init_pre() {
   });
 
   tutorial_step({
-    title:    "Landing, part 1",
-    text:     ["You can land a plane with the &lsquo;land&rsquo; command, followed by a runway",
-               "name. Before you can land a plane, though, it must be facing the runway, not be offset",
-               "from it horizontally more than about 20 degrees, and be at about six to seven thousand",
-               "feet altitude. Since it takes a while for aircraft to turn, you can reduce the speed with",
-               "the &lsquo;speed&rsquo; or &lsquo;slow&rsquo; command (example: &lsquo;{CALLSIGN} speed 200&rsquo;)",
-               "to give yourself a bit more time."
+    title:    "Approach Clearances, part 1",
+    text:     ["You can clear aircraft for an ILS approach with the asterisk (*) key, followed by a runway name. Before you can land a plane, though,",
+               "it must be on a heading that will cross the runway's extended centerline, that is no more than 30 degrees offset from the",
+               "runway's heading. Once we eventually give them an approach clearance, you can expect aircraft to capture the ILS's localizer",
+               "once they're within a few degrees of the extended centerline."
                ].join(" "),
     parse:    function(t) {
       return t.replace("{CALLSIGN}", prop.aircraft.list[0].getCallsign());
@@ -279,11 +273,11 @@ function tutorial_init_pre() {
   });
 
   tutorial_step({
-    title:    "Landing, part 2",
-    text:     ["When the aircraft is facing the right direction, just select it and type &lsquo;land &lt;runway&gt;&rsquo;",
-               "with the runway that&rsquo;s in front of it. The assigned altitude on its strip should change to &lsquo;ILS",
-               "locked&rsquo; (meaning the aircraft is capable of guiding itself down to the runway with the Instrument Landing",
-               "System), and the assigned heading should now show the runway it&rsquo;s trying to land at."
+    title:    "Approach Clearances, part 2",
+    text:     ["When you have the aircraft facing the right direction, just select it and type &lsquo;*&lt;runway&gt;&rsquo;",
+               "with the runway that&rsquo;s in front of it. Once it's close enough to capture the localizer, the assigned altitude on its strip",
+               "will change to &lsquo;ILS locked&rsquo; (meaning the aircraft is capable of guiding itself down to the runway via",
+               "the Instrument Landing System), and the assigned heading should now show the runway to which it has an approach clearance."
                ].join(" "),
     parse:    function(t) {
       return t.replace("{CALLSIGN}", prop.aircraft.list[0].getCallsign());
@@ -293,8 +287,22 @@ function tutorial_init_pre() {
   });
 
   tutorial_step({
-    title:    "Aborting landings",
-    text:     ["If the aircraft is locked on ILS, it should be able to land on the runway. However, say there&rsquo;s another",
+    title:    "Approach Clearances, part 3",
+    text:     ["You may choose to enter one command at a time, but air traffic controllers usually do multiple. Particularly in approach clearances,",
+               "they follow an acronym &ldquo;PTAC&rdquo; for the four elements of an approach clearance, the &lsquo;T&rsquo; and &lsquo;C&rsquo; of which",
+               "stand for &lsquo;Turn&rsquo; and &lsquo;Clearance&rsquo;, both of which we entered separately in this tutorial. Though longer, it is both ",
+               "easier and more real-world accurate to enter them together, like this: &lsquo;&gt;250 *28r&rsquo;."
+               ].join(" "),
+    parse:    function(t) {
+      return t.replace("{CALLSIGN}", prop.aircraft.list[0].getCallsign());
+    },
+    side:     "left",
+    position: tutorial_position
+  });
+
+  tutorial_step({
+    title:    "Aborting",
+    text:     ["If the aircraft is established on the ILS, it should be able to land on the runway. However, say there&rsquo;s another",
                "aircraft that&rsquo;s planning to take off from the same runway. To abort the landing, use the command &lsquo;abort&rsquo;.",
                "(If the aircraft is navigating to a fix, the &lsquo;abort&rsquo; command will clear the fix instead.)"
                ].join(" "),
@@ -336,9 +344,9 @@ function tutorial_init_pre() {
 
   tutorial_step({
     title:    "Good job!",
-    text:     ["If you&rsquo;ve gone through this entire tutorial, you should do pretty good with the pressure.",
-               "Side note: the closest two aircraft can get is 3 miles and 1000 foot separation. Keep them further than",
-               "that and you&rsquo;ll do fine."
+    text:     ["If you&rsquo;ve gone through this entire tutorial, you should do pretty well with the pressure.",
+               "In the TRACON, minimum separation is 3 miles laterally or 1000 feet vertically. Keep them separated,",
+               "keep them moving, and you'll be a controller in no time!"
                ].join(" "),
     parse:    function(t) {
       return t.replace("{CALLSIGN}", prop.aircraft.list[0].getCallsign());
