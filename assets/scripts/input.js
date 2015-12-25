@@ -110,13 +110,6 @@ function input_init() {
   $("#command").on("input", input_change);
 }
 
-function input_complete() {
-  return;
-  $("#command").val(prop.aircraft.list[0].getCallsign() + " turn left 130 turn right 213 climb 43");
-  input_change();
-  input_run();
-}
-
 function input_select(callsign) {
   if(callsign) $("#command").val(callsign + " ");
   else $("#command").val("");
@@ -173,35 +166,74 @@ function input_parse() {
   if(number == 1) {
     $("#sidebar").scrollTop(round(match.html.position().top + ($(window).height() / 3)));
   }
-
 }
 
 function input_keydown(e) {
-  if(e.which == 13) { // enter key
-    input_parse();
-    if(input_run()) {
-      prop.input.history.unshift(prop.input.callsign);
-      $("#command").val("");
-      prop.input.command = "";
-      tab_completion_reset();
+  switch(e.which) {
+    case 13:  // enter
       input_parse();
-    }
-    prop.input.history_item = null;
-  } else if(e.which == 38) {
-    input_history_prev();
-    e.preventDefault();
-  } else if(e.which == 40) {
-    input_history_next();
-    e.preventDefault();
-  } else if(e.which == 9) { // tab key
-    if(!prop.input.tab_compl.matches) {
-      tab_completion_match();
-    }
-    tab_completion_cycle({backwards: e.shiftKey});
-    e.preventDefault();
-  } else if(e.which == 27) { // ESC
-    $("#command").val("");
-    e.preventDefault();
+      if(input_run()) {
+        prop.input.history.unshift(prop.input.callsign);
+        $("#command").val("");
+        prop.input.command = "";
+        tab_completion_reset();
+        input_parse();
+      }
+      break;
+
+    case 37:  // left arrow
+      $("#command").val($("#command").val() + " <");
+      e.preventDefault();
+      break;
+
+    case 38:  // up arrow
+      if(e.ctrlKey) input_history_prev();
+      else {
+        $("#command").val($("#command").val() + " ^");
+        e.preventDefault();
+      }
+      break;
+
+    case 39:  // right arrow
+      $("#command").val($("#command").val() + " >");
+      e.preventDefault();
+      break;
+
+    case 40:  //down arrow
+      if(e.ctrlKey) input_history_next();
+      else {
+        $("#command").val($("#command").val() + " v");
+        e.preventDefault();
+      }
+      break;
+
+    case 106: //numpad *
+      $("#command").val($("#command").val() + " *");
+      e.preventDefault();
+      break;
+
+    case 107: //numpad +
+      $("#command").val($("#command").val() + " +");
+      e.preventDefault();
+      break;
+
+    case 109: //numpad -
+      $("#command").val($("#command").val() + " -");
+      e.preventDefault();
+      break;
+
+    case 9: // tab
+      if(!prop.input.tab_compl.matches) {
+        tab_completion_match();
+      }
+      tab_completion_cycle({backwards: e.shiftKey});
+      e.preventDefault();
+      break;
+
+    case 27:  // esc
+      $("#command").val("");
+      e.preventDefault();
+      break;
   }
 }
 

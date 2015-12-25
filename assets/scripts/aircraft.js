@@ -566,13 +566,31 @@ var Aircraft=Fiber.extend(function() {
     hideStrip: function() {
       this.html.hide(600);
     },
-    
+
     COMMANDS: {
+        /*
+        command name: {
+          func: ['name of function to call'],
+          shortkey: [list of shortKeys],
+              //Note: normal command/synonyms require format 'command arg'. Shortkeys
+              //instead are meant to NOT have the space that is required to properly
+              //parse the command. Shortkeys take the format of (shortkey character)
+              //followed by (command argument). Note that shortkeys MUST ALL HAVE FIRST
+              //CHARACTERS THAT ARE UNIQUE from each other, as that is how they are 
+              //currently being identified. Examples of valid commands:
+              //'<250', '^6', '^6000', '.DUMBA'
+            synonyms: [list of synonyms]},
+              //Note: synonyms can be entered into the command bar by users and they 
+              //have the same effect as typing the actual command, and use the same
+              //format as the full command. Examples of valid commands:
+              //'altitude 5'=='c 5', land 16'=='l 16', 'fix DUMBA'='f DUMBA'
+        */
         abort: {func: 'runAbort'},
 
         altitude: {
           func: 'runAltitude',
-          synonyms: 'a c climb clear descend'.split(' ')},
+          shortKey: ['^', 'v'],
+          synonyms: ['a', 'c', 'climb', 'd', 'descend']},
 
         debug: {func: 'runDebug'},
 
@@ -586,6 +604,7 @@ var Aircraft=Fiber.extend(function() {
 
         heading: {
           func: 'runHeading',
+          shortKey: ['<','>','fh'],
           synonyms: ['t', 'h', 'turn']},
 
         hold: {
@@ -594,7 +613,8 @@ var Aircraft=Fiber.extend(function() {
 
         land: {
           func: 'runLanding',
-          synonyms: ['l']},
+          shortKey: ['*'],
+          synonyms: ['l', 'ils']},
 
         proceed: {
           func: 'runProceed',
@@ -604,6 +624,7 @@ var Aircraft=Fiber.extend(function() {
 
         speed: {
           func: 'runSpeed',
+          shortKey: ['+', '-'],
           synonyms: ['slow', 'sp']},
 
         takeoff: {
@@ -618,68 +639,87 @@ var Aircraft=Fiber.extend(function() {
     runCommand: function(command) {
       if (!this.inside_ctr)
         return true;
-      var s        = command.toLowerCase().split(" ")
-
-      var strings  = $.map(s, function(v) {
-        if (v.length > 0) return v; });
-
+      var user_input = $.map(command.toLowerCase().split(" "), function(v) {if (v.length > 0) return v; });
       var commands = [];
       var concat   = false;
-      var current  = "";
+      var commandArguments  = "";
       var previous = "";
+      var longCmdName = "";
 
-      for(var i in strings) {
-        var string = strings[i],
-            is_command = false;
+      for(var i in user_input) {
+        var string = user_input[i];
+        var is_command = false;
+        var is_shortCommand = false;
+        var skip = false;
+        if(string.substr(0,2) == "fh") {  //bugfix
+          skip = true;
+          //Command is a shortkey 'fh270' and not a 'fix sassu'. Will skip detection of 'fix' or 'f' below.
+          //Prevents 'fh270' being mis-recognized as a fix command instead of a heading command.
+        }
 
-        if(previous.indexOf("t") == 0 && (string.indexOf("l") == 0 || string.indexOf("r") == 0)) {
-          // Workaround:
-          // Previous command was probably "t/turn".
-          // Must be followed by either a direction or a heading, so no command.
-          //
-          // As it also may be "to/takeoff", we also check that the current command
-          // is "l/left" or "r/right" to hopefully prevent side-effects.
-          //
-          // If this would not be checked here, it would not be possible to use "l"
-          // as a shortcut for "left", as it would be recognized as the command "land".
-          //
+        if(previous.indexOf("t") == 0 && (string.indexOf("l") != -1 || string.indexOf("r") != -1)) {  //bugfix
           // Do nothing here.
-        } else {
-          for(var k in this.COMMANDS) {
-            if (k == string || (this.COMMANDS[k].synonyms && 
-                this.COMMANDS[k].synonyms.indexOf(string) >= 0)) {
+          //Prevents conflicts between use of "takeoff" vs "turn left 310"
+        }
+        else {
+          for(var k in this.COMMANDS) { 
+            if(!skip && k == string) {  //input command is a valid command name (eg 'altitude')
               is_command = true;
               break;
             }
-          }
-        }
-
-        if(!is_command) {
-          current += " " + string;
-        } else {
-          if(current) {
-            current = current.substr(1);
-            if(commands.length != 0) {
-              commands[commands.length-1].push(current);
+            else if(!skip && this.COMMANDS[k].synonyms && this.COMMANDS[k].synonyms.indexOf(string) != -1) {  //input command is a valid command synonym
+              is_command = true;
+              break;
             }
-            current = "";
+            for(var m in this.COMMANDS[k].shortKey) {
+              if(string.substr(0,1) == this.COMMANDS[k].shortKey[m].substr(0,1)) {  //first character of input command is a command's shortkey)
+                if(this.COMMANDS[k].shortKey[m].length == 1) { //single character shortKey, matches input command
+                  is_shortCommand = true;
+                  longCmdName = k;
+                  break;
+                }
+                else 
+                {
+                  if(this.COMMANDS[k].shortKey[m].length > 1 && this.COMMANDS[k].shortKey[m] == string.substr(0,this.COMMANDS[k].shortKey[m].length)) { //multi-char shortKey, matches input command
+                    is_shortCommand = true;
+                    longCmdName = k;
+                    break;
+                  }
+                }
+              }
+            }
+            if(is_shortCommand) break;
           }
-          commands.push([string]);
         }
 
+        if(is_shortCommand) {
+          commands.push([k,string]);    //push whole string (it is a full short-command, eg '>350')
+        }
+        else if (is_command) {
+          if(commandArguments) {
+            commandArguments = commandArguments.substr(1);  //removes space from front (eg ' r 250' --> 'r 250')
+            if(commands.length != 0) {    //if no commands in command list yet,
+              commands[commands.length-1].push(commandArguments);     //push this command in full (eg 't r 250')
+            }
+            commandArguments = "";                 //clear out commandArguments
+          }
+          commands.push([string]);      //push NAME/SYNONYM of command into commands array (eg 't')
+        }
+        else {
+          commandArguments += " " + string;
+        }
         previous = string;
       }
-      if(current && commands.length >= 1) {
-        current = current.substr(1);
-        commands[commands.length-1].push(current);
-        current = "";
+
+      if(commandArguments && commands.length >= 1) {
+        commandArguments = commandArguments.substr(1);
+        commands[commands.length-1].push(commandArguments);
+        commandArguments = "";
       }
 
       var response = [];
       var response_end = "";
-
       var deferred = [];
-
       var DEFERRED_COMMANDS = ["takeoff", "to"];
 
       for(var i=0;i<commands.length;i+=1) {
@@ -687,6 +727,7 @@ var Aircraft=Fiber.extend(function() {
 
         var command = pair[0];
         var data    = "";
+
         if(pair.length == 2) data = pair[1];
 
         if(DEFERRED_COMMANDS.indexOf(command) == 0) {
@@ -739,7 +780,7 @@ var Aircraft=Fiber.extend(function() {
       }
       else {
         $.each(this.COMMANDS, function(k, v) {
-          if (v.synonyms && v.synonyms.indexOf(command) >= 0) { call_func = v.func; }
+          if (v.synonyms && v.synonyms.indexOf(command) != -1) { call_func = v.func; }
         });
       }
 
@@ -750,36 +791,56 @@ var Aircraft=Fiber.extend(function() {
     },
     runHeading: function(data) {
       var split     = data.split(" ");
-
-      var heading   = parseInt(split[0]);
+      var heading = null;
       var direction = null;
+      switch(split.length) {  //number of elements in 'data'
+        case 1: 
+          if(isNaN(parseInt(split))) {  //probably using shortKeys
+            if(split[0][0] == "<") { //using '<250' format
+              direction = "left";
+              heading = split[0].substr(1); //remove shortKey
+            }
+            else if (split[0][0] == ">") {  //using '>250' format
+              direction = "right";
+              heading = split[0].substr(1); //remove shortKey
+            }
+            else if(split[0].substr(0,2).toLowerCase() == "fh") { //using 'fh250' format
+              heading = split[0].substr(2); //remove shortKey
+            }
+            else {  //input is invalid
+              return ["fail", "heading not understood", "say again"];
+            }
+          }
+          else {  //using 'turn 250' format (no direction specified)
+            heading = parseInt(split);
+          }
+          break;
 
-      if(split.length == 0) return ["fail", "heading not understood", "say again"];
+        case 2: //using 'turn r 250' format
+          if(split[0] === "l") direction = "left";
+          else if (split[0] === "r" ) direction = "right";
+          heading = parseInt(split[1]);
+          break;
 
-      if(split.length >= 2) {
-        direction = split[0];
-        heading = parseInt(split[1]);
-      }
-
-      // translate any direction that starts with "l" or "r" to left/right
-      if(direction != null) {
-        if(direction.indexOf("l") == 0) direction = "left";
-        if(direction.indexOf("r") == 0) direction = "right";
+        default:  //input formatted incorrectly
+          return ["fail", "heading not understood", "say again"];
+          break;
       }
 
       if(isNaN(heading)) return ["fail", "heading not understood", "say again"];
 
-      if(this.requested.navmode == "rwy")
-        this.cancelLanding();
+      //Stop doing what you're doing
+      if(this.requested.navmode == "rwy") this.cancelLanding();
       this.cancelFix();
 
+      //Start doing the turn
       this.requested.navmode = "heading";
       this.requested.heading = radians(heading);
       this.requested.turn    = direction;
       this.requested.hold    = false;
 
       if(direction == null) direction  = "";
-      else                    direction += " ";
+      else direction += " ";
 
       if(this.isTakeoff())
         return ['ok', 'after departure, turn ' + direction + 'heading ' + heading_to_string(this.requested.heading), ''];
@@ -787,12 +848,15 @@ var Aircraft=Fiber.extend(function() {
       return ['ok', 'turn ' + direction + 'heading ' + heading_to_string(this.requested.heading), ''];
     },
     runAltitude: function(data) {
-      var split     = data.split(" ");
+      if(data[0] == "v" || data[0] == "^") {  //shortKey 'v' or '^' in use
+        data = data.substr(1);  //remove shortKey
+      }
 
+      var split     = data.split(" ");
       var altitude = parseInt(split[0]);
       var expedite = false;
-
       data = split[0];
+
 
       function isExpedite(s) {
         if((s.length >= 1 && "expedite".indexOf(s) == 0) || s == "x") return true;
@@ -804,6 +868,9 @@ var Aircraft=Fiber.extend(function() {
       }
 
       if(isNaN(altitude)) {
+        // if(split[0][0] == "v" || split[0][0] == "^") {
+        //   altitude = parseInt(split[0].substr(1));  //remove shortKey
+        // }
         if(isExpedite(split[0])) {
           this.requested.expedite = true;
           if(this.isTakeoff())
@@ -817,18 +884,18 @@ var Aircraft=Fiber.extend(function() {
       if(this.mode == "landing")
         this.cancelLanding();
 
-      var factor = 1;
-      if(data.length <= 2) factor = 1000;
+      var digits = altitude.toString().length;
+      if(digits == 1) altitude *= 1000;
+      else if(digits == 2) altitude *= 100;
+      else if(digits == 3) altitude *= 100;
+      else if(digits == 4) altitude *= 1;
 
       var ceiling = airport_get().ctr_ceiling;
       if (prop.game.option.get('softCeiling') == 'yes')
         ceiling += 1000;
 
-      this.requested.altitude = clamp(1000,
-                                      altitude * factor,
-                                      ceiling);
+      this.requested.altitude = clamp(1000, altitude, ceiling);
       this.requested.expedite = expedite;
-
       if(expedite) expedite = " expedite";
       else         expedite = "";
 
@@ -838,6 +905,10 @@ var Aircraft=Fiber.extend(function() {
       return ['ok', radio_trend('altitude', this.altitude, this.requested.altitude) + ' ' + this.requested.altitude + expedite];
     },
     runSpeed: function(data) {
+      if(data[0] == "+" || data[0] == "-") {  //shortKey '+' or '-' in use
+        data = data.substr(1);  //remove shortKey
+      }
+
       var speed = parseInt(data);
 
       if(isNaN(speed)) return ["fail", "speed not understood", "say again"];
@@ -897,6 +968,9 @@ var Aircraft=Fiber.extend(function() {
       return ["ok", "cleared direct " + fixname];
     },
     runFix: function(data) {
+      if(data[0] == ".") { //shortkey '.' in use
+        data = data.substr(1);  //remove shortKey
+      }
       if(data.length == 0) {
         return ["fail", "fix name not understood", "say again"];
       }
@@ -1031,6 +1105,10 @@ var Aircraft=Fiber.extend(function() {
 
     },
     runLanding: function(data) {
+      if(data[0] == "*") { //shortkey '*' in use
+        data = data.substr(1);  //remove shortKey
+      }
+
       var runway = airport_get().getRunway(data);
       if(!runway) {
         if(!data) return ["fail", "runway not understood", "say again"];
