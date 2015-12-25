@@ -179,6 +179,7 @@ function input_keydown(e) {
         tab_completion_reset();
         input_parse();
       }
+      prop.input.history_item = null;
       break;
 
     case 37:  // left arrow
@@ -187,7 +188,10 @@ function input_keydown(e) {
       break;
 
     case 38:  // up arrow
-      if(e.ctrlKey) input_history_prev();
+      if(e.ctrlKey) {
+        input_history_prev();
+        e.preventDefault();
+      }
       else {
         $("#command").val($("#command").val() + " ^");
         e.preventDefault();
@@ -200,7 +204,10 @@ function input_keydown(e) {
       break;
 
     case 40:  //down arrow
-      if(e.ctrlKey) input_history_next();
+      if(e.ctrlKey) {
+        input_history_next();
+        e.preventDefault();
+      }
       else {
         $("#command").val($("#command").val() + " v");
         e.preventDefault();
@@ -317,7 +324,7 @@ function input_history_next() {
 
   input_history_clamp();
 
-  var command = prop.input.history[prop.input.history_item];
+  var command = prop.input.history[prop.input.history_item] + ' ';
   $("#command").val(command.toUpperCase());
   input_change();
 }
