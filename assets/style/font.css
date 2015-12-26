@@ -1,6 +1,14 @@
-
+/*Primary Font*/
 @font-face {
   font-family: 'monoOne';
   src: url('../fonts/monoOne.otf') format('otf'),
        url('../fonts/monoOne.woff') format('woff');
+}
+
+/*Additional font for broader unicode coverage*/
+/* source: http://www.fontspace.com/unicode-fonts-for-ancient-scripts/symbola */
+@font-face {
+  font-family: 'monoOne';
+  src: url('../fonts/symbola.ttf') format('truetype');
+  unicode-range: U+2B00-2BFF;	/*include only arrow characters*/
 }
