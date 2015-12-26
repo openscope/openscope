@@ -53,6 +53,10 @@ zlsa.atc.Conflict = Fiber.extend(function() {
      * Update conflict and violation checks, potentially removing this conflict.
      */
     update: function() {
+      // Avoid triggering any more conflicts if the two aircraft have collided
+      if (this.collided)
+        return;
+
       this.distance = vlen(vsub(this.aircraft[0].position,
                                 this.aircraft[1].position));
       this.altitude = abs(this.aircraft[0].altitude - this.aircraft[1].altitude);
@@ -63,6 +67,7 @@ zlsa.atc.Conflict = Fiber.extend(function() {
         return;
       }
 
+      this.checkCollision();
       this.checkRunwayCollision();
 
       // Ignore aircraft below about 1000 feet
@@ -76,6 +81,24 @@ zlsa.atc.Conflict = Fiber.extend(function() {
     remove: function() {
       this.aircraft[0].removeConflict(this.aircraft[1]);
       this.aircraft[1].removeConflict(this.aircraft[0]);
+    },
+
+    /**
+     * Check for collision
+     */
+    checkCollision: function() {
+      // Collide within 160 feet
+      if (((this.distance < 0.05) && (this.altitude < 160)) &&
+          (this.aircraft[0].isVisible() && this.aircraft[1].isVisible()))
+      {
+        this.collided = true;
+        ui_log(true,
+               this.aircraft[0].getCallsign() + " collided with "
+               + this.aircraft[1].getCallsign());
+        prop.game.score.hit += 1;
+        this.aircraft[0].hit = true;
+        this.aircraft[1].hit = true;
+      }
     },
 
     /**
@@ -113,6 +136,13 @@ zlsa.atc.Conflict = Fiber.extend(function() {
      * Check for physical proximity and trigger crashes if necessary
      */
     checkProximity: function() {
+      // No conflict or warning if vertical separation is present
+      if (this.altitude >= 1000) {
+        this.conflicts.proximityConflict = false;
+        this.conflicts.proximityViolation = false;
+        return;
+      }
+
       var conflict = false;
       var violation = false;
 
@@ -123,31 +153,19 @@ zlsa.atc.Conflict = Fiber.extend(function() {
       {
         if (this.aircraft[0].requested.runway != this.aircraft[1].requested.runway)
         {
-          // Notice at 3500 feet horizontal and 1500 feet vertical
-          if ((this.distance < 1.067) && (this.altitude < 1500))
-            conflict = true;
-          // Warning at 3000 feet and 1000 feet vertical
-          if ((this.distance < 0.914) && (this.altitude < 1000))
-            violation = true;
+          conflict = (this.distance < 1.067); // 3500 feet
+          violation = (this.distance < 0.914); // 3000 feet
         }
         else
         {
-          // Notice at 2.8nm horizontal and 1500 feet vertical
-          if ((this.distance < 5.2) && (this.altitude < 1500))
-            conflict = true;
-          // Warning within 2.5nm horizontal and 1000 feet vertical
-          if ((this.distance < 4.6) && (this.altitude < 1000))
-            violation = true;
+          conflict = (this.distance < 5.2); // 2.8nm
+          violation = (this.distance < 4.6); // 2.5nm
         }
       }
       // Standard separation
       else {
-        // Notice at 4nm horizontal and 1500 feet vertical
-        if ((this.distance < 7.4) && (this.altitude < 1500))
-          conflict = true;
-        // Violation within 3nm horizontal and 1000 feet vertical
-        if ((this.distance < 5.6) && (this.altitude < 1000))
-          violation = true;
+        conflict = (this.distance < 7.4); // 4nm
+        violation = (this.distance < 5.6); // 3nm
       }
 
       if (conflict)
@@ -160,19 +178,6 @@ zlsa.atc.Conflict = Fiber.extend(function() {
       else
         this.violations.proximityViolation = false;
 
-      // Collide within 160 feet
-      if (!this.collided &&
-          ((this.distance < 0.05) && (this.altitude < 160)) &&
-          (this.aircraft[0].isVisible() && this.aircraft[1].isVisible()))
-      {
-        this.collided = true;
-        ui_log(true,
-               this.aircraft[0].getCallsign() + " collided with "
-               + this.aircraft[1].getCallsign());
-        prop.game.score.hit += 1;
-        this.aircraft[0].hit = true;
-        this.aircraft[1].hit = true;
-      }
     }
   };
 });
