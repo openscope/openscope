@@ -183,7 +183,7 @@ function input_keydown(e) {
       break;
 
     case 37:  // left arrow
-      $("#command").val($("#command").val() + " <");
+      $("#command").val($("#command").val() + " \u2BA2");
       e.preventDefault();
       break;
 
@@ -193,13 +193,13 @@ function input_keydown(e) {
         e.preventDefault();
       }
       else {
-        $("#command").val($("#command").val() + " ^");
+        $("#command").val($("#command").val() + " \u2B61");
         e.preventDefault();
       }
       break;
 
     case 39:  // right arrow
-      $("#command").val($("#command").val() + " >");
+      $("#command").val($("#command").val() + " \u2BA3");
       e.preventDefault();
       break;
 
@@ -209,13 +209,13 @@ function input_keydown(e) {
         e.preventDefault();
       }
       else {
-        $("#command").val($("#command").val() + " v");
+        $("#command").val($("#command").val() + " \u2B63");
         e.preventDefault();
       }
       break;
 
     case 106: //numpad *
-      $("#command").val($("#command").val() + " *");
+      $("#command").val($("#command").val() + " \u2B50");
       e.preventDefault();
       break;
 
