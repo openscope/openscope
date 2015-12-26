@@ -182,20 +182,24 @@ function input_keydown(e) {
       prop.input.history_item = null;
       break;
 
+    case 33:  // Page Up
+      input_history_prev(); // recall previous callsign
+      e.preventDefault();
+      break;
+
+    case 34:  // Page Down
+      input_history_next(); // recall subsequent callsign
+      e.preventDefault();
+      break;
+
     case 37:  // left arrow
       $("#command").val($("#command").val() + " \u2BA2");
       e.preventDefault();
       break;
 
     case 38:  // up arrow
-      if(e.ctrlKey) {
-        input_history_prev();
-        e.preventDefault();
-      }
-      else {
-        $("#command").val($("#command").val() + " \u2B61");
-        e.preventDefault();
-      }
+      $("#command").val($("#command").val() + " \u2B61");
+      e.preventDefault();
       break;
 
     case 39:  // right arrow
@@ -204,14 +208,8 @@ function input_keydown(e) {
       break;
 
     case 40:  //down arrow
-      if(e.ctrlKey) {
-        input_history_next();
-        e.preventDefault();
-      }
-      else {
-        $("#command").val($("#command").val() + " \u2B63");
-        e.preventDefault();
-      }
+      $("#command").val($("#command").val() + " \u2B63");
+      e.preventDefault();
       break;
 
     case 106: //numpad *
