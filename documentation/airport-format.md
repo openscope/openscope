@@ -40,7 +40,7 @@ airport code, such as `ksfo` or `kmsp`.
   ],
   "departures": {
     "airlines": [
-      ["three-letter ICAO airline code", 0], // the number is the weight; if the weight is ["BAW", 1], ["UAL", 0], "BAW" will always get chosen.
+      ["three-letter ICAO airline code/fleet", 0], // the number is the weight; if the weight is ["BAW", 1], ["UAL", 0], "BAW" will always get chosen.
       ...
     ],
     "frequency": [3, 4] // the frequency, in minutes, of a new departing aircraft. A random number is chosen between the two.
@@ -197,3 +197,21 @@ Example:
 This spawns 25 aircraft in a group every hour.  It starts with a group
 of 13 aircraft at the beginning of the game.  An aircraft is spawned
 every 108 seconds.
+
+Aircraft/Airline selectors
+--------------------------
+
+Both departure and arrival blocks specify a weighted list of airlines
+to use for that block.  The airline code may be optionally followed by
+a particular fleet for that operator.
+
+Example:
+```
+"airlines": [
+  ["BAW", 10],
+  ["AAL/long", 2]
+]
+
+Select an aircraft from BAW's (British Airways) default fleet five
+times as often as an aircraft is selected from AAL's (American
+Airlines) long haul fleet.

@@ -7,6 +7,7 @@ title: Index
 ## Pages
 
 * [Airport format](airport-format.html)
+* [Airline format](airline-format.html)
 * [Aircraft separation](aircraft-separation.html)
 * [Scoring](scoring.html)
 * [Documentation format](README.html)
