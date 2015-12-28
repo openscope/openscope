@@ -3,6 +3,14 @@ zlsa.atc.Options = Fiber.extend(function (base) {
     init: function () {
       this._options = {};
       this.addOption({
+        name: 'controlMethod',
+        defaultValue: 'classic',
+        description: 'Control Method',
+        type: 'select',
+        data: [['Classic', 'classic'],
+               ['Arrow Keys', 'arrows']]
+      });
+      this.addOption({
         name: 'drawProjectedPaths',
         defaultValue: 'selected',
         description: 'Draw aircraft projected path',

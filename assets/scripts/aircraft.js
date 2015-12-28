@@ -589,7 +589,7 @@ var Aircraft=Fiber.extend(function() {
 
         altitude: {
           func: 'runAltitude',
-          shortKey: ['^', 'v'],
+          shortKey: ['\u2B61', '\u2B63'],
           synonyms: ['a', 'c', 'climb', 'd', 'descend']},
 
         debug: {func: 'runDebug'},
@@ -604,7 +604,7 @@ var Aircraft=Fiber.extend(function() {
 
         heading: {
           func: 'runHeading',
-          shortKey: ['<','>','fh'],
+          shortKey: ['\u2BA2','\u2BA3','fh'],
           synonyms: ['t', 'h', 'turn']},
 
         hold: {
@@ -613,7 +613,7 @@ var Aircraft=Fiber.extend(function() {
 
         land: {
           func: 'runLanding',
-          shortKey: ['*'],
+          shortKey: ['\u2B50'],
           synonyms: ['l', 'ils']},
 
         proceed: {
@@ -629,7 +629,7 @@ var Aircraft=Fiber.extend(function() {
 
         takeoff: {
           func: 'runTakeoff',
-          synonyms: ['to']},
+          synonyms: ['to', 'cto']},
 
         wait: {
           func: 'runWait',
@@ -796,11 +796,11 @@ var Aircraft=Fiber.extend(function() {
       switch(split.length) {  //number of elements in 'data'
         case 1: 
           if(isNaN(parseInt(split))) {  //probably using shortKeys
-            if(split[0][0] == "<") { //using '<250' format
+            if(split[0][0] == "\u2BA2") { //using '<250' format
               direction = "left";
               heading = split[0].substr(1); //remove shortKey
             }
-            else if (split[0][0] == ">") {  //using '>250' format
+            else if (split[0][0] == "\u2BA3") {  //using '>250' format
               direction = "right";
               heading = split[0].substr(1); //remove shortKey
             }
@@ -848,7 +848,7 @@ var Aircraft=Fiber.extend(function() {
       return ['ok', 'turn ' + direction + 'heading ' + heading_to_string(this.requested.heading), ''];
     },
     runAltitude: function(data) {
-      if(data[0] == "v" || data[0] == "^") {  //shortKey 'v' or '^' in use
+      if(data[0] == "\u2B61" || data[0] == "\u2B63") {  //shortKey 'v' or '^' in use
         data = data.substr(1);  //remove shortKey
       }
 
@@ -1105,7 +1105,7 @@ var Aircraft=Fiber.extend(function() {
 
     },
     runLanding: function(data) {
-      if(data[0] == "*") { //shortkey '*' in use
+      if(data[0] == "\u2B50") { //shortkey '*' in use
         data = data.substr(1);  //remove shortKey
       }
 

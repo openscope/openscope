@@ -1,4 +1,3 @@
-
 function input_init_pre() {
   prop.input={};
 
@@ -193,38 +192,67 @@ function input_keydown(e) {
       break;
 
     case 37:  // left arrow
-      $("#command").val($("#command").val() + " \u2BA2");
-      e.preventDefault();
+      if(prop.game.option.get('controlMethod') == 'arrows') { //shortKeys in use
+        $("#command").val($("#command").val() + " \u2BA2");
+        e.preventDefault();
+        input_change();
+      }
       break;
 
     case 38:  // up arrow
-      $("#command").val($("#command").val() + " \u2B61");
-      e.preventDefault();
+      if(prop.game.option.get('controlMethod') == 'arrows') { //shortKeys in use
+        $("#command").val($("#command").val() + " \u2B61");
+        e.preventDefault();
+        input_change();
+      }
+      else {
+        input_history_prev(); // recall previous callsign
+        e.preventDefault();
+      }
       break;
 
     case 39:  // right arrow
-      $("#command").val($("#command").val() + " \u2BA3");
-      e.preventDefault();
+      if(prop.game.option.get('controlMethod') == 'arrows') { //shortKeys in use
+        $("#command").val($("#command").val() + " \u2BA3");
+        e.preventDefault();
+        input_change();
+      }
       break;
 
     case 40:  //down arrow
-      $("#command").val($("#command").val() + " \u2B63");
-      e.preventDefault();
+      if(prop.game.option.get('controlMethod') == 'arrows') { //shortKeys in use
+        $("#command").val($("#command").val() + " \u2B63");
+        e.preventDefault();
+        input_change();
+      }
+      else {
+        input_history_prev(); // recall previous callsign
+        e.preventDefault();
+      }
       break;
 
     case 106: //numpad *
       $("#command").val($("#command").val() + " \u2B50");
       e.preventDefault();
+      input_change();
       break;
 
     case 107: //numpad +
       $("#command").val($("#command").val() + " +");
       e.preventDefault();
+      input_change();
       break;
 
     case 109: //numpad -
       $("#command").val($("#command").val() + " -");
       e.preventDefault();
+      input_change();
+      break;
+
+    case 111: //numpad /
+      $("#command").val($("#command").val() + " takeoff");
+      e.preventDefault();
+      input_change();
       break;
 
     case 9: // tab
