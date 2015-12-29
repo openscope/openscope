@@ -547,7 +547,7 @@ var Runway=Fiber.extend(function(base) {
       this.ils          = [false, false];
       this.ils_distance = [null, null];
       this.delay        = [2, 2];
-
+      this.lateral_separation = 4300 * 0.0003048;
       this.waiting      = [[], []];
 
       this.parse(options);
@@ -660,6 +660,9 @@ var Runway=Fiber.extend(function(base) {
       if(data.ils_distance) this.ils_distance = data.ils_distance;
 
       if(data.delay) this.delay = data.delay;
+
+      if (data.lateral_separation)
+        this.lateral_separation = data.lateral_separation * 0.0003048;
     },
   };
 });

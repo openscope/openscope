@@ -147,14 +147,17 @@ zlsa.atc.Conflict = Fiber.extend(function() {
       var violation = false;
 
       // Reduced horizontal separation minima during precision
-      // guided approaches
-      if (this.aircraft[0].isPrecisionGuided() &&
-          this.aircraft[1].isPrecisionGuided())
+      // guided approaches while established
+      if ((this.aircraft[0].isPrecisionGuided() && this.aircraft[0].isEstablished()) &&
+          (this.aircraft[1].isPrecisionGuided() && this.aircraft[1].isEstablished()))
       {
         if (this.aircraft[0].requested.runway != this.aircraft[1].requested.runway)
         {
-          conflict = (this.distance < 1.067); // 3500 feet
-          violation = (this.distance < 0.914); // 3000 feet
+          var ap = airport_get();
+          var separation = Math.max(ap.getRunway(this.aircraft[0].requested.runway),
+                                    ap.getRunway(this.aircraft[0].requested.runway));
+          conflict = (this.distance < separation);
+          violation = (this.distance < (0.85 * separation)); // 3000 feet
         }
         else
         {
@@ -267,6 +270,11 @@ var Aircraft=Fiber.extend(function() {
       this.groundSpeed = 0;
       this.groundTrack = 0;
       this.ds          = 0;
+
+      // Distance laterally from the approach path
+      this.approachOffset = 0;
+      // Distance longitudinally from the threshold
+      this.approachDistance = 0;
 
       this.radial      = 0;
       this.distance    = 0;
@@ -1150,6 +1158,16 @@ var Aircraft=Fiber.extend(function() {
       this.taxi_delay = 60;
       this.taxi_start = game_time();
     },
+
+    /**
+     * aircraft is stable on the approach centerline
+     */
+    isEstablished: function() {
+      if (this.mode != "landing")
+        return false;
+      return (this.approachOffset <= 0.048); // 160 feet or 48 meters
+    },
+
     isLanded: function() {
       if(this.altitude < 5) return true;
     },
@@ -1265,6 +1283,9 @@ var Aircraft=Fiber.extend(function() {
         offset_angle = vradial(offset);
         
         this.offset_angle = offset_angle;
+
+        this.approachOffset = abs(offset[0]);
+        this.approachDistance = offset[1];
 
         angle = runway.getAngle(this.requested.runway);
         if (angle > (2*Math.PI)) angle -= 2*Math.PI;

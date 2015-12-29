@@ -72,6 +72,7 @@
       "oldposition":  [0, 0.229],
       "end":    [ ["N37.6135324", "W122.3571410"], ["N37.6287386", "W122.3933911"]],
       "length":      3.62,
+      "lateral_separaton": 300,
       "ils":         [true, false]
     },
     {
@@ -80,6 +81,8 @@
       "oldposition":    [0, 0],
       "end":    [["N37.6117091", "W122.3583420"], ["N37.6262900", "W122.3931054"]],
       "length":      3.47,
+      "_note": "Lateral separation simulates visual approaches",
+      "lateral_separaton": 600,
       "ils":         [true, false]
     },
     {
