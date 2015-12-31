@@ -27,13 +27,19 @@ are assigned to the same runway but have opposite headings.
 Standard vertical separation may be applied if the specified lateral
 separation isn't maintained.
 
+Aircraft are considered established when they are laterally within 160
+feet of the approach centerline.
+
 ### Same runway
 
-Two aircraft which have both captured the runway localizer must remain
+Two aircraft which have both captured the same runway localizer must remain
 at least 2.5nm from each other.  A notice occurs at 2.8nm.
 
 ### Different runways
 
-Two aircraft which have both captured the localizer of their
-respective runway must remain 3000 feet apart, a notice will occur at
-3500 feet.
+The separation distance between two aircraft may be set on a runway by
+runway basis.  Typically two aircraft may approach no closer than
+4,300 to 3,000 feet laterally while both are established on the
+approach.  In some cases the minimum separation may be higher such as
+a simultaneous close parallel approach where it will be 9114 feet (1.5
+nautical miles).

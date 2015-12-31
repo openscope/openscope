@@ -35,6 +35,7 @@ airport code, such as `ksfo` or `kmsp`.
       "angle":       0,                // the heading of the first end of the runway ("36" in this case)
       "length":      3,                // the length of the runway, in km
       "delay":       [2, 2],           // the number of seconds it takes to taxi to the end of the runway
+      "lateral_separation": 3000,      // Distance in feet that another aircraft can come while on parallel approach paths, a violation will occur at 85% of this value
       "ils":         [true, false]     // not used yet; indicates whether or not that end of the runway has ILS
     }
   ],
