@@ -9,6 +9,6 @@
 /* source: http://www.fontspace.com/unicode-fonts-for-ancient-scripts/symbola */
 @font-face {
   font-family: 'monoOne';
-  src: url('../fonts/symbola.ttf') format('truetype');
+  src: url('../fonts/Symbola.ttf') format('truetype');
   unicode-range: U+2B00-2BFF;	/*include only arrow characters*/
 }
