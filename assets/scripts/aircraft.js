@@ -155,7 +155,7 @@ zlsa.atc.Conflict = Fiber.extend(function() {
         {
           var ap = airport_get();
           var separation = Math.max(ap.getRunway(this.aircraft[0].requested.runway),
-                                    ap.getRunway(this.aircraft[0].requested.runway));
+                                    ap.getRunway(this.aircraft[1].requested.runway));
           conflict = (this.distance < separation);
           violation = (this.distance < (0.85 * separation)); // 3000 feet
         }
