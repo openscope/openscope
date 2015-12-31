@@ -547,12 +547,10 @@ var Aircraft=Fiber.extend(function() {
       return false;
     },
     getCallsign: function() {
-      return (this.getAirline() + this.callsign).toUpperCase();
+      return (this.getAirline().icao + this.callsign).toUpperCase();
     },
     getAirline: function() {
-      var icao = airline_get(this.airline).icao;
-      if(icao) return icao;
-      return this.airline.toUpperCase();
+      return airline_get(this.airline);
     },
     getRadioCallsign: function(condensed) {
       var heavy = "";
@@ -563,7 +561,7 @@ var Aircraft=Fiber.extend(function() {
         var length = 2;
         callsign = callsign.substr(callsign.length - length);
       }
-      return airline_get(this.airline).callsign.name + " " + radio(callsign.toUpperCase()) + heavy;
+      return airline_get(this.airline).callsign + " " + radio(callsign.toUpperCase()) + heavy;
     },
     hideStrip: function() {
       this.html.hide(600);
@@ -1910,21 +1908,7 @@ function aircraft_generate_callsign(airline_name) {
     console.warn("Airline not found:" + airline_name);
     return 'airline-' + airline_name + '-not-found';
   }
-  var callsign_length = airline.callsign.length;
-  var alpha           = airline.callsign.alpha;
-  var callsign        = "";
-
-  var list = "0123456789";
-
-  callsign += choose(list.substr(1));
-  if(alpha) {
-    for(var i=0;i<callsign_length - 3;i++) callsign += choose(list)
-    list = "abcdefghijklmnopqrstuvwxyz";
-    for(var i=0;i<2;i++) callsign += choose(list)
-  } else {
-    for(var i=0;i<callsign_length - 1;i++) callsign += choose(list)
-  }
-  return callsign;
+  return airline.generateFlightNumber();
 }
 
 function aircraft_callsign_new(airline) {
@@ -1949,7 +1933,7 @@ function aircraft_new(options) {
   if(!options.callsign) options.callsign = aircraft_callsign_new(options.airline);
 
   if(!options.icao) {
-    options.icao = airline_get_aircraft(options.airline, options.fleet);
+    options.icao = airline_get(options.airline).chooseAircraft(options.fleet);
   }
   var icao = options.icao.toLowerCase();
 
