@@ -291,6 +291,9 @@ zlsa.atc.AircraftFlightManagementSystem = Fiber.extend(function() {
      * Add a waypoint
      */
     addWaypoint: function(data) {
+      if (data === undefined)
+        data = {};
+
       var wp = {
         name: 'unnamed',
         navmode: null,
@@ -302,6 +305,12 @@ zlsa.atc.AircraftFlightManagementSystem = Fiber.extend(function() {
         speed:    null,
         runway:   null,
       };
+
+      if (data.fix) {
+        wp.navmode = 'fix';
+        wp.name = data.fix;
+        wp.location = airport_get().getFix(data.fix);
+      }
 
       for (var f in data) {
         wp[f] = data[f];
@@ -335,6 +344,15 @@ zlsa.atc.AircraftFlightManagementSystem = Fiber.extend(function() {
     nextWaypoint: function() {
       var last = this.waypoints.shift();
 
+      if (this.waypoints.length == 0) {
+        this.addWaypoint({
+          navmode: 'heading',
+          heading: this.aircraft.heading,
+          speed: last.speed,
+          altitude: last.altitude,
+        });
+      }
+
       if (this.waypoints[0].speed == null)
         this.waypoints[0].speed = last.speed;
 
@@ -347,6 +365,17 @@ zlsa.atc.AircraftFlightManagementSystem = Fiber.extend(function() {
      */
     removeWaypoints: function() {
       this.waypoints = [this.waypoints[0]];
+    },
+
+    /**
+     * Modify all waypoints
+     */
+    setAll: function(data) {
+      for (var i=0; i<this.waypoints.length; i++) {
+        for (var k in data) {
+          this.waypoints[i][k] = data[k];
+        }
+      }
     },
 
     /**
@@ -591,23 +620,25 @@ var Aircraft=Fiber.extend(function() {
       if (this.category == "departure")
         this.inside_ctr = true;
     },
-    // Ignore fixes further away from the origin than the aircraft
-    setArrivalFixes: function(fixes) {
-      var aircraft_dist = distance2d(this.position, [0,0]);
-      var closerFixes = fixes.filter( function(f) {
-        var fix = airport_get().getFix(f);
-        if( fix == null )
-          throw "Fix not found: " + f;
-        return distance2d(fix, [0,0]) < aircraft_dist;
-      });
-      // Revert to heading mode if all fixes are eliminated (eg. spawn close to origin)
-      if(closerFixes.length == 0) {
+    // Ignore waypoints further away from the origin than the aircraft
+    setArrivalWaypoints: function(waypoints) {
+      for (var i=0; i<waypoints.length; i++) {
+        this.fms.addWaypoint(waypoints[i]);
+      }
+      this.fms.nextWaypoint(); // Remove the default waypoint
+
+      var aircraft_dist = vlen(this.position);
+      while (vlen(this.fms.currentWaypoint().location) > aircraft_dist)
+      {
+        this.fms.nextWaypoint();
+        if (!this.fms.currentWaypoint().location)
+          break;
+      }
+
+      if (this.fms.currentWaypoint().navmode == 'heading') {
         this.fms.setCurrent({
-          navmode: 'heading',
           heading: vradial(this.position) + Math.PI,
         });
-      } else {
-        this.fms.setFixes(closerFixes);
       }
     },
 
@@ -956,9 +987,8 @@ var Aircraft=Fiber.extend(function() {
       if (prop.game.option.get('softCeiling') == 'yes')
         ceiling += 1000;
 
-      this.fms.setCurrent({
-        altitude: clamp(1000, altitude * factor,
-                        airport_get().ctr_ceiling + 1000),
+      this.fms.setAll({
+        altitude: clamp(1000, altitude * factor, ceiling),
         expedite: expedite,
       })
 
@@ -978,9 +1008,9 @@ var Aircraft=Fiber.extend(function() {
 //      if(this.mode == "landing")
 //        this.cancelLanding();
 
-      this.fms.setCurrent({speed: clamp(this.model.speed.min,
-                                        speed,
-                                        this.model.speed.max)});
+      this.fms.setAll({speed: clamp(this.model.speed.min,
+                                    speed,
+                                    this.model.speed.max)});
 
       return ["ok", radio_trend("speed", this.speed, this.fms.currentWaypoint().speed) + " " + this.fms.currentWaypoint().speed + " knots"];
 
@@ -1275,8 +1305,8 @@ var Aircraft=Fiber.extend(function() {
       if(data.altitude) this.fms.setCurrent({altitude: data.altitude});
       this.fms.setCurrent({speed: data.speed || this.model.speed.cruise});
 
-      if(data.fixes && data.fixes.length > 0)
-        this.setArrivalFixes(data.fixes);
+      if (data.waypoints && data.waypoints.length > 0)
+        this.setArrivalWaypoints(data.waypoints);
 
       if(this.category == "departure" && this.isLanded()) {
         this.speed = 0;

@@ -21,7 +21,7 @@ zlsa.atc.ArrivalDefault = Fiber.extend(function(base) {
       this.altitude = 0;
       this.frequency = [0, 0];
       this.heading = 0;
-      this.fixes = [];
+      this.waypoints = [];
       this.radial = 0;
       this.speed = null;
 
@@ -43,9 +43,18 @@ zlsa.atc.ArrivalDefault = Fiber.extend(function(base) {
         options.heading = (options.radial + 180) % 360;
 
       this.heading = radians(options.heading);
-      
-      if(options.fixes)
-        this.fixes = options.fixes;
+
+      if(options.fixes) {
+        options.waypoints = [];
+        for (var i=0; i<options.fixes.length; i++) {
+          options.waypoints.push({
+            fix: options.fixes[i],
+          });
+        }
+      }
+
+      if (options.waypoints)
+        this.waypoints = options.waypoints;
 
       this.radial = radians(options.radial);
       this.speed = options.speed;
@@ -105,7 +114,7 @@ zlsa.atc.ArrivalDefault = Fiber.extend(function(base) {
         fleet:     fleet,
         altitude:  altitude,
         heading:   this.heading,
-        fixes:     this.fixes,
+        waypoints: this.waypoints,
         message:   message,
         position:  position,
         speed:     this.speed
@@ -135,7 +144,7 @@ zlsa.atc.ArrivalBase = Fiber.extend(function(base) {
       this.altitude = [1000, 1000];
       this.frequency = [0, 0];
       this.heading = null;
-      this.fixes = [];
+      this.waypoints = [];
       this.radial = [0, 0];
       this.speed = 200;
 
@@ -170,8 +179,18 @@ zlsa.atc.ArrivalBase = Fiber.extend(function(base) {
         this.heading[0] = radians(options.heading[0]);
         this.heading[1] = radians(options.heading[1]);
       }
-      if (options.fixes)
-        this.fixes = options.fixes;
+
+      if(options.fixes) {
+        options.waypoints = [];
+        for (var i=0; i<options.fixes.length; i++) {
+          options.waypoints.push({
+            fix: options.fixes[i],
+          });
+        }
+      }
+
+      if (options.waypoints)
+        this.waypoints = options.waypoints;
 
       if (typeof options.radial == typeof 0)
         this.radial = [radians(options.radial), radians(options.radial)];
@@ -243,7 +262,7 @@ zlsa.atc.ArrivalBase = Fiber.extend(function(base) {
         fleet:     fleet,
         altitude:  altitude,
         heading:   heading,
-        fixes:     this.fixes,
+        waypoints: this.waypoints,
         message:   message,
         position:  position,
         speed:     this.speed
