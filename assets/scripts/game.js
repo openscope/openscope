@@ -22,6 +22,17 @@ zlsa.atc.Options = Fiber.extend(function (base) {
         data: [['Yes', 'yes'],
                ['No', 'no']]
       });
+      this.addOption({
+        name: 'softCeiling',
+        defaultValue: 'no',
+        description: 'Allow departures via climb',
+        help: 'Normally aircraft depart the airspace by flying beyond'
+          + ' the horizontal bounds.  If set to yes, aircraft may also'
+          + ' depart the airspace by climbing above it.',
+        type: 'select',
+        data: [['Yes', 'yes'],
+               ['No', 'no']],
+      });
     },
     addOption: function(data) {
       this._options[data.name] = data;

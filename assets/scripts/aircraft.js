@@ -814,8 +814,13 @@ var Aircraft=Fiber.extend(function() {
       var factor = 1;
       if(data.length <= 2) factor = 1000;
 
-      this.requested.altitude = clamp(1000, altitude * factor,
-                                      airport_get().ctr_ceiling + 1000);
+      var ceiling = airport_get().ctr_ceiling;
+      if (prop.game.option.get('softCeiling') == 'yes')
+        ceiling += 1000;
+
+      this.requested.altitude = clamp(1000,
+                                      altitude * factor,
+                                      ceiling);
       this.requested.expedite = expedite;
 
       if(expedite) expedite = " expedite";
