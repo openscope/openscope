@@ -665,6 +665,10 @@ var Aircraft=Fiber.extend(function() {
           continue;
         }
 
+        if (commands.length > 0 && commands[commands.length-1][0] == "altitude" && string.indexOf("e") == 0) {  //expedite option for altitude changes (bugfix)
+          commands[commands.length-1][1] += " " + string; //push both arguments to heading() together
+        }
+
         if(string.substr(0,2) == "fh") {  //bugfix
           //Command is a shortkey, eg 'fh270' and not a 'fix sassu'. Will skip detection of 'fix' or 'f' below.
           is_shortCommand = true;
@@ -732,6 +736,9 @@ var Aircraft=Fiber.extend(function() {
         var data    = "";
 
         if(pair.length == 2) data = pair[1];
+        if(pair.length > 2) {
+          data = pair.splice(1).join(" ");
+        }
 
         if(DEFERRED_COMMANDS.indexOf(command) == 0) {
           deferred.push(pair);
