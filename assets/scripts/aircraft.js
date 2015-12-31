@@ -641,81 +641,84 @@ var Aircraft=Fiber.extend(function() {
         return true;
       var user_input = $.map(command.toLowerCase().split(" "), function(v) {if (v.length > 0) return v; });
       var commands = [];
-      var concat   = false;
       var commandArguments  = "";
       var previous = "";
       var longCmdName = "";
+      var thisStringAlreadyDone = false;
 
-      for(var i in user_input) {
+
+      for(var i in user_input) {  //fill commands[] based on user input
         var string = user_input[i];
         var is_command = false;
         var is_shortCommand = false;
         var skip = false;
-        if(string.substr(0,2) == "fh") {  //bugfix
-          skip = true;
-          //Command is a shortkey 'fh270' and not a 'fix sassu'. Will skip detection of 'fix' or 'f' below.
-          //Prevents 'fh270' being mis-recognized as a fix command instead of a heading command.
+
+        if(thisStringAlreadyDone) { //bugfix
+          thisStringAlreadyDone = false;
+          continue;
         }
 
-        if(previous.indexOf("t") == 0 && (string.indexOf("l") != -1 || string.indexOf("r") != -1)) {  //bugfix
-          // Do nothing here.
-          //Prevents conflicts between use of "takeoff" vs "turn left 310"
+        if(previous.indexOf("t") == 0 && (string.indexOf("l") == 0 || string.indexOf("r") == 0)) {  //bugfix
+          //Prevents conflicts between use of "l" as in takeoff's synonym vs "turn left 310"
+          commands[commands.length-1].push(string + " " + user_input[(parseInt(i)+1).toString()]); //push both arguments to heading() together
+          thisStringAlreadyDone = true; //to we don't attempt to do anything with the next string on the next iteration, because we've just now done it already
+          continue;
         }
-        else {
+
+        if(string.substr(0,2) == "fh") {  //bugfix
+          //Command is a shortkey, eg 'fh270' and not a 'fix sassu'. Will skip detection of 'fix' or 'f' below.
+          is_shortCommand = true;
+          longCmdName = "heading";
+        }
+        else if(!skip) {  //normal logic
           for(var k in this.COMMANDS) { 
-            if(!skip && k == string) {  //input command is a valid command name (eg 'altitude')
+            if(k == string) {  //input command is a valid command name (eg 'altitude')
               is_command = true;
               break;
             }
-            else if(!skip && this.COMMANDS[k].synonyms && this.COMMANDS[k].synonyms.indexOf(string) != -1) {  //input command is a valid command synonym
+            else if(this.COMMANDS[k].synonyms && this.COMMANDS[k].synonyms.indexOf(string) != -1) {  //input command is a valid command synonym
               is_command = true;
               break;
             }
-            for(var m in this.COMMANDS[k].shortKey) {
-              if(string.substr(0,1) == this.COMMANDS[k].shortKey[m].substr(0,1)) {  //first character of input command is a command's shortkey)
-                if(this.COMMANDS[k].shortKey[m].length == 1) { //single character shortKey, matches input command
-                  is_shortCommand = true;
-                  longCmdName = k;
-                  break;
-                }
-                else 
-                {
-                  if(this.COMMANDS[k].shortKey[m].length > 1 && this.COMMANDS[k].shortKey[m] == string.substr(0,this.COMMANDS[k].shortKey[m].length)) { //multi-char shortKey, matches input command
+            else {  //check for shortKey
+              for(var m in this.COMMANDS[k].shortKey) {
+                if(string.substr(0,1) == this.COMMANDS[k].shortKey[m].substr(0,1)) {  //first character of input command is a command's shortkey)
+                  if(this.COMMANDS[k].shortKey[m].length == 1) { //single character shortKey, matches input command
                     is_shortCommand = true;
                     longCmdName = k;
                     break;
+                  }
+                  else 
+                  {
+                    if(this.COMMANDS[k].shortKey[m].length > 1 && this.COMMANDS[k].shortKey[m] == string.substr(0,this.COMMANDS[k].shortKey[m].length)) { //multi-char shortKey, matches input command
+                      is_shortCommand = true;
+                      longCmdName = k;
+                      break;
+                    }
                   }
                 }
               }
             }
             if(is_shortCommand) break;
           }
+          if(!(is_command || is_shortCommand)) {  //string neither command nor shortKey. Must be a command argument.
+            commandArguments += string;
+          }
         }
 
         if(is_shortCommand) {
-          commands.push([k,string]);    //push whole string (it is a full short-command, eg '>350')
+          commands.push([longCmdName,string]);    //push whole string (it is a full short-command, eg '>350')
         }
         else if (is_command) {
-          if(commandArguments) {
-            commandArguments = commandArguments.substr(1);  //removes space from front (eg ' r 250' --> 'r 250')
-            if(commands.length != 0) {    //if no commands in command list yet,
-              commands[commands.length-1].push(commandArguments);     //push this command in full (eg 't r 250')
-            }
-            commandArguments = "";                 //clear out commandArguments
-          }
           commands.push([string]);      //push NAME/SYNONYM of command into commands array (eg 't')
         }
-        else {
-          commandArguments += " " + string;
+        else if(commandArguments) {
+          if(commands.length != 0) commands[commands.length-1].push(commandArguments); //append the arguments to previous command
+          commandArguments = "";  //clear out commandArguments
         }
         previous = string;
       }
-
-      if(commandArguments && commands.length >= 1) {
-        commandArguments = commandArguments.substr(1);
-        commands[commands.length-1].push(commandArguments);
-        commandArguments = "";
-      }
+      //End of creating 'commands[]'
 
       var response = [];
       var response_end = "";
