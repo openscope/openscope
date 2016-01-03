@@ -1,0 +1,180 @@
+{ "name": "Aeropuerto Internacional Ministro Pistarini",
+  "level": "medium",
+  "radio": "Ezeiza",
+  "icao": "SAEZ",
+  "iata": "EZE",
+  "ctr_radius": 102,
+  "position": ["S34d49m19.92", "W58d32m8.8"],
+  "wind": {
+    "angle": 109,
+    "speed": 6
+  },
+  "fixes": {
+    "EZE02": ["S34d58m27.40", "W58d37m27.28"],
+    "EZE10": ["S34d46m31.94", "W58d31m59.90"],
+    "EZE11": ["S34d48m58.72", "W58d35m43.07"],
+    "EZE12": ["S34d50m34.41", "W58d27m59.51"],
+    "EZE14": ["S34d59m07.72", "W58d48m20.76"],
+    "EZE15": ["S34d59m15.70", "W59d14m25.02"],
+    "EZE19": ["S34d07m22.69", "W58d31m14.13"],
+    "EZE20": ["S34d10m11.95", "W58d46m46.38"],
+    "EZE26": ["S34d10m16.00", "W58d59m30.00"],
+    "EZE50": ["S34d56m1.00", "W58d59m6.00"],
+    "EZE70": ["S34d59m12.55", "W58d29m22.73"],
+    "EZE97": ["S34d54m45.25", "W58d21m47.87"],
+    "EZE05": ["S34d49m15.90", "W58d44m16.14"],
+    "PC011": ["S34d47m20.47", "W58d43m58.68"],
+
+    "EZE": ["S34d49m26.00", "W58d32m7.00"],
+    "PTA": ["S34d58m33.00", "W57d53m54.00"],
+    "ILM": ["S34d42m39.00", "W58d14m25.00"],
+    "PAL": ["S34d36m42.00", "W58d36m50.00"],
+    "FDO": ["S34d27m5.00", "W58d35m2.00"],
+    "ENO": ["S34d33m46.00", "W58d47m26.00"],
+    "GBE": ["S35d45m3.00", "W58d27m53.00"],
+
+    "GEBEM": ["S35d12m1.00", "W59d9m32.00"],
+    "TORUL": ["S35d21m42.00", "W59d26m24.00"],
+    "VALOS": ["S35d27m28.00", "W59d21m2.00"],
+    "NEPIS": ["S34d34m16.00", "W59d36m2.00"],
+    "BIVAM": ["S33d58m16.00", "W58d56m44.00"],
+    "PAGON": ["S33d55m16.00", "W58d43m14.00"],
+    "TEDAR": ["S35d26m58.00", "W57d43m2.00"],
+    "TENIL": ["S35d32m28.00", "W57d50m2.00"],
+    "KOVUK": ["S35d11m58.00", "W57d31m14.00"],
+    "KUKEN": ["S33d10m58.00", "W58d13m2.00"],
+    "EGEPA": ["S35d23m40.00", "W59d24m34.00"],
+    "VANAR": ["S34d19m28.00", "W58d45m44.00"],
+
+    "OC": ["S34d49m1.00", "W58d33m53.00"],
+    "OA": ["S34d50m29.00", "W58d31m20.00"],
+    "ARSOT": ["S34d45m37.00", "W58d53m51.00"],
+    "GESTA": ["S35d04m52.00", "W58d26m44.00"],
+
+    "LANDA": ["S33d54m29.00", "W58d34m31.00"],
+    "ATOVO": ["S34d03m40.00", "W59d09m02.00"],
+    "DORVO": ["S34d42m58.00", "W57d31m02.00"],
+    "URINO": ["S34d41m59.00", "W59d38m27.00"],
+    "SNT": ["S34d13m20.00", "W59d26m29.00"],
+    "ASADA": ["S35d1m33.00", "W59d37m33.00"],
+    "PAPIX": ["S34d24m58.00", "W58d0m2.00"],
+    "ESLAN": ["S34d58m55.00", "W57d5m5.00"]
+  },
+  "runways":[
+    {
+      "name": ["11", "29"],
+      "name_offset": [[0, 0], [0, 0]],
+      "position": [0, 0],
+      "angle": 102,
+      "length": 3.300,
+      "ils": [true, false]
+    },
+    {
+      "name": ["17", "35"],
+      "name_offset": [[0, 0], [0, 0]],
+      "position": [0.67, 0],
+      "angle": 165.5,
+      "length": 3.105,
+      "ils": [false, true]
+    }
+  ],
+  "departures": {
+    "airlines": [
+      ["arg", 20],
+      ["tam", 7],
+      ["sa-aal", 7],
+      ["sa-afr", 5],
+      ["sa-amx", 3],
+      ["sa-ava", 2],
+      ["sa-aza", 2],
+      ["sa-baw", 3],
+      ["sa-dlh", 3],
+      ["sa-ibe", 3],
+      ["sa-lan", 15],
+      ["sa-uae", 1],
+      ["sa-ual", 4],
+      ["sa-klm", 5]
+    ],
+    "sids": {
+      "ATOVO": ["EZE12", "EZE97", "EZE70", "EZE02", "EZE10", "EZE19", "EZE20", "EZE26", "ATOVO"],
+      "LANDA": ["EZE12", "EZE97", "EZE70", "EZE02", "EZE10", "EZE19", "LANDA"],
+      "DORVO": ["EZE12", "PTA", "DORVO"],
+      "URINO": ["EZE12", "EZE97", "EZE70", "EZE14", "EZE15", "URINO"],
+      "BELGRANO": ["EZE12", "EZE97", "EZE70", "GBE"]
+    },
+    "destinations": [
+      80, 177, 278, 325, 360
+    ],
+    "type": "random",
+    "offset": 0,
+    "frequency": 30
+  },
+  "arrivals": [
+    {
+      "radial": 315,
+      "speed": 250,
+      "fixes": ["SNT", "ARSOT"],
+      "airlines":  [
+        ["sa-aal", 10],
+        ["sa-amx", 5],
+        ["sa-ava", 5],
+        ["sa-ual", 8],
+        ["sa-lan", 5],
+        ["arg", 5]
+      ],
+      "type": "random",
+      "offset": 0,
+      "frequency": 20,
+      "altitude": 10000
+    },
+    {
+      "radial": 270,
+      "speed": 250,
+      "fixes": ["ASADA", "EZE50", "ARSOT"],
+      "airlines":  [
+        ["sa-lan", 10],
+        ["arg", 10]
+      ],
+      "type": "random",
+      "offset": 0,
+      "frequency": 10,
+      "altitude": 10000
+    },
+    {
+      "radial": 100,
+      "speed": 250,
+      "fixes": ["ESLAN", "PTA", "ILM", "PAL", "ENO", "ARSOT"],
+      "airlines":  [
+        ["arg", 10],
+        ["sa-lan", 5],
+        ["tam", 3],
+        ["sa-afr", 1],
+        ["sa-klm", 1]
+      ],
+      "type": "random",
+      "offset": 0,
+      "frequency": 5,
+      "altitude": 10000
+    },
+    {
+      "radial": 45,
+      "speed": 250,
+      "fixes": ["PAPIX", "PAL", "ENO", "ARSOT"],
+      "airlines":  [
+        ["arg", 10],
+        ["tam", 8],
+        ["sa-afr", 3],
+        ["sa-klm", 1],
+        ["sa-ibe", 3],
+        ["sa-dlh", 2],
+        ["sa-baw", 4],
+        ["sa-aza", 3],
+        ["sa-uae", 1]
+      ],
+      "type": "random",
+      "offset": 0,
+      "frequency": 10,
+      "altitude": 10000
+    }
+  ]
+}

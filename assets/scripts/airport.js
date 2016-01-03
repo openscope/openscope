@@ -975,10 +975,12 @@ function airport_init() {
   airport_load("engm");
   airport_load("eddm");
   airport_load("eidw");
+  airport_load("eglc");
 
-  //  BRAZIL AIRPORTS
+  //  SOUTH AMERICA AIRPORTS
   airport_load("sbgr");
   airport_load("sbgl");
+  airport_load("saez");
 
   //  RUSSIA AIRPORTS
   airport_load("uudd");

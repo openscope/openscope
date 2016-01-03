@@ -137,7 +137,7 @@ function airline_init() {
   airline_load("AWE");
   airline_load("CESSNA");
   airline_load("ACA");
-
+  airline_load("BCY");
   airline_load("KLM");
   airline_load("KLC");
   airline_load("DAL");
@@ -148,6 +148,9 @@ function airline_init() {
   airline_load("NAX");
   airline_load("EIN");
   airline_load("RYR");
+  airline_load("BER");
+  airline_load("EZY");
+  airline_load("GWI");
 
   // South American
   airline_load("ONE");
@@ -156,6 +159,7 @@ function airline_init() {
   airline_load("AVA");
   airline_load("AZU");
   airline_load("EMBRAER");
+  airline_load("ARG");
 
   // Russian
   airline_load("AFL");

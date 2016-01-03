@@ -127,6 +127,16 @@
 			["svr", 1],
 			["sbi", 1]
     ],
+    "sids": {
+      "ALGOI": ["MSE", "BEGEN", "AMEXO"],
+      "ANKER": ["MNE", "MIQ", "ANKER", "MAMOR", "RUDNO"],
+      "EVIVA": ["MNE", "MIQ", "EVIVA", "NIMDI", "UNKUL"],
+      "GIVMI": ["MNE", "GIVMI", "REDNI"],
+      "KIRDI": ["MSE", "MUN", "MEBEK", "KIRDI"],
+      "OBAXA": ["MSE", "OBAXA", "KOGOL"],
+      "ROTAX": ["MSE", "MUN", "LAKOL", "ROTAX", "UNKEN"],
+      "PESIM": ["MNE", "MAGAT", "PESIM"]
+    },
     "destinations": [
       273, 248, 200, 345, 320, 28, 98, 135
     ],
