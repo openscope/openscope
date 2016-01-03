@@ -41,7 +41,11 @@ zlsa.atc.Airline = Fiber.extend(function() {
      * Initialize object from data
      */
     parse: function (icao, data) {
-      this.icao = icao;
+      if (data.icao)
+        this.icao = data.icao;
+      else
+        this.icao = icao;
+
       this.name = data.name;
       this.callsign = data.callsign.name;
       this.flightNumberGeneration.length = data.callsign.length;

@@ -1,4 +1,3 @@
-
 function input_init_pre() {
   prop.input={};
 
@@ -110,13 +109,6 @@ function input_init() {
   $("#command").on("input", input_change);
 }
 
-function input_complete() {
-  return;
-  $("#command").val(prop.aircraft.list[0].getCallsign() + " turn left 130 turn right 213 climb 43");
-  input_change();
-  input_run();
-}
-
 function input_select(callsign) {
   if(callsign) $("#command").val(callsign + " ");
   else $("#command").val("");
@@ -173,35 +165,108 @@ function input_parse() {
   if(number == 1) {
     $("#sidebar").scrollTop(round(match.html.position().top + ($(window).height() / 3)));
   }
-
 }
 
 function input_keydown(e) {
-  if(e.which == 13) { // enter key
-    input_parse();
-    if(input_run()) {
-      prop.input.history.unshift(prop.input.callsign);
-      $("#command").val("");
-      prop.input.command = "";
-      tab_completion_reset();
+  switch(e.which) {
+    case 13:  // enter
       input_parse();
-    }
-    prop.input.history_item = null;
-  } else if(e.which == 38) {
-    input_history_prev();
-    e.preventDefault();
-  } else if(e.which == 40) {
-    input_history_next();
-    e.preventDefault();
-  } else if(e.which == 9) { // tab key
-    if(!prop.input.tab_compl.matches) {
-      tab_completion_match();
-    }
-    tab_completion_cycle({backwards: e.shiftKey});
-    e.preventDefault();
-  } else if(e.which == 27) { // ESC
-    $("#command").val("");
-    e.preventDefault();
+      if(input_run()) {
+        prop.input.history.unshift(prop.input.callsign);
+        $("#command").val("");
+        prop.input.command = "";
+        tab_completion_reset();
+        input_parse();
+      }
+      prop.input.history_item = null;
+      break;
+
+    case 33:  // Page Up
+      input_history_prev(); // recall previous callsign
+      e.preventDefault();
+      break;
+
+    case 34:  // Page Down
+      input_history_next(); // recall subsequent callsign
+      e.preventDefault();
+      break;
+
+    case 37:  // left arrow
+      if(prop.game.option.get('controlMethod') == 'arrows') { //shortKeys in use
+        $("#command").val($("#command").val() + " \u2BA2");
+        e.preventDefault();
+        input_change();
+      }
+      break;
+
+    case 38:  // up arrow
+      if(prop.game.option.get('controlMethod') == 'arrows') { //shortKeys in use
+        $("#command").val($("#command").val() + " \u2B61");
+        e.preventDefault();
+        input_change();
+      }
+      else {
+        input_history_prev(); // recall previous callsign
+        e.preventDefault();
+      }
+      break;
+
+    case 39:  // right arrow
+      if(prop.game.option.get('controlMethod') == 'arrows') { //shortKeys in use
+        $("#command").val($("#command").val() + " \u2BA3");
+        e.preventDefault();
+        input_change();
+      }
+      break;
+
+    case 40:  //down arrow
+      if(prop.game.option.get('controlMethod') == 'arrows') { //shortKeys in use
+        $("#command").val($("#command").val() + " \u2B63");
+        e.preventDefault();
+        input_change();
+      }
+      else {
+        input_history_prev(); // recall previous callsign
+        e.preventDefault();
+      }
+      break;
+
+    case 106: //numpad *
+      $("#command").val($("#command").val() + " \u2B50");
+      e.preventDefault();
+      input_change();
+      break;
+
+    case 107: //numpad +
+      $("#command").val($("#command").val() + " +");
+      e.preventDefault();
+      input_change();
+      break;
+
+    case 109: //numpad -
+      $("#command").val($("#command").val() + " -");
+      e.preventDefault();
+      input_change();
+      break;
+
+    case 111: //numpad /
+      $("#command").val($("#command").val() + " takeoff");
+      e.preventDefault();
+      input_change();
+      break;
+
+    case 9: // tab
+      if(!prop.input.tab_compl.matches) {
+        tab_completion_match();
+      }
+      tab_completion_cycle({backwards: e.shiftKey});
+      e.preventDefault();
+      break;
+
+    case 27:  // esc
+      $("#command").val("");
+      e.preventDefault();
+      break;
   }
 }
 
@@ -285,7 +350,7 @@ function input_history_next() {
 
   input_history_clamp();
 
-  var command = prop.input.history[prop.input.history_item];
+  var command = prop.input.history[prop.input.history_item] + ' ';
   $("#command").val(command.toUpperCase());
   input_change();
 }
