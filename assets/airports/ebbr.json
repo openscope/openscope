@@ -1,11 +1,16 @@
 {
+  "reference": "https://www.belgocontrol.be/opersite/eaip/eAIP_Main/html/eAIP/EB-AD-2.EBBR-en-GB.html",
   "name": "Brussels-National",
   "level": "easy",
   "radio": "Brussels",
   "icao": "EBBR",
   "iata": "BRU",
-  "eiap": "http://www.belgocontrol.be/website/eaip/eAIP_Main/html/eAIP/EB-AD-2.EBBR-en-GB.html",
+  "magnetic_north": 0,
   "ctr_radius": 80,
+  "position": ["N0.0", "W0.0"],
+  "rr_radius_nm": 5.0,
+  "rr_center": ["N0.0", "W0.0"],
+  "has_terrain": false,
   "wind": {
     "angle": 230,
     "speed": 6

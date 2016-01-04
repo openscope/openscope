@@ -1,11 +1,15 @@
 {
-  "name": "Franz Josef Strauß International Airport",
+  "name": "Franz Josef Strauß International Airport &#9983",
   "level": "beginner",
   "radio": "Munich",
   "icao": "EDDM",
   "iata": "MUC",
+  "magnetic_north": 0,
   "ctr_radius": 80,
 	"position": ["N48.353803", "E11.786100"],
+  "rr_radius_nm": 5.0,
+  "rr_center": ["N48.353803", "E11.786100"],
+  "has_terrain": false,
   "wind": {
     "angle": 273,
     "speed": 3 
