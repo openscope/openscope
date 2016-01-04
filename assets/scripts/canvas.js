@@ -792,23 +792,34 @@ function canvas_draw_compass(cc) {
   var size    = 80;
   var size2   = size / 2;
   var padding = 16;
+  var dot     = 16;
 
-  var dot     = 8;
-
+  // Shift compass location
   cc.translate(-size2-padding, -size2-padding);
   cc.lineWidth = 4;
 
+  // Outer circle
   cc.fillStyle = "rgba(0, 0, 0, 0.7)";
   cc.beginPath();
   cc.arc(0, 0, size2, 0, Math.PI*2);
   cc.fill();
 
-  cc.fillStyle = "rgba(255, 255, 255, 1.0)";
+  // Inner circle
+  cc.lineWidth = 1;
   cc.beginPath();
   cc.arc(0, 0, dot/2, 0, Math.PI*2);
-  cc.fill();
+  cc.strokeStyle = "rgba(255, 255, 255, 0.7)";
+  cc.stroke();
 
-  // Wind direction & speed
+  // Wind Value
+  cc.fillStyle = "rgba(255, 255, 255, 0.7)";
+  cc.textAlign = "center";
+  cc.textBaseline = "center";
+  cc.font = "9px monoOne, monospace";
+  cc.fillText(airport_get().wind.speed, 0, 3.8);
+  cc.font = "bold 10px monoOne, monospace";
+
+  // Wind line
   var windspeed_line, highwind;
   if(airport_get().wind.speed > 8) {
     windspeed_line = airport_get().wind.speed/2;
@@ -823,7 +834,7 @@ function canvas_draw_compass(cc) {
   cc.moveTo(0, 0);
   cc.rotate(airport_get().wind.angle);
   cc.lineTo(0, crange(0, windspeed_line, 15, 0, size2-dot));
-  // Color wind sock red for high-wind
+  // Color wind line red for high-wind
   if(highwind) cc.strokeStyle = "rgba(255, 0, 0, 0.7)";
   else cc.strokeStyle = "rgba(255, 255, 255, 0.7)";
   cc.lineWidth = 2;
@@ -834,11 +845,12 @@ function canvas_draw_compass(cc) {
 
   cc.textAlign = "center";
   cc.textBaseline = "top";
-  for(var i=0;i<4;i++) {
-    var angle = (i / 4) * 360;
+  for(var i=90;i<=360;i+=90) {
+    cc.rotate(radians(90));
+    if (i==90) var angle = "0" + i;
+    else var angle = i;
     cc.save();
-    cc.rotate((i / 4) * (Math.PI * 2));
-    cc.fillText(angle, 0, -size2+6);
+    cc.fillText(angle, 0, -size2+4);
     cc.restore();
   }
 }
