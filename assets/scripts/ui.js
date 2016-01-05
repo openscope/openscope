@@ -138,7 +138,7 @@ function ui_complete() {
     }
 
     var html = $("<li class='airport icao-"+airport.icao.toLowerCase()+"'>" +
-                 "<span class='difficulty'>" + difficulty + "</span>" +
+                 "<span style='font-size: 7pt' class='difficulty'>" + difficulty + "</span>" +
                  "<span class='icao'>" + airport.icao + "</span>" +
                  "<span class='name'>" + airport.name + "</span></li>");
 
@@ -149,9 +149,12 @@ function ui_complete() {
       }
     });
 
-    $("#airport-switch .list").append(html);
-
+    $("#airport-list").append(html);
   }
+  var symbol = $("<span class='symbol'>" + "&#9983" + "</span>");
+  $("#airport-list-notes").append(symbol);
+  var notes = $("<span class='words'>" + "indicates airport is a work in progress" + "</span>");
+  $("#airport-list-notes").append(notes);
 }
 
 function pixels_to_km(pixels) {
