@@ -4,6 +4,7 @@ zlsa.atc.Conflict = Fiber.extend(function() {
       this.aircraft = [first, second];
 
       this.distance = vlen(vsub(first.position, second.position));
+      this.distance_delta = 0;
       this.altitude = abs(first.altitude - second.altitude);
 
       this.collided = false;
@@ -57,8 +58,11 @@ zlsa.atc.Conflict = Fiber.extend(function() {
       if (this.collided)
         return;
 
+      var d = this.distance;
       this.distance = vlen(vsub(this.aircraft[0].position,
                                 this.aircraft[1].position));
+      this.distance_delta = this.distance - d;
+
       this.altitude = abs(this.aircraft[0].altitude - this.aircraft[1].altitude);
 
       // Check if the separation is now beyond the bounding box check
@@ -166,9 +170,51 @@ zlsa.atc.Conflict = Fiber.extend(function() {
         }
       }
       // Standard separation
+      /* 7110.65, section 5-5-7-a-1:
+         (a) Aircraft are on opposite/reciprocal
+         courses and you have observed that they have passed
+         each other; or aircraft are on same or crossing
+         courses/assigned radar vectors and one aircraft has
+         crossed the projected course of the other, and the
+         angular difference between their courses/assigned
+         radar vectors is at least 15 degrees.
+      */
       else {
-        conflict = (this.distance < 7.4); // 4nm
-        violation = (this.distance < 5.6); // 3nm
+        var offset = abs(angle_offset(this.aircraft[0].groundTrack,
+                                      this.aircraft[1].groundTrack));
+        //TODO: Opposing course doesn't seem to be handled correctly
+        // Check for courses differing by at least 15 degrees and within 4nm
+        if ((this.distance <= 7.4) && (offset > radians(15)))
+        {
+          // Opposing courses simply check the distance is increasing
+          if (offset > radians(165)) {
+            if (this.distance_delta <= 0) {
+              conflict = true;
+              violation = (this.distance < 5.6); // 3nm
+            }
+          }
+          else {
+            // Ray intersection from http://stackoverflow.com/a/2932601
+            var ad = vturn(this.aircraft[0].groundTrack);
+            var bd = vturn(this.aircraft[1].groundTrack);
+            var dx = this.aircraft[1].position[0] - this.aircraft[0].position[0];
+            var dy = this.aircraft[1].position[1] - this.aircraft[0].position[1];
+            var det = bd[0] * ad[1] - bd[1] * ad[0];
+            // Calculate intersection distance in direction of flight
+            var u = (dy * bd[0] - dx * bd[1]) / det;
+            var v = (dy * ad[0] - dx * ad[1]) / det;
+
+            // Check if both aircraft still have to fly a positive distance
+            if ((u >= 0) && (v >= 0)) {
+              conflict = true;
+              violation = (this.distance < 5.6); // 3nm
+            }
+          }
+        }
+        else {
+          conflict = (this.distance < 7.4); // 4nm
+          violation = (this.distance < 5.6); // 3nm
+        }
       }
 
       if (conflict)
