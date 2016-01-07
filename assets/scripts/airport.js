@@ -1005,6 +1005,7 @@ function airport_init() {
   airport_load("uudd");
 
   airport_load("ltba");
+  airport_load("vhhh");
 
 }
 
