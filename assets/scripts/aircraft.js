@@ -2176,6 +2176,7 @@ function aircraft_init() {
   aircraft_load("rj85");
   aircraft_load("c130");
   aircraft_load("c5");
+  aircraft_load("dh8d");
 }
 
 function aircraft_generate_callsign(airline_name) {
