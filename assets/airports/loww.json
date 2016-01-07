@@ -1,7 +1,7 @@
 { 
   "name": "Vienna International Airport",
   "level": "medium",
-  "radio": "Schwechat",
+  "radio": "Vienna",
   "icao": "LOWW",
   "iata": "VIE",
   "ctr_radius": 80,
