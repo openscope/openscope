@@ -216,3 +216,39 @@ Example:
 Select an aircraft from BAW's (British Airways) default fleet five
 times as often as an aircraft is selected from AAL's (American
 Airlines) long haul fleet.
+
+Arrival blocks
+--------------
+
+
+### Waypoints
+
+An arrival may specify a set of waypoints which the aircraft should
+follow after spawning including speed and altitude changes.  This
+allows spawning at high altitude and descending to the terminal area.
+
+Example:
+    ...,
+    "waypoints": [
+      {
+        "fix": "SKUNK",
+        "speed": 250,
+        "altitude": 10000
+      },
+      {
+        "fix": "BOLDR",
+        "speed": 230,
+        "altitude": 8000
+      }
+    ],
+    ...
+
+#### Fixes
+
+A simplified set of waypoints may be created by specifing a list of
+fixes only.  If specified it will overide any waypoints configured.
+
+Example:
+    ...,
+    "fixes": ["SKUNK", "BOLDR"],
+    ...

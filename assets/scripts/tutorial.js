@@ -69,7 +69,7 @@ function tutorial_init_pre() {
                "entering the runway name after &lsquo;taxi&rsquo; or &lsquo;wait&rsquo;.)"
                ].join(" "),
     parse:    function(t) {
-      return t.replace("{RUNWAY}", prop.aircraft.list[0].requested.runway);
+      return t.replace("{RUNWAY}", prop.aircraft.list[0].fms.currentWaypoint().runway);
     },
     side:     "left",
     position: tutorial_position
@@ -82,7 +82,7 @@ function tutorial_init_pre() {
                "feet after it takes off. (This step must be done before clearing the aircraft for take off, just as in real life.)"
                ].join(" "),
     parse:    function(t) {
-      return t.replace("{RUNWAY}", prop.aircraft.list[0].requested.runway);
+      return t.replace("{RUNWAY}", prop.aircraft.list[0].fms.currentWaypoint().runway);
     },
     side:     "left",
     position: tutorial_position
@@ -96,7 +96,7 @@ function tutorial_init_pre() {
                "see its altitude increasing. Meanwhile, read the next step."
                ].join(" "),
     parse:    function(t) {
-      return t.replace("{RUNWAY}", prop.aircraft.list[0].requested.runway);
+      return t.replace("{RUNWAY}", prop.aircraft.list[0].fms.currentWaypoint().runway);
     },
     side:     "left",
     position: tutorial_position
@@ -109,7 +109,7 @@ function tutorial_init_pre() {
                "red for arrivals."
                ].join(" "),
     parse:    function(t) {
-      return t.replace("{RUNWAY}", prop.aircraft.list[0].requested.runway);
+      return t.replace("{RUNWAY}", prop.aircraft.list[0].fms.currentWaypoint().runway);
     },
     side:     "left",
     position: tutorial_position

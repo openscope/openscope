@@ -310,8 +310,8 @@ function canvas_draw_sids(cc) {
 function canvas_draw_separation_indicator(cc, aircraft) {
   "use strict";
   // Draw a trailing indicator 2.5 NM (4.6km) behind landing aircraft to help with traffic spacing
-  var rwy = airport_get().getRunway(aircraft.requested.runway);
-  var angle = rwy.getAngle(aircraft.requested.runway) + Math.PI;
+  var rwy = airport_get().getRunway(aircraft.fms.currentWaypoint().runway);
+  var angle = rwy.getAngle(aircraft.fms.currentWaypoint().runway) + Math.PI;
   cc.strokeStyle = "rgba(224, 128, 128, 0.8)";
   cc.lineWidth = 3;
   cc.translate(km(aircraft.position[0]) + prop.canvas.panX, -km(aircraft.position[1]) + prop.canvas.panY);
@@ -472,7 +472,10 @@ function canvas_draw_aircraft(cc, aircraft) {
 // Run physics updates into the future, draw future track
 function canvas_draw_future_track(cc, aircraft) {
   "use strict";
+  var fms_twin = $.extend(true, {}, aircraft.fms);
   var twin = $.extend(true, {}, aircraft);
+  twin.fms = fms_twin;
+  twin.fms.aircraft = twin;
   twin.projected = true;
   var save_delta = prop.game.delta;
   prop.game.delta = 5;
@@ -480,7 +483,7 @@ function canvas_draw_future_track(cc, aircraft) {
   var ils_locked;
   for(var i = 0; i < 60; i++) {
     twin.update();
-    ils_locked = twin.requested.runway && twin.category === "arrival" && twin.mode === "landing";
+    ils_locked = twin.fms.currentWaypoint().runway && twin.category === "arrival" && twin.mode === "landing";
     future_track.push([twin.position[0], twin.position[1], ils_locked]);
     if( ils_locked && twin.altitude < 500)
       break;
@@ -529,15 +532,17 @@ function canvas_draw_future_track(cc, aircraft) {
 // any later requested fixes.
 function canvas_draw_future_track_fixes( cc, aircraft, future_track) {
   "use strict";
-  if (aircraft.requested.fix.length === 0) return;
+  if (aircraft.fms.waypoints.length < 1) return;
   var start = future_track.length - 1;
   var x = km(future_track[start][0]) + prop.canvas.panX;
   var y = -km(future_track[start][1]) + prop.canvas.panY;
   cc.beginPath();
   cc.moveTo(x, y);
   cc.setLineDash([3,10]);
-  for(var i=0; i<aircraft.requested.fix.length; i++) {
-    var fix = airport_get().getFix(aircraft.requested.fix[i]);
+  for(var i=0; i<aircraft.fms.waypoints.length; i++) {
+    if (!aircraft.fms.waypoints[i].location)
+      break;
+    var fix = aircraft.fms.waypoints[i].location;
     var fx = km(fix[0]) + prop.canvas.panX;
     var fy = -km(fix[1]) + prop.canvas.panY;
     cc.lineTo(fx, fy);
@@ -578,7 +583,7 @@ function canvas_draw_info(cc, aircraft) {
     var bar_width = width / 15;
     var bar_width2 = bar_width / 2;
 
-    var ILS_enabled = aircraft.requested.runway && aircraft.category === "arrival";
+    var ILS_enabled = aircraft.fms.currentWaypoint().runway && aircraft.category === "arrival";
     var lock_size = height / 3;
     var lock_offset = lock_size / 8;
     var pi = Math.PI;
@@ -748,7 +753,7 @@ function canvas_draw_info(cc, aircraft) {
       cc.lineTo(0,   5);
       cc.lineTo(-3,  2);
 
-      if(aircraft.requested.expedite && aircraft.mode !== "landing") {
+      if(aircraft.fms.currentWaypoint().expedite && aircraft.mode !== "landing") {
         cc.moveTo(0,   5);
         cc.lineTo(3,   2);
       }
