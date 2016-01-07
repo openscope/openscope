@@ -3,7 +3,13 @@
   "level": "medium",
   "radio": "Debug",
   "icao": "KDBG",
+  "iata": "DBG",
+  "magnetic_north": 0,
   "ctr_radius": 80,
+  "position": ["N0.0", "W0.0"],
+  "rr_radius_nm": 5.0,
+  "rr_center": ["N0.0", "W0.0"],
+  "has_terrain": false,
   "wind": {
     "angle": 0,
     "speed": 8

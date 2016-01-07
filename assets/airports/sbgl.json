@@ -4,8 +4,11 @@
   "radio": "Galeão",
   "icao": "SBGL",
   "iata": "GIG",
+  "magnetic_north": 0,
   "ctr_radius": 115,
   "position": ["S22.813391", "W43.249464"],
+  "rr_radius_nm": 5.0,
+  "rr_center": ["S22.813391", "W43.249464"],
   "has_terrain": true,
   "wind": {
     "angle": 150,

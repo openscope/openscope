@@ -3,10 +3,13 @@
   "level": "easy",
   "radio": "Domodedovo",
   "icao": "UUDD",
-  "ctr_radius": 70,
+  "iata": "DME",
   "magnetic_north": 10.8, 
+  "ctr_radius": 70,
   "position": ["N55.408611", "E37.906389"],
-
+  "rr_radius_nm": 5.0,
+  "rr_center": ["N55.408611", "E37.906389"],
+  "has_terrain": false,
   "wind": {
     "angle": 2,
     "speed": 5

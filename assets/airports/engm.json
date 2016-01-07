@@ -1,11 +1,15 @@
 {
-  "name": "Oslo Gardermoen International Airport (WIP)",
+  "name": "Oslo Gardermoen International Airport &#9983",
   "level": "easy",
   "radio": "Oslo",
   "icao": "ENGM",
+  "iata": "OSL",
   "magnetic_north": -2.8,
   "ctr_radius": 80,
   "position": ["N60d12m10.00", "E11d05m02.00"],
+  "rr_radius_nm": 5.0,
+  "rr_center": ["N60d12m10.00", "E11d05m02.00"],
+  "has_terrain": false,
   "wind": {
     "angle": 190,
     "speed": 8

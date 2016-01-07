@@ -4,8 +4,12 @@
   "radio": "City",
   "icao": "EGLC",
   "iata": "LCY",
+  "magnetic_north": 0,
   "ctr_radius": 80,
   "position": ["N51d30m19.08", "E0d3m19.00"],
+  "rr_radius_nm": 5.0,
+  "rr_center": ["N51d30m19.08", "E0d3m19.00"],
+  "has_terrain": false,
   "wind": {
     "angle": 275,
     "speed": 6

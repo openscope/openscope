@@ -1,10 +1,15 @@
-{ "name": "Aeropuerto Internacional Ministro Pistarini",
+{
+  "name": "Aeropuerto Internacional Ministro Pistarini",
   "level": "medium",
   "radio": "Ezeiza",
   "icao": "SAEZ",
   "iata": "EZE",
+  "magnetic_north": 0,
   "ctr_radius": 102,
   "position": ["S34d49m19.92", "W58d32m8.8"],
+  "rr_radius_nm": 5.0,
+  "rr_center": ["S34d49m19.92", "W58d32m8.8"],
+  "has_terrain": false,
   "wind": {
     "angle": 109,
     "speed": 6

@@ -1,11 +1,15 @@
 {
-  "name": "Atatürk International Airport  (WIP)",
+  "name": "Atatürk International Airport &#9983",
   "level": "hard",
   "radio": "Istanbul",
   "icao": "LTBA",
+  "iata": "IST",
   "magnetic_north": 3.6,
-  "position": ["N40.976898", "E28.814600"],
   "ctr_radius": 80,
+  "position": ["N40.976898", "E28.814600"],
+  "rr_radius_nm": 5.0,
+  "rr_center": ["N40.976898", "E28.814600"],
+  "has_terrain": false,
   "wind": {
     "angle": 25,
     "speed": 6

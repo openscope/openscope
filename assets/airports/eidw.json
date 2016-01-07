@@ -1,9 +1,15 @@
-{ "name": "Dublin Airport",
+{
+  "name": "Dublin Airport",
   "level": "easy",
   "radio": "Dublin",
   "icao": "EIDW",
+  "iata": "DUB",
+  "magnetic_north": 0,
   "ctr_radius": 80,
   "position": ["N53d25m17.00", "W6d16m12.00"],
+  "rr_radius_nm": 5.0,
+  "rr_center": ["N53d25m17.00", "W6d16m12.00"],
+  "has_terrain": false,
   "wind": {
     "angle": 120,
     "speed": 8
