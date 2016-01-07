@@ -1,9 +1,17 @@
 {
   "name": "Boeing 737-800",
   "icao": "B738",
-  "wake": "medium",
+  "engines": {
+    "number": 2,
+    "type": "J"
+  },
+  "weightclass": "L",
+  "category": {
+    "srs": 3,
+    "lahso": 9,
+    "recat": "D"
+  },
   "rate": {
-    "turn":       1.2,
     "ascent":     1200,
     "descent":    2000,
     "accelerate": 7,

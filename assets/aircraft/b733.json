@@ -1,7 +1,16 @@
 {
   "name": "Boeing 737-300",
   "icao": "B733",
-  "wake": "medium",
+  "engines": {
+    "number": 2,
+    "type": "J"
+  },
+  "weightclass": "L",
+  "category": {
+    "srs": 3,
+    "lahso": 7,
+    "recat": "D"
+  },
   "rate": {
     "ascent":     1100,
     "descent":    1800,

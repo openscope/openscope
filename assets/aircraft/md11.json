@@ -1,9 +1,17 @@
 {
   "name": "McDonnel Douglas MD-11",
   "icao": "MD11",
-  "wake": "heavy",
+  "engines": {
+    "number": 3,
+    "type": "J"
+  },
+  "weightclass": "H",
+  "category": {
+    "srs": 3,
+    "lahso": 9,
+    "recat": "C"
+  },
   "rate": {
-    "turn":       1.1,
     "ascent":     1300,
     "descent":    2500,
     "accelerate": 7,

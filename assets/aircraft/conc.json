@@ -1,8 +1,17 @@
 {
   "name": "Concorde",
   "icao": "CONC",
+  "engines": {
+    "number": 4,
+    "type": "J"
+  },
+  "weightclass": "H",
+  "category": {
+    "srs": 3,
+    "lahso": null,
+    "recat": "E"
+  },
   "rate": {
-    "turn":       0.3,
     "ascent":     4000,
     "descent":    2000,
     "accelerate": 4,

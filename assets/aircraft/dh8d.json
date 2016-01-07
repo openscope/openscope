@@ -1,9 +1,17 @@
 {
   "name": "Bombardier Dash 8 Q400",
   "icao": "DH8D",
-  "wake": "medium",
+  "engines": {
+    "number": 2,
+    "type": "T"
+  },
+  "weightclass": "L",
+  "category": {
+    "srs": 3,
+    "lahso": 6,
+    "recat": "D"
+  },
   "rate": {
-    "turn":       3,
     "ascent":     3000,
     "descent":    2500,
     "accelerate": 10,

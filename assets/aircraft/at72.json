@@ -1,9 +1,17 @@
 {
   "name": "ATR 72-500",
   "icao": "AT72",
-  "wake": "medium",
+  "engines": {
+    "number": 2,
+    "type": "T"
+  },
+  "weightclass": "L",
+  "category": {
+    "srs": 3,
+    "lahso": 3,
+    "recat": "E"
+  },
   "rate": {
-    "turn":       2.8,
     "ascent":     2100,
     "descent":    2500,
     "accelerate": 7,

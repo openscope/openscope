@@ -1,9 +1,17 @@
 {
   "name": "Embraer 120 Brasília",
   "icao": "E120",
-  "wake": "light",
+  "engines": {
+    "number": 2,
+    "type": "T"
+  },
+  "weightclass": "S+",
+  "category": {
+    "srs": 3,
+    "lahso": 7,
+    "recat": "F"
+  },
   "rate": {
-    "turn":       2.0,
     "ascent":     1200,
     "descent":    1500,
     "accelerate": 6,

@@ -1,9 +1,17 @@
 {
   "name": "Antonov 12",
   "icao": "AN12",
-  "wake": "medium",
+  "engines": {
+    "number": 4,
+    "type": "T"
+  },
+  "weightclass": "L",
+  "category": {
+    "srs": 3,
+    "lahso": null,
+    "recat": "D"
+  },
   "rate": {
-    "turn":       1.5,
     "ascent":     1960,
     "descent":    2200,
     "accelerate": 5,

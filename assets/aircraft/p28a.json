@@ -1,7 +1,16 @@
 {
   "name": "Piper PA-28 Cherokee",
   "icao": "P28A",
-  "wake": "light",
+  "engines": {
+    "number": 1,
+    "type": "P"
+  },
+  "weightclass": "S",
+  "category": {
+    "srs": 1,
+    "lahso": 1,
+    "recat": "F"
+  },
   "rate": {
     "ascent":     660,
     "descent":    1320,

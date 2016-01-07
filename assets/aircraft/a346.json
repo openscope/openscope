@@ -1,7 +1,16 @@
 {
   "name": "Airbus A340-600",
   "icao": "A346",
-  "wake": "heavy",
+  "engines": {
+    "number": 4,
+    "type": "J"
+  },
+  "weightclass": "H",
+  "category": {
+    "srs": 3,
+    "lahso": 9,
+    "recat": "B"
+  },
   "rate": {
     "turn":       0.8,
     "ascent":     1400,

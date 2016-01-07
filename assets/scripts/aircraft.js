@@ -246,7 +246,9 @@ var Model=Fiber.extend(function() {
       this.name = null;
       this.icao = null;
 
-      this.wake = null;
+      this.engines = null;
+      this.weightclass = null;
+      this.category = null;
 
       this.rate = {
         turn:       0, // radians per second
@@ -259,7 +261,7 @@ var Model=Fiber.extend(function() {
       this.runway = {
         takeoff: 0, // km needed to takeoff
         landing: 0,
-      }
+      };
 
       this.speed = {
         min:     0,
@@ -277,13 +279,14 @@ var Model=Fiber.extend(function() {
       if(data.name) this.name = data.name;
       if(data.icao) this.icao = data.icao;
 
-      if(data.wake) this.wake = data.wake;
+      if(data.engines) this.engines = data.engines;
+      if(data.weightclass) this.weightclass = data.weightclass;
+      if(data.category) this.category = data.category;
 
       if(data.rate) {
         this.rate         = data.rate;
         this.rate.ascent  = this.rate.ascent  / 60;
         this.rate.descent = this.rate.descent / 60;
-        this.rate.turn    = radians(this.rate.turn);
       }
 
       if(data.runway) this.runway = data.runway;
@@ -772,8 +775,8 @@ var Aircraft=Fiber.extend(function() {
     },
     getRadioCallsign: function(condensed) {
       var heavy = "";
-      if(this.model.wake == "heavy") heavy = " heavy"
-      if(this.model.wake == "super") heavy = " super"
+      if(this.model.weightclass == "H") heavy = " heavy"
+      if(this.model.weightclass == "U") heavy = " super"
       var callsign = this.callsign;
       if(condensed) {
         var length = 2;
@@ -2195,8 +2198,8 @@ function aircraft_init() {
   aircraft_load("b764");
 
   aircraft_load("b772");
-  aircraft_load("b773");
   aircraft_load("b77e");
+  aircraft_load("b773");
   aircraft_load("b77w");
   aircraft_load("b788");
 

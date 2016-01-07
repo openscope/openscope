@@ -1,9 +1,17 @@
 {
   "name": "Embraer 170/175",
   "icao": "E170",
-  "wake": "medium",
+  "engines": {
+    "number": 2,
+    "type": "J"
+  },
+  "weightclass": "L",
+  "category": {
+    "srs": 3,
+    "lahso": 7,
+    "recat": "E"
+  },
   "rate": {
-    "turn":       1.3,
     "ascent":     1900,
     "descent":    2100,
     "accelerate": 7,

@@ -1,9 +1,17 @@
 {
   "name": "Avro RJ85",
   "icao": "RJ85",
-  "wake": "medium",
+  "engines": {
+    "number": 4,
+    "type": "J"
+  },
+  "weightclass": "L",
+  "category": {
+    "srs": 3,
+    "lahso": 7,
+    "recat": "E"
+  },
   "rate": {
-    "turn":       3,
     "ascent":     2000,
     "descent":    2500,
     "accelerate": 10,

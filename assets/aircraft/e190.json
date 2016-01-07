@@ -1,9 +1,17 @@
 {
   "name": "Embraer 190/195",
   "icao": "E190",
-  "wake": "medium",
+  "engines": {
+    "number": 2,
+    "type": "J"
+  },
+  "weightclass": "L",
+  "category": {
+    "srs": 3,
+    "lahso": 7,
+    "recat": "D"
+  },
   "rate": {
-    "turn":       1.5,
     "ascent":     1900,
     "descent":    2100,
     "accelerate": 7,

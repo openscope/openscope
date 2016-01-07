@@ -1,9 +1,17 @@
 {
   "name": "Let 410",
   "icao": "L410",
-  "wake": "medium",
+  "engines": {
+    "number": 2,
+    "type": "T"
+  },
+  "weightclass": "S+",
+  "category": {
+    "srs": 2,
+    "lahso": null,
+    "recat": "F"
+  },
   "rate": {
-    "turn":       2.0,
     "ascent":     1700,
     "descent":    2500,
     "accelerate": 8,
