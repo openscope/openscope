@@ -75,6 +75,12 @@ zlsa.atc.Conflict = Fiber.extend(function() {
           (this.aircraft[1].altitude < 990))
         return;
 
+      // Ignore aircraft in the first minute of their flight
+      if ((game_time() - this.aircraft[0].takeoffTime < 60) ||
+          (game_time() - this.aircraft[0].takeoffTime < 60)) {
+        return;
+      }
+
       this.checkProximity();
     },
 
@@ -458,6 +464,8 @@ var Aircraft=Fiber.extend(function() {
       this.groundTrack = 0;
       this.ds          = 0;
 
+      this.takeoffTime = 0;
+
       // Distance laterally from the approach path
       this.approachOffset = 0;
       // Distance longitudinally from the threshold
@@ -583,9 +591,11 @@ var Aircraft=Fiber.extend(function() {
       this.html.find(".aircraft").prop("title", this.model.name);
 
       if(this.category == "arrival") {
+        this.takeoffTime = game_time();
         this.html.addClass("arrival");
         this.html.prop("title", "Scheduled for arrival");
       } else {
+        this.takeoffTime = null;
         this.html.addClass("departure");
         this.html.prop("title", "Scheduled for departure");
       }
@@ -1275,6 +1285,7 @@ var Aircraft=Fiber.extend(function() {
       if(runway.removeQueue(this, this.fms.currentWaypoint().runway)) {
         this.mode = "takeoff";
         prop.game.score.windy_takeoff += this.scoreWind('taking off');
+        this.takeoffTime = game_time();
 
         if(this.fms.currentWaypoint().heading == null)
           this.fms.setCurrent({heading: runway.getAngle(this.fms.currentWaypoint().runway)});
