@@ -182,9 +182,10 @@ zlsa.atc.Conflict = Fiber.extend(function() {
       else {
         var offset = abs(angle_offset(this.aircraft[0].groundTrack,
                                       this.aircraft[1].groundTrack));
-        //TODO: Opposing course doesn't seem to be handled correctly
-        // Check for courses differing by at least 15 degrees and within 4nm
-        if ((this.distance <= 7.4) && (offset > radians(15)))
+
+        // Check for diverging separation based on heading difference
+        // and being close enough that it may apply.
+        if ((this.distance <= 7.4) && (offset >= radians(15)))
         {
           // Opposing courses simply check the distance is increasing
           if (offset > radians(165)) {
