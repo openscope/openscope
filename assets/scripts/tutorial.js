@@ -275,7 +275,7 @@ function tutorial_init_pre() {
 
   tutorial_step({
     title:    "Approach Clearances, part 2",
-    text:     ["When you have the aircraft facing the right direction, just select it and type &lsquo;l&lt;runway&gt;&rsquo;",
+    text:     ["When you have the aircraft facing the right direction, just select it and type &lsquo;l &lt;runway&gt;&rsquo;",
                "with the runway that&rsquo;s in front of it. Once it's close enough to capture the localizer, the assigned altitude on its strip",
                "will change to &lsquo;ILS locked&rsquo; (meaning the aircraft is capable of guiding itself down to the runway via",
                "the Instrument Landing System), and the assigned heading should now show the runway to which it has an approach clearance."
