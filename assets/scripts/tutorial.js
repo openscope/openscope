@@ -261,7 +261,7 @@ function tutorial_init_pre() {
 
   tutorial_step({
     title:    "Approach Clearances, part 1",
-    text:     ["You can clear aircraft for an ILS approach with the "Land" command, followed by a runway name. Before you can do so, however,",
+    text:     ["You can clear aircraft for an ILS approach with the "ILS" command, followed by a runway name. Before you can do so, however,",
                "it must be on a heading that will cross the runway's extended centerline, that is no more than 30 degrees offset from the",
                "runway's heading. Once we eventually give them an approach clearance, you can expect aircraft to capture the ILS's localizer",
                "once they're within a few degrees of the extended centerline."
@@ -275,7 +275,7 @@ function tutorial_init_pre() {
 
   tutorial_step({
     title:    "Approach Clearances, part 2",
-    text:     ["When you have the aircraft facing the right direction, just select it and type &lsquo;l &lt;runway&gt;&rsquo;",
+    text:     ["When you have the aircraft facing the right direction, just select it and type &lsquo;i &lt;runway&gt;&rsquo;",
                "with the runway that&rsquo;s in front of it. Once it's close enough to capture the localizer, the assigned altitude on its strip",
                "will change to &lsquo;ILS locked&rsquo; (meaning the aircraft is capable of guiding itself down to the runway via",
                "the Instrument Landing System), and the assigned heading should now show the runway to which it has an approach clearance."
