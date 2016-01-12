@@ -1,0 +1,26 @@
+{
+  "name": "DC-8-70",
+  "icao": "DC87",
+  "wake": "heavy",
+  "rate": {
+    "turn":       1.5,
+    "ascent":     1500,
+    "descent":    2500,
+    "accelerate": 8,
+    "decelerate": 1
+  },
+  "runway": {
+    "takeoff": 4.0,
+    "landing": 4.8
+  },
+  "speed":{
+    "min":     160,
+    "max":     250,
+    "landing": 145,
+    "cruise":  200
+  },
+  "capability": {
+    "ils": true,
+    "fix": true
+  }
+}
