@@ -374,13 +374,15 @@ function radio_heading(heading) {
   } else return heading;
 }
 
-// function radio_cardinalDir(input) {
-//   input = input + "";
-//   input = input.toLowerCase();
-//   var s = [];
-//   for(var i=0;i<input.length;i++) {
-//     var c = radio_cardinalDir_names[input[i]];
-//     if(c) s.push(c);
+function radio_spellOut(alphanumeric) {
+  var str = alphanumeric.toString();
+  var arr = [];
+  if(!str) return;
+  for(var i=0; i<str.length; i++) {
+    arr.push(radio_names[str[i]]);
+  }
+  return arr.join(" ");
+}
 
 function radio_altitude(altitude) {
   var alt_s = altitude.toString();
@@ -409,11 +411,6 @@ function radio_trend(category, measured, target) {
   if(measured > target) return CATEGORIES[category][0];
   if(measured < target) return CATEGORIES[category][1];
   return CATEGORIES[category][2];
-}
-
-function radio_altitude(alt) {
-  if(alt >= 18000) return "flight level " + round(alt/100).toString();
-  else return alt.toString();
 }
 
 function getCardinalDirection(angle) {

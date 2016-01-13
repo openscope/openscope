@@ -950,6 +950,9 @@ var Aircraft=Fiber.extend(function() {
 
         var retval  = this.run(command, data);
         if(retval) {
+          if(!retval[1].hasOwnProperty("log") || !retval[1].hasOwnProperty("say")) {
+            retval = [retval[0],{log:retval[1], say:retval[1]}];
+          }
           response.push(retval[1]);
           if(retval[2]) response_end = retval[2];
         }
@@ -978,8 +981,12 @@ var Aircraft=Fiber.extend(function() {
 
       if(response.length >= 1) {
         if(response_end) response_end = ", " + response_end;
-        ui_log(this.getCallsign() + ", " + response.join(", ") + response_end);
-        speech_say([ {type:"callsign", content:this}, {type:"text", content:response.join(", ") + response_end} ]);
+        
+        var r_log = function f(){var x = [];for(var i=0;i<response.length;i++){x.push(response[i].log)}return x;};
+        var r_say = function f(){var x = [];for(var i=0;i<response.length;i++){x.push(response[i].say)}return x;};
+
+        ui_log(this.getCallsign() + ", " + r_log().join(", ") + response_end);
+        speech_say([ {type:"callsign", content:this}, {type:"text", content:r_say().join(", ") + response_end} ]);
       }
 
       this.updateStrip();
@@ -999,30 +1006,30 @@ var Aircraft=Fiber.extend(function() {
       }
 
       if (!call_func) 
-        return ["fail", "not understood", "say again"];
+        return ["fail", "not understood"];
 
       return this[call_func].apply(this, [data]);
     },
     runHeading: function(data) {
       var split     = data.split(" ");
-      var heading = null;
-      var direction = null;
+      var heading = "";
+      var direction = "";
       switch(split.length) {  //number of elements in 'data'
         case 1: 
           if(isNaN(parseInt(split))) {  //probably using shortKeys
             if(split[0][0] == "\u2BA2") { //using '<250' format
-              direction = "left";
+              direction = "turn left heading ";
               heading = split[0].substr(1); //remove shortKey
             }
             else if (split[0][0] == "\u2BA3") {  //using '>250' format
-              direction = "right";
+              direction = "turn right heading ";
               heading = split[0].substr(1); //remove shortKey
             }
             else if(split[0].substr(0,2).toLowerCase() == "fh") { //using 'fh250' format
               heading = split[0].substr(2); //remove shortKey
             }
             else {  //input is invalid
-              return ["fail", "heading not understood", "say again"];
+              return ["fail", "heading not understood"];
             }
           }
           else {  //using 'turn 250' format (no direction specified)
@@ -1037,11 +1044,11 @@ var Aircraft=Fiber.extend(function() {
           break;
 
         default:  //input formatted incorrectly
-          return ["fail", "heading not understood", "say again"];
+          return ["fail", "heading not understood"];
           break;
       }
 
-      if(isNaN(heading)) return ["fail", "heading not understood", "say again"];
+      if(isNaN(heading)) return ["fail", "heading not understood"];
 
       //Stop doing what you're doing
       if(this.fms.currentWaypoint().navmode == "rwy")
@@ -1055,9 +1062,13 @@ var Aircraft=Fiber.extend(function() {
         hold: false,
       });
 
-      if(direction == null) direction  = "fly heading ";
+      if(!direction) direction  = "fly heading ";
 
-      return ['ok', direction + heading_to_string(this.fms.currentWaypoint().heading)];
+      var readback = {
+        log: direction + heading_to_string(this.fms.currentWaypoint().heading),
+        say: direction + radio_heading(heading_to_string(this.fms.currentWaypoint().heading))
+      };
+      return ['ok', readback];
     },
     runAltitude: function(data) {
       if(data[0] == "\u2B61" || data[0] == "\u2B63") {  //shortKey 'v' or '^' in use
@@ -1083,7 +1094,7 @@ var Aircraft=Fiber.extend(function() {
           this.setCurrent({expedite: true});
           return ['ok', radio_trend('altitude', this.altitude, this.fms.currentWaypoint().altitude) + " " + this.fms.currentWaypoint().altitude + ' expedite'];
         }
-        return ["fail", "altitude not understood", "say again"];
+        return ["fail", "altitude not understood"];
       }
 
       if(this.mode == "landing")
@@ -1100,11 +1111,14 @@ var Aircraft=Fiber.extend(function() {
         expedite: expedite,
       })
 
-      if(expedite) expedite = " expedite";
+      if(expedite) expedite = " and expedite";
       else         expedite = "";
 
-      return ['ok', radio_trend('altitude', this.altitude, this.fms.currentWaypoint().altitude) + ' ' 
-        + radio_altitude(this.fms.currentWaypoint().altitude) + expedite];
+      var readback = {
+        log: radio_trend('altitude', this.altitude, this.fms.currentWaypoint().altitude) + " " + this.fms.currentWaypoint().altitude + expedite,
+        say: radio_trend('altitude', this.altitude, this.fms.currentWaypoint().altitude) + " " + radio_altitude(this.fms.currentWaypoint().altitude) + expedite
+      };
+      return ['ok', readback];
     },
     runSpeed: function(data) {
       if(data[0] == "+" || data[0] == "-") {  //shortKey '+' or '-' in use
@@ -1112,24 +1126,22 @@ var Aircraft=Fiber.extend(function() {
       }
 
       var speed = parseInt(data);
-
-      if(isNaN(speed)) return ["fail", "speed not understood", "say again"];
-
-//      if(this.mode == "landing")
-//        this.cancelLanding();
+      if(isNaN(speed)) return ["fail", "speed not understood"];
 
       this.fms.setAll({speed: clamp(this.model.speed.min,
                                     speed,
                                     this.model.speed.max)});
-
-      return ["ok", radio_trend("speed", this.speed, this.fms.currentWaypoint().speed) + " " + this.fms.currentWaypoint().speed];
-
+      var readback = {
+        log: radio_trend("speed", this.speed, this.fms.currentWaypoint().speed) + " " + this.fms.currentWaypoint().speed,
+        say: radio_trend("speed", this.speed, this.fms.currentWaypoint().speed) + " " + radio_spellOut(this.fms.currentWaypoint().speed)
+      };
+      return ["ok", readback];
     },
     runHold: function(data) {
       var turn = '';
       if("left".indexOf(data) == 0 && data.length >= 1) turn = "left";
       else if("right".indexOf(data) == 0 && data.length >= 1) turn = "right";
-      else return ["fail", "hold direction not understood", "say again"];
+      else return ["fail", "hold direction not understood"];
 
       this.fms.setCurrent({
         navmode: 'hold',
@@ -1147,14 +1159,14 @@ var Aircraft=Fiber.extend(function() {
     },
     runDirect: function(data) {
       if(data.length == 0) {
-        return ["fail", "fix name not understood"];
+        return ["fail", "say again the fix name?"];
       }
 
       var fixname = data.toUpperCase(),
           fix = airport_get().getFix(fixname);
 
       if (!fix) {
-        return ["fail", "no fix found with name of " + fixname, "say again"];
+        return ["fail", "unable to find fix called " + fixname];
       }
 
       // can issue this command if not in fix mode, then will run exactly as with "fix"
@@ -1165,21 +1177,21 @@ var Aircraft=Fiber.extend(function() {
 
       var fix_pos = this.fms.skipToWaypoint(fixname);
       if (fix_pos == -1) {
-        return ["fail", "not navigating to fix " + fixname];
+        return ["fail", "unable to go to " + fixname];
       }
 
       if (fix_pos == 0) {
-        return ["fail", "already going to "+ fixname];
+        return ["fail", "already going direct " + fixname];
       }
 
-      return ["ok", "cleared direct " + fixname];
+      return ["ok", "proceed direct " + fixname];
     },
     runFix: function(data) {
       if(data[0] == ".") { //shortkey '.' in use
         data = data.substr(1);  //remove shortKey
       }
       if(data.length == 0) {
-        return ["fail", "fix name not understood", "say again"];
+        return ["fail", "say again the fix name?"];
       }
 
       data = data.toUpperCase().split(/\s+/);
@@ -1188,7 +1200,7 @@ var Aircraft=Fiber.extend(function() {
           fixes = $.map(data, function(fixname) {
             var fix = airport_get().getFix(fixname);
             if(!fix) {
-              fail = ["fail", "no fix found with name of " + fixname, "say again"];
+              fail = ["fail", "unable to find fix called " + fixname];
               return;
             }
             
@@ -1207,27 +1219,27 @@ var Aircraft=Fiber.extend(function() {
 
       this.fms.setFixes(fixes);
 
-      return ["ok", "navigate to " + fixes.join(', ')];
+      return ["ok", "proceed direct " + fixes.join(', ')];
     },
     runSID: function(data) {
       if(this.category != "departure") {
         return ["fail", "inbound"];
       }
       if(data.length == 0) {
-        return ["fail", "SID name not understood", "say again"];
+        return ["fail", "SID name not understood"];
       }
       
       var sid_name = data.toUpperCase(),
           fixes = airport_get().getSID(sid_name);
       
       if(!fixes) {
-        return ["fail", "no SID found with name of " + sid_name, "say again"];
+        return ["fail", "no SID found with name of " + sid_name];
       }
       
       this.cancelFix();
       this.fms.setFixes(fixes);
 
-      return ["ok", "cleared to destination via " + sid_name];
+      return ["ok", {log: "cleared to destination via "+sid_name, say:"cleared to dest inay shin via "+sid_name}];
     },
     runProceed: function(data) {
       var lastWaypoint = this.fms.waypoints[this.fms.waypoints.length - 1];
@@ -1284,7 +1296,11 @@ var Aircraft=Fiber.extend(function() {
       this.mode = "taxi";
       this.taxi_start = game_time();
 
-      return ["ok", "taxi to runway " + radio_runway(this.fms.currentWaypoint().runway)];
+      var readback = {
+        log: "taxi to runway " + this.fms.currentWaypoint().runway,
+        say: "taxi to runway " + radio_runway(this.fms.currentWaypoint().runway)
+      };
+      return ["ok", readback];
     },
     
     runTakeoff: function(data) {
@@ -1308,8 +1324,11 @@ var Aircraft=Fiber.extend(function() {
         //
         var wind = airport_get().getWind();
         var wind_dir = round(degrees(wind.angle));
-        return ["ok", "wind " + wind_dir + " at " + round(wind.speed) +
-            " knots, runway " + radio_runway(this.fms.currentWaypoint().runway) + ", cleared for takeoff"];
+        var readback = {
+          log: "wind " + wind_dir + " at " + round(wind.speed) + ", runway " + this.fms.currentWaypoint().runway + ", cleared for takeoff",
+          say: "wind " + radio_spellOut(wind_dir) + " at " + radio_spellOut(round(wind.speed)) + ", run way " + radio_runway(this.fms.currentWaypoint().runway) + ", cleared for take off",
+        };
+        return ["ok", readback];
       } else {
         var waiting = runway.isWaiting(this, this.fms.currentWaypoint().runway);
         return ["fail", "number "+waiting+" behind "+runway.waiting[runway.getEnd(this.fms.currentWaypoint().runway)][waiting-1].getRadioCallsign(), ""];
@@ -1323,8 +1342,8 @@ var Aircraft=Fiber.extend(function() {
 
       var runway = airport_get().getRunway(data);
       if(!runway) {
-        if(!data) return ["fail", "runway not understood", "say again"];
-        else      return ["fail", "no runway " + radio_runway(data), "say again"];
+        if(!data) return ["fail", "runway not understood"];
+        else      return ["fail", "there is no runway " + radio_runway(data)];
       }
 
       if(this.fms.currentWaypoint().runway == data.toUpperCase()) {
@@ -1350,30 +1369,37 @@ var Aircraft=Fiber.extend(function() {
         console.log("aborted taxi to runway");
         ui_log(true, this.getCallsign() + " aborted taxi to runway");
         prop.game.score.abort.taxi += 1;
-        return ["ok", "taxi back to terminal"];
+        return ["ok", "taxiing back to terminal"];
       } else if(this.mode == "waiting") {
-        return ["fail", "cannot taxi back to terminal"];
+        return ["fail", "unable to return to the terminal"];
       } else if(this.mode == "landing") {
         this.cancelLanding();
-        return ["ok", "go around, hold heading " + heading_to_string(this.fms.currentWaypoint().heading) + " at " + this.fms.currentWaypoint().altitude + " feet"];
+        var readback = {
+          log: "go around, fly present heading, maintain " + this.fms.currentWaypoint().altitude,
+          say: "go around, fly present heading, maintain " + radio_altitude(this.fms.currentWaypoint().altitude)
+        };
+        return ["ok", readback];
       } else if(this.mode == "cruise" && this.fms.currentWaypoint().navmode == "rwy") {
         this.cancelLanding();
-        return ["ok", "cancel approach clearance, fly heading " + heading_to_string(this.fms.currentWaypoint().heading) + " at " + this.fms.currentWaypoint().altitude + " feet"];
+        var readback = {
+          log: "cancel approach clearance, fly present heading, maintain " + this.fms.currentWaypoint().altitude,
+          say: "cancel approach clearance, fly present heading, maintain " + radio_altitude(this.fms.currentWaypoint().altitude),
+        };
+        return ["ok", readback];
       } else if(this.mode == "cruise" && this.fms.currentWaypoint().navmode == "fix") {
         this.cancelFix();
-        return ["ok", "maintain heading " + heading_to_string(this.fms.currentWaypoint().heading) + " at " + this.fms.currentWaypoint().altitude + " feet"];
+        if(this.category == "arrival") return ["ok", "fly present heading, vector to final approach course"];
+        else if(this.category == "departure") return ["ok", "fly present heading, vector for entrail spacing"];
       } else { //modes "apron", "takeoff", ("cruise" for some navmodes)
-        return ["fail", "nothing to abort"];
+        return ["fail", "unable to abort"];
       }
 
     },
     runDebug: function(data) {
-
       if(data == "log") {
         window.aircraft = this;
-        return ["ok", "in the console, look at the variable &lsquo;aircraft&rsquo;"];
+        return ["ok", {log:"in the console, look at the variable &lsquo;aircraft&rsquo;", say:""}];
       }
-
     },
     cancelFix: function() {
       if(this.fms.currentWaypoint().navmode == "fix") {
@@ -1674,7 +1700,7 @@ var Aircraft=Fiber.extend(function() {
           if (!this.projected)
           {
             ui_log(true, this.getRadioCallsign() + " aborting landing, lost ILS");
-            speech_say([ {type:"callsign", content:this.getRadioCallsign()}, {type:"text", content:" going around"} ])
+            speech_say([ {type:"callsign", content:this}, {type:"text", content:" going around"} ])
             prop.game.score.abort.landing += 1;
           }
         } else {
@@ -1992,7 +2018,7 @@ var Aircraft=Fiber.extend(function() {
                 this.hit = true;
                 console.log("hit terrain");
                 ui_log(true, this.getCallsign() + " collided with terrain in controlled flight");
-                speech_say([ {type:"callsign", content:this.getRadioCallsign()}, {type:"text", content:", we're going down!"} ]);
+                speech_say([ {type:"callsign", content:this}, {type:"text", content:", we're going down!"} ]);
                 prop.game.score.hit += 1;
               }
             } else {
@@ -2351,14 +2377,14 @@ function aircraft_update() {
     if(aircraft.isStopped() && aircraft.category == "arrival") {
       prop.game.score.windy_landing += aircraft.scoreWind('landed');
       ui_log(aircraft.getCallsign() + " switching to ground, good day");
-      speech_say([ {type:"callsign", content:aircraft.getRadioCallsign()}, {type:"text", content:", switching to ground, good day"} ]);
+      speech_say([ {type:"callsign", content:aircraft}, {type:"text", content:", switching to ground, good day"} ]);
       prop.game.score.arrival += 1;
       console.log("arriving aircraft no longer moving");
       remove = true;
     }
     if(aircraft.hit && aircraft.isLanded()) {
       ui_log("Lost radar contact with "+aircraft.getCallsign());
-      speech_say([ {type:"callsign", content:aircraft.getRadioCallsign()}, {type:"text", content:", radar contact lost"} ]);
+      speech_say([ {type:"callsign", content:aircraft}, {type:"text", content:", radar contact lost"} ]);
       console.log("aircraft hit and on the ground");
       remove = true;
     }
