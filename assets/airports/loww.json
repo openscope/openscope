@@ -1,0 +1,191 @@
+{
+  "name": "Vienna International Airport",
+  "level": "medium",
+  "radio": "Vienna",
+  "icao": "LOWW",
+  "iata": "VIE",
+  "ctr_radius": 80,
+  "position": ["N48d6m37.07", "E16d34m10.92"],
+  "rr_radius_nm": 5.0,
+  "rr_center": ["N48d6m37.07", "E16d34m10.92"],
+  "has_terrain": false,
+  "wind": {
+    "angle": 130,
+    "speed": 7
+  },
+  "fixes": {
+    "MIKOV": ["N48d47m05.08", "E16d37m15.61"],
+    "MABOD": ["N48d34m47.00", "E16d41m40.00"],
+    "NATEX": ["N47d44m82.00", "E17d30m00.00"],
+    "PESAT": ["N47d42m53.75", "E17d03m11.37"],
+    "NIGSI": ["N47d22m09.00", "E16d02m10.00"],
+    "BALAD": ["N47d46m00.21", "E16d14m02.56"],
+    "MASUR": ["N48d31m12.35", "E15d26m21.45"],
+    "TEMTA": ["N48d30m27.00", "E15d39m49.00"],
+    "NERDU": ["N48d28m53.39", "E16d05m57.34"],
+
+    "WW669": ["N47d55m46.40", "E16d26m39.74"],
+    "WW667": ["N47d54m31.53", "E16d50m37.01"],
+    "WW666": ["N48d24m21.00", "E16d24m16.00"],
+    "WW665": ["N48d01m09.57", "E16d30m35.57"],
+    "WW664": ["N48d19m06.20", "E16d26m21.72"],
+    "WW663": ["N48d04m42.08", "E16d21m43.48"],
+    "WW661": ["N48d07m15.12", "E16d15m18.46"],
+    "WW658": ["N48d18m25.63", "E16d15m06.57"],
+    "WW655": ["N48d13m46.17", "E15d55m07.08"],
+    "WW654": ["N48d22m46.68", "E16d01m36.63"],
+    "WW653": ["N48d18m16.47", "E15d58m21.58"],
+    "WW651": ["N48d14m01.04", "E16d11m25.92"],
+
+    "WW690": ["N48d29m24.33", "E16d42m27.61"],
+    "WW688": ["N48d14m57.85", "E16d48m30.52"],
+    "WW686": ["N47d52m08.28", "E16d29m43.88"],
+    "WW684": ["N48d00m01.58", "E16d50m07.89"],
+    "WW682": ["N48d06m41.40", "E16d45m00.42"],
+    "WW681": ["N48d17m41.38", "E16d13m19.97"],
+    "WW680": ["N48d13m21.01", "E16d39m51.68"],
+    "WW679": ["N48d19m17.45", "E16d21m47.40"],
+    "WW675": ["N48d29m51.86", "E16d17m15.76"],
+    "WW674": ["N48d32m35.64", "E16d31m44.11"],
+    "WW673": ["N48d31m13.99", "E16d24m29.77"],
+    "WW671": ["N48d22m15.23", "E16d28m16.89"],
+
+    "LANUX": ["N48d43m17.18", "E15d36m56.84"],
+    "LEDVA": ["N48d43m43.64", "E16d47m21.10"],
+    "ADAMA": ["N47d59m16.00", "E17d20m29.00"],
+    "STEIN": ["N47d25m39.41", "E16d35m58.95"],
+    "OSPEN": ["N47d29m07.05", "E15d31m38.71"],
+    "SITNI": ["N48d03m15.22", "E14d50m04.61"],
+
+    "WW101": ["N48d01m28.95", "E16d36m46.19"],
+    "WW160": ["N48d09m12.45", "E16d47m33.07"],
+    "WW162": ["N48d02m30.33", "E16d50m23.55"],
+    "WW170": ["N48d26m25.49", "E16d38m54.85"],
+    "WW171": ["N48d34m10.55", "E15d53m21.14"],
+    "WW172": ["N47d52m19.93", "E15d57m44.67"],
+    "WW173": ["N47d49m28.00", "E15d45m45.45"],
+    "WW178": ["N48d02m40.99", "E15d36m29.02"],
+    "WW268": ["N47d59m13.22", "E16d38m03.79"],
+    "WW275": ["N48d01m39.14", "E16d14m28.20"],
+    "WW390": ["N48d00m49.43", "E17d02m11.52"],
+    "WW668": ["N47d57m34.06", "E16d38m44.80"],
+    "WW648": ["N48d02m59.20", "E16d45m24.67"]
+  },
+  "runways":[
+    {
+      "name":        ["11", "29"],
+      "name_offset": [[0, 0], [0, 0]],
+      "end":    [["N48d7m22.13", "E16d32m00.15"], ["N48d6m32.57", "E16d34m32.3"]],
+      "length":      3.4923,
+      "ils":         [true, true]
+    },
+    {
+      "name":        ["16", "34"],
+      "name_offset": [[0, 0], [0, 0]],
+      "end":    [["N48d7m11.21", "E16d34m41.46"], ["N48d5m19.07", "E16d35m28.87"]],
+      "length":      3.5888,
+      "ils":         [true, true]
+    }
+  ],
+  "departures": {
+    "airlines": [
+      ["aua", 20],
+      ["ber", 15],
+      ["baw", 5],
+      ["dlh", 10],
+      ["ein", 1],
+      ["ryr", 1],
+      ["gwi", 10],
+      ["klm", 5],
+      ["ezy", 8],
+      ["aal/long", 3],
+      ["aca/long", 3],
+      ["sas", 5],
+      ["sa-ual", 5]
+    ],
+    "sids": {
+      "LANUX": ["WW160", "WW170", "WW171", "LANUX"],
+      "LEDVA": ["WW160", "WW170", "LEDVA"],
+      "ADAMA": ["WW162", "WW390", "ADAMA"],
+      "STEIN": ["WW268", "STEIN"],
+      "OSPEN": ["WW101", "WW172", "WW173", "OSPEN"],
+      "SITNI": ["WW101", "WW275", "WW178", "SITNI"]
+    },
+    "destinations": [
+      13, 103, 179, 235, 265, 315
+    ],
+    "type": "random",
+    "offset": 0,
+    "frequency": 30
+  },
+  "arrivals": [
+    {
+      "_name":  "MABOD",
+      "radial":   360,
+      "speed":    250,
+      "fixes":    ["MIKOV", "MABOD"],
+      "airlines":  [
+        ["aua", 10],
+        ["ber", 10],
+        ["dlh", 10],
+        ["gwi", 10],
+        ["sas", 5],
+        ["ezy", 7],
+        ["sa-ual", 5],
+        ["aca/long", 5],
+        ["aal/long", 5]
+      ],
+      "type": "wave",
+      "frequency": 15,
+      "altitude":  10000
+    },
+    {
+      "_name":  "PESAT",
+      "radial":   100,
+      "speed":    250,
+      "fixes":   ["NATEX", "PESAT"],
+      "airlines":  [
+        ["aua", 5],
+        ["ezy", 5],
+        ["ber", 10]
+      ],
+      "type": "random",
+      "frequency": 5,
+      "altitude":  10000
+    },
+    {
+      "_name":  "BALAD",
+      "radial":   202,
+      "speed":    250,
+      "fixes":    ["NIGSI", "BALAD"],
+      "airlines":  [
+        ["aua", 5],
+        ["ezy", 5],
+        ["ber", 10]
+      ],
+      "type": "wave",
+      "frequency": 12,
+      "altitude":  10000
+    },
+    {
+      "_name":  "NERDU",
+      "radial":   280,
+      "speed":    250,
+      "fixes":    ["MASUR", "TEMTA", "NERDU"],
+      "airlines":  [
+        ["ein", 2],
+        ["ryr", 2],
+        ["baw", 4],
+        ["dlh", 3],
+        ["klm", 1],
+        ["aua", 5],
+        ["ezy", 1],
+        ["ber", 5],
+        ["gwi", 5]
+      ],
+      "type": "random",
+      "frequency": 5,
+      "altitude":  10000
+    }
+  ]
+}

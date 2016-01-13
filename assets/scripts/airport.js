@@ -995,6 +995,7 @@ function airport_init() {
   airport_load("eddm");
   airport_load("eidw");
   airport_load("eglc");
+  airport_load("loww");
 
   //  SOUTH AMERICA AIRPORTS
   airport_load("sbgr");

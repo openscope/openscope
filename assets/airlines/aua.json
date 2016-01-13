@@ -1,0 +1,16 @@
+{
+  "name": "Austrian Airlines",
+  "callsign": {
+    "name": "Austrian",
+    "length": 4
+  },
+  "aircraft": [
+    ["A319", 7],
+    ["A320", 16],
+    ["A321", 6],
+    ["B763", 6],
+    ["B77E", 5],
+    ["DH8D", 18],
+    ["F100", 15]
+  ]
+}

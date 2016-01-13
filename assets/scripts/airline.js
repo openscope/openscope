@@ -151,6 +151,7 @@ function airline_init() {
   airline_load("BER");
   airline_load("EZY");
   airline_load("GWI");
+  airline_load("AUA");
 
   // South American
   airline_load("ONE");
