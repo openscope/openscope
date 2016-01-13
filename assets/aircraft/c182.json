@@ -1,7 +1,16 @@
 {
   "name": "Cessna 182 Skylane",
   "icao": "C182",
-  "wake": "light",
+  "engines": {
+    "number": 1,
+    "type": "P"
+  },
+  "weightclass": "S",
+  "category": {
+    "srs": 1,
+    "lahso": 2,
+    "recat": "F"
+  },
   "rate": {
     "ascent":     924,
     "descent":    1820,

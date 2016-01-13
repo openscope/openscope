@@ -1,9 +1,17 @@
 {
   "name": "Cessna 208 Caravan",
   "icao": "C208",
-  "wake": "medium",
+  "engines": {
+    "number": 1,
+    "type": "T"
+  },
+  "weightclass": "S",
+  "category": {
+    "srs": 1,
+    "lahso": 3,
+    "recat": "F"
+  },
   "rate": {
-    "turn":       2.5,
     "ascent":     1700,
     "descent":    2500,
     "accelerate": 8,

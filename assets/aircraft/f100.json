@@ -1,9 +1,17 @@
 {
   "name": "Fokker 100",
   "icao": "F100",
-  "wake": "medium",
+  "engines": {
+    "number": 2,
+    "type": "J"
+  },
+  "weightclass": "L",
+  "category": {
+    "srs": 3,
+    "lahso": 7,
+    "recat": "D"
+  },
   "rate": {
-    "turn":       1.2,
     "ascent":     1100,
     "descent":    1800,
     "accelerate": 6,

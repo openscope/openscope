@@ -1,9 +1,17 @@
 {
   "name": "Boeing 757-300",
   "icao": "B753",
-  "wake": "medium",
+  "engines": {
+    "number": 2,
+    "type": "J"
+  },
+  "weightclass": "L",
+  "category": {
+    "srs": 3,
+    "lahso": 8,
+    "recat": "D"
+  },
   "rate": {
-    "turn":       1.1,
     "ascent":     1800,
     "descent":    2100,
     "accelerate": 8,

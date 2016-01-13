@@ -1,9 +1,17 @@
 {
   "name": "Antonov 72",
   "icao": "AN72",
-  "wake": "medium",
+  "engines": {
+    "number": 2,
+    "type": "J"
+  },
+  "weightclass": "L",
+  "category": {
+    "srs": 3,
+    "lahso": null,
+    "recat": "E"
+  },
   "rate": {
-    "turn":       1.2,
     "ascent":     2100,
     "descent":    1800,
     "accelerate": 8,

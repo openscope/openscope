@@ -1,9 +1,17 @@
 {
   "name": "Boeing 777-300",
   "icao": "B773",
-  "wake": "heavy",
+  "engines": {
+    "number": 2,
+    "type": "J"
+  },
+  "weightclass": "H",
+  "category": {
+    "srs": 3,
+    "lahso": 9,
+    "recat": "B"
+  },
   "rate": {
-    "turn":       0.8,
     "ascent":     1100,
     "descent":    2200,
     "accelerate": 5.5,

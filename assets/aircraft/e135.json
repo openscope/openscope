@@ -1,9 +1,17 @@
 {
   "name": "Embraer Legacy 600",
   "icao": "E135",
-  "wake": "light",
+  "engines": {
+    "number": 2,
+    "type": "J"
+  },
+  "weightclass": "L",
+  "category": {
+    "srs": 3,
+    "lahso": 7,
+    "recat": "E"
+  },
   "rate": {
-    "turn":       3.2,
     "ascent":     2700,
     "descent":    2500,
     "accelerate": 10,

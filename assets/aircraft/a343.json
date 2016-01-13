@@ -1,9 +1,17 @@
 {
   "name": "Airbus A340-300",
   "icao": "A343",
-  "wake": "heavy",
+  "engines": {
+    "number": 4,
+    "type": "J"
+  },
+  "weightclass": "H",
+  "category": {
+    "srs": 3,
+    "lahso": 9,
+    "recat": "B"
+  },
   "rate": {
-    "turn":       0.7,
     "ascent":     1200,
     "descent":    2000,
     "accelerate": 4,

@@ -1,9 +1,17 @@
 {
   "name": "Boeing 767-300",
   "icao": "B763",
-  "wake": "heavy",
+  "engines": {
+    "number": 2,
+    "type": "J"
+  },
+  "weightclass": "H",
+  "category": {
+    "srs": 3,
+    "lahso": 9,
+    "recat": "C"
+  },
   "rate": {
-    "turn":       1.1,
     "ascent":     1500,
     "descent":    2500,
     "accelerate": 7,

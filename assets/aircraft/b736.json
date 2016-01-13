@@ -1,9 +1,17 @@
 {
   "name": "Boeing 737-600",
   "icao": "B736",
-  "wake": "medium",
+  "engines": {
+    "number": 2,
+    "type": "J"
+  },
+  "weightclass": "L",
+  "category": {
+    "srs": 3,
+    "lahso": 7,
+    "recat": "D"
+  },
   "rate": {
-    "turn":       1.4,
     "ascent":     1600,
     "descent":    2100,
     "accelerate": 7,

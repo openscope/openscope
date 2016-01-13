@@ -1,7 +1,16 @@
 {
   "name": "Antonov 24",
   "icao": "AN24",
-  "wake": "medium",
+  "engines": {
+    "number": 2,
+    "type": "T"
+  },
+  "weightclass": "L",
+  "category": {
+    "srs": 3,
+    "lahso": null,
+    "recat": "D"
+  },
   "rate": {
     "turn":       1.0,
     "ascent":     1800,

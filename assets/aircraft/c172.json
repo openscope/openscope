@@ -1,7 +1,16 @@
 {
   "name": "Cessna 172 Skyhawk",
   "icao": "C172",
-  "wake": "light",
+  "engines": {
+    "number": 1,
+    "type": "P"
+  },
+  "weightclass": "S",
+  "category": {
+    "srs": 1,
+    "lahso": 1,
+    "recat": "F"
+  },
   "rate": {
     "ascent":     730,
     "descent":    1460,

@@ -1,9 +1,17 @@
 {
   "name": "Boeing 747-400",
   "icao": "B744",
-  "wake": "heavy",
+  "engines": {
+    "number": 4,
+    "type": "J"
+  },
+  "weightclass": "H",
+  "category": {
+    "srs": 3,
+    "lahso": 10,
+    "recat": "B"
+  },
   "rate": {
-    "turn":       0.8,
     "ascent":     1000,
     "descent":    2000,
     "accelerate": 4,

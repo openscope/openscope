@@ -1,9 +1,17 @@
 {
   "name": "Cessna Citation Mustang",
   "icao": "C510",
-  "wake": "light",
+  "engines": {
+    "number": 2,
+    "type": "J"
+  },
+  "weightclass": "S",
+  "category": {
+    "srs": 3,
+    "lahso": null,
+    "recat": "F"
+  },
   "rate": {
-    "turn":       4.3,
     "ascent":     2500,
     "descent":    3000,
     "accelerate": 10,
