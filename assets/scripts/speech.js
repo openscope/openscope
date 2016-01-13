@@ -10,11 +10,30 @@ function speech_init() {
   }
 }
 
-function speech_say(textToSay) {
+function speech_say(sentence) {
   if(prop.speech.synthesis != null && prop.speech.enabled) {
-    // Split numbers into individual digits e.g. Speedbird 666 -> Speedbird 6 6 6
-    textToSay = textToSay.replace(/[0-9]/g, "$& ").replace(/\s0/g, " zero");
-    prop.speech.synthesis.speak(new SpeechSynthesisUtterance(textToSay));
+    var textToSay = "";
+    for(var i=0; i<sentence.length; i++) {
+      switch(sentence[i].type) {
+        case "callsign":
+          textToSay += " " + sentence[i].content.getRadioCallsign() + " "; break;
+        case "altitude":
+          textToSay += " " + radio_altitude(sentence[i].content) + " "; break;
+        case "speed": case "heading":
+          textToSay += " " + radio_heading(sentence[i].content) + " "; break;
+        case "text":
+          textToSay += " " + sentence[i].content + " "; break;
+        default:
+          break;
+      }
+    }
+
+    var utterance = new SpeechSynthesisUtterance(textToSay); // make the object
+    utterance.lang = "en-US"; // set the language
+    utterance.voice = prop.speech.synthesis.getVoices().filter(function(voice) {
+      return voice.name == 'Google US English'; })[0];   //set the voice
+    utterance.rate = 1.125; // speed up just a touch
+    prop.speech.synthesis.speak(utterance);  // say the words
   }
 }
 

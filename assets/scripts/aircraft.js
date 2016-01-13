@@ -652,17 +652,10 @@ var Aircraft=Fiber.extend(function() {
 
       if(options.message) {
         if(this.category == "arrival" && aircraft_visible(this) && !this.inside_ctr) {
-          if(this.altitude != this.requested.altitude) {
-            if(this.altitude > this.requested.altitude) var alt = "descending through "
-              + radio_altitude(this.altitude) + " for " + radio_altitude(this.requested.altitude);
-            else var alt = " climbing through " + radio_altitude(this.altitude) + " for "
-              + radio_altitude(this.requested.altitude);
-          }
-        else var alt = "at " + radio_altitude(this.altitude);
-          ui_log(airport_get().radio.app+", "+this.getRadioCallsign()+" with you "+alt);
+          this.callUp();
           this.inside_ctr = true;
         } else if(this.category == "departure") {
-          ui_log(airport_get().radio.twr + ', ' + this.getRadioCallsign() + ", ready to taxi");
+          this.callUp();
         }
       }
 
@@ -715,17 +708,7 @@ var Aircraft=Fiber.extend(function() {
       // Crossing into the center
       if (inbound) {
         this.showStrip();
-        if (this.category == "arrival") {
-          var altdiff = this.altitude - this.fms.currentWaypoint().altitude;
-          var altitude = " ";
-          if (abs(altdiff) > 200) {
-            if(altdiff>0) altitude += "descending through " + this.altitude + " for " + this.fms.currentWaypoint().altitude;
-            else altitude += "climbing through " + this.altitude + " for " + this.fms.currentWaypoint().altitude;
-          } else {
-            altitude += " with you at " + radio_altitude(this.altitude);
-          }
-          this.radioCall(altitude, "app");
-        }
+        this.callUp();
       }
       // Leaving the center
       else {
@@ -995,7 +978,8 @@ var Aircraft=Fiber.extend(function() {
 
       if(response.length >= 1) {
         if(response_end) response_end = ", " + response_end;
-        ui_log(this.getRadioCallsign() + ", " + response.join(", ") + response_end);
+        ui_log(this.getCallsign() + ", " + response.join(", ") + response_end);
+        speech_say([ {type:"callsign", content:this}, {type:"text", content:response.join(", ") + response_end} ]);
       }
 
       this.updateStrip();
@@ -1047,8 +1031,8 @@ var Aircraft=Fiber.extend(function() {
           break;
 
         case 2: //using 'turn r 250' format
-          if(split[0] === "l") direction = "left";
-          else if (split[0] === "r" ) direction = "right";
+          if(split[0] === "l") direction = "turn left heading ";
+          else if (split[0] === "r" ) direction = "turn right heading ";
           heading = parseInt(split[1]);
           break;
 
@@ -1071,10 +1055,9 @@ var Aircraft=Fiber.extend(function() {
         hold: false,
       });
 
-      if(direction == null) direction  = "";
-      else direction += " ";
+      if(direction == null) direction  = "fly heading ";
 
-      return ['ok', 'turn ' + direction + 'heading ' + heading_to_string(this.fms.currentWaypoint().heading), ''];
+      return ['ok', direction + heading_to_string(this.fms.currentWaypoint().heading)];
     },
     runAltitude: function(data) {
       if(data[0] == "\u2B61" || data[0] == "\u2B63") {  //shortKey 'v' or '^' in use
@@ -1325,8 +1308,8 @@ var Aircraft=Fiber.extend(function() {
         //
         var wind = airport_get().getWind();
         var wind_dir = round(degrees(wind.angle));
-        return ["ok", "wind " + radio_heading(wind_dir) + " at " + round(wind.speed) +
-            " knots, runway " + radio_runway(this.fms.currentWaypoint().runway) + " cleared for takeoff"];
+        return ["ok", "wind " + wind_dir + " at " + round(wind.speed) +
+            " knots, runway " + radio_runway(this.fms.currentWaypoint().runway) + ", cleared for takeoff"];
       } else {
         var waiting = runway.isWaiting(this, this.fms.currentWaypoint().runway);
         return ["fail", "number "+waiting+" behind "+runway.waiting[runway.getEnd(this.fms.currentWaypoint().runway)][waiting-1].getRadioCallsign(), ""];
@@ -1357,7 +1340,7 @@ var Aircraft=Fiber.extend(function() {
 
       var wind = airport_get().getWind();
       var wind_dir = round(degrees(wind.angle));
-      return ["ok", "wind " + radio_heading(wind_dir) + " at " + round(wind.speed) +
+      return ["ok", "wind " + wind_dir + " at " + round(wind.speed) +
           " knots, runway " + radio_runway(this.fms.currentWaypoint().runway) + " cleared to land" ];
     },
     runAbort: function(data) {
@@ -1545,11 +1528,36 @@ var Aircraft=Fiber.extend(function() {
     radioCall: function(msg, sectorType, alert) {
       if (this.projected) return;
       var call = airport_get().radio[sectorType] + ", " +
-        this.getRadioCallsign() + " " +msg;
+        this.callsign + " " +msg;
       if (alert)
         ui_log(true, call);
       else
         ui_log(call);
+    },
+    callUp: function() {
+      if(this.category == "arrival") {
+        var altdiff = this.altitude - this.fms.currentWaypoint().altitude;
+        if(Math.abs(altdiff) > 200) {
+          if(altdiff > 0) {
+            var alt_log = "descending through " + this.altitude + " for " + this.requested.altitude;
+            var alt_say = "descending through " + radio_altitude(this.altitude) + " for " + radio_altitude(this.requested.altitude);
+          }
+          else if(altdiff < 0) {
+            var alt_log = " climbing through " + this.altitude + " for " + this.requested.altitude;
+            var alt_say = " climbing through " + radio_altitude(this.altitude) + " for " + radio_altitude(this.requested.altitude);
+          }
+        }
+        else {
+          var alt_log = "at " + this.altitude;
+          var alt_say = "at " + radio_altitude(this.altitude);
+        }
+        ui_log(airport_get().radio.app + ", " + this.getCallsign() + " with you " + alt_log);
+        speech_say([ {type:"text", content:airport_get().radio.app+", "}, {type:"callsign", content:this}, {type:"text", content:"with you " + alt_say} ]);
+      }
+      if(this.category == "departure") {
+        ui_log(airport_get().radio.twr + ', ' + this.getCallsign() + ", ready to taxi");
+        speech_say( [{type:"text", content: airport_get().radio.twr}, {type:"callsign", content:this}, {type:"text", content:", ready to taxi"}] );
+      }
     },
     scoreWind: function(action) {
       var score = 0;
@@ -1665,8 +1673,8 @@ var Aircraft=Fiber.extend(function() {
           this.cancelLanding();
           if (!this.projected)
           {
-            ui_log(true,
-                   this.getRadioCallsign() + " aborting landing, lost ILS");
+            ui_log(true, this.getRadioCallsign() + " aborting landing, lost ILS");
+            speech_say([ {type:"callsign", content:this.getRadioCallsign()}, {type:"text", content:" going around"} ])
             prop.game.score.abort.landing += 1;
           }
         } else {
@@ -1742,7 +1750,8 @@ var Aircraft=Fiber.extend(function() {
             (runway.isWaiting(this, this.fms.currentWaypoint().runway) == 0) &&
             (was_taxi == true))
         {
-          ui_log(this.getRadioCallsign(), " holding short of runway "+radio_runway(this.fms.currentWaypoint().runway));
+          ui_log(this.getCallsign(), " holding short of runway "+this.fms.currentWaypoint().runway);
+          speech_say([ {type:"callsign", content:this}, {type:"text", content:"holding short of runway "+radio_runway(this.fms.currentWaypoint().runway)} ]);
           this.updateStrip();
         }
       }
@@ -1983,6 +1992,7 @@ var Aircraft=Fiber.extend(function() {
                 this.hit = true;
                 console.log("hit terrain");
                 ui_log(true, this.getCallsign() + " collided with terrain in controlled flight");
+                speech_say([ {type:"callsign", content:this.getRadioCallsign()}, {type:"text", content:", we're going down!"} ]);
                 prop.game.score.hit += 1;
               }
             } else {
@@ -2340,13 +2350,15 @@ function aircraft_update() {
     var is_visible = aircraft_visible(aircraft);
     if(aircraft.isStopped() && aircraft.category == "arrival") {
       prop.game.score.windy_landing += aircraft.scoreWind('landed');
-      ui_log(aircraft.getRadioCallsign() + " switching to ground, good day");
+      ui_log(aircraft.getCallsign() + " switching to ground, good day");
+      speech_say([ {type:"callsign", content:aircraft.getRadioCallsign()}, {type:"text", content:", switching to ground, good day"} ]);
       prop.game.score.arrival += 1;
       console.log("arriving aircraft no longer moving");
       remove = true;
     }
     if(aircraft.hit && aircraft.isLanded()) {
       ui_log("Lost radar contact with "+aircraft.getCallsign());
+      speech_say([ {type:"callsign", content:aircraft.getRadioCallsign()}, {type:"text", content:", radar contact lost"} ]);
       console.log("aircraft hit and on the ground");
       remove = true;
     }
