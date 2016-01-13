@@ -9,7 +9,8 @@ title: Aircraft Separation rules
 
 While in flight if there is not a more specific rule which applies
 then aircraft must be separated by at least 3nm laterally or 1000 feet
-vertically.
+vertically.  No separation incidents are registered for aircraft in
+their first minute of flight.
 
 A notice will occur for aircraft which do not have sufficient vertical
 separation and are within 4nm laterally.
