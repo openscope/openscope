@@ -162,7 +162,7 @@ function airline_init() {
   airline_load("EMBRAER");
   airline_load("ARG");
 
-  // Russian
+  // Asian
   airline_load("AFL");
   airline_load("MOV");
   airline_load("RLU");
@@ -171,6 +171,12 @@ function airline_init() {
   airline_load("TYA");
   airline_load("ASA");
   airline_load("SWA");
+  
+  // Asian
+  airline_load("CES");
+  airline_load("CPA");
+  airline_load("CSN");
+  airline_load("HDA");
 
   // Cargo Airlines
   airline_load("FDX");

@@ -1,0 +1,18 @@
+{
+  "name": "China Eastern Airlines",
+  "callsign": {
+    "name": "China Eastern",
+    "length": 4
+  },
+  "aircraft": [
+    ["A319", 36],
+    ["A320", 160],
+    ["A321", 47],
+    ["A332", 29],
+    ["A333", 15],
+    ["B734", 10],
+    ["B737", 45],
+    ["B738", 60],
+    ["B77W", 9]
+  ]
+}

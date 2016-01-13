@@ -1,0 +1,194 @@
+{ 
+  "name": "Hong Kong Chep Lap Kok International Airport",
+  "level": "medium",
+  "radio": "Hong Kong",
+  "icao": "VHHH",
+  "iata": "HKG",
+  "ctr_radius": 80,
+  "position": ["N22d18m32.11", "E113d54m52.57"],
+  "rr_radius_nm": 5.0,
+  "rr_center": ["N22d18m32.11", "E113d54m52.57"],
+  "has_terrain": false,
+  "wind": {
+    "angle": 250,
+    "speed": 5
+  },
+  "fixes": {
+    "TD": ["N22d14m52.42", "E114d17m35.30"],
+    "GLN": ["N22d42m30.00", "E114d2m12.00"],
+    "LKC": ["N22d22m44.00", "E113d53m1.00"],
+    "MCU": ["N22d8m8.00", "E113d35m52.00"],
+    "NLG": ["N22d31m54.00", "E113d33m48.00"],
+    "SHK": ["N22d29m54.00", "E113d54m6.00"],
+    "ZAO": ["N22d14m43.00", "E113d36m54.00"],
+    "ZUH": ["N22d13m18.00", "E113d28m0.00"],
+    
+    "BEKOL": ["N22d32m36.00", "E114d08m00.00"],
+    "LAKES": ["N21d58m41.30", "E114d54m38.60"],
+    "OCEAN": ["N21d48m43.00", "E114d48m48.00"],
+    "PECAN": ["N21d26m20.19", "E114d02m05.64"],
+    "IDUMA": ["N22d53m42.00", "E113d57m12.00"],
+    "UBLIM": ["N22d53m18.00", "E113d40m12.00"],
+    "SAREX": ["N22d52m54.00", "E113d28m60.00"],
+    "VIBOS": ["N22d37m30.00", "E113d19m42.00"],
+    "SIERA": ["N21d59m06.00", "E113d33m12.00"],
+    "ROMEO": ["N21d51m54.00", "E113d27m23.00"],
+    "KEVAR": ["N22d37m30.00", "E113d48m36.00"],
+
+    "PRAWN": ["N22d16m05.40", "E113d48m40.10"],
+    "RUMSY": ["N22d04m56.94", "E113d48m16.79"],
+    "TUNNA": ["N21d47m25.00", "E113d57m54.00"],
+    "SAMON": ["N21d54m23.73", "E114d12m32.95"],
+    "TROUT": ["N21d47m54.87", "E114d16m12.74"],
+    "TITAN": ["N21d40m27.40", "E114d03m02.52"],
+    "ABBEY": ["N22d16m11.00", "E114d55m25.92"],
+    "BETTY": ["N21d29m10.82", "E114d33m31.92"],
+    "CANTO": ["N21d39m02.63", "E113d42m25.09"],
+
+    "ALAPI": ["N22d09m52.88", "E114d12m13.09"],
+    "GOODI": ["N22d04m09.88", "E113d59m48.59"],
+    "GUAVA": ["N22d09m36.10", "E114d03m36.30"],
+    "MANGO": ["N21d36m49.00", "E114d30m53.00"],
+    "MONTY": ["N22d10m06.26", "E114d19m15.68"],
+    "MURRY": ["N21d45m28.37", "E113d48m41.97"],
+    "MUSEL": ["N22d15m53.99", "E114d46m52.13"],
+    "TAMAR": ["N22d15m21.00", "E114d30m37.00"],
+    "VH530": ["N21d57m05.86", "E113d55m36.22"],
+
+    "LUDLA": ["N22d13m40.79", "E114d04m28.75"],
+    "LAMMA": ["N22d16m55.61", "E114d05m10.55"],
+    "VH533": ["N22d19m53.47", "E114d04m36.72"],
+    "VH535": ["N22d20m35.60", "E113d59m51.03"],
+    "VH544": ["N22d20m34.67", "E114d02m35.68"],
+    "VH545": ["N22d19m49.44", "E114d00m15.00"],
+    "VH547": ["N22d03m16.39", "E113d53m26.74"],
+    "VH520": ["N22d18m16.92", "E113d52m43.28"],
+    "VH521": ["N22d24m01.66", "E113d56m35.63"],
+    "BISON": ["N22d29m07.41", "E114d12m28.76"],
+
+    "MIRRS": ["N22d24m17.10", "E114d14m09.30"],
+    "LOTUS": ["N22d23m18.26", "E114d11m05.60"],
+    "VH543": ["N22d21m43.43", "E114d06m09.82"],
+    "PEBEL": ["N22d22m43.93", "E114d14m48.38"],
+    "HAMOK": ["N22d26m24.62", "E114d18m02.86"],
+    "PLOVE": ["N22d25m06.30", "E114d13m57.90"],
+    "RIVER": ["N22d24m07.55", "E114d10m54.23"],
+    "VH512": ["N22d22m52.32", "E114d06m59.63"],
+    "VH513": ["N22d22m13.05", "E114d04m57.24"],
+    "VH514": ["N22d21m14.10", "E114d01m53.68"],
+
+    "SOKOE": ["N22d04m41.20", "E113d50m38.10"],
+    "LIMES": ["N22d06m25.60", "E113d46m32.60"],
+    "ARGON": ["N22d11m52.56", "E113d43m47.67"],
+    "CEDAR": ["N22d16m12.55", "E113d46m18.12"],
+    "DEDEE": ["N22d23m12.70", "E114d01m03.67"],
+    "VH753": ["N22d25m36.92", "E114d03m36.03"],
+    "VH754": ["N22d27m24.31", "E114d10m10.70"],
+    "VH720": ["N22d15m05.94", "E113d45m39.56"],
+    "VH711": ["N22d17m04.63", "E113d48m59.26"]
+  },
+  "runways":[
+    {
+      "name": ["07L", "25R"],
+      "name_offset": [[0, 0], [0, 0]],
+      "end":    [["N22d18m37.73", "E113d53m46.99"], ["N22d19m18.15", "E113d55m52.44"]],
+      "length": 3.8,
+      "ils": [true, true]
+    },
+    {
+      "name": ["07R", "25L"],
+      "name_offset": [[0, 0], [0, 0]],
+      "end":    [["N22d17m46.6", "E113d53m52.75"], ["N22d18m27.03", "E113d55m58.2"]],
+      "length": 3.8,
+      "ils": [true, true]
+    }
+  ],
+  "departures": {
+    "airlines": [
+      ["cpa", 30],
+      ["ces", 15],
+      ["csn", 15],
+      ["hda", 10],
+      ["aca/long", 5],
+      ["sa-afr", 4],
+      ["sa-baw", 5],
+      ["sa-cca", 10],
+      ["sa-dlh", 5],
+      ["sa-kal", 3],
+      ["sa-ual", 1],
+      ["sa-uae", 1]
+    ],
+    "sids": {
+      "BEKOL": ["PRAWN", "RUMSY", "TUNNA", "SAMON", "BEKOL", "IDUMA"],
+      "LAKES": ["PRAWN", "RUMSY", "TUNNA", "TROUT", "LAKES"],
+      "OCEAN": ["PRAWN", "RUMSY", "TUNNA", "TROUT", "OCEAN"],
+      "PECAN": ["PRAWN", "RUMSY", "TUNNA", "TITAN", "PECAN"]
+    },
+    "destinations": [
+      128, 135, 170, 357
+    ],
+    "type": "random",
+    "offset": 0,
+    "frequency": 30
+  },
+  "arrivals": [
+    {
+      "_name":  "ABBEY",
+      "radial":   90,
+      "speed":    250,
+      "fixes":    ["ABBEY", "MUSEL", "TAMAR"],
+      "airlines":  [
+        ["cpa", 30],
+        ["ces", 10],
+        ["csn", 10],
+        ["hda", 10],
+        ["aca/long", 5],
+        ["sa-cca", 10],
+        ["sa-ual", 3],
+        ["sa-kal", 3]
+      ],
+      "type": "wave",
+      "frequency": 15,
+      "altitude":  10000
+    },
+    {
+      "_name":  "BETTY",
+      "radial":   140,
+      "speed":    250,
+      "fixes":   ["BETTY", "MANGO", "MONTY"],
+      "airlines":  [
+        ["cpa", 30],
+        ["ces", 10],
+        ["csn", 10],
+        ["hda", 10],
+        ["aca/long", 5],
+        ["sa-cca", 10],
+        ["sa-ual", 3],
+        ["sa-kal", 3]
+      ],
+      "type": "random",
+      "frequency": 5,
+      "altitude":  10000
+    },
+    {
+      "_name":  "CANTO",
+      "radial":   200,
+      "speed":    250,
+      "fixes":    ["CANTO", "MURRY", "VH530", "GOODI"],
+      "airlines":  [
+        ["cpa", 30],
+        ["ces", 15],
+        ["csn", 15],
+        ["hda", 10],
+        ["sa-afr", 4],
+        ["sa-baw", 5],
+        ["sa-cca", 10],
+        ["sa-dlh", 5],
+        ["sa-uae", 1]
+      ],
+      "type": "wave",
+      "frequency": 12,
+      "altitude":  10000
+    }
+  ]
+}

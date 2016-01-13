@@ -1,0 +1,12 @@
+{
+  "name": "Dragonair",
+  "callsign": {
+    "name": "Dragon",
+    "length": 3
+  },
+  "aircraft": [
+    ["A320", 15],
+    ["A321", 8],
+    ["A333", 18]
+  ]
+}
