@@ -1090,7 +1090,6 @@ var Aircraft=Fiber.extend(function() {
       var expedite = false;
       data = split[0];
 
-
       function isExpedite(s) {
         if((s.length >= 1 && "expedite".indexOf(s) == 0) || s == "x") return true;
         return false;
@@ -1101,14 +1100,10 @@ var Aircraft=Fiber.extend(function() {
       }
 
       if(isNaN(altitude)) {
-        // if(split[0][0] == "v" || split[0][0] == "^") {
-        //   altitude = parseInt(split[0].substr(1));  //remove shortKey
-        // }
         if(isExpedite(split[0])) {
           this.setCurrent({expedite: true});
           if(this.isTakeoff())
             return ['ok', 'after departure, ' + radio_trend('altitude', this.altitude, this.fms.currentWaypoint().altitude) + " " + this.fms.currentWaypoint().altitude + ' expedite'];
-
           return ['ok', radio_trend('altitude', this.altitude, this.fms.currentWaypoint().altitude) + " " + this.fms.currentWaypoint().altitude + ' expedite'];
         }
         return ["fail", "altitude not understood", "say again"];
@@ -1117,15 +1112,11 @@ var Aircraft=Fiber.extend(function() {
       if(this.mode == "landing")
         this.cancelLanding();
 
-      var digits = altitude.toString().length;
-      if(digits == 1) altitude *= 1000;
-      else if(digits == 2) altitude *= 100;
-      else if(digits == 3) altitude *= 100;
-      else if(digits == 4) altitude *= 1;
-
       var ceiling = airport_get().ctr_ceiling;
       if (prop.game.option.get('softCeiling') == 'yes')
         ceiling += 1000;
+
+      altitude *= 100;
 
       this.fms.setAll({
         altitude: clamp(1000, altitude, ceiling),
@@ -1137,7 +1128,6 @@ var Aircraft=Fiber.extend(function() {
 
       if(this.isTakeoff())
         return ['ok', 'after departure, ' + radio_trend('altitude', this.altitude, this.fms.currentWaypoint().altitude) + ' ' + this.fms.currentWaypoint().altitude + expedite];
-
       return ['ok', radio_trend('altitude', this.altitude, this.fms.currentWaypoint().altitude) + ' ' + this.fms.currentWaypoint().altitude + expedite];
     },
     runSpeed: function(data) {
