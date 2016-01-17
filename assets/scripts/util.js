@@ -337,8 +337,8 @@ function radio_trend(category, measured, target) {
 }
 
 function radio_altitude(alt) {
-  if(alt >= 18000) return "flight level " + parseInt(alt.toString().substr(0,3));
-  else return alt;
+  if(alt >= 18000) return "flight level " + round(alt/100).toString();
+  else return alt.toString();
 }
 
 function getCardinalDirection(angle) {
