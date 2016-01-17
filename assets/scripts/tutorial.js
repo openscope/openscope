@@ -78,8 +78,8 @@ function tutorial_init_pre() {
   tutorial_step({
     title:    "Takeoff, part 1",
     text:     ["When it appears at the start of runway {RUNWAY} (which may take a couple of seconds), click it (or press the up arrow once)",
-               "and type in &lsquo;climb 5000&rsquo;. This clears the aircraft to climb to five thousand",
-               "feet after it takes off. (This step must be done before clearing the aircraft for take off, just as in real life.)"
+               "and type in &lsquo;climb 50&rsquo;. This clears the aircraft to climb to five thousand",
+               "feet after it takes off. (This step must be done before clearing the aircraft for takeoff, just as in real life.)"
                ].join(" "),
     parse:    function(t) {
       return t.replace("{RUNWAY}", prop.aircraft.list[0].fms.currentWaypoint().runway);
@@ -166,8 +166,8 @@ function tutorial_init_pre() {
     text:     ["You can assign altitudes with the &lsquo;climb&rsquo; command, or any of its aliases (other words that",
                "act identically). Running the command &lsquo;climb&rsquo; is the same as the commands &lsquo;descend&rsquo;, &lsquo;d&rsquo;,",
                "&lsquo;clear&rsquo;, &lsquo;c&rsquo;, &lsquo;altitude&rsquo;, or &lsquo;a&rsquo;. Just use whichever feels correct in your situation.",
-               "You may enter altitudes in feet, hundreds of feet, or thousands of feet (eg. &lsquo;climb 5&rsquo; = &lsquo;climb 50&rsquo;",
-               " = &lsquo;climb 5000&rsquo;)."
+               "Remember, just as in real ATC, altitudes are ALWAYS written in hundreds of feet, eg. &lsquo;descend 30&rsquo; for 3,000ft or &lsquo;climb",
+               " 100&rsquo; for 10,000ft."
                ].join(" "),
     parse:    function(t) {
       return t.replace("{CALLSIGN}", prop.aircraft.list[0].getCallsign());
