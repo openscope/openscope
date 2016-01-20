@@ -171,8 +171,8 @@ zlsa.atc.Conflict = Fiber.extend(function() {
         }
         else
         {
-          conflict = (this.distance < 5.2); // 2.8nm
-          violation = (this.distance < 4.6); // 2.5nm
+          conflict = (this.distance < km(2.8));   // 2.8nm
+          violation = (this.distance < km(2.5));  // 2.5nm
         }
       }
       // Standard separation
@@ -191,13 +191,13 @@ zlsa.atc.Conflict = Fiber.extend(function() {
 
         // Check for diverging separation based on heading difference
         // and being close enough that it may apply.
-        if ((this.distance <= 7.4) && (offset >= radians(15)))
+        if ((this.distance <= km(4)) && (offset >= radians(15)))
         {
           // Opposing courses simply check the distance is increasing
           if (offset > radians(165)) {
             if (this.distance_delta <= 0) {
               conflict = true;
-              violation = (this.distance < 5.6); // 3nm
+              violation = (this.distance < km(3)); // 3nm
             }
           }
           else {
@@ -214,13 +214,13 @@ zlsa.atc.Conflict = Fiber.extend(function() {
             // Check if both aircraft still have to fly a positive distance
             if ((u >= 0) && (v >= 0)) {
               conflict = true;
-              violation = (this.distance < 5.6); // 3nm
+              violation = (this.distance < km(3)); // 3nm
             }
           }
         }
         else {
-          conflict = (this.distance < 7.4); // 4nm
-          violation = (this.distance < 5.6); // 3nm
+          conflict = (this.distance < km(4)); // 4nm
+          violation = (this.distance < km(3)); // 3nm
         }
       }
 
@@ -671,8 +671,8 @@ var Aircraft=Fiber.extend(function() {
       });
 
       this.html.dblclick(this, function (e) {
-        prop.canvas.panX = 0 - round(km(e.data.position[0]));
-        prop.canvas.panY = round(km(e.data.position[1]));
+        prop.canvas.panX = 0 - round(km_to_px(e.data.position[0]));
+        prop.canvas.panY = round(km_to_px(e.data.position[1]));
         prop.canvas.dirty = true;
       });
       if (this.category == "arrival")

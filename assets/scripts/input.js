@@ -83,15 +83,15 @@ function input_init() {
       var position = [e.pageX, -e.pageY];
       position[0] -= prop.canvas.size.width / 2;
       position[1] += prop.canvas.size.height / 2;
-      var nearest = aircraft_get_nearest([pixels_to_km(position[0] - prop.canvas.panX), pixels_to_km(position[1] + prop.canvas.panY)]);
+      var nearest = aircraft_get_nearest([px_to_km(position[0] - prop.canvas.panX), px_to_km(position[1] + prop.canvas.panY)]);
       if(nearest[0]) {
-        if(nearest[1] < pixels_to_km(80)) {
+        if(nearest[1] < px_to_km(80)) {
           input_select(nearest[0].getCallsign().toUpperCase());
         } else {
           input_select();
         }
       }
-      position = [pixels_to_km(position[0]), pixels_to_km(position[1])];
+      position = [px_to_km(position[0]), px_to_km(position[1])];
       position[0] = parseFloat(position[0].toFixed(2));
       position[1] = parseFloat(position[1].toFixed(2));
       prop.input.positions += "["+position.join(",")+"]";
