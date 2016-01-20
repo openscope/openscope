@@ -2241,7 +2241,6 @@ function aircraft_init() {
 }
 
 function aircraft_generate_callsign(airline_name) {
-  console.log("aircraft_generate_callsign:" + airline_name );
   var airline = airline_get(airline_name);
   if(!airline) {
     console.warn("Airline not found:" + airline_name);
@@ -2284,7 +2283,7 @@ function aircraft_new(options) {
 
   prop.aircraft.list.push(aircraft);
 
-  console.log("adding " + options.category + " aircraft, callsign " + aircraft.getCallsign());
+  console.log("Spawning " + options.category + " : " + aircraft.getCallsign());
 }
 
 function aircraft_load(icao) {
