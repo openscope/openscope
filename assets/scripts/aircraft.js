@@ -656,7 +656,7 @@ var Aircraft=Fiber.extend(function() {
           var distance = round(vlen(this.position) * 0.62);
           position += distance + " mile" + s(distance);
           var angle = vradial(this.position);
-          position += " " + radio_compass(compass_direction(angle));
+          position += " " + radio_cardinalDir(getCardinalDirection(angle));
           ui_log(airport_get().radio+" tower, "+this.getRadioCallsign()+" in your airspace "+position+", over");
           this.inside_ctr = true;
         } else if(this.category == "departure") {
@@ -717,7 +717,7 @@ var Aircraft=Fiber.extend(function() {
           var position = "";
           var distance = round(this.distance * 0.62);
           position += distance + " mile" + s(distance);
-          position += " " + radio_compass(compass_direction(this.radial));
+          position += " " + radio_cardinalDir(getCardinalDirection(this.radial));
           var altitude = " ";
           if (abs(this.altitude - this.fms.currentWaypoint().altitude) > 100) {
             altitude += "leaving " + (Math.floor(this.altitude / 100) * 100) +
@@ -782,7 +782,7 @@ var Aircraft=Fiber.extend(function() {
         var length = 2;
         callsign = callsign.substr(callsign.length - length);
       }
-      return airline_get(this.airline).callsign + " " + radio(callsign.toUpperCase()) + heavy;
+      return airline_get(this.airline).callsign + " " + radio_spellOut(callsign) + heavy;
     },
     hideStrip: function() {
       this.html.hide(600);
@@ -1090,7 +1090,6 @@ var Aircraft=Fiber.extend(function() {
       var expedite = false;
       data = split[0];
 
-
       function isExpedite(s) {
         if((s.length >= 1 && "expedite".indexOf(s) == 0) || s == "x") return true;
         return false;
@@ -1101,14 +1100,10 @@ var Aircraft=Fiber.extend(function() {
       }
 
       if(isNaN(altitude)) {
-        // if(split[0][0] == "v" || split[0][0] == "^") {
-        //   altitude = parseInt(split[0].substr(1));  //remove shortKey
-        // }
         if(isExpedite(split[0])) {
           this.setCurrent({expedite: true});
           if(this.isTakeoff())
             return ['ok', 'after departure, ' + radio_trend('altitude', this.altitude, this.fms.currentWaypoint().altitude) + " " + this.fms.currentWaypoint().altitude + ' expedite'];
-
           return ['ok', radio_trend('altitude', this.altitude, this.fms.currentWaypoint().altitude) + " " + this.fms.currentWaypoint().altitude + ' expedite'];
         }
         return ["fail", "altitude not understood", "say again"];
@@ -1117,15 +1112,11 @@ var Aircraft=Fiber.extend(function() {
       if(this.mode == "landing")
         this.cancelLanding();
 
-      var digits = altitude.toString().length;
-      if(digits == 1) altitude *= 1000;
-      else if(digits == 2) altitude *= 100;
-      else if(digits == 3) altitude *= 100;
-      else if(digits == 4) altitude *= 1;
-
       var ceiling = airport_get().ctr_ceiling;
       if (prop.game.option.get('softCeiling') == 'yes')
         ceiling += 1000;
+
+      altitude *= 100;
 
       this.fms.setAll({
         altitude: clamp(1000, altitude, ceiling),
@@ -1136,9 +1127,9 @@ var Aircraft=Fiber.extend(function() {
       else         expedite = "";
 
       if(this.isTakeoff())
-        return ['ok', 'after departure, ' + radio_trend('altitude', this.altitude, this.fms.currentWaypoint().altitude) + ' ' + this.fms.currentWaypoint().altitude + expedite];
-
-      return ['ok', radio_trend('altitude', this.altitude, this.fms.currentWaypoint().altitude) + ' ' + this.fms.currentWaypoint().altitude + expedite];
+        return ['ok', 'after departure, ' + radio_trend('altitude', this.altitude, this.fms.currentWaypoint().altitude) 
+          + ' ' + radio_altitude(this.fms.currentWaypoint().altitude) + expedite];
+      return ['ok', radio_trend('altitude', this.altitude, this.fms.currentWaypoint().altitude) + ' ' + radio_altitude(this.fms.currentWaypoint().altitude) + expedite];
     },
     runSpeed: function(data) {
       if(data[0] == "+" || data[0] == "-") {  //shortKey '+' or '-' in use

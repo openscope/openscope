@@ -276,11 +276,15 @@ var radio_names = {
   ".":"point",
 };
 
-var radio_compass_names = {
+var radio_cardinalDir_names = {
   "n":"north",
+  "nw":"northwest",
   "w":"west",
+  "sw":"southwest",
   "s":"south",
+  "se":"southeast",
   "e":"east",
+  "ne":"northeast"
 };
 
 var radio_runway_names = clone(radio_names);
@@ -289,7 +293,7 @@ radio_runway_names.l = "left";
 radio_runway_names.c = "center";
 radio_runway_names.r = "right";
 
-function radio(input) {
+function radio_spellOut(input) {
   input = input + "";
   input = input.toLowerCase();
   var s = [];
@@ -311,12 +315,12 @@ function radio_runway(input) {
   return s.join(" ");
 }
 
-function radio_compass(input) {
+function radio_cardinalDir(input) {
   input = input + "";
   input = input.toLowerCase();
   var s = [];
   for(var i=0;i<input.length;i++) {
-    var c = radio_compass_names[input[i]];
+    var c = radio_cardinalDir_names[input[i]];
     if(c) s.push(c);
   }
   return s.join(" ");
@@ -332,14 +336,14 @@ function radio_trend(category, measured, target) {
   return CATEGORIES[category][2];
 }
 
-var DIRECTIONS = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"];
+function radio_altitude(alt) {
+  if(alt >= 18000) return "flight level " + round(alt/100).toString();
+  else return alt.toString();
+}
 
-function compass_direction(angle) {
-  angle /= Math.PI*2;
-  angle = round(mod(angle, 1) * 8);
-  if(angle == 8) return "NW";
-  angle = DIRECTIONS[round(angle)];
-  return angle;
+function getCardinalDirection(angle) {
+  var directions = ["N", "NE", "E", "SE", "S", "SW", "W", "NW", "N"];
+  return directions[round(angle / (Math.PI*2) * 8)];
 }
 
 // Return a random number within the given interval
