@@ -118,7 +118,7 @@ zlsa.atc.Airline = Fiber.extend(function() {
                          + ", expect errors");
           }
 
-          if (typeof(this.fleets[f][j][1] != typeof(0))) {
+          if (typeof this.fleets[f][j][1] != "number") {
             console.warn("Airline " + this.icao.toUpperCase()
                          + " uses non numeric weight for aircraft " +
                          this.fleets[f][j][0] + ", expect errors");
