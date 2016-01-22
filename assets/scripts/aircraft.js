@@ -282,7 +282,7 @@ var Model=Fiber.extend(function() {
       if(data.engines) this.engines = data.engines;
       if(data.weightclass) this.weightclass = data.weightclass;
       if(data.category) this.category = data.category;
-
+      if(data.ceiling) this.ceiling = data.ceiling;
       if(data.rate) {
         this.rate         = data.rate;
         this.rate.ascent  = this.rate.ascent  / 60;
