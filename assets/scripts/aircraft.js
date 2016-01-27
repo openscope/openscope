@@ -784,6 +784,24 @@ var Aircraft=Fiber.extend(function() {
       }
       return airline_get(this.airline).callsign + " " + radio_spellOut(callsign) + heavy;
     },
+    getClimbRate: function() {
+      var a = this.altitude;
+      var r = this.model.rate.climb;
+      var c = this.model.ceiling;
+      if(this.model.engines.type == "J") var serviceCeilingClimbRate = 500;
+      else var serviceCeilingClimbRate = 100;
+      if(this.altitude < 36152) { // in troposphere
+        var cr_uncorr = r*420.7* ((1.232*Math.pow((518.6 - 0.00356*a)/518.6, 5.256)) / (518.6 - 0.00356*a));
+        var cr_current = cr_uncorr - (a/c*cr_uncorr) + (a/c*serviceCeilingClimbRate);
+      }
+      else { // in lower stratosphere
+        //re-do for lower stratosphere
+        //Reference: https://www.grc.nasa.gov/www/k-12/rocket/atmos.html 
+        //also recommend using graphing calc from desmos.com
+        return this.model.rate.climb; // <-- NOT VALID! Just a placeholder!
+      }
+      return cr_current;
+    },
     hideStrip: function() {
       this.html.hide(600);
     },
@@ -1812,24 +1830,7 @@ var Aircraft=Fiber.extend(function() {
           if(this.mode == "landing") distance *= 3;
           this.trend -= 1;
         } else if(this.target.altitude > this.altitude + 0.02) {
-          function getClimbRate(ac) {
-            var a = ac.altitude;
-            var r = ac.model.rate.climb;
-            var c = ac.model.ceiling;
-            if(ac.model.engines.type == "J") var serviceCeilingClimbRate = 500;
-            else var serviceCeilingClimbRate = 100;
-            if(ac.altitude < 36152) { // in troposphere
-              var cr_uncorr = r*420.7* ((1.232*Math.pow((518.6 - 0.00356*a)/518.6, 5.256)) / (518.6 - 0.00356*a));
-              var cr_current = cr_uncorr - (a/c*cr_uncorr) + (a/c*serviceCeilingClimbRate);
-            }
-            else { // in lower stratosphere
-              //re-do for lower stratosphere
-              //Reference: https://www.grc.nasa.gov/www/k-12/rocket/atmos.html 
-              //also recommend using graphing calc from desmos.com
-            }
-            return cr_current;
-          }
-          var climbrate = getClimbRate(this);
+          var climbrate = this.getClimbRate();
           distance = climbrate/60 * game_delta();
           if(this.mode == "landing") distance *= 1.5;
           this.trend = 1;
