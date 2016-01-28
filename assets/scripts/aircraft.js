@@ -252,7 +252,7 @@ var Model=Fiber.extend(function() {
 
       this.rate = {
         turn:       0, // radians per second
-        ascent:     0, // feet per second
+        climb:      0, // feet per second
         descent:    0,
         accelerate: 0, // knots per second
         decelerate: 0,
@@ -282,11 +282,11 @@ var Model=Fiber.extend(function() {
       if(data.engines) this.engines = data.engines;
       if(data.weightclass) this.weightclass = data.weightclass;
       if(data.category) this.category = data.category;
-
+      if(data.ceiling) this.ceiling = data.ceiling;
       if(data.rate) {
         this.rate         = data.rate;
-        this.rate.ascent  = this.rate.ascent  / 60;
-        this.rate.descent = this.rate.descent / 60;
+        this.rate.climb  = this.rate.climb;
+        this.rate.descent = this.rate.descent;
       }
 
       if(data.runway) this.runway = data.runway;
@@ -766,6 +766,24 @@ var Aircraft=Fiber.extend(function() {
       }
       return airline_get(this.airline).callsign + " " + groupNumbers(callsign) + heavy;
     },
+    getClimbRate: function() {
+      var a = this.altitude;
+      var r = this.model.rate.climb;
+      var c = this.model.ceiling;
+      if(this.model.engines.type == "J") var serviceCeilingClimbRate = 500;
+      else var serviceCeilingClimbRate = 100;
+      if(this.altitude < 36152) { // in troposphere
+        var cr_uncorr = r*420.7* ((1.232*Math.pow((518.6 - 0.00356*a)/518.6, 5.256)) / (518.6 - 0.00356*a));
+        var cr_current = cr_uncorr - (a/c*cr_uncorr) + (a/c*serviceCeilingClimbRate);
+      }
+      else { // in lower stratosphere
+        //re-do for lower stratosphere
+        //Reference: https://www.grc.nasa.gov/www/k-12/rocket/atmos.html 
+        //also recommend using graphing calc from desmos.com
+        return this.model.rate.climb; // <-- NOT VALID! Just a placeholder!
+      }
+      return cr_current;
+    },
     hideStrip: function() {
       this.html.hide(600);
     },
@@ -966,10 +984,11 @@ var Aircraft=Fiber.extend(function() {
         var data    = "";
         if(pair.length == 2) data = pair[1];
         var retval  = this.run(command, data);
-
         if(retval) {
-          response.push(retval[1]);
-          if(retval[2]) response_end = retval[2];
+          if(retval[1].length != null) { // true if array, and not log/say object
+            retval[1] = {say:retval[1], log:retval[1]};  // make into log/say object
+          }
+            response.push(retval[1]);
         }
 
       }
@@ -1325,8 +1344,8 @@ var Aircraft=Fiber.extend(function() {
         var wind = airport_get().getWind();
         var wind_dir = round(degrees(wind.angle));
         var readback = {
-          log: "wind " + wind_dir + " at " + round(wind.speed) + ", runway " + this.fms.currentWaypoint().runway + ", cleared for takeoff",
-          say: "wind " + radio_spellOut(wind_dir) + " at " + radio_spellOut(round(wind.speed)) + ", run way " + radio_runway(this.fms.currentWaypoint().runway) + ", cleared for take off",
+          log: "wind " + round(wind_dir/10)*10 + " at " + round(wind.speed) + ", runway " + this.fms.currentWaypoint().runway + ", cleared for takeoff",
+          say: "wynd " + radio_spellOut(round(wind_dir/10)*10) + " at " + radio_spellOut(round(wind.speed)) + ", run way " + radio_runway(this.fms.currentWaypoint().runway) + ", cleared for take off",
         };
         return ["ok", readback];
       } else {
@@ -1357,10 +1376,9 @@ var Aircraft=Fiber.extend(function() {
         start_speed: this.speed,
       });
 
-      var wind = airport_get().getWind();
-      var wind_dir = round(degrees(wind.angle));
-      return ["ok", "wind " + wind_dir + " at " + round(wind.speed) +
-          " knots, runway " + radio_runway(this.fms.currentWaypoint().runway) + " cleared to land" ];
+      var readback = {log:"cleared ILS runway " + this.fms.currentWaypoint().runway + " approach",
+                      say:"cleared ILS runway " + radio_runway(this.fms.currentWaypoint().runway) + " approach"};
+      return ["ok", readback];
     },
     runAbort: function(data) {
       if(this.mode == "taxi") {
@@ -1832,14 +1850,15 @@ var Aircraft=Fiber.extend(function() {
         // ALTITUDE
 
         var distance = null;
-        var expedite_factor = 1.7;
+        var expedite_factor = 1.5;
         this.trend = 0;
         if(this.target.altitude < this.altitude - 0.02) {
-          distance = -this.model.rate.descent * game_delta() / expedite_factor;
+          distance = -this.model.rate.descent/60 * game_delta();
           if(this.mode == "landing") distance *= 3;
           this.trend -= 1;
         } else if(this.target.altitude > this.altitude + 0.02) {
-          distance =  this.model.rate.ascent  * game_delta() / expedite_factor;
+          var climbrate = this.getClimbRate();
+          distance = climbrate/60 * game_delta();
           if(this.mode == "landing") distance *= 1.5;
           this.trend = 1;
         }
