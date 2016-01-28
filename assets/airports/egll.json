@@ -1,7 +1,11 @@
 {
   "name": "London Heathrow Airport",
   "level": "hard",
-  "radio": "Heathrow",
+"radio": {
+  "twr": "Heathrow Tower",
+  "app": "Heathrow Approach",
+  "dep": "Heathrow Departure"
+  },
   "icao": "EGLL",
   "iata": "LHR",
   "magnetic_north": 0,
