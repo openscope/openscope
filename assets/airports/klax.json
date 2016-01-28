@@ -1,7 +1,11 @@
 {
   "name": "Los Angeles International Airport",
   "level": "medium",
-  "radio": "Los Angeles",
+  "radio": {
+    "twr": "Los Angeles Tower",
+    "app": "SoCal Approach",
+    "dep": "SoCal Departure"
+  },
   "icao": "KLAX",
   "iata": "LAX",
   "magnetic_north": 12.3,

@@ -1,7 +1,11 @@
 {
   "name": "Amsterdam Airport Schiphol",
   "level": "medium",
-  "radio": "Amsterdam",
+  "radio": {
+    "twr": "Amsterdam Tower",
+    "app": "Amsterdam Approach",
+    "dep": "Amsterdam Departure"
+  },
   "icao": "EHAM",
   "iata": "AMS",
   "magnetic_north": 0,

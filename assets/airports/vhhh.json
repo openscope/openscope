@@ -1,7 +1,11 @@
 { 
   "name": "Hong Kong Chep Lap Kok International Airport",
   "level": "medium",
-  "radio": "Hong Kong",
+  "radio": {
+    "twr": "Hong Kong Tower",
+    "app": "Hong Kong Approach",
+    "dep": "Hong Kong Departure"
+  },
   "icao": "VHHH",
   "iata": "HKG",
   "ctr_radius": 80,

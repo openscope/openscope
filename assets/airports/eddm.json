@@ -1,7 +1,11 @@
 {
   "name": "Franz Josef Strauß International Airport &#9983",
   "level": "beginner",
-  "radio": "Munich",
+  "radio": {
+    "twr": "Munich Tower",
+    "app": "Munich Approach",
+    "dep": "Munich Departure"
+  },
   "icao": "EDDM",
   "iata": "MUC",
   "magnetic_north": 1.4,

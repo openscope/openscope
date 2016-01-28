@@ -1,7 +1,11 @@
 {
   "name": "Vienna International Airport",
   "level": "medium",
-  "radio": "Vienna",
+  "radio": {
+    "twr": "Vienna Tower",
+    "app": "Vienna Approach",
+    "dep": "Vienna Departure"
+  },
   "icao": "LOWW",
   "iata": "VIE",
   "ctr_radius": 80,

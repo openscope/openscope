@@ -3,8 +3,8 @@
   "level": "medium",
   "radio": {
     "twr": "San Francisco Tower",
-    "app": "SoCal Approach",
-    "dep": "SoCal Departure"
+    "app": "NorCal Approach",
+    "dep": "NorCal Departure"
   },
   "icao": "KSFO",
   "iata": "SFO",

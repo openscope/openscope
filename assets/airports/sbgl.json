@@ -1,7 +1,11 @@
 {
   "name": "Aeroporto Internacional Tom Jobim",
   "level": "beginner",
-  "radio": "Galeão",
+  "radio": {
+    "twr": "Galeão Tower",
+    "app": "Galeão Approach",
+    "dep": "Galeão Departure"
+  },
   "icao": "SBGL",
   "iata": "GIG",
   "magnetic_north": 0,
