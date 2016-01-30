@@ -394,9 +394,15 @@ function radio_altitude(altitude) {
   }
   else if(altitude >= 10000) {
     s.push(radio_names[alt_s[0]], radio_names[alt_s[1]], "thousand");
+    if(!(altitude % (Math.floor(altitude/1000)*1000) == 0)) {
+      s.push(radio_names[alt_s[2]], "hundred");
+    }
   }
   else if(altitude >= 1000) {
     s.push(radio_names[alt_s[0]], "thousand");
+    if(!(altitude % (Math.floor(altitude/1000)*1000) == 0)) {
+      s.push(radio_names[alt_s[1]], "hundred");
+    }
   }
   else if(altitude >= 100) {
     s.push(radio_names[alt_s[0]], "hundred");
