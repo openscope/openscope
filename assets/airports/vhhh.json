@@ -148,7 +148,7 @@
       "_name":  "ABBEY",
       "radial":   90,
       "speed":    250,
-      "fixes":    ["ABBEY", "MUSEL", "TAMAR"],
+      "fixes":    ["ABBEY", "MUSEL", "TAMAR", "TD"],
       "airlines":  [
         ["cpa", 30],
         ["ces", 10],
@@ -186,7 +186,7 @@
       "_name":  "CANTO",
       "radial":   200,
       "speed":    250,
-      "fixes":    ["CANTO", "MURRY", "VH530", "GOODI"],
+      "fixes":    ["CANTO", "MURRY"],
       "airlines":  [
         ["cpa", 30],
         ["ces", 15],
