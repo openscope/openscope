@@ -1031,17 +1031,18 @@ var Aircraft=Fiber.extend(function() {
     },
     runHeading: function(data) {
       var split     = data.split(" ");
-      var heading = "";
-      var direction = "";
+      var heading = null;
+      var direction = null;
+      var instruction = null;
       switch(split.length) {  //number of elements in 'data'
         case 1: 
           if(isNaN(parseInt(split))) {  //probably using shortKeys
             if(split[0][0] == "\u2BA2") { //using '<250' format
-              direction = "turn left heading ";
+              direction = "left";
               heading = split[0].substr(1); //remove shortKey
             }
             else if (split[0][0] == "\u2BA3") {  //using '>250' format
-              direction = "turn right heading ";
+              direction = "right";
               heading = split[0].substr(1); //remove shortKey
             }
             else if(split[0].substr(0,2).toLowerCase() == "fh") { //using 'fh250' format
@@ -1057,8 +1058,8 @@ var Aircraft=Fiber.extend(function() {
           break;
 
         case 2: //using 'turn r 250' format
-          if(split[0] === "l") direction = "turn left heading ";
-          else if (split[0] === "r" ) direction = "turn right heading ";
+          if(split[0] === "l") direction = "left";
+          else if (split[0] === "r" ) direction = "right";
           heading = parseInt(split[1]);
           break;
 
@@ -1081,11 +1082,12 @@ var Aircraft=Fiber.extend(function() {
         hold: false,
       });
 
-      if(!direction) direction  = "fly heading ";
+      if(direction) instruction = "turn " + direction + " heading ";
+      else instruction = "fly heading ";
 
       var readback = {
-        log: direction + heading_to_string(this.fms.currentWaypoint().heading),
-        say: direction + radio_heading(heading_to_string(this.fms.currentWaypoint().heading))
+        log: instruction + heading_to_string(this.fms.currentWaypoint().heading),
+        say: instruction + radio_heading(heading_to_string(this.fms.currentWaypoint().heading))
       };
       return ['ok', readback];
     },

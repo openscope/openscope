@@ -230,8 +230,10 @@ function average() {
 }
 
 function heading_to_string(heading) {
-  heading = round(mod(degrees(heading), 360));
-  if(heading == 0) heading = 360;
+  heading = round(mod(degrees(heading), 360)).toString();
+  if(heading == "0") heading = "360";
+  if(heading.length == 1) heading = "00" + heading;
+  if(heading.length == 2) heading = "0" + heading;
   return heading;
 }
 
