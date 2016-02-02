@@ -764,7 +764,10 @@ var Aircraft=Fiber.extend(function() {
         var length = 2;
         callsign = callsign.substr(callsign.length - length);
       }
-      return airline_get(this.airline).callsign + " " + groupNumbers(callsign) + heavy;
+      var cs = airline_get(this.airline).callsign;
+      if(cs == "November") cs += " " + radio_spellOut(callsign) + heavy;
+      else cs += " " + groupNumbers(callsign) + heavy;
+      return cs;
     },
     getClimbRate: function() {
       var a = this.altitude;

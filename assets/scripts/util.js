@@ -344,17 +344,6 @@ function groupNumbers(callsign) {
   }
 }
 
-function radio_spellOut(input) {
-  input = input + "";
-  input = input.toLowerCase();
-  var s = [];
-  for(var i=0;i<input.length;i++) {
-    var c = radio_names[input[i]];
-    if(c) s.push(c);
-  }
-  return s.join(" ");
-}
-
 function radio_runway(input) {
   input = input + "";
   input = input.toLowerCase();
