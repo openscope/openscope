@@ -87,7 +87,7 @@
     "airlines": [
       ["arg", 20],
       ["tam", 7],
-      ["sa-aal", 7],
+      ["aal/long", 7],
       ["sa-afr", 5],
       ["sa-amx", 3],
       ["sa-ava", 2],
@@ -120,7 +120,7 @@
       "speed": 250,
       "fixes": ["SNT", "ARSOT"],
       "airlines":  [
-        ["sa-aal", 10],
+        ["aal/long", 10],
         ["sa-amx", 5],
         ["sa-ava", 5],
         ["sa-ual", 8],
