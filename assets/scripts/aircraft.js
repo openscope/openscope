@@ -252,7 +252,7 @@ var Model=Fiber.extend(function() {
 
       this.rate = {
         turn:       0, // radians per second
-        ascent:     0, // feet per second
+        climb:      0, // feet per second
         descent:    0,
         accelerate: 0, // knots per second
         decelerate: 0,
@@ -282,11 +282,11 @@ var Model=Fiber.extend(function() {
       if(data.engines) this.engines = data.engines;
       if(data.weightclass) this.weightclass = data.weightclass;
       if(data.category) this.category = data.category;
-
+      if(data.ceiling) this.ceiling = data.ceiling;
       if(data.rate) {
         this.rate         = data.rate;
-        this.rate.ascent  = this.rate.ascent  / 60;
-        this.rate.descent = this.rate.descent / 60;
+        this.rate.climb  = this.rate.climb;
+        this.rate.descent = this.rate.descent;
       }
 
       if(data.runway) this.runway = data.runway;
@@ -783,6 +783,24 @@ var Aircraft=Fiber.extend(function() {
         callsign = callsign.substr(callsign.length - length);
       }
       return airline_get(this.airline).callsign + " " + radio_spellOut(callsign) + heavy;
+    },
+    getClimbRate: function() {
+      var a = this.altitude;
+      var r = this.model.rate.climb;
+      var c = this.model.ceiling;
+      if(this.model.engines.type == "J") var serviceCeilingClimbRate = 500;
+      else var serviceCeilingClimbRate = 100;
+      if(this.altitude < 36152) { // in troposphere
+        var cr_uncorr = r*420.7* ((1.232*Math.pow((518.6 - 0.00356*a)/518.6, 5.256)) / (518.6 - 0.00356*a));
+        var cr_current = cr_uncorr - (a/c*cr_uncorr) + (a/c*serviceCeilingClimbRate);
+      }
+      else { // in lower stratosphere
+        //re-do for lower stratosphere
+        //Reference: https://www.grc.nasa.gov/www/k-12/rocket/atmos.html 
+        //also recommend using graphing calc from desmos.com
+        return this.model.rate.climb; // <-- NOT VALID! Just a placeholder!
+      }
+      return cr_current;
     },
     hideStrip: function() {
       this.html.hide(600);
@@ -1805,14 +1823,15 @@ var Aircraft=Fiber.extend(function() {
         // ALTITUDE
 
         var distance = null;
-        var expedite_factor = 1.7;
+        var expedite_factor = 1.5;
         this.trend = 0;
         if(this.target.altitude < this.altitude - 0.02) {
-          distance = -this.model.rate.descent * game_delta() / expedite_factor;
+          distance = -this.model.rate.descent/60 * game_delta();
           if(this.mode == "landing") distance *= 3;
           this.trend -= 1;
         } else if(this.target.altitude > this.altitude + 0.02) {
-          distance =  this.model.rate.ascent  * game_delta() / expedite_factor;
+          var climbrate = this.getClimbRate();
+          distance = climbrate/60 * game_delta();
           if(this.mode == "landing") distance *= 1.5;
           this.trend = 1;
         }

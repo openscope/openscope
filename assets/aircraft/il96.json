@@ -11,8 +11,9 @@
     "lahso": null,
     "recat": "B"
   },
+  "ceiling": 41000,
   "rate": {
-    "ascent":     1200,
+    "climb":      2000,
     "descent":    2000,
     "accelerate": 5,
     "decelerate": 2
