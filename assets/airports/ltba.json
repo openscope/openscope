@@ -1,7 +1,11 @@
 {
   "name": "Atatürk International Airport &#9983",
   "level": "hard",
-  "radio": "Istanbul",
+  "radio": {
+    "twr": "Istanbul Tower",
+    "app": "Istanbul Approach",
+    "dep": "Istanbul Departure"
+  },
   "icao": "LTBA",
   "iata": "IST",
   "magnetic_north": 3.6,

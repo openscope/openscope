@@ -1,7 +1,11 @@
 {
   "name": "Dublin Airport",
   "level": "easy",
-  "radio": "Dublin",
+  "radio": {
+    "twr": "Dublin Tower",
+    "app": "Dublin Approach",
+    "dep": "Dublin Departure"
+  },
   "icao": "EIDW",
   "iata": "DUB",
   "magnetic_north": 0,

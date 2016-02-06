@@ -1,7 +1,11 @@
 {
   "name": "San Francisco International Airport &#9983",
   "level": "medium",
-  "radio": "San Francisco",
+  "radio": {
+    "twr": "San Francisco Tower",
+    "app": "NorCal Approach",
+    "dep": "NorCal Departure"
+  },
   "icao": "KSFO",
   "iata": "SFO",
   "magnetic_north": 13.7,

@@ -1,7 +1,11 @@
 {
   "name": "Debug airport",
   "level": "medium",
-  "radio": "Debug",
+  "radio": {
+    "twr": "Debug Tower",
+    "app": "Debug Approach",
+    "dep": "Debug Departure"
+  },
   "icao": "KDBG",
   "iata": "DBG",
   "magnetic_north": 0,

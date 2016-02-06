@@ -1,7 +1,11 @@
 {
   "name": "Moscow Domodedovo Airport",
   "level": "easy",
-  "radio": "Domodedovo",
+  "radio": {
+    "twr": "Domodedovo Tower",
+    "app": "Domodedovo Approach",
+    "dep": "Domodedovo Departure"
+  },
   "icao": "UUDD",
   "iata": "DME",
   "magnetic_north": 10.8, 

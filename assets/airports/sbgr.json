@@ -1,7 +1,11 @@
 {
   "name": "Aeroporto Internacional de São Paulo/Guarulhos",
   "level": "beginner",
-  "radio": "Guarulhos",
+  "radio": {
+    "twr": "Guarulhos Tower",
+    "app": "Guarulhos Approach",
+    "dep": "Guarulhos Departure"
+  },
   "icao": "SBGR",
   "iata": "GRU",
   "magnetic_north": 0,

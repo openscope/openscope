@@ -1,7 +1,11 @@
 {
   "name": "Hamburg Airport",
   "level": "easy",
-  "radio": "Hamburg",
+  "radio": {
+    "twr": "Hamburg Tower",
+    "app": "Hamburg Approach",
+    "dep": "Hamburg Departure"
+  },
   "icao": "EDDH",
   "iata": "HAM",
   "magnetic_north": 0,

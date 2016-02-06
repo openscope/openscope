@@ -1,7 +1,11 @@
 {
   "name": "Aeropuerto Internacional Ministro Pistarini",
   "level": "medium",
-  "radio": "Ezeiza",
+  "radio": {
+    "twr": "Ezeiza Tower",
+    "app": "Ezeiza Approach",
+    "dep": "Ezeiza Departure"
+  },
   "icao": "SAEZ",
   "iata": "EZE",
   "magnetic_north": 0,

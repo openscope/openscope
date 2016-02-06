@@ -1,7 +1,11 @@
 {
   "name": "San Diego International Airport",
   "level": "easy",
-  "radio": "San Diego",
+  "radio": {
+    "twr": "Lindbergh Tower",
+    "app": "SoCal Approach",
+    "dep": "SoCal Departure"
+  },
   "icao": "KSAN",
   "iata": "SAN",
   "magnetic_north": 12.3,

@@ -230,8 +230,10 @@ function average() {
 }
 
 function heading_to_string(heading) {
-  heading = round(mod(degrees(heading), 360));
-  if(heading == 0) heading = 360;
+  heading = round(mod(degrees(heading), 360)).toString();
+  if(heading == "0") heading = "360";
+  if(heading.length == 1) heading = "00" + heading;
+  if(heading.length == 2) heading = "0" + heading;
   return heading;
 }
 
@@ -246,6 +248,24 @@ var radio_names = {
   7:"seven",
   8:"eight",
   9:"niner",
+  10:"ten",
+  11:"eleven",
+  12:"twelve",
+  13:"thirteen",
+  14:"fourteen",
+  15:"fifteen",
+  16:"sixteen",
+  17:"seventeen",
+  18:"eighteen",
+  19:"nineteen",
+  20:"twenty",
+  30:"thirty",
+  40:"fourty",
+  50:"fifty",
+  60:"sixty",
+  70:"seventy",
+  80:"eighty",
+  90:"ninety",
   a:"alpha",
   b:"bravo",
   c:"charlie",
@@ -293,15 +313,35 @@ radio_runway_names.l = "left";
 radio_runway_names.c = "center";
 radio_runway_names.r = "right";
 
-function radio_spellOut(input) {
-  input = input + "";
-  input = input.toLowerCase();
-  var s = [];
-  for(var i=0;i<input.length;i++) {
-    var c = radio_names[input[i]];
-    if(c) s.push(c);
+function groupNumbers(callsign) {
+  var getGrouping = function(groupable) {
+    var digit1 = groupable[0];
+    var digit2 = groupable[1];
+    if(digit1 == 0) {
+      if(digit2 == 0) return "hundred";
+      else return radio_names[digit1] + " " + radio_names[digit2];    // just digits (eg 'zero seven')
+    }
+    else if(digit1 == 1) return radio_names[groupable];         // exact number (eg 'seventeen')
+    else if(digit1 >= 2) {
+      if(digit2 == 0) return radio_names[(digit1+"0")]; // to avoid 'five twenty zero'
+      else return radio_names[(digit1+"0")] + " " + radio_names[digit2]; // combo number (eg 'fifty one')
+    }
+    else return radio_names[digit1] + " " + radio_names[digit2];
   }
-  return s.join(" ");
+
+  if(!/^\d+$/.test(callsign)) { // if contains more than just numbers (eg '117KS')
+    var s = [];
+    for (var k in callsign) { s.push(radio_names[k]); } // one after another (eg 'one one seven kilo sierra')
+    return s.join(" ");
+  }
+  else switch (callsign.length) {
+    case 0: return callsign; break;
+    case 1: return radio_names[callsign]; break;
+    case 2: return getGrouping(callsign); break;
+    case 3: return radio_names[callsign[0]] + " " + getGrouping(callsign.substr(1)); break;
+    case 4: return getGrouping(callsign.substr(0,2)) + " " + getGrouping(callsign.substr(2)); break;
+    default: return callsign;
+  }
 }
 
 function radio_runway(input) {
@@ -315,30 +355,59 @@ function radio_runway(input) {
   return s.join(" ");
 }
 
-function radio_cardinalDir(input) {
-  input = input + "";
-  input = input.toLowerCase();
-  var s = [];
-  for(var i=0;i<input.length;i++) {
-    var c = radio_cardinalDir_names[input[i]];
-    if(c) s.push(c);
+function radio_heading(heading) {
+  var str = heading.toString();
+  var hdg = [];
+  if(str) {
+    if(str.length == 1) return "zero zero " + radio_names[str];
+    else if(str.length == 2) return "zero " + radio_names[str[0]] + " " + radio_names[str[1]];
+    else return radio_names[str[0]] + " " + radio_names[str[1]] + " " + radio_names[str[2]];
+  } else return heading;
+}
+
+function radio_spellOut(alphanumeric) {
+  var str = alphanumeric.toString();
+  var arr = [];
+  if(!str) return;
+  for(var i=0; i<str.length; i++) {
+    arr.push(radio_names[str[i]]);
   }
+  return arr.join(" ");
+}
+
+function radio_altitude(altitude) {
+  var alt_s = altitude.toString();
+  var s = [];
+  if(altitude >= 18000) {
+    s.push("flight level", radio_names[alt_s[0]], radio_names[alt_s[1]], radio_names[alt_s[2]]);
+  }
+  else if(altitude >= 10000) {
+    s.push(radio_names[alt_s[0]], radio_names[alt_s[1]], "thousand");
+    if(!(altitude % (Math.floor(altitude/1000)*1000) == 0)) {
+      s.push(radio_names[alt_s[2]], "hundred");
+    }
+  }
+  else if(altitude >= 1000) {
+    s.push(radio_names[alt_s[0]], "thousand");
+    if(!(altitude % (Math.floor(altitude/1000)*1000) == 0)) {
+      s.push(radio_names[alt_s[1]], "hundred");
+    }
+  }
+  else if(altitude >= 100) {
+    s.push(radio_names[alt_s[0]], "hundred");
+  }
+  else return altitude;
   return s.join(" ");
 }
 
 function radio_trend(category, measured, target) {
   var CATEGORIES = {
-    "altitude": ["descend to", "climb to",  "maintaining"],
-    "speed":    ["set speed",  "set speed", "maintaining"]
+    "altitude": ["descend and maintain", "climb and maintain",  "maintain"],
+    "speed":    ["reduce speed to",  "increase speed to", "maintain present speed of"]
   };
   if(measured > target) return CATEGORIES[category][0];
   if(measured < target) return CATEGORIES[category][1];
   return CATEGORIES[category][2];
-}
-
-function radio_altitude(alt) {
-  if(alt >= 18000) return "flight level " + round(alt/100).toString();
-  else return alt.toString();
 }
 
 function getCardinalDirection(angle) {

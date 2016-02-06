@@ -1,7 +1,11 @@
 {
   "name": "John F Kennedy International Airport &#9983",
   "level": "medium",
-  "radio": "Kennedy",
+  "radio": {
+    "twr": "Kennedy Tower",
+    "app": "New York Approach",
+    "dep": "New York Departure"
+  },
   "icao": "KJFK",
   "iata": "JFK",
   "magnetic_north": 0,
