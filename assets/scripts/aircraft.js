@@ -119,13 +119,13 @@ zlsa.atc.Conflict = Fiber.extend(function() {
       // on the runway
       var airport = airport_get();
 
-      // Check for the same runway, headings differing by more
-      // than 30 degrees and under about 6 miles
+      // Check for the same runway, different ends and under about 6 miles
       if ((!this.aircraft[0].isTaxiing() && !this.aircraft[1].isTaxiing()) &&
           (this.aircraft[0].fms.currentWaypoint().runway != null) &&
+          (this.aircraft[0].fms.currentWaypoint().runway !=
+           this.aircraft[1].fms.currentWaypoint().runway) &&
           (airport.getRunway(this.aircraft[1].fms.currentWaypoint().runway) ===
            airport.getRunway(this.aircraft[0].fms.currentWaypoint().runway)) &&
-          (abs(angle_offset(this.aircraft[0].heading, this.aircraft[1].heading)) > 0.5236) &&
           (this.distance < 10))
       {
         if (!this.conflicts.runwayCollision) {
