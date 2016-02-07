@@ -172,7 +172,7 @@
       "_name":  "BETTY",
       "radial":   140,
       "speed":    250,
-      "fixes":   ["BETTY", "MANGO", "MONTY"],
+      "fixes":   ["BETTY", "MANGO"],
       "airlines":  [
         ["cpa", 30],
         ["ces", 10],
