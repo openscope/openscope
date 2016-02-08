@@ -1015,13 +1015,13 @@ var Aircraft=Fiber.extend(function() {
       }
 
       if(commands.length == 0) {
-        response     = ["not understood"];
+        response     = [{say:"not understood", log:"not understood"}];
         response_end = "say again";
       }
 
       if(response.length >= 1) {
         if(response_end) response_end = ", " + response_end;
-        
+
         var r_log = function f(){var x = [];for(var i=0;i<response.length;i++){x.push(response[i].log)}return x;};
         var r_say = function f(){var x = [];for(var i=0;i<response.length;i++){x.push(response[i].say)}return x;};
 
