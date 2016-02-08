@@ -1,11 +1,11 @@
 {
-  "name": "McDonnel Douglas MD-81",
-  "icao": "MD80",
+  "name": "Boeing 727-200",
+  "icao": "B722",
   "wake": "medium",
   "rate": {
     "turn":       1.2,
-    "climb":     1215,
-    "descent":    1500,
+    "climb":     2915,
+    "descent":    2500,
     "accelerate": 7,
     "decelerate": 5
   },

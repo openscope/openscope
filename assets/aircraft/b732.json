@@ -3,8 +3,8 @@
   "icao": "B732",
   "wake": "medium",
   "rate": {
-    "ascent":     1300,
-    "descent":    1500,
+    "climb":     2335,
+    "descent":    2000,
     "accelerate": 5,
     "decelerate": 3
   },

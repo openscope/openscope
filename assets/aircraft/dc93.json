@@ -1,11 +1,11 @@
 {
-  "name": "McDonnel Douglas MD-80",
-  "icao": "MD80",
+  "name": "Douglas DC-9-30",
+  "icao": "DC93",
   "wake": "medium",
   "rate": {
     "turn":       0.5,
-    "ascent":     2500,
-    "descent":    1500,
+    "climb":     2335,
+    "descent":    3000,
     "accelerate": 5,
     "decelerate": 2
   },

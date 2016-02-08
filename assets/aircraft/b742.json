@@ -4,7 +4,7 @@
   "wake": "heavy",
   "rate": {
     "turn":       0.8,
-    "ascent":     1000,
+    "ascent":     1715,
     "descent":    2000,
     "accelerate": 4,
     "decelerate": 2
