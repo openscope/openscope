@@ -10,6 +10,8 @@
   "iata": "EZE",
   "magnetic_north": 0,
   "ctr_radius": 102,
+  "ctr_ceiling": 10000,
+  "initial_alt": 5000,
   "position": ["S34d49m19.92", "W58d32m8.8"],
   "rr_radius_nm": 5.0,
   "rr_center": ["S34d49m19.92", "W58d32m8.8"],
