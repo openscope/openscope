@@ -1,0 +1,26 @@
+{
+  "name": "Douglas DC-9-30",
+  "icao": "DC93",
+  "wake": "medium",
+  "rate": {
+    "turn":       0.5,
+    "climb":     2335,
+    "descent":    3000,
+    "accelerate": 5,
+    "decelerate": 2
+  },
+  "runway": {
+    "takeoff": 2.0,
+    "landing": 1.8
+  },
+  "speed":{
+    "min":     135,
+    "max":     250,
+    "landing": 127,
+    "cruise":  200
+  },
+  "capability": {
+    "ils": true,
+    "fix": true
+  }
+}

@@ -130,6 +130,10 @@ zlsa.atc.Airline = Fiber.extend(function() {
 });
 
 function airline_init() {
+  // 1990' Airlines
+	  airline_load("PAA");
+	  airline_load("TWA");
+	  
   // Civil Airlines
   airline_load("UAL");
   airline_load("BAW");
