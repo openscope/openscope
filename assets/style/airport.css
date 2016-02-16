@@ -22,6 +22,13 @@
   transition: opacity 0.5s ease;
 }
 
+#airport-switch .title {
+  font-size: 170%;
+  padding: 10px 0 7px 0;
+  min-height: 1.5em;
+  text-align: center;
+}
+
 #airport-switch.open {
   pointer-events: auto;
   opacity: 1;
@@ -41,7 +48,7 @@
   width: 100%;
   max-width: 500px;
   height: auto;
-  max-height: calc(100% - 2.3em - 30px);
+  max-height: calc(100% - 2.3em - 32px);
   overflow-y: auto;
 }
 
@@ -95,17 +102,18 @@
   font-weight: normal;
   padding: 2px 0px 3px 0px;
   min-height: 0.8em;
+  text-align: center;
 }
 
 #airport-list-notes .symbol {
   display: inline-block;
-  text-align: "center";
+  text-align: center;
   font-style: normal;
 }
 
 #airport-list-notes .words {
   display: inline-block;
-  text-align: "center";
+  text-align: center;
   font-style: italic;
   padding-left: 0.5em;
 }
