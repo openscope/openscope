@@ -8,7 +8,7 @@
   },
   "icao": "SBGL",
   "iata": "GIG",
-  "magnetic_north": 0,
+  "magnetic_north": -23,
   "ctr_radius": 115,
   "position": ["S22.813391", "W43.249464"],
   "rr_radius_nm": 5.0,
@@ -122,7 +122,7 @@
       ["FAB", 1]
     ],
     "destinations": [
-      40, 70, 205, 240, 350
+      63, 93, 130, 228, 263, 373
     ],
     "frequency": [1, 4.5]
   },
