@@ -8,7 +8,7 @@
   },
   "icao": "EIDW",
   "iata": "DUB",
-  "magnetic_north": 0,
+  "magnetic_north": -4,
   "ctr_radius": 80,
   "position": ["N53d25m17.00", "W6d16m12.00"],
   "rr_radius_nm": 5.0,
@@ -119,7 +119,7 @@
       "ROTEV": ["DW931", "LEMTA", "ROTEV"]
     },
     "destinations": [
-      85, 162, 323, 10, 106, 200, 251, 285
+      89, 166, 327, 14, 110, 204, 255, 289
     ],
     "type": "random",
     "offset": 0,
