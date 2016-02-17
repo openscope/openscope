@@ -8,7 +8,7 @@
   },
   "icao": "EDDH",
   "iata": "HAM",
-  "magnetic_north": 0,
+  "magnetic_north": 1,
   "ctr_radius": 80,
   "position": ["N53d37m49.00", "E9d59m18.00"],
   "rr_radius_nm": 5.0,
@@ -86,7 +86,7 @@
       "WSR": ["DH002", "ANEXI", "WSR"]
     },
     "destinations": [
-      56, 90, 122, 207, 248, 355
+      55, 89, 121, 206, 247, 354
     ],
     "type": "random",
     "frequency": 15
