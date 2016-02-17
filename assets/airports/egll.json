@@ -3,8 +3,8 @@
   "level": "hard",
   "radio": {
     "twr": "Heathrow Tower",
-    "app": "Heathrow Approach",
-    "dep": "Heathrow Departure"
+    "app": "Heathrow Director",
+    "dep": "Heathrow Director"
   },
   "icao": "EGLL",
   "iata": "LHR",
