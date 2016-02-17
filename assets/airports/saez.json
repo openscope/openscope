@@ -8,7 +8,7 @@
   },
   "icao": "SAEZ",
   "iata": "EZE",
-  "magnetic_north": 0,
+  "magnetic_north": -8,
   "ctr_radius": 102,
   "position": ["S34d49m19.92", "W58d32m8.8"],
   "rr_radius_nm": 5.0,
@@ -112,7 +112,7 @@
       "BELGRANO": ["EZE12", "EZE97", "EZE70", "GBE"]
     },
     "destinations": [
-      80, 177, 278, 325, 360
+      8, 88, 185, 285, 334
     ],
     "type": "random",
     "offset": 0,
