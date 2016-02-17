@@ -8,7 +8,7 @@
   },
   "icao": "SBGR",
   "iata": "GRU",
-  "magnetic_north": 0,
+  "magnetic_north": -21,
   "ctr_radius": 80,
   "position": ["S23.253020", "W46.265706"],
   "rr_radius_nm": 5.0,
@@ -111,7 +111,7 @@
       "DORLU": ["BCO", "VULET", "DORLU"]
     },
     "destinations": [
-      72, 83, 355, 225, 253, 272
+      96, 104, 376, 246, 274, 293
     ],
     "frequency": [1, 15]
   },
