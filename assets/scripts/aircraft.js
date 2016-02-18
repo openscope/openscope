@@ -1673,16 +1673,11 @@ var Aircraft=Fiber.extend(function() {
       if(this.fms.currentWaypoint().navmode == "rwy") {
         airport = airport_get();
         runway  = airport.getRunway(this.fms.currentWaypoint().runway);
-
         offset = runway.getOffset(this.position, this.fms.currentWaypoint().runway, true);
-
         offset_angle = vradial(offset);
-        
         this.offset_angle = offset_angle;
-
         this.approachOffset = abs(offset[0]);
         this.approachDistance = offset[1];
-
         angle = runway.getAngle(this.fms.currentWaypoint().runway);
         if (angle > (2*Math.PI)) angle -= 2*Math.PI;
 
@@ -1701,7 +1696,6 @@ var Aircraft=Fiber.extend(function() {
         if ((abs(this.altitude - glideslope_altitude) < glideslope_window)
             && (abs(offset_angle) < radians(10))
             && (offset[1] < ils)) {
-          //plane is on the glide slope
           if(this.mode != "landing") {
             this.mode = "landing";
             if (!this.projected &&
@@ -1713,25 +1707,25 @@ var Aircraft=Fiber.extend(function() {
               prop.game.score.violation += 1;
             }
             this.updateStrip();
-            this.fms.setCurrent({
-              turn: null,
-              heading: angle,
-            });
             this.target.turn = null;
           }
 
-          // Steer to within 3m of the centerline while at least 200m out
-          if(offset[1] > 0.2 && abs(offset[1]) > 0.003) {
-            this.target.heading = clamp(radians(-30),
-                                        -12 * offset_angle,
-                                        radians(30)) + angle;
-          } else {
-            this.target.heading = angle;
+          // Intercept localizer and glideslope and follow them inbound
+          var angle_diff = angle_offset(angle, this.heading);
+          var turning_time = Math.abs(degrees(angle_diff)) / 3;  // time to turn angle_diff degrees at 3 deg/s
+          var turning_radius = km(this.speed) / 3600 * turning_time;  // dist covered in the turn, km
+          var dist_to_localizer = offset[0]/Math.sin(angle_diff);  // dist from the localizer intercept point, km
+          if(dist_to_localizer <= turning_radius || dist_to_localizer < 0.5) {
+            // Steer to within 3m of the centerline while at least 200m out
+            if(offset[1] > 0.2 && abs(offset[0]) > 0.003 )
+              this.target.heading = clamp(radians(-30), -12 * offset_angle, radians(30)) + angle;
+            else this.target.heading = angle;
+            
+            // Follow the glideslope
+            this.target.altitude = glideslope_altitude;
           }
 
-          var s = this.target.speed;
-
-          this.target.altitude     = glideslope_altitude;
+          // Speed control on final approach
           if(this.fms.currentWaypoint().speed > 0)
             this.fms.setCurrent({start_speed: this.fms.currentWaypoint().speed});
           this.target.speed        = crange(3, offset[1], 10, this.model.speed.landing, this.fms.currentWaypoint().start_speed);
