@@ -1055,16 +1055,19 @@ var Aircraft=Fiber.extend(function() {
       var heading = null;
       var direction = null;
       var instruction = null;
+      var incremental = false, amount = 0;
       switch(split.length) {  //number of elements in 'data'
         case 1: 
           if(isNaN(parseInt(split))) {  //probably using shortKeys
             if(split[0][0] == "\u2BA2") { //using '<250' format
               direction = "left";
               heading = split[0].substr(1); //remove shortKey
+              if(heading.length < 3) incremental = true;
             }
             else if (split[0][0] == "\u2BA3") {  //using '>250' format
               direction = "right";
               heading = split[0].substr(1); //remove shortKey
+              if(heading.length < 3) incremental = true;
             }
             else if(split[0].substr(0,2).toLowerCase() == "fh") { //using 'fh250' format
               heading = split[0].substr(2); //remove shortKey
@@ -1081,21 +1084,34 @@ var Aircraft=Fiber.extend(function() {
         case 2: //using 'turn r 250' format
           if(split[0] === "l") direction = "left";
           else if (split[0] === "r" ) direction = "right";
-          heading = parseInt(split[1]);
+          heading = split[1];
+          if(heading.length < 3) incremental = true;
           break;
 
         default:  //input formatted incorrectly
           return ["fail", "heading not understood"];
           break;
       }
-
       if(isNaN(heading)) return ["fail", "heading not understood"];
+
+      // for incremental turns
+      if(incremental) { // eg 'turn twenty degrees left'
+        if(direction == "left") {
+          amount = parseInt(heading);
+          heading = degrees(this.heading) - amount;
+        }
+        else if(direction == "right") {
+          amount = parseInt(heading);
+          heading = degrees(this.heading) + amount;
+        }
+      }
 
       //Stop doing what you're doing
       if(this.fms.currentWaypoint().navmode == "rwy")
         this.cancelLanding();
       this.cancelFix();
 
+      // Set the heading in the FMS
       this.fms.setCurrent({
         navmode: "heading",
         heading: radians(heading),
@@ -1103,13 +1119,16 @@ var Aircraft=Fiber.extend(function() {
         hold: false,
       });
 
+      // Construct the readback
       if(direction) instruction = "turn " + direction + " heading ";
       else instruction = "fly heading ";
-
-      var readback = {
-        log: instruction + heading_to_string(this.fms.currentWaypoint().heading),
-        say: instruction + radio_heading(heading_to_string(this.fms.currentWaypoint().heading))
-      };
+      if(incremental) 
+        var readback = {
+          log: "turn " + amount + " degrees " + direction,
+          say: "turn " + groupNumbers(amount) + " degrees " + direction};
+      else var readback = {
+          log: instruction + heading_to_string(this.fms.currentWaypoint().heading),
+          say: instruction + radio_heading(heading_to_string(this.fms.currentWaypoint().heading))};
       return ['ok', readback];
     },
     runAltitude: function(data) {
