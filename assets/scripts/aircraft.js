@@ -1698,12 +1698,10 @@ var Aircraft=Fiber.extend(function() {
             && (offset[1] < ils)) {
           if(this.mode != "landing") {
             this.mode = "landing";
-            if (!this.projected &&
-                (abs(angle_offset(this.fms.currentWaypoint().heading, angle)) > radians(30)))
-            {
-              ui_log(true,
-                     this.getRadioCallsign() +
-                       " landing intercept vector was greater than 30 degrees");
+            if (!this.projected && (abs(angle_offset(this.fms.currentWaypoint().heading,
+                  radians(parseInt(this.fms.currentWaypoint().runway.substr(0,2))*10))) > radians(30))) {
+              ui_log(true, this.getRadioCallsign() +
+                      " approach course intercept angle was greater than 30 degrees");
               prop.game.score.violation += 1;
             }
             this.updateStrip();
