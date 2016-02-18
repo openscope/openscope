@@ -334,8 +334,7 @@ var Model=Fiber.extend(function() {
 zlsa.atc.AircraftFlightManagementSystem = Fiber.extend(function() {
   return {
     init: function(options) {
-      this.aircraft = options.aircraft;
-
+      this.my_aircrafts_eid = options.aircraft.eid;
       this.waypoints = [];
       this.addWaypoint();
     },
@@ -538,10 +537,10 @@ zlsa.atc.AircraftFlightManagementSystem = Fiber.extend(function() {
 });
 
 var Aircraft=Fiber.extend(function() {
-
   return {
     init: function(options) {
       if(!options) options={};
+      this.eid         = prop.aircraft.list.length;  // entity ID
       this.position    = [0, 0];
 
       this.model       = null;
@@ -2396,13 +2395,11 @@ function aircraft_new(options) {
   var icao = options.icao.toLowerCase();
 
   options.model = prop.aircraft.models[icao];
-
   var aircraft = new Aircraft(options);
 
   aircraft.complete();
 
   prop.aircraft.list.push(aircraft);
-
   console.log("Spawning " + options.category + " : " + aircraft.getCallsign());
 }
 
@@ -2501,6 +2498,7 @@ function aircraft_update() {
     if(remove) {
       aircraft.cleanup();
       prop.aircraft.list.splice(i, 1);
+      update_aircraft_eids();
       i-=1;
     }
   }
@@ -2529,4 +2527,28 @@ function aircraft_turn_initiation_distance(a, fix) {
   var l2 = speed; // meters, bank establishment in 1s
   var turn_initiation_distance = turn_radius * Math.tan(course_change/2) + l2;
   return turn_initiation_distance / 1000; // convert m to km
+}
+
+// Get aircraft by entity id
+function aircraft_get(eid) {
+  if(eid == null) return null;
+  if(prop.aircraft.list.length > eid && eid >= 0) // prevent out-of-range error
+    return prop.aircraft.list[eid];
+  return null;
+}
+
+// Get aircraft by callsign
+function aircraft_get_by_callsign(callsign) {
+  for(var i=0; i<prop.aircraft.list.length; i++)
+    if(prop.aircraft.list[i].callsign == callsign.toLowerCase())
+      return prop.aircraft.list[i];
+  return null;
+}
+
+// Get aircraft's eid by callsign
+function aircraft_get_eid_by_callsign(callsign) {
+  for(var i=0; i<prop.aircraft.list.length; i++)
+    if(prop.aircraft.list[i].callsign == callsign.toLowerCase())
+      return prop.aircraft.list[i].eid;
+  return null;
 }
