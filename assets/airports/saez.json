@@ -92,17 +92,17 @@
       ["arg", 20],
       ["tam", 7],
       ["aal/long", 7],
-      ["sa-afr", 5],
-      ["sa-amx", 3],
-      ["sa-ava", 2],
-      ["sa-aza", 2],
-      ["sa-baw", 3],
-      ["sa-dlh", 3],
-      ["sa-ibe", 3],
-      ["sa-lan", 15],
-      ["sa-uae", 1],
-      ["sa-ual", 4],
-      ["sa-klm", 5]
+      ["afr/long", 5],
+      ["amx/long", 3],
+      ["ava/long", 2],
+      ["aza/long", 2],
+      ["baw/long", 3],
+      ["dlh/long", 3],
+      ["ibe/long", 3],
+      ["lan", 15],
+      ["uae", 1],
+      ["ual/long", 4],
+      ["klm/long", 5]
     ],
     "sids": {
       "ATOVO": ["EZE12", "EZE97", "EZE70", "EZE02", "EZE10", "EZE19", "EZE20", "EZE26", "ATOVO"],
@@ -125,10 +125,10 @@
       "fixes": ["SNT", "ARSOT"],
       "airlines":  [
         ["aal/long", 10],
-        ["sa-amx", 5],
-        ["sa-ava", 5],
-        ["sa-ual", 8],
-        ["sa-lan", 5],
+        ["amx/long", 5],
+        ["ava/long", 5],
+        ["ual/long", 8],
+        ["lan", 5],
         ["arg", 5]
       ],
       "type": "random",
@@ -141,7 +141,7 @@
       "speed": 250,
       "fixes": ["ASADA", "EZE50", "ARSOT"],
       "airlines":  [
-        ["sa-lan", 10],
+        ["lan", 10],
         ["arg", 10]
       ],
       "type": "random",
@@ -155,10 +155,10 @@
       "fixes": ["ESLAN", "PTA", "ILM", "PAL", "ENO", "ARSOT"],
       "airlines":  [
         ["arg", 10],
-        ["sa-lan", 5],
+        ["lan", 5],
         ["tam", 3],
-        ["sa-afr", 1],
-        ["sa-klm", 1]
+        ["afr/long", 1],
+        ["klm/long", 1]
       ],
       "type": "random",
       "offset": 0,
@@ -172,13 +172,13 @@
       "airlines":  [
         ["arg", 10],
         ["tam", 8],
-        ["sa-afr", 3],
-        ["sa-klm", 1],
-        ["sa-ibe", 3],
-        ["sa-dlh", 2],
-        ["sa-baw", 4],
-        ["sa-aza", 3],
-        ["sa-uae", 1]
+        ["afr/long", 3],
+        ["klm/long", 1],
+        ["ibe/long", 3],
+        ["dlh/long", 2],
+        ["baw/long", 4],
+        ["aza/long", 3],
+        ["uae", 1]
       ],
       "type": "random",
       "offset": 0,

@@ -105,7 +105,7 @@
       ["aal/long", 3],
       ["aca/long", 3],
       ["sas", 5],
-      ["sa-ual", 5]
+      ["ual/long", 5]
     ],
     "sids": {
       "LANUX": ["WW160", "WW170", "WW171", "LANUX"],
@@ -135,7 +135,7 @@
         ["gwi", 10],
         ["sas", 5],
         ["ezy", 7],
-        ["sa-ual", 5],
+        ["ual/long", 5],
         ["aca/long", 5],
         ["aal/long", 5]
       ],

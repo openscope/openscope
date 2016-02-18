@@ -268,7 +268,7 @@
       ["aca/long", 18],
       ["afl", 7],
       ["aua", 5],
-      ["sa-ava", 1],
+      ["ava/long", 1],
       ["baw", 335],
       ["ces", 2],
       ["cpa", 9],
@@ -278,12 +278,12 @@
       ["ein", 10],
       ["gwi", 8],
       ["klm", 8],
-      ["sa-amx", 2],
-      ["sa-cca", 2],
-      ["sa-kal", 6],
+      ["amx/long", 2],
+      ["cca/long", 2],
+      ["kal/long", 6],
       ["sas", 26],
-      ["sa-uae", 5],
-      ["sa-ual", 17],
+      ["uae", 5],
+      ["ual/long", 17],
       ["tam", 3],
       ["thy", 6],
       ["vir", 50]
@@ -318,7 +318,7 @@
         ["dlh", 30],
         ["gwi", 9],
         ["klm", 8],
-        ["sa-cca", 1],
+        ["cca/long", 1],
         ["vir", 12]
       ],
       "type": "wave",
@@ -334,7 +334,7 @@
       "airlines":[
         ["aua", 5],
         ["baw", 76],
-        ["sa-uae", 10],
+        ["uae", 10],
         ["thy", 6],
         ["vir", 12]
       ],
@@ -354,7 +354,7 @@
         ["dal", 9],
         ["ein", 8],
         ["sas", 26],
-        ["sa-ual", 17],
+        ["ual/long", 17],
         ["vir", 25]
       ],
       "type": "wave",
@@ -368,7 +368,7 @@
       "speed": 250,
       "fixes": ["BEWLI", "BEGTO", "HAZEL", "OCK"],
       "airlines": [
-        ["sa-amx", 2],
+        ["amx/long", 2],
         ["baw", 76],
         ["tam", 3],
         ["vir", 12]
