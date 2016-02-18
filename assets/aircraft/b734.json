@@ -1,11 +1,20 @@
 {
   "name": "Boeing 737-400",
   "icao": "B734",
-  "wake": "medium",
+  "engines": {
+    "number": 2,
+    "type": "J"
+  },
+  "weightclass": "L",
+  "category": {
+    "srs": 3,
+    "lahso": 8,
+    "recat": "D"
+  },
+  "ceiling": 37000,
   "rate": {
-    "turn":       1.2,
-    "ascent":     1100,
-    "descent":    1800,
+    "climb":      3000,
+    "descent":    3000,
     "accelerate": 6,
     "decelerate": 3
   },

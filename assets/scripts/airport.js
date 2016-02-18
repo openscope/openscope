@@ -785,7 +785,6 @@ var Airport=Fiber.extend(function() {
           var obj = {};
           if (r[i].name) obj.name = r[i].name;
           obj.height = parseElevation(r[i].height);
-          console.log(obj.name, 'altitude: ' + obj.height)
           obj.coordinates = $.map(r[i].coordinates, function(v) {
             return [(new Position(v, self.position, self.magnetic_north)).position];
           });
@@ -985,7 +984,9 @@ function airport_init() {
   airport_load("kmsp");
   airport_load("kjfk");
   airport_load("klax");
+  airport_load("klax90");
   airport_load("ksan");
+ 
   //  airport_load("ksna");
 
   airport_load("ebbr");
@@ -995,6 +996,8 @@ function airport_init() {
   airport_load("eddm");
   airport_load("eidw");
   airport_load("eglc");
+  airport_load("loww");
+  airport_load("egll");
 
   //  SOUTH AMERICA AIRPORTS
   airport_load("sbgr");
@@ -1005,7 +1008,7 @@ function airport_init() {
   airport_load("uudd");
 
   airport_load("ltba");
-
+  airport_load("vhhh");
 }
 
 function airport_ready() {

@@ -1,7 +1,11 @@
 {
   "name": "London City Airport",
   "level": "medium",
-  "radio": "City",
+  "radio": {
+    "twr": "City Tower",
+    "app": "City Approach",
+    "dep": "City Departure"
+  },
   "icao": "EGLC",
   "iata": "LCY",
   "magnetic_north": 0,

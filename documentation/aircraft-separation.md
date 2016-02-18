@@ -9,13 +9,22 @@ title: Aircraft Separation rules
 
 While in flight if there is not a more specific rule which applies
 then aircraft must be separated by at least 3nm laterally or 1000 feet
-vertically.
+vertically.  No separation incidents are registered for aircraft in
+their first minute of flight.
 
 A notice will occur for aircraft which do not have sufficient vertical
 separation and are within 4nm laterally.
 
 Collisions occur when an aircraft is within approximately 160 feet of
 another aircraft.
+
+## Diverging courses
+
+Aircraft may approach closer if they are on courses which differ by at
+least 15 degrees and one aircraft has passed the point where the
+courses intersect.  If the headings differ by more than 165 degrees,
+then the aircraft may approach closer once the distance between them
+is increasing.
 
 ## Head-on use of runway
 

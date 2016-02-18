@@ -1,7 +1,11 @@
 {
   "name": "Oslo Gardermoen International Airport &#9983",
   "level": "easy",
-  "radio": "Oslo",
+  "radio": {
+    "twr": "Oslo Tower",
+    "app": "Oslo Approach",
+    "dep": "Oslo Departure"
+  },
   "icao": "ENGM",
   "iata": "OSL",
   "magnetic_north": -2.8,

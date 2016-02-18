@@ -45,7 +45,7 @@ _Aliases -_ climb / descend / clear / altitude
 
 _Abbreviations -_ a, c, d
 
-_Information -_ This command tells the specified plane the altitude, in feet, it should travel to.  Note that you are able to type "5" or "8" in order to quickly type figures such as "5000" or "8000". Airplanes will not descend below 1000 feet (unless locked on ILS) or above 10000.
+_Information -_ This command tells the specified plane the altitude, in hundreds of feet (flight levels), it should travel to. This means that when writing altitudes you would drop the last two zeros. For example, 3,000ft = "30", 8,300ft = "83", 10,000ft = "100", and FL180 (18,000ft) = "180". Airplanes will not descend below 1000 feet (unless locked on ILS) or above 10000.
 
 _Syntax -_ (Callsign) (climb|descend|clear|altitude) (new altitude, in feet)
 

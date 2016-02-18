@@ -1,11 +1,20 @@
 {
   "name": "Boeing 767-200",
   "icao": "B762",
-  "wake": "heavy",
+  "engines": {
+    "number": 2,
+    "type": "J"
+  },
+  "weightclass": "H",
+  "category": {
+    "srs": 3,
+    "lahso": 9,
+    "recat": "C"
+  },
+  "ceiling": 41000,
   "rate": {
-    "turn":       1.1,
-    "ascent":     1500,
-    "descent":    2500,
+    "climb":      2500,
+    "descent":    2000,
     "accelerate": 7,
     "decelerate": 4
   },

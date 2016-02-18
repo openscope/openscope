@@ -1,11 +1,20 @@
 {
   "name": "Airbus A319",
   "icao": "A319",
-  "wake": "medium",
+  "engines": {
+    "number": 2,
+    "type": "J"
+  },
+  "weightclass": "L",
+  "category": {
+    "srs": 3,
+    "lahso": 7,
+    "recat": "D"
+  },
+  "ceiling": 39000,
   "rate": {
-    "turn":       1.4,
-    "ascent":     1600,
-    "descent":    1800,
+    "climb":      3500,
+    "descent":    3000,
     "accelerate": 6.5,
     "decelerate": 4
   },

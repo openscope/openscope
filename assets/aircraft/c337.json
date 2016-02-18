@@ -1,11 +1,20 @@
 {
   "name": "Cessna 337 Super Skymaster",
   "icao": "C337",
-  "wake": "light",
+  "engines": {
+    "number": 2,
+    "type": "P"
+  },
+  "weightclass": "S",
+  "category": {
+    "srs": 2,
+    "lahso": 3,
+    "recat": "F"
+  },
+  "ceiling": 19500,
   "rate": {
-    "turn":       5.0,
-    "ascent":     900,
-    "descent":    1500,
+    "climb":      2000,
+    "descent":    1000,
     "accelerate": 4,
     "decelerate": 3
   },

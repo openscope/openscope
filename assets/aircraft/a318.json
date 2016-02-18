@@ -1,11 +1,20 @@
 {
   "name": "Airbus A318",
   "icao": "A318",
-  "wake": "medium",
+  "engines": {
+    "number": 2,
+    "type": "J"
+  },
+  "weightclass": "L",
+  "category": {
+    "srs": 3,
+    "lahso": 7,
+    "recat": "D"
+  },
+  "ceiling": 39000,
   "rate": {
-    "turn":       1.5,
-    "ascent":     1900,
-    "descent":    2100,
+    "climb":      3500,
+    "descent":    3000,
     "accelerate": 7,
     "decelerate": 4
   },

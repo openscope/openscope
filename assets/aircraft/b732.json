@@ -1,0 +1,25 @@
+{
+  "name": "Boeing 737-200",
+  "icao": "B732",
+  "wake": "medium",
+  "rate": {
+    "climb":     2335,
+    "descent":    2000,
+    "accelerate": 5,
+    "decelerate": 3
+  },
+  "runway": {
+    "takeoff": 2.3,
+    "landing": 1.5
+  },
+  "speed":{
+    "min":     140,
+    "max":     350,
+    "landing": 130,
+    "cruise":  250
+  },
+  "capability": {
+    "ils": true,
+    "fix": true
+  }
+}

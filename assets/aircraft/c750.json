@@ -1,11 +1,20 @@
 {
   "name": "Cessna Citation X",
   "icao": "C750",
-  "wake": "light",
+  "engines": {
+    "number": 2,
+    "type": "J"
+  },
+  "weightclass": "S+",
+  "category": {
+    "srs": 3,
+    "lahso": 9,
+    "recat": "F"
+  },
+  "ceiling": 51000,
   "rate": {
-    "turn":       1.8,
-    "ascent":     2200,
-    "descent":    2500,
+    "climb":      4400,
+    "descent":    3000,
     "accelerate": 10,
     "decelerate": 5
   },

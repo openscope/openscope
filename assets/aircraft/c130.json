@@ -1,11 +1,20 @@
 {
   "name": "Lockheed C-130 Hercules",
   "icao": "C130",
-  "wake": "medium",
+  "engines": {
+    "number": 4,
+    "type": "T"
+  },
+  "weightclass": "L",
+  "category": {
+    "srs": 3,
+    "lahso": null,
+    "recat": "D"
+  },
+  "ceiling": 33000,
   "rate": {
-    "turn":       1.0,
-    "ascent":     1830,
-    "descent":    2100,
+    "climb":      1500,
+    "descent":    1670,
     "accelerate": 7,
     "decelerate": 5
   },

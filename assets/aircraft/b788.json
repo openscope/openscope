@@ -1,11 +1,20 @@
 {
   "name": "Boeing 787-8 Dreamliner",
   "icao": "B788",
-  "wake": "heavy",
+  "engines": {
+    "number": 2,
+    "type": "J"
+  },
+  "weightclass": "H",
+  "category": {
+    "srs": 3,
+    "lahso": 7,
+    "recat": "B"
+  },
+  "ceiling": 43000,
   "rate": {
-    "turn":       1.4,
-    "ascent":     1700,
-    "descent":    2500,
+    "climb":      2700,
+    "descent":    2800,
     "accelerate": 7,
     "decelerate": 4
   },

@@ -1,11 +1,20 @@
 {
   "name": "Boeing 747-8i",
   "icao": "B748",
-  "wake": "heavy",
+  "engines": {
+    "number": 4,
+    "type": "J"
+  },
+  "weightclass": "H",
+  "category": {
+    "srs": 3,
+    "lahso": 10,
+    "recat": "B"
+  },
+  "ceiling": 45000,
   "rate": {
-    "turn":       0.9,
-    "ascent":     1200,
-    "descent":    2000,
+    "climb":      2500,
+    "descent":    3000,
     "accelerate": 6,
     "decelerate": 3
   },

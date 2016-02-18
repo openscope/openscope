@@ -1,11 +1,20 @@
 {
   "name": "Ilyushin Il-76",
   "icao": "IL76",
-  "wake": "heavy",
+  "engines": {
+    "number": 4,
+    "type": "J"
+  },
+  "weightclass": "H",
+  "category": {
+    "srs": 3,
+    "lahso": null,
+    "recat": "C"
+  },
+  "ceiling": 39500,
   "rate": {
-    "turn":       0.8,
-    "ascent":     1200,
-    "descent":    2000,
+    "climb":      3000,
+    "descent":    1670,
     "accelerate": 5,
     "decelerate": 2
   },

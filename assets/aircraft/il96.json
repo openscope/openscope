@@ -1,10 +1,19 @@
 {
   "name": "Ilyushin Il-96-300",
   "icao": "IL96",
-  "wake": "heavy",
+  "engines": {
+    "number": 4,
+    "type": "J"
+  },
+  "weightclass": "H",
+  "category": {
+    "srs": 3,
+    "lahso": null,
+    "recat": "B"
+  },
+  "ceiling": 41000,
   "rate": {
-    "turn":       0.8,
-    "ascent":     1200,
+    "climb":      2000,
     "descent":    2000,
     "accelerate": 5,
     "decelerate": 2

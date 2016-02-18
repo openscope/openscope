@@ -78,8 +78,8 @@ function tutorial_init_pre() {
   tutorial_step({
     title:    "Takeoff, part 1",
     text:     ["When it appears at the start of runway {RUNWAY} (which may take a couple of seconds), click it (or press the up arrow once)",
-               "and type in &lsquo;climb 5000&rsquo;. This clears the aircraft to climb to five thousand",
-               "feet after it takes off. (This step must be done before clearing the aircraft for take off, just as in real life.)"
+               "and type in &lsquo;climb 50&rsquo;. This clears the aircraft to climb to five thousand",
+               "feet after it takes off. (This step must be done before clearing the aircraft for takeoff, just as in real life.)"
                ].join(" "),
     parse:    function(t) {
       return t.replace("{RUNWAY}", prop.aircraft.list[0].fms.currentWaypoint().runway);
@@ -166,8 +166,8 @@ function tutorial_init_pre() {
     text:     ["You can assign altitudes with the &lsquo;climb&rsquo; command, or any of its aliases (other words that",
                "act identically). Running the command &lsquo;climb&rsquo; is the same as the commands &lsquo;descend&rsquo;, &lsquo;d&rsquo;,",
                "&lsquo;clear&rsquo;, &lsquo;c&rsquo;, &lsquo;altitude&rsquo;, or &lsquo;a&rsquo;. Just use whichever feels correct in your situation.",
-               "You may enter altitudes in feet, hundreds of feet, or thousands of feet (eg. &lsquo;climb 5&rsquo; = &lsquo;climb 50&rsquo;",
-               " = &lsquo;climb 5000&rsquo;)."
+               "Remember, just as in real ATC, altitudes are ALWAYS written in hundreds of feet, eg. &lsquo;descend 30&rsquo; for 3,000ft or &lsquo;climb",
+               " 100&rsquo; for 10,000ft."
                ].join(" "),
     parse:    function(t) {
       return t.replace("{CALLSIGN}", prop.aircraft.list[0].getCallsign());
@@ -261,7 +261,7 @@ function tutorial_init_pre() {
 
   tutorial_step({
     title:    "Approach Clearances, part 1",
-    text:     ["You can clear aircraft for an ILS approach with the asterisk (*) key, followed by a runway name. Before you can do so, however,",
+    text:     ["You can clear aircraft for an ILS approach with the &quot;ILS&quot; command, followed by a runway name. Before you can do so, however,",
                "it must be on a heading that will cross the runway's extended centerline, that is no more than 30 degrees offset from the",
                "runway's heading. Once we eventually give them an approach clearance, you can expect aircraft to capture the ILS's localizer",
                "once they're within a few degrees of the extended centerline."
@@ -275,7 +275,7 @@ function tutorial_init_pre() {
 
   tutorial_step({
     title:    "Approach Clearances, part 2",
-    text:     ["When you have the aircraft facing the right direction, just select it and type &lsquo;*&lt;runway&gt;&rsquo;",
+    text:     ["When you have the aircraft facing the right direction, just select it and type &lsquo;i &lt;runway&gt;&rsquo;",
                "with the runway that&rsquo;s in front of it. Once it's close enough to capture the localizer, the assigned altitude on its strip",
                "will change to &lsquo;ILS locked&rsquo; (meaning the aircraft is capable of guiding itself down to the runway via",
                "the Instrument Landing System), and the assigned heading should now show the runway to which it has an approach clearance."
@@ -292,7 +292,7 @@ function tutorial_init_pre() {
     text:     ["You may choose to enter one command at a time, but air traffic controllers usually do multiple. Particularly in approach clearances,",
                "they follow an acronym &ldquo;PTAC&rdquo; for the four elements of an approach clearance, the &lsquo;T&rsquo; and &lsquo;C&rsquo; of which",
                "stand for &lsquo;Turn&rsquo; and &lsquo;Clearance&rsquo;, both of which we entered separately in this tutorial. Though longer, it is both ",
-               "easier and more real-world accurate to enter them together, like this: &lsquo;fh250 *28r&rsquo;."
+               "easier and more real-world accurate to enter them together, like this: &lsquo;fh250 l 28r&rsquo;."
                ].join(" "),
     parse:    function(t) {
       return t.replace("{CALLSIGN}", prop.aircraft.list[0].getCallsign());

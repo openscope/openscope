@@ -1,11 +1,20 @@
 {
   "name": "Airbus A330-200",
   "icao": "A332",
-  "wake": "heavy",
+  "engines": {
+    "number": 2,
+    "type": "J"
+  },
+  "weightclass": "H",
+  "category": {
+    "srs": 3,
+    "lahso": 8,
+    "recat": "B"
+  },
+  "ceiling": 41000,
   "rate": {
-    "turn":       0.8,
-    "ascent":     1100,
-    "descent":    2200,
+    "climb":      3500,
+    "descent":    2000,
     "accelerate": 6,
     "decelerate": 3.5
   },

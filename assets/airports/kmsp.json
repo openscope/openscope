@@ -1,7 +1,11 @@
 {
   "name": "Minneapolis/St. Paul International Airport &#9983",
   "level": "hard",
-  "radio": "Minneapolis",
+  "radio": {
+    "twr": "Minneapolis Tower",
+    "app": "Minneapolis Approach",
+    "dep": "Minneapolis Departure"
+  },
   "icao": "KMSP",
   "iata": "MSP",
   "magnetic_north": 0.4,

@@ -1,0 +1,26 @@
+{
+  "name": "McDonnel Douglas MD-81",
+  "icao": "MD80",
+  "wake": "medium",
+  "rate": {
+    "turn":       1.2,
+    "climb":     1215,
+    "descent":    1500,
+    "accelerate": 7,
+    "decelerate": 5
+  },
+  "runway": {
+    "takeoff": 3.1,
+    "landing": 3.8
+  },
+  "speed":{
+    "min":     120,
+    "max":     250,
+    "landing": 140,
+    "cruise":  200
+  },
+  "capability": {
+    "ils": true,
+    "fix": true
+  }
+}

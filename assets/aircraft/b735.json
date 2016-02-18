@@ -1,11 +1,20 @@
 {
   "name": "Boeing 737-500",
   "icao": "B735",
-  "wake": "medium",
+  "engines": {
+    "number": 2,
+    "type": "J"
+  },
+  "weightclass": "L",
+  "category": {
+    "srs": 3,
+    "lahso": 7,
+    "recat": "D"
+  },
+  "ceiling": 37000,
   "rate": {
-    "turn":       1.6,
-    "ascent":     1500,
-    "descent":    1900,
+    "climb":      3000,
+    "descent":    3000,
     "accelerate": 7,
     "decelerate": 5
   },

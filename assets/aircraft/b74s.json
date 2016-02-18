@@ -1,0 +1,26 @@
+{
+  "name": "Boeing 747SP",
+  "icao": "B74S",
+  "wake": "heavy",
+  "rate": {
+    "turn":       0.6,
+    "climb":     1715,
+    "descent":    2000,
+    "accelerate": 4,
+    "decelerate": 2
+  },
+  "runway": {
+    "takeoff": 3.2,
+    "landing": 4.0
+  },
+  "speed":{
+    "min":     135,
+    "max":     250,
+    "landing": 150,
+    "cruise":  200
+  },
+  "capability": {
+    "ils": true,
+    "fix": true
+  }
+}

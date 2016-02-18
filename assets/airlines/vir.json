@@ -1,0 +1,13 @@
+{
+  "name": "Virgin Atlantic Airways",
+  "callsign": {
+    "name": "Virgin",
+    "length": 3
+  },
+  "aircraft": [
+    ["A333", 10],
+    ["A346", 11],
+    ["B744", 10],
+    ["B788", 9]
+  ]
+}

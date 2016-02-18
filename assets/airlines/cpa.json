@@ -1,0 +1,15 @@
+{
+  "name": "Cathay Pacific",
+  "callsign": {
+    "name": "Cathay",
+    "length": 3
+  },
+  "aircraft": [
+    ["A333", 37],
+    ["A343", 11],
+    ["B744", 15],
+    ["B772", 5],
+    ["B773", 12],
+    ["B77W", 36]
+  ]
+}

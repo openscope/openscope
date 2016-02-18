@@ -118,7 +118,7 @@ zlsa.atc.Airline = Fiber.extend(function() {
                          + ", expect errors");
           }
 
-          if (typeof(this.fleets[f][j][1] != typeof(0))) {
+          if (typeof this.fleets[f][j][1] != "number") {
             console.warn("Airline " + this.icao.toUpperCase()
                          + " uses non numeric weight for aircraft " +
                          this.fleets[f][j][0] + ", expect errors");
@@ -130,6 +130,10 @@ zlsa.atc.Airline = Fiber.extend(function() {
 });
 
 function airline_init() {
+  // 1990' Airlines
+	  airline_load("PAA");
+	  airline_load("TWA");
+	  
   // Civil Airlines
   airline_load("UAL");
   airline_load("BAW");
@@ -151,6 +155,7 @@ function airline_init() {
   airline_load("BER");
   airline_load("EZY");
   airline_load("GWI");
+  airline_load("AUA");
 
   // South American
   airline_load("ONE");
@@ -161,7 +166,7 @@ function airline_init() {
   airline_load("EMBRAER");
   airline_load("ARG");
 
-  // Russian
+  // Asian
   airline_load("AFL");
   airline_load("MOV");
   airline_load("RLU");
@@ -170,6 +175,12 @@ function airline_init() {
   airline_load("TYA");
   airline_load("ASA");
   airline_load("SWA");
+  
+  // Asian
+  airline_load("CES");
+  airline_load("CPA");
+  airline_load("CSN");
+  airline_load("HDA");
 
   // Cargo Airlines
   airline_load("FDX");
@@ -198,7 +209,7 @@ function airline_init() {
   airline_load("SA-UAL");
 
   airline_load("DLH");
-
+  airline_load("VIR");
   airline_load("THY");
 
 }
