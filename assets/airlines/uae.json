@@ -1,0 +1,23 @@
+{
+  "name": "Emirates",
+  "icao": "UAE",
+  "callsign": {
+    "name": "Emirates",
+    "length": 3
+   },
+  "fleets": {
+     "90long": [
+      ["A300", 7 ],
+	  ["A310", 14 ],
+	  ],
+     "90default": [
+	  ["B733", 1 ]
+    ],
+    "default": [
+      ["B772", 16 ],
+	  ["B773", 126 ],
+	  ["A388", 74 ],
+	  ["A332", 13 ],
+     ]
+  }
+}
