@@ -1114,7 +1114,7 @@ function airport_set(icao) {
     (prop.airport.current.restricted_areas || []).length > 0);
 
   $('.toggle-sids').toggle(
-    !$.isEmptyObject(prop.airport.current.departures.sids));
+    !$.isEmptyObject(prop.airport.current.sids));
 
   prop.canvas.dirty = true;
 

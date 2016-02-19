@@ -288,22 +288,32 @@ function canvas_draw_sids(cc) {
   cc.setLineDash([1,10]);
   cc.font = "italic 14px monoOne, monospace";
   var airport = airport_get();
-  for(var s in airport.departures.sids) {
-    var fixList = airport.departures.sids[s];
-    var fx, fy;
-    for(var i=0; i<fixList.length; i++) {
-      var fix = airport.getFix(fixList[i]);
-      fx = km_to_px(fix[0]) + prop.canvas.panX;
-      fy = -km_to_px(fix[1]) + prop.canvas.panY;
-      if(i === 0) {
-        cc.beginPath();
-        cc.moveTo(fx, fy);
-      } else {
-        cc.lineTo(fx, fy);
+  for(var s in airport.sids) {
+    var write_sid_name = true;
+    if(airport.sids[s].hasOwnProperty("draw")) {
+      for(var i in airport.sids[s].draw) {
+        var fixList = airport.sids[s].draw[i];
+        var fx, fy, trxn_name = null;
+        for(var j=0; j<fixList.length; j++) {
+          if(fixList[j].indexOf("*") != -1) { // write transition name
+            trxn_name = fixList[j].replace("*","");
+            write_sid_name = false;
+          }
+          var fix = airport.getFix(fixList[j].replace("*",""));
+          fx = km_to_px(fix[0]) + prop.canvas.panX;
+          fy = -km_to_px(fix[1]) + prop.canvas.panY;
+          if(j === 0) {
+            cc.beginPath();
+            cc.moveTo(fx, fy);
+          } else {
+            cc.lineTo(fx, fy);
+          }
+        }
+        cc.stroke();
+        if(trxn_name) cc.fillText(s + "." + trxn_name, fx+10, fy);
       }
+      if(write_sid_name) cc.fillText(s, fx+10, fy);
     }
-    cc.stroke();
-    cc.fillText(s, fx+10, fy);
   }
 }
 
