@@ -336,6 +336,7 @@ zlsa.atc.AircraftFlightManagementSystem = Fiber.extend(function() {
     init: function(options) {
       this.my_aircrafts_eid = options.aircraft.eid;
       this.waypoints = [];
+      this.waypoints_past = [];
       this.fp = { altitude: null, route: [] };
       
       // set initial
@@ -606,6 +607,42 @@ zlsa.atc.AircraftFlightManagementSystem = Fiber.extend(function() {
 
       return i;
     },
+
+    /**
+     * Returns a (deep) copy of a waypoint.
+     *
+     * By default, when pushing an object (like a waypoint) to an array
+     * in js, the value of the object itself is not copied, but rather
+     * just a reference (pointer) to the object. This results in pushing
+     * the correct value to the array, and then when the source value
+     * changes, it is also changed in the array, despite the fact that
+     * you would have thought you had 'saved' the old value.
+     * 
+     * This function will manually build a copy of the waypoint object,
+     * and return the ACTUAL value, that will not be changed when the
+     * fms is updated.
+     */
+    deepCopyWaypoint: function(wp) {
+      if(!wp) wp = this.currentWaypoint();
+      var copy = {
+        altitude: null,
+        name:     'unnamed',
+        navmode:  null,
+        heading:  null,
+        turn:     null,
+        location: null,
+        expedite: false,
+        speed:    null,
+        runway:   null,
+        fixRestrictions: {
+          alt: null,
+          spd: null
+        }
+      };
+      for(var i in wp) copy[i] = wp[i];
+      for(var i in wp.fixRestrictions) copy.fixRestrictions[i] = wp.fixRestrictions[i];
+      return copy;
+    }
   };
 });
 
@@ -831,18 +868,37 @@ var Aircraft=Fiber.extend(function() {
         this.hideStrip();
 
         if (this.category == "departure") {
-          // Within 5 degrees of destination heading
-          if (abs(this.radial - this.destination) < 0.08726) {
-            this.radioCall("leaving radar coverage", "dep");
-            prop.game.score.departure += 1;
+          if(this.destination == "number") {
+            // Within 5 degrees of destination heading
+            if (abs(this.radial - this.destination) < 0.08726) {
+              this.radioCall("switching to center, good day", "dep");
+              prop.game.score.departure += 1;
+            }
+            else {
+              this.radioCall("leaving radar coverage outside departure window", "dep", true);
+              prop.game.score.departure -= 1;
+            }
           }
-          else {
-            this.radioCall("leaving radar coverage outside departure window", "dep", true);
-            prop.game.score.departure -= 1;
+          else { // following a Standard Instrument Departure procedure
+            var ok = false;
+            if(!ok) for(var i in this.fms.waypoints_past)
+              if(this.fms.waypoints_past[i].name == this.fms.fp.route[1].split(".")[1]) {ok = true; break;}
+            if(!ok) for(var i in this.fms.waypoints)
+              if(this.fms.waypoints[i].name == this.fms.fp.route[1].split(".")[1]) {ok = true; break;}
+            if(ok) {
+              this.radioCall("switching to center, good day", "dep");
+              prop.game.score.departure += 1;
+            }
+            else {
+              this.radioCall("leaving radar coverage without being cleared to " + 
+                this.fms.fp.route[1].split(".")[1],"dep",true)
+              prop.game.score.departure -= 1;
+            }
           }
+          this.fms.setCurrent({altitude:this.fms.fp.altitude, speed:this.model.speed.cruise});
         }
         if (this.category == "arrival") {
-          this.radioCall("leaving radar coverage as arrival", "dep", true);
+          this.radioCall("leaving radar coverage as arrival", "app", true);
           prop.game.score.failed_arrival += 1;
         }
       }
@@ -1733,12 +1789,16 @@ var Aircraft=Fiber.extend(function() {
     },
     radioCall: function(msg, sectorType, alert) {
       if (this.projected) return;
-      var call = airport_get().radio[sectorType] + ", " +
-        this.callsign + " " +msg;
+      var call = "",
+        callsign_L = this.getCallsign(),
+        callsign_S = this.getRadioCallsign();
+      if(sectorType) call += airport_get().radio[sectorType];
+      // call += ", " + this.getCallsign() + " " + msg;
       if (alert)
-        ui_log(true, call);
+        ui_log(true, airport_get().radio[sectorType] + ", " + callsign_L + " " + msg);
       else
-        ui_log(call);
+        ui_log(airport_get().radio[sectorType] + ", " + callsign_L + " " + msg);
+      speech_say([{type:"text", content:(airport_get().radio[sectorType] + ", " + callsign_S + " " + msg)}]);
     },
     callUp: function() {
       if(this.category == "arrival") {
@@ -1900,11 +1960,15 @@ var Aircraft=Fiber.extend(function() {
             distance_to_fix = distance2d(this.position, fix);
         if((distance_to_fix < 0.5) ||
           ((distance_to_fix < 10) && (distance_to_fix < aircraft_turn_initiation_distance(this, fix)))) {
-//          ui_log(this.getRadioCallsign() + " passed over " + this.fms.currentWaypoint().name.toUpperCase() + ", will maintain heading " + heading_to_string(this.fms.currentWaypoint().heading) + " at " + this.fms.currentWaypoint().altitude + " feet");
-          if(this.fms.waypoints.length > 1)
+          if(this.fms.waypoints.length > 1) {
+            this.fms.waypoints_past.push(this.fms.currentWaypoint());
             this.fms.nextWaypoint();
-          else
+          }
+          else {
+            // console.log(this.fms.currentWaypoint());
+            this.fms.waypoints_past.push(this.fms.deepCopyWaypoint());
             this.cancelFix();
+          }
           this.updateStrip();
         } else {
           this.target.heading = vradial(vector_to_fix) - Math.PI;
