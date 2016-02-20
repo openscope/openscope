@@ -570,15 +570,14 @@ var Runway=Fiber.extend(function(base) {
       this.waiting      = [[], []];
 
       this.parse(options);
-
     },
     addQueue: function(aircraft, end) {
       end = this.getEnd(end);
       this.waiting[end].push(aircraft);
     },
-    removeQueue: function(aircraft, end) {
+    removeQueue: function(aircraft, end, force) {
       end = this.getEnd(end);
-      if(this.waiting[end][0] == aircraft) {
+      if(this.waiting[end][0] == aircraft || force) {
         this.waiting[end].shift(aircraft);
         if(this.waiting[end].length >= 1) {
           this.waiting[end][0].moveForward();
@@ -604,7 +603,6 @@ var Runway=Fiber.extend(function(base) {
       var offset = [0, 0];
       offset[0]  = (-cos(this.angle) * position[0]) + (sin(this.angle) * position[1]);
       offset[1]  = ( sin(this.angle) * position[0]) + (cos(this.angle) * position[1]);
-//      offset[1] *= -1;
 
       if(end == 0) {
         offset = vscale(offset, -1);
@@ -614,7 +612,6 @@ var Runway=Fiber.extend(function(base) {
         offset[1] -= this.length / 2;
       }
       return offset;
-
     },
     getAngle: function(end) {
       end = this.getEnd(end);
