@@ -1,23 +1,34 @@
 {
-  "name": "Douglas DC-9-30",
+  "name": "McDonnell-Douglas DC-9-30",
   "icao": "DC93",
-  "wake": "medium",
+  "engines": {
+    "number": 2,
+    "type": "J"
+  },
+  "weightclass": "L",
+  "category": {
+    "srs": 3,
+    "lahso": 8,
+    "recat": "D"
+  },
+  "ceiling": 37000,
   "rate": {
-    "turn":       0.5,
     "climb":     2335,
     "descent":    3000,
     "accelerate": 5,
     "decelerate": 2
   },
   "runway": {
-    "takeoff": 2.0,
-    "landing": 1.8
+    "takeoff": 2.100,
+    "landing": 1.800
   },
   "speed":{
     "min":     135,
-    "max":     250,
     "landing": 127,
-    "cruise":  200
+    "cruise":  430,
+    "cruiseM": null,
+    "max":     490,
+    "maxM":    null
   },
   "capability": {
     "ils": true,
