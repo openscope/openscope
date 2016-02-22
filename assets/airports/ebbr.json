@@ -1,6 +1,6 @@
 {
   "reference": "https://www.belgocontrol.be/opersite/eaip/eAIP_Main/html/eAIP/EB-AD-2.EBBR-en-GB.html",
-  "name": "Brussels-National",
+  "name": "Brussels-National &#9983",
   "level": "easy",
   "radio": {
     "twr": "Brussels Tower",
@@ -22,6 +22,11 @@
     "speed": 6
   },
   "fixes": {
+    "EBBR": [0,0],
+    "NORTH": [0,80],
+    "EAST": [80,0],
+    "SOUTH": [0,-80],
+    "WEST": [-80,0],
     "LOB":[9.4,2.47],
     "LOP":[7.63,4.47],
     "LOZ":[-0.93,-8.4],
@@ -74,6 +79,60 @@
       "ils": [true, false]
     }
   ],
+  "sids": {
+    "NORTH": {
+      "icao": "NORTH",
+      "name": "NORTH",
+      "rwy": {
+        "19" : ["NORTH"],
+        "01" : ["NORTH"],
+        "25L": ["NORTH"],
+        "25R": ["NORTH"],
+        "07L": ["NORTH"],
+        "07R": ["NORTH"]
+      },
+      "draw": [["EBBR","NORTH"]]
+    },
+    "EAST": {
+      "icao" : "EAST",
+      "name" : "EAST",
+      "rwy": {
+        "19" : ["EAST"],
+        "01" : ["EAST"],
+        "25L": ["EAST"],
+        "25R": ["EAST"],
+        "07L": ["EAST"],
+        "07R": ["EAST"]
+      },
+      "draw": [["EBBR","EAST"]]
+    },
+    "SOUTH": {
+      "icao": "SOUTH",
+      "name": "SOUTH",
+      "rwy": {
+        "19" : ["SOUTH"],
+        "01" : ["SOUTH"],
+        "25L": ["SOUTH"],
+        "25R": ["SOUTH"],
+        "07L": ["SOUTH"],
+        "07R": ["SOUTH"]
+      },
+      "draw": [["EBBR","SOUTH"]]
+    },
+    "WEST": {
+      "icao": "WEST",
+      "name": "WEST",
+      "rwy": {
+        "19" : ["WEST"],
+        "01" : ["WEST"],
+        "25L": ["WEST"],
+        "25R": ["WEST"],
+        "07L": ["WEST"],
+        "07R": ["WEST"]
+      },
+      "draw": [["EBBR","WEST"]]
+    }
+  },
   "departures": {
     "airlines": [
       ["ual", 3],
@@ -81,7 +140,7 @@
       ["cessna", 4]
     ],
     "destinations": [
-      50, 140, 235, 280, 345
+      "NORTH", "EAST", "SOUTH", "WEST"
     ],
     "frequency": [1, 3]
   },

@@ -8,7 +8,7 @@
   },
   "icao": "LTBA",
   "iata": "IST",
-  "magnetic_north": 3.6,
+  "magnetic_north": 5.25,
   "ctr_radius": 80,
   "ctr_ceiling": 10000,
   "initial_alt": 5000,
@@ -21,6 +21,11 @@
     "speed": 6
   },
   "fixes": {
+    "LTBA": ["N40.976898", "E28.814600"],
+    "NORTH": ["N41.697227", "E28.814600"],
+    "EAST" : ["N40.972989", "E29.765082"],
+    "SOUTH": ["N40.256479", "E28.814600"],
+    "WEST" : ["N40.972989", "E27.864118"],
     "IST": ["N41.057201", "E28.806400"],
     "CEK": ["N41.005798", "E28.528099"],
     "BKZ": ["N41.126900", "E29.142799"],
@@ -54,6 +59,60 @@
       "ils":          [true, true]
     }
   ],
+  "sids": {
+    "NORTH": {
+      "icao": "NORTH",
+      "name": "NORTH",
+      "rwy": {
+        "35L": ["NORTH"],
+        "35R": ["NORTH"],
+        "17L": ["NORTH"],
+        "17R": ["NORTH"],
+        "5" : ["NORTH"],
+        "23" : ["NORTH"]
+      },
+      "draw": [["LTBA","NORTH"]]
+    },
+    "EAST": {
+      "icao" : "EAST",
+      "name" : "EAST",
+      "rwy": {
+        "35L": ["EAST"],
+        "35R": ["EAST"],
+        "17L": ["EAST"],
+        "17R": ["EAST"],
+        "5" : ["EAST"],
+        "23" : ["EAST"]
+      },
+      "draw": [["LTBA","EAST"]]
+    },
+    "SOUTH": {
+      "icao": "SOUTH",
+      "name": "SOUTH",
+      "rwy": {
+        "35L": ["SOUTH"],
+        "35R": ["SOUTH"],
+        "17L": ["SOUTH"],
+        "17R": ["SOUTH"],
+        "5" : ["SOUTH"],
+        "23" : ["SOUTH"]
+      },
+      "draw": [["LTBA","SOUTH"]]
+    },
+    "WEST": {
+      "icao": "WEST",
+      "name": "WEST",
+      "rwy": {
+        "35L": ["WEST"],
+        "35R": ["WEST"],
+        "17L": ["WEST"],
+        "17R": ["WEST"],
+        "5" : ["WEST"],
+        "23" : ["WEST"]
+      },
+      "draw": [["LTBA","WEST"]]
+    }
+  },
   "departures": {
     "airlines": [
       ["aca", 4],
@@ -68,7 +127,7 @@
       ["lightga", 11]
     ],
     "destinations": [
-       20, 110, 150, 225, 295
+       "NORTH", "EAST", "SOUTH", "WEST"
     ],
     "frequency": [2, 5]
   },
