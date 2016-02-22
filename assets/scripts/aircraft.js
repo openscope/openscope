@@ -368,6 +368,16 @@ zlsa.atc.AircraftFlightManagementSystem = Fiber.extend(function() {
         wp.location = airport_get().getFix(data.fix);
       }
 
+      // Remove '+' or '-' until at/above and at/below altitudes are implemented
+      if(data.altitude) {
+        if(data.altitude.indexOf("+") != -1) {
+          data.altitude = data.altitude.replace("+","");
+        }
+        if(data.altitude.indexOf("-") != -1) {
+          data.altitude = data.altitude.replace("-","");
+        }
+      }
+
       for (var f in data) {
         wp[f] = data[f];
       }
@@ -460,6 +470,38 @@ zlsa.atc.AircraftFlightManagementSystem = Fiber.extend(function() {
 
       // Restore existing clearances
       this.waypoints[0].altitude = current.altitude;
+      this.waypoints[0].speed = current.speed;
+      this.waypoints[0].expedite = current.expedite;
+      this.waypoints[0].runway = current.runway;
+    },
+
+    /**
+    * Adds a series of fixes w/ altitudes to the fms waypoints list
+    */
+    flySID: function(fixes_n_alts_n_speeds) {
+      var current = this.waypoints[0];
+      this.waypoints = [];
+      for (var i=0; i< fixes_n_alts_n_speeds.length; i++) {
+        var f = fixes_n_alts_n_speeds[i][0];
+        if(fixes_n_alts_n_speeds[i][1]) {
+          var a_n_s = fixes_n_alts_n_speeds[i][1].toUpperCase().split("|");
+          var a = null, s = null;
+          for(var j in a_n_s) {
+            if(a_n_s[j][0] == "A") a = a_n_s[j].substr(1);
+            else if(a_n_s[j][0] == "S") s = a_n_s[j].substr(1);
+          }
+        }
+
+        // add waypoint to fms
+        this.addWaypoint({
+          name: f,
+          navmode: 'fix',
+          location: airport_get().getFix(f),
+          fixRestrictions: {alt:a, spd:s}
+        });
+      }
+
+      // Restore existing clearances
       this.waypoints[0].speed = current.speed;
       this.waypoints[0].expedite = current.expedite;
       this.waypoints[0].runway = current.runway;
@@ -1271,17 +1313,19 @@ var Aircraft=Fiber.extend(function() {
         return ["fail", "SID name not understood"];
       }
       
-      var sid_name = data.toUpperCase(),
-          fixes = airport_get().getSID(sid_name);
+      var sid_id = data.toUpperCase();
+      var sid_name = airport_get().sids[sid_id].name;
+      var rwy = this.fms.currentWaypoint().runway;
+      var trxn = airport_get().getSIDTransition(sid_id);
+      var fixes = airport_get().getSID(sid_id, trxn, rwy);
       
-      if(!fixes) {
-        return ["fail", "no SID found with name of " + sid_name];
-      }
+      if(!fixes) return ["fail", sid_id + " SID not valid from runway " + rwy];
       
       this.cancelFix();
-      this.fms.setFixes(fixes);
+      this.fms.flySID(fixes);
 
-      return ["ok", {log: "cleared to destination via "+sid_name, say:"cleared to dest inay shin via "+sid_name}];
+      return ["ok", {log:"cleared to destination via the " + sid_id + " departure, then as filed",
+                  say:"cleared to destination via the " + sid_name + " departure, then as filed"}];
     },
     runProceed: function(data) {
       var lastWaypoint = this.fms.waypoints[this.fms.waypoints.length - 1];
@@ -1826,7 +1870,7 @@ var Aircraft=Fiber.extend(function() {
       if(this.mode == "takeoff") {
         var runway = airport_get().getRunway(this.fms.currentWaypoint().runway);
 
-        this.target.heading = runway.getAngle(this.fms.currentWaypoint().runway);
+        if(runway) this.target.heading = runway.getAngle(this.fms.currentWaypoint().runway);
 
         if(this.speed < this.model.speed.min) {
           this.target.altitude = 0;

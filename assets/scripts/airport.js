@@ -694,15 +694,12 @@ var Airport=Fiber.extend(function() {
       this.name     = null;
       this.icao     = null;
       this.radio    = null;
-
       this.level    = null;
-
       this.runways  = [];
-
       this.runway   = null;
-
       this.fixes    = {};
       this.real_fixes = {};
+      this.sids     = {};
       this.restricted_areas = [];
 
       this.timeout  = {
@@ -711,7 +708,6 @@ var Airport=Fiber.extend(function() {
       };
 
       this.departures = null;
-
       this.arrivals   = [];
 
       this.wind     = {
@@ -726,7 +722,6 @@ var Airport=Fiber.extend(function() {
       if(options.url) {
         this.load(options.url);
       }
-
     },
     getWind: function() {
       var wind = clone(this.wind);
@@ -775,7 +770,10 @@ var Airport=Fiber.extend(function() {
             this.real_fixes[name] = coord.position;
           }
         }
+      }
 
+      if(data.sids) {
+        this.sids = data.sids;
       }
 
       if(data.restricted) {
@@ -818,7 +816,6 @@ var Airport=Fiber.extend(function() {
           this.arrivals.push(zlsa.atc.ArrivalFactory(this, data.arrivals[i]));
         }
       }
-
     },
     set: function() {
       this.start = game_time();
@@ -842,7 +839,6 @@ var Airport=Fiber.extend(function() {
           this.arrivals[i].start();
         }
       }
-
     },
     updateRunway: function(length) {
       if(!length) length = 0;
@@ -951,9 +947,55 @@ var Airport=Fiber.extend(function() {
       if(!name) return null;
       return this.fixes[name.toUpperCase()] || null;
     },
-    getSID: function(name) {
-      if(!name) return null;
-      return this.departures.sids[name.toUpperCase()] || null;
+    getSID: function(id, trxn, rwy) {
+      if(!(id && trxn && rwy)) return null;
+      var fixes = [];
+      var sid = this.sids[id];
+
+      // runway portion
+      if(sid.rwy.hasOwnProperty(rwy))
+        for(var i=0; i<sid.rwy[rwy].length; i++) {
+          if(typeof sid.rwy[rwy][i] == "string")
+            fixes.push([sid.rwy[rwy][i], null]);
+          else fixes.push(sid.rwy[rwy][i]);
+        }
+      
+      // body portion
+      if(sid.hasOwnProperty("body"))
+        for(var i=0; i<sid.body.length; i++) {
+          if(typeof sid.body[i] == "string")
+            fixes.push([sid.body[i], null]);
+          else fixes.push(sid.body[i]);
+        }
+      
+      // transition portion
+      if(sid.hasOwnProperty("transitions"))
+        for(var i=0; i<sid.transitions[trxn].length; i++) {
+          if(typeof sid.transitions[trxn][i] == "string")
+            fixes.push([sid.transitions[trxn][i], null]);
+          else fixes.push(sid.transitions[trxn][i]);
+        }
+
+      return fixes;
+    },
+    getSIDTransition: function(id) {
+      // if no transitions (euro-style sid), return end fix
+      if(!this.sids[id].hasOwnProperty("transitions"))
+        return this.sids[id].icao;
+
+      // if has transitions, return a randomly selected one
+      var txns = Object.keys(this.sids[id].transitions);
+      return txns[Math.floor(Math.random() * txns.length)];
+    },
+    getSIDName: function(id, rwy) {
+      if(this.sids[id].hasOwnProperty("suffix"))
+        return this.sids[id].name + " " + this.sids[id].suffix[rwy];
+      else return this.sids[id].name;
+    },
+    getSIDid: function(id, rwy) {
+      if(this.sids[id].hasOwnProperty("suffix"))
+        return this.sids[id].icao + this.sids[id].suffix[rwy];
+      else return this.sids[id].icao;
     },
     getRunway: function(name) {
       if(!name) return null;
