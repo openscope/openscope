@@ -98,6 +98,7 @@
     "FICKY": ["N31d33m27.38", "W121d23m30.47"],
     "COSER": ["N33d34m47.57", "W117d58m49.66"],
     "CARDI": ["N33d08m11.64", "W117d25m18.95"],
+    "MZB":   ["N32d46m55.93", "W117d13m31.49"],
     "SEBBY": ["N34d05m22.87", "W117d46m37.12"],
     "PERCH": ["N33d52m03.03", "W119d09m27.37"]
   },
@@ -131,6 +132,98 @@
       "ils":         [true, true]
     }
   ],
+  "sids": {
+    "LOOP8": {
+      "icao": "LOOP8",
+      "name": "Loop Eight",
+      "rwy": {
+        "6L":  ["LAX", "KEGGS", "COOPP"],
+        "6R":  ["LAX", "KEGGS", "COOPP"],
+        "7L":  ["LAX", "KEGGS", "COOPP"],
+        "7R":  ["LAX", "KEGGS", "COOPP"],
+        "24L": ["LAX", "KEGGS", "COOPP"],
+        "24R": ["LAX", "KEGGS", "COOPP"],
+        "25L": ["LAX", "KEGGS", "COOPP"],
+        "25R": ["LAX", "KEGGS", "COOPP"]
+      },
+      "transitions": {
+        "DAG": ["DAG"]
+      },
+      "draw": [["LAX","KEGGS","COOPP","DAG*"]]
+    },
+    "PRCH1": {
+      "icao": "PRCH1",
+      "name": "Perch One",
+      "rwy": {
+        "6L":  [],
+        "6R":  [],
+        "7L":  [],
+        "7R":  [],
+        "24L": [],
+        "24R": [],
+        "25L": [],
+        "25R": []
+      },
+      "transitions": {
+        "PERCH": ["PERCH"]
+      },
+      "draw": [["PERCH"]]
+    },
+    "LAXX8": {
+      "icao": "LAXX8",
+      "name": "Lacks Eight",
+      "rwy": {
+        "6L":  ["SLI"],
+        "6R":  ["SLI"],
+        "7L":  ["SLI"],
+        "7R":  ["SLI"],
+        "24L": ["SLI"],
+        "24R": ["SLI"],
+        "25L": ["SLI"],
+        "25R": ["SLI"]
+      },
+      "transitions": {
+        "TRM": ["TRM"]
+      },
+      "draw": [["SLI","TRM*"]]
+    },
+    "SNGO6": {
+      "icao": "SNGO6",
+      "name": "San Diego Six",
+      "rwy": {
+        "6L":  ["SLI", "COSER", "CARDI"],
+        "6R":  ["SLI", "COSER", "CARDI"],
+        "7L":  ["SLI", "COSER", "CARDI"],
+        "7R":  ["SLI", "COSER", "CARDI"],
+        "24L": ["SLI", "COSER", "CARDI"],
+        "24R": ["SLI", "COSER", "CARDI"],
+        "25L": ["SLI", "COSER", "CARDI"],
+        "25R": ["SLI", "COSER", "CARDI"]
+      },
+      "transitions": {
+        "MZB": ["MZB"]
+      },
+      "draw": [["SLI","COSER","CARDI","MZB*"]]
+    },
+    "SEBBY9": {
+      "icao": "SEBBY9",
+      "name": "Sebby Nine",
+      "rwy": {
+        "6L":  ["SLI", "SEBBY"],
+        "6R":  ["SLI", "SEBBY"],
+        "7L":  ["SLI", "SEBBY"],
+        "7R":  ["SLI", "SEBBY"],
+        "24L": ["SLI", "SEBBY"],
+        "24R": ["SLI", "SEBBY"],
+        "25L": ["SLI", "SEBBY"],
+        "25R": ["SLI", "SEBBY"]
+      },
+      "transitions": {
+        "DAG": ["DAG"]
+      },
+      "draw": [["SLI","SEBBY","DAG*"]]
+    }
+  },
   "departures": {
     "airlines": [
       ["ual", 11],
@@ -138,15 +231,8 @@
       ["ups", 2],
       ["fdx", 2]
     ],
-    "sids": {
-      "LOOP": ["LAX", "KEGGS", "COOPP", "DAG"],
-      "PERCH": ["PERCH"],
-      "LAXX": ["SLI", "TRM"],
-      "SANDIEGO": ["SLI", "COSER", "CARDI"],
-      "SEBBY": ["SLI", "SEBBY"]
-    },
     "destinations": [
-      40, 50, 120, 250
+      "LOOP8", "PRCH1", "LAXX8", "SNGO6", "SEBBY9"
     ],
     "type": "random",
     "offset": 0,

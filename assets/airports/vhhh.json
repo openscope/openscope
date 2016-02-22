@@ -107,7 +107,6 @@
     "VH721": ["N22d16m12.68", "E113d49m04.87"],
     "SHELY": ["N22d05m22.65", "E114d39m13.94"]
   },
-
   "restricted":[
     {
       "name": "VHP8",
@@ -314,6 +313,56 @@
       "ils": [true, true]
     }
   ],
+  "sids": {
+    "BEKOL": {
+      "icao": "BEKOL",
+      "name": "Bekol",
+      "suffix": {"07L":"3C", "07R":"3A", "25L":"2B", "25R":"2D"},
+      "rwy": {
+        "07L": [["ROVER", "A50-|S180+"], "TD", "ATENA", ["BEKOL", "A158+"]],
+        "07R": [["PORPA", "A50-|S180+"], "TD", "ATENA", ["BEKOL", "A158+"]],
+        "25L": [["PRAWN", "A50-|S180+"], ["RUMSY", "S230"], "TUNNA", "SAMON", ["BEKOL","A158+"]],
+        "25R": [["PRAWN", "A50-|S180+"], ["RUMSY", "S230"], "TUNNA", "SAMON", ["BEKOL","A158+"]]
+      },
+      "draw": [["ROVER","TD"], ["PORPA","TD","ATENA","BEKOL"], ["PRAWN","RUMSY","TUNNA","SAMON","BEKOL"]]
+    },
+    "LAKES": {
+      "icao": "LAKES",
+      "name": "Lakes",
+      "suffix": {"07L":"3C", "07R":"3A", "25L":"2B", "25R":"2D"},
+      "rwy": {
+        "07L": [["ROVER", "A50-|S180+"], ["TD", "S220"], "SHELY", "LAKES"],
+        "07R": [["PORPA", "A50-|S180+"], ["TD", "S220"], "SHELY", "LAKES"],
+        "25L": [["PRAWN", "A50-|S180+"], ["RUMSY", "S230"], "TUNNA", ["TROUT","A140+"], "LAKES"],
+        "25R": [["PRAWN", "A50-|S180+"], ["RUMSY", "S230"], "TUNNA", ["TROUT","A140+"], "LAKES"]
+      },
+      "draw": [["ROVER","TD","SHELY","LAKES"], ["PRAWN", "RUMSY", "TUNNA", "TROUT", "LAKES"]]
+    },
+    "OCEAN": {
+      "icao": "OCEAN",
+      "name": "Ocean",
+      "suffix": {"07L":"2C", "07R":"2A", "25L":"2B", "25R":"2D"},
+      "rwy": {
+        "07L": [["ROVER", "A50-|S180+"], ["TD", "S220"], "OCEAN"],
+        "07R": [["PORPA", "A50-|S180+"], ["TD", "S220"], "OCEAN"],
+        "25L": [["PRAWN", "A50-|S180+"], ["RUMSY", "S230"], "TUNNA", ["TROUT","A140+"], "OCEAN"],
+        "25R": [["PRAWN", "A50-|S180+"], ["RUMSY", "S230"], "TUNNA", ["TROUT","A140+"], "OCEAN"]
+      },
+      "draw": [["ROVER","TD"], ["PORPA","TD","OCEAN"], ["PRAWN","RUMSY","TUNNA","TROUT","OCEAN"]]
+    },
+    "PECAN": {
+      "icao": "PECAN",
+      "name": "Pecan",
+      "suffix": {"07L":"1C", "07R":"1A", "25L":"1B", "25R":"1D"},
+      "rwy": {
+        "07L": [["ROVER", "A50-|S180+"], ["RAMEN", "S220"], "BREAM", "TITAN", "PECAN"],
+        "07R": [["PORPA", "A50-|S180+"], ["RAMEN", "S220"], "BREAM", "TITAN", "PECAN"],
+        "25L": [["PRAWN", "A50-|S180+"], ["RUMSY", "S230"], "TUNNA", "TITAN", "PECAN"],
+        "25R": [["PRAWN", "A50-|S180+"], ["RUMSY", "S230"], "TUNNA", "TITAN", "PECAN"]
+      },
+      "draw": [["ROVER","RAMEN"], ["PORPA","RAMEN","BREAM","TITAN"], ["PRAWN","RUMSY","TUNNA","TITAN","PECAN"]]
+    }
+  },
   "departures": {
     "airlines": [
       ["cpa", 30],
@@ -329,14 +378,8 @@
       ["sa-ual", 1],
       ["sa-uae", 1]
     ],
-    "sids": {
-      "BEKOL": ["PRAWN", "RUMSY", "TUNNA", "SAMON", "BEKOL", "IDUMA"],
-      "LAKES": ["PRAWN", "RUMSY", "TUNNA", "TROUT", "LAKES"],
-      "OCEAN": ["PRAWN", "RUMSY", "TUNNA", "TROUT", "OCEAN"],
-      "PECAN": ["PRAWN", "RUMSY", "TUNNA", "TITAN", "PECAN"]
-    },
     "destinations": [
-      128, 135, 170, 357
+      "BEKOL", "LAKES", "OCEAN", "PECAN"
     ],
     "type": "random",
     "offset": 0,

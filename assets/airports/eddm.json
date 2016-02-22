@@ -23,21 +23,143 @@
   "runways":[
     {
       "name": ["26L", "8R"],
-			"name_offset": [[-1.5, -1.5], [1.5, -1.1]],
+      "name_offset": [[-1.5, -1.5], [1.5, -1.1]],
       "end": [["N48.344783", "E11.804606"], ["N48.340656", "E11.750994"]],
       "length": 4,
-			"delay": [20, 30],
+      "delay": [20, 30],
       "ils": [true, true]
     },
     {
       "name": ["26R", "8L"],
-			"name_offset": [[-1.5, 0.8], [1.5, 1.2]],
+      "name_offset": [[-1.5, 0.8], [1.5, 1.2]],
       "end": [["N48.366886", "E11.821172"], ["N48.362753", "E11.767528"]],
       "length": 4,
-			"delay": [30, 20],
+      "delay": [30, 20],
       "ils": [true, true]
     }
   ],
+  "sids": {
+    "ALG": {
+      "icao": "ALG",
+      "name": "Allgäu",
+      "suffix": {"8L":"", "8R":"", "26L":"", "26R":""},
+      "rwy": {
+        "8L":  ["MSE", "DM053", "AMEXO", "ALG"],
+        "8R":  ["MSE", "DM053", "AMEXO", "ALG"],
+        "26L": ["MSE", "DM053", "AMEXO", "ALG"],
+        "26R": ["MSE", "DM053", "AMEXO", "ALG"]
+      },
+      "draw": [["MSE", "DM053", "AMEXO", "ALG"]]
+    },
+    "BIBAG": {
+      "icao": "BIBAG",
+      "name": "Bibag",
+      "suffix": {"8L":"", "8R":"", "26L":"", "26R":""},
+      "rwy": {
+        "8L":  ["MUN", "MEBEK", "BIBAG"],
+        "8R":  ["MUN", "MEBEK", "BIBAG"],
+        "26L": ["MUN", "MEBEK", "BIBAG"],
+        "26R": ["MUN", "MEBEK", "BIBAG"]
+      },
+      "draw": [["MUN", "MEBEK", "BIBAG"]]
+    },
+    "GIVMI": {
+      "icao": "GIVMI",
+      "name": "Givmi",
+      "suffix": {"8L":"", "8R":"", "26L":"", "26R":""},
+      "rwy": {
+        "8L":  ["MNE", "GIVMI"],
+        "8R":  ["MNE", "GIVMI"],
+        "26L": ["MNE", "GIVMI"],
+        "26R": ["MNE", "GIVMI"]
+      },
+      "draw": [["MNE", "GIVMI"]]
+    },
+    "KIRDI": {
+      "icao": "KIRDI",
+      "name": "Kirdi",
+      "suffix": {"8L":"", "8R":"", "26L":"", "26R":""},
+      "rwy": {
+        "8L":  ["MUN", "MEBEK", "KIRDI"],
+        "8R":  ["MUN", "MEBEK", "KIRDI"],
+        "26L": ["MUN", "MEBEK", "KIRDI"],
+        "26R": ["MUN", "MEBEK", "KIRDI"]
+      },
+      "draw": [["MUN", "MEBEK", "KIRDI"]]
+    },
+    "MAMOR": {
+      "icao": "MAMOR",
+      "name": "Mamor",
+      "suffix": {"8L":"", "8R":"", "26L":"", "26R":""},
+      "rwy": {
+        "8L":  ["ANKER", "AKINI", "MAMOR"],
+        "8R":  ["ANKER", "AKINI", "MAMOR"],
+        "26L": ["ANKER", "AKINI", "MAMOR"],
+        "26R": ["ANKER", "AKINI", "MAMOR"]
+      },
+      "draw": [["ANKER", "AKINI", "MAMOR"]]
+    },
+    "NIMDI": {
+      "icao": "NIMDI",
+      "name": "Nimdi",
+      "suffix": {"8L":"", "8R":"", "26L":"", "26R":""},
+      "rwy": {
+        "8L":  ["MNE", "EVIVA", "NIMDI"],
+        "8R":  ["MNE", "EVIVA", "NIMDI"],
+        "26L": ["MNE", "EVIVA", "NIMDI"],
+        "26R": ["MNE", "EVIVA", "NIMDI"]
+      },
+      "draw": [["MNE", "EVIVA", "NIMDI"]]
+    },
+    "ROTAX": {
+      "icao": "ROTAX",
+      "name": "Rotax",
+      "suffix": {"8L":"", "8R":"", "26L":"", "26R":""},
+      "rwy": {
+        "8L":  ["MUN", "LAKOL", "ROTAX"],
+        "8R":  ["MUN", "LAKOL", "ROTAX"],
+        "26L": ["MUN", "LAKOL", "ROTAX"],
+        "26R": ["MUN", "LAKOL", "ROTAX"]
+      },
+      "draw": [["MUN", "LAKOL", "ROTAX"]]
+    },
+    "STAUB": {
+      "icao": "STAUB",
+      "name": "Stauß",
+      "suffix": {"8L":"", "8R":"", "26L":"", "26R":""},
+      "rwy": {
+        "8L":  ["ANKER", "STAUB"],
+        "8R":  ["ANKER", "STAUB"],
+        "26L": ["ANKER", "STAUB"],
+        "26R": ["ANKER", "STAUB"]
+      },
+      "draw": [["ANKER", "STAUB"]]
+    },
+    "TULSI": {
+      "icao": "TULSI",
+      "name": "Tulsi",
+      "suffix": {"8L":"", "8R":"", "26L":"", "26R":""},
+      "rwy": {
+        "8L":  ["MUN", "MANAL", "TULSI"],
+        "8R":  ["MUN", "MANAL", "TULSI"],
+        "26L": ["MUN", "MANAL", "TULSI"],
+        "26R": ["MUN", "MANAL", "TULSI"]
+      },
+      "draw": [["MUN", "MANAL", "TULSI"]]
+    },
+    "VAVOR": {
+      "icao": "VAVOR",
+      "name": "Vavor",
+      "suffix": {"8L":"", "8R":"", "26L":"", "26R":""},
+      "rwy": {
+        "8L":  ["MUN", "LAKOL", "VAVOR"],
+        "8R":  ["MUN", "LAKOL", "VAVOR"],
+        "26L": ["MUN", "LAKOL", "VAVOR"],
+        "26R": ["MUN", "LAKOL", "VAVOR"]
+      },
+      "draw": [["MUN", "LAKOL", "VAVOR"]]
+    }
+  },
   "fixes":{
 		"EDDM":  ["N48.353803", "E11.786100"],
     "ABABI": ["N48.538600", "E12.947800"],
@@ -141,21 +263,8 @@
 			["svr", 1],
 			["sbi", 1]
     ],
-    "sids": {
-      "ALG":   ["MSE", "DM053", "AMEXO", "ALG"],
-      "BIBAG": ["MUN", "MEBEK", "BIBAG"],
-      "GIVMI": ["MNE", "GIVMI"],
-      "KIRDI": ["MUN", "MEBEK", "KIRDI"],
-      "MAMOR": ["ANKER", "AKINI", "MAMOR"],
-      "NIMDI": ["MNE", "EVIVA", "NIMDI"],
-      "ROTAX": ["MUN", "LAKOL", "ROTAX"],
-      "STAUB": ["ANKER", "STAUB"],
-      "TULSI": ["MUN", "MANAL", "TULSI"],
-      "VAVOR": ["MUN", "LAKOL", "VAVOR"]
-
-    },
     "destinations": [
-      248, 179, 150, 125, 100, 76, 324, 345, 27, 52
+      "ALG", "BIBAG", "GIVMI", "KIRDI", "MAMOR", "NIMDI", "ROTAX", "STAUB", "TULSI", "VAVOR"
     ],
     "frequency": [2, 4]
   },
