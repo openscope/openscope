@@ -674,10 +674,12 @@ var Aircraft=Fiber.extend(function() {
       this.html.append("<span class='heading'>" + round(this.heading) + "</span>");
       this.html.append("<span class='altitude'>-</span>");
       this.html.append("<span class='aircraft'>" + this.model.icao + "</span>");
-      if (this.destination)
-        this.html.append("<span class='destination'>" +
-                         heading_to_string(this.destination) +
-                         "</span>");
+      if (this.destination) {
+        if(typeof this.destination == "number")
+          this.html.append("<span class='destination'>" + round(degrees(this.destination)) + "</span>");
+        else if(typeof this.destination == "string")
+          this.html.append("<span class='destination'>" + this.destination + "</span>");
+      }
       this.html.append("<span class='speed'>-</span>");
 
       this.html.find(".aircraft").prop("title", this.model.name);

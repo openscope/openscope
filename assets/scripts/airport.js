@@ -396,7 +396,7 @@ zlsa.atc.DepartureBase = Fiber.extend(function(base) {
     // Supported Departure options
     // airlines: {array of array} List of airlines with weight for each
     // frequency: {array or integer} Frequency in aircraft/hour or range of frequencies
-    // destinations: {array of integer} List of headings for departures
+    // destinations: {array of string} List of SIDs or departure fixes for departures
     parse: function(options) {
       this.airlines = options.airlines;
 
@@ -422,7 +422,17 @@ zlsa.atc.DepartureBase = Fiber.extend(function(base) {
       if (options.destinations) {
         this.destinations = [];
         for (var i=0;i<options.destinations.length;i++) {
-            this.destinations.push(radians(options.destinations[i]));
+            switch(typeof options.destinations[i]) {
+              case "number":
+                this.destinations.push(radians(options.destinations[i]));
+              break;
+
+              case "string":
+                this.destinations.push(options.destinations[i]);
+              break;
+
+              default:
+            }
         }
       }
     },
