@@ -940,6 +940,10 @@ var Aircraft=Fiber.extend(function() {
           shortKey: ['\u2B61', '\u2B63'],
           synonyms: ['a', 'c', 'climb', 'd', 'descend']},
 
+        clearedasfiled: {
+          func: 'runClearedAsFiled',
+          synonyms: ['caf']},
+
         climbviasid: {
           func: 'runClimbViaSID',
           synonyms: ['cvs']},
@@ -1394,7 +1398,7 @@ var Aircraft=Fiber.extend(function() {
     },
     runSID: function(data) {
       if(this.category != "departure") {
-        return ["fail", "inbound"];
+        return ["fail", "unable to fly SID, we are an inbound"];
       }
       if(data.length == 0) {
         return ["fail", "SID name not understood"];

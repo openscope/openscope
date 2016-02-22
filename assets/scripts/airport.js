@@ -727,6 +727,7 @@ var Airport=Fiber.extend(function() {
 
       this.ctr_radius  = 80;
       this.ctr_ceiling = 10000;
+      this.initial_alt = 5000;
 
       this.parse(options);
       if(options.url) {
@@ -752,6 +753,7 @@ var Airport=Fiber.extend(function() {
       if(data.radio) this.radio = data.radio;
       if(data.ctr_radius) this.ctr_radius = data.ctr_radius;
       if(data.ctr_ceiling) this.ctr_ceiling = data.ctr_ceiling;
+      if(data.initial_alt) this.initial_alt = data.initial_alt;
       if(data.rr_radius_nm) this.rr_radius_nm = data.rr_radius_nm;
       if(data.rr_center) this.rr_center = data.rr_center;
       if(data.level) this.level = data.level;
