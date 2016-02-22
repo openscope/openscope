@@ -1026,7 +1026,7 @@ var Aircraft=Fiber.extend(function() {
         land: {
           func: 'runLanding',
           shortKey: ['\u2B50'],
-          synonyms: ['l', 'ils']},
+          synonyms: ['l', 'ils', 'i']},
 
         proceed: {
           func: 'runProceed',

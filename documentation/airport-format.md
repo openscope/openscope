@@ -6,17 +6,29 @@ title: Airport format
 # Airport format
 
 The airport JSON file must be in `assets/airports`; the filename
-should be `ICAO.json` where `ICAO` is the lowercase four-letter ICAO
+should be `icao.json` where `icao` is the lowercase four-letter ICAO
 airport code, such as `ksfo` or `kmsp`.
 
 ```
 {
   "name": "Human-readable name of the airport",
   "level": "beginner, easy, medium, hard or expert",
-  "radio": "The name, used in radio communications",
-  "icao", "The uppercase ICAO airport code",
-  "position", ["lat", "lon"] // the latitude/longitude of the "center" of the airport; see comments below
-  "wind": {     // wind is only used for score
+  "radio": {
+    "twr": "controller callsign for tower",
+    "app": "controller callsign for approach control",
+    "dep": "controller callsign for departure control"
+  },
+  "icao": "KSFO",             // uppercase ICAO airport code
+  "iata": "SFO",              // uppercase IATA airport code
+  "magnetic_north": 13.7,     // magnetic declination, in degrees EAST!
+  "ctr_radius": 80,           // radius from 'position' that the airspace extends
+  "ctr_ceiling": 10000,       // elevation up to which the airspace extends
+  "initial_alt": 5000         // alt departures climb to if given "as-filed" clearance, but no "climb-via-sid" or altitude assignment
+  "position", ["lat", "lon"]  // the latitude/longitude of the "center" of the airport; see comments below
+  "rr_radius_nm": 5,          // radius of range rings, nautical miles
+  "rr_center": ["lat", "lon"],// position where range rings are centered, nautical miles
+  "has_terrain": true,        // true/false for if has an associated GeoJSON terrain file in assets/airports/terrain
+  "wind": {     // wind is used for score, and can affect aircraft's ground tracks if enabled in settings
     "angle": 0, // the heading, in degrees, that the wind is coming from
     "speed": 3  // the speed, in knots, of the wind
   },
@@ -39,11 +51,46 @@ airport code, such as `ksfo` or `kmsp`.
       "ils":         [true, false]     // not used yet; indicates whether or not that end of the runway has ILS
     }
   ],
+  "sids": {   // contains all SIDs available at this airport
+    "icao": "OFFSH9",           // (req) ICAO identifier for SID (this is NOT the full name, always 2-6 characters)
+    "name": "Offshore Nine" ,   // (req) Name of SID as it would be said aloud (it is used by speech synthesis to pronounce "OFFSH9")
+    "suffix": {"1L":"", "1R":"", "28L":"", "28R":""},   // (optional) defines suffixes to SID name based on runway (eg '2C' for 'EKERN 2C').
+                                                        // Common for European-style SIDs. If not needed (like in USA), leave this part out.
+    "rwy": {  // (req) ALL runways usable on this SID must be listed below. If a runway isn't listed, aircraft departing
+              // that runway will need to be re-assigned a different SID or runway (this is realistic and intended).
+        "1L" : [["SEPDY", "A19+"], "ZUPAX"],  // Each runway for which this SID is valid must be listed here. The value assigned to each runway is an array 
+        "1R" : [["SEPDY", "A19+"], "ZUPAX"],  // of fixes, entered as strings. As shown, you may also enter an array containing the fix name and restrictions
+        "28L": [["SENZY", "A25+"], "ZUPAX"],  // at that fix, separated by a pipe symbol ('|'). For example, see the following: ["FIXNAME", "A50-|S220+"]. In 
+        "28R": [["SENZY", "A25+"], "ZUPAX"]   // that example, restrictions of Altitude 5,000' or lower, and Speed 220kts or higher would be placed on that fix.
+      },
+      "body": ["EUGEN", "SHOEY"],   // (optional) If there is a very long series of fixes in a SID, it may be 
+                                    // helpful to put some of it here, while all segments follow the same path.
+      "transitions": {    // (optional) Defines transitions for a given SID. Common for FAA-style (USA) SIDs. If not needed (like in Europe), leave this part out.
+          "SNS": ["SNS"], // defines the "OFFSH9.SNS" transition as being a single fix, "SNS". Is often a list instead.
+          "BSR": ["BSR"], // Note that this connects to the end of previous sections, so an example route: SEPDY->ZUPAX->EUGEN->SHOEY->BSR
+          "SHOEY": []     // Even empty transitions are allowable
+      },
+      "draw": [["SEPDY","ZUPAX"], ["SENZY","ZUPAX","EUGEN","SHOEY*"], ["SHOEY","SNS*"], ["SHOEY","BSR*"]]
+        // (req) This "draw" section is what defines how the SID is to be drawn on the scope in blue.
+        // The array contains multiple arrays that are a series of points to draw fixes between.
+        // In this case, SEPDY->ZUPAX, SENZY->ZUPAX->EUGEN->SHOEY, SHOEY->SNS, SHOEY->BSR are the lines drawn.
+        // Additionally, you'll notice three asterisks ('*'). This is an optional flag that, if invoked for "FIXXX"
+        // will tell canvas.js to write "OFFSH9.FIXXX" next to FIXXX on the scope. If no such flags are present,
+        // then the ICAO identifier for the SID will be drawn at the last point of the "draw" array. For european-
+        // style SIDs, where they always end at the fix for which the SID is named, don't use the flags. But if your SID
+        // has transitions, like in the N/S Americas, United Kingdom, etc, be sure to flag all the transition fixes.
+  }
+  }
   "departures": {
     "airlines": [
       ["three-letter ICAO airline code/fleet", 0], // the number is the weight; if the weight is ["BAW", 1], ["UAL", 0], "BAW" will always get chosen.
       ...
     ],
+    "destinations": [
+      "LISST", "OF", "SIDS", "ACRFT", "WILLL", "FLYYY", "TO"  // these must each be a defined SID above
+    ],
+    "type": ,
+    "offset": ,
     "frequency": [3, 4] // the frequency, in minutes, of a new departing aircraft. A random number is chosen between the two.
   },
   "arrivals": [ // note that all arrival positions are fuzzed a little to increase the realism

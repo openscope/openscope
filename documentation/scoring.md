@@ -14,8 +14,13 @@ crosswind landing, for example.)
 Each arriving aircraft that is successfully landed gives you 10 points.
 
 ## Departure
-Each departing aircraft that is successfully routed out of the general
-area gives you 10 points.
+Each departing aircraft that is successfully routed out of the airspace
+with a clearance onto their filed departure route earns you 10 points.
+
+## Failed Departures
+We must clear all aircraft onto their flightplan route before they leave
+our airspace. If they exit the airspace without being cleared to their
+desired fix (usually we do this via a SID), you will lose 10 points.
 
 ## Windy landings
 When an aircraft is forced to land with a crosswind or a tailwind, you
