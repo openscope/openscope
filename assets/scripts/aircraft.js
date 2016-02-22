@@ -336,10 +336,24 @@ zlsa.atc.AircraftFlightManagementSystem = Fiber.extend(function() {
     init: function(options) {
       this.my_aircrafts_eid = options.aircraft.eid;
       this.waypoints = [];
+      this.fp = { altitude: null, route: [] };
+      
+      // set initial
       this.addWaypoint();
+      this.fp.altitude = clamp(1000, options.model.ceiling, 60000);
+      if(options.aircraft.category == "arrival") 
+        this.fp.route.push(airport_get().icao,"KDBG");
+      else if(options.aircraft.category == "departure") 
+        this.fp.route.push("KDBG",airport_get().icao);
     },
 
     parse: function(options) {
+    },
+
+    /*
+     Return this fms's parent aircraft */
+    my_aircraft: function() {
+      return aircraft_get(this.my_aircrafts_eid);
     },
 
     /**
@@ -350,31 +364,25 @@ zlsa.atc.AircraftFlightManagementSystem = Fiber.extend(function() {
         data = {};
 
       var wp = {
-        name: 'unnamed',
-        navmode: null,
-        heading: null,
-        turn: null,
-        location: null,
         altitude: null,
+        name:     'unnamed',
+        navmode:  null,
+        heading:  null,
+        turn:     null,
+        location: null,
         expedite: false,
         speed:    null,
         runway:   null,
+        fixRestrictions: {
+          alt: null,
+          spd: null
+        }
       };
 
       if (data.fix) {
         wp.navmode = 'fix';
         wp.name = data.fix;
         wp.location = airport_get().getFix(data.fix);
-      }
-
-      // Remove '+' or '-' until at/above and at/below altitudes are implemented
-      if(data.altitude) {
-        if(data.altitude.indexOf("+") != -1) {
-          data.altitude = data.altitude.replace("+","");
-        }
-        if(data.altitude.indexOf("-") != -1) {
-          data.altitude = data.altitude.replace("-","");
-        }
       }
 
       for (var f in data) {
@@ -388,7 +396,8 @@ zlsa.atc.AircraftFlightManagementSystem = Fiber.extend(function() {
      * Return the current waypoint
      */
     currentWaypoint: function() {
-      return this.waypoints[0];
+      if(this.waypoints.length < 1) return null;
+      else return this.waypoints[0];
     },
 
     /**
@@ -412,7 +421,7 @@ zlsa.atc.AircraftFlightManagementSystem = Fiber.extend(function() {
       if (this.waypoints.length == 0) {
         this.addWaypoint({
           navmode: 'heading',
-          heading: this.aircraft.heading,
+          heading: last.heading,
           speed: last.speed,
           altitude: last.altitude,
         });
@@ -475,16 +484,25 @@ zlsa.atc.AircraftFlightManagementSystem = Fiber.extend(function() {
     },
 
     /**
-    * Adds a series of fixes w/ altitudes to the fms waypoints list
-    */
+     * Invokes flySID() for the SID in the flightplan (fms.fp.route)
+     */
+    clearedAsFiled: function() {
+      aircraft_get(this.my_aircrafts_eid).runSID(aircraft_get(this.my_aircrafts_eid).destination);
+      this.setAll({altitude:airport_get().initial_alt});
+      return true;
+    },
+
+    /**
+     * Adds a series of fixes w/ altitudes to the fms waypoints list
+     */
     flySID: function(fixes_n_alts_n_speeds) {
       var current = this.waypoints[0];
       this.waypoints = [];
       for (var i=0; i< fixes_n_alts_n_speeds.length; i++) {
         var f = fixes_n_alts_n_speeds[i][0];
+        var a = null, s = null;
         if(fixes_n_alts_n_speeds[i][1]) {
           var a_n_s = fixes_n_alts_n_speeds[i][1].toUpperCase().split("|");
-          var a = null, s = null;
           for(var j in a_n_s) {
             if(a_n_s[j][0] == "A") a = a_n_s[j].substr(1);
             else if(a_n_s[j][0] == "S") s = a_n_s[j].substr(1);
@@ -501,9 +519,64 @@ zlsa.atc.AircraftFlightManagementSystem = Fiber.extend(function() {
       }
 
       // Restore existing clearances
+      this.waypoints[0].altitude = current.altitude;
       this.waypoints[0].speed = current.speed;
       this.waypoints[0].expedite = current.expedite;
       this.waypoints[0].runway = current.runway;
+    },
+
+    /**
+     * Adds altitudes and speeds to each waypoint that are as high as 
+     * possible without exceeding any the following:
+     *    - (alt) airspace ceiling ('ctr_ceiling')
+     *    - (alt) filed cruise altitude
+     *    - (alt) waypoint's altitude restriciton
+     *    - (spd) 250kts when under 10k ft
+     *    - (spd) waypoint's speed restriction
+     */
+    climbViaSID: function() {
+      var wp = this.waypoints;  // copy current waypoints
+      var cruise_alt = this.fp.altitude;
+      var cruise_spd = this.my_aircraft().model.speed.cruise;
+
+      for(var i=0; i<wp.length; i++) {
+        var a = wp[i].fixRestrictions.alt;
+        var s = wp[i].fixRestrictions.spd;
+
+        // Altitude Control
+        if(a) {
+          if(a.indexOf("+") != -1) {  // at-or-above altitude restriction
+            var minAlt = parseInt(a.replace("+","")) * 100;
+            var alt = Math.min(airport_get().ctr_ceiling, cruise_alt);
+          }
+          else if(a.indexOf("-") != -1) {
+            var maxAlt = parseInt(a.replace("-","")) * 100;
+            var alt = Math.min(maxAlt, cruise_alt) // climb as high as restrictions permit
+          }
+          else var alt = parseInt(a); // cross AT this altitude
+        }
+        else var alt = Math.min(airport_get().ctr_ceiling, cruise_alt);
+        wp[i].altitude = alt; // add altitudes to wp
+
+        // Speed Control
+        if(s) {
+          if(s.indexOf("+") != -1) {  // at-or-above speed restriction
+            var minSpd = parseInt(s.replace("+",""));
+            var spd = Math.min(minSpd, cruise_spd);
+          }
+          else if(s.indexOf("-") != -1) {
+            var maxSpd = parseInt(s.replace("-",""));
+            var spd = Math.min(maxSpd, cruise_spd) // go as fast as restrictions permit
+          }
+          else var spd = parseInt(s); // cross AT this speed
+        }
+        else var spd = cruise_spd;
+        wp[i].speed = spd;  // add speeds to wp
+      }
+
+      // change fms waypoints to wp (which contains the altitudes and speeds)
+      this.waypoints = wp;
+      return true;
     },
 
     /**
@@ -641,7 +714,7 @@ var Aircraft=Fiber.extend(function() {
 
       // Initialize the FMS
       this.fms = new zlsa.atc.AircraftFlightManagementSystem({
-        aircraft: this,
+        aircraft: this, model:options.model
       });
 
       //target represents what the pilot makes of the tower's commands. It is
@@ -757,16 +830,6 @@ var Aircraft=Fiber.extend(function() {
       else {
         this.hideStrip();
 
-        // Fly away!
-        this.fms.setCurrent({
-          navmode: "heading",
-          heading: this.radial,
-          turn: null,
-          hold: false,
-          altitude: 20000,
-          speed: 330,
-        });
-
         if (this.category == "departure") {
           // Within 5 degrees of destination heading
           if (abs(this.radial - this.destination) < 0.08726) {
@@ -876,6 +939,10 @@ var Aircraft=Fiber.extend(function() {
           func: 'runAltitude',
           shortKey: ['\u2B61', '\u2B63'],
           synonyms: ['a', 'c', 'climb', 'd', 'descend']},
+
+        climbviasid: {
+          func: 'runClimbViaSID',
+          synonyms: ['cvs']},
 
         debug: {func: 'runDebug'},
 
@@ -1205,6 +1272,25 @@ var Aircraft=Fiber.extend(function() {
       };
       return ['ok', readback];
     },
+    runClearedAsFiled: function() {
+      if(this.fms.clearedAsFiled()) {
+        return ['ok',
+          {log: "cleared to destiantion via the " + airport_get().sids[this.destination].icao + 
+            " departure, then as filed" + ". Climb and maintain " + airport_get().initial_alt + 
+            ", expect " + this.fms.fp.altitude + " 10 minutes after departure",
+          say: "cleared to destination via the " + airport_get().sids[this.destination].name +
+            " departure, then as filed" + ". Climb and maintain " + radio_altitude(
+            airport_get().initial_alt) + ", expect " + radio_altitude(this.fms.fp.altitude) + 
+            "," + radio_spellOut(" 10 ") + "minutes after departure"}];
+      }
+      else return [true, "unable to clear as filed"];
+    },
+    runClimbViaSID: function() {
+      if(this.fms.climbViaSID())
+      return ['ok', {log: "climb via the " + this.destination + " departure",
+        say: "climb via the " + airport_get().sids[this.destination].name + " departure"}];
+      else ui_log(true, this.getCallsign() + ", unable to climb via SID");
+    },
     runSpeed: function(data) {
       if(data[0] == "+" || data[0] == "-") {  //shortKey '+' or '-' in use
         data = data.substr(1);  //remove shortKey
@@ -1313,11 +1399,15 @@ var Aircraft=Fiber.extend(function() {
       if(data.length == 0) {
         return ["fail", "SID name not understood"];
       }
-      
       var sid_id = data.toUpperCase();
+      if(!airport_get().sids.hasOwnProperty(sid_id)) {
+        return ["fail", "SID name not understood"];
+      }
+      
       var sid_name = airport_get().sids[sid_id].name;
       var rwy = this.fms.currentWaypoint().runway;
       var trxn = airport_get().getSIDTransition(sid_id);
+      this.fms.fp.route.splice(1,0,airport_get().getSIDid(sid_id, rwy) + "." + trxn); //insert SID & trxn after departure airport
       var fixes = airport_get().getSID(sid_id, trxn, rwy);
       
       if(!fixes) return ["fail", sid_id + " SID not valid from runway " + rwy];
@@ -1835,7 +1925,6 @@ var Aircraft=Fiber.extend(function() {
 
         this.target.speed = this.fms.currentWaypoint().speed;
         this.target.speed = clamp(this.model.speed.min, this.target.speed, this.model.speed.max);
-
       }
 
       if(this.speed < this.model.speed.min) this.target.altitude = 0;
