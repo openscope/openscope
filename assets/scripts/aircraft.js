@@ -1696,7 +1696,7 @@ var Aircraft=Fiber.extend(function() {
         if ((abs(this.altitude - glideslope_altitude) < glideslope_window)
             && (abs(offset_angle) < radians(10))
             && (offset[1] < ils)) {
-          if(this.mode != "landing") {
+          if(abs(offset[0]) < 0.05 && this.mode != "landing") {
             this.mode = "landing";
             if (!this.projected && (abs(angle_offset(this.fms.currentWaypoint().heading,
                   radians(parseInt(this.fms.currentWaypoint().runway.substr(0,2))*10))) > radians(30))) {
@@ -1736,7 +1736,7 @@ var Aircraft=Fiber.extend(function() {
             speech_say([ {type:"callsign", content:this}, {type:"text", content:" going around"} ])
             prop.game.score.abort.landing += 1;
           }
-        } else {
+        } else if(this.altitude >= 300) {
           this.target.heading = this.fms.currentWaypoint().heading;
           this.target.turn = this.fms.currentWaypoint().turn;
         }
