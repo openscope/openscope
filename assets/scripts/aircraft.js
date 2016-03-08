@@ -108,6 +108,18 @@ zlsa.atc.Conflict = Fiber.extend(function() {
         prop.game.score.hit += 1;
         this.aircraft[0].hit = true;
         this.aircraft[1].hit = true;
+
+        // If either are in runway queue, remove them from it
+        for(var i in airport_get().runways) {
+          var rwy = airport_get().runways[i];
+          var queue = rwy.waiting[0];
+          for(var j in queue) {
+            if(queue[j] == this.aircraft[0])
+              rwy.removeQueue(this.aircraft[0], rwy, true);
+            if(queue[j] == this.aircraft[1])
+              rwy.removeQueue(this.aircraft[1], rwy, true);
+          }
+        }
       }
     },
 
