@@ -10,6 +10,8 @@
   "iata": "EZE",
   "magnetic_north": 0,
   "ctr_radius": 102,
+  "ctr_ceiling": 10000,
+  "initial_alt": 5000,
   "position": ["S34d49m19.92", "W58d32m8.8"],
   "rr_radius_nm": 5.0,
   "rr_center": ["S34d49m19.92", "W58d32m8.8"],
@@ -87,6 +89,68 @@
       "ils": [false, true]
     }
   ],
+  "sids": {
+    "ATOVO": {
+      "icao": "ATOVO",
+      "name": "Atovo",
+      "suffix": {"11":"", "29":"", "17":"", "35":""},
+      "rwy": {
+        "11": ["EZE12", "EZE97", "EZE70", "EZE02", "EZE10", "EZE19", "EZE20", "EZE26", "ATOVO"],
+        "29": ["EZE12", "EZE97", "EZE70", "EZE02", "EZE10", "EZE19", "EZE20", "EZE26", "ATOVO"],
+        "17": ["EZE12", "EZE97", "EZE70", "EZE02", "EZE10", "EZE19", "EZE20", "EZE26", "ATOVO"],
+        "35": ["EZE12", "EZE97", "EZE70", "EZE02", "EZE10", "EZE19", "EZE20", "EZE26", "ATOVO"]
+      },
+      "draw": [["EZE12","EZE97","EZE70","EZE02","EZE10","EZE19","EZE20","EZE26","ATOVO"]]
+    },
+    "LANDA": {
+      "icao": "LANDA",
+      "name": "Landa",
+      "suffix": {"11":"", "29":"", "17":"", "35":""},
+      "rwy": {
+        "11": ["EZE12", "EZE97", "EZE70", "EZE02", "EZE10", "EZE19", "LANDA"],
+        "29": ["EZE12", "EZE97", "EZE70", "EZE02", "EZE10", "EZE19", "LANDA"],
+        "17": ["EZE12", "EZE97", "EZE70", "EZE02", "EZE10", "EZE19", "LANDA"],
+        "35": ["EZE12", "EZE97", "EZE70", "EZE02", "EZE10", "EZE19", "LANDA"]
+      },
+      "draw": [["EZE12","EZE97","EZE70","EZE02","EZE10","EZE19","LANDA"]]
+    },
+    "DORVO": {
+      "icao": "DORVO",
+      "name": "Dorvo",
+      "suffix": {"11":"", "29":"", "17":"", "35":""},
+      "rwy": {
+        "11": ["EZE12", "PTA", "DORVO"],
+        "29": ["EZE12", "PTA", "DORVO"],
+        "17": ["EZE12", "PTA", "DORVO"],
+        "35": ["EZE12", "PTA", "DORVO"]
+      },
+      "draw": [["EZE12","PTA","DORVO"]]
+    },
+    "URINO": {
+      "icao": "URINO",
+      "name": "Urino",
+      "suffix": {"11":"", "29":"", "17":"", "35":""},
+      "rwy": {
+        "11": ["EZE12", "EZE97", "EZE70", "EZE14", "EZE15", "URINO"],
+        "29": ["EZE12", "EZE97", "EZE70", "EZE14", "EZE15", "URINO"],
+        "17": ["EZE12", "EZE97", "EZE70", "EZE14", "EZE15", "URINO"],
+        "35": ["EZE12", "EZE97", "EZE70", "EZE14", "EZE15", "URINO"]
+      },
+      "draw": [["EZE12","EZE97","EZE70","EZE14","EZE15","URINO"]]
+    },
+    "GBE": {
+      "icao": "GBE",
+      "name": "Belgrano",
+      "suffix": {"11":"", "29":"", "17":"", "35":""},
+      "rwy": {
+        "11": ["EZE12", "EZE97", "EZE70", "GBE"],
+        "29": ["EZE12", "EZE97", "EZE70", "GBE"],
+        "17": ["EZE12", "EZE97", "EZE70", "GBE"],
+        "35": ["EZE12", "EZE97", "EZE70", "GBE"]
+      },
+      "draw": [["EZE12","EZE97","EZE70","GBE"]]
+    }
+  },
   "departures": {
     "airlines": [
       ["arg", 20],
@@ -104,15 +168,8 @@
       ["sa-ual", 4],
       ["sa-klm", 5]
     ],
-    "sids": {
-      "ATOVO": ["EZE12", "EZE97", "EZE70", "EZE02", "EZE10", "EZE19", "EZE20", "EZE26", "ATOVO"],
-      "LANDA": ["EZE12", "EZE97", "EZE70", "EZE02", "EZE10", "EZE19", "LANDA"],
-      "DORVO": ["EZE12", "PTA", "DORVO"],
-      "URINO": ["EZE12", "EZE97", "EZE70", "EZE14", "EZE15", "URINO"],
-      "BELGRANO": ["EZE12", "EZE97", "EZE70", "GBE"]
-    },
     "destinations": [
-      80, 177, 278, 325, 360
+      "ATOVO", "LANDA", "DORVO", "URINO", "GBE"
     ],
     "type": "random",
     "offset": 0,

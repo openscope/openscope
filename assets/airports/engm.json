@@ -10,6 +10,8 @@
   "iata": "OSL",
   "magnetic_north": -2.8,
   "ctr_radius": 80,
+  "ctr_ceiling": 10000,
+  "initial_alt": 5000,
   "position": ["N60d12m10.00", "E11d05m02.00"],
   "rr_radius_nm": 5.0,
   "rr_center": ["N60d12m10.00", "E11d05m02.00"],
@@ -126,6 +128,44 @@
       "ils":         [true, true]
     }
   ],
+  "sids": {
+    "MASEV": {
+      "icao": "MASEV",
+      "name": "Masev",
+      "suffix": {"19L":"", "19R":"", "01L":"", "01R":""},
+      "rwy": {
+        "19L": ["GM604", "GM444", "VIBUK", "MASEV"],
+        "19R": ["GM604", "GM444", "VIBUK", "MASEV"],
+        "01L": ["GM604", "GM444", "VIBUK", "MASEV"],
+        "01R": ["GM604", "GM444", "VIBUK", "MASEV"]
+      },
+      "draw": [["GM604","GM444","VIBUK","MASEV"]]
+    },
+    "TOR": {
+      "icao": "TOR",
+      "name": "Torp",
+      "suffix": {"19L":"", "19R":"", "01L":"", "01R":""},
+      "rwy": {
+        "19L": ["GM604", "GM602", "KUBUB", "TOR"],
+        "19R": ["GM604", "GM602", "KUBUB", "TOR"],
+        "01L": ["GM604", "GM602", "KUBUB", "TOR"],
+        "01R": ["GM604", "GM602", "KUBUB", "TOR"]
+      },
+      "draw": [["GM604","GM602","KUBUB","TOR"]]
+    },
+    "NUVSA": {
+      "icao": "NUVSA",
+      "name": "Nuvsa",
+      "suffix": {"19L":"", "19R":"", "01L":"", "01R":""},
+      "rwy": {
+        "19L": ["GM442", "GM603", "VEMIN", "GM443", "PEMUS", "NUVSA"],
+        "19R": ["GM442", "GM603", "VEMIN", "GM443", "PEMUS", "NUVSA"],
+        "01L": ["GM442", "GM603", "VEMIN", "GM443", "PEMUS", "NUVSA"],
+        "01R": ["GM442", "GM603", "VEMIN", "GM443", "PEMUS", "NUVSA"]
+      },
+      "draw": [["GM442","GM603","VEMIN","GM443","PEMUS","NUVSA"]]
+    }
+  },
   "departures": {
     "airlines": [
       ["sas", 11],
@@ -134,13 +174,8 @@
       ["fdx", 1],
       ["ups", 1]
     ],
-    "sids": {
-      "MASEV": ["GM604", "GM444", "VIBUK", "MASEV"],
-      "TOR": ["GM604", "GM602", "KUBUB", "TOR"],
-      "NUVSA": ["GM442", "GM603", "VEMIN", "GM443", "PEMUS", "NUVSA"]
-    },
     "destinations": [
-      20, 95, 200
+      "MASEV", "TOR", "NUVSA"
     ],
     "type": "random",
     "offset": 0,
@@ -231,6 +266,5 @@
       "frequency": 4,
       "altitude":  10000
     }
-
   ]
 }

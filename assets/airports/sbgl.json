@@ -10,6 +10,8 @@
   "iata": "GIG",
   "magnetic_north": 0,
   "ctr_radius": 115,
+  "ctr_ceiling": 10000,
+  "initial_alt": 5000,
   "position": ["S22.813391", "W43.249464"],
   "rr_radius_nm": 5.0,
   "rr_center": ["S22.813391", "W43.249464"],
@@ -18,11 +20,11 @@
     "angle": 150,
     "speed": 5
   },
-    "_comment": "Waypoints base on real and virtual charts http://download.diegolima.org/Cartas%20Aereas/app_dep/sbgl.pdf",
-    "_comment": "1 block fix > FICO 15 ARRIVAL ZANA>AROB>PCX>IRIM>FICO",
-    "_comment": "2 block fix > LOCK 15 ARRIVAL TUBO>COTA>MADU>LOCK",
-    "_comment": "3 block fix > MARICA ARRIVAL MAC>MIRA>MRC>LIME",
-    "_comment": "4 block fix > VELA10A ARRIVAL JOBIM>PAI>GATI>VELA>IT",
+  "_comment": "Waypoints base on real and virtual charts http://download.diegolima.org/Cartas%20Aereas/app_dep/sbgl.pdf",
+  "_comment": "1 block fix > FICO 15 ARRIVAL ZANA>AROB>PCX>IRIM>FICO",
+  "_comment": "2 block fix > LOCK 15 ARRIVAL TUBO>COTA>MADU>LOCK",
+  "_comment": "3 block fix > MARICA ARRIVAL MAC>MIRA>MRC>LIME",
+  "_comment": "4 block fix > VELA10A ARRIVAL JOBIM>PAI>GATI>VELA>IT",
     
   "fixes": {
     "ABSAL": ["S21.92166", "W43.35691"],
@@ -87,15 +89,81 @@
       "ils": [true, false]
     }
   ],
-  "departures": {
-    "sids": {
-      "BOTOM":  ["PP", "LIME", "BOTOM"],
-      "AGUA":   ["YLA", "MRC", "AGUA"],
-      "PAIOL":  ["PP", "LIME", "BITAK"],
-      "ABSAL":  ["YLA", "PCX", "ABSAL"],
-      "POKA":   ["YLA", "PCX", "POKA"],
-      "MAC":    ["YLA", "PCX", "ALCIR", "MAC"]
+  "sids": {
+    "BOTOM": {
+      "icao": "BOTOM",
+      "name": "Bottom",
+      "suffix": {"10":"", "28":"", "15":"", "33":""},
+      "rwy": {
+        "10": ["PP", "LIME", "BOTOM"],
+        "28": ["PP", "LIME", "BOTOM"],
+        "15": ["PP", "LIME", "BOTOM"],
+        "33": ["PP", "LIME", "BOTOM"]
+      },
+      "draw": [["PP","LIME","BOTOM"]]
     },
+    "AGUA": {
+      "icao": "AGUA",
+      "name": "Agua",
+      "suffix": {"10":"", "28":"", "15":"", "33":""},
+      "rwy": {
+        "10": ["YLA", "MRC", "AGUA"],
+        "28": ["YLA", "MRC", "AGUA"],
+        "15": ["YLA", "MRC", "AGUA"],
+        "33": ["YLA", "MRC", "AGUA"]
+      },
+      "draw": [["YLA","MRC","AGUA"]]
+    },
+    "PAIOL": {
+      "icao": "PAIOL",
+      "name": "Paiol",
+      "suffix": {"10":"", "28":"", "15":"", "33":""},
+      "rwy": {
+        "10": ["PP", "LIME", "BITAK"],
+        "28": ["PP", "LIME", "BITAK"],
+        "15": ["PP", "LIME", "BITAK"],
+        "33": ["PP", "LIME", "BITAK"]
+      },
+      "draw": [["PP","LIME","BITAK"]]
+    },
+    "ABSAL": {
+      "icao": "ABSAL",
+      "name": "Absal",
+      "suffix": {"10":"", "28":"", "15":"", "33":""},
+      "rwy": {
+        "10": ["YLA", "PCX", "ABSAL"],
+        "28": ["YLA", "PCX", "ABSAL"],
+        "15": ["YLA", "PCX", "ABSAL"],
+        "33": ["YLA", "PCX", "ABSAL"]
+      },
+      "draw": [["YLA","PCX","ABSAL"]]
+    },
+    "POKA": {
+      "icao": "POKA",
+      "name": "Poka",
+      "suffix": {"10":"", "28":"", "15":"", "33":""},
+      "rwy": {
+        "10": ["YLA", "PCX", "POKA"],
+        "28": ["YLA", "PCX", "POKA"],
+        "15": ["YLA", "PCX", "POKA"],
+        "33": ["YLA", "PCX", "POKA"]
+      },
+      "draw": [["YLA","PCX","POKA"]]
+    },
+    "MAC": {
+      "icao": "MAC",
+      "name": "Mac",
+      "suffix": {"10":"", "28":"", "15":"", "33":""},
+      "rwy": {
+        "10": ["YLA", "PCX", "ALCIR"],
+        "28": ["YLA", "PCX", "ALCIR"],
+        "15": ["YLA", "PCX", "ALCIR"],
+        "33": ["YLA", "PCX", "ALCIR"]
+      },
+      "draw": [["YLA","PCX","ALCIR"]]
+    }
+  },
+  "departures": {
     "airlines": [
       ["TAM", 60],
       ["GLO", 60],
@@ -122,7 +190,7 @@
       ["FAB", 1]
     ],
     "destinations": [
-      40, 70, 205, 240, 350
+      "BOTOM", "AGUA", "PAIOL", "ABSAL", "POKA", "MAC"
     ],
     "frequency": [1, 4.5]
   },

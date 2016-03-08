@@ -10,6 +10,8 @@
   "iata": "MSP",
   "magnetic_north": 0.4,
   "ctr_radius": 80,
+  "ctr_ceiling": 10000,
+  "initial_alt": 5000,
   "position": ["N44.884188", "W93.215083"],
   "rr_radius_nm": 5.0,
   "rr_center": ["N44.884188", "W93.215083"],
@@ -19,6 +21,11 @@
     "speed": 8
   },
   "fixes": {
+    "KMSP" : ["N44.884188", "W93.215083"],
+    "NORTH": ["N45.604023", "W93.215083"],
+    "EAST" : ["N44.879707", "W92.202548"],
+    "SOUTH": ["N44.164262", "W93.215083"],
+    "WEST" : ["N44.879707", "W94.227618"],
     
     "TWINZ": ["N45.048797", "W92.289344"],
     "ZASKY": ["N44.930300", "W93.030883"],
@@ -134,6 +141,68 @@
       "ils":          [true, true]
     }
   ],
+  "sids": {
+    "NORTH": {
+      "icao": "NORTH",
+      "name": "NORTH",
+      "rwy": {
+        "30L": ["NORTH"],
+        "30R": ["NORTH"],
+        "12L": ["NORTH"],
+        "12R": ["NORTH"],
+        "4"  : ["NORTH"],
+        "22" : ["NORTH"],
+        "17" : ["NORTH"],
+        "35" : ["NORTH"]
+      },
+      "draw": [["KMSP","NORTH"]]
+    },
+    "EAST": {
+      "icao" : "EAST",
+      "name" : "EAST",
+      "rwy": {
+        "30L": ["EAST"],
+        "30R": ["EAST"],
+        "12L": ["EAST"],
+        "12R": ["EAST"],
+        "4"  : ["EAST"],
+        "22" : ["EAST"],
+        "17" : ["EAST"],
+        "35" : ["EAST"]
+      },
+      "draw": [["KMSP","EAST"]]
+    },
+    "SOUTH": {
+      "icao": "SOUTH",
+      "name": "SOUTH",
+      "rwy": {
+        "30L": ["SOUTH"],
+        "30R": ["SOUTH"],
+        "12L": ["SOUTH"],
+        "12R": ["SOUTH"],
+        "4"  : ["SOUTH"],
+        "22" : ["SOUTH"],
+        "17" : ["SOUTH"],
+        "35" : ["SOUTH"]
+      },
+      "draw": [["KMSP","SOUTH"]]
+    },
+    "WEST": {
+      "icao": "WEST",
+      "name": "WEST",
+      "rwy": {
+        "30L": ["WEST"],
+        "30R": ["WEST"],
+        "12L": ["WEST"],
+        "12R": ["WEST"],
+        "4"  : ["WEST"],
+        "22" : ["WEST"],
+        "17" : ["WEST"],
+        "35" : ["WEST"]
+      },
+      "draw": [["KMSP","WEST"]]
+    }
+  },
   "departures": {
     "airlines": [
       ["ual", 3],
@@ -142,7 +211,7 @@
       ["lightga", 2]
     ],
     "destinations": [
-       22, 110, 210, 245, 340
+      "NORTH", "EAST", "SOUTH", "WEST"
     ],
     "frequency": [1, 3]
   },

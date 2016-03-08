@@ -10,6 +10,8 @@
   "iata": "JFK",
   "magnetic_north": 0,
   "ctr_radius": 80,
+  "ctr_ceiling": 10000,
+  "initial_alt": 5000,
   "position": ["N40.6328889", "W73.7713889"],
   "rr_radius_nm": 5.0,
   "rr_center": ["N40.6328889", "W73.7713889"],
@@ -19,7 +21,11 @@
     "speed": 6
   },
   "fixes": {
-    "JFK": ["N40.6328889", "W73.7713889"],
+    "JFK"  : ["N40.6328889", "W73.7713889"],
+    "NORTH": ["N41.3532606", "W73.7713889"],
+    "EAST" : ["N40.6290271", "W72.8258017"],
+    "SOUTH": ["N39.9124270", "W73.7713889"],
+    "WEST" : ["N40.6290271", "W74.7169761"],
     "ROBER": ["N40.68546389", "W73.03261111"],
     
     "AROKE": ["N40.486519", "W73.891128"],
@@ -111,6 +117,68 @@
       "ils":         [true, true]
     }
   ],
+  "sids": {
+    "NORTH": {
+      "icao": "NORTH",
+      "name": "NORTH",
+      "rwy": {
+        "13L": ["NORTH"],
+        "13R": ["NORTH"],
+        "31L": ["NORTH"],
+        "31R": ["NORTH"],
+        "4L" : ["NORTH"],
+        "4R" : ["NORTH"],
+        "22L": ["NORTH"],
+        "22R": ["NORTH"]
+      },
+      "draw": [["JFK","NORTH"]]
+    },
+    "EAST": {
+      "icao" : "EAST",
+      "name" : "EAST",
+      "rwy": {
+        "13L": ["EAST"],
+        "13R": ["EAST"],
+        "31L": ["EAST"],
+        "31R": ["EAST"],
+        "4L" : ["EAST"],
+        "4R" : ["EAST"],
+        "22L": ["EAST"],
+        "22R": ["EAST"]
+      },
+      "draw": [["JFK","EAST"]]
+    },
+    "SOUTH": {
+      "icao": "SOUTH",
+      "name": "SOUTH",
+      "rwy": {
+        "13L": ["SOUTH"],
+        "13R": ["SOUTH"],
+        "31L": ["SOUTH"],
+        "31R": ["SOUTH"],
+        "4L" : ["SOUTH"],
+        "4R" : ["SOUTH"],
+        "22L": ["SOUTH"],
+        "22R": ["SOUTH"]
+      },
+      "draw": [["JFK","SOUTH"]]
+    },
+    "WEST": {
+      "icao": "WEST",
+      "name": "WEST",
+      "rwy": {
+        "13L": ["WEST"],
+        "13R": ["WEST"],
+        "31L": ["WEST"],
+        "31R": ["WEST"],
+        "4L" : ["WEST"],
+        "4R" : ["WEST"],
+        "22L": ["WEST"],
+        "22R": ["WEST"]
+      },
+      "draw": [["JFK","WEST"]]
+    }
+  },
   "departures": {
     "airlines": [
       ["dal", 24],
@@ -120,7 +188,7 @@
       ["fastga", 1]
     ],
     "destinations": [
-      20, 70, 100, 215, 340, 275
+      "NORTH", "EAST", "SOUTH", "WEST"
     ],
     "type": "cyclic",
     "offset": 0,

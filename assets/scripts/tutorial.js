@@ -78,8 +78,8 @@ function tutorial_init_pre() {
   tutorial_step({
     title:    "Takeoff, part 1",
     text:     ["When it appears at the start of runway {RUNWAY} (which may take a couple of seconds), click it (or press the up arrow once)",
-               "and type in &lsquo;climb 50&rsquo;. This clears the aircraft to climb to five thousand",
-               "feet after it takes off. (This step must be done before clearing the aircraft for takeoff, just as in real life.)"
+               "and type in &lsquo;caf&rsquo; (for &lsquo;cleared as filed&rsquo;). This tells the aircraft it is cleared to follow its flightplan.",
+               "Just as in real life, this step must be done before clearing the aircraft for takeoff, so they know where they're supposed to go."
                ].join(" "),
     parse:    function(t) {
       return t.replace("{RUNWAY}", prop.aircraft.list[0].fms.currentWaypoint().runway);
@@ -119,7 +119,7 @@ function tutorial_init_pre() {
     title:    "Aircraft strips, part 2",
     text:     ["The top row shows the aircraft&rsquo;s callsign, what it's doing (parked at apron,",
                "using a runway, flying to a fix, on a heading, etc), and its assigned altitude. The bottom row shows the model",
-               "({MODEL} here, which is a {MODELNAME}) to the left, and its assigned speed to the right."
+               "({MODEL} here, which is a {MODELNAME}) to the left, its destination in the middle, and its assigned speed to the right."
                ].join(" "),
     parse:    function(t) {
       return t.replace("{MODEL}", prop.aircraft.list[0].model.icao).replace("{MODELNAME}", prop.aircraft.list[0].model.name);
@@ -130,16 +130,18 @@ function tutorial_init_pre() {
 
   tutorial_step({
     title:    "Moving aircraft",
-    text:     ["Once {CALLSIGN} has taken off, click it and type &lsquo;fh{ANGLE}&rsquo; into the command box (for",
-                "&ldquo;fly heading {ANGLE}&rdquo;). It should start turning toward that heading; if the turn isn&rsquo;t",
-                "immediately visible, you can click the speedup button on the right side of the input box (it&rsquo;s two",
-                "small arrows pointing towards the right). Don&rsquo;t forget to click it again to go back to 1x speed."
+    text:     ["Once {CALLSIGN} has taken off, you'll notice it will climb to {INIT_ALT} by itself. This is one of the instructions ",
+                "we gave them when we cleared them &lsquo;as filed&rsquo;. Aircraft perform better when they are able to climb directly",
+                "from the ground to their cruise altitude without leveling off, so let's keep them climbing! Click it and type &lsquo;cvs&rsquo; (for",
+                "&lsquo;climb via SID&rsquo;). Then they will follow the altitudes and speeds defined in the {SID_NAME} departure",
+                "procedure. Feel free to click the speedup button on the right side of the input box (it&rsquo;s two small arrows)",
+                "to watch the departure climb along the SID. Then just click it again to return to 1x speed."
                ].join(" "),
     parse:    function(t) {
       return t.
         replace("{CALLSIGN}", prop.aircraft.list[0].getCallsign()).
-        replace("{ANGLE}", heading_to_string(prop.aircraft.list[0].destination)).
-        replace("{ANGLE}", heading_to_string(prop.aircraft.list[0].destination));
+        replace("{INIT_ALT}", airport_get().initial_alt).
+        replace("{SID_NAME}", prop.aircraft.list[0].destination);
     },
     side:     "left",
     position: tutorial_position
@@ -148,10 +150,9 @@ function tutorial_init_pre() {
   tutorial_step({
     title:    "Departure destinations",
     text:     ["If you zoom out (using the mouse wheel) and click",
-               "on the aircraft {CALLSIGN} you will see a blue arc in the",
-               "direction it is heading.  This is its departure destination.",
-               "Your goal is to direct every departure through their filed",
-               "departure zone."
+               "on {CALLSIGN}, you will see a blue dashed line that shows where they are heading. At the end of the",
+               "line is its &lsquo;departure fix&rsquo;. Your goal is to get every departure cleared to their filed departure fix. As",
+               "you have probably noticed, this is very easy with SIDs, as the aircraft do all the hard work themselves."
                ].join(" "),
     parse:    function(t) {
       return t.
@@ -178,12 +179,14 @@ function tutorial_init_pre() {
 
   tutorial_step({
     title:    "Basic Control Instructions: Radar Vectors",
-    text:     ["Radar vectors are an air traffic controller's way of telling aircraft to fly a specific magnetic heading. Previously, we've typed",
-               "&lsquo;fh{ANGLE}&rsquo;, and the aircraft turned the shortest direction to face {ANGLE} degrees. Sometimes, you may want to specify a turn direction,",
-               "entered like &lsquo;t l 270&rsquo; or &lsquo;t r 090&rsquo;, for example."
+    text:     ["Radar vectors are an air traffic controller's way of telling aircraft to fly a specific magnetic heading. We can give aircraft radar",
+               "vectors in three ways. Usually, you will use &lsquo;t l ###&rsquo; or &lsquo;t r ###&rsquo;. Be careful, as it is both easy",
+               "and dangerous to give a turn in the wrong direction. If the heading is only slightly left or right, to avoid choosing the wrong direction,",
+               "you can tell them to &lsquo;fly heading&rsquo; by typing &lsquo;fh###&rsquo;, and the aircraft will simply turn the shortest direction",
+               "to face that heading."
                ].join(" "),
     parse:    function(t) {
-      return t.replace(/{ANGLE}/g, heading_to_string(prop.aircraft.list[0].destination));
+      return t;
     },
     side:     "left",
     position: tutorial_position
@@ -218,13 +221,13 @@ function tutorial_init_pre() {
 
   tutorial_step({
     title:    "Shortcuts",
-    text:     ["You can give an aircraft a shortcut in a chain of fixes by issuing &lsquo;direct&rsquo;",
-               "command (or &lsquo;dct&rsquo;). Also you can add more fixes in a track with",
-               "&lsquo;proceed&rsquo; (&lsquo;pr&rsquo;) command. You can also have departing aircraft fly",
-               "via a Standard Instrumental Departure (SID), shown in the map, via the &lsquo;sid&rsquo; command."
+    text:     ["You can give an aircraft a shortcut in a chain of fixes through use of the &lsquo;direct&rsquo;",
+               "command (&lsquo;dct&rsquo;). Also, you can add more fixes to the end of that list with the",
+               "&lsquo;proceed&rsquo; (&lsquo;pr&rsquo;) command. This is useful with overflights, and while you can have",
+               "departing aircraft use these commands, it is probably easier to assign them a SID if one is available at your airport."
                ].join(" "),
     parse:    function(t) {
-      return t.replace("{CALLSIGN}", prop.aircraft.list[0].getCallsign());
+      return t;
     },
     side:     "left",
     position: tutorial_position
@@ -232,13 +235,12 @@ function tutorial_init_pre() {
 
   tutorial_step({
     title:    "Bon voyage, aircraft!",
-    text:     ["When the aircraft flies through the blue arc, it will ",
-               "automatically remove itself from the list on the right.",
-               "Congratulations, you&rsquo;ve successfully taken off one",
-               "aircraft."
+    text:     ["When the aircraft crosses the airspace boundary, it will ",
+               "automatically remove itself from the flight strip bay on the right.",
+               "Congratulations, you&rsquo;ve successfully taken off one aircraft."
                ].join(" "),
     parse:    function(t) {
-      return t.replace("{CALLSIGN}", prop.aircraft.list[0].getCallsign());
+      return t;
     },
     side:     "left",
     position: tutorial_position
@@ -253,7 +255,7 @@ function tutorial_init_pre() {
                "While you work the airplane, read the next step."
                ].join(" "),
     parse:    function(t) {
-      return t.replace("{CALLSIGN}", prop.aircraft.list[0].getCallsign());
+      return t;
     },
     side:     "left",
     position: tutorial_position
@@ -267,7 +269,7 @@ function tutorial_init_pre() {
                "once they're within a few degrees of the extended centerline."
                  ].join(" "),
       parse:    function(t) {
-        return t.replace("{CALLSIGN}", prop.aircraft.list[0].getCallsign());
+        return t;
       },
     side:     "left",
     position: tutorial_position
@@ -281,7 +283,7 @@ function tutorial_init_pre() {
                "the Instrument Landing System), and the assigned heading should now show the runway to which it has an approach clearance."
                ].join(" "),
     parse:    function(t) {
-      return t.replace("{CALLSIGN}", prop.aircraft.list[0].getCallsign());
+      return t;
     },
     side:     "left",
     position: tutorial_position
@@ -292,10 +294,10 @@ function tutorial_init_pre() {
     text:     ["You may choose to enter one command at a time, but air traffic controllers usually do multiple. Particularly in approach clearances,",
                "they follow an acronym &ldquo;PTAC&rdquo; for the four elements of an approach clearance, the &lsquo;T&rsquo; and &lsquo;C&rsquo; of which",
                "stand for &lsquo;Turn&rsquo; and &lsquo;Clearance&rsquo;, both of which we entered separately in this tutorial. Though longer, it is both ",
-               "easier and more real-world accurate to enter them together, like this: &lsquo;fh250 l 28r&rsquo;."
+               "easier and more real-world accurate to enter them together, like this: &lsquo;fh250 i 28r&rsquo;."
                ].join(" "),
     parse:    function(t) {
-      return t.replace("{CALLSIGN}", prop.aircraft.list[0].getCallsign());
+      return t;
     },
     side:     "left",
     position: tutorial_position
@@ -308,7 +310,7 @@ function tutorial_init_pre() {
                "(If the aircraft is navigating to a fix, the &lsquo;abort&rsquo; command will clear the fix instead.)"
                ].join(" "),
     parse:    function(t) {
-      return t.replace("{CALLSIGN}", prop.aircraft.list[0].getCallsign());
+      return t;
     },
     side:     "left",
     position: tutorial_position
@@ -316,13 +318,13 @@ function tutorial_init_pre() {
 
   tutorial_step({
     title:    "Wind sock",
-    text:     ["In the lower right corner of the map is a small circle with a line; the line shows the direction",
-               "the wind is going to. If it&rsquo;s pointing straight down, the wind is blowing from the North",
-               "to the South. Aircraft are assigned to different takeoff runways accordingly. If it is shown in",
-               "red, the wind is two times stronger.",
+    text:     ["In the lower right corner of the map is a small circle with a line. It's like a flag: the line trails in the direction",
+               "the wind is blowing toward. If it&rsquo;s pointing straight down, the wind is blowing from the North",
+               "to the South. Aircraft must be assigned to different runways such that they always take off and land into the wind, unless the",
+               "wind is less than 5 knots."
                ].join(" "),
     parse:    function(t) {
-      return t.replace("{CALLSIGN}", prop.aircraft.list[0].getCallsign());
+      return t;
     },
     side:     "left",
     position: tutorial_position
@@ -331,13 +333,13 @@ function tutorial_init_pre() {
   tutorial_step({
     title:    "Score",
     text:     ["The lower-right corner of the page has a small number in it; this is your score.",
-               "Whenever you successfully route an aircraft to the ground or out of the screen, you get score;",
-               "if you direct the aircraft to a runway with a strong crosswind or tailwind, you&rsquo;ll lose score.",
-               "Furthermore, if two aircraft get too close or you ignore an arriving aircraft, you will also lose score.",
-               "If you&rsquo;d like, you can just ignore the score; it doesn&rsquo;t have any effect with the simulation."
+               "Whenever you successfully route an aircraft to the ground or out of the screen, you earn points. As you make mistakes,",
+               "like directing aircraft to a runway with a strong crosswind/tailwind, losing separation between aircraft, or ignoring an",
+               "aircraft, you will also lose points. If you&rsquo;d like, you can just ignore the score; it doesn&rsquo;t have any effect",
+               "with the simulation."
                ].join(" "),
     parse:    function(t) {
-      return t.replace("{CALLSIGN}", prop.aircraft.list[0].getCallsign());
+      return t;
     },
     side:     "left",
     position: tutorial_position
@@ -350,7 +352,7 @@ function tutorial_init_pre() {
                "keep them moving, and you'll be a controller in no time!"
                ].join(" "),
     parse:    function(t) {
-      return t.replace("{CALLSIGN}", prop.aircraft.list[0].getCallsign());
+      return t;
     },
     side:     "left",
     position: tutorial_position

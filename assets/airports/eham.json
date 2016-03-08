@@ -10,6 +10,8 @@
   "iata": "AMS",
   "magnetic_north": 0,
   "ctr_radius": 80,
+  "ctr_ceiling": 10000,
+  "initial_alt": 5000,
   "position": ["N52d18m30.96", "E004d45m51.00"],
   "rr_radius_nm": 5.0,
   "rr_center": ["N52d18m30.96", "E004d45m51.00"],
@@ -63,8 +65,6 @@
     "EH008":  ["N52d12m30.00",  "E004d46m00.00"],
     "EH026":  ["N52d10m16.94",  "E004d52m11.23"],
     "EH028":  ["N52d21m28.05",  "E004d25m15.71"]
-  
-
   },
   "runways": [
     {
@@ -127,6 +127,108 @@
       "ils_distance": [28, 20]
     }
   ],
+  "sids": {
+    "ANDIK": {
+      "icao": "ANDIK",
+      "name": "Andik",
+      "suffix": {"04":"", "22":"", "06":"", "24":"", "09":"", "27":"", "18L":"", "18C":"", "18R":"", "36L":"", "36C":"", "36R":""},
+      "rwy": {
+        "04":  ["EH005", "EH008", "EH026", "PAM", "ANDIK"],
+        "22":  ["EH005", "EH008", "EH026", "PAM", "ANDIK"],
+        "06":  ["EH005", "EH008", "EH026", "PAM", "ANDIK"],
+        "24":  ["EH005", "EH008", "EH026", "PAM", "ANDIK"],
+        "09":  ["EH005", "EH008", "EH026", "PAM", "ANDIK"],
+        "27":  ["EH005", "EH008", "EH026", "PAM", "ANDIK"],
+        "18L": ["EH005", "EH008", "EH026", "PAM", "ANDIK"],
+        "18C": ["EH005", "EH008", "EH026", "PAM", "ANDIK"],
+        "18R": ["EH005", "EH008", "EH026", "PAM", "ANDIK"],
+        "36L": ["EH005", "EH008", "EH026", "PAM", "ANDIK"],
+        "36C": ["EH005", "EH008", "EH026", "PAM", "ANDIK"],
+        "36R": ["EH005", "EH008", "EH026", "PAM", "ANDIK"]
+      },
+      "draw": [["EH005","EH008","EH026","PAM","ANDIK"]]
+    },
+    "ARNEM": {
+      "icao": "ARNEM",
+      "name": "Arnem",
+      "suffix": {"04":"", "22":"", "06":"", "24":"", "09":"", "27":"", "18L":"", "18C":"", "18R":"", "36L":"", "36C":"", "36R":""},
+      "rwy": {
+        "04":  ["EH005", "EH008", "EH026", "IVLUT", "NYKER", "ARNEM"],
+        "22":  ["EH005", "EH008", "EH026", "IVLUT", "NYKER", "ARNEM"],
+        "06":  ["EH005", "EH008", "EH026", "IVLUT", "NYKER", "ARNEM"],
+        "24":  ["EH005", "EH008", "EH026", "IVLUT", "NYKER", "ARNEM"],
+        "09":  ["EH005", "EH008", "EH026", "IVLUT", "NYKER", "ARNEM"],
+        "27":  ["EH005", "EH008", "EH026", "IVLUT", "NYKER", "ARNEM"],
+        "18L": ["EH005", "EH008", "EH026", "IVLUT", "NYKER", "ARNEM"],
+        "18C": ["EH005", "EH008", "EH026", "IVLUT", "NYKER", "ARNEM"],
+        "18R": ["EH005", "EH008", "EH026", "IVLUT", "NYKER", "ARNEM"],
+        "36L": ["EH005", "EH008", "EH026", "IVLUT", "NYKER", "ARNEM"],
+        "36C": ["EH005", "EH008", "EH026", "IVLUT", "NYKER", "ARNEM"],
+        "36R": ["EH005", "EH008", "EH026", "IVLUT", "NYKER", "ARNEM"]
+      },
+      "draw": [["EH005","EH008","EH026","IVLUT","NYKER","ARNEM"]]
+    },
+    "BERGI": {
+      "icao": "BERGI",
+      "name": "Bergi",
+      "suffix": {"04":"", "22":"", "06":"", "24":"", "09":"", "27":"", "18L":"", "18C":"", "18R":"", "36L":"", "36C":"", "36R":""},
+      "rwy": {
+        "04":  ["EH005", "CH", "EH028", "BERGI"],
+        "22":  ["EH005", "CH", "EH028", "BERGI"],
+        "06":  ["EH005", "CH", "EH028", "BERGI"],
+        "24":  ["EH005", "CH", "EH028", "BERGI"],
+        "09":  ["EH005", "CH", "EH028", "BERGI"],
+        "27":  ["EH005", "CH", "EH028", "BERGI"],
+        "18L": ["EH005", "CH", "EH028", "BERGI"],
+        "18C": ["EH005", "CH", "EH028", "BERGI"],
+        "18R": ["EH005", "CH", "EH028", "BERGI"],
+        "36L": ["EH005", "CH", "EH028", "BERGI"],
+        "36C": ["EH005", "CH", "EH028", "BERGI"],
+        "36R": ["EH005", "CH", "EH028", "BERGI"]
+      },
+      "draw": [["EH005","CH","EH028","BERGI"]]
+    },
+    "LEKKO": {
+      "icao": "LEKKO",
+      "name": "Lekko",
+      "suffix": {"04":"", "22":"", "06":"", "24":"", "09":"", "27":"", "18L":"", "18C":"", "18R":"", "36L":"", "36C":"", "36R":""},
+      "rwy": {
+        "04":  ["EH005", "NV", "LEKKO"],
+        "22":  ["EH005", "NV", "LEKKO"],
+        "06":  ["EH005", "NV", "LEKKO"],
+        "24":  ["EH005", "NV", "LEKKO"],
+        "09":  ["EH005", "NV", "LEKKO"],
+        "27":  ["EH005", "NV", "LEKKO"],
+        "18L": ["EH005", "NV", "LEKKO"],
+        "18C": ["EH005", "NV", "LEKKO"],
+        "18R": ["EH005", "NV", "LEKKO"],
+        "36L": ["EH005", "NV", "LEKKO"],
+        "36C": ["EH005", "NV", "LEKKO"],
+        "36R": ["EH005", "NV", "LEKKO"]
+      },
+      "draw": [["EH005","NV","LEKKO"]]
+    },
+    "GORLO": {
+      "icao": "GORLO",
+      "name": "Gorlo",
+      "suffix": {"04":"", "22":"", "06":"", "24":"", "09":"", "27":"", "18L":"", "18C":"", "18R":"", "36L":"", "36C":"", "36R":""},
+      "rwy": {
+        "04":  ["CH", "GORLO"],
+        "22":  ["CH", "GORLO"],
+        "06":  ["CH", "GORLO"],
+        "24":  ["CH", "GORLO"],
+        "09":  ["CH", "GORLO"],
+        "27":  ["CH", "GORLO"],
+        "18L": ["CH", "GORLO"],
+        "18C": ["CH", "GORLO"],
+        "18R": ["CH", "GORLO"],
+        "36L": ["CH", "GORLO"],
+        "36C": ["CH", "GORLO"],
+        "36R": ["CH", "GORLO"]
+      },
+      "draw": [["CH","GORLO"]]
+    }
+  },
   "departures": {
     "airlines": [
       ["ual",   2],
@@ -138,15 +240,8 @@
       ["klm",   5],
       ["ual",   2]
     ],
-"sids": {
-  "ANDIK":  ["EH005", "EH008", "EH026", "PAM", "ANDIK"],
-  "ARNEM":  ["EH005", "EH008", "EH026", "IVLUT", "NYKER", "ARNEM"],
-  "BERGI":  ["EH005", "CH", "EH028", "BERGI"],
-  "LEKKO":  ["EH005", "NV", "LEKKO"],
-  "GORLO":  ["CH", "GORLO"]
-},
     "destinations": [
-      30, 180, 245, 340
+      "ANDIK", "ARNEM", "BERGI", "LEKKO", "GORLO"
     ],
     "frequency": [1, 2]
   },

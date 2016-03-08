@@ -10,6 +10,8 @@
   "iata": "LCY",
   "magnetic_north": 0,
   "ctr_radius": 80,
+  "ctr_ceiling": 10000,
+  "initial_alt": 5000,
   "position": ["N51d30m19.08", "E0d3m19.00"],
   "rr_radius_nm": 5.0,
   "rr_center": ["N51d30m19.08", "E0d3m19.00"],
@@ -60,7 +62,6 @@
     "LON":["N51d29m14.00", "W0d28m0.00"],
     "BNN":["N51d43m34.00", "W0d32m59.00"],
     "ODH":["N51d14m06.00", "W0d56m57.00"]
-
   },
   "runways": [
     {
@@ -71,20 +72,56 @@
       "ils": [true, true]
     }
   ],
+  "sids": {
+    "DVR": {
+      "icao": "DVR",
+      "name": "Dover Five",
+      "suffix": {"09":"", "27":""},
+      "rwy": {
+        "09": ["GINTI", "DET", "DVR"],
+        "27": ["GINTI", "DET", "DVR"]
+      },
+      "draw": [["GINTI","DET","DVR"]]
+    },
+    "LYD": {
+      "icao": "LYD",
+      "name": "Lid Five",
+      "suffix": {"09":"", "27":""},
+      "rwy": {
+        "09": ["GINTI", "DET", "LYD"],
+        "27": ["GINTI", "DET", "LYD"]
+      },
+      "draw": [["GINTI","DET","LYD"]]
+    },
+    "CLN": {
+      "icao": "CLN",
+      "name": "Clacton Seven",
+      "suffix": {"09":"", "27":""},
+      "rwy": {
+        "09": ["GINTI", "CLN"],
+        "27": ["GINTI", "CLN"]
+      },
+      "draw": [["GINTI","CLN"]]
+    },
+    "CPT": {
+      "icao": "CPT",
+      "name": "Compton Six",
+      "suffix": {"09":"", "27":""},
+      "rwy": {
+        "09": ["BPK", "HEN", "CPT"],
+        "27": ["BPK", "HEN", "CPT"]
+      },
+      "draw": [["BPK","HEN","CPT"]]
+    }
+  },
   "departures": {
     "airlines": [
       ["bcy", 10],
       ["baw", 5],
       ["fastga", 8]
     ],
-    "sids": {
-      "DOVER": ["GINTI", "DET", "DVR"],
-      "LYDD": ["GINTI", "DET", "LYD"],
-      "CLACTON": ["GINTI", "CLN"],
-      "COMPTON": ["BPK", "HEN", "CPT"]
-    },
     "destinations": [
-      64, 113, 135, 275
+      "DVR", "LYD", "CLN", "CPT"
     ],
     "type": "random",
     "offset": 0,

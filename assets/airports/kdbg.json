@@ -10,6 +10,8 @@
   "iata": "DBG",
   "magnetic_north": 0,
   "ctr_radius": 80,
+  "ctr_ceiling": 10000,
+  "initial_alt": 5000,
   "position": ["N0.0", "W0.0"],
   "rr_radius_nm": 5.0,
   "rr_center": ["N0.0", "W0.0"],
@@ -19,6 +21,11 @@
     "speed": 8
   },
   "fixes":{
+    "KDBG" : [0,0],
+    "NORTH": [0,80],
+    "EAST" : [80,0],
+    "SOUTH": [0,-80],
+    "WEST" : [-80,0],
     "ROMNY": [ -187.17,    -96     ],
     "ROKME": [ -138.17,     64     ],
     "HERMN": [ -187.17,     37.33  ],
@@ -36,7 +43,7 @@
     "ROGGE": [  173.17,     82     ],
     "BERKS": [  92.83,      46.33  ],
     "PORTE": [  33.17,      59.67  ],
-    "QUITE": [  9.9,       45.67  ],
+    "QUITE": [  9.9,        45.67  ],
     "BOBAK": [  5.4,        22.33  ],
     "LOCMT": [  -0.3,       18     ],
     "RANDM": [ -0.3,        46.33  ],
@@ -92,6 +99,68 @@
       "ils":         [false, false]
     }
   ],
+  "sids": {
+    "NORTH": {
+      "icao": "NORTH",
+      "name": "NORTH",
+      "rwy": {
+        "18L": ["NORTH"],
+        "18R": ["NORTH"],
+        "36L": ["NORTH"],
+        "36R": ["NORTH"],
+        "01" : ["NORTH"],
+        "19" : ["NORTH"],
+        "11" : ["NORTH"],
+        "29" : ["NORTH"]
+      },
+      "draw": [["KDBG","NORTH"]]
+    },
+    "EAST": {
+      "icao" : "EAST",
+      "name" : "EAST",
+      "rwy": {
+        "18L": ["EAST"],
+        "18R": ["EAST"],
+        "36L": ["EAST"],
+        "36R": ["EAST"],
+        "01" : ["EAST"],
+        "19" : ["EAST"],
+        "11" : ["EAST"],
+        "29" : ["EAST"]
+      },
+      "draw": [["KDBG","EAST"]]
+    },
+    "SOUTH": {
+      "icao": "SOUTH",
+      "name": "SOUTH",
+      "rwy": {
+        "18L": ["SOUTH"],
+        "18R": ["SOUTH"],
+        "36L": ["SOUTH"],
+        "36R": ["SOUTH"],
+        "01" : ["SOUTH"],
+        "19" : ["SOUTH"],
+        "11" : ["SOUTH"],
+        "29" : ["SOUTH"]
+      },
+      "draw": [["KDBG","SOUTH"]]
+    },
+    "WEST": {
+      "icao": "WEST",
+      "name": "WEST",
+      "rwy": {
+        "18L": ["WEST"],
+        "18R": ["WEST"],
+        "36L": ["WEST"],
+        "36R": ["WEST"],
+        "01" : ["WEST"],
+        "19" : ["WEST"],
+        "11" : ["WEST"],
+        "29" : ["WEST"]
+      },
+      "draw": [["KDBG","WEST"]]
+    }
+  },
   "departures": {
     "airlines": [
       ["ual", 3],
@@ -100,7 +169,7 @@
       ["lightga", 1]
     ],
     "destinations": [
-      20, 65, 110, 155, 200, 245, 290, 335
+      "NORTH", "EAST", "SOUTH", "WEST"
     ],
     "frequency": [1, 3]
   },

@@ -8,7 +8,10 @@
   },
   "icao": "LOWW",
   "iata": "VIE",
+  "magnetic_north": 4.04,
   "ctr_radius": 80,
+  "ctr_ceiling": 10000,
+  "initial_alt": 5000,
   "position": ["N48d6m37.07", "E16d34m10.92"],
   "rr_radius_nm": 5.0,
   "rr_center": ["N48d6m37.07", "E16d34m10.92"],
@@ -91,6 +94,80 @@
       "ils":         [true, true]
     }
   ],
+  "sids": {
+    "LANUX": {
+      "icao": "LANUX",
+      "name": "Lanux",
+      "suffix": {"11":"", "29":"", "16":"", "34":""},
+      "rwy": {
+        "11": ["WW160", "WW170", "WW171", "LANUX"],
+        "29": ["WW160", "WW170", "WW171", "LANUX"],
+        "16": ["WW160", "WW170", "WW171", "LANUX"],
+        "34": ["WW160", "WW170", "WW171", "LANUX"]
+      },
+      "draw": [["WW160","WW170","WW171","LANUX"]]
+    },
+    "LEDVA": {
+      "icao": "LEDVA",
+      "name": "Ledva",
+      "suffix": {"11":"", "29":"", "16":"", "34":""},
+      "rwy": {
+        "11": ["WW160", "WW170", "LEDVA"],
+        "29": ["WW160", "WW170", "LEDVA"],
+        "16": ["WW160", "WW170", "LEDVA"],
+        "34": ["WW160", "WW170", "LEDVA"]
+      },
+      "draw": [["WW160","WW170","LEDVA"]]
+    },
+    "ADAMA": {
+      "icao": "ADAMA",
+      "name": "Adama",
+      "suffix": {"11":"", "29":"", "16":"", "34":""},
+      "rwy": {
+        "11": ["WW162", "WW390", "ADAMA"],
+        "29": ["WW162", "WW390", "ADAMA"],
+        "16": ["WW162", "WW390", "ADAMA"],
+        "34": ["WW162", "WW390", "ADAMA"]
+      },
+      "draw": [["WW162","WW390","ADAMA"]]
+    },
+    "STEIN": {
+      "icao": "STEIN",
+      "name": "Stein",
+      "suffix": {"11":"", "29":"", "16":"", "34":""},
+      "rwy": {
+        "11": ["WW268", "STEIN"],
+        "29": ["WW268", "STEIN"],
+        "16": ["WW268", "STEIN"],
+        "34": ["WW268", "STEIN"]
+      },
+      "draw": [["WW268","STEIN"]]
+    },
+    "OSPEN": {
+      "icao": "OSPEN",
+      "name": "Ospen",
+      "suffix": {"11":"", "29":"", "16":"", "34":""},
+      "rwy": {
+        "11": ["WW101", "WW172", "WW173", "OSPEN"],
+        "29": ["WW101", "WW172", "WW173", "OSPEN"],
+        "16": ["WW101", "WW172", "WW173", "OSPEN"],
+        "34": ["WW101", "WW172", "WW173", "OSPEN"]
+      },
+      "draw": [["WW101","WW172","WW173","OSPEN"]]
+    },
+    "SITNI": {
+      "icao": "SITNI",
+      "name": "Sitni",
+      "suffix": {"11":"", "29":"", "16":"", "34":""},
+      "rwy": {
+        "11": ["WW101", "WW275", "WW178", "SITNI"],
+        "29": ["WW101", "WW275", "WW178", "SITNI"],
+        "16": ["WW101", "WW275", "WW178", "SITNI"],
+        "34": ["WW101", "WW275", "WW178", "SITNI"]
+      },
+      "draw": [["WW101","WW275","WW178","SITNI"]]
+    }
+  },
   "departures": {
     "airlines": [
       ["aua", 20],
@@ -107,16 +184,8 @@
       ["sas", 5],
       ["sa-ual", 5]
     ],
-    "sids": {
-      "LANUX": ["WW160", "WW170", "WW171", "LANUX"],
-      "LEDVA": ["WW160", "WW170", "LEDVA"],
-      "ADAMA": ["WW162", "WW390", "ADAMA"],
-      "STEIN": ["WW268", "STEIN"],
-      "OSPEN": ["WW101", "WW172", "WW173", "OSPEN"],
-      "SITNI": ["WW101", "WW275", "WW178", "SITNI"]
-    },
     "destinations": [
-      13, 103, 179, 235, 265, 315
+      "LANUX", "LEDVA", "ADAMA", "STEIN", "OSPEN", "SITNI"
     ],
     "type": "random",
     "offset": 0,

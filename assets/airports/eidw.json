@@ -10,6 +10,8 @@
   "iata": "DUB",
   "magnetic_north": 0,
   "ctr_radius": 80,
+  "ctr_ceiling": 10000,
+  "initial_alt": 5000,
   "position": ["N53d25m17.00", "W6d16m12.00"],
   "rr_radius_nm": 5.0,
   "rr_center": ["N53d25m17.00", "W6d16m12.00"],
@@ -96,6 +98,104 @@
       "ils":         [true, true]
     }
   ],
+  "sids": {
+    "SUROX": {
+      "icao": "SUROX",
+      "name": "Surox",
+      "suffix": {"10":"", "28":"", "16":"", "34":""},
+      "rwy": {
+        "10": ["DW931", "LEMTA", "DODIG", "SUROX"],
+        "28": ["DW931", "LEMTA", "DODIG", "SUROX"],
+        "16": ["DW931", "LEMTA", "DODIG", "SUROX"],
+        "34": ["DW931", "LEMTA", "DODIG", "SUROX"]
+      },
+      "draw": [["DW931", "LEMTA", "DODIG", "SUROX"]]
+    },
+    "LIFFY": {
+      "icao": "LIFFY",
+      "name": "Liffy",
+      "suffix": {"10":"", "28":"", "16":"", "34":""},
+      "rwy": {
+        "10": ["DW931", "KISHA", "LIFFY"],
+        "28": ["DW931", "KISHA", "LIFFY"],
+        "16": ["DW931", "KISHA", "LIFFY"],
+        "34": ["DW931", "KISHA", "LIFFY"]
+      },
+      "draw": [["DW931", "KISHA", "LIFFY"]]
+    },
+    "ABIDO": {
+      "icao": "ABIDO",
+      "name": "Abido",
+      "suffix": {"10":"", "28":"", "16":"", "34":""},
+      "rwy": {
+        "10": ["DW679", "IRDEX", "ERVAD", "ABIDO"],
+        "28": ["DW679", "IRDEX", "ERVAD", "ABIDO"],
+        "16": ["DW679", "IRDEX", "ERVAD", "ABIDO"],
+        "34": ["DW679", "IRDEX", "ERVAD", "ABIDO"]
+      },
+      "draw": [["DW679", "IRDEX", "ERVAD", "ABIDO"]]
+    },
+    "INKUR": {
+      "icao": "INKUR",
+      "name": "Inkur",
+      "suffix": {"10":"", "28":"", "16":"", "34":""},
+      "rwy": {
+        "10": ["DW679", "DWS78", "NITIL", "INKUR"],
+        "28": ["DW679", "DWS78", "NITIL", "INKUR"],
+        "16": ["DW679", "DWS78", "NITIL", "INKUR"],
+        "34": ["DW679", "DWS78", "NITIL", "INKUR"]
+      },
+      "draw": [["DW679", "DWS78", "NITIL", "INKUR"]]
+    },
+    "PELIG": {
+      "icao": "PELIG",
+      "name": "Pelig",
+      "suffix": {"10":"", "28":"", "16":"", "34":""},
+      "rwy": {
+        "10": ["DW679", "DWS78", "PELIG"],
+        "28": ["DW679", "DWS78", "PELIG"],
+        "16": ["DW679", "DWS78", "PELIG"],
+        "34": ["DW679", "DWS78", "PELIG"]
+      },
+      "draw": [["DW679", "DWS78", "PELIG"]]
+    },
+    "DEXEN": {
+      "icao": "DEXEN",
+      "name": "Dexen",
+      "suffix": {"10":"", "28":"", "16":"", "34":""},
+      "rwy": {
+        "10": ["MAXEV", "DW555", "DEXEN"],
+        "28": ["MAXEV", "DW555", "DEXEN"],
+        "16": ["MAXEV", "DW555", "DEXEN"],
+        "34": ["MAXEV", "DW555", "DEXEN"]
+      },
+      "draw": [["MAXEV", "DW555", "DEXEN"]]
+    },
+    "OLONO": {
+      "icao": "OLONO",
+      "name": "Olono",
+      "suffix": {"10":"", "28":"", "16":"", "34":""},
+      "rwy": {
+        "10": ["DW679", "IRDEX", "ERVAD", "NEPOD", "OLONO"],
+        "28": ["DW679", "IRDEX", "ERVAD", "NEPOD", "OLONO"],
+        "16": ["DW679", "IRDEX", "ERVAD", "NEPOD", "OLONO"],
+        "34": ["DW679", "IRDEX", "ERVAD", "NEPOD", "OLONO"]
+      },
+      "draw": [["DW679", "IRDEX", "ERVAD", "NEPOD", "OLONO"]]
+    },
+    "ROTEV": {
+      "icao": "ROTEV",
+      "name": "Rotev",
+      "suffix": {"10":"", "28":"", "16":"", "34":""},
+      "rwy": {
+        "10": ["DW931", "LEMTA", "ROTEV"],
+        "28": ["DW931", "LEMTA", "ROTEV"],
+        "16": ["DW931", "LEMTA", "ROTEV"],
+        "34": ["DW931", "LEMTA", "ROTEV"]
+      },
+      "draw": [["DW931", "LEMTA", "ROTEV"]]
+    }
+  },
   "departures": {
     "airlines": [
       ["ein", 15],
@@ -108,18 +208,8 @@
       ["ual", 3],
       ["klm", 1]
     ],
-    "sids": {
-      "SUROX": ["DW931", "LEMTA", "DODIG", "SUROX"],
-      "LIFFY": ["DW931", "KISHA", "LIFFY"],
-      "ABIDO": ["DW679", "IRDEX", "ERVAD", "ABIDO"],
-      "INKUR": ["DW679", "DWS78", "NITIL", "INKUR"],
-      "PELIG": ["DW679", "DWS78", "PELIG"],
-      "DEXEN": ["MAXEV", "DW555", "DEXEN"],
-      "OLONO": ["DW679", "IRDEX", "ERVAD", "NEPOD", "OLONO"],
-      "ROTEV": ["DW931", "LEMTA", "ROTEV"]
-    },
     "destinations": [
-      85, 162, 323, 10, 106, 200, 251, 285
+      "SUROX", "LIFFY", "ABIDO", "INKUR", "PELIG", "DEXEN", "OLONO", "ROTEV"
     ],
     "type": "random",
     "offset": 0,

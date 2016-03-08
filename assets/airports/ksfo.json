@@ -10,6 +10,8 @@
   "iata": "SFO",
   "magnetic_north": 13.7,
   "ctr_radius": 80,
+  "ctr_ceiling": 23000,
+  "initial_alt": 5000,
   "position": ["N37.6195", "W122.3738333"],
   "rr_radius_nm": 5.0,
   "rr_center": ["N37.6195", "W122.3738333"],
@@ -68,7 +70,27 @@
     "PORTE":   ["N37.489786", "W122.474578"],
     "SASLY":   ["N37.678500", "W122.334500"],
     "REBAS":   ["N37.940683", "W122.383667"],
-    "SASSU":   ["N38.367867", "W122.390483"]
+    "SASSU":   ["N38.367867", "W122.390483"],
+    "CYPRS": ["N36.422333", "W122.432167"],
+    "MCKEY": ["N35.483167", "W121.083167"],
+    "SHOEY": ["N36.746000", "W122.136000"],
+    "SNS"  : ["N36.663833", "W121.603167"],
+    "BSR"  : ["N36.181333", "W121.642167"],
+    "_SIPLY233-STINS144": ["N37.468500", "W122.575333"],
+    "MQO"  : ["N35.252255", "W120.759566"],
+    "FLW"  : ["N35.093084", "W119.865579"],
+    "RZS"  : ["N34.509534", "W119.770992"],
+    "GVO"  : ["N34.531320", "W120.091088"],
+    "DAISY": ["N34.259500", "W120.131333"],
+    "BENET": ["N33.596667", "W118.841833"],
+    "SXC"  : ["N33.375000", "W118.419833"],
+    "ENI"  : ["N39.053167", "W123.274333"],
+    "SAWNA": ["N38.868500", "W122.401833"],
+    "RBL"  : ["N40.098833", "W122.236333"],
+    "CIC"  : ["N39.789825", "W121.847195"],
+    "SAC"  : ["N38.443745", "W121.551649"],
+    "LIN"  : ["N38.074588", "W121.003858"],
+    "SIPLY": ["N37.585333", "W122.233500"]
   },
   "runways":[
     {
@@ -91,7 +113,7 @@
       "ils":         [true, false]
     },
     {
-      "name":        ["19L", "01R"],
+      "name":        ["19L", "1R"],
       "name_offset": [[0.3, -0.1], [0.4, 0]],
       "oldposition":    [0.8, 0.3],
       "end":    [["N37.6273412","W122.3671104" ], ["N37.6063291", "W122.3810404"] ],
@@ -99,7 +121,7 @@
       "ils":         [false, false]
     },
     {
-      "name":        ["19R", "01L"],
+      "name":        ["19R", "1L"],
       "name_offset": [[-0.3, 0], [-0.3, 0.1]],
       "oldposition":    [0.4, 0.3],
       "end":    [["N37.6264803", "W122.3706090"], ["N37.6078970","W122.3829280"]],
@@ -107,20 +129,85 @@
       "ils":         [false, false]
     }
   ],
+  "sids": {
+    "OFFSH9": {
+      "icao": "OFFSH9",
+      "name": "Offshore Nine",
+      "rwy": {
+        "1L" : [["SEPDY", "1600+"], "WAMMY"],
+        "1R" : [["SEPDY", "1600+"], "WAMMY"],
+        "28L": [["SENZY", "2500+"], "WAMMY"],
+        "28R": [["SENZY", "2500+"], "WAMMY"]
+      },
+      "body": [["SEGUL", "16000+"], ["CYPRS", "22000+"], "MCKEY"],
+      "transitions": {
+        "FLW": ["MQO", "FLW"],
+        "RZS": ["MQO", "RZS"],
+        "GVO": ["MQO", "GVO"],
+        "SXC": ["DAISY", "BENET", "SXC"]
+      },
+      "draw": [["SEPDY","WAMMY"], ["SENZY","WAMMY","SEGUL","CYPRS","MCKEY"], ["MCKEY","MQO"], ["MQO","FLW*"], ["MQO","RZS*"], ["MQO","GVO*"], ["MCKEY","DAISY","BENET","SXC*"]]
+    },
+    "EUGEN1": {
+      "icao": "EUGEN1",
+      "name": "Eugen One",
+      "rwy": {
+        "1L" : [["SEPDY", "1900+"], "ZUPAX"],
+        "1R" : [["SEPDY", "1900+"], "ZUPAX"],
+        "28L": [["SENZY", "2500+"], "ZUPAX"],
+        "28R": [["SENZY", "2500+"], "ZUPAX"]
+      },
+      "body": ["EUGEN", "SHOEY"],
+      "transitions": {
+          "SNS": ["SNS"],
+          "BSR": ["BSR"],
+          "SHOEY": []
+      },
+      "draw": [["SEPDY","ZUPAX"], ["SENZY","ZUPAX","EUGEN","SHOEY*"], ["SHOEY","SNS*"], ["SHOEY","BSR*"]]
+    },
+    "QUIET7": {
+      "icao": "QUIET7",
+      "name": "Quiet Seven",
+      "rwy": {
+        "1L" : ["SASLY", "REBAS"],
+        "1R" : ["SASLY", "REBAS"],
+        "28L": ["REBAS"],
+        "28R": ["REBAS"]
+      },
+      "body": [],
+      "transitions": {
+        "ENI": ["SASSU", "ENI"],
+        "RBL": ["SASSU", "SAWNA", "RBL"],
+        "CIC": ["SASSU", "SAWNA", "CIC"],
+        "SAC": ["SAC"],
+        "LIN": ["LIN"]
+      },
+      "draw": [["SASLY","REBAS"], ["REBAS","SASSU"], ["SASSU","ENI*"], ["SASSU","SAWNA"], ["SAWNA","RBL*"], ["SAWNA","CIC*"], ["REBAS","SAC*"], ["REBAS","LIN*"]]
+    },
+    "MOLEN7": {
+      "icao": "MOLEN7",
+      "name": "Molen Seven",
+      "rwy": {
+        "10L": [["SIPLY", "2500+"], "_SIPLY233-STINS144", "STINS"],
+        "10R": [["SIPLY", "2500+"], "_SIPLY233-STINS144", "STINS"],
+        "28L": [["WESLA", "1800+"], "STINS"],
+        "28R": [["WESLA", "1800+"], "STINS"]
+      },
+      "body": ["MOLEN"],
+      "transitions": {
+        "ENI": ["ENI"]
+      },
+      "draw": [["SIPLY","_SIPLY233-STINS144","STINS"], ["WESLA","STINS","MOLEN"], ["MOLEN","ENI*"]]
+    }
+  },
   "departures": {
     "airlines": [
       ["ual", 11],
       ["baw", 9],
       ["ups", 2]
     ],
-    "sids": {
-      "OFFSHORE": ["SEPDY", "SENZY", "WAMMY", "SEGUL"],
-      "EUGEN": ["SENZY", "ZUPAX", "EUGEN"],
-      "QUIET": ["SASLY", "REBAS", "SASSU"],
-      "MOLEN": ["WESLA", "STINS", "MOLEN"]
-    },
     "destinations": [
-      290, 180, 160, 345
+      "MOLEN7", "OFFSH9", "EUGEN1", "QUIET7"
     ],
     "type": "random",
     "offset": 0,

@@ -582,3 +582,11 @@ function parseElevation(ele) {
   if (alt[1] == 'Infinity') return Infinity;
   return parseFloat(alt[2]) / (alt[4] == 'm' ? 0.3048 : 1);
 }
+
+// adjust all aircraft's eid values
+function update_aircraft_eids() {
+  for(var i=0; i<prop.aircraft.list.length; i++) {
+    prop.aircraft.list[i].eid = i;  // update eid in aircraft
+    prop.aircraft.list[i].fms.my_aircrafts_eid = i; // update eid in aircraft's fms
+  }
+}

@@ -10,6 +10,8 @@
   "iata": "HAM",
   "magnetic_north": 0,
   "ctr_radius": 80,
+  "ctr_ceiling": 10000,
+  "initial_alt": 5000,
   "position": ["N53d37m49.00", "E9d59m18.00"],
   "rr_radius_nm": 5.0,
   "rr_center": ["N53d37m49.00", "E9d59m18.00"],
@@ -66,6 +68,80 @@
       "ils": [true, false]
     }
   ],
+  "sids": {
+    "EKERN": {
+      "icao": "EKERN",
+      "name": "Ekern",
+      "suffix": {"05":"", "23":"", "15":"", "33":""},
+      "rwy": {
+        "05": ["DH002", "DH004", "EKERN"],
+        "23": ["DH002", "DH004", "EKERN"],
+        "15": ["DH002", "DH004", "EKERN"],
+        "33": ["DH002", "DH004", "EKERN"]
+      },
+      "draw": [["DH002", "DH004", "EKERN"]]
+    },
+    "LUB": {
+      "icao": "LUB",
+      "name": "Lubeck",
+      "suffix": {"05":"", "23":"", "15":"", "33":""},
+      "rwy": {
+        "05": ["DH002", "DH004", "LUB"],
+        "23": ["DH002", "DH004", "LUB"],
+        "15": ["DH002", "DH004", "LUB"],
+        "33": ["DH002", "DH004", "LUB"]
+      },
+      "draw": [["DH002", "DH004", "LUB"]]
+    },
+    "RAMAR": {
+      "icao": "RAMAR",
+      "name": "Ramar",
+      "suffix": {"05":"", "23":"", "15":"", "33":""},
+      "rwy": {
+        "05": ["DH002", "DH004", "LYE", "RAMAR"],
+        "23": ["DH002", "DH004", "LYE", "RAMAR"],
+        "15": ["DH002", "DH004", "LYE", "RAMAR"],
+        "33": ["DH002", "DH004", "LYE", "RAMAR"]
+      },
+      "draw": [["DH002", "DH004", "LYE", "RAMAR"]]
+    },
+    "AMLUH": {
+      "icao": "AMLUH",
+      "name": "Amluh",
+      "suffix": {"05":"", "23":"", "15":"", "33":""},
+      "rwy": {
+        "05": ["DH002", "AMLUH"],
+        "23": ["DH002", "AMLUH"],
+        "15": ["DH002", "AMLUH"],
+        "33": ["DH002", "AMLUH"]
+      },
+      "draw": [["DH002", "AMLUH"]]
+    },
+    "IDEKO": {
+      "icao": "IDEKO",
+      "name": "Ideko",
+      "suffix": {"05":"", "23":"", "15":"", "33":""},
+      "rwy": {
+        "05": ["DH002", "ANEXI", "DH025", "IDEKO"],
+        "23": ["DH002", "ANEXI", "DH025", "IDEKO"],
+        "15": ["DH002", "ANEXI", "DH025", "IDEKO"],
+        "33": ["DH002", "ANEXI", "DH025", "IDEKO"]
+      },
+      "draw": [["DH002", "ANEXI", "DH025", "IDEKO"]]
+    },
+    "WSR": {
+      "icao": "WSR",
+      "name": "Weser",
+      "suffix": {"05":"", "23":"", "15":"", "33":""},
+      "rwy": {
+        "05": ["DH002", "ANEXI", "WSR"],
+        "23": ["DH002", "ANEXI", "WSR"],
+        "15": ["DH002", "ANEXI", "WSR"],
+        "33": ["DH002", "ANEXI", "WSR"]
+      },
+      "draw": [["DH002", "ANEXI", "WSR"]]
+    }
+  },
   "departures": {
     "airlines": [
       ["ezy", 4],
@@ -77,16 +153,8 @@
       ["ryr", 1],
       ["klm", 2]
     ],
-    "sids": {
-      "EKERN": ["DH002", "DH004", "EKERN"],
-      "LUB": ["DH002", "DH004", "LUB"],
-      "RAMAR": ["DH002", "DH004", "LYE", "RAMAR"],
-      "AMLUH": ["DH002", "AMLUH"],
-      "IDEKO": ["DH002", "ANEXI", "DH025", "IDEKO"],
-      "WSR": ["DH002", "ANEXI", "WSR"]
-    },
     "destinations": [
-      56, 90, 122, 207, 248, 355
+      "EKERN", "LUB", "RAMAR", "AMLUH", "IDEKO", "WSR"
     ],
     "type": "random",
     "frequency": 15
