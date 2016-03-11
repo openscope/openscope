@@ -997,9 +997,9 @@
   },
   "departures": {
     "airlines": [
-      ["bcy", 10],
+      ["bcy",      10],
       ["baw", 5],
-      ["fastga", 8]
+      ["fastga",    8]
     ],
     "destinations": [
       "DVR", "LYD", "CLN", "CPT", "BPK"
@@ -1015,9 +1015,9 @@
       "speed":    250,
       "fixes":    ["BEDEK", "BIG", "UMTUM", "GODLU", "ELMIV", "LCE11", "LCE12", "LCE13", "RAVSA"],
       "airlines": [
-        ["bcy", 10],
-        ["baw/short", 10],
-        ["fastga", 5]
+        ["bcy",       10],
+        ["baw", 10],
+        ["fastga",     5]
       ],
       "type": "random",
       "offset": 0,
@@ -1030,9 +1030,9 @@
       "speed":    250,
       "fixes":    ["KONAN", "GODLU", "ELMIV", "LCE11", "LCE12", "LCE13", "RAVSA"],
       "airlines":[
-        ["bcy", 5],
-        ["baw/short", 10],
-        ["fastga", 3]
+        ["bcy",        5],
+        ["baw", 10],
+        ["fastga",     3]
       ],
       "type": "wave",
       "offset": 10,
@@ -1045,9 +1045,9 @@
       "speed":    250,
       "fixes":    ["SOVAT", "ERKEX", "OKVAP", "GODLU", "ELMIV", "LCE11", "LCE12", "LCE13", "RAVSA"],
       "airlines":[
-        ["bcy", 5],
-        ["baw/short", 10],
-        ["fastga", 3]
+        ["bcy",        5],
+        ["baw", 10],
+        ["fastga",     3]
       ],
       "type": "random",
       "offset": 0,
@@ -1060,9 +1060,9 @@
       "speed":    250,
       "fixes":    ["NEVIL", "OSPOL", "NETVU", "SOXUX", "OKVAP", "GODLU", "ELMIV", "LCE11", "LCE12", "LCE13", "RAVSA"],
       "airlines":[
-        ["bcy", 5],
-        ["baw/short", 10],
-        ["fastga", 3]
+        ["bcy",        5],
+        ["baw", 10],
+        ["fastga",     3]
       ],
       "type": "random",
       "offset": 0,
@@ -1075,9 +1075,9 @@
       "speed":    250,
       "fixes":    ["GIBSO", "BEGTO", "AVANT", "BIG", "UMTUM", "GODLU", "ELMIV", "LCE11", "LCE12", "LCE13", "RAVSA"],
       "airlines":[
-        ["bcy", 5],
-        ["baw/short", 10],
-        ["fastga", 3]
+        ["bcy",        5],
+        ["baw", 10],
+        ["fastga",     3]
       ],
       "type": "random",
       "offset": 0,
@@ -1090,9 +1090,9 @@
       "speed":    250,
       "fixes":    ["KENET", "WCO", "BOMBO", "BKY", "BRAIN", "CLN", "JACKO", "NONVA", "BABKU", "LCE21", "LCE22", "LCE23", "RAVSA"],
       "airlines":[
-        ["bcy", 5],
-        ["baw/short", 10],
-        ["fastga", 3]
+        ["bcy",        5],
+        ["baw", 10],
+        ["fastga",     3]
       ],
       "type": "random",
       "offset": 0,
@@ -1105,9 +1105,9 @@
       "speed":    250,
       "fixes":    ["XAMAN", "LOGAN", "JACKO", "NONVA", "BABKU", "LCE21", "LCE22", "LCE23", "RAVSA"],
       "airlines":[
-        ["bcy", 5],
-        ["baw/short", 10],
-        ["fastga", 3]
+        ["bcy",        5],
+        ["baw", 10],
+        ["fastga",     3]
       ],
       "type": "wave",
       "offset": 0,
@@ -1120,9 +1120,9 @@
       "speed":    250,
       "fixes":    ["HON", "ROGBI", "TIXEX", "ODVOD", "ROPMU", "NUDNA", "INLIM", "JACKO", "NONVA", "BABKU", "LCE21", "LCE22", "LCE23", "RAVSA"],
       "airlines":[
-        ["bcy", 5],
-        ["baw/short", 10],
-        ["fastga", 3]
+        ["bcy",        5],
+        ["baw", 10],
+        ["fastga",     3]
       ],
       "type": "wave",
       "offset": 0,
