@@ -573,8 +573,8 @@
       "rwy": {
         "09L": ["_LONR126D5"],
         "09R": ["_LONR126D5"],
-        "27L": ["_LONR241D5", "_MID012D15"],
-        "27R": ["_LONR257D5", "_MID012D15"]
+        "27L": ["_LONR241D5", "_MIDR012D15"],
+        "27R": ["_LONR257D5", "_MIDR012D15"]
       },
       "body": ["MID"],
       "draw": [["_LONR126D5", "MID"], ["_LONR241D5", "_MIDR012D15"], ["_LONR257D5", "_MIDR012D15", "MID"]]
