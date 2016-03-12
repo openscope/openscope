@@ -9,7 +9,7 @@
   "icao": "EGLL",
   "iata": "LHR",
   "magnetic_north": 0.14,
-  "ctr_radius": 55,
+  "ctr_radius": 74,
   "ctr_ceiling": 10000,
   "initial_alt": 6000,
   "position": ["N51d28m16.41", "W0d27m41.19"],
@@ -468,7 +468,7 @@
         "27L": ["_LONR257D7"],
         "27R": ["_LONR257D7"]
       },
-      "body": [["WOD", "A4000+"], "CPT"],
+      "body": [["WOD", "A40+"], "CPT"],
       "draw": [["_LONR257D7", "WOD", "CPT"]]
     },
     "BPK": {
@@ -476,12 +476,12 @@
       "name": "Brookmans Park",
       "suffix": {"09L":"5K", "09R":"6J", "27L":"7G", "27R":"7F"},
       "rwy": {
-        "09L": [["_LONR072D10", "A3000+"], "BAPAG"],
-        "09R": [["_LONR072D10", "A3000+"], "BAPAG"],
+        "09L": [["_LONR072D10", "A30+"], "BAPAG"],
+        "09R": [["_LONR072D10", "A30+"], "BAPAG"],
         "27L": ["BUR", "CHT"],
         "27R": ["BUR", "CHT"]
       },
-      "body": ["BPK", null],
+      "body": ["BPK"],
       "draw": [["BUR", "CHT", "BPK"], ["_LONR072D10", "BAPAG", "BPK"]]
     },
     "WOBUN": {
@@ -503,7 +503,7 @@
         "09L": [],
         "09R": []
       },
-      "body": [["_LONR072D10", "A3000+"], "BUZAD"],
+      "body": [["_LONR072D10", "A30+"], "BUZAD"],
       "draw": [["_LONR072D10", "BUZAD"]]
     },
     "DET": {
@@ -513,8 +513,8 @@
       "rwy": {
         "09L": ["_DETR284D34"],
         "09R": ["_DETR284D34"],
-        "27L": [["EPM", "A4000+"]],
-        "27R": [["EPM", "A4000+"]]
+        "27L": [["EPM", "A40+"]],
+        "27R": [["EPM", "A40+"]]
       },
       "body": ["DET"],
       "draw": [["_DETR284D34", "DET"], ["EPM", "DET"]]
@@ -527,7 +527,7 @@
         "27L": [],
         "27R": []
       },
-      "body": ["_LONR257D7", ["WOD", "A4000+"], "GOGSI"],
+      "body": ["_LONR257D7", ["WOD", "A40+"], "GOGSI"],
       "draw": [["_LONR257D7", "WOD", "GOGSI"]]
     },
     "GASGU": {
@@ -538,7 +538,7 @@
         "09L": [],
         "09R": []
       },
-      "body": ["_LONR126D5", ["OCK", "A3000+"], "GASGU"],
+      "body": ["_LONR126D5", ["OCK", "A30+"], "GASGU"],
       "draw": [["_LONR126D5", "OCK", "GASGU"]]
     },
     "MAY": {
@@ -551,7 +551,7 @@
         "27L": [],
         "27R": []
       },
-      "body": [["EPM", "A5000"], "MAY"],
+      "body": [["EPM", "A50"], "MAY"],
       "draw": [["_LONR126D5", "EPM"], ["EPM", "MAY"]]
     },
     "MID": {
@@ -564,7 +564,7 @@
         "27L": ["_LONR241D5", "_MID012D15"],
         "27R": ["_LONR257D5", "_MID012D15"]
       },
-      "body": ["MID", null],
+      "body": ["MID"],
       "draw": [["_LONR126D5", "MID"], ["_LONR241D5", "_MIDR012D15"], ["_LONR257D5", "_MIDR012D15", "MID"]]
     }
   },
