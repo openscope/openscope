@@ -493,7 +493,10 @@
         "27R": []
       },
       "body": ["BUR", "WOBUN"],
-      "draw": [["BUR", "WOBUN"]]
+      "transitions": {
+        "DTY": ["DTY"]
+      },
+      "draw": [["BUR", "WOBUN"], ["WOBUN", "DTY*"]]
     },
     "BUZAD": {
       "icao": "BUZAD",
@@ -504,7 +507,10 @@
         "09R": []
       },
       "body": [["_LONR072D10", "A30+"], "BUZAD"],
-      "draw": [["_LONR072D10", "BUZAD"]]
+      "transitions": {
+        "DTY": ["DTY"]
+      },
+      "draw": [["_LONR072D10", "BUZAD"], ["BUZAD", "WOBUN", "DTY*"]]
     },
     "DET": {
       "icao": "DET",
@@ -528,7 +534,10 @@
         "27R": []
       },
       "body": ["_LONR257D7", ["WOD", "A40+"], "GOGSI"],
-      "draw": [["_LONR257D7", "WOD", "GOGSI"]]
+      "transitions": {
+        "SAM": ["SAM"]
+      },
+      "draw": [["_LONR257D7", "WOD", "GOGSI"], ["GOGSI", "SAM*"]]
     },
     "GASGU": {
       "icao": "GASGU",
@@ -539,7 +548,10 @@
         "09R": []
       },
       "body": ["_LONR126D5", ["OCK", "A30+"], "GASGU"],
-      "draw": [["_LONR126D5", "OCK", "GASGU"]]
+      "transitions": {
+        "SAM": ["SAM"]
+      },
+      "draw": [["_LONR126D5", "OCK", "GASGU"], ["GASGU", "SAM*"]]
     },
     "MAY": {
       "icao": "MAY",
