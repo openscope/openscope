@@ -944,8 +944,8 @@
       "name": "Dover Five",
       "suffix": {"09":"5U", "27":"5T"},
       "rwy": {
-        "09": [["LCE01", "570+|S210"], ["LCE02", "A30|S210"], "BEMID"],
-        "27": [["LCW01", "1102+|S210"], ["LCN02", "A30|S210"], "LCE04", "GINTI"]
+        "09": [["LCE01", "A570+|S210"], ["LCE02", "A3000|S210"], "BEMID"],
+        "27": [["LCW01", "A1102+|S210"], ["LCN02", "A3000|S210"], "LCE04", "GINTI"]
       },
       "body": ["DET", "DVR"],
       "draw": [["LCE01", "LCE02", "BEMID", "DET"], ["LCW01", "LCN02", "LCE04", "GINTI", "DET", "DVR"]]
@@ -955,8 +955,8 @@
       "name": "Lid Five",
       "suffix": {"09":"5U", "27":"5T"},
       "rwy": {
-        "09": [["LCE01", "570+|S210"], ["LCE02", "A30|S210"], "BEMID"],
-        "27": [["LCW01", "1102+|S210"], ["LCN02", "A30|S210"], "LCE04", "GINTI"]
+        "09": [["LCE01", "A570+|S210"], ["LCE02", "A3000|S210"], "BEMID"],
+        "27": [["LCW01", "A1102+|S210"], ["LCN02", "A3000|S210"], "LCE04", "GINTI"]
       },
       "body": ["DET", "LYD"],
       "draw": [["LCE01", "LCE02", "BEMID", "DET"], ["LCW01", "LCN02", "LCE04", "GINTI", "DET", "LYD"]]
@@ -966,8 +966,8 @@
       "name": "Clacton Seven",
       "suffix": {"09":"7U", "27":"7T"},
       "rwy": {
-        "09": [["LCE01", "570+|S210"], ["LCE02", "A30|S210"]],
-        "27": [["LCW01", "1102+|S210"], ["LCN02", "A30|S210"], "LCE04"]
+        "09": [["LCE01", "A570+|S210"], ["LCE02", "A3000|S210"]],
+        "27": [["LCW01", "A1102+|S210"], ["LCN02", "A3000|S210"], "LCE04"]
       },
       "body": ["LCE05", "CLN"],
       "draw": [["LCE01","LCE02", "LCE05"], ["LCW01", "LCN02", "LCE04", "LCE05", "CLN"]]
@@ -977,8 +977,8 @@
       "name": "Compton Six",
       "suffix": {"09":"6U", "27":"6T"},
       "rwy": {
-        "09": [["LCE01", "570+|S200"], ["LCN03", "A30|S200"]],
-        "27": [["LCW01", "1102+|S200"], ["LCN01", "|S200"], ["LCN04", "A30|S200"], ["LCN05", "|S200"]]
+        "09": [["LCE01", "A570+|S200"], ["LCN03", "A3000|S200"]],
+        "27": [["LCW01", "A1102+|S200"], ["LCN01", "|S200"], ["LCN04", "A30|S200"], ["LCN05", "|S200"]]
       },
       "body": [["BPK", "|S200"], "HEN", "CPT"],
       "draw": [["LCE01", "LCN03", "BPK"], ["LCW01", "LCN01", "LCN04", "LCN05", "BPK", "HEN", "CPT"]]
@@ -988,8 +988,8 @@
       "name": "Brookmans Park Five",
       "suffix": {"09":"5U", "27":"5T"},
       "rwy": {
-        "09": [["LCE01", "570+|S200"], ["LCN03", "A30|S200"]],
-        "27": [["LCW01", "1102+|S200"], ["ALCN01", "|S200"], ["LCN04", "A30|S200"], ["LCN05", "|S200"]]
+        "09": [["LCE01", "A570+|S200"], ["LCN03", "A3000|S200"]],
+        "27": [["LCW01", "A1102+|S200"], ["ALCN01", "|S200"], ["LCN04", "A30|S200"], ["LCN05", "|S200"]]
       },
       "body": [["BPK", "|S200"]],
       "draw": [["LCE01", "LCN03", "BPK"], ["LCW01", "LCN01", "LCN04", "LCN05", "BPK"]]
@@ -997,9 +997,9 @@
   },
   "departures": {
     "airlines": [
-      ["bcy",      10],
-      ["baw", 5],
-      ["fastga",    8]
+      ["bcy",   10],
+      ["baw",    5],
+      ["fastga", 8]
     ],
     "destinations": [
       "DVR", "LYD", "CLN", "CPT", "BPK"
@@ -1015,9 +1015,9 @@
       "speed":    250,
       "fixes":    ["BEDEK", "BIG", "UMTUM", "GODLU", "ELMIV", "LCE11", "LCE12", "LCE13", "RAVSA"],
       "airlines": [
-        ["bcy",       10],
-        ["baw", 10],
-        ["fastga",     5]
+        ["bcy",   10],
+        ["baw",   10],
+        ["fastga", 5]
       ],
       "type": "random",
       "offset": 0,
@@ -1030,9 +1030,9 @@
       "speed":    250,
       "fixes":    ["KONAN", "GODLU", "ELMIV", "LCE11", "LCE12", "LCE13", "RAVSA"],
       "airlines":[
-        ["bcy",        5],
-        ["baw", 10],
-        ["fastga",     3]
+        ["bcy",    5],
+        ["baw",   10],
+        ["fastga", 3]
       ],
       "type": "wave",
       "offset": 10,
@@ -1045,9 +1045,9 @@
       "speed":    250,
       "fixes":    ["SOVAT", "ERKEX", "OKVAP", "GODLU", "ELMIV", "LCE11", "LCE12", "LCE13", "RAVSA"],
       "airlines":[
-        ["bcy",        5],
-        ["baw", 10],
-        ["fastga",     3]
+        ["bcy",    5],
+        ["baw",   10],
+        ["fastga", 3]
       ],
       "type": "random",
       "offset": 0,
@@ -1060,9 +1060,9 @@
       "speed":    250,
       "fixes":    ["NEVIL", "OSPOL", "NETVU", "SOXUX", "OKVAP", "GODLU", "ELMIV", "LCE11", "LCE12", "LCE13", "RAVSA"],
       "airlines":[
-        ["bcy",        5],
-        ["baw", 10],
-        ["fastga",     3]
+        ["bcy",    5],
+        ["baw",   10],
+        ["fastga", 3]
       ],
       "type": "random",
       "offset": 0,
@@ -1075,9 +1075,9 @@
       "speed":    250,
       "fixes":    ["GIBSO", "BEGTO", "AVANT", "BIG", "UMTUM", "GODLU", "ELMIV", "LCE11", "LCE12", "LCE13", "RAVSA"],
       "airlines":[
-        ["bcy",        5],
-        ["baw", 10],
-        ["fastga",     3]
+        ["bcy",    5],
+        ["baw",   10],
+        ["fastga", 3]
       ],
       "type": "random",
       "offset": 0,
@@ -1090,9 +1090,9 @@
       "speed":    250,
       "fixes":    ["KENET", "WCO", "BOMBO", "BKY", "BRAIN", "CLN", "JACKO", "NONVA", "BABKU", "LCE21", "LCE22", "LCE23", "RAVSA"],
       "airlines":[
-        ["bcy",        5],
-        ["baw", 10],
-        ["fastga",     3]
+        ["bcy",    5],
+        ["baw",   10],
+        ["fastga", 3]
       ],
       "type": "random",
       "offset": 0,
@@ -1105,9 +1105,9 @@
       "speed":    250,
       "fixes":    ["XAMAN", "LOGAN", "JACKO", "NONVA", "BABKU", "LCE21", "LCE22", "LCE23", "RAVSA"],
       "airlines":[
-        ["bcy",        5],
-        ["baw", 10],
-        ["fastga",     3]
+        ["bcy",    5],
+        ["baw",   10],
+        ["fastga", 3]
       ],
       "type": "wave",
       "offset": 0,
@@ -1120,9 +1120,9 @@
       "speed":    250,
       "fixes":    ["HON", "ROGBI", "TIXEX", "ODVOD", "ROPMU", "NUDNA", "INLIM", "JACKO", "NONVA", "BABKU", "LCE21", "LCE22", "LCE23", "RAVSA"],
       "airlines":[
-        ["bcy",        5],
-        ["baw", 10],
-        ["fastga",     3]
+        ["bcy",    5],
+        ["baw",   10],
+        ["fastga", 3]
       ],
       "type": "wave",
       "offset": 0,
