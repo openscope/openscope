@@ -4,39 +4,53 @@
   "radio": {
     "twr": "Dublin Tower",
     "app": "Dublin Approach",
-    "dep": "Dublin Departure"
+    "dep": "Dublin Approach"
   },
   "icao": "EIDW",
   "iata": "DUB",
-  "magnetic_north": 0,
+  "magnetic_north": -4,
   "ctr_radius": 80,
-  "ctr_ceiling": 10000,
-  "initial_alt": 5000,
+  "ctr_ceiling": 12000,
+  "initial_alt": 9000,
   "position": ["N53d25m17.00", "W6d16m12.00"],
   "rr_radius_nm": 5.0,
   "rr_center": ["N53d25m17.00", "W6d16m12.00"],
   "has_terrain": false,
   "wind": {
-    "angle": 120,
-    "speed": 8
+    "angle": 240,
+    "speed": 15
   },
   "fixes": {
     "OLAPO": ["N53d46m49.00", "W7d17m41.00"],
     "OSGAR": ["N53d02m57.90", "W7d16m12.80"],
     "BAGSO": ["N53d40m48.00", "W5d30m00.00"],
-    "LIPGO": ["N53d03m50.10", "W5d30m00.00"],
     "SUROX": ["N53d59m48.00", "W6d59m36.50"],
+    "LIPGO": ["N53d03m50.10", "W5d30m00.00"],
     "LIFFY": ["N53d28m48.30", "W5d30m00.00"],
-    "ABIDO": ["N52d28m43.70", "W5d47m44.10"],
+    "PESIT": ["N52d23m56.60", "W5d45m24.00"],
     "INKUR": ["N53d35m51.30", "W7d23m28.60"],
-    "PELIG": ["N53d11m58.50", "W7d20m00.00"],
     "DEXEN": ["N53d16m49.40", "W5d30m00.00"],
     "OLONO": ["N52d43m23.10", "W6d46m44.40"],
     "ROTEV": ["N54d01m43.70", "W6d03m58.40"],
-    "DUB": ["N53d29m57.80", "W6d18m25.60"],
+    "BEPAN": ["N52d31m36.20", "W6d15m49.50"],
+    "NEVRI": ["N54d04m06.00", "W6d16m11.40"],
+
+    "OE":    ["N53d25m48.60", "W6d25m43.70"],
+    "DWW04": ["N53d44m17.90", "W6d52m52.90"],
+    "DWN29": ["N53d45m21.00", "W6d16m21.00"],
+    "DUB":   ["N53d29m57.80", "W6d18m25.60"],
+    "BAL":   ["N53d17m59.60", "W6d26m52.00"],
+    "DWS77": ["N53d20m51.50", "W6d10m50.30"],
+    "BATED": ["N53d29m42.80", "W6d06m42.80"],
+    "ERUDA": ["N53d40m29.00", "W6d16m55.00"],
+    "DODIG": ["N53d57m46.00", "W6d29m34.00"],
+    "DWS81": ["N53d18m41.30", "W6d08m46.50"],
+    "DWN26": ["N53d30m48.00", "W6d19m02.80"],
+    "DWW06": ["N53d33m15.00", "W6d37m25.00"],
     
     "EKREN": ["N53d38m43.00", "W5d45m53.10"],
     "ELBON": ["N53d35m34.10", "W6d09m21.60"],
+    "LEMTA": ["N53d43m34.30", "W6d03m11.60"],
     "ASDER": ["N53d33m46.70", "W6d22m26.40"],
     "AKIVA": ["N53d38m56.00", "W6d27m09.60"],
     "EPIDU": ["N53d49m03.50", "W6d35m54.80"],
@@ -44,7 +58,37 @@
     "APRUT": ["N53d41m49.00", "W6d45m34.90"],
     "DW865": ["N53d38m42.80", "W6d53m58.40"],
     "DW866": ["N53d33m29.10", "W6d58m27.20"],
+    "DW551": ["N53d24m44.50", "W6d06m31.40"],
+    "DW554": ["N53d24m38.80", "W6d04m51.60"],
     "NEKIL": ["N53d31m16.60", "W6d40m23.60"],
+
+    "NIMAT": ["N53d57m54.10", "W5d44m31.70"],
+    "RONON": ["N53d42m33.90", "W6d36m19.20"],
+    "ORVEN": ["N53d39m53.50", "W6d11m29.80"],
+    "GIRAS": ["N53d38m21.00", "W5d57m33.20"],
+    "ADSIS": ["N53d41m03.10", "W5d39m34.00"],
+    "HANDL": ["N53.30195200", "W6.23746900"],
+    "KERAV": ["N53d37m42.70", "W5d45m57.30"],
+    "KOGAX": ["N53d34m18.60", "W5d38m14.10"],
+    "KUDOM": ["N53d29m25.80", "W5d33m14.30"],
+    "DW814": ["N53d23m47.50", "W5d31m41.10"],
+    "DW815": ["N53d18m12.90", "W5d33m46.60"],
+    "DW816": ["N53d13m46.90", "W5d38m44.40"],
+    "NARMU": ["N53d26m43.20", "W5d51m34.30"],
+
+    "ABLIN": ["N52d46m58.00", "W4d59m33.00"],
+    "IRKUM": ["N52d59m48.00", "W5d22m39.00"],
+    "PEKOK": ["N53d07m39.30", "W5d34m00.80"],
+    "SIVNA": ["N53d11m52.30", "W5d38m27.70"],
+    "SUGAD": ["N53d17m22.50", "W5d31m39.80"],
+    "DW704": ["N53d24m03.70", "W5d29m10.10"],
+    "DW705": ["N53d30m46.60", "W5d31m26.40"],
+    "DW706": ["N53d36m21.30", "W5d38m06.90"],
+    "SOPEP": ["N53d21m05.90", "W5d52m29.40"],
+    "VATRY": ["N52d33m16.00", "W5d30m00.00"],
+    "KEPOR": ["N53d10m16.50", "W6d22m00.70"],
+    "ARVOK": ["N53d09m19.00", "W6d03m35.10"],
+    "SORIN": ["N53d08m29.30", "W5d48m22.50"],
     
     "RUBAR": ["N53d08m08.90", "W5d48m05.40"],
     "DETAX": ["N53d14m30.70", "W6d12m35.60"],
@@ -57,16 +101,10 @@
     "DW755": ["N53d15m54.20", "W6d57m04.50"],
     "OSLEX": ["N53d21m55.80", "W6d41m44.50"],
     
-    "DW931": ["N53d29m45.00", "W6d08m23.20"],
-    "DW679": ["N53d20m23.00", "W6d11m32.00"],
-    "LEMTA": ["N53d43m34.30", "W6d03m11.60"],
-    "DODIG": ["N53d57m46.00", "W6d29m34.00"],
     "SUROX": ["N53d59m48.00", "W6d59m36.50"],
-    "KISHA": ["N53d29m01.70", "W5d38m21.60"],
     "LIFFY": ["N53d28m48.30", "W5d30m00.00"],
     "IRDEX": ["N53d11m45.10", "W6d03m50.10"],
     "ERVAD": ["N53d06m47.10", "W6d04m40.40"],
-    "ABIDO": ["N52d28m43.70", "W5d47m44.10"],
     "DWS78": ["N53d14m06.00", "W6d25m04.00"],
     "NITIL": ["N53d28m00.00", "W6d37m55.00"],
     "DW555": ["N53d20m13.70", "W5d53m44.00"],
@@ -76,9 +114,6 @@
     "LAPMO": ["N53d24m11.00", "W5d56m44.10"],
     "GANET": ["N53d26m06.50", "W6d31m33.80"],
     "MAXEV": ["N53d24m33.50", "W6d03m17.30"],
-    "RW10": ["N53d25m20.80", "W6d17m24.30"],
-    "RW28": ["N53d25m12.90", "W6d15m02.10"],
-    
     "BAPDA": ["N53d37m40.00", "W6d24m03.70"],
     "INTOP": ["N53d13m27.40", "W6d06m32.40"]
   },
@@ -102,114 +137,134 @@
     "SUROX": {
       "icao": "SUROX",
       "name": "Surox",
-      "suffix": {"10":"", "28":"", "16":"", "34":""},
+      "suffix": {"10":"6E", "28":"1A", "16":"5M", "34":"1G"},
       "rwy": {
-        "10": ["DW931", "LEMTA", "DODIG", "SUROX"],
-        "28": ["DW931", "LEMTA", "DODIG", "SUROX"],
-        "16": ["DW931", "LEMTA", "DODIG", "SUROX"],
-        "34": ["DW931", "LEMTA", "DODIG", "SUROX"]
+        "10": [["DW551", "A3000+"], "LEMTA", "DODIG"],
+        "28": [["OE", "A3000+"], "DWW04"],
+        "16": [["DWS77", "A3000+"], "BATED", "ERUDA", "DODIG"],
+        "34": [["DWN26", "A3000+"], "DWW06", "DWW04"]
       },
-      "draw": [["DW931", "LEMTA", "DODIG", "SUROX"]]
+      "body": ["SUROX"],
+      "draw": [["OE", "DWW04"], ["ERUDA", "DODIG", "SUROX"], ["DWW06", "DWW04", "SUROX"]]
     },
     "LIFFY": {
       "icao": "LIFFY",
       "name": "Liffy",
-      "suffix": {"10":"", "28":"", "16":"", "34":""},
+      "suffix": {"10":"2E", "28":"5A", "16":"5M", "34":"5G"},
       "rwy": {
-        "10": ["DW931", "KISHA", "LIFFY"],
-        "28": ["DW931", "KISHA", "LIFFY"],
-        "16": ["DW931", "KISHA", "LIFFY"],
-        "34": ["DW931", "KISHA", "LIFFY"]
+        "10": [["DW551", "A3000+"]],
+        "28": [["OE", "A3000+"], "DUB"],
+        "16": [["DWS77", "A3000+"]],
+        "34": [["DWN26", "A3000+"], "BATED"]
       },
-      "draw": [["DW931", "KISHA", "LIFFY"]]
+      "body": ["LIFFY"],
+      "draw": [["DW551", "LIFFY"], ["OE", "DUB", "LIFFY"], ["DWS77", "LIFFY"], ["DWN26", "BATED", "LIFFY"]]
     },
-    "ABIDO": {
-      "icao": "ABIDO",
-      "name": "Abido",
-      "suffix": {"10":"", "28":"", "16":"", "34":""},
+    "PESIT": {
+      "icao": "PESIT",
+      "name": "Pesit",
+      "suffix": {"10":"2E", "28":"5A", "16":"1M", "34":"5G"},
       "rwy": {
-        "10": ["DW679", "IRDEX", "ERVAD", "ABIDO"],
-        "28": ["DW679", "IRDEX", "ERVAD", "ABIDO"],
-        "16": ["DW679", "IRDEX", "ERVAD", "ABIDO"],
-        "34": ["DW679", "IRDEX", "ERVAD", "ABIDO"]
+        "10": [["DW554", "A3000+"], "IRDEX", "ERVAD"],
+        "28": [["OE", "A3000+"], "BAL", "NEPOD"],
+        "16": [["DWS77", "A3000+"], "DWS81", "NEPOD"],
+        "34": [["DWN26", "A3000+"], "BAL", "NEPOD"]
       },
-      "draw": [["DW679", "IRDEX", "ERVAD", "ABIDO"]]
+      "body": ["PESIT"],
+      "draw": [["ERVAD", "PESIT"], ["NEPOD", "PESIT"]]
     },
     "INKUR": {
       "icao": "INKUR",
       "name": "Inkur",
-      "suffix": {"10":"", "28":"", "16":"", "34":""},
+      "suffix": {"10":"6E", "28":"5A", "16":"5M", "34":"1G"},
       "rwy": {
-        "10": ["DW679", "DWS78", "NITIL", "INKUR"],
-        "28": ["DW679", "DWS78", "NITIL", "INKUR"],
-        "16": ["DW679", "DWS78", "NITIL", "INKUR"],
-        "34": ["DW679", "DWS78", "NITIL", "INKUR"]
+        "10": [["DW551", "A3000+"], "LEMTA", "DODIG"],
+        "28": [["OE", "A3000+"]],
+        "16": [["DWS77", "A3000+"], "DWS78", "NITIL"],
+        "34": [["DWN26", "A3000+"], "DWW06"]
       },
-      "draw": [["DW679", "DWS78", "NITIL", "INKUR"]]
-    },
-    "PELIG": {
-      "icao": "PELIG",
-      "name": "Pelig",
-      "suffix": {"10":"", "28":"", "16":"", "34":""},
-      "rwy": {
-        "10": ["DW679", "DWS78", "PELIG"],
-        "28": ["DW679", "DWS78", "PELIG"],
-        "16": ["DW679", "DWS78", "PELIG"],
-        "34": ["DW679", "DWS78", "PELIG"]
-      },
-      "draw": [["DW679", "DWS78", "PELIG"]]
+      "body": ["INKUR"],
+      "draw": [["LEMTA", "DODIG", "INKUR"], ["OE", "INKUR"], ["DWS77", "DWS78", "NITIL", "INKUR"], ["DWN26", "DWW06", "INKUR"]]
     },
     "DEXEN": {
       "icao": "DEXEN",
       "name": "Dexen",
-      "suffix": {"10":"", "28":"", "16":"", "34":""},
+      "suffix": {"10":"2E", "28":"1A", "16":"1M"},
       "rwy": {
-        "10": ["MAXEV", "DW555", "DEXEN"],
-        "28": ["MAXEV", "DW555", "DEXEN"],
-        "16": ["MAXEV", "DW555", "DEXEN"],
-        "34": ["MAXEV", "DW555", "DEXEN"]
+        "10": [["DW554", "A3000+"], "DW555"],
+        "28": [["OE", "A3000+"]],
+        "16": [["DWS77", "A3000+"], "DWS81"]
       },
-      "draw": [["MAXEV", "DW555", "DEXEN"]]
+      "body": [["DEXEN", "120+"]],
+      "draw": [["DW554", "DW555", "DEXEN"], ["OE", "DEXEN"], ["DWS81", "DEXEN"]]
     },
     "OLONO": {
       "icao": "OLONO",
       "name": "Olono",
-      "suffix": {"10":"", "28":"", "16":"", "34":""},
+      "suffix": {"10":"2E", "28":"5A", "16":"1M", "34":"5G"},
       "rwy": {
-        "10": ["DW679", "IRDEX", "ERVAD", "NEPOD", "OLONO"],
-        "28": ["DW679", "IRDEX", "ERVAD", "NEPOD", "OLONO"],
-        "16": ["DW679", "IRDEX", "ERVAD", "NEPOD", "OLONO"],
-        "34": ["DW679", "IRDEX", "ERVAD", "NEPOD", "OLONO"]
+        "10": [["DW554", "A3000+"], "IRDEX", "ERVAD"],
+        "28": [["OE", "A3000+"], "BAL"],
+        "16": [["DWS77", "A3000+"], "DWS81"],
+        "34": [["DWN26", "A3000+"], "BAL"]
       },
-      "draw": [["DW679", "IRDEX", "ERVAD", "NEPOD", "OLONO"]]
+      "body": ["NEPOD", "OLONO"],
+      "draw": [["NEPOD", "OLONO"]]
+    },
+    "BEPAN": {
+      "icao": "BEPAN",
+      "name": "Bepan",
+      "suffix": {"10":"2E", "28":"5A", "16":"1M", "34":"5G"},
+      "rwy": {
+        "10": [["DW554", "A3000+"], "IRDEX", "ERVAD"],
+        "28": [["OE", "A3000+"], "BAL"],
+        "16": [["DWS77", "A3000+"], "DWS81"],
+        "34": [["DWN26", "A3000+"], "BAL"]
+      },
+      "body": ["NEPOD", "BEPAN"],
+      "draw": [["DW554", "IRDEX", "ERVAD", "NEPOD"], ["OE", "BAL"], ["DWS77", "DWS81", "NEPOD"], ["DWN26", "BAL", "NEPOD", "BEPAN"]]
     },
     "ROTEV": {
       "icao": "ROTEV",
       "name": "Rotev",
-      "suffix": {"10":"", "28":"", "16":"", "34":""},
+      "suffix": {"10":"6E", "28":"1A", "16":"5M", "34":"1G"},
       "rwy": {
-        "10": ["DW931", "LEMTA", "ROTEV"],
-        "28": ["DW931", "LEMTA", "ROTEV"],
-        "16": ["DW931", "LEMTA", "ROTEV"],
-        "34": ["DW931", "LEMTA", "ROTEV"]
+        "10": [["DW551", "A3000+"], "LEMTA"],
+        "28": [["OE", "A3000+"], "DWN29"],
+        "16": [["DWS77", "A3000+"], "BATED", "ERUDA"],
+        "34": [["DWN26", "A3000+"], "DWN29"]
       },
-      "draw": [["DW931", "LEMTA", "ROTEV"]]
+      "body": ["ROTEV"],
+      "draw": [["LEMTA", "ROTEV"], ["OE", "DWN29"], ["ERUDA", "ROTEV"], ["DWN29", "ROTEV"]]
+    },
+    "NEVRI": {
+      "icao": "NEVRI",
+      "name": "Nevri",
+      "suffix": {"10":"6E", "28":"1A", "16":"5M", "34":"1G"},
+      "rwy": {
+        "10": [["DW551", "A3000+"], "LEMTA"],
+        "28": [["OE", "A3000+"], "DWN29"],
+        "16": [["DWS77", "A3000+"], "BATED", "ERUDA"],
+        "34": [["DWN26", "A3000+"], "DWN29"]
+      },
+      "body": ["NEVRI"],
+      "draw": [["DW551", "LEMTA", "NEVRI"], ["OE", "DWN29"], ["DWS77", "BATED", "ERUDA", "NEVRI"], ["DWN26", "DWN29", "NEVRI"]]
     }
   },
   "departures": {
     "airlines": [
       ["ein", 15],
       ["ryr", 10],
-      ["baw", 5],
-      ["dlh", 5],
-      ["aal", 3],
-      ["aca", 3],
-      ["dal", 3],
-      ["ual", 3],
-      ["klm", 1]
+      ["baw",  5],
+      ["dlh",  5],
+      ["aal",  3],
+      ["aca",  3],
+      ["dal",  3],
+      ["ual",  3],
+      ["klm",  1]
     ],
     "destinations": [
-      "SUROX", "LIFFY", "ABIDO", "INKUR", "PELIG", "DEXEN", "OLONO", "ROTEV"
+      "SUROX", "LIFFY", "BEPAN", "INKUR", "DEXEN", "OLONO", "ROTEV", "NEVRI", "PESIT"
     ],
     "type": "random",
     "offset": 0,
@@ -217,27 +272,26 @@
   },
   "arrivals": [
     {
-      "_name":  "OLAPO",
+      "_name":  "OLAPO 1L",
       "radial":   300,
       "speed":    250,
-      "fixes":    ["OLAPO", "EPIDU", "ADNAL", "APRUT", "DW865", "DW866", "NEKIL"],
+      "fixes":    ["OLAPO", "RONON", "ORVEN", "GIRAS", "KERAV", "KOGAX", "KUDOM", "DW814", "DW815", "DW816", "NARMU", "LAPMO"],
       "airlines":  [
-        ["ein", 4],
-        ["aal", 3],
-        ["aca", 2],
-        ["dal", 2],
-        ["ual", 2]
+        ["ein", 10],
+        ["aal",  5],
+        ["aca",  2],
+        ["ual",  5]
       ],
       "type": "wave",
       "offset": 0,
-      "frequency": 5,
+      "frequency": 10,
       "altitude":  10000
     },
     {
-      "_name":  "OSGAR",
+      "_name":  "OSGAR 1L",
       "radial":   240,
       "speed":    250,
-      "fixes":   ["OSGAR", "DIRUM", "KANUS", "BABON", "BIVDI", "DW754", "DW755", "OSLEX"],
+      "fixes":   ["OSGAR", "DIRUM", "KEPOR", "ARVOK", "SORIN", "SIVNA", "SUGAD", "DW704", "DW705", "DW706", "SOPEP", "LAPMO"],
       "airlines":  [
         ["ein", 4],
         ["aal", 3],
@@ -246,15 +300,15 @@
         ["ual", 2]
       ],
       "type": "random",
-      "offset": 0,
+      "offset": 20,
       "frequency": 5,
       "altitude":  10000
     },
     {
-      "_name":  "LIPGO",
-      "radial":   135,
+      "_name":  "BAGSO 1L",
+      "radial":   70,
       "speed":    250,
-      "fixes":    ["LIPGO", "RUBAR", "DETAX", "BERMO", "BABON", "BIVDI", "DW754", "DW755", "OSLEX"],
+      "fixes":    ["BAGSO", "ADSIS", "KERAV", "KOGAX", "KUDOM", "DW814", "DW815", "DW816", "NARMU", "LAPMO"],
       "airlines":  [
         ["ein", 5],
         ["ryr", 5],
@@ -263,15 +317,15 @@
         ["klm", 1]
       ],
       "type": "wave",
-      "offset": 0,
-      "frequency": 10,
+      "offset": 30,
+      "frequency": 5,
       "altitude":  10000
     },
     {
-      "_name":  "BAGSO",
-      "radial":   70,
+      "_name":  "NIMAT 1L",
+      "radial":   10,
       "speed":    250,
-      "fixes":    ["BAGSO", "EKREN", "ELBON", "ASDER", "AKIVA", "ADNAL", "APRUT", "DW865", "DW866", "NEKIL"],
+      "fixes":    ["NIMAT", "KERAV", "KOGAX", "KUDOM", "DW814", "DW815", "DW816", "NARMU", "LAPMO"],
       "airlines":  [
         ["ein", 5],
         ["ryr", 5],
@@ -280,8 +334,23 @@
         ["klm", 1]
       ],
       "type": "random",
-      "offset": 0,
-      "frequency": 10,
+      "offset": 20,
+      "frequency": 5,
+      "altitude":  10000
+    },
+    {
+      "_name":  "VATRY 1L",
+      "radial":   145,
+      "speed":    250,
+      "fixes":    ["VATRY", "SORIN", "SIVNA", "SUGAD", "DW704", "DW705", "DW706", "SOPEP", "LAPMO"],
+      "airlines":  [
+        ["ein",  5],
+        ["ryr", 10],
+        ["baw",  5]
+      ],
+      "type": "wave",
+      "offset": 10,
+      "frequency": 5,
       "altitude":  10000
     }
   ]
