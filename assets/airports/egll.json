@@ -468,7 +468,7 @@
         "27L": ["_LONR257D7"],
         "27R": ["_LONR257D7"]
       },
-      "body": [["WOD", "A40+"], "CPT"],
+      "body": [["WOD", "A4000+"], "CPT"],
       "draw": [["_LONR257D7", "WOD", "CPT"]]
     },
     "BPK": {
@@ -476,8 +476,8 @@
       "name": "Brookmans Park",
       "suffix": {"09L":"5K", "09R":"6J", "27L":"7G", "27R":"7F"},
       "rwy": {
-        "09L": [["_LONR072D10", "A30+"], "BAPAG"],
-        "09R": [["_LONR072D10", "A30+"], "BAPAG"],
+        "09L": [["_LONR072D10", "A3000+"], "BAPAG"],
+        "09R": [["_LONR072D10", "A3000+"], "BAPAG"],
         "27L": ["BUR", "CHT"],
         "27R": ["BUR", "CHT"]
       },
@@ -506,7 +506,7 @@
         "09L": [],
         "09R": []
       },
-      "body": [["_LONR072D10", "A30+"], "BUZAD"],
+      "body": [["_LONR072D10", "A3000+"], "BUZAD"],
       "transitions": {
         "DTY": ["DTY"]
       },
@@ -519,8 +519,8 @@
       "rwy": {
         "09L": ["_DETR284D34"],
         "09R": ["_DETR284D34"],
-        "27L": [["EPM", "A40+"]],
-        "27R": [["EPM", "A40+"]]
+        "27L": [["EPM", "A4000+"]],
+        "27R": [["EPM", "A4000+"]]
       },
       "body": ["DET"],
       "draw": [["_DETR284D34", "DET"], ["EPM", "DET"]]
@@ -533,7 +533,7 @@
         "27L": [],
         "27R": []
       },
-      "body": ["_LONR257D7", ["WOD", "A40+"], "GOGSI"],
+      "body": ["_LONR257D7", ["WOD", "A4000+"], "GOGSI"],
       "transitions": {
         "SAM": ["SAM"]
       },
@@ -547,7 +547,7 @@
         "09L": [],
         "09R": []
       },
-      "body": ["_LONR126D5", ["OCK", "A30+"], "GASGU"],
+      "body": ["_LONR126D5", ["OCK", "A3000+"], "GASGU"],
       "transitions": {
         "SAM": ["SAM"]
       },
@@ -563,7 +563,7 @@
         "27L": [],
         "27R": []
       },
-      "body": [["EPM", "A50"], "MAY"],
+      "body": [["EPM", "A5000"], "MAY"],
       "draw": [["_LONR126D5", "EPM"], ["EPM", "MAY"]]
     },
     "MID": {
@@ -623,15 +623,15 @@
       "fixes": ["LOGAN", "TRIPO", "SABER", "BRASO", "LAM"],
       "airlines": [
         ["afl",  7],
-        ["baw",       76],
-        ["ces",   2],
-        ["cpa",        8],
-        ["csn",   1],
+        ["baw", 76],
+        ["ces",  2],
+        ["cpa",  8],
+        ["csn",  1],
         ["dlh", 30],
-        ["gwi",        9],
+        ["gwi",  9],
         ["klm",  8],
-        ["cca",   1],
-        ["vir",       12]
+        ["cca",  1],
+        ["vir", 12]
       ],
       "type": "wave",
       "offset": 0,
@@ -644,13 +644,13 @@
       "speed": 250,
       "fixes": ["DVR", "SANDY", "LYD", "TIGER", "BIG"],
       "airlines":[
-        ["aua", 5],
-        ["baw",      76],
-        ["uae",      10],
-        ["thy", 6],
-        ["vir",      12],
-        ["aza", 5],
-        ["afr", 6]
+        ["aua",  5],
+        ["baw", 76],
+        ["uae", 10],
+        ["thy",  6],
+        ["vir", 12],
+        ["aza",  5],
+        ["afr",  6]
       ],
       "type": "random",
       "offset": 0,
@@ -662,14 +662,14 @@
       "speed": 250,
       "fixes": ["HON", "TOBID", "SOPIT", "WCO", "BNN"],
       "airlines":[
-        ["aal",  17],
-        ["aca",  18],
-        ["baw",       76],
-        ["dal",   9],
+        ["aal", 17],
+        ["aca", 18],
+        ["baw", 76],
+        ["dal",  9],
         ["ein",  8],
         ["sas", 26],
-        ["ual",  17],
-        ["vir",       25]
+        ["ual", 17],
+        ["vir", 25]
       ],
       "type": "wave",
       "offset": 0,
@@ -686,7 +686,7 @@
         ["ava",  1],
         ["baw", 50],
         ["tam",  3],
-        ["vir",      12]
+        ["vir", 12]
       ],
       "type": "random",
       "offset": 0,
