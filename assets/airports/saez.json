@@ -3,62 +3,58 @@
   "level": "medium",
   "radio": {
     "twr": "Ezeiza Tower",
-    "app": "Ezeiza Approach",
-    "dep": "Ezeiza Departure"
+    "app": "Baires Center",
+    "dep": "Baires Center"
   },
   "icao": "SAEZ",
   "iata": "EZE",
-  "magnetic_north": 0,
-  "ctr_radius": 102,
-  "ctr_ceiling": 10000,
+  "magnetic_north": -8,
+  "ctr_radius": 80,
+  "ctr_ceiling": 12000,
   "initial_alt": 5000,
   "position": ["S34d49m19.92", "W58d32m8.8"],
   "rr_radius_nm": 5.0,
   "rr_center": ["S34d49m19.92", "W58d32m8.8"],
   "has_terrain": false,
   "wind": {
-    "angle": 109,
-    "speed": 6
+    "angle": 130,
+    "speed": 3
   },
   "fixes": {
-    "EZE02": ["S34d58m27.40", "W58d37m27.28"],
     "EZE10": ["S34d46m31.94", "W58d31m59.90"],
     "EZE11": ["S34d48m58.72", "W58d35m43.07"],
-    "EZE12": ["S34d50m34.41", "W58d27m59.51"],
-    "EZE14": ["S34d59m07.72", "W58d48m20.76"],
-    "EZE15": ["S34d59m15.70", "W59d14m25.02"],
+    "EZE12": ["S34d51m46.82", "W58d28m10.68"],
+    "EZE13": ["S34d52m26.19", "W58d32m14.67"],
+    "EZE14": ["S34d58m11.74", "W58d49m16.08"],
+    "EZE15": ["S34d56m47.93", "W59d18m59.69"],
+    "EZE18": ["S34d31m45.82", "W58d02m41.67"], 
     "EZE19": ["S34d07m22.69", "W58d31m14.13"],
     "EZE20": ["S34d10m11.95", "W58d46m46.38"],
+    "EZE24": ["S34d58m24.45", "W58d51m56.00"],
     "EZE26": ["S34d10m16.00", "W58d59m30.00"],
-    "EZE50": ["S34d56m1.00", "W58d59m6.00"],
-    "EZE70": ["S34d59m12.55", "W58d29m22.73"],
-    "EZE97": ["S34d54m45.25", "W58d21m47.87"],
-    "EZE05": ["S34d49m15.90", "W58d44m16.14"],
-    "PC011": ["S34d47m20.47", "W58d43m58.68"],
+    "EZE27": ["S34d50m17.55", "W58d44m13.17"],
+    "EZE50": ["S34d56m01.00", "W58d59m06.00"],
 
-    "EZE": ["S34d49m26.00", "W58d32m7.00"],
+    "EZE": ["S34d49m26.00", "W58d32m07.00"],
     "PTA": ["S34d58m33.00", "W57d53m54.00"],
     "ILM": ["S34d42m39.00", "W58d14m25.00"],
     "PAL": ["S34d36m42.00", "W58d36m50.00"],
-    "FDO": ["S34d27m5.00", "W58d35m2.00"],
+    "FDO": ["S34d27m05.00", "W58d35m02.00"],
     "ENO": ["S34d33m46.00", "W58d47m26.00"],
-    "GBE": ["S35d45m3.00", "W58d27m53.00"],
+    "GBE": ["S35d45m03.00", "W58d27m53.00"],
 
-    "GEBEM": ["S35d12m1.00", "W59d9m32.00"],
+    "GEBEM": ["S35d07m42.60", "W59d12m40.72"],
     "TORUL": ["S35d21m42.00", "W59d26m24.00"],
-    "VALOS": ["S35d27m28.00", "W59d21m2.00"],
-    "NEPIS": ["S34d34m16.00", "W59d36m2.00"],
+    "VALOS": ["S35d27m28.00", "W59d21m02.00"],
+    "NEPIS": ["S34d34m16.00", "W59d36m02.00"],
     "BIVAM": ["S33d58m16.00", "W58d56m44.00"],
     "PAGON": ["S33d55m16.00", "W58d43m14.00"],
-    "TEDAR": ["S35d26m58.00", "W57d43m2.00"],
-    "TENIL": ["S35d32m28.00", "W57d50m2.00"],
+    "TEDAR": ["S35d26m58.00", "W57d43m02.00"],
+    "TENIL": ["S35d32m28.00", "W57d50m02.00"],
     "KOVUK": ["S35d11m58.00", "W57d31m14.00"],
-    "KUKEN": ["S33d10m58.00", "W58d13m2.00"],
+    "KUKEN": ["S34d12m38.10", "W58d07m28.74"],
     "EGEPA": ["S35d23m40.00", "W59d24m34.00"],
     "VANAR": ["S34d19m28.00", "W58d45m44.00"],
-
-    "OC": ["S34d49m1.00", "W58d33m53.00"],
-    "OA": ["S34d50m29.00", "W58d31m20.00"],
     "ARSOT": ["S34d45m37.00", "W58d53m51.00"],
     "GESTA": ["S35d04m52.00", "W58d26m44.00"],
 
@@ -66,89 +62,158 @@
     "ATOVO": ["S34d03m40.00", "W59d09m02.00"],
     "DORVO": ["S34d42m58.00", "W57d31m02.00"],
     "URINO": ["S34d41m59.00", "W59d38m27.00"],
-    "SNT": ["S34d13m20.00", "W59d26m29.00"],
-    "ASADA": ["S35d1m33.00", "W59d37m33.00"],
-    "PAPIX": ["S34d24m58.00", "W58d0m2.00"],
-    "ESLAN": ["S34d58m55.00", "W57d5m5.00"]
+    "SNT":   ["S34d13m20.00", "W59d26m29.00"],
+    "ASADA": ["S35d01m33.00", "W59d37m33.00"],
+    "PAPIX": ["S34d28m12.93", "W57d56m50.10"],
+    "ESLAN": ["S34d58m55.00", "W57d05m05.00"],
+
+    "_EZE10DME43": ["S34.921612300", "W58.371049800"], 
+    "_EZE10DME48": ["S34.953325100", "W58.407329200"], 
+    "_EZE10DME53": ["S34.976252600", "W58.452473800"], 
+    "_EZE10DME58": ["S34.988749900", "W58.503405500"], 
+    "_EZE10DME62": ["S34.990596300", "W58.545942100"], 
+    "_EZE10DME63": ["S34.989903100", "W58.556576300"], 
+    "_EZE10DME65": ["S34.987140300", "W58.577633700"], 
+    "_EZE10DME67": ["S34.982572100", "W58.598212700"], 
+    "_EZE10DME68": ["S34.979627100", "W58.608250000"], 
+    "_EZE10DME70": ["S34.972458500", "W58.627680500"], 
+    "_EZE10DME71": ["S34.968256000", "W58.637019600"], 
+    "_EZE10DME75": ["S34.947621500", "W58.671279100"], 
+    "_EZE10DME80": ["S34.914402700", "W58.705472900"], 
+    "_EZE10DME81": ["S34.906949100", "W58.710971300"], 
+    "_EZE10DME85": ["S34.875113200", "W58.728013100"], 
+    "_EZE10DME88": ["S34.849725100", "W58.735311200"], 
+    "_EZE10DME93": ["S34.806350900", "W58.736577500"], 
+    "_EZE10DME98": ["S34.764152100", "W58.724246600"]
   },
   "runways":[
     {
       "name": ["11", "29"],
       "name_offset": [[0, 0], [0, 0]],
-      "position": [0, 0],
-      "angle": 102,
-      "length": 3.300,
+      "end": [["S34d49m09.06", "W58d33m12.26"], ["S34d49m31.51", "W58d31m05.65"]],
+      "length": 3.2831,
       "ils": [true, false]
     },
     {
       "name": ["17", "35"],
       "name_offset": [[0, 0], [0, 0]],
-      "position": [0.67, 0],
-      "angle": 165.5,
-      "length": 3.105,
+      "end": [["S34d48m30.26", "W58d32m01.89"], ["S34d49m57.04", "W58d31m31.54"]],
+      "length": 2.7842,
       "ils": [false, true]
     }
   ],
   "sids": {
-    "ATOVO": {
-      "icao": "ATOVO",
-      "name": "Atovo",
-      "suffix": {"11":"", "29":"", "17":"", "35":""},
+    "ATOVO2A": {
+      "icao": "ATOVO2A",
+      "name": "Atovo Two Alpha",
       "rwy": {
-        "11": ["EZE12", "EZE97", "EZE70", "EZE02", "EZE10", "EZE19", "EZE20", "EZE26", "ATOVO"],
-        "29": ["EZE12", "EZE97", "EZE70", "EZE02", "EZE10", "EZE19", "EZE20", "EZE26", "ATOVO"],
-        "17": ["EZE12", "EZE97", "EZE70", "EZE02", "EZE10", "EZE19", "EZE20", "EZE26", "ATOVO"],
-        "35": ["EZE12", "EZE97", "EZE70", "EZE02", "EZE10", "EZE19", "EZE20", "EZE26", "ATOVO"]
+        "11": ["EZE12", "_EZE10DME43", "_EZE10DME48", "_EZE10DME53", "_EZE10DME58", "_EZE10DME63", "_EZE10DME68"],
+        "29": ["EZE11", "_EZE10DME85", "_EZE10DME80", "_EZE10DME75"],
+        "17": ["EZE13", "_EZE10DME62", "_EZE10DME67"],
+        "35": ["EZE10", "_EZE10DME98", "_EZE10DME93", "_EZE10DME88", "_EZE10DME85", "_EZE10DME80", "_EZE10DME75"]
       },
-      "draw": [["EZE12","EZE97","EZE70","EZE02","EZE10","EZE19","EZE20","EZE26","ATOVO"]]
+      "body": ["_EZE10DME71", "EZE", "EZE10", "EZE19", "EZE20", "EZE26", "ATOVO"],
+      "transitions": {
+        "ATOVO": []
+      },
+      "draw": [["EZE10", "_EZE10DME98", "_EZE10DME93", "_EZE10DME88", "_EZE10DME85"], ["EZE11", "_EZE10DME85", "_EZE10DME80", "_EZE10DME75", "_EZE10DME71"], ["EZE13", "_EZE10DME62", "_EZE10DME71"], ["EZE12", "_EZE10DME43", "_EZE10DME48", "_EZE10DME53", "_EZE10DME58", "_EZE10DME63", "_EZE10DME68", "_EZE10DME71", "EZE", "EZE10", "EZE19", "EZE20", "EZE26", "ATOVO"]]
     },
-    "LANDA": {
-      "icao": "LANDA",
-      "name": "Landa",
-      "suffix": {"11":"", "29":"", "17":"", "35":""},
+    "BIVAM2A": {
+      "icao": "BIVAM2A",
+      "name": "Bivam Two Alpha",
       "rwy": {
-        "11": ["EZE12", "EZE97", "EZE70", "EZE02", "EZE10", "EZE19", "LANDA"],
-        "29": ["EZE12", "EZE97", "EZE70", "EZE02", "EZE10", "EZE19", "LANDA"],
-        "17": ["EZE12", "EZE97", "EZE70", "EZE02", "EZE10", "EZE19", "LANDA"],
-        "35": ["EZE12", "EZE97", "EZE70", "EZE02", "EZE10", "EZE19", "LANDA"]
+        "11": ["EZE12", "_EZE10DME43", "_EZE10DME48", "_EZE10DME53", "_EZE10DME58", "_EZE10DME63", "_EZE10DME68"],
+        "29": ["EZE11", "_EZE10DME85", "_EZE10DME80", "_EZE10DME75"],
+        "17": ["EZE13", "_EZE10DME62", "_EZE10DME67"],
+        "35": ["EZE10", "_EZE10DME98", "_EZE10DME93", "_EZE10DME88", "_EZE10DME85", "_EZE10DME80", "_EZE10DME75"]
       },
-      "draw": [["EZE12","EZE97","EZE70","EZE02","EZE10","EZE19","LANDA"]]
+      "body": ["_EZE10DME71", "EZE", "EZE10", "EZE19", "EZE20", "BIVAM"],
+      "transitions": {
+        "BIVAM": []
+      },
+      "draw": [["EZE20", "BIVAM"]]
     },
-    "DORVO": {
-      "icao": "DORVO",
-      "name": "Dorvo",
-      "suffix": {"11":"", "29":"", "17":"", "35":""},
+    "LANDA2A": {
+      "icao": "LANDA2A",
+      "name": "Landa Two Alpha",
       "rwy": {
-        "11": ["EZE12", "PTA", "DORVO"],
-        "29": ["EZE12", "PTA", "DORVO"],
-        "17": ["EZE12", "PTA", "DORVO"],
-        "35": ["EZE12", "PTA", "DORVO"]
+        "11": ["EZE12", "_EZE10DME43", "_EZE10DME48", "_EZE10DME53", "_EZE10DME58", "_EZE10DME63", "_EZE10DME68"],
+        "29": ["EZE11", "_EZE10DME85", "_EZE10DME80", "_EZE10DME75"],
+        "17": ["EZE13", "_EZE10DME62", "_EZE10DME67"],
+        "35": ["EZE10", "_EZE10DME98", "_EZE10DME93", "_EZE10DME88", "_EZE10DME85", "_EZE10DME80", "_EZE10DME75"]
       },
-      "draw": [["EZE12","PTA","DORVO"]]
+      "body": ["_EZE10DME71", "EZE", "EZE10", "EZE19", "LANDA"],
+      "transitions": {
+        "LANDA": []
+      },
+      "draw": [["EZE19", "LANDA"]]
     },
-    "URINO": {
-      "icao": "URINO",
-      "name": "Urino",
-      "suffix": {"11":"", "29":"", "17":"", "35":""},
+    "PTA6B": {
+      "icao": "PTA6B",
+      "name": "La Plata Six Bravo",
       "rwy": {
-        "11": ["EZE12", "EZE97", "EZE70", "EZE14", "EZE15", "URINO"],
-        "29": ["EZE12", "EZE97", "EZE70", "EZE14", "EZE15", "URINO"],
-        "17": ["EZE12", "EZE97", "EZE70", "EZE14", "EZE15", "URINO"],
-        "35": ["EZE12", "EZE97", "EZE70", "EZE14", "EZE15", "URINO"]
+        "11": ["EZE12"],
+        "29": ["EZE11", "_EZE10DME85", "_EZE10DME80", "_EZE10DME75", "_EZE10DME70", "_EZE10DME65", "_EZE10DME62"],
+        "17": ["EZE13", "_EZE10DME62"],
+        "35": ["EZE10", "_EZE10DME98", "_EZE10DME93", "_EZE10DME88", "_EZE10DME85", "_EZE10DME80", "_EZE10DME75", "_EZE10DME70", "_EZE10DME65", "_EZE10DME62"]
       },
-      "draw": [["EZE12","EZE97","EZE70","EZE14","EZE15","URINO"]]
+      "body": ["PTA"],
+      "transitions": {
+        "KUKEN": ["EZE18", "KUKEN"],
+        "PAPIX": ["EZE18", "PAPIX"],
+        "DORVO": ["DORVO"],
+        "ESLAN": ["ESLAN"],
+        "KOVUK": ["KOVUK"],
+        "TEDAR": ["TEDAR"]
+      },
+      "draw": [["_EZE10DME75", "_EZE10DME70", "_EZE10DME65", "_EZE10DME62", "PTA"], ["EZE12","PTA"], ["PTA", "EZE18", "KUKEN*"], ["EZE18", "PAPIX*"], ["PTA", "DORVO*"], ["PTA", "ESLAN*"], ["PTA", "KOVUK*"], ["PTA", "TEDAR*"]]
     },
-    "GBE": {
-      "icao": "GBE",
-      "name": "Belgrano",
-      "suffix": {"11":"", "29":"", "17":"", "35":""},
+    "EGEPA6": {
+      "icao": "EGEPA6",
+      "name": "Egepa Six",
       "rwy": {
-        "11": ["EZE12", "EZE97", "EZE70", "GBE"],
-        "29": ["EZE12", "EZE97", "EZE70", "GBE"],
-        "17": ["EZE12", "EZE97", "EZE70", "GBE"],
-        "35": ["EZE12", "EZE97", "EZE70", "GBE"]
+        "11": ["EZE12", "_EZE10DME43", "_EZE10DME48", "_EZE10DME53", "_EZE10DME58", "_EZE10DME62"],
+        "29": ["EZE11", "_EZE10DME85", "_EZE10DME80"],
+        "17": ["EZE13", "_EZE10DME62"],
+        "35": ["EZE10", "_EZE10DME98", "_EZE10DME93", "_EZE10DME88", "_EZE10DME83", "_EZE10DME80"]
       },
-      "draw": [["EZE12","EZE97","EZE70","GBE"]]
+      "body": ["EZE14"],
+      "transitions": {
+        "URINO": ["EZE15", "URINO"],
+        "ASADA": ["EZE15", "ASADA"],
+        "EGEPA": ["EGEPA"]
+      },
+      "draw": [["_EZE10DME80", "EZE14"], ["_EZE10DME58", "_EZE10DME62", "EZE14"], ["EZE14", "EGEPA*"], ["EZE14", "EZE15", "URINO*"], ["EZE15", "ASADA*"]]
+    },
+    "TORUL1": {
+      "icao": "TORUL1",
+      "name": "Torul One",
+      "rwy": {
+        "11": ["EZE12", "_EZE10DME43", "_EZE10DME48", "_EZE10DME53", "_EZE10DME58", "_EZE10DME62"],
+        "29": ["EZE11", "_EZE10DME85", "_EZE10DME81"],
+        "17": ["EZE13", "_EZE10DME62"],
+        "35": ["EZE10", "_EZE10DME98", "_EZE10DME93", "_EZE10DME88", "_EZE10DME83", "_EZE10DME81"]
+      },
+      "body": ["EZE24", "TORUL"],
+      "transitions": {
+        "TORUL": []
+      },
+      "draw": [["_EZE10DME81", "EZE24"], ["_EZE10DME62", "EZE24"], ["EZE24", "TORUL"]]
+    },
+    "GBE6": {
+      "icao": "GBE6",
+      "name": "Belgrano Six",
+      "rwy": {
+        "11": ["EZE12", "_EZE10DME43", "_EZE10DME48", "_EZE10DME53", "_EZE10DME58"],
+        "29": ["EZE11", "_EZE10DME85", "_EZE10DME80", "_EZE10DME75", "_EZE10DME70", "_EZE10DME65"],
+        "17": ["EZE13"],
+        "35": ["EZE10", "_EZE10DME98", "_EZE10DME93", "_EZE10DME88", "_EZE10DME85", "_EZE10DME80", "_EZE10DME75", "_EZE10DME70", "_EZE10DME65"]
+      },
+      "body": ["_EZE10DME62", "GBE"],
+      "transitions": {
+        "GBE": []
+      },
+      "draw": [["_EZE10DME58", "_EZE10DME62", "GBE"]]
     }
   },
   "departures": {
@@ -169,11 +234,11 @@
       ["sa-klm", 5]
     ],
     "destinations": [
-      "ATOVO", "LANDA", "DORVO", "URINO", "GBE"
+      "ATOVO2A", "LANDA2A", "PTA6B", "EGEPA6", "GBE6", "BIVAM2A", "TORUL1"
     ],
     "type": "random",
     "offset": 0,
-    "frequency": 30
+    "frequency": 15
   },
   "arrivals": [
     {
@@ -188,9 +253,22 @@
         ["sa-lan", 5],
         ["arg", 5]
       ],
-      "type": "random",
-      "offset": 0,
-      "frequency": 20,
+      "type": "cyclic",
+      "offset": 10,
+      "frequency": [5, 10],
+      "altitude": 10000
+    },
+    {
+      "radial": 350,
+      "speed": 250,
+      "fixes": ["PAGON", "VANAR", "ENO", "ARSOT"],
+      "airlines":  [
+        ["sa-lan", 10],
+        ["arg", 10]
+      ],
+      "type": "cyclic",
+      "offset": 30,
+      "frequency": [5, 10],
       "altitude": 10000
     },
     {
@@ -201,15 +279,28 @@
         ["sa-lan", 10],
         ["arg", 10]
       ],
-      "type": "random",
-      "offset": 0,
-      "frequency": 10,
+      "type": "cyclic",
+      "offset": 40,
+      "frequency": [3, 5],
+      "altitude": 10000
+    },
+    {
+      "radial": 180,
+      "speed": 250,
+      "fixes": ["GBE", "EZE50", "ARSOT"],
+      "airlines":  [
+        ["sa-lan", 10],
+        ["arg", 10]
+      ],
+      "type": "cyclic",
+      "offset": 20,
+      "frequency": [1, 5],
       "altitude": 10000
     },
     {
       "radial": 100,
       "speed": 250,
-      "fixes": ["ESLAN", "PTA", "ILM", "PAL", "ENO", "ARSOT"],
+      "fixes": ["ESLAN", "PTA", "EZE"],
       "airlines":  [
         ["arg", 10],
         ["sa-lan", 5],
@@ -217,15 +308,15 @@
         ["sa-afr", 1],
         ["sa-klm", 1]
       ],
-      "type": "random",
+      "type": "cyclic",
       "offset": 0,
-      "frequency": 5,
-      "altitude": 10000
+      "frequency": [1, 5],
+      "altitude": 12000
     },
     {
       "radial": 45,
       "speed": 250,
-      "fixes": ["PAPIX", "PAL", "ENO", "ARSOT"],
+      "fixes": ["PAPIX", "EZE"],
       "airlines":  [
         ["arg", 10],
         ["tam", 8],
@@ -237,9 +328,9 @@
         ["sa-aza", 3],
         ["sa-uae", 1]
       ],
-      "type": "random",
-      "offset": 0,
-      "frequency": 10,
+      "type": "cyclic",
+      "offset": 50,
+      "frequency": [5, 10],
       "altitude": 10000
     }
   ]
