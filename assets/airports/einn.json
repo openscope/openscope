@@ -1,0 +1,281 @@
+{
+  "name": "Shannon Airport",
+  "level": "easy",
+  "radio": {
+    "twr": "Shannon Tower",
+    "app": "Shannon Approach",
+    "dep": "Shannon Departure"
+  },
+  "icao": "EINN",
+  "iata": "SNN",
+  "magnetic_north": -5.30,
+  "ctr_radius": 55,
+  "ctr_ceiling": 24000,
+  "initial_alt": 5000,
+  "position": ["N52d42m07.12", "W8d55m29.34"],
+  "rr_radius_nm": 5.0,
+  "rr_center": ["N52d43m15.6", "W8d53m06.8"],
+  "has_terrain": false,
+  "wind": {
+    "angle": 255,
+    "speed": 6
+  },
+  "fixes": {
+    "BEVES": ["N52d39m34.5", "W9d00m53.2"],
+    "DISUR": ["N52d43m31.0", "W9d05m55.8"],
+    "ADARU": ["N52d35m37.8", "W8d55m51.4"],
+    "GORTO": ["N52d57m32.7", "W8d57m32.7"],
+    "NEPOG": ["N52d48m54.2", "W8d54m26.4"],
+    "GATLO": ["N52d40m58.3", "W8d44m26.6"],
+    "GULTU": ["N52d48m35.8", "W9d23m17.5"],
+
+    "AGINI": ["N53d09m19.9", "W8d34m46.1"],
+    "MOMIN": ["N53d06m48.2", "W9d23m33.6"],
+    "ERABI": ["N53d00m53.5", "W9d34m03.3"],
+    "UNBEG": ["N52d48m18.4", "W9d43m47.8"],
+    "LUPOR": ["N52d32m31.6", "W9d42m07.3"],
+    "BUNON": ["N52d22m29.7", "W9d32m36.8"],
+    "KURUM": ["N52d13m43.1", "W8d39m52.5"],
+    "LUNIG": ["N52d23m50.1", "W8d16m33.5"],
+    "ABAGU": ["N52d30m11.7", "W7d38m48.1"],
+    "TOMTO": ["N52d52m24.8", "W8d09m05.2"],
+
+    "DIGAN": ["N52d56m12.8", "W8d11m51.3"],
+    "TIPUR": ["N52d35m21.0", "W8d07m30.6"],
+    "TOBRI": ["N52d57m17.2", "W8d41m49.6"],
+    "DERAG": ["N52d51m46.6", "W8d34m49.4"],
+    "GILOG": ["N52d46m10.0", "W8d25m26.2"],
+    "OGONO": ["N52d55m25.1", "W8d26m57.5"],
+
+    "ULSIT": ["N52d52m10.0", "W8d52m55.0"],
+    "TERDU": ["N52d39m07.4", "W9d13m26.8"],
+    "RERKA": ["N52d28m06.4", "W9d06m24.0"],
+    "ELPOM": ["N52d33m37.1", "W9d13m26.8"],
+
+    "ROSRO": ["N52d48m19.1", "W8d42m15.4"],
+    "ASGON": ["N52d35m54.4", "W9d08m38.1"],
+    "ENS":   ["N52d54m18.6", "W8d55m40.0"],
+    "OL":    ["N52d44m56.0", "W8d49m26.0"],
+    "SHA":   ["N52d43m15.6", "W8d53m06.8"]
+  },
+  "runways": [
+    {
+      "name": ["24", "06"],
+      "name_offset": [[0, 0], [0, 0]],
+      "end": [["N52d42m36.03", "W8d54m27.87"], ["N52d41m35.42", "W8d56m36.67"]],
+      "length": 3.199,
+      "delay": [10, 5],
+      "ils": [true, true]
+    }
+  ],
+  "sids": {
+    "AGINI": {
+      "icao": "AGINI",
+      "name": "Agini",
+      "suffix": {"24":"2B", "06":"2A"},
+      "rwy": {
+        "24": [["BEVES", "A1800+"], ["DISUR", "A3300+"], "GORTO", "AGINI"],
+        "06": [["OL", "A2000+"], "AGINI"]
+      },
+      "draw": [["BEVES", "DISUR", "GORTO", "AGINI"], ["OL", "AGINI"]]
+    },
+    "MOMIN": {
+      "icao": "MOMIN",
+      "name": "Momin",
+      "suffix": {"24":"2B", "06":"2A"},
+      "rwy": {
+        "24": [["BEVES", "A1800+"], ["DISUR", "A3300+"], "MOMIN"],
+        "06": [["OL", "A2000+"], ["NEPOG", "A3400+"], "MOMIN"]
+      },
+      "draw": [["DISUR", "MOMIN"], ["OL", "NEPOG", "MOMIN"]]
+    },
+    "ERABI": {
+      "icao": "ERABI",
+      "name": "Erabi",
+      "suffix": {"24":"2B", "06":"2A"},
+      "rwy": {
+        "24": [["BEVES", "A1800+"], ["DISUR", "A3300+"], "ERABI"],
+        "06": [["OL", "A2000+"], ["NEPOG", "A3400+"], "ERABI"]
+      },
+      "draw": [["DISUR", "ERABI"], ["NEPOG", "ERABI"]]
+    },
+    "UNBEG": {
+      "icao": "UNBEG",
+      "name": "Unbeg",
+      "suffix": {"24":"2B", "06":"2A"},
+      "rwy": {
+        "24": [["BEVES", "A1800+"], "UNBEG"],
+        "06": [["OL", "A2000+"], ["NEPOG", "A3400+"], "GULTU", "UNBEG"]
+      },
+      "draw": [["BEVES", "UNBEG"], ["NEPOG", "GULTU", "UNBEG"]]
+    },
+    "LUPOR": {
+      "icao": "LUPOR",
+      "name": "Lupor",
+      "suffix": {"24":"2B"},
+      "rwy": {
+        "24": [["BEVES", "A1800+"], "LUPOR"]
+      },
+      "draw": [["BEVES", "LUPOR"]]
+    },
+    "BUNON": {
+      "icao": "BUNON",
+      "name": "Bunon",
+      "suffix": {"24":"2B"},
+      "rwy": {
+        "24": [["BEVES", "A1800+"], "BUNON"]
+      },
+      "draw": [["BEVES", "BUNON"]]
+    },
+    "KURUM": {
+      "icao": "KURUM",
+      "name": "Kurum",
+      "suffix": {"24":"2B", "06":"2A"},
+      "rwy": {
+        "24": [["BEVES", "A1800+"], ["ADARU", "A3300+"], "KURUM"],
+        "06": [["OL", "A2000+"], ["GATLO", "A3400+"], "KURUM"]
+      },
+      "draw": [["BEVES", "ADARU", "KURUM"], ["OL", "GATLO", "KURUM"]]
+    },
+    "LUNIG": {
+      "icao": "LUNIG",
+      "name": "Lunig",
+      "suffix": {"24":"2B", "06":"2A"},
+      "rwy": {
+        "24": [["BEVES", "A1800+"], ["ADARU", "A3300+"], "LUNIG"],
+        "06": [["OL", "A2000+"], ["GATLO", "A3400+"], "LUNIG"]
+      },
+      "draw": [["ADARU", "LUNIG"], ["GATLO", "LUNIG"]]
+    },
+    "ABAGU": {
+      "icao": "ABAGU",
+      "name": "Abagu",
+      "suffix": {"24":"2B", "06":"2A"},
+      "rwy": {
+        "24": [["BEVES", "A1800+"], ["ADARU", "A3300+"], "ABAGU"],
+        "06": [["OL", "A2000+"], "ABAGU"]
+      },
+      "draw": [["ADARU", "ABAGU"], ["OL", "ABAGU"]]
+    },
+    "TOMTO": {
+      "icao": "TOMTO",
+      "name": "Tomto",
+      "suffix": {"06":"2A"},
+      "rwy": {
+        "06": [["OL", "A2000+"], "TOMTO"]
+      },
+      "draw": [["OL", "TOMTO"]]
+    },
+    "DIGAN": {
+      "icao": "DIGAN",
+      "name": "DIGAN",
+      "suffix": {"06":"2A"},
+      "rwy": {
+        "06": [["OL", "A2000+"], "DIGAN"]
+      },
+      "draw": [["OL", "DIGAN"]]
+    }
+  },
+  "departures": {
+    "airlines": [
+      ["cessna", 20],
+      ["fastga", 20],
+      ["lightga", 20],
+      ["baw", 1],
+      ["ryr", 20],
+      ["ein", 10],
+      ["aca", 3],
+      ["dal", 3],
+      ["ual", 3],
+      ["aal", 3]
+    ],
+    "destinations": [
+      "AGINI", "MOMIN", "ERABI", "UNBEG", "LUPOR", "BUNON", "KURUM", "LUNIG", "ABAGU", "TOMTO", "DIGAN"
+    ],
+    "type": "random",
+    "frequency": 25
+  },
+  "arrivals":[
+    {
+      "radial": 270,
+      "speed": 250,
+      "fixes": ["UNBEG", "ENS", "TOBRI", "DERAG"],
+      "airlines": [
+        ["aca", 3],
+        ["aal", 3],
+        ["baw", 1],
+        ["fastga", 3],
+        ["ual", 3],
+        ["dal", 3],
+        ["ein", 5]
+      ],
+      "type": "wave",
+      "offset": 0,
+      "frequency": [3, 5],
+      "altitude": [8000, 10000]
+    },
+    {
+      "radial": 70,
+      "speed": 250,
+      "fixes": ["DIGAN", "OGONO", "DERAG"],
+      "airlines": [
+        ["fastga", 5],
+        ["ryr", 10],
+        ["ein", 5]
+      ],
+      "type": "random",
+      "offset": 20,
+      "frequency": 3,
+      "altitude": [8000, 10000]
+    },
+    {
+      "radial": 100,
+      "speed": 250,
+      "fixes": ["TIPUR", "GILOG", "DERAG"],
+      "airlines": [
+        ["fastga", 5],
+        ["baw", 1]
+      ],
+      "type": "random",
+      "offset": 25,
+      "frequency": 3,
+      "altitude": [8000, 10000]
+    },
+    {
+      "radial": 170,
+      "speed": 250,
+      "fixes": ["KURUM", "GILOG", "DERAG"],
+      "airlines": [
+        ["fastga", 5],
+        ["ryr", 10],
+        ["ein", 3]
+      ],
+      "type": "random",
+      "offset": 15,
+      "frequency": 3,
+      "altitude": [8000, 10000]
+    },
+    {
+      "radial": 200,
+      "airlines": [
+        ["lightga", 10],
+        ["cessna", 10]
+      ],
+      "type": "random",
+      "offset": 10,
+      "frequency": 1,
+      "altitude": [8000, 10000]
+    },
+    {
+      "radial": 340,
+      "airlines": [
+        ["lightga", 10],
+        ["cessna", 10]
+      ],
+      "type": "random",
+      "offset": 5,
+      "frequency": 1,
+      "altitude": [8000, 10000]
+    }
+  ]
+}
