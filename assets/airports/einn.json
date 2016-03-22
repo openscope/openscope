@@ -10,7 +10,7 @@
   "iata": "SNN",
   "magnetic_north": -5.30,
   "ctr_radius": 55,
-  "ctr_ceiling": 24000,
+  "ctr_ceiling": 24500,
   "initial_alt": 5000,
   "position": ["N52d42m07.12", "W8d55m29.34"],
   "rr_radius_nm": 5.0,
