@@ -10,7 +10,7 @@
   "iata": "LHR",
   "magnetic_north": 0.14,
   "ctr_radius": 74,
-  "ctr_ceiling": 10000,
+  "ctr_ceiling": 19500,
   "initial_alt": 6000,
   "position": ["N51d28m16.41", "W0d27m41.19"],
   "rr_radius_nm": 5.0,
