@@ -1,23 +1,34 @@
 {
-  "name": "DC-8-70",
+  "name": "McDonnell-Douglas DC-8-70",
   "icao": "DC87",
-  "wake": "heavy",
+  "engines": {
+    "number": 4,
+    "type": "J"
+  },
+  "weightclass": "H",
+  "category": {
+    "srs": 3,
+    "lahso": 9,
+    "recat": "C"
+  },
+  "ceiling": 41000,
   "rate": {
-    "turn":       1.5,
-    "climb":     1715,
+    "climb":      1715,
     "descent":    2000,
     "accelerate": 4,
     "decelerate": 2
   },
   "runway": {
-    "takeoff": 4.0,
-    "landing": 4.8
+    "takeoff": 3.048,
+    "landing": 2.000
   },
   "speed":{
     "min":     160,
-    "max":     250,
     "landing": 145,
-    "cruise":  200
+    "cruise":  433,
+    "cruiseM": null,
+    "max":     480,
+    "maxM":    null
   },
   "capability": {
     "ils": true,

@@ -19,14 +19,16 @@
     "decelerate": 4
   },
   "runway": {
-    "takeoff": 1.5,
-    "landing": 1.2
+    "takeoff": 1.900,
+    "landing": 1.300
   },
   "speed":{
     "min":     110,
-    "max":     250,
     "landing": 120,
-    "cruise":  200
+    "cruise":  475,
+    "cruiseM": null,
+    "max":     481,
+    "maxM":    0.82
   },
   "capability": {
     "ils": true,

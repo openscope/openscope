@@ -1,23 +1,34 @@
 {
   "name": "Boeing 747-200",
   "icao": "B742",
-  "wake": "heavy",
+  "engines": {
+    "number": 4,
+    "type": "J"
+  },
+  "weightclass": "H",
+  "category": {
+    "srs": 3,
+    "lahso": 10,
+    "recat": "B"
+  },
+  "ceiling": 45000,
   "rate": {
-    "turn":       0.8,
-    "ascent":     1715,
+    "climb":      2000,
     "descent":    2000,
     "accelerate": 4,
     "decelerate": 2
   },
   "runway": {
-    "takeoff": 3.5,
-    "landing": 4.0
+    "takeoff": 3.600,
+    "landing": 1.890
   },
   "speed":{
     "min":     145,
-    "max":     250,
     "landing": 140,
-    "cruise":  200
+    "cruise":  491,
+    "cruiseM": null,
+    "max":     530,
+    "maxM":    null
   },
   "capability": {
     "ils": true,

@@ -24,9 +24,11 @@
   },
   "speed":{
     "min":     110,
-    "max":     400,
     "landing": 100,
-    "cruise":  200
+    "cruise":  440,
+    "cruiseM": null,
+    "max":     450,
+    "maxM":    null
   },
   "capability": {
     "ils": true,

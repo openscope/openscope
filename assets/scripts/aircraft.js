@@ -1886,20 +1886,15 @@ var Aircraft=Fiber.extend(function() {
     updateTarget: function() {
       var airport = airport_get();
       var runway  = null;
-
       var offset = null;
-
       var offset_angle = null;
-
       var glideslope_altitude = null;
       var glideslope_window   = null;
-
       var angle = null;
 
       if(this.fms.currentWaypoint().altitude > 0)
         this.fms.setCurrent({altitude: Math.max(1000,
                                                 this.fms.currentWaypoint().altitude)});
-
       if(this.fms.currentWaypoint().navmode == "rwy") {
         airport = airport_get();
         runway  = airport.getRunway(this.fms.currentWaypoint().runway);
@@ -2047,7 +2042,6 @@ var Aircraft=Fiber.extend(function() {
           this.updateStrip();
         }
       }
-
       if(this.mode == "takeoff") {
         var runway = airport_get().getRunway(this.fms.currentWaypoint().runway);
 
@@ -2068,6 +2062,8 @@ var Aircraft=Fiber.extend(function() {
           this.updateStrip();
         }
       }
+
+      if(this.altitude < 10000 && this.mode != "landing") this.target.speed = Math.min(this.fms.currentWaypoint().speed, 250);
     },
     updatePhysics: function() {
       if(this.isTaxiing()) return;

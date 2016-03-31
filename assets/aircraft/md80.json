@@ -1,23 +1,34 @@
 {
   "name": "McDonnel Douglas MD-81",
   "icao": "MD80",
-  "wake": "medium",
+  "engines": {
+    "number": 3,
+    "type": "J"
+  },
+  "weightclass": "H",
+  "category": {
+    "srs": 3,
+    "lahso": 7,
+    "recat": "C"
+  },
+  "ceiling": 43000,
   "rate": {
-    "turn":       1.2,
-    "climb":     1215,
+    "climb":      1215,
     "descent":    1500,
     "accelerate": 7,
     "decelerate": 5
   },
   "runway": {
-    "takeoff": 3.1,
-    "landing": 3.8
+    "takeoff": 3.115,
+    "landing": 2.323
   },
   "speed":{
     "min":     120,
-    "max":     250,
     "landing": 140,
-    "cruise":  200
+    "cruise":  473,
+    "cruiseM": 0.80,
+    "max":     550,
+    "maxM":    0.83
   },
   "capability": {
     "ils": true,
