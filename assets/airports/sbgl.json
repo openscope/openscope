@@ -8,7 +8,7 @@
   },
   "icao": "SBGL",
   "iata": "GIG",
-  "magnetic_north": 0,
+  "magnetic_north": -23,
   "ctr_radius": 115,
   "ctr_ceiling": 10000,
   "initial_alt": 5000,

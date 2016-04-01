@@ -8,7 +8,7 @@
   },
   "icao": "EDDH",
   "iata": "HAM",
-  "magnetic_north": 0,
+  "magnetic_north": 1,
   "ctr_radius": 80,
   "ctr_ceiling": 10000,
   "initial_alt": 5000,

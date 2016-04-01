@@ -9,7 +9,7 @@
   "icao": "SAEZ",
   "iata": "EZE",
   "magnetic_north": -8,
-  "ctr_radius": 80,
+  "ctr_radius": 102,
   "ctr_ceiling": 24500,
   "initial_alt": 5000,
   "position": ["S34d49m19.92", "W58d32m8.8"],

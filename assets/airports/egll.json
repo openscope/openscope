@@ -3,12 +3,12 @@
   "level": "hard",
   "radio": {
     "twr": "Heathrow Tower",
-    "app": "Heathrow Approach",
-    "dep": "Heathrow Departure"
+    "app": "Heathrow Director",
+    "dep": "Heathrow Director"
   },
   "icao": "EGLL",
   "iata": "LHR",
-  "magnetic_north": 0,
+  "magnetic_north": -1,
   "ctr_radius": 80,
   "ctr_ceiling": 10000,
   "initial_alt": 5000,
