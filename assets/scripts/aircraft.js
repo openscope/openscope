@@ -940,7 +940,7 @@ var Aircraft=Fiber.extend(function() {
       }
       var cs = airline_get(this.airline).callsign;
       if(cs == "November") cs += " " + radio_spellOut(callsign) + heavy;
-      else cs += " " + groupNumbers(callsign) + heavy;
+      else cs += " " + groupNumbers(callsign, this.airline) + heavy;
       return cs;
     },
     getClimbRate: function() {

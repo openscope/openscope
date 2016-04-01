@@ -313,26 +313,66 @@ radio_runway_names.l = "left";
 radio_runway_names.c = "center";
 radio_runway_names.r = "right";
 
-function groupNumbers(callsign) {
-  var getGrouping = function(groupable) {
-    var digit1 = groupable[0];
-    var digit2 = groupable[1];
-    if(digit1 == 0) {
-      if(digit2 == 0) return "hundred";
-      else return radio_names[digit1] + " " + radio_names[digit2];    // just digits (eg 'zero seven')
-    }
-    else if(digit1 == 1) return radio_names[groupable];         // exact number (eg 'seventeen')
-    else if(digit1 >= 2) {
-      if(digit2 == 0) return radio_names[(digit1+"0")]; // to avoid 'five twenty zero'
-      else return radio_names[(digit1+"0")] + " " + radio_names[digit2]; // combo number (eg 'fifty one')
-    }
-    else return radio_names[digit1] + " " + radio_names[digit2];
+function getGrouping(groupable) {
+  var digit1 = groupable[0];
+  var digit2 = groupable[1];
+  if(digit1 == 0) {
+    if(digit2 == 0) return "hundred";
+    else return radio_names[digit1] + " " + radio_names[digit2];    // just digits (eg 'zero seven')
   }
+  else if(digit1 == 1) return radio_names[groupable];         // exact number (eg 'seventeen')
+  else if(digit1 >= 2) {
+    if(digit2 == 0) return radio_names[(digit1+"0")]; // to avoid 'five twenty zero'
+    else return radio_names[(digit1+"0")] + " " + radio_names[digit2]; // combo number (eg 'fifty one')
+  }
+  else return radio_names[digit1] + " " + radio_names[digit2];
+}
 
-  if(!/^\d+$/.test(callsign)) { // if contains more than just numbers (eg '117KS')
-    var s = [];
-    for (var k in callsign) { s.push(radio_names[k]); } // one after another (eg 'one one seven kilo sierra')
-    return s.join(" ");
+function groupNumbers(callsign, /*optional*/ airline) {
+  if(!/^\d+$/.test(callsign)) { // GA, eg '117KS' = 'one-one-seven-kilo-sierra')
+
+    if(airline == "November") { //callsign "November"
+      var s = [];
+      for (var k in callsign) { s.push(radio_names[callsign[k]]); } // one after another (eg 'one one seven kilo sierra')
+      return s.join(" ");
+    }
+    
+    else { // airline grouped, eg '3110A' = 'thirty-one-ten-alpha'
+      //divide callsign into alpha/numeric sections
+      var sections = [], cs = callsign, thisIsDigit;
+      var index = cs.length - 1;
+      var lastWasDigit = !isNaN(parseInt(cs[index]));
+      index--;
+      while(index>=0) {
+        thisIsDigit = !isNaN(parseInt(cs[index]));
+        while(thisIsDigit == lastWasDigit) {
+          index--;
+          thisIsDigit = !isNaN(parseInt(cs[index]));
+          if(index<0) break;
+        }
+        sections.unshift(cs.substr(index+1));
+        cs = cs.substr(0, index+1);
+        lastWasDigit = thisIsDigit;
+      }
+
+      //build words, section by section
+      var s = [];
+      for (var i in sections) {
+        if(isNaN(parseInt(sections[i])))  // alpha section
+          s.push(radio_spellOut(sections[i]));
+        else {  // numeric section
+          switch (sections[i].length) {
+          case 0: s.push(sections[i]); break;
+          case 1: s.push(radio_names[sections[i]]); break;
+          case 2: s.push(getGrouping(sections[i])); break;
+          case 3: s.push(radio_names[sections[i][0]] + " " + getGrouping(sections[i].substr(1))); break;
+          case 4: s.push(getGrouping(sections[i].substr(0,2)) + " " + getGrouping(sections[i].substr(2))); break;
+          default: s.push(radio_spellOut(sections[i]));
+          }
+        }
+      }
+      return s.join(" ");
+    }
   }
   else switch (callsign.length) {
     case 0: return callsign; break;
