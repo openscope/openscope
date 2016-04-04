@@ -2165,7 +2165,7 @@ var Aircraft=Fiber.extend(function() {
             crab_angle = Math.asin((wind.speed * Math.sin(offset)) /
                                    this.speed);
           }
-          vector = vsum(vscale(vturn(wind.angle + Math.PI),
+          vector = vadd(vscale(vturn(wind.angle + Math.PI),
                                wind.speed * 0.000514444 * game_delta()),
                         vscale(vturn(angle + crab_angle),
                                scaleSpeed));
@@ -2173,13 +2173,13 @@ var Aircraft=Fiber.extend(function() {
         this.ds = vlen(vector);
         this.groundSpeed = this.ds / 0.000514444 / game_delta();
         this.groundTrack = vradial(vector);
-        this.position = vsum(this.position, vector);
+        this.position = vadd(this.position, vector);
       }
       else {
         this.ds = scaleSpeed;
         this.groundSpeed = this.speed;
         this.groundTrack = this.heading;
-        this.position = vsum(this.position, vscale([sin(angle), cos(angle)], scaleSpeed));
+        this.position = vadd(this.position, vscale([sin(angle), cos(angle)], scaleSpeed));
       }
 
       this.distance = vlen(this.position);

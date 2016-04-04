@@ -654,7 +654,7 @@ var Runway=Fiber.extend(function(base) {
     getPosition: function(end) {
       end = this.getEnd(end);
 
-      return vsum(this.position,
+      return vadd(this.position,
           vscale(
             vturn(this.angle),
             (this.length / 2) * (end == 0 ? -1 : 1)
@@ -668,7 +668,7 @@ var Runway=Fiber.extend(function(base) {
       } else if(data.end) {
         var coord_start = new Position(data.end[0], data.reference_position, data.magnetic_north);
         var coord_end   = new Position(data.end[1], data.reference_position, data.magnetic_north);
-        this.position   = vscale(vsum(coord_start.position, coord_end.position), 0.5);
+        this.position   = vscale(vadd(coord_start.position, coord_end.position), 0.5);
         this.length     = vlen(vsub(coord_start, coord_end));
         this.angle      = vradial(vsub(coord_end.position, coord_start.position));
       }
@@ -806,7 +806,7 @@ var Airport=Fiber.extend(function() {
             coords_min = [Math.min(v[0], coords_min[0]), Math.min(v[1], coords_min[1])];
           };
 
-          obj.center = vscale(vsum(coords_max, coords_min), 0.5);
+          obj.center = vscale(vadd(coords_max, coords_min), 0.5);
           self.restricted_areas.push(obj);
         }
       }
