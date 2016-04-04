@@ -570,7 +570,7 @@ var Runway=Fiber.extend(function(base) {
       this.delay          = 2;
       this.gps            = [];
       this.ils            = { enabled : true,
-                              loc_maxDist : km(18),
+                              loc_maxDist : km(25),
                               gs_maxHeight : 9999,
                               gs_gradient : radians(3)
                             };
@@ -654,6 +654,9 @@ var Airport=Fiber.extend(function() {
       this.real_fixes = {};
       this.sids     = {};
       this.restricted_areas = [];
+      this.metadata = {
+        rwy: {}
+      };
 
       this.timeout  = {
         runway: null,
@@ -770,6 +773,35 @@ var Airport=Fiber.extend(function() {
       if(data.arrivals) {
         for(var i=0;i<data.arrivals.length;i++) {
           this.arrivals.push(zlsa.atc.ArrivalFactory(this, data.arrivals[i]));
+        }
+      }
+
+
+      // ***** Generate Airport Metadata *****
+
+      // Runway Metadata
+      for(var rwy1 in this.runways) {
+        for(var rwy1end in this.runways[rwy1]) {
+          // setup primary runway object
+          this.metadata.rwy[this.runways[rwy1][rwy1end].name] = {};
+
+          for(var rwy2 in this.runways) {
+            if(rwy1 == rwy2) continue;
+            for(var rwy2end in this.runways[rwy2]) {
+              //setup secondary runway subobject
+              var r1  = this.runways[rwy1][rwy1end];
+              var r2  = this.runways[rwy2][rwy2end];
+              this.metadata.rwy[r1.name][r2.name] = {};
+
+              // generate this runway pair's relationship data
+              this.metadata.rwy[r1.name][r2.name].lateral_dist =
+                distance2d(r1.position, r2.position);
+              this.metadata.rwy[r1.name][r2.name].converging =
+                raysIntersect(r1.position, r1.angle, r2.position, r2.angle);
+              this.metadata.rwy[r1.name][r2.name].parallel =
+                ( abs(angle_offset(r1.angle,r2.angle)) < radians(10) );
+            }
+          }
         }
       }
     },
