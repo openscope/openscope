@@ -468,7 +468,7 @@
         "27L": ["_LONR257D7"],
         "27R": ["_LONR257D7"]
       },
-      "body": [["WOD", "A4000+"], "CPT"],
+      "body": [["WOD", "A40+"], "CPT"],
       "draw": [["_LONR257D7", "WOD", "CPT"]]
     },
     "BPK": {
@@ -476,8 +476,8 @@
       "name": "Brookmans Park",
       "suffix": {"09L":"5K", "09R":"6J", "27L":"7G", "27R":"7F"},
       "rwy": {
-        "09L": [["_LONR072D10", "A3000+"], "BAPAG"],
-        "09R": [["_LONR072D10", "A3000+"], "BAPAG"],
+        "09L": [["_LONR072D10", "A30+"], "BAPAG"],
+        "09R": [["_LONR072D10", "A30+"], "BAPAG"],
         "27L": ["BUR", "CHT"],
         "27R": ["BUR", "CHT"]
       },
@@ -506,7 +506,7 @@
         "09L": [],
         "09R": []
       },
-      "body": [["_LONR072D10", "A3000+"], "BUZAD"],
+      "body": [["_LONR072D10", "A30+"], "BUZAD"],
       "transitions": {
         "DTY": ["DTY"]
       },
@@ -519,8 +519,8 @@
       "rwy": {
         "09L": ["_DETR284D34"],
         "09R": ["_DETR284D34"],
-        "27L": [["EPM", "A4000+"]],
-        "27R": [["EPM", "A4000+"]]
+        "27L": [["EPM", "A40+"]],
+        "27R": [["EPM", "A40+"]]
       },
       "body": ["DET"],
       "draw": [["_DETR284D34", "DET"], ["EPM", "DET"]]
@@ -533,7 +533,7 @@
         "27L": [],
         "27R": []
       },
-      "body": ["_LONR257D7", ["WOD", "A4000+"], "GOGSI"],
+      "body": ["_LONR257D7", ["WOD", "A40+"], "GOGSI"],
       "transitions": {
         "SAM": ["SAM"]
       },
@@ -547,7 +547,7 @@
         "09L": [],
         "09R": []
       },
-      "body": ["_LONR126D5", ["OCK", "A3000+"], "GASGU"],
+      "body": ["_LONR126D5", ["OCK", "A30+"], "GASGU"],
       "transitions": {
         "SAM": ["SAM"]
       },
@@ -563,7 +563,7 @@
         "27L": [],
         "27R": []
       },
-      "body": [["EPM", "A5000"], "MAY"],
+      "body": [["EPM", "A50"], "MAY"],
       "draw": [["_LONR126D5", "EPM"], ["EPM", "MAY"]]
     },
     "MID": {
@@ -585,27 +585,27 @@
       ["aal",  17],
       ["aca",  18],
       ["afl",   7],
-      ["aua",  5],
+      ["aua",   5],
       ["ava",   1],
-      ["baw",      335],
+      ["baw", 335],
       ["ces",   2],
-      ["cpa",        9],
+      ["cpa",   9],
       ["csn",   1],
       ["dal",   9],
-      ["dlh", 30],
-      ["ein", 10],
-      ["gwi",        8],
-      ["klm",  8],
+      ["dlh",  30],
+      ["ein",  10],
+      ["gwi",   8],
+      ["klm",   8],
       ["amx",   2],
       ["cca",   2],
-      ["sas", 26],
-      ["uae",        5],
+      ["sas",  26],
+      ["uae",   5],
       ["ual",  17],
       ["tam",   3],
-      ["thy",  6],
-      ["vir",       50],
-      ["aza",  5],
-      ["afr",  6]
+      ["thy",   6],
+      ["vir",  50],
+      ["aza",   5],
+      ["afr",   6]
     ],
     "destinations": [
       "CPT", "BPK", "WOBUN", "BUZAD", "DET", "GOGSI", "GASGU", "MAY", "MID"
