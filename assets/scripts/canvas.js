@@ -107,47 +107,34 @@ function canvas_draw_runway(cc, runway, mode) {
   var length2 = round(km_to_px(runway.length / 2));
   var angle   = runway.angle;
 
-  cc.translate(round(km_to_px(runway.position[0])) + prop.canvas.panX, -round(km_to_px(runway.position[1])) + prop.canvas.panY);
+  cc.translate(round(km_to_px(runway.midfield[0])) + prop.canvas.panX, 
+              -round(km_to_px(runway.midfield[1])) + prop.canvas.panY);
   cc.rotate(angle);
 
-  if(!mode) {
+  if(!mode) { // mode 0 for ext. ctrlines, mode 1 for runway body
     cc.strokeStyle = "#899";
     cc.lineWidth = 2.8;
     cc.beginPath();
     cc.moveTo(0, -length2);
     cc.lineTo(0,  length2);
     cc.stroke();
-  } else {
+  } 
+  else {
     cc.strokeStyle = "#465";
+    cc.lineWidth = 1;
 
-    var ils = null;
-
-    if(runway.ils[1] && runway.ils_distance[1]) {
-      ils = runway.ils_distance[1];
-      cc.lineWidth = 3;
-    } else {
-      ils = 40;
-      cc.lineWidth = 0.8;
-    }
+    if(runway.ils.enabled) var ils = runway.ils.loc_maxDist;
+    else var ils = 40;
 
     cc.beginPath();
     cc.moveTo(0, -length2);
     cc.lineTo(0, -length2 - km_to_px(ils));
     cc.stroke();
 
-    if(runway.ils[0] && runway.ils_distance[0]) {
-      ils = runway.ils_distance[0];
-      cc.lineWidth = 3;
-    } else {
-      ils = 40;
-      cc.lineWidth = 0.8;
-    }
-
     cc.beginPath();
     cc.moveTo(0,  length2);
     cc.lineTo(0,  length2 + km_to_px(ils));
     cc.stroke();
-
   }
 }
 
@@ -167,15 +154,8 @@ function canvas_draw_runway_label(cc, runway) {
   cc.save();
   cc.translate(0,  length2 + text_height);
   cc.rotate(-angle);
-  cc.translate(round(km_to_px(runway.name_offset[0][0])), -round(km_to_px(runway.name_offset[0][1])));
-  cc.fillText(runway.name[0], 0, 0);
-  cc.restore();
-
-  cc.save();
-  cc.translate(0, -length2 - text_height);
-  cc.rotate(-angle);
-  cc.translate(round(km_to_px(runway.name_offset[1][0])), -round(km_to_px(runway.name_offset[1][1])));
-  cc.fillText(runway.name[1], 0, 0);
+  cc.translate(round(km_to_px(runway.labelPos[0])), -round(km_to_px(runway.labelPos[1])));
+  cc.fillText(runway.name, 0, 0);
   cc.restore();
 }
 
@@ -186,14 +166,16 @@ function canvas_draw_runways(cc) {
   cc.lineWidth   = 4;
   var airport=airport_get();
   var i;
+  //Extended Centerlines
   for( i=0;i<airport.runways.length;i++) {
     cc.save();
-    canvas_draw_runway(cc, airport.runways[i], true);
+    canvas_draw_runway(cc, airport.runways[i][0], true);
     cc.restore();
   }
+  // Runways
   for( i=0;i<airport.runways.length;i++) {
     cc.save();
-    canvas_draw_runway(cc, airport.runways[i], false);
+    canvas_draw_runway(cc, airport.runways[i][0], false);
     cc.restore();
   }
 }
@@ -204,7 +186,10 @@ function canvas_draw_runway_labels(cc) {
   var airport=airport_get();
   for(var i=0;i<airport.runways.length;i++) {
     cc.save();
-    canvas_draw_runway_label(cc, airport.runways[i]);
+    canvas_draw_runway_label(cc, airport.runways[i][0]);
+    cc.restore();
+    cc.save();
+    canvas_draw_runway_label(cc, airport.runways[i][1]);
     cc.restore();
   }
 }
@@ -321,7 +306,7 @@ function canvas_draw_separation_indicator(cc, aircraft) {
   "use strict";
   // Draw a trailing indicator 2.5 NM (4.6km) behind landing aircraft to help with traffic spacing
   var rwy = airport_get().getRunway(aircraft.fms.currentWaypoint().runway);
-  var angle = rwy.getAngle(aircraft.fms.currentWaypoint().runway) + Math.PI;
+  var angle = rwy.angle + Math.PI;
   cc.strokeStyle = "rgba(224, 128, 128, 0.8)";
   cc.lineWidth = 3;
   cc.translate(km_to_px(aircraft.position[0]) + prop.canvas.panX, -km_to_px(aircraft.position[1]) + prop.canvas.panY);

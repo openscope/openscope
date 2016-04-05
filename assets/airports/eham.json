@@ -84,7 +84,7 @@
       "length": 3.500,
       "delay": [30, 10],
       "ils": [true, false],
-      "ils_distance": [28, 20]
+      "loc_maxDist": [28, 20]
     },
     {
       "name": ["09", "27"],
@@ -94,7 +94,7 @@
       "length": 3.453,
       "delay": [40, 50],
       "ils": [false, true],
-      "ils_distance": [40, 28]
+      "loc_maxDist": [40, 28]
     },
     {
       "name": ["18C","36C"],
@@ -104,7 +104,7 @@
       "length": 3.300,
       "delay": [50, 70],
       "ils": [true, true],
-      "ils_distance": [28, 28]
+      "loc_maxDist": [28, 28]
     },
     {
       "name": ["18L", "36R"],
@@ -114,7 +114,7 @@
       "length": 3.400,
       "delay": [40, 30],
       "ils": [false, true],
-      "ils_distance": [40, 28]
+      "loc_maxDist": [40, 28]
     },
     {
       "name": ["18R","36L"],
@@ -124,7 +124,7 @@
       "length": 3.3800,
       "delay": [80, 120],
       "ils": [true, false],
-      "ils_distance": [28, 20]
+      "loc_maxDist": [28, 20]
     }
   ],
   "sids": {

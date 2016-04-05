@@ -584,86 +584,38 @@ var Runway=Fiber.extend(function(base) {
 
       this.parse(options, end);
     },
-    addQueue: function(aircraft, end) {
-      end = this.getEnd(end);
-      this.waiting[end].push(aircraft);
+    addQueue: function(aircraft) {
+      this.queue.push(aircraft);
     },
-    removeQueue: function(aircraft, end, force) {
-      end = this.getEnd(end);
-      if(this.waiting[end][0] == aircraft || force) {
-        this.waiting[end].shift(aircraft);
-        if(this.waiting[end].length >= 1) {
-          this.waiting[end][0].moveForward();
+    removeQueue: function(aircraft, force) {
+      if(this.queue[0] == aircraft || force) {
+        this.queue.shift(aircraft);
+        if(this.queue.length >= 1) {
+          this.queue[0].moveForward();
         }
         return true;
       }
       return false;
     },
-    isWaiting: function(aircraft, end) {
-      end = this.getEnd(end);
-      return this.waiting[end].indexOf(aircraft);
+    isWaiting: function(aircraft) {
+      return this.queue.indexOf(aircraft);
     },
-    taxiDelay: function(aircraft, end) {
-      end = this.getEnd(end);
-      return this.delay[end] + Math.random() * 3;
+    taxiDelay: function(aircraft) {
+      return this.delay + Math.random() * 3;
     },
-    getOffset: function(position, end, length) {
-      end = this.getEnd(end);
+    getOffset: function(position, length) {
       position = [position[0], position[1]];
-
       position = vsub(position, this.position);
-
       var offset = [0, 0];
-      offset[0]  = (-cos(this.angle) * position[0]) + (sin(this.angle) * position[1]);
-      offset[1]  = ( sin(this.angle) * position[0]) + (cos(this.angle) * position[1]);
-
-      if(end == 0) {
-        offset = vscale(offset, -1);
-      }
-
-      if(length) {
-        offset[1] -= this.length / 2;
-      }
+      offset[0]  = ( cos(this.angle) * position[0]) - (sin(this.angle) * position[1]);
+      offset[1]  = (-sin(this.angle) * position[0]) - (cos(this.angle) * position[1]);
       return offset;
     },
-    getAngle: function(end) {
-      end = this.getEnd(end);
-      return this.angle + (end == 1 ? Math.PI : 0);
-    },
-    getILS: function(end) {
-      end = this.getEnd(end);
-      return this.ils[end];
-    },
-    getILSDistance: function(end) {
-      end = this.getEnd(end);
-      return this.ils.loc_maxDist[end];
-    },
-    getGlideslopeAltitude: function(distance, end, glideslope) {
-      end = this.getEnd(end);
-      if(!glideslope) glideslope = this.glideslope[end];
-      glideslope = abs(glideslope);
+    getGlideslopeAltitude: function(distance, /*optional*/ gs_gradient) {
+      if(!gs_gradient) gs_gradient = this.ils.gs_gradient;
       distance = Math.max(0, distance);
-      var rise = tan(glideslope);
+      var rise = tan(abs(gs_gradient));
       return rise * distance * 3280;
-    },
-    getEnd: function(name) {
-      if(typeof name == typeof 0) return name;
-      if(typeof name == typeof "") {
-        if(this.name[0].toLowerCase() == name.toLowerCase()) return 0;
-        if(this.name[1].toLowerCase() == name.toLowerCase()) return 1;
-      }
-      return 0;
-    },
-    getPosition: function(end) {
-      // end = this.getEnd(end);
-
-      // return vadd(this.position,
-      //     vscale(
-      //       vturn(this.angle),
-      //       (this.length / 2) * (end == 0 ? -1 : 1)
-      //     )
-      //   );
-      return this.position;
     },
     parse: function(data, end) {
       if(data.delay) this.delay = data.delay[end];
@@ -683,7 +635,6 @@ var Runway=Fiber.extend(function(base) {
       if(data.name_offset) this.labelPos = data.name_offset[end];
       if(data.name) this.name = data.name[end];
       if(data.sepFromAdjacent) this.sepFromAdjacent = km(data.sepFromAdjacent[end]);
-      this.init = true;
     },
   };
 });
@@ -855,8 +806,8 @@ var Airport=Fiber.extend(function() {
       }
       for(var i=0;i<this.runways.length;i++) {
         var runway = this.runways[i];
-        headwind[runway[0].name] =  Math.cos(runway.angle - ra(wind.angle)) * wind.speed;
-        headwind[runway[1].name] = -Math.cos(runway.angle - ra(wind.angle)) * wind.speed;
+        headwind[runway[0].name] = Math.cos(runway[0].angle - ra(wind.angle)) * wind.speed;
+        headwind[runway[1].name] = Math.cos(runway[1].angle - ra(wind.angle)) * wind.speed;
       }
       var best_runway = "";
       var best_runway_headwind = -Infinity;

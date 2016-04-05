@@ -112,12 +112,21 @@ zlsa.atc.Conflict = Fiber.extend(function() {
         // If either are in runway queue, remove them from it
         for(var i in airport_get().runways) {
           var rwy = airport_get().runways[i];
-          var queue = rwy.waiting[0];
+          // Primary End of Runway
+          var queue = rwy[0].queue;
           for(var j in queue) {
             if(queue[j] == this.aircraft[0])
-              rwy.removeQueue(this.aircraft[0], rwy, true);
+              rwy[0].removeQueue(this.aircraft[0], rwy[0], true);
             if(queue[j] == this.aircraft[1])
-              rwy.removeQueue(this.aircraft[1], rwy, true);
+              rwy[0].removeQueue(this.aircraft[1], rwy[0], true);
+          }
+          // Secondary End of Runway
+          queue = rwy[1].queue
+          for(var j in queue) {
+            if(queue[j] == this.aircraft[0])
+              rwy[1].removeQueue(this.aircraft[0], rwy[1], true);
+            if(queue[j] == this.aircraft[1])
+              rwy[1].removeQueue(this.aircraft[1], rwy[1], true);
           }
         }
       }
@@ -1588,7 +1597,7 @@ var Aircraft=Fiber.extend(function() {
         this.takeoffTime = game_time();
 
         if(this.fms.currentWaypoint().heading == null)
-          this.fms.setCurrent({heading: runway.getAngle(this.fms.currentWaypoint().runway)});
+          this.fms.setCurrent({heading: runway.angle});
         //
         var wind = airport_get().getWind();
         var wind_dir = round(degrees(wind.angle));
@@ -1599,7 +1608,7 @@ var Aircraft=Fiber.extend(function() {
         return ["ok", readback];
       } else {
         var waiting = runway.isWaiting(this, this.fms.currentWaypoint().runway);
-        return ["fail", "number "+waiting+" behind "+runway.waiting[runway.getEnd(this.fms.currentWaypoint().runway)][waiting-1].getRadioCallsign(), ""];
+        return ["fail", "number "+waiting+" behind "+runway.queue[runway.getEnd(this.fms.currentWaypoint().runway)][waiting-1].getRadioCallsign(), ""];
       }
 
     },
@@ -1688,7 +1697,7 @@ var Aircraft=Fiber.extend(function() {
         if(this.mode == "landing") {
           this.fms.setCurrent({
             altitude: Math.max(2000, round((this.altitude / 1000)) * 1000),
-            heading: runway.getAngle(this.fms.currentWaypoint().runway),
+            heading: runway.angle,
           });
         }
 
@@ -1811,7 +1820,7 @@ var Aircraft=Fiber.extend(function() {
       var wind    = airport.wind;
       var runway  = airport.getRunway(this.fms.currentWaypoint().runway);
 
-      var angle   =  abs(angle_offset(runway.getAngle(this.fms.currentWaypoint().runway), wind.angle));
+      var angle   =  abs(angle_offset(runway.angle, wind.angle));
 
       return {
         cross: Math.sin(angle) * wind.speed,
@@ -1898,24 +1907,22 @@ var Aircraft=Fiber.extend(function() {
       if(this.fms.currentWaypoint().navmode == "rwy") {
         airport = airport_get();
         runway  = airport.getRunway(this.fms.currentWaypoint().runway);
-        offset = runway.getOffset(this.position, this.fms.currentWaypoint().runway, true);
+        offset = runway.getOffset(this.position, this.fms.currentWaypoint().runway);
         offset_angle = vradial(offset);
         this.offset_angle = offset_angle;
         this.approachOffset = abs(offset[0]);
         this.approachDistance = offset[1];
-        angle = runway.getAngle(this.fms.currentWaypoint().runway);
+        angle = runway.angle;
         if (angle > (2*Math.PI)) angle -= 2*Math.PI;
 
-        var landing_zone_offset = crange(1, runway.length, 5, 0.1, 0.5);
-
-        glideslope_altitude = clamp(0, runway.getGlideslopeAltitude(offset[1] + landing_zone_offset, this.fms.currentWaypoint().runway), this.altitude);
-        glideslope_window   = abs(runway.getGlideslopeAltitude(offset[1] + landing_zone_offset, this.fms.currentWaypoint().runway, radians(1)));
+        glideslope_altitude = clamp(0, runway.getGlideslopeAltitude(offset[1]), this.altitude);
+        glideslope_window   = abs(runway.getGlideslopeAltitude(offset[1], radians(1)));
 
         if(this.mode == "landing")
           this.target.altitude = glideslope_altitude;
 
-        var ils = runway.getILSDistance(this.fms.currentWaypoint().runway);
-        if(!runway.getILS(this.fms.currentWaypoint().runway) || !ils) ils = 40;
+        var ils = runway.ils.loc_maxDist;
+        if(!runway.ils.enabled || !ils) ils = 40;
 
         // lock  ILS if at the right angle and altitude
         if ((abs(this.altitude - glideslope_altitude) < glideslope_window)
@@ -2027,11 +2034,11 @@ var Aircraft=Fiber.extend(function() {
       }
       if(this.mode == "waiting") {
         var runway = airport_get().getRunway(this.fms.currentWaypoint().runway);
-        var position = runway.getPosition(this.fms.currentWaypoint().runway);
+        var position = runway.position;
 
         this.position[0] = position[0];
         this.position[1] = position[1];
-        this.heading     = runway.getAngle(this.fms.currentWaypoint().runway);
+        this.heading     = runway.angle;
 
         if (!this.projected &&
             (runway.isWaiting(this, this.fms.currentWaypoint().runway) == 0) &&
@@ -2045,7 +2052,7 @@ var Aircraft=Fiber.extend(function() {
       if(this.mode == "takeoff") {
         var runway = airport_get().getRunway(this.fms.currentWaypoint().runway);
 
-        if(runway) this.target.heading = runway.getAngle(this.fms.currentWaypoint().runway);
+        if(runway) this.target.heading = runway.angle;
 
         if(this.speed < this.model.speed.min) {
           this.target.altitude = 0;
@@ -2190,7 +2197,6 @@ var Aircraft=Fiber.extend(function() {
                     this.altitude <= airport_get().ctr_ceiling);
       if (inside != this.inside_ctr)
         this.crossBoundary(inside);
-
     },
     updateWarning: function() {
       // Ignore other aircraft while taxiing
@@ -2368,7 +2374,6 @@ var Aircraft=Fiber.extend(function() {
     },
 
     updateAuto: function() {
-
     },
 
     update: function() {

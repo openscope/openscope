@@ -457,6 +457,7 @@ function vnorm(v,length) {
 
 /**
  ** Create a 2D vector
+ ** Pass a heading (rad), and this will return the corresponding unit vector
  */
 function vectorize_2d(direction) {
   return [ Math.sin(direction), Math.cos(direction) ];
@@ -573,13 +574,13 @@ function vturn(radians, v) {
 
 /**
  ** Determines if and where two runways will intersect.
- ** Note: Pass ONLY the runway identifier (eg '28r')
+ ** Note: Please pass ONLY the runway identifier (eg '28r')
  */
 function runwaysIntersect(rwy1_name, rwy2_name) {
   return raysIntersect(
-    airport_get().getRunway(rwy1_name).getPosition(rwy1_name),
+    airport_get().getRunway(rwy1_name).position,
     airport_get().getRunway(rwy1_name).angle,
-    airport_get().getRunway(rwy2_name).getPosition(rwy1_name),
+    airport_get().getRunway(rwy2_name).position,
     airport_get().getRunway(rwy2_name).angle,
     9.9 ); // consider "parallel" if rwy hdgs differ by maximum of 9.9 degrees
 }
