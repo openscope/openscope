@@ -33,21 +33,18 @@ airport code, such as `ksfo` or `kmsp`.
     "speed": 3  // the speed, in knots, of the wind
   },
   "fixes": {
-    "FIXNAME", [0, 0] // the position, in km, of the fix
+    "FIXNAME", ["lat", "lon"] // the position, in GPS coordinates, of the fix
   },
   "runways": [
     {
       "name":        ["36", "18"],     // the name of each end of the runway
       "name_offset": [[0, 0], [0, 0]], // the offset, in km, of the runway text when drawn on the map
-      "position":    ["lat", "lon"],   // the position of the center of the runway
       "end":         [                 // the ends of the runway
                        ["lat", "lon"],
                        ["lat", "lon"]
                      ],
-      "angle":       0,                // the heading of the first end of the runway ("36" in this case)
-      "length":      3,                // the length of the runway, in km
       "delay":       [2, 2],           // the number of seconds it takes to taxi to the end of the runway
-      "lateral_separation": 3000,      // Distance in feet that another aircraft can come while on parallel approach paths, a violation will occur at 85% of this value
+      "sepFromAdjacent": [2.5, 2.5],   // Distance in nautical miles that another aircraft can come while on parallel approach paths, a violation will occur at 85% of this value
       "ils":         [true, false]     // not used yet; indicates whether or not that end of the runway has ILS
     }
   ],
@@ -113,6 +110,12 @@ format:
     ["N or S followed by a latitude", "W or E followed by a longitude", "optional altitude ending in 'ft' or 'm'"]
 where latitude and longitude are numbers that follow this format:
     <degrees>[d|°][<minutes>m[<seconds>s]]
+
+Examples of acceptable positions:
+  [  40.94684722   ,  -76.61727778   ], // decimal degrees
+  [ "N40.94684722" , "W76.61727778"  ], // decimal degrees
+  [  "N40d56.811"  ,  "W076d37.037   ], // degrees, decimal minutes
+  [ "N40d56m48.65" , "W076d37m02.20" ]  // degrees, minutes, decimal seconds
 
 If you use a `["lat", "lon"]` combination for any `position`, you
 _must_ set the `position` of the airport as well; if you use `end`,
