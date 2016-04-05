@@ -974,9 +974,6 @@ function airport_init_pre() {
 function airport_init() {
   // Add your airports here
 
-  // DEBUG AIRPORTS
-  airport_load("kdbg");
-
   // K*
   airport_load("ksfo");
   airport_load("kmsp");
