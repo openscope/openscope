@@ -74,8 +74,8 @@
       "name": "Agini",
       "suffix": {"24":"2B", "06":"2A"},
       "rwy": {
-        "24": [["BEVES", "A1800+"], ["DISUR", "A3300+"], "GORTO", "AGINI"],
-        "06": [["OL", "A2000+"], "AGINI"]
+        "24": [["BEVES", "A18+"], ["DISUR", "A33+"], "GORTO", "AGINI"],
+        "06": [["OL", "A20+"], "AGINI"]
       },
       "draw": [["BEVES", "DISUR", "GORTO", "AGINI"], ["OL", "AGINI"]]
     },
@@ -84,8 +84,8 @@
       "name": "Momin",
       "suffix": {"24":"2B", "06":"2A"},
       "rwy": {
-        "24": [["BEVES", "A1800+"], ["DISUR", "A3300+"], "MOMIN"],
-        "06": [["OL", "A2000+"], ["NEPOG", "A3400+"], "MOMIN"]
+        "24": [["BEVES", "A18+"], ["DISUR", "A33+"], "MOMIN"],
+        "06": [["OL", "A20+"], ["NEPOG", "A34+"], "MOMIN"]
       },
       "draw": [["DISUR", "MOMIN"], ["OL", "NEPOG", "MOMIN"]]
     },
@@ -94,8 +94,8 @@
       "name": "Erabi",
       "suffix": {"24":"2B", "06":"2A"},
       "rwy": {
-        "24": [["BEVES", "A1800+"], ["DISUR", "A3300+"], "ERABI"],
-        "06": [["OL", "A2000+"], ["NEPOG", "A3400+"], "ERABI"]
+        "24": [["BEVES", "A18+"], ["DISUR", "A33+"], "ERABI"],
+        "06": [["OL", "A20+"], ["NEPOG", "A34+"], "ERABI"]
       },
       "draw": [["DISUR", "ERABI"], ["NEPOG", "ERABI"]]
     },
@@ -104,8 +104,8 @@
       "name": "Unbeg",
       "suffix": {"24":"2B", "06":"2A"},
       "rwy": {
-        "24": [["BEVES", "A1800+"], "UNBEG"],
-        "06": [["OL", "A2000+"], ["NEPOG", "A3400+"], "GULTU", "UNBEG"]
+        "24": [["BEVES", "A18+"], "UNBEG"],
+        "06": [["OL", "A20+"], ["NEPOG", "A34+"], "GULTU", "UNBEG"]
       },
       "draw": [["BEVES", "UNBEG"], ["NEPOG", "GULTU", "UNBEG"]]
     },
@@ -114,7 +114,7 @@
       "name": "Lupor",
       "suffix": {"24":"2B"},
       "rwy": {
-        "24": [["BEVES", "A1800+"], "LUPOR"]
+        "24": [["BEVES", "A18+"], "LUPOR"]
       },
       "draw": [["BEVES", "LUPOR"]]
     },
@@ -123,7 +123,7 @@
       "name": "Bunon",
       "suffix": {"24":"2B"},
       "rwy": {
-        "24": [["BEVES", "A1800+"], "BUNON"]
+        "24": [["BEVES", "A18+"], "BUNON"]
       },
       "draw": [["BEVES", "BUNON"]]
     },
@@ -132,8 +132,8 @@
       "name": "Kurum",
       "suffix": {"24":"2B", "06":"2A"},
       "rwy": {
-        "24": [["BEVES", "A1800+"], ["ADARU", "A3300+"], "KURUM"],
-        "06": [["OL", "A2000+"], ["GATLO", "A3400+"], "KURUM"]
+        "24": [["BEVES", "A18+"], ["ADARU", "A33+"], "KURUM"],
+        "06": [["OL", "A20+"], ["GATLO", "A34+"], "KURUM"]
       },
       "draw": [["BEVES", "ADARU", "KURUM"], ["OL", "GATLO", "KURUM"]]
     },
@@ -142,8 +142,8 @@
       "name": "Lunig",
       "suffix": {"24":"2B", "06":"2A"},
       "rwy": {
-        "24": [["BEVES", "A1800+"], ["ADARU", "A3300+"], "LUNIG"],
-        "06": [["OL", "A2000+"], ["GATLO", "A3400+"], "LUNIG"]
+        "24": [["BEVES", "A18+"], ["ADARU", "A33+"], "LUNIG"],
+        "06": [["OL", "A20+"], ["GATLO", "A34+"], "LUNIG"]
       },
       "draw": [["ADARU", "LUNIG"], ["GATLO", "LUNIG"]]
     },
@@ -152,8 +152,8 @@
       "name": "Abagu",
       "suffix": {"24":"2B", "06":"2A"},
       "rwy": {
-        "24": [["BEVES", "A1800+"], ["ADARU", "A3300+"], "ABAGU"],
-        "06": [["OL", "A2000+"], "ABAGU"]
+        "24": [["BEVES", "A18+"], ["ADARU", "A33+"], "ABAGU"],
+        "06": [["OL", "A20+"], "ABAGU"]
       },
       "draw": [["ADARU", "ABAGU"], ["OL", "ABAGU"]]
     },
@@ -162,7 +162,7 @@
       "name": "Tomto",
       "suffix": {"06":"2A"},
       "rwy": {
-        "06": [["OL", "A2000+"], "TOMTO"]
+        "06": [["OL", "A20+"], "TOMTO"]
       },
       "draw": [["OL", "TOMTO"]]
     },
@@ -171,7 +171,7 @@
       "name": "DIGAN",
       "suffix": {"06":"2A"},
       "rwy": {
-        "06": [["OL", "A2000+"], "DIGAN"]
+        "06": [["OL", "A20+"], "DIGAN"]
       },
       "draw": [["OL", "DIGAN"]]
     }
