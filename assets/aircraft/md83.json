@@ -1,22 +1,31 @@
 {
   "name": "McDonnel Douglas MD-83",
   "icao": "MD83",
-  "wake": "medium",
+  "engines": {
+    "number": 2,
+    "type": "J"
+  },
+    "weightclass": "L",
+  "category": {
+    "srs": 3,
+    "lahso": 9,
+    "recat": "D"
+  },
   "rate": {
     "turn":       1.2,
-    "climb":     1215,
-    "descent":    1500,
+    "ascent":     1300,
+    "descent":    2000,
     "accelerate": 7,
-    "decelerate": 5
+    "decelerate": 3
   },
   "runway": {
-    "takeoff": 3.1,
-    "landing": 3.8
+    "takeoff": 1.8,
+    "landing": 2.3
   },
   "speed":{
-    "min":     120,
+    "min":     110,
     "max":     250,
-    "landing": 140,
+    "landing": 125,
     "cruise":  200
   },
   "capability": {
