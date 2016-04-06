@@ -1,15 +1,15 @@
-{
+ {
   "name": "Hamburg Airport",
   "level": "easy",
   "radio": {
     "twr": "Hamburg Tower",
-    "app": "Hamburg Approach",
-    "dep": "Hamburg Departure"
+    "app": "Hamburg Director",
+    "dep": "Bremen Radar"
   },
   "icao": "EDDH",
   "iata": "HAM",
   "magnetic_north": 1,
-  "ctr_radius": 80,
+  "ctr_radius": 74,
   "ctr_ceiling": 10000,
   "initial_alt": 5000,
   "position": ["N53d37m49.00", "E9d59m18.00"],
@@ -21,32 +21,54 @@
     "speed": 6
   },
   "fixes": {
-    "RIBSO": ["N53d48m46.00", "E9d20m25.00"],
-    "TOPRA": ["N53d50m00.00", "E9d32m38.00"],
-    "LBE": ["N53d39m15.00", "E9d35m42.00"],
-    "NOLGO": ["N53d23m49.00", "E10d8m18.00"],
-    "HAM": ["N53d41m8.00", "E10d12m18.00"],
+    "RIBSO": ["N53d48m46.00", "E09d20m25.00"],
+    "TOPRA": ["N53d50m00.00", "E09d32m38.00"],
+    "LBV":   ["N53d39m15.00", "E09d35m42.00"],
+    "NOLGO": ["N53d23m49.00", "E10d08m18.00"],
+    "HAM":   ["N53d41m08.00", "E10d12m18.00"],
     "BOGMU": ["N53d58m45.00", "E10d17m20.00"],
     "RARUP": ["N53d38m30.49", "E10d40m37.20"],
 
-    "EKERN": ["N54d30m35.00", "E9d51m83.00"],
-    "LUB": ["N53d56m53.00", "E10d40m15.00"],
+    "EKERN": ["N54d30m35.00", "E09d51m83.00"],
+    "LUB":   ["N53d56m53.00", "E10d40m15.00"],
     "RAMAR": ["N53d42m65.00", "E10d56m33.00"],
     "AMLUH": ["N53d25m73.00", "E10d19m35.00"],
-    "IDEKO": ["N52d59m63.00", "E9d27m3.00"],
-    "BASUM": ["N52d46m32.00", "E8d47m33.00"],
-    "WSR": ["N53d20m83.00", "E8d52m49.00"],
-    "LYE": ["N53d48m5.00", "E10d41m74.00"],
-    "ANEXI": ["N53d31m20.05", "E9d46m12.99"],
+    "IDEKO": ["N52d59m63.00", "E09d27m03.00"],
+    "BASUM": ["N52d46m32.00", "E08d47m33.00"],
+    "WSN":   ["N53d20m83.00", "E08d52m49.00"],
+    "LYE":   ["N53d48m05.00", "E10d41m74.00"],
+    "ANEXI": ["N53d31m20.05", "E09d46m12.99"],
 
-    "DH002": ["N53d33m53.58", "E9d51m21.63"],
-    "DH004": ["N53d43m47.72", "E9d54m35.20"],
+    "DH111": ["N53d34m31.74", "E09d52m32.92"],
+    "GT":    ["N53d42m51.00", "E09d55m27.00"],
+    "DH103": ["N53d53m38.43", "E10d07m15.56"],
+    "DH104": ["N53d46m33.23", "E10d02m35.21"],
+    "DH108": ["N53d30m53.30", "E09d54m40.42"],
+    "DH110": ["N53d51m01.64", "E10d19m24.84"],
+    "DH116": ["N53d25m04.00", "E09d33m07.00"],
+    "DH117": ["N53d19m09.55", "E09d20m12.09"],
+    "HOS":   ["N53d40m37.00", "E10d04m59.00"],
+    "DH150": ["N53d42m18.06", "E10d08m25.63"],
+    "DH200": ["N53d35m51.48", "E10d01m25.84"],
+    "DH208": ["N53d31m45.64", "E10d04m55.01"],
+    "DH209": ["N53d31m30.86", "E10d11m15.90"],
+    "DH212": ["N53d41m31.03", "E10d22m44.30"],
+    "DH222": ["N53d30m27.45", "E10d06m08.21"],
+    "DH202": ["N53d33m38.36", "E10d03m19.18"],
+    "DH220": ["N53d30m25.00", "E09d34m24.00"],
+    "DH217": ["N53d31m48.27", "E09d43m08.57"],
+    "DH221": ["N53d29m26.00", "E09d28m17.00"],
+    "DH103": ["N53d53m38.43", "E10d07m15.56"],
+    "DH259": ["N53d50m56.18", "E10d20m36.71"],
+
+    "DH002": ["N53d33m53.58", "E09d51m21.63"],
+    "DH004": ["N53d43m47.72", "E09d54m35.20"],
     "DH006": ["N53d41m24.58", "E10d06m38.10"],
     "DH008": ["N53d33m08.38", "E10d03m47.72"],
-    "DH020": ["N53d31m49.80", "E9d36m46.47"],
-    "DH025": ["N53d28m46.23", "E9d41m04.82"],
-    "DH040": ["N53d49m03.52", "E9d42m24.45"],
-    "DH045": ["N53d50m53.65", "E9d48m24.19"],
+    "DH020": ["N53d31m49.80", "E09d36m46.47"],
+    "DH025": ["N53d28m46.23", "E09d41m04.82"],
+    "DH040": ["N53d49m03.52", "E09d42m24.45"],
+    "DH045": ["N53d50m53.65", "E09d48m24.19"],
     "DH060": ["N53d49m35.73", "E10d12m42.12"],
     "DH065": ["N53d46m30.91", "E10d16m59.71"],
     "DH080": ["N53d24m12.52", "E10d03m56.49"],
@@ -72,74 +94,99 @@
     "EKERN": {
       "icao": "EKERN",
       "name": "Ekern",
-      "suffix": {"05":"", "23":"", "15":"", "33":""},
+      "suffix": {"05":"8C", "23":"8B", "15":"9D", "33":"8G"},
       "rwy": {
-        "05": ["DH002", "DH004", "EKERN"],
-        "23": ["DH002", "DH004", "EKERN"],
-        "15": ["DH002", "DH004", "EKERN"],
-        "33": ["DH002", "DH004", "EKERN"]
+        "05": ["HOS", "EKERN"],
+        "23": ["DH111", "GT", "DH103", "EKERN"],
+        "15": [["DH200", "A15+"], "HAM", "EKERN"],
+        "33": ["GT", "DH103", "EKERN"]
       },
-      "draw": [["DH002", "DH004", "EKERN"]]
+      "draw": [["DH111", "GT", "DH103", "EKERN"], ["HOS", "EKERN"], ["DH200", "HAM", "EKERN"], ["GT", "DH103", "EKERN"]]
     },
     "LUB": {
       "icao": "LUB",
       "name": "Lubeck",
-      "suffix": {"05":"", "23":"", "15":"", "33":""},
+      "suffix": {"05":"9C", "23":"1B", "15":"9D", "33":"9G"},
       "rwy": {
-        "05": ["DH002", "DH004", "LUB"],
-        "23": ["DH002", "DH004", "LUB"],
-        "15": ["DH002", "DH004", "LUB"],
-        "33": ["DH002", "DH004", "LUB"]
+        "05": ["HOS", "LUB"],
+        "23": ["DH111", "GT", "DH104", "LUB"],
+        "15": [["DH200", "A15+"], "HAM", "LUB"],
+        "33": ["GT", "LUB"]
       },
-      "draw": [["DH002", "DH004", "LUB"]]
+      "draw": [["DH111", "GT", "DH104", "LUB"], ["HOS", "LUB"], ["DH200", "HAM", "LUB"], ["GT", "LUB"]]
     },
     "RAMAR": {
       "icao": "RAMAR",
       "name": "Ramar",
-      "suffix": {"05":"", "23":"", "15":"", "33":""},
+      "suffix": {"05":"3C", "23":"3B", "15":"3D", "33":"3G"},
       "rwy": {
-        "05": ["DH002", "DH004", "LYE", "RAMAR"],
-        "23": ["DH002", "DH004", "LYE", "RAMAR"],
-        "15": ["DH002", "DH004", "LYE", "RAMAR"],
-        "33": ["DH002", "DH004", "LYE", "RAMAR"]
+        "05": ["HOS"],
+        "23": ["DH111", "GT", "DH104", "DH110"],
+        "15": [["DH208", "A23+"], "DH209", "DH212"],
+        "33": ["GT", "DH259"]
       },
-      "draw": [["DH002", "DH004", "LYE", "RAMAR"]]
+      "body": ["LYE, RAMAR"],
+      "draw": [["DH111", "GT", "DH104", "DH110", "LYE", "RAMAR"], ["HOS", "LYE", "RAMAR"], ["DH208", "DH209", "DH212", "LYE", "RAMAR"], ["GT", "DH259", "LYE", "RAMAR"]]
     },
     "AMLUH": {
       "icao": "AMLUH",
       "name": "Amluh",
-      "suffix": {"05":"", "23":"", "15":"", "33":""},
+      "suffix": {"05":"8C", "23":"9B", "15":"8D", "33":"8G"},
       "rwy": {
-        "05": ["DH002", "AMLUH"],
-        "23": ["DH002", "AMLUH"],
-        "15": ["DH002", "AMLUH"],
-        "33": ["DH002", "AMLUH"]
+        "05": ["HOS", "AMLUH"],
+        "23": ["DH111", "DH108", "AMLUH"],
+        "15": [["DH222", "A28+"], "AMLUH"],
+        "33": ["GT", "HAM", "AMLUH"]
       },
-      "draw": [["DH002", "AMLUH"]]
+      "draw": [["DH111", "DH108", "AMLUH"], ["HOS", "AMLUH"], ["DH222", "AMLUH"], ["GT", "HAM", "AMLUH"]]
     },
     "IDEKO": {
       "icao": "IDEKO",
       "name": "Ideko",
-      "suffix": {"05":"", "23":"", "15":"", "33":""},
+      "suffix": {"05":"5C", "23":"5B", "15":"6D", "33":"4G"},
       "rwy": {
-        "05": ["DH002", "ANEXI", "DH025", "IDEKO"],
-        "23": ["DH002", "ANEXI", "DH025", "IDEKO"],
-        "15": ["DH002", "ANEXI", "DH025", "IDEKO"],
-        "33": ["DH002", "ANEXI", "DH025", "IDEKO"]
+        "05": ["LBV", "IDEKO"],
+        "23": ["DH111", "DH116", "IDEKO"],
+        "15": [["DH202", "A20+"], "DH220", "IDEKO"],
+        "33": ["GT", "LBV", "IDEKO"]
       },
-      "draw": [["DH002", "ANEXI", "DH025", "IDEKO"]]
+      "draw": [["DH111", "DH116", "IDEKO"], ["LBV", "IDEKO"], ["DH202", "DH220", "IDEKO"], ["GT", "LBV", "IDEKO"]]
     },
-    "WSR": {
-      "icao": "WSR",
+    "WSN": {
+      "icao": "WSN",
       "name": "Weser",
-      "suffix": {"05":"", "23":"", "15":"", "33":""},
+      "suffix": {"05":"2C", "23":"1B", "15":"1D", "33":"2G"},
       "rwy": {
-        "05": ["DH002", "ANEXI", "WSR"],
-        "23": ["DH002", "ANEXI", "WSR"],
-        "15": ["DH002", "ANEXI", "WSR"],
-        "33": ["DH002", "ANEXI", "WSR"]
+        "05": ["LBV", "WSN"],
+        "23": ["DH111", "WSN"],
+        "15": [["DH202", "A20+"], "WSN"],
+        "33": ["GT", "LBV", "WSN"]
       },
-      "draw": [["DH002", "ANEXI", "WSR"]]
+      "draw": [["DH111", "WSN"], ["LBV", "WSN"], ["DH202", "WSN"], ["GT", "LBV", "WSN"]]
+    },
+    "LBV": {
+      "icao": "LBV",
+      "name": "Elbe",
+      "suffix": {"05":"1C", "23":"1B", "15":"1D", "33":"1G"},
+      "rwy": {
+        "05": ["LBV"],
+        "23": ["DH111", "LBV"],
+        "15": [["DH202", "A20+"], "DH217", "LBV"],
+        "33": ["GT", "LBV"]
+      },
+      "draw": [["DH111", "LBV"], ["LBV"], ["DH202", "DH217", "LBV"], ["GT", "LBV"]]
+    },
+    "BASUM": {
+      "icao": "BASUM",
+      "name": "Basum",
+      "suffix": {"05":"1C", "23":"3B", "15":"4D", "33":"1G"},
+      "rwy": {
+        "05": ["LBV", "BASUM"],
+        "23": ["DH111", "DH117", "BASUM"],
+        "15": [["DH202", "A20+"], "DH221", "BASUM"],
+        "33": ["GT", "LBV", "BASUM"]
+      },
+      "draw": [["DH111", "DH117", "BASUM"], ["LBV", "BASUM"], ["DH202", "DH221", "BASUM"], ["GT", "LBV", "BASUM"]]
     }
   },
   "departures": {
@@ -154,7 +201,7 @@
       ["klm", 2]
     ],
     "destinations": [
-      "EKERN", "LUB", "RAMAR", "AMLUH", "IDEKO", "WSR"
+      "EKERN", "LUB", "RAMAR", "AMLUH", "IDEKO", "WSN", "LBV", "BASUM"
     ],
     "type": "random",
     "frequency": 15
@@ -163,12 +210,12 @@
     {
       "radial": 170,
       "speed": 250,
-      "fixes": ["NOLGO", "HAM"],
+      "fixes": ["NOLGO"],
       "airlines": [
-        ["ber", 4],
-        ["gwi", 8],
-        ["ezy", 8],
-        ["dlh", 4],
+        ["ber",     4],
+        ["gwi",     8],
+        ["ezy",     8],
+        ["dlh",     4],
         ["fastga", 15]
       ],
       "type": "random",
@@ -178,14 +225,14 @@
     {
       "radial": 100,
       "speed": 250,
-      "fixes": ["RARUP", "HAM"],
+      "fixes": ["RARUP"],
       "airlines":[
         ["ber", 3],
-        ["gwi", 3],
-        ["ezy", 2],
-        ["dlh", 3],
-        ["klm", 4],
-        ["baw", 2],
+        ["gwi",     3],
+        ["ezy",     2],
+        ["dlh",     3],
+        ["klm",     4],
+        ["baw",     2],
         ["fastga", 10]
       ],
       "type": "random",
@@ -195,12 +242,12 @@
     {
       "radial": 360,
       "speed": 250,
-      "fixes": ["BOGMU", "LBE"],
+      "fixes": ["BOGMU"],
       "airlines": [
-        ["ber", 6],
-        ["gwi", 5],
-        ["ezy", 4],
-        ["dlh", 5],
+        ["ber",    6],
+        ["gwi",    5],
+        ["ezy",    4],
+        ["dlh",    5],
         ["fastga", 6]
       ],
       "type": "random",
@@ -210,7 +257,7 @@
     {
       "radial": 280,
       "speed": 250,
-      "fixes": ["RIBSO", "TOPRA", "LBE"],
+      "fixes": ["RIBSO"],
       "airlines": [
         ["ber", 3],
         ["gwi", 3],
@@ -222,7 +269,7 @@
         ["baw", 4]
       ],
       "type": "wave",
-      "frequency": 15,
+      "frequency": 10,
       "altitude": 10000
     }
   ]
