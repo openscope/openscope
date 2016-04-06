@@ -2475,6 +2475,7 @@ function aircraft_init() {
   aircraft_load("b738");
   aircraft_load("b739");
 
+  aircraft_load("b741");   // 1990' 2ªUpdate
   aircraft_load("b742");   // 1990' Update
   aircraft_load("b74s");   // 1990' Update
   aircraft_load("b744");
@@ -2513,6 +2514,9 @@ function aircraft_init() {
   aircraft_load("dc87");   // 1990' Update
   aircraft_load("md80");  // 1990' Update
   aircraft_load("dc93");   // 1990' Update
+  aircraft_load("md83");  // 1990' 2ªUpdate
+  aircraft_load("md87");  // 1990' 2ªUpdate
+  aircraft_load("md88");  // 1990' 2ªUpdate
 
  // FOKKER
 	aircraft_load("f100");

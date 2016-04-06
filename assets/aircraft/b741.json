@@ -1,6 +1,6 @@
 {
-  "name": "Boeing 747-200",
-  "icao": "B742",
+  "name": "Boeing 747-100",
+  "icao": "B741",
   "engines": {
     "number": 4,
     "type": "J"
@@ -24,11 +24,9 @@
   },
   "speed":{
     "min":     135,
-    "landing": 150,
-    "cruise":  200,
-    "cruiseM": null,
     "max":     250,
-    "maxM":    null
+    "landing": 150,
+    "cruise":  200
   },
   "capability": {
     "ils": true,

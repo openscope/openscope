@@ -182,7 +182,7 @@
       ["aal/long", 3],
       ["aca/long", 3],
       ["sas", 5],
-      ["sa-ual", 5]
+      ["ual/long", 5]
     ],
     "destinations": [
       "LANUX", "LEDVA", "ADAMA", "STEIN", "OSPEN", "SITNI"
@@ -204,7 +204,7 @@
         ["gwi", 10],
         ["sas", 5],
         ["ezy", 7],
-        ["sa-ual", 5],
+        ["ual/long", 5],
         ["aca/long", 5],
         ["aal/long", 5]
       ],

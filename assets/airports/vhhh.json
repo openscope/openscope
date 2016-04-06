@@ -370,13 +370,13 @@
       ["csn", 15],
       ["hda", 10],
       ["aca/long", 5],
-      ["sa-afr", 4],
-      ["sa-baw", 5],
-      ["sa-cca", 10],
-      ["sa-dlh", 5],
-      ["sa-kal", 3],
-      ["sa-ual", 1],
-      ["sa-uae", 1]
+      ["afr/long", 4],
+      ["baw/long", 5],
+      ["cca", 10],
+      ["dlh/long", 5],
+      ["kal/long", 3],
+      ["ual/long", 1],
+      ["uae", 1]
     ],
     "destinations": [
       "BEKOL", "LAKES", "OCEAN", "PECAN"
@@ -397,9 +397,9 @@
         ["csn", 10],
         ["hda", 10],
         ["aca/long", 5],
-        ["sa-cca", 10],
-        ["sa-ual", 3],
-        ["sa-kal", 3]
+        ["cca", 10],
+        ["ual/long", 3],
+        ["kal/long", 3]
       ],
       "type": "wave",
       "frequency": 15,
@@ -416,9 +416,9 @@
         ["csn", 10],
         ["hda", 10],
         ["aca/long", 5],
-        ["sa-cca", 10],
-        ["sa-ual", 3],
-        ["sa-kal", 3]
+        ["cca", 10],
+        ["ual/long", 3],
+        ["kal/long", 3]
       ],
       "type": "random",
       "frequency": 5,
@@ -434,11 +434,11 @@
         ["ces", 15],
         ["csn", 15],
         ["hda", 10],
-        ["sa-afr", 4],
-        ["sa-baw", 5],
-        ["sa-cca", 10],
-        ["sa-dlh", 5],
-        ["sa-uae", 1]
+        ["afr/long", 4],
+        ["baw/long", 5],
+        ["cca", 10],
+        ["dlh/long", 5],
+        ["uae", 1]
       ],
       "type": "wave",
       "frequency": 12,
