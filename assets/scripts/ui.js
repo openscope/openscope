@@ -165,14 +165,6 @@ function km_to_px(kilometers) {
   return kilometers * prop.ui.scale;
 }
 
-function km(nm) {
-  return nm * 1.852;
-}
-
-function nm(km) {
-  return km / 1.852;
-}
-
 function ui_log(message) {
   message = arguments[0];
   var warn = false;

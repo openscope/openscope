@@ -55,18 +55,15 @@ zlsa.atc.Conflict = Fiber.extend(function() {
      */
     update: function() {
       // Avoid triggering any more conflicts if the two aircraft have collided
-      if (this.collided)
-        return;
+      if (this.collided) return;
 
       var d = this.distance;
-      this.distance = vlen(vsub(this.aircraft[0].position,
-                                this.aircraft[1].position));
+      this.distance = vlen(vsub(this.aircraft[0].position, this.aircraft[1].position));
       this.distance_delta = this.distance - d;
-
       this.altitude = abs(this.aircraft[0].altitude - this.aircraft[1].altitude);
 
       // Check if the separation is now beyond the bounding box check
-      if (this.distance > 14.2) {
+      if (this.distance > 14.816) { // 14.816km = 8nm (max possible sep minmum)
         this.remove();
         return;
       }
@@ -88,6 +85,9 @@ zlsa.atc.Conflict = Fiber.extend(function() {
       this.checkProximity();
     },
 
+    /**
+     * Remove conflict for both aircraft
+     */
     remove: function() {
       this.aircraft[0].removeConflict(this.aircraft[1]);
       this.aircraft[1].removeConflict(this.aircraft[0]);
@@ -176,85 +176,86 @@ zlsa.atc.Conflict = Fiber.extend(function() {
 
       var conflict = false;
       var violation = false;
+      var a1 = this.aircraft[0], a2 = this.aircraft[1];
 
-      // Reduced horizontal separation minima during precision
-      // guided approaches while established
-      if ((this.aircraft[0].isPrecisionGuided() && this.aircraft[0].isEstablished()) &&
-          (this.aircraft[1].isPrecisionGuided() && this.aircraft[1].isEstablished()))
-      {
-        if (this.aircraft[0].fms.currentWaypoint().runway != this.aircraft[1].fms.currentWaypoint().runway)
-        {
-          var ap = airport_get();
-          var separation = Math.max(ap.getRunway(this.aircraft[0].fms.currentWaypoint().runway),
-                                    ap.getRunway(this.aircraft[1].fms.currentWaypoint().runway));
-          conflict = (this.distance < separation);
-          violation = (this.distance < (0.85 * separation)); // 3000 feet
-        }
-        else
-        {
-          conflict = (this.distance < km(2.8));   // 2.8nm
-          violation = (this.distance < km(2.5));  // 2.5nm
+
+      // Standard Basic Lateral Separation Minimum
+      var applicableLatSepMin = 5.556;  // 3.0nm
+
+
+      // Established on precision guided approaches
+      if ( (a1.isPrecisionGuided() && a2.isPrecisionGuided()) &&
+           (a1.fms.currentWaypoint().runway != a2.fms.currentWaypoint().runway)) { // both are following different instrument approaches
+        var runwayRelationship = airport_get().metadata.rwy[a1.fms.currentWaypoint().runway][a2.fms.currentWaypoint().runway];
+        if (runwayRelationship.parallel) {
+          // Determine applicable lateral separation minima for conducting
+          // parallel simultaneous dependent approaches on these runways:
+          var feetBetween = km_ft(runwayRelationship.lateral_dist);
+          if(feetBetween < 2500)  // Runways separated by <2500'
+            var applicableLatSepMin = 5.556;  // 3.0nm
+          else if(2500 <= feetBetween && feetBetween <= 3600) // 2500'-3600'
+            var applicableLatSepMin = 1.852;  // 1.0nm
+          else if(3600 <  feetBetween && feetBetween <= 4300) // 3600'-4300'
+            var applicableLatSepMin = 2.778   // 1.5nm
+          else if(4300 <  feetBetween && feetBetween <= 9000) // 4300'-9000'
+            var applicableLatSepMin = 3.704;  // 2.0nm
+          else if(feetBetween > 9000) // Runways separated by >9000'
+            var applicableLatSepMin = 5.556;  // 3.0nm
+          // Note: The above does not take into account the (more complicated)
+          // rules for dual/triple simultaneous parallel dependent approaches as
+          // outlined by FAA JO 7110.65, para 5-9-7. Users playing at any of our
+          // airports that have triple parallels may be able to "get away with"
+          // the less restrictive rules, whilst their traffic may not be 100%
+          // legal. It's just complicated and not currently worthwhile to add
+          // rules for running trips at this point... maybe later. -@erikquinn
+          // Reference: FAA JO 7110.65, section 5-9-6
         }
       }
-      // Standard separation
-      /* 7110.65, section 5-5-7-a-1:
-         (a) Aircraft are on opposite/reciprocal
-         courses and you have observed that they have passed
-         each other; or aircraft are on same or crossing
-         courses/assigned radar vectors and one aircraft has
-         crossed the projected course of the other, and the
-         angular difference between their courses/assigned
-         radar vectors is at least 15 degrees.
-      */
-      else {
-        var offset = abs(angle_offset(this.aircraft[0].groundTrack,
-                                      this.aircraft[1].groundTrack));
 
-        // Check for diverging separation based on heading difference
-        // and being close enough that it may apply.
-        if ((this.distance <= km(4)) && (offset >= radians(15)))
-        {
-          // Opposing courses simply check the distance is increasing
-          if (offset > radians(165)) {
-            if (this.distance_delta <= 0) {
-              conflict = true;
-              violation = (this.distance < km(3)); // 3nm
+
+      // Considering all of the above cases,...
+      conflict  = (this.distance < applicableLatSepMin + 1.852);  // +1.0nm
+      violation = (this.distance < applicableLatSepMin);
+
+
+      // "Passing & Diverging" Rules (the "exception" to all of the above rules)
+      if(conflict) { // test the below only if separation is currently considered insufficient
+        var hdg_difference = abs(angle_offset(a1.groundTrack, a2.groundTrack));
+        if (hdg_difference >= radians(15)) {
+          if (hdg_difference > radians(165)) {  // 'opposite' courses
+            if (this.distance_delta > 0) {  // OKAY IF the distance is increasing
+              conflict = false;
+              violation = false;
             }
           }
-          else {
+          else {  // 'same' or 'crossing' courses
             // Ray intersection from http://stackoverflow.com/a/2932601
-            var ad = vturn(this.aircraft[0].groundTrack);
-            var bd = vturn(this.aircraft[1].groundTrack);
-            var dx = this.aircraft[1].position[0] - this.aircraft[0].position[0];
-            var dy = this.aircraft[1].position[1] - this.aircraft[0].position[1];
+            var ad = vturn(a1.groundTrack);
+            var bd = vturn(a2.groundTrack);
+            var dx = a2.position[0] - a1.position[0];
+            var dy = a2.position[1] - a1.position[1];
             var det = bd[0] * ad[1] - bd[1] * ad[0];
-            // Calculate intersection distance in direction of flight
-            var u = (dy * bd[0] - dx * bd[1]) / det;
-            var v = (dy * ad[0] - dx * ad[1]) / det;
-
-            // Check if both aircraft still have to fly a positive distance
-            if ((u >= 0) && (v >= 0)) {
-              conflict = true;
-              violation = (this.distance < km(3)); // 3nm
+            var u = (dy * bd[0] - dx * bd[1]) / det;  // a1's distance from point of convergence
+            var v = (dy * ad[0] - dx * ad[1]) / det;  // a2's distance from point of convergence
+            if ((u < 0) || (v < 0)) { // check if either a/c has passed the point of convergence
+              conflict  = false;  // targets are diverging
+              violation = false;  // targets are diverging
             }
+            // Reference: FAA JO 7110.65, section 5-5-7-a-1:
+            // (a) Aircraft are on opposite/reciprocal courses and you have observed
+            // that they have passed each other; or aircraft are on same or crossing
+            // courses/assigned radar vectors and one aircraft has crossed the
+            // projected course of the other, and the angular difference between
+            // their courses/assigned radar vectors is at least 15 degrees.
           }
-        }
-        else {
-          conflict = (this.distance < km(4)); // 4nm
-          violation = (this.distance < km(3)); // 3nm
         }
       }
 
-      if (conflict)
-        this.conflicts.proximityConflict = true;
-      else
-        this.conflicts.proximityConflict = false;
-
-      if (violation)
-        this.violations.proximityViolation = true;
-      else
-        this.violations.proximityViolation = false;
-
+      // Update Conflicts
+      if (conflict) this.conflicts.proximityConflict = true;
+      else this.conflicts.proximityConflict = false;      
+      if (violation) this.violations.proximityViolation = true;
+      else this.violations.proximityViolation = false;
     }
   };
 });
@@ -1764,7 +1765,7 @@ var Aircraft=Fiber.extend(function() {
     },
 
     /**
-     * aircraft is stable on the approach centerline
+     ** Aircraft is established on FINAL APPROACH COURSE
      */
     isEstablished: function() {
       if (this.mode != "landing")
@@ -1772,9 +1773,16 @@ var Aircraft=Fiber.extend(function() {
       return (this.approachOffset <= 0.048); // 160 feet or 48 meters
     },
 
+    /**
+     ** Aircraft is on the ground (can be a departure OR arrival)
+     */
     isLanded: function() {
       if(this.altitude < 5) return true;
     },
+
+    /**
+     ** Aircraft is actively following an instrument approach
+     */
     isPrecisionGuided: function() {
       // Whether this aircraft is elegible for reduced separation
       //
@@ -2635,13 +2643,13 @@ function aircraft_update() {
         continue InnerLoop;
       }
 
-      // Fast 2D bounding box check, there are no conflicts over 10km apart
+      // Fast 2D bounding box check, there are no conflicts over 8nm apart (14.816km)
       // no violation can occur in this case.
       // Variation of:
       // http://gamedev.stackexchange.com/questions/586/what-is-the-fastest-way-to-work-out-2d-bounding-box-intersection
       var dx = Math.abs(that.position[0] - other.position[0]);
       var dy = Math.abs(that.position[1] - other.position[1]);
-      if ((dx > 10) || (dy > 10)) {
+      if ((dx > 14.816) || (dy > 14.816)) {
         continue InnerLoop;
       }
       else {

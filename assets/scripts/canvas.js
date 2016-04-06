@@ -312,8 +312,8 @@ function canvas_draw_separation_indicator(cc, aircraft) {
   cc.translate(km_to_px(aircraft.position[0]) + prop.canvas.panX, -km_to_px(aircraft.position[1]) + prop.canvas.panY);
   cc.rotate(angle);
   cc.beginPath();
-  cc.moveTo(-5, -km_to_px(4.6));
-  cc.lineTo(+5, -km_to_px(4.6));
+  cc.moveTo(-5, -km_to_px(5.556));  // 5.556km = 3.0nm
+  cc.lineTo(+5, -km_to_px(5.556));  // 5.556km = 3.0nm
   cc.stroke();
 }
 

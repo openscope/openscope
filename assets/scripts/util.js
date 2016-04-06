@@ -50,6 +50,35 @@ if (!String.prototype.hasOwnProperty("repeat")) {
 
 var sin_cache={};
 
+// ******************** UNIT CONVERSION FUNCTIONS ********************
+
+/**
+ ** nautical miles --> kilometers
+ */
+function km(nm) {
+  return nm * 1.852;
+}
+/**
+ ** kilometers --> nautical miles
+ */
+function nm(km) {
+  return km / 1.852;
+}
+/**
+ ** kilometers --> feet
+ */
+function km_ft(km) {
+  return km / 0.0003048;
+}
+/**
+ ** feet --> kilometers
+ */
+function ft_km(ft) {
+  return ft * 0.0003048;
+}
+
+// ************************ GENERAL FUNCTIONS ************************
+
 function ceil(n, factor) {
   factor = factor || 1;
   return Math.ceil(n / factor) * factor;
