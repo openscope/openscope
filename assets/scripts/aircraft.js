@@ -2451,6 +2451,7 @@ function aircraft_init() {
 
   // AIRBUS
   aircraft_load("a306");
+  aircraft_load("a310");
   aircraft_load("a318");
   aircraft_load("a319");
   aircraft_load("a320");
@@ -2509,16 +2510,18 @@ function aircraft_init() {
   aircraft_load("conc");
 
   // DOUGLAS
-  aircraft_load("md11");
   aircraft_load("dc10");
   aircraft_load("dc87");   // 1990' Update
-  aircraft_load("md80");  // 1990' Update
   aircraft_load("dc93");   // 1990' Update
+  aircraft_load("md11");
+  aircraft_load("md81");  // 1990' Update
+  aircraft_load("md82");
   aircraft_load("md83");  // 1990' 2ªUpdate
   aircraft_load("md87");  // 1990' 2ªUpdate
   aircraft_load("md88");  // 1990' 2ªUpdate
 
  // FOKKER
+  aircraft_load("f50");
 	aircraft_load("f100");
 
 

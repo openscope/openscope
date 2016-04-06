@@ -23,7 +23,7 @@ long haul fleet.
     "alpha": false
   },
   "fleets": {
-    "default": [
+    "default": [      // this MUST NOT BE EMPTY, or game will crash
       ["A319", 5],
       ["A320", 1]
     ],

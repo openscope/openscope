@@ -193,6 +193,7 @@ function airline_init() {
   airline_load("SVR");
   airline_load("SWA");
   airline_load("TYA");
+  airline_load("TSO");
   airline_load("UAE");
 
   // Cargo Airlines

@@ -1,34 +1,34 @@
 {
-  "name": "McDonnel Douglas MD-87",
-  "icao": "MD87",
+  "name": "Airbus A310-300",
+  "icao": "A310",
   "engines": {
     "number": 2,
     "type": "J"
   },
-  "weightclass": "L",
+  "weightclass": "H",
   "category": {
     "srs": 3,
     "lahso": 7,
     "recat": "D"
   },
-  "ceiling": 37000,
+  "ceiling": 41000,
   "rate": {
-    "climb":      1300,
+    "climb":      3500,
     "descent":    2000,
-    "accelerate": 7,
+    "accelerate": 4,
     "decelerate": 3
   },
   "runway": {
-    "takeoff": 1.8,
-    "landing": 2.3
+    "takeoff": 2.290,
+    "landing": 1.490
   },
   "speed":{
     "min":     110,
     "landing": 125,
-    "cruise":  473,
-    "cruiseM": 0.76,
-    "max":     500,
-    "maxM":    null
+    "cruise":  459,
+    "cruiseM": 0.80,
+    "max":     487,
+    "maxM":    0.84
   },
   "capability": {
     "ils": true,

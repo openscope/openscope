@@ -1,6 +1,6 @@
 {
-  "name": "McDonnel Douglas MD-87",
-  "icao": "MD87",
+  "name": "McDonnel Douglas MD-82",
+  "icao": "MD82",
   "engines": {
     "number": 2,
     "type": "J"
@@ -8,15 +8,15 @@
   "weightclass": "L",
   "category": {
     "srs": 3,
-    "lahso": 7,
+    "lahso": 8,
     "recat": "D"
   },
   "ceiling": 37000,
   "rate": {
-    "climb":      1300,
-    "descent":    2000,
+    "climb":      1215,
+    "descent":    1430,
     "accelerate": 7,
-    "decelerate": 3
+    "decelerate": 5
   },
   "runway": {
     "takeoff": 1.8,

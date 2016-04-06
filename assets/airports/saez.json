@@ -856,7 +856,7 @@
       "speed": 250,
       "fixes": ["PAGON", "VANAR", "ENO", "ARSOT"],
       "airlines":  [
-        ["sa-lan", 10],
+        ["lan", 10],
         ["arg", 10]
       ],
       "type": "cyclic",
@@ -882,7 +882,7 @@
       "speed": 250,
       "fixes": ["GBE", "EZE50", "ARSOT"],
       "airlines":  [
-        ["sa-lan", 10],
+        ["lan", 10],
         ["arg", 10]
       ],
       "type": "cyclic",
