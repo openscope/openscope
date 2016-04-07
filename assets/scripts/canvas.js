@@ -628,12 +628,29 @@ function canvas_draw_info(cc, aircraft) {
     var white = "rgba(255, 255, 255, " + alpha + ")";
     cc.textBaseline = "middle";
 
-    // Move to above/below aircraft's position
+    // Move to center of where the data block is to be drawn
     var ac_pos = [round(km_to_px(aircraft.position[0])) + prop.canvas.panX,
                  -round(km_to_px(aircraft.position[1])) + prop.canvas.panY];
-    if(-km_to_px(aircraft.position[1]) + prop.canvas.size.height/2 < height * 1.5)
-      cc.translate(ac_pos[0], ac_pos[1] + height2 + 12);
-    else cc.translate(ac_pos[0], ac_pos[1] -height2 - 12);
+    if(aircraft.datablockDir == -1) { // game will move FDB to the appropriate position
+      if(-km_to_px(aircraft.position[1]) + prop.canvas.size.height/2 < height * 1.5)
+        cc.translate(ac_pos[0], ac_pos[1] + height2 + 12);
+      else cc.translate(ac_pos[0], ac_pos[1] -height2 - 12);
+    }
+    else {  // user wants to specify FDB position
+      var displacements = {
+        "ctr": [0,0],
+        360  : [0, -height2 - 12],
+        45   : [width2 + 8.5, -height2 - 8.5],
+        90   : [width2 + bar_width2 + 12, 0],
+        135  : [width2 + 8.5, height2 + 8.5],
+        180  : [0, height2 + 12],
+        225  : [-width2 - 8.5, height2 + 8.5],
+        270  : [-width2 - bar_width2 - 12, 0],
+        315  : [-width2 - 8.5, -height2 - 8.5]
+      };
+      cc.translate(ac_pos[0] + displacements[aircraft.datablockDir][0],
+        ac_pos[1] + displacements[aircraft.datablockDir][1]);
+    }
 
     // Draw datablock shapes
     if(!ILS_enabled) {  // Standard Box
