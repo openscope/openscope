@@ -200,6 +200,8 @@ function mod(a, b) {
   return ((a%b)+b)%b;
 };
 
+/** Prepends zeros to front of str/num to make it the desired width
+ */
 function lpad(n, width) {
   if (n.toString().length >= width) return n.toString();
   var x = "0000000000000" + n;
@@ -312,6 +314,61 @@ var radio_runway_names = clone(radio_names);
 radio_runway_names.l = "left";
 radio_runway_names.c = "center";
 radio_runway_names.r = "right";
+
+/** Force a number to an integer with a specific # of digits
+ ** @return {string} with leading zeros to reach 'digits' places
+ ** 
+ ** If the rounded integer has more digits than requested, it will be returned
+ ** anyway, as chopping them off the end would change the value by orders of
+ ** magnitude, which is almost definitely going to be undesirable.
+ */
+function digits_integer(number, digits, /*optional*/ truncate) {
+  if(truncate) number = Math.floor(number).toString();
+  else number = Math.round(number).toString();
+  if(number.length > digits) return number;
+  else while(number.length < digits) number = "0"+number; // add leading zeros
+  return number;
+}
+
+/** Round a number to a specific # of digits after the decimal
+ ** @param {boolean} force - (optional) Forces presence of trailing zeros.
+ **        Must be set to true if you want '3' to be able to go to '3.0', or
+ **        for '32.168420' to not be squished to '32.16842'. If true, fxn will
+ **        return a string, because otherwise, js removes all trailing zeros.
+ ** @param {boolean} truncate - (optional) Selects shortening method.
+ **        to truncate: 'true', to round: 'false' (default)
+ ** @return {number} if !force
+ ** @return {string} if force
+ **
+ ** Also supports negative digits. Ex: '-2' would do 541.246 --> 500
+ */
+function digits_decimal(number, digits, /*optional */ force, truncate) {
+  var shorten = (truncate) ? Math.floor : Math.round;
+  if(!force) return shorten(number * Math.pow(10,digits)) / Math.pow(10,digits);
+  else { // check if needs extra trailing zeros
+    if(digits <= 0) return (shorten(number * Math.pow(10,digits)) / Math.pow(10,digits)).toString();
+    number = number.toString();
+    for(var i=0; i<number.length; i++) {
+      if(number[i] == '.') {
+        var trailingDigits = number.length - (i+1);
+        if(trailingDigits == digits) {
+          return number.toString();
+        }
+        else if(trailingDigits < digits)  // add trailing zeros
+          return number + Array(digits - trailingDigits+1).join("0");
+        else if(trailingDigits > digits) {
+          if(truncate) return number.substr(0,number.length-(trailingDigits - digits));
+          else {
+            var len = number.length-(trailingDigits - digits+1);
+            var part1 = number.substr(0,len);
+            var part2 = (digits==0) ? "" : shorten(parseInt(number.substr(len,2))/10).toString();
+            return part1 + part2;
+          }
+        }
+      }
+    }
+  }
+}
 
 function getGrouping(groupable) {
   var digit1 = groupable[0];
