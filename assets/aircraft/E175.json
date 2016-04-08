@@ -1,6 +1,6 @@
 {
-  "name": "Embraer 170",
-  "icao": "E170",
+  "name": "Embraer 175",
+  "icao": "E175",
   "engines": {
     "number": 2,
     "type": "J"

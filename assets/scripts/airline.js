@@ -149,15 +149,19 @@ function airline_init() {
   airline_load("EIN");
   airline_load("EZY");
   airline_load("FASTGA");
+  airline_load("FLG");
   airline_load("GWI");
+  airline_load("JBU");
   airline_load("KLC");
   airline_load("LIGHTGA");
   airline_load("NAX");
   airline_load("RYR");
   airline_load("SAS");
+  airline_load("SCX");
   airline_load("THY");
   airline_load("UAL");
   airline_load("VIR");
+  airline_load("VRD");
   
   //Europe
 	airline_load("AEA");
