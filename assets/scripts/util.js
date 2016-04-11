@@ -177,6 +177,14 @@ function radians(degrees) {
   return (degrees/360)*(Math.PI*2);
 }
 
+/** Constrains an angle to within 0 --> Math.PI*2
+ */
+function fix_angle(radians) {
+  while(radians > Math.PI*2) radians -= Math.PI*2;
+  while(radians < 0) radians += Math.PI*2;
+  return radians;
+}
+
 function choose(l) {
   return l[Math.floor(Math.random()*l.length)];
 }

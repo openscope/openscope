@@ -370,9 +370,6 @@ zlsa.atc.AircraftFlightManagementSystem = Fiber.extend(function() {
         this.fp.route.push("KDBG",airport_get().icao);
     },
 
-    parse: function(options) {
-    },
-
     /*
      Return this fms's parent aircraft */
     my_aircraft: function() {
@@ -396,6 +393,7 @@ zlsa.atc.AircraftFlightManagementSystem = Fiber.extend(function() {
         expedite: false,
         speed:    null,
         runway:   null,
+        legLength: null,
         fixRestrictions: {
           alt: null,
           spd: null
@@ -856,7 +854,6 @@ var Aircraft=Fiber.extend(function() {
         });
       }
     },
-
     cleanup: function() {
       this.html.remove();
     },
@@ -1027,8 +1024,7 @@ var Aircraft=Fiber.extend(function() {
           synonyms: ['t', 'h', 'turn']},
 
         hold: {
-          func: 'runHold',
-          synonyms: ['circle']},
+          func: 'runHold'},
 
         land: {
           func: 'runLanding',
@@ -1399,24 +1395,54 @@ var Aircraft=Fiber.extend(function() {
       return ["ok", readback];
     },
     runHold: function(data) {
-      var turn = '';
-      if("left".indexOf(data) == 0 && data.length >= 1) turn = "left";
-      else if("right".indexOf(data) == 0 && data.length >= 1) turn = "right";
-      else return ["fail", "hold direction not understood"];
+      var data = data.split(" ");
+      var inboundDir = radio_cardinalDir_names[getCardinalDirection(fix_angle(this.heading + Math.PI)).toLowerCase()];
+
+      // Set direction of turns
+      var dirTurns = "right";   // standard for holding patterns is right-turns
+      if(data.indexOf("right") != -1) data.splice(data.indexOf("right"),1);
+      if(data.indexOf("left") != -1) {
+        dirTurns = "left";
+        data.splice(data.indexOf("left"),1);
+      }
+
+      // Set leg length
+      var legLength = "1min";
+      for(var i=0; i<data.length; i++) {
+        if(data[i].includes("min")) legLength = data[i];
+        else if(data[i].includes("nm")) legLength = data[i];
+        data.splice(i,1); break;
+      }
+
+      // Set hold's base position
+      var hold_fix = null, hold_fix_location = null;
+      if(data.length > 0) { // if anything still remains...
+        for(var i=0; i<data.length; i++) {
+          var fix = airport_get().getFix(data[i]);    // attempt to find data[i] as a fix
+          if(fix) { 
+            hold_fix = fix.name;                      // if is a valid fix, set as the holding fix
+            hold_fix_location = fix.location; break;  // if is a valid fix, set as the holding fix
+          }
+        }
+      }
 
       this.fms.setCurrent({
         navmode: 'hold',
-        turn: turn,
+        name: hold_fix,
+        location: hold_fix_location,
+        turn: dirTurns,
+        legLength: legLength
       });
 
-      this.cancelFix();
       if(this.fms.currentWaypoint().navmode == "rwy")
         this.cancelLanding();
+      else if(this.fms.currentWaypoint().navmode == "fix")
+        this.cancelFix();
 
       if(this.isTakeoff())
-        return ["ok", "after departure, will circle towards the " + this.fms.currentWaypoint().turn];
+        return ["fail", "where do you want us to hold?"];
 
-      return ["ok", "circling towards the " + this.fms.currentWaypoint().turn + " at " + this.fms.currentWaypoint().altitude + " feet"];
+      return ["ok", "hold " + inboundDir + " of present position, " + dirTurns + " turns, " + legLength + " legs"];
     },
     runDirect: function(data) {
       if(data.length == 0) {
@@ -1575,7 +1601,6 @@ var Aircraft=Fiber.extend(function() {
       };
       return ["ok", readback];
     },
-    
     runTakeoff: function(data) {
       if(this.category != "departure") return ["fail", "inbound"];
 
@@ -1606,7 +1631,6 @@ var Aircraft=Fiber.extend(function() {
         var waiting = runway.isWaiting(this, this.fms.currentWaypoint().runway);
         return ["fail", "number "+waiting+" behind "+runway.queue[runway.getEnd(this.fms.currentWaypoint().runway)][waiting-1].getRadioCallsign(), ""];
       }
-
     },
     runLanding: function(data) {
       if(data[0] == "\u2B50") { //shortkey '*' in use
@@ -1665,7 +1689,6 @@ var Aircraft=Fiber.extend(function() {
       } else { //modes "apron", "takeoff", ("cruise" for some navmodes)
         return ["fail", "unable to abort"];
       }
-
     },
     runDebug: function(data) {
       if(data == "log") {
@@ -1728,7 +1751,6 @@ var Aircraft=Fiber.extend(function() {
         this.speed = 0;
         this.mode = "apron";
       }
-
     },
     complete: function(data) {
       if(this.category == "departure" && this.isLanded()) {
@@ -2375,10 +2397,8 @@ var Aircraft=Fiber.extend(function() {
         heading.addClass("hold");
       }
     },
-
     updateAuto: function() {
     },
-
     update: function() {
       if(prop.aircraft.auto.enabled) {
         this.updateAuto();
@@ -2386,11 +2406,9 @@ var Aircraft=Fiber.extend(function() {
       this.updateTarget();
       this.updatePhysics();
     },
-
     addConflict: function(conflict, other) {
       this.conflicts[other.getCallsign()] = conflict;
     },
-
     checkConflict: function(other) {
       if (this.conflicts[other.getCallsign()]) {
         this.conflicts[other.getCallsign()].update();
@@ -2398,7 +2416,6 @@ var Aircraft=Fiber.extend(function() {
       }
       return false;
     },
-
     hasAlerts: function() {
       var a = [false, false];
       var c = null;
@@ -2409,7 +2426,6 @@ var Aircraft=Fiber.extend(function() {
       }
       return a;
     },
-
     removeConflict: function(other) {
       delete this.conflicts[other.getCallsign()];
     },
