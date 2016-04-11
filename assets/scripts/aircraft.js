@@ -2505,7 +2505,6 @@ function aircraft_init() {
   aircraft_load("e110");
   aircraft_load("e120");
   aircraft_load("e170");
-  aircraft_load("e175");
   aircraft_load("e50p");
   aircraft_load("e55p");
   aircraft_load("e135");
