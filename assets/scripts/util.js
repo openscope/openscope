@@ -50,6 +50,35 @@ if (!String.prototype.hasOwnProperty("repeat")) {
 
 var sin_cache={};
 
+// ******************** UNIT CONVERSION FUNCTIONS ********************
+
+/**
+ ** nautical miles --> kilometers
+ */
+function km(nm) {
+  return nm * 1.852;
+}
+/**
+ ** kilometers --> nautical miles
+ */
+function nm(km) {
+  return km / 1.852;
+}
+/**
+ ** kilometers --> feet
+ */
+function km_ft(km) {
+  return km / 0.0003048;
+}
+/**
+ ** feet --> kilometers
+ */
+function ft_km(ft) {
+  return ft * 0.0003048;
+}
+
+// ************************ GENERAL FUNCTIONS ************************
+
 function ceil(n, factor) {
   factor = factor || 1;
   return Math.ceil(n / factor) * factor;
@@ -79,18 +108,6 @@ function tan(v) {
   return Math.tan(v);
 }
 
-function normalize(v,length) {
-  var x=v[0];
-  var y=v[1];
-  var angle=Math.atan2(x,y);
-  if(!length)
-    length=1;
-  return([
-    sin(angle)*length,
-    cos(angle)*length
-  ]);
-}
-
 function fl(n, number) {
   number = number || 1;
   return Math.floor(n / number) * number;
@@ -98,17 +115,6 @@ function fl(n, number) {
 
 function randint(l,h) {
   return(Math.floor(Math.random()*(h-l+1))+l);
-}
-
-function elements(obj) {
-  var n=0;
-  for(var i in obj)
-    n+=1;
-  return n;
-}
-
-function len(obj) {
-  return elements(obj);
 }
 
 function s(i) {
@@ -195,7 +201,6 @@ function choose_weight(l) {
   return(null);
 }
 
-
 function mod(a, b) {
   return ((a%b)+b)%b;
 };
@@ -221,12 +226,6 @@ function angle_offset(a, b) {
   if(invert) offset *= -1;
   offset = radians(offset);
   return offset;
-}
-
-function average() {
-  var sum = 0;
-  for(var i=0;i<arguments.length;i++) sum += arguments[i];
-  return sum / arguments.length;
 }
 
 function heading_to_string(heading) {
@@ -308,10 +307,9 @@ var radio_cardinalDir_names = {
 };
 
 var radio_runway_names = clone(radio_names);
-
-radio_runway_names.l = "left";
-radio_runway_names.c = "center";
-radio_runway_names.r = "right";
+    radio_runway_names.l = "left";
+    radio_runway_names.c = "center";
+    radio_runway_names.r = "right";
 
 function getGrouping(groupable) {
   var digit1 = groupable[0];
@@ -465,41 +463,184 @@ function random(low, high) {
   return (low + (Math.random() * (high - low)));
 }
 
+// ************************ VECTOR FUNCTIONS ************************
+// For more info, see http://threejs.org/docs/#Reference/Math/Vector3
+// Remember: [x,y] convention is used, and doesn't match [lat,lon]
+
+/**
+ ** Normalize a 2D vector
+ ** eg scaling elements such that net length is 1
+ ** Turns vector 'v' into a 'unit vector'
+ */
+function vnorm(v,length) {
+  var x=v[0];
+  var y=v[1];
+  var angle=Math.atan2(x,y);
+  if(!length)
+    length=1;
+  return([
+    sin(angle)*length,
+    cos(angle)*length
+  ]);
+}
+
+/**
+ ** Create a 2D vector
+ ** Pass a heading (rad), and this will return the corresponding unit vector
+ */
+function vectorize_2d(direction) {
+  return [ Math.sin(direction), Math.cos(direction) ];
+}
+
+/**
+ ** Computes length of 2D vector
+ */
 function vlen(v) {
   return Math.sqrt(v[0]*v[0] + v[1] * v[1]);
 }
 
-function vsum(v1, v2) {
-  return [v1[0] + v2[0], v1[1] + v2[1]];
+/**
+ ** Adds Vectors (all dimensions)
+ */
+function vadd(v1, v2) {
+  var v = [], lim = Math.min(v1.length,v2.length);
+  for(var i=0; i<lim; i++) v.push(v1[i] + v2[i]);
+  return v;
 }
 
+/**
+ ** Subtracts Vectors (all dimensions)
+ */
 function vsub(v1, v2) {
-  return [v1[0] - v2[0], v1[1] - v2[1]];
+  var v = [], lim = Math.min(v1.length,v2.length);
+  for(var i=0; i<lim; i++) v.push(v1[i] - v2[i]);
+  return v;
 }
 
+/**
+ ** Multiplies Vectors (all dimensions)
+ */
+function vmul(v1, v2) {
+  var v = [], lim = Math.min(v1.length,v2.length);
+  for(var i=0; i<lim; i++) v.push(v1[i] * v2[i]);
+  return v;
+}
+
+/**
+ ** Divides Vectors (all dimensions)
+ */
+function vdiv(v1, v2) {
+  var v = [], lim = Math.min(v1.length,v2.length);
+  for(var i=0; i<lim; i++) v.push(v1[i] / v2[i]);
+  return v;
+}
+
+/**
+ ** Scales vectors in magnitude (all dimensions)
+ */
 function vscale(v, factor) {
-  return [v[0] * factor, v[1] * factor];
+  var vs = [];
+  for(var i=0; i<v.length; i++) vs.push(v[i] * factor);
+  return vs;
 }
 
+/**
+ ** Vector dot product (all dimensions)
+ */
+function vdp(v1, v2) {
+  var n = 0, lim = Math.min(v1.length,v2.length);
+  for (var i = 0; i < lim; i++) n += v1[i] * v2[i];
+  return n;
+}
+
+/**
+ ** Vector cross product (3D/2D*)
+ ** Passing 3D vector returns 3D vector
+ ** Passing 2D vector (classically improper) returns z-axis SCALAR
+ ** *Note on 2D implementation: http://stackoverflow.com/a/243984/5774767
+ */
+function vcp(v1, v2) {
+  if(Math.min(v1.length,v2.length) == 2)  // for 2D vector (returns z-axis scalar)
+    return vcp([v1[0],v1[1],0],[v2[0],v2[1],0])[2];
+  if(Math.min(v1.length,v2.length) == 3)  // for 3D vector (returns 3D vector)
+    return [vdet([v1[1],v1[2]],[v2[1],v2[2]]),
+           -vdet([v1[0],v1[2]],[v2[0],v2[2]]),
+            vdet([v1[0],v1[1]],[v2[0],v2[1]])];
+}
+
+/**
+ ** Compute determinant of 2D/3D vectors
+ ** Remember: May return negative values (undesirable in some situations)
+ */
+function vdet(v1, v2, /*optional*/ v3) {
+  if(Math.min(v1.length,v2.length) == 2)  // 2x2 determinant
+    return (v1[0]*v2[1])-(v1[1]*v2[0]);
+  else if(Math.min(v1.length,v2.length,v3.length) == 3 && v3) // 3x3 determinant
+    return (v1[0]*vdet([v2[1],v2[2]],[v3[1],v3[2]])
+          - v1[1]*vdet([v2[0],v2[2]],[v3[0],v3[2]])
+          + v1[2]*vdet([v2[0],v2[1]],[v3[0],v3[1]]));
+}
+
+/**
+ ** Compute angle of 2D vector, in radians
+ */
 function vradial(v) {
   return Math.atan2(v[0], v[1]);
 }
 
+/**
+ ** Returns vector rotated by "radians" radians
+ */
 function vturn(radians, v) {
   if (!v) v = [0, 1];
-  var 
-    x = v[0],
-    y = v[1],
-    cs = Math.cos(-radians),
-    sn = Math.sin(-radians)
-    ;
-  return [
-      x * cs - y * sn,
-      x * sn + y * cs
-  ];
+  var x = v[0],
+      y = v[1],
+      cs = Math.cos(-radians),
+      sn = Math.sin(-radians);
+  return [x * cs - y * sn,
+          x * sn + y * cs];
 }
 
-function vnorm(v) {
+/**
+ ** Determines if and where two runways will intersect.
+ ** Note: Please pass ONLY the runway identifier (eg '28r')
+ */
+function runwaysIntersect(rwy1_name, rwy2_name) {
+  return raysIntersect(
+    airport_get().getRunway(rwy1_name).position,
+    airport_get().getRunway(rwy1_name).angle,
+    airport_get().getRunway(rwy2_name).position,
+    airport_get().getRunway(rwy2_name).angle,
+    9.9 ); // consider "parallel" if rwy hdgs differ by maximum of 9.9 degrees
+}
+
+/**
+ ** Determines if and where two rays will intersect. All angles in radians.
+ ** Variation based on http://stackoverflow.com/a/565282/5774767
+ */
+function raysIntersect(pos1, dir1, pos2, dir2, deg_allowance) {
+  if(!deg_allowance) deg_allowance = 0; // degrees divergence still considered 'parallel'
+  var p = pos1;
+  var q = pos2;
+  var r = vectorize_2d(dir1);
+  var s = vectorize_2d(dir2);
+  var t = abs(vcp(vsub(q,p),s) / vcp(r,s));
+  var t_norm = abs(vcp(vsub(vnorm(q),vnorm(p)),s) / vcp(r,s));
+  var u_norm = abs(vcp(vsub(vnorm(q),vnorm(p)),r) / vcp(r,s));
+  if(abs(vcp(r,s)) < abs(vcp([0,1],vectorize_2d(radians(deg_allowance))))) { // parallel (within allowance)
+    if(vcp(vsub(vnorm(q),vnorm(p)),r) == 0) return true; // collinear
+    else return false;  // parallel, non-intersecting
+  }
+  else if((0 <= t_norm && t_norm <= 1) && (0 <= u_norm && u_norm <= 1))
+    return vadd(p,vscale(r,t)); // rays intersect here
+  else return false;  // diverging, non-intersecting
+}
+
+/**
+ ** 'Flips' vector's Y component in direction
+ ** Helper function for culebron's poly edge vector functions
+ */
+function vflipY(v) {
   return [-v[1], v[0]];
 }
 
@@ -537,7 +678,7 @@ function distance_to_poly(point, poly) {
       return vlen(vsub(point, vertex1));
 
     // point + normal * i == vertex1 + edge * j
-    var norm = vnorm(edge),
+    var norm = vflipY(edge),
         x1 = point[0],
         x2 = norm[0],
         x3 = vertex1[0],

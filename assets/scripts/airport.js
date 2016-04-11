@@ -564,131 +564,77 @@ zlsa.atc.DepartureWave = zlsa.atc.DepartureCyclic.extend(function(base) {
 
 var Runway=Fiber.extend(function(base) {
   return {
-    init: function(options) {
+    init: function(options, end) {
       if(!options) options={};
+      this.angle          = null;
+      this.delay          = 2;
+      this.gps            = [];
+      this.ils            = { enabled : true,
+                              loc_maxDist : km(25),
+                              gs_maxHeight : 9999,
+                              gs_gradient : radians(3)
+                            };
+      this.labelPos       = [];
+      this.length         = null;
+      this.midfield       = [];
+      this.name           = "";
+      this.position       = [];
+      this.queue          = [];
+      this.sepFromAdjacent= km(3);
 
-      this.position     = [0, 0];
-      this.name         = [null, null];
-      this.name_offset  = [[0, 0], [0, 0]];
-      this.length       = 1;
-      this.glideslope   = [radians(3), radians(3)];
-      this.angle        = 0;
-      this.ils          = [false, false];
-      this.ils_distance = [null, null];
-      this.delay        = [2, 2];
-      this.lateral_separation = 4300 * 0.0003048;
-      this.waiting      = [[], []];
-
-      this.parse(options);
+      this.parse(options, end);
     },
-    addQueue: function(aircraft, end) {
-      end = this.getEnd(end);
-      this.waiting[end].push(aircraft);
+    addQueue: function(aircraft) {
+      this.queue.push(aircraft);
     },
-    removeQueue: function(aircraft, end, force) {
-      end = this.getEnd(end);
-      if(this.waiting[end][0] == aircraft || force) {
-        this.waiting[end].shift(aircraft);
-        if(this.waiting[end].length >= 1) {
-          this.waiting[end][0].moveForward();
+    removeQueue: function(aircraft, force) {
+      if(this.queue[0] == aircraft || force) {
+        this.queue.shift(aircraft);
+        if(this.queue.length >= 1) {
+          this.queue[0].moveForward();
         }
         return true;
       }
       return false;
     },
-    isWaiting: function(aircraft, end) {
-      end = this.getEnd(end);
-      return this.waiting[end].indexOf(aircraft);
+    isWaiting: function(aircraft) {
+      return this.queue.indexOf(aircraft);
     },
-    taxiDelay: function(aircraft, end) {
-      end = this.getEnd(end);
-      return this.delay[end] + Math.random() * 3;
+    taxiDelay: function(aircraft) {
+      return this.delay + Math.random() * 3;
     },
-    getOffset: function(position, end, length) {
-      end = this.getEnd(end);
+    getOffset: function(position, length) {
       position = [position[0], position[1]];
-
       position = vsub(position, this.position);
-
       var offset = [0, 0];
-      offset[0]  = (-cos(this.angle) * position[0]) + (sin(this.angle) * position[1]);
-      offset[1]  = ( sin(this.angle) * position[0]) + (cos(this.angle) * position[1]);
-
-      if(end == 0) {
-        offset = vscale(offset, -1);
-      }
-
-      if(length) {
-        offset[1] -= this.length / 2;
-      }
+      offset[0]  = ( cos(this.angle) * position[0]) - (sin(this.angle) * position[1]);
+      offset[1]  = (-sin(this.angle) * position[0]) - (cos(this.angle) * position[1]);
       return offset;
     },
-    getAngle: function(end) {
-      end = this.getEnd(end);
-      return this.angle + (end == 1 ? Math.PI : 0);
-    },
-    getILS: function(end) {
-      end = this.getEnd(end);
-      return this.ils[end];
-    },
-    getILSDistance: function(end) {
-      end = this.getEnd(end);
-      return this.ils_distance[end];
-    },
-    getGlideslopeAltitude: function(distance, end, glideslope) {
-      end = this.getEnd(end);
-      if(!glideslope) glideslope = this.glideslope[end];
-      glideslope = abs(glideslope);
+    getGlideslopeAltitude: function(distance, /*optional*/ gs_gradient) {
+      if(!gs_gradient) gs_gradient = this.ils.gs_gradient;
       distance = Math.max(0, distance);
-      var rise = tan(glideslope);
+      var rise = tan(abs(gs_gradient));
       return rise * distance * 3280;
     },
-    getEnd: function(name) {
-      if(typeof name == typeof 0) return name;
-      if(typeof name == typeof "") {
-        if(this.name[0].toLowerCase() == name.toLowerCase()) return 0;
-        if(this.name[1].toLowerCase() == name.toLowerCase()) return 1;
+    parse: function(data, end) {
+      if(data.delay) this.delay = data.delay[end];
+      if(data.end) {
+        var thisSide  = new Position(data.end[end], data.reference_position, data.magnetic_north);
+        var farSide   = new Position(data.end[(end==0)?1:0], data.reference_position, data.magnetic_north);
+        this.gps      = [thisSide.latitude, thisSide.longitude];       // GPS latitude and longitude position
+        this.position = thisSide.position; // relative position, based on center of map
+        this.length   = vlen(vsub(farSide.position, thisSide.position));
+        this.midfield = vscale(vadd(thisSide.position, farSide.position), 0.5);
+        this.angle    = vradial(vsub(farSide.position, thisSide.position));
       }
-      return 0;
-    },
-    getPosition: function(end) {
-      end = this.getEnd(end);
-
-      return vsum(this.position,
-          vscale(
-            vturn(this.angle),
-            (this.length / 2) * (end == 0 ? -1 : 1)
-          )
-        );
-    },
-    parse: function(data) {
-      if(data.position) {
-        var coord = new Position(data.position, data.reference_position, data.magnetic_north);
-        this.position = coord.position;
-      } else if(data.end) {
-        var coord_start = new Position(data.end[0], data.reference_position, data.magnetic_north);
-        var coord_end   = new Position(data.end[1], data.reference_position, data.magnetic_north);
-        this.position   = vscale(vsum(coord_start.position, coord_end.position), 0.5);
-        this.length     = vlen(vsub(coord_start, coord_end));
-        this.angle      = vradial(vsub(coord_end.position, coord_start.position));
-      }
-
-      if(data.name) this.name = data.name;
-      if(data.name_offset) this.name_offset = data.name_offset;
-
-      if(data.length) this.length = data.length;
-      if(data.angle) this.angle   = radians(data.angle);
-
-      if(data.glideslope) this.glideslope = [radians(data.glideslope[0]), radians(data.glideslope[1])];
-
-      if(data.ils) this.ils = data.ils;
-
-      if(data.ils_distance) this.ils_distance = data.ils_distance;
-
-      if(data.delay) this.delay = data.delay;
-
-      if (data.lateral_separation)
-        this.lateral_separation = data.lateral_separation * 0.0003048;
+      if(data.ils) this.ils.enabled = data.ils[end];
+      if(data.ils_distance) this.ils.loc_maxDist = data.ils_distance[end];
+      if(data.ils_gs_maxHeight) this.ils.gs_maxHeight = data.ils_gs_maxHeight[end];
+      if(data.glideslope) this.ils.gs_gradient = radians(data.glideslope[end]);
+      if(data.name_offset) this.labelPos = data.name_offset[end];
+      if(data.name) this.name = data.name[end];
+      if(data.sepFromAdjacent) this.sepFromAdjacent = km(data.sepFromAdjacent[end]);
     },
   };
 });
@@ -708,6 +654,9 @@ var Airport=Fiber.extend(function() {
       this.real_fixes = {};
       this.sids     = {};
       this.restricted_areas = [];
+      this.metadata = {
+        rwy: {}
+      };
 
       this.timeout  = {
         runway: null,
@@ -744,7 +693,7 @@ var Airport=Fiber.extend(function() {
     parse: function(data) {
       if(data.position) this.position = new Position(data.position);
       if(data.magnetic_north) this.magnetic_north = radians(data.magnetic_north);
-      if(!this.magnetic_north) this.magnetic_north = 0;
+        else this.magnetic_north = 0;
       if(data.name) this.name   = data.name;
       if(data.icao) this.icao   = data.icao;
       if(data.radio) this.radio = data.radio;
@@ -764,7 +713,8 @@ var Airport=Fiber.extend(function() {
         for(var i in data.runways) {
           data.runways[i].reference_position = this.position;
           data.runways[i].magnetic_north = this.magnetic_north;
-          this.runways.push(new Runway(data.runways[i]));
+          this.runways.push( [new Runway(data.runways[i], 0),
+                              new Runway(data.runways[i], 1)]);
         }
       }
 
@@ -806,7 +756,7 @@ var Airport=Fiber.extend(function() {
             coords_min = [Math.min(v[0], coords_min[0]), Math.min(v[1], coords_min[1])];
           };
 
-          obj.center = vscale(vsum(coords_max, coords_min), 0.5);
+          obj.center = vscale(vadd(coords_max, coords_min), 0.5);
           self.restricted_areas.push(obj);
         }
       }
@@ -823,6 +773,35 @@ var Airport=Fiber.extend(function() {
       if(data.arrivals) {
         for(var i=0;i<data.arrivals.length;i++) {
           this.arrivals.push(zlsa.atc.ArrivalFactory(this, data.arrivals[i]));
+        }
+      }
+
+
+      // ***** Generate Airport Metadata *****
+
+      // Runway Metadata
+      for(var rwy1 in this.runways) {
+        for(var rwy1end in this.runways[rwy1]) {
+          // setup primary runway object
+          this.metadata.rwy[this.runways[rwy1][rwy1end].name] = {};
+
+          for(var rwy2 in this.runways) {
+            if(rwy1 == rwy2) continue;
+            for(var rwy2end in this.runways[rwy2]) {
+              //setup secondary runway subobject
+              var r1  = this.runways[rwy1][rwy1end];
+              var r2  = this.runways[rwy2][rwy2end];
+              this.metadata.rwy[r1.name][r2.name] = {};
+
+              // generate this runway pair's relationship data
+              this.metadata.rwy[r1.name][r2.name].lateral_dist =
+                distance2d(r1.position, r2.position);
+              this.metadata.rwy[r1.name][r2.name].converging =
+                raysIntersect(r1.position, r1.angle, r2.position, r2.angle);
+              this.metadata.rwy[r1.name][r2.name].parallel =
+                ( abs(angle_offset(r1.angle,r2.angle)) < radians(10) );
+            }
+          }
         }
       }
     },
@@ -859,8 +838,8 @@ var Airport=Fiber.extend(function() {
       }
       for(var i=0;i<this.runways.length;i++) {
         var runway = this.runways[i];
-        headwind[runway.name[0]] =  Math.cos(runway.angle - ra(wind.angle)) * wind.speed;
-        headwind[runway.name[1]] = -Math.cos(runway.angle - ra(wind.angle)) * wind.speed;
+        headwind[runway[0].name] = Math.cos(runway[0].angle - ra(wind.angle)) * wind.speed;
+        headwind[runway[1].name] = Math.cos(runway[1].angle - ra(wind.angle)) * wind.speed;
       }
       var best_runway = "";
       var best_runway_headwind = -Infinity;
@@ -1010,8 +989,8 @@ var Airport=Fiber.extend(function() {
       if(!name) return null;
       name = name.toLowerCase();
       for(var i=0;i<this.runways.length;i++) {
-        if(this.runways[i].name[0].toLowerCase() == name) return this.runways[i];
-        if(this.runways[i].name[1].toLowerCase() == name) return this.runways[i];
+        if(this.runways[i][0].name.toLowerCase() == name) return this.runways[i][0];
+        if(this.runways[i][1].name.toLowerCase() == name) return this.runways[i][1];
       }
       return null;
     }
@@ -1026,9 +1005,6 @@ function airport_init_pre() {
 
 function airport_init() {
   // Add your airports here
-
-  // DEBUG AIRPORTS
-  airport_load("kdbg");
 
   // K*
   airport_load("ksfo");
