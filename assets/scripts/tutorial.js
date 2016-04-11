@@ -1,4 +1,3 @@
-
 var Step = Fiber.extend(function() {
   return {
     init: function(options) {
@@ -54,8 +53,7 @@ function tutorial_init_pre() {
     parse:    function(t) {
       if(prop.aircraft.list.length > 0)
         return t.replace("{CALLSIGN}", prop.aircraft.list[0].getCallsign());
-      else
-        return t.replace('{CALLSIGN}', 'there aren\'t any right now');
+      else return t;
     },
     side:     "left",
     position: tutorial_position
@@ -69,7 +67,9 @@ function tutorial_init_pre() {
                "entering the runway name after &lsquo;taxi&rsquo; or &lsquo;wait&rsquo;.)"
                ].join(" "),
     parse:    function(t) {
-      return t.replace("{RUNWAY}", prop.aircraft.list[0].fms.currentWaypoint().runway);
+      if(prop.aircraft.list.length > 0)
+        return t.replace("{RUNWAY}", prop.aircraft.list[0].fms.currentWaypoint().runway);
+      else return t;
     },
     side:     "left",
     position: tutorial_position
@@ -82,7 +82,9 @@ function tutorial_init_pre() {
                "Just as in real life, this step must be done before clearing the aircraft for takeoff, so they know where they're supposed to go."
                ].join(" "),
     parse:    function(t) {
-      return t.replace("{RUNWAY}", prop.aircraft.list[0].fms.currentWaypoint().runway);
+      if(prop.aircraft.list.length > 0)
+        return t.replace("{RUNWAY}", prop.aircraft.list[0].fms.currentWaypoint().runway);
+      else return t;
     },
     side:     "left",
     position: tutorial_position
@@ -96,7 +98,9 @@ function tutorial_init_pre() {
                "see its altitude increasing. Meanwhile, read the next step."
                ].join(" "),
     parse:    function(t) {
-      return t.replace("{RUNWAY}", prop.aircraft.list[0].fms.currentWaypoint().runway);
+      if(prop.aircraft.list.length > 0)
+        return t.replace("{RUNWAY}", prop.aircraft.list[0].fms.currentWaypoint().runway);
+      else return t;
     },
     side:     "left",
     position: tutorial_position
@@ -109,7 +113,9 @@ function tutorial_init_pre() {
                "red for arrivals."
                ].join(" "),
     parse:    function(t) {
-      return t.replace("{RUNWAY}", prop.aircraft.list[0].fms.currentWaypoint().runway);
+      if(prop.aircraft.list.length > 0)
+        return t.replace("{RUNWAY}", prop.aircraft.list[0].fms.currentWaypoint().runway);
+      else return t;
     },
     side:     "left",
     position: tutorial_position
@@ -122,7 +128,9 @@ function tutorial_init_pre() {
                "({MODEL} here, which is a {MODELNAME}) to the left, its destination in the middle, and its assigned speed to the right."
                ].join(" "),
     parse:    function(t) {
-      return t.replace("{MODEL}", prop.aircraft.list[0].model.icao).replace("{MODELNAME}", prop.aircraft.list[0].model.name);
+      if(prop.aircraft.list.length > 0)
+        return t.replace("{MODEL}", prop.aircraft.list[0].model.icao).replace("{MODELNAME}", prop.aircraft.list[0].model.name);
+      else return t;
     },
     side:     "left",
     position: tutorial_position
@@ -138,10 +146,11 @@ function tutorial_init_pre() {
                 "to watch the departure climb along the SID. Then just click it again to return to 1x speed."
                ].join(" "),
     parse:    function(t) {
-      return t.
-        replace("{CALLSIGN}", prop.aircraft.list[0].getCallsign()).
-        replace("{INIT_ALT}", airport_get().initial_alt).
-        replace("{SID_NAME}", prop.aircraft.list[0].destination);
+      if(prop.aircraft.list.length > 0)
+        return t.replace("{CALLSIGN}", prop.aircraft.list[0].getCallsign()).
+                 replace("{INIT_ALT}", airport_get().initial_alt).
+                 replace("{SID_NAME}", prop.aircraft.list[0].destination);
+      else return t;
     },
     side:     "left",
     position: tutorial_position
@@ -155,8 +164,9 @@ function tutorial_init_pre() {
                "you have probably noticed, this is very easy with SIDs, as the aircraft do all the hard work themselves."
                ].join(" "),
     parse:    function(t) {
-      return t.
-        replace("{CALLSIGN}", prop.aircraft.list[0].getCallsign());
+      if(prop.aircraft.list.length > 0)
+        return t.replace("{CALLSIGN}", prop.aircraft.list[0].getCallsign());
+      else return t;
     },
     side:     "left",
     position: tutorial_position
@@ -171,7 +181,9 @@ function tutorial_init_pre() {
                " 100&rsquo; for 10,000ft."
                ].join(" "),
     parse:    function(t) {
-      return t.replace("{CALLSIGN}", prop.aircraft.list[0].getCallsign());
+      if(prop.aircraft.list.length > 0)
+        return t.replace("{CALLSIGN}", prop.aircraft.list[0].getCallsign());
+      else return t;
     },
     side:     "left",
     position: tutorial_position
@@ -200,7 +212,9 @@ function tutorial_init_pre() {
                "airspeed, and our radar scope can only display groundspeed; so, the values may be different."
                ].join(" "),
     parse:    function(t) {
-      return t.replace(/{ANGLE}/g, heading_to_string(prop.aircraft.list[0].destination));
+      if(prop.aircraft.list.length > 0)
+        return t.replace(/{ANGLE}/g, heading_to_string(prop.aircraft.list[0].destination));
+      else return t;
     },
     side:     "left",
     position: tutorial_position
@@ -213,7 +227,9 @@ function tutorial_init_pre() {
                "fix, it will continue flying along its present heading."
                ].join(" "),
     parse:    function(t) {
-      return t.replace("{CALLSIGN}", prop.aircraft.list[0].getCallsign());
+      if(prop.aircraft.list.length > 0)
+        return t.replace("{CALLSIGN}", prop.aircraft.list[0].getCallsign());
+      else return t;
     },
     side:     "left",
     position: tutorial_position
