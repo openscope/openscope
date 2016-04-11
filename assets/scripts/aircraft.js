@@ -672,37 +672,36 @@ var Aircraft=Fiber.extend(function() {
   return {
     init: function(options) {
       if(!options) options={};
-      this.eid         = prop.aircraft.list.length;  // entity ID
-      this.position    = [0, 0];
-
-      this.model       = null;
-
-      this.airline     = "";
-      this.callsign    = "";
-
-      this.heading     = 0;
-      this.altitude    = 0;
-      this.speed       = 0;
-      this.groundSpeed = 0;
-      this.groundTrack = 0;
-      this.ds          = 0;
-
-      this.takeoffTime = 0;
-
-      // Distance laterally from the approach path
-      this.approachOffset = 0;
-      // Distance longitudinally from the threshold
-      this.approachDistance = 0;
-
-      this.radial      = 0;
-      this.distance    = 0;
-      this.destination = null;
-
-      this.trend       = 0;
-
-      this.history     = [];
-
-      this.restricted = {list: []};
+      this.eid          = prop.aircraft.list.length;  // entity ID
+      this.position     = [0, 0];     // Aircraft Position, in km, relative to airport position
+      this.model        = null;       // Aircraft type
+      this.airline      = "";         // Airline Identifier (eg. 'AAL')
+      this.callsign     = "";         // Flight Number ONLY (eg. '551')
+      this.heading      = 0;          // Magnetic Heading
+      this.altitude     = 0;          // Altitude, ft MSL
+      this.speed        = 0;          // Indicated Airspeed (IAS), knots
+      this.groundSpeed  = 0;          // Groundspeed (GS), knots
+      this.groundTrack  = 0;          // 
+      this.ds           = 0;          // 
+      this.takeoffTime  = 0;          // 
+      this.approachOffset = 0;        // Distance laterally from the approach path
+      this.approachDistance = 0;      // Distance longitudinally from the threshold
+      this.radial       = 0;          // Angle from airport center to aircraft
+      this.distance     = 0;          // 
+      this.destination  = null;       // Destination they're flying to
+      this.trend        = 0;          // Indicator of descent/level/climb (1, 0, or 1)
+      this.history      = [];         // Array of previous positions
+      this.restricted   = {list:[]};  // 
+      this.notice       = false;      // Whether aircraft 
+      this.warning      = false;      // 
+      this.hit          = false;      // Whether aircraft has crashed
+      this.taxi_next    = false;      // 
+      this.taxi_start   = 0;          // 
+      this.taxi_delay   = 0;          // 
+      this.rules        = "ifr";      // Either IFR or VFR (Instrument/Visual Flight Rules)
+      this.inside_ctr   = false;      // Inside ATC Airspace
+      this.datablockDir = -1;         // Direction the data block points (-1 means to ignore)
+      this.conflicts    = {};         // List of aircraft that MAY be in conflict (bounding box)
       
       if (prop.airport.current.terrain) {
         var terrain = prop.airport.current.terrain;
@@ -718,20 +717,6 @@ var Aircraft=Fiber.extend(function() {
         this.terrain_ranges = false;
       }
       
-      this.notice      = false;
-      this.warning     = false;
-      this.hit         = false;
-
-      this.taxi_next     = false;
-      this.taxi_start    = 0;
-      this.taxi_delay    = 0;
-
-      this.rules       = "ifr";
-
-      this.inside_ctr = false;
-
-      this.conflicts = {};
-
       // Set to true when simulating future movements of the aircraft
       // Should be checked before updating global state such as score
       // or HTML.
@@ -1049,6 +1034,10 @@ var Aircraft=Fiber.extend(function() {
           func: 'runLanding',
           shortKey: ['\u2B50'],
           synonyms: ['l', 'ils', 'i']},
+
+        moveDataBlock: {
+          func: 'runMoveDataBlock',
+          shortKey: ['`']},
 
         proceed: {
           func: 'runProceed',
@@ -1518,6 +1507,12 @@ var Aircraft=Fiber.extend(function() {
 
       return ["ok", {log:"cleared to destination via the " + sid_id + " departure, then as filed",
                   say:"cleared to destination via the " + sid_name + " departure, then as filed"}];
+    },
+    runMoveDataBlock: function(dir) {
+      dir = dir.replace('`','');  // remove shortKey
+      var positions = {8:360,9:45,6:90,3:135,2:180,1:225,4:270,7:315,5:"ctr"};
+      if(!positions.hasOwnProperty(dir)) return;
+      else this.datablockDir = positions[dir];
     },
     runProceed: function(data) {
       var lastWaypoint = this.fms.waypoints[this.fms.waypoints.length - 1];

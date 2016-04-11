@@ -567,219 +567,147 @@ function canvas_draw_all_aircraft(cc) {
   // console.timeEnd('canvas_draw_all_aircraft')
 }
 
+/** Draw an aircraft's data block
+ ** (box that contains callsign, altitude, speed)
+ */
 function canvas_draw_info(cc, aircraft) {
   "use strict";
-
   if(!aircraft.isVisible()) return;
-
   if(!aircraft.hit) {
+    
+    // Initial Setup
     cc.save();
-
-    cc.textBaseline = "middle";
-
-    var width  = 60;
+    var cs = aircraft.getCallsign();
+    var paddingLR = 5;
+    var width  = clamp(1, 5.8*cs.length) + (paddingLR*2); // width of datablock (scales to fit callsign)
     var width2 = width / 2;
-
-    var height  = 35;
-    var height2 = height / 2;
-
-    var bar_width = width / 15;
+    var height  = 31;               // height of datablock
+    var height2 = height / 2; 
+    var bar_width = width / 18;     // width of colored bar
     var bar_width2 = bar_width / 2;
-
     var ILS_enabled = aircraft.fms.currentWaypoint().runway && aircraft.category === "arrival";
     var lock_size = height / 3;
     var lock_offset = lock_size / 8;
     var pi = Math.PI;
     var point1 = lock_size - bar_width2;
-
-  	//angle for the clipping mask
+    var alt_trend_char = "";
     var a = point1 - lock_offset;
     var b = bar_width2;
-  	//var c = Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2));
     var clipping_mask_angle = Math.atan(b / a);
+    var pi_slice = pi / 24;         // describes how far around to arc the arms of the ils lock case
 
-    var match        = false;
-    var almost_match = false;
-
+    // Callsign Matching
     if(prop.input.callsign.length > 1 && aircraft.matchCallsign(prop.input.callsign.substr(0, prop.input.callsign.length - 1)))
-      almost_match = true;
+      var almost_match = true;
     if(prop.input.callsign.length > 0 && aircraft.matchCallsign(prop.input.callsign))
-      match = true;
+      var match = true;
 
-    if(match && false) {
-      cc.save();
-      cc.strokeStyle = "rgba(120, 140, 130, 1.0)";
-      cc.lineWidth = 2;
-      a = [km_to_px(aircraft.position[0]), -km_to_px(aircraft.position[1])];
-      var h = aircraft.html.outerHeight();
-      b = [prop.canvas.size.width / 2 - 10, -(prop.canvas.size.height / 2) + aircraft.html.offset().top + h / 2];
-      var angle = Math.atan2(a[0] - b[0], a[1] - b[1]);
-      var distance = 10;
-      cc.beginPath();
-      cc.moveTo(Math.sin(angle) * -distance + a[0], Math.cos(angle) * -distance + a[1]);
-      cc.lineTo(b[0], b[1]);
-      cc.stroke();
+    // set color, intensity, and style elements
+    if (match) var alpha = 0.9;
+    // else if(almost_match) var alpha = 0.75;
+    else if (aircraft.inside_ctr) var alpha = 0.5;
+    else var alpha = 0.2;
+    var red   = "rgba(224, 128, 128, " + alpha + ")";
+    var green = "rgba( 76, 118,  97, " + alpha + ")";
+    var blue  = "rgba(128, 255, 255, " + alpha + ")";
+    var white = "rgba(255, 255, 255, " + alpha + ")";
+    cc.textBaseline = "middle";
 
-      cc.beginPath();
-      cc.moveTo(b[0], b[1] - h / 2);
-      cc.lineTo(b[0], b[1] + h / 2);
-      cc.lineWidth = 4;
-      cc.stroke();
-      cc.restore();
+    // Move to center of where the data block is to be drawn
+    var ac_pos = [round(km_to_px(aircraft.position[0])) + prop.canvas.panX,
+                 -round(km_to_px(aircraft.position[1])) + prop.canvas.panY];
+    if(aircraft.datablockDir == -1) { // game will move FDB to the appropriate position
+      if(-km_to_px(aircraft.position[1]) + prop.canvas.size.height/2 < height * 1.5)
+        cc.translate(ac_pos[0], ac_pos[1] + height2 + 12);
+      else cc.translate(ac_pos[0], ac_pos[1] -height2 - 12);
+    }
+    else {  // user wants to specify FDB position
+      var displacements = {
+        "ctr": [0,0],
+        360  : [0, -height2 - 12],
+        45   : [width2 + 8.5, -height2 - 8.5],
+        90   : [width2 + bar_width2 + 12, 0],
+        135  : [width2 + 8.5, height2 + 8.5],
+        180  : [0, height2 + 12],
+        225  : [-width2 - 8.5, height2 + 8.5],
+        270  : [-width2 - bar_width2 - 12, 0],
+        315  : [-width2 - 8.5, -height2 - 8.5]
+      };
+      cc.translate(ac_pos[0] + displacements[aircraft.datablockDir][0],
+        ac_pos[1] + displacements[aircraft.datablockDir][1]);
     }
 
-    cc.translate(round(km_to_px(aircraft.position[0])) + prop.canvas.panX, -round(km_to_px(aircraft.position[1])) + prop.canvas.panY);
-
-    if(-km_to_px(aircraft.position[1]) + prop.canvas.size.height/2 < height * 1.5)
-      cc.translate(0,  height2 + 12);
-    else
-      cc.translate(0, -height2 - 12);
-
-    cc.translate(bar_width / 2, 0);
-
-    if (!aircraft.inside_ctr)
-      cc.fillStyle = "rgba(71, 105, 88, 0.3)";
-    else if (match)
-      cc.fillStyle = "rgba(120, 150, 140, 0.9)";
-    else if(almost_match)
-      cc.fillStyle = "rgba(95, 95, 88, 0.9)";
-    else
-      cc.fillStyle = "rgba(71, 105, 88, 0.9)";
-
-    //Background fill and clip for ILS Lock Indicator
-    if (ILS_enabled)
-    {
+    // Draw datablock shapes
+    if(!ILS_enabled) {  // Standard Box
+      cc.fillStyle = green;
+      cc.fillRect(-width2, -height2, width, height); // Draw box
+      cc.fillStyle = (aircraft.category == "departure") ? blue : red;
+      cc.fillRect(-width2 - bar_width, -height2, bar_width, height);  // Draw colored bar
+    }
+    else {  // Box with ILS Lock Indicator
       cc.save();
+
+      // Draw green part of box (excludes space where ILS Clearance Indicator juts in)
+      cc.fillStyle = green;
       cc.beginPath();
-
-      cc.moveTo(-width2, height2);
-      cc.lineTo(width2, height2);
-      cc.lineTo(width2, -height2);
-      cc.lineTo(-width2, -height2);
-
-      //side cutout
-      cc.lineTo(-width2, -point1);
+      cc.moveTo(-width2, height2);  // bottom-left corner
+      cc.lineTo(width2, height2);   // bottom-right corner
+      cc.lineTo(width2, -height2);  // top-right corner
+      cc.lineTo(-width2, -height2); // top-left corner
+      cc.lineTo(-width2, -point1);  // begin side cutout
       cc.arc(-width2 - bar_width2, -lock_offset, lock_size / 2 + bar_width2, clipping_mask_angle - pi / 2, 0);
       cc.lineTo(-width2 + lock_size / 2, lock_offset);
       cc.arc(-width2 - bar_width2, lock_offset, lock_size / 2 + bar_width2, 0, pi / 2 - clipping_mask_angle);
       cc.closePath();
+      cc.fill();
 
-      cc.strokeStyle = cc.fillStyle;
-      cc.stroke();
-      cc.clip();
-      cc.fillRect(-width2, -height2, width, height);
-
-      cc.restore();
-    }
-    else
-      cc.fillRect(-width2, -height2, width, height);
-
-    var alpha = 0.6;
-    if (!aircraft.inside_ctr) alpha = 0.3;
-    else if (match) alpha = 0.9;
-
-    if(aircraft.category === "departure")
-      cc.fillStyle = "rgba(128, 255, 255, " + alpha + ")";
-    else
-      cc.fillStyle = "rgba(224, 128, 128, " + alpha + ")";
-
-  	//sideBar ILS Lock Indicator
-    if (ILS_enabled)
-    {
-      var pi_slice = pi / 24;
-
+      // Draw ILS Clearance Indicator
       cc.translate(-width2 - bar_width2, 0);
-
       cc.lineWidth = bar_width;
-      cc.strokeStyle = cc.fillStyle;
-
-      //top arc
-      cc.beginPath();
+      cc.strokeStyle = red;
+      cc.beginPath(); // top arc start
       cc.arc(0, -lock_offset, lock_size / 2, -pi_slice, pi + pi_slice, true);
       cc.moveTo(0, -lock_size / 2);
       cc.lineTo(0, -height2);
-      cc.stroke();
-
-      //bottom arc
-      cc.beginPath();
+      cc.stroke();    // top arc end
+      cc.beginPath(); //bottom arc start
       cc.arc(0, lock_offset, lock_size / 2, pi_slice, pi - pi_slice);
       cc.moveTo(0, lock_size - bar_width);
       cc.lineTo(0, height2);
-      cc.stroke();
-
-      cc.translate(width2 + bar_width2, 0);
-
-      //ILS locked
-      if (aircraft.mode === "landing")
-      {
-        cc.fillStyle = "white";
-        cc.translate(-width2 - bar_width2, 0);
-
+      cc.stroke();  //bottom arc end
+      if (aircraft.mode === "landing") {  // Localizer Capture Indicator
+        cc.fillStyle = white;
         cc.beginPath();
-        // arc(x,y,radius,startAngle,endAngle, clockwise);
         cc.arc(0, 0, lock_size / 5, 0, pi * 2);
-        cc.fill();
-        cc.translate(width2 + bar_width2, 0);
+        cc.fill();  // Draw Localizer Capture Dot
       }
-    }
-    else
-      cc.fillRect(-width2 - bar_width, -height2, bar_width, height);
+      cc.translate(width2 + bar_width2, 0);
+      // unclear how this works...
+      cc.beginPath(); // if removed, white lines appear on top of bottom half of lock case
+      cc.stroke();    // if removed, white lines appear on top of bottom half of lock case
 
-    if (!aircraft.inside_ctr)
-      cc.fillStyle   = "rgba(255, 255, 255, 0.6)";
-    else if(match)
-      cc.fillStyle   = "rgba(255, 255, 255, 0.9)";
-    else
-      cc.fillStyle   = "rgba(255, 255, 255, 0.8)";
-
-    cc.strokeStyle = cc.fillStyle;
-
-    cc.translate(0, 1);
-
-    var separation  = 8;
-    var line_height = 8;
-
-    cc.lineWidth = 2;
-
-    if(aircraft.trend !== 0) {
-      cc.save();
-      if(aircraft.trend < 0) {
-        cc.translate(1, 6.5);
-      } else if(aircraft.trend > 0) {
-        cc.translate(-1, 6.5);
-        cc.scale(-1, -1);
-      }
-      cc.lineJoin  = "round";
-      cc.beginPath();
-
-      cc.moveTo(0,  -5);
-      cc.lineTo(0,   5);
-      cc.lineTo(-3,  2);
-
-      if(aircraft.fms.currentWaypoint().expedite && aircraft.mode !== "landing") {
-        cc.moveTo(0,   5);
-        cc.lineTo(3,   2);
-      }
-
-      cc.stroke();
       cc.restore();
-    } else {
-      cc.beginPath();
-      cc.moveTo(-4, 7.5);
-      cc.lineTo( 4, 7.5);
-      cc.stroke();
     }
 
-    cc.textAlign = "right";
-    cc.fillText(lpad(round(aircraft.altitude * 0.01), 2), -separation, line_height);
-
+    // Text
+    var gap = 3;          // height of TOTAL vertical space between the rows (0 for touching)
+    var lineheight = 4.5; // height of text row (used for spacing basis)
+    var row1text = cs;
+    var row2text = lpad(round(aircraft.altitude * 0.01), 3) + " " + lpad(round(aircraft.groundSpeed * 0.1), 2);
+    if (aircraft.inside_ctr) cc.fillStyle   = "rgba(255, 255, 255, 0.8)";
+    else cc.fillStyle   = "rgba(255, 255, 255, 0.2)";
+    if(aircraft.trend == 0)     alt_trend_char = String.fromCodePoint(0x2011);  // small dash (symbola font)
+    else if(aircraft.trend > 0) alt_trend_char = String.fromCodePoint(0x1F851); // up arrow (symbola font)
+    else if(aircraft.trend < 0) alt_trend_char = String.fromCodePoint(0x1F853); // down arrow (symbola font)
+    // Draw full datablock text
     cc.textAlign = "left";
-    cc.fillText(lpad(round(aircraft.groundSpeed * 0.1), 2),
-                separation,
-                line_height);
-
+    cc.fillText(row1text, -width2 + paddingLR, -gap/2 - lineheight);
+    cc.fillText(row2text, -width2 + paddingLR, gap/2 + lineheight);
+    // Draw climb/level/descend symbol
+    cc.font = "10px symbola"; // change font to the one with extended unicode characters
     cc.textAlign = "center";
-    cc.fillText(aircraft.getCallsign(), 0, -line_height);
+    cc.fillText(alt_trend_char, -width2 + paddingLR + 20.2, gap/2 + lineheight - 0.25);
+    cc.font = "10px monoOne, monospace";  // change back to normal font
 
     cc.restore();
   }
@@ -1061,6 +989,20 @@ function canvas_draw_restricted(cc) {
     cc.fillText(height, round(km_to_px(area.center[0])), height_shift - round(km_to_px(area.center[1])));
   }
   cc.restore();
+}
+
+/** Draws crosshairs that point to the currently translated location
+ */
+function canvas_draw_crosshairs(cc) {
+  //draw crosshairs
+  cc.beginPath();
+  cc.moveTo(-10, 0);
+  cc.lineTo( 10, 0);
+  cc.stroke();
+  cc.beginPath();
+  cc.moveTo(0, -10);
+  cc.lineTo(0,  10);
+  cc.stroke();
 }
 
 function canvas_update_post() {
