@@ -393,7 +393,14 @@ zlsa.atc.AircraftFlightManagementSystem = Fiber.extend(function() {
         expedite: false,
         speed:    null,
         runway:   null,
-        legLength: null,
+        hold: {
+          dirTurns  : null,
+          fixName   : null,
+          fixPos    : null,
+          inboundHdg: null,
+          legLength : null,
+          timer     : 0
+        },
         fixRestrictions: {
           alt: null,
           spd: null
@@ -1396,7 +1403,6 @@ var Aircraft=Fiber.extend(function() {
     },
     runHold: function(data) {
       var data = data.split(" ");
-      var inboundDir = radio_cardinalDir_names[getCardinalDirection(fix_angle(this.heading + Math.PI)).toLowerCase()];
 
       // Set direction of turns
       var dirTurns = "right";   // standard for holding patterns is right-turns
@@ -1409,9 +1415,10 @@ var Aircraft=Fiber.extend(function() {
       // Set leg length
       var legLength = "1min";
       for(var i=0; i<data.length; i++) {
-        if(data[i].includes("min")) legLength = data[i];
-        else if(data[i].includes("nm")) legLength = data[i];
+        if(data[i].includes("min") || data[i].includes("nm")) {
+        legLength = data[i];
         data.splice(i,1); break;
+        }
       }
 
       // Set hold's base position
@@ -1420,29 +1427,39 @@ var Aircraft=Fiber.extend(function() {
         for(var i=0; i<data.length; i++) {
           var fix = airport_get().getFix(data[i]);    // attempt to find data[i] as a fix
           if(fix) { 
-            hold_fix = fix.name;                      // if is a valid fix, set as the holding fix
-            hold_fix_location = fix.location; break;  // if is a valid fix, set as the holding fix
+            hold_fix = data[i].toUpperCase(); // if is a valid fix, set as the holding fix
+            hold_fix_location = fix; break;   // if is a valid fix, set as the holding fix
           }
         }
       }
 
-      this.fms.setCurrent({
-        navmode: 'hold',
-        name: hold_fix,
-        location: hold_fix_location,
-        turn: dirTurns,
-        legLength: legLength
-      });
+      // Determine whether or not to immediately start the turn to outbound
+      if(hold_fix) { // holding over a specific fix (currently only able to do so on inbound course)
+        var holding_wp_index = 1;
+        this.fms.prependWaypoint({navmode:"fix", name:hold_fix, location:hold_fix_location,
+          altitude: this.fms.currentWaypoint().altitude, speed: this.fms.currentWaypoint().speed});
+        var inboundHdg = vradial(vsub(this.position, hold_fix_location));
+      }
+      else {  // holding over present position (currently only able to do so on present course)
+        var holding_wp_index = 0;
+        hold_fix_location = this.position; // make a/c hold over their present position
+        var inboundHdg = this.heading;
+      }
+      if(!hold_fix_location) hold_fix_location = this.position; // make a/c hold over their present position
 
-      if(this.fms.currentWaypoint().navmode == "rwy")
-        this.cancelLanding();
-      else if(this.fms.currentWaypoint().navmode == "fix")
-        this.cancelFix();
-
-      if(this.isTakeoff())
+      
+      if(this.isTakeoff() && !hold_fix)
         return ["fail", "where do you want us to hold?"];
 
-      return ["ok", "hold " + inboundDir + " of present position, " + dirTurns + " turns, " + legLength + " legs"];
+      var hold_wp = {navmode:"hold", speed: this.fms.currentWaypoint().speed,  altitude: this.fms.currentWaypoint().altitude, fix: null,
+        hold: { fixName: hold_fix,          fixPos: hold_fix_location,
+                dirTurns: dirTurns,         legLength: legLength,
+                inboundHdg: inboundHdg,     timer: 1, }};  // Force the initial turn to outbound heading when entering the hold
+      this.fms.insertWaypoint(hold_wp, holding_wp_index);
+
+      var inboundDir = radio_cardinalDir_names[getCardinalDirection(fix_angle(inboundHdg + Math.PI)).toLowerCase()];
+      if(hold_fix) return ["ok", "proceed direct " + hold_fix + " and hold inbound, " + dirTurns + " turns, " + legLength + " legs"];
+      else return ["ok", "hold " + inboundDir + " of present position, " + dirTurns + " turns, " + legLength + " legs"];
     },
     runDirect: function(data) {
       if(data.length == 0) {
@@ -2015,7 +2032,6 @@ var Aircraft=Fiber.extend(function() {
             this.fms.nextWaypoint();
           }
           else {
-            // console.log(this.fms.currentWaypoint());
             this.fms.waypoints_past.push(this.fms.deepCopyWaypoint());
             this.cancelFix();
           }
@@ -2025,11 +2041,26 @@ var Aircraft=Fiber.extend(function() {
           this.target.turn = null;
         }
       } else if(this.fms.currentWaypoint().navmode == "hold") {
-        if(this.fms.currentWaypoint().turn == "right") {
-          this.target.heading = this.heading + Math.PI/4;
-        } else if(this.fms.currentWaypoint().turn == "left") {
-          this.target.heading = this.heading - Math.PI/4;
+
+        var hold = this.fms.currentWaypoint().hold;
+        var angle_off_of_leg_hdg = abs(angle_offset(this.heading, this.target.heading));
+        if(angle_off_of_leg_hdg < 0.087) { // within ~5° of upwd/dnwd
+          // this.target.turn = null;
+          if(!hold.timer) hold.timer = prop.game.time;  // record time started the leg
+          else {  // if timer is running
+            if(hold.legLength.includes("min")) {  // time-based hold legs
+              if(prop.game.time >= hold.timer + parseInt(hold.legLength.replace("min",""))*60) { // time to turn
+                this.target.heading += Math.PI;   // turn to other leg
+                this.target.turn = hold.dirTurns;
+                hold.timer = 0; // reset the timer
+              }
+            else if(hold.legLength.includes("nm")) {  // distance-based hold legs
+              // not yet implemented
+            }
+          }
         }
+      }
+
       } else {
         this.target.heading = this.fms.currentWaypoint().heading;
         this.target.turn = this.fms.currentWaypoint().turn;
@@ -2393,7 +2424,7 @@ var Aircraft=Fiber.extend(function() {
         heading.text(this.fms.currentWaypoint().name);
         heading.addClass("hold");
       } else if(this.fms.currentWaypoint().navmode == "hold") {
-        heading.text("hold "+this.fms.currentWaypoint().turn);
+        heading.text("holding");
         heading.addClass("hold");
       }
     },
@@ -2722,6 +2753,7 @@ function aircraft_turn_initiation_distance(a, fix) {
   var bank_angle = radians(25); // assume nominal bank angle of 25 degrees for all aircraft
   var g = 9.81;                 // acceleration due to gravity, m/s*s
   var nextfix = a.fms.waypoints[1].location;
+  if(!nextfix) return 0;
   var nominal_new_course = vradial(vsub(nextfix, fix));
   if( nominal_new_course < 0 ) nominal_new_course += Math.PI * 2;
   var current_heading = a.heading;
