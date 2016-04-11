@@ -362,7 +362,7 @@ zlsa.atc.AircraftFlightManagementSystem = Fiber.extend(function() {
       this.fp = { altitude: null, route: [] };
       
       // set initial
-      this.addWaypoint();
+      this.appendWaypoint();
       this.fp.altitude = clamp(1000, options.model.ceiling, 60000);
       if(options.aircraft.category == "arrival") 
         this.fp.route.push(airport_get().icao,"KDBG");
@@ -370,14 +370,17 @@ zlsa.atc.AircraftFlightManagementSystem = Fiber.extend(function() {
         this.fp.route.push("KDBG",airport_get().icao);
     },
 
-    /*
-     Return this fms's parent aircraft */
+    /** Return this fms's parent aircraft
+     */
     my_aircraft: function() {
       return aircraft_get(this.my_aircrafts_eid);
     },
 
-    /**
-     * Add a waypoint
+    /** Build a waypoint object
+     ** Note that .prependWaypoint() or .appendWaypoint() or .insertWaypoint()
+     ** should be called in order to add waypoints to the fms, based on which
+     ** you want. This function serves only to build the waypoint object; it is
+     ** placed by one of the other three functions.
      */
     addWaypoint: function(data) {
       if (data === undefined)
@@ -417,19 +420,35 @@ zlsa.atc.AircraftFlightManagementSystem = Fiber.extend(function() {
         wp[f] = data[f];
       }
 
-      this.waypoints.push(wp);
+      return wp;
     },
 
-    /**
-     * Return the current waypoint
+    /** Insert a waypoint at the front of fms.waypoints
+     */
+    prependWaypoint: function (data) {
+      this.waypoints.unshift(this.addWaypoint(data));
+    },
+
+    /** Insert a waypoint at the end of fms.waypoints
+     */
+    appendWaypoint: function(data) {
+      this.waypoints.push(this.addWaypoint(data));
+    },
+
+    /** Insert a waypoint at a particular position within fms.waypoints
+     */
+    insertWaypoint: function(data, position) {
+      this.waypoints.splice(position, 0, this.addWaypoint(data));
+    },
+
+    /** Return the current waypoint
      */
     currentWaypoint: function() {
       if(this.waypoints.length < 1) return null;
       else return this.waypoints[0];
     },
 
-    /**
-     * True if waypoint of the given name exists
+    /** True if waypoint of the given name exists
      */
     hasWaypoint: function(name) {
       for (var j=0; j<this.waypoints.length; j++) {
@@ -440,14 +459,13 @@ zlsa.atc.AircraftFlightManagementSystem = Fiber.extend(function() {
       return false;
     },
 
-    /**
-     * Switch to the next waypoint
+    /** Switch to the next waypoint
      */
     nextWaypoint: function() {
       var last = this.waypoints.shift();
 
       if (this.waypoints.length == 0) {
-        this.addWaypoint({
+        this.appendWaypoint({
           navmode: 'heading',
           heading: last.heading,
           speed: last.speed,
@@ -462,15 +480,13 @@ zlsa.atc.AircraftFlightManagementSystem = Fiber.extend(function() {
         this.waypoints[0].altitude = last.altitude;
     },
 
-    /**
-     * Remove all waypoints except the current one
+    /** Remove all waypoints except the current one
      */
     removeWaypoints: function() {
       this.waypoints = [this.waypoints[0]];
     },
 
-    /**
-     * Modify all waypoints
+    /** Modify all waypoints
      */
     setAll: function(data) {
       for (var i=0; i<this.waypoints.length; i++) {
@@ -480,8 +496,7 @@ zlsa.atc.AircraftFlightManagementSystem = Fiber.extend(function() {
       }
     },
 
-    /**
-     * Modify the current waypoint
+    /** Modify the current waypoint
      */
     setCurrent: function(data) {
       for (var i in data) {
@@ -489,15 +504,14 @@ zlsa.atc.AircraftFlightManagementSystem = Fiber.extend(function() {
       }
     },
 
-    /**
-     * Reset waypoints as a list of fixes
+    /** Reset waypoints as a list of fixes
      */
     setFixes: function(fixes) {
       var current = this.waypoints[0];
       this.waypoints = [];
       for (var i=0;i< fixes.length;i++) {
         var f = fixes[i];
-        this.addWaypoint({
+        this.appendWaypoint({
           name: f,
           navmode: 'fix',
           location: airport_get().getFix(f),
@@ -511,8 +525,7 @@ zlsa.atc.AircraftFlightManagementSystem = Fiber.extend(function() {
       this.waypoints[0].runway = current.runway;
     },
 
-    /**
-     * Invokes flySID() for the SID in the flightplan (fms.fp.route)
+    /** Invokes flySID() for the SID in the flightplan (fms.fp.route)
      */
     clearedAsFiled: function() {
       aircraft_get(this.my_aircrafts_eid).runSID(aircraft_get(this.my_aircrafts_eid).destination);
@@ -520,8 +533,7 @@ zlsa.atc.AircraftFlightManagementSystem = Fiber.extend(function() {
       return true;
     },
 
-    /**
-     * Adds a series of fixes w/ altitudes to the fms waypoints list
+    /** Adds a series of fixes w/ altitudes to the fms waypoints list
      */
     flySID: function(fixes_n_alts_n_speeds) {
       var current = this.waypoints[0];
@@ -538,7 +550,7 @@ zlsa.atc.AircraftFlightManagementSystem = Fiber.extend(function() {
         }
 
         // add waypoint to fms
-        this.addWaypoint({
+        this.appendWaypoint({
           name: f,
           navmode: 'fix',
           location: airport_get().getFix(f),
@@ -553,14 +565,14 @@ zlsa.atc.AircraftFlightManagementSystem = Fiber.extend(function() {
       this.waypoints[0].runway = current.runway;
     },
 
-    /**
-     * Adds altitudes and speeds to each waypoint that are as high as 
-     * possible without exceeding any the following:
-     *    - (alt) airspace ceiling ('ctr_ceiling')
-     *    - (alt) filed cruise altitude
-     *    - (alt) waypoint's altitude restriciton
-     *    - (spd) 250kts when under 10k ft
-     *    - (spd) waypoint's speed restriction
+    /** Climbs aircraft in compliance with the SID they're following
+     ** Adds altitudes and speeds to each waypoint that are as high as 
+     ** possible without exceeding any the following:
+     **    - (alt) airspace ceiling ('ctr_ceiling')
+     **    - (alt) filed cruise altitude
+     **    - (alt) waypoint's altitude restriciton
+     **    - (spd) 250kts when under 10k ft
+     **    - (spd) waypoint's speed restriction
      */
     climbViaSID: function() {
       var wp = this.waypoints;  // copy current waypoints
@@ -607,8 +619,7 @@ zlsa.atc.AircraftFlightManagementSystem = Fiber.extend(function() {
       return true;
     },
 
-    /**
-     * Skips waypoints intermediate to the given waypoint
+    /** Skips waypoints intermediate to the given waypoint
      */
     skipToWaypoint: function(name) {
       var current = this.waypoints[0];
@@ -635,19 +646,17 @@ zlsa.atc.AircraftFlightManagementSystem = Fiber.extend(function() {
       return i;
     },
 
-    /**
-     * Returns a (deep) copy of a waypoint.
-     *
-     * By default, when pushing an object (like a waypoint) to an array
-     * in js, the value of the object itself is not copied, but rather
-     * just a reference (pointer) to the object. This results in pushing
-     * the correct value to the array, and then when the source value
-     * changes, it is also changed in the array, despite the fact that
-     * you would have thought you had 'saved' the old value.
-     * 
-     * This function will manually build a copy of the waypoint object,
-     * and return the ACTUAL value, that will not be changed when the
-     * fms is updated.
+    /** Returns a (deep) copy of a waypoint.
+     ** By default, when pushing an object (like a waypoint) to an array
+     ** in js, the value of the object itself is not copied, but rather
+     ** just a reference (pointer) to the object. This results in pushing
+     ** the correct value to the array, and then when the source value
+     ** changes, it is also changed in the array, despite the fact that
+     ** you would have thought you had 'saved' the old value.
+     ** 
+     ** This function will manually build a copy of the waypoint object,
+     ** and return the ACTUAL value, that will not be changed when the
+     ** fms is updated.
      */
     deepCopyWaypoint: function(wp) {
       if(!wp) wp = this.currentWaypoint();
@@ -843,7 +852,7 @@ var Aircraft=Fiber.extend(function() {
     // Ignore waypoints further away from the origin than the aircraft
     setArrivalWaypoints: function(waypoints) {
       for (var i=0; i<waypoints.length; i++) {
-        this.fms.addWaypoint(waypoints[i]);
+        this.fms.appendWaypoint(waypoints[i]);
       }
       this.fms.nextWaypoint(); // Remove the default waypoint
 
@@ -1445,7 +1454,6 @@ var Aircraft=Fiber.extend(function() {
         hold_fix_location = this.position; // make a/c hold over their present position
         var inboundHdg = this.heading;
       }
-      if(!hold_fix_location) hold_fix_location = this.position; // make a/c hold over their present position
 
       
       if(this.isTakeoff() && !hold_fix)
@@ -1581,7 +1589,7 @@ var Aircraft=Fiber.extend(function() {
       }
 
       for (var i=0; i<data.length; i++) {
-        this.fms.addWaypoint({
+        this.fms.appendWaypoint({
           name: data[i],
           navmode: 'fix',
           location: airport_get().getFix(data[i]),
