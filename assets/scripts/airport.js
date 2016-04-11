@@ -1021,6 +1021,7 @@ function airport_init() {
   airport_load("eham");
   airport_load("engm");
   airport_load("eddm");
+  airport_load("eddt");
   airport_load("eidw");
   airport_load("einn");
   airport_load("eglc");
