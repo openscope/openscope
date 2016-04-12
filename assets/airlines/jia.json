@@ -1,0 +1,12 @@
+{
+  "name": "PSA Airlines",
+  "callsign": {
+    "name": "blue streak",
+    "length": 4
+  },
+  "aircraft": [
+    ["CRJ2", 35 ],
+	["CRJ7", 26 ],
+	["CRJ9", 42 ]
+  ]
+}

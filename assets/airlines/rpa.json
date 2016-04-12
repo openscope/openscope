@@ -1,0 +1,10 @@
+{
+  "name": "Republic Airlines",
+  "callsign": {
+    "name": "Brickyard",
+    "length": 4
+  },
+  "aircraft": [
+    ["E170", 113]
+  ]
+}

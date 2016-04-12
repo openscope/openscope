@@ -1,0 +1,12 @@
+{
+  "name": "Envoy Air",
+  "callsign": {
+    "name": "Envoy",
+    "length": 4
+  },
+  "aircraft": [
+	["CRJ7", 35 ],
+	["E145", 126],
+	["E170", 10]
+  ]
+}
