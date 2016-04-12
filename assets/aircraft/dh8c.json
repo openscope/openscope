@@ -19,8 +19,8 @@
     "decelerate": 6
   },
   "runway": {
-    "takeoff": .800,
-    "landing": .800
+    "takeoff": 0.800,
+    "landing": 0.800
   },
   "speed":{
     "min":     75,
