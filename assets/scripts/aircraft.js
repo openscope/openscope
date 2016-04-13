@@ -2434,29 +2434,6 @@ function aircraft_auto_toggle() {
 }
 
 function aircraft_init() {
-	
-  // 1990' AIRCRAFTS
-
-  
-  //ATR
-  aircraft_load("at43");
-  aircraft_load("at72");
-
-  // CESSNA
-  aircraft_load("c172");
-  aircraft_load("c182");
-  aircraft_load("c208");
-  aircraft_load("c337");
-  aircraft_load("c510");
-  aircraft_load("c550");
-  aircraft_load("c750");
-
-  // ANTONOV
-  aircraft_load("a124");
-  aircraft_load("an12");
-  aircraft_load("an24");
-  aircraft_load("an72");
-
   // AIRBUS
   aircraft_load("a306");
   aircraft_load("a310");
@@ -2466,18 +2443,24 @@ function aircraft_init() {
   aircraft_load("a321");
   aircraft_load("a332");
   aircraft_load("a333");
-
   aircraft_load("a343");
   aircraft_load("a346");
-
   aircraft_load("a388");
+
+  // ANTONOV
+  aircraft_load("a124");
+  aircraft_load("an12");
+  aircraft_load("an24");
+  aircraft_load("an72");
+
+  // ATR
+  aircraft_load("at43");
+  aircraft_load("at72");
 
   // BOEING
   aircraft_load("b712");
-  
-  aircraft_load("b722");   // 1990' Update
-  aircraft_load("b732");   // 1990' Update
-   
+  aircraft_load("b722");
+  aircraft_load("b732");
   aircraft_load("b733");
   aircraft_load("b734");
   aircraft_load("b735");
@@ -2485,76 +2468,90 @@ function aircraft_init() {
   aircraft_load("b737");
   aircraft_load("b738");
   aircraft_load("b739");
-
-  aircraft_load("b741");   // 1990' 2ªUpdate
-  aircraft_load("b742");   // 1990' Update
-  aircraft_load("b74s");   // 1990' Update
+  aircraft_load("b741");
+  aircraft_load("b742");
   aircraft_load("b744");
   aircraft_load("b748");
-
+  aircraft_load("b74s");
   aircraft_load("b752");
   aircraft_load("b753");
-
   aircraft_load("b762");
   aircraft_load("b763");
   aircraft_load("b764");
-
   aircraft_load("b772");
-  aircraft_load("b77e");
+  aircraft_load("b77l");
   aircraft_load("b773");
   aircraft_load("b77w");
   aircraft_load("b788");
-  
-  // CANADAIR
+  aircraft_load("b789");
+
+  // BOMBARDIER
   aircraft_load("crj2");
+  aircraft_load("crj7");
   aircraft_load("crj9");
+  aircraft_load("dh8a");
+  aircraft_load("dh8c");
+  aircraft_load("dh8d");
+
+  // CESSNA
+  aircraft_load("c172");
+  aircraft_load("c182");
+  aircraft_load("c208");
+  aircraft_load("c337");
+  aircraft_load("c402");
+  aircraft_load("c510");
+  aircraft_load("c550");
+  aircraft_load("c750");
   
   // EMBRAER
   aircraft_load("e110");
   aircraft_load("e120");
-  aircraft_load("e170");
-  aircraft_load("e50p");
-  aircraft_load("e55p");
   aircraft_load("e135");
   aircraft_load("e145");
-  aircraft_load("e545");
+  aircraft_load("e170");
   aircraft_load("e190");
+  aircraft_load("e50p");
+  aircraft_load("e545");
+  aircraft_load("e55p");
 
-  // CONCORDE...
-  aircraft_load("conc");
-
-  // DOUGLAS
-  aircraft_load("dc10");
-  aircraft_load("dc87");   // 1990' Update
-  aircraft_load("dc93");   // 1990' Update
-  aircraft_load("md11");
-  aircraft_load("md81");  // 1990' Update
-  aircraft_load("md82");
-  aircraft_load("md83");  // 1990' 2ªUpdate
-  aircraft_load("md87");  // 1990' 2ªUpdate
-  aircraft_load("md88");  // 1990' 2ªUpdate
-  aircraft_load("md90");
-
- // FOKKER
-  aircraft_load("f50");
+  // FOKKER
+  aircraft_load("f50" );
   aircraft_load("f100");
 
-
-  // MISC
-  aircraft_load("l101");  // 1990' Update
+  // GENERAL AVIATION
   aircraft_load("be36");
-  aircraft_load("c130");
-  aircraft_load("c5");
+  aircraft_load("bn2p");
+  aircraft_load("p28a");
+
+  // ILYUSHIN
   aircraft_load("il76");
   aircraft_load("il96");
+
+  // LOCKHEED-MARTIN
+  aircraft_load( "c5" );
+  aircraft_load("c130");
+  aircraft_load("l101");
   aircraft_load("l410");
-  aircraft_load("p28a");
+
+  // MCDONNELL-DOUGLAS
+  aircraft_load("dc10");
+  aircraft_load("dc87");
+  aircraft_load("dc93");
+  aircraft_load("md11");
+  aircraft_load("md81");
+  aircraft_load("md82");
+  aircraft_load("md83");
+  aircraft_load("md87");
+  aircraft_load("md88");
+  aircraft_load("md90");
+
+  // TUPOLEV
   aircraft_load("t154");
   aircraft_load("t204");
+
+  // MISCELLANEOUS
+  aircraft_load("conc");
   aircraft_load("rj85");
-  aircraft_load("c130");
-  aircraft_load("c5");
-  aircraft_load("dh8d");
 }
 
 function aircraft_generate_callsign(airline_name) {
