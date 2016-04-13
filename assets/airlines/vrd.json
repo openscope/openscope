@@ -4,10 +4,10 @@
     "name": "Redwood",
     "length": 3
   },
-  "aircraft": [
-    ["A319", 10 ],
-
-    ["A320", 50 ]
-
-  ]
+  "fleets": {
+    "default": [
+      ["A319", 10],
+      ["A320", 50]
+    ]
+  }
 }
