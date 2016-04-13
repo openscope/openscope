@@ -1,0 +1,22 @@
+{
+  "icao": "JAL",
+  "name": "Japan Airlines",
+  "callsign": {
+    "name": "JAPANAIR",
+    "length": 3,
+    "alpha": false
+  },
+  "fleets": {
+    "default": [
+      ["B738", 50]
+    ],
+    "long": [
+      ["B763", 42],
+      ["B772", 12],
+      ["B77L", 11],
+      ["B773", 5],
+      ["B77W", 13],
+      ["B788", 23]      
+    ]
+  }
+}
