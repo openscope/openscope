@@ -149,59 +149,59 @@
     }
   ],
   "sids": {
-      "JFK3": {
-        "icao": "JFK3",
-        "name": "KENNEDY THREE",
-        "rwy:": {
-            "31L": ["CRI", ["_CRI3", "2500+"]],
-            "31R": ["CRI", ["OGY", "2500+"]],
-            "04L": ["_RWY04L3", ["_RWY04L3to100", "5000+"]],
-            "04R": ["_RWY04L3", ["_RWY04L3to100", "5000+"]],
-            "13L": ["_RWY13LDEP"],
-            "13R": ["_RWY13RDEP"],
-            "22L": ["_RWY22LDEP"],
-            "22R": ["_RWY22RDEP"]
-        },
-        "transitions": {
-            "SAX": ["SAX"],
-            "COATE": ["COATE"],
-            "NEION": ["NEION"],
-            "HAAYS": ["HAAYS"],
-            "GAYEL": ["GAYEL"],
-            "GREKI": ["GREKI"],
-            "MERIT": ["MERIT"],
-            "BAYYS": ["BAYYS"],
-            "BDR": ["BDR"],
-            "BETTE": ["BETTE"],
-            "HAPIE": ["HAPIE"],
-            "SHIPP": ["SHIPP"],
-            "WAVEY": ["WAVEY"],
-            "WHITE": ["WHITE"],
-            "DIXIE": ["DIXIE"],
-            "RNGRR": ["RNGRR"],
-            "RBV": ["RBV"],
-            "ARD": ["ARD"],
-            "SBJ": ["SBJ"],
-            "LANNA": ["LANNA"]
-        },
-        "draw": [["CRI", "OGY"], ["CRI", "_CRI3"], ["_RWY04L3", "_RWY04L3to100"], ["JFK", "SAX*"], ["JFK", "COATE*"], ["JFK", "NEION*"], ["JFK","HAAYS*"], ["JFK", "GAYEL*"], ["JFK", "GREKI*"], ["JFK", "MERIT*"], ["JFK", "BAYYS*"], ["JFK", "BDR*"], ["JFK", "BETTE*"], ["JFK", "HAPIE*"], ["JFK", "SHIPP*"], ["JFK", "WAVEY*"], ["JFK", "WHITE*"], ["JFK", "DIXIE*"], ["JFK", "RNGRR*"], ["JFK", "RBV*"], ["JFK", "ARD*"], ["JFK", "SBJ*"], ["JFK", "LANNA*"]]
+    "JFK3": {
+      "icao": "JFK3",
+      "name": "KENNEDY THREE",
+      "rwy": {
+        "31L": ["CRI", ["_CRI3", "A25+"]],
+        "31R": ["CRI", ["OGY", "A25+"]],
+        "04L": ["_RWY04L3", ["_RWY04L3to100", "A50+"]],
+        "04R": ["_RWY04L3", ["_RWY04L3to100", "A50+"]],
+        "13L": ["_RWY13LDEP"],
+        "13R": ["_RWY13RDEP"],
+        "22L": ["_RWY22LDEP"],
+        "22R": ["_RWY22RDEP"]
+      },
+      "transitions": {
+        "SAX": ["SAX"],
+        "COATE": ["COATE"],
+        "NEION": ["NEION"],
+        "HAAYS": ["HAAYS"],
+        "GAYEL": ["GAYEL"],
+        "GREKI": ["GREKI"],
+        "MERIT": ["MERIT"],
+        "BAYYS": ["BAYYS"],
+        "BDR": ["BDR"],
+        "BETTE": ["BETTE"],
+        "HAPIE": ["HAPIE"],
+        "SHIPP": ["SHIPP"],
+        "WAVEY": ["WAVEY"],
+        "WHITE": ["WHITE"],
+        "DIXIE": ["DIXIE"],
+        "RNGRR": ["RNGRR"],
+        "RBV": ["RBV"],
+        "ARD": ["ARD"],
+        "SBJ": ["SBJ"],
+        "LANNA": ["LANNA"]
+      },
+      "draw": [["CRI", "OGY"], ["CRI", "_CRI3"], ["_RWY04L3", "_RWY04L3to100"], ["JFK", "SAX*"], ["JFK", "COATE*"], ["JFK", "NEION*"], ["JFK","HAAYS*"], ["JFK", "GAYEL*"], ["JFK", "GREKI*"], ["JFK", "MERIT*"], ["JFK", "BAYYS*"], ["JFK", "BDR*"], ["JFK", "BETTE*"], ["JFK", "HAPIE*"], ["JFK", "SHIPP*"], ["JFK", "WAVEY*"], ["JFK", "WHITE*"], ["JFK", "DIXIE*"], ["JFK", "RNGRR*"], ["JFK", "RBV*"], ["JFK", "ARD*"], ["JFK", "SBJ*"], ["JFK", "LANNA*"]]
     },
       "DEEZZ4": {
         "icao": "DEEZZ4",
         "name": "DEEZZ FOUR",
         "rwy": {
-            "31L": ["_315I238SKORR", "SKORR", ["CESID", "2500+"], "YNKEE"],
-            "31R": ["_315I243SKORR","SKORR", ["CESID", "2500+"], "YNKEE"],
-            "13R": [["_RWY13R3DME", "A052+"]],
-            "13L": [["_RWY13L3DME", "A052+"]],
+            "31L": ["_315I238SKORR", "SKORR", ["CESID", "A25+"], "YNKEE"],
+            "31R": ["_315I243SKORR","SKORR", ["CESID", "A25+"], "YNKEE"],
+            "13R": [["_RWY13R3DME", "A5.2+"]],
+            "13L": [["_RWY13L3DME", "A5.2+"]],
             "04R": ["_RWY04L3"],
             "04L": ["_RWY04L3"],
             "22R": ["YNKEE"],
             "22L": ["YNKEE"]
         },
         "transitions": {
-            "CANDR": ["DEEZZ", ["HEERO", "5000+"], "KURNL", "CANDR"],
-            "TOWIN": ["DEEZZ", ["HEERO", "5000+"], "KURNL", "TOWIN"]
+            "CANDR": ["DEEZZ", ["HEERO", "A50+"], "KURNL", "CANDR"],
+            "TOWIN": ["DEEZZ", ["HEERO", "A50+"], "KURNL", "TOWIN"]
         },
         "draw": [["SKORR", "CESID", "YNKEE"], ["DEEZZ", "HEERO", "KURNL", "CANDR*"], ["DEEZZ", "HEERO", "KURNL", "TOWIN*"]]
     },
