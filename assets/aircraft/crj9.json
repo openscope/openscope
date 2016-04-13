@@ -1,6 +1,6 @@
 {
-  "name": "Embraer ERJ135 / Legacy 600",
-  "icao": "E135",
+  "name": "CRJ 900",
+  "icao": "CRJ9",
   "engines": {
     "number": 2,
     "type": "J"
@@ -8,10 +8,10 @@
   "weightclass": "L",
   "category": {
     "srs": 3,
-    "lahso": 7,
+    "lahso": 8,
     "recat": "E"
   },
-  "ceiling": 37000,
+  "ceiling": 41000,
   "rate": {
     "climb":      2000,
     "descent":    1670,
@@ -19,13 +19,13 @@
     "decelerate": 6
   },
   "runway": {
-    "takeoff": 1.580,
-    "landing": 1.130
+    "takeoff": 1.900,
+    "landing": 1.500
   },
   "speed":{
     "min":     110,
     "landing": 100,
-    "cruise":  445,
+    "cruise":  458,
     "cruiseM": null,
     "max":     470,
     "maxM":    null

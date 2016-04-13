@@ -1,0 +1,16 @@
+{
+  "name": "Caribbean Airlines",
+  "icao": "BWA",
+  "callsign": {
+    "name": "Caribbean Airlines",
+    "length": 3
+   },
+  "fleets": {
+    "short": [
+      ["AT72", 5 ]
+    ],
+    "default": [
+      ["B738", 12 ]  
+    ]
+  }
+}

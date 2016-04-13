@@ -1,6 +1,6 @@
 {
-  "name": "Embraer ERJ135 / Legacy 600",
-  "icao": "E135",
+  "name": "Boeing 717",
+  "icao": "B712",
   "engines": {
     "number": 2,
     "type": "J"
@@ -9,25 +9,25 @@
   "category": {
     "srs": 3,
     "lahso": 7,
-    "recat": "E"
+    "recat": "D"
   },
   "ceiling": 37000,
   "rate": {
-    "climb":      2000,
-    "descent":    1670,
-    "accelerate": 10,
-    "decelerate": 6
+    "climb":      1215,
+    "descent":    1430,
+    "accelerate": 7,
+    "decelerate": 5
   },
   "runway": {
-    "takeoff": 1.580,
-    "landing": 1.130
+    "takeoff": 1.8,
+    "landing": 2.3
   },
   "speed":{
     "min":     110,
-    "landing": 100,
-    "cruise":  445,
-    "cruiseM": null,
-    "max":     470,
+    "landing": 125,
+    "cruise":  437,
+    "cruiseM": 0.77,
+    "max":     500,
     "maxM":    null
   },
   "capability": {

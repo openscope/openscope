@@ -1,0 +1,12 @@
+{
+  "name": "Piedmont Airlines",
+  "callsign": {
+    "name": "piedmont",
+    "length": 4
+  },
+  "aircraft": [
+    ["DH8A", 32 ],
+	["DH8C", 11 ],
+	["E145", 3  ]
+  ]
+}

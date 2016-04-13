@@ -2473,8 +2473,10 @@ function aircraft_init() {
   aircraft_load("a388");
 
   // BOEING
-   aircraft_load("b722");   // 1990' Update
-   aircraft_load("b732");   // 1990' Update
+  aircraft_load("b712");
+  
+  aircraft_load("b722");   // 1990' Update
+  aircraft_load("b732");   // 1990' Update
    
   aircraft_load("b733");
   aircraft_load("b734");
@@ -2490,7 +2492,6 @@ function aircraft_init() {
   aircraft_load("b744");
   aircraft_load("b748");
 
-
   aircraft_load("b752");
   aircraft_load("b753");
 
@@ -2503,7 +2504,11 @@ function aircraft_init() {
   aircraft_load("b773");
   aircraft_load("b77w");
   aircraft_load("b788");
-
+  
+  // CANADAIR
+  aircraft_load("crj2");
+  aircraft_load("crj9");
+  
   // EMBRAER
   aircraft_load("e110");
   aircraft_load("e120");
@@ -2511,6 +2516,7 @@ function aircraft_init() {
   aircraft_load("e50p");
   aircraft_load("e55p");
   aircraft_load("e135");
+  aircraft_load("e145");
   aircraft_load("e545");
   aircraft_load("e190");
 
@@ -2527,14 +2533,15 @@ function aircraft_init() {
   aircraft_load("md83");  // 1990' 2ªUpdate
   aircraft_load("md87");  // 1990' 2ªUpdate
   aircraft_load("md88");  // 1990' 2ªUpdate
+  aircraft_load("md90");
 
  // FOKKER
   aircraft_load("f50");
-	aircraft_load("f100");
+  aircraft_load("f100");
 
 
   // MISC
-   aircraft_load("l101");  // 1990' Update
+  aircraft_load("l101");  // 1990' Update
   aircraft_load("be36");
   aircraft_load("c130");
   aircraft_load("c5");

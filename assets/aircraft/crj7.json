@@ -1,6 +1,6 @@
 {
-  "name": "Embraer ERJ135 / Legacy 600",
-  "icao": "E135",
+  "name": "CRJ 700",
+  "icao": "CRJ7",
   "engines": {
     "number": 2,
     "type": "J"
@@ -11,7 +11,7 @@
     "lahso": 7,
     "recat": "E"
   },
-  "ceiling": 37000,
+  "ceiling": 41000,
   "rate": {
     "climb":      2000,
     "descent":    1670,
@@ -19,16 +19,16 @@
     "decelerate": 6
   },
   "runway": {
-    "takeoff": 1.580,
-    "landing": 1.130
+    "takeoff": 1.700,
+    "landing": 1.480
   },
   "speed":{
     "min":     110,
     "landing": 100,
-    "cruise":  445,
-    "cruiseM": null,
-    "max":     470,
-    "maxM":    null
+    "cruise":  447,
+    "cruiseM": 0.78,
+    "max":     472,
+    "maxM":    0.83
   },
   "capability": {
     "ils": true,
