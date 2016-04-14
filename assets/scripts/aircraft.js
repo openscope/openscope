@@ -883,6 +883,7 @@ var Aircraft=Fiber.extend(function() {
         else if(typeof this.destination == "string")
           this.html.append("<span class='destination'>" + this.destination + "</span>");
       }
+      else this.html.append("<span class='destination'></span>");
       this.html.append("<span class='speed'>-</span>");
 
       this.html.find(".aircraft").prop("title", this.model.name);
@@ -1590,7 +1591,7 @@ var Aircraft=Fiber.extend(function() {
       if(!fixes) return ["fail", sid_id + " SID not valid from runway " + rwy];
       
       this.cancelFix();
-      this.fms.follow("sid", sid_name, fixes);
+      this.fms.follow("sid", sid_id, fixes);
 
       return ["ok", {log:"cleared to destination via the " + sid_id + " departure, then as filed",
                   say:"cleared to destination via the " + sid_name + " departure, then as filed"}];
@@ -2389,88 +2390,85 @@ var Aircraft=Fiber.extend(function() {
       if (this.projected) return;
       var heading  = this.html.find(".heading");
       var altitude = this.html.find(".altitude");
+      var destination = this.html.find(".destination");
       var speed    = this.html.find(".speed");
 
-      heading.removeClass("runway hold waiting taxi");
-      altitude.removeClass("runway hold");
-      speed.removeClass("runway");
+      heading.removeClass("runway hold waiting taxi lookingGood allSet");
+      altitude.removeClass("runway hold waiting taxi lookingGood allSet");
+      destination.removeClass("runway hold waiting taxi lookingGood allSet");
+      speed.removeClass("runway hold waiting taxi lookingGood allSet");
 
-      if(this.fms.currentWaypoint().runway) {
-        heading.addClass("runway");
-        heading.text(this.fms.currentWaypoint().runway);
+      var wp = this.fms.currentWaypoint();
 
       // default values
       heading.text(heading_to_string(wp.heading));
-      altitude.text(wp.altitude);
+      if(wp.altitude) altitude.text(wp.altitude);
+      else altitude.text("-");
       destination.text(this.destination);
       speed.text(wp.speed);
 
+      if(wp.runway) {
+        // heading.addClass("runway");
         if(this.category == "arrival") {
           if(this.mode == "landing") {
-            altitude.text("ILS locked");
-            altitude.addClass("runway");
-
-            speed.text("-");
-            speed.addClass("runway");
+            heading.addClass("allSet");
+            heading.text("on ILS");
+            altitude.addClass("allSet");
+            altitude.text("GS");
+            destination.addClass("allSet");
+            destination.text(this.fms.fp.route[this.fms.fp.route.length-1] + " " + wp.runway);
+            speed.addClass("allSet");
           } else {
-            altitude.text("no ILS");
-            altitude.addClass("hold");
+            heading.addClass("lookingGood");
+            heading.text("intercept");
+            altitude.addClass("lookingGood");
+            destination.addClass("lookingGood");
+            destination.text(this.fms.fp.route[this.fms.fp.route.length-1] + " " + wp.runway);
+            speed.addClass("lookingGood");
           }
-        } else {
+        } else {  // departures
           if(this.mode == "apron") {
+            heading.addClass("runway");
             heading.text("apron");
-
-            altitude.text("ready");
-            altitude.addClass("runway");
-
-            speed.text("-");
+            if(wp.altitude) altitude.addClass("runway");
+            if(this.fms.following.sid) destination.addClass("runway");
             speed.addClass("runway");
+
           } else if(this.mode == "taxi") {
-            altitude.text("taxi");
-            altitude.addClass("runway");
-
-            if(this.taxi_next) {
-              altitude.text("waiting");
-            }
-
-            speed.text("-");
+            heading.addClass("runway");
+            heading.text("taxi");
+            if(wp.altitude) altitude.addClass("runway");
+            if(this.fms.following.sid) destination.addClass("runway");
             speed.addClass("runway");
+            if(this.taxi_next) altitude.text("ready");
+
           } else if(this.mode == "waiting") {
-            altitude.text("waiting");
-            altitude.addClass("runway");
-
-            speed.text("-");
+            heading.addClass("runway");
+            heading.text("ready");
+            if(wp.altitude) altitude.addClass("runway");
+            if(this.fms.following.sid) destination.addClass("runway");
             speed.addClass("runway");
+
           } else if(this.mode == "takeoff") {
             heading.text("takeoff");
-            // altitude.text(this.fms.currentWaypoint().altitude);
-            // speed.text(this.fms.currentWaypoint().speed);
-          } else {
-            if(wp.navmode == "fix") heading.text(wp.name);
-            else if(wp.navmode == "heading") heading.text(wp.heading);
+            if(this.fms.following.sid) destination.addClass("lookingGood");
+
           }
         }
       } else {  // not using a runway
         if(wp.navmode == "fix") {
           heading.text(wp.name);
-
+          if(this.fms.following.sid) {
+            heading.addClass("allSet");
+            altitude.addClass("allSet");
+            destination.addClass("allSet");
+            speed.addClass("allSet");
+          }
         } else if(wp.navmode == "hold") {
           heading.text("hold " + wp.turn);
           heading.addClass("hold");
         }
-      } else {
-        heading.text(heading_to_string(this.fms.currentWaypoint().heading));
-        altitude.text(this.fms.currentWaypoint().altitude);
-        speed.text(this.fms.currentWaypoint().speed);
-      }
-
-      if(this.fms.currentWaypoint().navmode == "fix") {
-        heading.text(this.fms.currentWaypoint().name);
-        heading.addClass("hold");
-      } else if(this.fms.currentWaypoint().navmode == "hold") {
-        heading.text("hold "+this.fms.currentWaypoint().turn);
-        heading.addClass("hold");
-      }
+      } 
     },
 
     updateAuto: function() {
