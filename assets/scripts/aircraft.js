@@ -365,9 +365,9 @@ zlsa.atc.AircraftFlightManagementSystem = Fiber.extend(function() {
       this.addWaypoint();
       this.fp.altitude = clamp(1000, options.model.ceiling, 60000);
       if(options.aircraft.category == "arrival") 
-        this.fp.route.push(airport_get().icao,"KDBG");
-      else if(options.aircraft.category == "departure") 
         this.fp.route.push("KDBG",airport_get().icao);
+      else if(options.aircraft.category == "departure") 
+        this.fp.route.push(airport_get().icao,"KDBG");
     },
 
     parse: function(options) {
@@ -724,8 +724,8 @@ var Aircraft=Fiber.extend(function() {
 
       this.position_history = [];
 
-      this.category    = "arrival"; // or "departure"
-      this.mode        = "cruise";  // "apron", "taxi", "waiting", "takeoff", "cruise", or "landing"
+      this.category = options.category; // or "departure"
+      this.mode     = "cruise";  // "apron", "taxi", "waiting", "takeoff", "cruise", or "landing"
       // where:
       // - "apron" is the initial status of a new departing plane. After
       //   the plane is issued the "taxi" command, the plane transitions to
