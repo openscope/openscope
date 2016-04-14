@@ -360,6 +360,13 @@ zlsa.atc.AircraftFlightManagementSystem = Fiber.extend(function() {
       this.waypoints = [];
       this.waypoints_past = [];
       this.fp = { altitude: null, route: [] };
+      this.following = {
+        sid:  null,   // Standard Instrument Departure Procedure
+        star: null,   // Standard Terminal Arrival Route Procedure
+        iap:  null,   // Instrument Approach Procedure (like ILS, GPS, RNAV, VOR-A, etc)
+        tfc:  null,   // Traffic (another airplane)
+        anything:  false   // T/F flag for if anything is being "followed"
+      };
       
       // set initial
       this.addWaypoint();
@@ -513,6 +520,86 @@ zlsa.atc.AircraftFlightManagementSystem = Fiber.extend(function() {
       aircraft_get(this.my_aircrafts_eid).runSID(aircraft_get(this.my_aircrafts_eid).destination);
       this.setAll({altitude:airport_get().initial_alt});
       return true;
+    },
+
+    /** Calls various task-based functions and sets 'fms.following' flags
+     */
+    follow: function(type, thingToFollow, /*optional*/ data) {
+      this.stopFollowing(); // remove any current follows
+      if(type == "sid") {
+        this.following.anything = true;
+        this.following.sid = thingToFollow;
+        this.flySID(data);
+      }
+      else if(type == "star") {   // **FUTURE FUNCTIONALITY**
+        this.following.anything = true;
+        this.following.star = thingToFollow;    // full STARs NOT YET IMPLEMENTED
+        // call function to fly the STAR
+      }
+      else if(type == "iap") {
+        this.following.anything = true;
+        this.following.iap = thingToFollow;
+        this.flyApproach(data[0], data[1]);
+      }
+      else if(type == "tfc") {    // **FUTURE FUNCTIONALITY**
+        this.following.anything = true;
+        this.following.tfc = thingToFollow.eid; // EID of the traffic we're following
+        // call function to follow another aircraft
+      }
+      else if(type == "airway") { // **FUTURE FUNCTIONALITY**
+        this.following.anything = true;
+        this.following.airway = thingToFollow;  // airways NOT YET IMPLEMENTED
+        // call function to fly along airway
+      }
+      else {
+        console.log("Unable to follow '" + type + "' called '" + thingToFollow + "'");
+      }
+    },
+
+    /** Terminates any current follows and updates the 'fms.following' flags
+     */
+    stopFollowing: function() {
+      var f = this.following;
+      var wp = this.waypoints;
+      if(f.sid) {
+        this.skipToWaypoint(this.fp.route[1].split(".")[1]);  // remove all sid waypoints
+        f.sid = false;
+      }
+      else if(f.star) {   // **FUTURE FUNCTIONALITY**
+        // remove all star waypoints
+      }
+      else if(f.iap) {
+        this.my_aircraft().cancelLanding();
+        f.iap = false;
+      }
+      else if(f.tfc) {    // **FUTURE FUNCTIONALITY**
+        // stop following traffic
+      }
+      else if(f.airway) { // **FUTURE FUNCTIONALITY**
+        // stop following airway
+      }
+
+      if(!f.sid && !f.star && !f.iap && !f.tfc)
+        f.anything = false;
+    },
+
+    /** Join an instrument approach (eg. ILS/GPS/RNAV/VOR/LAAS/etc)
+     ** @param {string} type - the type of approach (like "ils")
+     ** @param {Runway} rwy - the Runway object the approach ends into
+     ** @param {string} variant - (optional) for stuff like "RNAV-Z 17L"
+     */
+    flyApproach: function(type, rwy, /*optional*/ variant) {
+      if(type == "ils") {
+        this.my_aircraft().cancelFix();
+        this.setCurrent({
+          navmode: "rwy",
+          runway: rwy.toUpperCase(),
+          turn: null,
+          start_speed: this.my_aircraft().speed,
+        });
+      }
+      // if-else all the other approach types here...
+      // ILS, GPS, RNAV, VOR, NDB, LAAS/WAAS, MLS, etc...
     },
 
     /**
@@ -1503,7 +1590,7 @@ var Aircraft=Fiber.extend(function() {
       if(!fixes) return ["fail", sid_id + " SID not valid from runway " + rwy];
       
       this.cancelFix();
-      this.fms.flySID(fixes);
+      this.fms.follow("sid", sid_name, fixes);
 
       return ["ok", {log:"cleared to destination via the " + sid_id + " departure, then as filed",
                   say:"cleared to destination via the " + sid_name + " departure, then as filed"}];
@@ -1622,13 +1709,8 @@ var Aircraft=Fiber.extend(function() {
       if(this.fms.currentWaypoint().runway == data.toUpperCase()) {
         return ["fail", "already landing on runway " + radio_runway(data)];
       }
-      this.cancelFix();
-      this.fms.setCurrent({
-        navmode: "rwy",
-        runway: data.toUpperCase(),
-        turn: null,
-        start_speed: this.speed,
-      });
+
+      this.fms.follow("iap", data.toUpperCase(), ["ils", data]); // tell fms to follow ILS approach
 
       var readback = {log:"cleared ILS runway " + this.fms.currentWaypoint().runway + " approach",
                       say:"cleared ILS runway " + radio_runway(this.fms.currentWaypoint().runway) + " approach"};
@@ -2317,7 +2399,11 @@ var Aircraft=Fiber.extend(function() {
         heading.addClass("runway");
         heading.text(this.fms.currentWaypoint().runway);
 
-        speed.text(this.fms.currentWaypoint().speed);
+      // default values
+      heading.text(heading_to_string(wp.heading));
+      altitude.text(wp.altitude);
+      destination.text(this.destination);
+      speed.text(wp.speed);
 
         if(this.category == "arrival") {
           if(this.mode == "landing") {
@@ -2356,10 +2442,21 @@ var Aircraft=Fiber.extend(function() {
             speed.text("-");
             speed.addClass("runway");
           } else if(this.mode == "takeoff") {
-            altitude.text(this.fms.currentWaypoint().altitude);
-
-            speed.text(this.fms.currentWaypoint().speed);
+            heading.text("takeoff");
+            // altitude.text(this.fms.currentWaypoint().altitude);
+            // speed.text(this.fms.currentWaypoint().speed);
+          } else {
+            if(wp.navmode == "fix") heading.text(wp.name);
+            else if(wp.navmode == "heading") heading.text(wp.heading);
           }
+        }
+      } else {  // not using a runway
+        if(wp.navmode == "fix") {
+          heading.text(wp.name);
+
+        } else if(wp.navmode == "hold") {
+          heading.text("hold " + wp.turn);
+          heading.addClass("hold");
         }
       } else {
         heading.text(heading_to_string(this.fms.currentWaypoint().heading));
