@@ -142,6 +142,20 @@ function game_get_weighted_score() {
   return score;
 }
 
+function game_reset_score() {
+  prop.game.score.abort = {"landing": 0, "taxi": 0};
+  prop.game.score.arrival = 0;
+  prop.game.score.departure = 0;
+  prop.game.score.failed_arrival = 0;
+  prop.game.score.failed_departure = 0;
+  prop.game.score.hit = 0;
+  prop.game.score.restrictions = 0;
+  prop.game.score.violation = 0;
+  prop.game.score.warning = 0;
+  prop.game.score.windy_landing = 0;
+  prop.game.score.windy_takeoff = 0;
+}
+
 function game_timewarp_toggle() {
   if(prop.game.speedup == 5) {
     prop.game.speedup = 1;
