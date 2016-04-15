@@ -797,30 +797,26 @@ function canvas_draw_ctr(cc) {
   "use strict";
   
   //Draw a gentle fill color with border within the bounds of the airport's ctr_radius
-  cc.translate(round(prop.canvas.size.width/2), round(prop.canvas.size.height/2));
-  cc.translate(prop.canvas.panX, prop.canvas.panY);
   cc.fillStyle = "rgba(200, 255, 200, 0.02)";
 	cc.strokeStyle = "rgba(200, 255, 200, 0.25)";
   cc.beginPath();
   cc.arc(0, 0, airport_get().ctr_radius*prop.ui.scale, 0, Math.PI*2);
   cc.fill();
 	cc.stroke();
+}
 
-  // Check if range ring characteristics are defined for this airport
-  if(airport_get().hasOwnProperty("rr_radius_nm")) {
-  	var rangeRingRadius = km(airport_get().rr_radius_nm);	//convert input param from nm to km
-  }
-  else {
-  	var rangeRingRadius = airport_get().ctr_radius / 4;	//old method
-  }
+/** Draw polygonal airspace border
+ */
+function canvas_draw_airspace_border(cc) {
+  if(!airport_get().airspace) canvas_draw_ctr(cc);
 
-  //Fill up airport's ctr_radius with rings of the specified radius
-  for(var i=1; i*rangeRingRadius < airport_get().ctr_radius; i++) {
-	  cc.beginPath();
-	  cc.linewidth = 1;
-		cc.arc(0, 0, rangeRingRadius*prop.ui.scale*i, 0, Math.PI*2);
-		cc.strokeStyle = "rgba(200, 255, 200, 0.1)";
-		cc.stroke();
+  // style
+  cc.strokeStyle = "rgba(200, 255, 200, 0.25)";
+  cc.fillStyle   = "rgba(200, 255, 200, 0.02)";
+
+  // draw airspace
+  for(var i=0; i<airport_get().airspace.length; i++) {
+    canvas_draw_poly(cc, $.map(airport_get().perimeter.poly, function(v){return [v.position];}));
   }
 }
 
@@ -829,13 +825,13 @@ function canvas_draw_engm_range_rings(cc) {
   "use strict";
   cc.strokeStyle = "rgba(200, 255, 200, 0.3)";
   cc.setLineDash([3,6]);
-  canvas_draw_range_ring(cc, "BAVAD","GM428","GM432");
-  canvas_draw_range_ring(cc, "TITLA","GM418","GM422");
-  canvas_draw_range_ring(cc, "INSUV","GM403","GM416");
-  canvas_draw_range_ring(cc, "VALPU","GM410","GM402");
+  canvas_draw_fancy_rings(cc, "BAVAD","GM428","GM432");
+  canvas_draw_fancy_rings(cc, "TITLA","GM418","GM422");
+  canvas_draw_fancy_rings(cc, "INSUV","GM403","GM416");
+  canvas_draw_fancy_rings(cc, "VALPU","GM410","GM402");
 }
 
-function canvas_draw_range_ring(cc, fix_origin, fix1, fix2) {
+function canvas_draw_fancy_rings(cc, fix_origin, fix1, fix2) {
   "use strict";
   var arpt = airport_get();
   var origin = arpt.getFix(fix_origin);
@@ -853,6 +849,25 @@ function canvas_draw_range_ring(cc, fix_origin, fix1, fix2) {
   for( var i=0; i<4; i++) {
     cc.beginPath();
     cc.arc(x, y, km_to_px(minDist - (i*radius)), start_angle, end_angle);
+    cc.stroke();
+  }
+}
+
+function canvas_draw_range_rings(cc) {
+  // Check if range ring characteristics are defined for this airport
+  if(airport_get().hasOwnProperty("rr_radius_nm")) {
+    var rangeRingRadius = km(airport_get().rr_radius_nm); //convert input param from nm to km
+  }
+  else {
+    var rangeRingRadius = airport_get().ctr_radius / 4; //old method
+  }
+
+  //Fill up airport's ctr_radius with rings of the specified radius
+  for(var i=1; i*rangeRingRadius < airport_get().ctr_radius; i++) {
+    cc.beginPath();
+    cc.linewidth = 1;
+    cc.arc(0, 0, rangeRingRadius*prop.ui.scale*i, 0, Math.PI*2);
+    cc.strokeStyle = "rgba(200, 255, 200, 0.1)";
     cc.stroke();
   }
 }
@@ -1041,7 +1056,9 @@ function canvas_update_post() {
 
     // Controlled traffic region - (CTR)
     cc.save();
-    canvas_draw_ctr(cc);
+    cc.translate(round(prop.canvas.size.width/2 + prop.canvas.panX), round(prop.canvas.size.height/2 + prop.canvas.panY));   // translate to airport center
+    airport_get().airspace ? canvas_draw_airspace_border(cc) : canvas_draw_ctr(cc); // draw airspace border
+    canvas_draw_range_rings(cc);
     cc.restore();
 
     // Special markings for ENGM point merge
