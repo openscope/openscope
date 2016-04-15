@@ -791,6 +791,8 @@ function canvas_draw_compass(cc) {
   }
 }
 
+/** Draw circular airspace border
+ */
 function canvas_draw_ctr(cc) {
   "use strict";
   
@@ -798,14 +800,10 @@ function canvas_draw_ctr(cc) {
   cc.translate(round(prop.canvas.size.width/2), round(prop.canvas.size.height/2));
   cc.translate(prop.canvas.panX, prop.canvas.panY);
   cc.fillStyle = "rgba(200, 255, 200, 0.02)";
+	cc.strokeStyle = "rgba(200, 255, 200, 0.25)";
   cc.beginPath();
   cc.arc(0, 0, airport_get().ctr_radius*prop.ui.scale, 0, Math.PI*2);
   cc.fill();
-  //Draw the outline circle
-	cc.beginPath();
-  cc.linewidth = 1;
-	cc.arc(0, 0, airport_get().ctr_radius*prop.ui.scale, 0, Math.PI*2);
-	cc.strokeStyle = "rgba(200, 255, 200, 0.25)";
 	cc.stroke();
 
   // Check if range ring characteristics are defined for this airport
