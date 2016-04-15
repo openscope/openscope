@@ -726,6 +726,12 @@ var Airport=Fiber.extend(function() {
 
         // airspace perimeter (assumed to be first entry in data.airspace)
         this.perimeter = areas[0];
+
+        // change ctr_radius to point along perimeter that's farthest from rr_center
+        var pos = new Position(this.perimeter.poly[0].position, this.position, this.magnetic_north);
+        var len = nm(vlen(vsub(pos.position, this.position.position)));
+        var apt = this;
+        this.ctr_radius = Math.max(...$.map(this.perimeter.poly, function(v) {return vlen(vsub(v.position,new Position(apt.rr_center, apt.position, apt.magnetic_north).position));}));
       }
       
       if(data.runways) {

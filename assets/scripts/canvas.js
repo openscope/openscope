@@ -854,13 +854,7 @@ function canvas_draw_fancy_rings(cc, fix_origin, fix1, fix2) {
 }
 
 function canvas_draw_range_rings(cc) {
-  // Check if range ring characteristics are defined for this airport
-  if(airport_get().hasOwnProperty("rr_radius_nm")) {
-    var rangeRingRadius = km(airport_get().rr_radius_nm); //convert input param from nm to km
-  }
-  else {
-    var rangeRingRadius = airport_get().ctr_radius / 4; //old method
-  }
+  var rangeRingRadius = km(airport_get().rr_radius_nm); //convert input param from nm to km
 
   //Fill up airport's ctr_radius with rings of the specified radius
   for(var i=1; i*rangeRingRadius < airport_get().ctr_radius; i++) {
@@ -882,6 +876,7 @@ function canvas_draw_poly(cc, poly) {
   cc.closePath();
   cc.stroke();
   cc.fill();
+  cc.clip();      // hide range rings outside of airspace boundary
 }
 
 function canvas_draw_terrain(cc) {
