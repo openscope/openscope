@@ -657,6 +657,8 @@ var Airport=Fiber.extend(function() {
       this.metadata = {
         rwy: {}
       };
+      this.airspace = null; // array of areas under this sector's control. If null, draws circle with diameter of 'ctr_radius'
+      this.perimeter= null; // area outlining the outermost lateral airspace boundary. Comes from this.airspace[0]
 
       this.timeout  = {
         runway: null,
@@ -707,6 +709,23 @@ var Airport=Fiber.extend(function() {
 
       if (this.has_terrain) {
         this.loadTerrain();
+      }
+
+      if(data.airspace) { // create 3d polygonal airspace
+        var areas = [];
+        for(var i=0; i<data.airspace.length; i++) { // for each area
+          var positions = [];
+          for(var j=0; j<data.airspace[i].poly.length; j++) {  // for each point
+            positions.push(new Position(data.airspace[i].poly[j],
+                                        this.position, this.magnetic_north));
+          }
+          areas.push(new Area(positions, data.airspace[i].floor*100,
+            data.airspace[i].ceiling*100, data.airspace[i].airspace_class));
+        }
+        this.airspace = areas;
+
+        // airspace perimeter (assumed to be first entry in data.airspace)
+        this.perimeter = areas[0];
       }
       
       if(data.runways) {
