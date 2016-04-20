@@ -1095,6 +1095,8 @@ function airport_set(icao) {
 
   $('.toggle-terrain').toggle(
     !$.isEmptyObject(prop.airport.current.terrain));
+
+  game_reset_score();
 }
 
 function airport_get(icao) {
