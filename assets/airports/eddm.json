@@ -2,16 +2,16 @@
   "name": "Franz Josef Strauß International Airport &#9983",
   "level": "beginner",
   "radio": {
-    "twr": "Munich Tower",
-    "app": "Munich Approach",
-    "dep": "Munich Departure"
+    "twr": "München Tower",
+    "app": "München Radar",
+    "dep": "München Radar"
   },
   "icao": "EDDM",
   "iata": "MUC",
   "magnetic_north": 1.4,
   "ctr_radius": 80,
   "ctr_ceiling": 10000,
-  "initial_alt": 5000,
+  "initial_alt": 7000,
 	"position": ["N48.353803", "E11.786100"],
   "rr_radius_nm": 5.0,
   "rr_center": ["N48.353803", "E11.786100"],
@@ -42,122 +42,171 @@
     "ALG": {
       "icao": "ALG",
       "name": "Allgäu",
-      "suffix": {"8L":"", "8R":"", "26L":"", "26R":""},
+      "suffix": {"8L":"1Q", "8R":"1E", "26L":"1S", "26R":"1N"},
       "rwy": {
-        "8L":  ["MSE", "DM053", "AMEXO", "ALG"],
-        "8R":  ["MSE", "DM053", "AMEXO", "ALG"],
-        "26L": ["MSE", "DM053", "AMEXO", "ALG"],
-        "26R": ["MSE", "DM053", "AMEXO", "ALG"]
+        "8L":  ["MNW", ["DM071", "K230"], "DM094", "ALONU", "LAKOL", "OBAXA", ["MERSI", "K250"]],
+        "8R":  ["MSW", ["DM081", "K230"], "ALONU", "LAKOL", "OBAXA", ["MERSI", "K250"]],
+        "26L": [["MSE", "K220"], ["DM053", "A70+|K250"], "AMEXO"],
+        "26R": [["MNE", "K220"], ["DM061", "A70+|K250"], "AMEXO"]
       },
-      "draw": [["MSE", "DM053", "AMEXO", "ALG"]]
+      "body": ["ALG"],
+      "draw": [["DM094", "ALONU"], ["DM081", "ALONU", "LAKOL", "OBAXA", "MERSI", "ALG"], ["MNE", "DM061", "AMEXO"], ["MSE", "DM053", "AMEXO", "ALG"]]
+    },
+    "ANKER": {
+      "icao": "ANKER",
+      "name": "Anker",
+      "suffix": {"8L":"7Q", "8R":"8E", "26L":"6S", "26R":"8N"},
+      "rwy": {
+        "8L":  ["DM070", "DM072", "DM077", "DM079"],
+        "8R":  ["MSW", ["DM083", "K230"], "DM079"],
+        "26L": [["MSE", "K220"], ["DM056", "K250"], "DM057"],
+        "26R": [["DM066", "K220"], ["DM064", "K250"], "DM057"]
+      },
+      "body": [["ANKER", "K250"]],
+      "draw": [["DM070", "DM072", "DM077", "DM079"], ["MSW", "DM083", "DM079", "ANKER"], ["DM066", "DM064"], ["DM056", "DM057", "ANKER", "AKINI"]]
     },
     "BIBAG": {
       "icao": "BIBAG",
       "name": "Bibag",
-      "suffix": {"8L":"", "8R":"", "26L":"", "26R":""},
+      "suffix": {"8L":"1Q", "8R":"1E", "26L":"1S", "26R":"1N"},
       "rwy": {
-        "8L":  ["MUN", "MEBEK", "BIBAG"],
-        "8R":  ["MUN", "MEBEK", "BIBAG"],
-        "26L": ["MUN", "MEBEK", "BIBAG"],
-        "26R": ["MUN", "MEBEK", "BIBAG"]
+        "8L":  ["MNW", ["DM071", "K230"], ["RATGI", "K250"]],
+        "8R":  ["MSW", ["DM080", "K230"], ["RATGI", "K250"]],
+        "26L": ["DM049", ["DM050", "K210"], "MUN", ["MEBEK", "K250"]],
+        "26R": ["DM067", ["DM050", "K210"], "MUN", ["MEBEK", "K250"]]
       },
-      "draw": [["MUN", "MEBEK", "BIBAG"]]
+      "body": ["BIBAG"],
+      "draw": [["MNW", "DM071", "RATGI"], ["DM080", "RATGI", "BIBAG"], ["DM067", "DM050", "MUN", "MEBEK", "BIBAG"]]
+    },
+    "EVIVA": {
+      "icao": "EVIVA",
+      "name": "Eviva",
+      "suffix": {"8L":"2Q", "8R":"2E", "26L":"2S", "26R":"3N"},
+      "rwy": {
+        "8L":  ["DM070", "DM090", "DM091", ["DM089", "K250"]],
+        "8R":  ["DM084", "DM087", "DM088", ["DM089", "K250"]],
+        "26L": [["MSE", "K220"], "DM056", ["LASMI", "K250"]],
+        "26R": [["DM066", "K220"], "DM064", ["LASMI", "K250"]]
+      },
+      "body": ["EVIVA"],
+      "draw": [["DM070", "DM090", "DM091", "DM089", "EVIVA"], ["DM084", "DM087", "DM088"], ["DM056", "LASMI", "EVIVA"]]
     },
     "GIVMI": {
       "icao": "GIVMI",
       "name": "Givmi",
-      "suffix": {"8L":"", "8R":"", "26L":"", "26R":""},
+      "suffix": {"8L":"4Q", "8R":"4E", "26L":"5S", "26R":"5W"},
       "rwy": {
-        "8L":  ["MNE", "GIVMI"],
-        "8R":  ["MNE", "GIVMI"],
-        "26L": ["MNE", "GIVMI"],
-        "26R": ["MNE", "GIVMI"]
+        "8L":  ["DM070", "DM073", ["MIQ", "K250"]],
+        "8R":  ["DM084", "DM085", ["MIQ", "K250"]],
+        "26L": [["DM052", "K220"], ["DM055", "K250"]],
+        "26R": [["DM060", "K220"], ["DM063", "K250"]]
       },
-      "draw": [["MNE", "GIVMI"]]
+      "body": ["GIVMI"],
+      "draw": [["DM084", "DM085", "MIQ"], ["DM070", "DM073", "MIQ", "GIVMI"], ["DM060", "DM063"], ["DM052", "DM055", "GIVMI"]]
+    },
+    "INPUD": {
+      "icao": "INPUD",
+      "name": "Inpud",
+      "suffix": {"8L":"1Q", "8R":"1E", "26L":"1S", "26R":"1N"},
+      "rwy": {
+        "8L":  ["DM070", "DM073"],
+        "8R":  ["DM084", "DM085"],
+        "26L": [["MSE", "K220"]],
+        "26R": [["DM066", "K220"]]
+      },
+      "body": [["MIQ", "K250"], "INPUD"],
+      "draw": [["DM066", "MIQ"], ["MSE", "MIQ", "INPUD"]]
     },
     "KIRDI": {
       "icao": "KIRDI",
       "name": "Kirdi",
-      "suffix": {"8L":"", "8R":"", "26L":"", "26R":""},
+      "suffix": {"8L":"1Q", "8R":"1E", "26L":"1S", "26R":"1N"},
       "rwy": {
-        "8L":  ["MUN", "MEBEK", "KIRDI"],
-        "8R":  ["MUN", "MEBEK", "KIRDI"],
-        "26L": ["MUN", "MEBEK", "KIRDI"],
-        "26R": ["MUN", "MEBEK", "KIRDI"]
+        "8L":  ["MNW", ["DM071", "K230"], ["RATGI", "K250"]],
+        "8R":  ["MSW", ["DM080", "K230"], ["RATGI", "K250"]],
+        "26L": ["DM049", ["DM050", "K210"], "MUN"],
+        "26R": ["DM067", ["DM050", "K210"], "MUN"]
       },
-      "draw": [["MUN", "MEBEK", "KIRDI"]]
+      "body": [["MEBEK", "K250"], "KIRDI"],
+      "draw": [["RATGI", "MEBEK", "KIRDI"]]
     },
-    "MAMOR": {
-      "icao": "MAMOR",
-      "name": "Mamor",
-      "suffix": {"8L":"", "8R":"", "26L":"", "26R":""},
+    "OLASO": {
+      "icao": "OLASO",
+      "name": "Olaso",
+      "suffix": {"8L":"1Q", "8R":"1E", "26L":"1S", "26R":"1N"},
       "rwy": {
-        "8L":  ["ANKER", "AKINI", "MAMOR"],
-        "8R":  ["ANKER", "AKINI", "MAMOR"],
-        "26L": ["ANKER", "AKINI", "MAMOR"],
-        "26R": ["ANKER", "AKINI", "MAMOR"]
+        "8L":  ["MNW", ["DM071", "K230"], "DM094", "ALONU", "LAKOL", "OBAXA", ["MERSI", "K250"]],
+        "8R":  ["MSW", ["DM081", "K230"], "ALONU", "LAKOL", "OBAXA", ["MERSI", "K250"]],
+        "26L": [["MSE", "K220"], ["DM053", "A70+|K250"]],
+        "26R": [["MNE", "K220"], ["DM061", "A70+|K250"]]
       },
-      "draw": [["ANKER", "AKINI", "MAMOR"]]
+      "body": ["OLASO"],
+      "draw": [["MERSI", "OLASO"], ["DM061", "OLASO"], ["DM053", "OLASO"]]
     },
-    "NIMDI": {
-      "icao": "NIMDI",
-      "name": "Nimdi",
-      "suffix": {"8L":"", "8R":"", "26L":"", "26R":""},
+    "RIDAR": {
+      "icao": "RIDAR",
+      "name": "Ridar",
+      "suffix": {"8L":"5Q", "8R":"5E", "26L":"5S", "26R":"5N"},
       "rwy": {
-        "8L":  ["MNE", "EVIVA", "NIMDI"],
-        "8R":  ["MNE", "EVIVA", "NIMDI"],
-        "26L": ["MNE", "EVIVA", "NIMDI"],
-        "26R": ["MNE", "EVIVA", "NIMDI"]
+        "8L":  ["DM070", "DM073", ["MIQ", "K250"], "WLD"],
+        "8R":  ["DM084", "DM085", ["MIQ", "K250"], "WLD"],
+        "26L": [["MSE", "K220"], "DM053", ["DM054", "K250"]],
+        "26R": [["MNE", "K220"], "DM061", ["DM062", "K250"]]
       },
-      "draw": [["MNE", "EVIVA", "NIMDI"]]
+      "body": ["RIDAR"],
+      "draw": [["MIQ", "WLD", "RIDAR"], ["DM054", "RIDAR"]]
     },
     "ROTAX": {
       "icao": "ROTAX",
       "name": "Rotax",
-      "suffix": {"8L":"", "8R":"", "26L":"", "26R":""},
+      "suffix": {"8L":"1Q", "8R":"1E", "26L":"1S", "26R":"1N"},
       "rwy": {
-        "8L":  ["MUN", "LAKOL", "ROTAX"],
-        "8R":  ["MUN", "LAKOL", "ROTAX"],
-        "26L": ["MUN", "LAKOL", "ROTAX"],
-        "26R": ["MUN", "LAKOL", "ROTAX"]
+        "8L":  ["MNW", ["DM071", "K230"], ["DM093", "K250"], "DM092", "DM467"],
+        "8R":  ["MSW", ["DM080", "K230"], ["DM092", "K250"], "DM467"],
+        "26L": ["DM049", ["DM050", "K210"], ["MUN", "K250"], "LAKOL"],
+        "26R": ["DM067", ["DM050", "K210"], ["MUN", "K250"], "LAKOL"]
       },
-      "draw": [["MUN", "LAKOL", "ROTAX"]]
-    },
-    "STAUB": {
-      "icao": "STAUB",
-      "name": "Stauß",
-      "suffix": {"8L":"", "8R":"", "26L":"", "26R":""},
-      "rwy": {
-        "8L":  ["ANKER", "STAUB"],
-        "8R":  ["ANKER", "STAUB"],
-        "26L": ["ANKER", "STAUB"],
-        "26R": ["ANKER", "STAUB"]
-      },
-      "draw": [["ANKER", "STAUB"]]
+      "body": ["ROTAX"],
+      "draw": [["DM093", "DM092"], ["DM092", "DM467", "ROTAX"], ["MUN", "LAKOL", "ROTAX"]]
     },
     "TULSI": {
       "icao": "TULSI",
       "name": "Tulsi",
-      "suffix": {"8L":"", "8R":"", "26L":"", "26R":""},
+      "suffix": {"8L":"9Q", "8R":"1E", "26L":"4S", "26R":"9N"},
       "rwy": {
-        "8L":  ["MUN", "MANAL", "TULSI"],
-        "8R":  ["MUN", "MANAL", "TULSI"],
-        "26L": ["MUN", "MANAL", "TULSI"],
-        "26R": ["MUN", "MANAL", "TULSI"]
+        "8L":  ["MNW", ["DM071", "K230"], "DM074", "DM082", ["DM086", "A70+"]],
+        "8R":  ["MSW", ["DM081", "K230"], ["DM086", "A70+"]],
+        "26L": ["DM049", ["DM050", "K210"]],
+        "26R": ["DM067", ["DM050", "K210"]]
       },
-      "draw": [["MUN", "MANAL", "TULSI"]]
+      "body": [["MUN", "K250"], "MANAL", "TULSI"],
+      "draw": [["DM071", "DM074", "DM082", "DM086", "MUN", "MANAL", "TULSI"]]
+    },
+    "TURBU": {
+      "icao": "TURBU",
+      "name": "Turbu",
+      "suffix": {"8L":"6Q", "8R":"5E", "26L":"5S", "26R":"4N"},
+      "rwy": {
+        "8L":  ["MNW", ["DM071", "K230"], "DM094", "ALONU", ["LAKOL", "K250"]],
+        "8R":  ["MSW", ["DM081", "K230"], "ALONU", ["LAKOL", "K250"]],
+        "26L": ["DM049", ["DM050", "K210"], ["MUN", "K250"]],
+        "26R": ["DM067", ["DM050", "K210"], ["MUN", "K250"]]
+      },
+      "body": ["TURBU"],
+      "draw": [["LAKOL", "TURBU"], ["MUN", "TURBU"]]
     },
     "VAVOR": {
       "icao": "VAVOR",
       "name": "Vavor",
-      "suffix": {"8L":"", "8R":"", "26L":"", "26R":""},
+      "suffix": {"8L":"2Q", "8R":"2E", "26L":"1S", "26R":"1N"},
       "rwy": {
-        "8L":  ["MUN", "LAKOL", "VAVOR"],
-        "8R":  ["MUN", "LAKOL", "VAVOR"],
-        "26L": ["MUN", "LAKOL", "VAVOR"],
-        "26R": ["MUN", "LAKOL", "VAVOR"]
+        "8L":  ["MNW", ["DM071", "K230"], "DM094", "ALONU", "EBEVO"],
+        "8R":  ["MSW", ["DM081", "K230"], "ALONU", "EBEVO"],
+        "26L": ["DM049", ["DM050", "K210"], ["MUN", "K250"], "LAKOL"],
+        "26R": ["DM067", ["DM050", "K210"], ["MUN", "K250"], "LAKOL"]
       },
-      "draw": [["MUN", "LAKOL", "VAVOR"]]
+      "body": [["VAVOR", "K250"]],
+      "draw": [["EBEVO", "VAVOR"], ["LAKOL", "VAVOR"]]
     }
   },
   "fixes":{
@@ -236,8 +285,51 @@
     "UNKUL": ["N49.137336", "E11.459722"],
     "VAVOR": ["N47.934167", "E12.154547"],
     "VIBUG": ["N48.438544", "E12.480878"],
-    "WALDA": ["N48.579167", "E11.129167"],
-    "XERUM": ["N48.811100", "E10.767800"]
+    "WLD":   ["N48.579167", "E11.129167"],
+    "XERUM": ["N48.811100", "E10.767800"],
+
+    "DM071": ["N48d22m47.43", "E11d59m33.87"],
+    "DM094": ["N48d20m39.24", "E12d01m50.63"],
+    "ALONU": ["N48d17m38.00", "E12d01m40.00"],
+    "DM081": ["N48d21m22.13", "E11d57m16.87"],
+    "DM061": ["N48d19m40.25", "E11d18m13.41"],
+    "DM070": ["N48d22m07.04", "E11d50m37.92"],
+    "DM072": ["N48d22m50.64", "E11d52m28.63"],
+    "DM077": ["N48d25m22.59", "E11d55m11.95"],
+    "DM079": ["N48d27m26.40", "E11d59m51.19"],
+    "DM083": ["N48d21m33.45", "E11d59m48.40"],
+    "DM066": ["N48d21m17.69", "E11d39m39.11"],
+    "DM056": ["N48d29m30.66", "E11d36m57.12"],
+    "DM057": ["N48d32m19.19", "E11d59m09.84"],
+    "DM064": ["N48d29m32.67", "E11d37m13.52"],
+    "DM080": ["N48d21m15.95", "E11d55m54.47"],
+    "DM049": ["N48d20m15.61", "E11d42m33.95"],
+    "DM050": ["N48d17m15.25", "E11d42m28.82"],
+    "DM067": ["N48d21m29.94", "E11d42m36.07"],
+    "DM090": ["N48d23m46.71", "E11d52m51.58"],
+    "DM091": ["N48d27m16.58", "E11d52m51.74"],
+    "DM087": ["N48d22m34.31", "E11d52m44.75"],
+    "DM088": ["N48d27m33.00", "E11d52m44.97"],
+    "DM089": ["N48d34m59.25", "E11d49m40.26"],
+    "DM084": ["N48d20m51.60", "E11d50m31.46"],
+    "LASMI": ["N48d32m30.00", "E11d43m00.00"],
+    "DM073": ["N48d25m03.03", "E11d51m59.06"],
+    "DM085": ["N48d23m39.31", "E11d51m58.47"],
+    "DM052": ["N48d19m54.66", "E11d37m45.60"],
+    "DM055": ["N48d25m33.53", "E11d26m25.72"],
+    "DM060": ["N48d21m23.15", "E11d40m52.91"],
+    "DM063": ["N48d27m28.44", "E11d25m54.01"],
+    "OLASO": ["N48d12m30.00", "E10d13m57.00"],
+    "DM054": ["N48d18m12.06", "E11d14m56.62"],
+    "DM062": ["N48d19m17.15", "E11d13m16.68"],
+    "DM093": ["N48d20m59.60", "E12d03m51.29"],
+    "DM092": ["N48d18m13.75", "E12d06m14.81"],
+    "DM467": ["N48d08m05.34", "E12d12m58.84"],
+    "DM074": ["N48d20m29.15", "E12d02m01.38"],
+    "DM082": ["N48d18m35.93", "E11d59m29.16"],
+    "DM086": ["N48d16m44.87", "E11d56m57.70"],
+    "LURER": ["N48d26m44.53", "E10d35m13.71"]
+
   },
   "departures": {
     "airlines": [
@@ -264,7 +356,7 @@
 			["sbi", 1]
     ],
     "destinations": [
-      "ALG", "BIBAG", "GIVMI", "KIRDI", "MAMOR", "NIMDI", "ROTAX", "STAUB", "TULSI", "VAVOR"
+      "ALG", "ANKER", "BIBAG", "GIVMI", "INPUD", "KIRDI", "OLASO", "RIDAR", "ROTAX", "TULSI", "TURBU", "VAVOR"
     ],
     "frequency": [2, 4]
   },
@@ -278,7 +370,7 @@
       "offset": 1,
       "frequency": [2, 6],
       "altitude":  [9000, 10000],
-      "fixes": ["ABGAS", "LELTA", "ROKIL"],
+      "fixes": ["ABGAS", "LURER", "LELTA", "ROKIL", "MIQ"],
       "airlines":  [
 				["dlh", 50],
 				["baw", 10],
@@ -304,7 +396,7 @@
       "offset": 1,
       "frequency": [2, 7],
       "altitude":  [9000, 10000],
-      "fixes": ["ROSAB", "BINGU", "TUSTO", "LANDU"],
+      "fixes": ["ROSAB", "BINGU", "TUSTO", "LANDU", "MIQ"],
       "airlines":  [
 			["dlh", 50],
 			["afl", 9],
@@ -328,7 +420,7 @@
       "offset": 1,
       "frequency": [3, 7],
       "altitude":  [9000, 10000],
-      "fixes": ["OSDER", "MERSI", "BETOS"],
+      "fixes": ["OSDER", "MERSI", "BETOS", "MUN"],
       "airlines":  [
 			["dlh", 50],
 			["ibe", 15],
@@ -349,7 +441,7 @@
       "offset": 1,
       "frequency": [4, 9],
       "altitude":  [9000, 10000],
-      "fixes": ["SBG", "NAPSA"],
+      "fixes": ["SBG", "NAPSA", "MUN"],
       "airlines":  [
 			["dlh", 50],
 			["thy", 20],
@@ -366,3 +458,4 @@
     }
   ]
 }
+
