@@ -74,6 +74,31 @@ var RELEASE=false;
 
 //////////////////////////////////////////////////////////////////////////////////////////
 
+/********* Various fixes for browser issues *********/
+  /** Necessary for Internet Explorer 11 (IE11) to not die while using String.fromCodePoint()
+   ** This function is not natively available in IE11, as noted on this MSDN page:
+   ** https://msdn.microsoft.com/en-us/library/dn890630(v=vs.94).aspx
+   ** Apparently, it is fine with pre-Win8.1 MS Edge 11, but never okay in IE.
+   ** Here, the function is added to the String prototype to make later code usable.
+   ** Solution from: http://xahlee.info/js/js_unicode_code_point.html
+   */
+  if (!String.fromCodePoint) {
+    // ES6 Unicode Shims 0.1 , © 2012 Steven Levithan , MIT License
+    String.fromCodePoint = function fromCodePoint () {
+      var chars = [], point, offset, units, i;
+      for (i = 0; i < arguments.length; ++i) {
+        point = arguments[i];
+        offset = point - 0x10000;
+        units = point > 0xFFFF ? [0xD800 + (offset >> 10), 0xDC00 + (offset & 0x3FF)] : [point];
+        chars.push(String.fromCharCode.apply(null, units));
+      }
+      return chars.join("");
+    }
+  }
+
+
+/******************* Module Setup *******************/
+
 var async_modules={};
 var async_done_callback=null;
 
