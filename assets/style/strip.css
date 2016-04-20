@@ -56,17 +56,17 @@
   font-style: italic;
 }
 
+.strip .lookingGood {
+  color: #88c790;
+}
+
+.strip .allSet {
+  color: #5d987b;
+}
+
 .strip .hold {
   color: #f76;
   font-style: italic;
-}
-
-.strip .taxi {
-/*  color: #f8e;*/
-}
-
-.strip .waiting {
-/*  color: #7f6;*/
 }
 
 .strip .altitude {
@@ -78,7 +78,7 @@
 
 .strip .destination {
   text-align: center;
-  color: #8cf;
+  /*color: #8cf;*/
 
   position: absolute;
   padding-right: 5px;
