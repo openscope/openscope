@@ -921,7 +921,10 @@ var Aircraft=Fiber.extend(function() {
         }
       }
 
+      // var scrollPos = $("#strips")[0].scrollHeight - $("#strips").scrollTop();
+      var scrollPos = $("#strips").scrollTop();
       $("#strips").prepend(this.html);
+      $("#strips").scrollTop(scrollPos + 45);  // shift scroll down one strip's height
 
       this.html.click(this, function(e) {
         input_select(e.data.getCallsign());
@@ -2022,8 +2025,11 @@ var Aircraft=Fiber.extend(function() {
     },
     showStrip: function() {
       this.html.detach();
+      // var scrollPos = $("#strips")[0].scrollHeight - $("#strips").scrollTop();
+      var scrollPos = $("#strips").scrollTop();
       $("#strips").prepend(this.html);
-      this.html.show(600);
+      this.html.show();
+      $("#strips").scrollTop(scrollPos + 45);  // shift scroll down one strip's height
     },
     updateTarget: function() {
       var airport = airport_get();
