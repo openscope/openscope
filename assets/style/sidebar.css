@@ -10,7 +10,6 @@
   right: 0;
   width: 250px;
   height: calc(100% - 36px);
-  overflow-y: scroll;
 }
 
 .nice-scrollbar::-webkit-scrollbar {
@@ -34,6 +33,10 @@
 #sidebar #strips {
   font-size: 80%;
   padding: 10px;
-  height: 100%;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  max-height: 100%;
+  overflow-y: scroll;
 }
 

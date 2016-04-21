@@ -921,7 +921,7 @@ var Aircraft=Fiber.extend(function() {
         }
       }
 
-      $("#strips").append(this.html);
+      $("#strips").prepend(this.html);
 
       this.html.click(this, function(e) {
         input_select(e.data.getCallsign());
@@ -2022,7 +2022,7 @@ var Aircraft=Fiber.extend(function() {
     },
     showStrip: function() {
       this.html.detach();
-      $("#strips").append(this.html);
+      $("#strips").prepend(this.html);
       this.html.show(600);
     },
     updateTarget: function() {
