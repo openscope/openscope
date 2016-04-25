@@ -597,7 +597,7 @@ var Runway=Fiber.extend(function(base) {
       }
       return false;
     },
-    isWaiting: function(aircraft) {
+    inQueue: function(aircraft) {
       return this.queue.indexOf(aircraft);
     },
     taxiDelay: function(aircraft) {
@@ -653,6 +653,7 @@ var Airport=Fiber.extend(function() {
       this.fixes    = {};
       this.real_fixes = {};
       this.sids     = {};
+      this.airways  = {};
       this.restricted_areas = [];
       this.metadata = {
         rwy: {}
@@ -731,9 +732,8 @@ var Airport=Fiber.extend(function() {
         }
       }
 
-      if(data.sids) {
-        this.sids = data.sids;
-      }
+      if(data.sids) this.sids = data.sids;
+      if(data.airways) this.airways = data.airways;
 
       if(data.restricted) {
         var r = data.restricted,
