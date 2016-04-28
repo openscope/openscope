@@ -605,6 +605,20 @@ zlsa.atc.AircraftFlightManagementSystem = Fiber.extend(function() {
       if(!curr.heading && curr.navmode == "heading") curr.heading = prev.heading;
     },
 
+    /** Switch to the next Leg
+     */
+    nextLeg: function() {
+      var prev = this.currentWaypoint();
+      this.current[0]++;
+      this.current[1] = 0;
+
+      // Replace null values with current values
+      var curr = this.currentWaypoint();
+      if(!curr.altitude) curr.altitude = prev.altitude;
+      if(!curr.speed) curr.speed = prev.speed;
+      if(!curr.heading && curr.navmode == "heading") curr.heading = prev.heading;
+    },
+
     /** Skips to the given waypoint
      ** @param {string} name - the name of the fix to skip to
      */
@@ -747,6 +761,88 @@ zlsa.atc.AircraftFlightManagementSystem = Fiber.extend(function() {
       }
       // Add the new SID Leg
       this.prependLeg({type:"sid", route:route})
+    },
+
+    /** Takes a user provided route and converts it to a semented route the fms can understand
+     ** Note: Input Data Format : "KSFO.OFFSH9.SXC.V458.IPL.J2.JCT..LLO..ACT..KACT"
+     **       Return Data Format: ["KSFO.OFFSH9.SXC", "SXC.V458.IPL", "IPL.J2.JCT", "LLO", "ACT", "KACT"]
+     */
+    formatRoute: function(data) {
+      // Format the user's input
+      var route = [];
+      data = data.split('..'); // split apart "direct" pieces
+      for(var i=0; i<data.length; i++) {  // deal with multilinks (eg 'KSFO.OFFSH9.SXC.V458.IPL')
+        if(data[i].split('.').length == 1) {
+          route.push(data[i]); // just a fix/navaid
+          continue;
+        }
+        else {  // is a procedure, eg SID, STAR, IAP, airway, etc.
+          if(data[i].split('.').length % 2 != 1) {  // user either didn't specify start point or end point
+            route = []; // remove what we have
+            break;
+          }
+          else {
+            var pieces = data[i].split('.');
+            var a = [pieces[0] + '.' + pieces[1] + '.' + pieces[2]];
+            for(var j=3; j<data[i].split('.').length; j+2) { // chop up the multilink
+              a.push(pieces[j-1] + '.' + pieces[j] + pieces[j+1]);
+            }
+          }   
+        }
+        route = route.concat(a);  // push the properly reformatted multilink
+      }
+      return route;
+    },
+
+    /** Take an array of leg routes and build the legs that will go into the fms
+     ** @param {array} route - an array of properly formatted route strings
+     **                        Example: ["KSFO.OFFSH9.SXC", "SXC.V458.IPL",
+     **                                 "IPL.J2.JCT", "LLO", "ACT", "KACT"]
+     ** @param {boolean} fullRouteClearance - set to true IF you want the provided route to completely
+     **                                       replace the current contents of 'this.legs'
+     */
+    customRoute: function(route, fullRouteClearance) {
+      var legs = [];
+      for(var i=0; i<route.length; i++) {
+        if(route[i].split('.').length == 1) { // just a fix/navaid
+          legs.push(new zlsa.atc.Leg({type:"fix", route:route[i]}));
+        }
+        else if(route[i].split('.').length == 3) {  // is an instrument procedure
+          var pieces = route[i].split('.');
+          if(Object.keys(airport_get().sids).indexOf(pieces[1]) > -1) {  // it's a SID!
+            legs.push(new zlsa.atc.Leg({type:"sid", route:route[i]}));
+          }
+          // else if(Object.keys(airport_get().stars).indexOf(pieces[1]) > -1) { // it's a STAR!
+          //   legs.push(new zlsa.atc.Leg({type:"star", route:route[i]})); // FUTURE FUNCTIONALITY
+          // }
+          else if(Object.keys(airport_get().airways).indexOf(pieces[1]) > -1) { // it's an airway!
+            legs.push(new zlsa.atc.Leg({type:"awy", route:route[i]}));
+          }
+        }
+        else {  // neither formatted like "JAN" nor "JAN.V18.MLU"
+          log("Passed invalid route to fms. Unable to create leg from input:" + route[i], LOG_WARNING);
+          return false;
+        }
+      }
+
+      if(!fullRouteClearance) { // insert user's route to the legs
+        this.legs.splice.apply(this.legs, [this.current[0]+1, 0].concat(legs));  // insert the legs after the active Leg
+        this.nextLeg();  // move to the newly inserted Leg
+      }
+      else {  // replace all legs with the legs we've built here in this function
+        // save the current waypoint
+        var current = this.currentWaypoint();
+
+        // Change the legs
+        this.legs = legs;
+        this.current = [0,0]; // look to beginning of route
+
+        // Maintain old speed and altitude
+        if(this.currentWaypoint().altitude == null) this.setCurrent({altitude: current.altitude});
+        if(this.currentWaypoint().speed == null) this.setCurrent({speed:current.speed});
+      }
+
+      return true;
     },
 
     /** Invokes flySID() for the SID in the flightplan (fms.fp.route)
@@ -1301,6 +1397,15 @@ var Aircraft=Fiber.extend(function() {
           func: 'runProceed',
           synonyms: ['pr']},
 
+        route: {
+          func: 'runRoute',
+        },
+
+        reroute: {
+          func: 'runReroute',
+          synonyms: ['rr']
+        },
+
         sid: {func: 'runSID'},
 
         speed: {
@@ -1837,6 +1942,31 @@ var Aircraft=Fiber.extend(function() {
 
       return ["ok", "cleared to proceed to "
           + data.join(' ') + " after " + lastWaypoint.fix];
+    },
+    /** Adds a new Leg to fms with a user specified route
+     ** Note: See notes on 'runReroute' for how to format input for this command
+     */
+    runRoute: function(data) {
+      data = data.toUpperCase();  // capitalize everything
+      var worked = this.fms.customRoute(this.fms.formatRoute(data), false);  // Add to fms
+
+      // Build the response
+      if(worked) return ['ok', 'running route'];
+      else return ['fail', 'oh no! your route "' + data + '" is invalid!'];
+    },
+    /** Removes all legs, and replaces them with the specified route
+     ** Note: Input data needs to be provided with single dots connecting all
+     ** procedurally-linked points (eg KSFO.OFFSH9.SXC or SGD.V87.MOVER), and
+     ** all other points that will be simply a fix direct to another fix need
+     ** to be connected with double-dots (eg HLI..SQS..BERRA..JAN..KJAN)
+     */
+    runReroute: function(data) {
+      data = data.toUpperCase();  // capitalize everything
+      var worked = this.fms.customRoute(this.fms.formatRoute(data), true);  // Reset fms
+
+      // Build the response
+      if(worked) return ['ok', 'running route'];
+      else return ['fail', 'oh no! your route "' + data + '" is invalid!'];
     },
     runTaxi: function(data) {
       if(this.category != "departure") return ["fail", "inbound"];
