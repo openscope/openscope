@@ -238,6 +238,27 @@ function angle_offset(a, b) {
   return offset;
 }
 
+/** Returns an offset array showing how far [fwd/bwd, left/right] 'aircraft' is of 'target'
+ ** @param {Aircraft} aircraft - the aircraft in question
+ ** @param {array} target - positional array of the targeted position [x,y]
+ ** @param {number} headingThruTarget - (optional) The heading the aircraft should
+ **                                     be established on when passing the target.
+ **                                     Default value is the aircraft's heading.
+ ** @returns {array} with two elements: retval[0] is the lateral offset, in km
+ **                                     retval[1] is the longitudinal offset, in km
+ **                                     retval[2] is the hypotenuse (straight-line distance), in km
+ */
+function getOffset(aircraft, target, /*optional*/ headingThruTarget) {
+  if(headingThruTarget == null) headingThruTarget = aircraft.heading;
+  var offset = [0, 0, 0];
+  var vector = vsub(target, aircraft.position); // vector from aircraft pointing to target
+  var bearingToTarget = vradial(vector);
+  offset[2] = vlen(vector);
+  offset[0] = offset[2] * sin(headingThruTarget - bearingToTarget);
+  offset[1] = offset[2] * cos(headingThruTarget - bearingToTarget);
+  return offset;
+}
+
 function heading_to_string(heading) {
   heading = round(mod(degrees(heading), 360)).toString();
   if(heading == "0") heading = "360";

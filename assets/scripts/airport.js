@@ -603,14 +603,6 @@ var Runway=Fiber.extend(function(base) {
     taxiDelay: function(aircraft) {
       return this.delay + Math.random() * 3;
     },
-    getOffset: function(position, length) {
-      position = [position[0], position[1]];
-      position = vsub(position, this.position);
-      var offset = [0, 0];
-      offset[0]  = ( cos(this.angle) * position[0]) - (sin(this.angle) * position[1]);
-      offset[1]  = (-sin(this.angle) * position[0]) - (cos(this.angle) * position[1]);
-      return offset;
-    },
     getGlideslopeAltitude: function(distance, /*optional*/ gs_gradient) {
       if(!gs_gradient) gs_gradient = this.ils.gs_gradient;
       distance = Math.max(0, distance);
@@ -933,10 +925,12 @@ var Airport=Fiber.extend(function() {
     },
     getFix: function(name) {
       if(!name) return null;
-      return this.fixes[name.toUpperCase()] || null;
+      if(Object.keys(airport_get().fixes).indexOf(name.toUpperCase()) == -1) return;
+      else return airport_get().fixes[name.toUpperCase()];
     },
     getSID: function(id, trxn, rwy) {
       if(!(id && trxn && rwy)) return null;
+      if(Object.keys(this.sids).indexOf(id) == -1) return;
       var fixes = [];
       var sid = this.sids[id];
 
