@@ -493,25 +493,19 @@
     {
       "name": ["1", "19"],
       "name_offset": [[0, 0], [0, 0]],
-      "angle": 6.3,
       "end": [["N38.841568", "W77.036748"], ["N38.861193", "W77.038724"]],
-      "length": 2.185416,
       "ils": [true, true]
     },
     {
       "name": ["4", "22"],
       "name_offset": [[0, 0], [0, 0]],
-      "angle": 36.4,
       "end":    [["N38.841126", "W77.041455"], ["N38.853511", "W77.033881"]],
-      "length": 1.524,
       "ils": [false, false]
     },
     {
       "name": ["15", "33"],
       "name_offset": [[0, 0], [0, 0]],
-      "angle": 153.4,
       "end":    [["N38.861161", "W77.043297"], ["N38.849804", "W77.032209"]],
-      "length": 1.586179,
       "ils": [false, false]
     }
   ],
@@ -572,49 +566,14 @@
   "arrivals": [
     {
       "_name": "CAPSS TWO SOUTH",
+      "radial": 204,
       "altitude": 16000,
-      "heading": 23,
       "type": "cyclic",
       "frequency": [10, 25],
       "period": 75,
       "offset": 25,
       "speed": 280,
-      "waypoints": [
-          {
-              "fix": "BULII",
-              "speed": 280,
-              "altitude": 16000
-          },
-          {
-              "fix": "CAPSS",
-              "speed": 280,
-              "altitude": 13000
-          },
-          {
-              "fix": "FLIPZ",
-              "speed": 280,
-              "altitude": 11000
-          },
-          {
-              "fix": "MOEJO",
-              "speed": 250,
-              "altitude": 10000
-          },
-          {
-              "fix": "JILES"
-          },
-          {
-              "fix": "SMOOT",
-              "altitude": 7000
-          },
-          {
-              "fix": "BAAAM",
-              "altitude": 6000
-          },
-          {
-              "fix": "PACKE"
-          }
-      ],
+      "fixes": ["BULII", "CAPSS", "FLIPZ", "MOEJO", "JILES", "SMOOT", "BAAAM", "PACKE"],
       "airlines": [
           ["awi", 9],
           ["eny", 7],
@@ -633,35 +592,14 @@
     },
     {
       "_name": "CAPSS TWO NORTH",
+      "radial": 204,
       "altitude": 13000,
-      "heading": 23,
       "type": "cyclic",
       "frequency": [10, 25],
       "period": 75,
       "offset": 10,
       "speed": 280,
-      "waypoints": [
-          {
-              "fix": "BULII",
-              "speed": 280,
-              "altitude": 13000
-          },
-          {
-              "fix": "CAPSS",
-              "speed": 280,
-              "altitude": 10000
-          },
-          {
-              "fix": "HOYAS",
-              "altitude": 9000
-          },
-          {
-              "fix": "HALLL"
-          },
-          {
-              "fix": "KATRN"
-          }
-      ],
+      "fixes": ["BULII", "CAPSS", "HOYAS", "HALLL", "KATRN"],
       "airlines": [
           ["awi", 9],
           ["eny", 7],
