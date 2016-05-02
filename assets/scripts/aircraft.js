@@ -2725,18 +2725,12 @@ function aircraft_generate_callsign(airline_name) {
 }
 
 function aircraft_callsign_new(airline) {
+  var callsign = null;
   var hit = false;
   while(true) {
-    var callsign = aircraft_generate_callsign(airline);
-    hit=false;
-    for(var i=0;i<prop.aircraft.callsigns.length;i++) {
-      if(prop.aircraft.callsigns[i] == callsign) {
-        callsign = aircraft_callsign_new(airline);
-        hit=true;
-        break;
-      }
-    }
-    if(!hit) break;
+    callsign = aircraft_generate_callsign(airline);
+    if (prop.aircraft.callsigns.indexOf(callsign) == -1)
+      break;
   }
   prop.aircraft.callsigns.push(callsign);
   return callsign;
