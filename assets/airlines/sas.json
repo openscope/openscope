@@ -1,7 +1,7 @@
 {
-  "name": "Scandinavian",
+  "name": "Scandinavian Airlines System",
   "callsign": {
-    "name": "SAS",
+    "name": "Scandinavian",
     "length": 3
   },
   "aircraft": [
