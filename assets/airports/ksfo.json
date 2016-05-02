@@ -140,12 +140,12 @@
       "icao": "OFFSH9",
       "name": "Offshore Nine",
       "rwy": {
-        "1L" : [["SEPDY", "1600+"], "WAMMY"],
-        "1R" : [["SEPDY", "1600+"], "WAMMY"],
-        "28L": [["SENZY", "2500+"], "WAMMY"],
-        "28R": [["SENZY", "2500+"], "WAMMY"]
+        "1L" : [["SEPDY", "A16+"], "WAMMY"],
+        "1R" : [["SEPDY", "A16+"], "WAMMY"],
+        "28L": [["SENZY", "A25+"], "WAMMY"],
+        "28R": [["SENZY", "A25+"], "WAMMY"]
       },
-      "body": [["SEGUL", "16000+"], ["CYPRS", "22000+"], "MCKEY"],
+      "body": [["SEGUL", "A160+"], ["CYPRS", "A220+"], "MCKEY"],
       "transitions": {
         "FLW": ["MQO", "FLW"],
         "RZS": ["MQO", "RZS"],
@@ -155,24 +155,23 @@
       "draw": [["SEPDY","WAMMY"], ["SENZY","WAMMY","SEGUL","CYPRS","MCKEY"], ["MCKEY","MQO"], ["MQO","FLW*"], ["MQO","RZS*"], ["MQO","GVO*"], ["MCKEY","DAISY","BENET","SXC*"]]
     },
     
-	"PORTE7": {
+  "PORTE7": {
       "icao": "PORTE7",
       "name": "PORTE SEVEN",
       "rwy": {
-        "1L" : [["SEPDY", "1900+"], "PORTE"],
-        "1R" : [["SEPDY", "1900+"], "PORTE"],
-        "28L": [["SENZY", "2500+"], "PORTE"],
-        "28R": [["SENZY", "2500+"], "PORTE"]
+        "1L" : [["SEPDY", "A19+"], "PORTE"],
+        "1R" : [["SEPDY", "A19+"], "PORTE"],
+        "28L": [["SENZY", "A25+"], "PORTE"],
+        "28R": [["SENZY", "A25+"], "PORTE"]
       },
       "body": ["OSI", "WAGES"],
       "transitions": {
           "CZQ": ["CZQ"],
-		"PXE": ["PXE"],
-		"FLW": ["FLW"],
+          "PXE": ["PXE"],
+          "FLW": ["FLW"],
           "AVE": ["AVE"]
       },
-      "draw": [["SEPDY","PORTE"], ["SENZY","PORTE","OSI","WAGES"], ["WAGES","CZQ*"], ["WAGES","AVE*"], ["WAGES","PXN*"], 
-["WAGES", "FLW*"]]
+      "draw": [["SEPDY","PORTE"], ["SENZY","PORTE","OSI","WAGES"], ["WAGES","CZQ*"], ["WAGES","AVE*"], ["WAGES","PXN*"], ["WAGES", "FLW*"]]
     },
     
 	"QUIET7": {
@@ -199,10 +198,10 @@
       "icao": "MOLEN7",
       "name": "Molen Seven",
       "rwy": {
-        "10L": [["SIPLY", "2500+"], "_SIPLY233-STINS144", "STINS"],
-        "10R": [["SIPLY", "2500+"], "_SIPLY233-STINS144", "STINS"],
-        "28L": [["WESLA", "1800+"], "STINS"],
-        "28R": [["WESLA", "1800+"], "STINS"]
+        "10L": [["SIPLY", "A25+"], "_SIPLY233-STINS144", "STINS"],
+        "10R": [["SIPLY", "A25+"], "_SIPLY233-STINS144", "STINS"],
+        "28L": [["WESLA", "A18+"], "STINS"],
+        "28R": [["WESLA", "A18+"], "STINS"]
       },
       "body": ["MOLEN"],
       "transitions": {
