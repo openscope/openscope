@@ -2340,10 +2340,15 @@ var Aircraft=Fiber.extend(function() {
       this.radial = vradial(this.position);
       if (this.radial < 0) this.radial += Math.PI*2;
 
-      var inside = (this.distance <= airport_get().ctr_radius &&
-                    this.altitude <= airport_get().ctr_ceiling);
-      if (inside != this.inside_ctr)
-        this.crossBoundary(inside);
+      if(airport_get().perimeter) { // polygonal airspace boundary
+        var inside = point_in_area(this.position, airport_get().perimeter);
+        if (inside != this.inside_ctr) this.crossBoundary(inside);
+      }
+      else {  // simple circular airspace boundary
+        var inside = (this.distance <= airport_get().ctr_radius &&
+                      this.altitude <= airport_get().ctr_ceiling);
+        if (inside != this.inside_ctr) this.crossBoundary(inside); 
+      }
     },
     updateWarning: function() {
       // Ignore other aircraft while taxiing

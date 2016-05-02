@@ -813,7 +813,12 @@ function point_in_poly(point, vs) {
     }
     
     return inside;
-};
+}
+
+function point_in_area(point, area) {
+  var poly = $.map(area.poly, function(v) {return [v.position];});
+  return point_in_poly(point, poly);
+}
 
 function endsWith(str, suffix) {
   return str.indexOf(suffix, str.length - suffix.length) !== -1;  
