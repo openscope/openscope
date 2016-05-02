@@ -1114,6 +1114,9 @@ function airport_set(icao) {
     .text(prop.airport.current.icao.toUpperCase())
     .attr("title", airport.name);
 
+  $('.toggle-labels').toggle(
+    !$.isEmptyObject(prop.airport.current.maps));
+
   $('.toggle-restricted-areas').toggle(
     (prop.airport.current.restricted_areas || []).length > 0);
 

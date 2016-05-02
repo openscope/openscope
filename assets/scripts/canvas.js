@@ -19,6 +19,7 @@ function canvas_init_pre() {
 
   prop.canvas.last = time();
   prop.canvas.dirty = true;
+  prop.canvas.draw_labels = true;
   prop.canvas.draw_restricted = true;
   prop.canvas.draw_sids = true;
   prop.canvas.draw_terrain = true;
@@ -158,6 +159,7 @@ function canvas_draw_runway_label(cc, runway) {
 
 function canvas_draw_runways(cc) {
   "use strict";
+  if(!prop.canvas.draw_labels) return;
   cc.strokeStyle = "rgba(255, 255, 255, 0.4)";
   cc.fillStyle   = "rgba(255, 255, 255, 0.4)";
   cc.lineWidth   = 4;
@@ -179,6 +181,7 @@ function canvas_draw_runways(cc) {
 
 function canvas_draw_runway_labels(cc) {
   "use strict";
+  if(!prop.canvas.draw_labels) return;
   cc.fillStyle   = "rgba(255, 255, 255, 0.8)";
   var airport=airport_get();
   for(var i=0;i<airport.runways.length;i++) {
@@ -235,6 +238,7 @@ function canvas_draw_fix(cc, name, fix) {
 
 function canvas_draw_fixes(cc) {
   "use strict";
+  if(!prop.canvas.draw_labels) return;
   cc.lineJoin    = "round";
   cc.font = "10px monoOne, monospace";
   var airport=airport_get();
