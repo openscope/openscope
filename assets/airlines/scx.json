@@ -4,8 +4,10 @@
     "name": "Sun Country",
     "length": 3
   },
-  "aircraft": [
-    ["B737", 6 ],
-    ["B738", 14 ]
-  ]
+  "fleets": {
+    "default": [
+      ["B737", 6 ],
+      ["B738", 14]
+    ]
+  }
 }

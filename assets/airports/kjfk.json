@@ -221,23 +221,21 @@
   },
   "departures": {
     "airlines": [
-      ["dal", 24],
-      ["jbu", 20],
-      ["aal", 16],
-      ["vrd", 10],
-      ["baw", 3],
+      ["dal", 16],
+      ["jbu", 15],
+      ["aal", 7],
+      ["vrd", 8],
       ["ual", 6],
-      ["fastga", 1],
-      ["dlh/long", 2],
       ["aca", 4],
+      ["fdx", 4],
+      ["baw/long", 3],
+      ["dlh/long", 2],
       ["ein/long", 1],
       ["klm/long", 1],
       ["tam", 1],
-      ["cpa", 2],
-      ["cca/long", 1],
+      ["cpa", 1],
       ["eva/long", 1],
-      ["afr/long", 2],
-      ["ber/long", 2],
+      ["ber/long", 1],
       ["etd/long", 1],
       ["afl/long", 1],
       ["arg", 1]
@@ -252,6 +250,8 @@
   "arrivals": [
     {
       "_name": "CAMRN FOUR",
+      "radial": 204,
+      "altitude": 11000,
       "fixes": ["KARRS", "CAMRN"],
       "radial": 204,
       "altitude": 11000,
@@ -260,15 +260,39 @@
       "offset": 15,
       "frequency": 8,
       "airlines": [
-        ["dal", 12],
-        ["jbu", 7],
-        ["aal", 7],
-        ["baw/long", 1],
+        ["flg", 8],
+        ["dal", 8],
+        ["gjs", 6],
+        ["rpa", 6],
+        ["eny", 5],
+        ["jbu", 4],
+        ["aal", 4],
+        ["asq", 3],
+        ["vrd", 2],
+        ["lan/long", 2],
+        ["tam/long", 1],
         ["ual", 1]
-      ]
+        ],
+      "waypoints": [
+          {
+              "fix": "KARRS",
+              "speed": 250,
+              "altitude": 11000
+          },
+          {
+              "fix": "CAMRN",
+              "speed": 250,
+              "altitude": 11000
+          }
+        ]
     },
     {
       "_name": "KINGSTON ONE",
+
+      "radial": 10,
+      "type": "wave",
+      "altitude": 15000,
+
       "fixes": ["IGN", "LOLLY", "DOORE", "LENDY", "LGA"],
       "radial": 10,
       "type": "wave",
@@ -287,7 +311,28 @@
         ["ein/long", 1],
         ["klm/long", 1],
         ["tam", 1]
-      ]
+        ],
+      "waypoints": [
+          {
+              "fix": "IGN",
+              "speed": 250
+          },
+          {
+              "fix": "LOLLY",
+              "speed": 250
+          },
+          {
+              "fix": "DOORE",
+              "speed": 250
+          },
+          {
+              "fix": "LENDY",
+              "speed": 250
+          },
+          {
+              "fix": "LGA"
+          }
+        ]
     },
     {
       "_name": "LENDY SIX",
@@ -303,10 +348,24 @@
         ["aal", 10],
         ["jbu", 6],
         ["vrd", 6],
-        ["cpa", 2],
-        ["cca/long", 1],
         ["eva/long", 1]
-      ]
+        ],
+        "waypoints": [
+            {
+                "fix": "STW",
+                "speed": 250
+            },
+            {
+                "fix": "LENDY",
+                "speed": 250,
+                "altitude": 12000
+            },
+            {
+                "fix": "LGA",
+                "speed": 250,
+                "altitude": 10000
+            }
+        ]
     },
     {
       "_name": "PAWLING TWO",
@@ -323,6 +382,25 @@
         ["aal", 8],
         ["baw/long", 3],
         ["ual", 1]
+        ],
+      "waypoints": [
+          {
+              "fix": "PWL",
+              "altitude": 8000
+          },
+          {
+              "fix": "LOVES",
+              "altitude": 6000
+          },
+          {
+              "fix": "BDR"
+          },
+          {
+              "fix": "BELTT"
+          },
+          {
+              "fix": "DPK"
+          }
       ]
     },
     {
@@ -340,7 +418,6 @@
         ["baw/long", 6],
         ["ual", 5],
         ["dlh/long", 3],
-        ["afr/long", 2],
         ["ber/long", 2],
         ["etd/long", 1],
         ["ein/long", 1],

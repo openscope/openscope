@@ -1,11 +1,13 @@
 {
-  "name": "Republic Airlines",
+  "name": "Shuttle America",
   "callsign": {
-    "name": "Brickyard",
+    "name": "Mercury",
     "length": 4
   },
-  "aircraft": [
-	["E145", 42 ],
-    ["E170", 68 ]
-  ]
+  "fleets": {
+    "default": [
+      ["E145", 42],
+      ["E170", 60]
+    ]
+  }
 }

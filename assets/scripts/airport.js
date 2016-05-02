@@ -1029,39 +1029,29 @@ function airport_init_pre() {
 }
 
 function airport_init() {
-  // Add your airports here
-
-  // K*
-  airport_load("ksfo");
-  airport_load("kmsp");
+  airport_load("ebbr");
+  airport_load("eddh");
+  airport_load("eddm");
+  airport_load("eddt");
+  airport_load("eglc");
+  airport_load("egll");
+  airport_load("eham");
+  airport_load("eidw");
+  airport_load("einn");
+  airport_load("engm");
+  airport_load("kdca");
   airport_load("kjfk");
   airport_load("klax");
   airport_load("klax90");
+  airport_load("kmsp");
   airport_load("ksan");
- 
-  //  airport_load("ksna");
-
-  airport_load("ebbr");
-  airport_load("eddh");
-  airport_load("eham");
-  airport_load("engm");
-  airport_load("eddm");
-  airport_load("eddt");
-  airport_load("eidw");
-  airport_load("einn");
-  airport_load("eglc");
+  airport_load("ksfo");
   airport_load("loww");
-  airport_load("egll");
-
-  //  SOUTH AMERICA AIRPORTS
-  airport_load("sbgr");
-  airport_load("sbgl");
-  airport_load("saez");
-
-  //  RUSSIA AIRPORTS
-  airport_load("uudd");
-
   airport_load("ltba");
+  airport_load("saez");
+  airport_load("sbgl");
+  airport_load("sbgr");
+  airport_load("uudd");
   airport_load("vhhh");
 }
 

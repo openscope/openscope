@@ -4,7 +4,9 @@
     "name": "Rusline",
     "length": 3
   },
-  "aircraft": [
-    ["e135", 20 ]
-  ]
+  "fleets": {
+    "default": [
+      ["e135", 20]
+    ]
+  }
 }

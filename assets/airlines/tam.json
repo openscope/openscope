@@ -1,22 +1,21 @@
 {
+  "icao": "TAM",
   "name": "TAM Linhas Aereas",
   "callsign": {
     "name": "TAM",
-    "length": 3
+    "length": 3,
+    "alpha": false
   },
-  "aircraft": [
-    ["A319", 27 ],
-
-    ["A320", 83 ],
-
-    ["A321", 26 ],
-    
-    ["A332", 9 ],
-
-    ["B763", 14 ],
-
-    ["b77l", 5 ],
-    ["B77W", 5 ]
-
-  ]
+  "fleets": {
+    "default": [
+      ["A319", 27],
+      ["A320", 83],
+      ["A321", 29]
+    ],
+    "long": [
+      ["B763", 14],
+      ["B77W", 10],
+      ["A332", 9 ]
+    ]
+  }
 }
