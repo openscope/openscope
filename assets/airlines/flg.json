@@ -4,10 +4,10 @@
     "name": "Flagship",
     "length": 3
   },
-  "aircraft": [
-    ["CRJ2", 35 ],
-
-    ["CRJ9", 81 ]
-
-  ]
+  "fleets": {
+    "default": [
+      ["CRJ2", 35 ],
+      ["CRJ9", 81 ]
+    ]
+  }
 }

@@ -4,8 +4,10 @@
     "name": "Ryanair",
     "length": 3
   },
-  "aircraft": [
-    ["B737", 1 ],
-    ["B738", 320 ]
-  ]
+  "fleets": {
+    "default": [
+      ["B737", 1  ],
+      ["B738", 320]
+    ]
+  }
 }

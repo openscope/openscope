@@ -1,11 +1,14 @@
 {
+  "icao": "A",
   "name": "United States Air Force",
   "callsign": {
-    "name": "USAF",
-    "length": 3
+    "name": "Air Force",
+    "length": 5
   },
-  "aircraft": [
-    ["C130", 275 ],
-	["C5", 76 ]
-  ]
+  "fleets": {
+    "default": [
+      ["C130", 275],
+      ["C5",   76 ]
+    ]
+  }
 }
