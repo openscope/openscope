@@ -2847,6 +2847,7 @@ function aircraft_update() {
     }
     if(remove) {
       aircraft.cleanup();
+      prop.aircraft.callsigns.splice(prop.aircraft.callsigns.indexOf(aircraft.callsign), 1);
       prop.aircraft.list.splice(i, 1);
       update_aircraft_eids();
       i-=1;
