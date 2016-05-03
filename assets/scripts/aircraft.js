@@ -921,7 +921,10 @@ var Aircraft=Fiber.extend(function() {
         }
       }
 
-      $("#strips").append(this.html);
+      // var scrollPos = $("#strips")[0].scrollHeight - $("#strips").scrollTop();
+      var scrollPos = $("#strips").scrollTop();
+      $("#strips").prepend(this.html);
+      $("#strips").scrollTop(scrollPos + 45);  // shift scroll down one strip's height
 
       this.html.click(this, function(e) {
         input_select(e.data.getCallsign());
@@ -2022,8 +2025,11 @@ var Aircraft=Fiber.extend(function() {
     },
     showStrip: function() {
       this.html.detach();
-      $("#strips").append(this.html);
-      this.html.show(600);
+      // var scrollPos = $("#strips")[0].scrollHeight - $("#strips").scrollTop();
+      var scrollPos = $("#strips").scrollTop();
+      $("#strips").prepend(this.html);
+      this.html.show();
+      $("#strips").scrollTop(scrollPos + 45);  // shift scroll down one strip's height
     },
     updateTarget: function() {
       var airport = airport_get();
@@ -2340,10 +2346,15 @@ var Aircraft=Fiber.extend(function() {
       this.radial = vradial(this.position);
       if (this.radial < 0) this.radial += Math.PI*2;
 
-      var inside = (this.distance <= airport_get().ctr_radius &&
-                    this.altitude <= airport_get().ctr_ceiling);
-      if (inside != this.inside_ctr)
-        this.crossBoundary(inside);
+      if(airport_get().perimeter) { // polygonal airspace boundary
+        var inside = point_in_area(this.position, airport_get().perimeter);
+        if (inside != this.inside_ctr) this.crossBoundary(inside);
+      }
+      else {  // simple circular airspace boundary
+        var inside = (this.distance <= airport_get().ctr_radius &&
+                      this.altitude <= airport_get().ctr_ceiling);
+        if (inside != this.inside_ctr) this.crossBoundary(inside); 
+      }
     },
     updateWarning: function() {
       // Ignore other aircraft while taxiing
@@ -2714,18 +2725,12 @@ function aircraft_generate_callsign(airline_name) {
 }
 
 function aircraft_callsign_new(airline) {
+  var callsign = null;
   var hit = false;
   while(true) {
-    var callsign = aircraft_generate_callsign(airline);
-    hit=false;
-    for(var i=0;i<prop.aircraft.callsigns.length;i++) {
-      if(prop.aircraft.callsigns[i] == callsign) {
-        callsign = aircraft_callsign_new(airline);
-        hit=true;
-        break;
-      }
-    }
-    if(!hit) break;
+    callsign = aircraft_generate_callsign(airline);
+    if (prop.aircraft.callsigns.indexOf(callsign) == -1)
+      break;
   }
   prop.aircraft.callsigns.push(callsign);
   return callsign;
@@ -2842,6 +2847,7 @@ function aircraft_update() {
     }
     if(remove) {
       aircraft.cleanup();
+      prop.aircraft.callsigns.splice(prop.aircraft.callsigns.indexOf(aircraft.callsign), 1);
       prop.aircraft.list.splice(i, 1);
       update_aircraft_eids();
       i-=1;

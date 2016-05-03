@@ -1,16 +1,18 @@
 {
-  "name": "Scandinavian",
+  "name": "Scandinavian Airlines System",
   "callsign": {
-    "name": "SAS",
+    "name": "Scandinavian",
     "length": 3
   },
-  "aircraft": [
-    ["A320", 4 ],
-    ["A321", 8 ],
-    ["A333", 6 ],
-    ["A343", 8 ],
-    ["B736", 26 ],
-    ["B737", 29 ],
-    ["B738", 29 ]
-  ]
+  "fleets": {
+    "default": [
+      ["A320", 4 ],
+      ["A321", 8 ],
+      ["A333", 6 ],
+      ["A343", 8 ],
+      ["B736", 26],
+      ["B737", 29],
+      ["B738", 29]
+    ]
+  }
 }

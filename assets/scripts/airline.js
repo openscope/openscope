@@ -130,103 +130,86 @@ zlsa.atc.Airline = Fiber.extend(function() {
 });
 
 function airline_init() {
-  // 1990' Airlines
-  airline_load("PAA");
-  airline_load("TWA");
-
-  // American
-  airline_load("UAL");
   airline_load("AAL");
-  airline_load("AWE");
-  airline_load("CESSNA");
   airline_load("ACA");
+  airline_load("AEA");
+  airline_load("AFL");
+  airline_load("AFR");
+  airline_load("AIRTAXI");
   airline_load("AMX");
-  airline_load("DAL");
-  airline_load("FASTGA");
-  airline_load("FLG");
-  airline_load("GWI");
-  airline_load("JBU");
-  airline_load("KLC");
-  airline_load("LIGHTGA");
-  airline_load("VRD");
-  airline_load("SWA");
+  airline_load("ARG");
   airline_load("ASA");
   airline_load("ASQ");
-  airline_load("GJS");
-  airline_load("JIA");
-  airline_load("KAP");
-  airline_load("PDT");
-  airline_load("RPA");
-  airline_load("TCF");
-  airline_load("ENY");
-
-  // European
-  airline_load("AEA");
-  airline_load("DLH");
-  airline_load("BAW");
-  airline_load("EZY");
-  airline_load("EIN");
-  airline_load("BER");
-  airline_load("NAX");
-  airline_load("SAS");
-  airline_load("SCX");
-  airline_load("THY");
-  airline_load("VIR");
-	airline_load("AFR");
-	airline_load("AZA");
-	airline_load("IBE");
-  airline_load("KLM");
   airline_load("AUA");
-  airline_load("RYR");
-  airline_load("SWR");
-  airline_load("BCY");
-  airline_load("BWA");
-  
-  // South American
-  airline_load("ONE");
-  airline_load("GLO");
-  airline_load("TAM");
   airline_load("AVA");
+  airline_load("AWE");
+  airline_load("AWI");
+  airline_load("AZA");
   airline_load("AZU");
-  airline_load("EMBRAER");
-  airline_load("ARG");
-  airline_load("LAN");
-
-  // Asian
-  airline_load("MOV");
-  airline_load("RLU");
-  airline_load("SBI");
-  airline_load("SVR");
-  airline_load("TYA");
-  airline_load("EVA");
-  airline_load("KAL");
-  airline_load("JAL");
-  airline_load("AFL");
-
-  // Middle East
-  airline_load("ETD");
-  airline_load("UAE");
-
-  // Asian
+  airline_load("BAW");
+  airline_load("BCY");
+  airline_load("BER");
+  airline_load("BWA");
+  airline_load("CCA");
   airline_load("CES");
+  airline_load("CESSNA");
   airline_load("CPA");
   airline_load("CSN");
-  airline_load("HDA");
-  airline_load("CCA");
-  airline_load("TSO");
-
-  // Cargo Airlines
-  airline_load("FDX");
-  airline_load("UPS");
   airline_load("CWC");
-
-  // Military Air Forces
-  airline_load("RFF");
+  airline_load("DAL");
+  airline_load("DLH");
+  airline_load("EIN");
+  airline_load("EMBRAER");
+  airline_load("ENY");
+  airline_load("ETD");
+  airline_load("EVA");
+  airline_load("EZY");
   airline_load("FAB");
+  airline_load("FASTGA");
+  airline_load("FDX");
+  airline_load("FFT");
+  airline_load("FLG");
+  airline_load("GJS");
+  airline_load("GLO");
+  airline_load("GWI");
+  airline_load("HDA");
+  airline_load("IBE");
+  airline_load("JAL");
+  airline_load("JBU");
+  airline_load("JIA");
+  airline_load("KAL");
+  airline_load("KAP");
+  airline_load("KLC");
+  airline_load("KLM");
+  airline_load("LAN");
+  airline_load("LIGHTGA");
+  airline_load("MOV");
+  airline_load("NAX");
+  airline_load("ONE");
+  airline_load("PAA");
+  airline_load("PDT");
+  airline_load("RFF");
+  airline_load("RLU");
+  airline_load("RPA");
+  airline_load("RYR");
+  airline_load("SAS");
+  airline_load("SBI");
+  airline_load("SCX");
+  airline_load("SVR");
+  airline_load("SWA");
+  airline_load("SWR");
+  airline_load("TAM");
+  airline_load("TCF");
+  airline_load("THY");
+  airline_load("TSO");
+  airline_load("TWA");
+  airline_load("TYA");
+  airline_load("UAE");
+  airline_load("UAL");
+  airline_load("UPS");
   airline_load("USAF");
-
-  // General Aviation
-  airline_load("AIRTAXI");
+  airline_load("VIR");
+  airline_load("VRD");
 }
 
 function airline_load(icao) {

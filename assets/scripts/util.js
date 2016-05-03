@@ -518,6 +518,76 @@ function getCardinalDirection(angle) {
   return directions[round(angle / (Math.PI*2) * 8)];
 }
 
+function to_canvas_pos(pos) {
+  return [prop.canvas.size.width / 2 + prop.canvas.panX + km(pos[0]),
+          prop.canvas.size.height / 2 + prop.canvas.panY - km(pos[1])];
+}
+
+/** Compute a point of intersection of a ray with a rectangle.
+ ** Args:
+ **   pos: array of 2 numbers, representing ray source.
+ **   dir: array of 2 numbers, representing ray direction.
+ **   rectPos: array of 2 numbers, representing rectangle corner position.
+ **   rectSize: array of 2 positive numbers, representing size of the rectangle.
+ **
+ ** Returns:
+ ** - undefined, if pos is outside of the rectangle.
+ ** - undefined, in case of a numerical error.
+ ** - array of 2 numbers on a rectangle boundary, in case of an intersection.
+ */
+function positive_intersection_with_rect(pos, dir, rectPos, rectSize) {
+  var left = rectPos[0];
+  var right = rectPos[0] + rectSize[0];
+  var top = rectPos[1];
+  var bottom = rectPos[1] + rectSize[1];
+
+  dir = vnorm(dir);
+
+  // Check if pos is outside of rectangle.
+  if (clamp(left, pos[0], right) != pos[0] || clamp(top, pos[1], bottom) != pos[1]) {
+    return undefined;
+  }
+
+  // Check intersection with top segment.
+  if (dir[1] < 0) {
+    var t = (top - pos[1]) / dir[1];
+    var x = pos[0] + dir[0] * t;
+    if (clamp(left, x, right) == x) {
+      return [x, top];
+    }
+  }
+
+  // Check intersection with bottom segment.
+  if (dir[1] > 0) {
+    var t = (bottom - pos[1]) / dir[1];
+    var x = pos[0] + dir[0] * t;
+    if (clamp(left, x, right) == x) {
+      return [x, bottom];
+    }
+  }
+
+  // Check intersection with left segment.
+  if (dir[0] < 0) {
+    var t = (left - pos[0]) / dir[0];
+    var y = pos[1] + dir[1] * t;
+    if (clamp(top, y, bottom) == y) {
+      return [left, y];
+    }
+  }
+
+  // Check intersection with right segment.
+  if (dir[0] > 0) {
+    var t = (right - pos[0]) / dir[0];
+    var y = pos[1] + dir[1] * t;
+    if (clamp(top, y, bottom) == y) {
+      return [right, y];
+    }
+  }
+
+  // Failed to compute intersection due to numerical precision.
+  return undefined;
+}
+
 // Return a random number within the given interval
 // With one argument return a number between 0 and argument
 // With no arguments return a number between 0 and 1
@@ -813,7 +883,12 @@ function point_in_poly(point, vs) {
     }
     
     return inside;
-};
+}
+
+function point_in_area(point, area) {
+  var poly = $.map(area.poly, function(v) {return [v.position];});
+  return point_in_poly(point, poly);
+}
 
 function endsWith(str, suffix) {
   return str.indexOf(suffix, str.length - suffix.length) !== -1;  

@@ -119,32 +119,24 @@
       "name":        ["13R", "31L"],
       "name_offset": [[0, 0], [0.5, -0.5]],
       "end":    [["N40.648333", "W73.816667"], ["N40.628", "W73.771833"]],
-      "angle":       133.9,
-      "length":      4.4229528,
       "ils":         [false, true]
     },
     {
       "name":        ["4R", "22L"],
       "name_offset": [[0, 0], [0, 0]],
       "end":    [["N40.62542555", "W73.7703472167"], ["N40.645235833", "W73.7548636167"]],
-      "angle":       43.9,
-      "length":      2.56032,
       "ils":         [true, true]
     },
     {
       "name":        ["13L", "31R"],
       "name_offset": [[0, 0], [0.5, -0.5]],
       "end":    [["N40.6577648", "W73.790239533"], ["N40.6437261167", "W73.75927695"]],
-      "angle":       133.9,
-      "length":      3.048,
       "ils":         [true, true]
     },
     {
       "name":        ["4L", "22R"],
       "name_offset": [[0, 0], [0, 0]],
       "end":    [["N40.622", "W73.785667"], ["N40.6505", "W73.763333"]],
-      "angle":       43.9,
-      "length":      3.6816792,
       "ils":         [true, true]
     }
   ],
@@ -221,23 +213,21 @@
   },
   "departures": {
     "airlines": [
-      ["dal", 24],
-      ["jbu", 20],
-      ["aal", 16],
-      ["vrd", 10],
-      ["baw", 3],
+      ["dal", 16],
+      ["jbu", 15],
+      ["aal", 7],
+      ["vrd", 8],
       ["ual", 6],
-      ["fastga", 1],
-      ["dlh/long", 2],
       ["aca", 4],
+      ["fdx", 4],
+      ["baw/long", 3],
+      ["dlh/long", 2],
       ["ein/long", 1],
       ["klm/long", 1],
       ["tam", 1],
-      ["cpa", 2],
-      ["cca/long", 1],
+      ["cpa", 1],
       ["eva/long", 1],
-      ["afr/long", 2],
-      ["ber/long", 2],
+      ["ber/long", 1],
       ["etd/long", 1],
       ["afl/long", 1],
       ["arg", 1]
@@ -252,6 +242,8 @@
   "arrivals": [
     {
       "_name": "CAMRN FOUR",
+      "radial": 204,
+      "altitude": 11000,
       "fixes": ["KARRS", "CAMRN"],
       "radial": 204,
       "altitude": 11000,
@@ -260,15 +252,27 @@
       "offset": 15,
       "frequency": 8,
       "airlines": [
-        ["dal", 12],
-        ["jbu", 7],
-        ["aal", 7],
-        ["baw/long", 1],
+        ["flg", 8],
+        ["dal", 8],
+        ["gjs", 6],
+        ["rpa", 6],
+        ["eny", 5],
+        ["jbu", 4],
+        ["aal", 4],
+        ["asq", 3],
+        ["vrd", 2],
+        ["lan/long", 2],
+        ["tam/long", 1],
         ["ual", 1]
       ]
     },
     {
       "_name": "KINGSTON ONE",
+
+      "radial": 10,
+      "type": "wave",
+      "altitude": 15000,
+
       "fixes": ["IGN", "LOLLY", "DOORE", "LENDY", "LGA"],
       "radial": 10,
       "type": "wave",
@@ -303,8 +307,6 @@
         ["aal", 10],
         ["jbu", 6],
         ["vrd", 6],
-        ["cpa", 2],
-        ["cca/long", 1],
         ["eva/long", 1]
       ]
     },
@@ -340,26 +342,11 @@
         ["baw/long", 6],
         ["ual", 5],
         ["dlh/long", 3],
-        ["afr/long", 2],
         ["ber/long", 2],
         ["etd/long", 1],
         ["ein/long", 1],
         ["afl/long", 1],
         ["arg", 1]
-        ],
-      "waypoints": [
-          {
-              "fix": "PARCH"
-          },
-          {
-              "fix": "CCC",
-              "speed": 250
-          },
-          {
-              "fix": "ROBER",
-              "altitude": 9000,
-              "speed": 250
-          }
       ]
     },
     {
@@ -375,18 +362,7 @@
         ["aal", 7],
         ["baw/long", 1],
         ["ual", 1]
-        ],
-    "waypoints": [
-        {
-            "fix": "CCC",
-            "speed": 250
-        },
-        {
-            "fix": "ROBER",
-            "speed": 250
-        }
-
-        ]
+      ]
     }
   ]
 }

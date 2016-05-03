@@ -4,8 +4,10 @@
     "name": "Lindbergh",
     "length": 4
   },
-  "aircraft": [
-    ["CRJ7", 47 ],
-	["CRJ9", 8 ]
-  ]
+  "fleets": {
+    "default": [
+      ["CRJ7", 47 ],
+      ["CRJ9", 8 ]
+    ]
+  }
 }

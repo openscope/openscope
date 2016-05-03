@@ -657,6 +657,8 @@ var Airport=Fiber.extend(function() {
       this.metadata = {
         rwy: {}
       };
+      this.airspace = null; // array of areas under this sector's control. If null, draws circle with diameter of 'ctr_radius'
+      this.perimeter= null; // area outlining the outermost lateral airspace boundary. Comes from this.airspace[0]
 
       this.timeout  = {
         runway: null,
@@ -707,6 +709,29 @@ var Airport=Fiber.extend(function() {
 
       if (this.has_terrain) {
         this.loadTerrain();
+      }
+
+      if(data.airspace) { // create 3d polygonal airspace
+        var areas = [];
+        for(var i=0; i<data.airspace.length; i++) { // for each area
+          var positions = [];
+          for(var j=0; j<data.airspace[i].poly.length; j++) {  // for each point
+            positions.push(new Position(data.airspace[i].poly[j],
+                                        this.position, this.magnetic_north));
+          }
+          areas.push(new Area(positions, data.airspace[i].floor*100,
+            data.airspace[i].ceiling*100, data.airspace[i].airspace_class));
+        }
+        this.airspace = areas;
+
+        // airspace perimeter (assumed to be first entry in data.airspace)
+        this.perimeter = areas[0];
+
+        // change ctr_radius to point along perimeter that's farthest from rr_center
+        var pos = new Position(this.perimeter.poly[0].position, this.position, this.magnetic_north);
+        var len = nm(vlen(vsub(pos.position, this.position.position)));
+        var apt = this;
+        this.ctr_radius = Math.max(...$.map(this.perimeter.poly, function(v) {return vlen(vsub(v.position,new Position(apt.rr_center, apt.position, apt.magnetic_north).position));}));
       }
       
       if(data.runways) {
@@ -1004,39 +1029,29 @@ function airport_init_pre() {
 }
 
 function airport_init() {
-  // Add your airports here
-
-  // K*
-  airport_load("ksfo");
-  airport_load("kmsp");
+  airport_load("ebbr");
+  airport_load("eddh");
+  airport_load("eddm");
+  airport_load("eddt");
+  airport_load("eglc");
+  airport_load("egll");
+  airport_load("eham");
+  airport_load("eidw");
+  airport_load("einn");
+  airport_load("engm");
+  airport_load("kdca");
   airport_load("kjfk");
   airport_load("klax");
   airport_load("klax90");
+  airport_load("kmsp");
   airport_load("ksan");
- 
-  //  airport_load("ksna");
-
-  airport_load("ebbr");
-  airport_load("eddh");
-  airport_load("eham");
-  airport_load("engm");
-  airport_load("eddm");
-  airport_load("eddt");
-  airport_load("eidw");
-  airport_load("einn");
-  airport_load("eglc");
+  airport_load("ksfo");
   airport_load("loww");
-  airport_load("egll");
-
-  //  SOUTH AMERICA AIRPORTS
-  airport_load("sbgr");
-  airport_load("sbgl");
-  airport_load("saez");
-
-  //  RUSSIA AIRPORTS
-  airport_load("uudd");
-
   airport_load("ltba");
+  airport_load("saez");
+  airport_load("sbgl");
+  airport_load("sbgr");
+  airport_load("uudd");
   airport_load("vhhh");
 }
 

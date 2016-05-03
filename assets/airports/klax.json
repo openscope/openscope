@@ -10,7 +10,7 @@
   "iata": "LAX",
   "magnetic_north": 12.3,
   "ctr_radius": 80,
-  "ctr_ceiling": 10000,
+  "ctr_ceiling": 25000,
   "initial_alt": 5000,
   "position": ["N33d56m33.13", "W118d24m29.07"],
   "rr_radius_nm": 5.0,
@@ -21,6 +21,16 @@
     "speed": 10
   },
   "fixes": {
+  	"VTU": ["N34d6m54.21", "W119d2m58.17"],
+  	"NAANC": ["N33d55m54.00", "W118d38m38.00"],
+  	"JAVSI": ["N34d1m42.60", "W118d16m39.00"],
+  	"RZS": ["N34d30m34.30", "W119d46m15.57"],
+  	"GMN": ["N34d48m14.50", "W118d51m40.90"],
+  	"MKGEE": ["N33d55m4.00", "W118d37m41.00"],
+  	"ELYME": ["N33d53m24.58", "W118d28m53.50"],
+  	"SHAEF": ["N33d51m19.00", "W118d33m47.00"],
+  	"YUFAP": ["N33d48m50.45", "W118d32m1.23"],
+
     "PFILA": ["N34d01m12.69", "W117d41m50.18"],
     "SALWA": ["N34d00m47.72", "W117d46m8.30"],
     "WLNUT": ["N34d00m22.60", "W117d50m26.38"],
@@ -133,24 +143,26 @@
     }
   ],
   "sids": {
+
     "LOOP8": {
       "icao": "LOOP8",
       "name": "Loop Eight",
       "rwy": {
-        "6L":  ["LAX", "KEGGS", "COOPP"],
-        "6R":  ["LAX", "KEGGS", "COOPP"],
-        "7L":  ["LAX", "KEGGS", "COOPP"],
-        "7R":  ["LAX", "KEGGS", "COOPP"],
-        "24L": ["LAX", "KEGGS", "COOPP"],
-        "24R": ["LAX", "KEGGS", "COOPP"],
-        "25L": ["LAX", "KEGGS", "COOPP"],
-        "25R": ["LAX", "KEGGS", "COOPP"]
+	   "6L":  ["KEGGS", "COOPP"],
+        "6R":  ["KEGGS", "COOPP"],
+        "7L":  ["KEGGS", "COOPP"],
+        "7R":  ["KEGGS", "COOPP"],
+        "24L": ["NAANC", "YUFAP", "LAX", "KEGGS", "COOPP"],
+        "24R": ["NAANC", "YUFAP", "LAX", "KEGGS", "COOPP"],
+        "25L": ["MKGEE", "YUFAP", "LAX", "KEGGS", "COOPP"],
+        "25R": ["MKGEE", "YUFAP", "LAX", "KEGGS", "COOPP"]
       },
       "transitions": {
         "DAG": ["DAG"]
       },
       "draw": [["LAX","KEGGS","COOPP","DAG*"]]
     },
+
     "PRCH1": {
       "icao": "PRCH1",
       "name": "Perch One",
@@ -169,6 +181,23 @@
       },
       "draw": [["PERCH"]]
     },
+
+	"VTU6": {
+      "icao": "VTU6",
+      "name": "Ventura six",
+      "rwy": {
+        "24L": ["NAANC",["VTU","A60-"]],
+        "24R": ["NAANC",["VTU","A60-"]],
+        "25L": ["MKGEE",["VTU","A60-"]],
+        "25R": ["MKGEE",["VTU","A60-"]]
+      },
+      "transitions": {
+        "RZS": ["RZS"],
+		"GMN": ["GMN"]
+      },
+      "draw": [["VTU","RZS*"],["VTU","GMN*"]]
+    },
+
     "LAXX8": {
       "icao": "LAXX8",
       "name": "Lacks Eight",
@@ -177,46 +206,30 @@
         "6R":  ["SLI"],
         "7L":  ["SLI"],
         "7R":  ["SLI"],
-        "24L": ["SLI"],
-        "24R": ["SLI"],
-        "25L": ["SLI"],
-        "25R": ["SLI"]
+        "24L": ["NAANC", "SHAEF", "SLI"],
+        "24R": ["NAANC", "SHAEF", "SLI"],
+        "25L": ["MKGEE", "SHAEF", "SLI"],
+        "25R": ["MKGEE", "SHAEF", "SLI"]
       },
       "transitions": {
-        "TRM": ["TRM"]
+        "TRM": ["TRM"],
+		"MZB": ["MZB"]
       },
-      "draw": [["SLI","TRM*"]]
+      "draw": [["SLI","TRM*"],["SLI","OCN","MZB*"]]
     },
-    "SNGO6": {
-      "icao": "SNGO6",
-      "name": "San Diego Six",
-      "rwy": {
-        "6L":  ["SLI", "COSER", "CARDI"],
-        "6R":  ["SLI", "COSER", "CARDI"],
-        "7L":  ["SLI", "COSER", "CARDI"],
-        "7R":  ["SLI", "COSER", "CARDI"],
-        "24L": ["SLI", "COSER", "CARDI"],
-        "24R": ["SLI", "COSER", "CARDI"],
-        "25L": ["SLI", "COSER", "CARDI"],
-        "25R": ["SLI", "COSER", "CARDI"]
-      },
-      "transitions": {
-        "MZB": ["MZB"]
-      },
-      "draw": [["SLI","COSER","CARDI","MZB*"]]
-    },
+ 
     "SEBBY9": {
       "icao": "SEBBY9",
       "name": "Sebby Nine",
       "rwy": {
-        "6L":  ["SLI", "SEBBY"],
-        "6R":  ["SLI", "SEBBY"],
-        "7L":  ["SLI", "SEBBY"],
-        "7R":  ["SLI", "SEBBY"],
-        "24L": ["SLI", "SEBBY"],
-        "24R": ["SLI", "SEBBY"],
-        "25L": ["SLI", "SEBBY"],
-        "25R": ["SLI", "SEBBY"]
+		"6L":  ["SLI"],
+        "6R":  ["SLI"],
+        "7L":  ["SLI"],
+        "7R":  ["SLI"],
+        "24L": ["NAANC", "SHAEF", "SLI"],
+        "24R": ["NAANC", "SHAEF", "SLI"],
+        "25L": ["MKGEE", "SHAEF", "SLI"],
+        "25R": ["MKGEE", "SHAEF", "SLI"]
       },
       "transitions": {
         "DAG": ["DAG"]
@@ -226,13 +239,29 @@
   },
   "departures": {
     "airlines": [
-      ["ual", 11],
-      ["baw", 9],
+      ["ual", 5],
+      ["aal", 5],
+      ["dal", 5],
+      ["ual/long", 5],
+      ["aal/long", 5],
+      ["dal/long", 5],
+      ["swa", 5],
+      ["asa", 3],
+      ["aca", 2],
+      ["cpa", 2],
+      ["baw/long", 2],
       ["ups", 2],
-      ["fdx", 2]
+      ["fdx", 2],
+      ["klm/long", 2],
+      ["afr/long", 2],
+      ["kal/long", 2],
+      ["amx/long", 2],
+      ["lan/long", 4],
+      ["uae", 2],
+      ["vir", 2]
     ],
     "destinations": [
-      "LOOP8", "PRCH1", "LAXX8", "SNGO6", "SEBBY9"
+      "LOOP8", "PRCH1", "LAXX8","SEBBY9", "VTU6"
     ],
     "type": "random",
     "offset": 0,
@@ -246,14 +275,12 @@
       "speed":    250,
       "fixes":   ["KIMMO", "DARTS"],
       "airlines":  [
-        ["ual", 1],
-        ["baw", 1],
-        ["dal", 1],
-        ["aal", 1]
+        ["swa", 1],
+        ["fastga", 1]
       ],
       "type": "cyclic",
       "offset": 0,
-      "frequency": 8,
+      "frequency": 2,
       "altitude":  10000
     },
     {
@@ -262,12 +289,13 @@
       "speed":    250,
       "fixes":    ["SXC", "CWARD", "SLI"],
       "airlines":  [
-        ["ual", 1],
-        ["baw", 1],
-        ["aca", 1]
+        ["ual/long", 1],
+        ["dal/long", 1],
+		["asa", 1],
+        ["aal/long", 1]
       ],
       "type": "random",
-      "frequency": 6,
+      "frequency": 3,
       "altitude":  10000
     },
     {
@@ -276,10 +304,26 @@
       "speed":    250,
       "fixes":    ["RUSTT", "HABSO", "RIIVR", "BCOVE"],
       "airlines":  [
-        ["ual", 4],
-        ["baw", 3],
-        ["dal", 2],
-        ["aca", 1]
+        ["ual", 5],
+        ["aal", 5],
+        ["dal", 5],
+        ["ual/long", 5],
+        ["aal/long", 5],
+        ["dal/long", 5],
+        ["swa", 5],
+        ["asa", 3],
+        ["aca", 2],
+        ["cpa", 2],
+        ["baw/long", 2],
+        ["ups", 2],
+        ["fdx", 2],
+        ["klm/long", 2],
+        ["afr/long", 2],
+        ["kal/long", 2],
+        ["amx/long", 2],
+        ["lan/long", 4],
+        ["uae", 2],
+        ["vir", 2]
       ],
       "type": "wave",
       "offset": 5,
@@ -287,14 +331,32 @@
       "altitude":  10000
     },
     {
-      "_name":  "Sadde 6",
+      "_name":  "Sadde 6 - FIM",
       "radial":   330,
       "speed":    250,
-      "fixes":    ["FIM", "SADDE", "SMO"],
+      "fixes":    ["FIM", "SADDE", "SMO", "JAVSI"],
       "airlines":  [
-        ["ual", 10],
-        ["baw", 10],
+        ["ual", 2],
+        ["aal", 2],
+        ["dal", 2],
+        ["swa", 5],
+        ["asa", 5],
         ["fastga", 1]
+      ],
+      "type": "random",
+      "frequency": 6,
+      "altitude":  10000
+    },
+	{
+      "_name":  "Sadde 6 - VTU",
+      "radial":   260,
+      "speed":    250,
+      "fixes":    ["VTU", "SADDE", "SMO", "JAVSI"],
+      "airlines":  [
+        ["ual/long", 1],
+        ["dal/long", 1],
+		    ["asa", 1],
+        ["aal/long", 1]
       ],
       "type": "random",
       "frequency": 6,
@@ -307,8 +369,8 @@
       "fixes":    ["VISTA", "OCN", "SHIVE", "CWARD", "MADOW", "SLI"],
       "airlines":  [
         ["ual", 1],
-        ["baw", 1],
-        ["dal", 1]
+        ["swa", 1],
+        ["aal", 1]
       ],
       "type": "random",
       "frequency": 8,

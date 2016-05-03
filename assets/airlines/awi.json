@@ -1,12 +1,12 @@
 {
-  "name": "Republic Airlines",
+  "name": "Air Wisconsin",
   "callsign": {
-    "name": "Brickyard",
+    "name": "Wisconsin",
     "length": 4
   },
   "fleets": {
     "default": [
-      ["E170", 118]
+      ["CRJ2", 71]
     ]
   }
 }

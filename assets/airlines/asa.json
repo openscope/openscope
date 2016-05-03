@@ -4,10 +4,12 @@
     "name": "Alaska",
     "length": 3
   },
-  "aircraft": [
+  "fleets": {
+    "default": [
     ["B734", 27],
     ["B737", 17],
     ["B738", 61],
     ["B739", 40]
-  ]
+    ]
+  }
 }

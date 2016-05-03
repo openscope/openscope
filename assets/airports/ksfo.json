@@ -21,6 +21,12 @@
     "speed": 5
   },
   "fixes": {
+    "WAGES": ["N36d50m46.00", "W121d44m22.00"],
+    "HEMAN": ["N37d32m1.86", "W122d10m24.00"],
+    "CZQ": ["N36d53m3.56", "W119d48m54.48"],
+    "AVE": ["N35d38m49.11", "W119d58m42.98"],
+    "PXN": ["N36d42m55.56", "W120d46m43.26"],
+    "PIRAT": ["N37d15m27.54", "W122d51m48.07"],
     "BERKS": ["N37.860861", "W122.211678"],
     "NEPIC": ["N37.585894", "W122.296883"],
     "FAITH": ["N37.40121667", "W121.8619"],
@@ -134,12 +140,12 @@
       "icao": "OFFSH9",
       "name": "Offshore Nine",
       "rwy": {
-        "1L" : [["SEPDY", "1600+"], "WAMMY"],
-        "1R" : [["SEPDY", "1600+"], "WAMMY"],
-        "28L": [["SENZY", "2500+"], "WAMMY"],
-        "28R": [["SENZY", "2500+"], "WAMMY"]
+        "1L" : [["SEPDY", "A16+"], "WAMMY"],
+        "1R" : [["SEPDY", "A16+"], "WAMMY"],
+        "28L": [["SENZY", "A25+"], "WAMMY"],
+        "28R": [["SENZY", "A25+"], "WAMMY"]
       },
-      "body": [["SEGUL", "16000+"], ["CYPRS", "22000+"], "MCKEY"],
+      "body": [["SEGUL", "A160+"], ["CYPRS", "A220+"], "MCKEY"],
       "transitions": {
         "FLW": ["MQO", "FLW"],
         "RZS": ["MQO", "RZS"],
@@ -148,24 +154,27 @@
       },
       "draw": [["SEPDY","WAMMY"], ["SENZY","WAMMY","SEGUL","CYPRS","MCKEY"], ["MCKEY","MQO"], ["MQO","FLW*"], ["MQO","RZS*"], ["MQO","GVO*"], ["MCKEY","DAISY","BENET","SXC*"]]
     },
-    "EUGEN1": {
-      "icao": "EUGEN1",
-      "name": "Eugen One",
+    
+  "PORTE7": {
+      "icao": "PORTE7",
+      "name": "PORTE SEVEN",
       "rwy": {
-        "1L" : [["SEPDY", "1900+"], "ZUPAX"],
-        "1R" : [["SEPDY", "1900+"], "ZUPAX"],
-        "28L": [["SENZY", "2500+"], "ZUPAX"],
-        "28R": [["SENZY", "2500+"], "ZUPAX"]
+        "1L" : [["SEPDY", "A19+"], "PORTE"],
+        "1R" : [["SEPDY", "A19+"], "PORTE"],
+        "28L": [["SENZY", "A25+"], "PORTE"],
+        "28R": [["SENZY", "A25+"], "PORTE"]
       },
-      "body": ["EUGEN", "SHOEY"],
+      "body": ["OSI", "WAGES"],
       "transitions": {
-          "SNS": ["SNS"],
-          "BSR": ["BSR"],
-          "SHOEY": []
+          "CZQ": ["CZQ"],
+          "PXE": ["PXE"],
+          "FLW": ["FLW"],
+          "AVE": ["AVE"]
       },
-      "draw": [["SEPDY","ZUPAX"], ["SENZY","ZUPAX","EUGEN","SHOEY*"], ["SHOEY","SNS*"], ["SHOEY","BSR*"]]
+      "draw": [["SEPDY","PORTE"], ["SENZY","PORTE","OSI","WAGES"], ["WAGES","CZQ*"], ["WAGES","AVE*"], ["WAGES","PXN*"], ["WAGES", "FLW*"]]
     },
-    "QUIET7": {
+    
+	"QUIET7": {
       "icao": "QUIET7",
       "name": "Quiet Seven",
       "rwy": {
@@ -184,14 +193,15 @@
       },
       "draw": [["SASLY","REBAS"], ["REBAS","SASSU"], ["SASSU","ENI*"], ["SASSU","SAWNA"], ["SAWNA","RBL*"], ["SAWNA","CIC*"], ["REBAS","SAC*"], ["REBAS","LIN*"]]
     },
-    "MOLEN7": {
+    
+	"MOLEN7": {
       "icao": "MOLEN7",
       "name": "Molen Seven",
       "rwy": {
-        "10L": [["SIPLY", "2500+"], "_SIPLY233-STINS144", "STINS"],
-        "10R": [["SIPLY", "2500+"], "_SIPLY233-STINS144", "STINS"],
-        "28L": [["WESLA", "1800+"], "STINS"],
-        "28R": [["WESLA", "1800+"], "STINS"]
+        "10L": [["SIPLY", "A25+"], "_SIPLY233-STINS144", "STINS"],
+        "10R": [["SIPLY", "A25+"], "_SIPLY233-STINS144", "STINS"],
+        "28L": [["WESLA", "A18+"], "STINS"],
+        "28R": [["WESLA", "A18+"], "STINS"]
       },
       "body": ["MOLEN"],
       "transitions": {
@@ -202,12 +212,27 @@
   },
   "departures": {
     "airlines": [
-      ["ual", 11],
-      ["baw", 9],
-      ["ups", 2]
+      ["ual", 10],
+      ["aal", 8],
+      ["dal", 6],
+      ["ual/long", 5],
+      ["aal/long", 2],
+      ["dal/long", 2],
+      ["swa", 5],
+      ["asa", 3],
+      ["aca", 2],
+      ["cpa", 2],
+      ["baw/long", 2],
+      ["ups", 1],
+      ["fdx", 1],
+      ["klm/long", 2],
+      ["afr/long", 2],
+      ["uae", 4],
+      ["kal/long", 2],
+      ["vir", 2]
     ],
     "destinations": [
-      "MOLEN7", "OFFSH9", "EUGEN1", "QUIET7"
+      "MOLEN7", "OFFSH9", "PORTE7", "QUIET7"
     ],
     "type": "random",
     "offset": 0,
@@ -220,10 +245,15 @@
       "speed":    250,
       "fixes":   ["MOVDD", "RISTI", "CEDES"],
       "airlines":  [
-        ["ual", 1],
-        ["baw", 1],
-        ["dal", 1],
-        ["aal", 1]
+        ["ual", 5],
+        ["ual/long", 2],
+        ["swa", 1],
+        ["dal", 5],
+        ["dal/long", 2],
+        ["aal", 5],
+        ["aal/long", 2],
+        ["asa", 1],
+        ["fdx", 1]
       ],
       "type": "wave",
       "offset": 0,
@@ -235,28 +265,28 @@
       "speed":    250,
       "fixes":    ["FAITH"],
       "airlines":  [
-        ["ual", 2],
-        ["baw", 5],
         ["fastga", 1]
       ],
       "type": "random",
       "offset": 5,
-      "frequency": 6,
-      "altitude":  10000
+      "frequency": 4,
+      "altitude":  8000
     },
+
     {
       "radial":   145,
       "speed":    250,
       "fixes":    ["SKUNK", "BOLDR", "MENLO"],
       "airlines":  [
         ["ual", 4],
-        ["baw", 3],
+        ["aal", 3],
         ["dal", 2],
-        ["aca", 1]
+        ["asa", 2],
+        ["swa", 5]
       ],
       "type": "wave",
       "offset": 3,
-      "frequency": 12,
+      "frequency": 8,
       "altitude":  10000
     },
     {
@@ -264,13 +294,42 @@
       "speed":    250,
       "fixes":    ["PYE", "DUXBY", "SFO"],
       "airlines":  [
-        ["ual", 10],
-        ["baw", 10],
+        ["ual/long", 5],
+        ["aal/long", 2],
+        ["dal/long", 2],
+        ["ual", 5],
+        ["baw/long", 2],
+        ["cpa", 2],
+        ["vir", 2],
+        ["swa", 2],
+        ["aca", 2],
+        ["ups", 1],
+        ["asa", 8],
+        ["fdx", 1],
+        ["klm/long", 2],
+        ["afr/long", 2],
+        ["uae", 4],
+        ["kal/long", 2],
         ["fastga", 1]
+      ],
+      "type": "cyclic",
+      "frequency": 6,
+      "altitude":  10000
+    },
+	{
+      "radial":   240,
+      "speed":    250,
+      "fixes":    ["PIRAT", "OSI"],
+      "airlines":  [
+        ["ual/long", 5],
+        ["aal/long", 2],
+        ["dal/long", 2],
+        ["asa", 1]
       ],
       "type": "random",
       "frequency": 6,
       "altitude":  10000
     }
+
   ]
 }

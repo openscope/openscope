@@ -125,7 +125,7 @@
         "15": [["DH208", "A23+"], "DH209", "DH212"],
         "33": ["GT", "DH259"]
       },
-      "body": ["LYE, RAMAR"],
+      "body": ["LYE", "RAMAR"],
       "draw": [["DH111", "GT", "DH104", "DH110", "LYE", "RAMAR"], ["HOS", "LYE", "RAMAR"], ["DH208", "DH209", "DH212", "LYE", "RAMAR"], ["GT", "DH259", "LYE", "RAMAR"]]
     },
     "AMLUH": {

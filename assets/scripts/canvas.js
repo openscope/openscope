@@ -26,10 +26,7 @@ function canvas_init_pre() {
 
 function canvas_init() {
   "use strict";
-  canvas_add("compass");
   canvas_add("navaids");
-  canvas_add("info");
-  canvas_add("aircraft");
 }
 
 function canvas_adjust_hidpi() {
@@ -791,38 +788,32 @@ function canvas_draw_compass(cc) {
   }
 }
 
+/** Draw circular airspace border
+ */
 function canvas_draw_ctr(cc) {
   "use strict";
   
   //Draw a gentle fill color with border within the bounds of the airport's ctr_radius
-  cc.translate(round(prop.canvas.size.width/2), round(prop.canvas.size.height/2));
-  cc.translate(prop.canvas.panX, prop.canvas.panY);
   cc.fillStyle = "rgba(200, 255, 200, 0.02)";
+	cc.strokeStyle = "rgba(200, 255, 200, 0.25)";
   cc.beginPath();
   cc.arc(0, 0, airport_get().ctr_radius*prop.ui.scale, 0, Math.PI*2);
   cc.fill();
-  //Draw the outline circle
-	cc.beginPath();
-  cc.linewidth = 1;
-	cc.arc(0, 0, airport_get().ctr_radius*prop.ui.scale, 0, Math.PI*2);
-	cc.strokeStyle = "rgba(200, 255, 200, 0.25)";
 	cc.stroke();
+}
 
-  // Check if range ring characteristics are defined for this airport
-  if(airport_get().hasOwnProperty("rr_radius_nm")) {
-  	var rangeRingRadius = km(airport_get().rr_radius_nm);	//convert input param from nm to km
-  }
-  else {
-  	var rangeRingRadius = airport_get().ctr_radius / 4;	//old method
-  }
+/** Draw polygonal airspace border
+ */
+function canvas_draw_airspace_border(cc) {
+  if(!airport_get().airspace) canvas_draw_ctr(cc);
 
-  //Fill up airport's ctr_radius with rings of the specified radius
-  for(var i=1; i*rangeRingRadius < airport_get().ctr_radius; i++) {
-	  cc.beginPath();
-	  cc.linewidth = 1;
-		cc.arc(0, 0, rangeRingRadius*prop.ui.scale*i, 0, Math.PI*2);
-		cc.strokeStyle = "rgba(200, 255, 200, 0.1)";
-		cc.stroke();
+  // style
+  cc.strokeStyle = "rgba(200, 255, 200, 0.25)";
+  cc.fillStyle   = "rgba(200, 255, 200, 0.02)";
+
+  // draw airspace
+  for(var i=0; i<airport_get().airspace.length; i++) {
+    canvas_draw_poly(cc, $.map(airport_get().perimeter.poly, function(v){return [v.position];}));
   }
 }
 
@@ -831,13 +822,13 @@ function canvas_draw_engm_range_rings(cc) {
   "use strict";
   cc.strokeStyle = "rgba(200, 255, 200, 0.3)";
   cc.setLineDash([3,6]);
-  canvas_draw_range_ring(cc, "BAVAD","GM428","GM432");
-  canvas_draw_range_ring(cc, "TITLA","GM418","GM422");
-  canvas_draw_range_ring(cc, "INSUV","GM403","GM416");
-  canvas_draw_range_ring(cc, "VALPU","GM410","GM402");
+  canvas_draw_fancy_rings(cc, "BAVAD","GM428","GM432");
+  canvas_draw_fancy_rings(cc, "TITLA","GM418","GM422");
+  canvas_draw_fancy_rings(cc, "INSUV","GM403","GM416");
+  canvas_draw_fancy_rings(cc, "VALPU","GM410","GM402");
 }
 
-function canvas_draw_range_ring(cc, fix_origin, fix1, fix2) {
+function canvas_draw_fancy_rings(cc, fix_origin, fix1, fix2) {
   "use strict";
   var arpt = airport_get();
   var origin = arpt.getFix(fix_origin);
@@ -859,6 +850,19 @@ function canvas_draw_range_ring(cc, fix_origin, fix1, fix2) {
   }
 }
 
+function canvas_draw_range_rings(cc) {
+  var rangeRingRadius = km(airport_get().rr_radius_nm); //convert input param from nm to km
+
+  //Fill up airport's ctr_radius with rings of the specified radius
+  for(var i=1; i*rangeRingRadius < airport_get().ctr_radius; i++) {
+    cc.beginPath();
+    cc.linewidth = 1;
+    cc.arc(0, 0, rangeRingRadius*prop.ui.scale*i, 0, Math.PI*2);
+    cc.strokeStyle = "rgba(200, 255, 200, 0.1)";
+    cc.stroke();
+  }
+}
+
 function canvas_draw_poly(cc, poly) {
   cc.beginPath();
 
@@ -869,6 +873,7 @@ function canvas_draw_poly(cc, poly) {
   cc.closePath();
   cc.stroke();
   cc.fill();
+  cc.clip();      // hide range rings outside of airspace boundary
 }
 
 function canvas_draw_terrain(cc) {
@@ -1043,7 +1048,9 @@ function canvas_update_post() {
 
     // Controlled traffic region - (CTR)
     cc.save();
-    canvas_draw_ctr(cc);
+    cc.translate(round(prop.canvas.size.width/2 + prop.canvas.panX), round(prop.canvas.size.height/2 + prop.canvas.panY));   // translate to airport center
+    airport_get().airspace ? canvas_draw_airspace_border(cc) : canvas_draw_ctr(cc); // draw airspace border
+    canvas_draw_range_rings(cc);
     cc.restore();
 
     // Special markings for ENGM point merge
@@ -1092,6 +1099,73 @@ function canvas_update_post() {
     canvas_draw_scale(cc);
     cc.restore();
 
+    cc.save();
+    cc.globalAlpha = alpha;
+    canvas_draw_directions(cc);
+    cc.restore();
+
     prop.canvas.dirty = false;
   }
+}
+
+function canvas_draw_directions(cc) {
+  if (game_paused())
+    return;
+
+  var callsign = prop.input.callsign.toUpperCase();
+  if (callsign.length === 0) {
+    return;
+  }
+
+  // Get the selected aircraft.
+  var aircraft = prop.aircraft.list.filter(function(p) {
+    return p.isVisible() && p.getCallsign().toUpperCase() === callsign;
+  })[0];
+  if (!aircraft) {
+    return;
+  }
+
+  var pos = to_canvas_pos(aircraft.position);
+  var rectPos = [0, 0];
+  var rectSize = [prop.canvas.size.width, prop.canvas.size.height];
+
+  cc.save();
+  cc.strokeStyle = "rgba(224, 224, 224, 0.7)";
+  cc.fillStyle = "rgb(255, 255, 255)";
+  cc.textAlign    = "center";
+  cc.textBaseline = "middle";
+
+  for (var alpha = 0; alpha < 360; alpha++) {
+    var dir = [sin(radians(alpha)), -cos(radians(alpha))];
+    var p = positive_intersection_with_rect(pos, dir, rectPos, rectSize);
+    if (p) {
+      var markLen = (alpha % 5 === 0 ?
+                     (alpha % 10 === 0 ? 16 : 12) :
+                     8);
+      var markWeight = (alpha % 30 === 0 ?  2 : 1);
+
+      var dx = - markLen * dir[0];
+      var dy = - markLen * dir[1];
+
+      cc.lineWidth = markWeight;
+      cc.beginPath();
+      cc.moveTo(p[0], p[1]);
+      var markX = p[0] + dx;
+      var markY = p[1] + dy;
+      cc.lineTo(markX, markY);
+      cc.stroke();
+
+      if (alpha % 10 === 0) {
+        cc.font = (alpha % 30 === 0 ?
+                   "bold 10px monoOne, monospace" :
+                   "10px monoOne, monospace");
+        var text = "" + alpha;
+        var textWidth = cc.measureText(text).width;
+        cc.fillText(text,
+                    markX - dir[0] * (textWidth / 2 + 4),
+                    markY - dir[1] * 7);
+      }
+    }
+  }
+  cc.restore();
 }

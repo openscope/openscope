@@ -4,8 +4,10 @@
     "name": "Nor Shuttle",
     "length": 3
   },
-  "aircraft": [
-    ["B738", 90 ],
-    ["B788", 8 ]
-  ]
+  "fleets": {
+    "default": [
+      ["B738", 90],
+      ["B788", 8 ]
+    ]
+  }
 }

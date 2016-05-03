@@ -4,10 +4,10 @@
     "name": "CWC",
     "length": 3
   },
-  "aircraft": [
-    ["B744", 4 ],
-    
-    ["MD11", 3 ]
-
-  ]
+  "fleets": {
+    "default": [
+      ["B744", 4 ],
+      ["MD11", 3 ]
+    ]
+  }
 }
