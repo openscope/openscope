@@ -1053,6 +1053,7 @@ function airport_init() {
   airport_load("sbgr");
   airport_load("uudd");
   airport_load("vhhh");
+  airport_load("eddf");
 }
 
 function airport_ready() {
