@@ -210,6 +210,9 @@ function airline_init() {
   airline_load("USAF");
   airline_load("VIR");
   airline_load("VRD");
+  airline_load("CFG");
+  airline_load("TUI");
+  airline_load("SXD");
 }
 
 function airline_load(icao) {

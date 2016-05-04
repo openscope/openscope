@@ -1,0 +1,19 @@
+{
+  "name": "SunExpress Deutschland",
+  "callsign": {
+    "name": "Sunrise",
+    "length": 4
+  },
+  "fleets": {
+    "long": [
+	    ["A332", 4]
+    ],
+    "short": [
+      ["B737", 14]
+    ],
+    "default": [
+      ["B737", 14],
+      ["A332", 4]
+    ]
+  }
+}
