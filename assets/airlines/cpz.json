@@ -1,0 +1,12 @@
+{
+  "name": "Compass Airlines",
+  "callsign": {
+    "name": "Compass",
+    "length": 4
+  },
+  "fleets": {
+    "default": [
+      ["E170", 62]
+    ]
+  }
+}

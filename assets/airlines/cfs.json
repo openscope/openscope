@@ -1,0 +1,15 @@
+{
+  "name": "Empire Airlines",
+  "callsign": {
+    "name": "Empire",
+    "length": 4
+  },
+  "fleets": {
+    "default": [
+      ["AT43", 11],
+      ["AT45", 3 ],
+      ["AT72", 7 ],
+      ["C208", 35]
+    ]
+  }
+}
