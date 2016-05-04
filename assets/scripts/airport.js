@@ -1045,6 +1045,7 @@ function airport_init() {
   airport_load("klax90");
   airport_load("kmsp");
   airport_load("ksan");
+  airport_load("ksea");
   airport_load("ksfo");
   airport_load("loww");
   airport_load("ltba");
