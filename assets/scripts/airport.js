@@ -653,6 +653,7 @@ var Airport=Fiber.extend(function() {
       this.fixes    = {};
       this.real_fixes = {};
       this.sids     = {};
+      this.maps     = {};
       this.restricted_areas = [];
       this.metadata = {
         rwy: {}
@@ -758,6 +759,18 @@ var Airport=Fiber.extend(function() {
 
       if(data.sids) {
         this.sids = data.sids;
+      }
+
+      if(data.maps) {
+        for(var m in data.maps) {
+          this.maps[m] = [];
+          var lines = data.maps[m];
+          for(var i in lines) { // convert GPS coordinates to km-based position rel to airport
+            var start = new Position([lines[i][0],lines[i][1]], this.position, this.magnetic_north).position;
+            var end   = new Position([lines[i][2],lines[i][3]], this.position, this.magnetic_north).position;
+            this.maps[m].push([start[0], start[1], end[0], end[1]]);
+          }
+        }
       }
 
       if(data.restricted) {

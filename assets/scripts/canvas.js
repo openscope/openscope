@@ -996,6 +996,28 @@ function canvas_draw_restricted(cc) {
   cc.restore();
 }
 
+function canvas_draw_videoMap(cc) {
+  "use strict";
+  if(!airport_get().hasOwnProperty("maps")) return;
+
+  cc.strokeStyle = "#c1dacd";
+  cc.lineWidth   = prop.ui.scale / 15;
+  cc.lineJoin    = "round";
+  cc.font = "10px monoOne, monospace";
+  
+  var airport=airport_get();
+  var map = airport.maps.base;
+  cc.save();
+  cc.translate(prop.canvas.panX, prop.canvas.panY);
+  for(var i in map) {
+    cc.moveTo(km_to_px(map[i][0]), -km_to_px(map[i][1]));
+    // cc.beginPath();
+    cc.lineTo(km_to_px(map[i][2]), -km_to_px(map[i][3]));
+  }
+    cc.stroke();
+  cc.restore();
+}
+
 /** Draws crosshairs that point to the currently translated location
  */
 function canvas_draw_crosshairs(cc) {
@@ -1031,6 +1053,7 @@ function canvas_update_post() {
 
       cc.save();
       cc.globalAlpha = alpha;
+      canvas_draw_videoMap(cc);
       canvas_draw_terrain(cc);
       canvas_draw_restricted(cc);
       canvas_draw_runways(cc);
