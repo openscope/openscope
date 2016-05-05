@@ -192,7 +192,7 @@
     "destinations": [
       "BOTOM", "AGUA", "PAIOL", "ABSAL", "POKA", "MAC"
     ],
-    "frequency": [1, 4.5]
+    "frequency": 2.75
   },
   
   "arrivals":[
@@ -217,7 +217,7 @@
       ["ONE", 30],
       ["EMBRAER", 3]
       ],
-      "frequency": [50, 100],
+      "frequency": 75,
       "altitude": [8000, 10000]
     },
     {
@@ -230,7 +230,7 @@
       ["AZU", 30],
       ["ONE", 30]
       ],
-      "frequency": [10, 80],
+      "frequency": 45,
       "altitude": [8000, 10000]
     },
     {
@@ -251,7 +251,7 @@
       ["ual/long", 5],
       ["FAB", 1]
       ],
-      "frequency": [1, 20],
+      "frequency": 10.5,
       "altitude": [9000, 10000]
     },
     {
@@ -264,7 +264,7 @@
       ["AZU", 30],
       ["ONE", 30]
       ],
-      "frequency": [10, 40],
+      "frequency": 25,
       "altitude": [7000, 9000]
     },
     {
@@ -274,7 +274,7 @@
       "airlines": [
         ["lightga", 1]
       ],
-      "frequency": [10, 60],
+      "frequency": 35,
       "altitude": [6000, 7000]
     }
   ]

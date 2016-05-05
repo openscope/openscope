@@ -949,7 +949,7 @@
       ],
       "type": "cyclic",
       "offset": 10,
-      "frequency": [5, 10],
+      "frequency": 7.5,
       "altitude": 10000
     },
     {
@@ -962,7 +962,7 @@
       ],
       "type": "cyclic",
       "offset": 30,
-      "frequency": [5, 10],
+      "frequency": 7.5,
       "altitude": 10000
     },
     {
@@ -975,7 +975,7 @@
       ],
       "type": "cyclic",
       "offset": 40,
-      "frequency": [3, 5],
+      "frequency": 4,
       "altitude": 10000
     },
     {
@@ -988,7 +988,7 @@
       ],
       "type": "cyclic",
       "offset": 20,
-      "frequency": [1, 5],
+      "frequency": 3,
       "altitude": 10000
     },
     {
@@ -1004,7 +1004,7 @@
       ],
       "type": "cyclic",
       "offset": 0,
-      "frequency": [1, 5],
+      "frequency": 3,
       "altitude": 12000
     },
     {
@@ -1024,7 +1024,7 @@
       ],
       "type": "cyclic",
       "offset": 50,
-      "frequency": [5, 10],
+      "frequency": 7.5,
       "altitude": 10000
     }
   ]

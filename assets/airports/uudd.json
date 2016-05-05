@@ -289,7 +289,7 @@
     "destinations": [
       "SF", "DK", "WZ", "WT", "LO", "OKR"
     ],
-    "frequency": [1, 3.8]
+    "frequency": 2.4
   },
   "arrivals": [
     {
@@ -304,7 +304,7 @@
         ["rlu", 15],
         ["rff", 5]
       ],
-      "frequency": [1, 11],
+      "frequency": 6,
       "altitude":  [8000, 10000]
     },
     {
@@ -318,7 +318,7 @@
         ["mov", 16],
         ["rlu", 15]
       ],
-      "frequency": [1, 18],
+      "frequency": 9.5,
       "altitude":  [8000, 10000]
     },
     {
@@ -335,7 +335,7 @@
         ["baw", 35],
         ["rff", 4]
       ],
-      "frequency": [1, 13],
+      "frequency": 7,
       "altitude":  [8000, 10000]
     }
   ]

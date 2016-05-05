@@ -236,7 +236,7 @@
     "destinations": [
       "CGO", "ROMIB", "BGC", "DORLU", "IVRAG", "SCP"
     ],
-    "frequency": [1, 15]
+    "frequency": 8
   },
   "arrivals":[
     {
@@ -269,7 +269,7 @@
         ["ual/long", 1],
         ["FAB", 1]
       ],
-      "frequency": [15, 20],
+      "frequency": 17.5,
       "altitude": [7000, 8000]
     },
         {
@@ -283,7 +283,7 @@
         ["ONE", 3],
         ["FAB", 1]
       ],
-      "frequency": [15, 30],
+      "frequency": 22.5,
       "altitude": [6000, 8000]
     },
     {
@@ -298,7 +298,7 @@
         ["FAB", 1]
       ],
 
-      "frequency": [15, 30],
+      "frequency": 22.5,
       "altitude": [5000, 8000]
     },
     {
@@ -330,7 +330,7 @@
         ["ual/long", 1],
         ["FAB", 1]
       ],
-      "frequency": [10, 30],
+      "frequency": 20,
       "altitude": [9000, 10000]
     }
   ]

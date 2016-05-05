@@ -211,7 +211,7 @@
       ],
       "type": "wave",
       "offset": 0,
-      "frequency": [3, 5],
+      "frequency": 4,
       "altitude": [8000, 10000]
     },
     {

@@ -117,7 +117,7 @@
     "type": "cyclic",
     "offset": 0,
     "period": 30,
-    "frequency": [13, 24]
+    "frequency": 18.5
   },
   "arrivals": [
     {
@@ -125,7 +125,7 @@
       "radial": [0, 359],
       "type": "random",
       "speed": null,
-      "frequency": [1, 2],
+      "frequency": 1.5,
       "altitude": [1500, 5000],
       "airlines": [["lightga", 1]]
     },
@@ -136,7 +136,7 @@
       "type": "cyclic",
       "offset": 12,
       "period": 23,
-      "frequency": [3, 12],
+      "frequency": 7.5,
       "altitude": 10000,
       "fixes": ["BARET", "IFHEJ", "VYDDA"],
       "airlines": [
@@ -156,7 +156,7 @@
       "type": "cyclic",
       "offset": 10,
       "period": 21,
-      "frequency": [2, 8],
+      "frequency": 5,
       "altitude": 10000,
       "airlines": [
         ["swa", 35],
@@ -175,7 +175,7 @@
       "type": "cyclic",
       "offset": 15,
       "period": 18,
-      "frequency": [1, 4],
+      "frequency": 2.5,
       "altitude": 10000,
       "airlines": [
         ["swa", 35],
@@ -193,7 +193,7 @@
       "type": "cyclic",
       "offset": 8,
       "period": 15,
-      "frequency": [1, 4],
+      "frequency": 2.5,
       "altitude": 10000,
       "fixes": ["PILLO", "VYDDA"],
       "airlines": [

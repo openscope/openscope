@@ -141,7 +141,7 @@
     "destinations": [
        "NORTH", "EAST", "SOUTH", "WEST"
     ],
-    "frequency": [2, 5]
+    "frequency": 3.5
   },
   "arrivals": [
     {
@@ -152,7 +152,7 @@
         ["afl", 6],
         ["fastga", 10]
       ],
-      "frequency": [5, 12],
+      "frequency": 8.5,
       "altitude":  [6000, 9000]
     },
     {
@@ -163,7 +163,7 @@
         ["fdx", 7],
         ["lightga", 11]
       ],
-      "frequency": [8, 10],
+      "frequency": 9,
       "altitude":  [5000, 7000]
     },
     {
@@ -178,7 +178,7 @@
         ["klm", 5],
         ["fastga", 10]
       ],
-      "frequency": [5, 9],
+      "frequency": 7,
       "altitude":  [7000, 9000]
     },
     {
@@ -194,7 +194,7 @@
         ["ups", 8],
         ["fastga", 10]
       ],
-      "frequency": [5, 10],
+      "frequency": 12.5,
       "altitude":  [5000, 8000]
     },
     {
@@ -204,7 +204,7 @@
       "airlines":  [
         ["lightga", 20]
       ],
-      "frequency": [10, 20],
+      "frequency": 15,
       "altitude":  [3000, 5000]
     },
     {
@@ -215,7 +215,7 @@
         ["thy", 2],
         ["fastga", 20]
       ],
-      "frequency": [10, 15],
+      "frequency": 12.5,
       "altitude":  [7000, 9000]
     },
     {
@@ -233,7 +233,7 @@
         ["aca", 4],
         ["lightga", 11]
       ],
-      "frequency": [3, 5],
+      "frequency": 4,
       "altitude":  [6000, 8000]
     }
   ]

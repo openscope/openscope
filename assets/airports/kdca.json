@@ -561,7 +561,7 @@
     ],
     "type": "random",
     "offset": 0,
-    "frequency": [20, 55]
+    "frequency": 37.5
   },
   "arrivals": [
     {
@@ -569,7 +569,7 @@
       "radial": 204,
       "altitude": 16000,
       "type": "cyclic",
-      "frequency": [10, 25],
+      "frequency": 17.5,
       "period": 75,
       "offset": 25,
       "speed": 280,
@@ -595,7 +595,7 @@
       "radial": 204,
       "altitude": 13000,
       "type": "cyclic",
-      "frequency": [10, 25],
+      "frequency": 17.5,
       "period": 75,
       "offset": 10,
       "speed": 280,

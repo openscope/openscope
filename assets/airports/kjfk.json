@@ -237,7 +237,7 @@
     ],
     "type": "cyclic",
     "offset": 0,
-    "frequency": [5, 75]
+    "frequency": 40
   },
   "arrivals": [
     {
@@ -301,7 +301,7 @@
       "speed": 250,
       "type": "cyclic",
       "offset": 25,
-      "frequency": [5, 15],
+      "frequency": 20,
       "airlines": [
         ["dal", 14],
         ["aal", 10],
@@ -319,7 +319,7 @@
       "speed": 250,
       "type": "cyclic",
       "offset": 45,
-      "frequency": [2, 14],
+      "frequency": 8,
       "airlines": [
         ["dal", 8],
         ["aal", 8],
@@ -334,7 +334,7 @@
       "altitude": 11000,
       "type": "cyclic",
       "offset": 35,
-      "frequency": [2, 10],
+      "frequency": 6,
       "airlines": [
         ["aal", 15],
         ["dal", 12],
@@ -356,7 +356,7 @@
       "speed": 250,
       "type": "cyclic",
       "offset": 55,
-      "frequency": [2, 10],
+      "frequency": 6,
       "airlines": [
         ["dal", 12],
         ["aal", 7],
