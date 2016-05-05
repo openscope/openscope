@@ -1,0 +1,37 @@
+{
+  "name": "ATR 42-500",
+  "icao": "AT45",
+  "engines": {
+    "number": 2,
+    "type": "T"
+  },
+  "weightclass": "L",
+  "category": {
+    "srs": 3,
+    "lahso": 3,
+    "recat": "E"
+  },
+  "ceiling": 25000,
+  "rate": {
+    "climb":      1800,
+    "descent":    1500,
+    "accelerate": 7,
+    "decelerate": 6
+  },
+  "runway": {
+    "takeoff": 1.090, 
+    "landing": 1.030
+  },
+  "speed":{
+    "min":     100,
+    "landing": 110,
+    "cruise":  299,
+    "cruiseM": null,
+    "max":     325,
+    "maxM":    null
+  },
+  "capability": {
+    "ils": true,
+    "fix": true
+  }
+}

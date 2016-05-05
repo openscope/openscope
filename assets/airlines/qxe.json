@@ -1,0 +1,12 @@
+{
+  "name": "Horizon Air",
+  "callsign": {
+    "name": "Horizon",
+    "length": 4
+  },
+  "fleets": {
+    "default": [
+      ["DH8D", 52]
+    ]
+  }
+}

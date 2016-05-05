@@ -2616,6 +2616,7 @@ function aircraft_init() {
 
   // ATR
   aircraft_load("at43");
+  aircraft_load("at45");
   aircraft_load("at72");
 
   // BOEING

@@ -19,6 +19,7 @@ function canvas_init_pre() {
 
   prop.canvas.last = time();
   prop.canvas.dirty = true;
+  prop.canvas.draw_labels = true;
   prop.canvas.draw_restricted = true;
   prop.canvas.draw_sids = true;
   prop.canvas.draw_terrain = true;
@@ -158,6 +159,7 @@ function canvas_draw_runway_label(cc, runway) {
 
 function canvas_draw_runways(cc) {
   "use strict";
+  if(!prop.canvas.draw_labels) return;
   cc.strokeStyle = "rgba(255, 255, 255, 0.4)";
   cc.fillStyle   = "rgba(255, 255, 255, 0.4)";
   cc.lineWidth   = 4;
@@ -179,6 +181,7 @@ function canvas_draw_runways(cc) {
 
 function canvas_draw_runway_labels(cc) {
   "use strict";
+  if(!prop.canvas.draw_labels) return;
   cc.fillStyle   = "rgba(255, 255, 255, 0.8)";
   var airport=airport_get();
   for(var i=0;i<airport.runways.length;i++) {
@@ -235,6 +238,7 @@ function canvas_draw_fix(cc, name, fix) {
 
 function canvas_draw_fixes(cc) {
   "use strict";
+  if(!prop.canvas.draw_labels) return;
   cc.lineJoin    = "round";
   cc.font = "10px monoOne, monospace";
   var airport=airport_get();
@@ -282,6 +286,7 @@ function canvas_draw_sids(cc) {
             write_sid_name = false;
           }
           var fix = airport.getFix(fixList[j].replace("*",""));
+          if(!fix) log('Unable to draw line to "'+fixList[j]+'" because its position is not defined!', LOG_WARNING);
           fx = km_to_px(fix[0]) + prop.canvas.panX;
           fy = -km_to_px(fix[1]) + prop.canvas.panY;
           if(j === 0) {
@@ -996,6 +1001,28 @@ function canvas_draw_restricted(cc) {
   cc.restore();
 }
 
+function canvas_draw_videoMap(cc) {
+  "use strict";
+  if(!airport_get().hasOwnProperty("maps")) return;
+
+  cc.strokeStyle = "#c1dacd";
+  cc.lineWidth   = prop.ui.scale / 15;
+  cc.lineJoin    = "round";
+  cc.font = "10px monoOne, monospace";
+  
+  var airport=airport_get();
+  var map = airport.maps.base;
+  cc.save();
+  cc.translate(prop.canvas.panX, prop.canvas.panY);
+  for(var i in map) {
+    cc.moveTo(km_to_px(map[i][0]), -km_to_px(map[i][1]));
+    // cc.beginPath();
+    cc.lineTo(km_to_px(map[i][2]), -km_to_px(map[i][3]));
+  }
+    cc.stroke();
+  cc.restore();
+}
+
 /** Draws crosshairs that point to the currently translated location
  */
 function canvas_draw_crosshairs(cc) {
@@ -1031,6 +1058,7 @@ function canvas_update_post() {
 
       cc.save();
       cc.globalAlpha = alpha;
+      canvas_draw_videoMap(cc);
       canvas_draw_terrain(cc);
       canvas_draw_restricted(cc);
       canvas_draw_runways(cc);
