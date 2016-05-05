@@ -153,7 +153,10 @@ function airline_init() {
   airline_load("CCA");
   airline_load("CES");
   airline_load("CESSNA");
+  airline_load("CFG");
+  airline_load("CFS");
   airline_load("CPA");
+  airline_load("CPZ");
   airline_load("CSN");
   airline_load("CWC");
   airline_load("DAL");
@@ -172,6 +175,7 @@ function airline_init() {
   airline_load("GJS");
   airline_load("GLO");
   airline_load("GWI");
+  airline_load("HAL");
   airline_load("HDA");
   airline_load("IBE");
   airline_load("JAL");
@@ -185,9 +189,11 @@ function airline_init() {
   airline_load("LIGHTGA");
   airline_load("MOV");
   airline_load("NAX");
+  airline_load("NKS");
   airline_load("ONE");
   airline_load("PAA");
   airline_load("PDT");
+  airline_load("QXE");
   airline_load("RFF");
   airline_load("RLU");
   airline_load("RPA");
@@ -195,13 +201,16 @@ function airline_init() {
   airline_load("SAS");
   airline_load("SBI");
   airline_load("SCX");
+  airline_load("SKW");
   airline_load("SVR");
   airline_load("SWA");
   airline_load("SWR");
+  airline_load("SXD");
   airline_load("TAM");
   airline_load("TCF");
   airline_load("THY");
   airline_load("TSO");
+  airline_load("TUI");
   airline_load("TWA");
   airline_load("TYA");
   airline_load("UAE");
@@ -210,9 +219,6 @@ function airline_init() {
   airline_load("USAF");
   airline_load("VIR");
   airline_load("VRD");
-  airline_load("CFG");
-  airline_load("TUI");
-  airline_load("SXD");
 }
 
 function airline_load(icao) {

@@ -286,6 +286,7 @@ function canvas_draw_sids(cc) {
             write_sid_name = false;
           }
           var fix = airport.getFix(fixList[j].replace("*",""));
+          if(!fix) log('Unable to draw line to "'+fixList[j]+'" because its position is not defined!', LOG_WARNING);
           fx = km_to_px(fix[0]) + prop.canvas.panX;
           fy = -km_to_px(fix[1]) + prop.canvas.panY;
           if(j === 0) {
