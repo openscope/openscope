@@ -83,14 +83,11 @@ zlsa.atc.ArrivalDefault = Fiber.extend(function(base) {
       var timeout_flag = args[1] || false;
 
       // Set heading within 15 degrees of specified
-      var wobble   = radians(15);
-      var radial   = this.radial + random(-wobble, wobble);
-      var distance;
       if(start_flag) // At start, spawn aircraft closer but outside ctr_radius
-        distance = this.airport.ctr_radius + random(10, 20);
+        var distance = this.airport.ctr_radius + random(10, 20);
       else
-        distance = 2*this.airport.ctr_radius - random(2, 18);
-      var position = [sin(radial) * distance, cos(radial) * distance];
+        var distance = 2*this.airport.ctr_radius - random(2, 18);
+      var position = [sin(this.radial) * distance, cos(this.radial) * distance];
 
       var altitude = random(this.altitude[0] / 1000,
                             this.altitude[1] / 1000);
