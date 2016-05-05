@@ -243,7 +243,7 @@
     {
       "_name": "CAMRN FOUR",
       "altitude": 11000,
-      "fixes": ["KARRS", "CAMRN"],
+      "fixes": ["HOGGS", "PANZE", "KARRS", "CAMRN"],
       "altitude": 11000,
       "speed": 250,
       "type": "wave",
@@ -291,7 +291,7 @@
     },
     {
       "_name": "LENDY SIX",
-      "fixes": ["STW", "LENDY", "LGA"],
+      "fixes": ["HARTY", "STW", "LENDY", "LGA"],
       "altitude": 17000,
       "speed": 250,
       "type": "cyclic",

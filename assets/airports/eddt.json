@@ -21,6 +21,7 @@
     "speed": 7
   },
   "fixes": {
+    "_EDDT016060": ["N53d30.15m0", "E13d50.00m0"],
     "TGL":   ["N52d33m41.40", "E13d17m15.20"],
     "BATEL": ["N52d32m49.00", "E11d05m59.00"],
     "VIBIS": ["N52d58m30.74", "E12d20m18.90"],
@@ -305,7 +306,7 @@
     },
     {
       "speed": 250,
-      "fixes": ["GOLBO", "NASAT"],
+      "fixes": ["_EDDT016060", "GOLBO", "NASAT"],
       "airlines": [
         ["ber", 20],
         ["gwi", 15],

@@ -21,6 +21,10 @@
     "speed": 7
   },
   "fixes": {
+    "_MIKOV345020": ["N49d06.55m0", "E016d30.42m0"],
+    "_NATEX080019": ["N47d46.81m0", "E017d58.01m0"],
+    "_NIGSI202010": ["N47d13.05m0", "E015d56.09m0"],
+    "_MASUR272009": ["N48d31.88m0", "E015d12.85m0"],
     "MIKOV": ["N48d47m05.08", "E16d37m15.61"],
     "MABOD": ["N48d34m47.00", "E16d41m40.00"],
     "NATEX": ["N47d44m82.00", "E17d30m00.00"],
@@ -362,7 +366,7 @@
     {
       "_name":  "MABOD",
       "speed":    250,
-      "fixes":    ["MIKOV", "MABOD"],
+      "fixes":    ["_MIKOV345020", "MIKOV", "MABOD"],
       "airlines":  [
         ["aua", 10],
         ["ber", 10],
@@ -381,7 +385,7 @@
     {
       "_name":  "PESAT",
       "speed":    250,
-      "fixes":   ["NATEX", "PESAT"],
+      "fixes":   ["_NATEX080019", "NATEX", "PESAT"],
       "airlines":  [
         ["aua", 5],
         ["ezy", 5],
@@ -394,7 +398,7 @@
     {
       "_name":  "BALAD",
       "speed":    250,
-      "fixes":    ["NIGSI", "BALAD"],
+      "fixes":    ["_NIGSI202010", "NIGSI", "BALAD"],
       "airlines":  [
         ["aua", 5],
         ["ezy", 5],
@@ -407,7 +411,7 @@
     {
       "_name":  "NERDU",
       "speed":    250,
-      "fixes":    ["MASUR", "TEMTA", "NERDU"],
+      "fixes":    ["_MASUR272009", "MASUR", "TEMTA", "NERDU"],
       "airlines":  [
         ["ein", 2],
         ["ryr", 2],

@@ -308,7 +308,7 @@
       ]
     },
     {
-      "fixes": ["KUPAR", "DMD", "RAPAG"],
+      "fixes": ["IN", "KUPAR", "DMD", "RAPAG"],
       "altitude":  [8000, 10000],
       "speed": 240,
       "type": "random",
