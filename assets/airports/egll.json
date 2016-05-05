@@ -617,7 +617,6 @@
   },
   "arrivals":[
     {
-      "radial": 75,
       "heading": 215,
       "speed": 250,
       "fixes": ["LOGAN", "TRIPO", "SABER", "BRASO", "LAM"],
@@ -639,7 +638,6 @@
       "altitude": 10000
     },
     {
-      "radial": 100,
       "heading": 260,
       "speed": 250,
       "fixes": ["DVR", "SANDY", "LYD", "TIGER", "BIG"],
@@ -658,7 +656,6 @@
       "altitude": 10000
     },
     {
-      "radial": 320,
       "speed": 250,
       "fixes": ["HON", "TOBID", "SOPIT", "WCO", "BNN"],
       "airlines":[
@@ -677,7 +674,6 @@
       "altitude": 10000
     },
     {
-      "radial": 240,
       "heading": 90,
       "speed": 250,
       "fixes": ["BEWLI", "BEGTO", "HAZEL", "OCK"],

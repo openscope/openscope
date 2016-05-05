@@ -147,28 +147,36 @@
     {
       "radial":    90,
       "heading":   270,
+      "altitude":  [6000, 9000],
+      "speed": 250,
+      "type": "random",
+      "frequency": 8.5,
       "airlines":  [
         ["lightga", 11],
         ["afl", 6],
         ["fastga", 10]
-      ],
-      "frequency": 8.5,
-      "altitude":  [6000, 9000]
+      ]
     },
     {
       "radial":    180,
       "heading":   360,
+      "altitude":  [5000, 7000],
+      "speed": 250,
+      "type": "random",
+      "frequency": 9,
       "airlines":  [
         ["thy", 2],
         ["fdx", 7],
         ["lightga", 11]
-      ],
-      "frequency": 9,
-      "altitude":  [5000, 7000]
+      ]
     },
     {
       "radial":    270,
       "heading":   90,
+      "altitude":  [7000, 9000],
+      "speed": 250,
+      "type": "random",
+      "frequency": 7,
       "airlines":  [
         ["aca", 4],
         ["baw", 4],
@@ -177,13 +185,15 @@
         ["fdx", 7],
         ["klm", 5],
         ["fastga", 10]
-      ],
-      "frequency": 7,
-      "altitude":  [7000, 9000]
+      ]
     },
     {
       "radial":    360,
       "heading":   180,
+      "altitude":  [5000, 8000],
+      "speed": 250,
+      "type": "random",
+      "frequency": 12.5,
       "airlines":  [
         ["afl", 6],
         ["baw", 4],
@@ -193,34 +203,40 @@
         ["klm", 5],
         ["ups", 8],
         ["fastga", 10]
-      ],
-      "frequency": 12.5,
-      "altitude":  [5000, 8000]
+      ]
     },
     {
       "radial":    180,
       "heading":   360,
+      "altitude":  [3000, 5000],
+      "speed": 250,
+      "type": "random",
+      "frequency": 15,
       "speed":     120,
       "airlines":  [
         ["lightga", 20]
-      ],
-      "frequency": 15,
-      "altitude":  [3000, 5000]
+      ]
     },
     {
       "radial":    45,
       "heading":   225,
+      "altitude":  [7000, 9000],
+      "speed": 250,
+      "type": "random",
+      "frequency": 12.5,
       "airlines":  [
         ["ups", 8],
         ["thy", 2],
         ["fastga", 20]
-      ],
-      "frequency": 12.5,
-      "altitude":  [7000, 9000]
+      ]
     },
     {
       "radial":    315,
       "heading":   135,
+      "altitude":  [6000, 8000],
+      "speed": 250,
+      "type": "random",
+      "frequency": 4,
       "airlines":  [
         ["afl", 6],
         ["baw", 4],
@@ -232,9 +248,7 @@
         ["fastga", 10],
         ["aca", 4],
         ["lightga", 11]
-      ],
-      "frequency": 4,
-      "altitude":  [6000, 8000]
+      ]
     }
   ]
 }

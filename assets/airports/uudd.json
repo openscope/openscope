@@ -293,9 +293,11 @@
   },
   "arrivals": [
     {
-      "radial":   92,
       "fixes":   ["RELTO", "NEMOR", "AO", "OKMEL"],
+      "altitude":  [8000, 10000],
       "speed": 240,
+      "type": "random",
+      "frequency": 6,
       "airlines":  [
         ["sbi", 96],
         ["svr", 38],
@@ -303,28 +305,28 @@
         ["mov", 16],
         ["rlu", 15],
         ["rff", 5]
-      ],
-      "frequency": 6,
-      "altitude":  [8000, 10000]
+      ]
     },
     {
-      "radial":   185,
       "fixes": ["KUPAR", "DMD", "RAPAG"],
+      "altitude":  [8000, 10000],
       "speed": 240,
+      "type": "random",
+      "frequency": 9.5,
       "airlines":  [
         ["sbi", 96],
         ["svr", 38],
         ["afl", 27],
         ["mov", 16],
         ["rlu", 15]
-      ],
-      "frequency": 9.5,
-      "altitude":  [8000, 10000]
+      ]
     },
     {
-      "radial": 340,
       "fixes": ["KN", "BESTA", "RUGEL", "GEKLA", "ABMAS", "RAPAG"],
+      "altitude":  [8000, 10000],
       "speed": 240,
+      "type": "random",
+      "frequency": 7,
       "airlines":  [
         ["sbi", 30],
         ["svr", 30],
@@ -334,9 +336,7 @@
         ["dlh", 15],
         ["baw", 35],
         ["rff", 4]
-      ],
-      "frequency": 7,
-      "altitude":  [8000, 10000]
+      ]
     }
   ]
 }

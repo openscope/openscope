@@ -283,7 +283,6 @@
   },
   "arrivals":[
     {
-      "radial": 170,
       "speed": 250,
       "fixes": ["NOLGO"],
       "airlines": [
@@ -303,7 +302,6 @@
       "altitude": 10000
     },
     {
-      "radial": 100,
       "speed": 250,
       "fixes": ["RARUP"],
       "airlines":[
@@ -323,7 +321,6 @@
       "altitude": 10000
     },
     {
-      "radial": 360,
       "speed": 250,
       "fixes": ["BOGMU"],
       "airlines": [
@@ -342,7 +339,6 @@
       "altitude": 10000
     },
     {
-      "radial": 280,
       "speed": 250,
       "fixes": ["RIBSO"],
       "airlines": [

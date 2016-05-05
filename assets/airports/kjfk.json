@@ -242,10 +242,8 @@
   "arrivals": [
     {
       "_name": "CAMRN FOUR",
-      "radial": 204,
       "altitude": 11000,
       "fixes": ["KARRS", "CAMRN"],
-      "radial": 204,
       "altitude": 11000,
       "speed": 250,
       "type": "wave",
@@ -269,12 +267,10 @@
     {
       "_name": "KINGSTON ONE",
 
-      "radial": 10,
       "type": "wave",
       "altitude": 15000,
 
       "fixes": ["IGN", "LOLLY", "DOORE", "LENDY", "LGA"],
-      "radial": 10,
       "type": "wave",
       "altitude": 15000,
       "speed": 250,
@@ -296,7 +292,6 @@
     {
       "_name": "LENDY SIX",
       "fixes": ["STW", "LENDY", "LGA"],
-      "radial": 306,
       "altitude": 17000,
       "speed": 250,
       "type": "cyclic",
@@ -313,7 +308,6 @@
     {
       "_name": "PAWLING TWO",
       "fixes": ["PWL", "LOVES", "BDR", "BELTT", "DPK"],
-      "radial": 18,
       "heading": 169,
       "altitude": 9000,
       "speed": 250,

@@ -197,7 +197,6 @@
   },
   "arrivals":[
     {
-      "radial": 270,
       "speed": 250,
       "fixes": ["UNBEG", "ENS", "TOBRI", "DERAG"],
       "airlines": [
@@ -215,7 +214,6 @@
       "altitude": [8000, 10000]
     },
     {
-      "radial": 70,
       "speed": 250,
       "fixes": ["DIGAN", "OGONO", "DERAG"],
       "airlines": [
@@ -229,7 +227,6 @@
       "altitude": [8000, 10000]
     },
     {
-      "radial": 100,
       "speed": 250,
       "fixes": ["TIPUR", "GILOG", "DERAG"],
       "airlines": [
@@ -242,7 +239,6 @@
       "altitude": [8000, 10000]
     },
     {
-      "radial": 170,
       "speed": 250,
       "fixes": ["KURUM", "GILOG", "DERAG"],
       "airlines": [

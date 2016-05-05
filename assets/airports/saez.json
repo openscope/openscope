@@ -936,7 +936,6 @@
   },
   "arrivals": [
     {
-      "radial": 315,
       "speed": 250,
       "fixes": ["SNT", "ARSOT"],
       "airlines":  [
@@ -953,7 +952,6 @@
       "altitude": 10000
     },
     {
-      "radial": 350,
       "speed": 250,
       "fixes": ["PAGON", "VANAR", "ENO", "ARSOT"],
       "airlines":  [
@@ -966,7 +964,6 @@
       "altitude": 10000
     },
     {
-      "radial": 270,
       "speed": 250,
       "fixes": ["ASADA", "EZE50", "ARSOT"],
       "airlines":  [
@@ -979,7 +976,6 @@
       "altitude": 10000
     },
     {
-      "radial": 180,
       "speed": 250,
       "fixes": ["GBE", "EZE50", "ARSOT"],
       "airlines":  [
@@ -992,7 +988,6 @@
       "altitude": 10000
     },
     {
-      "radial": 100,
       "speed": 250,
       "fixes": ["ESLAN", "PTA", "EZE"],
       "airlines":  [
@@ -1008,7 +1003,6 @@
       "altitude": 12000
     },
     {
-      "radial": 45,
       "speed": 250,
       "fixes": ["PAPIX", "EZE"],
       "airlines":  [

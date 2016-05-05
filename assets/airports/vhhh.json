@@ -388,7 +388,6 @@
   "arrivals": [
     {
       "_name":  "ABBEY",
-      "radial":   90,
       "speed":    250,
       "fixes":    ["ABBEY", "MUSEL", "TAMAR", "TD"],
       "airlines":  [
@@ -407,7 +406,6 @@
     },
     {
       "_name":  "BETTY",
-      "radial":   140,
       "speed":    250,
       "fixes":   ["BETTY", "MANGO"],
       "airlines":  [
@@ -426,7 +424,6 @@
     },
     {
       "_name":  "CANTO",
-      "radial":   200,
       "speed":    250,
       "fixes":    ["CANTO", "MURRY"],
       "airlines":  [

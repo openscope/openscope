@@ -361,7 +361,6 @@
   "arrivals": [
     {
       "_name":  "MABOD",
-      "radial":   360,
       "speed":    250,
       "fixes":    ["MIKOV", "MABOD"],
       "airlines":  [
@@ -381,7 +380,6 @@
     },
     {
       "_name":  "PESAT",
-      "radial":   100,
       "speed":    250,
       "fixes":   ["NATEX", "PESAT"],
       "airlines":  [
@@ -395,7 +393,6 @@
     },
     {
       "_name":  "BALAD",
-      "radial":   202,
       "speed":    250,
       "fixes":    ["NIGSI", "BALAD"],
       "airlines":  [
@@ -409,7 +406,6 @@
     },
     {
       "_name":  "NERDU",
-      "radial":   280,
       "speed":    250,
       "fixes":    ["MASUR", "TEMTA", "NERDU"],
       "airlines":  [

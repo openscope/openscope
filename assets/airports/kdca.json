@@ -566,7 +566,6 @@
   "arrivals": [
     {
       "_name": "CAPSS TWO SOUTH",
-      "radial": 204,
       "altitude": 16000,
       "type": "cyclic",
       "frequency": 17.5,
@@ -592,7 +591,6 @@
     },
     {
       "_name": "CAPSS TWO NORTH",
-      "radial": 204,
       "altitude": 13000,
       "type": "cyclic",
       "frequency": 17.5,

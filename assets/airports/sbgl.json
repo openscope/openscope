@@ -197,85 +197,85 @@
   
   "arrivals":[
     {
-      "radial": 60,
-      "speed": 250,
       "fixes": ["ZANA", "AROB", "PCX", "FICO"],
-      "airlines": [
-      ["aea/long", 2],
-      ["afr/long", 5],
-      ["aza/long", 4],
-      ["dlh/long", 5],
-      ["ibe/long", 5],      
-      ["baw/long", 5],      
-      ["cca/long", 2],
-      ["uae", 3],
-      ["kal/long", 1],
-      ["klm/long", 3],      
-      ["TAM", 60],
-      ["GLO", 60],
-      ["AZU", 30],
-      ["ONE", 30],
-      ["EMBRAER", 3]
-      ],
+      "altitude": [8000, 10000],
+      "speed": 250,
+      "type": "random",
       "frequency": 75,
-      "altitude": [8000, 10000]
+      "airlines": [
+        ["aea/long", 2],
+        ["afr/long", 5],
+        ["aza/long", 4],
+        ["dlh/long", 5],
+        ["ibe/long", 5],      
+        ["baw/long", 5],      
+        ["cca/long", 2],
+        ["uae", 3],
+        ["kal/long", 1],
+        ["klm/long", 3],      
+        ["TAM", 60],
+        ["GLO", 60],
+        ["AZU", 30],
+        ["ONE", 30],
+        ["EMBRAER", 3]
+      ]
     },
     {
-      "radial": 310,
-      "speed": 250,
       "fixes": ["LUNAT", "PAI", "GATI"],
-      "airlines": [
-      ["TAM", 60],
-      ["GLO", 60],
-      ["AZU", 30],
-      ["ONE", 30]
-      ],
+      "altitude": [8000, 10000],
+      "speed": 250,
+      "type": "random",
       "frequency": 45,
-      "altitude": [8000, 10000]
-    },
-    {
-      "radial": 210,
-      "speed": 250,
-      "fixes": ["BOTE", "BUPI", "SCR"],
-      "airlines":[
-      ["TAM", 60],
-      ["GLO", 60],
-      ["AZU", 30],
-      ["UPS", 1],
-      ["FDX", 1],
-      ["ACA/long", 2],
-      ["AAL/long", 5],
-      ["amx/long", 2],
-      ["ava/long", 2],
-      ["lan", 7],
-      ["ual/long", 5],
-      ["FAB", 1]
-      ],
-      "frequency": 10.5,
-      "altitude": [9000, 10000]
-    },
-    {
-      "radial": 260,
-      "speed": 250,
-      "fixes": ["TUBO", "COTA", "GATI"],
       "airlines": [
-      ["TAM", 60],
-      ["GLO", 60],
-      ["AZU", 30],
-      ["ONE", 30]
-      ],
-      "frequency": 25,
-      "altitude": [7000, 9000]
+        ["TAM", 60],
+        ["GLO", 60],
+        ["AZU", 30],
+        ["ONE", 30]
+      ]
     },
     {
-      "radial": 270,
+      "fixes": ["BOTE", "BUPI", "SCR"],
+      "altitude": [9000, 10000],
+      "speed": 250,
+      "type": "random",
+      "frequency": 10.5,
+      "airlines":[
+        ["TAM", 60],
+        ["GLO", 60],
+        ["AZU", 30],
+        ["UPS", 1],
+        ["FDX", 1],
+        ["ACA/long", 2],
+        ["AAL/long", 5],
+        ["amx/long", 2],
+        ["ava/long", 2],
+        ["lan", 7],
+        ["ual/long", 5],
+        ["FAB", 1]
+      ]
+    },
+    {
       "fixes": ["TUBO", "COTA", "GATI"],
+      "altitude": [7000, 9000],
+      "speed": 250,
+      "type": "random",
+      "frequency": 25,
+      "airlines": [
+        ["TAM", 60],
+        ["GLO", 60],
+        ["AZU", 30],
+        ["ONE", 30]
+      ]
+    },
+    {
+      "fixes": ["TUBO", "COTA", "GATI"],
+      "altitude": [6000, 7000],
       "speed": 120,
+      "type": "random",
+      "frequency": 35,
       "airlines": [
         ["lightga", 1]
-      ],
-      "frequency": 35,
-      "altitude": [6000, 7000]
+      ]
     }
   ]
 }

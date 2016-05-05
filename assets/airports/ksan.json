@@ -131,7 +131,6 @@
     },
     {
       "_name": "BARET FIVE",
-      "radial": 55,
       "speed": 250,
       "type": "cyclic",
       "offset": 12,
@@ -188,7 +187,6 @@
     },
     {
       "_name": "LYNDI FOUR",
-      "radial": 80,
       "speed": 250,
       "type": "cyclic",
       "offset": 8,

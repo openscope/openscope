@@ -288,7 +288,6 @@
   },
   "arrivals":[
     {
-      "radial": 268,
       "speed": 250,
       "fixes": ["BATEL", "GIRIT", "NASAT"],
       "airlines": [
@@ -305,7 +304,6 @@
       "altitude": 8000
     },
     {
-      "radial": 15,
       "speed": 250,
       "fixes": ["GOLBO", "NASAT"],
       "airlines": [
@@ -321,7 +319,6 @@
       "altitude": 7000
     },
     {
-      "radial": 210,
       "speed": 250,
       "fixes": ["RUDAK", "KLF"],
       "airlines": [
@@ -334,7 +331,6 @@
       "altitude": 12000
     },
     {
-      "radial": 175,
       "speed": 250,
       "fixes": ["AKUDI", "ATGUP", "NATAV"],
       "airlines": [
@@ -348,7 +344,6 @@
       "altitude": 14000
     },
     {
-      "radial": 105,
       "speed": 250,
       "fixes": ["NUKRO", "FWE"],
       "airlines": [

@@ -273,7 +273,6 @@
   "arrivals": [
     {
       "_name":  "OLAPO 1L",
-      "radial":   300,
       "speed":    250,
       "fixes":    ["OLAPO", "RONON", "ORVEN", "GIRAS", "KERAV", "KOGAX", "KUDOM", "DW814", "DW815", "DW816", "NARMU", "LAPMO"],
       "airlines":  [
@@ -289,7 +288,6 @@
     },
     {
       "_name":  "OSGAR 1L",
-      "radial":   240,
       "speed":    250,
       "fixes":   ["OSGAR", "DIRUM", "KEPOR", "ARVOK", "SORIN", "SIVNA", "SUGAD", "DW704", "DW705", "DW706", "SOPEP", "LAPMO"],
       "airlines":  [
@@ -306,7 +304,6 @@
     },
     {
       "_name":  "BAGSO 1L",
-      "radial":   70,
       "speed":    250,
       "fixes":    ["BAGSO", "ADSIS", "KERAV", "KOGAX", "KUDOM", "DW814", "DW815", "DW816", "NARMU", "LAPMO"],
       "airlines":  [
@@ -323,7 +320,6 @@
     },
     {
       "_name":  "NIMAT 1L",
-      "radial":   10,
       "speed":    250,
       "fixes":    ["NIMAT", "KERAV", "KOGAX", "KUDOM", "DW814", "DW815", "DW816", "NARMU", "LAPMO"],
       "airlines":  [
@@ -340,7 +336,6 @@
     },
     {
       "_name":  "VATRY 1L",
-      "radial":   145,
       "speed":    250,
       "fixes":    ["VATRY", "SORIN", "SIVNA", "SUGAD", "DW704", "DW705", "DW706", "SOPEP", "LAPMO"],
       "airlines":  [

@@ -240,7 +240,6 @@
   },
   "arrivals": [
     {
-      "radial":   60,
       "heading":  170,
       "speed":    250,
       "fixes":   ["MOVDD", "RISTI", "CEDES"],
@@ -261,7 +260,6 @@
       "altitude":  10000
     },
     {
-      "radial":   90,
       "speed":    250,
       "fixes":    ["FAITH"],
       "airlines":  [
@@ -274,7 +272,6 @@
     },
 
     {
-      "radial":   145,
       "speed":    250,
       "fixes":    ["SKUNK", "BOLDR", "MENLO"],
       "airlines":  [
@@ -290,7 +287,6 @@
       "altitude":  10000
     },
     {
-      "radial":   315,
       "speed":    250,
       "fixes":    ["PYE", "DUXBY", "SFO"],
       "airlines":  [
@@ -317,7 +313,6 @@
       "altitude":  10000
     },
 	{
-      "radial":   240,
       "speed":    250,
       "fixes":    ["PIRAT", "OSI"],
       "airlines":  [

@@ -270,7 +270,6 @@
   "arrivals": [
     {
       "_name":  "Kimmo 3",
-      "radial":   350,
       "heading":  170,
       "speed":    250,
       "fixes":   ["KIMMO", "DARTS"],
@@ -285,7 +284,6 @@
     },
     {
       "_name":  "Leena 5",
-      "radial":   210,
       "speed":    250,
       "fixes":    ["SXC", "CWARD", "SLI"],
       "airlines":  [
@@ -300,7 +298,6 @@
     },
     {
       "_name":  "Riivr 2",
-      "radial":   70,
       "speed":    250,
       "fixes":    ["RUSTT", "HABSO", "RIIVR", "BCOVE"],
       "airlines":  [
@@ -332,7 +329,6 @@
     },
     {
       "_name":  "Sadde 6 - FIM",
-      "radial":   330,
       "speed":    250,
       "fixes":    ["FIM", "SADDE", "SMO", "JAVSI"],
       "airlines":  [
@@ -349,7 +345,6 @@
     },
 	{
       "_name":  "Sadde 6 - VTU",
-      "radial":   260,
       "speed":    250,
       "fixes":    ["VTU", "SADDE", "SMO", "JAVSI"],
       "airlines":  [
@@ -364,7 +359,6 @@
     },
     {
       "_name":  "Vista 2",
-      "radial":   110,
       "speed":    250,
       "fixes":    ["VISTA", "OCN", "SHIVE", "CWARD", "MADOW", "SLI"],
       "airlines":  [
