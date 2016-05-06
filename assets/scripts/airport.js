@@ -11,6 +11,8 @@ zlsa.atc.ArrivalFactory = function(airport, options) {
       return new zlsa.atc.ArrivalCyclic(airport, options);
     if (options.type == 'wave')
       return new zlsa.atc.ArrivalWave(airport, options);
+    if (options.type == 'surge')
+      return new zlsa.atc.ArrivalSurge(airport, options);
     log(airport.icao + ' using unsupported arrival type "'+options.type+'"', LOG_WARNING);
   }
   else log(airport.icao + " arrival stream not given type!", LOG_WARNING);
@@ -20,8 +22,6 @@ zlsa.atc.ArrivalFactory = function(airport, options) {
  */
 zlsa.atc.ArrivalBase = Fiber.extend(function(base) {
   return {
-    /** Initialize member variables with default values
-     */
     init: function(airport, options) {
       this.airlines = [];
       this.airport = airport;
@@ -39,9 +39,9 @@ zlsa.atc.ArrivalBase = Fiber.extend(function(base) {
      ** airlines: {array of array} List of airlines with weight for each
      ** altitude: {array or integer} Altitude in feet or range of altitudes
      ** frequency: {integer} Arrival rate along this stream, in aircraft per hour (acph)
-     ** heading: {integer} Heading to fly when spawned, in degrees
-     ** fixes: {array} Set of fixes to traverse (eg. for STARs)
-     ** radial: {integer} bearing from airspace center to spawn point
+     ** heading: {integer} Heading to fly when spawned, in degrees (don't use w/ fixes)
+     ** fixes: {array} Set of fixes to traverse (eg. for STARs). Spawns at first listed.
+     ** radial: {integer} bearing from airspace center to spawn point (don't use w/ fixes)
      ** speed: {integer} Speed in knots of spawned aircraft
      */
     parse: function(options) {
@@ -128,88 +128,216 @@ zlsa.atc.ArrivalBase = Fiber.extend(function(base) {
 });
 
 /** Generate arrivals in cyclic pattern
+ ** Arrival rate varies as pictured below. Rate at which the arrival rate
+ ** increases or decreases remains constant throughout the cycle.
+ ** |---o---------------o---------------o---------------o-----------| < - - - - - - max arrival rate
+ ** | o   o           o   o           o   o           o   o         |   +variation
+ ** o-------o-------o-------o-------o-------o-------o-------o-------o < - - - - - - avg arrival rate
+ ** |         o   o |         o   o           o   o           o   o |   -variation
+ ** |-----------o---|-----------o---------------o---------------o---| < - - - - - - min arrival rate
+ ** |<---period---->|           |<---period---->|
  */
 zlsa.atc.ArrivalCyclic = zlsa.atc.ArrivalBase.extend(function(base) {
   return {
     init: function(airport, options) {
-      this.period = 60*60;
-      this.offset = -15 * 60; // Start at the peak
+      this.cycleStart = 0;  // game time
+      this.offset = 0;      // Start at the average, and increasing
+      this.period = 1800;   // 30 minute cycle
+      this.variation = 0;   // amount to deviate from the prescribed frequency
 
       base.init.call(this, airport, options);
-
-      this._amplitude = (3600 / this.frequency) / 2;
-      this._average = 3600/this.frequency;
-    },
-    // Additional supported options
-    // period: {integer} Optionally specify the length of a cycle in minutes
-    // offset: {integer} Optionally specify when the cycle peaks in minutes
-    parse: function(options) {
       base.parse.call(this, options);
-      if (options.period)
-        this.period = options.period * 60;
-      if (options.offset)
-        this.offset = -this.period/4 + options.offset * 60;
+      this.parse(options);
+    },
+    /** Arrival Stream Settings
+     ** @param {integer} period - (optional) length of a cycle, in minutes
+     ** @param {integer} offset - (optional) minutes to shift starting position in cycle
+     */
+    parse: function(options) {
+      if(options.offset) this.offset = options.offset * 60; // min --> sec
+      if(options.period) this.period = options.period * 60; // min --> sec
+      if(options.variation) this.variation = options.variation;
+    },
+    start: function() {
+      this.cycleStart = prop.game.time - this.offset;
+      var delay = random(0, 3600 / this.frequency);
+      this.timeout = game_timeout(this.spawnAircraft, delay, this, [true, true]);
     },
     nextInterval: function() {
-      return (this._amplitude *
-        Math.sin(Math.PI*2 * ((game_time() + this.offset)/this.period))
-        + this._average) / prop.game.frequency;
+      var t = prop.game.time - this.cycleStart;
+      var done = t / (this.period/4); // progress in current quarter-period
+      if(done >= 4) {
+        this.cycleStart += this.period;
+        return 3600/(this.frequency + (done-4)*this.variation);
+      }
+      else if(done <= 1)
+        return 3600/(this.frequency + done*this.variation);
+      else if(done <= 2)
+        return 3600/(this.frequency + (2*(this.period - 2*t)/this.period)*this.variation);
+      else if(done <= 3)
+        return 3600/(this.frequency - (done-2)*this.variation);
+      else if(done <  4)
+        return 3600/(this.frequency - (4*(this.period - t) / this.period)*this.variation);
     }
   };
 });
 
 /** Generate arrivals in a repeating wave
+ ** Arrival rate varies as pictured below. Arrival rate will increase
+ ** and decrease faster when changing between the lower/higher rates.
+ ** ------------o-o-o---------------------------------------+-----------o-o < - - - - - max arrival rate
+ **        o             o                                  |      o      |       ^
+ **    o                     o                              |  o          |  +variation
+ **  o                         o                            |o            |       v
+ ** o-------------------------- o---------------------------o-------------+ < - - - - - avg arrival rate
+ ** |                            o                         o|             |       ^
+ ** |                              o                     o  |             |  -variation
+ ** |                                  o             o      |             |       v
+ ** +---------------------------------------o-o-o-----------+-------------+ < - - - - - min arrival rate
+ ** |                                                       |
+ ** |<  -  -  -  -  -  -  -  - period -  -  -  -  -  -  -  >|
  */
 zlsa.atc.ArrivalWave = zlsa.atc.ArrivalBase.extend(function(base) {
   return {
     init: function(airport, options) {
-      this.period = 60*60;
-      this.offset = 0;
+      this.cycleStart = 0;  // game time
+      this.offset = 0;      // Start at the average, and increasing
+      this.period = 1800;   // 30 minute cycle
+      this.variation = 0;   // amount to deviate from the prescribed frequency
 
       base.init.call(this, airport, options);
-
-      // Average number of aircraft per hour
-      this._average = this.frequency;
-
-      // Time in seconds for 7.5 nmi in-trail separation
-      this._separation = Math.ceil(7.5/this.speed * 3600);
-
-      // Aircraft per wave
-      this._count = Math.floor(this._average/3600 * this.period);
-
-      if ((this.period / this._separation) < this._count) {
-        console.log("Reducing average arrival frequency from " +
-                    this._average +
-                    "/hour to maintain minimum in trail separation");
-        this._count = Math.floor(3600 / this._separation);
-      }
-
-      // length of a wave in seconds
-      this._waveLength = this._separation * this._count - 1;
-
-      // Offset to have center of wave at 0 time and _offset always positive
-      this._offset = this._waveLength/2;
-      this._offset -= this.offset;
-      while (this._offset < 0) this._offset += this.period;
-    },
-    // Additional supported options
-    // period: {integer} Optionally specify the length of a cycle in minutes
-    // offset: {integer} Optionally specify the center of the wave in minutes
-    parse: function(options) {
       base.parse.call(this, options);
-      if (options.period)
-        this.period = options.period * 60;
-      if (this.period <= 0)
-        throw "Period must be greater than 0";
-      if (options.offset)
-        this.offset += options.offset * 60;
+      this.parse(options);
+      this.clampSpawnRate(5.5); // minimum of 5.5nm entrail
+    },
+    /** Arrival Stream Settings
+     ** @param {integer} period - (optional) length of a cycle, in minutes
+     ** @param {integer} offset - (optional) minutes to shift starting position in cycle
+     */
+    parse: function(options) {
+      if(options.offset) this.offset = options.offset * 60; // min --> sec
+      if(options.period) this.period = options.period * 60; // min --> sec
+      if(options.variation) this.variation = options.variation;
+    },
+    /** Ensures the spawn rate will be at least the required entrail distance
+     ** @param {number} entrail_dist - minimum distance between successive arrivals, in nm
+     */
+    clampSpawnRate: function(entrail_dist) {
+      var entrail_interval = entrail_dist * (3600/this.speed);
+      var min_interval = 3600 / (this.frequency + this.variation);
+
+      if(min_interval < entrail_interval) {
+        var diff = entrail_interval - min_interval;
+        if(diff <= 3600/this.variation) {  // can reduce variation to achieve acceptable spawn rate
+          log("Requested arrival rate variation of +/-"+this.variation+" acph reduced to " + 
+            "maintain minimum of "+entrail_dist+" miles entrail on arrival stream following " +
+            "route "+$.map(this.fixes,function(v){return v.fix;}).join('-'), LOG_WARNING);
+          this.variation = this.variation - 3600/diff; // reduce the variation
+        }
+        else {  // need to reduce frequency to achieve acceptable spawn rate
+          log("Requested arrival rate of "+this.frequency+" acph overridden to " +
+            "maintain minimum of "+entrail_dist+" miles entrail on arrival stream " +
+            "following route "+ $.map(this.fixes,function(v){return v.fix;}).join('-'), LOG_WARNING);
+          this.variation = 0; // make spawn at constant interval
+          this.frequency = 3600/entrail_interval; // reduce the frequency
+        }
+      }
     },
     nextInterval: function() {
-      var position = (game_time() + this._offset) % this.period;
-      if (position >= this._waveLength)
-        return this.period - position;
-      return this._separation / prop.game.frequency;
+      var t = prop.game.time - this.cycleStart;
+      var done = t / this.period; // progress in period
+      if(done >= 1) this.cycleStart += this.period;
+      var rate = this.frequency + this.variation*Math.sin(done*Math.PI*2);
+      return 3600/rate;
     },
+    start: function() {
+      var delay = random(0, 3600 / this.frequency);
+      this.cycleStart = prop.game.time - this.offset + delay;
+      this.timeout = game_timeout(this.spawnAircraft, delay, this, [true, true]);
+    }
+  };
+});
+
+/** Generate arrivals in a repeating surge
+ ** Arrival rate goes from very low and steeply increases to a
+ ** sustained "arrival surge" of densely packed aircraft.
+ ** o o o o o o o o o o - - - - - - - - - - - o o o o o o o o o o-----+ < - - - max arrival rate (n*this.factor)
+ ** o                 o                       o                 o     |         
+ ** o                 o                       o                 o     |   x(this.factor)
+ ** o                 o                       o                 o     |
+ ** o - - - - - - - - o o o o o o o o o o o o o - - - - - - - - o o o-+ < - - - min arrival rate (n)
+ ** |<--- up time --->|<----- down time ----->|<--- up time --->|
+ */
+zlsa.atc.ArrivalSurge = zlsa.atc.ArrivalBase.extend(function(base) {
+  return {
+    init: function(airport, options) {
+      this.cycleStart = 0;  // game time
+      this.offset = 0;      // Start at the beginning of the surge
+      this.period = 1800;   // 30 minute cycle
+      this.uptime = 10;     // 10 minute surge
+      this.factor = 5;      // "up" rate is 'factor' times greater than the "down" rate
+      this.n = 0;           // scalar value determined in clampSpawnRate (very important!)
+      this.acph_up = 0;     // arrival rate when "in the surge"
+      this.acph_dn = 0;     // arrival rate when not "in the surge"
+
+      base.init.call(this, airport, options);
+      base.parse.call(this, options);
+      this.parse(options);
+      this.clampSpawnRate(5.5); // minimum of 5.5nm entrail
+    },
+    /** Arrival Stream Settings
+     ** period: {integer} Optionally specify the length of a cycle in minutes
+     ** offset: {integer} Optionally specify the center of the wave in minutes
+     */
+    parse: function(options) {
+      if(options.offset) this.offset = options.offset * 60; // min --> sec
+      if(options.period) this.period = options.period * 60; // min --> sec
+      if(options.uptime) this.uptime = options.uptime * 60; // min --> sec
+      if(options.factor) this.factor = options.factor;
+    },
+    /** Ensures the spawn rate will be at least the required entrail distance
+     ** @param {number} entrail_dist - minimum distance between successive arrivals, in nm
+     */
+    clampSpawnRate: function(entrail_dist) {
+      // Formula: frequency*period = n*(period + (factor-1)*uptime)
+      var f = this.frequency, p = this.period, x = this.factor, u = this.uptime;
+      var entrail_interval = entrail_dist * (3600/this.speed);
+      this.n = (f*p) / (u*x + p - u);
+      this.acph_dn = this.n;
+      this.acph_up = x*this.n;
+      var interval_up = 3600/this.acph_up;
+
+      if(interval_up < entrail_interval) {  // not enough time to spawn so many aircraft
+        var diff = entrail_interval - interval_up;
+        if(this.frequency <= this.acph_up) { // uptime can be extended sufficiently to cover the difference
+          var u2 = ((f*p*x/entrail_interval) - p) / (x-1);
+          log("Combination of requested arrival rate (" + f + "acph) and 'uptime' " +
+           "(" +u/60+ "min) in which to spawn impossible to comply with. Reducing to " +
+           entrail_dist + "nm separation for an 'uptime' of " + u2/60 + "min to " +
+           "correct insufficient entrail spacing on route " + $.map(this.fixes,function(v){return v.fix;}).join('-'), LOG_WARNING);
+          this.uptime = u2;
+        }
+        else {  // WAYYYYY too many aircraft requested! Mathematically impossible to deliver.
+          log("Combination of requested arrival rate (" + f + "acph) and 'uptime' " +
+           "(" +u/60+ "min) in which to spawn impossible to comply with, and not " +
+           "enough time to spawn the aircraft, even in a solid line, if they are " +
+           "to comply with the requested " + entrail_dist + "nm entrail spacing. " +
+           "Route in question: "+$.map(this.fixes,function(v){return v.fix;}).join('-'), LOG_ERROR);
+        }
+      }
+    },
+    nextInterval: function() {
+      var t = prop.game.time - this.cycleStart;
+      var done = t / this.period; // progress in period
+      if(done >= 1) this.cycleStart += this.period;
+      if(t < this.uptime) return 3600/this.acph_up;
+      else return 3600/this.acph_dn;
+    },
+    start: function() {
+      var delay = random(0, 3600 / this.frequency);
+      this.cycleStart = prop.game.time - this.offset + delay;
+      this.timeout = game_timeout(this.spawnAircraft, delay, this, [true, true]);
+    }
   };
 });
 
