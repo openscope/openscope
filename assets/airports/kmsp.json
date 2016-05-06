@@ -204,16 +204,17 @@
     }
   },
   "departures": {
+    "destinations": [
+      "NORTH", "EAST", "SOUTH", "WEST"
+    ],
+    "type": "random",
+    "frequency": 2,
     "airlines": [
       ["ual", 3],
       ["baw", 5],
       ["fastga", 2],
       ["lightga", 2]
-    ],
-    "destinations": [
-      "NORTH", "EAST", "SOUTH", "WEST"
-    ],
-    "frequency": 2
+    ]
   },
   "arrivals": [
     {

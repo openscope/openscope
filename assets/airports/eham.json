@@ -215,6 +215,11 @@
     }
   },
   "departures": {
+    "destinations": [
+      "ANDIK", "ARNEM", "BERGI", "LEKKO", "GORLO"
+    ],
+    "type": "random",
+    "frequency": 1.5,
     "airlines": [
       ["ual",   2],
       ["aca",   2],
@@ -224,11 +229,7 @@
       ["klc",   3],
       ["klm",   5],
       ["ual",   2]
-    ],
-    "destinations": [
-      "ANDIK", "ARNEM", "BERGI", "LEKKO", "GORLO"
-    ],
-    "frequency": 1.5
+    ]
   },
   "arrivals": [
     {

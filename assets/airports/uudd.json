@@ -276,6 +276,11 @@
     }
   },
   "departures": {
+    "destinations": [
+      "SF", "DK", "WZ", "WT", "LO", "OKR"
+    ],
+    "type": "random",
+    "frequency": 2.4,
     "airlines": [
       ["sbi", 96],
       ["svr", 38],
@@ -285,11 +290,7 @@
       ["rff", 4],
       ["dlh", 7],
       ["baw", 2]
-    ],
-    "destinations": [
-      "SF", "DK", "WZ", "WT", "LO", "OKR"
-    ],
-    "frequency": 2.4
+    ]
   },
   "arrivals": [
     {

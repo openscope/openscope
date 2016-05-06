@@ -126,6 +126,11 @@
     }
   },
   "departures": {
+    "destinations": [
+       "NORTH", "EAST", "SOUTH", "WEST"
+    ],
+    "type": "random",
+    "frequency": 3.5,
     "airlines": [
       ["aca", 4],
       ["afl", 6],
@@ -137,11 +142,7 @@
       ["ups", 8],
       ["fastga", 10],
       ["lightga", 11]
-    ],
-    "destinations": [
-       "NORTH", "EAST", "SOUTH", "WEST"
-    ],
-    "frequency": 3.5
+    ]
   },
   "arrivals": [
     {

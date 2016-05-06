@@ -208,6 +208,11 @@
     }
   },
   "departures": {
+    "destinations": [
+      "CGO", "ROMIB", "BGC", "DORLU", "IVRAG", "SCP"
+    ],
+    "type": "random",
+    "frequency": 8,
     "airlines": [
       ["TAM", 60],
       ["GLO", 60],
@@ -232,11 +237,7 @@
       ["uae", 3],
       ["ual/long", 5],
       ["FAB", 1]
-    ],
-    "destinations": [
-      "CGO", "ROMIB", "BGC", "DORLU", "IVRAG", "SCP"
-    ],
-    "frequency": 8
+    ]
   },
   "arrivals":[
     {
