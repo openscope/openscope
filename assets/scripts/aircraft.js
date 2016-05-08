@@ -566,11 +566,12 @@ zlsa.atc.AircraftFlightManagementSystem = Fiber.extend(function() {
       if(prev && !curr.speed) curr.speed = prev.speed;
     },
 
-    /** Insert a waypoint before the *curent* waypoint
+    /** Insert a waypoint at current position and immediately activate it
      */
-    prependWaypoint: function(data) {
+    insertWaypointHere: function(data) {
       var prev = this.currentWaypoint();
       this.currentLeg().waypoints.splice(this.current[1], 0, new zlsa.atc.Waypoint(data));
+      this.update_fp_route();
 
       // Verify altitude & speed not null
       var curr = this.currentWaypoint();
@@ -587,6 +588,9 @@ zlsa.atc.AircraftFlightManagementSystem = Fiber.extend(function() {
       this.legs.splice(data.firstIndex, 0, new zlsa.atc.Leg(data, this));
       this.update_fp_route();
 
+      // Adjust 'current'
+      if(this.current[0] >= data.firstIndex) this.current[1] = 0;
+
       // Verify altitude & speed not null
       var curr = this.currentWaypoint();
       if(prev && !curr.altitude) curr.altitude = prev.altitude;
@@ -598,6 +602,7 @@ zlsa.atc.AircraftFlightManagementSystem = Fiber.extend(function() {
     insertLegHere: function(data) {
       data.firstIndex = this.current[0];  // index of current leg
       this.insertLeg(data); // put new Leg at current position
+      this.current[1] = 0;  // start at first wp in this new leg
     },
 
     /** Insert a Leg at the end of the flightplan
@@ -611,6 +616,7 @@ zlsa.atc.AircraftFlightManagementSystem = Fiber.extend(function() {
      */
     appendWaypoint: function(data) {
       this.currentLeg().waypoints.splice(this.current[1]+1, 0, new zlsa.atc.Waypoint(data));
+      this.update_fp_route();
     },
 
     /** Switch to the next waypoint
