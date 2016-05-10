@@ -597,19 +597,11 @@ var Runway=Fiber.extend(function(base) {
       }
       return false;
     },
-    isWaiting: function(aircraft) {
+    inQueue: function(aircraft) {
       return this.queue.indexOf(aircraft);
     },
     taxiDelay: function(aircraft) {
       return this.delay + Math.random() * 3;
-    },
-    getOffset: function(position, length) {
-      position = [position[0], position[1]];
-      position = vsub(position, this.position);
-      var offset = [0, 0];
-      offset[0]  = ( cos(this.angle) * position[0]) - (sin(this.angle) * position[1]);
-      offset[1]  = (-sin(this.angle) * position[0]) - (cos(this.angle) * position[1]);
-      return offset;
     },
     getGlideslopeAltitude: function(distance, /*optional*/ gs_gradient) {
       if(!gs_gradient) gs_gradient = this.ils.gs_gradient;
@@ -654,6 +646,7 @@ var Airport=Fiber.extend(function() {
       this.real_fixes = {};
       this.sids     = {};
       this.maps     = {};
+      this.airways  = {};
       this.restricted_areas = [];
       this.metadata = {
         rwy: {}
@@ -757,9 +750,8 @@ var Airport=Fiber.extend(function() {
         }
       }
 
-      if(data.sids) {
-        this.sids = data.sids;
-      }
+      if(data.sids) this.sids = data.sids;
+      if(data.airways) this.airways = data.airways;
 
       if(data.maps) {
         for(var m in data.maps) {
@@ -971,10 +963,12 @@ var Airport=Fiber.extend(function() {
     },
     getFix: function(name) {
       if(!name) return null;
-      return this.fixes[name.toUpperCase()] || null;
+      if(Object.keys(airport_get().fixes).indexOf(name.toUpperCase()) == -1) return;
+      else return airport_get().fixes[name.toUpperCase()];
     },
     getSID: function(id, trxn, rwy) {
       if(!(id && trxn && rwy)) return null;
+      if(Object.keys(this.sids).indexOf(id) == -1) return;
       var fixes = [];
       var sid = this.sids[id];
 

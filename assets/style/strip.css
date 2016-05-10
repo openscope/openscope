@@ -44,7 +44,7 @@
 }
 
 .strip .aircraft {
-  display: block;
+  display: table;
   font-style: italic;
 }
 

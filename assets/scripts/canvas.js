@@ -395,7 +395,7 @@ function canvas_draw_aircraft(cc, aircraft) {
 
   if(aircraft.position_history.length > trailling_length) aircraft.position_history = aircraft.position_history.slice(aircraft.position_history.length - trailling_length, aircraft.position_history.length);
 
-  if( aircraft.isPrecisionGuided() && aircraft.altitude > 1000) {
+  if(aircraft.isPrecisionGuided()) {
     cc.save();
     canvas_draw_separation_indicator(cc, aircraft);
     cc.restore();
