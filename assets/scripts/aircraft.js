@@ -423,6 +423,7 @@ zlsa.atc.Leg = Fiber.extend(function(data, fms) {
     parse: function(data, fms) {
       for(var i in data) if(this.hasOwnProperty(i)) this[i] = data[i]; // Populate Leg with data
       if(this.waypoints.length == 0) this.generateWaypoints(data, fms);
+      if(this.waypoints.length == 0) this.waypoints = [new zlsa.atc.Waypoint({route:""}, fms)];
     },
 
     /** Adds zlsa.atc.Waypoint objects to this Leg, based on the route & type
@@ -446,6 +447,10 @@ zlsa.atc.Leg = Fiber.extend(function(data, fms) {
         }
 
         // Generate the waypoints
+        if(!rwy) {
+          ui_log(true, fms.my_aircraft().getCallsign() + " unable to fly SID, we haven't been assigned a departure runway!");
+          return;
+        }
         var pairs = airport_get(apt).getSID(sid, trn, rwy);
         for (var i=0; i<pairs.length; i++) { // for each fix/restr pair
           var f = pairs[i][0];
@@ -570,7 +575,7 @@ zlsa.atc.AircraftFlightManagementSystem = Fiber.extend(function() {
      */
     insertWaypointHere: function(data) {
       var prev = this.currentWaypoint();
-      this.currentLeg().waypoints.splice(this.current[1], 0, new zlsa.atc.Waypoint(data));
+      this.currentLeg().waypoints.splice(this.current[1], 0, new zlsa.atc.Waypoint(data, this));
       this.update_fp_route();
 
       // Verify altitude & speed not null
@@ -615,7 +620,7 @@ zlsa.atc.AircraftFlightManagementSystem = Fiber.extend(function() {
     /** Insert a waypoint after the *current* waypoint
      */
     appendWaypoint: function(data) {
-      this.currentLeg().waypoints.splice(this.current[1]+1, 0, new zlsa.atc.Waypoint(data));
+      this.currentLeg().waypoints.splice(this.current[1]+1, 0, new zlsa.atc.Waypoint(data, this));
       this.update_fp_route();
     },
 
@@ -849,20 +854,21 @@ zlsa.atc.AircraftFlightManagementSystem = Fiber.extend(function() {
      */
     customRoute: function(route, fullRouteClearance) {
       var legs = [];
+      var curr = this.currentWaypoint(); // save the current waypoint
       for(var i=0; i<route.length; i++) {
         if(route[i].split('.').length == 1) { // just a fix/navaid
-          legs.push(new zlsa.atc.Leg({type:"fix", route:route[i]}));
+          legs.push(new zlsa.atc.Leg({type:"fix", route:route[i]}, this));
         }
         else if(route[i].split('.').length == 3) {  // is an instrument procedure
           var pieces = route[i].split('.');
           if(Object.keys(airport_get().sids).indexOf(pieces[1]) > -1) {  // it's a SID!
-            legs.push(new zlsa.atc.Leg({type:"sid", route:route[i]}));
+            legs.push(new zlsa.atc.Leg({type:"sid", route:route[i]}, this));
           }
           // else if(Object.keys(airport_get().stars).indexOf(pieces[1]) > -1) { // it's a STAR!
-          //   legs.push(new zlsa.atc.Leg({type:"star", route:route[i]})); // FUTURE FUNCTIONALITY
+          //   legs.push(new zlsa.atc.Leg({type:"star", route:route[i]}, this) || return false;); // FUTURE FUNCTIONALITY
           // }
           else if(Object.keys(airport_get().airways).indexOf(pieces[1]) > -1) { // it's an airway!
-            legs.push(new zlsa.atc.Leg({type:"awy", route:route[i]}));
+            legs.push(new zlsa.atc.Leg({type:"awy", route:route[i]}, this));
           }
         }
         else {  // neither formatted like "JAN" nor "JAN.V18.MLU"
@@ -871,7 +877,6 @@ zlsa.atc.AircraftFlightManagementSystem = Fiber.extend(function() {
         }
       }
 
-      var curr = this.currentWaypoint(); // save the current waypoint
       if(!fullRouteClearance) { // insert user's route to the legs
         // Check if user's route hooks up to the current Legs anywhere
         var pieces = legs[legs.length-1].route.split('.');
@@ -1744,7 +1749,7 @@ var Aircraft=Fiber.extend(function() {
           speed: wp.speed,
           turn:direction,
           hold:false
-        })]});
+        },this.fms)]});
         this.fms.nextWaypoint();  // move from hold leg to vector leg.
       }
       else if(f.sid || f.star || f.awy) {
@@ -1756,7 +1761,7 @@ var Aircraft=Fiber.extend(function() {
             speed: wp.speed,
             turn: direction,
             hold: false,
-          })
+          },this.fms)
         );
       }
       else if(leg.route != "[radar vectors]") { // needs new leg added
@@ -1768,7 +1773,7 @@ var Aircraft=Fiber.extend(function() {
             speed: wp.speed,
             turn:direction,
             hold:false
-          })]});
+          },this.fms)]});
           this.fms.nextLeg();
         }
         else {
@@ -1779,7 +1784,7 @@ var Aircraft=Fiber.extend(function() {
             speed: wp.speed,
             turn:direction,
             hold:false
-          })]});
+          },this.fms)]});
         }
       }
       wp = this.fms.currentWaypoint();  // update 'wp'
@@ -1925,13 +1930,13 @@ var Aircraft=Fiber.extend(function() {
               fix: hold_fix,
               altitude: this.fms.currentWaypoint().altitude,
               speed: this.fms.currentWaypoint().speed
-            }),
+            },this.fms),
             new zlsa.atc.Waypoint({ // then enter the hold
               navmode:"hold", speed: this.fms.currentWaypoint().speed,  altitude: this.fms.currentWaypoint().altitude, fix: null,
               hold: { fixName: hold_fix,          fixPos: hold_fix_location,
                       dirTurns: dirTurns,         legLength: legLength,
                       inboundHdg: inboundHdg,     timer: null, }
-            })
+            },this.fms)
           ]});
         }
         else {  // already currently going to the hold fix
