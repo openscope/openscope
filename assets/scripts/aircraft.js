@@ -898,14 +898,13 @@ zlsa.atc.AircraftFlightManagementSystem = Fiber.extend(function() {
         else {  // no route continuity... just adding legs
           this.legs.splice.apply(this.legs, [this.current[0]+1, 0].concat(legs));  // insert the legs after the active Leg
           this.nextLeg();
-          this.update_fp_route();
         }
       }
       else {  // replace all legs with the legs we've built here in this function
         this.legs = legs;
         this.current = [0,0]; // look to beginning of route
-        this.update_fp_route();
       }
+      this.update_fp_route();
 
       // Maintain old speed and altitude
       if(this.currentWaypoint().altitude == null) this.setCurrent({altitude: curr.altitude});
