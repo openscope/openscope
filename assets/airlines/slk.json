@@ -1,0 +1,13 @@
+{
+  "name": "Silk Air",
+  "callsign": {
+    "name": "Silkair",
+    "length": 3
+  },
+  "fleets": {
+    "default": [
+      ["B738", 20],
+      ["A320", 20]
+    ]
+  }
+}

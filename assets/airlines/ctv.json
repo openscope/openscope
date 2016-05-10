@@ -1,0 +1,13 @@
+{
+  "name": "Citilink",
+  "callsign": {
+    "name": "Supergreen",
+    "length": 3
+  },
+  "fleets": {
+    "default": [
+      ["B733", 5],
+      ["A320", 37]
+    ]
+  }
+}
