@@ -2214,7 +2214,7 @@ var Aircraft=Fiber.extend(function() {
     },
     cancelLanding: function() {
       if(this.fms.currentWaypoint().navmode == "rwy") {
-        var runway = airport_get().getRunway(this.rwy_dep);
+        var runway = airport_get().getRunway(this.rwy_arr);
         if(this.mode == "landing") {
           this.fms.setCurrent({
             altitude: Math.max(2000, round((this.altitude / 1000)) * 1000),
