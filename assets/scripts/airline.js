@@ -144,11 +144,13 @@ function airline_init() {
   airline_load("AVA");
   airline_load("AWE");
   airline_load("AWI");
+  airline_load("AWQ");
   airline_load("AZA");
   airline_load("AZU");
   airline_load("BAW");
   airline_load("BCY");
   airline_load("BER");
+  airline_load("BTK");
   airline_load("BWA");
   airline_load("CCA");
   airline_load("CES");
@@ -158,6 +160,7 @@ function airline_init() {
   airline_load("CPA");
   airline_load("CPZ");
   airline_load("CSN");
+  airline_load("CTV");
   airline_load("CWC");
   airline_load("DAL");
   airline_load("DLH");
@@ -172,6 +175,7 @@ function airline_init() {
   airline_load("FDX");
   airline_load("FFT");
   airline_load("FLG");
+  airline_load("GIA");
   airline_load("GJS");
   airline_load("GLO");
   airline_load("GWI");
@@ -187,6 +191,7 @@ function airline_init() {
   airline_load("KLM");
   airline_load("LAN");
   airline_load("LIGHTGA");
+  airline_load("LNI");
   airline_load("MOV");
   airline_load("NAX");
   airline_load("NKS");
@@ -201,7 +206,9 @@ function airline_init() {
   airline_load("SAS");
   airline_load("SBI");
   airline_load("SCX");
+  airline_load("SJY");
   airline_load("SKW");
+  airline_load("SLK");
   airline_load("SVR");
   airline_load("SWA");
   airline_load("SWR");

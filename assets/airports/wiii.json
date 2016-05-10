@@ -1,0 +1,219 @@
+{
+  "name": "Soekarno-Hatta International Airport",
+  "level": "medium",
+  "radio": {
+    "twr": "Soekarno-Hatta Tower",
+    "app": "Jakarta Approach",
+    "dep": "Jakarta Departure"
+  },
+  "icao": "WIII",
+  "iata": "CGK",
+  "magnetic_north": 0.0,
+  "ctr_radius": 80,
+  "ctr_ceiling": 30000,
+  "initial_alt": 6000,
+  "position": ["S6d7.04m0", "E106d39.7m0"],
+  "rr_radius_nm": 5.0,
+  "rr_center": ["S6d7.04m0", "E106d39.7m0"],
+  "has_terrain": false,
+  "wind": {
+    "angle": 240,
+    "speed": 8
+  },
+  "fixes": {
+	
+	"DKI": ["S5d57.7m0", "E107d2.1m0"],
+	"_DKIR": ["S6d1m24.44", "E106d39m11.46"],
+	"CKG": ["S6d11.3m0", "E106d31.8m0"],
+	"HLM": ["S6d16.3m0", "E106d53.2m0"],
+	"PW": ["S6d34.0m0", "E107d27.0m0"],
+	
+	"GL": ["S6d8.8m0", "E106d34.5m0"],
+	"GR": ["S6d10.4m0", "E106d34.0m0"],
+	"CL": ["S6d6.3m0", "E106d44.1m0"],
+	"CR": ["S6d5.2m0", "E106d43.4m0"],
+	
+	"NOKTA": ["S5d28.4m0", "E106d51.4m0"],
+	"ESALA": ["S5d57.7m0", "E107d19.8m0"],
+	"CARLI": ["S5d15.6m0", "E106d12.8m0"],
+	"BUNIK": ["S4d51.7m0", "E106d37.4m0"],
+	"DENDY": ["S5d11.8m0", "E107d36.4m0"],
+	"LEPAS": ["S5d26.0m0", "E107d47.3m0"],
+	"SPADA": ["S5d40.7m0", "E107d54.6m0"],
+	"RENDA": ["S7d15.3m0", "E107d13.4m0"],
+	
+	"SIKAD": ["S5d44.3m0", "E106d16.3m0"],
+	"DOLTA": ["S5d7.6m0", "E105d55.5m0"],
+	"TULIP": ["S5d25.4m0", "E105d37.8m0"],
+	"KASAL": ["S6d32.6m0", "E107d56.4m0"]
+	
+  },
+  "runways": [
+  {
+      "name": ["07R", "25L"],
+      "name_offset": [[0, 0], [0, 0]],
+      "end":    [["S6d8.55m0", "E106d38.62m0"], ["S6d7.82m0", "E106d40.46m0"]],
+      "length": 3.6,
+      "ils": [true, true]
+    },
+    {
+      "name": ["07L", "25R"],
+      "name_offset": [[0, 0], [0, 0]],
+      "end":    [["S6d7.25m0", "E106d38.33m0"], ["S6d6.54m0", "E106d40.15m0"]],
+      "length": 3.6,
+      "ils": [true, true]
+    }
+  ],
+  "sids": {
+      "DKI2": {
+      "icao": "DKI2",
+      "name": "Jakarta Two",
+      "rwy": {
+        "25R": ["GL", "_DKIR",["DKI","A12+"]],
+        "25L": ["GR", "_DKIR",["DKI","A12+"]],
+		"07L": ["CR", ["DKI","A12+"]],
+		"07R": ["CL", ["DKI","A12+"]]
+      },
+      "transitions": {
+        "DENDY": ["DENDY"],
+		"LEPAS": ["LEPAS"],
+		"SPADA": ["SPADA"]
+      },
+      "draw": [["_DKIR","DKI", "DENDY*"],["_DKIR","DKI","LEPAS*"],["_DKIR","DKI","SPADA*"]]
+    },
+    "HALIM1": {
+      "icao": "HALIM1",
+      "name": "Halim One",
+      "rwy": {
+        "25R": ["GL", "HLM"],
+        "25L": ["GR", "HLM"]
+      },
+      "transitions": {
+        "KASAL": ["KASAL"],
+		"PW": ["PW"],
+		"RENDA": ["RENDA"]
+      },
+      "draw": [["HLM", "KASAL*"],["HLM","PW*"],["HLM","RENDA*"]]
+    },
+    "CKG2": {
+      "icao": "CKG2",
+      "name": "Cengkareng Two",
+      "rwy": {
+        "25R": ["GL", "SIKAD"],
+        "25L": ["GR", "SIKAD"],
+		"07L": ["CR","SIKAD"],
+		"07R": ["CL","SIKAD"]
+      },
+      "transitions": {
+		"DOLTA": ["DOLTA"],
+		"TULIP": ["TULIP"]
+      },
+      "draw": [["SIKAD","DOLTA*"],["SIKAD","TULIP*"]]
+    }
+  },
+  "departures": {
+    "airlines": [
+        ["gia", 35],
+		["lni",35],
+		["ctv",20],
+		["sjy", 35],
+		["btk",35],
+		["awq",20],
+		["eva/long",5],
+		["cpa",10],
+		["jal/long",5],
+		["kal/long",5]
+    ],
+    "destinations": [
+      "HALIM1", "CKG2", "DKI2"
+    ],
+    "type": "cyclic",
+    "offset": 0,
+    "period": 30,
+    "frequency": [13, 24]
+  },
+  "arrivals": [
+    {
+      "_name": "BUNIK",
+      "radial": 355,
+      "speed": 250,
+      "type": "cyclic",
+      "offset": 12,
+      "period": 23,
+      "frequency": [10, 20],
+      "altitude": 10000,
+      "fixes": ["BUNIK","NOKTA"],
+      "airlines": [
+        ["gia", 35],
+		["lni",35],
+		["ctv",20],
+		["sjy", 35],
+		["btk",35],
+		["awq",20],
+		["eva/long",5],
+		["cpa",10],
+		["jal/long",5],
+		["kal/long",5]
+      ]
+    },
+    {
+      "_name": "CARLI",
+      "radial": 310,
+      "heading": 140,
+      "speed": 250,
+      "type": "cyclic",
+      "offset": 10,
+      "period": 21,
+      "frequency": [5, 10],
+      "altitude": 10000,
+	  "fixes": ["CARLI","NOKTA"],
+      "airlines": [
+        ["gia", 35],
+		["lni",35],
+		["ctv",20],
+		["sjy", 35],
+		["btk",35],
+		["awq",20]
+      ]
+    },
+    {
+      "_name": "DENDY",
+      "radial": 40,
+      "heading": 115,
+      "speed": 250,
+      "type": "cyclic",
+      "offset": 15,
+      "period": 18,
+      "frequency": [10, 20],
+      "altitude": 10000,
+	  "fixes": ["DENDY","DKI"],
+      "airlines": [
+        ["gia", 35],
+		["lni",35],
+		["ctv",20],
+		["sjy", 35],
+		["btk",35],
+		["awq",20]
+      ]
+    },
+    {
+      "_name": "SPADA",
+      "radial": 90,
+      "speed": 250,
+      "type": "cyclic",
+      "offset": 8,
+      "period": 15,
+      "frequency": [5, 10],
+      "altitude": 10000,
+      "fixes": ["SPADA", "DKI"],
+      "airlines": [
+        ["gia", 35],
+		["lni",35],
+		["ctv",20],
+		["sjy", 35],
+		["btk",35],
+		["awq",20]
+      ]
+    }
+  ]
+}

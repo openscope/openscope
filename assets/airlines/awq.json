@@ -1,0 +1,12 @@
+{
+  "name": "Indonesia Air Asia",
+  "callsign": {
+    "name": "Wagon Air",
+    "length": 3
+  },
+  "fleets": {
+    "default": [
+      ["A320", 37]
+    ]
+  }
+}

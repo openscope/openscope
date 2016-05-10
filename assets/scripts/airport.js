@@ -1037,6 +1037,7 @@ function airport_init_pre() {
 
 function airport_init() {
   airport_load("ebbr");
+  airport_load("eddf");
   airport_load("eddh");
   airport_load("eddm");
   airport_load("eddt");
@@ -1061,7 +1062,8 @@ function airport_init() {
   airport_load("sbgr");
   airport_load("uudd");
   airport_load("vhhh");
-  airport_load("eddf");
+  airport_load("wiii");
+  airport_load("wimm");
 }
 
 function airport_ready() {
