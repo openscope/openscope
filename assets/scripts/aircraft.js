@@ -467,7 +467,35 @@ zlsa.atc.Leg = Fiber.extend(function(data, fms) {
         if(!this.waypoints[0].speed) this.waypoints[0].speed = fms.my_aircraft().model.speed.cruise;
       }
       else if(this.type == "star") {
-        // FUTURE FUNCTIONALITY
+        if(!fms) {
+          log("Attempted to generate waypoints for STAR, but cannot because fms ref not passed!", LOG_WARNING);
+          return;
+        }
+        var trn = data.route.split('.')[0];
+        var star = data.route.split('.')[1];
+        var apt = data.route.split('.')[2];
+        var rwy = fms.my_aircraft().rwy_arr;
+        this.waypoints = [];
+
+        // Generate the waypoints
+        // if(!rwy) {  // AND A RUNWAY IS NEEDED
+        //   ui_log(true, fms.my_aircraft().getCallsign() + " unable to fly STAR, we haven't been assigned a departure runway!");
+        //   return;
+        // }
+        var pairs = airport_get(apt).getSTAR(star, trn, rwy);
+        for (var i=0; i<pairs.length; i++) { // for each fix/restr pair
+          var f = pairs[i][0];
+          var a = null, s = null;
+          if(pairs[i][1]) {
+            var a_n_s = pairs[i][1].toUpperCase().split("|");
+            for(var j in a_n_s) {
+              if(a_n_s[j][0] == "A") a = a_n_s[j].substr(1);
+              else if(a_n_s[j][0] == "S") s = a_n_s[j].substr(1);
+            }
+          }
+          this.waypoints.push(new zlsa.atc.Waypoint({fix:f, fixRestrictions:{alt:a,spd:s}}, fms));
+        }
+        if(!this.waypoints[0].speed) this.waypoints[0].speed = fms.my_aircraft().model.speed.cruise;
       }
       else if(this.type == "iap") {
         // FUTURE FUNCTIONALITY
@@ -743,9 +771,9 @@ zlsa.atc.AircraftFlightManagementSystem = Fiber.extend(function() {
         this.following.anything = true;
         this.following.sid = leg.route.split('.')[1];
       }
-      else if(leg.type == "star") {   // **FUTURE FUNCTIONALITY**
-        // this.following.anything = true;
-        // this.following.star = leg.route.split('.')[1];
+      else if(leg.type == "star") {
+        this.following.anything = true;
+        this.following.star = leg.route.split('.')[1];
       }
       else if(leg.type == "iap") {
         this.following.anything = true;
@@ -812,6 +840,17 @@ zlsa.atc.AircraftFlightManagementSystem = Fiber.extend(function() {
       this.prependLeg({type:"sid", route:route})
     },
 
+    /** Inserts the STAR as the last Leg in the fms's flightplan
+     */
+    followSTAR: function(route) {
+      for(var i=0; i<this.legs.length; i++) {
+        if(this.legs[i].type == "star") // check to see if STAR already assigned
+          this.legs.splice(i,1);  // remove the old STAR
+      }
+      // Add the new STAR Leg
+      this.appendLeg({type:"star", route:route})
+    },
+
     /** Takes a user provided route and converts it to a semented route the fms can understand
      ** Note: Input Data Format : "KSFO.OFFSH9.SXC.V458.IPL.J2.JCT..LLO..ACT..KACT"
      **       Return Data Format: ["KSFO.OFFSH9.SXC", "SXC.V458.IPL", "IPL.J2.JCT", "LLO", "ACT", "KACT"]
@@ -864,9 +903,9 @@ zlsa.atc.AircraftFlightManagementSystem = Fiber.extend(function() {
           if(Object.keys(airport_get().sids).indexOf(pieces[1]) > -1) {  // it's a SID!
             legs.push(new zlsa.atc.Leg({type:"sid", route:route[i]}, this));
           }
-          // else if(Object.keys(airport_get().stars).indexOf(pieces[1]) > -1) { // it's a STAR!
-          //   legs.push(new zlsa.atc.Leg({type:"star", route:route[i]}, this) || return false;); // FUTURE FUNCTIONALITY
-          // }
+          else if(Object.keys(airport_get().stars).indexOf(pieces[1]) > -1) { // it's a STAR!
+            legs.push(new zlsa.atc.Leg({type:"star", route:route[i]}, this));
+          }
           else if(Object.keys(airport_get().airways).indexOf(pieces[1]) > -1) { // it's an airway!
             legs.push(new zlsa.atc.Leg({type:"awy", route:route[i]}, this));
           }
@@ -1489,6 +1528,8 @@ var Aircraft=Fiber.extend(function() {
           shortKey: ['+', '-'],
           synonyms: ['slow', 'sp']},
 
+        star: {func: 'runSTAR'},
+
         takeoff: {
           func: 'runTakeoff',
           synonyms: ['to', 'cto']},
@@ -2029,6 +2070,7 @@ var Aircraft=Fiber.extend(function() {
     runSID: function(data) {
       var apt = airport_get();
       var sid_id = data.toUpperCase();
+      if(!apt.sids.hasOwnProperty(sid_id)) return;
       var sid_name = apt.sids[sid_id].name;
       var trn = apt.getSIDTransition(sid_id);
       var route = apt.icao + '.' + sid_id + '.' + trn;
@@ -2047,6 +2089,28 @@ var Aircraft=Fiber.extend(function() {
 
       return ["ok", {log:"cleared to destination via the " + sid_id + " departure, then as filed",
                   say:"cleared to destination via the " + sid_name + " departure, then as filed"}];
+    },
+    runSTAR: function(data) {
+      var trn = data.split('.')[0].toUpperCase();
+      var star_id = data.split('.')[1].toUpperCase();
+      var apt = airport_get();
+      var star_name = apt.stars[star_id].name;
+      var route = trn + '.' + star_id + '.' + apt.icao;
+
+      if(this.category != "arrival") {
+        return ["fail", "unable to fly STAR, we are a departure!"];
+      }
+      if(data.length == 0) {
+        return ["fail", "STAR name not understood"];
+      }
+      if(!apt.stars.hasOwnProperty(star_id)) {
+        return ["fail", "STAR name not understood"];
+      }
+      
+      this.fms.followSTAR(route);
+
+      return ["ok", {log:"cleared to the " + apt.name + " via the " + star_id + " arrival",
+                  say:"cleared to the " + apt.name + " via the " + star_name + " arrival"}];
     },
     runMoveDataBlock: function(dir) {
       dir = dir.replace('`','');  // remove shortKey
@@ -2853,7 +2917,7 @@ var Aircraft=Fiber.extend(function() {
       // Populate strip fields with default values
       heading.text(heading_to_string(wp.heading));
       (wp.altitude) ? altitude.text(wp.altitude) : altitude.text("-");
-      destination.text(this.destination);
+      destination.text(this.destination || airport_get().icao);
       speed.text(wp.speed);
 
       // When at the apron...
@@ -2861,7 +2925,11 @@ var Aircraft=Fiber.extend(function() {
         heading.addClass("runway");
         heading.text("apron");
         if(wp.altitude) altitude.addClass("runway");
-        if(this.fms.following.sid) destination.addClass("runway");
+        if(this.fms.following.sid) {
+          destination.text(this.fms.following.sid + '.'
+            + this.fms.currentLeg().route.split('.')[2]);
+          destination.addClass("runway");
+        }
         speed.addClass("runway");
       }
 
@@ -2870,7 +2938,11 @@ var Aircraft=Fiber.extend(function() {
         heading.addClass("runway");
         heading.text("taxi");
         if(wp.altitude) altitude.addClass("runway");
-        if(this.fms.following.sid) destination.addClass("runway");
+        if(this.fms.following.sid) {
+          destination.text(this.fms.following.sid + '.'
+            + this.fms.currentLeg().route.split('.')[2]);
+          destination.addClass("runway");
+        }
         speed.addClass("runway");
         if(this.taxi_next) altitude.text("ready");
       }
@@ -2880,14 +2952,22 @@ var Aircraft=Fiber.extend(function() {
         heading.addClass("runway");
         heading.text("ready");
         if(wp.altitude) altitude.addClass("runway");
-        if(this.fms.following.sid) destination.addClass("runway");
+        if(this.fms.following.sid) {
+          destination.text(this.fms.following.sid + '.'
+            + this.fms.currentLeg().route.split('.')[2]);
+          destination.addClass("runway");
+        }
         speed.addClass("runway");
       }
 
       // When taking off...
       else if(this.mode == "takeoff") {
         heading.text("takeoff");
-        if(this.fms.following.sid) destination.addClass("lookingGood");
+        if(this.fms.following.sid) {
+          destination.text(this.fms.following.sid + '.'
+            + this.fms.currentLeg().route.split('.')[2]);
+          destination.addClass("lookingGood");
+        }
       }
 
       // When in normal flight...
@@ -2899,6 +2979,15 @@ var Aircraft=Fiber.extend(function() {
             altitude.addClass("allSet");
             destination.addClass("allSet");
             speed.addClass("allSet");
+          }
+          if(this.fms.following.star) {
+            heading.addClass("followingSTAR");
+            if(this.fms.currentWaypoint().fixRestrictions.altitude)
+              altitude.addClass("followingSTAR");
+            destination.text(this.fms.following.star + '.' + airport_get().icao);
+            destination.addClass("followingSTAR");
+            if(this.fms.currentWaypoint().fixRestrictions.speed)
+              speed.addClass("followingSTAR");
           }
         }
         else if(wp.navmode == "hold") {

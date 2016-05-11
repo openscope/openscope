@@ -992,6 +992,48 @@ var Airport=Fiber.extend(function() {
         return this.sids[id].icao + this.sids[id].suffix[rwy];
       else return this.sids[id].icao;
     },
+    /** Return an array of [Waypoint, fixRestrictions] for a given STAR
+     ** @param {string} id - the identifier for the STAR (eg 'LENDY6')
+     ** @param {string} trn - the transition from which to join the STAR
+     ** @param {string} rwy - (optional) the planned arrival runway
+     ** Note: Passing a value for 'rwy' will help the fms distinguish between
+     **       different branches of a STAR, when it splits into different paths
+     **       for landing on different runways (eg 'HAWKZ4, landing south' vs
+     **       'HAWKZ4, landing north'). Not strictly required, but not passing
+     **       it will cause an incomplete route in many cases (depends on the
+     **       design of the actual STAR in the airport's json file).
+     */
+    getSTAR: function(id, trxn, /*optional*/ rwy) {
+      if(!(id && trxn) || Object.keys(this.stars).indexOf(id) == -1) return null;
+      var fixes = [];
+      var star = this.stars[id];
+
+      // transition portion
+      if(star.hasOwnProperty("transitions"))
+        for(var i=0; i<star.transitions[trxn].length; i++) {
+          if(typeof star.transitions[trxn][i] == "string")
+            fixes.push([star.transitions[trxn][i], null]);
+          else fixes.push(star.transitions[trxn][i]);
+        }
+
+      // body portion
+      if(star.hasOwnProperty("body"))
+        for(var i=0; i<star.body.length; i++) {
+          if(typeof star.body[i] == "string")
+            fixes.push([star.body[i], null]);
+          else fixes.push(star.body[i]);
+        }
+
+      // runway portion
+      if(star.rwy && star.rwy.hasOwnProperty(rwy))
+        for(var i=0; i<star.rwy[rwy].length; i++) {
+          if(typeof star.rwy[rwy][i] == "string")
+            fixes.push([star.rwy[rwy][i], null]);
+          else fixes.push(star.rwy[rwy][i]);
+        }
+
+      return fixes;
+    },
     getRunway: function(name) {
       if(!name) return null;
       name = name.toLowerCase();
