@@ -603,6 +603,7 @@ var Airport=Fiber.extend(function() {
       this.fixes    = {};
       this.real_fixes = {};
       this.sids     = {};
+      this.stars    = {};
       this.maps     = {};
       this.airways  = {};
       this.restricted_areas = [];
@@ -722,6 +723,7 @@ var Airport=Fiber.extend(function() {
         }
       }
       
+      if(data.stars) this.stars = data.stars;
       if(data.airways) this.airways = data.airways;
 
       if(data.maps) {
