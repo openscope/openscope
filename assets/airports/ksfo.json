@@ -35,6 +35,7 @@
     "BOLDR": ["N37.170833", "W122.0761667"],
     "BSR"  : ["N36.181333", "W121.642167"],
     "BSR"  : ["N36.1813333", "W121.6421667"],
+    "BYRON": ["N37d49.37m0", "W121d28.16m0"],
     "CEDES": ["N37.55083", "W121.6246667"],
     "CEPIN": ["N37.536",   "W122.17283" ],
     "CIC"  : ["N39.789825", "W121.847195"],
@@ -44,6 +45,7 @@
     "DIVEC": ["N37.432883", "W121.935008"],
     "DUMBA": ["N37.5035167", "W122.0961472"],
     "DUXBY": ["N37.6958333", "W122.4553333"],
+    "ECA"  : ["N37d50.02m0", "W121d10.28m0"],
     "EDDYY": ["N37.32645", "W122.0997083"],
     "ENI"  : ["N39.053167", "W123.274333"],
     "EPICK": ["N36.9508222", "W121.9526722"],
@@ -68,6 +70,7 @@
     "NEPIC": ["N37.585894", "W122.296883"],
     "NORMM": ["N37.720208", "W122.613172"],
     "OSI"  : ["N37.3925", "W122.28133333"],
+    "OSI":   ["N37.3925", "W122.28133333"],
     "PIRAT": ["N37d15m27.54", "W122d51m48.07"],
     "PONKE": ["N37.458817", "W121.996053"],
     "PORTE": ["N37.489786", "W122.474578"],
@@ -158,8 +161,7 @@
       },
       "draw": [["SEPDY","WAMMY"], ["SENZY","WAMMY","SEGUL","CYPRS","MCKEY"], ["MCKEY","MQO"], ["MQO","FLW*"], ["MQO","RZS*"], ["MQO","GVO*"], ["MCKEY","DAISY","BENET","SXC*"]]
     },
-    
-  "PORTE7": {
+    "PORTE7": {
       "icao": "PORTE7",
       "name": "PORTE SEVEN",
       "rwy": {
@@ -177,8 +179,7 @@
       },
       "draw": [["SEPDY","PORTE"], ["SENZY","PORTE","OSI","WAGES"], ["WAGES","CZQ*"], ["WAGES","AVE*"], ["WAGES","PXN*"], ["WAGES", "FLW*"]]
     },
-    
-	"QUIET7": {
+    "QUIET7": {
       "icao": "QUIET7",
       "name": "Quiet Seven",
       "rwy": {
@@ -197,8 +198,7 @@
       },
       "draw": [["SASLY","REBAS"], ["REBAS","SASSU"], ["SASSU","ENI*"], ["SASSU","SAWNA"], ["SAWNA","RBL*"], ["SAWNA","CIC*"], ["REBAS","SAC*"], ["REBAS","LIN*"]]
     },
-    
-	"MOLEN7": {
+    "MOLEN7": {
       "icao": "MOLEN7",
       "name": "Molen Seven",
       "rwy": {
@@ -212,6 +212,18 @@
         "ENI": ["ENI"]
       },
       "draw": [["SIPLY","_SIPLY233-STINS144","STINS"], ["WESLA","STINS","MOLEN"], ["MOLEN","ENI*"]]
+    }
+  },
+  "stars": {
+    "RISTI4": {
+      "icao": "RISTI4",
+      "name": "Risti Four",
+      "transitions": {
+          "SAC": ["SAC", "BYRON", "MOVDD"],
+          "ECA": ["ECA", "MOVDD"]
+      },
+      "body": ["RISTI", "CEDES"],
+      "draw": [["SAC*", "BYRON", "MOVDD"], ["ECA*", "MOVDD"], ["MOVDD", "RISTI", "CEDES"]]
     }
   },
   "departures": {
