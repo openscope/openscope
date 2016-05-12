@@ -179,7 +179,6 @@
     {
       "_name": "DENDY",
       "radial": 40,
-      "heading": 115,
       "speed": 250,
       "type": "cyclic",
       "offset": 15,
