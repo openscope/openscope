@@ -271,67 +271,89 @@ zlsa.atc.ArrivalWave = zlsa.atc.ArrivalBase.extend(function(base) {
 zlsa.atc.ArrivalSurge = zlsa.atc.ArrivalBase.extend(function(base) {
   return {
     init: function(airport, options) {
-      this.cycleStart = 0;  // game time
-      this.offset = 0;      // Start at the beginning of the surge
-      this.period = 1800;   // 30 minute cycle
-      this.uptime = 10;     // 10 minute surge
-      this.factor = 5;      // "up" rate is 'factor' times greater than the "down" rate
-      this.n = 0;           // scalar value determined in clampSpawnRate (very important!)
+      this.cycleStart = 0;      // game time
+      this.offset = 0;          // Start at the beginning of the surge
+      this.period = 1800;       // 30 minute cycle
+      this.entrail = [5.5, 10]; // miles entrail during the surge [fast,slow]
+      
+      // Calculated
+      this.uptime = 0;      // time length of surge, in minutes
       this.acph_up = 0;     // arrival rate when "in the surge"
       this.acph_dn = 0;     // arrival rate when not "in the surge"
 
       base.init.call(this, airport, options);
       base.parse.call(this, options);
       this.parse(options);
-      this.clampSpawnRate(5.5); // minimum of 5.5nm entrail
+      this.shapeTheSurge();
     },
     /** Arrival Stream Settings
-     ** period: {integer} Optionally specify the length of a cycle in minutes
-     ** offset: {integer} Optionally specify the center of the wave in minutes
+     ** @param {integer} period - Optionally specify the length of a cycle in minutes
+     ** @param {integer} offset - Optionally specify the center of the wave in minutes
+     ** @param {array} entrail - 2-element array with [fast,slow] nm between each
+     **                          successive arrival. Note that the entrail distance on
+     **                          the larger gap ("slow") will be adjusted slightly in
+     **                          order to maintain the requested frequency. This is
+     **                          simply due to the fact that we can't divide perfectly
+     **                          across each period, so we squish the gap a tiny bit to
+     **                          help us hit the mark on the aircraft-per-hour rate.
      */
     parse: function(options) {
       if(options.offset) this.offset = options.offset * 60; // min --> sec
       if(options.period) this.period = options.period * 60; // min --> sec
-      if(options.uptime) this.uptime = options.uptime * 60; // min --> sec
-      if(options.factor) this.factor = options.factor;
+      if(options.entrail) this.entrail = options.entrail;
     },
-    /** Ensures the spawn rate will be at least the required entrail distance
-     ** @param {number} entrail_dist - minimum distance between successive arrivals, in nm
+    /** Determines the time spent at elevated and slow spawn rates
      */
-    clampSpawnRate: function(entrail_dist) {
-      // Formula: frequency*period = n*(period + (factor-1)*uptime)
-      var f = this.frequency, p = this.period, x = this.factor, u = this.uptime;
-      var entrail_interval = entrail_dist * (3600/this.speed);
-      this.n = (f*p) / (u*x + p - u);
-      this.acph_dn = this.n;
-      this.acph_up = x*this.n;
-      var interval_up = 3600/this.acph_up;
+    shapeTheSurge: function() {
+      this.acph_up = this.speed / this.entrail[0];
+      this.acph_dn = this.speed / this.entrail[1];  // to help the uptime calculation
+      this.uptime = (this.period*this.frequency - this.period*this.acph_dn) /
+                    (this.acph_up - this.acph_dn);
+      this.uptime -= this.uptime%(3600/this.acph_up);
+      this.acph_dn = Math.floor(this.frequency*this.period/3600 -
+          Math.round(this.acph_up*this.uptime/3600)) * 3600/(this.period-this.uptime);      // adjust to maintain correct acph rate
 
-      if(interval_up < entrail_interval) {  // not enough time to spawn so many aircraft
-        var diff = entrail_interval - interval_up;
-        if(this.frequency <= this.acph_up) { // uptime can be extended sufficiently to cover the difference
-          var u2 = ((f*p*x/entrail_interval) - p) / (x-1);
-          log("Combination of requested arrival rate (" + f + "acph) and 'uptime' " +
-           "(" +u/60+ "min) in which to spawn impossible to comply with. Reducing to " +
-           entrail_dist + "nm separation for an 'uptime' of " + u2/60 + "min to " +
-           "correct insufficient entrail spacing on route " + $.map(this.fixes,function(v){return v.fix;}).join('-'), LOG_WARNING);
-          this.uptime = u2;
-        }
-        else {  // WAYYYYY too many aircraft requested! Mathematically impossible to deliver.
-          log("Combination of requested arrival rate (" + f + "acph) and 'uptime' " +
-           "(" +u/60+ "min) in which to spawn impossible to comply with, and not " +
-           "enough time to spawn the aircraft, even in a solid line, if they are " +
-           "to comply with the requested " + entrail_dist + "nm entrail spacing. " +
-           "Route in question: "+$.map(this.fixes,function(v){return v.fix;}).join('-'), LOG_ERROR);
-        }
+      // Verify we can comply with the requested arrival rate based on entrail spacing
+      if(this.frequency > this.acph_up) {
+        log(this.airport.icao+": TOO MANY ARRIVALS IN SURGE! Requested: "
+          +this.frequency+"acph | Acceptable Range for requested entrail distance: "
+          +Math.ceil(this.acph_dn)+"acph - "+Math.floor(this.acph_up)+"acph", LOG_WARNING);
+        this.frequency = this.acph_up;
+        this.acph_dn = this.acph_up;
+      }
+      else if(this.frequency < this.acph_dn) {
+        log(this.airport.icao+": TOO FEW ARRIVALS IN SURGE! Requested: "
+          +this.frequency+"acph | Acceptable Range for requested entrail distance: "
+          +Math.ceil(this.acph_dn)+"acph - "+Math.floor(this.acph_up)+"acph", LOG_WARNING);
+        this.frequency = this.acph_dn;
+        this.acph_up = this.acph_dn;
       }
     },
     nextInterval: function() {
       var t = prop.game.time - this.cycleStart;
       var done = t / this.period; // progress in period
-      if(done >= 1) this.cycleStart += this.period;
-      if(t < this.uptime) return 3600/this.acph_up;
-      else return 3600/this.acph_dn;
+      var interval_up = 3600/this.acph_up;
+      var interval_dn = 3600/this.acph_dn;
+      if(done >= 1) {
+        this.cycleStart += this.period;
+        return interval_up;
+      }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+      if(t <= this.uptime) {  // elevated spawn rate
+        return interval_up;
+      }
+      else {  // reduced spawn rate
+        var timeleft = this.period - t;
+        if(timeleft > interval_dn + interval_up) { // plenty of time until new period
+          return interval_dn;
+        }
+        else if(timeleft > interval_dn) {  // next plane will delay the first arrival of the next period
+          return interval_dn - (t+interval_dn+interval_up - this.period);
+        }
+        else {  // next plane is first of elevated spawn rate
+          this.cycleStart += this.period;
+          return interval_up;
+        }
+      }
     },
     start: function() {
       var delay = random(0, 3600 / this.frequency);
