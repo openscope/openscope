@@ -438,17 +438,17 @@ zlsa.atc.Leg = Fiber.extend(function(data, fms) {
         var apt = data.route.split('.')[0];
         var sid = data.route.split('.')[1];
         var trn = data.route.split('.')[2];
-        var rwy = fms.my_aircraft().rwy_dep;
+        var rwy = fms.my_aircraft.rwy_dep;
         this.waypoints = [];
 
         // Remove the placeholder leg (if present)
-        if(fms.my_aircraft().isLanded() && fms.legs.length>0 && fms.legs[0].route == airport_get().icao) {
+        if(fms.my_aircraft.isLanded() && fms.legs.length>0 && fms.legs[0].route == airport_get().icao) {
           fms.legs.splice(0,1); // remove the placeholder leg, to be replaced below with SID Leg
         }
 
         // Generate the waypoints
         if(!rwy) {
-          ui_log(true, fms.my_aircraft().getCallsign() + " unable to fly SID, we haven't been assigned a departure runway!");
+          ui_log(true, fms.my_aircraft.getCallsign() + " unable to fly SID, we haven't been assigned a departure runway!");
           return;
         }
         var pairs = airport_get(apt).getSID(sid, trn, rwy);
@@ -464,7 +464,7 @@ zlsa.atc.Leg = Fiber.extend(function(data, fms) {
           }
           this.waypoints.push(new zlsa.atc.Waypoint({fix:f, fixRestrictions:{alt:a,spd:s}}, fms));
         }
-        if(!this.waypoints[0].speed) this.waypoints[0].speed = fms.my_aircraft().model.speed.cruise;
+        if(!this.waypoints[0].speed) this.waypoints[0].speed = fms.my_aircraft.model.speed.cruise;
       }
       else if(this.type == "star") {
         if(!fms) {
@@ -474,14 +474,14 @@ zlsa.atc.Leg = Fiber.extend(function(data, fms) {
         var trn = data.route.split('.')[0];
         var star = data.route.split('.')[1];
         var apt = data.route.split('.')[2];
-        if(fms.my_aircraft()) var rwy = fms.my_aircraft().rwy_arr;  // preferred!
+        if(fms.my_aircraft) var rwy = fms.my_aircraft.rwy_arr;  // preferred!
         else var rwy = airport_get().runway; // only used during a/c initialization!
 
         this.waypoints = [];
 
         // Generate the waypoints
         // if(!rwy) {  // AND A RUNWAY IS NEEDED
-        //   ui_log(true, fms.my_aircraft().getCallsign() + " unable to fly STAR, we haven't been assigned a departure runway!");
+        //   ui_log(true, fms.my_aircraft.getCallsign() + " unable to fly STAR, we haven't been assigned a departure runway!");
         //   return;
         // }
         var pairs = airport_get(apt).getSTAR(star, trn, rwy);
@@ -497,8 +497,8 @@ zlsa.atc.Leg = Fiber.extend(function(data, fms) {
           }
           this.waypoints.push(new zlsa.atc.Waypoint({fix:f, fixRestrictions:{alt:a,spd:s}}, fms));
         }
-        if(!this.waypoints[0].speed && fms.my_aircraft())
-          this.waypoints[0].speed = fms.my_aircraft().model.speed.cruise;
+        if(!this.waypoints[0].speed && fms.my_aircraft)
+          this.waypoints[0].speed = fms.my_aircraft.model.speed.cruise;
       }
       else if(this.type == "iap") {
         // FUTURE FUNCTIONALITY
@@ -566,6 +566,7 @@ zlsa.atc.AircraftFlightManagementSystem = Fiber.extend(function() {
   return {
     init: function(options) {
       this.my_aircrafts_eid = options.aircraft.eid;
+      this.my_aircraft = options.aircraft;
       this.legs = [];
       this.current = [0,0]; // [current_Leg, current_Waypoint_within_that_Leg]
       this.fp = { altitude: null, route: [] };
@@ -818,12 +819,12 @@ zlsa.atc.AircraftFlightManagementSystem = Fiber.extend(function() {
     followApproach: function(type, rwy, /*optional*/ variant) {
       // Note: 'variant' is set up to pass to this function, but is not used here yet.
       if(type == "ils") {
-        this.my_aircraft().cancelFix();
+        this.my_aircraft.cancelFix();
         this.setCurrent({
           navmode: "rwy",
           runway: rwy.toUpperCase(),
           turn: null,
-          start_speed: this.my_aircraft().speed,
+          start_speed: this.my_aircraft.speed,
         });
       }
       // if-else all the other approach types here...
@@ -958,7 +959,7 @@ zlsa.atc.AircraftFlightManagementSystem = Fiber.extend(function() {
     /** Invokes flySID() for the SID in the flightplan (fms.fp.route)
      */
     clearedAsFiled: function() {
-      this.my_aircraft().runSID(aircraft_get(this.my_aircrafts_eid).destination);
+      this.my_aircraft.runSID(aircraft_get(this.my_aircrafts_eid).destination);
       this.setAll({altitude:airport_get().initial_alt});
       return true;
     },
@@ -984,7 +985,7 @@ zlsa.atc.AircraftFlightManagementSystem = Fiber.extend(function() {
       if(!wp) return;
 
       var cruise_alt = this.fp.altitude;
-      var cruise_spd = this.my_aircraft().model.speed.cruise;
+      var cruise_spd = this.my_aircraft.model.speed.cruise;
 
       for(var i=0; i<wp.length; i++) {
         var a = wp[i].fixRestrictions.alt;
