@@ -219,10 +219,10 @@
       "icao": "RISTI4",
       "name": "Risti Four",
       "transitions": {
-          "SAC": ["SAC", "BYRON", "MOVDD"],
-          "ECA": ["ECA", "MOVDD"]
+          "SAC": ["SAC", ["BYRON", "A60"], ["MOVDD", "A60"]],
+          "ECA": ["ECA", ["MOVDD", "A60"]]
       },
-      "body": ["RISTI", "CEDES"],
+      "body": [["RISTI", "A60"], ["CEDES", "A60"]],
       "draw": [["SAC*", "BYRON", "MOVDD"], ["ECA*", "MOVDD"], ["MOVDD", "RISTI", "CEDES"]]
     }
   },
@@ -256,9 +256,12 @@
   },
   "arrivals": [
     {
-      "heading":  170,
+      "type": "surge",
+      "route":   "SAC.RISTI4.KSFO",
+      "frequency": 12,
+      "altitude":  10000,
       "speed":    250,
-      "fixes":   ["_MOVDD038018", "MOVDD", "RISTI", "CEDES"],
+      "entrail": [15, 30],
       "airlines":  [
         ["ual", 5],
         ["ual/long", 2],
@@ -269,12 +272,7 @@
         ["aal/long", 2],
         ["asa", 1],
         ["fdx", 1]
-      ],
-      "type": "surge",
-      "entrail": [15, 30],
-      "offset": 0,
-      "frequency": 12,
-      "altitude":  10000
+      ]
     },
     {
       "speed":    250,

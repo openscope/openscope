@@ -32,6 +32,7 @@ zlsa.atc.ArrivalBase = Fiber.extend(function(base) {
       this.speed = 250;
       this.timeout = null;
       this.fixes = [];
+      this.route = "";
 
       this.parse(options);
     },
@@ -54,7 +55,8 @@ zlsa.atc.ArrivalBase = Fiber.extend(function(base) {
       if(options.radial) this.radial = radians(options.radial);
       if(options.heading) this.heading = radians(options.heading);
       if(typeof this.altitude == "number") this.altitude = [this.altitude, this.altitude];
-      if(options.fixes) {
+      if(options.route) this.route = options.route;
+      else if(options.fixes) {
         for (var i=0; i<options.fixes.length; i++)
           this.fixes.push({fix: options.fixes[i]});
       }
@@ -81,6 +83,11 @@ zlsa.atc.ArrivalBase = Fiber.extend(function(base) {
         var position = airport_get().getFix(this.fixes[0].fix); // spawn at first fix
         var heading = vradial(vsub(airport_get().getFix(this.fixes[1].fix), position));
       }
+      else if(this.route) { // STAR data is present
+        var star = airport_get().getSTAR(this.route.split('.')[1],this.route.split('.')[0],airport_get().runway);
+        var position = airport_get().getFix(star[0][0]);
+        var heading = vradial(vsub(airport_get().getFix(star[1][0]), position));
+      }
       else {  // spawn outside the airspace along 'this.radial'
         var distance = 2 * this.airport.ctr_radius;
         var position = [sin(this.radial) * distance, cos(this.radial) * distance];
@@ -94,11 +101,13 @@ zlsa.atc.ArrivalBase = Fiber.extend(function(base) {
 
       aircraft_new({
         category:  "arrival",
+        destination:airport_get().icao,
         airline:   airline,
         fleet:     fleet,
         altitude:  altitude,
         heading:   heading,
         waypoints: this.fixes,
+        route:     this.route,
         message:   message,
         position:  position,
         speed:     this.speed

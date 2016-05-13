@@ -474,7 +474,9 @@ zlsa.atc.Leg = Fiber.extend(function(data, fms) {
         var trn = data.route.split('.')[0];
         var star = data.route.split('.')[1];
         var apt = data.route.split('.')[2];
-        var rwy = fms.my_aircraft().rwy_arr;
+        if(fms.my_aircraft()) var rwy = fms.my_aircraft().rwy_arr;  // preferred!
+        else var rwy = airport_get().runway; // only used during a/c initialization!
+
         this.waypoints = [];
 
         // Generate the waypoints
@@ -495,7 +497,8 @@ zlsa.atc.Leg = Fiber.extend(function(data, fms) {
           }
           this.waypoints.push(new zlsa.atc.Waypoint({fix:f, fixRestrictions:{alt:a,spd:s}}, fms));
         }
-        if(!this.waypoints[0].speed) this.waypoints[0].speed = fms.my_aircraft().model.speed.cruise;
+        if(!this.waypoints[0].speed && fms.my_aircraft())
+          this.waypoints[0].speed = fms.my_aircraft().model.speed.cruise;
       }
       else if(this.type == "iap") {
         // FUTURE FUNCTIONALITY
@@ -851,7 +854,7 @@ zlsa.atc.AircraftFlightManagementSystem = Fiber.extend(function() {
       this.appendLeg({type:"star", route:route})
     },
 
-    /** Takes a user provided route and converts it to a semented route the fms can understand
+    /** Takes a single-string route and converts it to a semented route the fms can understand
      ** Note: Input Data Format : "KSFO.OFFSH9.SXC.V458.IPL.J2.JCT..LLO..ACT..KACT"
      **       Return Data Format: ["KSFO.OFFSH9.SXC", "SXC.V458.IPL", "IPL.J2.JCT", "LLO", "ACT", "KACT"]
      */
@@ -1250,14 +1253,14 @@ var Aircraft=Fiber.extend(function() {
           data: ra[i], range: null, inside: false});
       }
 
+      // Initial Runway Assignment
+      if (options.category == "arrival") this.rwy_arr = airport_get().runway;
+      else if (options.category == "departure") this.rwy_dep = airport_get().runway;
+      this.takeoffTime = (options.category == "arrival") ? game_time() : null;
+
       this.parse(options);
       this.createStrip();
       this.updateStrip();
-
-      // Initial Runway Assignment
-      if (this.category == "arrival") this.rwy_arr = airport_get().runway;
-      else if (this.category == "departure") this.rwy_dep = airport_get().runway;
-      this.takeoffTime = (this.category == "arrival") ? game_time() : null;
 
       // Initial contact with ATC
       if(options.message) {
@@ -2299,21 +2302,24 @@ var Aircraft=Fiber.extend(function() {
       }
     },
     parse: function(data) {
-      var keys = 'position model airline callsign category heading altitude destination'.split(' ');
+      var keys = 'position model airline callsign category heading altitude'.split(' ');
       for (var i in keys) {
         if (data[keys[i]]) this[keys[i]] = data[keys[i]];
       }
       if(this.category == "arrival") {
-        if (data.waypoints && data.waypoints.length > 0)
+        if(data.waypoints && data.waypoints.length > 0)
           this.setArrivalWaypoints(data.waypoints);
-        this.rwy_arr = airport_get().rwy
+        this.destination = data.destination.icao;
+        this.rwy_arr = airport_get(this.destination).rwy;
       }
       else if(this.category == "departure" && this.isLanded()) {
         this.speed = 0;
         this.mode = "apron";
         this.rwy_dep = airport_get().rwy;
+        this.destination = data.destination;
       }
 
+      if(data.route) this.fms.customRoute(this.fms.formatRoute(data.route), true);
       if(data.speed) this.speed = data.speed;
       if(data.heading)  this.fms.setCurrent({heading: data.heading});
       if(data.altitude) this.fms.setCurrent({altitude: data.altitude});
