@@ -378,7 +378,8 @@
         ["aca/long", 5],
         ["aal/long", 5]
       ],
-      "type": "wave",
+      "type": "surge",
+      "entrail": [12, 22],
       "frequency": 15,
       "altitude":  10000
     },
@@ -404,7 +405,8 @@
         ["ezy", 5],
         ["ber", 10]
       ],
-      "type": "wave",
+      "type": "surge",
+      "entrail": [15, 30],
       "frequency": 12,
       "altitude":  10000
     },

@@ -327,7 +327,8 @@
         ["gwi", 15],
         ["dlh", 10]
       ],
-      "type": "wave",
+      "type": "surge",
+      "entrail": [10, 35],
       "frequency": 10,
       "altitude": 12000
     },
@@ -339,7 +340,8 @@
         ["gwi", 15],
         ["dlh", 10]
       ],
-      "type": "wave",
+      "type": "surge",
+      "entrail": [10, 35],
       "frequency": 10,
       "offset": 30,
       "altitude": 14000
@@ -354,7 +356,8 @@
         ["aua", 5],
         ["thy", 5]
       ],
-      "type": "wave",
+      "type": "surge",
+      "entrail": [10, 35],
       "frequency": 10,
       "offset": 60,
       "altitude": 9000

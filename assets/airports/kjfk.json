@@ -246,8 +246,7 @@
       "fixes": ["HOGGS", "PANZE", "KARRS", "CAMRN"],
       "altitude": 11000,
       "speed": 250,
-      "type": "wave",
-      "offset": 15,
+      "type": "random",
       "frequency": 8,
       "airlines": [
         ["flg", 8],
@@ -266,15 +265,10 @@
     },
     {
       "_name": "KINGSTON ONE",
-
-      "type": "wave",
-      "altitude": 15000,
-
       "fixes": ["IGN", "LOLLY", "DOORE", "LENDY", "LGA"],
-      "type": "wave",
+      "type": "random",
       "altitude": 15000,
       "speed": 250,
-      "offset": 0,
       "frequency": 8,
       "airlines": [
         ["dal", 12],

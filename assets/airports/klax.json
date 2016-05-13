@@ -325,8 +325,7 @@
         ["uae", 2],
         ["vir", 2]
       ],
-      "type": "wave",
-      "offset": 5,
+      "type": "random",
       "frequency": 8,
       "altitude":  10000
     },

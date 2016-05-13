@@ -274,8 +274,7 @@
         ["aal/90default", 10],
         ["aal/90long", 10]
       ],
-      "type": "wave",
-      "offset": 5,
+      "type": "random",
       "frequency": 8,
       "altitude":  10000
     },

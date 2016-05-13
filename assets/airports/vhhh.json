@@ -396,7 +396,8 @@
         ["ual/long", 3],
         ["kal/long", 3]
       ],
-      "type": "wave",
+      "type": "surge",
+      "entrail": [10, 22],
       "frequency": 15,
       "altitude":  10000
     },
@@ -433,7 +434,8 @@
         ["dlh/long", 5],
         ["uae", 1]
       ],
-      "type": "wave",
+      "type": "surge",
+      "entrail": [15, 30],
       "frequency": 12,
       "altitude":  10000
     }

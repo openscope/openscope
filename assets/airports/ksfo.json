@@ -258,7 +258,8 @@
         ["asa", 1],
         ["fdx", 1]
       ],
-      "type": "wave",
+      "type": "surge",
+      "entrail": [15, 30],
       "offset": 0,
       "frequency": 12,
       "altitude":  10000
@@ -285,7 +286,8 @@
         ["asa", 2],
         ["swa", 5]
       ],
-      "type": "wave",
+      "type": "random",
+      "entrail": [5.5, 10],
       "offset": 3,
       "frequency": 8,
       "altitude":  10000

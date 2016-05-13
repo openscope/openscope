@@ -675,7 +675,7 @@
         ["fdx", 1],
         ["ups", 1]
       ],
-      "type": "wave",
+      "type": "random",
       "offset": 0,
       "frequency": 8,
       "altitude":  10000

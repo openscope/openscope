@@ -360,7 +360,8 @@
         ["sas", 3],
         ["ual", 1]
       ],
-      "type": "wave",
+      "type": "surge",
+      "entrail": [10, 35],
       "frequency": 10,
       "altitude": 10000
     }

@@ -285,7 +285,8 @@
         ["aca",  2],
         ["ual",  5]
       ],
-      "type": "wave",
+      "type": "surge",
+      "entrail": [10, 35],
       "offset": 0,
       "frequency": 10,
       "altitude":  10000
@@ -317,8 +318,7 @@
         ["dlh", 3],
         ["klm", 1]
       ],
-      "type": "wave",
-      "offset": 30,
+      "type": "random",
       "frequency": 5,
       "altitude":  10000
     },
@@ -347,8 +347,7 @@
         ["ryr", 10],
         ["baw",  5]
       ],
-      "type": "wave",
-      "offset": 10,
+      "type": "random",
       "frequency": 5,
       "altitude":  10000
     }

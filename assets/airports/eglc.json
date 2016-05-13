@@ -1032,7 +1032,8 @@
         ["baw",   10],
         ["fastga", 3]
       ],
-      "type": "wave",
+      "type": "random",
+      "entrail": [10, 35],
       "offset": 10,
       "frequency": 5,
       "altitude": 10000
@@ -1102,7 +1103,7 @@
         ["baw",   10],
         ["fastga", 3]
       ],
-      "type": "wave",
+      "type": "random",
       "offset": 0,
       "frequency": 5,
       "altitude": 9000
@@ -1116,7 +1117,7 @@
         ["baw",   10],
         ["fastga", 3]
       ],
-      "type": "wave",
+      "type": "random",
       "offset": 0,
       "frequency": 5,
       "altitude": 9000
