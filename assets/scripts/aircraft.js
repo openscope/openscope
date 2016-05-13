@@ -474,16 +474,10 @@ zlsa.atc.Leg = Fiber.extend(function(data, fms) {
         var trn = data.route.split('.')[0];
         var star = data.route.split('.')[1];
         var apt = data.route.split('.')[2];
-        if(fms.my_aircraft) var rwy = fms.my_aircraft.rwy_arr;  // preferred!
-        else var rwy = airport_get().runway; // only used during a/c initialization!
-
+        var rwy = fms.my_aircraft.rwy_arr;
         this.waypoints = [];
 
         // Generate the waypoints
-        // if(!rwy) {  // AND A RUNWAY IS NEEDED
-        //   ui_log(true, fms.my_aircraft.getCallsign() + " unable to fly STAR, we haven't been assigned a departure runway!");
-        //   return;
-        // }
         var pairs = airport_get(apt).getSTAR(star, trn, rwy);
         for (var i=0; i<pairs.length; i++) { // for each fix/restr pair
           var f = pairs[i][0];
@@ -497,7 +491,7 @@ zlsa.atc.Leg = Fiber.extend(function(data, fms) {
           }
           this.waypoints.push(new zlsa.atc.Waypoint({fix:f, fixRestrictions:{alt:a,spd:s}}, fms));
         }
-        if(!this.waypoints[0].speed && fms.my_aircraft)
+        if(!this.waypoints[0].speed)
           this.waypoints[0].speed = fms.my_aircraft.model.speed.cruise;
       }
       else if(this.type == "iap") {
@@ -1001,7 +995,7 @@ zlsa.atc.AircraftFlightManagementSystem = Fiber.extend(function() {
             var maxAlt = parseInt(a.replace("-","")) * 100;
             var alt = Math.min(maxAlt, cruise_alt) // climb as high as restrictions permit
           }
-          else var alt = parseInt(a); // cross AT this altitude
+          else var alt = parseInt(a) * 100; // cross AT this altitude
         }
         else var alt = Math.min(airport_get().ctr_ceiling, cruise_alt);
         wp[i].altitude = alt; // add altitudes to wp
@@ -1026,6 +1020,69 @@ zlsa.atc.AircraftFlightManagementSystem = Fiber.extend(function() {
       this.legs[legIndex].waypoints = wp;
       return true;
     },
+
+    /** Descends aircraft in compliance with the STAR they're following
+     ** Adds altitudes and speeds to each waypoint in accordance with the STAR
+     */
+    descendViaSTAR: function() {
+      // Find the STAR leg
+      var wp, legIndex;
+      for(var l in this.legs) {
+        if(this.legs[l].type == "star") {
+          legIndex = l;
+          wp = this.legs[l].waypoints; break;
+        }
+      }
+      if(!wp) return;
+
+      var start_alt = this.currentWaypoint().altitude || this.my_aircraft.altitude;
+      var start_spd = this.currentWaypoint().speed || this.my_aircraft.model.speed.cruise;
+
+      for(var i=0; i<wp.length; i++) {
+        if(i >= 1) {
+          start_alt = wp[i-1].altitude;
+          start_spd = wp[i-1].speed;
+        }
+        var a = wp[i].fixRestrictions.alt;
+        var s = wp[i].fixRestrictions.spd;
+
+        // Altitude Control
+        if(a) {
+          if(a.indexOf("+") != -1) {  // at-or-above altitude restriction
+            var minAlt = parseInt(a.replace("+","")) * 100;
+            var alt = Math.max(minAlt, start_alt);
+          }
+          else if(a.indexOf("-") != -1) {
+            var maxAlt = parseInt(a.replace("-","")) * 100;
+            var alt = Math.min(maxAlt, start_alt) // climb as high as restrictions permit
+          }
+          else var alt = parseInt(a) * 100; // cross AT this altitude
+        }
+        else var alt = start_alt;
+        wp[i].altitude = alt; // add altitudes to wp
+
+        // Speed Control
+        if(s) {
+          if(s.indexOf("+") != -1) {  // at-or-above speed restriction
+            var minSpd = parseInt(s.replace("+",""));
+            var spd = Math.min(minSpd, start_spd);
+          }
+          else if(s.indexOf("-") != -1) {
+            var maxSpd = parseInt(s.replace("-",""));
+            var spd = Math.min(maxSpd, start_spd) // go as fast as restrictions permit
+          }
+          else var spd = parseInt(s); // cross AT this speed
+        }
+        else var spd = start_spd;
+        wp[i].speed = spd;  // add speeds to wp
+      }
+
+      // change fms waypoints to wp (which contains the altitudes and speeds)
+      this.legs[legIndex].waypoints = wp;
+      return true;
+    },
+
+
 
     /************************** FMS QUERY FUNCTIONS **************************/
 
@@ -2308,10 +2365,10 @@ var Aircraft=Fiber.extend(function() {
         if (data[keys[i]]) this[keys[i]] = data[keys[i]];
       }
       if(this.category == "arrival") {
-        if(data.waypoints && data.waypoints.length > 0)
+        if(data.waypoints.length > 0)
           this.setArrivalWaypoints(data.waypoints);
-        this.destination = data.destination.icao;
-        this.rwy_arr = airport_get(this.destination).rwy;
+        this.destination = data.destination;
+        this.rwy_arr = airport_get(this.destination).runway;
       }
       else if(this.category == "departure" && this.isLanded()) {
         this.speed = 0;
@@ -2320,11 +2377,14 @@ var Aircraft=Fiber.extend(function() {
         this.destination = data.destination;
       }
 
-      if(data.route) this.fms.customRoute(this.fms.formatRoute(data.route), true);
       if(data.speed) this.speed = data.speed;
       if(data.heading)  this.fms.setCurrent({heading: data.heading});
       if(data.altitude) this.fms.setCurrent({altitude: data.altitude});
       this.fms.setCurrent({speed: data.speed || this.model.speed.cruise});
+      if(data.route) {  // filed a STAR
+        this.fms.customRoute(this.fms.formatRoute(data.route), true);
+        this.fms.descendViaSTAR();
+      }
     },
     pushHistory: function() {
       this.history.push([this.position[0], this.position[1]]);
@@ -3366,6 +3426,7 @@ function aircraft_get(eid) {
 
 // Get aircraft by callsign
 function aircraft_get_by_callsign(callsign) {
+  callsign = String(callsign);
   for(var i=0; i<prop.aircraft.list.length; i++)
     if(prop.aircraft.list[i].callsign == callsign.toLowerCase())
       return prop.aircraft.list[i];
