@@ -588,7 +588,7 @@ var Runway=Fiber.extend(function(base) {
         this.angle    = vradial(vsub(farSide.position, thisSide.position));
       }
       if(data.ils) this.ils.enabled = data.ils[end];
-      if(data.ils_distance) this.ils.loc_maxDist = data.ils_distance[end];
+      if(data.ils_distance) this.ils.loc_maxDist = km(data.ils_distance[end]);
       if(data.ils_gs_maxHeight) this.ils.gs_maxHeight = data.ils_gs_maxHeight[end];
       if(data.glideslope) this.ils.gs_gradient = radians(data.glideslope[end]);
       if(data.name_offset) this.labelPos = data.name_offset[end];
