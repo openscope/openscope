@@ -790,6 +790,8 @@ var Airport=Fiber.extend(function() {
         }
       }
 
+      this.checkFixes();  // verify we know where all the fixes are
+
 
       // ***** Generate Airport Metadata *****
 
@@ -1051,6 +1053,95 @@ var Airport=Fiber.extend(function() {
         if(this.runways[i][1].name.toLowerCase() == name) return this.runways[i][1];
       }
       return null;
+    },
+    /** Verifies all fixes used in the airport also have defined positions
+     */
+    checkFixes: function() {
+      var fixes = [];
+
+      // Gather fixes used by SIDs
+      if(this.hasOwnProperty("sids")) {
+        for(var s in this.sids) {
+          if(this.sids[s].hasOwnProperty("rwy")) {  // runway portion
+            for(var r in this.sids[s].rwy)
+              for(var i in this.sids[s].rwy[r]) {
+                if(typeof this.sids[s].rwy[r][i] == "string")
+                  fixes.push(this.sids[s].rwy[r][i]);
+                else fixes.push(this.sids[s].rwy[r][i][0]);
+              }
+          }
+          if(this.sids[s].hasOwnProperty("body")) { // body portion
+            for(var i in this.sids[s].body) {
+              if(typeof this.sids[s].body[i] == "string")
+                fixes.push(this.sids[s].body[i]);
+              else fixes.push(this.sids[s].body[i][0]);
+            }
+          }
+          if(this.sids[s].hasOwnProperty("transtitions")) { // transtitions portion
+            for(var t in this.sids[s].transitions)
+              for(var i in this.sids[s].transitions[t]) {
+                if(typeof this.sids[s].transitions[t][i] == "string")
+                  fixes.push(this.sids[s].transitions[t][i]);
+                else fixes.push(this.sids[s].transitions[t][i][0]);
+              }
+          }
+          if(this.sids[s].hasOwnProperty("draw")) { // draw portion
+            for(var i in this.sids[s].draw)
+              for(var j in this.sids[s].draw[i])
+                fixes.push(this.sids[s].draw[i][j].replace('*',''));
+          }
+        }
+      }
+
+      // Gather fixes used by STARs
+      if(this.hasOwnProperty("stars")) {
+        for(var s in this.stars) {
+          if(this.stars[s].hasOwnProperty("transtitions")) { // transtitions portion
+            for(var t in this.stars[s].transitions)
+              for(var i in this.stars[s].transitions[t]) {
+                if(typeof this.stars[s].transitions[t][i] == "string")
+                  fixes.push(this.stars[s].transitions[t][i]);
+                else fixes.push(this.stars[s].transitions[t][i][0]);
+              }
+          }
+          if(this.stars[s].hasOwnProperty("body")) { // body portion
+            for(var i in this.stars[s].body) {
+              if(typeof this.stars[s].body[i] == "string")
+                fixes.push(this.stars[s].body[i]);
+              else fixes.push(this.stars[s].body[i][0]);
+            }
+          }
+          if(this.stars[s].hasOwnProperty("rwy")) {  // runway portion
+            for(var r in this.stars[s].rwy)
+              for(var i in this.stars[s].rwy[r]) {
+                if(typeof this.stars[s].rwy[r][i] == "string")
+                  fixes.push(this.stars[s].rwy[r][i]);
+                else fixes.push(this.stars[s].rwy[r][i][0]);
+              }
+          }
+          if(this.stars[s].hasOwnProperty("draw")) { // draw portion
+            for(var i in this.stars[s].draw)
+              for(var j in this.stars[s].draw[i])
+                fixes.push(this.stars[s].draw[i][j].replace('*',''));
+          }
+        }
+      }
+
+      // Gather fixes used by airways
+      if(this.hasOwnProperty("airways")) {
+        for(var a in this.airways)
+          for(var i in this.airways[a])
+            fixes.push(this.airways[a][i]);
+      }
+
+      // Get (unique) list of fixes used that are not in 'this.fixes'
+      var missing = fixes.filter(f => !this.fixes.hasOwnProperty(f)).sort();
+      for(var i=0; i<missing.length-1; i++)
+        if(missing[i] == missing[i+1]) missing.splice(i,1); // remove duplicates
+      if(missing.length > 0) {  // there are some... yell at the airport designer!!! :)
+        log(this.icao + " uses the following fixes which are not listed in " +
+          "airport.fixes: " +missing.join(' '), LOG_WARNING);
+      }
     }
   };
 });
