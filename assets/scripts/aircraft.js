@@ -1543,6 +1543,10 @@ var Aircraft=Fiber.extend(function() {
 
         debug: {func: 'runDebug'},
 
+        descendViaSTAR: {
+          func: 'runDescendViaSTAR',
+          synonyms: ['dvs']},
+
         direct: {
           func: 'runDirect',
           synonyms: ['dct', 'pd']},
@@ -1969,9 +1973,15 @@ var Aircraft=Fiber.extend(function() {
     },
     runClimbViaSID: function() {
       if(this.fms.climbViaSID())
-      return ['ok', {log: "climb via the " + this.destination + " departure",
+      return ['ok', {log: "descend via the " + this.destination + " departure",
         say: "climb via the " + airport_get().sids[this.destination].name + " departure"}];
       else ui_log(true, this.getCallsign() + ", unable to climb via SID");
+    },
+    runDescendViaSTAR: function() {
+      if(this.fms.descendViaSTAR() && this.fms.following.star)
+      return ['ok', {log: "descend via the " + this.fms.following.star + " arrival",
+        say: "descend via the " + airport_get().stars[this.fms.following.star].name + " arrival"}];
+      else ui_log(true, this.getCallsign() + ", unable to descend via STAR");
     },
     runSpeed: function(data) {
       if(data[0] == "+" || data[0] == "-") {  //shortKey '+' or '-' in use
