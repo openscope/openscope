@@ -2155,7 +2155,8 @@ var Aircraft=Fiber.extend(function() {
       if(!apt.sids.hasOwnProperty(sid_id)) {
         return ["fail", "SID name not understood"];
       }
-      
+
+      if(!this.rwy_dep) this.rwy_dep = airport_get().runway;
       this.fms.followSID(route);
 
       return ["ok", {log:"cleared to destination via the " + sid_id + " departure, then as filed",
