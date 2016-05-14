@@ -3373,7 +3373,7 @@ function aircraft_update() {
       remove = true;
     }
     // Clean up the screen from aircraft that are too far
-    if(!aircraft_visible(aircraft,2) && !aircraft.inside_ctr){
+    if((!aircraft_visible(aircraft,2) && !aircraft.inside_ctr) && !aircraft.fms.following.star){
       if(aircraft.category == "arrival") {
         remove = true;
       }
