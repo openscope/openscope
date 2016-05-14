@@ -2331,7 +2331,7 @@ var Aircraft=Fiber.extend(function() {
           heading: this.heading,
           speed: curr.speed
         });
-        this.fms.nextWaypoint();
+        this.fms.nextLeg();
         this.updateStrip();
         return true;
       }
