@@ -878,7 +878,6 @@ function canvas_draw_poly(cc, poly) {
   cc.closePath();
   cc.stroke();
   cc.fill();
-  cc.clip();      // hide range rings outside of airspace boundary
 }
 
 function canvas_draw_terrain(cc) {
