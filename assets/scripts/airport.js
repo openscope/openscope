@@ -422,9 +422,9 @@ zlsa.atc.DepartureBase = Fiber.extend(function(base) {
      */
     start: function() {
       var r = Math.floor(random(2, 5.99));
-      for(var i=1;i<=r;i++) this.spawnAircraft(true); // spawn 2-5 departures to start with
-      game_timeout(this.spawnAircraft, random(this.frequency*.5 , // start spawning loop
-        this.frequency*1.5), this, false);
+      for(var i=1;i<=r;i++) this.spawnAircraft(false); // spawn 2-5 departures to start with
+      this.timeout = game_timeout(this.spawnAircraft, random(this.frequency*.5 , // start spawning loop
+        this.frequency*1.5), this, true);
     },
     /** Spawn a new aircraft
      */
