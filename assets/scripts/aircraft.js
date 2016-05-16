@@ -1319,16 +1319,6 @@ var Aircraft=Fiber.extend(function() {
       this.parse(options);
       this.createStrip();
       this.updateStrip();
-
-      // Initial contact with ATC
-      if(options.message) {
-        if(this.category == "arrival" && aircraft_visible(this) && !this.inside_ctr) {
-          this.callUp();
-          this.inside_ctr = true;
-        } else if(this.category == "departure") {
-          this.callUp();
-        }
-      }
     },
     setArrivalWaypoints: function(waypoints) {
       for (var i=0; i<waypoints.length; i++) {  // add arrival fixes to fms
