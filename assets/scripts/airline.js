@@ -215,7 +215,9 @@ function airline_init() {
   airline_load("SXD");
   airline_load("TAM");
   airline_load("TCF");
+  airline_load("TCX");
   airline_load("THY");
+  airline_load("TOM");
   airline_load("TSO");
   airline_load("TUI");
   airline_load("TWA");

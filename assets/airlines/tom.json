@@ -1,0 +1,24 @@
+{
+  "name": "Thomson Airways",
+  "callsign": {
+    "name": "Tomson",
+    "length": 3,
+    "alpha": true
+  },
+  "fleets": {
+    "long": [
+      ["B752", 14],
+      ["B788", 9],
+	    ["B763", 3]
+    ],
+    "short": [
+      ["B738", 31]
+    ],
+    "default": [
+      ["B738", 31],
+      ["B752", 14],
+      ["B788", 9],
+      ["B763", 3]
+    ]
+  }
+}
