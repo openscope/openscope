@@ -819,6 +819,7 @@ function canvas_draw_airspace_border(cc) {
   // draw airspace
   for(var i=0; i<airport_get().airspace.length; i++) {
     canvas_draw_poly(cc, $.map(airport_get().perimeter.poly, function(v){return [v.position];}));
+    cc.clip();
   }
 }
 
@@ -878,7 +879,6 @@ function canvas_draw_poly(cc, poly) {
   cc.closePath();
   cc.stroke();
   cc.fill();
-  cc.clip();      // hide range rings outside of airspace boundary
 }
 
 function canvas_draw_terrain(cc) {
