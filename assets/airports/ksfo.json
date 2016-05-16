@@ -21,118 +21,136 @@
     "speed": 5
   },
   "fixes": {
-    "WAGES": ["N36d50m46.00", "W121d44m22.00"],
-    "HEMAN": ["N37d32m1.86", "W122d10m24.00"],
-    "CZQ": ["N36d53m3.56", "W119d48m54.48"],
-    "AVE": ["N35d38m49.11", "W119d58m42.98"],
-    "PXN": ["N36d42m55.56", "W120d46m43.26"],
-    "PIRAT": ["N37d15m27.54", "W122d51m48.07"],
-    "BERKS": ["N37.860861", "W122.211678"],
-    "NEPIC": ["N37.585894", "W122.296883"],
-    "FAITH": ["N37.40121667", "W121.8619"],
-    "DIVEC": ["N37.432883", "W121.935008"],
-    "PONKE": ["N37.458817", "W121.996053"],
-    "WETOR": ["N37.484719", "W122.057142"],
-    "ROKME": ["N37.510592", "W122.118275"],
-    "CEPIN": ["N37.536",   "W122.17283" ],
+    "_FAITH085033": ["N37d19.07m0", "W121d10.80m0"],
+    "_MOVDD038018": ["N37d50.88m0", "W121d09.11m0"],
+    "_PIRAT237029": ["N37d05.73m0", "W123d25.99m0"],
+    "_PYE306024"  : ["N38d23.95m0", "W123d10.44m0"],
+    "_SIPLY233-STINS144": ["N37.468500", "W122.575333"],
+    "_SKUNK155020": ["N36d40.83m0", "W121d57.04m0"],
+    "ALWYS": ["N37d38.01m0", "W120d57.57m0"],
+    "ANJEE": ["N36d44.78m0", "W121d57.89m0"],
+    "ARCHI": ["N37.4908333", "W121.8755"],
+    "AVE"  : ["N35d38m49.11", "W119d58m42.98"],
     "AXMUL": ["N37.571517", "W122.257208"],
+    "BDEGA": ["N37d49.38m0", "W122d35.53m0"],
+    "BENET": ["N33.596667", "W118.841833"],
+    "BERKS": ["N37.860861", "W122.211678"],
+    "BGGLO": ["N38d13.48m0", "W122d46.05m0"],
+    "BOLDR": ["N37.170833", "W122.0761667"],
+    "BRIXX": ["N37d37.07m0", "W122d22.47m0"],
+    "BSR"  : ["N36.181333", "W121.642167"],
+    "BSR"  : ["N36.1813333", "W121.6421667"],
+    "BYRON": ["N37d49.37m0", "W121d28.16m0"],
+    "CARME": ["N36d27.31m0", "W121d52.78m0"],
+    "CEDES": ["N37.55083", "W121.6246667"],
+    "CEPIN": ["N37.536",   "W122.17283" ],
+    "CIC"  : ["N39.789825", "W121.847195"],
+    "CORKK": ["N37d44.02m0", "W122d29.85m0"],
+    "CYPRS": ["N36.422333", "W122.432167"],
+    "CZQ"  : ["N36d53m3.56", "W119d48m54.48"],
+    "DAISY": ["N34.259500", "W120.131333"],
+    "DEEAN": ["N38d20.95m0", "W123d18.14m0"],
+    "DIVEC": ["N37.432883", "W121.935008"],
     "DUMBA": ["N37.5035167", "W122.0961472"],
+    "DUXBY": ["N37.6958333", "W122.4553333"],
+    "DYAMD": ["N37d41.95m0", "W120d24.27m0"],
+    "ECA"  : ["N37d50.02m0", "W121d10.28m0"],
+    "EDDYY": ["N37.32645", "W122.0997083"],
+    "ENI"  : ["N39.053167", "W123.274333"],
+    "EPICK": ["N36.9508222", "W121.9526722"],
+    "EUGEN": ["N37.093447", "W122.444214"],
+    "FAITH": ["N37.40121667", "W121.8619"],
+    "FLOWZ": ["N37d35.55m0", "W121d15.88m0"],
+    "FLW"  : ["N35.093084", "W119.865579"],
+    "FRELY": ["N37.510575", "W121.7931528"],
+    "FRIGG": ["N37d27.93m0", "W121d15.44m0"],
+    "GEEHH": ["N38d27.20m0", "W122d25.72m0"],
+    "GROAN": ["N37.5903333", "W121.2851667"],
+    "GVO"  : ["N34.531320", "W120.091088"],
+    "HADLY": ["N37.402358", "W122.575592"],
+    "HEMAN": ["N37d32m1.86", "W122d10m24.00"],
+    "JONNE": ["N38d33.06m0", "W122d51.80m0"],
+    "LAANE": ["N37d39.54m0", "W120d44.84m0"],
+    "LIN"  : ["N38.074588", "W121.003858"],
+    "LOCKE": ["N37.7135", "W121.5096666667"],
+    "LOZIT": ["N37.899333", "W122.6731667"],
+    "LUVVE": ["N37.497367", "W122.231053"],
+    "MCKEY": ["N35.483167", "W121.083167"],
     "MEHTA": ["N37.461692", "W121.996525" ],
     "MENLO": ["N37.46367",  "W122.15367" ],
-    "SWELS": ["N37.3681556","W122.1160806"],
-    "EDDYY": ["N37.32645", "W122.0997083"],
-    "EPICK": ["N36.9508222", "W121.9526722"],
+    "MOLEN": ["N37.997872", "W123.086797"],
     "MOVDD": ["N37.661333", "W121.4481667"],
-    "RISTI": ["N37.60817", "W121.53333"],
-    "CEDES": ["N37.55083", "W121.6246667"],
-    "FRELY": ["N37.510575", "W121.7931528"],
-    "ARCHI": ["N37.4908333", "W121.8755"],
-    "BOLDR": ["N37.170833", "W122.0761667"],
-    "SKUNK": ["N37.007594", "W122.033228"],
-    "PYE":   ["N38.0798333", "W122.8678333"],
-    "DUXBY": ["N37.6958333", "W122.4553333"],
-    "HADLY": ["N37.402358", "W122.575592"],
-    "OSI":   ["N37.3925", "W122.28133333"],
-    "TAILS": ["N37.272861", "W122.520369"],
-    "SAU":   ["N37.8553333", "W122.5228333"],
-    "BSR":   ["N36.1813333", "W121.6421667"],
-    "EUGEN": ["N37.093447", "W122.444214"],
-    "GROAN": ["N37.5903333", "W121.2851667"],
-    "LOCKE": ["N37.7135", "W121.5096666667"],
-    "UPEND": ["N38.032",  "W122.097"],
-    "STINS": ["N37.823667", "W122.7566667"],
-    "LOZIT": ["N37.899333", "W122.6731667"],
-    "SFO":   ["N37.6195", "W122.3738333"],
-
-    "SEPDY":   ["N37.685667", "W122.363667"],
-    "SENZY":   ["N37.666500", "W122.485167"],
-    "ZUPAX":   ["N37.254497", "W122.588508"],
-    "NORMM":   ["N37.720208", "W122.613172"],
-    "LUVVE":   ["N37.497367", "W122.231053"],
-    "WESLA":   ["N37.664372", "W122.480292"],
-    "MOLEN":   ["N37.997872", "W123.086797"],
-    "WAMMY":   ["N37.541064", "W122.724056"],
-    "SEGUL":   ["N36.963036", "W122.572131"],
-    "PORTE":   ["N37.489786", "W122.474578"],
-    "SASLY":   ["N37.678500", "W122.334500"],
-    "REBAS":   ["N37.940683", "W122.383667"],
-    "SASSU":   ["N38.367867", "W122.390483"],
-    "CYPRS": ["N36.422333", "W122.432167"],
-    "MCKEY": ["N35.483167", "W121.083167"],
-    "SHOEY": ["N36.746000", "W122.136000"],
-    "SNS"  : ["N36.663833", "W121.603167"],
-    "BSR"  : ["N36.181333", "W121.642167"],
-    "_SIPLY233-STINS144": ["N37.468500", "W122.575333"],
     "MQO"  : ["N35.252255", "W120.759566"],
-    "FLW"  : ["N35.093084", "W119.865579"],
-    "RZS"  : ["N34.509534", "W119.770992"],
-    "GVO"  : ["N34.531320", "W120.091088"],
-    "DAISY": ["N34.259500", "W120.131333"],
-    "BENET": ["N33.596667", "W118.841833"],
-    "SXC"  : ["N33.375000", "W118.419833"],
-    "ENI"  : ["N39.053167", "W123.274333"],
-    "SAWNA": ["N38.868500", "W122.401833"],
+    "MSCAT": ["N38d34.00m0", "W122d40.30m0"],
+    "MXW"  : ["N39d19.05m0", "W122d13.29m0"],
+    "NEPIC": ["N37.585894", "W122.296883"],
+    "NORMM": ["N37.720208", "W122.613172"],
+    "OSI"  : ["N37.3925", "W122.28133333"],
+    "OSI":   ["N37.3925", "W122.28133333"],
+    "PIRAT": ["N37d15m27.54", "W122d51m48.07"],
+    "PONKE": ["N37.458817", "W121.996053"],
+    "PORTE": ["N37.489786", "W122.474578"],
+    "PXN"  : ["N36d42m55.56", "W120d46m43.26"],
+    "PYE"  : ["N38.0798333", "W122.8678333"],
+    "QUINN": ["N38d28.80m0", "W123d05.29m0"],
     "RBL"  : ["N40.098833", "W122.236333"],
-    "CIC"  : ["N39.789825", "W121.847195"],
+    "REBAS": ["N37.940683", "W122.383667"],
+    "RISTI": ["N37.60817", "W121.53333"],
+    "ROKME": ["N37.510592", "W122.118275"],
+    "RZS"  : ["N34.509534", "W119.770992"],
     "SAC"  : ["N38.443745", "W121.551649"],
-    "LIN"  : ["N38.074588", "W121.003858"],
-    "SIPLY": ["N37.585333", "W122.233500"]
+    "SASLY": ["N37.678500", "W122.334500"],
+    "SASSU": ["N38.367867", "W122.390483"],
+    "SAU"  : ["N37.8553333", "W122.5228333"],
+    "SAWNA": ["N38.868500", "W122.401833"],
+    "SEGUL": ["N36.963036", "W122.572131"],
+    "SENZY": ["N37.666500", "W122.485167"],
+    "SEPDY": ["N37.685667", "W122.363667"],
+    "SFO"  : ["N37.6195", "W122.3738333"],
+    "SHOEY": ["N36.746000", "W122.136000"],
+    "SIPLY": ["N37.585333", "W122.233500"],
+    "SKUNK": ["N37.007594", "W122.033228"],
+    "SNORA": ["N37d38.73m0", "W119d48.38m0"],
+    "SNS"  : ["N36.663833", "W121.603167"],
+    "SOOIE": ["N37d25.71m0", "W121d36.46m0"],
+    "STINS": ["N37.823667", "W122.7566667"],
+    "SWELS": ["N37.3681556","W122.1160806"],
+    "SXC"  : ["N33.375000", "W118.419833"],
+    "TAILS": ["N37.272861", "W122.520369"],
+    "UPEND": ["N38.032",  "W122.097"],
+    "WAGES": ["N36d50m46.00", "W121d44m22.00"],
+    "WAMMY": ["N37.541064", "W122.724056"],
+    "WESLA": ["N37.664372", "W122.480292"],
+    "WETOR": ["N37.484719", "W122.057142"],
+    "YOSEM": ["N37d45.76m0", "W118d46.00m0"],
+    "ZUPAX": ["N37.254497", "W122.588508"]
   },
   "runways":[
     {
       "name":        ["28R", "10L"],
       "name_offset": [[0, 0.3], [0, 0.3]],
-      "oldposition":  [0, 0.229],
       "end":    [ ["N37.6135324", "W122.3571410"], ["N37.6287386", "W122.3933911"]],
-      "length":      3.62,
-      "lateral_separaton": 300,
-      "ils":         [true, false]
+      "ils":         [true, true],
+      "ils_distance":[30, 25]
     },
     {
       "name":        ["28L", "10R"],
       "name_offset": [[0, -0.2], [0, -0.3]],
-      "oldposition":    [0, 0],
       "end":    [["N37.6117091", "W122.3583420"], ["N37.6262900", "W122.3931054"]],
-      "length":      3.47,
-      "_note": "Lateral separation simulates visual approaches",
-      "lateral_separaton": 600,
-      "ils":         [true, false]
+      "ils":         [true, true],
+      "ils_distance":[30, 25]
     },
     {
       "name":        ["19L", "1R"],
       "name_offset": [[0.3, -0.1], [0.4, 0]],
-      "oldposition":    [0.8, 0.3],
       "end":    [["N37.6273412","W122.3671104" ], ["N37.6063291", "W122.3810404"] ],
-      "length":      2.64,
-      "ils":         [false, false]
+      "ils":         [true, true]
     },
     {
       "name":        ["19R", "1L"],
       "name_offset": [[-0.3, 0], [-0.3, 0.1]],
-      "oldposition":    [0.4, 0.3],
       "end":    [["N37.6264803", "W122.3706090"], ["N37.6078970","W122.3829280"]],
-      "length":      2.33,
-      "ils":         [false, false]
+      "ils":         [true, true]
     }
   ],
   "sids": {
@@ -154,8 +172,7 @@
       },
       "draw": [["SEPDY","WAMMY"], ["SENZY","WAMMY","SEGUL","CYPRS","MCKEY"], ["MCKEY","MQO"], ["MQO","FLW*"], ["MQO","RZS*"], ["MQO","GVO*"], ["MCKEY","DAISY","BENET","SXC*"]]
     },
-    
-  "PORTE7": {
+    "PORTE7": {
       "icao": "PORTE7",
       "name": "PORTE SEVEN",
       "rwy": {
@@ -173,8 +190,7 @@
       },
       "draw": [["SEPDY","PORTE"], ["SENZY","PORTE","OSI","WAGES"], ["WAGES","CZQ*"], ["WAGES","AVE*"], ["WAGES","PXN*"], ["WAGES", "FLW*"]]
     },
-    
-	"QUIET7": {
+    "QUIET7": {
       "icao": "QUIET7",
       "name": "Quiet Seven",
       "rwy": {
@@ -193,21 +209,72 @@
       },
       "draw": [["SASLY","REBAS"], ["REBAS","SASSU"], ["SASSU","ENI*"], ["SASSU","SAWNA"], ["SAWNA","RBL*"], ["SAWNA","CIC*"], ["REBAS","SAC*"], ["REBAS","LIN*"]]
     },
-    
-	"MOLEN7": {
+    "MOLEN7": {
       "icao": "MOLEN7",
       "name": "Molen Seven",
       "rwy": {
-        "10L": [["SIPLY", "A25+"], "_SIPLY233-STINS144", "STINS"],
-        "10R": [["SIPLY", "A25+"], "_SIPLY233-STINS144", "STINS"],
-        "28L": [["WESLA", "A18+"], "STINS"],
-        "28R": [["WESLA", "A18+"], "STINS"]
+        "10L": [["SIPLY", "A25+"], "_SIPLY233-STINS144", ["STINS", "A220-"]],
+        "10R": [["SIPLY", "A25+"], "_SIPLY233-STINS144", ["STINS", "A220-"]],
+        "28L": [["WESLA", "A18+"], ["STINS", "A220-"]],
+        "28R": [["WESLA", "A18+"], ["STINS", "A220-"]]
       },
       "body": ["MOLEN"],
       "transitions": {
         "ENI": ["ENI"]
       },
       "draw": [["SIPLY","_SIPLY233-STINS144","STINS"], ["WESLA","STINS","MOLEN"], ["MOLEN","ENI*"]]
+    }
+  },
+  "stars": {
+    "BDEGA2": {
+      "icao": "BDEGA2",
+      "name": "Bidayga Two",
+      "transitions": {
+        "DEEAN": [["DEEAN", "A240+|S280"]],
+        "QUINN": [["QUINN", "A240+|S280"], ["BGGLO", "A190+|S280"]],
+        "JONNE": [["JONNE", "A240+|S280"], ["BGGLO", "A190+|S280"]],
+        "MSCAT": [["MSCAT", "A240+|S280"], ["BGGLO", "A190+|S280"]],
+        "GEEHH": [["GEEHH", "A240+|S280"], ["BGGLO", "A190+|S280"]]
+      },
+      "body": [["LOZIT", "A160-|S280"], ["BDEGA", "A130-"], ["CORKK", "A110|S250"], "BRIXX"],
+      "draw": [["DEEAN*","LOZIT"], ["QUINN*","BGGLO","LOZIT"], ["JONNE*","BGGLO","LOZIT"], ["MSCAT*","BGGLO","LOZIT"], ["GEEHH*","BGGLO","LOZIT"], ["LOZIT","BDEGA","CORKK","BRIXX"]]
+    },
+    "BSR2": {
+      "icao": "BSR2",
+      "name": "Big Sur Two",
+      "transitions": {
+        "BSR": ["BSR"]
+      },
+      "body": ["CARME", "ANJEE", ["SKUNK", "A120-|S280"], ["BOLDR", "A100|S250"], "MENLO"],
+      "draw": [["BSR*","CARME","ANJEE","SKUNK","BOLDR","MENLO"]]
+    },
+    "DYAMD2": {
+      "icao": "DYAMD2",
+      "name": "Diamond Two",
+      "transitions": {
+        "DYAMD": [["DYAMD", "A270+"]]
+      },
+      "body": [["LAANE", "A260-|S280"], "ALWYS", ["FLOWZ", "A190-|S280"], ["CEDES", "A120-|S250"], ["FRELY", "A80|S240"], ["ARCHI", "A70|S230"]],
+      "draw": [["DYAMD*","LAANE","ALWYS","FLOWZ","CEDES","FRELY","ARCHI"]]
+    },
+    "PYE1": {
+      "icao": "PYE1",
+      "name": "Point Reyes One",
+      "transitions": {
+        "ENI": ["ENI"],
+        "MXW": ["MXW"]
+      },
+      "body": [["PYE", "A240|S280"], ["STINS", "A230|S250"], ["HADLY", "A100-|S230"], ["OSI", "A30|S210"]],
+      "draw": [["ENI*","PYE"], ["MXW*","PYE"], ["PYE","STINS","HADLY","OSI"]]
+    },
+    "YOSEM3": {
+      "icao": "YOSEM3",
+      "name": "Yosem Three",
+      "transitions": {
+        "YOSEM": ["YOSEM"]
+      },
+      "body": [["SNORA", "A270+|S280"], ["FRIGG", "A190-"], ["SOOIE", "A130-|S250"], ["FAITH", "A80"]],
+      "draw": [["YOSEM*","SNORA","FRIGG","SOOIE","FAITH"]]
     }
   },
   "departures": {
@@ -240,10 +307,11 @@
   },
   "arrivals": [
     {
-      "radial":   60,
-      "heading":  170,
-      "speed":    250,
-      "fixes":   ["MOVDD", "RISTI", "CEDES"],
+      "type": "random",
+      "route":   "QUINN.BDEGA2.KSFO",
+      "frequency": 10,
+      "altitude":  24000,
+      "speed":    280,
       "airlines":  [
         ["ual", 5],
         ["ual/long", 2],
@@ -254,82 +322,79 @@
         ["aal/long", 2],
         ["asa", 1],
         ["fdx", 1]
-      ],
-      "type": "wave",
-      "offset": 0,
-      "frequency": 12,
-      "altitude":  10000
+      ]
     },
     {
-      "radial":   90,
-      "speed":    250,
-      "fixes":    ["FAITH"],
-      "airlines":  [
-        ["fastga", 1]
-      ],
       "type": "random",
-      "offset": 5,
-      "frequency": 4,
-      "altitude":  8000
-    },
-
-    {
-      "radial":   145,
-      "speed":    250,
-      "fixes":    ["SKUNK", "BOLDR", "MENLO"],
+      "route":   "BSR.BSR2.KSFO",
+      "frequency": 10,
+      "altitude":  18000,
+      "speed":    280,
       "airlines":  [
-        ["ual", 4],
-        ["aal", 3],
-        ["dal", 2],
-        ["asa", 2],
-        ["swa", 5]
-      ],
-      "type": "wave",
-      "offset": 3,
-      "frequency": 8,
-      "altitude":  10000
-    },
-    {
-      "radial":   315,
-      "speed":    250,
-      "fixes":    ["PYE", "DUXBY", "SFO"],
-      "airlines":  [
-        ["ual/long", 5],
-        ["aal/long", 2],
-        ["dal/long", 2],
         ["ual", 5],
-        ["baw/long", 2],
-        ["cpa", 2],
-        ["vir", 2],
-        ["swa", 2],
-        ["aca", 2],
-        ["ups", 1],
-        ["asa", 8],
-        ["fdx", 1],
-        ["klm/long", 2],
-        ["afr/long", 2],
-        ["uae", 4],
-        ["kal/long", 2],
-        ["fastga", 1]
-      ],
-      "type": "cyclic",
-      "frequency": 6,
-      "altitude":  10000
-    },
-	{
-      "radial":   240,
-      "speed":    250,
-      "fixes":    ["PIRAT", "OSI"],
-      "airlines":  [
-        ["ual/long", 5],
-        ["aal/long", 2],
+        ["ual/long", 2],
+        ["swa", 1],
+        ["dal", 5],
         ["dal/long", 2],
-        ["asa", 1]
-      ],
+        ["aal", 5],
+        ["aal/long", 2],
+        ["asa", 1],
+        ["fdx", 1]
+      ]
+    },
+    {
       "type": "random",
-      "frequency": 6,
-      "altitude":  10000
+      "route":   "DYAMD.DYAMD2.KSFO",
+      "frequency": 10,
+      "altitude":  27000,
+      "speed":    280,
+      "airlines":  [
+        ["ual", 5],
+        ["ual/long", 2],
+        ["swa", 1],
+        ["dal", 5],
+        ["dal/long", 2],
+        ["aal", 5],
+        ["aal/long", 2],
+        ["asa", 1],
+        ["fdx", 1]
+      ]
+    },
+    {
+      "type": "random",
+      "route":   "MXW.PYE1.KSFO",
+      "frequency": 10,
+      "altitude":  34000,
+      "speed":    320,
+      "airlines":  [
+        ["ual", 5],
+        ["ual/long", 2],
+        ["swa", 1],
+        ["dal", 5],
+        ["dal/long", 2],
+        ["aal", 5],
+        ["aal/long", 2],
+        ["asa", 1],
+        ["fdx", 1]
+      ]
+    },
+    {
+      "type": "random",
+      "route":   "YOSEM.YOSEM3.KSFO",
+      "frequency": 10,
+      "altitude":  34000,
+      "speed":    280,
+      "airlines":  [
+        ["ual", 5],
+        ["ual/long", 2],
+        ["swa", 1],
+        ["dal", 5],
+        ["dal/long", 2],
+        ["aal", 5],
+        ["aal/long", 2],
+        ["asa", 1],
+        ["fdx", 1]
+      ]
     }
-
   ]
 }

@@ -122,6 +122,11 @@
     }
   ],
   "fixes": {
+    "_ASADA270015": ["S35d02.81m0", "W059d55.75m0"],
+    "_GBE160015"  : ["S35d58.48m0", "W058d19.61m0"],
+    "_PAGON011016": ["S33d39.29m0", "W058d41.70m0"],
+    "_PAPIX056034": ["S34d02.78m0", "W057d28.92m0"],
+    "_SNT326013"  : ["S34d03.28m0", "W059d36.43m0"],
     "EZE10": ["S34d46m31.94", "W58d31m59.90"],
     "EZE11": ["S34d48m58.72", "W58d35m43.07"],
     "EZE12": ["S34d51m46.82", "W58d28m10.68"],
@@ -936,9 +941,8 @@
   },
   "arrivals": [
     {
-      "radial": 315,
       "speed": 250,
-      "fixes": ["SNT", "ARSOT"],
+      "fixes": ["_SNT326013", "SNT", "ARSOT"],
       "airlines":  [
         ["aal/long", 10],
         ["amx/long", 5],
@@ -949,50 +953,46 @@
       ],
       "type": "cyclic",
       "offset": 10,
-      "frequency": [5, 10],
+      "frequency": 7.5,
       "altitude": 10000
     },
     {
-      "radial": 350,
       "speed": 250,
-      "fixes": ["PAGON", "VANAR", "ENO", "ARSOT"],
+      "fixes": ["_PAGON011016", "PAGON", "VANAR", "ENO", "ARSOT"],
       "airlines":  [
         ["lan", 10],
         ["arg", 10]
       ],
       "type": "cyclic",
       "offset": 30,
-      "frequency": [5, 10],
+      "frequency": 7.5,
       "altitude": 10000
     },
     {
-      "radial": 270,
       "speed": 250,
-      "fixes": ["ASADA", "EZE50", "ARSOT"],
+      "fixes": ["_ASADA270015", "ASADA", "EZE50", "ARSOT"],
       "airlines":  [
         ["lan", 10],
         ["arg", 10]
       ],
       "type": "cyclic",
       "offset": 40,
-      "frequency": [3, 5],
+      "frequency": 4,
       "altitude": 10000
     },
     {
-      "radial": 180,
       "speed": 250,
-      "fixes": ["GBE", "EZE50", "ARSOT"],
+      "fixes": ["_GBE160015", "GBE", "EZE50", "ARSOT"],
       "airlines":  [
         ["lan", 10],
         ["arg", 10]
       ],
       "type": "cyclic",
       "offset": 20,
-      "frequency": [1, 5],
+      "frequency": 3,
       "altitude": 10000
     },
     {
-      "radial": 100,
       "speed": 250,
       "fixes": ["ESLAN", "PTA", "EZE"],
       "airlines":  [
@@ -1004,13 +1004,12 @@
       ],
       "type": "cyclic",
       "offset": 0,
-      "frequency": [1, 5],
+      "frequency": 3,
       "altitude": 12000
     },
     {
-      "radial": 45,
       "speed": 250,
-      "fixes": ["PAPIX", "EZE"],
+      "fixes": ["_PAPIX056034", "PAPIX", "EZE"],
       "airlines":  [
         ["arg", 10],
         ["tam", 8],
@@ -1024,7 +1023,7 @@
       ],
       "type": "cyclic",
       "offset": 50,
-      "frequency": [5, 10],
+      "frequency": 7.5,
       "altitude": 10000
     }
   ]

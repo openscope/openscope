@@ -215,6 +215,11 @@
     }
   },
   "departures": {
+    "destinations": [
+      "ANDIK", "ARNEM", "BERGI", "LEKKO", "GORLO"
+    ],
+    "type": "random",
+    "frequency": 1.5,
     "airlines": [
       ["ual",   2],
       ["aca",   2],
@@ -224,18 +229,15 @@
       ["klc",   3],
       ["klm",   5],
       ["ual",   2]
-    ],
-    "destinations": [
-      "ANDIK", "ARNEM", "BERGI", "LEKKO", "GORLO"
-    ],
-    "frequency": [1, 2]
+    ]
   },
   "arrivals": [
     {
-      "radial": 54,
       "fixes": ["EEL", "ARTIP"],
-      "heading": 234,
+      "altitude": [7000, 10000],
       "speed": 250,
+      "type": "random",
+      "frequency": 4.5,
       "airlines": [
         ["ual",   3],
         ["aca",   3],
@@ -244,15 +246,14 @@
         ["klc",   1],
         ["klm",   5],
         ["ual",   3]
-      ],
-      "frequency": [3, 6],
-      "altitude": [7000, 10000]
+      ]
     },
     {
-      "radial": 212,
-      "heading": 16,
-      "speed": 250,
       "fixes": ["DENUT", "HSD", "RIVER"],
+      "altitude": [7000, 10000],
+      "speed": 250,
+      "type": "random",
+      "frequency": 7.5,
       "airlines": [
         ["ual",   1],
         ["aca",   1],
@@ -261,15 +262,14 @@
         ["klc",   5],
         ["klm",   5],
         ["ual",   1]
-      ],
-      "frequency": [5, 10],
-      "altitude": [7000, 10000]
+      ]
     },
     {
-      "radial": 262,
-      "heading": 60,
-      "speed": 250,
       "fixes":  ["REDFA", "SULUT", "SUGOL"],
+      "altitude": [7000, 10000],
+      "speed": 250,
+      "type": "random",
+      "frequency": 6.5,
       "airlines": [
         ["ual", 1],
         ["aca", 1],
@@ -278,18 +278,18 @@
         ["klc", 5],
         ["klm", 5],
         ["ual", 1]
-      ],
-      "frequency": [4, 9],
-      "altitude": [7000, 10000]
+      ]
     },
     {
       "radial": 110,
       "heading": 290,
+      "altitude": [1000, 2000],
+      "speed": 250,
+      "type": "random",
+      "frequency": 10.5,
       "airlines": [
         ["cessna",   1]
-      ],
-      "frequency": [5, 16],
-      "altitude": [1000, 2000]
+      ]
     }
   ]
 }

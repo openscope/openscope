@@ -21,6 +21,9 @@
     "speed": 10
   },
   "fixes": {
+    "_KLAX347060": ["N34d56.63m0", "W118d25.76m0"],
+    "_KLAX169060": ["N32d56.45m0", "W118d25.74m0"],
+    "_KLAX305060": ["N34d40.34m0", "W119d14.10m0"],
   	"VTU": ["N34d6m54.21", "W119d2m58.17"],
   	"NAANC": ["N33d55m54.00", "W118d38m38.00"],
   	"JAVSI": ["N34d1m42.60", "W118d16m39.00"],
@@ -270,10 +273,9 @@
   "arrivals": [
     {
       "_name":  "Kimmo 3",
-      "radial":   350,
       "heading":  170,
       "speed":    250,
-      "fixes":   ["KIMMO", "DARTS"],
+      "fixes":   ["_KLAX347060", "KIMMO", "DARTS"],
       "airlines":  [
         ["swa", 1],
         ["fastga", 1]
@@ -285,9 +287,8 @@
     },
     {
       "_name":  "Leena 5",
-      "radial":   210,
       "speed":    250,
-      "fixes":    ["SXC", "CWARD", "SLI"],
+      "fixes":    ["_KLAX169060", "SXC", "CWARD", "SLI"],
       "airlines":  [
         ["ual/long", 1],
         ["dal/long", 1],
@@ -300,7 +301,6 @@
     },
     {
       "_name":  "Riivr 2",
-      "radial":   70,
       "speed":    250,
       "fixes":    ["RUSTT", "HABSO", "RIIVR", "BCOVE"],
       "airlines":  [
@@ -325,16 +325,14 @@
         ["uae", 2],
         ["vir", 2]
       ],
-      "type": "wave",
-      "offset": 5,
+      "type": "random",
       "frequency": 8,
       "altitude":  10000
     },
     {
       "_name":  "Sadde 6 - FIM",
-      "radial":   330,
       "speed":    250,
-      "fixes":    ["FIM", "SADDE", "SMO", "JAVSI"],
+      "fixes":    ["_KLAX305060", "FIM", "SADDE", "SMO", "JAVSI"],
       "airlines":  [
         ["ual", 2],
         ["aal", 2],
@@ -349,9 +347,8 @@
     },
 	{
       "_name":  "Sadde 6 - VTU",
-      "radial":   260,
       "speed":    250,
-      "fixes":    ["VTU", "SADDE", "SMO", "JAVSI"],
+      "fixes":    ["RZS", "VTU", "SADDE", "SMO", "JAVSI"],
       "airlines":  [
         ["ual/long", 1],
         ["dal/long", 1],
@@ -364,7 +361,6 @@
     },
     {
       "_name":  "Vista 2",
-      "radial":   110,
       "speed":    250,
       "fixes":    ["VISTA", "OCN", "SHIVE", "CWARD", "MADOW", "SLI"],
       "airlines":  [

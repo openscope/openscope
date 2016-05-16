@@ -47,7 +47,8 @@
     }
   ],
   "fixes": {
-    "_NEZUG070010": ["N47d34.80m0", "W122d3.84m0"],
+    "_NEZUG070010": ["N47d34.80m0", "W122d03.84m0"],
+    "_OLM161026"  : ["N46d32.31m0", "W122d54.11m0"],
     "ALKIA": ["N47d37.26m0", "W122d28.45m0"],
     "ARRIE": ["N47d52.79m0", "W123d28.55m0"],
     "ARVAD": ["N47d13.36m0", "W122d34.86m0"],
@@ -86,6 +87,7 @@
     "JAKSN": ["N47d53.19m0", "W121d42.22m0"],
     "JAWBN": ["N48d01.90m0", "W122d50.59m0"],
     "KMORE": ["N47d48.65m0", "W122d20.82m0"],
+    "KRIEG": ["N46d19.21m0", "W122d43.33m0"],
     "KTSAP": ["N47d45.51m0", "W122d27.92m0"],
     "KWEST": ["N47d25.24m0", "W122d27.32m0"],
     "LACEE": ["N47d02.82m0", "W122d48.35m0"],
@@ -268,8 +270,7 @@
   "arrivals": [
     {
       "_name": "OLM1",
-      "radial": 203,
-      "fixes": ["OLM", "LACEE", "ARVAD", "FOURT"],
+      "fixes": ["_OLM161026", "OLM", "LACEE", "ARVAD", "FOURT"],
       "altitude": 13000,
       "speed": 250,
       "type": "random",
@@ -300,7 +301,6 @@
     },
     {
       "_name": "CHINS1",
-      "radial": 107,
       "fixes": ["CHINS", "RADDY", "HUMPP", "AUBRN"],
       "altitude": 12000,
       "speed": 250,
@@ -332,8 +332,7 @@
     },
     {
       "_name": "HAWKZ4 - LDG SOUTH",
-      "radial": 187,
-      "fixes": ["HAWKZ", "LIINE", "PIKEZ", "COFAY", "BREVE", "NETTZ", "KWEST", "VASHN", "RAYUU"],
+      "fixes": ["KRIEG", "HAWKZ", "LIINE", "PIKEZ", "COFAY", "BREVE", "NETTZ", "KWEST", "VASHN", "RAYUU"],
       "altitude": 13000,
       "speed": 250,
       "type": "random",
@@ -364,8 +363,7 @@
     },
     {
       "_name": "MARNR5 - LDG SOUTH",
-      "radial": 312,
-      "fixes": ["MARNR", "BOANE", "NEHOS", "GRIFY"],
+      "fixes": ["ORCUS", "MARNR", "BOANE", "NEHOS", "GRIFY"],
       "altitude": 12000,
       "speed": 250,
       "type": "random",
@@ -396,7 +394,6 @@
     },
     {
       "_name": "GLASR9",
-      "radial": 45,
       "fixes": ["GLASR", "JAKSN", "WOODI", "HETHR"],
       "altitude": 10000,
       "speed": 250,

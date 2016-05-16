@@ -390,33 +390,34 @@
     "LURER": ["N48d26m44.53", "E10d35m13.71"]
   },
   "departures": {
-    "airlines": [
-			["dlh", 50],
-			["thy", 10],
-			["baw", 9],
-			["klc", 8],
-			["klm", 7],
-			["sas", 6],
-			["afr", 5],
-			["aza", 5],
-			["nax", 5],
-			["ibe", 5],
-			["uae", 4],
-			["aal/long", 4],
-			["ual/long", 4],
-			["aca", 3],
-			["afl", 3],
-			["dal", 3],
-			["fdx", 3],
-			["ups", 2],
-			["tso", 2],
-			["svr", 1],
-			["sbi", 1]
-    ],
     "destinations": [
       "ALG", "ANKER", "BIBAG", "GIVMI", "INPUD", "KIRDI", "OLASO", "RIDAR", "ROTAX", "TULSI", "TURBU", "VAVOR"
     ],
-    "frequency": [2, 4]
+    "type": "random",
+    "frequency": 3,
+    "airlines": [
+      ["dlh", 50],
+      ["thy", 10],
+      ["baw", 9],
+      ["klc", 8],
+      ["klm", 7],
+      ["sas", 6],
+      ["afr", 5],
+      ["aza", 5],
+      ["nax", 5],
+      ["ibe", 5],
+      ["uae", 4],
+      ["aal/long", 4],
+      ["ual/long", 4],
+      ["aca", 3],
+      ["afl", 3],
+      ["dal", 3],
+      ["fdx", 3],
+      ["ups", 2],
+      ["tso", 2],
+      ["svr", 1],
+      ["sbi", 1]
+    ]
   },
   "arrivals": [
 		{
@@ -426,7 +427,7 @@
 			"heading": 135,
       "speed": 250,
       "offset": 1,
-      "frequency": [2, 6],
+      "frequency": 4,
       "altitude":  [9000, 10000],
       "fixes": ["ABGAS", "LURER", "LELTA", "ROKIL", "MIQ"],
       "airlines":  [
@@ -452,7 +453,7 @@
 			"heading": 225,
       "speed": 250,
       "offset": 1,
-      "frequency": [2, 7],
+      "frequency": 4.5,
       "altitude":  [9000, 10000],
       "fixes": ["ROSAB", "BINGU", "TUSTO", "LANDU", "MIQ"],
       "airlines":  [
@@ -476,7 +477,7 @@
 			"heading": 30,
       "speed": 250,
       "offset": 1,
-      "frequency": [3, 7],
+      "frequency": 4.5,
       "altitude":  [9000, 10000],
       "fixes": ["OSDER", "MERSI", "BETOS", "MUN"],
       "airlines":  [
@@ -497,7 +498,7 @@
 			"heading": 290,
       "speed": 250,
       "offset": 1,
-      "frequency": [4, 9],
+      "frequency": 6.5,
       "altitude":  [9000, 10000],
       "fixes": ["SBG", "NAPSA", "MUN"],
       "airlines":  [

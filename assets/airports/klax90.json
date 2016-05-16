@@ -21,6 +21,9 @@
     "speed": 10
   },
   "fixes": {
+    "_KLAX347060": ["N34d56.63m0", "W118d25.76m0"],
+    "_KLAX169060": ["N32d56.45m0", "W118d25.74m0"],
+    "_KLAX305060": ["N34d40.34m0", "W119d14.10m0"],
     "PFILA": ["N34d01m12.69", "W117d41m50.18"],
     "SALWA": ["N34d00m47.72", "W117d46m8.30"],
     "WLNUT": ["N34d00m22.60", "W117d50m26.38"],
@@ -235,10 +238,9 @@
   "arrivals": [
     {
       "_name":  "Kimmo 3",
-      "radial":   350,
       "heading":  170,
       "speed":    250,
-      "fixes":   ["KIMMO", "DARTS"],
+      "fixes":   ["_KLAX347060", "KIMMO", "DARTS"],
       "airlines":  [
         ["aal/90default", 10],
         ["aal/90long", 10],
@@ -252,9 +254,8 @@
     },
     {
       "_name":  "Leena 5",
-      "radial":   210,
       "speed":    250,
-      "fixes":    ["SXC", "CWARD", "SLI"],
+      "fixes":    ["_KLAX169060", "SXC", "CWARD", "SLI"],
       "airlines":  [
 	  ["baw/90long", 1],
         ["aal/90default", 10],
@@ -266,7 +267,6 @@
     },
     {
       "_name":  "Riivr 2",
-      "radial":   70,
       "speed":    250,
       "fixes":    ["RUSTT", "HABSO", "RIIVR", "BCOVE"],
       "airlines":  [
@@ -274,16 +274,14 @@
         ["aal/90default", 10],
         ["aal/90long", 10]
       ],
-      "type": "wave",
-      "offset": 5,
+      "type": "random",
       "frequency": 8,
       "altitude":  10000
     },
     {
       "_name":  "Sadde 6",
-      "radial":   330,
       "speed":    250,
-      "fixes":    ["FIM", "SADDE", "SMO"],
+      "fixes":    ["_KLAX305060", "FIM", "SADDE", "SMO"],
       "airlines":  [
 	  ["paa/90default", 10],
       ["paa/90long", 10],
@@ -297,7 +295,6 @@
     },
     {
       "_name":  "Vista 2",
-      "radial":   110,
       "speed":    250,
       "fixes":    ["VISTA", "OCN", "SHIVE", "CWARD", "MADOW", "SLI"],
       "airlines":  [

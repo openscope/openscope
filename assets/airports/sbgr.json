@@ -208,6 +208,11 @@
     }
   },
   "departures": {
+    "destinations": [
+      "CGO", "ROMIB", "BGC", "DORLU", "IVRAG", "SCP"
+    ],
+    "type": "random",
+    "frequency": 8,
     "airlines": [
       ["TAM", 60],
       ["GLO", 60],
@@ -232,18 +237,15 @@
       ["uae", 3],
       ["ual/long", 5],
       ["FAB", 1]
-    ],
-    "destinations": [
-      "CGO", "ROMIB", "BGC", "DORLU", "IVRAG", "SCP"
-    ],
-    "frequency": [1, 15]
+    ]
   },
   "arrivals":[
     {
-      "radial": 20,
-      "heading": 200,
-      "speed":    250,
       "fixes":   ["MOXEP", "IBDIK"],
+      "altitude": [7000, 8000],
+      "speed":    250,
+      "type": "random",
+      "frequency": 17.5,
       "airlines": [
         ["TAM", 3],
         ["GLO", 3],
@@ -268,43 +270,42 @@
         ["uae", 1],
         ["ual/long", 1],
         ["FAB", 1]
-      ],
-      "frequency": [15, 20],
-      "altitude": [7000, 8000]
+      ]
     },
         {
-      "radial": 90,
-      "heading": 270,
       "fixes":   ["VUKIK", "TOGES", "SAT"],
+      "altitude": [6000, 8000],
+      "speed": 250,
+      "type": "random",
+      "frequency": 22.5,
       "airlines": [
         ["TAM", 3],
         ["GLO", 3],
         ["AZU", 3],
         ["ONE", 3],
         ["FAB", 1]
-      ],
-      "frequency": [15, 30],
-      "altitude": [6000, 8000]
+      ]
     },
     {
-      "radial": 180,
-      "heading": 360,
       "fixes":   ["ANISE", "SIPUK", "SAT"],
+      "altitude": [5000, 8000],
+      "speed": 250,
+      "type": "random",
+      "frequency": 22.5,
       "airlines":[
         ["TAM", 3],
         ["GLO", 3],
         ["AZU", 3],
         ["ONE", 2],
         ["FAB", 1]
-      ],
-
-      "frequency": [15, 30],
-      "altitude": [5000, 8000]
+      ]
     },
     {
-      "radial": 340,
-      "heading": 160,
-       "fixes":   ["MOXEP", "IBDIK"],
+      "fixes":   ["MOXEP", "IBDIK"],
+      "altitude": [9000, 10000],
+      "speed": 250,
+      "type": "random",
+      "frequency": 20,
       "airlines": [
         ["TAM", 3],
         ["GLO", 3],
@@ -329,9 +330,7 @@
         ["uae", 1],
         ["ual/long", 1],
         ["FAB", 1]
-      ],
-      "frequency": [10, 30],
-      "altitude": [9000, 10000]
+      ]
     }
   ]
 }

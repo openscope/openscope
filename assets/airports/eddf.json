@@ -492,7 +492,8 @@
         ["etd/long", 3],
         ["cca/long", 4]
       ],
-      "type": "wave",
+      "type": "surge",
+      "entrail": [8, 25],
       "offset": 35,
       "frequency": 15,
       "altitude": 11000
@@ -517,7 +518,8 @@
         ["sxd", 30],
         ["lan/long", 3]
       ],
-      "type": "wave",
+      "type": "surge",
+      "entrail": [10, 35],
       "frequency": 10,
       "altitude": 11000
     }

@@ -21,6 +21,10 @@
     "speed": 6
   },
   "fixes": {
+    "_EINN287050": ["N52d52.04m0", "W10d16.20m0"],
+    "_EINN067050": ["N53d05.19m0", "W07d42.26m0"],
+    "_EINN108050": ["N52d30.44m0", "W07d35.76m0"],
+    "_EINN166050": ["N51d54.87m0", "W08d29.19m0"],
     "BEVES": ["N52d39m34.5", "W9d00m53.2"],
     "DISUR": ["N52d43m31.0", "W9d05m55.8"],
     "ADARU": ["N52d35m37.8", "W8d55m51.4"],
@@ -197,9 +201,8 @@
   },
   "arrivals":[
     {
-      "radial": 270,
       "speed": 250,
-      "fixes": ["UNBEG", "ENS", "TOBRI", "DERAG"],
+      "fixes": ["_EINN287050", "UNBEG", "ENS", "TOBRI", "DERAG"],
       "airlines": [
         ["aca", 3],
         ["aal", 3],
@@ -209,15 +212,13 @@
         ["dal", 3],
         ["ein", 5]
       ],
-      "type": "wave",
-      "offset": 0,
-      "frequency": [3, 5],
+      "type": "random",
+      "frequency": 4,
       "altitude": [8000, 10000]
     },
     {
-      "radial": 70,
       "speed": 250,
-      "fixes": ["DIGAN", "OGONO", "DERAG"],
+      "fixes": ["_EINN067050", "DIGAN", "OGONO", "DERAG"],
       "airlines": [
         ["fastga", 5],
         ["ryr", 10],
@@ -229,9 +230,8 @@
       "altitude": [8000, 10000]
     },
     {
-      "radial": 100,
       "speed": 250,
-      "fixes": ["TIPUR", "GILOG", "DERAG"],
+      "fixes": ["_EINN108050", "TIPUR", "GILOG", "DERAG"],
       "airlines": [
         ["fastga", 5],
         ["baw", 1]
@@ -242,9 +242,8 @@
       "altitude": [8000, 10000]
     },
     {
-      "radial": 170,
       "speed": 250,
-      "fixes": ["KURUM", "GILOG", "DERAG"],
+      "fixes": ["_EINN166050", "KURUM", "GILOG", "DERAG"],
       "airlines": [
         ["fastga", 5],
         ["ryr", 10],

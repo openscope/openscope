@@ -59,6 +59,7 @@
     }
   ],
   "fixes": {
+    "_EDDT016060": ["N53d30.15m0", "E13d50.00m0"],
     "TGL":   ["N52d33m41.40", "E13d17m15.20"],
     "BATEL": ["N52d32m49.00", "E11d05m59.00"],
     "VIBIS": ["N52d58m30.74", "E12d20m18.90"],
@@ -326,7 +327,6 @@
   },
   "arrivals":[
     {
-      "radial": 268,
       "speed": 250,
       "fixes": ["BATEL", "GIRIT", "NASAT"],
       "airlines": [
@@ -343,9 +343,8 @@
       "altitude": 8000
     },
     {
-      "radial": 15,
       "speed": 250,
-      "fixes": ["GOLBO", "NASAT"],
+      "fixes": ["_EDDT016060", "GOLBO", "NASAT"],
       "airlines": [
         ["ber", 20],
         ["gwi", 15],
@@ -359,7 +358,6 @@
       "altitude": 7000
     },
     {
-      "radial": 210,
       "speed": 250,
       "fixes": ["RUDAK", "KLF", "IRMAS"],
       "airlines": [
@@ -367,12 +365,12 @@
         ["gwi", 15],
         ["dlh", 10]
       ],
-      "type": "cyclic",
-      "frequency": [5, 10],
+      "type": "surge",
+      "entrail": [10, 35],
+      "frequency": 10,
       "altitude": 12000
     },
     {
-      "radial": 175,
       "speed": 250,
       "fixes": ["AKUDI", "ATGUP", "NATAV"],
       "airlines": [
@@ -380,13 +378,13 @@
         ["gwi", 15],
         ["dlh", 10]
       ],
-      "type": "cyclic",
-      "frequency": [3, 5],
-      "offset": 25,
+      "type": "surge",
+      "entrail": [10, 35],
+      "frequency": 10,
+      "offset": 30,
       "altitude": 14000
     },
     {
-      "radial": 105,
       "speed": 250,
       "fixes": ["NUKRO", "FWE"],
       "airlines": [
@@ -396,9 +394,10 @@
         ["aua", 5],
         ["thy", 5]
       ],
-      "type": "cyclic",
-      "frequency": [5, 10],
-      "offset": 45,
+      "type": "surge",
+      "entrail": [10, 35],
+      "frequency": 10,
+      "offset": 60,
       "altitude": 9000
     }
   ]

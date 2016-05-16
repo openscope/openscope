@@ -21,6 +21,10 @@
     "speed": 15
   },
   "fixes": {
+    "_EIDW243060": ["N52d53.92m0", "W07d41.12m0"],
+    "_EIDW064060": ["N53d54.70m0", "W04d48.33m0"],
+    "_EIDW034060": ["N54d16.99m0", "W05d25.02m0"],
+    "_EIDW305060": ["N53d55.61m0", "W07d43.18m0"],
     "OLAPO": ["N53d46m49.00", "W7d17m41.00"],
     "OSGAR": ["N53d02m57.90", "W7d16m12.80"],
     "BAGSO": ["N53d40m48.00", "W5d30m00.00"],
@@ -273,25 +277,24 @@
   "arrivals": [
     {
       "_name":  "OLAPO 1L",
-      "radial":   300,
       "speed":    250,
-      "fixes":    ["OLAPO", "RONON", "ORVEN", "GIRAS", "KERAV", "KOGAX", "KUDOM", "DW814", "DW815", "DW816", "NARMU", "LAPMO"],
+      "fixes":    ["_EIDW305060", "OLAPO", "RONON", "ORVEN", "GIRAS", "KERAV", "KOGAX", "KUDOM", "DW814", "DW815", "DW816", "NARMU", "LAPMO"],
       "airlines":  [
         ["ein", 10],
         ["aal",  5],
         ["aca",  2],
         ["ual",  5]
       ],
-      "type": "wave",
+      "type": "surge",
+      "entrail": [10, 35],
       "offset": 0,
       "frequency": 10,
       "altitude":  10000
     },
     {
       "_name":  "OSGAR 1L",
-      "radial":   240,
       "speed":    250,
-      "fixes":   ["OSGAR", "DIRUM", "KEPOR", "ARVOK", "SORIN", "SIVNA", "SUGAD", "DW704", "DW705", "DW706", "SOPEP", "LAPMO"],
+      "fixes":   ["_EIDW243060", "OSGAR", "DIRUM", "KEPOR", "ARVOK", "SORIN", "SIVNA", "SUGAD", "DW704", "DW705", "DW706", "SOPEP", "LAPMO"],
       "airlines":  [
         ["ein", 4],
         ["aal", 3],
@@ -306,9 +309,8 @@
     },
     {
       "_name":  "BAGSO 1L",
-      "radial":   70,
       "speed":    250,
-      "fixes":    ["BAGSO", "ADSIS", "KERAV", "KOGAX", "KUDOM", "DW814", "DW815", "DW816", "NARMU", "LAPMO"],
+      "fixes":    ["_EIDW064060", "BAGSO", "ADSIS", "KERAV", "KOGAX", "KUDOM", "DW814", "DW815", "DW816", "NARMU", "LAPMO"],
       "airlines":  [
         ["ein", 5],
         ["ryr", 5],
@@ -316,16 +318,14 @@
         ["dlh", 3],
         ["klm", 1]
       ],
-      "type": "wave",
-      "offset": 30,
+      "type": "random",
       "frequency": 5,
       "altitude":  10000
     },
     {
       "_name":  "NIMAT 1L",
-      "radial":   10,
       "speed":    250,
-      "fixes":    ["NIMAT", "KERAV", "KOGAX", "KUDOM", "DW814", "DW815", "DW816", "NARMU", "LAPMO"],
+      "fixes":    ["_EIDW034060", "NIMAT", "KERAV", "KOGAX", "KUDOM", "DW814", "DW815", "DW816", "NARMU", "LAPMO"],
       "airlines":  [
         ["ein", 5],
         ["ryr", 5],
@@ -340,7 +340,6 @@
     },
     {
       "_name":  "VATRY 1L",
-      "radial":   145,
       "speed":    250,
       "fixes":    ["VATRY", "SORIN", "SIVNA", "SUGAD", "DW704", "DW705", "DW706", "SOPEP", "LAPMO"],
       "airlines":  [
@@ -348,8 +347,7 @@
         ["ryr", 10],
         ["baw",  5]
       ],
-      "type": "wave",
-      "offset": 10,
+      "type": "random",
       "frequency": 5,
       "altitude":  10000
     }

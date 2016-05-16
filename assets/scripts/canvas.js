@@ -105,33 +105,25 @@ function canvas_draw_runway(cc, runway, mode) {
   var length2 = round(km_to_px(runway.length / 2));
   var angle   = runway.angle;
 
-  cc.translate(round(km_to_px(runway.midfield[0])) + prop.canvas.panX, 
-              -round(km_to_px(runway.midfield[1])) + prop.canvas.panY);
+  cc.translate(round(km_to_px(runway.position[0])) + prop.canvas.panX, 
+              -round(km_to_px(runway.position[1])) + prop.canvas.panY);
   cc.rotate(angle);
 
-  if(!mode) { // mode 0 for ext. ctrlines, mode 1 for runway body
+  if(!mode) { // runway body
     cc.strokeStyle = "#899";
     cc.lineWidth = 2.8;
     cc.beginPath();
-    cc.moveTo(0, -length2);
-    cc.lineTo(0,  length2);
+    cc.moveTo(0, 0);
+    cc.lineTo(0, -2*length2);
     cc.stroke();
   } 
-  else {
+  else {  // extended centerlines
+    if(!runway.ils.enabled) return;
     cc.strokeStyle = "#465";
     cc.lineWidth = 1;
-
-    if(runway.ils.enabled) var ils = runway.ils.loc_maxDist;
-    else var ils = 40;
-
     cc.beginPath();
-    cc.moveTo(0, -length2);
-    cc.lineTo(0, -length2 - km_to_px(ils));
-    cc.stroke();
-
-    cc.beginPath();
-    cc.moveTo(0,  length2);
-    cc.lineTo(0,  length2 + km_to_px(ils));
+    cc.moveTo(0, 0);
+    cc.lineTo(0, km_to_px(runway.ils.loc_maxDist));
     cc.stroke();
   }
 }
@@ -169,6 +161,9 @@ function canvas_draw_runways(cc) {
   for( i=0;i<airport.runways.length;i++) {
     cc.save();
     canvas_draw_runway(cc, airport.runways[i][0], true);
+    cc.restore();
+    cc.save();
+    canvas_draw_runway(cc, airport.runways[i][1], true);
     cc.restore();
   }
   // Runways
@@ -1026,7 +1021,9 @@ function canvas_draw_videoMap(cc) {
 /** Draws crosshairs that point to the currently translated location
  */
 function canvas_draw_crosshairs(cc) {
-  //draw crosshairs
+  cc.save();
+  cc.strokeStyle = "#899";
+  cc.lineWidth = 3;
   cc.beginPath();
   cc.moveTo(-10, 0);
   cc.lineTo( 10, 0);
@@ -1035,6 +1032,7 @@ function canvas_draw_crosshairs(cc) {
   cc.moveTo(0, -10);
   cc.lineTo(0,  10);
   cc.stroke();
+  cc.restore();
 }
 
 function canvas_update_post() {

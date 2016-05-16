@@ -21,6 +21,7 @@
     "speed": 8
   },
   "fixes": {
+    "_ENGM103060": ["N59d55.03m0", "E12d59.72m0"],
     "ADOPI": ["N60d19m25.00", "E09d23m00.00"],
     "NIVDU": ["N60d16m20.00", "E09d51m50.00"],
     "VANUK": ["N60d53m20.00", "E10d28m25.00"],
@@ -651,7 +652,6 @@
   "arrivals": [
     {
       "_name":  "ADOPI 3M",
-      "radial":   290,
       "speed":    250,
       "fixes":    ["ADOPI", "EXUDA", "GM428", "GM429", "GM430", "GM431", "GM452", "BAVAD"],
       "airlines":  [
@@ -667,7 +667,6 @@
     },
     {
       "_name":  "BELGU 3M",
-      "radial":   350,
       "speed":    250,
       "fixes":   ["BELGU", "AGNIL", "GM432", "GM433", "GM434", "GM435", "BAVAD"],
       "airlines":  [
@@ -676,16 +675,15 @@
         ["fdx", 1],
         ["ups", 1]
       ],
-      "type": "wave",
+      "type": "random",
       "offset": 0,
       "frequency": 8,
       "altitude":  10000
     },
     {
       "_name":  "ESEBA 4M",
-      "radial":   110,
       "speed":    250,
-      "fixes":    ["ESEBA", "KEGET", "GM422", "GM423", "GM423", "GM424", "GM425", "GM453", "TITLA"],
+      "fixes":    ["_ENGM103060", "ESEBA", "KEGET", "GM422", "GM423", "GM423", "GM424", "GM425", "GM453", "TITLA"],
       "airlines":  [
         ["afl", 3],
         ["aua", 2],
@@ -703,7 +701,6 @@
     },
     {
       "_name":  "INREX 4M",
-      "radial":   30,
       "speed":    250,
       "fixes":    ["INREX", "IXUMA", "GM418", "GM419", "GM420", "GM421", "TITLA"],
       "airlines":  [
@@ -719,7 +716,6 @@
     },
     {
       "_name":  "LUNIP 4M",
-      "radial":   170,
       "speed":    250,
       "fixes":    ["LUNIP", "DIDAX", "GM447", "GM426", "GM422", "GM423", "GM424", "GM425", "GM453", "TITLA"],
       "airlines":  [
@@ -737,7 +733,6 @@
     },
     {
       "_name":  "RIPAM 4M",
-      "radial":   225,
       "speed":    250,
       "fixes":    ["RIPAM", "INGAR", "UTEXO", "GM451", "GM427", "GM428", "GM429", "GM430", "GM431", "GM452", "BAVAD"],
       "airlines":  [

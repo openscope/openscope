@@ -1011,7 +1011,6 @@
   "arrivals":[
     {
       "_name": "GODLU1A",
-      "radial": 260,
       "speed":    250,
       "fixes":    ["BEDEK", "BIG", "UMTUM", "GODLU", "ELMIV", "LCE11", "LCE12", "LCE13", "RAVSA"],
       "airlines": [
@@ -1026,7 +1025,6 @@
     },
     {
       "_name": "GODLU1C",
-      "radial": 103,
       "speed":    250,
       "fixes":    ["KONAN", "GODLU", "ELMIV", "LCE11", "LCE12", "LCE13", "RAVSA"],
       "airlines":[
@@ -1034,14 +1032,14 @@
         ["baw",   10],
         ["fastga", 3]
       ],
-      "type": "wave",
+      "type": "random",
+      "entrail": [10, 35],
       "offset": 10,
       "frequency": 5,
       "altitude": 10000
     },
     {
       "_name": "GODLU1D",
-      "radial": 150,
       "speed":    250,
       "fixes":    ["SOVAT", "ERKEX", "OKVAP", "GODLU", "ELMIV", "LCE11", "LCE12", "LCE13", "RAVSA"],
       "airlines":[
@@ -1056,7 +1054,6 @@
     },
     {
       "_name": "GODLU1F",
-      "radial": 190,
       "speed":    250,
       "fixes":    ["NEVIL", "OSPOL", "NETVU", "SOXUX", "OKVAP", "GODLU", "ELMIV", "LCE11", "LCE12", "LCE13", "RAVSA"],
       "airlines":[
@@ -1071,7 +1068,6 @@
     },
     {
       "_name": "GODLU1J",
-      "radial": 242,
       "speed":    250,
       "fixes":    ["GIBSO", "BEGTO", "AVANT", "BIG", "UMTUM", "GODLU", "ELMIV", "LCE11", "LCE12", "LCE13", "RAVSA"],
       "airlines":[
@@ -1086,7 +1082,6 @@
     },
     {
       "_name": "JACKO1A",
-      "radial": 270,
       "speed":    250,
       "fixes":    ["KENET", "WCO", "BOMBO", "BKY", "BRAIN", "CLN", "JACKO", "NONVA", "BABKU", "LCE21", "LCE22", "LCE23", "RAVSA"],
       "airlines":[
@@ -1101,7 +1096,6 @@
     },
     {
       "_name": "JACKO1D",
-      "radial": 80,
       "speed":    250,
       "fixes":    ["XAMAN", "LOGAN", "JACKO", "NONVA", "BABKU", "LCE21", "LCE22", "LCE23", "RAVSA"],
       "airlines":[
@@ -1109,14 +1103,13 @@
         ["baw",   10],
         ["fastga", 3]
       ],
-      "type": "wave",
+      "type": "random",
       "offset": 0,
       "frequency": 5,
       "altitude": 9000
     },
     {
       "_name": "JACKO1H",
-      "radial": 300,
       "speed":    250,
       "fixes":    ["HON", "ROGBI", "TIXEX", "ODVOD", "ROPMU", "NUDNA", "INLIM", "JACKO", "NONVA", "BABKU", "LCE21", "LCE22", "LCE23", "RAVSA"],
       "airlines":[
@@ -1124,7 +1117,7 @@
         ["baw",   10],
         ["fastga", 3]
       ],
-      "type": "wave",
+      "type": "random",
       "offset": 0,
       "frequency": 5,
       "altitude": 9000

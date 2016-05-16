@@ -561,15 +561,14 @@
     ],
     "type": "random",
     "offset": 0,
-    "frequency": [20, 55]
+    "frequency": 37.5
   },
   "arrivals": [
     {
       "_name": "CAPSS TWO SOUTH",
-      "radial": 204,
       "altitude": 16000,
       "type": "cyclic",
-      "frequency": [10, 25],
+      "frequency": 17.5,
       "period": 75,
       "offset": 25,
       "speed": 280,
@@ -592,10 +591,9 @@
     },
     {
       "_name": "CAPSS TWO NORTH",
-      "radial": 204,
       "altitude": 13000,
       "type": "cyclic",
-      "frequency": [10, 25],
+      "frequency": 17.5,
       "period": 75,
       "offset": 10,
       "speed": 280,

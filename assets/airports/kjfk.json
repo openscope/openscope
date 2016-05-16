@@ -237,19 +237,16 @@
     ],
     "type": "cyclic",
     "offset": 0,
-    "frequency": [5, 75]
+    "frequency": 40
   },
   "arrivals": [
     {
       "_name": "CAMRN FOUR",
-      "radial": 204,
       "altitude": 11000,
-      "fixes": ["KARRS", "CAMRN"],
-      "radial": 204,
+      "fixes": ["HOGGS", "PANZE", "KARRS", "CAMRN"],
       "altitude": 11000,
       "speed": 250,
-      "type": "wave",
-      "offset": 15,
+      "type": "random",
       "frequency": 8,
       "airlines": [
         ["flg", 8],
@@ -268,17 +265,10 @@
     },
     {
       "_name": "KINGSTON ONE",
-
-      "radial": 10,
-      "type": "wave",
-      "altitude": 15000,
-
       "fixes": ["IGN", "LOLLY", "DOORE", "LENDY", "LGA"],
-      "radial": 10,
-      "type": "wave",
+      "type": "random",
       "altitude": 15000,
       "speed": 250,
-      "offset": 0,
       "frequency": 8,
       "airlines": [
         ["dal", 12],
@@ -295,13 +285,12 @@
     },
     {
       "_name": "LENDY SIX",
-      "fixes": ["STW", "LENDY", "LGA"],
-      "radial": 306,
+      "fixes": ["HARTY", "STW", "LENDY", "LGA"],
       "altitude": 17000,
       "speed": 250,
       "type": "cyclic",
       "offset": 25,
-      "frequency": [5, 15],
+      "frequency": 20,
       "airlines": [
         ["dal", 14],
         ["aal", 10],
@@ -313,13 +302,12 @@
     {
       "_name": "PAWLING TWO",
       "fixes": ["PWL", "LOVES", "BDR", "BELTT", "DPK"],
-      "radial": 18,
       "heading": 169,
       "altitude": 9000,
       "speed": 250,
       "type": "cyclic",
       "offset": 45,
-      "frequency": [2, 14],
+      "frequency": 8,
       "airlines": [
         ["dal", 8],
         ["aal", 8],
@@ -334,7 +322,7 @@
       "altitude": 11000,
       "type": "cyclic",
       "offset": 35,
-      "frequency": [2, 10],
+      "frequency": 6,
       "airlines": [
         ["aal", 15],
         ["dal", 12],
@@ -356,7 +344,7 @@
       "speed": 250,
       "type": "cyclic",
       "offset": 55,
-      "frequency": [2, 10],
+      "frequency": 6,
       "airlines": [
         ["dal", 12],
         ["aal", 7],

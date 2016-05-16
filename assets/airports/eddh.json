@@ -73,6 +73,11 @@
     }
   ],
   "fixes": {
+    "_EDDH157060": ["N52d41.88m0", "E10d34.95m0"],
+    "_EDDH086060": ["N53d39.42m0", "E11d40.07m0"],
+    "_EDDH025060": ["N54d31.14m0", "E10d45.71m0"],
+    "_EDDH294060": ["N54d03.32m0", "E08d27.63m0"],
+
     "RIBSO": ["N53d48m46.00", "E09d20m25.00"],
     "TOPRA": ["N53d50m00.00", "E09d32m38.00"],
     "LBV":   ["N53d39m09.33", "E09d34m46.13"],
@@ -283,9 +288,8 @@
   },
   "arrivals":[
     {
-      "radial": 170,
       "speed": 250,
-      "fixes": ["NOLGO"],
+      "fixes": ["_EDDH157060", "NOLGO"],
       "airlines": [
         ["ber",     4],
         ["gwi",     8],
@@ -303,9 +307,8 @@
       "altitude": 10000
     },
     {
-      "radial": 100,
       "speed": 250,
-      "fixes": ["RARUP"],
+      "fixes": ["_EDDH086060", "RARUP"],
       "airlines":[
         ["ber",     3],
         ["gwi",     3],
@@ -323,9 +326,8 @@
       "altitude": 10000
     },
     {
-      "radial": 360,
       "speed": 250,
-      "fixes": ["BOGMU"],
+      "fixes": ["_EDDH025060", "BOGMU"],
       "airlines": [
         ["ber",    6],
         ["gwi",    5],
@@ -342,9 +344,8 @@
       "altitude": 10000
     },
     {
-      "radial": 280,
       "speed": 250,
-      "fixes": ["RIBSO"],
+      "fixes": ["_EDDH294060", "RIBSO"],
       "airlines": [
         ["ber", 3],
         ["gwi", 3],
@@ -359,7 +360,8 @@
         ["sas", 3],
         ["ual", 1]
       ],
-      "type": "wave",
+      "type": "surge",
+      "entrail": [10, 35],
       "frequency": 10,
       "altitude": 10000
     }
