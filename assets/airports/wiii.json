@@ -142,7 +142,7 @@
       "period": 23,
       "frequency": [10, 20],
       "altitude": 10000,
-      "fixes": ["BUNIK","NOKTA"],
+      "fixes": ["NOKTA"],
       "airlines": [
         ["gia", 35],
 		["lni",35],
@@ -166,7 +166,7 @@
       "period": 21,
       "frequency": [5, 10],
       "altitude": 10000,
-	  "fixes": ["CARLI","NOKTA"],
+	  "fixes": ["NOKTA"],
       "airlines": [
         ["gia", 35],
 		["lni",35],
@@ -179,14 +179,13 @@
     {
       "_name": "DENDY",
       "radial": 40,
-      "heading": 115,
       "speed": 250,
       "type": "cyclic",
       "offset": 15,
       "period": 18,
       "frequency": [10, 20],
       "altitude": 10000,
-	  "fixes": ["DENDY","DKI"],
+	  "fixes": ["DKI"],
       "airlines": [
         ["gia", 35],
 		["lni",35],
@@ -205,7 +204,7 @@
       "period": 15,
       "frequency": [5, 10],
       "altitude": 10000,
-      "fixes": ["SPADA", "DKI"],
+      "fixes": ["DKI"],
       "airlines": [
         ["gia", 35],
 		["lni",35],
