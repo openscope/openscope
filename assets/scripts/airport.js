@@ -693,7 +693,7 @@ var Airport=Fiber.extend(function() {
         var pos = new Position(this.perimeter.poly[0].position, this.position, this.magnetic_north);
         var len = nm(vlen(vsub(pos.position, this.position.position)));
         var apt = this;
-        this.ctr_radius = Math.max(...$.map(this.perimeter.poly, function(v) {return vlen(vsub(v.position,new Position(apt.rr_center, apt.position, apt.magnetic_north).position));}));
+        this.ctr_radius = Math.max.apply(Math, $.map(this.perimeter.poly, function(v) {return vlen(vsub(v.position,new Position(apt.rr_center, apt.position, apt.magnetic_north).position));}));
       }
       
       if(data.runways) {
@@ -1135,7 +1135,7 @@ var Airport=Fiber.extend(function() {
       }
 
       // Get (unique) list of fixes used that are not in 'this.fixes'
-      var missing = fixes.filter(f => !this.fixes.hasOwnProperty(f)).sort();
+      var missing = fixes.filter(function(f){return !this.fixes.hasOwnProperty(f);}).sort();
       for(var i=0; i<missing.length-1; i++)
         if(missing[i] == missing[i+1]) missing.splice(i,1); // remove duplicates
       if(missing.length > 0) {  // there are some... yell at the airport designer!!! :)
