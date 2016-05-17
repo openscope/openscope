@@ -49,23 +49,23 @@ airport code, such as `ksfo` or `kmsp`.
     }
   ],
   "sids": {   // contains all SIDs available at this airport
-    "icao": "OFFSH9",           // (req) ICAO identifier for SID (this is NOT the full name, always 2-6 characters)
-    "name": "Offshore Nine" ,   // (req) Name of SID as it would be said aloud (it is used by speech synthesis to pronounce "OFFSH9")
-    "suffix": {"1L":"", "1R":"", "28L":"", "28R":""},   // (optional) defines suffixes to SID name based on runway (eg '2C' for 'EKERN 2C').
-                                                        // Common for European-style SIDs. If not needed (like in USA), leave this part out.
-    "rwy": {  // (req) ALL runways usable on this SID must be listed below. If a runway isn't listed, aircraft departing
-              // that runway will need to be re-assigned a different SID or runway (this is realistic and intended).
-        "1L" : [["SEPDY", "A19+"], "ZUPAX"],  // Each runway for which this SID is valid must be listed here. The value assigned to each runway is an array 
-        "1R" : [["SEPDY", "A19+"], "ZUPAX"],  // of fixes, entered as strings. As shown, you may also enter an array containing the fix name and restrictions
-        "28L": [["SENZY", "A25+"], "ZUPAX"],  // at that fix, separated by a pipe symbol ('|'). For example, see the following: ["FIXNAME", "A50-|S220+"]. In 
-        "28R": [["SENZY", "A25+"], "ZUPAX"]   // that example, restrictions of Altitude 5,000' or lower, and Speed 220kts or higher would be placed on that fix.
-      },
+    "OFFSH9": { // (req) must match ICAO identifier
+      "icao": "OFFSH9",           // (req) ICAO identifier for SID (this is NOT the full name, always 2-6 characters)
+      "name": "Offshore Nine" ,   // (req) Name of SID as it would be said aloud (it is used by speech synthesis to pronounce "OFFSH9")
+      "suffix": {"1L":"", "1R":"", "28L":"", "28R":""},   // (optional) defines suffixes to SID name based on runway (eg '2C' for 'EKERN 2C').
+                                                          // Common for European-style SIDs. If not needed (like in USA), leave this part out.
+      "rwy": {  // (req) ALL runways usable on this SID must be listed below. If a runway isn't listed, aircraft departing
+                // that runway will need to be re-assigned a different SID or runway (this is realistic and intended).
+          "1L" : [["SEPDY", "A19+"], "ZUPAX"],  // Each runway for which this SID is valid must be listed here. The value assigned to each runway is an array 
+          "1R" : [["SEPDY", "A19+"], "ZUPAX"],  // of fixes, entered as strings. As shown, you may also enter an array containing the fix name and restrictions
+          "28L": [["SENZY", "A25+"], "ZUPAX"],  // at that fix, separated by a pipe symbol ('|'). For example, see the following: ["FIXNAME", "A50-|S220+"]. In 
+          "28R": [["SENZY", "A25+"], "ZUPAX"]   // that example, restrictions of Altitude 5,000' or lower, and Speed 220kts or higher would be placed on that fix.
+        },
       "body": ["EUGEN", "SHOEY"],   // (optional) If there is a very long series of fixes in a SID, it may be 
                                     // helpful to put some of it here, while all segments follow the same path.
       "transitions": {    // (optional) Defines transitions for a given SID. Common for FAA-style (USA) SIDs. If not needed (like in Europe), leave this part out.
           "SNS": ["SNS"], // defines the "OFFSH9.SNS" transition as being a single fix, "SNS". Is often a list instead.
-          "BSR": ["BSR"], // Note that this connects to the end of previous sections, so an example route: SEPDY->ZUPAX->EUGEN->SHOEY->BSR
-          "SHOEY": []     // Even empty transitions are allowable
+          "BSR": ["BSR"]  // Note that this connects to the end of previous sections, so an example route: SEPDY->ZUPAX->EUGEN->SHOEY->BSR
       },
       "draw": [["SEPDY","ZUPAX"], ["SENZY","ZUPAX","EUGEN","SHOEY*"], ["SHOEY","SNS*"], ["SHOEY","BSR*"]]
         // (req) This "draw" section is what defines how the SID is to be drawn on the scope in blue.
@@ -76,11 +76,38 @@ airport code, such as `ksfo` or `kmsp`.
         // then the ICAO identifier for the SID will be drawn at the last point of the "draw" array. For european-
         // style SIDs, where they always end at the fix for which the SID is named, don't use the flags. But if your SID
         // has transitions, like in the N/S Americas, United Kingdom, etc, be sure to flag all the transition fixes.
-  }
-  }
+    }
+  },
+  "stars": {  // contains all STARS available at this airport
+    "PYE1" : {
+      "icao": "PYE1",               // (req) ICAO identifier for SID (this is NOT the full name, always 2-6 characters)
+      "name": "Point Reyes One" ,   // (req) Name of SID as it would be said aloud (it is used by speech synthesis to pronounce "OFFSH9")
+      "suffix": {"1L":"", "1R":"", "28L":"", "28R":""},   // (optional) defines suffixes to STAR name based on runway (eg '7W' for 'MIKOV 7W').
+                                                          // Common for European-style STARs. If not needed (like in USA), leave this part out.
+      "transitions": {    // (optional) Defines transitions for a given SID. Common for FAA-style (USA) SIDs. If not needed (like in Europe), leave this part out.
+          "ENI": ["ENI"], // defines the "OFFSH9.SNS" transition as being a single fix, "SNS". Is often a list instead.
+          "MXW": ["MXW"]  // Note that this connects to the end of previous sections, so an example route: SEPDY->ZUPAX->EUGEN->SHOEY->BSR
+      },
+      "body": ["PYE", ["STINS", "A230|S250"], "HADLY"], // (optional) This is where you store the waypoints when all segments are along the same path
+      "rwy": {  // (optional) For runway-transitions (eg "descending via HAWKZ4, landing north")
+          "1L" : [["SEPDY", "A19+"], "ZUPAX"],  // List fixes here that are specific to a particular runway configuration.
+          "1R" : [["SEPDY", "A19+"], "ZUPAX"],  // In Europe, these are called the "transitions" that come after the STAR.
+          "28L": [["SENZY", "A25+"], "ZUPAX"],  // If any runways are listed, all must be listed.
+          "28R": [["SENZY", "A25+"], "ZUPAX"]
+      },
+      "draw": [["ENI*","PYE"], ["MXW*","PYE"], ["PYE","STINS","HADLY","OSI"]]
+        // (req) This "draw" section is what defines how the SID is to be drawn on the scope.
+        // The array contains multiple arrays that are a series of points to draw fixes between.
+        // In this case, ENI->PYE, MXW->PYE, PYE->STINS->HADLY->OSI are the lines drawn.
+        // Additionally, you'll notice two asterisks ('*'). This is an optional flag that, if invoked for "FIXXX"
+        // will tell canvas.js to write "FIXXX.PYE1" next to FIXXX on the scope. If no such flags are present,
+        // then the ICAO identifier for the SID will be drawn at the first point of the "draw" array. For european-
+        // style STARs, where they always end at the fix for which the STAR is named, don't use the flags.
+    }
+  },
   "departures": {
     "airlines": [
-      ["three-letter ICAO airline code/fleet", 0], // the number is the weight; if the weight is ["BAW", 1], ["UAL", 0], "BAW" will always get chosen.
+      ["three-letter ICAO airline code/fleet", 0], // see "Aircraft/Airline selectors" below
       ...
     ],
     "destinations": [
@@ -90,13 +117,31 @@ airport code, such as `ksfo` or `kmsp`.
     "offset": ,
     "frequency": [3, 4] // the frequency, in minutes, of a new departing aircraft. A random number is chosen between the two.
   },
-  "arrivals": [ // note that all arrival positions are fuzzed a little to increase the realism
-    { // this is a single arrival direction
-      "radial": 180,            // the direction, in degrees, of arriving aircraft when they spawn; these will come from the south
-      "heading": 0,             // the direction airplanes will be pointing when they spawn; will be opposite of "radial" if omitted
-      "airlines": [ ... ],      // see above
-      "frequency": [3, 6],      // see above
-      "altitude": [3000, 4500]  // the altitude aircraft spawn at
+  "arrivals": [
+    {   // Basic 1
+      "type": "random",
+      "radial": 170,        // the direction, in degrees, of arriving aircraft when they spawn; these will come from the south. ONLY use 'radial' with heading-based arrivals.
+      "heading": 350,       // the direction airplanes will be pointing when they spawn; will be opposite of "radial" if omitted
+      "frequency": 10,
+      "altitude": 10000,
+      "speed": 250,
+      "airlines": [ ... ]
+    },
+    {   // Basic 2
+      "type": "random",
+      "fixes": ["MOVDD", "RISTI", "CEDES"],   // list of fixes to fly to after spawning.
+      "frequency": 10,
+      "altitude": 10000,
+      "speed": 250,
+      "airlines": [ ... ]
+    },
+    {   // Advanced, based on a route of flight (like a STAR, for example)
+      "type": "random",               // options include 'random', 'cyclic', 'wave', and 'surge' (see below for descriptions)
+      "route":   "QUINN.BDEGA2.KSFO", // route to follow (spawn at first point)
+      "frequency": 10,              // spawn rate of this stream, in acph
+      "altitude":  [20000, 24000],  // altitude to spawn at (either a value, or altitude range via array)
+      "speed":    280,              // speed to spawn at
+      "airlines": [ ... ]           // same as in "departures"
     },
     ...
   ]
@@ -124,130 +169,127 @@ _must_ set the `position` of the airport as well; if you use `end`,
 
 Aircraft scheduling
 -------------------
+The 'type' key in an arrival or departure block determines the algorithm
+that will be used to spawn the aircraft. Each type take slightly different
+parameters in order for you to shape the airport's traffic to your liking.
 
-If a 'type' key is present in an arrival or departure block the
-algorithm may be changed from the default.
 
-### Default
+## Bare Minimum Elements
 
-This algorithm may be selected by omitting the 'type' key.  The
-'frequency' key is required and is specified as an array containing a
-lower bound in minutes and an upper bound in minutes.  An aircraft is
-generated by randomly selecting a delay between the lower bound and
-the upper bound and waiting until the delay has past.  Repeat for the
-next aircraft.
+At the very least, an arrival stream MUST have definitions for the
+following parameters. Additional may be required if the spawn method
+is set to one other than 'random'. 
 
-The average of the upper and lower bounds will be how often an
-aircraft is generated on average.
+            BARE MINIMUM PARAMETERS:
+   PARAMETER   REQ      PARAMETER DESCRIPTION
++-------------+---+-------------------------------+
+| 'airlines'  | * | weighted array of airlines    |
++-------------+---+-------------------------------+
+| 'altitude'  | * | altitude to spawn at          |
++-------------+---+-------------------------------+
+| 'frequency' | * | spawn rate, aircraft per hour |
++-------------+---+-------------------------------+
+| 'heading'   | * | heading to fly on spawn       |
+|    (OR)     |   |                               |
+|  'fixes'    | * | array of fixes to go to       |
+|    (OR)     |   |                               |
+|  'route'    | * | properly formatted route*     |
++-------------+---+-------------------------------+
+| 'speed'     | * | speed to spawn at (knots)     |
++-------------+---+-------------------------------+
+  *see index.md for route format (ex: 'BSR.BSR1.KSFO')
 
-Example:
-```
-"departures": {
-  ...,
-  "frequency": [1, 5]
-},
-```
 
-This example generates an aircraft every 3 minutes on average with a
-delay of 1 minute to 5 minutes between every aircraft.  The resulting
-number of aircraft per hour is 60/3 = 20 Aircraft per hour.
+### Random (default)
 
-### Random
+If the 'type' key is omitted, this spawning method will be used. The
+aircraft will be spawned at random intervals that average out to achieve
+the prescribed spawn rate. Thus, you may randomly get some back-to-back,
+and some massive gaps in your traffic, just as it is most likely to occur
+in real life.
 
-The random algorithm requires a 'frequency' key which is specified as
-a lower and upper bound in aircraft per hour.  A delay is randomly
-chosen between generating each aircraft which will result in at least
-the lower bound of aircraft per hour and at most the upper bound of
-aircraft per hour.
+       PARAMETERS SPECIFIC TO 'RANDOM':
++-----------------------------------------------+
+| only the "bare minimum parameters" are needed |
++-----------------------------------------------+
 
-This will usually result in a steady stream of aircraft with some
-variation between individual aircraft.
-
-Example:
-```
-"departures": {
-  ...,
-  "type": "random",
-  "frequency": [20, 30]
-}
-```
-
-This spawns 20 to 30 aircraft per hour which is an aircraft every 2-3 minutes.
 
 ### Cyclic
 
-Whereas the random algorithms result in a relatively steady stream of
-aircraft over time the cyclic algorithm creates a stream of varying
-density.  The 'frequency' key is required and specified in aircraft
-per hour as an upper and lower bound.  The 'period' key may be
-specified and sets how long a cycle is in minutes, if it is not set a
-cycle is 60 minutes long.  The 'offset' key may be used to specify how
-long after the game starts the cycle will peak, it's value is in
-minutes and defaults to peaking at the game start or 0 minutes.
+The cyclic algorithm creates a stream of varying density. This will be more
+predictable than 'random', and can be shaped to your liking. Basically, you
+define the 'frequency', which is the average spawn rate, and an additional
+'variance' parameter that adds some swells and lulls in the traffic. During
+the cycle, the spawn rate will range throughout frequency +/- variation in
+a linear fashion. Spawn rate will start at 'frequency', and steadily
+increase to ('frequency' + 'variation'), then steadily decrease to
+('frequency' - 'variation').
 
-Example:
-```
-"departures": {
-  ...,
-  "type": "cyclic",
-  "frequency": [10, 60],
-  "period": 90,
-  "offset": 45
-},
-```
+               PARAMETERS SPECIFIC TO 'CYCLIC':
+   PARAMETER   REQ        PARAMETER DESCRIPTION         DEFAULT
++-------------+---+------------------------------------+-------+
+| 'offset'    |   | min into the cycle to start at     | 0     |
++-------------+---+------------------------------------+-------+
+| 'period'    |   | length of each cycle, in minutes   | 30    |
++-------------+---+------------------------------------+-------+
+| 'variation' | * | the amount to +/- from 'frequency' | 0     |
++-------------+---+------------------------------------+-------+
+|     (also include "bare minimum parameters" - see above)     |
++--------------------------------------------------------------+
 
-This will spawn an average of 35 aircraft per hour. At the start of
-the game it will spawn one aircraft every 6 minutes (10 aircraft per
-hour), this delay will steadily decrease until 45 minutes of play when
-it will be spawning one aircraft every minute (60 aircraft per hour).
 
-### Wave
+# Wave
 
-The wave algorithm generates aircraft as one group with minimal
-spacing between them.  For departures the spacing is 10 seconds, for
-arrivals it is 7.5 nmi in trail (general en-route ATC spacing).  The
-'frequency' key is required and is specified in aircraft per hour.
-For arrivals the 'speed' key is required and specified in knots, it
-will be the speed the aircraft are initially flying.  An optional
-'period' key may be specified in minutes to set how often a wave
-comes, if not set it defaults to 60 minutes.  An optional 'offset' key
-may be specified in minutes to set the time when the center of the
-wave will happen after the game starts, if not set it defaults to 0.
+The wave algorithm works exactly like the cyclic algorithm, however,
+instead of a linear shift between arrival rates, the arrival rate will
+vary throughout ('frequency' +/- 'variation') in a sinusoidal pattern.
+As a result, less time will be spent right at the average, and the flow
+of traffic will have changes in arrival rates that come along slightly
+sooner. Overall, very similar to cyclic though.
 
-If the frequency requests more aircraft than can be spawned with the
-given spacing the frequency will be reduced to create a continuous
-stream of aircraft with the given spacing.
+                PARAMETERS SPECIFIC TO 'WAVE':
+   PARAMETER   REQ        PARAMETER DESCRIPTION         DEFAULT
++-------------+---+------------------------------------+-------+
+| 'offset'    |   | min into the cycle to start at     | 0     |
++-------------+---+------------------------------------+-------+
+| 'period'    |   | length of each cycle, in minutes   | 30    |
++-------------+---+------------------------------------+-------+
+| 'variation' | * | the amount to +/- from 'frequency' | 0     |
++-------------+---+------------------------------------+-------+
+|     (also include "bare minimum parameters" - see above)     |
++--------------------------------------------------------------+
 
-Example:
-```
-"departures": {
-  ...,
-  "type": "wave",
-  "frequency": 40,
-  "period": 30,
-  "offset": 15
-},
-```
 
-This creates 20 aircraft every 30 minutes (40 per hour), the first
-aircraft in the group will spawn at 14:20 with another aircraft every
-10 seconds after the preceding one.
+### Surge
 
-Example:
-```
-"arrivals": [
-  {
-    ...,
-    "type": "wave",
-    "frequency": 25,
-    "speed": 250
-  }
-],
-```
+The wave algorithm generates a group of aircraft back to back. For departures
+the spacing is 10 seconds, for arrivals, you can specify the entrail distance
+while in and out of the "surge". This way, a "surge" can be gentle, or extreme,
+and at any arrival rate.
 
-This spawns 25 aircraft in a group every hour.  It starts with a group
-of 13 aircraft at the beginning of the game.  An aircraft is spawned
-every 108 seconds.
+Note that if you request something that's impossible to deliver, like either...
+   - "frequency": 50, "entrail": [ 7, 15] <-- even if all are 7MIT, that's 35acph
+   - "frequency": 7,  "entrail": [10, 25] <-- even if all are 25MIT, that's 10acph
+   - Note: The above assumes spawn speed of 250kts, for example purposes
+...the game will throw a warning in the console advising you that it has
+clamped the arrival rate to match the entrail and speed settings, and it tells
+you what range of frequencies it is mathematically capable of delivering.
+
+              PARAMETERS SPECIFIC TO 'SURGE':
+  PARAMETER  REQ        PARAMETER DESCRIPTION         DEFAULT
++-----------+---+---------------------------------------------+-------+
+| 'offset'  |   | min into the cycle to start at              | 0     |
++-----------+---+---------------------------------------------+-------+
+| 'period'  |   | length of each cycle, in minutes            | 30    |
++-----------+---+---------------------------------------------+-------+
+|           |   | array of:                                   |       |
+| 'entrail' | * | [ miles between arrivals during the surge,  | [5.5, | <-- only for arrivals
+|           |   |   miles between arrivals during the lull  ] |  10]  |
++-----------+---+---------------------------------------------+-------+
+|        (also include "bare minimum parameters" - see above)         |
++---------------------------------------------------------------------+
+
+
 
 Aircraft/Airline selectors
 --------------------------
@@ -266,39 +308,3 @@ Example:
 Select an aircraft from BAW's (British Airways) default fleet five
 times as often as an aircraft is selected from AAL's (American
 Airlines) long haul fleet.
-
-Arrival blocks
---------------
-
-
-### Waypoints
-
-An arrival may specify a set of waypoints which the aircraft should
-follow after spawning including speed and altitude changes.  This
-allows spawning at high altitude and descending to the terminal area.
-
-Example:
-    ...,
-    "waypoints": [
-      {
-        "fix": "SKUNK",
-        "speed": 250,
-        "altitude": 10000
-      },
-      {
-        "fix": "BOLDR",
-        "speed": 230,
-        "altitude": 8000
-      }
-    ],
-    ...
-
-#### Fixes
-
-A simplified set of waypoints may be created by specifing a list of
-fixes only.  If specified it will overide any waypoints configured.
-
-Example:
-    ...,
-    "fixes": ["SKUNK", "BOLDR"],
-    ...
