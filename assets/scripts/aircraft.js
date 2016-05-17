@@ -968,16 +968,8 @@ zlsa.atc.AircraftFlightManagementSystem = Fiber.extend(function() {
      **    - (spd) waypoint's speed restriction
      */
     climbViaSID: function() {
-      // Find the SID leg
-      var wp, legIndex;
-      for(var l in this.legs) {
-        if(this.legs[l].type == "sid") {
-          legIndex = l;
-          wp = this.legs[l].waypoints; break;
-        }
-      }
-      if(!wp) return;
-
+      if(!this.currentLeg().type == "sid") return;
+      var wp = this.currentLeg().waypoints;
       var cruise_alt = this.fp.altitude;
       var cruise_spd = this.my_aircraft.model.speed.cruise;
 
@@ -1017,7 +1009,7 @@ zlsa.atc.AircraftFlightManagementSystem = Fiber.extend(function() {
       }
 
       // change fms waypoints to wp (which contains the altitudes and speeds)
-      this.legs[legIndex].waypoints = wp;
+      this.legs[this.current[0]].waypoints = wp;
       return true;
     },
 
@@ -1083,7 +1075,6 @@ zlsa.atc.AircraftFlightManagementSystem = Fiber.extend(function() {
     },
 
 
-
     /************************** FMS QUERY FUNCTIONS **************************/
 
     /** True if waypoint of the given name exists
@@ -1128,6 +1119,7 @@ zlsa.atc.AircraftFlightManagementSystem = Fiber.extend(function() {
 
       return {wp:wp, lw:this.current};
     },
+
 
     /*************************** FMS GET FUNCTIONS ***************************/
 
@@ -1962,10 +1954,12 @@ var Aircraft=Fiber.extend(function() {
       else return [true, "unable to clear as filed"];
     },
     runClimbViaSID: function() {
-      if(this.fms.climbViaSID())
-      return ['ok', {log: "descend via the " + this.destination + " departure",
-        say: "climb via the " + airport_get().sids[this.destination].name + " departure"}];
-      else ui_log(true, this.getCallsign() + ", unable to climb via SID");
+      if(!this.fms.currentLeg().type == "sid") var fail = true;
+      else if(this.fms.climbViaSID())
+        return ['ok', {log: "climb via the " + this.fms.currentLeg().route.split('.')[1] + " departure",
+          say: "climb via the " + airport_get().sids[this.fms.currentLeg().route.split('.')[1]].name + " departure"}];
+      
+      if(fail) ui_log(true, this.getCallsign() + ", unable to climb via SID");
     },
     runDescendViaSTAR: function() {
       if(this.fms.descendViaSTAR() && this.fms.following.star)
