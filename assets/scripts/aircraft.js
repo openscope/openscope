@@ -1304,8 +1304,8 @@ var Aircraft=Fiber.extend(function() {
       }
 
       // Initial Runway Assignment
-      if (options.category == "arrival") this.rwy_arr = airport_get().runway;
-      else if (options.category == "departure") this.rwy_dep = airport_get().runway;
+      if (options.category == "arrival") this.setArrivalRunway(airport_get().runway);
+      else if (options.category == "departure") this.setDepartureRunway(airport_get().runway);
       this.takeoffTime = (options.category == "arrival") ? game_time() : null;
 
       this.parse(options);
@@ -1320,6 +1320,17 @@ var Aircraft=Fiber.extend(function() {
         this.fms.setCurrent({heading: vradial(this.position) + Math.PI,});  // aim aircraft at airport
       }
       if(this.fms.legs.length > 0) this.fms.nextWaypoint(); // go to the first fix!
+    },
+    setArrivalRunway: function(rwy) {
+      this.rwy_arr = rwy;
+
+      //Update the assigned STAR to the appropriate branch/transition
+    },
+    setDepartureRunway: function(rwy) {
+      this.rwy_dep = rwy;
+
+      // Update the assigned SID to use the portion for the new runway
+      if(this.fms.currentLeg().type == "sid") this.fms.followSID(this.fms.currentLeg().route);
     },
     cleanup: function() {
       this.html.remove();
@@ -2140,7 +2151,7 @@ var Aircraft=Fiber.extend(function() {
         return ["fail", "SID name not understood"];
       }
 
-      if(!this.rwy_dep) this.rwy_dep = airport_get().runway;
+      if(!this.rwy_dep) this.setDepartureRunway(airport_get().runway);
       this.fms.followSID(route);
 
       return ["ok", {log:"cleared to destination via the " + sid_id + " departure, then as filed",
@@ -2213,7 +2224,7 @@ var Aircraft=Fiber.extend(function() {
 
       // Set the runway to taxi to
       if(data) {
-        if(airport_get().getRunway(data.toUpperCase())) this.rwy_dep = data.toUpperCase();
+        if(airport_get().getRunway(data.toUpperCase())) this.setDepartureRunway(data.toUpperCase());
         else return ["fail", "no runway " + data.toUpperCase()];
       }
 
@@ -2271,7 +2282,7 @@ var Aircraft=Fiber.extend(function() {
 
       var runway = airport_get().getRunway(data);
       if(!runway) return ["fail", "there is no runway " + radio_runway(data)];
-      else this.rwy_arr = data.toUpperCase();
+      else this.setArrivalRunway(data.toUpperCase());
 
       this.fms.followApproach("ils", this.rwy_arr, variant); // tell fms to follow ILS approach
 
@@ -2363,12 +2374,12 @@ var Aircraft=Fiber.extend(function() {
         if(data.waypoints.length > 0)
           this.setArrivalWaypoints(data.waypoints);
         this.destination = data.destination;
-        this.rwy_arr = airport_get(this.destination).runway;
+        this.setArrivalRunway(airport_get(this.destination).runway);
       }
       else if(this.category == "departure" && this.isLanded()) {
         this.speed = 0;
         this.mode = "apron";
-        this.rwy_dep = airport_get().rwy;
+        this.setDepartureRunway(airport_get().rwy);
         this.destination = data.destination;
       }
 
