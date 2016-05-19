@@ -13,10 +13,12 @@ vertically.  No separation incidents are registered for aircraft in
 their first minute of flight.
 
 A notice will occur for aircraft which do not have sufficient vertical
-separation and are within 4nm laterally.
+separation and are within 1nm of the applicable separation minimum
+(usually 3nm).
 
 Collisions occur when an aircraft is within approximately 160 feet of
-another aircraft.
+another aircraft. At this time, aircraft on the ground are immune to
+collisions.
 
 ## Diverging courses
 
@@ -26,29 +28,30 @@ courses intersect.  If the headings differ by more than 165 degrees,
 then the aircraft may approach closer once the distance between them
 is increasing.
 
-## Head-on use of runway
+## Opposite direction runway usage
 
 A warning will be issued if two aircraft within 6 miles of each other
-are assigned to the same runway but have opposite headings.
+are using the same runway from different ends (by checking heading).
 
 ## Reduced lateral separation during runway approach
 
-Standard vertical separation may be applied if the specified lateral
-separation isn't maintained.
+Aircraft "established" on the localizer of an Instrument Landing System
+(ILS) are often eligible for reduced separation minima from other aircraft
+on adjacent final approach courses. Aircraft are considered to be fully
+"established" when they are laterally within 160 feet of the final
+approach course. At this point, the lower lateral separation requirements
+will be applied, allowing the aircraft to go under 3nm separation, all the
+way down to the appropriate value (depends on distance between runway
+centerlines):
 
-Aircraft are considered established when they are laterally within 160
-feet of the approach centerline.
-
-### Same runway
-
-Two aircraft which have both captured the same runway localizer must remain
-at least 2.5nm from each other.  A notice occurs at 2.8nm.
-
-### Different runways
-
-The separation distance between two aircraft may be set on a runway by
-runway basis.  Typically two aircraft may approach no closer than
-4,300 to 3,000 feet laterally while both are established on the
-approach.  In some cases the minimum separation may be higher such as
-a simultaneous close parallel approach where it will be 9114 feet (1.5
-nautical miles).
+  Reduced Separation on Adjacent Final Approach Courses
+  See FAA JO 7110.65, para. 5-9-6
+  +-----------------------+---------------------+
+  | Dist btwn ctrln (ft)  |  Separation Minima  |
+  +-----------------------+---------------------+
+  |    < 2,500'           |  Standard Sep (3nm) |
+  |    2,500' --> 3,600'  |  1.0 nautical mile  |
+  |    3,601' --> 4,300'  |  1.5 nautical miles |
+  |    4,301' --> 9,000'  |  2.0 nautical miles |
+  |             > 9,000'  |  Standard Sep (3nm) |
+  +-----------------------+---------------------+
