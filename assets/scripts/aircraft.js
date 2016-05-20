@@ -955,7 +955,7 @@ zlsa.atc.AircraftFlightManagementSystem = Fiber.extend(function() {
      */
     clearedAsFiled: function() {
       var retval = this.my_aircraft.runSID(aircraft_get(this.my_aircrafts_eid).destination);
-      var ok = !Array.isArray(retval) && retval[0]=="fail";
+      var ok = !(Array.isArray(retval) && retval[0]=="fail");
       return ok;
     },
 
