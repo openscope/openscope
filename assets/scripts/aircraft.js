@@ -441,17 +441,17 @@ zlsa.atc.Leg = Fiber.extend(function(data, fms) {
         var rwy = fms.my_aircraft.rwy_dep;
         this.waypoints = [];
 
-        // Remove the placeholder leg (if present)
-        if(fms.my_aircraft.isLanded() && fms.legs.length>0 && fms.legs[0].route == airport_get().icao) {
-          fms.legs.splice(0,1); // remove the placeholder leg, to be replaced below with SID Leg
-        }
-
         // Generate the waypoints
         if(!rwy) {
           ui_log(true, fms.my_aircraft.getCallsign() + " unable to fly SID, we haven't been assigned a departure runway!");
           return;
         }
         var pairs = airport_get(apt).getSID(sid, trn, rwy);
+        // Remove the placeholder leg (if present)
+        if(fms.my_aircraft.isLanded() && fms.legs.length>0
+            && fms.legs[0].route == airport_get().icao && pairs.length>0) {
+          fms.legs.splice(0,1); // remove the placeholder leg, to be replaced below with SID Leg
+        }
         for (var i=0; i<pairs.length; i++) { // for each fix/restr pair
           var f = pairs[i][0];
           var a = null, s = null;
@@ -954,8 +954,9 @@ zlsa.atc.AircraftFlightManagementSystem = Fiber.extend(function() {
     /** Invokes flySID() for the SID in the flightplan (fms.fp.route)
      */
     clearedAsFiled: function() {
-      this.my_aircraft.runSID(aircraft_get(this.my_aircrafts_eid).destination);
-      return true;
+      var retval = this.my_aircraft.runSID(aircraft_get(this.my_aircrafts_eid).destination);
+      var ok = !Array.isArray(retval) && retval[0]=="fail";
+      return ok;
     },
 
     /** Climbs aircraft in compliance with the SID they're following
@@ -2156,8 +2157,12 @@ var Aircraft=Fiber.extend(function() {
       if(!apt.sids.hasOwnProperty(sid_id)) {
         return ["fail", "SID name not understood"];
       }
-
       if(!this.rwy_dep) this.setDepartureRunway(airport_get().runway);
+      if(!apt.sids[sid_id].rwy.hasOwnProperty(this.rwy_dep)) {
+        return ['fail', "unable, the "+sid_name+" departure not valid from Runway "+this.rwy_dep];
+      }
+
+
       this.fms.followSID(route);
 
       return ["ok", {log:"cleared to destination via the " + sid_id + " departure, then as filed",
