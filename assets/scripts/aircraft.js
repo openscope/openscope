@@ -836,6 +836,7 @@ zlsa.atc.AircraftFlightManagementSystem = Fiber.extend(function() {
       }
       // Add the new SID Leg
       this.prependLeg({type:"sid", route:route})
+      this.setAll({altitude:Math.max(airport_get().initial_alt,this.my_aircraft.altitude)});
     },
 
     /** Inserts the STAR as the last Leg in the fms's flightplan
@@ -954,7 +955,6 @@ zlsa.atc.AircraftFlightManagementSystem = Fiber.extend(function() {
      */
     clearedAsFiled: function() {
       this.my_aircraft.runSID(aircraft_get(this.my_aircrafts_eid).destination);
-      this.setAll({altitude:airport_get().initial_alt});
       return true;
     },
 
@@ -1330,7 +1330,13 @@ var Aircraft=Fiber.extend(function() {
       this.rwy_dep = rwy;
 
       // Update the assigned SID to use the portion for the new runway
-      if(this.fms.currentLeg().type == "sid") this.fms.followSID(this.fms.currentLeg().route);
+      var l = this.fms.currentLeg();
+      if(l.type == "sid") {
+        var a = $.map(l.waypoints,function(v){return v.altitude});
+        var cvs = !a.every(function(v){return v==airport_get().initial_alt;});
+        this.fms.followSID(l.route);
+        if(cvs) this.fms.climbViaSID();
+      }
     },
     cleanup: function() {
       this.html.remove();
