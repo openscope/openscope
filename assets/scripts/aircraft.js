@@ -2385,7 +2385,7 @@ var Aircraft=Fiber.extend(function() {
       else if(this.category == "departure" && this.isLanded()) {
         this.speed = 0;
         this.mode = "apron";
-        this.setDepartureRunway(airport_get().rwy);
+        this.setDepartureRunway(airport_get().runway);
         this.destination = data.destination;
       }
 
