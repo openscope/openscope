@@ -836,6 +836,7 @@ zlsa.atc.AircraftFlightManagementSystem = Fiber.extend(function() {
       }
       // Add the new SID Leg
       this.prependLeg({type:"sid", route:route})
+      this.setAll({altitude:Math.max(airport_get().initial_alt,this.my_aircraft.altitude)});
     },
 
     /** Inserts the STAR as the last Leg in the fms's flightplan
@@ -954,7 +955,6 @@ zlsa.atc.AircraftFlightManagementSystem = Fiber.extend(function() {
      */
     clearedAsFiled: function() {
       this.my_aircraft.runSID(aircraft_get(this.my_aircrafts_eid).destination);
-      this.setAll({altitude:airport_get().initial_alt});
       return true;
     },
 
@@ -968,16 +968,8 @@ zlsa.atc.AircraftFlightManagementSystem = Fiber.extend(function() {
      **    - (spd) waypoint's speed restriction
      */
     climbViaSID: function() {
-      // Find the SID leg
-      var wp, legIndex;
-      for(var l in this.legs) {
-        if(this.legs[l].type == "sid") {
-          legIndex = l;
-          wp = this.legs[l].waypoints; break;
-        }
-      }
-      if(!wp) return;
-
+      if(!this.currentLeg().type == "sid") return;
+      var wp = this.currentLeg().waypoints;
       var cruise_alt = this.fp.altitude;
       var cruise_spd = this.my_aircraft.model.speed.cruise;
 
@@ -1017,7 +1009,7 @@ zlsa.atc.AircraftFlightManagementSystem = Fiber.extend(function() {
       }
 
       // change fms waypoints to wp (which contains the altitudes and speeds)
-      this.legs[legIndex].waypoints = wp;
+      this.legs[this.current[0]].waypoints = wp;
       return true;
     },
 
@@ -1083,7 +1075,6 @@ zlsa.atc.AircraftFlightManagementSystem = Fiber.extend(function() {
     },
 
 
-
     /************************** FMS QUERY FUNCTIONS **************************/
 
     /** True if waypoint of the given name exists
@@ -1128,6 +1119,7 @@ zlsa.atc.AircraftFlightManagementSystem = Fiber.extend(function() {
 
       return {wp:wp, lw:this.current};
     },
+
 
     /*************************** FMS GET FUNCTIONS ***************************/
 
@@ -1312,8 +1304,8 @@ var Aircraft=Fiber.extend(function() {
       }
 
       // Initial Runway Assignment
-      if (options.category == "arrival") this.rwy_arr = airport_get().runway;
-      else if (options.category == "departure") this.rwy_dep = airport_get().runway;
+      if (options.category == "arrival") this.setArrivalRunway(airport_get().runway);
+      else if (options.category == "departure") this.setDepartureRunway(airport_get().runway);
       this.takeoffTime = (options.category == "arrival") ? game_time() : null;
 
       this.parse(options);
@@ -1328,6 +1320,23 @@ var Aircraft=Fiber.extend(function() {
         this.fms.setCurrent({heading: vradial(this.position) + Math.PI,});  // aim aircraft at airport
       }
       if(this.fms.legs.length > 0) this.fms.nextWaypoint(); // go to the first fix!
+    },
+    setArrivalRunway: function(rwy) {
+      this.rwy_arr = rwy;
+
+      //Update the assigned STAR to the appropriate branch/transition
+    },
+    setDepartureRunway: function(rwy) {
+      this.rwy_dep = rwy;
+
+      // Update the assigned SID to use the portion for the new runway
+      var l = this.fms.currentLeg();
+      if(l.type == "sid") {
+        var a = $.map(l.waypoints,function(v){return v.altitude});
+        var cvs = !a.every(function(v){return v==airport_get().initial_alt;});
+        this.fms.followSID(l.route);
+        if(cvs) this.fms.climbViaSID();
+      }
     },
     cleanup: function() {
       this.html.remove();
@@ -1962,10 +1971,12 @@ var Aircraft=Fiber.extend(function() {
       else return [true, "unable to clear as filed"];
     },
     runClimbViaSID: function() {
-      if(this.fms.climbViaSID())
-      return ['ok', {log: "descend via the " + this.destination + " departure",
-        say: "climb via the " + airport_get().sids[this.destination].name + " departure"}];
-      else ui_log(true, this.getCallsign() + ", unable to climb via SID");
+      if(!this.fms.currentLeg().type == "sid") var fail = true;
+      else if(this.fms.climbViaSID())
+        return ['ok', {log: "climb via the " + this.fms.currentLeg().route.split('.')[1] + " departure",
+          say: "climb via the " + airport_get().sids[this.fms.currentLeg().route.split('.')[1]].name + " departure"}];
+      
+      if(fail) ui_log(true, this.getCallsign() + ", unable to climb via SID");
     },
     runDescendViaSTAR: function() {
       if(this.fms.descendViaSTAR() && this.fms.following.star)
@@ -2146,7 +2157,7 @@ var Aircraft=Fiber.extend(function() {
         return ["fail", "SID name not understood"];
       }
 
-      if(!this.rwy_dep) this.rwy_dep = airport_get().runway;
+      if(!this.rwy_dep) this.setDepartureRunway(airport_get().runway);
       this.fms.followSID(route);
 
       return ["ok", {log:"cleared to destination via the " + sid_id + " departure, then as filed",
@@ -2219,7 +2230,7 @@ var Aircraft=Fiber.extend(function() {
 
       // Set the runway to taxi to
       if(data) {
-        if(airport_get().getRunway(data.toUpperCase())) this.rwy_dep = data.toUpperCase();
+        if(airport_get().getRunway(data.toUpperCase())) this.setDepartureRunway(data.toUpperCase());
         else return ["fail", "no runway " + data.toUpperCase()];
       }
 
@@ -2277,7 +2288,7 @@ var Aircraft=Fiber.extend(function() {
 
       var runway = airport_get().getRunway(data);
       if(!runway) return ["fail", "there is no runway " + radio_runway(data)];
-      else this.rwy_arr = data.toUpperCase();
+      else this.setArrivalRunway(data.toUpperCase());
 
       this.fms.followApproach("ils", this.rwy_arr, variant); // tell fms to follow ILS approach
 
@@ -2369,12 +2380,12 @@ var Aircraft=Fiber.extend(function() {
         if(data.waypoints.length > 0)
           this.setArrivalWaypoints(data.waypoints);
         this.destination = data.destination;
-        this.rwy_arr = airport_get(this.destination).runway;
+        this.setArrivalRunway(airport_get(this.destination).runway);
       }
       else if(this.category == "departure" && this.isLanded()) {
         this.speed = 0;
         this.mode = "apron";
-        this.rwy_dep = airport_get().rwy;
+        this.setDepartureRunway(airport_get().rwy);
         this.destination = data.destination;
       }
 

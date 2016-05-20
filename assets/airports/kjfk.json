@@ -93,8 +93,8 @@
     "_RWY22RDEP": ["N40.562333", "W73.828667"],
     "_RWY22LDEP": ["N40.552167", "W73.7905"],
     "CCC": ["N40.929616", "W72.798859"],
-    "_RWY04L3": ["N40.6895", "W73.731167"],
-    "_RWY04L3to100": ["N40.6925", "W73.654167"],
+    "_RWY4L3": ["N40.6895", "W73.731167"],
+    "_RWY4L3to100": ["N40.6925", "W73.654167"],
     "CRAIL": ["N40.686967", "W73.343411"],
     "LANNA": ["N40.559667", "W75.027667"],
     "CAPIT": ["N40.760553", "W73.630406"],
@@ -147,8 +147,8 @@
       "rwy": {
         "31L": ["CRI", ["_CRI3", "A25+"]],
         "31R": ["CRI", ["OGY", "A25+"]],
-        "04L": ["_RWY04L3", ["_RWY04L3to100", "A50+"]],
-        "04R": ["_RWY04L3", ["_RWY04L3to100", "A50+"]],
+        "4L" : ["_RWY4L3", ["_RWY4L3to100", "A50+"]],
+        "4R" : ["_RWY4L3", ["_RWY4L3to100", "A50+"]],
         "13L": ["_RWY13LDEP"],
         "13R": ["_RWY13RDEP"],
         "22L": ["_RWY22LDEP"],
@@ -176,7 +176,7 @@
         "SBJ": ["SBJ"],
         "LANNA": ["LANNA"]
       },
-      "draw": [["CRI", "OGY"], ["CRI", "_CRI3"], ["_RWY04L3", "_RWY04L3to100"], ["JFK", "SAX*"], ["JFK", "COATE*"], ["JFK", "NEION*"], ["JFK","HAAYS*"], ["JFK", "GAYEL*"], ["JFK", "GREKI*"], ["JFK", "MERIT*"], ["JFK", "BAYYS*"], ["JFK", "BDR*"], ["JFK", "BETTE*"], ["JFK", "HAPIE*"], ["JFK", "SHIPP*"], ["JFK", "WAVEY*"], ["JFK", "WHITE*"], ["JFK", "DIXIE*"], ["JFK", "RNGRR*"], ["JFK", "RBV*"], ["JFK", "ARD*"], ["JFK", "SBJ*"], ["JFK", "LANNA*"]]
+      "draw": [["CRI", "OGY"], ["CRI", "_CRI3"], ["_RWY4L3", "_RWY4L3to100"], ["JFK", "SAX*"], ["JFK", "COATE*"], ["JFK", "NEION*"], ["JFK","HAAYS*"], ["JFK", "GAYEL*"], ["JFK", "GREKI*"], ["JFK", "MERIT*"], ["JFK", "BAYYS*"], ["JFK", "BDR*"], ["JFK", "BETTE*"], ["JFK", "HAPIE*"], ["JFK", "SHIPP*"], ["JFK", "WAVEY*"], ["JFK", "WHITE*"], ["JFK", "DIXIE*"], ["JFK", "RNGRR*"], ["JFK", "RBV*"], ["JFK", "ARD*"], ["JFK", "SBJ*"], ["JFK", "LANNA*"]]
     },
       "DEEZZ4": {
         "icao": "DEEZZ4",
@@ -186,8 +186,8 @@
             "31R": ["_315I243SKORR","SKORR", ["CESID", "A25+"], "YNKEE"],
             "13R": [["_RWY13R3DME", "A5.2+"]],
             "13L": [["_RWY13L3DME", "A5.2+"]],
-            "04R": ["_RWY04L3"],
-            "04L": ["_RWY04L3"],
+            "4R" : ["_RWY4L3"],
+            "4L" : ["_RWY4L3"],
             "22R": ["YNKEE"],
             "22L": ["YNKEE"]
         },
