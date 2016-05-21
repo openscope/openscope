@@ -1180,6 +1180,7 @@ function airport_init() {
   airport_load("sbgr");
   airport_load("uudd");
   airport_load("vhhh");
+  airport_load("vidp");
   airport_load("wiii");
   airport_load("wimm");
 }
