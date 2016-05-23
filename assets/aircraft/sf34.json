@@ -1,0 +1,37 @@
+{
+  "name": "Saab 340",
+  "icao": "SF34",
+  "engines": {
+    "number": 2,
+    "type": "T"
+  },
+  "weightclass": "L",
+  "category": {
+    "srs": 3,
+    "lahso": 5,
+    "recat": "F"
+  },
+  "ceiling": 31000,
+  "rate": {
+    "climb":      2000,
+    "descent":    2150,
+    "accelerate": 3,
+    "decelerate": 2
+  },
+  "runway": {
+    "takeoff": 1.390,
+    "landing": 1.065
+  },
+  "speed":{
+    "min":     88,
+    "landing": 96,
+    "cruise":  252,
+    "cruiseM": null,
+    "max":     271,
+    "maxM":    null
+  },
+  "capability": {
+    "ils": true,
+    "fix": true
+  }
+}

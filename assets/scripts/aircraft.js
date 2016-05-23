@@ -3263,6 +3263,8 @@ function aircraft_init() {
   aircraft_load("md88");
   aircraft_load("md90");
 
+  // SAAB
+  aircraft_load("sb20");
   // TUPOLEV
   aircraft_load("t154");
   aircraft_load("t204");
@@ -3270,6 +3272,10 @@ function aircraft_init() {
   // MISCELLANEOUS
   aircraft_load("conc");
   aircraft_load("rj85");
+  aircraft_load("rj1h");
+  aircraft_load("d328");
+  aircraft_load("dhc6");
+  aircraft_load("sf34");
 }
 
 function aircraft_generate_callsign(airline_name) {

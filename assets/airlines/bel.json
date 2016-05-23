@@ -1,0 +1,23 @@
+{
+  "name": "Brussels Airlines",
+
+  "callsign": {
+    "name": "Beeline",
+    "length": 3
+  },
+  "fleets": {
+    "long": [
+      ["A332", 3 ],
+      ["A333", 6 ]
+    ],
+    "default": [
+      ["A319", 18 ],
+	  ["A320", 8  ],
+	  ["A332", 3  ],
+	  ["A333", 6  ],
+	  ["DH8D", 2  ],
+	  ["RJ85", 2  ],
+	  ["RJ1H", 12 ]
+	 ]
+  }
+}

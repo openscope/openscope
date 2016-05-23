@@ -136,7 +136,8 @@
     "airlines": [
       ["ual", 3],
       ["baw", 5],
-      ["cessna", 4]
+      ["cessna", 4],
+      ["bel", 6]
     ]
   },
   "arrivals":[
@@ -150,7 +151,8 @@
       "airlines": [
         ["ual", 2],
         ["baw", 5],
-        ["fastga", 20]
+        ["fastga", 20],
+	["bel", 7]
       ]
     },
     {
@@ -163,7 +165,8 @@
       "airlines":[
         ["ual", 5],
         ["baw", 1],
-        ["fastga", 3]
+        ["fastga", 3],
+	["bel", 4]
       ]
     },
     {
@@ -174,7 +177,8 @@
       "type": "random",
       "frequency": 15,
       "airlines": [
-        ["lightga", 20]
+        ["lightga", 20],
+	["bel", 3]
       ]
     },
     {
@@ -187,7 +191,8 @@
       "airlines": [
         ["ual", 10],
         ["baw", 10],
-        ["fastga", 1]
+        ["fastga", 1],
+	["bel", 12]
       ]
     }
   ]
