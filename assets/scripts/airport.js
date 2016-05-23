@@ -1158,6 +1158,7 @@ function airport_init() {
   airport_load("eddh");
   airport_load("eddm");
   airport_load("eddt");
+  airport_load("egcc");
   airport_load("egkk");
   airport_load("eglc");
   airport_load("egll");
