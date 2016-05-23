@@ -149,6 +149,8 @@ function airline_init() {
   airline_load("AZU");
   airline_load("BAW");
   airline_load("BCY");
+  airline_load("BEE");
+  airline_load("BEL");
   airline_load("BER");
   airline_load("BTK");
   airline_load("BWA");
@@ -168,6 +170,7 @@ function airline_init() {
   airline_load("EMBRAER");
   airline_load("ENY");
   airline_load("ETD");
+  airline_load("EXS");
   airline_load("EVA");
   airline_load("EZY");
   airline_load("FAB");
@@ -192,6 +195,7 @@ function airline_init() {
   airline_load("LAN");
   airline_load("LIGHTGA");
   airline_load("LNI");
+  airline_load("MON");
   airline_load("MOV");
   airline_load("NAX");
   airline_load("NKS");
