@@ -1,0 +1,12 @@
+{
+  "name": "Air India Express",
+  "callsign": {
+    "name": "EXPRESS INDIA",
+    "length": 3
+  },
+  "fleets": {
+    "default": [
+      ["B738", 20 ]
+    ]
+  }
+}

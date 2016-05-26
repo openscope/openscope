@@ -3174,6 +3174,7 @@ function aircraft_init() {
   aircraft_load("at43");
   aircraft_load("at45");
   aircraft_load("at72");
+  aircraft_load("at76");
 
   // BOEING
   aircraft_load("b712");
