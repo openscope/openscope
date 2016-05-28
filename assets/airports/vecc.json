@@ -1,5 +1,5 @@
 {
-  "name": "Kolkata Netaji Subhas Chandra Bose International Airport",
+  "name": "Kolkata Netaji Subhas Chandra Bose Int'l",
   "level": "medium",
   "radio": {
     "twr": "Kolkata Tower",
@@ -25,7 +25,7 @@
 	  "floor": 			0,
 	  "ceiling": 		21000,
 	  "airspace_class":	"D",
-	  "poly": 
+	  "poly":
 		[
 			["N23d08m02.40", "E086d57m51.00"],
 			["N23d28m02.30", "E087d25m50.80"],
@@ -40,9 +40,9 @@
 			["N23d08m02.40", "E086d57m51.00"]
 		]
 	}
-],	
+],
   "fixes": {
-		"_01L":		["N22d38m24.71", "E088d26m38.37"],
+	"_01L":		["N22d38m24.71", "E088d26m38.37"],
 		"_19R":		["N22d39m42.00", "E088d26m46.90"],
 		"_01R":		["N22d38m31.91", "E088d26m46.73"],
 		"_19L":		["N22d40m14.70", "E088d26m57.80"],
@@ -91,7 +91,7 @@
 		"CC201":	["N22d49m80.00", "E087d42m49.00"],
 		"CC203":	["N23d01m92.00", "E087d22m98.00"],
 		"CC103":	["N23d29m17.00", "E086d34m28.00"],
-		"SEGOL":	["N22d33m10.00", "E088d41m42.00"],	
+		"SEGOL":	["N22d33m10.00", "E088d41m42.00"],
 		"CC312":	["N22d43m83.00", "E088d52m29.00"],
 		"CC321":	["N22d53m19.00", "E088d06m18.00"],
 		"CC316":	["N22d58m92.00", "E088d22m59.00"],
@@ -152,7 +152,7 @@
 		"DU":		["N22d44m41.00", "E088d27m45.00"],
 		"CA":		["N22d35m02.00", "E088d26m39.00"]
 	},
-  
+
   "runways": [
    {
       "name": ["01L", "19R"],
@@ -180,11 +180,11 @@
 		},
 		"transitions": {
 			"JJS": ["CC202", "CC102", "JJS"]
-		},	
+		},
 		"body": ["BAMUR"],
 		"draw": [
-			["_19R", "CC333", "BAMUR"], 
-			["_19L", "CC322", "BAMUR*"], 
+			["_19R", "CC333", "BAMUR"],
+			["_19L", "CC322", "BAMUR*"],
 			["BAMUR", "CC202", "CC102", "JJS*"]
 		]
 	},
@@ -201,11 +201,11 @@
 			"DOPID": ["CC337", "CC218", "CC112", "DOPID"],
 			"NOKAT": ["NOKAT"],
 			"SUMAG": ["SUMAG"]
-		},	
+		},
 		"body": ["BASAT"],
 		"draw": [
-			["_19R", "BASAT"], 
-			["_19L", "BASAT*"], 
+			["_19R", "BASAT"],
+			["_19L", "BASAT*"],
 			["BASAT", "BEMAK*"],
 			["BASAT", "CC337", "CC218", "CC112", "DOPID*"],
 			["BASAT", "NOKAT*"],
@@ -223,11 +223,11 @@
 		"transitions": {
 			"SAREK": ["CC104", "SAREK"],
 			"TEPAL": ["CC104", "TEPAL"]
-		},	
+		},
 		"body": ["LOPEM"],
 		"draw": [
-			["_19R", "CC322", "LOPEM"], 
-			["_19L", "CC303", "LOPEM*"], 
+			["_19R", "CC322", "LOPEM"],
+			["_19L", "CC303", "LOPEM*"],
 			["LOPEM", "CC104", "SAREK*"],
 			["LOPEM", "CC104", "TEPAL*"]
 		]
@@ -244,11 +244,11 @@
 			"BOKEV": ["LEGOS", "CC110", "BOKEV"],
 			"KAKID": ["LEGOS", "KAKID"],
 			"SURUP": ["LEGOS", "KAKID", "SURUP"]
-		},	
+		},
 		"body": ["NIBLU"],
 		"draw": [
-			["_19R", "CC333", "NIBLU"], 
-			["_19L", "CC322", "NIBLU*"], 
+			["_19R", "CC333", "NIBLU"],
+			["_19L", "CC322", "NIBLU*"],
 			["NIBLU", "LEGOS", "CC110", "BOKEV*"],
 			["NIBLU", "LEGOS", "KAKID*", "SURUP*"]
 		]
@@ -264,11 +264,11 @@
 			"AGODA": ["CC107", "AGODA"],
 			"TEPAL": ["CC106", "DUMKA"],
 			"ONOTO": ["CC107", "ONOTO"]
-		},	
+		},
 		"body": ["PITAM"],
 		"draw": [
-			["_19R", "PITAM"], 
-			["_19L", "PITAM*"], 
+			["_19R", "PITAM"],
+			["_19L", "PITAM*"],
 			["PITAM", "CC107", "AGODA*"],
 			["PITAM", "CC106", "DUMKA*"],
 			["PITAM", "CC107", "ONOTO*"]
@@ -284,10 +284,10 @@
 		"transitions": {
 			"AVPOP": ["AVPOP"],
 			"DOPID": ["CC108", "DOPID"]
-		},	
+		},
 		"body": ["GUMAS"],
 		"draw": [
-			["_01R", "DOPID"], 
+			["_01R", "DOPID"],
 			["_01L", "DOPID*"],
 			["DOPID", "AVPOP*"],
 			["DOPID", "CC108", "DOPID*"]
@@ -305,10 +305,10 @@
 			"DUMKA": ["CC105", "DUMKA"],
 			"ONOTO": ["CC107", "ONOTO"],
 			"SAREK": ["CC105", "SAREK"]
-		},	
+		},
 		"body": ["RIKLA", "CC308", "KAPOL"],
 		"draw": [
-			["_01R", "KAPOL"], 
+			["_01R", "KAPOL"],
 			["_01L", "KAPOL*"],
 			["KAPOL", "CC107", "AGODA*"],
 			["KAPOL", "CC105", "DUMKA*"],
@@ -327,10 +327,10 @@
 			"BOKEV": ["LEGOS", "CC110", "BOKEV"],
 			"KAKID": ["LEGOS", "KAKID"],
 			"SURUP": ["LEGOS", "KAKID", "SURUP"]
-		},	
+		},
 		"body": ["KESAR"],
 		"draw": [
-			["_01R", "KESAR"], 
+			["_01R", "KESAR"],
 			["_01L", "KESAR*"],
 			["KESAR", "LEGOS", "KAKID*", "SURUP*"]
 		]
@@ -345,10 +345,10 @@
 		"transitions": {
 			"JJS":		["CC101", "JJS"],
 			"TEPAL": 	["CC201", "CC203", "CC103", "TEPAL"]
-		},	
+		},
 		"body": ["RIKLA"],
 		"draw": [
-			["_01R", "RIKLA"], 
+			["_01R", "RIKLA"],
 			["_01L", "RIKLA*"],
 			["RIKLA", "CC101", "JJS*"],
 			["RIKLA", "CC201", "CC203", "CC103", "TEPAL*"]
@@ -365,10 +365,10 @@
 			"BEMAK": ["CC312", "BEMAK"],
 			"NOKAT": ["CC312", "NOKAT"],
 			"SUMAG": ["SUMAG"]
-		},	
+		},
 		"body": ["SEGOL"],
 		"draw": [
-			["_01R", "SEGOL"], 
+			["_01R", "SEGOL"],
 			["_01L", "SEGOL*"],
 			["SEGOL", "CC312", "BEMAK*"],
 			["SEGOL", "CC312", "NOKAT*"],
@@ -376,7 +376,7 @@
 		]
 	}
   },
- 
+
   "departures": {
     "airlines": [
 		["xax",  10],
@@ -403,7 +403,7 @@
     "frequency": 20
   },
   "arrivals": [
-	{	
+	{
 		"type": 		"cyclic",
 		"fixes":		["CC112", "AVPOP", "CC210", "CC304"],
 		"frequency": 	4,
@@ -426,7 +426,7 @@
 			["cpa", 5]
 		]
 	},
-	{	
+	{
 		"type": 		"cyclic",
 		"fixes":		["CC102", "BAMUR", "CC321", "CC303", "CC316"],
 		"frequency": 	4,
@@ -445,7 +445,7 @@
 			["etd", 5]
 		]
 	},
-	{	
+	{
 		"type": 		"cyclic",
 		"fixes":		["BEMAK", "DIXON", "CC330", "DINAP", "CC329"],
 		"frequency": 	4,
@@ -468,7 +468,7 @@
 			["cpa", 5]
 		]
 	},
-	{	
+	{
 		"type": 		"cyclic",
 		"fixes":		["NOKAT", "DIKAK", "CC302", "TONOP"],
 		"frequency": 	4,
@@ -491,7 +491,7 @@
 			["cpa", 5]
 		]
 	},
-	{	
+	{
 		"type": 		"cyclic",
 		"fixes":		["CC101", "JATEN", "CC319", "CC306", "CC335"],
 		"frequency": 	4,
@@ -510,7 +510,7 @@
 			["etd", 5]
 		]
 	},
-	{	
+	{
 		"type": 		"cyclic",
 		"fixes":		["BOKEV", "KEBAM", "CC304"],
 		"frequency": 	3,
@@ -526,7 +526,7 @@
 			["sej", 8]
 		]
 	},
-	{	
+	{
 		"type": 		"cyclic",
 		"fixes":		["CC108", "KUMAD", "CC318", "CC302", "TONOP"],
 		"frequency": 	3,
@@ -542,7 +542,7 @@
 			["sej", 8]
 		]
 	},
-	{	
+	{
 		"type": 		"cyclic",
 		"fixes":		["PITAM", "LATEP", "CC301"],
 		"frequency": 	3,
@@ -564,7 +564,7 @@
 			["ces", 5]
 		]
 	},
-	{	
+	{
 		"type": 		"cyclic",
 		"fixes":		["CC106", "NOSIM", "CC321", "CC334", "CC319", "CC306", "CC335"],
 		"frequency": 	3,
@@ -586,7 +586,7 @@
 			["ces", 5]
 		]
 	},
-	{	
+	{
 		"type": 		"cyclic",
 		"fixes":		["DOPID", "SEGOL", "DINAP", "CC329"],
 		"frequency": 	3,
