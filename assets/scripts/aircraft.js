@@ -1972,7 +1972,7 @@ var Aircraft=Fiber.extend(function() {
       else return [true, "unable to clear as filed"];
     },
     runClimbViaSID: function() {
-      if(!this.fms.currentLeg().type == "sid") var fail = true;
+      if(!(this.fms.currentLeg().type == "sid")) var fail = true;
       else if(this.fms.climbViaSID())
         return ['ok', {log: "climb via the " + this.fms.currentLeg().route.split('.')[1] + " departure",
           say: "climb via the " + airport_get().sids[this.fms.currentLeg().route.split('.')[1]].name + " departure"}];
