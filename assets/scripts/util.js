@@ -48,8 +48,6 @@ if (!String.prototype.hasOwnProperty("repeat")) {
   };
 }
 
-var sin_cache={};
-
 // ******************** UNIT CONVERSION FUNCTIONS ********************
 
 /**
@@ -93,19 +91,16 @@ function abs(n) {
   return Math.abs(n);
 }
 
-function sin(v) {
-  return(Math.sin(v));
-  if(!v in sin_cache)
-    sin_cache[v]=Math.sin(v);
-  return(sin_cache[v]);
+function sin(a) {
+  return Math.sin(a);
 }
 
-function cos(v) {
-  return(sin(v+Math.PI/2));
+function cos(a) {
+  return Math.cos(a);
 }
 
-function tan(v) {
-  return Math.tan(v);
+function tan(a) {
+  return Math.tan(a);
 }
 
 function fl(n, number) {
@@ -132,8 +127,8 @@ function within(n,c,r) {
 
 function trange(il,i,ih,ol,oh) {
   return(ol+(oh-ol)*(i-il)/(ih-il));
-  i=(i/(ih-il))-il;
-  return (i*(oh-ol))+ol;
+  // i=(i/(ih-il))-il;       // purpose unknown
+  // return (i*(oh-ol))+ol;  // purpose unknown
 }
 
 function clamp(l,i,h) {
