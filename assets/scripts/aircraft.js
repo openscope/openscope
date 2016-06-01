@@ -2639,9 +2639,10 @@ var Aircraft=Fiber.extend(function() {
           this.target.speed = 0;
         }
       } else if(this.fms.currentWaypoint().navmode == "fix") {
-        var fix = this.fms.currentWaypoint().location,
-            vector_to_fix = vsub(this.position, fix),
-            distance_to_fix = distance2d(this.position, fix);
+        var fix = this.fms.currentWaypoint().location;
+        if(!fix) console.error(this.getCallsign()+" using 'fix' navmode, but no fix location!"+this.fms);
+        var vector_to_fix = vsub(this.position, fix);
+        var distance_to_fix = distance2d(this.position, fix);
         if((distance_to_fix < 1) ||
           ((distance_to_fix < 10) && (distance_to_fix < aircraft_turn_initiation_distance(this, fix)))) {
           if(!this.fms.atLastWaypoint()) { // if there are more waypoints available
