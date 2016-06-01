@@ -647,43 +647,59 @@ function vectorize_2d(direction) {
  ** Computes length of 2D vector
  */
 function vlen(v) {
-  return Math.sqrt(v[0]*v[0] + v[1] * v[1]);
+  try {
+    var len = Math.sqrt(v[0]*v[0] + v[1] * v[1]);
+    return len;
+  }
+  catch(err) {console.error("call to vlen() failed. v:"+v+" | Err:"+err);}
 }
 
 /**
  ** Adds Vectors (all dimensions)
  */
 function vadd(v1, v2) {
-  var v = [], lim = Math.min(v1.length,v2.length);
-  for(var i=0; i<lim; i++) v.push(v1[i] + v2[i]);
-  return v;
+  try {
+    var v = [], lim = Math.min(v1.length,v2.length);
+    for(var i=0; i<lim; i++) v.push(v1[i] + v2[i]);
+    return v;
+  }
+  catch(err) {console.error("call to vadd() failed. v1:"+v1+" | v2:"+v2+" | Err:"+err);}
 }
 
 /**
  ** Subtracts Vectors (all dimensions)
  */
 function vsub(v1, v2) {
-  var v = [], lim = Math.min(v1.length,v2.length);
-  for(var i=0; i<lim; i++) v.push(v1[i] - v2[i]);
-  return v;
+  try {
+    var v = [], lim = Math.min(v1.length,v2.length);
+    for(var i=0; i<lim; i++) v.push(v1[i] - v2[i]);
+    return v;
+  }
+  catch(err) {console.error("call to vsub() failed. v1:"+v1+" | v2:"+v2+" | Err:"+err);}
 }
 
 /**
  ** Multiplies Vectors (all dimensions)
  */
 function vmul(v1, v2) {
-  var v = [], lim = Math.min(v1.length,v2.length);
-  for(var i=0; i<lim; i++) v.push(v1[i] * v2[i]);
-  return v;
+  try {
+    var v = [], lim = Math.min(v1.length,v2.length);
+    for(var i=0; i<lim; i++) v.push(v1[i] * v2[i]);
+    return v;
+  }
+  catch(err) {console.error("call to vmul() failed. v1:"+v1+" | v2:"+v2+" | Err:"+err);}
 }
 
 /**
  ** Divides Vectors (all dimensions)
  */
 function vdiv(v1, v2) {
-  var v = [], lim = Math.min(v1.length,v2.length);
-  for(var i=0; i<lim; i++) v.push(v1[i] / v2[i]);
-  return v;
+  try {
+    var v = [], lim = Math.min(v1.length,v2.length);
+    for(var i=0; i<lim; i++) v.push(v1[i] / v2[i]);
+    return v;
+  }
+  catch(err) {console.error("call to vdiv() failed. v1:"+v1+" | v2:"+v2+" | Err:"+err);}
 }
 
 /**
