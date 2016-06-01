@@ -1180,6 +1180,7 @@ function airport_init() {
   airport_load("saez");
   airport_load("sbgl");
   airport_load("sbgr");
+  airport_load("tncm");
   airport_load("uudd");
   airport_load("vecc");
   airport_load("vhhh");
