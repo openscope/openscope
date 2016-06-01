@@ -2499,19 +2499,20 @@ var Aircraft=Fiber.extend(function() {
     callUp: function() {
       if(this.category == "arrival") {
         var altdiff = this.altitude - this.fms.currentWaypoint().altitude;
+        var alt = digits_decimal(this.altitude, -2);
         if(Math.abs(altdiff) > 200) {
           if(altdiff > 0) {
-            var alt_log = "descending through " + this.altitude + " for " + this.target.altitude;
-            var alt_say = "descending through " + radio_altitude(this.altitude) + " for " + radio_altitude(this.target.altitude);
+            var alt_log = "descending through " + alt + " for " + this.target.altitude;
+            var alt_say = "descending through " + radio_altitude(alt) + " for " + radio_altitude(this.target.altitude);
           }
           else if(altdiff < 0) {
-            var alt_log = " climbing through " + this.altitude + " for " + this.target.altitude;
-            var alt_say = " climbing through " + radio_altitude(this.altitude) + " for " + radio_altitude(this.target.altitude);
+            var alt_log = " climbing through " + alt + " for " + this.target.altitude;
+            var alt_say = " climbing through " + radio_altitude(alt) + " for " + radio_altitude(this.target.altitude);
           }
         }
         else {
-          var alt_log = "at " + this.altitude;
-          var alt_say = "at " + radio_altitude(this.altitude);
+          var alt_log = "at " + alt;
+          var alt_say = "at " + radio_altitude(alt);
         }
         ui_log(airport_get().radio.app + ", " + this.getCallsign() + " with you " + alt_log);
         speech_say([ {type:"text", content:airport_get().radio.app+", "}, {type:"callsign", content:this}, {type:"text", content:"with you " + alt_say} ]);
