@@ -1,0 +1,606 @@
+{
+  "name": "Kolkata Netaji Subhas Chandra Bose Int'l",
+  "level": "medium",
+  "radio": {
+    "twr": "Kolkata Tower",
+    "app": "Kolkata Approach",
+    "dep": "Kolkata Radar"
+  },
+  "icao": "VECC",
+  "iata": "CCU",
+  "magnetic_north": 0.3,
+  "ctr_radius": 80,
+  "ctr_ceiling": 19500,
+  "initial_alt": 5500,
+  "position": ["N22d40m24.00", "E088d26m96.00"],
+  "rr_radius_nm": 5.0,
+  "rr_center": ["N22d40m24.00", "E088d26m96.00"],
+  "has_terrain": false,
+  "wind": {
+    "angle": 190,
+    "speed": 4
+  },
+  "airspace": [
+	{
+	  "floor": 			0,
+	  "ceiling": 		21000,
+	  "airspace_class":	"D",
+	  "poly":
+		[
+			["N23d08m02.40", "E086d57m51.00"],
+			["N23d28m02.30", "E087d25m50.80"],
+			["N23d28m02.40", "E088d14m50.40"],
+			["N23d30m02.40", "E088d46m50.20"],
+			["N22d35m02.70", "E088d55m50.20"],
+			["N22d13m02.80", "E089d38m49.90"],
+			["N21d33m03.00", "E088d56m50.20"],
+			["N21d40m02.90", "E087d45m50.70"],
+			["N22d33m02.60", "E088d03m50.50"],
+			["N22d34m02.60", "E087d39m50.70"],
+			["N23d08m02.40", "E086d57m51.00"]
+		]
+	}
+],
+  "fixes": {
+	"_01L":		["N22d38m24.71", "E088d26m38.37"],
+		"_19R":		["N22d39m42.00", "E088d26m46.90"],
+		"_01R":		["N22d38m31.91", "E088d26m46.73"],
+		"_19L":		["N22d40m14.70", "E088d26m57.80"],
+		"CC333":	["N22d46m14.00", "E088d19m71.00"],
+		"BAMUR":	["N22d54m08.00", "E087d57m33.00"],
+		"CC202":	["N22d56m50.00", "E087d16m37.00"],
+		"CC102":	["N22d59m76.00", "E086d30m27.00"],
+		"JJS":		["N22d48m79.00", "E086d10m43.00"],
+		"CC322":	["N22d51m10.00", "E088d20m61.00"],
+		"BASAT":	["N22d45m48.00", "E088d42m45.00"],
+		"CC337":	["N22d29m51.00", "E088d52m95.00"],
+		"AVPOP":	["N22d18m14.00", "E089d00m83.00"],
+		"BEMAK":	["N22d55m64.00", "E088d53m93.00"],
+		"CC218":	["N22d10m69.00", "E089d00m30.00"],
+		"CC112":	["N21d35m40.00", "E089d59m74.00"],
+		"DOPID":	["N20d55m05.00", "E089d12m26.00"],
+		"NOKAT":	["N22d47m44.00", "E088d56m50.00"],
+		"SUMAG":	["N22d35m65.00", "E088d56m43.00"],
+		"LOPEM":	["N23d11m26.00", "E087d55m00.00"],
+		"CC104":	["N23d48m30.00", "E086d51m93.00"],
+		"SAREK":	["N24d08m03.00", "E086d45m85.00"],
+		"TEPAL":	["N23d48m70.00", "E086d26m05.00"],
+		"CC303":	["N22d53m77.00", "E088d22m13.00"],
+		"NIBLU":	["N22d37m78.00", "E088d18m17.00"],
+		"LEGOS":	["N21d38m05.00", "E088d05m35.00"],
+		"CC110":	["N21d09m73.00", "E088d11m80.00"],
+		"BOKEV":	["N20d55m05.00", "E088d15m34.00"],
+		"KAKID":	["N20d38m39.00", "E086d59m70.00"],
+		"SURUP":	["N20d28m24.00", "E086d28m99.00"],
+		"PITAM":	["N23d32m94.00", "E088d18m78.00"],
+		"CC107":	["N23d59m27.00", "E088d20m87.00"],
+		"AGODA":	["N24d19m36.00", "E088d35m93.00"],
+		"CC106":	["N24d02m66.00", "E087d44m63.00"],
+		"DUMKA":	["N24d11m03.00", "E087d21m16.00"],
+		"ONOTO":	["N24d16m43.00", "E087d57m48.00"],
+		"GUMAS":	["N22d27m40.00", "E088d41m35.00"],
+		"AVPOP":	["N22d18m14.00", "E089d00m83.00"],
+		"CC108":	["N21d17m16.00", "E089d15m85.00"],
+		"RIKLA":	["N22d34m55.00", "E088d15m24.00"],
+		"CC308":	["N22d45m39.00", "E088d13m54.00"],
+		"KAPOL":	["N23d11m76.00", "E088d14m70.00"],
+		"CC105":	["N23d46m02.00", "E087d26m97.00"],
+		"KESAR":	["N22d06m08.00", "E088d15m74.00"],
+		"LEGOS":	["N21d38m05.00", "E088d05m35.00"],
+		"CC101":	["N22d38m13.00", "E086d29m14.00"],
+		"CC201":	["N22d49m80.00", "E087d42m49.00"],
+		"CC203":	["N23d01m92.00", "E087d22m98.00"],
+		"CC103":	["N23d29m17.00", "E086d34m28.00"],
+		"SEGOL":	["N22d33m10.00", "E088d41m42.00"],
+		"CC312":	["N22d43m83.00", "E088d52m29.00"],
+		"CC321":	["N22d53m19.00", "E088d06m18.00"],
+		"CC316":	["N22d58m92.00", "E088d22m59.00"],
+		"D005Y":	["N23d05m55.00", "E088d29m15.00"],
+		"D007K":	["N22d51m68.00", "E088d28m20.00"],
+		"CI19R":	["N22d47m89.00", "E088d27m75.00"],
+		"FI19R":	["N22d45m89.00", "E088d27m51.00"],
+		"D059N":	["N22d47m81.00", "E088d39m85.00"],
+		"D045L":	["N22d49m03.00", "E088d36m09.00"],
+		"D031L":	["N22d50m84.00", "E088d33m59.00"],
+		"D017L":	["N22d52m03.00", "E088d30m69.00"],
+		"CEA":		["N22d40m55.00", "E088d26m88.00"],
+		"D007F":	["N22d46m57.00", "E088d27m56.00"],
+		"D327O":	["N22d53m08.00", "E088d17m89.00"],
+		"D336M":	["N22d52m43.00", "E088d21m14.00"],
+		"D346M":	["N22d53m17.00", "E088d23m47.00"],
+		"D357M":	["N22d53m57.00", "E008d25m90.00"],
+		"D275O":	["N22d41m63.00", "E088d10m70.00"],
+		"D294M":	["N22d45m83.00", "E088d14m00.00"],
+		"D314M":	["N22d49m58.00", "E088d16m74.00"],
+		"D334M":	["N22d52m24.00", "E088d20m70.00"],
+		"D354M":	["N22d53m48.00", "E088d25m41.00"],
+		"D076N":	["N22d43m98.00", "E088d41m57.00"],
+		"D061L":	["N22d46m36.00", "E088d38m17.00"],
+		"D046L":	["N22d48m88.00", "E088d36m25.00"],
+		"D345R":	["N22d57m94.00", "E088d21m61.00"],
+		"D314O":	["N22d50m91.00", "E088d15m10.00"],
+		"D327M":	["N22d51m45.00", "E088d19m20.00"],
+		"D341M":	["N22d52m84.00", "E088d22m29.00"],
+		"D355M":	["N22d53m50.00", "E088d25m65.00"],
+		"D101N":	["N22d38m09.00", "E088d41m78.00"],
+		"D080L":	["N22d42m63.00", "E088d39m69.00"],
+		"D059L":	["N22d46m73.00", "E088d38m04.00"],
+		"D038L":	["N22d50m01.00", "E088d34m90.00"],
+		"D302O":	["N22d48m47.00", "E088d13m08.00"],
+		"D340M":	["N22d52m77.00", "E088d22m06.00"],
+		"D353M":	["N22d53m46.00", "E088d25m16.00"],
+		"CC210":	["N22d19m60.00", "E088d48m55.00"],
+		"CC304":	["N22d22m86.00", "E088d24m42.00"],
+		"DIKAK":	["N22d49m83.00", "E088d45m01.00"],
+		"CC302":	["N22d50m97.00", "E088d35m44.00"],
+		"TONOP":	["N22d56m55.00", "E088d36m34.00"],
+		"DIXON":	["N23d00m58.00", "E088d37m31.00"],
+		"CC330":	["N22d37m36.00", "E088d34m36.00"],
+		"DINAP":	["N22d25m28.00", "E088d31m92.00"],
+		"CC329":	["N22d19m44.00", "E088d30m79.00"],
+		"JATEN":	["N22d39m71.00", "E088d00m50.00"],
+		"CC319":	["N22d33m32.00", "E088d11m36.00"],
+		"CC306":	["N22d29m78.00", "E088d17m92.00"],
+		"CC335":	["N22d23m94.00", "E088d16m83.00"],
+		"KEBAM":	["N22d07m29.00", "E088d23m65.00"],
+		"KUMAD":	["N22d17m45.00", "E088d31m96.00"],
+		"CC318":	["N22d42m10.00", "E088d34m57.00"],
+		"LATEP":	["N23d13m25.00", "E088d29m85.00"],
+		"CC301":	["N23d00m71.00", "E088d29m13.00"],
+		"NOSIM":	["N23d22m30.00", "E088d00m66.00"],
+		"CC334":	["N24d42m44.00", "E088d09m22.00"],
+		"DU":		["N22d44m41.00", "E088d27m45.00"],
+		"CA":		["N22d35m02.00", "E088d26m39.00"]
+	},
+
+  "runways": [
+   {
+      "name": ["01L", "19R"],
+      "name_offset": [[0, 0], [0, 0]],
+      "end": [["N22d38m24.71", "E088d26m38.37"], ["N22d39m42.00", "E088d26m46.90"]],
+      "length": 3.270,
+      "ils": [false, true]
+    },
+	{
+      "name": ["01R", "19L"],
+      "name_offset": [[0, 0], [0, 0]],
+      "end": [["N22d38m31.91", "E088d26m46.73"], ["N22d40m14.70", "E088d26m57.80"]],
+      "length": 3.672,
+      "ils": [true, true]
+    }
+  ],
+  "sids": {
+	"BAMUR": {
+		"icao": "BAMUR",
+		"name": "BAMUR",
+		"suffix": {"01L":"1", "01R":"2"},
+		"rwy": {
+			"01L": ["_19R", "CC333"],
+			"01R": ["_19L", "CC322"]
+		},
+		"transitions": {
+			"JJS": ["CC202", "CC102", "JJS"]
+		},
+		"body": ["BAMUR"],
+		"draw": [
+			["_19R", "CC333", "BAMUR"],
+			["_19L", "CC322", "BAMUR*"],
+			["BAMUR", "CC202", "CC102", "JJS*"]
+		]
+	},
+	"BASAT": {
+		"icao": "BASAT",
+		"name": "BASAT",
+		"rwy": {
+			"01L": [],
+			"01R": []
+		},
+		"transitions": {
+			"AVPOP": ["CC337", "AVPOP"],
+			"BEMAK": ["BEMAK"],
+			"DOPID": ["CC337", "CC218", "CC112", "DOPID"],
+			"NOKAT": ["NOKAT"],
+			"SUMAG": ["SUMAG"]
+		},
+		"body": ["BASAT"],
+		"draw": [
+			["_19R", "BASAT"],
+			["_19L", "BASAT*"],
+			["BASAT", "BEMAK*"],
+			["BASAT", "CC337", "CC218", "CC112", "DOPID*"],
+			["BASAT", "NOKAT*"],
+			["BASAT", "SUMAG"]
+		]
+	},
+	"LOPEM": {
+		"icao": "LOPEM",
+		"name": "LOPEM",
+		"suffix": {"01L":"1", "01R":"2"},
+		"rwy": {
+			"01L": ["CC322"],
+			"01R": ["CC303"]
+		},
+		"transitions": {
+			"SAREK": ["CC104", "SAREK"],
+			"TEPAL": ["CC104", "TEPAL"]
+		},
+		"body": ["LOPEM"],
+		"draw": [
+			["_19R", "CC322", "LOPEM"],
+			["_19L", "CC303", "LOPEM*"],
+			["LOPEM", "CC104", "SAREK*"],
+			["LOPEM", "CC104", "TEPAL*"]
+		]
+	},
+	"NIBLU": {
+		"icao": "NIBLU",
+		"name": "NIBLU",
+		"suffix": {"01L":"1", "01R":"2"},
+		"rwy": {
+			"01L": ["CC333"],
+			"01R": ["CC322"]
+		},
+		"transitions": {
+			"BOKEV": ["LEGOS", "CC110", "BOKEV"],
+			"KAKID": ["LEGOS", "KAKID"],
+			"SURUP": ["LEGOS", "KAKID", "SURUP"]
+		},
+		"body": ["NIBLU"],
+		"draw": [
+			["_19R", "CC333", "NIBLU"],
+			["_19L", "CC322", "NIBLU*"],
+			["NIBLU", "LEGOS", "CC110", "BOKEV*"],
+			["NIBLU", "LEGOS", "KAKID*", "SURUP*"]
+		]
+	},
+	"PITAM": {
+		"icao": "PITAM",
+		"name": "PITAM",
+		"rwy": {
+			"01L": [],
+			"01R": []
+		},
+		"transitions": {
+			"AGODA": ["CC107", "AGODA"],
+			"TEPAL": ["CC106", "DUMKA"],
+			"ONOTO": ["CC107", "ONOTO"]
+		},
+		"body": ["PITAM"],
+		"draw": [
+			["_19R", "PITAM"],
+			["_19L", "PITAM*"],
+			["PITAM", "CC107", "AGODA*"],
+			["PITAM", "CC106", "DUMKA*"],
+			["PITAM", "CC107", "ONOTO*"]
+		]
+	},
+	"GUMAS": {
+		"icao": "GUMAS",
+		"name": "GUMAS",
+		"rwy": {
+			"19L": [],
+			"19R": []
+		},
+		"transitions": {
+			"AVPOP": ["AVPOP"],
+			"DOPID": ["CC108", "DOPID"]
+		},
+		"body": ["GUMAS"],
+		"draw": [
+			["_01R", "DOPID"],
+			["_01L", "DOPID*"],
+			["DOPID", "AVPOP*"],
+			["DOPID", "CC108", "DOPID*"]
+		]
+	},
+	"KAPOL": {
+		"icao": "KAPOL",
+		"name": "KAPOL",
+		"rwy": {
+			"19L": [],
+			"19R": []
+		},
+		"transitions": {
+			"AGODA": ["CC107", "AGODA"],
+			"DUMKA": ["CC105", "DUMKA"],
+			"ONOTO": ["CC107", "ONOTO"],
+			"SAREK": ["CC105", "SAREK"]
+		},
+		"body": ["RIKLA", "CC308", "KAPOL"],
+		"draw": [
+			["_01R", "KAPOL"],
+			["_01L", "KAPOL*"],
+			["KAPOL", "CC107", "AGODA*"],
+			["KAPOL", "CC105", "DUMKA*"],
+			["KAPOL", "CC107", "ONOTO*"],
+			["KAPOL", "CC105", "SAREK*"]
+		]
+	},
+	"KESAR": {
+		"icao": "KESAR",
+		"name": "KESAR",
+		"rwy": {
+			"19L": [],
+			"19R": []
+		},
+		"transitions": {
+			"BOKEV": ["LEGOS", "CC110", "BOKEV"],
+			"KAKID": ["LEGOS", "KAKID"],
+			"SURUP": ["LEGOS", "KAKID", "SURUP"]
+		},
+		"body": ["KESAR"],
+		"draw": [
+			["_01R", "KESAR"],
+			["_01L", "KESAR*"],
+			["KESAR", "LEGOS", "KAKID*", "SURUP*"]
+		]
+	},
+	"RIKLA": {
+		"icao": "RIKLA",
+		"name": "RIKLA",
+		"rwy": {
+			"19L": [],
+			"19R": []
+		},
+		"transitions": {
+			"JJS":		["CC101", "JJS"],
+			"TEPAL": 	["CC201", "CC203", "CC103", "TEPAL"]
+		},
+		"body": ["RIKLA"],
+		"draw": [
+			["_01R", "RIKLA"],
+			["_01L", "RIKLA*"],
+			["RIKLA", "CC101", "JJS*"],
+			["RIKLA", "CC201", "CC203", "CC103", "TEPAL*"]
+		]
+	},
+	"SEGOL": {
+		"icao": "SEGOL",
+		"name": "SEGOL",
+		"rwy": {
+			"19L": [],
+			"19R": []
+		},
+		"transitions": {
+			"BEMAK": ["CC312", "BEMAK"],
+			"NOKAT": ["CC312", "NOKAT"],
+			"SUMAG": ["SUMAG"]
+		},
+		"body": ["SEGOL"],
+		"draw": [
+			["_01R", "SEGOL"],
+			["_01L", "SEGOL*"],
+			["SEGOL", "CC312", "BEMAK*"],
+			["SEGOL", "CC312", "NOKAT*"],
+			["SEGOL", "SUMAG*"]
+		]
+	}
+  },
+
+  "departures": {
+    "airlines": [
+		["xax",  10],
+		["aic", 190],
+		["llr",  30],
+		["uae",  10],
+		["etd",  10],
+		["gow",  40],
+		["igo", 290],
+		["jai", 160],
+		["sej", 120],
+		["ual",  20],
+		["vti",  10],
+		["ces",  10],
+		["hda",  10],
+		["slk",  10],
+		["cpa",  20]
+    ],
+    "destinations": [
+		"GUMAS", "KAPOL", "KESAR", "RIKLA", "SEGOL", "BAMUR", "BASAT", "LOPEM", "NIBLU", "PITAM"
+    ],
+    "type": "random",
+    "offset": 0,
+    "frequency": 20
+  },
+  "arrivals": [
+	{
+		"type": 		"cyclic",
+		"fixes":		["CC112", "AVPOP", "CC210", "CC304"],
+		"frequency": 	4,
+		"altitude":		12000,
+		"speed":		330,
+		"offset":		2,
+		"airlines": [
+			["cpa", 2],
+			["xax", 3],
+			["aic", 15],
+			["llr", 5],
+			["ual", 3],
+			["gow", 3],
+			["igo", 20],
+			["jai", 10],
+			["sej", 8],
+			["ces", 3],
+			["hda", 3],
+			["slk", 3],
+			["cpa", 5]
+		]
+	},
+	{
+		"type": 		"cyclic",
+		"fixes":		["CC102", "BAMUR", "CC321", "CC303", "CC316"],
+		"frequency": 	4,
+		"altitude":		12000,
+		"speed":		330,
+		"offset":		2,
+		"airlines": [
+			["aic", 15],
+			["llr", 5],
+			["ual", 5],
+			["gow", 3],
+			["igo", 20],
+			["jai", 10],
+			["sej", 8],
+			["uae", 5],
+			["etd", 5]
+		]
+	},
+	{
+		"type": 		"cyclic",
+		"fixes":		["BEMAK", "DIXON", "CC330", "DINAP", "CC329"],
+		"frequency": 	4,
+		"altitude":		12000,
+		"speed":		330,
+		"offset":		2,
+		"airlines": [
+			["cpa", 2],
+			["xax", 3],
+			["aic", 15],
+			["llr", 5],
+			["ual", 3],
+			["gow", 3],
+			["igo", 20],
+			["jai", 10],
+			["sej", 8],
+			["ces", 3],
+			["hda", 3],
+			["slk", 3],
+			["cpa", 5]
+		]
+	},
+	{
+		"type": 		"cyclic",
+		"fixes":		["NOKAT", "DIKAK", "CC302", "TONOP"],
+		"frequency": 	4,
+		"altitude":		12000,
+		"speed":		330,
+		"offset":		2,
+		"airlines": [
+			["cpa", 2],
+			["xax", 3],
+			["aic", 15],
+			["llr", 5],
+			["ual", 3],
+			["gow", 3],
+			["igo", 20],
+			["jai", 10],
+			["sej", 8],
+			["ces", 3],
+			["hda", 3],
+			["slk", 3],
+			["cpa", 5]
+		]
+	},
+	{
+		"type": 		"cyclic",
+		"fixes":		["CC101", "JATEN", "CC319", "CC306", "CC335"],
+		"frequency": 	4,
+		"altitude":		12000,
+		"speed":		330,
+		"offset":		2,
+		"airlines": [
+			["aic", 15],
+			["llr", 5],
+			["ual", 5],
+			["gow", 3],
+			["igo", 20],
+			["jai", 10],
+			["sej", 8],
+			["uae", 5],
+			["etd", 5]
+		]
+	},
+	{
+		"type": 		"cyclic",
+		"fixes":		["BOKEV", "KEBAM", "CC304"],
+		"frequency": 	3,
+		"altitude":		12000,
+		"speed":		330,
+		"offset":		2,
+		"airlines": [
+			["aic", 15],
+			["llr", 5],
+			["gow", 3],
+			["igo", 20],
+			["jai", 10],
+			["sej", 8]
+		]
+	},
+	{
+		"type": 		"cyclic",
+		"fixes":		["CC108", "KUMAD", "CC318", "CC302", "TONOP"],
+		"frequency": 	3,
+		"altitude":		12000,
+		"speed":		330,
+		"offset":		2,
+		"airlines": [
+			["aic", 15],
+			["llr", 5],
+			["gow", 3],
+			["igo", 20],
+			["jai", 10],
+			["sej", 8]
+		]
+	},
+	{
+		"type": 		"cyclic",
+		"fixes":		["PITAM", "LATEP", "CC301"],
+		"frequency": 	3,
+		"altitude":		12000,
+		"speed":		330,
+		"offset":		2,
+		"airlines": [
+			["aic", 15],
+			["llr", 5],
+			["ual", 5],
+			["gow", 3],
+			["igo", 20],
+			["jai", 10],
+			["sej", 8],
+			["uae", 5],
+			["etd", 5],
+			["hda", 3],
+			["cpa", 5],
+			["ces", 5]
+		]
+	},
+	{
+		"type": 		"cyclic",
+		"fixes":		["CC106", "NOSIM", "CC321", "CC334", "CC319", "CC306", "CC335"],
+		"frequency": 	3,
+		"altitude":		12000,
+		"speed":		330,
+		"offset":		2,
+		"airlines": [
+			["aic", 15],
+			["llr", 5],
+			["ual", 5],
+			["gow", 3],
+			["igo", 20],
+			["jai", 10],
+			["sej", 8],
+			["uae", 5],
+			["etd", 5],
+			["hda", 3],
+			["cpa", 5],
+			["ces", 5]
+		]
+	},
+	{
+		"type": 		"cyclic",
+		"fixes":		["DOPID", "SEGOL", "DINAP", "CC329"],
+		"frequency": 	3,
+		"altitude":		12000,
+		"speed":		330,
+		"offset":		2,
+		"airlines": [
+			["aic", 15],
+			["llr", 5],
+			["gow", 3],
+			["igo", 20],
+			["jai", 10],
+			["sej", 8]
+		]
+	}
+  ]
+}
