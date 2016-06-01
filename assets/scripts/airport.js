@@ -1232,6 +1232,7 @@ function airport_set(icao) {
     .text(prop.airport.current.icao.toUpperCase())
     .attr("title", airport.name);
 
+  prop.canvas.draw_labels = true;
   $('.toggle-labels').toggle(
     !$.isEmptyObject(prop.airport.current.maps));
 
