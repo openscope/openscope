@@ -20,7 +20,7 @@
     "angle": 160,
     "speed": 7
   },
-  
+
    "fixes": {
 		"12MCT":	["N53d22m13.000", "W002d16m50.000"],
 		"AMLET":	["N53d16m07.000", "W001d50m18.000"],
@@ -97,8 +97,8 @@
 		"_23R":		["N53d21m40.750", "W002d15m33.410"],
 		"_EGCC":	["N53d21m14.000", "W002d16m30.000"]
 	},
-  
- 
+
+
   "runways": [
     {
       "name": ["05L", "23R"],
@@ -115,28 +115,28 @@
       "ils": [true, false]
     }
   ],
-  
+
  "sids": {
-   "ASMIM": {		
-       "icao": "ASMIM",		
-       "name": "ASMIM",		
-       "suffix": {"05L":"1S", "05R":"1Z"},		
-       "rwy": {		
-        "05L": ["_23R", "MCT06", "XOBRO", "ASMIM"],		
-        "05R": ["_23L", "D056B", "MCT06", "XOBRO", "ASMIM"]		
-       },		
-       "draw": [["_23L", "D056B", "MCT06", "XOBRO", "ASMIM"]]		
-     },		
- 			
-   "DESIG": {		
-       "icao": "DESIG",		
-       "name": "DESIG",		
-       "suffix": {"05L":"1S", "05R":"1Z"},		
-       "rwy": {		
-         "05L": ["_23R", "D053L", "DESIG"],		
-         "05R": ["_23L", "D053L", "DESIG"]		
-       },		
-       "draw": [["_23R", "D053L", "DESIG"]]		
+   "ASMIM": {
+       "icao": "ASMIM",
+       "name": "ASMIM",
+       "suffix": {"05L":"1S", "05R":"1Z"},
+       "rwy": {
+        "05L": ["_23R", "MCT06", "XOBRO", "ASMIM"],
+        "05R": ["_23L", "D056B", "MCT06", "XOBRO", "ASMIM"]
+       },
+       "draw": [["_23L", "D056B", "MCT06", "XOBRO", "ASMIM"]]
+     },
+
+   "DESIG": {
+       "icao": "DESIG",
+       "name": "DESIG",
+       "suffix": {"05L":"1S", "05R":"1Z"},
+       "rwy": {
+         "05L": ["_23R", "D053L", "DESIG"],
+         "05R": ["_23L", "D053L", "DESIG"]
+       },
+       "draw": [["_23R", "D053L", "DESIG"]]
      },
    "EKLAD": {
       "icao": "EKLAD",
@@ -148,7 +148,7 @@
       },
       "draw": [["_05R", "D255H", "D255M", "D255P", "EKLAD"]]
     },
-	
+
   "KUXEM": {
       "icao": "KUXEM",
       "name": "KUXEM",
@@ -159,7 +159,7 @@
       },
       "draw": [["_05R", "D255H", "D255L", "POL34", "KUXEM"]]
     },
-    
+
   "LISTO": {
       "icao": "LISTO",
       "name": "LISTO",
@@ -172,7 +172,7 @@
       },
       "draw": [["_23R", "MCT12", "D188X", "PO28A", "POL33", "LISTO"], ["_05L", "LISTO"]]
     },
-	
+
     "MONTY": {
       "icao": "MONTY",
       "name": "MONTY",
@@ -181,11 +181,11 @@
         "05L": ["_23R", "MCT06", "XOBRO", "D082P", "D082B", "WAL", "MONTY"],
         "05R": ["_23L", "MCT06", "XOBRO", "D082P", "D082B", "WAL", "MONTY"],
         "23L": ["_05R", "D255H", "D255M", "POL36", "MONTY"],
-        "23R": ["_05L", "D255H", "D255M", "POL36", "MONTY"]	
+        "23R": ["_05L", "D255H", "D255M", "POL36", "MONTY"]
       },
       "draw": [["_23R", "MCT06", "XOBRO", "D082P", "D082B", "WAL", "MONTY"], ["_05R","D255H", "D255M", "POL36", "MONTY"]]
     },
-	
+
     "POL": {
       "icao": "POL",
       "name": "POLE HILL",
@@ -194,34 +194,34 @@
         "05L": ["_23R", "D053G", "D181L", "D181H", "POL"],
         "05R": ["_23L", "D053G", "D181L", "D181H", "POL"],
         "23L": ["_05R", "D299G", "XUMAT", "D220P", "D220I", "POL"],
-        "23R": ["_05L", "D299G", "XUMAT", "D220P", "D220I", "POL"]	
+        "23R": ["_05L", "D299G", "XUMAT", "D220P", "D220I", "POL"]
       },
       "draw": [["_23R", "D053G", "D181L", "D181H", "POL"], ["_05R", "D299G", "XUMAT", "D220P", "D220I", "POL"]]
     },
-	
+
     "SANBA": {
       "icao": "SANBA",
       "name": "SANBA",
       "suffix": {"23L":"1Y", "23R":"1R"},
       "rwy": {
         "23L": ["_05R", "TABLY", "HON58", "SANBA"],
-        "23R": ["_05L", "TABLY", "HON58", "SANBA"]	
+        "23R": ["_05L", "TABLY", "HON58", "SANBA"]
       },
       "draw": [["_05R", "TABLY", "HON58", "SANBA"]]
     },
-	
+
     "SONEX": {
       "icao": "SONEX",
       "name": "SONEX",
       "suffix": {"23L":"1Y", "23R":"1R"},
       "rwy": {
         "23L": ["_05R", "MCT07", "MCT08", "XUMAT", "WAL33", "SONEX"],
-        "23R": ["_05L", "MCT07", "MCT08", "XUMAT", "WAL33", "SONEX"]	
+        "23R": ["_05L", "MCT07", "MCT08", "XUMAT", "WAL33", "SONEX"]
       },
       "draw": [["_05R", "MCT07", "MCT08", "XUMAT", "WAL33", "SONEX"]]
     }
 },
-  
+
   "departures": {
     "airlines": [
 		["aal", 3],
@@ -251,14 +251,14 @@
 		["ual", 3],
 		["vir", 45]
     ],
-	
+
     "destinations": [
       "ASMIM", "DESIG", "EKLAD", "KUXEM", "LISTO", "MONTY", "POL", "SANBA", "SONEX"
     ],
     "type": "random",
     "frequency": 35
   },
-  
+
   "arrivals":[
 		{
 		  "_name":	["DALEY 1F"],
@@ -278,7 +278,7 @@
 			["swr", 3]
 		  ]
 		},
-		
+
 		{
 		  "_name":	["DALEY 1G"],
 		  "fixes":  ["LIBSO", "GOLES", "POL", "ARTHA", "DALEY"],
@@ -298,7 +298,7 @@
 			["bel", 6]
 		  ]
 		},
-	
+
 		{
 		  "_name":	["DALEY 2A"],
 		  "fixes":  ["LAKEY", "DALEY"],
@@ -313,7 +313,7 @@
 			["baw", 2]
 		  ]
 		},
-		
+
 		{
 		  "_name":	["DALEY 2B"],
 		  "fixes":  ["SETEL", "DALEY"],
@@ -325,7 +325,7 @@
 			["bee", 5]
 		  ]
 		},
-	
+
 		{
 		  "_name":	["DALEY 2E"],
 		  "fixes":  ["GOLES", "UPTON", "DESIG", "POL", "ARTHA", "DALEY"],
@@ -344,7 +344,7 @@
 			["swr", 3]
 		  ]
 		},
-		
+
 		{
 		  "_name":	["DALEY 4D"],
 		  "fixes":  ["TILNI", "GASKO", "BEGAM", "SETEL", "DALEY"],
@@ -361,7 +361,7 @@
 			["ryr", 4]
 		  ]
 		},
-		
+
 		{
 		  "_name":	["DAYNE 1B"],
 		  "fixes":  ["LESTA", "TNT", "DAYNE"],
@@ -383,7 +383,7 @@
 			["mon", 4]
 		  ]
 		},
-		
+
 		{
 		  "_name":	["DAYNE 2A"],
 		  "fixes":  ["TNT", "DAYNE"],
@@ -401,12 +401,11 @@
 			["swr", 6],
 			["tom", 4],
 			["tcx", 5],
-			["tap", 3],
 			["ezy", 4],
 			["mon", 4]
 		  ]
 		},
-		
+
 		{
 		  "_name": ["MIRSI 1A"],
 		  "fixes": ["OKTEM", "MONTY", "REXAM", "WAL", "MIRSI"],
@@ -428,7 +427,7 @@
 			["ryr", 4]
 		  ]
 		},
-		
+
 		{
 		  "_name":	["MIRSI 1B"],
 		  "fixes":  ["LYNAS", "MALUD", "WAL", "MIRSI"],
@@ -443,7 +442,7 @@
 			["dal", 5]
 		  ]
 		},
-		
+
 		{
 		  "_name":	["MIRSI 1C"],
 		  "fixes":  ["IOM", "KELLY", "PENIL", "WAL", "MIRSI"],
@@ -461,7 +460,7 @@
 			["ein", 3]
 		  ]
 		},
-		
+
 		{
 		  "_name":	["MIRSI 1D"],
 		  "fixes":  ["MAKUX", "SOSIM", "GIGTO", "IBRAR", "WAL", "MIRSI"],
@@ -476,7 +475,7 @@
 			["dal", 5]
 		  ]
 		},
-	
+
 		{
 		  "_name":	["ROSUN 1F"],
 		  "fixes":  ["OTBED", "GOLES", "POL", "BURNI", "ROSUN"],
@@ -495,7 +494,7 @@
 			["swr", 3]
 		  ]
 		},
-		
+
 		{
 		  "_name":	["ROSUN 1G"],
 		  "fixes":  ["LIBSO", "GOLES", "POL", "BURNI", "ROSUN"],
@@ -514,7 +513,7 @@
 			["swr", 3]
 		  ]
 		},
-		
+
 		{
 		  "_name":	["ROSUN 2A"],
 		  "fixes":  ["LAKEY", "ROSUN"],
@@ -530,7 +529,7 @@
 			["nax", 4]
 		  ]
 		},
-		
+
 		{
 		  "_name":	["ROSUN 2B"],
 		  "fixes":  ["SETEL", "ROSUN"],
@@ -542,7 +541,7 @@
 			["bee", 5]
 		  ]
 		},
-		
+
 		{
 		  "_name":	["ROSUN 2E"],
 		  "fixes":  ["GOLES", "UPTON", "DESIG", "POL", "BURNI", "ROSUN"],
@@ -561,7 +560,7 @@
 			["swr", 3]
 		  ]
 		},
-	
+
 		{
 		 "_name":  ["ROSUN 4D"],
 		 "fixes":  ["TILNI", "GASKO", "BEGAM", "SETEL", "ROSUN"],
