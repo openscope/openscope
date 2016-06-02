@@ -1,0 +1,432 @@
+{
+  "name": "Dubai International Airport",
+  "level": "hard",
+  "radio": {
+    "twr": "Dubai Tower",
+    "app": "Dubai Arrivals",
+    "dep": "Delhi Departures"
+  },
+  "icao": "OMDB",
+  "iata": "DXB",
+  "magnetic_north": 2,
+  "ctr_radius": 80,
+  "ctr_ceiling": 19500,
+  "initial_alt": 4000,
+  "position": ["N25d15m10.00", "E055d21m52.00"],
+  "rr_radius_nm": 5.0,
+  "rr_center": ["N25d15m10.00", "E055d21m52.00"],
+  "has_terrain": false,
+  "wind": {
+    "angle": 210,
+    "speed": 9
+  },
+  "airspace": [
+  {
+    "floor": 			0,
+    "ceiling": 		21000,
+    "airspace_class":	"D",
+    "poly":
+    [
+      ["N25d55m00", "E055d38m05"],
+      ["N25d28m00", "E055d45m00"],
+      ["N25d19m00", "E055d53m00"],
+      ["N24d53m35", "E055d44m42"],
+      ["N25d00m40", "E055d38m30"],
+      ["N25d06m00", "E055d27m50"],
+      ["N25d06m00", "E055d18m40"],
+      ["N25d02m55", "E055d11m50"],
+      ["N25d05m00", "E054d45m00"],
+      ["N25d20m00", "E054d45m00"],
+      ["N25d43m13", "E055d03m34"],
+      ["N25d38m00", "E055d20m00"],
+      ["N25d55m00", "E055d38m05"]
+    ]
+  }
+],
+  "fixes": {
+      "_12L":   ["N25d15m52.66", "E055d21m01.52"],
+      "_12R":   ["N25d15m10.21", "E055d21m51.75"],
+      "_30R":   ["N25d14m51.75", "E055d22m51.35"],
+      "_30L" :  ["N25d14m09.31", "E055d23m41.57"],
+      "ASTES":  ["N25d12m08.00", "E055d27m43.00"],
+      "DB453":  ["N25d04m18.00", "E055d41m61.00"],
+      "LUBAP":  ["N24d56m61.00", "E055d48m06.00"],
+      "ANVIX":  ["N24d46m91.00", "E055d56m26.00"],
+      "DB423":  ["N25d13m86.00", "E055d33m06.00"],
+      "ATBID":  ["N25d15m01.00", "E055d39m18.00"],
+      "DANED":  ["N25d19m01.00", "E055d40m45.00"],
+      "DB457":  ["N25d27m40.00", "E055d41m83.00"],
+      "VEBUL":  ["N25d35m86.00", "E055d34m75.00"],
+      "DAVMO":  ["N25d51m45.00", "E055d38m99.00"],
+      "DB451":  ["N25d08m40.00", "E055d24m94.00"],
+      "DB452":  ["N25d08m58.00", "E055d19m58.00"],
+      "DB454":  ["N25d09m93.00", "E055d14m26.00"],
+      "MEBVA":  ["N25d12m13.00", "E055d05m50.00"],
+      "GINLA":  ["N25d08m44.00", "E054d55m63.00"],
+      "LOTEN":  ["N25d01m18.00", "E054d56m46.00"],
+      "MIADA":  ["N24d51m20.00", "E054d57m60.00"],
+      "EMOVA":  ["N25d14m61.00", "E054d55m63.00"],
+      "MUVLA":  ["N25d17m26.00", "E054d45m00.00"],
+      "ALVAV":  ["N25d19m13.00", "E055d02m21.00"],
+      "NADIL":  ["N25d22m86.00", "E054d47m28.00"],
+      "RIKET":  ["N25d18m98.00", "E056d01m99.00"],
+      "GINLA":  ["N25d08m44.00", "E054d55m63.00"],
+      "SITAT":  ["N25d11m08.00", "E054d45m00.00"],
+      "EMUNI":  ["N25d18m01.00", "E055d17m14.00"],
+      "DEMTO":  ["N25d13m93.00", "E055d10m33.00"],
+      "DB554":  ["N25d08m63.00", "E055d17m13.00"],
+      "ITUBA":  ["N25d08m74.00", "E055d28m01.00"],
+      "GOBGI":  ["N25d02m61.00", "E055d40m31.00"],
+      "ENEDO":  ["N24d55m18.00", "E055d47m88.00"],
+      "DB555":  ["N25d25m63.00", "E055d12m48.00"],
+      "DB557":  ["N25d31m73.00", "E055d17m14.00"],
+      "DATAL":  ["N25d17m06.00", "E055d11m05.00"],
+      "DB550":  ["N25d20m93.00", "E055d11m86.00"],
+      "ALVAV":  ["N25d19m13.00", "E055d02m21.00"],
+      "DB558":  ["N25d25m24.00", "E055d17m56.00"],
+      "DB559":  ["N25d30m21.00", "E055d21m38.00"],
+      "KUMDA":  ["N25d32m44.00", "E055d34m11.00"],
+      "DEDNU":  ["N25d22m03.00", "E055d46m01.00"],
+      "BUBIN":  ["N24d57m70.00", "E056d06m70.00"],
+      "GIRMI":  ["N25d02m68.00", "E055d57m50.00"],
+      "MESGA":  ["N25d06m30.00", "E055d46m61.00"],
+      "DB423":  ["N25d13m86.00", "E055d33m06.00"],
+      "TALVI":  ["N25d18m21.00", "E055d25m21.00"],
+      "DB421":  ["N25d21m13.00", "E055d19m99.00"],
+      "DB420":  ["N25d23m23.00", "E055d16m23.00"],
+      "ALNET":  ["N25d25m31.00", "E055d12m45.00"],
+      "SOGAP":  ["N25d27m40.00", "E055d08m68.00"],
+      "DB417":  ["N25d29m50.00", "E055d04m91.00"],
+      "DB416":  ["N25d31m58.00", "E055d01m13.00"],
+      "DB414":  ["N25d28m15.00", "E054d58m83.00"],
+      "DB413":  ["N25d26m06.00", "E055d02m61.00"],
+      "REREK":  ["N25d23m98.00", "E055d06m38.00"],
+      "UKRIM":  ["N25d22m06.00", "E055d09m82.00"],
+      "DB612":  ["N25d19m05.00", "E055d15m28.00"],
+      "DESDI":  ["N25d36m04.00", "E054d42m49.00"],
+      "RULAM":  ["N25d30m94.00", "E054d53m75.00"],
+      "IVUTI":  ["N25d35m43.00", "E055d03m73.00"],
+      "DB429":  ["N25d33m34.00", "E055d07m50.00"],
+      "TULOM":  ["N25d31m24.00", "E055d11m28.00"],
+      "DB427":  ["N25d29m16.00", "E055d15m04.00"],
+      "DB426":  ["N25d27m08.00", "E055d18m81.00"],
+      "DB425":  ["N25d24m98.00", "E055d22m58.00"],
+      "MUXAL":  ["N24d59m75.00", "E054d54m30.00"],
+      "ODLAL":  ["N25d24m71.00", "E054d56m55.00"],
+      "PUVAL":  ["N25d35m96.00", "E055d42m96.00"],
+      "SIGDI":  ["N25d25m06.00", "E055d41m36.00"],
+      "GESET":  ["N25d20m88.00", "E055d38m05.00"],
+      "DB518":  ["N25d09m38.00", "E055d50m66.00"],
+      "DB517":  ["N25d11m48.00", "E055d46m91.00"],
+      "VUTON":  ["N25d13m56.00", "E055d43m15.00"],
+      "DB515":  ["N25d15m66.00", "E055d39m38.00"],
+      "DB514":  ["N25d18m28.00", "E055d34m68.00"],
+      "DB513":  ["N25d14m43.00", "E055d32m08.00"],
+      "GIRGO":  ["N25d11m81.00", "E055d36m79.00"],
+      "VELAR":  ["N25d09m71.00", "E055d40m54.00"],
+      "DB509":  ["N25d07m63.00", "E055d44m31.00"],
+      "DB508":  ["N25d05m53.00", "E055d48m06.00"],
+      "DB507":  ["N25d03m43.00", "E055d51m83.00"],
+      "DB506":  ["N24d59m83.00", "E055d49m39.00"],
+      "DB505":  ["N25d01m93.00", "E055d45m64.00"],
+      "DB504":  ["N25d04m03.00", "E055d41m88.00"],
+      "ULDOT":  ["N25d06m11.00", "E055d38m13.00"],
+      "SEDPO":  ["N25d08m49.00", "E055d33m87.00"],
+      "MODUS":  ["N25d11m09.00", "E055d29m19.00"],
+      "GITBO":  ["N25d34m21.00", "E054d56m36.00"],
+      "ULASO":  ["N25d19m03.00", "E055d23m74.00"],
+      "DB519":  ["N25d16m90.00", "E055d27m63.00"],
+      "ORPAT":  ["N24d52m73.00", "E055d00m96.00"],
+      "SOBOB":  ["N24d40m27.00", "E055d23m45.00"],
+      "ODBEV":  ["N24d41m79.00", "E055d31m27.00"],
+      "LOROT":  ["N24d52m34.00", "E055d49m28.00"],
+      "GEPAN":  ["N24d55m79.00", "E055d53m28.00"],
+      "ITMOX":  ["N25d00m00.00", "E055d59m26.00"],
+      "EGTUP":  ["N25d25m88.00", "E055d28m56.00"],
+      "LOVOL":  ["N25d08m65.00", "E055d34m03.00"],
+      "DB756":  ["N25d11m71.00", "E055d28m52.00"],
+      "PEDOV":  ["N25d21m34.00", "E055d10m70.00"],
+      "PUTGA":  ["N25d18m29.00", "E055d16m22.00"]
+	},
+
+  "runways": [
+    {
+      "name": ["12L", "30R"],
+      "name_offset": [[0, 0], [0, 0]],
+      "end": [["N25d15m52.66", "E055d21m01.52"], ["N25d14m51.75", "E055d22m51.35"]],
+      "length": 4.300,
+      "ils": [true, true]
+    },
+    {
+      "name": ["12R", "30L"],
+      "name_offset": [[0, 0], [0, 0]],
+      "end": [["N25d15m10.21", "E055d21m51.75"], ["N25d14m09.31", "E055d23m41.57"]],
+      "length": 4.447,
+      "ils": [true, true]
+    }
+  ],
+  "sids": {
+    "ANVIX": {
+        "icao": "ANVIX",
+        "name": "ANVIX",
+        "suffix": {"12L":"1G", "30R":"2F", "12R": "1G", "30L":"2F"},
+        "rwy": {
+          "12L": ["_30R", "ASTES", "DB453", "LUBAP", "ANVIX"],
+          "12R": ["_30L", "ASTES", "DB453", "LUBAP", "ANVIX"],
+          "30R": ["_12L","EMUNI", "DEMTO", "DB554", "ITUBA", "GOBGI", "ENEDO", "ANVIX"],
+          "30L": ["_12R","EMUNI", "DEMTO", "DB554", "ITUBA", "GOBGI", "ENEDO", "ANVIX"]
+        },
+        "draw": [
+          ["_30L", "ASTES", "DB453", "LUBAP", "ANVIX"],
+          ["_30R","ASTES", "DB453", "LUBAP", "ANVIX"],
+          ["_12L","EMUNI", "DEMTO", "DB554", "ITUBA", "GOBGI", "ENEDO", "ANVIX"],
+          ["_12R","EMUNI", "DEMTO", "DB554", "ITUBA", "GOBGI", "ENEDO", "ANVIX"]
+        ]
+    },
+
+    "DAVMO": {
+        "icao": "DAVMO",
+        "name": "DAVMO",
+        "suffix": {"12L":"1G", "30R":"1F", "12R":"1G", "30L":"1F"},
+        "rwy": {
+          "12L": ["_30R", "ASTES", "DB423", "ATBID", "DANED", "DB457", "VEBUL", "DAVMO"],
+          "12R": ["_30L", "ASTES", "DB423", "ATBID", "DANED", "DB457", "VEBUL", "DAVMO"],
+          "30R": ["_12L","EMUNI", "DB555", "DB557", "DAVMO"],
+          "30L": ["_12R","EMUNI", "DB555", "DB557", "DAVMO"]
+        },
+        "draw": [
+          ["_30R", "ASTES", "DB423", "ATBID", "DANED", "DB457", "VEBUL", "DAVMO"],
+          ["_30L", "ASTES", "DB423", "ATBID", "DANED", "DB457", "VEBUL", "DAVMO"],
+          ["_12L", "EMUNI", "DB555", "DB557", "DAVMO"],
+          ["_12R", "EMUNI", "DB555", "DB557", "DAVMO"]
+        ]
+    },
+
+    "MIADA": {
+        "icao": "MIADA",
+        "name": "MIADA",
+        "suffix": {"12L":"5G", "30R":"6F", "12R":"5G", "30L":"6F"},
+        "rwy": {
+          "12L": ["_30R", "ASTES", "DB451", "DB452", "DB454", "MEBVA", "GINLA", "LOTEN", "MIADA"],
+          "12R": ["_30L", "ASTES", "DB451", "DB452", "DB454", "MEBVA", "GINLA", "LOTEN", "MIADA"],
+          "30R": ["_12L", "EMUNI", "DEMTO", "GINLA", "LOTEN", "MIADA"],
+          "30L": ["_12R", "EMUNI", "DEMTO", "GINLA", "LOTEN", "MIADA"]
+        },
+        "draw": [
+          ["_30R", "ASTES", "DB451", "DB452", "DB454", "MEBVA", "GINLA", "LOTEN", "MIADA"],
+          ["_30L", "ASTES", "DB451", "DB452", "DB454", "MEBVA", "GINLA", "LOTEN", "MIADA"],
+          ["_12L", "EMUNI", "DEMTO", "GINLA", "LOTEN", "MIADA"],
+          ["_12R", "EMUNI", "DEMTO", "GINLA", "LOTEN", "MIADA"]
+        ]
+    },
+
+    "MUVLA": {
+        "icao": "MUVLA",
+        "name": "MUVLA",
+        "suffix": {"12L":"2G", "30R":"2F", "12R":"2G", "30L":"2F"},
+        "rwy": {
+          "12L": ["_30R", "ASTES", "DB451", "DB452", "DB454", "MEBVA", "EMOVA", "MUVLA"],
+          "12R": ["_30L", "ASTES", "DB451", "DB452", "DB454", "MEBVA", "EMOVA", "MUVLA"],
+          "30R": ["_12L", "EMUNI", "DATAL", "EMOVA", "MUVLA"],
+          "30L": ["_12R", "EMUNI", "DATAL", "EMOVA", "MUVLA"]
+        },
+        "draw": [
+          ["_30R", "ASTES", "DB451", "DB452", "DB454", "MEBVA", "EMOVA", "MUVLA"],
+          ["_30L", "ASTES", "DB451", "DB452", "DB454", "MEBVA", "EMOVA", "MUVLA"],
+          ["_12L", "EMUNI", "DATAL", "EMOVA", "MUVLA"],
+          ["_12R", "EMUNI", "DATAL", "EMOVA", "MUVLA"]
+        ]
+    },
+
+    "NADIL": {
+        "icao": "NADIL",
+        "name": "NADIL",
+        "suffix": {"12L":"1G", "30R":"2F", "12R":"1G", "30L":"2F"},
+        "rwy": {
+          "12L": ["_30R", "ASTES", "DB451", "DB452", "DB454", "ALVAV", "NADIL"],
+          "12R": ["_30L", "ASTES", "DB451", "DB452", "DB454", "ALVAV", "NADIL"],
+          "30R": ["_12L", "EMUNI", "DB550", "ALVAV", "NADIL"],
+          "30L": ["_12R", "EMUNI", "DB550", "ALVAV", "NADIL"]
+        },
+        "draw": [
+          ["_30R", "ASTES", "DB451", "DB452", "DB454", "ALVAV", "NADIL"],
+          ["_30L", "ASTES", "DB451", "DB452", "DB454", "ALVAV", "NADIL"],
+          ["_12L", "EMUNI", "DB550", "ALVAV", "NADIL"],
+          ["_12R", "EMUNI", "DB550", "ALVAV", "NADIL"]
+        ]
+    },
+
+    "RIKET": {
+        "icao": "RIKET",
+        "name": "RIKET",
+        "suffix": {"12L":"3G", "30R":"4F", "12R":"3G", "30L":"4F"},
+        "rwy": {
+          "12L": ["_30R", "ASTES", "DB423", "ATBID", "RIKET"],
+          "12R": ["_30L", "ASTES", "DB423", "ATBID", "RIKET"],
+          "30R": ["_12L", "EMUNI", "DB558", "DB559", "KUMDA", "DEDNU", "RIKET"],
+          "30L": ["_12R", "EMUNI", "DB558", "DB559", "KUMDA", "DEDNU", "RIKET"]
+        },
+        "draw": [
+          ["_30R", "ASTES", "DB423", "ATBID", "RIKET"],
+          ["_30L", "ASTES", "DB423", "ATBID", "RIKET"],
+          ["_12L", "EMUNI", "DB558", "DB559", "KUMDA", "DEDNU", "RIKET"],
+          ["_12R", "EMUNI", "DB558", "DB559", "KUMDA", "DEDNU", "RIKET"]
+        ]
+    },
+
+    "SITAT": {
+        "icao": "SITAT",
+        "name": "SITAT",
+        "suffix": {"12L":"2G", "30R":"3F", "12R":"2G", "30L":"3F"},
+        "rwy": {
+          "12L": ["_30R", "ASTES", "DB451", "DB452", "DB454", "MEBVA", "GINLA", "SITAT"],
+          "12R": ["_30L", "ASTES", "DB451", "DB452", "DB454", "MEBVA", "GINLA", "SITAT"],
+          "30R": ["_12L", "EMUNI", "DEMTO", "GINLA", "SITAT"],
+          "30L": ["_12R", "EMUNI", "DEMTO", "GINLA", "SITAT"]
+        },
+        "draw": [
+          ["_30R", "ASTES", "DB451", "DB452", "DB454", "MEBVA", "GINLA", "SITAT"],
+          ["_30L", "ASTES", "DB451", "DB452", "DB454", "MEBVA", "GINLA", "SITAT"],
+          ["_12L", "EMUNI", "DEMTO", "GINLA", "SITAT"],
+          ["_12R", "EMUNI", "DEMTO", "GINLA", "SITAT"]
+        ]
+    }
+  },
+
+  "departures": {
+    "airlines": [
+      ["afl",       1],
+      ["aca",       1],
+      ["cca",       2],
+      ["afr",       2],
+      ["aic",       9],
+      ["axb",      11],
+      ["baw",       1],
+      ["cpa",       2],
+      ["ces",       2],
+      ["csn",       4],
+      ["uae",     139],
+      ["fdb",      98],
+      ["fdx",       8],
+      ["igo",       9],
+      ["jai",       4],
+      ["klm",       1],
+      ["kal",       1],
+      ["dlh",       1],
+      ["nax",       3],
+      ["sej",      10],
+      ["tui",       1],
+      ["thy",       2],
+      ["swr",       2],
+      ["ups",       8],
+      ["vir",       1],
+      ["qfa/dubai", 6]
+    ],
+    "destinations": [
+		    "ANVIX", "DAVMO", "MIADA", "MUVLA", "NADIL", "RIKET", "SITAT"
+    ],
+    "type": "random",
+    "offset": 0,
+    "frequency": 50
+  },
+  "arrivals": [
+    {
+      "type": 		"cyclic",
+      "fixes":		["BUBIN", "GIRMI", "DB518", "DB517", "VUTON", "DB515", "DB514", "DB513", "GIRGO", "VELAR", "DB509", "DB508", "DB507", "DB506", "DB505", "DB504", "ULDOT", "SEDPO", "MODUS"],
+      "frequency": 	15,
+      "altitude":		12000,
+      "speed":		330,
+      "offset":		2,
+      "airlines": [
+        ["cca",       2],
+        ["aic",       9],
+        ["axb",      11],
+        ["cpa",       2],
+        ["ces",       2],
+        ["csn",       4],
+        ["uae",      98],
+        ["fdb",      46],
+        ["fdx",       3],
+        ["igo",       9],
+        ["jai",       4],
+        ["kal",       1],
+        ["sej",      10],
+        ["ups",       2],
+        ["qfa/dubai", 6]
+      ]
+    },
+    {
+      "type": 		"cyclic",
+      "fixes":		["DESDI", "RULAM", "IVUTI", "DB429", "TULOM", "DB427", "DB426", "DB425", "DB421", "DB420", "ALNET", "SOGAP", "DB417", "DB416", "DB414", "DB413", "REREK", "UKRIM", "DB612"],
+      "frequency": 	30,
+      "altitude":		12000,
+      "speed":		330,
+      "offset":		2,
+      "airlines": [
+        ["afl",       1],
+        ["aca",       1],
+        ["afr",       1],
+        ["baw",       1],
+        ["uae",      34],
+        ["fdb",      37],
+        ["fdx",       2],
+        ["klm",       1],
+        ["dlh",       1],
+        ["nax",       3],
+        ["tui",       1],
+        ["thy",       2],
+        ["swr",       2],
+        ["ups",       2],
+        ["vir",       1],
+        ["qfa/dubai", 6]
+      ]
+    },
+    {
+      "type": 		"cyclic",
+      "fixes":		["MIADA", "MUXAL", "EMOVA", "ODLAL", "DB414", "DB413", "REREK", "PEDOV", "PUTGA"],
+      "frequency": 	25,
+      "altitude":		12000,
+      "speed":		330,
+      "offset":		2,
+      "airlines": [
+        ["aic",       9],
+        ["axb",      11],
+        ["uae",      98],
+        ["fdb",      46],
+        ["fdx",       3],
+        ["igo",       9],
+        ["jai",       4],
+        ["kal",       1],
+        ["sej",      10],
+        ["ups",       2],
+        ["qfa/dubai", 6]
+      ]
+    },
+    {
+      "type": 		"cyclic",
+      "fixes":		["PUVAL", "KUMDA", "EGTUP", "ULASO", "DB519", "DB513", "GIRGO", "VELAR", "DB509", "DB508", "DB507", "DB506", "DB505", "DB504", "ULDOT", "LOVOL", "DB756"],
+      "frequency": 	20,
+      "altitude":		12000,
+      "speed":		330,
+      "offset":		2,
+      "airlines": [
+        ["aic",       9],
+        ["axb",      11],
+        ["uae",      80],
+        ["fdb",      24],
+        ["fdx",       5],
+        ["igo",       9],
+        ["jai",       4],
+        ["kal",       1],
+        ["sej",      10],
+        ["afl",       1],
+        ["cca",       2],
+        ["cpa",       2],
+        ["ces",       2],
+        ["csn",       4],
+        ["ups",       3],
+        ["qfa/dubai", 6]
+      ]
+    }
+  ]
+}
