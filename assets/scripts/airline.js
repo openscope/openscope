@@ -177,6 +177,7 @@ function airline_init() {
   airline_load("EZY");
   airline_load("FAB");
   airline_load("FASTGA");
+  airline_load("FDB");
   airline_load("FDX");
   airline_load("FFT");
   airline_load("FLG");
@@ -211,6 +212,7 @@ function airline_init() {
   airline_load("ONE");
   airline_load("PAA");
   airline_load("PDT");
+  airline_load("QFA");
   airline_load("QXE");
   airline_load("RFF");
   airline_load("RLU");
