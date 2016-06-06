@@ -2641,7 +2641,11 @@ var Aircraft=Fiber.extend(function() {
         }
       } else if(this.fms.currentWaypoint().navmode == "fix") {
         var fix = this.fms.currentWaypoint().location;
-        if(!fix) console.error(this.getCallsign()+" using 'fix' navmode, but no fix location!"+this.fms);
+        if(!fix) {
+          console.error(this.getCallsign()+" using 'fix' navmode, but no fix location!");
+          console.log(this.fms);
+          console.log(this.fms.currentWaypoint());
+        }
         var vector_to_fix = vsub(this.position, fix);
         var distance_to_fix = distance2d(this.position, fix);
         if((distance_to_fix < 1) ||
