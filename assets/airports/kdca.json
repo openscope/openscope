@@ -17,7 +17,7 @@
   "rr_center": ["N38.852222", "W77.037778"],
   "has_terrain": false,
   "wind": {
-    "angle": 30,
+    "angle": 350,
     "speed": 7
   },
   "airspace": [
@@ -550,7 +550,7 @@
               "1": [["_RWY01004I332ADAXE", "S220-"], ["ADAXE", "S220-"], "BEBLE", "COVTO", "FERGI", "CUKLI", "DUDDD", "REBLL"],
               "15": [["_RWY151523DME", "A5.15-|S220-"], "CAPVC", "GAITE", "LBOLT", "TEZER", "REBLL"],
               "19": [["_RWY191853DME", "A5.15-|S220-"], "CAPVC", "GAITE", "LBOLT", "TEZER", "REBLL"],
-              "33": [["_RWY33332toADAXE", "A5.15-|S220-"], ["ADAXE", "S220-"], "BEBLE", "COVTO", "FERGI", "CUKLI", "DUDDD", "REBLL"]
+              "33": [["ADAXE", "S220-"], "BEBLE", "COVTO", "FERGI", "CUKLI", "DUDDD", "REBLL"]
           },
           "transitions": {
               "OTTTO": [["OTTTO", "A50-"]]
@@ -564,7 +564,7 @@
               "1": [["_RWY01004I332ADAXE", "S220-"], ["ADAXE", "S220-"], "BEBLE", "COVTO", "FERGI", "MELOE", ["HORTO", "A50-"]],
               "15": [["_RWY151523DME", "A5.15-|S220-"], "CAPVC", "GAITE", "LBOLT", "RLLLL", ["HORTO", "A50-"]],
               "19": [["_RWY191853DME", "A5.15-|S220-"], "CAPVC", "GAITE", "LBOLT", "RLLLL", ["HORTO", "A50-"]],
-              "33": [["_RWY33332toADAXE", "A5.15-|S220-"], ["ADAXE", "S220-"], "BEBLE", "COVTO", "FERGI", "MELOE", ["HORTO", "A50-"]]
+              "33": [["ADAXE", "S220-"], "BEBLE", "COVTO", "FERGI", "MELOE", ["HORTO", "A50-"]]
           },
           "transitions": {
               "BUFFR": ["BUFFR"],
