@@ -3221,22 +3221,8 @@ function aircraft_callsign_new(airline) {
 }
 
 function aircraft_new(options) {
-  if(!options.callsign) options.callsign = aircraft_callsign_new(options.airline);
-
-  if(!options.icao) {
-    options.icao = airline_get(options.airline).chooseAircraft(options.fleet);
-  }
-  var icao = options.icao.toLowerCase();
-
-  if (!(icao in prop.aircraft.models)) {
-    var model = new Model({
-      icao: icao,
-      url: "assets/aircraft/"+icao+".json",
-    });
-    options.model = model;
-    prop.aircraft.models[icao] = model;
-  }
-  return prop.aircraft.models[icao].generateAircraft(options);
+  var airline = airline_get(options.airline);
+  return airline.generateAircraft(options);
 }
 
 function aircraft_get_nearest(position) {
@@ -3380,4 +3366,15 @@ function aircraft_get_eid_by_callsign(callsign) {
     if(prop.aircraft.list[i].callsign == callsign.toLowerCase())
       return prop.aircraft.list[i].eid;
   return null;
+}
+
+function aircraft_model_get(icao) {
+  if (!(icao in prop.aircraft.models)) {
+    var model = new Model({
+      icao: icao,
+      url: "assets/aircraft/"+icao+".json",
+    });
+    prop.aircraft.models[icao] = model;
+  }
+  return prop.aircraft.models[icao];
 }
