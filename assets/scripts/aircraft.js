@@ -261,6 +261,8 @@ var Model=Fiber.extend(function() {
     init: function(options) {
       if(!options) options={};
 
+      this.loading = true;
+      this.loaded = false;
       this.name = null;
       this.icao = null;
 
@@ -288,6 +290,8 @@ var Model=Fiber.extend(function() {
         cruise:  0
       };
 
+      this._pendingAircraft = [];
+
       this.parse(options);
 
       if(options.url) this.load(options.url);
@@ -312,16 +316,60 @@ var Model=Fiber.extend(function() {
       if(data.speed) this.speed = data.speed;
     },
     load: function(url) {
-      this.content = new Content({
-        type: "json",
-        url: url,
-        that: this,
-        callback: function(status, data) {
-          if(status == "ok") {
-            this.parse(data);
-          }
+      $.getJSON(url)
+        .done(function (data) {
+          this.parse(data);
+          this.loading = false;
+          this.loaded = true;
+          this._generatePendingAircraft();
+        }.bind(this))
+        .fail(function (jqXHR, textStatus, errorThrown) {
+          this.loading = false;
+          this._pendingAircraft = [];
+          console.error("Unable to load aircraft/" + this.icao
+                        + ": " + textStatus);
+        }.bind(this));
+    },
+
+    /**
+     * Generate a new aircraft of this model
+     *
+     * Handles the case where this model may be asynchronously loaded
+     */
+    generateAircraft: function(options) {
+      if (!this.loaded) {
+        if (this.loading) {
+          this._pendingAircraft.push(options);
+          return true;
         }
-      });
+        else {
+          console.warn("Unable to spawn aircraft/" + options.icao
+                       + " as loading failed");
+          return false;
+        }
+      }
+      return this._generateAircraft(options);
+    },
+
+    /**
+     * Actual implementation of generateAircraft
+     */
+    _generateAircraft: function(options) {
+      options.model = this;
+      var aircraft = new Aircraft(options);
+      prop.aircraft.list.push(aircraft);
+      console.log("Spawning " + options.category + " : " + aircraft.getCallsign());
+      return true;
+    },
+
+    /**
+     * Generate aircraft which were queued while the model loaded
+     */
+    _generatePendingAircraft: function() {
+      $.each(this._pendingAircraft, function (idx, options) {
+        this._generateAircraft(options);
+      }.bind(this));
+      this._pendingAircraft = null;
     },
   };
 });
@@ -3149,133 +3197,6 @@ function aircraft_auto_toggle() {
 }
 
 function aircraft_init() {
-  // AIRBUS
-  aircraft_load("a306");
-  aircraft_load("a310");
-  aircraft_load("a318");
-  aircraft_load("a319");
-  aircraft_load("a320");
-  aircraft_load("a321");
-  aircraft_load("a332");
-  aircraft_load("a333");
-  aircraft_load("a343");
-  aircraft_load("a346");
-  aircraft_load("a359");
-  aircraft_load("a388");
-
-  // ANTONOV
-  aircraft_load("a124");
-  aircraft_load("an12");
-  aircraft_load("an24");
-  aircraft_load("an72");
-
-  // ATR
-  aircraft_load("at43");
-  aircraft_load("at45");
-  aircraft_load("at72");
-  aircraft_load("at76");
-
-  // BOEING
-  aircraft_load("b712");
-  aircraft_load("b722");
-  aircraft_load("b732");
-  aircraft_load("b733");
-  aircraft_load("b734");
-  aircraft_load("b735");
-  aircraft_load("b736");
-  aircraft_load("b737");
-  aircraft_load("b738");
-  aircraft_load("b739");
-  aircraft_load("b741");
-  aircraft_load("b742");
-  aircraft_load("b744");
-  aircraft_load("b748");
-  aircraft_load("b74s");
-  aircraft_load("b752");
-  aircraft_load("b753");
-  aircraft_load("b762");
-  aircraft_load("b763");
-  aircraft_load("b764");
-  aircraft_load("b772");
-  aircraft_load("b77l");
-  aircraft_load("b773");
-  aircraft_load("b77w");
-  aircraft_load("b788");
-  aircraft_load("b789");
-
-  // BOMBARDIER
-  aircraft_load("crj2");
-  aircraft_load("crj7");
-  aircraft_load("crj9");
-  aircraft_load("dh8a");
-  aircraft_load("dh8c");
-  aircraft_load("dh8d");
-
-  // CESSNA
-  aircraft_load("c172");
-  aircraft_load("c182");
-  aircraft_load("c208");
-  aircraft_load("c337");
-  aircraft_load("c402");
-  aircraft_load("c510");
-  aircraft_load("c550");
-  aircraft_load("c750");
-
-  // EMBRAER
-  aircraft_load("e110");
-  aircraft_load("e120");
-  aircraft_load("e135");
-  aircraft_load("e145");
-  aircraft_load("e170");
-  aircraft_load("e190");
-  aircraft_load("e50p");
-  aircraft_load("e545");
-  aircraft_load("e55p");
-
-  // FOKKER
-  aircraft_load("f50" );
-  aircraft_load("f100");
-
-  // GENERAL AVIATION
-  aircraft_load("be36");
-  aircraft_load("bn2p");
-  aircraft_load("p28a");
-
-  // ILYUSHIN
-  aircraft_load("il76");
-  aircraft_load("il96");
-
-  // LOCKHEED-MARTIN
-  aircraft_load( "c5" );
-  aircraft_load("c130");
-  aircraft_load("l101");
-  aircraft_load("l410");
-
-  // MCDONNELL-DOUGLAS
-  aircraft_load("dc10");
-  aircraft_load("dc87");
-  aircraft_load("dc93");
-  aircraft_load("md11");
-  aircraft_load("md81");
-  aircraft_load("md82");
-  aircraft_load("md83");
-  aircraft_load("md87");
-  aircraft_load("md88");
-  aircraft_load("md90");
-
-  // SAAB
-  aircraft_load("sb20");
-  // TUPOLEV
-  aircraft_load("t154");
-  aircraft_load("t204");
-
-  // MISCELLANEOUS
-  aircraft_load("conc");
-  aircraft_load("rj85");
-  aircraft_load("rj1h");
-  aircraft_load("d328");
-  aircraft_load("dhc6");
-  aircraft_load("sf34");
 }
 
 function aircraft_generate_callsign(airline_name) {
@@ -3307,18 +3228,15 @@ function aircraft_new(options) {
   }
   var icao = options.icao.toLowerCase();
 
-  options.model = prop.aircraft.models[icao];
-  var aircraft = new Aircraft(options);
-
-  prop.aircraft.list.push(aircraft);
-  console.log("Spawning " + options.category + " : " + aircraft.getCallsign());
-}
-
-function aircraft_load(icao) {
-  icao = icao.toLowerCase();
-  var model = new Model({icao: icao, url: "assets/aircraft/"+icao+".json"});
-  aircraft_add(model);
-  return model;
+  if (!(icao in prop.aircraft.models)) {
+    var model = new Model({
+      icao: icao,
+      url: "assets/aircraft/"+icao+".json",
+    });
+    options.model = model;
+    prop.aircraft.models[icao] = model;
+  }
+  return prop.aircraft.models[icao].generateAircraft(options);
 }
 
 function aircraft_get_nearest(position) {
