@@ -1,6 +1,6 @@
 {
   "name": "Abu Dhabi International Airport",
-  "level": "hard",
+  "level": "medium",
   "radio": {
     "twr": "Abu Dhabi Tower",
     "app": "Abu Dhabi Arrivals",
