@@ -322,6 +322,9 @@
         "icao": "ATUDO",
         "name": "Atudo",
         "suffix": {"13L":"3B", "13R":"3B", "31L":"3D", "31R":"3D"},
+        "transitions": {
+          "ATUDO": ["ATUDO"]	
+        }
         "rwy": {
           "13L": [["ATUDO", "A120+|S250-"], ["NORPU", "A50+|S230-"], ["SOBER", "A30+"], ["AA574", "S210-"], "AA573", "AA564", "LAGRU"],
           "13R": [["ATUDO", "A120+|S250-"], ["NORPU", "A50+|S230-"], ["SOBER", "A30+"], ["AA474", "S210-"], "AA473", "AA464", "BOMUP"],
@@ -341,6 +344,9 @@
         "icao": "BOXAK",
         "name": "Boxak",
         "suffix": {"13L":"3A", "13R":"1B", "31L":"3C", "31R":"3D"},
+        "transitions": {
+          "BOXAK": ["BOXAK"]
+        }
         "rwy": {
           "13L": [["BOXAK", "A130-|A60+|S250-"], ["AA804", "A60+"], "NAMKU", ["OBTOL", "A30+|S230-"], ["AA576", "S210-"], "NODVI", ["AA575", "A28"], ["AA564", "A19+"], ["LAGRU", "A12+"]],
           "13R": [["BOXAK", "A130-|A60+|S250-"], "AA801", ["ADV", "A50|S230-"], ["OBTOL", "A30+"], "VEDEX", ["AA475", "A28"], ["AA464", "A19+"], ["BOMUP", "A13+"]],
@@ -358,6 +364,9 @@
         "icao": "MIADA",
         "name": "Miada",
         "suffix": {"13L":"3A", "13R":"3A", "31L":"3D", "31R":"3D"},
+         "transitions": {
+          "MIADA": ["MIADA"]
+        }
         "rwy": {
           "13L": [["MIADA", "A80-|A60+|S250-"], ["AA751", "A40+"], ["SOBER", "A30+|S230-"], ["AA574", "S210-"], "AA573", "AA564", "LAGRU"],
           "13R": [["MIADA", "A80-|A60+|S250-"], ["AA751", "A40+"], ["SOBER", "A30+|S230-"], ["AA474", "S210-"], "AA473", "AA464", "BOMUP"],
@@ -377,6 +386,9 @@
         "icao": "NOBTO",
         "name": "Nobto",
         "suffix": {"13L":"3A", "13R":"3B", "31L":"3C", "31R":"3D"},
+         "transitions": {
+          "NOBTO": ["NOBTO"]
+        }
         "rwy": {
           "13L": [["NOBTO", "A130-|A100+|S250-"], "PARED", ["SUTVA", "A60+|S230-"], "NITVU", ["KODAS", "A40+"], ["AA570", "A30+|S210-"], ["AA565", "A28"], ["AA564", "A19+"], ["LAGRU", "A12"]],
           "13R": [["NOBTO", "A130-|A100+|S250-"], "PARED", ["SUTVA", "A60+|S230-"], "NITVU", ["KODAS", "A40+"], ["EGMEL", "A30+|S210-"], ["AA470", "A28"], ["AA464", "A19+"], ["BOMUP", "A13+"]],
@@ -396,6 +408,9 @@
         "icao": "ROVOS",
         "name": "Rovos",
         "suffix": {"13L":"3A", "13R":"3B", "31L":"3C", "31R":"3D"},
+         "transitions": {
+          "ROVOS": ["ROVOS"]
+        }
         "rwy": {
           "13L": [["ROVOS", "A130-|S250-"], ["EMATI", "A60+|S230-"], ["NORPU", "A50+"], ["AA572", "A30+|S210"], ["AA571", "A28"], ["LAGRU", "A12+"]],
           "13R": [["ROVOS", "A130-|S250-"], ["EMATI", "A60+|S230-"], ["NORPU", "A50+"], ["SOBER", "A30+"], ["AA474", "S210-"], ["AA473", "A28"], ["AA464", "A19+"], ["BOMUP", "A13+"]],
@@ -414,6 +429,9 @@
         "icao": "TANGA",
         "name": "Tanga",
         "suffix": {"13L":"3A", "13R":"3A", "31L":"2K", "31R":"2P"},
+         "transitions": {
+          "TANGA": ["TANGA"]
+        }
         "rwy": {
           "13L": [["TANGA", "A130-|S250-"], "AA750", ["SOBER", "A30+|S230-"], ["AA574", "S210-"], ["AA573", "A28"], ["AA564", "A19+"], ["LAGRU", "A12+"]],
           "13R": [["TANGA", "A130-|S250-"], "AA750", ["SOBER", "A30+|S230-"], ["AA474", "S210-"], ["AA473", "A28"], ["AA464", "A19+"], ["BOMUP", "A13+"]],
@@ -470,7 +488,7 @@
   "arrivals": [
     {
       "type": 		"cyclic",
-      "route": "ATUDO.ATUDO2F.OMAA",
+      "route": "ATUDO.ATUDO.OMAA",
       "frequency": 	25,
       "altitude":		12000,
       "speed":		330,
