@@ -1,10 +1,10 @@
 {
-  "name": "Abu Dabi International Airport",
+  "name": "Abu Dhabi International Airport",
   "level": "hard",
   "radio": {
-    "twr": "Abu Dabi Tower",
-    "app": "Abu Dabi Arrivals",
-    "dep": "Abu Dabi Radar"
+    "twr": "Abu Dhabi Tower",
+    "app": "Abu Dhabi Arrivals",
+    "dep": "Abu Dhabi Radar"
   },
   "icao": "OMAA",
   "iata": "AUH",
@@ -17,7 +17,7 @@
   "rr_center": ["N24d25m59.00", "E054d39m04.00"],
   "has_terrain": false,
   "wind": {
-    "angle": 210,
+    "angle": 220,
     "speed": 9
   },
   "airspace": [
@@ -318,18 +318,18 @@
   },
 
   "stars": {
-    "ATUDO": {
+    "ATUDO_STAR": {
         "icao": "ATUDO",
         "name": "Atudo",
         "suffix": {"13L":"3B", "13R":"3B", "31L":"3D", "31R":"3D"},
         "transitions": {
-          "ATUDO": ["ATUDO"]	
-        }
+          "ATUDO": [["ATUDO", "A120|S250-"]]
+        },
         "rwy": {
-          "13L": [["ATUDO", "A120+|S250-"], ["NORPU", "A50+|S230-"], ["SOBER", "A30+"], ["AA574", "S210-"], "AA573", "AA564", "LAGRU"],
-          "13R": [["ATUDO", "A120+|S250-"], ["NORPU", "A50+|S230-"], ["SOBER", "A30+"], ["AA474", "S210-"], "AA473", "AA464", "BOMUP"],
-          "31L": [["ATUDO", "A120+|S250-"], "AA422", "AA423", ["ODBAS", "A50+|S230-"], ["AA406", "A35+|S210-"], ["AA405", "A28"], ["AA404", "A19+"], ["EGLIR", "A11+"]],
-          "31R": [["ATUDO", "A120+|S250-"], "AA422", "AA423", ["ODBAS", "A50+|S230-"], ["AA509", "A35+|S210-"], ["AA508", "A28"], ["AA505", "A20+"], ["RUDON", "A13+"]]
+          "13L": [["NORPU", "A50|S230-"], ["SOBER", "A30"], ["AA574", "S210-"], "AA573", "AA564", "LAGRU"],
+          "13R": [["NORPU", "A50|S230-"], ["SOBER", "A30"], ["AA474", "S210-"], "AA473", "AA464", "BOMUP"],
+          "31L": ["AA422", "AA423", ["ODBAS", "A50|S230-"], ["AA406", "A35|S210-"], ["AA405", "A28"], ["AA404", "A19"], ["EGLIR", "A11"]],
+          "31R": ["AA422", "AA423", ["ODBAS", "A50|S230-"], ["AA509", "A35|S210-"], ["AA508", "A28"], ["AA505", "A20"], ["RUDON", "A13"]]
         },
         "draw": [
           ["ATUDO", "NORPU", "SOBER"],
@@ -345,13 +345,13 @@
         "name": "Boxak",
         "suffix": {"13L":"3A", "13R":"1B", "31L":"3C", "31R":"3D"},
         "transitions": {
-          "BOXAK": ["BOXAK"]
-        }
+          "BOXAK": [["BOXAK", "A130-|A60|S250-"]]
+        },
         "rwy": {
-          "13L": [["BOXAK", "A130-|A60+|S250-"], ["AA804", "A60+"], "NAMKU", ["OBTOL", "A30+|S230-"], ["AA576", "S210-"], "NODVI", ["AA575", "A28"], ["AA564", "A19+"], ["LAGRU", "A12+"]],
-          "13R": [["BOXAK", "A130-|A60+|S250-"], "AA801", ["ADV", "A50|S230-"], ["OBTOL", "A30+"], "VEDEX", ["AA475", "A28"], ["AA464", "A19+"], ["BOMUP", "A13+"]],
-          "31L": [["BOXAK", "A130-|A60+|S250-"], ["AA801", "A50+"], ["ASKIN", "A30+"], ["AA403", "S210-"], ["AA402", "A28"], ["EGLIR", "A11+"]],
-          "31R": [["BOXAK", "A130-|A60+|S250-"], ["AA801", "A50+"], ["ASKIN", "A30+"], ["AA516", "S210-"], ["AA515", "A28"], ["RUDON", "A13+"]]
+          "13L": [["AA804", "A60"], "NAMKU", ["OBTOL", "A30|S230-"], ["AA576", "S210-"], "NODVI", ["AA575", "A28"], ["AA564", "A19"], ["LAGRU", "A12"]],
+          "13R": ["AA801", ["ADV", "A50|S230-"], ["OBTOL", "A30"], "VEDEX", ["AA475", "A28"], ["AA464", "A19"], ["BOMUP", "A13"]],
+          "31L": [["AA801", "A50"], ["ASKIN", "A30"], ["AA403", "S210-"], ["AA402", "A28"], ["EGLIR", "A11"]],
+          "31R": [["AA801", "A50"], ["ASKIN", "A30"], ["AA516", "S210-"], ["AA515", "A28"], ["RUDON", "A13"]]
         },
         "draw": [
           ["BOXAK", "AA804", "NAMKU", "OBTOL", "AA576", "NODVI", "AA575", "AA564", "LAGRU"],
@@ -360,18 +360,18 @@
           ["BOXAK", "AA801", "ASKIN", "AA516", "AA515", "RUDON"]
         ]
     },
-    "MIADA": {
+    "MIADA_STAR": {
         "icao": "MIADA",
         "name": "Miada",
         "suffix": {"13L":"3A", "13R":"3A", "31L":"3D", "31R":"3D"},
          "transitions": {
-          "MIADA": ["MIADA"]
-        }
+          "MIADA": [["MIADA", "A80-|A60|S250-"]]
+        },
         "rwy": {
-          "13L": [["MIADA", "A80-|A60+|S250-"], ["AA751", "A40+"], ["SOBER", "A30+|S230-"], ["AA574", "S210-"], "AA573", "AA564", "LAGRU"],
-          "13R": [["MIADA", "A80-|A60+|S250-"], ["AA751", "A40+"], ["SOBER", "A30+|S230-"], ["AA474", "S210-"], "AA473", "AA464", "BOMUP"],
-          "31L": [["MIADA", "A80-|A60+|S250-"], ["AA816", "A60+"], "DENBO", ["ODBAS", "A50+|S230-"], ["AA406", "A35+|S210-"], ["AA405", "A28"], ["AA404", "A19+"], ["EGLIR", "A11+"]],
-          "31R": [["MIADA", "A80-|A60+|S250-"], ["AA816", "A60+"], "DENBO", ["ODBAS", "A50+|S230-"], ["AA509", "A35+|S210-"], ["AA508", "A28"], ["AA505", "A20+"], ["RUDON", "A13+"]]
+          "13L": [["AA751", "A40"], ["SOBER", "A30|S230-"], ["AA574", "S210-"], "AA573", "AA564", "LAGRU"],
+          "13R": [["AA751", "A40"], ["SOBER", "A30|S230-"], ["AA474", "S210-"], "AA473", "AA464", "BOMUP"],
+          "31L": [["AA816", "A60"], "DENBO", ["ODBAS", "A50|S230-"], ["AA406", "A35|S210-"], ["AA405", "A28"], ["AA404", "A19"], ["EGLIR", "A11"]],
+          "31R": [["AA816", "A60"], "DENBO", ["ODBAS", "A50|S230-"], ["AA509", "A35|S210-"], ["AA508", "A28"], ["AA505", "A20"], ["RUDON", "A13"]]
         },
         "draw": [
           ["MIADA", "AA751", "SOBER"],
@@ -387,13 +387,13 @@
         "name": "Nobto",
         "suffix": {"13L":"3A", "13R":"3B", "31L":"3C", "31R":"3D"},
          "transitions": {
-          "NOBTO": ["NOBTO"]
-        }
+          "NOBTO": [["NOBTO", "A130-|A100|S250-"]]
+        },
         "rwy": {
-          "13L": [["NOBTO", "A130-|A100+|S250-"], "PARED", ["SUTVA", "A60+|S230-"], "NITVU", ["KODAS", "A40+"], ["AA570", "A30+|S210-"], ["AA565", "A28"], ["AA564", "A19+"], ["LAGRU", "A12"]],
-          "13R": [["NOBTO", "A130-|A100+|S250-"], "PARED", ["SUTVA", "A60+|S230-"], "NITVU", ["KODAS", "A40+"], ["EGMEL", "A30+|S210-"], ["AA470", "A28"], ["AA464", "A19+"], ["BOMUP", "A13+"]],
-          "31L": [["NOBTO", "A310-|A100+|S250-"], ["PARED", "A60+|S230-"], ["AA831", "A50+"], ["LOSUR", "A30+"], "SENSU", ["AA413", "A28"], ["AA404", "A19+"], ["EGLIR", "A11+"]],
-          "31R": [["NOBTO", "A310-|A100+|S250-"], ["PARED", "A60+|S230-"], ["AA831", "A50+"], ["LOSUR", "A30+"], ["AA514", "A30+"], "EGVOS", ["AA513", "A28"], ["AA505", "A20+"], ["RUDON", "A13+"]]
+          "13L": ["PARED", ["SUTVA", "A60|S230-"], "NITVU", ["KODAS", "A40"], ["AA570", "A30|S210-"], ["AA565", "A28"], ["AA564", "A19"], ["LAGRU", "A12"]],
+          "13R": ["PARED", ["SUTVA", "A60|S230-"], "NITVU", ["KODAS", "A40"], ["EGMEL", "A30|S210-"], ["AA470", "A28"], ["AA464", "A19"], ["BOMUP", "A13"]],
+          "31L": [["PARED", "A60|S230-"], ["AA831", "A50"], ["LOSUR", "A30"], "SENSU", ["AA413", "A28"], ["AA404", "A19"], ["EGLIR", "A11"]],
+          "31R": [["PARED", "A60|S230-"], ["AA831", "A50"], ["LOSUR", "A30"], ["AA514", "A30"], "EGVOS", ["AA513", "A28"], ["AA505", "A20"], ["RUDON", "A13"]]
     },
         "draw": [
           ["NOBTO", "PARED", "SUTVA", "NITVU", "KODAS"],
@@ -409,13 +409,13 @@
         "name": "Rovos",
         "suffix": {"13L":"3A", "13R":"3B", "31L":"3C", "31R":"3D"},
          "transitions": {
-          "ROVOS": ["ROVOS"]
-        }
+          "ROVOS": [["ROVOS", "A130-|S250-"]]
+        },
         "rwy": {
-          "13L": [["ROVOS", "A130-|S250-"], ["EMATI", "A60+|S230-"], ["NORPU", "A50+"], ["AA572", "A30+|S210"], ["AA571", "A28"], ["LAGRU", "A12+"]],
-          "13R": [["ROVOS", "A130-|S250-"], ["EMATI", "A60+|S230-"], ["NORPU", "A50+"], ["SOBER", "A30+"], ["AA474", "S210-"], ["AA473", "A28"], ["AA464", "A19+"], ["BOMUP", "A13+"]],
-          "31L": [["ROVOS", "A310-|S250-"], "RAKNI", ["AA841", "A50+"], ["IMLAD", "A30+"], ["AA414", "A30+"], "SENSU", ["AA413", "A28"], ["AA404", "A19+"], ["EGLIR", "A11+"]],
-          "31R": [["ROVOS", "A310-|S250-"], ["VEGIT", "A70+|S230-"], ["AA425", "A60+"], "AA426", ["ODBAS", "A50+"], ["AA509", "A35+|S210-"], ["AA508", "A28"], ["AA505", "A20+"], ["RUDON", "A13+"]]
+          "13L": [["EMATI", "A60|S230-"], ["NORPU", "A50"], ["AA572", "A30|S210"], ["AA571", "A28"], ["LAGRU", "A12"]],
+          "13R": [["EMATI", "A60|S230-"], ["NORPU", "A50"], ["SOBER", "A30"], ["AA474", "S210-"], ["AA473", "A28"], ["AA464", "A19"], ["BOMUP", "A13"]],
+          "31L": ["RAKNI", ["AA841", "A50"], ["IMLAD", "A30"], ["AA414", "A30"], "SENSU", ["AA413", "A28"], ["AA404", "A19"], ["EGLIR", "A11"]],
+          "31R": [["VEGIT", "A70|S230-"], ["AA425", "A60"], "AA426", ["ODBAS", "A50"], ["AA509", "A35|S210-"], ["AA508", "A28"], ["AA505", "A20"], ["RUDON", "A13"]]
         },
         "draw": [
           ["ROVOS", "EMATI", "NORPU"],
@@ -430,13 +430,13 @@
         "name": "Tanga",
         "suffix": {"13L":"3A", "13R":"3A", "31L":"2K", "31R":"2P"},
          "transitions": {
-          "TANGA": ["TANGA"]
-        }
+          "TANGA": [["TANGA", "A130-|S250-"]]
+        },
         "rwy": {
-          "13L": [["TANGA", "A130-|S250-"], "AA750", ["SOBER", "A30+|S230-"], ["AA574", "S210-"], ["AA573", "A28"], ["AA564", "A19+"], ["LAGRU", "A12+"]],
-          "13R": [["TANGA", "A130-|S250-"], "AA750", ["SOBER", "A30+|S230-"], ["AA474", "S210-"], ["AA473", "A28"], ["AA464", "A19+"], ["BOMUP", "A13+"]],
-          "31L": [["TANGA", "A130-|S250-"], ["DEBOD", "A70+"], "DENBO", ["ODBAS", "A50+|S230-"], ["AA406", "A35+|S210-"], ["AA405", "A28"], ["AA404", "A19+"], ["EGLIR", "A11+"]],
-          "31R": [["TANGA", "A130-|S250-"], ["DEBOD", "A70+"], "DENBO", ["ODBAS", "A50+|S230-"], ["AA509", "A35+|S210-"], ["AA508", "A28"], ["AA505", "A20+"], ["RUDON", "A13+"]]
+          "13L": ["AA750", ["SOBER", "A30|S230-"], ["AA574", "S210-"], ["AA573", "A28"], ["AA564", "A19"], ["LAGRU", "A12"]],
+          "13R": ["AA750", ["SOBER", "A30|S230-"], ["AA474", "S210-"], ["AA473", "A28"], ["AA464", "A19"], ["BOMUP", "A13"]],
+          "31L": [["DEBOD", "A70"], "DENBO", ["ODBAS", "A50|S230-"], ["AA406", "A35|S210-"], ["AA405", "A28"], ["AA404", "A19"], ["EGLIR", "A11"]],
+          "31R": [["DEBOD", "A70"], "DENBO", ["ODBAS", "A50|S230-"], ["AA509", "A35|S210-"], ["AA508", "A28"], ["AA505", "A20"], ["RUDON", "A13"]]
         },
         "draw": [
           ["TANGA", "AA750", "SOBER"],
@@ -451,32 +451,15 @@
 
   "departures": {
     "airlines": [
-      ["afl",       1],
-      ["aca",       1],
-      ["cca",       2],
-      ["afr",       2],
-      ["aic",       9],
-      ["axb",      11],
-      ["baw",       1],
-      ["cpa",       2],
-      ["ces",       2],
-      ["csn",       4],
-      ["uae",     139],
-      ["fdb",      98],
-      ["fdx",       8],
-      ["igo",       9],
-      ["jai",       4],
-      ["klm",       1],
-      ["kal",       1],
-      ["dlh",       1],
-      ["nax",       3],
-      ["sej",      10],
-      ["tui",       1],
-      ["thy",       2],
-      ["swr",       2],
-      ["ups",       8],
-      ["vir",       1],
-      ["qfa/dubai", 6]
+      ["ber",  2],
+      ["aic",  1],
+      ["axb",  5],
+      ["aza",  3],
+      ["baw",  2],
+      ["etd", 94],
+      ["jai", 11],
+      ["klm",  2],
+      ["thy",  2]
     ],
     "destinations": [
       "ATUDO", "EMERU", "KANIP", "MIADA", "NIBAX", "TOXIG", "TULIL"
@@ -488,24 +471,91 @@
   "arrivals": [
     {
       "type": 		"cyclic",
-      "route": "ATUDO.ATUDO.OMAA",
-      "frequency": 	25,
-      "altitude":		12000,
+      "route":    "TANGA.TANGA.OMAA",
+      "frequency": 8,
+      "altitude": 13000,
       "speed":		330,
       "offset":		2,
       "airlines": [
-        ["aic",       9],
-        ["axb",      11],
-        ["uae",      98],
-        ["fdb",      46],
-        ["fdx",       3],
-        ["igo",       9],
-        ["jai",       4],
-        ["kal",       1],
-        ["sej",      10],
-        ["ups",       2],
-        ["qfa/dubai", 6]
+        ["ber",  2],
+        ["etd", 94],
+        ["jai", 11],
+        ["klm",  2],
+        ["thy",  2]
         ]
-      }
+      },
+      {
+        "type": 		"cyclic",
+        "route":    "ROVOS.ROVOS.OMAA",
+        "frequency": 10,
+        "altitude": 13000,
+        "speed":		330,
+        "offset":		2,
+        "airlines": [
+          ["aic",  1],
+          ["axb",  5],
+          ["etd", 94],
+          ["jai", 11]
+          ]
+        },
+        {
+          "type": 		"cyclic",
+          "route":    "NOBTO.NOBTO.OMAA",
+          "frequency": 7,
+          "altitude": 13000,
+          "speed":		330,
+          "offset":		2,
+          "airlines": [
+            ["aic",  1],
+            ["axb",  5],
+            ["etd", 94],
+            ["jai", 11]
+            ]
+        },
+        {
+          "type": 		"cyclic",
+          "route":    "MIADA.MIADA_STAR.OMAA",
+          "frequency": 12,
+          "altitude": 13000,
+          "speed":		330,
+          "offset":		2,
+          "airlines": [
+            ["ber",  2],
+            ["aic",  1],
+            ["axb",  5],
+            ["aza",  3],
+            ["etd", 94],
+            ["jai", 11],
+            ["klm",  2],
+            ["thy",  2]
+            ]
+        },
+        {
+          "type": 		"cyclic",
+          "route":    "BOXAK.BOXAK.OMAA",
+          "frequency": 7,
+          "altitude": 13000,
+          "speed":		330,
+          "offset":		2,
+          "airlines": [
+            ["aza",  3],
+            ["etd", 94],
+            ["baw",  2]
+            ]
+        },
+        {
+          "type": 		"cyclic",
+          "route":    "ATUDO.ATUDO_STAR.OMAA",
+          "frequency": 10,
+          "altitude": 13000,
+          "speed":		330,
+          "offset":		2,
+          "airlines": [
+            ["aic",  1],
+            ["axb",  5],
+            ["etd", 94],
+            ["jai", 11]
+            ]
+        }
   ]
 }
