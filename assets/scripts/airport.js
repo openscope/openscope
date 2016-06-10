@@ -1077,7 +1077,7 @@ var Airport=Fiber.extend(function() {
               else fixes.push(this.sids[s].body[i][0]);
             }
           }
-          if(this.sids[s].hasOwnProperty("transtitions")) { // transtitions portion
+          if(this.sids[s].hasOwnProperty("transitions")) { // transitions portion
             for(var t in this.sids[s].transitions)
               for(var i in this.sids[s].transitions[t]) {
                 if(typeof this.sids[s].transitions[t][i] == "string")

@@ -184,7 +184,7 @@
       "body": ["OSI", "WAGES"],
       "transitions": {
           "CZQ": ["CZQ"],
-          "PXE": ["PXE"],
+          "PXN": ["PXN"],
           "FLW": ["FLW"],
           "AVE": ["AVE"]
       },
