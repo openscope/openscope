@@ -18,8 +18,8 @@
   "rr_center": ["N25d16m28.43", "E051d36m30.16"],
   "has_terrain": false,
   "wind": {
-    "angle": 220,
-    "speed": 9
+    "angle": 250,
+    "speed": 0
   },
   "airspace": [
   {
@@ -87,6 +87,7 @@
     "ENELI":	["N25d29m59.45", "E051d25m02.14"],
     "GETAM":	["N25d24m07.64", "E051d29m53.00"],
     "GIBIN":	["N25d40m06.23", "E051d44m17.85"],
+    "GINTO":  ["N25d16m05.56", "E051d04m15.88"],
     "GOBLU":	["N25d21m13.67", "E052d12m17.27"],
     "GOLSI":	["N25d30m47.17", "E051d29m29.86"],
     "GOMTO":	["N25d42m34.54", "E051d52m13.86"],
@@ -225,7 +226,7 @@
           ["__34R", "BUDEB", "XABAB", "NOSBI", "BUBEN", "BUNDU"],
           ["__34L", "OBVER", "NAKAB", "XALTO", "ASTOP", "BUNDU"],
           ["__16R", "GETAM", "ENELI", "KOBEN", "GIBIN", "IVIBO", "LABOV", "GOBLU", "BUNDU"],
-          ["__16L", "ELEDA", "MEBTI", "BOSUP", "PUSNO", "NABIS", "GOBLU"]
+          ["__16L", "ELEDA", "MEBTI", "BOSUP", "PUSNO", "NABIS", "GOBLU", "BUNDU"]
         ]
     },
     "ALSEM": {
@@ -239,8 +240,8 @@
           "34R": [["SOKEN", "A25+"], ["DEMBO", "A40"], ["UKILA", "A60+"], ["LABOV", "A70"], "ALSEM"]
         },
         "draw": [
-          ["__34R", "TORKO", "PASAV", "DEBOM", "PEGEM"],
-          ["__34L", "OBVER", "NAKAB", "LUDOS", "NOSBI", "NOVLA"],
+          ["__34R", "TORKO", "PASAV", "DEBOM", "PEGEM", "ALSEM"],
+          ["__34L", "OBVER", "NAKAB", "LUDOS", "NOSBI", "NOVLA", "ALSEM"],
           ["__16R", "GETAM", "ENELI", "KOBEN", "GIBIN", "TABKI", "LUBAK", "ULELO", "ALSEM"],
           ["GOBLU", "ALSEM"],
           ["__16L", "SOKEN", "DEMBO", "UKILA", "LABOV", "ALSEM"]
@@ -277,7 +278,7 @@
           ["__34R", "TORKO", "PASAV", "DEBOM", "PEGEM", "GOBLU", "NAMLA"],
           ["__34L", "OBVER", "NAKAB", "XALTO", "ASTOP", "NAMLA"],
           ["__16R", "GETAM", "ENELI", "KOBEN", "GIBIN", "IVIBO", "LABOV", "GOBLU", "NAMLA"],
-          ["__16L", "ELEDA", "MEBTI", "BOSUP", "PUSNO", "NABIS", "GOBLU"]
+          ["__16L", "ELEDA", "MEBTI", "BOSUP", "PUSNO", "NABIS", "GOBLU", "NAMLA"]
         ]
     },
     "PATOM": {
@@ -323,7 +324,7 @@
         "name": "Afnan",
         "suffix": {"16L":"1M", "16R":"1C", "34L":"1W", "34R":"1E"},
         "transitions": {
-          "AFNAN": ["AFNAN", "A120-"]
+          "AFNAN": [["AFNAN", "A120-"]]
         },
         "rwy": {
           "16L": ["SIDMU", ["EGNUG", "A80"], ["IVANI", "A50|S220-"], ["TOVAN", "S180-"]],
@@ -343,7 +344,7 @@
         "name": "Bayan",
         "suffix": {"16L":"1M", "16R":"1C", "34L":"1W", "34R":"1E"},
         "transitions": {
-          "BAYAN": ["BAYAN", "A120-"]
+          "BAYAN": ["LUBAK", ["BAYAN", "A120-"]]
         },
         "rwy": {
           "16L": ["ASTIM", ["EGNUG", "A80"], ["IVANI", "A50|S220-"], ["TOVAN", "S180-"]],
@@ -362,7 +363,7 @@
         "name": "Ginto",
         "suffix": {"16L":"1M", "16R":"1C", "34L":"1W", "34R":"1E"},
         "transitions": {
-          "GINTO": ["GINTO", "A120-"]
+          "GINTO": [["GINTO", "A120-"]]
         },
         "rwy": {
           "16L": ["LAGNO", ["DATMO", "A80"], "PUTAN", ["IVANI", "A50|S220-"], ["TOVAN", "S180-"]],
@@ -380,24 +381,66 @@
 
   "departures": {
     "airlines": [
-      ["ber",  2],
-      ["aic",  1],
-      ["axb",  5],
-      ["aza",  3],
-      ["baw",  2],
-      ["etd", 94],
-      ["jai", 11],
-      ["klm",  2],
-      ["thy",  2]
+      ["axb",   4],
+      ["baw",   2],
+      ["dlh",   3],
+      ["etd",   3],
+      ["fdb",   2],
+      ["jai",   5],
+      ["klm",   2],
+      ["qtr", 201],
+      ["thy",   2]
     ],
     "destinations": [
-      "BATHA", "BUNDU", "ALSEM", "ALVEN", "NAMLA"
+      "BATHA", "BUNDU", "ALSEM", "ALVEN", "NAMLA", "PATOM", "SALWA"
     ],
     "type": "random",
     "offset": 0,
     "frequency": 50
   },
   "arrivals": [
-
+    {
+      "type": 		"cyclic",
+      "route":    "AFNAN.AFNAN.OTHH",
+      "frequency": 8,
+      "altitude": 16000,
+      "speed":		330,
+      "offset":		2,
+      "airlines": [
+        ["axb",   4],
+        ["etd",   3],
+        ["fdb",   2],
+        ["jai",   5],
+        ["qtr",  67]
+        ]
+    },
+    {
+      "type": 		"cyclic",
+      "route":    "BAYAN.BAYAN.OTHH",
+      "frequency": 8,
+      "altitude": 14000,
+      "speed":		330,
+      "offset":		2,
+      "airlines": [
+        ["etd",   3],
+        ["fdb",   2],
+        ["qtr",  67]
+        ]
+    },
+    {
+      "type": 		"cyclic",
+      "route":    "GINTO.GINTO.OTHH",
+      "frequency": 8,
+      "altitude": 18000,
+      "speed":		330,
+      "offset":		2,
+      "airlines": [
+        ["baw",   2],
+        ["dlh",   3],
+        ["klm",   2],
+        ["qtr",  67],
+        ["thy",   2]
+        ]
+    }
   ]
 }
