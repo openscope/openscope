@@ -402,7 +402,7 @@
     {
       "type": 		"cyclic",
       "route":    "AFNAN.AFNAN.OTHH",
-      "frequency": 8,
+      "frequency": 13,
       "altitude": 16000,
       "speed":		330,
       "offset":		2,
@@ -430,7 +430,7 @@
     {
       "type": 		"cyclic",
       "route":    "GINTO.GINTO.OTHH",
-      "frequency": 8,
+      "frequency": 12,
       "altitude": 18000,
       "speed":		330,
       "offset":		2,
