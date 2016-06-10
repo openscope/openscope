@@ -114,22 +114,14 @@ zlsa.atc.Conflict = Fiber.extend(function() {
         // If either are in runway queue, remove them from it
         for(var i in airport_get().runways) {
           var rwy = airport_get().runways[i];
+
           // Primary End of Runway
-          var queue = rwy[0].queue;
-          for(var j in queue) {
-            if(queue[j] == this.aircraft[0])
-              rwy[0].removeQueue(this.aircraft[0], rwy[0], true);
-            if(queue[j] == this.aircraft[1])
-              rwy[0].removeQueue(this.aircraft[1], rwy[0], true);
-          }
+          rwy[0].removeQueue(this.aircraft[0], true);
+          rwy[0].removeQueue(this.aircraft[1], true);
+
           // Secondary End of Runway
-          queue = rwy[1].queue
-          for(var j in queue) {
-            if(queue[j] == this.aircraft[0])
-              rwy[1].removeQueue(this.aircraft[0], rwy[1], true);
-            if(queue[j] == this.aircraft[1])
-              rwy[1].removeQueue(this.aircraft[1], rwy[1], true);
-          }
+          rwy[1].removeQueue(this.aircraft[0], true);
+          rwy[1].removeQueue(this.aircraft[1], true);
         }
       }
     },
@@ -2262,7 +2254,7 @@ var Aircraft=Fiber.extend(function() {
 
       var runway = airport_get().getRunway(this.rwy_dep);
 
-      if(runway.removeQueue(this, this.rwy_dep)) {
+      if(runway.removeQueue(this)) {
         this.mode = "takeoff";
         prop.game.score.windy_takeoff += this.scoreWind('taking off');
         this.takeoffTime = game_time();
@@ -2278,8 +2270,8 @@ var Aircraft=Fiber.extend(function() {
         };
         return ["ok", readback];
       } else {
-        var waiting = runway.inQueue(this, this.rwy_dep);
-        return ["fail", "number "+waiting+" behind "+runway.queue[runway.getEnd(this.rwy_dep)][waiting-1].getRadioCallsign(), ""];
+        var waiting = runway.inQueue(this);
+        return ["fail", "number "+waiting+" behind "+runway.queue[waiting-1].getRadioCallsign(), ""];
       }
     },
     runLanding: function(data) {
@@ -2464,7 +2456,7 @@ var Aircraft=Fiber.extend(function() {
       if(this.mode == "apron" || this.mode == "taxi") return false; // hide aircraft on twys
       else if(this.isTaxiing()) { // show only the first aircraft in the takeoff queue
         var runway = airport_get().getRunway(this.rwy_dep);
-        var waiting = runway.inQueue(this, this.rwy_dep);
+        var waiting = runway.inQueue(this);
         if(this.mode == "waiting" && waiting == 0) return true;
         else return false;
       }
@@ -2721,7 +2713,7 @@ var Aircraft=Fiber.extend(function() {
         this.heading     = runway.angle;
 
         if (!this.projected &&
-            (runway.inQueue(this, this.rwy_dep) == 0) &&
+            (runway.inQueue(this) == 0) &&
             (was_taxi == true))
         {
           ui_log(this.getCallsign(), " holding short of runway "+this.rwy_dep);
