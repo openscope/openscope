@@ -1,0 +1,174 @@
+{
+  "name": "Singapore Changi International Airport",
+  "level": "hard",
+  "radio": {
+    "twr": "Singapore Tower",
+    "app": "Singapore Approach",
+    "dep": "Singapore Radar"
+  },
+  "icao": "WSSS",
+  "iata": "SIN",
+  "magnetic_north": 0.26,
+  "ctr_radius": 80,
+  "ctr_ceiling": 25000,
+  "initial_alt": 3000,
+  "position": ["N01d21m33.16", "E103d59m21.57"],
+  "rr_radius_nm": 5.0,
+  "rr_center": ["N01d21m33.16", "E103d59m21.57"],
+  "has_terrain": false,
+  "wind": {
+    "angle": 250,
+    "speed": 0
+  },
+  "airspace": [
+  {
+    "floor": 			0,
+    "ceiling": 		21000,
+    "airspace_class":	"D",
+    "poly":
+    [
+     ["N02d26m00.00", "E102d56m05"],
+     ["N02d26m00.00", "E104d34m00"],
+     ["N00d43m00.00", "E104d34m00"],
+     ["N00d43m00.00", "E102d56m05"]
+    ]
+  }
+],
+  "fixes": {
+    "AKOMA": 	["N01d45m22.00",	"E103d54m43.00"],
+    "ALFA": 	["N01d30m33.00",	"E103d49m42.00"],
+    "ARAMA": 	["N01d36m54.00",	"E103d07m12.00"],
+    "ASUA": 	["N00d59m48.00",	"E103d09m54.00"],
+    "ATKAX": 	["N00d05m12.00",	"E106d59m46.00"],
+    "ATVIX": 	["N00d02m24.00",	"E106d14m53.00"],
+    "ANITO":  ["S00d17m00.00",  "E104d52m00.00"],
+    "BIDUS": 	["N01d35m54.00",	"E103d57m55.00"],
+    "BIKTA": 	["N02d43m37.00",	"E103d43m08.00"],
+    "BIPOP": 	["N01d31m22.00",	"E104d10m18.00"],
+    "BOBAG": 	["N01d02m30.00",	"E103d29m54.00"],
+    "BOKIP": 	["N01d04m21.00",	"E103d43m53.00"],
+    "BTM": 		["N01d08m13.00",	"E104d07m58.00"],
+    "DOBLU": 	["N01d03m47.00",	"E104d13m15.00"],
+    "DOGRA":  ["N01d05m25.00",  "E104d14m23.00"],
+    "DOSNO":  ["N00d47m57.00",  "E104d14m09.00"],
+    "DOKTA": 	["N01d26m06.00",	"E104d10m40.00"],
+    "DOSO": 	["N00d47m57.00",	"E104d14m09.00"],
+    "DOVA": 	["N01d19m38.00",	"E104d12m49.00"],
+    "DUAL": 	["N01d01m38.00",	"E103d58m08.00"],
+    "HOSBA": 	["N01d19m48.00",	"E104d24m18.00"],
+    "IBULA": 	["N00d50m36.00",	"E104d36m00.00"],
+    "IGO":	 	["N01d08m47.00",	"E104d12m57.00"],
+    "IKAGO": 	["N00d38m16.00",	"E105d29m31.00"],
+    "IKIMA": 	["N00d43m14.00",	"E104d55m00.00"],
+    "JB":		  ["N01d30m00.00",	"E103d42m42.00"],
+    "KARTO":	["N01d11m24.00",	"E105d33m43.00"],
+    "KEXAS": 	["N01d10m19.00",	"E104d48m18.00"],
+    "KIBOL":	["N02d52m29.00",	"E104d28m05.00"],
+    "KILOT": 	["N03d02m17.00",	"E104d40m23.00"],
+    "KK": 		["N01d31m18.00",	"E103d59m24.00"],
+    "LAVAX": 	["N01d09m50.00",	"E104d27m14.00"],
+    "LELIB": 	["N01d27m29.00",	"E103d24m50.00"],
+    "MABAL": 	["N03d28m26.00",	"E105d12m36.00"],
+    "ITAD": 	["N01d32m57.00",	"E104d01m54.00"],
+    "YLO": 		["N01d36m57.00",	"E104d06m24.00"],
+    "PASPU": 	["N01d59m15.00",	"E104d06m18.00"],
+    "PIBAP": 	["N02d30m23.00",	"E104d06m18.00"],
+    "PIMOK": 	["N01d26m48.00",	"E103d20m08.00"],
+    "POSUB": 	["N01d27m25.00",	"E104d07m48.00"],
+    "REKOP": 	["N01d33m06.00",	"E103d05m21.00"],
+    "REMES": 	["N00d43m42.00",	"E103d57m35.00"],
+    "REPOV": 	["N00d16m23.00",	"E104d03m00.00"],
+    "RUTOT": 	["N01d14m53.00",	"E104d19m48.00"],
+    "RW02C": 	["N01d21m52.00",	"E104d00m00.00"],
+    "RW02L": 	["N01d23m05.00",	"E103d59m33.00"],
+    "RW20C": 	["N01d19m35.00",	"E103d59m02.00"],
+    "RW20R": 	["N01d20m47.00",	"E103d58m35.00"],
+    "SABUG": 	["N01d15m54.00",	"E104d03m12.00"],
+    "SAMKO": 	["N01d05m30.00",	"E103d52m55.00"],
+    "SAAT": 	["N01d07m49.00",	"E103d59m30.00"],
+    "SASGA":  ["N01d10m37.00",  "E104d02m28.00"],
+    "SJ": 		["N01d13m22.00",	"E103d51m16.00"],
+    "SUDPO": 	["N01d17m31.00",	"E103d58m08.00"],
+    "SUGAM":  ["N01d13m18.00",  "E103d56m08.00"],
+    "SUVA": 	["N01d17m56.00",	"E103d57m22.00"],
+    "SUSI": 	["N01d12m29.00",	"E103d58m08.00"],
+    "TOKIM": 	["N01d29m33.00",	"E104d03m15.00"],
+    "TOMA": 	["N01d21m47.00",	"E105d47m17.00"],
+    "TOPOM": 	["N01d29m55.00",	"E104d02m27.00"],
+    "VEIX": 	["S00d21m56.00",	"E106d05m21.00"],
+    "VEPA": 	["N00d21m41.00",	"E104d49m55.00"],
+    "VEPLI": 	["N03d52m23.00",	"E104d05m42.00"],
+    "VIIL": 	["N02d55m00.00",	"E104d06m18.00"],
+    "VJB": 		["N01d39m50.40", 	"E10d33m939.20"],
+    "VMR": 		["N02d23m18.00",	"E103d52m18.00"],
+    "VPK": 		["N03d22m59.00",	"E103d25m24.00"]
+	},
+
+  "runways": [
+    {
+      "name": ["02L", "20R"],
+      "name_offset": [[0, 0], [0, 0]],
+      "end": [["N01d20m56.26", "E103d58m38.83"], ["N01d22m33.95", "E103d59m20.06"]],
+      "length": 4,
+      "ils": [true, true]
+    },
+    {
+      "name": ["02C", "20C"],
+      "name_offset": [[0, 0], [0, 0]],
+      "end": [["N01d19m43.51", "E103d59m05.86"], ["N01d21m43.37", "E103d59m56.46"]],
+      "length": 4,
+      "ils": [true, true]
+    }
+  ],
+  "sids": {
+    "ANITO": {
+        "icao": "ANITO",
+        "name": "Anito",
+        "suffix": {"02L":"1M", "20R":"1C", "02C":"", "20C":""},
+        "rwy": {
+          "02L": [["TOPOM", "A20+"], ["DOKTA", "A40+"], ["DOGRA", "A60-"], "DOSNO", "ANITO"],
+          "20R": [["SUDPO", "A20+"], "SUGAM", ["SASGA", "A40+"], "BTM", ["DOGRA", "A60-"], "DOSNO", "ANITO"]
+        },
+        "draw": [
+          ["RW20R", "TOPOM", "DOKTA", "DOGRA", "DOSNO", "ANITO"],
+          ["RW02L", "SUDPO", "SUGAM", "SASGA", "BTM", "DOGRA", "DOSNO"]
+        ]
+    }
+  },
+
+  "departures": {
+    "airlines": [
+      ["axb",   4],
+      ["baw",   2],
+      ["dlh",   3],
+      ["etd",   3],
+      ["fdb",   2],
+      ["jai",   5],
+      ["klm",   2],
+      ["thy",   2]
+    ],
+    "destinations": [
+      "ANITO"
+    ],
+    "type": "random",
+    "offset": 0,
+    "frequency": 50
+  },
+  "_arrivals": [
+    {
+      "type": 		"cyclic",
+      "route":    "AFNAN.AFNAN.OTHH",
+      "frequency": 13,
+      "altitude": 16000,
+      "speed":		330,
+      "offset":		2,
+      "airlines": [
+        ["axb",   4],
+        ["etd",   3],
+        ["fdb",   2],
+        ["jai",   5],
+        ["qtr",  67]
+        ]
+    }
+  ]
+}
