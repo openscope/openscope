@@ -220,6 +220,7 @@ function airline_init() {
   airline_load("RYR");
   airline_load("SAS");
   airline_load("SBI");
+  airline_load("SCO");
   airline_load("SCX");
   airline_load("SEJ");
   airline_load("SIA");
