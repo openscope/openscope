@@ -266,12 +266,11 @@ function done() {
   $(window).resize(resize);
   resize();
   call_module("*","done");
-  async_wait(function() {
-    prop.loaded=true;
-    call_module("*","ready");
-    if(UPDATE)
-      requestAnimationFrame(update);
-  });
+
+  prop.loaded=true;
+  call_module("*","ready");
+  if(UPDATE)
+    requestAnimationFrame(update);
 }
 
 function resize() {
@@ -283,17 +282,17 @@ function update() {
     call_module("*","complete");
     prop.complete=true;
   }
-//  call_module("*","update_pre");
-//  call_module("*","update");
-//  call_module("*","update_post");
+
+  if(UPDATE)
+    requestAnimationFrame(update);
+  else
+    return;
 
   game_update_pre();
   aircraft_update();
 
   canvas_update_post();
 
-  if(UPDATE)
-    requestAnimationFrame(update);
   prop.time.frames+=1;
   prop.time.frame.count+=1;
   var elapsed=time()-prop.time.frame.start;
@@ -304,6 +303,15 @@ function update() {
   }
   prop.time.frame.delta=Math.min(time()-prop.time.frame.last,1/20);
   prop.time.frame.last=time();
+}
+
+/**
+ * Change whether updates should run
+ */
+function update_run(arg) {
+  if ((!UPDATE) && arg)
+    requestAnimationFrame(update);
+  UPDATE=arg;
 }
 
 function delta() {
