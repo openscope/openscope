@@ -222,6 +222,7 @@ function airline_init() {
   airline_load("SBI");
   airline_load("SCX");
   airline_load("SEJ");
+  airline_load("SIA");
   airline_load("SJY");
   airline_load("SKW");
   airline_load("SLK");
