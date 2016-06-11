@@ -214,6 +214,7 @@ function airline_init() {
   airline_load("PAA");
   airline_load("PDT");
   airline_load("QFA");
+  airline_load("QTR");
   airline_load("QXE");
   airline_load("RFF");
   airline_load("RLU");
@@ -228,6 +229,7 @@ function airline_init() {
   airline_load("SJY");
   airline_load("SKW");
   airline_load("SLK");
+  airline_load("SQC");
   airline_load("SVR");
   airline_load("SWA");
   airline_load("SWR");
