@@ -197,6 +197,7 @@ function airline_init() {
   airline_load("JAL");
   airline_load("JBU");
   airline_load("JIA");
+  airline_load("JSA");
   airline_load("KAL");
   airline_load("KAP");
   airline_load("KLC");
