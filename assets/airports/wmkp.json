@@ -123,7 +123,7 @@
   	},
   	"MADUM": {
   		"icao": "MADUM",
-  		"name": "MADUM",
+  		"name": "Madum",
   		"suffix": {"22":"1D"},
   		"rwy": {
   			"22": ["_04", "MADUM"]
@@ -165,111 +165,206 @@
         ["tgw", 1]
     ],
     "destinations": [
-
+      "BIDMO", "IKILO", "ISMAS", "LUNTU", "PAPDA", "MADUM", "VPG"
     ],
-    "type": "random",
+    "type": "cyclic",
     "offset": 0,
-    "frequency": 20
+    "frequency": 37
   },
 
   "stars": {
-    "BIDMO": {
-      "icao": "BIDMO",
-      "name": "Bidmo",
-      "suffix": {"04":"1A", "22":"1B"},
+    "PAPDA_STAR": {
+      "icao": "PAPDA",
+      "name": "Papda",
+      "suffix": {"22":"1B"},
+      "transitions": {
+        "PAPDA": [["PAPDA", "A90"]]
+      },
       "rwy": {
-        "04": [["BIDMO", "A140"], ["PUKAR", "A80"], ["ENDOR", "A35"], ["MEKAT", "A31"], ["KENDI", "A25"]],
-        "22": [["BIDMO", "A140"], ["PUKAR", "A80"], ["GOBAR", "A31"], ["UPTOP", "A28"]]
+        "22": [["UPTOP", "A28"]],
+        "04": [["PAPDA", "A90"]]
       },
       "draw": [
-          ["BIDMO", "PUKAR", "ENDOR", "MEKAT", "KENDI"],
-          ["BIDMO", "PUKAR", "GOBAR", "UPTOP"]
+          ["PAPDA", "UPTOP"]
       ]
     },
-    "ISMAS": {
+    "ISMAS_STAR": {
       "icao": "ISMAS",
       "name": "Ismas",
       "suffix": {"04":"1A", "22":"1B"},
+      "transitions": {
+        "ISMAS": [["ISMAS", "A55"]]
+      },
       "rwy": {
-        "04": [["ISMAS", "A55"], ["TAMIT", "A43"], ["OPOVI", "A31"], ["KENDI", "A25"]],
-        "22": [["ISMAS", "A55"], ["IDVAN", "A41"], ["UPTOP", "A28"]]
+        "04": [["TAMIT", "A43"], ["OPOVI", "A31"], ["KENDI", "A25"]],
+        "22": [["IDVAN", "A41"], ["UPTOP", "A28"]]
       },
       "draw": [
           ["ISMAS", "TAMIT", "OPOVI", "KENDI"],
           ["ISMAS", "IDVAN", "UPTOP"]
       ]
     },
-    "LUNTU": {
+    "MADUM_STAR": {
+      "icao": "MADUM",
+      "name": "Madum",
+      "suffix": {"04":"1A"},
+      "transitions": {
+        "MADUM": [["MADUM", "A90"]]
+      },
+      "rwy": {
+        "04": [["KENDI", "A25"]],
+        "22": [["MADUM", "A90"]]
+      },
+      "draw": [
+          ["MADUM", "KENDI"]
+      ]
+    },
+    "BIDMO_STAR": {
+      "icao": "BIDMO",
+      "name": "Bidmo",
+      "suffix": {"04":"1A", "22":"1B"},
+      "transitions": {
+        "BIDMO": [["BIDMO", "A140"]]
+      },
+      "rwy": {
+        "04": [["PUKAR", "A80"], ["ENDOR", "A35"], ["MEKAT", "A31"], ["KENDI", "A25"]],
+        "22": [["PUKAR", "A80"], ["GOBAR", "A31"], ["UPTOP", "A25"]]
+      },
+      "draw": [
+          ["BIDMO", "PUKAR", "GOBAR", "UPTOP"],
+          ["BIDMO", "PUKAR", "ENDOR", "MEKAT", "KENDI"]
+      ]
+    },
+    "LUNTU_STAR": {
       "icao": "LUNTU",
       "name": "Luntu",
       "suffix": {"04":"1A", "22":"1B"},
+      "transitions": {
+        "LUNTU": [["LUNTU", "A55"]]
+      },
       "rwy": {
-        "04": [["LUNTU", "A55"], ["TAMIT", "A43"], ["OPOVI", "A31"], ["KENDI", "A25"]],
-        "22": [["LUNTU", "A55"], ["UPTOP", "A28"]]
+        "04": [["TAMIT", "A43"], ["OPOVI", "A31"], ["KENDI", "A25"]],
+        "22": [["UPTOP", "A28"]]
       },
       "draw": [
           ["LUNTU", "TAMIT", "OPOVI", "KENDI"],
           ["LUNTU", "UPTOP"]
       ]
     },
-    "MADUM": {
-      "icao": "MADUM",
-      "name": "Madum",
-      "suffix": {"04":"1A"},
-      "rwy": {
-        "04": [["MADUM", "A90"], ["KENDI", "A25"]]
-      },
-      "draw": [
-          ["MADUM", "KENDI"]
-      ]
-    },
+
     "NURLA": {
       "icao": "NURLA",
       "name": "Nurla",
       "suffix": {"04":"1A", "22":"1B"},
+      "transitions": {
+        "NURLA": [["NURLA", "A70"]]
+      },
       "rwy": {
-        "04": [["NURLA", "A70"], ["MEKAT", "A31"], ["KENDI", "A25"]],
-        "22": [["NURLA", "A70"], ["REKUS", "A31"], ["UPTOP", "A28"]]
+        "04": [["MEKAT", "A31"], ["KENDI", "A25"]],
+        "22": [["REKUS", "A31"], ["UPTOP", "A28"]]
       },
       "draw": [
-          ["NURLA", "MEKAT", "KENDI"]
-      ]
-    },
-    "PAPDA": {
-      "icao": "PAPDA",
-      "name": "Papda",
-      "suffix": {"22":"1B"},
-      "rwy": {
-        "22": [["PAPDA", "A90"], ["UPTOP", "A28"]]
-      },
-      "draw": [
-          ["PAPDA", "UPTOP"]
+          ["NURLA", "MEKAT", "KENDI"],
+          ["NURLA", "REKUS", "UPTOP"]
       ]
     }
+
   },
-  "_arrivals": [
-	{
-		"type": 		"cyclic",
-		"fixes":		["CC112", "AVPOP", "CC210", "CC304"],
-		"frequency": 	4,
-		"altitude":		12000,
-		"speed":		330,
-		"offset":		2,
-		"airlines": [
-			["cpa", 2],
-			["xax", 3],
-			["aic", 15],
-			["llr", 5],
-			["ual", 3],
-			["gow", 3],
-			["igo", 20],
-			["jai", 10],
-			["sej", 8],
-			["ces", 3],
-			["hda", 3],
-			["slk", 3],
-			["cpa", 5]
-		]
-	}
+
+  "arrivals": [
+    {
+      "type": 		"cyclic",
+      "route":    "BIDMO.BIDMO_STAR.WMKP",
+      "frequency": 	5,
+      "altitude":		14000,
+      "speed":		  330,
+      "offset":	  	2,
+      "airlines": [
+        ["axm", 9],
+        ["csn", 1],
+        ["cpa", 5],
+        ["hda", 1],
+        ["eva", 3],
+        ["fdx", 1],
+        ["ffm", 8],
+        ["kal", 3]
+      ]
+    },
+  	{
+  		"type": 		"cyclic",
+  		"route":    "ISMAS.ISMAS_STAR.WMKP",
+  		"frequency": 	3,
+  		"altitude":		5500,
+  		"speed":		  250,
+  		"offset":	  	2,
+  		"airlines": [
+        ["sjy", 1]
+  		]
+  	},
+    {
+      "type": 		"cyclic",
+      "route":    "MADUM.MADUM_STAR.WMKP",
+      "frequency": 	3,
+      "altitude":		9000,
+      "speed":		  250,
+      "offset":		  2,
+      "airlines": [
+        ["axm", 9],
+        ["sjy", 1]
+      ]
+    },
+    {
+      "type": 		"cyclic",
+      "route":    "NURLA.NURLA.WMKP",
+      "frequency": 	9,
+      "altitude":		7000,
+      "speed":		  250,
+      "offset":	    2,
+      "airlines": [
+        ["axm", 9],
+        ["awq", 3],
+        ["jsa", 1],
+        ["lni", 1],
+        ["mas", 6],
+        ["slk", 1],
+        ["tgw", 1]
+      ]
+    },
+    {
+      "type": 		"cyclic",
+      "route":    "PAPDA.PAPDA_STAR.WMKP",
+      "frequency": 	7,
+      "altitude":		9000,
+      "speed":		  250,
+      "offset":		  2,
+      "airlines": [
+        ["axm", 9],
+        ["csn", 1],
+        ["cpa", 5],
+        ["hda", 1],
+        ["eva", 3],
+        ["fdx", 1],
+        ["ffm", 8],
+        ["kal", 3]
+      ]
+    },
+    {
+      "type": 		"cyclic",
+      "route":    "LUNTU.LUNTU_STAR.WMKP",
+      "frequency": 	3,
+      "altitude":		5500,
+      "speed":		  250,
+      "offset":		  2,
+      "airlines": [
+        ["axm", 9],
+        ["csn", 1],
+        ["cpa", 5],
+        ["hda", 1],
+        ["eva", 3],
+        ["fdx", 1],
+        ["ffm", 8],
+        ["kal", 3]
+      ]
+    }
   ]
 }
