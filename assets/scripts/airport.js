@@ -114,7 +114,7 @@ zlsa.atc.ArrivalBase = Fiber.extend(function(base) {
       });
 
       if(timeout_flag) {
-        this.timeout = game_timeout(this.spawnAircraft, 
+        this.timeout = game_timeout(this.spawnAircraft,
           this.nextInterval(), this, [null, true]);
       }
     },
@@ -238,7 +238,7 @@ zlsa.atc.ArrivalWave = zlsa.atc.ArrivalBase.extend(function(base) {
       if(min_interval < entrail_interval) {
         var diff = entrail_interval - min_interval;
         if(diff <= 3600/this.variation) {  // can reduce variation to achieve acceptable spawn rate
-          log("Requested arrival rate variation of +/-"+this.variation+" acph reduced to " + 
+          log("Requested arrival rate variation of +/-"+this.variation+" acph reduced to " +
             "maintain minimum of "+entrail_dist+" miles entrail on arrival stream following " +
             "route "+$.map(this.fixes,function(v){return v.fix;}).join('-'), LOG_WARNING);
           this.variation = this.variation - 3600/diff; // reduce the variation
@@ -271,7 +271,7 @@ zlsa.atc.ArrivalWave = zlsa.atc.ArrivalBase.extend(function(base) {
  ** Arrival rate goes from very low and steeply increases to a
  ** sustained "arrival surge" of densely packed aircraft.
  ** o o o o o o o o o o - - - - - - - - - - - o o o o o o o o o o-----+ < - - - max arrival rate (n*this.factor)
- ** o                 o                       o                 o     |         
+ ** o                 o                       o                 o     |
  ** o                 o                       o                 o     |   x(this.factor)
  ** o                 o                       o                 o     |
  ** o - - - - - - - - o o o o o o o o o o o o o - - - - - - - - o o o-+ < - - - min arrival rate (n)
@@ -284,7 +284,7 @@ zlsa.atc.ArrivalSurge = zlsa.atc.ArrivalBase.extend(function(base) {
       this.offset = 0;          // Start at the beginning of the surge
       this.period = 1800;       // 30 minute cycle
       this.entrail = [5.5, 10]; // miles entrail during the surge [fast,slow]
-      
+
       // Calculated
       this.uptime = 0;      // time length of surge, in minutes
       this.acph_up = 0;     // arrival rate when "in the surge"
@@ -346,7 +346,7 @@ zlsa.atc.ArrivalSurge = zlsa.atc.ArrivalBase.extend(function(base) {
       if(done >= 1) {
         this.cycleStart += this.period;
         return interval_up;
-      }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
+      }
       if(t <= this.uptime) {  // elevated spawn rate
         return interval_up;
       }
@@ -695,7 +695,7 @@ var Airport=Fiber.extend(function() {
         var apt = this;
         this.ctr_radius = Math.max.apply(Math, $.map(this.perimeter.poly, function(v) {return vlen(vsub(v.position,new Position(apt.rr_center, apt.position, apt.magnetic_north).position));}));
       }
-      
+
       if(data.runways) {
         for(var i in data.runways) {
           data.runways[i].reference_position = this.position;
@@ -731,7 +731,7 @@ var Airport=Fiber.extend(function() {
           }
         }
       }
-      
+
       if(data.stars) this.stars = data.stars;
       if(data.airways) this.airways = data.airways;
 
@@ -761,7 +761,7 @@ var Airport=Fiber.extend(function() {
           var coords = obj.coordinates,
               coords_max = coords[0],
               coords_min = coords[0];
-              
+
           for (var i in coords) {
             var v = coords[i]; //.position;
             coords_max = [Math.max(v[0], coords_max[0]), Math.max(v[1], coords_max[1])];
@@ -894,7 +894,7 @@ var Airport=Fiber.extend(function() {
         $.each(multipoly, function(i, poly) {
           // multipoly contains several polys
           // each poly has 1st outer ring and other rings are holes
-          apt.terrain[ele].push($.map(poly, function(line_string) { 
+          apt.terrain[ele].push($.map(poly, function(line_string) {
             return [
               $.map(line_string,
                 function(pt) {
@@ -965,7 +965,7 @@ var Airport=Fiber.extend(function() {
             fixes.push([sid.rwy[rwy][i], null]);
           else fixes.push(sid.rwy[rwy][i]);
         }
-      
+
       // body portion
       if(sid.hasOwnProperty("body"))
         for(var i=0; i<sid.body.length; i++) {
@@ -973,7 +973,7 @@ var Airport=Fiber.extend(function() {
             fixes.push([sid.body[i], null]);
           else fixes.push(sid.body[i]);
         }
-      
+
       // transition portion
       if(sid.hasOwnProperty("transitions"))
         for(var i=0; i<sid.transitions[trxn].length; i++) {
@@ -1190,6 +1190,7 @@ function airport_init() {
   airport_load("vidp");
   airport_load("wiii");
   airport_load("wimm");
+  airport_load("wmkp");
 }
 
 function airport_ready() {
