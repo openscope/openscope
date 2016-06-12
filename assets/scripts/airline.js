@@ -147,6 +147,7 @@ function airline_init() {
   airline_load("AWI");
   airline_load("AWQ");
   airline_load("AXB");
+  airline_load("AXM");
   airline_load("AZA");
   airline_load("AZU");
   airline_load("BAW");
@@ -179,6 +180,7 @@ function airline_init() {
   airline_load("FASTGA");
   airline_load("FDB");
   airline_load("FDX");
+  airline_load("FFM");
   airline_load("FFT");
   airline_load("FLG");
   airline_load("FWI");
@@ -205,6 +207,7 @@ function airline_init() {
   airline_load("LIGHTGA");
   airline_load("LLR");
   airline_load("LNI");
+  airline_load("MAS");
   airline_load("MON");
   airline_load("MOV");
   airline_load("NAX");
