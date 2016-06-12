@@ -199,6 +199,7 @@ function airline_init() {
   airline_load("JAL");
   airline_load("JBU");
   airline_load("JIA");
+  airline_load("JSA");
   airline_load("KAL");
   airline_load("KAP");
   airline_load("KLC");
@@ -235,6 +236,7 @@ function airline_init() {
   airline_load("TAM");
   airline_load("TCF");
   airline_load("TCX");
+  airline_load("TGW");
   airline_load("THY");
   airline_load("TOM");
   airline_load("TSO");
