@@ -44,7 +44,8 @@
     "VPG":    ["N05d16m46.70",  "E100d15m37.40"],
     "VIH":    ["N04d34m41.00",  "E101d05m63.00"],
     "_04":    ["N05d17m09.41",  "E100d16m00.14"],
-    "_22":    ["N05d18m30.25",  "E100d17m13.37"]
+    "_22":    ["N05d18m30.25",  "E100d17m13.37"],
+    "GUNIP":  ["N04d29m53.00",  "E099d31m50.00"]
 	},
 
   "runways": [
@@ -193,7 +194,7 @@
       "name": "Ismas",
       "suffix": {"04":"1A", "22":"1B"},
       "transitions": {
-        "ISMAS": [["ISMAS", "A55"]]
+        "ISMAS": ["GOMAT", ["ISMAS", "A55"]]
       },
       "rwy": {
         "04": [["TAMIT", "A43"], ["OPOVI", "A31"], ["KENDI", "A25"]],
@@ -209,7 +210,7 @@
       "name": "Madum",
       "suffix": {"04":"1A"},
       "transitions": {
-        "MADUM": [["MADUM", "A90"]]
+        "MADUM": ["GUNIP", ["MADUM", "A90"]]
       },
       "rwy": {
         "04": [["KENDI", "A25"]],
@@ -240,7 +241,7 @@
       "name": "Luntu",
       "suffix": {"04":"1A", "22":"1B"},
       "transitions": {
-        "LUNTU": [["LUNTU", "A55"]]
+        "LUNTU": ["VAS", ["LUNTU", "A55"]]
       },
       "rwy": {
         "04": [["TAMIT", "A43"], ["OPOVI", "A31"], ["KENDI", "A25"]],
@@ -257,7 +258,7 @@
       "name": "Nurla",
       "suffix": {"04":"1A", "22":"1B"},
       "transitions": {
-        "NURLA": [["NURLA", "A70"]]
+        "NURLA": ["VIH", ["NURLA", "A70"]]
       },
       "rwy": {
         "04": [["MEKAT", "A31"], ["KENDI", "A25"]],
