@@ -168,6 +168,7 @@ function airline_init() {
   airline_load("CWC");
   airline_load("DAL");
   airline_load("DLH");
+  airline_load("DTR");
   airline_load("EIN");
   airline_load("EMBRAER");
   airline_load("ENY");
@@ -197,6 +198,7 @@ function airline_init() {
   airline_load("JAL");
   airline_load("JBU");
   airline_load("JIA");
+  airline_load("JTG");
   airline_load("KAL");
   airline_load("KAP");
   airline_load("KLC");
@@ -244,6 +246,7 @@ function airline_init() {
   airline_load("UPS");
   airline_load("USAF");
   airline_load("VIR");
+  airline_load("VKG");
   airline_load("VRD");
   airline_load("VTI");
   airline_load("WIA");
