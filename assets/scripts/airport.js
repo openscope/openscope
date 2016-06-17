@@ -1181,6 +1181,7 @@ function airport_init() {
   airport_load("ltba");
   airport_load("omaa");
   airport_load("omdb");
+  airport_load("othh");
   airport_load("saez");
   airport_load("sbgl");
   airport_load("sbgr");

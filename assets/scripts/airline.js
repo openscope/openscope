@@ -213,6 +213,7 @@ function airline_init() {
   airline_load("PAA");
   airline_load("PDT");
   airline_load("QFA");
+  airline_load("QTR");
   airline_load("QXE");
   airline_load("RFF");
   airline_load("RLU");
