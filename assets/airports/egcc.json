@@ -1,6 +1,4 @@
  {
-  "name": "Manchester Airport",
-  "level": "hard",
   "radio": {
     "twr": "Manchester Tower",
     "app": "Manchester Director",

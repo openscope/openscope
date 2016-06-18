@@ -1,6 +1,4 @@
 {
-  "name": "London Gatwick Airport",
-  "level": "easy",
   "radio": {
     "twr": "Gatwick Tower",
     "app": "London Control",

@@ -1,6 +1,4 @@
 {
-  "name": "Dublin Airport",
-  "level": "easy",
   "radio": {
     "twr": "Dublin Tower",
     "app": "Dublin Approach",

@@ -1,7 +1,5 @@
 {
   "reference": "https://www.belgocontrol.be/opersite/eaip/eAIP_Main/html/eAIP/EB-AD-2.EBBR-en-GB.html",
-  "name": "Brussels-National &#9983",
-  "level": "easy",
   "radio": {
     "twr": "Brussels Tower",
     "app": "Brussels Approach",

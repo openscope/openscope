@@ -1,6 +1,4 @@
 {
-  "name": "Shannon Airport",
-  "level": "easy",
   "radio": {
     "twr": "Shannon Tower",
     "app": "Shannon Approach",

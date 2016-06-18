@@ -1,6 +1,4 @@
 {
-  "name": "London Heathrow Airport",
-  "level": "hard",
   "radio": {
     "twr": "Heathrow Tower",
     "app": "Heathrow Director",
