@@ -1,12 +1,12 @@
 {
-  "name": "Jestar Asia Airways",
+  "name": "AirAsia",
   "callsign": {
-    "name": "Jetstar Asia",
+    "name": "Red Cap",
     "length": 3
   },
   "fleets": {
     "default": [
-      ["A320", 18]
+      ["A320", 81 ]
     ]
   }
 }
