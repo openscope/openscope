@@ -1,0 +1,787 @@
+{
+  "name": "Singapore Changi International Airport",
+  "level": "hard",
+  "radio": {
+    "twr": "Singapore Tower",
+    "app": "Singapore Approach",
+    "dep": "Singapore Radar"
+  },
+  "icao": "WSSS",
+  "iata": "SIN",
+  "magnetic_north": 0.26,
+  "ctr_radius": 80,
+  "ctr_ceiling": 25000,
+  "initial_alt": 3000,
+  "position": ["N01d21m33.16", "E103d59m21.57"],
+  "rr_radius_nm": 5.0,
+  "rr_center": ["N01d21m33.16", "E103d59m21.57"],
+  "has_terrain": false,
+  "wind": {
+    "angle": 110,
+    "speed": 0
+  },
+  "airspace": [
+  {
+    "floor": 			0,
+    "ceiling": 		21000,
+    "airspace_class":	"D",
+    "poly":
+    [
+     ["N02d26m00.00", "E102d56m05"],
+     ["N02d26m00.00", "E104d34m00"],
+     ["N00d43m00.00", "E104d34m00"],
+     ["N00d43m00.00", "E102d56m05"]
+    ]
+  }
+],
+  "fixes": {
+    "ABVIP":  ["N01d00m08.00",  "E103d50m32.00"],
+    "ADMIM":  ["N00d57m33.00",  "E103d30m33.00"],
+    "AGROT":  ["N01d01m08.00",  "E103d58m08.00"],
+    "AGVAR":  ["N01d47m19.00",  "E103d41m45.00"],
+    "AKMET":  ["N01d53m55.00",  "E103d43m39.00"],
+    "AKOMA": 	["N01d45m22.00",	"E103d54m43.00"],
+    "ALFA": 	["N01d30m33.00",	"E103d49m42.00"],
+    "ANITO":  ["S00d17m00.00",  "E104d52m00.00"],
+    "ARAMA": 	["N01d36m54.00",	"E103d07m12.00"],
+    "AROSO":  ["N02d08m46.00",  "E103d24m21.00"],
+    "ASUNA": 	["N00d59m48.00",	"E103d09m54.00"],
+    "ATKAX": 	["N00d05m12.00",	"E106d59m46.00"],
+    "ATRUM":  ["N01d32m56.00",  "E104d00m57.00"],
+    "ATVIX": 	["N00d02m24.00",	"E106d14m53.00"],
+    "BAVUS":  ["N00d00m00.00",  "E109d00m00.00"],
+    "BETBA":  ["N01d33m02.00", 	"E103d53m31.00"],
+    "BIDUS": 	["N01d35m54.00",	"E103d57m55.00"],
+    "BIKTA": 	["N02d43m37.00",	"E103d43m08.00"],
+    "BIPOP": 	["N01d31m22.00",	"E104d10m18.00"],
+    "BIPOP":  ["N01d31m22.00", 	"E104d10m18.00"],
+    "BOBAG": 	["N01d02m30.00",	"E103d29m54.00"],
+    "BOKIP": 	["N01d04m21.00",	"E103d43m53.00"],
+    "BTM": 		["N01d08m13.00",	"E104d07m58.00"],
+    "DOBLU": 	["N01d03m47.00",	"E104d13m15.00"],
+    "DOGRA":  ["N01d05m25.00",  "E104d14m23.00"],
+    "DOKTA": 	["N01d26m06.00",	"E104d10m40.00"],
+    "DOSNO": 	["N00d47m57.00",	"E104d14m09.00"],
+    "DOSNO":  ["N00d47m57.00",  "E104d14m09.00"],
+    "DOVAN": 	["N01d19m38.00",	"E104d12m49.00"],
+    "DUNAL": 	["N01d01m38.00",	"E103d58m08.00"],
+    "HOSBA": 	["N01d19m48.00",	"E104d24m18.00"],
+    "IBULA": 	["N00d50m36.00",	"E104d36m00.00"],
+    "IGNON":	["N01d08m47.00",	"E104d12m57.00"],
+    "IKAGO": 	["N00d38m16.00",	"E105d29m31.00"],
+    "IKIMA": 	["N00d43m14.00",	"E104d55m00.00"],
+    "JB":		  ["N01d30m00.00",	"E103d42m42.00"],
+    "KADAR":  ["S00d06m47.00",  "E107d43m42.00"],
+    "KARTO":	["N01d11m24.00",	"E105d33m43.00"],
+    "KEXAS": 	["N01d10m19.00",	"E104d48m18.00"],
+    "KIBOL":	["N02d52m29.00",	"E104d28m05.00"],
+    "KILOT": 	["N03d02m17.00",	"E104d40m23.00"],
+    "KK": 		["N01d31m18.00",	"E103d59m24.00"],
+    "LAVAX": 	["N01d09m50.00",	"E104d27m14.00"],
+    "LELIB": 	["N01d27m29.00",	"E103d24m50.00"],
+    "MABAL": 	["N03d28m26.00",	"E105d12m36.00"],
+    "MASBO":  ["E02d02m48.00",  "E102d52m51.00"],
+    "NITAD": 	["N01d32m57.00",	"E104d01m54.00"],
+    "NYLON": 	["N01d36m57.00",	"E104d06m24.00"],
+    "OBDOS":  ["N00d25m03.00",  "E106d55m51.00"],
+    "PALGA":  ["N01d10m59.00", 	"E103d47m59.00"],
+    "PAMSI":  ["N01d04m59.00", 	"E103d48m45.00"],
+    "PASPU": 	["N01d59m15.00",	"E104d06m18.00"],
+    "PIBAP": 	["N02d30m23.00",	"E104d06m18.00"],
+    "PIMOK": 	["N01d26m48.00",	"E103d20m08.00"],
+    "POSUB": 	["N01d27m25.00",	"E104d07m48.00"],
+    "PU": 	  ["N01d25m24.00", 	"E103d56m00.00"],
+    "REKOP": 	["N01d33m06.00",	"E103d05m21.00"],
+    "REMES": 	["N00d43m42.00",	"E103d57m35.00"],
+    "REPOV": 	["N00d16m23.00",	"E104d03m00.00"],
+    "RUTOT": 	["N01d14m53.00",	"E104d19m48.00"],
+    "RUVIK":  ["N01d14m22.00",  "E104d20m33.00"],
+    "RW02C": 	["N01d21m52.00",	"E104d00m00.00"],
+    "RW02L": 	["N01d23m05.00",	"E103d59m33.00"],
+    "RW20C": 	["N01d19m35.00",	"E103d59m02.00"],
+    "RW20R": 	["N01d20m47.00",	"E103d58m35.00"],
+    "SABKA":  ["N01d50m51.00",  "E103d17m13.00"],
+    "SABUG": 	["N01d15m54.00",	"E104d03m12.00"],
+    "SAMKO": 	["N01d05m30.00",	"E103d52m55.00"],
+    "SANAT": 	["N01d07m49.00",	"E103d59m30.00"],
+    "SAPTI":  ["N01d12m18.00",  "E103d58m35.00"],
+    "SASGA":  ["N01d10m37.00",  "E104d02m28.00"],
+    "SJ": 		["N01d13m22.00",	"E103d51m16.00"],
+    "SUDPO": 	["N01d17m31.00",	"E103d58m08.00"],
+    "SUGAM":  ["N01d13m18.00",  "E103d56m08.00"],
+    "SUKOK":  ["N01d15m12.00",  "E104d04m28.00"],
+    "SUNGO":  ["N01d13m38.00",  "E103d55m32.00"],
+    "SUNVA": 	["N01d17m56.00",	"E103d57m22.00"],
+    "SURGA":  ["S00d36m57.00",  "E106d31m19.00"],
+    "SUSIN": 	["N01d12m29.00",	"E103d58m08.00"],
+    "TOKIM": 	["N01d29m33.00",	"E104d03m15.00"],
+    "TOMAN": 	["N01d21m47.00",	"E105d47m17.00"],
+    "TOPOM": 	["N01d29m55.00",	"E104d02m27.00"],
+    "VENIX": 	["S00d21m56.00",	"E106d05m21.00"],
+    "VENPA": 	["N00d21m41.00",	"E104d49m55.00"],
+    "VEPLI": 	["N03d52m23.00",	"E104d05m42.00"],
+    "VINIL": 	["N02d55m00.00",	"E104d06m18.00"],
+    "VJB": 		["N01d39m50.40", 	"E10d33m939.20"],
+    "VMR": 		["N02d23m18.00",	"E103d52m18.00"],
+    "VPK": 		["N03d22m59.00",	"E103d25m24.00"],
+    "VTK":    ["N01d24m55.00",	"E104d01m20.00"],
+    "_ARAMA": ["N01d36m54.00",  "E102d56m05.00"],
+    "_ASUNA": ["N00d59m48.00",  "E102d56m05.00"],
+    "_BOBAG": ["N00d43m00.00",  "E103d29m54.00"],
+    "_PASPU": ["N02d26m00.00",  "E104d06m18.00"],
+    "_REMES": ["N00d43m00.00",	"E103d57m35.00"]
+	},
+
+  "runways": [
+    {
+      "name": ["02L", "20R"],
+      "name_offset": [[0, 0], [0, 0]],
+      "end": [["N01d20m56.26", "E103d58m38.83"], ["N01d22m33.95", "E103d59m20.06"]],
+      "length": 4,
+      "ils": [true, true]
+    },
+    {
+      "name": ["02C", "20C"],
+      "name_offset": [[0, 0], [0, 0]],
+      "end": [["N01d19m43.51", "E103d59m05.86"], ["N01d21m43.37", "E103d59m56.46"]],
+      "length": 4,
+      "ils": [true, true]
+    }
+  ],
+  "sids": {
+    "ANITO": {
+        "icao": "ANITO",
+        "name": "Anito",
+        "suffix": {"02L":"6E", "20R":"5F", "02C":"6A", "20C":"5B"},
+        "rwy": {
+          "02L": [["TOPOM", "A20+"], ["DOKTA", "A40+"], ["DOGRA", "A60-"], "DOSNO", "ANITO"],
+          "20R": [["SUNVA", "A20+"], "SUNGO", ["SASGA", "A40+"], "BTM", ["DOGRA", "A60-"], "DOSNO", "ANITO"],
+          "02C": [["TOKIM", "A20+"], ["DOKTA", "A40+"], ["DOGRA", "A60-"], "DOSNO", "ANITO"],
+          "20C": [["SUDPO", "A20+"], "SUGAM", "SAPTI", ["SASGA", "A40+"], "BTM", ["DOGRA", "A60-"], "DOSNO", "ANITO"]
+        },
+        "draw": [
+          ["RW02L", "TOPOM", "TOKIM", "DOKTA", "DOGRA"],
+          ["RW02C", "TOKIM"],
+          ["RW20R", "SUNVA", "SUNGO", "SUGAM", "SAPTI", "SASGA", "BTM", "DOGRA", "DOSNO"],
+          ["RW20C", "SUDPO", "SUGAM"],
+          ["DOSNO", "ANITO"]
+        ]
+    },
+    "ADMIM": {
+        "icao": "ADMIM",
+        "name": "Admim",
+        "suffix": {"02L":"1E", "20R":"1F", "02C":"1A", "20C":"1B"},
+        "rwy": {
+          "02L": [["TOPOM", "A20+"], ["DOKTA", "A40+"], ["DOGRA", "A60-"], "AGROT", "ABVIP", ["ADMIM", "A100+"], "ASUNA"],
+          "20R": [["SUNVA", "A20+"], "SUNGO", ["SAMKO", "A60-"], "ABVIP", ["ADMIM", "A100+"], "ASUNA"],
+          "02C": [["TOKIM", "A20+"], ["DOKTA", "A40+"], ["DOGRA", "A60-"], "AGROT", "ABVIP", ["ADMIM", "A100+"], "ASUNA"],
+          "20C": [["SUDPO", "A20+"], "SUGAM", ["SAMKO", "A60-"], "ABVIP", ["ADMIM", "A100+"], "ASUNA"]
+        },
+        "draw": [
+          ["DOGRA", "ABVIP", "ADMIM"],
+          ["SUNGO", "SAMKO", "ABVIP"],
+          ["SUGAM", "SAMKO"],
+          ["ADMIM", "ASUNA"]
+        ]
+    },
+    "TOMAN": {
+        "icao": "TOMAN",
+        "name": "Toman",
+        "suffix": {"02L":"2E", "20R":"2F", "02C":"2A", "20C":"2B"},
+        "rwy": {
+          "02L": [["TOPOM", "A20+"], ["DOKTA", "A40+"], ["HOSBA", "A70+"], "TOMAN"],
+          "20R": [["SUNVA", "A20+"], "SUNGO", ["SASGA", "A40+"], "BTM", ["DOGRA", "A60-"], ["RUVIK", "A70-"], ["HOSBA", "A70+"], "TOMAN"],
+          "02C": [["TOKIM", "A20+"], ["DOKTA", "A40+"], ["HOSBA", "A70+"], "TOMAN"],
+          "20C": [["SUDPO", "A20+"], "SUGAM", "SAPTI", ["SASGA", "A40+"], "BTM", ["DOGRA", "A60-"], ["RUVIK", "A70-"], ["HOSBA", "A70+"], "TOMAN"]
+        },
+        "draw": [
+          ["DOKTA", "HOSBA"],
+          ["DOGRA", "RUVIK", "HOSBA"],
+          ["HOSBA", "TOMAN"]
+        ]
+    },
+    "BAVUS": {
+        "icao": "BAVUS",
+        "name": "Bavus",
+        "suffix": {"02L":"1E", "20R":"1F", "02C":"1A", "20C":"1B"},
+        "rwy": {
+          "02L": [["TOPOM", "A20+"], ["DOKTA", "A40+"], ["DOGRA", "A60-"], "DOSNO", "VENPA", "ATKAX", "BAVUS"],
+          "20R": [["SUNVA", "A20+"], "SUNGO", ["SASGA", "A40+"], "BTM", ["DOGRA", "A60-"], "DOSNO", "VENPA", "ATKAX", "BAVUS"],
+          "02C": [["TOKIM", "A20+"], ["DOKTA", "A40+"], ["DOGRA", "A60-"], "DOSNO", "VENPA", "ATKAX", "BAVUS"],
+          "20C": [["SUDPO", "A20+"], "SUGAM", "SAPTI", ["SASGA", "A40+"], "BTM", ["DOGRA", "A60-"], "DOSNO", "VENPA", "ATKAX", "BAVUS"]
+        },
+        "draw": [
+          ["DOSNO", "VENPA", "ATKAX"],
+          ["ATKAX", "BAVUS"]
+        ]
+    },
+    "AROSO": {
+        "icao": "AROSO",
+        "name": "Aroso",
+        "suffix": {"02L":"2E", "20R":"2F", "02C":"2A", "20C":"2B"},
+        "rwy": {
+          "02L": [["TOPOM", "A20+"], "ATRUM", ["AKOMA", "A70+"], ["AKMET", "A110+"], "AROSO"],
+          "20R": [["SUNVA", "A20+"], "SUNGO", ["SASGA", "A40+|S230"], "SUKOK", ["VTK", "A70+"], "AKOMA", ["AKMET", "A110+"], "AROSO"],
+          "02C": [["TOKIM", "A20+"], ["AKOMA", "A70+"], ["AKMET", "A110+"], "AROSO"],
+          "20C": [["SUDPO", "A20+"], "SUGAM", "SAPTI", ["SASGA", "A40+|S230"], "SUKOK", ["VTK", "A70+"], "AKOMA", ["AKMET", "A110+"], "AROSO"]
+        },
+        "draw": [
+          ["TOPOM", "ATRUM", "AKOMA", "AKMET"],
+          ["SASGA", "SUKOK", "VTK", "AKOMA"],
+          ["TOKIM", "AKOMA"],
+          ["AKMET", "AROSO"]
+        ]
+    },
+    "MASBO": {
+        "icao": "MASBO",
+        "name": "Masbo",
+        "suffix": {"02L":"2E", "20R":"2F", "02C":"2A", "20C":"2B"},
+        "rwy": {
+          "02L": [["TOPOM", "A20+"], "ATRUM", ["AKOMA", "A70+"], ["AGVAR", "A110+"], "SABKA", "MASBO"],
+          "20R": [["SUNVA", "A20+"], "SUNGO", ["SASGA", "A40+|S230"], "SUKOK", ["VTK", "A70+"], "AKOMA", ["AGVAR", "A110+"], "SABKA", "MASBO"],
+          "02C": [["TOKIM", "A20+"], ["AKOMA", "A70+"], ["AGVAR", "A110+"], "SABKA", "MASBO"],
+          "20C": [["SUDPO", "A20+"], "SUGAM", "SAPTI", ["SASGA", "A40+|S230"], "SUKOK", ["VTK", "A70+"], "AKOMA", ["AGVAR", "A110+"], "SABKA", "MASBO"]
+        },
+        "draw": [
+          ["AKOMA", "AGVAR", "SABKA", "MASBO"]
+        ]
+    },
+    "VMR": {
+        "icao": "VMR",
+        "name": "Mersing",
+        "suffix": {"02L":"5E", "20R":"6F", "02C":"5A", "20C":"6B"},
+        "rwy": {
+          "02L": [["TOPOM", "A20+"], "ATRUM", ["AKOMA", "A70+"], "VMR"],
+          "20R": [["SUNVA", "A20+"], "SUNGO", ["SASGA", "A40+|S230"], "SUKOK", ["VTK", "A70+"], "AKOMA", "VMR"],
+          "02C": [["TOKIM", "A20+"], ["AKOMA", "A70+"], "VMR"],
+          "20C": [["SUDPO", "A20+"], "SUGAM", "SAPTI", ["SASGA", "A40+|S230"], "SUKOK", ["VTK", "A70+"], "AKOMA", ["AGVAR", "A110+"], "SABKA", "MASBO"]
+        },
+        "draw": [
+          ["AKOMA", "VMR"]
+        ]
+    },
+    "VENIX": {
+        "icao": "VENIX",
+        "name": "Venix",
+        "suffix": {"02L":"1E", "20R":"1F", "02C":"1A", "20C":"1B"},
+        "rwy": {
+          "02L": [["TOPOM", "A20+"], ["DOKTA", "A40+"], ["DOGRA", "A60-"], "DOSNO", "VENPA", "VENIX", "SURGA"],
+          "20R": [["SUNVA", "A20+"], "SUNGO", ["SASGA", "A40+"], "BTM", ["DOGRA", "A60-"], "DOSNO", "VENPA", "VENIX", "SURGA"],
+          "02C": [["TOKIM", "A20+"], ["DOKTA", "A40+"], ["DOGRA", "A60-"], "DOSNO", "VENPA", "VENIX", "SURGA"],
+          "20C": [["SUDPO", "A20+"], "SUGAM", "SAPTI", ["SASGA", "A40+"], "BTM", ["DOGRA", "A60-"], "DOSNO", "VENPA", "VENIX", "SURGA"]
+        },
+        "draw": [
+          ["VENPA", "VENIX", "SURGA"]
+        ]
+    },
+    "KADAR": {
+        "icao": "KADAR",
+        "name": "Kadar",
+        "suffix": {"02L":"1E", "20R":"1F", "02C":"1A", "20C":"1B"},
+        "rwy": {
+          "02L": [["TOPOM", "A20+"], ["DOKTA", "A40+"], ["DOGRA", "A60-"], "DOSNO", "VENPA", "ATKAX", "KADAR"],
+          "20R": [["SUNVA", "A20+"], "SUNGO", ["SASGA", "A40+"], "BTM", ["DOGRA", "A60-"], "DOSNO", "VENPA", "ATKAX", "KADAR"],
+          "02C": [["TOKIM", "A20+"], ["DOKTA", "A40+"], ["DOGRA", "A60-"], "DOSNO", "VENPA", "ATKAX", "KADAR"],
+          "20C": [["SUDPO", "A20+"], "SUGAM", "SAPTI", ["SASGA", "A40+"], "BTM", ["DOGRA", "A60-"], "DOSNO", "VENPA", "ATKAX", "KADAR"]
+        },
+        "draw": [
+          ["ATKAX", "KADAR"]
+        ]
+    }
+  },
+
+  "departures": {
+    "airlines": [
+      ["cca",  2],
+      ["afr",  1],
+      ["aic",  3],
+      ["axb",  2],
+      ["btk",  1],
+      ["baw",  2],
+      ["cpa",  6],
+      ["ces",  4],
+      ["csn",  1],
+      ["dal",  1],
+      ["uae",  4],
+      ["etd",  1],
+      ["eva",  1],
+      ["gia",  6],
+      ["igo",  1],
+      ["awq",  5],
+      ["jal",  2],
+      ["jai",  3],
+      ["jsa", 27],
+      ["klm",  2],
+      ["kal",  4],
+      ["lni",  1],
+      ["dlh",  1],
+      ["qfa",  4],
+      ["qtr",  1],
+      ["sco", 22],
+      ["slk", 51],
+      ["sia", 64],
+      ["sqc", 22],
+      ["swr",  1],
+      ["tgw", 41],
+      ["thy",  2],
+      ["ual",  3],
+      ["fdx", 10],
+      ["ups",  4]
+    ],
+    "destinations": [
+      "ANITO", "ADMIM", "TOMAN", "BAVUS", "AROSO", "MASBO", "VMR", "VENIX", "KADAR"
+    ],
+    "type": "cyclic",
+    "offset": 0,
+    "frequency": 75
+  },
+  "stars": {
+    "ARAMA": {
+        "icao": "ARAMA",
+        "name": "Arama",
+        "suffix": {"02L":"1A", "20R":"1B", "02C":"1A", "20C":"1B"},
+        "transitions": {
+          "ARAMA": [["_ARAMA", "S250"]]
+        },
+        "rwy": {
+          "02L": [["BOBAG", "A100|S220"], ["BOKIP", "A60"], ["SAMKO", "A40|S190-"]],
+          "02C": [["BOBAG", "A100|S220"], ["BOKIP", "A60"], ["SAMKO", "A40|S190-"]],
+          "20R": [["BOBAG", "A100|S220"], "SAMKO", ["BTM", "A70|S220"], ["DOVAN", "A40"], ["BIPOP", "A30|S190"]],
+          "20C": [["BOBAG", "A100|S220"], "SAMKO", ["BTM", "A70|S220"], ["DOVAN", "A40"], ["BIPOP", "A30|S190"]]
+        },
+        "draw": [
+          ["ARAMA", "BOBAG", "BOKIP", "SAMKO"],
+          ["ARAMA", "BOBAG", "SAMKO", "BTM", "DOVAN", "BIPOP"]
+        ]
+    },
+
+    "ASUNA": {
+        "icao": "ASUNA",
+        "name": "Asuna",
+        "suffix": {"02L":"1A", "20R":"1B", "02C":"1A", "20C":"1B"},
+        "transitions": {
+          "ASUNA": [["_ASUNA", "S250"]]
+        },
+        "rwy": {
+          "02L": [["BOBAG", "A100|S220"], ["BOKIP", "A60"], ["SAMKO", "A40|S190"]],
+          "02C": [["BOBAG", "A100|S220"], ["BOKIP", "A60"], ["SAMKO", "A40|S190"]],
+          "20R": [["BOBAG", "A100|S220"], "SAMKO", ["BTM", "A70|S220"], ["DOVAN", "A40"], ["BIPOP", "A30|S190"]],
+          "20C": [["BOBAG", "A100|S220"], "SAMKO", ["BTM", "A70|S220"], ["DOVAN", "A40"], ["BIPOP", "A30|S190"]]
+        },
+        "draw": [
+          ["BOBAG", "BOKIP", "SAMKO"],
+          ["ASUNA", "BOBAG", "SAMKO", "BTM", "DOVAN", "BIPOP"]
+        ]
+    },
+    "KARTO": {
+        "icao": "KARTO",
+        "name": "Karto",
+        "suffix": {"02L":"1A", "20R":"1B", "02C":"1A", "20C":"1B"},
+        "transitions": {
+          "KARTO": ["TOMAN"]
+        },
+        "rwy": {
+          "02L": ["KARTO", ["KEXAS", "A160-|S250"], ["LAVAX", "S220"], ["IGNON", "A70"], ["SANAT", "A40|S190"]],
+          "02C": ["KARTO", ["KEXAS", "A160-|S250"], ["LAVAX", "S220"], ["IGNON", "A70"], ["SANAT", "A40|S190"]],
+          "20R": ["KARTO", ["KEXAS", "A160-|S250"], ["LAVAX", "S220"], ["RUVIK", "A80"], ["DOVAN", "A40"], ["BIPOP", "A30|S190"]],
+          "20C": ["KARTO", ["KEXAS", "A160-|S250"], ["LAVAX", "S220"], ["RUVIK", "A80"], ["DOVAN", "A40"], ["BIPOP", "A30|S190"]]
+        },
+        "draw": [
+          ["ASUNA", "TOMAN", "KARTO", "KEXAS", "LAVAX", "IGNON", "SANAT"],
+          ["ASUNA", "TOMAN", "KARTO", "KEXAS", "LAVAX", "RUVIK", "DOVAN", "BIPOP"]
+        ]
+    },
+    "OBDOS": {
+        "icao": "OBDOS",
+        "name": "Obdos",
+        "suffix": {"02L":"1A", "20R":"1B", "02C":"1A", "20C":"1B"},
+        "transitions": {
+          "OBDOS": ["OBDOS"]
+        },
+        "rwy": {
+          "02L": ["IKAGO", "IKIMA", ["IBULA", "A180-|S250"], ["LAVAX", "S220"], ["IGNON", "A70"], ["SANAT", "A40|S190"]],
+          "02C": ["IKAGO", "IKIMA", ["IBULA", "A180-|S250"], ["LAVAX", "S220"], ["IGNON", "A70"], ["SANAT", "A40|S190"]],
+          "20R": ["IKAGO", "IKIMA", ["IBULA", "A180-|S250"], ["LAVAX", "S220"], ["RUVIK", "A80"], ["DOVAN", "A40"], ["BIPOP", "A30|S190"]],
+          "20C": ["IKAGO", "IKIMA", ["IBULA", "A180-|S250"], ["LAVAX", "S220"], ["RUVIK", "A80"], ["DOVAN", "A40"], ["BIPOP", "A30|S190"]]
+        },
+        "draw": [
+          ["OBDOS", "IKAGO", "IKIMA", "IBULA", "LAVAX", "IGNON", "SANAT"],
+          ["OBDOS", "IKAGO", "IKIMA", "IBULA", "LAVAX", "RUVIK", "DOVAN", "BIPOP"]
+        ]
+    },
+    "LELIB": {
+        "icao": "LELIB",
+        "name": "Lelib",
+        "suffix": {"20R":"3B", "20C":"3B"},
+        "transitions": {
+          "LELIB": [["_ARAMA", "S250"]]
+        },
+        "rwy": {
+          "20R": [["LELIB", "A100"], ["JB", "A70|S220"], ["ALFA", "A60"], ["BIDUS", "A30|S190"]],
+          "20C": [["LELIB", "A100"], ["JB", "A70|S220"], ["ALFA", "A60"], ["BIDUS", "A30|S190"]]
+        },
+        "draw": [
+          ["ARAMA", "LELIB", "JB", "ALFA", "BIDUS"]
+        ]
+    },
+    "BIKTA": {
+        "icao": "BIKTA",
+        "name": "Bikta",
+        "suffix": {"02L":"1A", "20R":"1B", "02C":"1A", "20C":"1B"},
+        "transitions": {
+          "BIKTA": ["BIKTA"]
+        },
+        "rwy": {
+          "02L": [["PIBAP", "A210-|S250"], ["PASPU", "S220"], "NYLON", ["POSUB", "A60|S220"], ["SANAT", "A40|S190"]],
+          "02C": [["PIBAP", "A210-|S250"], ["PASPU", "S220"], "NYLON", ["POSUB", "A60|S220"], ["SANAT", "A40|S190"]],
+          "20R": [["PIBAP", "A210-|S250"], ["PASPU", "A60"], ["NYLON", "A30|S190"]],
+          "20C": [["PIBAP", "A210-|S250"], ["PASPU", "A60"], ["NYLON", "A30|S190"]]
+        },
+        "draw": [
+          ["BIKTA", "PIBAP", "PASPU", "NYLON", "POSUB", "SANAT"],
+          ["BIKTA", "PIBAP", "PASPU", "NYLON"]
+        ]
+    },
+    "MABAL": {
+        "icao": "MABAL",
+        "name": "Mabal",
+        "suffix": {"02L":"1A", "20R":"1B", "02C":"1A", "20C":"1B"},
+        "transitions": {
+          "MABAL": ["MABAL"]
+        },
+        "rwy": {
+          "02L": ["KILOT", "VINIL", ["PIBAP", "A210-|S250"], ["PASPU", "S220"], "NYLON", ["POSUB", "A60|S220"], ["SANAT", "A40|S190"]],
+          "02C": ["KILOT", "VINIL", ["PIBAP", "A210-|S250"], ["PASPU", "S220"], "NYLON", ["POSUB", "A60|S220"], ["SANAT", "A40|S190"]],
+          "20R": ["KILOT", "VINIL", ["PIBAP", "A210-|S250"], ["PASPU", "A60|S220"], ["NYLON", "A30|S190"]],
+          "20C": ["KILOT", "VINIL", ["PIBAP", "A210-|S250"], ["PASPU", "A60|S220"], ["NYLON", "A30|S190"]]
+        },
+        "draw": [
+          ["MABAL", "KILOT", "VINIL", "PIBAP", "PASPU", "NYLON", "POSUB", "SANAT"],
+          ["MABAL", "KILOT", "VINIL", "PIBAP", "PASPU", "NYLON"]
+        ]
+    },
+    "LEBAR2A": {
+        "icao": "LEBAR 2A",
+        "name": "Lebar Two Alpha",
+        "suffix": {"02L":"2A"},
+        "transitions": {
+          "PASPU": [["_PASPU", "A220"]]
+        },
+        "rwy": {
+          "02L": [["PU", "A70"], "SJ", ["PALGA", "S220"], "PAMSI", ["SAMKO", "A40|S190"]]
+        },
+        "draw": [
+          ["PASPU", "PU", "SJ", "PALGA", "PAMSI", "SAMKO"]
+        ]
+    },
+    "LEBAR2B": {
+        "icao": "LEBAR2B",
+        "name": "Lebar Two Bravo",
+        "transitions": {
+          "BOBAG": ["_BOBAG"],
+          "REMES": ["_REMES"]
+        },
+        "rwy": {
+          "20R": ["SJ", "PU", "BETBA", "BIDUS"]
+        },
+        "draw": [
+          ["_BOBAG", "SJ", "PU", "BETBA", "BIDUS"],
+          ["_REMES", "SJ", "PU", "BETBA", "BIDUS"]
+        ]
+    },
+    "REPOV": {
+        "icao": "REPOV",
+        "name": "Repov",
+        "suffix": {"02L":"1A", "20R":"1B", "02C":"1A", "20C":"1B"},
+        "transitions": {
+          "REPOV": [["REPOV", "A210-|S250"]]
+        },
+        "rwy": {
+          "02L": [["REMES", "A60|S220"], ["SAMKO", "A40|A190"]],
+          "02C": [["REMES", "A60|S220"], ["SAMKO", "A40|A190"]],
+          "20R": [["REMES", "S220"], ["BTM", "A70|S220"], ["DOVAN", "A40"], ["BIPOP", "A30|S190"]],
+          "20C": [["REMES", "S220"], ["BTM", "A70|S220"], ["DOVAN", "A40"], ["BIPOP", "A30|S190"]]
+        },
+        "draw": [
+          ["REPOV", "REMES", "SAMKO"],
+          ["REPOV", "REMES", "BTM", "DOVAN", "BIPOP"]
+        ]
+    },
+    "SURGA": {
+        "icao": "SURGA",
+        "name": "Surga",
+        "suffix": {"02L":"1A", "20R":"1B", "02C":"1A", "20C":"1B"},
+        "transitions": {
+          "SURGA": ["SURGA"]
+        },
+        "rwy": {
+          "02L": ["IKAGO", "IKIMA", ["IBULA", "A180-|S250"], ["LAVAX", "S220"], ["IGNON", "A70"], ["SANAT", "A40|S190"]],
+          "02C": ["IKAGO", "IKIMA", ["IBULA", "A180-|S250"], ["LAVAX", "S220"], ["IGNON", "A70"], ["SANAT", "A40|S190"]],
+          "20R": ["IKAGO", "IKIMA", ["IBULA", "A180-|S250"], ["LAVAX", "S220"], ["RUVIK", "A80"], ["DOVAN", "A40"], ["BIPOP", "A30|S190"]],
+          "20C": ["IKAGO", "IKIMA", ["IBULA", "A180-|S250"], ["LAVAX", "S220"], ["RUVIK", "A80"], ["DOVAN", "A40"], ["BIPOP", "A30|S190"]]
+        },
+        "draw": [
+          ["SURGA", "IKAGO", "IKIMA", "IBULA", "LAVAX", "IGNON", "SANAT"],
+          ["SURGA", "IKAGO", "IKIMA", "IBULA", "LAVAX", "RUVIK", "DOVAN", "BIPOP"]
+        ]
+    },
+    "VEPLI": {
+        "icao": "VEPLI",
+        "name": "Vepli",
+        "suffix": {"02L":"1A", "20R":"1B", "02C":"1A", "20C":"1B"},
+        "transitions": {
+          "VEPLI": ["VEPLI"]
+        },
+        "rwy": {
+          "02L": ["VINIL", ["PIBAP", "A210-|S250"], ["PASPU", "S220"], "NYLON", ["POSUB", "A60|S220"], ["SANAT", "A40|S190"]],
+          "02C": ["VINIL", ["PIBAP", "A210-|S250"], ["PASPU", "S220"], "NYLON", ["POSUB", "A60|S220"], ["SANAT", "A40|S190"]],
+          "20R": ["VINIL", ["PIBAP", "A210-|S250"], ["PASPU", "A60|S220"], ["NYLON", "A30|S190"]],
+          "20C": ["VINIL", ["PIBAP", "A210-|S250"], ["PASPU", "A60|S220"], ["NYLON", "A30|S190"]]
+        },
+        "draw": [
+          ["VEPLI", "VINIL", "PIBAP", "PASPU", "NYLON", "POSUB", "SANAT"],
+          ["VEPLI", "VINIL", "PIBAP", "PASPU", "NYLON"]
+        ]
+    }
+  },
+  "arrivals": [
+    {
+      "type": 		"cyclic",
+      "route":    "ARAMA.ARAMA.WSSS",
+      "frequency": 17,
+      "altitude": 24000,
+      "speed":		430,
+      "offset":		2,
+      "airlines": [
+        ["afr",  1],
+        ["aic",  3],
+        ["axb",  2],
+        ["baw",  2],
+        ["uae",  4],
+        ["etd",  1],
+        ["igo",  1],
+        ["jal",  2],
+        ["jai",  3],
+        ["jsa", 27],
+        ["klm",  2],
+        ["dlh",  1],
+        ["qtr",  1],
+        ["sco", 22],
+        ["slk", 51],
+        ["sia", 64],
+        ["sqc", 22],
+        ["swr",  1],
+        ["tgw", 41],
+        ["thy",  2],
+        ["fdx", 10],
+        ["ups",  4]
+        ]
+    },
+    {
+      "type": 		"cyclic",
+      "route":    "ASUNA.ASUNA.WSSS",
+      "frequency": 12,
+      "altitude": 21000,
+      "speed":		430,
+      "offset":		2,
+      "airlines": [
+        ["afr",  1],
+        ["aic",  3],
+        ["axb",  2],
+        ["baw",  2],
+        ["uae",  4],
+        ["etd",  1],
+        ["igo",  1],
+        ["jal",  2],
+        ["jai",  3],
+        ["jsa", 27],
+        ["klm",  2],
+        ["dlh",  1],
+        ["qtr",  1],
+        ["sco", 22],
+        ["slk", 51],
+        ["sia", 64],
+        ["sqc", 22],
+        ["swr",  1],
+        ["tgw", 41],
+        ["thy",  2],
+        ["fdx", 10],
+        ["ups",  4]
+        ]
+    },
+    {
+      "type": 		"cyclic",
+      "route":    "KARTO.KARTO.WSSS",
+      "frequency": 10,
+      "altitude": 22000,
+      "speed":		430,
+      "offset":		2,
+      "airlines": [
+        ["cca",  2],
+        ["cpa",  6],
+        ["ces",  4],
+        ["csn",  1],
+        ["dal",  1],
+        ["jsa", 27],
+        ["sco", 22],
+        ["slk", 51],
+        ["sia", 64],
+        ["sqc", 22],
+        ["tgw", 41],
+        ["ual",  3],
+        ["fdx", 10],
+        ["ups",  4]
+        ]
+    },
+    {
+      "type": 		"cyclic",
+      "route":    "OBDOS.OBDOS.WSSS",
+      "frequency": 13,
+      "altitude": 27000,
+      "speed":		430,
+      "offset":		2,
+      "airlines": [
+        ["cca",  2],
+        ["cpa",  6],
+        ["ces",  4],
+        ["csn",  1],
+        ["dal",  1],
+        ["jsa", 27],
+        ["sco", 22],
+        ["slk", 51],
+        ["sia", 64],
+        ["sqc", 22],
+        ["tgw", 41],
+        ["ual",  3],
+        ["fdx", 10],
+        ["ups",  4]
+        ]
+    },
+    {
+      "type": 		"cyclic",
+      "route":    "PASPU.LEBAR2A.WSSS",
+      "frequency": 9,
+      "altitude": 12000,
+      "speed":		430,
+      "offset":		2,
+      "airlines": [
+        ["cca",  2],
+        ["afr",  1],
+        ["aic",  3],
+        ["axb",  2],
+        ["baw",  2],
+        ["cpa",  6],
+        ["ces",  4],
+        ["csn",  1],
+        ["dal",  1],
+        ["uae",  4],
+        ["etd",  1],
+        ["igo",  1],
+        ["jal",  2],
+        ["jai",  3],
+        ["jsa", 27],
+        ["klm",  2],
+        ["kal",  4],
+        ["dlh",  1],
+        ["qtr",  1],
+        ["sco", 22],
+        ["slk", 51],
+        ["sia", 64],
+        ["sqc", 22],
+        ["swr",  1],
+        ["tgw", 41],
+        ["thy",  2],
+        ["ual",  3],
+        ["fdx", 10],
+        ["ups",  4]
+        ]
+    },
+    {
+      "type": 		"cyclic",
+      "route":    "REPOV.REPOV.WSSS",
+      "frequency": 7,
+      "altitude": 21000,
+      "speed":		430,
+      "offset":		2,
+      "airlines": [
+        ["btk",  1],
+        ["eva",  1],
+        ["gia",  6],
+        ["awq",  5],
+        ["jsa", 27],
+        ["lni",  1],
+        ["qfa",  4],
+        ["sco", 22],
+        ["slk", 51],
+        ["sia", 64],
+        ["sqc", 22],
+        ["tgw", 41],
+        ["fdx", 10],
+        ["ups",  4]
+        ]
+    },
+    {
+      "type": 		"cyclic",
+      "route":    "SURGA.SURGA.WSSS",
+      "frequency": 8,
+      "altitude": 27000,
+      "speed":		430,
+      "offset":		2,
+      "airlines": [
+        ["btk",  1],
+        ["eva",  1],
+        ["gia",  6],
+        ["awq",  5],
+        ["jsa", 27],
+        ["lni",  1],
+        ["qfa",  4],
+        ["sco", 22],
+        ["slk", 51],
+        ["sia", 64],
+        ["sqc", 22],
+        ["tgw", 41],
+        ["fdx", 10],
+        ["ups",  4]
+        ]
+    },
+    {
+      "type": 		"cyclic",
+      "route":    "VEPLI.VEPLI.WSSS",
+      "frequency": 11,
+      "altitude": 27000,
+      "speed":		430,
+      "offset":		2,
+      "airlines": [
+        ["cca",  2],
+        ["afr",  1],
+        ["aic",  3],
+        ["axb",  2],
+        ["baw",  2],
+        ["cpa",  6],
+        ["ces",  4],
+        ["csn",  1],
+        ["dal",  1],
+        ["uae",  4],
+        ["etd",  1],
+        ["igo",  1],
+        ["jal",  2],
+        ["jai",  3],
+        ["jsa", 27],
+        ["klm",  2],
+        ["kal",  4],
+        ["dlh",  1],
+        ["qtr",  1],
+        ["sco", 22],
+        ["slk", 51],
+        ["sia", 64],
+        ["sqc", 22],
+        ["swr",  1],
+        ["tgw", 41],
+        ["thy",  2],
+        ["ual",  3],
+        ["fdx", 10],
+        ["ups",  4]
+        ]
+    }
+  ]
+}

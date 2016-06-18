@@ -173,8 +173,8 @@ function airline_init() {
   airline_load("EMBRAER");
   airline_load("ENY");
   airline_load("ETD");
-  airline_load("EXS");
   airline_load("EVA");
+  airline_load("EXS");
   airline_load("EZY");
   airline_load("FAB");
   airline_load("FASTGA");
@@ -198,6 +198,7 @@ function airline_init() {
   airline_load("JAL");
   airline_load("JBU");
   airline_load("JIA");
+  airline_load("JSA");
   airline_load("JTG");
   airline_load("KAL");
   airline_load("KAP");
@@ -223,11 +224,14 @@ function airline_init() {
   airline_load("RYR");
   airline_load("SAS");
   airline_load("SBI");
+  airline_load("SCO");
   airline_load("SCX");
   airline_load("SEJ");
+  airline_load("SIA");
   airline_load("SJY");
   airline_load("SKW");
   airline_load("SLK");
+  airline_load("SQC");
   airline_load("SVR");
   airline_load("SWA");
   airline_load("SWR");
@@ -235,6 +239,7 @@ function airline_init() {
   airline_load("TAM");
   airline_load("TCF");
   airline_load("TCX");
+  airline_load("TGW");
   airline_load("THY");
   airline_load("TOM");
   airline_load("TSO");

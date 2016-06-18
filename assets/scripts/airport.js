@@ -1194,6 +1194,7 @@ function airport_init() {
   airport_load("vidp");
   airport_load("wiii");
   airport_load("wimm");
+  airport_load("wsss");
 }
 
 function airport_ready() {

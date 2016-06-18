@@ -1,0 +1,14 @@
+{
+  "name": "Scoot",
+  "callsign": {
+    "name": "Scooter",
+    "length": 3
+  },
+  "fleets": {
+    "default": [
+      ["B772",  1],
+      ["B788",  5],
+      ["B789",  6]
+    ]
+  }
+}
