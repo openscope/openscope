@@ -1,6 +1,4 @@
 {
-  "name": "Frankfurt Airport",
-  "level": "medium",
   "radio": {
     "twr": "Frankfurt Tower",
     "app": "Langen Radar",

@@ -11,8 +11,6 @@ airport code, such as `ksfo` or `kmsp`.
 
 ```
 {
-  "name": "Human-readable name of the airport",
-  "level": "beginner, easy, medium, hard or expert",
   "radio": {
     "twr": "controller callsign for tower",
     "app": "controller callsign for approach control",

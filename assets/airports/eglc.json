@@ -1,6 +1,4 @@
 {
-  "name": "London City Airport",
-  "level": "medium",
   "radio": {
     "twr": "City Tower",
     "app": "Thames Radar",

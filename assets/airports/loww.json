@@ -1,6 +1,4 @@
 {
-  "name": "Vienna International Airport",
-  "level": "medium",
   "radio": {
     "twr": "Vienna Tower",
     "app": "Vienna Director",

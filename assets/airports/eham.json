@@ -1,6 +1,4 @@
 {
-  "name": "Amsterdam Airport Schiphol",
-  "level": "medium",
   "radio": {
     "twr": "Amsterdam Tower",
     "app": "Amsterdam Approach",

@@ -1,6 +1,4 @@
  {
-  "name": "Hamburg Airport",
-  "level": "easy",
   "radio": {
     "twr": "Hamburg Tower",
     "app": "Hamburg Director",

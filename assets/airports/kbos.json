@@ -1,6 +1,4 @@
 {
-  "name": "Boston Logan International Airport",
-  "level": "medium",
   "radio": {
     "twr": "Boston Tower",
     "app": "Boston Approach",
