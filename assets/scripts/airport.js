@@ -1199,6 +1199,7 @@ function airport_init() {
   airport_load('egkk', "easy", "London Gatwick Airport");
   airport_load('eglc', "medium", "London City Airport");
   airport_load('egll', "hard", "London Heathrow Airport");
+  airport_load('egnm', "beginner", "Leeds Bradford International Airport");
   airport_load('eham', "medium", "Amsterdam Airport Schiphol");
   airport_load('eidw', "easy", "Dublin Airport");
   airport_load('einn', "easy", "Shannon Airport");
