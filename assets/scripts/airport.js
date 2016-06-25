@@ -1211,7 +1211,7 @@ function airport_init() {
   airport_load('kjfk', "hard", "John F Kennedy International Airport &#9983");
   airport_load('klax90', "medium", "Los Angeles International Airport 1990");
   airport_load('klax', "medium", "Los Angeles International Airport");
-  airport_load('kmia', "medium", "Miami International Airport &#9983");
+  airport_load('kmia', "hard", "Miami International Airport &#9983");
   airport_load('kmsp', "hard", "Minneapolis/St. Paul International Airport &#9983");
   airport_load('ksan', "easy", "San Diego International Airport");
   airport_load('ksea', "medium", "Seattle-Tacoma International Airport &#9983");
