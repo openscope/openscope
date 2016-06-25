@@ -1219,6 +1219,7 @@ function airport_init() {
   airport_load('ltba', "hard", "Atatürk International Airport &#9983");
   airport_load('omaa', "medium", "Abu Dhabi International Airport");
   airport_load('omdb', "hard", "Dubai International Airport");
+  airport_load('osdi', "easy",  "Damascus International Airport");
   airport_load('othh', "hard", "Doha Hamad International Airport");
   airport_load('saez', "medium", "Aeropuerto Internacional Ministro Pistarini");
   airport_load('sbgl', "beginner", "Aeroporto Internacional Tom Jobim");
