@@ -806,11 +806,12 @@ var Airport=Fiber.extend(function() {
               //setup secondary runway subobject
               var r1  = this.runways[rwy1][rwy1end];
               var r2  = this.runways[rwy2][rwy2end];
+              var offset = getOffset(r1, r2.position, r1.angle);
               this.metadata.rwy[r1.name][r2.name] = {};
 
               // generate this runway pair's relationship data
-              this.metadata.rwy[r1.name][r2.name].lateral_dist =
-                distance2d(r1.position, r2.position);
+              this.metadata.rwy[r1.name][r2.name].lateral_dist = abs(offset[1]);
+              this.metadata.rwy[r1.name][r2.name].straight_dist = abs(offset[2]);
               this.metadata.rwy[r1.name][r2.name].converging =
                 raysIntersect(r1.position, r1.angle, r2.position, r2.angle);
               this.metadata.rwy[r1.name][r2.name].parallel =

@@ -170,6 +170,7 @@ zlsa.atc.Conflict = Fiber.extend(function() {
 
       var conflict = false;
       var violation = false;
+      var disableNotices = false;
       var a1 = this.aircraft[0], a2 = this.aircraft[1];
 
 
@@ -179,11 +180,12 @@ zlsa.atc.Conflict = Fiber.extend(function() {
 
       // Established on precision guided approaches
       if ( (a1.isPrecisionGuided() && a2.isPrecisionGuided()) &&
-           (a1.rwy_dep != a2.rwy_dep)) { // both are following different instrument approaches
-        var runwayRelationship = airport_get().metadata.rwy[a1.rwy_dep][a2.rwy_dep];
+           (a1.rwy_arr != a2.rwy_arr)) { // both are following different instrument approaches
+        var runwayRelationship = airport_get().metadata.rwy[a1.rwy_arr][a2.rwy_arr];
         if (runwayRelationship.parallel) {
           // Determine applicable lateral separation minima for conducting
           // parallel simultaneous dependent approaches on these runways:
+          disableNotices = true;  // hide notices for aircraft on adjacent final approach courses
           var feetBetween = km_ft(runwayRelationship.lateral_dist);
           if(feetBetween < 2500)  // Runways separated by <2500'
             var applicableLatSepMin = 5.556;  // 3.0nm
@@ -208,8 +210,8 @@ zlsa.atc.Conflict = Fiber.extend(function() {
 
 
       // Considering all of the above cases,...
-      conflict  = (this.distance < applicableLatSepMin + 1.852);  // +1.0nm
       violation = (this.distance < applicableLatSepMin);
+      conflict  = (this.distance < applicableLatSepMin + 1.852 && !disableNotices) || violation;  // +1.0nm
 
 
       // "Passing & Diverging" Rules (the "exception" to all of the above rules)
