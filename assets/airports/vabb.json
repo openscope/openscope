@@ -1,4 +1,5 @@
 {
+  "_citation":  "Thanks to Navigraph for SID and STAR information, and SkyVector for coordinates!",
   "radio": {
     "twr": "Mumbai Tower",
     "app": "Mumbai Approach",
@@ -711,7 +712,7 @@
       "route":      "MOLGO.MOLGO.VABB",
       "frequency":  7,
       "altitude":   12000,
-      "speed":		  275,
+      "speed":		  250,
       "offset":		  3,
       "airlines": [
           ["aic", 41],
