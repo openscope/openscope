@@ -1,0 +1,13 @@
+{
+  "name": "Iberia Express",
+  "callsign": {
+    "name": "Iberexpress",
+    "length": 3
+  },
+  "fleets": {
+    "default": [
+      ["A320", 19 ],
+      ["A321", 3 ]
+    ]
+  }
+}

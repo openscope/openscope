@@ -1205,6 +1205,7 @@ function airport_init() {
   airport_load('ekch', "medium", "Copenhagen Kastrup Airport");
   airport_load('engm', "easy", "Oslo Gardermoen International Airport");
   airport_load('espa', "easy", "Luleå Airport");
+  airport_load('gcrr', "easy", "Lanzarote Airport");
   airport_load('kbos', "medium", "Boston Logan International Airport");
   airport_load('kdca', "medium", "Reagan National Airport");
   airport_load('kjfk', "hard", "John F Kennedy International Airport &#9983");

@@ -1,0 +1,304 @@
+{
+  "radio": {
+    "twr": "Lanzarote Tower",
+    "app": "Lanzarote Approach",
+    "dep": "Lanzarote Approach"
+  },
+  "icao": "GCRR",
+  "iata": "ACE",
+  "magnetic_north": -4.00,
+  "ctr_radius": 800.0,
+  "ctr_ceiling": 24500,
+  "initial_alt": 4000,
+  "position": ["N28d56m42.00", "W13d36m18.00"],
+  "rr_radius_nm": 800.0,
+  "rr_center": ["N28d56m42.00", "W13d36m18.00"],
+  "has_terrain": false,
+  "wind": {
+    "angle": 355,
+    "speed": 6
+  },"airspace": [
+    {
+      "floor": 0,
+      "ceiling": 215,
+      "airspace_class": "C",
+      "poly": [
+        ["N029d31m18.540", "W012d55m35.100"],
+		["N027d49m41.580", "W013d53m34.080"],
+		["N027d47m14.280", "W014d45m02.580"],
+		["N028d01m13.019", "W014d41m14.640"],
+		["N028d39m05.879", "W015d00m00.540"],
+		["N029d32m12.419", "W013d45m05.159"]
+      ]
+    }
+  ],
+  "fixes": {
+    "SAMAR": ["N30d54m00.0", "W14d24m54.0"],
+	"RODIM": ["N28d52m12.0", "W13d38m54.0"],
+	"MAPOV": ["N28d50m24.0", "W13d30m36.0"],
+	"PERER": ["N28d58m18.0", "W13d25m54.0"],
+	"ARVEM": ["N29d21m30.0", "W13d35m06.0"],
+	"RIPIX": ["N29d00m12.0", "W13d33m30.0"],
+	"RR450": ["N29d05m24.0", "W13d26m24.0"],
+	"PEPES": ["N30d37m06.0", "W14d16m00.0"],
+    "VASTO": ["N30d30m36.0", "W13d34m24.0"],
+	"GILDI": ["N30d08m18.0", "W13d33m18.0"],
+	"AMAPI": ["N29d01m00.0", "W13d05m06.0"],
+	"KORAL": ["N29d43m54.0", "W12d34m42.0"],
+	"DIBIB": ["N29d16m18.0", "W12d20m12.0"],
+	"POKAB": ["N29d21m42.0", "W13d11m18.0"],
+	"GAMVA": ["N29d28m12.0", "W13d00m42.0"],
+	"UMOTO": ["N28d37m60.0", "W13d25m12.0"],
+	"FV731": ["N28d30m18.0", "W13d28m00.0"],
+	"FV732": ["N28d24m42.0", "W13d34m42.0"],
+	"BAMKU": ["N28d22m48.0", "W13d43m42.0"],
+	"TENDA": ["N28d31m60.0", "W13d38m24.0"],
+	"TOSPU": ["N28d27m24.0", "W13d40m42.0"],
+	"NIDOM": ["N28d21m24.0", "W13d39m42.0"],
+	"FV621": ["N28d14m24.0", "W13d35m24.0"],
+	"FV622": ["N28d06m24.0", "W13d36m30.0"],
+	"FV623": ["N28d00m24.0", "W13d42m30.0"],
+	"SOTAD": ["N27d58m30.0", "W13d51m18.0"],
+	"LTE04": ["N29d00m06.0", "W13d33m24.0"],
+	"LTE12": ["N29d05m30.0", "W13d25m42.0"],
+	"LZR": ["N29d10m00.0", "W13d30m36.0"],
+	"ELNAN": ["N29d07m48.0", "W13d40m36.0"],
+	"SOMOB": ["N29d00m48.0", "W13d42m30.0"],
+	"KOSIB": ["N28d35m12.0", "W14d12m48.0"],
+	"LORPO": ["N28d13m00.0", "W14d39m06.0"],
+	"LTE53": ["N28d52m12.0", "W13d38m54.0"],
+	"250LT": ["N28d53m31.3", "W13d44m03.4"],
+	"GOMSU": ["N28d47m36.0", "W13d58m00.0"],
+	"235LT": ["N28d52m17.9", "W13d43m33.8"],
+	"246LT": ["N28d53m38.0", "W13d44m25.6"],
+	"257LT": ["N28d55m05.2", "W13d44m59.1"],
+	"263LT": ["N28d55m21.3", "W13d45m01.7"],
+	"MAPED": ["N28d55m06.0", "W14d04m60.0"],
+	"LARYS": ["N28d52m18.0", "W14d50m06.0"],
+	"DEVLA": ["N29d14m54.0", "W12d43m06.0"],
+	"ASTAM": ["N28d58m54.0", "W13d18m54.0"],
+	"ALEDU": ["N28d52m18.0", "W14d50m06.0"],
+	"RR401": ["N28d46m54.0", "W13d16m36.0"],
+	"RR402": ["N28d38m54.0", "W13d17m06.0"],
+	"BAPAL": ["N28d41m18.0", "W13d25m48.0"],
+	"GARGO": ["N28d43m36.0", "W13d34m30.0"],
+	"LOBSO": ["N28d45m12.0", "W13d40m12.0"],
+	"GOLFY": ["N28d47m12.0", "W13d41m48.0"],
+	"LTE01": ["N28d55m18.0", "W13d37m12.0"],
+	"LTE41": ["N28d54m03.3", "W14d23m08.9"],
+	"LTE15": ["N28d55m48.6", "W13d53m21.6"],
+	"254LT": ["N28d53m17.7", "W13d50m21.1"],
+	"242LT": ["N28d50m46.6", "W13d49m11.0"],
+	"230LT": ["N28d48m31.6", "W13d47m26.7"],
+	"233LT": ["N28d48m19.9", "W13d47m14.8"],
+	"221LT": ["N28d46m28.6", "W13d44m58.9"],
+	"GDV71": ["N28d45m52.4", "W14d19m58.2"]
+	},
+  "runways": [
+    {
+      "name": ["21", "03"],
+      "name_offset": [[0, 0.3], [0, 0.3]],
+      "end": [["N28d57m18.400", "W13d35m58.670"], ["N28d56m8.9600", "W13d36m38.940"]],
+      "delay": [0, 0],
+      "ils": [false, true]
+    }
+  ],
+  "sids": {
+    "SAMAR": {
+      "icao": "SAMAR",
+      "name": "Samar",
+      "suffix": {"21":"5N", "03":"6M"},
+      "rwy": {
+        "21": [["RODIM", "A13+"], ["MAPOV", "A43+"], ["PERER", "A70+"], ["ARVEM", "A100+"], "PEPES", "SAMAR"],
+        "03": [["RIPIX", "A16+"], ["RR450", "A32+"], ["PEPES", "A100+"], "SAMAR"]
+      },
+      "draw": [["RODIM", "MAPOV", "PERER", "ARVEM", "PEPES", "SAMAR"], ["RIPIX", "RR450", "PEPES", "SAMAR"]]
+    },
+    "VASTO": {    
+      "icao": "VASTO",
+      "name": "Vasto",
+      "suffix": {"21":"5N", "03":"6M"},
+      "rwy": {
+        "21": [["RODIM", "A13+"], ["MAPOV", "A43+"], ["PERER", "A70+"], ["ARVEM", "A100+"], ["GILDI", "A120+"], "VASTO"],
+        "03": [["RIPIX", "A16+"], ["RR450", "A32+"], ["GILDI", "A120+"], "VASTO"]
+      },
+      "draw": [["RODIM", "MAPOV", "PERER", "ARVEM", "GILDI", "VASTO"], ["RIPIX", "RR450", "GILDI", "VASTO"]]
+    },
+    "KORAL": {
+      "icao": "KORAL",
+      "name": "Koral",
+      "suffix": {"21":"5N", "03":"6M"},
+      "rwy": {
+        "21": [["RODIM", "A13+"], ["MAPOV", "A43+"], ["AMAPI", "A70+"], "KORAL"],
+        "03": [["RIPIX", "A16+"], ["RR450", "A32+"], "DIBIB", "POKAB", ["GAMVA", "A120+"], "KORAL"]
+      },
+      "draw": [["RODIM", "MAPOV", "AMAPI", "KORAL"], ["RIPIX", "RR450", "DIBIB", "POKAB", "GAMVA", "KORAL"]]
+    },
+    "BAMKU": {
+      "icao": "BAMKU",
+      "name": "Bamku",
+      "suffix": {"21":"2N", "03":"2M"},
+      "rwy": {
+        "21": [["RODIM", "A13+"], ["UMOTO", "A40+"], "FV731", "FV732", ["BAMKU", "A60+"]],
+        "03": [["RIPIX", "A16+"], ["RR450", "A32+"], ["UMOTO", "A90+"], "FV731", "FV732", "BAMKU"]
+      },
+      "draw": [["RODIM", "MAPOV", "AMAPI", "KORAL"], ["RIPIX", "RR450", "DIBIB", "POKAB", "GAMVA", "KORAL"]]
+    },
+    "SOTAD": {
+      "icao": "SOTAD",
+      "name": "Sotad",
+      "suffix": {"21":"1N", "03":"2M"},
+      "rwy": {
+        "21": [["RODIM", "A13+"], "TENDA", "TOSPU", ["NIDOM", "A60+"], ["FV621", "A70+"], ["FV622", "A80+"], ["FV623", "A80+"], ["SOTAD", "A100+"]],
+        "03": [["RIPIX", "A16+"], ["RR450", "A32+"], "TENDA", "TOSPU", ["NIDOM", "A60+"], ["FV621", "A70+"], ["FV622", "A80+"], ["FV623", "A80+"], ["SOTAD", "A100+"]]
+      },
+      "draw": [["RODIM", "TENDA", "TOSPU", "NIDOM", "FV621", "FV622", "FV623", "SOTAD"], ["RIPIX", "RR450", "TENDA", "TOSPU", "NIDOM", "FV621", "FV622", "FV623", "SOTAD"]]
+    },
+    "LORPO": {
+      "icao": "LORPO",
+      "name": "Lorpo",
+      "suffix": {"21":"1N", "03":"1M"},
+      "rwy": {
+        "21": [["LTE53", "A13+"], "250LT", ["GOMSU", "A80+"], ["KOSIB", "A80+"], ["LORPO", "A90+"]],
+        "03": [["LTE04", "A16+"], ["LTE12", "A32+"], "LZR", "ELNAN", ["SOMOB", "A80+"], "KOSIB", ["LORPO", "A90+"]]
+      },
+      "draw": [["LTE53", "52LTE", "GOMSU", "KOSIB", "LORPO"], ["LTE04", "LTE12", "LZR", "ELNAN", "SOMOB", "KOSIB", "LORPO"]]
+    },
+    "LARYS": {
+      "icao": "LARYS",
+      "name": "Larys",
+      "suffix": {"21":"1N", "03":"1M"},
+      "rwy": {
+        "21": [["LTE53", "A13+"], "235LT", "246LT", "257LT", "263LT", ["MAPED", "A50+"], ["LARYS", "A120+"]],
+        "03": [["LTE04", "A16+"], ["LTE12", "A32+"], "LZR", ["LARYS", "A90+"]]
+      },
+      "draw": [["LTE53", "235LT", "246LT", "257LT", "263LT", "MAPED", "LARYS"], ["LTE04", "LTE12", "LZR", "LARYS"]]
+    }
+  },
+  "stars": {
+    "DEVL3P": {
+      "icao": "DEVL3P",
+      "name": "Devla Three Papa",
+      "transitions": {
+        "DEVLA": ["DEVLA"]
+      },
+      "body": ["ASTAM", ["ALEDU", "A80-|S220"], ["RR401", "A70|S220"], ["RR402", "A60|S220"], ["BAPAL", "A50|S220"], ["GARGO", "A23|S210"], "LOBSO", "GOLFY", "LTE01"],
+      "draw": [["ASTAM", "ALEDU", "RR401", "RR402","BAPAL","GARGO","LOBSO","GOLFY"]]
+    },
+    "TERT6P": {
+      "icao": "TERT6P",
+      "name": "Terto six Papa",
+      "transitions": {
+        "TERTO": [["TERTO", "A150"]]
+      },
+      "body": ["PEPOM", "GINAS", "POKAB", ["NIRPO", "A130+|S250"], "ASTAM", ["ALEDU", "A80|S220"], ["RR401", "A70|S220"], ["RR402", "A60|S220"], ["BAPAL", "A50|S220"], ["GARGO", "A23|S210"], "LOBSO", "GOLFY", "LTE01"],
+      "draw": [["PEPOM","GINAS","POKAB","NIRPO","ASTAM","ALEDU","RR401","RR402","BAPAL","GARGO","LOBSO","GOLFY"]]
+    },
+    "LARY2P": {
+      "icao": "LARY2P",
+      "name": "Larys Two Papa",
+      "transitions": {
+        "LARYS": ["LARYS"]
+      },
+      "body": [["LTE41", "S220"], ["MAPED", "A230|S200"], "LTE15", "254LT", "242LT", "230LT", ["233LT", "A31|S200"], ["221LT", "A23|S200"], "GOLFY", "LTE01"],
+      "draw": [["LTE41","MAPED","LTE15","254LT","242LT","230LT","233LT","221LT","GOLFY","LTE01"]]
+    },
+    "RASE2P": {
+      "icao": "RASE2P",
+      "name": "Rasep Two Papa",
+      "transitions": {
+        "RASEP": ["RASEP"]
+      },
+      "body": [["GDV71", "S220"], ["MAPED", "A230|S200"], "LTE15", "254LT", "242LT", "230LT", ["233LT", "A31|S200"], ["221LT", "A23|S200"], "GOLFY", "LTE01"],
+      "draw": [["GDV71","MAPED","LTE15","254LT","242LT","230LT","233LT","221LT","GOLFY","LTE01"]]
+    }
+  },  
+  "departures": {
+    "airlines": [
+	  ["ibb", 9],
+	  ["ryr", 7],
+	  ["cnf", 5],
+	  ["exs", 3],
+	  ["tcx", 3],
+	  ["tom", 3],
+	  ["cfg", 3],
+	  ["tui", 3],
+	  ["mon", 3],
+	  ["ezy", 3],
+	  ["sxd", 3],
+	  ["aea", 2],
+	  ["ber", 2],
+	  ["ein", 2],
+	  ["ibs", 2],
+	  ["nax", 2],
+	  ["sas", 2],
+	  ["baw", 1],
+	  ["lightga", 1]
+    ],
+    "destinations": [
+      "SAMAR", "VASTO", "KORAL", "BAMKU", "SOTAD", "LORPO", "LARYS"
+    ],
+    "type": "random",
+    "frequency": 26
+  },
+  "arrivals":[
+   	{
+      "type": "random",
+      "route":   "DEVLA.DEVL3P.GCRR",
+      "frequency": 7,
+      "altitude":  15000,
+      "speed":    280,
+      "airlines":  [
+		["ryr", 3],
+		["cfg", 3],
+		["tui", 3],
+		["sxd", 3],
+		["aea", 1],
+		["ber", 2],
+		["nax", 2],
+		["sas", 2]
+      ]
+    },
+    {
+      "type": "random",
+      "route":   "TERTO.TERT6P.GCRR",
+      "frequency": 10,
+      "altitude":  15000,
+      "speed":    280,
+      "airlines":  [
+		["ryr", 4],
+		["tcx", 3],
+		["exs", 3],
+		["tom", 3],
+		["mon", 3],
+		["ezy", 3],
+		["ein", 2],
+		["ibs", 2],
+		["aea", 1],
+		["baw", 1]
+      ]
+    },
+    {
+      "type": "random",
+      "route":   "LARYS.LARY2P.GCRR",
+      "frequency": 10,
+      "altitude":  12000,
+      "speed":    275,
+      "airlines":  [
+        ["ibb", 5],
+		["lightga", 1]
+      ]
+    },
+    {
+      "type": "random",
+      "route":   "RASEP.RASE2P.GCRR",
+      "frequency": 10,
+      "altitude":  12000,
+      "speed":    275,
+      "airlines":  [
+        ["cnf", 5],
+        ["ibb", 4]
+      ]
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "name": "Canary fly",
+  "callsign": {
+    "name": "Canary",
+    "length": 3
+  },
+  "fleets": {
+    "default": [
+      ["AT72", 5]
+    ]
+  }
+}
