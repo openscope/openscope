@@ -173,38 +173,26 @@
     "DEVL3P": {
       "icao": "DEVL3P",
       "name": "Devla Three Papa",
-	  "transitions": {
-        "DEVLA": ["DEVLA"]
-      },
-      "body": ["ASTAM", ["ALEDU", "A80-|S220"], ["RR401", "A70|S220"], ["RR402", "A60|S220"], ["BAPAL", "A50|S220"], ["GARGO", "A23|S210"], "LOBSO", "GOLFY", "LTE01"],
-      "draw": [["ASTAM","ALEDU","RR401","RR402","BAPAL","GARGO","LOBSO","GOLFY"]]
+      "body": ["Devla", "ASTAM", ["ALEDU", "A80-|S220"], ["RR401", "A70|S220"], ["RR402", "A60|S220"], ["BAPAL", "A50|S220"], ["GARGO", "A23|S210"], "LOBSO", "GOLFY", "LTE01"],
+      "draw": [["Devla", "ASTAM","ALEDU","RR401","RR402","BAPAL","GARGO","LOBSO","GOLFY"]]
     },
     "TERT6P": {
       "icao": "TERT6P",
       "name": "Terto six Papa",
-	  "transitions": {
-        "TERTO": ["TERTO", "A150"]
-      },
-      "body": ["PEPOM", "GINAS", "POKAB", ["NIRPO", "A130+|S250"], "ASTAM", ["ALEDU", "A80|S220"], ["RR401", "A70|S220"], ["RR402", "A60|S220"], ["BAPAL", "A50|S220"], ["GARGO", "A23|S210"], "LOBSO", "GOLFY", "LTE01"],
-      "draw": [["PEPOM","GINAS","POKAB","NIRPO","ASTAM","ALEDU","RR401","RR402","BAPAL","GARGO","LOBSO","GOLFY"]]
+      "body": [["TERTO", "A150"], "PEPOM", "GINAS", "POKAB", ["NIRPO", "A130+|S250"], "ASTAM", ["ALEDU", "A80|S220"], ["RR401", "A70|S220"], ["RR402", "A60|S220"], ["BAPAL", "A50|S220"], ["GARGO", "A23|S210"], "LOBSO", "GOLFY", "LTE01"],
+      "draw": [["TERTO", "PEPOM","GINAS","POKAB","NIRPO","ASTAM","ALEDU","RR401","RR402","BAPAL","GARGO","LOBSO","GOLFY"]]
     },
     "LARY2P": {
       "icao": "LARY2P",
       "name": "Larys Two Papa",
-      "transitions": {
-        "LARYS": ["LARYS"]
-      },
-      "body": [["LTE41", "S220"], ["MAPED", "A100|S200"], "LTE15", "254LT", "242LT", "230LT", ["233LT", "A31|S200"], ["221LT", "A23|S200"], "GOLFY", "LTE01"],
-      "draw": [["LTE41","MAPED","LTE15","254LT","242LT","230LT","233LT","221LT","GOLFY","LTE01"]]
+      "body": [["LARYS","LTE41", "S220"], ["MAPED", "A100|S200"], "LTE15", "254LT", "242LT", "230LT", ["233LT", "A31|S200"], ["221LT", "A23|S200"], "GOLFY", "LTE01"],
+      "draw": [["LARYS", "LTE41","MAPED","LTE15","254LT","242LT","230LT","233LT","221LT","GOLFY","LTE01"]]
     },
     "RASE2P": {
       "icao": "RASE2P",
       "name": "Rasep Two Papa",
-      "transitions": {
-        "RASEP": ["RASEP"]
-      },
-      "body": [["GDV71", "S220"], ["MAPED", "A100|S200"], "LTE15", "254LT", "242LT", "230LT", ["233LT", "A31|S200"], ["221LT", "A23|S200"], "GOLFY", "LTE01"],
-      "draw": [["GDV71","MAPED","LTE15","254LT","242LT","230LT","233LT","221LT","GOLFY","LTE01"]]
+      "body": ["RASEP", ["GDV71", "S220"], ["MAPED", "A100|S200"], "LTE15", "254LT", "242LT", "230LT", ["233LT", "A31|S200"], ["221LT", "A23|S200"], "GOLFY", "LTE01"],
+      "draw": [["RASEP*", "GDV71","MAPED","LTE15","254LT","242LT","230LT","233LT","221LT","GOLFY","LTE01"]]
     }
   },  
   "departures": {
@@ -235,7 +223,7 @@
 	  ["lightga", 1]
     ],
     "destinations": [
-      "SAMAR", "VASTO", "KORAL", "BAMKU", "SOTAD", "LORPO", "LARYS"
+      "SAMAR", "VASTO", "KORAL", "SOTAD", "LORPO", "LARYS"
     ],
     "type": "random",
     "frequency": 26
@@ -243,7 +231,7 @@
   "arrivals":[
    	{
       "type": "random",
-      "route":   "DEVLA.DEVL3P.GCRR",
+      "route":   "DEVL3P.GCRR",
       "frequency": 7,
       "altitude":  15000,
       "speed":    280,
@@ -263,7 +251,7 @@
     },
     {
       "type": "random",
-      "route":   "TERTO.TERT6P.GCRR",
+      "route":   "TERT6P.GCRR",
       "frequency": 10,
       "altitude":  15000,
       "speed":    280,
@@ -283,7 +271,7 @@
     },
     {
       "type": "random",
-      "route":   "LARYS.LARY2P.GCRR",
+      "route":   "LARY2P.GCRR",
       "frequency": 10,
       "altitude":  12000,
       "speed":    275,
@@ -294,7 +282,7 @@
     },
     {
       "type": "random",
-      "route":   "RASEP.RASE2P.GCRR",
+      "route":   "RASE2P.GCRR",
       "frequency": 10,
       "altitude":  12000,
       "speed":    275,
