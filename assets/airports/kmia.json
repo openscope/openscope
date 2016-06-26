@@ -8,7 +8,7 @@
   "iata": "MIA",
   "magnetic_north": -6.5,
   "ctr_radius": 80,
-  "ctr_ceiling": 15000,
+  "ctr_ceiling": 16000,
   "initial_alt": 5000,
   "position": ["N25d47m43.3", "W080d17m24.4"],
   "rr_radius_nm": 5.0,
@@ -17,7 +17,7 @@
   "airspace": [
     {
       "floor": 0,
-      "ceiling": 150,
+      "ceiling": 160,
       "airspace_class": "E",
       "poly": [
         ["N25.1494", "W80.4688"],
@@ -52,55 +52,78 @@
     "_R8R-1DME" : ["N25d47.995913", "W80d19.192871"],
     "_R9-1DME"  : ["N25d47.119607", "W80d19.997022"],
     "AMZAR": ["N26d39.64", "W79d32.87"],
+    "ANNEY": ["N26d27.94", "W80d02.97"],
     "BAARY": ["N26d35.00", "W82d14.00"],
     "BAGGS": ["N27d08.05", "W82d50.45"],
+    "BEETR": ["N25d42.24", "W80d40.57"],
     "BLUNE": ["N25d37.47", "W80d13.46"],
     "BORLE": ["N26d05.16", "W80d38.00"],
     "BOYUR": ["N26d23.03", "W79d52.59"],
     "BRBRA": ["N25d58.04", "W80d27.18"],
     "BTOGA": ["N26d27.94", "W80d02.97"],
+    "CANOA": ["N24d00.03", "W83d02.99"],
+    "CARNU": ["N25d08.30", "W81d19.54"],
     "CIMBA": ["N25d55.09", "W80d10.50"],
     "CRABI": ["N25d38.99", "W79d42.07"],
     "CULBY": ["N25d32.27", "W80d26.90"],
+    "CURSO": ["N25d33.36", "W80d54.33"],
     "CYY"  : ["N26d09.21", "W81d46.69"],
     "DEEDS": ["N25d58.67", "W81d13.99"],
     "DHP"  : ["N25d48.00", "W80d20.94"],
     "DICKI": ["N25d33.29", "W80d10.47"],
+    "DVALL": ["N25d30.88", "W80d59.94"],
+    "EADEN": ["N24d31.57", "W81d51.50"],
     "EONNS": ["N25d17.80", "W79d59.21"],
+    "EYW"  : ["N24d35.15", "W81d48.03"],
+    "FAMIN": ["N25d35.14", "W80d50.30"],
     "FENIR": ["N25d14.29", "W80d28.00"],
+    "FLIPR": ["N25d23.57", "W79d43.77"],
     "FORKK": ["N25d59.50", "W80d13.21"],
+    "FOWEE": ["N24d56.22", "W79d11.55"],
     "GOZZO": ["N25d48.32", "W80d11.19"],
     "GRITT": ["N25d46.76", "W80d28.58"],
+    "GUSHY": ["N24d52.69", "W81d04.53"],
     "HAUSR": ["N25d57.21", "W80d21.92"],
     "HEDLY": ["N26d34.96", "W80d35.82"],
     "HEVVN": ["N29d49.32", "W83d53.71"],
     "HILEY": ["N26d15.26", "W80d00.78"],
     "HINKU": ["N25d48.66", "W80d06.06"],
     "HITTR": ["N29d05.77", "W82d26.82"],
+    "HODGY": ["N24d09.63", "W77d23.69"],
     "IBISS": ["N25d42.56", "W79d59.96"],
     "JADAK": ["N25d47.84", "W80d23.03"],
     "JANUS": ["N26d05.65", "W79d38.01"],
+    "JAYEE": ["N24d25.93", "W77d43.41"],
     "JESSS": ["N25d53.04", "W80d16.70"],
+    "JODPO": ["N25d41.56", "W80d41.40"],
     "JORAY": ["N28d20.57", "W79d02.10"],
+    "JUNUR": ["N25d23.27", "W79d43.33"],
     "JUULI": ["N27d57.00", "W82d44.50"],
     "KAINS": ["N25d57.78", "W80d05.71"],
+    "LECIT": ["N25d42.62", "W80d19.29"],
     "LEGGT": ["N29d13.38", "W83d30.64"],
     "LICEY": ["N25d47.97", "W80d23.00"],
+    "LUCSS": ["N24d58.14", "W78d36.40"],
+    "LUVLY": ["N25d39.74", "W80d08.33"],
     "MALET": ["N28d41.50", "W80d52.07"],
+    "MAXIM": ["N24d00.00", "W82d31.13"],
     "MEAGN": ["N26d14.29", "W80d47.39"],
     "METTS": ["N25d50.91", "W80d23.91"],
     "MILSY": ["N26d28.04", "W79d43.85"],
     "MLB"  : ["N28d06.32", "W80d38.12"],
     "MNATE": ["N24d58.76", "W80d31.44"],
+    "MNNDY": ["N25d35.46", "W80d48.88"],
     "MORGA": ["N26d57.61", "W80d11.93"],
+    "MTH"  : ["N24d42.71", "W81d05.72"],
+    "NICKO": ["N24d59.46", "W78d10.76"],
     "OHOFO": ["N25d51.49", "W80d30.04"],
     "OMN"  : ["N29d18.20", "W81d06.76"],
     "OSOGY": ["N27d08.65", "W79d24.01"],
     "OTK"  : ["N30d46.83", "W83d16.78"],
-    "OTK"  : ["N30d46.83", "W83d16.78"],
     "PADUS": ["N26d21.24", "W79d06.51"],
     "PBI"  : ["N26d40.80", "W80d05.19"],
     "PCMAN": ["N28d32.88", "W80d48.63"],
+    "PEKRE": ["N24d44.27", "W78d05.77"],
     "PHORD": ["N27d18.08", "W80d20.18"],
     "PIE"  : ["N27d54.47", "W82d41.06"],
     "PLYER": ["N28d56.86", "W83d20.14"],
@@ -114,21 +137,30 @@
     "SHULA": ["N25d22.46", "W80d02.25"],
     "SKIPS": ["N25d33.23", "W79d16.46"],
     "SMUGS": ["N27d11.55", "W80d17.55"],
+    "SNSBK": ["N26d30.47", "W79d26.36"],
     "SRQ"  : ["N27d24.42", "W82d33.82"],
     "SSCOT": ["N25d53.42", "W80d57.93"],
     "STAPL": ["N26d31.86", "W79d37.23"],
+    "STRAP": ["N24d49.92", "W81d35.38"],
     "SZW"  : ["N30d33.37", "W84d22.44"],
     "TAY"  : ["N30d30.28", "W82d33.17"],
+    "TIGAR": ["N24d56.76", "W81d29.50"],
+    "TINKY": ["N24d58.81", "W78d23.62"],
     "TRV"  : ["N27d40.70", "W80d29.38"],
     "TUCKE": ["N28d19.65", "W82d38.74"],
+    "URSUS": ["N24d00.00", "W79d04.19"],
     "VALLY": ["N26d24.93", "W79d08.33"],
     "VAPOR": ["N25d48.65", "W80d02.99"],
     "VKZ"  : ["N25d45.11", "W80d09.27"],
     "VVMAX": ["N26d13.68", "W80d25.70"],
     "WALIP": ["N25d51.84", "W80d36.51"],
+    "WEVER": ["N25d33.14", "W80d54.82"],
     "WINCO": ["N26d25.04", "W80d58.31"],
     "WORPP": ["N25d53.61", "W80d58.45"],
-    "ZFP"  : ["N26d31.10", "W78d46.50"]
+    "ZBV"  : ["N25d42.25", "W79d17.67"],
+    "ZFP"  : ["N26d31.10", "W78d46.50"],
+    "ZOLLA": ["N24d14.58", "W79d06.09"],
+    "ZQA"  : ["N25d01.53", "W77d26.79"]
   },
   "runways":[
     {
@@ -285,6 +317,26 @@
     }
   },
   "stars": {
+    "ANNEY3": {
+      "icao": "ANNEY3",
+      "name": "Anney Three",
+      "transitions": {
+        "OMN": ["OMN", "PCMAN", "MLB", "TRV", ["PHORD", "A240"], "PBI", ["ANNEY", "A130|S280"]],
+        "ZFP": ["ZFP", "SNSBK", ["ANNEY", "A130|S280"]]
+      },
+      "body": ["HILEY", "KAINS", "VKZ"],
+      "draw": [["OMN*","PCMAN","MLB","TRV","PHORD","PBI","ANNEY","HILEY"], ["ZFP*","SNSBK"], ["HILEY","KAINS","VKZ"]]
+    },
+    "CURSO4": {
+      "icao": "CURSO4",
+      "name": "Curso Four",
+      "transitions": {
+        "EADEN": ["EADEN", "STRAP", "TIGAR", "CARNU", ["DVALL", "A120-"]],
+        "MTH": [["MTH", "S280"], "GUSHY", ["DVALL", "A120-"]]
+      },
+      "body": [["CURSO", "A100|S250"], "MNNDY", "JODPO", "BEETR"],
+      "draw": [["EADEN*","STRAP","TIGAR","CARNU","DVALL"],["MTH*","GUSHY","DVALL"],["DVALL","CURSO","MNNDY","JODPO","BEETR"]]
+    },
     "CYY7": {
       "icao": "CYY7",
       "name": "Cypress Seven",
@@ -293,16 +345,50 @@
         "PIE": ["PIE", "CYY"],
         "RSW": ["RSW", "CYY"]
       },
-      "body": ["CYY", "DEEDS", ["WORPP", "A100|S250"], "DHP"],
+      "body": ["CYY", ["DEEDS", "A160"], ["WORPP", "A100|S250"], "DHP"],
       "draw": [["SRQ*", "CYY"], ["PIE*", "CYY"], ["RSW*", "CYY"], ["CYY", "DEEDS", "WORPP", "DHP"]]
+    },
+    "DVALL2": {
+      "icao": "DVALL2",
+      "name": "Dvall Two",
+      "transitions": {
+        "EYW": ["EYW", "CARNU", "DVALL"],
+        "MTH": ["MTH", "DVALL"]
+        },
+      "body": [["WEVER", "A100|S250"], "FAMIN", "DHP"],
+      "draw": [["EYW*","CARNU","DVALL"],["MTH*","DVALL"],["DVALL","WEVER","FAMIN","DHP"]]
+    },
+    "FLIPR4": {
+      "icao": "FLIPR4",
+      "name": "Flipper Four",
+      "transitions": {
+        "ZFP": ["ZFP", "LUCSS", "FOWEE"],
+        "ZQA": ["ZQA", "NICKO", "TINKY", "LUCSS", "FOWEE"],
+        "HODGY": ["HODGY", "JAYEE", "PEKRE", "TINKY", "LUCSS", "FOWEE"],
+        "URSUS": [["URSUS", "S280"], "ZOLLA", "FOWEE"]
+      },
+      "body": [["FLIPR", "A120|S280"], "LUVLY", "LECIT", "JODPO"],
+      "draw": [["ZFP*","LUCSS","FOWEE"],["ZQA*","NICKO","TINKY","LUCSS","FOWEE"],["HODGY*","JAYEE","PEKRE","TINKY","LUCSS","FOWEE"],["URSUS*","ZOLLA","FOWEE"],["FOWEE","FLIPR","LUVLY","LECIT","JODPO"]]
+    },
+    "FOWEE8": {
+      "icao": "FOWEE8",
+      "name": "Fowey Eight",
+      "transitions": {
+        "ZFP": ["ZFP", "LUCSS", "FOWEE"],
+        "ZQA": ["ZQA", "TINKY", "LUCSS", "FOWEE"],
+        "HODGY": ["HODGY", "TINKY", "LUCSS", "FOWEE"],
+        "URSUS": ["URSUS", "FOWEE"]
+      },
+      "body": [["JUNUR", "A120|S280"], "LUVLY", "DHP"],
+      "draw": [["ZFP*","LUCSS","FOWEE"],["ZQA*","TINKY","LUCSS","FOWEE"],["HODGY*","TINKY","LUCSS","FOWEE"],["URSUS*","FOWEE"],["FOWEE","JUNUR","LUVLY","DHP"]]
     },
     "HILEY6": {
       "icao": "HILEY6",
       "name": "Hiley Six",
       "transitions": {
-        "ZFP": ["ZFP", "STAPL", ["MILSY", "A160|S280"], ["BOYUR", "A140"], "HILEY"],
-        "OMN": ["OMN", "MALET", "PCMAN", "MLB", "TRV", "PHORD", "SMUGS", "MORGA", "PBI", ["BTOGA", "A130|S280"], "HILEY"],
-        "JORAY": ["JORAY", "OSOGY", "AMZAR", "STAPL", ["MILSY", "A160|S280"], "BOYUR", "HILEY"]
+        "ZFP": ["ZFP", ["STAPL", "A180"], ["MILSY", "A160|S280"], "BOYUR", "HILEY"],
+        "OMN": ["OMN", "MALET", "PCMAN", "MLB", "TRV", "PHORD", "SMUGS", "MORGA", ["PBI", "A170"], ["BTOGA", "A130|S280"], "HILEY"],
+        "JORAY": [["JORAY", "S280"], "OSOGY", "AMZAR", ["STAPL", "A180"], ["MILSY", "A160|S280"], "BOYUR", "HILEY"]
       },
       "body": ["HILEY", "KAINS", "CIMBA", "JESSS", "RUBOE"],
       "draw": [["OMN*","MALET","PCMAN","MLB","TRV","PHORD","SMUGS","MORGA","PBI","BTOGA","HILEY"], ["JORAY*","OSOGY","AMZAR","STAPL","MILSY","BOYUR","HILEY"], ["ZFP*","STAPL"], ["HILEY","KAINS","CIMBA","JESSS","RUBOE"]]
@@ -311,18 +397,22 @@
       "icao": "SSCOT3",
       "name": "Scott Three",
       "transitions": {
-        "BAGGS": ["BAGGS", "BAARY"],
+        "BAGGS": [["BAGGS", "S280"], "BAARY"],
         "SZW": ["SZW", "HEVVN", "LEGGT", "PLYER", "SEATE", "JUULI", "BAARY"],
         "OTK": ["OTK", "HITTR", "TUCKE", "JUULI", "BAARY"],
         "TAY": ["TAY", "HITTR", "TUCKE", "JUULI", "BAARY"]
       },
-      "body": ["BAARY", "CYY", ["DEEDS", "A170|S280"], ["SSCOT", "A130"], "RUBOE", "WALIP"],
+      "body": ["BAARY", "CYY", ["DEEDS", "A160|S280"], ["SSCOT", "A100"], "RUBOE", "WALIP"],
       "draw": [["BAGGS*","BAARY"], ["SZW*","HEVVN","LEGGT","PLYER","SEATE","JUULI","BAARY"], ["OTK*","HITTR","TUCKE","JUULI","BAARY"], ["TAY*","HITTR","TUCKE","JUULI","BAARY"], ["BAARY","CYY","DEEDS","SSCOT","RUBOE","WALIP"]]
     }
   },
   "departures": {
     "airlines": [
-      ["aal", 10]
+      ["aal", 10],
+      ["ava", 3],
+      ["baw/long", 1],
+      ["ups", 2],
+      ["fdx", 2]
     ],
     "destinations": [
       "EONNS2", "HEDLY2", "MNATE2", "PADUS2", "SKIPS2", "VALLY2", "WINCO2"
@@ -334,8 +424,51 @@
   "arrivals": [
     {
       "type": "random",
-      "route":   "ZFP.HILEY6.KMIA",
-      "frequency": 20,
+      "route":   "JORAY.HILEY6.KMIA",
+      "frequency": 12,
+      "altitude":  21000,
+      "speed":    280,
+      "airlines":  [
+        ["aal", 75],
+        ["aal/long", 48],
+        ["aca", 1],
+        ["aea", 1],
+        ["afr/long", 2],
+        ["aij", 2],
+        ["amx", 3],
+        ["arg", 2],
+        ["aua/long", 1],
+        ["ava/long", 9],
+        ["aza/long", 1],
+        ["baw/long", 1],
+        ["ber/long", 2],
+        ["bwa", 1],
+        ["dal", 10],
+        ["dlh/long", 2],
+        ["fdx", 25],
+        ["fft", 6],
+        ["gti", 3],
+        ["ibe/long", 1],
+        ["inc", 2],
+        ["lan", 7],
+        ["qtr", 1],
+        ["swr/long", 1],
+        ["tam", 5],
+        ["tap/long", 1],
+        ["tcx/long", 1],
+        ["thy", 1],
+        ["tso", 1],
+        ["tui", 1],
+        ["ual", 3],
+        ["ups", 5],
+        ["vir", 1],
+        ["wja", 1]
+      ]
+    },
+    {
+      "type": "random",
+      "route":   "BAGGS.SSCOT3.KMIA",
+      "frequency": 12,
       "altitude":  21000,
       "speed":    280,
       "airlines":  [
@@ -352,8 +485,26 @@
     },
     {
       "type": "random",
-      "route":   "BAGGS.SSCOT3.KMIA",
-      "frequency": 20,
+      "route":   "URSUS.FLIPR4.KMIA",
+      "frequency": 8,
+      "altitude":  21000,
+      "speed":    280,
+      "airlines":  [
+        ["ual", 5],
+        ["ual/long", 2],
+        ["swa", 1],
+        ["dal", 5],
+        ["dal/long", 2],
+        ["aal", 5],
+        ["aal/long", 2],
+        ["asa", 1],
+        ["fdx", 1]
+      ]
+    },
+    {
+      "type": "random",
+      "route":   "MTH.CURSO4.KMIA",
+      "frequency": 8,
       "altitude":  21000,
       "speed":    280,
       "airlines":  [

@@ -806,11 +806,12 @@ var Airport=Fiber.extend(function() {
               //setup secondary runway subobject
               var r1  = this.runways[rwy1][rwy1end];
               var r2  = this.runways[rwy2][rwy2end];
+              var offset = getOffset(r1, r2.position, r1.angle);
               this.metadata.rwy[r1.name][r2.name] = {};
 
               // generate this runway pair's relationship data
-              this.metadata.rwy[r1.name][r2.name].lateral_dist =
-                distance2d(r1.position, r2.position);
+              this.metadata.rwy[r1.name][r2.name].lateral_dist = abs(offset[1]);
+              this.metadata.rwy[r1.name][r2.name].straight_dist = abs(offset[2]);
               this.metadata.rwy[r1.name][r2.name].converging =
                 raysIntersect(r1.position, r1.angle, r2.position, r2.angle);
               this.metadata.rwy[r1.name][r2.name].parallel =
@@ -1211,7 +1212,7 @@ function airport_init() {
   airport_load('kjfk', "hard", "John F Kennedy International Airport &#9983");
   airport_load('klax90', "medium", "Los Angeles International Airport 1990");
   airport_load('klax', "medium", "Los Angeles International Airport");
-  airport_load('kmia', "medium", "Miami International Airport &#9983");
+  airport_load('kmia', "hard", "Miami International Airport &#9983");
   airport_load('kmsp', "hard", "Minneapolis/St. Paul International Airport &#9983");
   airport_load('ksan', "easy", "San Diego International Airport");
   airport_load('ksea', "medium", "Seattle-Tacoma International Airport &#9983");
