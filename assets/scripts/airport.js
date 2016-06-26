@@ -1197,6 +1197,7 @@ function airport_init() {
   airport_load('eddm', "beginner", "Franz Josef Strauß International Airport");
   airport_load('eddt', "medium", "Berlin Tegel Airport");
   airport_load('egcc', "hard", "Manchester Airport");
+  airport_load('eggw', "medium", "London Luton Airport")
   airport_load('egkk', "easy", "London Gatwick Airport");
   airport_load('eglc', "medium", "London City Airport");
   airport_load('egll', "hard", "London Heathrow Airport");
