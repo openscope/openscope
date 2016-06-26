@@ -17,7 +17,8 @@
   "wind": {
     "angle": 355,
     "speed": 6
-  },"airspace": [
+  },
+  "airspace": [
     {
       "floor": 0,
       "ceiling": 215,
@@ -192,7 +193,7 @@
       "icao": "RASE2P",
       "name": "Rasep Two Papa",
       "body": ["RASEP", ["GDV71", "S220"], ["MAPED", "A100|S200"], "LTE15", "254LT", "242LT", "230LT", ["233LT", "A31|S200"], ["221LT", "A23|S200"], "GOLFY", "LTE01"],
-      "draw": [["RASEP*", "GDV71","MAPED","LTE15","254LT","242LT","230LT","233LT","221LT","GOLFY","LTE01"]]
+      "draw": [["RASEP", "GDV71", "MAPED", "LTE15", "254LT", "242LT", "230LT", "233LT", "221LT", "GOLFY", "LTE01"]]
     }
   },  
   "departures": {
@@ -231,7 +232,7 @@
   "arrivals":[
    	{
       "type": "random",
-      "route":   "DEVL3P.GCRR",
+      "route":   "DEVLA.DEVL3P.GCRR",
       "frequency": 7,
       "altitude":  15000,
       "speed":    280,
@@ -251,7 +252,7 @@
     },
     {
       "type": "random",
-      "route":   "TERT6P.GCRR",
+      "route":   "TERTO.TERT6P.GCRR",
       "frequency": 10,
       "altitude":  15000,
       "speed":    280,
@@ -271,7 +272,7 @@
     },
     {
       "type": "random",
-      "route":   "LARY2P.GCRR",
+      "route":   "LARYS.LARY2P.GCRR",
       "frequency": 10,
       "altitude":  12000,
       "speed":    275,
@@ -282,7 +283,7 @@
     },
     {
       "type": "random",
-      "route":   "RASE2P.GCRR",
+      "route":   "RASEP.RASE2P.GCRR",
       "frequency": 10,
       "altitude":  12000,
       "speed":    275,
