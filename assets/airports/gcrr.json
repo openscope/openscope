@@ -23,14 +23,12 @@
       "ceiling": 215,
       "airspace_class": "C",
       "poly": [
-        ["N030d00m00.000", "W012d30m00.180"],
-		["N028d13m31.860", "W013d01m10.140"],
-		["N027d58m30.000", "W013d13m06.600"],
-		["N027d58m30.000", "W014d39m06.000"],
-		["N028d12m54.000", "W014d39m06.000"],
-		["N028d41m36.000", "W014d26m48.000"],
-		["N028d52m18.000", "W014d50m06.000"],
-		["N030d30m36.000", "W013d34m24.000"]
+        ["N029d31m18.540", "W012d55m35.100"],
+		["N027d49m41.580", "W013d53m34.080"],
+		["N027d47m14.280", "W014d45m02.580"],
+		["N028d01m13.019", "W014d41m14.640"],
+		["N028d39m05.879", "W015d00m00.540"],
+		["N029d32m12.419", "W013d45m05.159"]
       ]
     }
   ],
@@ -47,9 +45,13 @@
 	"GILDI": ["N30d08m18.0", "W13d33m18.0"],
 	"AMAPI": ["N29d01m00.0", "W13d05m06.0"],
 	"KORAL": ["N29d43m54.0", "W12d34m42.0"],
-	"DIBIB": ["N29d16m18.0", "W13d20m12.0"],
+	"DIBIB": ["N29d16m18.0", "W12d20m12.0"],
 	"POKAB": ["N29d21m42.0", "W13d11m18.0"],
 	"GAMVA": ["N29d28m12.0", "W13d00m42.0"],
+	"UMOTO": ["N28d37m60.0", "W13d25m12.0"],
+	"FV731": ["N28d30m18.0", "W13d28m00.0"],
+	"FV732": ["N28d24m42.0", "W13d34m42.0"],
+	"BAMKU": ["N28d22m48.0", "W13d43m42.0"],
 	"TENDA": ["N28d31m60.0", "W13d38m24.0"],
 	"TOSPU": ["N28d27m24.0", "W13d40m42.0"],
 	"NIDOM": ["N28d21m24.0", "W13d39m42.0"],
@@ -76,7 +78,7 @@
 	"LARYS": ["N28d52m18.0", "W14d50m06.0"],
 	"DEVLA": ["N29d14m54.0", "W12d43m06.0"],
 	"ASTAM": ["N28d58m54.0", "W13d18m54.0"],
-	"ALEDU": ["N28d54m06.0", "W13d20m42.0"],
+	"ALEDU": ["N28d52m18.0", "W14d50m06.0"],
 	"RR401": ["N28d46m54.0", "W13d16m36.0"],
 	"RR402": ["N28d38m54.0", "W13d17m06.0"],
 	"BAPAL": ["N28d41m18.0", "W13d25m48.0"],
@@ -95,7 +97,6 @@
 	"GINAS": ["N29d30m24.0", "W13d07m60.0"],
 	"NIRPO": ["N29d14m12.0", "W13d13m42.0"],
 	"PEPOM": ["N29d53m54.0", "W12d58m54.0"],
-	"RASEP": ["N28d41m42.0", "W14d26m48.0"],	
 	"GDV71": ["N28d45m52.4", "W14d19m58.2"]
 	},
   "runways": [
@@ -103,7 +104,7 @@
       "name": ["21", "03"],
       "name_offset": [[0, 0.3], [0, 0.3]],
       "end": [["N28d57m18.400", "W13d35m58.670"], ["N28d56m8.9600", "W13d36m38.940"]],
-      "delay": [2, 6],
+      "delay": [0, 0],
       "ils": [false, true]
     }
   ],
@@ -135,6 +136,16 @@
       "rwy": {
         "21": [["RODIM", "A13+"], ["MAPOV", "A43+"], ["AMAPI", "A70+"], "KORAL"],
         "03": [["RIPIX", "A16+"], ["RR450", "A32+"], "DIBIB", "POKAB", ["GAMVA", "A120+"], "KORAL"]
+      },
+      "draw": [["RODIM", "MAPOV", "AMAPI", "KORAL"], ["RIPIX", "RR450", "DIBIB", "POKAB", "GAMVA", "KORAL"]]
+    },
+    "BAMKU": {
+      "icao": "BAMKU",
+      "name": "Bamku",
+      "suffix": {"21":"2N", "03":"2M"},
+      "rwy": {
+        "21": [["RODIM", "A13+"], ["UMOTO", "A40+"], "FV731", "FV732", ["BAMKU", "A60+"]],
+        "03": [["RIPIX", "A16+"], ["RR450", "A32+"], ["UMOTO", "A90+"], "FV731", "FV732", "BAMKU"]
       },
       "draw": [["RODIM", "MAPOV", "AMAPI", "KORAL"], ["RIPIX", "RR450", "DIBIB", "POKAB", "GAMVA", "KORAL"]]
     },
@@ -173,17 +184,17 @@
     "DEVL3P": {
       "icao": "DEVL3P",
       "name": "Devla Three Papa",
-	  "transitions": {
+      "transitions": {
         "DEVLA": ["DEVLA"]
       },
       "body": ["ASTAM", ["ALEDU", "A80-|S220"], ["RR401", "A70|S220"], ["RR402", "A60|S220"], ["BAPAL", "A50|S220"], ["GARGO", "A23|S210"], "LOBSO", "GOLFY", "LTE01"],
-      "draw": [["ASTAM","ALEDU","RR401","RR402","BAPAL","GARGO","LOBSO","GOLFY"]]
+      "draw": [["ASTAM", "ALEDU", "RR401", "RR402","BAPAL","GARGO","LOBSO","GOLFY"]]
     },
     "TERT6P": {
       "icao": "TERT6P",
       "name": "Terto six Papa",
-	  "transitions": {
-        "TERTO": ["TERTO", "A150"]
+      "transitions": {
+        "TERTO": [["TERTO", "A150"]]
       },
       "body": ["PEPOM", "GINAS", "POKAB", ["NIRPO", "A130+|S250"], "ASTAM", ["ALEDU", "A80|S220"], ["RR401", "A70|S220"], ["RR402", "A60|S220"], ["BAPAL", "A50|S220"], ["GARGO", "A23|S210"], "LOBSO", "GOLFY", "LTE01"],
       "draw": [["PEPOM","GINAS","POKAB","NIRPO","ASTAM","ALEDU","RR401","RR402","BAPAL","GARGO","LOBSO","GOLFY"]]
@@ -194,7 +205,7 @@
       "transitions": {
         "LARYS": ["LARYS"]
       },
-      "body": [["LTE41", "S220"], ["MAPED", "A100|S200"], "LTE15", "254LT", "242LT", "230LT", ["233LT", "A31|S200"], ["221LT", "A23|S200"], "GOLFY", "LTE01"],
+      "body": [["LTE41", "S220"], ["MAPED", "A230|S200"], "LTE15", "254LT", "242LT", "230LT", ["233LT", "A31|S200"], ["221LT", "A23|S200"], "GOLFY", "LTE01"],
       "draw": [["LTE41","MAPED","LTE15","254LT","242LT","230LT","233LT","221LT","GOLFY","LTE01"]]
     },
     "RASE2P": {
@@ -203,7 +214,7 @@
       "transitions": {
         "RASEP": ["RASEP"]
       },
-      "body": [["GDV71", "S220"], ["MAPED", "A100|S200"], "LTE15", "254LT", "242LT", "230LT", ["233LT", "A31|S200"], ["221LT", "A23|S200"], "GOLFY", "LTE01"],
+      "body": [["GDV71", "S220"], ["MAPED", "A230|S200"], "LTE15", "254LT", "242LT", "230LT", ["233LT", "A31|S200"], ["221LT", "A23|S200"], "GOLFY", "LTE01"],
       "draw": [["GDV71","MAPED","LTE15","254LT","242LT","230LT","233LT","221LT","GOLFY","LTE01"]]
     }
   },  
@@ -212,8 +223,6 @@
 	  ["ibb", 9],
 	  ["ryr", 7],
 	  ["cnf", 5],
-	  ["vlg", 3],
-	  ["gmi", 3],
 	  ["exs", 3],
 	  ["tcx", 3],
 	  ["tom", 3],
@@ -222,15 +231,12 @@
 	  ["mon", 3],
 	  ["ezy", 3],
 	  ["sxd", 3],
-	  ["tra", 2],
 	  ["aea", 2],
 	  ["ber", 2],
 	  ["ein", 2],
 	  ["ibs", 2],
 	  ["nax", 2],
-	  ["ent", 2]
 	  ["sas", 2],
-	  ["tvs", 1],
 	  ["baw", 1],
 	  ["lightga", 1]
     ],
@@ -249,14 +255,11 @@
       "speed":    280,
       "airlines":  [
 		["ryr", 3],
-		["gmi", 3],
 		["cfg", 3],
 		["tui", 3],
 		["sxd", 3],
 		["aea", 1],
-		["tvs", 1],
 		["ber", 2],
-		["ent", 2],
 		["nax", 2],
 		["sas", 2]
       ]
@@ -269,7 +272,6 @@
       "speed":    280,
       "airlines":  [
 		["ryr", 4],
-		["vlg", 3],
 		["tcx", 3],
 		["exs", 3],
 		["tom", 3],
