@@ -13,7 +13,7 @@
   "position": ["N28d56m42.00", "W13d36m18.00"],
   "rr_radius_nm": 800.0,
   "rr_center": ["N28d56m42.00", "W13d36m18.00"],
-  "has_terrain": false,
+  "has_terrain": true,
   "wind": {
     "angle": 355,
     "speed": 6
@@ -174,8 +174,8 @@
     "DEVL3P": {
       "icao": "DEVL3P",
       "name": "Devla Three Papa",
-      "body": ["Devla", "ASTAM", ["ALEDU", "A80-|S220"], ["RR401", "A70|S220"], ["RR402", "A60|S220"], ["BAPAL", "A50|S220"], ["GARGO", "A23|S210"], "LOBSO", "GOLFY", "LTE01"],
-      "draw": [["Devla", "ASTAM","ALEDU","RR401","RR402","BAPAL","GARGO","LOBSO","GOLFY"]]
+      "body": [["DEVLA", "A120-|S220"], ["ASTAM", "A100-|S220"], ["ALEDU", "A80-|S220"], ["RR401", "A70|S220"], ["RR402", "A60|S220"], ["BAPAL", "A50|S220"], ["GARGO", "A23|S210"], "LOBSO", "GOLFY", "LTE01"],
+      "draw": [["DEVLA", "ASTAM","ALEDU","RR401","RR402","BAPAL","GARGO","LOBSO","GOLFY"]]
     },
     "TERT6P": {
       "icao": "TERT6P",
@@ -186,21 +186,21 @@
     "LARY2P": {
       "icao": "LARY2P",
       "name": "Larys Two Papa",
-      "body": [["LARYS","LTE41", "S220"], ["MAPED", "A100|S200"], "LTE15", "254LT", "242LT", "230LT", ["233LT", "A31|S200"], ["221LT", "A23|S200"], "GOLFY", "LTE01"],
+      "body": ["LARYS",["LTE41", "S220"], ["MAPED", "A100|S200"], ["LTE15", "A70|S200"], ["254LT", "A60|S180"], ["242LT", "A45|S180"], ["230LT", "A35|S180"], ["233LT", "A31|S180"], ["221LT", "A23|S180"], "GOLFY", "LTE01"],
       "draw": [["LARYS", "LTE41","MAPED","LTE15","254LT","242LT","230LT","233LT","221LT","GOLFY","LTE01"]]
     },
     "RASE2P": {
       "icao": "RASE2P",
       "name": "Rasep Two Papa",
-      "body": ["RASEP", ["GDV71", "S220"], ["MAPED", "A100|S200"], "LTE15", "254LT", "242LT", "230LT", ["233LT", "A31|S200"], ["221LT", "A23|S200"], "GOLFY", "LTE01"],
+      "body": ["RASEP", ["GDV71", "S220"], ["MAPED", "A100|S200"], ["LTE15", "A70|S200"], ["254LT", "A60|S180"], ["242LT", "A45|S180"], ["230LT", "A35|S180"], ["233LT", "A31|S180"], ["221LT", "A23|S180"], "GOLFY", "LTE01"],
       "draw": [["RASEP", "GDV71", "MAPED", "LTE15", "254LT", "242LT", "230LT", "233LT", "221LT", "GOLFY", "LTE01"]]
     }
   },  
   "departures": {
     "airlines": [
-	  ["ibb", 9],
+	  ["ibb", 6],
 	  ["ryr", 7],
-	  ["cnf", 5],
+	  ["cnf", 4],
 	  ["vlg", 3],
 	  ["gmi", 3],
 	  ["exs", 3],
@@ -234,8 +234,8 @@
       "type": "random",
       "route":   "DEVLA.DEVL3P.GCRR",
       "frequency": 7,
-      "altitude":  15000,
-      "speed":    280,
+      "altitude":  12000,
+      "speed":    220,
       "airlines":  [
 		["ryr", 3],
 		["gmi", 3],
@@ -277,7 +277,7 @@
       "altitude":  12000,
       "speed":    275,
       "airlines":  [
-        ["ibb", 5],
+        ["ibb", 3],
 		["lightga", 1]
       ]
     },
@@ -288,8 +288,8 @@
       "altitude":  12000,
       "speed":    275,
       "airlines":  [
-        ["cnf", 5],
-        ["ibb", 4]
+        ["cnf", 4],
+        ["ibb", 3]
       ]
     }
   ]
