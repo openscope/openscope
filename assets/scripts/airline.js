@@ -72,7 +72,8 @@ zlsa.atc.Airline = Fiber.extend(function() {
     load: function(url) {
       if (this.loaded)
         return;
-      $.getJSON(url)
+      zlsa.atc.loadAsset({url: url,
+                          immediate: true})
         .done(function (data) {
           this.parse(data);
           this.loading = false;

@@ -316,7 +316,8 @@ var Model=Fiber.extend(function() {
       if(data.speed) this.speed = data.speed;
     },
     load: function(url) {
-      $.getJSON(url)
+      zlsa.atc.loadAsset({url: url,
+                          immediate: true})
         .done(function (data) {
           this.parse(data);
           this.loading = false;

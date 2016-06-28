@@ -938,7 +938,8 @@ var Airport=Fiber.extend(function() {
       }
     },
     loadTerrain: function() {
-      $.getJSON('assets/airports/terrain/' + this.icao.toLowerCase() + '.geojson')
+      zlsa.atc.loadAsset({url: 'assets/airports/terrain/' + this.icao.toLowerCase() + '.geojson',
+                         immediate: true})
         .done(function (data) {
           try {
             log('Parsing terrain');
@@ -964,7 +965,8 @@ var Airport=Fiber.extend(function() {
 
       update_run(false);
       this.loading = true;
-      $.getJSON("assets/airports/"+this.icao.toLowerCase()+".json")
+      zlsa.atc.loadAsset({url: "assets/airports/"+this.icao.toLowerCase()+".json",
+                          immediate: true})
         .done(function (data) {
           this.parse(data);
           if (this.has_terrain)
