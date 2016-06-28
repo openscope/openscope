@@ -15,7 +15,7 @@
     "rr_center": ["N13d11m56.00", "E077d42m20.00"],
     "has_terrain": false,
     "wind": {
-        "angle": 110,
+        "angle": 180,
         "speed": 0
     },
     "airspace": [
@@ -84,6 +84,7 @@
         "PAMOT":    ["N13d33m37.00",    "E078d06m07.00"],
         "PARAT":    ["N12d47m24.00",    "E077d08m50.00"],
         "PEXEG":    ["N13d04m25.00",    "E076d02m50.00"],
+        "RIKBU":    ["N15d09m95.00",    "E076d21m57.00"],
         "RIVAX":    ["N12d47m27.00",    "E076d00m42.00"],
         "TEBAM":    ["N12d57m97.00",    "E078d27m85.00"],
         "TTP":      ["N13d38m10.00",    "E079d33m82.00"],
@@ -121,7 +122,12 @@
         "ROMET":    ["N13d35m09.00",    "E077d23m37.00"],
         "RUBOX":    ["N12d53m82.00",    "E077d36m16.00"],
         "RUMAL":    ["N13d18m64.00",    "E077d40m55.00"],
-        "TENKY":    ["N13d18m23.00",    "E078d11m99.00"]
+        "TENKY":    ["N13d18m23.00",    "E078d11m99.00"],
+        "LUMPU":    ["N13d49m44.00",    "E076d55m58.00"],
+        "PAKSO":    ["N12d35m22.00",    "E077d28m40.00"],
+        "PATTU":    ["N13d15m70.00",    "E078d27m91.00"],
+        "TAKOM":    ["N13d47m05.00",    "E076d06m62.00"],
+        "VABDI":    ["N15d05m85.00",    "E078d38m03.00"]
     },
 
     "runways": [
@@ -450,7 +456,7 @@
             "name": "Dundi",
             "suffix": {"09":"6", "27":"5"},
             "transitions": {
-                "DUNDI": ["DUNDI"]
+                "TIRUCHIRAPALLI": ["TTR"]
             },
             "rwy": {
                 "09":   [["DUNDI", "A120|S230"], "BL461", ["BL460", "A100|S200"], ["BL459", "A70|S185"], "BL458", "BL457"],
@@ -466,13 +472,15 @@
             "name": "Gelat",
             "suffix": {"09":"6", "27":"5"},
             "transitions": {
-                "GELAT": ["UNSAL", ["GELAT", "A210"]]
+                "RIKBU": ["RIKBU"],
+                "UNSAL": ["UNSAL"]
             },
             "rwy": {
-                "09":   [["ROMET", "A110|S230"], "BL456", ["BL454", "A70|S185"], "BL453", "BL452", "BL451"],
-                "27":   [["ROMET", "A110|S210"], "NUPER", ["RUMAL", "A100|S200"], ["BL552", "A70|S185"], "BL553", "BL554", "BL555"]
+                "09":   [["GELAT", "A210"], ["ROMET", "A110|S230"], "BL456", ["BL454", "A70|S185"], "BL453", "BL452", "BL451"],
+                "27":   [["GELAT", "A210"], ["ROMET", "A110|S210"], "NUPER", ["RUMAL", "A100|S200"], ["BL552", "A70|S185"], "BL553", "BL554", "BL555"]
             },
             "draw": [
+                ["UNSAL*", "GELAT"],
                 ["GELAT", "ROMET", "BL456", "BL454", "BL453", "BL452", "BL451"],
                 ["GELAT", "ROMET", "NUPER", "RUMAL", "BL552", "BL553", "BL554", "BL555"]
             ]
@@ -482,13 +490,14 @@
             "name": "Lumpu",
             "suffix": {"09":"6", "27":"5"},
             "transitions": {
-                "ROMET": ["GUNIM", "ROMET"]
+                "LUMPU": ["LUMPU"]
             },
             "rwy": {
                 "09":   [["ROMET", "A110|S210"], "BL456", ["BL454", "A70|S185"], "BL453", "BL452", "BL451"],
                 "27":   [["ROMET", "A110|S230"], "NUPER", ["RUMAL", "A100|S200"], ["BL552", "A70|S185"], "BL553", "BL554", "BL555"]
             },
             "draw": [
+                ["LUMPU*", "ROMET"],
                 ["ROMET", "BL456", "BL454", "BL453", "BL452", "BL451"],
                 ["ROMET", "NUPER", "RUMAL", "BL552", "BL553", "BL554", "BL555"]
             ]
@@ -498,13 +507,14 @@
             "name": "Putot",
             "suffix": {"09":"6", "27":"5"},
             "transitions": {
-                "PUTOT": ["TTP", "XIVIL", ["PUTOT", "A110|S230"]]
+                "VABDI": ["VABDI"]
             },
             "rwy": {
-                "09":   ["BL455", ["RUMAL", "A100|S210"], ["BL454", "A70|S185"], "BL453", "BL452", "BL451"],
-                "27":   [["BL551", "A100|S230"], ["BL552", "A70|S185"], "BL553", "BL554", "BL555"]
+                "09":   [["PUTOT", "A110|S230"], "BL455", ["RUMAL", "A100|S210"], ["BL454", "A70|S185"], "BL453", "BL452", "BL451"],
+                "27":   [["PUTOT", "A110|S230"], ["BL551", "A100|S230"], ["BL552", "A70|S185"], "BL553", "BL554", "BL555"]
             },
             "draw": [
+                ["VABDI*", "PUTOT"],
                 ["PUTOT", "BL455", "RUMAL", "BL454", "BL453", "BL452", "BL451"],
                 ["PUTOT", "BL551", "BL552", "BL553", "BL554", "BL555"]
             ]
@@ -512,30 +522,17 @@
         "RATOM": {
             "icao": "RATOM",
             "name": "Ratom",
-            "suffix": {"09":"6"},
+            "suffix": {"09":"6", "27":"5A"},
             "transitions": {
-                "RATOM": ["UGABA", ["RATOM", "A85|S185"]]
+                "GUNIM": ["GUNIM", "TAKOM"],
+                "PEXEG": ["PEXEG"]
             },
             "rwy": {
-                "09":   [["BL462", "A70"]],
-                "27":   []
+                "09":   [["RATOM", "A85|S185"], ["BL462", "A70"]],
+                "27":   [["RATOM", "A120|S230"], "NUPER", ["RUMAL", "A100|S200"], ["BL552", "A70|S185"], "BL553", "BL554", "BL555"]
             },
             "draw": [
-                ["RATOM", "BL462"]
-            ]
-        },
-        "RATOM5A": {
-            "_comment": "RATOM5A is meant to be only for runway 27.",
-            "icao": "RATOM5A",
-            "name": "Ratom Five Alfa",
-            "transitions": {
-                "RATOM": ["PARAT", ["RATOM", "A120|S230"]]
-            },
-            "rwy": {
-                "09":   [],
-                "27":   ["NUPER", ["RUMAL", "A100|S200"], ["BL552", "A70|S185"], "BL553", "BL554", "BL555"]
-            },
-            "draw": [
+                ["GUNIM*", "TAKOM"],
                 ["RATOM", "NUPER", "RUMAL", "BL552", "BL553", "BL554", "BL555"]
             ]
         },
@@ -544,13 +541,15 @@
             "icao": "RATOM5B",
             "name": "Ratom Five Bravo",
             "transitions": {
-                "RATOM": ["PEXEG", ["RATOM", "A120|S230"]]
+                "GUNIM": ["GUNIM", "TAKOM"],
+                "PEXEG": ["PEXEG"]
             },
             "rwy": {
                 "09":   [],
-                "27":   [["BL556", "A120|S200"], "BL557", ["BL558", "A70|S185"], "BL559", "BL560"]
+                "27":   [["RATOM", "A120|S230"], ["BL556", "A120|S200"], "BL557", ["BL558", "A70|S185"], "BL559", "BL560"]
             },
             "draw": [
+                ["PEXEG*", "RATOM"],
                 ["RATOM", "BL556", "BL557", "BL558", "BL559", "BL560"]
             ]
         },
@@ -559,13 +558,14 @@
             "name": "Rubox",
             "suffix": {"09":"6", "27":"5"},
             "transitions": {
-                "RUBOX": [["RUBOX"]]
+                "UGABA": ["UGABA", "PAKSO"]
             },
             "rwy": {
                 "09":   [["RUBOX", "A120|S230"], ["BL460", "A100|S200"], ["BL459", "A70|S185"], "BL458", "BL457"],
                 "27":   [["RUBOX", "A120|S210"], ["BL556", "A120"], "BL557", ["BL558", "A70|S185"], "BL559", "BL560"]
             },
             "draw": [
+                ["UGABA*", "PAKSO"],
                 ["RUBOX", "BL460", "BL459", "BL458", "BL457"],
                 ["RUBOX", "BL556", "BL557", "BL558", "BL559", "BL560"]
             ]
@@ -575,279 +575,253 @@
             "name": "Tenky",
             "suffix": {"09":"6", "27":"5"},
             "transitions": {
-                "ADKAL": ["ADKAL"]
+                "XIVIL": ["XIVIL", "PATTU"]
             },
             "rwy": {
                 "09":   [["TENKY", "A100|S230"], "BL455", ["RUMAL", "A100|S210"], ["BL454", "A70|S185"], "BL453", "BL452", "BL451"],
                 "27":   [["TENKY", "A95|S210"], ["BL561", "A70|S185"]]
             },
             "draw": [
+                ["XIVIL*", "PATTU"],
                 ["TENKY", "BL455", "RUMAL", "BL454", "BL453", "BL452", "BL451"],
                 ["TENKY", "BL561"]
             ]
         }
     },
-    "_arrivals": [
+    "arrivals": [     
         {
             "type": 		"cyclic",
-            "route":        "DUNDI.DUNDI.VOBL",
-            "frequency":    17,
-            "altitude":     24000,
-            "speed":		430,
+            "route":        "TIRUCHIRAPALLI.DUNDI.VOBL",
+            "frequency":    7,
+            "altitude":     12000,
+            "speed":		210,
             "offset":		2,
             "airlines": [
-                ["afr",  1],
                 ["aic", 11],
-                ["llr",  3],
                 ["axm",  1],
                 ["iad",  7],
-                ["baw",  1],
-                ["hda",  1],
-                ["uae",  1],
-                ["etd",  2],
                 ["gow", 10],
                 ["igo", 28],
                 ["jai", 21],
-                ["dlh",  2],
                 ["mas",  2],
-                ["qtr",  2],
                 ["slk",  1],
                 ["sia",  1],
                 ["sej", 17],
                 ["tgw",  1],
                 ["vti",  2],
-                ["cpa",  1],
-                ["fdx",  1],
-                ["sqc",  1]
+                ["fdx",  1]
             ]
         },
         {
             "type": 		"cyclic",
-            "route":        "GELAT.GELAT.VOBL",
-            "frequency":    17,
+            "route":        "RIKBU.GELAT.VOBL",
+            "frequency":    3,
             "altitude":     24000,
-            "speed":		430,
+            "speed":		300,
             "offset":		2,
             "airlines": [
                 ["afr",  1],
                 ["aic", 11],
                 ["llr",  3],
-                ["axm",  1],
                 ["iad",  7],
                 ["baw",  1],
-                ["hda",  1],
                 ["uae",  1],
                 ["etd",  2],
                 ["gow", 10],
                 ["igo", 28],
                 ["jai", 21],
                 ["dlh",  2],
-                ["mas",  2],
                 ["qtr",  2],
-                ["slk",  1],
-                ["sia",  1],
                 ["sej", 17],
-                ["tgw",  1],
-                ["vti",  2],
-                ["cpa",  1],
-                ["fdx",  1],
-                ["sqc",  1]
+                ["vti",  2]
             ]
         },
         {
             "type": 		"cyclic",
-            "route":        "ROMET.LUMPU.VOBL",
-            "frequency":    17,
-            "altitude":     24000,
-            "speed":		430,
+            "route":        "UNSAL.GELAT.VOBL",
+            "frequency":    4,
+            "altitude":     21000,
+            "speed":		300,
             "offset":		2,
             "airlines": [
                 ["afr",  1],
                 ["aic", 11],
                 ["llr",  3],
-                ["axm",  1],
                 ["iad",  7],
                 ["baw",  1],
-                ["hda",  1],
                 ["uae",  1],
                 ["etd",  2],
                 ["gow", 10],
                 ["igo", 28],
                 ["jai", 21],
                 ["dlh",  2],
-                ["mas",  2],
                 ["qtr",  2],
-                ["slk",  1],
-                ["sia",  1],
                 ["sej", 17],
-                ["tgw",  1],
-                ["vti",  2],
-                ["cpa",  1],
-                ["fdx",  1],
-                ["sqc",  1]
+                ["vti",  2]
             ]
         },
         {
             "type": 		"cyclic",
-            "route":        "PUTOT.PUTOT.VOBL",
-            "frequency":    17,
-            "altitude":     24000,
-            "speed":		430,
+            "route":        "LUMPU.LUMPU.VOBL",
+            "frequency":    7,
+            "altitude":     18000,
+            "speed":		270,
             "offset":		2,
             "airlines": [
                 ["afr",  1],
                 ["aic", 11],
                 ["llr",  3],
-                ["axm",  1],
                 ["iad",  7],
                 ["baw",  1],
-                ["hda",  1],
                 ["uae",  1],
                 ["etd",  2],
                 ["gow", 10],
                 ["igo", 28],
                 ["jai", 21],
                 ["dlh",  2],
-                ["mas",  2],
                 ["qtr",  2],
-                ["slk",  1],
-                ["sia",  1],
                 ["sej", 17],
-                ["tgw",  1],
-                ["vti",  2],
-                ["cpa",  1],
-                ["fdx",  1],
-                ["sqc",  1]
+                ["vti",  2]
             ]
         },
         {
             "type": 		"cyclic",
-            "route":        "RATOM.RATOM5A.VOBL",
-            "frequency":    17,
-            "altitude":     24000,
-            "speed":		430,
+            "route":        "VABDI.PUTOT.VOBL",
+            "frequency":    7,
+            "altitude":     21000,
+            "speed":		280,
             "offset":		2,
             "airlines": [
-                ["afr",  1],
                 ["aic", 11],
-                ["llr",  3],
-                ["axm",  1],
                 ["iad",  7],
-                ["baw",  1],
                 ["hda",  1],
-                ["uae",  1],
-                ["etd",  2],
                 ["gow", 10],
                 ["igo", 28],
                 ["jai", 21],
-                ["dlh",  2],
-                ["mas",  2],
-                ["qtr",  2],
-                ["slk",  1],
-                ["sia",  1],
                 ["sej", 17],
-                ["tgw",  1],
                 ["vti",  2],
                 ["cpa",  1],
-                ["fdx",  1],
-                ["sqc",  1]
+                ["fdx",  1]
             ]
         },
         {
             "type": 		"cyclic",
-            "route":        "RATOM.RATOM5B.VOBL",
-            "frequency":    17,
-            "altitude":     24000,
-            "speed":		430,
+            "route":        "GUNIM.RATOM.VOBL",
+            "frequency":    4,
+            "altitude":     27000,
+            "speed":		330,
             "offset":		2,
             "airlines": [
-                ["afr",  1],
                 ["aic", 11],
                 ["llr",  3],
-                ["axm",  1],
                 ["iad",  7],
-                ["baw",  1],
-                ["hda",  1],
                 ["uae",  1],
                 ["etd",  2],
                 ["gow", 10],
                 ["igo", 28],
                 ["jai", 21],
-                ["dlh",  2],
-                ["mas",  2],
-                ["qtr",  2],
-                ["slk",  1],
-                ["sia",  1],
                 ["sej", 17],
-                ["tgw",  1],
-                ["vti",  2],
-                ["cpa",  1],
-                ["fdx",  1],
-                ["sqc",  1]
+                ["vti",  2]
             ]
         },
         {
             "type": 		"cyclic",
-            "route":        "RUBOX.RUBOX.VOBL",
-            "frequency":    17,
-            "altitude":     24000,
-            "speed":		430,
+            "route":        "PEXEG.RATOM.VOBL",
+            "frequency":    3,
+            "altitude":     21000,
+            "speed":		300,
             "offset":		2,
             "airlines": [
-                ["afr",  1],
                 ["aic", 11],
                 ["llr",  3],
-                ["axm",  1],
                 ["iad",  7],
-                ["baw",  1],
-                ["hda",  1],
                 ["uae",  1],
                 ["etd",  2],
                 ["gow", 10],
                 ["igo", 28],
                 ["jai", 21],
-                ["dlh",  2],
-                ["mas",  2],
-                ["qtr",  2],
-                ["slk",  1],
-                ["sia",  1],
                 ["sej", 17],
-                ["tgw",  1],
-                ["vti",  2],
-                ["cpa",  1],
-                ["fdx",  1],
-                ["sqc",  1]
+                ["vti",  2]
             ]
         },
         {
             "type": 		"cyclic",
-            "route":        "TENKY.TENKY.VOBL",
-            "frequency":    17,
-            "altitude":     24000,
-            "speed":		430,
+            "route":        "GUNIM.RATOM5B.VOBL",
+            "frequency":    2,
+            "altitude":     25000,
+            "speed":		330,
             "offset":		2,
             "airlines": [
-                ["afr",  1],
                 ["aic", 11],
                 ["llr",  3],
-                ["axm",  1],
                 ["iad",  7],
-                ["baw",  1],
-                ["hda",  1],
                 ["uae",  1],
                 ["etd",  2],
                 ["gow", 10],
                 ["igo", 28],
                 ["jai", 21],
-                ["dlh",  2],
+                ["sej", 17],
+                ["vti",  2]
+            ]
+        },
+        {
+            "type": 		"cyclic",
+            "route":        "PEXEG.RATOM5B.VOBL",
+            "frequency":    5,
+            "altitude":     22000,
+            "speed":		300,
+            "offset":		2,
+            "airlines": [
+                ["aic", 11],
+                ["llr",  3],
+                ["iad",  7],
+                ["uae",  1],
+                ["etd",  2],
+                ["gow", 10],
+                ["igo", 28],
+                ["jai", 21],
+                ["sej", 17],
+                ["vti",  2]
+            ]
+        },
+        {
+            "type": 		"cyclic",
+            "route":        "UGABA.RUBOX.VOBL",
+            "frequency":    17,
+            "altitude":     18000,
+            "speed":		320,
+            "offset":		2,
+            "airlines": [
+                ["aic", 11],
+                ["iad",  7], 
+                ["gow", 10],
+                ["igo", 28],
+                ["jai", 21],
+                ["sej", 17],
+                ["vti",  2]
+            ]
+        },
+        {
+            "type": 		"cyclic",
+            "route":        "XIVIL.TENKY.VOBL",
+            "frequency":    17,
+            "altitude":     14000,
+            "speed":		270,
+            "offset":		2,
+            "airlines": [
+                ["aic", 11],
+                ["axm",  1],
+                ["iad",  7],
+                ["hda",  1],
+                ["gow", 10],
+                ["igo", 28],
+                ["jai", 21],
                 ["mas",  2],
-                ["qtr",  2],
                 ["slk",  1],
                 ["sia",  1],
                 ["sej", 17],
                 ["tgw",  1],
                 ["vti",  2],
-                ["cpa",  1],
                 ["fdx",  1],
                 ["sqc",  1]
             ]
