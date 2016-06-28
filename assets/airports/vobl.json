@@ -66,6 +66,7 @@
         "BL405":    ["N13d00m98.00",    "E077d30m22.00"],
         "BL406":    ["N13d31m50.00",    "E077d47m98.00"],
         "BL407":    ["N13d39m19.00",    "E076d37m49.00"],
+        "BL462":    ["N13d12m58.00",    "E077d21m32.00"],
         "BL501":    ["N13d13m97.00",    "E077d34m04.00"],
         "BL502":    ["N13d14m46.00",    "E077d32m34.00"],
         "BL503":    ["N13d31m44.00",    "E077d38m26.00"],
@@ -449,11 +450,11 @@
             "name": "Dundi",
             "suffix": {"09":"6", "27":"5"},
             "transitions": {
-                "DUNDI": [["DUNDI"]]
+                "DUNDI": ["DUNDI"]
             },
             "rwy": {
-                "09":   ["BL461", "BL460", "BL459", "BL458", "BL457"],
-                "27":   ["BL557", "BL558", "BL559", "BL560"]
+                "09":   [["DUNDI", "A120|S230"], "BL461", ["BL460", "A100|S200"], ["BL459", "A70|S185"], "BL458", "BL457"],
+                "27":   [["DUNDI", "A120|S210"], "BL557", ["BL558", "A70|S185"], "BL559", "BL560"]
             },
             "draw": [
                 ["DUNDI", "BL461", "BL460", "BL459", "BL458", "BL457"],
@@ -465,11 +466,11 @@
             "name": "Gelat",
             "suffix": {"09":"6", "27":"5"},
             "transitions": {
-                "GELAT": ["UNSAL", ["GELAT"]]
+                "GELAT": ["UNSAL", ["GELAT", "A210"]]
             },
             "rwy": {
-                "09":   ["ROMET", "BL456", "BL454", "BL453", "BL452", "BL451"],
-                "27":   ["ROMET", "NUPER", "RUMAL", "BL552", "BL553", "BL554", "BL555"]
+                "09":   [["ROMET", "A110|S230"], "BL456", ["BL454", "A70|S185"], "BL453", "BL452", "BL451"],
+                "27":   [["ROMET", "A110|S210"], "NUPER", ["RUMAL", "A100|S200"], ["BL552", "A70|S185"], "BL553", "BL554", "BL555"]
             },
             "draw": [
                 ["GELAT", "ROMET", "BL456", "BL454", "BL453", "BL452", "BL451"],
@@ -481,11 +482,11 @@
             "name": "Lumpu",
             "suffix": {"09":"6", "27":"5"},
             "transitions": {
-                "ROMET": ["GUNIM", ["ROMET"]]
+                "ROMET": ["GUNIM", "ROMET"]
             },
             "rwy": {
-                "09":   ["BL456", "BL454", "BL453", "BL452", "BL451"],
-                "27":   ["NUPER", "RUMAL", "BL552", "BL553", "BL554", "BL555"]
+                "09":   [["ROMET", "A110|S210"], "BL456", ["BL454", "A70|S185"], "BL453", "BL452", "BL451"],
+                "27":   [["ROMET", "A110|S230"], "NUPER", ["RUMAL", "A100|S200"], ["BL552", "A70|S185"], "BL553", "BL554", "BL555"]
             },
             "draw": [
                 ["ROMET", "BL456", "BL454", "BL453", "BL452", "BL451"],
@@ -497,11 +498,11 @@
             "name": "Putot",
             "suffix": {"09":"6", "27":"5"},
             "transitions": {
-                "PUTOT": ["TTP", "XIVIL", ["PUTOT"]]
+                "PUTOT": ["TTP", "XIVIL", ["PUTOT", "A110|S230"]]
             },
             "rwy": {
-                "09":   ["BL455", "RUMAL", "BL454", "BL453", "BL452", "BL451"],
-                "27":   ["BL551", "BL552", "BL553", "BL554", "BL555"]
+                "09":   ["BL455", ["RUMAL", "A100|S210"], ["BL454", "A70|S185"], "BL453", "BL452", "BL451"],
+                "27":   [["BL551", "A100|S230"], ["BL552", "A70|S185"], "BL553", "BL554", "BL555"]
             },
             "draw": [
                 ["PUTOT", "BL455", "RUMAL", "BL454", "BL453", "BL452", "BL451"],
@@ -513,14 +514,14 @@
             "name": "Ratom",
             "suffix": {"09":"6"},
             "transitions": {
-                "RATOM": ["UGABA", ["RATOM"]]
+                "RATOM": ["UGABA", ["RATOM", "A85|S185"]]
             },
             "rwy": {
-                "09":   ["BL452"],
+                "09":   [["BL462", "A70"]],
                 "27":   []
             },
             "draw": [
-                ["RATOM", "BL452"]
+                ["RATOM", "BL462"]
             ]
         },
         "RATOM5A": {
@@ -528,11 +529,11 @@
             "icao": "RATOM5A",
             "name": "Ratom Five Alfa",
             "transitions": {
-                "RATOM": ["PARAT", ["RATOM"]]
+                "RATOM": ["PARAT", ["RATOM", "A120|S230"]]
             },
             "rwy": {
                 "09":   [],
-                "27":   ["NUPER", "RUMAL", "BL552", "BL553", "BL554", "BL555"]
+                "27":   ["NUPER", ["RUMAL", "A100|S200"], ["BL552", "A70|S185"], "BL553", "BL554", "BL555"]
             },
             "draw": [
                 ["RATOM", "NUPER", "RUMAL", "BL552", "BL553", "BL554", "BL555"]
@@ -543,11 +544,11 @@
             "icao": "RATOM5B",
             "name": "Ratom Five Bravo",
             "transitions": {
-                "RATOM": ["PEXEG", ["RATOM"]]
+                "RATOM": ["PEXEG", ["RATOM", "A120|S230"]]
             },
             "rwy": {
                 "09":   [],
-                "27":   ["BL556", "BL557", "BL558", "BL559", "BL560"]
+                "27":   [["BL556", "A120|S200"], "BL557", ["BL558", "A70|S185"], "BL559", "BL560"]
             },
             "draw": [
                 ["RATOM", "BL556", "BL557", "BL558", "BL559", "BL560"]
@@ -561,8 +562,8 @@
                 "RUBOX": [["RUBOX"]]
             },
             "rwy": {
-                "09":   ["BL460", "BL459", "BL458", "BL457"],
-                "27":   ["BL556", "BL557", "BL558", "BL559", "BL560"]
+                "09":   [["RUBOX", "A120|S230"], ["BL460", "A100|S200"], ["BL459", "A70|S185"], "BL458", "BL457"],
+                "27":   [["RUBOX", "A120|S210"], ["BL556", "A120"], "BL557", ["BL558", "A70|S185"], "BL559", "BL560"]
             },
             "draw": [
                 ["RUBOX", "BL460", "BL459", "BL458", "BL457"],
@@ -574,11 +575,11 @@
             "name": "Tenky",
             "suffix": {"09":"6", "27":"5"},
             "transitions": {
-                "TENKY": ["ADKAL", ["TENKY"]]
+                "ADKAL": ["ADKAL"]
             },
             "rwy": {
-                "09":   ["BL455", "RUMAL", "BL454", "BL453", "BL452", "BL451"],
-                "27":   ["BL561"]
+                "09":   [["TENKY", "A100|S230"], "BL455", ["RUMAL", "A100|S210"], ["BL454", "A70|S185"], "BL453", "BL452", "BL451"],
+                "27":   [["TENKY", "A95|S210"], ["BL561", "A70|S185"]]
             },
             "draw": [
                 ["TENKY", "BL455", "RUMAL", "BL454", "BL453", "BL452", "BL451"],
