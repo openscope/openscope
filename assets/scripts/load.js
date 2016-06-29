@@ -1,36 +1,58 @@
+/**
+ * Loading indicator elements for HTML interface
+ */
+(function ($, zlsa, Fiber, mediator, version_string) {
+  "use strict";
+  $("#loading").append("<div class='version'>" + version_string + "</div>");
 
-function load_init_pre() {
-  prop.load={};
-  prop.load.items={
-    done: 0,
-    total: 0
+  var minimumDisplayTime = 2; //seconds
+
+  var state = {
+    loading: false,
+    callback: null,
+    start: null
   };
-  prop.load.complete = false;
-  prop.load.message = "loading";
 
-  $("#loading").append("<div class='version'>" + prop.version_string + "</div>")
+  zlsa.atc.LoadUI = {
+    complete: function() {
+      $("#loading").fadeOut(1000);
+      $("#loading").css("pointerEvents","none");
+    },
 
-  load_tick();
-}
+    startLoad: function(url) {
+      var msg = url;
+      if (url.length > 15)
+        msg = '...' + url.substr(-12);
+      $("#loadingIndicator .message").text(msg);
 
-function load_item_done() {
-  prop.load.items.done+=1;
-}
+      if (!state.loading) {
+        $("#loadingIndicator").show();
+        state.start = new Date().getTime() * 0.001;
+      }
 
-function load_item_add() {
-  prop.load.items.total+=1;
-}
+      if (state.callback !== null) {
+        clearTimeout(state.callback);
+        state.callback = null;
+      }
+    },
 
-function load_tick() {
-  $('#loading h2').text(prop.load.message);
-  if(!prop.load.complete)
-    setTimeout(load_tick, 1000/30);
-}
-
-function load_complete() {
-  prop.load.complete = true;
-  setTimeout(function() {
-    $("#loading").fadeOut(1000);
-    $("#loading").css("pointerEvents","none");
-  }, 500);
-}
+    stopLoad: function() {
+      var now = new Date().getTime() * 0.001;
+      if ((now - state.start) > minimumDisplayTime) {
+        $("#loadingIndicator").hide();
+        state.start = null;
+        state.loading = false;
+      }
+      else {
+        if (state.callback !== null)
+          return;
+        state.callback = setTimeout(function () {
+          $("#loadingIndicator").hide();
+          state.start = null;
+          state.loading = false;
+          state.callback = null;
+        }, (minimumDisplayTime - (now - state.start)) * 1000);
+      }
+    },
+  };
+})($, zlsa, Fiber, zlsa.atc.mediator, prop.version_string);

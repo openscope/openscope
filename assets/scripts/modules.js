@@ -1,5 +1,23 @@
 var zlsa = {atc: {}};
 
+var Mediator = Fiber.extend(function (base) {
+  return {
+    init: function (options) {
+    },
+
+    trigger: function(event, data) {
+      if (event == 'startLoading') {
+        zlsa.atc.LoadUI.startLoad(data);
+      }
+      else if (event == 'stopLoading') {
+        zlsa.atc.LoadUI.stopLoad();
+      }
+    },
+  };
+});
+
+zlsa.atc.mediator = new Mediator();
+
 //////////////////////////////////////////////////////////////////////////////////////////
 
 // all modules, prefix with "-" to signify library; <name>_init etc. won't be called
@@ -280,6 +298,7 @@ function resize() {
 function update() {
   if(!prop.complete) {
     call_module("*","complete");
+    zlsa.atc.LoadUI.complete();
     prop.complete=true;
   }
 

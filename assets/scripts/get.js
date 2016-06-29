@@ -124,6 +124,4 @@
   zlsa.atc.loadAsset = function(options) {
     return contentQueue.add(options);
   };
-})($, zlsa, Fiber, {trigger: function (evt, data) {
-  console.log(evt);
-}});
+})($, zlsa, Fiber, zlsa.atc.mediator);
