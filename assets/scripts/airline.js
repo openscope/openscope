@@ -36,6 +36,7 @@ zlsa.atc.Airline = Fiber.extend(function() {
 
       this.loading = true;
       this.loaded = false;
+      this.priorityLoad = false;
       this._pendingAircraft = [];
       this.parse(options);
       if (options.url) this.load(options.url);
@@ -70,14 +71,16 @@ zlsa.atc.Airline = Fiber.extend(function() {
      * Load the data for this airline
      */
     load: function(url) {
+      this._url = url;
       if (this.loaded)
         return;
       zlsa.atc.loadAsset({url: url,
-                          immediate: true})
+                          immediate: this.priorityLoad})
         .done(function (data) {
           this.parse(data);
           this.loading = false;
           this.loaded = true;
+          this.validateFleets();
           this._generatePendingAircraft();
         }.bind(this))
         .fail(function (jqXHR, textStatus, errorThrown) {
@@ -114,6 +117,11 @@ zlsa.atc.Airline = Fiber.extend(function() {
       if (!this.loaded) {
         if (this.loading) {
           this._pendingAircraft.push(options);
+          if (!this.priorityLoad) {
+            zlsa.atc.loadAsset({url: this._url,
+                                immediate: true});
+            this.priorityLoad = true;
+          }
           return true;
         }
         else {
@@ -156,6 +164,9 @@ zlsa.atc.Airline = Fiber.extend(function() {
     validateFleets: function () {
       for (var f in this.fleets) {
         for (var j=0;j<this.fleets[f].length;j++) {
+          // Preload the aircraft model
+          aircraft_model_get(this.fleets[f][j][0]);
+
           if (typeof this.fleets[f][j][1] != "number") {
             console.warn("Airline " + this.icao.toUpperCase()
                          + " uses non numeric weight for aircraft " +
@@ -187,23 +198,6 @@ zlsa.atc.Airline = Fiber.extend(function() {
     },
   };
 });
-
-function airline_init() {
-}
-
-function airline_load(icao) {
-  icao = icao.toLowerCase();
-  new Content({
-    type: "json",
-    url: "assets/airlines/"+icao+".json",
-    payload: icao.toLowerCase(),
-    callback: function(status, data, payload) {
-      if(status == "ok") {
-        prop.airline.airlines[payload] = new zlsa.atc.Airline(payload, data);
-      }
-    }
-  });
-}
 
 function airline_get(icao) {
   icao = icao.toLowerCase();

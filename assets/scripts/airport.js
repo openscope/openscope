@@ -60,6 +60,11 @@ zlsa.atc.ArrivalBase = Fiber.extend(function(base) {
         for (var i=0; i<options.fixes.length; i++)
           this.fixes.push({fix: options.fixes[i]});
       }
+
+      // Pre-load the airlines
+      $.each(this.airlines, function (i, data) {
+        airline_get(data[0].split('/')[0]);
+      });
     },
     /** Stop this arrival stream
      */
@@ -412,6 +417,10 @@ zlsa.atc.DepartureBase = Fiber.extend(function(base) {
       for(var i in params) {
         if(options[params[i]]) this[params[i]] = options[params[i]];
       }
+      // Pre-load the airlines
+      $.each(this.airlines, function (i, data) {
+        airline_get(data[0].split('/')[0]);
+      });
     },
     /** Stop this departure stream
      */
