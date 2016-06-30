@@ -1,0 +1,592 @@
+{
+  "radio": {
+    "twr": "Pudong Tower",
+    "app": "Shanghai Approach",
+    "dep": "Shanghai Approach"
+  },
+  "icao": "ZSPD",
+  "iata": "PVG",
+  "magnetic_north": 0,
+  "ctr_radius": 80,
+  "ctr_ceiling": 25000,
+  "initial_alt": 3000,
+  "position": ["N31d08m70.00", "E121d47m60.00"],
+  "rr_radius_nm": 5.0,
+  "rr_center": ["N31d08m70.00", "E121d47m60.00"],
+  "has_terrain": false,
+  "wind": {
+    "angle": 110,
+    "speed": 0
+  },
+  "airspace": [
+  {
+    "floor": 			0,
+    "ceiling": 		21000,
+    "airspace_class":	"D",
+    "poly":
+    [
+        ["N31d56m06.00",   "E121d34m30.00"],
+        ["N32d05m54.00",   "E120d58m45.00"],
+        ["N32d10m00.00",   "E120d44m00.00"],
+        ["N31d35m21.00",   "E120d19m44.00"],
+        ["N30d53m10.00",   "E120d25m00.00"], 
+        ["N30d43m54.00",   "E121d17m12.00"],
+        ["N30d45m08.00",   "E121d33m30.00"], 
+        ["N30d37m00.00",   "E122d00m11.00"],
+        ["N30d48m00.00",   "E122d11m00.00"],
+        ["N30d48m00.00",   "E122d31m39.00"], 
+        ["N31d12m41.00",   "E122d46m30.00"],
+        ["N31d46m23.00",   "E122d47m05.00"],
+        ["N31d51m00.00",   "E122d02m00.00"], 
+        ["N31d51m00.00",   "E122d02m00.00"],
+        ["N31d51m00.00",   "E122d02m00.00"]
+    ]
+  }
+],
+  "fixes": {
+        "AKARA":    ["N31d30m00.00",    "E123d30m00.00"],
+        "ALDAP":    ["N31d37m50.00",    "E122d22m20.00"],
+        "AND":      ["N30d15m40.00",    "E121d13m30.00"],
+        "BOLEX":    ["N31d00m00.00",    "E123d00m00.00"],
+        "BONGI":    ["N31d00m00.00",    "E122d38m90.00"],
+        "EKIMU":    ["N31d21m10.00",    "E121d06m60.00"],
+        "HSH":      ["N31d22m10.00",    "E121d50m80.00"],
+        "HSN":      ["N29d55m90.00",    "E122d21m80.00"],
+        "IBEGI":    ["N31d49m40.00",    "E122d16m60.00"],
+        "IDNIK":    ["N30d26m00.00",    "E121d29m90.00"],
+        "JTN":      ["N31d07m40.00",    "E121d20m50.00"],
+        "LAMEN":    ["N31d36m60.00",    "E124d00m00.00"],
+        "LASAN":    ["N31d00m00.00",    "E122d25m50.00"],
+        "NINAS":    ["N31d00m00.00",    "E122d15m00.00"],
+        "NTG":      ["N32d05m80.00",    "E120d58m70.00"],
+        "NXD":      ["N30d53m80.00",    "E120d25m80.00"],
+        "ODULO":    ["N33d15m20.00",    "E121d37m20.00"],
+        "OLGAP":    ["N31d04m40.00",    "E121d09m00.00"],
+        "PD047":    ["N30d58m68.00",    "E121d56m07.00"],
+        "PD048":    ["N30d56m88.00",    "E121d57m40.00"],
+        "PD051":    ["N30d58m07.00",    "E122d03m87.00"],
+        "PD052":    ["N31d05m05.00",    "E122d02m95.00"],
+        "PD053":    ["N31d26m77.00",    "E122d00m05.00"],
+        "PD054":    ["N31d07m07.00",    "E122d18m18.00"],
+        "PD055":    ["N30d54m52.00",    "E121d50m32.00"],
+        "PD072":    ["N31d12m55.00",    "E121d07m83.00"],
+        "PIKAS":    ["N32d10m00.00",    "E120d44m00.00"],
+        "PINOT":    ["N31d27m00.00",    "E122d27m00.00"],
+        "POMOK":    ["N31d27m00.00",    "E121d07m00.00"],
+        "PONAB":    ["N30d35m30.00",    "E122d24m10.00"],
+        "SASAN":    ["N31d35m40.00",    "E120d19m20.00"],
+        "SUF":      ["N31d29m90.00",    "E120d25m90.00"],
+        "SURAK":    ["N31d46m40.00",    "E123d29m50.00"],
+        "TONIX":    ["N31d19m90.00",    "E123d32m60.00"],
+        "UDOXI":    ["N31d52m60.00",    "E121d47m10.00"],
+        "UNTOP":    ["N30d44m00.00",    "E122d16m60.00"],
+        "XSY":      ["N30d55m90.00",    "E121d52m40.00"],
+        "D066I":    ["N31d26m40.00",    "E121d59m32.00"],
+        "D083D":    ["N30d56m87.00",    "E121d57m36.00"],
+        "D083F":    ["N30d57m33.00",    "E121d59m66.00"],
+        "D087D":    ["N30d57m64.00",    "E121d56m35.00"],
+        "D118F":    ["N31d05m10.00",    "E121d26m60.00"],
+        "D152L":    ["N31d00m27.00",    "E121d54m79.00"],
+        "D152P":    ["N30d56m67.00",    "E121d57m00.00"],
+        "D152V":    ["N30d51m57.00",    "E122d01m59.00"], 
+        "D224L":    ["N31d00m91.00",    "E121d38m46.00"],
+        "D288W":    ["N31d00m62.00",    "E121d26m69.00"],
+        "HSH22":    ["N31d03m59.00",    "E122d04m74.00"]
+    },
+
+  "runways": [
+    {
+      "name": ["17R", "35L"],
+      "name_offset": [[0, 0], [0, 0]],
+      "end": [["N31d09m16.60", "E121d47m00.20"], ["N31d07m33.00", "E121d47m39.40"]],
+      "length": 4,
+      "ils": [true, true]
+    },
+    {
+      "name": ["17L", "35R"],
+      "name_offset": [[0, 0], [0, 0]],
+      "end": [["N31d09m39.80", "E121d47m09.70"], ["N31d07m37.60", "E121d47m55.90"]],
+      "length": 3.400,
+      "ils": [true, true]
+    },
+    {
+      "name": ["16L", "34R"],
+      "name_offset": [[0, 0], [0, 0]],
+      "end": [["N31d09m35.90", "E121d48m58.40"], ["N31d07m39.90", "E121d49m42.20"]],
+      "length": 3.800,
+      "ils": [true, true]
+    },
+    {
+      "name": ["16R", "34R"],
+      "name_offset": [[0, 0], [0, 0]],
+      "end": [["N31d09m31.50", "E121d48m42.60"], ["N31d07m35.40", "E121d49m26.40"]],
+      "length": 3.800,
+      "ils": [true, true]
+    }
+  ],
+
+  "sids": {
+    "SUR21X": {
+        "icao": "SUR21X",
+        "name": "Surak Two One Xray",
+        "rwy": {
+            "16L": [["PD048", "A59"], ["NINAS", "A89"], "LASAN", "BONGI", "BOLEX", "TONIX", "AKARA", "SURAK"],
+            "16R": [["PD048", "A59"], ["NINAS", "A89"], "LASAN", "BONGI", "BOLEX", "TONIX", "AKARA", "SURAK"]
+        },
+        "draw": [
+          ["PD048", "NINAS", "LASAN", "BONGI", "BOLEX", "TONIX", "AKARA", "SURAK"]
+        ]
+    },
+    "SUR21D": {
+        "icao": "SUR21D",
+        "name": "Surak Two One Delta",
+        "rwy": {
+            "16L": [["D083F", "A59"], ["NINAS", "A89"], "LASAN", "BONGI", "BOLEX", "TONIX", "AKARA", "SURAK"],
+            "16R": [["D083F", "A59"], ["NINAS", "A89"], "LASAN", "BONGI", "BOLEX", "TONIX", "AKARA", "SURAK"]
+        },
+        "draw": [
+          ["D083F", "NINAS"],
+          ["SURAK"]
+        ]
+    },
+    "SUF21X": {
+        "icao": "SUF21X",
+        "name": "Shuofang Two One Xray",
+        "rwy": {
+            "16L": ["PD047", "PD055", "OLGAP", "PD072", "SUF"],
+            "16R": ["PD047", "PD055", "OLGAP", "PD072", "SUF"]
+        },
+        "draw": [
+          ["PD047", "PD055", "OLGAP", "PD072", "SUF"]
+        ]
+    },
+    "SUF21D": {
+        "icao": "SUF21D",
+        "name": "Shuofang Two One Delta",
+        "rwy": {
+            "16L": ["D152L", "XSY", ["D118F", "A89"], ["JTN", "A99"], "SUF"],
+            "16R": ["D152L", "XSY", ["D118F", "A89"], ["JTN", "A99"], "SUF"]
+        },
+        "draw": [
+          ["D152L", "XSY", "D118F"], 
+          ["JTN", "SUF"]
+        ]
+    },
+    "SAS21X": {
+        "icao": "SAS21X",
+        "name": "Sasan Two One Xray",
+        "rwy": {
+            "16L": ["PD047", "PD055", "OLGAP", "EKIMU", "SASAN"],
+            "16R": ["PD047", "PD055", "OLGAP", "EKIMU", "SASAN"]
+        },
+        "draw": [
+          ["OLGAP", "EKIMU", "SASAN"]
+        ]
+    },
+    "SAS21D": {
+        "icao": "SAS21D",
+        "name": "Sasan Two One Delta",
+        "rwy": {
+            "16L": ["D152L", "XSY", ["D118F", "A89"], ["JTN", "A99"], "EKIMU", "SASAN"],
+            "16R": ["D152L", "XSY", ["D118F", "A89"], ["JTN", "A99"], "EKIMU", "SASAN"]
+        },
+        "draw": [
+          ["JTN", "EKIMU"],
+          ["SASAN"]
+        ]
+    },
+    "PIK27X": {
+        "icao": "PIK27X",
+        "name": "Pikas Two Seven Xray",
+        "rwy": {
+            "16L": [["PD048", "A59"], "PD051", ["PD052", "A89"], "HSH", "POMOK", "PIKAS"],
+            "16R": [["PD048", "A59"], "PD051", ["PD052", "A89"], "HSH", "POMOK", "PIKAS"]
+        },
+        "draw": [
+          ["PD048", "PD051", "PD052", "HSH", "POMOK", "PIKAS"]
+        ]
+    },
+    "PIK27D": {
+        "icao": "PIK27D",
+        "name": "Pikas Two Seven Delta",
+        "rwy": {
+            "16L": ["D087D", ["D083F", "A59"], ["HSH22", "A89"], "HSH", "POMOK", "PIKAS"],
+            "16R": ["D087D", ["D083F", "A59"], ["HSH22", "A89"], "HSH", "POMOK", "PIKAS"]
+        },
+        "draw": [
+          ["D087D", "D083F", "HSH22", "HSH"],
+          ["PIKAS"]
+        ]
+    },
+    "PIK23X": {
+        "icao": "PIK23X",
+        "name": "Pikas Two Three Xray",
+        "rwy": {
+            "16L": [["PD048", "A59"], "PD051", ["PD052", "A89"], "HSH", "NTG", "PIKAS"],
+            "16R": [["PD048", "A59"], "PD051", ["PD052", "A89"], "HSH", "NTG", "PIKAS"]
+        },
+        "draw": [
+          ["HSH", "NTG", "PIKAS"]
+        ]
+    },
+    "PIK23D": {
+        "icao": "PIK23D",
+        "name": "Pikas Two Three Delta",
+        "rwy": {
+            "16L": ["D087D", ["D083F", "A59"], ["HSH22", "A89"], "HSH", "NTG", "PIKAS"],
+            "16R": ["D087D", ["D083F", "A59"], ["HSH22", "A89"], "HSH", "NTG", "PIKAS"]
+        },
+        "draw": [
+          ["PIKAS"]
+        ]
+    },
+    "PIK21X": {
+        "icao": "PIK21X",
+        "name": "Pikas Two One Xray",
+        "rwy": {
+            "16L": ["PD047", "PD055", "OLGAP", "POMOK", "PIKAS"],
+            "16R": ["PD047", "PD055", "OLGAP", "POMOK", "PIKAS"]
+        },
+        "draw": [
+          ["POMOK", "PIKAS"]
+        ]
+    },
+    "PIK21D": {
+        "icao": "PIK21D",
+        "name": "Pikas Two One Delta",
+        "rwy": {
+            "16L": ["D152L", "XSY", ["D118F", "A89"], "JTN", "POMOK", "PIKAS"],
+            "16R": ["D152L", "XSY", ["D118F", "A89"], "JTN", "POMOK", "PIKAS"]
+        },
+        "draw": [
+          ["PIKAS"]
+        ]
+    },
+    "ODU43D": {
+        "icao": "ODU43D",
+        "name": "Odulo Four Three Delta",
+        "rwy": {
+            "16L": ["D083D", ["D083F", "A51"], ["HSH22", "A89"], "HSH", ["D066I", "A131"], "ALDAP", "IBEGI", "ODULO"],
+            "16R": ["D083D", ["D083F", "A51"], ["HSH22", "A89"], "HSH", ["D066I", "A131"], "ALDAP", "IBEGI", "ODULO"]
+        },
+        "draw": [
+          ["D083D", "D083F", "HSH22", "HSH", "D066I", "ALDAP", "IBEGI", "ODULO"]
+        ]
+    },
+    "ODU27D": {
+        "icao": "ODU27D",
+        "name": "Odulo Two Seven Delta",
+        "rwy": {
+            "16L": ["D083D", ["D083F", "A51"], ["HSH22", "A89"], "HSH", "UDOXI", "ODULO"],
+            "16R": ["D083D", ["D083F", "A51"], ["HSH22", "A89"], "HSH", "UDOXI", "ODULO"]
+        },
+        "draw": [
+          ["HSH", "UDOXI", "ODULO"]
+        ]
+    },
+    "ODU25X": {
+        "icao": "ODU25X",
+        "name": "Odulo Two Five Xray",
+        "rwy": {
+            "16L": [["PD048", "A59"], "PD051", ["PD052", "A89"], "HSH", "UDOXI", "ODULO"],
+            "16R": [["PD048", "A59"], "PD051", ["PD052", "A89"], "HSH", "UDOXI", "ODULO"]
+        },
+        "draw": [
+          ["ODULO"]
+        ]
+    },
+    "ODU23X": {
+        "icao": "ODU23X",
+        "name": "Odulo Two Three Xray",
+        "rwy": {
+            "16L": [["PD048", "A59"], "PD051", ["PD052", "A89"], ["PD053", "A131"], "ALDAP", "IBEGI", "ODULO"],
+            "16R": [["PD048", "A59"], "PD051", ["PD052", "A89"], ["PD053", "A131"], "ALDAP", "IBEGI", "ODULO"]
+        },
+        "draw": [
+          ["PD052", "PD053", "ALDAP"],
+          ["ODULO"]
+        ]
+    },
+    "ODU21X": {
+        "icao": "ODU21X",
+        "name": "Odulo Two One Xray",
+        "rwy": {
+            "16L": [["PD048", "A59"], ["NINAS", "A89"], ["PD054", "A118"], "PINOT", "ALDAP", "IBEGI", "ODULO"],
+            "16R": [["PD048", "A59"], ["NINAS", "A89"], ["PD054", "A118"], "PINOT", "ALDAP", "IBEGI", "ODULO"]
+        },
+        "draw": [
+          ["NINAS", "PD054", "PINOT", "ALDAP"],
+          ["ODULO"]
+        ]
+    },
+    "ODU21D": {
+        "icao": "ODU21D",
+        "name": "Odulo Two One Delta",
+        "rwy": {
+            "16L": ["D083D", ["D083F", "A51"], ["NINAS", "A89"], ["PD054", "A118"], "PINOT", "ALDAP", "IBEGI", "ODULO"],
+            "16R": ["D083D", ["D083F", "A51"], ["NINAS", "A89"], ["PD054", "A118"], "PINOT", "ALDAP", "IBEGI", "ODULO"]
+        },
+        "draw": [
+          ["ODULO"]
+        ]
+    },
+    "NXD23X": {
+        "icao": "NXD23X",
+        "name": "Nanxun Two Three Xray",
+        "rwy": {
+            "16L": ["PD047", "PD055", "OLGAP", ["NXD", "A128"]],
+            "16R": ["PD047", "PD055", "OLGAP", ["NXD", "A128"]]
+        },
+        "draw": [
+          ["OLGAP", "NXD"]
+        ]
+    },
+    "NXD23D": {
+        "icao": "NXD23D",
+        "name": "Nanxun Two Three Delta",
+        "rwy": {
+            "16L": ["D152L", "XSY", ["D288W", "A79"], "OLGAP", ["NXD", "A128"]],
+            "16R": ["D152L", "XSY", ["D288W", "A79"], "OLGAP", ["NXD", "A128"]]
+        },
+        "draw": [
+          ["XSY", "D288W", "OLGAP"],
+          ["NXD"]
+        ]
+    },
+    "NXD21D": {
+        "icao": "NXD21D",
+        "name": "Nanxun Two One Delta",
+        "rwy": {
+            "16L": ["D152L", "XSY", ["D118F", "A89"], ["JTN", "A99"], "OLGAP", ["NXD", "A128"]],
+            "16R": ["D152L", "XSY", ["D118F", "A89"], ["JTN", "A99"], "OLGAP", ["NXD", "A128"]]
+        },
+        "draw": [
+          ["JTN", "OLGAP"],
+          ["NXD"]
+        ]
+    },
+    "LAM21X": {
+        "icao": "LAM21X",
+        "name": "Lamen Two One Xray",
+        "rwy": {
+            "16L": [["PD048", "A59"], ["NINAS", "A89"], "LASAN", "BONGI", "BOLEX", "TONIX", "LAMEN"],
+            "16R": [["PD048", "A59"], ["NINAS", "A89"], "LASAN", "BONGI", "BOLEX", "TONIX", "LAMEN"]
+        },
+        "draw": [
+          ["NINAS", "LASAN", "BONGI", "BOLEX", "TONIX", "LAMEN"]
+        ]
+    },
+    "LAM21D": {
+        "icao": "LAM21D",
+        "name": "Lamen Two One Delta",
+        "rwy": {
+            "16L": ["D087D", ["D083F", "A59"], ["NINAS", "A89"], "LASAN", "BONGI", "BOLEX", "TONIX", "LAMEN"],
+            "16R": ["D087D", ["D083F", "A59"], ["NINAS", "A89"], "LASAN", "BONGI", "BOLEX", "TONIX", "LAMEN"]
+        },
+        "draw": [
+          ["LAMEN"]
+        ]
+    },
+    "JTN11D": {
+        "icao": "JTN11D",
+        "name": "Jiuting One One Delta",
+        "rwy": {
+            "16L": ["XSY", "D224L", ["D118F", "A79"], "JTN"],
+            "16R": ["XSY", "D224L", ["D118F", "A79"], "JTN"]
+        },
+        "draw": [
+          ["XSY", "D224L", "D118F"], 
+          ["JTN"]
+        ]
+    },
+    "HSN23X": {
+        "icao": "HSN23X",
+        "name": "Zhoushan Two Three Xray",
+        "rwy": {
+            "16L": [["PD048", "A59"], ["NINAS", "A89"], "PONAB", ["HSN", "A256"]],
+            "16R": [["PD048", "A59"], ["NINAS", "A89"], "PONAB", ["HSN", "A256"]]
+        },
+        "draw": [
+          ["NINAS", "PONAB", "HSN"] 
+        ]
+    },
+    "HSN23D": {
+        "icao": "HSN23D",
+        "name": "Zhoushan Two Three Delta",
+        "rwy": {
+            "16L": ["D083D", ["D083F", "A59"], ["NINAS", "A89"], "PONAB", ["HSN", "A256"]],
+            "16R": ["D083D", ["D083F", "A59"], ["NINAS", "A89"], "PONAB", ["HSN", "A256"]]
+        },
+        "draw": [
+          ["HSN"] 
+        ]
+    },
+    "HSN21X": {
+        "icao": "HSN21X",
+        "name": "Zhoushan Two One Xray",
+        "rwy": {
+            "16L": [["PD048", "A59"], "UNTOP", "PONAB", ["HSN", "A256"]],
+            "16R": [["PD048", "A59"], "UNTOP", "PONAB", ["HSN", "A256"]]
+        },
+        "draw": [
+          ["PD048", "UNTOP", "PONAB"],
+          ["HSN"] 
+        ]
+    },
+    "HSN21D": {
+        "icao": "HSN21D",
+        "name": "Zhoushan Two One Delta",
+        "rwy": {
+            "16L": [["D152P", "A59"], "D152V", "UNTOP", "PONAB", ["HSN", "A256"]],
+            "16R": [["D152P", "A59"], "D152V", "UNTOP", "PONAB", ["HSN", "A256"]]
+        },
+        "draw": [
+          ["D152P", "D152V", "UNTOP"],
+          ["HSN"] 
+        ]
+    },
+    "BOL21X": {
+        "icao": "BOL21X",
+        "name": "Bolex Two One Xray",
+        "rwy": {
+            "16L": [["PD048", "A59"], ["NINAS", "A89"], "LASAN", "BONGI", "BOLEX"],
+            "16R": [["PD048", "A59"], ["NINAS", "A89"], "LASAN", "BONGI", "BOLEX"]
+        },
+        "draw": [
+          ["BOLEX"]
+        ]
+    },
+    "BOL21D": {
+        "icao": "BOL21D",
+        "name": "Bolex Two One Delta",
+        "rwy": {
+            "16L": ["D083D", ["D083F", "A59"], ["NINAS", "A89"], "LASAN", "BONGI", "BOLEX"],
+            "16R": ["D083D", ["D083F", "A59"], ["NINAS", "A89"], "LASAN", "BONGI", "BOLEX"]
+        },
+        "draw": [
+          ["BOLEX"]
+        ]
+    },
+    "AND21X": {
+        "icao": "AND21X",
+        "name": "Andong Two One Xray",
+        "rwy": {
+            "16L": ["PD047", "IDNIK", "AND"],
+            "16R": ["PD047", "IDNIK", "AND"]
+        },
+        "draw": [
+          ["PD047", "IDNIK", "AND"]
+        ]
+    },
+    "AND21D": {
+        "icao": "AND21D",
+        "name": "Andong Two One Delta",
+        "rwy": {
+            "16L": ["D152L", "XSY", "IDNIK", "AND"],
+            "16R": ["D152L", "XSY", "IDNIK", "AND"]
+        },
+        "draw": [
+          ["XSY", "IDNIK"],
+          ["AND"]
+        ]
+    }
+  },
+
+  "departures": {
+    "airlines": [
+      ["ces",  4],
+      ["csn",  1]
+    ],
+    "destinations": [
+        "SUR21X",
+        "SUR21D",
+        "SUF21X",
+        "SUF21D",
+        "SAS21X",
+        "SAS21D",
+        "PIK27X",
+        "PIK27D",
+        "PIK23X",
+        "PIK23D",
+        "PIK21X",
+        "PIK21D",
+        "ODU43D",
+        "ODU27D",
+        "ODU25X",
+        "ODU23X",
+        "ODU21X",
+        "ODU21D",
+        "NXD23X",
+        "NXD23D",
+        "NXD21D",
+        "LAM21X",
+        "LAM21D",
+        "JTN11D",
+        "HSN23X",
+        "HSN23D",
+        "HSN21X",
+        "HSN21D",
+        "BOL21X",
+        "BOL21D",
+        "AND21X",
+        "AND21D"
+    ],
+    "type": "cyclic",
+    "offset": 0,
+    "frequency": 75
+  },
+  "_stars": {
+    "ARAMA": {
+        "icao": "ARAMA",
+        "name": "Arama",
+        "suffix": {"02L":"1A", "20R":"1B", "02C":"1A", "20C":"1B"},
+        "transitions": {
+          "ARAMA": [["_ARAMA", "S250"]]
+        },
+        "rwy": {
+          "02L": [["BOBAG", "A100|S220"], ["BOKIP", "A60"], ["SAMKO", "A40|S190-"]],
+          "02C": [["BOBAG", "A100|S220"], ["BOKIP", "A60"], ["SAMKO", "A40|S190-"]],
+          "20R": [["BOBAG", "A100|S220"], "SAMKO", ["BTM", "A70|S220"], ["DOVAN", "A40"], ["BIPOP", "A30|S190"]],
+          "20C": [["BOBAG", "A100|S220"], "SAMKO", ["BTM", "A70|S220"], ["DOVAN", "A40"], ["BIPOP", "A30|S190"]]
+        },
+        "draw": [
+          ["ARAMA", "BOBAG", "BOKIP", "SAMKO"],
+          ["ARAMA", "BOBAG", "SAMKO", "BTM", "DOVAN", "BIPOP"]
+        ]
+    }
+  },
+  "_arrivals": [
+    {
+      "type": 		"cyclic",
+      "route":    "ARAMA.ARAMA.WSSS",
+      "frequency": 17,
+      "altitude": 24000,
+      "speed":		430,
+      "offset":		2,
+      "airlines": [
+        ["afr",  1],
+        ["aic",  3],
+        ["axb",  2],
+        ["baw",  2],
+        ["uae",  4],
+        ["etd",  1],
+        ["igo",  1],
+        ["jal",  2],
+        ["jai",  3],
+        ["jsa", 27],
+        ["klm",  2],
+        ["dlh",  1],
+        ["qtr",  1],
+        ["sco", 22],
+        ["slk", 51],
+        ["sia", 64],
+        ["sqc", 22],
+        ["swr",  1],
+        ["tgw", 41],
+        ["thy",  2],
+        ["fdx", 10],
+        ["ups",  4]
+        ]
+    }
+  ]
+}
