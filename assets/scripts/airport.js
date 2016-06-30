@@ -1353,6 +1353,7 @@ function airport_init() {
   airport_load('wmkp', "medium", "Pulau Pinang International Airport");
   airport_load('wmkk', "hard", "Kuala Lumpur International Airport (KLIA)")
   airport_load('wsss', "hard", "Singapore Changi International Airport");
+  airport_load('zspd', "hard", "Shanghai Pudong International Airport");
 }
 
 function airport_ready() {
