@@ -265,6 +265,8 @@ var Model=Fiber.extend(function() {
 
       this.loading = true;
       this.loaded = false;
+      this.priorityLoad = false;
+
       this.name = null;
       this.icao = null;
 
@@ -318,7 +320,9 @@ var Model=Fiber.extend(function() {
       if(data.speed) this.speed = data.speed;
     },
     load: function(url) {
-      $.getJSON(url)
+      this._url = url;
+      zlsa.atc.loadAsset({url: url,
+                          immediate: false})
         .done(function (data) {
           this.parse(data);
           this.loading = false;
@@ -342,6 +346,11 @@ var Model=Fiber.extend(function() {
       if (!this.loaded) {
         if (this.loading) {
           this._pendingAircraft.push(options);
+          if (!this.priorityLoad) {
+            zlsa.atc.loadAsset({url: this._url,
+                                immediate: true});
+            this.priorityLoad = true;
+          }
           return true;
         }
         else {

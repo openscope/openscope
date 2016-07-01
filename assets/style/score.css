@@ -1,9 +1,9 @@
-
 #score {
   color: rgba(255, 255, 255, 0.5);
   position: absolute;
   bottom: 0;
   right: 0;
+  width: 56px;
   padding: 8px 15px;
 }
 

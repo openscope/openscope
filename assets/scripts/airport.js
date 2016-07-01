@@ -60,6 +60,11 @@ zlsa.atc.ArrivalBase = Fiber.extend(function(base) {
         for (var i=0; i<options.fixes.length; i++)
           this.fixes.push({fix: options.fixes[i]});
       }
+
+      // Pre-load the airlines
+      $.each(this.airlines, function (i, data) {
+        airline_get(data[0].split('/')[0]);
+      });
     },
     /** Stop this arrival stream
      */
@@ -412,6 +417,10 @@ zlsa.atc.DepartureBase = Fiber.extend(function(base) {
       for(var i in params) {
         if(options[params[i]]) this[params[i]] = options[params[i]];
       }
+      // Pre-load the airlines
+      $.each(this.airlines, function (i, data) {
+        airline_get(data[0].split('/')[0]);
+      });
     },
     /** Stop this departure stream
      */
@@ -939,7 +948,8 @@ var Airport=Fiber.extend(function() {
       }
     },
     loadTerrain: function() {
-      $.getJSON('assets/airports/terrain/' + this.icao.toLowerCase() + '.geojson')
+      zlsa.atc.loadAsset({url: 'assets/airports/terrain/' + this.icao.toLowerCase() + '.geojson',
+                         immediate: true})
         .done(function (data) {
           try {
             log('Parsing terrain');
@@ -965,7 +975,8 @@ var Airport=Fiber.extend(function() {
 
       update_run(false);
       this.loading = true;
-      $.getJSON("assets/airports/"+this.icao.toLowerCase()+".json")
+      zlsa.atc.loadAsset({url: "assets/airports/"+this.icao.toLowerCase()+".json",
+                          immediate: true})
         .done(function (data) {
           this.parse(data);
           if (this.has_terrain)
