@@ -1,0 +1,12 @@
+{
+    "name": "Spring Airlines",
+    "callsign": {
+        "name": "Air Spring",
+        "length": 3
+    },
+    "fleets": {
+        "default": [
+            ["A320",    60]
+        ]
+    }
+}
