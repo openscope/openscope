@@ -118,8 +118,7 @@ function input_select(callsign) {
 
 function input_change() {
   tab_completion_reset();
-  var value = $("#command").val();
-  prop.input.command = value;
+  prop.input.command = $("#command").val();
   input_parse();
 }
 
@@ -128,26 +127,16 @@ function input_parse() {
   prop.input.callsign = "";
   prop.input.data     = "";
 
-  var c = prop.input.command;
-  var i;
-  var skip=false;
-  var data=false;
+  if (prop.input.command.length == 0)
+    return;
 
-  for(i=0;i<c.length;i++) {
-    if(c[i] == " " && prop.input.data.length == 0 && prop.input.callsign.length != 0) {
-      skip=true;
-    }
-    if(skip && c[i] != " ") {
-      skip=false;
-      data=true;
-    }
-    if(!skip) {
-      if(data) prop.input.data += c[i].toLowerCase();
-      else prop.input.callsign += c[i].toLowerCase();
-    }
+  var match = /^\s*(\w+)/.exec(prop.input.command);
+  if (match) {
+    prop.input.callsign = match[1];
   }
-
-  if(prop.input.callsign.length == 0) return;
+  else {
+    return;
+  }
 
   var number = 0;
   var match  = null;
@@ -367,13 +356,25 @@ function input_history_next() {
 }
 
 function input_run() {
-  if(prop.input.callsign == "version") {
+  var result;
+  try {
+    result = zlsa.atc.Parser.parse(prop.input.command);
+  }
+  catch (e) {
+    if (e.hasOwnProperty('name') && e.name == 'SyntaxError') {
+      ui_log("Command not understood");
+      return;
+    }
+    throw e;
+  }
+
+  if(result.command == "version") {
     ui_log("Air Traffic Control simulator version " + prop.version.join("."));
     return true;
-  } else if(prop.input.callsign == "tutorial") {
+  } else if(result.command == "tutorial") {
     tutorial_toggle();
     return true;
-  } else if(prop.input.callsign == "auto") {
+  } else if(result.command == "auto") {
     aircraft_toggle_auto();
     if(prop.aircraft.auto.enabled) {
       ui_log('automatic controller ENGAGED');
@@ -381,26 +382,23 @@ function input_run() {
       ui_log('automatic controller OFF');
     }
     return true;
-  } else if(prop.input.callsign == "pause") {
+  } else if(result.command == "pause") {
     game_pause_toggle();
     return true;
-  } else if(prop.input.callsign == "timewarp" ||
-            prop.input.callsign == "speedup" ||
-            prop.input.callsign == "timescale" ||
-            prop.input.callsign == "slowmo") {
-    if(prop.input.data) {
-      prop.game.speedup = parseInt(prop.input.data);
+  } else if(result.command == "timewarp") {
+    if (result.args) {
+      prop.game.speedup = result.args;
     } else {
       game_timewarp_toggle();
     }
     return true;
-  } else if(prop.input.callsign == "clear") {
+  } else if(result.command == "clear") {
     localStorage.clear();
     location.reload();
-  } else if(prop.input.callsign == "airport") {
-    if(prop.input.data) {
-      if(prop.input.data.toLowerCase() in prop.airport.airports) {
-        airport_set(prop.input.data);
+  } else if(result.command == "airport") {
+    if(result.args) {
+      if(result.args.toLowerCase() in prop.airport.airports) {
+        airport_set(result.args.toLowerCase());
       } else {
         ui_airport_toggle();
       }
@@ -408,13 +406,12 @@ function input_run() {
       ui_airport_toggle();
     }
     return true;
-  } else if(prop.input.callsign == "rate") {
-    if (prop.input.data) {
-      var freq = parseFloat(prop.input.data);
-      if (freq && freq > 0) {
-        prop.game.frequency = freq;
-      }
+  } else if(result.command == "rate") {
+    if (result.args && result.args > 0) {
+      prop.game.frequency = result.args;
     }
+    return true;
+  } else if(result.command != 'transmit') {
     return true;
   }
 
@@ -423,7 +420,7 @@ function input_run() {
 
   for(var i=0;i<prop.aircraft.list.length;i++) {
     var aircraft=prop.aircraft.list[i];
-    if(aircraft.matchCallsign(prop.input.callsign)) {
+    if(aircraft.matchCallsign(result.callsign)) {
       matches += 1;
       match    = i;
     }
@@ -439,5 +436,5 @@ function input_run() {
   }
 
   var aircraft = prop.aircraft.list[match];
-  return aircraft.runCommand(prop.input.data);
+  return aircraft.runCommands(result.args);
 }
