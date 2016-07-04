@@ -156,7 +156,6 @@ zlsa.atc.ArrivalBase = Fiber.extend(function(base) {
           nextFix:   spawn_positions[i].nextFix
         });
       }
-
     },
     /** Stop this arrival stream
      */
