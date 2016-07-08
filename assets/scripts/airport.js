@@ -1144,7 +1144,7 @@ var Airport=Fiber.extend(function() {
       // Gather fixes used by STARs
       if(this.hasOwnProperty("stars")) {
         for(var s in this.stars) {
-          if(this.stars[s].hasOwnProperty("transtitions")) { // transtitions portion
+          if(this.stars[s].hasOwnProperty("transitions")) { // transitions portion
             for(var t in this.stars[s].transitions)
               for(var i in this.stars[s].transitions[t]) {
                 if(typeof this.stars[s].transitions[t][i] == "string")
