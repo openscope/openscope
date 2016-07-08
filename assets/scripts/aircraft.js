@@ -2308,6 +2308,7 @@ var Aircraft=Fiber.extend(function() {
       if(!this.isLanded()) return ["fail", "already airborne"];
       if(this.mode =="apron") return ["fail", "unable, we're still in the parking area"];
       if(this.mode == "taxi") return ["fail", "taxi to runway " + radio_runway(this.rwy_dep) + " not yet complete"];
+      if(this.mode == "takeoff") return ["fail", "already taking off"];
 
       if(this.fms.currentWaypoint().altitude <= 0) return ["fail", "no altitude assigned"];
 
