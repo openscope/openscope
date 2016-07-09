@@ -1007,7 +1007,8 @@
   },
   "departures": {
     "airlines": [
-      ["ein", 15],
+      ["ein", 12],
+      ["ein/long", 3]
       ["ryr", 10],
       ["stk",  7],
       ["baw",  5],
@@ -1033,10 +1034,11 @@
       "speed":    250,
       "fixes":    ["_EIDW305060", "OLAPO", "RONON", "ORVEN", "GIRAS", "KERAV", "KOGAX", "KUDOM", "DW814", "DW815", "DW816", "NARMU", "LAPMO"],
       "airlines":  [
-        ["ein", 10],
-        ["aal/long",  5],
+        ["ein/long",  5],
+        ["ein", 2],
+        ["aal/long",  3],
         ["aca/long",  2],
-        ["ual/long",  5],
+        ["ual/long",  3],
         ["stk",  5]
       ],
       "type": "surge",
@@ -1050,7 +1052,8 @@
       "speed":    250,
       "fixes":   ["_EIDW243060", "OSGAR", "DIRUM", "KEPOR", "ARVOK", "SORIN", "SIVNA", "SUGAD", "DW704", "DW705", "DW706", "SOPEP", "LAPMO"],
       "airlines":  [
-        ["ein", 4],
+        ["ein", 2],
+        ["ein/long", 2],
         ["aal/long", 3],
         ["aca/long", 2],
         ["dal/long", 2],
