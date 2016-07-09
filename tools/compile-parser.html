@@ -45,19 +45,19 @@ aircraftSubCommand
 cmdAbort
   = "abort" {return ["abort"]}
 
-/* FIXME: this should be extended to support a plain expedite with no altitude */
 cmdAltitude
   = cmdAltitudeShort / cmdAltitudeLong
 
 cmdAltitudeShort
   = ("\u2B61" / "\u2B63") arg:integer
-    {return ["altitude", arg, null]}
+    {return ["altitude", arg*100, null]}
 
 cmdAltitudeLong
-  = ("altitude" / "a" / "c" / "climb" / "d" / "descend")
-    whiteSpace arg:integer
+  = ("altitude" / "climb" / "descend" / "a" / "c"  / "d")
+    altitude:(_ arg:integer {return arg*100})?
     expedite:(_ ("expedite" / "x") {return true})?
-    {return ["altitude", arg, expedite]}
+    !{ return ((altitude == null) && (expedite == null)) }
+    {return ["altitude", altitude, expedite]}
 
 cmdClearedAsFiled
   = ("clearedasfiled" / "caf") { return ["clearedAsFiled"] }

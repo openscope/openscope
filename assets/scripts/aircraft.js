@@ -1752,12 +1752,12 @@ var Aircraft=Fiber.extend(function() {
       return ['ok', readback];
     },
     runAltitude: function(data) {
-      var altitude = data[0] * 100;
+      var altitude = data[0];
       var expedite = data[1];
 
-      if (isNaN(altitude)) {
+      if ((altitude == null) || isNaN(altitude)) {
         if (expedite) {
-          this.setCurrent({expedite: true});
+          this.fms.setCurrent({expedite: true});
           return ['ok', radio_trend('altitude', this.altitude, this.fms.currentWaypoint().altitude) + " " + this.fms.currentWaypoint().altitude + ' expedite'];
         }
         return ["fail", "altitude not understood"];
