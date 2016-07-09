@@ -77,19 +77,23 @@ cmdDirect
 cmdFix
   = (("fix" / "f" / "track") {return "fix"}) fixToken+
 
-/* FIXME: This needs to support incremental turns (direction + 2 digits) */
 cmdHeading
-  = cmdHeadingShort / cmdHeadingLong
+  = cmd:(cmdHeadingShort / cmdHeadingLong)
+    { return [cmd[0], cmd[1], cmd[2][0], cmd[2][1]] }
 
 cmdHeadingShort
   = dir:(("\u2BA2" {return "left"}) /
          ("\u2BA3" {return "right"}) /
-         ("fh" {return null})) arg:integer
+         ("fh" {return null})) arg:argHeading
          {return ['heading', dir, arg]}
 
 cmdHeadingLong
   = (("heading" / "turn" / "t" / "h") {return "heading"})
-    direction? (whiteSpace arg:integer {return arg})
+    direction? (_ arg:argHeading {return arg})
+
+argHeading
+  = ([0-9][0-9][0-9] {return [parseInt(text()), false]}) /
+    ([0-9][0-9] {return [parseInt(text()), true]})
 
 cmdHold
   = "hold" dir:(direction?)
