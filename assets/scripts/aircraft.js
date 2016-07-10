@@ -1005,7 +1005,7 @@ zlsa.atc.AircraftFlightManagementSystem = Fiber.extend(function() {
     /** Invokes flySID() for the SID in the flightplan (fms.fp.route)
      */
     clearedAsFiled: function() {
-      var retval = this.my_aircraft.runSID(aircraft_get(this.my_aircrafts_eid).destination);
+      var retval = this.my_aircraft.runSID([aircraft_get(this.my_aircrafts_eid).destination]);
       var ok = !(Array.isArray(retval) && retval[0]=="fail");
       return ok;
     },
@@ -1560,211 +1560,47 @@ var Aircraft=Fiber.extend(function() {
     },
 
     COMMANDS: {
-        /*
-        command name: {
-          func: ['name of function to call'],
-          shortkey: [list of shortKeys],
-              //Note: normal command/synonyms require format 'command arg'. Shortkeys
-              //instead are meant to NOT have the space that is required to properly
-              //parse the command. Shortkeys take the format of (shortkey character)
-              //followed by (command argument). Note that shortkeys MUST ALL HAVE FIRST
-              //CHARACTERS THAT ARE UNIQUE from each other, as that is how they are
-              //currently being identified. Examples of valid commands:
-              //'<250', '^6', '^6000', '.DUMBA'
-            synonyms: [list of synonyms]},
-              //Note: synonyms can be entered into the command bar by users and they
-              //have the same effect as typing the actual command, and use the same
-              //format as the full command. Examples of valid commands:
-              //'altitude 5'=='c 5', land 16'=='l 16', 'fix DUMBA'='f DUMBA'
-        */
-        abort: {func: 'runAbort'},
+      abort: 'runAbort',
+      altitude: 'runAltitude',
+      clearedAsFiled: 'runClearedAsFiled',
+      climbViaSID: 'runClimbViaSID',
+      debug: 'runDebug',
+      descendViaSTAR: 'runDescendViaSTAR',
+      direct: 'runDirect',
+      fix: 'runFix',
+      heading: 'runHeading',
+      hold: 'runHold',
+      land: 'runLanding',
+      moveDataBlock: 'runMoveDataBlock',
+      route: 'runRoute',
+      reroute: 'runReroute',
+      sayRoute: 'runSayRoute',
+      sid: 'runSID',
+      speed: 'runSpeed',
+      star: 'runSTAR',
+      takeoff: 'runTakeoff',
+      taxi: 'runTaxi'
+    },
 
-        altitude: {
-          func: 'runAltitude',
-          shortKey: ['\u2B61', '\u2B63'],
-          synonyms: ['a', 'c', 'climb', 'd', 'descend']},
-
-        clearedasfiled: {
-          func: 'runClearedAsFiled',
-          synonyms: ['caf']},
-
-        climbviasid: {
-          func: 'runClimbViaSID',
-          synonyms: ['cvs']},
-
-        debug: {func: 'runDebug'},
-
-        descendViaSTAR: {
-          func: 'runDescendViaSTAR',
-          synonyms: ['dvs']},
-
-        direct: {
-          func: 'runDirect',
-          synonyms: ['dct', 'pd']},
-
-        fix: {
-          func: 'runFix',
-          synonyms: ['f', 'track']},
-
-        heading: {
-          func: 'runHeading',
-          shortKey: ['\u2BA2','\u2BA3','fh'],
-          synonyms: ['t', 'h', 'turn']},
-
-        hold: {
-          func: 'runHold'},
-
-        land: {
-          func: 'runLanding',
-          shortKey: ['\u2B50'],
-          synonyms: ['l', 'ils', 'i']},
-
-        moveDataBlock: {
-          func: 'runMoveDataBlock',
-          shortKey: ['`']},
-
-        route: {
-          func: 'runRoute',
-        },
-
-        reroute: {
-          func: 'runReroute',
-          synonyms: ['rr']
-        },
-
-        sayRoute: {
-          func: 'runSayRoute',
-          synonyms: ['sr']
-        },
-
-        sid: {func: 'runSID'},
-
-        speed: {
-          func: 'runSpeed',
-          shortKey: ['+', '-'],
-          synonyms: ['slow', 'sp']},
-
-        star: {func: 'runSTAR'},
-
-        takeoff: {
-          func: 'runTakeoff',
-          synonyms: ['to', 'cto']},
-
-        taxi: {
-          func: 'runTaxi',
-          synonyms: ['w', 'taxi']}
-      },
-
-    runCommand: function(command) {
+    runCommands: function(commands) {
       if (!this.inside_ctr)
         return true;
-      var user_input = $.map(command.toLowerCase().split(" "), function(v) {if (v.length > 0) return v; });
-      var commands = [];
-      var commandArguments  = "";
-      var previous = "";
-      var longCmdName = "";
-      var thisStringAlreadyDone = false;
-
-
-      for(var i in user_input) {  //fill commands[] based on user input
-        var string = user_input[i];
-        var is_command = false;
-        var is_shortCommand = false;
-        var skip = false;
-
-        if(thisStringAlreadyDone) { //bugfix
-          thisStringAlreadyDone = false;
-          continue;
-        }
-
-        if(previous.indexOf("t") == 0 && (string.indexOf("l") == 0 || string.indexOf("r") == 0)) {  //bugfix
-          //Prevents conflicts between use of "l" as in takeoff's synonym vs "turn left 310"
-          commands[commands.length-1].push(string + " " + user_input[(parseInt(i)+1).toString()]); //push both arguments to heading() together
-          thisStringAlreadyDone = true; //to we don't attempt to do anything with the next string on the next iteration, because we've just now done it already
-          continue;
-        }
-
-        if (commands.length > 0 && commands[commands.length-1][0] == "altitude" && string.indexOf("e") == 0) {  //expedite option for altitude changes (bugfix)
-          commands[commands.length-1][1] += " " + string; //push both arguments to heading() together
-        }
-
-        if(string.substr(0,2) == "fh") {  //bugfix
-          //Command is a shortkey, eg 'fh270' and not a 'fix sassu'. Will skip detection of 'fix' or 'f' below.
-          is_shortCommand = true;
-          longCmdName = "heading";
-        }
-        else if(!skip) {  //normal logic
-          for(var k in this.COMMANDS) {
-            if(k == string) {  //input command is a valid command name (eg 'altitude')
-              is_command = true;
-              break;
-            }
-            else if(this.COMMANDS[k].synonyms && this.COMMANDS[k].synonyms.indexOf(string) != -1) {  //input command is a valid command synonym
-              is_command = true;
-              break;
-            }
-            else {  //check for shortKey
-              for(var m in this.COMMANDS[k].shortKey) {
-                if(string.substr(0,1) == this.COMMANDS[k].shortKey[m].substr(0,1)) {  //first character of input command is a command's shortkey)
-                  if(this.COMMANDS[k].shortKey[m].length == 1) { //single character shortKey, matches input command
-                    is_shortCommand = true;
-                    longCmdName = k;
-                    break;
-                  }
-                  else
-                  {
-                    if(this.COMMANDS[k].shortKey[m].length > 1 && this.COMMANDS[k].shortKey[m] == string.substr(0,this.COMMANDS[k].shortKey[m].length)) { //multi-char shortKey, matches input command
-                      is_shortCommand = true;
-                      longCmdName = k;
-                      break;
-                    }
-                  }
-                }
-              }
-            }
-            if(is_shortCommand) break;
-          }
-          if(!(is_command || is_shortCommand)) {  //string neither command nor shortKey. Must be a command argument.
-            commandArguments += string;
-          }
-        }
-
-        if(is_shortCommand) {
-          commands.push([longCmdName,string]);    //push whole string (it is a full short-command, eg '>350')
-        }
-        else if (is_command) {
-          commands.push([string]);      //push NAME/SYNONYM of command into commands array (eg 't')
-        }
-        else if(commandArguments) {
-          if(commands.length != 0) commands[commands.length-1].push(commandArguments); //append the arguments to previous command
-          commandArguments = "";  //clear out commandArguments
-        }
-        previous = string;
-      }
-      //End of creating 'commands[]'
 
       var response = [];
       var response_end = "";
       var deferred = [];
-      var DEFERRED_COMMANDS = ["takeoff", "to"];
 
       for(var i=0;i<commands.length;i+=1) {
-        var pair    = commands[i];
+        var command = commands[i][0];
+        var args = commands[i].splice(1);
 
-        var command = pair[0];
-        var data    = "";
-
-        if(pair.length == 2) data = pair[1];
-        if(pair.length > 2) {
-          data = pair.splice(1).join(" ");
-        }
-
-        if(DEFERRED_COMMANDS.indexOf(command) == 0) {
-          deferred.push(pair);
+        if (command == 'takeoff') {
+          deferred.push([command, args]);
           continue;
         }
 
-        var retval  = this.run(command, data);
+        var retval  = this.run(command, args);
+
         if(retval) {
           if(!retval[1].hasOwnProperty("log") || !retval[1].hasOwnProperty("say")) {
             retval = [retval[0],{log:retval[1], say:retval[1]}];
@@ -1776,19 +1612,16 @@ var Aircraft=Fiber.extend(function() {
       }
 
       for(var i=0;i<deferred.length;i+=1) {
-        var pair    = deferred[i];
+        var command = deferred[i][0];
+        var args = deferred[i][1];
 
-        var command = pair[0];
-        var data    = "";
-        if(pair.length == 2) data = pair[1];
-        var retval  = this.run(command, data);
+        var retval  = this.run(command, args);
         if(retval) {
           if(retval[1].length != null) { // true if array, and not log/say object
             retval[1] = {say:retval[1], log:retval[1]};  // make into log/say object
           }
-            response.push(retval[1]);
+          response.push(retval[1]);
         }
-
       }
 
       if(commands.length == 0) {
@@ -1814,12 +1647,7 @@ var Aircraft=Fiber.extend(function() {
       var call_func;
 
       if (this.COMMANDS[command]) {
-        call_func = this.COMMANDS[command].func;
-      }
-      else {
-        $.each(this.COMMANDS, function(k, v) {
-          if (v.synonyms && v.synonyms.indexOf(command) != -1) { call_func = v.func; }
-        });
+        call_func = this.COMMANDS[command];
       }
 
       if (!call_func)
@@ -1828,57 +1656,21 @@ var Aircraft=Fiber.extend(function() {
       return this[call_func].apply(this, [data]);
     },
     runHeading: function(data) {
-      var split     = data.split(" ");
-      var heading = null;
-      var direction = null;
+      var direction = data[0];
+      var heading = data[1];
+      var incremental = data[2];
+
       var instruction = null;
-      var incremental = false, amount = 0;
-      switch(split.length) {  //number of elements in 'data'
-        case 1:
-          if(isNaN(parseInt(split))) {  //probably using shortKeys
-            if(split[0][0] == "\u2BA2") { //using '<250' format
-              direction = "left";
-              heading = split[0].substr(1); //remove shortKey
-              if(heading.length < 3) incremental = true;
-            }
-            else if (split[0][0] == "\u2BA3") {  //using '>250' format
-              direction = "right";
-              heading = split[0].substr(1); //remove shortKey
-              if(heading.length < 3) incremental = true;
-            }
-            else if(split[0].substr(0,2).toLowerCase() == "fh") { //using 'fh250' format
-              heading = split[0].substr(2); //remove shortKey
-            }
-            else {  //input is invalid
-              return ["fail", "heading not understood"];
-            }
-          }
-          else {  //using 'turn 250' format (no direction specified)
-            heading = parseInt(split);
-          }
-          break;
+      var amount = 0;
 
-        case 2: //using 'turn r 250' format
-          if(split[0] === "l") direction = "left";
-          else if (split[0] === "r" ) direction = "right";
-          heading = split[1];
-          if(heading.length < 3) incremental = true;
-          break;
-
-        default:  //input formatted incorrectly
-          return ["fail", "heading not understood"];
-          break;
-      }
       if(isNaN(heading)) return ["fail", "heading not understood"];
 
-      // for incremental turns
-      if(incremental) { // eg 'turn twenty degrees left'
+      if (incremental) {
+        amount = heading;
         if(direction == "left") {
-          amount = parseInt(heading);
           heading = degrees(this.heading) - amount;
         }
         else if(direction == "right") {
-          amount = parseInt(heading);
           heading = degrees(this.heading) + amount;
         }
       }
@@ -1960,27 +1752,12 @@ var Aircraft=Fiber.extend(function() {
       return ['ok', readback];
     },
     runAltitude: function(data) {
-      if(data[0] == "\u2B61" || data[0] == "\u2B63") {  //shortKey 'v' or '^' in use
-        data = data.substr(1);  //remove shortKey
-      }
+      var altitude = data[0];
+      var expedite = data[1];
 
-      var split     = data.split(" ");
-      var altitude = parseInt(split[0]);
-      var expedite = false;
-      data = split[0];
-
-      function isExpedite(s) {
-        if((s.length >= 1 && "expedite".indexOf(s) == 0) || s == "x") return true;
-        return false;
-      }
-
-      if(split.length >= 2 && isExpedite(split[1])) {
-        expedite = true;
-      }
-
-      if(isNaN(altitude)) {
-        if(isExpedite(split[0])) {
-          this.setCurrent({expedite: true});
+      if ((altitude == null) || isNaN(altitude)) {
+        if (expedite) {
+          this.fms.setCurrent({expedite: true});
           return ['ok', radio_trend('altitude', this.altitude, this.fms.currentWaypoint().altitude) + " " + this.fms.currentWaypoint().altitude + ' expedite'];
         }
         return ["fail", "altitude not understood"];
@@ -1992,8 +1769,6 @@ var Aircraft=Fiber.extend(function() {
       var ceiling = airport_get().ctr_ceiling;
       if (prop.game.option.get('softCeiling') == 'yes')
         ceiling += 1000;
-
-      altitude *= 100;
 
       this.fms.setAll({
         altitude: clamp(1000, altitude, ceiling),
@@ -2012,7 +1787,7 @@ var Aircraft=Fiber.extend(function() {
     runClearedAsFiled: function() {
       if(this.fms.clearedAsFiled()) {
         return ['ok',
-          {log: "cleared to destiantion via the " + airport_get().sids[this.destination].icao +
+          {log: "cleared to destination via the " + airport_get().sids[this.destination].icao +
             " departure, then as filed" + ". Climb and maintain " + airport_get().initial_alt +
             ", expect " + this.fms.fp.altitude + " 10 minutes after departure",
           say: "cleared to destination via the " + airport_get().sids[this.destination].name +
@@ -2037,11 +1812,7 @@ var Aircraft=Fiber.extend(function() {
       else ui_log(true, this.getCallsign() + ", unable to descend via STAR");
     },
     runSpeed: function(data) {
-      if(data[0] == "+" || data[0] == "-") {  //shortKey '+' or '-' in use
-        data = data.substr(1);  //remove shortKey
-      }
-
-      var speed = parseInt(data);
+      var speed = data[0];
       if(isNaN(speed)) return ["fail", "speed not understood"];
 
       this.fms.setAll({speed: clamp(this.model.speed.min,
@@ -2054,91 +1825,103 @@ var Aircraft=Fiber.extend(function() {
       return ["ok", readback];
     },
     runHold: function(data) {
-      var data = data.split(" ");
+      var dirTurns = data[0];
+      var legLength = data[1];
+      var holdFix = data[2];
+      var holdFixLocation = null;
 
-      // Set direction of turns
-      var dirTurns = "right";   // standard for holding patterns is right-turns
-      if(data.indexOf("right") != -1) data.splice(data.indexOf("right"),1);
-      if(data.indexOf("left") != -1) {
-        dirTurns = "left";
-        data.splice(data.indexOf("left"),1);
-      }
+      if (dirTurns == null)
+        dirTurns = "right"; // standard for holding patterns is right-turns
 
-      // Set leg length
-      var legLength = "1min";
-      for(var i=0; i<data.length; i++) {
-        if(data[i].includes("min") || data[i].includes("nm")) {
-        legLength = data[i];
-        data.splice(i,1); break;
+      if (legLength == null)
+        legLength = "1min";
+
+      if (holdFix != null) {
+        holdFix = holdFix.toUpperCase();
+        holdFixLocation = airport_get().getFix(holdFix);
+        if (!holdFixLocation) {
+          return ["fail", "unable to find fix " + holdFix];
         }
       }
 
-      // Set hold's base position
-      var hold_fix = null, hold_fix_location = null;
-      if(data.length > 0) { // if anything still remains...
-        for(var i=0; i<data.length; i++) {
-          var fix = airport_get().getFix(data[i]);    // attempt to find data[i] as a fix
-          if(fix) {
-            hold_fix = data[i].toUpperCase(); // if is a valid fix, set as the holding fix
-            hold_fix_location = fix; break;   // if is a valid fix, set as the holding fix
-          }
-        }
-      }
-
-      if(this.isTakeoff() && !hold_fix) return ["fail", "where do you want us to hold?"];
+      if(this.isTakeoff() && !holdFix) return ["fail", "where do you want us to hold?"];
 
       // Determine whether or not to enter the hold from present position
-      if(hold_fix) {  // holding over a specific fix (currently only able to do so on inbound course)
-        var inboundHdg = vradial(vsub(this.position, hold_fix_location));
-        if(hold_fix != this.fms.currentWaypoint().fix) {  // not yet headed to the hold fix
+      if(holdFix) {  // holding over a specific fix (currently only able to do so on inbound course)
+        var inboundHdg = vradial(vsub(this.position, holdFixLocation));
+        if(holdFix != this.fms.currentWaypoint().fix) {  // not yet headed to the hold fix
           this.fms.insertLegHere({type:"fix", route: "[GPS/RNAV]", waypoints:[
             new zlsa.atc.Waypoint({ // proceed direct to holding fix
-              fix: hold_fix,
+              fix: holdFix,
               altitude: this.fms.currentWaypoint().altitude,
               speed: this.fms.currentWaypoint().speed
             },this.fms),
             new zlsa.atc.Waypoint({ // then enter the hold
-              navmode:"hold", speed: this.fms.currentWaypoint().speed,  altitude: this.fms.currentWaypoint().altitude, fix: null,
-              hold: { fixName: hold_fix,          fixPos: hold_fix_location,
-                      dirTurns: dirTurns,         legLength: legLength,
-                      inboundHdg: inboundHdg,     timer: null, }
+              navmode:"hold",
+              speed: this.fms.currentWaypoint().speed,
+              altitude: this.fms.currentWaypoint().altitude,
+              fix: null,
+              hold: {
+                fixName: holdFix,
+                fixPos: holdFixLocation,
+                dirTurns: dirTurns,
+                legLength: legLength,
+                inboundHdg: inboundHdg,
+                timer: null,
+              }
             },this.fms)
           ]});
         }
         else {  // already currently going to the hold fix
-          this.fms.appendWaypoint({navmode:"hold", speed: this.fms.currentWaypoint().speed,  altitude: this.fms.currentWaypoint().altitude, fix: null,
-            hold: { fixName: hold_fix,          fixPos: hold_fix_location,
-                    dirTurns: dirTurns,         legLength: legLength,
-                    inboundHdg: inboundHdg,     timer: null, }});  // Force the initial turn to outbound heading when entering the hold
+          this.fms.appendWaypoint({
+            navmode:"hold",
+            speed: this.fms.currentWaypoint().speed,
+            altitude: this.fms.currentWaypoint().altitude,
+            fix: null,
+            hold: {
+              fixName: holdFix,
+              fixPos: holdFixLocation,
+              dirTurns: dirTurns,
+              legLength: legLength,
+              inboundHdg: inboundHdg,
+              timer: null, }});  // Force the initial turn to outbound heading when entering the hold
         }
       }
       else {  // holding over present position (currently only able to do so on present course)
-        hold_fix_location = this.position; // make a/c hold over their present position
+        holdFixLocation = this.position; // make a/c hold over their present position
         var inboundHdg = this.heading;
         this.fms.insertLegHere({type:"fix", waypoints:[
           { // document the present position as the "fix" we're holding over
             navmode:"fix",
             fix: "[custom]",
-            location: hold_fix_location,
+            location: holdFixLocation,
             altitude: this.fms.currentWaypoint().altitude,
             speed: this.fms.currentWaypoint().speed
           },
           { // Force the initial turn to outbound heading when entering the hold
-            navmode:"hold", speed: this.fms.currentWaypoint().speed,  altitude: this.fms.currentWaypoint().altitude, fix: null,
-            hold: { fixName: hold_fix,          fixPos: hold_fix_location,
-                    dirTurns: dirTurns,         legLength: legLength,
-                    inboundHdg: inboundHdg,     timer: null, }
+            navmode:"hold",
+            speed: this.fms.currentWaypoint().speed,
+            altitude: this.fms.currentWaypoint().altitude,
+            fix: null,
+            hold: {
+              fixName: holdFix,
+              fixPos: holdFixLocation,
+              dirTurns: dirTurns,
+              legLength: legLength,
+              inboundHdg: inboundHdg,
+              timer: null,
+            }
           }
         ]});
       }
 
       var inboundDir = radio_cardinalDir_names[getCardinalDirection(fix_angle(inboundHdg + Math.PI)).toLowerCase()];
-      if(hold_fix) return ["ok", "proceed direct " + hold_fix + " and hold inbound, " + dirTurns + " turns, " + legLength + " legs"];
+      if(holdFix) return ["ok", "proceed direct " + holdFix + " and hold inbound, " + dirTurns + " turns, " + legLength + " legs"];
       else return ["ok", "hold " + inboundDir + " of present position, " + dirTurns + " turns, " + legLength + " legs"];
     },
     runDirect: function(data) {
-      if(data.length == 0) return ["fail", "say again the fix name?"];
-      var fixname = data.toUpperCase(), fix = airport_get().getFix(fixname);
+      var fixname = data[0].toUpperCase();
+      var fix = airport_get().getFix(fixname);
       if (!fix) return ["fail", "unable to find fix called " + fixname];
 
       if(this.mode == "takeoff") {  // remove intermediate fixes
@@ -2152,18 +1935,8 @@ var Aircraft=Fiber.extend(function() {
       return ["ok", "proceed direct " + fixname];
     },
     runFix: function(data) {
-      if(data[0] == ".") { //shortkey '.' in use
-        data = data.substr(1);  //remove shortKey
-      }
-      if(data.length == 0) {
-        return ["fail", "say again the fix name?"];
-      }
-      var a = this; // necessary to keep 'this' in scope during $.each()
-
-      data = data.toUpperCase().split(/\s+/);
-
-      var last_fix, fail,
-          fixes = $.map(data, function(fixname) {
+      var last_fix, fail;
+      var fixes = $.map(data[0], function(fixname) {
             var fix = airport_get().getFix(fixname);
             if(!fix) {
               fail = ["fail", "unable to find fix called " + fixname];
@@ -2174,17 +1947,16 @@ var Aircraft=Fiber.extend(function() {
             if (fixname == last_fix) return;
             last_fix = fixname;
             return fixname;
-          });
+      });
 
       if (fail) return fail;
 
       for(var i=fixes.length-1; i>=0; i--) {
-        a.fms.insertLegHere({type:"fix", route:fixes[i]})
-        // $.each(fixes, function(i,v){a.fms.insertLegHere({type:"fix", route:v})});
+        this.fms.insertLegHere({type:"fix", route:fixes[i]})
       }
 
-      if(a.mode != "waiting" && a.mode != "takeoff" && a.mode != "apron" && a.mode != "taxi"){
-        a.cancelLanding();
+      if (this.mode != "waiting" && this.mode != "takeoff" && this.mode != "apron" && this.mode != "taxi"){
+        this.cancelLanding();
       }
       return ["ok", "proceed direct " + fixes.join(', ')];
     },
@@ -2193,7 +1965,7 @@ var Aircraft=Fiber.extend(function() {
     },
     runSID: function(data) {
       var apt = airport_get();
-      var sid_id = data.toUpperCase();
+      var sid_id = data[0].toUpperCase();
       if(!apt.sids.hasOwnProperty(sid_id)) return;
       var sid_name = apt.sids[sid_id].name;
       var trn = apt.getSIDTransition(sid_id);
@@ -2202,7 +1974,7 @@ var Aircraft=Fiber.extend(function() {
       if(this.category != "departure") {
         return ["fail", "unable to fly SID, we are an inbound"];
       }
-      if(data.length == 0) {
+      if(data[0].length == 0) {
         return ["fail", "SID name not understood"];
       }
       if(!apt.sids.hasOwnProperty(sid_id)) {
@@ -2220,8 +1992,8 @@ var Aircraft=Fiber.extend(function() {
                   say:"cleared to destination via the " + sid_name + " departure, then as filed"}];
     },
     runSTAR: function(data) {
-      var trn = data.split('.')[0].toUpperCase();
-      var star_id = data.split('.')[1].toUpperCase();
+      var trn = data[0].split('.')[0].toUpperCase();
+      var star_id = data[0].split('.')[1].toUpperCase();
       var apt = airport_get();
       var star_name = apt.stars[star_id].name;
       var route = trn + '.' + star_id + '.' + apt.icao;
@@ -2229,7 +2001,7 @@ var Aircraft=Fiber.extend(function() {
       if(this.category != "arrival") {
         return ["fail", "unable to fly STAR, we are a departure!"];
       }
-      if(data.length == 0) {
+      if(data[0].length == 0) {
         return ["fail", "STAR name not understood"];
       }
       if(!apt.stars.hasOwnProperty(star_id)) {
@@ -2242,16 +2014,15 @@ var Aircraft=Fiber.extend(function() {
                   say:"cleared to the " + apt.name + " via the " + star_name + " arrival"}];
     },
     runMoveDataBlock: function(dir) {
-      dir = dir.replace('`','');  // remove shortKey
       var positions = {8:360,9:45,6:90,3:135,2:180,1:225,4:270,7:315,5:"ctr"};
-      if(!positions.hasOwnProperty(dir)) return;
-      else this.datablockDir = positions[dir];
+      if(!positions.hasOwnProperty(dir[0])) return;
+      else this.datablockDir = positions[dir[0]];
     },
     /** Adds a new Leg to fms with a user specified route
      ** Note: See notes on 'runReroute' for how to format input for this command
      */
     runRoute: function(data) {
-      data = data.toUpperCase();  // capitalize everything
+      data = data[0].toUpperCase();  // capitalize everything
       var worked = true;
       var route = this.fms.formatRoute(data);
       if(worked && route) worked = this.fms.customRoute(route, false);  // Add to fms
@@ -2268,7 +2039,7 @@ var Aircraft=Fiber.extend(function() {
      ** to be connected with double-dots (eg HLI..SQS..BERRA..JAN..KJAN)
      */
     runReroute: function(data) {
-      data = data.toUpperCase();  // capitalize everything
+      data = data[0].toUpperCase();  // capitalize everything
       var worked = true;
       var route = this.fms.formatRoute(data);
       if(worked && route) worked = this.fms.customRoute(route, true);  // Reset fms
@@ -2285,9 +2056,9 @@ var Aircraft=Fiber.extend(function() {
       if(this.mode != "apron") return ["fail", "wrong mode"];
 
       // Set the runway to taxi to
-      if(data) {
-        if(airport_get().getRunway(data.toUpperCase())) this.setDepartureRunway(data.toUpperCase());
-        else return ["fail", "no runway " + data.toUpperCase()];
+      if(data[0]) {
+        if(airport_get().getRunway(data[0].toUpperCase())) this.setDepartureRunway(data[0].toUpperCase());
+        else return ["fail", "no runway " + data[0].toUpperCase()];
       }
 
       // Start the taxi
@@ -2335,17 +2106,11 @@ var Aircraft=Fiber.extend(function() {
       }
     },
     runLanding: function(data) {
-      if(data[0] == "\u2B50") { //shortkey '*' in use
-        data = data.substr(1);  //remove shortKey
-      }
-      if(isNaN(data[0])) {  // includes a variant (eg 'y28r' for 'ILS-Y RWY 28R' approach)
-        var variant = data.slice(0,1).toUpperCase();
-        data = data.slice(1);
-      }
+      var variant = data[0];
+      var runway = airport_get().getRunway(data[1]);
 
-      var runway = airport_get().getRunway(data);
-      if(!runway) return ["fail", "there is no runway " + radio_runway(data)];
-      else this.setArrivalRunway(data.toUpperCase());
+      if(!runway) return ["fail", "there is no runway " + radio_runway(data[1])];
+      else this.setArrivalRunway(data[1].toUpperCase());
 
       this.fms.followApproach("ils", this.rwy_arr, variant); // tell fms to follow ILS approach
 
@@ -2385,11 +2150,9 @@ var Aircraft=Fiber.extend(function() {
         return ["fail", "unable to abort"];
       }
     },
-    runDebug: function(data) {
-      if(data == "log") {
-        window.aircraft = this;
-        return ["ok", {log:"in the console, look at the variable &lsquo;aircraft&rsquo;", say:""}];
-      }
+    runDebug: function() {
+      window.aircraft = this;
+      return ["ok", {log:"in the console, look at the variable &lsquo;aircraft&rsquo;", say:""}];
     },
     cancelFix: function() {
       if(this.fms.currentWaypoint().navmode == "fix") {

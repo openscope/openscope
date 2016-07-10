@@ -24,6 +24,7 @@ zlsa.atc.mediator = new Mediator();
 var MODULES=[
   "-util",
   "-animation",
+  "-parser",
 
   "speech",
 
