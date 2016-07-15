@@ -73,8 +73,9 @@ zlsa.atc.Conflict = Fiber.extend(function() {
       this.checkRunwayCollision();
 
       // Ignore aircraft below about 1000 feet
-      if ((this.aircraft[0].altitude < 990) ||
-          (this.aircraft[1].altitude < 990))
+      var airportElevation = airport_get().elevation;
+      if (((this.aircraft[0].altitude - airportElevation) < 990) ||
+          ((this.aircraft[1].altitude - airportElevation) < 990))
         return;
 
       // Ignore aircraft in the first minute of their flight
