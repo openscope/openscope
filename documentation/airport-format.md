@@ -22,7 +22,7 @@ airport code, such as `ksfo` or `kmsp`.
   "ctr_radius": 80,           // radius from 'position' that the airspace extends
   "ctr_ceiling": 10000,       // elevation up to which the airspace extends
   "initial_alt": 5000         // alt departures climb to if given "as-filed" clearance, but no "climb-via-sid" or altitude assignment
-  "position", ["lat", "lon"]  // the latitude/longitude of the "center" of the airport; see comments below
+  "position", ["lat", "lon", "elevation"]  // the latitude/longitude of the "center" of the airport; see comments below
   "rr_radius_nm": 5,          // radius of range rings, nautical miles
   "rr_center": ["lat", "lon"],// position where range rings are centered, nautical miles
   "has_terrain": true,        // true/false for if has an associated GeoJSON terrain file in assets/airports/terrain
@@ -38,8 +38,8 @@ airport code, such as `ksfo` or `kmsp`.
       "name":        ["36", "18"],     // the name of each end of the runway
       "name_offset": [[0, 0], [0, 0]], // the offset, in km, of the runway text when drawn on the map
       "end":         [                 // the ends of the runway
-                       ["lat", "lon"],
-                       ["lat", "lon"]
+                       ["lat", "lon", "elevation"],
+                       ["lat", "lon", "elevation"]
                      ],
       "delay":       [2, 2],           // the number of seconds it takes to taxi to the end of the runway
       "sepFromAdjacent": [2.5, 2.5],   // Distance in nautical miles that another aircraft can come while on parallel approach paths, a violation will occur at 85% of this value
@@ -146,8 +146,8 @@ airport code, such as `ksfo` or `kmsp`.
 }
 ```
 
-For `lat, lon` fields, you can either use the standard `[x, y]`
-notation or the new `["LAT", "LON"]` notation. The latter uses this
+For `lat, lon, elevation` fields, you can either use the standard `[x, y]`
+notation or the new `["LAT", "LON", "ELEVATION"]` notation. The latter uses this
 format:
 
     ["N or S followed by a latitude", "W or E followed by a longitude", "optional altitude ending in 'ft' or 'm'"]

@@ -73,8 +73,9 @@ zlsa.atc.Conflict = Fiber.extend(function() {
       this.checkRunwayCollision();
 
       // Ignore aircraft below about 1000 feet
-      if ((this.aircraft[0].altitude < 990) ||
-          (this.aircraft[1].altitude < 990))
+      var airportElevation = airport_get().elevation;
+      if (((this.aircraft[0].altitude - airportElevation) < 990) ||
+          ((this.aircraft[1].altitude - airportElevation) < 990))
         return;
 
       // Ignore aircraft in the first minute of their flight
@@ -1771,7 +1772,7 @@ var Aircraft=Fiber.extend(function() {
         ceiling += 1000;
 
       this.fms.setAll({
-        altitude: clamp(1000, altitude, ceiling),
+        altitude: clamp(round(airport_get().elevation/100)*100 + 1000, altitude, ceiling),
         expedite: expedite,
       })
 
@@ -2242,7 +2243,17 @@ var Aircraft=Fiber.extend(function() {
      ** Aircraft is on the ground (can be a departure OR arrival)
      */
     isLanded: function() {
-      if(this.altitude < 5) return true;
+      var runway  = airport_get().getRunway(this.rwy_arr);
+      if (runway == null) {
+        runway  = airport_get().getRunway(this.rwy_dep);
+      }
+
+      if (runway == null) {
+        return false;
+      }
+      if((this.altitude - runway.elevation) < 5)
+        return true;
+      return false;
     },
 
     /**
@@ -2375,6 +2386,10 @@ var Aircraft=Fiber.extend(function() {
       var glideslope_altitude = null;
       var glideslope_window   = null;
       var angle = null;
+      var runway_elevation = 0;
+
+      if (this.rwy_arr != null)
+        runway_elevation = airport.getRunway(this.rwy_arr).elevation;
 
       if(this.fms.currentWaypoint().altitude > 0)
         this.fms.setCurrent({altitude: Math.max(1000,
@@ -2434,7 +2449,7 @@ var Aircraft=Fiber.extend(function() {
           if(this.fms.currentWaypoint().speed > 0)
             this.fms.setCurrent({start_speed: this.fms.currentWaypoint().speed});
           this.target.speed        = crange(3, offset[1], 10, this.model.speed.landing, this.fms.currentWaypoint().start_speed);
-        } else if(this.altitude >= 300 && this.mode == "landing") {
+        } else if((this.altitude - runway_elevation) >= 300 && this.mode == "landing") {
           this.updateStrip();
           this.cancelLanding();
           if (!this.projected)
@@ -2451,7 +2466,7 @@ var Aircraft=Fiber.extend(function() {
         //this has to be outside of the glide slope if, as the plane is no
         //longer on the glide slope once it is on the runway (as the runway is
         //behind the ILS marker)
-        if(this.altitude < 10) {
+        if(this.isLanded()) {
           this.target.speed = 0;
         }
       } else if(this.fms.currentWaypoint().navmode == "fix") {
@@ -2534,7 +2549,7 @@ var Aircraft=Fiber.extend(function() {
         this.position[0] = position[0];
         this.position[1] = position[1];
         this.heading     = runway.angle;
-
+        this.altitude    = runway.elevation;
         if (!this.projected &&
             (runway.inQueue(this) == 0) &&
             (was_taxi == true))
@@ -2545,13 +2560,14 @@ var Aircraft=Fiber.extend(function() {
         }
       }
       else if(this.mode == "takeoff") {
+        var runway = airport_get().getRunway(this.rwy_dep);
         // Altitude Control
-        if(this.speed < this.model.speed.min) this.target.altitude = 0;
+        if(this.speed < this.model.speed.min) this.target.altitude = runway.elevation;
         else this.target.altitude = this.fms.currentWaypoint().altitude;
 
         // Heading Control
         var rwyHdg = airport_get().getRunway(this.rwy_dep).angle;
-        if(this.altitude<400) this.target.heading = rwyHdg;
+        if((this.altitude - runway.elevation)<400) this.target.heading = rwyHdg;
         else {
           if(!this.fms.followCheck().sid && this.fms.currentWaypoint().heading == null) { // if no directional instructions available after takeoff
             this.fms.setCurrent({heading:rwyHdg});  // fly runway heading
@@ -2580,7 +2596,7 @@ var Aircraft=Fiber.extend(function() {
 
         // TURNING
 
-        if(this.altitude > 10 && this.heading != this.target.heading) {
+        if(!this.isLanded() && this.heading != this.target.heading) {
           // Perform standard turns 3 deg/s or 25 deg bank, whichever
           // requires less bank angle.
           // Formula based on http://aviation.stackexchange.com/a/8013
