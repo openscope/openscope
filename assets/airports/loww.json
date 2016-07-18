@@ -10,7 +10,7 @@
   "ctr_radius": 80,
   "ctr_ceiling": 24500,
   "initial_alt": 5000,
-  "position": ["N48d6m37.07", "E16d34m10.92"],
+  "position": ["N48d6m37.07", "E16d34m10.92", "600.0ft"],
   "rr_radius_nm": 5.0,
   "rr_center": ["N48d6m37.07", "E16d34m10.92"],
   "has_terrain": false,
@@ -392,14 +392,14 @@
     {
       "name":        ["11", "29"],
       "name_offset": [[0, 0], [0, 0]],
-      "end":    [["N48d7m22.13", "E16d32m00.15"], ["N48d6m32.57", "E16d34m32.3"]],
+      "end":    [["N48d7m22.13", "E16d32m00.15", "574ft"], ["N48d6m32.57", "E16d34m32.3", "601ft"]],
       "length":      3.4923,
       "ils":         [true, true]
     },
     {
       "name":        ["16", "34"],
       "name_offset": [[0, 0], [0, 0]],
-      "end":    [["N48d7m11.21", "E16d34m41.46"], ["N48d5m19.07", "E16d35m28.87"]],
+      "end":    [["N48d7m11.21", "E16d34m41.46", "597ft"], ["N48d5m19.07", "E16d35m28.87", "597ft"]],
       "length":      3.5888,
       "ils":         [true, true]
     }

@@ -10,7 +10,7 @@
   "ctr_radius": 55.56,
   "ctr_ceiling": 24500,
   "initial_alt": 5000,
-  "position": ["N52d42m07.00", "W8d55m29.00"],
+  "position": ["N52d42m07.00", "W8d55m29.00", "46ft"],
   "rr_radius_nm": 5.0,
   "rr_center": ["N52d42m07.00", "W8d55m29.00"],
   "has_terrain": false,
@@ -192,7 +192,7 @@
     {
       "name": ["24", "06"],
       "name_offset": [[0, 0], [0, 0]],
-      "end": [["N52d42m36.03", "W8d54m27.87"], ["N52d41m35.42", "W8d56m36.67"]],
+      "end": [["N52d42m36.03", "W8d54m27.87", "15ft"], ["N52d41m35.42", "W8d56m36.67", "46ft"]],
       "length": 3.199,
       "delay": [10, 5],
       "ils": [true, true]
