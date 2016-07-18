@@ -174,7 +174,7 @@
     "MONTY": {
       "icao": "MONTY",
       "name": "MONTY",
-      "suffix": {"05L":"1S", "05R":"1Z", "23L":"1Y", "23L":"1R"},
+      "suffix": {"05L":"1S", "05R":"1Z", "23L":"1Y", "23R":"1R"},
       "rwy": {
         "05L": ["_23R", "MCT06", "XOBRO", "D082P", "D082B", "WAL", "MONTY"],
         "05R": ["_23L", "MCT06", "XOBRO", "D082P", "D082B", "WAL", "MONTY"],
