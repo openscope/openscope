@@ -1,0 +1,179 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Air Traffic Control-Compiled parser</title>
+    <script src="../assets/scripts/jquery.min.js"></script>
+    <script src="../assets/scripts/fiber.min.js"></script>
+    <script src="../assets/scripts/peg-0.9.0.min.js"></script>
+  </head>
+  <body>
+    <script type="text/x-pegjs-grammar">
+InputParseGrammar
+  = systemCommand / transmissionCommand
+
+systemCommand
+  = cmd:(("version" {return ['version', null] }) /
+         ("tutorial" {return ['tutorial', null] }) /
+         ("auto" {return ['auto', null] }) /
+         ("pause" {return ['pause', null] }) /
+         ("clear" {return ['clear', null] }) /
+         airportCommand /
+         rateCommand /
+         timewarpCommand) { return {command: cmd[0], args: cmd[1]}}
+
+transmissionCommand
+  = cmd:aircraftCommand { return {command: 'transmit', callsign: cmd[0], args: cmd[1]}}
+
+timewarpCommand
+  = (command:("timewarp" / "speedup" / "slowmo" / "timescale") whiteSpace {return command}) integer
+
+airportCommand
+  = (command:"airport" whiteSpace {return command}) string
+
+rateCommand
+  = (command:"rate" whiteSpace {return command}) float
+
+aircraftCommand
+  = callsign (aircraftSubCommand)
+
+aircraftSubCommand
+= (whiteSpace command:(cmdAbort / cmdDirect / cmdAltitude / cmdClearedAsFiled / cmdClimbViaSID /
+                       cmdDebug / cmdDescendViaSTAR / cmdFix / cmdHeading / cmdHold / cmdLand /
+                       cmdMoveDataBlock / cmdRoute / cmdReRoute / cmdSayRoute / cmdSID / cmdSpeed /
+                       cmdSTAR / cmdTakeoff / cmdTaxi) {return command})+ 
+
+cmdAbort
+  = "abort" {return ["abort"]}
+
+cmdAltitude
+  = cmdAltitudeShort / cmdAltitudeLong
+
+cmdAltitudeShort
+  = ("\u2B61" / "\u2B63") arg:integer
+    {return ["altitude", arg*100, null]}
+
+cmdAltitudeLong
+  = ("altitude" / "climb" / "descend" / "a" / "c"  / "d")
+    altitude:(_ arg:integer {return arg*100})?
+    expedite:(_ ("expedite" / "x") {return true})?
+    !{ return ((altitude == null) && (expedite == null)) }
+    {return ["altitude", altitude, expedite]}
+
+cmdClearedAsFiled
+  = ("clearedasfiled" / "caf") { return ["clearedAsFiled"] }
+
+cmdClimbViaSID
+  = ("climbviasid" / "cvs") {return ["climbViaSID"] }
+
+cmdDebug
+  = "debug" _ "log" {return ["debug"]}
+
+cmdDescendViaSTAR
+  = ("descendviastart" / "dvs") {return ["descendViaSTAR"]}
+
+cmdDirect
+  = (("direct" / "dct" / "pd") {return "direct"}) fixToken
+
+cmdFix
+  = (("fix" / "f" / "track") {return "fix"}) fixToken+
+
+cmdHeading
+  = cmd:(cmdHeadingShort / cmdHeadingLong)
+    { return [cmd[0], cmd[1], cmd[2][0], cmd[2][1]] }
+
+cmdHeadingShort
+  = dir:(("\u2BA2" {return "left"}) /
+         ("\u2BA3" {return "right"}) /
+         ("fh" {return null})) arg:argHeading
+         {return ['heading', dir, arg]}
+
+cmdHeadingLong
+  = (("heading" / "turn" / "t" / "h") {return "heading"})
+    direction? (_ arg:argHeading {return arg})
+
+argHeading
+  = ([0-9][0-9][0-9] {return [parseInt(text()), false]}) /
+    ([0-9][0-9] {return [parseInt(text()), true]})
+
+cmdHold
+  = "hold" dir:(direction?)
+    length:((_ integer ("min" / "nm"))?)
+    fix:(!aircraftSubCommand _ string)?
+    {return ["hold",
+             dir,
+             length ? length[1] + length[2] : null,
+             fix ? fix[2] : null]}
+
+cmdLand
+  = cmd:(("land" / "l" / "ils" / "i") {return "land"}) 
+    arg:(whiteSpace variant:[a-z]i? arg:string {return [variant, arg]})
+    { return [cmd, arg[0], arg[1]] }
+
+cmdMoveDataBlock
+  = (("movedatablock" whiteSpace / "`") {return "moveDataBlock"}) [1-9]
+
+cmdRoute
+  = "route" _ arg:string {return ["route", arg]}
+
+cmdReRoute
+  = (("reroute" / "rr")) _ arg:string {return ["reroute", arg]}
+
+cmdSayRoute
+  = (("sayroute" / "sr") {return ["sayRoute"]})
+
+cmdSID
+  = "sid" _ arg:string {return ["sid", arg]}
+
+cmdSpeed
+  = ((('+' / '-') / (("speed" / "slow" / "sp") _)) {return "speed"})
+    integer
+
+cmdSTAR
+  = "star" _ arg:string {return ["star", arg]}
+
+cmdTakeoff
+  = (("takeoff" / "to" / "cto") {return ["takeoff"]})
+
+cmdTaxi
+  = (("taxi" / "wait" / "w")) runway:(_ arg:string {return arg})? {return ["taxi", runway]}
+
+direction
+  = whiteSpace dir:((("left" / "l") {return "left"}) / (("right" / "r") {return "right"})) {return dir}
+
+fixToken
+  = fix:(!aircraftSubCommand _ string) {return fix[2]}
+
+whiteSpace
+  = $([ \t]+)
+
+float
+  = $("-"? [0-9]+ ("." [0-9]+)?) {
+    return parseFloat(text());
+  }
+
+callsign
+  = string
+
+string
+  = $[a-zA-Z0-9.]+
+
+_ "whiteSpace"
+  = [ \t]+
+
+integer
+  = arg:$("-"? [0-9]+) {return parseInt(arg)}
+    </script>
+    <script type="text/javascript">
+      $(window).load(function () {
+        var grammar = $("script[type='text/x-pegjs-grammar']").text();
+        try {
+          var parser = PEG.buildParser(grammar, {output: 'source'});
+          $("body").append($("<pre></pre>").text('zlsa.atc.Parser = ' + parser + ';'));
+        }
+        catch (e) {
+          $("body").append($("<pre></pre>").text('Error: ' + e));
+        }
+      });
+    </script>
+  </body>
+</html>

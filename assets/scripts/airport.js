@@ -540,9 +540,11 @@ zlsa.atc.DepartureWave = zlsa.atc.DepartureCyclic.extend(function(base) {
 
 var Runway=Fiber.extend(function(base) {
   return {
-    init: function(options, end) {
+    init: function(options, end, airport) {
       if(!options) options={};
+      options.airport     = airport;
       this.angle          = null;
+      this.elevation      = 0;
       this.delay          = 2;
       this.gps            = [];
       this.ils            = { enabled : true,
@@ -583,14 +585,20 @@ var Runway=Fiber.extend(function(base) {
       if(!gs_gradient) gs_gradient = this.ils.gs_gradient;
       distance = Math.max(0, distance);
       var rise = tan(abs(gs_gradient));
-      return rise * distance * 3280;
+      return this.elevation + (rise * distance * 3280);
     },
     parse: function(data, end) {
+      this.airport = data.airport;
       if(data.delay) this.delay = data.delay[end];
       if(data.end) {
         var thisSide  = new Position(data.end[end], data.reference_position, data.magnetic_north);
         var farSide   = new Position(data.end[(end==0)?1:0], data.reference_position, data.magnetic_north);
         this.gps      = [thisSide.latitude, thisSide.longitude];       // GPS latitude and longitude position
+        if (thisSide.elevation != null)
+          this.elevation = thisSide.elevation;
+        if ((this.elevation == 0) && (this.airport.elevation != 0)) {
+          this.elevation = this.airport.elevation;
+        }
         this.position = thisSide.position; // relative position, based on center of map
         this.length   = vlen(vsub(farSide.position, thisSide.position));
         this.midfield = vscale(vadd(thisSide.position, farSide.position), 0.5);
@@ -618,6 +626,7 @@ var Airport=Fiber.extend(function() {
       this.icao     = null;
       this.radio    = null;
       this.level    = null;
+      this.elevation = 0;
       this.runways  = [];
       this.runway   = null;
       this.fixes    = {};
@@ -664,6 +673,8 @@ var Airport=Fiber.extend(function() {
     },
     parse: function(data) {
       if(data.position) this.position = new Position(data.position);
+      if (this.position && (this.position.elevation != null))
+        this.elevation = this.position.elevation;
       if(data.magnetic_north) this.magnetic_north = radians(data.magnetic_north);
         else this.magnetic_north = 0;
       if(data.name) this.name   = data.name;
@@ -708,8 +719,8 @@ var Airport=Fiber.extend(function() {
         for(var i in data.runways) {
           data.runways[i].reference_position = this.position;
           data.runways[i].magnetic_north = this.magnetic_north;
-          this.runways.push( [new Runway(data.runways[i], 0),
-                              new Runway(data.runways[i], 1)]);
+          this.runways.push( [new Runway(data.runways[i], 0, this),
+                              new Runway(data.runways[i], 1, this)]);
         }
       }
 
@@ -1144,7 +1155,7 @@ var Airport=Fiber.extend(function() {
       // Gather fixes used by STARs
       if(this.hasOwnProperty("stars")) {
         for(var s in this.stars) {
-          if(this.stars[s].hasOwnProperty("transtitions")) { // transtitions portion
+          if(this.stars[s].hasOwnProperty("transitions")) { // transitions portion
             for(var t in this.stars[s].transitions)
               for(var i in this.stars[s].transitions[t]) {
                 if(typeof this.stars[s].transitions[t][i] == "string")
