@@ -1244,6 +1244,7 @@ function airport_init() {
   airport_load('omdb', "hard", "Dubai International Airport");
   airport_load('othh', "hard", "Doha Hamad International Airport");
   airport_load('saez', "medium", "Aeropuerto Internacional Ministro Pistarini");
+  airport_load('same', "medium", "Aeropuerto Internacional El Plumerillo");
   airport_load('sbgl', "beginner", "Aeroporto Internacional Tom Jobim");
   airport_load('sbgr', "beginner", "Aeroporto Internacional de São Paulo/Guarulhos");
   airport_load('tncm', "easy", "Princess Juliana International Airport");
