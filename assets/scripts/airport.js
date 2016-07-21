@@ -1254,6 +1254,7 @@ function airport_init() {
   airport_load('wiii', "medium", "Soekarno-Hatta International Airport");
   airport_load('wimm', "easy", "Kuala Namu International Airport");
   airport_load('wmkp', "medium", "Pulau Pinang International Airport");
+  airport_load('wmkk', "hard", "Kuala Lumpur International Airport (KLIA)")
   airport_load('wsss', "hard", "Singapore Changi International Airport");
 }
 
