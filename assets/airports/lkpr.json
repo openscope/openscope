@@ -151,6 +151,22 @@
 	},
 	"draw":[["PR402","PR403","PR404","VOZ"],["PR813","PR814","PR403","PR404","VOZ"],["PR633","PR635","VOZ"],["PR626","VOZ"]]
       }
+  },
+  "departures": {
+    "airlines": [
+      ["TVS", 20],
+      ["CSA", 20],
+      ["EZY", 5],
+      ["RYR",5],
+      ["AFL",2],
+      ["BAW",2],
+      ["SAS",1],
+      ["EIN",1],
+      ["UAE",1]
+      ],
+    "destinations" : ["BALTU","DOBEN","VENOX","ARTUP","VOZ"],
+    "type" : "random",
+    "frequency": 30
   }
 }
 
