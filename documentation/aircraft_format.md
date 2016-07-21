@@ -51,7 +51,7 @@ Link for useful aircraft performance data: https://doc8643.com/index
 
 ## Notes
 
-¹ Available in FAA JO 7110.65, Appendix A (http://www.faa.gov/documentlibrary/media/order/atc.pdf)
+¹ Available in FAA JO 7110.65V, Appendix A (http://www.faa.gov/documentLibrary/media/Order/7110.65V.pdf)
 ² May be available from Wikipedia, or https://doc8643.com/index , or other internet sources
 ³ See FAA JO 7110.659B (http://www.faa.gov/documentLibrary/media/Order/Final_Wake_Recat_Order.pdf)
   and look up aircraft's MTOW (Max Certified Gross Takeoff Weight) and wingspan. Compare those
