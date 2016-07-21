@@ -136,8 +136,9 @@ zlsa.atc.ArrivalBase = Fiber.extend(function(base) {
       // Spawn aircraft along the route, ahead of the standard spawn point
       for(var i in spawn_positions) {
         var airline = choose_weight(this.airlines);
+        var fleet = "";
         if(airline.indexOf('/') > -1) {
-          var fleet = airline.split('/')[1];
+          fleet = airline.split('/')[1];
           airline   = airline.split('/')[0];
         }
 
