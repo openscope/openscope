@@ -1233,6 +1233,7 @@ function airport_init() {
   airport_load('gcrr', "easy", "Lanzarote Airport");
   airport_load('kbos', "medium", "Boston Logan International Airport");
   airport_load('kdca', "medium", "Reagan National Airport");
+  airport_load('kiad', "hard", "Washington-Dulles International Airport");
   airport_load('kjfk', "hard", "John F Kennedy International Airport &#9983");
   airport_load('klax90', "medium", "Los Angeles International Airport 1990");
   airport_load('klax', "medium", "Los Angeles International Airport");
