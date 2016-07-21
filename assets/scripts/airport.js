@@ -167,7 +167,7 @@ zlsa.atc.ArrivalBase = Fiber.extend(function(base) {
     start: function() {
       var delay = random(0, 3600 / this.frequency);
       this.timeout = game_timeout(this.spawnAircraft, delay, this, [true, true]);
-      this.preSpawn();
+      if(this.route) this.preSpawn();
     },
     /** Spawn a new aircraft
      */
