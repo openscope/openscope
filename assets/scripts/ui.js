@@ -140,7 +140,7 @@ function ui_complete() {
 
     var html = $("<li class='airport icao-"+airport.icao.toLowerCase()+"'>" +
                  "<span style='font-size: 7pt' class='difficulty'>" + difficulty + "</span>" +
-                 "<span class='icao'>" + airport.icao + "</span>" +
+                 "<span class='icao'>" + airport.icao.toUpperCase() + "</span>" +
                  "<span class='name'>" + airport.name + "</span></li>");
 
     html.click(airport.icao.toLowerCase(), function(e) {
