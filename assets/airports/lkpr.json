@@ -2,36 +2,46 @@
   "radio": {
     "twr": "Ruzyne Tower",
     "app": "Ruzyne Approach",
-    "dep": "Ruzyne Departure"
+    "dep": "Ruzyne Radar"
   },
   "icao": "LKPR",
   "iata": "PRG",
   "magnetic_north": 4,
   "ctr_radius": 80,
-  "ctr_ceiling": 10000,
+  "ctr_ceiling": 14500,
   "initial_alt": 5000,
   "position": ["N50.1008333", "E14.26", "1247ft"],
   "rr_radius_nm": 5.0,
   "rr_center": ["N50.1008333", "E14.26"],
   "has_terrain": false,
   "wind": {
-    "angle": 300,
+    "angle": 60,
     "speed": 8
   },
   "fixes": {
+    "GOLOP000": ["N50d50.0", "E14d29.0"],
+    "GOSEK000": ["N49d25.0", "E14d06.0"],
+    "LOMKI091": ["N49d55.0", "E12d55.0"],
+    "VLM000": ["N49d38.4", "E15d10.8"],
+    "AKEVA": ["N49d57.3", "E14d02.6"],
     "ARTUP": ["N50d41.1", "E14d54.3"],
+    "ARVEG": ["N49d59.9", "E14d41.0"],
     "BAGRU": ["N50d25.9", "E14d20.2"],
     "BALTU": ["N50d05.4", "E13d19.36"],
+    "BAROX": ["N49d56.9", "E13d43.3"],
     "DOBEN": ["N49d46.4", "E13d33.7"],
     "ERASU": ["N50d16m07.51", "E14d28m41.31"],
     "ESINU": ["N50d13.7", "E13d41.2"],
+    "GOLOP": ["N50d35.1", "E14d29.7"],
+    "GOSEK": ["N49d37.0", "E14d06.1"],
+    "L": ["N50d07m11.74", "E14d17m11.75"],
+    "LOMKI": ["N49d54.6", "E13d14.5"],
+    "OKL": ["N50d05m44.80", "E14d15m15.81"],
     "RATEV": ["N50d07m03.32", "E14d35m12.65"],
     "UTORO": ["N50d16.6","E14d33.1"],
     "VENOX": ["N50d33.3","E14d08.0"],
-    "OKL": ["N50d05m44.80", "E14d15m15.81"],
+    "VLM": ["N49d42.3", "E15d04.0"],
     "VOZ": ["N49d31.9", "E14d52.5"],
-    "L": ["N50d07m11.74", "E14d17m11.75"],
-    "LOMKI": ["N49d54.6", "E13d14.5"],
     "PR402": ["N50d02m17.81", "E14d00m55.69"],
     "PR403": ["N49d51m23.47", "E14d09m33.64"],
     "PR404": ["N49d40m02.98", "E14d32m41.81"],
@@ -41,12 +51,22 @@
     "PR511": ["N49d54m02.32", "E13d28m55.38"],
     "PR512": ["N50d04m38.03", "E13d50m24.45"],
     "PR513": ["N50d10m58.18", "E14d11m23.04"],
+    "PR521": ["N50d00.7", "E14d13.8"],
+    "PR523": ["N50d03.1", "E14d21.8"],
     "PR626": ["N49d59m09.31", "E14d29m49.09"],
     "PR631": ["N50d11m12.65", "E14d30m40.40"],
     "PR632": ["N50d24m32.94", "E14d17m03.43"],
     "PR633": ["N50d13m05.31", "E14d37m01.03"],
     "PR634": ["N50d16m55.43", "E14d50m03.55"],
     "PR635": ["N49d59m06.31", "E14d39m38.94"],
+    "PR707": ["N49d53.9", "E13d33.4"],
+    "PR711": ["N50d23.2", "E14d38.4"],
+    "PR712": ["N50d17.0", "E14d31.5"],
+    "PR718": ["N49d50.7", "E14d24.0"],
+    "PR719": ["N49d57.3", "E14d20.8"],
+    "PR721": ["N49d45.7", "E14d57.2"],
+    "PR722": ["N49d51.7", "E14d53.4"],
+    "PR723": ["N50d04.2", "E14d45.6"],
     "PR813": ["N50d11m50.08", "E14d03m35.81"], 
     "PR814": ["N50d07m23.07", "E13d58m25.68"],
     "PR815": ["N50d13m49.78", "E13d59m25.84"],
@@ -56,7 +76,9 @@
     "PR856": ["N50d07m34.46", "E14d39m32.11"],
     "PR858": ["N50d20m13.63", "E14d30m27.42"],
     "PR860": ["N49d57m20.79", "E14d33m31.40"],
-    "PR861": ["N50d10m41.57", "E14d48m58.68"]
+    "PR861": ["N50d10m41.57", "E14d48m58.68"],
+    "PR914": ["N50d08.4", "E14d23.7"],
+    "PR915": ["N50d03.3", "E14d34.2"]
   },
   "runways": [
     {
@@ -152,22 +174,163 @@
 	"draw":[["PR402","PR403","PR404","VOZ"],["PR813","PR814","PR403","PR404","VOZ"],["PR633","PR635","VOZ"],["PR626","VOZ"]]
       }
   },
+  "stars": {
+      "LOMKI": {
+        "icao": "LOMKI",
+        "name": "Lomki",
+	"transitions" :{
+	  "LOMKI091" : [["LOMKI091","A60+|S250-"]]
+	},
+	"body": [["LOMKI","A55|S250"]],
+        "suffix": {"24":"5S","30":"6R","06":"5T","12":"5P"},
+        "rwy": {
+          "24" : [], 
+          "30" : [["PR511","A50+|S250-"],"PR512",["PR914","S220"],"PR915","ARVEG"],
+          "06" : [["PR707","A50|S220"],"BAROX"],
+          "12" : []
+        }
+      },
+      "GOSEK": {
+        "icao": "GOSEK",
+        "name": "Gosek",
+	"transitions" :{
+	  "GOSEK000" : [["GOSEK000","A55+|S250-"]]
+	},
+	"body": [["GOSEK","A50|S250"]],
+        "suffix": {"24":"3S","30":"4R","06":"3T","12":"3P"},
+        "rwy": {
+          "24" : [], 
+          "30" : [],
+          "06" : ["PR718",["PR719","A40|S220"],"PR521","AKEVA"],
+          "12" : []
+        }
+      },
+      "VLM": {
+        "icao": "VLM",
+        "name": "Vlasim",
+	"transitions" :{
+	  "VLM000" : [["VLM000","A55+|S250-"]]
+	},
+	"body": [["VLM","A50|S250"]],
+        "suffix": {"24":"3S","30":"2R","06":"2T","12":"2P"},
+        "rwy": {
+          "24" : [], 
+          "30" : [],
+          "06" : ["PR721","PR722","PR723",["PR523","A40|S220"],"AKEVA"],
+          "12" : []
+        }
+      },
+      "GOLOP": {
+        "icao": "GOLOP",
+        "name": "Golop",
+	"transitions" :{
+	  "GOLOP000" : [["GOLOP000","A55+|S250-"]]
+	},
+	"body": [["GOLOP","A50|S250"]],
+        "suffix": {"24":"2S","30":"3R","06":"2T","12":"2P"},
+        "rwy": {
+          "24" : [], 
+          "30" : [],
+          "06" : ["PR711","PR712",["PR513","A40|S220"],"KUVIX"],
+          "12" : []
+        }
+      }
+  },
   "departures": {
     "airlines": [
       ["TVS", 20],
       ["CSA", 20],
-      ["EZY", 5],
-      ["RYR",5],
-      ["AFL",2],
-      ["BAW",2],
+      ["EZY", 10],
+      ["RYR",10],
+      ["AFL",4],
+      ["BAW",4],
+      ["BER",2],
       ["SAS",1],
       ["EIN",1],
       ["UAE",1]
       ],
     "destinations" : ["BALTU","DOBEN","VENOX","ARTUP","VOZ"],
     "type" : "random",
-    "frequency": 30
-  }
+    "frequency": 10
+  },
+  "arrivals": [
+      {
+	"type": "random",
+	"route": "LOMKI091.LOMKI.LKPR",
+	"frequency": 8,
+	"altitude": 12000,
+	"speed": 350,
+	"airlines": [
+	  ["TVS", 20],
+	  ["CSA", 20],
+	  ["EZY", 10],
+	  ["RYR",10],
+	  ["AFL",4],
+	  ["BAW",4],
+	  ["BER",2],
+	  ["SAS",1],
+	  ["EIN",1],
+	  ["UAE",1]
+	]
+      },
+      {
+	"type": "random",
+	"route": "GOSEK000.GOSEK.LKPR",
+	"frequency": 7,
+	"altitude": 14000,
+	"speed": 350,
+	"airlines": [
+	  ["TVS", 20],
+	  ["CSA", 20],
+	  ["EZY", 10],
+	  ["RYR",10],
+	  ["AFL",4],
+	  ["BAW",4],
+	  ["BER",2],
+	  ["SAS",1],
+	  ["EIN",1],
+	  ["UAE",1] 
+	]
+      },
+      {
+	"type": "random",
+	"route": "VLM000.VLM.LKPR",
+	"frequency": 8,
+	"altitude": 12000,
+	"speed": 350,
+	"airlines": [
+	  ["TVS", 20],
+	  ["CSA", 20],
+	  ["EZY", 10],
+	  ["RYR",10],
+	  ["AFL",4],
+	  ["BAW",4],
+	  ["BER",2],
+	  ["SAS",1],
+	  ["EIN",1],
+	  ["UAE",1] 
+	]
+      },
+      {
+	"type": "random",
+	"route": "GOLOP000.GOLOP.LKPR",
+	"frequency": 7,
+	"altitude": 14000,
+	"speed": 350,
+	"airlines": [
+	  ["TVS", 20],
+	  ["CSA", 20],
+	  ["EZY", 10],
+	  ["RYR",10],
+	  ["AFL",4],
+	  ["BAW",4],
+	  ["BER",2],
+	  ["SAS",1],
+	  ["EIN",1],
+	  ["UAE",1] 
+	]
+      }
+  ]
 }
 
 
