@@ -1,0 +1,407 @@
+{
+  "_citation": "Thanks to Jeppensen, and to the person who published that material here: http://www.pentekesti.com/sites/default/files/charts/OSDI-1606.pdf",
+  "radio": {
+    "twr": "Damascus Tower",
+    "app": "Damascus Approach",
+    "dep": "Damascus Radar"
+  },
+  "icao": "OSDI",
+  "iata": "DAM",
+  "magnetic_north": 3,
+  "ctr_radius": 80,
+  "ctr_ceiling": 27000,
+  "initial_alt": 3000,
+  "position": ["N33d24m64.00", "E36d30m87.00"],
+  "rr_radius_nm": 5.0,
+  "rr_center": ["N33d24m64.00", "E36d30m87.00"],
+  "has_terrain": false,
+  "wind": {
+    "angle": 110,
+    "speed": 2
+  },
+  "fixes": {
+    "ABBAS":    ["N33d26m00.00",    "E037d43m50.00"],
+    "ADRA":     ["N33d36m80.00",    "E036d30m00.00"],
+    "BUSRA":    ["N32d20m00.00",    "E036d37m00.00"],
+    "DAL":      ["N33d29m25.00",    "E036d36m03.00"],
+    "DAM":      ["N33d21m89.00",    "E036d28m12.00"],
+    "LEBOR":    ["N34d16m00.00",    "E036d35m00.00"],
+    "MALLA":    ["N33d51m12.00",    "E036d31m54.00"],
+    "RDIMA":    ["N33d02m00.00",    "E036d32m00.00"],
+    "SOFIA":    ["N33d23m11.00",    "E036d49m67.00"],
+    "SULAF":    ["N33d27m30.00",    "E038d10m45.00"],
+    "SWIDA":    ["N32d43m00.00",    "E036d34m00.00"],
+    "TAN":      ["N33d28m94.00",    "E038d39m19.00"],
+    "ABD":      ["N33d20m12.00",    "E036d25m69.00"],
+    "BASEM":    ["N33d33m62.00",    "E037d39m12.00"],
+    "KTN":      ["N34d12m80.00",    "E037d15m80.00"],
+    "RAFIF":    ["N33d12m78.00",    "E038d19m32.00"],
+    "SOKAN":    ["N33d08m15.00",    "E038d22m12.00"]
+ },
+
+  "runways": [
+    {
+      "name": ["05L", "23R"],
+      "name_offset": [[0, 0], [0, 0]],
+      "end": [["N33d24m54.00", "E36d30m14.00"], ["N33d26m10.00", "E36d31m57.00"]],
+      "length": 3.600,
+      "ils": [false, true]
+    },
+    {
+      "name": ["05R", "23L"],
+      "name_offset": [[0, 0], [0, 0]],
+      "end": [["N33d23m06.00", "E36d29m46.00"], ["N33d24m22.00", "N36d31m29.00"]],
+      "length": 3.600,
+      "ils": [true, false]
+    }
+  ],  
+  "sids": {
+    "ABS1": {
+        "icao": "ABS1",
+        "name": "Abbas One",
+        "suffix": {"23L":"1", "23R":"1"},
+        "rwy": {
+          "23L": [["DAM", "A80"], "SOFIA", ["ABBAS", "A240+"]],
+          "23R": [["DAM", "A80"], "SOFIA", ["ABBAS", "A240+"]]
+        },
+        "draw": [
+          ["ABBAS"]
+        ]
+    },
+    "ABS2": {
+        "icao": "ABS2",
+        "name": "Abbas Two",
+        "suffix": {"23L":"2", "23R":"2"},
+        "rwy":{
+          "23L": ["DAM", "SOFIA", ["ABBAS", "A240+"]],
+          "23R": ["DAM", "SOFIA", ["ABBAS", "A240+"]]
+        },
+        "draw": [
+          ["ABBAS"]
+        ]
+    },
+    "ABS21": {
+        "icao": "ABS21",
+        "name": "Abbas Two One",
+        "suffix": {"05L":"21", "05R":"21"},
+        "rwy": {
+          "05L": [["DAM", "A80"], "SOFIA", ["ABBAS", "A240+"]],
+          "05R": [["DAM", "A80"], "SOFIA", ["ABBAS", "A240+"]]
+        },
+        "draw": [
+          ["DAM", "SOFIA", "ABBAS"]
+        ]
+    },
+    "ABS22": {
+        "icao": "ABS22",
+        "name": "Abbas Two Two",
+        "suffix": {"05L":"22", "05R":"22"},
+        "rwy": {
+          "05L": ["SOFIA", ["ABBAS", "A240+"]],
+          "05R": ["SOFIA", ["ABBAS", "A240+"]]
+        },
+        "draw": [
+          ["ABBAS"]
+        ]
+    },
+    "BUS1": {
+        "icao": "BUS1",
+        "name": "Busra One",
+        "suffix": {"23L":"1", "23R":"1"},
+        "rwy": {
+          "23L": [["DAM", "A50"], ["RDIMA", "A100"], ["SWIDA", "A160+"], "BUSRA"],
+          "23R": [["DAM", "A50"], ["RDIMA", "A100"], ["SWIDA", "A160+"], "BUSRA"]
+        },
+        "draw": [
+          ["BUSRA"]
+        ]
+    },
+    "BUS2": {
+        "icao": "BUS2",
+        "name": "Busra Two",
+        "suffix": {"05L":"2", "05R":"2"},
+        "rwy": {
+          "05L": [["DAM", "A50"], ["RDIMA", "A100"], ["SWIDA", "A160+"], "BUSRA"],
+          "05R": [["DAM", "A50"], ["RDIMA", "A100"], ["SWIDA", "A160+"], "BUSRA"]
+        },
+        "draw": [
+          ["DAM", "RDIMA", "SWIDA", "BUSRA"]
+        ]
+    },
+    "LEB1": {
+        "icao": "LEB1",
+        "name": "Lebor One",
+        "suffix": {"23L":"1", "23R":"1"},
+        "rwy": {
+          "23L": [["DAM", "A50"], ["ADRA", "A100"], ["MALLA", "A160"], ["LEBOR", "A240+"]],
+          "23R": [["DAM", "A50"], ["ADRA", "A100"], ["MALLA", "A160"], ["LEBOR", "A240+"]]
+        },
+        "draw": [
+          ["LEBOR"]
+        ]
+    },
+    "LEB2": {
+        "icao": "LEB2",
+        "name": "Lebor Two",
+        "suffix": {"05L":"2", "05R":"2"},
+        "rwy": {
+          "05L": [["DAL", "A50"], ["ADRA", "A100"], ["MALLA", "A160"], ["LEBOR", "A240+"]],
+          "05R": [["DAL", "A50"], ["ADRA", "A100"], ["MALLA", "A160"], ["LEBOR", "A240+"]]
+        },
+        "draw": [
+          ["DAL", "ADRA", "MALLA", "LEBOR"]
+        ]
+    },
+    "SLF1": {
+        "icao": "SLF1",
+        "name": "Sulaf One",
+        "suffix": {"23L":"1", "23R":"1"},
+        "rwy": {
+          "23L": [["DAM", "A50"], "SOFIA", "ABBAS", ["SULAF", "A240+"]],
+          "23R": [["DAM", "A50"], "SOFIA", "ABBAS", ["SULAF", "A240+"]]
+        },
+        "draw": [
+          ["SULAF"]
+        ]
+    },
+    "SLF21": {
+        "icao": "SLF21",
+        "name": "Sulaf Two One",
+        "suffix": {"05L":"21", "05R":"21"},
+        "rwy": {
+          "05L": [["DAM", "A50"], "SOFIA", "ABBAS", ["SULAF", "A240+"]],
+          "05R": [["DAM", "A50"], "SOFIA", "ABBAS", ["SULAF", "A240+"]]
+        },
+        "draw": [
+          ["DAM", "SULAF"]
+        ]
+    },
+    "SLF2": {
+        "icao": "SLF2",
+        "name": "Sulaf Two",
+        "suffix": {"23L":"2", "23R":"2"},
+        "rwy": {
+          "23L": ["DAM", "SOFIA", "ABBAS", ["SULAF", "A240+"]],
+          "23R": ["DAM", "SOFIA", "ABBAS", ["SULAF", "A240+"]]
+        },
+        "draw": [
+          ["SULAF"]
+        ]
+    },
+    "SLF22": {
+        "icao": "SLF22",
+        "name": "Sulaf Two Two",
+        "suffix": {"05L":"22", "05R":"22"},
+        "rwy": {
+          "05L": ["SOFIA", "ABBAS", ["SULAF", "A240+"]],
+          "05R": ["SOFIA", "ABBAS", ["SULAF", "A240+"]]
+        },
+        "draw": [
+          ["SULAF"]
+        ]
+    },
+    "TAN1": {
+        "icao": "TAN1",
+        "name": "Tanf One",
+        "suffix": {"23L":"1", "23R":"1"},
+        "rwy": {
+          "23L": [["DAM", "A80"], "SOFIA", ["ABBAS", "A240+"], "SULAF", "TAN"],
+          "23R": [["DAM", "A80"], "SOFIA", ["ABBAS", "A240+"], "SULAF", "TAN"]
+        },
+        "draw": [
+          ["TAN"]
+        ]
+    },
+    "TAN21": {
+        "icao": "TAN21",
+        "name": "Tanf Two One",
+        "suffix": {"05L":"21", "05R":"21"},
+        "rwy": {
+          "05L": [["DAM", "A80"], "SOFIA", ["ABBAS", "A240+"], "SULAF", "TAN"],
+          "05R": [["DAM", "A80"], "SOFIA", ["ABBAS", "A240+"], "SULAF", "TAN"]
+        },
+        "draw": [
+          ["ABBAS", "SULAF", "TAN"]
+        ]
+    },
+    "TAN2": {
+        "icao": "TAN2",
+        "name": "Tanf Two",
+        "suffix": {"23L":"2", "23R":"2"},
+        "rwy": {
+          "23L": ["DAM", "SOFIA", ["ABBAS", "A240+"], "TAN"],
+          "23R": ["DAM", "SOFIA", ["ABBAS", "A240+"], "TAN"]
+        },
+        "draw": [
+          ["TAN"]
+        ]
+    },
+    "TAN22": {
+        "icao": "TAN22",
+        "name": "Tanf Two Two",
+        "suffix": {"05L":"22", "05R":"22"},
+        "rwy": {
+          "05L": ["SOFIA", ["ABBAS", "A240+"], "TAN"],
+          "05R": ["SOFIA", ["ABBAS", "A240+"], "TAN"]
+        },
+        "draw": [
+          ["TAN"]
+        ]
+    }
+},
+
+  "departures": {
+    "airlines": [
+      ["saw", 12],
+      ["fdk",  5],
+      ["syr", 14]
+    ],
+    "destinations": [
+      "ABS1", "ABS2", "ABS21", "ABS22", "BUS1", "BUS2", "LEB1", "LEB2", "SLF1", "SLF2", "SLF21", "SLF22", "TAN1", "TAN2", "TAN21", "TAN22"
+    ],
+    "type": "cyclic",
+    "offset": 0,
+    "frequency": 10
+  },
+  "stars": {
+    "BRAVO1C": {
+        "icao": "BRAVO1C",
+        "name": "Bravo One Charlie",
+        "suffix": {"05L":"1C", "05R":"1C", "23L":"1C", "23R":"1C"},
+        "transitions": {
+          "BUSRA": [["BUSRA", "A160"]]
+        },
+        "body": [["SWIDA", "A160"], ["RDIMA", "A140"], ["DAM", "A50"]],
+        "draw": [
+          ["BUSRA", "SWIDA", "RDIMA", "DAM"]
+        ]
+    },
+    "KILO1C": {
+        "icao": "KILO1C",
+        "name": "Kilo One Charlie",
+        "suffix": {"05L":"1C", "05R":"1C", "23L":"1C", "23R":"1C"},
+        "transitions": {
+          "KARIATAIN":  ["KTN"]
+        },
+        "rwy": {
+            "23R":  [["DAL", "A50"]],
+            "05L":  [["DAM", "A50"]],
+            "05R":  [["ABD", "A50"]]
+        },
+        "body": ["BASEM", ["ABBAS", "A240"], ["SOFIA", "A100"]],
+        "draw": [
+          ["KTN", "ABBAS", "SOFIA", "DAM"],
+          ["SOFIA", "DAL"],
+          ["SOFIA", "ABD"]
+        ]
+    },
+    "LIMA1C": {
+        "icao": "LIMA1C",
+        "name": "Lima One Charlie",
+        "suffix": {"05L":"1C", "05R":"1C", "23L":"1C", "23R":"1C"},
+        "transitions": {
+          "LEBOR": [["LEBOR", "A240"]]
+        },
+        "body": [["MALLA", "A160"], ["ADRA", "A100"], ["DAM", "A50"]],
+        "draw": [
+          ["LEBOR", "MALLA", "ADRA", "DAM"]
+        ]
+    },
+    "SIERA1C": {
+        "icao": "SIERA1C",
+        "name": "Siera One Charlie",
+        "suffix": {"05L":"1C", "05R":"1C", "23L":"1C", "23R":"1C"},
+        "transitions": {
+          "SOKAN": ["SOKAN"]
+        },
+        "body": ["RAFIF", ["SULAF", "A240"], ["ABBAS", "A240"], ["SOFIA", "A100"]],
+        "draw": [
+          ["SOKAN", "RAFIF", "SULAF", "ABBAS", "SOFIA"]
+        ]
+    },
+    "TANGO1C": {
+        "icao": "TANGO1C",
+        "name": "Tango One Charlie",
+        "suffix": {"05L":"1C", "05R":"1C", "23L":"1C", "23R":"1C"},
+        "transitions": {
+          "TANF":  ["TAN"]
+        },
+        "rwy": {
+            "23R":  [["DAL", "A50"]],
+            "05L":  [["DAM", "A50"]],
+            "05R":  [["ABD", "A50"]]
+        },
+        "body": [["SULAF", "A240"], ["ABBAS", "A240"], ["SOFIA", "A100"]],
+        "draw": [
+          ["TAN", "SULAF", "ABBAS", "SOFIA", "DAM"],
+          ["SOFIA", "DAL"],
+          ["SOFIA", "ABD"]
+        ]
+    }
+  },
+  "arrivals": [
+    {
+      "type": 		"cyclic",
+      "route":      "BUSRA.BRAVO1C.OSDI",
+      "frequency":  4,
+      "altitude":   16000,
+      "speed":		430,
+      "offset":		2,
+      "airlines": [
+        ["saw", 12],
+        ["fdk",  5],
+        ["syr", 14]
+     ]
+    },
+    {
+      "type": 		"cyclic",
+      "route":      "KARIATAIN.KILO1C.OSDI",
+      "frequency":  3,
+      "altitude":   26000,
+      "speed":		430,
+      "offset":		2,
+      "airlines": [
+        ["saw", 12],
+        ["syr", 14]
+     ]
+    },
+    {
+      "type": 		"cyclic",
+      "route":      "LEBOR.LIMA1C.OSDI",
+      "frequency":  2,
+      "altitude":   24000,
+      "speed":		430,
+      "offset":		2,
+      "airlines": [
+        ["saw", 12],
+        ["syr", 14]
+     ]
+    },
+    {
+      "type": 		"cyclic",
+      "route":      "SOKAN.SIERA1C.OSDI",
+      "frequency":  2,
+      "altitude":   21000,
+      "speed":		430,
+      "offset":		2,
+      "airlines": [
+        ["saw", 12],
+        ["fdk",  5],
+        ["syr", 14]
+     ]
+    },
+    {
+      "type": 		"cyclic",
+      "route":      "TANF.TANGO1C.OSDI",
+      "frequency":  5,
+      "altitude":   27000,
+      "speed":		430,
+      "offset":		2,
+      "airlines": [
+        ["saw", 12],
+        ["fdk",  5],
+        ["syr", 14]
+     ]
+    }
+  ]
+}

@@ -1219,17 +1219,21 @@ function airport_init() {
   airport_load('eddm', "beginner", "Franz Josef Strauß International Airport");
   airport_load('eddt', "medium", "Berlin Tegel Airport");
   airport_load('egcc', "hard", "Manchester Airport");
+  airport_load('eggw', "medium", "London Luton Airport")
   airport_load('egkk', "easy", "London Gatwick Airport");
   airport_load('eglc', "medium", "London City Airport");
   airport_load('egll', "hard", "London Heathrow Airport");
+  airport_load('egnm', "beginner", "Leeds Bradford International Airport");
   airport_load('eham', "medium", "Amsterdam Airport Schiphol");
   airport_load('eidw', "easy", "Dublin Airport");
   airport_load('einn', "easy", "Shannon Airport");
   airport_load('ekch', "medium", "Copenhagen Kastrup Airport");
   airport_load('engm', "easy", "Oslo Gardermoen International Airport");
   airport_load('espa', "easy", "Luleå Airport");
+  airport_load('gcrr', "easy", "Lanzarote Airport");
   airport_load('kbos', "medium", "Boston Logan International Airport");
   airport_load('kdca', "medium", "Reagan National Airport");
+  airport_load('kiad', "hard", "Washington-Dulles International Airport");
   airport_load('kjfk', "hard", "John F Kennedy International Airport &#9983");
   airport_load('klax90', "medium", "Los Angeles International Airport 1990");
   airport_load('klax', "medium", "Los Angeles International Airport");
@@ -1243,6 +1247,7 @@ function airport_init() {
   airport_load('ltba', "hard", "Atatürk International Airport &#9983");
   airport_load('omaa', "medium", "Abu Dhabi International Airport");
   airport_load('omdb', "hard", "Dubai International Airport");
+  airport_load('osdi', "easy",  "Damascus International Airport");
   airport_load('othh', "hard", "Doha Hamad International Airport");
   airport_load('saez', "medium", "Aeropuerto Internacional Ministro Pistarini");
   airport_load('sbgl', "beginner", "Aeroporto Internacional Tom Jobim");
@@ -1255,6 +1260,7 @@ function airport_init() {
   airport_load('wiii', "medium", "Soekarno-Hatta International Airport");
   airport_load('wimm', "easy", "Kuala Namu International Airport");
   airport_load('wmkp', "medium", "Pulau Pinang International Airport");
+  airport_load('wmkk', "hard", "Kuala Lumpur International Airport (KLIA)")
   airport_load('wsss', "hard", "Singapore Changi International Airport");
 }
 
