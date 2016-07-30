@@ -1,0 +1,182 @@
+{
+  "radio": {
+    "twr": "Leeds Tower",
+    "app": "Leeds Approach",
+    "dep": "Leeds Radar"
+  },
+  "icao": "EGNM",
+  "iata": "LBA",
+  "magnetic_north": 0.16,
+  "ctr_radius": 32,
+  "ctr_ceiling": 8500,
+  "initial_alt": 3000,
+  "position": ["N53d51m57.69",  "W001d39m38.77"],
+  "rr_radius_nm": 5,
+  "rr_center": ["N53d51m57.69",  "W001d39m38.77"],
+  "has_terrain": false,
+  "wind": {
+    "angle": 230,
+    "speed": 0
+  },
+  "fixes": {
+    "D082N":  ["N53d47m02.00",  "W001d42m94.00"],
+    "D082J":  ["N53d46m34.00",  "W001d49m59.00"],
+    "POL":    ["N53d44m38.00",  "W002d06m12.00"],
+    "NELSA":  ["N53d51m48.00",  "W002d11m05.00"],
+    "05DME":  ["N53d52m66.00",  "W001d40m71.00"],
+    "21DME":  ["N53d53m67.00",  "W001d42m97.00"],
+    "35DME":  ["N53d54m08.00",  "W001d45m35.00"],
+    "D052L":  ["N53d52m31.00",  "W001d50m65.00"],
+    "D052K":  ["N53d51m67.00",  "W001d51m95.00"],
+    "D272J":  ["N53d51m86.00",  "W001d54m64.00"],
+    "R255":   ["N53d50m20.00",  "W001d48m24.00"],
+    "GAM38":  ["N53d44m88.00",  "W001d39m79.00"],
+    "GAM35":  ["N53d42m68.00",  "W001d36m37.00"],
+    "GAM31":  ["N53d39m74.00",  "W001d31m81.00"],
+    "GAM19":  ["N53d30m91.00",  "W001d18m20.00"],
+    "GAM18":  ["N53d30m18.00",  "W001d17m07.00"],
+    "GAM15":  ["N53d28m74.00",  "W001d12m16.00"],
+    "DOPEK":  ["N53d23m04.00",  "W000d55m32.00"],
+    "LAMIX":  ["N53d18m48.00",  "W000d40m93.00"],
+    "D140B":  ["N53d50m14.00",  "W001d36m85.00"],
+    "GAM36":  ["N53d46m54.00",  "W001d30m90.00"],
+    "GAM32":  ["N53d43m26.00",  "W001d27m08.00"],
+    "GAM29":  ["N53d40m79.00",  "W001d24m22.00"],
+    "GA19A":  ["N53d32m56.00",  "W001d14m72.00"],
+    "GA15A":  ["N53d29m26.00",  "W001d10m93.00"],
+    "GAM14":  ["N53d28m44.00",  "W001d09m99.00"],
+    "LBA":    ["N53d51m54.00",  "W001d39m10.00"]
+	},
+
+  "runways": [
+    {
+      "name": ["14", "32"],
+      "name_offset": [[0, 0], [0, 0]],
+      "end": [["N53d52m17.15", "W001d40m08.68"], ["N53d51m37.31", "W001d39m07.44"]],
+      "length": 2.250,
+      "ils": [true, true]
+    }
+  ],
+  "sids": {
+    "POL": {
+        "icao": "POL",
+        "name": "Pole Hill Two Xray",
+        "suffix": {"14":"2X"},
+        "rwy": {
+          "14": [["D082N", "A30"], ["D082J", "A35"], ["POL", "A70"]]
+        },
+        "draw": [
+          ["D082N", "D082J", "POL"]
+        ]
+    },
+    "NELSA": {
+        "icao": "NELSA",
+        "name": "Nelsa Three Whiskey",
+        "suffix": {"32":"3W"},
+        "rwy": {
+          "32": ["05DME", "21DME", "35DME", ["D052L", "A30"], ["D052K", "A35"], ["D272J", "A35"], ["NELSA", "A70"]]
+        },
+        "draw": [
+          ["05DME", "21DME", "35DME", "D052L", "D052K", "D272J", "NELSA"]
+        ]
+    },
+    "DOPEK": {
+        "icao": "DOPEK",
+        "name": "Dopek",
+        "suffix": {"32":"2W", "14":"2X"},
+        "rwy": {
+          "32": ["05DME", "21DME", "35DME", ["R255", "A30"], ["GAM38", "A35"], ["GAM35", "A60"], ["GAM31", "A70"], "GAM19", "GAM18", "GAM15", "DOPEK"],
+          "14": ["D140B", ["GAM36", "A30"], ["GAM32", "A35"], ["GAM29", "A70"], "GA19A", "GA15A", "GAM14", "DOPEK"]
+        },
+        "draw": [
+          ["35DME", "R255", "GAM38", "GAM35", "GAM31", "GAM19", "GAM18", "GAM15", "DOPEK"],
+          ["D140B", "GAM36", "GAM32", "GAM29", "GA19A", "GA15A", "GAM14", "DOPEK"]
+        ]
+    },
+    "LAMIX": {
+        "icao": "LAMIX",
+        "name": "Lamix",
+        "suffix": {"32":"2W", "14":"2X"},
+        "rwy": {
+          "32": ["05DME", "21DME", "35DME", ["R255", "A30"], ["GAM38", "A35"], ["GAM35", "A60"], ["GAM31", "A70"], "GAM19", "GAM18", "GAM15", "DOPEK", "LAMIX"],
+          "14": ["D140B", ["GAM36", "A30"], ["GAM32", "A35"], ["GAM29", "A70"], "GA19A", "GA15A", "GAM14", "DOPEK", "LAMIX"]
+        },
+        "draw": [
+          ["DOPEK", "LAMIX"]
+        ]
+    }
+  },
+
+  "departures": {
+    "airlines": [
+      ["ein",  2],
+      ["baw",  1],
+      ["ezy",  1],
+      ["bee",  3],
+      ["exs", 51],
+      ["klc",  1],
+      ["mon", 13],
+      ["ryr", 22],
+      ["tom",  9]
+    ],
+    "destinations": [
+      "POL", "NELSA", "DOPEK", "LAMIX"
+    ],
+    "type": "cyclic",
+    "offset": 0,
+    "frequency": 9
+  },
+  "arrivals": [
+    {
+      "type": "cyclic",
+      "radial": 325,
+      "frequency": 2,
+      "altitude": 8500,
+      "speed": 250,
+      "airlines": [
+        ["ein",  2],
+        ["exs", 51],
+        ["ryr", 22],
+        ["bee",  3]
+      ]
+    },
+    {
+      "type": "cyclic",
+      "radial": 165,
+      "frequency": 1,
+      "altitude": 7000,
+      "speed": 250,
+      "airlines": [
+        ["bee",  3]
+      ]
+    },
+    {
+      "type": "cyclic",
+      "radial": 300,
+      "frequency": 3,
+      "altitude": 7500,
+      "speed": 250,
+      "airlines": [
+        ["ezy",  1],
+        ["exs", 51],
+        ["klc",  1],
+        ["ryr", 22]
+      ]
+    },
+    {
+      "type": "cyclic",
+      "radial": 0,
+      "frequency": 5,
+      "altitude": 6500,
+      "speed": 250,
+      "airlines": [
+        ["baw",  1],
+        ["bee",  3],
+        ["exs", 51],
+        ["mon", 13],
+        ["ryr", 22],
+        ["tom",  9]
+      ]
+    }
+  ]
+}

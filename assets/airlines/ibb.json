@@ -1,0 +1,14 @@
+{
+  "name": "Binter Canarias",
+  "callsign": {
+    "name": "Binter",
+    "length": 3
+  },
+  "fleets": {
+    "default": [
+      ["AT72", 16],
+      ["AT76", 2],
+      ["CRJ9", 2]
+    ]
+  }
+}
