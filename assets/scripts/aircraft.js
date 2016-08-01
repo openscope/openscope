@@ -2193,7 +2193,7 @@ var Aircraft=Fiber.extend(function() {
       }
     },
     parse: function(data) {
-      var keys = 'position model airline callsign category heading altitude'.split(' ');
+      var keys = 'position model airline callsign category heading altitude speed'.split(' ');
       for (var i in keys) {
         if (data[keys[i]]) this[keys[i]] = data[keys[i]];
       }
@@ -2210,13 +2210,15 @@ var Aircraft=Fiber.extend(function() {
         this.destination = data.destination;
       }
 
-      if(data.speed) this.speed = data.speed;
       if(data.heading)  this.fms.setCurrent({heading: data.heading});
       if(data.altitude) this.fms.setCurrent({altitude: data.altitude});
       this.fms.setCurrent({speed: data.speed || this.model.speed.cruise});
-      if(data.route) {  // filed a STAR
+      if(data.route) {
         this.fms.customRoute(this.fms.formatRoute(data.route), true);
         this.fms.descendViaSTAR();
+      }
+      if(data.nextFix) {
+        this.fms.skipToFix(data.nextFix);
       }
     },
     pushHistory: function() {

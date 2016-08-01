@@ -13,6 +13,7 @@ var Position=Fiber.extend(function() {
   return {
     // coordinates - Array containing offset pair or latitude/longitude pair
     // reference - Position to use for calculating offsets when lat/long given
+    // mode - optional. Set to "GPS" to indicate you are inputting lat/lon that should be converted to positions
     //
     // coordinates may contain an optional elevation as a third
     // element.  It must be suffixed by either 'ft' or 'm' to indicate
@@ -21,7 +22,7 @@ var Position=Fiber.extend(function() {
     //   Decimal degrees - 'N47.112388112'
     //   Decimal minutes - 'N38d38.109808'
     //   Decimal seconds - 'N58d27m12.138'
-    init: function(coordinates, reference, magnetic_north) {
+    init: function(coordinates, reference, magnetic_north, /*optional*/ mode) {
       if(!coordinates) coordinates=[];
 
       this.latitude = 0;
@@ -34,19 +35,22 @@ var Position=Fiber.extend(function() {
       this.x = 0;
       this.y = 0;
       this.position = [this.x, this.y];
+      this.gps = [0,0];
 
-      this.parse(coordinates);
+      this.parse(coordinates, mode);
     },
-    parse: function(coordinates) {
+    parse: function(coordinates, mode) {
       if (! /^[NESW]/.test(coordinates[0])) {
         this.x = coordinates[0];
         this.y = coordinates[1];
         this.position = [this.x, this.y];
+        if(mode === 'GPS') this.parse4326();
         return;
       }
 
       this.latitude = this.parseCoordinate(coordinates[0]);
       this.longitude = this.parseCoordinate(coordinates[1]);
+      this.gps = [this.longitude, this.latitude]; // GPS coordinates in [x,y] order
 
       if (coordinates[2] != null) {
         this.elevation = parseElevation(coordinates[2]);

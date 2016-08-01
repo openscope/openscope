@@ -164,6 +164,20 @@ function distance2d(a,b) {
   return Math.sqrt((x*x)+(y*y));
 }
 
+function distEuclid(gps1, gps2) {
+  var R = 6371; // nm
+  var lat1 = radians(lat1);
+  var lat2 = radians(lat2);
+  var dlat = radians(lat2-lat1);
+  var dlon = radians(lon2-lon1);
+  var a = Math.sin(dlat/2) * Math.sin(dlat/2) +
+          Math.cos(lat1) * Math.cos(lat2) *
+          Math.sin(dlon/2) * Math.sin(dlon/2);
+  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+  var d = R * c;
+  return d; // distance, in kilometers
+}
+
 function degrees(radians) {
   return (radians/(Math.PI*2))*360;
 }
@@ -216,6 +230,10 @@ function lpad(n, width) {
   return x.substr(x.length-width, width);
 }
 
+/** Returns the angle difference between two headings
+ ** @param {number} a - heading, in radians
+ ** @param {number} b - heading, in radians
+ */
 function angle_offset(a, b) {
   a = degrees(a);
   b = degrees(b);
@@ -231,6 +249,14 @@ function angle_offset(a, b) {
   if(invert) offset *= -1;
   offset = radians(offset);
   return offset;
+}
+
+/** Returns the bearing from position 'a' to position 'b'
+ ** @param {array} a - positional array, start point
+ ** @param {array} a - positional array, end point
+ */
+function bearing(a, b) {
+  return vradial(vsub(b,a));
 }
 
 /** Returns an offset array showing how far [fwd/bwd, left/right] 'aircraft' is of 'target'
@@ -604,14 +630,73 @@ function positive_intersection_with_rect(pos, dir, rectPos, rectSize) {
   return undefined;
 }
 
-// Return a random number within the given interval
-// With one argument return a number between 0 and argument
-// With no arguments return a number between 0 and 1
+/** Return a random number within the given interval
+ *  With one argument return a number between 0 and argument
+ *  With no arguments return a number between 0 and 1
+ */
 function random(low, high) {
   if (low == high) return low;
   if (low == null) return Math.random();
   if (high == null) return Math.random() * low;
   return (low + (Math.random() * (high - low)));
+}
+
+/** Get new position by fix-radial-distance method
+ ** @param {array} fix - positional array of start point, in decimal-degrees [lat,lon]
+ ** @param {number} radial - heading to project along, in radians
+ ** @param {number} dist - distance to project, in nm
+ ** @returns {array} location of the projected fix
+ */
+function fixRadialDist(fix, radial, dist) {
+  fix = [radians(fix[0]), radians(fix[1])]; // convert GPS coordinates to radians
+  var R = 3440; // radius of Earth, nm
+  var lat2 = Math.asin(Math.sin(fix[1])*Math.cos(dist/R) +
+             Math.cos(fix[1])*Math.sin(dist/R)*Math.cos(radial));
+  var lon2 = fix[0] + Math.atan2(Math.sin(radial)*Math.sin(dist/R)*Math.cos(fix[1]),
+             Math.cos(dist/R)-Math.sin(fix[1])*Math.sin(lat2));
+  return [degrees(lon2), degrees(lat2)];
+}
+
+/** Splices all empty elements out of an array
+ */
+function array_clean(array, deleteValue) {
+  for (var i = 0; i < array.length; i++) {
+    if (array[i] == deleteValue) {         
+      array.splice(i, 1);
+      i--;
+    }
+  }
+  return array;
+};
+
+/** Returns the sum of all numerical values in the array
+ */
+function array_sum(array) {
+  var total = 0;
+  for(var i=0; i<array.length; i++) total += parseFloat(array[i]);
+  return total;
+}
+
+function inAirspace(pos) {
+  var apt = airport_get();
+  var perim = apt.perimeter;
+  if(perim) {
+    return point_in_area(pos, perim);
+  }
+  else {
+    return distance2d(pos, apt.position.position) <= apt.ctr_radius;
+  }
+}
+
+function dist_to_boundary(pos) {
+  var apt = airport_get();
+  var perim = apt.perimeter;
+  if(perim) {
+    return distance_to_poly(pos, area_to_poly(perim));  // km
+  }
+  else {
+    return abs(distance2d(pos, apt.position.position) - apt.ctr_radius);
+  }
 }
 
 // ************************ VECTOR FUNCTIONS ************************
@@ -917,9 +1002,16 @@ function point_in_poly(point, vs) {
     return inside;
 }
 
+/** Converts an 'area' to a 'poly'
+ */
+function area_to_poly(area) {
+  return $.map(area.poly, function(v) {return [v.position];});
+}
+
+/** Checks to see if a point is in an area
+ */
 function point_in_area(point, area) {
-  var poly = $.map(area.poly, function(v) {return [v.position];});
-  return point_in_poly(point, poly);
+  return point_in_poly(point, area_to_poly(area));
 }
 
 function endsWith(str, suffix) {
