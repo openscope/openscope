@@ -93,9 +93,9 @@
         "25" : [["_RWY25", "A4+|S180"], ["WH321", "A17+|S180"], ["WH322", "A50+|S180"], ["WH323", "A75+|S180"], ["WH324", "A80+|S180"]]
       },
       "transitions": {
-        "USU": [["WH326", "A110+|S180"], ["USU", "S180"], "UGIRA", "LOKEN"],
-        "USU": [["WH326", "A110+|S180"], ["USU", "S180"], "KEXOP", "GRA"],
-        "USU": [["WH326", "A110+|S180"], ["USU", "S180"], "LITOK", "ALMIR"],
+        "UGIRA": [["WH326", "A110+|S180"], ["USU", "S180"], "UGIRA", "LOKEN"],
+        "KEXOP": [["WH326", "A110+|S180"], ["USU", "S180"], "KEXOP", "GRA"],
+        "LITOK": [["WH326", "A110+|S180"], ["USU", "S180"], "LITOK", "ALMIR"],
         "DABLI": [["WH325", "A110+"], "DABLI", "GRA"]
       },
       "draw": [["_RWY25", "WH321", "WH322", "WH323", "WH324", "WH326", "USU*"], ["WH324", "WH325", "DABLI*"]]
