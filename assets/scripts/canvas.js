@@ -239,7 +239,7 @@ function canvas_draw_fixes(cc) {
   var airport=airport_get();
   for(var i in airport.real_fixes) {
     cc.save();
-    cc.translate(round(km_to_px(airport.fixes[i][0])) + prop.canvas.panX, -round(km_to_px(airport.fixes[i][1])) + prop.canvas.panY);
+    cc.translate(round(km_to_px(airport.fixes[i].position[0])) + prop.canvas.panX, -round(km_to_px(airport.fixes[i].position[1])) + prop.canvas.panY);
 
     // draw outline (draw with eraser)
     cc.strokeStyle = "rgba(0, 0, 0, 0.67)";
@@ -247,14 +247,14 @@ function canvas_draw_fixes(cc) {
     cc.globalCompositeOperation = 'destination-out';
     cc.lineWidth   = 4;
     
-    canvas_draw_fix(cc, i, airport.fixes[i]);
+    canvas_draw_fix(cc, i, airport.fixes[i].position);
 
     cc.strokeStyle = "rgba(255, 255, 255, 0)";
     cc.fillStyle   = "rgba(255, 255, 255, 0.5)";
     cc.globalCompositeOperation = 'source-over';
     cc.lineWidth   = 1;
 
-    canvas_draw_fix(cc, i, airport.fixes[i]);
+    canvas_draw_fix(cc, i, airport.fixes[i].position);
     cc.restore();
   }
 }

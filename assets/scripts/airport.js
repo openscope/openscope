@@ -66,6 +66,98 @@ zlsa.atc.ArrivalBase = Fiber.extend(function(base) {
         airline_get(data[0].split('/')[0]);
       });
     },
+    /** Backfill STAR routes with arrivals closer than the spawn point
+     ** Aircraft spawn at the first point defined in the route of the entry in
+     ** "arrivals" in the airport json file. When that spawn point is very far
+     ** from the airspace boundary, it obviously takes quite a while for them
+     ** to reach the airspace. This function spawns (all at once) arrivals along
+     ** the route, between the spawn point and the airspace boundary, in order to
+     ** ensure the player is not kept waiting for their first arrival aircraft.
+     */
+    preSpawn: function() {
+      var star, entry;
+      var runway = this.airport.runway;
+
+      //Find STAR & entry point
+      var pieces = array_clean(this.route.split('.'));
+      for(var i in pieces) {
+        if(this.airport.stars.hasOwnProperty(pieces[i])) {
+          star = pieces[i];
+          if(i>0) entry = pieces[i-1];
+        }
+      }
+
+      // Find the last fix that's outside the airspace boundary
+      var fixes = this.airport.getSTAR(star, entry, runway);
+      var lastFix = fixes[0][0];
+      var extra = 0;  // dist btwn closest fix outside a/s and a/s border, nm
+      for(var i in fixes) {
+        var fix = fixes[i][0];
+        var pos = this.airport.fixes[fix].position;
+        var fix_prev = (i>0) ? fixes[i-1][0] : fix;
+        var pos_prev = (i>0) ? this.airport.fixes[fix_prev].position : pos;
+        if(inAirspace(pos)) {
+          if(i>=1) extra = nm(dist_to_boundary(pos_prev));
+          break;
+        }
+        else fixes[i][2] = nm(distance2d(pos_prev, pos));  // calculate distance between fixes
+      }
+
+      // Determine spawn offsets
+      var spawn_offsets = [];
+      var entrail_dist = this.speed / this.frequency;   // distance between succ. arrivals, nm
+      var dist_total = array_sum($.map(fixes,function(v){return v[2]})) + extra;
+      for(var i=entrail_dist; i<dist_total; i+=entrail_dist) {
+        spawn_offsets.push(i);
+      }
+
+      // Determine spawn points
+      var spawn_positions = [];
+      for(var i in spawn_offsets) { // for each new aircraft
+        for(var j=1; j<fixes.length; j++) { // for each fix ahead
+          if(spawn_offsets[i] > fixes[j][2]) {  // if point beyond next fix
+            spawn_offsets[i] -= fixes[j][2];
+            continue;
+          }
+          else {  // if point before next fix
+            var next = airport_get().fixes[fixes[j][0]];
+            var prev = airport_get().fixes[fixes[j-1][0]];
+            var brng = bearing(prev.gps, next.gps);
+            spawn_positions.push({
+              pos: fixRadialDist(prev.gps, brng, spawn_offsets[i]),
+              nextFix: fixes[j][0],
+              heading: brng
+            });
+            break;
+          }
+        }
+      }
+
+      // Spawn aircraft along the route, ahead of the standard spawn point
+      for(var i in spawn_positions) {
+        var airline = choose_weight(this.airlines);
+        var fleet = "";
+        if(airline.indexOf('/') > -1) {
+          fleet = airline.split('/')[1];
+          airline   = airline.split('/')[0];
+        }
+
+        aircraft_new({
+          category:  "arrival",
+          destination:airport_get().icao,
+          airline:   airline,
+          fleet:     fleet,
+          altitude:  10000, // should eventually look up altitude restrictions and try to spawn in an appropriate range
+          heading:   spawn_positions[i].heading || this.heading,
+          waypoints: this.fixes,
+          route:     this.route,
+          position:  new Position(spawn_positions[i].pos, airport_get().position, airport_get().magnetic_north, 'GPS').position,
+          speed:     this.speed,
+          nextFix:   spawn_positions[i].nextFix
+        });
+      }
+
+    },
     /** Stop this arrival stream
      */
     stop: function() {
@@ -76,6 +168,7 @@ zlsa.atc.ArrivalBase = Fiber.extend(function(base) {
     start: function() {
       var delay = random(0, 3600 / this.frequency);
       this.timeout = game_timeout(this.spawnAircraft, delay, this, [true, true]);
+      if(this.route) this.preSpawn();
     },
     /** Spawn a new aircraft
      */
@@ -726,14 +819,9 @@ var Airport=Fiber.extend(function() {
 
       if(data.fixes) {
         for(var i in data.fixes) {
-          var name = i.toUpperCase(),
-              coord = new Position(data.fixes[i],
-                                   this.position,
-                                   this.magnetic_north);
-          this.fixes[name] = coord.position;
-          if (i.indexOf('_') != 0) {
-            this.real_fixes[name] = coord.position;
-          }
+          var name = i.toUpperCase();
+          this.fixes[name] = new Position(data.fixes[i], this.position, this.magnetic_north);
+          if(i.indexOf('_') != 0) this.real_fixes[name] = this.fixes[name];
         }
       }
 
@@ -782,7 +870,7 @@ var Airport=Fiber.extend(function() {
               coords_min = coords[0];
 
           for (var i in coords) {
-            var v = coords[i]; //.position;
+            var v = coords[i];
             coords_max = [Math.max(v[0], coords_max[0]), Math.max(v[1], coords_max[1])];
             coords_min = [Math.min(v[0], coords_min[0]), Math.min(v[1], coords_min[1])];
           };
@@ -1009,7 +1097,7 @@ var Airport=Fiber.extend(function() {
     getFix: function(name) {
       if(!name) return null;
       if(Object.keys(airport_get().fixes).indexOf(name.toUpperCase()) == -1) return;
-      else return airport_get().fixes[name.toUpperCase()];
+      else return airport_get().fixes[name.toUpperCase()].position;
     },
     getSID: function(id, trxn, rwy) {
       if(!(id && trxn && rwy)) return null;
@@ -1146,7 +1234,7 @@ var Airport=Fiber.extend(function() {
           }
           if(this.sids[s].hasOwnProperty("draw")) { // draw portion
             for(var i in this.sids[s].draw)
-              for(var j in this.sids[s].draw[i])
+              for(var j=0; j<this.sids[s].draw[i].length; j++)
                 fixes.push(this.sids[s].draw[i][j].replace('*',''));
           }
         }
@@ -1239,6 +1327,7 @@ function airport_init() {
   airport_load('klax', "medium", "Los Angeles International Airport");
   airport_load('kmia', "hard", "Miami International Airport &#9983");
   airport_load('kmsp', "hard", "Minneapolis/St. Paul International Airport &#9983");
+  airport_load('kpdx', "easy", "Portland International Airport");
   airport_load('ksan', "easy", "San Diego International Airport");
   airport_load('ksea', "medium", "Seattle-Tacoma International Airport &#9983");
   airport_load('ksfo', "medium", "San Francisco International Airport &#9983");
@@ -1248,6 +1337,7 @@ function airport_init() {
   airport_load('omdb', "hard", "Dubai International Airport");
   airport_load('osdi', "easy",  "Damascus International Airport");
   airport_load('othh', "hard", "Doha Hamad International Airport");
+  airport_load('rjtt', "hard", "Tokyo Haneda International Airport");
   airport_load('saez', "medium", "Aeropuerto Internacional Ministro Pistarini");
   airport_load('sbgl', "beginner", "Aeroporto Internacional Tom Jobim");
   airport_load('sbgr', "beginner", "Aeroporto Internacional de São Paulo/Guarulhos");
