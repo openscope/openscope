@@ -10,7 +10,7 @@
   "ctr_radius": 90,
   "ctr_ceiling": 19500,
   "initial_alt": 5000,
-  "position": ["N53d21m14.00", "W02d16m30.00"],
+  "position": ["N53d21m14.00", "W02d16m30.00", "257ft"],
   "rr_radius_nm": 5.0,
   "rr_center": ["N53d21m14.00", "W02d16m30.00"],
   "has_terrain": false,
@@ -101,14 +101,14 @@
     {
       "name": ["05L", "23R"],
       "name_offset": [[0, 0], [0, 0]],
-      "end": [["N53d20m51.20", "W002d17m15.95"], ["N53d21m40.75", "W002d15m33.41"]],
+      "end": [["N53d20m51.20", "W002d17m15.95", "212ft"], ["N53d21m40.75", "W002d15m33.41", "249ft"]],
       "length": 3.048,
       "ils": [true, true]
     },
     {
       "name": ["05R","23L"],
       "name_offset": [[0, 0], [0, 0]],
-      "end": [["N53d19m55.10", "W002d18m38.38"], ["N53d20m53.35", "W002d16m37.95"]],
+      "end": [["N53d19m55.10", "W002d18m38.38", "186ft"], ["N53d20m53.35", "W002d16m37.95", "186ft"]],
       "length": 3.050,
       "ils": [true, false]
     }
@@ -174,7 +174,7 @@
     "MONTY": {
       "icao": "MONTY",
       "name": "MONTY",
-      "suffix": {"05L":"1S", "05R":"1Z", "23L":"1Y", "23L":"1R"},
+      "suffix": {"05L":"1S", "05R":"1Z", "23L":"1Y", "23R":"1R"},
       "rwy": {
         "05L": ["_23R", "MCT06", "XOBRO", "D082P", "D082B", "WAL", "MONTY"],
         "05R": ["_23L", "MCT06", "XOBRO", "D082P", "D082B", "WAL", "MONTY"],
