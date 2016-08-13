@@ -1331,6 +1331,7 @@ function airport_init() {
   airport_load('ksan', "easy", "San Diego International Airport");
   airport_load('ksea', "medium", "Seattle-Tacoma International Airport &#9983");
   airport_load('ksfo', "medium", "San Francisco International Airport &#9983");
+  airport_load('lkpr', "easy", "Vaclav Havel International Airport");
   airport_load('loww', "medium", "Vienna International Airport");
   airport_load('ltba', "hard", "Atatürk International Airport &#9983");
   airport_load('omaa', "medium", "Abu Dhabi International Airport");
