@@ -274,10 +274,10 @@ function canvas_draw_sids(cc) {
     if(airport.sids[s].hasOwnProperty("draw")) {
       for(var i in airport.sids[s].draw) {
         var fixList = airport.sids[s].draw[i];
-        var fx, fy, trxn_name = null;
+        var fx, fy, exit_name = null;
         for(var j=0; j<fixList.length; j++) {
-          if(fixList[j].indexOf("*") != -1) { // write transition name
-            trxn_name = fixList[j].replace("*","");
+          if(fixList[j].indexOf("*") != -1) { // write exitPoint name
+            exit_name = fixList[j].replace("*","");
             write_sid_name = false;
           }
           var fix = airport.getFix(fixList[j].replace("*",""));
@@ -292,7 +292,7 @@ function canvas_draw_sids(cc) {
           }
         }
         cc.stroke();
-        if(trxn_name) cc.fillText(s + "." + trxn_name, fx+10, fy);
+        if(exit_name) cc.fillText(s + "." + exit_name, fx+10, fy);
       }
       if(write_sid_name) cc.fillText(s, fx+10, fy);
     }
