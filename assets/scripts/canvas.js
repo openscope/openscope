@@ -303,6 +303,7 @@ function canvas_draw_separation_indicator(cc, aircraft) {
   "use strict";
   // Draw a trailing indicator 2.5 NM (4.6km) behind landing aircraft to help with traffic spacing
   var rwy = airport_get().getRunway(aircraft.fms.currentWaypoint().runway);
+  if(!rwy) return;
   var angle = rwy.angle + Math.PI;
   cc.strokeStyle = "rgba(224, 128, 128, 0.8)";
   cc.lineWidth = 3;
