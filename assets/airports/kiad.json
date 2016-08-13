@@ -877,7 +877,7 @@
     {
       "type": "random",
       "route":   "THHMP.CAVLR3.KIAD",
-      "frequency": 0,
+      "frequency": 12,
       "altitude":  18000,
       "speed":    280,
       "airlines":  [
@@ -895,7 +895,7 @@
     {
       "type": "random",
       "route":   "HVQ.GIBBZ2.KIAD",
-      "frequency": 0,
+      "frequency": 12,
       "altitude":  25000,
       "speed":    280,
       "airlines":  [
@@ -913,7 +913,7 @@
     {
       "type": "random",
       "route":   "PARKE.HYPER6.KIAD",
-      "frequency": 0,
+      "frequency": 12,
       "altitude":  20000,
       "speed":    280,
       "airlines":  [
@@ -931,7 +931,7 @@
     {
       "type": "random",
       "route":   "PSB.MAPEL1.KIAD",
-      "frequency": 0,
+      "frequency": 12,
       "altitude":  17000,
       "speed":    280,
       "airlines":  [
