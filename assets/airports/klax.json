@@ -144,7 +144,6 @@
     }
   ],
   "sids": {
-
     "LOOP8": {
       "icao": "LOOP8",
       "name": "Loop Eight",
@@ -158,12 +157,11 @@
         "25L": ["MKGEE", "YUFAP", "LAX", "KEGGS", "COOPP"],
         "25R": ["MKGEE", "YUFAP", "LAX", "KEGGS", "COOPP"]
       },
-      "transitions": {
+      "exitPoints": {
         "DAG": ["DAG"]
       },
       "draw": [["LAX","KEGGS","COOPP","DAG*"]]
     },
-
     "PRCH1": {
       "icao": "PRCH1",
       "name": "Perch One",
@@ -177,13 +175,12 @@
         "25L": [],
         "25R": []
       },
-      "transitions": {
+      "exitPoints": {
         "PERCH": ["PERCH"]
       },
       "draw": [["PERCH"]]
     },
-
-	"VTU6": {
+    "VTU6": {
       "icao": "VTU6",
       "name": "Ventura six",
       "rwy": {
@@ -192,13 +189,12 @@
         "25L": ["MKGEE",["VTU","A60-"]],
         "25R": ["MKGEE",["VTU","A60-"]]
       },
-      "transitions": {
+      "exitPoints": {
         "RZS": ["RZS"],
-		"GMN": ["GMN"]
+        "GMN": ["GMN"]
       },
       "draw": [["VTU","RZS*"],["VTU","GMN*"]]
     },
-
     "LAXX8": {
       "icao": "LAXX8",
       "name": "Lacks Eight",
@@ -212,18 +208,17 @@
         "25L": ["MKGEE", "SHAEF", "SLI"],
         "25R": ["MKGEE", "SHAEF", "SLI"]
       },
-      "transitions": {
+      "exitPoints": {
         "TRM": ["TRM"],
-		"MZB": ["MZB"]
+  		  "MZB": ["MZB"]
       },
       "draw": [["SLI","TRM*"],["SLI","OCN","MZB*"]]
     },
- 
     "SEBBY9": {
       "icao": "SEBBY9",
       "name": "Sebby Nine",
       "rwy": {
-		"6L":  ["SLI"],
+		    "6L":  ["SLI"],
         "6R":  ["SLI"],
         "7L":  ["SLI"],
         "7R":  ["SLI"],
@@ -232,7 +227,7 @@
         "25L": ["MKGEE", "SHAEF", "SLI"],
         "25R": ["MKGEE", "SHAEF", "SLI"]
       },
-      "transitions": {
+      "exitPoints": {
         "DAG": ["DAG"]
       },
       "draw": [["SLI","SEBBY","DAG*"]]

@@ -162,7 +162,7 @@
         "28R": [["SENZY", "A25+"], "WAMMY"]
       },
       "body": [["SEGUL", "A160+"], ["CYPRS", "A220+"], "MCKEY"],
-      "transitions": {
+      "exitPoints": {
         "FLW": ["MQO", "FLW"],
         "RZS": ["MQO", "RZS"],
         "GVO": ["MQO", "GVO"],
@@ -180,7 +180,7 @@
         "28R": [["SENZY", "A25+"], "PORTE"]
       },
       "body": ["OSI", "WAGES"],
-      "transitions": {
+      "exitPoints": {
           "CZQ": ["CZQ"],
           "PXN": ["PXN"],
           "FLW": ["FLW"],
@@ -198,7 +198,7 @@
         "28R": ["REBAS"]
       },
       "body": [],
-      "transitions": {
+      "exitPoints": {
         "ENI": ["SASSU", "ENI"],
         "RBL": ["SASSU", "SAWNA", "RBL"],
         "CIC": ["SASSU", "SAWNA", "CIC"],
@@ -217,7 +217,7 @@
         "28R": [["WESLA", "A18+"], ["STINS", "A220-"]]
       },
       "body": ["MOLEN"],
-      "transitions": {
+      "exitPoints": {
         "ENI": ["ENI"]
       },
       "draw": [["SIPLY","_SIPLY233-STINS144","STINS"], ["WESLA","STINS","MOLEN"], ["MOLEN","ENI*"]]
@@ -227,7 +227,7 @@
     "BDEGA2": {
       "icao": "BDEGA2",
       "name": "Bidayga Two",
-      "transitions": {
+      "entryPoints": {
         "DEEAN": [["DEEAN", "A240+|S280"]],
         "QUINN": [["QUINN", "A240+|S280"], ["BGGLO", "A190+|S280"]],
         "JONNE": [["JONNE", "A240+|S280"], ["BGGLO", "A190+|S280"]],
@@ -240,7 +240,7 @@
     "BSR2": {
       "icao": "BSR2",
       "name": "Big Sur Two",
-      "transitions": {
+      "entryPoints": {
         "BSR": ["BSR"]
       },
       "body": ["CARME", "ANJEE", ["SKUNK", "A120-|S280"], ["BOLDR", "A100|S250"], "MENLO"],
@@ -249,7 +249,7 @@
     "DYAMD2": {
       "icao": "DYAMD2",
       "name": "Diamond Two",
-      "transitions": {
+      "entryPoints": {
         "DYAMD": [["DYAMD", "A270+"]]
       },
       "body": [["LAANE", "A260-|S280"], "ALWYS", ["FLOWZ", "A190-|S280"], ["CEDES", "A120-|S250"], ["FRELY", "A80|S240"], ["ARCHI", "A70|S230"]],
@@ -258,7 +258,7 @@
     "PYE1": {
       "icao": "PYE1",
       "name": "Point Reyes One",
-      "transitions": {
+      "entryPoints": {
         "ENI": ["ENI"],
         "MXW": ["MXW"]
       },
@@ -268,7 +268,7 @@
     "YOSEM3": {
       "icao": "YOSEM3",
       "name": "Yosem Three",
-      "transitions": {
+      "entryPoints": {
         "YOSEM": ["YOSEM"]
       },
       "body": [["SNORA", "A270+|S280"], ["FRIGG", "A190-"], ["SOOIE", "A130-|S250"], ["FAITH", "A80"]],

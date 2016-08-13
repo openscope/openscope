@@ -592,7 +592,7 @@
     "NERDU4K": {
      "icao": "NERDU4K",
      "name": "Nerdu four kilo",
-     "transitions": {
+     "entryPoints": {
           "NERDU": ["NERDU"]
       },
      "body": [["NERDU", "A80|S250"], ["WW666", "A80-|S250"], ["WW664", "A50+|S250"], ["WW658", "A50|S250"], ["WW656", "A50-|S250"], ["WW654", "A50-|S250"], ["WW653", "A50-|S250"], ["WW652", "A50-|S250"], ["WW651", "A50-|S250"], ["WW650", "A50-|S250"], ["RW11", "A50-|S250"]],
@@ -601,7 +601,7 @@
     "NERDU4M": {
      "icao": "NERDU4M",
      "name": "Nerdu four mike",
-     "transitions": {
+     "entryPoints": {
           "NERDU": ["NERDU"]
       },
      "body": [["NERDU", "A60+|S250"], ["WW963", "A70+|S250"], ["WW961", "A70|S250"], ["WW959", "A60|S250"], ["WW957", "A60-|S250"], ["WW955", "A60-|S250"], ["WW953", "A60-|S250"], ["WW952", "A30|S250"], ["WW951", "A30-|S250"], ["WW950", "A30-|S250"], ["RW29", "A50-|S250"]],
@@ -610,7 +610,7 @@
     "NERDU6L": {
      "icao": "NERDU6L",
      "name": "Nerdu six lima",
-     "transitions": {
+     "entryPoints": {
           "NERDU": ["NERDU"]
       },
      "body": [["NERDU", "A60+|S250"], ["WW681", "A60+|S250"], ["WW679", "A60|S250"], ["WW677", "A60-|S250"], ["WW675", "A50-|S250"], ["WW673", "A50-|S250"], ["WW672", "A50-|S250"], ["WW671", "A50-|S250"], ["WW670", "A50-|S250"], ["RW16", "A50-|S250"]],
@@ -619,7 +619,7 @@
     "NERDU4N": {
      "icao": "NERDU4N",
      "name": "Nerdu four november",
-     "transitions": {
+     "entryPoints": {
           "NERDU": ["NERDU"]
       },
      "body": [["NERDU", "A70+|S250"], ["WW987", "A70+|S250"], ["WW985", "A70|S250"], ["WW983", "A70|S250"], ["WW981", "A60|S250"], ["WW979", "A60+|S250"], ["WW977", "A60+|S250"], ["WW975", "A60+|S250"], ["WW974", "A60+|S250"], ["WW973", "A40+|S250"], ["WW972", "A40|S250"], ["WW971", "A30-|S250"], ["WW970", "A30-|S250"], ["RW34", "A50-|S250"]],
@@ -628,7 +628,7 @@
     "MABOD4K": {
      "icao": "MABOD4K",
      "name": "Mabod four kilo",
-     "transitions": {
+     "entryPoints": {
           "MABOD": ["MABOD"]
       },
      "body": [["MABOD", "A60+|S250"], ["WW664", "A50+|S250"], ["WW658", "A50|S250"], ["WW656", "A50-|S250"], ["WW654", "A50-|S250"], ["WW653", "A50-|S250"], ["WW652", "A50-|S250"], ["WW651", "A50-|S250"], ["WW650", "A50-|S250"], ["RW11", "A50-|S250"]],
@@ -637,7 +637,7 @@
     "MABOD5M": {
      "icao": "MABOD5M",
      "name": "Mabod five lima",
-     "transitions": {
+     "entryPoints": {
           "MABOD": ["MABOD"]
       },
      "body": [["MABOD", "A60+|S250"], ["WW967", "A60+|S250"], ["WW965", "A60+|S250"], ["WW961", "A60|S250"], ["WW959", "A60|S250"], ["WW957", "A60-|S250"], ["WW955", "A60-|S250"], ["WW953", "A60-|S250"], ["WW952", "A30|S250"], ["WW951", "A30-|S250"], ["WW950", "A30-|S250"], ["RW29", "A50-|S250"]],
@@ -646,7 +646,7 @@
     "MABOD5L": {
      "icao": "MABOD5L",
      "name": "Mabod five lima",
-     "transitions": {
+     "entryPoints": {
           "MABOD": ["MABOD"]
       },
      "body": [["WW690", "A60+|S250"], ["WW688", "A60+|S250"], ["WW680", "A60+|S250"], ["WW678", "A50|S250"], ["WW676", "A50-|S250"], ["WW674", "A50-|S250"], ["WW673", "A50-|S250"], ["WW672", "A50-|S250"], ["WW671", "A50-|S250"], ["WW670", "A50|S250"], ["RW16", "A50-|S250"]],
@@ -655,7 +655,7 @@
     "MABOD4N": {
      "icao": "MABOD4N",
      "name": "Mabod four november",
-     "transitions": {
+     "entryPoints": {
           "MABOD": ["MABOD"]
       },
      "body": [["MABOD", "A60+|S250"], ["WW987", "A80+|S250"], ["WW985", "A80|S250"], ["WW983", "A80|S250"], ["WW981", "A60|S250"], ["WW979", "A60-|S250"], ["WW977", "A60-|S250"], ["WW975", "A60-|S250"], ["WW974", "A60-|S250"], ["WW973", "A40+|S250"], ["WW972", "A40|S250"], ["WW971", "A30-|S250"], ["WW970", "A30-|S250"], ["RW34", "A50-|S250"]],
@@ -664,7 +664,7 @@
     "BALAD3K": {
      "icao": "BALAD3K",
      "name": "Balad three kilo",
-     "transitions": {
+     "entryPoints": {
           "BALAD": ["BALAD"]
       },
      "body": [["BALAD", "A80+|S250"], ["WW669", "A60+|S250"], ["WW665", "A60+|S250"], ["WW663", "A50+|S250"], ["WW661", "A50|S250"], ["WW659", "A50-|S250"], ["WW657", "A50-|S250"], ["WW655", "A50-|S250"], ["WW653", "A50-|S250"], ["WW652", "A50-|S250"], ["WW651", "A50-|S250"], ["WW650", "A50-|S250"], ["RW11", "A50-|S250"]],
@@ -673,7 +673,7 @@
     "BALAD4M": {
      "icao": "BALAD4M",
      "name": "Balad four mike",
-     "transitions": {
+     "entryPoints": {
           "BALAD": ["BALAD"]
       },
      "body": [["BALAD", "A80+|S250"], ["WW964", "A70|S250"], ["WW956", "A60|S250"], ["WW954", "A60-|S250"], ["WW953", "A60-|S250"], ["WW952", "A30|S250"], ["WW951", "A30-|S250"], ["WW950", "A30-|S250"], ["RW29", "A50-|S250"]],
@@ -682,7 +682,7 @@
     "BALAD5L": {
      "icao": "BALAD5L",
      "name": "Balad five lima",
-     "transitions": {
+     "entryPoints": {
           "BALAD": ["BALAD"]
       },
      "body": [["BALAD", "A80+|S250"], ["WW686", "A60|S250"], ["WW684", "A60|S250"], ["WW682", "A60-|S250"], ["WW680", "A60-|S250"], ["WW678", "A50-|S250"], ["WW676", "A50-|S250"], ["WW674", "A50-|S250"], ["WW673", "A50-|S250"], ["WW672", "A50-|S250"], ["WW671", "A50-|S250"], ["WW670", "A50-|S250"], ["RW16", "A50-|S250"]],
@@ -691,7 +691,7 @@
     "BALAD3N": {
      "icao": "BALAD3N",
      "name": "Balad three november",
-     "transitions": {
+     "entryPoints": {
           "BALAD": ["BALAD"]
       },
      "body": [["BALAD", "A80+|S250"], ["WW988", "A80|S250"], ["WW982", "A60|S250"], ["WW980", "A60-|S250"], ["WW978", "A60-|S250"], ["WW976", "A60-|S250"], ["WW974", "A60-|S250"], ["WW973", "A40-|S250"], ["WW972", "A40-|S250"], ["WW971", "A30-|S250"], ["WW970", "A30-|S250"], ["RW34", "A50-|S250"]],
@@ -700,7 +700,7 @@
     "PESAT3K": {
      "icao": "PESAT3K",
      "name": "Pesat three kilo",
-     "transitions": {
+     "entryPoints": {
           "PESAT": ["PESAT"]
       },
      "body": [["PESAT", "A60+|S250"], ["WW667", "A80|S250"], ["WW665", "A60+|S250"], ["WW663", "A50+|S250"], ["WW661", "A50|S250"], ["WW659", "A50|S250"], ["WW657", "A50-|S250"], ["WW655", "A50-|S250"], ["WW653", "A50-|S250"], ["WW652", "A50-|S250"], ["WW651", "A50-|S250"], ["WW650", "A50-|S250"], ["RW11", "A50-|S250"]],
@@ -709,7 +709,7 @@
     "PESAT4M": {
      "icao": "PESAT4M",
      "name": "Pesat four mike",
-     "transitions": {
+     "entryPoints": {
           "PESAT": ["PESAT"]
       },
      "body": [["PESAT", "A60+|S250"], ["WW966", "A60|S250"], ["WW956", "A60-|S250"], ["WW954", "A60-|S250"], ["WW953", "A60-|S250"], ["WW952", "A30|S250"], ["WW951", "A30-|S250"], ["WW950", "A30-|S250"], ["RW29", "A50-|S250"]],
@@ -718,7 +718,7 @@
     "PESAT5L": {
      "icao": "PESAT 5L",
      "name": "Pesat five lima",
-     "transitions": {
+     "entryPoints": {
           "PESAT": ["PESAT"]
       },
      "body": [["PESAT", "A60+|S250"], ["WW684", "A80|S250"], ["WW682", "A60+|S250"], ["WW680", "A60+|S250"], ["WW678", "A50|S250"], ["WW676", "A50-|S250"], ["WW674", "A50-|S250"], ["WW673", "A50-|S250"], ["WW672", "A50-|S250"], ["WW671", "A50-|S250"], ["WW670", "A50-|S250"], ["RW16", "A50-|S250"]],
@@ -727,7 +727,7 @@
     "PESAT4N": {
      "icao": "PESAT4N",
      "name": "Pesat four november",
-     "transitions": {
+     "entryPoints": {
           "PESAT": ["PESAT"]
       },
      "body": [["PESAT", "A60+|S250"], ["WW991", "A70|S250"], ["WW989", "A60+|S250"], ["WW981", "A60|S250"], ["WW979", "A60-|S250"], ["WW977", "A60-|S250"], ["WW975", "A60-|S250"], ["WW974", "A60-|S250"], ["WW973", "A40+|S250"], ["WW972", "A40|S250"], ["WW971", "A30-|S250"], ["WW970", "A30-|S250"], ["RW34", "A50-|S250"]],

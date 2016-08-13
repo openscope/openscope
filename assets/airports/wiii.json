@@ -19,32 +19,32 @@
     "speed": 8
   },
   "fixes": {
-	
-	"DKI": ["S5d57.7m0", "E107d2.1m0"],
-	"_DKIR": ["S6d1m24.44", "E106d39m11.46"],
-	"CKG": ["S6d11.3m0", "E106d31.8m0"],
-	"HLM": ["S6d16.3m0", "E106d53.2m0"],
-	"PW": ["S6d34.0m0", "E107d27.0m0"],
-	
-	"GL": ["S6d8.8m0", "E106d34.5m0"],
-	"GR": ["S6d10.4m0", "E106d34.0m0"],
-	"CL": ["S6d6.3m0", "E106d44.1m0"],
-	"CR": ["S6d5.2m0", "E106d43.4m0"],
-	
-	"NOKTA": ["S5d28.4m0", "E106d51.4m0"],
-	"ESALA": ["S5d57.7m0", "E107d19.8m0"],
-	"CARLI": ["S5d15.6m0", "E106d12.8m0"],
-	"BUNIK": ["S4d51.7m0", "E106d37.4m0"],
-	"DENDY": ["S5d11.8m0", "E107d36.4m0"],
-	"LEPAS": ["S5d26.0m0", "E107d47.3m0"],
-	"SPADA": ["S5d40.7m0", "E107d54.6m0"],
-	"RENDA": ["S7d15.3m0", "E107d13.4m0"],
-	
-	"SIKAD": ["S5d44.3m0", "E106d16.3m0"],
-	"DOLTA": ["S5d7.6m0", "E105d55.5m0"],
-	"TULIP": ["S5d25.4m0", "E105d37.8m0"],
-	"KASAL": ["S6d32.6m0", "E107d56.4m0"]
-	
+  
+  "DKI": ["S5d57.7m0", "E107d2.1m0"],
+  "_DKIR": ["S6d1m24.44", "E106d39m11.46"],
+  "CKG": ["S6d11.3m0", "E106d31.8m0"],
+  "HLM": ["S6d16.3m0", "E106d53.2m0"],
+  "PW": ["S6d34.0m0", "E107d27.0m0"],
+  
+  "GL": ["S6d8.8m0", "E106d34.5m0"],
+  "GR": ["S6d10.4m0", "E106d34.0m0"],
+  "CL": ["S6d6.3m0", "E106d44.1m0"],
+  "CR": ["S6d5.2m0", "E106d43.4m0"],
+  
+  "NOKTA": ["S5d28.4m0", "E106d51.4m0"],
+  "ESALA": ["S5d57.7m0", "E107d19.8m0"],
+  "CARLI": ["S5d15.6m0", "E106d12.8m0"],
+  "BUNIK": ["S4d51.7m0", "E106d37.4m0"],
+  "DENDY": ["S5d11.8m0", "E107d36.4m0"],
+  "LEPAS": ["S5d26.0m0", "E107d47.3m0"],
+  "SPADA": ["S5d40.7m0", "E107d54.6m0"],
+  "RENDA": ["S7d15.3m0", "E107d13.4m0"],
+  
+  "SIKAD": ["S5d44.3m0", "E106d16.3m0"],
+  "DOLTA": ["S5d7.6m0", "E105d55.5m0"],
+  "TULIP": ["S5d25.4m0", "E105d37.8m0"],
+  "KASAL": ["S6d32.6m0", "E107d56.4m0"]
+  
   },
   "runways": [
   {
@@ -63,19 +63,19 @@
     }
   ],
   "sids": {
-      "DKI2": {
+    "DKI2": {
       "icao": "DKI2",
       "name": "Jakarta Two",
       "rwy": {
         "25R": ["GL", "_DKIR",["DKI","A12+"]],
         "25L": ["GR", "_DKIR",["DKI","A12+"]],
-		"07L": ["CR", ["DKI","A12+"]],
-		"07R": ["CL", ["DKI","A12+"]]
+        "07L": ["CR", ["DKI","A12+"]],
+        "07R": ["CL", ["DKI","A12+"]]
       },
-      "transitions": {
+      "exitPoints": {
         "DENDY": ["DENDY"],
-		"LEPAS": ["LEPAS"],
-		"SPADA": ["SPADA"]
+        "LEPAS": ["LEPAS"],
+        "SPADA": ["SPADA"]
       },
       "draw": [["_DKIR","DKI", "DENDY*"],["_DKIR","DKI","LEPAS*"],["_DKIR","DKI","SPADA*"]]
     },
@@ -86,10 +86,10 @@
         "25R": ["GL", "HLM"],
         "25L": ["GR", "HLM"]
       },
-      "transitions": {
+      "exitPoints": {
         "KASAL": ["KASAL"],
-		"PW": ["PW"],
-		"RENDA": ["RENDA"]
+        "PW": ["PW"],
+        "RENDA": ["RENDA"]
       },
       "draw": [["HLM", "KASAL*"],["HLM","PW*"],["HLM","RENDA*"]]
     },
@@ -99,28 +99,28 @@
       "rwy": {
         "25R": ["GL", "SIKAD"],
         "25L": ["GR", "SIKAD"],
-		"07L": ["CR","SIKAD"],
-		"07R": ["CL","SIKAD"]
+        "07L": ["CR","SIKAD"],
+        "07R": ["CL","SIKAD"]
       },
-      "transitions": {
-		"DOLTA": ["DOLTA"],
-		"TULIP": ["TULIP"]
+      "exitPoints": {
+        "DOLTA": ["DOLTA"],
+        "TULIP": ["TULIP"]
       },
       "draw": [["SIKAD","DOLTA*"],["SIKAD","TULIP*"]]
     }
   },
   "departures": {
     "airlines": [
-        ["gia", 35],
-		["lni",35],
-		["ctv",20],
-		["sjy", 35],
-		["btk",35],
-		["awq",20],
-		["eva/long",5],
-		["cpa",10],
-		["jal/long",5],
-		["kal/long",5]
+      ["gia", 35],
+      ["lni",35],
+      ["ctv",20],
+      ["sjy", 35],
+      ["btk",35],
+      ["awq",20],
+      ["eva/long",5],
+      ["cpa",10],
+      ["jal/long",5],
+      ["kal/long",5]
     ],
     "destinations": [
       "HALIM1", "CKG2", "DKI2"
@@ -143,15 +143,15 @@
       "fixes": ["NOKTA"],
       "airlines": [
         ["gia", 35],
-		["lni",35],
-		["ctv",20],
-		["sjy", 35],
-		["btk",35],
-		["awq",20],
-		["eva/long",5],
-		["cpa",10],
-		["jal/long",5],
-		["kal/long",5]
+    ["lni",35],
+    ["ctv",20],
+    ["sjy", 35],
+    ["btk",35],
+    ["awq",20],
+    ["eva/long",5],
+    ["cpa",10],
+    ["jal/long",5],
+    ["kal/long",5]
       ]
     },
     {
@@ -164,14 +164,14 @@
       "period": 21,
       "frequency": [5, 10],
       "altitude": 10000,
-	  "fixes": ["NOKTA"],
+    "fixes": ["NOKTA"],
       "airlines": [
         ["gia", 35],
-		["lni",35],
-		["ctv",20],
-		["sjy", 35],
-		["btk",35],
-		["awq",20]
+    ["lni",35],
+    ["ctv",20],
+    ["sjy", 35],
+    ["btk",35],
+    ["awq",20]
       ]
     },
     {
@@ -183,14 +183,14 @@
       "period": 18,
       "frequency": [10, 20],
       "altitude": 10000,
-	  "fixes": ["DKI"],
+    "fixes": ["DKI"],
       "airlines": [
         ["gia", 35],
-		["lni",35],
-		["ctv",20],
-		["sjy", 35],
-		["btk",35],
-		["awq",20]
+    ["lni",35],
+    ["ctv",20],
+    ["sjy", 35],
+    ["btk",35],
+    ["awq",20]
       ]
     },
     {
@@ -205,11 +205,11 @@
       "fixes": ["DKI"],
       "airlines": [
         ["gia", 35],
-		["lni",35],
-		["ctv",20],
-		["sjy", 35],
-		["btk",35],
-		["awq",20]
+    ["lni",35],
+    ["ctv",20],
+    ["sjy", 35],
+    ["btk",35],
+    ["awq",20]
       ]
     }
   ]

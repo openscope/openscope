@@ -810,7 +810,7 @@
         "35": ["EZE10", "_EZE10DME98", "_EZE10DME93", "_EZE10DME88", "_EZE10DME85", "_EZE10DME80", "_EZE10DME75"]
       },
       "body": ["_EZE10DME71", "EZE", "EZE10", "EZE19", "EZE20", "EZE26", "ATOVO"],
-      "transitions": {
+      "exitPoints": {
         "ATOVO": []
       },
       "draw": [["EZE10", "_EZE10DME98", "_EZE10DME93", "_EZE10DME88", "_EZE10DME85"], ["EZE11", "_EZE10DME85", "_EZE10DME80", "_EZE10DME75", "_EZE10DME71"], ["EZE13", "_EZE10DME62", "_EZE10DME71"], ["EZE12", "_EZE10DME43", "_EZE10DME48", "_EZE10DME53", "_EZE10DME58", "_EZE10DME63", "_EZE10DME68", "_EZE10DME71", "EZE", "EZE10", "EZE19", "EZE20", "EZE26", "ATOVO"]]
@@ -825,7 +825,7 @@
         "35": ["EZE10", "_EZE10DME98", "_EZE10DME93", "_EZE10DME88", "_EZE10DME85", "_EZE10DME80", "_EZE10DME75"]
       },
       "body": ["_EZE10DME71", "EZE", "EZE10", "EZE19", "EZE20", "BIVAM"],
-      "transitions": {
+      "exitPoints": {
         "BIVAM": []
       },
       "draw": [["EZE20", "BIVAM"]]
@@ -840,7 +840,7 @@
         "35": ["EZE10", "_EZE10DME98", "_EZE10DME93", "_EZE10DME88", "_EZE10DME85", "_EZE10DME80", "_EZE10DME75"]
       },
       "body": ["_EZE10DME71", "EZE", "EZE10", "EZE19", "LANDA"],
-      "transitions": {
+      "exitPoints": {
         "LANDA": []
       },
       "draw": [["EZE19", "LANDA"]]
@@ -855,7 +855,7 @@
         "35": ["EZE10", "_EZE10DME98", "_EZE10DME93", "_EZE10DME88", "_EZE10DME85", "_EZE10DME80", "_EZE10DME75", "_EZE10DME70", "_EZE10DME65", "_EZE10DME62"]
       },
       "body": ["PTA"],
-      "transitions": {
+      "exitPoints": {
         "KUKEN": ["EZE18", "KUKEN"],
         "PAPIX": ["EZE18", "PAPIX"],
         "DORVO": ["DORVO"],
@@ -875,7 +875,7 @@
         "35": ["EZE10", "_EZE10DME98", "_EZE10DME93", "_EZE10DME88", "_EZE10DME83", "_EZE10DME80"]
       },
       "body": ["EZE14"],
-      "transitions": {
+      "exitPoints": {
         "URINO": ["EZE15", "URINO"],
         "ASADA": ["EZE15", "ASADA"],
         "EGEPA": ["EGEPA"]
@@ -892,7 +892,7 @@
         "35": ["EZE10", "_EZE10DME98", "_EZE10DME93", "_EZE10DME88", "_EZE10DME83", "_EZE10DME81"]
       },
       "body": ["EZE24", "TORUL"],
-      "transitions": {
+      "exitPoints": {
         "TORUL": []
       },
       "draw": [["_EZE10DME81", "EZE24"], ["_EZE10DME62", "EZE24"], ["EZE24", "TORUL"]]
@@ -907,7 +907,7 @@
         "35": ["EZE10", "_EZE10DME98", "_EZE10DME93", "_EZE10DME88", "_EZE10DME85", "_EZE10DME80", "_EZE10DME75", "_EZE10DME70", "_EZE10DME65"]
       },
       "body": ["_EZE10DME62", "GBE"],
-      "transitions": {
+      "exitPoints": {
         "GBE": []
       },
       "draw": [["_EZE10DME58", "_EZE10DME62", "GBE"]]

@@ -21,26 +21,26 @@
     "speed": 0
   },
   "airspace": [
-  {
-    "floor": 			0,
-    "ceiling": 		24500,
-    "airspace_class":	"C",
-    "poly":
-    [
-      ["N01d39m00", "E102d10m00"],
-      ["N02d09m48", "E102d38m30"],
-      ["N02d29m27", "E102d56m43"],
-      ["N02d48m02", "E102d40m19"],
-      ["N03d00m55", "E102d28m53"],
-      ["N03d09m44", "E102d21m02"],
-      ["N03d40m24", "E101d53m48"],
-      ["N03d56m20", "E101d39m40"],
-      ["N03d48m14", "E101d19m03"],
-      ["N03d24m04", "E100d17m43"],
-      ["N01d39m00", "E102d10m00"]
-    ]
-  }
-],
+    {
+      "floor": 			0,
+      "ceiling": 		24500,
+      "airspace_class":	"C",
+      "poly":
+      [
+        ["N01d39m00", "E102d10m00"],
+        ["N02d09m48", "E102d38m30"],
+        ["N02d29m27", "E102d56m43"],
+        ["N02d48m02", "E102d40m19"],
+        ["N03d00m55", "E102d28m53"],
+        ["N03d09m44", "E102d21m02"],
+        ["N03d40m24", "E101d53m48"],
+        ["N03d56m20", "E101d39m40"],
+        ["N03d48m14", "E101d19m03"],
+        ["N03d24m04", "E100d17m43"],
+        ["N01d39m00", "E102d10m00"]
+      ]
+    }
+  ],
   "fixes": {
       "ADGIP":  ["N02d32m29.00",  "E101d50m00.00"],
       "ADMOL":  ["N03d02m47.00",  "E101d31m20.00"],
@@ -143,7 +143,6 @@
       "_32L":   ["N02d42m47.86",  "E101d43m05.03"],
       "_32R":   ["N02d44m54.03",  "E101d43m19.41"]
 	},
-
   "runways": [
     {
       "name": ["14L", "32R"],
@@ -169,277 +168,276 @@
   ],
   "sids": {
     "AGOSA": {
-        "icao": "AGOSA",
-        "name": "Agosa",
-        "suffix": {"14L":"1H", "15":"1M", "32L":"1D", "32R":"1C", "33":"1F"},
-        "rwy": {
-          "14L":  ["VKL",  ["D086G", "A40+"], ["VKL", "A60|S230"], "AGOSA"],
-          "15":   ["VKL", "AGOSA"],
-          "32L":  ["AGOSA"],
-          "32R":  ["AGOSA"],
-          "33":   ["AGOSA"]
-        },
-        "draw": [
-          ["_32R", "VKL", "D086G"],
-          ["VKL", "AGOSA"]
-        ]
+      "icao": "AGOSA",
+      "name": "Agosa",
+      "suffix": {"14L":"1H", "15":"1M", "32L":"1D", "32R":"1C", "33":"1F"},
+      "rwy": {
+        "14L":  ["VKL",  ["D086G", "A40+"], ["VKL", "A60|S230"], "AGOSA"],
+        "15":   ["VKL", "AGOSA"],
+        "32L":  ["AGOSA"],
+        "32R":  ["AGOSA"],
+        "33":   ["AGOSA"]
+      },
+      "draw": [
+        ["_32R", "VKL", "D086G"],
+        ["VKL", "AGOSA"]
+      ]
     },
     "AGOSA1N": {
-        "icao": "AGOSA",
-        "name": "Agosa One November",
-        "suffix": {"15":"1N"},
-        "rwy": {
-          "15":   [["VKL", "S210"], ["KK622", "A30"], "KK623", "AGOSA"]
-        },
-        "draw": [
-          ["VKL", "KK622", "KK623", "AGOSA"]
-        ]
+      "icao": "AGOSA",
+      "name": "Agosa One November",
+      "suffix": {"15":"1N"},
+      "rwy": {
+        "15":   [["VKL", "S210"], ["KK622", "A30"], "KK623", "AGOSA"]
+      },
+      "draw": [
+        ["VKL", "KK622", "KK623", "AGOSA"]
+      ]
     },
     "AGOSA1X": {
-        "icao": "AGOSA",
-        "name": "Agosa One Xray",
-        "suffix": {"33":"1X"},
-        "rwy": {
-          "33":   ["KK612", "KK613", "AGOSA"]
-        },
-        "draw": [
-          ["KK612", "KK613", "AGOSA"]
-        ]
+      "icao": "AGOSA",
+      "name": "Agosa One Xray",
+      "suffix": {"33":"1X"},
+      "rwy": {
+        "33":   ["KK612", "KK613", "AGOSA"]
+      },
+      "draw": [
+        ["KK612", "KK613", "AGOSA"]
+      ]
     },
     "PIBOS": {
-        "icao": "PIBOS",
-        "name": "Pibos",
-        "suffix": {"14L":"1H", "14R":"1K", "15":"1M", "32L":"1D", "32R":"1C", "33":"1F"},
-        "rwy": {
-          "14L":  ["VKL"],
-          "14R":  [],
-          "15":   [["PIBOS", "A50"]],
-          "32L":  [],
-          "32R":  [],
-          "33":   ["VKL"]
-        },
-        "body": ["PIBOS"],
-        "draw": [
-          ["VKL", "PIBOS"],
-          ["_32L", "PIBOS"]
-        ]
+      "icao": "PIBOS",
+      "name": "Pibos",
+      "suffix": {"14L":"1H", "14R":"1K", "15":"1M", "32L":"1D", "32R":"1C", "33":"1F"},
+      "rwy": {
+        "14L":  ["VKL"],
+        "14R":  [],
+        "15":   [["PIBOS", "A50"]],
+        "32L":  [],
+        "32R":  [],
+        "33":   ["VKL"]
+      },
+      "body": ["PIBOS"],
+      "draw": [
+        ["VKL", "PIBOS"],
+        ["_32L", "PIBOS"]
+      ]
     },
     "KIMAT": {
-        "icao": "KIMAT",
-        "name": "Kimat",
-        "suffix": {"14L":"1H", "14R":"1K", "15":"1M", "32L":"1D", "32R":"1C", "33":"1F"},
-        "rwy": {
-          "14L":  ["VKL"],
-          "14R":  [],
-          "15":   [["VKL", "A50"]],
-          "32L":  [],
-          "32R":  [],
-          "33":   ["VKL"]
-        },
-        "body": ["KIMAT"],
-        "draw": [
-          ["VKL", "KIMAT"]
-        ]
+      "icao": "KIMAT",
+      "name": "Kimat",
+      "suffix": {"14L":"1H", "14R":"1K", "15":"1M", "32L":"1D", "32R":"1C", "33":"1F"},
+      "rwy": {
+        "14L":  ["VKL"],
+        "14R":  [],
+        "15":   [["VKL", "A50"]],
+        "32L":  [],
+        "32R":  [],
+        "33":   ["VKL"]
+      },
+      "body": ["KIMAT"],
+      "draw": [
+        ["VKL", "KIMAT"]
+      ]
     },
     "ISTAN": {
-        "icao": "ISTAN",
-        "name": "Istan",
-        "suffix": {"14L":"1H", "14R":"1K", "15":"1M", "32L":"1D", "32R":"1C", "33":"1F"},
-        "rwy": {
-          "14L":  ["VKL"],
-          "14R":  [],
-          "15":   [["VKL", "A50"]],
-          "32L":  [],
-          "32R":  [],
-          "33":   ["VKL"]
-        },
-        "body": ["ISTAN"],
-        "draw": [
-          ["VKL", "ISTAN"],
-          ["_32L", "ISTAN"]
-        ]
+      "icao": "ISTAN",
+      "name": "Istan",
+      "suffix": {"14L":"1H", "14R":"1K", "15":"1M", "32L":"1D", "32R":"1C", "33":"1F"},
+      "rwy": {
+        "14L":  ["VKL"],
+        "14R":  [],
+        "15":   [["VKL", "A50"]],
+        "32L":  [],
+        "32R":  [],
+        "33":   ["VKL"]
+      },
+      "body": ["ISTAN"],
+      "draw": [
+        ["VKL", "ISTAN"],
+        ["_32L", "ISTAN"]
+      ]
     },
     "BATAR": {
-        "icao": "BATAR",
-        "name": "Batar",
-        "suffix": {"14L":"1H", "14R":"1K", "15":"1M", "32L":"1E", "32R":"1C", "33":"1F"},
-        "rwy": {
-          "14L":  ["VKL", "DUMOK"],
-          "14R":  ["DUMOK"],
-          "15":   ["VKL", "SADON"],
-          "32L":  ["RUMID"],
-          "32R":  ["RUMID"],
-          "33":   ["RUMID"]
-        },
-        "body": ["BATAR"],
-        "draw": [
-          ["_32L", "DUMOK"],
-          ["VKL", "DUMOK", "BATAR"],
-          ["VKL", "SADON", "BATAR"]
-        ]
+      "icao": "BATAR",
+      "name": "Batar",
+      "suffix": {"14L":"1H", "14R":"1K", "15":"1M", "32L":"1E", "32R":"1C", "33":"1F"},
+      "rwy": {
+        "14L":  ["VKL", "DUMOK"],
+        "14R":  ["DUMOK"],
+        "15":   ["VKL", "SADON"],
+        "32L":  ["RUMID"],
+        "32R":  ["RUMID"],
+        "33":   ["RUMID"]
+      },
+      "body": ["BATAR"],
+      "draw": [
+        ["_32L", "DUMOK"],
+        ["VKL", "DUMOK", "BATAR"],
+        ["VKL", "SADON", "BATAR"]
+      ]
     },
     "BATAR1N": {
-        "icao": "BATAR",
-        "name": "Batar One November",
-        "suffix": {"15":"1N"},
-        "rwy": {
-          "15":   [["VKL", "S210"], ["KK622", "A30+"], "KK624", "RUMID", "BATAR"]
-        },
-        "draw": [
-          ["RUMID", "BATAR"]
-        ]
+      "icao": "BATAR",
+      "name": "Batar One November",
+      "suffix": {"15":"1N"},
+      "rwy": {
+        "15":   [["VKL", "S210"], ["KK622", "A30+"], "KK624", "RUMID", "BATAR"]
+      },
+      "draw": [
+        ["RUMID", "BATAR"]
+      ]
     },
     "BATAR1X": {
-        "icao": "BATAR",
-        "name": "Batar One Xray",
-        "suffix": {"33":"1X"},
-        "rwy": {
-          "33":   ["KK612", "KK613", "RUMID", "BATAR"]
-        },
-        "draw": [
-          ["KK613", "RUMID"]
-        ]
+      "icao": "BATAR",
+      "name": "Batar One Xray",
+      "suffix": {"33":"1X"},
+      "rwy": {
+        "33":   ["KK612", "KK613", "RUMID", "BATAR"]
+      },
+      "draw": [
+        ["KK613", "RUMID"]
+      ]
     },
     "DUMOK": {
-        "icao": "DUMOK",
-        "name": "Dumok",
-        "suffix": {"15":"1M", "32L":"1E", "32R":"1C", "33":"1F"},
-        "rwy": {
-          "15":   ["VKL", "SADON", "DUMOK"],
-          "32L":  ["RUMID", "DUMOK"],
-          "32R":  ["RUMID", "DUMOK"],
-          "33":   ["RUMID", "DUMOK"]
-        },
-        "draw": [
-          ["SADON", "DUMOK"],
-          ["RUMID", "DUMOK"]
-        ]
+      "icao": "DUMOK",
+      "name": "Dumok",
+      "suffix": {"15":"1M", "32L":"1E", "32R":"1C", "33":"1F"},
+      "rwy": {
+        "15":   ["VKL", "SADON", "DUMOK"],
+        "32L":  ["RUMID", "DUMOK"],
+        "32R":  ["RUMID", "DUMOK"],
+        "33":   ["RUMID", "DUMOK"]
+      },
+      "draw": [
+        ["SADON", "DUMOK"],
+        ["RUMID", "DUMOK"]
+      ]
     },
     "MITOS": {
-        "icao": "MITOS",
-        "name": "Mitos",
-        "suffix": {"14L":"1H", "14R":"1K", "15":"1M", "32L":"1E", "32R":"1C", "33":"1F"},
-        "rwy": {
-          "14L":  ["VKL", "DUMOK"],
-          "14R":  ["DUMOK"],
-          "15":   ["VKL", "SADON"],
-          "32L":  ["RUMID"],
-          "32R":  ["RUMID"],
-          "33":   ["RUMID"]
-        },
-        "body": ["MITOS"],
-        "draw": [
-          ["DUMOK", "MITOS"]
-        ]
+      "icao": "MITOS",
+      "name": "Mitos",
+      "suffix": {"14L":"1H", "14R":"1K", "15":"1M", "32L":"1E", "32R":"1C", "33":"1F"},
+      "rwy": {
+        "14L":  ["VKL", "DUMOK"],
+        "14R":  ["DUMOK"],
+        "15":   ["VKL", "SADON"],
+        "32L":  ["RUMID"],
+        "32R":  ["RUMID"],
+        "33":   ["RUMID"]
+      },
+      "body": ["MITOS"],
+      "draw": [
+        ["DUMOK", "MITOS"]
+      ]
     },
     "MITOS1N": {
-        "icao": "MITOS",
-        "name": "Mitos One November",
-        "suffix": {"15":"1N"},
-        "rwy": {
-          "15":   [["VKL", "S210"], ["KK622", "A30|S250"], "KK624", "RUMID", "MITOS"]
-        },
-        "draw": [
-          ["RUMID", "MITOS"]
-        ]
+      "icao": "MITOS",
+      "name": "Mitos One November",
+      "suffix": {"15":"1N"},
+      "rwy": {
+        "15":   [["VKL", "S210"], ["KK622", "A30|S250"], "KK624", "RUMID", "MITOS"]
+      },
+      "draw": [
+        ["RUMID", "MITOS"]
+      ]
     },
     "MITOS1X": {
-        "icao": "MITOS",
-        "name": "Mitos One Xray",
-        "suffix": {"33":"1X"},
-        "rwy": {
-          "33":   ["KK612", "KK613", "RUMID", "MITOS"]
-        },
-        "draw": [
-          []
-        ]
+      "icao": "MITOS",
+      "name": "Mitos One Xray",
+      "suffix": {"33":"1X"},
+      "rwy": {
+        "33":   ["KK612", "KK613", "RUMID", "MITOS"]
+      },
+      "draw": [
+        []
+      ]
     },
     "RUMID": {
-        "icao": "RUMID",
-        "name": "Rumid",
-        "suffix": {"14L":"1H", "14R":"1K", "15":"1M", "32L":"1E", "32R":"1C", "33":"1F"},
-        "rwy": {
-          "14L":  ["VKL",  ["D086G", "A40+"], ["VKL", "A60|S230"]],
-          "14R":  [],
-          "15":   ["VKL"],
-          "32L":  [],
-          "32R":  [],
-          "33":   []
-        },
-        "body": ["RUMID"],
-        "draw": [
-          ["VKL", "RUMID"],
-          ["_32L", "RUMID"]
-        ]
+      "icao": "RUMID",
+      "name": "Rumid",
+      "suffix": {"14L":"1H", "14R":"1K", "15":"1M", "32L":"1E", "32R":"1C", "33":"1F"},
+      "rwy": {
+        "14L":  ["VKL",  ["D086G", "A40+"], ["VKL", "A60|S230"]],
+        "14R":  [],
+        "15":   ["VKL"],
+        "32L":  [],
+        "32R":  [],
+        "33":   []
+      },
+      "body": ["RUMID"],
+      "draw": [
+        ["VKL", "RUMID"],
+        ["_32L", "RUMID"]
+      ]
     },
     "RUMID1N": {
-        "icao": "RUMID",
-        "name": "Rumid One November",
-        "suffix": {"15":"1N"},
-        "rwy": {
-          "15":   [["VKL", "S210"], ["KK622", "A30|S250"], "KK624", "RUMID"]
-        },
-        "draw": [
-          ["VKL", "KK622", "KK624", "RUMID"]
-        ]
+      "icao": "RUMID",
+      "name": "Rumid One November",
+      "suffix": {"15":"1N"},
+      "rwy": {
+        "15":   [["VKL", "S210"], ["KK622", "A30|S250"], "KK624", "RUMID"]
+      },
+      "draw": [
+        ["VKL", "KK622", "KK624", "RUMID"]
+      ]
     },
     "RUMID1X": {
-        "icao": "RUMID",
-        "name": "Rumid One Xray",
-        "suffix": {"33":"1X"},
-        "rwy": {
-          "33":   ["KK612", "KK613", "RUMID"]
-        },
-        "draw": [
-          []
-        ]
+      "icao": "RUMID",
+      "name": "Rumid One Xray",
+      "suffix": {"33":"1X"},
+      "rwy": {
+        "33":   ["KK612", "KK613", "RUMID"]
+      },
+      "draw": [
+        []
+      ]
     },
     "SUBANG1W": {
-        "icao": "CE",
-        "name": "Subang One Whiskey",
-        "suffix": {"14R":"1W"},
-        "rwy": {
-          "14R": ["VKL", "CE"]
-        },
-        "draw": [
-          ["VKL", "CE"]
-        ]
+      "icao": "CE",
+      "name": "Subang One Whiskey",
+      "suffix": {"14R":"1W"},
+      "rwy": {
+        "14R": ["VKL", "CE"]
+      },
+      "draw": [
+        ["VKL", "CE"]
+      ]
     },
     "SUBANG1Y": {
-        "icao": "CE",
-        "name": "Subang One Yankee",
-        "suffix": {"32R":"1W"},
-        "rwy": {
-          "32R": ["CE"]
-        },
-        "draw": [
-          ["CE"]
-        ]
+      "icao": "CE",
+      "name": "Subang One Yankee",
+      "suffix": {"32R":"1W"},
+      "rwy": {
+        "32R": ["CE"]
+      },
+      "draw": [
+        ["CE"]
+      ]
     },
     "SUBANG1V": {
-        "icao": "KL",
-        "name": "Subang One Victor",
-        "suffix": {"14R":"1V"},
-        "rwy": {
-          "14R": ["VKL", "KL"]
-        },
-        "draw": [
-          ["VKL", "KL"]
-        ]
+      "icao": "KL",
+      "name": "Subang One Victor",
+      "suffix": {"14R":"1V"},
+      "rwy": {
+        "14R": ["VKL", "KL"]
+      },
+      "draw": [
+        ["VKL", "KL"]
+      ]
     },
     "SUBANG1Z": {
-        "icao": "KL",
-        "name": "Subang One Zulu",
-        "suffix": {"14R":"1V"},
-        "rwy": {
-          "14R": ["KL"]
-        },
-        "draw": [
-          ["KL"]
-        ]
+      "icao": "KL",
+      "name": "Subang One Zulu",
+      "suffix": {"14R":"1V"},
+      "rwy": {
+        "14R": ["KL"]
+      },
+      "draw": [
+        ["KL"]
+      ]
     }
   },
-
   "departures": {
     "airlines": [
       ["axb",  1],
@@ -495,288 +493,287 @@
     "offset": 0,
     "frequency": 75
   },
-
   "stars": {
     "DAKUS1V": {
-        "icao": "DAKUS1V",
-        "name": "Dakus One Victor",
-        "transitions": {
-          "DAKUS": ["DAKUS"]
-        },
-        "body": [["VKL", "A60|S230"]],
-        "draw": [
-          ["DAKUS", "VKL"]
-        ]
+      "icao": "DAKUS1V",
+      "name": "Dakus One Victor",
+      "entryPoints": {
+        "DAKUS": ["DAKUS"]
+      },
+      "body": [["VKL", "A60|S230"]],
+      "draw": [
+        ["DAKUS", "VKL"]
+      ]
     },
     "PULIP1V": {
-        "icao": "PULIP1V",
-        "name": "Pulip One Victor",
-        "transitions": {
-          "PULIP": ["PULIP"]
-        },
-        "body": [["VKL", "A60|S230"]],
-        "draw": [
-          ["PULIP", "VKL"]
-        ]
+      "icao": "PULIP1V",
+      "name": "Pulip One Victor",
+      "entryPoints": {
+        "PULIP": ["PULIP"]
+      },
+      "body": [["VKL", "A60|S230"]],
+      "draw": [
+        ["PULIP", "VKL"]
+      ]
     },
     "SAROX1V": {
-        "icao": "SAROX1V",
-        "name": "Sarox One Victor",
-        "transitions": {
-          "SAROX": [["SAROX", "A70"]]
-        },
-        "body": [["VKL", "A60|S230"]],
-        "draw": [
-          ["SAROX", "VKL"]
-        ]
+      "icao": "SAROX1V",
+      "name": "Sarox One Victor",
+      "entryPoints": {
+        "SAROX": [["SAROX", "A70"]]
+      },
+      "body": [["VKL", "A60|S230"]],
+      "draw": [
+        ["SAROX", "VKL"]
+      ]
     },
     "GUPTA1V": {
-        "icao": "GUPTA1V",
-        "name": "Gupta One Victor",
-        "transitions": {
-          "GUPTA": ["GUPTA"]
-        },
-        "body": [["SAPAT", "A70"], ["VKL", "A60|S230"]],
-        "draw": [
-          ["GUPTA", "SAPAT", "VKL"]
-        ]
+      "icao": "GUPTA1V",
+      "name": "Gupta One Victor",
+      "entryPoints": {
+        "GUPTA": ["GUPTA"]
+      },
+      "body": [["SAPAT", "A70"], ["VKL", "A60|S230"]],
+      "draw": [
+        ["GUPTA", "SAPAT", "VKL"]
+      ]
     },
     "SALAX1V": {
-        "icao": "SALAX1V",
-        "name": "Salax One Victor",
-        "transitions": {
-          "SALAX": ["SALAX"]
-        },
-        "body": [["RUMID", "A70"], ["VKL", "A60|S230"]],
-        "draw": [
-          ["SALAX", "RUMID", "VKL"]
-        ]
+      "icao": "SALAX1V",
+      "name": "Salax One Victor",
+      "entryPoints": {
+        "SALAX": ["SALAX"]
+      },
+      "body": [["RUMID", "A70"], ["VKL", "A60|S230"]],
+      "draw": [
+        ["SALAX", "RUMID", "VKL"]
+      ]
     },
     "INTOT1V": {
-        "icao": "INTOT1V",
-        "name": "Intot One Victor",
-        "transitions": {
-          "INTOT": ["PUGER", "INTOT"]
-        },
-        "body": [["VKL", "A60|S230"]],
-        "draw": [
-          ["INTOT", "VKL"]
-        ]
+      "icao": "INTOT1V",
+      "name": "Intot One Victor",
+      "entryPoints": {
+        "INTOT": ["PUGER", "INTOT"]
+      },
+      "body": [["VKL", "A60|S230"]],
+      "draw": [
+        ["INTOT", "VKL"]
+      ]
     },
     "KIKAL3": {
-        "icao": "KIKAL3",
-        "name": "Kikal Three",
-        "transitions": {
-          "BATU_ARANG": ["DAKUS", ["VBA", "A90"]]
-        },
-        "body": [["KIKAL", "A45"]],
-        "draw": [
-          ["DAKUS", "VBA", "KIKAL"]
-        ]
+      "icao": "KIKAL3",
+      "name": "Kikal Three",
+      "entryPoints": {
+        "BATU_ARANG": ["DAKUS", ["VBA", "A90"]]
+      },
+      "body": [["KIKAL", "A45"]],
+      "draw": [
+        ["DAKUS", "VBA", "KIKAL"]
+      ]
     },
     "OLBON1B": {
-        "_comment": "OLBON1B is meant to be dependent on runway usage.",
-        "icao": "OLBON1B",
-        "name": "Olbon One Bravo",
-        "transitions": {
-          "PULIP":  ["PULIP"],
-          "DAKUS":  ["DAKUS"],
-          "GOKAD":  ["GUNIP", "GOKAD"]
-        },
-        "body": [["OLBON", "A90"], "KK488", ["KIDOT", "S230"], "KK484", "KK485", ["KK486", "S60"], ["KK487", "A50"], ["ADMOL", "S210"]],
-        "draw": [
-          ["PULIP", "OLBON"],
-          ["DAKUS", "OLBON"],
-          ["GOKAD", "OLBON"],
-          ["OLBON", "KK488", "KIDOT", "KK484", "KK485", "KK486", "KK487", "ADMOL"]
-        ]
+      "_comment": "OLBON1B is meant to be dependent on runway usage.",
+      "icao": "OLBON1B",
+      "name": "Olbon One Bravo",
+      "entryPoints": {
+        "PULIP":  ["PULIP"],
+        "DAKUS":  ["DAKUS"],
+        "GOKAD":  ["GUNIP", "GOKAD"]
+      },
+      "body": [["OLBON", "A90"], "KK488", ["KIDOT", "S230"], "KK484", "KK485", ["KK486", "S60"], ["KK487", "A50"], ["ADMOL", "S210"]],
+      "draw": [
+        ["PULIP", "OLBON"],
+        ["DAKUS", "OLBON"],
+        ["GOKAD", "OLBON"],
+        ["OLBON", "KK488", "KIDOT", "KK484", "KK485", "KK486", "KK487", "ADMOL"]
+      ]
     },
     "LENKI1B": {
-        "_comment": "LENKI1B is meant to be dependent on runway usage.",
-        "icao": "LENKI1B",
-        "name": "Lenki One Bravo",
-        "transitions": {
-          "SALAX":  ["SALAX"],
-          "GUPTA":  ["GUPTA", "KK489"],
-          "SAROX":  ["SAROX"]
-        },
-        "body": [["LENKI", "A100|S250"], "KK471", ["KIDOT", "S230"], "KK484", "KK485", ["KK486", "A60"], ["KK487", "A50"], ["ADMOL", "S210"]],
-        "draw": [
-          ["SALAX", "LENKI"],
-          ["GUPTA", "KK489", "LENKI"],
-          ["SAROX", "LENKI"],
-          ["LENKI", "KK471", "KIDOT", "KK484", "KK485", "KK486", "KK487", "ADMOL"]
-        ]
+      "_comment": "LENKI1B is meant to be dependent on runway usage.",
+      "icao": "LENKI1B",
+      "name": "Lenki One Bravo",
+      "entryPoints": {
+        "SALAX":  ["SALAX"],
+        "GUPTA":  ["GUPTA", "KK489"],
+        "SAROX":  ["SAROX"]
+      },
+      "body": [["LENKI", "A100|S250"], "KK471", ["KIDOT", "S230"], "KK484", "KK485", ["KK486", "A60"], ["KK487", "A50"], ["ADMOL", "S210"]],
+      "draw": [
+        ["SALAX", "LENKI"],
+        ["GUPTA", "KK489", "LENKI"],
+        ["SAROX", "LENKI"],
+        ["LENKI", "KK471", "KIDOT", "KK484", "KK485", "KK486", "KK487", "ADMOL"]
+      ]
     },
     "BENRI1A": {
-        "_comment": "BENRI1A is meant to be dependent on runway usage.",
-        "icao": "BENRI1B",
-        "name": "Benri One Alfa",
-        "transitions": {
-          "PULIP":  ["PULIP"],
-          "DAKUS":  ["DAKUS"],
-          "GOKAD":  ["GUNIP", "GOKAD"]
-        },
-        "body": [["BENRI", "A90|S250"], "KK454", ["EKUDA", "S230"], ["KK462", "A50-"], "KK463", ["KK464", "A40"], "KK465", ["NIVID", "A30"]],
-        "draw": [
-          ["PULIP", "BENRI"],
-          ["DAKUS", "BENRI"],
-          ["GOKAD", "BENRI"],
-          ["BENRI", "KK454", "EKUDA", "KK462", "KK463", "KK464", "KK465", "NIVID"]
-        ]
+      "_comment": "BENRI1A is meant to be dependent on runway usage.",
+      "icao": "BENRI1B",
+      "name": "Benri One Alfa",
+      "entryPoints": {
+        "PULIP":  ["PULIP"],
+        "DAKUS":  ["DAKUS"],
+        "GOKAD":  ["GUNIP", "GOKAD"]
+      },
+      "body": [["BENRI", "A90|S250"], "KK454", ["EKUDA", "S230"], ["KK462", "A50-"], "KK463", ["KK464", "A40"], "KK465", ["NIVID", "A30"]],
+      "draw": [
+        ["PULIP", "BENRI"],
+        ["DAKUS", "BENRI"],
+        ["GOKAD", "BENRI"],
+        ["BENRI", "KK454", "EKUDA", "KK462", "KK463", "KK464", "KK465", "NIVID"]
+      ]
     },
     "MENIK1A": {
-        "_comment": "MENIK1A is meant to be dependent on runway usage.",
-        "icao": "MENIK1A",
-        "name": "Menik One Alfa",
-        "transitions": {
-          "SAROX":  ["SAROX"],
-          "GUPTA":  ["GUPTA"],
-          "SALAX":  ["SALAX"]
-        },
-        "body": [["MENIK", "A90|S250"], "KK451", ["EKUDA", "S230"], ["KK462", "A50-"], "KK463", ["KK464", "A40"], "KK465", ["NIVID", "A30|S210"]],
-        "draw": [
-          ["SAROX", "MENIK"],
-          ["GUPTA", "MENIK"],
-          ["SALAX", "MENIK"],
-          ["MENIK", "KK451", "EKUDA", "KK462", "KK463", "KK464", "KK465", "NIVID"]
-        ]
+      "_comment": "MENIK1A is meant to be dependent on runway usage.",
+      "icao": "MENIK1A",
+      "name": "Menik One Alfa",
+      "entryPoints": {
+        "SAROX":  ["SAROX"],
+        "GUPTA":  ["GUPTA"],
+        "SALAX":  ["SALAX"]
+      },
+      "body": [["MENIK", "A90|S250"], "KK451", ["EKUDA", "S230"], ["KK462", "A50-"], "KK463", ["KK464", "A40"], "KK465", ["NIVID", "A30|S210"]],
+      "draw": [
+        ["SAROX", "MENIK"],
+        ["GUPTA", "MENIK"],
+        ["SALAX", "MENIK"],
+        ["MENIK", "KK451", "EKUDA", "KK462", "KK463", "KK464", "KK465", "NIVID"]
+      ]
     },
     "LAPIR3": {
-        "_comment": "LAPIR3 is meant to be dependent on runway usage.",
-        "icao": "LAPIR3",
-        "name": "Lapir Three",
-        "transitions": {
-          "DUMOK":    ["GUPTA", "BATAR", "DUMOK"],
-          "MALACCA":  ["ADPAX", ["VMK", "A60"]]
-        },
-        "body": [["LAPIR", "A40"]],
-        "draw": [
-          ["BATAR", "DUMOK", "LAPIR"],
-          ["GUPTA", "VMK", "LAPIR"]
-        ]
+      "_comment": "LAPIR3 is meant to be dependent on runway usage.",
+      "icao": "LAPIR3",
+      "name": "Lapir Three",
+      "entryPoints": {
+        "DUMOK":    ["GUPTA", "BATAR", "DUMOK"],
+        "MALACCA":  ["ADPAX", ["VMK", "A60"]]
+      },
+      "body": [["LAPIR", "A40"]],
+      "draw": [
+        ["BATAR", "DUMOK", "LAPIR"],
+        ["GUPTA", "VMK", "LAPIR"]
+      ]
     },
     "KIDOT1P": {
-        "_comment": "KIDOT1P is meant to be dependent on runway usage.",
-        "icao": "KIDOT1P",
-        "name": "Kidot One Papa",
-        "transitions": {
-          "PULIP":  ["PULIP"],
-          "DAKUS":  ["DAKUS"],
-          "INTOT":  ["PUGER", "INTOT"]
-        },
-        "body": [["KIDOT", "A90|S250"], "OSPOV", ["LENKI", "S230"], "KK401", "KK402", "KK403", "KK404", ["KK405", "A80|S230"], ["MUNOV", "A70|S210"]],
-        "draw": [
-          ["PULIP", "KIDOT"],
-          ["DAKUS", "KIDOT"],
-          ["INTOT", "KIDOT"],
-          ["KIDOT", "OSPOV", "LENKI", "KK401", "KK402", "KK403", "KK404", "KK405", "MUNOV"]
-        ]
+      "_comment": "KIDOT1P is meant to be dependent on runway usage.",
+      "icao": "KIDOT1P",
+      "name": "Kidot One Papa",
+      "entryPoints": {
+        "PULIP":  ["PULIP"],
+        "DAKUS":  ["DAKUS"],
+        "INTOT":  ["PUGER", "INTOT"]
+      },
+      "body": [["KIDOT", "A90|S250"], "OSPOV", ["LENKI", "S230"], "KK401", "KK402", "KK403", "KK404", ["KK405", "A80|S230"], ["MUNOV", "A70|S210"]],
+      "draw": [
+        ["PULIP", "KIDOT"],
+        ["DAKUS", "KIDOT"],
+        ["INTOT", "KIDOT"],
+        ["KIDOT", "OSPOV", "LENKI", "KK401", "KK402", "KK403", "KK404", "KK405", "MUNOV"]
+      ]
     },
     "BOBIS1P": {
-        "_comment": "BOBIS1P is meant to be dependent on runway usage.",
-        "icao": "BOBIS1P",
-        "name": "Bobis One Papa",
-        "transitions": {
-          "SALAX":  ["SALAX", "KK410"],
-          "GUPTA":  ["GUPTA"],
-          "SAROX":  ["SAROX"]
-        },
-        "body": [["BOBIS", "A110"], ["OLSOS", "S230"], "KK411", "KK412", "KK413", "KK414", "KK415", ["MUNOV", "A70|S210"]],
-        "draw": [
-          ["SALAX", "KK410", "BOBIS"],
-          ["GUPTA", "BOBIS"],
-          ["SAROX", "BOBIS"],
-          ["SALAX", "BOBIS", "OLSOS", "KK411", "KK412", "KK413", "KK414", "KK415", "MUNOV"]
-        ]
+      "_comment": "BOBIS1P is meant to be dependent on runway usage.",
+      "icao": "BOBIS1P",
+      "name": "Bobis One Papa",
+      "entryPoints": {
+        "SALAX":  ["SALAX", "KK410"],
+        "GUPTA":  ["GUPTA"],
+        "SAROX":  ["SAROX"]
+      },
+      "body": [["BOBIS", "A110"], ["OLSOS", "S230"], "KK411", "KK412", "KK413", "KK414", "KK415", ["MUNOV", "A70|S210"]],
+      "draw": [
+        ["SALAX", "KK410", "BOBIS"],
+        ["GUPTA", "BOBIS"],
+        ["SAROX", "BOBIS"],
+        ["SALAX", "BOBIS", "OLSOS", "KK411", "KK412", "KK413", "KK414", "KK415", "MUNOV"]
+      ]
     },
     "KIDOT1C": {
-        "_comment": "KIDOT1C is meant to be dependent on runway usage.",
-        "icao": "KIDOT1D",
-        "name": "Kidot One Charlie",
-        "transitions": {
-          "PULIP":  ["PULIP"],
-          "DAKUS":  ["DAKUS"],
-          "INTOT":  ["PUGER", "INTOT"]
-        },
-        "body": [["KIDOT", "A90"], "OSPOV", "KK411", ["MUNOV", "S230"], "KK445", "KK446", ["KK447", "A70"], ["BERBI", "A60|S210"]],
-        "draw": [
-          ["PULIP", "KIDOT"],
-          ["DAKUS", "KIDOT"],
-          ["INTOT", "KIDOT"],
-          ["KIDOT", "OSPOV", "KK411", "MUNOV", "KK445", "KK446", "KK447", "BERBI"]
-        ]
+      "_comment": "KIDOT1C is meant to be dependent on runway usage.",
+      "icao": "KIDOT1D",
+      "name": "Kidot One Charlie",
+      "entryPoints": {
+        "PULIP":  ["PULIP"],
+        "DAKUS":  ["DAKUS"],
+        "INTOT":  ["PUGER", "INTOT"]
+      },
+      "body": [["KIDOT", "A90"], "OSPOV", "KK411", ["MUNOV", "S230"], "KK445", "KK446", ["KK447", "A70"], ["BERBI", "A60|S210"]],
+      "draw": [
+        ["PULIP", "KIDOT"],
+        ["DAKUS", "KIDOT"],
+        ["INTOT", "KIDOT"],
+        ["KIDOT", "OSPOV", "KK411", "MUNOV", "KK445", "KK446", "KK447", "BERBI"]
+      ]
     },
     "PONOX1A": {
-        "_comment": "PONOX1A is meant to be dependent on runway usage.",
-        "icao": "PONOX1A",
-        "name": "Ponox One Alfa",
-        "transitions": {
-          "SAROX":  ["SAROX"],
-          "GUPTA":  ["GUPTA", "KK448"]
-        },
-        "body": [["PONOX", "A70"], "KK441", ["MUNOV", "S230"], "KK445", "KK446", ["KK447", "A70"], ["BERBI", "A60|S210"]],
-        "draw": [
-          ["SAROX", "PONOX"],
-          ["GUPTA", "KK448", "PONOX"],
-          ["PONOX", "KK441", "MUNOV", "KK445", "KK446", "KK447", "BERBI"]
-        ]
+      "_comment": "PONOX1A is meant to be dependent on runway usage.",
+      "icao": "PONOX1A",
+      "name": "Ponox One Alfa",
+      "entryPoints": {
+        "SAROX":  ["SAROX"],
+        "GUPTA":  ["GUPTA", "KK448"]
+      },
+      "body": [["PONOX", "A70"], "KK441", ["MUNOV", "S230"], "KK445", "KK446", ["KK447", "A70"], ["BERBI", "A60|S210"]],
+      "draw": [
+        ["SAROX", "PONOX"],
+        ["GUPTA", "KK448", "PONOX"],
+        ["PONOX", "KK441", "MUNOV", "KK445", "KK446", "KK447", "BERBI"]
+      ]
     },
     "SALAX1D": {
-        "_comment": "SALAX1D is meant to be dependent on runway usage.",
-        "icao": "SALAX1D",
-        "name": "Salax One Delta",
-        "transitions": {
-          "SALAX":  ["SALAX"]
-        },
-        "body": [["MUNOV", "S230"], "KK445", "KK446", ["KK447", "A70"], ["BERBI", "A60|S210"]],
-        "draw": [
-          ["SALAX", "MUNOV", "KK445", "KK446", "KK447", "BERBI"]
-        ]
+      "_comment": "SALAX1D is meant to be dependent on runway usage.",
+      "icao": "SALAX1D",
+      "name": "Salax One Delta",
+      "entryPoints": {
+        "SALAX":  ["SALAX"]
+      },
+      "body": [["MUNOV", "S230"], "KK445", "KK446", ["KK447", "A70"], ["BERBI", "A60|S210"]],
+      "draw": [
+        ["SALAX", "MUNOV", "KK445", "KK446", "KK447", "BERBI"]
+      ]
     },
     "EKUDA1A": {
-        "_comment": "EKUDA1A is meant to be dependent on runway usage.",
-        "icao": "EKUDA1A",
-        "name": "Ekuda One Alfa",
-        "transitions": {
-          "PULIP":  ["PULIP"],
-          "DAKUS":  ["DAKUS"],
-          "INTOT":  ["PUGER", "INTOT"]
-        },
-        "body": [["EKUDA", "A90|S250"], "KK421", "KK422", ["SUROP", "S230"], ["KK433", "A60-"], ["KK434", "A50-"], ["KK435", "A40-"], ["TUNKU", "A30|S210"]],
-        "draw": [
-          ["PULIP", "EKUDA"],
-          ["DAKUS", "EKUDA"],
-          ["INTOT", "EKUDA"],
-          ["EKUDA", "KK421", "KK422", "SUROP", "KK433", "KK434", "KK435", "TUNKU"]
-        ]
+      "_comment": "EKUDA1A is meant to be dependent on runway usage.",
+      "icao": "EKUDA1A",
+      "name": "Ekuda One Alfa",
+      "entryPoints": {
+        "PULIP":  ["PULIP"],
+        "DAKUS":  ["DAKUS"],
+        "INTOT":  ["PUGER", "INTOT"]
+      },
+      "body": [["EKUDA", "A90|S250"], "KK421", "KK422", ["SUROP", "S230"], ["KK433", "A60-"], ["KK434", "A50-"], ["KK435", "A40-"], ["TUNKU", "A30|S210"]],
+      "draw": [
+        ["PULIP", "EKUDA"],
+        ["DAKUS", "EKUDA"],
+        ["INTOT", "EKUDA"],
+        ["EKUDA", "KK421", "KK422", "SUROP", "KK433", "KK434", "KK435", "TUNKU"]
+      ]
     },
     "NOBEK1B": {
-        "_comment": "NOBEK1B is meant to be dependent on runway usage.",
-        "icao": "NOBEK1B",
-        "name": "Nobek One Bravo",
-        "transitions": {
-          "SAROX":  ["SAROX", "GEMAS", "KK424"],
-          "GUPTA":  ["GUPTA"]
-        },
-        "body": [["NOBEK", "A110|S250"], "KK425", "BELER", ["SUROP", "S230"], ["KK433", "A60-"], ["KK434", "A50-"], ["KK435", "A40-"], ["TUNKU", "A30|S210"]],
-        "draw": [
-          ["SAROX", "GEMAS", "KK424", "NOBEK"],
-          ["GUPTA", "NOBEK"],
-          ["NOBEK", "KK425", "BELER", "SUROP", "KK433", "KK434", "KK435", "TUNKU"]
-        ]
+      "_comment": "NOBEK1B is meant to be dependent on runway usage.",
+      "icao": "NOBEK1B",
+      "name": "Nobek One Bravo",
+      "entryPoints": {
+        "SAROX":  ["SAROX", "GEMAS", "KK424"],
+        "GUPTA":  ["GUPTA"]
+      },
+      "body": [["NOBEK", "A110|S250"], "KK425", "BELER", ["SUROP", "S230"], ["KK433", "A60-"], ["KK434", "A50-"], ["KK435", "A40-"], ["TUNKU", "A30|S210"]],
+      "draw": [
+        ["SAROX", "GEMAS", "KK424", "NOBEK"],
+        ["GUPTA", "NOBEK"],
+        ["NOBEK", "KK425", "BELER", "SUROP", "KK433", "KK434", "KK435", "TUNKU"]
+      ]
     },
     "SALAX1A": {
-        "_comment": "SALAX1A is meant to be dependent on runway usage.",
-        "icao": "SALAX1A",
-        "name": "Salax One Alfa",
-        "transitions": {
-          "SALAX":  [["SALAX", "S250"]]
-        },
-        "body": [["BELER", "S230"], "SUROP", ["KK433", "A60-"], ["KK434", "A50-"], ["KK435", "A40-"], ["TUNKU", "A30|S210"]],
-        "draw": [
-          ["SALAX", "BELER", "SUROP", "KK433", "KK434", "KK435", "TUNKU"]
-        ]
+      "_comment": "SALAX1A is meant to be dependent on runway usage.",
+      "icao": "SALAX1A",
+      "name": "Salax One Alfa",
+      "entryPoints": {
+        "SALAX":  [["SALAX", "S250"]]
+      },
+      "body": [["BELER", "S230"], "SUROP", ["KK433", "A60-"], ["KK434", "A50-"], ["KK435", "A40-"], ["TUNKU", "A30|S210"]],
+      "draw": [
+        ["SALAX", "BELER", "SUROP", "KK433", "KK434", "KK435", "TUNKU"]
+      ]
     }
   },
   "arrivals": [

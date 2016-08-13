@@ -59,7 +59,7 @@
         "9" : ["BROWS"],
         "27": ["PGY", "BROWS"]
       },
-      "transitions": {
+      "exitPoints": {
         "JLI": ["JLI"]
       },
       "draw": [["PGY","BROWS","JLI*"]]
@@ -71,7 +71,7 @@
         "9" : ["BOKNE", "MAFAN", "LNSAY"],
         "27": ["BOKNE", "MAFAN", "LNSAY"]
       },
-      "transitions": {
+      "exitPoints": {
         "FALCC": ["FALCC"]
       },
       "draw": [["BOKNE","MAFAN","FALCC*"]]
@@ -83,7 +83,7 @@
         "9" : ["SARGS", "MELDY"],
         "27": ["SARGS", "MELDY"]
       },
-      "transitions": {
+      "exitPoints": {
         "PEBLE": ["PEBLE"]
       },
       "draw": [["SARGS", "MELDY", "PEBLE*"]]
@@ -95,7 +95,7 @@
         "9" : ["LOWMA", "PGY"],
         "27": ["LOWMA", "PGY"]
       },
-      "transitions": {
+      "exitPoints": {
         "BROWS": ["BROWS"]
       },
       "draw": [["LOWMA","PGY","BROWS*"]]

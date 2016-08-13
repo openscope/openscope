@@ -150,7 +150,7 @@
         "34C": ["NEZUG", "_NEZUG070010", "SUMMA"],
         "34R": ["NEZUG", "_NEZUG070010", "SUMMA"]
       },
-      "transitions": {
+      "exitPoints": {
         "LKV": ["LKV"],
         "BKE": ["BKE"]
       },
@@ -167,7 +167,7 @@
         "34C": ["NESOE", ["WUREL", "A31+"], "ATOME", "BREMM", ["BANGR", "A100+"]],
         "34R": ["DODVE", ["WUREL", "A31+"], "ATOME", "BREMM", ["BANGR", "A100+"]]
       },
-      "transitions": {
+      "exitPoints": {
         "PANGL": ["PANGL"],
         "ARRIE": ["ARRIE"]
       },
@@ -181,7 +181,7 @@
         "16C": [["NICHY", "A30+"], "ELMAA"],
         "16R": [["NICHY", "A30+"], "ELMAA"]
       },
-      "transitions": {
+      "exitPoints": {
         "HQM": ["HQM"],
         "CVO": ["CVO"]
       },
@@ -198,7 +198,7 @@
         "34C": ["NESOE", ["WUREL", "A31+"], "ATOME", "BREMM", ["HAROB", "A100+"]],
         "34R": ["DODVE", ["WUREL", "A31+"], "ATOME", "BREMM", ["HAROB", "A100+"]]
       },
-      "transitions": {
+      "exitPoints": {
         "HQM": ["HQM"],
         "ERAVE": ["ERAVE"],
         "HISKU": ["FEPOT", "HISKU"]
@@ -214,7 +214,7 @@
         "34R": ["DODVE"]
       },
       "body": [["WUREL", "A31+|S250-"], ["ATOME", "S250-"], ["CENEX", "S250-"], ["KTSAP", "S250-"], ["ZUVEN", "A100+|S250-"], ["KMORE", "S250-"]],
-      "transitions": {
+      "exitPoints": {
         "BLUIT": ["BLUIT"]
       },
       "draw": [["CUSBU", "WUREL"], ["NESOE", "WUREL"], ["DODVE", "WUREL"], ["WUREL", "ATOME", "CENEX", "KTSAP", "ZUVEN", "KMORE", "BLUIT*"]]
@@ -228,7 +228,7 @@
         "34R": ["DODVE"]
       },
       "body": [["WUREL", "A31+"], "ATOME", "CENEX", "KTSAP"],
-      "transitions": {
+      "exitPoints": {
         "TOU": ["TOU"],
         "BKE": ["BKE"]
       },
