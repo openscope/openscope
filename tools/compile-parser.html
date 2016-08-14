@@ -69,7 +69,7 @@ cmdDebug
   = "debug" _ "log" {return ["debug"]}
 
 cmdDescendViaSTAR
-  = ("descendviastart" / "dvs") {return ["descendViaSTAR"]}
+  = ("descendviastar" / "dvs") {return ["descendViaSTAR"]}
 
 cmdDirect
   = (("direct" / "dct" / "pd") {return "direct"}) fixToken
@@ -105,8 +105,17 @@ cmdHold
              fix ? fix[2] : null]}
 
 cmdLand
-  = cmd:(("land" / "l" / "ils" / "i") {return "land"}) 
+  = cmd: (cmdLandShort / cmdLandLong)
+    {return [cmd[0], cmd[1], cmd[2]]}
+
+cmdLandLong
+  = cmd:(("land" / "l" / "ils") {return "land"}) 
     arg:(whiteSpace variant:[a-z]i? arg:string {return [variant, arg]})
+    { return [cmd, arg[0], arg[1]] }
+
+cmdLandShort
+  = cmd:("\u2B50" {return "land"}) 
+    arg:(variant:[a-z]i? arg:string {return [variant, arg]})
     { return [cmd, arg[0], arg[1]] }
 
 cmdMoveDataBlock
