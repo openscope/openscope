@@ -1570,6 +1570,7 @@ var Aircraft=Fiber.extend(function() {
       descendViaSTAR: 'runDescendViaSTAR',
       direct: 'runDirect',
       fix: 'runFix',
+      flyPresentHeading: 'runFlyPresentHeading',
       heading: 'runHeading',
       hold: 'runHold',
       land: 'runLanding',
@@ -1961,6 +1962,11 @@ var Aircraft=Fiber.extend(function() {
         this.cancelLanding();
       }
       return ["ok", "proceed direct " + fixes.join(', ')];
+    },
+    runFlyPresentHeading: function(data) {
+      this.cancelFix();
+      this.runHeading([null, degrees(this.heading)]);
+      return ["ok", "fly present heading"];
     },
     runSayRoute: function(data) {
       return ['ok', {log:'route: ' + this.fms.fp.route.join(' '), say:"here's our route"}];
