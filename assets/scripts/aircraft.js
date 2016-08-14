@@ -1566,6 +1566,7 @@ var Aircraft=Fiber.extend(function() {
       clearedAsFiled: 'runClearedAsFiled',
       climbViaSID: 'runClimbViaSID',
       debug: 'runDebug',
+      delete: 'runDelete',
       descendViaSTAR: 'runDescendViaSTAR',
       direct: 'runDirect',
       fix: 'runFix',
@@ -2154,6 +2155,9 @@ var Aircraft=Fiber.extend(function() {
     runDebug: function() {
       window.aircraft = this;
       return ["ok", {log:"in the console, look at the variable &lsquo;aircraft&rsquo;", say:""}];
+    },
+    runDelete: function() {
+      aircraft_remove(this);
     },
     cancelFix: function() {
       if(this.fms.currentWaypoint().navmode == "fix") {
@@ -3102,10 +3106,7 @@ function aircraft_update() {
       }
     }
     if(remove) {
-      aircraft.cleanup();
-      prop.aircraft.callsigns.splice(prop.aircraft.callsigns.indexOf(aircraft.callsign), 1);
-      prop.aircraft.list.splice(i, 1);
-      update_aircraft_eids();
+      aircraft_remove(aircraft);
       i-=1;
     }
   }

@@ -38,9 +38,9 @@ aircraftCommand
 
 aircraftSubCommand
 = (whiteSpace command:(cmdAbort / cmdDirect / cmdAltitude / cmdClearedAsFiled / cmdClimbViaSID /
-                       cmdDebug / cmdDescendViaSTAR / cmdFix / cmdHeading / cmdHold / cmdLand /
-                       cmdMoveDataBlock / cmdRoute / cmdReRoute / cmdSayRoute / cmdSID / cmdSpeed /
-                       cmdSTAR / cmdTakeoff / cmdTaxi) {return command})+ 
+                       cmdDebug / cmdDelete / cmdDescendViaSTAR / cmdFix / cmdHeading / cmdHold /
+                       cmdLand / cmdMoveDataBlock / cmdRoute / cmdReRoute / cmdSayRoute / cmdSID /
+                       cmdSpeed / cmdSTAR / cmdTakeoff / cmdTaxi) {return command})+ 
 
 cmdAbort
   = "abort" {return ["abort"]}
@@ -67,6 +67,9 @@ cmdClimbViaSID
 
 cmdDebug
   = "debug" _ "log" {return ["debug"]}
+
+cmdDelete
+  = ("delete" / "del" / "kill") {return ["delete"]}
 
 cmdDescendViaSTAR
   = ("descendviastar" / "dvs") {return ["descendViaSTAR"]}
