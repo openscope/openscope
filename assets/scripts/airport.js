@@ -1323,6 +1323,7 @@ function airport_init() {
   airport_load('kdca', "medium", "Reagan National Airport");
   airport_load('kiad', "hard", "Washington-Dulles International Airport");
   airport_load('kjfk', "hard", "John F Kennedy International Airport &#9983");
+  airport_load('klas', "medium", "McCarran International Airport");
   airport_load('klax90', "medium", "Los Angeles International Airport 1990");
   airport_load('klax', "medium", "Los Angeles International Airport");
   airport_load('kmia', "hard", "Miami International Airport &#9983");
@@ -1331,6 +1332,7 @@ function airport_init() {
   airport_load('ksan', "easy", "San Diego International Airport");
   airport_load('ksea', "medium", "Seattle-Tacoma International Airport &#9983");
   airport_load('ksfo', "medium", "San Francisco International Airport &#9983");
+  airport_load('lkpr', "easy", "Vaclav Havel International Airport");
   airport_load('loww', "medium", "Vienna International Airport");
   airport_load('ltba', "hard", "Atatürk International Airport &#9983");
   airport_load('omaa', "medium", "Abu Dhabi International Airport");
