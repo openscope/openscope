@@ -1343,6 +1343,7 @@ function airport_init() {
   airport_load('saez', "medium", "Aeropuerto Internacional Ministro Pistarini");
   airport_load('sbgl', "beginner", "Aeroporto Internacional Tom Jobim");
   airport_load('sbgr', "beginner", "Aeroporto Internacional de São Paulo/Guarulhos");
+  airport_load('tjsj', "easy", "Luis Muñoz Marín International Airport");
   airport_load('tncm', "easy", "Princess Juliana International Airport");
   airport_load('uudd', "easy", "Moscow Domodedovo Airport");
   airport_load('vecc', "medium", "Kolkata Netaji Subhas Chandra Bose Int'l");
