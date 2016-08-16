@@ -252,7 +252,7 @@
       "transitions": {
         "ELMUC": ["ELMUC", ["SHMUU", "A340-|300"]],
         "HARDE": ["HARDE", ["SHMUU", "A340-|300"]],
-        "KATUK": ["KATUK"]
+        "KATOK": ["KATOK"]
       },
       "body": [["BEANO", "A110|S250"]],
       "rwy": {
