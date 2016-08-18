@@ -262,7 +262,7 @@ function canvas_draw_fixes(cc) {
 function canvas_draw_sids(cc) {
   "use strict";
   if (!prop.canvas.draw_sids) return;
-
+  var text_at_point = [] // Store the count of sid text drawn for a specific transition
   var departure_colour = "rgba(128, 255, 255, 0.6)";
   cc.strokeStyle = departure_colour;
   cc.fillStyle = departure_colour;
@@ -292,7 +292,14 @@ function canvas_draw_sids(cc) {
           }
         }
         cc.stroke();
-        if(trxn_name) cc.fillText(s + "." + trxn_name, fx+10, fy);
+        if(trxn_name){
+          if(isNaN(text_at_point[trxn_name])){  // Initialize count for this transition
+            text_at_point[trxn_name] = 0;
+          }
+          var y_point = fy +(15*text_at_point[trxn_name]);  // Move the y point for drawing depending on how many sids we have drawn text for at this point already
+          cc.fillText(s + "." + trxn_name, fx+10, y_point);
+          text_at_point[trxn_name] += 1;  // Increment the count for this transition
+        }
       }
       if(write_sid_name) cc.fillText(s, fx+10, fy);
     }
