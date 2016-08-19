@@ -50,6 +50,24 @@
     }
     ],
     "fixes": {
+            "ATASO":    ["N35d53m43.60",   "E126d54m22.00"],
+            "BASEM":    ["N36d50m37.20",   "E127d57m09.90"],
+            "BIGOB":    ["N36d43m25.40",   "E128d09m52.00"],
+            "BIKSI":    ["N37d40m32.00",   "E128d35m04.00"],
+            "BODOL":    ["N37d11m21.60",   "E124d49m53.70"],
+            "CUN":      ["N36d37m55.30",   "E128d19m31.50"],
+            "DALCO":    ["N37d41m22.00",   "E126d28m59.80"],
+            "DANZO":    ["N37d32m55.80",   "E126d44m28.80"],
+            "KASKO":    ["N37d07m45.00",   "E127d26m37.00"],
+            "MAKIN":    ["N37d39m24.50",   "E126d35m28.20"],
+            "MAKSA":    ["N35d30m11.30",   "E126d54m22.00"],
+            "PEBRI":    ["N36d23m10.80",   "E127d00m13.30"],
+            "POLKA":    ["N37d28m09.80",   "E126d51m04.80"],
+            "SEL":      ["N37d24m49.00",   "E126d55m42.10"],
+            "SI761":    ["N37d30m56.10",   "E126d23m33.30"],
+            "SI762":    ["N37d30m53.20",   "E126d15m07.30"],
+            "SOT":      ["N37d05m40.00",   "E127d01m54.00"],
+            "TIMON":    ["N37d40m48.00",   "E126d24m36.10"],
             "ALTON":    ["N37d18m13.00",   "E125d41m46.00"],
             "ARISU":    ["N37d39m04.00",   "E126d18m19.00"],
             "ARONE":    ["N36d58m26.00",   "E126d50m37.00"],
@@ -500,7 +518,42 @@
 
     "departures": {
         "airlines": [
-            ["klm",  2]
+            ["afl",   2],
+            ["xax",   1],
+            ["aca",   2],
+            ["afr",   1],
+            ["aic",   3],
+            ["asv",  10],
+            ["aza",   1],
+            ["aal",   1],
+            ["aar",  85],
+            ["baw",   1],
+            ["cpa",   2],
+            ["ces",  14],
+            ["csn",  17],
+            ["dal",   2],
+            ["uae",   1],
+            ["etd",   1],
+            ["eva",   3],
+            ["gia",   2],
+            ["hal",   1],
+            ["jal",   1],
+            ["klm",   1],
+            ["kal", 127],
+            ["csa",   1],
+            ["jja",  22],
+            ["jna",  24],
+            ["esr",  11],
+            ["dlh",   2],
+            ["mas",   1],
+            ["qtr",   1],
+            ["sco",   2],
+            ["sia",   3],
+            ["apj",   3],
+            ["sbi",   2],
+            ["thy",   1],
+            ["ual",   2],
+            ["cqh",   2]
         ],
         "destinations": [
             "BINIL1K",
@@ -534,31 +587,584 @@
         "offset": 0,
         "frequency": 55
     },
-    "_stars": {
-        "SAMPLE": {
-            "icao": "SAMPLE",
-            "name": "Sample",
+    "stars": {
+        "SEL1T": {
+            "icao": "SEL1T",
+            "name": "Anyang One Tango",
             "transitions": {
-            	
+                "ANYANG": [["SEL", "A150"]]
             },
-            "rwy": {
-            
-            },
+            "body": [["POLKA", "A120"], ["DANZO", "A100"], ["MAKIN", "A60"], ["DALCO", "A50|S210-"], ["TIMON", "A40|S210-"]],
             "draw": [
-                
+                ["SEL", "POLKA", "DANZO", "MAKIN", "DALCO", "TIMON"]
+            ]
+        },
+        "GUKDO1A": {
+            "icao": "GUKDO1A",
+            "name": "Gukdo One Alpha",
+            "transitions": {
+                "GUKDO": ["GUKDO"]
+            },
+            "body": [["KAKSO", "A180"], "KALMA", ["SEL", "A150"], ["WINDY", "A100"], ["COPUS", "A60"]],
+            "draw": [
+                ["GUKDO", "KASKO", "KALMA", "SEL", "WINDY", "COPUS"]
+            ]
+        },
+        "KARBU1A": {
+            "icao": "KARBU1A",
+            "name": "Karbu One Alpha",
+            "transitions": {
+                "KARBU": ["KARBU"]
+            },
+            "body": [["EGOBA", "A170"], ["SEL", "A150"], ["WINDY", "A100"], ["COPUS", "A60"]],
+            "draw": [
+                ["KARBU", "EGOBA", "SEL", "WINDY", "COPUS"]
+            ]
+        },
+        "OLMEN1N": {
+            "icao": "OLMEN1N",
+            "name": "Olmen One November",
+            "transitions": {
+                "OLMEN": ["OLMEN"]
+            },
+            "body": [["TOSCA", "A180"], ["BONSA", "A160"], ["SI852", "A150"], ["SI942", "A90"], ["SI943", "A80|S210"], ["SI944", "S210"], ["SI945", "S210"], ["SI946", "S210"], ["SI947", "A80|S210"], ["DANAN", "A50|S210"]],
+            "draw": [
+                ["OLMEN", "TOSCA", "BONSA", "SI852", "SI942", "SI943", "SI944", "SI945", "SI946", "SI947", "DANAN"]
+            ]
+        },
+        "GUKDO1N": {
+            "icao": "GUKDO1N",
+            "name": "Gukdo One November",
+            "transitions": {
+                "GUKDO": ["GUKDO"]
+            },
+            "body": [["KAKSO", "A180"], "KALMA", "HODOL", ["SEL", "A150"], ["SI853", "A110"], ["SI941", "A80|S210"], ["SI942", "A80|S210"], ["SI943", "S210"], ["SI944", "S210"], ["SI945", "S210"], ["SI946", "S210"], ["SI947", "A80|S210"], ["DANAN", "A50|S210"]],
+            "draw": [
+                ["KAKSO", "KALMA", "HODOL", "SEL", "SI853", "SI941", "SI942", "SI943", "SI944", "SI945", "SI946", "SI947", "DANAN"]
+            ]
+        },
+        "KARBU1N": {
+            "icao": "KARBU1N",
+            "name": "Karbu One November",
+            "transitions": {
+                "KARBU": ["KARBU"]
+            },
+            "body": [["EGOBA", "A170"], ["SEL", "A160"], ["SI853", "A110"], ["SI941", "A80|S210"], ["SI942", "A80|S210"], ["SI943", "S210"], ["SI944", "S210"], ["SI945", "S210"], ["SI946", "S210"], ["SI947", "A80|S210"], ["DANAN", "A50|S210"]],
+            "draw": [
+                ["KARBU", "EGOBA", "SEL", "SI853", "SI941", "SI942", "SI943", "SI944", "SI945", "SI946", "SI947", "DANAN"]
+            ]
+        },
+        "REBIT1N": {
+            "icao": "REBIT1N",
+            "name": "Rebit One November",
+            "transitions": {
+                "REBIT": ["REBIT"]
+            },
+            "body": [["ALTON", "A130"], ["SI931", "A90|S210"], ["SI932", "A90|S210"], ["SI933", "A90|S210"], ["SI934", "A90|S210"], ["SI935", "A90|S210"], ["DANAN", "A50|S210"]],
+            "draw": [
+                ["REBIT", "ALTON", "SI931", "SI932", "SI933", "SI934", "SI935", "DANAN"]
+            ]
+        },
+        "BIKSI1M": {
+            "icao": "BIKSI1M",
+            "name": "Biksi One Mike",
+            "transitions": {
+                "BIKSI": ["BIKSI"]
+            },
+            "body": [["KARBU", "A180"], ["SI361", "A100"], ["PULUN", "A70"]],
+            "draw": [
+                ["BIKSI", "KARBU", "SI361", "PULUN"]
+            ]
+        },
+        "CUN1M": {
+            "icao": "CUN1M",
+            "name": "Yechon One Mike",
+            "transitions": {
+                "CUN": ["CUN"]
+            },
+            "body": [["BIGOB", "A220"], ["BASEM", "A200"], ["GUKDO", "A160"], ["SI362", "A100"], ["PULUN", "A70"]],
+            "draw": [
+                ["CUN", "BIGOB", "BASEM", "GUKDO", "SI362", "PULUN"]
+            ]
+        },
+        "GONAV2M": {
+            "icao": "GONAV2M",
+            "name": "Gonav Two Mike",
+            "transitions": {
+                "GONAV": ["GONAV"]
+            },
+            "body": [["BODOL", "A200"], ["REBIT", "A170"], ["BELTU", "A150"], ["SANHO", "A130"], ["DANIL", "A120"], ["BIANY", "A85"], ["PULUN", "A70"]],
+            "draw": [
+                ["GONAV", "BODOL", "REBIT", "BELTU", "SANHO", "DANIL", "BIANY", "PULUN"]
+            ]
+        },
+        "MAKSA1M": {
+            "icao": "MAKSA1M",
+            "name": "Maksa One Mike",
+            "transitions": {
+                "MAKSA": ["MAKSA"]
+            },
+            "body": [["ATASO", "A220"], ["PEBRI", "A180"], ["OLMEN", "A150"], ["SI363", "A95"], ["PULUN", "A70"]],
+            "draw": [
+                ["MAKSA", "ATASO", "PEBRI", "OLMEN", "SI363", "PULUN"]
+            ]
+        },
+        "GUKDO1P": {
+            "icao": "GUKDO1P",
+            "name": "Gukdo One Papa",
+            "transitions": {
+                "GUKDO": ["GUKDO"]
+            },
+            "body": [["KAKSO", "A150"], ["SI857", "A110|S250"], ["SI921", "A100|S250"], ["SI922", "A100|S220"], ["SI923", "A100|S220"], ["SI924", "A100|S220"], ["SI925", "A100|S220"], ["PULUN", "A70|S220"]],
+            "draw": [
+                ["GUKDO", "KAKSO", "SI857", "SI921", "SI922", "SI923", "SI924", "SI925", "PULUN"]
+            ]
+        },
+        "KARBU1P": {
+            "icao": "KARBU1P",
+            "name": "Karbu One Papa",
+            "transitions": {
+                "KARBU": ["KARBU"]
+            },
+            "body": [["NOTIN", "A170"], ["SI857", "A120|S250"], ["SI921", "A100|S250"], ["SI922", "A100|S220"], ["SI923", "A100|S220"], ["SI924", "A100|S220"], ["SI925", "A100|S220"], ["PULUN", "A70|S220"]],
+            "draw": [
+                ["KARBU", "NOTIN", "SI857", "SI921", "SI922", "SI923", "SI924", "SI925", "PULUN"]
+            ]
+        },
+        "COWAY1A": {
+            "icao": "COWAY1A",
+            "name": "Coway One Alpha",
+            "transitions": {
+                "COWAY": [["COWAY", "A150"]]
+            },
+            "body": [["PINGO", "A110"], ["SI901", "A70|S190"], ["SI902", "A70|S190"], ["SI903", "A70|S190"], ["SI904", "A70|S190"], ["SI905", "A70|S190"], ["KOTRA", "A40|S190"]],
+            "draw": [
+                ["COWAY", "PINGO", "SI901", "SI902", "SI903", "SI904", "SI905", "KOTRA"]
+            ]
+        },
+        "COWAY1P": {
+            "icao": "COWAY1P",
+            "name": "Coway One Papa",
+            "transitions": {
+                "COWAY": [["COWAY", "A150"]]
+            },
+            "body": [["PINGO", "A120"], ["SI854", "A120"], ["SI855", "A120"], ["ARONE", "A110|S220"], ["SI912", "A110|S220"], ["SI913", "A110|S220"], ["SI914", "A110|S220"], ["SI915", "A110|S220"], ["PULUN", "A70|S220"]],
+            "draw": [
+                ["COWAY", "PINGO", "SI854", "SI855", "ARONE", "SI912", "SI913", "SI914", "SI915", "PULUN"]
+            ]
+        },
+        "OLMEN1P": {
+            "icao": "OLMEN1P",
+            "name": "Olmen One Papa",
+            "transitions": {
+                "OLMEN": ["OLMEN"]
+            },
+            "body": [["ARONE", "A120|S220"], ["SI912", "A110|S220"], ["SI913", "A110|S220"], ["SI914", "A110|S220"], ["SI915", "A110|S220"], ["PULUN", "A70|S220"]],
+            "draw": [
+                ["OLMEN", "ARONE", "SI912", "SI913", "SI914", "SI915", "PULUN"]
             ]
         }
     },
-    "_arrivals": [
+    "arrivals": [
         {
-        "type": 		"cyclic",
-        "route":        "SAMPLE.SAMPLE.RKSI",
-        "frequency":    69,
-        "altitude":     18000,
-        "speed":		210,
-        "offset":		2,
-        "airlines": [
-                ["sia", 64]
+            "type": 		"cyclic",
+            "route":        "ANYANG.SEL1T.RKSI",
+            "frequency":    2,
+            "altitude":     15000,
+            "speed":		250,
+            "offset":		2,
+            "airlines": [
+                ["asv",  10],
+                ["aal",   1],
+                ["aar",  85],
+                ["dal",   2],
+                ["hal",   1],
+                ["jal",   1],
+                ["kal", 127],
+                ["jja",  22],
+                ["jna",  24],
+                ["esr",  11],
+                ["mas",   1],
+                ["apj",   3],
+                ["ual",   2]
+            ]
+        },
+        {
+            "type": 		"cyclic",
+            "route":        "GUKDO.GUKDO1A.RKSI",
+            "frequency":    2,
+            "altitude":     15000,
+            "speed":		250,
+            "offset":		2,
+            "airlines": [
+                ["asv",  10],
+                ["aal",   1],
+                ["aar",  85],
+                ["dal",   2],
+                ["hal",   1],
+                ["jal",   1],
+                ["kal", 127],
+                ["jja",  22],
+                ["jna",  24],
+                ["esr",  11],
+                ["mas",   1],
+                ["apj",   3],
+                ["ual",   2]
+            ]
+        },
+        {
+            "type": 		"cyclic",
+            "route":        "KARBU.KARBU1A.RKSI",
+            "frequency":    2,
+            "altitude":     15000,
+            "speed":		250,
+            "offset":		2,
+            "airlines": [
+                ["asv",  10],
+                ["aal",   1],
+                ["aar",  85],
+                ["dal",   2],
+                ["hal",   1],
+                ["jal",   1],
+                ["kal", 127],
+                ["jja",  22],
+                ["jna",  24],
+                ["esr",  11],
+                ["mas",   1],
+                ["apj",   3],
+                ["ual",   2]
+            ]
+        },
+        {
+            "type": 		"cyclic",
+            "route":        "OLMEN.OLMEN1N.RKSI",
+            "frequency":    2,
+            "altitude":     15000,
+            "speed":		250,
+            "offset":		2,
+            "airlines": [
+                ["xax",   1],
+                ["asv",  10],
+                ["aar",  85],
+                ["cpa",   2],
+                ["ces",  14],
+                ["csn",  17],
+                ["eva",   3],
+                ["gia",   2],
+                ["kal", 127],
+                ["jja",  22],
+                ["jna",  24],
+                ["esr",  11],
+                ["mas",   1],
+                ["sco",   2],
+                ["sia",   3],
+                ["cqh",   2]
+            ]
+        },
+        {
+            "type": 		"cyclic",
+            "route":        "GUKDO.GUKDO1N.RKSI",
+            "frequency":    2,
+            "altitude":     15000,
+            "speed":		250,
+            "offset":		2,
+            "airlines": [
+                ["asv",  10],
+                ["aal",   1],
+                ["aar",  85],
+                ["dal",   2],
+                ["hal",   1],
+                ["jal",   1],
+                ["kal", 127],
+                ["jja",  22],
+                ["jna",  24],
+                ["esr",  11],
+                ["mas",   1],
+                ["apj",   3],
+                ["ual",   2]
+            ]
+        },
+        {
+            "type": 		"cyclic",
+            "route":        "KARBU.KARBU1N.RKSI",
+            "frequency":    2,
+            "altitude":     15000,
+            "speed":		250,
+            "offset":		2,
+            "airlines": [
+                ["asv",  10],
+                ["aal",   1],
+                ["aar",  85],
+                ["dal",   2],
+                ["hal",   1],
+                ["jal",   1],
+                ["kal", 127],
+                ["jja",  22],
+                ["jna",  24],
+                ["esr",  11],
+                ["mas",   1],
+                ["apj",   3],
+                ["ual",   2]
+            ]
+        },
+        {
+            "type": 		"cyclic",
+            "route":        "REBIT.REBIT1N.RKSI",
+            "frequency":    2,
+            "altitude":     15000,
+            "speed":		250,
+            "offset":		2,
+            "airlines": [
+                ["afr",   1],
+                ["aic",   3],
+                ["asv",  10],
+                ["aza",   1],
+                ["aar",  85],
+                ["baw",   1],
+                ["ces",  14],
+                ["csn",  17],
+                ["uae",   1],
+                ["etd",   1],
+                ["eva",   3],
+                ["klm",   1],
+                ["kal", 127],
+                ["csa",   1],
+                ["jja",  22],
+                ["jna",  24],
+                ["esr",  11],
+                ["dlh",   2],
+                ["qtr",   1],
+                ["thy",   1]
+            ]
+        },
+        {
+            "type": 		"cyclic",
+            "route":        "BIKSI.BIKSI1M.RKSI",
+            "frequency":    2,
+            "altitude":     15000,
+            "speed":		250,
+            "offset":		2,
+            "airlines": [
+                ["asv",  10],
+                ["aal",   1],
+                ["aar",  85],
+                ["dal",   2],
+                ["hal",   1],
+                ["jal",   1],
+                ["kal", 127],
+                ["jja",  22],
+                ["jna",  24],
+                ["esr",  11],
+                ["mas",   1],
+                ["apj",   3],
+                ["ual",   2]
+            ]
+        },
+        {
+            "type": 		"cyclic",
+            "route":        "YECHON.CUN1M.RKSI",
+            "frequency":    2,
+            "altitude":     15000,
+            "speed":		250,
+            "offset":		2,
+            "airlines": [
+                ["asv",  10],
+                ["aal",   1],
+                ["aar",  85],
+                ["dal",   2],
+                ["hal",   1],
+                ["jal",   1],
+                ["kal", 127],
+                ["jja",  22],
+                ["jna",  24],
+                ["esr",  11],
+                ["mas",   1],
+                ["apj",   3],
+                ["ual",   2]
+            ]
+        },
+        {
+            "type": 		"cyclic",
+            "route":        "MAKSA.MAKSA1M.RKSI",
+            "frequency":    2,
+            "altitude":     15000,
+            "speed":		250,
+            "offset":		2,
+            "airlines": [
+                ["xax",   1],
+                ["asv",  10],
+                ["aar",  85],
+                ["cpa",   2],
+                ["ces",  14],
+                ["csn",  17],
+                ["eva",   3],
+                ["gia",   2],
+                ["kal", 127],
+                ["jja",  22],
+                ["jna",  24],
+                ["esr",  11],
+                ["mas",   1],
+                ["sco",   2],
+                ["sia",   3],
+                ["cqh",   2]
+            ]
+        },
+        {
+            "type": 		"cyclic",
+            "route":        "GONAV.GONAV2M.RKSI",
+            "frequency":    2,
+            "altitude":     15000,
+            "speed":		250,
+            "offset":		2,
+            "airlines": [
+                ["afl",   2],
+                ["aic",   3],
+                ["asv",  10],
+                ["aza",   1],
+                ["aar",  85],
+                ["baw",   1],
+                ["ces",  14],
+                ["csn",  17],
+                ["uae",   1],
+                ["etd",   1],
+                ["eva",   3],
+                ["klm",   1],
+                ["kal", 127],
+                ["csa",   1],
+                ["jja",  22],
+                ["jna",  24],
+                ["esr",  11],
+                ["dlh",   2],
+                ["qtr",   1],
+                ["sbi",   2],
+                ["thy",   1],
+                ["cqh",   2]
+            ]
+        },
+        {
+            "type": 		"cyclic",
+            "route":        "GUKDO.GUKDO1P.RKSI",
+            "frequency":    2,
+            "altitude":     15000,
+            "speed":		250,
+            "offset":		2,
+            "airlines": [
+                ["asv",  10],
+                ["aal",   1],
+                ["aar",  85],
+                ["dal",   2],
+                ["hal",   1],
+                ["jal",   1],
+                ["kal", 127],
+                ["jja",  22],
+                ["jna",  24],
+                ["esr",  11],
+                ["mas",   1],
+                ["apj",   3],
+                ["ual",   2]
+            ]
+        },
+        {
+            "type": 		"cyclic",
+            "route":        "KARBU.KARBU1P.RKSI",
+            "frequency":    2,
+            "altitude":     15000,
+            "speed":		250,
+            "offset":		2,
+            "airlines": [
+                ["asv",  10],
+                ["aal",   1],
+                ["aar",  85],
+                ["dal",   2],
+                ["hal",   1],
+                ["jal",   1],
+                ["kal", 127],
+                ["jja",  22],
+                ["jna",  24],
+                ["esr",  11],
+                ["mas",   1],
+                ["apj",   3],
+                ["ual",   2]
+            ]
+        },
+        {
+            "type": 		"cyclic",
+            "route":        "COWAY.COWAY1A.RKSI",
+            "frequency":    2,
+            "altitude":     15000,
+            "speed":		250,
+            "offset":		2,
+            "airlines": [
+                ["afr",   1],
+                ["aic",   3],
+                ["asv",  10],
+                ["aar",  85],
+                ["baw",   1],
+                ["cpa",   2],
+                ["ces",  14],
+                ["csn",  17],
+                ["uae",   1],
+                ["etd",   1],
+                ["klm",   1],
+                ["kal", 127],
+                ["jja",  22],
+                ["jna",  24],
+                ["esr",  11],
+                ["dlh",   2],
+                ["thy",   1]
+            ]
+        },
+        {
+            "type": 		"cyclic",
+            "route":        "COWAY.COWAY1P.RKSI",
+            "frequency":    2,
+            "altitude":     15000,
+            "speed":		250,
+            "offset":		2,
+            "airlines": [
+                ["afr",   1],
+                ["aic",   3],
+                ["asv",  10],
+                ["aar",  85],
+                ["baw",   1],
+                ["cpa",   2],
+                ["ces",  14],
+                ["csn",  17],
+                ["uae",   1],
+                ["etd",   1],
+                ["klm",   1],
+                ["kal", 127],
+                ["jja",  22],
+                ["jna",  24],
+                ["esr",  11],
+                ["dlh",   2],
+                ["thy",   1]
+            ]
+        },
+        {
+            "type": 		"cyclic",
+            "route":        "OLMEN.OLMEN1P.RKSI",
+            "frequency":    2,
+            "altitude":     15000,
+            "speed":		250,
+            "offset":		2,
+            "airlines": [
+                ["xax",   1],
+                ["asv",  10],
+                ["aar",  85],
+                ["cpa",   2],
+                ["ces",  14],
+                ["csn",  17],
+                ["eva",   3],
+                ["gia",   2],
+                ["kal", 127],
+                ["jja",  22],
+                ["jna",  24],
+                ["esr",  11],
+                ["mas",   1],
+                ["sco",   2],
+                ["sia",   3],
+                ["cqh",   2]
             ]
         }
     ]
