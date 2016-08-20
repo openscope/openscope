@@ -358,7 +358,7 @@ function input_history_next() {
 function input_run() {
   var result;
   try {
-    result = zlsa.atc.Parser.parse(prop.input.command.trim());
+    result = zlsa.atc.Parser.parse(prop.input.command.trim().toLowerCase());
   }
   catch (e) {
     if (e.hasOwnProperty('name') && e.name == 'SyntaxError') {

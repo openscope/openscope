@@ -1035,3 +1035,11 @@ function update_aircraft_eids() {
     prop.aircraft.list[i].fms.my_aircrafts_eid = i; // update eid in aircraft's fms
   }
 }
+
+// Remove the specified aircraft and perform cleanup operations
+function aircraft_remove(aircraft) {
+  prop.aircraft.callsigns.splice(prop.aircraft.callsigns.indexOf(aircraft.callsign), 1);
+  prop.aircraft.list.splice(prop.aircraft.list.indexOf(aircraft), 1);
+  update_aircraft_eids();
+  aircraft.cleanup();
+}
