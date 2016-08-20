@@ -1,0 +1,37 @@
+{
+  "name": "Avro RJ70",
+  "icao": "RJ70",
+  "engines": {
+    "number": 4,
+    "type": "J"
+  },
+  "weightclass": "L",
+  "category": {
+    "srs": 3,
+    "lahso": 7,
+    "recat": "E"
+  },
+  "ceiling": 31000,
+  "rate": {
+    "climb":      1800,
+    "descent":    1670,
+    "accelerate": 10,
+    "decelerate": 6
+  },
+  "runway": {
+    "takeoff": 1.466,
+    "landing": 1.173
+  },
+  "speed":{
+    "min":     100,
+    "landing": 120,
+    "cruise":  389,
+    "cruiseM": null,
+    "max":     412,
+    "maxM":    null
+  },
+  "capability": {
+    "ils": true,
+    "fix": true
+  }
+}

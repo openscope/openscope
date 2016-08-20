@@ -1,0 +1,15 @@
+{
+  "name": "Croatia Airlines",
+  "callsign": {
+    "name": "Croatia",
+    "length": 3
+  },
+  "fleets": {
+    "default": [
+      ["A319", 4],
+      ["A320", 2],
+      ["DH8D", 6],
+      ["F100", 1]
+    ]
+  }
+}
