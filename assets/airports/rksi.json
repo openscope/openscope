@@ -201,7 +201,8 @@
             "UCOVA":    ["N37d23m32.00",   "E126d31m18.00"],
             "VOFHA":    ["N37d32m13.00",   "E126d21m30.00"],
             "WINDY":    ["N37d21m51.00",   "E126d27m18.00"],
-            "WUNSO":    ["N37d31m31.00",   "E126d23m51.00"]
+            "WUNSO":    ["N37d31m31.00",   "E126d23m51.00"],
+            "KAE":      ["N37d42m04.00",   "E128d45m22.00"]
         },
 
     "runways": [
@@ -626,7 +627,7 @@
             "icao": "KARBU1A",
             "name": "Karbu One Alpha",
             "transitions": {
-                "KARBU": ["KARBU"]
+                "G597": ["KAE", "KARBU"]
             },
             "body": [["EGOBA", "A170"], ["SEL", "A150"], ["WINDY", "A100"], ["COPUS", "A60"]],
             "draw": [
@@ -659,7 +660,7 @@
             "icao": "KARBU1N",
             "name": "Karbu One November",
             "transitions": {
-                "KARBU": ["KARBU"]
+                "G597": ["KAE", "KARBU"]
             },
             "body": [["EGOBA", "A170"], ["SEL", "A160"], ["SI853", "A110"], ["SI941", "A80|S210"], ["SI942", "A80|S210"], ["SI943", "S210"], ["SI944", "S210"], ["SI945", "S210"], ["SI946", "S210"], ["SI947", "A80|S210"], ["DANAN", "A50|S210"]],
             "draw": [
@@ -736,7 +737,7 @@
             "icao": "KARBU1P",
             "name": "Karbu One Papa",
             "transitions": {
-                "KARBU": ["KARBU"]
+                "G597": ["KAE", "KARBU"]
             },
             "body": [["NOTIN", "A170"], ["SI857", "A120|S250"], ["SI921", "A100|S250"], ["SI922", "A100|S220"], ["SI923", "A100|S220"], ["SI924", "A100|S220"], ["SI925", "A100|S220"], ["PULUN", "A70|S220"]],
             "draw": [
@@ -812,8 +813,8 @@
             "type": 		"cyclic",
             "route":        "GUKDO.GUKDO1A.RKSI",
             "frequency":    1,
-            "altitude":     15000,
-            "speed":		250,
+            "altitude":     20000,
+            "speed":		300,
             "offset":		2,
             "airlines": [
                 ["asv",  10],
@@ -840,10 +841,10 @@
         },
         {
             "type": 		"cyclic",
-            "route":        "KARBU.KARBU1A.RKSI",
+            "route":        "G597.KARBU1A.RKSI",
             "frequency":    1,
-            "altitude":     15000,
-            "speed":		250,
+            "altitude":     18000,
+            "speed":		280,
             "offset":		2,
             "airlines": [
                 ["asv",  10],
@@ -872,8 +873,8 @@
             "type": 		"cyclic",
             "route":        "OLMEN.OLMEN1N.RKSI",
             "frequency":    1,
-            "altitude":     15000,
-            "speed":		250,
+            "altitude":     21000,
+            "speed":		330,
             "offset":		2,
             "airlines": [
                 ["xax",   1],
@@ -906,8 +907,8 @@
             "type": 		"cyclic",
             "route":        "GUKDO.GUKDO1N.RKSI",
             "frequency":    1,
-            "altitude":     15000,
-            "speed":		250,
+            "altitude":     20000,
+            "speed":		300,
             "offset":		2,
             "airlines": [
                 ["asv",  10],
@@ -934,10 +935,10 @@
         },
         {
             "type": 		"cyclic",
-            "route":        "KARBU.KARBU1N.RKSI",
+            "route":        "G597.KARBU1N.RKSI",
             "frequency":    1,
-            "altitude":     15000,
-            "speed":		250,
+            "altitude":     18000,
+            "speed":		280,
             "offset":		2,
             "airlines": [
                 ["asv",  10],
@@ -966,7 +967,7 @@
             "type": 		"cyclic",
             "route":        "REBIT.REBIT1N.RKSI",
             "frequency":    1,
-            "altitude":     15000,
+            "altitude":     16000,
             "speed":		250,
             "offset":		2,
             "airlines": [
@@ -1002,8 +1003,8 @@
             "type": 		"cyclic",
             "route":        "BIKSI.BIKSI1M.RKSI",
             "frequency":    1,
-            "altitude":     15000,
-            "speed":		250,
+            "altitude":     21000,
+            "speed":		330,
             "offset":		2,
             "airlines": [
                 ["asv",  10],
@@ -1032,8 +1033,8 @@
             "type": 		"cyclic",
             "route":        "YECHON.CUN1M.RKSI",
             "frequency":    1,
-            "altitude":     15000,
-            "speed":		250,
+            "altitude":     24000,
+            "speed":		330,
             "offset":		2,
             "airlines": [
                 ["asv",  10],
@@ -1062,8 +1063,8 @@
             "type": 		"cyclic",
             "route":        "MAKSA.MAKSA1M.RKSI",
             "frequency":    1,
-            "altitude":     15000,
-            "speed":		250,
+            "altitude":     24000,
+            "speed":		330,
             "offset":		2,
             "airlines": [
                 ["xax",   1],
@@ -1096,8 +1097,8 @@
             "type": 		"cyclic",
             "route":        "GONAV.GONAV2M.RKSI",
             "frequency":    2,
-            "altitude":     15000,
-            "speed":		250,
+            "altitude":     21000,
+            "speed":	   280,
             "offset":		2,
             "airlines": [
                 ["afl",   2],
@@ -1134,7 +1135,7 @@
             "type": 		"cyclic",
             "route":        "GUKDO.GUKDO1P.RKSI",
             "frequency":    1,
-            "altitude":     15000,
+            "altitude":     16000,
             "speed":		250,
             "offset":		2,
             "airlines": [
@@ -1162,10 +1163,10 @@
         },
         {
             "type": 		"cyclic",
-            "route":        "KARBU.KARBU1P.RKSI",
+            "route":        "G597.KARBU1P.RKSI",
             "frequency":    1,
-            "altitude":     15000,
-            "speed":		250,
+            "altitude":     18000,
+            "speed":		275,
             "offset":		2,
             "airlines": [
                 ["asv",  10],
@@ -1260,8 +1261,8 @@
             "type": 		"cyclic",
             "route":        "OLMEN.OLMEN1P.RKSI",
             "frequency":    1,
-            "altitude":     15000,
-            "speed":		250,
+            "altitude":     12000,
+            "speed":		220,
             "offset":		2,
             "airlines": [
                 ["xax",   1],
