@@ -1,0 +1,13 @@
+{
+    "name": "China Cargo Airlines",
+    "callsign": {
+        "name": "Cargo King",
+        "length": 3
+    },
+    "fleets": {
+        "default": [
+            ["B744",    3],
+            ["B77L",    6]
+        ]
+    }
+}
