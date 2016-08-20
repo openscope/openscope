@@ -597,7 +597,7 @@
         ],
         "type": "cyclic",
         "offset": 0,
-        "frequency": 55
+        "frequency": 17
     },
     "stars": {
         "SEL1T": {
@@ -692,7 +692,7 @@
             "icao": "CUN1M",
             "name": "Yechon One Mike",
             "transitions": {
-                "CUN": ["CUN"]
+                "YECHON": ["CUN"]
             },
             "body": [["BIGOB", "A220"], ["BASEM", "A200"], ["GUKDO", "A160"], ["SI362", "A100"], ["PULUN", "A70"]],
             "draw": [
@@ -781,7 +781,7 @@
         {
             "type": 		"cyclic",
             "route":        "ANYANG.SEL1T.RKSI",
-            "frequency":    3,
+            "frequency":    1,
             "altitude":     15000,
             "speed":		250,
             "offset":		2,
@@ -811,7 +811,7 @@
         {
             "type": 		"cyclic",
             "route":        "GUKDO.GUKDO1A.RKSI",
-            "frequency":    2,
+            "frequency":    1,
             "altitude":     15000,
             "speed":		250,
             "offset":		2,
@@ -841,7 +841,7 @@
         {
             "type": 		"cyclic",
             "route":        "KARBU.KARBU1A.RKSI",
-            "frequency":    2,
+            "frequency":    1,
             "altitude":     15000,
             "speed":		250,
             "offset":		2,
@@ -871,7 +871,7 @@
         {
             "type": 		"cyclic",
             "route":        "OLMEN.OLMEN1N.RKSI",
-            "frequency":    2,
+            "frequency":    1,
             "altitude":     15000,
             "speed":		250,
             "offset":		2,
@@ -905,7 +905,7 @@
         {
             "type": 		"cyclic",
             "route":        "GUKDO.GUKDO1N.RKSI",
-            "frequency":    2,
+            "frequency":    1,
             "altitude":     15000,
             "speed":		250,
             "offset":		2,
@@ -935,7 +935,7 @@
         {
             "type": 		"cyclic",
             "route":        "KARBU.KARBU1N.RKSI",
-            "frequency":    2,
+            "frequency":    1,
             "altitude":     15000,
             "speed":		250,
             "offset":		2,
@@ -965,7 +965,7 @@
         {
             "type": 		"cyclic",
             "route":        "REBIT.REBIT1N.RKSI",
-            "frequency":    3,
+            "frequency":    1,
             "altitude":     15000,
             "speed":		250,
             "offset":		2,
@@ -1001,7 +1001,7 @@
         {
             "type": 		"cyclic",
             "route":        "BIKSI.BIKSI1M.RKSI",
-            "frequency":    2,
+            "frequency":    1,
             "altitude":     15000,
             "speed":		250,
             "offset":		2,
@@ -1031,7 +1031,7 @@
         {
             "type": 		"cyclic",
             "route":        "YECHON.CUN1M.RKSI",
-            "frequency":    2,
+            "frequency":    1,
             "altitude":     15000,
             "speed":		250,
             "offset":		2,
@@ -1061,7 +1061,7 @@
         {
             "type": 		"cyclic",
             "route":        "MAKSA.MAKSA1M.RKSI",
-            "frequency":    2,
+            "frequency":    1,
             "altitude":     15000,
             "speed":		250,
             "offset":		2,
@@ -1133,7 +1133,7 @@
         {
             "type": 		"cyclic",
             "route":        "GUKDO.GUKDO1P.RKSI",
-            "frequency":    2,
+            "frequency":    1,
             "altitude":     15000,
             "speed":		250,
             "offset":		2,
@@ -1163,7 +1163,7 @@
         {
             "type": 		"cyclic",
             "route":        "KARBU.KARBU1P.RKSI",
-            "frequency":    2,
+            "frequency":    1,
             "altitude":     15000,
             "speed":		250,
             "offset":		2,
@@ -1193,7 +1193,7 @@
         {
             "type": 		"cyclic",
             "route":        "COWAY.COWAY1A.RKSI",
-            "frequency":    2,
+            "frequency":    1,
             "altitude":     15000,
             "speed":		250,
             "offset":		2,
@@ -1226,7 +1226,7 @@
         {
             "type": 		"cyclic",
             "route":        "COWAY.COWAY1P.RKSI",
-            "frequency":    2,
+            "frequency":    1,
             "altitude":     15000,
             "speed":		250,
             "offset":		2,
@@ -1259,7 +1259,7 @@
         {
             "type": 		"cyclic",
             "route":        "OLMEN.OLMEN1P.RKSI",
-            "frequency":    2,
+            "frequency":    1,
             "altitude":     15000,
             "speed":		250,
             "offset":		2,
