@@ -1810,7 +1810,7 @@
         ],
         "type": "cyclic",
         "offset": 0,
-        "frequency": 62
+        "frequency": 32
     },
     "stars": {
         "AND11A": {
@@ -2158,10 +2158,10 @@
         {
             "type": 		"cyclic",
             "route":        "ANDONG.AND11A.ZSPD",
-            "frequency":    4,
+            "frequency":    1,
             "altitude":     16000,
             "speed":		250,
-            "offset":		2,
+            "offset":		1,
             "airlines": [
                     ["amx",   1],
                     ["cca",  35],
@@ -2190,10 +2190,10 @@
         {
             "type": 		"cyclic",
             "route":        "ANDONG.AND12A.ZSPD",
-            "frequency":    4,
+            "frequency":    1,
             "altitude":     16000,
             "speed":		250,
-            "offset":		2,
+            "offset":		6,
             "airlines": [
                     ["amx",   1],
                     ["cca",  35],
@@ -2222,10 +2222,10 @@
         {
             "type": 		"cyclic",
             "route":        "ANDONG.AND13A.ZSPD",
-            "frequency":    4,
+            "frequency":    1,
             "altitude":     16000,
             "speed":		250,
-            "offset":		2,
+            "offset":		13,
             "airlines": [
                     ["amx",   1],
                     ["cca",  35],
@@ -2254,10 +2254,10 @@
         {
             "type": 		"cyclic",
             "route":        "ANDONG.AND14A.ZSPD",
-            "frequency":    5,
+            "frequency":    1,
             "altitude":     16000,
             "speed":		250,
-            "offset":		2,
+            "offset":		33,
             "airlines": [
                     ["amx",   1],
                     ["cca",  35],
@@ -2286,10 +2286,10 @@
         {
             "type": 		"cyclic",
             "route":        "LISHE.BK11A.ZSPD",
-            "frequency":    5,
+            "frequency":    1,
             "altitude":     14800,
             "speed":		250,
-            "offset":		2,
+            "offset":		12,
             "airlines": [
                     ["amx",   1],
                     ["cca",  35],
@@ -2316,10 +2316,10 @@
         {
             "type": 		"cyclic",
             "route":        "LISHE.BK12A.ZSPD",
-            "frequency":    5,
+            "frequency":    1,
             "altitude":     14800,
             "speed":		250,
-            "offset":		2,
+            "offset":		5,
             "airlines": [
                     ["amx",   1],
                     ["cca",  35],
@@ -2346,10 +2346,10 @@
         {
             "type": 		"cyclic",
             "route":        "LISHE.BK13A.ZSPD",
-            "frequency":    5,
+            "frequency":    2,
             "altitude":     14800,
             "speed":		250,
-            "offset":		2,
+            "offset":		1,
             "airlines": [
                     ["amx",   1],
                     ["cca",  35],
@@ -2376,7 +2376,7 @@
         {
             "type": 		"cyclic",
             "route":        "DUMET.DUM21A.ZSPD",
-            "frequency":    5,
+            "frequency":    2,
             "altitude":     8000,
             "speed":		250,
             "offset":		2,
@@ -2405,10 +2405,10 @@
         {
             "type": 		"cyclic",
             "route":        "MATNU.MAT21A.ZSPD",
-            "frequency":    5,
+            "frequency":    2,
             "altitude":     10000,
             "speed":		250,
-            "offset":		2,
+            "offset":		24,
             "airlines": [
                     ["aca",   2],
                     ["cca",  35],
@@ -2435,10 +2435,10 @@
         {
             "type": 		"cyclic",
             "route":        "SASAN.SAS11A.ZSPD",
-            "frequency":    5,
+            "frequency":    1,
             "altitude":     9000,
             "speed":		250,
-            "offset":		2,
+            "offset":		35,
             "airlines": [
                     ["afl",   1],
                     ["cca",  35],
@@ -2466,10 +2466,10 @@
         {
             "type": 		"cyclic",
             "route":        "SASAN.SAS12A.ZSPD",
-            "frequency":    5,
+            "frequency":    1,
             "altitude":     9000,
             "speed":		250,
-            "offset":		2,
+            "offset":		26,
             "airlines": [
                     ["afl",   1],
                     ["cca",  35],
@@ -2497,10 +2497,10 @@
         {
             "type": 		"cyclic",
             "route":        "SASAN.SAS13A.ZSPD",
-            "frequency":    5,
+            "frequency":    1,
             "altitude":     9000,
             "speed":		250,
-            "offset":		2,
+            "offset":		22,
             "airlines": [
                     ["afl",   1],
                     ["cca",  35],
@@ -2528,10 +2528,10 @@
         {
             "type": 		"cyclic",
             "route":        "SASAN.SAS14A.ZSPD",
-            "frequency":    5,
+            "frequency":    1,
             "altitude":     9000,
             "speed":		250,
-            "offset":		2,
+            "offset":		4,
             "airlines": [
                     ["afl",   1],
                     ["cca",  35],
@@ -2559,10 +2559,10 @@
         {
             "type": 		"cyclic",
             "route":        "SHUOFANG.SUF10A.ZSPD",
-            "frequency":    5,
+            "frequency":    1,
             "altitude":     9000,
             "speed":		250,
-            "offset":		2,
+            "offset":		20,
             "airlines": [
                     ["afl",   1],
                     ["cca",  35],
@@ -2590,10 +2590,10 @@
         {
             "type": 		"cyclic",
             "route":        "SHUOFANG.SUF11A.ZSPD",
-            "frequency":    5,
+            "frequency":    1,
             "altitude":     9000,
             "speed":		250,
-            "offset":		2,
+            "offset":		12,
             "airlines": [
                     ["afl",   1],
                     ["cca",  35],
@@ -2621,10 +2621,10 @@
         {
             "type": 		"cyclic",
             "route":        "SHUOFANG.SUF13A.ZSPD",
-            "frequency":    5,
+            "frequency":    1,
             "altitude":     9000,
             "speed":		250,
-            "offset":		2,
+            "offset":		3,
             "airlines": [
                     ["afl",   1],
                     ["cca",  35],
