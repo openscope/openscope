@@ -1,0 +1,13 @@
+{
+  "name": "Jin Air",
+  "callsign": {
+    "name": "Jin Air",
+    "length": 3
+  },
+  "fleets": {
+    "default": [
+        ["B738",  18],
+        ["B772",   3]
+    ]
+  }
+}
