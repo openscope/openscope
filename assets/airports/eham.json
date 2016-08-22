@@ -114,107 +114,374 @@
     "ANDIK": {
       "icao": "ANDIK",
       "name": "Andik",
-      "suffix": {"04":"", "22":"", "06":"", "24":"", "09":"", "27":"", "18L":"", "18C":"", "18R":"", "36L":"", "36C":"", "36R":""},
+      "suffix": {"04":"2F", "22":"2G", "06":"2R", "24":"1S", "09":"1N", "18L":"2E"},
       "rwy": {
-        "04":  ["EH005", "EH008", "EH026", "PAM", "ANDIK"],
-        "22":  ["EH005", "EH008", "EH026", "PAM", "ANDIK"],
-        "06":  ["EH005", "EH008", "EH026", "PAM", "ANDIK"],
-        "24":  ["EH005", "EH008", "EH026", "PAM", "ANDIK"],
-        "09":  ["EH005", "EH008", "EH026", "PAM", "ANDIK"],
-        "27":  ["EH005", "EH008", "EH026", "PAM", "ANDIK"],
-        "18L": ["EH005", "EH008", "EH026", "PAM", "ANDIK"],
-        "18C": ["EH005", "EH008", "EH026", "PAM", "ANDIK"],
-        "18R": ["EH005", "EH008", "EH026", "PAM", "ANDIK"],
-        "36L": ["EH005", "EH008", "EH026", "PAM", "ANDIK"],
-        "36C": ["EH005", "EH008", "EH026", "PAM", "ANDIK"],
-        "36R": ["EH005", "EH008", "EH026", "PAM", "ANDIK"]
+        "04":  ["EH019", "EH020", "EH043", "ANDIK"],
+        "22":  [["EH023", "S220"], "EH027", "PAM", "ANDIK"],
+        "06":  ["EH014", "EH020", "EH043", "ANDIK"],
+        "24":  ["EH005", ["EH008", "S220"], "EH026", "PAM", "ANDIK"],
+        "09":  ["EH052", "EH043", "ANDIK"],
+        "18L": [["EH037", "S220"], "EH024", "PAM", "ANDIK"]
       },
-      "draw": [["EH005","EH008","EH026","PAM","ANDIK"]]
+      "draw": []
     },
     "ARNEM": {
       "icao": "ARNEM",
       "name": "Arnem",
-      "suffix": {"04":"", "22":"", "06":"", "24":"", "09":"", "27":"", "18L":"", "18C":"", "18R":"", "36L":"", "36C":"", "36R":""},
+      "suffix": {"04":"2F", "22":"3G", "06":"2R", "24":"2S", "09":"2N", "27":"2P", "18L":"3E", "36L":"1V"},
       "rwy": {
-        "04":  ["EH005", "EH008", "EH026", "IVLUT", "NYKER", "ARNEM"],
-        "22":  ["EH005", "EH008", "EH026", "IVLUT", "NYKER", "ARNEM"],
-        "06":  ["EH005", "EH008", "EH026", "IVLUT", "NYKER", "ARNEM"],
-        "24":  ["EH005", "EH008", "EH026", "IVLUT", "NYKER", "ARNEM"],
-        "09":  ["EH005", "EH008", "EH026", "IVLUT", "NYKER", "ARNEM"],
-        "27":  ["EH005", "EH008", "EH026", "IVLUT", "NYKER", "ARNEM"],
-        "18L": ["EH005", "EH008", "EH026", "IVLUT", "NYKER", "ARNEM"],
-        "18C": ["EH005", "EH008", "EH026", "IVLUT", "NYKER", "ARNEM"],
-        "18R": ["EH005", "EH008", "EH026", "IVLUT", "NYKER", "ARNEM"],
-        "36L": ["EH005", "EH008", "EH026", "IVLUT", "NYKER", "ARNEM"],
-        "36C": ["EH005", "EH008", "EH026", "IVLUT", "NYKER", "ARNEM"],
-        "36R": ["EH005", "EH008", "EH026", "IVLUT", "NYKER", "ARNEM"]
+        "04":  [["EH060", "S220"], "IVLUT", "NYKER", "ARNEM"],
+        "22":  [["EH023", "S220"], "IVLUT", "NYKER", "ARNEM"],
+        "06":  ["EH018", "IVLUT", "NYKER", "ARNEM"],
+        "24":  ["EH005", ["EH008", "S220"], "EH026", "IVLUT", "NYKER", "ARNEM"],
+        "09":  ["EH005", "EH042", "IVLUT", "NYKER", "ARNEM"],
+        "27":  ["EH056", ["EH032", "S220"], "NV", "IVLUT", "NYKER", "ARNEM"],
+        "18L": [["EH037", "S220"], "IVLUT", "NYKER", "ARNEM"],
+        "36L": ["EH012", "EH087", "EH088", "PAM", "ARNEM"]
       },
-      "draw": [["EH005","EH008","EH026","IVLUT","NYKER","ARNEM"]]
+      "draw": []
     },
     "BERGI": {
       "icao": "BERGI",
       "name": "Bergi",
-      "suffix": {"04":"", "22":"", "06":"", "24":"", "09":"", "27":"", "18L":"", "18C":"", "18R":"", "36L":"", "36C":"", "36R":""},
+      "suffix": {"04":"1F", "22":"1G", "06":"2R", "24":"1S", "09":"2N", "27":"1P", "18L":"3E", "36L":"3V"},
       "rwy": {
-        "04":  ["EH005", "CH", "EH028", "BERGI"],
-        "22":  ["EH005", "CH", "EH028", "BERGI"],
-        "06":  ["EH005", "CH", "EH028", "BERGI"],
-        "24":  ["EH005", "CH", "EH028", "BERGI"],
-        "09":  ["EH005", "CH", "EH028", "BERGI"],
-        "27":  ["EH005", "CH", "EH028", "BERGI"],
-        "18L": ["EH005", "CH", "EH028", "BERGI"],
-        "18C": ["EH005", "CH", "EH028", "BERGI"],
-        "18R": ["EH005", "CH", "EH028", "BERGI"],
-        "36L": ["EH005", "CH", "EH028", "BERGI"],
-        "36C": ["EH005", "CH", "EH028", "BERGI"],
-        "36R": ["EH005", "CH", "EH028", "BERGI"]
+        "04":  ["EH019", "SPY", "BERGI"],
+        "22":  [["EH063", "S220"], "EH041", "BERGI"],
+        "06":  [["EH014", "S220"], "EH094", "EH022", "BERGI"],
+        "24":  ["EH001", "EH051", ["EH009", "A25+"], "EH028", "BERGI"],
+        "09":  [["EH053", "S220"], ["EH094", "A25+"], "EH022", "BERGI"],
+        "27":  ["EH058", "EH041", "BERGI"],
+        "18L": [["EH029", "S220"], ["EH009", "A25+"], "EH028", "BERGI"],
+        "36L": ["EH047", ["EH094", "A25+"], "EH034", "BERGI"]
       },
-      "draw": [["EH005","CH","EH028","BERGI"]]
+      "draw": []
     },
     "LEKKO": {
       "icao": "LEKKO",
       "name": "Lekko",
-      "suffix": {"04":"", "22":"", "06":"", "24":"", "09":"", "27":"", "18L":"", "18C":"", "18R":"", "36L":"", "36C":"", "36R":""},
+      "suffix": {"04":"1F", "22":"1G", "06":"1R", "24":"1S", "09":"1N", "27":"1P", "18L":"3E", "36L":"3V"},
       "rwy": {
-        "04":  ["EH005", "NV", "LEKKO"],
-        "22":  ["EH005", "NV", "LEKKO"],
-        "06":  ["EH005", "NV", "LEKKO"],
-        "24":  ["EH005", "NV", "LEKKO"],
-        "09":  ["EH005", "NV", "LEKKO"],
-        "27":  ["EH005", "NV", "LEKKO"],
-        "18L": ["EH005", "NV", "LEKKO"],
-        "18C": ["EH005", "NV", "LEKKO"],
-        "18R": ["EH005", "NV", "LEKKO"],
-        "36L": ["EH005", "NV", "LEKKO"],
-        "36C": ["EH005", "NV", "LEKKO"],
-        "36R": ["EH005", "NV", "LEKKO"]
+        "04":  [["EH036", "S220"], "EH072", "LEKKO"],
+        "22":  [["EH064", "S220"], "EH073", "LEKKO"],
+        "06":  [["EH036", "S220"], "EH072", "LEKKO"],
+        "24":  ["EH005", ["EH039", "S220"], "LEKKO"],
+        "09":  [["EH036", "S220"], "EH072", "LEKKO"],
+        "27":  ["EH056", ["EH032", "S220"], "EH075", "LEKKO"],
+        "18L": ["EH073", "LEKKO"],
+        "36L": ["EH084", ["EH045", "S220"], "EH036", "EH072", "LEKKO"]
       },
-      "draw": [["EH005","NV","LEKKO"]]
+      "draw": []
     },
     "GORLO": {
       "icao": "GORLO",
       "name": "Gorlo",
-      "suffix": {"04":"", "22":"", "06":"", "24":"", "09":"", "27":"", "18L":"", "18C":"", "18R":"", "36L":"", "36C":"", "36R":""},
+      "suffix": {"04":"2F", "06":"2R", "09":"2N", "27":"1P", "36L":"3V"},
       "rwy": {
-        "04":  ["CH", "GORLO"],
-        "22":  ["CH", "GORLO"],
-        "06":  ["CH", "GORLO"],
-        "24":  ["CH", "GORLO"],
-        "09":  ["CH", "GORLO"],
-        "27":  ["CH", "GORLO"],
-        "18L": ["CH", "GORLO"],
-        "18C": ["CH", "GORLO"],
-        "18R": ["CH", "GORLO"],
-        "36L": ["CH", "GORLO"],
-        "36C": ["CH", "GORLO"],
-        "36R": ["CH", "GORLO"]
+        "04":  [["EH059", "S220"], "EH094", "EH090", "EH091", "VOLLA", "GORLO"],
+        "06":  [["EH014", "S220"], "EH094", "EH090", "EH091", "VOLLA", "GORLO"],
+        "09":  [["EH053", "S220"], "EH094", "EH090", "EH091", "VOLLA", "GORLO"],
+        "27":  ["EH058", "VOLLA", "GORLO"],
+        "36L": ["EH047", "EH094", "EH090", "EH091", "VOLLA", "GORLO"]
       },
-      "draw": [["CH","GORLO"]]
+      "draw": []
+    },
+    "LOPIK": {
+      "icao": "LOPIK",
+      "name": "Lopik",
+      "suffix": {"04":"1F", "22":"1G", "06":"1R", "24":"2S", "09":"1N", "27":"1P", "18L":"3E", "36L":"3V"},
+      "rwy": {
+        "04":  [["EH061", "S220"], "OGINA", "LOPIK"],
+        "22":  [["EH064", "S220"], "EH029", "EH050", "LOPIK"],
+        "06":  [["EH036", "S220"], "OGINA", "LOPIK"],
+        "24":  ["EH005", ["EH008", "S220"], "EH050", "LOPIK"],
+        "09":  [["EH036", "S220"], "OGINA", "LOPIK"],
+        "27":  ["EH056", ["EH032", "S220"], "NV", "LOPIK"],
+        "18L": ["EH029", "EH050", "LOPIK"],
+        "36L": ["EH084", ["EH045", "S220"], "EH036", "OGINA", "LOPIK"]
+      },
+      "draw": []
+    },
+    "LUNIX": {
+      "icao": "LUNIX",
+      "name": "Lunix",
+      "suffix": {"04":"1F", "22":"1G", "24":"1S", "09":"1N", "27":"1P", "18L":"1E", "36L":"1V"},
+      "transitions": {
+          "EDUPO": ["RENDI", "EDUPO"]
+      },
+      "rwy": {
+        "04":  [["EH060", "S220"], "IVLUT", "LUNIX"],
+        "22":  [["EH023", "S220"], "IVLUT", "LUNIX"],
+        "06":  ["EH018", "IVLUT", "LUNIX"],
+        "24":  ["EH005", ["EH008", "S220"], "EH026", "IVLUT", "LUNIX"],
+        "09":  ["EH055", "EH042", "IVLUT", "LUNIX"],
+        "27":  ["EH056", ["EH032", "S220"], "NV", "IVLUT", "LUNIX"],
+        "18L": [["EH037", "S220"], "IVLUT", "LUNIX"],
+        "36L": ["EH012", "EH087", "EH088", "PAM", "IVLUT", "LUNIX"]
+      },
+      "draw": []
+    },
+    "VALKO": {
+      "icao": "VALKO",
+      "name": "Valko",
+      "suffix": {"09":"1N", "22":"1G", "24":"1S", "18L":"3E"},
+      "transitions": {
+          "EDUPO": ["RENDI", "EDUPO"]
+      },
+      "rwy": {
+        "09":  [["EH030", "S220"], "EH025", "EH040", "VALKO"],
+        "22":  ["EH062", ["EH009", "A25+"], "VALKO"],
+        "24":  ["EH001", "EH051", ["EH009", "A25+"], "VALKO"],
+        "18L": [["EH029", "S220"], ["EH009", "A25+"], "VALKO"]
+      },
+      "draw": []
+    },
+    "SPY": {
+      "icao": "SPY",
+      "name": "Spijkerboor",
+      "suffix": {"24":"2K", "27":"1P", "36L":"2V"},
+       "transitions": {
+        "ANDIK": ["ANDIK"]
+      },
+      "rwy": {
+        "24":  ["EH001", ["EH049", "S220"], "SPY"],
+        "27":  [["EH057", "S220"], "SPY"],
+        "36L": ["EH013", "NOPSU"]
+      },
+      "draw": []
+    },
+    "ARNEM1Z": {
+      "icao": "ARNEM1Z",
+      "name": "Arnem One Zulu",
+      "rwy": {
+        "36L":  ["EH013", "SPY", "PAM", "ARNEM"]
+      },
+      "draw": []
+    },
+    "BERGI1Z": {
+      "icao": "BERGI1Z",
+      "name": "Bergi One Zulu",
+      "rwy": {
+        "36L":  ["EH015", "BERGI"]
+      },
+      "draw": []
+    },
+    "GORLO1Z": {
+      "icao": "GORLO1Z",
+      "name": "Gorlo One Zulu",
+      "rwy": {
+        "36L":  ["EH015", "EH006", "EH016", "VOLLA", "GORLO"]
+      },
+      "draw": []
+    },
+    "LEKKO1Z": {
+      "icao": "LEKKO1Z",
+      "name": "Lekko One Zulu",
+      "rwy": {
+        "36L":  ["EH013", "SPY", "EH072", "LEKKO"]
+      },
+      "draw": []
+    },
+    "LOPIK1Z": {
+      "icao": "LOPIK1Z",
+      "name": "Lopik One Zulu",
+      "rwy": {
+        "36L":  ["EH013", "SPY", "LOPIK"]
+      },
+      "draw": []
+    },
+    "LUNIX1Z": {
+      "icao": "LUNIX1Z",
+      "name": "Lunix One Zulu",
+      "transitions": {
+        "EDUPO": ["RENDI", "EDUPO"]
+      },
+      "rwy": {
+        "36L":  ["EH013", "SPY", "PAM", "IVLUT", "LUNIX"]
+      },
+      "draw": []
+    },
+    "ANDIK1T": {
+      "icao": "ANDIK1T",
+      "name": "Andik One Tango",
+      "rwy": {
+        "06":  [["EH014", "S220"], "EH021", "SPY", "ANDIK"]
+      },
+      "draw": []
+    },
+    "ARNEM2T": {
+      "icao": "ARNEM2T",
+      "name": "Arnem Two Tango",
+      "rwy": {
+        "06":  [["EH036", "S220"], "EH017", "IVLUT", "NYKER", "ARNEM"]
+      },
+      "draw": []
+    },
+    "BETUS3Y": {
+      "icao": "BETUS3Y",
+      "name": "Betus Three Yankee",
+      "rwy": {
+        "18C":  ["EH048", ["EH049", "S220"], "SPY", "BETUS"]
+      },
+      "draw": []
+    },
+    "DENAG3X": {
+      "icao": "DENAG3X",
+      "name": "Denag Three Xray",
+      "transitions": {
+        "VALKO": ["VALKO"]
+      },
+      "rwy": {
+        "18C":  ["EH080", "EH051", ["EH009", "A25+"], "DENAG"]
+      },
+      "draw": []
+    },
+    "EDUPO2X": {
+      "icao": "EDUPO2X",
+      "name": "Edupo Two Xray",
+      "rwy": {
+        "18C":  ["EH046", "EH026", "IVLUT", "LUNIX", "RENDI", "EDUPO"]
+      },
+      "draw": []
+    },
+    "ELPAT2X": {
+      "icao": "ELPAT2X",
+      "name": "Elpat Two Xray",
+      "transitions": {
+        "ARNEM": ["ARNEM"]
+      },
+      "rwy": {
+        "18C":  ["EH046", "EH026", "IVLUT", "NYKER", "ELPAT"]
+      },
+      "draw": []
+    },
+    "LARAS1X": {
+      "icao": "LARAS1X",
+      "name": "Laras One Xray",
+      "rwy": {
+        "18C":  ["EH046", "EH074", "LEKKO", "LARAS"]
+      },
+      "draw": []
+    },
+    "ROVEN2X": {
+      "icao": "ROVEN2X",
+      "name": "Roven Two Xray",
+      "transitions": {
+        "LOPIK": ["LOPIK"]
+      },
+      "rwy": {
+        "18C":  ["EH046", "EH069", "ROVEN"]
+      },
+      "draw": []
+    },
+    "TORGA1X": {
+      "icao": "TORGA1X",
+      "name": "Torga One Xray",
+      "transitions": {
+        "ANDIK": ["ANDIK"]
+      },
+      "rwy": {
+        "18C":  ["EH046", "EH026", "PAM", "TORGA", "ANDIK"]
+      },
+      "draw": []
+    },
+    "WISPA1X": {
+      "icao": "WISPA1X",
+      "name": "Wispa One Xray",
+      "transitions": {
+        "BERGI": ["BERGI"]
+      },
+      "rwy": {
+        "18C":  ["EH080", "EH051", ["EH009", "A25+"], "EH028", "WISPA"]
+      },
+      "draw": []
+    },
+    "IVLUT2W": {
+      "icao": "IVLUT2W",
+      "name": "Ivlut Two Whiskey",
+      "transitions": {
+        "EDUPO": ["RENDI", "EDUPO"]
+      },
+      "rwy": {
+        "36C":  ["EH033", "EH081", "EH082", "PAM", "IVLUT"]
+      },
+      "draw": []
+    },
+    "NOSPU1W": {
+      "icao": "NOSPU1W",
+      "name": "Nospu One Whiskey",
+      "transitions": {
+        "ANDIK": ["ANDIK"]
+      },
+      "rwy": {
+        "36C":  ["EH033", "EH044", "SPY", "NOSPU"]
+      },
+      "draw": []
+    },
+    "NYKER3W": {
+      "icao": "NYKER3W",
+      "name": "Nyker Three Whiskey",
+      "transitions": {
+        "ARNEM": ["ARNEM"]
+      },
+      "rwy": {
+        "36C":  ["EH033", "EH081", "EH082", "PAM", "NYKER"]
+      },
+      "draw": []
+    },
+    "OGINA2W": {
+      "icao": "OGINA2W",
+      "name": "Ogina Two Whiskey",
+      "transitions": {
+        "LOPIK": ["LOPIK"]
+      },
+      "rwy": {
+        "36C":  ["EH010", ["EH070", "S220"], "EH036", "OGINA"]
+      },
+      "draw": []
+    },
+    "WOODY1W": {
+      "icao": "WOODY1W",
+      "name": "Woody One Whiskey",
+      "rwy": {
+        "36C":  ["EH010", ["EH070", "S220"], "EH036", "EH072", "LEKKO", "WOODY"]
+      },
+      "draw": []
+    },
+    "LEKKO1T": {
+      "icao": "LEKKO1T",
+      "name": "Lekko One Tango",
+      "rwy": {
+        "06":  [["EH036", "S220"], "EH038", "LEKKO"]
+      },
+      "draw": []
+    },
+    "LUNIX1T": {
+      "icao": "LUNIX1T",
+      "name": "Lunix One Tango",
+      "transitions": {
+        "EDUPO": ["RENDI", "EDUPO"]
+      },
+      "rwy": {
+        "06":  [["EH036", "S220"], "EH017", "IVLUT", "LUNIX"]
+      },
+      "draw": []
+    },
+    "SPY2KY": {
+      "icao": "SPY2K",
+      "name": "Spijkerboor Two Kilo Yankee",
+      "transitions": {
+        "ANDIK": ["ANDIK"]
+      },
+      "rwy": {
+        "24":  ["SPY"]
+      },
+      "draw": []
     }
   },
   "departures": {
     "destinations": [
-      "ANDIK", "ARNEM", "BERGI", "LEKKO", "GORLO"
+      "ANDIK", "ARNEM", "BERGI", "LEKKO", "GORLO", "LOPIK", "LUNIX"
     ],
     "type": "random",
     "frequency": 1.5,
