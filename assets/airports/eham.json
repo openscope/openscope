@@ -206,7 +206,7 @@
       "icao": "LUNIX",
       "name": "Lunix",
       "suffix": {"04":"1F", "22":"1G", "24":"1S", "09":"1N", "27":"1P", "18L":"1E", "36L":"1V"},
-      "transitions": {
+      "entryPoint": {
           "EDUPO": ["RENDI", "EDUPO"]
       },
       "rwy": {
@@ -225,7 +225,7 @@
       "icao": "VALKO",
       "name": "Valko",
       "suffix": {"09":"1N", "22":"1G", "24":"1S", "18L":"3E"},
-      "transitions": {
+      "entryPoint": {
           "EDUPO": ["RENDI", "EDUPO"]
       },
       "rwy": {
@@ -240,7 +240,7 @@
       "icao": "SPY",
       "name": "Spijkerboor",
       "suffix": {"24":"2K", "27":"1P", "36L":"2V"},
-       "transitions": {
+       "entryPoint": {
         "ANDIK": ["ANDIK"]
       },
       "rwy": {
@@ -293,7 +293,7 @@
     "LUNIX1Z": {
       "icao": "LUNIX1Z",
       "name": "Lunix One Zulu",
-      "transitions": {
+      "entryPoint": {
         "EDUPO": ["RENDI", "EDUPO"]
       },
       "rwy": {
@@ -328,7 +328,7 @@
     "DENAG3X": {
       "icao": "DENAG3X",
       "name": "Denag Three Xray",
-      "transitions": {
+      "entryPoint": {
         "VALKO": ["VALKO"]
       },
       "rwy": {
@@ -347,7 +347,7 @@
     "ELPAT2X": {
       "icao": "ELPAT2X",
       "name": "Elpat Two Xray",
-      "transitions": {
+      "entryPoint": {
         "ARNEM": ["ARNEM"]
       },
       "rwy": {
@@ -366,7 +366,7 @@
     "ROVEN2X": {
       "icao": "ROVEN2X",
       "name": "Roven Two Xray",
-      "transitions": {
+      "entryPoint": {
         "LOPIK": ["LOPIK"]
       },
       "rwy": {
@@ -377,7 +377,7 @@
     "TORGA1X": {
       "icao": "TORGA1X",
       "name": "Torga One Xray",
-      "transitions": {
+      "entryPoint": {
         "ANDIK": ["ANDIK"]
       },
       "rwy": {
@@ -388,7 +388,7 @@
     "WISPA1X": {
       "icao": "WISPA1X",
       "name": "Wispa One Xray",
-      "transitions": {
+      "entryPoint": {
         "BERGI": ["BERGI"]
       },
       "rwy": {
@@ -399,7 +399,7 @@
     "IVLUT2W": {
       "icao": "IVLUT2W",
       "name": "Ivlut Two Whiskey",
-      "transitions": {
+      "entryPoint": {
         "EDUPO": ["RENDI", "EDUPO"]
       },
       "rwy": {
@@ -410,7 +410,7 @@
     "NOSPU1W": {
       "icao": "NOSPU1W",
       "name": "Nospu One Whiskey",
-      "transitions": {
+      "entryPoint": {
         "ANDIK": ["ANDIK"]
       },
       "rwy": {
@@ -421,7 +421,7 @@
     "NYKER3W": {
       "icao": "NYKER3W",
       "name": "Nyker Three Whiskey",
-      "transitions": {
+      "entryPoint": {
         "ARNEM": ["ARNEM"]
       },
       "rwy": {
@@ -432,7 +432,7 @@
     "OGINA2W": {
       "icao": "OGINA2W",
       "name": "Ogina Two Whiskey",
-      "transitions": {
+      "entryPoint": {
         "LOPIK": ["LOPIK"]
       },
       "rwy": {
@@ -459,7 +459,7 @@
     "LUNIX1T": {
       "icao": "LUNIX1T",
       "name": "Lunix One Tango",
-      "transitions": {
+      "entryPoint": {
         "EDUPO": ["RENDI", "EDUPO"]
       },
       "rwy": {
@@ -470,7 +470,7 @@
     "SPY2KY": {
       "icao": "SPY2K",
       "name": "Spijkerboor Two Kilo Yankee",
-      "transitions": {
+      "entryPoint": {
         "ANDIK": ["ANDIK"]
       },
       "rwy": {
