@@ -739,7 +739,7 @@
     "LANUX6W": {
       "icao": "LANUX6W",
       "name": "Lanux six whiskey arrival",
-      "transitions": {
+      "entryPoints": {
         "LANUX": ["_LANUX140000"]
       },
       "body": [["LANUX", "A150-|S330"], ["NERDU", "A60-|S250"]],
@@ -748,7 +748,7 @@
     "MASUR2W": {
       "icao": "MASUR2W",
       "name": "Masur two whiskey arrival",
-      "transitions": {
+      "entryPoints": {
         "MASUR": ["_MASUR272009"]
       },
       "body": [["MASUR", "A170-|S330"], ["TEMTA", "A60-|S250"], "NERDU"],
@@ -757,7 +757,7 @@
     "GAMLI5W": {
       "icao": "GAMLI5W",
       "name": "Gamli five whiskey arrival",
-      "transitions": {
+      "entryPoints": {
         "GAMLI": ["LIMRA"]
       },
       "body": [["GAMLI", "A60+|S330+"], ["BARUG", "A170-|S330"], ["WW450", "A90-|S250-"], ["BALAD", "A80-|S250"]],
@@ -766,7 +766,7 @@
     "XANUT1W": {
       "icao": "XANUT1W",
       "name": "Xanut one whiskey arrival",
-      "transitions": {
+      "entryPoints": {
         "XANUT": ["_NIGSI202010"]
       },
       "body": [["NIGSI", "A180-|S330"], ["BALAD", "A80|S250"]],
@@ -775,7 +775,7 @@
     "NATEX1W": {
       "icao": "NATEX1W",
       "name": "Natex one whisky arrival",
-      "transitions": {
+      "entryPoints": {
         "NATEX": ["_NATEX080019"]
       },
       "body": [["NATEX", "A140-|S330-"], ["PESAT", "A60-|S250"]],
@@ -784,7 +784,7 @@
     "MIKOV7W": {
       "icao": "MIKOV7W",
       "name": "Mikov seven whiskey arrival",
-      "transitions": {
+      "entryPoints": {
         "MIKOV": ["_MIKOV345020"]
       },
       "body": [["MIKOV", "A170-|S330"], ["MABOD", "A60-|S250"]],
@@ -793,7 +793,7 @@
     "REKLU1W": {
       "icao": "REKLU1W",
       "name": "Reklu one whiskey arrival",
-      "transitions": {
+      "entryPoints": {
         "REKLU": ["_REKLU262000"]
       },
       "body": [["REKLU", "A180|S250-"], ["MABOD", "A60-|S250"]],
