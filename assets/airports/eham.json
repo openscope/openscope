@@ -8,8 +8,8 @@
   "iata": "AMS",
   "magnetic_north": 0,
   "ctr_radius": 80,
-  "ctr_ceiling": 10000,
-  "initial_alt": 5000,
+  "ctr_ceiling": 9500,
+  "initial_alt": 6000,
   "position": ["N52d18m29.0", "E004d45m51.00", "-11ft"],
   "rr_radius_nm": 5.0,
   "rr_center": ["N52d18m29.00", "E004d45m51.00"],
@@ -18,6 +18,33 @@
     "angle": 230,
     "speed": 6
   },
+  "airspace": [
+    {
+      "floor": 			0,
+      "ceiling": 		9500,
+      "airspace_class":	"D",
+      "poly":
+      [
+        ["N52d48m20.00", "E005d20m00.00"],
+        ["N52d25m45.00", "E005d40m52.00"],
+        ["N52d22m41.00", "E005d40m05.00"],
+        ["N52d18m11.00", "E005d36m33.00"],
+        ["N52d01m52.00", "E005d23m53.00"],
+        ["N51d53m11.00", "E005d05m47.00"],
+        ["N51d53m11.00", "E005d05m47.00"],
+        ["N51d53m11.00", "E004d49m40.00"],
+        ["N51d56m10.00", "E004d21m15.00"],
+        ["N51d59m20.00", "E004d06m40.00"],
+        ["N52d17m06.00", "E003d59m10.00"],
+        ["N52d17m06.00", "E003d59m10.00"],
+        ["N52d17m29.00", "E003d41m47.00"],
+        ["N52d54m00.00", "E004d07m04.00"],
+        ["N52d45m25.00", "E004d28m03.00"],
+        ["N52d43m30.00", "E004d33m40.00"],
+        ["N52d48m20.00", "E005d20m00.00"]
+      ]
+    }
+  ],
   "_comment": "Source: http://www.ais-netherlands.nl/aim/2016-07-07-AIRAC/eAIP/html/index-en-GB.html ENR4.4 & AD2 EHAM AMSTERDAM/Schiphol",
   "fixes": {
     "AMGOD": ["N52d58m30.79", "E003d41m07.40"],
@@ -1107,7 +1134,7 @@
       "type": 		"cyclic",
       "route":    "REDFA.REDFA1A.EHAM",
       "frequency": 2,
-      "altitude": 10000,
+      "altitude": 9500,
       "speed":		250,
       "offset":		2,
       "airlines": [
@@ -1139,7 +1166,7 @@
       "type": 		"cyclic",
       "route":    "LAMSO.LAMSO1A.EHAM",
       "frequency": 2,
-      "altitude": 10000,
+      "altitude": 9500,
       "speed":		250,
       "offset":		2,
       "airlines": [
@@ -1171,7 +1198,7 @@
       "type": 		"cyclic",
       "route":    "MOLIX.MOLIX2A.EHAM",
       "frequency": 2,
-      "altitude": 10000,
+      "altitude": 9500,
       "speed":		250,
       "offset":		2,
       "airlines": [
@@ -1203,7 +1230,7 @@
       "type": 		"cyclic",
       "route":    "TOPPA.TOPPA2A.EHAM",
       "frequency": 2,
-      "altitude": 10000,
+      "altitude": 9500,
       "speed":		250,
       "offset":		2,
       "airlines": [
@@ -1237,7 +1264,7 @@
       "type": 		"cyclic",
       "route":    "EELDE.EEL1A.EHAM",
       "frequency": 2,
-      "altitude": 10000,
+      "altitude": 9500,
       "speed":		250,
       "offset":		2,
       "airlines": [
@@ -1285,7 +1312,7 @@
       "type": 		"cyclic",
       "route":    "EELDE.EEL1B.EHAM",
       "frequency": 2,
-      "altitude": 10000,
+      "altitude": 9500,
       "speed":		250,
       "offset":		2,
       "airlines": [
@@ -1333,7 +1360,7 @@
       "type": 		"cyclic",
       "route":    "NORKU.NORKU2A.EHAM",
       "frequency": 2,
-      "altitude": 10000,
+      "altitude": 9500,
       "speed":		250,
       "offset":		2,
       "airlines": [
@@ -1375,7 +1402,7 @@
       "type": 		"cyclic",
       "route":    "NORKU.NORKU2B.EHAM",
       "frequency": 2,
-      "altitude": 10000,
+      "altitude": 9500,
       "speed":		250,
       "offset":		2,
       "airlines": [
@@ -1417,7 +1444,7 @@
       "type": 		"cyclic",
       "route":    "REKKEN.RKN2A.EHAM",
       "frequency": 2,
-      "altitude": 10000,
+      "altitude": 9500,
       "speed":		250,
       "offset":		2,
       "airlines": [
@@ -1448,7 +1475,7 @@
       "type": 		"cyclic",
       "route":    "REKKEN.RKN2B.EHAM",
       "frequency": 2,
-      "altitude": 10000,
+      "altitude": 9500,
       "speed":		250,
       "offset":		2,
       "airlines": [
@@ -1479,7 +1506,7 @@
       "type": 		"cyclic",
       "route":    "DENUT.DENUT1A.EHAM",
       "frequency": 2,
-      "altitude": 10000,
+      "altitude": 9500,
       "speed":		250,
       "offset":		2,
       "airlines": [
@@ -1501,7 +1528,7 @@
       "type": 		"cyclic",
       "route":    "HELEN.HELEN1A.EHAM",
       "frequency": 2,
-      "altitude": 10000,
+      "altitude": 9500,
       "speed":		250,
       "offset":		2,
       "airlines": [
@@ -1523,7 +1550,7 @@
       "type": 		"cyclic",
       "route":    "PUTTY.PUTTY1A.EHAM",
       "frequency": 1,
-      "altitude": 10000,
+      "altitude": 9500,
       "speed":		250,
       "offset":		2,
       "airlines": [
@@ -1536,7 +1563,7 @@
       "type": 		"cyclic",
       "route":    "PESER.PESER2A.EHAM",
       "frequency": 1,
-      "altitude": 10000,
+      "altitude": 9500,
       "speed":		250,
       "offset":		2,
       "airlines": [
