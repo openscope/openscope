@@ -1,19 +1,19 @@
 {
-  "name": "Swiss International Airlines",
+  "name": "Swiss International Air Lines",
   "callsign": {
 		"name": "Swiss",
-		"length": 3
+		"length": 4
   },
   "fleets": {
 		"default": [
-			["A319",   5],
-			["A320",  22],
-			["A321",   9]
+			["A319", 5 ],
+			["A320", 22],
+			["A321", 9 ]
 		],
 		"long": [
-			["A333",  14],
-			["A343",  15],
-			["B77W",   2]
+			["A332", 14],
+			["A343", 13],
+			["B77W", 4 ]
 		]
 	}
 }

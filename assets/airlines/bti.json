@@ -1,0 +1,15 @@
+{
+  "name": "Air Baltic",
+  "callsign": {
+    "name": "Air Baltic",
+    "length": 3
+  },
+  "fleets": {
+      "default": [
+            ["B733", 7],
+            ["B735", 5],
+            ["A321", 20],
+            ["DH8D", 12]
+          ]
+    }
+}

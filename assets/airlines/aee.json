@@ -1,0 +1,14 @@
+{
+  "name": "Aegean Airlines",
+  "callsign": {
+    "name": "Aegean",
+    "length": 3
+  },
+  "fleets": {
+    "default": [
+      ["A319", 1],
+      ["A320", 38],
+      ["A321", 8]
+    ]
+  }
+}

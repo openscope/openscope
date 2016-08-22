@@ -1,16 +1,16 @@
 {
-  "name": "UPS - United Parcel Service",
+  "name": "UPS Airlines",
   "callsign": {
     "name": "UPS",
     "length": 3
   },
   "fleets": {
     "default": [
-      ["A306", 52 ],
-      ["B752", 75 ],
-      ["B763", 59 ],
+      ["A306", 52],
       ["B744", 13],
-      ["MD11", 38 ]
+      ["B752", 75],
+      ["B763", 59],
+      ["MD11", 38]
     ]
   }
 }

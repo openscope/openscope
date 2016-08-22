@@ -1,14 +1,14 @@
 {
   "name": "Germanwings",
   "callsign": {
-    "name": "Germanwings",
+    "name": "German Wings",
     "length": 3,
     "alpha": true
   },
   "fleets": {
     "default": [
       ["A319", 43],
-      ["A320", 19]
+      ["A320", 18]
     ]
   }
 }
