@@ -1,8 +1,8 @@
 {
   "radio": {
-    "twr": "Amsterdam Tower",
-    "app": "Amsterdam Approach",
-    "dep": "Amsterdam Departure"
+    "twr": "Schiphol Tower",
+    "app": "Schiphol Approach",
+    "dep": "Schiphol Departure"
   },
   "icao": "EHAM",
   "iata": "AMS",
@@ -18,48 +18,151 @@
     "angle": 230,
     "speed": 6
   },
-  "_comment": "Source: http://www.ais-netherlands.nl/aim/2016-02-18-AIRAC/eAIP/html/eAIP/EH-AD-2.EHAM-en-GB.html#eham-ad-2.24",
+  "_comment": "Source: http://www.ais-netherlands.nl/aim/2016-07-07-AIRAC/eAIP/html/index-en-GB.html ENR4.4 & AD2 EHAM AMSTERDAM/Schiphol",
   "fixes": {
+    "AMGOD": ["N52d58m30.79", "E003d41m07.40"],
     "ANDIK": ["N52d44m21.85", "E005d16m13.76"],
     "ARNEM": ["N52d05m47.21", "E006d04m35.77"],
     "ARTIP": ["N52d30m40.37", "E005d34m08.69"],
     "BERGI": ["N52d44m55.50", "E004d21m32.15"],
+    "BETUS": ["N52d41m17.31", "E005d09m45.19"],
     "CH":    ["N52d13m14.22", "E004d33m27.36"],
     "COA":   ["N51d20.90000", "E003d21.30000"],
+    "DENAG": ["N52d04m56.59", "E003d53m26.87"],
     "DENUT": ["N51d14m10.00", "E003d39m27.00"],
+    "EDUPO": ["N51d58m31.89", "E005d50m09.37"],
     "EEL":   ["N53d09.80000", "E006d40.00000"],
+    "EH001": ["N52d16m31.00", "E004d42m04.00"],
     "EH005": ["N52d15m25.78", "E004d41m50.99"],
     "EH006": ["N52d35m26.65", "E004d32m46.44"],
     "EH008": ["N52d12m30.00", "E004d46m00.00"],
+    "EH009": ["N52d13m25.00", "E004d33m16.00"],
+    "EH010": ["N52d22m41.00", "E004d46m09.00"],
+    "EH012": ["N52d25m13.00", "E004d43m03.00"],
+    "EH013": ["N52d32m41.00", "E004d43m46.00"],
+    "EH014": ["N52d20m16.00", "E004d51m50.00"],
     "EH015": ["N52d35m27.19", "E004d44m04.33"],
+    "EH016": ["N52d23m55.00", "E004d24m52.00"],
+    "EH017": ["N52d11m06.00", "E004d56m29.00"],
+    "EH018": ["N52d19m13.00", "E004d49m07.00"],
+    "EH019": ["N52d20m17.00", "E004d50m14.00"],
+    "EH020": ["N52d20m13.00", "E004d55m44.00"],
+    "EH021": ["N52d28m36.00", "E004d39m21.00"],
+    "EH022": ["N52d40m50.00", "E004d31m19.00"],
+    "EH023": ["N52d15m21.00", "E004d50m53.00"],
+    "EH024": ["N52d15m11.00", "E004d58m50.00"],
+    "EH025": ["N52d12m25.00", "E004d44m24.00"],
     "EH026": ["N52d10m16.94", "E004d52m11.23"],
+    "EH027": ["N52d15m03.00", "E005d01m34.00"],
     "EH028": ["N52d21m28.05", "E004d25m15.71"],
+    "EH029": ["N52d11m16.00", "E004d49m14.00"],
+    "EH030": ["N52d15m42.00", "E004d48m05.00"],
+    "EH032": ["N52d15m51.00", "E004d35m19.00"],
+    "EH033": ["N52d23m19.00", "E004d47m04.00"],
+    "EH034": ["N52d31m04.00", "E004d34m36.00"],
+    "EH036": ["N52d15m25.00", "E004d50m52.00"],
+    "EH037": ["N52d15m28.00", "E004d46m28.00"],
+    "EH038": ["N52d10m12.00", "E004d57m39.00"],
+    "EH039": ["N52d09m37.00", "E004d45m26.00"],
+    "EH040": ["N52d06m24.00", "E004d28m03.00"],
+    "EH041": ["N52d19m22.00", "E004d25m36.00"],
+    "EH042": ["N52d17m44.00", "E004d57m44.00"],
+    "EH043": ["N52d25m31.00", "E005d07m54.00"],
+    "EH044": ["N52d26m06.00", "E004d51m49.00"],
+    "EH045": ["N52d20m20.00", "E004d49m27.00"],
+    "EH046": ["N52d13m04.00", "E004d43m47.00"],
+    "EH047": ["N52d25m52.00", "E004d43m06.00"],
+    "EH048": ["N52d16m12.00", "E004d44m04.00"],
+    "EH049": ["N52d17m21.00", "E004d36m45.00"],
+    "EH050": ["N52d09m19.00", "E004d55m05.00"],
+    "EH051": ["N52d14m38.00", "E004d39m04.00"],
+    "EH052": ["N52d19m27.00", "E004d53m59.00"],
+    "EH053": ["N52d23m14.00", "E004d47m23.00"],
+    "EH055": ["N52d19m15.00", "E004d52m00.00"],
+    "EH056": ["N52d19m46.00", "E004d39m03.00"],
+    "EH057": ["N52d22m16.00", "E004d41m27.00"],
+    "EH058": ["N52d19m48.00", "E004d40m33.00"],
+    "EH059": ["N52d20m49.00", "E004d51m00.00"],
+    "EH060": ["N52d18m19.00", "E004d54m25.00"],
+    "EH061": ["N52d13m30.00", "E004d53m22.00"],
+    "EH062": ["N52d15m33.00", "E004d43m28.00"],
+    "EH063": ["N52d16m31.00", "E004d44m51.00"],
+    "EH064": ["N52d15m04.00", "E004d47m23.00"],
+    "EH069": ["N52d09m06.00", "E004d55m45.00"],
+    "EH070": ["N52d21m59.00", "E004d51m01.00"],
+    "EH072": ["N52d01m14.00", "E004d50m35.00"],
+    "EH073": ["N52d12m51.00", "E004d48m28.00"],
+    "EH074": ["N52d09m58.00", "E004d45m25.00"],
+    "EH075": ["N52d09m22.00", "E004d45m27.00"],
+    "EH080": ["N52d17m29.00", "E004d44m11.00"],
+    "EH081": ["N52d25m25.00", "E004d50m44.00"],
+    "EH082": ["N52d25m27.00", "E004d59m20.00"],
+    "EH084": ["N52d23m43.00", "E004d42m55.00"],
+    "EH087": ["N52d28m48.00", "E004d46m20.00"],
+    "EH088": ["N52d29m15.00", "E004d54m55.00"],
+    "EH090": ["N52d28m02.00", "E004d32m04.00"],
+    "EH091": ["N52d25m22.00", "E004d29m20.00"],
+    "EH094": ["N52d27m58.00", "E004d39m41.00"],
     "EH606": ["N52d25m20.79", "E004d23m16.49"],
     "EH621": ["N52d27m45.73", "E004d43m15.95"],
+    "ELPAT": ["N52d07m38.71", "E005d57m04.11"],
     "GORLO": ["N51d55m26.64", "E003d10m18.61"],
     "HDR":   ["N52d54m24.68", "E004d45m56.60"],
+    "HELEN": ["N51d14m07.13", "E003d52m10.96"],
     "HSD":   ["N51d43.40000", "E003d51.50000"],
+    "INBAM": ["N52d21m11.20", "E005d15m10.74"],
     "IVLUT": ["N52d14m38.81", "E005d15m25.06"],
+    "LAMSO": ["N52d43m58.43", "E002d59m39.68"],
+    "LANSU": ["N52d24m50.45", "E004d56m47.95"],
+    "LARAS": ["N51d50m04.46", "E004d41m50.37"],
     "LEKKO": ["N51d55m27.03", "E004d46m02.39"],
     "LILSI": ["N52d28m23.75", "E005d20m54.00"],
     "LOPIK": ["N51d55m50.98", "E005d07m44.96"],
+    "LUNIX": ["N52d06m35.40", "E005d33m55.45"],
+    "LUTEX": ["N52d40m53.16", "E003d28m06.77"],
+    "MOLIX": ["N52d49m19.20", "E003d04m07.21"],
+    "MONIL": ["N52d45m38.72", "E003d44m47.91"],
+    "NARIX": ["N52d39m09.86", "E004d58m34.08"],
+    "NARSO": ["N52d42m55.15", "E006d42m34.36"],
+    "NIDOP": ["N52d45m33.51", "E004d53m01.59"],
+    "NIRSI": ["N52d35m01.96", "E004d30m48.14"],
+    "NOPSU": ["N52d35m12.97", "E004d57m02.89"],
+    "NORKU": ["N52d12m56.00", "E006d58m35.00"],
+    "NOVEN": ["N52d42m36.77", "E005d53m54.43"],
     "NV":    ["N52d09m05.02", "E004d45m53.40"],
     "NYKER": ["N52d13m49.40", "E005d31m43.69"],
     "OA":    ["N52d28m12.87", "E004d45m11.78"],
+    "OGINA": ["N52d05m50.92", "E005d03m16.68"],
+    "OLGAX": ["N52d10m22.40", "E004d43m31.88"],
     "OMORU": ["N52d21m10.41", "E005d16m20.16"],
+    "OSKUR": ["N52d29m25.64", "E006d01m26.48"],
     "PAM":   ["N52d20m05.14", "E004d45m56.60"],
-    "REDFA": ["N52d06m53.00", "E002d29m17.00"],
+    "PEPEL": ["N52d35m06.44", "E003d24m51.04"],
+    "PESER": ["N51d36m52.73", "E004d31m36.53"],
+    "PEVOS": ["N52d29m35.51", "E004d43m26.02"],
+    "PUTTY": ["N51d21m57.07", "E004d20m15.41"],
+    "REDFA": ["N52d06m52.51", "E002d29m16.61"],
+    "RENDI": ["N52d03m41.56", "E005d40m31.53"],
     "RIVER": ["N51d54m45.95", "E004d07m57.34"],
     "RKN":   ["N52d08m00.00", "E006d45m48.00"],
+    "ROBIS": ["N52d28m07.00", "E006d28m02.00"],
+    "ROBVI": ["N52d34m17.93", "E003d46m35.21"],
+    "ROVEN": ["N51d57m46.52", "E005d06m53.46"],
     "RTM":   ["N51d58m25.31", "E004d28m51.49"],
+    "SOKSI": ["N52d14m14.56", "E004d21m51.96"],
     "SONEB": ["N52d01m25.00", "E006d45m51.00"],
+    "SONSA": ["N52d19m51.22", "E006d44m44.11"],
     "SPL":   ["N52d19m55.72", "E004d44m59.58"],
     "SPY":   ["N52d32m25.01", "E004d51m13.61"],
     "STD":   ["N51d44.50000", "E004d14.60000"],
     "SUGOL": ["N52d31m31.84", "E003d58m02.46"],
     "SULUT": ["N52d26m52.53", "E003d25m15.83"],
-    "WOODY": ["N51d24m20.00", "E004d21m59.00"],
-    "WP":    ["N52d19.60000", "E005d02.00000"]
+    "TOPPA": ["N53d24m09.33", "E003d33m41.28"],
+    "TORGA": ["N52d35m54.83", "E005d12m11.51"],
+    "VALKO": ["N52d04m16.84", "E003d50m23.39"],
+    "VOLLA": ["N52d18m51.05", "E004d09m22.32"],
+    "WISPA": ["N52d39m57.34", "E004d22m19.84"],
+    "WOODY": ["N51d24m20.38", "E004d21m59.33"]
   },
   "runways": [
     {
@@ -139,7 +242,16 @@
         "18L": [["EH037", "S220"], "IVLUT", "NYKER", "ARNEM"],
         "36L": ["EH012", "EH087", "EH088", "PAM", "ARNEM"]
       },
-      "draw": []
+      "draw": [
+          ["EH060", "IVLUT", "NYKER", "ARNEM"],
+          ["EH023", "IVLUT"],
+          ["EH018", "IVLUT"],
+          ["EH005", "EH008", "EH026", "IVLUT"],
+          ["EH005", "EH042", "IVLUT"],
+          ["EH056", "EH032", "NV", "IVLUT"],
+          ["EH037", "IVLUT"],
+          ["EH012", "EH087", "EH088", "PAM", "ARNEM"]
+        ]
     },
     "BERGI": {
       "icao": "BERGI",
@@ -155,7 +267,16 @@
         "18L": [["EH029", "S220"], ["EH009", "A25+"], "EH028", "BERGI"],
         "36L": ["EH047", ["EH094", "A25+"], "EH034", "BERGI"]
       },
-      "draw": []
+      "draw": [
+          ["EH019", "SPY", "BERGI"],
+          ["EH063", "EH041", "BERGI"],
+          ["EH014", "EH094", "EH022", "BERGI"],
+          ["EH001", "EH051", "EH009", "EH028", "BERGI"],
+          ["EH053", "EH094"],
+          ["EH058", "EH041"],
+          ["EH029", "EH009"],
+          ["EH047", "EH094"]
+        ]
     },
     "LEKKO": {
       "icao": "LEKKO",
@@ -171,7 +292,14 @@
         "18L": ["EH073", "LEKKO"],
         "36L": ["EH084", ["EH045", "S220"], "EH036", "EH072", "LEKKO"]
       },
-      "draw": []
+      "draw": [
+          ["EH036", "EH072", "LEKKO"],
+          ["EH064", "EH073", "LEKKO"],
+          ["EH005", "EH039", "LEKKO"],
+          ["EH056", "EH032", "EH075", "LEKKO"],
+          ["EH084", "EH045", "EH036"],
+          ["LEKKO"]
+        ]
     },
     "GORLO": {
       "icao": "GORLO",
@@ -184,7 +312,14 @@
         "27":  ["EH058", "VOLLA", "GORLO"],
         "36L": ["EH047", "EH094", "EH090", "EH091", "VOLLA", "GORLO"]
       },
-      "draw": []
+      "draw": [
+          ["EH059", "EH094", "EH090", "EH091", "VOLLA", "GORLO"],
+          ["EH014", "EH094"],
+          ["EH053", "EH094"],
+          ["EH058", "VOLLA"],
+          ["EH047", "EH094"],
+          ["GORLO"]
+        ]
     },
     "LOPIK": {
       "icao": "LOPIK",
@@ -200,13 +335,22 @@
         "18L": ["EH029", "EH050", "LOPIK"],
         "36L": ["EH084", ["EH045", "S220"], "EH036", "OGINA", "LOPIK"]
       },
-      "draw": []
+      "draw": [
+        ["EH061", "OGINA", "LOPIK"],
+        ["EH064", "EH029", "EH050", "LOPIK"],
+        ["EH036", "OGINA"],
+        ["EH005", "EH008", "EH050"] ,
+        ["EH056", "EH032", "NV", "LOPIK"],
+        ["EH029", "EH050"],
+        ["EH084", "EH045", "EH036"],
+        ["LOPIK"]
+      ]
     },
     "LUNIX": {
       "icao": "LUNIX",
       "name": "Lunix",
       "suffix": {"04":"1F", "22":"1G", "24":"1S", "09":"1N", "27":"1P", "18L":"1E", "36L":"1V"},
-      "entryPoint": {
+      "exitPoint": {
           "EDUPO": ["RENDI", "EDUPO"]
       },
       "rwy": {
@@ -219,28 +363,34 @@
         "18L": [["EH037", "S220"], "IVLUT", "LUNIX"],
         "36L": ["EH012", "EH087", "EH088", "PAM", "IVLUT", "LUNIX"]
       },
-      "draw": []
+      "draw": [
+          ["IVLUT", "LUNIX", "EDUPO*"],
+          ["EH055", "EH042"],
+          ["PAM", "IVLUT"]
+        ]
     },
     "VALKO": {
       "icao": "VALKO",
       "name": "Valko",
       "suffix": {"09":"1N", "22":"1G", "24":"1S", "18L":"3E"},
-      "entryPoint": {
-          "EDUPO": ["RENDI", "EDUPO"]
-      },
       "rwy": {
         "09":  [["EH030", "S220"], "EH025", "EH040", "VALKO"],
         "22":  ["EH062", ["EH009", "A25+"], "VALKO"],
         "24":  ["EH001", "EH051", ["EH009", "A25+"], "VALKO"],
         "18L": [["EH029", "S220"], ["EH009", "A25+"], "VALKO"]
       },
-      "draw": []
+      "draw": [
+          ["EH030", "EH025", "EH040", "VALKO"],
+          ["EH062", "EH009", "VALKO"],
+          ["EH001", "EH051"],
+          ["VALKO"]
+        ]
     },
     "SPY": {
       "icao": "SPY",
       "name": "Spijkerboor",
       "suffix": {"24":"2K", "27":"1P", "36L":"2V"},
-       "entryPoint": {
+       "exitPoint": {
         "ANDIK": ["ANDIK"]
       },
       "rwy": {
@@ -248,7 +398,11 @@
         "27":  [["EH057", "S220"], "SPY"],
         "36L": ["EH013", "NOPSU"]
       },
-      "draw": []
+      "draw": [
+        ["EH001", "EH049", "SPY"],
+        ["EH057", "SPY"],
+        ["EH013", "NOPSU", "SPY", "ANDIK*"]
+      ]
     },
     "ARNEM1Z": {
       "icao": "ARNEM1Z",
@@ -256,7 +410,10 @@
       "rwy": {
         "36L":  ["EH013", "SPY", "PAM", "ARNEM"]
       },
-      "draw": []
+      "draw": [
+        ["EH013", "SPY", "PAM"],
+        ["ARNEM"]
+      ]
     },
     "BERGI1Z": {
       "icao": "BERGI1Z",
@@ -264,7 +421,7 @@
       "rwy": {
         "36L":  ["EH015", "BERGI"]
       },
-      "draw": []
+      "draw": [["EH015", "BERGI"]]
     },
     "GORLO1Z": {
       "icao": "GORLO1Z",
@@ -272,7 +429,10 @@
       "rwy": {
         "36L":  ["EH015", "EH006", "EH016", "VOLLA", "GORLO"]
       },
-      "draw": []
+      "draw": [
+        ["EH015", "EH006", "EH016", "VOLLA"], 
+        ["GORLO"]
+      ]
     },
     "LEKKO1Z": {
       "icao": "LEKKO1Z",
@@ -280,7 +440,10 @@
       "rwy": {
         "36L":  ["EH013", "SPY", "EH072", "LEKKO"]
       },
-      "draw": []
+      "draw": [
+        ["SPY", "EH072"],
+        ["LEKKO"]
+      ]
     },
     "LOPIK1Z": {
       "icao": "LOPIK1Z",
@@ -288,18 +451,22 @@
       "rwy": {
         "36L":  ["EH013", "SPY", "LOPIK"]
       },
-      "draw": []
+      "draw": [
+        ["SPY", "LOPIK"]
+      ]
     },
     "LUNIX1Z": {
       "icao": "LUNIX1Z",
       "name": "Lunix One Zulu",
-      "entryPoint": {
+      "exitPoint": {
         "EDUPO": ["RENDI", "EDUPO"]
       },
       "rwy": {
         "36L":  ["EH013", "SPY", "PAM", "IVLUT", "LUNIX"]
       },
-      "draw": []
+      "draw": [
+        ["EDUPO*"]
+      ]
     },
     "ANDIK1T": {
       "icao": "ANDIK1T",
@@ -307,7 +474,9 @@
       "rwy": {
         "06":  [["EH014", "S220"], "EH021", "SPY", "ANDIK"]
       },
-      "draw": []
+      "draw": [
+        ["EH014", "EH021", "SPY", "ANDIK"]
+      ]
     },
     "ARNEM2T": {
       "icao": "ARNEM2T",
@@ -315,7 +484,10 @@
       "rwy": {
         "06":  [["EH036", "S220"], "EH017", "IVLUT", "NYKER", "ARNEM"]
       },
-      "draw": []
+      "draw": [
+        ["EH036", "EH017", "IVLUT"],
+        ["ARNEM"]
+      ]
     },
     "BETUS3Y": {
       "icao": "BETUS3Y",
@@ -323,18 +495,24 @@
       "rwy": {
         "18C":  ["EH048", ["EH049", "S220"], "SPY", "BETUS"]
       },
-      "draw": []
+      "draw": [
+        ["EH048", "EH049"],
+        ["SPY", "BETUS"]
+      ]
     },
     "DENAG3X": {
       "icao": "DENAG3X",
       "name": "Denag Three Xray",
-      "entryPoint": {
+      "exitPoint": {
         "VALKO": ["VALKO"]
       },
       "rwy": {
         "18C":  ["EH080", "EH051", ["EH009", "A25+"], "DENAG"]
       },
-      "draw": []
+      "draw": [
+        ["EH080", "EH051"],
+        ["EH009", "DENAG", "VALKO*"]
+      ]
     },
     "EDUPO2X": {
       "icao": "EDUPO2X",
@@ -342,18 +520,23 @@
       "rwy": {
         "18C":  ["EH046", "EH026", "IVLUT", "LUNIX", "RENDI", "EDUPO"]
       },
-      "draw": []
+      "draw": [
+        ["EH046", "EH026"],
+        ["EDUPO"]
+      ]
     },
     "ELPAT2X": {
       "icao": "ELPAT2X",
       "name": "Elpat Two Xray",
-      "entryPoint": {
+      "exitPoint": {
         "ARNEM": ["ARNEM"]
       },
       "rwy": {
         "18C":  ["EH046", "EH026", "IVLUT", "NYKER", "ELPAT"]
       },
-      "draw": []
+      "draw": [
+        ["NYKER", "ELPAT"]
+      ]
     },
     "LARAS1X": {
       "icao": "LARAS1X",
@@ -361,84 +544,104 @@
       "rwy": {
         "18C":  ["EH046", "EH074", "LEKKO", "LARAS"]
       },
-      "draw": []
+      "draw": [
+        ["EH046", "EH074", "LEKKO", "LARAS"]
+      ]
     },
     "ROVEN2X": {
       "icao": "ROVEN2X",
       "name": "Roven Two Xray",
-      "entryPoint": {
+      "exitPoint": {
         "LOPIK": ["LOPIK"]
       },
       "rwy": {
         "18C":  ["EH046", "EH069", "ROVEN"]
       },
-      "draw": []
+      "draw": [
+        ["EH046", "EH069", "ROVEN", "LOPIK*"]
+      ]
     },
     "TORGA1X": {
       "icao": "TORGA1X",
       "name": "Torga One Xray",
-      "entryPoint": {
+      "exitPoint": {
         "ANDIK": ["ANDIK"]
       },
       "rwy": {
-        "18C":  ["EH046", "EH026", "PAM", "TORGA", "ANDIK"]
+        "18C":  ["EH046", "EH026", "PAM", "TORGA"]
       },
-      "draw": []
+      "draw": [
+        ["PAM", "TORGA", "ANDIK*"]
+      ]
     },
     "WISPA1X": {
       "icao": "WISPA1X",
       "name": "Wispa One Xray",
-      "entryPoint": {
+      "exitPoint": {
         "BERGI": ["BERGI"]
       },
       "rwy": {
         "18C":  ["EH080", "EH051", ["EH009", "A25+"], "EH028", "WISPA"]
       },
-      "draw": []
+      "draw": [
+        ["EH028", "WISPA", "BERGI*"]
+      ]
     },
     "IVLUT2W": {
       "icao": "IVLUT2W",
       "name": "Ivlut Two Whiskey",
-      "entryPoint": {
+      "exitPoint": {
         "EDUPO": ["RENDI", "EDUPO"]
       },
       "rwy": {
         "36C":  ["EH033", "EH081", "EH082", "PAM", "IVLUT"]
       },
-      "draw": []
+      "draw": [
+        ["EH033", "EH081", "EH082", "PAM"],
+        ["IVLUT", "RENDI"],
+        ["EDUPO*"]
+      ]
     },
-    "NOSPU1W": {
-      "icao": "NOSPU1W",
-      "name": "Nospu One Whiskey",
-      "entryPoint": {
+    "NOPSU1W": {
+      "icao": "NOPSU1W",
+      "name": "Nopsu One Whiskey",
+      "exitPoint": {
         "ANDIK": ["ANDIK"]
       },
       "rwy": {
-        "36C":  ["EH033", "EH044", "SPY", "NOSPU"]
+        "36C":  ["EH033", "EH044", "SPY", "NOPSU"]
       },
-      "draw": []
+      "draw": [
+        ["EH033", "EH044", "SPY", "NOPSU", "ANDIK*"]
+      ]
     },
     "NYKER3W": {
       "icao": "NYKER3W",
       "name": "Nyker Three Whiskey",
-      "entryPoint": {
+      "exitPoint": {
         "ARNEM": ["ARNEM"]
       },
       "rwy": {
         "36C":  ["EH033", "EH081", "EH082", "PAM", "NYKER"]
       },
-      "draw": []
+      "draw": [
+        ["PAM", "NYKER"], 
+        ["ARNEM*"]
+      ]
     },
     "OGINA2W": {
       "icao": "OGINA2W",
       "name": "Ogina Two Whiskey",
-      "entryPoint": {
+      "exitPoint": {
         "LOPIK": ["LOPIK"]
       },
       "rwy": {
         "36C":  ["EH010", ["EH070", "S220"], "EH036", "OGINA"]
       },
-      "draw": []
+      "draw": [
+        ["EH010", "EH070", "EH036"],
+        ["LOPIK*"]
+      ]
     },
     "WOODY1W": {
       "icao": "WOODY1W",
@@ -446,7 +649,9 @@
       "rwy": {
         "36C":  ["EH010", ["EH070", "S220"], "EH036", "EH072", "LEKKO", "WOODY"]
       },
-      "draw": []
+      "draw": [
+        ["LEKKO", "WOODY"]
+      ]
     },
     "LEKKO1T": {
       "icao": "LEKKO1T",
@@ -454,34 +659,59 @@
       "rwy": {
         "06":  [["EH036", "S220"], "EH038", "LEKKO"]
       },
-      "draw": []
+      "draw": [
+        ["EH036", "EH038", "LEKKO"]
+      ]
     },
     "LUNIX1T": {
       "icao": "LUNIX1T",
       "name": "Lunix One Tango",
-      "entryPoint": {
+      "exitPoint": {
         "EDUPO": ["RENDI", "EDUPO"]
       },
       "rwy": {
         "06":  [["EH036", "S220"], "EH017", "IVLUT", "LUNIX"]
       },
-      "draw": []
-    },
-    "SPY2KY": {
-      "icao": "SPY2K",
-      "name": "Spijkerboor Two Kilo Yankee",
-      "entryPoint": {
-        "ANDIK": ["ANDIK"]
-      },
-      "rwy": {
-        "24":  ["SPY"]
-      },
-      "draw": []
+      "draw": [
+        ["EDUPO*"]
+      ]
     }
   },
   "departures": {
     "destinations": [
-      "ANDIK", "ARNEM", "BERGI", "LEKKO", "GORLO", "LOPIK", "LUNIX"
+      "ANDIK", 
+      "ARNEM", 
+      "BERGI", 
+      "LEKKO", 
+      "GORLO", 
+      "LOPIK", 
+      "LUNIX", 
+      "VALKO", 
+      "SPY", 
+      "ARNEM1Z", 
+      "BERGI1Z", 
+      "GORLO1Z", 
+      "LEKKO1Z", 
+      "LOPIK1Z", 
+      "LUNIX1Z", 
+      "ANDIK1T", 
+      "ARNEM2T", 
+      "BETUS3Y", 
+      "DENAG3X", 
+      "EDUPO2X", 
+      "ELPAT2X", 
+      "LARSA1X", 
+      "ROVEN2X", 
+      "TORGA1X", 
+      "WISPA1X", 
+      "IVLUT2W", 
+      "NOPSU1W", 
+      "NYKER3W", 
+      "OGINA2W", 
+      "WOODY1W", 
+      "LEKKO1T", 
+      "LUNIX1T", 
+      "SPY2KY"
     ],
     "type": "random",
     "frequency": 1.5,
