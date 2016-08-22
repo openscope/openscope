@@ -193,7 +193,7 @@ zlsa.atc.Conflict = Fiber.extend(function() {
           else if(2500 <= feetBetween && feetBetween <= 3600) // 2500'-3600'
             var applicableLatSepMin = 1.852;  // 1.0nm
           else if(3600 <  feetBetween && feetBetween <= 4300) // 3600'-4300'
-            var applicableLatSepMin = 2.778   // 1.5nm
+            var applicableLatSepMin = 2.778;  // 1.5nm
           else if(4300 <  feetBetween && feetBetween <= 9000) // 4300'-9000'
             var applicableLatSepMin = 3.704;  // 2.0nm
           else if(feetBetween > 9000) // Runways separated by >9000'

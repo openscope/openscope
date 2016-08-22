@@ -918,7 +918,7 @@ var Airport=Fiber.extend(function() {
               this.metadata.rwy[r1.name][r2.name] = {};
 
               // generate this runway pair's relationship data
-              this.metadata.rwy[r1.name][r2.name].lateral_dist = abs(offset[1]);
+              this.metadata.rwy[r1.name][r2.name].lateral_dist = abs(offset[0]);
               this.metadata.rwy[r1.name][r2.name].straight_dist = abs(offset[2]);
               this.metadata.rwy[r1.name][r2.name].converging =
                 raysIntersect(r1.position, r1.angle, r2.position, r2.angle);
