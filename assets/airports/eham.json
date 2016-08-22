@@ -24,12 +24,14 @@
     "ANDIK": ["N52d44m21.85", "E005d16m13.76"],
     "ARNEM": ["N52d05m47.21", "E006d04m35.77"],
     "ARTIP": ["N52d30m40.37", "E005d34m08.69"],
+    "BEDUM": ["N53d20m53.41", "E006d35m19.92"],
     "BERGI": ["N52d44m55.50", "E004d21m32.15"],
     "BETUS": ["N52d41m17.31", "E005d09m45.19"],
     "CH":    ["N52d13m14.22", "E004d33m27.36"],
     "COA":   ["N51d20.90000", "E003d21.30000"],
     "DENAG": ["N52d04m56.59", "E003d53m26.87"],
     "DENUT": ["N51d14m10.00", "E003d39m27.00"],
+    "DOBAK": ["N53d12m48.00", "E007d13m01.00"],
     "EDUPO": ["N51d58m31.89", "E005d50m09.37"],
     "EEL":   ["N53d09.80000", "E006d40.00000"],
     "EH001": ["N52d16m31.00", "E004d42m04.00"],
@@ -103,8 +105,28 @@
     "EH090": ["N52d28m02.00", "E004d32m04.00"],
     "EH091": ["N52d25m22.00", "E004d29m20.00"],
     "EH094": ["N52d27m58.00", "E004d39m41.00"],
+    "EH600": ["N52d35m44.00", "E005d10m49.00"],
+    "EH601": ["N52d41m17.00", "E004d50m57.00"],
+    "EH602": ["N52d41m18.00", "E004d40m48.00"],
+    "EH603": ["N52d41m17.00", "E004d30m48.00"],
+    "EH604": ["N52d35m22.00", "E004d50m14.00"],
+    "EH605": ["N52d03m59.00", "E004d06m58.00"],
     "EH606": ["N52d25m20.79", "E004d23m16.49"],
+    "EH607": ["N52d35m02.00", "E004d38m49.00"],
+    "EH608": ["N52d32m22.00", "E004d43m41.00"],
+    "EH609": ["N52d14m04.00", "E004d35m45.00"],
+    "EH610": ["N52d12m19.00", "E004d13m18.00"],
+    "EH611": ["N52d19m53.00", "E004d40m58.00"],
+    "EH612": ["N52d19m41.00", "E004d22m33.00"],
+    "EH613": ["N52d12m33.00", "E004d27m45.00"],
+    "EH614": ["N52d12m29.00", "E004d31m37.00"],
+    "EH616": ["N52d15m13.00", "E004d38m43.00"],
     "EH621": ["N52d27m45.73", "E004d43m15.95"],
+    "EH636": ["N52d11m18.00", "E004d46m04.00"],
+    "EH665": ["N52d14m47.00", "E005d02m30.00"],
+    "EH667": ["N52d06m38.00", "E004d54m34.00"],
+    "EH668": ["N52d06m38.00", "E004d48m05.00"],
+    "EH669": ["N52d09m19.00", "E004d45m53.00"],
     "ELPAT": ["N52d07m38.71", "E005d57m04.11"],
     "GORLO": ["N51d55m26.64", "E003d10m18.61"],
     "HDR":   ["N52d54m24.68", "E004d45m56.60"],
@@ -112,12 +134,14 @@
     "HSD":   ["N51d43.40000", "E003d51.50000"],
     "INBAM": ["N52d21m11.20", "E005d15m10.74"],
     "IVLUT": ["N52d14m38.81", "E005d15m25.06"],
+    "KUBAT": ["N53d20m11.00", "E006d59m37.00"],
     "LAMSO": ["N52d43m58.43", "E002d59m39.68"],
     "LANSU": ["N52d24m50.45", "E004d56m47.95"],
     "LARAS": ["N51d50m04.46", "E004d41m50.37"],
     "LEKKO": ["N51d55m27.03", "E004d46m02.39"],
     "LILSI": ["N52d28m23.75", "E005d20m54.00"],
     "LOPIK": ["N51d55m50.98", "E005d07m44.96"],
+    "LUGUM": ["N53d18m26.00", "E007d04m04.14"],
     "LUNIX": ["N52d06m35.40", "E005d33m55.45"],
     "LUTEX": ["N52d40m53.16", "E003d28m06.77"],
     "MOLIX": ["N52d49m19.20", "E003d04m07.21"],
@@ -150,6 +174,7 @@
     "ROVEN": ["N51d57m46.52", "E005d06m53.46"],
     "RTM":   ["N51d58m25.31", "E004d28m51.49"],
     "SOKSI": ["N52d14m14.56", "E004d21m51.96"],
+    "SOMPO": ["N53d23m56.00", "E006d56m58.00"],
     "SONEB": ["N52d01m25.00", "E006d45m51.00"],
     "SONSA": ["N52d19m51.22", "E006d44m44.11"],
     "SPL":   ["N52d19m55.72", "E004d44m59.58"],
@@ -157,6 +182,7 @@
     "STD":   ["N51d44.50000", "E004d14.60000"],
     "SUGOL": ["N52d31m31.84", "E003d58m02.46"],
     "SULUT": ["N52d26m52.53", "E003d25m15.83"],
+    "TEMLU": ["N53d28m28.00", "E006d51m49.00"],
     "TOPPA": ["N53d24m09.33", "E003d33m41.28"],
     "TORGA": ["N52d35m54.83", "E005d12m11.51"],
     "VALKO": ["N52d04m16.84", "E003d50m23.39"],
@@ -700,7 +726,7 @@
       "DENAG3X", 
       "EDUPO2X", 
       "ELPAT2X", 
-      "LARSA1X", 
+      "LARAS1X", 
       "ROVEN2X", 
       "TORGA1X", 
       "WISPA1X", 
@@ -710,80 +736,813 @@
       "OGINA2W", 
       "WOODY1W", 
       "LEKKO1T", 
-      "LUNIX1T", 
-      "SPY2KY"
+      "LUNIX1T"
     ],
     "type": "random",
-    "frequency": 1.5,
+    "frequency": 26,
     "airlines": [
-      ["ual",   2],
-      ["aca",   2],
-      ["awe",   2],
-      ["baw",   2],
-      ["lightga",1],
-      ["klc",   3],
-      ["klm",   5],
-      ["ual",   2]
+      ["adr",   2],
+      ["aee",   1],
+      ["ein",   2],
+      ["afl",   1],
+      ["amx",   1],
+      ["aca",   1],
+      ["afr",   6],
+      ["amc",   1],
+      ["asl",   1],
+      ["aza",   2],
+      ["aal",   1],
+      ["aua",   1],
+      ["baw",   3],
+      ["lzb",   2],
+      ["cpa",   5],
+      ["ces",   1],
+      ["csn",   6],
+      ["cnd",  15],
+      ["bcy",   1],
+      ["cal",   5],
+      ["ctn",   1],
+      ["csa",   1],
+      ["dal",   9],
+      ["ezy",  40],
+      ["ely",   1],
+      ["uae",   4],
+      ["etd",   5],
+      ["ewg",   2],
+      ["eva",   2],
+      ["bee",   8],
+      ["gia",   1],
+      ["ibs",   1],
+      ["exs",   1],
+      ["klm", 138],
+      ["klc",  44],
+      ["kal",   2],
+      ["lot",   1],
+      ["dlh",   3],
+      ["mph",  20],
+      ["nax",   3],
+      ["pgt",   2],
+      ["qtr",   3],
+      ["rja",   2],
+      ["ryr",   1],
+      ["sas",   3],
+      ["sia",   1],
+      ["sxd",   2],
+      ["swr",   1],
+      ["tap",   2],
+      ["rot",   1],
+      ["tcx",   3],
+      ["tra",  88],
+      ["tvf",   1],
+      ["tar",   1],
+      ["thy",   5],
+      ["tfl",  53],
+      ["aui",   1],
+      ["ual",   4],
+      ["vlg",  16],
+      ["clx",   1],
+      ["cwc",   3],
+      ["ckk",   3],
+      ["fdx",   2],
+      ["mas",   3],
+      ["nca",   1],
+      ["azq",   1],
+      ["sqc",   9],
+      ["yzr",   4]
     ]
   },
+  "stars": {
+    "REDFA1A": {
+      "icao": "REDFA1A",
+      "name": "Redfa One Alfa",
+      "entryPoint": {
+        "REDFA": ["REDFA"]
+      },
+      "body": ["SULUT", "SUGOL"],
+      "draw": [
+        ["REDFA", "SULUT", "SUGOL"]
+      ]
+    },
+    "LAMSO1A": {
+      "icao": "LAMSO1A",
+      "name": "Lamso One Alfa",
+      "entryPoint": {
+        "LAMSO": ["LAMSO"]
+      },
+      "body": ["PEPEL", "SUGOL"],
+      "draw": [
+        ["LAMSO", "PEPEL", "SUGOL"]
+      ]
+    },
+    "MOLIX2A": {
+      "icao": "MOLIX2A",
+      "name": "Molix Two Alfa",
+      "entryPoint": {
+        "MOLIX": ["MOLIX"]
+      },
+      "body": ["LUTEX", "SUGOL"],
+      "draw": [
+        ["MOLIX", "LUTEX", "SUGOL"]
+      ]
+    },
+    "TOPPA2A": {
+      "icao": "TOPPA2A",
+      "name": "Toppa Two Alfa",
+      "entryPoint": {
+        "TOPPA": ["TOPPA"]
+      },
+      "body": ["MONIL", "ROBVI", "SUGOL"],
+      "draw": [
+        ["TOPPA", "MONIL", "ROBVI", "SUGOL"]
+      ]
+    },
+    "EEL1A": {
+      "icao": "EEL1A",
+      "name": "Eelde One Alfa",
+      "entryPoint": {
+        "EEL": ["EEL"]
+      },
+      "body": ["EEL", "NOVEN", "ARTIP"],
+      "draw": [
+        ["DOBAK*", "EEL"],
+        ["LUGUM*", "EEL"],
+        ["KUBAT*", "EEL"],
+        ["SOMPO*", "EEL"],
+        ["TEMLU*", "EEL"],
+        ["BEDUM*", "EEL"],
+        ["EEL", "NOVEN", "ARTIP"]
+      ]
+    },
+    "EEL1B": {
+      "icao": "EEL1B",
+      "name": "Eelde One Bravo",
+      "entryPoint": {
+        "EEL": ["EEL"]
+      },
+      "body": ["NARSO", "ARTIP"],
+      "draw": [
+        ["DOBAK*", "EEL"],
+        ["LUGUM*", "EEL"],
+        ["KUBAT*", "EEL"],
+        ["SOMPO*", "EEL"],
+        ["TEMLU*", "EEL"],
+        ["BEDUM*", "EEL"],
+        ["EEL", "NARSO", "ARTIP"]
+      ]
+    },
+    "RKN2A": {
+      "icao": "RKN2A",
+      "name": "Rekken Two Alfa",
+      "entryPoint": {
+        "REKKEN": ["RKN"]
+      },
+      "body": ["OSKUR", "ARTIP"],
+      "draw": [
+        ["RKN", "OSKUR", "ARTIP"]
+      ]
+    },
+    "RKN2B": {
+      "icao": "RKN2B",
+      "name": "Rekken Two Bravo",
+      "entryPoint": {
+        "REKKEN": ["RKN"]
+      },
+      "body": ["SONSA", "NARSO", "ARTIP"],
+      "draw": [
+        ["RKN", "SONSA", "NARSO", "ARTIP"]
+      ]
+    },
+    "NORKU2A": {
+      "icao": "NORKU2A",
+      "name": "Norku Two Alfa",
+      "entryPoint": {
+        "NORKU": ["NORKU"]
+      },
+      "body": ["SONSA", "ROBIS", "OSKUR", "ARTIP"],
+      "draw": [
+        ["NORKU", "SONSA", "ROBIS", "OSKUR", "ARTIP"]
+      ]
+    },
+    "NORKU2B": {
+      "icao": "NORKU2B",
+      "name": "Norku Two Bravo",
+      "entryPoint": {
+        "NORKU": ["NORKU"]
+      },
+      "body": ["SONSA", "NARSO", "ARTIP"],
+      "draw": [
+        ["NORKU", "SONSA", "NARSO", "ARTIP"]
+      ]
+    },
+    "DENUT1A": {
+      "icao": "DENUT1A",
+      "name": "Denut One Alfa",
+      "entryPoint": {
+        "DENUT": ["DENUT"]
+      },
+      "body": ["HSD", "RIVER"],
+      "draw": [
+        ["DENUT", "HSD", "RIVER"]
+      ]
+    },
+    "HELEN1A": {
+      "icao": "HELEN1A",
+      "name": "Helen One Alfa",
+      "entryPoint": {
+        "HELEN": ["HELEN"]
+      },
+      "body": ["HSD", "RIVER"],
+      "draw": [
+        ["HELEN", "HSD", "RIVER"]
+      ]
+    },
+    "PUTTY1A": {
+      "icao": "PUTTY1A",
+      "name": "Putty One Alfa",
+      "entryPoint": {
+        "PUTTY": ["PUTTY"]
+      },
+      "body": ["HSD", "RIVER"],
+      "draw": [
+        ["PUTTY", "HSD", "RIVER"]
+      ]
+    },
+    "PESER2A": {
+      "icao": "PESER2A",
+      "name": "Peser Two Alfa",
+      "entryPoint": {
+        "PESER": ["PESER"]
+      },
+      "body": ["STD", "RIVER"],
+      "draw": [
+        ["PESER", "STD", "RIVER"]
+      ]
+    },
+    "_comment": "ARTIP1X is a day transition for 36R",
+    "ARTIP1X": {
+      "icao": "ARTIP1X",
+      "name": "Artip One Xray",
+      "entryPoint": {
+        "ARTIP": [["ARTIP", "A100|S250"]]
+      },
+      "body": ["INBAM", ["EH665", "S220"], "EH667", ["EH668", "S180"], ["EH669", "A20"], ["EH636", "A20"]],
+      "draw": [
+        ["ARTIP", "PAM", "EH611", "EH612", "SOKSI", "EH613", "EH614", "EH609"]
+      ]
+    },
+    "_comment_": "Beyond this point are the instrument approach procedures/transitions for night usage",
+    "ARTIP2A": {
+      "icao": "ARTIP2A",
+      "name": "Artip Two Alfa",
+      "entryPoint": {
+        "ARTIP": [["ARTIP", "A100|S250"]]
+      },
+      "body": ["PAM", ["EH611", "A70"], "EH612", ["SOKSI", "A40|S220"], "EH613", ["EH614", "A29"], ["EH609", "A20"], "EH616"],
+      "draw": [
+        ["ARTIP", "PAM", "EH611", "EH612", "SOKSI", "EH613", "EH614", "EH609", "EH616"]
+      ]
+    },
+    "SOKSI1A": {
+      "icao": "SOKSI1A",
+      "name": "Soksi One Alfa",
+      "entryPoint": {
+        "SOKSI": [["SOKSI", "A40|S220"]]
+      },
+      "body": ["EH613", ["EH614", "A29"], ["EH609", "A20"], "EH616"],
+      "draw": [
+        ["SOKSI", "EH613", "EH614", "EH609", "EH616"]
+      ]
+    },
+    "RIVER2A": {
+      "icao": "RIVER2A",
+      "name": "River Two Alfa",
+      "entryPoint": {
+        "RIVER": [["RIVER", "A100|S250"]]
+      },
+      "body": ["EH605", "EH610", ["SOKSI", "A40|S220"], "EH613", ["EH614", "A29"], ["EH609", "A20"]],
+      "draw": [
+        ["RIVER", "EH605", "EH610", "SOKSI", "EH613", "EH614", "EH609"]
+      ]
+    },
+    "SUGOL2A": {
+      "icao": "SUGOL2A",
+      "name": "Sugol Two Alfa",
+      "entryPoint": {
+        "SUGOL": [["SUGOL", "A100|S250"]]
+      },
+      "body": ["EH606", ["SOKSI", "A40|S220"], "EH613", ["EH614", "A29"], ["EH609", "A20"]],
+      "draw": [
+        ["SUGOL", "EH606", "SOKSI", "EH613", "EH614", "EH609"]
+      ]
+    },
+    "ARTIP3B": {
+      "icao": "ARTIP3B",
+      "name": "Artip Three Bravo",
+      "entryPoint": {
+        "ARTIP": [["ARTIP", "A100|S250"]]
+      },
+      "body": [["EH601", "A70"], ["EH602", "A70"], "EH603", ["NIRSI", "A55|S220"], "EH607", ["EH608", "A34"], ["EH621", "A20"]],
+      "draw": [
+        ["ARTIP", "EH601", "EH602", "EH603", "NIRSI", "EH607", "EH608", "EH621"]
+      ]
+    },
+    "NIRSI1B": {
+      "icao": "NIRSI1B",
+      "name": "Nirsi One Bravo",
+      "entryPoint": {
+        "NIRSI": [["NIRSI", "A55|S220"]]
+      },
+      "body": ["EH607", ["EH608", "A34"], ["EH621", "A20"]],
+      "draw": [
+        ["NIRSI", "EH601", "EH602", "EH603", "NIRSI", "EH607", "EH608", "EH621"]
+      ]
+    },
+    "ARTIP2C": {
+      "icao": "ARTIP2C",
+      "name": "Artip Two Charlie",
+      "entryPoint": {
+        "ARTIP": [["ARTIP", "A100|S250"]]
+      },
+      "body": [["EH600", "A70"], ["NARIX", "A60|S250"], ["EH604", "A40|S220"], ["EH608", "A34"], ["EH621", "A20"]],
+      "draw": [
+        ["ARTIP", "EH600", "NARIX", "EH604", "EH608", "EH621"]
+      ]
+    },
+    "NARIX1C": {
+      "icao": "NARIX1C",
+      "name": "Narix One Charlie",
+      "entryPoint": {
+        "ARTIP": [["NARIX", "A60|S250"]]
+      },
+      "body": [["EH604", "A40|S220"], ["EH608", "A34"], ["EH621", "A20"]],
+      "draw": [
+        ["NARIX", "EH604", "EH608", "EH621"]
+      ]
+    },
+    "RIVER3B": {
+      "icao": "RIVER3B",
+      "name": "River Three Bravo",
+      "entryPoint": {
+        "RIVER": [["RIVER", "A100|S250"]]
+      },
+      "body": ["EH605", ["NIRSI", "A55|S220"], "EH607", ["EH608", "A34"], ["EH621", "A20"]],
+      "draw": [
+        ["RIVER", "EH605", "NIRSI", "EH607", "EH608", "EH621"]
+      ]
+    },
+    "SUGOL3B": {
+      "icao": "SUGOL3B",
+      "name": "Sugol Three Bravo",
+      "entryPoint": {
+        "SUGOL": [["SUGOL", "A100|S250"]]
+      },
+      "body": ["EH606", ["NIRSI", "A55|S220"], "EH607", ["EH608", "A34"], ["EH621", "A20"]],
+      "draw": [
+        ["SUGOL", "EH606", "NIRSI", "EH607", "EH608", "EH621"]
+      ]
+    }
+  }, 
   "arrivals": [
     {
-      "fixes": ["EEL", "ARTIP"],
-      "altitude": [7000, 10000],
-      "speed": 250,
-      "type": "random",
-      "frequency": 4.5,
+      "type": 		"cyclic",
+      "route":    "REDFA.REDFA1A.EHAM",
+      "frequency": 2,
+      "altitude": 10000,
+      "speed":		250,
+      "offset":		2,
       "airlines": [
-        ["ual",   3],
-        ["aca",   3],
-        ["awe",   3],
-        ["baw",   3],
-        ["klc",   1],
-        ["klm",   5],
-        ["ual",   3]
-      ]
-    },
-    {
-      "fixes": ["DENUT", "HSD", "RIVER"],
-      "altitude": [7000, 10000],
-      "speed": 250,
-      "type": "random",
-      "frequency": 7.5,
-      "airlines": [
-        ["ual",   1],
+        ["ein",   2],
+        ["amx",   1],
         ["aca",   1],
-        ["awe",   1],
-        ["baw",   1],
-        ["klc",   5],
-        ["klm",   5],
-        ["ual",   1]
+        ["amc",   1],
+        ["aal",   1],
+        ["baw",   3],
+        ["cnd",  15],
+        ["bcy",   1],
+        ["dal",   9],
+        ["ezy",  40],
+        ["bee",   8],
+        ["exs",   1],
+        ["klm", 138],
+        ["klc",  44],
+        ["kal",   2],
+        ["mph",  20],
+        ["ryr",   1],
+        ["tcx",   3],
+        ["tra",  88],
+        ["tfl",  53],
+        ["ual",   4],
+        ["fdx",   2]
       ]
     },
     {
-      "fixes":  ["REDFA", "SULUT", "SUGOL"],
-      "altitude": [7000, 10000],
-      "speed": 250,
-      "type": "random",
-      "frequency": 6.5,
+      "type": 		"cyclic",
+      "route":    "LAMSO.LAMSO1A.EHAM",
+      "frequency": 2,
+      "altitude": 10000,
+      "speed":		250,
+      "offset":		2,
       "airlines": [
-        ["ual", 1],
-        ["aca", 1],
-        ["awe", 1],
-        ["baw", 1],
-        ["klc", 5],
-        ["klm", 5],
-        ["ual", 1]
+        ["ein",   2],
+        ["amx",   1],
+        ["aca",   1],
+        ["amc",   1],
+        ["aal",   1],
+        ["baw",   3],
+        ["cnd",  15],
+        ["bcy",   1],
+        ["dal",   9],
+        ["ezy",  40],
+        ["bee",   8],
+        ["exs",   1],
+        ["klm", 138],
+        ["klc",  44],
+        ["kal",   2],
+        ["mph",  20],
+        ["ryr",   1],
+        ["tcx",   3],
+        ["tra",  88],
+        ["tfl",  53],
+        ["ual",   4],
+        ["fdx",   2]
       ]
     },
     {
-      "radial": 110,
-      "heading": 290,
-      "altitude": [1000, 2000],
-      "speed": 250,
-      "type": "random",
-      "frequency": 10.5,
+      "type": 		"cyclic",
+      "route":    "MOLIX.MOLIX2A.EHAM",
+      "frequency": 2,
+      "altitude": 10000,
+      "speed":		250,
+      "offset":		2,
       "airlines": [
-        ["cessna",   1]
+        ["ein",   2],
+        ["amx",   1],
+        ["aca",   1],
+        ["amc",   1],
+        ["aal",   1],
+        ["baw",   3],
+        ["cnd",  15],
+        ["bcy",   1],
+        ["dal",   9],
+        ["ezy",  40],
+        ["bee",   8],
+        ["exs",   1],
+        ["klm", 138],
+        ["klc",  44],
+        ["kal",   2],
+        ["mph",  20],
+        ["ryr",   1],
+        ["tcx",   3],
+        ["tra",  88],
+        ["tfl",  53],
+        ["ual",   4],
+        ["fdx",   2]
+      ]
+    },
+    {
+      "type": 		"cyclic",
+      "route":    "TOPPA.TOPPA2A.EHAM",
+      "frequency": 2,
+      "altitude": 10000,
+      "speed":		250,
+      "offset":		2,
+      "airlines": [
+        ["ein",   2],
+        ["amx",   1],
+        ["aca",   1],
+        ["amc",   1],
+        ["aal",   1],
+        ["baw",   3],
+        ["cnd",  15],
+        ["bcy",   1],
+        ["dal",   9],
+        ["ezy",  40],
+        ["bee",   8],
+        ["exs",   1],
+        ["klm", 138],
+        ["klc",  44],
+        ["kal",   2],
+        ["mph",  20],
+        ["ryr",   1],
+        ["tcx",   3],
+        ["tra",  88],
+        ["tfl",  53],
+        ["ual",   4],
+        ["fdx",   2],
+        ["sas",   3],
+        ["nax",   3]
+      ]
+    },
+    {
+      "type": 		"cyclic",
+      "route":    "EELDE.EEL1A.EHAM",
+      "frequency": 2,
+      "altitude": 10000,
+      "speed":		250,
+      "offset":		2,
+      "airlines": [
+        ["afl",   1],
+        ["asl",   1],
+        ["lzb",   2],
+        ["cpa",   5],
+        ["ces",   1],
+        ["csn",   6],
+        ["cnd",  15],
+        ["cal",   5],
+        ["ctn",   1],
+        ["csa",   1],
+        ["ezy",  40],
+        ["ely",   1],
+        ["uae",   4],
+        ["etd",   5],
+        ["ewg",   2],
+        ["eva",   2],
+        ["gia",   1],
+        ["klm", 138],
+        ["klc",  44],
+        ["lot",   1],
+        ["dlh",   3],
+        ["mph",  20],
+        ["nax",   3],
+        ["pgt",   2],
+        ["rja",   2],
+        ["sas",   3],
+        ["sxd",   2],
+        ["rot",   1],
+        ["tra",  88],
+        ["tar",   1],
+        ["thy",   5],
+        ["tfl",  53],
+        ["aui",   1],
+        ["ual",   4],
+        ["ckk",   3],
+        ["nca",   1],
+        ["azq",   1],
+        ["yzr",   4]
+      ]
+    },
+    {
+      "type": 		"cyclic",
+      "route":    "EELDE.EEL1B.EHAM",
+      "frequency": 2,
+      "altitude": 10000,
+      "speed":		250,
+      "offset":		2,
+      "airlines": [
+        ["afl",   1],
+        ["asl",   1],
+        ["lzb",   2],
+        ["cpa",   5],
+        ["ces",   1],
+        ["csn",   6],
+        ["cnd",  15],
+        ["cal",   5],
+        ["ctn",   1],
+        ["csa",   1],
+        ["ezy",  40],
+        ["ely",   1],
+        ["uae",   4],
+        ["etd",   5],
+        ["ewg",   2],
+        ["eva",   2],
+        ["gia",   1],
+        ["klm", 138],
+        ["klc",  44],
+        ["lot",   1],
+        ["dlh",   3],
+        ["mph",  20],
+        ["nax",   3],
+        ["pgt",   2],
+        ["rja",   2],
+        ["sas",   3],
+        ["sxd",   2],
+        ["rot",   1],
+        ["tra",  88],
+        ["tar",   1],
+        ["thy",   5],
+        ["tfl",  53],
+        ["aui",   1],
+        ["ual",   4],
+        ["ckk",   3],
+        ["nca",   1],
+        ["azq",   1],
+        ["yzr",   4]
+      ]
+    },
+    {
+      "type": 		"cyclic",
+      "route":    "NORKU.NORKU2A.EHAM",
+      "frequency": 2,
+      "altitude": 10000,
+      "speed":		250,
+      "offset":		2,
+      "airlines": [
+        ["adr",   2],
+        ["aee",   1],
+        ["asl",   1],
+        ["aza",   2],
+        ["aua",   1],
+        ["lzb",   2],
+        ["cnd",  15],
+        ["ctn",   1],
+        ["ezy",  40],
+        ["ely",   1],
+        ["uae",   4],
+        ["etd",   5],
+        ["ewg",   2],
+        ["gia",   1],
+        ["klm", 138],
+        ["klc",  44],
+        ["kal",   2],
+        ["dlh",   3],
+        ["mph",  20],
+        ["pgt",   2],
+        ["qtr",   3],
+        ["rja",   2],
+        ["sia",   1],
+        ["sxd",   2],
+        ["swr",   1],
+        ["rot",   1],
+        ["tra",  88],
+        ["tar",   1],
+        ["thy",   5],
+        ["tfl",  53],
+        ["mas",   3],
+        ["sqc",   9]
+      ]
+    },
+    {
+      "type": 		"cyclic",
+      "route":    "NORKU.NORKU2B.EHAM",
+      "frequency": 2,
+      "altitude": 10000,
+      "speed":		250,
+      "offset":		2,
+      "airlines": [
+        ["adr",   2],
+        ["aee",   1],
+        ["asl",   1],
+        ["aza",   2],
+        ["aua",   1],
+        ["lzb",   2],
+        ["cnd",  15],
+        ["ctn",   1],
+        ["ezy",  40],
+        ["ely",   1],
+        ["uae",   4],
+        ["etd",   5],
+        ["ewg",   2],
+        ["gia",   1],
+        ["klm", 138],
+        ["klc",  44],
+        ["kal",   2],
+        ["dlh",   3],
+        ["mph",  20],
+        ["pgt",   2],
+        ["qtr",   3],
+        ["rja",   2],
+        ["sia",   1],
+        ["sxd",   2],
+        ["swr",   1],
+        ["rot",   1],
+        ["tra",  88],
+        ["tar",   1],
+        ["thy",   5],
+        ["tfl",  53],
+        ["mas",   3],
+        ["sqc",   9]
+      ]
+    },
+    {
+      "type": 		"cyclic",
+      "route":    "REKKEN.RKN2A.EHAM",
+      "frequency": 2,
+      "altitude": 10000,
+      "speed":		250,
+      "offset":		2,
+      "airlines": [
+        ["adr",   2],
+        ["aee",   1],
+        ["asl",   1],
+        ["aza",   2],
+        ["aua",   1],
+        ["lzb",   2],
+        ["cnd",  15],
+        ["ctn",   1],
+        ["ezy",  40],
+        ["ely",   1],
+        ["ewg",   2],
+        ["klm", 138],
+        ["klc",  44],
+        ["dlh",   3],
+        ["mph",  20],
+        ["swr",   1],
+        ["rot",   1],
+        ["tra",  88],
+        ["tar",   1],
+        ["thy",   5],
+        ["tfl",  53]
+      ]
+    },
+    {
+      "type": 		"cyclic",
+      "route":    "REKKEN.RKN2B.EHAM",
+      "frequency": 2,
+      "altitude": 10000,
+      "speed":		250,
+      "offset":		2,
+      "airlines": [
+        ["adr",   2],
+        ["aee",   1],
+        ["asl",   1],
+        ["aza",   2],
+        ["aua",   1],
+        ["lzb",   2],
+        ["cnd",  15],
+        ["ctn",   1],
+        ["ezy",  40],
+        ["ely",   1],
+        ["ewg",   2],
+        ["klm", 138],
+        ["klc",  44],
+        ["dlh",   3],
+        ["mph",  20],
+        ["swr",   1],
+        ["rot",   1],
+        ["tra",  88],
+        ["tar",   1],
+        ["thy",   5],
+        ["tfl",  53]
+      ]
+    },
+    {
+      "type": 		"cyclic",
+      "route":    "DENUT.DENUT1A.EHAM",
+      "frequency": 2,
+      "altitude": 10000,
+      "speed":		250,
+      "offset":		2,
+      "airlines": [
+        ["cnd",  15],
+        ["ezy",  40],
+        ["ibs",   1],
+        ["klm", 138],
+        ["klc",  44],
+        ["mph",  20],
+        ["tap",   2],
+        ["tcx",   3],
+        ["tra",  88],
+        ["tvf",   1],
+        ["tfl",  53],
+        ["vlg",  16]
+      ]
+    },
+    {
+      "type": 		"cyclic",
+      "route":    "HELEN.HELEN1A.EHAM",
+      "frequency": 2,
+      "altitude": 10000,
+      "speed":		250,
+      "offset":		2,
+      "airlines": [
+        ["cnd",  15],
+        ["ezy",  40],
+        ["ibs",   1],
+        ["klm", 138],
+        ["klc",  44],
+        ["mph",  20],
+        ["tap",   2],
+        ["tcx",   3],
+        ["tra",  88],
+        ["tvf",   1],
+        ["tfl",  53],
+        ["vlg",  16]
+      ]
+    },
+    {
+      "type": 		"cyclic",
+      "route":    "PUTTY.PUTTY1A.EHAM",
+      "frequency": 1,
+      "altitude": 10000,
+      "speed":		250,
+      "offset":		2,
+      "airlines": [
+        ["clx",   1],
+        ["dlh",   3],
+        ["sxd",   1]
+      ]
+    },
+    {
+      "type": 		"cyclic",
+      "route":    "PESER.PESER2A.EHAM",
+      "frequency": 1,
+      "altitude": 10000,
+      "speed":		250,
+      "offset":		2,
+      "airlines": [
+        ["clx",   1],
+        ["dlh",   3],
+        ["sxd",   1]
       ]
     }
   ]
