@@ -1099,8 +1099,8 @@ var Airport=Fiber.extend(function() {
       if(Object.keys(airport_get().fixes).indexOf(name.toUpperCase()) == -1) return;
       else return airport_get().fixes[name.toUpperCase()].position;
     },
-    getSID: function(id, trxn, rwy) {
-      if(!(id && trxn && rwy)) return null;
+    getSID: function(id, exit, rwy) {
+      if(!(id && exit && rwy)) return null;
       if(Object.keys(this.sids).indexOf(id) == -1) return;
       var fixes = [];
       var sid = this.sids[id];
@@ -1121,24 +1121,24 @@ var Airport=Fiber.extend(function() {
           else fixes.push(sid.body[i]);
         }
 
-      // transition portion
-      if(sid.hasOwnProperty("transitions"))
-        for(var i=0; i<sid.transitions[trxn].length; i++) {
-          if(typeof sid.transitions[trxn][i] == "string")
-            fixes.push([sid.transitions[trxn][i], null]);
-          else fixes.push(sid.transitions[trxn][i]);
+      // exit portion
+      if(sid.hasOwnProperty("exitPoints"))
+        for(var i=0; i<sid.exitPoints[exit].length; i++) {
+          if(typeof sid.exitPoints[exit][i] == "string")
+            fixes.push([sid.exitPoints[exit][i], null]);
+          else fixes.push(sid.exitPoints[exit][i]);
         }
 
       return fixes;
     },
-    getSIDTransition: function(id) {
-      // if no transitions (euro-style sid), return end fix
-      if(!this.sids[id].hasOwnProperty("transitions"))
+    getSIDExitPoint: function(id) {
+      // if ends at fix for which the SID is named, return end fix
+      if(!this.sids[id].hasOwnProperty("exitPoints"))
         return this.sids[id].icao;
 
-      // if has transitions, return a randomly selected one
-      var txns = Object.keys(this.sids[id].transitions);
-      return txns[Math.floor(Math.random() * txns.length)];
+      // if has exitPoints, return a randomly selected one
+      var exits = Object.keys(this.sids[id].exitPoints);
+      return exits[Math.floor(Math.random() * exits.length)];
     },
     getSIDName: function(id, rwy) {
       if(this.sids[id].hasOwnProperty("suffix"))
@@ -1152,7 +1152,7 @@ var Airport=Fiber.extend(function() {
     },
     /** Return an array of [Waypoint, fixRestrictions] for a given STAR
      ** @param {string} id - the identifier for the STAR (eg 'LENDY6')
-     ** @param {string} trn - the transition from which to join the STAR
+     ** @param {string} entry - the entryPoint from which to join the STAR
      ** @param {string} rwy - (optional) the planned arrival runway
      ** Note: Passing a value for 'rwy' will help the fms distinguish between
      **       different branches of a STAR, when it splits into different paths
@@ -1161,17 +1161,17 @@ var Airport=Fiber.extend(function() {
      **       it will cause an incomplete route in many cases (depends on the
      **       design of the actual STAR in the airport's json file).
      */
-    getSTAR: function(id, trxn, /*optional*/ rwy) {
-      if(!(id && trxn) || Object.keys(this.stars).indexOf(id) == -1) return null;
+    getSTAR: function(id, entry, /*optional*/ rwy) {
+      if(!(id && entry) || Object.keys(this.stars).indexOf(id) == -1) return null;
       var fixes = [];
       var star = this.stars[id];
 
-      // transition portion
-      if(star.hasOwnProperty("transitions"))
-        for(var i=0; i<star.transitions[trxn].length; i++) {
-          if(typeof star.transitions[trxn][i] == "string")
-            fixes.push([star.transitions[trxn][i], null]);
-          else fixes.push(star.transitions[trxn][i]);
+      // entry portion
+      if(star.hasOwnProperty("entryPoints"))
+        for(var i=0; i<star.entryPoints[entry].length; i++) {
+          if(typeof star.entryPoints[entry][i] == "string")
+            fixes.push([star.entryPoints[entry][i], null]);
+          else fixes.push(star.entryPoints[entry][i]);
         }
 
       // body portion
@@ -1224,12 +1224,12 @@ var Airport=Fiber.extend(function() {
               else fixes.push(this.sids[s].body[i][0]);
             }
           }
-          if(this.sids[s].hasOwnProperty("transitions")) { // transitions portion
-            for(var t in this.sids[s].transitions)
-              for(var i in this.sids[s].transitions[t]) {
-                if(typeof this.sids[s].transitions[t][i] == "string")
-                  fixes.push(this.sids[s].transitions[t][i]);
-                else fixes.push(this.sids[s].transitions[t][i][0]);
+          if(this.sids[s].hasOwnProperty("exitPoints")) { // exitPoints portion
+            for(var t in this.sids[s].exitPoints)
+              for(var i in this.sids[s].exitPoints[t]) {
+                if(typeof this.sids[s].exitPoints[t][i] == "string")
+                  fixes.push(this.sids[s].exitPoints[t][i]);
+                else fixes.push(this.sids[s].exitPoints[t][i][0]);
               }
           }
           if(this.sids[s].hasOwnProperty("draw")) { // draw portion
@@ -1243,12 +1243,12 @@ var Airport=Fiber.extend(function() {
       // Gather fixes used by STARs
       if(this.hasOwnProperty("stars")) {
         for(var s in this.stars) {
-          if(this.stars[s].hasOwnProperty("transitions")) { // transitions portion
-            for(var t in this.stars[s].transitions)
-              for(var i in this.stars[s].transitions[t]) {
-                if(typeof this.stars[s].transitions[t][i] == "string")
-                  fixes.push(this.stars[s].transitions[t][i]);
-                else fixes.push(this.stars[s].transitions[t][i][0]);
+          if(this.stars[s].hasOwnProperty("entryPoints")) { // entryPoints portion
+            for(var t in this.stars[s].entryPoints)
+              for(var i in this.stars[s].entryPoints[t]) {
+                if(typeof this.stars[s].entryPoints[t][i] == "string")
+                  fixes.push(this.stars[s].entryPoints[t][i]);
+                else fixes.push(this.stars[s].entryPoints[t][i][0]);
               }
           }
           if(this.stars[s].hasOwnProperty("body")) { // body portion

@@ -202,7 +202,7 @@
         "30" : ["_R12-1DME", "LICEY", "GRITT", "CULBY", "SHULA"],
         "27" : ["_R9-1DME", "GRITT", "CULBY", "SHULA"]
       },
-      "transitions": {
+      "exitPoints": {
         "EONNS": ["EONNS"]
       },
       "draw": [["JADAK","GRITT"], ["LICEY","GRITT"], ["GRITT","CULBY","SHULA"], ["SABRA","DICKI"], ["VKZ","DICKI"], ["DICKI","SHULA","EONNS*"]]
@@ -220,7 +220,7 @@
         "30" : ["_R12-1DME", "METTS", "BRBRA", "VVMAX"],
         "27" : ["_R9-1DME", "METTS", "BRBRA", "VVMAX"]
       },
-      "transitions": {
+      "exitPoints": {
         "HEDLY": ["HEDLY"]
       },
       "draw": [["SENOY", "CIMBA", "FORKK", "VVMAX"], ["METTS", "BRBRA", "VVMAX", "HEDLY*"]]
@@ -238,7 +238,7 @@
         "30" : ["_R12-1DME", "LICEY", "GRITT", "CULBY", "FENIR"],
         "27" : ["_R9-1DME", "GRITT", "CULBY", "FENIR"]
       },
-      "transitions": {
+      "exitPoints": {
         "MNATE": ["MNATE"]
       },
       "draw": [["CULBY","FENIR"], ["SABRA","BLUNE"], ["VKZ","BLUNE"], ["BLUNE","FENIR","MNATE*"]]
@@ -256,7 +256,7 @@
         "30" : ["_R12-1DME", "METTS", "HAUSR", "FORKK", "SHALW"],
         "27" : ["_R9-1DME", "METTS", "HAUSR", "FORKK", "SHALW"]
       },
-      "transitions": {
+      "exitPoints": {
         "PADUS": ["JANUS", "PADUS"]
       },
       "draw": [["HINKU","VAPOR"],["GOZZO","VAPOR"],["RIKEE","VAPOR"],["VAPOR","SHALW"],["METTS","HAUSR","FORKK","SHALW"],["SHALW","JANUS","PADUS*"]]
@@ -274,7 +274,7 @@
         "30" : ["_R12-1DME", "LICEY", "GRITT", "CULBY", "DICKI", "CRABI"],
         "27" : ["_R9-1DME", "GRITT", "CULBY", "DICKI", "CRABI"]
       },
-      "transitions": {
+      "exitPoints": {
         "SKIPS": ["SKIPS"]
       },
       "draw": [["VKZ", "IBISS"], ["CULBY", "DICKI", "CRABI"], ["SABRA", "IBISS","CRABI","SKIPS*"]]
@@ -292,7 +292,7 @@
         "30" : ["_R12-1DME", "METTS", "HAUSR", "FORKK", "SHALW"],
         "27" : ["_R9-1DME", "METTS", "HAUSR", "FORKK", "SHALW"]
       },
-      "transitions": {
+      "exitPoints": {
         "VALLY": ["JANUS", "VALLY"]
       },
       "draw": [["JANUS","VALLY*"]]
@@ -310,7 +310,7 @@
         "30" : ["_R12-1DME", "OHOFO", "BORLE"],
         "27" : ["_R9-1DME", "OHOFO", "BORLE"]
       },
-      "transitions": {
+      "exitPoints": {
         "WINCO": ["MEAGN", "WINCO"]
       },
       "draw": [["FORKK", "BORLE"], ["OHOFO", "BORLE", "MEAGN", "WINCO*"]]
@@ -320,7 +320,7 @@
     "ANNEY3": {
       "icao": "ANNEY3",
       "name": "Anney Three",
-      "transitions": {
+      "entryPoints": {
         "OMN": ["OMN", "PCMAN", "MLB", "TRV", ["PHORD", "A240"], "PBI", ["ANNEY", "A130|S280"]],
         "ZFP": ["ZFP", "SNSBK", ["ANNEY", "A130|S280"]]
       },
@@ -330,7 +330,7 @@
     "CURSO4": {
       "icao": "CURSO4",
       "name": "Curso Four",
-      "transitions": {
+      "entryPoints": {
         "EADEN": ["EADEN", "STRAP", "TIGAR", "CARNU", ["DVALL", "A120-"]],
         "MTH": [["MTH", "S280"], "GUSHY", ["DVALL", "A120-"]]
       },
@@ -340,7 +340,7 @@
     "CYY7": {
       "icao": "CYY7",
       "name": "Cypress Seven",
-      "transitions": {
+      "entryPoints": {
         "SRQ": ["SRQ", "CYY"],
         "PIE": ["PIE", "CYY"],
         "RSW": ["RSW", "CYY"]
@@ -351,7 +351,7 @@
     "DVALL2": {
       "icao": "DVALL2",
       "name": "Dvall Two",
-      "transitions": {
+      "entryPoints": {
         "EYW": ["EYW", "CARNU", "DVALL"],
         "MTH": ["MTH", "DVALL"]
         },
@@ -361,7 +361,7 @@
     "FLIPR4": {
       "icao": "FLIPR4",
       "name": "Flipper Four",
-      "transitions": {
+      "entryPoints": {
         "ZFP": ["ZFP", "LUCSS", "FOWEE"],
         "ZQA": ["ZQA", "NICKO", "TINKY", "LUCSS", "FOWEE"],
         "HODGY": ["HODGY", "JAYEE", "PEKRE", "TINKY", "LUCSS", "FOWEE"],
@@ -373,7 +373,7 @@
     "FOWEE8": {
       "icao": "FOWEE8",
       "name": "Fowey Eight",
-      "transitions": {
+      "entryPoints": {
         "ZFP": ["ZFP", "LUCSS", "FOWEE"],
         "ZQA": ["ZQA", "TINKY", "LUCSS", "FOWEE"],
         "HODGY": ["HODGY", "TINKY", "LUCSS", "FOWEE"],
@@ -385,7 +385,7 @@
     "HILEY6": {
       "icao": "HILEY6",
       "name": "Hiley Six",
-      "transitions": {
+      "entryPoints": {
         "ZFP": ["ZFP", ["STAPL", "A180"], ["MILSY", "A160|S280"], "BOYUR", "HILEY"],
         "OMN": ["OMN", "MALET", "PCMAN", "MLB", "TRV", "PHORD", "SMUGS", "MORGA", ["PBI", "A170"], ["BTOGA", "A130|S280"], "HILEY"],
         "JORAY": [["JORAY", "S280"], "OSOGY", "AMZAR", ["STAPL", "A180"], ["MILSY", "A160|S280"], "BOYUR", "HILEY"]
@@ -396,7 +396,7 @@
     "SSCOT3": {
       "icao": "SSCOT3",
       "name": "Scott Three",
-      "transitions": {
+      "entryPoints": {
         "BAGGS": [["BAGGS", "S280"], "BAARY"],
         "SZW": ["SZW", "HEVVN", "LEGGT", "PLYER", "SEATE", "JUULI", "BAARY"],
         "OTK": ["OTK", "HITTR", "TUCKE", "JUULI", "BAARY"],

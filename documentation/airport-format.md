@@ -61,7 +61,7 @@ airport code, such as `ksfo` or `kmsp`.
         },
       "body": ["EUGEN", "SHOEY"],   // (optional) If there is a very long series of fixes in a SID, it may be 
                                     // helpful to put some of it here, while all segments follow the same path.
-      "transitions": {    // (optional) Defines transitions for a given SID. Common for FAA-style (USA) SIDs. If not needed (like in Europe), leave this part out.
+      "exitPoints": {     // (optional) Defines exitPoints for a given SID. Common for FAA-style (USA) SIDs. If not needed (like in Europe), leave this part out.
           "SNS": ["SNS"], // defines the "OFFSH9.SNS" transition as being a single fix, "SNS". Is often a list instead.
           "BSR": ["BSR"]  // Note that this connects to the end of previous sections, so an example route: SEPDY->ZUPAX->EUGEN->SHOEY->BSR
       },
@@ -82,15 +82,15 @@ airport code, such as `ksfo` or `kmsp`.
       "name": "Point Reyes One" ,   // (req) Name of SID as it would be said aloud (it is used by speech synthesis to pronounce "OFFSH9")
       "suffix": {"1L":"", "1R":"", "28L":"", "28R":""},   // (optional) defines suffixes to STAR name based on runway (eg '7W' for 'MIKOV 7W').
                                                           // Common for European-style STARs. If not needed (like in USA), leave this part out.
-      "transitions": {    // (optional) Defines transitions for a given SID. Common for FAA-style (USA) SIDs. If not needed (like in Europe), leave this part out.
+      "entryPoints": {    // (optional) Defines entryPoints for a given SID. Common for FAA-style (USA) SIDs. If not needed (like in Europe), leave this part out.
           "ENI": ["ENI"], // defines the "OFFSH9.SNS" transition as being a single fix, "SNS". Is often a list instead.
           "MXW": ["MXW"]  // Note that this connects to the end of previous sections, so an example route: SEPDY->ZUPAX->EUGEN->SHOEY->BSR
       },
       "body": ["PYE", ["STINS", "A230|S250"], "HADLY"], // (optional) This is where you store the waypoints when all segments are along the same path
       "rwy": {  // (optional) For runway-transitions (eg "descending via HAWKZ4, landing north")
           "1L" : [["SEPDY", "A19+"], "ZUPAX"],  // List fixes here that are specific to a particular runway configuration.
-          "1R" : [["SEPDY", "A19+"], "ZUPAX"],  // In Europe, these are called the "transitions" that come after the STAR.
-          "28L": [["SENZY", "A25+"], "ZUPAX"],  // If any runways are listed, all must be listed.
+          "1R" : [["SEPDY", "A19+"], "ZUPAX"],  // If any runways are listed, all must be listed.
+          "28L": [["SENZY", "A25+"], "ZUPAX"],
           "28R": [["SENZY", "A25+"], "ZUPAX"]
       },
       "draw": [["ENI*","PYE"], ["MXW*","PYE"], ["PYE","STINS","HADLY","OSI"]]

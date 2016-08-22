@@ -240,7 +240,7 @@
       "rwy": {
         "10" : ["_RW10", ["BOPAT", "A40+"]]
       },
-      "transitions": {
+      "exitPoints": {
         "JUICE": ["JUICE"],
         "GOUDA": ["GOUDA"],
         "DANDE": ["DANDE"]
@@ -253,7 +253,7 @@
       "rwy": {
         "10" : ["_RW10", ["MODOR", "A40+"]]
       },
-      "transitions": {
+      "exitPoints": {
         "JUICE": ["JUICE"],
         "GOUDA": ["GOUDA"],
         "DANDE": ["DANDE"],
@@ -270,7 +270,7 @@
       "rwy": {
         "10" : ["_RW10", "_PJM168INT", ["_PJM168", "A40+"]]
       },
-      "transitions": {
+      "exitPoints": {
         "DANDE": ["_PJM12DME59", "_PJM12DME62", "_PJM12DME65", "_PJM12DME68", "_PJM12DME71", "_PJM12DME74", "_PJM12DME77", "_PJM237", "DANDE"],
         "GOUDA": ["_PJM12DME59", "_PJM12DME62", "_PJM12DME65", "_PJM12DME68", "_PJM12DME71", "_PJM12DME74", "_PJM12DME77", "_PJM237", "_PJM271", "GOUDA"],
         "JUICE": ["_PJM12DME59", "_PJM12DME62", "_PJM12DME65", "_PJM12DME68", "_PJM12DME71", "_PJM12DME74", "_PJM12DME77", "_PJM237", "_PJM292", "JUICE"],

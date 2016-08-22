@@ -37,8 +37,7 @@
     "KTN":      ["N34d12m80.00",    "E037d15m80.00"],
     "RAFIF":    ["N33d12m78.00",    "E038d19m32.00"],
     "SOKAN":    ["N33d08m15.00",    "E038d22m12.00"]
- },
-
+  },
   "runways": [
     {
       "name": ["05L", "23R"],
@@ -248,8 +247,7 @@
           ["TAN"]
         ]
     }
-},
-
+  },
   "departures": {
     "airlines": [
       ["saw", 12],
@@ -265,78 +263,78 @@
   },
   "stars": {
     "BRAVO1C": {
-        "icao": "BRAVO1C",
-        "name": "Bravo One Charlie",
-        "suffix": {"05L":"1C", "05R":"1C", "23L":"1C", "23R":"1C"},
-        "transitions": {
-          "BUSRA": [["BUSRA", "A160"]]
-        },
-        "body": [["SWIDA", "A160"], ["RDIMA", "A140"], ["DAM", "A50"]],
-        "draw": [
-          ["BUSRA", "SWIDA", "RDIMA", "DAM"]
-        ]
+      "icao": "BRAVO1C",
+      "name": "Bravo One Charlie",
+      "suffix": {"05L":"1C", "05R":"1C", "23L":"1C", "23R":"1C"},
+      "entryPoints": {
+        "BUSRA": [["BUSRA", "A160"]]
+      },
+      "body": [["SWIDA", "A160"], ["RDIMA", "A140"], ["DAM", "A50"]],
+      "draw": [
+        ["BUSRA", "SWIDA", "RDIMA", "DAM"]
+      ]
     },
     "KILO1C": {
-        "icao": "KILO1C",
-        "name": "Kilo One Charlie",
-        "suffix": {"05L":"1C", "05R":"1C", "23L":"1C", "23R":"1C"},
-        "transitions": {
-          "KARIATAIN":  ["KTN"]
-        },
-        "rwy": {
-            "23R":  [["DAL", "A50"]],
-            "05L":  [["DAM", "A50"]],
-            "05R":  [["ABD", "A50"]]
-        },
-        "body": ["BASEM", ["ABBAS", "A240"], ["SOFIA", "A100"]],
-        "draw": [
-          ["KTN", "ABBAS", "SOFIA", "DAM"],
-          ["SOFIA", "DAL"],
-          ["SOFIA", "ABD"]
-        ]
+      "icao": "KILO1C",
+      "name": "Kilo One Charlie",
+      "suffix": {"05L":"1C", "05R":"1C", "23L":"1C", "23R":"1C"},
+      "entryPoints": {
+        "KARIATAIN":  ["KTN"]
+      },
+      "rwy": {
+          "23R":  [["DAL", "A50"]],
+          "05L":  [["DAM", "A50"]],
+          "05R":  [["ABD", "A50"]]
+      },
+      "body": ["BASEM", ["ABBAS", "A240"], ["SOFIA", "A100"]],
+      "draw": [
+        ["KTN", "ABBAS", "SOFIA", "DAM"],
+        ["SOFIA", "DAL"],
+        ["SOFIA", "ABD"]
+      ]
     },
     "LIMA1C": {
-        "icao": "LIMA1C",
-        "name": "Lima One Charlie",
-        "suffix": {"05L":"1C", "05R":"1C", "23L":"1C", "23R":"1C"},
-        "transitions": {
-          "LEBOR": [["LEBOR", "A240"]]
-        },
-        "body": [["MALLA", "A160"], ["ADRA", "A100"], ["DAM", "A50"]],
-        "draw": [
-          ["LEBOR", "MALLA", "ADRA", "DAM"]
-        ]
+      "icao": "LIMA1C",
+      "name": "Lima One Charlie",
+      "suffix": {"05L":"1C", "05R":"1C", "23L":"1C", "23R":"1C"},
+      "entryPoints": {
+        "LEBOR": [["LEBOR", "A240"]]
+      },
+      "body": [["MALLA", "A160"], ["ADRA", "A100"], ["DAM", "A50"]],
+      "draw": [
+        ["LEBOR", "MALLA", "ADRA", "DAM"]
+      ]
     },
     "SIERA1C": {
-        "icao": "SIERA1C",
-        "name": "Siera One Charlie",
-        "suffix": {"05L":"1C", "05R":"1C", "23L":"1C", "23R":"1C"},
-        "transitions": {
-          "SOKAN": ["SOKAN"]
-        },
-        "body": ["RAFIF", ["SULAF", "A240"], ["ABBAS", "A240"], ["SOFIA", "A100"]],
-        "draw": [
-          ["SOKAN", "RAFIF", "SULAF", "ABBAS", "SOFIA"]
-        ]
+      "icao": "SIERA1C",
+      "name": "Siera One Charlie",
+      "suffix": {"05L":"1C", "05R":"1C", "23L":"1C", "23R":"1C"},
+      "entryPoints": {
+        "SOKAN": ["SOKAN"]
+      },
+      "body": ["RAFIF", ["SULAF", "A240"], ["ABBAS", "A240"], ["SOFIA", "A100"]],
+      "draw": [
+        ["SOKAN", "RAFIF", "SULAF", "ABBAS", "SOFIA"]
+      ]
     },
     "TANGO1C": {
-        "icao": "TANGO1C",
-        "name": "Tango One Charlie",
-        "suffix": {"05L":"1C", "05R":"1C", "23L":"1C", "23R":"1C"},
-        "transitions": {
-          "TANF":  ["TAN"]
-        },
-        "rwy": {
-            "23R":  [["DAL", "A50"]],
-            "05L":  [["DAM", "A50"]],
-            "05R":  [["ABD", "A50"]]
-        },
-        "body": [["SULAF", "A240"], ["ABBAS", "A240"], ["SOFIA", "A100"]],
-        "draw": [
-          ["TAN", "SULAF", "ABBAS", "SOFIA", "DAM"],
-          ["SOFIA", "DAL"],
-          ["SOFIA", "ABD"]
-        ]
+      "icao": "TANGO1C",
+      "name": "Tango One Charlie",
+      "suffix": {"05L":"1C", "05R":"1C", "23L":"1C", "23R":"1C"},
+      "entryPoints": {
+        "TANF":  ["TAN"]
+      },
+      "rwy": {
+          "23R":  [["DAL", "A50"]],
+          "05L":  [["DAM", "A50"]],
+          "05R":  [["ABD", "A50"]]
+      },
+      "body": [["SULAF", "A240"], ["ABBAS", "A240"], ["SOFIA", "A100"]],
+      "draw": [
+        ["TAN", "SULAF", "ABBAS", "SOFIA", "DAM"],
+        ["SOFIA", "DAL"],
+        ["SOFIA", "ABD"]
+      ]
     }
   },
   "arrivals": [

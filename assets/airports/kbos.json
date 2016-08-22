@@ -444,7 +444,7 @@
         "27":  ["_LOGAN27", "_LOGAN9-2"],
         "33L": ["_LOGAN33L", "_LOGAN9-3"]
       },
-      "transitions": {
+      "exitPoints": {
         "MHT": ["MHT"],
         "ENE": ["ENE"],
         "PSM": ["PSM"],
@@ -495,7 +495,7 @@
     "JFUND1": {
       "icao": "JFUND1",
       "name": "Jayfund One",
-      "transitions": {
+      "entryPoints": {
         "PONCT": ["PONCT", "STOLI", ["MNSTA", "A250"], ["SEETS", "A210|S290"], ["DUBLE", "A180"], ["BASEZ", "A150"]],
         "WHATE": ["WHATE", ["ONDEC", "A110+"]],
         "ONDEC": [["ONDEC", "A110+"]]
@@ -515,7 +515,7 @@
     "OOSHN4": {
       "icao": "OOSHN4",
       "name": "Ooshen Four",
-      "transitions": {
+      "entryPoints": {
         "AJJAY": ["AJJAY", "SUFFI", ["NIKKO", "A110"]],
         "FERNZ": ["FERNZ", ["LONEY", "A130"], "RODEE"],
         "FEXXX": ["FEXXX", "FOSTI", "IYANA", "KLEBB", ["SOBAH", "A150"], ["LONEY", "A130"], "RODEE"],
@@ -539,7 +539,7 @@
     "ROBUC2": {
       "icao": "ROBUC2",
       "name": "Roebook Two",
-      "transitions": {
+      "entryPoints": {
         "RUIZE": [],
         "JFK":   ["JFK", "NEWES", ["FEXXX", "A230"]],
         "MERIT": ["MERIT"]

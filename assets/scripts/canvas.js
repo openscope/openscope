@@ -274,10 +274,10 @@ function canvas_draw_sids(cc) {
     if(airport.sids[s].hasOwnProperty("draw")) {
       for(var i in airport.sids[s].draw) {
         var fixList = airport.sids[s].draw[i];
-        var fx, fy, trxn_name = null;
+        var fx, fy, exit_name = null;
         for(var j=0; j<fixList.length; j++) {
-          if(fixList[j].indexOf("*") != -1) { // write transition name
-            trxn_name = fixList[j].replace("*","");
+          if(fixList[j].indexOf("*") != -1) { // write exitPoint name
+            exit_name = fixList[j].replace("*","");
             write_sid_name = false;
           }
           var fix = airport.getFix(fixList[j].replace("*",""));
@@ -292,13 +292,13 @@ function canvas_draw_sids(cc) {
           }
         }
         cc.stroke();
-        if(trxn_name){
-          if(isNaN(text_at_point[trxn_name])){  // Initialize count for this transition
-            text_at_point[trxn_name] = 0;
+        if(exit_name){
+          if(isNaN(text_at_point[exit_name])){  // Initialize count for this transition
+            text_at_point[exit_name] = 0;
           }
-          var y_point = fy +(15*text_at_point[trxn_name]);  // Move the y point for drawing depending on how many sids we have drawn text for at this point already
-          cc.fillText(s + "." + trxn_name, fx+10, y_point);
-          text_at_point[trxn_name] += 1;  // Increment the count for this transition
+          var y_point = fy +(15*text_at_point[exit_name]);  // Move the y point for drawing depending on how many sids we have drawn text for at this point already
+          cc.fillText(s + "." + exit_name, fx+10, y_point);
+          text_at_point[exit_name] += 1;  // Increment the count for this transition
         }
       }
       if(write_sid_name) cc.fillText(s, fx+10, fy);

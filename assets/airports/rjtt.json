@@ -145,7 +145,7 @@
         "PLUTO2": {
             "icao": "PLUTO2",
             "name": "Pluto Two",
-            "transitions": {
+            "exitPoints": {
                 "MIDORI":   [["SYE", "A120+"], ["COLOR", "A160+"]]
             },
             "rwy": {
@@ -295,7 +295,7 @@
         "OPPAR3": {
             "icao": "OPPAR3",
             "name": "Oppar Three",
-            "transitions": {
+            "exitPoints": {
                 "JYOGA":    [["JYOGA", "A150+"]],
                 "UTIBO":    [["UTIBO", "A150+"]]
             },
@@ -404,7 +404,7 @@
         "CREAM": {
             "icao": "CREAM",
             "name": "Cream",
-            "transitions": {
+            "entryPoints": {
                 "STONE": [["STONE", "A110|S250"]]
             },
             "body": ["COLOR", "CURRY", ["COUPE", "A80"], "CUTIE", "CREAM"],
@@ -415,7 +415,7 @@
         "ARLON": {
             "icao": "ARLON",
             "name": "Arlon",
-            "transitions": {
+            "entryPoints": {
                 "ADDUM": [["ADDUM", "A100|S230"]]
             },
             "body": ["AWARD", "ARLON"],
@@ -426,7 +426,7 @@
         "CACAO": {
             "icao": "CACAO",
             "name": "Cacao",
-            "transitions": {
+            "entryPoints": {
                 "STONE": [["STONE", "A110|S250"]]
             },
             "body": ["COLOR", "CURRY", ["COUPE", "A80"], "CUTIE", "CREAM", "CLOAK", "CAMEL", "CACAO"],
@@ -437,7 +437,7 @@
         "CACHE": {
             "icao": "CACHE",
             "name": "Cache",
-            "transitions": {
+            "entryPoints": {
                 "MERCY": [["MERCY", "A80"]]
             },
             "body": ["MESSE", ["CACHE", "A60"], "CLOAK", "CAMEL", "CACAO"],
@@ -448,7 +448,7 @@
         "CAPE_SOUTH": {
             "icao": "CAPE SOUTH",
             "name": "Cape South",
-            "transitions": {
+            "entryPoints": {
                 "MERCY": [["MERCY", "A80"]]
             },
             "body": ["MESSE", ["UMUKI", "A60"], ["KAIHO", "A40"]],
@@ -459,7 +459,7 @@
         "MACRO": {
             "icao": "MACRO",
             "name": "Macro",
-            "transitions": {
+            "entryPoints": {
                 "MERCY": [["MERCY", "A80"]]
             },
             "body": ["MESSE", ["MACRO", "A60"], "CREAM"],
@@ -470,7 +470,7 @@
         "CAPE_NORTH": {
             "icao": "CAPE NORTH",
             "name": "Cape North",
-            "transitions": {
+            "entryPoints": {
                 "STONE": [["STONE", "A110|S250"]]
             },
             "body": ["COLOR", "CURRY", ["COUPE", "A80"], "CUTIE", "CREAM", "CLOAK", ["UMUKI", "A60"], ["KAIHO", "A40"]],
@@ -481,7 +481,7 @@
         "KAIHO": {
             "icao": "KAIHO",
             "name": "Kaiho",
-            "transitions": {
+            "entryPoints": {
                 "ADDUM": [["ADDUM", "A100|S230"]]
             },
             "body": ["AWARD", "NANSO", ["UMUKI", "A60"], ["KAIHO", "A40"]],
@@ -492,7 +492,7 @@
         "DATUM": {
             "icao": "DATUM",
             "name": "Datum",
-            "transitions": {
+            "entryPoints": {
                 "STONE": [["STONE", "A110|S250"]]
             },
             "body": [["DREAD", "A80"], "DENNY", "DATUM"],
@@ -503,7 +503,7 @@
         "BACON": {
             "icao": "BACON",
             "name": "Bacon",
-            "transitions": {
+            "entryPoints": {
                 "ADDUM": [["ADDUM", "A100|S230"]]
             },
             "body": ["BLITZ", "BRASS", "BACON"],
@@ -514,7 +514,7 @@
         "STEAM": {
             "icao": "STEAM",
             "name": "Steam",
-            "transitions": {
+            "entryPoints": {
                 "STONE": [["STONE", "A110|S250"]]
             },
             "body": [["SQUAD", "A80"], "SCREW", "STEAM"],
@@ -525,7 +525,7 @@
         "NYLON": {
             "icao": "NYLON",
             "name": "Nylon",
-            "transitions": {
+            "entryPoints": {
                 "ADDUM": [["ADDUM", "A100|S230"]]
             },
             "body": ["BLITZ", "BRASS", "NYLON"],
@@ -536,7 +536,7 @@
         "BLOOM_INDIA": {
             "icao": "BLOOM INDIA",
             "name": "Bloom India",
-            "transitions": {
+            "entryPoints": {
                 "MERCY": [["MERCY", "A80"]]
             },
             "body": ["MESSE", ["MACRO", "A60"], "BLOOM", "NYLON"],
@@ -547,7 +547,7 @@
         "BALAN": {
             "icao": "BALAN",
             "name": "Balan",
-            "transitions": {
+            "entryPoints": {
                 "KAIHO": [["KAIHO", "A40"]]
             },
             "body": [["LD225", "S220"], "LD224", "LD223", ["BALAN", "A30"]],
@@ -558,7 +558,7 @@
         "DARKS": {
             "icao": "DARKS",
             "name": "Darks",
-            "transitions": {
+            "entryPoints": {
                 "KAIHO": [["KAIHO", "A40"]]
             },
             "body": [["LD225", "S220"], "LD224", ["DARKS", "A18"]],
@@ -569,7 +569,7 @@
         "DAIYA": {
             "icao": "DAIYA",
             "name": "Daiya",
-            "transitions": {
+            "entryPoints": {
                 "KAIHO": [["KAIHO", "A40"]]
             },
             "body": [["LD225", "S220"], "LD224", "LD223", ["DARKS", "A20"]],
@@ -580,7 +580,7 @@
         "SINGO": {
             "icao": "SINGO",
             "name": "Singo",
-            "transitions": {
+            "entryPoints": {
                 "STONE": [["STONE", "A110|S250"]]
             },
             "body": [["SINGO", "A80"]],
@@ -591,7 +591,7 @@
         "DOYLE": {
             "icao": "DOYLE",
             "name": "Doyle",
-            "transitions": {
+            "entryPoints": {
                 "STONE": [["STONE", "A110|S250"]]
             },
             "body": [["DOYLE", "A80"]],
@@ -602,7 +602,7 @@
         "ADDUM": {
             "icao": "ADDUM",
             "name": "Addum",
-            "transitions": {
+            "entryPoints": {
                 "ADDUM": [["ADDUM", "A100|S230"]]
             },
             "body": ["ARLON"],
@@ -613,7 +613,7 @@
         "BONUS": {
             "icao": "ADDUM",
             "name": "Addum",
-            "transitions": {
+            "entryPoints": {
                 "ADDUM": [["ADDUM", "A100|S230"]]
             },
             "body": ["BONUS"],

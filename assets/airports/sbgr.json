@@ -122,7 +122,7 @@
         "27L": ["IG", ["TIKTI", "A70+|S230-"], ["EVKUT", "S250-"], ["CGO", "A100+"]],
         "27R": ["IG", ["TIKTI", "A70+|S230-"], ["EVKUT", "S250-"], ["CGO", "A100+"]]
       },
-      "transitions": {
+      "exitPoints": {
         "NIBGA": ["NIBGA"],
         "LOLAG": ["LOLAG"],
         "OBMAV": ["ILREN", ["SCB", "A160+"], "OBMAV"],
@@ -138,7 +138,7 @@
         "27L": [["EGDUP", "A110-"], "SUMRA", "ROMIB"],
         "27R": [["EGDUP", "A110-"], "SUMRA", "ROMIB"]
       },
-      "transitions": {
+      "exitPoints": {
         "DORLU": ["DORLU"],
         "EKIDI": ["EKIDI"],
         "UBRIR": [["SCP", "A190+"], ["TOPEP", "A230-"], "UBRIR"]
@@ -155,7 +155,7 @@
         "27L": ["IG", "GR602", "GR722", ["GR718", "A110-"], ["BGC", "A150+"]],
         "27R": ["GR501", "GR722", ["GR718", "A110-"], ["BGC", "A150+"]]
       },
-      "transitions": {
+      "exitPoints": {
         "UKBEV": [["GR719", "A190-"], ["GR022", "A200-"], ["GR023", "A200-"], "UKBEV"],
         "MULAP": [["UTGER", "A150-"], "MULAP"]
       },
@@ -169,7 +169,7 @@
         "9L": ["BCO", "GENKO"],
         "9R": ["BCO", "GENKO"]
       },
-      "transitions": {
+      "exitPoints": {
         "DORLU": ["DORLU"]
       },
       "draw": [["BCO","GENKO","DORLU"]]
@@ -182,7 +182,7 @@
         "9L": ["BCO", ["IVRAG", "A60+"]],
         "9R": ["BCO", ["IVRAG", "A60+"]]
       },
-      "transitions": {
+      "exitPoints": {
         "VUMEV": ["VUMEV"],
         "UBRIR": ["VUMEV", "UBRIR"]
       },
@@ -196,7 +196,7 @@
         "9L": ["BCO", ["IVRAG", "A60+"], ["SCP", "A80+"]],
         "9R": ["BCO", ["IVRAG", "A60+"], ["SCP", "A80+"]]
       },
-      "transitions": {
+      "exitPoints": {
         "DAGUB": [["DAGUB", "A140-"]],
         "UBRIR": [["TOPEP", "A140-"], "USAMO", "UBRIR"],
         "USAMO": [["TOPEP", "A140-"], "USAMO"],

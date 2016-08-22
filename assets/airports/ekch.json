@@ -574,7 +574,7 @@
     "TESPI": {
       "icao": "TESPI",
       "name": "Tespi",
-      "transitions": {
+      "entryPoints": {
         "TESPI": ["TESPI"]
       },
       "body": ["ROSBI", ["TNO", "A120|S250"], "_TNO091"],
@@ -590,7 +590,7 @@
     "SVD": {
       "icao": "SVD",
       "name": "Sveda",
-      "transitions": {
+      "entryPoints": {
         "SVD": [["SVD", "A110|S250"]]
       },
       "body": [],
@@ -606,7 +606,7 @@
     "ALM": {
       "icao": "ALM",
       "name": "Alma",
-      "transitions": {
+      "entryPoints": {
         "ALM": ["ALM"]
       },
       "body": [],
@@ -622,7 +622,7 @@
     "MONAK": {
       "icao": "MONAK",
       "name": "Monak",
-      "transitions": {
+      "entryPoints": {
         "MONAK": ["MONAK"]
       },
       "body": ["CDA"],
@@ -638,7 +638,7 @@
     "TUDLO": {
       "icao": "TUDLO",
       "name": "Tudlo",
-      "transitions": {
+      "entryPoints": {
         "TUDLO": ["TUDLO"]
       },
       "body": ["LUGAS", ["KOR", "A110|S250"]],

@@ -633,7 +633,7 @@
         "30" : ["_RWY121DME", "LOULU"]
       },
       "body": ["BUNZZ"],
-      "transitions": {
+      "exitPoints": {
         "RAMAY": ["RAMAY"]
       },
       "draw": [["LOULU","BUNZZ"],["TIICE","WHYUU","BUNZZ","RAMAY*"]]
@@ -651,7 +651,7 @@
         "30" : ["_RWY121DME"]
       },
       "body": ["BUTRZ", "CLTCH", "KERRK"],
-      "transitions": {
+      "exitPoints": {
         "MAULS": ["MAULS"],
         "FLASK": ["TEEMS", "FLASK"]
       },
@@ -670,7 +670,7 @@
         "30" : ["_RWY121DME"]
       },
       "body": ["RIGNZ", "JCOBY"],
-      "transitions": {
+      "exitPoints": {
         "COLIN": ["BAUGH", "BOOCK", "COLIN"],
         "SWANN": ["GRIIM", "SOOKI", "SWANN"],
         "AGARD": ["GRIIM", "RIISE", "DOCTR", "AGARD"]
@@ -690,7 +690,7 @@
         "30" : ["_RWY121DME"]
       },
       "body": ["HAFNR", "JDUBB"],
-      "transitions": {
+      "exitPoints": {
         "GSO": ["TYPNZ", "SCORN", "RRSIN", "GSO"],
         "SBV": ["CASLY", "MELTN", "SBV"]
       },
@@ -709,7 +709,7 @@
         "30" : ["_RWY121DME"]
       },
       "body": ["IDORE"],
-      "transitions": {
+      "exitPoints": {
         "JERES": ["JERES"]
       },
       "draw": [["IDORE","JERES*"]]
@@ -727,7 +727,7 @@
         "30" : ["_RWY121DME"]
       },
       "body": ["HAYGR"],
-      "transitions": {
+      "exitPoints": {
         "MCRAY": ["MCRAY"]
       },
       "draw": [["HAYGR","MCRAY*"]]
@@ -745,7 +745,7 @@
         "30" : ["_RWY121DME", "LOULU"]
       },
       "body": ["RNLDI"],
-      "transitions": {
+      "exitPoints": {
         "OTTTO": ["OTTTO"]
       },
       "draw": [["LOULU","RNLDI"],["WHYUU","RNLDI"],["RNLDI","OTTTO*"]]
@@ -763,7 +763,7 @@
         "30" : ["_RWY121DME"]
       },
       "body": ["POOCH", "SCRAM", "DANOO", "WALCE", "GLANC"],
-      "transitions": {
+      "exitPoints": {
         "LYH": ["LYH"]
       },
       "draw": [["POOCH","SCRAM","DANOO","WALCE","GLANC","LYH*"]]
@@ -781,7 +781,7 @@
         "30" : ["_RWY121DME"]
       },
       "body": ["RAZZA", "WOOLY"],
-      "transitions": {
+      "exitPoints": {
         "BAL": ["BAL"],
         "AGARD": ["AGARD"],
         "SWANN": ["SWANN"],
@@ -794,7 +794,7 @@
     "CAVLR3": {
       "icao": "CAVLR3",
       "name": "Cavailer Three",
-      "transitions": {
+      "entryPoints": {
         "DORRN": ["DORRN", ["PERKN","A220+"], ["KHOOD","A220-"], ["BNTLY","A130+"]],
         "THHMP": ["THHMP", "JROBB", ["BNTLY","A130+"]],
         "TRSSK": ["TRSSK", ["PERKN","A220+"], ["KHOOD","A220-"], ["BNTLY","A130+"]]
@@ -805,7 +805,7 @@
     "GIBBZ2": {
       "icao": "GIBBZ2",
       "name": "Gibbs Two",
-      "transitions": {
+      "entryPoints": {
         "BKW": ["BKW", "POMYK", "GBERG", "HHARP", "BURTT", "PHOOW", ["HESEE","A240+|S280"], ["GYSLO","A220-|S280"], ["BBONE","A190-|S280"], ["KILMR","A110|S250"], ["OTTTO","A90"], ["MAAAY","A70"], ["RYPIN","A60"], "GIBBZ"],
         "HVQ": ["HVQ", "FIMPA", "WOJOW", "BURTT", "PHOOW", ["HESEE","A240+|S280"], ["GYSLO","A220-|S280"], ["BBONE","A190-|S280"], ["KILMR","A110|S250"], ["OTTTO","A90"], ["MAAAY","A70"], ["RYPIN","A60"], "GIBBZ"],
         "MGW": ["MGW", "BRNDN", ["HIROY","A270-"], ["JIMVE","A250-|S280"], ["TABBE","A230-"], ["KIKKR","A160-|S280"], ["IGGGY","A140-"], ["MOSLE","A110-|S250"], ["MONNK","A100-"], ["BMICH","A90+"], ["THZMN","A70"], "GIBBZ"]
@@ -816,7 +816,7 @@
     "HYPER6": {
       "icao": "HYPER6",
       "name": "Hyper Six",
-      "transitions": {
+      "entryPoints": {
         "ALB"  : ["ALB", "ATWAN", "FILGA", "KEAVR", "BOTLS", "JETTZ", "SARAA", "LRP", "JOANE", "DELRO"],
         "BAF"  : ["BAF", "BIGGO", "YORKE", "GANDE", "KEAVR", "BOTLS", "JETTZ", "SARAA", "LRP", "JOANE", "DELRO"],
         "FILGA": ["FILGA", "KEAVR", "BOTLS", "JETTZ", "SARAA", "LRP", "JOANE", "DELRO"],
@@ -831,7 +831,7 @@
     "LEGGO3": {
       "icao": "LEGGO3",
       "name": "Lego Three",
-      "transitions": {
+      "entryPoints": {
         "LVZ": ["LVZ", "DIANO", "BLESS", "SEG"],
         "FQM": ["FQM", "WATSO", "SEG"],
         "SEG": ["SEG"]
@@ -842,7 +842,7 @@
     "MAPEL1": {
       "icao": "MAPEL1",
       "name": "Maple One",
-      "transitions": {
+      "entryPoints": {
         "PSB": ["PSB", "JARAF", "PRIVO"],
         "WILSS": ["WILSS", "PRIVO"]
       },

@@ -550,7 +550,7 @@
               "19": [["_RWY191853DME", "A5.15-|S220-"], "CAPVC", "GAITE", "LBOLT", "TEZER", "REBLL"],
               "33": [["ADAXE", "S220-"], "BEBLE", "COVTO", "FERGI", "CUKLI", "DUDDD", "REBLL"]
           },
-          "transitions": {
+          "exitPoints": {
               "OTTTO": [["OTTTO", "A50-"]]
           },
           "draw": [["ADAXE", "BEBLE", "COVTO", "FERGI", "CUKLI", "DUDDD", "REBLL"], ["CAPVC", "GAITE", "LBOLT", "TEZER", "REBLL"], ["REBLL", "OTTTO*"]]
@@ -564,7 +564,7 @@
               "19": [["_RWY191853DME", "A5.15-|S220-"], "CAPVC", "GAITE", "LBOLT", "RLLLL", ["HORTO", "A50-"]],
               "33": [["ADAXE", "S220-"], "BEBLE", "COVTO", "FERGI", "MELOE", ["HORTO", "A50-"]]
           },
-          "transitions": {
+          "exitPoints": {
               "BUFFR": ["BUFFR"],
               "JERES": ["JERES"]
           },

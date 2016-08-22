@@ -489,7 +489,7 @@ zlsa.atc.Leg = Fiber.extend(function(data, fms) {
         }
         var apt = data.route.split('.')[0];
         var sid = data.route.split('.')[1];
-        var trn = data.route.split('.')[2];
+        var exit = data.route.split('.')[2];
         var rwy = fms.my_aircraft.rwy_dep;
         this.waypoints = [];
 
@@ -498,7 +498,7 @@ zlsa.atc.Leg = Fiber.extend(function(data, fms) {
           ui_log(true, fms.my_aircraft.getCallsign() + " unable to fly SID, we haven't been assigned a departure runway!");
           return;
         }
-        var pairs = airport_get(apt).getSID(sid, trn, rwy);
+        var pairs = airport_get(apt).getSID(sid, exit, rwy);
         // Remove the placeholder leg (if present)
         if(fms.my_aircraft.isLanded() && fms.legs.length>0
             && fms.legs[0].route == airport_get().icao && pairs.length>0) {
@@ -523,14 +523,14 @@ zlsa.atc.Leg = Fiber.extend(function(data, fms) {
           log("Attempted to generate waypoints for STAR, but cannot because fms ref not passed!", LOG_WARNING);
           return;
         }
-        var trn = data.route.split('.')[0];
+        var entry = data.route.split('.')[0];
         var star = data.route.split('.')[1];
         var apt = data.route.split('.')[2];
         var rwy = fms.my_aircraft.rwy_arr;
         this.waypoints = [];
 
         // Generate the waypoints
-        var pairs = airport_get(apt).getSTAR(star, trn, rwy);
+        var pairs = airport_get(apt).getSTAR(star, entry, rwy);
         for (var i=0; i<pairs.length; i++) { // for each fix/restr pair
           var f = pairs[i][0];
           var a = null, s = null;
@@ -787,10 +787,10 @@ zlsa.atc.AircraftFlightManagementSystem = Fiber.extend(function() {
         if(!this.legs[l].type) continue;
         else if(this.legs[l].type == "sid") {
           r.push(this.legs[l].route.split('.')[0]); // departure airport
-          r.push(this.legs[l].route.split('.')[1] + '.' + this.legs[l].route.split('.')[2]);  // 'sidname.transition'
+          r.push(this.legs[l].route.split('.')[1] + '.' + this.legs[l].route.split('.')[2]);  // 'sidname.exitPoint'
         }
         else if(this.legs[l].type == "star") {
-          r.push(this.legs[l].route.split('.')[0] + '.' + this.legs[l].route.split('.')[1]);  // 'starname.transition'
+          r.push(this.legs[l].route.split('.')[0] + '.' + this.legs[l].route.split('.')[1]);  // 'entryPoint.starname.exitPoint'
           r.push(this.legs[l].route.split('.')[2]); // arrival airport
         }
         else if(this.legs[l].type == "iap") {
@@ -1377,7 +1377,7 @@ var Aircraft=Fiber.extend(function() {
     setArrivalRunway: function(rwy) {
       this.rwy_arr = rwy;
 
-      //Update the assigned STAR to the appropriate branch/transition
+      //Update the assigned STAR to use the fixes for the specified runway, if they exist
     },
     setDepartureRunway: function(rwy) {
       this.rwy_dep = rwy;
@@ -1462,18 +1462,18 @@ var Aircraft=Fiber.extend(function() {
             }
           }
           else { // following a Standard Instrument Departure procedure
-            // Find the desired SID transition
-            var trn;
+            // Find the desired SID exitPoint
+            var exit;
             for(var l in this.fms.legs) {
               if(this.fms.legs[l].type == "sid") {
-                trn = this.fms.legs[l].waypoints[this.fms.legs[l].waypoints.length-1].fix;
+                exit = this.fms.legs[l].waypoints[this.fms.legs[l].waypoints.length-1].fix;
                 break;
               }
             }
             // Verify aircraft was cleared to departure fix
             var ok = false;
             for(var i=0; i<this.fms.waypoints().length; i++)
-              if(this.fms.waypoints()[i].fix == trn) {ok = true; break;}
+              if(this.fms.waypoints()[i].fix == exit) {ok = true; break;}
             if(ok) {
               this.radioCall("switching to center, good day", "dep");
               prop.game.score.departure += 1;
@@ -1976,8 +1976,8 @@ var Aircraft=Fiber.extend(function() {
       var sid_id = data[0].toUpperCase();
       if(!apt.sids.hasOwnProperty(sid_id)) return;
       var sid_name = apt.sids[sid_id].name;
-      var trn = apt.getSIDTransition(sid_id);
-      var route = apt.icao + '.' + sid_id + '.' + trn;
+      var exit = apt.getSIDExitPoint(sid_id);
+      var route = apt.icao + '.' + sid_id + '.' + exit;
 
       if(this.category != "departure") {
         return ["fail", "unable to fly SID, we are an inbound"];
@@ -2000,11 +2000,11 @@ var Aircraft=Fiber.extend(function() {
                   say:"cleared to destination via the " + sid_name + " departure, then as filed"}];
     },
     runSTAR: function(data) {
-      var trn = data[0].split('.')[0].toUpperCase();
+      var entry = data[0].split('.')[0].toUpperCase();
       var star_id = data[0].split('.')[1].toUpperCase();
       var apt = airport_get();
       var star_name = apt.stars[star_id].name;
-      var route = trn + '.' + star_id + '.' + apt.icao;
+      var route = entry + '.' + star_id + '.' + apt.icao;
 
       if(this.category != "arrival") {
         return ["fail", "unable to fly STAR, we are a departure!"];

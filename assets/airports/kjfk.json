@@ -152,7 +152,7 @@
         "22L": ["_RWY22LDEP"],
         "22R": ["_RWY22RDEP"]
       },
-      "transitions": {
+      "exitPoints": {
         "SAX": ["SAX"],
         "COATE": ["COATE"],
         "NEION": ["NEION"],
@@ -189,7 +189,7 @@
             "22R": ["YNKEE"],
             "22L": ["YNKEE"]
         },
-        "transitions": {
+        "exitPoints": {
             "CANDR": ["DEEZZ", ["HEERO", "A50+"], "KURNL", "CANDR"],
             "TOWIN": ["DEEZZ", ["HEERO", "A50+"], "KURNL", "TOWIN"]
         },
@@ -202,7 +202,7 @@
             "31R": ["_315I243SKORR"],
             "31L": ["_315I238SKORR"]
         },
-        "transitions": {
+        "exitPoints": {
             "RNGRR": ["SKORR", ["METSS", "A25+"], "RNGRR"],
             "YNKEE": ["SKORR", ["CESID", "A25+"], "YNKEE"]
         },

@@ -205,7 +205,7 @@
         "28R": ["PEGTY", "KELYY", ["WANOS", "S250"], "TOSEH", "CHISM"],
         "28L": ["PEGTY", "KELYY", ["WANOS", "S250"], "TOSEH", "CHISM"]
       },
-      "transitions": {
+      "exitPoints": {
         "DSD": ["DSD"],
         "JOGEN": ["JOGEN"],
         "SMIGE": ["SMIGE"],
@@ -243,7 +243,7 @@
         "28R": ["PEGTY", "KELYY", ["ARUPT", "S250"], "LAVAA"],
         "28L": ["PEGTY", "KELYY", ["ARUPT", "S250"], "LAVAA"]
       },
-      "transitions": {
+      "exitPoints": {
         "YKM": ["YKM"],
         "PDT": ["PDT"]
       },
@@ -263,7 +263,7 @@
         "28R": ["PEGTY", "KELYY", "DUDRE", "MINNE"],
         "28L": ["PEGTY", "KELYY", "DUDRE", "MINNE"]
       },
-      "transitions": {
+      "exitPoints": {
         "EASON": ["EASON"],
         "FAMUK": ["FAMUK"],
         "HISKU": ["HISKU"]
@@ -285,7 +285,7 @@
         "28R": ["PEGTY", "KELYY", ["WANOS", "S250"], "TOSEH", "WHAMY"],
         "28L": ["PEGTY", "KELYY", ["WANOS", "S250"], "TOSEH", "WHAMY"]
       },
-      "transitions": {
+      "exitPoints": {
         "IMB": ["IMB"],
         "RIELY": ["RIELY"],
         "KOATA": ["KOATA"]
@@ -309,7 +309,7 @@
         "21":  ["_21"],
         "03":  ["_03"]
       },
-      "transitions": {
+      "exitPoints": {
         "SEA": ["SEA"],
         "OLM": ["OLM"],
         "LTJ": ["LTJ"],
@@ -329,7 +329,7 @@
     "HHOOD3": {
       "icao": "HHOOD3",
       "name": "Hood Three",
-      "transitions": {
+      "entryPoints": {
         "BAYYR": [["BAYYR", "A150|S270"]],
         "DUFUR": [["DUFUR", "A180|S350"], ["RABBI", "A150|S270"]],
         "JKNOX": [["JKNOX", "A280|S350"], ["MYTOE", "A200|S350"], ["BAYYR", "A150|S270"]],
@@ -349,7 +349,7 @@
     "KRATR2": {
       "icao": "KRATR2",
       "name": "Crater Two",
-      "transitions": {
+      "entryPoints": {
         "BUWZO": [["BUWZO", "S350"]],
         "HELNS": []
       },
@@ -365,7 +365,7 @@
     "TMBRS2": {
       "icao": "TMBRS2",
       "name": "Timbers Two",
-      "transitions": {
+      "entryPoints": {
         "CITYY": [["CITYY", "S350"]],
         "GALLO": [["GALLO", "S350"], ["RENAA", "S350"], ["MOXEE", "A290"], ["PORTL", "A210|S270"]],
         "MACHU": [["MACHU", "S350"], ["HUBUX", "S350"], ["IBALL", "S350"], ["AARON", "S350"], ["MOXEE", "A290"], ["PORTL", "A210|S270"]],
