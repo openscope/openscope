@@ -1816,7 +1816,7 @@
         "AND11A": {
             "icao": "AND11A",
             "name": "Andong One One Alfa",
-            "transitions": {
+            "entryPoints": {
                 "ANDONG": ["AND"]
             },
             "rwy": {
@@ -1836,7 +1836,7 @@
         "AND12A": {
             "icao": "AND12A",
             "name": "Andong One Two Alfa",
-            "transitions": {
+            "entryPoints": {
                 "ANDONG": ["AND"]
             },
             "rwy": {
@@ -1856,7 +1856,7 @@
         "AND13A": {
             "icao": "AND13A",
             "name": "Andong One Three Alfa",
-            "transitions": {
+            "entryPoints": {
                 "ANDONG": ["AND"]
             },
             "rwy": {
@@ -1876,7 +1876,7 @@
         "AND14A": {
             "icao": "AND14A",
             "name": "Andong One Four Alfa",
-            "transitions": {
+            "entryPoints": {
                 "ANDONG": ["AND"]
             },
             "rwy": {
@@ -1896,7 +1896,7 @@
         "AND15A": {
             "icao": "AND15A",
             "name": "Andong One Five Alfa",
-            "transitions": {
+            "entryPoints": {
                 "ANDONG": ["AND"]
             },
             "rwy": {
@@ -1916,7 +1916,7 @@
         "BK11A": {
             "icao": "BK11A",
             "name": "Lishe One One Alfa",
-            "transitions": {
+            "entryPoints": {
                 "LISHE": ["BK"]
             },
             "rwy": {
@@ -1936,7 +1936,7 @@
         "BK12A": {
             "icao": "BK12A",
             "name": "Lishe One Two Alfa",
-            "transitions": {
+            "entryPoints": {
                 "LISHE": ["BK"]
             },
             "rwy": {
@@ -1956,7 +1956,7 @@
         "BK13A": {
             "icao": "BK13A",
             "name": "Lishe One Three Alfa",
-            "transitions": {
+            "entryPoints": {
                 "LISHE": ["BK"]
             },
             "rwy": {
@@ -1976,7 +1976,7 @@
         "DUM21A": {
             "icao": "DUM21A",
             "name": "Dumet Two One Alfa",
-            "transitions": {
+            "entryPoints": {
                 "DUMET": ["DUMET"]
             },
             "rwy": {
@@ -1996,7 +1996,7 @@
         "MAT21A": {
             "icao": "MAT21A",
             "name": "Matnu Two One Alfa",
-            "transitions": {
+            "entryPoints": {
                 "MATNU": ["MATNU"]
             },
             "rwy": {
@@ -2016,7 +2016,7 @@
         "SAS11A": {
             "icao": "SAS11A",
             "name": "Sasan One One Alfa",
-            "transitions": {
+            "entryPoints": {
                 "SASAN": ["SASAN"]
             },
             "rwy": {
@@ -2036,7 +2036,7 @@
         "SAS12A": {
             "icao": "SAS12A",
             "name": "Sasan One Two Alfa",
-            "transitions": {
+            "entryPoints": {
                 "SASAN": ["SASAN"]
             },
             "rwy": {
@@ -2056,7 +2056,7 @@
         "SAS13A": {
             "icao": "SAS13A",
             "name": "Sasan One Three Alfa",
-            "transitions": {
+            "entryPoints": {
                 "SASAN": ["SASAN"]
             },
             "rwy": {
@@ -2076,7 +2076,7 @@
         "SAS14A": {
             "icao": "SAS14A",
             "name": "Sasan One Four Alfa",
-            "transitions": {
+            "entryPoints": {
                 "SASAN": ["SASAN"]
             },
             "rwy": {
@@ -2096,7 +2096,7 @@
         "SUF10A": {
             "icao": "SUF10A",
             "name": "Shuofang One Zero Alfa",
-            "transitions": {
+            "entryPoints": {
                 "SHUOFANG": ["SUF"]
             },
             "rwy": {
@@ -2116,7 +2116,7 @@
         "SUF11A": {
             "icao": "SUF11A",
             "name": "Shuofang One One Alfa",
-            "transitions": {
+            "entryPoints": {
                 "SHUOFANG": ["SUF"]
             },
             "rwy": {
@@ -2136,7 +2136,7 @@
         "SUF13A": {
             "icao": "SUF13A",
             "name": "Shuofang One Three Alfa",
-            "transitions": {
+            "entryPoints": {
                 "SHUOFANG": ["SUF"]
             },
             "rwy": {

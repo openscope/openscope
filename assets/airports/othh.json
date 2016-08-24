@@ -315,68 +315,66 @@
         ]
     }
   },
-
   "stars": {
     "AFNAN": {
-        "icao": "AFNAN",
-        "name": "Afnan",
-        "suffix": {"16L":"1M", "16R":"1C", "34L":"1W", "34R":"1E"},
-        "transitions": {
-          "AFNAN": [["AFNAN", "A120-"]]
-        },
-        "rwy": {
-          "16L": ["SIDMU", ["EGNUG", "A80"], ["IVANI", "A50|S220-"], ["TOVAN", "S180-"]],
-          "16R": ["SIDMU", ["EGNUG", "A80"], "DATMO", ["TANDO", "A50|A220-"], ["GOLSI", "S180-"]],
-          "34L": ["MUVEX", ["LOVAN", "A80"], ["PUXEL", "A60|S220-"], ["DANIK", "A50"], ["IMKAT", "S180-"]],
-          "34R": [["MUVEX", "A80"], ["LOVAN", "A80-"], ["MUXED", "A50|S220-"], ["LAGMA", "S180-"]]
-        },
-        "draw": [
-          ["AFNAN", "SIDMU", "EGNUG", "IVANI", "TOVAN"],
-          ["EGNUG", "DATMO", "TANDO", "GOLSI"],
-          ["AFNAN", "MUVEX", "LOVAN", "PUXEL", "DANIK", "IMKAT"],
-          ["LOVAN", "MUXED", "LAGMA"]
-        ]
+      "icao": "AFNAN",
+      "name": "Afnan",
+      "suffix": {"16L":"1M", "16R":"1C", "34L":"1W", "34R":"1E"},
+      "entryPoints": {
+        "AFNAN": [["AFNAN", "A120-"]]
+      },
+      "rwy": {
+        "16L": ["SIDMU", ["EGNUG", "A80"], ["IVANI", "A50|S220-"], ["TOVAN", "S180-"]],
+        "16R": ["SIDMU", ["EGNUG", "A80"], "DATMO", ["TANDO", "A50|A220-"], ["GOLSI", "S180-"]],
+        "34L": ["MUVEX", ["LOVAN", "A80"], ["PUXEL", "A60|S220-"], ["DANIK", "A50"], ["IMKAT", "S180-"]],
+        "34R": [["MUVEX", "A80"], ["LOVAN", "A80-"], ["MUXED", "A50|S220-"], ["LAGMA", "S180-"]]
+      },
+      "draw": [
+        ["AFNAN", "SIDMU", "EGNUG", "IVANI", "TOVAN"],
+        ["EGNUG", "DATMO", "TANDO", "GOLSI"],
+        ["AFNAN", "MUVEX", "LOVAN", "PUXEL", "DANIK", "IMKAT"],
+        ["LOVAN", "MUXED", "LAGMA"]
+      ]
     },
     "BAYAN": {
-        "icao": "BAYAN",
-        "name": "Bayan",
-        "suffix": {"16L":"1M", "16R":"1C", "34L":"1W", "34R":"1E"},
-        "transitions": {
-          "BAYAN": ["LUBAK", ["BAYAN", "A120-"]]
-        },
-        "rwy": {
-          "16L": ["ASTIM", ["EGNUG", "A80"], ["IVANI", "A50|S220-"], ["TOVAN", "S180-"]],
-          "16R": ["ASTIM", ["EGNUG", "A80"], "DATMO", ["TANDO", "A50|S220-"], ["GOLSI", "S180-"]],
-          "34L": ["EGNUG", ["OTIDA", "A80"], ["DANIK", "A50|S220-"], ["IMKAT", "S180-"]],
-          "34R": ["EGNUG", ["SIDMU", "A80"], ["MUXED", "A50|S220-"], ["LAGMA", "S180-"]]
-        },
-        "draw": [
-          ["BAYAN", "ASTIM", "EGNUG"],
-          ["BAYAN", "EGNUG", "OTIDA", "DANIK"],
-          ["EGNUG", "MUXED"]
-        ]
+      "icao": "BAYAN",
+      "name": "Bayan",
+      "suffix": {"16L":"1M", "16R":"1C", "34L":"1W", "34R":"1E"},
+      "entryPoints": {
+        "BAYAN": ["LUBAK", ["BAYAN", "A120-"]]
+      },
+      "rwy": {
+        "16L": ["ASTIM", ["EGNUG", "A80"], ["IVANI", "A50|S220-"], ["TOVAN", "S180-"]],
+        "16R": ["ASTIM", ["EGNUG", "A80"], "DATMO", ["TANDO", "A50|S220-"], ["GOLSI", "S180-"]],
+        "34L": ["EGNUG", ["OTIDA", "A80"], ["DANIK", "A50|S220-"], ["IMKAT", "S180-"]],
+        "34R": ["EGNUG", ["SIDMU", "A80"], ["MUXED", "A50|S220-"], ["LAGMA", "S180-"]]
+      },
+      "draw": [
+        ["BAYAN", "ASTIM", "EGNUG"],
+        ["BAYAN", "EGNUG", "OTIDA", "DANIK"],
+        ["EGNUG", "MUXED"]
+      ]
     },
     "GINTO": {
-        "icao": "GINTO",
-        "name": "Ginto",
-        "suffix": {"16L":"1M", "16R":"1C", "34L":"1W", "34R":"1E"},
-        "transitions": {
-          "GINTO": [["GINTO", "A120-"]]
-        },
-        "rwy": {
-          "16L": ["LAGNO", ["DATMO", "A80"], "PUTAN", ["IVANI", "A50|S220-"], ["TOVAN", "S180-"]],
-          "16R": ["LAGNO", ["DATMO", "A80"], ["TANDO", "A50|S220-"], ["GOLSI", "S180-"]],
-          "34L": ["LAGNO", "MUSAN", ["OTIDA", "A80"], ["DANIK", "A50|S220-"], ["IMKAT", "S180-"]],
-          "34R": ["LAGNO", ["SIDMU", "A80"], ["MUXED", "A50|S220-"], ["LAGMA", "S180"]]
-        },
-        "draw": [
-          ["GINTO", "LAGNO", "DATMO", "PUTAN", "IVANI"],
-          ["LAGNO", "MUSAN", "OTIDA"],
-          ["LAGNO", "SIDMU", "MUXED"]
-        ]
+      "icao": "GINTO",
+      "name": "Ginto",
+      "suffix": {"16L":"1M", "16R":"1C", "34L":"1W", "34R":"1E"},
+      "entryPoints": {
+        "GINTO": [["GINTO", "A120-"]]
+      },
+      "rwy": {
+        "16L": ["LAGNO", ["DATMO", "A80"], "PUTAN", ["IVANI", "A50|S220-"], ["TOVAN", "S180-"]],
+        "16R": ["LAGNO", ["DATMO", "A80"], ["TANDO", "A50|S220-"], ["GOLSI", "S180-"]],
+        "34L": ["LAGNO", "MUSAN", ["OTIDA", "A80"], ["DANIK", "A50|S220-"], ["IMKAT", "S180-"]],
+        "34R": ["LAGNO", ["SIDMU", "A80"], ["MUXED", "A50|S220-"], ["LAGMA", "S180"]]
+      },
+      "draw": [
+        ["GINTO", "LAGNO", "DATMO", "PUTAN", "IVANI"],
+        ["LAGNO", "MUSAN", "OTIDA"],
+        ["LAGNO", "SIDMU", "MUXED"]
+      ]
     }
   },
-
   "departures": {
     "airlines": [
       ["axb",   4],

@@ -189,7 +189,7 @@
         "25R": ["RBELL", ["ROPPR", "A70"], "RODDD"]
       },
       "body": [["BOACH", "A130+"]],
-      "transitions": {
+      "exitPoints": {
         "HEC": ["HEC"],
         "TNP": ["ZELMA", "JOTNU", "TNP"]
       },
@@ -217,7 +217,7 @@
         "25R": ["RBELL", ["ROPPR", "A70"], ["CEASR", "A80+"], ["HITME", "A110+"]]
       },
       "body": ["COWBY"],
-      "transitions": {
+      "exitPoints": {
         "DRK": ["NAVHO", "DRK"],
         "GUP": [["MOSBI", "A150+"], "GUP"],
         "INW": [["CUTRO", "A150+"], "INW"]
@@ -243,7 +243,7 @@
         "25R": ["RBELL", ["ROPPR", "A70"], ["MDDOG", "A90"], ["TARRK", "A110"]]
       },
       "body": [["SHEAD", "A140+"]],
-      "transitions": {
+      "exitPoints": {
         "KENNO": [["DBIGE", "A210+"], ["BIKKR", "A210+"], "KENNO"],
         "OAL": [["DBIGE", "A210+"], ["BIKKR", "A210+"], "KENNO", "OAL"]
       },
@@ -268,7 +268,7 @@
         "25R": ["RBELL", ["ROPPR", "A70"], ["CEASR", "A80+"], "FORGE", ["WILLW", "A140+"]]
       },
       "body": ["TRALR"],
-      "transitions": {
+      "exitPoints": {
         "MLF": ["MLF"],
         "BCE": ["BCE"],
         "DVC": ["NICLE", "DVC"]
@@ -284,7 +284,7 @@
     "GRNPA1": {
       "icao": "GRNPA1",
       "name": "Grandpa One",
-      "transitions": {
+      "entryPoints": {
         "BETHL": ["BETHL", ["HOLDM", "A270"]],
         "BCE":   ["BCE"],
         "DVC":   ["DVC", "BETHL", ["HOLDM", "A270"]],
@@ -305,7 +305,7 @@
     "KEPEC3": {
       "icao": "KEPEC3",
       "name": "Kepec Three",
-      "transitions": {
+      "entryPoints": {
         "DAG": ["DAG", ["MISEN", "A240"]],
         "TNP": ["TNP", "JOTNU", ["ZELMA", "A310-"]]
       },
@@ -324,7 +324,7 @@
     "SUNST3": {
       "icao": "SUNST3",
       "name": "Sunset Three",
-      "transitions": {
+      "entryPoints": {
         "BTY":   ["BTY"],
         "TACUS": ["TACUS", "TUMBE"]
       },
@@ -343,7 +343,7 @@
     "TYSSN4": {
       "icao": "TYSSN4",
       "name": "Tyson Three",
-      "transitions": {
+      "entryPoints": {
         "DRK":   ["DRK", ["IGM", "A240"], ["ZATES", "A190"]],
         "IGM":   [["IGM", "A240"], ["ZATES", "A190"]],
         "PGS":   ["PGS", ["CEJAY", "A190"]],

@@ -10,10 +10,10 @@
   "ctr_radius": 80,
   "ctr_ceiling": 24500,
   "initial_alt": 5000,
-  "position": ["N48d6m37.07", "E16d34m10.92", "600.0ft"],
+  "position": ["N48d6m37.07", "E16d34m10.92"],
   "rr_radius_nm": 5.0,
   "rr_center": ["N48d6m37.07", "E16d34m10.92"],
-  "has_terrain": false,
+  "has_terrain": true,
   "wind": {
     "angle": 140,
     "speed": 7
@@ -187,6 +187,8 @@
     "_NATEX080019": ["N47d46.81m0", "E017d58.01m0"],
     "_NIGSI202010": ["N47d13.05m0", "E015d56.09m0"],
     "_MASUR272009": ["N48d31.88m0", "E015d12.85m0"],
+    "_LANUX140000": ["N49.148622", "E15.432974"],
+    "_REKLU262000": ["N48d37m29.9", "E17d38m22.1"],
     "WGM":   ["N48d19m25.88", "E16d29m27.43"],
     "SNU":   ["N47d52m29.55", "E16d17m18.37"],
     "STO":   ["N48d25m01.00", "E16d01m06.00"],
@@ -309,6 +311,7 @@
     "WW389": ["N48d07m05.00", "E16d53m00.00"],
     "WW390": ["N48d00m40.43", "E17d02m11.52"],
 
+    "WW450": ["N47d53m40.00", "E15d28m51.00"],
     "WW650": ["N48d13m09.05", "E16d14m07.70"],
     "WW651": ["N48d14m01.04", "E16d11m25.92"],
     "WW652": ["N48d16m06.33", "E16d05m06.38"],
@@ -392,14 +395,14 @@
     {
       "name":        ["11", "29"],
       "name_offset": [[0, 0], [0, 0]],
-      "end":    [["N48d7m22.13", "E16d32m00.15", "574ft"], ["N48d6m32.57", "E16d34m32.3", "601ft"]],
+      "end":    [["N48d7m22.13", "E16d32m00.15"], ["N48d6m32.57", "E16d34m32.3"]],
       "length":      3.4923,
       "ils":         [true, true]
     },
     {
       "name":        ["16", "34"],
       "name_offset": [[0, 0], [0, 0]],
-      "end":    [["N48d7m11.21", "E16d34m41.46", "597ft"], ["N48d5m19.07", "E16d35m28.87", "597ft"]],
+      "end":    [["N48d7m11.21", "E16d34m41.46"], ["N48d5m19.07", "E16d35m28.87"]],
       "length":      3.5888,
       "ils":         [true, true]
     }
@@ -592,163 +595,276 @@
     "NERDU4K": {
      "icao": "NERDU4K",
      "name": "Nerdu four kilo",
-     "transitions": {
+     "entryPoints": {
           "NERDU": ["NERDU"]
       },
-     "body": [["NERDU", "A80|S250"], ["WW666", "A80-|S250"], ["WW664", "A50+|S250"], ["WW658", "A50|S250"], ["WW656", "A50-|S250"], ["WW654", "A50-|S250"], ["WW653", "A50-|S250"], ["WW652", "A50-|S250"], ["WW651", "A50-|S250"], ["WW650", "A50-|S250"], ["RW11", "A50-|S250"]],
+     "body": [["NERDU", "A80|S250-"], ["WW666", "A80-|S250-"], ["WW664", "A50|S250"], ["WW658", "A50|S250-"], ["WW656", "A50-|S250-"], ["WW654", "A50-|S250-"], ["WW653", "A50-|S250-"], ["WW652", "A50-|S250-"], ["WW651", "A50-|S250-"], ["WW650", "A50-|S250-"], ["RW11", "A50-|S250-"]],
      "draw": ["NERDU", "WW666", "WW664", "WW658", "WW656", "WW654", "WW653", "WW652", "WW651", "WW650"]
     },
     "NERDU4M": {
      "icao": "NERDU4M",
      "name": "Nerdu four mike",
-     "transitions": {
+     "entryPoints": {
           "NERDU": ["NERDU"]
       },
-     "body": [["NERDU", "A60+|S250"], ["WW963", "A70+|S250"], ["WW961", "A70|S250"], ["WW959", "A60|S250"], ["WW957", "A60-|S250"], ["WW955", "A60-|S250"], ["WW953", "A60-|S250"], ["WW952", "A30|S250"], ["WW951", "A30-|S250"], ["WW950", "A30-|S250"], ["RW29", "A50-|S250"]],
+     "body": [["NERDU", "A60+|S250-"], ["WW963", "A70+|S250"], ["WW961", "A70|S250-"], ["WW959", "A60|S250-"], ["WW957", "A60-|S250-"], ["WW955", "A60-|S250-"], ["WW953", "A60-|S250-"], ["WW952", "A30|S250-"], ["WW951", "A30-|S250-"], ["WW950", "A30-|S250-"], ["RW29", "A50-|S250-"]],
      "draw": [["NERDU", "WW963", "WW961", "WW959", "WW957", "WW955", "WW953", "WW952", "WW951", "WW950"]]
     },
     "NERDU6L": {
      "icao": "NERDU6L",
      "name": "Nerdu six lima",
-     "transitions": {
+     "entryPoints": {
           "NERDU": ["NERDU"]
       },
-     "body": [["NERDU", "A60+|S250"], ["WW681", "A60+|S250"], ["WW679", "A60|S250"], ["WW677", "A60-|S250"], ["WW675", "A50-|S250"], ["WW673", "A50-|S250"], ["WW672", "A50-|S250"], ["WW671", "A50-|S250"], ["WW670", "A50-|S250"], ["RW16", "A50-|S250"]],
+     "body": [["NERDU", "A60+|S250-"], ["WW681", "A100-|S250-"], ["WW679", "A60|S250-"], ["WW677", "A60-|S250-"], ["WW675", "A50-|S250-"], ["WW673", "A50-|S250-"], ["WW672", "A50-|S250-"], ["WW671", "A50-|S250-"], ["WW670", "A50-|S250-"], ["RW16", "A50-|S250-"]],
      "draw": [["NERDU", "WW681", "WW679", "WW677", "WW675", "WW673", "WW672", "WW671", "WW670"]]
     },
     "NERDU4N": {
      "icao": "NERDU4N",
      "name": "Nerdu four november",
-     "transitions": {
+     "entryPoints": {
           "NERDU": ["NERDU"]
       },
-     "body": [["NERDU", "A70+|S250"], ["WW987", "A70+|S250"], ["WW985", "A70|S250"], ["WW983", "A70|S250"], ["WW981", "A60|S250"], ["WW979", "A60+|S250"], ["WW977", "A60+|S250"], ["WW975", "A60+|S250"], ["WW974", "A60+|S250"], ["WW973", "A40+|S250"], ["WW972", "A40|S250"], ["WW971", "A30-|S250"], ["WW970", "A30-|S250"], ["RW34", "A50-|S250"]],
-     "draw": [["NERDU", "WW987", "WW985", "WW983", "WW981", "WW979", "WW977", "WW975", "WW974", "WW973", "WW963", "WW963", "WW970"]]
+     "body": [["NERDU", "A70+|S250-"], ["WW987", "A70+|S250-"], ["WW985", "A70|S250-"], ["WW983", "A70|S250-"], ["WW981", "A50-|S250-"], ["WW979", "A50-|S250-"], ["WW977", "A50-|S250-"], ["WW975", "A50-|S250-"], ["WW974", "A50-|S250-"], ["WW973", "A45|S250-"], ["WW972", "A40|S250-"], ["WW971", "A30-|S250-"], ["WW970", "A30-|S250-"], ["RW34", "A50-|S250-"]],
+     "draw": [["NERDU", "WW987", "WW985", "WW983", "WW981", "WW979", "WW977", "WW975", "WW974", "WW973", "WW972", "WW971", "WW970"]]
     },
     "MABOD4K": {
      "icao": "MABOD4K",
      "name": "Mabod four kilo",
-     "transitions": {
+     "entryPoints": {
           "MABOD": ["MABOD"]
       },
-     "body": [["MABOD", "A60+|S250"], ["WW664", "A50+|S250"], ["WW658", "A50|S250"], ["WW656", "A50-|S250"], ["WW654", "A50-|S250"], ["WW653", "A50-|S250"], ["WW652", "A50-|S250"], ["WW651", "A50-|S250"], ["WW650", "A50-|S250"], ["RW11", "A50-|S250"]],
+     "body": [["MABOD", "A60+|S250-"], ["WW664", "A50|S250"], ["WW658", "A50|S250-"], ["WW656", "A50-|S250-"], ["WW654", "A50-|S250-"], ["WW653", "A50-|S250-"], ["WW652", "A50-|S250-"], ["WW651", "A50-|S250-"], ["WW650", "A50-|S250-"], ["RW11", "A50-|S250-"]],
      "draw": [["MABOD", "WW664", "WW658", "WW656", "WW654", "WW653", "WW652", "WW651", "WW650"]]
     },
     "MABOD5M": {
      "icao": "MABOD5M",
      "name": "Mabod five lima",
-     "transitions": {
+     "entryPoints": {
           "MABOD": ["MABOD"]
       },
-     "body": [["MABOD", "A60+|S250"], ["WW967", "A60+|S250"], ["WW965", "A60+|S250"], ["WW961", "A60|S250"], ["WW959", "A60|S250"], ["WW957", "A60-|S250"], ["WW955", "A60-|S250"], ["WW953", "A60-|S250"], ["WW952", "A30|S250"], ["WW951", "A30-|S250"], ["WW950", "A30-|S250"], ["RW29", "A50-|S250"]],
+     "body": [["MABOD", "A60+|S250-"], ["WW967", "A60+|S250-"], ["WW965", "A60+|S250-"], ["WW961", "A60|S250-"], ["WW959", "A60|S250-"], ["WW957", "A60-|S250-"], ["WW955", "A60-|S250-"], ["WW953", "A60-|S250-"], ["WW952", "A30|S250-"], ["WW951", "A30-|S250-"], ["WW950", "A30-|S250-"], ["RW29", "A50-|S250-"]],
      "draw": [["MABOD", "WW967", "WW965", "WW961", "WW959", "WW957", "WW955", "WW953", "WW952", "WW951", "WW950"]]
     },
     "MABOD5L": {
      "icao": "MABOD5L",
      "name": "Mabod five lima",
-     "transitions": {
+     "entryPoints": {
           "MABOD": ["MABOD"]
       },
-     "body": [["WW690", "A60+|S250"], ["WW688", "A60+|S250"], ["WW680", "A60+|S250"], ["WW678", "A50|S250"], ["WW676", "A50-|S250"], ["WW674", "A50-|S250"], ["WW673", "A50-|S250"], ["WW672", "A50-|S250"], ["WW671", "A50-|S250"], ["WW670", "A50|S250"], ["RW16", "A50-|S250"]],
+     "body": [["WW690", "A100|S250-"], ["WW688", "A80-|S250-"], ["WW680", "A60|S250-"], ["WW678", "A50|S250-"], ["WW676", "A50-|S250-"], ["WW674", "A50-|S250-"], ["WW673", "A50-|S250-"], ["WW672", "A50-|S250-"], ["WW671", "A50-|S250-"], ["WW670", "A50|S250-"], ["RW16", "A50-|S250-"]],
      "draw": [["WW690", "WW688", "WW680", "WW678", "WW676", "WW674", "WW673", "WW672", "WW671", "WW670"]]
     },
     "MABOD4N": {
      "icao": "MABOD4N",
      "name": "Mabod four november",
-     "transitions": {
+     "entryPoints": {
           "MABOD": ["MABOD"]
       },
-     "body": [["MABOD", "A60+|S250"], ["WW987", "A80+|S250"], ["WW985", "A80|S250"], ["WW983", "A80|S250"], ["WW981", "A60|S250"], ["WW979", "A60-|S250"], ["WW977", "A60-|S250"], ["WW975", "A60-|S250"], ["WW974", "A60-|S250"], ["WW973", "A40+|S250"], ["WW972", "A40|S250"], ["WW971", "A30-|S250"], ["WW970", "A30-|S250"], ["RW34", "A50-|S250"]],
-     "draw": [["MABOD", "WW987", "WW985", "WW983", "WW981", "WW979", "WW977", "WW975", "WW974", "WW973", "WW963", "WW963", "WW970"]]
+     "body": [["MABOD", "A60+|S250-"], ["WW987", "A100|S250-"], ["WW985", "A80|S250-"], ["WW983", "A80|S250-"], ["WW981", "A50-|S250-"], ["WW979", "A50-|S250-"], ["WW977", "A50-|S250-"], ["WW975", "A50-|S250-"], ["WW974", "A50-|S250-"], ["WW973", "A45|S250-"], ["WW972", "A40|S250-"], ["WW971", "A30-|S250-"], ["WW970", "A30-|S250-"], ["RW34", "A50-|S250-"]],
+     "draw": [["MABOD", "WW987", "WW985", "WW983", "WW981", "WW979", "WW977", "WW975", "WW974", "WW973", "WW972", "WW971", "WW970"]]
     },
     "BALAD3K": {
      "icao": "BALAD3K",
      "name": "Balad three kilo",
-     "transitions": {
+     "entryPoints": {
           "BALAD": ["BALAD"]
       },
-     "body": [["BALAD", "A80+|S250"], ["WW669", "A60+|S250"], ["WW665", "A60+|S250"], ["WW663", "A50+|S250"], ["WW661", "A50|S250"], ["WW659", "A50-|S250"], ["WW657", "A50-|S250"], ["WW655", "A50-|S250"], ["WW653", "A50-|S250"], ["WW652", "A50-|S250"], ["WW651", "A50-|S250"], ["WW650", "A50-|S250"], ["RW11", "A50-|S250"]],
+     "body": [["BALAD", "A100|S250-"], ["WW669", "A60+|S250-"], ["WW665", "A60|S250-"], ["WW663", "A50|S250"], ["WW661", "A50|S250-"], ["WW659", "A50-|S250-"], ["WW657", "A50-|S250-"], ["WW655", "A50-|S250-"], ["WW653", "A50-|S250-"], ["WW652", "A50-|S250-"], ["WW651", "A50-|S250-"], ["WW650", "A50-|S250-"], ["RW11", "A50-|S250-"]],
      "draw": [["BALAD", "WW669", "WW665", "WW663", "WW661", "WW659", "WW657", "WW655", "WW653", "WW652", "WW651", "WW650"]]
     },
     "BALAD4M": {
      "icao": "BALAD4M",
      "name": "Balad four mike",
-     "transitions": {
+     "entryPoints": {
           "BALAD": ["BALAD"]
       },
-     "body": [["BALAD", "A80+|S250"], ["WW964", "A70|S250"], ["WW956", "A60|S250"], ["WW954", "A60-|S250"], ["WW953", "A60-|S250"], ["WW952", "A30|S250"], ["WW951", "A30-|S250"], ["WW950", "A30-|S250"], ["RW29", "A50-|S250"]],
+     "body": [["BALAD", "A100|S250-"], ["WW964", "A70-|S250-"], ["WW956", "A60|S250-"], ["WW954", "A60-|S250-"], ["WW953", "A60-|S250-"], ["WW952", "A30|S250-"], ["WW951", "A30-|S250-"], ["WW950", "A30-|S250-"], ["RW29", "A50-|S250-"]],
      "draw": [["BALAD", "WW964", "WW956", "WW954", "WW953", "WW952", "WW951", "WW950"]]
     },
     "BALAD5L": {
      "icao": "BALAD5L",
      "name": "Balad five lima",
-     "transitions": {
+     "entryPoints": {
           "BALAD": ["BALAD"]
       },
-     "body": [["BALAD", "A80+|S250"], ["WW686", "A60|S250"], ["WW684", "A60|S250"], ["WW682", "A60-|S250"], ["WW680", "A60-|S250"], ["WW678", "A50-|S250"], ["WW676", "A50-|S250"], ["WW674", "A50-|S250"], ["WW673", "A50-|S250"], ["WW672", "A50-|S250"], ["WW671", "A50-|S250"], ["WW670", "A50-|S250"], ["RW16", "A50-|S250"]],
+     "body": [["BALAD", "A100|S250-"], ["WW686", "A60|S250-"], ["WW684", "A60|S250-"], ["WW682", "A60-|S250-"], ["WW680", "A60|S250-"], ["WW678", "A50-|S250-"], ["WW676", "A50-|S250-"], ["WW674", "A50-|S250-"], ["WW673", "A50-|S250-"], ["WW672", "A50-|S250-"], ["WW671", "A50-|S250-"], ["WW670", "A50-|S250-"], ["RW16", "A50-|S250-"]],
      "draw": [["BALAD", "WW686", "WW684", "WW682", "WW680", "WW678", "WW676", "WW674", "WW673", "WW672", "WW671", "WW670"]]
     },
     "BALAD3N": {
      "icao": "BALAD3N",
      "name": "Balad three november",
-     "transitions": {
+     "entryPoints": {
           "BALAD": ["BALAD"]
       },
-     "body": [["BALAD", "A80+|S250"], ["WW988", "A80|S250"], ["WW982", "A60|S250"], ["WW980", "A60-|S250"], ["WW978", "A60-|S250"], ["WW976", "A60-|S250"], ["WW974", "A60-|S250"], ["WW973", "A40-|S250"], ["WW972", "A40-|S250"], ["WW971", "A30-|S250"], ["WW970", "A30-|S250"], ["RW34", "A50-|S250"]],
-     "draw": [["BALAD", "WW988", "WW982", "WW980", "WW978", "WW976", "WW974", "WW973", "WW963", "WW963", "WW970"]]
+     "body": [["BALAD", "A100|S250-"], ["WW988", "A80|S250-"], ["WW982", "A50-|S250-"], ["WW980", "A60-|S250-"], ["WW978", "A50-|S250-"], ["WW976", "A50-|S250-"], ["WW974", "A50-|S250-"], ["WW973", "A40-|S250-"], ["WW972", "A40-|S250-"], ["WW971", "A30-|S250-"], ["WW970", "A30-|S250-"], ["RW34", "A50-|S250-"]],
+     "draw": [["BALAD", "WW988", "WW982", "WW980", "WW978", "WW976", "WW974", "WW973", "WW972", "WW971", "WW970"]]
     },
     "PESAT3K": {
      "icao": "PESAT3K",
      "name": "Pesat three kilo",
-     "transitions": {
+     "entryPoints": {
           "PESAT": ["PESAT"]
       },
-     "body": [["PESAT", "A60+|S250"], ["WW667", "A80|S250"], ["WW665", "A60+|S250"], ["WW663", "A50+|S250"], ["WW661", "A50|S250"], ["WW659", "A50|S250"], ["WW657", "A50-|S250"], ["WW655", "A50-|S250"], ["WW653", "A50-|S250"], ["WW652", "A50-|S250"], ["WW651", "A50-|S250"], ["WW650", "A50-|S250"], ["RW11", "A50-|S250"]],
+     "body": [["PESAT", "A60+|S250-"], ["WW667", "A80|S250-"], ["WW665", "A60|S250-"], ["WW663", "A50|S250"], ["WW661", "A50|S250-"], ["WW659", "A50-|S250-"], ["WW657", "A50-|S250-"], ["WW655", "A50-|S250-"], ["WW653", "A50-|S250-"], ["WW652", "A50-|S250-"], ["WW651", "A50-|S250-"], ["WW650", "A50-|S250-"], ["RW11", "A50-|S250-"]],
      "draw": [["PESAT", "WW667", "WW665", "WW663", "WW661", "WW659", "WW657", "WW655", "WW653", "WW652", "WW651", "WW650"]]
     },
     "PESAT4M": {
      "icao": "PESAT4M",
      "name": "Pesat four mike",
-     "transitions": {
+     "entryPoints": {
           "PESAT": ["PESAT"]
       },
-     "body": [["PESAT", "A60+|S250"], ["WW966", "A60|S250"], ["WW956", "A60-|S250"], ["WW954", "A60-|S250"], ["WW953", "A60-|S250"], ["WW952", "A30|S250"], ["WW951", "A30-|S250"], ["WW950", "A30-|S250"], ["RW29", "A50-|S250"]],
+     "body": [["PESAT", "A60+|S250-"], ["WW966", "A60|S250-"], ["WW956", "A60-|S250-"], ["WW954", "A60-|S250-"], ["WW953", "A60-|S250-"], ["WW952", "A30|S250-"], ["WW951", "A30-|S250-"], ["WW950", "A30-|S250-"], ["RW29", "A50-|S250-"]],
      "draw": [["PESAT", "WW966", "WW956", "WW954", "WW953", "WW952", "WW951", "WW950"]]
     },
     "PESAT5L": {
      "icao": "PESAT 5L",
      "name": "Pesat five lima",
-     "transitions": {
+     "entryPoints": {
           "PESAT": ["PESAT"]
       },
-     "body": [["PESAT", "A60+|S250"], ["WW684", "A80|S250"], ["WW682", "A60+|S250"], ["WW680", "A60+|S250"], ["WW678", "A50|S250"], ["WW676", "A50-|S250"], ["WW674", "A50-|S250"], ["WW673", "A50-|S250"], ["WW672", "A50-|S250"], ["WW671", "A50-|S250"], ["WW670", "A50-|S250"], ["RW16", "A50-|S250"]],
+     "body": [["PESAT", "A60+|S250-"], ["WW684", "A80|S250-"], ["WW682", "A60+|S250-"], ["WW680", "A60|S250-"], ["WW678", "A50|S250-"], ["WW676", "A50-|S250-"], ["WW674", "A50-|S250-"], ["WW673", "A50-|S250-"], ["WW672", "A50-|S250-"], ["WW671", "A50-|S250-"], ["WW670", "A50-|S250-"], ["RW16", "A50-|S250-"]],
      "draw": [["PESAT", "WW684", "WW682", "WW680", "WW678", "WW676", "WW674", "WW673", "WW672", "WW671", "WW670"]]
     },
     "PESAT4N": {
      "icao": "PESAT4N",
      "name": "Pesat four november",
-     "transitions": {
+     "entryPoints": {
           "PESAT": ["PESAT"]
       },
-     "body": [["PESAT", "A60+|S250"], ["WW991", "A70|S250"], ["WW989", "A60+|S250"], ["WW981", "A60|S250"], ["WW979", "A60-|S250"], ["WW977", "A60-|S250"], ["WW975", "A60-|S250"], ["WW974", "A60-|S250"], ["WW973", "A40+|S250"], ["WW972", "A40|S250"], ["WW971", "A30-|S250"], ["WW970", "A30-|S250"], ["RW34", "A50-|S250"]],
+     "body": [["PESAT", "A60+|S250-"], ["WW991", "A70|S250-"], ["WW989", "A60+|S250-"], ["WW981", "A50-|S250-"], ["WW979", "A50-|S250-"], ["WW977", "A50-|S250-"], ["WW975", "A50-|S250-"], ["WW974", "A50-|S250-"], ["WW973", "A45|S250-"], ["WW972", "A40|S250-"], ["WW971", "A30-|S250-"], ["WW970", "A30-|S250-"], ["RW34", "A50-|S250-"]],
      "draw": [["PESAT", "WW991", "WW989", "WW981", "WW979", "WW977", "WW975", "WW974", "WW973", "WW972", "WW971", "WW970"]]
+    },
+    "LANUX6W": {
+      "icao": "LANUX6W",
+      "name": "Lanux six whiskey arrival",
+      "entryPoints": {
+        "LANUX": ["_LANUX140000"]
+      },
+      "body": [["LANUX", "A150-|S330"], ["NERDU", "A60-|S250"]],
+      "draw": ["LANUX", "NERDU"]
+    },
+    "MASUR2W": {
+      "icao": "MASUR2W",
+      "name": "Masur two whiskey arrival",
+      "entryPoints": {
+        "MASUR": ["_MASUR272009"]
+      },
+      "body": [["MASUR", "A170-|S330"], ["TEMTA", "A60-|S250"], "NERDU"],
+      "draw": [["MASUR", "TEMTA", "NERDU"]]
+    },
+    "GAMLI5W": {
+      "icao": "GAMLI5W",
+      "name": "Gamli five whiskey arrival",
+      "entryPoints": {
+        "GAMLI": ["LIMRA"]
+      },
+      "body": [["GAMLI", "A60+|S330+"], ["BARUG", "A170-|S330"], ["WW450", "A90-|S250-"], ["BALAD", "A80-|S250"]],
+      "draw": [["GAMLI", "BARUG", "WW450", "BALAD"]]
+    },
+    "XANUT1W": {
+      "icao": "XANUT1W",
+      "name": "Xanut one whiskey arrival",
+      "entryPoints": {
+        "XANUT": ["_NIGSI202010"]
+      },
+      "body": [["NIGSI", "A180-|S330"], ["BALAD", "A80|S250"]],
+      "draw": [["NIGSI", "BALAD"]]
+    },
+    "NATEX1W": {
+      "icao": "NATEX1W",
+      "name": "Natex one whisky arrival",
+      "entryPoints": {
+        "NATEX": ["_NATEX080019"]
+      },
+      "body": [["NATEX", "A140-|S330-"], ["PESAT", "A60-|S250"]],
+      "draw": [["NATEX", "PESAT"]]
+    },
+    "MIKOV7W": {
+      "icao": "MIKOV7W",
+      "name": "Mikov seven whiskey arrival",
+      "entryPoints": {
+        "MIKOV": ["_MIKOV345020"]
+      },
+      "body": [["MIKOV", "A170-|S330"], ["MABOD", "A60-|S250"]],
+      "draw": [["MIKOV", "MABOD"]]
+    },
+    "REKLU1W": {
+      "icao": "REKLU1W",
+      "name": "Reklu one whiskey arrival",
+      "entryPoints": {
+        "REKLU": ["_REKLU262000"]
+      },
+      "body": [["REKLU", "A180|S250-"], ["MABOD", "A60-|S250"]],
+      "draw": [["REKLU", "MABOD"]]
     }
    },
   "departures": {
     "airlines": [
-      ["aua", 20],
-      ["ber", 15],
-      ["baw", 5],
+      ["aar/cargo", 2],
+      ["adr", 5],
+      ["aee", 2],
+      ["afl", 3],
+      ["afr", 3],
+      ["aic/long", 1],
+      ["amc", 1],
+      ["asl", 2],
+      ["aua", 165],
+      ["aua/long", 10],
+      ["aui", 2],
+      ["azq", 2],
+      ["baw", 6],
+      ["bel", 3],
+      ["ber", 17],
+      ["bti", 2],
+      ["cal/long", 1],
+      ["cca/long", 1],
+      ["cfg", 3],
+      ["clx", 2],
+      ["csn/cargo", 1],
+      ["ctn", 3],
+      ["dlh/cityline", 4],
       ["dlh", 10],
       ["ein", 1],
-      ["ryr", 1],
+      ["ely", 1],
+      ["eth", 1],
+      ["eva/long", 1],
+      ["ewg", 6],
+      ["exs", 1],
+      ["ezy", 7],
+      ["fdx", 4],
+      ["fpo", 2],
       ["gwi", 10],
-      ["klm", 5],
-      ["ezy", 8],
-      ["aal/long", 3],
-      ["aca/long", 3],
-      ["sas", 5],
-      ["ual/long", 5]
+      ["ibe", 2],
+      ["kal/long", 1],
+      ["kal/cargo", 2],
+      ["klm", 4],
+      ["lgl", 3],
+      ["lot", 2],
+      ["lzb", 1],
+      ["mld", 1],
+      ["nax", 1],
+      ["nly", 36],
+      ["oaw", 2],
+      ["pgt", 3],
+      ["qtr", 1],
+      ["rja", 1],
+      ["rot", 3],
+      ["sas", 1],
+      ["sdm", 1],
+      ["swr", 3],
+      ["sxd", 2],
+      ["tap", 2],
+      ["tar", 1],
+      ["tay", 3],
+      ["thy", 7],
+      ["tra", 1],
+      ["tui", 1],
+      ["tvf", 1],
+      ["uae", 3],
+      ["ups", 6],
+      ["vlg", 3]
     ],
     "destinations": [
       "LANUX", "LEDVA", "ADAMA", "STEIN", "OSPEN", "SITNI", "DITIS", "KOXER", "LUGIM", "MOTIX", "SASAL", "SNU", "UMBIL", "WGM"
@@ -759,70 +875,177 @@
   },
   "arrivals": [
     {
-      "_name":  "MABOD",
-      "speed":    250,
-      "fixes":    ["_MIKOV345020", "MIKOV", "MABOD"],
+      "_name":  "MIKOV",
+      "_n": true,
+      "speed":    450,
+      "route":    "MIKOV.MIKOV7W.LOWW",
       "airlines":  [
-        ["aua", 10],
-        ["ber", 10],
+        ["adr", 1],
+        ["afl", 3],
+        ["afr", 1],
+        ["aua", 66],
+        ["aua/long", 9],
+        ["aui", 2],
+        ["baw", 6],
+        ["bel", 3],
+        ["ber", 16],
+        ["bti", 2],
+        ["cal/long", 1],
         ["dlh", 10],
-        ["gwi", 10],
-        ["sas", 5],
-        ["ezy", 7],
-        ["ual/long", 5],
-        ["aca/long", 5],
-        ["aal/long", 5]
+        ["ein", 1],
+        ["eva/long", 1],
+        ["ewg", 4],
+        ["ezy", 6],
+        ["fpo", 1],
+        ["gwi", 9],
+        ["kal/long", 1],
+        ["klm", 4],
+        ["lgl", 3],
+        ["lot", 2],
+        ["nly", 4],
+        ["sdm", 1],
+        ["sxd", 2],
+        ["ups", 2]
       ],
       "type": "surge",
-      "entrail": [12, 22],
-      "frequency": 15,
-      "altitude":  10000
+      "entrail": [15, 25],
+      "frequency": 17,
+      "altitude":  25000
     },
     {
-      "_name":  "PESAT",
-      "speed":    250,
-      "fixes":   ["_NATEX080019", "NATEX", "PESAT", "WW991"],
+      "_name":  "NATEX",
+      "_n": true,
+      "speed":    450,
+      "route":   "NATEX.NATEX1W.LOWW",
       "airlines":  [
-        ["aua", 5],
-        ["ezy", 5],
-        ["ber", 10]
+        ["aua", 3],
+        ["rot", 1]
       ],
       "type": "random",
-      "frequency": 5,
-      "altitude":  10000
+      "frequency": 4,
+      "altitude":  25000
     },
     {
-      "_name":  "BALAD",
-      "speed":    250,
-      "fixes":    ["_NIGSI202010", "NIGSI", "BALAD"],
+      "_name":  "XANUT",
+      "_n": true,
+      "_combines": "OBUTI1W, GBG5W, GRZ6W, ABTAN1W, XANUT1W",
+      "speed":    450,
+      "route":    "XANUT.XANUT1W.LOWW",
       "airlines":  [
-        ["aua", 5],
-        ["ezy", 5],
-        ["ber", 10]
+        ["adr", 4],
+        ["aee", 1],
+        ["amc", 1],
+        ["asl", 2],
+        ["aua", 51],
+        ["cfg", 3],
+        ["ctn", 2],
+        ["ely", 2],
+        ["ewg", 3],
+        ["ibe", 2],
+        ["msr", 1],
+        ["nly", 28],
+        ["pgt", 2],
+        ["qtr/long", 1],
+        ["rot", 2],
+        ["sxd", 2],
+        ["tap", 2],
+        ["tar", 1],
+        ["thy", 4],
+        ["tui", 1],
+        ["uae/long", 2],
+        ["vlg", 2]
       ],
       "type": "surge",
       "entrail": [15, 30],
-      "frequency": 12,
-      "altitude": 10000
+      "frequency": 15,
+      "altitude": 25000
     },
     {
-      "_name":  "NERDU",
-      "speed":    250,
-      "fixes":    ["_MASUR272009", "MASUR", "TEMTA", "NERDU"],
+      "_name":  "MASUR",
+      "_n": true,
+      "speed":    450,
+      "route":  "MASUR.MASUR2W.LOWW",
       "airlines":  [
-        ["ein", 2],
-        ["ryr", 2],
-        ["baw", 4],
-        ["dlh", 3],
-        ["klm", 1],
-        ["aua", 5],
-        ["ezy", 1],
-        ["ber", 5],
-        ["gwi", 5]
+        ["aua", 25],
+        ["dlh", 1],
+        ["gwi", 1],
+        ["nly", 4],
+        ["oaw", 1],
+        ["swr", 2],
+        ["swr/long", 1]
+      ],
+      "type": "random",
+      "frequency": 3,
+      "altitude":  25000
+    },
+    {
+      "_name":  "REKLU",
+      "_n": true,
+      "speed":    450,
+      "route":  "REKLU.REKLU1W.LOWW",
+      "airlines":  [
+        ["aua", 3],
+        ["rot", 1]
+      ],
+      "type": "random",
+      "frequency": 1,
+      "altitude":  25000
+    },
+    {
+      "_name":  "LANUX",
+      "_n": true,
+      "speed":    450,
+      "route":    "LANUX.LANUX6W.LOWW",
+      "airlines":  [
+        ["adr", 1],
+        ["afl", 3],
+        ["afr", 1],
+        ["aua", 66],
+        ["aua/long", 9],
+        ["aui", 2],
+        ["baw", 6],
+        ["bel", 3],
+        ["ber", 16],
+        ["bti", 2],
+        ["cal/long", 1],
+        ["dlh", 10],
+        ["ein", 1],
+        ["eva/long", 1],
+        ["ewg", 4],
+        ["ezy", 6],
+        ["fpo", 1],
+        ["gwi", 9],
+        ["kal/long", 1],
+        ["klm", 4],
+        ["lgl", 3],
+        ["lot", 2],
+        ["nly", 4],
+        ["sdm", 1],
+        ["swr", 2],
+        ["sxd", 2],
+        ["ups", 2]
+      ],
+      "type": "random",
+      "frequency": 3,
+      "altitude":  25000
+    },
+    {
+      "_name":  "GAMLI",
+      "_n": true,
+      "speed":    450,
+      "route":  "GAMLI.GAMLI5W.LOWW",
+      "airlines":  [
+        ["aua", 25],
+        ["dlh", 1],
+        ["gwi", 1],
+        ["nly", 4],
+        ["oaw", 1],
+        ["swr", 2],
+        ["swr/long", 1]
       ],
       "type": "random",
       "frequency": 5,
-      "altitude":  10000
+      "altitude":  25000
     }
   ]
 }

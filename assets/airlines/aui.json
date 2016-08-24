@@ -1,0 +1,19 @@
+{
+  "name": "Ukraine International Airline",
+  "callsign": {
+    "name": "Ukraine International",
+    "length": 3
+  },
+  "fleets": {
+    "default": [
+      ["B733", 3],
+      ["B735", 6],
+      ["B738", 12],
+      ["B739", 4],
+      ["E190", 5]
+    ],
+    "long": [
+      ["B763", 4]
+    ]
+  }
+}

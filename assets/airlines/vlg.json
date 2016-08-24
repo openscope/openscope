@@ -2,13 +2,13 @@
   "name": "Vueling",
   "callsign": {
     "name": "Vueling",
-    "length": 3
+    "length": 4
   },
   "fleets": {
     "default": [
-      ["A319", 9 ],
-      ["A320", 126 ],
-	  ["A321", 9]
+      ["A319", 6 ],
+      ["A320", 94],
+      ["A321", 6 ]
     ]
   }
 }

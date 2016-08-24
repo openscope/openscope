@@ -176,7 +176,7 @@
       "icao": "PAPDA",
       "name": "Papda",
       "suffix": {"22":"1B"},
-      "transitions": {
+      "entryPoints": {
         "PAPDA": [["PAPDA", "A90"]]
       },
       "rwy": {
@@ -191,7 +191,7 @@
       "icao": "ISMAS",
       "name": "Ismas",
       "suffix": {"04":"1A", "22":"1B"},
-      "transitions": {
+      "entryPoints": {
         "ISMAS": ["GOMAT", ["ISMAS", "A55"]]
       },
       "rwy": {
@@ -207,7 +207,7 @@
       "icao": "MADUM",
       "name": "Madum",
       "suffix": {"04":"1A"},
-      "transitions": {
+      "entryPoints": {
         "MADUM": ["GUNIP", ["MADUM", "A90"]]
       },
       "rwy": {
@@ -222,7 +222,7 @@
       "icao": "BIDMO",
       "name": "Bidmo",
       "suffix": {"04":"1A", "22":"1B"},
-      "transitions": {
+      "entryPoints": {
         "BIDMO": [["BIDMO", "A140"]]
       },
       "rwy": {
@@ -238,7 +238,7 @@
       "icao": "LUNTU",
       "name": "Luntu",
       "suffix": {"04":"1A", "22":"1B"},
-      "transitions": {
+      "entryPoints": {
         "LUNTU": ["VAS", ["LUNTU", "A55"]]
       },
       "rwy": {
@@ -250,12 +250,11 @@
           ["LUNTU", "UPTOP"]
       ]
     },
-
     "NURLA": {
       "icao": "NURLA",
       "name": "Nurla",
       "suffix": {"04":"1A", "22":"1B"},
-      "transitions": {
+      "entryPoints": {
         "NURLA": ["VIH", ["NURLA", "A70"]]
       },
       "rwy": {
@@ -267,7 +266,6 @@
           ["NURLA", "REKUS", "UPTOP"]
       ]
     }
-
   },
 
   "arrivals": [

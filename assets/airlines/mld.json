@@ -1,0 +1,15 @@
+{
+  "name": "Air Moldova",
+  "callsign": {
+    "name": "Air Moldova",
+    "length": 3
+  },
+  
+    "fleets": {
+        "default": [
+            ["A319", 1 ],
+            ["A320", 2 ],
+            ["E190", 2 ]
+        ]
+    }
+}

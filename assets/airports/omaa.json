@@ -19,12 +19,11 @@
     "speed": 9
   },
   "airspace": [
-  {
-    "floor": 			0,
-    "ceiling": 		21000,
-    "airspace_class":	"D",
-    "poly":
-    [
+    {
+      "floor": 			0,
+      "ceiling": 		21000,
+      "airspace_class":	"D",
+      "poly": [
         ["N24d58m00.00", "E054d12m00.00"],
         ["N24d56m41.00", "E054d28m50.00"],
         ["N24d55m00.00", "E054d50m00.00"],
@@ -37,9 +36,9 @@
         ["N24d28m00.00", "E053d55m00.00"],
         ["N24d35m00.00", "E053d55m00.00"],
         ["N24d45m00.00", "E054d00m00.00"]
-    ]
-  }
-],
+      ]
+    }
+  ],
   "fixes": {
     "NITVU": ["N24d25m08.27", "E054d40m23.68"],
     "ADV"  : ["N24d25m08.27", "E054d40m23.68"],
@@ -177,8 +176,7 @@
     "__13R": ["N24d26m39.88", "N054d38m06.67"],
     "__31R": ["N24d26m32.64", "E054d40m12.76"],
     "__13L": ["N24d27m54.29", "E054d38m17.71"]
-	},
-
+  },
   "runways": [
     {
       "name": ["31L", "13R"],
@@ -197,256 +195,254 @@
   ],
   "sids": {
     "ATUDO": {
-        "icao": "ATUDO",
-        "name": "Atudo",
-        "suffix": {"13L":"2F", "13R":"2G", "31L":"2K", "31R":"2P"},
-        "rwy": {
-          "13L": ["__31R", ["AA412", "A24+|S250-"], ["AA417", "A40+"], "NAMSI", "AA418", ["ATUDO", "A120"]],
-          "13R": ["__31L", ["AA411", "A21+|S250-"], ["AA417", "A40+"], "NAMSI", "AA418", ["ATUDO", "A120"]],
-          "31L": ["__13R", ["AA431", "A23+|S230-"], ["AA441", "A44+|S250-"], ["AA442", "S250-"], ["ATUDO", "A120"]],
-          "31R": ["__13L", ["AA432", "A22+|S230-"], ["AA441", "A40+|S250-"], ["AA442", "S250-"], ["ATUDO", "A120"]]
-        },
-        "draw": [
-          ["__31L", "AA411", "AA417"],
-          ["__31R", "AA412", "AA417"],
-          ["__13R", "AA431", "AA441", "AA442", "ATUDO"],
-          ["__13L", "AA432", "AA441", "AA442", "ATUDO"],
-          ["AA417", "NAMSI", "AA418", "ATUDO"]
-        ]
+      "icao": "ATUDO",
+      "name": "Atudo",
+      "suffix": {"13L":"2F", "13R":"2G", "31L":"2K", "31R":"2P"},
+      "rwy": {
+        "13L": ["__31R", ["AA412", "A24+|S250-"], ["AA417", "A40+"], "NAMSI", "AA418", ["ATUDO", "A120"]],
+        "13R": ["__31L", ["AA411", "A21+|S250-"], ["AA417", "A40+"], "NAMSI", "AA418", ["ATUDO", "A120"]],
+        "31L": ["__13R", ["AA431", "A23+|S230-"], ["AA441", "A44+|S250-"], ["AA442", "S250-"], ["ATUDO", "A120"]],
+        "31R": ["__13L", ["AA432", "A22+|S230-"], ["AA441", "A40+|S250-"], ["AA442", "S250-"], ["ATUDO", "A120"]]
+      },
+      "draw": [
+        ["__31L", "AA411", "AA417"],
+        ["__31R", "AA412", "AA417"],
+        ["__13R", "AA431", "AA441", "AA442", "ATUDO"],
+        ["__13L", "AA432", "AA441", "AA442", "ATUDO"],
+        ["AA417", "NAMSI", "AA418", "ATUDO"]
+      ]
     },
     "EMERU": {
-        "icao": "EMERU",
-        "name": "Emeru",
-        "suffix": {"13L":"2F", "13R":"2G", "31L":"2K", "31R":"2P"},
-        "rwy": {
-          "13L": ["__31R", ["AA412", "A24+|S250-"], ["AA417", "A40+"], "NAMSI", ["EMERU", "A120+"]],
-          "13R": ["__31L", ["AA411", "A21+|S250-"], ["AA417", "A40+"], "NAMSI", ["EMERU", "A120+"]],
-          "31L": ["__13R", ["AA431", "A23+|S230-"], ["AA441", "A44+|S250-"], ["AA442", "S250-"], "NAMSI", ["EMERU", "A120+"]],
-          "31R": ["__13L", ["AA432", "A22+|S230-"], ["AA441", "A40+|S250-"], ["AA442", "S250-"], "NAMSI", ["EMERU", "A120+"]]
-        },
-        "draw": [
-          ["__31L", "AA411", "AA417"],
-          ["__31R", "AA412", "AA417"],
-          ["AA417", "NAMSI", "AA418", "EMERU"],
-          ["__13R", "AA431", "AA441", "AA442", "NAMSI", "EMERU"],
-          ["__13L", "AA432", "AA441", "AA442", "NAMSI", "EMERU"]
-        ]
+      "icao": "EMERU",
+      "name": "Emeru",
+      "suffix": {"13L":"2F", "13R":"2G", "31L":"2K", "31R":"2P"},
+      "rwy": {
+        "13L": ["__31R", ["AA412", "A24+|S250-"], ["AA417", "A40+"], "NAMSI", ["EMERU", "A120+"]],
+        "13R": ["__31L", ["AA411", "A21+|S250-"], ["AA417", "A40+"], "NAMSI", ["EMERU", "A120+"]],
+        "31L": ["__13R", ["AA431", "A23+|S230-"], ["AA441", "A44+|S250-"], ["AA442", "S250-"], "NAMSI", ["EMERU", "A120+"]],
+        "31R": ["__13L", ["AA432", "A22+|S230-"], ["AA441", "A40+|S250-"], ["AA442", "S250-"], "NAMSI", ["EMERU", "A120+"]]
+      },
+      "draw": [
+        ["__31L", "AA411", "AA417"],
+        ["__31R", "AA412", "AA417"],
+        ["AA417", "NAMSI", "AA418", "EMERU"],
+        ["__13R", "AA431", "AA441", "AA442", "NAMSI", "EMERU"],
+        ["__13L", "AA432", "AA441", "AA442", "NAMSI", "EMERU"]
+      ]
     },
     "KANIP": {
-        "icao": "KANIP",
-        "name": "Kanip",
-        "suffix": {"13L":"2F", "13R":"2G", "31L":"2K", "31R":"2P"},
-        "rwy": {
-          "13L": ["__31R", ["EGVOS", "S250-"], ["KANIP", "A110+"]],
-          "13R": ["__31L", ["SENSU", "S250-"], ["KANIP", "A110+"]],
-          "31L": ["__13R", ["AA431", "A23+|S230-"], ["AA441", "A44+|S250-"], ["AA442", "S250-"], "EMATI", ["KANIP", "A110+"]],
-          "31R": ["__13L", ["AA432", "A22+|S230-"], ["AA441", "A40+|S250-"], ["AA442", "S250-"], "EMATI", ["KANIP", "A110+"]]
-        },
-        "draw": [
-          ["__31R", "EGVOS", "KANIP"],
-          ["__31L", "SENSU", "KANIP"],
-          ["__13R", "AA431", "AA441", "AA442", "EMATI", "KANIP"],
-          ["__13L", "AA432", "AA441", "AA442", "EMATI", "KANIP"]
-        ]
+      "icao": "KANIP",
+      "name": "Kanip",
+      "suffix": {"13L":"2F", "13R":"2G", "31L":"2K", "31R":"2P"},
+      "rwy": {
+        "13L": ["__31R", ["EGVOS", "S250-"], ["KANIP", "A110+"]],
+        "13R": ["__31L", ["SENSU", "S250-"], ["KANIP", "A110+"]],
+        "31L": ["__13R", ["AA431", "A23+|S230-"], ["AA441", "A44+|S250-"], ["AA442", "S250-"], "EMATI", ["KANIP", "A110+"]],
+        "31R": ["__13L", ["AA432", "A22+|S230-"], ["AA441", "A40+|S250-"], ["AA442", "S250-"], "EMATI", ["KANIP", "A110+"]]
+      },
+      "draw": [
+        ["__31R", "EGVOS", "KANIP"],
+        ["__31L", "SENSU", "KANIP"],
+        ["__13R", "AA431", "AA441", "AA442", "EMATI", "KANIP"],
+        ["__13L", "AA432", "AA441", "AA442", "EMATI", "KANIP"]
+      ]
     },
     "MIADA": {
-        "icao": "MIADA",
-        "name": "Miada",
-        "suffix": {"13L":"2F", "13R":"2G"},
-        "rwy": {
-          "13L": ["__31R", ["AA412", "A24+|S250-"], ["AA417", "A40+"], "NAMSI", ["MIADA", "A90-"]],
-          "13R": ["__31L", ["AA411", "A21+|S250-"], ["AA417", "A40+"], "NAMSI", "MIADA"]
-        },
-        "draw": [
-          ["__31L", "AA411", "AA417"],
-          ["__31R", "AA412", "AA417"],
-          ["AA417", "NAMSI", "MIADA"]
-        ]
+      "icao": "MIADA",
+      "name": "Miada",
+      "suffix": {"13L":"2F", "13R":"2G"},
+      "rwy": {
+        "13L": ["__31R", ["AA412", "A24+|S250-"], ["AA417", "A40+"], "NAMSI", ["MIADA", "A90-"]],
+        "13R": ["__31L", ["AA411", "A21+|S250-"], ["AA417", "A40+"], "NAMSI", "MIADA"]
+      },
+      "draw": [
+        ["__31L", "AA411", "AA417"],
+        ["__31R", "AA412", "AA417"],
+        ["AA417", "NAMSI", "MIADA"]
+      ]
     },
     "NIBAX": {
-        "icao": "NIBAX",
-        "name": "Nibax",
-        "suffix": {"13L":"2F", "13R":"2G", "31L":"2K", "31R":"2P"},
-        "rwy": {
-          "13L": ["__31R", ["AA412", "A24+|S250-"], ["AA417", "A40+"], "NAMSI", "NIBAX"],
-          "13R": ["__31L", ["AA411", "A21+|S250-"], ["AA417", "A40+"], "NAMSI", "NIBAX"],
-          "31L": ["__13R", ["AA431", "A23+|S230-"], "NIBAX"],
-          "31R": ["__13L", ["AA432", "A22+|S230-"], "NIBAX"]
-        },
-        "draw": [
-          ["__31L", "AA411", "AA417"],
-          ["__31R", "AA412", "AA417"],
-          ["AA417", "NAMSI", "NIBAX"],
-          ["__13R", "AA431", "NIBAX"],
-          ["__13L", "AA432", "NIBAX"]
-        ]
+      "icao": "NIBAX",
+      "name": "Nibax",
+      "suffix": {"13L":"2F", "13R":"2G", "31L":"2K", "31R":"2P"},
+      "rwy": {
+        "13L": ["__31R", ["AA412", "A24+|S250-"], ["AA417", "A40+"], "NAMSI", "NIBAX"],
+        "13R": ["__31L", ["AA411", "A21+|S250-"], ["AA417", "A40+"], "NAMSI", "NIBAX"],
+        "31L": ["__13R", ["AA431", "A23+|S230-"], "NIBAX"],
+        "31R": ["__13L", ["AA432", "A22+|S230-"], "NIBAX"]
+      },
+      "draw": [
+        ["__31L", "AA411", "AA417"],
+        ["__31R", "AA412", "AA417"],
+        ["AA417", "NAMSI", "NIBAX"],
+        ["__13R", "AA431", "NIBAX"],
+        ["__13L", "AA432", "NIBAX"]
+      ]
     },
     "TOXIG": {
-        "icao": "TOXIG",
-        "name": "Toxig",
-        "suffix": {"13L":"2F", "13R":"2G", "31L":"2K", "31R":"2P"},
-        "rwy": {
-          "13L": ["__31R", ["AA412", "A24+|S230-"], ["AA443", "S230-"], "AA444"],
-          "13R": ["__31L", ["AA411", "A21+"], ["AA443", "S230-"], "AA444"],
-          "31L": ["__13R", ["VEDEX", "A36+|S230-"], "TOXIG"],
-          "31R": ["__13L", ["NODVI", "A34+|S230-"], "TOXIG"]
-        },
-        "draw": [
-          ["__31L", "AA411", "AA443"],
-          ["__31R", "AA412", "AA443"],
-          ["AA443", "AA444", "TOXIG"],
-          ["__13R", "VEDEX", "TOXIG"],
-          ["__13L", "NODVI", "TOXIG"]
-        ]
+      "icao": "TOXIG",
+      "name": "Toxig",
+      "suffix": {"13L":"2F", "13R":"2G", "31L":"2K", "31R":"2P"},
+      "rwy": {
+        "13L": ["__31R", ["AA412", "A24+|S230-"], ["AA443", "S230-"], "AA444"],
+        "13R": ["__31L", ["AA411", "A21+"], ["AA443", "S230-"], "AA444"],
+        "31L": ["__13R", ["VEDEX", "A36+|S230-"], "TOXIG"],
+        "31R": ["__13L", ["NODVI", "A34+|S230-"], "TOXIG"]
+      },
+      "draw": [
+        ["__31L", "AA411", "AA443"],
+        ["__31R", "AA412", "AA443"],
+        ["AA443", "AA444", "TOXIG"],
+        ["__13R", "VEDEX", "TOXIG"],
+        ["__13L", "NODVI", "TOXIG"]
+      ]
     },
     "TULIL": {
-        "icao": "TULIL",
-        "name": "Tutil",
-        "suffix": {"13L":"1X", "13R":"1Y"},
-        "rwy": {
-          "13L": ["__31R", ["AA412", "A24+|S250-"], ["AA417", "A40+"], "NAMSI", "AA419", "TULIL", "TOXIG"],
-          "13R": ["__31L", ["AA411", "A21+|S250-"], ["AA417", "A40+"], "NAMSI", "AA419", "TULIL", "TOXIG"]
-        },
-        "draw": [
-          ["__31L", "AA411", "AA417"],
-          ["__31R", "AA412", "AA417"],
-          ["AA417", "NAMSI", "AA418", "TULIL", "TOXIG"]
-        ]
+      "icao": "TULIL",
+      "name": "Tutil",
+      "suffix": {"13L":"1X", "13R":"1Y"},
+      "rwy": {
+        "13L": ["__31R", ["AA412", "A24+|S250-"], ["AA417", "A40+"], "NAMSI", "AA419", "TULIL", "TOXIG"],
+        "13R": ["__31L", ["AA411", "A21+|S250-"], ["AA417", "A40+"], "NAMSI", "AA419", "TULIL", "TOXIG"]
+      },
+      "draw": [
+        ["__31L", "AA411", "AA417"],
+        ["__31R", "AA412", "AA417"],
+        ["AA417", "NAMSI", "AA418", "TULIL", "TOXIG"]
+      ]
     }
   },
-
   "stars": {
     "ATUDO_STAR": {
-        "icao": "ATUDO",
-        "name": "Atudo",
-        "suffix": {"13L":"3B", "13R":"3B", "31L":"3D", "31R":"3D"},
-        "transitions": {
-          "ATUDO": [["ATUDO", "A120|S250-"]]
-        },
-        "rwy": {
-          "13L": [["NORPU", "A50|S230-"], ["SOBER", "A30"], ["AA574", "S210-"], "AA573", "AA564", "LAGRU"],
-          "13R": [["NORPU", "A50|S230-"], ["SOBER", "A30"], ["AA474", "S210-"], "AA473", "AA464", "BOMUP"],
-          "31L": ["AA422", "AA423", ["ODBAS", "A50|S230-"], ["AA406", "A35|S210-"], ["AA405", "A28"], ["AA404", "A19"], ["EGLIR", "A11"]],
-          "31R": ["AA422", "AA423", ["ODBAS", "A50|S230-"], ["AA509", "A35|S210-"], ["AA508", "A28"], ["AA505", "A20"], ["RUDON", "A13"]]
-        },
-        "draw": [
-          ["ATUDO", "NORPU", "SOBER"],
-          ["SOBER", "AA574", "AA573", "AA564", "LAGRU"],
-          ["SOBER", "AA474", "AA473", "AA464", "BOMUP"],
-          ["ATUDO", "AA422", "AA423", "ODBAS"],
-          ["ODBAS", "AA406", "AA405", "AA404", "EGLIR"],
-          ["ODBAS", "AA509", "AA508", "AA505", "RUDON"]
-        ]
+      "icao": "ATUDO",
+      "name": "Atudo",
+      "suffix": {"13L":"3B", "13R":"3B", "31L":"3D", "31R":"3D"},
+      "entryPoints": {
+        "ATUDO": [["ATUDO", "A120|S250-"]]
+      },
+      "rwy": {
+        "13L": [["NORPU", "A50|S230-"], ["SOBER", "A30"], ["AA574", "S210-"], "AA573", "AA564", "LAGRU"],
+        "13R": [["NORPU", "A50|S230-"], ["SOBER", "A30"], ["AA474", "S210-"], "AA473", "AA464", "BOMUP"],
+        "31L": ["AA422", "AA423", ["ODBAS", "A50|S230-"], ["AA406", "A35|S210-"], ["AA405", "A28"], ["AA404", "A19"], ["EGLIR", "A11"]],
+        "31R": ["AA422", "AA423", ["ODBAS", "A50|S230-"], ["AA509", "A35|S210-"], ["AA508", "A28"], ["AA505", "A20"], ["RUDON", "A13"]]
+      },
+      "draw": [
+        ["ATUDO", "NORPU", "SOBER"],
+        ["SOBER", "AA574", "AA573", "AA564", "LAGRU"],
+        ["SOBER", "AA474", "AA473", "AA464", "BOMUP"],
+        ["ATUDO", "AA422", "AA423", "ODBAS"],
+        ["ODBAS", "AA406", "AA405", "AA404", "EGLIR"],
+        ["ODBAS", "AA509", "AA508", "AA505", "RUDON"]
+      ]
     },
     "BOXAK": {
-        "icao": "BOXAK",
-        "name": "Boxak",
-        "suffix": {"13L":"3A", "13R":"1B", "31L":"3C", "31R":"3D"},
-        "transitions": {
-          "BOXAK": [["BOXAK", "A130-|A60|S250-"]]
-        },
-        "rwy": {
-          "13L": [["AA804", "A60"], "NAMKU", ["OBTOL", "A30|S230-"], ["AA576", "S210-"], "NODVI", ["AA575", "A28"], ["AA564", "A19"], ["LAGRU", "A12"]],
-          "13R": ["AA801", ["ADV", "A50|S230-"], ["OBTOL", "A30"], "VEDEX", ["AA475", "A28"], ["AA464", "A19"], ["BOMUP", "A13"]],
-          "31L": [["AA801", "A50"], ["ASKIN", "A30"], ["AA403", "S210-"], ["AA402", "A28"], ["EGLIR", "A11"]],
-          "31R": [["AA801", "A50"], ["ASKIN", "A30"], ["AA516", "S210-"], ["AA515", "A28"], ["RUDON", "A13"]]
-        },
-        "draw": [
-          ["BOXAK", "AA804", "NAMKU", "OBTOL", "AA576", "NODVI", "AA575", "AA564", "LAGRU"],
-          ["BOXAK", "AA801", "ADV", "OBTOL", "VEDEX", "AA464", "BOMUP"],
-          ["BOXAK", "AA801", "ASKIN", "AA403", "AA402", "EGLIR"],
-          ["BOXAK", "AA801", "ASKIN", "AA516", "AA515", "RUDON"]
-        ]
+      "icao": "BOXAK",
+      "name": "Boxak",
+      "suffix": {"13L":"3A", "13R":"1B", "31L":"3C", "31R":"3D"},
+      "entryPoints": {
+        "BOXAK": [["BOXAK", "A130-|A60|S250-"]]
+      },
+      "rwy": {
+        "13L": [["AA804", "A60"], "NAMKU", ["OBTOL", "A30|S230-"], ["AA576", "S210-"], "NODVI", ["AA575", "A28"], ["AA564", "A19"], ["LAGRU", "A12"]],
+        "13R": ["AA801", ["ADV", "A50|S230-"], ["OBTOL", "A30"], "VEDEX", ["AA475", "A28"], ["AA464", "A19"], ["BOMUP", "A13"]],
+        "31L": [["AA801", "A50"], ["ASKIN", "A30"], ["AA403", "S210-"], ["AA402", "A28"], ["EGLIR", "A11"]],
+        "31R": [["AA801", "A50"], ["ASKIN", "A30"], ["AA516", "S210-"], ["AA515", "A28"], ["RUDON", "A13"]]
+      },
+      "draw": [
+        ["BOXAK", "AA804", "NAMKU", "OBTOL", "AA576", "NODVI", "AA575", "AA564", "LAGRU"],
+        ["BOXAK", "AA801", "ADV", "OBTOL", "VEDEX", "AA464", "BOMUP"],
+        ["BOXAK", "AA801", "ASKIN", "AA403", "AA402", "EGLIR"],
+        ["BOXAK", "AA801", "ASKIN", "AA516", "AA515", "RUDON"]
+      ]
     },
     "MIADA_STAR": {
-        "icao": "MIADA",
-        "name": "Miada",
-        "suffix": {"13L":"3A", "13R":"3A", "31L":"3D", "31R":"3D"},
-         "transitions": {
-          "MIADA": [["MIADA", "A80-|A60|S250-"]]
-        },
-        "rwy": {
-          "13L": [["AA751", "A40"], ["SOBER", "A30|S230-"], ["AA574", "S210-"], "AA573", "AA564", "LAGRU"],
-          "13R": [["AA751", "A40"], ["SOBER", "A30|S230-"], ["AA474", "S210-"], "AA473", "AA464", "BOMUP"],
-          "31L": [["AA816", "A60"], "DENBO", ["ODBAS", "A50|S230-"], ["AA406", "A35|S210-"], ["AA405", "A28"], ["AA404", "A19"], ["EGLIR", "A11"]],
-          "31R": [["AA816", "A60"], "DENBO", ["ODBAS", "A50|S230-"], ["AA509", "A35|S210-"], ["AA508", "A28"], ["AA505", "A20"], ["RUDON", "A13"]]
-        },
-        "draw": [
-          ["MIADA", "AA751", "SOBER"],
-          ["SOBER", "AA574", "AA573", "AA564", "LAGRU"],
-          ["SOBER", "AA474", "AA473", "AA464", "BOMUP"],
-          ["MIADA", "AA816", "DENBO", "ODBAS"],
-          ["ODBAS", "AA406", "AA405", "AA404", "EGLIR"],
-          ["ODBAS", "AA509", "AA508", "AA505", "RUDON"]
-        ]
+      "icao": "MIADA",
+      "name": "Miada",
+      "suffix": {"13L":"3A", "13R":"3A", "31L":"3D", "31R":"3D"},
+      "entryPoints": {
+        "MIADA": [["MIADA", "A80-|A60|S250-"]]
+      },
+      "rwy": {
+        "13L": [["AA751", "A40"], ["SOBER", "A30|S230-"], ["AA574", "S210-"], "AA573", "AA564", "LAGRU"],
+        "13R": [["AA751", "A40"], ["SOBER", "A30|S230-"], ["AA474", "S210-"], "AA473", "AA464", "BOMUP"],
+        "31L": [["AA816", "A60"], "DENBO", ["ODBAS", "A50|S230-"], ["AA406", "A35|S210-"], ["AA405", "A28"], ["AA404", "A19"], ["EGLIR", "A11"]],
+        "31R": [["AA816", "A60"], "DENBO", ["ODBAS", "A50|S230-"], ["AA509", "A35|S210-"], ["AA508", "A28"], ["AA505", "A20"], ["RUDON", "A13"]]
+      },
+      "draw": [
+        ["MIADA", "AA751", "SOBER"],
+        ["SOBER", "AA574", "AA573", "AA564", "LAGRU"],
+        ["SOBER", "AA474", "AA473", "AA464", "BOMUP"],
+        ["MIADA", "AA816", "DENBO", "ODBAS"],
+        ["ODBAS", "AA406", "AA405", "AA404", "EGLIR"],
+        ["ODBAS", "AA509", "AA508", "AA505", "RUDON"]
+      ]
     },
     "NOBTO": {
-        "icao": "NOBTO",
-        "name": "Nobto",
-        "suffix": {"13L":"3A", "13R":"3B", "31L":"3C", "31R":"3D"},
-         "transitions": {
-          "NOBTO": [["NOBTO", "A130-|A100|S250-"]]
-        },
-        "rwy": {
-          "13L": ["PARED", ["SUTVA", "A60|S230-"], "NITVU", ["KODAS", "A40"], ["AA570", "A30|S210-"], ["AA565", "A28"], ["AA564", "A19"], ["LAGRU", "A12"]],
-          "13R": ["PARED", ["SUTVA", "A60|S230-"], "NITVU", ["KODAS", "A40"], ["EGMEL", "A30|S210-"], ["AA470", "A28"], ["AA464", "A19"], ["BOMUP", "A13"]],
-          "31L": [["PARED", "A60|S230-"], ["AA831", "A50"], ["LOSUR", "A30"], "SENSU", ["AA413", "A28"], ["AA404", "A19"], ["EGLIR", "A11"]],
-          "31R": [["PARED", "A60|S230-"], ["AA831", "A50"], ["LOSUR", "A30"], ["AA514", "A30"], "EGVOS", ["AA513", "A28"], ["AA505", "A20"], ["RUDON", "A13"]]
-    },
-        "draw": [
-          ["NOBTO", "PARED", "SUTVA", "NITVU", "KODAS"],
-          ["KODAS", "AA570", "AA565", "AA564", "LAGRU"],
-          ["KODAS", "EGMEL", "AA470", "AA464", "BOMUP"],
-          ["PARED", "LOSUR"],
-          ["LOSUR", "SENSU", "AA413", "AA404", "EGLIR"],
-          ["LOSUR", "AA514", "EGVOS", "AA513", "AA505", "RUDON"]
-        ]
+      "icao": "NOBTO",
+      "name": "Nobto",
+      "suffix": {"13L":"3A", "13R":"3B", "31L":"3C", "31R":"3D"},
+      "entryPoints": {
+        "NOBTO": [["NOBTO", "A130-|A100|S250-"]]
+      },
+      "rwy": {
+        "13L": ["PARED", ["SUTVA", "A60|S230-"], "NITVU", ["KODAS", "A40"], ["AA570", "A30|S210-"], ["AA565", "A28"], ["AA564", "A19"], ["LAGRU", "A12"]],
+        "13R": ["PARED", ["SUTVA", "A60|S230-"], "NITVU", ["KODAS", "A40"], ["EGMEL", "A30|S210-"], ["AA470", "A28"], ["AA464", "A19"], ["BOMUP", "A13"]],
+        "31L": [["PARED", "A60|S230-"], ["AA831", "A50"], ["LOSUR", "A30"], "SENSU", ["AA413", "A28"], ["AA404", "A19"], ["EGLIR", "A11"]],
+        "31R": [["PARED", "A60|S230-"], ["AA831", "A50"], ["LOSUR", "A30"], ["AA514", "A30"], "EGVOS", ["AA513", "A28"], ["AA505", "A20"], ["RUDON", "A13"]]
+      },
+      "draw": [
+        ["NOBTO", "PARED", "SUTVA", "NITVU", "KODAS"],
+        ["KODAS", "AA570", "AA565", "AA564", "LAGRU"],
+        ["KODAS", "EGMEL", "AA470", "AA464", "BOMUP"],
+        ["PARED", "LOSUR"],
+        ["LOSUR", "SENSU", "AA413", "AA404", "EGLIR"],
+        ["LOSUR", "AA514", "EGVOS", "AA513", "AA505", "RUDON"]
+      ]
     },
     "ROVOS": {
-        "icao": "ROVOS",
-        "name": "Rovos",
-        "suffix": {"13L":"3A", "13R":"3B", "31L":"3C", "31R":"3D"},
-         "transitions": {
-          "ROVOS": [["ROVOS", "A130-|S250-"]]
-        },
-        "rwy": {
-          "13L": [["EMATI", "A60|S230-"], ["NORPU", "A50"], ["AA572", "A30|S210"], ["AA571", "A28"], ["LAGRU", "A12"]],
-          "13R": [["EMATI", "A60|S230-"], ["NORPU", "A50"], ["SOBER", "A30"], ["AA474", "S210-"], ["AA473", "A28"], ["AA464", "A19"], ["BOMUP", "A13"]],
-          "31L": ["RAKNI", ["AA841", "A50"], ["IMLAD", "A30"], ["AA414", "A30"], "SENSU", ["AA413", "A28"], ["AA404", "A19"], ["EGLIR", "A11"]],
-          "31R": [["VEGIT", "A70|S230-"], ["AA425", "A60"], "AA426", ["ODBAS", "A50"], ["AA509", "A35|S210-"], ["AA508", "A28"], ["AA505", "A20"], ["RUDON", "A13"]]
-        },
-        "draw": [
-          ["ROVOS", "EMATI", "NORPU"],
-          ["NORPU", "SOBER", "AA474", "AA473", "AA464", "BOMUP"],
-          ["NORPU", "AA572", "AA571", "LAGRU"],
-          ["ROVOS", "RAKNI", "IMLAD", "AA414", "SENSU", "AA413", "AA404", "EGLIR"],
-          ["ROVOS", "VEGIT", "AA425", "AA426", "ODBAS", "AA509", "AA508", "AA505", "RUDON"]
-        ]
+      "icao": "ROVOS",
+      "name": "Rovos",
+      "suffix": {"13L":"3A", "13R":"3B", "31L":"3C", "31R":"3D"},
+      "entryPoints": {
+        "ROVOS": [["ROVOS", "A130-|S250-"]]
+      },
+      "rwy": {
+        "13L": [["EMATI", "A60|S230-"], ["NORPU", "A50"], ["AA572", "A30|S210"], ["AA571", "A28"], ["LAGRU", "A12"]],
+        "13R": [["EMATI", "A60|S230-"], ["NORPU", "A50"], ["SOBER", "A30"], ["AA474", "S210-"], ["AA473", "A28"], ["AA464", "A19"], ["BOMUP", "A13"]],
+        "31L": ["RAKNI", ["AA841", "A50"], ["IMLAD", "A30"], ["AA414", "A30"], "SENSU", ["AA413", "A28"], ["AA404", "A19"], ["EGLIR", "A11"]],
+        "31R": [["VEGIT", "A70|S230-"], ["AA425", "A60"], "AA426", ["ODBAS", "A50"], ["AA509", "A35|S210-"], ["AA508", "A28"], ["AA505", "A20"], ["RUDON", "A13"]]
+      },
+      "draw": [
+        ["ROVOS", "EMATI", "NORPU"],
+        ["NORPU", "SOBER", "AA474", "AA473", "AA464", "BOMUP"],
+        ["NORPU", "AA572", "AA571", "LAGRU"],
+        ["ROVOS", "RAKNI", "IMLAD", "AA414", "SENSU", "AA413", "AA404", "EGLIR"],
+        ["ROVOS", "VEGIT", "AA425", "AA426", "ODBAS", "AA509", "AA508", "AA505", "RUDON"]
+      ]
     },
     "TANGA": {
-        "icao": "TANGA",
-        "name": "Tanga",
-        "suffix": {"13L":"3A", "13R":"3A", "31L":"2K", "31R":"2P"},
-         "transitions": {
-          "TANGA": [["TANGA", "A130-|S250-"]]
-        },
-        "rwy": {
-          "13L": ["AA750", ["SOBER", "A30|S230-"], ["AA574", "S210-"], ["AA573", "A28"], ["AA564", "A19"], ["LAGRU", "A12"]],
-          "13R": ["AA750", ["SOBER", "A30|S230-"], ["AA474", "S210-"], ["AA473", "A28"], ["AA464", "A19"], ["BOMUP", "A13"]],
-          "31L": [["DEBOD", "A70"], "DENBO", ["ODBAS", "A50|S230-"], ["AA406", "A35|S210-"], ["AA405", "A28"], ["AA404", "A19"], ["EGLIR", "A11"]],
-          "31R": [["DEBOD", "A70"], "DENBO", ["ODBAS", "A50|S230-"], ["AA509", "A35|S210-"], ["AA508", "A28"], ["AA505", "A20"], ["RUDON", "A13"]]
-        },
-        "draw": [
-          ["TANGA", "AA750", "SOBER"],
-          ["SOBER", "AA574", "AA573", "AA564", "LAGRU"],
-          ["SOBER", "AA474", "AA473", "AA464", "BOMUP"],
-          ["TANGA", "DEBOD", "DENBO", "ODBAS"],
-          ["ODBAS", "AA406", "AA405", "AA404", "EGLIR"],
-          ["ODBAS", "AA509", "AA508", "AA505", "RUDON"]
-        ]
+      "icao": "TANGA",
+      "name": "Tanga",
+      "suffix": {"13L":"3A", "13R":"3A", "31L":"2K", "31R":"2P"},
+      "entryPoints": {
+        "TANGA": [["TANGA", "A130-|S250-"]]
+      },
+      "rwy": {
+        "13L": ["AA750", ["SOBER", "A30|S230-"], ["AA574", "S210-"], ["AA573", "A28"], ["AA564", "A19"], ["LAGRU", "A12"]],
+        "13R": ["AA750", ["SOBER", "A30|S230-"], ["AA474", "S210-"], ["AA473", "A28"], ["AA464", "A19"], ["BOMUP", "A13"]],
+        "31L": [["DEBOD", "A70"], "DENBO", ["ODBAS", "A50|S230-"], ["AA406", "A35|S210-"], ["AA405", "A28"], ["AA404", "A19"], ["EGLIR", "A11"]],
+        "31R": [["DEBOD", "A70"], "DENBO", ["ODBAS", "A50|S230-"], ["AA509", "A35|S210-"], ["AA508", "A28"], ["AA505", "A20"], ["RUDON", "A13"]]
+      },
+      "draw": [
+        ["TANGA", "AA750", "SOBER"],
+        ["SOBER", "AA574", "AA573", "AA564", "LAGRU"],
+        ["SOBER", "AA474", "AA473", "AA464", "BOMUP"],
+        ["TANGA", "DEBOD", "DENBO", "ODBAS"],
+        ["ODBAS", "AA406", "AA405", "AA404", "EGLIR"],
+        ["ODBAS", "AA509", "AA508", "AA505", "RUDON"]
+      ]
     }
   },
-
   "departures": {
     "airlines": [
       ["ber",  2],
@@ -480,80 +476,80 @@
         ["jai", 11],
         ["klm",  2],
         ["thy",  2]
-        ]
-      },
-      {
-        "type": 		"cyclic",
-        "route":    "ROVOS.ROVOS.OMAA",
-        "frequency": 10,
-        "altitude": 13000,
-        "speed":		330,
-        "offset":		2,
-        "airlines": [
-          ["aic",  1],
-          ["axb",  5],
-          ["etd", 94],
-          ["jai", 11]
-          ]
-        },
-        {
-          "type": 		"cyclic",
-          "route":    "NOBTO.NOBTO.OMAA",
-          "frequency": 7,
-          "altitude": 13000,
-          "speed":		330,
-          "offset":		2,
-          "airlines": [
-            ["aic",  1],
-            ["axb",  5],
-            ["etd", 94],
-            ["jai", 11]
-            ]
-        },
-        {
-          "type": 		"cyclic",
-          "route":    "MIADA.MIADA_STAR.OMAA",
-          "frequency": 12,
-          "altitude": 13000,
-          "speed":		330,
-          "offset":		2,
-          "airlines": [
-            ["ber",  2],
-            ["aic",  1],
-            ["axb",  5],
-            ["aza",  3],
-            ["etd", 94],
-            ["jai", 11],
-            ["klm",  2],
-            ["thy",  2]
-            ]
-        },
-        {
-          "type": 		"cyclic",
-          "route":    "BOXAK.BOXAK.OMAA",
-          "frequency": 7,
-          "altitude": 13000,
-          "speed":		330,
-          "offset":		2,
-          "airlines": [
-            ["aza",  3],
-            ["etd", 94],
-            ["baw",  2]
-            ]
-        },
-        {
-          "type": 		"cyclic",
-          "route":    "ATUDO.ATUDO_STAR.OMAA",
-          "frequency": 10,
-          "altitude": 13000,
-          "speed":		330,
-          "offset":		2,
-          "airlines": [
-            ["aic",  1],
-            ["axb",  5],
-            ["etd", 94],
-            ["jai", 11]
-            ]
-        }
+      ]
+    },
+    {
+      "type": 		"cyclic",
+      "route":    "ROVOS.ROVOS.OMAA",
+      "frequency": 10,
+      "altitude": 13000,
+      "speed":		330,
+      "offset":		2,
+      "airlines": [
+        ["aic",  1],
+        ["axb",  5],
+        ["etd", 94],
+        ["jai", 11]
+      ]
+    },
+    {
+      "type": 		"cyclic",
+      "route":    "NOBTO.NOBTO.OMAA",
+      "frequency": 7,
+      "altitude": 13000,
+      "speed":		330,
+      "offset":		2,
+      "airlines": [
+        ["aic",  1],
+        ["axb",  5],
+        ["etd", 94],
+        ["jai", 11]
+      ]
+    },
+    {
+      "type": 		"cyclic",
+      "route":    "MIADA.MIADA_STAR.OMAA",
+      "frequency": 12,
+      "altitude": 13000,
+      "speed":		330,
+      "offset":		2,
+      "airlines": [
+        ["ber",  2],
+        ["aic",  1],
+        ["axb",  5],
+        ["aza",  3],
+        ["etd", 94],
+        ["jai", 11],
+        ["klm",  2],
+        ["thy",  2]
+      ]
+    },
+    {
+      "type": 		"cyclic",
+      "route":    "BOXAK.BOXAK.OMAA",
+      "frequency": 7,
+      "altitude": 13000,
+      "speed":		330,
+      "offset":		2,
+      "airlines": [
+        ["aza",  3],
+        ["etd", 94],
+        ["baw",  2]
+      ]
+    },
+    {
+      "type": 		"cyclic",
+      "route":    "ATUDO.ATUDO_STAR.OMAA",
+      "frequency": 10,
+      "altitude": 13000,
+      "speed":		330,
+      "offset":		2,
+      "airlines": [
+        ["aic",  1],
+        ["axb",  5],
+        ["etd", 94],
+        ["jai", 11]
+      ]
+    }
   ]
 }

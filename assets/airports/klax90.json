@@ -142,7 +142,7 @@
         "25L": ["LAX", "KEGGS", "COOPP"],
         "25R": ["LAX", "KEGGS", "COOPP"]
       },
-      "transitions": {
+      "exitPoints": {
         "DAG": ["DAG"]
       },
       "draw": [["LAX","KEGGS","COOPP","DAG*"]]
@@ -156,7 +156,7 @@
         "25L": [],
         "25R": []
       },
-      "transitions": {
+      "exitPoints": {
         "PERCH": ["PERCH"]
       },
       "draw": [["PERCH"]]
@@ -170,7 +170,7 @@
         "25L": ["SLI"],
         "25R": ["SLI"]
       },
-      "transitions": {
+      "exitPoints": {
         "TRM": ["TRM"]
       },
       "draw": [["SLI","TRM*"]]
@@ -184,7 +184,7 @@
         "25L": ["SLI", "COSER"],
         "25R": ["SLI", "COSER"]
       },
-      "transitions": {
+      "exitPoints": {
         "CARDI": ["CARDI"]
       },
       "draw": [["SLI","COSER","CARDI*"]]
@@ -198,7 +198,7 @@
         "25L": ["SLI"],
         "25R": ["SLI"]
       },
-      "transitions": {
+      "exitPoints": {
         "SEBBY": ["SEBBY"]
       },
       "draw": [["SLI","SEBBY"]]

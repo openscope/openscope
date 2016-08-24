@@ -2,21 +2,13 @@
   "name": "TUIfly",
   "callsign": {
     "name": "Tui Jet",
-    "length": 3,
+    "length": 4,
     "alpha": true
   },
   "fleets": {
-    "long": [
-	    ["B763", 2]
-    ],
-    "short": [
-      ["B737", 4],
-      ["B738", 26]
-    ],
     "default": [
-      ["B737", 4],
-      ["B738", 26],
-      ["B763", 2]
+      ["B737", 4 ],
+      ["B738", 27]
     ]
   }
 }

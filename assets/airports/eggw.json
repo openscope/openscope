@@ -1188,7 +1188,7 @@
       "ASKEY5A": {
         "icao": "ASKEY5A",
         "name": "Askey Five Alpha",
-        "transitions": {
+        "entryPoints": {
             "WESTCOTT": ["DTY", "WCO"]
         },
         "body": [["BOMBO", "A140-"], "BKY", "BUSTA", ["ASKEY", "A70"]],
@@ -1199,7 +1199,7 @@
     "ASKEY4C": {
         "icao": "ASKEY4C",
         "name": "Askey Four Charlie",
-        "transitions": {
+        "entryPoints": {
             "AVANT": ["SUSIX", ["AVANT", "A190"]]
         },
         "body": [["OCK", "A180"], "VATON", "BPK", "BKY", "BUSTA", ["ASKEY", "A70"]],
@@ -1210,7 +1210,7 @@
     "ASKEY4F": {
         "icao": "ASKEY4F",
         "name": "Askey Four Foxtrot",
-        "transitions": {
+        "entryPoints": {
             "WALLASEY": ["WAL"]
         },
         "body": ["LISTO", "PEDIG", "ROGBI", "CLIPY", ["BOMBO", "A140-"], "BKY", "BUSTA", ["ASKEY", "A70"]],
@@ -1221,7 +1221,7 @@
     "ASKEY4Q": {
         "icao": "ASKEY4Q",
         "name": "Askey Four Quebec",
-        "transitions": {
+        "entryPoints": {
             "BANVA": ["BANVA"]
         },
         "body": ["BANVA", ["UNDUG", "A200"], "MAY", ["VATON", "A180"], "BPK", "BKY", "BUSTA", ["ASKEY", "A70"]],
@@ -1232,7 +1232,7 @@
     "ASKEY3G": {
         "icao": "ASKEY3G",
         "name": "Askey Three Golf",
-        "transitions": {
+        "entryPoints": {
             "MANCHESTER": ["MCT"]
         },
         "body": ["PEDIG", "ROGBI", "CLIPY", ["BOMBO", "A140-"], "BKY", "BUSTA", ["ASKEY", "A70"]],
@@ -1243,7 +1243,7 @@
     "ASKEY2D": {
         "icao": "ASKEY2D",
         "name": "Askey Two Delta",
-        "transitions": {
+        "entryPoints": {
             "GIBSO": [["GIBSO", "A270"]]
         },
         "body": [["BEGTO", "A210"], ["AVANT", "A190"], "OCK", ["VATON", "A180"], "BPK", "BKY", "BUSTA", ["ASKEY", "A70"]],
@@ -1254,7 +1254,7 @@
     "ASKEY2H": {
         "icao": "ASKEY2H",
         "name": "Askey Two Hotel",
-        "transitions": {
+        "entryPoints": {
             "HONILEY": ["HON"]
         },
         "body": ["CLIPY", "BKY", "BUSTA", ["ASKEY", "A70"]],
@@ -1265,7 +1265,7 @@
     "ASKEY2L": {
         "icao": "ASKEY2L",
         "name": "Askey Two Lima",
-        "transitions": {
+        "entryPoints": {
             "KENET": [["KENET", "A170-"]]
         },
         "body": ["WCO", ["BOMBO", "A140-"], "BKY", "BUSTA", ["ASKEY", "A70"]],
@@ -1276,7 +1276,7 @@
     "ASKEY2M": {
         "icao": "ASKEY2M",
         "name": "Askey Two Mike",
-        "transitions": {
+        "entryPoints": {
             "KENET": [["KENET", "A170-"]]
         },
         "body": ["CPT", "WOD", "WCO", ["BOMBO", "A140-"], "BKY", "BUSTA", ["ASKEY", "A70"]],
@@ -1287,7 +1287,7 @@
     "ASKEY2P": {
         "icao": "ASKEY2P",
         "name": "Askey Two Papa",
-        "transitions": {
+        "entryPoints": {
             "SOUTHAMPTON": [["SAM", "A90-"]]
         },
         "body": ["NORRY", "WCO", ["BOMBO", "A140-"], "BKY", "BUSTA", ["ASKEY", "A70"]],
@@ -1298,7 +1298,7 @@
     "ASKEY2S": {
         "icao": "ASKEY2S",
         "name": "Askey Two Sierra",
-        "transitions": {
+        "entryPoints": {
             "BEDEK": [["BEDEK", "A180"]]
         },
         "body": ["NIGIT", "OCK", "VATON", "BPK", "BKY", "BUSTA", ["ASKEY", "A70"]],
@@ -1309,7 +1309,7 @@
     "ASKEY1B": {
         "icao": "ASKEY1B",
         "name": "Askey One Bravo",
-        "transitions": {
+        "entryPoints": {
             "KATHY": [["KATHY", "A170"]]
         },
         "body": [["HAZEL", "A170-"], "WOD", "WCO", ["BOMBO", "A140-"], "BKY", "BUSTA", ["ASKEY", "A70"]],
@@ -1320,7 +1320,7 @@
     "ASKEY1K": {
         "icao": "ASKEY1K",
         "name": "Askey One Kilo",
-        "transitions": {
+        "entryPoints": {
             "DAVENTRY": ["DTY"]
         },
         "body": ["FINMA", ["BOMBO", "A140"], "BKY", "BUSTA", ["ASKEY", "A70"]],
@@ -1331,7 +1331,7 @@
     "ASKEY1R": {
         "icao": "ASKEY1R",
         "name": "Askey One Romeo",
-        "transitions": {
+        "entryPoints": {
             "ABBOT": ["BANEM", ["ABBOT", "A80"]]
         },
         "body": ["TABIS", "BUSTA", ["ASKEY", "A70"]],
@@ -1342,7 +1342,7 @@
     "LOREL5A": {
         "icao": "LOREL5A",
         "name": "Lorel Five Alpha",
-        "transitions": {
+        "entryPoints": {
             "WESTCOTT": ["DTY", "WCO"]
         },
         "body": [["BOMBO", "A140-"], "BKY", "BUSTA", ["LOREL", "A70"]],
@@ -1353,7 +1353,7 @@
     "LOREL4F": {
         "icao": "LOREL4F",
         "name": "Lorel Four Foxtrot",
-        "transitions": {
+        "entryPoints": {
             "WALLASEY": ["WAL"]
         },
         "body": ["LISTO", "PEDIG", "ROGBI", "CLIPY", ["BOMBO", "A140-"], "BKY", "BUSTA", ["LOREL", "A70"]],
@@ -1364,7 +1364,7 @@
     "LOREL4Q": {
         "icao": "LOREL4Q",
         "name": "Lorel Four Quebec",
-        "transitions": {
+        "entryPoints": {
             "BANVA": ["BANVA"]
         },
         "body": ["BANVA", ["UNDUG", "A200"], "MAY", ["VATON", "A180"], "BPK", "BKY", "BUSTA", ["LOREL", "A70"]],
@@ -1375,7 +1375,7 @@
     "LOREL3G": {
         "icao": "LOREL3G",
         "name": "Lorel Three Golf",
-        "transitions": {
+        "entryPoints": {
             "MANCHESTER": ["MCT"]
         },
         "body": ["PEDIG", "ROGBI", "CLIPY", ["BOMBO", "A140-"], "BKY", "BUSTA", ["LOREL", "A70"]],
@@ -1386,7 +1386,7 @@
     "LOREL2D": {
         "icao": "LOREL2D",
         "name": "Lorel Two Delta",
-        "transitions": {
+        "entryPoints": {
             "GIBSO": [["GIBSO", "A270"]]
         },
         "body": [["BEGTO", "A210"], ["AVANT", "A190"], "OCK", ["VATON", "A180"], "BPK", "BKY", "BUSTA", ["LOREL", "A70"]],
@@ -1397,7 +1397,7 @@
     "LOREL2H": {
         "icao": "LOREL2H",
         "name": "Lorel Two Hotel",
-        "transitions": {
+        "entryPoints": {
             "HONILEY": ["HON"]
         },
         "body": ["CLIPY", "BKY", "BUSTA", ["LOREL", "A70"]],
@@ -1408,7 +1408,7 @@
     "LOREL2L": {
         "icao": "LOREL2L",
         "name": "Lorel Two Lima",
-        "transitions": {
+        "entryPoints": {
             "KENET": [["KENET", "A170-"]]
         },
         "body": ["WCO", ["BOMBO", "A140-"], "BKY", "BUSTA", ["LOREL", "A70"]],
@@ -1419,7 +1419,7 @@
     "LOREL2M": {
         "icao": "LOREL2M",
         "name": "Lorel Two Mike",
-        "transitions": {
+        "entryPoints": {
             "KENET": [["KENET", "A170-"]]
         },
         "body": ["CPT", "WOD", "WCO", ["BOMBO", "A140-"], "BKY", "BUSTA", ["LOREL", "A70"]],
@@ -1430,7 +1430,7 @@
      "LOREL2N": {
         "icao": "LOREL2N",
         "name": "Lorel Two November",
-        "transitions": {
+        "entryPoints": {
             "HAZEL": ["ELDER", "BEGTO", "HAZEL"]
         },
         "body": ["WOD", "WCO", ["BOMBO", "A140-"], "BKY", "BUSTA", ["LOREL", "A70"]],
@@ -1441,7 +1441,7 @@
     "LOREL2P": {
         "icao": "LOREL2P",
         "name": "Lorel Two Papa",
-        "transitions": {
+        "entryPoints": {
             "SOUTHAMPTON": [["SAM", "A90-"]]
         },
         "body": ["NORRY", "WCO", ["BOMBO", "A140-"], "BKY", "BUSTA", ["LOREL", "A70"]],
@@ -1452,7 +1452,7 @@
     "LOREL2S": {
         "icao": "LOREL2S",
         "name": "Lorel Two Sierra",
-        "transitions": {
+        "entryPoints": {
             "BEDEK": [["BEDEK", "A180"]]
         },
         "body": ["NIGIT", "OCK", "VATON", "BPK", "BKY", "BUSTA", ["LOREL", "A70"]],
@@ -1463,7 +1463,7 @@
     "LOREL1B": {
         "icao": "LOREL1B",
         "name": "Lorel One Bravo",
-        "transitions": {
+        "entryPoints": {
             "KATHY": [["KATHY", "A170"]]
         },
         "body": [["HAZEL", "A170-"], "WOD", "WCO", ["BOMBO", "A140-"], "BKY", "BUSTA", ["LOREL", "A70"]],
@@ -1474,7 +1474,7 @@
     "LOREL1K": {
         "icao": "LOREL1K",
         "name": "Lorel One Kilo",
-        "transitions": {
+        "entryPoints": {
             "DAVENTRY": ["DTY"]
         },
         "body": ["FINMA", ["BOMBO", "A140"], "BKY", "BUSTA", ["LOREL", "A70"]],
@@ -1485,7 +1485,7 @@
     "LOREL1R": {
         "icao": "LOREL1R",
         "name": "Lorel One Romeo",
-        "transitions": {
+        "entryPoints": {
             "ABBOT": ["BANEM", ["ABBOT", "A80"]]
         },
         "body": ["TABIS", "BUSTA", ["LOREL", "A70"]],
@@ -1496,7 +1496,7 @@
     "ABBOT1B": {
         "icao": "ABBOT1B",
         "name": "Abbot One Bravo",
-        "transitions": {
+        "entryPoints": {
             "BARMI": ["BARMI"]
         },
         "body": ["DITOB", "LAPRA", "ABBOT"],
@@ -1507,7 +1507,7 @@
     "ABBOT1C": {
         "icao": "ABBOT1C",
         "name": "Abbot One Charlie",
-        "transitions": {
+        "entryPoints": {
             "IDESI": ["SUMUM", "IDESI"]
         },
         "body": ["LAPRA", "ABBOT"],
@@ -1518,7 +1518,7 @@
     "ABBOT1D": {
         "icao": "ABBOT1D",
         "name": "Abbot One Delta",
-        "transitions": {
+        "entryPoints": {
             "DETLING": ["DVR", "DET"]
         },
         "body": ["ABBOT"],
@@ -1529,7 +1529,7 @@
     "ABBOT1E": {
         "icao": "ABBOT1E",
         "name": "Abbot One Echo",
-        "transitions": {
+        "entryPoints": {
             "LOGAN": ["XAMAN", "LOGAN"]
         },
         "body": ["CLN", "ABBOT"],
@@ -1540,7 +1540,7 @@
     "CASEY1B": {
         "icao": "CASEY1B",
         "name": "Casey One Bravo",
-        "transitions": {
+        "entryPoints": {
             "BARMI": ["BARMI"]
         },
         "body": ["DITOB", "LAPRA", "CASEY"],
@@ -1551,7 +1551,7 @@
     "CASEY1C": {
         "icao": "CASEY1C",
         "name": "Casey One Charlie",
-        "transitions": {
+        "entryPoints": {
             "IDESI": ["SUMUM", "IDESI"]
         },
         "body": ["LAPRA", "CASEY"],
@@ -1562,7 +1562,7 @@
     "CASEY1D": {
         "icao": "CASEY1D",
         "name": "Casey One Delta",
-        "transitions": {
+        "entryPoints": {
             "DETLING": ["KONAN", "DET"]
         },
         "body": ["CASEY"],
@@ -1573,7 +1573,7 @@
     "CASEY1E": {
         "icao": "CASEY1E",
         "name": "Casey One Echo",
-        "transitions": {
+        "entryPoints": {
             "LOGAN": ["XAMAN", "LOGAN"]
         },
         "body": ["CLN", "CASEY"],
