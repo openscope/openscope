@@ -175,7 +175,24 @@
     "RDL": ["N51d12m53.00", "W0d08m21.00"],
     "ODH": ["N51d14m06.00", "W0d56m57.00"],
     "GWC": ["N50d51m18.00", "W0d45m24.00"],
-    "BZN": ["N51d44m53.49", "W1d36m12.78"]
+    "BZN": ["N51d44m53.49", "W1d36m12.78"],
+
+    "BEDEK": ["N51d22m15.00",   "W001d33m31.00"],
+    "BILNI": ["N50d40m31.00",   "W002d07m33.00"],
+    "BOVVA": ["N51d43m34.00",   "W000d32m59.00"],
+    "DEVAL": ["N50d51m25.00",   "E001d28m00.00"],
+    "DOMUT": ["N50d15m43.00",   "W001d40m09.00"],
+    "DONNA": ["N51d42m00.00",   "W000d44m37.00"],
+    "DORKI": ["N51d16m33.00",   "W000d15m52.00"],
+    "ELDER": ["N50d39m48.00",   "W001d20m14.00"],
+    "HILLY": ["N51d20m06.00",   "E000d14m37.00"],
+    "HOGBA": ["N51d13m41.00",   "W000d29m43.00"],
+    "KATHY": ["N50d31m14.00",   "W001d20m00.00"],
+    "KUMIL": ["N50d34m31.00",   "W001d36m39.00"],
+    "NIGIT": ["N51d18m47.00",   "W001d10m15.00"],
+    "NUGRA": ["N53d01m46.00",   "W002d18m14.00"],
+    "TOMMO": ["N51d18m52.00",   "W000d21m46.00"],
+    "WEALD": ["N51d19m51.00",   "E000d02m05.00"]
   },
   "restricted": [
       {
@@ -997,117 +1014,456 @@
   },
   "departures": {
     "airlines": [
-      ["aal/long", 17 ],
-      ["aca/long", 18 ],
-      ["afl",      7  ],
-      ["afr",      6  ],
-      ["aua",      5  ],
-      ["ava/long", 1  ],
-      ["aza",      5  ],
-      ["baw",      335],
-      ["ces",      2  ],
-      ["cpa",      9  ],
-      ["csn",      1  ],
-      ["dal",      9  ],
-      ["dlh",      30 ],
-      ["ein",      10 ],
-      ["gwi",      8  ],
-      ["klm",      8  ],
-      ["amx/long", 2  ],
-      ["cca/long", 2  ],
-      ["kal/long", 6  ],
-      ["sas",      26 ],
-      ["uae",      5  ],
-      ["ual",      17 ],
-      ["tam",      3  ],
-      ["thy",      6  ],
-      ["vir",      50 ]
+      ["aee",        2],
+      ["ein",        4],
+      ["afl",        1],
+      ["amx/long",   1],
+      ["aca",        7],
+      ["cca",        1],
+      ["afr",        1],
+      ["aic",        4],
+      ["amc",        1],
+      ["asl",        1],
+      ["aza",        2],
+      ["ana",        1],
+      ["aal/long",   8],
+      ["aar",        1],
+      ["aua",        1],
+      ["ava/long",   1],
+      ["baw",      123],
+      ["bel",        1],
+      ["lzb",        1],
+      ["cpa",        1],
+      ["ces",        1],
+      ["csn",        1],
+      ["ctn",        3],
+      ["dal",       14],
+      ["ely",        1],
+      ["uae",        1],
+      ["etd",        1],
+      ["eva",        2],
+      ["ewg",        2],
+      ["gia",        1],
+      ["gwi",        3],
+      ["ibe",        1],
+      ["ibs",        4],
+      ["jal",        1],
+      ["jai",        2],
+      ["klm",        1],
+      ["klc",        1],
+      ["kal/long",   1],
+      ["tam",        1],
+      ["lot",        1],
+      ["dlh",        1],
+      ["mas",        1],
+      ["qfa",        3],
+      ["qtr",        1],
+      ["rja",        1],
+      ["sas",        4],
+      ["sia",        1],
+      ["swr",        1],
+      ["sht",       65],
+      ["tap",        1],
+      ["rot",        1],
+      ["tar",        1],
+      ["thy",        1],
+      ["ual",        6],
+      ["vir",       17],
+      ["vlg",        2]
     ],
     "destinations": [
       "CPT", "BPK", "WOBUN", "DET", "GOGSI", "MAY", "MID"
     ],
     "type": "random",
     "offset": 0,
-    "frequency": 40
+    "frequency": 44
+  },
+  "stars": {
+    "_comment": "In case the BIG  VOR is out of service",
+    "BIG": {
+      "icao": "BIG",
+      "name": "Biggin",
+      "entryPoints": {
+        "BIG1E": ["XAMAN", "LOGAN", "KOPUL", "TANET", "DET"],
+        "BIG1F": ["SANDY"],
+        "BIG1G": ["OCK", "DORKI", "HILLY"],
+        "BIG3C": ["KONAN", "DVR", "SANDY", "LYD", "TIGER"],
+        "BIG3D": ["LAM", "HILLY"],
+        "BIG4B": ["ALESO", "ROTNO", ["ETVAX", "A180"], "TIGER"]
+      },
+      "body": ["BIG"],
+      "draw": [
+        ["LOGAN", "KOPUL", "TANET", "DET", "BIG"],
+        ["SANDY", "BIG"],
+        ["OCK", "DORKI", "HILLY", "BIG"],
+        ["DVR", "SANDY", "LYD", "TIGER", "BIG"],
+        ["LAM", "HILLY"],
+        ["ALESO", "ROTNO", "ETVAX", "TIGER", "BIG"]
+      ]
+    },
+    "WEALD": {
+      "icao": "WEALD",
+      "name": "Weald",
+      "entryPoints": {
+        "WEALD1E": ["LOGAN", "KOPUL", "TANET", "DET"],
+        "WEALD1F": ["SANDY"],
+        "WEALD1G": ["OCK", "DORKI", "HILLY"],
+        "WEALD3C": ["DVR", "SANDY", "LYD", "TIGER"],
+        "WEALD3D": ["LAM", "HILLY"],
+        "WEALD4B": ["ALESO", "ROTNO", ["ETVAX", "A180"], "TIGER"]
+      },
+      "body": ["WEALD"],
+      "draw": [
+        ["LOGAN", "KOPUL", "TANET", "DET", "WEALD"],
+        ["SANDY", "WEALD"],
+        ["OCK", "DORKI", "HILLY", "WEALD"],
+        ["DVR", "SANDY", "LYD", "TIGER", "WEALD"],
+        ["LAM", "HILLY"],
+        ["ALESO", "ROTNO", "ETVAX", "TIGER", "WEALD"]]
+    },
+    "BNN": {
+      "icao": "BNN",
+      "name": "Bovingdon",
+      "entryPoints": {
+        "BNN1B": ["NUGRA", ["TOBID", "A200"], ["SOPIT", "A150"], ["WCO", "A160"]],
+        "BNN1C": ["DTY", ["WCO", "A160"]],
+        "BNN1D": ["KENET"],
+        "BNN1E": ["LAM", "DONNA"],
+        "BNN4A": [["HON", "A200"], "TOBID", ["SOPIT", "A150"], ["WCO", "A160"]]
+      },
+      "body": ["BNN"],
+      "draw": [
+        ["NUGRA", "TOBID", "SOPIT", "WCO", "BNN"],
+        ["DTY", "WCO"],
+        ["KENET", "BNN"],
+        ["LAM", "DONNA", "BNN"],
+        ["HON", "TOBID"]
+      ]
+    },
+    "_comment_": "In case the BNN VOR is out of service",
+    "BOVVA": {
+      "icao": "BOVVA",
+      "name": "Bovva",
+      "entryPoints": {
+        "BOVVA1B": ["NUGRA", ["TOBID", "A200"], ["SOPIT", "A150"], ["WCO", "A160"]],
+        "BOVVA1C": ["DTY", ["WCO", "A160"]],
+        "BOVVA1D": ["KENET"],
+        "BOVVA1E": ["LAM", "DONNA"],
+        "BOVVA4A": [["HON", "A200"], "TOBID", ["SOPIT", "A150"], ["WCO", "A160"]]
+      },
+      "body": ["BOVVA"],
+      "draw": [
+        ["NUGRA", "TOBID", "SOPIT", "WCO", "BOVVA"],
+        ["DTY", "WCO"],
+        ["KENET", "BOVVA"],
+        ["LAM", "DONNA", "BOVVA"],
+        ["HON", "TOBID"]
+      ]
+    },
+    "LAM3A": {
+      "icao": "LAM3A",
+      "name": "Lambourne Three Alpha",
+      "entryPoints": {
+        "LOGAN": ["XAMAN", ["LOGAN", "A250"]]
+      },
+      "body": ["TRIPO", ["SABER", "A160"], "BRASO", "LAM"],
+      "draw": [
+        ["LOGAN", "TRIPO", "SABER", "BRASO", "LAM"]
+      ]
+    },
+    "OCK": {
+      "icao": "OCK",
+      "name": "Ockham",
+      "entryPoints": {
+        "OCK1A": [["KENET", "A140"]],
+        "OCK1D": ["HON", "WOD"],
+        "OCK1G": ["LAM", "DORKI"],
+        "OCK1H": ["BIG", "DORKI"],
+        "OCK2C": ["SAM", ["HAZEL", "A130"]],
+        "OCK2F": [["BEDEK", "A140"], "NIGIT"],
+        "OCK3E": [["BILNI", "A200"], ["KUMIL", "A180"], "ELDER", "BEGTO", ["HAZEL", "A130"]],
+        "OCK3J": ["BEWLI", "BEGTO", ["HAZEL", "A130"]],
+        "OCK4B": ["DOMUT", "KATHY", ["HAZEL", "A130"]]
+      },
+      "body": ["OCK"],
+      "draw": [
+        ["KENET", "OCK"],
+        ["HON", "WOD", "OCK"],
+        ["BEDEK", "NIGIT", "OCK"],
+        ["SAM", "HAZEL", "OCK"],
+        ["BILNI", "KUMIL", "ELDER", "BEGTO", "HAZEL"],
+        ["BEWLI", "BEGTO"],
+        ["DOMUT", "KATHY", "HAZEL"],
+        ["BIG", "DORKI", "OCK"],
+        ["LAM", "DORKI"]
+      ]
+    },
+    "_comment__": "In case the OCK VOR is out of service",
+    "TOMMO": {
+      "icao": "TOMMO",
+      "name": "Tommo",
+      "entryPoints": {
+        "TOMMO1A": [["KENET", "A140"]],
+        "TOMMO1D": ["HON", "WOD"],
+        "TOMMO1G": ["LAM", "HOGBA"],
+        "TOMMO1H": ["BIG", "HOGBA"],
+        "TOMMO2C": ["SAM", ["HAZEL", "A130"]],
+        "TOMMO2F": [["BEDEK", "A140"], "NIGIT"],
+        "TOMMO3E": [["BILNI", "A200"], ["KUMIL", "A180"], "ELDER", "BEGTO", ["HAZEL", "A130"]],
+        "TOMMO3J": ["BEWLI", "BEGTO", ["HAZEL", "A130"]],
+        "TOMMO4B": ["DOMUT", "KATHY", ["HAZEL", "A130"]]
+      },
+      "body": ["TOMMO"],
+      "draw": [
+        ["KENET", "TOMMO"],
+        ["HON", "WOD", "TOMMO"],
+        ["BEDEK", "NIGIT", "TOMMO"],
+        ["SAM", "HAZEL", "TOMMO"],
+        ["BILNI", "KUMIL", "ELDER", "BEGTO", "HAZEL"],
+        ["BEWLI", "BEGTO"],
+        ["DOMUT", "KATHY", "HAZEL"],
+        ["BIG", "HOGBA", "TOMMO"],
+        ["LAM", "HOGBA"]
+      ]
+    }
   },
   "arrivals":[
     {
-      "radial": 80,
-      "heading": 264,
-      "speed": 250,
-      "fixes": ["REFSO", "XAMAN", "LOGAN", "TRIPO", "SABER", "BRASO", "LAM"],
+      "type": 		"cyclic",
+      "route":    "BIG3C.BIG.EGLL",
+      "frequency": 8,
+      "altitude": [21000, 24000],
+      "speed":		300,
+      "offset":		2,
       "airlines": [
-        ["afl",  7],
-        ["baw", 76],
-        ["ces",  2],
-        ["cpa",  8],
-        ["csn",  1],
-        ["dlh", 30],
-        ["gwi",  9],
-        ["klm",  8],
-        ["cca",  1],
-        ["vir", 12]
-      ],
-      "type": "wave",
-      "offset": 0,
-      "frequency": 15,
-      "altitude": 19000
+        ["aee",   2],
+        ["ein",   4],
+        ["afl",   1],
+        ["asl",   1],
+        ["aza",   2],
+        ["aar",   1],
+        ["aua",   1],
+        ["baw", 123],
+        ["bel",   1],
+        ["lzb",   1],
+        ["cpa",   1],
+        ["ces",   1],
+        ["csn",   1],
+        ["ctn",   3],
+        ["ely",   1],
+        ["uae",   1],
+        ["etd",   1],
+        ["eva",   2],
+        ["ewg",   2],
+        ["gia",   1],
+        ["gwi",   3],
+        ["jai",   2],
+        ["kal",   1],
+        ["dlh",   1],
+        ["mas",   1],
+        ["qfa",   3],
+        ["qtr",   1],
+        ["rja",   1],
+        ["sia",   1],
+        ["swr",   1],
+        ["rot",   1],
+        ["tar",   1],
+        ["thy",   1],
+        ["vir",  17]
+        ]
     },
     {
-      "radial": 130,
-      "heading": 316,
-      "speed": 250,
-      "fixes": ["ALESO", "ROTNO", "ETVAX", "TIGER", "BIG"],
-      "airlines":[
-        ["aua",  5],
-        ["baw", 76],
-        ["uae", 10],
-        ["thy",  6],
-        ["vir", 12],
-        ["aza",  5],
-        ["afr",  6]
-      ],
-      "type": "random",
-      "offset": 0,
-      "frequency": 10,
-      "altitude": 18000
-    },
-    {
-      "radial": 320,
-      "speed": 250,
-      "fixes": ["HON", "TOBID", "SOPIT", "WCO", "BNN"],
-      "airlines":[
-        ["aal",      17],
-        ["aca",      18],
-        ["baw",      76],
-        ["dal",      9 ],
-        ["ein",      8 ],
-        ["sas",      26],
-        ["ual/long", 17],
-        ["vir",      25]
-      ],
-      "type": "wave",
-      "offset": 0,
-      "frequency": 15,
-      "altitude": [14000, 19000]
-    },
-    {
-      "radial": 240,
-      "heading": 90,
-      "speed": 250,
-      "fixes": ["BEWLI", "BEGTO", "HAZEL", "OCK"],
+      "type": 		"cyclic",
+      "route":    "BIG4B.BIG.EGLL",
+      "frequency": 4,
+      "altitude": 27000,
+      "speed":		290,
+      "offset":		2,
       "airlines": [
-        ["amx/long", 2 ],
-        ["ava",      1 ],
-        ["baw",      45],
-        ["baw/long", 5 ],
-        ["tam",      3 ],
-        ["vir",      12]
-      ],
-      "type": "random",
-      "offset": 0,
-      "frequency": 10,
-      "altitude": 15000
+        ["aee",   2],
+        ["afr",   1],
+        ["aic",   4],
+        ["aza",   2],
+        ["aar",   1],
+        ["baw", 123],
+        ["ctn",   3],
+        ["eva",   2],
+        ["gia",   1],
+        ["kal",   1],
+        ["mas",   1],
+        ["qfa",   3],
+        ["qtr",   1],
+        ["rja",   1],
+        ["sia",   1],
+        ["swr",   1],
+        ["thy",   1],
+        ["vir",  17]
+        ]
+    },
+    {
+      "type": 		"cyclic",
+      "route":    "BNN1B.BNN.EGLL",
+      "frequency": 2,
+      "altitude": 20000,
+      "speed":		300,
+      "offset":		2,
+      "airlines": [
+        ["ein",   4],
+        ["aal",   8],
+        ["baw", 123],
+        ["dal",  14],
+        ["sht",  65],
+        ["ual",   6],
+        ["vir",  17]
+        ]
+    },
+    {
+      "type": 		"cyclic",
+      "route":    "BNN1C.BNN.EGLL",
+      "frequency": 1,
+      "altitude": [8000, 10000],
+      "speed":		430,
+      "offset":		2,
+      "airlines": [
+        ["sht",  65]
+        ]
+    },
+    {
+      "type": 		"cyclic",
+      "route":    "BNN4A.BNN.EGLL",
+      "frequency": 1,
+      "altitude": 20000,
+      "speed":		300,
+      "offset":		4,
+      "airlines": [
+        ["ein",   4],
+        ["aal",   8],
+        ["baw", 123],
+        ["dal",  14],
+        ["sht",  65],
+        ["ual",   6],
+        ["vir",  17]
+        ]
+    },
+    {
+      "type": 		"cyclic",
+      "route":    "LOGAN.LAM3A.EGLL",
+      "frequency": 8,
+      "altitude": [24000, 27000],
+      "speed":		430,
+      "offset":		2,
+      "airlines": [
+        ["afl",   1],
+        ["cca",   1],
+        ["ana",   1],
+        ["baw", 123],
+        ["cpa",   1],
+        ["ces",   1],
+        ["csn",   1],
+        ["jal",   1],
+        ["klm",   1],
+        ["klc",   1],
+        ["kal",   1],
+        ["mas",   1],
+        ["sia",   1],
+        ["vir",  17]
+        ]
+    },
+    {
+      "type": 		"cyclic",
+      "route":    "OCK1A.OCK.EGLL",
+      "frequency": 3,
+      "altitude": [12000, 14000],
+      "speed":		250,
+      "offset":		2,
+      "airlines": [
+        ["ein",   4],
+        ["aal",   8],
+        ["baw", 123],
+        ["dal",  14],
+        ["sht",  65],
+        ["ual",   6],
+        ["vir",  17]
+        ]
+    },
+    {
+      "type": 		"cyclic",
+      "route":    "OCK2C.OCK.EGLL",
+      "frequency": 2,
+      "altitude": [14000, 16000],
+      "speed":		320,
+      "offset":		2,
+      "airlines": [
+        ["amx",   1],
+        ["amc",   1],
+        ["ava",   1],
+        ["baw", 123],
+        ["ibe",   1],
+        ["ibs",   4],
+        ["tam",   1],
+        ["tap",   1],
+        ["vlg",   2]
+        ]
+    },
+    {
+      "type": 		"cyclic",
+      "route":    "OCK2F.OCK.EGLL",
+      "frequency": 4,
+      "altitude": 10000,
+      "speed":		250,
+      "offset":		2,
+      "airlines": [
+        ["ein",   4],
+        ["aal",   8],
+        ["baw", 123],
+        ["dal",  14],
+        ["sht",  65],
+        ["ual",   6],
+        ["vir",  17]
+        ]
+    },
+    {
+      "type": 		"cyclic",
+      "route":    "OCK3E.OCK.EGLL",
+      "frequency": 4,
+      "altitude": [18000, 21000],
+      "speed":		300,
+      "offset":		2,
+      "airlines": [
+        ["aal",   8],
+        ["baw", 123],
+        ["dal",  14],
+        ["sht",  65],
+        ["ual",   6],
+        ["vir",  17],
+        ["amx",   1],
+        ["amc",   1],
+        ["ava",   1],
+        ["ibe",   1],
+        ["ibs",   4],
+        ["tam",   1],
+        ["tap",   1],
+        ["vlg",   2]
+        ]
+    },
+    {
+      "type": 		"cyclic",
+      "route":    "OCK3J.OCK.EGLL",
+      "frequency": 3,
+      "altitude": 16000,
+      "speed":		280,
+      "offset":		2,
+      "airlines": [
+        ["baw", 123],
+        ["amx",   1],
+        ["amc",   1],
+        ["ava",   1],
+        ["ibe",   1],
+        ["ibs",   4],
+        ["tam",   1],
+        ["tap",   1],
+        ["vlg",   2]
+        ]
     }
   ]
 }
