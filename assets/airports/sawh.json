@@ -62,7 +62,7 @@
       "rwy": {
         "7" : ["_RWY07", ["_USU14DME093", "A45+|S250"]]
       },
-      "transitions": {
+      "exitPoints": {
         "DARIN": [["_USU14DME110", "S250"], ["USU", "A80+|S250"], "DARIN", "ALMIR"],
         "KEXOP": [["_USU14DME110", "S250"], ["USU", "A80+|S250"], "KEXOP", "GRA"],
         "LITOK": [["_USU14DME110", "S250"], ["USU", "A80+|S250"], "LITOK", "ALMIR"],
@@ -77,7 +77,7 @@
       "rwy": {
         "25" : [["_RWY25", "A4+"], "_USU07DME093", ["_USU14DME093", "A45+|S250"]]
       },
-      "transitions": {
+      "exitPoints": {
         "DARIN": [["_USU14DME110", "S250"], ["USU", "A80+|S250"], "DARIN", "ALMIR"],
         "KEXOP": [["_USU14DME110", "S250"], ["USU", "A80+|S250"], "KEXOP", "GRA"],
         "LITOK": [["_USU14DME110", "S250"], ["USU", "A80+|S250"], "LITOK", "ALMIR"],
@@ -92,7 +92,7 @@
       "rwy": {
         "25" : [["_RWY25", "A4+|S180"], ["WH321", "A17+|S180"], ["WH322", "A50+|S180"], ["WH323", "A75+|S180"], ["WH324", "A80+|S180"]]
       },
-      "transitions": {
+      "exitPoints": {
         "UGIRA": [["WH326", "A110+|S180"], ["USU", "S180"], "UGIRA", "LOKEN"],
         "KEXOP": [["WH326", "A110+|S180"], ["USU", "S180"], "KEXOP", "GRA"],
         "LITOK": [["WH326", "A110+|S180"], ["USU", "S180"], "LITOK", "ALMIR"],
@@ -105,7 +105,7 @@
     "DABLI2": {
       "icao": "DABLI2",
       "name": "Dabli Two",
-      "transitions": {
+      "entryPoints": {
         "GRA": ["GRA"]
       },
       "body": [["DABLI", "A140|S290"], ["EDPAN", "A100|S250"], ["WH213", "A80|S230"], ["WH214", "A65|S210"], ["AMVUK", "A65|S180"]],
