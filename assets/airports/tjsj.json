@@ -172,7 +172,7 @@
         "28":  ["_28", "_28ACONY"]
       },
       "body": ["ACONY", "PALDE"],
-      "transitions": {
+      "exitPoints": {
         "SAPPO": ["SAPPO"],
         "ELMUC": ["ELMUC"]
       },
@@ -191,7 +191,7 @@
         "28":  ["_28", "_28ACONY"]
       },
       "body": ["GANBO", "CLAYO", "TOREY"],
-      "transitions": {
+      "exitPoints": {
         "ARMUR": ["CRSTL", "ARMUR"],
         "SCAPA": ["SCAPA"]
       },
@@ -210,7 +210,7 @@
         "28":  ["_28", "_28ACONY"]
       },
       "body": ["GLADA", "MAWLY"],
-      "transitions": {
+      "exitPoints": {
         "KEEKA": ["KEEKA"],
         "MACOR": ["FERNA", "MACOR"],
         "NUBUS": ["VORCE", "BAROE", "NUBUS"],
@@ -233,7 +233,7 @@
         "28":  ["_28", "_28ACONY"]
       },
       "body": ["_SJU080", "JETSS"],
-      "transitions": {
+      "exitPoints": {
         "SLUGO": ["SLUGO"],
         "JUICE": ["JUICE"],
         "COY":   ["COY"]
@@ -249,7 +249,7 @@
     "BEANO3": {
       "icao": "BEANO3",
       "name": "Beano Three",
-      "transitions": {
+      "entryPoints": {
         "ELMUC": ["ELMUC", ["SHMUU", "A340-|300"]],
         "HARDE": ["HARDE", ["SHMUU", "A340-|300"]],
         "KATOK": ["KATOK"]
@@ -265,7 +265,7 @@
     "JOSHE3": {
       "icao": "JOSHE3",
       "name": "Joshe Three",
-      "transitions": {
+      "entryPoints": {
         "MELLA": ["MELLA"],
         "SCAPA": ["SCAPA", ["GABYY", "A190|280"]],
         "ARMUR": ["ARMUR", ["KYAAK", "A190|280"]],
@@ -282,7 +282,7 @@
     "SAALR2": {
       "icao": "SAALR2",
       "name": "Sailor Two",
-      "transitions": {
+      "entryPoints": {
         "LENNT": ["LENNT"],
         "THANK": ["THANK"]
       },
@@ -297,7 +297,7 @@
     "TROCO3": {
       "icao": "TROCO3",
       "name": "Troco Three",
-      "transitions": {
+      "entryPoints": {
         "GABAR": ["GABAR", "DANDE"],
         "ILURI": ["ILURI"],
         "MODUX": ["MODUX"],
