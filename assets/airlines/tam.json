@@ -1,6 +1,6 @@
 {
   "icao": "TAM",
-  "name": "TAM Linhas Aereas",
+  "name": "LATAM Airlines Brasil",
   "callsign": {
     "name": "TAM",
     "length": 3,
@@ -10,7 +10,7 @@
     "default": [
       ["A319", 27],
       ["A320", 83],
-      ["A321", 29]
+      ["A321", 30]
     ],
     "long": [
       ["B763", 14],

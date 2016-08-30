@@ -926,6 +926,7 @@
       ["dlh/long", 3],
       ["ibe/long", 3],
       ["lan", 15],
+      ["dsm", 5],
       ["uae", 1],
       ["ual/long", 4],
       ["klm/long", 5]
@@ -947,6 +948,7 @@
         ["ava/long", 5],
         ["ual/long", 8],
         ["lan", 5],
+        ["dsm", 5],
         ["arg", 5]
       ],
       "type": "cyclic",
@@ -959,6 +961,7 @@
       "fixes": ["_PAGON011016", "PAGON", "VANAR", "ENO", "ARSOT"],
       "airlines":  [
         ["lan", 10],
+        ["dsm", 5],
         ["arg", 10]
       ],
       "type": "cyclic",
@@ -971,6 +974,7 @@
       "fixes": ["_ASADA270015", "ASADA", "EZE50", "ARSOT"],
       "airlines":  [
         ["lan", 10],
+        ["dsm", 5],
         ["arg", 10]
       ],
       "type": "cyclic",
@@ -983,6 +987,7 @@
       "fixes": ["_GBE160015", "GBE", "EZE50", "ARSOT"],
       "airlines":  [
         ["lan", 10],
+        ["dsm", 5],
         ["arg", 10]
       ],
       "type": "cyclic",
@@ -996,6 +1001,7 @@
       "airlines":  [
         ["arg", 10],
         ["lan", 5],
+        ["dsm", 5],
         ["tam", 3],
         ["afr/long", 1],
         ["klm/long", 1]
@@ -1011,6 +1017,7 @@
       "airlines":  [
         ["arg", 10],
         ["tam", 8],
+        ["dsm", 5],
         ["afr/long", 3],
         ["klm/long", 1],
         ["ibe/long", 3],
