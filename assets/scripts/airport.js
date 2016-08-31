@@ -156,7 +156,6 @@ zlsa.atc.ArrivalBase = Fiber.extend(function(base) {
           nextFix:   spawn_positions[i].nextFix
         });
       }
-
     },
     /** Stop this arrival stream
      */
@@ -1349,6 +1348,7 @@ function airport_init() {
   airport_load('tjsj', "easy", "Luis Muñoz Marín International Airport");
   airport_load('tncm', "easy", "Princess Juliana International Airport");
   airport_load('uudd', "easy", "Moscow Domodedovo Airport");
+  airport_load('vabb', "hard", "Chhatrapati Shivaji International Airport")
   airport_load('vecc', "medium", "Kolkata Netaji Subhas Chandra Bose Int'l");
   airport_load('vhhh', "medium", "Hong Kong Chep Lap Kok International Airport");
   airport_load('vidp', "hard", "Indira Gandhi International Airport");
