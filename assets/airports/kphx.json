@@ -250,7 +250,7 @@
         "26":  ["_26", "DAVZZ", ["VANZZ", "A80-"], "BUNEE"]
       },
       "body": ["BROAK", "FTHLS", "JNIPR", "JSSUA"],
-      "transitions": {
+      "exitPoints": {
         "ABQ":   ["ABQ"],
         "MAXXO": ["MAXXO"]
       },
@@ -273,7 +273,7 @@
         "26":  ["_26"]
       },
       "body": ["KEENS", "IZZZO"],
-      "transitions": {
+      "exitPoints": {
         "BLH":   ["SALOM", "BLH"],
         "JOLAR": ["CULTS", "JOLAR"],
         "MESSI": ["MESSI"]
@@ -296,7 +296,7 @@
         "26":  ["_26", "_TWSND26", "TWSND"]
       },
       "body": ["ZEPER", "MAYSA"],
-      "transitions": {
+      "exitPoints": {
         "JKPOT": ["JKPOT"],
         "SISIE": ["SISIE"]
       },
@@ -318,7 +318,7 @@
         "26":  ["_26", "_TWSND26", "TWSND", "OXYGN", "ZILUB"]
       },
       "body": ["QUAKY", "SNOBL", "CARTL"],
-      "transitions": {
+      "exitPoints": {
         "CARTL": [],
         "GCN":   ["LOFTS", "RIMMM", "GCN"],
         "JARPA": ["JARPA"],
@@ -346,7 +346,7 @@
         "26":  ["_26", "DAVZZ", ["VANZZ", "A80-"]]
       },
       "body": ["BNYRD", "TFD"],
-      "transitions": {
+      "exitPoints": {
         "TUS": ["TUS"]
       },
       "draw": [
@@ -366,7 +366,7 @@
         "26":  ["_26", "DAVZZ", ["VANZZ", "A80-"], "CLUBZ"]
       },
       "body": ["GBN", "JUDTH"],
-      "transitions": {
+      "exitPoints": {
         "MOHAK": ["MOHAK"]
       },
       "draw": [
@@ -386,7 +386,7 @@
         "26":  ["_26", "DAVZZ", ["VANZZ", "A80-"], "BUNEE"]
       },
       "body": ["ECLPS", "KATMN"],
-      "transitions": {
+      "exitPoints": {
         "PHASE": ["BOXXR", "PHASE"]
       },
       "draw": [
@@ -406,7 +406,7 @@
         "26":  ["_26", "_TWSND26", "TWSND", "OXYGN", "ZILUB"]
       },
       "body": ["FORPE", "LALUZ"],
-      "transitions": {
+      "exitPoints": {
         "SJN":   ["SJN"],
         "ABQ":   ["SJN", "ABQ"],
         "MAXXO": ["SJN", "JSSUA", "MAXXO"]
@@ -430,7 +430,7 @@
         "26":  ["_26", "_TWSND26", "TWSND", "OXYGN", "ZILUB"]
       },
       "body": ["MRBIL", "YOTES"],
-      "transitions": {
+      "exitPoints": {
         "GCN":   ["GCN"],
         "JARPA": ["JARPA"],
         "YOOPR": ["YOOPR"]
@@ -447,7 +447,7 @@
     "BRUSR1": {
       "icao": "BRUSR1",
       "name": "Bruiser One",
-      "transitions": {
+      "entryPoints": {
         "TENTS": ["TENTS", ["PANTD", "A290"], ["DUTEY", "A290"]],
         "WOTRO": ["WOTRO", ["WINER", "A290"], ["DRK", "A290"]]
       },
@@ -464,7 +464,7 @@
     "EAGUL6": {
       "icao": "EAGUL6",
       "name": "Eagle Six",
-      "transitions": {
+      "entryPoints": {
         "GUP": ["GUP", "KIRKM", "SLIDR", ["TINIZ", "A330-|S270"], ["PAYSO", "A90|S270"]],
         "ZUN": ["ZUN", "DOJOE", "SLIDR", ["TINIZ", "A330-|S270"], ["PAYSO", "A90|S270"]],
         "INW": ["INW"]
@@ -482,7 +482,7 @@
     "HYDRR1": {
       "icao": "HYDRR1",
       "name": "Hyder One",
-      "transitions": {
+      "entryPoints": {
         "BLH":   ["BLH", ["SCOLE", "A250|S280"], ["SPINK", "A240+"], ["SNRRA", "A220-"], ["SWOON", "A200"]],
         "HOGGZ": ["HOGGZ", ["JUDTH", "A250+|S280"], ["RKDAM", "A220-"]],
         "SALOM": [["SALOM", "A230-|S280"], ["MHAVI", "A220-"], ["SWOON", "A200"]]
@@ -500,7 +500,7 @@
     "PINNG1": {
       "icao": "PINNG1",
       "name": "Ping One",
-      "transitions": {
+      "entryPoints": {
         "DRRVR": ["DRRVR", ["BNNKR", "A280|S280"], ["HYBRD", "A250"]],
         "HOTTT": [["HOTTT", "A250|S280"]]
       },
