@@ -1342,6 +1342,7 @@ function airport_init() {
   airport_load('othh', "hard", "Doha Hamad International Airport");
   airport_load('rjtt', "hard", "Tokyo Haneda International Airport");
   airport_load('saez', "medium", "Aeropuerto Internacional Ministro Pistarini");
+  airport_load('same', "medium", "Aeropuerto Internacional El Plumerillo");
   airport_load('sawh', "beginner", "Aeropuerto Internacional Malvinas Argentinas");
   airport_load('sbgl', "beginner", "Aeroporto Internacional Tom Jobim");
   airport_load('sbgr', "beginner", "Aeroporto Internacional de São Paulo/Guarulhos");
