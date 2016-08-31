@@ -604,7 +604,7 @@
         "SEL1T": {
             "icao": "SEL1T",
             "name": "Anyang One Tango",
-            "transitions": {
+            "entryPoints": {
                 "ANYANG": [["SEL", "A150"]]
             },
             "body": [["POLKA", "A120"], ["DANZO", "A100"], ["MAKIN", "A60"], ["DALCO", "A50|S210-"], ["TIMON", "A40|S210-"]],
@@ -615,7 +615,7 @@
         "GUKDO1A": {
             "icao": "GUKDO1A",
             "name": "Gukdo One Alpha",
-            "transitions": {
+            "entryPoints": {
                 "GUKDO": ["GUKDO"]
             },
             "body": [["KAKSO", "A180"], "KALMA", ["SEL", "A150"], ["WINDY", "A100"], ["COPUS", "A60"]],
@@ -626,7 +626,7 @@
         "KARBU1A": {
             "icao": "KARBU1A",
             "name": "Karbu One Alpha",
-            "transitions": {
+            "entryPoints": {
                 "G597": ["KAE", "KARBU"]
             },
             "body": [["EGOBA", "A170"], ["SEL", "A150"], ["WINDY", "A100"], ["COPUS", "A60"]],
@@ -637,7 +637,7 @@
         "OLMEN1N": {
             "icao": "OLMEN1N",
             "name": "Olmen One November",
-            "transitions": {
+            "entryPoints": {
                 "OLMEN": ["OLMEN"]
             },
             "body": [["TOSCA", "A180"], ["BONSA", "A160"], ["SI852", "A150"], ["SI942", "A90"], ["SI943", "A80|S210"], ["SI944", "S210"], ["SI945", "S210"], ["SI946", "S210"], ["SI947", "A80|S210"], ["DANAN", "A50|S210"]],
@@ -648,7 +648,7 @@
         "GUKDO1N": {
             "icao": "GUKDO1N",
             "name": "Gukdo One November",
-            "transitions": {
+            "entryPoints": {
                 "GUKDO": ["GUKDO"]
             },
             "body": [["KAKSO", "A180"], "KALMA", "HODOL", ["SEL", "A150"], ["SI853", "A110"], ["SI941", "A80|S210"], ["SI942", "A80|S210"], ["SI943", "S210"], ["SI944", "S210"], ["SI945", "S210"], ["SI946", "S210"], ["SI947", "A80|S210"], ["DANAN", "A50|S210"]],
@@ -659,7 +659,7 @@
         "KARBU1N": {
             "icao": "KARBU1N",
             "name": "Karbu One November",
-            "transitions": {
+            "entryPoints": {
                 "G597": ["KAE", "KARBU"]
             },
             "body": [["EGOBA", "A170"], ["SEL", "A160"], ["SI853", "A110"], ["SI941", "A80|S210"], ["SI942", "A80|S210"], ["SI943", "S210"], ["SI944", "S210"], ["SI945", "S210"], ["SI946", "S210"], ["SI947", "A80|S210"], ["DANAN", "A50|S210"]],
@@ -670,7 +670,7 @@
         "REBIT1N": {
             "icao": "REBIT1N",
             "name": "Rebit One November",
-            "transitions": {
+            "entryPoints": {
                 "REBIT": ["REBIT"]
             },
             "body": [["ALTON", "A130"], ["SI931", "A90|S210"], ["SI932", "A90|S210"], ["SI933", "A90|S210"], ["SI934", "A90|S210"], ["SI935", "A90|S210"], ["DANAN", "A50|S210"]],
@@ -681,7 +681,7 @@
         "BIKSI1M": {
             "icao": "BIKSI1M",
             "name": "Biksi One Mike",
-            "transitions": {
+            "entryPoints": {
                 "BIKSI": ["BIKSI"]
             },
             "body": [["KARBU", "A180"], ["SI361", "A100"], ["PULUN", "A70"]],
@@ -692,7 +692,7 @@
         "CUN1M": {
             "icao": "CUN1M",
             "name": "Yechon One Mike",
-            "transitions": {
+            "entryPoints": {
                 "YECHON": ["CUN"]
             },
             "body": [["BIGOB", "A220"], ["BASEM", "A200"], ["GUKDO", "A160"], ["SI362", "A100"], ["PULUN", "A70"]],
@@ -703,7 +703,7 @@
         "GONAV2M": {
             "icao": "GONAV2M",
             "name": "Gonav Two Mike",
-            "transitions": {
+            "entryPoints": {
                 "GONAV": ["GONAV"]
             },
             "body": [["BODOL", "A200"], ["REBIT", "A170"], ["BELTU", "A150"], ["SANHO", "A130"], ["DANIL", "A120"], ["BIANY", "A85"], ["PULUN", "A70"]],
@@ -714,7 +714,7 @@
         "MAKSA1M": {
             "icao": "MAKSA1M",
             "name": "Maksa One Mike",
-            "transitions": {
+            "entryPoints": {
                 "MAKSA": ["MAKSA"]
             },
             "body": [["ATASO", "A220"], ["PEBRI", "A180"], ["OLMEN", "A150"], ["SI363", "A95"], ["PULUN", "A70"]],
@@ -725,7 +725,7 @@
         "GUKDO1P": {
             "icao": "GUKDO1P",
             "name": "Gukdo One Papa",
-            "transitions": {
+            "entryPoints": {
                 "GUKDO": ["GUKDO"]
             },
             "body": [["KAKSO", "A150"], ["SI857", "A110|S250"], ["SI921", "A100|S250"], ["SI922", "A100|S220"], ["SI923", "A100|S220"], ["SI924", "A100|S220"], ["SI925", "A100|S220"], ["PULUN", "A70|S220"]],
@@ -736,7 +736,7 @@
         "KARBU1P": {
             "icao": "KARBU1P",
             "name": "Karbu One Papa",
-            "transitions": {
+            "entryPoints": {
                 "G597": ["KAE", "KARBU"]
             },
             "body": [["NOTIN", "A170"], ["SI857", "A120|S250"], ["SI921", "A100|S250"], ["SI922", "A100|S220"], ["SI923", "A100|S220"], ["SI924", "A100|S220"], ["SI925", "A100|S220"], ["PULUN", "A70|S220"]],
@@ -747,7 +747,7 @@
         "COWAY1A": {
             "icao": "COWAY1A",
             "name": "Coway One Alpha",
-            "transitions": {
+            "entryPoints": {
                 "COWAY": [["COWAY", "A150"]]
             },
             "body": [["PINGO", "A110"], ["SI901", "A70|S190"], ["SI902", "A70|S190"], ["SI903", "A70|S190"], ["SI904", "A70|S190"], ["SI905", "A70|S190"], ["KOTRA", "A40|S190"]],
@@ -758,7 +758,7 @@
         "COWAY1P": {
             "icao": "COWAY1P",
             "name": "Coway One Papa",
-            "transitions": {
+            "entryPoints": {
                 "COWAY": [["COWAY", "A150"]]
             },
             "body": [["PINGO", "A120"], ["SI854", "A120"], ["SI855", "A120"], ["ARONE", "A110|S220"], ["SI912", "A110|S220"], ["SI913", "A110|S220"], ["SI914", "A110|S220"], ["SI915", "A110|S220"], ["PULUN", "A70|S220"]],
@@ -769,7 +769,7 @@
         "OLMEN1P": {
             "icao": "OLMEN1P",
             "name": "Olmen One Papa",
-            "transitions": {
+            "entryPoints": {
                 "OLMEN": ["OLMEN"]
             },
             "body": [["ARONE", "A120|S220"], ["SI912", "A110|S220"], ["SI913", "A110|S220"], ["SI914", "A110|S220"], ["SI915", "A110|S220"], ["PULUN", "A70|S220"]],
