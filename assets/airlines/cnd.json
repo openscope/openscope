@@ -1,0 +1,12 @@
+{
+  "name": "Corendon Dutch Airlines",
+  "callsign": {
+    "name": "Dutch Corendon",
+    "length": 3
+  },
+  "fleets": {
+    "default": [
+        ["B738", 3]
+    ]
+  }
+}
