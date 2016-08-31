@@ -662,7 +662,7 @@
         "18" : ["_DOZ124INTER", ["_DOZ15DME124", "S250"], ["_15DOZ42", "S250"], ["_15DOZ41", "S250"], ["_15DOZ40", "S250"], ["_15DOZ39", "S250"], ["_15DOZ38", "S250"], ["_15DOZ37", "S250"], ["_15DOZ36", "S250"], ["_15DOZ35", "S250"], ["_15DOZ34", "S250"], ["_15DOZ33", "S250"], ["_15DOZ32", "S250"], ["_15DOZ31", "S250"], ["_15DOZ30", "S250"], ["_15DOZ29", "S250"], ["_15DOZ28", "S250"], ["_15DOZ27", "S250"], ["_15DOZ26", "S250"], ["_15DOZ25", "S250"], ["_15DOZ24", "S250"], ["_15DOZ23", "S250"], ["_15DOZ22", "S250"], ["_15DOZ21", "S250"], ["_15DOZ20", "S250"], ["_15DOZ19", "S250"], ["_15DOZ18", "S250"], ["_15DOZ17", "S250"], ["_15DOZ16", "S250"], ["_DOZ15DME043", "S250"], "KOTES"],
         "36" : ["_DOZ043INTER", ["_DOZ15DME043", "S250"], ["_DOZ25DME043", "S250"], "KOTES"]
       },
-      "transitions": {
+      "exitPoints": {
         "MEBRA": ["MEBRA"]
       },
       "draw": [
@@ -721,7 +721,7 @@
     "BRA1": {
       "icao": "BRA1",
       "name": "Mebra One",
-       "transitions": {
+       "entryPoints": {
         "JUA": ["JUA"]
       },
       "body": [["MEBRA", "A255"], ["ME466", "A130|S250"], ["MUBEN", "A70"], ["UKAPO", "A60|S210"], ["URERI", "A50|S200"]],
@@ -732,7 +732,7 @@
     "SAL1": {
       "icao": "SAL1",
       "name": "Salbo One",
-       "transitions": {
+       "entryPoints": {
         "SOLER": ["SOLER"]
       },
       "body": [["SALBO", "A235"], ["MUBEN", "A70"], ["UKAPO", "A60|S210"], ["URERI", "A50|S200"]],
@@ -743,7 +743,7 @@
     "PAP1": {
       "icao": "PAP1",
       "name": "Papir One",
-       "transitions": {
+       "entryPoints": {
         "EDRIS": ["EDRIS"]
       },
       "body": [["PAPIR", "A200"], ["MUBEN", "A70"], ["UKAPO", "A60|S210"], ["URERI", "A50|S200"]],
@@ -754,7 +754,7 @@
     "ITO1": {
       "icao": "ITO1",
       "name": "Esito One",
-       "transitions": {
+       "entryPoints": {
         "ALBAL": ["ALBAL"]
       },
       "body": [["ESITO", "A190"], ["ME457", "A80|S230"], ["ME453", "A60|S210"], ["URERI", "A50|S200"]],
