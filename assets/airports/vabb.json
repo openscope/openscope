@@ -137,7 +137,7 @@
         "icao": "ALBAP",
         "name": "Albap One Bravo",
         "suffix": {"09":"1B"},
-        "transitions": {
+        "exitPoints": {
           "AURANGABAD": ["SEKVI", "KAKPO", "MB366", "AAU"],
           "BETKU":      ["XOPAL", "MB381", "BETKU"],
           "DOTIP":      ["XOPAL", "MB361", "DOTIP"],
@@ -158,7 +158,7 @@
         "icao": "DOGAP",
         "name": "Dogap One Bravo",
         "suffix": {"09":"1B"},
-        "transitions": {
+        "exitPoints": {
           "PUNE": [["DOGAP", "A70"], "PUN"]
         },
         "rwy": {
@@ -173,7 +173,7 @@
         "icao": "DOGAP",
         "name": "Dogap One Charlie",
         "suffix": {"14":"1C"},
-        "transitions": {
+        "exitPoints": {
           "PUNE": [["DOGAP", "A70"], "PUN"]
         },
         "rwy": {
@@ -188,7 +188,7 @@
         "icao": "ONAGI",
         "name": "Onagi One Bravo",
         "suffix": {"09":"1B"},
-        "transitions": {
+        "exitPoints": {
           "BELGAUM":  ["MB390", "MB362", "BBM"],
           "BISET":    ["VEVAK", "MB377", "ARIRA", "BISET"],
           "MABTA":    ["MB390", "MB362", "BEKUT", "MABTA"],
@@ -210,7 +210,7 @@
         "icao": "BBB",
         "name": "Mumbai One Charlie",
         "suffix": {"14":"1C"},
-        "transitions": {
+        "exitPoints": {
           "AURANGABAD":   ["MB365", "SEKVI", "KAKPO", "MB366", "AAU"],
           "BETKU":        ["MB381", "BETKU"],
           "DOTIP":        ["MB361", "DOTIP"],
@@ -234,7 +234,7 @@
         "icao": "RAXET",
         "name": "Raxet One Alfa",
         "suffix": {"27":"1A"},
-        "transitions": {
+        "exitPoints": {
           "BISET":    ["BISET"],
           "DARMI":    ["MB370", "DARMI"],
           "SAKUN":    ["SAKUN"]
@@ -253,7 +253,7 @@
         "icao": "RAXET",
         "name": "Raxet One Charlie",
         "suffix": {"14":"1C"},
-        "transitions": {
+        "exitPoints": {
           "BISET":    ["VEVAK", "LAPOM", "MB388", "RAXET", "BISET"],
           "DARMI":    ["VEVAK", "LAPOM", "MB388", "RAXET", "DARMI"],
           "SAKUN":    ["VEVAK", "LAPOM", "MB388", "RAXET", "SAKUN"]
@@ -272,7 +272,7 @@
         "icao": "RAXET",
         "name": "Raxet One Delta",
         "suffix": {"32":"1D"},
-        "transitions": {
+        "exitPoints": {
           "BISET":    ["BISET"],
           "DARMI":    ["MB370", "DARMI"],
           "SAKUN":    ["SAKUN"]
@@ -290,7 +290,7 @@
         "icao": "REVKA",
         "name": "Revka One Charlie",
         "suffix": {"14":"1C"},
-        "transitions": {
+        "exitPoints": {
           "BELGAUM":  ["REVKA", "MB362", "BBM"],
           "MABTA":    ["REVKA", "MB362", "BEKUT", "MABTA"],
           "EPKOS":    ["REVKA", "MB362", "EPKOS"],
@@ -315,7 +315,7 @@
         "icao": "SABKA",
         "name": "Sabka One Charlie",
         "suffix": {"14":"1C"},
-        "transitions": {
+        "exitPoints": {
           "BELGAUM":  ["MB362", "BBM"],
           "MABTA":    ["MB362", "BEKUT", "MABTA"],
           "EPKOS":    ["MB362", "EPKOS"],
@@ -339,7 +339,7 @@
         "icao": "VIDAG",
         "name": "Vidag One Charlie",
         "suffix": {"14":"1C"},
-        "transitions": {
+        "exitPoints": {
           "AURANGABAD":   ["MB398", "SEKVI", "KAKPO", "MB366", "AAU"],
           "BETKU":        ["XOPAL", "MB381", "BETKU"],
           "DOTIP":        ["XOPAL", "MB361", "DOTIP"],
@@ -364,7 +364,7 @@
         "icao": "ANOLI",
         "name": "Anoli One Alfa",
         "suffix": {"27":"1A"},
-        "transitions": {
+        "exitPoints": {
           "AURANGABAD":   ["ANOLI", "XOPAL", "MB373", "MB365", "SEKVI", "KAKPO", "MB366", "AAU"],
           "BETKU":        ["ANOLI", "MB399", "MB381", "BETKU"],
           "DOTIP":        ["ANOLI", "MB361", "DOTIP"],
@@ -386,7 +386,7 @@
         "icao": "ANOLI",
         "name": "Anoli One Delta",
         "suffix": {"32":"1D"},
-        "transitions": {
+        "exitPoints": {
           "BETKU": ["MB399", "MB381", "BETKU"],
           "DOTIP": ["MB361", "DOTIP"],
           "EXOLU": ["MB399", "MB381", "EXOLU"]
@@ -406,7 +406,7 @@
         "icao": "VEVAK",
         "name": "Vevak One Alfa",
         "suffix": {"27":"1A"},
-        "transitions": {
+        "exitPoints": {
           "BELGAUM":  ["MB362", "BBM"],
           "MABTA":    ["MB362", "BEKUT", "MABTA"],
           "EPKOS":    ["MB362", "EPKOS"],
@@ -427,7 +427,7 @@
         "icao": "VEVAK",
         "name": "Vevak One Delta",
         "suffix": {"32":"1D"},
-        "transitions": {
+        "exitPoints": {
           "BELGAUM":  ["OSATA", "MB362", "BBM"],
           "MABTA":    ["OSATA", "MB362", "BEKUT", "MABTA"],
           "EPKOS":    ["MB362", "EPKOS"],
@@ -447,7 +447,7 @@
         "icao": "XOPAL",
         "name": "Xopal One Delta",
         "suffix": {"32":"1D"},
-        "transitions": {
+        "exitPoints": {
           "AURANGABAD":   ["XOPAL", "MB365", "SEKVI", "KAKPO", "MB366", "AAU"],
           "KAKPO":        ["XOPAL", "MB365", "SEKVI", "KAKPO"],
           "POSIN":        ["XOPAL", "MB365", "SEKVI", "KAKPO", "MB366", "POSIN"],
@@ -471,7 +471,7 @@
         "icao": "EMRAK",
         "name": "Emrak",
         "suffix": {"09":"1B", "14":"1C", "27":"1A", "32":"1D"},
-        "transitions": {
+        "entryPoints": {
           "OPAKA":  ["DUBOX", "AAU", "OPAKA"]
         },
         "rwy":{
@@ -491,7 +491,7 @@
         "icao": "IGBAN",
         "name": "Igban",
         "suffix": {"09":"1B", "14":"1C", "27":"1A", "32":"1D"},
-        "transitions": {
+        "entryPoints": {
           "IGBAN":  ["BEGON", "SG", "AKTIV", "IGBAN"]
         },
         "rwy": {
@@ -511,7 +511,7 @@
         "icao": "KETOR",
         "name": "Ketor",
         "suffix": {"09":"1B", "14":"1C", "27":"1A", "32":"1D"},
-        "transitions": {
+        "entryPoints": {
           "KETOR": ["MEPAT", "E1771", "LIGDO", "KETOR"]
         },
         "rwy": {
@@ -531,7 +531,7 @@
         "icao": "MOLGO",
         "name": "Molgo",
         "suffix": {"09":"1B", "14":"1C", "27":"1A", "32":"1D"},
-        "transitions": {
+        "entryPoints": {
           "MOLGO": ["BEDOL", "MOLGO"]
         },
         "rwy": {
@@ -550,7 +550,7 @@
         "icao": "POKON",
         "name": "Pokon",
         "suffix": {"09":"1B", "14":"1C", "27":"1A", "32":"1D"},
-        "transitions": {
+        "entryPoints": {
           "EXOLU": ["PR", "KS", "EXOLU"]
         },
         "rwy": {
