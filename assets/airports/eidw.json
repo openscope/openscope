@@ -1007,15 +1007,19 @@
   },
   "departures": {
     "airlines": [
-      ["ein", 15],
+      ["ein", 12],
+      ["ein/long", 3]
       ["ryr", 10],
+      ["stk",  7],
       ["baw",  5],
-      ["dlh",  5],
-      ["aal",  3],
-      ["aca",  3],
-      ["dal",  3],
-      ["ual",  3],
-      ["klm",  1]
+      ["bcy",  5],
+      ["bee",  3],
+      ["aal/long",  3],
+      ["aca/long",  2],
+      ["dal/long",  3],
+      ["ual/long",  3],
+      ["swr",  1],
+      ["ibe",  1]
     ],
     "destinations": [
       "SUROX", "LIFFY", "BEPAN", "INKUR", "DEXEN", "OLONO", "ROTEV", "NEVRI", "PESIT"
@@ -1030,10 +1034,12 @@
       "speed":    250,
       "fixes":    ["_EIDW305060", "OLAPO", "RONON", "ORVEN", "GIRAS", "KERAV", "KOGAX", "KUDOM", "DW814", "DW815", "DW816", "NARMU", "LAPMO"],
       "airlines":  [
-        ["ein", 10],
-        ["aal",  5],
-        ["aca",  2],
-        ["ual",  5]
+        ["ein/long",  5],
+        ["ein", 2],
+        ["aal/long",  3],
+        ["aca/long",  2],
+        ["ual/long",  3],
+        ["stk",  5]
       ],
       "type": "surge",
       "entrail": [10, 35],
@@ -1046,11 +1052,13 @@
       "speed":    250,
       "fixes":   ["_EIDW243060", "OSGAR", "DIRUM", "KEPOR", "ARVOK", "SORIN", "SIVNA", "SUGAD", "DW704", "DW705", "DW706", "SOPEP", "LAPMO"],
       "airlines":  [
-        ["ein", 4],
-        ["aal", 3],
-        ["aca", 2],
-        ["dal", 2],
-        ["ual", 2]
+        ["ein", 2],
+        ["ein/long", 2],
+        ["aal/long", 3],
+        ["aca/long", 2],
+        ["dal/long", 2],
+        ["ual/long", 2],
+        ["stk", 3]
       ],
       "type": "random",
       "offset": 20,
@@ -1062,11 +1070,14 @@
       "speed":    250,
       "fixes":    ["_EIDW064060", "BAGSO", "ADSIS", "KERAV", "KOGAX", "KUDOM", "DW814", "DW815", "DW816", "NARMU", "LAPMO"],
       "airlines":  [
-        ["ein", 5],
-        ["ryr", 5],
+        ["ein", 8],
+        ["ryr", 8],
+        ["stk", 4],
         ["baw", 3],
+        ["bcy", 3],
+        ["bee", 2],
         ["dlh", 3],
-        ["klm", 1]
+        ["swr", 1]
       ],
       "type": "random",
       "frequency": 5,
@@ -1081,7 +1092,7 @@
         ["ryr", 5],
         ["baw", 3],
         ["dlh", 3],
-        ["klm", 1]
+        ["ibe", 1]
       ],
       "type": "random",
       "offset": 20,
@@ -1095,7 +1106,9 @@
       "airlines":  [
         ["ein",  5],
         ["ryr", 10],
-        ["baw",  5]
+        ["baw",  5],
+        ["bcy",  5],
+        ["bee",  3]
       ],
       "type": "random",
       "frequency": 5,
