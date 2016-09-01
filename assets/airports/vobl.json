@@ -7,50 +7,17 @@
     "icao": "VOBL",
     "iata": "BLR",
     "magnetic_north": 0,
-    "ctr_radius": 80,
+    "ctr_radius": 92.6,
     "ctr_ceiling": 25500,
     "initial_alt": 3000,
     "position": ["N13d11m56.00", "E077d42m20.00"],
     "rr_radius_nm": 5.0,
-    "rr_center": ["N13d11m56.00", "E077d42m20.00"],
+    "rr_center": ["N12d56m59.00",   "E077d40m52.00"],
     "has_terrain": false,
     "wind": {
         "angle": 180,
         "speed": 0
     },
-    "airspace": [
-        {
-            "floor": 			0,
-            "ceiling": 		25500,
-            "airspace_class":	"D",
-            "poly":
-            [
-                ["N16d40m00.00", "E076d00m00.00"],  
-                ["N15d57m00.00", "E077d31m00.00"],  
-                ["N15d58m00.00", "E078d45m00.00"], 
-                ["N14d23m00.00", "E078d54m00.00"],  
-                ["N14d01m00.00", "E079d16m00.00"],  
-                ["N13d00m00.00", "E078d48m00.00"],  
-                ["N13d00m00.00", "E078d00m00.00"],   
-                ["N13d00m48.00", "E077d25m34.00"],  
-                ["N12d50m33.00", "E077d08m35.00"], 
-                ["N12d44m51.00", "E077d09m00.00"],  
-                ["N12d45m30.00", "E076d27m23.00"], 
-                ["N12d44m56.00", "E076d26m54.00"],  
-                ["N12d50m19.00", "E076d25m05.00"],
-                ["N13d28m57.00", "E076d05m05.00"],  
-                ["N13d49m20.00", "E076d12m21.00"], 
-                ["N14d10m46.00", "E076d27m30.00"],  
-                ["N14d25m36.00", "E076d45m46.00"],  
-                ["N14d40m00.00", "E076d36m00.00"],   
-                ["N14d56m00.00", "E076d06m00.00"],  
-                ["N14d47m00.00", "E075d58m00.00"],  
-                ["N15d51m00.00", "E074d37m00.00"], 
-                ["N16d26m00.00", "E074d11m00.00"],  
-                ["N16d36m00.00", "E075d28m00.00"]  
-            ]
-        }
-    ],
     "fixes": {
         "UNSAL":    ["N14d24m08.00",    "E076d09m94.00"],
         "XIVIL":    ["N13d17m66.00",    "E078d55m07.00"],
@@ -127,7 +94,9 @@
         "PAKSO":    ["N12d35m22.00",    "E077d28m40.00"],
         "PATTU":    ["N13d15m70.00",    "E078d27m91.00"],
         "TAKOM":    ["N13d47m05.00",    "E076d06m62.00"],
-        "VABDI":    ["N15d05m85.00",    "E078d38m03.00"]
+        "VABDI":    ["N15d05m85.00",    "E078d38m03.00"],
+        "BBG":      ["N12d56m59.00",    "E077d40m52.00"],
+        "TELUV":    ["N14d09m71.00",    "E078d11m22.00"]
     },
 
     "runways": [
@@ -307,7 +276,7 @@
         "OPAMO5": {
             "icao": "OPAMO5",
             "name": "Opamo Five",
-            "transitions": {
+            "exitPoints": {
                 "VAGPU":    ["BBI", "VAGPU"]
             },
             "rwy": {
@@ -321,7 +290,7 @@
         "OPAMO6": {
             "icao": "OPAMO6",
             "name": "Opamo Six",
-            "transitions": {
+            "exitPoints": {
                 "VAGPU":    ["BBI", "VAGPU"]
             },
             "rwy": {
@@ -455,7 +424,7 @@
             "icao": "DUNDI",
             "name": "Dundi",
             "suffix": {"09":"6", "27":"5"},
-            "transitions": {
+            "entryPoints": {
                 "TIRUCHIRAPALLI": ["TTR"]
             },
             "rwy": {
@@ -471,7 +440,7 @@
             "icao": "GELAT",
             "name": "Gelat",
             "suffix": {"09":"6", "27":"5"},
-            "transitions": {
+            "entryPoints": {
                 "RIKBU": ["RIKBU"],
                 "UNSAL": ["UNSAL"]
             },
@@ -489,7 +458,7 @@
             "icao": "LUMPU",
             "name": "Lumpu",
             "suffix": {"09":"6", "27":"5"},
-            "transitions": {
+            "entryPoints": {
                 "LUMPU": ["LUMPU"]
             },
             "rwy": {
@@ -506,7 +475,7 @@
             "icao": "PUTOT",
             "name": "Putot",
             "suffix": {"09":"6", "27":"5"},
-            "transitions": {
+            "entryPoints": {
                 "VABDI": ["VABDI"]
             },
             "rwy": {
@@ -523,7 +492,7 @@
             "icao": "RATOM",
             "name": "Ratom",
             "suffix": {"09":"6", "27":"5A"},
-            "transitions": {
+            "entryPoints": {
                 "GUNIM": ["GUNIM", "TAKOM"],
                 "PEXEG": ["PEXEG"]
             },
@@ -540,7 +509,7 @@
             "_comment": "RATOM5B is meant to be only for runway 27.",
             "icao": "RATOM5B",
             "name": "Ratom Five Bravo",
-            "transitions": {
+            "entryPoints": {
                 "GUNIM": ["GUNIM", "TAKOM"],
                 "PEXEG": ["PEXEG"]
             },
@@ -557,7 +526,7 @@
             "icao": "RUBOX",
             "name": "Rubox",
             "suffix": {"09":"6", "27":"5"},
-            "transitions": {
+            "entryPoints": {
                 "UGABA": ["UGABA", "PAKSO"]
             },
             "rwy": {
@@ -574,7 +543,7 @@
             "icao": "TENKY",
             "name": "Tenky",
             "suffix": {"09":"6", "27":"5"},
-            "transitions": {
+            "entryPoints": {
                 "XIVIL": ["XIVIL", "PATTU"]
             },
             "rwy": {
