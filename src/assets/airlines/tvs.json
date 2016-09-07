@@ -1,0 +1,14 @@
+{
+  "name": "Travel Service",
+  "callsign": {
+    "name": "SKYTRAVEL",
+    "length": 3
+  },
+  "fleets": {
+    "default": [
+	["A320",  3],
+	["B738", 17],
+	["B739",  2]
+    ]
+  }
+}

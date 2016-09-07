@@ -1,0 +1,16 @@
+{
+  "name": "Czech Airlines",
+  "callsign": {
+    "name": "CSA",
+    "length": 3
+  },
+  "fleets": {
+    "default": [
+      ["AT45", 3 ],
+      ["AT72", 4 ],
+      ["A319", 9 ],
+      ["A333", 1 ],
+      ["B734", 1 ]
+    ]
+  }
+}

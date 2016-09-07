@@ -1,0 +1,12 @@
+{
+  "name": "GoAir",
+  "callsign": {
+    "name": "GO AIR",
+    "length": 3
+  },
+  "fleets": {
+    "default": [
+      ["A320", 19]
+    ]
+  }
+}

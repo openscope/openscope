@@ -1,0 +1,16 @@
+{
+  "name": "WestJet",
+  "icao": "WJA",
+  "callsign": {
+    "name": "WestJet",
+    "length": 3
+   },
+  "fleets": {
+    "default": [
+      ["B736", 13],
+      ["B737", 58],
+      ["B738", 43],
+      ["B763",  4]
+    ]
+  }
+}

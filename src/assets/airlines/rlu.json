@@ -1,0 +1,12 @@
+{
+  "name": "RusLine",
+  "callsign": {
+    "name": "Rusline",
+    "length": 3
+  },
+  "fleets": {
+    "default": [
+      ["e135", 20]
+    ]
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "name": "Helvetic Airways",
+  "callsign": {
+    "name": "Helvetic",
+    "length": 4
+  },
+  "fleets": {
+    "default": [
+      ["A319", 1],
+      ["F100", 5],
+      ["E190", 7]
+    ]
+  }
+}

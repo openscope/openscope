@@ -1,0 +1,12 @@
+{
+  "name": "Transavia France",
+  "callsign": {
+    "name": "France Soleil",
+    "length": 4
+  },
+  "fleets": {
+    "default": [
+      ["B738", 27]
+    ]
+  }
+}

@@ -1,0 +1,14 @@
+{
+    "name": "Nippon Cargo Airlines",
+    "icao": "NCA",
+    "callsign": {
+        "name": "Nippon Cargo",
+        "length": 3
+    },
+    "fleets": {
+        "default": [
+            ["B744", 5],
+            ["B748", 7]
+        ]
+    }
+}

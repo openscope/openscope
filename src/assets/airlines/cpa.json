@@ -1,0 +1,17 @@
+{
+  "name": "Cathay Pacific",
+  "callsign": {
+    "name": "Cathay",
+    "length": 3
+  },
+  "fleets": {
+    "default": [
+      ["A333", 38],
+      ["A343", 11],
+      ["B744", 11],
+      ["B772", 5],
+      ["B773", 12],
+      ["B77W", 43]
+    ]
+  }
+}

@@ -1,0 +1,15 @@
+{
+    "name": "Yangtze River Express",
+    "callsign": {
+        "name": "Yangtze River",
+        "length": 3
+    },
+    "fleets": {
+        "default": [
+            ["B733",    16],
+            ["B734",     3],
+            ["B738",     2],
+            ["B744",     3]
+        ]
+    }
+}

@@ -1,0 +1,13 @@
+{
+  "name": "Firefly",
+  "callsign": {
+    "name": "Firefly",
+    "length": 3
+  },
+  "fleets": {
+    "default": [
+      ["AT72", 12],
+      ["AT76",  8]
+    ]
+  }
+}

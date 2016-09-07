@@ -1,0 +1,13 @@
+{
+  "name": "Transavia Holland",
+  "callsign": {
+		"name": "Transavia",
+		"length": 4
+  },
+  "fleets": {
+		"default": [
+			["B737", 8 ],
+			["B738", 30]
+		]
+	}
+}

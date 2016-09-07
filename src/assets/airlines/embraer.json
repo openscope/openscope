@@ -1,0 +1,17 @@
+{
+  "name": "Embraer",
+  "icao": "PR",
+  "callsign": {
+    "name": "Embraer",
+    "length": 5,
+    "alpha": true
+  },
+  "fleets": {
+    "default": [
+      ["E50P", 5],
+      ["E55P", 5],
+      ["E545", 5],
+      ["E135", 5]
+    ]
+  }
+}

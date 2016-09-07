@@ -1,0 +1,37 @@
+{
+  "name": "Cessna 182 Skylane",
+  "icao": "C182",
+  "engines": {
+    "number": 1,
+    "type": "P"
+  },
+  "weightclass": "S",
+  "category": {
+    "srs": 1,
+    "lahso": 2,
+    "recat": "F"
+  },
+  "ceiling": 20000,
+  "rate": {
+    "climb":      920,
+    "descent":    1000,
+    "accelerate": 4,
+    "decelerate": 3
+  },
+  "runway": {
+    "takeoff": 0.460,
+    "landing": 0.410
+  },
+  "speed":{
+    "min":     49,
+    "landing": 65,
+    "cruise":  145,
+    "cruiseM": null,
+    "max":     150,
+    "maxM":    null
+  },
+  "capability": {
+    "ils": true,
+    "fix": false
+  }
+}

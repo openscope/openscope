@@ -1,0 +1,22 @@
+{
+  "name": "Air Caraïbes",
+  "icao": "FWI",
+  "callsign": {
+    "name": "French West",
+    "length": 3
+   },
+  "fleets": {
+    "long": [
+      ["A332", 1],
+      ["A333", 4]
+    ],
+    "short": [
+      ["AT72", 3]
+    ],
+    "default": [
+      ["A332", 1],
+      ["A333", 4],
+      ["AT72", 3]
+    ]
+  }
+}

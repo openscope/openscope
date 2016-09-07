@@ -1,0 +1,13 @@
+{
+  "name": "Sun Country Airlines",
+  "callsign": {
+    "name": "Sun Country",
+    "length": 3
+  },
+  "fleets": {
+    "default": [
+      ["B737", 6 ],
+      ["B738", 14]
+    ]
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "name": "Boeing 747SP",
+  "icao": "B74S",
+  "engines": {
+    "number": 4,
+    "type": "J"
+  },
+  "weightclass": "H",
+  "category": {
+    "srs": 3,
+    "lahso": 9,
+    "recat": "B"
+  },
+  "ceiling": 45000,
+  "rate": {
+    "climb":      1715,
+    "descent":    2000,
+    "accelerate": 4,
+    "decelerate": 2
+  },
+  "runway": {
+    "takeoff": 2.900,
+    "landing": 1.600
+  },
+  "speed":{
+    "min":     135,
+    "landing": 150,
+    "cruise":  505,
+    "cruiseM": 0.88,
+    "max":     526,
+    "maxM":    0.92
+  },
+  "capability": {
+    "ils": true,
+    "fix": true
+  }
+}

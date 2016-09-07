@@ -1,0 +1,37 @@
+{
+  "name": "Airbus A300-600",
+  "icao": "A306",
+  "engines": {
+    "number": 2,
+    "type": "J"
+  },
+  "weightclass": "H",
+  "category": {
+    "srs": 3,
+    "lahso": 7,
+    "recat": "C"
+  },
+  "ceiling": 41000,
+  "rate": {
+    "climb":      3500,
+    "descent":    2000,
+    "accelerate": 8,
+    "decelerate": 4
+  },
+  "runway": {
+    "takeoff": 2.700,
+    "landing": 1.536
+  },
+  "speed":{
+    "min":     110,
+    "landing": 125,
+    "cruise":  472,
+    "cruiseM": null,
+    "max":     484,
+    "maxM":    0.82
+  },
+  "capability": {
+    "ils": true,
+    "fix": true
+  }
+}

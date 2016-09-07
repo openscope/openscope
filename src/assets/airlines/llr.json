@@ -1,0 +1,14 @@
+{
+  "name": "Air India Regional",
+  "callsign": {
+    "name": "ALLIED",
+    "length": 3
+  },
+  "fleets": {
+    "default": [
+      ["AT43", 1 ],
+	  ["AT76", 7 ],
+	  ["CRJ7", 3 ]
+    ]
+  }
+}

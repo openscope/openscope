@@ -1,0 +1,37 @@
+{
+  "name": "Ilyushin Il-96-300",
+  "icao": "IL96",
+  "engines": {
+    "number": 4,
+    "type": "J"
+  },
+  "weightclass": "H",
+  "category": {
+    "srs": 3,
+    "lahso": null,
+    "recat": "B"
+  },
+  "ceiling": 41000,
+  "rate": {
+    "climb":      2000,
+    "descent":    2000,
+    "accelerate": 5,
+    "decelerate": 2
+  },
+  "runway": {
+    "takeoff": 2.600,
+    "landing": 2.000
+  },
+  "speed":{
+    "min":     145,
+    "landing": 160,
+    "cruise":  465,
+    "cruiseM": null,
+    "max":     485,
+    "maxM":    null
+  },
+  "capability": {
+    "ils": true,
+    "fix": true
+  }
+}

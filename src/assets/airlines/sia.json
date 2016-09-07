@@ -1,0 +1,17 @@
+{
+  "name": "Singapore Airlines",
+  "callsign": {
+    "name": "Singapore",
+    "length": 3
+  },
+  "fleets": {
+    "default": [
+      ["A333", 29],
+      ["A359",  6],
+      ["A388", 19],
+      ["B772", 21],
+      ["B773",  6],
+      ["B77W", 27]
+    ]
+  }
+}

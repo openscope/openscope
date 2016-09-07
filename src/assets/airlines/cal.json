@@ -1,0 +1,22 @@
+{
+  "name": "China Airlines",
+  "icao": "CAL",
+  "callsign": {
+    "name": "Dynasty",
+    "length": 3
+  },
+  "fleets": {
+    "long": [
+  	  ["A333", 24],
+  	  ["A343", 4 ],
+  	  ["B744", 8 ],
+  	  ["B77W", 10 ]
+    ],
+    "default": [
+  	  ["B738", 18 ]
+    ],
+    "cargo": [
+      ["B744", 18]
+    ]
+  }
+}
