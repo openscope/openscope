@@ -1,0 +1,14 @@
+{
+    "name": "Juneyao Airlines",
+    "callsign": {
+        "name": "Air Juneyao",
+        "length": 3
+    },
+    "fleets": {
+        "default": [
+            ["A319",     1],
+            ["A320",    41],
+            ["A321",    15]
+        ]
+    }
+}

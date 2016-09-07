@@ -1,0 +1,37 @@
+{
+  "name": "Avro RJ85",
+  "icao": "RJ85",
+  "engines": {
+    "number": 4,
+    "type": "J"
+  },
+  "weightclass": "L",
+  "category": {
+    "srs": 3,
+    "lahso": 7,
+    "recat": "E"
+  },
+  "ceiling": 31000,
+  "rate": {
+    "climb":      1800,
+    "descent":    1670,
+    "accelerate": 10,
+    "decelerate": 6
+  },
+  "runway": {
+    "takeoff": 1.655,
+    "landing": 1.200
+  },
+  "speed":{
+    "min":     100,
+    "landing": 120,
+    "cruise":  389,
+    "cruiseM": null,
+    "max":     412,
+    "maxM":    null
+  },
+  "capability": {
+    "ils": true,
+    "fix": true
+  }
+}

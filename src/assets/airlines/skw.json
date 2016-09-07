@@ -1,0 +1,15 @@
+{
+  "name": "SkyWest",
+  "callsign": {
+    "name": "SkyWest",
+    "length": 4
+  },
+  "fleets": {
+    "default": [
+      ["CRJ2", 169],
+      ["CRJ7", 98 ],
+      ["CRJ9", 36 ],
+      ["E170", 50 ]
+    ]
+  }
+}

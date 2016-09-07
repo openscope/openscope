@@ -1,0 +1,37 @@
+{
+  "name": "Cessna Citation II",
+  "icao": "C550",
+  "engines": {
+    "number": 2,
+    "type": "J"
+  },
+  "weightclass": "S+",
+  "category": {
+    "srs": 3,
+    "lahso": null,
+    "recat": "F"
+  },
+  "ceiling": 45000,
+  "rate": {
+    "climb":      4000,
+    "descent":    2000,
+    "accelerate": 8,
+    "decelerate": 4
+  },
+  "runway": {
+    "takeoff": 1.000,
+    "landing": 0.930
+  },
+  "speed":{
+    "min":     120,
+    "landing": 130,
+    "cruise":  384,
+    "cruiseM": 0.7,
+    "max":     425,
+    "maxM":    0.7
+  },
+  "capability": {
+    "ils": true,
+    "fix": true
+  }
+}

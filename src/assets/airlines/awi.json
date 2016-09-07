@@ -1,0 +1,12 @@
+{
+  "name": "Air Wisconsin",
+  "callsign": {
+    "name": "Wisconsin",
+    "length": 4
+  },
+  "fleets": {
+    "default": [
+      ["CRJ2", 71]
+    ]
+  }
+}

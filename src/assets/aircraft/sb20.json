@@ -1,0 +1,37 @@
+{
+  "name": "Saab 2000",
+  "icao": "SB20",
+  "engines": {
+    "number": 2,
+    "type": "T"
+  },
+  "weightclass": "L",
+  "category": {
+    "srs": 3,
+    "lahso": 5,
+    "recat": "E"
+  },
+  "ceiling": 31000,
+  "rate": {
+    "climb":      2250,
+    "descent":    2340,
+    "accelerate": 3,
+    "decelerate": 2
+  },
+  "runway": {
+    "takeoff": 1.360,
+    "landing": 1.250
+  },
+  "speed":{
+    "min":     77,
+    "landing": 88,
+    "cruise":  330,
+    "cruiseM": null,
+    "max":     366,
+    "maxM":    null
+  },
+  "capability": {
+    "ils": true,
+    "fix": true
+  }
+}

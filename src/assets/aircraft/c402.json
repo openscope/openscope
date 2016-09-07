@@ -1,0 +1,37 @@
+{
+  "name": "Cessna 402",
+  "icao": "C402",
+  "engines": {
+    "number": 2,
+    "type": "P"
+  },
+  "weightclass": "S",
+  "category": {
+    "srs": 2,
+    "lahso": 3,
+    "recat": "F"
+  },
+  "ceiling": 26900,
+  "rate": {
+    "climb":      1500,
+    "descent":    900,
+    "accelerate": 4,
+    "decelerate": 3
+  },
+  "runway": {
+    "takeoff": 0.400,
+    "landing": 0.450
+  },
+  "speed":{
+    "min":     80,
+    "landing": 95,
+    "cruise":  175,
+    "cruiseM": null,
+    "max":     235,
+    "maxM":    null
+  },
+  "capability": {
+    "ils": true,
+    "fix": true
+  }
+}

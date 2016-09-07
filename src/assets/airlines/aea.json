@@ -1,0 +1,20 @@
+{
+  "name": "Air Europa",
+  "callsign": {
+    "name": "Europa",
+    "length": 3
+  },
+  "fleets": {
+    "long": [
+      ["B788", 1],
+      ["A332", 12 ],
+      ["A333", 5 ]
+    ],
+    "default": [
+      ["AT43", 1 ],
+      ["AT72", 2],
+      ["B738", 20 ],
+      ["E190", 11 ]
+    ]
+  }
+}

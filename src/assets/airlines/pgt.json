@@ -1,0 +1,13 @@
+{
+  "name": "Pegasus Airlines",
+  "callsign": {
+    "name": "Sun Turk",
+    "length": 3
+  },
+  "fleets": {
+    "default": [
+      ["A320", 10],
+      ["B738", 58]
+    ]
+  }
+}

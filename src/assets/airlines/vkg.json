@@ -1,0 +1,14 @@
+{
+  "name": "Thomas Cook Airlines Scandinavia",
+  "callsign": {
+    "name": "Viking",
+    "length": 3
+  },
+  "fleets": {
+    "default": [
+      ["A321", 8],
+      ["A332", 1],
+      ["A333", 3]
+    ]
+  }
+}

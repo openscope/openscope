@@ -1,0 +1,12 @@
+{
+  "name": "KLM Cityhopper",
+  "callsign": {
+    "name": "KLM",
+    "length": 3
+  },
+  "fleets": {
+    "default": [
+      ["E190", 30 ]
+    ]
+  }
+}

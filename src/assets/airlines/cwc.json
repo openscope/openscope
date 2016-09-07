@@ -1,0 +1,13 @@
+{
+  "name": "Centurion Air Cargo",
+  "callsign": {
+    "name": "Challenge Cargo",
+    "length": 3
+  },
+  "fleets": {
+    "default": [
+      ["B744", 4 ],
+      ["MD11", 3 ]
+    ]
+  }
+}

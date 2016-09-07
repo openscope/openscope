@@ -1,0 +1,37 @@
+{
+  "name": "Boeing 737-200",
+  "icao": "B732",
+  "engines": {
+    "number": 2,
+    "type": "J"
+  },
+  "weightclass": "L",
+  "category": {
+    "srs": 3,
+    "lahso": 7,
+    "recat": "D"
+  },
+  "ceiling": 37000,
+  "rate": {
+    "climb":      2335,
+    "descent":    2000,
+    "accelerate": 5,
+    "decelerate": 3
+  },
+  "runway": {
+    "takeoff": 2.200,
+    "landing": 1.350
+  },
+  "speed":{
+    "min":     140,
+    "landing": 130,
+    "cruise":  430,
+    "cruiseM": null,
+    "max":     509,
+    "maxM":    null
+  },
+  "capability": {
+    "ils": true,
+    "fix": true
+  }
+}
