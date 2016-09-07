@@ -57,8 +57,8 @@ options.FILE = {
 options.GLOB = {
     SRC: path.join(options.DIR.SRC, '**/*'),
     BUILD: path.join(options.DIR.BUILD, '**/*'),
-    JS: path.join(options.DIR.SRC, '**/*.js'),
-    CSS: path.join(options.DIR.SRC, '**/*.css'),
+    JS: path.join(options.DIR.SRC_SCRIPTS, '**/*.js'),
+    CSS: path.join(options.DIR.SRC_STYLE, '**/*.css'),
     FONTS: path.join(options.DIR.SRC_ASSETS, 'fonts/**/*'),
     IMAGES: path.join(options.DIR.SRC_IMAGES, '**/*.+(png|jpg|gif|svg)')
 };

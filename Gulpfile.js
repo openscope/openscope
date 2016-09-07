@@ -7,7 +7,7 @@ var OPTIONS = require('./tools/paths');
 ////////////////////////////////////////////////////////////////////
 // EXTERNAL TASKS
 ////////////////////////////////////////////////////////////////////
-// require('./tools/tasks/scriptTasks')(gulp, OPTIONS);
+require('./tools/tasks/scriptTasks')(gulp, OPTIONS);
 // require('./tools/tasks/docTasks')(gulp, OPTIONS);
 // require('./tools/tasks/testTasks')(gulp, OPTIONS);
 require('./tools/tasks/styleTasks')(gulp, OPTIONS);
@@ -24,6 +24,7 @@ gulp.task('copy:data', ['clean:data:json', 'json']);
 gulp.task('build', function() {
     runSequence(
         'clean:build',
+        'build:scripts',
         'build:styles'
 //         ['build:sass', 'build:scripts']
 //         'lint:scripts'
@@ -34,6 +35,7 @@ gulp.task('build', function() {
 gulp.task('dist', function() {
     runSequence(
         'clean:dist',
+        'build:scripts',
         'build:styles',
         'copy:data',
         'fonts',

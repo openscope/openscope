@@ -5,6 +5,13 @@ module.exports = function(gulp, config) {
     var rimraf = require('rimraf');
 
     ////////////////////////////////////////////////////////////////////
+    // CLEAN DESTINATION SCRIPT FILES
+    ////////////////////////////////////////////////////////////////////
+    gulp.task('clean:build:scripts', function(cb) {
+        rimraf(OPTIONS.DIR.BUILD_SCRIPTS, cb);
+    })
+
+    ////////////////////////////////////////////////////////////////////
     // CLEAN DESTINATION STYLE FILES
     ////////////////////////////////////////////////////////////////////
     gulp.task('clean:build:styles', function(cb) {
@@ -52,6 +59,7 @@ module.exports = function(gulp, config) {
     ]);
 
     gulp.task('clean:build', [
+        'clean:build:scripts',
         'clean:build:styles'
     ]);
 
