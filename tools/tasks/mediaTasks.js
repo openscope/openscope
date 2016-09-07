@@ -4,7 +4,7 @@ module.exports = function(gulp, config) {
     var OPTIONS = config;
 
     ////////////////////////////////////////////////////////////////////
-    // MINIFY / COPY MEDIA FILES
+    // OPTIMIZE AND COPY IMAGES
     ////////////////////////////////////////////////////////////////////
     var imagemin = require('gulp-imagemin');
     var cache = require('gulp-cache');
@@ -18,6 +18,15 @@ module.exports = function(gulp, config) {
             ))
             .pipe(gulp.dest(OPTIONS.DIR.BUILD_IMAGES));
     });
+
+    ////////////////////////////////////////////////////////////////////
+    // COPY FONTS
+    ////////////////////////////////////////////////////////////////////
+    gulp.task('fonts', function() {
+        return gulp.src(OPTIONS.GLOB.FONTS)
+            .pipe(gulp.dest(OPTIONS.DIR.BUILD_FONTS));
+    });
+
 
     ////////////////////////////////////////////////////////////////////
     // TASKS

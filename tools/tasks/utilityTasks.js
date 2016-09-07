@@ -19,10 +19,22 @@ module.exports = function(gulp, config) {
     });
 
     ////////////////////////////////////////////////////////////////////
+    // CLEAN DESTINATION FONT FILES
+    ////////////////////////////////////////////////////////////////////
+    gulp.task('clean:build:fonts', function(cb) {
+        rimraf(OPTIONS.DIR.BUILD_FONTS, cb);
+    });
+
+    ////////////////////////////////////////////////////////////////////
     // TASKS
     ////////////////////////////////////////////////////////////////////
 
-    gulp.task('clean', [
+    gulp.task('clean:build', [
+        'clean:build:styles'
+    ]);
+
+    gulp.task('clean:dist', [
+        'clean:build:fonts',
         'clean:build:styles',
         'clean:build:images'
     ]);

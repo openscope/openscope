@@ -21,12 +21,19 @@ require('./tools/tasks/utilityTasks')(gulp, OPTIONS);
 ////////////////////////////////////////////////////////////////////
 gulp.task('build', function() {
     runSequence(
-        'clean',
+        'clean:build',
         'build:styles'
 //         ['build:sass', 'build:scripts']
-//         // 'lint:scripts'
+//         'lint:scripts'
     );
 });
 // gulp.task('watch', ['watch:styles', 'watch:scripts']);
-gulp.task('dist', ['build', 'minify-images']);
+
+gulp.task('dist', [
+    'clean:dist',
+    'build:styles',
+    'fonts',
+    'minify-images'
+]);
+
 gulp.task('default', ['build']);
