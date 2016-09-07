@@ -26,8 +26,30 @@ module.exports = function(gulp, config) {
     });
 
     ////////////////////////////////////////////////////////////////////
+    // CLEAN JSON DATA FOLDERS
+    ////////////////////////////////////////////////////////////////////
+    gulp.task('clean:aircraft', function(cb) {
+        rimraf(OPTIONS.DIR.BUILD_AIRCRAFT, cb);
+    });
+
+    gulp.task('clean:airlines', function(cb) {
+        rimraf(OPTIONS.DIR.BUILD_AIRLINES, cb);
+    });
+
+    gulp.task('clean:airports', function(cb) {
+        rimraf(OPTIONS.DIR.BUILD_AIRPORTS, cb);
+    });
+
+
+    ////////////////////////////////////////////////////////////////////
     // TASKS
     ////////////////////////////////////////////////////////////////////
+
+    gulp.task('clean:data:json', [
+        'clean:aircraft',
+        'clean:airlines',
+        'clean:airports'
+    ]);
 
     gulp.task('clean:build', [
         'clean:build:styles'
@@ -35,7 +57,10 @@ module.exports = function(gulp, config) {
 
     gulp.task('clean:dist', [
         'clean:build:fonts',
-        'clean:build:styles',
-        'clean:build:images'
+        'clean:data:json',
+        'clean:build:images',
+        'clean:build'
     ]);
+
+    gulp.task('clean', ['clean:dist']);
 }

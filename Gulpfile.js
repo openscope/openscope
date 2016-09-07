@@ -19,6 +19,8 @@ require('./tools/tasks/utilityTasks')(gulp, OPTIONS);
 ////////////////////////////////////////////////////////////////////
 // UNIFIED GULP TASKS
 ////////////////////////////////////////////////////////////////////
+gulp.task('copy:data', ['clean:data:json', 'json']);
+
 gulp.task('build', function() {
     runSequence(
         'clean:build',
@@ -29,11 +31,14 @@ gulp.task('build', function() {
 });
 // gulp.task('watch', ['watch:styles', 'watch:scripts']);
 
-gulp.task('dist', [
-    'clean:dist',
-    'build:styles',
-    'fonts',
-    'minify-images'
-]);
+gulp.task('dist', function() {
+    runSequence(
+        'clean:dist',
+        'build:styles',
+        'copy:data',
+        'fonts',
+        'minify-images'
+    );
+});
 
 gulp.task('default', ['build']);

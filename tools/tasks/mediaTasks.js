@@ -29,6 +29,24 @@ module.exports = function(gulp, config) {
 
 
     ////////////////////////////////////////////////////////////////////
+    // COPY `/aircraft`, `/airlines` and `airports`
+    ////////////////////////////////////////////////////////////////////
+    var path = require('path');
+
+    gulp.task('json', function() {
+        var directoriesToCopy = [
+            OPTIONS.DIR.SRC_AIRCRAFT,
+            OPTIONS.DIR.SRC_AIRLINES,
+            OPTIONS.DIR.SRC_AIRPORTS
+        ];
+
+        directoriesToCopy.map(function(dir) {
+            return gulp.src(dir + '**/*.json')
+                .pipe(gulp.dest(OPTIONS.DIR.BUILD_ASSETS));
+        });
+    });
+
+    ////////////////////////////////////////////////////////////////////
     // TASKS
     ////////////////////////////////////////////////////////////////////
 
