@@ -50,6 +50,7 @@ options.DIR = {
 
 // for specific files
 options.FILE = {
+    JS_ENTRY: path.join(options.DIR.SRC_SCRIPTS, 'modules.js'),
     CSS_MAIN: path.join(options.DIR.SRC_STYLE, 'main.css'),
     PKG_JSON: path.join(options.ROOT, 'package.json')
 };

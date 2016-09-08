@@ -1,4 +1,8 @@
-var zlsa = {atc: {}};
+window.zlsa = {atc: {}};
+
+window.$ = require('jquery');
+window.Fiber = require('fiber');
+
 
 var Mediator = Fiber.extend(function (base) {
   return {
@@ -155,13 +159,14 @@ function prop_init() {
   prop.time.fps=0;
   prop.log=LOG_DEBUG;
   prop.loaded=false;
-  if(RELEASE)
-    prop.log=LOG_WARNING;
+  if(RELEASE) {
+      prop.log=LOG_WARNING;
+  }
 }
 
 // MISC
 
-function log(message,level) {
+window.log = function log(message,level) {
   if(level == undefined)
     level=LOG_INFO;
   if(prop.log <= level) {
@@ -203,7 +208,7 @@ function async_check() {
 
 // UTIL
 
-function time() {
+window.time = function time() {
   return new Date().getTime()*0.001;
 }
 
@@ -328,12 +333,12 @@ function update() {
 /**
  * Change whether updates should run
  */
-function update_run(arg) {
+window.update_run = function update_run(arg) {
   if ((!UPDATE) && arg)
     requestAnimationFrame(update);
   UPDATE=arg;
 }
 
-function delta() {
+window.delta = function delta() {
   return prop.time.frame.delta;
 }
