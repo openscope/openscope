@@ -1,6 +1,6 @@
 {
   "name": "atc",
-  "version": "2.1.8",
+  "version": "3.0.0-beta1",
   "description": "An ATC simulator in HTML5",
   "engines": {},
   "scripts": {
