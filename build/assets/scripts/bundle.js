@@ -16836,9 +16836,9 @@ function load_module(name) {
   var filename;
   if (name[0] == "-") {
     modules[name].library = true;
-    filename = "assets/scripts/"+name.substr(1)+".js";
+    filename = "build/assets/scripts/"+name.substr(1)+".js";
   } else {
-    filename = "assets/scripts/"+name+".js";
+    filename = "build/assets/scripts/"+name+".js";
   }
   var el = document.createElement("script");
   el.src = filename;
