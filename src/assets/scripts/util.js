@@ -1,14 +1,13 @@
+window.AudioContext = window.AudioContext || window.webkitAudioContext;
 
-window.AudioContext = window.AudioContext||window.webkitAudioContext;
-
-function clone(obj) {
+window.clone = function clone(obj) {
   if (null == obj || "object" != typeof obj) return obj;
   var copy = obj.constructor();
   for (var attr in obj) {
     if (obj.hasOwnProperty(attr)) copy[attr] = obj[attr];
   }
   return copy;
-}
+};
 
 (function() {
   var lastTime = 0;
@@ -51,87 +50,86 @@ if (!String.prototype.hasOwnProperty("repeat")) {
 // ******************** UNIT CONVERSION FUNCTIONS ********************
 
 /**
- ** nautical miles --> kilometers
+ * nautical miles --> kilometers
  */
-function km(nm) {
+window.km = function km(nm) {
   return nm * 1.852;
 }
 /**
- ** kilometers --> nautical miles
+ * kilometers --> nautical miles
  */
-function nm(km) {
+window.nm = function nm(km) {
   return km / 1.852;
 }
 /**
- ** kilometers --> feet
+ * kilometers --> feet
  */
-function km_ft(km) {
+window.km_ft = function km_ft(km) {
   return km / 0.0003048;
 }
 /**
- ** feet --> kilometers
+ * feet --> kilometers
  */
-function ft_km(ft) {
+window.ft_km = function ft_km(ft) {
   return ft * 0.0003048;
 }
 
 // ************************ GENERAL FUNCTIONS ************************
-
-function ceil(n, factor) {
+window.ceil = function ceil(n, factor) {
   factor = factor || 1;
   return Math.ceil(n / factor) * factor;
 }
 
-function round(n, factor) {
+window.round = function round(n, factor) {
   factor = factor || 1;
   return Math.round(n / factor) * factor;
 }
 
-function abs(n) {
+window.abs = function abs(n) {
   return Math.abs(n);
 }
 
-function sin(a) {
+window.sin = function sin(a) {
   return Math.sin(a);
 }
 
-function cos(a) {
+window.cos = function cos(a) {
   return Math.cos(a);
 }
 
-function tan(a) {
+window.tan = function tan(a) {
   return Math.tan(a);
 }
 
-function fl(n, number) {
+window.fl = function fl(n, number) {
   number = number || 1;
   return Math.floor(n / number) * number;
 }
 
-function randint(l,h) {
+window.randint = function randint(l,h) {
   return(Math.floor(Math.random()*(h-l+1))+l);
 }
 
-function s(i) {
+window.s = function s(i) {
   if(i == 1)
     return "";
   else
     return "s";
 }
 
-function within(n,c,r) {
+window.within = function within(n,c,r) {
   if((n > c+r) || (n < c-r))
     return false;
   return true;
 }
 
-function trange(il,i,ih,ol,oh) {
+window.trange = function trange(il,i,ih,ol,oh) {
   return(ol+(oh-ol)*(i-il)/(ih-il));
   // i=(i/(ih-il))-il;       // purpose unknown
   // return (i*(oh-ol))+ol;  // purpose unknown
 }
 
-function clamp(l,i,h) {
+window.clamp = function clamp(l,i,h) {
   if(h == null) {
     if(l > i)
       return l;
@@ -150,21 +148,21 @@ function clamp(l,i,h) {
   return i;
 }
 
-function crange(il,i,ih,ol,oh) {
+window.crange = function crange(il,i,ih,ol,oh) {
   return clamp(ol,trange(il,i,ih,ol,oh),oh);
 }
 
-function srange(il,i,ih) {
+window.srange = function srange(il,i,ih) {
   //    return Math.cos();
 }
 
-function distance2d(a,b) {
+window.distance2d = function distance2d(a,b) {
   var x=a[0]-b[0];
   var y=a[1]-b[1];
   return Math.sqrt((x*x)+(y*y));
 }
 
-function distEuclid(gps1, gps2) {
+window.distEuclid = function distEuclid(gps1, gps2) {
   var R = 6371; // nm
   var lat1 = radians(lat1);
   var lat2 = radians(lat2);
@@ -178,27 +176,28 @@ function distEuclid(gps1, gps2) {
   return d; // distance, in kilometers
 }
 
-function degrees(radians) {
+window.degrees = function degrees(radians) {
   return (radians/(Math.PI*2))*360;
 }
 
-function radians(degrees) {
+window.radians = function radians(degrees) {
   return (degrees/360)*(Math.PI*2);
 }
 
-/** Constrains an angle to within 0 --> Math.PI*2
+/**
+ * Constrains an angle to within 0 --> Math.PI*2
  */
-function fix_angle(radians) {
+window.fix_angle = function fix_angle(radians) {
   while(radians > Math.PI*2) radians -= Math.PI*2;
   while(radians < 0) radians += Math.PI*2;
   return radians;
 }
 
-function choose(l) {
+window.choose = function choose(l) {
   return l[Math.floor(Math.random()*l.length)];
 }
 
-function choose_weight(l) {
+window.choose_weight = function choose_weight(l) {
   if(l.length == 0) return;
   if(typeof l[0] != typeof []) return choose(l);
   // l = [[item, weight], [item, weight] ... ];
@@ -218,23 +217,25 @@ function choose_weight(l) {
   return(null);
 }
 
-function mod(a, b) {
+window.mod = function mod(a, b) {
   return ((a%b)+b)%b;
 };
 
-/** Prepends zeros to front of str/num to make it the desired width
+/**
+ * Prepends zeros to front of str/num to make it the desired width
  */
-function lpad(n, width) {
+window.lpad = function lpad(n, width) {
   if (n.toString().length >= width) return n.toString();
   var x = "0000000000000" + n;
   return x.substr(x.length-width, width);
 }
 
-/** Returns the angle difference between two headings
- ** @param {number} a - heading, in radians
- ** @param {number} b - heading, in radians
+/**
+ * Returns the angle difference between two headings
+ * @param {number} a - heading, in radians
+ * @param {number} b - heading, in radians
  */
-function angle_offset(a, b) {
+window.angle_offset = function angle_offset(a, b) {
   a = degrees(a);
   b = degrees(b);
   var invert=false;
@@ -251,25 +252,27 @@ function angle_offset(a, b) {
   return offset;
 }
 
-/** Returns the bearing from position 'a' to position 'b'
- ** @param {array} a - positional array, start point
- ** @param {array} a - positional array, end point
+/**
+ * Returns the bearing from position 'a' to position 'b'
+ * @param {array} a - positional array, start point
+ * @param {array} a - positional array, end point
  */
-function bearing(a, b) {
+window.bearing = function bearing(a, b) {
   return vradial(vsub(b,a));
 }
 
-/** Returns an offset array showing how far [fwd/bwd, left/right] 'aircraft' is of 'target'
- ** @param {Aircraft} aircraft - the aircraft in question
- ** @param {array} target - positional array of the targeted position [x,y]
- ** @param {number} headingThruTarget - (optional) The heading the aircraft should
- **                                     be established on when passing the target.
- **                                     Default value is the aircraft's heading.
- ** @returns {array} with two elements: retval[0] is the lateral offset, in km
- **                                     retval[1] is the longitudinal offset, in km
- **                                     retval[2] is the hypotenuse (straight-line distance), in km
+/**
+ * Returns an offset array showing how far [fwd/bwd, left/right] 'aircraft' is of 'target'
+ * @param {Aircraft} aircraft - the aircraft in question
+ * @param {array} target - positional array of the targeted position [x,y]
+ * @param {number} headingThruTarget - (optional) The heading the aircraft should
+ *                                     be established on when passing the target.
+ *                                     Default value is the aircraft's heading.
+ * @returns {array} with two elements: retval[0] is the lateral offset, in km
+ *                                     retval[1] is the longitudinal offset, in km
+ *                                     retval[2] is the hypotenuse (straight-line distance), in km
  */
-function getOffset(aircraft, target, /*optional*/ headingThruTarget) {
+window.getOffset = function getOffset(aircraft, target, /*optional*/ headingThruTarget) {
   if(headingThruTarget == null) headingThruTarget = aircraft.heading;
   var offset = [0, 0, 0];
   var vector = vsub(target, aircraft.position); // vector from aircraft pointing to target
@@ -280,7 +283,7 @@ function getOffset(aircraft, target, /*optional*/ headingThruTarget) {
   return offset;
 }
 
-function heading_to_string(heading) {
+window.heading_to_string = function heading_to_string(heading) {
   heading = round(mod(degrees(heading), 360)).toString();
   if(heading == "0") heading = "360";
   if(heading.length == 1) heading = "00" + heading;
@@ -363,14 +366,15 @@ var radio_runway_names = clone(radio_names);
     radio_runway_names.c = "center";
     radio_runway_names.r = "right";
 
-/** Force a number to an integer with a specific # of digits
- ** @return {string} with leading zeros to reach 'digits' places
- ** 
- ** If the rounded integer has more digits than requested, it will be returned
- ** anyway, as chopping them off the end would change the value by orders of
- ** magnitude, which is almost definitely going to be undesirable.
+/**
+ * Force a number to an integer with a specific # of digits
+ * @return {string} with leading zeros to reach 'digits' places
+ *
+ * If the rounded integer has more digits than requested, it will be returned
+ * anyway, as chopping them off the end would change the value by orders of
+ * magnitude, which is almost definitely going to be undesirable.
  */
-function digits_integer(number, digits, /*optional*/ truncate) {
+window.digits_integer = function digits_integer(number, digits, /*optional*/ truncate) {
   if(truncate) number = Math.floor(number).toString();
   else number = Math.round(number).toString();
   if(number.length > digits) return number;
@@ -378,19 +382,20 @@ function digits_integer(number, digits, /*optional*/ truncate) {
   return number;
 }
 
-/** Round a number to a specific # of digits after the decimal
- ** @param {boolean} force - (optional) Forces presence of trailing zeros.
- **        Must be set to true if you want '3' to be able to go to '3.0', or
- **        for '32.168420' to not be squished to '32.16842'. If true, fxn will
- **        return a string, because otherwise, js removes all trailing zeros.
- ** @param {boolean} truncate - (optional) Selects shortening method.
- **        to truncate: 'true', to round: 'false' (default)
- ** @return {number} if !force
- ** @return {string} if force
- **
- ** Also supports negative digits. Ex: '-2' would do 541.246 --> 500
+/**
+ * Round a number to a specific # of digits after the decimal
+ * @param {boolean} force - (optional) Forces presence of trailing zeros.
+ *        Must be set to true if you want '3' to be able to go to '3.0', or
+ *        for '32.168420' to not be squished to '32.16842'. If true, fxn will
+ *        return a string, because otherwise, js removes all trailing zeros.
+ * @param {boolean} truncate - (optional) Selects shortening method.
+ *        to truncate: 'true', to round: 'false' (default)
+ * @return {number} if !force
+ * @return {string} if force
+ *
+ * Also supports negative digits. Ex: '-2' would do 541.246 --> 500
  */
-function digits_decimal(number, digits, /*optional */ force, truncate) {
+window.digits_decimal = function digits_decimal(number, digits, /*optional */ force, truncate) {
   var shorten = (truncate) ? Math.floor : Math.round;
   if(!force) return shorten(number * Math.pow(10,digits)) / Math.pow(10,digits);
   else { // check if needs extra trailing zeros
@@ -418,7 +423,7 @@ function digits_decimal(number, digits, /*optional */ force, truncate) {
   }
 }
 
-function getGrouping(groupable) {
+window.getGrouping = function getGrouping(groupable) {
   var digit1 = groupable[0];
   var digit2 = groupable[1];
   if(digit1 == 0) {
@@ -433,7 +438,7 @@ function getGrouping(groupable) {
   else return radio_names[digit1] + " " + radio_names[digit2];
 }
 
-function groupNumbers(callsign, /*optional*/ airline) {
+window.groupNumbers = function groupNumbers(callsign, /*optional*/ airline) {
   if(!/^\d+$/.test(callsign)) { // GA, eg '117KS' = 'one-one-seven-kilo-sierra')
 
     if(airline == "November") { //callsign "November"
@@ -441,7 +446,7 @@ function groupNumbers(callsign, /*optional*/ airline) {
       for (var k in callsign) { s.push(radio_names[callsign[k]]); } // one after another (eg 'one one seven kilo sierra')
       return s.join(" ");
     }
-    
+
     else { // airline grouped, eg '3110A' = 'thirty-one-ten-alpha'
       //divide callsign into alpha/numeric sections
       var sections = [], cs = callsign, thisIsDigit;
@@ -489,7 +494,7 @@ function groupNumbers(callsign, /*optional*/ airline) {
   }
 }
 
-function radio_runway(input) {
+window.radio_runway = function radio_runway(input) {
   input = input + "";
   input = input.toLowerCase();
   var s = [];
@@ -500,7 +505,7 @@ function radio_runway(input) {
   return s.join(" ");
 }
 
-function radio_heading(heading) {
+window.radio_heading = function radio_heading(heading) {
   var str = heading.toString();
   var hdg = [];
   if(str) {
@@ -510,7 +515,7 @@ function radio_heading(heading) {
   } else return heading;
 }
 
-function radio_spellOut(alphanumeric) {
+window.radio_spellOut = function radio_spellOut(alphanumeric) {
   var str = alphanumeric.toString();
   var arr = [];
   if(!str) return;
@@ -520,7 +525,7 @@ function radio_spellOut(alphanumeric) {
   return arr.join(" ");
 }
 
-function radio_altitude(altitude) {
+window.radio_altitude = function radio_altitude(altitude) {
   var alt_s = altitude.toString();
   var s = [];
   if(altitude >= 18000) {
@@ -545,7 +550,7 @@ function radio_altitude(altitude) {
   return s.join(" ");
 }
 
-function radio_trend(category, measured, target) {
+window.radio_trend = function radio_trend(category, measured, target) {
   var CATEGORIES = {
     "altitude": ["descend and maintain", "climb and maintain",  "maintain"],
     "speed":    ["reduce speed to",  "increase speed to", "maintain present speed of"]
@@ -555,29 +560,30 @@ function radio_trend(category, measured, target) {
   return CATEGORIES[category][2];
 }
 
-function getCardinalDirection(angle) {
+window.getCardinalDirection = function getCardinalDirection(angle) {
   var directions = ["N", "NE", "E", "SE", "S", "SW", "W", "NW", "N"];
   return directions[round(angle / (Math.PI*2) * 8)];
 }
 
-function to_canvas_pos(pos) {
+window.to_canvas_pos = function to_canvas_pos(pos) {
   return [prop.canvas.size.width / 2 + prop.canvas.panX + km(pos[0]),
           prop.canvas.size.height / 2 + prop.canvas.panY - km(pos[1])];
 }
 
-/** Compute a point of intersection of a ray with a rectangle.
- ** Args:
- **   pos: array of 2 numbers, representing ray source.
- **   dir: array of 2 numbers, representing ray direction.
- **   rectPos: array of 2 numbers, representing rectangle corner position.
- **   rectSize: array of 2 positive numbers, representing size of the rectangle.
- **
- ** Returns:
- ** - undefined, if pos is outside of the rectangle.
- ** - undefined, in case of a numerical error.
- ** - array of 2 numbers on a rectangle boundary, in case of an intersection.
+/**
+ * Compute a point of intersection of a ray with a rectangle.
+ * Args:
+ *   pos: array of 2 numbers, representing ray source.
+ *   dir: array of 2 numbers, representing ray direction.
+ *   rectPos: array of 2 numbers, representing rectangle corner position.
+ *   rectSize: array of 2 positive numbers, representing size of the rectangle.
+ *
+ * Returns:
+ * - undefined, if pos is outside of the rectangle.
+ * - undefined, in case of a numerical error.
+ * - array of 2 numbers on a rectangle boundary, in case of an intersection.
  */
-function positive_intersection_with_rect(pos, dir, rectPos, rectSize) {
+window.positive_intersection_with_rect = function positive_intersection_with_rect(pos, dir, rectPos, rectSize) {
   var left = rectPos[0];
   var right = rectPos[0] + rectSize[0];
   var top = rectPos[1];
@@ -630,24 +636,26 @@ function positive_intersection_with_rect(pos, dir, rectPos, rectSize) {
   return undefined;
 }
 
-/** Return a random number within the given interval
+/**
+ * Return a random number within the given interval
  *  With one argument return a number between 0 and argument
  *  With no arguments return a number between 0 and 1
  */
-function random(low, high) {
+window.random = function random(low, high) {
   if (low == high) return low;
   if (low == null) return Math.random();
   if (high == null) return Math.random() * low;
   return (low + (Math.random() * (high - low)));
 }
 
-/** Get new position by fix-radial-distance method
- ** @param {array} fix - positional array of start point, in decimal-degrees [lat,lon]
- ** @param {number} radial - heading to project along, in radians
- ** @param {number} dist - distance to project, in nm
- ** @returns {array} location of the projected fix
+/**
+ * Get new position by fix-radial-distance method
+ * @param {array} fix - positional array of start point, in decimal-degrees [lat,lon]
+ * @param {number} radial - heading to project along, in radians
+ * @param {number} dist - distance to project, in nm
+ * @returns {array} location of the projected fix
  */
-function fixRadialDist(fix, radial, dist) {
+window.fixRadialDist = function fixRadialDist(fix, radial, dist) {
   fix = [radians(fix[0]), radians(fix[1])]; // convert GPS coordinates to radians
   var R = 3440; // radius of Earth, nm
   var lat2 = Math.asin(Math.sin(fix[1])*Math.cos(dist/R) +
@@ -657,11 +665,12 @@ function fixRadialDist(fix, radial, dist) {
   return [degrees(lon2), degrees(lat2)];
 }
 
-/** Splices all empty elements out of an array
+/**
+ * Splices all empty elements out of an array
  */
-function array_clean(array, deleteValue) {
+window.array_clean = function array_clean(array, deleteValue) {
   for (var i = 0; i < array.length; i++) {
-    if (array[i] == deleteValue) {         
+    if (array[i] == deleteValue) {
       array.splice(i, 1);
       i--;
     }
@@ -669,15 +678,16 @@ function array_clean(array, deleteValue) {
   return array;
 };
 
-/** Returns the sum of all numerical values in the array
+/**
+ * Returns the sum of all numerical values in the array
  */
-function array_sum(array) {
+window.array_sum = function array_sum(array) {
   var total = 0;
   for(var i=0; i<array.length; i++) total += parseFloat(array[i]);
   return total;
 }
 
-function inAirspace(pos) {
+window.inAirspace = function inAirspace(pos) {
   var apt = airport_get();
   var perim = apt.perimeter;
   if(perim) {
@@ -688,7 +698,7 @@ function inAirspace(pos) {
   }
 }
 
-function dist_to_boundary(pos) {
+window.dist_to_boundary = function dist_to_boundary(pos) {
   var apt = airport_get();
   var perim = apt.perimeter;
   if(perim) {
@@ -704,11 +714,11 @@ function dist_to_boundary(pos) {
 // Remember: [x,y] convention is used, and doesn't match [lat,lon]
 
 /**
- ** Normalize a 2D vector
- ** eg scaling elements such that net length is 1
- ** Turns vector 'v' into a 'unit vector'
+ * Normalize a 2D vector
+ * eg scaling elements such that net length is 1
+ * Turns vector 'v' into a 'unit vector'
  */
-function vnorm(v,length) {
+window.vnorm = function vnorm(v,length) {
   var x=v[0];
   var y=v[1];
   var angle=Math.atan2(x,y);
@@ -721,17 +731,17 @@ function vnorm(v,length) {
 }
 
 /**
- ** Create a 2D vector
- ** Pass a heading (rad), and this will return the corresponding unit vector
+ * Create a 2D vector
+ * Pass a heading (rad), and this will return the corresponding unit vector
  */
-function vectorize_2d(direction) {
+window.vectorize_2d = function vectorize_2d(direction) {
   return [ Math.sin(direction), Math.cos(direction) ];
 }
 
 /**
- ** Computes length of 2D vector
+ * Computes length of 2D vector
  */
-function vlen(v) {
+window.vlen = function vlen(v) {
   try {
     var len = Math.sqrt(v[0]*v[0] + v[1] * v[1]);
     return len;
@@ -740,9 +750,9 @@ function vlen(v) {
 }
 
 /**
- ** Adds Vectors (all dimensions)
+ * Adds Vectors (all dimensions)
  */
-function vadd(v1, v2) {
+window.vadd = function vadd(v1, v2) {
   try {
     var v = [], lim = Math.min(v1.length,v2.length);
     for(var i=0; i<lim; i++) v.push(v1[i] + v2[i]);
@@ -752,9 +762,9 @@ function vadd(v1, v2) {
 }
 
 /**
- ** Subtracts Vectors (all dimensions)
+ * Subtracts Vectors (all dimensions)
  */
-function vsub(v1, v2) {
+window.vsub = function vsub(v1, v2) {
   try {
     var v = [], lim = Math.min(v1.length,v2.length);
     for(var i=0; i<lim; i++) v.push(v1[i] - v2[i]);
@@ -764,9 +774,9 @@ function vsub(v1, v2) {
 }
 
 /**
- ** Multiplies Vectors (all dimensions)
+ * Multiplies Vectors (all dimensions)
  */
-function vmul(v1, v2) {
+window.vmul = function vmul(v1, v2) {
   try {
     var v = [], lim = Math.min(v1.length,v2.length);
     for(var i=0; i<lim; i++) v.push(v1[i] * v2[i]);
@@ -776,9 +786,9 @@ function vmul(v1, v2) {
 }
 
 /**
- ** Divides Vectors (all dimensions)
+ * Divides Vectors (all dimensions)
  */
-function vdiv(v1, v2) {
+window.vdiv = function vdiv(v1, v2) {
   try {
     var v = [], lim = Math.min(v1.length,v2.length);
     for(var i=0; i<lim; i++) v.push(v1[i] / v2[i]);
@@ -788,30 +798,30 @@ function vdiv(v1, v2) {
 }
 
 /**
- ** Scales vectors in magnitude (all dimensions)
+ * Scales vectors in magnitude (all dimensions)
  */
-function vscale(v, factor) {
+window.vscale = function vscale(v, factor) {
   var vs = [];
   for(var i=0; i<v.length; i++) vs.push(v[i] * factor);
   return vs;
 }
 
 /**
- ** Vector dot product (all dimensions)
+ * Vector dot product (all dimensions)
  */
-function vdp(v1, v2) {
+window.vdp = function vdp(v1, v2) {
   var n = 0, lim = Math.min(v1.length,v2.length);
   for (var i = 0; i < lim; i++) n += v1[i] * v2[i];
   return n;
 }
 
 /**
- ** Vector cross product (3D/2D*)
- ** Passing 3D vector returns 3D vector
- ** Passing 2D vector (classically improper) returns z-axis SCALAR
- ** *Note on 2D implementation: http://stackoverflow.com/a/243984/5774767
+ * Vector cross product (3D/2D*)
+ * Passing 3D vector returns 3D vector
+ * Passing 2D vector (classically improper) returns z-axis SCALAR
+ * *Note on 2D implementation: http://stackoverflow.com/a/243984/5774767
  */
-function vcp(v1, v2) {
+window.vcp = function vcp(v1, v2) {
   if(Math.min(v1.length,v2.length) == 2)  // for 2D vector (returns z-axis scalar)
     return vcp([v1[0],v1[1],0],[v2[0],v2[1],0])[2];
   if(Math.min(v1.length,v2.length) == 3)  // for 3D vector (returns 3D vector)
@@ -821,10 +831,10 @@ function vcp(v1, v2) {
 }
 
 /**
- ** Compute determinant of 2D/3D vectors
- ** Remember: May return negative values (undesirable in some situations)
+ * Compute determinant of 2D/3D vectors
+ * Remember: May return negative values (undesirable in some situations)
  */
-function vdet(v1, v2, /*optional*/ v3) {
+window.vdet = function vdet(v1, v2, /*optional*/ v3) {
   if(Math.min(v1.length,v2.length) == 2)  // 2x2 determinant
     return (v1[0]*v2[1])-(v1[1]*v2[0]);
   else if(Math.min(v1.length,v2.length,v3.length) == 3 && v3) // 3x3 determinant
@@ -834,16 +844,16 @@ function vdet(v1, v2, /*optional*/ v3) {
 }
 
 /**
- ** Compute angle of 2D vector, in radians
+ * Compute angle of 2D vector, in radians
  */
-function vradial(v) {
+window.vradial = function vradial(v) {
   return Math.atan2(v[0], v[1]);
 }
 
 /**
- ** Returns vector rotated by "radians" radians
+ * Returns vector rotated by "radians" radians
  */
-function vturn(radians, v) {
+window.vturn = function vturn(radians, v) {
   if (!v) v = [0, 1];
   var x = v[0],
       y = v[1],
@@ -854,10 +864,10 @@ function vturn(radians, v) {
 }
 
 /**
- ** Determines if and where two runways will intersect.
- ** Note: Please pass ONLY the runway identifier (eg '28r')
+ * Determines if and where two runways will intersect.
+ * Note: Please pass ONLY the runway identifier (eg '28r')
  */
-function runwaysIntersect(rwy1_name, rwy2_name) {
+window.runwaysIntersect = function runwaysIntersect(rwy1_name, rwy2_name) {
   return raysIntersect(
     airport_get().getRunway(rwy1_name).position,
     airport_get().getRunway(rwy1_name).angle,
@@ -867,10 +877,10 @@ function runwaysIntersect(rwy1_name, rwy2_name) {
 }
 
 /**
- ** Determines if and where two rays will intersect. All angles in radians.
- ** Variation based on http://stackoverflow.com/a/565282/5774767
+ * Determines if and where two rays will intersect. All angles in radians.
+ * Variation based on http://stackoverflow.com/a/565282/5774767
  */
-function raysIntersect(pos1, dir1, pos2, dir2, deg_allowance) {
+window.raysIntersect = function raysIntersect(pos1, dir1, pos2, dir2, deg_allowance) {
   if(!deg_allowance) deg_allowance = 0; // degrees divergence still considered 'parallel'
   var p = pos1;
   var q = pos2;
@@ -889,10 +899,10 @@ function raysIntersect(pos1, dir1, pos2, dir2, deg_allowance) {
 }
 
 /**
- ** 'Flips' vector's Y component in direction
- ** Helper function for culebron's poly edge vector functions
+ * 'Flips' vector's Y component in direction
+ * Helper function for culebron's poly edge vector functions
  */
-function vflipY(v) {
+window.vflipY = function vflipY(v) {
   return [-v[1], v[0]];
 }
 
@@ -920,7 +930,7 @@ j y2 x4 / x2 - j y4 == y3 - y1 - y2 x3 / x2 + y2 x1 / x2
 j = (y3 - y1 - y2 x3 / x2 + y2 x1 / x2) / (y2 x4 / x2 - y4)
 i = (x3 + j x4 - x1) / x2
 */
-function distance_to_poly(point, poly) {
+window.distance_to_poly = function distance_to_poly(point, poly) {
   var dists = $.map(poly, function(vertex1, i) {
     var prev = (i == 0 ? poly.length : i) - 1,
         vertex2 = poly[prev],
@@ -948,7 +958,7 @@ function distance_to_poly(point, poly) {
     else if (x2 != 0) { // normal can't be zero unless the edge has 0 length
       j = (y3 - y1 - y2 * x3 / x2 + y2 * x1 / x2) / (y2 * x4 / x2 - y4);
       i = (x3 + j * x4 - x1) / x2;
-    }          
+    }
 
     if (j < 0 || j > 1 || j == null)
       return Math.min(
@@ -962,13 +972,13 @@ function distance_to_poly(point, poly) {
 }
 
 
-function point_to_mpoly(point, mpoly) {
+window.point_to_mpoly = function point_to_mpoly(point, mpoly) {
   /* returns: boolean inside/outside & distance to the polygon */
   var k, ring, inside = false;
   for (var k in mpoly) {
     ring = mpoly[k];
     if (point_in_poly(point, ring)) {
-      if (k == 0)  
+      if (k == 0)
         inside = true; // if inside outer ring, remember that and wait till the end
       else // if by change in one of inner rings, it's out of poly, return distance to the inner ring
         return {inside: false, distance: distance_to_poly(point, ring)}
@@ -979,10 +989,10 @@ function point_to_mpoly(point, mpoly) {
 }
 
 // source: https://github.com/substack/point-in-polygon/
-function point_in_poly(point, vs) {
+window.point_in_poly = function point_in_poly(point, vs) {
     // ray-casting algorithm based on
     // http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html
-    
+
     var x = point[0],
         y = point[1],
         i,
@@ -992,33 +1002,35 @@ function point_in_poly(point, vs) {
     for (i in vs) {
         var xi = vs[i][0], yi = vs[i][1];
         var xj = vs[j][0], yj = vs[j][1];
-        
+
         var intersect = ((yi > y) != (yj > y))
             && (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
         if (intersect) inside = !inside;
         j = i;
     }
-    
+
     return inside;
 }
 
-/** Converts an 'area' to a 'poly'
+/**
+ * Converts an 'area' to a 'poly'
  */
-function area_to_poly(area) {
+window.area_to_poly = function area_to_poly(area) {
   return $.map(area.poly, function(v) {return [v.position];});
 }
 
-/** Checks to see if a point is in an area
+/**
+ * Checks to see if a point is in an area
  */
-function point_in_area(point, area) {
+window.point_in_area = function point_in_area(point, area) {
   return point_in_poly(point, area_to_poly(area));
 }
 
-function endsWith(str, suffix) {
-  return str.indexOf(suffix, str.length - suffix.length) !== -1;  
+window.endsWith = function endsWith(str, suffix) {
+  return str.indexOf(suffix, str.length - suffix.length) !== -1;
 }
 
-function parseElevation(ele) {
+window.parseElevation = function parseElevation(ele) {
   var alt = /^(Infinity|(\d+(\.\d+)?)(m|ft))$/.exec(ele);
   if (alt == null) {
     log('Unable to parse elevation ' + ele);
@@ -1029,7 +1041,7 @@ function parseElevation(ele) {
 }
 
 // adjust all aircraft's eid values
-function update_aircraft_eids() {
+window.update_aircraft_eids = function update_aircraft_eids() {
   for(var i=0; i<prop.aircraft.list.length; i++) {
     prop.aircraft.list[i].eid = i;  // update eid in aircraft
     prop.aircraft.list[i].fms.my_aircrafts_eid = i; // update eid in aircraft's fms
@@ -1037,7 +1049,7 @@ function update_aircraft_eids() {
 }
 
 // Remove the specified aircraft and perform cleanup operations
-function aircraft_remove(aircraft) {
+window.aircraft_remove = function aircraft_remove(aircraft) {
   prop.aircraft.callsigns.splice(prop.aircraft.callsigns.indexOf(aircraft.callsign), 1);
   prop.aircraft.list.splice(prop.aircraft.list.indexOf(aircraft), 1);
   update_aircraft_eids();
