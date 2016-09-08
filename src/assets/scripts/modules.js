@@ -5,6 +5,7 @@ window.Fiber = require('fiber');
 
 var aircraft = require('./aircraft');
 var airport = require('./airport');
+var airline = require('./airline');
 
 
 var Mediator = Fiber.extend(function (base) {
@@ -45,7 +46,7 @@ var MODULES = [
 
   "input",
 
-  "airline",
+  // "airline",
 
   // "aircraft",
   // "airport",
@@ -292,9 +293,11 @@ $(document).ready(function() {
     load_modules();
 
     // TODO: temp fix to get browserify working
+    airline_init_pre();
     aircraft_init_pre();
-    aircraft_init();
     airport_init_pre();
+    
+    aircraft_init();
     airport_init();
 });
 

@@ -62,7 +62,7 @@ function tutorial_init_pre() {
   tutorial_step({
     title:    "Taxiing",
     text:     ["Now type in &lsquo;taxi&rsquo; or &lsquo;wait&rsquo; into the command box after the callsign and hit Return;",
-               "the messages area above it will show that the aircraft is taxiing to runway {RUNWAY} in",
+               "the messages area above it will show that the aircraft is taxiing to runway ({RUNWAY}) in",
                "preparation for takeoff. (You could also specify to which runway to taxi the aircraft by",
                "entering the runway name after &lsquo;taxi&rsquo; or &lsquo;wait&rsquo;.)"
                ].join(" "),
@@ -77,7 +77,7 @@ function tutorial_init_pre() {
 
   tutorial_step({
     title:    "Takeoff, part 1",
-    text:     ["When it appears at the start of runway {RUNWAY} (which may take a couple of seconds), click it (or press the up arrow once)",
+    text:     ["When it appears at the start of runway ({RUNWAY}) (which may take a couple of seconds), click it (or press the up arrow once)",
                "and type in &lsquo;caf&rsquo; (for &lsquo;cleared as filed&rsquo;). This tells the aircraft it is cleared to follow its flightplan.",
                "Just as in real life, this step must be done before clearing the aircraft for takeoff, so they know where they're supposed to go."
                ].join(" "),

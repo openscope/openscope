@@ -43,4 +43,5 @@ gulp.task('dist', function() {
     );
 });
 
+gulp.task('watch', ['watch:scripts']);
 gulp.task('default', ['build']);

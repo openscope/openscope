@@ -1,10 +1,12 @@
-function airline_init_pre() {
-  prop.airline = {};
-  prop.airline.airlines = {};
-}
+window.airline_init_pre = function airline_init_pre() {
+    prop.airline = {};
+    prop.airline.airlines = {};
+};
 
 /**
  * An aircrcraft operating agency
+ *
+ * @class Airline
  */
 zlsa.atc.Airline = Fiber.extend(function() {
   return {
@@ -39,32 +41,45 @@ zlsa.atc.Airline = Fiber.extend(function() {
       this.priorityLoad = false;
       this._pendingAircraft = [];
       this.parse(options);
-      if (options.url) this.load(options.url);
+
+      if (options.url) {
+          this.load(options.url);
+      }
     },
 
     /**
      * Initialize object from data
      */
     parse: function (data) {
-      if (data.icao) this.icao = data.icao;
-
-      if (data.name) this.name = data.name;
-      if (data.callsign) {
-        this.callsign = data.callsign.name;
-        if (data.callsign.length)
-          this.flightNumberGeneration.length = data.callsign.length;
-        this.flightNumberGeneration.alpha = (data.callsign.alpha === true);
-      }
-      if (data.fleets)
-        this.fleets = data.fleets;
-      else if (data.aircraft)
-        this.fleets.default = data.aircraft;
-
-      for (var f in this.fleets) {
-        for (var j=0;j<this.fleets[f].length;j++) {
-          this.fleets[f][j][0] = this.fleets[f][j][0].toLowerCase();
+        if (data.icao) {
+              this.icao = data.icao;
         }
-      }
+
+        if (data.name) {
+            this.name = data.name;
+        }
+
+        if (data.callsign) {
+            this.callsign = data.callsign.name;
+
+            if (data.callsign.length) {
+                this.flightNumberGeneration.length = data.callsign.length;
+            }
+
+            this.flightNumberGeneration.alpha = (data.callsign.alpha === true);
+        }
+
+        if (data.fleets) {
+            this.fleets = data.fleets;
+        } else if (data.aircraft) {
+            this.fleets.default = data.aircraft;
+        }
+
+        for (var f in this.fleets) {
+            for (var j = 0; j < this.fleets[f].length; j++) {
+                this.fleets[f][j][0] = this.fleets[f][j][0].toLowerCase();
+            }
+        }
     },
 
     /**
@@ -199,7 +214,7 @@ zlsa.atc.Airline = Fiber.extend(function() {
   };
 });
 
-function airline_get(icao) {
+window.airline_get = function airline_get(icao) {
   icao = icao.toLowerCase();
   if (!(icao in prop.airline.airlines)) {
     var airline = new zlsa.atc.Airline(icao,
@@ -207,4 +222,4 @@ function airline_get(icao) {
     prop.airline.airlines[icao] = airline;
   }
   return prop.airline.airlines[icao];
-}
+};
