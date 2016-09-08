@@ -4,7 +4,7 @@ window.$ = require('jquery');
 window.Fiber = require('fiber');
 
 var util = require('./util');
-
+var animation = require('./animation');
 var speech = require('./speech');
 var get = require('./get');
 var tutorial = require('./tutorial');
@@ -42,7 +42,7 @@ zlsa.atc.mediator = new Mediator();
 // all modules, prefix with "-" to signify library; <name>_init etc. won't be called
 var MODULES = [
   // "-util",
-  "-animation",
+  // "-animation",
   "-parser",
   // "speech",
   // "get",
