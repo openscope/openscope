@@ -2,9 +2,12 @@ window.zlsa = {atc: {}};
 
 window.$ = require('jquery');
 window.Fiber = require('fiber');
+// window.peg = require('pegjs');
 
 var util = require('./util');
 var animation = require('./animation');
+var parser = require('./parser');
+
 var speech = require('./speech');
 var get = require('./get');
 var tutorial = require('./tutorial');
@@ -43,7 +46,7 @@ zlsa.atc.mediator = new Mediator();
 var MODULES = [
   // "-util",
   // "-animation",
-  "-parser",
+  // "-parser",
   // "speech",
   // "get",
   // "tutorial",
@@ -263,24 +266,25 @@ function load_modules() {
 }
 
 function call_module(name, func, args) {
-  if (!args) {
-      args = [];
-  };
+    console.warn('-- call_module :: func:', func);
 
-  if (name == "*") {
-    for (var i = 0; i < MODULES.length; i++) {
-        call_module(MODULES[i],func,args);
+    if (!args) {
+        args = [];
+    };
+
+    if (name == "*") {
+        for (var i = 0; i < MODULES.length; i++) {
+            call_module(MODULES[i],func,args);
+        }
+
+        return null;
+    }
+
+    if (name + "_" + func in window && name[0] != "-") {
+        return window[name + "_" + func].apply(window, args);
     }
 
     return null;
-  }
-
-  if (name + "_" + func in window && name[0] != "-") {
-    //   debugger;
-    return window[name + "_" + func].apply(window, args);
-  }
-
-  return null;
 }
 
 $(document).ready(function() {
@@ -295,7 +299,7 @@ $(document).ready(function() {
 
     prop_init();
     log('Version ' + prop.version_string);
-    load_modules();
+    // load_modules();
 
     // TODO: temp fix to get browserify working
     tutorial_init_pre();
@@ -317,6 +321,8 @@ $(document).ready(function() {
     airport_init();
     canvas_init();
     ui_init();
+
+    done();
 });
 
 function done() {
@@ -357,7 +363,7 @@ function update() {
         ui_complete();
 
         zlsa.atc.LoadUI.complete();
-        prop.complete=true;
+        prop.complete = true;
     }
 
     if (UPDATE) {

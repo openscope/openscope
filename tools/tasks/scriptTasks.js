@@ -24,9 +24,9 @@ module.exports = function(gulp, config) {
     // TASKS
     ////////////////////////////////////////////////////////////////////
 
-    gulp.task('build:scripts', ['clean:build:scripts', 'browserify', 'build:scripts:copy']);
+    gulp.task('build:scripts', ['clean:build:scripts', 'browserify']); //, 'build:scripts:copy']);
 
     gulp.task('watch:scripts', function() {
-        gulp.watch(OPTIONS.GLOB.JS, ['clean:build:scripts', 'browserify', 'build:scripts:copy']);
+        gulp.watch(OPTIONS.GLOB.JS, ['clean:build:scripts', 'browserify']); //, 'build:scripts:copy']);
     });
 };

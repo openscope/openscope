@@ -2,9 +2,6 @@
 <html>
   <head>
     <title>Air Traffic Control-Compiled parser</title>
-    <script src="../assets/scripts/jquery.min.js"></script>
-    <script src="../assets/scripts/fiber.min.js"></script>
-    <script src="../assets/scripts/peg-0.9.0.min.js"></script>
   </head>
   <body>
     <script type="text/x-pegjs-grammar">
@@ -40,7 +37,7 @@ aircraftSubCommand
 = (whiteSpace command:(cmdAbort / cmdDirect / cmdAltitude / cmdClearedAsFiled / cmdClimbViaSID /
                        cmdDebug / cmdDelete / cmdDescendViaSTAR / cmdFix / cmdFlyPresentHeading /
                        cmdHeading / cmdHold / cmdLand / cmdMoveDataBlock / cmdRoute / cmdReRoute /
-                       cmdSayRoute / cmdSID / cmdSpeed / cmdSTAR / cmdTakeoff / cmdTaxi) {return command})+ 
+                       cmdSayRoute / cmdSID / cmdSpeed / cmdSTAR / cmdTakeoff / cmdTaxi) {return command})+
 
 cmdAbort
   = "abort" {return ["abort"]}
@@ -115,12 +112,12 @@ cmdLand
     {return [cmd[0], cmd[1], cmd[2]]}
 
 cmdLandLong
-  = cmd:(("land" / "l" / "ils") {return "land"}) 
+  = cmd:(("land" / "l" / "ils") {return "land"})
     arg:(whiteSpace variant:[a-z]i? arg:string {return [variant, arg]})
     { return [cmd, arg[0], arg[1]] }
 
 cmdLandShort
-  = cmd:("\u2B50" {return "land"}) 
+  = cmd:("\u2B50" {return "land"})
     arg:(variant:[a-z]i? arg:string {return [variant, arg]})
     { return [cmd, arg[0], arg[1]] }
 
@@ -178,6 +175,9 @@ _ "whiteSpace"
 integer
   = arg:$("-"? [0-9]+) {return parseInt(arg)}
     </script>
+
+    <script src="build/assets/scripts/bundle.js"></script>
+    <!--
     <script type="text/javascript">
       $(window).load(function () {
         var grammar = $("script[type='text/x-pegjs-grammar']").text();
@@ -190,5 +190,7 @@ integer
         }
       });
     </script>
+    -->
+
   </body>
 </html>
