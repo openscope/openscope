@@ -2,8 +2,8 @@
  * Loading indicator elements for HTML interface
  */
 (function ($, zlsa, Fiber, mediator, version_string) {
-  "use strict";
-  $("#loading").append("<div class='version'>" + version_string + "</div>");
+  'use strict';
+  $('#loading').append('<div class="version">' + version_string + '</div>');
 
   var minimumDisplayTime = 2; //seconds
 
@@ -15,18 +15,18 @@
 
   zlsa.atc.LoadUI = {
     complete: function() {
-      $("#loading").fadeOut(1000);
-      $("#loading").css("pointerEvents","none");
+      $('#loading').fadeOut(1000);
+      $('#loading').css('pointerEvents','none');
     },
 
     startLoad: function(url) {
       var msg = url;
       if (url.length > 15)
         msg = '...' + url.substr(-12);
-      $("#loadingIndicator .message").text(msg);
+      $('#loadingIndicator .message').text(msg);
 
       if (!state.loading) {
-        $("#loadingIndicator").show();
+        $('#loadingIndicator').show();
         state.start = new Date().getTime() * 0.001;
       }
 
@@ -39,15 +39,16 @@
     stopLoad: function() {
       var now = new Date().getTime() * 0.001;
       if ((now - state.start) > minimumDisplayTime) {
-        $("#loadingIndicator").hide();
+        $('#loadingIndicator').hide();
         state.start = null;
         state.loading = false;
-      }
-      else {
-        if (state.callback !== null)
+      } else {
+        if (state.callback !== null) {
           return;
+        }
+
         state.callback = setTimeout(function () {
-          $("#loadingIndicator").hide();
+          $('#loadingIndicator').hide();
           state.start = null;
           state.loading = false;
           state.callback = null;

@@ -11,7 +11,9 @@ var airline = require('./airline');
 var aircraft = require('./aircraft');
 var airport = require('./airport');
 var ui = require('./ui');
-
+// FIXME: shame!
+//
+var load;
 
 var Mediator = Fiber.extend(function (base) {
   return {
@@ -48,7 +50,7 @@ var MODULES = [
   // "airport",
   "canvas",
   // "ui",
-  "load"
+  // "load"
 ];
 
 // saved as prop.version and prop.version_string
@@ -298,6 +300,9 @@ $(document).ready(function() {
     aircraft_init_pre();
     airport_init_pre();
     ui_init_pre();
+
+    // FIXME: shame!
+    load = require('./load');
 
     speech_init();
     tutorial_init();
