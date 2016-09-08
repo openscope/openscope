@@ -22,7 +22,7 @@ var Step = Fiber.extend(function() {
   };
 });
 
-function tutorial_init_pre() {
+window.tutorial_init_pre = function tutorial_init_pre() {
   prop.tutorial = {};
 
   prop.tutorial.steps = [];
@@ -380,7 +380,7 @@ function tutorial_step(options) {
   prop.tutorial.steps.push(new Step(options));
 };
 
-function tutorial_init() {
+window.tutorial_init = function tutorial_init() {
   prop.tutorial.html = $("<div id='tutorial'></div>");
   prop.tutorial.html.append("<h1></h1>");
   prop.tutorial.html.append("<main></main>");
@@ -390,7 +390,7 @@ function tutorial_init() {
   prop.tutorial.html.find(".next").click(tutorial_next);
 
   $("body").append(prop.tutorial.html);
-}
+};
 
 function tutorial_complete() {
   if(!("first-run-time" in localStorage)) tutorial_open();
@@ -464,7 +464,10 @@ function tutorial_move() {
   $("#tutorial").offset({top: round(top), left: round(left)});
 }
 
-function tutorial_toggle() {
-  if(prop.tutorial.open) tutorial_close();
-  else                   tutorial_open();
-}
+window.tutorial_toggle = function tutorial_toggle() {
+    if (prop.tutorial.open) {
+        tutorial_close();
+    } else {
+        tutorial_open();
+    }
+};

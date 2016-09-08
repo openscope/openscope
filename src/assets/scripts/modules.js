@@ -6,6 +6,7 @@ window.Fiber = require('fiber');
 var aircraft = require('./aircraft');
 var airport = require('./airport');
 var airline = require('./airline');
+var tutorial = require('./tutorial');
 
 
 var Mediator = Fiber.extend(function (base) {
@@ -38,7 +39,7 @@ var MODULES = [
 
   "get",
 
-  "tutorial",
+  // "tutorial",
 
   "base",
 
@@ -168,16 +169,20 @@ window.prop_init = function prop_init() {
 }
 
 // MISC
-window.log = function log(message,level) {
-  if(level == undefined)
-    level=LOG_INFO;
-  if(prop.log <= level) {
-    var text="[ "+log_strings[level]+" ]";
-    if(level >= LOG_WARNING)
-      console.warn(text,message);
-    else
-      console.log(text,message);
-  }
+window.log = function log(message, level) {
+    if (level == undefined) {
+        level = LOG_INFO;
+    }
+
+    if (prop.log <= level) {
+        var text = "[ " + log_strings[level] + " ]";
+
+        if (level >= LOG_WARNING) {
+            console.warn(text, message);
+        } else {
+            console.log(text, message);
+        }
+    }
 }
 
 // ASYNC (AJAX etc.)
@@ -223,17 +228,17 @@ function s(number,single,multiple) {
 
 function load_module(name) {
   var filename;
-  if(name[0] == "-") {
-    modules[name].library=true;
-    filename="build/assets/scripts/"+name.substr(1)+".js";
+  if (name[0] == "-") {
+    modules[name].library = true;
+    filename = "build/assets/scripts/"+name.substr(1)+".js";
   } else {
-    filename="build/assets/scripts/"+name+".js";
+    filename = "build/assets/scripts/"+name+".js";
   }
-  var el=document.createElement("script");
-  el.src=filename;
+  var el = document.createElement("script");
+  el.src = filename;
   document.head.appendChild(el);
-  el.onload=function() {
-    modules[name].script=true;
+  el.onload = function() {
+    modules[name].script = true;
     //    if(modules[name].library)
     //      log("Loaded library "+name.substr(1));
     //    else
@@ -260,7 +265,7 @@ function load_modules() {
 
 function call_module(name, func, args) {
   if (!args) {
-      args=[];
+      args = [];
   };
 
   if (name == "*") {
@@ -296,17 +301,22 @@ $(document).ready(function() {
     airline_init_pre();
     aircraft_init_pre();
     airport_init_pre();
-    
+    tutorial_init_pre();
+
     aircraft_init();
     airport_init();
+    tutorial_init();
+
 });
 
 function done() {
     var e = time() - prop.time.start;
     e = e.toPrecision(2);
     log('Finished loading ' + MODULES.length + ' module' + s(MODULES.length) + ' in ' + e + 's');
+
     $(window).resize(resize);
     resize();
+
     call_module('*','done');
 
     prop.loaded = true;
@@ -321,7 +331,7 @@ function done() {
 }
 
 function resize() {
-  call_module("*","resize");
+      call_module("*","resize");
 }
 
 function update() {
@@ -362,7 +372,7 @@ function update() {
 window.update_run = function update_run(arg) {
   if ((!UPDATE) && arg)
     requestAnimationFrame(update);
-  UPDATE=arg;
+  UPDATE = arg;
 }
 
 window.delta = function delta() {
