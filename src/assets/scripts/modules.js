@@ -5,6 +5,7 @@ window.Fiber = require('fiber');
 
 var speech = require('./speech');
 var tutorial = require('./tutorial');
+var base = require('./base');
 var game = require('./game');
 var input = require('./input');
 var airline = require('./airline');
@@ -43,7 +44,7 @@ var MODULES = [
   // "speech",
   "get",
   // "tutorial",
-  "base",
+  // "base",
   // "game",
   // "input",
   // "airline",

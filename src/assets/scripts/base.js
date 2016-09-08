@@ -9,7 +9,7 @@
 //   y - Offset from reference position in km
 //   position - Array containing the x,y pair
 //
-var Position=Fiber.extend(function() {
+var Position = Fiber.extend(function() {
   return {
     // coordinates - Array containing offset pair or latitude/longitude pair
     // reference - Position to use for calculating offsets when lat/long given
@@ -165,3 +165,6 @@ var Area = Fiber.extend(function() {
     }
   };
 });
+
+window.Position = Position;
+window.Area = Area;
