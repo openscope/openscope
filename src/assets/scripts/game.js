@@ -63,7 +63,7 @@ zlsa.atc.Options = Fiber.extend(function (base) {
   };
 });
 
-function game_init_pre() {
+window.game_init_pre = function game_init_pre() {
   prop.game={};
 
   prop.game.paused=true;
@@ -112,7 +112,7 @@ function game_init_pre() {
   prop.game.option = new zlsa.atc.Options();
 }
 
-function game_get_score() {
+window.game_get_score = function game_get_score() {
   var score = 0;
   score += prop.game.score.arrival * 10;
   score += prop.game.score.departure * 10;
@@ -135,14 +135,14 @@ function game_get_score() {
   return score;
 }
 
-function game_get_weighted_score() {
+window.game_get_weighted_score = function game_get_weighted_score() {
   var score = game_get_score();
   score     = score / (game_time() / 60);
   score    *= 500;
   return score;
 }
 
-function game_reset_score() {
+window.game_reset_score = function game_reset_score() {
   prop.game.score.abort = {"landing": 0, "taxi": 0};
   prop.game.score.arrival = 0;
   prop.game.score.departure = 0;
@@ -156,7 +156,7 @@ function game_reset_score() {
   prop.game.score.windy_takeoff = 0;
 }
 
-function game_timewarp_toggle() {
+window.game_timewarp_toggle = function game_timewarp_toggle() {
   if(prop.game.speedup == 5) {
     prop.game.speedup = 1;
     $(".fast-forwards").removeClass("speed-5");
@@ -173,21 +173,21 @@ function game_timewarp_toggle() {
   }
 }
 
-function game_pause() {
+window.game_pause = function game_pause() {
   prop.game.paused = true;
   $(".pause-toggle").addClass("active");
   $(".pause-toggle").attr("title", "Resume simulation");
   $("html").addClass("paused");
 }
 
-function game_unpause() {
+window.game_unpause = function game_unpause() {
   prop.game.paused = false;
   $(".pause-toggle").removeClass("active");
   $(".pause-toggle").attr("title", "Pause simulation");
   $("html").removeClass("paused");
 }
 
-function game_pause_toggle() {
+window.game_pause_toggle = function game_pause_toggle() {
   if(prop.game.paused) {
     game_unpause();
   } else {
@@ -195,40 +195,40 @@ function game_pause_toggle() {
   }
 }
 
-function game_paused() {
+window.game_paused = function game_paused() {
   return !prop.game.focused || prop.game.paused;
 }
 
-function game_time() {
+window.game_time = function game_time() {
   return prop.game.time;
 }
 
-function game_delta() {
+window.game_delta = function game_delta() {
   return prop.game.delta;
 }
 
-function game_speedup() {
+window.game_speedup = function game_speedup() {
   if(game_paused()) return 0;
   return prop.game.speedup;
 }
 
-function game_timeout(func, delay, that, data) {
+window.game_timeout = function game_timeout(func, delay, that, data) {
   var to = [func, game_time()+delay, data, delay, false, that];
   prop.game.timeouts.push(to);
   return to;
 }
 
-function game_interval(func, delay, that, data) {
+window.game_interval = function game_interval(func, delay, that, data) {
   var to = [func, game_time()+delay, data, delay, true, that];
   prop.game.timeouts.push(to);
   return to;
 }
 
-function game_clear_timeout(to) {
+window.game_clear_timeout = function game_clear_timeout(to) {
   prop.game.timeouts.splice(prop.game.timeouts.indexOf(to), 1);
 }
 
-function game_update_pre() {
+window.game_update_pre = function game_update_pre() {
   var score = game_get_score();
   if (score != prop.game.last_score) {
     $("#score").text(round(score));
@@ -264,6 +264,6 @@ function game_update_pre() {
   }
 }
 
-function game_complete() {
+window.game_complete = function game_complete() {
   prop.game.paused=false;
 }

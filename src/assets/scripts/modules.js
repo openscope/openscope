@@ -3,12 +3,13 @@ window.zlsa = {atc: {}};
 window.$ = require('jquery');
 window.Fiber = require('fiber');
 
-var aircraft = require('./aircraft');
-var airport = require('./airport');
-var airline = require('./airline');
 var speech = require('./speech');
 var tutorial = require('./tutorial');
+var game = require('./game');
 var input = require('./input');
+var airline = require('./airline');
+var aircraft = require('./aircraft');
+var airport = require('./airport');
 
 
 var Mediator = Fiber.extend(function (base) {
@@ -44,7 +45,7 @@ var MODULES = [
 
   "base",
 
-  "game",
+  // "game",
 
   // "input",
 
@@ -299,18 +300,18 @@ $(document).ready(function() {
     load_modules();
 
     // TODO: temp fix to get browserify working
+    tutorial_init_pre();
+    game_init_pre();
+    input_init_pre();
     airline_init_pre();
     aircraft_init_pre();
     airport_init_pre();
-    tutorial_init_pre();
-    input_init_pre();
 
-    aircraft_init();
-    airport_init();
     speech_init();
     tutorial_init();
     input_init();
-
+    aircraft_init();
+    airport_init();
 });
 
 function done() {
@@ -341,6 +342,9 @@ function resize() {
 function update() {
     if (!prop.complete) {
         call_module("*","complete");
+
+        // TODO: temp fix to get browserify working
+        game_complete();
 
         zlsa.atc.LoadUI.complete();
         prop.complete=true;
