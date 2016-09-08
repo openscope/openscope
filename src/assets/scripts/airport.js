@@ -1,7 +1,6 @@
 /**************************** AIRCRAFT GENERATION ****************************/
-
-
-/** Calls constructor of the appropriate arrival type
+/**
+ * Calls constructor of the appropriate arrival type
  */
 zlsa.atc.ArrivalFactory = function(airport, options) {
   if (options.type) {
@@ -1293,13 +1292,13 @@ var Airport=Fiber.extend(function() {
   };
 });
 
-function airport_init_pre() {
-  prop.airport = {};
-  prop.airport.airports = {};
-  prop.airport.current  = null;
-}
+window.airport_init_pre = function airport_init_pre() {
+    prop.airport = {};
+    prop.airport.airports = {};
+    prop.airport.current  = null;
+};
 
-function airport_init() {
+window.airport_init = function airport_init() {
   airport_load('ebbr', "easy", "Brussels-National &#9983");
   airport_load('eddf', "medium", "Frankfurt Airport");
   airport_load('eddh', "easy", "Hamburg Airport");
@@ -1360,31 +1359,42 @@ function airport_init() {
   airport_load('wmkk', "hard", "Kuala Lumpur International Airport (KLIA)")
   airport_load('wsss', "hard", "Singapore Changi International Airport");
   airport_load('zspd', "hard", "Shanghai Pudong International Airport");
-}
+};
 
-function airport_ready() {
-  if(!('atc-last-airport' in localStorage) || !(localStorage['atc-last-airport'] in prop.airport.airports)) airport_set('ksfo');
-  else airport_set();
-}
+window.airport_ready = function airport_ready() {
+    if (!('atc-last-airport' in localStorage) ||
+        !(localStorage['atc-last-airport'] in prop.airport.airports
+    )) {
+        airport_set('ksfo');
+    } else {
+        airport_set();
+    }
+};
 
-function airport_load(icao,level,name) {
-  icao = icao.toLowerCase();
-  if(icao in prop.airport.airports) {
-    console.log(icao + ": already loaded");
-    return;
-  }
-  var airport=new Airport({icao: icao,
-                           level: level,
-                           name: name});
-  airport_add(airport);
-  return airport;
-}
+window.airport_load = function airport_load(icao,level,name) {
+    icao = icao.toLowerCase();
 
-function airport_add(airport) {
-  prop.airport.airports[airport.icao.toLowerCase()] = airport;
-}
+    if (icao in prop.airport.airports) {
+        console.log(icao + ": already loaded");
+        return;
+    }
 
-function airport_set(icao) {
+    var airport= new Airport({
+        icao: icao,
+        level: level,
+        name: name
+    });
+
+    airport_add(airport);
+
+    return airport;
+};
+
+window.airport_add = function airport_add(airport) {
+    prop.airport.airports[airport.icao.toLowerCase()] = airport;
+};
+
+window.airport_set = function airport_set(icao) {
   if(!icao) {
     if(!('atc-last-airport' in localStorage)) return;
     else icao = localStorage['atc-last-airport'];
@@ -1403,9 +1413,12 @@ function airport_set(icao) {
 
   var newAirport = prop.airport.airports[icao];
   newAirport.set();
-}
+};
 
-function airport_get(icao) {
-  if(!icao) return prop.airport.current;
-  return prop.airport.airports[icao.toLowerCase()];
-}
+window.airport_get = function airport_get(icao) {
+    if (!icao) {
+        return prop.airport.current
+    };
+
+    return prop.airport.airports[icao.toLowerCase()];
+};

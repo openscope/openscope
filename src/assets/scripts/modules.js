@@ -3,6 +3,9 @@ window.zlsa = {atc: {}};
 window.$ = require('jquery');
 window.Fiber = require('fiber');
 
+var aircraft = require('./aircraft');
+var airport = require('./airport');
+
 
 var Mediator = Fiber.extend(function (base) {
   return {
@@ -25,7 +28,7 @@ zlsa.atc.mediator = new Mediator();
 //////////////////////////////////////////////////////////////////////////////////////////
 
 // all modules, prefix with "-" to signify library; <name>_init etc. won't be called
-var MODULES=[
+var MODULES = [
   "-util",
   "-animation",
   "-parser",
@@ -44,8 +47,8 @@ var MODULES=[
 
   "airline",
 
-  "aircraft",
-  "airport",
+  // "aircraft",
+  // "airport",
 
   "canvas",
 
@@ -55,16 +58,16 @@ var MODULES=[
 ];
 
 // saved as prop.version and prop.version_string
-var VERSION=[2, 1, 8];
+var VERSION = [2, 1, 8];
 
 // are you using a main loop? (you must call update() afterward disable/reenable)
-var UPDATE=true;
+var UPDATE = true;
 
 // the framerate is updated this often (seconds)
-var FRAME_DELAY=1;
+var FRAME_DELAY = 1;
 
 // is this a release build?
-var RELEASE=false;
+var RELEASE = false;
 
 // Usage of async() etc:
 
@@ -121,9 +124,8 @@ var RELEASE=false;
 
 
 /******************* Module Setup *******************/
-
-var async_modules={};
-var async_done_callback=null;
+var async_modules = {};
+var async_done_callback = null;
 
 var LOG_DEBUG=0;
 var LOG_INFO=1;
@@ -131,41 +133,40 @@ var LOG_WARNING=2;
 var LOG_ERROR=3;
 var LOG_FATAL=4;
 
-var log_strings={
-  0:"DEBUG",
-  1:"INFO",
-  2:"WARN",
-  3:"ERROR",
-  4:"FATAL",
+var log_strings = {
+    0: 'DEBUG',
+    1: 'INFO',
+    2: 'WARN',
+    3: 'ERROR',
+    4: 'FATAL'
 };
 
 // PROP
+window.prop_init = function prop_init() {
+    window.prop = {};
+    prop.complete = false;
+    prop.temp = 'nothing here';
+    prop.version = VERSION;
+    prop.version_string = 'v' + VERSION.join('.');
+    prop.time = {};
+    prop.time.start = time();
+    prop.time.frames = 0;
+    prop.time.frame = {};
+    prop.time.frame.start = time();
+    prop.time.frame.delay = FRAME_DELAY;
+    prop.time.frame.count = 0;
+    prop.time.frame.last = time();
+    prop.time.frame.delta = 0;
+    prop.time.fps = 0;
+    prop.log = LOG_DEBUG;
+    prop.loaded = false;
 
-function prop_init() {
-  prop={};
-  prop.complete=false;
-  prop.temp="nothing here";
-  prop.version=VERSION;
-  prop.version_string="v"+VERSION.join(".");
-  prop.time={};
-  prop.time.start=time();
-  prop.time.frames=0;
-  prop.time.frame={};
-  prop.time.frame.start=time();
-  prop.time.frame.delay=FRAME_DELAY;
-  prop.time.frame.count=0;
-  prop.time.frame.last=time();
-  prop.time.frame.delta=0;
-  prop.time.fps=0;
-  prop.log=LOG_DEBUG;
-  prop.loaded=false;
-  if(RELEASE) {
-      prop.log=LOG_WARNING;
-  }
+    if (RELEASE) {
+        prop.log = LOG_WARNING;
+    }
 }
 
 // MISC
-
 window.log = function log(message,level) {
   if(level == undefined)
     level=LOG_INFO;
@@ -179,12 +180,11 @@ window.log = function log(message,level) {
 }
 
 // ASYNC (AJAX etc.)
-
 function async(name) {
-  if(name in async_modules)
-    async_modules[name]+=1;
+  if (name in async_modules)
+    async_modules[name] += 1;
   else
-    async_modules[name]=1;
+    async_modules[name] = 1;
 }
 
 function async_loaded(name) {
@@ -207,7 +207,6 @@ function async_check() {
 }
 
 // UTIL
-
 window.time = function time() {
   return new Date().getTime()*0.001;
 }
@@ -239,10 +238,11 @@ function load_module(name) {
     //    else
     //      log("Loaded module "+name);
     for(var i in modules) {
-      var m=modules[i];
-      if(!m.script)
+      var m = modules[i];
+      if (!m.script)
         return;
     }
+
     call_module("*","init_pre");
     call_module("*","init");
     call_module("*","init_post");
@@ -252,49 +252,69 @@ function load_module(name) {
 
 function load_modules() {
   // inserts each module's <script> into <head>
-  for(var i in modules) {
+  for (var i in modules) {
     load_module(i);
   }
 }
 
-function call_module(name,func,args) {
-  if(!args) args=[];
-  if(name == "*") {
-    for(var i=0;i<MODULES.length;i++)
-      call_module(MODULES[i],func,args);
+function call_module(name, func, args) {
+  if (!args) {
+      args=[];
+  };
+
+  if (name == "*") {
+    for (var i = 0; i < MODULES.length; i++) {
+        call_module(MODULES[i],func,args);
+    }
+
     return null;
   }
-  if(name+"_"+func in window && name[0] != "-") {
-    return window[name+"_"+func].apply(window,args);
+
+  if (name + "_" + func in window && name[0] != "-") {
+    return window[name + "_" + func].apply(window, args);
   }
+
   return null;
 }
 
 $(document).ready(function() {
-  modules={};
-  for(var i=0;i<MODULES.length;i++) {
-    modules[MODULES[i]]={
-      library:false,
-      script:false,
-    };
-  }
-  prop_init();
-  log("Version "+prop.version_string);
-  load_modules();
+    modules = {};
+
+    for (var i = 0; i < MODULES.length; i++) {
+        modules[MODULES[i]] = {
+            library: false,
+            script: false,
+        };
+    }
+
+    prop_init();
+    log('Version ' + prop.version_string);
+    load_modules();
+
+    // TODO: temp fix to get browserify working
+    aircraft_init_pre();
+    aircraft_init();
+    airport_init_pre();
+    airport_init();
 });
 
 function done() {
-  var e=time()-prop.time.start;
-  e=e.toPrecision(2);
-  log("Finished loading "+MODULES.length+" module"+s(MODULES.length)+" in "+e+"s");
-  $(window).resize(resize);
-  resize();
-  call_module("*","done");
+    var e = time() - prop.time.start;
+    e = e.toPrecision(2);
+    log('Finished loading ' + MODULES.length + ' module' + s(MODULES.length) + ' in ' + e + 's');
+    $(window).resize(resize);
+    resize();
+    call_module('*','done');
 
-  prop.loaded=true;
-  call_module("*","ready");
-  if(UPDATE)
-    requestAnimationFrame(update);
+    prop.loaded = true;
+    call_module('*','ready');
+
+    // TODO: temp fix to get browserify working
+    airport_ready();
+
+    if (UPDATE) {
+        requestAnimationFrame(update);
+    }
 }
 
 function resize() {
@@ -302,32 +322,35 @@ function resize() {
 }
 
 function update() {
-  if(!prop.complete) {
-    call_module("*","complete");
-    zlsa.atc.LoadUI.complete();
-    prop.complete=true;
-  }
+    if (!prop.complete) {
+        call_module("*","complete");
 
-  if(UPDATE)
-    requestAnimationFrame(update);
-  else
-    return;
+        zlsa.atc.LoadUI.complete();
+        prop.complete=true;
+    }
 
-  game_update_pre();
-  aircraft_update();
+    if (UPDATE) {
+        requestAnimationFrame(update);
+    } else {
+        return;
+    }
 
-  canvas_update_post();
+    game_update_pre();
+    aircraft_update();
+    canvas_update_post();
 
-  prop.time.frames+=1;
-  prop.time.frame.count+=1;
-  var elapsed=time()-prop.time.frame.start;
-  if(elapsed > prop.time.frame.delay) {
-    prop.time.fps=prop.time.frame.count/elapsed;
-    prop.time.frame.count=0;
-    prop.time.frame.start=time();
-  }
-  prop.time.frame.delta=Math.min(time()-prop.time.frame.last,1/20);
-  prop.time.frame.last=time();
+    prop.time.frames += 1;
+    prop.time.frame.count += 1;
+
+    var elapsed = time() - prop.time.frame.start;
+    if (elapsed > prop.time.frame.delay) {
+        prop.time.fps = prop.time.frame.count / elapsed;
+        prop.time.frame.count = 0;
+        prop.time.frame.start = time();
+    }
+
+    prop.time.frame.delta = Math.min(time() - prop.time.frame.last, 1/20);
+    prop.time.frame.last = time();
 }
 
 /**

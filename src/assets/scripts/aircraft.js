@@ -1,6 +1,6 @@
 /** Details about aircraft in close proximity in relation to 'the rules'
  */
-zlsa.atc.Conflict = Fiber.extend(function() {
+window.zlsa.atc.Conflict = Fiber.extend(function() {
   return {
     init: function(first, second) {
       this.aircraft = [first, second];
@@ -257,9 +257,12 @@ zlsa.atc.Conflict = Fiber.extend(function() {
   };
 });
 
-/** Definitions for characteristics of a particular aircraft type
+/**
+ * Definitions for characteristics of a particular aircraft type
+ *
+ * @class Model
  */
-var Model=Fiber.extend(function() {
+var Model = Fiber.extend(function() {
   return {
     init: function(options) {
       if(!options) options={};
@@ -392,7 +395,7 @@ var Model=Fiber.extend(function() {
  ** you want. This function serves only to build the waypoint object; it is
  ** placed by one of the other three functions.
  */
-zlsa.atc.Waypoint = Fiber.extend(function(data, fms) {
+window.zlsa.atc.Waypoint = Fiber.extend(function(data, fms) {
   return {
     /** Initialize Waypoint with empty values, then call the parser
      */
@@ -452,7 +455,7 @@ zlsa.atc.Waypoint = Fiber.extend(function(data, fms) {
  **                         type: "sid",              // can be 'sid', 'star', 'iap', 'awy', 'fix'
  **                         firstIndex: 0}            // the position in fms.legs to insert this leg
  */
-zlsa.atc.Leg = Fiber.extend(function(data, fms) {
+window.zlsa.atc.Leg = Fiber.extend(function(data, fms) {
   return {
     /** Initialize leg with empty values, then call the parser
      */
@@ -608,7 +611,7 @@ zlsa.atc.Leg = Fiber.extend(function(data, fms) {
  **    only the case, if the plane was issued the command to land. In
  **    this case, request.runway is used
  */
-zlsa.atc.AircraftFlightManagementSystem = Fiber.extend(function() {
+window.zlsa.atc.AircraftFlightManagementSystem = Fiber.extend(function() {
   return {
     init: function(options) {
       this.my_aircrafts_eid = options.aircraft.eid;
@@ -1239,9 +1242,12 @@ zlsa.atc.AircraftFlightManagementSystem = Fiber.extend(function() {
   };
 });
 
-/** Each simulated aircraft in the game. Contains a model, fms, and conflicts.
+/**
+ * Each simulated aircraft in the game. Contains a model, fms, and conflicts.
+ *
+ * @class Aircraft
  */
-var Aircraft=Fiber.extend(function() {
+var Aircraft = Fiber.extend(function() {
   return {
     init: function(options) {
       if(!options) options={};
@@ -2983,26 +2989,25 @@ var Aircraft=Fiber.extend(function() {
   };
 });
 
-function aircraft_init_pre() {
-  prop.aircraft = {};
-  prop.aircraft.models = {};
-  prop.aircraft.callsigns = [];
-  prop.aircraft.list = [];
-  prop.aircraft.current  = null;
+window.aircraft_init_pre = function aircraft_init_pre() {
+    prop.aircraft = {};
+    prop.aircraft.models = {};
+    prop.aircraft.callsigns = [];
+    prop.aircraft.list = [];
+    prop.aircraft.current  = null;
 
-  prop.aircraft.auto = {
-    enabled: false,
-  };
+    prop.aircraft.auto = {
+        enabled: false,
+    };
 }
 
-function aircraft_auto_toggle() {
+window.aircraft_init = function aircraft_init() {};
+
+window.aircraft_auto_toggle = function aircraft_auto_toggle() {
   prop.aircraft.auto.enabled = !prop.aircraft.auto.enabled;
 }
 
-function aircraft_init() {
-}
-
-function aircraft_generate_callsign(airline_name) {
+window.aircraft_generate_callsign = function aircraft_generate_callsign(airline_name) {
   var airline = airline_get(airline_name);
   if(!airline) {
     console.warn("Airline not found:" + airline_name);
@@ -3011,7 +3016,7 @@ function aircraft_generate_callsign(airline_name) {
   return airline.generateFlightNumber();
 }
 
-function aircraft_callsign_new(airline) {
+window.aircraft_callsign_new = function aircraft_callsign_new(airline) {
   var callsign = null;
   var hit = false;
   while(true) {
@@ -3023,12 +3028,12 @@ function aircraft_callsign_new(airline) {
   return callsign;
 }
 
-function aircraft_new(options) {
+window.aircraft_new = function aircraft_new(options) {
   var airline = airline_get(options.airline);
   return airline.generateAircraft(options);
 }
 
-function aircraft_get_nearest(position) {
+window.aircraft_get_nearest = function aircraft_get_nearest(position) {
   var nearest  = null;
   var distance = Infinity;
   for(var i=0;i<prop.aircraft.list.length;i++) {
@@ -3041,23 +3046,23 @@ function aircraft_get_nearest(position) {
   return [prop.aircraft.list[nearest], distance];
 }
 
-function aircraft_add(model) {
+window.aircraft_add = function aircraft_add(model) {
   prop.aircraft.models[model.icao.toLowerCase()] = model;
 }
 
-function aircraft_visible(aircraft, factor) {
+window.aircraft_visible = function aircraft_visible(aircraft, factor) {
   if(!factor) factor=1;
   return (vlen(aircraft.position) < airport_get().ctr_radius * factor);
 }
 
-function aircraft_remove_all() {
+window.aircraft_remove_all = function aircraft_remove_all() {
   for(var i=0;i<prop.aircraft.list.length;i++) {
     prop.aircraft.list[i].cleanup();
   }
   prop.aircraft.list = [];
 }
 
-function aircraft_update() {
+window.aircraft_update = function aircraft_update() {
   for(var i=0;i<prop.aircraft.list.length;i++) {
     prop.aircraft.list[i].update();
   }
@@ -3122,7 +3127,7 @@ function aircraft_update() {
 // References:
 // - http://www.ohio.edu/people/uijtdeha/ee6900_fms_00_overview.pdf, Fly-by waypoint
 // - The Avionics Handbook, ch 15
-function aircraft_turn_initiation_distance(a, fix) {
+window.aircraft_turn_initiation_distance = function aircraft_turn_initiation_distance(a, fix) {
   var index = a.fms.indexOfCurrentWaypoint().wp;
   if(index >= a.fms.waypoints().length-1) return 0; // if there are no subsequent fixes, fly over 'fix'
   var speed = a.speed * (463/900); // convert knots to m/s
@@ -3144,7 +3149,7 @@ function aircraft_turn_initiation_distance(a, fix) {
 }
 
 // Get aircraft by entity id
-function aircraft_get(eid) {
+window.aircraft_get = function aircraft_get(eid) {
   if(eid == null) return null;
   if(prop.aircraft.list.length > eid && eid >= 0) // prevent out-of-range error
     return prop.aircraft.list[eid];
@@ -3152,7 +3157,7 @@ function aircraft_get(eid) {
 }
 
 // Get aircraft by callsign
-function aircraft_get_by_callsign(callsign) {
+window.aircraft_get_by_callsign = function aircraft_get_by_callsign(callsign) {
   callsign = String(callsign);
   for(var i=0; i<prop.aircraft.list.length; i++)
     if(prop.aircraft.list[i].callsign == callsign.toLowerCase())
@@ -3161,14 +3166,14 @@ function aircraft_get_by_callsign(callsign) {
 }
 
 // Get aircraft's eid by callsign
-function aircraft_get_eid_by_callsign(callsign) {
+window.aircraft_get_eid_by_callsign = function aircraft_get_eid_by_callsign(callsign) {
   for(var i=0; i<prop.aircraft.list.length; i++)
     if(prop.aircraft.list[i].callsign == callsign.toLowerCase())
       return prop.aircraft.list[i].eid;
   return null;
 }
 
-function aircraft_model_get(icao) {
+window.aircraft_model_get = function aircraft_model_get(icao) {
   if (!(icao in prop.aircraft.models)) {
     var model = new Model({
       icao: icao,
