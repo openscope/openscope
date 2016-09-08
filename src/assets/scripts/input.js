@@ -1,25 +1,25 @@
-function input_init_pre() {
-  prop.input={};
+window.input_init_pre = function input_init_pre() {
+  prop.input = {};
 
-  prop.input.command  = "";
-  prop.input.callsign = "";
-  prop.input.data     = "";
+  prop.input.command  = '';
+  prop.input.callsign = '';
+  prop.input.data     = '';
 
   prop.input.history      = [];
   prop.input.history_item = null;
 
   prop.input.click    = [0, 0];
 
-  prop.input.positions = "";
+  prop.input.positions = '';
 
   prop.input.tab_compl = {};
 
   prop.input.mouseDelta = [0, 0];
   prop.input.mouseDown = [0, 0];
   prop.input.isMouseDown = false;
-}
+};
 
-function input_init() {
+window.input_init = function input_init() {
   // For firefox see: https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/keyCode
   var is_firefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
   $(window).keydown(function(e) {
@@ -107,25 +107,25 @@ function input_init() {
 
   $("#command").keydown(input_keydown);
   $("#command").on("input", input_change);
-}
+};
 
-function input_select(callsign) {
+window.input_select = function input_select(callsign) {
   if(callsign) $("#command").val(callsign + " ");
-  else $("#command").val("");
+  else $("#command").val('');
   $("#command").focus();
   input_change();
 }
 
-function input_change() {
+window.input_change = function input_change() {
   tab_completion_reset();
   prop.input.command = $("#command").val();
   input_parse();
 }
 
-function input_parse() {
+window.input_parse = function input_parse() {
   $(".strip").removeClass("active");
-  prop.input.callsign = "";
-  prop.input.data     = "";
+  prop.input.callsign = '';
+  prop.input.data     = '';
 
   if (prop.input.command.length == 0)
     return;
@@ -167,14 +167,14 @@ function input_parse() {
   }
 }
 
-function input_keydown(e) {
+window.input_keydown = function input_keydown(e) {
   switch(e.which) {
     case 13:  // enter
       input_parse();
       if(input_run()) {
         prop.input.history.unshift(prop.input.callsign);
-        $("#command").val("");
-        prop.input.command = "";
+        $("#command").val('');
+        prop.input.command = '';
         tab_completion_reset();
         input_parse();
       }
@@ -264,13 +264,13 @@ function input_keydown(e) {
       break;
 
     case 27:  // esc
-      $("#command").val("");
+      $("#command").val('');
       e.preventDefault();
       break;
   }
 }
 
-function tab_completion_cycle(opt) {
+window.tab_completion_cycle = function tab_completion_cycle(opt) {
   var matches = prop.input.tab_compl.matches;
   if(!matches || matches.length === 0) {
     return;
@@ -287,7 +287,7 @@ function tab_completion_cycle(opt) {
   input_parse();
 }
 
-function tab_completion_match() {
+window.tab_completion_match = function tab_completion_match() {
   var val = $("#command").val();
   var matches;
   var aircrafts = prop.aircraft.list;
@@ -311,15 +311,15 @@ function tab_completion_match() {
   prop.input.tab_compl.cycle_item = -1;
 }
 
-function tab_completion_reset() {
+window.tab_completion_reset = function tab_completion_reset() {
   prop.input.tab_compl = {};
 }
 
-function input_history_clamp() {
+window.input_history_clamp = function input_history_clamp() {
   prop.input.history_item = clamp(0, prop.input.history_item, prop.input.history.length-1);
 }
 
-function input_history_prev() {
+window.input_history_prev = function input_history_prev() {
   if(prop.input.history.length == 0) return;
   if(prop.input.history_item == null) {
     prop.input.history.unshift(prop.input.command);
@@ -334,7 +334,7 @@ function input_history_prev() {
   input_change();
 }
 
-function input_history_next() {
+window.input_history_next = function input_history_next() {
   if(prop.input.history.length == 0) return;
   if(prop.input.history_item == null) return;
 
@@ -355,7 +355,7 @@ function input_history_next() {
   input_change();
 }
 
-function input_run() {
+window.input_run = function input_run() {
   var result;
   try {
     result = zlsa.atc.Parser.parse(prop.input.command.trim().toLowerCase());

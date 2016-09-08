@@ -8,6 +8,7 @@ var airport = require('./airport');
 var airline = require('./airline');
 var speech = require('./speech');
 var tutorial = require('./tutorial');
+var input = require('./input');
 
 
 var Mediator = Fiber.extend(function (base) {
@@ -45,7 +46,7 @@ var MODULES = [
 
   "game",
 
-  "input",
+  // "input",
 
   // "airline",
 
@@ -302,11 +303,13 @@ $(document).ready(function() {
     aircraft_init_pre();
     airport_init_pre();
     tutorial_init_pre();
+    input_init_pre();
 
     aircraft_init();
     airport_init();
     speech_init();
     tutorial_init();
+    input_init();
 
 });
 
