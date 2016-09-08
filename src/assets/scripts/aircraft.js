@@ -3177,7 +3177,7 @@ window.aircraft_model_get = function aircraft_model_get(icao) {
   if (!(icao in prop.aircraft.models)) {
     var model = new Model({
       icao: icao,
-      url: "assets/aircraft/"+icao+".json",
+      url: "build/assets/aircraft/"+icao+".json",
     });
     prop.aircraft.models[icao] = model;
   }

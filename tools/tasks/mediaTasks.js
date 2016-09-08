@@ -40,9 +40,13 @@ module.exports = function(gulp, config) {
         ];
 
         directoriesToCopy.map(function(dir) {
-            return gulp.src(dir + '**/*.json')
+            return gulp.src(dir + '**/*.{json,geojson}')
                 .pipe(gulp.dest(OPTIONS.DIR.BUILD_ASSETS));
         });
+
+        var airportTerrainDir = OPTIONS.DIR.SRC_AIRPORTS + '/terrain';
+        return gulp.src(airportTerrainDir + '**/*.{json,geojson}')
+            .pipe(gulp.dest(OPTIONS.DIR.BUILD_ASSETS + '/airports'));
     });
 
     ////////////////////////////////////////////////////////////////////

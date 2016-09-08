@@ -1,5 +1,4 @@
-
-function speech_init() {
+window.speech_init = function speech_init() {
   prop.speech = {};
   prop.speech.synthesis = window.speechSynthesis;
   prop.speech.enabled = false;
@@ -8,9 +7,9 @@ function speech_init() {
     prop.speech.enabled = true;
     $(".speech-toggle").addClass("active");
   }
-}
+};
 
-function speech_say(sentence) {
+window.speech_say = function speech_say(sentence) {
   if(prop.speech.synthesis != null && prop.speech.enabled) {
     var textToSay = "";
     for(var i=0; i<sentence.length; i++) {
@@ -35,9 +34,9 @@ function speech_say(sentence) {
     utterance.rate = 1.125; // speed up just a touch
     prop.speech.synthesis.speak(utterance);  // say the words
   }
-}
+};
 
-function speech_toggle() {
+window.speech_toggle = function speech_toggle() {
   prop.speech.enabled = !prop.speech.enabled;
 
   if(prop.speech.enabled) {
@@ -48,5 +47,4 @@ function speech_toggle() {
   }
 
   localStorage['atc-speech-enabled'] = prop.speech.enabled;
-
-}
+};

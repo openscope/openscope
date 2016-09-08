@@ -6,13 +6,13 @@ window.Fiber = require('fiber');
 var aircraft = require('./aircraft');
 var airport = require('./airport');
 var airline = require('./airline');
+var speech = require('./speech');
 var tutorial = require('./tutorial');
 
 
 var Mediator = Fiber.extend(function (base) {
   return {
-    init: function (options) {
-    },
+    init: function (options) {},
 
     trigger: function(event, data) {
       if (event == 'startLoading') {
@@ -35,7 +35,7 @@ var MODULES = [
   "-animation",
   "-parser",
 
-  "speech",
+  // "speech",
 
   "get",
 
@@ -305,6 +305,7 @@ $(document).ready(function() {
 
     aircraft_init();
     airport_init();
+    speech_init();
     tutorial_init();
 
 });

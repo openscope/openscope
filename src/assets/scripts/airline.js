@@ -218,7 +218,7 @@ window.airline_get = function airline_get(icao) {
   icao = icao.toLowerCase();
   if (!(icao in prop.airline.airlines)) {
     var airline = new zlsa.atc.Airline(icao,
-                                       {url: "assets/airlines/"+icao+".json",});
+                                       {url: "build/assets/airlines/"+icao+".json",});
     prop.airline.airlines[icao] = airline;
   }
   return prop.airline.airlines[icao];
