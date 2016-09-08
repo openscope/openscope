@@ -4,6 +4,7 @@ window.$ = require('jquery');
 window.Fiber = require('fiber');
 
 var speech = require('./speech');
+var get = require('./get');
 var tutorial = require('./tutorial');
 var base = require('./base');
 var game = require('./game');
@@ -14,7 +15,7 @@ var airport = require('./airport');
 var canvas = require('./canvas');
 var ui = require('./ui');
 // FIXME: shame!
-//
+// this is declared here but not set until $(document).ready();
 var load;
 
 var Mediator = Fiber.extend(function (base) {
@@ -42,7 +43,7 @@ var MODULES = [
   "-animation",
   "-parser",
   // "speech",
-  "get",
+  // "get",
   // "tutorial",
   // "base",
   // "game",

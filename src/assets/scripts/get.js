@@ -93,7 +93,7 @@
 
       load: function(url) {
         var c = this.queuedContent[url];
-        mediator.trigger('startLoading', c.url);
+        zlsa.atc.mediator.trigger('startLoading', c.url);
 
         $.getJSON(c.url)
           .done(function (data, textStatus, jqXHR) {
@@ -105,7 +105,7 @@
           .always(function () {
             delete this.queuedContent[c.url];
             if (!this.startLoad()) {
-              mediator.trigger('stopLoading');
+              zlsa.atc.mediator.trigger('stopLoading');
             }
           }.bind(this));
       },
