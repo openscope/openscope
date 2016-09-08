@@ -1,5 +1,4 @@
-
-function ui_init_pre() {
+window.ui_init_pre = function ui_init_pre() {
   prop.ui = {};
   prop.ui.scale_default = 8; // pixels per km
   prop.ui.scale_max = 80; // max scale
@@ -21,7 +20,7 @@ function ui_init_pre() {
   if('atc-scale' in localStorage) prop.ui.scale = localStorage['atc-scale'];
 }
 
-function ui_zoom_out() {
+window.ui_zoom_out = function ui_zoom_out() {
   var lastpos = [round(px_to_km(prop.canvas.panX)), round(px_to_km(prop.canvas.panY))];
   prop.ui.scale *= 0.9;
   if(prop.ui.scale < prop.ui.scale_min) prop.ui.scale = prop.ui.scale_min;
@@ -30,7 +29,7 @@ function ui_zoom_out() {
   prop.canvas.panY = round(km_to_px(lastpos[1]));
 }
 
-function ui_zoom_in() {
+window.ui_zoom_in = function ui_zoom_in() {
   var lastpos = [round(px_to_km(prop.canvas.panX)), round(px_to_km(prop.canvas.panY))];
   prop.ui.scale /= 0.9;
   if(prop.ui.scale > prop.ui.scale_max) prop.ui.scale = prop.ui.scale_max;
@@ -39,17 +38,17 @@ function ui_zoom_in() {
   prop.canvas.panY = round(km_to_px(lastpos[1]));
 }
 
-function ui_zoom_reset() {
+window.ui_zoom_reset = function ui_zoom_reset() {
   prop.ui.scale = prop.ui.scale_default;
   ui_after_zoom();
 }
 
-function ui_after_zoom() {
+window.ui_after_zoom = function ui_after_zoom() {
   localStorage['atc-scale'] = prop.ui.scale;
   prop.canvas.dirty = true;
 }
 
-function ui_init() {
+window.ui_init = function ui_init() {
 
   $(".fast-forwards").prop("title", "Set time warp to 2");
 
@@ -67,7 +66,7 @@ function ui_init() {
   };
 
   $.each(switches, function(selector, fn) {
-    $(selector).on('click', function(evt) { fn(evt); });
+    $(selector).on('click', function(event) { fn(event); });
   });
 
   var options = $("<div id='options-dialog' class='dialog'></div>");
@@ -106,7 +105,7 @@ function ui_init() {
   });
 }
 
-function ui_complete() {
+window.ui_complete = function ui_complete() {
   var airports = [];
   var icon = '&#9992;';
 
@@ -158,15 +157,15 @@ function ui_complete() {
   $("#airport-list-notes").append(notes);
 }
 
-function px_to_km(pixels) {
+window.px_to_km = function px_to_km(pixels) {
   return pixels / prop.ui.scale;
 }
 
-function km_to_px(kilometers) {
+window.km_to_px = function km_to_px(kilometers) {
   return kilometers * prop.ui.scale;
 }
 
-function ui_log(message) {
+window.ui_log = function ui_log(message) {
   message = arguments[0];
   var warn = false;
   if(arguments[0] == true) {
@@ -193,7 +192,7 @@ function ui_log(message) {
 //  console.log("MESSAGE: " + message);
 }
 
-function ui_airport_open() {
+window.ui_airport_open = function ui_airport_open() {
   $(".airport").removeClass("active");
   $(".airport.icao-"+airport_get().icao.toLowerCase()).addClass("active");
 
@@ -201,37 +200,37 @@ function ui_airport_open() {
   $(".switch-airport").addClass("active");
 }
 
-function ui_airport_close() {
+window.ui_airport_close = function ui_airport_close() {
   $("#airport-switch").removeClass("open");
   $(".switch-airport").removeClass("active");
 }
 
-function ui_airport_toggle() {
+window.ui_airport_toggle = function ui_airport_toggle() {
   if($("#airport-switch").hasClass("open")) ui_airport_close();
   else                                      ui_airport_open();
 }
 
-function canvas_labels_toggle(evt) {
-  $(evt.target).closest('.control').toggleClass('active');
+window.canvas_labels_toggle = function canvas_labels_toggle(event) {
+  $(event.target).closest('.control').toggleClass('active');
   prop.canvas.draw_labels = !prop.canvas.draw_labels;
 }
 
-function canvas_restricted_toggle(evt) {
-  $(evt.target).closest('.control').toggleClass('warning-button active');
+window.canvas_restricted_toggle = function canvas_restricted_toggle(event) {
+  $(event.target).closest('.control').toggleClass('warning-button active');
   prop.canvas.draw_restricted = !prop.canvas.draw_restricted;
 }
 
-function canvas_sids_toggle(evt) {
-  $(evt.target).closest('.control').toggleClass('active');
+window.canvas_sids_toggle = function canvas_sids_toggle(event) {
+  $(event.target).closest('.control').toggleClass('active');
   prop.canvas.draw_sids = !prop.canvas.draw_sids;
 }
 
-function canvas_terrain_toggle(evt) {
-  $(evt.target).closest('.control').toggleClass('active');
+window.canvas_terrain_toggle = function canvas_terrain_toggle(event) {
+  $(event.target).closest('.control').toggleClass('active');
   prop.canvas.draw_terrain = !prop.canvas.draw_terrain;
 }
 
-function ui_options_toggle() {
+window.ui_options_toggle = function ui_options_toggle() {
   if ($("#options-dialog").hasClass("open")) {
     $("#options-dialog").removeClass("open");
     $("#options-dialog").removeClass("active");

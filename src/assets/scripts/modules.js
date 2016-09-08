@@ -10,6 +10,7 @@ var input = require('./input');
 var airline = require('./airline');
 var aircraft = require('./aircraft');
 var airport = require('./airport');
+var ui = require('./ui');
 
 
 var Mediator = Fiber.extend(function (base) {
@@ -36,28 +37,17 @@ var MODULES = [
   "-util",
   "-animation",
   "-parser",
-
   // "speech",
-
   "get",
-
   // "tutorial",
-
   "base",
-
   // "game",
-
   // "input",
-
   // "airline",
-
   // "aircraft",
   // "airport",
-
   "canvas",
-
-  "ui",
-
+  // "ui",
   "load"
 ];
 
@@ -279,6 +269,7 @@ function call_module(name, func, args) {
   }
 
   if (name + "_" + func in window && name[0] != "-") {
+    //   debugger;
     return window[name + "_" + func].apply(window, args);
   }
 
@@ -306,12 +297,14 @@ $(document).ready(function() {
     airline_init_pre();
     aircraft_init_pre();
     airport_init_pre();
+    ui_init_pre();
 
     speech_init();
     tutorial_init();
     input_init();
     aircraft_init();
     airport_init();
+    ui_init();
 });
 
 function done() {
@@ -345,6 +338,7 @@ function update() {
 
         // TODO: temp fix to get browserify working
         game_complete();
+        ui_complete();
 
         zlsa.atc.LoadUI.complete();
         prop.complete=true;
