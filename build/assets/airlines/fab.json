@@ -1,0 +1,17 @@
+{
+  "name": "Força Aerea Brasileira",
+  "callsign": {
+    "name": "FAB",
+    "length": 3
+  },
+  "fleets": {
+    "default": [
+      ["E110", 88],
+      ["E120", 17],
+      ["E135", 11],
+      ["A319", 1 ],
+      ["E190", 2 ],
+      ["C130", 23]
+    ]
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "Jestar Asia Airways",
+  "callsign": {
+    "name": "Jetstar Asia",
+    "length": 3
+  },
+  "fleets": {
+    "default": [
+      ["A320", 18]
+    ]
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "name": "Bombardier Dash 8 Q400",
+  "icao": "DH8D",
+  "engines": {
+    "number": 2,
+    "type": "T"
+  },
+  "weightclass": "M",
+  "category": {
+    "srs": 3,
+    "lahso": 6,
+    "recat": "D"
+  },
+  "ceiling": 27000,
+  "rate": {
+    "climb":      2600,
+    "descent":    2600,
+    "accelerate": 10,
+    "decelerate": 6
+  },
+  "runway": {
+    "takeoff": 1.220,
+    "landing": 1.293
+  },
+  "speed":{
+    "min":     100,
+    "landing": 130,
+    "cruise":  340,
+    "cruiseM": null,
+    "max":     360,
+    "maxM":    null
+  },
+  "capability": {
+    "ils": true,
+    "fix": true
+  }
+}

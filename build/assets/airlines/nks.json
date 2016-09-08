@@ -1,0 +1,14 @@
+{
+  "name": "Spirit Airlines",
+  "callsign": {
+    "name": "Spirit",
+    "length": 4
+  },
+  "fleets": {
+    "default": [
+      ["A319", 29],
+      ["A320", 44],
+      ["A321", 12]
+    ]
+  }
+}

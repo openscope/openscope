@@ -1,0 +1,13 @@
+{
+  "name": "Ryanair",
+  "callsign": {
+    "name": "Ryanair",
+    "length": 3
+  },
+  "fleets": {
+    "default": [
+      ["B737", 1  ],
+      ["B738", 320]
+    ]
+  }
+}

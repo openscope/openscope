@@ -1,0 +1,37 @@
+{
+  "name": "Embraer 110 Bandeirante",
+  "icao": "E110",
+  "engines": {
+    "number": 2,
+    "type": "T"
+  },
+  "weightclass": "S+",
+  "category": {
+    "srs": 3,
+    "lahso": 7,
+    "recat": "F"
+  },
+  "ceiling": 26000,
+  "rate": {
+    "climb":      1670,
+    "descent":    1000,
+    "accelerate": 5,
+    "decelerate": 3
+  },
+  "runway": {
+    "takeoff": 0.680,
+    "landing": 0.680
+  },
+  "speed":{
+    "min":     80,
+    "landing": 90,
+    "cruise":  180,
+    "cruiseM": null,
+    "max":     248,
+    "maxM":    null
+  },
+  "capability": {
+    "ils": true,
+    "fix": true
+  }
+}

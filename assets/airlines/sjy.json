@@ -1,0 +1,15 @@
+{
+  "name": "Sriwijaya",
+  "callsign": {
+    "name": "Sriwijaya",
+    "length": 3
+  },
+  "fleets": {
+    "default": [
+      ["B733", 10],
+	  ["B735", 10],
+	  ["B738", 10],
+	  ["B739", 5]
+    ]
+  }
+}

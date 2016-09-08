@@ -1,0 +1,18 @@
+{
+  "name": "LightGA",
+  "icao": "N",
+  "callsign": {
+    "name": "November",
+    "length": 5,
+    "alpha": true
+  },
+  "fleets": {
+    "default": [
+      ["BE36", 5],
+      ["C172", 5],
+      ["C182", 5],
+      ["C208", 1],
+      ["P28A", 5]
+    ]
+  }
+}

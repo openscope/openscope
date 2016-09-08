@@ -10,7 +10,7 @@
  *   stopLoading - When the last asset in the queue is downloaded
  *
  * Example:
- *  var promise = zlsa.atc.loadAsset({url: 'build/assets/aircraft/b747.json'});
+ *  var promise = zlsa.atc.loadAsset({url: 'assets/aircraft/b747.json'});
  *
  * @module zlsa.atc.loadAsset
  */

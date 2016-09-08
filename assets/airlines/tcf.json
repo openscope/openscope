@@ -1,0 +1,13 @@
+{
+  "name": "Shuttle America",
+  "callsign": {
+    "name": "Mercury",
+    "length": 4
+  },
+  "fleets": {
+    "default": [
+      ["E145", 42],
+      ["E170", 60]
+    ]
+  }
+}

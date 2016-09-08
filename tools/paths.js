@@ -1,3 +1,4 @@
+/* eslint-disable */
 'use strict';
 
 var path = require('path');
@@ -13,7 +14,7 @@ var srcAircraft = path.join(srcAssetsDir, 'aircraft');
 var srcAirlines = path.join(srcAssetsDir, 'airlines');
 var srcAirports = path.join(srcAssetsDir, 'airports');
 
-var build = './build';
+var build = './';
 var buildAssetsDir = path.join(build, 'assets');
 var buildFontsDir = path.join(buildAssetsDir, 'fonts');
 var buildScriptsDir = path.join(buildAssetsDir, 'scripts');

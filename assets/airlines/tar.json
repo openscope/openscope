@@ -1,0 +1,19 @@
+{
+  "name": "Tunisair",
+  "callsign": {
+    "name": "Tunair",
+    "length": 4
+  },
+  "fleets": {
+    "long": [
+	    ["A332", 2]
+    ],
+    "default": [
+      ["A306", 3],
+      ["A319", 4],
+      ["A320", 17],
+      ["B735", 2],
+      ["B736", 7]
+    ]
+  }
+}

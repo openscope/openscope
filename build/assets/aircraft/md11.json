@@ -1,0 +1,37 @@
+{
+  "name": "McDonnel Douglas MD-11",
+  "icao": "MD11",
+  "engines": {
+    "number": 3,
+    "type": "J"
+  },
+  "weightclass": "H",
+  "category": {
+    "srs": 3,
+    "lahso": 9,
+    "recat": "C"
+  },
+  "ceiling": 43000,
+  "rate": {
+    "climb":      2800,
+    "descent":    2000,
+    "accelerate": 7,
+    "decelerate": 4
+  },
+  "runway": {
+    "takeoff": 3.115,
+    "landing": 2.323
+  },
+  "speed":{
+    "min":     120,
+    "landing": 140,
+    "cruise":  473,
+    "cruiseM": 0.80,
+    "max":     550,
+    "maxM":    0.83
+  },
+  "capability": {
+    "ils": true,
+    "fix": true
+  }
+}

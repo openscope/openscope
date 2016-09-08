@@ -1,0 +1,26 @@
+{
+  "name": "Ethiopian Airlines",
+  "callsign": {
+    "name": "Ethiopian",
+    "length": 3
+  },
+  "fleets": {
+        "default": [
+            ["B737", 5 ],
+            ["B738", 14],
+            ["B752", 2 ],
+            ["DH8D", 17]
+        ],
+        "long": [
+            ["B752", 2],
+            ["B763", 7],
+            ["B77L", 6],
+            ["B77W", 4],
+            ["B788", 13]
+        ],
+        "cargo": [
+            ["B752", 2],
+            ["B77L", 6]
+        ]
+    }
+}

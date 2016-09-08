@@ -1,0 +1,37 @@
+{
+  "name": "Lockheed C-130 Hercules",
+  "icao": "C130",
+  "engines": {
+    "number": 4,
+    "type": "T"
+  },
+  "weightclass": "L",
+  "category": {
+    "srs": 3,
+    "lahso": null,
+    "recat": "D"
+  },
+  "ceiling": 33000,
+  "rate": {
+    "climb":      1500,
+    "descent":    1670,
+    "accelerate": 7,
+    "decelerate": 5
+  },
+  "runway": {
+    "takeoff": 1.905,
+    "landing": 1.478
+  },
+  "speed":{
+    "min":     120,
+    "landing": 125,
+    "cruise":  300,
+    "cruiseM": null,
+    "max":     325,
+    "maxM":    null
+  },
+  "capability": {
+    "ils": true,
+    "fix": true
+  }
+}

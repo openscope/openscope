@@ -1,0 +1,13 @@
+{
+    "name": "Peach",
+    "icao": "APJ",
+    "callsign": {
+        "name": "Air Peach",
+        "length": 3
+    },
+    "fleets": {
+        "default": [
+            ["A320", 17]
+        ]
+    }
+}

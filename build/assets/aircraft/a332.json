@@ -1,0 +1,37 @@
+{
+  "name": "Airbus A330-200",
+  "icao": "A332",
+  "engines": {
+    "number": 2,
+    "type": "J"
+  },
+  "weightclass": "H",
+  "category": {
+    "srs": 3,
+    "lahso": 8,
+    "recat": "B"
+  },
+  "ceiling": 41000,
+  "rate": {
+    "climb":      3500,
+    "descent":    2000,
+    "accelerate": 6,
+    "decelerate": 3.5
+  },
+  "runway": {
+    "takeoff": 2.600,
+    "landing": 1.600
+  },
+  "speed":{
+    "min":     125,
+    "landing": 130,
+    "cruise":  465,
+    "cruiseM": null,
+    "max":     475,
+    "maxM":    0.80
+  },
+  "capability": {
+    "ils": true,
+    "fix": true
+  }
+}

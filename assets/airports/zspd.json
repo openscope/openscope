@@ -1,0 +1,2653 @@
+{
+    "radio": {
+        "twr": "Pudong Tower",
+        "app": "Shanghai Approach",
+        "dep": "Shanghai Approach"
+    },
+    "icao": "ZSPD",
+    "iata": "PVG",
+    "magnetic_north": 0,
+    "ctr_radius": 80,
+    "ctr_ceiling": 25000,
+    "initial_alt": 3000,
+    "position": ["N31d08m70.00", "E121d47m60.00"],
+    "rr_radius_nm": 5.0,
+    "rr_center": ["N31d08m70.00", "E121d47m60.00"],
+    "has_terrain": false,
+    "wind": {
+        "angle": 110,
+        "speed": 0
+    },
+    "airspace": [
+    {
+        "floor": 			0,
+        "ceiling": 		21000,
+        "airspace_class":	"D",
+        "poly":
+        [
+            ["N31d56m06.00",   "E121d34m30.00"],
+            ["N32d05m54.00",   "E120d58m45.00"],
+            ["N32d10m00.00",   "E120d44m00.00"],
+            ["N31d35m21.00",   "E120d19m44.00"],
+            ["N30d53m10.00",   "E120d25m00.00"], 
+            ["N30d43m54.00",   "E121d17m12.00"],
+            ["N30d45m08.00",   "E121d33m30.00"], 
+            ["N30d37m00.00",   "E122d00m11.00"],
+            ["N30d48m00.00",   "E122d11m00.00"],
+            ["N30d48m00.00",   "E122d31m39.00"], 
+            ["N31d12m41.00",   "E122d46m30.00"],
+            ["N31d46m23.00",   "E122d47m05.00"],
+            ["N31d51m00.00",   "E122d02m00.00"], 
+            ["N31d51m00.00",   "E122d02m00.00"],
+            ["N31d51m00.00",   "E122d02m00.00"]
+        ]
+    }
+    ],
+    "fixes": {
+            "AKARA":    ["N31d30m00.00",    "E123d30m00.00"],
+            "ALDAP":    ["N31d37m50.00",    "E122d22m20.00"],
+            "AND":      ["N30d15m40.00",    "E121d13m30.00"],
+            "BOLEX":    ["N31d00m00.00",    "E123d00m00.00"],
+            "BONGI":    ["N31d00m00.00",    "E122d38m90.00"],
+            "EKIMU":    ["N31d21m10.00",    "E121d06m60.00"],
+            "HSH":      ["N31d22m10.00",    "E121d50m80.00"],
+            "HSN":      ["N29d55m90.00",    "E122d21m80.00"],
+            "IBEGI":    ["N31d49m40.00",    "E122d16m60.00"],
+            "IDNIK":    ["N30d26m00.00",    "E121d29m90.00"],
+            "JTN":      ["N31d07m40.00",    "E121d20m50.00"],
+            "LAMEN":    ["N31d36m60.00",    "E124d00m00.00"],
+            "LASAN":    ["N31d00m00.00",    "E122d25m50.00"],
+            "NINAS":    ["N31d00m00.00",    "E122d15m00.00"],
+            "NTG":      ["N32d05m80.00",    "E120d58m70.00"],
+            "NXD":      ["N30d53m80.00",    "E120d25m80.00"],
+            "ODULO":    ["N33d15m20.00",    "E121d37m20.00"],
+            "OLGAP":    ["N31d04m40.00",    "E121d09m00.00"],
+            "PD047":    ["N30d58m68.00",    "E121d56m07.00"],
+            "PD048":    ["N30d56m88.00",    "E121d57m40.00"],
+            "PD051":    ["N30d58m07.00",    "E122d03m87.00"],
+            "PD052":    ["N31d05m05.00",    "E122d02m95.00"],
+            "PD053":    ["N31d26m77.00",    "E122d00m05.00"],
+            "PD054":    ["N31d07m07.00",    "E122d18m18.00"],
+            "PD055":    ["N30d54m52.00",    "E121d50m32.00"],
+            "PD072":    ["N31d12m55.00",    "E121d07m83.00"],
+            "PIKAS":    ["N32d10m00.00",    "E120d44m00.00"],
+            "PINOT":    ["N31d27m00.00",    "E122d27m00.00"],
+            "POMOK":    ["N31d27m00.00",    "E121d07m00.00"],
+            "PONAB":    ["N30d35m30.00",    "E122d24m10.00"],
+            "SASAN":    ["N31d35m40.00",    "E120d19m20.00"],
+            "SUF":      ["N31d29m90.00",    "E120d25m90.00"],
+            "SURAK":    ["N31d46m40.00",    "E123d29m50.00"],
+            "TONIX":    ["N31d19m90.00",    "E123d32m60.00"],
+            "UDOXI":    ["N31d52m60.00",    "E121d47m10.00"],
+            "UNTOP":    ["N30d44m00.00",    "E122d16m60.00"],
+            "XSY":      ["N30d55m90.00",    "E121d52m40.00"],
+            "D066I":    ["N31d26m40.00",    "E121d59m32.00"],
+            "D083D":    ["N30d56m87.00",    "E121d57m36.00"],
+            "D083F":    ["N30d57m33.00",    "E121d59m66.00"],
+            "D087D":    ["N30d57m64.00",    "E121d56m35.00"],
+            "D118F":    ["N31d05m10.00",    "E121d26m60.00"],
+            "D152L":    ["N31d00m27.00",    "E121d54m79.00"],
+            "D152P":    ["N30d56m67.00",    "E121d57m00.00"],
+            "D152V":    ["N30d51m57.00",    "E122d01m59.00"], 
+            "D224L":    ["N31d00m91.00",    "E121d38m46.00"],
+            "D288W":    ["N31d00m62.00",    "E121d26m69.00"],
+            "HSH22":    ["N31d03m59.00",    "E122d04m74.00"],
+            "PD049":    ["N30d59m80.00",    "E121d50m85.00"],
+            "PD057":    ["N30d57m72.00",    "E121d43m42.00"],
+            "D083J":    ["N30d58m10.00",    "E122d04m10.00"],
+            "D167F":    ["N31d04m39.00",    "E121d49m01.00"],
+            "D288T":    ["N31d00m02.00",    "E121d29m99.00"],
+            "CGT":      ["N31d12m60.00",    "E121d11m60.00"],
+            "D242B":    ["N31d11m70.00",    "E121d09m90.00"],
+            "EMSAN":    ["N31d40m70.00",    "E122d46m50.00"],
+            "PD045":    ["N31d17m08.00",    "E121d19m90.00"],
+            "PD059":    ["N31d20m03.00",    "E121d50m35.00"],
+            "PD060":    ["N31d19m08.00",    "E121d57m83.00"],
+            "PD062":    ["N31d20m92.00",    "E121d43m00.00"],
+            "PD063":    ["N31d13m38.00",    "E122d00m40.00"],
+            "PD064":    ["N31d31m73.00",    "E121d38m97.00"],
+            "PD065":    ["N31d19m78.00",    "E121d36m17.00"],
+            "PD070":    ["N31d11m60.00",    "E121d10m10.00"],
+            "PK":       ["N31d17m00.00",    "E121d19m80.00"],
+            "BAVIK":    ["N30d22m00.00",    "E121d37m90.00"],
+            "BELOP":    ["N30d36m80.00",    "E121d27m40.00"],
+            "BK":       ["N29d53m70.00",    "E121d20m00.00"],
+            "D049O":    ["N31d07m15.00",    "E122d04m66.00"],
+            "D166M":    ["N30d43m55.00",    "E121d57m35.00"],
+            "DADAT":    ["N30d27m00.00",    "E121d14m80.00"],
+            "DOKUN":    ["N30d51m50.00",    "E121d46m50.00"],
+            "DUMET":    ["N31d21m70.00",    "E122d46m50.00"],
+            "IGLIT":    ["N30d37m40.00",    "E121d47m70.00"],
+            "PDL":      ["N31d07m80.00",    "E121d40m30.00"],
+            "R049 ":    ["N31d15m60.00",    "E122d14m20.00"],
+            "R069 ":    ["N31d32m70.00",    "E122d41m00.00"],
+            "TOSAS":    ["N31d19m00.00",    "E121d31m50.00"],
+            "D079U":    ["N31d18m35.00",    "E121d35m15.00"],
+            "D131R":    ["N30d57m06.00",    "E121d37m38.00"],
+            "D142L":    ["N31d13m38.00",    "E122d00m26.00"],
+            "D194D":    ["N31d18m13.00",    "E121d49m90.00"],
+            "D194K":    ["N31d10m89.00",    "E121d48m63.00"],
+            "D197L":    ["N30d43m90.00",    "E121d49m30.00"],
+            "D233V":    ["N30d41m04.00",    "E121d33m66.00"],
+            "D264N":    ["N31d19m59.00",    "E121d34m74.00"],
+            "D316S":    ["N31d22m63.00",    "E121d30m09.00"],
+            "D347N":    ["N31d23m04.00",    "E121d41m78.00"],
+            "D347W":    ["N31d31m98.00",    "E121d38m30.00"],
+            "R049":     ["N31d15m60.00",    "E122d14m20.00"],
+            "R069":     ["N31d32m70.00",    "E122d41m00.00"],
+            "ZHAXG":    ["N31d08m60.00",    "E121d12m30.00"],
+            "MATNU":    ["N31d39m60.00",    "E122d38m00.00"]
+        },
+
+    "runways": [
+        {
+            "name": ["17R", "35L"],
+            "name_offset": [[0, 0], [0, 0]],
+            "end": [["N31d09m16.60", "E121d47m00.20"], ["N31d07m33.00", "E121d47m39.40"]],
+            "length": 4,
+            "ils": [true, true]
+        },
+        {
+            "name": ["17L", "35R"],
+            "name_offset": [[0, 0], [0, 0]],
+            "end": [["N31d09m39.80", "E121d47m09.70"], ["N31d07m37.60", "E121d47m55.90"]],
+            "length": 3.400,
+            "ils": [true, true]
+        },
+        {
+            "name": ["16L", "34R"],
+            "name_offset": [[0, 0], [0, 0]],
+            "end": [["N31d09m35.90", "E121d48m58.40"], ["N31d07m39.90", "E121d49m42.20"]],
+            "length": 3.800,
+            "ils": [true, true]
+        },
+        {
+            "name": ["16R", "34R"],
+            "name_offset": [[0, 0], [0, 0]],
+            "end": [["N31d09m31.50", "E121d48m42.60"], ["N31d07m35.40", "E121d49m26.40"]],
+            "length": 3.800,
+            "ils": [true, true]
+        }
+    ],
+
+    "sids": {
+        "SUR21X": {
+            "icao": "SUR21X",
+            "name": "Surak Two One Xray",
+            "rwy": {
+                "16L": [["PD048", "A59"], ["NINAS", "A89"], "LASAN", "BONGI", "BOLEX", "TONIX", "AKARA", "SURAK"],
+                "16R": [["PD048", "A59"], ["NINAS", "A89"], "LASAN", "BONGI", "BOLEX", "TONIX", "AKARA", "SURAK"]
+            },
+            "draw": [
+                ["PD048", "NINAS", "LASAN", "BONGI", "BOLEX", "TONIX", "AKARA", "SURAK"]
+            ]
+        },
+        "SUR21D": {
+            "icao": "SUR21D",
+            "name": "Surak Two One Delta",
+            "rwy": {
+                "16L": [["D083F", "A59"], ["NINAS", "A89"], "LASAN", "BONGI", "BOLEX", "TONIX", "AKARA", "SURAK"],
+                "16R": [["D083F", "A59"], ["NINAS", "A89"], "LASAN", "BONGI", "BOLEX", "TONIX", "AKARA", "SURAK"]
+            },
+            "draw": [
+                ["D083F", "NINAS"],
+                ["SURAK"]
+            ]
+        },
+        "SUF21X": {
+            "icao": "SUF21X",
+            "name": "Shuofang Two One Xray",
+            "rwy": {
+                "16L": ["PD047", "PD055", "OLGAP", "PD072", "SUF"],
+                "16R": ["PD047", "PD055", "OLGAP", "PD072", "SUF"]
+            },
+            "draw": [
+                ["PD047", "PD055", "OLGAP", "PD072", "SUF"]
+            ]
+        },
+        "SUF21D": {
+            "icao": "SUF21D",
+            "name": "Shuofang Two One Delta",
+            "rwy": {
+                "16L": ["D152L", "XSY", ["D118F", "A89"], ["JTN", "A99"], "SUF"],
+                "16R": ["D152L", "XSY", ["D118F", "A89"], ["JTN", "A99"], "SUF"]
+            },
+            "draw": [
+                ["D152L", "XSY", "D118F"], 
+                ["JTN", "SUF"]
+            ]
+        },
+        "SAS21X": {
+            "icao": "SAS21X",
+            "name": "Sasan Two One Xray",
+            "rwy": {
+                "16L": ["PD047", "PD055", "OLGAP", "EKIMU", "SASAN"],
+                "16R": ["PD047", "PD055", "OLGAP", "EKIMU", "SASAN"]
+            },
+            "draw": [
+                ["OLGAP", "EKIMU", "SASAN"]
+            ]
+        },
+        "SAS21D": {
+            "icao": "SAS21D",
+            "name": "Sasan Two One Delta",
+            "rwy": {
+                "16L": ["D152L", "XSY", ["D118F", "A89"], ["JTN", "A99"], "EKIMU", "SASAN"],
+                "16R": ["D152L", "XSY", ["D118F", "A89"], ["JTN", "A99"], "EKIMU", "SASAN"]
+            },
+            "draw": [
+                ["JTN", "EKIMU"],
+                ["SASAN"]
+            ]
+        },
+        "PIK27X": {
+            "icao": "PIK27X",
+            "name": "Pikas Two Seven Xray",
+            "rwy": {
+                "16L": [["PD048", "A59"], "PD051", ["PD052", "A89"], "HSH", "POMOK", "PIKAS"],
+                "16R": [["PD048", "A59"], "PD051", ["PD052", "A89"], "HSH", "POMOK", "PIKAS"]
+            },
+            "draw": [
+                ["PD048", "PD051", "PD052", "HSH", "POMOK", "PIKAS"]
+            ]
+        },
+        "PIK27D": {
+            "icao": "PIK27D",
+            "name": "Pikas Two Seven Delta",
+            "rwy": {
+                "16L": ["D087D", ["D083F", "A59"], ["HSH22", "A89"], "HSH", "POMOK", "PIKAS"],
+                "16R": ["D087D", ["D083F", "A59"], ["HSH22", "A89"], "HSH", "POMOK", "PIKAS"]
+            },
+            "draw": [
+                ["D087D", "D083F", "HSH22", "HSH"],
+                ["PIKAS"]
+            ]
+        },
+        "PIK23X": {
+            "icao": "PIK23X",
+            "name": "Pikas Two Three Xray",
+            "rwy": {
+                "16L": [["PD048", "A59"], "PD051", ["PD052", "A89"], "HSH", "NTG", "PIKAS"],
+                "16R": [["PD048", "A59"], "PD051", ["PD052", "A89"], "HSH", "NTG", "PIKAS"]
+            },
+            "draw": [
+                ["HSH", "NTG", "PIKAS"]
+            ]
+        },
+        "PIK23D": {
+            "icao": "PIK23D",
+            "name": "Pikas Two Three Delta",
+            "rwy": {
+                "16L": ["D087D", ["D083F", "A59"], ["HSH22", "A89"], "HSH", "NTG", "PIKAS"],
+                "16R": ["D087D", ["D083F", "A59"], ["HSH22", "A89"], "HSH", "NTG", "PIKAS"]
+            },
+            "draw": [
+                ["PIKAS"]
+            ]
+        },
+        "PIK21X": {
+            "icao": "PIK21X",
+            "name": "Pikas Two One Xray",
+            "rwy": {
+                "16L": ["PD047", "PD055", "OLGAP", "POMOK", "PIKAS"],
+                "16R": ["PD047", "PD055", "OLGAP", "POMOK", "PIKAS"]
+            },
+            "draw": [
+                ["PIKAS"]
+            ]
+        },
+        "PIK21D": {
+            "icao": "PIK21D",
+            "name": "Pikas Two One Delta",
+            "rwy": {
+                "16L": ["D152L", "XSY", ["D118F", "A89"], "JTN", "POMOK", "PIKAS"],
+                "16R": ["D152L", "XSY", ["D118F", "A89"], "JTN", "POMOK", "PIKAS"]
+            },
+            "draw": [
+                ["PIKAS"]
+            ]
+        },
+        "ODU43D": {
+            "icao": "ODU43D",
+            "name": "Odulo Four Three Delta",
+            "rwy": {
+                "16L": ["D083D", ["D083F", "A51"], ["HSH22", "A89"], "HSH", ["D066I", "A131"], "ALDAP", "IBEGI", "ODULO"],
+                "16R": ["D083D", ["D083F", "A51"], ["HSH22", "A89"], "HSH", ["D066I", "A131"], "ALDAP", "IBEGI", "ODULO"]
+            },
+            "draw": [
+                ["HSH", "D066I", "ALDAP", "IBEGI", "ODULO"]
+            ]
+        },
+        "ODU27D": {
+            "icao": "ODU27D",
+            "name": "Odulo Two Seven Delta",
+            "rwy": {
+                "16L": ["D083D", ["D083F", "A51"], ["HSH22", "A89"], "HSH", "UDOXI", "ODULO"],
+                "16R": ["D083D", ["D083F", "A51"], ["HSH22", "A89"], "HSH", "UDOXI", "ODULO"]
+            },
+            "draw": [
+                ["HSH", "UDOXI", "ODULO"]
+            ]
+        },
+        "ODU25X": {
+            "icao": "ODU25X",
+            "name": "Odulo Two Five Xray",
+            "rwy": {
+                "16L": [["PD048", "A59"], "PD051", ["PD052", "A89"], "HSH", "UDOXI", "ODULO"],
+                "16R": [["PD048", "A59"], "PD051", ["PD052", "A89"], "HSH", "UDOXI", "ODULO"]
+            },
+            "draw": [
+                ["ODULO"]
+            ]
+        },
+        "ODU23X": {
+            "icao": "ODU23X",
+            "name": "Odulo Two Three Xray",
+            "rwy": {
+                "16L": [["PD048", "A59"], "PD051", ["PD052", "A89"], ["PD053", "A131"], "ALDAP", "IBEGI", "ODULO"],
+                "16R": [["PD048", "A59"], "PD051", ["PD052", "A89"], ["PD053", "A131"], "ALDAP", "IBEGI", "ODULO"]
+            },
+            "draw": [
+                ["PD052", "PD053", "ALDAP"],
+                ["ODULO"]
+            ]
+        },
+        "ODU21X": {
+            "icao": "ODU21X",
+            "name": "Odulo Two One Xray",
+            "rwy": {
+                "16L": [["PD048", "A59"], ["NINAS", "A89"], ["PD054", "A118"], "PINOT", "ALDAP", "IBEGI", "ODULO"],
+                "16R": [["PD048", "A59"], ["NINAS", "A89"], ["PD054", "A118"], "PINOT", "ALDAP", "IBEGI", "ODULO"]
+            },
+            "draw": [
+                ["NINAS", "PD054", "PINOT", "ALDAP"],
+                ["ODULO"]
+            ]
+        },
+        "ODU21D": {
+            "icao": "ODU21D",
+            "name": "Odulo Two One Delta",
+            "rwy": {
+                "16L": ["D083D", ["D083F", "A51"], ["NINAS", "A89"], ["PD054", "A118"], "PINOT", "ALDAP", "IBEGI", "ODULO"],
+                "16R": ["D083D", ["D083F", "A51"], ["NINAS", "A89"], ["PD054", "A118"], "PINOT", "ALDAP", "IBEGI", "ODULO"]
+            },
+            "draw": [
+                ["ODULO"]
+            ]
+        },
+        "NXD23X": {
+            "icao": "NXD23X",
+            "name": "Nanxun Two Three Xray",
+            "rwy": {
+                "16L": ["PD047", "PD055", "OLGAP", ["NXD", "A128"]],
+                "16R": ["PD047", "PD055", "OLGAP", ["NXD", "A128"]]
+            },
+            "draw": [
+                ["OLGAP", "NXD"]
+            ]
+        },
+        "NXD23D": {
+            "icao": "NXD23D",
+            "name": "Nanxun Two Three Delta",
+            "rwy": {
+                "16L": ["D152L", "XSY", ["D288W", "A79"], "OLGAP", ["NXD", "A128"]],
+                "16R": ["D152L", "XSY", ["D288W", "A79"], "OLGAP", ["NXD", "A128"]]
+            },
+            "draw": [
+                ["XSY", "D288W", "OLGAP"],
+                ["NXD"]
+            ]
+        },
+        "NXD21D": {
+            "icao": "NXD21D",
+            "name": "Nanxun Two One Delta",
+            "rwy": {
+                "16L": ["D152L", "XSY", ["D118F", "A89"], ["JTN", "A99"], "OLGAP", ["NXD", "A128"]],
+                "16R": ["D152L", "XSY", ["D118F", "A89"], ["JTN", "A99"], "OLGAP", ["NXD", "A128"]]
+            },
+            "draw": [
+                ["JTN", "OLGAP"],
+                ["NXD"]
+            ]
+        },
+        "LAM21X": {
+            "icao": "LAM21X",
+            "name": "Lamen Two One Xray",
+            "rwy": {
+                "16L": [["PD048", "A59"], ["NINAS", "A89"], "LASAN", "BONGI", "BOLEX", "TONIX", "LAMEN"],
+                "16R": [["PD048", "A59"], ["NINAS", "A89"], "LASAN", "BONGI", "BOLEX", "TONIX", "LAMEN"]
+            },
+            "draw": [
+                ["TONIX", "LAMEN"]
+            ]
+        },
+        "LAM21D": {
+            "icao": "LAM21D",
+            "name": "Lamen Two One Delta",
+            "rwy": {
+                "16L": ["D087D", ["D083F", "A59"], ["NINAS", "A89"], "LASAN", "BONGI", "BOLEX", "TONIX", "LAMEN"],
+                "16R": ["D087D", ["D083F", "A59"], ["NINAS", "A89"], "LASAN", "BONGI", "BOLEX", "TONIX", "LAMEN"]
+            },
+            "draw": [
+                ["LAMEN"]
+            ]
+        },
+        "JTN11D": {
+            "icao": "JTN11D",
+            "name": "Jiuting One One Delta",
+            "rwy": {
+                "16L": ["XSY", "D224L", ["D118F", "A79"], "JTN"],
+                "16R": ["XSY", "D224L", ["D118F", "A79"], "JTN"],
+                "17L": ["XSY", "D224L", ["D118F", "A79"], "JTN"],
+                "17R": ["XSY", "D224L", ["D118F", "A79"], "JTN"]
+            },
+            "draw": [
+                ["D118F", "JTN"]
+            ]
+        },
+        "HSN23X": {
+            "icao": "HSN23X",
+            "name": "Zhoushan Two Three Xray",
+            "rwy": {
+                "16L": [["PD048", "A59"], ["NINAS", "A89"], "PONAB", ["HSN", "A256"]],
+                "16R": [["PD048", "A59"], ["NINAS", "A89"], "PONAB", ["HSN", "A256"]]
+            },
+            "draw": [
+                ["NINAS", "PONAB", "HSN"] 
+            ]
+        },
+        "HSN23D": {
+            "icao": "HSN23D",
+            "name": "Zhoushan Two Three Delta",
+            "rwy": {
+                "16L": ["D083D", ["D083F", "A59"], ["NINAS", "A89"], "PONAB", ["HSN", "A256"]],
+                "16R": ["D083D", ["D083F", "A59"], ["NINAS", "A89"], "PONAB", ["HSN", "A256"]]
+            },
+            "draw": [
+                ["HSN"] 
+            ]
+        },
+        "HSN21X": {
+            "icao": "HSN21X",
+            "name": "Zhoushan Two One Xray",
+            "rwy": {
+                "16L": [["PD048", "A59"], "UNTOP", "PONAB", ["HSN", "A256"]],
+                "16R": [["PD048", "A59"], "UNTOP", "PONAB", ["HSN", "A256"]]
+            },
+            "draw": [
+                ["PD048", "UNTOP", "PONAB"],
+                ["HSN"] 
+            ]
+        },
+        "HSN21D": {
+            "icao": "HSN21D",
+            "name": "Zhoushan Two One Delta",
+            "rwy": {
+                "16L": [["D152P", "A59"], "D152V", "UNTOP", "PONAB", ["HSN", "A256"]],
+                "16R": [["D152P", "A59"], "D152V", "UNTOP", "PONAB", ["HSN", "A256"]]
+            },
+            "draw": [
+                ["D152P", "D152V", "UNTOP"],
+                ["HSN"] 
+            ]
+        },
+        "BOL21X": {
+            "icao": "BOL21X",
+            "name": "Bolex Two One Xray",
+            "rwy": {
+                "16L": [["PD048", "A59"], ["NINAS", "A89"], "LASAN", "BONGI", "BOLEX"],
+                "16R": [["PD048", "A59"], ["NINAS", "A89"], "LASAN", "BONGI", "BOLEX"]
+            },
+            "draw": [
+                ["BOLEX"]
+            ]
+        },
+        "BOL21D": {
+            "icao": "BOL21D",
+            "name": "Bolex Two One Delta",
+            "rwy": {
+                "16L": ["D083D", ["D083F", "A59"], ["NINAS", "A89"], "LASAN", "BONGI", "BOLEX"],
+                "16R": ["D083D", ["D083F", "A59"], ["NINAS", "A89"], "LASAN", "BONGI", "BOLEX"]
+            },
+            "draw": [
+                ["BOLEX"]
+            ]
+        },
+        "AND21X": {
+            "icao": "AND21X",
+            "name": "Andong Two One Xray",
+            "rwy": {
+                "16L": ["PD047", "IDNIK", "AND"],
+                "16R": ["PD047", "IDNIK", "AND"]
+            },
+            "draw": [
+                ["PD047", "IDNIK", "AND"]
+            ]
+        },
+        "AND21D": {
+            "icao": "AND21D",
+            "name": "Andong Two One Delta",
+            "rwy": {
+                "16L": ["D152L", "XSY", "IDNIK", "AND"],
+                "16R": ["D152L", "XSY", "IDNIK", "AND"]
+            },
+            "draw": [
+                ["XSY", "IDNIK"],
+                ["AND"]
+            ]
+        },
+        "SUR11X": {
+            "icao": "SUR11X",
+            "name": "Surak One One Xray",
+            "rwy": {
+                "17L": ["XSY", ["NINAS", "A89"], "LASAN", "BONGI", "BOLEX", "TONIX", "AKARA", "SURAK"],
+                "17R": ["XSY", ["NINAS", "A89"], "LASAN", "BONGI", "BOLEX", "TONIX", "AKARA", "SURAK"]
+            },
+            "draw": [
+                ["XSY", "NINAS"],
+                ["SURAK"]
+            ]
+        },
+        "SUR11D": {
+            "icao": "SUR11D",
+            "name": "Surak One One Delta",
+            "rwy": {
+                "17L": [["XSY", "A49"], ["D083J", "A59"], ["NINAS", "A89"], "LASAN", "BONGI", "BOLEX", "TONIX", "AKARA", "SURAK"],
+                "17R": [["XSY", "A49"], ["D083J", "A59"], ["NINAS", "A89"], "LASAN", "BONGI", "BOLEX", "TONIX", "AKARA", "SURAK"]
+            },
+            "draw": [
+                ["XSY", "D083J", "NINAS"],
+                ["SURAK"]
+            ]
+        },
+        "SUF11X": {
+            "icao": "SUF11X",
+            "name": "Shuofang One One Xray",
+            "rwy": {
+                "17L": ["PD049", "PD057", "OLGAP", "PD072", "SUF"],
+                "17R": ["PD049", "PD057", "OLGAP", "PD072", "SUF"]
+            },
+            "draw": [
+                ["PD049", "PD057", "OLGAP"],
+                ["SUF"]
+            ]
+        },
+        "SUF11D": {
+            "icao": "SUF11D",
+            "name": "Shuofang One One Delta",
+            "rwy": {
+                "17L": ["D167F", "D224L", ["D118F", "A89"], ["JTN", "A99"], "SUF"],
+                "17R": ["D167F", "D224L", ["D118F", "A89"], ["JTN", "A99"], "SUF"]
+            },
+            "draw": [
+                ["SUF"]
+            ]
+        },
+        "SAS11X": {
+            "icao": "SAS11X",
+            "name": "Sasan One One Xray",
+            "rwy": {
+                "17L": ["PD049", "PD057", "OLGAP", "EKIMU", ["SASAN", "A117"]],
+                "17R": ["PD049", "PD057", "OLGAP", "EKIMU", ["SASAN", "A117"]]
+            },
+            "draw": [
+                ["SASAN"]
+            ]
+        },
+        "SAS11D": {
+            "icao": "SAS11D",
+            "name": "Sasan One One Delta",
+            "rwy": {
+                "17L": ["D167F", ["D224L", "A89"], ["JTN", "A99"], "EKIMU", "SASAN"],
+                "17R": ["D167F", ["D224L", "A89"], ["JTN", "A99"], "EKIMU", "SASAN"]
+            },
+            "draw": [
+                ["D167F", "D224L", "JTN"],
+                ["SASAN"]
+            ]
+        },
+        "PIK11D": {
+            "icao": "PIK11D",
+            "name": "Pikas One One Delta",
+            "rwy": {
+                "17L": ["D167F", "D224L", ["D118F", "A89"], ["JTN", "A99"], "POMOK", "PIKAS"],
+                "17R": ["D167F", "D224L", ["D118F", "A89"], ["JTN", "A99"], "POMOK", "PIKAS"]
+            },
+            "draw": [
+                ["D167F", "D224L", "D118F"],
+                ["PIKAS"]
+            ]
+        },
+        "PIK11X": {
+            "icao": "PIK11X",
+            "name": "Pikas One One Xray",
+            "rwy": {
+                "17L": ["PD049", "PD057", "OLGAP", "POMOK", "PIKAS"],
+                "17R": ["PD049", "PD057", "OLGAP", "POMOK", "PIKAS"]
+            },
+            "draw": [
+                ["PIKAS"]
+            ]
+        },
+        "PIK13X": {
+            "icao": "PIK13X",
+            "name": "Pikas One Three Xray",
+            "rwy": {
+                "17L": ["XSY", "PD051", ["PD052", "A89"], "HSH", "NTG", "PIKAS"],
+                "17R": ["XSY", "PD051", ["PD052", "A89"], "HSH", "NTG", "PIKAS"]
+            },
+            "draw": [
+                ["PIKAS"]
+            ]
+        },
+        "PIK13D": {
+            "icao": "PIK13D",
+            "name": "Pikas One Three Delta",
+            "rwy": {
+                "17L": ["XSY", ["D083F", "A59"], "D083J", ["HSH22", "A89"], "HSH", "NTG", "PIKAS"],
+                "17R": ["XSY", ["D083F", "A59"], "D083J", ["HSH22", "A89"], "HSH", "NTG", "PIKAS"]
+            },
+            "draw": [
+                ["PIKAS"]
+            ]
+        },
+        "PIK17D": {
+            "icao": "PIK17D",
+            "name": "Pikas One Seven Delta",
+            "rwy": {
+                "17L": ["HSH", "NTG", "PIKAS"],
+                "17R": ["HSH", "NTG", "PIKAS"]
+            },
+            "draw": [
+                ["PIKAS"]
+            ]
+        },
+        "PIK19D": {
+            "icao": "PIK19D",
+            "name": "Pikas One Niner Delta",
+            "rwy": {
+                "17L": [["XSY", "A49"], ["D083F", "A59"], "D083J", ["HSH22", "A89"], "HSH", "POMOK", "PIKAS"],
+                "17R": [["XSY", "A49"], ["D083F", "A59"], "D083J", ["HSH22", "A89"], "HSH", "POMOK", "PIKAS"]
+            },
+            "draw": [
+                ["XSY", "D083F", "D083J", "HSH22"],
+                ["PIKAS"]
+            ]
+        },
+        "PIK19X": {
+            "icao": "PIK19X",
+            "name": "Pikas One Niner Xray",
+            "rwy": {
+                "17L": ["XSY", "PD051", ["PD052", "A89"], "HSH", "POMOK", "PIKAS"],
+                "17R": ["XSY", "PD051", ["PD052", "A89"], "HSH", "POMOK", "PIKAS"]
+            },
+            "draw": [
+                ["PIKAS"]
+            ]
+        },
+        "ODU33D": {
+            "icao": "ODU33D",
+            "name": "Odulo Three Three Delta",
+            "rwy": {
+                "17L": ["XSY", ["D083F", "A51"], "D083J", ["HSH22", "A89"], "HSH", ["D066I", "A131"], "ALDAP", "IBEGI", "ODULO"],
+                "17R": ["XSY", ["D083F", "A51"], "D083J", ["HSH22", "A89"], "HSH", ["D066I", "A131"], "ALDAP", "IBEGI", "ODULO"]
+            },
+            "draw": [
+                ["XSY", "D083F"],
+                ["ODULO"]
+            ]
+        },
+        "ODU19D": {
+            "icao": "ODU19D",
+            "name": "Odulo One Niner Delta",
+            "rwy": {
+                "17L": ["D167F", "HSH", "UDOXI", "ODULO"],
+                "17R": ["D167F", "HSH", "UDOXI", "ODULO"]
+            },
+            "draw": [
+                ["D167F", "HSH"],
+                ["ODULO"]
+            ]
+        },
+        "ODU17D": {
+            "icao": "ODU17D",
+            "name": "Odulo One Seven Delta",
+            "rwy": {
+                "17L": [["XSY", "A49"], ["D083F", "A59"], "D083J", ["HSH22", "A89"], "HSH", "UDOXI", "ODULO"],
+                "17R": [["XSY", "A49"], ["D083F", "A59"], "D083J", ["HSH22", "A89"], "HSH", "UDOXI", "ODULO"]
+            },
+            "draw": [
+                ["ODULO"]
+            ]
+        },
+        "ODU15X": {
+            "icao": "ODU15X",
+            "name": "Odulo One Five Xray",
+            "rwy": {
+                "17L": ["XSY", "PD051", ["PD052", "A89"], "HSH", "UDOXI", "ODULO"],
+                "17R": ["XSY", "PD051", ["PD052", "A89"], "HSH", "UDOXI", "ODULO"]
+            },
+            "draw": [
+                ["ODULO"]
+            ]
+        },
+        "ODU13X": {
+            "icao": "ODU13X",
+            "name": "Odulo One Three Xray",
+            "rwy": {
+                "17L": ["XSY", "PD051", ["PD052", "A89"], ["PD053", "A131"], "ALDAP", "IBEGI", "ODULO"],
+                "17R": ["XSY", "PD051", ["PD052", "A89"], ["PD053", "A131"], "ALDAP", "IBEGI", "ODULO"]
+            },
+            "draw": [
+                ["ODULO"]
+            ]
+        },
+        "ODU11X": {
+            "icao": "ODU11X",
+            "name": "Odulo One One Xray",
+            "rwy": {
+                "17L": ["XSY", ["NINAS", "A89"], ["PD054", "A118"], "PINOT", "ALDAP", "IBEGI", "ODULO"],
+                "17R": ["XSY", ["NINAS", "A89"], ["PD054", "A118"], "PINOT", "ALDAP", "IBEGI", "ODULO"]
+            },
+            "draw": [
+                ["ODULO"]
+            ]
+        },
+        "ODU11D": {
+            "icao": "ODU11D",
+            "name": "Odulo One One Delta",
+            "rwy": {
+                "17L": [["XSY", "A49"], ["D083J", "A59"], ["NINAS", "A89"], ["PINOT", "A118"], "ALDAP", "IBEGI", "ODULO"],
+                "17R": [["XSY", "A49"], ["D083J", "A59"], ["NINAS", "A89"], ["PINOT", "A118"], "ALDAP", "IBEGI", "ODULO"]
+            },
+            "draw": [
+                ["ODULO"]
+            ]
+        },
+        "NXD13X": {
+            "icao": "NXD13X",
+            "name": "Nanxun One Three Xray",
+            "rwy": {
+                "17L": ["PD049", "PD057", "OLGAP", ["NXD", "A128"]],
+                "17R": ["PD049", "PD057", "OLGAP", ["NXD", "A128"]]
+            },
+            "draw": [
+                ["NXD"]
+            ]
+        },
+        "NXD13D": {
+            "icao": "NXD13D",
+            "name": "Nanxun One Three Delta",
+            "rwy": {
+                "17L": ["D167F", "D288T", "OLGAP", "NXD"],
+                "17R": ["D167F", "D288T", "OLGAP", "NXD"]
+            },
+            "draw": [
+                ["NXD"]
+            ]
+        },
+        "NXD11D": {
+            "icao": "NXD11D",
+            "name": "Nanxun One One Delta",
+            "rwy": {
+                "17L": ["D167F", "D224L", ["D118F", "A89"], ["JTN", "A99"], "OLGAP", "NXD"],
+                "17R": ["D167F", "D224L", ["D118F", "A89"], ["JTN", "A99"], "OLGAP", "NXD"]
+            },
+            "draw": [
+                ["NXD"]
+            ]
+        },
+        "LAM11X": {
+            "icao": "LAM11X",
+            "name": "Lamen One One Xray",
+            "rwy": {
+                "17L": ["XSY", ["NINAS", "A89"], "LASAN", "BONGI", "BOLEX", "LAMEN"],
+                "17R": ["XSY", ["NINAS", "A89"], "LASAN", "BONGI", "BOLEX", "LAMEN"]
+            },
+            "draw": [
+                ["LAMEN"]
+            ]
+        },
+        "LAM11D": {
+            "icao": "LAM11D",
+            "name": "Lamen One One Delta",
+            "rwy": {
+                "17L": ["XSY", ["D083J", "A59"], ["NINAS", "A89"], "LASAN", "BONGI", "BOLEX", "LAMEN"],
+                "17R": ["XSY", ["D083J", "A59"], ["NINAS", "A89"], "LASAN", "BONGI", "BOLEX", "LAMEN"]
+            },
+            "draw": [
+                ["LAMEN"]
+            ]
+        },
+        "HSN13X": {
+            "icao": "HSN13X",
+            "name": "Zhoushan One Three Xray",
+            "rwy": {
+                "17L": ["XSY", ["NINAS", "A89"], "PONAB", ["HSN", "A256"]],
+                "17R": ["XSY", ["NINAS", "A89"], "PONAB", ["HSN", "A256"]]
+            },
+            "draw": [
+                ["HSN"] 
+            ]
+        },
+        "HSN13D": {
+            "icao": "HSN13D",
+            "name": "Zhoushan One Three Delta",
+            "rwy": {
+                "17L": [["XSY", "A49"], ["D083J", "A59"], ["NINAS", "A89"], "PONAB", ["HSN", "A256"]],
+                "17R": [["XSY", "A49"], ["D083J", "A59"], ["NINAS", "A89"], "PONAB", ["HSN", "A256"]]
+            },
+            "draw": [
+                ["HSN"] 
+            ]
+        },
+        "HSN11X": {
+            "icao": "HSN11X",
+            "name": "Zhoushan One One Xray",
+            "rwy": {
+                "17L": ["XSY", "UNTOP", "PONAB", ["HSN", "A256"]],
+                "17R": ["XSY", "UNTOP", "PONAB", ["HSN", "A256"]]
+            },
+            "draw": [
+                ["HSN"] 
+            ]
+        },
+        "HSN11D": {
+            "icao": "HSN11D",
+            "name": "Zhoushan One One Delta",
+            "rwy": {
+                "17L": [["XSY", "A49"], "UNTOP", "PONAB", ["HSN", "A256"]],
+                "17R": [["XSY", "A49"], "UNTOP", "PONAB", ["HSN", "A256"]]
+            },
+            "draw": [
+                ["HSN"] 
+            ]
+        },
+        "BOL11X": {
+            "icao": "BOL11X",
+            "name": "Bolex One One Xray",
+            "rwy": {
+                "17L": ["XSY", "PD051", ["NINAS", "A89"], "LASAN", "BONGI", "BOLEX"],
+                "17R": ["XSY", "PD051", ["NINAS", "A89"], "LASAN", "BONGI", "BOLEX"]
+            },
+            "draw": [
+                ["BOLEX"]
+            ]
+        },
+        "BOL11D": {
+            "icao": "BOL11D",
+            "name": "Bolex One One Delta",
+            "rwy": {
+                "17L": [["XSY", "A49"], ["D083J", "A59"], ["NINAS", "A89"], "LASAN", "BONGI", "BOLEX"],
+                "17R": [["XSY", "A49"], ["D083J", "A59"], ["NINAS", "A89"], "LASAN", "BONGI", "BOLEX"]
+            },
+            "draw": [
+                ["BOLEX"]
+            ]
+        },
+        "AND11X": {
+            "icao": "AND11X",
+            "name": "Andong One One Xray",
+            "rwy": {
+                "17L": ["XSY", "IDNIK", "AND"],
+                "17R": ["XSY", "IDNIK", "AND"]
+            },
+            "draw": [
+                ["AND"]
+            ]
+        },
+        "AND11D": {
+            "icao": "AND11D",
+            "name": "Andong One One Delta",
+            "rwy": {
+                "17L": [["XSY", "A49"], "IDNIK", "AND"],
+                "17R": [["XSY", "A49"], "IDNIK", "AND"]
+            },
+            "draw": [
+                ["AND"]
+            ]
+        },
+        "SUR24X": {
+            "icao": "SUR24X",
+            "name": "Surak Two Four Xray",
+            "rwy": {
+                "34L": ["PD059", ["PD060", "A59"], ["PD063", "A60"], ["NINAS", "A89"], "LASAN", "BONGI", "BOLEX", "TONIX", "AKARA", "SURAK"],
+                "34R": ["PD059", ["PD060", "A59"], ["PD063", "A60"], ["NINAS", "A89"], "LASAN", "BONGI", "BOLEX", "TONIX", "AKARA", "SURAK"]
+            },
+            "draw": [
+                ["SURAK"]
+            ]
+        },
+        "SUR24D": {
+            "icao": "SUR24D",
+            "name": "Surak Two Four Delta",
+            "rwy": {
+                "34L": ["D194K", "D194D", ["D142L", "A69"], ["NINAS", "A89"], "LASAN", "BONGI", "BOLEX", "TONIX", "AKARA", "SURAK"],
+                "34R": ["D194K", "D194D", ["D142L", "A69"], ["NINAS", "A89"], "LASAN", "BONGI", "BOLEX", "TONIX", "AKARA", "SURAK"]
+            },
+            "draw": [
+                ["SURAK"]
+            ]
+        },
+        "SUR22X": {
+            "icao": "SUR22X",
+            "name": "Surak Two Two Xray",
+            "rwy": {
+                "34L": [["HSH", "A39"], ["PD053", "A131"], "ALDAP", "EMSAN", "SURAK"],
+                "34R": [["HSH", "A39"], ["PD053", "A131"], "ALDAP", "EMSAN", "SURAK"]
+            },
+            "draw": [
+                ["SURAK"]
+            ]
+        },
+        "SUR22D": {
+            "icao": "SUR22D",
+            "name": "Surak Two Two Delta",
+            "rwy": {
+                "34L": ["D194K", ["HSH", "A39"], ["D066I", "A131"], "ALDAP", "EMSAN", "SURAK"],
+                "34R": ["D194K", ["HSH", "A39"], ["D066I", "A131"], "ALDAP", "EMSAN", "SURAK"]
+            },
+            "draw": [
+                ["D066I", "ALDAP"],
+                ["SURAK"]
+            ]
+        },
+        "SUF22X": {
+            "icao": "SUF22X",
+            "name": "Shuofang Two Two Xray",
+            "rwy": {
+                "34L": [["HSH", "A39"], ["PD065", "A79"], ["PD045", "A99"], "PD070", "SUF"],
+                "34R": [["HSH", "A39"], ["PD065", "A79"], ["PD045", "A99"], "PD070", "SUF"]
+            },
+            "draw": [
+                ["PD045", "PD070", "SUF"],
+                ["SUF"]
+            ]
+        },
+        "SUF22D": {
+            "icao": "SUF22D",
+            "name": "Shuofang Two Two Delta",
+            "rwy": {
+                "34L": ["D194K", "D194D", ["D264N", "A79"], ["PK", "A99"], "CGT", "D242B", "SUF"],
+                "34R": ["D194K", "D194D", ["D264N", "A79"], ["PK", "A99"], "CGT", "D242B", "SUF"]
+            },
+            "draw": [
+                ["CGT", "D242B", "SUF"]
+            ]
+        },
+        "SAS22X": {
+            "icao": "SAS22X",
+            "name": "Sasan Two Two Xray",
+            "rwy": {
+                "34L": [["HSH", "A39"], ["PD065", "A79"], ["PD045", "A99"], "EKIMU", ["SASAN", "A217"]],
+                "34R": [["HSH", "A39"], ["PD065", "A79"], ["PD045", "A99"], "EKIMU", ["SASAN", "A217"]]
+            },
+            "draw": [
+                ["SASAN"]
+            ]
+        },
+        "SAS22D": {
+            "icao": "SAS22D",
+            "name": "Sasan Two Two Delta",
+            "rwy": {
+                "34L": ["D194K", "D194D", ["D264N", "A79"], ["PK", "A99"], "EKIMU", ["SASAN", "A217"]],
+                "34R": ["D194K", "D194D", ["D264N", "A79"], ["PK", "A99"], "EKIMU", ["SASAN", "A217"]]
+            },
+            "draw": [
+                ["PK", "EKIMU"],
+                ["SASAN"]
+            ]
+        },
+        "PIK26X": {
+            "icao": "PIK26X",
+            "name": "Pikas Two Six Xray",
+            "rwy": {
+                "34L": [["HSH", "A39"], "POMOK", "PIKAS"],
+                "34R": [["HSH", "A39"], "POMOK", "PIKAS"]
+            },
+            "draw": [
+                ["PIKAS"]
+            ]
+        },
+        "PIK26D": {
+            "icao": "PIK26D",
+            "name": "Pikas Two Six Delta",
+            "rwy": {
+                "34L": ["D194K", ["HSH", "A39"], "POMOK", "PIKAS"],
+                "34R": ["D194K", ["HSH", "A39"], "POMOK", "PIKAS"]
+            },
+            "draw": [
+                ["PIKAS"]
+            ]
+        }, 
+        "PIK24X": {
+            "icao": "PIK24X",
+            "name": "Pikas Two Four Xray",
+            "rwy": {
+                "34L": [["HSH", "A39"], "NTG", "PIKAS"],
+                "34R": [["HSH", "A39"], "NTG", "PIKAS"]
+            },
+            "draw": [
+                ["PIKAS"]
+            ]
+        },   
+        "PIK24D": {
+            "icao": "PIK24D",
+            "name": "Pikas Two Four Delta",
+            "rwy": {
+                "34L": ["D194K", ["HSH", "A39"], "NTG", "PIKAS"],
+                "34R": ["D194K", ["HSH", "A39"], "NTG", "PIKAS"]
+            },
+            "draw": [
+                ["PIKAS"]
+            ]
+        },
+        "PIK22X": {
+            "icao": "PIK22X",
+            "name": "Pikas Two Two Xray",
+            "rwy": {
+                "34L": [["HSH", "A39"], ["PD065", "A79"], ["PD045", "A99"], "POMOK", "PIKAS"],
+                "34R": [["HSH", "A39"], ["PD065", "A79"], ["PD045", "A99"], "POMOK", "PIKAS"]
+            },
+            "draw": [
+                ["PD045", "POMOK"],
+                ["PIKAS"]
+            ]
+        },
+        "PIK22D": {
+            "icao": "PIK22D",
+            "name": "Pikas Two Two Delta",
+            "rwy": {
+                "34L": ["D194K", "D194D", ["D264N", "A79"], ["PK", "A99"], "POMOK", "PIKAS"],
+                "34R": ["D194K", "D194D", ["D264N", "A79"], ["PK", "A99"], "POMOK", "PIKAS"]
+            },
+            "draw": [
+                ["PK", "POMOK"],
+                ["PIKAS"]
+            ]
+        },
+        "ODU26X": {
+            "icao": "ODU26X",
+            "name": "Odulo Two Six Xray",
+            "rwy": {
+                "34L": [["HSH", "A39"], "PINOT", "ALDAP", "IBEGI", "ODULO"],
+                "34R": [["HSH", "A39"], "PINOT", "ALDAP", "IBEGI", "ODULO"]
+            },
+            "draw": [
+                ["D167F", "HSH"],
+                ["ODULO"]
+            ]
+        },
+        "ODU26D": {
+            "icao": "ODU26D",
+            "name": "Odulo Two Six Delta",
+            "rwy": {
+                "34L": ["D194K", ["HSH", "A39"], "PINOT", "ALDAP", "IBEGI", "ODULO"],
+                "34R": ["D194K", ["HSH", "A39"], "PINOT", "ALDAP", "IBEGI", "ODULO"]
+            },
+            "draw": [
+                ["ODULO"]
+            ]
+        },
+        "ODU24X": {
+            "icao": "ODU24X",
+            "name": "Odulo Two Four Xray",
+            "rwy": {
+                "34L": [["HSH", "A39"], "UDOXI", "ODULO"],
+                "34R": [["HSH", "A39"], "UDOXI", "ODULO"]
+            },
+            "draw": [
+                ["ODULO"]
+            ]
+        },
+        "ODU24D": {
+            "icao": "ODU24D",
+            "name": "Odulo Two Four Delta",
+            "rwy": {
+                "34L": ["D194K", ["HSH", "A39"], "UDOXI", "ODULO"],
+                "34R": ["D194K", ["HSH", "A39"], "UDOXI", "ODULO"]
+            },
+            "draw": [
+                ["ODULO"]
+            ]
+        },
+        "ODU22X": {
+            "icao": "ODU22X",
+            "name": "Odulo Two Two Xray",
+            "rwy": {
+                "34L": [["HSH", "A39"], ["PD053", "A131"], "ALDAP", "IBEGI", "ODULO"],
+                "34R": [["HSH", "A39"], ["PD053", "A131"], "ALDAP", "IBEGI", "ODULO"]
+            },
+            "draw": [
+                ["ODULO"]
+            ]
+        },
+        "ODU22D": {
+            "icao": "ODU22D",
+            "name": "Odulo Two Two Delta",
+            "rwy": {
+                "34L": ["D194K", ["HSH", "A39"], ["D066I", "A131"], "ALDAP", "IBEGI", "ODULO"],
+                "34R": ["D194K", ["HSH", "A39"], ["D066I", "A131"], "ALDAP", "IBEGI", "ODULO"]
+            },
+            "draw": [
+                ["ODULO"]
+            ]
+        },
+        "NXD22X": {
+            "icao": "NXD22X",
+            "name": "Nanxun Two Two Xray",
+            "rwy": {
+                "34L": [["HSH", "A39"], ["PD065", "A79"], ["PD045", "A99"], "OLGAP", "NXD"],
+                "34R": [["HSH", "A39"], ["PD065", "A79"], ["PD045", "A99"], "OLGAP", "NXD"]
+            },
+            "draw": [
+                ["HSH", "PD065", "PD045", "OLGAP"],
+                ["NXD"]
+            ]
+        },
+        "NXD22D": {
+            "icao": "NXD22D",
+            "name": "Nanxun Two Two Delta",
+            "rwy": {
+                "34L": ["D194K", "D194D", ["D264N", "A79"], ["PK", "A99"], "ZHAXG", "OLGAP", ["NXD", "A128"]],
+                "34R": ["D194K", "D194D", ["D264N", "A79"], ["PK", "A99"], "ZHAXG", "OLGAP", ["NXD", "A128"]]
+            },
+            "draw": [
+                ["D264N", "PK", "ZHAXG", "OLGAP"],
+                ["NXD"]
+            ]
+        },
+        "LAM24X": {
+            "icao": "LAM24X",
+            "name": "Lamen Two Four Xray",
+            "rwy": {
+                "34L": ["PD059", ["PD060", "A59"], ["PD063", "A69"], ["NINAS", "A89"], "LASAN", "BONGI", "BOLEX", "TONIX", "LAMEN"],
+                "34R": ["PD059", ["PD060", "A59"], ["PD063", "A69"], ["NINAS", "A89"], "LASAN", "BONGI", "BOLEX", "TONIX", "LAMEN"]
+            },
+            "draw": [
+                ["LAMEN"]
+            ]
+        },
+        "LAM24D": {
+            "icao": "LAM24D",
+            "name": "Lamen Two Four Delta",
+            "rwy": {
+                "34L": ["D194K", "D194D", ["D142L", "A69"], ["NINAS", "A89"], "LASAN", "BONGI", "BOLEX", "TONIX", "LAMEN"],
+                "34R": ["D194K", "D194D", ["D142L", "A69"], ["NINAS", "A89"], "LASAN", "BONGI", "BOLEX", "TONIX", "LAMEN"]
+            },
+            "draw": [
+                ["LAMEN"]
+            ]
+        },
+        "LAM22X": {
+            "icao": "LAM22X",
+            "name": "Lamen Two Two Xray",
+            "rwy": {
+                "34L": [["HSH", "A39"], ["PD053", "A131"], "ALDAP", "EMSAN", "SURAK", "LAMEN"],
+                "34R": [["HSH", "A39"], ["PD053", "A131"], "ALDAP", "EMSAN", "SURAK", "LAMEN"]
+            },
+            "draw": [
+                ["LAMEN"]
+            ]
+        },
+        "LAM22D": {
+            "icao": "LAM22D",
+            "name": "Lamen Two Two Delta",
+            "rwy": {
+                "34L": ["D194K", ["HSH", "A39"], ["D066I", "A131"], "ALDAP", "EMSAN", "SURAK", "LAMEN"],
+                "34R": ["D194K", ["HSH", "A39"], ["D066I", "A131"], "ALDAP", "EMSAN", "SURAK", "LAMEN"]
+            },
+            "draw": [
+                ["LAMEN"]
+            ]
+        },
+        "HSN22D": {
+            "icao": "HSN22D",
+            "name": "Zhoushan Two Two Delta",
+            "rwy": {
+                "34L": ["D194K", "D194D", ["D142L", "A69"], ["NINAS", "A89"], "PONAB", ["HSN", "A256"]],
+                "34R": ["D194K", "D194D", ["D142L", "A69"], ["NINAS", "A89"], "PONAB", ["HSN", "A256"]]
+            },
+            "draw": [
+             ["HSN"] 
+            ]
+        },
+        "CGT12D": {
+            "icao": "CGT12D",
+            "name": "Chonggu One Two Delta",
+            "rwy": {
+                "34L": [["D079U", "A59"], "CGT"],
+                "34R": [["D079U", "A59"], "CGT"],
+                "35L": [["D079U", "A59"], "CGT"],
+                "35R": [["D079U", "A59"], "CGT"]
+            },
+            "draw": [
+                ["D079U", "CGT"] 
+            ]
+        },
+        "BOL22X": {
+            "icao": "BOL22X",
+            "name": "Bolex Two Two Xray",
+            "rwy": {
+                "34L": ["PD059", "PD060", "PD063", ["NINAS", "A89"], "LASAN", "BONGI", "BOLEX"],
+                "34R": ["PD059", "PD060", "PD063", ["NINAS", "A89"], "LASAN", "BONGI", "BOLEX"]
+            },
+            "draw": [
+                ["BOLEX"]
+            ]
+        },
+        "BOL22D": {
+            "icao": "BOL22D",
+            "name": "Bolex Two Two Delta",
+            "rwy": {
+                "34L": ["D194K", "D194D", ["D142L", "A69"], ["NINAS", "A89"], "LASAN", "BONGI", "BOLEX"],
+                "34R": ["D194K", "D194D", ["D142L", "A69"], ["NINAS", "A89"], "LASAN", "BONGI", "BOLEX"]
+            },
+            "draw": [
+                ["D142L", "NINAS"],
+                ["BOLEX"]
+            ]
+        },
+        "AND22X": {
+            "icao": "AND22X",
+            "name": "Andong Two Two Xray",
+            "rwy": {
+                "34L": ["PD059", ["PD060", "A59"], ["PD063", "A69"], ["XSY", "A69"], "IDNIK", "AND"],
+                "34R": ["PD059", ["PD060", "A59"], ["PD063", "A69"], ["XSY", "A69"], "IDNIK", "AND"]
+            },
+            "draw": [
+                ["PD059", "PD060", "PD063", "XSY"],
+           	    ["AND"]
+            ]
+        },
+        "AND22D": {
+            "icao": "AND22D",
+            "name": "Andong Two Two Delta",
+            "rwy": {
+                "34L": ["D194K", "D194D", ["D142L", "A69"], ["XSY", "A69"], "IDNIK", "AND"],
+                "34R": ["D194K", "D194D", ["D142L", "A69"], ["XSY", "A69"], "IDNIK", "AND"]
+            },
+            "draw": [
+                ["D194K", "D194D", "D142L", "XSY"],
+                ["AND"]
+            ]
+        },
+            "SUR14X": {
+            "icao": "SUR14X",
+            "name": "Surak One Four Xray",
+            "rwy": {
+                "35L": ["PD062", ["HSH", "A49"], ["PD063", "A60"], ["NINAS", "A89"], "LASAN", "BONGI", "BOLEX", "TONIX", "AKARA", "SURAK"],
+                "35R": ["PD062", ["HSH", "A49"], ["PD063", "A60"], ["NINAS", "A89"], "LASAN", "BONGI", "BOLEX", "TONIX", "AKARA", "SURAK"]
+            },
+            "draw": [
+                ["SURAK"]
+            ]
+        },
+        "SUR14D": {
+            "icao": "SUR14D",
+            "name": "Surak One Four Delta",
+            "rwy": {
+                "35L": [["HSH", "A49"], ["D142L", "A69"], ["NINAS", "A89"], "LASAN", "BONGI", "BOLEX", "TONIX", "AKARA", "SURAK"],
+                "35R": [["HSH", "A49"], ["D142L", "A69"], ["NINAS", "A89"], "LASAN", "BONGI", "BOLEX", "TONIX", "AKARA", "SURAK"]
+            },
+            "draw": [
+                ["SURAK"]
+            ]
+        },
+        "SUR12X": {
+            "icao": "SUR12X",
+            "name": "Surak One Two Xray",
+            "rwy": {
+                "35L": ["PD062", ["HSH", "A39"], ["PD053", "A131"], "ALDAP", "EMSAN", "SURAK"],
+                "35R": ["PD062", ["HSH", "A39"], ["PD053", "A131"], "ALDAP", "EMSAN", "SURAK"]
+            },
+            "draw": [
+                ["SURAK"]
+            ]
+        },
+        "SUR12D": {
+            "icao": "SUR12D",
+            "name": "Surak One Two Delta",
+            "rwy": {
+                "35L": [["HSH", "A39"], ["D066I", "A131"], "ALDAP", "EMSAN", "SURAK"],
+                "35R": [["HSH", "A39"], ["D066I", "A131"], "ALDAP", "EMSAN", "SURAK"]
+            },
+            "draw": [
+                ["SURAK"]
+            ]
+        },
+        "SUF12X": {
+            "icao": "SUF12X",
+            "name": "Shuofang One Two Xray",
+            "rwy": {
+                "35L": ["PD062", ["PD065", "A79"], ["PD045", "A99"], "PD070", "SUF"],
+                "35R": ["PD062", ["PD065", "A79"], ["PD045", "A99"], "PD070", "SUF"]
+            },
+            "draw": [
+                ["SUF"]
+            ]
+        },
+        "SUF12D": {
+            "icao": "SUF12D",
+            "name": "Shuofang One Two Delta",
+            "rwy": {
+                "35L": [["D264N", "A79"], ["PK", "A99"], "CGT", "D242B", "SUF"],
+                "35R": [["D264N", "A79"], ["PK", "A99"], "CGT", "D242B", "SUF"]
+            },
+            "draw": [
+                ["SUF"]
+            ]
+        },
+        "SAS12X": {
+            "icao": "SAS12X",
+            "name": "Sasan One Two Xray",
+            "rwy": {
+                "35L": ["PD062", ["PD065", "A79"], ["PD045", "A99"], "EKIMU", ["SASAN", "A217"]],
+                "35R": ["PD062", ["PD065", "A79"], ["PD045", "A99"], "EKIMU", ["SASAN", "A217"]]
+            },
+            "draw": [
+                ["SASAN"]
+            ]
+        },
+        "SAS12D": {
+            "icao": "SAS12D",
+            "name": "Sasan One Two Delta",
+            "rwy": {
+                "35L": [["D264N", "A79"], ["PK", "A99"], "EKIMU", ["SASAN", "A217"]],
+                "35R": [["D264N", "A79"], ["PK", "A99"], "EKIMU", ["SASAN", "A217"]]
+            },
+            "draw": [
+                ["SASAN"]
+            ]
+        },
+        "PIK16X": {
+            "icao": "PIK16X",
+            "name": "Pikas One Six Xray",
+            "rwy": {
+                "35L": ["PD062", "POMOK", "PIKAS"],
+                "35R": ["PD062", "POMOK", "PIKAS"]
+            },
+            "draw": [
+                ["PIKAS"]
+            ]
+        },
+        "PIK16D": {
+            "icao": "PIK16D",
+            "name": "Pikas One Six Delta",
+            "rwy": {
+                "35L": ["D347N", "POMOK", "PIKAS"],
+                "35R": ["D347N", "POMOK", "PIKAS"]
+            },
+            "draw": [
+                ["PIKAS"]
+            ]
+        }, 
+        "PIK14X": {
+            "icao": "PIK14X",
+            "name": "Pikas One Four Xray",
+            "rwy": {
+                "35L": ["PD062", "PD064", "NTG", "PIKAS"],
+                "35R": ["PD062", "PD064", "NTG", "PIKAS"]
+            },
+            "draw": [
+                ["PIKAS"]
+            ]
+        },   
+        "PIK14D": {
+            "icao": "PIK14D",
+            "name": "Pikas One Four Delta",
+            "rwy": {
+                "35L": ["D347W", "NTG", "PIKAS"],
+                "35R": ["D347W", "NTG", "PIKAS"]
+            },
+            "draw": [
+                ["PIKAS"]
+            ]
+        },
+        "PIK12X": {
+            "icao": "PIK12X",
+            "name": "Pikas One Two Xray",
+            "rwy": {
+                "35L": ["PD062", ["PD065", "A79"], ["PD045", "A99"], "POMOK", "PIKAS"],
+                "35R": ["PD062", ["PD065", "A79"], ["PD045", "A99"], "POMOK", "PIKAS"]
+            },
+            "draw": [
+                ["PD045", "POMOK"],
+                ["PIKAS"]
+            ]
+        },
+        "PIK12D": {
+            "icao": "PIK12D",
+            "name": "Pikas One Two Delta",
+            "rwy": {
+                "35L": [["D264N", "A79"], ["PK", "A99"], "POMOK", "PIKAS"],
+                "35R": [["D264N", "A79"], ["PK", "A99"], "POMOK", "PIKAS"]
+            },
+            "draw": [
+                ["PIKAS"]
+            ]
+        },
+        "ODU16X": {
+            "icao": "ODU16X",
+            "name": "Odulo One Six Xray",
+            "rwy": {
+                "35L": ["PD062", ["HSH", "A39"], "PINOT", "ALDAP", "IBEGI", "ODULO"],
+                "35R": ["PD062", ["HSH", "A39"], "PINOT", "ALDAP", "IBEGI", "ODULO"]
+            },
+            "draw": [
+                ["ODULO"]
+            ]
+        },
+        "ODU16D": {
+            "icao": "ODU16D",
+            "name": "Odulo One Six Delta",
+            "rwy": {
+                "35L": [["HSH", "A39"], "PINOT", "ALDAP", "IBEGI", "ODULO"],
+                "35R": [["HSH", "A39"], "PINOT", "ALDAP", "IBEGI", "ODULO"]
+            },
+            "draw": [
+                ["ODULO"]
+            ]
+        },
+        "ODU14X": {
+            "icao": "ODU14X",
+            "name": "Odulo One Four Xray",
+            "rwy": {
+                "35L": ["PD062", "UDOXI", "ODULO"],
+                "35R": ["PD062", "UDOXI", "ODULO"]
+            },
+            "draw": [
+                ["ODULO"]
+            ]
+        },
+        "ODU14D": {
+            "icao": "ODU14D",
+            "name": "Odulo One Four Delta",
+            "rwy": {
+                "35L": [["HSH", "A39"], "UDOXI", "ODULO"],
+                "35R": [["HSH", "A39"], "UDOXI", "ODULO"]
+            },
+            "draw": [
+                ["ODULO"]
+            ]
+        },
+        "ODU12X": {
+            "icao": "ODU12X",
+            "name": "Odulo One Two Xray",
+            "rwy": {
+                "35L": ["PD062", ["HSH", "A39"], ["PD053", "A131"], "ALDAP", "IBEGI", "ODULO"],
+                "35R": ["PD062", ["HSH", "A39"], ["PD053", "A131"], "ALDAP", "IBEGI", "ODULO"]
+            },
+            "draw": [
+                ["ODULO"]
+            ]
+        },
+        "ODU12D": {
+            "icao": "ODU12D",
+            "name": "Odulo One Two Delta",
+            "rwy": {
+                "35L": [["HSH", "A39"], ["D066I", "A131"], "ALDAP", "IBEGI", "ODULO"],
+                "35R": [["HSH", "A39"], ["D066I", "A131"], "ALDAP", "IBEGI", "ODULO"]
+            },
+            "draw": [
+                ["ODULO"]
+            ]
+        },
+        "NXD12X": {
+            "icao": "NXD12X",
+            "name": "Nanxun One Two Xray",
+            "rwy": {
+                "35L": ["PD062", ["PD065", "A79"], ["PD045", "A99"], "OLGAP", "NXD"],
+                "35R": ["PD062", ["PD065", "A79"], ["PD045", "A99"], "OLGAP", "NXD"]
+            },
+            "draw": [
+                ["NXD"]
+            ]
+        },
+        "NXD12D": {
+            "icao": "NXD12D",
+            "name": "Nanxun One Two Delta",
+            "rwy": {
+                "35L": [["D264N", "A79"], ["PK", "A99"], "ZHAXG", "OLGAP", ["NXD", "A128"]],
+                "35R": [["D264N", "A79"], ["PK", "A99"], "ZHAXG", "OLGAP", ["NXD", "A128"]]
+            },
+            "draw": [
+                ["NXD"]
+            ]
+        },
+        "LAM14X": {
+            "icao": "LAM14X",
+            "name": "Lamen One Four Xray",
+            "rwy": {
+                "35L": ["PD062", ["HSH", "A49"], ["PD063", "A69"], ["NINAS", "A89"], "LASAN", "BONGI", "BOLEX", "TONIX", "LAMEN"],
+                "35R": ["PD062", ["HSH", "A49"], ["PD063", "A69"], ["NINAS", "A89"], "LASAN", "BONGI", "BOLEX", "TONIX", "LAMEN"]
+            },
+            "draw": [
+                ["LAMEN"]
+            ]
+        },
+        "LAM14D": {
+            "icao": "LAM14D",
+            "name": "Lamen One Four Delta",
+            "rwy": {
+                "35L": [["HSH", "A49"], ["D142L", "A69"], ["NINAS", "A89"], "LASAN", "BONGI", "BOLEX", "TONIX", "LAMEN"],
+                "35R": [["HSH", "A49"], ["D142L", "A69"], ["NINAS", "A89"], "LASAN", "BONGI", "BOLEX", "TONIX", "LAMEN"]
+            },
+            "draw": [
+                ["LAMEN"]
+            ]
+        },
+        "LAM12X": {
+            "icao": "LAM12X",
+            "name": "Lamen One Two Xray",
+            "rwy": {
+                "35L": ["PD062", ["HSH", "A49"], ["PD053", "A131"], "ALDAP", "EMSAN", "SURAK", "LAMEN"],
+                "35R": ["PD062", ["HSH", "A49"], ["PD053", "A131"], "ALDAP", "EMSAN", "SURAK", "LAMEN"]
+            },
+            "draw": [
+                ["LAMEN"]
+            ]
+        },
+        "LAM12D": {
+            "icao": "LAM12D",
+            "name": "Lamen One Two Delta",
+            "rwy": {
+                "35L": [["HSH", "A39"], ["D066I", "A131"], "ALDAP", "EMSAN", "SURAK", "LAMEN"],
+                "35R": [["HSH", "A39"], ["D066I", "A131"], "ALDAP", "EMSAN", "SURAK", "LAMEN"]
+            },
+            "draw": [
+                ["LAMEN"]
+            ]
+        },
+        "HSN12X": {
+            "icao": "HSN12X",
+            "name": "Zhoushan One Two Xray",
+            "rwy": {
+                "35L": ["PD062", ["HSH", "A49"], ["PD063", "A69"], ["NINAS", "A89"], "PONAB", ["HSN", "A256"]],
+                "35R": ["PD062", ["HSH", "A49"], ["PD063", "A69"], ["NINAS", "A89"], "PONAB", ["HSN", "A256"]]
+            },
+            "draw": [
+                ["HSN"] 
+            ]
+        },
+        "HSN12D": {
+            "icao": "HSN12D",
+            "name": "Zhoushan One Two Delta",
+            "rwy": {
+                "35L": [["HSH", "A49"], ["D142L", "A69"], ["NINAS", "A89"], "PONAB", ["HSN", "A256"]],
+                "35R": [["HSH", "A49"], ["D142L", "A69"], ["NINAS", "A89"], "PONAB", ["HSN", "A256"]]
+            },
+            "draw": [
+                ["HSN"] 
+            ]
+        },
+        "BOL12X": {
+            "icao": "BOL12X",
+            "name": "Bolex One Two Xray",
+            "rwy": {
+                "35L": ["PD062", ["HSH", "A49"], ["PD063", "A69"], ["NINAS", "A89"], "LASAN", "BONGI", "BOLEX"],
+                "35R": ["PD062", ["HSH", "A49"], ["PD063", "A69"], ["NINAS", "A89"], "LASAN", "BONGI", "BOLEX"]
+            },
+            "draw": [
+                ["BOLEX"]
+            ]
+        },
+        "BOL12D": {
+            "icao": "BOL12D",
+            "name": "Bolex One Two Delta",
+            "rwy": {
+                "35L": [["D142L", "A69"], ["NINAS", "A89"], "LASAN", "BONGI", "BOLEX"],
+                "35R": [["D142L", "A69"], ["NINAS", "A89"], "LASAN", "BONGI", "BOLEX"]
+            },
+            "draw": [
+                ["BOLEX"]
+            ]
+        },
+        "AND12X": {
+            "icao": "AND12X",
+            "name": "Andong One Two Xray",
+            "rwy": {
+                "35L": ["PD062", ["PD065", "A79"], ["PD045", "A99"], "JTN", "IDNIK", "AND"],
+                "35R": ["PD062", ["PD065", "A79"], ["PD045", "A99"], "JTN", "IDNIK", "AND"]
+            },
+            "draw": [
+                ["PD062", "PD065"],
+                ["AND"]
+            ]
+        },
+        "AND12D": {
+            "icao": "AND12D",
+            "name": "Andong One Two Delta",
+            "rwy": {
+                "35L": [["D264N", "A79"], ["PK", "A99"], "JTN", "IDNIK", "AND"],
+                "35R": [["D264N", "A79"], ["PK", "A99"], "JTN", "IDNIK", "AND"]
+            },
+            "draw": [
+                ["AND"]
+            ]
+        }
+    },
+
+    "departures": {
+        "airlines": [
+            ["afl",   1],
+            ["amx",   1],
+            ["aca",   2],
+            ["cca",  35],
+            ["aic",   2],
+            ["kor",   1],
+            ["xax",   1],
+            ["ana",   6],
+            ["aal",   3],
+            ["baw",   1],
+            ["cpa",   6],
+            ["ces", 131],
+            ["csn",  41],
+            ["dal",   4],
+            ["aua",   1],
+            ["hda",   1],
+            ["uae",   2],
+            ["etd",   7],
+            ["eva",   3],
+            ["gia",   2],
+            ["ibe",   1],
+            ["jal",   4],
+            ["klm",   1],
+            ["kal",   7],
+            ["dlh",   2],
+            ["mas",   7],
+            ["qfa",   7],
+            ["qtr",   2],
+            ["sas",   1],
+            ["sia",   1],
+            ["swr",   1],
+            ["thy",   4],
+            ["ual",   5],
+            ["vir",   1],
+            ["sbi",   2],
+            ["dkh",  47],
+            ["csh",  37],
+            ["cqh",  46],
+            ["ups",   6],
+            ["yzr",  22],
+            ["fdx",   8],
+            ["ckk",  23],
+            ["gti",   4],
+            ["nca",   1],
+            ["sqc",   2]
+        ],
+        "destinations": [
+            "SUR21X",
+            "SUR21D",
+            "SUF21X",
+            "SUF21D",
+            "SAS21X",
+            "SAS21D",
+            "PIK27X",
+            "PIK27D",
+            "PIK23X",
+            "PIK23D",
+            "PIK21X",
+            "PIK21D",
+            "ODU43D",
+            "ODU27D",
+            "ODU25X",
+            "ODU23X",
+            "ODU21X",
+            "ODU21D",
+            "NXD23X",
+            "NXD23D",
+            "NXD21D",
+            "LAM21X",
+            "LAM21D",
+            "JTN11D",
+            "HSN23X",
+            "HSN23D",
+            "HSN21X",
+            "HSN21D",
+            "BOL21X",
+            "BOL21D",
+            "AND21X",
+            "AND21D",
+            "SUR11X",
+            "SUR11D",
+            "SUF11X",
+            "SUF11D",
+            "SAS11X",
+            "SAS11D",
+            "PIK11D",
+            "PIK11X",
+            "PIK13X",
+            "PIK13D",
+            "PIK17D",
+            "PIK19D",
+            "PIK19X",
+            "ODU33D",
+            "ODU19D",
+            "ODU17D",
+            "ODU15X",
+            "ODU13X",
+            "ODU11X",
+            "ODU11D",
+            "NXD13X",
+            "NXD13D",
+            "NXD11D",
+            "LAM11X",
+            "LAM11D",
+            "HSN13X",
+            "HSN13D",
+            "HSN11X",
+            "HSN11D",
+            "BOL11X",
+            "BOL11D",
+            "AND11X",
+            "AND11D",
+            "SUR14X",
+            "SUR14D",
+            "SUR12X",
+            "SUR12D",
+            "SUF12X",
+            "SUF12D",
+            "SAS12X",
+            "SAS12D",
+            "PIK16X",
+            "PIK16D",
+            "PIK14X",
+            "PIK14D",
+            "PIK12X",
+            "PIK12D",
+            "ODU16X",
+            "ODU16D",
+            "ODU14X",
+            "ODU14D",
+            "ODU12X",
+            "ODU12D",
+            "NXD12X",
+            "NXD12D",
+            "LAM14X",
+            "LAM14D",
+            "LAM12X",
+            "LAM12D",
+            "HSN12X",
+            "HSN12D",
+            "BOL12X",
+            "BOL12D",
+            "AND12X",
+            "AND12D",
+            "SUR24X",
+            "SUR24D",
+            "SUR22X",
+            "SUR22D",
+            "SUF22X",
+            "SUF22D",
+            "SAS22X",
+            "SAS22D",
+            "PIK26X",
+            "PIK26D",
+            "PIK24X",
+            "PIK24D",
+            "PIK22X",
+            "PIK22D",
+            "ODU26X",
+            "ODU26D",
+            "ODU24X",
+            "ODU24D",
+            "ODU22X",
+            "ODU22D",
+            "NXD22X",
+            "NXD22D",
+            "LAM24X",
+            "LAM24D",
+            "LAM22X",
+            "LAM22D",
+            "HSN22X",
+            "HSN22D",
+            "CGT12D",
+            "BOL22X",
+            "BOL22D",
+            "AND22X",
+            "AND22D"
+        ],
+        "type": "cyclic",
+        "offset": 0,
+        "frequency": 32
+    },
+    "stars": {
+        "AND11A": {
+            "icao": "AND11A",
+            "name": "Andong One One Alfa",
+            "entryPoints": {
+                "ANDONG": ["AND"]
+            },
+            "rwy": {
+                "16L": ["IDNIK", ["IGLIT", "A148"], ["D166M", "A39"]],
+                "16R": ["IDNIK", ["IGLIT", "A148"], ["D166M", "A39"]],
+                "17L": ["IDNIK", ["IGLIT", "A148"], ["D166M", "A39"]],
+                "17R": ["IDNIK", ["IGLIT", "A148"], ["D166M", "A39"]],
+                "34L": ["IDNIK", ["IGLIT", "A148"], ["D166M", "A39"]],
+                "34R": ["IDNIK", ["IGLIT", "A148"], ["D166M", "A39"]],
+                "35L": ["IDNIK", ["IGLIT", "A148"], ["D166M", "A39"]],
+                "35R": ["IDNIK", ["IGLIT", "A148"], ["D166M", "A39"]]
+            },
+            "draw": [
+                ["AND", "IDNIK", "IGLIT", "D166M"]
+            ]
+        },
+        "AND12A": {
+            "icao": "AND12A",
+            "name": "Andong One Two Alfa",
+            "entryPoints": {
+                "ANDONG": ["AND"]
+            },
+            "rwy": {
+                "16L": ["IDNIK", ["IGLIT", "A148"], "D197L", "DOKUN", ["PDL", "A89"]],
+                "16R": ["IDNIK", ["IGLIT", "A148"], "D197L", "DOKUN", ["PDL", "A89"]],
+                "17L": ["IDNIK", ["IGLIT", "A148"], "D197L", "DOKUN", ["PDL", "A89"]],
+                "17R": ["IDNIK", ["IGLIT", "A148"], "D197L", "DOKUN", ["PDL", "A89"]],
+                "34L": ["IDNIK", ["IGLIT", "A148"], "D197L", "DOKUN", ["PDL", "A89"]],
+                "34R": ["IDNIK", ["IGLIT", "A148"], "D197L", "DOKUN", ["PDL", "A89"]],
+                "35L": ["IDNIK", ["IGLIT", "A148"], "D197L", "DOKUN", ["PDL", "A89"]],
+                "35R": ["IDNIK", ["IGLIT", "A148"], "D197L", "DOKUN", ["PDL", "A89"]]
+            },
+            "draw": [
+                ["AND", "IDNIK", "IGLIT", "D197L", "DOKUN", "PDL"]
+            ]
+        },
+        "AND13A": {
+            "icao": "AND13A",
+            "name": "Andong One Three Alfa",
+            "entryPoints": {
+                "ANDONG": ["AND"]
+            },
+            "rwy": {
+                "16L": [["DADAT", "A115"], "BELOP", ["D233V", "A79"]],
+                "16R": [["DADAT", "A115"], "BELOP", ["D233V", "A79"]],
+                "17L": [["DADAT", "A115"], "BELOP", ["D233V", "A79"]],
+                "17R": [["DADAT", "A115"], "BELOP", ["D233V", "A79"]],
+                "34L": [["DADAT", "A115"], "BELOP", ["D233V", "A79"]],
+                "34R": [["DADAT", "A115"], "BELOP", ["D233V", "A79"]],
+                "35L": [["DADAT", "A115"], "BELOP", ["D233V", "A79"]],
+                "35R": [["DADAT", "A115"], "BELOP", ["D233V", "A79"]]
+            },
+            "draw": [
+                ["AND", "DADAT", "BELOP", "D233V"]
+            ]
+        },
+        "AND14A": {
+            "icao": "AND14A",
+            "name": "Andong One Four Alfa",
+            "entryPoints": {
+                "ANDONG": ["AND"]
+            },
+            "rwy": {
+                "16L": [["DADAT", "A115"], "BELOP", "DOKUN", ["PDL", "A89"]],
+                "16R": [["DADAT", "A115"], "BELOP", "DOKUN", ["PDL", "A89"]],
+                "17L": [["DADAT", "A115"], "BELOP", "DOKUN", ["PDL", "A89"]],
+                "17R": [["DADAT", "A115"], "BELOP", "DOKUN", ["PDL", "A89"]],
+                "34L": [["DADAT", "A115"], "BELOP", "DOKUN", ["PDL", "A89"]],
+                "34R": [["DADAT", "A115"], "BELOP", "DOKUN", ["PDL", "A89"]],
+                "35L": [["DADAT", "A115"], "BELOP", "DOKUN", ["PDL", "A89"]],
+                "35R": [["DADAT", "A115"], "BELOP", "DOKUN", ["PDL", "A89"]]
+            },
+            "draw": [
+                ["AND", "DADAT", "BELOP", "DOKUN", "PDL"]
+            ]
+        },
+        "AND15A": {
+            "icao": "AND15A",
+            "name": "Andong One Five Alfa",
+            "entryPoints": {
+                "ANDONG": ["AND"]
+            },
+            "rwy": {
+                "16L": ["IDNIK", ["IGLIT", "A148"], "XSY"],
+                "16R": ["IDNIK", ["IGLIT", "A148"], "XSY"],
+                "17L": ["IDNIK", ["IGLIT", "A148"], "XSY"],
+                "17R": ["IDNIK", ["IGLIT", "A148"], "XSY"],
+                "34L": ["IDNIK", ["IGLIT", "A148"], "XSY"],
+                "34R": ["IDNIK", ["IGLIT", "A148"], "XSY"],
+                "35L": ["IDNIK", ["IGLIT", "A148"], "XSY"],
+                "35R": ["IDNIK", ["IGLIT", "A148"], "XSY"]
+            },
+            "draw": [
+                ["AND", "IDNIK", "IGLIT", "XSY"]
+            ]
+        },
+        "BK11A": {
+            "icao": "BK11A",
+            "name": "Lishe One One Alfa",
+            "entryPoints": {
+                "LISHE": ["BK"]
+            },
+            "rwy": {
+                "16L": [["BAVIK", "A148"], ["IGLIT", "A148"], ["D166M", "A39"]],
+                "16R": [["BAVIK", "A148"], ["IGLIT", "A148"], ["D166M", "A39"]],
+                "17L": [["BAVIK", "A148"], ["IGLIT", "A148"], ["D166M", "A39"]],
+                "17R": [["BAVIK", "A148"], ["IGLIT", "A148"], ["D166M", "A39"]],
+                "34L": [["BAVIK", "A148"], ["IGLIT", "A148"], ["D166M", "A39"]],
+                "34R": [["BAVIK", "A148"], ["IGLIT", "A148"], ["D166M", "A39"]],
+                "35L": [["BAVIK", "A148"], ["IGLIT", "A148"], ["D166M", "A39"]],
+                "35R": [["BAVIK", "A148"], ["IGLIT", "A148"], ["D166M", "A39"]]
+            },
+            "draw": [
+                ["BK", "BAVIK", "IGLIT", "D166M"]
+            ]
+        },
+        "BK12A": {
+            "icao": "BK12A",
+            "name": "Lishe One Two Alfa",
+            "entryPoints": {
+                "LISHE": ["BK"]
+            },
+            "rwy": {
+                "16L": [["BAVIK", "A148"], ["IGLIT", "A148"], "D197L", "DOKUN", ["PDL", "A89"]],
+                "16R": [["BAVIK", "A148"], ["IGLIT", "A148"], "D197L", "DOKUN", ["PDL", "A89"]],
+                "17L": [["BAVIK", "A148"], ["IGLIT", "A148"], "D197L", "DOKUN", ["PDL", "A89"]],
+                "17R": [["BAVIK", "A148"], ["IGLIT", "A148"], "D197L", "DOKUN", ["PDL", "A89"]],
+                "34L": [["BAVIK", "A148"], ["IGLIT", "A148"], "D197L", "DOKUN", ["PDL", "A89"]],
+                "34R": [["BAVIK", "A148"], ["IGLIT", "A148"], "D197L", "DOKUN", ["PDL", "A89"]],
+                "35L": [["BAVIK", "A148"], ["IGLIT", "A148"], "D197L", "DOKUN", ["PDL", "A89"]],
+                "35R": [["BAVIK", "A148"], ["IGLIT", "A148"], "D197L", "DOKUN", ["PDL", "A89"]]
+            },
+            "draw": [
+                ["BK", "BAVIK", "IGLIT", "D197L", "DOKUN", "PDL"]
+            ]
+        },
+        "BK13A": {
+            "icao": "BK13A",
+            "name": "Lishe One Three Alfa",
+            "entryPoints": {
+                "LISHE": ["BK"]
+            },
+            "rwy": {
+                "16L": [["BAVIK", "A148"], ["IGLIT", "A148"], "XSY"],
+                "16R": [["BAVIK", "A148"], ["IGLIT", "A148"], "XSY"],
+                "17L": [["BAVIK", "A148"], ["IGLIT", "A148"], "XSY"],
+                "17R": [["BAVIK", "A148"], ["IGLIT", "A148"], "XSY"],
+                "34L": [["BAVIK", "A148"], ["IGLIT", "A148"], "XSY"],
+                "34R": [["BAVIK", "A148"], ["IGLIT", "A148"], "XSY"],
+                "35L": [["BAVIK", "A148"], ["IGLIT", "A148"], "XSY"],
+                "35R": [["BAVIK", "A148"], ["IGLIT", "A148"], "XSY"]
+            },
+            "draw": [
+                ["BK", "BAVIK", "IGLIT", "XSY"]
+            ]
+        },
+        "DUM21A": {
+            "icao": "DUM21A",
+            "name": "Dumet Two One Alfa",
+            "entryPoints": {
+                "DUMET": ["DUMET"]
+            },
+            "rwy": {
+                "16L": ["R049", ["D049O", "A49"]],
+                "16R": ["R049", ["D049O", "A49"]],
+                "17L": ["R049", ["D049O", "A49"]],
+                "17R": ["R049", ["D049O", "A49"]],
+                "34L": ["R049", ["D049O", "A49"]],
+                "34R": ["R049", ["D049O", "A49"]],
+                "35L": ["R049", ["D049O", "A49"]],
+                "35R": ["R049", ["D049O", "A49"]]
+            },
+            "draw": [
+                ["DUMET", "R049", "D049O"]
+            ]
+        },
+        "MAT21A": {
+            "icao": "MAT21A",
+            "name": "Matnu Two One Alfa",
+            "entryPoints": {
+                "MATNU": ["MATNU"]
+            },
+            "rwy": {
+                "16L": ["R069", "PINOT", "R049", ["D049O", "A49"]],
+                "16R": ["R069", "PINOT", "R049", ["D049O", "A49"]],
+                "17L": ["R069", "PINOT", "R049", ["D049O", "A49"]],
+                "17R": ["R069", "PINOT", "R049", ["D049O", "A49"]],
+                "34L": ["R069", "PINOT", "R049", ["D049O", "A49"]],
+                "34R": ["R069", "PINOT", "R049", ["D049O", "A49"]],
+                "35L": ["R069", "PINOT", "R049", ["D049O", "A49"]],
+                "35R": ["R069", "PINOT", "R049", ["D049O", "A49"]]
+            },
+            "draw": [
+                ["DUMET", "R069", "PINOT", "R049", "D049O"]
+            ]
+        },
+        "SAS11A": {
+            "icao": "SAS11A",
+            "name": "Sasan One One Alfa",
+            "entryPoints": {
+                "SASAN": ["SASAN"]
+            },
+            "rwy": {
+                "16L": ["EKIMU", "JTN", ["D131R", "A59"]],
+                "16R": ["EKIMU", "JTN", ["D131R", "A59"]],
+                "17L": ["EKIMU", "JTN", ["D131R", "A59"]],
+                "17R": ["EKIMU", "JTN", ["D131R", "A59"]],
+                "34L": ["EKIMU", "JTN", ["D131R", "A59"]],
+                "34R": ["EKIMU", "JTN", ["D131R", "A59"]],
+                "35L": ["EKIMU", "JTN", ["D131R", "A59"]],
+                "35R": ["EKIMU", "JTN", ["D131R", "A59"]]
+            },
+            "draw": [
+                ["SASAN", "EKIMU", "JTN", "D131R"]
+            ]
+        },
+        "SAS12A": {
+            "icao": "SAS12A",
+            "name": "Sasan One Two Alfa",
+            "entryPoints": {
+                "SASAN": ["SASAN"]
+            },
+            "rwy": {
+                "16L": ["EKIMU", ["PK", "A79"], ["TOSAS", "A59"]],
+                "16R": ["EKIMU", ["PK", "A79"], ["TOSAS", "A59"]],
+                "17L": ["EKIMU", ["PK", "A79"], ["TOSAS", "A59"]],
+                "17R": ["EKIMU", ["PK", "A79"], ["TOSAS", "A59"]],
+                "34L": ["EKIMU", ["PK", "A79"], ["TOSAS", "A59"]],
+                "34R": ["EKIMU", ["PK", "A79"], ["TOSAS", "A59"]],
+                "35L": ["EKIMU", ["PK", "A79"], ["TOSAS", "A59"]],
+                "35R": ["EKIMU", ["PK", "A79"], ["TOSAS", "A59"]]
+            },
+            "draw": [
+                ["SASAN", "EKIMU", "PK", "TOSAS"]
+            ]
+        },
+        "SAS13A": {
+            "icao": "SAS13A",
+            "name": "Sasan One Three Alfa",
+            "entryPoints": {
+                "SASAN": ["SASAN"]
+            },
+            "rwy": {
+                "16L": ["EKIMU", "JTN", ["PDL", "A78"]],
+                "16R": ["EKIMU", "JTN", ["PDL", "A78"]],
+                "17L": ["EKIMU", "JTN", ["PDL", "A78"]],
+                "17R": ["EKIMU", "JTN", ["PDL", "A78"]],
+                "34L": ["EKIMU", "JTN", ["PDL", "A78"]],
+                "34R": ["EKIMU", "JTN", ["PDL", "A78"]],
+                "35L": ["EKIMU", "JTN", ["PDL", "A78"]],
+                "35R": ["EKIMU", "JTN", ["PDL", "A78"]]
+            },
+            "draw": [
+                ["SASAN", "EKIMU", "JTN", "PDL"]
+            ]
+        },
+        "SAS14A": {
+            "icao": "SAS14A",
+            "name": "Sasan One Four Alfa",
+            "entryPoints": {
+                "SASAN": ["SASAN"]
+            },
+            "rwy": {
+                "16L": ["EKIMU", ["PK", "A79"], ["D316S", "A49"]],
+                "16R": ["EKIMU", ["PK", "A79"], ["D316S", "A49"]],
+                "17L": ["EKIMU", ["PK", "A79"], ["D316S", "A49"]],
+                "17R": ["EKIMU", ["PK", "A79"], ["D316S", "A49"]],
+                "34L": ["EKIMU", ["PK", "A79"], ["D316S", "A49"]],
+                "34R": ["EKIMU", ["PK", "A79"], ["D316S", "A49"]],
+                "35L": ["EKIMU", ["PK", "A79"], ["D316S", "A49"]],
+                "35R": ["EKIMU", ["PK", "A79"], ["D316S", "A49"]]
+            },
+            "draw": [
+                ["SASAN", "EKIMU", "PK", "D316S"]
+            ]
+        },
+        "SUF10A": {
+            "icao": "SUF10A",
+            "name": "Shuofang One Zero Alfa",
+            "entryPoints": {
+                "SHUOFANG": ["SUF"]
+            },
+            "rwy": {
+                "16L": ["JTN", ["PDL", "A89"]],
+                "16R": ["JTN", ["PDL", "A89"]],
+                "17L": ["JTN", ["PDL", "A89"]],
+                "17R": ["JTN", ["PDL", "A89"]],
+                "34L": ["JTN", ["PDL", "A89"]],
+                "34R": ["JTN", ["PDL", "A89"]],
+                "35L": ["JTN", ["PDL", "A89"]],
+                "35R": ["JTN", ["PDL", "A89"]]
+            },
+            "draw": [
+                ["SUF", "JTN", "PDL"]
+            ]
+        },
+        "SUF11A": {
+            "icao": "SUF11A",
+            "name": "Shuofang One One Alfa",
+            "entryPoints": {
+                "SHUOFANG": ["SUF"]
+            },
+            "rwy": {
+                "16L": ["JTN", ["D131R", "A59"]],
+                "16R": ["JTN", ["D131R", "A59"]],
+                "17L": ["JTN", ["D131R", "A59"]],
+                "17R": ["JTN", ["D131R", "A59"]],
+                "34L": ["JTN", ["D131R", "A59"]],
+                "34R": ["JTN", ["D131R", "A59"]],
+                "35L": ["JTN", ["D131R", "A59"]],
+                "35R": ["JTN", ["D131R", "A59"]]
+            },
+            "draw": [
+                ["SUF", "JTN", "PDL"]
+            ]
+        },
+        "SUF13A": {
+            "icao": "SUF13A",
+            "name": "Shuofang One Three Alfa",
+            "entryPoints": {
+                "SHUOFANG": ["SUF"]
+            },
+            "rwy": {
+                "16L": ["JTN", ["PDL", "A79"]],
+                "16R": ["JTN", ["PDL", "A79"]],
+                "17L": ["JTN", ["PDL", "A79"]],
+                "17R": ["JTN", ["PDL", "A79"]],
+                "34L": ["JTN", ["PDL", "A79"]],
+                "34R": ["JTN", ["PDL", "A79"]],
+                "35L": ["JTN", ["PDL", "A79"]],
+                "35R": ["JTN", ["PDL", "A79"]]
+            },
+            "draw": [
+                ["SUF", "JTN", "PDL"]
+            ]
+        }
+    },
+    "arrivals": [
+        {
+            "type": 		"cyclic",
+            "route":        "ANDONG.AND11A.ZSPD",
+            "frequency":    1,
+            "altitude":     16000,
+            "speed":		250,
+            "offset":		1,
+            "airlines": [
+                    ["amx",   1],
+                    ["cca",  35],
+                    ["aic",   2],
+                    ["xax",   1],
+                    ["cpa",   6],
+                    ["ces", 131],
+                    ["csn",  41],
+                    ["hda",   1],
+                    ["uae",   2],
+                    ["etd",   7],
+                    ["eva",   3],
+                    ["ibe",   1],
+                    ["mas",   7],
+                    ["qtr",   2],
+                    ["dkh",  47],
+                    ["csh",  37],
+                    ["cqh",  46],
+                    ["ups",   6],
+                    ["yzr",  22],
+                    ["fdx",   8],
+                    ["ckk",  23],
+                    ["sqc",   2]
+            ]
+        },
+        {
+            "type": 		"cyclic",
+            "route":        "ANDONG.AND12A.ZSPD",
+            "frequency":    1,
+            "altitude":     16000,
+            "speed":		250,
+            "offset":		6,
+            "airlines": [
+                    ["amx",   1],
+                    ["cca",  35],
+                    ["aic",   2],
+                    ["xax",   1],
+                    ["cpa",   6],
+                    ["ces", 131],
+                    ["csn",  41],
+                    ["hda",   1],
+                    ["uae",   2],
+                    ["etd",   7],
+                    ["eva",   3],
+                    ["ibe",   1],
+                    ["mas",   7],
+                    ["qtr",   2],
+                    ["dkh",  47],
+                    ["csh",  37],
+                    ["cqh",  46],
+                    ["ups",   6],
+                    ["yzr",  22],
+                    ["fdx",   8],
+                    ["ckk",  23],
+                    ["sqc",   2]
+            ]
+        },
+        {
+            "type": 		"cyclic",
+            "route":        "ANDONG.AND13A.ZSPD",
+            "frequency":    1,
+            "altitude":     16000,
+            "speed":		250,
+            "offset":		13,
+            "airlines": [
+                    ["amx",   1],
+                    ["cca",  35],
+                    ["aic",   2],
+                    ["xax",   1],
+                    ["cpa",   6],
+                    ["ces", 131],
+                    ["csn",  41],
+                    ["hda",   1],
+                    ["uae",   2],
+                    ["etd",   7],
+                    ["eva",   3],
+                    ["ibe",   1],
+                    ["mas",   7],
+                    ["qtr",   2],
+                    ["dkh",  47],
+                    ["csh",  37],
+                    ["cqh",  46],
+                    ["ups",   6],
+                    ["yzr",  22],
+                    ["fdx",   8],
+                    ["ckk",  23],
+                    ["sqc",   2]
+            ]
+        },
+        {
+            "type": 		"cyclic",
+            "route":        "ANDONG.AND14A.ZSPD",
+            "frequency":    1,
+            "altitude":     16000,
+            "speed":		250,
+            "offset":		33,
+            "airlines": [
+                    ["amx",   1],
+                    ["cca",  35],
+                    ["aic",   2],
+                    ["xax",   1],
+                    ["cpa",   6],
+                    ["ces", 131],
+                    ["csn",  41],
+                    ["hda",   1],
+                    ["uae",   2],
+                    ["etd",   7],
+                    ["eva",   3],
+                    ["ibe",   1],
+                    ["mas",   7],
+                    ["qtr",   2],
+                    ["dkh",  47],
+                    ["csh",  37],
+                    ["cqh",  46],
+                    ["ups",   6],
+                    ["yzr",  22],
+                    ["fdx",   8],
+                    ["ckk",  23],
+                    ["sqc",   2]
+            ]
+        },
+        {
+            "type": 		"cyclic",
+            "route":        "LISHE.BK11A.ZSPD",
+            "frequency":    1,
+            "altitude":     14800,
+            "speed":		250,
+            "offset":		12,
+            "airlines": [
+                    ["amx",   1],
+                    ["cca",  35],
+                    ["aic",   2],
+                    ["xax",   1],
+                    ["ces", 131],
+                    ["csn",  41],
+                    ["uae",   2],
+                    ["etd",   7],
+                    ["eva",   3],
+                    ["ibe",   1],
+                    ["mas",   7],
+                    ["qtr",   2],
+                    ["dkh",  47],
+                    ["csh",  37],
+                    ["cqh",  46],
+                    ["ups",   6],
+                    ["yzr",  22],
+                    ["fdx",   8],
+                    ["ckk",  23],
+                    ["sqc",   2]
+            ]
+        },
+        {
+            "type": 		"cyclic",
+            "route":        "LISHE.BK12A.ZSPD",
+            "frequency":    1,
+            "altitude":     14800,
+            "speed":		250,
+            "offset":		5,
+            "airlines": [
+                    ["amx",   1],
+                    ["cca",  35],
+                    ["aic",   2],
+                    ["xax",   1],
+                    ["ces", 131],
+                    ["csn",  41],
+                    ["uae",   2],
+                    ["etd",   7],
+                    ["eva",   3],
+                    ["ibe",   1],
+                    ["mas",   7],
+                    ["qtr",   2],
+                    ["dkh",  47],
+                    ["csh",  37],
+                    ["cqh",  46],
+                    ["ups",   6],
+                    ["yzr",  22],
+                    ["fdx",   8],
+                    ["ckk",  23],
+                    ["sqc",   2]
+            ]
+        },
+        {
+            "type": 		"cyclic",
+            "route":        "LISHE.BK13A.ZSPD",
+            "frequency":    2,
+            "altitude":     14800,
+            "speed":		250,
+            "offset":		1,
+            "airlines": [
+                    ["amx",   1],
+                    ["cca",  35],
+                    ["aic",   2],
+                    ["xax",   1],
+                    ["ces", 131],
+                    ["csn",  41],
+                    ["uae",   2],
+                    ["etd",   7],
+                    ["eva",   3],
+                    ["ibe",   1],
+                    ["mas",   7],
+                    ["qtr",   2],
+                    ["dkh",  47],
+                    ["csh",  37],
+                    ["cqh",  46],
+                    ["ups",   6],
+                    ["yzr",  22],
+                    ["fdx",   8],
+                    ["ckk",  23],
+                    ["sqc",   2]
+            ]
+        },
+        {
+            "type": 		"cyclic",
+            "route":        "DUMET.DUM21A.ZSPD",
+            "frequency":    2,
+            "altitude":     8000,
+            "speed":		250,
+            "offset":		2,
+            "airlines": [
+                    ["aca",   2],
+                    ["cca",  35],
+                    ["kor",   1],
+                    ["ana",   6],
+                    ["aal",   3],
+                    ["ces", 131],
+                    ["csn",  41],
+                    ["dal",   4],
+                    ["jal",   4],
+                    ["kal",   7],
+                    ["ual",   5],
+                    ["dkh",  47],
+                    ["csh",  37],
+                    ["cqh",  46],
+                    ["ups",   6],
+                    ["fdx",   8],
+                    ["ckk",  23],
+                    ["gti",   4],
+                    ["nca",   1]
+            ]
+        },
+        {
+            "type": 		"cyclic",
+            "route":        "MATNU.MAT21A.ZSPD",
+            "frequency":    2,
+            "altitude":     10000,
+            "speed":		250,
+            "offset":		24,
+            "airlines": [
+                    ["aca",   2],
+                    ["cca",  35],
+                    ["kor",   1],
+                    ["ana",   6],
+                    ["aal",   3],
+                    ["ces", 131],
+                    ["csn",  41],
+                    ["dal",   4],
+                    ["jal",   4],
+                    ["kal",   7],
+                    ["ual",   5],
+                    ["dkh",  47],
+                    ["csh",  37],
+                    ["cqh",  46],
+                    ["ups",   6],
+                    ["fdx",   8],
+                    ["ckk",  23],
+                    ["gti",   4],
+                    ["nca",   1],
+                    ["qfa",   7]
+            ]
+        },
+        {
+            "type": 		"cyclic",
+            "route":        "SASAN.SAS11A.ZSPD",
+            "frequency":    1,
+            "altitude":     9000,
+            "speed":		250,
+            "offset":		35,
+            "airlines": [
+                    ["afl",   1],
+                    ["cca",  35],
+                    ["baw",   1],
+                    ["ces", 131],
+                    ["csn",  41],
+                    ["aua",   1],
+                    ["ibe",   1],
+                    ["klm",   1],
+                    ["dlh",   2],
+                    ["sas",   1],
+                    ["swr",   1],
+                    ["thy",   4],
+                    ["vir",   1],
+                    ["sbi",   2],
+                    ["dkh",  47],
+                    ["csh",  37],
+                    ["cqh",  46],
+                    ["ups",   6],
+                    ["yzr",  22],
+                    ["fdx",   8],
+                    ["ckk",  23]
+            ]
+        },
+        {
+            "type": 		"cyclic",
+            "route":        "SASAN.SAS12A.ZSPD",
+            "frequency":    1,
+            "altitude":     9000,
+            "speed":		250,
+            "offset":		26,
+            "airlines": [
+                    ["afl",   1],
+                    ["cca",  35],
+                    ["baw",   1],
+                    ["ces", 131],
+                    ["csn",  41],
+                    ["aua",   1],
+                    ["ibe",   1],
+                    ["klm",   1],
+                    ["dlh",   2],
+                    ["sas",   1],
+                    ["swr",   1],
+                    ["thy",   4],
+                    ["vir",   1],
+                    ["sbi",   2],
+                    ["dkh",  47],
+                    ["csh",  37],
+                    ["cqh",  46],
+                    ["ups",   6],
+                    ["yzr",  22],
+                    ["fdx",   8],
+                    ["ckk",  23]
+            ]
+        },
+        {
+            "type": 		"cyclic",
+            "route":        "SASAN.SAS13A.ZSPD",
+            "frequency":    1,
+            "altitude":     9000,
+            "speed":		250,
+            "offset":		22,
+            "airlines": [
+                    ["afl",   1],
+                    ["cca",  35],
+                    ["baw",   1],
+                    ["ces", 131],
+                    ["csn",  41],
+                    ["aua",   1],
+                    ["ibe",   1],
+                    ["klm",   1],
+                    ["dlh",   2],
+                    ["sas",   1],
+                    ["swr",   1],
+                    ["thy",   4],
+                    ["vir",   1],
+                    ["sbi",   2],
+                    ["dkh",  47],
+                    ["csh",  37],
+                    ["cqh",  46],
+                    ["ups",   6],
+                    ["yzr",  22],
+                    ["fdx",   8],
+                    ["ckk",  23]
+            ]
+        },
+        {
+            "type": 		"cyclic",
+            "route":        "SASAN.SAS14A.ZSPD",
+            "frequency":    1,
+            "altitude":     9000,
+            "speed":		250,
+            "offset":		4,
+            "airlines": [
+                    ["afl",   1],
+                    ["cca",  35],
+                    ["baw",   1],
+                    ["ces", 131],
+                    ["csn",  41],
+                    ["aua",   1],
+                    ["ibe",   1],
+                    ["klm",   1],
+                    ["dlh",   2],
+                    ["sas",   1],
+                    ["swr",   1],
+                    ["thy",   4],
+                    ["vir",   1],
+                    ["sbi",   2],
+                    ["dkh",  47],
+                    ["csh",  37],
+                    ["cqh",  46],
+                    ["ups",   6],
+                    ["yzr",  22],
+                    ["fdx",   8],
+                    ["ckk",  23]
+            ]
+        },
+        {
+            "type": 		"cyclic",
+            "route":        "SHUOFANG.SUF10A.ZSPD",
+            "frequency":    1,
+            "altitude":     9000,
+            "speed":		250,
+            "offset":		20,
+            "airlines": [
+                    ["afl",   1],
+                    ["cca",  35],
+                    ["baw",   1],
+                    ["ces", 131],
+                    ["csn",  41],
+                    ["aua",   1],
+                    ["ibe",   1],
+                    ["klm",   1],
+                    ["dlh",   2],
+                    ["sas",   1],
+                    ["swr",   1],
+                    ["thy",   4],
+                    ["vir",   1],
+                    ["sbi",   2],
+                    ["dkh",  47],
+                    ["csh",  37],
+                    ["cqh",  46],
+                    ["ups",   6],
+                    ["yzr",  22],
+                    ["fdx",   8],
+                    ["ckk",  23]
+            ]
+        },
+        {
+            "type": 		"cyclic",
+            "route":        "SHUOFANG.SUF11A.ZSPD",
+            "frequency":    1,
+            "altitude":     9000,
+            "speed":		250,
+            "offset":		12,
+            "airlines": [
+                    ["afl",   1],
+                    ["cca",  35],
+                    ["baw",   1],
+                    ["ces", 131],
+                    ["csn",  41],
+                    ["aua",   1],
+                    ["ibe",   1],
+                    ["klm",   1],
+                    ["dlh",   2],
+                    ["sas",   1],
+                    ["swr",   1],
+                    ["thy",   4],
+                    ["vir",   1],
+                    ["sbi",   2],
+                    ["dkh",  47],
+                    ["csh",  37],
+                    ["cqh",  46],
+                    ["ups",   6],
+                    ["yzr",  22],
+                    ["fdx",   8],
+                    ["ckk",  23]
+            ]
+        },
+        {
+            "type": 		"cyclic",
+            "route":        "SHUOFANG.SUF13A.ZSPD",
+            "frequency":    1,
+            "altitude":     9000,
+            "speed":		250,
+            "offset":		3,
+            "airlines": [
+                    ["afl",   1],
+                    ["cca",  35],
+                    ["baw",   1],
+                    ["ces", 131],
+                    ["csn",  41],
+                    ["aua",   1],
+                    ["ibe",   1],
+                    ["klm",   1],
+                    ["dlh",   2],
+                    ["sas",   1],
+                    ["swr",   1],
+                    ["thy",   4],
+                    ["vir",   1],
+                    ["sbi",   2],
+                    ["dkh",  47],
+                    ["csh",  37],
+                    ["cqh",  46],
+                    ["ups",   6],
+                    ["yzr",  22],
+                    ["fdx",   8],
+                    ["ckk",  23]
+            ]
+        }
+    ]
+}

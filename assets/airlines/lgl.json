@@ -1,0 +1,16 @@
+{
+  "name": "Luxair",
+  "icao": "LGL",
+  "callsign": {
+    "name": "Luxair",
+    "length": 3
+  },
+  "fleets": {
+    "default": [
+  	  ["B737", 2 ],
+      ["B738", 4],
+      ["DH8D", 9],
+      ["E145", 2]
+    ]
+  }
+}

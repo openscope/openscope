@@ -1,0 +1,15 @@
+{
+  "name": "SpiceJet",
+  "callsign": {
+    "name": "SPICEJET",
+    "length": 3
+  },
+  "fleets": {
+    "default": [
+      ["B737", 2  ],
+	  ["B738", 16 ],
+	  ["B739", 4  ],
+	  ["DH8D", 16 ]
+    ]
+  }
+}

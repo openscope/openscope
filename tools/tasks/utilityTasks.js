@@ -1,3 +1,4 @@
+/* eslint-disable */
 'use strict';
 
 module.exports = function(gulp, config) {
@@ -47,17 +48,15 @@ module.exports = function(gulp, config) {
         rimraf(OPTIONS.DIR.BUILD_AIRPORTS, cb);
     });
 
-
-    ////////////////////////////////////////////////////////////////////
-    // TASKS
-    ////////////////////////////////////////////////////////////////////
-
     gulp.task('clean:data:json', [
         'clean:aircraft',
         'clean:airlines',
         'clean:airports'
     ]);
 
+    ////////////////////////////////////////////////////////////////////
+    // TASKS
+    ////////////////////////////////////////////////////////////////////
     gulp.task('clean:build', [
         'clean:build:scripts',
         'clean:build:styles'
@@ -65,10 +64,12 @@ module.exports = function(gulp, config) {
 
     gulp.task('clean:dist', [
         'clean:build:fonts',
-        'clean:data:json',
+        'clean:aircraft',
+        'clean:airlines',
+        'clean:airports',
         'clean:build:images',
         'clean:build'
     ]);
 
-    gulp.task('clean', ['clean:dist']);
+    gulp.task('clean', ['clean:build']);
 }

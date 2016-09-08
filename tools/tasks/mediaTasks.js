@@ -1,3 +1,4 @@
+/* eslint-disable */
 'use strict';
 
 module.exports = function(gulp, config) {
@@ -28,7 +29,7 @@ module.exports = function(gulp, config) {
     });
 
     ////////////////////////////////////////////////////////////////////
-    // COPY `/aircraft`, `/airlines` and `airports`
+    // COPY  /aircraft, /airlines, /airports and /airports/terrain
     ////////////////////////////////////////////////////////////////////
     var path = require('path');
 

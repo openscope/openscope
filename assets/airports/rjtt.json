@@ -1,0 +1,1015 @@
+{
+    "radio": {
+        "twr": "Tokyo Tower",
+        "app": "Tokyo Approach",
+        "dep": "Tokyo Departure"
+    },
+    "icao": "RJTT",
+    "iata": "HND",
+    "magnetic_north": 0.2,
+    "ctr_radius": 80,
+    "ctr_ceiling": 25000,
+    "initial_alt": 3000,
+    "position": ["N35d33m12.00", "E139d46m52.00"],
+    "rr_radius_nm": 5.0,
+    "rr_center": ["N35d33m12.00", "E139d46m52.00"],
+    "has_terrain": false,
+    "wind": {
+        "angle": 280,
+        "speed": 2
+    },
+    "airspace": [
+    {
+        "floor": 			0,
+        "ceiling": 		    32000,
+        "airspace_class":	"D",
+        "poly":
+        [
+            ["N36d06m23.00", "E140d18m45.00"],
+            ["N35d51m30.00", "E140d17m05.00"], 
+            ["N35d00m03.00", "E140d32m03.00"],
+            ["N35d21m28.00", "E138d55m26.00"],
+            ["N35d52m00.00", "E139d05m22.00"]
+        ]
+    }
+    ],
+    "fixes": {
+        "ADDUM":    ["N34d53m29.50",    "E140d14m20.70"],
+        "ARLON":    ["N35d15m25.30",    "E139d58m59.80"],
+        "AWARD":    ["N34d59m34.50",    "E140d10m06.20"],
+        "BACON":    ["N35d31m55.00",    "E140d12m15.10"],
+        "BALAN":    ["N35d36m17.70",    "E139d59m27.80"],
+        "BAYGE":    ["N35d25m35.40",    "E139d43m27.40"],
+        "BLITZ":    ["N35d07m31.90",    "E140d20m40.40"],
+        "BLOOM":    ["N35d27m27.20",    "E140d14m23.60"],
+        "BONUS":    ["N35d36m33.00",    "E140d07m16.00"],
+        "BRASS":    ["N35d23m54.50",    "E140d15m01.60"],
+        "CACAO":    ["N35d22m12.80",    "E139d55m30.10"],
+        "CACHE":    ["N35d14m12.90",    "E140d08m49.30"],
+        "CAMEL":    ["N35d17m18.20",    "E139d58m57.80"],
+        "CLOAK":    ["N35d15m48.00",    "E140d02m08.20"],
+        "COLOR":    ["N36d01m16.30",    "E140d12m19.80"],
+        "COUPE":    ["N35d36m56.20",    "E140d12m57.80"], 
+        "CREAM":    ["N35d17m43.40",    "E140d06m12.40"], 
+        "CURRY":    ["N35d51m30.90",    "E140d12m35.10"],      
+        "CUTIE":    ["N35d27m48.30",    "E140d14m24.70"],
+        "D120H":    ["N35d30m64.00",    "E139d54m71.00"],
+        "D167H":    ["N35d26m22.00",    "E139d49m07.00"],
+        "D177N":    ["N35d20m20.00",    "E139d48m56.00"],
+        "DARKS":    ["N35d34m14.80",    "E139d59m02.90"],           
+        "DATUM":    ["N35d42m59.60",    "E140d08m24.30"], 
+        "DENNY":    ["N35d48m28.80",    "E140d05m56.40"],
+        "DOYLE":    ["N35d34m29.00",    "E140d07m18.00"],
+        "DREAD":    ["N36d03m59.20",    "E139d58m56.90"],
+        "HATBA":    ["N35d26m23.40",    "E139d43m15.90"], 
+        "HILLS":    ["N35d45m53.00",    "E139d43m40.20"],
+        "HME":      ["N35d33m44.00",    "E139d45m40.00"],
+        "HYE":      ["N35d15m21.00",    "E139d35m15.00"],
+        "JYOGA":    ["N35d08m45.70",    "E139d31m34.90"],
+        "KAIHO":    ["N35d18m57.80",    "E139d46m42.40"],
+        "KAIJI":    ["N35d44m09.60",    "E139d58m06.60"],
+        "KAMAT":    ["N35d33m53.60",    "E139d41m48.90"],
+        "KANEK":    ["N35d48m39.30",    "E139d19m53.90"],
+        "LD223":    ["N35d35m07.50",    "E140d01m59.00"],
+        "LD224":    ["N35d32m52.50",    "E140d02m00.00"],
+        "LD225":    ["N35d26m14.10",    "E139d53m53.40"],          
+        "LOCUP":    ["N35d27m18.80",    "E139d56m08.50"],
+        "LUPUS":    ["N35d47m45.90",    "E139d27m36.20"],
+        "MACRO":    ["N35d21m18.30",    "E140d17m20.20"],
+        "MERCY":    ["N35d03m24.80",    "E140d31m20.90"],
+        "MESSE":    ["N35d11m00.80",    "E140d22m14.70"],
+        "MITOH":    ["N35d47m34.30",    "E139d09m26.40"],
+        "MIURA":    ["N35d05m02.10",    "E139d46m26.30"],
+        "NANSO":    ["N35d06m25.60",    "E139d58m41.20"], 
+        "NYLON":    ["N35d40m18.50",    "E140d09m19.90"],
+        "OPPAR":    ["N35d22m15.70",    "E139d44m04.40"],
+        "PLUTO":    ["N35d36m32.10",    "E139d57m36.80"],
+        "SCREW":    ["N36d03m01.20",    "E139d54m00.40"],
+        "SEKID":    ["N35d39m25.40",    "E139d28m29.50"],
+        "SINGO":    ["N35d15m14.00",    "E140d00m48.00"], 
+        "SQUAD":    ["N36d06m35.90",    "E139d59m33.20"], 
+        "STEAM":    ["N35d55m53.30",    "E139d57m08.40"], 
+        "STONE":    ["N36d16m46.50",    "E140d15m24.40"],
+        "SYE":      ["N36d00m39.30",    "E139d50m21.00"], 
+        "T6L21":    ["N35d26m39.10",    "E139d52m22.00"],
+        "T6L22":    ["N35d24m41.20",    "E139d53m45.40"], 
+        "T6L23":    ["N35d26m27.60",    "E139d55m39.10"],
+        "T6R11":    ["N35d25m52.50",    "E139d51m37.20"],
+        "T6R12":    ["N35d24m13.60",    "E139d52m47.10"], 
+        "T6R13":    ["N35d28m00.80",    "E139d50m06.40"],
+        "TAURA":    ["N35d18m46.10",    "E139d44m47.30"], 
+        "TORAM":    ["N35d36m36.80",    "E139d50m11.00"],
+        "TT501":    ["N35d33m28.70",    "E139d50m29.90"],
+        "TT502":    ["N35d32m24.40",    "E139d57m20.70"],
+        "TT503":    ["N35d28m28.00",    "E139d48m40.40"],
+        "TT631":    ["N35d21m23.40",    "E139d46m48.60"],
+        "UMUKI":    ["N35d12m19.10",    "E139d48m49.20"],
+        "URAGA":    ["N35d13m51.20",    "E139d50m00.90"], 
+        "UTIBO":    ["N34d56m47.00",    "E139d53m43.90"],
+        "VADAR":    ["N35d05m96.00",    "E139d51m73.00"],
+        "WELDA":    ["N35d29m41.40",    "E139d59m56.70"],
+        "YANAG":    ["N35d29m04.50",    "E139d30m05.00"]  
+    },
+
+    "runways": [
+        {
+            "name": ["16L", "34R"],
+            "name_offset": [[0, 0], [0, 0]],
+            "end": [["N35d33m57.23", "E139d47m11.59"], ["N35d32m22.90", "E139d48m18.49"]],
+            "length": 3.360,
+            "ils": [false, true]
+        },
+        {
+            "name": ["16R", "34L"],
+            "name_offset": [[0, 0], [0, 0]],
+            "end": [["N35d33m35.95", "E139d46m08.64"], ["N35d32m11.76", "E139d47m08.41"]],
+            "length": 3.000,
+            "ils": [false, true]
+        },
+        {
+            "name": ["04", "22"],
+            "name_offset": [[0, 0], [0, 0]],
+            "end": [["N35d32m56.47", "E139d45m40.60"], ["N35d34m02.88", "E139d46m37.61"]],
+            "length": 2.500,
+            "ils": [false, true]
+        },
+        {
+            "name": ["05", "23"],
+            "name_offset": [[0, 0], [0, 0]],
+            "end": [["N35d31m26.41", "E139d48m12.47"], ["N35d32m26.15", "E139d49m19.61"]],
+            "length": 2.500,
+            "ils": [false, true]
+        }
+    ],
+    "sids": {
+        "PLUTO2": {
+            "icao": "PLUTO2",
+            "name": "Pluto Two",
+            "exitPoints": {
+                "MIDORI":   [["SYE", "A120+"], ["COLOR", "A160+"]]
+            },
+            "rwy": {
+                "16L":  ["T6L23", ["WELDA", "A60+"], "PLUTO", "KAIJI", ["SYE", "A135"]],
+                "16R":  ["T6L23", ["WELDA", "A60+"], "PLUTO", "KAIJI", ["SYE", "A135"]],
+                "34L":  ["TORAM", "PLUTO", "KAIJI", ["SYE", "A135"]],
+                "34R":  ["TORAM", "PLUTO", "KAIJI", ["SYE", "A135"]],
+                "04":   ["TORAM", "PLUTO", "KAIJI", ["SYE", "A135"]],
+                "05":   ["PLUTO", "KAIJI", ["SYE", "A135"]]
+            },
+            "draw": [
+                ["T6L23", "WELDA", "PLUTO", "KAIJI", "SYE*"],
+                ["TORAM", "PLUTO"]
+            ]
+        },
+        "SEKID2": {
+            "icao": "SEKID2",
+            "name": "Sekid Two",
+            "rwy": {
+                "16L":  ["T6L23", ["WELDA", "A60+"], "PLUTO", "KAIJI", ["HILLS", "A120"], ["SEKID", "A130+"]],
+                "16R":  ["T6R13", "HATBA", ["KAMAT", "A90+"], ["SEKID", "A130+"]],
+                "34L":  ["TORAM", "PLUTO", "KAIJI", ["HILLS", "A120"], ["SEKID", "A130+"]],
+                "34R":  ["TORAM", "PLUTO", "KAIJI", ["HILLS", "A120"], ["SEKID", "A130+"]],
+                "04":   ["TORAM", "PLUTO", "KAIJI", ["HILLS", "A120"], ["SEKID", "A130+"]],
+                "05":   ["TT501", "TT502", ["LOCUP", "A50+"], "TT503", ["KAMAT", "A90+"], ["SEKID", "A130+"]]
+            },
+            "draw": [
+                ["T6R13", "HATBA", "KAMAT", "SEKID"],
+                ["KAIJI", "HILLS", "SEKID"],
+                ["TT501", "TT502", "LOCUP", "TT503", "KAMAT", "SEKID"]
+            ]
+        },
+        "YANAG2": {
+            "icao": "YANAG2",
+            "name": "Yanag Two",
+            "rwy": {
+                "16L":  ["T6L22", "TT631", ["BAYGE", "A90+"], ["YANAG", "A130+"]],
+                "16R":  ["T6R12", "TT631", ["BAYGE", "A90+"], ["YANAG", "A130+"]],
+                "34L":  ["TT502", ["LOCUP", "A50+"], ["BAYGE", "A90+"], ["YANAG", "A130+"]],
+                "34R":  ["TT502", ["LOCUP", "A50+"], ["BAYGE", "A90+"], ["YANAG", "A130+"]],
+                "04":   ["TT502", ["LOCUP", "A50+"], ["BAYGE", "A90+"], ["YANAG", "A130+"]],
+                "05":   ["TT501", "TT502", ["LOCUP", "A50+"], ["BAYGE", "A90+"], ["YANAG", "A130+"]]
+            },
+            "draw": [
+                ["T6L22", "TT631", "BAYGE", "YANAG"],
+                ["T6R12", "TT631"],
+                ["TT501", "TT502", "LOCUP", "BAYGE"],
+                ["YANAG"]
+            ]
+        },
+        "JYOGA2": {
+            "icao": "JYOGA2",
+            "name": "Jyoga Two",
+            "rwy": {
+                "16L":  ["T6L21", ["TAURA", "A90+"], ["JYOGA", "A150+"]],
+                "16R":  ["T6R11", ["TAURA", "A90+"], ["JYOGA", "A150+"]],
+                "34L":  ["TT502", ["LOCUP", "A50+"], ["TAURA", "A90+"], ["JYOGA", "A150+"]],
+                "34R":  ["TT502", ["LOCUP", "A50+"], ["TAURA", "A90+"], ["JYOGA", "A150+"]],
+                "04":   ["TT502", ["LOCUP", "A50+"], ["TAURA", "A90+"], ["JYOGA", "A150+"]],
+                "05":   ["TT501", "TT502", ["LOCUP", "A50+"], ["TAURA", "A90+"], ["JYOGA", "A150+"]]
+            },
+            "draw": [
+                ["T6L21", "TAURA", "JYOGA"],
+                ["T6R11", "TAURA"],
+                ["TT501", "TT502", "LOCUP", "TAURA"],
+                ["JYOGA"]
+            ]
+        },
+        "MIURA2": {
+            "icao": "MIURA2",
+            "name": "Miura Two",
+            "rwy": {
+                "16L":  ["T6L21", "URAGA", ["MIURA", "A90+"]],
+                "16R":  ["T6R11", "URAGA", ["MIURA", "A90+"]],
+                "34L":  ["TT502", ["LOCUP", "A50+"], "URAGA", ["MIURA", "A90+"]],
+                "34R":  ["TT502", ["LOCUP", "A50+"], "URAGA", ["MIURA", "A90+"]],
+                "04":   ["TT502", ["LOCUP", "A50+"], "URAGA", ["MIURA", "A90+"]],
+                "05":   ["TT501", "TT502", ["LOCUP", "A50+"], "URAGA", ["MIURA", "A90+"]]
+            },
+            "draw": [
+                ["T6L21", "URAGA"],
+                ["T6R11", "URAGA"],
+                ["LOCUP", "URAGA", "MIURA"]
+            ]
+        },
+        "KANEK2": {
+            "icao": "KANEK2",
+            "name": "Kanek Two",
+            "rwy": {
+                "16L":  ["T6L23", ["WELDA", "A60+"], "PLUTO", "KAIJI", ["HILLS", "A120"], ["LUPUS", "A130+"], ["KANEK", "A170+"]],
+                "16R":  ["T6L23", ["WELDA", "A60+"], "PLUTO", "KAIJI", ["HILLS", "A120"], ["LUPUS", "A130+"], ["KANEK", "A170+"]],
+                "34L":  ["TORAM", "PLUTO", "KAIJI", ["HILLS", "A120"], ["LUPUS", "A130+"], ["KANEK", "A170+"]],
+                "34R":  ["TORAM", "PLUTO", "KAIJI", ["HILLS", "A120"], ["LUPUS", "A130+"], ["KANEK", "A170+"]],
+                "04":   ["TORAM", "PLUTO", "KAIJI", ["HILLS", "A120"], ["LUPUS", "A130+"], ["KANEK", "A170+"]],
+                "05":   ["PLUTO", "KAIJI", ["HILLS", "A120"], ["LUPUS", "A130+"], ["KANEK", "A170+"]]
+            },
+            "draw": [
+                ["HILLS", "LUPUS", "KANEK"]
+            ]
+        },
+        "MITOH2": {
+            "icao": "MITOH2",
+            "name": "Mitoh Two",
+            "rwy": {
+                "16L":  ["T6L23", ["WELDA", "A60+"], "PLUTO", "KAIJI", ["HILLS", "A120"], ["LUPUS", "A130+"], ["MITOH", "A170+"]],
+                "16R":  ["T6R13", "HATBA", ["KAMAT", "A90+"], ["SEKID", "A130+"], ["MITOH", "A170+"]],
+                "34L":  ["TORAM", "PLUTO", "KAIJI", ["HILLS", "A120"], ["LUPUS", "A130+"], ["MITOH", "A170+"]],
+                "34R":  ["TORAM", "PLUTO", "KAIJI", ["HILLS", "A120"], ["LUPUS", "A130+"], ["MITOH", "A170+"]],
+                "04":   ["TORAM", "PLUTO", "KAIJI", ["HILLS", "A120"], ["LUPUS", "A130+"], ["MITOH", "A170+"]],
+                "05":   ["TT501", "TT502", ["LOCUP", "A50+"], "TT503", ["KAMAT", "A90+"], ["SEKID", "A130+"], ["MITOH", "A170+"]]
+            },
+            "draw": [
+                ["SEKID", "MITOH"],
+                ["LUPUS", "MITOH"]
+            ]
+        },
+        "SYE2": {
+            "icao": "SYE2",
+            "name": "Sekiyado Two",
+            "rwy": {
+                "16L":  [["SYE", "A150"]],
+                "16R":  [["SYE", "A150"]],
+                "34L":  [["SYE", "A150"]],
+                "34R":  [["SYE", "A150"]],
+                "04":   [["SYE", "A150"]],
+                "05":   [["SYE", "A150"]]
+            },
+            "draw": [
+                ["SYE"]
+            ]
+        },
+        "VADAR1": {
+            "icao": "VADAR1",
+            "name": "Vadar One",
+            "rwy": {
+                "16L":  [["VADAR", "A90"]],
+                "16R":  [["VADAR", "A90"]],
+                "34L":  [["VADAR", "A90"]],
+                "34R":  [["VADAR", "A90"]],
+                "04":   [["VADAR", "A90"]],
+                "05":   [["VADAR", "A90"]]
+            },
+            "draw": [
+                ["VADAR"]
+            ]
+        },
+        "OPPAR3": {
+            "icao": "OPPAR3",
+            "name": "Oppar Three",
+            "exitPoints": {
+                "JYOGA":    [["JYOGA", "A150+"]],
+                "UTIBO":    [["UTIBO", "A150+"]]
+            },
+            "rwy": {
+                "16L":  [["D120H", "A50"], "D167H", ["OPPAR", "A90+"]],
+                "16R":  [["D120H", "A50"], "D167H", ["OPPAR", "A90+"]],
+                "34L":  [["D120H", "A50"], "D167H", ["OPPAR", "A90+"]],
+                "34R":  [["D120H", "A50"], "D167H", ["OPPAR", "A90+"]],
+                "04":   [["D120H", "A50"], "D167H", ["OPPAR", "A90+"]],
+                "05":   [["D120H", "A50"], "D167H", ["OPPAR", "A90+"]]
+            },
+            "draw": [
+                ["D120H", "D167H", "OPPAR", "JYOGA*"],
+                ["OPPAR", "UTIBO*"]
+            ]
+        },
+        "ZUSHI2": {
+            "icao": "ZUSHI2",
+            "name": "Zushi Two",
+            "rwy": {
+                "16L":  [["D177N", "A50+"], "TAURA", "HYE"],
+                "16R":  [["D177N", "A50+"], "TAURA", "HYE"],
+                "34L":  [["HME", "A7+"], ["D177N", "A50+"], "TAURA", "HYE"],
+                "34R":  [["HME", "A7+"], ["D177N", "A50+"], "TAURA", "HYE"],
+                "04":   [["HME", "A7+"], ["D177N", "A50+"], "TAURA", "HYE"],
+                "05":   [["D177N", "A50+"], "TAURA", "HYE"]
+            },
+            "draw": [
+                ["HME", "D177N", "TAURA", "HYE"]
+            ]
+        },
+        "HUMMINGBIRD2": {
+            "icao": "HUMMINGBIRD2",
+            "name": "Hummingbird Two",
+            "rwy": {
+                "34L":  [["HME", "A7+"], ["MIURA", "A90+"]]
+            },
+            "draw": [
+                ["HME", "MIURA"]
+            ]
+        },
+        "ISOGO2": {
+            "icao": "ISOGO2",
+            "name": "Isogo Two",
+            "rwy": {
+                "16L":  ["VADAR"],
+                "16R":  ["VADAR"],
+                "34L":  [["HME", "A7+"], "VADAR"],
+                "34R":  [["HME", "A7+"], "VADAR"],
+                "04":   [["HME", "A7+"], "VADAR"],
+                "05":   ["VADAR"]
+            },
+            "draw": [
+                ["HME", "VADAR"]
+            ]
+        }
+    },
+
+    "departures": {
+        "airlines": [
+            ["xax",  1],
+            ["aca",  1],
+            ["cca",  1],
+            ["ado",  6],
+            ["afr",  1],
+            ["ana", 64],
+            ["aal",  1],
+            ["baw",  1],
+            ["cpa",  1],
+            ["ces",  2],
+            ["csn",  1],
+            ["dal",  1],
+            ["hda",  1],
+            ["uae",  1],
+            ["eva",  2],
+            ["gia",  1],
+            ["hal",  2],
+            ["jal", 55],
+            ["kal",  2],
+            ["dlh",  2],
+            ["qfa",  1],
+            ["qtr",  1],
+            ["sia",  1],
+            ["ual",  1]
+        ],
+        "destinations": [
+            "PLUTO2",
+            "SEKID2",
+            "YANAG2",
+            "JYOGA2",
+            "MIURA2",
+            "KANEK2",
+            "MITOH2",
+            "SYE2",
+            "VADAR1",
+            "OPPAR3",
+            "ZUSHI2",
+            "HUMMINGBIRD2",
+            "ISOGO2"
+        ],
+        "type": "cyclic",
+        "offset": 0,
+        "frequency": 82
+    },
+    "stars": {
+        "CREAM": {
+            "icao": "CREAM",
+            "name": "Cream",
+            "entryPoints": {
+                "STONE": [["STONE", "A110|S250"]]
+            },
+            "body": ["COLOR", "CURRY", ["COUPE", "A80"], "CUTIE", "CREAM"],
+            "draw": [
+                ["STONE", "COLOR", "CURRY", "COUPE", "CUTIE", "CREAM"]
+            ]
+        },
+        "ARLON": {
+            "icao": "ARLON",
+            "name": "Arlon",
+            "entryPoints": {
+                "ADDUM": [["ADDUM", "A100|S230"]]
+            },
+            "body": ["AWARD", "ARLON"],
+            "draw": [
+                ["ADDUM", "AWARD", "ARLON"]
+            ]
+        },
+        "CACAO": {
+            "icao": "CACAO",
+            "name": "Cacao",
+            "entryPoints": {
+                "STONE": [["STONE", "A110|S250"]]
+            },
+            "body": ["COLOR", "CURRY", ["COUPE", "A80"], "CUTIE", "CREAM", "CLOAK", "CAMEL", "CACAO"],
+            "draw": [
+                ["STONE", "COLOR", "CURRY", "COUPE", "CUTIE", "CREAM", "CLOAK", "CAMEL", "CACAO"]
+            ]
+        },
+        "CACHE": {
+            "icao": "CACHE",
+            "name": "Cache",
+            "entryPoints": {
+                "MERCY": [["MERCY", "A80"]]
+            },
+            "body": ["MESSE", ["CACHE", "A60"], "CLOAK", "CAMEL", "CACAO"],
+            "draw": [
+                ["MERCY", "MESSE", "CACHE", "CLOAK", "CAMEL", "CACAO"]
+            ]
+        },
+        "CAPE_SOUTH": {
+            "icao": "CAPE SOUTH",
+            "name": "Cape South",
+            "entryPoints": {
+                "MERCY": [["MERCY", "A80"]]
+            },
+            "body": ["MESSE", ["UMUKI", "A60"], ["KAIHO", "A40"]],
+            "draw": [
+                ["MERCY", "MESSE", "UMUKI", "KAIHO"]
+            ]
+        },
+        "MACRO": {
+            "icao": "MACRO",
+            "name": "Macro",
+            "entryPoints": {
+                "MERCY": [["MERCY", "A80"]]
+            },
+            "body": ["MESSE", ["MACRO", "A60"], "CREAM"],
+            "draw": [
+                ["MERCY", "MESSE", "MACRO", "CREAM"]
+            ]
+        },
+        "CAPE_NORTH": {
+            "icao": "CAPE NORTH",
+            "name": "Cape North",
+            "entryPoints": {
+                "STONE": [["STONE", "A110|S250"]]
+            },
+            "body": ["COLOR", "CURRY", ["COUPE", "A80"], "CUTIE", "CREAM", "CLOAK", ["UMUKI", "A60"], ["KAIHO", "A40"]],
+            "draw": [
+                ["STONE", "COLOR", "CURRY", "COUPE", "CUTIE", "CREAM", "CLOAK", "UMUKI", "KAIHO"]
+            ]
+        },
+        "KAIHO": {
+            "icao": "KAIHO",
+            "name": "Kaiho",
+            "entryPoints": {
+                "ADDUM": [["ADDUM", "A100|S230"]]
+            },
+            "body": ["AWARD", "NANSO", ["UMUKI", "A60"], ["KAIHO", "A40"]],
+            "draw": [
+                ["ADDUM", "AWARD", "NANSO", "UMUKI", "KAIHO"]
+            ]
+        },
+        "DATUM": {
+            "icao": "DATUM",
+            "name": "Datum",
+            "entryPoints": {
+                "STONE": [["STONE", "A110|S250"]]
+            },
+            "body": [["DREAD", "A80"], "DENNY", "DATUM"],
+            "draw": [
+                ["STONE", "DREAD", "DENNY", "DATUM"]
+            ]
+        },
+        "BACON": {
+            "icao": "BACON",
+            "name": "Bacon",
+            "entryPoints": {
+                "ADDUM": [["ADDUM", "A100|S230"]]
+            },
+            "body": ["BLITZ", "BRASS", "BACON"],
+            "draw": [
+                ["ADDUM", "BLITZ", "BRASS", "BACON"]
+            ]
+        },
+        "STEAM": {
+            "icao": "STEAM",
+            "name": "Steam",
+            "entryPoints": {
+                "STONE": [["STONE", "A110|S250"]]
+            },
+            "body": [["SQUAD", "A80"], "SCREW", "STEAM"],
+            "draw": [
+                ["SQUAD", "SCREW", "STEAM"]
+            ]
+        },
+        "NYLON": {
+            "icao": "NYLON",
+            "name": "Nylon",
+            "entryPoints": {
+                "ADDUM": [["ADDUM", "A100|S230"]]
+            },
+            "body": ["BLITZ", "BRASS", "NYLON"],
+            "draw": [
+                ["ADDUM", "BLITZ", "BRASS", "NYLON"]
+            ]
+        },
+        "BLOOM_INDIA": {
+            "icao": "BLOOM INDIA",
+            "name": "Bloom India",
+            "entryPoints": {
+                "MERCY": [["MERCY", "A80"]]
+            },
+            "body": ["MESSE", ["MACRO", "A60"], "BLOOM", "NYLON"],
+            "draw": [
+                ["MERCY", "MESSE", "MACRO", "BLOOM", "NYLON"]
+            ]
+        },
+        "BALAN": {
+            "icao": "BALAN",
+            "name": "Balan",
+            "entryPoints": {
+                "KAIHO": [["KAIHO", "A40"]]
+            },
+            "body": [["LD225", "S220"], "LD224", "LD223", ["BALAN", "A30"]],
+            "draw": [
+                ["KAIHO", "LD225", "LD224", "LD223", "BALAN"]
+            ]
+        },
+        "DARKS": {
+            "icao": "DARKS",
+            "name": "Darks",
+            "entryPoints": {
+                "KAIHO": [["KAIHO", "A40"]]
+            },
+            "body": [["LD225", "S220"], "LD224", ["DARKS", "A18"]],
+            "draw": [
+                ["KAIHO", "LD225", "LD224", "DARKS"]
+            ]
+        },
+        "DAIYA": {
+            "icao": "DAIYA",
+            "name": "Daiya",
+            "entryPoints": {
+                "KAIHO": [["KAIHO", "A40"]]
+            },
+            "body": [["LD225", "S220"], "LD224", "LD223", ["DARKS", "A20"]],
+            "draw": [
+                ["KAIHO", "LD225", "LD224", "LD223", "DARKS"]
+            ]
+        },
+        "SINGO": {
+            "icao": "SINGO",
+            "name": "Singo",
+            "entryPoints": {
+                "STONE": [["STONE", "A110|S250"]]
+            },
+            "body": [["SINGO", "A80"]],
+            "draw": [
+                ["STONE", "SINGO"]
+            ]
+        },
+        "DOYLE": {
+            "icao": "DOYLE",
+            "name": "Doyle",
+            "entryPoints": {
+                "STONE": [["STONE", "A110|S250"]]
+            },
+            "body": [["DOYLE", "A80"]],
+            "draw": [
+                ["DOYLE", "SINGO"]
+            ]
+        },
+        "ADDUM": {
+            "icao": "ADDUM",
+            "name": "Addum",
+            "entryPoints": {
+                "ADDUM": [["ADDUM", "A100|S230"]]
+            },
+            "body": ["ARLON"],
+            "draw": [
+                ["ADDUM", "ARLON"]
+            ]
+        },
+        "BONUS": {
+            "icao": "ADDUM",
+            "name": "Addum",
+            "entryPoints": {
+                "ADDUM": [["ADDUM", "A100|S230"]]
+            },
+            "body": ["BONUS"],
+            "draw": [
+                ["ADDUM", "BONUS"]
+            ]
+        }
+    },
+    "arrivals": [
+        {
+                "type":     "cyclic",
+                "route":    "STONE.DOYLE.RJTT",
+                "frequency": 4,
+                "altitude": 11000,
+                "speed":	250,
+                "offset":	2,
+                "airlines": 
+                    [
+                        ["aca",  1],
+                        ["cca",  1],
+                        ["ado",  6],
+                        ["ana", 64],
+                        ["jal", 55]
+                    ]
+        },
+        {
+                "type":     "cyclic",
+                "route":    "STONE.SINGO.RJTT",
+                "frequency": 4,
+                "altitude": 11000,
+                "speed":	250,
+                "offset":	2,
+                "airlines": 
+                    [
+                        ["aca",  1],
+                        ["cca",  1],
+                        ["ado",  6],
+                        ["ana", 64],
+                        ["jal", 55]
+                    ]
+        },
+        {
+                "type":     "cyclic",
+                "route":    "STONE.STEAM.RJTT",
+                "frequency": 4,
+                "altitude": 11000,
+                "speed":	250,
+                "offset":	2,
+                "airlines": 
+                    [
+                        ["aca",  1],
+                        ["cca",  1],
+                        ["ado",  6],
+                        ["ana", 64],
+                        ["jal", 55]
+                    ]
+        },
+        {
+                "type":     "cyclic",
+                "route":    "STONE.DATUM.RJTT",
+                "frequency": 4,
+                "altitude": 11000,
+                "speed":	250,
+                "offset":	2,
+                "airlines": 
+                    [
+                        ["aca",  1],
+                        ["cca",  1],
+                        ["ado",  6],
+                        ["ana", 64],
+                        ["jal", 55]
+                    ]
+        },
+        {
+                "type":     "cyclic",
+                "route":    "STONE.CREAM.RJTT",
+                "frequency": 4,
+                "altitude": 11000,
+                "speed":	250,
+                "offset":	2,
+                "airlines": 
+                    [
+                        ["aca",  1],
+                        ["cca",  1],
+                        ["ado",  6],
+                        ["ana", 64],
+                        ["jal", 55]
+                    ]
+        },
+        {
+                "type":     "cyclic",
+                "route":    "STONE.CAPE_NORTH.RJTT",
+                "frequency": 4,
+                "altitude": 11000,
+                "speed":	250,
+                "offset":	2,
+                "airlines": 
+                    [
+                        ["aca",  1],
+                        ["cca",  1],
+                        ["ado",  6],
+                        ["ana", 64],
+                        ["jal", 55]
+                    ]
+        },
+        {
+                "type":     "cyclic",
+                "route":    "STONE.CACAO.RJTT",
+                "frequency": 4,
+                "altitude": 11000,
+                "speed":	250,
+                "offset":	2,
+                "airlines": 
+                    [
+                        ["aca",  1],
+                        ["cca",  1],
+                        ["ado",  6],
+                        ["ana", 64],
+                        ["jal", 55]
+                    ]
+        },
+        {
+                "type":     "cyclic",
+                "route":    "ADDUM.KAIHO.RJTT",
+                "frequency": 5,
+                "altitude": 10000,
+                "speed":	230,
+                "offset":	2,
+                "airlines": 
+                    [
+                        ["xax",  1],
+                        ["cca",  1],
+                        ["ado",  6],
+                        ["afr",  1],
+                        ["ana", 64],
+                        ["aal",  1],
+                        ["baw",  1],
+                        ["cpa",  1],
+                        ["ces",  2],
+                        ["csn",  1],
+                        ["dal",  1],
+                        ["hda",  1],
+                        ["uae",  1],
+                        ["eva",  2],
+                        ["gia",  1],
+                        ["hal",  2],
+                        ["jal", 55],
+                        ["kal",  2],
+                        ["dlh",  2],
+                        ["qfa",  1],
+                        ["qtr",  1],
+                        ["sia",  1],
+                        ["ual",  1]
+                    ]
+        },
+        {
+                "type":     "cyclic",
+                "route":    "ADDUM.NYLON.RJTT",
+                "frequency": 5,
+                "altitude": 10000,
+                "speed":	230,
+                "offset":	2,
+                "airlines": 
+                    [
+                        ["xax",  1],
+                        ["cca",  1],
+                        ["ado",  6],
+                        ["afr",  1],
+                        ["ana", 64],
+                        ["aal",  1],
+                        ["baw",  1],
+                        ["cpa",  1],
+                        ["ces",  2],
+                        ["csn",  1],
+                        ["dal",  1],
+                        ["hda",  1],
+                        ["uae",  1],
+                        ["eva",  2],
+                        ["gia",  1],
+                        ["hal",  2],
+                        ["jal", 55],
+                        ["kal",  2],
+                        ["dlh",  2],
+                        ["qfa",  1],
+                        ["qtr",  1],
+                        ["sia",  1],
+                        ["ual",  1]
+                    ]
+        },
+        {
+                "type":     "cyclic",
+                "route":    "ADDUM.BONUS.RJTT",
+                "frequency": 5,
+                "altitude": 10000,
+                "speed":	230,
+                "offset":	2,
+                "airlines": 
+                    [
+                        ["xax",  1],
+                        ["cca",  1],
+                        ["ado",  6],
+                        ["afr",  1],
+                        ["ana", 64],
+                        ["aal",  1],
+                        ["baw",  1],
+                        ["cpa",  1],
+                        ["ces",  2],
+                        ["csn",  1],
+                        ["dal",  1],
+                        ["hda",  1],
+                        ["uae",  1],
+                        ["eva",  2],
+                        ["gia",  1],
+                        ["hal",  2],
+                        ["jal", 55],
+                        ["kal",  2],
+                        ["dlh",  2],
+                        ["qfa",  1],
+                        ["qtr",  1],
+                        ["sia",  1],
+                        ["ual",  1]
+                    ]
+        },
+        {
+                "type":     "cyclic",
+                "route":    "ADDUM.ADDUM.RJTT",
+                "frequency": 5,
+                "altitude": 10000,
+                "speed":	230,
+                "offset":	2,
+                "airlines": 
+                    [
+                        ["xax",  1],
+                        ["cca",  1],
+                        ["ado",  6],
+                        ["afr",  1],
+                        ["ana", 64],
+                        ["aal",  1],
+                        ["baw",  1],
+                        ["cpa",  1],
+                        ["ces",  2],
+                        ["csn",  1],
+                        ["dal",  1],
+                        ["hda",  1],
+                        ["uae",  1],
+                        ["eva",  2],
+                        ["gia",  1],
+                        ["hal",  2],
+                        ["jal", 55],
+                        ["kal",  2],
+                        ["dlh",  2],
+                        ["qfa",  1],
+                        ["qtr",  1],
+                        ["sia",  1],
+                        ["ual",  1]
+                    ]
+        },
+        {
+                "type":     "cyclic",
+                "route":    "ADDUM.BACON.RJTT",
+                "frequency": 5,
+                "altitude": 10000,
+                "speed":	230,
+                "offset":	2,
+                "airlines": 
+                    [
+                        ["xax",  1],
+                        ["cca",  1],
+                        ["ado",  6],
+                        ["afr",  1],
+                        ["ana", 64],
+                        ["aal",  1],
+                        ["baw",  1],
+                        ["cpa",  1],
+                        ["ces",  2],
+                        ["csn",  1],
+                        ["dal",  1],
+                        ["hda",  1],
+                        ["uae",  1],
+                        ["eva",  2],
+                        ["gia",  1],
+                        ["hal",  2],
+                        ["jal", 55],
+                        ["kal",  2],
+                        ["dlh",  2],
+                        ["qfa",  1],
+                        ["qtr",  1],
+                        ["sia",  1],
+                        ["ual",  1]
+                    ]
+        },
+        {
+                "type":     "cyclic",
+                "route":    "ADDUM.ARLON.RJTT",
+                "frequency": 5,
+                "altitude": 10000,
+                "speed":	230,
+                "offset":	2,
+                "airlines": 
+                    [
+                        ["xax",  1],
+                        ["cca",  1],
+                        ["ado",  6],
+                        ["afr",  1],
+                        ["ana", 64],
+                        ["aal",  1],
+                        ["baw",  1],
+                        ["cpa",  1],
+                        ["ces",  2],
+                        ["csn",  1],
+                        ["dal",  1],
+                        ["hda",  1],
+                        ["uae",  1],
+                        ["eva",  2],
+                        ["gia",  1],
+                        ["hal",  2],
+                        ["jal", 55],
+                        ["kal",  2],
+                        ["dlh",  2],
+                        ["qfa",  1],
+                        ["qtr",  1],
+                        ["sia",  1],
+                        ["ual",  1]
+                    ]
+        },
+        {
+                "type":     "cyclic",
+                "route":    "MERCY.CACHE.RJTT",
+                "frequency": 5,
+                "altitude": 8000,
+                "speed":	250,
+                "offset":	2,
+                "airlines": 
+                    [
+                        ["aca",  1],
+                        ["ana", 64],
+                        ["aal",  1],
+                        ["dal",  1],
+                        ["hal",  2],
+                        ["jal", 55],
+                        ["ual",  1]
+                    ]
+        },
+        {
+                "type":     "cyclic",
+                "route":    "MERCY.CAPE_SOUTH.RJTT",
+                "frequency": 6,
+                "altitude": 8000,
+                "speed":	430,
+                "offset":	2,
+                "airlines": 
+                    [
+                        ["aca",  1],
+                        ["ana", 64],
+                        ["aal",  1],
+                        ["dal",  1],
+                        ["hal",  2],
+                        ["jal", 55],
+                        ["ual",  1]
+                    ]
+        },
+        {
+                "type":     "cyclic",
+                "route":    "MERCY.MACRO.RJTT",
+                "frequency": 4,
+                "altitude": 8000,
+                "speed":	430,
+                "offset":	2,
+                "airlines": 
+                    [
+                        ["aca",  1],
+                        ["ana", 64],
+                        ["aal",  1],
+                        ["dal",  1],
+                        ["hal",  2],
+                        ["jal", 55],
+                        ["ual",  1]
+                    ]
+        },
+        {
+                "type":     "cyclic",
+                "route":    "MERCY.BLOOM_INDIA.RJTT",
+                "frequency": 8,
+                "altitude": 8000,
+                "speed":	430,
+                "offset":	2,
+                "airlines": 
+                    [
+                        ["aca",  1],
+                        ["ana", 64],
+                        ["aal",  1],
+                        ["dal",  1],
+                        ["hal",  2],
+                        ["jal", 55],
+                        ["ual",  1]
+                    ]
+        }
+    ]
+}

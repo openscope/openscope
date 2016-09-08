@@ -384,8 +384,8 @@ window.tutorial_init = function tutorial_init() {
   prop.tutorial.html = $("<div id='tutorial'></div>");
   prop.tutorial.html.append("<h1></h1>");
   prop.tutorial.html.append("<main></main>");
-  prop.tutorial.html.append("<div class='prev'><img src='build/assets/images/prev.png' title='Previous step' /></div>");
-  prop.tutorial.html.append("<div class='next'><img src='build/assets/images/next.png' title='Next step' /></div>");
+  prop.tutorial.html.append("<div class='prev'><img src='assets/images/prev.png' title='Previous step' /></div>");
+  prop.tutorial.html.append("<div class='next'><img src='assets/images/next.png' title='Next step' /></div>");
   prop.tutorial.html.find(".prev").click(tutorial_prev);
   prop.tutorial.html.find(".next").click(tutorial_next);
 

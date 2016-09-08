@@ -1,0 +1,37 @@
+{
+  "name": "Cessna 208 Caravan",
+  "icao": "C208",
+  "engines": {
+    "number": 1,
+    "type": "T"
+  },
+  "weightclass": "S",
+  "category": {
+    "srs": 1,
+    "lahso": 3,
+    "recat": "F"
+  },
+  "ceiling": 27000,
+  "rate": {
+    "climb":      1670,
+    "descent":    1000,
+    "accelerate": 8,
+    "decelerate": 4
+  },
+  "runway": {
+    "takeoff": 0.740,
+    "landing": 0.550
+  },
+  "speed":{
+    "min":     80,
+    "landing": 90,
+    "cruise":  184,
+    "cruiseM": null,
+    "max":     195,
+    "maxM":    null
+  },
+  "capability": {
+    "ils": true,
+    "fix": true
+  }
+}

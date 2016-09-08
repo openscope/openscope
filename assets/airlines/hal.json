@@ -1,0 +1,15 @@
+{
+  "name": "Hawaiian Airlines",
+  "callsign": {
+    "name": "Hawaiian",
+    "length": 3
+  },
+  "fleets": {
+    "default": [
+      ["AT45", 3 ],
+      ["A332", 22],
+      ["B712", 18],
+      ["B763", 8 ]
+    ]
+  }
+}

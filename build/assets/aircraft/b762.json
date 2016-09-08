@@ -1,0 +1,37 @@
+{
+  "name": "Boeing 767-200",
+  "icao": "B762",
+  "engines": {
+    "number": 2,
+    "type": "J"
+  },
+  "weightclass": "H",
+  "category": {
+    "srs": 3,
+    "lahso": 9,
+    "recat": "C"
+  },
+  "ceiling": 41000,
+  "rate": {
+    "climb":      2500,
+    "descent":    2000,
+    "accelerate": 7,
+    "decelerate": 4
+  },
+  "runway": {
+    "takeoff": 2.652,
+    "landing": 1.465
+  },
+  "speed":{
+    "min":     120,
+    "landing": 140,
+    "cruise":  461,
+    "cruiseM": null,
+    "max":     493,
+    "maxM":    null
+  },
+  "capability": {
+    "ils": true,
+    "fix": true
+  }
+}

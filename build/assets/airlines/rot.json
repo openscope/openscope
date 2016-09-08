@@ -1,0 +1,17 @@
+{
+  "name": "TAROM Romanian Air Transport",
+  "callsign": {
+    "name": "Tarom",
+    "length": 3
+  },
+  "fleets": {
+    "default": [
+      ["A310", 2],
+      ["A318", 4],
+      ["AT45", 7],
+      ["AT72", 2],
+      ["B733", 4],
+      ["B737", 4]
+    ]
+  }
+}

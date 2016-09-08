@@ -1,0 +1,15 @@
+{
+  "name": "Frontier Airlines",
+  "callsign": {
+    "name": "FRONTIER FLIGHT",
+    "length": 3,
+    "alpha": false
+  },
+  "fleets": {
+    "default": [
+      ["A319", 28],
+      ["A320", 23],
+      ["A321", 6]
+    ]
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "Rossiya Airlines",
+  "callsign": {
+    "name": "Russia",
+    "length": 4
+  },
+  "fleets": {
+    "default": [
+      ["A319", 27],
+      ["A320", 5 ],
+      ["B738", 15]
+    ],
+    "long": [
+      ["B744", 3 ],
+      ["B77L", 2 ],
+      ["B773", 1]
+    ]
+  }
+}

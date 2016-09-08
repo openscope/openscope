@@ -1,0 +1,16 @@
+{
+  "name": "Air Serbia",
+  "callsign": {
+    "name": "Air Serbia",
+    "length": 3
+  },
+  "fleets": {
+    "default": [
+      ["A319", 8],
+      ["A320", 2],
+      ["A332", 1],
+      ["AT72", 6],
+      ["B733", 4]
+    ]
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "name": "Sukhoi Superjet 100-95",
+  "icao": "SU95",
+  "engines": {
+    "number": 2,
+    "type": "J"
+  },
+  "weightclass": "L",
+  "category": {
+    "srs": 3,
+    "lahso": 7,
+    "recat": "D"
+  },
+  "ceiling": 40000,
+  "rate": {
+    "climb":      2500,
+    "descent":    2000,
+    "accelerate": 4,
+    "decelerate": 4
+  },
+  "runway": {
+    "takeoff": 1.800,
+    "landing": 1.300
+  },
+  "speed":{
+    "min":     120,
+    "landing": 135,
+    "cruise":  448,
+    "cruiseM": null,
+    "max":     469,
+    "maxM":    null
+  },
+  "capability": {
+    "ils": true,
+    "fix": true
+  }
+}

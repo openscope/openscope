@@ -1,0 +1,23 @@
+{
+  "icao": "EVA",
+  "name": "EVA Air",
+  "callsign": {
+    "name": "EVA",
+    "length": 3,
+    "alpha": false
+  },
+  "fleets": {
+    "default": [
+      ["A321", 18]
+    ],
+    "long": [
+      ["A332", 7],
+      ["A333", 5],
+      ["B744", 3],
+      ["B77W", 23]
+    ],
+    "cargo": [
+      ["B744", 7]
+    ]
+  }
+}

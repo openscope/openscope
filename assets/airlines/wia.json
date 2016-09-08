@@ -1,0 +1,14 @@
+{
+  "name": "Winair",
+  "icao": "WIA",
+  "callsign": {
+    "name": "Windward",
+    "length": 3
+   },
+  "fleets": {
+    "default": [
+      ["dhc6", 4],
+      ["at43", 2]  
+    ]
+  }
+}

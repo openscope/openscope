@@ -1,0 +1,37 @@
+{
+  "name": "Lockheed C-5 Galaxy ",
+  "icao": "C5",
+  "engines": {
+    "number": 4,
+    "type": "J"
+  },
+  "weightclass": "H",
+  "category": {
+    "srs": 3,
+    "lahso": null,
+    "recat": "B"
+  },
+  "ceiling": 37000,
+  "rate": {
+    "climb":      2000,
+    "descent":    3000,
+    "accelerate": 4,
+    "decelerate": 2
+  },
+  "runway": {
+    "takeoff": 2.600,
+    "landing": 1.200
+  },
+  "speed":{
+    "min":     150,
+    "landing": 160,
+    "cruise":  430,
+    "cruiseM": null,
+    "max":     510,
+    "maxM":    0.77
+  },
+  "capability": {
+    "ils": true,
+    "fix": true
+  }
+}

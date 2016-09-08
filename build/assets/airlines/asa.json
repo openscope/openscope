@@ -1,0 +1,15 @@
+{
+  "name": "Alaska Airlines",
+  "callsign": {
+    "name": "Alaska",
+    "length": 3
+  },
+  "fleets": {
+    "default": [
+    ["B734", 27],
+    ["B737", 17],
+    ["B738", 61],
+    ["B739", 40]
+    ]
+  }
+}

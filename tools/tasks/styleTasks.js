@@ -1,3 +1,4 @@
+/* eslint-disable */
 'use strict';
 
 module.exports = function(gulp, config) {
@@ -7,7 +8,7 @@ module.exports = function(gulp, config) {
     // CONCAT MINIFY
     //
     // concat all css files imported into main.css, then output minified
-    // css file to build/assets/style dir
+    // css file to assets/style dir
     ////////////////////////////////////////////////////////////////////
     var sourcemaps = require('gulp-sourcemaps');
     var minifyCss = require('gulp-minify-css');

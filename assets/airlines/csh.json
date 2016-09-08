@@ -1,0 +1,16 @@
+{
+    "name": "Shanghai Airlines",
+    "callsign": {
+        "name": "Shanghai Air",
+        "length": 3
+    },
+    "fleets": {
+        "default": [
+            ["A332",     3],
+            ["A333",     3],
+            ["B737",    10],
+            ["B738",    66],
+            ["B763",     6]
+        ]
+    }
+}

@@ -1,0 +1,30 @@
+{
+  "name": "AeroMexico",
+  "icao": "AMX",
+  "callsign": {
+    "name": "AeroMexico",
+    "length": 3
+  },
+  "fleets": {
+    "90long": [
+      ["DC10", 9 ],
+      ["B752", 19 ],
+      ["B762", 6 ]
+    ],
+    "90default": [
+      ["MD82", 52 ]
+    ],
+    "long": [
+      ["B788", 9 ],
+      ["B772", 4 ]
+    ],
+	"short": [
+	  ["E145", 17],
+	  ["E170", 16]
+	],
+    "default": [
+      ["B737", 20 ],
+      ["B738", 31 ]
+    ]
+  }
+}

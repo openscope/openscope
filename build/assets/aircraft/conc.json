@@ -1,0 +1,37 @@
+{
+  "name": "Concorde",
+  "icao": "CONC",
+  "engines": {
+    "number": 4,
+    "type": "J"
+  },
+  "weightclass": "H",
+  "category": {
+    "srs": 3,
+    "lahso": null,
+    "recat": "E"
+  },
+  "ceiling": 60000,
+  "rate": {
+    "climb":      5000,
+    "descent":    3000,
+    "accelerate": 4,
+    "decelerate": 4
+  },
+  "runway": {
+    "takeoff": 3.600,
+    "landing": 3.800
+  },
+  "speed":{
+    "min":     150,
+    "landing": 170,
+    "cruise":  1340,
+    "cruiseM": 2.02,
+    "max":     1354,
+    "maxM":    2.04
+  },
+  "capability": {
+    "ils": true,
+    "fix": true
+  }
+}

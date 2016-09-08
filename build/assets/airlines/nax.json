@@ -1,0 +1,16 @@
+{
+  "name": "Norwegian Air Shuttle ASA",
+  "callsign": {
+    "name": "Nor Shuttle",
+    "length": 4
+  },
+  "fleets": {
+    "default": [
+      ["B738", 90]
+    ],
+    "long": [
+      ["B788", 8 ],
+      ["B789", 2]
+    ]
+  }
+}

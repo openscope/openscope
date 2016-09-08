@@ -1,0 +1,15 @@
+{
+  "name": "Eurowings",
+  "callsign": {
+    "name": "Eurowings",
+    "length": 4
+  },
+  "fleets": {
+    "default": [
+      ["A320", 13],
+      ["A332", 4],
+      ["B738", 2],
+      ["CRJ9", 11]
+    ]
+  }
+}

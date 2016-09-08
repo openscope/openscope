@@ -1,0 +1,37 @@
+{
+  "name": "Bombardier Dash 8-300",
+  "icao": "DH8C",
+  "engines": {
+    "number": 2,
+    "type": "T"
+  },
+  "weightclass": "L",
+  "category": {
+    "srs": 3,
+    "lahso": 5,
+    "recat": "E"
+  },
+  "ceiling": 25000,
+  "rate": {
+    "climb":      1700,
+    "descent":    1500,
+    "accelerate": 7,
+    "decelerate": 6
+  },
+  "runway": {
+    "takeoff": 0.800,
+    "landing": 0.800
+  },
+  "speed":{
+    "min":     75,
+    "landing": 120,
+    "cruise":  280,
+    "cruiseM": null,
+    "max":     300,
+    "maxM":    null
+  },
+  "capability": {
+    "ils": true,
+    "fix": true
+  }
+}

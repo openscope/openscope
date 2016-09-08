@@ -1,0 +1,37 @@
+{
+  "name": "Embraer 120 Brasília",
+  "icao": "E120",
+  "engines": {
+    "number": 2,
+    "type": "T"
+  },
+  "weightclass": "S+",
+  "category": {
+    "srs": 3,
+    "lahso": 7,
+    "recat": "F"
+  },
+  "ceiling": 32000,
+  "rate": {
+    "climb":      1500,
+    "descent":    1500,
+    "accelerate": 6,
+    "decelerate": 3
+  },
+  "runway": {
+    "takeoff": 1.560,
+    "landing": 1.380
+  },
+  "speed":{
+    "min":     90,
+    "landing": 95,
+    "cruise":  280,
+    "cruiseM": null,
+    "max":     315,
+    "maxM":    null
+  },
+  "capability": {
+    "ils": true,
+    "fix": true
+  }
+}

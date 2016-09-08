@@ -1,0 +1,13 @@
+{
+  "name": "Gol Linhas Aereas",
+  "callsign": {
+    "name": "Gol",
+    "length": 3
+  },
+  "fleets": {
+    "default": [
+      ["B737", 33 ],
+      ["B738", 107]
+    ]
+  }
+}

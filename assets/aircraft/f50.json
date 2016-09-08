@@ -1,0 +1,37 @@
+{
+  "name": "Fokker F50",
+  "icao": "F50",
+  "engines": {
+    "number": 2,
+    "type": "T"
+  },
+  "weightclass": "L",
+  "category": {
+    "srs": 3,
+    "lahso": 3,
+    "recat": "D"
+  },
+  "ceiling": 25000,
+  "rate": {
+    "climb":      1500,
+    "descent":    1670,
+    "accelerate": 4,
+    "decelerate": 6
+  },
+  "runway": {
+    "takeoff": 0.890,
+    "landing": 1.017
+  },
+  "speed":{
+    "min":     100,
+    "landing": 115,
+    "cruise":  241,
+    "cruiseM": null,
+    "max":     290,
+    "maxM":    null
+  },
+  "capability": {
+    "ils": true,
+    "fix": true
+  }
+}

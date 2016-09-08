@@ -1,0 +1,37 @@
+{
+  "name": "ATR 72-500",
+  "icao": "AT72",
+  "engines": {
+    "number": 2,
+    "type": "T"
+  },
+  "weightclass": "L",
+  "category": {
+    "srs": 3,
+    "lahso": 3,
+    "recat": "E"
+  },
+  "ceiling": 25000,
+  "rate": {
+    "climb":      1800,
+    "descent":    1500,
+    "accelerate": 7,
+    "decelerate": 5
+  },
+  "runway": {
+    "takeoff": 1.408,
+    "landing": 1.210
+  },
+  "speed":{
+    "min":     110,
+    "landing": 100,
+    "cruise":  248,
+    "cruiseM": null,
+    "max":     284,
+    "maxM":    null
+  },
+  "capability": {
+    "ils": true,
+    "fix": true
+  }
+}

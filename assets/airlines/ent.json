@@ -1,0 +1,13 @@
+{
+  "name": "Enter Air",
+  "callsign": {
+    "name": "ENTERAIR",
+    "length": 3
+  },
+  "fleets": {
+    "default": [
+      ["B734", 8 ],
+      ["B738", 13 ]
+    ]
+  }
+}
