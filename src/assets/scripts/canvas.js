@@ -1,7 +1,7 @@
 // jshint latedef:nofunc, undef:true, eqnull:true, eqeqeq:true, browser:true, jquery:true, devel:true
 /*global prop:true, km:false, crange:false, clamp:false, lpad:false, airport_get:false, game_time:false, game_paused:false, time:false, round:false, distance2d:false, radians:false  */
 
-function canvas_init_pre() {
+window.canvas_init_pre = function canvas_init_pre() {
   "use strict";
   prop.canvas={};
 
@@ -25,7 +25,7 @@ function canvas_init_pre() {
   prop.canvas.draw_terrain = true;
 }
 
-function canvas_init() {
+window.canvas_init = function canvas_init() {
   "use strict";
   canvas_add("navaids");
 }
@@ -48,7 +48,7 @@ function canvas_adjust_hidpi() {
   }
 }
 
-function canvas_complete() {
+window.canvas_complete = function canvas_complete() {
   "use strict";
   setTimeout(function() {
     prop.canvas.dirty = true;
@@ -56,7 +56,7 @@ function canvas_complete() {
   prop.canvas.last = time();
 }
 
-function canvas_resize() {
+window.canvas_resize = function canvas_resize() {
   "use strict";
   if(prop.canvas.resize) {
     prop.canvas.size.width  = $(window).width();
@@ -105,7 +105,7 @@ function canvas_draw_runway(cc, runway, mode) {
   var length2 = round(km_to_px(runway.length / 2));
   var angle   = runway.angle;
 
-  cc.translate(round(km_to_px(runway.position[0])) + prop.canvas.panX, 
+  cc.translate(round(km_to_px(runway.position[0])) + prop.canvas.panX,
               -round(km_to_px(runway.position[1])) + prop.canvas.panY);
   cc.rotate(angle);
 
@@ -116,7 +116,7 @@ function canvas_draw_runway(cc, runway, mode) {
     cc.moveTo(0, 0);
     cc.lineTo(0, -2*length2);
     cc.stroke();
-  } 
+  }
   else {  // extended centerlines
     if(!runway.ils.enabled) return;
     cc.strokeStyle = "#465";
@@ -246,7 +246,7 @@ function canvas_draw_fixes(cc) {
     cc.fillStyle   = "rgba(0, 0, 0, 0.67)";
     cc.globalCompositeOperation = 'destination-out';
     cc.lineWidth   = 4;
-    
+
     canvas_draw_fix(cc, i, airport.fixes[i].position);
 
     cc.strokeStyle = "rgba(255, 255, 255, 0)";
@@ -579,7 +579,7 @@ function canvas_draw_info(cc, aircraft) {
   "use strict";
   if(!aircraft.isVisible()) return;
   if(!aircraft.hit) {
-    
+
     // Initial Setup
     cc.save();
     var cs = aircraft.getCallsign();
@@ -587,7 +587,7 @@ function canvas_draw_info(cc, aircraft) {
     var width  = clamp(1, 5.8*cs.length) + (paddingLR*2); // width of datablock (scales to fit callsign)
     var width2 = width / 2;
     var height  = 31;               // height of datablock
-    var height2 = height / 2; 
+    var height2 = height / 2;
     var bar_width = width / 18;     // width of colored bar
     var bar_width2 = bar_width / 2;
     var ILS_enabled = aircraft.fms.currentWaypoint().runway && aircraft.category === "arrival";
@@ -800,7 +800,7 @@ function canvas_draw_compass(cc) {
  */
 function canvas_draw_ctr(cc) {
   "use strict";
-  
+
   //Draw a gentle fill color with border within the bounds of the airport's ctr_radius
   cc.fillStyle = "rgba(200, 255, 200, 0.02)";
 	cc.strokeStyle = "rgba(200, 255, 200, 0.25)";
@@ -912,7 +912,7 @@ function canvas_draw_terrain(cc) {
         for (var v in v2) {
           if (v == 0)
             cc.moveTo(km_to_px(v2[v][0]), -km_to_px(v2[v][1]));
-          else 
+          else
             cc.lineTo(km_to_px(v2[v][0]), -km_to_px(v2[v][1]));
         }
         cc.closePath();
@@ -930,7 +930,7 @@ function canvas_draw_terrain(cc) {
       height = prop.canvas.size.height,
       box_width = 30,
       box_height = 5;
-      
+
   cc.font = "10px monoOne, monospace";
   cc.lineWidth = 1;
 
@@ -979,7 +979,7 @@ function canvas_draw_restricted(cc) {
   cc.lineWidth   = Math.max(prop.ui.scale / 3, 2);
   cc.lineJoin    = "round";
   cc.font = "10px monoOne, monospace";
-  
+
   var airport=airport_get();
   cc.save();
   cc.translate(prop.canvas.panX, prop.canvas.panY);
@@ -988,7 +988,7 @@ function canvas_draw_restricted(cc) {
     cc.fillStyle   = "transparent";
     canvas_draw_poly(cc, area.coordinates);
     cc.fillStyle   = "rgba(150, 200, 255, .4)";
-    
+
     cc.textAlign    = "center";
     cc.textBaseline = "top";
     var height = (area.height == Infinity ? 'UNL' : 'FL' + Math.ceil(area.height / 1000)*10);
@@ -998,7 +998,7 @@ function canvas_draw_restricted(cc) {
       height_shift = -12;
       cc.fillText(area.name, round(km_to_px(area.center[0])), - round(km_to_px(area.center[1])));
     }
-    
+
     cc.fillText(height, round(km_to_px(area.center[0])), height_shift - round(km_to_px(area.center[1])));
   }
   cc.restore();
@@ -1012,7 +1012,7 @@ function canvas_draw_videoMap(cc) {
   cc.lineWidth   = prop.ui.scale / 15;
   cc.lineJoin    = "round";
   cc.font = "10px monoOne, monospace";
-  
+
   var airport=airport_get();
   var map = airport.maps.base;
   cc.save();
@@ -1043,7 +1043,7 @@ function canvas_draw_crosshairs(cc) {
   cc.restore();
 }
 
-function canvas_update_post() {
+window.canvas_update_post = function canvas_update_post() {
   "use strict";
   var elapsed = game_time() - airport_get().start;
   var alpha   = crange(0.1, elapsed, 0.4, 0, 1);

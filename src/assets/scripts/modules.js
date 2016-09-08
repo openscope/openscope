@@ -10,6 +10,7 @@ var input = require('./input');
 var airline = require('./airline');
 var aircraft = require('./aircraft');
 var airport = require('./airport');
+var canvas = require('./canvas');
 var ui = require('./ui');
 // FIXME: shame!
 //
@@ -48,7 +49,7 @@ var MODULES = [
   // "airline",
   // "aircraft",
   // "airport",
-  "canvas",
+  // "canvas",
   // "ui",
   // "load"
 ];
@@ -299,6 +300,7 @@ $(document).ready(function() {
     airline_init_pre();
     aircraft_init_pre();
     airport_init_pre();
+    canvas_init_pre();
     ui_init_pre();
 
     // FIXME: shame!
@@ -309,6 +311,7 @@ $(document).ready(function() {
     input_init();
     aircraft_init();
     airport_init();
+    canvas_init();
     ui_init();
 });
 
@@ -334,7 +337,10 @@ function done() {
 }
 
 function resize() {
-      call_module("*","resize");
+    call_module("*","resize");
+
+    // TODO: temp fix to get browserify working
+    canvas_resize();
 }
 
 function update() {
@@ -343,6 +349,7 @@ function update() {
 
         // TODO: temp fix to get browserify working
         game_complete();
+        canvas_complete();
         ui_complete();
 
         zlsa.atc.LoadUI.complete();
