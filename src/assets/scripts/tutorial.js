@@ -1,3 +1,5 @@
+import { time } from './utilities/timeHelpers';
+
 var Step = Fiber.extend(function() {
   return {
     init: function(options) {

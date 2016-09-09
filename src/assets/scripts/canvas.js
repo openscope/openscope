@@ -1,8 +1,9 @@
 // jshint latedef:nofunc, undef:true, eqnull:true, eqeqeq:true, browser:true, jquery:true, devel:true
-/*global prop:true, km:false, crange:false, clamp:false, lpad:false, airport_get:false, game_time:false, game_paused:false, time:false, round:false, distance2d:false, radians:false  */
+/* global prop:true, km:false, crange:false, clamp:false, lpad:false, airport_get:false, game_time:false, game_paused:false, time:false, round:false, distance2d:false, radians:false  */
+import { time } from './utilities/timeHelpers';
 
 window.canvas_init_pre = function canvas_init_pre() {
-  "use strict";
+  'use strict';
   prop.canvas={};
 
   prop.canvas.contexts={};

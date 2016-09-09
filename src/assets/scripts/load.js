@@ -1,3 +1,5 @@
+import { time } from './utilities/timeHelpers';
+
 /**
  * Loading indicator elements for HTML interface
  */
@@ -27,7 +29,7 @@
 
       if (!state.loading) {
         $('#loadingIndicator').show();
-        state.start = new Date().getTime() * 0.001;
+        state.start = time();
       }
 
       if (state.callback !== null) {
@@ -37,7 +39,7 @@
     },
 
     stopLoad: function() {
-      var now = new Date().getTime() * 0.001;
+      var now = time();
       if ((now - state.start) > minimumDisplayTime) {
         $('#loadingIndicator').hide();
         state.start = null;

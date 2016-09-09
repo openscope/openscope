@@ -1,84 +1,74 @@
-window.zlsa = {atc: {}};
+import $ from 'jquery';
+import Fiber from 'fiber';
+import peg from 'pegjs';
 
-window.$ = require('jquery');
-window.Fiber = require('fiber');
-// window.peg = require('pegjs');
+import { time } from './utilities/timeHelpers';
 
-var util = require('./util');
-var animation = require('./animation');
-var parser = require('./parser');
+window.$ = $;
+window.Fiber = Fiber;
+window.peg = peg;
+window.zlsa = {};
+window.zlsa.atc = {};
+const prop = {};
 
-var speech = require('./speech');
-var get = require('./get');
-var tutorial = require('./tutorial');
-var base = require('./base');
-var game = require('./game');
-var input = require('./input');
-var airline = require('./airline');
-var aircraft = require('./aircraft');
-var airport = require('./airport');
-var canvas = require('./canvas');
-var ui = require('./ui');
-// FIXME: shame!
-// this is declared here but not set until $(document).ready();
-var load;
+/*eslint-disable*/
+// FIXME: shame! this is declared here but not set until $(document).ready();
+let load;
 
-var Mediator = Fiber.extend(function (base) {
-  return {
-    init: function (options) {},
+const util = require('./util');
+const animation = require('./animation');
+const parser = require('./parser');
+const speech = require('./speech');
+const get = require('./get');
+const tutorial = require('./tutorial');
+const base = require('./base');
+const game = require('./game');
+const input = require('./input');
+const airline = require('./airline');
+const aircraft = require('./aircraft');
+const airport = require('./airport');
+const canvas = require('./canvas');
+const ui = require('./ui');
 
-    trigger: function(event, data) {
-      if (event == 'startLoading') {
-        zlsa.atc.LoadUI.startLoad(data);
-      }
-      else if (event == 'stopLoading') {
-        zlsa.atc.LoadUI.stopLoad();
-      }
-    },
-  };
-});
+const Mediator = Fiber.extend((base) => ({
+    init: (options) => {},
 
-zlsa.atc.mediator = new Mediator();
+    trigger: (event, data) => {
+        if (event === 'startLoading') {
+            window.zlsa.atc.LoadUI.startLoad(data);
+        } else if (event === 'stopLoading') {
+            window.zlsa.atc.LoadUI.stopLoad();
+        }
+    }
+}));
 
-//////////////////////////////////////////////////////////////////////////////////////////
+/*eslint-enable*/
+window.zlsa.atc.mediator = new Mediator();
 
+// ////////////////////////////////////////////////////////////////////////////////////////
+
+// @deprectaed
 // all modules, prefix with "-" to signify library; <name>_init etc. won't be called
-var MODULES = [
-  // "-util",
-  // "-animation",
-  // "-parser",
-  // "speech",
-  // "get",
-  // "tutorial",
-  // "base",
-  // "game",
-  // "input",
-  // "airline",
-  // "aircraft",
-  // "airport",
-  // "canvas",
-  // "ui",
-  // "load"
-];
+const MODULES = [];
 
 // saved as prop.version and prop.version_string
-var VERSION = [2, 1, 8];
+const VERSION = [2, 1, 8];
 
 // are you using a main loop? (you must call update() afterward disable/reenable)
-var UPDATE = true;
+let UPDATE = true;
 
 // the framerate is updated this often (seconds)
-var FRAME_DELAY = 1;
+const FRAME_DELAY = 1;
 
 // is this a release build?
-var RELEASE = false;
+const RELEASE = false;
 
 // Usage of async() etc:
 
-// async("image") // call async() once for every async_loaded() you'll call
-// $.get(...,function() {async_loaded("image");}) // call async_loaded once for each
+// async("image") // call async() once for every asyncLoaded() you'll call
+// $.get(...,function() {asyncLoaded("image");}) // call asyncLoaded once for each
 //                                                // image once it's loaded
-// if async_loaded() is NOT called the same number of times as async() the page will
+// if asyncLoaded() is NOT called the same number of times as async() the page will
 // NEVER load!
 
 // === CALLBACKS (all optional and do not need to be defined) ===
@@ -102,42 +92,47 @@ var RELEASE = false;
 // RESIZE (called at least once during init and whenever page changes size)
 // module_resize()
 
-//////////////////////////////////////////////////////////////////////////////////////////
+// ////////////////////////////////////////////////////////////////////////////////////////
 
-/********* Various fixes for browser issues *********/
-  /** Necessary for Internet Explorer 11 (IE11) to not die while using String.fromCodePoint()
-   ** This function is not natively available in IE11, as noted on this MSDN page:
-   ** https://msdn.microsoft.com/en-us/library/dn890630(v=vs.94).aspx
-   ** Apparently, it is fine with pre-Win8.1 MS Edge 11, but never okay in IE.
-   ** Here, the function is added to the String prototype to make later code usable.
-   ** Solution from: http://xahlee.info/js/js_unicode_code_point.html
-   */
-  if (!String.fromCodePoint) {
+/*eslint-disable*/
+/** ******* Various fixes for browser issues *********/
+/** Necessary for Internet Explorer 11 (IE11) to not die while using String.fromCodePoint()
+ * This function is not natively available in IE11, as noted on this MSDN page:
+ * https://msdn.microsoft.com/en-us/library/dn890630(v=vs.94).aspx
+ * Apparently, it is fine with pre-Win8.1 MS Edge 11, but never okay in IE.
+ * Here, the function is added to the String prototype to make later code usable.
+ * Solution from: http://xahlee.info/js/js_unicode_code_point.html
+*/
+if (!String.fromCodePoint) {
     // ES6 Unicode Shims 0.1 , © 2012 Steven Levithan , MIT License
-    String.fromCodePoint = function fromCodePoint () {
-      var chars = [], point, offset, units, i;
-      for (i = 0; i < arguments.length; ++i) {
-        point = arguments[i];
-        offset = point - 0x10000;
-        units = point > 0xFFFF ? [0xD800 + (offset >> 10), 0xDC00 + (offset & 0x3FF)] : [point];
-        chars.push(String.fromCharCode.apply(null, units));
-      }
-      return chars.join("");
-    }
-  }
+    String.fromCodePoint = function fromCodePoint() {
+        const chars = [];
+        let point;
+        let offset;
+        let units;
 
+        for (let i = 0; i < arguments.length; i++) {
+            point = arguments[i];
+            offset = point - 0x10000;
+            units = point > 0xFFFF ? [0xD800 + (offset >> 10), 0xDC00 + (offset & 0x3FF)] : [point];
+            chars.push(String.fromCharCode.apply(null, units));
+        }
 
-/******************* Module Setup *******************/
-var async_modules = {};
-var async_done_callback = null;
+        return chars.join('');
+    };
+}
+/*eslint-enable*/
+/** ***************** Module Setup *******************/
+// const asyncModules = {};
+// const asyncDoneCallback = () => {};
 
-var LOG_DEBUG=0;
-var LOG_INFO=1;
-var LOG_WARNING=2;
-var LOG_ERROR=3;
-var LOG_FATAL=4;
+const LOG_DEBUG = 0;
+const LOG_INFO = 1;
+const LOG_WARNING = 2;
+const LOG_ERROR = 3; // eslint-disable-line
+const LOG_FATAL = 4; // eslint-disable-line
 
-var log_strings = {
+const logStrings = {
     0: 'DEBUG',
     1: 'INFO',
     2: 'WARN',
@@ -146,12 +141,12 @@ var log_strings = {
 };
 
 // PROP
-window.prop_init = function prop_init() {
-    window.prop = {};
+window.propInit = function propInit() {
+    window.prop = prop;
     prop.complete = false;
     prop.temp = 'nothing here';
     prop.version = VERSION;
-    prop.version_string = 'v' + VERSION.join('.');
+    prop.version_string = `v${VERSION.join('.')}`;
     prop.time = {};
     prop.time.start = time();
     prop.time.frames = 0;
@@ -168,16 +163,16 @@ window.prop_init = function prop_init() {
     if (RELEASE) {
         prop.log = LOG_WARNING;
     }
-}
+};
 
 // MISC
-window.log = function log(message, level) {
-    if (level == undefined) {
-        level = LOG_INFO;
-    }
+window.log = function log(message, level = LOG_INFO) {
+    // if (typeof level === 'undefined') {
+    //     level = LOG_INFO;
+    // }
 
     if (prop.log <= level) {
-        var text = "[ " + log_strings[level] + " ]";
+        const text = `[ ${logStrings[level]} ]`;
 
         if (level >= LOG_WARNING) {
             console.warn(text, message);
@@ -185,120 +180,134 @@ window.log = function log(message, level) {
             console.log(text, message);
         }
     }
-}
+};
 
 // ASYNC (AJAX etc.)
-function async(name) {
-  if (name in async_modules)
-    async_modules[name] += 1;
-  else
-    async_modules[name] = 1;
-}
+// function async(name) {
+//     if (name in asyncModules) {
+//         asyncModules[name] += 1;
+//     } else {
+//         asyncModules[name] = 1;
+//     }
+// }
 
-function async_loaded(name) {
-  async_modules[name]-=1;
-  async_check();
-}
+// function asyncLoaded(name) {
+//     asyncModules[name] -= 1;
+//     asyncCheck();
+// }
 
-function async_wait(callback) {
-  async_done_callback=callback;
-  async_check();
-}
+// function asyncWait(callback) {
+//     asyncDoneCallback = callback;
+//     asyncCheck();
+// }
 
-function async_check() {
-  for(var i in async_modules) {
-    if(async_modules[i] != 0)
-      return;
-  }
-  if(async_done_callback)
-    async_done_callback();
-}
+// function asyncCheck() {
+//     for (const i in asyncModules) {
+//         if (asyncModules[i] !== 0) {
+//             return;
+//         }
+//     }
+//
+//     if (asyncDoneCallback) {
+//         asyncDoneCallback();
+//     }
+// }
 
 // UTIL
-window.time = function time() {
-  return new Date().getTime()*0.001;
-}
+// window.time = function time() {
+//   return new Date().getTime() * 0.001;
+// }
 
-function s(number,single,multiple) {
-  if(!single) single="";
-  if(!multiple) multiple="s";
-  if(single == 1) return single;
-  return multiple;
-}
+// function s(number, single, multiple) {
+//     if (!single) {
+//         single = '';
+//     }
+//
+//     if (!multiple) {
+//         multiple = 's';
+//     }
+//
+//     return (single === 1)
+//         ? single
+//         : multiple;
+// }
 
 // MODULES
+// function load_module(name) {
+//   var filename;
+//   if (name[0] == "-") {
+//     modules[name].library = true;
+//     filename = "assets/scripts/"+name.substr(1)+".js";
+//   } else {
+//     filename = "assets/scripts/"+name+".js";
+//   }
+//   var el = document.createElement("script");
+//   el.src = filename;
+//   document.head.appendChild(el);
+//   el.onload = function() {
+//     modules[name].script = true;
+//     //    if(modules[name].library)
+//     //      log("Loaded library "+name.substr(1));
+//     //    else
+//     //      log("Loaded module "+name);
+//     for(var i in modules) {
+//       var m = modules[i];
+//       if (!m.script)
+//         return;
+//     }
+//
+//     callModule("*","init_pre");
+//     callModule("*","init");
+//     callModule("*","init_post");
+//     done();
+//   };
+// }
+//
+// function load_modules() {
+//   // inserts each module's <script> into <head>
+//   for (var i in modules) {
+//     load_module(i);
+//   }
+// }
 
-function load_module(name) {
-  var filename;
-  if (name[0] == "-") {
-    modules[name].library = true;
-    filename = "assets/scripts/"+name.substr(1)+".js";
-  } else {
-    filename = "assets/scripts/"+name+".js";
-  }
-  var el = document.createElement("script");
-  el.src = filename;
-  document.head.appendChild(el);
-  el.onload = function() {
-    modules[name].script = true;
-    //    if(modules[name].library)
-    //      log("Loaded library "+name.substr(1));
-    //    else
-    //      log("Loaded module "+name);
-    for(var i in modules) {
-      var m = modules[i];
-      if (!m.script)
-        return;
-    }
-
-    call_module("*","init_pre");
-    call_module("*","init");
-    call_module("*","init_post");
-    done();
-  };
-}
-
-function load_modules() {
-  // inserts each module's <script> into <head>
-  for (var i in modules) {
-    load_module(i);
-  }
-}
-
-function call_module(name, func, args) {
-    console.warn('-- call_module :: func:', func);
+/*eslint-disable*/
+// FIXME: is this needed anymore?
+function callModule(name, func, args) {
+    // TODO: remove before merging back to `zsla/gh-pages`, for development only
+    console.warn('-- callModule :: func:', func);
 
     if (!args) {
         args = [];
-    };
+    }
 
-    if (name == "*") {
-        for (var i = 0; i < MODULES.length; i++) {
-            call_module(MODULES[i],func,args);
+    if (name === '*') {
+        for (let i = 0; i < MODULES.length; i++) {
+            callModule(MODULES[i], func, args);
         }
 
         return null;
     }
 
-    if (name + "_" + func in window && name[0] != "-") {
-        return window[name + "_" + func].apply(window, args);
+    if (name + '_' + func in window && name[0] != '-') {
+        return window[name + '_' + func].apply(window, args);
     }
 
     return null;
 }
+/*eslint-enable*/
 
-$(document).ready(function() {
-    modules = {};
+$(document).ready(() => {
+    window.modules = {};
 
-    for (var i = 0; i < MODULES.length; i++) {
+    for (let i = 0; i < MODULES.length; i++) {
         modules[MODULES[i]] = {
             library: false,
-            script: false,
+            script: false
         };
     }
 
-    prop_init();
-    log('Version ' + prop.version_string);
+    propInit();
+    log(`Version ${prop.version_string}`);
     // load_modules();
 
     // TODO: temp fix to get browserify working
@@ -325,29 +334,8 @@ $(document).ready(function() {
     done();
 });
 
-function done() {
-    var e = time() - prop.time.start;
-    e = e.toPrecision(2);
-    log('Finished loading ' + MODULES.length + ' module' + s(MODULES.length) + ' in ' + e + 's');
-
-    $(window).resize(resize);
-    resize();
-
-    call_module('*','done');
-
-    prop.loaded = true;
-    call_module('*','ready');
-
-    // TODO: temp fix to get browserify working
-    airport_ready();
-
-    if (UPDATE) {
-        requestAnimationFrame(update);
-    }
-}
-
 function resize() {
-    call_module("*","resize");
+    callModule('*', 'resize');
 
     // TODO: temp fix to get browserify working
     canvas_resize();
@@ -355,14 +343,14 @@ function resize() {
 
 function update() {
     if (!prop.complete) {
-        call_module("*","complete");
+        callModule('*', 'complete');
 
         // TODO: temp fix to get browserify working
         game_complete();
         canvas_complete();
         ui_complete();
 
-        zlsa.atc.LoadUI.complete();
+        window.zlsa.atc.LoadUI.complete();
         prop.complete = true;
     }
 
@@ -379,26 +367,46 @@ function update() {
     prop.time.frames += 1;
     prop.time.frame.count += 1;
 
-    var elapsed = time() - prop.time.frame.start;
+    const elapsed = time() - prop.time.frame.start;
+
     if (elapsed > prop.time.frame.delay) {
         prop.time.fps = prop.time.frame.count / elapsed;
         prop.time.frame.count = 0;
         prop.time.frame.start = time();
     }
 
-    prop.time.frame.delta = Math.min(time() - prop.time.frame.last, 1/20);
+    prop.time.frame.delta = Math.min(time() - prop.time.frame.last, 1 / 20);
     prop.time.frame.last = time();
+}
+
+function done() {
+    $(window).resize(resize);
+    resize();
+
+    callModule('*', 'done');
+
+    prop.loaded = true;
+    callModule('*', 'ready');
+
+    // TODO: temp fix to get browserify working
+    airport_ready();
+
+    if (UPDATE) {
+        requestAnimationFrame(update);
+    }
 }
 
 /**
  * Change whether updates should run
  */
-window.update_run = function update_run(arg) {
-  if ((!UPDATE) && arg)
-    requestAnimationFrame(update);
-  UPDATE = arg;
-}
+window.updateRun = function updateRun(arg) {
+    if (!UPDATE && arg) {
+        requestAnimationFrame(update);
+    }
+
+    UPDATE = arg;
+};
 
 window.delta = function delta() {
-  return prop.time.frame.delta;
-}
+    return prop.time.frame.delta;
+};

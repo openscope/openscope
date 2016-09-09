@@ -960,7 +960,7 @@ var Airport=Fiber.extend(function() {
       this.start = game_time();
       this.updateRunway();
       this.addAircraft();
-      update_run(true);
+      updateRun(true);
     },
     unset: function() {
       for(var i=0;i<this.arrivals.length;i++) {
@@ -1070,7 +1070,7 @@ var Airport=Fiber.extend(function() {
       if (this.loaded)
         return;
 
-      update_run(false);
+      updateRun(false);
       this.loading = true;
       zlsa.atc.loadAsset({url: "assets/airports/"+this.icao.toLowerCase()+".json",
                           immediate: true})

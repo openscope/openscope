@@ -1,3 +1,5 @@
+import { time } from './utilities/timeHelpers';
+
 window.AudioContext = window.AudioContext || window.webkitAudioContext;
 
 window.clone = function clone(obj) {

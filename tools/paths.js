@@ -2,7 +2,7 @@
 'use strict';
 
 var path = require('path');
-var ROOT = path.join(__dirname, './');
+var ROOT = path.join(__dirname, '../');
 
 var src = './src';
 var srcAssetsDir = path.join(src, 'assets');
@@ -14,8 +14,8 @@ var srcAircraft = path.join(srcAssetsDir, 'aircraft');
 var srcAirlines = path.join(srcAssetsDir, 'airlines');
 var srcAirports = path.join(srcAssetsDir, 'airports');
 
-var build = './';
-var buildAssetsDir = path.join(build, 'assets');
+var build = ROOT;
+var buildAssetsDir = path.join(ROOT, 'assets');
 var buildFontsDir = path.join(buildAssetsDir, 'fonts');
 var buildScriptsDir = path.join(buildAssetsDir, 'scripts');
 var buildStylesDir = path.join(buildAssetsDir, 'style');
