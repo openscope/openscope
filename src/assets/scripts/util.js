@@ -51,30 +51,30 @@ if (!String.prototype.hasOwnProperty("repeat")) {
 
 // ******************** UNIT CONVERSION FUNCTIONS ********************
 
-/**
- * nautical miles --> kilometers
- */
-window.km = function km(nm) {
-  return nm * 1.852;
-}
-/**
- * kilometers --> nautical miles
- */
-window.nm = function nm(km) {
-  return km / 1.852;
-}
-/**
- * kilometers --> feet
- */
-window.km_ft = function km_ft(km) {
-  return km / 0.0003048;
-}
-/**
- * feet --> kilometers
- */
-window.ft_km = function ft_km(ft) {
-  return ft * 0.0003048;
-}
+// /**
+//  * nautical miles --> kilometers
+//  */
+// window.km = function km(nm) {
+//   return nm * 1.852;
+// }
+// /**
+//  * kilometers --> nautical miles
+//  */
+// window.nm = function nm(km) {
+//   return km / 1.852;
+// }
+// /**
+//  * kilometers --> feet
+//  */
+// window.km_ft = function km_ft(km) {
+//   return km / 0.0003048;
+// }
+// /**
+//  * feet --> kilometers
+//  */
+// window.ft_km = function ft_km(ft) {
+//   return ft * 0.0003048;
+// }
 
 // ************************ GENERAL FUNCTIONS ************************
 window.ceil = function ceil(n, factor) {

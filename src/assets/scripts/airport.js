@@ -1,4 +1,6 @@
-/**************************** AIRCRAFT GENERATION ****************************/
+import { km, nm } from './utilities/unitConverters';
+
+/** ************************** AIRCRAFT GENERATION ****************************/
 /**
  * Calls constructor of the appropriate arrival type
  */

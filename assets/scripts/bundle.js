@@ -17864,7 +17864,8 @@ var objects = {
 module.exports = objects;
 
 },{}],20:[function(require,module,exports){
-"use strict";function _defineProperty(obj,key,value){if(key in obj){Object.defineProperty(obj,key,{value:value,enumerable:true,configurable:true,writable:true});}else{obj[key]=value;}return obj;}/** Details about aircraft in close proximity in relation to 'the rules'
+"use strict";var _unitConverters=require("./utilities/unitConverters");function _defineProperty(obj,key,value){if(key in obj){Object.defineProperty(obj,key,{value:value,enumerable:true,configurable:true,writable:true});}else{obj[key]=value;}return obj;}/**
+ * Details about aircraft in close proximity in relation to 'the rules'
  */window.zlsa.atc.Conflict=Fiber.extend(function(){return{init:function init(first,second){this.aircraft=[first,second];this.distance=vlen(vsub(first.position,second.position));this.distance_delta=0;this.altitude=abs(first.altitude-second.altitude);this.collided=false;this.conflicts={};this.violations={};this.aircraft[0].addConflict(this,second);this.aircraft[1].addConflict(this,first);this.update();},/**
      * Is there anything which should be brought to the controllers attention
      *
@@ -17905,7 +17906,7 @@ if(a1.isPrecisionGuided()&&a2.isPrecisionGuided()&&a1.rwy_arr!=a2.rwy_arr){// bo
 var runwayRelationship=airport_get().metadata.rwy[a1.rwy_arr][a2.rwy_arr];if(runwayRelationship.parallel){// Determine applicable lateral separation minima for conducting
 // parallel simultaneous dependent approaches on these runways:
 disableNotices=true;// hide notices for aircraft on adjacent final approach courses
-var feetBetween=km_ft(runwayRelationship.lateral_dist);if(feetBetween<2500)// Runways separated by <2500'
+var feetBetween=(0,_unitConverters.km_ft)(runwayRelationship.lateral_dist);if(feetBetween<2500)// Runways separated by <2500'
 var applicableLatSepMin=5.556;// 3.0nm
 else if(2500<=feetBetween&&feetBetween<=3600)// 2500'-3600'
 var applicableLatSepMin=1.852;// 1.0nm
@@ -18337,7 +18338,7 @@ var scrollPos=$("#strips").scrollTop();$("#strips").prepend(this.html);this.html
 }),_defineProperty(_ref,"updateTarget",function updateTarget(){var airport=airport_get();var runway=null;var offset=null;var offset_angle=null;var glideslope_altitude=null;var glideslope_window=null;var angle=null;var runway_elevation=0;if(this.rwy_arr!=null)runway_elevation=airport.getRunway(this.rwy_arr).elevation;if(this.fms.currentWaypoint().altitude>0)this.fms.setCurrent({altitude:Math.max(1000,this.fms.currentWaypoint().altitude)});if(this.fms.currentWaypoint().navmode=="rwy"){airport=airport_get();runway=airport.getRunway(this.rwy_arr);offset=getOffset(this,runway.position,runway.angle);offset_angle=vradial(offset);this.offset_angle=offset_angle;this.approachOffset=abs(offset[0]);this.approachDistance=offset[1];angle=runway.angle;if(angle>2*Math.PI)angle-=2*Math.PI;glideslope_altitude=clamp(0,runway.getGlideslopeAltitude(offset[1]),this.altitude);glideslope_window=abs(runway.getGlideslopeAltitude(offset[1],radians(1)));if(this.mode=="landing")this.target.altitude=glideslope_altitude;var ils=runway.ils.loc_maxDist;if(!runway.ils.enabled||!ils)ils=40;// lock  ILS if at the right angle and altitude
 if(abs(this.altitude-glideslope_altitude)<glideslope_window&&abs(offset_angle)<radians(10)&&offset[1]<ils){if(abs(offset[0])<0.05&&this.mode!="landing"){this.mode="landing";if(!this.projected&&abs(angle_offset(this.fms.currentWaypoint().heading,radians(parseInt(this.rwy_arr.substr(0,2))*10)))>radians(30)){ui_log(true,this.getRadioCallsign()+" approach course intercept angle was greater than 30 degrees");prop.game.score.violation+=1;}this.updateStrip();this.target.turn=null;}// Intercept localizer and glideslope and follow them inbound
 var angle_diff=angle_offset(angle,this.heading);var turning_time=Math.abs(degrees(angle_diff))/3;// time to turn angle_diff degrees at 3 deg/s
-var turning_radius=km(this.speed)/3600*turning_time;// dist covered in the turn, km
+var turning_radius=(0,_unitConverters.km)(this.speed)/3600*turning_time;// dist covered in the turn, km
 var dist_to_localizer=offset[0]/Math.sin(angle_diff);// dist from the localizer intercept point, km
 if(dist_to_localizer<=turning_radius||dist_to_localizer<0.5){// Steer to within 3m of the centerline while at least 200m out
 if(offset[1]>0.2&&abs(offset[0])>0.003)this.target.heading=clamp(radians(-30),-12*offset_angle,radians(30))+angle;else this.target.heading=angle;// Follow the glideslope
@@ -18442,7 +18443,7 @@ return prop.aircraft.list[eid];return null;};// Get aircraft by callsign
 window.aircraft_get_by_callsign=function aircraft_get_by_callsign(callsign){callsign=String(callsign);for(var i=0;i<prop.aircraft.list.length;i++){if(prop.aircraft.list[i].callsign==callsign.toLowerCase())return prop.aircraft.list[i];}return null;};// Get aircraft's eid by callsign
 window.aircraft_get_eid_by_callsign=function aircraft_get_eid_by_callsign(callsign){for(var i=0;i<prop.aircraft.list.length;i++){if(prop.aircraft.list[i].callsign==callsign.toLowerCase())return prop.aircraft.list[i].eid;}return null;};window.aircraft_model_get=function aircraft_model_get(icao){if(!(icao in prop.aircraft.models)){var model=new Model({icao:icao,url:"assets/aircraft/"+icao+".json"});prop.aircraft.models[icao]=model;}return prop.aircraft.models[icao];};
 
-},{}],21:[function(require,module,exports){
+},{"./utilities/unitConverters":37}],21:[function(require,module,exports){
 "use strict";
 
 window.airline_init_pre = function airline_init_pre() {
@@ -18664,7 +18665,9 @@ window.airline_get = function airline_get(icao) {
 },{}],22:[function(require,module,exports){
 'use strict';
 
-/**************************** AIRCRAFT GENERATION ****************************/
+var _unitConverters = require('./utilities/unitConverters');
+
+/** ************************** AIRCRAFT GENERATION ****************************/
 /**
  * Calls constructor of the appropriate arrival type
  */
@@ -18758,9 +18761,9 @@ zlsa.atc.ArrivalBase = Fiber.extend(function (base) {
         var fix_prev = i > 0 ? fixes[i - 1][0] : fix;
         var pos_prev = i > 0 ? this.airport.fixes[fix_prev].position : pos;
         if (inAirspace(pos)) {
-          if (i >= 1) extra = nm(dist_to_boundary(pos_prev));
+          if (i >= 1) extra = (0, _unitConverters.nm)(dist_to_boundary(pos_prev));
           break;
-        } else fixes[i][2] = nm(distance2d(pos_prev, pos)); // calculate distance between fixes
+        } else fixes[i][2] = (0, _unitConverters.nm)(distance2d(pos_prev, pos)); // calculate distance between fixes
       }
 
       // Determine spawn offsets
@@ -19283,7 +19286,7 @@ var Runway = Fiber.extend(function (base) {
       this.delay = 2;
       this.gps = [];
       this.ils = { enabled: true,
-        loc_maxDist: km(25),
+        loc_maxDist: (0, _unitConverters.km)(25),
         gs_maxHeight: 9999,
         gs_gradient: radians(3)
       };
@@ -19293,7 +19296,7 @@ var Runway = Fiber.extend(function (base) {
       this.name = "";
       this.position = [];
       this.queue = [];
-      this.sepFromAdjacent = km(3);
+      this.sepFromAdjacent = (0, _unitConverters.km)(3);
 
       this.parse(options, end);
     },
@@ -19339,12 +19342,12 @@ var Runway = Fiber.extend(function (base) {
         this.angle = vradial(vsub(farSide.position, thisSide.position));
       }
       if (data.ils) this.ils.enabled = data.ils[end];
-      if (data.ils_distance) this.ils.loc_maxDist = km(data.ils_distance[end]);
+      if (data.ils_distance) this.ils.loc_maxDist = (0, _unitConverters.km)(data.ils_distance[end]);
       if (data.ils_gs_maxHeight) this.ils.gs_maxHeight = data.ils_gs_maxHeight[end];
       if (data.glideslope) this.ils.gs_gradient = radians(data.glideslope[end]);
       if (data.name_offset) this.labelPos = data.name_offset[end];
       if (data.name) this.name = data.name[end];
-      if (data.sepFromAdjacent) this.sepFromAdjacent = km(data.sepFromAdjacent[end]);
+      if (data.sepFromAdjacent) this.sepFromAdjacent = (0, _unitConverters.km)(data.sepFromAdjacent[end]);
     }
   };
 });
@@ -19443,7 +19446,7 @@ var Airport = Fiber.extend(function () {
 
         // change ctr_radius to point along perimeter that's farthest from rr_center
         var pos = new Position(this.perimeter.poly[0].position, this.position, this.magnetic_north);
-        var len = nm(vlen(vsub(pos.position, this.position.position)));
+        var len = (0, _unitConverters.nm)(vlen(vsub(pos.position, this.position.position)));
         var apt = this;
         this.ctr_radius = Math.max.apply(Math, $.map(this.perimeter.poly, function (v) {
           return vlen(vsub(v.position, new Position(apt.rr_center, apt.position, apt.magnetic_north).position));
@@ -20026,7 +20029,7 @@ window.airport_get = function airport_get(icao) {
   return prop.airport.airports[icao.toLowerCase()];
 };
 
-},{}],23:[function(require,module,exports){
+},{"./utilities/unitConverters":37}],23:[function(require,module,exports){
 'use strict';
 
 var _timeHelpers = require('./utilities/timeHelpers');
@@ -20291,8 +20294,12 @@ window.Area = Area;
 },{"fiber":1}],25:[function(require,module,exports){
 'use strict';
 
+var _unitConverters = require('./utilities/unitConverters');
+
 var _timeHelpers = require('./utilities/timeHelpers');
 
+// jshint latedef:nofunc, undef:true, eqnull:true, eqeqeq:true, browser:true, jquery:true, devel:true
+/* global prop:true, km:false, crange:false, clamp:false, lpad:false, airport_get:false, game_time:false, game_paused:false, time:false, round:false, distance2d:false, radians:false  */
 window.canvas_init_pre = function canvas_init_pre() {
   'use strict';
 
@@ -20316,9 +20323,7 @@ window.canvas_init_pre = function canvas_init_pre() {
   prop.canvas.draw_restricted = true;
   prop.canvas.draw_sids = true;
   prop.canvas.draw_terrain = true;
-}; // jshint latedef:nofunc, undef:true, eqnull:true, eqeqeq:true, browser:true, jquery:true, devel:true
-/* global prop:true, km:false, crange:false, clamp:false, lpad:false, airport_get:false, game_time:false, game_paused:false, time:false, round:false, distance2d:false, radians:false  */
-
+};
 
 window.canvas_init = function canvas_init() {
   "use strict";
@@ -20645,7 +20650,7 @@ function canvas_draw_aircraft_rings(cc, aircraft) {
     else cc.strokeStyle = "rgba(255, 255, 255, 0.2)"; //white warning circle
   } else cc.strokeStyle = cc.fillStyle;
   cc.beginPath();
-  cc.arc(0, 0, km_to_px(km(3)), 0, Math.PI * 2); //3nm RADIUS
+  cc.arc(0, 0, km_to_px((0, _unitConverters.km)(3)), 0, Math.PI * 2); //3nm RADIUS
   cc.stroke();
   cc.restore();
 }
@@ -21144,7 +21149,7 @@ function canvas_draw_fancy_rings(cc, fix_origin, fix1, fix2) {
 }
 
 function canvas_draw_range_rings(cc) {
-  var rangeRingRadius = km(airport_get().rr_radius_nm); //convert input param from nm to km
+  var rangeRingRadius = (0, _unitConverters.km)(airport_get().rr_radius_nm); //convert input param from nm to km
 
   //Fill up airport's ctr_radius with rings of the specified radius
   for (var i = 1; i * rangeRingRadius < airport_get().ctr_radius; i++) {
@@ -21476,7 +21481,7 @@ function canvas_draw_directions(cc) {
   cc.restore();
 }
 
-},{"./utilities/timeHelpers":36}],26:[function(require,module,exports){
+},{"./utilities/timeHelpers":36,"./utilities/unitConverters":37}],26:[function(require,module,exports){
 'use strict';
 
 zlsa.atc.Options = Fiber.extend(function (base) {
@@ -26578,30 +26583,30 @@ if (!String.prototype.hasOwnProperty("repeat")) {
 
 // ******************** UNIT CONVERSION FUNCTIONS ********************
 
-/**
- * nautical miles --> kilometers
- */
-window.km = function km(nm) {
-  return nm * 1.852;
-};
-/**
- * kilometers --> nautical miles
- */
-window.nm = function nm(km) {
-  return km / 1.852;
-};
-/**
- * kilometers --> feet
- */
-window.km_ft = function km_ft(km) {
-  return km / 0.0003048;
-};
-/**
- * feet --> kilometers
- */
-window.ft_km = function ft_km(ft) {
-  return ft * 0.0003048;
-};
+// /**
+//  * nautical miles --> kilometers
+//  */
+// window.km = function km(nm) {
+//   return nm * 1.852;
+// }
+// /**
+//  * kilometers --> nautical miles
+//  */
+// window.nm = function nm(km) {
+//   return km / 1.852;
+// }
+// /**
+//  * kilometers --> feet
+//  */
+// window.km_ft = function km_ft(km) {
+//   return km / 0.0003048;
+// }
+// /**
+//  * feet --> kilometers
+//  */
+// window.ft_km = function ft_km(ft) {
+//   return ft * 0.0003048;
+// }
 
 // ************************ GENERAL FUNCTIONS ************************
 window.ceil = function ceil(n, factor) {
@@ -27598,6 +27603,64 @@ var TIME_SECONDS_OFFSET = 0.001;
  */
 var time = exports.time = function time() {
   return new Date().getTime() * TIME_SECONDS_OFFSET;
+};
+
+},{}],37:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+/**
+ * @property UNIT_CONVERSION_CONSTANTS
+ * @type {Object}
+ */
+var UNIT_CONVERSION_CONSTANTS = exports.UNIT_CONVERSION_CONSTANTS = {
+  /**
+   * @property NM_KM
+   * @type {number}
+   * @final
+   */
+  NM_KM: 1.852,
+  /**
+   * @property KM_FT
+   * @type {number}
+   * @final
+   */
+  KM_FT: 0.0003048
+};
+
+/**
+ * nautical miles --> kilometers
+ */
+var km = exports.km = function km() {
+  var nm = arguments.length <= 0 || arguments[0] === undefined ? 0 : arguments[0];
+
+  return nm * UNIT_CONVERSION_CONSTANTS.NM_KM;
+};
+/**
+ * kilometers --> nautical miles
+ */
+var nm = exports.nm = function nm() {
+  var km = arguments.length <= 0 || arguments[0] === undefined ? 0 : arguments[0];
+
+  return km / UNIT_CONVERSION_CONSTANTS.NM_KM;
+};
+/**
+ * kilometers --> feet
+ */
+var km_ft = exports.km_ft = function km_ft() {
+  var km = arguments.length <= 0 || arguments[0] === undefined ? 0 : arguments[0];
+
+  return km / UNIT_CONVERSION_CONSTANTS.KM_FT;
+};
+/**
+ * feet --> kilometers
+ */
+var ft_km = exports.ft_km = function ft_km() {
+  var ft = arguments.length <= 0 || arguments[0] === undefined ? 0 : arguments[0];
+
+  return ft * UNIT_CONVERSION_CONSTANTS.KM_FT;
 };
 
 },{}]},{},[30])

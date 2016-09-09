@@ -1,4 +1,7 @@
-/** Details about aircraft in close proximity in relation to 'the rules'
+import { km, km_ft } from './utilities/unitConverters';
+
+/**
+ * Details about aircraft in close proximity in relation to 'the rules'
  */
 window.zlsa.atc.Conflict = Fiber.extend(function() {
   return {
