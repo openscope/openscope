@@ -20027,66 +20027,94 @@ window.airport_get = function airport_get(icao) {
 };
 
 },{}],23:[function(require,module,exports){
-"use strict";
+'use strict';
+
+var _timeHelpers = require('./utilities/timeHelpers');
 
 var Animation = function Animation(options) {
-    this.value = 0;
-    this.start_value = 0;
-    this.end_value = 1;
-    this.progress = 0;
-    this.easing = "smooth";
-    this.duration = 0;
-    this.start = 0;
-    this.animating = false;
+    undefined.value = 0;
+    undefined.start_value = 0;
+    undefined.end_value = 1;
+    undefined.progress = 0;
+    undefined.easing = 'smooth';
+    undefined.duration = 0;
+    undefined.start = 0;
+    undefined.animating = false;
 
+    // FIXME: lodash this block; .get() all the things
     if (options) {
-        if ("value" in options) this.value = options.value;
-        if ("start_value" in options) this.start_value = options.start_value;
-        if ("end_value" in options) this.end_value = options.end_value;
-        if ("easing" in options) this.easing = options.easing;
-        if ("duration" in options) this.duration = options.duration;
+        if ('value' in options) {
+            undefined.value = options.value;
+        }
+
+        if ('start_value' in options) {
+            undefined.start_value = options.start_value;
+        }
+
+        if ('end_value' in options) {
+            undefined.end_value = options.end_value;
+        }
+
+        if ('easing' in options) {
+            undefined.easing = options.easing;
+        }
+
+        if ('duration' in options) {
+            undefined.duration = options.duration;
+        }
     }
 
-    this.set = function (value) {
-        this.animate(value);
+    undefined.set = function (value) {
+        undefined.animate(value);
     };
 
-    this.get = function (progress) {
-        return this.step(time());
+    undefined.get = function (progress) {
+        return undefined.step((0, _timeHelpers.time)());
     };
 
-    this.animate = function (value) {
-        this.animating = true;
-        this.progress = 0;
-        this.start = time();
-        this.start_value = this.value + 0;
-        this.end_value = value;
+    undefined.animate = function (value) {
+        undefined.animating = true;
+        undefined.progress = 0;
+        undefined.start = (0, _timeHelpers.time)();
+        undefined.start_value = undefined.value + 0;
+        undefined.end_value = value;
     };
 
-    this.ease = function () {
-        if (this.easing == "linear") {
-            this.value = crange(0, this.progress, 1, this.start_value, this.end_value);
-        } else if (this.easing == "smooth") {
-            this.value = srange(0, this.progress, 1, this.start_value, this.end_value);
+    undefined.ease = function () {
+        if (undefined.easing === 'linear') {
+            undefined.value = crange(0, undefined.progress, 1, undefined.start_value, undefined.end_value);
+        } else if (undefined.easing === 'smooth') {
+            undefined.value = srange(0, undefined.progress, 1, undefined.start_value, undefined.end_value);
         } else {
-            console.log("Unknown easing '" + this.easing + "'");
+            console.log('Unknown easing ' + undefined.easing);
         }
     };
 
-    this.step = function (t) {
-        this.progress = crange(this.start, t, this.start + this.duration, 0, 1);
-        if (!this.animating) this.progress = 0;
-        this.ease();
-        return this.value;
+    undefined.step = function (t) {
+        undefined.progress = crange(undefined.start, t, undefined.start + undefined.duration, 0, 1);
+
+        if (!undefined.animating) {
+            undefined.progress = 0;
+        }
+
+        undefined.ease();
+
+        return undefined.value;
     };
 
-    this.step(game_time());
+    undefined.step(game_time());
 };
 
 window.Animation = Animation;
 
-},{}],24:[function(require,module,exports){
+},{"./utilities/timeHelpers":36}],24:[function(require,module,exports){
 'use strict';
+
+var _fiber = require('fiber');
+
+var _fiber2 = _interopRequireDefault(_fiber);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // A physical location on the Earth's surface
 //
@@ -20099,7 +20127,7 @@ window.Animation = Animation;
 //   y - Offset from reference position in km
 //   position - Array containing the x,y pair
 //
-var Position = Fiber.extend(function () {
+var Position = _fiber2.default.extend(function () {
   return {
     // coordinates - Array containing offset pair or latitude/longitude pair
     // reference - Position to use for calculating offsets when lat/long given
@@ -20112,16 +20140,17 @@ var Position = Fiber.extend(function () {
     //   Decimal degrees - 'N47.112388112'
     //   Decimal minutes - 'N38d38.109808'
     //   Decimal seconds - 'N58d27m12.138'
-    init: function init(coordinates, reference, magnetic_north, /*optional*/mode) {
-      if (!coordinates) coordinates = [];
+    init: function init() {
+      var coordinates = arguments.length <= 0 || arguments[0] === undefined ? [] : arguments[0];
+      var reference = arguments[1];
+      var magnetic_north = arguments.length <= 2 || arguments[2] === undefined ? 0 : arguments[2];
+      var /* optional */mode = arguments[3];
 
       this.latitude = 0;
       this.longitude = 0;
       this.elevation = 0;
-
       this.reference_position = reference;
       this.magnetic_north = magnetic_north;
-      if (!this.magnetic_north) this.magnetic_north = 0;
       this.x = 0;
       this.y = 0;
       this.position = [this.x, this.y];
@@ -20134,13 +20163,18 @@ var Position = Fiber.extend(function () {
         this.x = coordinates[0];
         this.y = coordinates[1];
         this.position = [this.x, this.y];
-        if (mode === 'GPS') this.parse4326();
+
+        if (mode === 'GPS') {
+          this.parse4326();
+        }
+
         return;
       }
 
       this.latitude = this.parseCoordinate(coordinates[0]);
       this.longitude = this.parseCoordinate(coordinates[1]);
-      this.gps = [this.longitude, this.latitude]; // GPS coordinates in [x,y] order
+      // GPS coordinates in [x,y] order
+      this.gps = [this.longitude, this.latitude];
 
       if (coordinates[2] != null) {
         this.elevation = parseElevation(coordinates[2]);
@@ -20160,11 +20194,13 @@ var Position = Fiber.extend(function () {
       this.longitude = this.x;
       this.latitude = this.y;
       this.x = this.distanceToPoint(this.reference_position.latitude, this.reference_position.longitude, this.reference_position.latitude, this.longitude);
+
       if (this.reference_position.longitude > this.longitude) {
         this.x *= -1;
       }
 
       this.y = this.distanceToPoint(this.reference_position.latitude, this.reference_position.longitude, this.latitude, this.reference_position.longitude);
+
       if (this.reference_position.latitude > this.latitude) {
         this.y *= -1;
       }
@@ -20215,13 +20251,13 @@ var Position = Fiber.extend(function () {
 });
 
 /** An enclosed region defined by a series of Position objects and an altitude range
- ** @param {array} poly - series of Position objects that outline the shape
- **                Note: DO NOT repeat the origin to 'close' the shape. Unnecessary.
- ** @param {number} floor - (optional) altitude of bottom of area, in hundreds of feet
- ** @param {number} ceiling - (optional) altitude of top of area, in hundreds of feet
- ** @param {string} airspace_class - (optional) FAA airspace classification (A,B,C,D,E,G)
+ * @param {array} poly - series of Position objects that outline the shape
+ *                Note: DO NOT repeat the origin to 'close' the shape. Unnecessary.
+ * @param {number} floor - (optional) altitude of bottom of area, in hundreds of feet
+ * @param {number} ceiling - (optional) altitude of top of area, in hundreds of feet
+ * @param {string} airspace_class - (optional) FAA airspace classification (A,B,C,D,E,G)
  */
-var Area = Fiber.extend(function () {
+var Area = _fiber2.default.extend(function () {
   return {
     init: function init(positions, /*optional*/floor, ceiling, airspace_class) {
       if (!positions) return;
@@ -20239,15 +20275,20 @@ var Area = Fiber.extend(function () {
     parse: function parse(positions) {
       for (var i = 0; i < positions.length; i++) {
         this.poly.push(positions[i]);
-      }if (this.poly[0] == this.poly[this.poly.length - 1]) this.poly.pop(); // shape shouldn't fully close; will draw with 'cc.closepath()'
+      }
+
+      if (this.poly[0] == this.poly[this.poly.length - 1]) {
+        this.poly.pop(); // shape shouldn't fully close; will draw with 'cc.closepath()'
+      }
     }
   };
 });
 
+// TODO: add to the window for non-converted files
 window.Position = Position;
 window.Area = Area;
 
-},{}],25:[function(require,module,exports){
+},{"fiber":1}],25:[function(require,module,exports){
 'use strict';
 
 var _timeHelpers = require('./utilities/timeHelpers');
