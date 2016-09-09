@@ -1,4 +1,6 @@
 import { km, nm } from './utilities/unitConverters';
+import { distance2d } from './math/distance';
+import { vlen } from './math/vector';
 
 /** ************************** AIRCRAFT GENERATION ****************************/
 /**

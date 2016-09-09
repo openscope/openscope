@@ -1,8 +1,9 @@
 import Fiber from 'fiber';
+import { vlen } from '../math/vector';
 
 /**
  * Details about aircraft in close proximity in relation to 'the rules'
- * 
+ *
  * @class AircraftConflict
  * @extends Fiber
  */

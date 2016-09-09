@@ -2,6 +2,7 @@
 /* global prop:true, km:false, crange:false, clamp:false, lpad:false, airport_get:false, game_time:false, game_paused:false, time:false, round:false, distance2d:false, radians:false  */
 import { km } from './utilities/unitConverters';
 import { time } from './utilities/timeHelpers';
+import { distance2d } from './math/distance';
 
 window.canvas_init_pre = function canvas_init_pre() {
   'use strict';

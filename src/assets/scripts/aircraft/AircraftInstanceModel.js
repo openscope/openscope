@@ -1,9 +1,12 @@
 import $ from 'jquery';
 import Fiber from 'fiber';
 
+import { distance2d } from '../math/distance';
+import { vlen } from '../math/vector';
+
 /**
  * Each simulated aircraft in the game. Contains a model, fms, and conflicts.
- * 
+ *
  * @class AircraftInstanceModel
  * @extends Fiber
  */

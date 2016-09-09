@@ -1,5 +1,7 @@
 import { km, nm, km_ft, ft_km } from './utilities/unitConverters';
 import { time } from './utilities/timeHelpers';
+import { distance2d } from './math/distance';
+import { vlen } from './math/vector';
 
 window.AudioContext = window.AudioContext || window.webkitAudioContext;
 
@@ -49,33 +51,6 @@ if (!String.prototype.hasOwnProperty("repeat")) {
     return result + pattern;
   };
 }
-
-// ******************** UNIT CONVERSION FUNCTIONS ********************
-
-// /**
-//  * nautical miles --> kilometers
-//  */
-// window.km = function km(nm) {
-//   return nm * 1.852;
-// }
-// /**
-//  * kilometers --> nautical miles
-//  */
-// window.nm = function nm(km) {
-//   return km / 1.852;
-// }
-// /**
-//  * kilometers --> feet
-//  */
-// window.km_ft = function km_ft(km) {
-//   return km / 0.0003048;
-// }
-// /**
-//  * feet --> kilometers
-//  */
-// window.ft_km = function ft_km(ft) {
-//   return ft * 0.0003048;
-// }
 
 // ************************ GENERAL FUNCTIONS ************************
 window.ceil = function ceil(n, factor) {
@@ -159,11 +134,12 @@ window.srange = function srange(il,i,ih) {
   //    return Math.cos();
 }
 
-window.distance2d = function distance2d(a,b) {
-  var x=a[0]-b[0];
-  var y=a[1]-b[1];
-  return Math.sqrt((x*x)+(y*y));
-}
+// window.distance2d = function distance2d(a, b) {
+//   const x = a[0] - b[0];
+//   const y = a[1] - b[1];
+//
+//   return Math.sqrt((x * x) + (y * y));
+// }
 
 window.distEuclid = function distEuclid(gps1, gps2) {
   var R = 6371; // nm
@@ -744,13 +720,15 @@ window.vectorize_2d = function vectorize_2d(direction) {
 /**
  * Computes length of 2D vector
  */
-window.vlen = function vlen(v) {
-  try {
-    var len = Math.sqrt(v[0]*v[0] + v[1] * v[1]);
-    return len;
-  }
-  catch(err) {console.error("call to vlen() failed. v:"+v+" | Err:"+err);}
-}
+// window.vlen = function vlen(v) {
+//   try {
+//     var len = Math.sqrt((v[0] * v[0]) + (v[1] * v[1]));
+//     return len;
+//   }
+//   catch(err) {
+//       console.error(`call to vlen() failed. v:${v} | Err:${err}`);
+//   }
+// }
 
 /**
  * Adds Vectors (all dimensions)
