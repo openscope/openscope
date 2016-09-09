@@ -1,3 +1,4 @@
+import { km, nm, km_ft, ft_km } from './utilities/unitConverters';
 import { time } from './utilities/timeHelpers';
 
 window.AudioContext = window.AudioContext || window.webkitAudioContext;
