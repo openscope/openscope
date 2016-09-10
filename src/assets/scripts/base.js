@@ -1,4 +1,5 @@
 import Fiber from 'fiber';
+import { degreesToRadians } from './utilities/unitConverters';
 
 // A physical location on the Earth's surface
 //
@@ -113,12 +114,12 @@ const Position = Fiber.extend(function() {
     },
     // The distance in km between two locations
     distanceToPoint: function(lat_a, lng_a, lat_b, lng_b) {
-      const d_lat = radians(lat_a - lat_b);
-      const d_lng = radians(lng_a - lng_b);
+      const d_lat = degreesToRadians(lat_a - lat_b);
+      const d_lng = degreesToRadians(lng_a - lng_b);
 
       const a = Math.pow(Math.sin(d_lat/2), 2) +
-        (Math.cos(radians(lat_a)) *
-         Math.cos(radians(lat_b)) *
+        (Math.cos(degreesToRadians(lat_a)) *
+         Math.cos(degreesToRadians(lat_b)) *
          Math.pow(Math.sin(d_lng / 2), 2));
       const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 

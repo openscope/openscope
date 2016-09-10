@@ -1,8 +1,8 @@
 import $ from 'jquery';
 import Fiber from 'fiber';
-
 import { distance2d } from '../math/distance';
-import { vlen } from '../math/vector';
+import { vlen, vradial, vsub } from '../math/vector';
+import { radiansToDegrees, degreesToRadians } from '../utilities/unitConverters';
 
 /**
  * Each simulated aircraft in the game. Contains a model, fms, and conflicts.
@@ -12,13 +12,12 @@ import { vlen } from '../math/vector';
  */
 const Aircraft = Fiber.extend(function() {
   return {
-    init: function(options) {
-      if(!options) options={};
+    init: function(options = {}) {
       this.eid          = prop.aircraft.list.length;  // entity ID
       this.position     = [0, 0];     // Aircraft Position, in km, relative to airport position
       this.model        = null;       // Aircraft type
-      this.airline      = "";         // Airline Identifier (eg. 'AAL')
-      this.callsign     = "";         // Flight Number ONLY (eg. '551')
+      this.airline      = '';         // Airline Identifier (eg. 'AAL')
+      this.callsign     = '';         // Flight Number ONLY (eg. '551')
       this.heading      = 0;          // Magnetic Heading
       this.altitude     = 0;          // Altitude, ft MSL
       this.speed        = 0;          // Indicated Airspeed (IAS), knots
@@ -440,10 +439,10 @@ const Aircraft = Fiber.extend(function() {
       if (incremental) {
         amount = heading;
         if(direction == "left") {
-          heading = degrees(this.heading) - amount;
+          heading = radiansToDegrees(this.heading) - amount;
         }
         else if(direction == "right") {
-          heading = degrees(this.heading) + amount;
+          heading = radiansToDegrees(this.heading) + amount;
         }
       }
 
@@ -456,7 +455,7 @@ const Aircraft = Fiber.extend(function() {
         this.fms.setCurrent({
           altitude: wp.altitude,
           navmode: "heading",
-          heading: radians(heading),
+          heading: degreesToRadians(heading),
           speed: wp.speed,
           turn:direction,
           hold:false
@@ -467,7 +466,7 @@ const Aircraft = Fiber.extend(function() {
         this.fms.insertLeg({firstIndex:index, waypoints:[new zlsa.atc.Waypoint({  // add new Leg after hold leg
           altitude: wp.altitude,
           navmode: "heading",
-          heading: radians(heading),
+          heading: degreesToRadians(heading),
           speed: wp.speed,
           turn:direction,
           hold:false
@@ -479,7 +478,7 @@ const Aircraft = Fiber.extend(function() {
           new zlsa.atc.Waypoint({
             altitude: wp.altitude,
             navmode: "heading",
-            heading: radians(heading),
+            heading: degreesToRadians(heading),
             speed: wp.speed,
             turn: direction,
             hold: false,
@@ -491,7 +490,7 @@ const Aircraft = Fiber.extend(function() {
           this.fms.appendLeg({waypoints:[new zlsa.atc.Waypoint({
             altitude: wp.altitude,
             navmode: "heading",
-            heading: radians(heading),
+            heading: degreesToRadians(heading),
             speed: wp.speed,
             turn:direction,
             hold:false
@@ -502,7 +501,7 @@ const Aircraft = Fiber.extend(function() {
           this.fms.insertLegHere({waypoints:[new zlsa.atc.Waypoint({
             altitude: wp.altitude,
             navmode: "heading",
-            heading: radians(heading),
+            heading: degreesToRadians(heading),
             speed: wp.speed,
             turn:direction,
             hold:false
@@ -734,7 +733,7 @@ const Aircraft = Fiber.extend(function() {
     },
     runFlyPresentHeading: function(data) {
       this.cancelFix();
-      this.runHeading([null, degrees(this.heading)]);
+      this.runHeading([null, radiansToDegrees(this.heading)]);
       return ["ok", "fly present heading"];
     },
     runSayRoute: function(data) {
@@ -871,7 +870,7 @@ const Aircraft = Fiber.extend(function() {
           this.fms.setCurrent({speed: this.model.speed.cruise});
 
         var wind = airport_get().getWind();
-        var wind_dir = round(degrees(wind.angle));
+        var wind_dir = round(radiansToDegrees(wind.angle));
         var readback = {
           log: "wind " + round(wind_dir/10)*10 + " at " + round(wind.speed) + ", runway " + this.rwy_dep + ", cleared for takeoff",
           say: "wynd " + radio_spellOut(round(wind_dir/10)*10) + " at " + radio_spellOut(round(wind.speed)) + ", run way " + radio_runway(this.rwy_dep) + ", cleared for take off",
@@ -1187,7 +1186,7 @@ const Aircraft = Fiber.extend(function() {
         if (angle > (2*Math.PI)) angle -= 2*Math.PI;
 
         glideslope_altitude = clamp(0, runway.getGlideslopeAltitude(offset[1]), this.altitude);
-        glideslope_window   = abs(runway.getGlideslopeAltitude(offset[1], radians(1)));
+        glideslope_window   = abs(runway.getGlideslopeAltitude(offset[1], degreesToRadians(1)));
 
         if(this.mode == "landing")
           this.target.altitude = glideslope_altitude;
@@ -1197,12 +1196,12 @@ const Aircraft = Fiber.extend(function() {
 
         // lock  ILS if at the right angle and altitude
         if ((abs(this.altitude - glideslope_altitude) < glideslope_window)
-            && (abs(offset_angle) < radians(10))
+            && (abs(offset_angle) < degreesToRadians(10))
             && (offset[1] < ils)) {
           if(abs(offset[0]) < 0.05 && this.mode != "landing") {
             this.mode = "landing";
             if (!this.projected && (abs(angle_offset(this.fms.currentWaypoint().heading,
-                  radians(parseInt(this.rwy_arr.substr(0,2))*10))) > radians(30))) {
+                  degreesToRadians(parseInt(this.rwy_arr.substr(0,2))*10))) > degreesToRadians(30))) {
               ui_log(true, this.getRadioCallsign() +
                       " approach course intercept angle was greater than 30 degrees");
               prop.game.score.violation += 1;
@@ -1213,13 +1212,13 @@ const Aircraft = Fiber.extend(function() {
 
           // Intercept localizer and glideslope and follow them inbound
           var angle_diff = angle_offset(angle, this.heading);
-          var turning_time = Math.abs(degrees(angle_diff)) / 3;  // time to turn angle_diff degrees at 3 deg/s
+          var turning_time = Math.abs(radiansToDegrees(angle_diff)) / 3;  // time to turn angle_diff degrees at 3 deg/s
           var turning_radius = km(this.speed) / 3600 * turning_time;  // dist covered in the turn, km
           var dist_to_localizer = offset[0]/Math.sin(angle_diff);  // dist from the localizer intercept point, km
           if(dist_to_localizer <= turning_radius || dist_to_localizer < 0.5) {
             // Steer to within 3m of the centerline while at least 200m out
             if(offset[1] > 0.2 && abs(offset[0]) > 0.003 )
-              this.target.heading = clamp(radians(-30), -12 * offset_angle, radians(30)) + angle;
+              this.target.heading = clamp(degreesToRadians(-30), -12 * offset_angle, degreesToRadians(30)) + angle;
             else this.target.heading = angle;
 
             // Follow the glideslope

@@ -1,5 +1,6 @@
 import Fiber from 'fiber';
-import { vlen } from '../math/vector';
+import { vlen, vsub } from '../math/vector';
+import { degreesToRadians } from '../utilities/unitConverters';
 
 /**
  * Details about aircraft in close proximity in relation to 'the rules'
@@ -225,8 +226,8 @@ const AircraftConflict = Fiber.extend(function() {
       // "Passing & Diverging" Rules (the "exception" to all of the above rules)
       if(conflict) { // test the below only if separation is currently considered insufficient
         var hdg_difference = abs(angle_offset(a1.groundTrack, a2.groundTrack));
-        if (hdg_difference >= radians(15)) {
-          if (hdg_difference > radians(165)) {  // 'opposite' courses
+        if (hdg_difference >= degreesToRadians(15)) {
+          if (hdg_difference > degreesToRadians(165)) {  // 'opposite' courses
             if (this.distance_delta > 0) {  // OKAY IF the distance is increasing
               conflict = false;
               violation = false;

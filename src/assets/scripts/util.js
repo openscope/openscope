@@ -1,7 +1,7 @@
-import { km, nm, km_ft, ft_km } from './utilities/unitConverters';
+import { km, nm, km_ft, ft_km, radiansToDegrees, degreesToRadians } from './utilities/unitConverters';
 import { time } from './utilities/timeHelpers';
 import { distance2d } from './math/distance';
-import { vlen } from './math/vector';
+import { vlen, vradial, vsub } from './math/vector';
 
 window.AudioContext = window.AudioContext || window.webkitAudioContext;
 
@@ -134,33 +134,18 @@ window.srange = function srange(il,i,ih) {
   //    return Math.cos();
 }
 
-// window.distance2d = function distance2d(a, b) {
-//   const x = a[0] - b[0];
-//   const y = a[1] - b[1];
-//
-//   return Math.sqrt((x * x) + (y * y));
-// }
-
 window.distEuclid = function distEuclid(gps1, gps2) {
   var R = 6371; // nm
-  var lat1 = radians(lat1);
-  var lat2 = radians(lat2);
-  var dlat = radians(lat2-lat1);
-  var dlon = radians(lon2-lon1);
+  var lat1 = degreesToRadians(lat1);
+  var lat2 = degreesToRadians(lat2);
+  var dlat = degreesToRadians(lat2-lat1);
+  var dlon = degreesToRadians(lon2-lon1);
   var a = Math.sin(dlat/2) * Math.sin(dlat/2) +
           Math.cos(lat1) * Math.cos(lat2) *
           Math.sin(dlon/2) * Math.sin(dlon/2);
   var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
   var d = R * c;
   return d; // distance, in kilometers
-}
-
-window.degrees = function degrees(radians) {
-  return (radians/(Math.PI*2))*360;
-}
-
-window.radians = function radians(degrees) {
-  return (degrees/360)*(Math.PI*2);
 }
 
 /**
@@ -215,8 +200,8 @@ window.lpad = function lpad(n, width) {
  * @param {number} b - heading, in radians
  */
 window.angle_offset = function angle_offset(a, b) {
-  a = degrees(a);
-  b = degrees(b);
+  a = radiansToDegrees(a);
+  b = radiansToDegrees(b);
   var invert=false;
   if(b > a) {
     invert=true;
@@ -227,7 +212,7 @@ window.angle_offset = function angle_offset(a, b) {
   var offset=mod(a-b, 360);
   if(offset > 180) offset -= 360;
   if(invert) offset *= -1;
-  offset = radians(offset);
+  offset = degreesToRadians(offset);
   return offset;
 }
 
@@ -263,7 +248,7 @@ window.getOffset = function getOffset(aircraft, target, /*optional*/ headingThru
 }
 
 window.heading_to_string = function heading_to_string(heading) {
-  heading = round(mod(degrees(heading), 360)).toString();
+  heading = round(mod(radiansToDegrees(heading), 360)).toString();
   if(heading == "0") heading = "360";
   if(heading.length == 1) heading = "00" + heading;
   if(heading.length == 2) heading = "0" + heading;
@@ -635,13 +620,13 @@ window.random = function random(low, high) {
  * @returns {array} location of the projected fix
  */
 window.fixRadialDist = function fixRadialDist(fix, radial, dist) {
-  fix = [radians(fix[0]), radians(fix[1])]; // convert GPS coordinates to radians
+  fix = [degreesToRadians(fix[0]), degreesToRadians(fix[1])]; // convert GPS coordinates to radians
   var R = 3440; // radius of Earth, nm
   var lat2 = Math.asin(Math.sin(fix[1])*Math.cos(dist/R) +
              Math.cos(fix[1])*Math.sin(dist/R)*Math.cos(radial));
   var lon2 = fix[0] + Math.atan2(Math.sin(radial)*Math.sin(dist/R)*Math.cos(fix[1]),
              Math.cos(dist/R)-Math.sin(fix[1])*Math.sin(lat2));
-  return [degrees(lon2), degrees(lat2)];
+  return [radiansToDegrees(lon2), radiansToDegrees(lat2)];
 }
 
 /**
@@ -718,19 +703,6 @@ window.vectorize_2d = function vectorize_2d(direction) {
 }
 
 /**
- * Computes length of 2D vector
- */
-// window.vlen = function vlen(v) {
-//   try {
-//     var len = Math.sqrt((v[0] * v[0]) + (v[1] * v[1]));
-//     return len;
-//   }
-//   catch(err) {
-//       console.error(`call to vlen() failed. v:${v} | Err:${err}`);
-//   }
-// }
-
-/**
  * Adds Vectors (all dimensions)
  */
 window.vadd = function vadd(v1, v2) {
@@ -742,17 +714,18 @@ window.vadd = function vadd(v1, v2) {
   catch(err) {console.error("call to vadd() failed. v1:"+v1+" | v2:"+v2+" | Err:"+err);}
 }
 
-/**
- * Subtracts Vectors (all dimensions)
- */
-window.vsub = function vsub(v1, v2) {
-  try {
-    var v = [], lim = Math.min(v1.length,v2.length);
-    for(var i=0; i<lim; i++) v.push(v1[i] - v2[i]);
-    return v;
-  }
-  catch(err) {console.error("call to vsub() failed. v1:"+v1+" | v2:"+v2+" | Err:"+err);}
-}
+// /**
+//  * Subtracts Vectors (all dimensions)
+//  */
+// window.vsub = function vsub(v1, v2) {
+//     debugger;
+//   try {
+//     var v = [], lim = Math.min(v1.length,v2.length);
+//     for(var i=0; i<lim; i++) v.push(v1[i] - v2[i]);
+//     return v;
+//   }
+//   catch(err) {console.error("call to vsub() failed. v1:"+v1+" | v2:"+v2+" | Err:"+err);}
+// }
 
 /**
  * Multiplies Vectors (all dimensions)
@@ -825,13 +798,6 @@ window.vdet = function vdet(v1, v2, /*optional*/ v3) {
 }
 
 /**
- * Compute angle of 2D vector, in radians
- */
-window.vradial = function vradial(v) {
-  return Math.atan2(v[0], v[1]);
-}
-
-/**
  * Returns vector rotated by "radians" radians
  */
 window.vturn = function vturn(radians, v) {
@@ -870,7 +836,7 @@ window.raysIntersect = function raysIntersect(pos1, dir1, pos2, dir2, deg_allowa
   var t = abs(vcp(vsub(q,p),s) / vcp(r,s));
   var t_norm = abs(vcp(vsub(vnorm(q),vnorm(p)),s) / vcp(r,s));
   var u_norm = abs(vcp(vsub(vnorm(q),vnorm(p)),r) / vcp(r,s));
-  if(abs(vcp(r,s)) < abs(vcp([0,1],vectorize_2d(radians(deg_allowance))))) { // parallel (within allowance)
+  if(abs(vcp(r,s)) < abs(vcp([0,1],vectorize_2d(degreesToRadians(deg_allowance))))) { // parallel (within allowance)
     if(vcp(vsub(vnorm(q),vnorm(p)),r) == 0) return true; // collinear
     else return false;  // parallel, non-intersecting
   }

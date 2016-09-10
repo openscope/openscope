@@ -1,6 +1,6 @@
-import { km, nm } from './utilities/unitConverters';
+import { km, nm, degreesToRadians } from './utilities/unitConverters';
 import { distance2d } from './math/distance';
-import { vlen } from './math/vector';
+import { vlen, vradial, vsub } from './math/vector';
 
 /** ************************** AIRCRAFT GENERATION ****************************/
 /**
@@ -55,8 +55,8 @@ zlsa.atc.ArrivalBase = Fiber.extend(function(base) {
       }
 
       // Make corrections to data
-      if(options.radial) this.radial = radians(options.radial);
-      if(options.heading) this.heading = radians(options.heading);
+      if(options.radial) this.radial = degreesToRadians(options.radial);
+      if(options.heading) this.heading = degreesToRadians(options.heading);
       if(typeof this.altitude == "number") this.altitude = [this.altitude, this.altitude];
       if(options.route) this.route = options.route;
       else if(options.fixes) {
@@ -645,7 +645,7 @@ var Runway=Fiber.extend(function(base) {
       this.ils            = { enabled : true,
                               loc_maxDist : km(25),
                               gs_maxHeight : 9999,
-                              gs_gradient : radians(3)
+                              gs_gradient : degreesToRadians(3)
                             };
       this.labelPos       = [];
       this.length         = null;
@@ -702,7 +702,7 @@ var Runway=Fiber.extend(function(base) {
       if(data.ils) this.ils.enabled = data.ils[end];
       if(data.ils_distance) this.ils.loc_maxDist = km(data.ils_distance[end]);
       if(data.ils_gs_maxHeight) this.ils.gs_maxHeight = data.ils_gs_maxHeight[end];
-      if(data.glideslope) this.ils.gs_gradient = radians(data.glideslope[end]);
+      if(data.glideslope) this.ils.gs_gradient = degreesToRadians(data.glideslope[end]);
       if(data.name_offset) this.labelPos = data.name_offset[end];
       if(data.name) this.name = data.name[end];
       if(data.sepFromAdjacent) this.sepFromAdjacent = km(data.sepFromAdjacent[end]);
@@ -762,7 +762,7 @@ var Airport=Fiber.extend(function() {
       var angle_factor = Math.sin((s + game_time()) * 0.5) + Math.sin((s + game_time()) * 2);
       var s = 100;
       var speed_factor = Math.sin((s + game_time()) * 0.5) + Math.sin((s + game_time()) * 2);
-      wind.angle += crange(-1, angle_factor, 1, radians(-4), radians(4));
+      wind.angle += crange(-1, angle_factor, 1, degreesToRadians(-4), degreesToRadians(4));
       wind.speed *= crange(-1, speed_factor, 1, 0.9, 1.05);
       return wind;
     },
@@ -770,7 +770,7 @@ var Airport=Fiber.extend(function() {
       if(data.position) this.position = new Position(data.position);
       if (this.position && (this.position.elevation != null))
         this.elevation = this.position.elevation;
-      if(data.magnetic_north) this.magnetic_north = radians(data.magnetic_north);
+      if(data.magnetic_north) this.magnetic_north = degreesToRadians(data.magnetic_north);
         else this.magnetic_north = 0;
       if(data.name) this.name   = data.name;
       if(data.icao) this.icao   = data.icao;
@@ -884,7 +884,7 @@ var Airport=Fiber.extend(function() {
 
       if(data.wind) {
         this.wind = data.wind;
-        this.wind.angle = radians(this.wind.angle);
+        this.wind.angle = degreesToRadians(this.wind.angle);
       }
 
       if(data.departures) {
@@ -925,7 +925,7 @@ var Airport=Fiber.extend(function() {
               this.metadata.rwy[r1.name][r2.name].converging =
                 raysIntersect(r1.position, r1.angle, r2.position, r2.angle);
               this.metadata.rwy[r1.name][r2.name].parallel =
-                ( abs(angle_offset(r1.angle,r2.angle)) < radians(10) );
+                ( abs(angle_offset(r1.angle,r2.angle)) < degreesToRadians(10) );
             }
           }
         }
@@ -989,7 +989,7 @@ var Airport=Fiber.extend(function() {
       var wind = this.getWind();
       var headwind = {};
       function ra(n) {
-        var deviation = radians(10);
+        var deviation = degreesToRadians(10);
         return n + crange(0, Math.random(), 1, -deviation, deviation);
       }
       for(var i=0;i<this.runways.length;i++) {

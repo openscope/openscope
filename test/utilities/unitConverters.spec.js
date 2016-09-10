@@ -6,7 +6,10 @@ import {
     km,
     nm,
     km_ft,
-    ft_km
+    ft_km,
+    kn_ms,
+    radiansToDegrees,
+    degreesToRadians
 } from '../../src/assets/scripts/utilities/unitConverters';
 
 ava('.km() converts kilometers to nautical miles', t => {
@@ -61,6 +64,28 @@ ava('.ft_km() converts feet to kilometers', t => {
 ava('.ft_km() sets a default for the ft parameter', t => {
     const result = ft_km();
     const expectedResult = 0 * UNIT_CONVERSION_CONSTANTS.KM_FT;
+
+    t.true(result === expectedResult);
+});
+
+ava('.kn_ms() converts knots to m/s', t => {
+    const speed = 190;
+    const expectedResult = speed * UNIT_CONVERSION_CONSTANTS.KN_MS;
+    const result = kn_ms(speed);
+
+    t.true(result === expectedResult);
+});
+
+ava('.radiansToDegrees() converts radians to degrees', t => {
+    const result = radiansToDegrees(2.1467549799530254);
+    const expectedResult = 123;
+    
+    t.true(result === expectedResult);
+});
+
+ava('.degreesToRadians() converts degrees to radians', t => {
+    const result = degreesToRadians(123);
+    const expectedResult = 2.1467549799530254;
 
     t.true(result === expectedResult);
 });

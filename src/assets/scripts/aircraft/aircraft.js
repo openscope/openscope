@@ -3,7 +3,17 @@ import AircraftModel from './AircraftModel';
 import AircraftFlightManagementSystem from './AircraftFlightManagementSystem';
 import AircraftInstanceModel from './AircraftInstanceModel';
 import { distance2d } from '../math/distance';
-import { vlen } from '../math/vector';
+import {
+    vlen,
+    vradial,
+    vsub
+} from '../math/vector';
+import {
+    kn_ms,
+    radiansToDegrees,
+    degreesToRadians
+} from '../utilities/unitConverters';
+import { calcTurnInitiationDistance } from '../math/flightMath';
 
 /**
  * Main entry point for the aircraft object.
@@ -57,29 +67,25 @@ const aircraft_generate_callsign = (airline_name) => {
 
 /**
  * @function aircraft_callsign_new
- * @param airline {}
+ * @param airline {string}
  * @raturn callsign {string}
  */
 const aircraft_callsign_new = (airline) => {
+    // TODO: the logic needs work here. if `callsign` is always initialized as null, one would imagine that
+    // this function would always result in the creation of a callsign?
     let callsign = null;
-    // TODO: is this being used here?
-    // const hit = false;
 
-    // FIXME: move the condition here and get rid of the break
-    while (true) {
+    while (prop.aircraft.callsigns.indexOf(callsign) !== -1) {
         callsign = aircraft_generate_callsign(airline);
-
-        // FIXME: it looks like this is the while condition?
-        if (prop.aircraft.callsigns.indexOf(callsign) === -1) {
-            break;
-        }
     }
 
+    // FIXME: this is a global object and needs to be localized
     prop.aircraft.callsigns.push(callsign);
 
     return callsign;
 };
 
+// TODO: is this actually an `aircraft_new` or a `flight_new`?
 /**
  * @function aircraft_new
  * @param options
@@ -124,7 +130,7 @@ const aircraft_add = (model) => {
 /**
  * @function aircraft_visible
  * @param aircraft
- * @param factor
+ * @param factor {number}
  * @return
  */
 const aircraft_visible = (aircraft, factor = 1) => (vlen(aircraft.position) < airport_get().ctr_radius * factor);
@@ -144,36 +150,38 @@ const aircraft_remove_all = () => {
  * @function aircraft_update
  */
 const aircraft_update = () => {
-    for (let i=0; i < prop.aircraft.list.length; i++) {
-        prop.aircraft.list[i].update();
-    }
+    // for (let i=0; i < prop.aircraft.list.length; i++) {
+    //     prop.aircraft.list[i].update();
+    // }
 
     for (let i = 0; i < prop.aircraft.list.length; i++) {
+        prop.aircraft.list[i].update();
         prop.aircraft.list[i].updateWarning();
 
         // TODO: move this InnerLoop thing to a function so we can get rid of the continue InnerLoop thing.
-        InnerLoop: for (let j = i+1; j < prop.aircraft.list.length; j++) {
+        for (let j = i + 1; j < prop.aircraft.list.length; j++) {
             // TODO: need better names here. what is `that`?  what is `other`?
-            const that = prop.aircraft.list[i];
-            const other = prop.aircraft.list[j];
+            const aircraft = prop.aircraft.list[i];
+            const otherAircraft = prop.aircraft.list[j];
 
-            if (that.checkConflict(other)) {
-                continue InnerLoop;
+            if (aircraft.checkConflict(otherAircraft)) {
+                continue;
             }
 
             // Fast 2D bounding box check, there are no conflicts over 8nm apart (14.816km)
             // no violation can occur in this case.
             // Variation of:
             // http://gamedev.stackexchange.com/questions/586/what-is-the-fastest-way-to-work-out-2d-bounding-box-intersection
-            const dx = Math.abs(that.position[0] - other.position[0]);
-            const dy = Math.abs(that.position[1] - other.position[1]);
+            const dx = Math.abs(aircraft.position[0] - otherAircraft.position[0]);
+            const dy = Math.abs(aircraft.position[1] - otherAircraft.position[1]);
 
             // TODO: move this value to a constant
+            // TODO: this if/else doesn't make sense
             if ((dx > 14.816) || (dy > 14.816)) {
-                continue InnerLoop;
+                continue;
             } else {
                 // TODO: this should go somewhere and not just be instantiated
-                new AircraftConflict(that, other);
+                new AircraftConflict(aircraft, otherAircraft);
             }
         }
     }
@@ -183,7 +191,7 @@ const aircraft_update = () => {
         const aircraft = prop.aircraft.list[i];
         // let is_visible = aircraft_visible(aircraft);
 
-        if (aircraft.isStopped() && aircraft.category == 'arrival') {
+        if (aircraft.isStopped() && aircraft.category === 'arrival') {
             prop.game.score.windy_landing += aircraft.scoreWind('landed');
 
             ui_log(`${aircraft.getCallsign()} switching to ground, good day`);
@@ -243,13 +251,9 @@ const aircraft_turn_initiation_distance = (aircraft, fix) => {
     }
 
     // convert knots to m/s
-    // TODO: abstract to function
-    const speed = aircraft.speed * (463 / 900);
+    const speed = kn_ms(aircraft.speed);
     // assume nominal bank angle of 25 degrees for all aircraft
-    const bank_angle = radians(25);
-    // TODO: move to constant
-    // acceleration due to gravity, m/s*s
-    const g = 9.81;
+    const bank_angle = degreesToRadians(25);
 
     // TODO: is there a getNextWaypoint() function?
     const nextfix = aircraft.fms.waypoint(aircraft.fms.indexOfCurrentWaypoint().wp + 1).location;
@@ -269,17 +273,14 @@ const aircraft_turn_initiation_distance = (aircraft, fix) => {
     }
 
     // TODO: move to function
-    let course_change = Math.abs(degrees(current_heading) - degrees(nominal_new_course));
+    let course_change = Math.abs(radiansToDegrees(current_heading) - radiansToDegrees(nominal_new_course));
     if (course_change > 180) {
         course_change = 360 - course_change;
     }
 
-    course_change = radians(course_change);
-    // meters
-    // TODO: move to function
-    const turn_radius = speed * speed / (g * Math.tan(bank_angle));
-    const l2 = speed; // meters, bank establishment in 1s
-    const turn_initiation_distance = turn_radius * Math.tan(course_change / 2) + l2;
+    course_change = degreesToRadians(course_change);
+    // meters, bank establishment in 1s
+    const turn_initiation_distance = calcTurnInitiationDistance(speed, bank_angle, course_change)
 
     return turn_initiation_distance / 1000; // convert m to km
 };
