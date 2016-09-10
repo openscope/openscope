@@ -26,7 +26,7 @@ const game = require('./game');
 const input = require('./input');
 const airline = require('./airline');
 const aircraft = require('./aircraft/aircraft');
-const airport = require('./airport');
+const airport = require('./airport/airport');
 const canvas = require('./canvas');
 const ui = require('./ui');
 
