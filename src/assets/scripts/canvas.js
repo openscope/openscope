@@ -1,8 +1,11 @@
 // jshint latedef:nofunc, undef:true, eqnull:true, eqeqeq:true, browser:true, jquery:true, devel:true
-/*global prop:true, km:false, crange:false, clamp:false, lpad:false, airport_get:false, game_time:false, game_paused:false, time:false, round:false, distance2d:false, radians:false  */
+/* global prop:true, km:false, crange:false, clamp:false, lpad:false, airport_get:false, game_time:false, game_paused:false, time:false, round:false, distance2d:false, radians:false  */
+import { km, degreesToRadians } from './utilities/unitConverters';
+import { time } from './utilities/timeHelpers';
+import { distance2d } from './math/distance';
 
 window.canvas_init_pre = function canvas_init_pre() {
-  "use strict";
+  'use strict';
   prop.canvas={};
 
   prop.canvas.contexts={};
@@ -787,7 +790,7 @@ function canvas_draw_compass(cc) {
   cc.textAlign = "center";
   cc.textBaseline = "top";
   for(var i=90;i<=360;i+=90) {
-    cc.rotate(radians(90));
+    cc.rotate(degreesToRadians(90));
     if (i==90) var angle = "0" + i;
     else var angle = i;
     cc.save();
@@ -845,7 +848,7 @@ function canvas_draw_fancy_rings(cc, fix_origin, fix1, fix2) {
   var f2 = arpt.getFix(fix2);
   var minDist = Math.min( distance2d(origin, f1), distance2d(origin, f2));
   var halfPI = Math.PI / 2;
-  var extend_ring = radians(10);
+  var extend_ring = degreesToRadians(10);
   var start_angle = Math.atan2(f1[0] - origin[0], f1[1] - origin[1]) - halfPI - extend_ring;
   var end_angle = Math.atan2(f2[0] - origin[0], f2[1] - origin[1]) - halfPI + extend_ring;
   var x = round(km_to_px(origin[0])) + prop.canvas.panX;
@@ -1170,7 +1173,7 @@ function canvas_draw_directions(cc) {
   cc.textBaseline = "middle";
 
   for (var alpha = 0; alpha < 360; alpha++) {
-    var dir = [sin(radians(alpha)), -cos(radians(alpha))];
+    var dir = [sin(degreesToRadians(alpha)), -cos(degreesToRadians(alpha))];
     var p = positive_intersection_with_rect(pos, dir, rectPos, rectSize);
     if (p) {
       var markLen = (alpha % 5 === 0 ?

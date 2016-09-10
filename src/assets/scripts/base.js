@@ -1,3 +1,6 @@
+import Fiber from 'fiber';
+import { degreesToRadians } from './utilities/unitConverters';
+
 // A physical location on the Earth's surface
 //
 // properties:
@@ -9,7 +12,7 @@
 //   y - Offset from reference position in km
 //   position - Array containing the x,y pair
 //
-var Position = Fiber.extend(function() {
+const Position = Fiber.extend(function() {
   return {
     // coordinates - Array containing offset pair or latitude/longitude pair
     // reference - Position to use for calculating offsets when lat/long given
@@ -22,72 +25,79 @@ var Position = Fiber.extend(function() {
     //   Decimal degrees - 'N47.112388112'
     //   Decimal minutes - 'N38d38.109808'
     //   Decimal seconds - 'N58d27m12.138'
-    init: function(coordinates, reference, magnetic_north, /*optional*/ mode) {
-      if(!coordinates) coordinates=[];
+    init: function(coordinates = [], reference, magnetic_north = 0, /* optional */ mode) {
+        this.latitude = 0;
+        this.longitude = 0;
+        this.elevation = 0;
+        this.reference_position = reference;
+        this.magnetic_north = magnetic_north;
+        this.x = 0;
+        this.y = 0;
+        this.position = [this.x, this.y];
+        this.gps = [0, 0];
 
-      this.latitude = 0;
-      this.longitude = 0;
-      this.elevation = 0;
-
-      this.reference_position = reference;
-      this.magnetic_north = magnetic_north;
-      if (!this.magnetic_north) this.magnetic_north = 0;
-      this.x = 0;
-      this.y = 0;
-      this.position = [this.x, this.y];
-      this.gps = [0,0];
-
-      this.parse(coordinates, mode);
+        this.parse(coordinates, mode);
     },
     parse: function(coordinates, mode) {
-      if (! /^[NESW]/.test(coordinates[0])) {
-        this.x = coordinates[0];
-        this.y = coordinates[1];
-        this.position = [this.x, this.y];
-        if(mode === 'GPS') this.parse4326();
-        return;
-      }
+        if (!/^[NESW]/.test(coordinates[0])) {
+            this.x = coordinates[0];
+            this.y = coordinates[1];
+            this.position = [this.x, this.y];
 
-      this.latitude = this.parseCoordinate(coordinates[0]);
-      this.longitude = this.parseCoordinate(coordinates[1]);
-      this.gps = [this.longitude, this.latitude]; // GPS coordinates in [x,y] order
+            if (mode === 'GPS') {
+                this.parse4326();
+            }
 
-      if (coordinates[2] != null) {
-        this.elevation = parseElevation(coordinates[2]);
-      }
+            return;
+        }
+
+        this.latitude = this.parseCoordinate(coordinates[0]);
+        this.longitude = this.parseCoordinate(coordinates[1]);
+        // GPS coordinates in [x,y] order
+        this.gps = [this.longitude, this.latitude];
+
+        if (coordinates[2] != null) {
+            this.elevation = parseElevation(coordinates[2]);
+        }
 
       // this function (parse4326) is moved to be able to call it if point is
       // EPSG:4326, numeric decimal, like those from GeoJSON
-      if (this.reference_position != null) {
-        this.x = this.longitude;
-        this.y = this.latitude;
-        this.parse4326();
-      }
+        if (this.reference_position != null) {
+            this.x = this.longitude;
+            this.y = this.latitude;
+            this.parse4326();
+        }
     },
     parse4326: function() {
-      // if coordinates were in WGS84 EPSG:4326 (signed decimal lat/lon -12.123,83.456)
-      // parse them
-      this.longitude = this.x;
-      this.latitude = this.y;
-      this.x = this.distanceToPoint(this.reference_position.latitude,
-                                    this.reference_position.longitude,
-                                    this.reference_position.latitude,
-                                    this.longitude);
-      if (this.reference_position.longitude > this.longitude) {
-        this.x *= -1;
-      }
+        // if coordinates were in WGS84 EPSG:4326 (signed decimal lat/lon -12.123,83.456)
+        // parse them
+        this.longitude = this.x;
+        this.latitude = this.y;
+        this.x = this.distanceToPoint(
+            this.reference_position.latitude,
+            this.reference_position.longitude,
+            this.reference_position.latitude,
+            this.longitude
+        );
 
-      this.y = this.distanceToPoint(this.reference_position.latitude,
-                                    this.reference_position.longitude,
-                                    this.latitude,
-                                    this.reference_position.longitude);
-      if (this.reference_position.latitude > this.latitude) {
-        this.y *= -1;
-      }
+        if (this.reference_position.longitude > this.longitude) {
+            this.x *= -1;
+        }
+
+        this.y = this.distanceToPoint(
+            this.reference_position.latitude,
+            this.reference_position.longitude,
+            this.latitude,
+            this.reference_position.longitude
+        );
+
+        if (this.reference_position.latitude > this.latitude) {
+            this.y *= -1;
+        }
 
       // Adjust to use magnetic north instead of true north
-      var t = Math.atan2(this.y, this.x);
-      var r = Math.sqrt(this.x*this.x + this.y*this.y);
+      let t = Math.atan2(this.y, this.x);
+      const r = Math.sqrt(this.x * this.x + this.y * this.y);
       t += this.magnetic_north;
       this.x = r * Math.cos(t);
       this.y = r * Math.sin(t);
@@ -95,32 +105,34 @@ var Position = Fiber.extend(function() {
       this.position = [this.x, this.y];
     },
     distanceTo: function(point) {
-      return this.distanceToPoint(this.latitude,
-                                  this.longitude,
-                                  point.latitude,
-                                  point.longitude);
+        return this.distanceToPoint(
+            this.latitude,
+            this.longitude,
+            point.latitude,
+            point.longitude
+        );
     },
     // The distance in km between two locations
     distanceToPoint: function(lat_a, lng_a, lat_b, lng_b) {
-      var d_lat = radians(lat_a - lat_b);
-      var d_lng = radians(lng_a - lng_b);
+      const d_lat = degreesToRadians(lat_a - lat_b);
+      const d_lng = degreesToRadians(lng_a - lng_b);
 
-      var a = Math.pow(Math.sin(d_lat/2), 2) +
-        (Math.cos(radians(lat_a)) *
-         Math.cos(radians(lat_b)) *
-         Math.pow(Math.sin(d_lng/2), 2));
-      var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+      const a = Math.pow(Math.sin(d_lat/2), 2) +
+        (Math.cos(degreesToRadians(lat_a)) *
+         Math.cos(degreesToRadians(lat_b)) *
+         Math.pow(Math.sin(d_lng / 2), 2));
+      const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
       return c * 6371.00;
     },
     parseCoordinate: function(coord) {
-      var r = /^([NESW])(\d+(\.\d+)?)([d °](\d+(\.\d+)?))?([m '](\d+(\.\d+)?))?$/;
-      var match = r.exec(coord)
+      let r = /^([NESW])(\d+(\.\d+)?)([d °](\d+(\.\d+)?))?([m '](\d+(\.\d+)?))?$/;
+      let match = r.exec(coord)
       if (match == null) {
         log('Unable to parse coordinate ' + coord);
         return;
       }
-      var ret = parseFloat(match[2]);
+      let ret = parseFloat(match[2]);
       if (match[5] != null) {
         ret += parseFloat(match[5])/60;
         if (match[8] != null) {
@@ -137,13 +149,13 @@ var Position = Fiber.extend(function() {
 });
 
 /** An enclosed region defined by a series of Position objects and an altitude range
- ** @param {array} poly - series of Position objects that outline the shape
- **                Note: DO NOT repeat the origin to 'close' the shape. Unnecessary.
- ** @param {number} floor - (optional) altitude of bottom of area, in hundreds of feet
- ** @param {number} ceiling - (optional) altitude of top of area, in hundreds of feet
- ** @param {string} airspace_class - (optional) FAA airspace classification (A,B,C,D,E,G)
+ * @param {array} poly - series of Position objects that outline the shape
+ *                Note: DO NOT repeat the origin to 'close' the shape. Unnecessary.
+ * @param {number} floor - (optional) altitude of bottom of area, in hundreds of feet
+ * @param {number} ceiling - (optional) altitude of top of area, in hundreds of feet
+ * @param {string} airspace_class - (optional) FAA airspace classification (A,B,C,D,E,G)
  */
-var Area = Fiber.extend(function() {
+const Area = Fiber.extend(function() {
   return {
     init: function(positions, /*optional*/ floor, ceiling, airspace_class) {
       if(!positions) return;
@@ -159,12 +171,17 @@ var Area = Fiber.extend(function() {
       this.parse(positions);
     },
     parse: function(positions) {
-      for(var i=0; i<positions.length; i++) this.poly.push(positions[i]);
-      if(this.poly[0] == this.poly[this.poly.length-1])
+      for(let i = 0; i < positions.length; i++) {
+          this.poly.push(positions[i])
+      }
+
+      if (this.poly[0] == this.poly[this.poly.length-1]) {
         this.poly.pop();  // shape shouldn't fully close; will draw with 'cc.closepath()'
+      }
     }
   };
 });
 
+// TODO: add to the window for non-converted files
 window.Position = Position;
 window.Area = Area;

@@ -41,14 +41,14 @@ module.exports = function(gulp, config) {
             .pipe(eslint({
                 useEslintrc: true
             }))
-            .pipe(eslint.result(function (result) {
-                    // Called for each ESLint result.
-                    gutil.log('\n');
-                    gutil.log(gutil.colors.cyan('ESLint result: ' + result.filePath));
-                    gutil.log('# Warnings: ' + gutil.colors.yellow(result.warningCount));
-                    gutil.log('# Errors: ' + gutil.colors.red(result.errorCount));
-                })
-            )
+            .pipe(eslint.results(results => {
+                // Called once for all ESLint results.
+                gutil.log('\n');
+                gutil.log(gutil.colors.cyan('ESLint result: '));
+                gutil.log(gutil.colors.cyan(`Total Files: ${results.length}`));
+                gutil.log(gutil.colors.yellow(`Total Warnings: ${results.warningCount}`));
+                gutil.log(gutil.colors.red(`Total Errors: ${results.errorCount}`));
+            }))
             .pipe(eslint.format());
     });
 

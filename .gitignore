@@ -1,4 +1,9 @@
 *~
 .DS_Store
 _site/
+assets/scripts/
+assets/style/
+coverage/
+.nyc_output/
 node_modules/
+npm-debug.log

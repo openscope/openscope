@@ -8,38 +8,10 @@
         "arrow-body-style": 0,
         "comma-dangle": [2, "never"],
         "no-did-mount-set-state": [0, "never"],
-    #     "id-length": [1, {"min": 1}],
-    #     "indent": [2, 4, {"SwitchCase": 1}],
-    #     "react/display-name": [0, { "ignoreTranspilerName": true }],
-    #     "react/sort-comp": [0, {         // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/sort-comp.md
-    #         "order": [
-    #             "displayName",
-    #             "propTypes",
-    #             "contextTypes",
-    #             "childContextTypes",
-    #             "constructor",
-    #             "getDefaultProps",
-    #             "initialState",
-    #             "getChildContext",
-    #             "componentWillMount",
-    #             "componentDidMount",
-    #             "componentWillReceiveProps",
-    #             "componentReceivedProps",
-    #             "shouldComponentUpdate",
-    #             "componentWillUpdate",
-    #             "componentDidUpdate",
-    #             "componentWillUnmount",
-    #             "componentShouldRender",
-    #             "/^on.+$/",
-    #             "/^get.+$/",
-    #             "/^render.+$/",
-    #             "render",
-    #             "compose"
-    #         ]
-    #     }],
+        "indent": [1, 4, {"SwitchCase": 1}],
         "no-console": 0,
+        "no-plusplus": [2, { "allowForLoopAfterthoughts": true }],
         "semi": [2, "always"],
-        "space-after-keywords": 0, // deprecated but inherited- replaced by keyword-spacing
-        "space-return-throw-case": 0 // deprecated but inherited- replaced by keyword-spacing
+        "space-before-function-paren": [2, "never"]
     }
 }
