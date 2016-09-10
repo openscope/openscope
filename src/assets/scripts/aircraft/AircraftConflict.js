@@ -9,22 +9,22 @@ import { degreesToRadians } from '../utilities/unitConverters';
  * @extends Fiber
  */
 const AircraftConflict = Fiber.extend(function() {
-  return {
-    init: function(first, second) {
-      this.aircraft = [first, second];
-      this.distance = vlen(vsub(first.position, second.position));
-      this.distance_delta = 0;
-      this.altitude = abs(first.altitude - second.altitude);
+    return {
+        init: function(first, second) {
+            this.aircraft = [first, second];
+            this.distance = vlen(vsub(first.position, second.position));
+            this.distance_delta = 0;
+            this.altitude = abs(first.altitude - second.altitude);
 
-      this.collided = false;
+            this.collided = false;
 
-      this.conflicts = {};
-      this.violations = {};
+            this.conflicts = {};
+            this.violations = {};
 
-      this.aircraft[0].addConflict(this, second);
-      this.aircraft[1].addConflict(this, first);
+            this.aircraft[0].addConflict(this, second);
+            this.aircraft[1].addConflict(this, first);
 
-      this.update();
+            this.update();
     },
 
     /**
@@ -34,7 +34,7 @@ const AircraftConflict = Fiber.extend(function() {
      *                             Second element true if any violations.
      */
     hasAlerts: function() {
-      return [this.hasConflict(), this.hasViolation()];
+        return [this.hasConflict(), this.hasViolation()];
     },
 
     /**

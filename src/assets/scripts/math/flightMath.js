@@ -1,21 +1,31 @@
+/**
+ * @property CONSTANTS
+ * @type {Object}
+ * @final
+ */
 const CONSTANTS = {
-    AVG_GRAVITATIONAL_MAGNITUDE: 9.81
+    /**
+     * @property
+     * @type {number}
+     * @final
+     */
+    GRAVITATIONAL_MAGNITUDE: 9.81
 };
 
 /**
  * @function calcTurnRadius
- * @param speed {number}
- * @param bankAngle {number}
+ * @param speed {number} currentSpeed of an aircraft
+ * @param bankAngle {number} bank angle of an aircraft
  * @return {number}
  */
 export const calcTurnRadius = (speed, bankAngle) => {
-    return (speed * speed) / (CONSTANTS.AVG_GRAVITATIONAL_MAGNITUDE * Math.tan(bankAngle));
+    return (speed * speed) / (CONSTANTS.GRAVITATIONAL_MAGNITUDE * Math.tan(bankAngle));
 }
 
 /**
  * @function calcTurnInitiationDistance
- * @param speed {number}
- * @param bankAngle {number}
+ * @param speed {number} currentSpeed of an aircraft
+ * @param bankAngle {number} bank angle of an aircraft
  * @param courseChange {number}
  * @return {number}
  */

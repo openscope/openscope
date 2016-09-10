@@ -1,7 +1,6 @@
 import AircraftConflict from './AircraftConflict';
 import AircraftModel from './AircraftModel';
 import AircraftFlightManagementSystem from './AircraftFlightManagementSystem';
-import AircraftInstanceModel from './AircraftInstanceModel';
 import { distance2d } from '../math/distance';
 import {
     vlen,
@@ -21,9 +20,7 @@ import { calcTurnInitiationDistance } from '../math/flightMath';
  */
 // TODO: remove window instances
 window.zlsa.atc.Conflict = AircraftConflict;
-const Model = AircraftModel;
 window.zlsa.atc.AircraftFlightManagementSystem = AircraftFlightManagementSystem;
-const Aircraft = AircraftInstanceModel;
 
 /**
  *
@@ -75,8 +72,13 @@ const aircraft_callsign_new = (airline) => {
     // this function would always result in the creation of a callsign?
     let callsign = null;
 
-    while (prop.aircraft.callsigns.indexOf(callsign) !== -1) {
+    // TODO: is this while loop needed? there may be a cleaner way to accomplish this.
+    while (true) {
         callsign = aircraft_generate_callsign(airline);
+
+        if (prop.aircraft.callsigns.indexOf(callsign) === -1) {
+            break;
+        }
     }
 
     // FIXME: this is a global object and needs to be localized
@@ -280,7 +282,7 @@ const aircraft_turn_initiation_distance = (aircraft, fix) => {
 
     course_change = degreesToRadians(course_change);
     // meters, bank establishment in 1s
-    const turn_initiation_distance = calcTurnInitiationDistance(speed, bank_angle, course_change)
+    const turn_initiation_distance = calcTurnInitiationDistance(speed, bank_angle, course_change);
 
     return turn_initiation_distance / 1000; // convert m to km
 };
@@ -348,7 +350,7 @@ const aircraft_get_eid_by_callsign = (callsign) => {
  */
 const aircraft_model_get = (icao) => {
     if (!(icao in prop.aircraft.models)) {
-        const model = new Model({
+        const model = new AircraftModel({
             icao: icao,
             url: `assets/aircraft/${icao}.json`
         });
