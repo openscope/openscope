@@ -1,3 +1,5 @@
+import _clamp from 'lodash/clamp'
+
 window.input_init_pre = function input_init_pre() {
   prop.input = {};
 
@@ -316,7 +318,7 @@ window.tab_completion_reset = function tab_completion_reset() {
 }
 
 window.input_history_clamp = function input_history_clamp() {
-  prop.input.history_item = clamp(0, prop.input.history_item, prop.input.history.length-1);
+  prop.input.history_item = _clamp(0, prop.input.history_item, prop.input.history.length-1);
 }
 
 window.input_history_prev = function input_history_prev() {

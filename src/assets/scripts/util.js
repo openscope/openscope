@@ -1,3 +1,4 @@
+import _clamp from 'lodash/clamp'
 import { km, nm, km_ft, ft_km, radiansToDegrees, degreesToRadians } from './utilities/unitConverters';
 import { time } from './utilities/timeHelpers';
 import { distance2d } from './math/distance';
@@ -101,33 +102,43 @@ window.within = function within(n,c,r) {
   return true;
 }
 
-window.trange = function trange(il,i,ih,ol,oh) {
-  return(ol+(oh-ol)*(i-il)/(ih-il));
+window.trange = function trange(il, i, ih, ol, oh) {
+  return(ol + (oh - ol) * (i - il) / (ih - il));
   // i=(i/(ih-il))-il;       // purpose unknown
   // return (i*(oh-ol))+ol;  // purpose unknown
 }
 
-window.clamp = function clamp(l,i,h) {
-  if(h == null) {
-    if(l > i)
-      return l;
-    return i;
-  }
-  var temp;
-  if(l > h) {
-    temp=h;
-    h=l;
-    l=temp;
-  }
-  if(l > i)
-    return l;
-  if(h < i)
-    return h;
-  return i;
-}
+// replaced with lodash _clamp
+// window.clamp = function clamp(l, i, h) {
+//     var temp;
+//
+//     if (h === null) {
+//         if (l > i) {
+//             return l;
+//         }
+//
+//         return i;
+//     }
+//
+//     if (l > h) {
+//         temp = h;
+//         h = l;
+//         l = temp;
+//     }
+//
+//     if (l > i) {
+//         return l;
+//     }
+//
+//     if (h < i) {
+//         return h;
+//     }
+//
+//     return i;
+// };
 
-window.crange = function crange(il,i,ih,ol,oh) {
-  return clamp(ol,trange(il,i,ih,ol,oh),oh);
+window.crange = function crange(il, i, ih, ol, oh) {
+    return _clamp(ol, trange(il, i, ih, ol, oh), oh);
 }
 
 window.srange = function srange(il,i,ih) {
@@ -556,7 +567,7 @@ window.positive_intersection_with_rect = function positive_intersection_with_rec
   dir = vnorm(dir);
 
   // Check if pos is outside of rectangle.
-  if (clamp(left, pos[0], right) != pos[0] || clamp(top, pos[1], bottom) != pos[1]) {
+  if (_clamp(left, pos[0], right) != pos[0] || _clamp(top, pos[1], bottom) != pos[1]) {
     return undefined;
   }
 
@@ -564,7 +575,7 @@ window.positive_intersection_with_rect = function positive_intersection_with_rec
   if (dir[1] < 0) {
     var t = (top - pos[1]) / dir[1];
     var x = pos[0] + dir[0] * t;
-    if (clamp(left, x, right) == x) {
+    if (_clamp(left, x, right) == x) {
       return [x, top];
     }
   }
@@ -573,7 +584,7 @@ window.positive_intersection_with_rect = function positive_intersection_with_rec
   if (dir[1] > 0) {
     var t = (bottom - pos[1]) / dir[1];
     var x = pos[0] + dir[0] * t;
-    if (clamp(left, x, right) == x) {
+    if (_clamp(left, x, right) == x) {
       return [x, bottom];
     }
   }
@@ -582,7 +593,7 @@ window.positive_intersection_with_rect = function positive_intersection_with_rec
   if (dir[0] < 0) {
     var t = (left - pos[0]) / dir[0];
     var y = pos[1] + dir[1] * t;
-    if (clamp(top, y, bottom) == y) {
+    if (_clamp(top, y, bottom) == y) {
       return [left, y];
     }
   }
@@ -591,7 +602,7 @@ window.positive_intersection_with_rect = function positive_intersection_with_rec
   if (dir[0] > 0) {
     var t = (right - pos[0]) / dir[0];
     var y = pos[1] + dir[1] * t;
-    if (clamp(top, y, bottom) == y) {
+    if (_clamp(top, y, bottom) == y) {
       return [right, y];
     }
   }

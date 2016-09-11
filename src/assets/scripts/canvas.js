@@ -1,5 +1,6 @@
 // jshint latedef:nofunc, undef:true, eqnull:true, eqeqeq:true, browser:true, jquery:true, devel:true
 /* global prop:true, km:false, crange:false, clamp:false, lpad:false, airport_get:false, game_time:false, game_paused:false, time:false, round:false, distance2d:false, radians:false  */
+import _clamp from 'lodash/clamp'
 import { km, degreesToRadians } from './utilities/unitConverters';
 import { time } from './utilities/timeHelpers';
 import { distance2d } from './math/distance';
@@ -445,7 +446,7 @@ function canvas_draw_aircraft(cc, aircraft) {
     var w = prop.canvas.size.width/2;
     var h = prop.canvas.size.height/2;
 
-    cc.translate(clamp(-w, km_to_px(aircraft.position[0]) + prop.canvas.panX, w), clamp(-h, -km_to_px(aircraft.position[1]) + prop.canvas.panY, h));
+    cc.translate(_clamp(-w, km_to_px(aircraft.position[0]) + prop.canvas.panX, w), _clamp(-h, -km_to_px(aircraft.position[1]) + prop.canvas.panY, h));
 
     cc.beginPath();
     cc.arc(0, 0, round(size * 1.5), 0, Math.PI * 2);
@@ -587,7 +588,7 @@ function canvas_draw_info(cc, aircraft) {
     cc.save();
     var cs = aircraft.getCallsign();
     var paddingLR = 5;
-    var width  = clamp(1, 5.8*cs.length) + (paddingLR*2); // width of datablock (scales to fit callsign)
+    var width  = _clamp(1, 5.8*cs.length) + (paddingLR*2); // width of datablock (scales to fit callsign)
     var width2 = width / 2;
     var height  = 31;               // height of datablock
     var height2 = height / 2;
@@ -893,7 +894,7 @@ function canvas_draw_terrain(cc) {
 
   cc.strokeStyle = 'rgba(255,255,255,.4)';
   cc.fillStyle = 'rgba(255,255,255,.2)';
-  cc.lineWidth = clamp(.5, (prop.ui.scale / 10), 2);
+  cc.lineWidth = _clamp(.5, (prop.ui.scale / 10), 2);
   cc.lineJoin = 'round';
 
   var airport = airport_get(),

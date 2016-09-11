@@ -1,18 +1,13 @@
+import _clamp from 'lodash/clamp'
 import { time } from './utilities/timeHelpers';
 
 var Step = Fiber.extend(function() {
   return {
-    init: function(options) {
-      if(!options) options = {};
-
+    init: function(options = {}) {
       this.title    = options.title || "?";
-
       this.text     = options.text || "?";
-
       this.parse     = options.parse || null;
-
       this.side     = options.side || "none";
-
       this.position = options.position || [0, 0];
       this.padding  = options.padding  || [0, 0];
     },
@@ -425,12 +420,12 @@ function tutorial_next() {
     tutorial_close();
     return;
   }
-  prop.tutorial.step = clamp(0, prop.tutorial.step + 1, prop.tutorial.steps.length - 1);
+  prop.tutorial.step = _clamp(0, prop.tutorial.step + 1, prop.tutorial.steps.length - 1);
   tutorial_update_content();
 }
 
 function tutorial_prev() {
-  prop.tutorial.step = clamp(0, prop.tutorial.step - 1, prop.tutorial.steps.length - 1);
+  prop.tutorial.step = _clamp(0, prop.tutorial.step - 1, prop.tutorial.steps.length - 1);
   tutorial_update_content();
 }
 

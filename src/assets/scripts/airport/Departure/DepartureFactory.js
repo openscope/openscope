@@ -2,6 +2,9 @@ import DepartureBase from './DepartureBase';
 import DepartureCyclic from './DepartureCyclic';
 import DepartureWave from './DepartureWave';
 
+// FIXME: temporary. remove once LOG levels have been moved to a constants file.
+const LOG_WARNING = 2;
+
 /**
  * Calls constructor of the appropriate arrival type
  *

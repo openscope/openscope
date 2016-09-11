@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import Fiber from 'fiber';
+import _clamp from 'lodash/clamp'
 import { distance2d } from '../math/distance';
 import { vlen, vradial, vsub } from '../math/vector';
 import { radiansToDegrees, degreesToRadians } from '../utilities/unitConverters';
@@ -542,7 +543,7 @@ const Aircraft = Fiber.extend(function() {
         ceiling += 1000;
 
       this.fms.setAll({
-        altitude: clamp(round(airport_get().elevation/100)*100 + 1000, altitude, ceiling),
+        altitude: _clamp(round(airport_get().elevation/100)*100 + 1000, altitude, ceiling),
         expedite: expedite,
       })
 
@@ -586,9 +587,13 @@ const Aircraft = Fiber.extend(function() {
       var speed = data[0];
       if(isNaN(speed)) return ["fail", "speed not understood"];
 
-      this.fms.setAll({speed: clamp(this.model.speed.min,
-                                    speed,
-                                    this.model.speed.max)});
+      this.fms.setAll({
+          speed: _clamp(
+              this.model.speed.min,
+              speed,
+              this.model.speed.max
+          )
+      });
       var readback = {
         log: radio_trend("speed", this.speed, this.fms.currentWaypoint().speed) + " " + this.fms.currentWaypoint().speed,
         say: radio_trend("speed", this.speed, this.fms.currentWaypoint().speed) + " " + radio_spellOut(this.fms.currentWaypoint().speed)
@@ -1185,7 +1190,7 @@ const Aircraft = Fiber.extend(function() {
         angle = runway.angle;
         if (angle > (2*Math.PI)) angle -= 2*Math.PI;
 
-        glideslope_altitude = clamp(0, runway.getGlideslopeAltitude(offset[1]), this.altitude);
+        glideslope_altitude = _clamp(0, runway.getGlideslopeAltitude(offset[1]), this.altitude);
         glideslope_window   = abs(runway.getGlideslopeAltitude(offset[1], degreesToRadians(1)));
 
         if(this.mode == "landing")
@@ -1218,7 +1223,7 @@ const Aircraft = Fiber.extend(function() {
           if(dist_to_localizer <= turning_radius || dist_to_localizer < 0.5) {
             // Steer to within 3m of the centerline while at least 200m out
             if(offset[1] > 0.2 && abs(offset[0]) > 0.003 )
-              this.target.heading = clamp(degreesToRadians(-30), -12 * offset_angle, degreesToRadians(30)) + angle;
+              this.target.heading = _clamp(degreesToRadians(-30), -12 * offset_angle, degreesToRadians(30)) + angle;
             else this.target.heading = angle;
 
             // Follow the glideslope
@@ -1306,7 +1311,7 @@ const Aircraft = Fiber.extend(function() {
         this.target.altitude = Math.max(1000, this.target.altitude);
 
         this.target.speed = this.fms.currentWaypoint().speed;
-        this.target.speed = clamp(this.model.speed.min, this.target.speed, this.model.speed.max);
+        this.target.speed = _clamp(this.model.speed.min, this.target.speed, this.model.speed.max);
       }
 
       // If stalling, make like a meteorite and fall to the earth!
@@ -1380,7 +1385,7 @@ const Aircraft = Fiber.extend(function() {
           // Perform standard turns 3 deg/s or 25 deg bank, whichever
           // requires less bank angle.
           // Formula based on http://aviation.stackexchange.com/a/8013
-          var turn_rate = clamp(0, 1 / (this.speed / 8.883031), 0.0523598776);
+          var turn_rate = _clamp(0, 1 / (this.speed / 8.883031), 0.0523598776);
           var turn_amount = turn_rate * game_delta();
           var offset = angle_offset(this.target.heading, this.heading);
           if(abs(offset) < turn_amount) {

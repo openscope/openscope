@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import Fiber from 'fiber';
+import _clamp from 'lodash/clamp'
 import Waypoint from './Waypoint';
 import Leg from './Leg';
 
@@ -47,7 +48,7 @@ const AircraftFlightManagementSystem = Fiber.extend(function() {
       };
 
       // set initial
-      this.fp.altitude = clamp(1000, options.model.ceiling, 60000);
+      this.fp.altitude = _clamp(1000, options.model.ceiling, 60000);
       if(options.aircraft.category == "arrival")
         this.prependLeg({route:"KDBG"});
       else if(options.aircraft.category == "departure")

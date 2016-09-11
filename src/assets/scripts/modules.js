@@ -126,19 +126,13 @@ if (!String.fromCodePoint) {
 // const asyncModules = {};
 // const asyncDoneCallback = () => {};
 
+// TODO: make this an enum in a constants file
 const LOG_DEBUG = 0;
 const LOG_INFO = 1;
 const LOG_WARNING = 2;
 const LOG_ERROR = 3; // eslint-disable-line
 const LOG_FATAL = 4; // eslint-disable-line
 
-const logStrings = {
-    0: 'DEBUG',
-    1: 'INFO',
-    2: 'WARN',
-    3: 'ERROR',
-    4: 'FATAL'
-};
 
 // PROP
 window.propInit = function propInit() {
@@ -170,6 +164,13 @@ window.log = function log(message, level = LOG_INFO) {
     // if (typeof level === 'undefined') {
     //     level = LOG_INFO;
     // }
+    const logStrings = {
+        0: 'DEBUG',
+        1: 'INFO',
+        2: 'WARN',
+        3: 'ERROR',
+        4: 'FATAL'
+    };
 
     if (prop.log <= level) {
         const text = `[ ${logStrings[level]} ]`;

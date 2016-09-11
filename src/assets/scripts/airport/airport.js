@@ -1,4 +1,4 @@
-import Airport from './AirportInstance';
+import Airport from './AirportInstanceModel';
 
 /**
  * @function airport_set
@@ -61,7 +61,7 @@ const airport_load = (icao, level, name) => {
         level,
         name
     });
-
+    
     airport_add(airport);
 
     return airport;

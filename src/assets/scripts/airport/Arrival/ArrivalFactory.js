@@ -3,6 +3,8 @@ import ArrivalCyclic from './ArrivalCyclic';
 import ArrivalWave from './ArrivalWave';
 import ArrivalSurge from './ArrivalSurge';
 
+// FIXME: temporary. remove once LOG levels have been moved to a constants file.
+const LOG_WARNING = 2;
 
 /**
  * Calls constructor of the appropriate arrival type
