@@ -1,15 +1,37 @@
+/* eslint-disable no-multi-spaces, func-names, camelcase, no-undef, max-len, object-shorthand */
 import $ from 'jquery';
 import Fiber from 'fiber';
+import _forEach from 'lodash/forEach';
+import _forIn from 'lodash/forIn';
+import _has from 'lodash/has';
 import _map from 'lodash/map';
 import _isEmpty from 'lodash/isEmpty';
+import _uniq from 'lodash/uniq';
 
 import Runway from './Runway';
 import { ArrivalFactory } from './Arrival/ArrivalFactory';
 import { DepartureFactory } from './Departure/DepartureFactory';
-import { km, nm, degreesToRadians } from '../utilities/unitConverters';
-import { distance2d } from '../math/distance';
-import { vlen, vradial, vsub } from '../math/vector';
+import { degreesToRadians } from '../utilities/unitConverters';
+import { vlen, vsub } from '../math/vector';
 
+// TODO: This function should really live in a different file and have tests.
+// what does ra stand for? runway angle? what about n? need better names here.
+/**
+ * @function ra
+ * @param n {numer}
+ * @return {number}
+ */
+const ra = (n) => {
+    const deviation = degreesToRadians(10);
+    return n + crange(0, Math.random(), 1, -deviation, deviation);
+};
+
+// TODO: this class contains a lot of .hasOwnProperty() type checks (converted to _has for now). is there a need for
+// such defensiveness? or can some of that be accomplished on init and then smiply update the prop if need be?
+/**
+ * @class AirportInstance
+ * @extends Fiber
+ */
 const AirportInstance = Fiber.extend(function() {
     return {
         init: function(options = {}) {
@@ -140,10 +162,10 @@ const AirportInstance = Fiber.extend(function() {
                 const areas = [];
                 // for each area
                 for (let i = 0; i < data.airspace.length; i++) {
-                    var positions = [];
+                    const positions = [];
 
                     // for each point
-                    for (var j = 0; j < data.airspace[i].poly.length; j++) {
+                    for (let j = 0; j < data.airspace[i].poly.length; j++) {
                         positions.push(
                             new Position(data.airspace[i].poly[j], this.position, this.magnetic_north)
                         );
@@ -161,7 +183,8 @@ const AirportInstance = Fiber.extend(function() {
                 // change ctr_radius to point along perimeter that's farthest from rr_center
                 const pos = new Position(this.perimeter.poly[0].position, this.position, this.magnetic_north);
                 // FIXME: it doesnt look like this var is being used at all?
-                const len = nm(vlen(vsub(pos.position, this.position.position)));
+                // const len = nm(vlen(vsub(pos.position, this.position.position)));
+                // FIXME: this reassignment is not needed
                 const apt = this;
 
                 this.ctr_radius = Math.max.apply(
@@ -193,7 +216,7 @@ const AirportInstance = Fiber.extend(function() {
 
                     this.fixes[fixName] = new Position(data.fixes[fix], this.position, this.magnetic_north);
 
-                    if (fix.indexOf('_') != 0) {
+                    if (fix.indexOf('_') !== 0) {
                         this.real_fixes[fixName] = this.fixes[fixName];
                     }
                 }
@@ -204,9 +227,9 @@ const AirportInstance = Fiber.extend(function() {
                 this.sids = data.sids;
 
                 // Check each SID fix and log if not found in the airport fix list
-                for (var sid in this.sids) {
-                    if (this.sids.hasOwnProperty(sid)) {
-                        var fixList = this.sids[sid];
+                for (const sid in this.sids) {
+                    if (_has(this.sids, sid)) {
+                        const fixList = this.sids[sid];
 
                         for (let i = 0; i < fixList.length; i++) {
                             const fixname = fixList[i];
@@ -234,8 +257,8 @@ const AirportInstance = Fiber.extend(function() {
 
                     // convert GPS coordinates to km-based position rel to airport
                     for (const i in lines) {
-                        const start = new Position([lines[i][0],lines[i][1]], this.position, this.magnetic_north).position;
-                        const end = new Position([lines[i][2],lines[i][3]], this.position, this.magnetic_north).position;
+                        const start = new Position([lines[i][0], lines[i][1]], this.position, this.magnetic_north).position;
+                        const end = new Position([lines[i][2], lines[i][3]], this.position, this.magnetic_north).position;
 
                         this.maps[m].push([start[0], start[1], end[0], end[1]]);
                     }
@@ -244,14 +267,14 @@ const AirportInstance = Fiber.extend(function() {
 
             if (data.restricted) {
                 // TOD: need better name than `r`.
-                var r = data.restricted,
+                const r = data.restricted;
                 // FIXME: this is a big no no. This makes me think there are scoping issues here. with es2015 that
                 // shouldnt be as much of a problem now.
                 self = this;
 
-                for (var i in r) {
+                for (const i in r) {
                     // TODO: what is `obj` going to be? need better name.
-                    var obj = {};
+                    const obj = {};
                     if (r[i].name) {
                         obj.name = r[i].name;
                     }
@@ -270,7 +293,7 @@ const AirportInstance = Fiber.extend(function() {
                         const v = coords[i];
                         coords_max = [Math.max(v[0], coords_max[0]), Math.max(v[1], coords_max[1])];
                         coords_min = [Math.min(v[0], coords_min[0]), Math.min(v[1], coords_min[1])];
-                    };
+                    }
 
                     obj.center = vscale(vadd(coords_max, coords_min), 0.5);
                     self.restricted_areas.push(obj);
@@ -288,7 +311,7 @@ const AirportInstance = Fiber.extend(function() {
 
             if (data.arrivals) {
                 for (let i = 0; i < data.arrivals.length; i++) {
-                    if (!data.arrivals[i].hasOwnProperty('type')) {
+                    if (!_has(data.arrivals[i], 'type')) {
                         log(`${this.icao} arrival stream #${i} not given type!`, LOG_WARNING);
                     } else {
                         this.arrivals.push(ArrivalFactory(this, data.arrivals[i]));
@@ -308,12 +331,12 @@ const AirportInstance = Fiber.extend(function() {
                     this.metadata.rwy[this.runways[rwy1][rwy1end].name] = {};
 
                     for (const rwy2 in this.runways) {
-                        if (rwy1 == rwy2) {
+                        if (rwy1 === rwy2) {
                             continue;
                         }
 
-                        for(const rwy2end in this.runways[rwy2]) {
-                            //setup secondary runway subobject
+                        for (const rwy2end in this.runways[rwy2]) {
+                            // setup secondary runway subobject
                             const r1 = this.runways[rwy1][rwy1end];
                             const r2 = this.runways[rwy2][rwy2end];
                             const offset = getOffset(r1, r2.position, r1.angle);
@@ -323,7 +346,7 @@ const AirportInstance = Fiber.extend(function() {
                             this.metadata.rwy[r1.name][r2.name].lateral_dist = abs(offset[0]);
                             this.metadata.rwy[r1.name][r2.name].straight_dist = abs(offset[2]);
                             this.metadata.rwy[r1.name][r2.name].converging = raysIntersect(r1.position, r1.angle, r2.position, r2.angle);
-                            this.metadata.rwy[r1.name][r2.name].parallel = (abs(angle_offset(r1.angle,r2.angle)) < degreesToRadians(10));
+                            this.metadata.rwy[r1.name][r2.name].parallel = (abs(angle_offset(r1.angle, r2.angle)) < degreesToRadians(10));
                         }
                     }
                 }
@@ -382,318 +405,434 @@ const AirportInstance = Fiber.extend(function() {
             }
         },
 
-    updateRunway: function(length) {
-      if(!length) length = 0;
-      var wind = this.getWind();
-      var headwind = {};
-      function ra(n) {
-        var deviation = degreesToRadians(10);
-        return n + crange(0, Math.random(), 1, -deviation, deviation);
-      }
-      for(var i=0;i<this.runways.length;i++) {
-        var runway = this.runways[i];
-        headwind[runway[0].name] = Math.cos(runway[0].angle - ra(wind.angle)) * wind.speed;
-        headwind[runway[1].name] = Math.cos(runway[1].angle - ra(wind.angle)) * wind.speed;
-      }
-      var best_runway = "";
-      var best_runway_headwind = -Infinity;
-      for(var i in headwind) {
-        if(headwind[i] > best_runway_headwind && this.getRunway(i).length > length) {
-          best_runway = i;
-          best_runway_headwind = headwind[i];
-        }
-      }
-      this.runway = best_runway;
-      this.timeout.runway = game_timeout(this.updateRunway, Math.random() * 30, this);
-    },
+        updateRunway: function(length = 0) {
+            // TODO: this method contains some ambiguous names. need better names.
+            const wind = this.getWind();
+            const headwind = {};
 
-    selectRunway: function(length) {
-      return this.runway;
-    },
+            for (let i = 0; i < this.runways.length; i++) {
+                const runway = this.runways[i];
+                headwind[runway[0].name] = Math.cos(runway[0].angle - ra(wind.angle)) * wind.speed;
+                headwind[runway[1].name] = Math.cos(runway[1].angle - ra(wind.angle)) * wind.speed;
+            }
 
-    parseTerrain: function(data) {
-      // terrain must be in geojson format
-      var apt = this;
-      apt.terrain = {};
-      for (var i in data.features) {
-        var f = data.features[i],
-            ele = round(f.properties.elevation / .3048, 1000); // m => ft, rounded to 1K (but not divided)
-
-        if (!apt.terrain[ele]) {
-          apt.terrain[ele] = [];
-        }
-
-        var multipoly = f.geometry.coordinates;
-        if (f.geometry.type == 'LineString') {
-          multipoly = [[multipoly]];
-        }
-        if (f.geometry.type == 'Polygon') {
-          multipoly = [multipoly];
-        }
-
-        $.each(multipoly, function(i, poly) {
-          // multipoly contains several polys
-          // each poly has 1st outer ring and other rings are holes
-          apt.terrain[ele].push($.map(poly, function(line_string) {
-            return [
-              $.map(line_string,
-                function(pt) {
-                  var pos = new Position(pt, apt.position, apt.magnetic_north);
-                  pos.parse4326();
-                  return [pos.position];
+            let best_runway = '';
+            let best_runway_headwind = -Infinity;
+            for (const runway in headwind) {
+                if (headwind[runway] > best_runway_headwind && this.getRunway(runway).length > length) {
+                    best_runway = runway;
+                    best_runway_headwind = headwind[runway];
                 }
-              )
-            ];
-          }));
-        });
-      }
-    },
-    loadTerrain: function() {
-      zlsa.atc.loadAsset({url: 'assets/airports/terrain/' + this.icao.toLowerCase() + '.geojson',
-                         immediate: true})
-        .done(function (data) {
-          try {
-            log('Parsing terrain');
-            this.parseTerrain(data);
-          }
-          catch (e) {
-            log(e.message);
-          }
-          this.loading = false;
-          this.loaded = true;
-          this.set();
-        }.bind(this))
-        .fail(function (jqXHR, textStatus, errorThrown) {
-          this.loading = false;
-          console.error("Unable to load airport/terrain/" + this.icao
-                        + ": " + textStatus);
-          prop.airport.current.set();
-        }.bind(this));
-    },
-    load: function() {
-      if (this.loaded)
-        return;
-
-      updateRun(false);
-      this.loading = true;
-      zlsa.atc.loadAsset({url: "assets/airports/"+this.icao.toLowerCase()+".json",
-                          immediate: true})
-        .done(function (data) {
-          this.parse(data);
-          if (this.has_terrain)
-            return;
-          this.loading = false;
-          this.loaded = true;
-          this.set();
-        }.bind(this))
-        .fail(function (jqXHR, textStatus, errorThrown) {
-          this.loading = false;
-          console.error("Unable to load airport/" + this.icao
-                        + ": " + textStatus);
-          prop.airport.current.set();
-        }.bind(this));
-    },
-    getRestrictedAreas: function() {
-      return this.restricted_areas || null;
-    },
-    getFix: function(name) {
-      if(!name) return null;
-      if(Object.keys(airport_get().fixes).indexOf(name.toUpperCase()) == -1) return;
-      else return airport_get().fixes[name.toUpperCase()].position;
-    },
-    getSID: function(id, exit, rwy) {
-      if(!(id && exit && rwy)) return null;
-      if(Object.keys(this.sids).indexOf(id) == -1) return;
-      var fixes = [];
-      var sid = this.sids[id];
-
-      // runway portion
-      if(sid.rwy.hasOwnProperty(rwy))
-        for(var i=0; i<sid.rwy[rwy].length; i++) {
-          if(typeof sid.rwy[rwy][i] == "string")
-            fixes.push([sid.rwy[rwy][i], null]);
-          else fixes.push(sid.rwy[rwy][i]);
-        }
-
-      // body portion
-      if(sid.hasOwnProperty("body"))
-        for(var i=0; i<sid.body.length; i++) {
-          if(typeof sid.body[i] == "string")
-            fixes.push([sid.body[i], null]);
-          else fixes.push(sid.body[i]);
-        }
-
-      // exit portion
-      if(sid.hasOwnProperty("exitPoints"))
-        for(var i=0; i<sid.exitPoints[exit].length; i++) {
-          if(typeof sid.exitPoints[exit][i] == "string")
-            fixes.push([sid.exitPoints[exit][i], null]);
-          else fixes.push(sid.exitPoints[exit][i]);
-        }
-
-      return fixes;
-    },
-    getSIDExitPoint: function(id) {
-      // if ends at fix for which the SID is named, return end fix
-      if(!this.sids[id].hasOwnProperty("exitPoints"))
-        return this.sids[id].icao;
-
-      // if has exitPoints, return a randomly selected one
-      var exits = Object.keys(this.sids[id].exitPoints);
-      return exits[Math.floor(Math.random() * exits.length)];
-    },
-    getSIDName: function(id, rwy) {
-      if(this.sids[id].hasOwnProperty("suffix"))
-        return this.sids[id].name + " " + this.sids[id].suffix[rwy];
-      else return this.sids[id].name;
-    },
-    getSIDid: function(id, rwy) {
-      if(this.sids[id].hasOwnProperty("suffix"))
-        return this.sids[id].icao + this.sids[id].suffix[rwy];
-      else return this.sids[id].icao;
-    },
-    /** Return an array of [Waypoint, fixRestrictions] for a given STAR
-     ** @param {string} id - the identifier for the STAR (eg 'LENDY6')
-     ** @param {string} entry - the entryPoint from which to join the STAR
-     ** @param {string} rwy - (optional) the planned arrival runway
-     ** Note: Passing a value for 'rwy' will help the fms distinguish between
-     **       different branches of a STAR, when it splits into different paths
-     **       for landing on different runways (eg 'HAWKZ4, landing south' vs
-     **       'HAWKZ4, landing north'). Not strictly required, but not passing
-     **       it will cause an incomplete route in many cases (depends on the
-     **       design of the actual STAR in the airport's json file).
-     */
-    getSTAR: function(id, entry, /*optional*/ rwy) {
-      if(!(id && entry) || Object.keys(this.stars).indexOf(id) == -1) return null;
-      var fixes = [];
-      var star = this.stars[id];
-
-      // entry portion
-      if(star.hasOwnProperty("entryPoints"))
-        for(var i=0; i<star.entryPoints[entry].length; i++) {
-          if(typeof star.entryPoints[entry][i] == "string")
-            fixes.push([star.entryPoints[entry][i], null]);
-          else fixes.push(star.entryPoints[entry][i]);
-        }
-
-      // body portion
-      if(star.hasOwnProperty("body"))
-        for(var i=0; i<star.body.length; i++) {
-          if(typeof star.body[i] == "string")
-            fixes.push([star.body[i], null]);
-          else fixes.push(star.body[i]);
-        }
-
-      // runway portion
-      if(star.rwy && star.rwy.hasOwnProperty(rwy))
-        for(var i=0; i<star.rwy[rwy].length; i++) {
-          if(typeof star.rwy[rwy][i] == "string")
-            fixes.push([star.rwy[rwy][i], null]);
-          else fixes.push(star.rwy[rwy][i]);
-        }
-
-      return fixes;
-    },
-    getRunway: function(name) {
-      if(!name) return null;
-      name = name.toLowerCase();
-      for(var i=0;i<this.runways.length;i++) {
-        if(this.runways[i][0].name.toLowerCase() == name) return this.runways[i][0];
-        if(this.runways[i][1].name.toLowerCase() == name) return this.runways[i][1];
-      }
-      return null;
-    },
-    /** Verifies all fixes used in the airport also have defined positions
-     */
-    checkFixes: function() {
-      var fixes = [];
-
-      // Gather fixes used by SIDs
-      if(this.hasOwnProperty("sids")) {
-        for(var s in this.sids) {
-          if(this.sids[s].hasOwnProperty("rwy")) {  // runway portion
-            for(var r in this.sids[s].rwy)
-              for(var i in this.sids[s].rwy[r]) {
-                if(typeof this.sids[s].rwy[r][i] == "string")
-                  fixes.push(this.sids[s].rwy[r][i]);
-                else fixes.push(this.sids[s].rwy[r][i][0]);
-              }
-          }
-          if(this.sids[s].hasOwnProperty("body")) { // body portion
-            for(var i in this.sids[s].body) {
-              if(typeof this.sids[s].body[i] == "string")
-                fixes.push(this.sids[s].body[i]);
-              else fixes.push(this.sids[s].body[i][0]);
             }
-          }
-          if(this.sids[s].hasOwnProperty("exitPoints")) { // exitPoints portion
-            for(var t in this.sids[s].exitPoints)
-              for(var i in this.sids[s].exitPoints[t]) {
-                if(typeof this.sids[s].exitPoints[t][i] == "string")
-                  fixes.push(this.sids[s].exitPoints[t][i]);
-                else fixes.push(this.sids[s].exitPoints[t][i][0]);
-              }
-          }
-          if(this.sids[s].hasOwnProperty("draw")) { // draw portion
-            for(var i in this.sids[s].draw)
-              for(var j=0; j<this.sids[s].draw[i].length; j++)
-                fixes.push(this.sids[s].draw[i][j].replace('*',''));
-          }
-        }
-      }
 
-      // Gather fixes used by STARs
-      if(this.hasOwnProperty("stars")) {
-        for(var s in this.stars) {
-          if(this.stars[s].hasOwnProperty("entryPoints")) { // entryPoints portion
-            for(var t in this.stars[s].entryPoints)
-              for(var i in this.stars[s].entryPoints[t]) {
-                if(typeof this.stars[s].entryPoints[t][i] == "string")
-                  fixes.push(this.stars[s].entryPoints[t][i]);
-                else fixes.push(this.stars[s].entryPoints[t][i][0]);
-              }
-          }
-          if(this.stars[s].hasOwnProperty("body")) { // body portion
-            for(var i in this.stars[s].body) {
-              if(typeof this.stars[s].body[i] == "string")
-                fixes.push(this.stars[s].body[i]);
-              else fixes.push(this.stars[s].body[i][0]);
+            this.runway = best_runway;
+            this.timeout.runway = game_timeout(this.updateRunway, Math.random() * 30, this);
+        },
+
+        selectRunway: function() {
+            return this.runway;
+        },
+
+        parseTerrain: function(data) {
+            // terrain must be in geojson format
+            // TODO: reassigning this is an indication of scoping problems. this may not be needed anymore.
+            const airport = this;
+            airport.terrain = {};
+
+            // TODO: this entire forIn loop needs some work. this is much too long and does too much. break up
+            // into smaller class methods.
+            _forIn(data.features, (f) => {
+                // m => ft, rounded to 1K (but not divided)
+                // TODO: this should be pulled out to its own function and tested.
+                // TODO: what do the numbers mean? enumerate the magic numbers.
+                elevation = round(f.properties.elevationvation / 0.3048, 1000);
+
+                if (!airport.terrain[elevation]) {
+                    airport.terrain[elevation] = [];
+                }
+
+                let multipoly = f.geometry.coordinates;
+                if (f.geometry.type === 'LineString') {
+                    multipoly = [[multipoly]];
+                }
+
+                if (f.geometry.type === 'Polygon') {
+                    multipoly = [multipoly];
+                }
+
+                _forEach(multipoly, (poly) => {
+                    // multipoly contains several polys
+                    // each poly has 1st outer ring and other rings are holes
+                    airport.terrain[elevation].push(_map(poly, (line_string) => {
+                        return [
+                            _map(line_string, (pt) => {
+                                const pos = new Position(pt, airport.position, airport.magnetic_north);
+                                // TODO: this looks to be a mutable function, which means it has side effects.
+                                // this should be pulled out and used as an immutable function.
+                                pos.parse4326();
+
+                                return [pos.position];
+                            })
+                        ];
+                    }));
+                });
+            });
+        },
+
+        loadTerrain: function() {
+            // TODO: there is a lot of binding here, use => functions and this probably wont be an issue.
+            zlsa.atc.loadAsset({
+                url: `assets/airports/terrain/${this.icao.toLowerCase()}.geojson`,
+                immediate: true
+            })
+            .done(function(data) {
+                try {
+                    log('Parsing terrain');
+                    this.parseTerrain(data);
+                } catch (e) {
+                    log(e.message);
+                }
+
+                this.loading = false;
+                this.loaded = true;
+                this.set();
+            }.bind(this))
+            .fail(function(jqXHR, textStatus, errorThrown) {
+                this.loading = false;
+                console.error(`Unable to load airport/terrain/${this.icao}: ${textStatus}`);
+                prop.airport.current.set();
+            }.bind(this));
+        },
+
+        // TODO: there is a lot of binding here, use => functions and this probably wont be an issue.
+        load: function() {
+            if (this.loaded) {
+                return;
             }
-          }
-          if(this.stars[s].hasOwnProperty("rwy")) {  // runway portion
-            for(var r in this.stars[s].rwy)
-              for(var i in this.stars[s].rwy[r]) {
-                if(typeof this.stars[s].rwy[r][i] == "string")
-                  fixes.push(this.stars[s].rwy[r][i]);
-                else fixes.push(this.stars[s].rwy[r][i][0]);
-              }
-          }
-          if(this.stars[s].hasOwnProperty("draw")) { // draw portion
-            for(var i in this.stars[s].draw)
-              for(var j in this.stars[s].draw[i])
-                fixes.push(this.stars[s].draw[i][j].replace('*',''));
-          }
+
+            updateRun(false);
+            this.loading = true;
+
+            zlsa.atc.loadAsset({
+                url: `assets/airports/${this.icao.toLowerCase()}.json`,
+                immediate: true
+            })
+            .done(function(data) {
+                this.parse(data);
+
+                if (this.has_terrain) {
+                    return;
+                }
+
+                this.loading = false;
+                this.loaded = true;
+                this.set();
+            }.bind(this))
+            .fail(function(jqXHR, textStatus, errorThrown) {
+                this.loading = false;
+                console.error(`Unable to load airport/${this.icao}: ${textStatus}`);
+                prop.airport.current.set();
+            }.bind(this));
+        },
+
+        getRestrictedAreas: function() {
+            return this.restricted_areas || null;
+        },
+
+        getFix: function(name) {
+            if (!name) {
+                return null;
+            }
+
+            if (Object.keys(airport_get().fixes).indexOf(name.toUpperCase()) === -1) {
+                return;
+            }
+
+            return airport_get().fixes[name.toUpperCase()].position;
+        },
+
+        getSID: function(id, exit, rwy) {
+            if (!(id && exit && rwy)) {
+                return null;
+            }
+
+            if (Object.keys(this.sids).indexOf(id) === -1) {
+                return;
+            }
+
+            const fixes = [];
+            const sid = this.sids[id];
+
+            // runway portion
+            if (_has(sid.rwy, rwy)) {
+                for (let i = 0; i < sid.rwy[rwy].length; i++) {
+                    if (typeof sid.rwy[rwy][i] === 'string') {
+                        fixes.push([sid.rwy[rwy][i], null]);
+                    } else {
+                        fixes.push(sid.rwy[rwy][i]);
+                    }
+                }
+            }
+
+            // body portion
+            if (_has(sid, 'body')) {
+                for (let i = 0; i < sid.body.length; i++) {
+                    if (typeof sid.body[i] === 'string') {
+                        fixes.push([sid.body[i], null]);
+                    } else {
+                        fixes.push(sid.body[i]);
+                    }
+                }
+            }
+
+            // exit portion
+            if (_has(sid, 'exitPoints')) {
+                for (let i = 0; i < sid.exitPoints[exit].length; i++) {
+                    if (typeof sid.exitPoints[exit][i] === 'string') {
+                        fixes.push([sid.exitPoints[exit][i], null]);
+                    } else {
+                        fixes.push(sid.exitPoints[exit][i]);
+                    }
+                }
+            }
+
+            return fixes;
+        },
+
+        getSIDExitPoint: function(id) {
+            // if ends at fix for which the SID is named, return end fix
+            if (!_has(this.sids[id], 'exitPoints')) {
+                return this.sids[id].icao;
+            }
+
+            // if has exitPoints, return a randomly selected one
+            const exits = Object.keys(this.sids[id].exitPoints);
+            return exits[Math.floor(Math.random() * exits.length)];
+        },
+
+        getSIDName: function(id, rwy) {
+            if (_has(this.sids[id], 'suffix')) {
+                return `${this.sids[id].name} ${this.sids[id].suffix[rwy]}`;
+            }
+
+            return this.sids[id].name;
+        },
+
+        getSIDid: function(id, rwy) {
+            if (_has(this.sids[id], 'suffix')) {
+                return this.sids[id].icao + this.sids[id].suffix[rwy];
+            }
+
+            return this.sids[id].icao;
+        },
+
+        /**
+          * Return an array of [Waypoint, fixRestrictions] for a given STAR
+          * @param {string} id - the identifier for the STAR (eg 'LENDY6')
+          * @param {string} entry - the entryPoint from which to join the STAR
+          * @param {string} rwy - (optional) the planned arrival runway
+          * Note: Passing a value for 'rwy' will help the fms distinguish between
+          *       different branches of a STAR, when it splits into different paths
+          *       for landing on different runways (eg 'HAWKZ4, landing south' vs
+          *       'HAWKZ4, landing north'). Not strictly required, but not passing
+          *       it will cause an incomplete route in many cases (depends on the
+          *       design of the actual STAR in the airport's json file).
+         */
+        getSTAR: function(id, entry, /* optional */ rwy) {
+            if (!(id && entry) || Object.keys(this.stars).indexOf(id) === -1) {
+                return null;
+            }
+
+            const fixes = [];
+            const star = this.stars[id];
+
+            // entry portion
+            if (_has(star, 'entryPoints')) {
+                for (let i = 0; i < star.entryPoints[entry].length; i++) {
+                    if (typeof star.entryPoints[entry][i] === 'string') {
+                        fixes.push([star.entryPoints[entry][i], null]);
+                    } else {
+                        fixes.push(star.entryPoints[entry][i]);
+                    }
+                }
+            }
+
+            // body portion
+            if (_has(star, 'body')) {
+                for (let i = 0; i < star.body.length; i++) {
+                    if (typeof star.body[i] === 'string') {
+                        fixes.push([star.body[i], null]);
+                    } else {
+                        fixes.push(star.body[i]);
+                    }
+                }
+            }
+
+            // runway portion
+            if (star.rwy && _has(star.rwy, rwy)) {
+                for (let i = 0; i < star.rwy[rwy].length; i++) {
+                    if (typeof star.rwy[rwy][i] === 'string') {
+                        fixes.push([star.rwy[rwy][i], null]);
+                    } else {
+                        fixes.push(star.rwy[rwy][i]);
+                    }
+                }
+            }
+
+            return fixes;
+        },
+
+        getRunway: function(name) {
+            if (!name) {
+                return null;
+            }
+
+            name = name.toLowerCase();
+
+            for (let i = 0; i < this.runways.length; i++) {
+                if (this.runways[i][0].name.toLowerCase() === name) {
+                    return this.runways[i][0];
+                }
+                if (this.runways[i][1].name.toLowerCase() === name) {
+                    return this.runways[i][1];
+                }
+            }
+
+            return null;
+        },
+
+        // TODO: this method has A LOT of nested for loops. perhaps some of this logic could be abstracted
+        // to several smaller methods?
+        /**
+         * Verifies all fixes used in the airport also have defined positions
+         */
+        checkFixes: function() {
+            const fixes = [];
+
+            // Gather fixes used by SIDs
+            if (_has(this, 'sids')) {
+                for (const s in this.sids) {
+                    // runway portion
+                    if (_has(this.sids[s], 'rwy')) {
+                        for (const r in this.sids[s].rwy) {
+                            for (const i in this.sids[s].rwy[r]) {
+                                if (typeof this.sids[s].rwy[r][i] === 'string') {
+                                    fixes.push(this.sids[s].rwy[r][i]);
+                                } else {
+                                    fixes.push(this.sids[s].rwy[r][i][0]);
+                                }
+                            }
+                        }
+                    }
+
+                    // body portion
+                    if (_has(this.sids[s], 'body')) {
+                        for (let i in this.sids[s].body) {
+                            if (typeof this.sids[s].body[i] === 'string') {
+                                fixes.push(this.sids[s].body[i]);
+                            } else {
+                                fixes.push(this.sids[s].body[i][0]);
+                            }
+                        }
+                    }
+
+                    // exitPoints portion
+                    if (_has(this.sids[s], 'exitPoints')) {
+                        for (let t in this.sids[s].exitPoints) {
+                            for (let i in this.sids[s].exitPoints[t]) {
+                                if (typeof this.sids[s].exitPoints[t][i] === 'string') {
+                                    fixes.push(this.sids[s].exitPoints[t][i]);
+                                } else {
+                                    fixes.push(this.sids[s].exitPoints[t][i][0]);
+                                }
+                            }
+                        }
+                    }
+
+                    // draw portion
+                    if (_has(this.sids[s], 'draw')) {
+                        for(let i in this.sids[s].draw) {
+                            for(let j = 0; j < this.sids[s].draw[i].length; j++) {
+                                fixes.push(this.sids[s].draw[i][j].replace('*', ''));
+                            }
+                        }
+                    }
+                }
+            }
+
+            // Gather fixes used by STARs
+            if (_has(this, 'stars')) {
+                for (const s in this.stars) {
+                    // entryPoints portion
+                    if (_has(this.stars[s], 'entryPoints')) {
+                        for (const t in this.stars[s].entryPoints) {
+                            for (const i in this.stars[s].entryPoints[t]) {
+                                if (typeof this.stars[s].entryPoints[t][i] === 'string') {
+                                    fixes.push(this.stars[s].entryPoints[t][i]);
+                                } else {
+                                    fixes.push(this.stars[s].entryPoints[t][i][0]);
+                                }
+                            }
+                        }
+
+                    }
+
+                    // body portion
+                    if (_has(this.stars[s], 'body')) {
+                        for (const i in this.stars[s].body) {
+                            if (typeof this.stars[s].body[i] === 'string') {
+                                fixes.push(this.stars[s].body[i]);
+                            } else {
+                                fixes.push(this.stars[s].body[i][0]);
+                            }
+                        }
+                    }
+
+                    // runway portion
+                    if (_has(this.stars[s], 'rwy')) {
+                        for (const r in this.stars[s].rwy) {
+                            for (const i in this.stars[s].rwy[r]) {
+                                if (typeof this.stars[s].rwy[r][i] === 'string') {
+                                    fixes.push(this.stars[s].rwy[r][i]);
+                                } else {
+                                    fixes.push(this.stars[s].rwy[r][i][0]);
+                                }
+                            }
+                        }
+                    }
+
+                    // draw portion
+                    if (_has(this.stars[s], 'draw')) {
+                        for (const i in this.stars[s].draw) {
+                            for (const j in this.stars[s].draw[i]) {
+                                fixes.push(this.stars[s].draw[i][j].replace('*', ''));
+                            }
+                        }
+                    }
+                }
+            }
+
+            // Gather fixes used by airways
+            if (_has(this, 'airways')) {
+                for (const a in this.airways) {
+                    for (const i in this.airways[a]) {
+                        fixes.push(this.airways[a][i]);
+                    }
+                }
+            }
+
+            // Get (unique) list of fixes used that are not in 'this.fixes'
+            // FIXME: this reassignment is propably not needed anymore.
+            const apt = this;
+            // TODO: this could also be done with _sortedUniq
+            const missing = _uniq(fixes.filter((f) => !apt.fixes.hasOwnProperty(f)).sort());
+
+            // there are some... yell at the airport designer!!! :)
+            if (missing.length > 0) {
+                log(`${this.icao} uses the following fixes which are not listed in ${airport.fixes}: ${missing.join(' ')}`, LOG_WARNING);
+            }
         }
-      }
-
-      // Gather fixes used by airways
-      if(this.hasOwnProperty("airways")) {
-        for(var a in this.airways)
-          for(var i in this.airways[a])
-            fixes.push(this.airways[a][i]);
-      }
-
-      // Get (unique) list of fixes used that are not in 'this.fixes'
-      var apt = this;
-      var missing = fixes.filter(function(f){return !apt.fixes.hasOwnProperty(f);}).sort();
-      for(var i=0; i<missing.length-1; i++)
-        if(missing[i] == missing[i+1]) missing.splice(i,1); // remove duplicates
-      if(missing.length > 0) {  // there are some... yell at the airport designer!!! :)
-        log(this.icao + " uses the following fixes which are not listed in " +
-          "airport.fixes: " +missing.join(' '), LOG_WARNING);
-      }
-    }
-  };
+    };
 });
 
 export default AirportInstance;
