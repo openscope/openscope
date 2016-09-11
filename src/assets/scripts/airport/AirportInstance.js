@@ -2,6 +2,8 @@ import $ from 'jquery';
 import Fiber from 'fiber';
 
 import Runway from './Runway';
+import { ArrivalFactory } from './Arrival/ArrivalFactory';
+import { DepartureFactory } from './Departure/DepartureFactory';
 import { km, nm, degreesToRadians } from '../utilities/unitConverters';
 import { distance2d } from '../math/distance';
 import { vlen, vradial, vsub } from '../math/vector';
@@ -182,14 +184,14 @@ const AirportInstance = Fiber.extend(function() {
       }
 
       if(data.departures) {
-        this.departures = zlsa.atc.DepartureFactory(this, data.departures);
+        this.departures = DepartureFactory(this, data.departures);
       }
 
       if(data.arrivals) {
         for(var i=0;i<data.arrivals.length;i++) {
           if(!data.arrivals[i].hasOwnProperty("type"))
             log(this.icao + " arrival stream #" + i + " not given type!", LOG_WARNING);
-          else this.arrivals.push(zlsa.atc.ArrivalFactory(this, data.arrivals[i]));
+          else this.arrivals.push(ArrivalFactory(this, data.arrivals[i]));
         }
       }
 

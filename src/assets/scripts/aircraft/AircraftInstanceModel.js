@@ -1505,7 +1505,7 @@ const Aircraft = Fiber.extend(function() {
       // restricted areas
       // players are penalized for each area entry
       if (this.position) {
-        for (i in this.restricted.list) {
+        for (let i = 0; i < this.restricted.list.length; i++) {
           /*
           Polygon matching procedure:
 
