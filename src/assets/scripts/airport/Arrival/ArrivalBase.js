@@ -25,14 +25,15 @@ const ArrivalBase = Fiber.extend(function(base) {
 
       this.parse(options);
     },
-    /** Arrival Stream Settings
-     ** airlines: {array of array} List of airlines with weight for each
-     ** altitude: {array or integer} Altitude in feet or range of altitudes
-     ** frequency: {integer} Arrival rate along this stream, in aircraft per hour (acph)
-     ** heading: {integer} Heading to fly when spawned, in degrees (don't use w/ fixes)
-     ** fixes: {array} Set of fixes to traverse (eg. for STARs). Spawns at first listed.
-     ** radial: {integer} bearing from airspace center to spawn point (don't use w/ fixes)
-     ** speed: {integer} Speed in knots of spawned aircraft
+    /**
+     * Arrival Stream Settings
+     * airlines: {array of array} List of airlines with weight for each
+     * altitude: {array or integer} Altitude in feet or range of altitudes
+     * frequency: {integer} Arrival rate along this stream, in aircraft per hour (acph)
+     * heading: {integer} Heading to fly when spawned, in degrees (don't use w/ fixes)
+     * fixes: {array} Set of fixes to traverse (eg. for STARs). Spawns at first listed.
+     * radial: {integer} bearing from airspace center to spawn point (don't use w/ fixes)
+     * speed: {integer} Speed in knots of spawned aircraft
      */
     parse: function(options) {
       var params = ['airlines', 'altitude', 'frequency', 'speed'];

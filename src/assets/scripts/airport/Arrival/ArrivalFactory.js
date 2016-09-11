@@ -23,7 +23,7 @@ export const ArrivalFactory = function(airport, options) {
     switch (options.type) {
         case 'random':
                 return new ArrivalBase(airport, options);
-                break;
+            break;
         case 'cyclic':
             return new ArrivalCyclic(airport, options);
             break;
