@@ -64,9 +64,9 @@ module.exports = function(gulp, config) {
 
     gulp.task('clean:dist', [
         'clean:build:fonts',
-        'clean:aircraft',
-        'clean:airlines',
-        'clean:airports',
+        // 'clean:aircraft',
+        // 'clean:airlines',
+        // 'clean:airports',
         'clean:build:images',
         'clean:build'
     ]);

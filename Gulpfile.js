@@ -18,7 +18,7 @@ require('./tools/tasks/utilityTasks')(gulp, OPTIONS);
 ////////////////////////////////////////////////////////////////////
 // UNIFIED GULP TASKS
 ////////////////////////////////////////////////////////////////////
-gulp.task('copy:data', ['clean:data:json', 'json']);
+// gulp.task('copy:data', ['clean:data:json', 'json']);
 gulp.task('build', function() {
     runSequence(
         'clean:build',
@@ -30,7 +30,7 @@ gulp.task('dist', function() {
     runSequence(
         'clean:dist',
         ['build:scripts', 'build:styles'],
-        'copy:data',
+        // 'copy:data',
         'fonts',
         'minify-images',
         'lint:scripts'
