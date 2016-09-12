@@ -1,15 +1,18 @@
+/* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand */
 import $ from 'jquery';
 import Fiber from 'fiber';
-import _has from 'lodash/has'
+import _has from 'lodash/has';
 
-import Runway from '../Runway';
-import { km, nm, degreesToRadians } from '../../utilities/unitConverters';
+import { nm, degreesToRadians } from '../../utilities/unitConverters';
 import { distance2d } from '../../math/distance';
-import { vlen, vradial, vsub } from '../../math/vector';
+import { vradial, vsub } from '../../math/vector';
 import { LOG } from '../../constants/logLevel';
 
 /**
  *  Generate arrivals at random, averaging the specified arrival rate
+ *
+ * @class ArrivalBase
+ * @etends Fiber
  */
 const ArrivalBase = Fiber.extend(function(base) {
     return {
@@ -23,7 +26,7 @@ const ArrivalBase = Fiber.extend(function(base) {
             this.speed = 250;
             this.timeout = null;
             this.fixes = [];
-            this.route = "";
+            this.route = '';
 
             this.parse(options);
         },
@@ -57,7 +60,7 @@ const ArrivalBase = Fiber.extend(function(base) {
                 this.heading = degreesToRadians(options.heading);
             }
 
-            if (typeof this.altitude == "number") {
+            if (typeof this.altitude === 'number') {
                 this.altitude = [this.altitude, this.altitude];
             }
 
@@ -86,30 +89,32 @@ const ArrivalBase = Fiber.extend(function(base) {
         preSpawn: function() {
             let star;
             let entry;
-            let runway = this.airport.runway;
+            const runway = this.airport.runway;
 
             // Find STAR & entry point
             const pieces = array_clean(this.route.split('.'));
             for (const i in pieces) {
                 if (_has(this.airport.stars, pieces[i])) {
-                star = pieces[i];
+                    star = pieces[i];
+
                     if (i > 0) {
-                        entry = pieces[i-1];
+                        entry = pieces[i - 1];
                     }
                 }
             }
 
             // Find the last fix that's outside the airspace boundary
-            var fixes = this.airport.getSTAR(star, entry, runway);
-            var lastFix = fixes[0][0];
+            const fixes = this.airport.getSTAR(star, entry, runway);
+            // FIXME: this is never used. is it needed?
+            // const lastFix = fixes[0][0];
             // distance between closest fix outside a/s and a/s border, nm
-            var extra = 0;
+            let extra = 0;
 
             for (const i in fixes) {
-                let fix = fixes[i][0];
-                let pos = this.airport.fixes[fix].position;
-                let fix_prev = (i>0) ? fixes[i-1][0] : fix;
-                let pos_prev = (i>0) ? this.airport.fixes[fix_prev].position : pos;
+                const fix = fixes[i][0];
+                const pos = this.airport.fixes[fix].position;
+                const fix_prev = (i > 0) ? fixes[i - 1][0] : fix;
+                const pos_prev = (i > 0) ? this.airport.fixes[fix_prev].position : pos;
 
                 if (inAirspace(pos)) {
                     if (i >= 1) {
@@ -147,14 +152,14 @@ const ArrivalBase = Fiber.extend(function(base) {
                     } else {
                         // if point before next fix
                         const next = airport_get().fixes[fixes[j][0]];
-                        const prev = airport_get().fixes[fixes[j-1][0]];
+                        const prev = airport_get().fixes[fixes[j - 1][0]];
                         const brng = bearing(prev.gps, next.gps);
                         spawn_positions.push({
                             pos: fixRadialDist(prev.gps, brng, spawn_offsets[i]),
                             nextFix: fixes[j][0],
                             heading: brng
                         });
-                    break;
+                        break;
                     }
                 }
             }
@@ -212,13 +217,15 @@ const ArrivalBase = Fiber.extend(function(base) {
          * Spawn a new aircraft
          */
         spawnAircraft: function(args) {
-            var start_flag = args[0];
-            var timeout_flag = args[1] || false;
-            var altitude = round(random(this.altitude[0], this.altitude[1])/1000)*1000;
-            var message = !(game_time() - this.airport.start < 2);
+            let start_flag = args[0];
+            let timeout_flag = args[1] || false;
+            let altitude = round(random(this.altitude[0], this.altitude[1]) / 1000) * 1000;
+            let message = !(game_time() - this.airport.start < 2);
             let position;
             let heading;
             let fleet;
+            let star;
+            let distance;
 
             // spawn at first fix
             if (this.fixes.length > 1) {
@@ -227,12 +234,12 @@ const ArrivalBase = Fiber.extend(function(base) {
                 heading = vradial(vsub(airport_get().getFix(this.fixes[1].fix), position));
             } else if (this.route) {
                 // STAR data is present
-                var star = airport_get().getSTAR(this.route.split('.')[1], this.route.split('.')[0], airport_get().runway);
+                star = airport_get().getSTAR(this.route.split('.')[1], this.route.split('.')[0], airport_get().runway);
                 position = airport_get().getFix(star[0][0]);
                 heading = vradial(vsub(airport_get().getFix(star[1][0]), position));
             } else {
                 // spawn outside the airspace along 'this.radial'
-                var distance = 2 * this.airport.ctr_radius;
+                distance = 2 * this.airport.ctr_radius;
                 position = [sin(this.radial) * distance, cos(this.radial) * distance];
                 heading = this.heading || this.radial + Math.PI;
             }
@@ -275,12 +282,12 @@ const ArrivalBase = Fiber.extend(function(base) {
 
             if (tgt_interval < min_interval) {
                 tgt_interval = min_interval;
-                log("Requested arrival rate of "+this.frequency+" acph overridden to " +
-                "maintain minimum of "+min_entrail+" miles entrail on arrival stream " +
-                "following route "+ $.map(this.fixes,function(v){return v.fix;}).join('-'), LOG.INFO);
+                log("Requested arrival rate of " + this.frequency + " acph overridden to " +
+                "maintain minimum of " + min_entrail + " miles entrail on arrival stream " +
+                "following route " + $.map(this.fixes, function(v) { return v.fix; }).join('-'), LOG.INFO);
             }
 
-            var max_interval = tgt_interval + (tgt_interval - min_interval);
+            const max_interval = tgt_interval + (tgt_interval - min_interval);
 
             return random(min_interval, max_interval);
         }

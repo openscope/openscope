@@ -1,10 +1,5 @@
-import $ from 'jquery';
-import Fiber from 'fiber';
-
+/* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand */
 import ArrivalBase from './ArrivalBase';
-import { km, nm, degreesToRadians } from '../../utilities/unitConverters';
-import { distance2d } from '../../math/distance';
-import { vlen, vradial, vsub } from '../../math/vector';
 
 /**
  * Generate arrivals in cyclic pattern
@@ -61,8 +56,8 @@ const ArrivalCyclic = ArrivalBase.extend(function(base) {
 
         nextInterval: function() {
             // TODO: what do all these magic numbers mean? enumerate the magic numbers.
-            var t = prop.game.time - this.cycleStart;
-            var done = t / (this.period / 4); // progress in current quarter-period
+            const t = prop.game.time - this.cycleStart;
+            const done = t / (this.period / 4); // progress in current quarter-period
 
             if (done >= 4) {
                 this.cycleStart += this.period;
@@ -74,7 +69,7 @@ const ArrivalCyclic = ArrivalBase.extend(function(base) {
                 return 3600 / (this.frequency + (2 * (this.period - 2 * t) / this.period) * this.variation);
             } else if (done <= 3) {
                 return 3600 / (this.frequency - (done - 2) * this.variation);
-            } else if (done <  4) {
+            } else if (done < 4) {
                 return 3600 / (this.frequency - (4 * (this.period - t) / this.period) * this.variation);
             }
         }

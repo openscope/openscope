@@ -1,10 +1,8 @@
+/* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand */
 import $ from 'jquery';
-import Fiber from 'fiber';
 
 import ArrivalBase from './ArrivalBase';
-import { km, nm, degreesToRadians } from '../../utilities/unitConverters';
-import { distance2d } from '../../math/distance';
-import { vlen, vradial, vsub } from '../../math/vector';
+import { tau } from '../../math/circle';
 import { LOG } from '../../constants/logLevel';
 
 /** Generate arrivals in a repeating wave
@@ -74,18 +72,18 @@ const ArrivalWave = ArrivalBase.extend(function(base) {
                 // can reduce variation to achieve acceptable spawn rate
                 if (diff <= (3600 / this.variation)) {
                     log("Requested arrival rate variation of +/-" + this.variation + " acph reduced to " +
-                        "maintain minimum of "+entrail_dist+" miles entrail on arrival stream following " +
-                        "route " + $.map(this.fixes, function(v){return v.fix;}).join('-'), LOG.WARNING);
+                        "maintain minimum of " + entrail_dist + " miles entrail on arrival stream following " +
+                        "route " + $.map(this.fixes, function(v) { return v.fix; }).join('-'), LOG.WARNING);
 
                     this.variation = this.variation - 3600 / diff; // reduce the variation
                 } else {
                     // need to reduce frequency to achieve acceptable spawn rate
                     log("Requested arrival rate of " + this.frequency + " acph overridden to " +
                         "maintain minimum of " + entrail_dist + " miles entrail on arrival stream " +
-                        "following route " + $.map(this.fixes, function(v){return v.fix;}).join('-'), LOG.WARNING);
+                        "following route " + $.map(this.fixes, function(v) { return v.fix; }).join('-'), LOG.WARNING);
 
                     this.variation = 0; // make spawn at constant interval
-                    this.frequency = 3600/entrail_interval; // reduce the frequency
+                    this.frequency = 3600 / entrail_interval; // reduce the frequency
                 }
             }
         },
@@ -98,7 +96,7 @@ const ArrivalWave = ArrivalBase.extend(function(base) {
                 this.cycleStart += this.period;
             }
 
-            const rate = this.frequency + this.variation * Math.sin(done * Math.PI * 2);
+            const rate = this.frequency + this.variation * Math.sin(done * tau());
             return 3600 / rate;
         },
 

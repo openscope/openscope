@@ -22065,7 +22065,7 @@ var AircraftConflict = _fiber2.default.extend(function () {
 
 exports.default = AircraftConflict;
 
-},{"../math/vector":184,"../utilities/unitConverters":192,"fiber":1}],155:[function(require,module,exports){
+},{"../math/vector":185,"../utilities/unitConverters":193,"fiber":1}],155:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -24389,7 +24389,7 @@ var Aircraft = _fiber2.default.extend(function () {
 
 exports.default = Aircraft;
 
-},{"../math/distance":182,"../math/vector":184,"../utilities/unitConverters":192,"fiber":1,"jquery":2,"lodash/clamp":107}],157:[function(require,module,exports){
+},{"../math/distance":183,"../math/vector":185,"../utilities/unitConverters":193,"fiber":1,"jquery":2,"lodash/clamp":107}],157:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -24818,6 +24818,8 @@ var _unitConverters = require('../utilities/unitConverters');
 
 var _flightMath = require('../math/flightMath');
 
+var _circle = require('../math/circle');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
@@ -25066,12 +25068,12 @@ var aircraft_turn_initiation_distance = function aircraft_turn_initiation_distan
     var nominal_new_course = (0, _vector.vradial)((0, _vector.vsub)(nextfix, fix));
     if (nominal_new_course < 0) {
         // TODO: what is this doing? this should go in a new method.
-        nominal_new_course += Math.PI * 2;
+        nominal_new_course += (0, _circle.tau)();
     }
 
     var current_heading = aircraft.heading;
     if (current_heading < 0) {
-        current_heading += Math.PI * 2;
+        current_heading += (0, _circle.tau)();
     }
 
     // TODO: move to function
@@ -25182,7 +25184,7 @@ window.aircraft_get_by_callsign = aircraft_get_by_callsign;
 window.aircraft_get_eid_by_callsign = aircraft_get_eid_by_callsign;
 window.aircraft_model_get = aircraft_model_get;
 
-},{"../math/distance":182,"../math/flightMath":183,"../math/vector":184,"../utilities/unitConverters":192,"./AircraftConflict":154,"./AircraftFlightManagementSystem":155,"./AircraftModel":157}],161:[function(require,module,exports){
+},{"../math/circle":182,"../math/distance":183,"../math/flightMath":184,"../math/vector":185,"../utilities/unitConverters":193,"./AircraftConflict":154,"./AircraftFlightManagementSystem":155,"./AircraftModel":157}],161:[function(require,module,exports){
 "use strict";
 
 window.airline_init_pre = function airline_init_pre() {
@@ -26268,7 +26270,7 @@ var AirportInstance = _fiber2.default.extend(function () {
 
 exports.default = AirportInstance;
 
-},{"../constants/logLevel":177,"../math/vector":184,"../utilities/unitConverters":192,"./Arrival/ArrivalFactory":165,"./Departure/DepartureFactory":170,"./Runway":172,"fiber":1,"jquery":2,"lodash/forEach":109,"lodash/forIn":110,"lodash/has":112,"lodash/isEmpty":120,"lodash/map":129,"lodash/uniq":136}],163:[function(require,module,exports){
+},{"../constants/logLevel":177,"../math/vector":185,"../utilities/unitConverters":193,"./Arrival/ArrivalFactory":165,"./Departure/DepartureFactory":170,"./Runway":172,"fiber":1,"jquery":2,"lodash/forEach":109,"lodash/forIn":110,"lodash/has":112,"lodash/isEmpty":120,"lodash/map":129,"lodash/uniq":136}],163:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26287,10 +26289,6 @@ var _has2 = require('lodash/has');
 
 var _has3 = _interopRequireDefault(_has2);
 
-var _Runway = require('../Runway');
-
-var _Runway2 = _interopRequireDefault(_Runway);
-
 var _unitConverters = require('../../utilities/unitConverters');
 
 var _distance = require('../../math/distance');
@@ -26303,6 +26301,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 /**
  *  Generate arrivals at random, averaging the specified arrival rate
+ *
+ * @class ArrivalBase
+ * @etends Fiber
  */
 var ArrivalBase = _fiber2.default.extend(function (base) {
     return {
@@ -26316,7 +26317,7 @@ var ArrivalBase = _fiber2.default.extend(function (base) {
             this.speed = 250;
             this.timeout = null;
             this.fixes = [];
-            this.route = "";
+            this.route = '';
 
             this.parse(options);
         },
@@ -26350,7 +26351,7 @@ var ArrivalBase = _fiber2.default.extend(function (base) {
                 this.heading = (0, _unitConverters.degreesToRadians)(options.heading);
             }
 
-            if (typeof this.altitude == "number") {
+            if (typeof this.altitude === 'number') {
                 this.altitude = [this.altitude, this.altitude];
             }
 
@@ -26386,6 +26387,7 @@ var ArrivalBase = _fiber2.default.extend(function (base) {
             for (var i in pieces) {
                 if ((0, _has3.default)(this.airport.stars, pieces[i])) {
                     star = pieces[i];
+
                     if (i > 0) {
                         entry = pieces[i - 1];
                     }
@@ -26394,7 +26396,8 @@ var ArrivalBase = _fiber2.default.extend(function (base) {
 
             // Find the last fix that's outside the airspace boundary
             var fixes = this.airport.getSTAR(star, entry, runway);
-            var lastFix = fixes[0][0];
+            // FIXME: this is never used. is it needed?
+            // const lastFix = fixes[0][0];
             // distance between closest fix outside a/s and a/s border, nm
             var extra = 0;
 
@@ -26512,6 +26515,8 @@ var ArrivalBase = _fiber2.default.extend(function (base) {
             var position = void 0;
             var heading = void 0;
             var fleet = void 0;
+            var star = void 0;
+            var distance = void 0;
 
             // spawn at first fix
             if (this.fixes.length > 1) {
@@ -26520,12 +26525,12 @@ var ArrivalBase = _fiber2.default.extend(function (base) {
                 heading = (0, _vector.vradial)((0, _vector.vsub)(airport_get().getFix(this.fixes[1].fix), position));
             } else if (this.route) {
                 // STAR data is present
-                var star = airport_get().getSTAR(this.route.split('.')[1], this.route.split('.')[0], airport_get().runway);
+                star = airport_get().getSTAR(this.route.split('.')[1], this.route.split('.')[0], airport_get().runway);
                 position = airport_get().getFix(star[0][0]);
                 heading = (0, _vector.vradial)((0, _vector.vsub)(airport_get().getFix(star[1][0]), position));
             } else {
                 // spawn outside the airspace along 'this.radial'
-                var distance = 2 * this.airport.ctr_radius;
+                distance = 2 * this.airport.ctr_radius;
                 position = [sin(this.radial) * distance, cos(this.radial) * distance];
                 heading = this.heading || this.radial + Math.PI;
             }
@@ -26578,34 +26583,19 @@ var ArrivalBase = _fiber2.default.extend(function (base) {
             return random(min_interval, max_interval);
         }
     };
-});
-
+}); /* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand */
 exports.default = ArrivalBase;
 
-},{"../../constants/logLevel":177,"../../math/distance":182,"../../math/vector":184,"../../utilities/unitConverters":192,"../Runway":172,"fiber":1,"jquery":2,"lodash/has":112}],164:[function(require,module,exports){
+},{"../../constants/logLevel":177,"../../math/distance":183,"../../math/vector":185,"../../utilities/unitConverters":193,"fiber":1,"jquery":2,"lodash/has":112}],164:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _jquery = require('jquery');
-
-var _jquery2 = _interopRequireDefault(_jquery);
-
-var _fiber = require('fiber');
-
-var _fiber2 = _interopRequireDefault(_fiber);
-
 var _ArrivalBase = require('./ArrivalBase');
 
 var _ArrivalBase2 = _interopRequireDefault(_ArrivalBase);
-
-var _unitConverters = require('../../utilities/unitConverters');
-
-var _distance = require('../../math/distance');
-
-var _vector = require('../../math/vector');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -26682,11 +26672,10 @@ var ArrivalCyclic = _ArrivalBase2.default.extend(function (base) {
             }
         }
     };
-});
-
+}); /* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand */
 exports.default = ArrivalCyclic;
 
-},{"../../math/distance":182,"../../math/vector":184,"../../utilities/unitConverters":192,"./ArrivalBase":163,"fiber":1,"jquery":2}],165:[function(require,module,exports){
+},{"./ArrivalBase":163}],165:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26725,27 +26714,23 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var ArrivalFactory = exports.ArrivalFactory = function ArrivalFactory(airport, options) {
     if (options.type === '') {
         log(airport.icao + ' arrival stream not given type!', _logLevel.LOG.WARNING);
-        return;
+        return null;
     }
 
     switch (options.type) {
         case 'random':
             return new _ArrivalBase2.default(airport, options);
-            break;
         case 'cyclic':
             return new _ArrivalCyclic2.default(airport, options);
-            break;
         case 'wave':
             return new _ArrivalWave2.default(airport, options);
-            break;
         case 'surge':
             return new _ArrivalSurge2.default(airport, options);
-            break;
         default:
             log(airport.icao + ' using unsupported arrival type "' + options.type + '"', _logLevel.LOG.WARNING);
-            break;
+            return null;
     }
-};
+}; /* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand */
 
 },{"../../constants/logLevel":177,"./ArrivalBase":163,"./ArrivalCyclic":164,"./ArrivalSurge":166,"./ArrivalWave":167}],166:[function(require,module,exports){
 'use strict';
@@ -26754,23 +26739,9 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _jquery = require('jquery');
-
-var _jquery2 = _interopRequireDefault(_jquery);
-
-var _fiber = require('fiber');
-
-var _fiber2 = _interopRequireDefault(_fiber);
-
 var _ArrivalBase = require('./ArrivalBase');
 
 var _ArrivalBase2 = _interopRequireDefault(_ArrivalBase);
-
-var _unitConverters = require('../../utilities/unitConverters');
-
-var _distance = require('../../math/distance');
-
-var _vector = require('../../math/vector');
 
 var _logLevel = require('../../constants/logLevel');
 
@@ -26790,6 +26761,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @class ArrivalSurge
  * @extends Fiber
  */
+/* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand */
 var ArrivalSurge = _ArrivalBase2.default.extend(function (base) {
     return {
         init: function init(airport, options) {
@@ -26866,6 +26838,8 @@ var ArrivalSurge = _ArrivalBase2.default.extend(function (base) {
             var done = t / this.period; // progress in period
             var interval_up = 3600 / this.acph_up;
             var interval_dn = 3600 / this.acph_dn;
+            // reduced spawn rate
+            var timeleft = this.period - t;
 
             if (done >= 1) {
                 this.cycleStart += this.period;
@@ -26876,22 +26850,19 @@ var ArrivalSurge = _ArrivalBase2.default.extend(function (base) {
             // elevated spawn rate
             if (t <= this.uptime) {
                 return interval_up;
-            } else {
-                // reduced spawn rate
-                var timeleft = this.period - t;
-
-                if (timeleft > interval_dn + interval_up) {
-                    // plenty of time until new period
-                    return interval_dn;
-                } else if (timeleft > interval_dn) {
-                    // next plane will delay the first arrival of the next period
-                    return interval_dn - (t + interval_dn + interval_up - this.period);
-                } else {
-                    // next plane is first of elevated spawn rate
-                    this.cycleStart += this.period;
-                    return interval_up;
-                }
             }
+
+            if (timeleft > interval_dn + interval_up) {
+                // plenty of time until new period
+                return interval_dn;
+            } else if (timeleft > interval_dn) {
+                // next plane will delay the first arrival of the next period
+                return interval_dn - (t + interval_dn + interval_up - this.period);
+            }
+
+            // next plane is first of elevated spawn rate
+            this.cycleStart += this.period;
+            return interval_up;
         },
 
         start: function start() {
@@ -26904,7 +26875,7 @@ var ArrivalSurge = _ArrivalBase2.default.extend(function (base) {
 
 exports.default = ArrivalSurge;
 
-},{"../../constants/logLevel":177,"../../math/distance":182,"../../math/vector":184,"../../utilities/unitConverters":192,"./ArrivalBase":163,"fiber":1,"jquery":2}],167:[function(require,module,exports){
+},{"../../constants/logLevel":177,"./ArrivalBase":163}],167:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26915,19 +26886,11 @@ var _jquery = require('jquery');
 
 var _jquery2 = _interopRequireDefault(_jquery);
 
-var _fiber = require('fiber');
-
-var _fiber2 = _interopRequireDefault(_fiber);
-
 var _ArrivalBase = require('./ArrivalBase');
 
 var _ArrivalBase2 = _interopRequireDefault(_ArrivalBase);
 
-var _unitConverters = require('../../utilities/unitConverters');
-
-var _distance = require('../../math/distance');
-
-var _vector = require('../../math/vector');
+var _circle = require('../../math/circle');
 
 var _logLevel = require('../../constants/logLevel');
 
@@ -26951,6 +26914,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   * @class ArrivalWave
   * @extend Fiber
  */
+/* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand */
 var ArrivalWave = _ArrivalBase2.default.extend(function (base) {
     return {
         init: function init(airport, options) {
@@ -27024,7 +26988,7 @@ var ArrivalWave = _ArrivalBase2.default.extend(function (base) {
                 this.cycleStart += this.period;
             }
 
-            var rate = this.frequency + this.variation * Math.sin(done * Math.PI * 2);
+            var rate = this.frequency + this.variation * Math.sin(done * (0, _circle.tau)());
             return 3600 / rate;
         },
 
@@ -27038,11 +27002,11 @@ var ArrivalWave = _ArrivalBase2.default.extend(function (base) {
 
 exports.default = ArrivalWave;
 
-},{"../../constants/logLevel":177,"../../math/distance":182,"../../math/vector":184,"../../utilities/unitConverters":192,"./ArrivalBase":163,"fiber":1,"jquery":2}],168:[function(require,module,exports){
+},{"../../constants/logLevel":177,"../../math/circle":182,"./ArrivalBase":163,"jquery":2}],168:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 
 var _jquery = require('jquery');
@@ -27052,155 +27016,193 @@ var _jquery2 = _interopRequireDefault(_jquery);
 var _fiber = require('fiber');
 
 var _fiber2 = _interopRequireDefault(_fiber);
-
-var _unitConverters = require('../../utilities/unitConverters');
-
-var _distance = require('../../math/distance');
-
-var _vector = require('../../math/vector');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
  * Generate departures at random, averaging the specified spawn rate
+ *
+ * @class DepartureBase
+ * @extends Fiber
  */
+/* eslint-disable no-underscore-dangle, no-mixed-operators, func-names, object-shorthand */
 var DepartureBase = _fiber2.default.extend(function (base) {
-  return {
-    /** Initialize member variables with default values
-     */
-    init: function init(airport, options) {
-      this.airlines = [];
-      this.airport = airport;
-      this.destinations = [0];
-      this.frequency = 0;
-      this.timeout = null;
+    return {
+        /**
+         * Initialize member variables with default values
+         */
+        init: function init(airport, options) {
+            this.airlines = [];
+            this.airport = airport;
+            this.destinations = [0];
+            this.frequency = 0;
+            this.timeout = null;
 
-      this.parse(options);
-    },
-    /** Departure Stream Settings
-     ** @param {array of array} airlines - List of airlines with weight for each
-     ** @param {integer} frequency - Spawn rate, in aircraft per hour (acph)
-     ** @param {array of string} destinations - List of SIDs or departure fixes for departures
-     */
-    parse: function parse(options) {
-      var params = ['airlines', 'destinations', 'frequency'];
-      for (var i in params) {
-        if (options[params[i]]) this[params[i]] = options[params[i]];
-      }
-      // Pre-load the airlines
-      _jquery2.default.each(this.airlines, function (i, data) {
-        airline_get(data[0].split('/')[0]);
-      });
-    },
-    /** Stop this departure stream
-     */
-    stop: function stop() {
-      if (this.timeout) game_clear_timeout(this.timeout);
-    },
-    /** Start this departure stream
-     */
-    start: function start() {
-      var r = Math.floor(random(2, 5.99));
-      for (var i = 1; i <= r; i++) {
-        this.spawnAircraft(false);
-      } // spawn 2-5 departures to start with
-      this.timeout = game_timeout(this.spawnAircraft, random(this.frequency * .5, // start spawning loop
-      this.frequency * 1.5), this, true);
-    },
-    /** Spawn a new aircraft
-     */
-    spawnAircraft: function spawnAircraft(timeout) {
-      var message = game_time() - this.start >= 2;
-      var airline = choose_weight(this.airlines);
-      if (airline.indexOf('/') > -1) {
-        var fleet = airline.split('/', 2)[1];
-        airline = airline.split('/', 2)[0];
-      }
+            this.parse(options);
+        },
 
-      aircraft_new({
-        category: "departure",
-        destination: choose(this.destinations),
-        airline: airline,
-        fleet: fleet,
-        message: message
-      });
+        /**
+         * Departure Stream Settings
+         *
+         * @param {array of array} airlines - List of airlines with weight for each
+         * @param {integer} frequency - Spawn rate, in aircraft per hour (acph)
+         * @param {array of string} destinations - List of SIDs or departure fixes for departures
+         */
+        parse: function parse(options) {
+            var params = ['airlines', 'destinations', 'frequency'];
 
-      if (timeout) {
-        this.timeout = game_timeout(this.spawnAircraft, this.nextInterval(), this, true);
-      }
-    },
-    /** Determine delay until next spawn
-     */
-    nextInterval: function nextInterval() {
-      var min_interval = 5; // fastest possible between back-to-back departures, in seconds
-      var tgt_interval = 3600 / this.frequency;
-      var max_interval = tgt_interval + (tgt_interval - min_interval);
-      return random(min_interval, max_interval);
-    }
-  };
+            for (var i in params) {
+                if (options[params[i]]) {
+                    this[params[i]] = options[params[i]];
+                }
+            }
+
+            // Pre-load the airlines
+            _jquery2.default.each(this.airlines, function (i, data) {
+                airline_get(data[0].split('/')[0]);
+            });
+        },
+
+        /**
+         * Stop this departure stream
+         */
+        stop: function stop() {
+            if (this.timeout) {
+                game_clear_timeout(this.timeout);
+            }
+        },
+
+        /**
+         * Start this departure stream
+         */
+        start: function start() {
+            var r = Math.floor(random(2, 5.99));
+            for (var i = 1; i <= r; i++) {
+                // spawn 2-5 departures to start with
+                this.spawnAircraft(false);
+            }
+
+            // TODO: enumerate the magic numbers
+            // start spawning loop
+            this.timeout = game_timeout(this.spawnAircraft, random(this.frequency * 0.5, this.frequency * 1.5), this, true);
+        },
+
+        /**
+         * Spawn a new aircraft
+         */
+        spawnAircraft: function spawnAircraft(timeout) {
+            var message = game_time() - this.start >= 2;
+            var airline = choose_weight(this.airlines);
+            var fleet = void 0;
+
+            if (airline.indexOf('/') > -1) {
+                // TODO: enumerate the magic numbers
+                // TODO: I see a lot of splitting on '/', why? this should be a helper function since its used so much.
+                fleet = airline.split('/', 2)[1];
+                airline = airline.split('/', 2)[0];
+            }
+
+            aircraft_new({
+                category: 'departure',
+                destination: choose(this.destinations),
+                airline: airline,
+                fleet: fleet,
+                message: message
+            });
+
+            if (timeout) {
+                this.timeout = game_timeout(this.spawnAircraft, this.nextInterval(), this, true);
+            }
+        },
+
+        /**
+         * Determine delay until next spawn
+         */
+        nextInterval: function nextInterval() {
+            // fastest possible between back-to-back departures, in seconds
+            var min_interval = 5;
+            var tgt_interval = 3600 / this.frequency;
+            var max_interval = tgt_interval + (tgt_interval - min_interval);
+
+            return random(min_interval, max_interval);
+        }
+    };
 });
 
 exports.default = DepartureBase;
 
-},{"../../math/distance":182,"../../math/vector":184,"../../utilities/unitConverters":192,"fiber":1,"jquery":2}],169:[function(require,module,exports){
+},{"fiber":1,"jquery":2}],169:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
-
-var _jquery = require('jquery');
-
-var _jquery2 = _interopRequireDefault(_jquery);
-
-var _fiber = require('fiber');
-
-var _fiber2 = _interopRequireDefault(_fiber);
 
 var _DepartureBase = require('./DepartureBase');
 
 var _DepartureBase2 = _interopRequireDefault(_DepartureBase);
 
-var _unitConverters = require('../../utilities/unitConverters');
-
-var _distance = require('../../math/distance');
-
-var _vector = require('../../math/vector');
+var _circle = require('../../math/circle');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
  * Generate departures in cyclic pattern
+ *
+ * @class DepartureCyclic
+ * @extend Fiber
  */
+/* eslint-disable no-underscore-dangle, no-mixed-operators, func-names, object-shorthand */
 var DepartureCyclic = _DepartureBase2.default.extend(function (base) {
-  return {
-    init: function init(airport, options) {
-      this.period = 60 * 60;
-      this.offset = -15 * 60; // Start at the peak
+    return {
+        init: function init(airport, options) {
+            // TODO: what do all these numbers mean? enumerate the magic numbers.
+            this.period = 60 * 60;
+            this.offset = -15 * 60; // Start at the peak
 
-      base.init.call(this, airport, options);
+            base.init.call(this, airport, options);
 
-      this._amplitude = 3600 / this.frequency / 2;
-      this._average = 3600 / this.frequency;
-    },
-    /** Additional supported options
-     ** period: {integer} Optionally specify the length of a cycle in minutes
-     ** offset: {integer} Optionally specify when the cycle peaks in minutes
-     */
-    parse: function parse(options) {
-      base.parse.call(this, options);
-      if (options.period) this.period = options.period * 60;
-      if (options.offset) this.offset = -this.period / 4 + options.offset * 60;
-    },
-    nextInterval: function nextInterval() {
-      return (this._amplitude * Math.sin(Math.PI * 2 * ((game_time() + this.offset) / this.period)) + this._average) / prop.game.frequency;
-    }
-  };
+            this._amplitude = 3600 / this.frequency / 2;
+            this._average = 3600 / this.frequency;
+        },
+
+        /**
+         * Additional supported options
+         *
+         * period: {integer} Optionally specify the length of a cycle in minutes
+         * offset: {integer} Optionally specify when the cycle peaks in minutes
+         */
+        parse: function parse(options) {
+            base.parse.call(this, options);
+
+            if (options.period) {
+                this.period = options.period * 60;
+            }
+
+            if (options.offset) {
+                // TODO: enumerate the magic numbers
+                this.offset = -this.period / 4 + options.offset * 60;
+            }
+        },
+
+        nextInterval: function nextInterval() {
+            // This is a [poorly named] example of how a really long calculation can be broken up into
+            // more readable bits. the original calculation much harder to read.
+            //
+            // (this._amplitude * Math.sin(tau() * ((game_time() + this.offset) / this.period)) + this._average) / prop.game.frequency;
+
+            var gameTimeWithOffset = game_time() + this.offset;
+            var sinOffsetOverPeriod = Math.sin((0, _circle.tau)() * (gameTimeWithOffset / this.period));
+            var amplitudeTimesSinOffsetOverPeriod = this._amplitude * sinOffsetOverPeriod;
+
+            return (amplitudeTimesSinOffsetOverPeriod + this._average) / prop.game.frequency;
+        }
+    };
 });
 
 exports.default = DepartureCyclic;
 
-},{"../../math/distance":182,"../../math/vector":184,"../../utilities/unitConverters":192,"./DepartureBase":168,"fiber":1,"jquery":2}],170:[function(require,module,exports){
+},{"../../math/circle":182,"./DepartureBase":168}],170:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -27232,24 +27234,22 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @param options
  * @return {function}
  */
+/* eslint-disable func-names, no-undef */
 var DepartureFactory = exports.DepartureFactory = function DepartureFactory(airport, options) {
     if (options.type === '') {
-        return log(airport.icao + " departure stream not given type!", _logLevel.LOG.WARNING);
+        return log(airport.icao + ' departure stream not given type!', _logLevel.LOG.WARNING);
     }
 
     switch (options.type) {
         case 'random':
             return new _DepartureBase2.default(airport, options);
-            break;
         case 'cyclic':
             return new _DepartureCyclic2.default(airport, options);
-            break;
         case 'wave':
             return new _DepartureWave2.default(airport, options);
-            break;
         default:
             log(airport.icao + ' using unsupported departure type "' + options.type + '"', _logLevel.LOG.WARNING);
-            break;
+            return null;
     }
 };
 
@@ -27257,65 +27257,60 @@ var DepartureFactory = exports.DepartureFactory = function DepartureFactory(airp
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
-
-var _jquery = require('jquery');
-
-var _jquery2 = _interopRequireDefault(_jquery);
-
-var _fiber = require('fiber');
-
-var _fiber2 = _interopRequireDefault(_fiber);
 
 var _DepartureCyclic = require('./DepartureCyclic');
 
 var _DepartureCyclic2 = _interopRequireDefault(_DepartureCyclic);
 
-var _unitConverters = require('../../utilities/unitConverters');
-
-var _distance = require('../../math/distance');
-
-var _vector = require('../../math/vector');
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
  * Generate departures in a repeating wave
+ *
+ * @class DepartureWave
+ * @extends Fiber
  */
 var DepartureWave = _DepartureCyclic2.default.extend(function (base) {
-  return {
-    init: function init(airport, options) {
-      base.init.call(this, airport, options);
+    return {
+        init: function init(airport, options) {
+            base.init.call(this, airport, options);
 
-      // Time between aircraft in the wave
-      this._separation = 10;
+            // TODO: better commenting of the magic numbers in this file. enumerate the magic numbers.
+            // Time between aircraft in the wave
+            this._separation = 10;
 
-      // Aircraft per wave
-      this._count = Math.floor(this._average / 3600 * this.period);
+            // Aircraft per wave
+            this._count = Math.floor(this._average / 3600 * this.period);
 
-      if (this.period / this._separation < this._count) {
-        console.log("Reducing average departure frequency from " + this._average + "/hour to maintain minimum interval");
-        this._count = Math.floor(3600 / this._separation);
-      }
+            if (this.period / this._separation < this._count) {
+                console.log('Reducing average departure frequency from ' + this._average + '/hour to maintain minimum interval');
 
-      // length of a wave in seconds
-      this._waveLength = this._separation * this._count - 1;
+                this._count = Math.floor(3600 / this._separation);
+            }
 
-      // Offset to have center of wave at 0 time
-      this._offset = (this._waveLength - this._separation) / 2 + this.offset;
-    },
-    nextInterval: function nextInterval() {
-      var position = (game_time() + this._offset) % this.period;
-      if (position >= this._waveLength) return this.period - position;
-      return this._separation / prop.game.frequency;
-    }
-  };
-});
+            // length of a wave in seconds
+            this._waveLength = this._separation * this._count - 1;
 
+            // Offset to have center of wave at 0 time
+            this._offset = (this._waveLength - this._separation) / 2 + this.offset;
+        },
+
+        nextInterval: function nextInterval() {
+            var position = (game_time() + this._offset) % this.period;
+
+            if (position >= this._waveLength) {
+                return this.period - position;
+            }
+
+            return this._separation / prop.game.frequency;
+        }
+    };
+}); /* eslint-disable no-underscore-dangle, no-mixed-operators, func-names */
 exports.default = DepartureWave;
 
-},{"../../math/distance":182,"../../math/vector":184,"../../utilities/unitConverters":192,"./DepartureCyclic":169,"fiber":1,"jquery":2}],172:[function(require,module,exports){
+},{"./DepartureCyclic":169}],172:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -27465,7 +27460,7 @@ var Runway = _fiber2.default.extend(function (base) {
 }); /* eslint-disable no-multi-spaces, func-names, camelcase, no-undef, max-len, object-shorthand */
 exports.default = Runway;
 
-},{"../math/vector":184,"../utilities/unitConverters":192,"fiber":1}],173:[function(require,module,exports){
+},{"../math/vector":185,"../utilities/unitConverters":193,"fiber":1}],173:[function(require,module,exports){
 'use strict';
 
 var _AirportInstanceModel = require('./AirportInstanceModel');
@@ -27723,7 +27718,7 @@ var Animation = function Animation(options) {
 
 window.Animation = Animation;
 
-},{"./utilities/timeHelpers":191}],175:[function(require,module,exports){
+},{"./utilities/timeHelpers":192}],175:[function(require,module,exports){
 'use strict';
 
 var _fiber = require('fiber');
@@ -27906,7 +27901,7 @@ var Area = _fiber2.default.extend(function () {
 window.Position = Position;
 window.Area = Area;
 
-},{"./utilities/unitConverters":192,"fiber":1}],176:[function(require,module,exports){
+},{"./utilities/unitConverters":193,"fiber":1}],176:[function(require,module,exports){
 'use strict';
 
 var _clamp2 = require('lodash/clamp');
@@ -27919,10 +27914,14 @@ var _timeHelpers = require('./utilities/timeHelpers');
 
 var _distance = require('./math/distance');
 
+var _circle = require('./math/circle');
+
 var _logLevel = require('./constants/logLevel');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+// jshint latedef:nofunc, undef:true, eqnull:true, eqeqeq:true, browser:true, jquery:true, devel:true
+/* global prop:true, km:false, crange:false, clamp:false, lpad:false, airport_get:false, game_time:false, game_paused:false, time:false, round:false, distance2d:false, radians:false  */
 window.canvas_init_pre = function canvas_init_pre() {
   'use strict';
 
@@ -27946,9 +27945,7 @@ window.canvas_init_pre = function canvas_init_pre() {
   prop.canvas.draw_restricted = true;
   prop.canvas.draw_sids = true;
   prop.canvas.draw_terrain = true;
-}; // jshint latedef:nofunc, undef:true, eqnull:true, eqeqeq:true, browser:true, jquery:true, devel:true
-/* global prop:true, km:false, crange:false, clamp:false, lpad:false, airport_get:false, game_time:false, game_paused:false, time:false, round:false, distance2d:false, radians:false  */
-
+};
 
 window.canvas_init = function canvas_init() {
   "use strict";
@@ -28275,7 +28272,7 @@ function canvas_draw_aircraft_rings(cc, aircraft) {
     else cc.strokeStyle = "rgba(255, 255, 255, 0.2)"; //white warning circle
   } else cc.strokeStyle = cc.fillStyle;
   cc.beginPath();
-  cc.arc(0, 0, km_to_px((0, _unitConverters.km)(3)), 0, Math.PI * 2); //3nm RADIUS
+  cc.arc(0, 0, km_to_px((0, _unitConverters.km)(3)), 0, (0, _circle.tau)()); //3nm RADIUS
   cc.stroke();
   cc.restore();
 }
@@ -28360,7 +28357,7 @@ function canvas_draw_aircraft(cc, aircraft) {
     cc.translate((0, _clamp3.default)(-w, km_to_px(aircraft.position[0]) + prop.canvas.panX, w), (0, _clamp3.default)(-h, -km_to_px(aircraft.position[1]) + prop.canvas.panY, h));
 
     cc.beginPath();
-    cc.arc(0, 0, round(size * 1.5), 0, Math.PI * 2);
+    cc.arc(0, 0, round(size * 1.5), 0, (0, _circle.tau)());
     cc.fill();
 
     cc.restore();
@@ -28388,7 +28385,7 @@ function canvas_draw_aircraft(cc, aircraft) {
   }
 
   cc.beginPath();
-  cc.arc(0, 0, size, 0, Math.PI * 2);
+  cc.arc(0, 0, size, 0, (0, _circle.tau)());
   cc.fill();
 }
 
@@ -29106,7 +29103,7 @@ function canvas_draw_directions(cc) {
   cc.restore();
 }
 
-},{"./constants/logLevel":177,"./math/distance":182,"./utilities/timeHelpers":191,"./utilities/unitConverters":192,"lodash/clamp":107}],177:[function(require,module,exports){
+},{"./constants/logLevel":177,"./math/circle":182,"./math/distance":183,"./utilities/timeHelpers":192,"./utilities/unitConverters":193,"lodash/clamp":107}],177:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -30022,7 +30019,23 @@ var _timeHelpers = require('./utilities/timeHelpers');
   };
 })($, zlsa, Fiber, zlsa.atc.mediator, prop.version_string);
 
-},{"./utilities/timeHelpers":191}],182:[function(require,module,exports){
+},{"./utilities/timeHelpers":192}],182:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+/**
+ * 2x Pi
+ *
+ * @function tau
+ * @return {number}
+ */
+var tau = exports.tau = function tau() {
+  return Math.PI * 2;
+};
+
+},{}],183:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -30043,7 +30056,7 @@ var distance2d = exports.distance2d = function distance2d(a, b) {
   return Math.sqrt(x * x + y * y);
 };
 
-},{}],183:[function(require,module,exports){
+},{}],184:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -30086,7 +30099,7 @@ var calcTurnInitiationDistance = exports.calcTurnInitiationDistance = function c
   return turnRadius * Math.tan(courseChange / 2) + speed;
 };
 
-},{}],184:[function(require,module,exports){
+},{}],185:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -30140,7 +30153,7 @@ var vsub = exports.vsub = function vsub(v1, v2) {
     }
 };
 
-},{}],185:[function(require,module,exports){
+},{}],186:[function(require,module,exports){
 'use strict';
 
 var _jquery = require('jquery');
@@ -30573,7 +30586,7 @@ window.delta = function delta() {
     return prop.time.frame.delta;
 };
 
-},{"./aircraft/aircraft":160,"./airline":161,"./airport/airport":173,"./animation":174,"./base":175,"./canvas":176,"./constants/logLevel":177,"./game":178,"./get":179,"./input":180,"./load":181,"./parser":186,"./speech":187,"./tutorial":188,"./ui":189,"./util":190,"./utilities/timeHelpers":191,"fiber":1,"jquery":2,"pegjs":150}],186:[function(require,module,exports){
+},{"./aircraft/aircraft":160,"./airline":161,"./airport/airport":173,"./animation":174,"./base":175,"./canvas":176,"./constants/logLevel":177,"./game":178,"./get":179,"./input":180,"./load":181,"./parser":187,"./speech":188,"./tutorial":189,"./ui":190,"./util":191,"./utilities/timeHelpers":192,"fiber":1,"jquery":2,"pegjs":150}],187:[function(require,module,exports){
 "use strict";
 
 zlsa.atc.Parser = function () {
@@ -33642,7 +33655,7 @@ zlsa.atc.Parser = function () {
   };
 }();
 
-},{}],187:[function(require,module,exports){
+},{}],188:[function(require,module,exports){
 'use strict';
 
 window.speech_init = function speech_init() {
@@ -33697,7 +33710,7 @@ window.speech_toggle = function speech_toggle() {
   localStorage['atc-speech-enabled'] = prop.speech.enabled;
 };
 
-},{}],188:[function(require,module,exports){
+},{}],189:[function(require,module,exports){
 'use strict';
 
 var _clamp2 = require('lodash/clamp');
@@ -34059,7 +34072,7 @@ window.tutorial_toggle = function tutorial_toggle() {
   }
 };
 
-},{"./utilities/timeHelpers":191,"lodash/clamp":107}],189:[function(require,module,exports){
+},{"./utilities/timeHelpers":192,"lodash/clamp":107}],190:[function(require,module,exports){
 'use strict';
 
 window.ui_init_pre = function ui_init_pre() {
@@ -34299,7 +34312,7 @@ window.ui_options_toggle = function ui_options_toggle() {
   }
 };
 
-},{}],190:[function(require,module,exports){
+},{}],191:[function(require,module,exports){
 'use strict';
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
@@ -35319,7 +35332,7 @@ window.aircraft_remove = function aircraft_remove(aircraft) {
   aircraft.cleanup();
 };
 
-},{"./math/distance":182,"./math/vector":184,"./utilities/timeHelpers":191,"./utilities/unitConverters":192,"lodash/clamp":107}],191:[function(require,module,exports){
+},{"./math/distance":183,"./math/vector":185,"./utilities/timeHelpers":192,"./utilities/unitConverters":193,"lodash/clamp":107}],192:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -35341,12 +35354,17 @@ var time = exports.time = function time() {
   return new Date().getTime() * TIME_SECONDS_OFFSET;
 };
 
-},{}],192:[function(require,module,exports){
-"use strict";
+},{}],193:[function(require,module,exports){
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.degreesToRadians = exports.radiansToDegrees = exports.kn_ms = exports.ft_km = exports.km_ft = exports.nm = exports.km = exports.NUMBER_CONSTANTS = exports.UNIT_CONVERSION_CONSTANTS = undefined;
+
+var _circle = require('../math/circle');
+
+// TODO: This should be moved to its own file once it has been filled in a little more
 /**
  * @property UNIT_CONVERSION_CONSTANTS
  * @type {Object}
@@ -35376,6 +35394,23 @@ var UNIT_CONVERSION_CONSTANTS = exports.UNIT_CONVERSION_CONSTANTS = {
    * @final
    */
   KN_MS: 0.51444444
+};
+
+// TODO: This should be moved to its own file once it has been filled in a little more
+/**
+ * @property NUMBER_CONSTANTS
+ * @type {Object}
+ * @final
+ */
+var NUMBER_CONSTANTS = exports.NUMBER_CONSTANTS = {
+  /**
+   * Degrees in a circle
+   *
+   * @property FULL_CIRCLE_DEGREES
+   * @type {number}
+   * @final
+   */
+  FULL_CIRCLE_DEGREES: 360
 };
 
 /**
@@ -35450,7 +35485,7 @@ var kn_ms = exports.kn_ms = function kn_ms() {
  * @return {number}
  */
 var radiansToDegrees = exports.radiansToDegrees = function radiansToDegrees(radians) {
-  return radians / (Math.PI * 2) * 360;
+  return radians / (0, _circle.tau)() * NUMBER_CONSTANTS.FULL_CIRCLE_DEGREES;
 };
 
 /**
@@ -35461,10 +35496,10 @@ var radiansToDegrees = exports.radiansToDegrees = function radiansToDegrees(radi
  * @return {number}
  */
 var degreesToRadians = exports.degreesToRadians = function degreesToRadians(degrees) {
-  return degrees / 360 * (Math.PI * 2);
+  return degrees / NUMBER_CONSTANTS.FULL_CIRCLE_DEGREES * (0, _circle.tau)();
 };
 
-},{}]},{},[185])
+},{"../math/circle":182}]},{},[186])
 
 
 //# sourceMappingURL=bundle.js.map

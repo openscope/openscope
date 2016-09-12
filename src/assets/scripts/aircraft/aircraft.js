@@ -13,6 +13,7 @@ import {
     degreesToRadians
 } from '../utilities/unitConverters';
 import { calcTurnInitiationDistance } from '../math/flightMath';
+import { tau } from '../math/circle';
 
 /**
  * Main entry point for the aircraft object.
@@ -266,12 +267,12 @@ const aircraft_turn_initiation_distance = (aircraft, fix) => {
     let nominal_new_course = vradial(vsub(nextfix, fix));
     if (nominal_new_course < 0) {
         // TODO: what is this doing? this should go in a new method.
-        nominal_new_course += Math.PI * 2;
+        nominal_new_course += tau();
     }
 
     let current_heading = aircraft.heading;
     if (current_heading < 0) {
-        current_heading += Math.PI * 2;
+        current_heading += tau();
     }
 
     // TODO: move to function

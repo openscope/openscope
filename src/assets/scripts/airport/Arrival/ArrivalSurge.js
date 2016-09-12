@@ -1,10 +1,5 @@
-import $ from 'jquery';
-import Fiber from 'fiber';
-
+/* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand */
 import ArrivalBase from './ArrivalBase';
-import { km, nm, degreesToRadians } from '../../utilities/unitConverters';
-import { distance2d } from '../../math/distance';
-import { vlen, vradial, vsub } from '../../math/vector';
 import { LOG } from '../../constants/logLevel';
 
 /**
@@ -72,12 +67,12 @@ const ArrivalSurge = ArrivalBase.extend(function(base) {
         shapeTheSurge: function() {
             this.acph_up = this.speed / this.entrail[0];
             this.acph_dn = this.speed / this.entrail[1];  // to help the uptime calculation
-            this.uptime = (this.period*this.frequency - this.period*this.acph_dn) / (this.acph_up - this.acph_dn);
+            this.uptime = (this.period * this.frequency - this.period * this.acph_dn) / (this.acph_up - this.acph_dn);
             this.uptime -= this.uptime % (3600 / this.acph_up);
             // FIXME: This would better belong in a helper method and should be simplified
             // adjust to maintain correct acph rate
             this.acph_dn = Math.floor(
-                this.frequency * this.period / 3600 - Math.round(this.acph_up * this.uptime / 3600)) * 3600 / (this.period-this.uptime);
+                this.frequency * this.period / 3600 - Math.round(this.acph_up * this.uptime / 3600)) * 3600 / (this.period - this.uptime);
 
             // Verify we can comply with the requested arrival rate based on entrail spacing
             if (this.frequency > this.acph_up) {
@@ -102,6 +97,8 @@ const ArrivalSurge = ArrivalBase.extend(function(base) {
             const done = t / this.period; // progress in period
             const interval_up = 3600 / this.acph_up;
             const interval_dn = 3600 / this.acph_dn;
+            // reduced spawn rate
+            const timeleft = this.period - t;
 
             if (done >= 1) {
                 this.cycleStart += this.period;
@@ -112,22 +109,20 @@ const ArrivalSurge = ArrivalBase.extend(function(base) {
             // elevated spawn rate
             if (t <= this.uptime) {
                 return interval_up;
-            } else {
-                // reduced spawn rate
-                var timeleft = this.period - t;
-
-                if (timeleft > interval_dn + interval_up) {
-                    // plenty of time until new period
-                    return interval_dn;
-                } else if (timeleft > interval_dn) {
-                    // next plane will delay the first arrival of the next period
-                    return interval_dn - (t+interval_dn+interval_up - this.period);
-                } else {
-                    // next plane is first of elevated spawn rate
-                    this.cycleStart += this.period;
-                    return interval_up;
-                }
             }
+
+
+            if (timeleft > interval_dn + interval_up) {
+                // plenty of time until new period
+                return interval_dn;
+            } else if (timeleft > interval_dn) {
+                // next plane will delay the first arrival of the next period
+                return interval_dn - (t + interval_dn + interval_up - this.period);
+            }
+
+            // next plane is first of elevated spawn rate
+            this.cycleStart += this.period;
+            return interval_up;
         },
 
         start: function() {

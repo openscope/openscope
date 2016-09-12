@@ -31,8 +31,8 @@ gulp.task('dist', function() {
         'clean:dist',
         ['build:scripts', 'build:styles'],
         // 'copy:data',
-        'fonts',
-        'minify-images',
+        // 'fonts',
+        // 'minify-images',
         'lint:scripts'
     );
 });

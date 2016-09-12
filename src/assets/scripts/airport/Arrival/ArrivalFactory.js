@@ -1,3 +1,4 @@
+/* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand */
 import ArrivalBase from './ArrivalBase';
 import ArrivalCyclic from './ArrivalCyclic';
 import ArrivalWave from './ArrivalWave';
@@ -14,25 +15,21 @@ import { LOG } from '../../constants/logLevel';
  */
 export const ArrivalFactory = function(airport, options) {
     if (options.type === '') {
-        log(airport.icao + ' arrival stream not given type!', LOG.WARNING);
-        return;
+        log(`${airport.icao} arrival stream not given type!`, LOG.WARNING);
+        return null;
     }
 
     switch (options.type) {
         case 'random':
-                return new ArrivalBase(airport, options);
-            break;
+            return new ArrivalBase(airport, options);
         case 'cyclic':
             return new ArrivalCyclic(airport, options);
-            break;
         case 'wave':
             return new ArrivalWave(airport, options);
-            break;
         case 'surge':
             return new ArrivalSurge(airport, options);
-            break;
         default:
-            log(airport.icao + ' using unsupported arrival type "'+options.type+'"', LOG.WARNING);
-            break;
+            log(`${airport.icao} using unsupported arrival type "${options.type}"`, LOG.WARNING);
+            return null;
     }
 };

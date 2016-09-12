@@ -1,3 +1,6 @@
+import { tau } from '../math/circle';
+
+// TODO: This should be moved to its own file once it has been filled in a little more
 /**
  * @property UNIT_CONVERSION_CONSTANTS
  * @type {Object}
@@ -27,6 +30,23 @@ export const UNIT_CONVERSION_CONSTANTS = {
      * @final
      */
     KN_MS: 0.51444444
+};
+
+// TODO: This should be moved to its own file once it has been filled in a little more
+/**
+ * @property NUMBER_CONSTANTS
+ * @type {Object}
+ * @final
+ */
+export const NUMBER_CONSTANTS = {
+    /**
+     * Degrees in a circle
+     *
+     * @property FULL_CIRCLE_DEGREES
+     * @type {number}
+     * @final
+     */
+    FULL_CIRCLE_DEGREES: 360
 };
 
 /**
@@ -91,7 +111,7 @@ export const kn_ms = (kn = 0) => {
  * @return {number}
  */
 export const radiansToDegrees = (radians) => {
-    return (radians / (Math.PI * 2)) * 360;
+    return (radians / (tau())) * NUMBER_CONSTANTS.FULL_CIRCLE_DEGREES;
 }
 
 /**
@@ -102,5 +122,5 @@ export const radiansToDegrees = (radians) => {
  * @return {number}
  */
 export const degreesToRadians = (degrees) => {
-    return (degrees / 360) * (Math.PI * 2);
+    return (degrees / NUMBER_CONSTANTS.FULL_CIRCLE_DEGREES) * (tau());
 };

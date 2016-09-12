@@ -4,6 +4,7 @@ import _clamp from 'lodash/clamp'
 import { km, degreesToRadians } from './utilities/unitConverters';
 import { time } from './utilities/timeHelpers';
 import { distance2d } from './math/distance';
+import { tau } from './math/circle';
 import { LOG } from './constants/logLevel';
 
 window.canvas_init_pre = function canvas_init_pre() {
@@ -335,7 +336,7 @@ function canvas_draw_aircraft_rings(cc,aircraft) {
   }
   else cc.strokeStyle = cc.fillStyle;
   cc.beginPath();
-  cc.arc(0, 0, km_to_px(km(3)), 0, Math.PI * 2);  //3nm RADIUS
+  cc.arc(0, 0, km_to_px(km(3)), 0, tau());  //3nm RADIUS
   cc.stroke();
   cc.restore();
 }
@@ -450,7 +451,7 @@ function canvas_draw_aircraft(cc, aircraft) {
     cc.translate(_clamp(-w, km_to_px(aircraft.position[0]) + prop.canvas.panX, w), _clamp(-h, -km_to_px(aircraft.position[1]) + prop.canvas.panY, h));
 
     cc.beginPath();
-    cc.arc(0, 0, round(size * 1.5), 0, Math.PI * 2);
+    cc.arc(0, 0, round(size * 1.5), 0, tau());
     cc.fill();
 
     cc.restore();
@@ -478,7 +479,7 @@ function canvas_draw_aircraft(cc, aircraft) {
   }
 
   cc.beginPath();
-  cc.arc(0, 0, size, 0, Math.PI * 2);
+  cc.arc(0, 0, size, 0, tau());
   cc.fill();
 }
 
