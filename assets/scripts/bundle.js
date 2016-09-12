@@ -25697,38 +25697,41 @@ var AirportInstance = _fiber2.default.extend(function () {
             }
 
             if (data.restricted) {
-                // TOD: need better name than `r`.
-                var r = data.restricted;
-                // FIXME: this is a big no no. This makes me think there are scoping issues here. with es2015 that
-                // shouldnt be as much of a problem now.
-                self = this;
+                (function () {
+                    // TOD: need better name than `r`.
+                    var r = data.restricted,
 
-                for (var _i3 in r) {
-                    // TODO: what is `obj` going to be? need better name.
-                    var obj = {};
-                    if (r[_i3].name) {
-                        obj.name = r[_i3].name;
+                    // FIXME: this is a big no no. This makes me think there are scoping issues here. with es2015 that
+                    // shouldnt be as much of a problem now.
+                    self = _this;
+
+                    for (var _i3 in r) {
+                        // TODO: what is `obj` going to be? need better name.
+                        var obj = {};
+                        if (r[_i3].name) {
+                            obj.name = r[_i3].name;
+                        }
+
+                        obj.height = parseElevation(r[_i3].height);
+                        obj.coordinates = (0, _map3.default)(r[_i3].coordinates, function (v) {
+                            return [new Position(v, self.position, self.magnetic_north).position];
+                        });
+
+                        // TODO: is this right? max and min are getting set to the same value?
+                        var coords = obj.coordinates;
+                        var coords_max = coords[0];
+                        var coords_min = coords[0];
+
+                        for (var _i4 in coords) {
+                            var v = coords[_i4];
+                            coords_max = [Math.max(v[0], coords_max[0]), Math.max(v[1], coords_max[1])];
+                            coords_min = [Math.min(v[0], coords_min[0]), Math.min(v[1], coords_min[1])];
+                        }
+
+                        obj.center = vscale(vadd(coords_max, coords_min), 0.5);
+                        self.restricted_areas.push(obj);
                     }
-
-                    obj.height = parseElevation(r[_i3].height);
-                    obj.coordinates = (0, _map3.default)(r[_i3].coordinates, function (v) {
-                        return [new Position(v, self.position, self.magnetic_north).position];
-                    });
-
-                    // TODO: is this right? max and min are getting set to the same value?
-                    var coords = obj.coordinates;
-                    var coords_max = coords[0];
-                    var coords_min = coords[0];
-
-                    for (var _i4 in coords) {
-                        var v = coords[_i4];
-                        coords_max = [Math.max(v[0], coords_max[0]), Math.max(v[1], coords_max[1])];
-                        coords_min = [Math.min(v[0], coords_min[0]), Math.min(v[1], coords_min[1])];
-                    }
-
-                    obj.center = vscale(vadd(coords_max, coords_min), 0.5);
-                    self.restricted_areas.push(obj);
-                }
+                })();
             }
 
             if (data.wind) {
@@ -25767,7 +25770,7 @@ var AirportInstance = _fiber2.default.extend(function () {
                         }
 
                         for (var rwy2end in this.runways[rwy2]) {
-                            // setup secondary runway subobject
+                            //setup secondary runway subobject
                             var r1 = this.runways[rwy1][rwy1end];
                             var r2 = this.runways[rwy2][rwy2end];
                             var offset = getOffset(r1, r2.position, r1.angle);
@@ -25860,52 +25863,48 @@ var AirportInstance = _fiber2.default.extend(function () {
             this.timeout.runway = game_timeout(this.updateRunway, Math.random() * 30, this);
         },
 
-        selectRunway: function selectRunway() {
+        selectRunway: function selectRunway(length) {
             return this.runway;
         },
 
         parseTerrain: function parseTerrain(data) {
             // terrain must be in geojson format
-            // TODO: reassigning this is an indication of scoping problems. this may not be needed anymore.
-            var airport = this;
-            airport.terrain = {};
+            var apt = this;
+            apt.terrain = {};
 
-            // TODO: this entire forIn loop needs some work. this is much too long and does too much. break up
-            // into smaller class methods.
-            (0, _forIn3.default)(data.features, function (f) {
-                // m => ft, rounded to 1K (but not divided)
-                // TODO: this should be pulled out to its own function and tested.
-                // TODO: what do the numbers mean? enumerate the magic numbers.
-                elevation = round(f.properties.elevationvation / 0.3048, 1000);
+            var _loop = function _loop(i) {
+                var f = data.features[i],
+                    ele = round(f.properties.elevation / 0.3048, 1000); // m => ft, rounded to 1K (but not divided)
 
-                if (!airport.terrain[elevation]) {
-                    airport.terrain[elevation] = [];
+                if (!apt.terrain[ele]) {
+                    apt.terrain[ele] = [];
                 }
 
                 var multipoly = f.geometry.coordinates;
-                if (f.geometry.type === 'LineString') {
+                if (f.geometry.type == 'LineString') {
                     multipoly = [[multipoly]];
                 }
 
-                if (f.geometry.type === 'Polygon') {
+                if (f.geometry.type == 'Polygon') {
                     multipoly = [multipoly];
                 }
 
-                (0, _forEach3.default)(multipoly, function (poly) {
+                _jquery2.default.each(multipoly, function (i, poly) {
                     // multipoly contains several polys
                     // each poly has 1st outer ring and other rings are holes
-                    airport.terrain[elevation].push((0, _map3.default)(poly, function (line_string) {
-                        return [(0, _map3.default)(line_string, function (pt) {
-                            var pos = new Position(pt, airport.position, airport.magnetic_north);
-                            // TODO: this looks to be a mutable function, which means it has side effects.
-                            // this should be pulled out and used as an immutable function.
+                    apt.terrain[ele].push(_jquery2.default.map(poly, function (line_string) {
+                        return [_jquery2.default.map(line_string, function (pt) {
+                            var pos = new Position(pt, apt.position, apt.magnetic_north);
                             pos.parse4326();
-
                             return [pos.position];
                         })];
                     }));
                 });
-            });
+            };
+
+            for (var i in data.features) {
+                _loop(i);
+            }
         },
 
         loadTerrain: function loadTerrain() {
