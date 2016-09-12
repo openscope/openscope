@@ -3,6 +3,7 @@ import Fiber from 'fiber';
 import peg from 'pegjs';
 
 import { time } from './utilities/timeHelpers';
+import { LOG } from './constants/logLevel';
 
 window.$ = $;
 window.Fiber = Fiber;
@@ -127,11 +128,11 @@ if (!String.fromCodePoint) {
 // const asyncDoneCallback = () => {};
 
 // TODO: make this an enum in a constants file
-const LOG_DEBUG = 0;
-const LOG_INFO = 1;
-const LOG_WARNING = 2;
-const LOG_ERROR = 3; // eslint-disable-line
-const LOG_FATAL = 4; // eslint-disable-line
+// const LOG_DEBUG = 0;
+// const LOG_INFO = 1;
+// const LOG_WARNING = 2;
+// const LOG_ERROR = 3; // eslint-disable-line
+// const LOG_FATAL = 4; // eslint-disable-line
 
 
 // PROP
@@ -151,16 +152,16 @@ window.propInit = function propInit() {
     prop.time.frame.last = time();
     prop.time.frame.delta = 0;
     prop.time.fps = 0;
-    prop.log = LOG_DEBUG;
+    prop.log = LOG.DEBUG;
     prop.loaded = false;
 
     if (RELEASE) {
-        prop.log = LOG_WARNING;
+        prop.log = LOG.WARNING;
     }
 };
 
 // MISC
-window.log = function log(message, level = LOG_INFO) {
+window.log = function log(message, level = LOG.INFO) {
     // if (typeof level === 'undefined') {
     //     level = LOG_INFO;
     // }
@@ -175,7 +176,7 @@ window.log = function log(message, level = LOG_INFO) {
     if (prop.log <= level) {
         const text = `[ ${logStrings[level]} ]`;
 
-        if (level >= LOG_WARNING) {
+        if (level >= LOG.WARNING) {
             console.warn(text, message);
         } else {
             console.log(text, message);

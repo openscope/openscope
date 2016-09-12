@@ -1,5 +1,6 @@
 import Fiber from 'fiber';
 import Waypoint from './Waypoint';
+import { Log } from '../constants/logLevel';
 
 /** Build a 'leg' of the route (contains series of waypoints)
  ** @param {object} data = {route: "KSFO.OFFSH9.SXC", // either a fix, or with format 'start.procedure.end', or "[RNAV/GPS]" for custom positions
@@ -38,7 +39,7 @@ const Leg = Fiber.extend(function(data, fms) {
       if(!this.type) return;
       else if(this.type == "sid") {
         if(!fms) {
-          log("Attempted to generate waypoints for SID, but cannot because fms ref not passed!", LOG_WARNING);
+          log("Attempted to generate waypoints for SID, but cannot because fms ref not passed!", LOG.WARNING);
           return;
         }
         var apt = data.route.split('.')[0];
@@ -73,7 +74,7 @@ const Leg = Fiber.extend(function(data, fms) {
         if(!this.waypoints[0].speed) this.waypoints[0].speed = fms.my_aircraft.model.speed.cruise;
       } else if(this.type == "star") {
         if(!fms) {
-          log("Attempted to generate waypoints for STAR, but cannot because fms ref not passed!", LOG_WARNING);
+          log("Attempted to generate waypoints for STAR, but cannot because fms ref not passed!", LOG.WARNING);
           return;
         }
         var entry = data.route.split('.')[0];
@@ -110,14 +111,14 @@ const Leg = Fiber.extend(function(data, fms) {
         // Verify airway is valid
         var apt = airport_get();
         if(!apt.hasOwnProperty("airways") || !apt.airways.hasOwnProperty(airway)) {
-          log("Airway "+airway+" not defined at "+apt.icao, LOG_WARNING);
+          log("Airway "+airway+" not defined at "+apt.icao, LOG.WARNING);
           return;
         }
 
         // Verify start/end points are along airway
         var awy = apt.airways[airway];
         if(!(awy.indexOf(start) != -1 && awy.indexOf(end) != -1)) {
-          log("Unable to follow "+airway+" from "+start+" to "+end, LOG_WARNING);
+          log("Unable to follow "+airway+" from "+start+" to "+end, LOG.WARNING);
           return;
         }
 

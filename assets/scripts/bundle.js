@@ -22065,7 +22065,7 @@ var AircraftConflict = _fiber2.default.extend(function () {
 
 exports.default = AircraftConflict;
 
-},{"../math/vector":183,"../utilities/unitConverters":191,"fiber":1}],155:[function(require,module,exports){
+},{"../math/vector":184,"../utilities/unitConverters":192,"fiber":1}],155:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -22091,6 +22091,8 @@ var _Waypoint2 = _interopRequireDefault(_Waypoint);
 var _Leg = require('./Leg');
 
 var _Leg2 = _interopRequireDefault(_Leg);
+
+var _logLevel = require('../constants/logLevel');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -22484,7 +22486,7 @@ var AircraftFlightManagementSystem = _fiber2.default.extend(function () {
           }
         } else {
           // neither formatted like "JAN" nor "JAN.V18.MLU"
-          log("Passed invalid route to fms. Unable to create leg from input:" + route[i], LOG_WARNING);
+          log("Passed invalid route to fms. Unable to create leg from input:" + route[i], LOG.WARNING);
           return false;
         }
       }
@@ -22771,7 +22773,7 @@ var AircraftFlightManagementSystem = _fiber2.default.extend(function () {
 
 exports.default = AircraftFlightManagementSystem;
 
-},{"./Leg":158,"./Waypoint":159,"fiber":1,"jquery":2,"lodash/clamp":107}],156:[function(require,module,exports){
+},{"../constants/logLevel":177,"./Leg":158,"./Waypoint":159,"fiber":1,"jquery":2,"lodash/clamp":107}],156:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -24387,7 +24389,7 @@ var Aircraft = _fiber2.default.extend(function () {
 
 exports.default = Aircraft;
 
-},{"../math/distance":181,"../math/vector":183,"../utilities/unitConverters":191,"fiber":1,"jquery":2,"lodash/clamp":107}],157:[function(require,module,exports){
+},{"../math/distance":182,"../math/vector":184,"../utilities/unitConverters":192,"fiber":1,"jquery":2,"lodash/clamp":107}],157:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -24561,6 +24563,8 @@ var _Waypoint = require('./Waypoint');
 
 var _Waypoint2 = _interopRequireDefault(_Waypoint);
 
+var _logLevel = require('../constants/logLevel');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /** Build a 'leg' of the route (contains series of waypoints)
@@ -24604,7 +24608,7 @@ var Leg = _fiber2.default.extend(function (data, fms) {
     generateWaypoints: function generateWaypoints(data, fms) {
       if (!this.type) return;else if (this.type == "sid") {
         if (!fms) {
-          log("Attempted to generate waypoints for SID, but cannot because fms ref not passed!", LOG_WARNING);
+          log("Attempted to generate waypoints for SID, but cannot because fms ref not passed!", LOG.WARNING);
           return;
         }
         var apt = data.route.split('.')[0];
@@ -24639,7 +24643,7 @@ var Leg = _fiber2.default.extend(function (data, fms) {
         if (!this.waypoints[0].speed) this.waypoints[0].speed = fms.my_aircraft.model.speed.cruise;
       } else if (this.type == "star") {
         if (!fms) {
-          log("Attempted to generate waypoints for STAR, but cannot because fms ref not passed!", LOG_WARNING);
+          log("Attempted to generate waypoints for STAR, but cannot because fms ref not passed!", LOG.WARNING);
           return;
         }
         var entry = data.route.split('.')[0];
@@ -24674,14 +24678,14 @@ var Leg = _fiber2.default.extend(function (data, fms) {
         // Verify airway is valid
         var apt = airport_get();
         if (!apt.hasOwnProperty("airways") || !apt.airways.hasOwnProperty(airway)) {
-          log("Airway " + airway + " not defined at " + apt.icao, LOG_WARNING);
+          log("Airway " + airway + " not defined at " + apt.icao, LOG.WARNING);
           return;
         }
 
         // Verify start/end points are along airway
         var awy = apt.airways[airway];
         if (!(awy.indexOf(start) != -1 && awy.indexOf(end) != -1)) {
-          log("Unable to follow " + airway + " from " + start + " to " + end, LOG_WARNING);
+          log("Unable to follow " + airway + " from " + start + " to " + end, LOG.WARNING);
           return;
         }
 
@@ -24707,7 +24711,7 @@ var Leg = _fiber2.default.extend(function (data, fms) {
 
 exports.default = Leg;
 
-},{"./Waypoint":159,"fiber":1}],159:[function(require,module,exports){
+},{"../constants/logLevel":177,"./Waypoint":159,"fiber":1}],159:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25178,7 +25182,7 @@ window.aircraft_get_by_callsign = aircraft_get_by_callsign;
 window.aircraft_get_eid_by_callsign = aircraft_get_eid_by_callsign;
 window.aircraft_model_get = aircraft_model_get;
 
-},{"../math/distance":181,"../math/flightMath":182,"../math/vector":183,"../utilities/unitConverters":191,"./AircraftConflict":154,"./AircraftFlightManagementSystem":155,"./AircraftModel":157}],161:[function(require,module,exports){
+},{"../math/distance":182,"../math/flightMath":183,"../math/vector":184,"../utilities/unitConverters":192,"./AircraftConflict":154,"./AircraftFlightManagementSystem":155,"./AircraftModel":157}],161:[function(require,module,exports){
 "use strict";
 
 window.airline_init_pre = function airline_init_pre() {
@@ -25448,6 +25452,8 @@ var _unitConverters = require('../utilities/unitConverters');
 
 var _vector = require('../math/vector');
 
+var _logLevel = require('../constants/logLevel');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // TODO: This function should really live in a different file and have tests.
@@ -25457,6 +25463,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @param n {numer}
  * @return {number}
  */
+/* eslint-disable no-multi-spaces, func-names, camelcase, no-undef, max-len, object-shorthand */
 var ra = function ra(n) {
     var deviation = (0, _unitConverters.degreesToRadians)(10);
     return n + crange(0, Math.random(), 1, -deviation, deviation);
@@ -25468,7 +25475,6 @@ var ra = function ra(n) {
  * @class AirportInstance
  * @extends Fiber
  */
-/* eslint-disable no-multi-spaces, func-names, camelcase, no-undef, max-len, object-shorthand */
 var AirportInstance = _fiber2.default.extend(function () {
     return {
         init: function init() {
@@ -25666,7 +25672,7 @@ var AirportInstance = _fiber2.default.extend(function () {
                             var fixname = fixList[_i];
 
                             if (!this.airport.fixes[fixname]) {
-                                log('SID ' + sid + ' fix not found: ' + fixname, LOG_WARNING);
+                                log('SID ' + sid + ' fix not found: ' + fixname, _logLevel.LOG.WARNING);
                             }
                         }
                     }
@@ -25746,7 +25752,7 @@ var AirportInstance = _fiber2.default.extend(function () {
             if (data.arrivals) {
                 for (var _i5 = 0; _i5 < data.arrivals.length; _i5++) {
                     if (!(0, _has3.default)(data.arrivals[_i5], 'type')) {
-                        log(this.icao + ' arrival stream #' + _i5 + ' not given type!', LOG_WARNING);
+                        log(this.icao + ' arrival stream #' + _i5 + ' not given type!', _logLevel.LOG.WARNING);
                     } else {
                         this.arrivals.push((0, _ArrivalFactory.ArrivalFactory)(this, data.arrivals[_i5]));
                     }
@@ -26254,7 +26260,7 @@ var AirportInstance = _fiber2.default.extend(function () {
 
             // there are some... yell at the airport designer!!! :)
             if (missing.length > 0) {
-                log(this.icao + ' uses the following fixes which are not listed in ' + airport.fixes + ': ' + missing.join(' '), LOG_WARNING);
+                log(this.icao + ' uses the following fixes which are not listed in ' + airport.fixes + ': ' + missing.join(' '), _logLevel.LOG.WARNING);
             }
         }
     };
@@ -26262,11 +26268,11 @@ var AirportInstance = _fiber2.default.extend(function () {
 
 exports.default = AirportInstance;
 
-},{"../math/vector":183,"../utilities/unitConverters":191,"./Arrival/ArrivalFactory":165,"./Departure/DepartureFactory":170,"./Runway":172,"fiber":1,"jquery":2,"lodash/forEach":109,"lodash/forIn":110,"lodash/has":112,"lodash/isEmpty":120,"lodash/map":129,"lodash/uniq":136}],163:[function(require,module,exports){
+},{"../constants/logLevel":177,"../math/vector":184,"../utilities/unitConverters":192,"./Arrival/ArrivalFactory":165,"./Departure/DepartureFactory":170,"./Runway":172,"fiber":1,"jquery":2,"lodash/forEach":109,"lodash/forIn":110,"lodash/has":112,"lodash/isEmpty":120,"lodash/map":129,"lodash/uniq":136}],163:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 
 var _jquery = require('jquery');
@@ -26276,6 +26282,10 @@ var _jquery2 = _interopRequireDefault(_jquery);
 var _fiber = require('fiber');
 
 var _fiber2 = _interopRequireDefault(_fiber);
+
+var _has2 = require('lodash/has');
+
+var _has3 = _interopRequireDefault(_has2);
 
 var _Runway = require('../Runway');
 
@@ -26287,233 +26297,292 @@ var _distance = require('../../math/distance');
 
 var _vector = require('../../math/vector');
 
+var _logLevel = require('../../constants/logLevel');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
  *  Generate arrivals at random, averaging the specified arrival rate
  */
 var ArrivalBase = _fiber2.default.extend(function (base) {
-  return {
-    init: function init(airport, options) {
-      this.airlines = [];
-      this.airport = airport;
-      this.altitude = [1000, 1000];
-      this.frequency = 0;
-      this.heading = null;
-      this.radial = 0;
-      this.speed = 250;
-      this.timeout = null;
-      this.fixes = [];
-      this.route = "";
+    return {
+        init: function init(airport, options) {
+            this.airlines = [];
+            this.airport = airport;
+            this.altitude = [1000, 1000];
+            this.frequency = 0;
+            this.heading = null;
+            this.radial = 0;
+            this.speed = 250;
+            this.timeout = null;
+            this.fixes = [];
+            this.route = "";
 
-      this.parse(options);
-    },
-    /**
-     * Arrival Stream Settings
-     * airlines: {array of array} List of airlines with weight for each
-     * altitude: {array or integer} Altitude in feet or range of altitudes
-     * frequency: {integer} Arrival rate along this stream, in aircraft per hour (acph)
-     * heading: {integer} Heading to fly when spawned, in degrees (don't use w/ fixes)
-     * fixes: {array} Set of fixes to traverse (eg. for STARs). Spawns at first listed.
-     * radial: {integer} bearing from airspace center to spawn point (don't use w/ fixes)
-     * speed: {integer} Speed in knots of spawned aircraft
-     */
-    parse: function parse(options) {
-      var params = ['airlines', 'altitude', 'frequency', 'speed'];
-      for (var i in params) {
-        // Populate the data
-        if (options[params[i]]) this[params[i]] = options[params[i]];
-      }
+            this.parse(options);
+        },
 
-      // Make corrections to data
-      if (options.radial) this.radial = (0, _unitConverters.degreesToRadians)(options.radial);
-      if (options.heading) this.heading = (0, _unitConverters.degreesToRadians)(options.heading);
-      if (typeof this.altitude == "number") this.altitude = [this.altitude, this.altitude];
-      if (options.route) this.route = options.route;else if (options.fixes) {
-        for (var i = 0; i < options.fixes.length; i++) {
-          this.fixes.push({ fix: options.fixes[i] });
-        }
-      }
+        /**
+         * Arrival Stream Settings
+         * airlines: {array of array} List of airlines with weight for each
+         * altitude: {array or integer} Altitude in feet or range of altitudes
+         * frequency: {integer} Arrival rate along this stream, in aircraft per hour (acph)
+         * heading: {integer} Heading to fly when spawned, in degrees (don't use w/ fixes)
+         * fixes: {array} Set of fixes to traverse (eg. for STARs). Spawns at first listed.
+         * radial: {integer} bearing from airspace center to spawn point (don't use w/ fixes)
+         * speed: {integer} Speed in knots of spawned aircraft
+         */
+        parse: function parse(options) {
+            var params = ['airlines', 'altitude', 'frequency', 'speed'];
 
-      // Pre-load the airlines
-      _jquery2.default.each(this.airlines, function (i, data) {
-        airline_get(data[0].split('/')[0]);
-      });
-    },
-    /** Backfill STAR routes with arrivals closer than the spawn point
-     ** Aircraft spawn at the first point defined in the route of the entry in
-     ** "arrivals" in the airport json file. When that spawn point is very far
-     ** from the airspace boundary, it obviously takes quite a while for them
-     ** to reach the airspace. This function spawns (all at once) arrivals along
-     ** the route, between the spawn point and the airspace boundary, in order to
-     ** ensure the player is not kept waiting for their first arrival aircraft.
-     */
-    preSpawn: function preSpawn() {
-      var star, entry;
-      var runway = this.airport.runway;
+            // Populate the data
+            for (var i in params) {
+                if (options[params[i]]) {
+                    this[params[i]] = options[params[i]];
+                }
+            }
 
-      //Find STAR & entry point
-      var pieces = array_clean(this.route.split('.'));
-      for (var i in pieces) {
-        if (this.airport.stars.hasOwnProperty(pieces[i])) {
-          star = pieces[i];
-          if (i > 0) entry = pieces[i - 1];
-        }
-      }
+            // Make corrections to data
+            if (options.radial) {
+                this.radial = (0, _unitConverters.degreesToRadians)(options.radial);
+            }
 
-      // Find the last fix that's outside the airspace boundary
-      var fixes = this.airport.getSTAR(star, entry, runway);
-      var lastFix = fixes[0][0];
-      var extra = 0; // dist btwn closest fix outside a/s and a/s border, nm
-      for (var i in fixes) {
-        var fix = fixes[i][0];
-        var pos = this.airport.fixes[fix].position;
-        var fix_prev = i > 0 ? fixes[i - 1][0] : fix;
-        var pos_prev = i > 0 ? this.airport.fixes[fix_prev].position : pos;
-        if (inAirspace(pos)) {
-          if (i >= 1) extra = (0, _unitConverters.nm)(dist_to_boundary(pos_prev));
-          break;
-        } else fixes[i][2] = (0, _unitConverters.nm)((0, _distance.distance2d)(pos_prev, pos)); // calculate distance between fixes
-      }
+            if (options.heading) {
+                this.heading = (0, _unitConverters.degreesToRadians)(options.heading);
+            }
 
-      // Determine spawn offsets
-      var spawn_offsets = [];
-      var entrail_dist = this.speed / this.frequency; // distance between succ. arrivals, nm
-      var dist_total = array_sum(_jquery2.default.map(fixes, function (v) {
-        return v[2];
-      })) + extra;
-      for (var i = entrail_dist; i < dist_total; i += entrail_dist) {
-        spawn_offsets.push(i);
-      }
+            if (typeof this.altitude == "number") {
+                this.altitude = [this.altitude, this.altitude];
+            }
 
-      // Determine spawn points
-      var spawn_positions = [];
-      for (var i in spawn_offsets) {
-        // for each new aircraft
-        for (var j = 1; j < fixes.length; j++) {
-          // for each fix ahead
-          if (spawn_offsets[i] > fixes[j][2]) {
-            // if point beyond next fix
-            spawn_offsets[i] -= fixes[j][2];
-            continue;
-          } else {
-            // if point before next fix
-            var next = airport_get().fixes[fixes[j][0]];
-            var prev = airport_get().fixes[fixes[j - 1][0]];
-            var brng = bearing(prev.gps, next.gps);
-            spawn_positions.push({
-              pos: fixRadialDist(prev.gps, brng, spawn_offsets[i]),
-              nextFix: fixes[j][0],
-              heading: brng
+            if (options.route) {
+                this.route = options.route;
+            } else if (options.fixes) {
+                for (var _i = 0; _i < options.fixes.length; _i++) {
+                    this.fixes.push({ fix: options.fixes[_i] });
+                }
+            }
+
+            // Pre-load the airlines
+            _jquery2.default.each(this.airlines, function (i, data) {
+                airline_get(data[0].split('/')[0]);
             });
-            break;
-          }
+        },
+
+        /** Backfill STAR routes with arrivals closer than the spawn point
+         * Aircraft spawn at the first point defined in the route of the entry in
+         * "arrivals" in the airport json file. When that spawn point is very far
+         * from the airspace boundary, it obviously takes quite a while for them
+         * to reach the airspace. This function spawns (all at once) arrivals along
+         * the route, between the spawn point and the airspace boundary, in order to
+         * ensure the player is not kept waiting for their first arrival aircraft.
+         */
+        preSpawn: function preSpawn() {
+            var star = void 0;
+            var entry = void 0;
+            var runway = this.airport.runway;
+
+            // Find STAR & entry point
+            var pieces = array_clean(this.route.split('.'));
+            for (var i in pieces) {
+                if ((0, _has3.default)(this.airport.stars, pieces[i])) {
+                    star = pieces[i];
+                    if (i > 0) {
+                        entry = pieces[i - 1];
+                    }
+                }
+            }
+
+            // Find the last fix that's outside the airspace boundary
+            var fixes = this.airport.getSTAR(star, entry, runway);
+            var lastFix = fixes[0][0];
+            // distance between closest fix outside a/s and a/s border, nm
+            var extra = 0;
+
+            for (var _i2 in fixes) {
+                var fix = fixes[_i2][0];
+                var pos = this.airport.fixes[fix].position;
+                var fix_prev = _i2 > 0 ? fixes[_i2 - 1][0] : fix;
+                var pos_prev = _i2 > 0 ? this.airport.fixes[fix_prev].position : pos;
+
+                if (inAirspace(pos)) {
+                    if (_i2 >= 1) {
+                        extra = (0, _unitConverters.nm)(dist_to_boundary(pos_prev));
+                        break;
+                    }
+                } else {
+                    // calculate distance between fixes
+                    fixes[_i2][2] = (0, _unitConverters.nm)((0, _distance.distance2d)(pos_prev, pos));
+                }
+            }
+
+            // Determine spawn offsets
+            var spawn_offsets = [];
+            // distance between succ. arrivals, nm
+            var entrail_dist = this.speed / this.frequency;
+            var dist_total = array_sum(_jquery2.default.map(fixes, function (v) {
+                return v[2];
+            })) + extra;
+
+            for (var _i3 = entrail_dist; _i3 < dist_total; _i3 += entrail_dist) {
+                spawn_offsets.push(_i3);
+            }
+
+            // Determine spawn points
+            var spawn_positions = [];
+            // for each new aircraft
+            for (var _i4 in spawn_offsets) {
+                // for each fix ahead
+                for (var j = 1; j < fixes.length; j++) {
+                    if (spawn_offsets[_i4] > fixes[j][2]) {
+                        // if point beyond next fix
+                        spawn_offsets[_i4] -= fixes[j][2];
+                        continue;
+                    } else {
+                        // if point before next fix
+                        var next = airport_get().fixes[fixes[j][0]];
+                        var prev = airport_get().fixes[fixes[j - 1][0]];
+                        var brng = bearing(prev.gps, next.gps);
+                        spawn_positions.push({
+                            pos: fixRadialDist(prev.gps, brng, spawn_offsets[_i4]),
+                            nextFix: fixes[j][0],
+                            heading: brng
+                        });
+                        break;
+                    }
+                }
+            }
+
+            // Spawn aircraft along the route, ahead of the standard spawn point
+            for (var _i5 in spawn_positions) {
+                var airline = choose_weight(this.airlines);
+                var fleet = '';
+
+                if (airline.indexOf('/') > -1) {
+                    fleet = airline.split('/')[1];
+                    airline = airline.split('/')[0];
+                }
+
+                aircraft_new({
+                    category: 'arrival',
+                    destination: airport_get().icao,
+                    airline: airline,
+                    fleet: fleet,
+                    // TODO: should eventually look up altitude restrictions and try to spawn in an appropriate range
+                    altitude: 10000,
+                    heading: spawn_positions[_i5].heading || this.heading,
+                    waypoints: this.fixes,
+                    route: this.route,
+                    position: new Position(spawn_positions[_i5].pos, airport_get().position, airport_get().magnetic_north, 'GPS').position,
+                    speed: this.speed,
+                    nextFix: spawn_positions[_i5].nextFix
+                });
+            }
+        },
+
+        /**
+         * Stop this arrival stream
+         */
+        stop: function stop() {
+            if (this.timeout) {
+                game_clear_timeout(this.timeout);
+            }
+        },
+
+        /**
+         * Start this arrival stream
+         */
+        start: function start() {
+            // TODO: what do these numbers mean? enumerate the magic numbers.
+            var delay = random(0, 3600 / this.frequency);
+            this.timeout = game_timeout(this.spawnAircraft, delay, this, [true, true]);
+
+            if (this.route) {
+                this.preSpawn();
+            }
+        },
+
+        /**
+         * Spawn a new aircraft
+         */
+        spawnAircraft: function spawnAircraft(args) {
+            var start_flag = args[0];
+            var timeout_flag = args[1] || false;
+            var altitude = round(random(this.altitude[0], this.altitude[1]) / 1000) * 1000;
+            var message = !(game_time() - this.airport.start < 2);
+            var position = void 0;
+            var heading = void 0;
+            var fleet = void 0;
+
+            // spawn at first fix
+            if (this.fixes.length > 1) {
+                // spawn at first fix
+                position = airport_get().getFix(this.fixes[0].fix);
+                heading = (0, _vector.vradial)((0, _vector.vsub)(airport_get().getFix(this.fixes[1].fix), position));
+            } else if (this.route) {
+                // STAR data is present
+                var star = airport_get().getSTAR(this.route.split('.')[1], this.route.split('.')[0], airport_get().runway);
+                position = airport_get().getFix(star[0][0]);
+                heading = (0, _vector.vradial)((0, _vector.vsub)(airport_get().getFix(star[1][0]), position));
+            } else {
+                // spawn outside the airspace along 'this.radial'
+                var distance = 2 * this.airport.ctr_radius;
+                position = [sin(this.radial) * distance, cos(this.radial) * distance];
+                heading = this.heading || this.radial + Math.PI;
+            }
+
+            var airline = choose_weight(this.airlines);
+            if (airline.indexOf('/') > -1) {
+                fleet = airline.split('/')[1];
+                airline = airline.split('/')[0];
+            }
+
+            aircraft_new({
+                category: 'arrival',
+                destination: airport_get().icao,
+                airline: airline,
+                fleet: fleet,
+                altitude: altitude,
+                heading: heading,
+                waypoints: this.fixes,
+                route: this.route,
+                message: message,
+                position: position,
+                speed: this.speed
+            });
+
+            if (timeout_flag) {
+                this.timeout = game_timeout(this.spawnAircraft, this.nextInterval(), this, [null, true]);
+            }
+        },
+
+        /**
+         * Determine delay until next spawn
+         */
+        nextInterval: function nextInterval() {
+            // TODO: these next 3 vars could easily be moved to a constants file
+            // nautical miles
+            var min_entrail = 5.5;
+            // in seconds
+            var min_interval = min_entrail * (3600 / this.speed);
+            var tgt_interval = 3600 / this.frequency;
+
+            if (tgt_interval < min_interval) {
+                tgt_interval = min_interval;
+                log("Requested arrival rate of " + this.frequency + " acph overridden to " + "maintain minimum of " + min_entrail + " miles entrail on arrival stream " + "following route " + _jquery2.default.map(this.fixes, function (v) {
+                    return v.fix;
+                }).join('-'), _logLevel.LOG.INFO);
+            }
+
+            var max_interval = tgt_interval + (tgt_interval - min_interval);
+
+            return random(min_interval, max_interval);
         }
-      }
-
-      // Spawn aircraft along the route, ahead of the standard spawn point
-      for (var i in spawn_positions) {
-        var airline = choose_weight(this.airlines);
-        var fleet = "";
-        if (airline.indexOf('/') > -1) {
-          fleet = airline.split('/')[1];
-          airline = airline.split('/')[0];
-        }
-
-        aircraft_new({
-          category: "arrival",
-          destination: airport_get().icao,
-          airline: airline,
-          fleet: fleet,
-          altitude: 10000, // should eventually look up altitude restrictions and try to spawn in an appropriate range
-          heading: spawn_positions[i].heading || this.heading,
-          waypoints: this.fixes,
-          route: this.route,
-          position: new Position(spawn_positions[i].pos, airport_get().position, airport_get().magnetic_north, 'GPS').position,
-          speed: this.speed,
-          nextFix: spawn_positions[i].nextFix
-        });
-      }
-    },
-    /** Stop this arrival stream
-     */
-    stop: function stop() {
-      if (this.timeout) game_clear_timeout(this.timeout);
-    },
-    /** Start this arrival stream
-     */
-    start: function start() {
-      var delay = random(0, 3600 / this.frequency);
-      this.timeout = game_timeout(this.spawnAircraft, delay, this, [true, true]);
-      if (this.route) this.preSpawn();
-    },
-    /** Spawn a new aircraft
-     */
-    spawnAircraft: function spawnAircraft(args) {
-      var start_flag = args[0];
-      var timeout_flag = args[1] || false;
-      var altitude = round(random(this.altitude[0], this.altitude[1]) / 1000) * 1000;
-      var message = !(game_time() - this.airport.start < 2);
-      if (this.fixes.length > 1) {
-        // spawn at first fix
-        var position = airport_get().getFix(this.fixes[0].fix); // spawn at first fix
-        var heading = (0, _vector.vradial)((0, _vector.vsub)(airport_get().getFix(this.fixes[1].fix), position));
-      } else if (this.route) {
-        // STAR data is present
-        var star = airport_get().getSTAR(this.route.split('.')[1], this.route.split('.')[0], airport_get().runway);
-        var position = airport_get().getFix(star[0][0]);
-        var heading = (0, _vector.vradial)((0, _vector.vsub)(airport_get().getFix(star[1][0]), position));
-      } else {
-        // spawn outside the airspace along 'this.radial'
-        var distance = 2 * this.airport.ctr_radius;
-        var position = [sin(this.radial) * distance, cos(this.radial) * distance];
-        var heading = this.heading || this.radial + Math.PI;
-      }
-      var airline = choose_weight(this.airlines);
-      if (airline.indexOf('/') > -1) {
-        var fleet = airline.split('/')[1];
-        airline = airline.split('/')[0];
-      }
-
-      aircraft_new({
-        category: "arrival",
-        destination: airport_get().icao,
-        airline: airline,
-        fleet: fleet,
-        altitude: altitude,
-        heading: heading,
-        waypoints: this.fixes,
-        route: this.route,
-        message: message,
-        position: position,
-        speed: this.speed
-      });
-
-      if (timeout_flag) {
-        this.timeout = game_timeout(this.spawnAircraft, this.nextInterval(), this, [null, true]);
-      }
-    },
-    /** Determine delay until next spawn
-     */
-    nextInterval: function nextInterval() {
-      var min_entrail = 5.5; // nautical miles
-      var min_interval = min_entrail * (3600 / this.speed); // in seconds
-      var tgt_interval = 3600 / this.frequency;
-      if (tgt_interval < min_interval) {
-        tgt_interval = min_interval;
-        log("Requested arrival rate of " + this.frequency + " acph overridden to " + "maintain minimum of " + min_entrail + " miles entrail on arrival stream " + "following route " + _jquery2.default.map(this.fixes, function (v) {
-          return v.fix;
-        }).join('-'), LOG_INFO);
-      }
-      var max_interval = tgt_interval + (tgt_interval - min_interval);
-      return random(min_interval, max_interval);
-    }
-  };
+    };
 });
 
 exports.default = ArrivalBase;
 
-},{"../../math/distance":181,"../../math/vector":183,"../../utilities/unitConverters":191,"../Runway":172,"fiber":1,"jquery":2}],164:[function(require,module,exports){
+},{"../../constants/logLevel":177,"../../math/distance":182,"../../math/vector":184,"../../utilities/unitConverters":192,"../Runway":172,"fiber":1,"jquery":2,"lodash/has":112}],164:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26589,7 +26658,7 @@ var ArrivalCyclic = _ArrivalBase2.default.extend(function (base) {
 
 exports.default = ArrivalCyclic;
 
-},{"../../math/distance":181,"../../math/vector":183,"../../utilities/unitConverters":191,"./ArrivalBase":163,"fiber":1,"jquery":2}],165:[function(require,module,exports){
+},{"../../math/distance":182,"../../math/vector":184,"../../utilities/unitConverters":192,"./ArrivalBase":163,"fiber":1,"jquery":2}],165:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26613,10 +26682,9 @@ var _ArrivalSurge = require('./ArrivalSurge');
 
 var _ArrivalSurge2 = _interopRequireDefault(_ArrivalSurge);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _logLevel = require('../../constants/logLevel');
 
-// FIXME: temporary. remove once LOG levels have been moved to a constants file.
-var LOG_WARNING = 2;
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
  * Calls constructor of the appropriate arrival type
@@ -26628,7 +26696,7 @@ var LOG_WARNING = 2;
  */
 var ArrivalFactory = exports.ArrivalFactory = function ArrivalFactory(airport, options) {
     if (options.type === '') {
-        log(airport.icao + ' arrival stream not given type!', LOG_WARNING);
+        log(airport.icao + ' arrival stream not given type!', _logLevel.LOG.WARNING);
         return;
     }
 
@@ -26646,12 +26714,12 @@ var ArrivalFactory = exports.ArrivalFactory = function ArrivalFactory(airport, o
             return new _ArrivalSurge2.default(airport, options);
             break;
         default:
-            log(airport.icao + ' using unsupported arrival type "' + options.type + '"', LOG_WARNING);
+            log(airport.icao + ' using unsupported arrival type "' + options.type + '"', _logLevel.LOG.WARNING);
             break;
     }
 };
 
-},{"./ArrivalBase":163,"./ArrivalCyclic":164,"./ArrivalSurge":166,"./ArrivalWave":167}],166:[function(require,module,exports){
+},{"../../constants/logLevel":177,"./ArrivalBase":163,"./ArrivalCyclic":164,"./ArrivalSurge":166,"./ArrivalWave":167}],166:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26675,6 +26743,8 @@ var _unitConverters = require('../../utilities/unitConverters');
 var _distance = require('../../math/distance');
 
 var _vector = require('../../math/vector');
+
+var _logLevel = require('../../constants/logLevel');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -26734,11 +26804,11 @@ var ArrivalSurge = _ArrivalBase2.default.extend(function (base) {
 
       // Verify we can comply with the requested arrival rate based on entrail spacing
       if (this.frequency > this.acph_up) {
-        log(this.airport.icao + ": TOO MANY ARRIVALS IN SURGE! Requested: " + this.frequency + "acph | Acceptable Range for requested entrail distance: " + Math.ceil(this.acph_dn) + "acph - " + Math.floor(this.acph_up) + "acph", LOG_WARNING);
+        log(this.airport.icao + ": TOO MANY ARRIVALS IN SURGE! Requested: " + this.frequency + "acph | Acceptable Range for requested entrail distance: " + Math.ceil(this.acph_dn) + "acph - " + Math.floor(this.acph_up) + "acph", _logLevel.LOG.WARNING);
         this.frequency = this.acph_up;
         this.acph_dn = this.acph_up;
       } else if (this.frequency < this.acph_dn) {
-        log(this.airport.icao + ": TOO FEW ARRIVALS IN SURGE! Requested: " + this.frequency + "acph | Acceptable Range for requested entrail distance: " + Math.ceil(this.acph_dn) + "acph - " + Math.floor(this.acph_up) + "acph", LOG_WARNING);
+        log(this.airport.icao + ": TOO FEW ARRIVALS IN SURGE! Requested: " + this.frequency + "acph | Acceptable Range for requested entrail distance: " + Math.ceil(this.acph_dn) + "acph - " + Math.floor(this.acph_up) + "acph", _logLevel.LOG.WARNING);
         this.frequency = this.acph_dn;
         this.acph_up = this.acph_dn;
       }
@@ -26781,7 +26851,7 @@ var ArrivalSurge = _ArrivalBase2.default.extend(function (base) {
 
 exports.default = ArrivalSurge;
 
-},{"../../math/distance":181,"../../math/vector":183,"../../utilities/unitConverters":191,"./ArrivalBase":163,"fiber":1,"jquery":2}],167:[function(require,module,exports){
+},{"../../constants/logLevel":177,"../../math/distance":182,"../../math/vector":184,"../../utilities/unitConverters":192,"./ArrivalBase":163,"fiber":1,"jquery":2}],167:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26805,6 +26875,8 @@ var _unitConverters = require('../../utilities/unitConverters');
 var _distance = require('../../math/distance');
 
 var _vector = require('../../math/vector');
+
+var _logLevel = require('../../constants/logLevel');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -26858,13 +26930,13 @@ var ArrivalWave = _ArrivalBase2.default.extend(function (base) {
           // can reduce variation to achieve acceptable spawn rate
           log("Requested arrival rate variation of +/-" + this.variation + " acph reduced to " + "maintain minimum of " + entrail_dist + " miles entrail on arrival stream following " + "route " + _jquery2.default.map(this.fixes, function (v) {
             return v.fix;
-          }).join('-'), LOG_WARNING);
+          }).join('-'), _logLevel.LOG.WARNING);
           this.variation = this.variation - 3600 / diff; // reduce the variation
         } else {
           // need to reduce frequency to achieve acceptable spawn rate
           log("Requested arrival rate of " + this.frequency + " acph overridden to " + "maintain minimum of " + entrail_dist + " miles entrail on arrival stream " + "following route " + _jquery2.default.map(this.fixes, function (v) {
             return v.fix;
-          }).join('-'), LOG_WARNING);
+          }).join('-'), _logLevel.LOG.WARNING);
           this.variation = 0; // make spawn at constant interval
           this.frequency = 3600 / entrail_interval; // reduce the frequency
         }
@@ -26887,7 +26959,7 @@ var ArrivalWave = _ArrivalBase2.default.extend(function (base) {
 
 exports.default = ArrivalWave;
 
-},{"../../math/distance":181,"../../math/vector":183,"../../utilities/unitConverters":191,"./ArrivalBase":163,"fiber":1,"jquery":2}],168:[function(require,module,exports){
+},{"../../constants/logLevel":177,"../../math/distance":182,"../../math/vector":184,"../../utilities/unitConverters":192,"./ArrivalBase":163,"fiber":1,"jquery":2}],168:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26991,7 +27063,7 @@ var DepartureBase = _fiber2.default.extend(function (base) {
 
 exports.default = DepartureBase;
 
-},{"../../math/distance":181,"../../math/vector":183,"../../utilities/unitConverters":191,"fiber":1,"jquery":2}],169:[function(require,module,exports){
+},{"../../math/distance":182,"../../math/vector":184,"../../utilities/unitConverters":192,"fiber":1,"jquery":2}],169:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -27049,7 +27121,7 @@ var DepartureCyclic = _DepartureBase2.default.extend(function (base) {
 
 exports.default = DepartureCyclic;
 
-},{"../../math/distance":181,"../../math/vector":183,"../../utilities/unitConverters":191,"./DepartureBase":168,"fiber":1,"jquery":2}],170:[function(require,module,exports){
+},{"../../math/distance":182,"../../math/vector":184,"../../utilities/unitConverters":192,"./DepartureBase":168,"fiber":1,"jquery":2}],170:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -27069,10 +27141,9 @@ var _DepartureWave = require('./DepartureWave');
 
 var _DepartureWave2 = _interopRequireDefault(_DepartureWave);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _logLevel = require('../../constants/logLevel');
 
-// FIXME: temporary. remove once LOG levels have been moved to a constants file.
-var LOG_WARNING = 2;
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
  * Calls constructor of the appropriate arrival type
@@ -27084,7 +27155,7 @@ var LOG_WARNING = 2;
  */
 var DepartureFactory = exports.DepartureFactory = function DepartureFactory(airport, options) {
     if (options.type === '') {
-        return log(airport.icao + " departure stream not given type!", LOG_WARNING);
+        return log(airport.icao + " departure stream not given type!", _logLevel.LOG.WARNING);
     }
 
     switch (options.type) {
@@ -27098,12 +27169,12 @@ var DepartureFactory = exports.DepartureFactory = function DepartureFactory(airp
             return new _DepartureWave2.default(airport, options);
             break;
         default:
-            log(airport.icao + ' using unsupported departure type "' + options.type + '"', LOG_WARNING);
+            log(airport.icao + ' using unsupported departure type "' + options.type + '"', _logLevel.LOG.WARNING);
             break;
     }
 };
 
-},{"./DepartureBase":168,"./DepartureCyclic":169,"./DepartureWave":171}],171:[function(require,module,exports){
+},{"../../constants/logLevel":177,"./DepartureBase":168,"./DepartureCyclic":169,"./DepartureWave":171}],171:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -27165,7 +27236,7 @@ var DepartureWave = _DepartureCyclic2.default.extend(function (base) {
 
 exports.default = DepartureWave;
 
-},{"../../math/distance":181,"../../math/vector":183,"../../utilities/unitConverters":191,"./DepartureCyclic":169,"fiber":1,"jquery":2}],172:[function(require,module,exports){
+},{"../../math/distance":182,"../../math/vector":184,"../../utilities/unitConverters":192,"./DepartureCyclic":169,"fiber":1,"jquery":2}],172:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -27315,7 +27386,7 @@ var Runway = _fiber2.default.extend(function (base) {
 }); /* eslint-disable no-multi-spaces, func-names, camelcase, no-undef, max-len, object-shorthand */
 exports.default = Runway;
 
-},{"../math/vector":183,"../utilities/unitConverters":191,"fiber":1}],173:[function(require,module,exports){
+},{"../math/vector":184,"../utilities/unitConverters":192,"fiber":1}],173:[function(require,module,exports){
 'use strict';
 
 var _AirportInstanceModel = require('./AirportInstanceModel');
@@ -27573,7 +27644,7 @@ var Animation = function Animation(options) {
 
 window.Animation = Animation;
 
-},{"./utilities/timeHelpers":190}],175:[function(require,module,exports){
+},{"./utilities/timeHelpers":191}],175:[function(require,module,exports){
 'use strict';
 
 var _fiber = require('fiber');
@@ -27756,7 +27827,7 @@ var Area = _fiber2.default.extend(function () {
 window.Position = Position;
 window.Area = Area;
 
-},{"./utilities/unitConverters":191,"fiber":1}],176:[function(require,module,exports){
+},{"./utilities/unitConverters":192,"fiber":1}],176:[function(require,module,exports){
 'use strict';
 
 var _clamp2 = require('lodash/clamp');
@@ -27769,10 +27840,10 @@ var _timeHelpers = require('./utilities/timeHelpers');
 
 var _distance = require('./math/distance');
 
+var _logLevel = require('./constants/logLevel');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// jshint latedef:nofunc, undef:true, eqnull:true, eqeqeq:true, browser:true, jquery:true, devel:true
-/* global prop:true, km:false, crange:false, clamp:false, lpad:false, airport_get:false, game_time:false, game_paused:false, time:false, round:false, distance2d:false, radians:false  */
 window.canvas_init_pre = function canvas_init_pre() {
   'use strict';
 
@@ -27796,7 +27867,9 @@ window.canvas_init_pre = function canvas_init_pre() {
   prop.canvas.draw_restricted = true;
   prop.canvas.draw_sids = true;
   prop.canvas.draw_terrain = true;
-};
+}; // jshint latedef:nofunc, undef:true, eqnull:true, eqeqeq:true, browser:true, jquery:true, devel:true
+/* global prop:true, km:false, crange:false, clamp:false, lpad:false, airport_get:false, game_time:false, game_paused:false, time:false, round:false, distance2d:false, radians:false  */
+
 
 window.canvas_init = function canvas_init() {
   "use strict";
@@ -28073,7 +28146,7 @@ function canvas_draw_sids(cc) {
             write_sid_name = false;
           }
           var fix = airport.getFix(fixList[j].replace("*", ""));
-          if (!fix) log('Unable to draw line to "' + fixList[j] + '" because its position is not defined!', LOG_WARNING);
+          if (!fix) log('Unable to draw line to "' + fixList[j] + '" because its position is not defined!', _logLevel.LOG.WARNING);
           fx = km_to_px(fix[0]) + prop.canvas.panX;
           fy = -km_to_px(fix[1]) + prop.canvas.panY;
           if (j === 0) {
@@ -28954,7 +29027,26 @@ function canvas_draw_directions(cc) {
   cc.restore();
 }
 
-},{"./math/distance":181,"./utilities/timeHelpers":190,"./utilities/unitConverters":191,"lodash/clamp":107}],177:[function(require,module,exports){
+},{"./constants/logLevel":177,"./math/distance":182,"./utilities/timeHelpers":191,"./utilities/unitConverters":192,"lodash/clamp":107}],177:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+/**
+ * @property LOG
+ * @type {Object}
+ * @final
+ */
+var LOG = exports.LOG = {
+    DEBUG: 0,
+    INFO: 1,
+    WARNING: 2,
+    ERROR: 3,
+    FATAL: 4
+};
+
+},{}],178:[function(require,module,exports){
 'use strict';
 
 zlsa.atc.Options = Fiber.extend(function (base) {
@@ -29212,7 +29304,7 @@ window.game_complete = function game_complete() {
   prop.game.paused = false;
 };
 
-},{}],178:[function(require,module,exports){
+},{}],179:[function(require,module,exports){
 'use strict';
 
 /**
@@ -29335,7 +29427,7 @@ window.game_complete = function game_complete() {
   };
 })($, zlsa, Fiber, zlsa.atc.mediator);
 
-},{}],179:[function(require,module,exports){
+},{}],180:[function(require,module,exports){
 'use strict';
 
 var _clamp2 = require('lodash/clamp');
@@ -29786,7 +29878,7 @@ window.input_run = function input_run() {
   return aircraft.runCommands(result.args);
 };
 
-},{"lodash/clamp":107}],180:[function(require,module,exports){
+},{"lodash/clamp":107}],181:[function(require,module,exports){
 'use strict';
 
 var _timeHelpers = require('./utilities/timeHelpers');
@@ -29851,7 +29943,7 @@ var _timeHelpers = require('./utilities/timeHelpers');
   };
 })($, zlsa, Fiber, zlsa.atc.mediator, prop.version_string);
 
-},{"./utilities/timeHelpers":190}],181:[function(require,module,exports){
+},{"./utilities/timeHelpers":191}],182:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -29872,7 +29964,7 @@ var distance2d = exports.distance2d = function distance2d(a, b) {
   return Math.sqrt(x * x + y * y);
 };
 
-},{}],182:[function(require,module,exports){
+},{}],183:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -29915,7 +30007,7 @@ var calcTurnInitiationDistance = exports.calcTurnInitiationDistance = function c
   return turnRadius * Math.tan(courseChange / 2) + speed;
 };
 
-},{}],183:[function(require,module,exports){
+},{}],184:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -29969,7 +30061,7 @@ var vsub = exports.vsub = function vsub(v1, v2) {
     }
 };
 
-},{}],184:[function(require,module,exports){
+},{}],185:[function(require,module,exports){
 'use strict';
 
 var _jquery = require('jquery');
@@ -29985,6 +30077,8 @@ var _pegjs = require('pegjs');
 var _pegjs2 = _interopRequireDefault(_pegjs);
 
 var _timeHelpers = require('./utilities/timeHelpers');
+
+var _logLevel = require('./constants/logLevel');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -30113,11 +30207,11 @@ if (!String.fromCodePoint) {
 // const asyncDoneCallback = () => {};
 
 // TODO: make this an enum in a constants file
-var LOG_DEBUG = 0;
-var LOG_INFO = 1;
-var LOG_WARNING = 2;
-var LOG_ERROR = 3; // eslint-disable-line
-var LOG_FATAL = 4; // eslint-disable-line
+// const LOG_DEBUG = 0;
+// const LOG_INFO = 1;
+// const LOG_WARNING = 2;
+// const LOG_ERROR = 3; // eslint-disable-line
+// const LOG_FATAL = 4; // eslint-disable-line
 
 
 // PROP
@@ -30137,17 +30231,17 @@ window.propInit = function propInit() {
     prop.time.frame.last = (0, _timeHelpers.time)();
     prop.time.frame.delta = 0;
     prop.time.fps = 0;
-    prop.log = LOG_DEBUG;
+    prop.log = _logLevel.LOG.DEBUG;
     prop.loaded = false;
 
     if (RELEASE) {
-        prop.log = LOG_WARNING;
+        prop.log = _logLevel.LOG.WARNING;
     }
 };
 
 // MISC
 window.log = function log(message) {
-    var level = arguments.length <= 1 || arguments[1] === undefined ? LOG_INFO : arguments[1];
+    var level = arguments.length <= 1 || arguments[1] === undefined ? _logLevel.LOG.INFO : arguments[1];
 
     // if (typeof level === 'undefined') {
     //     level = LOG_INFO;
@@ -30163,7 +30257,7 @@ window.log = function log(message) {
     if (prop.log <= level) {
         var text = '[ ' + logStrings[level] + ' ]';
 
-        if (level >= LOG_WARNING) {
+        if (level >= _logLevel.LOG.WARNING) {
             console.warn(text, message);
         } else {
             console.log(text, message);
@@ -30400,7 +30494,7 @@ window.delta = function delta() {
     return prop.time.frame.delta;
 };
 
-},{"./aircraft/aircraft":160,"./airline":161,"./airport/airport":173,"./animation":174,"./base":175,"./canvas":176,"./game":177,"./get":178,"./input":179,"./load":180,"./parser":185,"./speech":186,"./tutorial":187,"./ui":188,"./util":189,"./utilities/timeHelpers":190,"fiber":1,"jquery":2,"pegjs":150}],185:[function(require,module,exports){
+},{"./aircraft/aircraft":160,"./airline":161,"./airport/airport":173,"./animation":174,"./base":175,"./canvas":176,"./constants/logLevel":177,"./game":178,"./get":179,"./input":180,"./load":181,"./parser":186,"./speech":187,"./tutorial":188,"./ui":189,"./util":190,"./utilities/timeHelpers":191,"fiber":1,"jquery":2,"pegjs":150}],186:[function(require,module,exports){
 "use strict";
 
 zlsa.atc.Parser = function () {
@@ -33469,7 +33563,7 @@ zlsa.atc.Parser = function () {
   };
 }();
 
-},{}],186:[function(require,module,exports){
+},{}],187:[function(require,module,exports){
 'use strict';
 
 window.speech_init = function speech_init() {
@@ -33524,7 +33618,7 @@ window.speech_toggle = function speech_toggle() {
   localStorage['atc-speech-enabled'] = prop.speech.enabled;
 };
 
-},{}],187:[function(require,module,exports){
+},{}],188:[function(require,module,exports){
 'use strict';
 
 var _clamp2 = require('lodash/clamp');
@@ -33886,7 +33980,7 @@ window.tutorial_toggle = function tutorial_toggle() {
   }
 };
 
-},{"./utilities/timeHelpers":190,"lodash/clamp":107}],188:[function(require,module,exports){
+},{"./utilities/timeHelpers":191,"lodash/clamp":107}],189:[function(require,module,exports){
 'use strict';
 
 window.ui_init_pre = function ui_init_pre() {
@@ -34126,7 +34220,7 @@ window.ui_options_toggle = function ui_options_toggle() {
   }
 };
 
-},{}],189:[function(require,module,exports){
+},{}],190:[function(require,module,exports){
 'use strict';
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
@@ -35146,7 +35240,7 @@ window.aircraft_remove = function aircraft_remove(aircraft) {
   aircraft.cleanup();
 };
 
-},{"./math/distance":181,"./math/vector":183,"./utilities/timeHelpers":190,"./utilities/unitConverters":191,"lodash/clamp":107}],190:[function(require,module,exports){
+},{"./math/distance":182,"./math/vector":184,"./utilities/timeHelpers":191,"./utilities/unitConverters":192,"lodash/clamp":107}],191:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -35168,7 +35262,7 @@ var time = exports.time = function time() {
   return new Date().getTime() * TIME_SECONDS_OFFSET;
 };
 
-},{}],191:[function(require,module,exports){
+},{}],192:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -35291,7 +35385,7 @@ var degreesToRadians = exports.degreesToRadians = function degreesToRadians(degr
   return degrees / 360 * (Math.PI * 2);
 };
 
-},{}]},{},[184])
+},{}]},{},[185])
 
 
 //# sourceMappingURL=bundle.js.map

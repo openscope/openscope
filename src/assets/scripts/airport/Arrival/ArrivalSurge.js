@@ -5,6 +5,7 @@ import ArrivalBase from './ArrivalBase';
 import { km, nm, degreesToRadians } from '../../utilities/unitConverters';
 import { distance2d } from '../../math/distance';
 import { vlen, vradial, vsub } from '../../math/vector';
+import { LOG } from '../../constants/logLevel';
 
 /** Generate arrivals in a repeating surge
   * Arrival rate goes from very low and steeply increases to a
@@ -66,14 +67,14 @@ const ArrivalSurge = ArrivalBase.extend(function(base) {
       if(this.frequency > this.acph_up) {
         log(this.airport.icao+": TOO MANY ARRIVALS IN SURGE! Requested: "
           +this.frequency+"acph | Acceptable Range for requested entrail distance: "
-          +Math.ceil(this.acph_dn)+"acph - "+Math.floor(this.acph_up)+"acph", LOG_WARNING);
+          +Math.ceil(this.acph_dn)+"acph - "+Math.floor(this.acph_up)+"acph", LOG.WARNING);
         this.frequency = this.acph_up;
         this.acph_dn = this.acph_up;
       }
       else if(this.frequency < this.acph_dn) {
         log(this.airport.icao+": TOO FEW ARRIVALS IN SURGE! Requested: "
           +this.frequency+"acph | Acceptable Range for requested entrail distance: "
-          +Math.ceil(this.acph_dn)+"acph - "+Math.floor(this.acph_up)+"acph", LOG_WARNING);
+          +Math.ceil(this.acph_dn)+"acph - "+Math.floor(this.acph_up)+"acph", LOG.WARNING);
         this.frequency = this.acph_dn;
         this.acph_up = this.acph_dn;
       }

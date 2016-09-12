@@ -1,9 +1,7 @@
 import DepartureBase from './DepartureBase';
 import DepartureCyclic from './DepartureCyclic';
 import DepartureWave from './DepartureWave';
-
-// FIXME: temporary. remove once LOG levels have been moved to a constants file.
-const LOG_WARNING = 2;
+import { LOG } from '../../constants/logLevel';
 
 /**
  * Calls constructor of the appropriate arrival type
@@ -15,7 +13,7 @@ const LOG_WARNING = 2;
  */
 export const DepartureFactory = function(airport, options) {
     if (options.type === '') {
-        return log(airport.icao + " departure stream not given type!", LOG_WARNING);
+        return log(airport.icao + " departure stream not given type!", LOG.WARNING);
     }
 
     switch (options.type) {
@@ -29,7 +27,7 @@ export const DepartureFactory = function(airport, options) {
             return new DepartureWave(airport, options);
             break;
         default:
-            log(airport.icao + ' using unsupported departure type "'+options.type+'"', LOG_WARNING);
+            log(airport.icao + ' using unsupported departure type "'+options.type+'"', LOG.WARNING);
             break;
     }
 };

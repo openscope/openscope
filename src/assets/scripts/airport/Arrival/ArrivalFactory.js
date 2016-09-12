@@ -2,9 +2,7 @@ import ArrivalBase from './ArrivalBase';
 import ArrivalCyclic from './ArrivalCyclic';
 import ArrivalWave from './ArrivalWave';
 import ArrivalSurge from './ArrivalSurge';
-
-// FIXME: temporary. remove once LOG levels have been moved to a constants file.
-const LOG_WARNING = 2;
+import { LOG } from '../../constants/logLevel';
 
 /**
  * Calls constructor of the appropriate arrival type
@@ -16,7 +14,7 @@ const LOG_WARNING = 2;
  */
 export const ArrivalFactory = function(airport, options) {
     if (options.type === '') {
-        log(airport.icao + ' arrival stream not given type!', LOG_WARNING);
+        log(airport.icao + ' arrival stream not given type!', LOG.WARNING);
         return;
     }
 
@@ -34,7 +32,7 @@ export const ArrivalFactory = function(airport, options) {
             return new ArrivalSurge(airport, options);
             break;
         default:
-            log(airport.icao + ' using unsupported arrival type "'+options.type+'"', LOG_WARNING);
+            log(airport.icao + ' using unsupported arrival type "'+options.type+'"', LOG.WARNING);
             break;
     }
 };

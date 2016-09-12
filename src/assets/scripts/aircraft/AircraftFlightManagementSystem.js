@@ -3,6 +3,7 @@ import Fiber from 'fiber';
 import _clamp from 'lodash/clamp'
 import Waypoint from './Waypoint';
 import Leg from './Leg';
+import { Log } from '../constants/logLevel';
 
 /**
  * Manage current and future aircraft waypoints
@@ -403,7 +404,7 @@ const AircraftFlightManagementSystem = Fiber.extend(function() {
           }
         }
         else {  // neither formatted like "JAN" nor "JAN.V18.MLU"
-          log("Passed invalid route to fms. Unable to create leg from input:" + route[i], LOG_WARNING);
+          log("Passed invalid route to fms. Unable to create leg from input:" + route[i], LOG.WARNING);
           return false;
         }
       }

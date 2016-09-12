@@ -13,6 +13,7 @@ import { ArrivalFactory } from './Arrival/ArrivalFactory';
 import { DepartureFactory } from './Departure/DepartureFactory';
 import { degreesToRadians } from '../utilities/unitConverters';
 import { vlen, vsub } from '../math/vector';
+import { LOG } from '../constants/logLevel';
 
 // TODO: This function should really live in a different file and have tests.
 // what does ra stand for? runway angle? what about n? need better names here.
@@ -235,7 +236,7 @@ const AirportInstance = Fiber.extend(function() {
                             const fixname = fixList[i];
 
                             if (!this.airport.fixes[fixname]) {
-                                log(`SID ${sid} fix not found: ${fixname}`, LOG_WARNING);
+                                log(`SID ${sid} fix not found: ${fixname}`, LOG.WARNING);
                             }
                         }
                     }
@@ -312,7 +313,7 @@ const AirportInstance = Fiber.extend(function() {
             if (data.arrivals) {
                 for (let i = 0; i < data.arrivals.length; i++) {
                     if (!_has(data.arrivals[i], 'type')) {
-                        log(`${this.icao} arrival stream #${i} not given type!`, LOG_WARNING);
+                        log(`${this.icao} arrival stream #${i} not given type!`, LOG.WARNING);
                     } else {
                         this.arrivals.push(ArrivalFactory(this, data.arrivals[i]));
                     }
@@ -821,7 +822,7 @@ const AirportInstance = Fiber.extend(function() {
 
             // there are some... yell at the airport designer!!! :)
             if (missing.length > 0) {
-                log(`${this.icao} uses the following fixes which are not listed in ${airport.fixes}: ${missing.join(' ')}`, LOG_WARNING);
+                log(`${this.icao} uses the following fixes which are not listed in ${airport.fixes}: ${missing.join(' ')}`, LOG.WARNING);
             }
         }
     };

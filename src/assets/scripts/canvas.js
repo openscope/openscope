@@ -4,6 +4,7 @@ import _clamp from 'lodash/clamp'
 import { km, degreesToRadians } from './utilities/unitConverters';
 import { time } from './utilities/timeHelpers';
 import { distance2d } from './math/distance';
+import { LOG } from './constants/logLevel';
 
 window.canvas_init_pre = function canvas_init_pre() {
   'use strict';
@@ -285,7 +286,7 @@ function canvas_draw_sids(cc) {
             write_sid_name = false;
           }
           var fix = airport.getFix(fixList[j].replace("*",""));
-          if(!fix) log('Unable to draw line to "'+fixList[j]+'" because its position is not defined!', LOG_WARNING);
+          if(!fix) log('Unable to draw line to "'+fixList[j]+'" because its position is not defined!', LOG.WARNING);
           fx = km_to_px(fix[0]) + prop.canvas.panX;
           fy = -km_to_px(fix[1]) + prop.canvas.panY;
           if(j === 0) {
