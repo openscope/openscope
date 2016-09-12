@@ -11,7 +11,7 @@ import _uniq from 'lodash/uniq';
 import Runway from './Runway';
 import { ArrivalFactory } from './Arrival/ArrivalFactory';
 import { DepartureFactory } from './Departure/DepartureFactory';
-import { degreesToRadians } from '../utilities/unitConverters';
+import { km, degreesToRadians } from '../utilities/unitConverters';
 import { vlen, vsub } from '../math/vector';
 import { LOG } from '../constants/logLevel';
 
@@ -267,11 +267,11 @@ const AirportInstance = Fiber.extend(function() {
             }
 
             if (data.restricted) {
-                // TOD: need better name than `r`.
-                const r = data.restricted,
+                // TODO: need better name than `r`.
+                const r = data.restricted;
                 // FIXME: this is a big no no. This makes me think there are scoping issues here. with es2015 that
                 // shouldnt be as much of a problem now.
-                self = this;
+                const self = this;
 
                 for (const i in r) {
                     // TODO: what is `obj` going to be? need better name.

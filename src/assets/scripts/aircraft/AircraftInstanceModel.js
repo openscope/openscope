@@ -1,6 +1,9 @@
 import $ from 'jquery';
 import Fiber from 'fiber';
 import _clamp from 'lodash/clamp'
+import AircraftFlightManagementSystem from './AircraftFlightManagementSystem';
+import Waypoint from './Waypoint';
+
 import { distance2d } from '../math/distance';
 import { vlen, vradial, vsub } from '../math/vector';
 import { radiansToDegrees, degreesToRadians } from '../utilities/unitConverters';
@@ -101,7 +104,7 @@ const Aircraft = Fiber.extend(function() {
 
 
       // Initialize the FMS
-      this.fms = new zlsa.atc.AircraftFlightManagementSystem({
+      this.fms = new AircraftFlightManagementSystem({
         aircraft: this, model:options.model
       });
 
@@ -464,7 +467,7 @@ const Aircraft = Fiber.extend(function() {
       }
       else if(['hold'].indexOf(wp.navmode) > -1) {  // in hold. Should leave the hold, and add leg for vectors
         var index = this.fms.current[0] + 1;
-        this.fms.insertLeg({firstIndex:index, waypoints:[new zlsa.atc.Waypoint({  // add new Leg after hold leg
+        this.fms.insertLeg({firstIndex:index, waypoints:[new Waypoint({  // add new Leg after hold leg
           altitude: wp.altitude,
           navmode: "heading",
           heading: degreesToRadians(heading),
@@ -476,7 +479,7 @@ const Aircraft = Fiber.extend(function() {
       }
       else if(f.sid || f.star || f.awy) {
         leg.waypoints.splice(this.fms.current[1] , 0, // insert wp with heading at current position within the already active leg
-          new zlsa.atc.Waypoint({
+          new Waypoint({
             altitude: wp.altitude,
             navmode: "heading",
             heading: degreesToRadians(heading),
@@ -488,7 +491,7 @@ const Aircraft = Fiber.extend(function() {
       }
       else if(leg.route != "[radar vectors]") { // needs new leg added
         if(this.fms.atLastWaypoint()) {
-          this.fms.appendLeg({waypoints:[new zlsa.atc.Waypoint({
+          this.fms.appendLeg({waypoints:[new Waypoint({
             altitude: wp.altitude,
             navmode: "heading",
             heading: degreesToRadians(heading),
@@ -499,7 +502,7 @@ const Aircraft = Fiber.extend(function() {
           this.fms.nextLeg();
         }
         else {
-          this.fms.insertLegHere({waypoints:[new zlsa.atc.Waypoint({
+          this.fms.insertLegHere({waypoints:[new Waypoint({
             altitude: wp.altitude,
             navmode: "heading",
             heading: degreesToRadians(heading),
@@ -627,12 +630,12 @@ const Aircraft = Fiber.extend(function() {
         var inboundHdg = vradial(vsub(this.position, holdFixLocation));
         if(holdFix != this.fms.currentWaypoint().fix) {  // not yet headed to the hold fix
           this.fms.insertLegHere({type:"fix", route: "[GPS/RNAV]", waypoints:[
-            new zlsa.atc.Waypoint({ // proceed direct to holding fix
+            new Waypoint({ // proceed direct to holding fix
               fix: holdFix,
               altitude: this.fms.currentWaypoint().altitude,
               speed: this.fms.currentWaypoint().speed
             },this.fms),
-            new zlsa.atc.Waypoint({ // then enter the hold
+            new Waypoint({ // then enter the hold
               navmode:"hold",
               speed: this.fms.currentWaypoint().speed,
               altitude: this.fms.currentWaypoint().altitude,

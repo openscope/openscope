@@ -6,6 +6,7 @@
     },
     "rules": {
         "arrow-body-style": 0,
+        "camelcase": [0, { "properties": "never" }],
         "comma-dangle": [2, "never"],
         "no-did-mount-set-state": [0, "never"],
         "indent": [1, 4, {"SwitchCase": 1}],
