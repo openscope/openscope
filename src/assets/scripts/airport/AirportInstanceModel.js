@@ -11,7 +11,7 @@ import _uniq from 'lodash/uniq';
 import Runway from './Runway';
 import { ArrivalFactory } from './Arrival/ArrivalFactory';
 import { DepartureFactory } from './Departure/DepartureFactory';
-import { km, degreesToRadians } from '../utilities/unitConverters';
+import { degreesToRadians } from '../utilities/unitConverters';
 import { vlen, vsub } from '../math/vector';
 import { LOG } from '../constants/logLevel';
 
