@@ -25542,7 +25542,7 @@ exports.default = Aircraft;
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 
 var _jquery = require('jquery');
@@ -25566,147 +25566,170 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @extends Fiber
  */
 var Model = _fiber2.default.extend(function () {
-  return {
-    init: function init() {
-      var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+    return {
+        init: function init() {
+            var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
 
-      this.loading = true;
-      this.loaded = false;
-      this.priorityLoad = false;
+            this.loading = true;
+            this.loaded = false;
+            this.priorityLoad = false;
 
-      this.name = null;
-      this.icao = null;
+            this.name = null;
+            this.icao = null;
 
-      this.engines = null;
-      this.weightclass = null;
-      this.category = null;
+            this.engines = null;
+            this.weightclass = null;
+            this.category = null;
 
-      this.rate = {
-        turn: 0, // radians per second
-        climb: 0, // feet per second
-        descent: 0,
-        accelerate: 0, // knots per second
-        decelerate: 0
-      };
+            this.rate = {
+                // radians per second
+                turn: 0,
+                // feet per second
+                climb: 0,
+                descent: 0,
+                // knots per second
+                accelerate: 0,
+                decelerate: 0
+            };
 
-      this.runway = {
-        takeoff: 0, // km needed to takeoff
-        landing: 0
-      };
+            this.runway = {
+                // km needed to takeoff
+                takeoff: 0,
+                landing: 0
+            };
 
-      this.speed = {
-        min: 0,
-        max: 0,
-        landing: 0,
-        cruise: 0
-      };
+            this.speed = {
+                min: 0,
+                max: 0,
+                landing: 0,
+                cruise: 0
+            };
 
-      this._pendingAircraft = [];
+            this._pendingAircraft = [];
 
-      this.parse(options);
+            this.parse(options);
 
-      if (options.url) this.load(options.url);
-    },
+            if (options.url) {
+                this.load(options.url);
+            }
+        },
 
-    parse: function parse(data) {
-      if (data.name) this.name = data.name;
-      if (data.icao) this.icao = data.icao;
+        parse: function parse(data) {
+            // TODO: how much of this could happen in the constructor/init methods?
+            if (data.name) this.name = data.name;
+            if (data.icao) this.icao = data.icao;
 
-      if (data.engines) this.engines = data.engines;
-      if (data.weightclass) this.weightclass = data.weightclass;
-      if (data.category) this.category = data.category;
-      if (data.ceiling) this.ceiling = data.ceiling;
-      if (data.rate) {
-        this.rate = data.rate;
-        this.rate.climb = this.rate.climb;
-        this.rate.descent = this.rate.descent;
-      }
+            if (data.engines) this.engines = data.engines;
+            if (data.weightclass) this.weightclass = data.weightclass;
+            if (data.category) this.category = data.category;
+            if (data.ceiling) this.ceiling = data.ceiling;
+            if (data.runway) this.runway = data.runway;
+            if (data.speed) this.speed = data.speed;
+            if (data.rate) {
+                this.rate = data.rate;
+                this.rate.climb = this.rate.climb;
+                this.rate.descent = this.rate.descent;
+            }
+        },
 
-      if (data.runway) this.runway = data.runway;
+        load: function load(url) {
+            this._url = url;
 
-      if (data.speed) this.speed = data.speed;
-    },
-
-    load: function load(url) {
-      this._url = url;
-      zlsa.atc.loadAsset({
-        url: url,
-        immediate: false
-      }).done(function (data) {
-        this.parse(data);
-        this.loading = false;
-        this.loaded = true;
-        this._generatePendingAircraft();
-      }.bind(this)).fail(function (jqXHR, textStatus, errorThrown) {
-        this.loading = false;
-        this._pendingAircraft = [];
-        console.error('Unable to load aircraft/ ' + this.icao + ' : ' + textStatus);
-      }.bind(this));
-    },
-
-    /**
-     * Generate a new aircraft of this model
-     *
-     * Handles the case where this model may be asynchronously loaded
-     */
-    generateAircraft: function generateAircraft(options) {
-      // TODO: prop names of loaded and loading are concerning. there may need to be state machine magiv happening here
-      if (!this.loaded) {
-        if (this.loading) {
-          this._pendingAircraft.push(options);
-
-          if (!this.priorityLoad) {
             zlsa.atc.loadAsset({
-              url: this._url,
-              immediate: true
+                url: url,
+                immediate: false
+            }).done(function (data) {
+                this.parse(data);
+                this.loading = false;
+                this.loaded = true;
+                this._generatePendingAircraft();
+            }.bind(this)).fail(function (jqXHR, textStatus, errorThrown) {
+                this.loading = false;
+                this._pendingAircraft = [];
+
+                console.error('Unable to load aircraft/ ' + this.icao + ' : ' + textStatus);
+            }.bind(this));
+        },
+
+        /**
+         * Generate a new aircraft of this model
+         *
+         * Handles the case where this model may be asynchronously loaded
+         */
+        generateAircraft: function generateAircraft(options) {
+            // TODO: prop names of loaded and loading are concerning. there may need to be state
+            // machine magic happening here that could lead to issues
+            if (!this.loaded) {
+                if (this.loading) {
+                    this._pendingAircraft.push(options);
+
+                    if (!this.priorityLoad) {
+                        zlsa.atc.loadAsset({
+                            url: this._url,
+                            immediate: true
+                        });
+
+                        this.priorityLoad = true;
+                    }
+
+                    return true;
+                }
+
+                console.warn('Unable to spawn aircraft/ ' + options.icao + ' as loading failed');
+                return false;
+            }
+
+            return this._generateAircraft(options);
+        },
+
+        /**
+         * Actual implementation of generateAircraft
+         */
+        _generateAircraft: function _generateAircraft(options) {
+            options.model = this;
+            var aircraft = new _AircraftInstanceModel2.default(options);
+            prop.aircraft.list.push(aircraft);
+
+            console.log('Spawning ' + options.category + ' : ' + aircraft.getCallsign());
+
+            return true;
+        },
+
+        /**
+         * Generate aircraft which were queued while the model loaded
+         */
+        _generatePendingAircraft: function _generatePendingAircraft() {
+            var _this = this;
+
+            // TODO: replace $ with _map()
+            _jquery2.default.each(this._pendingAircraft, function (idx, options) {
+                _this._generateAircraft(options);
             });
-            this.priorityLoad = true;
-          }
-          return true;
-        } else {
-          console.warn('Unable to spawn aircraft/ ' + options.icao + ' as loading failed');
-          return false;
+
+            this._pendingAircraft = null;
         }
-      }
-      return this._generateAircraft(options);
-    },
-
-    /**
-     * Actual implementation of generateAircraft
-     */
-    _generateAircraft: function _generateAircraft(options) {
-      options.model = this;
-      var aircraft = new _AircraftInstanceModel2.default(options);
-      prop.aircraft.list.push(aircraft);
-      console.log('Spawning ' + options.category + ' : ' + aircraft.getCallsign());
-      return true;
-    },
-
-    /**
-     * Generate aircraft which were queued while the model loaded
-     */
-    _generatePendingAircraft: function _generatePendingAircraft() {
-      // TODO: replace $ with _map()
-      _jquery2.default.each(this._pendingAircraft, function (idx, options) {
-        this._generateAircraft(options);
-      }.bind(this));
-      this._pendingAircraft = null;
-    }
-  };
-});
-
+    };
+}); /* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand */
 exports.default = Model;
 
 },{"./AircraftInstanceModel":158,"fiber":1,"jquery":2}],160:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 
 var _fiber = require('fiber');
 
 var _fiber2 = _interopRequireDefault(_fiber);
+
+var _has2 = require('lodash/has');
+
+var _has3 = _interopRequireDefault(_has2);
+
+var _map2 = require('lodash/map');
+
+var _map3 = _interopRequireDefault(_map2);
 
 var _Waypoint = require('./Waypoint');
 
@@ -25716,155 +25739,229 @@ var _logLevel = require('../constants/logLevel');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-/** Build a 'leg' of the route (contains series of waypoints)
- ** @param {object} data = {route: "KSFO.OFFSH9.SXC", // either a fix, or with format 'start.procedure.end', or "[RNAV/GPS]" for custom positions
- **                         type: "sid",              // can be 'sid', 'star', 'iap', 'awy', 'fix'
- **                         firstIndex: 0}            // the position in fms.legs to insert this leg
- */
+// can be 'sid', 'star', 'iap', 'awy', 'fix', '[manual]'
+var LEG_TYPE = {
+    SID: 'sid',
+    STAR: 'star',
+    IAP: 'iap',
+    AWY: 'awy',
+    FIX: 'fix',
+    MANUAL: '[manual]'
+};
+
+/**
+  * Build a 'leg' of the route (contains series of waypoints)
+  * @param {object} data = {route: "KSFO.OFFSH9.SXC", // either a fix, or with format 'start.procedure.end', or "[RNAV/GPS]" for custom positions
+  *                         type: "sid",              // can be 'sid', 'star', 'iap', 'awy', 'fix'
+  *                         firstIndex: 0}            // the position in fms.legs to insert this leg
+  */
 var Leg = _fiber2.default.extend(function (data, fms) {
-  return {
-    /** Initialize leg with empty values, then call the parser
-     */
-    init: function init() {
-      var data = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
-      var fms = arguments[1];
+    return {
+        /**
+         * Initialize leg with empty values, then call the parser
+         */
+        init: function init() {
+            var data = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+            var fms = arguments[1];
 
-      //   if(data === undefined) data = {};
-      this.route = "[radar vectors]"; // eg 'KSFO.OFFSH9.SXC' or 'FAITH'
-      this.type = "[manual]"; // can be 'sid', 'star', 'iap', 'awy', 'fix', '[manual]'
-      this.waypoints = []; // an array of zlsa.atc.Waypoint objects to follow
+            this.route = '[radar vectors]'; // eg 'KSFO.OFFSH9.SXC' or 'FAITH'
+            this.type = LEG_TYPE.MANUAL;
+            this.waypoints = []; // an array of zlsa.atc.Waypoint objects to follow
 
-      // Fill data with default Leg properties if they aren't specified (prevents wp constructor from getting confused)
-      if (!data.route) data.route = this.route;
-      if (!data.type) data.type = this.type;
-      if (!data.waypoints) data.waypoints = this.waypoints;
-
-      this.parse(data, fms);
-    },
-
-    /** Parse input data and apply to this leg
-     */
-    parse: function parse(data, fms) {
-      for (var i in data) {
-        if (this.hasOwnProperty(i)) this[i] = data[i];
-      } // Populate Leg with data
-      if (this.waypoints.length == 0) this.generateWaypoints(data, fms);
-      if (this.waypoints.length == 0) this.waypoints = [new _Waypoint2.default({ route: "" }, fms)];
-    },
-
-    /** Adds zlsa.atc.Waypoint objects to this Leg, based on the route & type
-     */
-    generateWaypoints: function generateWaypoints(data, fms) {
-      if (!this.type) return;else if (this.type == "sid") {
-        if (!fms) {
-          log("Attempted to generate waypoints for SID, but cannot because fms ref not passed!", LOG.WARNING);
-          return;
-        }
-        var apt = data.route.split('.')[0];
-        var sid = data.route.split('.')[1];
-        var exit = data.route.split('.')[2];
-        var rwy = fms.my_aircraft.rwy_dep;
-        this.waypoints = [];
-
-        // Generate the waypoints
-        if (!rwy) {
-          ui_log(true, fms.my_aircraft.getCallsign() + " unable to fly SID, we haven't been assigned a departure runway!");
-          return;
-        }
-        var pairs = airport_get(apt).getSID(sid, exit, rwy);
-        // Remove the placeholder leg (if present)
-        if (fms.my_aircraft.isLanded() && fms.legs.length > 0 && fms.legs[0].route == airport_get().icao && pairs.length > 0) {
-          fms.legs.splice(0, 1); // remove the placeholder leg, to be replaced below with SID Leg
-        }
-        for (var i = 0; i < pairs.length; i++) {
-          // for each fix/restr pair
-          var f = pairs[i][0];
-          var a = null,
-              s = null;
-          if (pairs[i][1]) {
-            var a_n_s = pairs[i][1].toUpperCase().split("|");
-            for (var j in a_n_s) {
-              if (a_n_s[j][0] == "A") a = a_n_s[j].substr(1);else if (a_n_s[j][0] == "S") s = a_n_s[j].substr(1);
+            // Fill data with default Leg properties if they aren't specified (prevents wp constructor from getting confused)
+            if (!data.route) {
+                data.route = this.route;
             }
-          }
-          this.waypoints.push(new _Waypoint2.default({ fix: f, fixRestrictions: { alt: a, spd: s } }, fms));
-        }
-        if (!this.waypoints[0].speed) this.waypoints[0].speed = fms.my_aircraft.model.speed.cruise;
-      } else if (this.type == "star") {
-        if (!fms) {
-          log("Attempted to generate waypoints for STAR, but cannot because fms ref not passed!", LOG.WARNING);
-          return;
-        }
-        var entry = data.route.split('.')[0];
-        var star = data.route.split('.')[1];
-        var apt = data.route.split('.')[2];
-        var rwy = fms.my_aircraft.rwy_arr;
-        this.waypoints = [];
 
-        // Generate the waypoints
-        var pairs = airport_get(apt).getSTAR(star, entry, rwy);
-        for (var i = 0; i < pairs.length; i++) {
-          // for each fix/restr pair
-          var f = pairs[i][0];
-          var a = null,
-              s = null;
-          if (pairs[i][1]) {
-            var a_n_s = pairs[i][1].toUpperCase().split("|");
-            for (var j in a_n_s) {
-              if (a_n_s[j][0] == "A") a = a_n_s[j].substr(1);else if (a_n_s[j][0] == "S") s = a_n_s[j].substr(1);
+            if (!data.type) {
+                data.type = this.type;
             }
-          }
-          this.waypoints.push(new _Waypoint2.default({ fix: f, fixRestrictions: { alt: a, spd: s } }, fms));
-        }
-        if (!this.waypoints[0].speed) this.waypoints[0].speed = fms.my_aircraft.model.speed.cruise;
-      } else if (this.type == "iap") {
-        // FUTURE FUNCTIONALITY
-      } else if (this.type == "awy") {
-        var start = data.route.split('.')[0];
-        var airway = data.route.split('.')[1];
-        var end = data.route.split('.')[2];
 
-        // Verify airway is valid
-        var apt = airport_get();
-        if (!apt.hasOwnProperty("airways") || !apt.airways.hasOwnProperty(airway)) {
-          log("Airway " + airway + " not defined at " + apt.icao, LOG.WARNING);
-          return;
-        }
+            if (!data.waypoints) {
+                data.waypoints = this.waypoints;
+            }
 
-        // Verify start/end points are along airway
-        var awy = apt.airways[airway];
-        if (!(awy.indexOf(start) != -1 && awy.indexOf(end) != -1)) {
-          log("Unable to follow " + airway + " from " + start + " to " + end, LOG.WARNING);
-          return;
-        }
+            this.parse(data, fms);
+        },
 
-        // Build list of fixes, depending on direction traveling along airway
-        var fixes = [],
-            readFwd = awy.indexOf(end) > awy.indexOf(start);
-        if (readFwd) for (var f = awy.indexOf(start); f <= awy.indexOf(end); f++) {
-          fixes.push(awy[f]);
-        } else for (var f = awy.indexOf(start); f >= awy.indexOf(end); f--) {
-          fixes.push(awy[f]);
-        } // Add list of fixes to this.waypoints
-        this.waypoints = [];
-        this.waypoints = $.map(fixes, function (f) {
-          return new _Waypoint2.default({ fix: f }, fms);
-        });
-      } else if (this.type == "fix") {
-        this.waypoints = [];
-        this.waypoints.push(new _Waypoint2.default({ fix: data.route }, fms));
-      } else this.waypoints.push(new _Waypoint2.default(data, fms));
-    }
-  };
+        /**
+         * Parse input data and apply to this leg
+         */
+        parse: function parse(data, fms) {
+            for (var i in data) {
+                if (this.hasOwnProperty(i)) this[i] = data[i];
+            } // Populate Leg with data
+            if (this.waypoints.length === 0) this.generateWaypoints(data, fms);
+            if (this.waypoints.length === 0) this.waypoints = [new _Waypoint2.default({ route: '' }, fms)];
+        },
+
+        /**
+         * Adds Waypoint objects to this Leg, based on the route & type
+         */
+        generateWaypoints: function generateWaypoints(data, fms) {
+            if (!this.type) {
+                return;
+            }
+
+            if (this.type === LEG_TYPE.SID) {
+                if (!fms) {
+                    log('Attempted to generate waypoints for SID, but cannot because fms ref not passed!', _logLevel.LOG.WARNING);
+
+                    return;
+                }
+
+                var apt = data.route.split('.')[0];
+                var sid = data.route.split('.')[1];
+                var exit = data.route.split('.')[2];
+                var rwy = fms.my_aircraft.rwy_dep;
+                this.waypoints = [];
+
+                // Generate the waypoints
+                if (!rwy) {
+                    ui_log(true, fms.my_aircraft.getCallsign() + ' unable to fly SID, we haven\'t been assigned a departure runway!');
+                    return;
+                }
+
+                var pairs = airport_get(apt).getSID(sid, exit, rwy);
+
+                // Remove the placeholder leg (if present)
+                if (fms.my_aircraft.isLanded() && fms.legs.length > 0 && fms.legs[0].route === airport_get().icao && pairs.length > 0) {
+                    // remove the placeholder leg, to be replaced below with SID Leg
+                    fms.legs.splice(0, 1);
+                }
+
+                // for each fix/restr pair
+                for (var i = 0; i < pairs.length; i++) {
+                    var f = pairs[i][0];
+                    var a = null;
+                    var s = null;
+
+                    if (pairs[i][1]) {
+                        var a_n_s = pairs[i][1].toUpperCase().split('|');
+
+                        for (var j in a_n_s) {
+                            if (a_n_s[j][0] === 'A') {
+                                a = a_n_s[j].substr(1);
+                            } else if (a_n_s[j][0] === 'S') {
+                                s = a_n_s[j].substr(1);
+                            }
+                        }
+                    }
+
+                    this.waypoints.push(new _Waypoint2.default({
+                        fix: f,
+                        fixRestrictions: {
+                            alt: a,
+                            spd: s
+                        }
+                    }, fms));
+                }
+
+                if (!this.waypoints[0].speed) {
+                    this.waypoints[0].speed = fms.my_aircraft.model.speed.cruise;
+                }
+            } else if (this.type === LEG_TYPE.STAR) {
+                if (!fms) {
+                    log('Attempted to generate waypoints for STAR, but cannot because fms ref not passed!', _logLevel.LOG.WARNING);
+
+                    return;
+                }
+
+                var entry = data.route.split('.')[0];
+                var star = data.route.split('.')[1];
+                var apt = data.route.split('.')[2];
+                var rwy = fms.my_aircraft.rwy_arr;
+                this.waypoints = [];
+
+                // Generate the waypoints
+                var pairs = airport_get(apt).getSTAR(star, entry, rwy);
+
+                // for each fix/restr pair
+                for (var _i = 0; _i < pairs.length; _i++) {
+                    var f = pairs[_i][0];
+                    var a = null;
+                    var s = null;
+
+                    if (pairs[_i][1]) {
+                        var a_n_s = pairs[_i][1].toUpperCase().split('|');
+                        for (var _j in a_n_s) {
+                            if (a_n_s[_j][0] === 'A') {
+                                a = a_n_s[_j].substr(1);
+                            } else if (a_n_s[_j][0] === 'S') {
+                                s = a_n_s[_j].substr(1);
+                            }
+                        }
+                    }
+
+                    this.waypoints.push(new _Waypoint2.default({
+                        fix: f,
+                        fixRestrictions: {
+                            alt: a,
+                            spd: s
+                        }
+                    }, fms));
+                }
+
+                if (!this.waypoints[0].speed) {
+                    this.waypoints[0].speed = fms.my_aircraft.model.speed.cruise;
+                }
+            } else if (this.type === LEG_TYPE.IAP) {
+                // FUTURE FUNCTIONALITY
+            } else if (this.type === LEG_TYPE.AWY) {
+                var start = data.route.split('.')[0];
+                var airway = data.route.split('.')[1];
+                var end = data.route.split('.')[2];
+                // Verify airway is valid
+                var apt = airport_get();
+
+                if (!(0, _has3.default)(apt, 'airways') || !(0, _has3.default)(apt.airways, 'airway')) {
+                    log('Airway ' + airway + ' not defined at ' + apt.icao, _logLevel.LOG.WARNING);
+                    return;
+                }
+
+                // Verify start/end points are along airway
+                var awy = apt.airways[airway];
+                if (!(awy.indexOf(start) !== -1 && awy.indexOf(end) !== -1)) {
+                    log('Unable to follow ' + airway + ' from ' + start + ' to ' + end, _logLevel.LOG.WARNING);
+                    return;
+                }
+
+                // Build list of fixes, depending on direction traveling along airway
+                var fixes = [];
+                var readFwd = awy.indexOf(end) > awy.indexOf(start);
+
+                if (readFwd) {
+                    for (var _f = awy.indexOf(start); _f <= awy.indexOf(end); _f++) {
+                        fixes.push(awy[_f]);
+                    }
+                } else {
+                    for (var _f2 = awy.indexOf(start); _f2 >= awy.indexOf(end); _f2--) {
+                        fixes.push(awy[_f2]);
+                    }
+                }
+
+                // Add list of fixes to this.waypoints
+                this.waypoints = [];
+                this.waypoints = (0, _map3.default)(fixes, function (f) {
+                    return new _Waypoint2.default({ fix: f }, fms);
+                });
+            } else if (this.type === LEG_TYPE.FIX) {
+                this.waypoints = [];
+                this.waypoints.push(new _Waypoint2.default({ fix: data.route }, fms));
+            } else {
+                this.waypoints.push(new _Waypoint2.default(data, fms));
+            }
+        }
+    };
 });
 
 exports.default = Leg;
 
-},{"../constants/logLevel":179,"./Waypoint":161,"fiber":1}],161:[function(require,module,exports){
+},{"../constants/logLevel":179,"./Waypoint":161,"fiber":1,"lodash/has":112,"lodash/map":131}],161:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 
 var _fiber = require('fiber');
@@ -25874,7 +25971,7 @@ var _fiber2 = _interopRequireDefault(_fiber);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
- * Build a waypoint object
+  * Build a waypoint object
   * Note that .prependLeg() or .appendLeg() or .insertLeg()
   * should be called in order to add waypoints to the fms, based on which
   * you want. This function serves only to build the waypoint object; it is
@@ -25882,64 +25979,72 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
   *
   * @class Waypoint
   * @extends Fiber
- */
+  */
 var Waypoint = _fiber2.default.extend(function (data, fms) {
-  return {
-    /**
-     * Initialize Waypoint with empty values, then call the parser
-     */
-    init: function init() {
-      var data = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
-      var fms = arguments[1];
+    return {
+        /**
+         * Initialize Waypoint with empty values, then call the parser
+         */
+        init: function init() {
+            var data = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+            var fms = arguments[1];
 
-      this.altitude = null;
-      this.fix = null;
-      this.navmode = null;
-      this.heading = null;
-      this.turn = null;
-      this.location = null;
-      this.expedite = false;
-      this.speed = null;
-      this.hold = {
-        dirTurns: null,
-        fixName: null,
-        fixPos: null,
-        inboundHdg: null,
-        legLength: null,
-        timer: 0
-      };
-      this.fixRestrictions = {
-        alt: null,
-        spd: null
-      };
-      this.parse(data, fms);
-    },
+            this.altitude = null;
+            this.fix = null;
+            this.navmode = null;
+            this.heading = null;
+            this.turn = null;
+            this.location = null;
+            this.expedite = false;
+            this.speed = null;
+            this.hold = {
+                dirTurns: null,
+                fixName: null,
+                fixPos: null,
+                inboundHd: null,
+                legLength: null,
+                timer: 0
+            };
+            this.fixRestrictions = {
+                alt: null,
+                spd: null
+            };
 
-    /**
-     * Parse input data and apply to this waypoint
-     */
-    parse: function parse(data, fms) {
-      // Populate Waypoint with data
-      if (data.fix) {
-        this.navmode = 'fix';
-        this.fix = data.fix;
-        this.location = airport_get().getFix(data.fix);
-      }
-      for (var f in data) {
-        if (this.hasOwnProperty(f)) this[f] = data[f];
-      }
-      if (!this.navmode) {
-        // for aircraft that don't yet have proper guidance (eg SID/STAR, for example)
-        this.navmode = 'heading';
-        var apt = airport_get();
-        if (data.route.split('.')[0] === apt.icao && this.heading === null) {
-          this.heading = apt.getRunway(apt.runway).angle; // aim departure along runway heading
-        } else if (data.route.split('.')[0] === 'KDBG' && this.heading === null) {
-          this.heading = this.radial + Math.PI; // aim arrival @ middle of airspace
+            this.parse(data, fms);
+        },
+
+        /**
+         * Parse input data and apply to this waypoint
+         */
+        parse: function parse(data, fms) {
+            // Populate Waypoint with data
+            if (data.fix) {
+                this.navmode = 'fix';
+                this.fix = data.fix;
+                this.location = airport_get().getFix(data.fix);
+            }
+
+            for (var f in data) {
+                if (this.hasOwnProperty(f)) {
+                    this[f] = data[f];
+                }
+            }
+
+            // for aircraft that don't yet have proper guidance (eg SID/STAR, for example)
+            if (!this.navmode) {
+                this.navmode = 'heading';
+                var apt = airport_get();
+
+                if (data.route.split('.')[0] === apt.icao && this.heading === null) {
+                    // aim departure along runway heading
+                    this.heading = apt.getRunway(apt.runway).angle;
+                } else if (data.route.split('.')[0] === 'KDBG' && this.heading === null) {
+                    // aim arrival @ middle of airspace
+                    this.heading = this.radial + Math.PI;
+                }
+            }
         }
-      }
-    }
-  };
+    };
 });
 
 exports.default = Waypoint;

@@ -20,7 +20,7 @@
   /**
    * Simple container for a given piece of content
    */
-  var Content = Fiber.extend(function (base) {
+  var Content = Fiber.extend(function(base) {
     return {
       init: function(options) {
         this.url = options.url;
