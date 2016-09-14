@@ -178,20 +178,23 @@ window.choose_weight = function choose_weight(l) {
         return;
     }
 
-    if (typeof l[0] !== typeof []) {
-        return choose(l);
-    }
+    // FIXME: this is not checking if l is an array. assuming `l[0]` is and array,
+    // `typeof l[0]` will return 'object'
+    // `typeof []` will always return 'object'
+    // if this was ment to check if `l[0]` is an array, `Array.isArray(l[0])` is one way to do it.
+    // or lodash _isArray(l[0]) would work too.
+    if (typeof l[0] != typeof []) return choose(l);
 
     // l = [[item, weight], [item, weight] ... ];
-    let weight = 0;
+    let weight  = 0;
     for (let i = 0; i < l.length; i++) {
-        weight += l[i][1];
+      weight += l[i][1];
     }
 
+    let random = Math.random() * weight;
     weight = 0;
 
-    for (let i = 0; i <l.length; i++) {
-        var random = Math.random() * weight;
+    for (let i = 0; i < l.length; i++) {
         weight += l[i][1];
 
         if (weight > random) {
@@ -199,9 +202,8 @@ window.choose_weight = function choose_weight(l) {
         }
     }
 
-    console.log('OHSHIT');
-
-    return null;
+    console.log("OHSHIT");
+    return(null);;
 }
 
 window.mod = function mod(a, b) {
