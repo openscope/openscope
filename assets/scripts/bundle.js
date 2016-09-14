@@ -22206,7 +22206,7 @@ var AircraftConflict = _fiber2.default.extend(function () {
 
 exports.default = AircraftConflict;
 
-},{"../math/vector":187,"../utilities/unitConverters":195,"fiber":1}],157:[function(require,module,exports){
+},{"../math/vector":189,"../utilities/unitConverters":197,"fiber":1}],157:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -23227,16 +23227,6 @@ var WAYPOINT_NAV_MADE = {
     HOLD: 'hold',
     RWY: 'rwy'
 };
-
-// css classnames
-// const CLASSNAMES = {
-//     ALL_SET: 'allSet',
-//     FOLLOWING_STAR: 'followingSTAR',
-//     HOLD: 'hold',
-//     RUNWAY: 'runway',
-//     LOOKGIN_GOOD: 'lookingGood'
-//
-// };
 
 /**
  * Each simulated aircraft in the game. Contains a model, fms, and conflicts.
@@ -25538,7 +25528,7 @@ var Aircraft = _fiber2.default.extend(function () {
 
 exports.default = Aircraft;
 
-},{"../math/circle":184,"../math/distance":185,"../math/vector":187,"../utilities/unitConverters":195,"./AircraftFlightManagementSystem":157,"./Waypoint":161,"fiber":1,"jquery":2,"lodash/clamp":107,"lodash/has":112,"lodash/isNaN":123,"lodash/map":131}],159:[function(require,module,exports){
+},{"../math/circle":186,"../math/distance":187,"../math/vector":189,"../utilities/unitConverters":197,"./AircraftFlightManagementSystem":157,"./Waypoint":161,"fiber":1,"jquery":2,"lodash/clamp":107,"lodash/has":112,"lodash/isNaN":123,"lodash/map":131}],159:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26438,7 +26428,7 @@ window.aircraft_get_by_callsign = aircraft_get_by_callsign;
 window.aircraft_get_eid_by_callsign = aircraft_get_eid_by_callsign;
 window.aircraft_model_get = aircraft_model_get;
 
-},{"../math/circle":184,"../math/distance":185,"../math/flightMath":186,"../math/vector":187,"../utilities/unitConverters":195,"./AircraftConflict":156,"./AircraftFlightManagementSystem":157,"./AircraftModel":159}],163:[function(require,module,exports){
+},{"../math/circle":186,"../math/distance":187,"../math/flightMath":188,"../math/vector":189,"../utilities/unitConverters":197,"./AircraftConflict":156,"./AircraftFlightManagementSystem":157,"./AircraftModel":159}],163:[function(require,module,exports){
 'use strict';
 
 var _fiber = require('fiber');
@@ -26570,7 +26560,6 @@ var Airline = _fiber2.default.extend(function () {
 
             // TODO: this try/catch block could be improved. its hard to tell what his block is actually doing.
             try {
-                console.log(fleet);
                 return choose_weight(this.fleets[fleet.toLowerCase()]);
             } catch (error) {
                 console.log('Unable to find fleet ' + fleet + ' for airline ' + this.icao);
@@ -27577,7 +27566,7 @@ var AirportInstance = _fiber2.default.extend(function () {
 
 exports.default = AirportInstance;
 
-},{"../constants/logLevel":179,"../math/vector":187,"../utilities/unitConverters":195,"./Arrival/ArrivalFactory":167,"./Departure/DepartureFactory":172,"./Runway":174,"fiber":1,"jquery":2,"lodash/forEach":109,"lodash/forIn":110,"lodash/has":112,"lodash/isEmpty":120,"lodash/map":131,"lodash/uniq":138}],165:[function(require,module,exports){
+},{"../constants/logLevel":179,"../math/vector":189,"../utilities/unitConverters":197,"./Arrival/ArrivalFactory":167,"./Departure/DepartureFactory":172,"./Runway":174,"fiber":1,"jquery":2,"lodash/forEach":109,"lodash/forIn":110,"lodash/has":112,"lodash/isEmpty":120,"lodash/map":131,"lodash/uniq":138}],165:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -27893,7 +27882,7 @@ var ArrivalBase = _fiber2.default.extend(function (base) {
 }); /* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand */
 exports.default = ArrivalBase;
 
-},{"../../constants/logLevel":179,"../../math/distance":185,"../../math/vector":187,"../../utilities/unitConverters":195,"fiber":1,"jquery":2,"lodash/has":112}],166:[function(require,module,exports){
+},{"../../constants/logLevel":179,"../../math/distance":187,"../../math/vector":189,"../../utilities/unitConverters":197,"fiber":1,"jquery":2,"lodash/has":112}],166:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -28309,7 +28298,7 @@ var ArrivalWave = _ArrivalBase2.default.extend(function (base) {
 
 exports.default = ArrivalWave;
 
-},{"../../constants/logLevel":179,"../../math/circle":184,"./ArrivalBase":165,"jquery":2}],170:[function(require,module,exports){
+},{"../../constants/logLevel":179,"../../math/circle":186,"./ArrivalBase":165,"jquery":2}],170:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -28509,7 +28498,7 @@ var DepartureCyclic = _DepartureBase2.default.extend(function (base) {
 
 exports.default = DepartureCyclic;
 
-},{"../../math/circle":184,"./DepartureBase":170}],172:[function(require,module,exports){
+},{"../../math/circle":186,"./DepartureBase":170}],172:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -28767,7 +28756,7 @@ var Runway = _fiber2.default.extend(function (base) {
 }); /* eslint-disable no-multi-spaces, func-names, camelcase, no-undef, max-len, object-shorthand */
 exports.default = Runway;
 
-},{"../math/vector":187,"../utilities/unitConverters":195,"fiber":1}],175:[function(require,module,exports){
+},{"../math/vector":189,"../utilities/unitConverters":197,"fiber":1}],175:[function(require,module,exports){
 'use strict';
 
 var _AirportInstanceModel = require('./AirportInstanceModel');
@@ -29025,7 +29014,7 @@ var Animation = function Animation(options) {
 
 window.Animation = Animation;
 
-},{"./utilities/timeHelpers":194}],177:[function(require,module,exports){
+},{"./utilities/timeHelpers":196}],177:[function(require,module,exports){
 'use strict';
 
 var _fiber = require('fiber');
@@ -29047,6 +29036,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //   y - Offset from reference position in km
 //   position - Array containing the x,y pair
 //
+/* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand, no-undef */
 var Position = _fiber2.default.extend(function () {
   return {
     // coordinates - Array containing offset pair or latitude/longitude pair
@@ -29208,7 +29198,7 @@ var Area = _fiber2.default.extend(function () {
 window.Position = Position;
 window.Area = Area;
 
-},{"./utilities/unitConverters":195,"fiber":1}],178:[function(require,module,exports){
+},{"./utilities/unitConverters":197,"fiber":1}],178:[function(require,module,exports){
 'use strict';
 
 var _clamp2 = require('lodash/clamp');
@@ -30410,7 +30400,7 @@ function canvas_draw_directions(cc) {
   cc.restore();
 }
 
-},{"./constants/logLevel":179,"./math/circle":184,"./math/distance":185,"./utilities/timeHelpers":194,"./utilities/unitConverters":195,"lodash/clamp":107}],179:[function(require,module,exports){
+},{"./constants/logLevel":179,"./math/circle":186,"./math/distance":187,"./utilities/timeHelpers":196,"./utilities/unitConverters":197,"lodash/clamp":107}],179:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -30432,262 +30422,406 @@ var LOG = exports.LOG = {
 },{}],180:[function(require,module,exports){
 'use strict';
 
-zlsa.atc.Options = Fiber.extend(function (base) {
-  return {
-    init: function init() {
-      this._options = {};
-      this.addOption({
-        name: 'controlMethod',
-        defaultValue: 'classic',
-        description: 'Control Method',
-        type: 'select',
-        data: [['Classic', 'classic'], ['Arrow Keys', 'arrows']]
-      });
-      this.addOption({
-        name: 'drawProjectedPaths',
-        defaultValue: 'selected',
-        description: 'Draw aircraft projected path',
-        type: 'select',
-        data: [['Always', 'always'], ['Selected', 'selected'], ['Never', 'never']]
-      });
-      this.addOption({
-        name: 'simplifySpeeds',
-        defaultValue: 'yes',
-        description: 'Use simplified airspeeds',
-        help: 'Controls use of a simplified calculation which results in' + ' aircraft always moving across the ground at the speed assigned.' + ' In reality aircraft will move faster as they increase altitude.',
-        type: 'select',
-        data: [['Yes', 'yes'], ['No', 'no']]
-      });
-      this.addOption({
-        name: 'softCeiling',
-        defaultValue: 'no',
-        description: 'Allow departures via climb',
-        help: 'Normally aircraft depart the airspace by flying beyond' + ' the horizontal bounds.  If set to yes, aircraft may also' + ' depart the airspace by climbing above it.',
-        type: 'select',
-        data: [['Yes', 'yes'], ['No', 'no']]
-      });
-    },
-    addOption: function addOption(data) {
-      this._options[data.name] = data;
-      if ('zlsa.atc.option.' + data.name in localStorage) this[data.name] = localStorage['zlsa.atc.option.' + data.name];else this[data.name] = data.defaultValue;
-    },
-    getDescriptions: function getDescriptions() {
-      return this._options;
-    },
-    get: function get(name) {
-      return this[name];
-    },
-    set: function set(name, value) {
-      localStorage['zlsa.atc.option.' + name] = value;
-      this[name] = value;
-      return value;
-    }
-  };
+Object.defineProperty(exports, "__esModule", {
+    value: true
 });
+/**
+ * @property CLASSNAMES
+ * @type {Object}
+ * @final
+ */
+var CLASSNAMES = exports.CLASSNAMES = {
+    // for game interactions
+    ACTIVE: 'active',
+    PAUSED: 'paused',
+    FAST_FORWARDS: 'fast-forwards',
+    PAUSE_TOGGLE: 'pause-toggle',
+    SPEED_2: 'speed-2',
+    SPEED_5: 'speed-5',
+    NAGATIVE: 'negative',
 
-window.game_init_pre = function game_init_pre() {
-  prop.game = {};
+    // AircraftInstanceModel
+    ALL_SET: 'allSet',
+    FOLLOWING_STAR: 'followingSTAR',
+    HOLD: 'hold',
+    RUNWAY: 'runway',
+    LOOKING_GOOD: 'lookingGood'
 
-  prop.game.paused = true;
-  prop.game.focused = true;
-
-  prop.game.speedup = 1;
-
-  prop.game.frequency = 1;
-
-  prop.game.time = 0;
-  prop.game.delta = 0;
-
-  prop.game.timeouts = [];
-
-  $(window).blur(function () {
-    prop.game.focused = false;
-  });
-
-  $(window).focus(function () {
-    prop.game.focused = true;
-  });
-
-  prop.game.last_score = 0;
-  prop.game.score = {
-    arrival: 0,
-    departure: 0,
-
-    windy_landing: 0,
-    windy_takeoff: 0,
-
-    failed_arrival: 0,
-    failed_departure: 0,
-
-    warning: 0,
-    hit: 0,
-
-    abort: {
-      landing: 0,
-      taxi: 0
-    },
-
-    violation: 0,
-    restrictions: 0
-  };
-
-  prop.game.option = new zlsa.atc.Options();
 };
 
-window.game_get_score = function game_get_score() {
-  var score = 0;
-  score += prop.game.score.arrival * 10;
-  score += prop.game.score.departure * 10;
+/**
+ * @property SELECTOR_IDS
+ * @type {Object}
+ * @final
+ */
+var IDS = exports.IDS = {
+    SCORE: '#score'
 
-  score -= prop.game.score.windy_landing * 0.5;
-  score -= prop.game.score.windy_takeoff * 0.5;
-
-  score -= prop.game.score.failed_arrival * 20;
-  score -= prop.game.score.failed_departure * 2;
-
-  score -= prop.game.score.warning * 5;
-  score -= prop.game.score.hit * 50;
-
-  score -= prop.game.score.abort.landing * 5;
-  score -= prop.game.score.abort.taxi * 2;
-
-  score -= prop.game.score.violation;
-  score -= prop.game.score.restrictions * 10;
-
-  return score;
 };
 
-window.game_get_weighted_score = function game_get_weighted_score() {
-  var score = game_get_score();
-  score = score / (game_time() / 60);
-  score *= 500;
-  return score;
-};
-
-window.game_reset_score = function game_reset_score() {
-  prop.game.score.abort = { "landing": 0, "taxi": 0 };
-  prop.game.score.arrival = 0;
-  prop.game.score.departure = 0;
-  prop.game.score.failed_arrival = 0;
-  prop.game.score.failed_departure = 0;
-  prop.game.score.hit = 0;
-  prop.game.score.restrictions = 0;
-  prop.game.score.violation = 0;
-  prop.game.score.warning = 0;
-  prop.game.score.windy_landing = 0;
-  prop.game.score.windy_takeoff = 0;
-};
-
-window.game_timewarp_toggle = function game_timewarp_toggle() {
-  if (prop.game.speedup == 5) {
-    prop.game.speedup = 1;
-    $(".fast-forwards").removeClass("speed-5");
-    $(".fast-forwards").prop("title", "Set time warp to 2");
-  } else if (prop.game.speedup == 1) {
-    prop.game.speedup = 2;
-    $(".fast-forwards").addClass("speed-2");
-    $(".fast-forwards").prop("title", "Set time warp to 5");
-  } else {
-    prop.game.speedup = 5;
-    $(".fast-forwards").removeClass("speed-2");
-    $(".fast-forwards").addClass("speed-5");
-    $(".fast-forwards").prop("title", "Reset time warp");
-  }
-};
-
-window.game_pause = function game_pause() {
-  prop.game.paused = true;
-  $(".pause-toggle").addClass("active");
-  $(".pause-toggle").attr("title", "Resume simulation");
-  $("html").addClass("paused");
-};
-
-window.game_unpause = function game_unpause() {
-  prop.game.paused = false;
-  $(".pause-toggle").removeClass("active");
-  $(".pause-toggle").attr("title", "Pause simulation");
-  $("html").removeClass("paused");
-};
-
-window.game_pause_toggle = function game_pause_toggle() {
-  if (prop.game.paused) {
-    game_unpause();
-  } else {
-    game_pause();
-  }
-};
-
-window.game_paused = function game_paused() {
-  return !prop.game.focused || prop.game.paused;
-};
-
-window.game_time = function game_time() {
-  return prop.game.time;
-};
-
-window.game_delta = function game_delta() {
-  return prop.game.delta;
-};
-
-window.game_speedup = function game_speedup() {
-  if (game_paused()) return 0;
-  return prop.game.speedup;
-};
-
-window.game_timeout = function game_timeout(func, delay, that, data) {
-  var to = [func, game_time() + delay, data, delay, false, that];
-  prop.game.timeouts.push(to);
-  return to;
-};
-
-window.game_interval = function game_interval(func, delay, that, data) {
-  var to = [func, game_time() + delay, data, delay, true, that];
-  prop.game.timeouts.push(to);
-  return to;
-};
-
-window.game_clear_timeout = function game_clear_timeout(to) {
-  prop.game.timeouts.splice(prop.game.timeouts.indexOf(to), 1);
-};
-
-window.game_update_pre = function game_update_pre() {
-  var score = game_get_score();
-  if (score != prop.game.last_score) {
-    $("#score").text(round(score));
-    if (score < -0.51) $("#score").addClass("negative");else $("#score").removeClass("negative");
-    prop.game.last_score = score;
-  }
-
-  prop.game.delta = Math.min(delta() * prop.game.speedup, 100);
-  if (game_paused()) {
-    prop.game.delta = 0;
-  } else {
-    $("html").removeClass("paused");
-  }
-  prop.game.time += prop.game.delta;
-  for (var i = prop.game.timeouts.length - 1; i >= 0; i--) {
-    var remove = false;
-    var timeout = prop.game.timeouts[i];
-    if (game_time() > timeout[1]) {
-      timeout[0].call(timeout[5], timeout[2]);
-      if (timeout[4]) {
-        timeout[1] += timeout[3];
-      } else {
-        remove = true;
-      }
-    }
-    if (remove) {
-      prop.game.timeouts.splice(i, 1);
-      i -= 1;
-    }
-  }
-};
-
-window.game_complete = function game_complete() {
-  prop.game.paused = false;
+/**
+ * Combinator constant.
+ *
+ * Allows for a single import that has access to both CLASSNAMES and SELECTOR_IDS
+ *
+ * @property SELECTORS
+ * @type {Object}
+ * @final
+ */
+var SELECTORS = exports.SELECTORS = {
+    CLASSNAMES: CLASSNAMES,
+    IDS: IDS
 };
 
 },{}],181:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _fiber = require('fiber');
+
+var _fiber2 = _interopRequireDefault(_fiber);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * @class GameOptions
+ * @extend Fiber
+ */
+var GameOptions = _fiber2.default.extend(function (base) {
+    return {
+        init: function init() {
+            this._options = {};
+
+            this.addOption({
+                name: 'controlMethod',
+                defaultValue: 'classic',
+                description: 'Control Method',
+                type: 'select',
+                data: [['Classic', 'classic'], ['Arrow Keys', 'arrows']]
+            });
+            this.addOption({
+                name: 'drawProjectedPaths',
+                defaultValue: 'selected',
+                description: 'Draw aircraft projected path',
+                type: 'select',
+                data: [['Always', 'always'], ['Selected', 'selected'], ['Never', 'never']]
+            });
+            this.addOption({
+                name: 'simplifySpeeds',
+                defaultValue: 'yes',
+                description: 'Use simplified airspeeds',
+                help: 'Controls use of a simplified calculation which results in' + ' aircraft always moving across the ground at the speed assigned.' + ' In reality aircraft will move faster as they increase altitude.',
+                type: 'select',
+                data: [['Yes', 'yes'], ['No', 'no']]
+            });
+            this.addOption({
+                name: 'softCeiling',
+                defaultValue: 'no',
+                description: 'Allow departures via climb',
+                help: 'Normally aircraft depart the airspace by flying beyond' + ' the horizontal bounds.  If set to yes, aircraft may also' + ' depart the airspace by climbing above it.',
+                type: 'select',
+                data: [['Yes', 'yes'], ['No', 'no']]
+            });
+        },
+
+        addOption: function addOption(data) {
+            var optionStorageName = 'zlsa.atc.option.' + data.name;
+            this._options[data.name] = data;
+
+            if (optionStorageName in localStorage) {
+                this[data.name] = localStorage[optionStorageName];
+            } else {
+                this[data.name] = data.defaultValue;
+            }
+        },
+
+        getDescriptions: function getDescriptions() {
+            return this._options;
+        },
+
+        get: function get(name) {
+            return this[name];
+        },
+
+        set: function set(name, value) {
+            localStorage['zlsa.atc.option.' + name] = value;
+            this[name] = value;
+
+            return value;
+        }
+    };
+}); /* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand */
+exports.default = GameOptions;
+
+},{"fiber":1}],182:[function(require,module,exports){
+'use strict';
+
+var _jquery = require('jquery');
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+var _GameOptions = require('./GameOptions');
+
+var _GameOptions2 = _interopRequireDefault(_GameOptions);
+
+var _selectors = require('../constants/selectors');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var game_init_pre = function game_init_pre() {
+    prop.game = {};
+    prop.game.paused = true;
+    prop.game.focused = true;
+    prop.game.speedup = 1;
+    prop.game.frequency = 1;
+    prop.game.time = 0;
+    prop.game.delta = 0;
+    prop.game.timeouts = [];
+
+    (0, _jquery2.default)(window).blur(function () {
+        prop.game.focused = false;
+    });
+
+    (0, _jquery2.default)(window).focus(function () {
+        prop.game.focused = true;
+    });
+
+    prop.game.last_score = 0;
+    prop.game.score = {
+        arrival: 0,
+        departure: 0,
+
+        windy_landing: 0,
+        windy_takeoff: 0,
+
+        failed_arrival: 0,
+        failed_departure: 0,
+
+        warning: 0,
+        hit: 0,
+
+        abort: {
+            landing: 0,
+            taxi: 0
+        },
+
+        violation: 0,
+        restrictions: 0
+    };
+
+    prop.game.option = new _GameOptions2.default();
+}; /* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand, no-undef */
+
+
+var game_get_score = function game_get_score() {
+    var score = 0;
+
+    score += prop.game.score.arrival * 10;
+    score += prop.game.score.departure * 10;
+
+    score -= prop.game.score.windy_landing * 0.5;
+    score -= prop.game.score.windy_takeoff * 0.5;
+
+    score -= prop.game.score.failed_arrival * 20;
+    score -= prop.game.score.failed_departure * 2;
+
+    score -= prop.game.score.warning * 5;
+    score -= prop.game.score.hit * 50;
+
+    score -= prop.game.score.abort.landing * 5;
+    score -= prop.game.score.abort.taxi * 2;
+
+    score -= prop.game.score.violation;
+    score -= prop.game.score.restrictions * 10;
+
+    return score;
+};
+
+var game_get_weighted_score = function game_get_weighted_score() {
+    var score = game_get_score();
+
+    score = score / (game_time() / 60);
+    score *= 500;
+
+    return score;
+};
+
+var game_reset_score = function game_reset_score() {
+    prop.game.score.abort = { landing: 0, taxi: 0 };
+    prop.game.score.arrival = 0;
+    prop.game.score.departure = 0;
+    prop.game.score.failed_arrival = 0;
+    prop.game.score.failed_departure = 0;
+    prop.game.score.hit = 0;
+    prop.game.score.restrictions = 0;
+    prop.game.score.violation = 0;
+    prop.game.score.warning = 0;
+    prop.game.score.windy_landing = 0;
+    prop.game.score.windy_takeoff = 0;
+};
+
+var game_timewarp_toggle = function game_timewarp_toggle() {
+    var $fastForwards = (0, _jquery2.default)(_selectors.SELECTORS.CLASSNAMES.FAST_FORWARDS);
+
+    if (prop.game.speedup === 5) {
+        prop.game.speedup = 1;
+
+        $fastForwards.removeClass(_selectors.SELECTORS.CLASSNAMES.SPEED_5);
+        $fastForwards.prop('title', 'Set time warp to 2');
+    } else if (prop.game.speedup === 1) {
+        prop.game.speedup = 2;
+
+        $fastForwards.addClass(_selectors.SELECTORS.CLASSNAMES.SPEED_2);
+        $fastForwards.prop('title', 'Set time warp to 5');
+    } else {
+        prop.game.speedup = 5;
+
+        $fastForwards.removeClass(_selectors.SELECTORS.CLASSNAMES.SPEED_2);
+        $fastForwards.addClass(_selectors.SELECTORS.CLASSNAMES.SPEED_5);
+        $fastForwards.prop('title', 'Reset time warp');
+    }
+};
+
+var game_pause = function game_pause() {
+    var $pauseToggle = (0, _jquery2.default)(_selectors.SELECTORS.CLASSNAMES.PAUSE_TOGGLE);
+    prop.game.paused = true;
+
+    $pauseToggle.addClass(_selectors.SELECTORS.CLASSNAMES.ACTIVE);
+    $pauseToggle.attr('title', 'Resume simulation');
+    (0, _jquery2.default)('html').addClass(_selectors.SELECTORS.CLASSNAMES.PAUSED);
+};
+
+var game_unpause = function game_unpause() {
+    prop.game.paused = false;
+
+    $pauseToggle.removeClass(_selectors.SELECTORS.CLASSNAMES.ACTIVE);
+    $pauseToggle.attr('title', 'Pause simulation');
+    (0, _jquery2.default)('html').removeClass(_selectors.SELECTORS.CLASSNAMES.PAUSED);
+};
+
+var game_pause_toggle = function game_pause_toggle() {
+    if (prop.game.paused) {
+        game_unpause();
+    } else {
+        game_pause();
+    }
+};
+
+var game_paused = function game_paused() {
+    return !prop.game.focused || prop.game.paused;
+};
+
+var game_time = function game_time() {
+    return prop.game.time;
+};
+
+var game_delta = function game_delta() {
+    return prop.game.delta;
+};
+
+var game_speedup = function game_speedup() {
+    // if (game_paused()) {
+    //     return 0;
+    // }
+    //
+    // return prop.game.speedup;
+    return !game_paused() ? prop.game.speedup : 0;
+};
+
+var game_timeout = function game_timeout(func, delay, that, data) {
+    var to = [func, game_time() + delay, data, delay, false, that];
+
+    prop.game.timeouts.push(to);
+
+    return to;
+};
+
+var game_interval = function game_interval(func, delay, that, data) {
+    var to = [func, game_time() + delay, data, delay, true, that];
+
+    prop.game.timeouts.push(to);
+
+    return to;
+};
+
+var game_clear_timeout = function game_clear_timeout(to) {
+    prop.game.timeouts.splice(prop.game.timeouts.indexOf(to), 1);
+};
+
+var game_update_pre = function game_update_pre() {
+    var $score = (0, _jquery2.default)(_selectors.SELECTORS.IDS.SCORE);
+    var score = game_get_score();
+
+    if (score != prop.game.last_score) {
+        $score.text(round(score));
+
+        if (score < -0.51) {
+            $score.addClass(_selectors.SELECTORS.CLASSNAMES.NEGATIVE);
+        } else {
+            $score.removeClass(_selectors.SELECTORS.CLASSNAMES.NEGATIVE);
+        }
+
+        prop.game.last_score = score;
+    }
+
+    prop.game.delta = Math.min(delta() * prop.game.speedup, 100);
+
+    if (game_paused()) {
+        prop.game.delta = 0;
+    } else {
+        (0, _jquery2.default)('html').removeClass(_selectors.SELECTORS.CLASSNAMES.PAUSED);
+    }
+
+    prop.game.time += prop.game.delta;
+
+    for (var i = prop.game.timeouts.length - 1; i >= 0; i--) {
+        var remove = false;
+        var timeout = prop.game.timeouts[i];
+
+        if (game_time() > timeout[1]) {
+            timeout[0].call(timeout[5], timeout[2]);
+
+            if (timeout[4]) {
+                timeout[1] += timeout[3];
+            } else {
+                remove = true;
+            }
+        }
+
+        if (remove) {
+            prop.game.timeouts.splice(i, 1);
+            i -= 1;
+        }
+    }
+};
+
+var game_complete = function game_complete() {
+    prop.game.paused = false;
+};
+
+// TODO: methods attached to the window temporarily to maintain previous interface before refatoring.
+window.game_init_pre = game_init_pre;
+window.game_get_score = game_get_score;
+window.game_get_weighted_score = game_get_weighted_score;
+window.game_reset_score = game_reset_score;
+window.game_timewarp_toggle = game_timewarp_toggle;
+window.game_pause = game_pause;
+window.game_unpause = game_unpause;
+window.game_pause_toggle = game_pause_toggle;
+window.game_paused = game_paused;
+window.game_time = game_time;
+window.game_delta = game_delta;
+window.game_speedup = game_speedup;
+window.game_timeout = game_timeout;
+window.game_interval = game_interval;
+window.game_clear_timeout = game_clear_timeout;
+window.game_update_pre = game_update_pre;
+window.game_complete = game_complete;
+
+},{"../constants/selectors":180,"./GameOptions":181,"jquery":2}],183:[function(require,module,exports){
 'use strict';
 
 /**
@@ -30810,7 +30944,7 @@ window.game_complete = function game_complete() {
   };
 })($, zlsa, Fiber, zlsa.atc.mediator);
 
-},{}],182:[function(require,module,exports){
+},{}],184:[function(require,module,exports){
 'use strict';
 
 var _clamp2 = require('lodash/clamp');
@@ -31261,7 +31395,7 @@ window.input_run = function input_run() {
   return aircraft.runCommands(result.args);
 };
 
-},{"lodash/clamp":107}],183:[function(require,module,exports){
+},{"lodash/clamp":107}],185:[function(require,module,exports){
 'use strict';
 
 var _timeHelpers = require('./utilities/timeHelpers');
@@ -31326,7 +31460,7 @@ var _timeHelpers = require('./utilities/timeHelpers');
   };
 })($, zlsa, Fiber, zlsa.atc.mediator, prop.version_string);
 
-},{"./utilities/timeHelpers":194}],184:[function(require,module,exports){
+},{"./utilities/timeHelpers":196}],186:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -31342,7 +31476,7 @@ var tau = exports.tau = function tau() {
   return Math.PI * 2;
 };
 
-},{}],185:[function(require,module,exports){
+},{}],187:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -31363,7 +31497,7 @@ var distance2d = exports.distance2d = function distance2d(a, b) {
   return Math.sqrt(x * x + y * y);
 };
 
-},{}],186:[function(require,module,exports){
+},{}],188:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -31406,7 +31540,7 @@ var calcTurnInitiationDistance = exports.calcTurnInitiationDistance = function c
   return turnRadius * Math.tan(courseChange / 2) + speed;
 };
 
-},{}],187:[function(require,module,exports){
+},{}],189:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -31460,7 +31594,7 @@ var vsub = exports.vsub = function vsub(v1, v2) {
     }
 };
 
-},{}],188:[function(require,module,exports){
+},{}],190:[function(require,module,exports){
 'use strict';
 
 var _jquery = require('jquery');
@@ -31499,7 +31633,7 @@ var speech = require('./speech');
 var get = require('./get');
 var tutorial = require('./tutorial');
 var base = require('./base');
-var game = require('./game');
+var game = require('./game/game');
 var input = require('./input');
 var airline = require('./airline/airline');
 var aircraft = require('./aircraft/aircraft');
@@ -31890,7 +32024,7 @@ window.delta = function delta() {
     return prop.time.frame.delta;
 };
 
-},{"./aircraft/aircraft":162,"./airline/airline":163,"./airport/airport":175,"./animation":176,"./base":177,"./canvas":178,"./constants/logLevel":179,"./game":180,"./get":181,"./input":182,"./load":183,"./parser":189,"./speech":190,"./tutorial":191,"./ui":192,"./util":193,"./utilities/timeHelpers":194,"fiber":1,"jquery":2,"pegjs":152}],189:[function(require,module,exports){
+},{"./aircraft/aircraft":162,"./airline/airline":163,"./airport/airport":175,"./animation":176,"./base":177,"./canvas":178,"./constants/logLevel":179,"./game/game":182,"./get":183,"./input":184,"./load":185,"./parser":191,"./speech":192,"./tutorial":193,"./ui":194,"./util":195,"./utilities/timeHelpers":196,"fiber":1,"jquery":2,"pegjs":152}],191:[function(require,module,exports){
 "use strict";
 
 zlsa.atc.Parser = function () {
@@ -34959,7 +35093,7 @@ zlsa.atc.Parser = function () {
   };
 }();
 
-},{}],190:[function(require,module,exports){
+},{}],192:[function(require,module,exports){
 'use strict';
 
 window.speech_init = function speech_init() {
@@ -35014,7 +35148,7 @@ window.speech_toggle = function speech_toggle() {
   localStorage['atc-speech-enabled'] = prop.speech.enabled;
 };
 
-},{}],191:[function(require,module,exports){
+},{}],193:[function(require,module,exports){
 'use strict';
 
 var _clamp2 = require('lodash/clamp');
@@ -35376,9 +35510,10 @@ window.tutorial_toggle = function tutorial_toggle() {
   }
 };
 
-},{"./utilities/timeHelpers":194,"lodash/clamp":107}],192:[function(require,module,exports){
+},{"./utilities/timeHelpers":196,"lodash/clamp":107}],194:[function(require,module,exports){
 'use strict';
 
+/* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand, no-undef */
 window.ui_init_pre = function ui_init_pre() {
   prop.ui = {};
   prop.ui.scale_default = 8; // pixels per km
@@ -35454,6 +35589,7 @@ window.ui_init = function ui_init() {
 
   var options = $("<div id='options-dialog' class='dialog'></div>");
   var descriptions = prop.game.option.getDescriptions();
+
   for (var key in descriptions) {
     var opt = descriptions[key];
     if (opt.type == 'select') {
@@ -35616,7 +35752,7 @@ window.ui_options_toggle = function ui_options_toggle() {
   }
 };
 
-},{}],193:[function(require,module,exports){
+},{}],195:[function(require,module,exports){
 'use strict';
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
@@ -36648,7 +36784,7 @@ window.aircraft_remove = function aircraft_remove(aircraft) {
   aircraft.cleanup();
 };
 
-},{"./math/distance":185,"./math/vector":187,"./utilities/timeHelpers":194,"./utilities/unitConverters":195,"lodash/clamp":107}],194:[function(require,module,exports){
+},{"./math/distance":187,"./math/vector":189,"./utilities/timeHelpers":196,"./utilities/unitConverters":197,"lodash/clamp":107}],196:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -36670,7 +36806,7 @@ var time = exports.time = function time() {
   return new Date().getTime() * TIME_SECONDS_OFFSET;
 };
 
-},{}],195:[function(require,module,exports){
+},{}],197:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -36815,7 +36951,7 @@ var degreesToRadians = exports.degreesToRadians = function degreesToRadians(degr
   return degrees / NUMBER_CONSTANTS.FULL_CIRCLE_DEGREES * (0, _circle.tau)();
 };
 
-},{"../math/circle":184}]},{},[188])
+},{"../math/circle":186}]},{},[190])
 
 
 //# sourceMappingURL=bundle.js.map

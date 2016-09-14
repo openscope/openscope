@@ -122,7 +122,6 @@ const Airline = Fiber.extend(function() {
 
             // TODO: this try/catch block could be improved. its hard to tell what his block is actually doing.
             try {
-                console.log(fleet);
                 return choose_weight(this.fleets[fleet.toLowerCase()]);
             } catch (error) {
                 console.log(`Unable to find fleet ${fleet} for airline ${this.icao}`);

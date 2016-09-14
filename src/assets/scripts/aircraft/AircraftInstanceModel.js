@@ -35,16 +35,6 @@ const WAYPOINT_NAV_MADE = {
     RWY: 'rwy'
 };
 
-// css classnames
-// const CLASSNAMES = {
-//     ALL_SET: 'allSet',
-//     FOLLOWING_STAR: 'followingSTAR',
-//     HOLD: 'hold',
-//     RUNWAY: 'runway',
-//     LOOKGIN_GOOD: 'lookingGood'
-//
-// };
-
 /**
  * Each simulated aircraft in the game. Contains a model, fms, and conflicts.
  *

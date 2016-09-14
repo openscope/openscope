@@ -1,3 +1,4 @@
+/* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand, no-undef */
 import Fiber from 'fiber';
 import { degreesToRadians } from './utilities/unitConverters';
 

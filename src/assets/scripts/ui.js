@@ -1,3 +1,4 @@
+/* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand, no-undef */
 window.ui_init_pre = function ui_init_pre() {
   prop.ui = {};
   prop.ui.scale_default = 8; // pixels per km
@@ -71,6 +72,7 @@ window.ui_init = function ui_init() {
 
   var options = $("<div id='options-dialog' class='dialog'></div>");
   var descriptions = prop.game.option.getDescriptions();
+
   for (var key in descriptions) {
     var opt = descriptions[key];
     if (opt.type == 'select') {
