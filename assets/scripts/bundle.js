@@ -10825,7 +10825,7 @@ function baseForOwn(object, iteratee) {
 
 module.exports = baseForOwn;
 
-},{"./_baseFor":25,"./keys":127}],27:[function(require,module,exports){
+},{"./_baseFor":25,"./keys":129}],27:[function(require,module,exports){
 var castPath = require('./_castPath'),
     isKey = require('./_isKey'),
     toKey = require('./_toKey');
@@ -10974,7 +10974,7 @@ function baseIsEqual(value, other, customizer, bitmask, stack) {
 
 module.exports = baseIsEqual;
 
-},{"./_baseIsEqualDeep":33,"./isObject":123,"./isObjectLike":124}],33:[function(require,module,exports){
+},{"./_baseIsEqualDeep":33,"./isObject":125,"./isObjectLike":126}],33:[function(require,module,exports){
 var Stack = require('./_Stack'),
     equalArrays = require('./_equalArrays'),
     equalByTag = require('./_equalByTag'),
@@ -11058,7 +11058,7 @@ function baseIsEqualDeep(object, other, equalFunc, customizer, bitmask, stack) {
 
 module.exports = baseIsEqualDeep;
 
-},{"./_Stack":11,"./_equalArrays":56,"./_equalByTag":57,"./_equalObjects":58,"./_getTag":63,"./_isHostObject":71,"./isArray":116,"./isTypedArray":126}],34:[function(require,module,exports){
+},{"./_Stack":11,"./_equalArrays":56,"./_equalByTag":57,"./_equalObjects":58,"./_getTag":63,"./_isHostObject":71,"./isArray":116,"./isTypedArray":128}],34:[function(require,module,exports){
 var Stack = require('./_Stack'),
     baseIsEqual = require('./_baseIsEqual');
 
@@ -11186,7 +11186,7 @@ function baseIsNative(value) {
 
 module.exports = baseIsNative;
 
-},{"./_isHostObject":71,"./_isMasked":75,"./_toSource":106,"./isFunction":121,"./isObject":123}],37:[function(require,module,exports){
+},{"./_isHostObject":71,"./_isMasked":75,"./_toSource":106,"./isFunction":121,"./isObject":125}],37:[function(require,module,exports){
 var isLength = require('./isLength'),
     isObjectLike = require('./isObjectLike');
 
@@ -11257,7 +11257,7 @@ function baseIsTypedArray(value) {
 
 module.exports = baseIsTypedArray;
 
-},{"./isLength":122,"./isObjectLike":124}],38:[function(require,module,exports){
+},{"./isLength":122,"./isObjectLike":126}],38:[function(require,module,exports){
 var baseMatches = require('./_baseMatches'),
     baseMatchesProperty = require('./_baseMatchesProperty'),
     identity = require('./identity'),
@@ -11290,7 +11290,7 @@ function baseIteratee(value) {
 
 module.exports = baseIteratee;
 
-},{"./_baseMatches":42,"./_baseMatchesProperty":43,"./identity":114,"./isArray":116,"./property":132}],39:[function(require,module,exports){
+},{"./_baseMatches":42,"./_baseMatchesProperty":43,"./identity":114,"./isArray":116,"./property":134}],39:[function(require,module,exports){
 var isPrototype = require('./_isPrototype'),
     nativeKeys = require('./_nativeKeys');
 
@@ -11357,7 +11357,7 @@ function baseKeysIn(object) {
 
 module.exports = baseKeysIn;
 
-},{"./_isPrototype":76,"./_nativeKeysIn":92,"./isObject":123}],41:[function(require,module,exports){
+},{"./_isPrototype":76,"./_nativeKeysIn":92,"./isObject":125}],41:[function(require,module,exports){
 var baseEach = require('./_baseEach'),
     isArrayLike = require('./isArrayLike');
 
@@ -11529,7 +11529,7 @@ function baseToString(value) {
 
 module.exports = baseToString;
 
-},{"./_Symbol":12,"./isSymbol":125}],48:[function(require,module,exports){
+},{"./_Symbol":12,"./isSymbol":127}],48:[function(require,module,exports){
 /**
  * The base implementation of `_.unary` without support for storing metadata.
  *
@@ -11741,7 +11741,7 @@ var createSet = !(Set && (1 / setToArray(new Set([,-0]))[1]) == INFINITY) ? noop
 
 module.exports = createSet;
 
-},{"./_Set":9,"./_setToArray":98,"./noop":131}],56:[function(require,module,exports){
+},{"./_Set":9,"./_setToArray":98,"./noop":133}],56:[function(require,module,exports){
 var SetCache = require('./_SetCache'),
     arraySome = require('./_arraySome');
 
@@ -12033,7 +12033,7 @@ function equalObjects(object, other, equalFunc, customizer, bitmask, stack) {
 
 module.exports = equalObjects;
 
-},{"./keys":127}],59:[function(require,module,exports){
+},{"./keys":129}],59:[function(require,module,exports){
 (function (global){
 /** Detect free variable `global` from Node.js. */
 var freeGlobal = typeof global == 'object' && global && global.Object === Object && global;
@@ -12088,7 +12088,7 @@ function getMatchData(object) {
 
 module.exports = getMatchData;
 
-},{"./_isStrictComparable":77,"./keys":127}],62:[function(require,module,exports){
+},{"./_isStrictComparable":77,"./keys":129}],62:[function(require,module,exports){
 var baseIsNative = require('./_baseIsNative'),
     getValue = require('./_getValue');
 
@@ -12426,7 +12426,7 @@ function isKey(value, object) {
 
 module.exports = isKey;
 
-},{"./isArray":116,"./isSymbol":125}],74:[function(require,module,exports){
+},{"./isArray":116,"./isSymbol":127}],74:[function(require,module,exports){
 /**
  * Checks if `value` is suitable for use as unique object key.
  *
@@ -12502,7 +12502,7 @@ function isStrictComparable(value) {
 
 module.exports = isStrictComparable;
 
-},{"./isObject":123}],78:[function(require,module,exports){
+},{"./isObject":125}],78:[function(require,module,exports){
 /**
  * Removes all key-value entries from the list cache.
  *
@@ -13034,7 +13034,7 @@ var stringToPath = memoize(function(string) {
 
 module.exports = stringToPath;
 
-},{"./memoize":130,"./toString":135}],105:[function(require,module,exports){
+},{"./memoize":132,"./toString":137}],105:[function(require,module,exports){
 var isSymbol = require('./isSymbol');
 
 /** Used as references for various `Number` constants. */
@@ -13057,7 +13057,7 @@ function toKey(value) {
 
 module.exports = toKey;
 
-},{"./isSymbol":125}],106:[function(require,module,exports){
+},{"./isSymbol":127}],106:[function(require,module,exports){
 /** Used for built-in method references. */
 var funcProto = Function.prototype;
 
@@ -13126,7 +13126,7 @@ function clamp(number, lower, upper) {
 
 module.exports = clamp;
 
-},{"./_baseClamp":22,"./toNumber":134}],108:[function(require,module,exports){
+},{"./_baseClamp":22,"./toNumber":136}],108:[function(require,module,exports){
 /**
  * Performs a
  * [`SameValueZero`](http://ecma-international.org/ecma-262/7.0/#sec-samevaluezero)
@@ -13249,7 +13249,7 @@ function forIn(object, iteratee) {
 
 module.exports = forIn;
 
-},{"./_baseFor":25,"./_baseIteratee":38,"./keysIn":128}],111:[function(require,module,exports){
+},{"./_baseFor":25,"./_baseIteratee":38,"./keysIn":130}],111:[function(require,module,exports){
 var baseGet = require('./_baseGet');
 
 /**
@@ -13526,7 +13526,7 @@ function isArrayLikeObject(value) {
 
 module.exports = isArrayLikeObject;
 
-},{"./isArrayLike":117,"./isObjectLike":124}],119:[function(require,module,exports){
+},{"./isArrayLike":117,"./isObjectLike":126}],119:[function(require,module,exports){
 var root = require('./_root'),
     stubFalse = require('./stubFalse');
 
@@ -13566,7 +13566,7 @@ var isBuffer = nativeIsBuffer || stubFalse;
 
 module.exports = isBuffer;
 
-},{"./_root":95,"./stubFalse":133}],120:[function(require,module,exports){
+},{"./_root":95,"./stubFalse":135}],120:[function(require,module,exports){
 var getTag = require('./_getTag'),
     isArguments = require('./isArguments'),
     isArray = require('./isArray'),
@@ -13690,7 +13690,7 @@ function isFunction(value) {
 
 module.exports = isFunction;
 
-},{"./isObject":123}],122:[function(require,module,exports){
+},{"./isObject":125}],122:[function(require,module,exports){
 /** Used as references for various `Number` constants. */
 var MAX_SAFE_INTEGER = 9007199254740991;
 
@@ -13728,6 +13728,95 @@ function isLength(value) {
 module.exports = isLength;
 
 },{}],123:[function(require,module,exports){
+var isNumber = require('./isNumber');
+
+/**
+ * Checks if `value` is `NaN`.
+ *
+ * **Note:** This method is based on
+ * [`Number.isNaN`](https://mdn.io/Number/isNaN) and is not the same as
+ * global [`isNaN`](https://mdn.io/isNaN) which returns `true` for
+ * `undefined` and other non-number values.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is `NaN`, else `false`.
+ * @example
+ *
+ * _.isNaN(NaN);
+ * // => true
+ *
+ * _.isNaN(new Number(NaN));
+ * // => true
+ *
+ * isNaN(undefined);
+ * // => true
+ *
+ * _.isNaN(undefined);
+ * // => false
+ */
+function isNaN(value) {
+  // An `NaN` primitive is the only value that is not equal to itself.
+  // Perform the `toStringTag` check first to avoid errors with some
+  // ActiveX objects in IE.
+  return isNumber(value) && value != +value;
+}
+
+module.exports = isNaN;
+
+},{"./isNumber":124}],124:[function(require,module,exports){
+var isObjectLike = require('./isObjectLike');
+
+/** `Object#toString` result references. */
+var numberTag = '[object Number]';
+
+/** Used for built-in method references. */
+var objectProto = Object.prototype;
+
+/**
+ * Used to resolve the
+ * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
+ * of values.
+ */
+var objectToString = objectProto.toString;
+
+/**
+ * Checks if `value` is classified as a `Number` primitive or object.
+ *
+ * **Note:** To exclude `Infinity`, `-Infinity`, and `NaN`, which are
+ * classified as numbers, use the `_.isFinite` method.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a number, else `false`.
+ * @example
+ *
+ * _.isNumber(3);
+ * // => true
+ *
+ * _.isNumber(Number.MIN_VALUE);
+ * // => true
+ *
+ * _.isNumber(Infinity);
+ * // => true
+ *
+ * _.isNumber('3');
+ * // => false
+ */
+function isNumber(value) {
+  return typeof value == 'number' ||
+    (isObjectLike(value) && objectToString.call(value) == numberTag);
+}
+
+module.exports = isNumber;
+
+},{"./isObjectLike":126}],125:[function(require,module,exports){
 /**
  * Checks if `value` is the
  * [language type](http://www.ecma-international.org/ecma-262/7.0/#sec-ecmascript-language-types)
@@ -13760,7 +13849,7 @@ function isObject(value) {
 
 module.exports = isObject;
 
-},{}],124:[function(require,module,exports){
+},{}],126:[function(require,module,exports){
 /**
  * Checks if `value` is object-like. A value is object-like if it's not `null`
  * and has a `typeof` result of "object".
@@ -13791,7 +13880,7 @@ function isObjectLike(value) {
 
 module.exports = isObjectLike;
 
-},{}],125:[function(require,module,exports){
+},{}],127:[function(require,module,exports){
 var isObjectLike = require('./isObjectLike');
 
 /** `Object#toString` result references. */
@@ -13831,7 +13920,7 @@ function isSymbol(value) {
 
 module.exports = isSymbol;
 
-},{"./isObjectLike":124}],126:[function(require,module,exports){
+},{"./isObjectLike":126}],128:[function(require,module,exports){
 var baseIsTypedArray = require('./_baseIsTypedArray'),
     baseUnary = require('./_baseUnary'),
     nodeUtil = require('./_nodeUtil');
@@ -13860,7 +13949,7 @@ var isTypedArray = nodeIsTypedArray ? baseUnary(nodeIsTypedArray) : baseIsTypedA
 
 module.exports = isTypedArray;
 
-},{"./_baseIsTypedArray":37,"./_baseUnary":48,"./_nodeUtil":93}],127:[function(require,module,exports){
+},{"./_baseIsTypedArray":37,"./_baseUnary":48,"./_nodeUtil":93}],129:[function(require,module,exports){
 var arrayLikeKeys = require('./_arrayLikeKeys'),
     baseKeys = require('./_baseKeys'),
     isArrayLike = require('./isArrayLike');
@@ -13899,7 +13988,7 @@ function keys(object) {
 
 module.exports = keys;
 
-},{"./_arrayLikeKeys":18,"./_baseKeys":39,"./isArrayLike":117}],128:[function(require,module,exports){
+},{"./_arrayLikeKeys":18,"./_baseKeys":39,"./isArrayLike":117}],130:[function(require,module,exports){
 var arrayLikeKeys = require('./_arrayLikeKeys'),
     baseKeysIn = require('./_baseKeysIn'),
     isArrayLike = require('./isArrayLike');
@@ -13933,7 +14022,7 @@ function keysIn(object) {
 
 module.exports = keysIn;
 
-},{"./_arrayLikeKeys":18,"./_baseKeysIn":40,"./isArrayLike":117}],129:[function(require,module,exports){
+},{"./_arrayLikeKeys":18,"./_baseKeysIn":40,"./isArrayLike":117}],131:[function(require,module,exports){
 var arrayMap = require('./_arrayMap'),
     baseIteratee = require('./_baseIteratee'),
     baseMap = require('./_baseMap'),
@@ -13988,7 +14077,7 @@ function map(collection, iteratee) {
 
 module.exports = map;
 
-},{"./_arrayMap":19,"./_baseIteratee":38,"./_baseMap":41,"./isArray":116}],130:[function(require,module,exports){
+},{"./_arrayMap":19,"./_baseIteratee":38,"./_baseMap":41,"./isArray":116}],132:[function(require,module,exports){
 var MapCache = require('./_MapCache');
 
 /** Used as the `TypeError` message for "Functions" methods. */
@@ -14063,7 +14152,7 @@ memoize.Cache = MapCache;
 
 module.exports = memoize;
 
-},{"./_MapCache":7}],131:[function(require,module,exports){
+},{"./_MapCache":7}],133:[function(require,module,exports){
 /**
  * This method returns `undefined`.
  *
@@ -14082,7 +14171,7 @@ function noop() {
 
 module.exports = noop;
 
-},{}],132:[function(require,module,exports){
+},{}],134:[function(require,module,exports){
 var baseProperty = require('./_baseProperty'),
     basePropertyDeep = require('./_basePropertyDeep'),
     isKey = require('./_isKey'),
@@ -14116,7 +14205,7 @@ function property(path) {
 
 module.exports = property;
 
-},{"./_baseProperty":44,"./_basePropertyDeep":45,"./_isKey":73,"./_toKey":105}],133:[function(require,module,exports){
+},{"./_baseProperty":44,"./_basePropertyDeep":45,"./_isKey":73,"./_toKey":105}],135:[function(require,module,exports){
 /**
  * This method returns `false`.
  *
@@ -14136,7 +14225,7 @@ function stubFalse() {
 
 module.exports = stubFalse;
 
-},{}],134:[function(require,module,exports){
+},{}],136:[function(require,module,exports){
 var isObject = require('./isObject'),
     isSymbol = require('./isSymbol');
 
@@ -14204,7 +14293,7 @@ function toNumber(value) {
 
 module.exports = toNumber;
 
-},{"./isObject":123,"./isSymbol":125}],135:[function(require,module,exports){
+},{"./isObject":125,"./isSymbol":127}],137:[function(require,module,exports){
 var baseToString = require('./_baseToString');
 
 /**
@@ -14234,7 +14323,7 @@ function toString(value) {
 
 module.exports = toString;
 
-},{"./_baseToString":47}],136:[function(require,module,exports){
+},{"./_baseToString":47}],138:[function(require,module,exports){
 var baseUniq = require('./_baseUniq');
 
 /**
@@ -14262,7 +14351,7 @@ function uniq(array) {
 
 module.exports = uniq;
 
-},{"./_baseUniq":49}],137:[function(require,module,exports){
+},{"./_baseUniq":49}],139:[function(require,module,exports){
 "use strict";
 
 var arrays  = require("./utils/arrays"),
@@ -14324,7 +14413,7 @@ var compiler = {
 
 module.exports = compiler;
 
-},{"./compiler/passes/generate-bytecode":141,"./compiler/passes/generate-javascript":142,"./compiler/passes/remove-proxy-rules":143,"./compiler/passes/report-infinite-loops":144,"./compiler/passes/report-left-recursion":145,"./compiler/passes/report-missing-rules":146,"./utils/arrays":151,"./utils/objects":153}],138:[function(require,module,exports){
+},{"./compiler/passes/generate-bytecode":143,"./compiler/passes/generate-javascript":144,"./compiler/passes/remove-proxy-rules":145,"./compiler/passes/report-infinite-loops":146,"./compiler/passes/report-left-recursion":147,"./compiler/passes/report-missing-rules":148,"./utils/arrays":153,"./utils/objects":155}],140:[function(require,module,exports){
 "use strict";
 
 var arrays  = require("../utils/arrays"),
@@ -14390,7 +14479,7 @@ var asts = {
 
 module.exports = asts;
 
-},{"../utils/arrays":151,"./visitor":147}],139:[function(require,module,exports){
+},{"../utils/arrays":153,"./visitor":149}],141:[function(require,module,exports){
 "use strict";
 
 function hex(ch) { return ch.charCodeAt(0).toString(16).toUpperCase(); }
@@ -14449,7 +14538,7 @@ var javascript = {
 
 module.exports = javascript;
 
-},{}],140:[function(require,module,exports){
+},{}],142:[function(require,module,exports){
 "use strict";
 
 /* Bytecode instruction opcodes. */
@@ -14505,7 +14594,7 @@ var opcodes = {
 
 module.exports = opcodes;
 
-},{}],141:[function(require,module,exports){
+},{}],143:[function(require,module,exports){
 "use strict";
 
 var arrays  = require("../../utils/arrays"),
@@ -15125,7 +15214,7 @@ function generateBytecode(ast) {
 
 module.exports = generateBytecode;
 
-},{"../../utils/arrays":151,"../../utils/objects":153,"../asts":138,"../javascript":139,"../opcodes":140,"../visitor":147}],142:[function(require,module,exports){
+},{"../../utils/arrays":153,"../../utils/objects":155,"../asts":140,"../javascript":141,"../opcodes":142,"../visitor":149}],144:[function(require,module,exports){
 "use strict";
 
 var arrays = require("../../utils/arrays"),
@@ -16340,7 +16429,7 @@ function generateJavascript(ast, options) {
 
 module.exports = generateJavascript;
 
-},{"../../utils/arrays":151,"../asts":138,"../javascript":139,"../opcodes":140}],143:[function(require,module,exports){
+},{"../../utils/arrays":153,"../asts":140,"../javascript":141,"../opcodes":142}],145:[function(require,module,exports){
 "use strict";
 
 var arrays  = require("../../utils/arrays"),
@@ -16384,7 +16473,7 @@ function removeProxyRules(ast, options) {
 
 module.exports = removeProxyRules;
 
-},{"../../utils/arrays":151,"../visitor":147}],144:[function(require,module,exports){
+},{"../../utils/arrays":153,"../visitor":149}],146:[function(require,module,exports){
 "use strict";
 
 var GrammarError = require("../../grammar-error"),
@@ -16415,7 +16504,7 @@ function reportInfiniteLoops(ast) {
 
 module.exports = reportInfiniteLoops;
 
-},{"../../grammar-error":148,"../asts":138,"../visitor":147}],145:[function(require,module,exports){
+},{"../../grammar-error":150,"../asts":140,"../visitor":149}],147:[function(require,module,exports){
 "use strict";
 
 var arrays       = require("../../utils/arrays"),
@@ -16470,7 +16559,7 @@ function reportLeftRecursion(ast) {
 
 module.exports = reportLeftRecursion;
 
-},{"../../grammar-error":148,"../../utils/arrays":151,"../asts":138,"../visitor":147}],146:[function(require,module,exports){
+},{"../../grammar-error":150,"../../utils/arrays":153,"../asts":140,"../visitor":149}],148:[function(require,module,exports){
 "use strict";
 
 var GrammarError = require("../../grammar-error"),
@@ -16495,7 +16584,7 @@ function reportMissingRules(ast) {
 
 module.exports = reportMissingRules;
 
-},{"../../grammar-error":148,"../asts":138,"../visitor":147}],147:[function(require,module,exports){
+},{"../../grammar-error":150,"../asts":140,"../visitor":149}],149:[function(require,module,exports){
 "use strict";
 
 var objects = require("../utils/objects"),
@@ -16568,7 +16657,7 @@ var visitor = {
 
 module.exports = visitor;
 
-},{"../utils/arrays":151,"../utils/objects":153}],148:[function(require,module,exports){
+},{"../utils/arrays":153,"../utils/objects":155}],150:[function(require,module,exports){
 "use strict";
 
 var classes = require("./utils/classes");
@@ -16588,7 +16677,7 @@ classes.subclass(GrammarError, Error);
 
 module.exports = GrammarError;
 
-},{"./utils/classes":152}],149:[function(require,module,exports){
+},{"./utils/classes":154}],151:[function(require,module,exports){
 module.exports = (function() {
   "use strict";
 
@@ -21564,7 +21653,7 @@ module.exports = (function() {
   };
 })();
 
-},{}],150:[function(require,module,exports){
+},{}],152:[function(require,module,exports){
 "use strict";
 
 var arrays  = require("./utils/arrays"),
@@ -21621,7 +21710,7 @@ var PEG = {
 
 module.exports = PEG;
 
-},{"./compiler":137,"./grammar-error":148,"./parser":149,"./utils/arrays":151,"./utils/objects":153}],151:[function(require,module,exports){
+},{"./compiler":139,"./grammar-error":150,"./parser":151,"./utils/arrays":153,"./utils/objects":155}],153:[function(require,module,exports){
 "use strict";
 
 /* Array utilities. */
@@ -21731,7 +21820,7 @@ var arrays = {
 
 module.exports = arrays;
 
-},{}],152:[function(require,module,exports){
+},{}],154:[function(require,module,exports){
 "use strict";
 
 /* Class utilities */
@@ -21745,7 +21834,7 @@ var classes = {
 
 module.exports = classes;
 
-},{}],153:[function(require,module,exports){
+},{}],155:[function(require,module,exports){
 "use strict";
 
 /* Object utilities. */
@@ -21801,7 +21890,7 @@ var objects = {
 
 module.exports = objects;
 
-},{}],154:[function(require,module,exports){
+},{}],156:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -22117,7 +22206,7 @@ var AircraftConflict = _fiber2.default.extend(function () {
 
 exports.default = AircraftConflict;
 
-},{"../math/vector":185,"../utilities/unitConverters":193,"fiber":1}],155:[function(require,module,exports){
+},{"../math/vector":187,"../utilities/unitConverters":195,"fiber":1}],157:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -23066,7 +23155,7 @@ var AircraftFlightManagementSystem = _fiber2.default.extend(function () {
 
 exports.default = AircraftFlightManagementSystem;
 
-},{"../constants/logLevel":177,"./Leg":158,"./Waypoint":159,"fiber":1,"lodash/clamp":107,"lodash/map":129}],156:[function(require,module,exports){
+},{"../constants/logLevel":179,"./Leg":160,"./Waypoint":161,"fiber":1,"lodash/clamp":107,"lodash/map":131}],158:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -23088,6 +23177,10 @@ var _clamp3 = _interopRequireDefault(_clamp2);
 var _has2 = require('lodash/has');
 
 var _has3 = _interopRequireDefault(_has2);
+
+var _isNaN2 = require('lodash/isNaN');
+
+var _isNaN3 = _interopRequireDefault(_isNaN2);
 
 var _map2 = require('lodash/map');
 
@@ -23112,6 +23205,7 @@ var _unitConverters = require('../utilities/unitConverters');
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // TODO: move sthese to a constants file
+/* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand, no-undef, guard-for-in, no-restricted-syntax, max-len, prefer-arrow-callback, */
 var FLIGHT_MODES = {
     APRON: 'apron',
     TAXI: 'taxi',
@@ -23119,8 +23213,7 @@ var FLIGHT_MODES = {
     TAKEOFF: 'takeoff',
     CRUISE: 'cruise',
     LANDING: 'landing'
-}; /* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand, no-undef, guard-for-in, no-restricted-syntax, max-len, prefer-arrow-callback, prefer-template */
-
+};
 
 var FLIGHT_CATEGORY = {
     ARRIVAL: 'arrival',
@@ -23136,14 +23229,14 @@ var WAYPOINT_NAV_MADE = {
 };
 
 // css classnames
-var CLASSNAMES = {
-    ALL_SET: 'allSet',
-    FOLLOWING_STAR: 'followingSTAR',
-    HOLD: 'hold',
-    RUNWAY: 'runway',
-    LOOKGIN_GOOD: 'lookingGood'
-
-};
+// const CLASSNAMES = {
+//     ALL_SET: 'allSet',
+//     FOLLOWING_STAR: 'followingSTAR',
+//     HOLD: 'hold',
+//     RUNWAY: 'runway',
+//     LOOKGIN_GOOD: 'lookingGood'
+//
+// };
 
 /**
  * Each simulated aircraft in the game. Contains a model, fms, and conflicts.
@@ -23244,7 +23337,6 @@ var Aircraft = _fiber2.default.extend(function () {
              * category 'departure'                 category 'arrival'
              */
 
-            // TODO: should be in own method
             // Initialize the FMS
             this.fms = new _AircraftFlightManagementSystem2.default({
                 aircraft: this,
@@ -23283,7 +23375,7 @@ var Aircraft = _fiber2.default.extend(function () {
             }
 
             this.takeoffTime = options.category === FLIGHT_CATEGORY.ARRIVAL ? game_time() : null;
-
+            debugger;
             this.parse(options);
             this.createStrip();
             this.updateStrip();
@@ -23837,8 +23929,10 @@ var Aircraft = _fiber2.default.extend(function () {
                 expedite = '';
             }
 
-            var readback = {};
-            readback.log = radio_trend('altitude', this.altitude, this.fms.currentWaypoint().altitude) + ' ' + this.fms.currentWaypoint().altitude + expedite, readback.say = radio_trend('altitude', this.altitude, this.fms.currentWaypoint().altitude) + ' ' + radio_altitude(this.fms.currentWaypoint().altitude) + expedite;
+            var readback = {
+                log: radio_trend('altitude', this.altitude, this.fms.currentWaypoint().altitude) + ' ' + this.fms.currentWaypoint().altitude + ' ' + expedite,
+                say: radio_trend('altitude', this.altitude, this.fms.currentWaypoint().altitude) + ' ' + radio_altitude(this.fms.currentWaypoint().altitude) + ' ' + expedite
+            };
 
             return ['ok', readback];
         },
@@ -23857,12 +23951,15 @@ var Aircraft = _fiber2.default.extend(function () {
         },
 
         runClimbViaSID: function runClimbViaSID() {
-            if (!(this.fms.currentLeg().type == 'sid')) {
-                var fail = true;
+            var fail = false;
+
+            if (!(this.fms.currentLeg().type === 'sid')) {
+                fail = true;
             } else if (this.fms.climbViaSID()) {
-                var readback = {};
-                readback.log = 'climb via the ' + this.fms.currentLeg().route.split('.')[1] + ' departure';
-                readback.say = 'climb via the ' + airport_get().sids[this.fms.currentLeg().route.split('.')[1]].name + ' departure';
+                var readback = {
+                    log: 'climb via the ' + this.fms.currentLeg().route.split('.')[1] + ' departure',
+                    say: 'climb via the ' + airport_get().sids[this.fms.currentLeg().route.split('.')[1]].name + ' departure'
+                };
 
                 return ['ok', readback];
             }
@@ -23874,17 +23971,21 @@ var Aircraft = _fiber2.default.extend(function () {
 
         runDescendViaSTAR: function runDescendViaSTAR() {
             if (this.fms.descendViaSTAR() && this.fms.following.star) {
-                return ['ok', { log: 'descend via the ' + this.fms.following.star + ' arrival',
-                    say: 'descend via the ' + airport_get().stars[this.fms.following.star].name + ' arrival' }];
-            } else {
-                ui_log(true, this.getCallsign() + ', unable to descend via STAR');
+                var readback = {
+                    log: 'descend via the ' + this.fms.following.star + ' arrival',
+                    say: 'descend via the ' + airport_get().stars[this.fms.following.star].name + ' arrival'
+                };
+
+                return ['ok', readback];
             }
+
+            ui_log(true, this.getCallsign() + ', unable to descend via STAR');
         },
 
         runSpeed: function runSpeed(data) {
             var speed = data[0];
 
-            if (isNaN(speed)) {
+            if ((0, _isNaN3.default)(speed)) {
                 return ['fail', 'speed not understood'];
             }
 
@@ -23892,9 +23993,11 @@ var Aircraft = _fiber2.default.extend(function () {
                 speed: (0, _clamp3.default)(this.model.speed.min, speed, this.model.speed.max)
             });
 
-            var readback = {};
-            readback.log = radio_trend('speed', this.speed, this.fms.currentWaypoint().speed) + ' ' + this.fms.currentWaypoint().speed;
-            readback.say = radio_trend('speed', this.speed, this.fms.currentWaypoint().speed) + ' ' + radio_spellOut(this.fms.currentWaypoint().speed);
+            var readback = {
+                log: radio_trend('speed', this.speed, this.fms.currentWaypoint().speed) + ' ' + this.fms.currentWaypoint().speed,
+                say: radio_trend('speed', this.speed, this.fms.currentWaypoint().speed) + ' ' + radio_spellOut(this.fms.currentWaypoint().speed)
+            };
+
             return ['ok', readback];
         },
 
@@ -23903,14 +24006,22 @@ var Aircraft = _fiber2.default.extend(function () {
             var legLength = data[1];
             var holdFix = data[2];
             var holdFixLocation = null;
+            var inboundHdg = void 0;
+            // let inboundDir;
 
-            if (dirTurns == null) dirTurns = 'right'; // standard for holding patterns is right-turns
+            if (dirTurns == null) {
+                // standard for holding patterns is right-turns
+                dirTurns = 'right';
+            }
 
-            if (legLength == null) legLength = '1min';
+            if (legLength == null) {
+                legLength = '1min';
+            }
 
             if (holdFix !== null) {
                 holdFix = holdFix.toUpperCase();
                 holdFixLocation = airport_get().getFix(holdFix);
+
                 if (!holdFixLocation) {
                     return ['fail', 'unable to find fix ' + holdFix];
                 }
@@ -23923,14 +24034,21 @@ var Aircraft = _fiber2.default.extend(function () {
             // Determine whether or not to enter the hold from present position
             if (holdFix) {
                 // holding over a specific fix (currently only able to do so on inbound course)
-                var inboundHdg = (0, _vector.vradial)((0, _vector.vsub)(this.position, holdFixLocation));
+                inboundHdg = (0, _vector.vradial)((0, _vector.vsub)(this.position, holdFixLocation));
                 if (holdFix !== this.fms.currentWaypoint().fix) {
                     // not yet headed to the hold fix
-                    this.fms.insertLegHere({ type: 'fix', route: '[GPS/RNAV]', waypoints: [new _Waypoint2.default({ // proceed direct to holding fix
+                    this.fms.insertLegHere({
+                        type: 'fix',
+                        route: '[GPS/RNAV]',
+                        waypoints: [
+                        // proceed direct to holding fix
+                        new _Waypoint2.default({
                             fix: holdFix,
                             altitude: this.fms.currentWaypoint().altitude,
                             speed: this.fms.currentWaypoint().speed
-                        }, this.fms), new _Waypoint2.default({ // then enter the hold
+                        }, this.fms),
+                        // then enter the hold
+                        new _Waypoint2.default({
                             navmode: WAYPOINT_NAV_MADE.HOLD,
                             speed: this.fms.currentWaypoint().speed,
                             altitude: this.fms.currentWaypoint().altitude,
@@ -23943,9 +24061,11 @@ var Aircraft = _fiber2.default.extend(function () {
                                 inboundHdg: inboundHdg,
                                 timer: null
                             }
-                        }, this.fms)] });
+                        }, this.fms)]
+                    });
                 } else {
                     // already currently going to the hold fix
+                    // Force the initial turn to outbound heading when entering the hold
                     this.fms.appendWaypoint({
                         navmode: WAYPOINT_NAV_MADE.HOLD,
                         speed: this.fms.currentWaypoint().speed,
@@ -23957,14 +24077,18 @@ var Aircraft = _fiber2.default.extend(function () {
                             dirTurns: dirTurns,
                             legLength: legLength,
                             inboundHdg: inboundHdg,
-                            timer: null } }); // Force the initial turn to outbound heading when entering the hold
+                            timer: null
+                        }
+                    });
                 }
             } else {
                 // holding over present position (currently only able to do so on present course)
                 holdFixLocation = this.position; // make a/c hold over their present position
-                var inboundHdg = this.heading;
+                inboundHdg = this.heading;
 
-                this.fms.insertLegHere({ type: 'fix', waypoints: [{ // document the present position as the 'fix' we're holding over
+                this.fms.insertLegHere({
+                    type: 'fix',
+                    waypoints: [{ // document the present position as the 'fix' we're holding over
                         navmode: WAYPOINT_NAV_MADE.FIX,
                         fix: '[custom]',
                         location: holdFixLocation,
@@ -23983,22 +24107,29 @@ var Aircraft = _fiber2.default.extend(function () {
                             inboundHdg: inboundHdg,
                             timer: null
                         }
-                    }] });
+                    }]
+                });
             }
 
             var inboundDir = radio_cardinalDir_names[getCardinalDirection(fix_angle(inboundHdg + Math.PI)).toLowerCase()];
-            if (holdFix) return ['ok', 'proceed direct ' + holdFix + ' and hold inbound, ' + dirTurns + ' turns, ' + legLength + ' legs'];else return ['ok', 'hold ' + inboundDir + ' of present position, ' + dirTurns + ' turns, ' + legLength + ' legs'];
+
+            if (holdFix) {
+                return ['ok', 'proceed direct ' + holdFix + ' and hold inbound, ' + dirTurns + ' turns, ' + legLength + ' legs'];
+            }
+
+            return ['ok', 'hold ' + inboundDir + ' of present position, ' + dirTurns + ' turns, ' + legLength + ' legs'];
         },
 
         runDirect: function runDirect(data) {
             var fixname = data[0].toUpperCase();
             var fix = airport_get().getFix(fixname);
+
             if (!fix) {
                 return ['fail', 'unable to find fix called ' + fixname];
             }
 
-            if (this.mode == FLIGHT_MODES.TAKEOFF) {
-                // remove intermediate fixes
+            // remove intermediate fixes
+            if (this.mode === FLIGHT_MODES.TAKEOFF) {
                 this.fms.skipToFix(fixname);
             } else if (!this.fms.skipToFix(fixname)) {
                 return ['fail', fixname + ' is not in our flightplan'];
@@ -24008,8 +24139,8 @@ var Aircraft = _fiber2.default.extend(function () {
         },
 
         runFix: function runFix(data) {
-            var last_fix;
-            var fail;
+            var last_fix = void 0;
+            var fail = void 0;
             var fixes = (0, _map3.default)(data[0], function (fixname) {
                 var fix = airport_get().getFix(fixname);
                 if (!fix) {
@@ -24039,45 +24170,60 @@ var Aircraft = _fiber2.default.extend(function () {
             if (this.mode !== FLIGHT_MODES.WAITING && this.mode !== FLIGHT_MODES.TAKEOFF && this.mode !== FLIGHT_MODES.APRON && this.mode !== FLIGHT_MODES.TAXI) {
                 this.cancelLanding();
             }
+
             return ['ok', 'proceed direct ' + fixes.join(', ')];
         },
 
         runFlyPresentHeading: function runFlyPresentHeading(data) {
             this.cancelFix();
             this.runHeading([null, (0, _unitConverters.radiansToDegrees)(this.heading)]);
+
             return ['ok', 'fly present heading'];
         },
 
         runSayRoute: function runSayRoute(data) {
-            return ['ok', { log: 'route: ' + this.fms.fp.route.join(' '), say: 'here\'s our route' }];
+            return ['ok', {
+                log: 'route: ' + this.fms.fp.route.join(' '),
+                say: 'here\'s our route'
+            }];
         },
 
         runSID: function runSID(data) {
             var apt = airport_get();
             var sid_id = data[0].toUpperCase();
-            if (!apt.sids.hasOwnProperty(sid_id)) return;
+
+            if (!(0, _has3.default)(apt.sids, sid_id)) {
+                return;
+            }
+
             var sid_name = apt.sids[sid_id].name;
             var exit = apt.getSIDExitPoint(sid_id);
             var route = apt.icao + '.' + sid_id + '.' + exit;
 
-            if (this.category !== 'departure') {
+            if (this.category !== FLIGHT_CATEGORY.DEPARTURE) {
                 return ['fail', 'unable to fly SID, we are an inbound'];
             }
-            if (data[0].length == 0) {
+
+            if (data[0].length === 0 || !(0, _has3.default)(apt.sids, sid_id)) {
                 return ['fail', 'SID name not understood'];
             }
-            if (!apt.sids.hasOwnProperty(sid_id)) {
-                return ['fail', 'SID name not understood'];
+
+            if (!this.rwy_dep) {
+                this.setDepartureRunway(airport_get().runway);
             }
-            if (!this.rwy_dep) this.setDepartureRunway(airport_get().runway);
-            if (!apt.sids[sid_id].rwy.hasOwnProperty(this.rwy_dep)) {
+
+            if (!(0, _has3.default)(apt.sids[sid_id].rwy, this.rwy_dep)) {
                 return ['fail', 'unable, the ' + sid_name + ' departure not valid from Runway ' + this.rwy_dep];
             }
 
             this.fms.followSID(route);
 
-            return ['ok', { log: 'cleared to destination via the ' + sid_id + ' departure, then as filed',
-                say: 'cleared to destination via the ' + sid_name + ' departure, then as filed' }];
+            var readback = {
+                log: 'cleared to destination via the ' + sid_id + ' departure, then as filed',
+                say: 'cleared to destination via the ' + sid_name + ' departure, then as filed'
+            };
+
+            return ['ok', readback];
         },
 
         runSTAR: function runSTAR(data) {
@@ -24087,7 +24233,7 @@ var Aircraft = _fiber2.default.extend(function () {
             var star_name = apt.stars[star_id].name;
             var route = entry + '.' + star_id + '.' + apt.icao;
 
-            if (this.category !== 'arrival') {
+            if (this.category !== FLIGHT_CATEGORY.ARRIVAL) {
                 return ['fail', 'unable to fly STAR, we are a departure!'];
             }
 
@@ -24101,13 +24247,23 @@ var Aircraft = _fiber2.default.extend(function () {
 
             this.fms.followSTAR(route);
 
-            return ['ok', { log: 'cleared to the ' + apt.name + ' via the ' + star_id + ' arrival',
-                say: 'cleared to the ' + apt.name + ' via the ' + star_name + ' arrival' }];
+            var readback = {
+                log: 'cleared to the ' + apt.name + ' via the ' + star_id + ' arrival',
+                say: 'cleared to the ' + apt.name + ' via the ' + star_name + ' arrival'
+            };
+
+            return ['ok', readback];
         },
 
         runMoveDataBlock: function runMoveDataBlock(dir) {
+            // TODO: what do all these numbers mean?
             var positions = { 8: 360, 9: 45, 6: 90, 3: 135, 2: 180, 1: 225, 4: 270, 7: 315, 5: 'ctr' };
-            if (!positions.hasOwnProperty(dir[0])) return;else this.datablockDir = positions[dir[0]];
+
+            if (!(0, _has3.default)(positions, dir[0])) {
+                return;
+            }
+
+            this.datablockDir = positions[dir[0]];
         },
 
         /**
@@ -24115,11 +24271,14 @@ var Aircraft = _fiber2.default.extend(function () {
           * Note: See notes on 'runReroute' for how to format input for this command
           */
         runRoute: function runRoute(data) {
-            data = data[0].toUpperCase(); // capitalize everything
+            // capitalize everything
+            data = data[0].toUpperCase();
             var worked = true;
             var route = this.fms.formatRoute(data);
+
             if (worked && route) {
-                worked = this.fms.customRoute(route, false); // Add to fms
+                // Add to fms
+                worked = this.fms.customRoute(route, false);
             }
 
             if (!route || !data || data.indexOf(' ') > -1) {
@@ -24128,10 +24287,20 @@ var Aircraft = _fiber2.default.extend(function () {
 
             // Build the response
             if (worked) {
-                return ['ok', { log: 'rerouting to :' + this.fms.fp.route.join(' '), say: 'rerouting as requested' }];
-            } else {
-                return ['fail', { log: 'your route "' + data + '" is invalid!', say: 'that route is invalid!' }];
+                var _readback = {
+                    log: 'rerouting to :' + this.fms.fp.route.join(' '),
+                    say: 'rerouting as requested'
+                };
+
+                return ['ok', _readback];
             }
+
+            var readback = {
+                log: 'your route "' + data + '" is invalid!',
+                say: 'that route is invalid!'
+            };
+
+            return ['fail', readback];
         },
 
         /**
@@ -24142,41 +24311,54 @@ var Aircraft = _fiber2.default.extend(function () {
           * to be connected with double-dots (eg HLI..SQS..BERRA..JAN..KJAN)
           */
         runReroute: function runReroute(data) {
-            data = data[0].toUpperCase(); // capitalize everything
+            // capitalize everything
+            data = data[0].toUpperCase();
             var worked = true;
             var route = this.fms.formatRoute(data);
 
             if (worked && route) {
-                worked = this.fms.customRoute(route, true); // Reset fms
+                // Reset fms
+                worked = this.fms.customRoute(route, true);
             }
 
-            if (!route || !data || data.indexOf(" ") > -1) {
+            // TODO: what exactly are we checking here?
+            if (!route || !data || data.indexOf(' ') > -1) {
                 worked = false;
             }
 
             // Build the response
             if (worked) {
-                return ['ok', { log: 'rerouting to: ' + this.fms.fp.route.join(' '), say: "rerouting as requested" }];
-            } else {
-                return ['fail', { log: 'your route "' + data + '" is invalid!', say: 'that route is invalid!' }];
+                var _readback2 = {
+                    log: 'rerouting to: ' + this.fms.fp.route.join(' '),
+                    say: 'rerouting as requested'
+                };
+
+                return ['ok', _readback2];
             }
+
+            var readback = {
+                log: 'your route "' + data + '" is invalid!',
+                say: 'that route is invalid!'
+            };
+
+            return ['fail', readback];
         },
 
         runTaxi: function runTaxi(data) {
             if (this.category !== FLIGHT_CATEGORY.DEPARTURE) {
-                return ["fail", "inbound"];
+                return ['fail', 'inbound'];
             }
 
             if (this.mode === FLIGHT_MODES.TAXI) {
-                return ["fail", "already taxiing to " + radio_runway(this.rwy_dep)];
+                return ['fail', 'already taxiing to ' + radio_runway(this.rwy_dep)];
             }
 
             if (this.mode === FLIGHT_MODES.WAITING) {
-                return ["fail", "already waiting"];
+                return ['fail', 'already waiting'];
             }
 
             if (this.mode !== FLIGHT_MODES.APRON) {
-                return ["fail", "wrong mode"];
+                return ['fail', 'wrong mode'];
             }
 
             // Set the runway to taxi to
@@ -24191,6 +24373,7 @@ var Aircraft = _fiber2.default.extend(function () {
             // Start the taxi
             this.taxi_start = game_time();
             var runway = airport_get().getRunway(this.rwy_dep);
+
             runway.addQueue(this);
             this.mode = FLIGHT_MODES.TAXI;
 
@@ -24231,70 +24414,92 @@ var Aircraft = _fiber2.default.extend(function () {
                 prop.game.score.windy_takeoff += this.scoreWind('taking off');
                 this.takeoffTime = game_time();
 
-                if (this.fms.currentWaypoint().speed == null) this.fms.setCurrent({ speed: this.model.speed.cruise });
+                if (this.fms.currentWaypoint().speed == null) {
+                    this.fms.setCurrent({ speed: this.model.speed.cruise });
+                }
 
                 var wind = airport_get().getWind();
                 var wind_dir = round((0, _unitConverters.radiansToDegrees)(wind.angle));
                 var readback = {
-                    log: "wind " + round(wind_dir / 10) * 10 + " at " + round(wind.speed) + ", runway " + this.rwy_dep + ", cleared for takeoff",
-                    say: "wynd " + radio_spellOut(round(wind_dir / 10) * 10) + " at " + radio_spellOut(round(wind.speed)) + ", run way " + radio_runway(this.rwy_dep) + ", cleared for take off"
+                    // TODO: the wind_dir calculation should be abstracted
+                    log: 'wind ' + round(wind_dir / 10) * 10 + ' ' + round(wind.speed) + ', runway ' + this.rwy_dep + ' , cleared for takeoff',
+                    say: 'wind ' + radio_spellOut(round(wind_dir / 10) * 10) + ' at ' + radio_spellOut(round(wind.speed)) + ', runway ' + radio_runway(this.rwy_dep) + ', cleared for takeoff'
                 };
-                return ["ok", readback];
-            } else {
-                var waiting = runway.inQueue(this);
-                return ["fail", "number " + waiting + " behind " + runway.queue[waiting - 1].getRadioCallsign(), ""];
+
+                return ['ok', readback];
             }
+
+            var waiting = runway.inQueue(this);
+
+            return ['fail', 'number ' + waiting + ' behind ' + runway.queue[waiting - 1].getRadioCallsign(), ''];
         },
 
         runLanding: function runLanding(data) {
             var variant = data[0];
             var runway = airport_get().getRunway(data[1]);
 
-            if (!runway) return ["fail", "there is no runway " + radio_runway(data[1])];else this.setArrivalRunway(data[1].toUpperCase());
+            if (!runway) {
+                return ['fail', 'there is no runway ' + radio_runway(data[1])];
+            }
 
-            this.fms.followApproach("ils", this.rwy_arr, variant); // tell fms to follow ILS approach
+            this.setArrivalRunway(data[1].toUpperCase());
+            // tell fms to follow ILS approach
+            this.fms.followApproach('ils', this.rwy_arr, variant);
 
-            var readback = { log: "cleared ILS runway " + this.rwy_arr + " approach",
-                say: "cleared ILS runway " + radio_runway(this.rwy_arr) + " approach" };
-            return ["ok", readback];
+            var readback = {
+                log: 'cleared ILS runway ' + this.rwy_arr + ' approach',
+                say: 'cleared ILS runway ' + radio_runway(this.rwy_arr) + ' approach'
+            };
+
+            return ['ok', readback];
         },
 
         runAbort: function runAbort(data) {
-            if (this.mode == FLIGHT_MODES.TAXI) {
+            if (this.mode === FLIGHT_MODES.TAXI) {
                 this.mode = FLIGHT_MODES.APRON;
                 this.taxi_start = 0;
-                console.log("aborted taxi to runway");
-                ui_log(true, this.getCallsign() + " aborted taxi to runway");
+
+                console.log('aborted taxi to runway');
+
+                ui_log(true, this.getCallsign() + ' aborted taxi to runway');
                 prop.game.score.abort.taxi += 1;
-                return ["ok", "taxiing back to terminal"];
-            } else if (this.mode == FLIGHT_MODES.WAITING) {
-                return ["fail", "unable to return to the terminal"];
-            } else if (this.mode == FLIGHT_MODES.LANDING) {
+
+                return ['ok', 'taxiing back to terminal'];
+            } else if (this.mode === FLIGHT_MODES.WAITING) {
+                return ['fail', 'unable to return to the terminal'];
+            } else if (this.mode === FLIGHT_MODES.LANDING) {
                 this.cancelLanding();
                 var readback = {
-                    log: "go around, fly present heading, maintain " + this.fms.currentWaypoint().altitude,
-                    say: "go around, fly present heading, maintain " + radio_altitude(this.fms.currentWaypoint().altitude)
+                    log: 'go around, fly present heading, maintain ' + this.fms.currentWaypoint().altitude,
+                    say: 'go around, fly present heading, maintain ' + radio_altitude(this.fms.currentWaypoint().altitude)
                 };
-                return ["ok", readback];
-            } else if (this.mode == "cruise" && this.fms.currentWaypoint().navmode == WAYPOINT_NAV_MADE.RWY) {
+
+                return ['ok', readback];
+            } else if (this.mode === FLIGHT_MODES.CRUISE && this.fms.currentWaypoint().navmode === WAYPOINT_NAV_MADE.RWY) {
                 this.cancelLanding();
-                var _readback = {
-                    log: "cancel approach clearance, fly present heading, maintain " + this.fms.currentWaypoint().altitude,
-                    say: "cancel approach clearance, fly present heading, maintain " + radio_altitude(this.fms.currentWaypoint().altitude)
+
+                var _readback3 = {
+                    log: 'cancel approach clearance, fly present heading, maintain ' + this.fms.currentWaypoint().altitude,
+                    say: 'cancel approach clearance, fly present heading, maintain ' + radio_altitude(this.fms.currentWaypoint().altitude)
                 };
-                return ["ok", _readback];
-            } else if (this.mode == "cruise" && this.fms.currentWaypoint().navmode == WAYPOINT_NAV_MADE.FIX) {
+
+                return ['ok', _readback3];
+            } else if (this.mode === FLIGHT_MODES.CRUISE && this.fms.currentWaypoint().navmode === WAYPOINT_NAV_MADE.FIX) {
                 this.cancelFix();
-                if (this.category == FLIGHT_CATEGORY.ARRIVAL) return ["ok", "fly present heading, vector to final approach course"];else if (this.category == "departure") return ["ok", "fly present heading, vector for entrail spacing"];
-            } else {
-                //modes "apron", "takeoff", ("cruise" for some navmodes)
-                return ["fail", "unable to abort"];
+
+                if (this.category === FLIGHT_CATEGORY.ARRIVAL) {
+                    return ['ok', 'fly present heading, vector to final approach course'];
+                } else if (this.category === 'departure') {
+                    return ['ok', 'fly present heading, vector for entrail spacing'];
+                }
             }
+
+            // modes 'apron', 'takeoff', ('cruise' for some navmodes)
+            return ['fail', 'unable to abort'];
         },
 
         runDebug: function runDebug() {
             window.aircraft = this;
-
             return ['ok', { log: 'in the console, look at the variable &lsquo;aircraft&rsquo;', say: '' }];
         },
 
@@ -24303,7 +24508,8 @@ var Aircraft = _fiber2.default.extend(function () {
         },
 
         cancelFix: function cancelFix() {
-            if (this.fms.currentWaypoint().navmode == WAYPOINT_NAV_MADE.FIX) {
+            // TODO: this logic could be simplified. do an early return instead of wrapping the entire function in an if.
+            if (this.fms.currentWaypoint().navmode === WAYPOINT_NAV_MADE.FIX) {
                 var curr = this.fms.currentWaypoint();
 
                 this.fms.appendLeg({
@@ -24323,10 +24529,12 @@ var Aircraft = _fiber2.default.extend(function () {
         },
 
         cancelLanding: function cancelLanding() {
-            if (this.fms.currentWaypoint().navmode == WAYPOINT_NAV_MADE.RWY) {
+            // TODO: this logic could be simplified. do an early return instead of wrapping the entire function in an if.
+            if (this.fms.currentWaypoint().navmode === WAYPOINT_NAV_MADE.RWY) {
                 var runway = airport_get().getRunway(this.rwy_arr);
 
-                if (this.mode == FLIGHT_MODES.LANDING) {
+                if (this.mode === FLIGHT_MODES.LANDING) {
+                    // TODO: enumerate the magic numbers
                     this.fms.setCurrent({
                         altitude: Math.max(2000, round(this.altitude / 1000) * 1000),
                         heading: runway.angle
@@ -24342,14 +24550,15 @@ var Aircraft = _fiber2.default.extend(function () {
                 this.updateStrip();
 
                 return true;
-            } else {
-                this.fms.setCurrent({ runway: null });
-
-                return false;
             }
+
+            this.fms.setCurrent({ runway: null });
+
+            return false;
         },
 
         parse: function parse(data) {
+            // TODO: why is this not an array to start with?
             var keys = 'position model airline callsign category heading altitude speed'.split(' ');
 
             for (var i in keys) {
@@ -24358,14 +24567,14 @@ var Aircraft = _fiber2.default.extend(function () {
                 }
             }
 
-            if (this.category == FLIGHT_CATEGORY.ARRIVAL) {
+            if (this.category === FLIGHT_CATEGORY.ARRIVAL) {
                 if (data.waypoints.length > 0) {
                     this.setArrivalWaypoints(data.waypoints);
                 }
 
                 this.destination = data.destination;
                 this.setArrivalRunway(airport_get(this.destination).runway);
-            } else if (this.category == FLIGHT_CATEGORY.DEPARTURE && this.isLanded()) {
+            } else if (this.category === FLIGHT_CATEGORY.DEPARTURE && this.isLanded()) {
                 this.speed = 0;
                 this.mode = FLIGHT_MODES.APRON;
                 this.setDepartureRunway(airport_get().runway);
@@ -24380,9 +24589,11 @@ var Aircraft = _fiber2.default.extend(function () {
                 this.fms.setCurrent({ altitude: data.altitude });
             }
 
-            this.fms.setCurrent({ speed: data.speed || this.model.speed.cruise });
+            var speed = data.speed || this.model.speed.cruise;
+            this.fms.setCurrent({ speed: speed });
 
             if (data.route) {
+                // TODO: what is the true for? enumerate that.
                 this.fms.customRoute(this.fms.formatRoute(data.route), true);
                 this.fms.descendViaSTAR();
             }
@@ -24394,6 +24605,7 @@ var Aircraft = _fiber2.default.extend(function () {
 
         pushHistory: function pushHistory() {
             this.history.push([this.position[0], this.position[1]]);
+
             if (this.history.length > 10) {
                 this.history.splice(0, this.history.length - 10);
             }
@@ -24412,15 +24624,17 @@ var Aircraft = _fiber2.default.extend(function () {
                 return false;
             }
 
-            return this.approachOffset <= 0.048; // 160 feet or 48 meters
+            // TODO: why 48m?  whats the significance of that number?
+            // 160 feet or 48 meters
+            return this.approachOffset <= 0.048;
         },
 
         /**
          ** Aircraft is on the ground (can be a departure OR arrival)
          */
         isLanded: function isLanded() {
+            // TODO: this logic can be simplified. there should really be another method that does more of the work here.
             var runway = airport_get().getRunway(this.rwy_arr);
-
             if (runway === null) {
                 runway = airport_get().getRunway(this.rwy_dep);
             }
@@ -24446,58 +24660,57 @@ var Aircraft = _fiber2.default.extend(function () {
             // approaches and visual/localizer/VOR/etc. this should
             // distinguish between them.  Until then, presume landing is via
             // ILS with appropriate procedures in place.
-            return this.mode == FLIGHT_MODES.LANDING;
+            return this.mode === FLIGHT_MODES.LANDING;
         },
 
         isStopped: function isStopped() {
-            if (this.isLanded() && this.speed < 5) return true;
+            // TODO: enumerate the magic number.
+            return this.isLanded() && this.speed < 5;
         },
 
         isTaxiing: function isTaxiing() {
-            if (this.mode == FLIGHT_MODES.APRON || this.mode == FLIGHT_MODES.TAXI || this.mode == FLIGHT_MODES.WAITING) {
-                return true;
-            }
-            return false;
+            return this.mode === FLIGHT_MODES.APRON || this.mode === FLIGHT_MODES.TAXI || this.mode === FLIGHT_MODES.WAITING;
         },
 
         isTakeoff: function isTakeoff() {
-            if (this.isTaxiing() || this.mode == FLIGHT_MODES.TAKEOFF) {
-                return true;
-            }
-            return false;
+            return this.isTaxiing() || this.mode === FLIGHT_MODES.TAKEOFF;
         },
 
+        // TODO: the logic in this method can be cleaned up and simplified
         isVisible: function isVisible() {
-            if (this.mode == FLIGHT_MODES.APRON || this.mode == FLIGHT_MODES.TAXI) {
-                return false; // hide aircraft on twys
+            // TODO: this if/else if would be cleaner with just if (this.mode == FLIGHT_MODES.WAITING) {}
+            // hide aircraft on twys
+            if (this.mode === FLIGHT_MODES.APRON || this.mode === FLIGHT_MODES.TAXI) {
+                return false;
             } else if (this.isTaxiing()) {
                 // show only the first aircraft in the takeoff queue
                 var runway = airport_get().getRunway(this.rwy_dep);
                 var waiting = runway.inQueue(this);
-                if (this.mode == FLIGHT_MODES.WAITING && waiting == 0) return true;else return false;
+
+                return this.mode === FLIGHT_MODES.WAITING && waiting === 0;
             }
 
             return true;
         },
 
         getWind: function getWind() {
-            if (!this.rwy_dep) {
-                return {
-                    cross: 0,
-                    head: 0
-                };
+            var windForRunway = {
+                cross: 0,
+                head: 0
+            };
+
+            if (this.rwy_dep) {
+                var airport = airport_get();
+                var wind = airport.wind;
+                var runway = airport.getRunway(this.rwy_dep);
+                var angle = abs(angle_offset(runway.angle, wind.angle));
+
+                // TODO: these two bits of math should be abstracted to a helper function
+                windForRunway.cross = Math.sin(angle) * wind.speed;
+                windForRunway.head = Math.cos(angle) * wind.speed;
             }
 
-            var airport = airport_get();
-            var wind = airport.wind;
-            var runway = airport.getRunway(this.rwy_dep);
-            var angle = abs(angle_offset(runway.angle, wind.angle));
-
-            // TODO: these two bits of logic should be abstracted
-            return {
-                cross: Math.sin(angle) * wind.speed,
-                head: Math.cos(angle) * wind.speed
-            };
+            return windForRunway;
         },
 
         radioCall: function radioCall(msg, sectorType, alert) {
@@ -24505,9 +24718,10 @@ var Aircraft = _fiber2.default.extend(function () {
                 return;
             }
 
+            // var is unused
             var call = '';
             var callsign_L = this.getCallsign();
-            var callsign_S = this.getRadioCallsign();;
+            var callsign_S = this.getRadioCallsign();
 
             if (sectorType) {
                 call += airport_get().radio[sectorType];
@@ -24535,7 +24749,7 @@ var Aircraft = _fiber2.default.extend(function () {
             var alt_log = void 0;
             var alt_say = void 0;
 
-            if (this.category == FLIGHT_CATEGORY.ARRIVAL) {
+            if (this.category === FLIGHT_CATEGORY.ARRIVAL) {
                 var altdiff = this.altitude - this.fms.currentWaypoint().altitude;
                 var alt = digits_decimal(this.altitude, -2);
 
@@ -24551,11 +24765,12 @@ var Aircraft = _fiber2.default.extend(function () {
                     alt_log = 'at ' + alt;
                     alt_say = 'at ' + radio_altitude(alt);
                 }
+
                 ui_log(airport_get().radio.app + ', ' + this.getCallsign() + ' with you ' + alt_log);
                 speech_say([{ type: 'text', content: airport_get().radio.app + ', ' }, { type: 'callsign', content: this }, { type: 'text', content: 'with you ' + alt_say }]);
             }
 
-            if (this.category == FLIGHT_CATEGORY.DEPARTURE) {
+            if (this.category === FLIGHT_CATEGORY.DEPARTURE) {
                 ui_log(airport_get().radio.twr + ', ' + this.getCallsign() + ', ready to taxi');
                 speech_say([{ type: 'text', content: airport_get().radio.twr }, { type: 'callsign', content: this }, { type: 'text', content: ', ready to taxi' }]);
             }
@@ -24565,6 +24780,7 @@ var Aircraft = _fiber2.default.extend(function () {
             var score = 0;
             var components = this.getWind();
 
+            // TODO: these two if blocks could be done in a single switch statement
             if (components.cross >= 20) {
                 score += 2;
                 ui_log(true, this.getCallsign() + ' ' + action + ' with major crosswind\'');
@@ -24586,13 +24802,18 @@ var Aircraft = _fiber2.default.extend(function () {
 
         showStrip: function showStrip() {
             this.html.detach();
+
             // var scrollPos = $("#strips")[0].scrollHeight - $("#strips").scrollTop();
-            var scrollPos = (0, _jquery2.default)('#strips').scrollTop();
-            (0, _jquery2.default)('#strips').prepend(this.html);
+            var $strips = (0, _jquery2.default)('#strips');
+            var scrollPos = $strips.scrollTop();
+
+            $strips.prepend(this.html);
             this.html.show();
-            (0, _jquery2.default)('#strips').scrollTop(scrollPos + 45); // shift scroll down one strip's height
+            // shift scroll down one strip's height
+            $strips.scrollTop(scrollPos + 45);
         },
 
+        // TODO: this method needs a lot of love. its much too long with waaay too many nested if/else ifs.
         updateTarget: function updateTarget() {
             var airport = airport_get();
             var runway = null;
@@ -24602,12 +24823,17 @@ var Aircraft = _fiber2.default.extend(function () {
             var glideslope_window = null;
             var angle = null;
             var runway_elevation = 0;
+            var position = void 0;
 
-            if (this.rwy_arr !== null) runway_elevation = airport.getRunway(this.rwy_arr).elevation;
+            if (this.rwy_arr !== null) {
+                runway_elevation = airport.getRunway(this.rwy_arr).elevation;
+            }
 
-            if (this.fms.currentWaypoint().altitude > 0) this.fms.setCurrent({
-                altitude: Math.max(1000, this.fms.currentWaypoint().altitude)
-            });
+            if (this.fms.currentWaypoint().altitude > 0) {
+                this.fms.setCurrent({
+                    altitude: Math.max(1000, this.fms.currentWaypoint().altitude)
+                });
+            }
 
             if (this.fms.currentWaypoint().navmode === WAYPOINT_NAV_MADE.RWY) {
                 airport = airport_get();
@@ -24626,18 +24852,21 @@ var Aircraft = _fiber2.default.extend(function () {
                 glideslope_altitude = (0, _clamp3.default)(0, runway.getGlideslopeAltitude(offset[1]), this.altitude);
                 glideslope_window = abs(runway.getGlideslopeAltitude(offset[1], (0, _unitConverters.degreesToRadians)(1)));
 
-                if (this.mode == FLIGHT_MODES.LANDING) this.target.altitude = glideslope_altitude;
+                if (this.mode === FLIGHT_MODES.LANDING) {
+                    this.target.altitude = glideslope_altitude;
+                }
 
                 var ils = runway.ils.loc_maxDist;
                 if (!runway.ils.enabled || !ils) {
                     ils = 40;
                 }
 
-                // lock  ILS if at the right angle and altitude
+                // lock ILS if at the right angle and altitude
                 if (abs(this.altitude - glideslope_altitude) < glideslope_window && abs(offset_angle) < (0, _unitConverters.degreesToRadians)(10) && offset[1] < ils) {
                     if (abs(offset[0]) < 0.05 && this.mode !== FLIGHT_MODES.LANDING) {
                         this.mode = FLIGHT_MODES.LANDING;
-                        if (!this.projected && abs(angle_offset(this.fms.currentWaypoint().heading, (0, _unitConverters.degreesToRadians)(parseInt(this.rwy_arr.substr(0, 2)) * 10))) > (0, _unitConverters.degreesToRadians)(30)) {
+
+                        if (!this.projected && abs(angle_offset(this.fms.currentWaypoint().heading, (0, _unitConverters.degreesToRadians)(parseInt(this.rwy_arr.substr(0, 2), 10) * 10, 10))) > (0, _unitConverters.degreesToRadians)(30)) {
                             ui_log(true, this.getRadioCallsign() + ' approach course intercept angle was greater than 30 degrees');
                             prop.game.score.violation += 1;
                         }
@@ -24646,23 +24875,33 @@ var Aircraft = _fiber2.default.extend(function () {
                         this.target.turn = null;
                     }
 
+                    // TODO: this math section should be absctracted to a helper function
                     // Intercept localizer and glideslope and follow them inbound
                     var angle_diff = angle_offset(angle, this.heading);
                     var turning_time = Math.abs((0, _unitConverters.radiansToDegrees)(angle_diff)) / 3; // time to turn angle_diff degrees at 3 deg/s
                     var turning_radius = km(this.speed) / 3600 * turning_time; // dist covered in the turn, km
                     var dist_to_localizer = offset[0] / Math.sin(angle_diff); // dist from the localizer intercept point, km
+
                     if (dist_to_localizer <= turning_radius || dist_to_localizer < 0.5) {
+                        this.target.heading = angle;
+
                         // Steer to within 3m of the centerline while at least 200m out
-                        if (offset[1] > 0.2 && abs(offset[0]) > 0.003) this.target.heading = (0, _clamp3.default)((0, _unitConverters.degreesToRadians)(-30), -12 * offset_angle, (0, _unitConverters.degreesToRadians)(30)) + angle;else this.target.heading = angle;
+                        if (offset[1] > 0.2 && abs(offset[0]) > 0.003) {
+                            // TODO: enumerate the magic numbers
+                            this.target.heading = (0, _clamp3.default)((0, _unitConverters.degreesToRadians)(-30), -12 * offset_angle, (0, _unitConverters.degreesToRadians)(30)) + angle;
+                        }
 
                         // Follow the glideslope
                         this.target.altitude = glideslope_altitude;
                     }
 
                     // Speed control on final approach
-                    if (this.fms.currentWaypoint().speed > 0) this.fms.setCurrent({ start_speed: this.fms.currentWaypoint().speed });
+                    if (this.fms.currentWaypoint().speed > 0) {
+                        this.fms.setCurrent({ start_speed: this.fms.currentWaypoint().speed });
+                    }
+
                     this.target.speed = crange(3, offset[1], 10, this.model.speed.landing, this.fms.currentWaypoint().start_speed);
-                } else if (this.altitude - runway_elevation >= 300 && this.mode == FLIGHT_MODES.LANDING) {
+                } else if (this.altitude - runway_elevation >= 300 && this.mode === FLIGHT_MODES.LANDING) {
                     this.updateStrip();
                     this.cancelLanding();
 
@@ -24677,9 +24916,9 @@ var Aircraft = _fiber2.default.extend(function () {
                     this.target.turn = this.fms.currentWaypoint().turn;
                 }
 
-                //this has to be outside of the glide slope if, as the plane is no
-                //longer on the glide slope once it is on the runway (as the runway is
-                //behind the ILS marker)
+                // this has to be outside of the glide slope if, as the plane is no
+                // longer on the glide slope once it is on the runway (as the runway is
+                // behind the ILS marker)
                 if (this.isLanded()) {
                     this.target.speed = 0;
                 }
@@ -24690,43 +24929,50 @@ var Aircraft = _fiber2.default.extend(function () {
                     console.log(this.fms);
                     console.log(this.fms.currentWaypoint());
                 }
+
                 var vector_to_fix = (0, _vector.vsub)(this.position, fix);
                 var distance_to_fix = (0, _distance.distance2d)(this.position, fix);
-                if (distance_to_fix < 1 || distance_to_fix < 10 && distance_to_fix < aircraft_turn_initiation_distance(this, fix)) {
 
+                if (distance_to_fix < 1 || distance_to_fix < 10 && distance_to_fix < aircraft_turn_initiation_distance(this, fix)) {
                     // if there are more waypoints available
                     if (!this.fms.atLastWaypoint()) {
                         this.fms.nextWaypoint();
                     } else {
                         this.cancelFix();
                     }
+
                     this.updateStrip();
                 } else {
                     this.target.heading = (0, _vector.vradial)(vector_to_fix) - Math.PI;
                     this.target.turn = null;
                 }
-            } else if (this.fms.currentWaypoint().navmode == WAYPOINT_NAV_MADE.HOLD) {
-
+            } else if (this.fms.currentWaypoint().navmode === WAYPOINT_NAV_MADE.HOLD) {
                 var hold = this.fms.currentWaypoint().hold;
                 var angle_off_of_leg_hdg = abs(angle_offset(this.heading, this.target.heading));
+
+                // within ~2° of upwd/dnwd
                 if (angle_off_of_leg_hdg < 0.035) {
-                    // within ~2° of upwd/dnwd
-                    var offset = getOffset(this, hold.fixPos);
-                    if (hold.timer == null && offset[1] < 0 && offset[2] < 2) {
-                        // entering hold, just passed the fix
-                        hold.timer = -999; // Force aircraft to enter the hold immediately
+                    offset = getOffset(this, hold.fixPos);
+
+                    // entering hold, just passed the fix
+                    if (hold.timer === null && offset[1] < 0 && offset[2] < 2) {
+                        // Force aircraft to enter the hold immediately
+                        hold.timer = -999;
                     }
+
                     // Holding Logic
+                    // time-based hold legs
                     if (hold.timer && hold.legLength.includes('min')) {
-                        // time-based hold legs
-                        if (hold.timer == -1) {
-                            hold.timer = prop.game.time; // save the time
-                        } else if (prop.game.time >= hold.timer + parseInt(hold.legLength.replace('min', '')) * 60) {
+                        if (hold.timer === -1) {
+                            // save the time
+                            hold.timer = prop.game.time;
+                        } else if (prop.game.time >= hold.timer + parseInt(hold.legLength.replace('min', ''), 10) * 60) {
                             // time to turn
                             this.target.heading += Math.PI; // turn to other leg
                             this.target.turn = hold.dirTurns;
                             hold.timer = -1; // reset the timer
-                        } else if (hold.legLength.includes('nm')) {// distance-based hold legs
+                        } else if (hold.legLength.includes('nm')) {
+                            // distance-based hold legs
                             // not yet implemented
                         }
                     }
@@ -24739,40 +24985,46 @@ var Aircraft = _fiber2.default.extend(function () {
             if (this.mode !== FLIGHT_MODES.LANDING) {
                 this.target.altitude = this.fms.currentWaypoint().altitude;
                 this.target.expedite = this.fms.currentWaypoint().expedite;
-
                 this.target.altitude = Math.max(1000, this.target.altitude);
-
                 this.target.speed = this.fms.currentWaypoint().speed;
                 this.target.speed = (0, _clamp3.default)(this.model.speed.min, this.target.speed, this.model.speed.max);
             }
 
             // If stalling, make like a meteorite and fall to the earth!
-            if (this.speed < this.model.speed.min) this.target.altitude = 0;
+            if (this.speed < this.model.speed.min) {
+                this.target.altitude = 0;
+            }
 
-            //f inally, taxi overrides everything
+            // finally, taxi overrides everything
             var was_taxi = false;
-            if (this.mode == FLIGHT_MODES.TAXI) {
+
+            if (this.mode === FLIGHT_MODES.TAXI) {
                 var elapsed = game_time() - this.taxi_start;
+
                 if (elapsed > this.taxi_time) {
                     this.mode = FLIGHT_MODES.WAITING;
                     was_taxi = true;
+
                     this.updateStrip();
                 }
-            } else if (this.mode == FLIGHT_MODES.WAITING) {
-                var runway = airport_get().getRunway(this.rwy_dep);
-                var position = runway.position;
+            } else if (this.mode === FLIGHT_MODES.WAITING) {
+                runway = airport_get().getRunway(this.rwy_dep);
 
+                position = runway.position;
                 this.position[0] = position[0];
                 this.position[1] = position[1];
                 this.heading = runway.angle;
                 this.altitude = runway.elevation;
-                if (!this.projected && runway.inQueue(this) == 0 && was_taxi == true) {
-                    ui_log(this.getCallsign(), ' holding short of runway ' + this.rwy_dep);
+
+                if (!this.projected && runway.inQueue(this) === 0 && was_taxi === true) {
+                    ui_log(this.getCallsign() + ', holding short of runway ' + this.rwy_dep);
                     speech_say([{ type: 'callsign', content: this }, { type: 'text', content: 'holding short of runway ' + radio_runway(this.rwy_dep) }]);
+
                     this.updateStrip();
                 }
-            } else if (this.mode == FLIGHT_MODES.TAKEOFF) {
-                var runway = airport_get().getRunway(this.rwy_dep);
+            } else if (this.mode === FLIGHT_MODES.TAKEOFF) {
+                runway = airport_get().getRunway(this.rwy_dep);
+
                 // Altitude Control
                 if (this.speed < this.model.speed.min) {
                     this.target.altitude = runway.elevation;
@@ -24785,72 +25037,88 @@ var Aircraft = _fiber2.default.extend(function () {
                 if (this.altitude - runway.elevation < 400) {
                     this.target.heading = rwyHdg;
                 } else {
-                    if (!this.fms.followCheck().sid && this.fms.currentWaypoint().heading == null) {
+                    if (!this.fms.followCheck().sid && this.fms.currentWaypoint().heading === null) {
                         // if no directional instructions available after takeoff
-                        this.fms.setCurrent({ heading: rwyHdg }); // fly runway heading
+                        // fly runway heading
+                        this.fms.setCurrent({ heading: rwyHdg });
                     }
+
                     this.mode = FLIGHT_MODES.CRUISE;
                     this.updateStrip();
                 }
 
                 // Speed Control
-                this.target.speed = this.model.speed.cruise; // go fast!
+                // go fast!
+                this.target.speed = this.model.speed.cruise;
             }
 
             // Limit speed to 250 knots while under 10,000 feet MSL (it's the law!)
             if (this.altitude < 10000) {
                 if (this.isPrecisionGuided()) {
-                    this.target.speed = Math.min(this.target.speed, 250); // btwn 0 and 250
+                    // btwn 0 and 250
+                    this.target.speed = Math.min(this.target.speed, 250);
                 } else {
-                    this.target.speed = Math.min(this.fms.currentWaypoint().speed, 250); // btwn scheduled speed and 250
+                    // btwn scheduled speed and 250
+                    this.target.speed = Math.min(this.fms.currentWaypoint().speed, 250);
                 }
             }
         },
 
+        // TODO: this method needs a lot of love. its much too long with waaay too many nested if/else ifs.
         updatePhysics: function updatePhysics() {
             if (this.isTaxiing()) {
                 return;
             }
 
             if (this.hit) {
-                this.altitude -= 90 * game_delta(); // 90fps fall rate?...
+                // 90fps fall rate?...
+                this.altitude -= 90 * game_delta();
                 this.speed *= 0.99;
 
                 return;
             } else {
                 // TURNING
-
                 if (!this.isLanded() && this.heading !== this.target.heading) {
                     // Perform standard turns 3 deg/s or 25 deg bank, whichever
                     // requires less bank angle.
                     // Formula based on http://aviation.stackexchange.com/a/8013
                     var turn_rate = (0, _clamp3.default)(0, 1 / (this.speed / 8.883031), 0.0523598776);
                     var turn_amount = turn_rate * game_delta();
-                    var offset = angle_offset(this.target.heading, this.heading);
-                    if (abs(offset) < turn_amount) {
+                    var _offset = angle_offset(this.target.heading, this.heading);
+
+                    if (abs(_offset) < turn_amount) {
                         this.heading = this.target.heading;
-                    } else if (offset < 0 && this.target.turn === null || this.target.turn === 'left') {
+                    } else if (_offset < 0 && this.target.turn === null || this.target.turn === 'left') {
                         this.heading -= turn_amount;
-                    } else if (offset > 0 && this.target.turn === null || this.target.turn === 'right') {
+                    } else if (_offset > 0 && this.target.turn === null || this.target.turn === 'right') {
                         this.heading += turn_amount;
                     }
                 }
 
                 // ALTITUDE
-
                 var distance = null;
                 var expedite_factor = 1.5;
                 this.trend = 0;
+
                 if (this.target.altitude < this.altitude - 0.02) {
                     distance = -this.model.rate.descent / 60 * game_delta();
-                    if (this.mode == FLIGHT_MODES.LANDING) distance *= 3;
+
+                    if (this.mode === FLIGHT_MODES.LANDING) {
+                        distance *= 3;
+                    }
+
                     this.trend -= 1;
                 } else if (this.target.altitude > this.altitude + 0.02) {
                     var climbrate = this.getClimbRate();
                     distance = climbrate / 60 * game_delta();
-                    if (this.mode == FLIGHT_MODES.LANDING) distance *= 1.5;
+
+                    if (this.mode === FLIGHT_MODES.LANDING) {
+                        distance *= 1.5;
+                    }
+
                     this.trend = 1;
                 }
+
                 if (distance) {
                     if (this.target.expedite) {
                         distance *= expedite_factor;
@@ -24870,10 +25138,11 @@ var Aircraft = _fiber2.default.extend(function () {
                 }
 
                 // SPEED
-
                 var difference = null;
+
                 if (this.target.speed < this.speed - 0.01) {
                     difference = -this.model.rate.decelerate * game_delta() / 2;
+
                     if (this.isLanded()) {
                         difference *= 3.5;
                     }
@@ -24900,6 +25169,7 @@ var Aircraft = _fiber2.default.extend(function () {
             // Trailling
             if (this.position_history.length === 0) {
                 this.position_history.push([this.position[0], this.position[1], game_time() / game_speedup()]);
+                // TODO: this can be abstracted
             } else if (abs(game_time() / game_speedup() - this.position_history[this.position_history.length - 1][2]) > 4 / game_speedup()) {
                 this.position_history.push([this.position[0], this.position[1], game_time() / game_speedup()]);
             }
@@ -24907,7 +25177,8 @@ var Aircraft = _fiber2.default.extend(function () {
             var angle = this.heading;
             // FIXME: is this ratio correct? is it 0.000514444 or 0.514444?
             var scaleSpeed = this.speed * 0.000514444 * game_delta(); // knots to m/s
-            if (prop.game.option.get('simplifySpeeds') == 'no') {
+
+            if (prop.game.option.get('simplifySpeeds') === 'no') {
                 // TODO: this should be abstracted to a helper function
                 // Calculate the true air speed as indicated airspeed * 1.6% per 1000'
                 scaleSpeed *= 1 + this.altitude * 0.000016;
@@ -24916,6 +25187,7 @@ var Aircraft = _fiber2.default.extend(function () {
                 // increases 2% per 1000'
                 var wind = airport_get().wind;
                 var vector;
+
                 if (this.isLanded()) {
                     vector = vscale([sin(angle), cos(angle)], scaleSpeed);
                 } else {
@@ -24947,6 +25219,7 @@ var Aircraft = _fiber2.default.extend(function () {
 
             this.distance = (0, _vector.vlen)(this.position);
             this.radial = (0, _vector.vradial)(this.position);
+
             if (this.radial < 0) {
                 this.radial += (0, _circle.tau)();
             }
@@ -24954,7 +25227,10 @@ var Aircraft = _fiber2.default.extend(function () {
             // polygonal airspace boundary
             if (airport_get().perimeter) {
                 var inside = point_in_area(this.position, airport_get().perimeter);
-                if (inside !== this.inside_ctr) this.crossBoundary(inside);
+
+                if (inside !== this.inside_ctr) {
+                    this.crossBoundary(inside);
+                }
             } else {
                 // simple circular airspace boundary
                 var inside = this.distance <= airport_get().ctr_radius && this.altitude <= airport_get().ctr_ceiling;
@@ -24965,13 +25241,18 @@ var Aircraft = _fiber2.default.extend(function () {
             }
         },
 
+        // TODO: this method needs a lot of love. its much too long with waaay too many nested if/else ifs.
         updateWarning: function updateWarning() {
+            var area = void 0;
+            var warning = void 0;
+            var status = void 0;
+
             // Ignore other aircraft while taxiing
             if (this.isTaxiing()) {
                 return;
             }
 
-            var warning = false;
+            warning = false;
 
             // restricted areas
             // players are penalized for each area entry
@@ -24989,7 +25270,7 @@ var Aircraft = _fiber2.default.extend(function () {
                     //      will cause too many checks.
                     //   3. if distance has reached 0, check if the aircraft is within the poly.
                     //      If not, redo #2.
-                    var area = this.restricted.list[i];
+                    area = this.restricted.list[i];
 
                     // filter only those relevant by height
                     if (area.data.height < this.altitude) {
@@ -25006,6 +25287,7 @@ var Aircraft = _fiber2.default.extend(function () {
                     // recalculate for new areas or those that should be checked
                     if (!area.range || area.range <= 0) {
                         var new_inside = point_in_poly(this.position, area.data.coordinates);
+
                         // ac has just entered the area: .inside is still false, but st is true
                         if (new_inside && !area.inside) {
                             prop.game.score.restrictions += 1;
@@ -25016,9 +25298,11 @@ var Aircraft = _fiber2.default.extend(function () {
                             // don't calculate more often than every 10 seconds
                             area.range = Math.max(this.speed * 1.85 / 36 / 1000 * 10, distance_to_poly(this.position, area.data.coordinates));
                         }
+
                         area.inside = new_inside;
                     }
                 }
+
                 // raise warning if in at least one restricted area
                 _jquery2.default.each(this.restricted.list, function (k, v) {
                     warning = warning || v.inside;
@@ -25026,15 +25310,16 @@ var Aircraft = _fiber2.default.extend(function () {
             }
 
             if (this.terrain_ranges && !this.isLanded()) {
-                var terrain = prop.airport.current.terrain,
-                    prev_level = this.terrain_ranges[this.terrain_level],
-                    ele = ceil(this.altitude, 1000),
-                    curr_ranges = this.terrain_ranges[ele];
+                var terrain = prop.airport.current.terrain;
+                var prev_level = this.terrain_ranges[this.terrain_level];
+                var ele = ceil(this.altitude, 1000);
+                var curr_ranges = this.terrain_ranges[ele];
 
                 if (ele !== this.terrain_level) {
                     for (var lev in prev_level) {
                         prev_level[lev] = Infinity;
                     }
+
                     this.terrain_level = ele;
                 }
 
@@ -25042,13 +25327,16 @@ var Aircraft = _fiber2.default.extend(function () {
                     curr_ranges[id] -= this.ds;
                     //console.log(curr_ranges[id]);
 
-                    if (curr_ranges[id] < 0 || curr_ranges[id] == Infinity) {
-                        var area = terrain[ele][id],
-                            status = point_to_mpoly(this.position, area, id);
+                    if (curr_ranges[id] < 0 || curr_ranges[id] === Infinity) {
+                        area = terrain[ele][id];
+                        status = point_to_mpoly(this.position, area, id);
+
                         if (status.inside) {
                             this.altitude = 0;
+
                             if (!this.hit) {
                                 this.hit = true;
+
                                 console.log('hit terrain');
                                 ui_log(true, this.getCallsign() + ' collided with terrain in controlled flight');
                                 speech_say([{ type: 'callsign', content: this }, { type: 'text', content: ', we\'re going down!' }]);
@@ -25056,7 +25344,7 @@ var Aircraft = _fiber2.default.extend(function () {
                                 prop.game.score.hit += 1;
                             }
                         } else {
-                            curr_ranges[id] = Math.max(.2, status.distance);
+                            curr_ranges[id] = Math.max(0.2, status.distance);
                             // console.log(this.getCallsign(), 'in', curr_ranges[id], 'km from', id, area[0].length);
                         }
                     }
@@ -25089,6 +25377,7 @@ var Aircraft = _fiber2.default.extend(function () {
 
             // Populate strip fields with default values
             heading.text(heading_to_string(wp.heading));
+
             if (wp.altitude) {
                 altitude.text(wp.altitude);
             } else {
@@ -25099,16 +25388,21 @@ var Aircraft = _fiber2.default.extend(function () {
             speed.text(wp.speed);
 
             // When at the apron...
-            if (this.mode == FLIGHT_MODES.APRON) {
+            if (this.mode === FLIGHT_MODES.APRON) {
                 heading.addClass('runway');
                 heading.text(FLIGHT_MODES.APRON);
-                if (wp.altitude) altitude.addClass('runway');
+
+                if (wp.altitude) {
+                    altitude.addClass('runway');
+                }
+
                 if (this.fms.following.sid) {
                     destination.text(this.fms.following.sid + '.' + this.fms.currentLeg().route.split('.')[2]);
                     destination.addClass('runway');
                 }
+
                 speed.addClass('runway');
-            } else if (this.mode == FLIGHT_MODES.TAXI) {
+            } else if (this.mode === FLIGHT_MODES.TAXI) {
                 // When taxiing...
                 heading.addClass('runway');
                 heading.text(FLIGHT_MODES.TAXI);
@@ -25127,81 +25421,77 @@ var Aircraft = _fiber2.default.extend(function () {
                 if (this.taxi_next) {
                     altitude.text('ready');
                 }
-            }
+            } else if (this.mode === FLIGHT_MODES.WAITING) {
+                // When waiting in the takeoff queue
+                heading.addClass('runway');
+                heading.text('ready');
 
-            // When waiting in the takeoff queue
-            else if (this.mode == FLIGHT_MODES.WAITING) {
-                    heading.addClass('runway');
-                    heading.text('ready');
-
-                    if (wp.altitude) {
-                        altitude.addClass('runway');
-                    }
-
-                    if (this.fms.following.sid) {
-                        destination.text(this.fms.following.sid + '.' + this.fms.currentLeg().route.split('.')[2]);
-                        destination.addClass('runway');
-                    }
-                    speed.addClass('runway');
+                if (wp.altitude) {
+                    altitude.addClass('runway');
                 }
 
+                if (this.fms.following.sid) {
+                    destination.text(this.fms.following.sid + '.' + this.fms.currentLeg().route.split('.')[2]);
+                    destination.addClass('runway');
+                }
+
+                speed.addClass('runway');
+            } else if (this.mode === FLIGHT_MODES.TAKEOFF) {
                 // When taking off...
-                else if (this.mode == FLIGHT_MODES.TAKEOFF) {
-                        heading.text(FLIGHT_MODES.TAKEOFF);
-                        if (this.fms.following.sid) {
-                            destination.text(this.fms.following.sid + '.' + this.fms.currentLeg().route.split('.')[2]);
-                            destination.addClass("lookingGood");
-                        }
+                heading.text(FLIGHT_MODES.TAKEOFF);
+
+                if (this.fms.following.sid) {
+                    destination.text(this.fms.following.sid + '.' + this.fms.currentLeg().route.split('.')[2]);
+                    destination.addClass('lookingGood');
+                }
+            } else if (this.mode === FLIGHT_MODES.CRUISE) {
+                // When in normal flight...
+                if (wp.navmode === WAYPOINT_NAV_MADE.FIX) {
+                    heading.text(wp.fix[0] === '_' ? '[RNAV]' : wp.fix);
+
+                    if (this.fms.following.sid) {
+                        heading.addClass('allSet');
+                        altitude.addClass('allSet');
+                        destination.addClass('allSet');
+                        speed.addClass('allSet');
                     }
 
-                    // When in normal flight...
-                    else if (this.mode === FLIGHT_MODES.CRUISE) {
-                            if (wp.navmode === WAYPOINT_NAV_MADE.FIX) {
-                                heading.text(wp.fix[0] == '_' ? '[RNAV]' : wp.fix);
-                                if (this.fms.following.sid) {
-                                    heading.addClass('allSet');
-                                    altitude.addClass('allSet');
-                                    destination.addClass('allSet');
-                                    speed.addClass('allSet');
-                                }
+                    if (this.fms.following.star) {
+                        heading.addClass('followingSTAR');
 
-                                if (this.fms.following.star) {
-                                    heading.addClass('followingSTAR');
-
-                                    if (this.fms.currentWaypoint().fixRestrictions.altitude) {
-                                        altitude.addClass('followingSTAR');
-                                    }
-
-                                    destination.text(this.fms.following.star + '.' + airport_get().icao);
-                                    destination.addClass('followingSTAR');
-                                    if (this.fms.currentWaypoint().fixRestrictions.speed) {
-                                        speed.addClass('followingSTAR');
-                                    }
-                                }
-                            } else if (wp.navmode == WAYPOINT_NAV_MADE.HOLD) {
-                                heading.text('holding');
-                                heading.addClass('hold');
-                            } else if (wp.navmode == WAYPOINT_NAV_MADE.RWY) {
-                                // attempting ILS intercept
-                                heading.addClass('lookingGood');
-                                heading.text('intercept');
-                                altitude.addClass('lookingGood');
-                                destination.addClass('lookingGood');
-                                destination.text(this.fms.fp.route[this.fms.fp.route.length - 1] + ' ' + wp.runway);
-                                speed.addClass('lookingGood');
-                            }
+                        if (this.fms.currentWaypoint().fixRestrictions.altitude) {
+                            altitude.addClass('followingSTAR');
                         }
 
-                        // When established on the ILS...
-                        else if (this.mode == FLIGHT_MODES.LANDING) {
-                                heading.addClass('allSet');
-                                heading.text('on ILS');
-                                altitude.addClass('allSet');
-                                altitude.text('GS');
-                                destination.addClass('allSet');
-                                destination.text(this.fms.fp.route[this.fms.fp.route.length - 1] + ' ' + wp.runway);
-                                speed.addClass('allSet');
-                            }
+                        destination.text(this.fms.following.star + '.' + airport_get().icao);
+                        destination.addClass('followingSTAR');
+
+                        if (this.fms.currentWaypoint().fixRestrictions.speed) {
+                            speed.addClass('followingSTAR');
+                        }
+                    }
+                } else if (wp.navmode === WAYPOINT_NAV_MADE.HOLD) {
+                    heading.text('holding');
+                    heading.addClass('hold');
+                } else if (wp.navmode === WAYPOINT_NAV_MADE.RWY) {
+                    // attempting ILS intercept
+                    heading.addClass('lookingGood');
+                    heading.text('intercept');
+                    altitude.addClass('lookingGood');
+                    destination.addClass('lookingGood');
+                    destination.text(this.fms.fp.route[this.fms.fp.route.length - 1] + ' ' + wp.runway);
+                    speed.addClass('lookingGood');
+                }
+            } else if (this.mode === FLIGHT_MODES.LANDING) {
+                // When established on the ILS...
+                heading.addClass('allSet');
+                heading.text('on ILS');
+                altitude.addClass('allSet');
+                altitude.text('GS');
+                destination.addClass('allSet');
+                destination.text(this.fms.fp.route[this.fms.fp.route.length - 1] + ' ' + wp.runway);
+                speed.addClass('allSet');
+            }
         },
 
         updateAuto: function updateAuto() {},
@@ -25210,6 +25500,7 @@ var Aircraft = _fiber2.default.extend(function () {
             if (prop.aircraft.auto.enabled) {
                 this.updateAuto();
             }
+
             this.updateTarget();
             this.updatePhysics();
         },
@@ -25223,6 +25514,7 @@ var Aircraft = _fiber2.default.extend(function () {
                 this.conflicts[other.getCallsign()].update();
                 return true;
             }
+
             return false;
         },
 
@@ -25234,6 +25526,7 @@ var Aircraft = _fiber2.default.extend(function () {
                 a[0] = a[0] || c[0];
                 a[1] = a[1] || c[1];
             }
+
             return a;
         },
 
@@ -25245,7 +25538,7 @@ var Aircraft = _fiber2.default.extend(function () {
 
 exports.default = Aircraft;
 
-},{"../math/circle":182,"../math/distance":183,"../math/vector":185,"../utilities/unitConverters":193,"./AircraftFlightManagementSystem":155,"./Waypoint":159,"fiber":1,"jquery":2,"lodash/clamp":107,"lodash/has":112,"lodash/map":129}],157:[function(require,module,exports){
+},{"../math/circle":184,"../math/distance":185,"../math/vector":187,"../utilities/unitConverters":195,"./AircraftFlightManagementSystem":157,"./Waypoint":161,"fiber":1,"jquery":2,"lodash/clamp":107,"lodash/has":112,"lodash/isNaN":123,"lodash/map":131}],159:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25404,7 +25697,7 @@ var Model = _fiber2.default.extend(function () {
 
 exports.default = Model;
 
-},{"./AircraftInstanceModel":156,"fiber":1,"jquery":2}],158:[function(require,module,exports){
+},{"./AircraftInstanceModel":158,"fiber":1,"jquery":2}],160:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25567,7 +25860,7 @@ var Leg = _fiber2.default.extend(function (data, fms) {
 
 exports.default = Leg;
 
-},{"../constants/logLevel":177,"./Waypoint":159,"fiber":1}],159:[function(require,module,exports){
+},{"../constants/logLevel":179,"./Waypoint":161,"fiber":1}],161:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -25651,7 +25944,7 @@ var Waypoint = _fiber2.default.extend(function (data, fms) {
 
 exports.default = Waypoint;
 
-},{"fiber":1}],160:[function(require,module,exports){
+},{"fiber":1}],162:[function(require,module,exports){
 'use strict';
 
 var _AircraftConflict = require('./AircraftConflict');
@@ -26040,7 +26333,7 @@ window.aircraft_get_by_callsign = aircraft_get_by_callsign;
 window.aircraft_get_eid_by_callsign = aircraft_get_eid_by_callsign;
 window.aircraft_model_get = aircraft_model_get;
 
-},{"../math/circle":182,"../math/distance":183,"../math/flightMath":184,"../math/vector":185,"../utilities/unitConverters":193,"./AircraftConflict":154,"./AircraftFlightManagementSystem":155,"./AircraftModel":157}],161:[function(require,module,exports){
+},{"../math/circle":184,"../math/distance":185,"../math/flightMath":186,"../math/vector":187,"../utilities/unitConverters":195,"./AircraftConflict":156,"./AircraftFlightManagementSystem":157,"./AircraftModel":159}],163:[function(require,module,exports){
 "use strict";
 
 window.airline_init_pre = function airline_init_pre() {
@@ -26259,7 +26552,7 @@ window.airline_get = function airline_get(icao) {
   return prop.airline.airlines[icao];
 };
 
-},{}],162:[function(require,module,exports){
+},{}],164:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -27125,7 +27418,7 @@ var AirportInstance = _fiber2.default.extend(function () {
 
 exports.default = AirportInstance;
 
-},{"../constants/logLevel":177,"../math/vector":185,"../utilities/unitConverters":193,"./Arrival/ArrivalFactory":165,"./Departure/DepartureFactory":170,"./Runway":172,"fiber":1,"jquery":2,"lodash/forEach":109,"lodash/forIn":110,"lodash/has":112,"lodash/isEmpty":120,"lodash/map":129,"lodash/uniq":136}],163:[function(require,module,exports){
+},{"../constants/logLevel":179,"../math/vector":187,"../utilities/unitConverters":195,"./Arrival/ArrivalFactory":167,"./Departure/DepartureFactory":172,"./Runway":174,"fiber":1,"jquery":2,"lodash/forEach":109,"lodash/forIn":110,"lodash/has":112,"lodash/isEmpty":120,"lodash/map":131,"lodash/uniq":138}],165:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -27441,7 +27734,7 @@ var ArrivalBase = _fiber2.default.extend(function (base) {
 }); /* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand */
 exports.default = ArrivalBase;
 
-},{"../../constants/logLevel":177,"../../math/distance":183,"../../math/vector":185,"../../utilities/unitConverters":193,"fiber":1,"jquery":2,"lodash/has":112}],164:[function(require,module,exports){
+},{"../../constants/logLevel":179,"../../math/distance":185,"../../math/vector":187,"../../utilities/unitConverters":195,"fiber":1,"jquery":2,"lodash/has":112}],166:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -27530,7 +27823,7 @@ var ArrivalCyclic = _ArrivalBase2.default.extend(function (base) {
 }); /* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand */
 exports.default = ArrivalCyclic;
 
-},{"./ArrivalBase":163}],165:[function(require,module,exports){
+},{"./ArrivalBase":165}],167:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -27587,7 +27880,7 @@ var ArrivalFactory = exports.ArrivalFactory = function ArrivalFactory(airport, o
     }
 }; /* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand */
 
-},{"../../constants/logLevel":177,"./ArrivalBase":163,"./ArrivalCyclic":164,"./ArrivalSurge":166,"./ArrivalWave":167}],166:[function(require,module,exports){
+},{"../../constants/logLevel":179,"./ArrivalBase":165,"./ArrivalCyclic":166,"./ArrivalSurge":168,"./ArrivalWave":169}],168:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -27730,7 +28023,7 @@ var ArrivalSurge = _ArrivalBase2.default.extend(function (base) {
 
 exports.default = ArrivalSurge;
 
-},{"../../constants/logLevel":177,"./ArrivalBase":163}],167:[function(require,module,exports){
+},{"../../constants/logLevel":179,"./ArrivalBase":165}],169:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -27857,7 +28150,7 @@ var ArrivalWave = _ArrivalBase2.default.extend(function (base) {
 
 exports.default = ArrivalWave;
 
-},{"../../constants/logLevel":177,"../../math/circle":182,"./ArrivalBase":163,"jquery":2}],168:[function(require,module,exports){
+},{"../../constants/logLevel":179,"../../math/circle":184,"./ArrivalBase":165,"jquery":2}],170:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -27986,7 +28279,7 @@ var DepartureBase = _fiber2.default.extend(function (base) {
 
 exports.default = DepartureBase;
 
-},{"fiber":1,"jquery":2}],169:[function(require,module,exports){
+},{"fiber":1,"jquery":2}],171:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -28057,7 +28350,7 @@ var DepartureCyclic = _DepartureBase2.default.extend(function (base) {
 
 exports.default = DepartureCyclic;
 
-},{"../../math/circle":182,"./DepartureBase":168}],170:[function(require,module,exports){
+},{"../../math/circle":184,"./DepartureBase":170}],172:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -28108,7 +28401,7 @@ var DepartureFactory = exports.DepartureFactory = function DepartureFactory(airp
     }
 };
 
-},{"../../constants/logLevel":177,"./DepartureBase":168,"./DepartureCyclic":169,"./DepartureWave":171}],171:[function(require,module,exports){
+},{"../../constants/logLevel":179,"./DepartureBase":170,"./DepartureCyclic":171,"./DepartureWave":173}],173:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -28165,7 +28458,7 @@ var DepartureWave = _DepartureCyclic2.default.extend(function (base) {
 }); /* eslint-disable no-underscore-dangle, no-mixed-operators, func-names */
 exports.default = DepartureWave;
 
-},{"./DepartureCyclic":169}],172:[function(require,module,exports){
+},{"./DepartureCyclic":171}],174:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -28315,7 +28608,7 @@ var Runway = _fiber2.default.extend(function (base) {
 }); /* eslint-disable no-multi-spaces, func-names, camelcase, no-undef, max-len, object-shorthand */
 exports.default = Runway;
 
-},{"../math/vector":185,"../utilities/unitConverters":193,"fiber":1}],173:[function(require,module,exports){
+},{"../math/vector":187,"../utilities/unitConverters":195,"fiber":1}],175:[function(require,module,exports){
 'use strict';
 
 var _AirportInstanceModel = require('./AirportInstanceModel');
@@ -28492,7 +28785,7 @@ window.airport_add = airport_add;
 window.airport_set = airport_set;
 window.airport_get = airport_get;
 
-},{"./AirportInstanceModel":162}],174:[function(require,module,exports){
+},{"./AirportInstanceModel":164}],176:[function(require,module,exports){
 'use strict';
 
 var _timeHelpers = require('./utilities/timeHelpers');
@@ -28573,7 +28866,7 @@ var Animation = function Animation(options) {
 
 window.Animation = Animation;
 
-},{"./utilities/timeHelpers":192}],175:[function(require,module,exports){
+},{"./utilities/timeHelpers":194}],177:[function(require,module,exports){
 'use strict';
 
 var _fiber = require('fiber');
@@ -28756,7 +29049,7 @@ var Area = _fiber2.default.extend(function () {
 window.Position = Position;
 window.Area = Area;
 
-},{"./utilities/unitConverters":193,"fiber":1}],176:[function(require,module,exports){
+},{"./utilities/unitConverters":195,"fiber":1}],178:[function(require,module,exports){
 'use strict';
 
 var _clamp2 = require('lodash/clamp');
@@ -29958,7 +30251,7 @@ function canvas_draw_directions(cc) {
   cc.restore();
 }
 
-},{"./constants/logLevel":177,"./math/circle":182,"./math/distance":183,"./utilities/timeHelpers":192,"./utilities/unitConverters":193,"lodash/clamp":107}],177:[function(require,module,exports){
+},{"./constants/logLevel":179,"./math/circle":184,"./math/distance":185,"./utilities/timeHelpers":194,"./utilities/unitConverters":195,"lodash/clamp":107}],179:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -29977,7 +30270,7 @@ var LOG = exports.LOG = {
     FATAL: 4
 };
 
-},{}],178:[function(require,module,exports){
+},{}],180:[function(require,module,exports){
 'use strict';
 
 zlsa.atc.Options = Fiber.extend(function (base) {
@@ -30235,7 +30528,7 @@ window.game_complete = function game_complete() {
   prop.game.paused = false;
 };
 
-},{}],179:[function(require,module,exports){
+},{}],181:[function(require,module,exports){
 'use strict';
 
 /**
@@ -30358,7 +30651,7 @@ window.game_complete = function game_complete() {
   };
 })($, zlsa, Fiber, zlsa.atc.mediator);
 
-},{}],180:[function(require,module,exports){
+},{}],182:[function(require,module,exports){
 'use strict';
 
 var _clamp2 = require('lodash/clamp');
@@ -30809,7 +31102,7 @@ window.input_run = function input_run() {
   return aircraft.runCommands(result.args);
 };
 
-},{"lodash/clamp":107}],181:[function(require,module,exports){
+},{"lodash/clamp":107}],183:[function(require,module,exports){
 'use strict';
 
 var _timeHelpers = require('./utilities/timeHelpers');
@@ -30874,7 +31167,7 @@ var _timeHelpers = require('./utilities/timeHelpers');
   };
 })($, zlsa, Fiber, zlsa.atc.mediator, prop.version_string);
 
-},{"./utilities/timeHelpers":192}],182:[function(require,module,exports){
+},{"./utilities/timeHelpers":194}],184:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -30890,7 +31183,7 @@ var tau = exports.tau = function tau() {
   return Math.PI * 2;
 };
 
-},{}],183:[function(require,module,exports){
+},{}],185:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -30911,7 +31204,7 @@ var distance2d = exports.distance2d = function distance2d(a, b) {
   return Math.sqrt(x * x + y * y);
 };
 
-},{}],184:[function(require,module,exports){
+},{}],186:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -30954,7 +31247,7 @@ var calcTurnInitiationDistance = exports.calcTurnInitiationDistance = function c
   return turnRadius * Math.tan(courseChange / 2) + speed;
 };
 
-},{}],185:[function(require,module,exports){
+},{}],187:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -31008,7 +31301,7 @@ var vsub = exports.vsub = function vsub(v1, v2) {
     }
 };
 
-},{}],186:[function(require,module,exports){
+},{}],188:[function(require,module,exports){
 'use strict';
 
 var _jquery = require('jquery');
@@ -31441,7 +31734,7 @@ window.delta = function delta() {
     return prop.time.frame.delta;
 };
 
-},{"./aircraft/aircraft":160,"./airline":161,"./airport/airport":173,"./animation":174,"./base":175,"./canvas":176,"./constants/logLevel":177,"./game":178,"./get":179,"./input":180,"./load":181,"./parser":187,"./speech":188,"./tutorial":189,"./ui":190,"./util":191,"./utilities/timeHelpers":192,"fiber":1,"jquery":2,"pegjs":150}],187:[function(require,module,exports){
+},{"./aircraft/aircraft":162,"./airline":163,"./airport/airport":175,"./animation":176,"./base":177,"./canvas":178,"./constants/logLevel":179,"./game":180,"./get":181,"./input":182,"./load":183,"./parser":189,"./speech":190,"./tutorial":191,"./ui":192,"./util":193,"./utilities/timeHelpers":194,"fiber":1,"jquery":2,"pegjs":152}],189:[function(require,module,exports){
 "use strict";
 
 zlsa.atc.Parser = function () {
@@ -34510,7 +34803,7 @@ zlsa.atc.Parser = function () {
   };
 }();
 
-},{}],188:[function(require,module,exports){
+},{}],190:[function(require,module,exports){
 'use strict';
 
 window.speech_init = function speech_init() {
@@ -34565,7 +34858,7 @@ window.speech_toggle = function speech_toggle() {
   localStorage['atc-speech-enabled'] = prop.speech.enabled;
 };
 
-},{}],189:[function(require,module,exports){
+},{}],191:[function(require,module,exports){
 'use strict';
 
 var _clamp2 = require('lodash/clamp');
@@ -34927,7 +35220,7 @@ window.tutorial_toggle = function tutorial_toggle() {
   }
 };
 
-},{"./utilities/timeHelpers":192,"lodash/clamp":107}],190:[function(require,module,exports){
+},{"./utilities/timeHelpers":194,"lodash/clamp":107}],192:[function(require,module,exports){
 'use strict';
 
 window.ui_init_pre = function ui_init_pre() {
@@ -35167,7 +35460,7 @@ window.ui_options_toggle = function ui_options_toggle() {
   }
 };
 
-},{}],191:[function(require,module,exports){
+},{}],193:[function(require,module,exports){
 'use strict';
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
@@ -36187,7 +36480,7 @@ window.aircraft_remove = function aircraft_remove(aircraft) {
   aircraft.cleanup();
 };
 
-},{"./math/distance":183,"./math/vector":185,"./utilities/timeHelpers":192,"./utilities/unitConverters":193,"lodash/clamp":107}],192:[function(require,module,exports){
+},{"./math/distance":185,"./math/vector":187,"./utilities/timeHelpers":194,"./utilities/unitConverters":195,"lodash/clamp":107}],194:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -36209,7 +36502,7 @@ var time = exports.time = function time() {
   return new Date().getTime() * TIME_SECONDS_OFFSET;
 };
 
-},{}],193:[function(require,module,exports){
+},{}],195:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -36354,7 +36647,7 @@ var degreesToRadians = exports.degreesToRadians = function degreesToRadians(degr
   return degrees / NUMBER_CONSTANTS.FULL_CIRCLE_DEGREES * (0, _circle.tau)();
 };
 
-},{"../math/circle":182}]},{},[186])
+},{"../math/circle":184}]},{},[188])
 
 
 //# sourceMappingURL=bundle.js.map
