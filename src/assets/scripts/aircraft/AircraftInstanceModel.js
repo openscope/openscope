@@ -180,7 +180,7 @@ const Aircraft = Fiber.extend(function() {
             }
 
             this.takeoffTime = (options.category === FLIGHT_CATEGORY.ARRIVAL) ? game_time() : null;
-            debugger;
+
             this.parse(options);
             this.createStrip();
             this.updateStrip();

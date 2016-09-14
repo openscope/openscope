@@ -25,7 +25,7 @@ const tutorial = require('./tutorial');
 const base = require('./base');
 const game = require('./game');
 const input = require('./input');
-const airline = require('./airline');
+const airline = require('./airline/airline');
 const aircraft = require('./aircraft/aircraft');
 const airport = require('./airport/airport');
 const canvas = require('./canvas');
@@ -124,17 +124,6 @@ if (!String.fromCodePoint) {
 }
 /*eslint-enable*/
 /** ***************** Module Setup *******************/
-// const asyncModules = {};
-// const asyncDoneCallback = () => {};
-
-// TODO: make this an enum in a constants file
-// const LOG_DEBUG = 0;
-// const LOG_INFO = 1;
-// const LOG_WARNING = 2;
-// const LOG_ERROR = 3; // eslint-disable-line
-// const LOG_FATAL = 4; // eslint-disable-line
-
-
 // PROP
 window.propInit = function propInit() {
     window.prop = prop;
@@ -162,9 +151,6 @@ window.propInit = function propInit() {
 
 // MISC
 window.log = function log(message, level = LOG.INFO) {
-    // if (typeof level === 'undefined') {
-    //     level = LOG_INFO;
-    // }
     const logStrings = {
         0: 'DEBUG',
         1: 'INFO',
@@ -298,9 +284,18 @@ function callModule(name, func, args) {
 }
 /*eslint-enable*/
 
+// TODO: enumerate the magic numbers
+/**
+ * @function calculateDeltaTime
+ * @param  {number} lastFrame
+ * @return {number}
+ */
+const calculateDeltaTime = (lastFrame) => Math.min(time() - prop.time.frame.last, 1 / 20);
+
 $(document).ready(() => {
     window.modules = {};
 
+    // TODO: remove. this function is no longer needed.
     for (let i = 0; i < MODULES.length; i++) {
         modules[MODULES[i]] = {
             library: false,
@@ -312,7 +307,8 @@ $(document).ready(() => {
     log(`Version ${prop.version_string}`);
     // load_modules();
 
-    // TODO: temp fix to get browserify working
+    // TODO: temp to get browserify working. these calls should be moved to proper `class.init()` type methods
+    // that are instantiated and live in `App.js`.
     tutorial_init_pre();
     game_init_pre();
     input_init_pre();
@@ -377,7 +373,7 @@ function update() {
         prop.time.frame.start = time();
     }
 
-    prop.time.frame.delta = Math.min(time() - prop.time.frame.last, 1 / 20);
+    prop.time.frame.delta = calculateDeltaTime(prop.time.frame.last);
     prop.time.frame.last = time();
 }
 
@@ -386,7 +382,6 @@ function done() {
     resize();
 
     callModule('*', 'done');
-
     prop.loaded = true;
     callModule('*', 'ready');
 

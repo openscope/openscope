@@ -163,33 +163,45 @@ window.distEuclid = function distEuclid(gps1, gps2) {
  * Constrains an angle to within 0 --> Math.PI*2
  */
 window.fix_angle = function fix_angle(radians) {
+    // TODO: replace Math.PI*2 with tau()
   while(radians > Math.PI*2) radians -= Math.PI*2;
   while(radians < 0) radians += Math.PI*2;
   return radians;
 }
 
 window.choose = function choose(l) {
-  return l[Math.floor(Math.random()*l.length)];
+    return l[Math.floor(Math.random() * l.length)];
 }
 
 window.choose_weight = function choose_weight(l) {
-  if(l.length == 0) return;
-  if(typeof l[0] != typeof []) return choose(l);
-  // l = [[item, weight], [item, weight] ... ];
-  var weight  = 0;
-  for(var i=0;i<l.length;i++) {
-    weight += l[i][1];
-  }
-  var random = Math.random() * weight;
-  weight     = 0;
-  for(var i=0;i<l.length;i++) {
-    weight += l[i][1];
-    if(weight > random) {
-      return l[i][0];
+    if (l.length === 0) {
+        return;
     }
-  }
-  console.log("OHSHIT");
-  return(null);
+
+    if (typeof l[0] !== typeof []) {
+        return choose(l);
+    }
+
+    // l = [[item, weight], [item, weight] ... ];
+    let weight = 0;
+    for (let i = 0; i < l.length; i++) {
+        weight += l[i][1];
+    }
+
+    weight = 0;
+
+    for (let i = 0; i <l.length; i++) {
+        var random = Math.random() * weight;
+        weight += l[i][1];
+
+        if (weight > random) {
+            return l[i][0];
+        }
+    }
+
+    console.log('OHSHIT');
+
+    return null;
 }
 
 window.mod = function mod(a, b) {

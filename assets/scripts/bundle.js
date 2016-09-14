@@ -23375,7 +23375,7 @@ var Aircraft = _fiber2.default.extend(function () {
             }
 
             this.takeoffTime = options.category === FLIGHT_CATEGORY.ARRIVAL ? game_time() : null;
-            debugger;
+
             this.parse(options);
             this.createStrip();
             this.updateStrip();
@@ -26439,225 +26439,279 @@ window.aircraft_get_eid_by_callsign = aircraft_get_eid_by_callsign;
 window.aircraft_model_get = aircraft_model_get;
 
 },{"../math/circle":184,"../math/distance":185,"../math/flightMath":186,"../math/vector":187,"../utilities/unitConverters":195,"./AircraftConflict":156,"./AircraftFlightManagementSystem":157,"./AircraftModel":159}],163:[function(require,module,exports){
-"use strict";
+'use strict';
 
-window.airline_init_pre = function airline_init_pre() {
-  prop.airline = {};
-  prop.airline.airlines = {};
-};
+var _fiber = require('fiber');
+
+var _fiber2 = _interopRequireDefault(_fiber);
+
+var _forEach2 = require('lodash/forEach');
+
+var _forEach3 = _interopRequireDefault(_forEach2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
  * An aircrcraft operating agency
  *
  * @class Airline
+ * @extends Fiber
  */
-zlsa.atc.Airline = Fiber.extend(function () {
-  return {
-    /**
-     * Create new airline
-     */
-    init: function init(icao, options) {
-      /** ICAO airline designation */
-      this.icao = icao;
+/* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand */
+var Airline = _fiber2.default.extend(function () {
+    return {
+        /**
+         * Create new airline
+         */
+        init: function init(icao, options) {
+            // ICAO airline designation
+            this.icao = icao;
+            // Agency name
+            this.name = 'Default airline';
+            // Radio callsign
+            this.callsign = 'Default';
+            // Parameters for flight number generation
+            this.flightNumberGeneration = {
+                // How many characters in the flight number
+                length: 3,
+                // Whether to use alphabetical characters
+                alpha: false
+            };
 
-      /** Agency name */
-      this.name = "Default airline";
+            // Named weighted sets of aircraft
+            this.fleets = {
+                default: []
+            };
 
-      /** Radio callsign */
-      this.callsign = 'Default';
+            this.loading = true;
+            this.loaded = false;
+            this.priorityLoad = false;
+            this._pendingAircraft = [];
+            this.parse(options);
 
-      /** Parameters for flight number generation */
-      this.flightNumberGeneration = {
-        /** How many characters in the flight number */
-        length: 3,
-        /** Whether to use alphabetical characters */
-        alpha: false
-      };
+            if (options.url) {
+                this.load(options.url);
+            }
+        },
 
-      /** Named weighted sets of aircraft */
-      this.fleets = {
-        default: []
-      };
+        /**
+         * Initialize object from data
+         */
+        parse: function parse(data) {
+            if (data.icao) {
+                this.icao = data.icao;
+            }
 
-      this.loading = true;
-      this.loaded = false;
-      this.priorityLoad = false;
-      this._pendingAircraft = [];
-      this.parse(options);
+            if (data.name) {
+                this.name = data.name;
+            }
 
-      if (options.url) {
-        this.load(options.url);
-      }
-    },
+            if (data.callsign) {
+                this.callsign = data.callsign.name;
 
-    /**
-     * Initialize object from data
-     */
-    parse: function parse(data) {
-      if (data.icao) {
-        this.icao = data.icao;
-      }
+                if (data.callsign.length) {
+                    this.flightNumberGeneration.length = data.callsign.length;
+                }
 
-      if (data.name) {
-        this.name = data.name;
-      }
+                this.flightNumberGeneration.alpha = data.callsign.alpha === true;
+            }
 
-      if (data.callsign) {
-        this.callsign = data.callsign.name;
+            if (data.fleets) {
+                this.fleets = data.fleets;
+            } else if (data.aircraft) {
+                this.fleets.default = data.aircraft;
+            }
 
-        if (data.callsign.length) {
-          this.flightNumberGeneration.length = data.callsign.length;
+            for (var f in this.fleets) {
+                for (var j = 0; j < this.fleets[f].length; j++) {
+                    this.fleets[f][j][0] = this.fleets[f][j][0].toLowerCase();
+                }
+            }
+        },
+
+        /**
+         * Load the data for this airline
+         */
+        load: function load(url) {
+            this._url = url;
+
+            if (this.loaded) {
+                return;
+            }
+
+            zlsa.atc.loadAsset({
+                url: url,
+                immediate: this.priorityLoad
+            }).done(function (data) {
+                this.parse(data);
+
+                this.loading = false;
+                this.loaded = true;
+
+                this.validateFleets();
+                this._generatePendingAircraft();
+            }.bind(this)).fail(function (jqXHR, textStatus, errorThrown) {
+                this.loading = false;
+                this._pendingAircraft = [];
+
+                console.error('Unable to load airline/' + this.icao + ': ' + textStatus);
+            }.bind(this));
+        },
+
+        /**
+         * Return a random ICAO aircraft designator from the given fleet
+         *
+         * If no fleet is specified the default fleet is used
+         */
+        chooseAircraft: function chooseAircraft(fleet) {
+            if (!fleet) {
+                fleet = 'default';
+            }
+
+            // TODO: this try/catch block could be improved. its hard to tell what his block is actually doing.
+            try {
+                console.log(fleet);
+                return choose_weight(this.fleets[fleet.toLowerCase()]);
+            } catch (error) {
+                console.log('Unable to find fleet ' + fleet + ' for airline ' + this.icao);
+
+                throw error;
+            }
+        },
+
+        /**
+         * Create an aircraft
+         */
+        generateAircraft: function generateAircraft(options) {
+            if (!this.loaded) {
+                if (this.loading) {
+                    this._pendingAircraft.push(options);
+
+                    if (!this.priorityLoad) {
+                        zlsa.atc.loadAsset({
+                            url: this._url,
+                            immediate: true
+                        });
+
+                        this.priorityLoad = true;
+                    }
+
+                    return true;
+                } else {
+                    console.warn('Unable to spawn aircraft for airline/ ' + this.icao + ' as loading failed');
+
+                    return false;
+                }
+            }
+
+            return this._generateAircraft(options);
+        },
+
+        /**
+         * Create a flight number/identifier
+         */
+        generateFlightNumber: function generateFlightNumber() {
+            var flightNumberLength = this.flightNumberGeneration.length;
+            var flightNumber = '';
+            var list = '0123456789';
+
+            // Start with a number other than zero
+            flightNumber += choose(list.substr(1));
+
+            if (this.flightNumberGeneration.alpha) {
+                for (var i = 0; i < flightNumberLength - 3; i++) {
+                    flightNumber += choose(list);
+                }
+
+                list = 'abcdefghijklmnopqrstuvwxyz';
+
+                for (var _i = 0; _i < 2; _i++) {
+                    flightNumber += choose(list);
+                }
+            } else {
+                for (var _i2 = 1; _i2 < flightNumberLength; _i2++) {
+                    flightNumber += choose(list);
+                }
+            }
+
+            return flightNumber;
+        },
+
+        /**
+         * Checks all fleets for valid aircraft identifiers and log errors
+         */
+        validateFleets: function validateFleets() {
+            for (var f in this.fleets) {
+                for (var j = 0; j < this.fleets[f].length; j++) {
+                    // Preload the aircraft model
+                    aircraft_model_get(this.fleets[f][j][0]);
+
+                    if (typeof this.fleets[f][j][1] !== 'number') {
+                        console.warn('Airline ' + this.icao.toUpperCase() + ' uses non numeric weight for aircraft ' + this.fleets[f][j][0] + ', expect errors');
+                    }
+                }
+            }
+        },
+
+        _generateAircraft: function _generateAircraft(options) {
+            if (!options.callsign) {
+                options.callsign = aircraft_callsign_new(options.airline);
+            }
+
+            if (!options.icao) {
+                options.icao = this.chooseAircraft(options.fleet);
+            }
+
+            var model = aircraft_model_get(options.icao.toLowerCase());
+
+            return model.generateAircraft(options);
+            // FIXME: this block is unreachable, is it needed?
+            // var icao = options.icao.toLowerCase();
+        },
+
+        /**
+         * Generate aircraft which were queued while the model loaded
+         */
+        _generatePendingAircraft: function _generatePendingAircraft() {
+            var _this = this;
+
+            (0, _forEach3.default)(this._pendingAircraft, function (aircraftOptions) {
+                _this._generateAircraft(aircraftOptions);
+            });
+
+            this._pendingAircraft = null;
         }
-
-        this.flightNumberGeneration.alpha = data.callsign.alpha === true;
-      }
-
-      if (data.fleets) {
-        this.fleets = data.fleets;
-      } else if (data.aircraft) {
-        this.fleets.default = data.aircraft;
-      }
-
-      for (var f in this.fleets) {
-        for (var j = 0; j < this.fleets[f].length; j++) {
-          this.fleets[f][j][0] = this.fleets[f][j][0].toLowerCase();
-        }
-      }
-    },
-
-    /**
-     * Load the data for this airline
-     */
-    load: function load(url) {
-      this._url = url;
-      if (this.loaded) return;
-      zlsa.atc.loadAsset({ url: url,
-        immediate: this.priorityLoad }).done(function (data) {
-        this.parse(data);
-        this.loading = false;
-        this.loaded = true;
-        this.validateFleets();
-        this._generatePendingAircraft();
-      }.bind(this)).fail(function (jqXHR, textStatus, errorThrown) {
-        this.loading = false;
-        this._pendingAircraft = [];
-        console.error("Unable to load airline/" + this.icao + ": " + textStatus);
-      }.bind(this));
-    },
-
-    /**
-     * Return a random ICAO aircraft designator from the given fleet
-     *
-     * If no fleet is specified the default fleet is used
-     */
-    chooseAircraft: function chooseAircraft(fleet) {
-      if (!fleet) fleet = 'default';
-
-      try {
-        return choose_weight(this.fleets[fleet.toLowerCase()]);
-      } catch (e) {
-        console.log("Unable to find fleet " + fleet + " for airline " + this.icao);
-        throw e;
-      }
-    },
-
-    /**
-     * Create an aircraft
-     */
-    generateAircraft: function generateAircraft(options) {
-      if (!this.loaded) {
-        if (this.loading) {
-          this._pendingAircraft.push(options);
-          if (!this.priorityLoad) {
-            zlsa.atc.loadAsset({ url: this._url,
-              immediate: true });
-            this.priorityLoad = true;
-          }
-          return true;
-        } else {
-          console.warn("Unable to spawn aircraft for airline/" + this.icao + " as loading failed");
-          return false;
-        }
-      }
-      return this._generateAircraft(options);
-    },
-
-    /**
-     * Create a flight number/identifier
-     */
-    generateFlightNumber: function generateFlightNumber() {
-      var flightNumberLength = this.flightNumberGeneration.length;
-      var flightNumber = "";
-
-      var list = "0123456789";
-
-      // Start with a number other than zero
-      flightNumber += choose(list.substr(1));
-
-      if (this.flightNumberGeneration.alpha) {
-        for (var i = 0; i < flightNumberLength - 3; i++) {
-          flightNumber += choose(list);
-        }list = "abcdefghijklmnopqrstuvwxyz";
-        for (var i = 0; i < 2; i++) {
-          flightNumber += choose(list);
-        }
-      } else {
-        for (var i = 1; i < flightNumberLength; i++) {
-          flightNumber += choose(list);
-        }
-      }
-      return flightNumber;
-    },
-
-    /**
-     * Checks all fleets for valid aircraft identifiers and log errors
-     */
-    validateFleets: function validateFleets() {
-      for (var f in this.fleets) {
-        for (var j = 0; j < this.fleets[f].length; j++) {
-          // Preload the aircraft model
-          aircraft_model_get(this.fleets[f][j][0]);
-
-          if (typeof this.fleets[f][j][1] != "number") {
-            console.warn("Airline " + this.icao.toUpperCase() + " uses non numeric weight for aircraft " + this.fleets[f][j][0] + ", expect errors");
-          }
-        }
-      }
-    },
-
-    _generateAircraft: function _generateAircraft(options) {
-      if (!options.callsign) options.callsign = aircraft_callsign_new(options.airline);
-
-      if (!options.icao) {
-        options.icao = this.chooseAircraft(options.fleet);
-      }
-      var model = aircraft_model_get(options.icao.toLowerCase());
-      return model.generateAircraft(options);
-      var icao = options.icao.toLowerCase();
-    },
-
-    /**
-     * Generate aircraft which were queued while the model loaded
-     */
-    _generatePendingAircraft: function _generatePendingAircraft() {
-      $.each(this._pendingAircraft, function (idx, options) {
-        this._generateAircraft(options);
-      }.bind(this));
-      this._pendingAircraft = null;
-    }
-  };
+    };
 });
 
-window.airline_get = function airline_get(icao) {
-  icao = icao.toLowerCase();
-  if (!(icao in prop.airline.airlines)) {
-    var airline = new zlsa.atc.Airline(icao, { url: "assets/airlines/" + icao + ".json" });
-    prop.airline.airlines[icao] = airline;
-  }
-  return prop.airline.airlines[icao];
+/**
+ * @function airline_init_pre
+ */
+var airline_init_pre = function airline_init_pre() {
+    prop.airline = {};
+    prop.airline.airlines = {};
 };
 
-},{}],164:[function(require,module,exports){
+/**
+ * @function airline_get
+ * @param  {string} icao
+ */
+var airline_get = function airline_get(icao) {
+    icao = icao.toLowerCase();
+
+    if (!(icao in prop.airline.airlines)) {
+        var airline = new Airline(icao, { url: 'assets/airlines/' + icao + '.json' });
+        prop.airline.airlines[icao] = airline;
+    }
+
+    return prop.airline.airlines[icao];
+};
+
+// TODO: temporarily exposed to to maintain previous interface.
+window.airline_init_pre = airline_init_pre;
+window.airline_get = airline_get;
+
+},{"fiber":1,"lodash/forEach":109}],164:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -31447,7 +31501,7 @@ var tutorial = require('./tutorial');
 var base = require('./base');
 var game = require('./game');
 var input = require('./input');
-var airline = require('./airline');
+var airline = require('./airline/airline');
 var aircraft = require('./aircraft/aircraft');
 var airport = require('./airport/airport');
 var canvas = require('./canvas');
@@ -31548,17 +31602,6 @@ if (!String.fromCodePoint) {
 }
 /*eslint-enable*/
 /** ***************** Module Setup *******************/
-// const asyncModules = {};
-// const asyncDoneCallback = () => {};
-
-// TODO: make this an enum in a constants file
-// const LOG_DEBUG = 0;
-// const LOG_INFO = 1;
-// const LOG_WARNING = 2;
-// const LOG_ERROR = 3; // eslint-disable-line
-// const LOG_FATAL = 4; // eslint-disable-line
-
-
 // PROP
 window.propInit = function propInit() {
     window.prop = prop;
@@ -31588,9 +31631,6 @@ window.propInit = function propInit() {
 window.log = function log(message) {
     var level = arguments.length <= 1 || arguments[1] === undefined ? _logLevel.LOG.INFO : arguments[1];
 
-    // if (typeof level === 'undefined') {
-    //     level = LOG_INFO;
-    // }
     var logStrings = {
         0: 'DEBUG',
         1: 'INFO',
@@ -31724,9 +31764,20 @@ function callModule(name, func, args) {
 }
 /*eslint-enable*/
 
+// TODO: enumerate the magic numbers
+/**
+ * @function calculateDeltaTime
+ * @param  {number} lastFrame
+ * @return {number}
+ */
+var calculateDeltaTime = function calculateDeltaTime(lastFrame) {
+    return Math.min((0, _timeHelpers.time)() - prop.time.frame.last, 1 / 20);
+};
+
 (0, _jquery2.default)(document).ready(function () {
     window.modules = {};
 
+    // TODO: remove. this function is no longer needed.
     for (var i = 0; i < MODULES.length; i++) {
         modules[MODULES[i]] = {
             library: false,
@@ -31738,7 +31789,8 @@ function callModule(name, func, args) {
     log('Version ' + prop.version_string);
     // load_modules();
 
-    // TODO: temp fix to get browserify working
+    // TODO: temp to get browserify working. these calls should be moved to proper `class.init()` type methods
+    // that are instantiated and live in `App.js`.
     tutorial_init_pre();
     game_init_pre();
     input_init_pre();
@@ -31803,7 +31855,7 @@ function update() {
         prop.time.frame.start = (0, _timeHelpers.time)();
     }
 
-    prop.time.frame.delta = Math.min((0, _timeHelpers.time)() - prop.time.frame.last, 1 / 20);
+    prop.time.frame.delta = calculateDeltaTime(prop.time.frame.last);
     prop.time.frame.last = (0, _timeHelpers.time)();
 }
 
@@ -31812,7 +31864,6 @@ function done() {
     resize();
 
     callModule('*', 'done');
-
     prop.loaded = true;
     callModule('*', 'ready');
 
@@ -31839,7 +31890,7 @@ window.delta = function delta() {
     return prop.time.frame.delta;
 };
 
-},{"./aircraft/aircraft":162,"./airline":163,"./airport/airport":175,"./animation":176,"./base":177,"./canvas":178,"./constants/logLevel":179,"./game":180,"./get":181,"./input":182,"./load":183,"./parser":189,"./speech":190,"./tutorial":191,"./ui":192,"./util":193,"./utilities/timeHelpers":194,"fiber":1,"jquery":2,"pegjs":152}],189:[function(require,module,exports){
+},{"./aircraft/aircraft":162,"./airline/airline":163,"./airport/airport":175,"./animation":176,"./base":177,"./canvas":178,"./constants/logLevel":179,"./game":180,"./get":181,"./input":182,"./load":183,"./parser":189,"./speech":190,"./tutorial":191,"./ui":192,"./util":193,"./utilities/timeHelpers":194,"fiber":1,"jquery":2,"pegjs":152}],189:[function(require,module,exports){
 "use strict";
 
 zlsa.atc.Parser = function () {
@@ -35736,6 +35787,7 @@ window.distEuclid = function distEuclid(gps1, gps2) {
  * Constrains an angle to within 0 --> Math.PI*2
  */
 window.fix_angle = function fix_angle(radians) {
+  // TODO: replace Math.PI*2 with tau()
   while (radians > Math.PI * 2) {
     radians -= Math.PI * 2;
   }while (radians < 0) {
@@ -35748,22 +35800,33 @@ window.choose = function choose(l) {
 };
 
 window.choose_weight = function choose_weight(l) {
-  if (l.length == 0) return;
-  if (_typeof(l[0]) != _typeof([])) return choose(l);
+  if (l.length === 0) {
+    return;
+  }
+
+  if (_typeof(l[0]) !== _typeof([])) {
+    return choose(l);
+  }
+
   // l = [[item, weight], [item, weight] ... ];
   var weight = 0;
   for (var i = 0; i < l.length; i++) {
     weight += l[i][1];
   }
-  var random = Math.random() * weight;
+
   weight = 0;
-  for (var i = 0; i < l.length; i++) {
-    weight += l[i][1];
+
+  for (var _i = 0; _i < l.length; _i++) {
+    var random = Math.random() * weight;
+    weight += l[_i][1];
+
     if (weight > random) {
-      return l[i][0];
+      return l[_i][0];
     }
   }
-  console.log("OHSHIT");
+
+  console.log('OHSHIT');
+
   return null;
 };
 
