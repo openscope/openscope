@@ -96,7 +96,7 @@ const game_reset_score = () => {
 };
 
 const game_timewarp_toggle = () => {
-    const $fastForwards = $(SELECTORS.CLASSNAMES.FAST_FORWARDS);
+    const $fastForwards = $(`.${SELECTORS.CLASSNAMES.FAST_FORWARDS}`);
 
     if (prop.game.speedup === 5) {
         prop.game.speedup = 1;
@@ -118,7 +118,7 @@ const game_timewarp_toggle = () => {
 };
 
 const game_pause = () => {
-    const $pauseToggle = $(SELECTORS.CLASSNAMES.PAUSE_TOGGLE);
+    const $pauseToggle = $(`.${SELECTORS.CLASSNAMES.PAUSE_TOGGLE}`);
     prop.game.paused = true;
 
     $pauseToggle.addClass(SELECTORS.CLASSNAMES.ACTIVE);
@@ -184,10 +184,10 @@ const game_clear_timeout = (to) => {
 };
 
 const game_update_pre = () => {
-    const $score = $(SELECTORS.IDS.SCORE);
+    const $score = $(`#${SELECTORS.IDS.SCORE}`);
     const score = game_get_score();
 
-    if (score != prop.game.last_score) {
+    if (score !== prop.game.last_score) {
         $score.text(round(score));
 
         if (score < -0.51) {
@@ -201,7 +201,7 @@ const game_update_pre = () => {
 
     prop.game.delta = Math.min(delta() * prop.game.speedup, 100);
 
-    if(game_paused()) {
+    if (game_paused()) {
         prop.game.delta = 0;
     } else {
         $('html').removeClass(SELECTORS.CLASSNAMES.PAUSED);
@@ -209,30 +209,30 @@ const game_update_pre = () => {
 
     prop.game.time += prop.game.delta;
 
-    for(let i = prop.game.timeouts.length - 1; i >= 0; i--) {
-        let remove  = false;
+    for (let i = prop.game.timeouts.length - 1; i >= 0; i--) {
+        let remove = false;
         let timeout = prop.game.timeouts[i];
 
         if (game_time() > timeout[1]) {
             timeout[0].call(timeout[5], timeout[2]);
 
-            if(timeout[4]) {
+            if (timeout[4]) {
                 timeout[1] += timeout[3];
             } else {
                 remove = true;
             }
         }
 
-        if(remove) {
+        if (remove) {
             prop.game.timeouts.splice(i, 1);
             i -= 1;
         }
     }
-}
+};
 
 const game_complete = () => {
     prop.game.paused = false;
-}
+};
 
 // TODO: methods attached to the window temporarily to maintain previous interface before refatoring.
 window.game_init_pre = game_init_pre;

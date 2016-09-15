@@ -124,3 +124,28 @@ export const radiansToDegrees = (radians) => {
 export const degreesToRadians = (degrees) => {
     return (degrees / NUMBER_CONSTANTS.FULL_CIRCLE_DEGREES) * (tau());
 };
+
+/**
+ * NOT IN USE
+ * convert pixels to kilometers at the current scale
+ *
+ * @function px_to_km
+ * @param  {number} pixels
+ * @param  {number} scale
+ * @return {number}
+ */
+export const px_to_km = (pixels, scale) => {
+    return pixels / scale;
+};
+
+/**
+ * NOT IN USE
+ * convert kilometers to pixels at the current scale
+ *
+ * @function km_to_px
+ * @param  {number} kilometers
+ * @return {number}
+ */
+export const km_to_px = (kilometers, scale) => {
+    return kilometers * scale;
+};

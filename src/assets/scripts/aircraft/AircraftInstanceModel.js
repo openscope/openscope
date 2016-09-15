@@ -10,7 +10,7 @@ import Waypoint from './Waypoint';
 import { tau } from '../math/circle';
 import { distance2d } from '../math/distance';
 import { vlen, vradial, vsub } from '../math/vector';
-import { radiansToDegrees, degreesToRadians } from '../utilities/unitConverters';
+import { km, radiansToDegrees, degreesToRadians } from '../utilities/unitConverters';
 
 // TODO: move sthese to a constants file
 const FLIGHT_MODES = {
@@ -709,7 +709,7 @@ const Aircraft = Fiber.extend(function() {
 
                     return [
                         'ok',
-                        radio_trend('altitude', this.altitude, this.fms.currentWaypoint().altitude) + ' ' + this.fms.currentWaypoint().altitude + ' expedite'
+                        `${radio_trend('altitude', this.altitude, this.fms.currentWaypoint().altitude)} ${this.fms.currentWaypoint().altitude} expedite`
                     ];
                 }
 
@@ -953,17 +953,17 @@ const Aircraft = Fiber.extend(function() {
             const fix = airport_get().getFix(fixname);
 
             if (!fix) {
-                return ['fail', 'unable to find fix called ' + fixname];
+                return ['fail', `unable to find fix called ${fixname}`];
             }
 
             // remove intermediate fixes
             if (this.mode === FLIGHT_MODES.TAKEOFF) {
                 this.fms.skipToFix(fixname);
             } else if (!this.fms.skipToFix(fixname)) {
-                return ['fail', fixname + ' is not in our flightplan'];
+                return ['fail', `${fixname} is not in our flightplan`];
             }
 
-            return ['ok', 'proceed direct ' + fixname];
+            return ['ok', `proceed direct ${fixname}`];
         },
 
         runFix: function(data) {
@@ -1003,7 +1003,7 @@ const Aircraft = Fiber.extend(function() {
                 this.cancelLanding();
             }
 
-            return ['ok', 'proceed direct ' + fixes.join(', ')];
+            return ['ok', `proceed direct ${fixes.join(', ')}`];
         },
 
         runFlyPresentHeading: function(data) {
@@ -1015,7 +1015,7 @@ const Aircraft = Fiber.extend(function() {
 
         runSayRoute: function(data) {
             return ['ok', {
-                log: 'route: ' + this.fms.fp.route.join(' '),
+                log: `route: ${this.fms.fp.route.join(' ')}`,
                 say: 'here\'s our route'
             }];
         },
@@ -1294,7 +1294,7 @@ const Aircraft = Fiber.extend(function() {
 
                 console.log('aborted taxi to runway');
 
-                ui_log(true, this.getCallsign() + ' aborted taxi to runway');
+                ui_log(true, `${this.getCallsign()} aborted taxi to runway`);
                 prop.game.score.abort.taxi += 1;
 
                 return ['ok', 'taxiing back to terminal'];

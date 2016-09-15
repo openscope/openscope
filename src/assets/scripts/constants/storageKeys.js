@@ -7,4 +7,9 @@
  */
 export const STORAGE_KEY = {
     ATC_SCALE: 'atc-scale'
+
+
+    // atc-last-airport
+    // atc-speech-enabled
+    // first-run-time
 };

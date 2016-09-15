@@ -1,37 +1,29 @@
+import _mapValues from 'lodash/mapValues';
+
 /**
  * @property CLASSNAMES
  * @type {Object}
  * @final
  */
 export const CLASSNAMES = {
-    // for game interactions
     ACTIVE: 'active',
-    PAUSED: 'paused',
+    ALL_SET: 'allSet',
+    CONTROL: 'control',
     FAST_FORWARDS: 'fast-forwards',
+    FOLLOWING_STAR: 'followingSTAR',
+    HIDDEN: 'hidden',
+    HOLD: 'hold',
+    LOOKING_GOOD: 'lookingGood',
+    NEGATIVE: 'negative',
+    OPEN: 'open',
+    PAUSED: 'paused',
     PAUSE_TOGGLE: 'pause-toggle',
+    RUNWAY: 'runway',
     SPEED_2: 'speed-2',
     SPEED_5: 'speed-5',
-    NAGATIVE: 'negative',
-
-    // AircraftInstanceModel
-    ALL_SET: 'allSet',
-    FOLLOWING_STAR: 'followingSTAR',
-    HOLD: 'hold',
-    RUNWAY: 'runway',
-    LOOKING_GOOD: 'lookingGood',
-
-    // : 'fast-forwards',
-    // : 'speech-toggle',
-    // : 'switch-airport',
-    // : 'toggle-tutorial',
-    // : 'pause-toggle',
-    // : 'toggle-labels'
-    // : 'toggle-restricted-areas'
-    // : 'toggle-sids'
-    // : 'toggle-terrain'
-    // : 'airport'
-    // : 'switch-airport'
-    // : 'control'
+    SWITCH_AIRPORT: 'switch-airport',
+    WARN: 'warn',
+    WARNING_BUTTON: 'warning-button'
 };
 
 /**
@@ -40,20 +32,55 @@ export const CLASSNAMES = {
  * @final
  */
 export const IDS = {
-    SCORE: '#score',
+    AIRPORT_LIST: 'airport-list',
+    AIRPORT_LIST_NOTES: 'airport-list-notes',
+    AIRPORT_SWITCH: 'airport-switch',
+    LOG: 'log',
+    OPTIONS_DIALOG: 'options-dialog',
+    TOGGLE_OPTIONS: 'toggle-options',
+    SCORE: 'score'
+};
 
-    // #paused img,
-    // #toggle-options
-    // #airport-list
-    // #log
-    // #airport-switch
-    // #options-dialog
+/**
+ *
+ * @function buildSelectorsFromClassnames
+ * @return {object}
+ */
+const buildSelectorsFromClassnames = () => {
+    const classnameSelectors = _mapValues(CLASSNAMES, (value) => {
+        return `.${value}`;
+    });
+
+    return classnameSelectors;
+};
+
+/**
+ *
+ * @function buildSelectorsFromIds
+ * @return {object}
+ */
+const buildSelectorsFromIds = () => {
+    const idSelectors = _mapValues(IDS, (value) => {
+        return `#${value}`;
+    });
+
+    return idSelectors;
+};
+
+/**
+ * @property DOM_SELECTORS
+ * @type {Object}
+ * @final
+ */
+const DOM_SELECTORS = {
+    ...buildSelectorsFromClassnames(),
+    ...buildSelectorsFromIds()
 };
 
 /**
  * Combinator constant.
  *
- * Allows for a single import that has access to both CLASSNAMES and SELECTOR_IDS
+ * Allows for a single import that has access to both CLASSNAMES, IDS and DOM_SELECTORS
  *
  * @property SELECTORS
  * @type {Object}
@@ -61,5 +88,6 @@ export const IDS = {
  */
 export const SELECTORS = {
     CLASSNAMES,
-    IDS
+    IDS,
+    DOM_SELECTORS
 };
