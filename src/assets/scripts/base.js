@@ -39,6 +39,7 @@ const Position = Fiber.extend(function() {
 
         this.parse(coordinates, mode);
     },
+
     parse: function(coordinates, mode) {
         if (!/^[NESW]/.test(coordinates[0])) {
             this.x = coordinates[0];
@@ -69,6 +70,7 @@ const Position = Fiber.extend(function() {
             this.parse4326();
         }
     },
+
     parse4326: function() {
         // if coordinates were in WGS84 EPSG:4326 (signed decimal lat/lon -12.123,83.456)
         // parse them
@@ -105,6 +107,7 @@ const Position = Fiber.extend(function() {
 
       this.position = [this.x, this.y];
     },
+
     distanceTo: function(point) {
         return this.distanceToPoint(
             this.latitude,
@@ -113,6 +116,7 @@ const Position = Fiber.extend(function() {
             point.longitude
         );
     },
+
     // The distance in km between two locations
     distanceToPoint: function(lat_a, lng_a, lat_b, lng_b) {
       const d_lat = degreesToRadians(lat_a - lat_b);
@@ -126,6 +130,7 @@ const Position = Fiber.extend(function() {
 
       return c * 6371.00;
     },
+    
     parseCoordinate: function(coord) {
       let r = /^([NESW])(\d+(\.\d+)?)([d °](\d+(\.\d+)?))?([m '](\d+(\.\d+)?))?$/;
       let match = r.exec(coord)

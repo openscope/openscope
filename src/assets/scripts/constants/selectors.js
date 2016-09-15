@@ -1,6 +1,8 @@
 import _mapValues from 'lodash/mapValues';
 
 /**
+ * CSS classnames used throught the app.
+ *
  * @property CLASSNAMES
  * @type {Object}
  * @final
@@ -32,6 +34,8 @@ export const CLASSNAMES = {
 };
 
 /**
+ * CSS IDs used throughout the app.
+ *
  * @property SELECTOR_IDS
  * @type {Object}
  * @final

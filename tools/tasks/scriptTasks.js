@@ -35,21 +35,41 @@ module.exports = function(gulp, config) {
     ////////////////////////////////////////////////////////////////////
     var gutil = require('gulp-util');
     var eslint = require('gulp-eslint');
+    var Table = require('cli-table');
+    var t = new Table({
+        head: ['Filename', 'Errors', 'Wranings']
+    });
 
     gulp.task('lint:scripts', function() {
         gulp.src([OPTIONS.GLOB.JS])
             .pipe(eslint({
                 useEslintrc: true
             }))
+            .pipe(eslint.result(function (result) {
+                    t.push([
+                        result.filePath.split('scripts')[1],
+                        gutil.colors.red(result.errorCount),
+                        gutil.colors.yellow(result.warningCount)
+                    ]);
+                })
+            )
             .pipe(eslint.results(results => {
-                // Called once for all ESLint results.
-                gutil.log('\n');
-                gutil.log(gutil.colors.cyan('ESLint result: '));
-                gutil.log(gutil.colors.cyan(`Total Files: ${results.length}`));
-                gutil.log(gutil.colors.yellow(`Total Warnings: ${results.warningCount}`));
-                gutil.log(gutil.colors.red(`Total Errors: ${results.errorCount}`));
+                // Add a footer to the results table
+                t.push([
+                    gutil.colors.cyan(`Total: ${results.length}`),
+                    gutil.colors.red(results.errorCount),
+                    gutil.colors.yellow(results.warningCount)
+                ])
+
+                gutil.log(gutil.colors.cyan('--- ---- --- ESLint Results --- ---- --- '));
+                console.log('\n' + t);
+                // // Called once for all ESLint results.
+                // gutil.log('\n');
+                // gutil.log(gutil.colors.cyan(`Total Files: ${results.length}`));
+                // gutil.log(gutil.colors.yellow(`Total Warnings: ${results.warningCount}`));
+                // gutil.log(gutil.colors.red(`Total Errors: ${results.errorCount}`));
             }))
-            .pipe(eslint.format());
+            .pipe(eslint.format('checkstyle'));
     });
 
     ////////////////////////////////////////////////////////////////////
