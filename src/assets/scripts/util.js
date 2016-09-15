@@ -1,28 +1,38 @@
-import _clamp from 'lodash/clamp'
+import $ from 'jquery';
+import _clamp from 'lodash/clamp';
+import _has from 'lodash/has';
 import { km, nm, km_ft, ft_km, radiansToDegrees, degreesToRadians } from './utilities/unitConverters';
-import { time } from './utilities/timeHelpers';
+// import { time } from './utilities/timeHelpers';
 import { distance2d } from './math/distance';
+import { tau } from './math/circle';
 import { vlen, vradial, vsub } from './math/vector';
 
 window.AudioContext = window.AudioContext || window.webkitAudioContext;
 
 window.clone = function clone(obj) {
-  if (null == obj || "object" != typeof obj) return obj;
-  var copy = obj.constructor();
-  for (var attr in obj) {
-    if (obj.hasOwnProperty(attr)) copy[attr] = obj[attr];
-  }
-  return copy;
+    if (null == obj || 'object' != typeof obj) {
+        return obj;
+    }
+
+    let copy = obj.constructor();
+    for (var attr in obj) {
+        if (_has(obj, attr)) {
+            copy[attr] = obj[attr];
+        }
+    }
+
+    return copy;
 };
 
 (function() {
-  var lastTime = 0;
-  var vendors = ['webkit', 'moz'];
-  for(var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
-    window.requestAnimationFrame = window[vendors[x]+'RequestAnimationFrame'];
-    window.cancelAnimationFrame =
-      window[vendors[x]+'CancelAnimationFrame'] || window[vendors[x]+'CancelRequestAnimationFrame'];
-  }
+    var lastTime = 0;
+    var vendors = ['webkit', 'moz'];
+
+    for(var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
+        window.requestAnimationFrame = window[vendors[x]+'RequestAnimationFrame'];
+        window.cancelAnimationFrame =
+          window[vendors[x]+'CancelAnimationFrame'] || window[vendors[x]+'CancelRequestAnimationFrame'];
+    }
 
   if (!window.requestAnimationFrame)
     window.requestAnimationFrame = function(callback, element) {
@@ -54,125 +64,98 @@ if (!String.prototype.hasOwnProperty("repeat")) {
 }
 
 // ************************ GENERAL FUNCTIONS ************************
-window.ceil = function ceil(n, factor) {
-  factor = factor || 1;
-  return Math.ceil(n / factor) * factor;
-}
+window.ceil = function ceil(n, factor = 1) {
+    return Math.ceil(n / factor) * factor;
+};
 
-window.round = function round(n, factor) {
-  factor = factor || 1;
-  return Math.round(n / factor) * factor;
-}
+window.round = function round(n, factor = 1) {
+    return Math.round(n / factor) * factor;
+};
 
 window.abs = function abs(n) {
-  return Math.abs(n);
-}
+    return Math.abs(n);
+};
 
 window.sin = function sin(a) {
-  return Math.sin(a);
-}
+    return Math.sin(a);
+};
 
 window.cos = function cos(a) {
-  return Math.cos(a);
-}
+    return Math.cos(a);
+};
 
 window.tan = function tan(a) {
-  return Math.tan(a);
-}
+    return Math.tan(a);
+};
 
-window.fl = function fl(n, number) {
-  number = number || 1;
-  return Math.floor(n / number) * number;
-}
+// TODO: rename to floor
+window.fl = function fl(n, number = 1) {
+    return Math.floor(n / number) * number;
+};
 
-window.randint = function randint(l,h) {
-  return(Math.floor(Math.random()*(h-l+1))+l);
-}
+// TODO: rename to randomInteger
+window.randint = function randint(low, high) {
+    return(Math.floor(Math.random() * (high - low + 1)) + low);
+};
 
+// TODO: rename to pluralize, if this function is even needed
 window.s = function s(i) {
-  if(i == 1)
-    return "";
-  else
-    return "s";
-}
+    return (i === 1) ? '' : 's';
+};
 
-window.within = function within(n,c,r) {
-  if((n > c+r) || (n < c-r))
-    return false;
-  return true;
-}
+// TODO: rename to isWithin
+window.within = function within(n, c, r) {
+    return n > (c + r) || n < (c - r);
+};
 
 window.trange = function trange(il, i, ih, ol, oh) {
   return(ol + (oh - ol) * (i - il) / (ih - il));
   // i=(i/(ih-il))-il;       // purpose unknown
   // return (i*(oh-ol))+ol;  // purpose unknown
-}
-
-// replaced with lodash _clamp
-// window.clamp = function clamp(l, i, h) {
-//     var temp;
-//
-//     if (h === null) {
-//         if (l > i) {
-//             return l;
-//         }
-//
-//         return i;
-//     }
-//
-//     if (l > h) {
-//         temp = h;
-//         h = l;
-//         l = temp;
-//     }
-//
-//     if (l > i) {
-//         return l;
-//     }
-//
-//     if (h < i) {
-//         return h;
-//     }
-//
-//     return i;
-// };
+};
 
 window.crange = function crange(il, i, ih, ol, oh) {
     return _clamp(ol, trange(il, i, ih, ol, oh), oh);
-}
+};
 
-window.srange = function srange(il,i,ih) {
+window.srange = function srange(il, i, ih) {
   //    return Math.cos();
-}
+};
 
+// TODO: rename distanceEuclid
 window.distEuclid = function distEuclid(gps1, gps2) {
-  var R = 6371; // nm
-  var lat1 = degreesToRadians(lat1);
-  var lat2 = degreesToRadians(lat2);
-  var dlat = degreesToRadians(lat2-lat1);
-  var dlon = degreesToRadians(lon2-lon1);
-  var a = Math.sin(dlat/2) * Math.sin(dlat/2) +
-          Math.cos(lat1) * Math.cos(lat2) *
-          Math.sin(dlon/2) * Math.sin(dlon/2);
-  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-  var d = R * c;
-  return d; // distance, in kilometers
-}
+    // FIXME: enumerate the magic number
+    const R = 6371; // nm
+
+    const lat1 = degreesToRadians(lat1);
+    const lat2 = degreesToRadians(lat2);
+    const dlat = degreesToRadians(lat2 - lat1);
+    const dlon = degreesToRadians(lon2 - lon1);
+
+    // TODO: this should probably be abstracted
+    const a = Math.sin(dlat / 2) * Math.sin(dlat / 2) + Math.cos(lat1) * Math.cos(lat2) * Math.sin(dlon / 2) * Math.sin(dlon / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+
+    const d = R * c;
+
+    return d; // distance, in kilometers
+};
 
 /**
  * Constrains an angle to within 0 --> Math.PI*2
  */
 window.fix_angle = function fix_angle(radians) {
     // TODO: replace Math.PI*2 with tau()
-  while(radians > Math.PI*2) radians -= Math.PI*2;
-  while(radians < 0) radians += Math.PI*2;
+  while(radians > tau()) radians -= tau();
+  while(radians < 0) radians += tau();
   return radians;
-}
+};
 
 window.choose = function choose(l) {
     return l[Math.floor(Math.random() * l.length)];
-}
+};
 
+// TODO: rename
 window.choose_weight = function choose_weight(l) {
     if (l.length === 0) {
         return;
@@ -204,50 +187,67 @@ window.choose_weight = function choose_weight(l) {
 
     console.log("OHSHIT");
     return(null);;
-}
-
-window.mod = function mod(a, b) {
-  return ((a%b)+b)%b;
 };
 
+window.mod = function mod(a, b) {
+  return ((a % b) + b) % b;
+};
+
+// TODO: rename leftPad
 /**
  * Prepends zeros to front of str/num to make it the desired width
  */
 window.lpad = function lpad(n, width) {
-  if (n.toString().length >= width) return n.toString();
-  var x = "0000000000000" + n;
-  return x.substr(x.length-width, width);
+    if (n.toString().length >= width){
+        return n.toString();
+    }
+
+    const x = "0000000000000" + n;
+
+    return x.substr(x.length - width, width);
 }
 
 /**
  * Returns the angle difference between two headings
+ *
  * @param {number} a - heading, in radians
  * @param {number} b - heading, in radians
  */
 window.angle_offset = function angle_offset(a, b) {
-  a = radiansToDegrees(a);
-  b = radiansToDegrees(b);
-  var invert=false;
-  if(b > a) {
-    invert=true;
-    var temp=a;
-    a=b;
-    b=temp;
-  }
-  var offset=mod(a-b, 360);
-  if(offset > 180) offset -= 360;
-  if(invert) offset *= -1;
-  offset = degreesToRadians(offset);
-  return offset;
+    a = radiansToDegrees(a);
+    b = radiansToDegrees(b);
+    let invert = false;
+
+    if (b > a) {
+        invert = true;
+        let temp = a;
+
+        a = b;
+        b = temp;
+    }
+
+    let offset = mod(a - b, 360);
+    if (offset > 180) {
+        offset -= 360;
+    }
+
+    if (invert) {
+        offset *= -1;
+    }
+
+    offset = degreesToRadians(offset);
+
+    return offset;
 }
 
 /**
  * Returns the bearing from position 'a' to position 'b'
+ *
  * @param {array} a - positional array, start point
  * @param {array} a - positional array, end point
  */
 window.bearing = function bearing(a, b) {
-  return vradial(vsub(b,a));
+    return vradial(vsub(b, a));
 }
 
 /**
@@ -261,99 +261,114 @@ window.bearing = function bearing(a, b) {
  *                                     retval[1] is the longitudinal offset, in km
  *                                     retval[2] is the hypotenuse (straight-line distance), in km
  */
-window.getOffset = function getOffset(aircraft, target, /*optional*/ headingThruTarget) {
-  if(headingThruTarget == null) headingThruTarget = aircraft.heading;
-  var offset = [0, 0, 0];
-  var vector = vsub(target, aircraft.position); // vector from aircraft pointing to target
-  var bearingToTarget = vradial(vector);
-  offset[2] = vlen(vector);
-  offset[0] = offset[2] * sin(headingThruTarget - bearingToTarget);
-  offset[1] = offset[2] * cos(headingThruTarget - bearingToTarget);
-  return offset;
+window.getOffset = function getOffset(aircraft, target, headingThruTarget = null) {
+    if (!headingThruTarget) {
+        headingThruTarget = aircraft.heading;
+    }
+
+    let offset = [0, 0, 0];
+    let vector = vsub(target, aircraft.position); // vector from aircraft pointing to target
+    let bearingToTarget = vradial(vector);
+
+    offset[2] = vlen(vector);
+    offset[0] = offset[2] * sin(headingThruTarget - bearingToTarget);
+    offset[1] = offset[2] * cos(headingThruTarget - bearingToTarget);
+
+    return offset;
 }
 
 window.heading_to_string = function heading_to_string(heading) {
-  heading = round(mod(radiansToDegrees(heading), 360)).toString();
-  if(heading == "0") heading = "360";
-  if(heading.length == 1) heading = "00" + heading;
-  if(heading.length == 2) heading = "0" + heading;
-  return heading;
-}
+    heading = round(mod(radiansToDegrees(heading), 360)).toString();
 
-var radio_names = {
-  0:"zero",
-  1:"one",
-  2:"two",
-  3:"three",
-  4:"four",
-  5:"five",
-  6:"six",
-  7:"seven",
-  8:"eight",
-  9:"niner",
-  10:"ten",
-  11:"eleven",
-  12:"twelve",
-  13:"thirteen",
-  14:"fourteen",
-  15:"fifteen",
-  16:"sixteen",
-  17:"seventeen",
-  18:"eighteen",
-  19:"nineteen",
-  20:"twenty",
-  30:"thirty",
-  40:"fourty",
-  50:"fifty",
-  60:"sixty",
-  70:"seventy",
-  80:"eighty",
-  90:"ninety",
-  a:"alpha",
-  b:"bravo",
-  c:"charlie",
-  d:"delta",
-  e:"echo",
-  f:"foxtrot",
-  g:"golf",
-  h:"hotel",
-  i:"india",
-  j:"juliet",
-  k:"kilo",
-  l:"lima",
-  m:"mike",
-  n:"november",
-  o:"oscar",
-  p:"papa",
-  q:"quebec",
-  r:"romeo",
-  s:"sierra",
-  t:"tango",
-  u:"uniform",
-  v:"victor",
-  w:"whiskey",
-  x:"x-ray",
-  y:"yankee",
-  z:"zulu",
-  "-":"dash",
-  ".":"point",
+    if (heading === '0') {
+        heading = '360';
+    }
+
+    if (heading.length === 1) {
+        heading = '00' + heading;
+    }
+
+    if (heading.length === 2) {
+        heading = '0' + heading;
+    }
+
+    return heading;
 };
 
-var radio_cardinalDir_names = {
-  "n":"north",
-  "nw":"northwest",
-  "w":"west",
-  "sw":"southwest",
-  "s":"south",
-  "se":"southeast",
-  "e":"east",
-  "ne":"northeast"
+const radio_names = {
+    0: 'zero',
+    1: 'one',
+    2: 'two',
+    3: 'three',
+    4: 'four',
+    5: 'five',
+    6: 'six',
+    7: 'seven',
+    8: 'eight',
+    9: 'niner',
+    10: 'ten',
+    11: 'eleven',
+    12: 'twelve',
+    13: 'thirteen',
+    14: 'fourteen',
+    15: 'fifteen',
+    16: 'sixteen',
+    17: 'seventeen',
+    18: 'eighteen',
+    19: 'nineteen',
+    20: 'twenty',
+    30: 'thirty',
+    40: 'fourty',
+    50: 'fifty',
+    60: 'sixty',
+    70: 'seventy',
+    80: 'eighty',
+    90: 'ninety',
+    a: 'alpha',
+    b: 'bravo',
+    c: 'charlie',
+    d: 'delta',
+    e: 'echo',
+    f: 'foxtrot',
+    g: 'golf',
+    h: 'hotel',
+    i: 'india',
+    j: 'juliet',
+    k: 'kilo',
+    l: 'lima',
+    m: 'mike',
+    n: 'november',
+    o: 'oscar',
+    p: 'papa',
+    q: 'quebec',
+    r: 'romeo',
+    s: 'sierra',
+    t: 'tango',
+    u: 'uniform',
+    v: 'victor',
+    w: 'whiskey',
+    x: 'x-ray',
+    y: 'yankee',
+    z: 'zulu',
+    '-': 'dash',
+    '.': 'point'
 };
 
-var radio_runway_names = clone(radio_names);
-    radio_runway_names.l = "left";
-    radio_runway_names.c = "center";
-    radio_runway_names.r = "right";
+const radio_cardinalDir_names = {
+    'n': 'north',
+    'nw': 'northwest',
+    'w': 'west',
+    'sw': 'southwest',
+    's': 'south',
+    'se': 'southeast',
+    'e': 'east',
+    'ne': 'northeast'
+};
+
+const radio_runway_names = clone(radio_names);
+radio_runway_names.l = 'left';
+radio_runway_names.c = 'center';
+radio_runway_names.r = 'right';
 
 /**
  * Force a number to an integer with a specific # of digits
@@ -364,15 +379,17 @@ var radio_runway_names = clone(radio_names);
  * magnitude, which is almost definitely going to be undesirable.
  */
 window.digits_integer = function digits_integer(number, digits, /*optional*/ truncate) {
-  if(truncate) number = Math.floor(number).toString();
-  else number = Math.round(number).toString();
-  if(number.length > digits) return number;
-  else while(number.length < digits) number = "0"+number; // add leading zeros
-  return number;
+    if(truncate) number = Math.floor(number).toString();
+    else number = Math.round(number).toString();
+    if(number.length > digits) return number;
+    else while(number.length < digits) number = "0"+number; // add leading zeros
+
+    return number;
 }
 
 /**
  * Round a number to a specific # of digits after the decimal
+ *
  * @param {boolean} force - (optional) Forces presence of trailing zeros.
  *        Must be set to true if you want '3' to be able to go to '3.0', or
  *        for '32.168420' to not be squished to '32.16842'. If true, fxn will
@@ -385,32 +402,42 @@ window.digits_integer = function digits_integer(number, digits, /*optional*/ tru
  * Also supports negative digits. Ex: '-2' would do 541.246 --> 500
  */
 window.digits_decimal = function digits_decimal(number, digits, /*optional */ force, truncate) {
-  var shorten = (truncate) ? Math.floor : Math.round;
-  if(!force) return shorten(number * Math.pow(10,digits)) / Math.pow(10,digits);
-  else { // check if needs extra trailing zeros
-    if(digits <= 0) return (shorten(number * Math.pow(10,digits)) / Math.pow(10,digits)).toString();
-    number = number.toString();
-    for(var i=0; i<number.length; i++) {
-      if(number[i] == '.') {
-        var trailingDigits = number.length - (i+1);
-        if(trailingDigits == digits) {
-          return number.toString();
-        }
-        else if(trailingDigits < digits)  // add trailing zeros
-          return number + Array(digits - trailingDigits+1).join("0");
-        else if(trailingDigits > digits) {
-          if(truncate) return number.substr(0,number.length-(trailingDigits - digits));
-          else {
-            var len = number.length-(trailingDigits - digits+1);
-            var part1 = number.substr(0,len);
-            var part2 = (digits==0) ? "" : shorten(parseInt(number.substr(len,2))/10).toString();
-            return part1 + part2;
-          }
-        }
-      }
+    const shorten = (truncate) ? Math.floor : Math.round;
+
+    if (!force) {
+        return shorten(number * Math.pow(10, digits)) / Math.pow(10, digits);
     }
-  }
-}
+
+    // check if needs extra trailing zeros
+    if (digits <= 0) {
+        return (shorten(number * Math.pow(10, digits)) / Math.pow(10, digits)).toString();
+    }
+
+    number = number.toString();
+
+    for(let i = 0; i < number.length; i++) {
+        if (number[i] == '.') {
+            const trailingDigits = number.length - (i + 1);
+
+            if (trailingDigits == digits) {
+                return number.toString();
+            } else if (trailingDigits < digits) {
+                // add trailing zeros
+                return number + Array(digits - trailingDigits + 1).join('0');
+            } else if (trailingDigits > digits) {
+                if (truncate) {
+                    return number.substr(0, number.length - (trailingDigits - digits));
+                } else {
+                    const len = number.length -( trailingDigits - digits + 1);
+                    const part1 = number.substr(0, len);
+                    const part2 = (digits === 0) ? '' : shorten(parseInt(number.substr(len, 2), 10) / 10).toString();
+
+                    return part1 + part2;
+                }
+            }
+        }
+    }
+};
 
 window.getGrouping = function getGrouping(groupable) {
   var digit1 = groupable[0];
@@ -487,10 +514,12 @@ window.radio_runway = function radio_runway(input) {
   input = input + "";
   input = input.toLowerCase();
   var s = [];
+
   for(var i=0;i<input.length;i++) {
     var c = radio_runway_names[input[i]];
     if(c) s.push(c);
   }
+
   return s.join(" ");
 }
 
@@ -507,27 +536,33 @@ window.radio_heading = function radio_heading(heading) {
 window.radio_spellOut = function radio_spellOut(alphanumeric) {
   var str = alphanumeric.toString();
   var arr = [];
+
   if(!str) return;
+
   for(var i=0; i<str.length; i++) {
     arr.push(radio_names[str[i]]);
   }
+
   return arr.join(" ");
 }
 
 window.radio_altitude = function radio_altitude(altitude) {
   var alt_s = altitude.toString();
   var s = [];
+
   if(altitude >= 18000) {
     s.push("flight level", radio_names[alt_s[0]], radio_names[alt_s[1]], radio_names[alt_s[2]]);
   }
   else if(altitude >= 10000) {
     s.push(radio_names[alt_s[0]], radio_names[alt_s[1]], "thousand");
+
     if(!(altitude % (Math.floor(altitude/1000)*1000) == 0)) {
       s.push(radio_names[alt_s[2]], "hundred");
     }
   }
   else if(altitude >= 1000) {
     s.push(radio_names[alt_s[0]], "thousand");
+
     if(!(altitude % (Math.floor(altitude/1000)*1000) == 0)) {
       s.push(radio_names[alt_s[1]], "hundred");
     }
@@ -536,6 +571,7 @@ window.radio_altitude = function radio_altitude(altitude) {
     s.push(radio_names[alt_s[0]], "hundred");
   }
   else return altitude;
+
   return s.join(" ");
 }
 
@@ -550,14 +586,17 @@ window.radio_trend = function radio_trend(category, measured, target) {
 }
 
 window.getCardinalDirection = function getCardinalDirection(angle) {
-  var directions = ["N", "NE", "E", "SE", "S", "SW", "W", "NW", "N"];
-  return directions[round(angle / (Math.PI*2) * 8)];
-}
+    const directions = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW', 'N'];
+
+    return directions[round(angle / tau() * 8)];
+};
 
 window.to_canvas_pos = function to_canvas_pos(pos) {
-  return [prop.canvas.size.width / 2 + prop.canvas.panX + km(pos[0]),
-          prop.canvas.size.height / 2 + prop.canvas.panY - km(pos[1])];
-}
+    return [
+        prop.canvas.size.width / 2 + prop.canvas.panX + km(pos[0]),
+        prop.canvas.size.height / 2 + prop.canvas.panY - km(pos[1])
+    ];
+};
 
 /**
  * Compute a point of intersection of a ray with a rectangle.
@@ -658,8 +697,8 @@ window.fixRadialDist = function fixRadialDist(fix, radial, dist) {
  * Splices all empty elements out of an array
  */
 window.array_clean = function array_clean(array, deleteValue) {
-  for (var i = 0; i < array.length; i++) {
-    if (array[i] == deleteValue) {
+  for (let i = 0; i < array.length; i++) {
+    if (array[i] === deleteValue) {
       array.splice(i, 1);
       i--;
     }
@@ -667,36 +706,42 @@ window.array_clean = function array_clean(array, deleteValue) {
   return array;
 };
 
+// TODO: this can be done with .reduce()
 /**
  * Returns the sum of all numerical values in the array
  */
 window.array_sum = function array_sum(array) {
-  var total = 0;
-  for(var i=0; i<array.length; i++) total += parseFloat(array[i]);
-  return total;
+    let total = 0;
+
+    // TODO: use _map() instead of for loop
+    for (let i = 0; i < array.length; i++) {
+        total += parseFloat(array[i]);
+    }
+
+    return total;
 }
 
 window.inAirspace = function inAirspace(pos) {
-  var apt = airport_get();
-  var perim = apt.perimeter;
-  if(perim) {
-    return point_in_area(pos, perim);
-  }
-  else {
+    const apt = airport_get();
+    const perim = apt.perimeter;
+
+    if (perim) {
+        return point_in_area(pos, perim);
+    }
+
     return distance2d(pos, apt.position.position) <= apt.ctr_radius;
-  }
-}
+};
 
 window.dist_to_boundary = function dist_to_boundary(pos) {
-  var apt = airport_get();
-  var perim = apt.perimeter;
-  if(perim) {
-    return distance_to_poly(pos, area_to_poly(perim));  // km
-  }
-  else {
+    const apt = airport_get();
+    const perim = apt.perimeter;
+
+    if (perim) {
+        return distance_to_poly(pos, area_to_poly(perim));  // km
+    }
+
     return abs(distance2d(pos, apt.position.position) - apt.ctr_radius);
-  }
-}
+};
 
 // ************************ VECTOR FUNCTIONS ************************
 // For more info, see http://threejs.org/docs/#Reference/Math/Vector3
@@ -743,7 +788,6 @@ window.vadd = function vadd(v1, v2) {
 //  * Subtracts Vectors (all dimensions)
 //  */
 // window.vsub = function vsub(v1, v2) {
-//     debugger;
 //   try {
 //     var v = [], lim = Math.min(v1.length,v2.length);
 //     for(var i=0; i<lim; i++) v.push(v1[i] - v2[i]);

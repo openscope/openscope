@@ -69,8 +69,6 @@ const Model = Fiber.extend(function() {
             if (data.speed) this.speed = data.speed;
             if (data.rate) {
                 this.rate = data.rate;
-                this.rate.climb = this.rate.climb;
-                this.rate.descent = this.rate.descent;
             }
         },
 
@@ -148,7 +146,7 @@ const Model = Fiber.extend(function() {
                 this._generateAircraft(options);
             });
 
-            this._pendingAircraft = null;
+            this._pendingAircraft = [];
         }
     };
 });

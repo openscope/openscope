@@ -127,6 +127,7 @@ const game_pause = () => {
 };
 
 const game_unpause = () => {
+    const $pauseToggle = $(`.${SELECTORS.CLASSNAMES.PAUSE_TOGGLE}`);
     prop.game.paused = false;
 
     $pauseToggle.removeClass(SELECTORS.CLASSNAMES.ACTIVE);

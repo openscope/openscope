@@ -5,7 +5,14 @@ import Waypoint from './Waypoint';
 import { LOG } from '../constants/logLevel';
 
 // can be 'sid', 'star', 'iap', 'awy', 'fix', '[manual]'
-const LEG_TYPE = {
+/**
+ * Enumeration of possibl FLight Plan Leg types.
+ *
+ * @property FP_LEG_TYPE
+ * @type {Object}
+ * @final
+ */
+export const FP_LEG_TYPE = {
     SID: 'sid',
     STAR: 'star',
     IAP: 'iap',
@@ -27,7 +34,7 @@ const Leg = Fiber.extend(function(data, fms) {
          */
         init: function(data = {}, fms) {
             this.route = '[radar vectors]'; // eg 'KSFO.OFFSH9.SXC' or 'FAITH'
-            this.type = LEG_TYPE.MANUAL;
+            this.type = FP_LEG_TYPE.MANUAL;
             this.waypoints = []; // an array of zlsa.atc.Waypoint objects to follow
 
             // Fill data with default Leg properties if they aren't specified (prevents wp constructor from getting confused)
@@ -63,7 +70,7 @@ const Leg = Fiber.extend(function(data, fms) {
                 return;
             }
 
-            if (this.type === LEG_TYPE.SID) {
+            if (this.type === FP_LEG_TYPE.SID) {
                 if (!fms) {
                     log('Attempted to generate waypoints for SID, but cannot because fms ref not passed!', LOG.WARNING);
 
@@ -125,7 +132,7 @@ const Leg = Fiber.extend(function(data, fms) {
                 if (!this.waypoints[0].speed) {
                     this.waypoints[0].speed = fms.my_aircraft.model.speed.cruise;
                 }
-            } else if (this.type === LEG_TYPE.STAR) {
+            } else if (this.type === FP_LEG_TYPE.STAR) {
                 if (!fms) {
                     log('Attempted to generate waypoints for STAR, but cannot because fms ref not passed!', LOG.WARNING);
 
@@ -173,9 +180,9 @@ const Leg = Fiber.extend(function(data, fms) {
                 if (!this.waypoints[0].speed) {
                     this.waypoints[0].speed = fms.my_aircraft.model.speed.cruise;
                 }
-            } else if (this.type === LEG_TYPE.IAP) {
+            } else if (this.type === FP_LEG_TYPE.IAP) {
                 // FUTURE FUNCTIONALITY
-            } else if (this.type === LEG_TYPE.AWY) {
+            } else if (this.type === FP_LEG_TYPE.AWY) {
                 var start = data.route.split('.')[0];
                 var airway = data.route.split('.')[1];
                 var end = data.route.split('.')[2];
@@ -211,7 +218,7 @@ const Leg = Fiber.extend(function(data, fms) {
                 // Add list of fixes to this.waypoints
                 this.waypoints = [];
                 this.waypoints = _map(fixes, (f) => new Waypoint({ fix: f }, fms));
-            } else if (this.type === LEG_TYPE.FIX) {
+            } else if (this.type === FP_LEG_TYPE.FIX) {
                 this.waypoints = [];
                 this.waypoints.push(new Waypoint({ fix: data.route }, fms));
             } else {

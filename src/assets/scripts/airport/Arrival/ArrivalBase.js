@@ -78,7 +78,8 @@ const ArrivalBase = Fiber.extend(function(base) {
             });
         },
 
-        /** Backfill STAR routes with arrivals closer than the spawn point
+        /**
+         * Backfill STAR routes with arrivals closer than the spawn point
          * Aircraft spawn at the first point defined in the route of the entry in
          * "arrivals" in the airport json file. When that spawn point is very far
          * from the airspace boundary, it obviously takes quite a while for them

@@ -3,7 +3,7 @@ import Fiber from 'fiber';
 import _clamp from 'lodash/clamp';
 import _map from 'lodash/map';
 import Waypoint from './Waypoint';
-import Leg from './Leg';
+import Leg, { FP_LEG_TYPE } from './Leg';
 import { LOG } from '../constants/logLevel';
 
 /**
@@ -39,7 +39,10 @@ const AircraftFlightManagementSystem = Fiber.extend(function() {
             this.my_aircraft = options.aircraft;
             this.legs = [];
             this.current = [0, 0]; // [current_Leg, current_Waypoint_within_that_Leg]
-            this.fp = { altitude: null, route: [] };
+            this.fp = {
+                altitude: null,
+                route: []
+            };
             this.following = {
                 sid: null,         // Standard Instrument Departure Procedure
                 star: null,        // Standard Terminal Arrival Route Procedure
@@ -68,8 +71,8 @@ const AircraftFlightManagementSystem = Fiber.extend(function() {
          */
         prependLeg: function(data) {
             const prev = this.currentWaypoint();
-            this.legs.unshift(new Leg(data, this));
 
+            this.legs.unshift(new Leg(data, this));
             this.update_fp_route();
 
             // Verify altitude & speed not null
@@ -282,34 +285,37 @@ const AircraftFlightManagementSystem = Fiber.extend(function() {
                 }
 
                 switch (this.legs[l].type) {
-                    case 'sid':
+                    case FP_LEG_TYPE.SID:
                         // TODO: this split logic and string building should live in helper functions
                         // departure airport
                         r.push(this.legs[l].route.split('.')[0]);
                         // 'sidname.exitPoint'
                         r.push(this.legs[l].route.split('.')[1] + '.' + this.legs[l].route.split('.')[2]);
-                        break;
 
-                    case 'star':
+                        break;
+                    case FP_LEG_TYPE.STAR:
                         // 'entryPoint.starname.exitPoint'
                         r.push(this.legs[l].route.split('.')[0] + '.' + this.legs[l].route.split('.')[1]);
                         // arrival airport
                         r.push(this.legs[l].route.split('.')[2]);
+
                         break;
-                    case 'iap':
+                    case FP_LEG_TYPE.IAP:
                         // no need to include these in flightplan (because wouldn't happen in real life)
                         break;
-                    case 'awy':
+                    case FP_LEG_TYPE.AWY:
                         if (r[r.length - 1] !== this.legs[l].route.split('.')[0]) {
                             r.push(this.legs[l].route.split('.')[0]); // airway entry fix
                             r.push(this.legs[l].route.split('.')[1]); // airway identifier
                             r.push(this.legs[l].route.split('.')[2]); // airway exit fix
                         }
+
                         break;
-                    case 'fix':
+                    case FP_LEG_TYPE.FIX:
                         r.push(this.legs[l].route);
+
                         break;
-                    case '[manual]':
+                    case FP_LEG_TYPE.MANUAL:
                         // no need to include these in flightplan (because wouldn't happen in real life)
                         break;
                     default:
@@ -331,16 +337,15 @@ const AircraftFlightManagementSystem = Fiber.extend(function() {
             const leg = this.currentLeg();
 
             switch (leg.type) {
-                case 'sid':
+                case FP_LEG_TYPE.SID:
                     this.following.anything = true;
                     this.following.sid = leg.route.split('.')[1];
                     break;
-
-                case 'star':
+                case FP_LEG_TYPE.STAR:
                     this.following.anything = true;
                     this.following.star = leg.route.split('.')[1];
                     break;
-                case 'iap':
+                case FP_LEG_TYPE.IAP:
                     this.following.anything = true;
                     // *******NEEDS TO BE FINISHED***************************
                     // this.following.iap = ;
@@ -350,7 +355,7 @@ const AircraftFlightManagementSystem = Fiber.extend(function() {
                     // this.following.anything = true;
                     // this.following.tfc = // EID of the traffic we're following
                     break;
-                case 'awy':
+                case FP_LEG_TYPE.AWY:
                     // **FUTURE FUNCTIONALITY**
                     this.following.anything = true;
                     this.following.awy = leg.route.split('.')[1];
@@ -410,7 +415,7 @@ const AircraftFlightManagementSystem = Fiber.extend(function() {
                 if (this.legs[i].route === airport_get().icao) {
                     // remove the manual departure leg
                     this.legs.splice(i, 1);
-                } else if (this.legs[i].type === 'sid') {
+                } else if (this.legs[i].type === FP_LEG_TYPE.SID) {
                     // check to see if SID already assigned
                     // remove the old SID
                     this.legs.splice(i, 1);
@@ -418,8 +423,13 @@ const AircraftFlightManagementSystem = Fiber.extend(function() {
             }
 
             // Add the new SID Leg
-            this.prependLeg({ type: 'sid', route: route });
-            this.setAll({ altitude: Math.max(airport_get().initial_alt, this.my_aircraft.altitude) });
+            this.prependLeg({
+                type: FP_LEG_TYPE.SID,
+                route: route
+            });
+            this.setAll({
+                altitude:  Math.max(airport_get().initial_alt, this.my_aircraft.altitude)
+            });
         },
 
         /**
@@ -427,14 +437,14 @@ const AircraftFlightManagementSystem = Fiber.extend(function() {
          */
         followSTAR: function(route) {
             for (let i = 0; i < this.legs.length; i++) {
-                if (this.legs[i].type === 'star') {
+                if (this.legs[i].type === FP_LEG_TYPE.STAR) {
                     // check to see if STAR already assigned
                     this.legs.splice(i, 1);  // remove the old STAR
                 }
             }
 
             // Add the new STAR Leg
-            this.appendLeg({ type: 'star', route: route });
+            this.appendLeg({ type: FP_LEG_TYPE.STAR, route: route });
         },
 
         /**
@@ -521,20 +531,20 @@ const AircraftFlightManagementSystem = Fiber.extend(function() {
 
                 // just a fix/navaid
                 if (route[i].split('.').length === 1) {
-                    legs.push(new Leg({ type: 'fix', route: route[i] }, this));
+                    legs.push(new Leg({ type: FP_LEG_TYPE.FIX, route: route[i] }, this));
                 } else if (route[i].split('.').length === 3) {
                     // is an instrument procedure
                     pieces = route[i].split('.');
 
                     if (Object.keys(airport_get().sids).indexOf(pieces[1]) > -1) {
                         // it's a SID!
-                        legs.push(new Leg({ type: 'sid', route: route[i] }, this));
+                        legs.push(new Leg({ type: FP_LEG_TYPE.SID, route: route[i] }, this));
                     } else if (Object.keys(airport_get().stars).indexOf(pieces[1]) > -1) {
                         // it's a STAR!
-                        legs.push(new Leg({ type: 'sta', route: route[i] }, this));
+                        legs.push(new Leg({ type: FP_LEG_TYPE.STAR, route: route[i] }, this));
                     } else if (Object.keys(airport_get().airways).indexOf(pieces[1]) > -1) {
                         // it's an airway!
-                        legs.push(new Leg({ type: 'awy', route: route[i] }, this));
+                        legs.push(new Leg({ type: FP_LEG_TYPE.AWY, route: route[i] }, this));
                     }
                 } else {
                     // neither formatted like "JAN" nor "JAN.V18.MLU"
@@ -622,7 +632,7 @@ const AircraftFlightManagementSystem = Fiber.extend(function() {
          *    - (spd) waypoint's speed restriction
          */
         climbViaSID: function() {
-            if (!this.currentLeg().type === 'sid') {
+            if (!this.currentLeg().type === FP_LEG_TYPE.SID) {
                 return;
             }
 
@@ -658,7 +668,7 @@ const AircraftFlightManagementSystem = Fiber.extend(function() {
                 wp[i].altitude = alt; // add altitudes to wp
 
                 let minSpd;
-                let spd;
+                let spd = cruise_spd;
                 let maxSpd;
                 // Speed Control
                 if (speed) {
@@ -674,11 +684,10 @@ const AircraftFlightManagementSystem = Fiber.extend(function() {
                          // cross AT this speed
                         spd = parseInt(speed, 10);
                     }
-                } else {
-                    spd = cruise_spd;
                 }
 
-                wp[i].speed = spd;  // add speeds to wp
+                // add speeds to wp
+                wp[i].speed = spd;
             }
 
             // change fms waypoints to wp (which contains the altitudes and speeds)
@@ -687,7 +696,7 @@ const AircraftFlightManagementSystem = Fiber.extend(function() {
             return true;
         },
 
-        // FIXME the logic in this method is remarkably similiar to the logic in .climbViaSID(). perhpas there
+        // FIXME the logic in this method is remarkably similiar to the logic in .climbViaSID(). perhaps there
         // are opportunities for abstraction here.
         /**
          * Descends aircraft in compliance with the STAR they're following
@@ -697,10 +706,13 @@ const AircraftFlightManagementSystem = Fiber.extend(function() {
             // Find the STAR leg
             let wp;
             let legIndex;
+
+            // TODO: if this.legs is an array this should be a for and not a for/in loop
             for (const l in this.legs) {
-                if (this.legs[l].type === 'star') {
+                if (this.legs[l].type === FP_LEG_TYPE.STAR) {
                     legIndex = l;
                     wp = this.legs[l].waypoints;
+
                     break;
                 }
             }

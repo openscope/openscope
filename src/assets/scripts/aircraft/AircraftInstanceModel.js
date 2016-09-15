@@ -77,6 +77,7 @@ const Aircraft = Fiber.extend(function() {
             this.inside_ctr   = false;      // Inside ATC Airspace
             this.datablockDir = -1;         // Direction the data block points (-1 means to ignore)
             this.conflicts    = {};         // List of aircraft that MAY be in conflict (bounding box)
+            this.terrain_ranges = false;
             /* eslint-enable multi-spaces*/
 
             if (prop.airport.current.terrain) {
@@ -91,8 +92,6 @@ const Aircraft = Fiber.extend(function() {
                         this.terrain_ranges[k][j] = Infinity;
                     }
                 }
-            } else {
-                this.terrain_ranges = false;
             }
 
             // Set to true when simulating future movements of the aircraft
@@ -102,7 +101,7 @@ const Aircraft = Fiber.extend(function() {
             this.position_history = [];
 
             this.category = options.category; // or "departure"
-            this.mode     = FLIGHT_MODES.CRUISE;  // 'apron', 'taxi', 'waiting', 'takeoff', 'cruise', or 'landing'
+            this.mode = FLIGHT_MODES.CRUISE;  // 'apron', 'taxi', 'waiting', 'takeoff', 'cruise', or 'landing'
             // where:
             // - 'apron' is the initial status of a new departing plane. After
             //   the plane is issued the 'taxi' command, the plane transitions to
