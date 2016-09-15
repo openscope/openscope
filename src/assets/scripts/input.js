@@ -1,24 +1,19 @@
+import $ from 'jquery';
 import _clamp from 'lodash/clamp'
 
 window.input_init_pre = function input_init_pre() {
-  prop.input = {};
-
-  prop.input.command  = '';
-  prop.input.callsign = '';
-  prop.input.data     = '';
-
-  prop.input.history      = [];
-  prop.input.history_item = null;
-
-  prop.input.click    = [0, 0];
-
-  prop.input.positions = '';
-
-  prop.input.tab_compl = {};
-
-  prop.input.mouseDelta = [0, 0];
-  prop.input.mouseDown = [0, 0];
-  prop.input.isMouseDown = false;
+    prop.input = {};
+    prop.input.command = '';
+    prop.input.callsign = '';
+    prop.input.data = '';
+    prop.input.history = [];
+    prop.input.history_item = null;
+    prop.input.click = [0, 0];
+    prop.input.positions = '';
+    prop.input.tab_compl = {};
+    prop.input.mouseDelta = [0, 0];
+    prop.input.mouseDown = [0, 0];
+    prop.input.isMouseDown = false;
 };
 
 window.input_init = function input_init() {

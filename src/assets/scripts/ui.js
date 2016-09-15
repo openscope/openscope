@@ -1,4 +1,5 @@
 /* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand, no-undef */
+import $ from 'jquery';
 import _has from 'lodash/has';
 import { SELECTORS } from './constants/selectors';
 import { STORAGE_KEY } from './constants/storageKeys';
@@ -34,6 +35,12 @@ function ui_init_pre() {
     if (_has(localStorage, STORAGE_KEY.ATC_SCALE)) {
         prop.ui.scale = localStorage[STORAGE_KEY.ATC_SCALE];
     }
+}
+
+function ui_after_zoom() {
+    localStorage[STORAGE_KEY.ATC_SCALE] = prop.ui.scale;
+
+    prop.canvas.dirty = true;
 }
 
 function ui_zoom_out() {
@@ -74,12 +81,6 @@ function ui_zoom_reset() {
     prop.ui.scale = prop.ui.scale_default;
 
     ui_after_zoom();
-}
-
-function ui_after_zoom() {
-    localStorage[STORAGE_KEY.ATC_SCALE] = prop.ui.scale;
-
-    prop.canvas.dirty = true;
 }
 
 function ui_init() {

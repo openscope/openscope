@@ -1,3 +1,5 @@
+import $ from 'jquery';
+
 /**
  * Asynchronous JSON asset loading framework.
  *
@@ -15,8 +17,6 @@
  * @module zlsa.atc.loadAsset
  */
 (function ($, zlsa, Fiber, mediator) {
-  "use strict";
-
   /**
    * Simple container for a given piece of content
    */
@@ -60,16 +60,15 @@
               );
             }
           }
-        }
-        else {
+        } else {
           this.queuedContent[c.url] = c;
           if (c.immediate) {
             this.highPriorityQueue.push(c.url);
-          }
-          else {
+          } else {
             this.lowPriorityQueue.push(c.url);
           }
         }
+
         if (!this.loading) {
           this.startLoad();
         }
@@ -81,14 +80,12 @@
         if (this.highPriorityQueue.length) {
           this.load(this.highPriorityQueue.shift());
           return true;
-        }
-        else if (this.lowPriorityQueue.length) {
+        } else if (this.lowPriorityQueue.length) {
           this.load(this.lowPriorityQueue.shift());
           return true;
         }
-        else {
-          return false;
-        }
+
+        return false;
       },
 
       load: function(url) {
@@ -104,6 +101,7 @@
           }.bind(this))
           .always(function () {
             delete this.queuedContent[c.url];
+
             if (!this.startLoad()) {
               zlsa.atc.mediator.trigger('stopLoading');
             }

@@ -13,15 +13,20 @@ export const CLASSNAMES = {
     FOLLOWING_STAR: 'followingSTAR',
     HIDDEN: 'hidden',
     HOLD: 'hold',
+    LEFT: 'left',
     LOOKING_GOOD: 'lookingGood',
     NEGATIVE: 'negative',
+    NEXT: 'next',
     OPEN: 'open',
     PAUSED: 'paused',
     PAUSE_TOGGLE: 'pause-toggle',
+    PREV: 'prev',
+    RIGHT: 'right',
     RUNWAY: 'runway',
     SPEED_2: 'speed-2',
     SPEED_5: 'speed-5',
     SWITCH_AIRPORT: 'switch-airport',
+    TOGGLE_TUTORIAL: 'toggle-tutorial',
     WARN: 'warn',
     WARNING_BUTTON: 'warning-button'
 };
@@ -38,6 +43,7 @@ export const IDS = {
     LOG: 'log',
     OPTIONS_DIALOG: 'options-dialog',
     TOGGLE_OPTIONS: 'toggle-options',
+    TUTORIAL: 'tutorial',
     SCORE: 'score'
 };
 

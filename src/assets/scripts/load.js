@@ -1,3 +1,4 @@
+import $ from 'jquery';
 import { time } from './utilities/timeHelpers';
 
 /**

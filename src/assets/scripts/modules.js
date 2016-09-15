@@ -1,11 +1,10 @@
 import $ from 'jquery';
 import Fiber from 'fiber';
 import peg from 'pegjs';
-
 import { time } from './utilities/timeHelpers';
 import { LOG } from './constants/logLevel';
 
-window.$ = $;
+// window.$ = $;
 window.Fiber = Fiber;
 window.peg = peg;
 window.zlsa = {};
@@ -21,7 +20,7 @@ const animation = require('./animation');
 const parser = require('./parser');
 const speech = require('./speech');
 const get = require('./get');
-const tutorial = require('./tutorial');
+const tutorial = require('./tutorial/tutorial');
 const base = require('./base');
 const game = require('./game/game');
 const input = require('./input');
