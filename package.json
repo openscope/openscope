@@ -10,7 +10,7 @@
     "test": "nyc --require babel-core/register ava --serial --concurrency=5",
     "build": "gulp dist && npm run test",
     "report": "nyc report --reporter=cobertura  --reporter=lcov",
-    "lint": "./node_modules/.bin/eslint src/assets/scripts/**/*.js"
+    "coverage": "npm run test && npm run report"
   },
   "repository": {
     "type": "git",
@@ -27,8 +27,14 @@
     "aviation",
     "airplane"
   ],
-  "author": "Jon Ross",
-  "contributors": [],
+  "author": "Jon Ross <jonrosszlsa@gmail.com> (http://zlsa.github.io/)",
+  "contributors": [
+    { "Fechulo (https://github.com/Fechulo)" },
+    { "Erik Quinn (https://github.com/erikquinn)" },
+    { "indianbhaji (https://github.com/indianbhaji)" },
+    { "Dmitri Lebedev <ryba4@ryba4.com> (http://one-giant-leap.info)" },
+    { "tedrek (https://github.com/tedrek)" }
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/zlsa/atc/issues"
