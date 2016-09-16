@@ -1,7 +1,8 @@
+/* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand */
 import $ from 'jquery';
 import _clamp from 'lodash/clamp';
 import _has from 'lodash/has';
-import { km, nm, km_ft, ft_km, radiansToDegrees, degreesToRadians } from './utilities/unitConverters';
+import { km, radiansToDegrees, degreesToRadians } from './utilities/unitConverters';
 // import { time } from './utilities/timeHelpers';
 import { distance2d } from './math/distance';
 import { tau } from './math/circle';
@@ -9,6 +10,7 @@ import { vlen, vradial, vsub } from './math/vector';
 
 window.AudioContext = window.AudioContext || window.webkitAudioContext;
 
+/*eslint-disable*/
 window.clone = function clone(obj) {
     if (null == obj || 'object' != typeof obj) {
         return obj;
@@ -28,7 +30,7 @@ window.clone = function clone(obj) {
     var lastTime = 0;
     var vendors = ['webkit', 'moz'];
 
-    for(var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
+    for (var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
         window.requestAnimationFrame = window[vendors[x]+'RequestAnimationFrame'];
         window.cancelAnimationFrame =
           window[vendors[x]+'CancelAnimationFrame'] || window[vendors[x]+'CancelRequestAnimationFrame'];
@@ -62,6 +64,7 @@ if (!String.prototype.hasOwnProperty("repeat")) {
     return result + pattern;
   };
 }
+/*eslint-enable*/
 
 // ************************ GENERAL FUNCTIONS ************************
 window.ceil = function ceil(n, factor = 1) {
@@ -95,10 +98,8 @@ window.fl = function fl(n, number = 1) {
 
 // TODO: rename to randomInteger
 window.randint = function randint(low, high) {
-    return(Math.floor(Math.random() * (high - low + 1)) + low);
+    return Math.floor(Math.random() * (high - low + 1)) + low;
 };
-
-
 
 // TODO: rename to pluralize, if this function is even needed
 window.s = function s(i) {
@@ -111,9 +112,9 @@ window.within = function within(n, c, r) {
 };
 
 window.trange = function trange(il, i, ih, ol, oh) {
-  return(ol + (oh - ol) * (i - il) / (ih - il));
-  // i=(i/(ih-il))-il;       // purpose unknown
-  // return (i*(oh-ol))+ol;  // purpose unknown
+    return ol + (oh - ol) * (i - il) / (ih - il);
+    // i=(i/(ih-il))-il;       // purpose unknown
+    // return (i*(oh-ol))+ol;  // purpose unknown
 };
 
 window.crange = function crange(il, i, ih, ol, oh) {
@@ -136,7 +137,7 @@ window.distEuclid = function distEuclid(gps1, gps2) {
 
     // TODO: this should probably be abstracted
     const a = Math.sin(dlat / 2) * Math.sin(dlat / 2) + Math.cos(lat1) * Math.cos(lat2) * Math.sin(dlon / 2) * Math.sin(dlon / 2);
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
     const d = R * c;
 
@@ -147,9 +148,15 @@ window.distEuclid = function distEuclid(gps1, gps2) {
  * Constrains an angle to within 0 --> Math.PI*2
  */
 window.fix_angle = function fix_angle(radians) {
-  while(radians > tau()) radians -= tau();
-  while(radians < 0) radians += tau();
-  return radians;
+    while (radians > tau()) {
+        radians -= tau();
+    }
+
+    while (radians < 0) {
+        radians += tau();
+    }
+
+    return radians;
 };
 
 window.choose = function choose(l) {
@@ -170,12 +177,12 @@ window.choose_weight = function choose_weight(l) {
     if (typeof l[0] != typeof []) return choose(l);
 
     // l = [[item, weight], [item, weight] ... ];
-    let weight  = 0;
+    let weight = 0;
     for (let i = 0; i < l.length; i++) {
-      weight += l[i][1];
+        weight += l[i][1];
     }
 
-    let random = Math.random() * weight;
+    const random = Math.random() * weight;
     weight = 0;
 
     for (let i = 0; i < l.length; i++) {
@@ -186,12 +193,12 @@ window.choose_weight = function choose_weight(l) {
         }
     }
 
-    console.log("OHSHIT");
-    return(null);;
+    console.log('OHSHIT');
+    return(null);
 };
 
 window.mod = function mod(a, b) {
-  return ((a % b) + b) % b;
+    return ((a % b) + b) % b;
 };
 
 // TODO: rename leftPad
@@ -206,7 +213,7 @@ window.lpad = function lpad(n, width) {
     const x = "0000000000000" + n;
 
     return x.substr(x.length - width, width);
-}
+};
 
 /**
  * Returns the angle difference between two headings
@@ -221,7 +228,7 @@ window.angle_offset = function angle_offset(a, b) {
 
     if (b > a) {
         invert = true;
-        let temp = a;
+        const temp = a;
 
         a = b;
         b = temp;
@@ -239,7 +246,7 @@ window.angle_offset = function angle_offset(a, b) {
     offset = degreesToRadians(offset);
 
     return offset;
-}
+};
 
 /**
  * Returns the bearing from position 'a' to position 'b'
@@ -249,7 +256,7 @@ window.angle_offset = function angle_offset(a, b) {
  */
 window.bearing = function bearing(a, b) {
     return vradial(vsub(b, a));
-}
+};
 
 /**
  * Returns an offset array showing how far [fwd/bwd, left/right] 'aircraft' is of 'target'
@@ -267,16 +274,16 @@ window.getOffset = function getOffset(aircraft, target, headingThruTarget = null
         headingThruTarget = aircraft.heading;
     }
 
-    let offset = [0, 0, 0];
-    let vector = vsub(target, aircraft.position); // vector from aircraft pointing to target
-    let bearingToTarget = vradial(vector);
+    const offset = [0, 0, 0];
+    const vector = vsub(target, aircraft.position); // vector from aircraft pointing to target
+    const bearingToTarget = vradial(vector);
 
     offset[2] = vlen(vector);
     offset[0] = offset[2] * sin(headingThruTarget - bearingToTarget);
     offset[1] = offset[2] * cos(headingThruTarget - bearingToTarget);
 
     return offset;
-}
+};
 
 window.heading_to_string = function heading_to_string(heading) {
     heading = round(mod(radiansToDegrees(heading), 360)).toString();
@@ -356,14 +363,14 @@ const radio_names = {
 };
 
 const radio_cardinalDir_names = {
-    'n': 'north',
-    'nw': 'northwest',
-    'w': 'west',
-    'sw': 'southwest',
-    's': 'south',
-    'se': 'southeast',
-    'e': 'east',
-    'ne': 'northeast'
+    n: 'north',
+    nw: 'northwest',
+    w: 'west',
+    sw: 'southwest',
+    s: 'south',
+    se: 'southeast',
+    e: 'east',
+    ne: 'northeast'
 };
 
 const radio_runway_names = clone(radio_names);
@@ -379,14 +386,23 @@ radio_runway_names.r = 'right';
  * anyway, as chopping them off the end would change the value by orders of
  * magnitude, which is almost definitely going to be undesirable.
  */
-window.digits_integer = function digits_integer(number, digits, /*optional*/ truncate) {
-    if(truncate) number = Math.floor(number).toString();
-    else number = Math.round(number).toString();
-    if(number.length > digits) return number;
-    else while(number.length < digits) number = "0"+number; // add leading zeros
+window.digits_integer = function digits_integer(number, digits, /* optional */ truncate) {
+    if (truncate) {
+        number = Math.floor(number).toString();
+    } else {
+        number = Math.round(number).toString();
+    }
+
+    if (number.length > digits) {
+        return number;
+    }
+
+    while (number.length < digits) {
+        number = '0' + number; // add leading zeros
+    }
 
     return number;
-}
+};
 
 /**
  * Round a number to a specific # of digits after the decimal
@@ -402,7 +418,7 @@ window.digits_integer = function digits_integer(number, digits, /*optional*/ tru
  *
  * Also supports negative digits. Ex: '-2' would do 541.246 --> 500
  */
-window.digits_decimal = function digits_decimal(number, digits, /*optional */ force, truncate) {
+window.digits_decimal = function digits_decimal(number, digits, /* optional */ force, truncate) {
     const shorten = (truncate) ? Math.floor : Math.round;
 
     if (!force) {
@@ -416,7 +432,7 @@ window.digits_decimal = function digits_decimal(number, digits, /*optional */ fo
 
     number = number.toString();
 
-    for(let i = 0; i < number.length; i++) {
+    for (let i = 0; i < number.length; i++) {
         if (number[i] == '.') {
             const trailingDigits = number.length - (i + 1);
 
@@ -429,7 +445,7 @@ window.digits_decimal = function digits_decimal(number, digits, /*optional */ fo
                 if (truncate) {
                     return number.substr(0, number.length - (trailingDigits - digits));
                 } else {
-                    const len = number.length -( trailingDigits - digits + 1);
+                    const len = number.length - (trailingDigits - digits + 1);
                     const part1 = number.substr(0, len);
                     const part2 = (digits === 0) ? '' : shorten(parseInt(number.substr(len, 2), 10) / 10).toString();
 
@@ -441,148 +457,203 @@ window.digits_decimal = function digits_decimal(number, digits, /*optional */ fo
 };
 
 window.getGrouping = function getGrouping(groupable) {
-  var digit1 = groupable[0];
-  var digit2 = groupable[1];
-  if(digit1 == 0) {
-    if(digit2 == 0) return "hundred";
-    else return radio_names[digit1] + " " + radio_names[digit2];    // just digits (eg 'zero seven')
-  }
-  else if(digit1 == 1) return radio_names[groupable];         // exact number (eg 'seventeen')
-  else if(digit1 >= 2) {
-    if(digit2 == 0) return radio_names[(digit1+"0")]; // to avoid 'five twenty zero'
-    else return radio_names[(digit1+"0")] + " " + radio_names[digit2]; // combo number (eg 'fifty one')
-  }
-  else return radio_names[digit1] + " " + radio_names[digit2];
-}
+    const digit1 = groupable[0];
+    const digit2 = groupable[1];
 
-window.groupNumbers = function groupNumbers(callsign, /*optional*/ airline) {
-  if(!/^\d+$/.test(callsign)) { // GA, eg '117KS' = 'one-one-seven-kilo-sierra')
-
-    if(airline == "November") { //callsign "November"
-      var s = [];
-      for (var k in callsign) { s.push(radio_names[callsign[k]]); } // one after another (eg 'one one seven kilo sierra')
-      return s.join(" ");
+    if (digit1 === 0) {
+        if (digit2 === 0) {
+            return 'hundred';
+        } else {
+            // just digits (eg 'zero seven')
+            return radio_names[digit1] + ' ' + radio_names[digit2];
+        }
+    } else if (digit1 === 1) {
+        // exact number (eg 'seventeen')
+        return radio_names[groupable];
+    } else if (digit1 >= 2) {
+        if (digit2 === 0) {
+            // to avoid 'five twenty zero'
+            return radio_names[(digit1 + '0')];
+        } else {
+            // combo number (eg 'fifty one')
+            return radio_names[(digit1 + '0')] + ' ' + radio_names[digit2];
+        }
     }
 
-    else { // airline grouped, eg '3110A' = 'thirty-one-ten-alpha'
-      //divide callsign into alpha/numeric sections
-      var sections = [], cs = callsign, thisIsDigit;
-      var index = cs.length - 1;
-      var lastWasDigit = !isNaN(parseInt(cs[index]));
-      index--;
-      while(index>=0) {
-        thisIsDigit = !isNaN(parseInt(cs[index]));
-        while(thisIsDigit == lastWasDigit) {
-          index--;
-          thisIsDigit = !isNaN(parseInt(cs[index]));
-          if(index<0) break;
-        }
-        sections.unshift(cs.substr(index+1));
-        cs = cs.substr(0, index+1);
-        lastWasDigit = thisIsDigit;
-      }
+    return `${radio_names[digit1]} ${radio_names[digit2]}`;
+};
 
-      //build words, section by section
-      var s = [];
-      for (var i in sections) {
-        if(isNaN(parseInt(sections[i])))  // alpha section
-          s.push(radio_spellOut(sections[i]));
-        else {  // numeric section
-          switch (sections[i].length) {
-          case 0: s.push(sections[i]); break;
-          case 1: s.push(radio_names[sections[i]]); break;
-          case 2: s.push(getGrouping(sections[i])); break;
-          case 3: s.push(radio_names[sections[i][0]] + " " + getGrouping(sections[i].substr(1))); break;
-          case 4: s.push(getGrouping(sections[i].substr(0,2)) + " " + getGrouping(sections[i].substr(2))); break;
-          default: s.push(radio_spellOut(sections[i]));
-          }
+window.groupNumbers = function groupNumbers(callsign, /* optional */ airline) {
+    if (!/^\d+$/.test(callsign)) {
+        // GA, eg '117KS' = 'one-one-seven-kilo-sierra')
+        if (airline === 'November') {
+            // callsign "November"
+            var s = [];
+
+            for (var k in callsign) {
+                // one after another (eg 'one one seven kilo sierra')
+                s.push(radio_names[callsign[k]]);
+            }
+
+            return s.join(' ');
+        } else {
+            // airline grouped, eg '3110A' = 'thirty-one-ten-alpha'
+            // divide callsign into alpha/numeric sections
+            let sections = [];
+            let cs = callsign, thisIsDigit;
+            let index = cs.length - 1;
+            let lastWasDigit = !isNaN(parseInt(cs[index], 10));
+            index--;
+
+            while (index >= 0) {
+                thisIsDigit = !isNaN(parseInt(cs[index], 10));
+
+                while (thisIsDigit === lastWasDigit) {
+                    index--;
+                    thisIsDigit = !isNaN(parseInt(cs[index], 10));
+
+                    if (index < 0) {
+                        break;
+                    }
+                }
+                sections.unshift(cs.substr(index + 1));
+                cs = cs.substr(0, index + 1);
+                lastWasDigit = thisIsDigit;
+            }
+
+            // build words, section by section
+            let s = [];
+
+            for (const i in sections) {
+                if (isNaN(parseInt(sections[i], 10))) {
+                    // alpha section
+                    s.push(radio_spellOut(sections[i]));
+                } else {
+                    // numeric section
+                    switch (sections[i].length) {
+                        case 0:
+                            s.push(sections[i]);
+                            break;
+                        case 1:
+                            s.push(radio_names[sections[i]]);
+                            break;
+                        case 2:
+                            s.push(getGrouping(sections[i]));
+                            break;
+                        case 3:
+                            s.push(radio_names[sections[i][0]] + ' ' + getGrouping(sections[i].substr(1)));
+                            break;
+                        case 4:
+                            s.push(getGrouping(sections[i].substr(0, 2)) + ' ' + getGrouping(sections[i].substr(2)));
+                            break;
+                        default:
+                            s.push(radio_spellOut(sections[i]));
+                            break;
+                    }
+                }
+            }
+
+            return s.join(' ');
         }
-      }
-      return s.join(" ");
+    } else {
+        switch (callsign.length) {
+            case 0:
+                return callsign; break;
+            case 1:
+                return radio_names[callsign]; break;
+            case 2:
+                return getGrouping(callsign); break;
+            case 3:
+                return radio_names[callsign[0]] + ' ' + getGrouping(callsign.substr(1)); break;
+            case 4:
+                return getGrouping(callsign.substr(0, 2)) + ' ' + getGrouping(callsign.substr(2)); break;
+            default:
+                return callsign;
+        }
     }
-  }
-  else switch (callsign.length) {
-    case 0: return callsign; break;
-    case 1: return radio_names[callsign]; break;
-    case 2: return getGrouping(callsign); break;
-    case 3: return radio_names[callsign[0]] + " " + getGrouping(callsign.substr(1)); break;
-    case 4: return getGrouping(callsign.substr(0,2)) + " " + getGrouping(callsign.substr(2)); break;
-    default: return callsign;
-  }
-}
+};
 
 window.radio_runway = function radio_runway(input) {
-  input = input + "";
-  input = input.toLowerCase();
-  var s = [];
+    input = input + '';
+    input = input.toLowerCase();
+    let s = [];
 
-  for(var i=0;i<input.length;i++) {
-    var c = radio_runway_names[input[i]];
-    if(c) s.push(c);
-  }
+    for (let i = 0; i < input.length; i++) {
+        const c = radio_runway_names[input[i]];
 
-  return s.join(" ");
-}
+        if (c) {
+            s.push(c);
+        }
+    }
+
+    return s.join(' ');
+};
 
 window.radio_heading = function radio_heading(heading) {
-  var str = heading.toString();
-  var hdg = [];
-  if(str) {
-    if(str.length == 1) return "zero zero " + radio_names[str];
-    else if(str.length == 2) return "zero " + radio_names[str[0]] + " " + radio_names[str[1]];
-    else return radio_names[str[0]] + " " + radio_names[str[1]] + " " + radio_names[str[2]];
-  } else return heading;
-}
+    let str = heading.toString();
+    let hdg = [];
+
+    if (str) {
+        if (str.length === 1) {
+            return 'zero zero ' + radio_names[str];
+        } else if (str.length === 2) {
+            return 'zero ' + radio_names[str[0]] + ' ' + radio_names[str[1]];
+        } else {
+            return radio_names[str[0]] + ' ' + radio_names[str[1]] + ' ' + radio_names[str[2]];
+        }
+    }
+
+    return heading;
+};
 
 window.radio_spellOut = function radio_spellOut(alphanumeric) {
-  var str = alphanumeric.toString();
-  var arr = [];
+    let str = alphanumeric.toString();
+    let arr = [];
 
-  if(!str) return;
+    if (!str) {
+        return;
+    }
 
-  for(var i=0; i<str.length; i++) {
-    arr.push(radio_names[str[i]]);
-  }
+    for (let i = 0; i < str.length; i++) {
+        arr.push(radio_names[str[i]]);
+    }
 
-  return arr.join(" ");
-}
+    return arr.join(' ');
+};
 
 window.radio_altitude = function radio_altitude(altitude) {
-  var alt_s = altitude.toString();
-  var s = [];
+    let alt_s = altitude.toString();
+    let s = [];
 
-  if(altitude >= 18000) {
-    s.push("flight level", radio_names[alt_s[0]], radio_names[alt_s[1]], radio_names[alt_s[2]]);
-  }
-  else if(altitude >= 10000) {
-    s.push(radio_names[alt_s[0]], radio_names[alt_s[1]], "thousand");
+  if (altitude >= 18000) {
+    s.push('flight level', radio_names[alt_s[0]], radio_names[alt_s[1]], radio_names[alt_s[2]]);
+  } else if (altitude >= 10000) {
+    s.push(radio_names[alt_s[0]], radio_names[alt_s[1]], 'thousand');
 
-    if(!(altitude % (Math.floor(altitude/1000)*1000) == 0)) {
-      s.push(radio_names[alt_s[2]], "hundred");
+    if (!(altitude % (Math.floor(altitude / 1000) * 1000) === 0)) {
+      s.push(radio_names[alt_s[2]], 'hundred');
     }
-  }
-  else if(altitude >= 1000) {
-    s.push(radio_names[alt_s[0]], "thousand");
+  } else if (altitude >= 1000) {
+    s.push(radio_names[alt_s[0]], 'thousand');
 
-    if(!(altitude % (Math.floor(altitude/1000)*1000) == 0)) {
-      s.push(radio_names[alt_s[1]], "hundred");
+    if (!(altitude % (Math.floor(altitude / 1000) * 1000) === 0)) {
+      s.push(radio_names[alt_s[1]], 'hundred');
     }
-  }
-  else if(altitude >= 100) {
+  } else if (altitude >= 100) {
     s.push(radio_names[alt_s[0]], "hundred");
-  }
-  else return altitude;
+  } else return altitude;
 
-  return s.join(" ");
-}
+  return s.join(' ');
+};
 
 window.radio_trend = function radio_trend(category, measured, target) {
   var CATEGORIES = {
     "altitude": ["descend and maintain", "climb and maintain",  "maintain"],
     "speed":    ["reduce speed to",  "increase speed to", "maintain present speed of"]
   };
-  if(measured > target) return CATEGORIES[category][0];
-  if(measured < target) return CATEGORIES[category][1];
+
+  if (measured > target) return CATEGORIES[category][0];
+  if (measured < target) return CATEGORIES[category][1];
   return CATEGORIES[category][2];
 }
 
@@ -613,10 +684,10 @@ window.to_canvas_pos = function to_canvas_pos(pos) {
  * - array of 2 numbers on a rectangle boundary, in case of an intersection.
  */
 window.positive_intersection_with_rect = function positive_intersection_with_rect(pos, dir, rectPos, rectSize) {
-  var left = rectPos[0];
-  var right = rectPos[0] + rectSize[0];
-  var top = rectPos[1];
-  var bottom = rectPos[1] + rectSize[1];
+    var left = rectPos[0];
+    var right = rectPos[0] + rectSize[0];
+    var top = rectPos[1];
+    var bottom = rectPos[1] + rectSize[1];
 
   dir = vnorm(dir);
 
@@ -757,7 +828,7 @@ window.vnorm = function vnorm(v,length) {
   var x=v[0];
   var y=v[1];
   var angle=Math.atan2(x,y);
-  if(!length)
+  if (!length)
     length=1;
   return([
     sin(angle)*length,
@@ -779,7 +850,7 @@ window.vectorize_2d = function vectorize_2d(direction) {
 window.vadd = function vadd(v1, v2) {
   try {
     var v = [], lim = Math.min(v1.length,v2.length);
-    for(var i=0; i<lim; i++) v.push(v1[i] + v2[i]);
+    for (var i=0; i<lim; i++) v.push(v1[i] + v2[i]);
     return v;
   }
   catch(err) {console.error("call to vadd() failed. v1:"+v1+" | v2:"+v2+" | Err:"+err);}
@@ -791,7 +862,7 @@ window.vadd = function vadd(v1, v2) {
 // window.vsub = function vsub(v1, v2) {
 //   try {
 //     var v = [], lim = Math.min(v1.length,v2.length);
-//     for(var i=0; i<lim; i++) v.push(v1[i] - v2[i]);
+//     for (var i=0; i<lim; i++) v.push(v1[i] - v2[i]);
 //     return v;
 //   }
 //   catch(err) {console.error("call to vsub() failed. v1:"+v1+" | v2:"+v2+" | Err:"+err);}
@@ -803,7 +874,7 @@ window.vadd = function vadd(v1, v2) {
 window.vmul = function vmul(v1, v2) {
   try {
     var v = [], lim = Math.min(v1.length,v2.length);
-    for(var i=0; i<lim; i++) v.push(v1[i] * v2[i]);
+    for (var i=0; i<lim; i++) v.push(v1[i] * v2[i]);
     return v;
   }
   catch(err) {console.error("call to vmul() failed. v1:"+v1+" | v2:"+v2+" | Err:"+err);}
@@ -815,7 +886,7 @@ window.vmul = function vmul(v1, v2) {
 window.vdiv = function vdiv(v1, v2) {
   try {
     var v = [], lim = Math.min(v1.length,v2.length);
-    for(var i=0; i<lim; i++) v.push(v1[i] / v2[i]);
+    for (var i=0; i<lim; i++) v.push(v1[i] / v2[i]);
     return v;
   }
   catch(err) {console.error("call to vdiv() failed. v1:"+v1+" | v2:"+v2+" | Err:"+err);}
@@ -826,7 +897,7 @@ window.vdiv = function vdiv(v1, v2) {
  */
 window.vscale = function vscale(v, factor) {
   var vs = [];
-  for(var i=0; i<v.length; i++) vs.push(v[i] * factor);
+  for (var i=0; i<v.length; i++) vs.push(v[i] * factor);
   return vs;
 }
 
@@ -846,9 +917,9 @@ window.vdp = function vdp(v1, v2) {
  * *Note on 2D implementation: http://stackoverflow.com/a/243984/5774767
  */
 window.vcp = function vcp(v1, v2) {
-  if(Math.min(v1.length,v2.length) == 2)  // for 2D vector (returns z-axis scalar)
+  if (Math.min(v1.length,v2.length) == 2)  // for 2D vector (returns z-axis scalar)
     return vcp([v1[0],v1[1],0],[v2[0],v2[1],0])[2];
-  if(Math.min(v1.length,v2.length) == 3)  // for 3D vector (returns 3D vector)
+  if (Math.min(v1.length,v2.length) == 3)  // for 3D vector (returns 3D vector)
     return [vdet([v1[1],v1[2]],[v2[1],v2[2]]),
            -vdet([v1[0],v1[2]],[v2[0],v2[2]]),
             vdet([v1[0],v1[1]],[v2[0],v2[1]])];
@@ -859,9 +930,9 @@ window.vcp = function vcp(v1, v2) {
  * Remember: May return negative values (undesirable in some situations)
  */
 window.vdet = function vdet(v1, v2, /*optional*/ v3) {
-  if(Math.min(v1.length,v2.length) == 2)  // 2x2 determinant
+  if (Math.min(v1.length,v2.length) == 2)  // 2x2 determinant
     return (v1[0]*v2[1])-(v1[1]*v2[0]);
-  else if(Math.min(v1.length,v2.length,v3.length) == 3 && v3) // 3x3 determinant
+  else if (Math.min(v1.length,v2.length,v3.length) == 3 && v3) // 3x3 determinant
     return (v1[0]*vdet([v2[1],v2[2]],[v3[1],v3[2]])
           - v1[1]*vdet([v2[0],v2[2]],[v3[0],v3[2]])
           + v1[2]*vdet([v2[0],v2[1]],[v3[0],v3[1]]));
@@ -898,7 +969,7 @@ window.runwaysIntersect = function runwaysIntersect(rwy1_name, rwy2_name) {
  * Variation based on http://stackoverflow.com/a/565282/5774767
  */
 window.raysIntersect = function raysIntersect(pos1, dir1, pos2, dir2, deg_allowance) {
-  if(!deg_allowance) deg_allowance = 0; // degrees divergence still considered 'parallel'
+  if (!deg_allowance) deg_allowance = 0; // degrees divergence still considered 'parallel'
   var p = pos1;
   var q = pos2;
   var r = vectorize_2d(dir1);
@@ -906,12 +977,12 @@ window.raysIntersect = function raysIntersect(pos1, dir1, pos2, dir2, deg_allowa
   var t = abs(vcp(vsub(q,p),s) / vcp(r,s));
   var t_norm = abs(vcp(vsub(vnorm(q),vnorm(p)),s) / vcp(r,s));
   var u_norm = abs(vcp(vsub(vnorm(q),vnorm(p)),r) / vcp(r,s));
-  if(abs(vcp(r,s)) < abs(vcp([0,1],vectorize_2d(degreesToRadians(deg_allowance))))) { // parallel (within allowance)
-    if(vcp(vsub(vnorm(q),vnorm(p)),r) == 0) return true; // collinear
+  if (abs(vcp(r, s)) < abs(vcp([0, 1], vectorize_2d(degreesToRadians(deg_allowance))))) { // parallel (within allowance)
+    if (vcp(vsub(vnorm(q), vnorm(p)), r) === 0) return true; // collinear
     else return false;  // parallel, non-intersecting
   }
-  else if((0 <= t_norm && t_norm <= 1) && (0 <= u_norm && u_norm <= 1))
-    return vadd(p,vscale(r,t)); // rays intersect here
+  else if ((0 <= t_norm && t_norm <= 1) && (0 <= u_norm && u_norm <= 1))
+    return vadd(p, vscale(r, t)); // rays intersect here
   else return false;  // diverging, non-intersecting
 }
 
@@ -1059,7 +1130,7 @@ window.parseElevation = function parseElevation(ele) {
 
 // adjust all aircraft's eid values
 window.update_aircraft_eids = function update_aircraft_eids() {
-  for(var i=0; i<prop.aircraft.list.length; i++) {
+  for (var i=0; i<prop.aircraft.list.length; i++) {
     prop.aircraft.list[i].eid = i;  // update eid in aircraft
     prop.aircraft.list[i].fms.my_aircrafts_eid = i; // update eid in aircraft's fms
   }
