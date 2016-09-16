@@ -121,6 +121,7 @@ if (!String.fromCodePoint) {
         return chars.join('');
     };
 }
+
 /*eslint-enable*/
 /** ***************** Module Setup *******************/
 // PROP

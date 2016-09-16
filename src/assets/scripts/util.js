@@ -39,7 +39,7 @@ window.clone = function clone(obj) {
       var currTime = new Date().getTime();
       var timeToCall = Math.max(0, 16 - (currTime - lastTime));
       var id = window.setTimeout(function() { callback(currTime + timeToCall); },
-				 timeToCall);
+        timeToCall);
       lastTime = currTime + timeToCall;
       return id;
     };
@@ -98,6 +98,8 @@ window.randint = function randint(low, high) {
     return(Math.floor(Math.random() * (high - low + 1)) + low);
 };
 
+
+
 // TODO: rename to pluralize, if this function is even needed
 window.s = function s(i) {
     return (i === 1) ? '' : 's';
@@ -145,7 +147,6 @@ window.distEuclid = function distEuclid(gps1, gps2) {
  * Constrains an angle to within 0 --> Math.PI*2
  */
 window.fix_angle = function fix_angle(radians) {
-    // TODO: replace Math.PI*2 with tau()
   while(radians > tau()) radians -= tau();
   while(radians < 0) radians += tau();
   return radians;

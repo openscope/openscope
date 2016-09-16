@@ -5,7 +5,7 @@ You will need to have [Node.js](https://nodejs.org/) installed to run any of the
 
 #### Installation
 
-After you have node installed, navigate to the project folder and run `npm install`.  This will install the project dependencies and run the build tasks for the css and javascript.
+After you have node installed, navigate to the project folder and run `npm install && npm run build`.  This will install the project dependencies and run the build tasks for the css and javascript.
 
 #### Folder Structure
 This project is organized with the following main folders:
