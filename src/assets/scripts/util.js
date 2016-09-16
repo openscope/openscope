@@ -2,11 +2,17 @@
 import $ from 'jquery';
 import _clamp from 'lodash/clamp';
 import _has from 'lodash/has';
+import _map from 'lodash/map';
 import { km, radiansToDegrees, degreesToRadians } from './utilities/unitConverters';
 // import { time } from './utilities/timeHelpers';
 import { distance2d } from './math/distance';
 import { tau } from './math/circle';
 import { vlen, vradial, vsub } from './math/vector';
+
+const CONSTANTS = {
+    // radius of Earth, nm
+    EARTH_RADIUS_NM: 3440,
+};
 
 window.AudioContext = window.AudioContext || window.webkitAudioContext;
 
@@ -684,53 +690,60 @@ window.to_canvas_pos = function to_canvas_pos(pos) {
  * - array of 2 numbers on a rectangle boundary, in case of an intersection.
  */
 window.positive_intersection_with_rect = function positive_intersection_with_rect(pos, dir, rectPos, rectSize) {
-    var left = rectPos[0];
-    var right = rectPos[0] + rectSize[0];
-    var top = rectPos[1];
-    var bottom = rectPos[1] + rectSize[1];
+    let left = rectPos[0];
+    let right = rectPos[0] + rectSize[0];
+    let top = rectPos[1];
+    let bottom = rectPos[1] + rectSize[1];
 
-  dir = vnorm(dir);
+    dir = vnorm(dir);
 
-  // Check if pos is outside of rectangle.
-  if (_clamp(left, pos[0], right) != pos[0] || _clamp(top, pos[1], bottom) != pos[1]) {
-    return undefined;
-  }
-
-  // Check intersection with top segment.
-  if (dir[1] < 0) {
-    var t = (top - pos[1]) / dir[1];
-    var x = pos[0] + dir[0] * t;
-    if (_clamp(left, x, right) == x) {
-      return [x, top];
+    // Check if pos is outside of rectangle.
+    if (_clamp(left, pos[0], right) != pos[0] || _clamp(top, pos[1], bottom) != pos[1]) {
+        return undefined;
     }
-  }
 
-  // Check intersection with bottom segment.
-  if (dir[1] > 0) {
-    var t = (bottom - pos[1]) / dir[1];
-    var x = pos[0] + dir[0] * t;
-    if (_clamp(left, x, right) == x) {
-      return [x, bottom];
-    }
-  }
 
-  // Check intersection with left segment.
-  if (dir[0] < 0) {
-    var t = (left - pos[0]) / dir[0];
-    var y = pos[1] + dir[1] * t;
-    if (_clamp(top, y, bottom) == y) {
-      return [left, y];
-    }
-  }
+    let t;
+    let x;
+    // Check intersection with top segment.
+    if (dir[1] < 0) {
+        t = (top - pos[1]) / dir[1];
+        x = pos[0] + dir[0] * t;
 
-  // Check intersection with right segment.
-  if (dir[0] > 0) {
-    var t = (right - pos[0]) / dir[0];
-    var y = pos[1] + dir[1] * t;
-    if (_clamp(top, y, bottom) == y) {
-      return [right, y];
+        if (_clamp(left, x, right) == x) {
+            return [x, top];
+        }
     }
-  }
+
+    // Check intersection with bottom segment.
+    if (dir[1] > 0) {
+        t = (bottom - pos[1]) / dir[1];
+        x = pos[0] + dir[0] * t;
+
+        if (_clamp(left, x, right) == x) {
+            return [x, bottom];
+        }
+    }
+
+    // Check intersection with left segment.
+    if (dir[0] < 0) {
+        t = (left - pos[0]) / dir[0];
+        y = pos[1] + dir[1] * t;
+
+        if (_clamp(top, y, bottom) == y) {
+            return [left, y];
+        }
+    }
+
+    // Check intersection with right segment.
+    if (dir[0] > 0) {
+        t = (right - pos[0]) / dir[0];
+        y = pos[1] + dir[1] * t;
+
+        if (_clamp(top, y, bottom) == y) {
+            return [right, y];
+        }
+    }
 
   // Failed to compute intersection due to numerical precision.
   return undefined;
@@ -742,10 +755,19 @@ window.positive_intersection_with_rect = function positive_intersection_with_rec
  *  With no arguments return a number between 0 and 1
  */
 window.random = function random(low, high) {
-  if (low == high) return low;
-  if (low == null) return Math.random();
-  if (high == null) return Math.random() * low;
-  return (low + (Math.random() * (high - low)));
+    if (low === high) {
+        return low;
+    }
+
+    if (low == null) {
+        return Math.random();
+    }
+
+    if (high == null) {
+        return Math.random() * low;
+    }
+
+    return low + (Math.random() * (high - low));
 }
 
 /**
@@ -756,26 +778,38 @@ window.random = function random(low, high) {
  * @returns {array} location of the projected fix
  */
 window.fixRadialDist = function fixRadialDist(fix, radial, dist) {
-  fix = [degreesToRadians(fix[0]), degreesToRadians(fix[1])]; // convert GPS coordinates to radians
-  var R = 3440; // radius of Earth, nm
-  var lat2 = Math.asin(Math.sin(fix[1])*Math.cos(dist/R) +
-             Math.cos(fix[1])*Math.sin(dist/R)*Math.cos(radial));
-  var lon2 = fix[0] + Math.atan2(Math.sin(radial)*Math.sin(dist/R)*Math.cos(fix[1]),
-             Math.cos(dist/R)-Math.sin(fix[1])*Math.sin(lat2));
-  return [radiansToDegrees(lon2), radiansToDegrees(lat2)];
+    // convert GPS coordinates to radians
+    fix = [
+        degreesToRadians(fix[0]),
+        degreesToRadians(fix[1])
+    ];
+
+    const R = CONSTANTS.EARTH_RADIUS_NM;
+    // TODO: abstract these two calculateions to own functions
+    const lat2 = Math.asin(Math.sin(fix[1]) * Math.cos(dist / R) + Math.cos(fix[1]) * Math.sin(dist / R) * Math.cos(radial));
+    const lon2 = fix[0] + Math.atan2(
+        Math.sin(radial) * Math.sin(dist / R) * Math.cos(fix[1]),
+        Math.cos(dist / R) - Math.sin(fix[1]) * Math.sin(lat2)
+    );
+
+    return [
+        radiansToDegrees(lon2),
+        radiansToDegrees(lat2)
+    ];
 }
 
 /**
  * Splices all empty elements out of an array
  */
 window.array_clean = function array_clean(array, deleteValue) {
-  for (let i = 0; i < array.length; i++) {
-    if (array[i] === deleteValue) {
-      array.splice(i, 1);
-      i--;
+    for (let i = 0; i < array.length; i++) {
+        if (array[i] === deleteValue) {
+            array.splice(i, 1);
+            i--;
+        }
     }
-  }
-  return array;
+
+    return array;
 };
 
 // TODO: this can be done with .reduce()
@@ -824,16 +858,19 @@ window.dist_to_boundary = function dist_to_boundary(pos) {
  * eg scaling elements such that net length is 1
  * Turns vector 'v' into a 'unit vector'
  */
-window.vnorm = function vnorm(v,length) {
-  var x=v[0];
-  var y=v[1];
-  var angle=Math.atan2(x,y);
-  if (!length)
-    length=1;
-  return([
-    sin(angle)*length,
-    cos(angle)*length
-  ]);
+window.vnorm = function vnorm(v, length) {
+    const x = v[0];
+    const y = v[1];
+    const angle = Math.atan2(x, y);
+
+    if (!length) {
+        length = 1;
+    }
+
+    return([
+        sin(angle) * length,
+        cos(angle) * length
+    ]);
 }
 
 /**
@@ -841,20 +878,30 @@ window.vnorm = function vnorm(v,length) {
  * Pass a heading (rad), and this will return the corresponding unit vector
  */
 window.vectorize_2d = function vectorize_2d(direction) {
-  return [ Math.sin(direction), Math.cos(direction) ];
+    return [
+        Math.sin(direction),
+        Math.cos(direction)
+    ];
 }
 
 /**
  * Adds Vectors (all dimensions)
  */
 window.vadd = function vadd(v1, v2) {
-  try {
-    var v = [], lim = Math.min(v1.length,v2.length);
-    for (var i=0; i<lim; i++) v.push(v1[i] + v2[i]);
-    return v;
-  }
-  catch(err) {console.error("call to vadd() failed. v1:"+v1+" | v2:"+v2+" | Err:"+err);}
-}
+    try {
+        let v = [];
+        let lim = Math.min(v1.length, v2.length);
+
+        // TODO: this can be done with a _map()
+        for (let i = 0; i < lim; i++) {
+            v.push(v1[i] + v2[i]);
+        }
+
+        return v;
+    } catch(err) {
+        console.error(`call to vadd() failed. v1:${v1} | v2:${v2} | Err:${err}`);
+    }
+};
 
 // /**
 //  * Subtracts Vectors (all dimensions)
@@ -872,43 +919,56 @@ window.vadd = function vadd(v1, v2) {
  * Multiplies Vectors (all dimensions)
  */
 window.vmul = function vmul(v1, v2) {
-  try {
-    var v = [], lim = Math.min(v1.length,v2.length);
-    for (var i=0; i<lim; i++) v.push(v1[i] * v2[i]);
-    return v;
-  }
-  catch(err) {console.error("call to vmul() failed. v1:"+v1+" | v2:"+v2+" | Err:"+err);}
-}
+    try {
+        let v = [];
+        let lim = Math.min(v1.length,v2.length);
+
+        // TODO: this can be done with a _map()
+        for (let i = 0; i < lim; i++) {
+            v.push(v1[i] * v2[i]);
+        }
+
+        return v;
+    } catch(err) {
+        console.error(`call to vmul() failed. v1:${v1} | v2:${v2} | Err:${err}`);
+    }
+};
 
 /**
  * Divides Vectors (all dimensions)
  */
 window.vdiv = function vdiv(v1, v2) {
-  try {
-    var v = [], lim = Math.min(v1.length,v2.length);
-    for (var i=0; i<lim; i++) v.push(v1[i] / v2[i]);
-    return v;
-  }
-  catch(err) {console.error("call to vdiv() failed. v1:"+v1+" | v2:"+v2+" | Err:"+err);}
-}
+    try {
+        let v = [];
+        let lim = Math.min(v1.length,v2.length);
+
+        // TODO: this can be done with a _map()
+        for (let i = 0; i < lim; i++) {
+            v.push(v1[i] / v2[i]);
+        }
+
+        return v;
+    } catch(err) {
+      console.error(`call to vdiv() failed. v1:${v1} | v2:${v2} | Err:${err}`);
+    }
+};
 
 /**
  * Scales vectors in magnitude (all dimensions)
  */
-window.vscale = function vscale(v, factor) {
-  var vs = [];
-  for (var i=0; i<v.length; i++) vs.push(v[i] * factor);
-  return vs;
+window.vscale = function vscale(vectors, factor) {
+    return _map(vectors, (v) => v * factor);
 }
 
 /**
  * Vector dot product (all dimensions)
  */
 window.vdp = function vdp(v1, v2) {
-  var n = 0, lim = Math.min(v1.length,v2.length);
-  for (var i = 0; i < lim; i++) n += v1[i] * v2[i];
-  return n;
-}
+    var n = 0;
+    var lim = Math.min(v1.length,v2.length);
+    for (var i = 0; i < lim; i++) n += v1[i] * v2[i];
+    return n;
+};
 
 /**
  * Vector cross product (3D/2D*)
@@ -917,82 +977,113 @@ window.vdp = function vdp(v1, v2) {
  * *Note on 2D implementation: http://stackoverflow.com/a/243984/5774767
  */
 window.vcp = function vcp(v1, v2) {
-  if (Math.min(v1.length,v2.length) == 2)  // for 2D vector (returns z-axis scalar)
-    return vcp([v1[0],v1[1],0],[v2[0],v2[1],0])[2];
-  if (Math.min(v1.length,v2.length) == 3)  // for 3D vector (returns 3D vector)
-    return [vdet([v1[1],v1[2]],[v2[1],v2[2]]),
-           -vdet([v1[0],v1[2]],[v2[0],v2[2]]),
-            vdet([v1[0],v1[1]],[v2[0],v2[1]])];
-}
+  if (Math.min(v1.length,v2.length) == 2)  {
+    // for 2D vector (returns z-axis scalar)
+    return vcp([v1[0], v1[1], 0], [v2[0], v2[1], 0])[2];
+  }
+
+  if (Math.min(v1.length,v2.length) == 3)  {
+      // for 3D vector (returns 3D vector)
+      return [vdet([v1[1],v1[2]],[v2[1],v2[2]]),
+             -vdet([v1[0],v1[2]],[v2[0],v2[2]]),
+              vdet([v1[0],v1[1]],[v2[0],v2[1]])];
+  }
+};
 
 /**
  * Compute determinant of 2D/3D vectors
  * Remember: May return negative values (undesirable in some situations)
  */
 window.vdet = function vdet(v1, v2, /*optional*/ v3) {
-  if (Math.min(v1.length,v2.length) == 2)  // 2x2 determinant
-    return (v1[0]*v2[1])-(v1[1]*v2[0]);
-  else if (Math.min(v1.length,v2.length,v3.length) == 3 && v3) // 3x3 determinant
-    return (v1[0]*vdet([v2[1],v2[2]],[v3[1],v3[2]])
-          - v1[1]*vdet([v2[0],v2[2]],[v3[0],v3[2]])
-          + v1[2]*vdet([v2[0],v2[1]],[v3[0],v3[1]]));
-}
+    if (Math.min(v1.length,v2.length) === 2) {
+        // 2x2 determinant
+        return (v1[0] * v2[1]) - (v1[1] * v2[0]);
+    } else if (Math.min(v1.length, v2.length, v3.length) === 3 && v3) {
+        // 3x3 determinant
+        return (
+            v1[0] *
+            vdet([v2[1], v2[2]], [v3[1], v3[2]]) - v1[1] *
+            vdet([v2[0], v2[2]], [v3[0], v3[2]]) + v1[2] *
+            vdet([v2[0], v2[1]], [v3[0], v3[1]])
+        );
+    }
+};
 
 /**
  * Returns vector rotated by "radians" radians
  */
 window.vturn = function vturn(radians, v) {
-  if (!v) v = [0, 1];
-  var x = v[0],
-      y = v[1],
-      cs = Math.cos(-radians),
-      sn = Math.sin(-radians);
-  return [x * cs - y * sn,
-          x * sn + y * cs];
-}
+    if (!v) {
+        v = [0, 1];
+    }
+
+    let x = v[0];
+    let y = v[1];
+    let cs = Math.cos(-radians);
+    let sn = Math.sin(-radians);
+
+    return [
+        x * cs - y * sn,
+        x * sn + y * cs
+    ];
+};
 
 /**
  * Determines if and where two runways will intersect.
  * Note: Please pass ONLY the runway identifier (eg '28r')
  */
 window.runwaysIntersect = function runwaysIntersect(rwy1_name, rwy2_name) {
-  return raysIntersect(
-    airport_get().getRunway(rwy1_name).position,
-    airport_get().getRunway(rwy1_name).angle,
-    airport_get().getRunway(rwy2_name).position,
-    airport_get().getRunway(rwy2_name).angle,
-    9.9 ); // consider "parallel" if rwy hdgs differ by maximum of 9.9 degrees
-}
+    return raysIntersect(
+        airport_get().getRunway(rwy1_name).position,
+        airport_get().getRunway(rwy1_name).angle,
+        airport_get().getRunway(rwy2_name).position,
+        airport_get().getRunway(rwy2_name).angle,
+        9.9 // consider "parallel" if rwy hdgs differ by maximum of 9.9 degrees
+    );
+};
 
 /**
  * Determines if and where two rays will intersect. All angles in radians.
  * Variation based on http://stackoverflow.com/a/565282/5774767
  */
 window.raysIntersect = function raysIntersect(pos1, dir1, pos2, dir2, deg_allowance) {
-  if (!deg_allowance) deg_allowance = 0; // degrees divergence still considered 'parallel'
-  var p = pos1;
-  var q = pos2;
-  var r = vectorize_2d(dir1);
-  var s = vectorize_2d(dir2);
-  var t = abs(vcp(vsub(q,p),s) / vcp(r,s));
-  var t_norm = abs(vcp(vsub(vnorm(q),vnorm(p)),s) / vcp(r,s));
-  var u_norm = abs(vcp(vsub(vnorm(q),vnorm(p)),r) / vcp(r,s));
-  if (abs(vcp(r, s)) < abs(vcp([0, 1], vectorize_2d(degreesToRadians(deg_allowance))))) { // parallel (within allowance)
-    if (vcp(vsub(vnorm(q), vnorm(p)), r) === 0) return true; // collinear
-    else return false;  // parallel, non-intersecting
-  }
-  else if ((0 <= t_norm && t_norm <= 1) && (0 <= u_norm && u_norm <= 1))
-    return vadd(p, vscale(r, t)); // rays intersect here
-  else return false;  // diverging, non-intersecting
-}
+    if (!deg_allowance) {
+        // degrees divergence still considered 'parallel'
+        deg_allowance = 0;
+    }
+
+    const p = pos1;
+    const q = pos2;
+    const r = vectorize_2d(dir1);
+    const s = vectorize_2d(dir2);
+    const t = abs(vcp(vsub(q, p), s) / vcp(r, s));
+    const t_norm = abs(vcp(vsub(vnorm(q), vnorm(p)), s) / vcp(r, s));
+    const u_norm = abs(vcp(vsub(vnorm(q), vnorm(p)), r) / vcp(r, s));
+
+    if (abs(vcp(r, s)) < abs(vcp([0, 1], vectorize_2d(degreesToRadians(deg_allowance))))) { // parallel (within allowance)
+        if (vcp(vsub(vnorm(q), vnorm(p)), r) === 0) {
+            // collinear
+            return true;
+        } else {
+            // parallel, non-intersecting
+            return false;
+        }
+    } else if ((0 <= t_norm && t_norm <= 1) && (0 <= u_norm && u_norm <= 1)) {
+        // rays intersect here
+        return vadd(p, vscale(r, t));
+    }
+
+    // diverging, non-intersecting
+    return false;
+};
 
 /**
  * 'Flips' vector's Y component in direction
  * Helper function for culebron's poly edge vector functions
  */
 window.vflipY = function vflipY(v) {
-  return [-v[1], v[0]];
-}
+    return [-v[1], v[0]];
+};
 
 /*
 solution by @culebron
@@ -1061,85 +1152,108 @@ window.distance_to_poly = function distance_to_poly(point, poly) {
 
 
 window.point_to_mpoly = function point_to_mpoly(point, mpoly) {
-  /* returns: boolean inside/outside & distance to the polygon */
-  var k, ring, inside = false;
-  for (var k in mpoly) {
-    ring = mpoly[k];
-    if (point_in_poly(point, ring)) {
-      if (k == 0)
-        inside = true; // if inside outer ring, remember that and wait till the end
-      else // if by change in one of inner rings, it's out of poly, return distance to the inner ring
-        return {inside: false, distance: distance_to_poly(point, ring)}
+  // returns: boolean inside/outside & distance to the polygon
+    let k;
+    let ring;
+    let inside = false;
+
+    for (const k in mpoly) {
+        ring = mpoly[k];
+
+        if (point_in_poly(point, ring)) {
+            if (k === 0) {
+                // if inside outer ring, remember that and wait till the end
+                inside = true;
+            } else {
+                // if by change in one of inner rings, it's out of poly, return distance to the inner ring
+                return {
+                    inside: false,
+                    distance: distance_to_poly(point, ring)
+                }
+            }
+        }
     }
-  }
-  // if not matched to inner circles, return the match to outer and distance to it
-  return {inside: inside, distance: distance_to_poly(point, mpoly[0])};
-}
+
+    // if not matched to inner circles, return the match to outer and distance to it
+    return {
+        inside: inside,
+        distance: distance_to_poly(point, mpoly[0])
+    };
+};
 
 // source: https://github.com/substack/point-in-polygon/
 window.point_in_poly = function point_in_poly(point, vs) {
     // ray-casting algorithm based on
     // http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html
-
-    var x = point[0],
-        y = point[1],
-        i,
-        j = vs.length - 1,
-        inside = false;
+    let x = point[0];
+    let y = point[1];
+    let i;
+    let j = vs.length - 1;
+    let inside = false;
 
     for (i in vs) {
-        var xi = vs[i][0], yi = vs[i][1];
-        var xj = vs[j][0], yj = vs[j][1];
+        let xi = vs[i][0], yi = vs[i][1];
+        let xj = vs[j][0], yj = vs[j][1];
+        let intersect = ((yi > y) != (yj > y)) && (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
 
-        var intersect = ((yi > y) != (yj > y))
-            && (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
-        if (intersect) inside = !inside;
+        if (intersect) {
+            inside = !inside;
+        }
+
         j = i;
     }
 
     return inside;
-}
+};
 
 /**
  * Converts an 'area' to a 'poly'
  */
 window.area_to_poly = function area_to_poly(area) {
-  return $.map(area.poly, function(v) {return [v.position];});
-}
+    return _map(area.poly, (v) => [v.position]);
+};
 
 /**
  * Checks to see if a point is in an area
  */
 window.point_in_area = function point_in_area(point, area) {
-  return point_in_poly(point, area_to_poly(area));
+    return point_in_poly(point, area_to_poly(area));
 }
 
 window.endsWith = function endsWith(str, suffix) {
-  return str.indexOf(suffix, str.length - suffix.length) !== -1;
+    return str.indexOf(suffix, str.length - suffix.length) !== -1;
 }
 
 window.parseElevation = function parseElevation(ele) {
-  var alt = /^(Infinity|(\d+(\.\d+)?)(m|ft))$/.exec(ele);
-  if (alt == null) {
-    log('Unable to parse elevation ' + ele);
-    return;
-  }
-  if (alt[1] == 'Infinity') return Infinity;
-  return parseFloat(alt[2]) / (alt[4] == 'm' ? 0.3048 : 1);
-}
+    const alt = /^(Infinity|(\d+(\.\d+)?)(m|ft))$/.exec(ele);
+
+    if (alt == null) {
+        log('Unable to parse elevation ' + ele);
+        return;
+    }
+
+    if (alt[1] == 'Infinity') {
+        return Infinity;
+    }
+
+    return parseFloat(alt[2]) / (alt[4] == 'm' ? 0.3048 : 1);
+};
 
 // adjust all aircraft's eid values
 window.update_aircraft_eids = function update_aircraft_eids() {
-  for (var i=0; i<prop.aircraft.list.length; i++) {
-    prop.aircraft.list[i].eid = i;  // update eid in aircraft
-    prop.aircraft.list[i].fms.my_aircrafts_eid = i; // update eid in aircraft's fms
-  }
-}
+    for (let i = 0; i < prop.aircraft.list.length; i++) {
+        // update eid in aircraft
+        prop.aircraft.list[i].eid = i;
+        // update eid in aircraft's fms
+        prop.aircraft.list[i].fms.my_aircrafts_eid = i;
+    }
+};
 
 // Remove the specified aircraft and perform cleanup operations
 window.aircraft_remove = function aircraft_remove(aircraft) {
-  prop.aircraft.callsigns.splice(prop.aircraft.callsigns.indexOf(aircraft.callsign), 1);
-  prop.aircraft.list.splice(prop.aircraft.list.indexOf(aircraft), 1);
-  update_aircraft_eids();
-  aircraft.cleanup();
-}
+    prop.aircraft.callsigns.splice(prop.aircraft.callsigns.indexOf(aircraft.callsign), 1);
+    prop.aircraft.list.splice(prop.aircraft.list.indexOf(aircraft), 1);
+
+    update_aircraft_eids();
+    aircraft.cleanup();
+};
