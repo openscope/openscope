@@ -27,6 +27,7 @@ export const CLASSNAMES = {
     RUNWAY: 'runway',
     SPEED_2: 'speed-2',
     SPEED_5: 'speed-5',
+    STRIP: 'strip',
     SWITCH_AIRPORT: 'switch-airport',
     TOGGLE_TUTORIAL: 'toggle-tutorial',
     WARN: 'warn',
@@ -44,11 +45,14 @@ export const IDS = {
     AIRPORT_LIST: 'airport-list',
     AIRPORT_LIST_NOTES: 'airport-list-notes',
     AIRPORT_SWITCH: 'airport-switch',
+    CANVASES: 'canvases',
+    COMMAND: 'command',
     LOG: 'log',
     OPTIONS_DIALOG: 'options-dialog',
     TOGGLE_OPTIONS: 'toggle-options',
     TUTORIAL: 'tutorial',
-    SCORE: 'score'
+    SCORE: 'score',
+    SIDEBAR: 'sidebar'
 };
 
 /**
