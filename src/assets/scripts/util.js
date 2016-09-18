@@ -4,7 +4,7 @@ import _clamp from 'lodash/clamp';
 import _has from 'lodash/has';
 import _map from 'lodash/map';
 import { km, radiansToDegrees, degreesToRadians } from './utilities/unitConverters';
-// import { time } from './utilities/timeHelpers';
+import { abs, sin, cos, tab, round } from './math/core';
 import { distance2d } from './math/distance';
 import { tau } from './math/circle';
 import { vlen, vradial, vsub } from './math/vector';
@@ -147,50 +147,6 @@ radio_runway_names.c = 'center';
 radio_runway_names.r = 'right';
 
 // ************************ GENERAL FUNCTIONS ************************
-function ceil(n, factor = 1) {
-    return Math.ceil(n / factor) * factor;
-}
-
-function round(n, factor = 1) {
-    return Math.round(n / factor) * factor;
-}
-
-function abs(n) {
-    return Math.abs(n);
-}
-
-function sin(a) {
-    return Math.sin(a);
-}
-
-function cos(a) {
-    return Math.cos(a);
-}
-
-function tan(a) {
-    return Math.tan(a);
-}
-
-// TODO: rename to floor
-function fl(n, number = 1) {
-    return Math.floor(n / number) * number;
-}
-
-// TODO: rename to randomInteger
-function randint(low, high) {
-    return Math.floor(Math.random() * (high - low + 1)) + low;
-}
-
-// TODO: rename to pluralize, if this function is even needed
-function s(i) {
-    return (i === 1) ? '' : 's';
-}
-
-// TODO: rename to isWithin
-function within(n, c, r) {
-    return n > (c + r) || n < (c - r);
-}
-
 function trange(il, i, ih, ol, oh) {
     return ol + (oh - ol) * (i - il) / (ih - il);
     // i=(i/(ih-il))-il;       // purpose unknown
@@ -202,7 +158,7 @@ function crange(il, i, ih, ol, oh) {
 }
 
 function srange(il, i, ih) {
-  //    return Math.cos();
+  //    return cos(();
 }
 
 // TODO: rename distanceEuclid
@@ -214,7 +170,7 @@ function distEuclid(gps1, gps2) {
     const dlat = degreesToRadians(lat2 - lat1);
     const dlon = degreesToRadians(lon2 - lon1);
     // TODO: this should probably be abstracted
-    const a = Math.sin(dlat / 2) * Math.sin(dlat / 2) + Math.cos(lat1) * Math.cos(lat2) * Math.sin(dlon / 2) * Math.sin(dlon / 2);
+    const a = sin(dlat / 2) * sin(dlat / 2) + cos(lat1) * cos(lat2) * sin(dlon / 2) * sin(dlon / 2);
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     const d = R * c;
 
@@ -793,10 +749,10 @@ function fixRadialDist(fix, radial, dist) {
 
     const R = CONSTANTS.EARTH_RADIUS_NM;
     // TODO: abstract these two calculateions to own functions
-    const lat2 = Math.asin(Math.sin(fix[1]) * Math.cos(dist / R) + Math.cos(fix[1]) * Math.sin(dist / R) * Math.cos(radial));
+    const lat2 = Math.asin(sin(fix[1]) * cos(dist / R) + cos(fix[1]) * sin(dist / R) * cos(radial));
     const lon2 = fix[0] + Math.atan2(
-        Math.sin(radial) * Math.sin(dist / R) * Math.cos(fix[1]),
-        Math.cos(dist / R) - Math.sin(fix[1]) * Math.sin(lat2)
+        sin(radial) * sin(dist / R) * cos(fix[1]),
+        cos(dist / R) - sin(fix[1]) * sin(lat2)
     );
 
     return [
@@ -886,8 +842,8 @@ function vnorm(v, length) {
  */
 function vectorize_2d(direction) {
     return [
-        Math.sin(direction),
-        Math.cos(direction)
+        sin(direction),
+        cos(direction)
     ];
 }
 
@@ -1014,8 +970,8 @@ function vturn(radians, v) {
 
     let x = v[0];
     let y = v[1];
-    let cs = Math.cos(-radians);
-    let sn = Math.sin(-radians);
+    let cs = cos(-radians);
+    let sn = sin(-radians);
 
     return [
         x * cs - y * sn,
@@ -1256,16 +1212,6 @@ function aircraft_remove(aircraft) {
 }
 
 window.clone = clone;
-window.ceil = ceil;
-window.round = round;
-window.abs = abs;
-window.sin = sin;
-window.cos = cos;
-window.tan = tan;
-window.fl = fl;
-window.randint = randint;
-window.s = s;
-window.within = within;
 window.trange = trange;
 window.crange = crange;
 window.srange = srange;
@@ -1275,6 +1221,7 @@ window.choose = choose;
 window.choose_weight = choose_weight;
 window.mod = mod;
 window.lpad = lpad;
+
 window.angle_offset = angle_offset;
 window.bearing = bearing;
 window.getOffset = getOffset;
@@ -1283,11 +1230,13 @@ window.digits_integer = digits_integer;
 window.digits_decimal = digits_decimal;
 window.getGrouping = getGrouping;
 window.groupNumbers = groupNumbers;
+
 window.radio_runway = radio_runway;
 window.radio_heading = radio_heading;
 window.radio_spellOut = radio_spellOut;
 window.radio_altitude = radio_altitude;
 window.radio_trend = radio_trend;
+
 window.getCardinalDirection = getCardinalDirection;
 window.to_canvas_pos = to_canvas_pos;
 window.positive_intersection_with_rect = positive_intersection_with_rect;
@@ -1297,6 +1246,7 @@ window.array_clean = array_clean;
 window.array_sum = array_sum;
 window.inAirspace = inAirspace;
 window.dist_to_boundary = dist_to_boundary;
+
 window.vnorm = vnorm;
 window.vectorize_2d = vectorize_2d;
 window.vadd = vadd;

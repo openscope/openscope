@@ -1,5 +1,6 @@
 /* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand */
 import ArrivalBase from './ArrivalBase';
+import { ceil, round } from '../../math/core';
 import { LOG } from '../../constants/logLevel';
 
 /**

@@ -1,5 +1,6 @@
 /* eslint-disable no-underscore-dangle, no-mixed-operators, func-names, object-shorthand */
 import DepartureBase from './DepartureBase';
+import { sin } from '../../math/core';
 import { tau } from '../../math/circle';
 
 /**
@@ -47,7 +48,7 @@ const DepartureCyclic = DepartureBase.extend(function(base) {
             // (this._amplitude * Math.sin(tau() * ((game_time() + this.offset) / this.period)) + this._average) / prop.game.frequency;
 
             const gameTimeWithOffset = game_time() + this.offset;
-            const sinOffsetOverPeriod = Math.sin(tau() * (gameTimeWithOffset / this.period));
+            const sinOffsetOverPeriod = sin(tau() * (gameTimeWithOffset / this.period));
             const amplitudeTimesSinOffsetOverPeriod = this._amplitude * sinOffsetOverPeriod;
 
             return (amplitudeTimesSinOffsetOverPeriod + this._average) / prop.game.frequency;

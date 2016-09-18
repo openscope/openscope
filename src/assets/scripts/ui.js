@@ -2,6 +2,7 @@
 import $ from 'jquery';
 import _has from 'lodash/has';
 import _keys from 'lodash/keys';
+import { round } from './math/core';
 import { SELECTORS } from './constants/selectors';
 import { STORAGE_KEY } from './constants/storageKeys';
 

@@ -1,7 +1,7 @@
 /* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand */
 import $ from 'jquery';
-
 import ArrivalBase from './ArrivalBase';
+import { sin } from '../../math/core';
 import { tau } from '../../math/circle';
 import { LOG } from '../../constants/logLevel';
 
@@ -96,7 +96,7 @@ const ArrivalWave = ArrivalBase.extend(function(base) {
                 this.cycleStart += this.period;
             }
 
-            const rate = this.frequency + this.variation * Math.sin(done * tau());
+            const rate = this.frequency + this.variation * sin(done * tau());
             return 3600 / rate;
         },
 

@@ -1,3 +1,5 @@
+import { tan } from './core';
+
 /**
  * @property CONSTANTS
  * @type {Object}
@@ -19,7 +21,7 @@ const CONSTANTS = {
  * @return {number}
  */
 export const calcTurnRadius = (speed, bankAngle) => {
-    return (speed * speed) / (CONSTANTS.GRAVITATIONAL_MAGNITUDE * Math.tan(bankAngle));
+    return (speed * speed) / (CONSTANTS.GRAVITATIONAL_MAGNITUDE * tan(bankAngle));
 }
 
 /**
@@ -32,5 +34,5 @@ export const calcTurnRadius = (speed, bankAngle) => {
 export const calcTurnInitiationDistance = (speed, bankAngle, courseChange) => {
     const turnRadius = calcTurnRadius(speed, bankAngle);
 
-    return turnRadius * Math.tan(courseChange / 2) + speed;
+    return turnRadius * tan(courseChange / 2) + speed;
 };

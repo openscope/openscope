@@ -1,6 +1,6 @@
 /* eslint-disable no-multi-spaces, func-names, camelcase, no-undef, max-len, object-shorthand */
 import Fiber from 'fiber';
-
+import { abs, tan } from '../math/core';
 import { km, degreesToRadians } from '../utilities/unitConverters';
 import { vlen, vradial, vsub } from '../math/vector';
 

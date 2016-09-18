@@ -4,8 +4,9 @@ import $ from 'jquery';
 import _clamp from 'lodash/clamp'
 import { km, degreesToRadians } from './utilities/unitConverters';
 import { time } from './utilities/timeHelpers';
-import { distance2d } from './math/distance';
+import { sin, cos, tan, round } from './math/core'
 import { tau } from './math/circle';
+import { distance2d } from './math/distance';
 import { LOG } from './constants/logLevel';
 
 window.canvas_init_pre = function canvas_init_pre() {
@@ -748,7 +749,7 @@ function canvas_draw_compass(cc) {
     highwind = false;
   }
   cc.save();
-  cc.translate(-dot/2 * Math.sin(airport_get().wind.angle), dot/2 * Math.cos(airport_get().wind.angle));
+  cc.translate(-dot / 2 * sin(airport_get().wind.angle), dot / 2 * cos(airport_get().wind.angle));
   cc.beginPath();
   cc.moveTo(0, 0);
   cc.rotate(airport_get().wind.angle);

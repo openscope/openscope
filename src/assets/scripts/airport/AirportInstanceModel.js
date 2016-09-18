@@ -12,6 +12,7 @@ import Runway from './Runway';
 import { ArrivalFactory } from './Arrival/ArrivalFactory';
 import { DepartureFactory } from './Departure/DepartureFactory';
 import { degreesToRadians } from '../utilities/unitConverters';
+import { round, abs, sin, cos } from '../math/core';
 import { vlen, vsub } from '../math/vector';
 import { LOG } from '../constants/logLevel';
 
@@ -84,10 +85,10 @@ const AirportInstance = Fiber.extend(function() {
             // TODO: there are a lot of magic numbers here. What are they for and what do they mean? These should be enumerated.
             const wind = clone(this.wind);
             let s = 1;
-            const angle_factor = Math.sin((s + game_time()) * 0.5) + Math.sin((s + game_time()) * 2);
+            const angle_factor = sin((s + game_time()) * 0.5) + sin((s + game_time()) * 2);
             // TODO: why is this var getting reassigned to a magic number?
             s = 100;
-            const speed_factor = Math.sin((s + game_time()) * 0.5) + Math.sin((s + game_time()) * 2);
+            const speed_factor = sin((s + game_time()) * 0.5) + sin((s + game_time()) * 2);
             wind.angle += crange(-1, angle_factor, 1, degreesToRadians(-4), degreesToRadians(4));
             wind.speed *= crange(-1, speed_factor, 1, 0.9, 1.05);
 

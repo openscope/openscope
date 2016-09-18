@@ -1,5 +1,6 @@
 /* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand, no-undef */
 import Fiber from 'fiber';
+import { sin, cos } from './math/core';
 import { degreesToRadians } from './utilities/unitConverters';
 
 // A physical location on the Earth's surface
@@ -102,8 +103,8 @@ const Position = Fiber.extend(function() {
       let t = Math.atan2(this.y, this.x);
       const r = Math.sqrt(this.x * this.x + this.y * this.y);
       t += this.magnetic_north;
-      this.x = r * Math.cos(t);
-      this.y = r * Math.sin(t);
+      this.x = r * cos(t);
+      this.y = r * sin(t);
 
       this.position = [this.x, this.y];
     },
@@ -122,15 +123,15 @@ const Position = Fiber.extend(function() {
       const d_lat = degreesToRadians(lat_a - lat_b);
       const d_lng = degreesToRadians(lng_a - lng_b);
 
-      const a = Math.pow(Math.sin(d_lat/2), 2) +
-        (Math.cos(degreesToRadians(lat_a)) *
-         Math.cos(degreesToRadians(lat_b)) *
-         Math.pow(Math.sin(d_lng / 2), 2));
+      const a = Math.pow(sin(d_lat/2), 2) +
+        (cos(degreesToRadians(lat_a)) *
+         cos(degreesToRadians(lat_b)) *
+         Math.pow(sin(d_lng / 2), 2));
       const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
       return c * 6371.00;
     },
-    
+
     parseCoordinate: function(coord) {
       let r = /^([NESW])(\d+(\.\d+)?)([d °](\d+(\.\d+)?))?([m '](\d+(\.\d+)?))?$/;
       let match = r.exec(coord)

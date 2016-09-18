@@ -1,6 +1,7 @@
 import AircraftConflict from './AircraftConflict';
 import AircraftModel from './AircraftModel';
 import AircraftFlightManagementSystem from './AircraftFlightManagementSystem';
+import { abs } from '../math/core';
 import { distance2d } from '../math/distance';
 import {
     vlen,
@@ -175,8 +176,8 @@ const aircraft_update = () => {
             // no violation can occur in this case.
             // Variation of:
             // http://gamedev.stackexchange.com/questions/586/what-is-the-fastest-way-to-work-out-2d-bounding-box-intersection
-            const dx = Math.abs(aircraft.position[0] - otherAircraft.position[0]);
-            const dy = Math.abs(aircraft.position[1] - otherAircraft.position[1]);
+            const dx = abs(aircraft.position[0] - otherAircraft.position[0]);
+            const dy = abs(aircraft.position[1] - otherAircraft.position[1]);
 
             // TODO: move this value to a constant
             // TODO: this if/else doesn't make sense
@@ -276,7 +277,7 @@ const aircraft_turn_initiation_distance = (aircraft, fix) => {
     }
 
     // TODO: move to function
-    let course_change = Math.abs(radiansToDegrees(current_heading) - radiansToDegrees(nominal_new_course));
+    let course_change = abs(radiansToDegrees(current_heading) - radiansToDegrees(nominal_new_course));
     if (course_change > 180) {
         course_change = 360 - course_change;
     }

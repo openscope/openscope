@@ -4,6 +4,7 @@ import Fiber from 'fiber';
 import _has from 'lodash/has';
 
 import { nm, degreesToRadians } from '../../utilities/unitConverters';
+import { round, sin, cos } from '../../math/core';
 import { distance2d } from '../../math/distance';
 import { vradial, vsub } from '../../math/vector';
 import { LOG } from '../../constants/logLevel';

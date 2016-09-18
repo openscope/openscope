@@ -1,7 +1,7 @@
 /* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand, no-undef */
 import $ from 'jquery';
 import GameOptions from './GameOptions';
-
+import { round } from '../math/core';
 import { SELECTORS } from '../constants/selectors';
 
 const game_init_pre = () => {

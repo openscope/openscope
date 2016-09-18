@@ -8,6 +8,7 @@ import _map from 'lodash/map';
 import AircraftFlightManagementSystem from './AircraftFlightManagementSystem';
 import Waypoint from './Waypoint';
 import { tau } from '../math/circle';
+import { ceil, round, abs, sin, cos } from '../math/core';
 import { distance2d } from '../math/distance';
 import { vlen, vradial, vsub } from '../math/vector';
 import { km, radiansToDegrees, degreesToRadians } from '../utilities/unitConverters';
@@ -1540,8 +1541,8 @@ const Aircraft = Fiber.extend(function() {
                 const angle =  abs(angle_offset(runway.angle, wind.angle));
 
                 // TODO: these two bits of math should be abstracted to a helper function
-                windForRunway.cross = Math.sin(angle) * wind.speed;
-                windForRunway.head = Math.cos(angle) * wind.speed;
+                windForRunway.cross = sin(angle) * wind.speed;
+                windForRunway.head = cos(angle) * wind.speed;
             }
 
             return windForRunway;
@@ -1725,7 +1726,7 @@ const Aircraft = Fiber.extend(function() {
                     const angle_diff = angle_offset(angle, this.heading);
                     const turning_time = Math.abs(radiansToDegrees(angle_diff)) / 3; // time to turn angle_diff degrees at 3 deg/s
                     const turning_radius = km(this.speed) / 3600 * turning_time; // dist covered in the turn, km
-                    const dist_to_localizer = offset[0] / Math.sin(angle_diff); // dist from the localizer intercept point, km
+                    const dist_to_localizer = offset[0] / sin(angle_diff); // dist from the localizer intercept point, km
 
                     if (dist_to_localizer <= turning_radius || dist_to_localizer < 0.5) {
                         this.target.heading = angle;
@@ -2058,7 +2059,7 @@ const Aircraft = Fiber.extend(function() {
                     if (this.fms.currentWaypoint().navmode === WAYPOINT_NAV_MADE.FIX || this.mode === FLIGHT_MODES.LANDING) {
                         // TODO: this should be abstracted to a helper function
                         var offset = angle_offset(this.heading, wind.angle + Math.PI);
-                        crab_angle = Math.asin((wind.speed * Math.sin(offset)) / this.speed);
+                        crab_angle = Math.asin((wind.speed * sin(offset)) / this.speed);
                     }
 
                     // TODO: this should be abstracted to a helper function
