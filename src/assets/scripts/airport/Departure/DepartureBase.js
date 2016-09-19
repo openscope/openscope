@@ -85,11 +85,11 @@ const DepartureBase = Fiber.extend(function(base) {
             }
 
             aircraft_new({
+                airline,
+                fleet,
+                message,
                 category: 'departure',
-                destination: choose(this.destinations),
-                airline: airline,
-                fleet: fleet,
-                message: message
+                destination: choose(this.destinations)
             });
 
             if (timeout) {

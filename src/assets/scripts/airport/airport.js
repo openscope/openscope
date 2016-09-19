@@ -1,4 +1,6 @@
+import _has from 'lodash/has';
 import Airport from './AirportInstanceModel';
+import { STORAGE_KEY } from '../constants/storageKeys';
 
 /**
  * @function airport_set
@@ -6,15 +8,16 @@ import Airport from './AirportInstanceModel';
  */
 const airport_set = (icao) => {
     if (!icao) {
-        if (('atc-last-airport' in localStorage)) {
-            icao = localStorage['atc-last-airport'];
+        if (_has(localStorage, STORAGE_KEY.ATC_LAST_AIRPORT)) {
+            icao = localStorage[STORAGE_KEY.ATC_LAST_AIRPORT];
         }
     }
 
     icao = icao.toLowerCase();
 
-    if (!(icao in prop.airport.airports)) {
+    if (!icao in prop.airport.airports) {
         console.log(`${icao}: no such airport`);
+
         return;
     }
 
@@ -31,14 +34,15 @@ const airport_set = (icao) => {
  * @function airport_ready
  */
 const airport_ready = () => {
-    if (
-        !('atc-last-airport' in localStorage) ||
-        !(localStorage['atc-last-airport'] in prop.airport.airports)
+    let airportName = 'ksfo';
+
+    if (!_has(localStorage, STORAGE_KEY.ATC_LAST_AIRPORT) ||
+        !_has(prop.airport.airports, STORAGE_KEY.ATC_LAST_AIRPORT)
     ) {
-        airport_set('ksfo');
-    } else {
-        airport_set();
+        airportName = 'ksfo';
     }
+
+    airport_set(airportName);
 };
 
 /**
@@ -61,7 +65,7 @@ const airport_load = (icao, level, name) => {
         level,
         name
     });
-    
+
     airport_add(airport);
 
     return airport;

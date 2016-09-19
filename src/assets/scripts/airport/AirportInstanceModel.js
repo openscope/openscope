@@ -15,6 +15,7 @@ import { degreesToRadians } from '../utilities/unitConverters';
 import { round, abs, sin, cos } from '../math/core';
 import { vlen, vsub } from '../math/vector';
 import { LOG } from '../constants/logLevel';
+import { STORAGE_KEY } from '../constants/storageKeys';
 
 // TODO: This function should really live in a different file and have tests.
 // what does ra stand for? runway angle? what about n? need better names here.
@@ -361,7 +362,7 @@ const AirportInstance = Fiber.extend(function() {
                 return;
             }
 
-            localStorage['atc-last-airport'] = this.icao;
+            localStorage[STORAGE_KEY.ATC_LAST_AIRPORT] = this.icao;
             prop.airport.current = this;
 
             $('#airport')

@@ -29,7 +29,11 @@ export const CLASSNAMES = {
     SPEED_5: 'speed-5',
     STRIP: 'strip',
     SWITCH_AIRPORT: 'switch-airport',
+    TOGGLE_LABELS: 'toggle-labels',
+    TOGGLE_RESTRICTED_AREAS: 'toggle-restricted-areas',
+    TOGGLE_TERRAIN: 'toggle-terrain',
     TOGGLE_TUTORIAL: 'toggle-tutorial',
+    TOGGLE_SIDS: 'toggle-sids',
     WARN: 'warn',
     WARNING_BUTTON: 'warning-button'
 };
@@ -42,6 +46,7 @@ export const CLASSNAMES = {
  * @final
  */
 export const IDS = {
+    AIRPORT: 'airport',
     AIRPORT_LIST: 'airport-list',
     AIRPORT_LIST_NOTES: 'airport-list-notes',
     AIRPORT_SWITCH: 'airport-switch',
@@ -56,6 +61,7 @@ export const IDS = {
 };
 
 /**
+ * Take a classname string and return a classname selector that can be used by jQuery to find an HTML Element.
  *
  * @function buildSelectorsFromClassnames
  * @return {object}
