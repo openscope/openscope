@@ -1,4 +1,5 @@
 /* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand */
+import $ from 'jquery';
 import Fiber from 'fiber';
 import _clamp from 'lodash/clamp';
 import _map from 'lodash/map';
@@ -921,7 +922,12 @@ const AircraftFlightManagementSystem = Fiber.extend(function() {
         * Returns all waypoints in fms, in order
         */
         waypoints: function() {
-            return _map(this.legs, (v) => v.waypoints);
+            // TODO: there is a better way to do this with lodash
+            const originallist = $.map(this.legs, (v) => {
+                return v.waypoints
+            });
+
+            return originallist;
         },
 
         atLastWaypoint: function() {
