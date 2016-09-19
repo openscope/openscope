@@ -12,17 +12,9 @@ import { ceil, round, abs, sin, cos } from '../math/core';
 import { distance2d } from '../math/distance';
 import { vlen, vradial, vsub } from '../math/vector';
 import { km, radiansToDegrees, degreesToRadians } from '../utilities/unitConverters';
+import { FLIGHT_MODES } from '../constants/flightModes';
 
 // TODO: move sthese to a constants file
-const FLIGHT_MODES = {
-    APRON: 'apron',
-    TAXI: 'taxi',
-    WAITING: 'waiting',
-    TAKEOFF: 'takeoff',
-    CRUISE: 'cruise',
-    LANDING: 'landing'
-};
-
 const FLIGHT_CATEGORY = {
     ARRIVAL: 'arrival',
     DEPARTURE: 'departure'

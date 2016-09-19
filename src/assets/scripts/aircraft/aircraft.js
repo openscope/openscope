@@ -3,16 +3,8 @@ import AircraftModel from './AircraftModel';
 import AircraftFlightManagementSystem from './AircraftFlightManagementSystem';
 import { abs } from '../math/core';
 import { distance2d } from '../math/distance';
-import {
-    vlen,
-    vradial,
-    vsub
-} from '../math/vector';
-import {
-    kn_ms,
-    radiansToDegrees,
-    degreesToRadians
-} from '../utilities/unitConverters';
+import { vlen, vradial, vsub } from '../math/vector';
+import { kn_ms, radiansToDegrees, degreesToRadians } from '../utilities/unitConverters';
 import { calcTurnInitiationDistance } from '../math/flightMath';
 import { tau } from '../math/circle';
 

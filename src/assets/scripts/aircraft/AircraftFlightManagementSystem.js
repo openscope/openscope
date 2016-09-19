@@ -15,17 +15,21 @@ import { LOG } from '../constants/logLevel';
   * May be one of null, "fix", "heading", "hold", "rwy"
   *
   * * null is assigned, if the plane is not actively following an
-  *   objective. This is only the case, if a plane enters the airspace
-  *   or an action has been aborted and no new command issued
+  *    objective. This is only the case, if a plane enters the airspace
+  *    or an action has been aborted and no new command issued
+  *
   * * "fix" is assigned, if the plane is heading for a fix. In this
   *    case, the attribute request.fix is used for navigation
+  *
   * * "heading" is assigned, if the plane was given directive to follow
   *    the course set out by the given heading. In this case, the
   *    attributes request.heading and request.turn are used for
   *    navigation
+  *
   * * "hold" is assigned, if the plane should hold its position. As
   *    this is archieved by continuously turning, request.turn is used
   *    in this case
+  *
   * * "rwy" is assigned, if the plane is heading for a runway. This is
   *    only the case, if the plane was issued the command to land. In
   *    this case, request.runway is used
@@ -171,9 +175,9 @@ const AircraftFlightManagementSystem = Fiber.extend(function() {
         nextWaypoint: function() {
             const prev = this.currentWaypoint();
             const leg = this.current[0];
-            const wp = this.current[1];
+            const wp = this.current[1] + 1;
 
-            if (wp + 1 < this.legs[leg].waypoints.length) {
+            if (wp < this.legs[leg].waypoints.length) {
                 // look to next waypoint in current leg
                 this.current[1]++;
             } else if (leg + 1 < this.legs.length) {
@@ -923,11 +927,9 @@ const AircraftFlightManagementSystem = Fiber.extend(function() {
         */
         waypoints: function() {
             // TODO: there is a better way to do this with lodash
-            const originallist = $.map(this.legs, (v) => {
-                return v.waypoints
-            });
+            const waypointList = $.map(this.legs, (v) => v.waypoints);
 
-            return originallist;
+            return waypointList;
         },
 
         atLastWaypoint: function() {
