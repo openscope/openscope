@@ -1,6 +1,7 @@
 import $ from 'jquery';
 import Fiber from 'fiber';
 import peg from 'pegjs';
+import LoadingView from './LoadingView';
 import { time } from './utilities/timeHelpers';
 import { LOG } from './constants/logLevel';
 
@@ -13,7 +14,7 @@ const prop = {};
 
 /*eslint-disable*/
 // FIXME: shame! this is declared here but not set until $(document).ready();
-let load;
+let loadingView;
 
 const util = require('./util');
 const animation = require('./animation');
@@ -35,9 +36,9 @@ const Mediator = Fiber.extend((base) => ({
 
     trigger: (event, data) => {
         if (event === 'startLoading') {
-            window.zlsa.atc.LoadUI.startLoad(data);
+            loadingView.startLoad(data);
         } else if (event === 'stopLoading') {
-            window.zlsa.atc.LoadUI.stopLoad();
+            loadingView.stopLoad();
         }
     }
 }));
@@ -46,10 +47,6 @@ const Mediator = Fiber.extend((base) => ({
 window.zlsa.atc.mediator = new Mediator();
 
 // ////////////////////////////////////////////////////////////////////////////////////////
-
-// @deprectaed
-// all modules, prefix with "-" to signify library; <name>_init etc. won't be called
-const MODULES = [];
 
 // saved as prop.version and prop.version_string
 const VERSION = [2, 1, 8];
@@ -206,14 +203,15 @@ const calculateDeltaTime = (lastFrame) => Math.min(time() - prop.time.frame.last
 
 $(document).ready(() => {
     window.modules = {};
+    loadingView = new LoadingView();
 
     // TODO: remove. this function is no longer needed.
-    for (let i = 0; i < MODULES.length; i++) {
-        modules[MODULES[i]] = {
-            library: false,
-            script: false
-        };
-    }
+    // for (let i = 0; i < MODULES.length; i++) {
+    //     modules[MODULES[i]] = {
+    //         library: false,
+    //         script: false
+    //     };
+    // }
 
     propInit();
     log(`Version ${prop.version_string}`);
@@ -229,9 +227,6 @@ $(document).ready(() => {
     airport_init_pre();
     canvas_init_pre();
     ui_init_pre();
-
-    // FIXME: shame!
-    load = require('./load');
 
     speech_init();
     tutorial_init();
@@ -260,7 +255,7 @@ function update() {
         canvas_complete();
         ui_complete();
 
-        window.zlsa.atc.LoadUI.complete();
+        loadingView.complete();
         prop.complete = true;
     }
 
