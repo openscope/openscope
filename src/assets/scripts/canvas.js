@@ -3,6 +3,7 @@
 /* global prop:true, km:false, crange:false, clamp:false, lpad:false, airport_get:false, game_time:false, game_paused:false, time:false, round:false, distance2d:false, radians:false  */
 import $ from 'jquery';
 import _clamp from 'lodash/clamp';
+import _forEach from 'lodash/forEach';
 import _has from 'lodash/has';
 import { km, degreesToRadians } from './utilities/unitConverters';
 import { time } from './utilities/timeHelpers';
@@ -1075,25 +1076,26 @@ function canvas_draw_terrain(cc) {
     cc.save();
     cc.translate(prop.canvas.panX, prop.canvas.panY);
 
-    // TODO: enumerate the single char var names
-    $.each(airport.terrain || [], (ele, terrain_level) => {
-        max_elevation = Math.max(max_elevation, ele);
-        const color = 'rgba(' + prop.ui.terrain.colors[ele] + ', ';
+    $.each(airport.terrain || [], (elevation, terrainLevel) => {
+        max_elevation = Math.max(max_elevation, elevation);
+        const color = 'rgba(' + prop.ui.terrain.colors[elevation] + ', ';
 
         cc.strokeStyle = color + prop.ui.terrain.border_opacity + ')';
         cc.fillStyle = color + prop.ui.terrain.fill_opacity + ')';
 
-        $.each(terrain_level, (k, v) => {
+        _forEach(terrainLevel, (terrainGroup) => {
             cc.beginPath();
 
-            $.each(v, (j, v2) => {
-                for (const v in v2) {
-                    if (v === 0) {
-                        cc.moveTo(km_to_px(v2[v][0]), -km_to_px(v2[v][1]));
-                    } else {
-                        cc.lineTo(km_to_px(v2[v][0]), -km_to_px(v2[v][1]));
+            _forEach(terrainGroup, (terrainItem) => {
+                // TODO: should this be a for/in? is it an array?
+                _forEach(terrainItem, (value, index) => {
+                    // Loose equals is important here.
+                    if (index === 0) {
+                        cc.moveTo(km_to_px(terrainItem[index][0]), -km_to_px(terrainItem[index][1]));
                     }
-                }
+
+                    cc.lineTo(km_to_px(terrainItem[index][0]), -km_to_px(terrainItem[index][1]));
+                });
 
                 cc.closePath();
             });
