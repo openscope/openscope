@@ -12,10 +12,27 @@ import { ceil, round, abs, sin, cos } from '../math/core';
 import { distance2d } from '../math/distance';
 import { vlen, vradial, vsub } from '../math/vector';
 import { km, radiansToDegrees, degreesToRadians } from '../utilities/unitConverters';
-import { FLIGHT_MODES } from '../constants/flightModes';
 
-// TODO: move sthese to a constants file
-const FLIGHT_CATEGORY = {
+/**
+ * @property FLIGHT_MODES
+ * @type {Object}
+ * @final
+ */
+export const FLIGHT_MODES = {
+    APRON: 'apron',
+    TAXI: 'taxi',
+    WAITING: 'waiting',
+    TAKEOFF: 'takeoff',
+    CRUISE: 'cruise',
+    LANDING: 'landing'
+};
+
+/**
+ * @property FLIGHT_CATEGORY
+ * @type {Object}
+ * @final
+ */
+export const FLIGHT_CATEGORY = {
     ARRIVAL: 'arrival',
     DEPARTURE: 'departure'
 };
@@ -1561,7 +1578,7 @@ const Aircraft = Fiber.extend(function() {
             if (alert) {
                 ui_log(true, logMessage(callsign_L));
             } else {
-                ui_log(logMessage);
+                ui_log(logMessage(callsign_L));
             }
 
             speech_say([{

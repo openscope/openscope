@@ -53,6 +53,7 @@ export const IDS = {
     CANVASES: 'canvases',
     COMMAND: 'command',
     LOG: 'log',
+    NAVAIDS_CANVAS: 'navaids-canvas',
     OPTIONS_DIALOG: 'options-dialog',
     TOGGLE_OPTIONS: 'toggle-options',
     TUTORIAL: 'tutorial',
