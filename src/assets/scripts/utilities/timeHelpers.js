@@ -13,3 +13,12 @@ const TIME_SECONDS_OFFSET = 0.001;
 export const time = () => {
     return new Date().getTime() * TIME_SECONDS_OFFSET;
 };
+
+/**
+ * @function calculateDeltaTime
+ * @param  {number} lastFrame
+ * @return {number}
+ */
+export const calculateDeltaTime = (lastFrame) => {
+    return Math.min(time() - lastFrame, 1 / 20);
+};

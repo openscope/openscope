@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import Fiber from 'fiber';
 
 /**
  * Asynchronous JSON asset loading framework.

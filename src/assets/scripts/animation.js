@@ -1,5 +1,7 @@
 import { time } from './utilities/timeHelpers';
 
+// Is this even in use?
+// @deprecated
 const Animation = (options) => {
     this.value = 0;
     this.start_value = 0;
@@ -73,5 +75,3 @@ const Animation = (options) => {
 
     this.step(game_time());
 };
-
-window.Animation = Animation;

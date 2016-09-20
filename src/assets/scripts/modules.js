@@ -1,26 +1,26 @@
 import $ from 'jquery';
 import Fiber from 'fiber';
-import peg from 'pegjs';
+// import peg from 'pegjs';
 import LoadingView from './LoadingView';
-import { time } from './utilities/timeHelpers';
+import { time, calculateDeltaTime } from './utilities/timeHelpers';
 import { LOG } from './constants/logLevel';
 
-// window.$ = $;
-window.Fiber = Fiber;
-window.peg = peg;
-window.zlsa = {};
-window.zlsa.atc = {};
+// // window.$ = $;
+// // window.Fiber = Fiber;
+// window.peg = peg;
+// window.zlsa = {};
+// window.zlsa.atc = {};
 const prop = {};
 
 /*eslint-disable*/
 // FIXME: shame! this is declared here but not set until $(document).ready();
 let loadingView;
 
-const util = require('./util');
-const animation = require('./animation');
-const parser = require('./parser');
-const speech = require('./speech');
-const get = require('./get');
+// const util = require('./util');
+// const animation = require('./animation');
+// const parser = require('./parser');
+// const speech = require('./speech');
+// const get = require('./get');
 const tutorial = require('./tutorial/tutorial');
 const base = require('./base');
 const game = require('./game/game');
@@ -31,20 +31,20 @@ const airport = require('./airport/airport');
 const canvas = require('./canvas');
 const ui = require('./ui');
 
-const Mediator = Fiber.extend((base) => ({
-    init: (options) => {},
-
-    trigger: (event, data) => {
-        if (event === 'startLoading') {
-            loadingView.startLoad(data);
-        } else if (event === 'stopLoading') {
-            loadingView.stopLoad();
-        }
-    }
-}));
-
-/*eslint-enable*/
-window.zlsa.atc.mediator = new Mediator();
+// const Mediator = Fiber.extend((base) => ({
+//     init: (options) => {},
+//
+//     trigger: (event, data) => {
+//         if (event === 'startLoading') {
+//             loadingView.startLoad(data);
+//         } else if (event === 'stopLoading') {
+//             loadingView.stopLoad();
+//         }
+//     }
+// }));
+//
+// /*eslint-enable*/
+// window.zlsa.atc.mediator = new Mediator();
 
 // ////////////////////////////////////////////////////////////////////////////////////////
 
@@ -93,11 +93,14 @@ const RELEASE = false;
 
 /*eslint-disable*/
 /** ******* Various fixes for browser issues *********/
-/** Necessary for Internet Explorer 11 (IE11) to not die while using String.fromCodePoint()
+/**
+ * Necessary for Internet Explorer 11 (IE11) to not die while using String.fromCodePoint()
  * This function is not natively available in IE11, as noted on this MSDN page:
  * https://msdn.microsoft.com/en-us/library/dn890630(v=vs.94).aspx
+ *
  * Apparently, it is fine with pre-Win8.1 MS Edge 11, but never okay in IE.
  * Here, the function is added to the String prototype to make later code usable.
+ *
  * Solution from: http://xahlee.info/js/js_unicode_code_point.html
 */
 if (!String.fromCodePoint) {
@@ -173,45 +176,22 @@ function callModule(name, func, args) {
     // TODO: remove before merging back to `zsla/gh-pages`, for development only
     console.warn('-- callModule :: func:', func);
 
-    if (!args) {
-        args = [];
-    }
-
-    if (name === '*') {
-        for (let i = 0; i < MODULES.length; i++) {
-            callModule(MODULES[i], func, args);
-        }
-
-        return null;
-    }
-
-    if (name + '_' + func in window && name[0] != '-') {
-        return window[name + '_' + func].apply(window, args);
-    }
-
     return null;
 }
-/*eslint-enable*/
 
+/*eslint-enable*/
 // TODO: enumerate the magic numbers
 /**
  * @function calculateDeltaTime
  * @param  {number} lastFrame
  * @return {number}
  */
-const calculateDeltaTime = (lastFrame) => Math.min(time() - prop.time.frame.last, 1 / 20);
+// const calculateDeltaTime = (lastFrame) => Math.min(time() - prop.time.frame.last, 1 / 20);
 
 $(document).ready(() => {
+    console.log('doc.ready');
     window.modules = {};
     loadingView = new LoadingView();
-
-    // TODO: remove. this function is no longer needed.
-    // for (let i = 0; i < MODULES.length; i++) {
-    //     modules[MODULES[i]] = {
-    //         library: false,
-    //         script: false
-    //     };
-    // }
 
     propInit();
     log(`Version ${prop.version_string}`);
