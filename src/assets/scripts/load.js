@@ -1,62 +1,67 @@
 import $ from 'jquery';
 import { time } from './utilities/timeHelpers';
+import { SELECTORS } from './constants/selectors';
 
 /**
  * Loading indicator elements for HTML interface
  */
-(function ($, zlsa, Fiber, mediator, version_string) {
-  'use strict';
-  $('#loading').append('<div class="version">' + version_string + '</div>');
+(function($, zlsa, Fiber, mediator, version_string) {
+    $(SELECTORS.DOM_SELECTORS.LOADING).append(`<div class="version">${version_string}</div>`);
 
-  var minimumDisplayTime = 2; //seconds
+    const minimumDisplayTime = 2; // seconds
+    const state = {
+        loading: false,
+        callback: null,
+        start: null
+    };
 
-  var state = {
-    loading: false,
-    callback: null,
-    start: null
-  };
+    zlsa.atc.LoadUI = {
+        complete: function() {
+            $(SELECTORS.DOM_SELECTORS.LOADING).fadeOut(1000);
+            $(SELECTORS.DOM_SELECTORS.LOADING).css('pointerEvents', 'none');
+        },
 
-  zlsa.atc.LoadUI = {
-    complete: function() {
-      $('#loading').fadeOut(1000);
-      $('#loading').css('pointerEvents','none');
-    },
+        startLoad: function(url) {
+            let msg = url;
 
-    startLoad: function(url) {
-      var msg = url;
-      if (url.length > 15)
-        msg = '...' + url.substr(-12);
-      $('#loadingIndicator .message').text(msg);
+            if (url.length > 15) {
+                msg = `...${url.substr(-12)}`;
+            }
 
-      if (!state.loading) {
-        $('#loadingIndicator').show();
-        state.start = time();
-      }
+            $(`${SELECTORS.DOM_SELECTORS.LOADING} ${SELECTORS.DOM_SELECTORS.MESSAGE}`).text(msg);
 
-      if (state.callback !== null) {
-        clearTimeout(state.callback);
-        state.callback = null;
-      }
-    },
+            if (!state.loading) {
+                $(SELECTORS.DOM_SELECTORS.LOADING_INDICATOR).show();
+                state.start = time();
+            }
 
-    stopLoad: function() {
-      var now = time();
-      if ((now - state.start) > minimumDisplayTime) {
-        $('#loadingIndicator').hide();
-        state.start = null;
-        state.loading = false;
-      } else {
-        if (state.callback !== null) {
-          return;
+            if (state.callback !== null) {
+                clearTimeout(state.callback);
+                state.callback = null;
+            }
+        },
+
+        stopLoad: function() {
+            const now = time();
+
+            if ((now - state.start) > minimumDisplayTime) {
+                $(SELECTORS.DOM_SELECTORS.LOADING_INDICATOR).hide();
+
+                state.start = null;
+                state.loading = false;
+            } else {
+                if (state.callback !== null) {
+                    return;
+                }
+
+                state.callback = setTimeout(() => {
+                    $(SELECTORS.DOM_SELECTORS.LOADING_INDICATOR).hide();
+
+                    state.start = null;
+                    state.loading = false;
+                    state.callback = null;
+                }, (minimumDisplayTime - (now - state.start)) * 1000);
+            }
         }
-
-        state.callback = setTimeout(function () {
-          $('#loadingIndicator').hide();
-          state.start = null;
-          state.loading = false;
-          state.callback = null;
-        }, (minimumDisplayTime - (now - state.start)) * 1000);
-      }
-    },
-  };
+    };
 })($, zlsa, Fiber, zlsa.atc.mediator, prop.version_string);
