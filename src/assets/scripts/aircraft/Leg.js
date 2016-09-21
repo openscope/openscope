@@ -85,7 +85,9 @@ const Leg = Fiber.extend(function(data, fms) {
 
                 // Generate the waypoints
                 if (!rwy) {
-                    ui_log(true, `${fms.my_aircraft.getCallsign()} unable to fly SID, we haven't been assigned a departure runway!`);
+                    const isWarning = true;
+                    ui_log(`${fms.my_aircraft.getCallsign()} unable to fly SID, we haven't been assigned a departure runway!`, isWarning);
+
                     return;
                 }
 

@@ -13,7 +13,7 @@ export const speech_init = () => {
     prop.speech.synthesis = window.speechSynthesis;
     prop.speech.enabled = false;
 
-    if (_get(localStorage, STORAGE_KEY.ATC_SPEECH_ENABLED, false)) {
+    if (_get(localStorage, STORAGE_KEY.ATC_SPEECH_ENABLED, false) === true) {
         prop.speech.enabled = true;
         $(SELECTORS.DOM_SELECTORS.SPEECH_TOGGLE).addClass(SELECTORS.CLASSNAMES.ACTIVE);
     }

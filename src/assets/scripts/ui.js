@@ -1,4 +1,4 @@
-/* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand, no-undef */
+/* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand, no-undef, no-param-reassign */
 import $ from 'jquery';
 import _has from 'lodash/has';
 import _keys from 'lodash/keys';
@@ -36,7 +36,7 @@ export const ui_zoom_out = () => {
 
     prop.canvas.panX = round(km_to_px(lastpos[0]));
     prop.canvas.panY = round(km_to_px(lastpos[1]));
-}
+};
 
 export const ui_zoom_in = () => {
     const lastpos = [
@@ -53,27 +53,17 @@ export const ui_zoom_in = () => {
 
     prop.canvas.panX = round(km_to_px(lastpos[0]));
     prop.canvas.panY = round(km_to_px(lastpos[1]));
-}
+};
 
 export const ui_zoom_reset = () => {
     prop.ui.scale = prop.ui.scale_default;
 
     ui_after_zoom();
-}
+};
 
-export const ui_log = (message) => {
-    message = arguments[0];
-    let warn = false;
+export const ui_log = (message, warn = false) => {
+    const html = $(`<span class="item"><span class="message">${message}</span></span>`);
 
-    if (arguments[0] === true) {
-        warn = true;
-        message = arguments[1];
-    } else if (arguments.length >= 2) {
-        message += `, ${arguments[1]}`;
-    }
-
-//  $("#log").append("<span class='item'><span class='from'>"+from+"</span><span class='message'>"+message+"</span></span>");
-    const html = $("<span class='item'><span class='message'>" + message + "</span></span>");
     if (warn) {
         html.addClass(SELECTORS.CLASSNAMES.WARN);
     }
@@ -82,16 +72,13 @@ export const ui_log = (message) => {
     $log.append(html);
     $log.scrollTop($log.get(0).scrollHeight);
 
-    game_timeout(function(html) {
+    game_timeout((html) => {
         html.addClass(SELECTORS.CLASSNAMES.HIDDEN);
 
-        setTimeout(function() {
+        setTimeout(() => {
             html.remove();
         }, 10000);
     }, 3, window, html);
-
-// speech_say(message);
-// console.log("MESSAGE: " + message);
 };
 
 const ui_airport_open = () => {
@@ -102,7 +89,8 @@ const ui_airport_open = () => {
         $previousActiveAirport.removeClass(SELECTORS.CLASSNAMES.ACTIVE);
     }
 
-    $('.airport.icao-' + airport_get().icao.toLowerCase()).addClass(SELECTORS.CLASSNAMES.ACTIVE);
+    const icao = airport_get().icao.toLowerCase();
+    $(`.airport.icao-${icao}`).addClass(SELECTORS.CLASSNAMES.ACTIVE);
 
     $(SELECTORS.DOM_SELECTORS.AIRPORT_SWITCH).addClass(SELECTORS.CLASSNAMES.OPEN);
     $(SELECTORS.DOM_SELECTORS.SWITCH_AIRPORT).addClass(SELECTORS.CLASSNAMES.ACTIVE);
@@ -199,7 +187,7 @@ const ui_setup_handlers = () => {
 
 export const ui_init = () => {
     $(SELECTORS.DOM_SELECTORS.FAST_FORWARDS).prop('title', 'Set time warp to 2');
-    const $options = $("<div id='options-dialog' class='dialog'></div>");
+    const $options = $('<div id="options-dialog" class="dialog"></div>');
     const descriptions = prop.game.option.getDescriptions();
 
     ui_setup_handlers();
@@ -209,26 +197,25 @@ export const ui_init = () => {
 
         if (opt.type === 'select') {
             const container = $('<div class="option"></div>');
-            container.append('<span class="option-description">' + opt.description + '</span>');
+            container.append(`<span class="option-description">${opt.description}</span>`);
 
             const sel_span = $('<span class="option-selector option-type-select"></span>');
-            const selector = $('<select id="opt-' + opt.name + '" name="' + opt.name + '"></select>');
+            const selector = $(`<select id="opt-${opt.name}" name="${opt.name}"></select>`);
 
             selector.data('name', opt.name);
 
-            var current = prop.game.option.get(opt.name);
+            const current = prop.game.option.get(opt.name);
             for (let i = 0; i < opt.data.length; i++) {
-                var s = "<option value='" + opt.data[i][1];
+                let s = `<option value="${opt.data[i][1]}">${opt.data[i][0]}</option>`;
 
                 if (opt.data[i][1] === current) {
-                    s += "' selected='selected";
+                    s = `<option value="${opt.data[i][1]}" selected="selected">${opt.data[i][0]}</option>`;
                 }
 
-                s += "'>" + opt.data[i][0] + "</option>";
                 selector.append(s);
             }
 
-            selector.change(function() {
+            selector.change(() => {
                 prop.game.option.set($(this).data('name'), $(this).val());
             });
 
@@ -239,7 +226,7 @@ export const ui_init = () => {
     }
 
     $('body').append($options);
-    $(SELECTORS.DOM_SELECTORS.TOGGLE_OPTIONS).click(function() {
+    $(SELECTORS.DOM_SELECTORS.TOGGLE_OPTIONS).click(() => {
         ui_options_toggle();
     });
 };
@@ -274,13 +261,15 @@ export const ui_complete = () => {
                 break;
         }
 
-        const html = $("<li class='airport icao-" + airport.icao.toLowerCase() + "'>" +
-                     "<span style='font-size: 7pt' class='difficulty'>" + difficulty + "</span>" +
-                     "<span class='icao'>" + airport.icao.toUpperCase() + "</span>" +
-                     "<span class='name'>" + airport.name + "</span></li>");
+        const html = $(
+            `<li class="airport icao-${airport.icao.toLowerCase()}">` +
+            `<span style="font-size: 7pt" class="difficulty">${difficulty}</span>` +
+            `<span class="icao">${airport.icao.toUpperCase()}</span>` +
+            `<span class="name">${airport.name}</span></li>`
+         );
 
         // TODO: replace with an onClick() handler
-        html.click(airport.icao.toLowerCase(), function(event) {
+        html.click(airport.icao.toLowerCase(), (event) => {
             if (event.data !== airport_get().icao) {
                 airport_set(event.data);
                 ui_airport_close();
@@ -290,10 +279,10 @@ export const ui_complete = () => {
         $(SELECTORS.DOM_SELECTORS.AIRPORT_LIST).append(html);
     }
 
-    const symbol = $("<span class='symbol'>" + "&#9983" + "</span>");
+    const symbol = $('<span class="symbol">&#9983</span>');
     $(SELECTORS.DOM_SELECTORS.AIRPORT_LIST_NOTES).append(symbol);
 
-    const notes = $("<span class='words'>indicates airport is a work in progress</span>");
+    const notes = $('<span class="words">indicates airport is a work in progress</span>');
     $(SELECTORS.DOM_SELECTORS.AIRPORT_LIST_NOTES).append(notes);
 };
 

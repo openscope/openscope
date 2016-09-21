@@ -789,7 +789,8 @@ const Aircraft = Fiber.extend(function() {
             }
 
             if (fail) {
-                ui_log(true, `${this.getCallsign()} unable to climb via SID`);
+                const isWarning = true;
+                ui_log(`${this.getCallsign()} unable to climb via SID`, isWarning);
             }
         },
 
@@ -803,7 +804,8 @@ const Aircraft = Fiber.extend(function() {
                 return ['ok', readback];
             }
 
-            ui_log(true, `${this.getCallsign()}, unable to descend via STAR`);
+            const isWarning = true;
+            ui_log(`${this.getCallsign()}, unable to descend via STAR`, isWarning);
         },
 
         runSpeed: function(data) {
@@ -1304,7 +1306,8 @@ const Aircraft = Fiber.extend(function() {
 
                 console.log('aborted taxi to runway');
 
-                ui_log(true, `${this.getCallsign()} aborted taxi to runway`);
+                const isWarning = true;
+                ui_log(`${this.getCallsign()} aborted taxi to runway`, isWarning);
                 prop.game.score.abort.taxi += 1;
 
                 return ['ok', 'taxiing back to terminal'];
@@ -1577,7 +1580,8 @@ const Aircraft = Fiber.extend(function() {
             // TODO: quick abstraction, this doesn't belong here.
             const logMessage = (callsign) => `${airport_get().radio[sectorType]}, ${callsign} ${msg}`;
             if (alert) {
-                ui_log(true, logMessage(callsign_L));
+                const isWarning = true;
+                ui_log(logMessage(callsign_L), isWarning);
             } else {
                 ui_log(logMessage(callsign_L));
             }
@@ -1630,22 +1634,23 @@ const Aircraft = Fiber.extend(function() {
         scoreWind: function(action) {
             let score = 0;
             const components = this.getWind();
+            const isWarning = true;
 
             // TODO: these two if blocks could be done in a single switch statement
             if (components.cross >= 20) {
                 score += 2;
-                ui_log(true, `${this.getCallsign()} ${action} with major crosswind'`);
+                ui_log(`${this.getCallsign()} ${action} with major crosswind'`, isWarning);
             } else if (components.cross >= 10) {
                 score += 1;
-                ui_log(true, `${this.getCallsign()} ${action} with crosswind'`);
+                ui_log(`${this.getCallsign()} ${action} with crosswind'`, isWarning);
             }
 
             if (components.head <= -10) {
                 score += 2;
-                ui_log(true, `${this.getCallsign()} ${action} with major tailwind'`);
+                ui_log(`${this.getCallsign()} ${action} with major tailwind'`, isWarning);
             } else if (components.head <= -1) {
                 score += 1;
-                ui_log(true, `${this.getCallsign()} ${action} with tailwind'`);
+                ui_log(`${this.getCallsign()} ${action} with tailwind'`, isWarning);
             }
 
             return score;
@@ -1723,7 +1728,8 @@ const Aircraft = Fiber.extend(function() {
                         if (!this.projected && (abs(angle_offset(this.fms.currentWaypoint().heading,
                             degreesToRadians(parseInt(this.rwy_arr.substr(0, 2), 10) * 10, 10))) > degreesToRadians(30))
                         ) {
-                            ui_log(true, `${this.getRadioCallsign()} approach course intercept angle was greater than 30 degrees`);
+                            const isWarning = true;
+                            ui_log(`${this.getRadioCallsign()} approach course intercept angle was greater than 30 degrees`, isWarning);
                             prop.game.score.violation += 1;
                         }
 
@@ -1762,7 +1768,8 @@ const Aircraft = Fiber.extend(function() {
                     this.cancelLanding();
 
                     if (!this.projected) {
-                        ui_log(true, `${this.getRadioCallsign()} aborting landing, lost ILS`);
+                        const isWarning = true;
+                        ui_log(`${this.getRadioCallsign()} aborting landing, lost ILS`, isWarning);
                         speech_say([
                             { type: 'callsign', content: this },
                             { type: 'text', content: ' going around' }
@@ -2217,7 +2224,8 @@ const Aircraft = Fiber.extend(function() {
                                 this.hit = true;
 
                                 console.log('hit terrain');
-                                ui_log(true, `${this.getCallsign()} collided with terrain in controlled flight`);
+                                const isWarning = true;
+                                ui_log(`${this.getCallsign()} collided with terrain in controlled flight`, isWarning);
                                 speech_say([
                                     { type: 'callsign', content: this },
                                     { type: 'text', content: ', we\'re going down!' }

@@ -135,7 +135,8 @@ const AircraftConflict = Fiber.extend(function() {
                 (this.aircraft[0].isVisible() && this.aircraft[1].isVisible())
             ) {
                 this.collided = true;
-                ui_log(true, `${this.aircraft[0].getCallsign()} collided with ${this.aircraft[1].getCallsign()}`);
+                const isWarning = true;
+                ui_log(`${this.aircraft[0].getCallsign()} collided with ${this.aircraft[1].getCallsign()}`, isWarning);
 
                 prop.game.score.hit += 1;
                 this.aircraft[0].hit = true;
@@ -174,8 +175,11 @@ const AircraftConflict = Fiber.extend(function() {
             ) {
                 if (!this.conflicts.runwayCollision) {
                     this.conflicts.runwayCollision = true;
-                    ui_log(true, `${this.aircraft[0].getCallsign()} appears on a collision course with` +
-                        ` ${this.aircraft[1].getCallsign()} on the same runway"`);
+                    ui_log(
+                        `${this.aircraft[0].getCallsign()} appears on a collision course with` +
+                        ` ${this.aircraft[1].getCallsign()} on the same runway"`,
+                        isWarning
+                    );
 
                     prop.game.score.warning += 1;
                 }
