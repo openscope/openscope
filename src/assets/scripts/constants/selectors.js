@@ -26,6 +26,7 @@ export const CLASSNAMES = {
     PREV: 'prev',
     RIGHT: 'right',
     RUNWAY: 'runway',
+    SPEECH_TOGGLE: 'speech-toggle',
     SPEED_2: 'speed-2',
     SPEED_5: 'speed-5',
     STRIP: 'strip',

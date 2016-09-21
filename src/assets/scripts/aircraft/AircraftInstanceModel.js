@@ -7,6 +7,7 @@ import _isNaN from 'lodash/isNaN';
 import _map from 'lodash/map';
 import AircraftFlightManagementSystem from './AircraftFlightManagementSystem';
 import Waypoint from './Waypoint';
+import { speech_say } from '../speech';
 import { tau } from '../math/circle';
 import { ceil, round, abs, sin, cos } from '../math/core';
 import { distance2d } from '../math/distance';

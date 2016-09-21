@@ -3,6 +3,7 @@ import $ from 'jquery';
 import peg from 'pegjs';
 import ContentQueue from './contentQueue/ContentQueue';
 import LoadingView from './LoadingView';
+import { speech_init } from './speech';
 import { time, calculateDeltaTime } from './utilities/timeHelpers';
 import { LOG } from './constants/logLevel';
 
@@ -11,14 +12,14 @@ window.zlsa = {};
 window.zlsa.atc = {};
 const prop = {};
 
-// IIEFs that are pulled in here to add functions to the global space.
+// IIEFs are pulled in here to add functions to the global space.
 //
 // This will need to be re-worked, and current global functions should be exported and imported
 // as needed in each file.
 require('./util');
 require('./animation');
 require('./parser');
-require('./speech');
+
 const tutorial = require('./tutorial/tutorial');
 const base = require('./base');
 const game = require('./game/game');
