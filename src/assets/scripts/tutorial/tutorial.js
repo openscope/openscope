@@ -3,6 +3,7 @@ import $ from 'jquery';
 import _clamp from 'lodash/clamp';
 import _has from 'lodash/has';
 import TutorialStep from './TutorialStep';
+import { round } from '../math/core';
 import { time } from '../utilities/timeHelpers';
 import { STORAGE_KEY } from '../constants/storageKeys';
 import { SELECTORS } from '../constants/selectors';
