@@ -283,7 +283,7 @@ const AirportInstance = Fiber.extend(function() {
                     }
 
                     obj.height = parseElevation(r[i].height);
-                    obj.coordinates = _map(r[i].coordinates, (v) => {
+                    obj.coordinates = $.map(r[i].coordinates, (v) => {
                         return [(new Position(v, self.position, self.magnetic_north)).position];
                     });
 
