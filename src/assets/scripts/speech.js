@@ -13,7 +13,7 @@ export const speech_init = () => {
     prop.speech.synthesis = window.speechSynthesis;
     prop.speech.enabled = false;
 
-    if (_has(localStorage, STORAGE_KEY.ATC_SPEECH_ENABLED) && _get(localStorage, STORAGE_KEY.ATC_SPEECH_ENABLED, false)) {
+    if (_get(localStorage, STORAGE_KEY.ATC_SPEECH_ENABLED, false)) {
         prop.speech.enabled = true;
         $(SELECTORS.DOM_SELECTORS.SPEECH_TOGGLE).addClass(SELECTORS.CLASSNAMES.ACTIVE);
     }
@@ -29,7 +29,7 @@ export const speech_say = (sentence) => {
         let textToSay = '';
 
         for (let i = 0; i < sentence.length; i++) {
-            let singleSentence = singleSentence;
+            let singleSentence = sentence[i];
 
             switch(singleSentence.type) {
                 case 'callsign':
@@ -66,13 +66,13 @@ export const speech_say = (sentence) => {
  * @function speech_toggle
  */
 export const speech_toggle = () => {
-    $speechToggle= $(SELECTORS.DOM_SELECTORS.SPEECH_TOGGLE);
+    const $speechToggle = $(SELECTORS.DOM_SELECTORS.SPEECH_TOGGLE);
     prop.speech.enabled = !prop.speech.enabled;
 
     if (prop.speech.enabled) {
         $speechToggle.addClass(SELECTORS.CLASSNAMES.ACTIVE);
     } else {
-    $speechToggle.removeClass(SELECTORS.CLASSNAMES.ACTIVE);
+        $speechToggle.removeClass(SELECTORS.CLASSNAMES.ACTIVE);
         prop.speech.synthesis.cancel();
     }
 
