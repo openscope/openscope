@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle, no-unused-vars, no-undef, global-require */
 import AircraftConflict from './AircraftConflict';
 import AircraftModel from './AircraftModel';
 import AircraftFlightManagementSystem from './AircraftFlightManagementSystem';
@@ -9,29 +10,6 @@ import { kn_ms, radiansToDegrees, degreesToRadians } from '../utilities/unitConv
 import { calcTurnInitiationDistance } from '../math/flightMath';
 import { tau } from '../math/circle';
 
-/**
- * Main entry point for the aircraft object.
- *
- */
-// TODO: remove window instances
-window.zlsa.atc.Conflict = AircraftConflict;
-window.zlsa.atc.AircraftFlightManagementSystem = AircraftFlightManagementSystem;
-
-/**
- *
- * @function aircraft_init_pre
- * @param aircraft_init_pre
- */
-const aircraft_init_pre = () => {
-    prop.aircraft = {};
-    prop.aircraft.models = {};
-    prop.aircraft.callsigns = [];
-    prop.aircraft.list = [];
-    prop.aircraft.current = null;
-    prop.aircraft.auto = {
-        enabled: false
-    };
-};
 
 /**
  * @function aircraft_auto_toggle
@@ -346,7 +324,7 @@ const aircraft_get_eid_by_callsign = (callsign) => {
 const aircraft_model_get = (icao) => {
     if (!(icao in prop.aircraft.models)) {
         const model = new AircraftModel({
-            icao: icao,
+            icao,
             url: `assets/aircraft/${icao}.json`
         });
 
@@ -356,11 +334,35 @@ const aircraft_model_get = (icao) => {
     return prop.aircraft.models[icao];
 };
 
+/**
+ * Main entry point for the aircraft object.
+ *
+ */
+
+/**
+ *
+ * @function aircraft_init_pre
+ * @param aircraft_init_pre
+ */
+const aircraft_init_pre = () => {
+    prop.aircraft = {};
+    prop.aircraft.models = {};
+    prop.aircraft.callsigns = [];
+    prop.aircraft.list = [];
+    prop.aircraft.current = null;
+    prop.aircraft.auto = {
+        enabled: false
+    };
+};
 
 // attach methods to the window, for now.
 // going forward there shouldn't ever be anything attached to the window.  Ever. we're leaving these here
 // for now so things dont break. eventually this functions will probably live inside a class
-//  or set of helpers somewhere else.
+// or set of helpers somewhere else.
+
+window.zlsa.atc.Conflict = AircraftConflict;
+window.zlsa.atc.AircraftFlightManagementSystem = AircraftFlightManagementSystem;
+
 window.aircraft_init_pre = aircraft_init_pre;
 window.aircraft_init = () => {};
 window.aircraft_generate_callsign = aircraft_generate_callsign;

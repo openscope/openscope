@@ -246,10 +246,16 @@ const airline_init_pre = () => {
  * @param  {string} icao
  */
 const airline_get = (icao) => {
-  icao = icao.toLowerCase();
+    icao = icao.toLowerCase();
 
     if (!(icao in prop.airline.airlines)) {
-        const airline = new Airline(icao, { url: `assets/airlines/${icao}.json` });
+        const airline = new Airline(
+            icao,
+            {
+                url: `assets/airlines/${icao}.json`
+            }
+        );
+
         prop.airline.airlines[icao] = airline;
     }
 

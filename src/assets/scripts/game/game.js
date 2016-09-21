@@ -73,7 +73,7 @@ const game_get_score = () => {
 };
 
 const game_get_weighted_score = () => {
-    var score = game_get_score();
+    let score = game_get_score();
 
     score = score / (game_time() / 60);
     score *= 500;
@@ -165,7 +165,7 @@ const game_speedup = () => {
 };
 
 const game_timeout = (func, delay, that, data) => {
-    var to = [func, game_time() + delay, data, delay, false, that];
+    const to = [func, game_time() + delay, data, delay, false, that];
 
     prop.game.timeouts.push(to);
 
@@ -173,7 +173,7 @@ const game_timeout = (func, delay, that, data) => {
 };
 
 const game_interval = (func, delay, that, data) => {
-    var to = [func, game_time() + delay, data, delay, true, that];
+    const to = [func, game_time() + delay, data, delay, true, that];
 
     prop.game.timeouts.push(to);
 
@@ -184,20 +184,25 @@ const game_clear_timeout = (to) => {
     prop.game.timeouts.splice(prop.game.timeouts.indexOf(to), 1);
 };
 
+const updateScore = (score) => {
+    $score.text(round(score));
+
+    if (score < -0.51) {
+        $score.addClass(SELECTORS.CLASSNAMES.NEGATIVE);
+    } else {
+        $score.removeClass(SELECTORS.CLASSNAMES.NEGATIVE);
+    }
+
+    prop.game.last_score = score;
+};
+
 const game_update_pre = () => {
+    // FIXME: update to DOM_SELECTORS
     const $score = $(`#${SELECTORS.IDS.SCORE}`);
     const score = game_get_score();
 
     if (score !== prop.game.last_score) {
-        $score.text(round(score));
-
-        if (score < -0.51) {
-            $score.addClass(SELECTORS.CLASSNAMES.NEGATIVE);
-        } else {
-            $score.removeClass(SELECTORS.CLASSNAMES.NEGATIVE);
-        }
-
-        prop.game.last_score = score;
+        updateScore(score);
     }
 
     prop.game.delta = Math.min(delta() * prop.game.speedup, 100);

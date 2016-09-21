@@ -1,4 +1,4 @@
-/* eslint-disable no-underscore-dangle */
+/* eslint-disable no-underscore-dangle, no-unused-vars, no-undef, global-require */
 import $ from 'jquery';
 import peg from 'pegjs';
 import ContentQueue from './contentQueue/ContentQueue';
@@ -231,22 +231,22 @@ export default class App {
 
     /**
      * @for App
-     * @method complete
+     * @method resize
      */
-    complete() {
-        game_complete();
-        canvas_complete();
-        ui_complete();
+    resize() {
+        canvas_resize();
 
         return this;
     }
 
     /**
      * @for App
-     * @method resize
+     * @method complete
      */
-    resize() {
-        canvas_resize();
+    complete() {
+        game_complete();
+        canvas_complete();
+        ui_complete();
 
         return this;
     }
@@ -263,20 +263,28 @@ export default class App {
 
     /**
      * @for App
+     * @method updatePost
+     */
+    updatePost() {
+        canvas_update_post();
+
+        return this;
+    }
+
+    /**
+     * @for App
      * @method update
      */
     update() {
         if (!prop.complete) {
-            // TODO: temp fix to get browserify working
-
             this.complete();
-
             this.loadingView.complete();
+
             prop.complete = true;
         }
 
         if (!UPDATE) {
-            return;
+            return this;
         }
 
         requestAnimationFrame(() => this.update());
@@ -297,17 +305,7 @@ export default class App {
         }
 
         prop.time.frame.delta = calculateDeltaTime(prop.time.frame.last);
-        prop.time.frame.last = time()
-
-        return this;
-    }
-
-    /**
-     * @for App
-     * @method updatePost
-     */
-    updatePost() {
-        canvas_update_post();
+        prop.time.frame.last = time();
 
         return this;
     }

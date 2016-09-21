@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle, no-unused-vars, no-undef, global-require */
 import $ from 'jquery';
 import _get from 'lodash/get';
 import _has from 'lodash/has';
@@ -29,9 +30,9 @@ export const speech_say = (sentence) => {
         let textToSay = '';
 
         for (let i = 0; i < sentence.length; i++) {
-            let singleSentence = sentence[i];
+            const singleSentence = sentence[i];
 
-            switch(singleSentence.type) {
+            switch (singleSentence.type) {
                 case 'callsign':
                     textToSay += ` ${singleSentence.content.getRadioCallsign()} `;
                     break;
@@ -49,11 +50,12 @@ export const speech_say = (sentence) => {
             }
         }
 
-        let utterance = new SpeechSynthesisUtterance(textToSay); // make the object
+        const utterance = new SpeechSynthesisUtterance(textToSay); // make the object
         utterance.lang = 'en-US'; // set the language
         utterance.voice = prop.speech.synthesis.getVoices().filter((voice) => {
-            return voice.name == 'Google US English';
-        })[0];   //set the voice
+            // set the voice
+            return voice.name === 'Google US English';
+        })[0];
         utterance.rate = 1.125; // speed up just a touch
 
         // say the words

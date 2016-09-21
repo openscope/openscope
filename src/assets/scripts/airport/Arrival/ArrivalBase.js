@@ -74,7 +74,7 @@ const ArrivalBase = Fiber.extend(function(base) {
             }
 
             // Pre-load the airlines
-            $.each(this.airlines, function (i, data) {
+            $.each(this.airlines, (i, data) => {
                 airline_get(data[0].split('/')[0]);
             });
         },
@@ -176,19 +176,22 @@ const ArrivalBase = Fiber.extend(function(base) {
                     airline = airline.split('/')[0];
                 }
 
+                const { heading, pos, nextFix } = spawn_positions[i];
+                const { icao, position, magnetic_north } = airport_get();
+
                 aircraft_new({
                     category: 'arrival',
-                    destination: airport_get().icao,
+                    destination: icao,
                     airline: airline,
                     fleet: fleet,
                     // TODO: should eventually look up altitude restrictions and try to spawn in an appropriate range
                     altitude: 10000,
-                    heading: spawn_positions[i].heading || this.heading,
+                    heading: heading || this.heading,
                     waypoints: this.fixes,
                     route: this.route,
-                    position: new Position(spawn_positions[i].pos, airport_get().position, airport_get().magnetic_north, 'GPS').position,
+                    position: new Position(pos, position, magnetic_north, 'GPS').position,
                     speed: this.speed,
-                    nextFix: spawn_positions[i].nextFix
+                    nextFix: nextFix
                 });
             }
         },

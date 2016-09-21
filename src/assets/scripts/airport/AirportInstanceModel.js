@@ -1,8 +1,6 @@
 /* eslint-disable no-multi-spaces, func-names, camelcase, no-undef, max-len, object-shorthand */
 import $ from 'jquery';
 import Fiber from 'fiber';
-import _forEach from 'lodash/forEach';
-import _forIn from 'lodash/forIn';
 import _has from 'lodash/has';
 import _map from 'lodash/map';
 import _isEmpty from 'lodash/isEmpty';
@@ -12,7 +10,7 @@ import Runway from './Runway';
 import { ArrivalFactory } from './Arrival/ArrivalFactory';
 import { DepartureFactory } from './Departure/DepartureFactory';
 import { degreesToRadians } from '../utilities/unitConverters';
-import { round, abs, sin, cos } from '../math/core';
+import { round, abs, sin } from '../math/core';
 import { vlen, vsub } from '../math/vector';
 import { LOG } from '../constants/logLevel';
 import { STORAGE_KEY } from '../constants/storageKeys';

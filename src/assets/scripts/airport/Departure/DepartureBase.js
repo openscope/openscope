@@ -40,7 +40,7 @@ const DepartureBase = Fiber.extend(function(base) {
             }
 
             // Pre-load the airlines
-            $.each(this.airlines, function(i, data) {
+            $.each(this.airlines, (i, data) => {
                 airline_get(data[0].split('/')[0]);
             });
         },
@@ -59,6 +59,7 @@ const DepartureBase = Fiber.extend(function(base) {
          */
         start: function() {
             const r = Math.floor(random(2, 5.99));
+            
             for (let i = 1; i <= r; i++) {
                 // spawn 2-5 departures to start with
                 this.spawnAircraft(false);

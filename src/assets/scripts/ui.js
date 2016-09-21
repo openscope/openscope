@@ -142,6 +142,14 @@ const ui_options_toggle = () => {
     }
 };
 
+const ui_set_scale_from_storage = () => {
+    if (!_has(localStorage, STORAGE_KEY.ATC_SCALE)) {
+        return;
+    }
+
+    prop.ui.scale = localStorage[STORAGE_KEY.ATC_SCALE];
+};
+
 export const ui_init_pre = () => {
     prop.ui = {};
     prop.ui.scale_default = 8; // pixels per km
@@ -161,9 +169,7 @@ export const ui_init_pre = () => {
         fill_opacity: 0.1
     };
 
-    if (_has(localStorage, STORAGE_KEY.ATC_SCALE)) {
-        prop.ui.scale = localStorage[STORAGE_KEY.ATC_SCALE];
-    }
+    ui_set_scale_from_storage();
 };
 
 const ui_setup_handlers = () => {

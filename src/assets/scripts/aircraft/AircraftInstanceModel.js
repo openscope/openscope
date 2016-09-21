@@ -186,6 +186,53 @@ const Aircraft = Fiber.extend(function() {
             this.updateStrip();
         },
 
+        parse: function(data) {
+            // TODO: why is this not an array to start with?
+            const keys = ['position', 'model', 'airline', 'callsign', 'category', 'heading', 'altitude', 'speed'];
+
+            for (const i in keys) {
+                if (data[keys[i]]) {
+                    this[keys[i]] = data[keys[i]];
+                }
+            }
+
+            if (this.category === FLIGHT_CATEGORY.ARRIVAL) {
+                if (data.waypoints.length > 0) {
+                    this.setArrivalWaypoints(data.waypoints);
+                }
+
+                this.destination = data.destination;
+                this.setArrivalRunway(airport_get(this.destination).runway);
+            } else if (this.category === FLIGHT_CATEGORY.DEPARTURE && this.isLanded()) {
+                this.speed = 0;
+                this.mode = FLIGHT_MODES.APRON;
+                this.destination = data.destination;
+
+                this.setDepartureRunway(airport_get().runway)
+            }
+
+            if (data.heading) {
+                this.fms.setCurrent({ heading: data.heading });
+            }
+
+            if (data.altitude) {
+                this.fms.setCurrent({ altitude: data.altitude });
+            }
+
+            const speed = data.speed || this.model.speed.cruise;
+            this.fms.setCurrent({ speed: speed });
+
+            if (data.route) {
+                // TODO: what is the true for? enumerate that.
+                this.fms.customRoute(this.fms.formatRoute(data.route), true);
+                this.fms.descendViaSTAR();
+            }
+
+            if (data.nextFix) {
+                this.fms.skipToFix(data.nextFix);
+            }
+        },
+
         setArrivalWaypoints: function(waypoints) {
             // add arrival fixes to fms
             for (let i = 0; i < waypoints.length; i++) {
@@ -1401,52 +1448,6 @@ const Aircraft = Fiber.extend(function() {
             this.fms.setCurrent({ runway: null });
 
             return false;
-        },
-
-        parse: function(data) {
-            // TODO: why is this not an array to start with?
-            const keys = 'position model airline callsign category heading altitude speed'.split(' ');
-
-            for (const i in keys) {
-                if (data[keys[i]]) {
-                    this[keys[i]] = data[keys[i]];
-                }
-            }
-
-            if (this.category === FLIGHT_CATEGORY.ARRIVAL) {
-                if (data.waypoints.length > 0) {
-                    this.setArrivalWaypoints(data.waypoints);
-                }
-
-                this.destination = data.destination;
-                this.setArrivalRunway(airport_get(this.destination).runway);
-            } else if (this.category === FLIGHT_CATEGORY.DEPARTURE && this.isLanded()) {
-                this.speed = 0;
-                this.mode = FLIGHT_MODES.APRON;
-                this.setDepartureRunway(airport_get().runway);
-                this.destination = data.destination;
-            }
-
-            if (data.heading) {
-                this.fms.setCurrent({ heading: data.heading });
-            }
-
-            if (data.altitude) {
-                this.fms.setCurrent({ altitude: data.altitude });
-            }
-
-            const speed = data.speed || this.model.speed.cruise;
-            this.fms.setCurrent({ speed: speed });
-
-            if (data.route) {
-                // TODO: what is the true for? enumerate that.
-                this.fms.customRoute(this.fms.formatRoute(data.route), true);
-                this.fms.descendViaSTAR();
-            }
-
-            if (data.nextFix) {
-                this.fms.skipToFix(data.nextFix);
-            }
         },
 
         pushHistory: function() {
