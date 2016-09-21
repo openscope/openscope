@@ -119,7 +119,13 @@ function ui_log(message) {
 }
 
 function ui_airport_open() {
-    $(SELECTORS.DOM_SELECTORS.AIRPORT).removeClass(SELECTORS.CLASSNAMES.ACTIVE);
+    const $previousActiveAirport = $(AIRPORT_LIST).find(SELECTORS.CLASSNAMES.ACTIVE);
+
+    // Remove the active class from a no-longer-selected airport in the list.
+    if ($previousActiveAirport.length !== 0) {
+        $previousActiveAirport.removeClass(SELECTORS.CLASSNAMES.ACTIVE);
+    }
+
     $('.airport.icao-' + airport_get().icao.toLowerCase()).addClass(SELECTORS.CLASSNAMES.ACTIVE);
 
     $(SELECTORS.DOM_SELECTORS.AIRPORT_SWITCH).addClass(SELECTORS.CLASSNAMES.OPEN);
