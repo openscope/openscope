@@ -1163,7 +1163,7 @@ function point_in_poly(point, vs) {
  * Converts an 'area' to a 'poly'
  */
 function area_to_poly(area) {
-    return _map(area.poly, (v) => [v.position]);
+    return $.map(area.poly, (v) => [v.position]);
 }
 
 /**
