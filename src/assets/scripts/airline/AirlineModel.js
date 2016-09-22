@@ -1,20 +1,26 @@
 /* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand */
+import _get from 'lodash/get';
 import _forEach from 'lodash/forEach';
 
 /**
  * An aircrcraft operating agency
  *
- * @class Airline
+ * @class AirlineModel
  */
-export default class Airline {
+export default class AirlineModel {
     /**
      * Create new airline
+     *
+     * @constructor
+     * @for AirlineModel
+     * @param icao {string}
+     * @param options {object}
      */
     constructor(icao, options) {
         // ICAO airline designation
         this.icao = icao;
         // Agency name
-        this.name = 'Default airline';
+        this.name = _get(options, 'name', 'Default airline');
         // Radio callsign
         this.callsign = 'Default';
         // Parameters for flight number generation
@@ -34,6 +40,7 @@ export default class Airline {
         this.loaded = false;
         this.priorityLoad = false;
         this._pendingAircraft = [];
+
         this.parse(options);
 
         if (options.url) {
@@ -43,16 +50,12 @@ export default class Airline {
 
     /**
      * Initialize object from data
+     *
+     * @for AirlineModel
+     * @method parse
+     * @param data {object}
      */
     parse(data) {
-        if (data.icao) {
-            this.icao = data.icao;
-        }
-
-        if (data.name) {
-            this.name = data.name;
-        }
-
         if (data.callsign) {
             this.callsign = data.callsign.name;
 
@@ -78,6 +81,10 @@ export default class Airline {
 
     /**
      * Load the data for this airline
+     *
+     * @for AirlineModel
+     * @method load
+     * @param url {string}
      */
     load(url) {
         this._url = url;
@@ -90,30 +97,49 @@ export default class Airline {
             url: url,
             immediate: this.priorityLoad
         })
-        .done(function(data) {
-            this.parse(data);
+        .done((response) => this.onLoadSuccess(response))
+        .fail((...args) => this.onLoadError(...args));
+    }
 
-            this.loading = false;
-            this.loaded = true;
+    /**
+     * @for AirlineModel
+     * @method onLoadSuccess
+     * @param response {object}
+     */
+    onLoadSuccess(response) {
+        this.parse(response);
 
-            this.validateFleets();
-            this._generatePendingAircraft();
-        }.bind(this))
-        .fail(function(jqXHR, textStatus, errorThrown) {
-            this.loading = false;
-            this._pendingAircraft = [];
+        this.loading = false;
+        this.loaded = true;
 
-            console.error(`Unable to load airline/${this.icao}: ${textStatus}`);
-        }.bind(this));
+        this.validateFleets();
+        this._generatePendingAircraft();
+    }
+
+    /**
+     * @for AirlineModel
+     * @method onLoadError
+     * @param textStatus {string}
+     */
+    onLoadError({ textStatus }) {
+        this.loading = false;
+        this._pendingAircraft = [];
+
+        console.error(`Unable to load airline/${this.icao}: ${textStatus}`);
     }
 
     /**
      * Return a random ICAO aircraft designator from the given fleet
      *
      * If no fleet is specified the default fleet is used
+     *
+     * @for AirlineModel
+     * @method chooseAircraft
+     * @param fleet
+     * @return
      */
-    chooseAircraft(fleet) {
-        if (!fleet) {
+    chooseAircraft(fleet = '') {
+        if (fleet === '') {
             fleet = 'default';
         }
 
@@ -129,34 +155,43 @@ export default class Airline {
 
     /**
      * Create an aircraft
+     *
+     * @for AirlineModel
+     * @method generateAircraft
+     * @param options {object}
+     * @return
      */
-    generateAircraft(options) {
-        if (!this.loaded) {
-            if (this.loading) {
-                this._pendingAircraft.push(options);
+     generateAircraft(options) {
+         if (!this.loaded) {
+             if (this.loading) {
+                 this._pendingAircraft.push(options);
 
-                if (!this.priorityLoad) {
-                    zlsa.atc.loadAsset({
-                        url: this._url,
-                        immediate: true
-                    });
+                 if (!this.priorityLoad) {
+                     zlsa.atc.loadAsset({
+                         url: this._url,
+                         immediate: true
+                     });
 
-                    this.priorityLoad = true;
-                }
+                     this.priorityLoad = true;
+                 }
 
-                return true;
-            } else {
-                console.warn(`Unable to spawn aircraft for airline/ ${this.icao} as loading failed`);
+                 return true;
+             } else {
+                 console.warn(`Unable to spawn aircraft for airline/ ${this.icao} as loading failed`);
 
-                return false;
-            }
-        }
+                 return false;
+             }
+         }
 
-        return this._generateAircraft(options);
-    }
+         return this._generateAircraft(options);
+     }
 
     /**
      * Create a flight number/identifier
+     *
+     * @for AirlineModel
+     * @method generateFlightNumber
+     * @return flightNumber {string}
      */
     generateFlightNumber () {
         const flightNumberLength = this.flightNumberGeneration.length;
@@ -187,6 +222,9 @@ export default class Airline {
 
     /**
      * Checks all fleets for valid aircraft identifiers and log errors
+     *
+     * @for AirlineModel
+     * @method validateFleets
      */
     validateFleets () {
         for (const f in this.fleets) {
@@ -201,6 +239,12 @@ export default class Airline {
         }
     }
 
+    /**
+     * @for AirlineModel
+     * @method _generateAircraft
+     * @param options {object}
+     * @return {function}
+     */
     _generateAircraft(options) {
         if (!options.callsign) {
             options.callsign = aircraft_callsign_new(options.airline);
@@ -219,6 +263,10 @@ export default class Airline {
 
     /**
      * Generate aircraft which were queued while the model loaded
+     *
+     * @for AirlineModel
+     * @method _generatePendingAircraft
+     * @private
      */
     _generatePendingAircraft() {
         _forEach(this._pendingAircraft, (aircraftOptions) => {
@@ -228,36 +276,3 @@ export default class Airline {
         this._pendingAircraft = null;
     }
 }
-
-/**
- * @function airline_init_pre
- */
-const airline_init_pre = () => {
-    prop.airline = {};
-    prop.airline.airlines = {};
-};
-
-/**
- * @function airline_get
- * @param  {string} icao
- */
-const airline_get = (icao) => {
-    icao = icao.toLowerCase();
-
-    if (!(icao in prop.airline.airlines)) {
-        const airline = new Airline(
-            icao,
-            {
-                url: `assets/airlines/${icao}.json`
-            }
-        );
-
-        prop.airline.airlines[icao] = airline;
-    }
-
-    return prop.airline.airlines[icao];
-};
-
-// TODO: temporarily exposed to to maintain previous interface.
-window.airline_init_pre = airline_init_pre;
-window.airline_get = airline_get;

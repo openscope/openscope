@@ -30,11 +30,11 @@ gulp.task('build', function() {
 gulp.task('dist', function() {
     runSequence(
         'clean:dist',
-        ['build:scripts', 'build:styles'],
+        ['build:scripts', 'build:styles']
         // 'copy:data',
         // 'fonts',
         // 'minify-images',
-        'lint:scripts'
+        // 'lint:scripts'
     );
 });
 gulp.task('watch', ['watch:scripts', 'watch:styles']);

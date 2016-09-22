@@ -3,6 +3,7 @@ import $ from 'jquery';
 import peg from 'pegjs';
 import ContentQueue from './contentQueue/ContentQueue';
 import LoadingView from './LoadingView';
+import AirlineController from './airline/AirlineController';
 import { speech_init } from './speech';
 import { time, calculateDeltaTime } from './utilities/timeHelpers';
 import { LOG } from './constants/logLevel';
@@ -24,7 +25,7 @@ const tutorial = require('./tutorial/tutorial');
 const base = require('./base');
 const game = require('./game/game');
 const input = require('./input');
-const airline = require('./airline/airline');
+
 const aircraft = require('./aircraft/aircraft');
 const airport = require('./airport/airport');
 const canvas = require('./canvas');
@@ -59,8 +60,10 @@ export default class App {
         this.$element = $element;
         this.loadingView = null;
         this.contentQueue = null;
+        this.airlineController = null;
 
         window.prop = prop;
+
         this.prop = prop;
         this.prop.complete = false;
         this.prop.temp = 'nothing here';
@@ -94,6 +97,7 @@ export default class App {
     setupChildren() {
         this.loadingView = new LoadingView();
         this.contentQueue = new ContentQueue(this.loadingView);
+        this.airlineController = new AirlineController();
 
         return this;
     }
@@ -104,6 +108,7 @@ export default class App {
      */
     enable() {
         zlsa.atc.loadAsset = (options) => this.contentQueue.add(options);
+        window.airline_get = this.airlineController.airline_get;
 
         // This is the old entry point for the application. We include this here now so that
         // the app will run. This is a temporary implementation and should be refactored immediately.
@@ -154,6 +159,7 @@ export default class App {
         this.$element = null;
         this.contentQueue = null;
         this.loadingView = null;
+        this.airlineController = null;
 
         return this;
     }
@@ -166,7 +172,8 @@ export default class App {
         tutorial_init_pre();
         game_init_pre();
         input_init_pre();
-        airline_init_pre();
+
+        this.airlineController.init_pre();
         aircraft_init_pre();
         airport_init_pre();
         canvas_init_pre();
@@ -183,6 +190,7 @@ export default class App {
         speech_init();
         tutorial_init();
         input_init();
+
         aircraft_init();
         airport_init();
         canvas_init();
