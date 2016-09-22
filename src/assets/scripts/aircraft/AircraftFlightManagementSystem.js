@@ -617,7 +617,7 @@ const AircraftFlightManagementSystem = Fiber.extend(function() {
          * Invokes flySID() for the SID in the flightplan (fms.fp.route)
          */
         clearedAsFiled: function() {
-            const retval = this.my_aircraft.runSID([aircraft_get(this.my_aircrafts_eid).destination]);
+            const retval = this.my_aircraft.runSID([window.aircraftController.aircraft_get(this.my_aircrafts_eid).destination]);
             // TODO: this could be the return for this method
             const ok = !(Array.isArray(retval) && retval[0] === 'fail');
 
@@ -887,7 +887,7 @@ const AircraftFlightManagementSystem = Fiber.extend(function() {
          * Return this fms's parent aircraft
          */
         my_aircraft: function() {
-            return aircraft_get(this.my_aircrafts_eid);
+            return window.aircraftController.aircraft_get(this.my_aircrafts_eid);
         },
 
         /**

@@ -38,7 +38,7 @@ export default class DepartureBase {
 
         // Pre-load the airlines
         $.each(this.airlines, (i, data) => {
-            airline_get(data[0].split('/')[0]);
+            window.airlineController.airline_get(data[0].split('/')[0]);
         });
     }
 
@@ -82,7 +82,7 @@ export default class DepartureBase {
             airline = airline.split('/', 2)[0];
         }
 
-        aircraft_new({
+        window.aircraftController.aircraft_new({
             airline,
             fleet,
             message,

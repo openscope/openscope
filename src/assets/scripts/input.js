@@ -502,7 +502,7 @@ function input_init() {
             let position = [event.pageX, -event.pageY];
             position[0] -= prop.canvas.size.width / 2;
             position[1] += prop.canvas.size.height / 2;
-            const nearest = aircraft_get_nearest([
+            const nearest = window.aircraftController.aircraft_get_nearest([
                 px_to_km(position[0] - prop.canvas.panX),
                 px_to_km(position[1] + prop.canvas.panY)
             ]);

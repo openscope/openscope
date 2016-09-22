@@ -424,7 +424,7 @@ const Aircraft = Fiber.extend(function() {
         },
 
         getAirline: function() {
-            return airline_get(this.airline);
+            return window.airlineController.airline_get(this.airline);
         },
 
         getRadioCallsign: function(condensed) {
@@ -444,7 +444,7 @@ const Aircraft = Fiber.extend(function() {
                 callsign = callsign.substr(callsign.length - length);
             }
 
-            let cs = airline_get(this.airline).callsign;
+            let cs = window.airlineController.airline_get(this.airline).callsign;
 
             if (cs === 'November') {
                 cs += ` ${radio_spellOut(callsign)} ${heavy}`;
@@ -1397,7 +1397,7 @@ const Aircraft = Fiber.extend(function() {
         },
 
         runDelete: function() {
-            aircraft_remove(this);
+            window.aircraftController.aircraft_remove(this);
         },
 
         cancelFix: function() {
@@ -1802,7 +1802,7 @@ const Aircraft = Fiber.extend(function() {
 
                 if ((distance_to_fix < 1) ||
                     ((distance_to_fix < 10) &&
-                    (distance_to_fix < aircraft_turn_initiation_distance(this, fix)))
+                    (distance_to_fix < window.aircraftController.aircraft_turn_initiation_distance(this, fix)))
                 ) {
                     // if there are more waypoints available
                     if (!this.fms.atLastWaypoint()) {

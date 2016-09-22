@@ -23,7 +23,7 @@ const airport_set = (icao) => {
 
     if (prop.airport.current) {
         prop.airport.current.unset();
-        aircraft_remove_all();
+        window.aircraftController.aircraft_remove_all();
     }
 
     const newAirport = prop.airport.airports[icao];

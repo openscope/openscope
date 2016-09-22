@@ -4,6 +4,7 @@ import peg from 'pegjs';
 import ContentQueue from './contentQueue/ContentQueue';
 import LoadingView from './LoadingView';
 import AirlineController from './airline/AirlineController';
+import AircraftController from './aircraft/AircraftController';
 import { speech_init } from './speech';
 import { time, calculateDeltaTime } from './utilities/timeHelpers';
 import { LOG } from './constants/logLevel';
@@ -26,7 +27,7 @@ const base = require('./base');
 const game = require('./game/game');
 const input = require('./input');
 
-const aircraft = require('./aircraft/aircraft');
+// const aircraft = require('./aircraft/aircraft');
 const airport = require('./airport/airport');
 const canvas = require('./canvas');
 const ui = require('./ui');
@@ -61,6 +62,7 @@ export default class App {
         this.loadingView = null;
         this.contentQueue = null;
         this.airlineController = null;
+        this.aircraftController = null;
 
         window.prop = prop;
 
@@ -98,6 +100,7 @@ export default class App {
         this.loadingView = new LoadingView();
         this.contentQueue = new ContentQueue(this.loadingView);
         this.airlineController = new AirlineController();
+        this.aircraftController = new AircraftController();
 
         return this;
     }
@@ -108,7 +111,8 @@ export default class App {
      */
     enable() {
         zlsa.atc.loadAsset = (options) => this.contentQueue.add(options);
-        window.airline_get = this.airlineController.airline_get;
+        window.airlineController = this.airlineController;
+        window.aircraftController = this.aircraftController;
 
         // This is the old entry point for the application. We include this here now so that
         // the app will run. This is a temporary implementation and should be refactored immediately.
@@ -160,6 +164,7 @@ export default class App {
         this.contentQueue = null;
         this.loadingView = null;
         this.airlineController = null;
+        this.aircraftController = null;
 
         return this;
     }
@@ -174,7 +179,8 @@ export default class App {
         input_init_pre();
 
         this.airlineController.init_pre();
-        aircraft_init_pre();
+        this.aircraftController.init_pre();
+
         airport_init_pre();
         canvas_init_pre();
         ui_init_pre();
@@ -191,7 +197,6 @@ export default class App {
         tutorial_init();
         input_init();
 
-        aircraft_init();
         airport_init();
         canvas_init();
         ui_init();
@@ -299,7 +304,7 @@ export default class App {
         requestAnimationFrame(() => this.update());
 
         this.updatePre();
-        aircraft_update();
+        this.aircraftController.aircraft_update();
         this.updatePost();
 
         this.prop.time.frames += 1;

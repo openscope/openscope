@@ -1192,25 +1192,6 @@ function parseElevation(ele) {
     return parseFloat(alt[2]) / (alt[4] == 'm' ? 0.3048 : 1);
 }
 
-// adjust all aircraft's eid values
-function update_aircraft_eids() {
-    for (let i = 0; i < prop.aircraft.list.length; i++) {
-        // update eid in aircraft
-        prop.aircraft.list[i].eid = i;
-        // update eid in aircraft's fms
-        prop.aircraft.list[i].fms.my_aircrafts_eid = i;
-    }
-}
-
-// Remove the specified aircraft and perform cleanup operations
-function aircraft_remove(aircraft) {
-    prop.aircraft.callsigns.splice(prop.aircraft.callsigns.indexOf(aircraft.callsign), 1);
-    prop.aircraft.list.splice(prop.aircraft.list.indexOf(aircraft), 1);
-
-    update_aircraft_eids();
-    aircraft.cleanup();
-}
-
 window.clone = clone;
 window.trange = trange;
 window.crange = crange;
@@ -1268,5 +1249,3 @@ window.area_to_poly = area_to_poly;
 window.point_in_area = point_in_area;
 window.endsWith = endsWith;
 window.parseElevation = parseElevation;
-window.update_aircraft_eids = update_aircraft_eids;
-window.aircraft_remove = aircraft_remove;

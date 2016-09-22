@@ -73,7 +73,7 @@ export default class ArrivalBase {
 
         // Pre-load the airlines
         $.each(this.airlines, (i, data) => {
-            airline_get(data[0].split('/')[0]);
+            window.airlineController.airline_get(data[0].split('/')[0]);
         });
     }
 
@@ -177,7 +177,7 @@ export default class ArrivalBase {
             const { heading, pos, nextFix } = spawn_positions[i];
             const { icao, position, magnetic_north } = airport_get();
 
-            aircraft_new({
+            window.aircraftController.aircraft_new({
                 category: 'arrival',
                 destination: icao,
                 airline: airline,
@@ -253,7 +253,7 @@ export default class ArrivalBase {
             airline = airline.split('/')[0];
         }
 
-        aircraft_new({
+        window.aircraftController.aircraft_new({
             category: 'arrival',
             destination: airport_get().icao,
             airline: airline,

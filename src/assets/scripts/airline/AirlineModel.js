@@ -230,7 +230,7 @@ export default class AirlineModel {
         for (const f in this.fleets) {
             for (let j = 0; j < this.fleets[f].length; j++) {
                 // Preload the aircraft model
-                aircraft_model_get(this.fleets[f][j][0]);
+                window.aircraftController.aircraft_model_get(this.fleets[f][j][0]);
 
                 if (typeof this.fleets[f][j][1] !== 'number') {
                     console.warn(`Airline ${this.icao.toUpperCase()} uses non numeric weight for aircraft ${this.fleets[f][j][0]}, expect errors`);
@@ -247,14 +247,14 @@ export default class AirlineModel {
      */
     _generateAircraft(options) {
         if (!options.callsign) {
-            options.callsign = aircraft_callsign_new(options.airline);
+            options.callsign = window.aircraftController.aircraft_callsign_new(options.airline);
         }
 
         if (!options.icao) {
             options.icao = this.chooseAircraft(options.fleet);
         }
 
-        const model = aircraft_model_get(options.icao.toLowerCase());
+        const model = window.aircraftController.aircraft_model_get(options.icao.toLowerCase());
 
         return model.generateAircraft(options);
         // FIXME: this block is unreachable, is it needed?
