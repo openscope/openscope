@@ -10,7 +10,8 @@
     "test": "nyc --require babel-core/register ava --serial --concurrency=5",
     "build": "gulp dist && npm run test",
     "report": "nyc report --reporter=cobertura  --reporter=lcov",
-    "coverage": "npm run test && npm run report"
+    "coverage": "npm run test && npm run report",
+    "lint": "eslint src/"
   },
   "repository": {
     "type": "git",

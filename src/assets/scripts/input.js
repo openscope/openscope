@@ -121,7 +121,7 @@ function input_keydown(e) {
             break;
 
         case 39:  // right arrow
-            //shortKeys in use
+            // shortKeys in use
             if (prop.game.option.get('controlMethod') === 'arrows') {
                 $command.val($command.val() + ' \u2BA3');
                 e.preventDefault();
@@ -130,8 +130,8 @@ function input_keydown(e) {
 
             break;
 
-        case 40:  //down arrow
-            if (prop.game.option.get('controlMethod') === 'arrows') { //shortKeys in use
+        case 40:  // down arrow
+            if (prop.game.option.get('controlMethod') === 'arrows') { // shortKeys in use
                 $command.val($command.val() + ' \u2B63');
                 e.preventDefault();
                 input_change();
@@ -143,7 +143,7 @@ function input_keydown(e) {
 
             break;
 
-        case 106: //numpad *
+        case 106: // numpad *
             $command.val($command.val() + ' \u2B50');
             e.preventDefault();
             input_change();
@@ -164,7 +164,7 @@ function input_keydown(e) {
 
             break;
 
-        case 109: //numpad -
+        case 109: // numpad -
             $command.val($command.val() + ' -');
             e.preventDefault();
             input_change();
@@ -178,7 +178,7 @@ function input_keydown(e) {
 
             break;
 
-        case 111: //numpad /
+        case 111: // numpad /
             $command.val($command.val() + ' takeoff');
             e.preventDefault();
             input_change();

@@ -32,8 +32,7 @@ export default class ArrivalWave extends ArrivalBase {
         this.period = 1800;   // 30 minute cycle
         this.variation = 0;   // amount to deviate from the prescribed frequency
 
-        base.init.call(this, airport, options);
-        base.parse.call(this, options);
+        super.parse(options);
         this.parse(options);
         this.clampSpawnRate(5.5); // minimum of 5.5nm entrail
     }
@@ -103,7 +102,7 @@ export default class ArrivalWave extends ArrivalBase {
 
     start() {
         const delay = random(0, 3600 / this.frequency);
-        
+
         this.cycleStart = prop.game.time - this.offset + delay;
         this.timeout = game_timeout(this.spawnAircraft, delay, this, [true, true]);
     }

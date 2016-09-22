@@ -16,8 +16,6 @@ export default class DepartureCyclic extends DepartureBase {
         this.period = 60 * 60;
         this.offset = -15 * 60; // Start at the peak
 
-        base.init.call(this, airport, options);
-
         this._amplitude = 3600 / this.frequency / 2;
         this._average = 3600 / this.frequency;
     }
@@ -29,7 +27,7 @@ export default class DepartureCyclic extends DepartureBase {
      * offset: {integer} Optionally specify when the cycle peaks in minutes
      */
     parse(options) {
-        base.parse.call(this, options);
+        super.parse(options);
 
         if (options.period) {
             this.period = options.period * 60;

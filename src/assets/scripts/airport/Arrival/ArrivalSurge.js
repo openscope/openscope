@@ -31,8 +31,7 @@ export default class ArrivalSurge extends ArrivalBase {
         this.acph_up = 0;     // arrival rate when "in the surge"
         this.acph_dn = 0;     // arrival rate when not "in the surge"
 
-        base.init.call(this, airport, options);
-        base.parse.call(this, options);
+        super.parse(options);
         this.parse(options);
         this.shapeTheSurge();
     }

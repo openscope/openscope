@@ -24,8 +24,7 @@ export default class ArrivalCyclic extends ArrivalBase {
         this.period = 1800;   // 30 minute cycle
         this.variation = 0;   // amount to deviate from the prescribed frequency
 
-        base.init.call(this, airport, options);
-        base.parse.call(this, options);
+        super.parse(options);
         this.parse(options);
     }
 

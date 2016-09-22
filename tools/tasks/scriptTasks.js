@@ -45,14 +45,13 @@ module.exports = function(gulp, config) {
             .pipe(eslint({
                 useEslintrc: true
             }))
-            .pipe(eslint.result(function (result) {
-                    t.push([
-                        result.filePath.split('scripts')[1],
-                        gutil.colors.red(result.errorCount),
-                        gutil.colors.yellow(result.warningCount)
-                    ]);
-                })
-            )
+            .pipe(eslint.result((result) => {
+                t.push([
+                    result.filePath.split('scripts')[1],
+                    gutil.colors.red(result.errorCount),
+                    gutil.colors.yellow(result.warningCount)
+                ]);
+            }))
             .pipe(eslint.results(results => {
                 // Add a footer to the results table
                 t.push([
@@ -75,7 +74,6 @@ module.exports = function(gulp, config) {
     ////////////////////////////////////////////////////////////////////
     // TASKS
     ////////////////////////////////////////////////////////////////////
-
     gulp.task('build:scripts', ['clean:build:scripts', 'babel']);
 
     gulp.task('watch:scripts', function() {
