@@ -535,11 +535,14 @@ export default class AirportInstance {
             return null;
         }
 
-        if (Object.keys(airport_get().fixes).indexOf(name.toUpperCase()) === -1) {
+        const fixes = window.airportController.airport_get().fixes;
+
+        // FIXME: simplify this
+        if (Object.keys(fixes).indexOf(name.toUpperCase()) === -1) {
             return;
         }
 
-        return airport_get().fixes[name.toUpperCase()].position;
+        return fixes[name.toUpperCase()].position;
     }
 
     getSID(id, exit, rwy) {

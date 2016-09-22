@@ -157,7 +157,7 @@ function canvas_draw_runways(cc) {
     cc.fillStyle = 'rgba(255, 255, 255, 0.4)';
     cc.lineWidth = 4;
 
-    const airport = airport_get();
+    const airport = window.airportController.airport_get();
 
     // Extended Centerlines
     for (let i = 0; i < airport.runways.length; i++) {
@@ -185,7 +185,7 @@ function canvas_draw_runway_labels(cc) {
 
     cc.fillStyle = 'rgba(255, 255, 255, 0.8)';
 
-    const airport = airport_get();
+    const airport = window.airportController.airport_get();
     for (let i = 0; i < airport.runways.length; i++) {
         cc.save();
         canvas_draw_runway_label(cc, airport.runways[i][0]);
@@ -243,7 +243,7 @@ function canvas_draw_fixes(cc) {
     cc.lineJoin = 'round';
     cc.font = BASE_CANVAS_FONT;
 
-    const airport = airport_get();
+    const airport = window.airportController.airport_get();
     for (const i in airport.real_fixes) {
         cc.save();
         cc.translate(
@@ -283,7 +283,7 @@ function canvas_draw_sids(cc) {
     cc.setLineDash([1, 10]);
     cc.font = 'italic 14px monoOne, monospace';
 
-    const airport = airport_get();
+    const airport = window.airportController.airport_get();
 
     for (const s in airport.sids) {
         let write_sid_name = true;
@@ -343,7 +343,7 @@ function canvas_draw_sids(cc) {
 
 function canvas_draw_separation_indicator(cc, aircraft) {
     // Draw a trailing indicator 2.5 NM (4.6km) behind landing aircraft to help with traffic spacing
-    const rwy = airport_get().getRunway(aircraft.fms.currentWaypoint().runway);
+    const rwy = window.airportController.airport_get().getRunway(aircraft.fms.currentWaypoint().runway);
 
     if (!rwy) {
         return;
@@ -395,7 +395,7 @@ function canvas_draw_aircraft_departure_window(cc, aircraft) {
     cc.arc(
         prop.canvas.panX,
         prop.canvas.panY,
-        km_to_px(airport_get().ctr_radius),
+        km_to_px(window.airportController.airport_get().ctr_radius),
         angle - 0.08726,
         angle + 0.08726);
     cc.stroke();
@@ -876,10 +876,13 @@ function canvas_draw_compass(cc) {
         round(prop.canvas.size.height / 2)
     );
 
+    const airport = window.airportController.airport_get();
     const size = 80;
     const size2 = size / 2;
     const padding = 16;
     const dot = 16;
+    let windspeed_line;
+    let highwind;
 
     // Shift compass location
     cc.translate(-size2 - padding, -size2 - padding);
@@ -903,26 +906,23 @@ function canvas_draw_compass(cc) {
     cc.textAlign = 'center';
     cc.textBaseline = 'center';
     cc.font = '9px monoOne, monospace';
-    cc.fillText(airport_get().wind.speed, 0, 3.8);
+    cc.fillText(airport.wind.speed, 0, 3.8);
     cc.font = 'bold 10px monoOne, monospace';
 
     // Wind line
-    let windspeed_line;
-    let highwind;
-
-    if (airport_get().wind.speed > 8) {
-        windspeed_line = airport_get().wind.speed / 2;
+    if (airport.wind.speed > 8) {
+        windspeed_line = airport.wind.speed / 2;
         highwind = true;
     } else {
-        windspeed_line = airport_get().wind.speed;
+        windspeed_line = airport.wind.speed;
         highwind = false;
     }
 
     cc.save();
-    cc.translate(-dot / 2 * sin(airport_get().wind.angle), dot / 2 * cos(airport_get().wind.angle));
+    cc.translate(-dot / 2 * sin(airport.wind.angle), dot / 2 * cos(airport.wind.angle));
     cc.beginPath();
     cc.moveTo(0, 0);
-    cc.rotate(airport_get().wind.angle);
+    cc.rotate(airport.wind.angle);
     cc.lineTo(0, crange(0, windspeed_line, 15, 0, size2 - dot));
 
     // Color wind line red for high-wind
@@ -963,7 +963,7 @@ function canvas_draw_ctr(cc) {
     cc.fillStyle = 'rgba(200, 255, 200, 0.02)';
     cc.strokeStyle = 'rgba(200, 255, 200, 0.25)';
     cc.beginPath();
-    cc.arc(0, 0, airport_get().ctr_radius * prop.ui.scale, 0, tau());
+    cc.arc(0, 0, window.airportController.airport_get().ctr_radius * prop.ui.scale, 0, tau());
     cc.fill();
     cc.stroke();
 }
@@ -972,7 +972,8 @@ function canvas_draw_ctr(cc) {
  * Draw polygonal airspace border
  */
 function canvas_draw_airspace_border(cc) {
-    if (!airport_get().airspace) {
+    const airport = window.airportController.airport_get();
+    if (!airport.airspace) {
         canvas_draw_ctr(cc);
     }
 
@@ -981,8 +982,8 @@ function canvas_draw_airspace_border(cc) {
     cc.fillStyle = 'rgba(200, 255, 200, 0.02)';
 
     // draw airspace
-    for (let i = 0; i < airport_get().airspace.length; i++) {
-        const poly = $.map(airport_get().perimeter.poly, (v) => {
+    for (let i = 0; i < airport.airspace.length; i++) {
+        const poly = $.map(airport.perimeter.poly, (v) => {
             // TODO: this seems strange. are we returning a single-index array everytime? what does v.position look like?
             return [v.position];
         });
@@ -993,10 +994,10 @@ function canvas_draw_airspace_border(cc) {
 }
 
 function canvas_draw_fancy_rings(cc, fix_origin, fix1, fix2) {
-    const arpt = airport_get();
-    const origin = arpt.getFix(fix_origin);
-    const f1 = arpt.getFix(fix1);
-    const f2 = arpt.getFix(fix2);
+    const airport = window.airportController.airport_get();
+    const origin = airport.getFix(fix_origin);
+    const f1 = airport.getFix(fix1);
+    const f2 = airport.getFix(fix2);
     const minDist = Math.min(distance2d(origin, f1), distance2d(origin, f2));
     const halfPI = Math.PI / 2;
     const extend_ring = degreesToRadians(10);
@@ -1032,11 +1033,12 @@ function canvas_draw_engm_range_rings(cc) {
 }
 
 function canvas_draw_range_rings(cc) {
+    const airport = window.airportController.airport_get();
     // convert input param from nm to km
-    const rangeRingRadius = km(airport_get().rr_radius_nm);
+    const rangeRingRadius = km(airport.rr_radius_nm);
 
     // Fill up airport's ctr_radius with rings of the specified radius
-    for (let i = 1; i * rangeRingRadius < airport_get().ctr_radius; i++) {
+    for (let i = 1; i * rangeRingRadius < airport.ctr_radius; i++) {
         cc.beginPath();
         cc.linewidth = 1;
         cc.arc(0, 0, rangeRingRadius * prop.ui.scale * i, 0, tau());
@@ -1070,7 +1072,7 @@ function canvas_draw_terrain(cc) {
     cc.lineWidth = _clamp(0.5, (prop.ui.scale / 10), 2);
     cc.lineJoin = 'round';
 
-    const airport = airport_get();
+    const airport = window.airportController.airport_get();
     let max_elevation = 0;
 
     cc.save();
@@ -1165,7 +1167,7 @@ function canvas_draw_restricted(cc) {
     cc.lineJoin = 'round';
     cc.font = BASE_CANVAS_FONT;
 
-    const airport = airport_get();
+    const airport = window.airportController.airport_get();
 
     cc.save();
     cc.translate(prop.canvas.panX, prop.canvas.panY);
@@ -1195,7 +1197,7 @@ function canvas_draw_restricted(cc) {
 }
 
 function canvas_draw_videoMap(cc) {
-    if (!airport_get().hasOwnProperty('maps')) {
+    if (!window.airportController.airport_get().hasOwnProperty('maps')) {
         return;
     }
 
@@ -1204,7 +1206,7 @@ function canvas_draw_videoMap(cc) {
     cc.lineJoin = 'round';
     cc.font = BASE_CANVAS_FONT;
 
-    const airport = airport_get();
+    const airport = window.airportController.airport_get();
     const map = airport.maps.base;
 
     cc.save();
@@ -1238,7 +1240,7 @@ function canvas_draw_crosshairs(cc) {
 }
 
 window.canvas_update_post = function canvas_update_post() {
-    let elapsed = game_time() - window.airport_get().start;
+    let elapsed = game_time() - window.window.airportController.airport_get().start;
     let alpha = crange(0.1, elapsed, 0.4, 0, 1);
     let framestep = Math.round(crange(1, prop.game.speedup, 10, 30, 1));
 
@@ -1281,13 +1283,13 @@ window.canvas_update_post = function canvas_update_post() {
         );
         // TODO: this is incorrect usage of a ternary. ternaries should be used for a ssignment not function calls.
         // draw airspace border
-        airport_get().airspace ? canvas_draw_airspace_border(cc) : canvas_draw_ctr(cc);
+        window.airportController.airport_get().airspace ? canvas_draw_airspace_border(cc) : canvas_draw_ctr(cc);
 
         canvas_draw_range_rings(cc);
         cc.restore();
 
         // Special markings for ENGM point merge
-        if ( airport_get().icao === 'ENGM' ) {
+        if (window.airportController.airport_get().icao === 'ENGM') {
             cc.save();
             cc.translate(round(prop.canvas.size.width / 2), round(prop.canvas.size.height / 2));
             canvas_draw_engm_range_rings(cc);

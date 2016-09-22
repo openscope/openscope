@@ -275,7 +275,7 @@ function tutorial_init_pre() {
             }
 
             return t.replace('{CALLSIGN}', prop.aircraft.list[0].getCallsign())
-                    .replace('{INIT_ALT}', airport_get().initial_alt)
+                    .replace('{INIT_ALT}', window.airportController.airport_get().initial_alt)
                     .replace('{SID_NAME}', prop.aircraft.list[0].destination);
         },
         side: 'left',

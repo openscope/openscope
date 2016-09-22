@@ -95,7 +95,7 @@ export default class AircraftConflict {
         this.checkRunwayCollision();
 
         // Ignore aircraft below about 1000 feet
-        const airportElevation = airport_get().elevation;
+        const airportElevation = window.airportController.airport_get().elevation;
         if (((this.aircraft[0].altitude - airportElevation) < 990) ||
             ((this.aircraft[1].altitude - airportElevation) < 990)) {
             return;
@@ -141,8 +141,8 @@ export default class AircraftConflict {
             this.aircraft[1].hit = true;
 
             // If either are in runway queue, remove them from it
-            for (const i in airport_get().runways) {
-                const runway = airport_get().runways[i];
+            for (const i in window.airportController.airport_get().runways) {
+                const runway = window.airportController.airport_get().runways[i];
 
                 // Primary End of Runway
                 runway[0].removeQueue(this.aircraft[0], true);
@@ -161,7 +161,7 @@ export default class AircraftConflict {
     checkRunwayCollision() {
         // Check if the aircraft are on a potential collision course
         // on the runway
-        const airport = airport_get();
+        const airport = window.airportController.airport_get();
 
         // TODO: this logic block needs its own method.
         // Check for the same runway, different ends and under about 6 miles
@@ -210,7 +210,7 @@ export default class AircraftConflict {
 
         // Established on precision guided approaches && both are following different instrument approaches
         if ((a1.isPrecisionGuided() && a2.isPrecisionGuided()) && (a1.rwy_arr !== a2.rwy_arr)) {
-            const runwayRelationship = airport_get().metadata.rwy[a1.rwy_arr][a2.rwy_arr];
+            const runwayRelationship = window.airportController.airport_get().metadata.rwy[a1.rwy_arr][a2.rwy_arr];
 
             // Determine applicable lateral separation minima for conducting
             // parallel simultaneous dependent approaches on these runways:

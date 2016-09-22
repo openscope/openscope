@@ -174,9 +174,9 @@ const Aircraft = Fiber.extend(function() {
 
             // Initial Runway Assignment
             if (options.category === FLIGHT_CATEGORY.ARRIVAL) {
-                this.setArrivalRunway(airport_get().runway);
+                this.setArrivalRunway(window.airportController.airport_get().runway);
             } else if (options.category === FLIGHT_CATEGORY.DEPARTURE) {
-                this.setDepartureRunway(airport_get().runway);
+                this.setDepartureRunway(window.airportController.airport_get().runway);
             }
 
             this.takeoffTime = (options.category === FLIGHT_CATEGORY.ARRIVAL) ? game_time() : null;
@@ -202,13 +202,13 @@ const Aircraft = Fiber.extend(function() {
                 }
 
                 this.destination = data.destination;
-                this.setArrivalRunway(airport_get(this.destination).runway);
+                this.setArrivalRunway(window.airportController.airport_get(this.destination).runway);
             } else if (this.category === FLIGHT_CATEGORY.DEPARTURE && this.isLanded()) {
                 this.speed = 0;
                 this.mode = FLIGHT_MODES.APRON;
                 this.destination = data.destination;
 
-                this.setDepartureRunway(airport_get().runway)
+                this.setDepartureRunway(window.airportController.airport_get().runway)
             }
 
             if (data.heading) {
@@ -269,7 +269,7 @@ const Aircraft = Fiber.extend(function() {
 
             if (l.type === 'sid') {
                 const a = _map(l.waypoints, (v) => v.altitude);
-                const cvs = !a.every((v) => v === airport_get().initial_alt);
+                const cvs = !a.every((v) => v === window.airportController.airport_get().initial_alt);
                 this.fms.followSID(l.route);
 
                 if (cvs) {
@@ -778,14 +778,14 @@ const Aircraft = Fiber.extend(function() {
             }
 
 
-            let ceiling = airport_get().ctr_ceiling;
+            let ceiling = window.airportController.airport_get().ctr_ceiling;
             if (prop.game.option.get('softCeiling') === 'yes') {
                 ceiling += 1000;
             }
 
             this.fms.setAll({
                 // TODO: enumerate the magic numbers
-                altitude: _clamp(round(airport_get().elevation / 100) * 100 + 1000, altitude, ceiling),
+                altitude: _clamp(round(window.airportController.airport_get().elevation / 100) * 100 + 1000, altitude, ceiling),
                 expedite: expedite
             });
 
@@ -808,11 +808,11 @@ const Aircraft = Fiber.extend(function() {
             if (this.fms.clearedAsFiled()) {
                 const readback = {};
 
-                readback.log = `cleared to destination via the ${airport_get().sids[this.destination].icao} ` +
-                    `departure, then as filed. Climb and maintain ${airport_get().initial_alt}, ` +
+                readback.log = `cleared to destination via the ${window.airportController.airport_get().sids[this.destination].icao} ` +
+                    `departure, then as filed. Climb and maintain ${window.airportController.airport_get().initial_alt}, ` +
                     `expect ${this.fms.fp.altitude} 10 minutes after departure `;
-                readback.say = `cleared to destination via the ${airport_get().sids[this.destination].name} ` +
-                    `departure, then as filed. Climb and maintain ${radio_altitude(airport_get().initial_alt)}, ` +
+                readback.say = `cleared to destination via the ${window.airportController.airport_get().sids[this.destination].name} ` +
+                    `departure, then as filed. Climb and maintain ${radio_altitude(window.airportController.airport_get().initial_alt)}, ` +
                     `expect ${radio_altitude(this.fms.fp.altitude)}, ${radio_spellOut(' 10 ')} minutes after departure'`;
 
                 return ['ok', readback];
@@ -829,7 +829,7 @@ const Aircraft = Fiber.extend(function() {
             } else if (this.fms.climbViaSID()) {
                 const readback = {
                     log: `climb via the ${this.fms.currentLeg().route.split('.')[1]} departure`,
-                    say: `climb via the ${airport_get().sids[this.fms.currentLeg().route.split('.')[1]].name} departure`
+                    say: `climb via the ${window.airportController.airport_get().sids[this.fms.currentLeg().route.split('.')[1]].name} departure`
                 };
 
                 return ['ok', readback];
@@ -845,7 +845,7 @@ const Aircraft = Fiber.extend(function() {
             if (this.fms.descendViaSTAR() && this.fms.following.star) {
                 const readback = {
                     log: `descend via the ${this.fms.following.star} arrival`,
-                    say: `descend via the ${airport_get().stars[this.fms.following.star].name} arrival`
+                    say: `descend via the ${window.airportController.airport_get().stars[this.fms.following.star].name} arrival`
                 };
 
                 return ['ok', readback];
@@ -897,7 +897,7 @@ const Aircraft = Fiber.extend(function() {
 
             if (holdFix !== null) {
                 holdFix = holdFix.toUpperCase();
-                holdFixLocation = airport_get().getFix(holdFix);
+                holdFixLocation = window.airportController.airport_get().getFix(holdFix);
 
                 if (!holdFixLocation) {
                     return ['fail', `unable to find fix ${holdFix}`];
@@ -1009,7 +1009,7 @@ const Aircraft = Fiber.extend(function() {
 
         runDirect: function(data) {
             const fixname = data[0].toUpperCase();
-            const fix = airport_get().getFix(fixname);
+            const fix = window.airportController.airport_get().getFix(fixname);
 
             if (!fix) {
                 return ['fail', `unable to find fix called ${fixname}`];
@@ -1029,7 +1029,7 @@ const Aircraft = Fiber.extend(function() {
             let last_fix;
             let fail;
             const fixes = _map(data[0], (fixname) => {
-                const fix = airport_get().getFix(fixname);
+                const fix = window.airportController.airport_get().getFix(fixname);
                 if (!fix) {
                     fail = ['fail', `unable to find fix called ${fixname}`];
 
@@ -1080,7 +1080,7 @@ const Aircraft = Fiber.extend(function() {
         },
 
         runSID: function(data) {
-            const apt = airport_get();
+            const apt = window.airportController.airport_get();
             const sid_id = data[0].toUpperCase();
 
             if (!_has(apt.sids, sid_id)) {
@@ -1100,7 +1100,7 @@ const Aircraft = Fiber.extend(function() {
             }
 
             if (!this.rwy_dep) {
-                this.setDepartureRunway(airport_get().runway);
+                this.setDepartureRunway(window.airportController.airport_get().runway);
             }
 
             if (!_has(apt.sids[sid_id].rwy, this.rwy_dep)) {
@@ -1120,7 +1120,7 @@ const Aircraft = Fiber.extend(function() {
         runSTAR: function(data) {
             const entry = data[0].split('.')[0].toUpperCase();
             const star_id = data[0].split('.')[1].toUpperCase();
-            const apt = airport_get();
+            const apt = window.airportController.airport_get();
             const star_name = apt.stars[star_id].name;
             const route = `${entry}.${star_id}.${apt.icao}`;
 
@@ -1254,7 +1254,7 @@ const Aircraft = Fiber.extend(function() {
 
             // Set the runway to taxi to
             if (data[0]) {
-                if (airport_get().getRunway(data[0].toUpperCase())) {
+                if (window.airportController.airport_get().getRunway(data[0].toUpperCase())) {
                     this.setDepartureRunway(data[0].toUpperCase());
                 } else {
                     return ['fail', `no runway ${data[0].toUpperCase()}`];
@@ -1263,7 +1263,7 @@ const Aircraft = Fiber.extend(function() {
 
             // Start the taxi
             this.taxi_start = game_time();
-            const runway = airport_get().getRunway(this.rwy_dep);
+            const runway = window.airportController.airport_get().getRunway(this.rwy_dep);
 
             runway.addQueue(this);
             this.mode = FLIGHT_MODES.TAXI;
@@ -1298,7 +1298,7 @@ const Aircraft = Fiber.extend(function() {
                 return ['fail', 'no altitude assigned'];
             }
 
-            const runway = airport_get().getRunway(this.rwy_dep);
+            const runway = window.airportController.airport_get().getRunway(this.rwy_dep);
 
             if (runway.removeQueue(this)) {
                 this.mode = FLIGHT_MODES.TAKEOFF;
@@ -1310,7 +1310,7 @@ const Aircraft = Fiber.extend(function() {
                 }
 
 
-                const wind = airport_get().getWind();
+                const wind = window.airportController.airport_get().getWind();
                 const wind_dir = round(radiansToDegrees(wind.angle));
                 const readback = {
                     // TODO: the wind_dir calculation should be abstracted
@@ -1328,7 +1328,7 @@ const Aircraft = Fiber.extend(function() {
 
         runLanding: function(data) {
             const variant = data[0];
-            const runway = airport_get().getRunway(data[1]);
+            const runway = window.airportController.airport_get().getRunway(data[1]);
 
             if (!runway) {
                 return ['fail', `there is no runway ${radio_runway(data[1])}`];
@@ -1424,7 +1424,7 @@ const Aircraft = Fiber.extend(function() {
         cancelLanding: function() {
             // TODO: this logic could be simplified. do an early return instead of wrapping the entire function in an if.
             if (this.fms.currentWaypoint().navmode === WAYPOINT_NAV_MADE.RWY) {
-                const runway = airport_get().getRunway(this.rwy_arr);
+                const runway = window.airportController.airport_get().getRunway(this.rwy_arr);
 
                 if (this.mode === FLIGHT_MODES.LANDING) {
                     // TODO: enumerate the magic numbers
@@ -1481,9 +1481,9 @@ const Aircraft = Fiber.extend(function() {
          */
         isLanded: function() {
             // TODO: this logic can be simplified. there should really be another method that does more of the work here.
-            let runway = airport_get().getRunway(this.rwy_arr);
+            let runway = window.airportController.airport_get().getRunway(this.rwy_arr);
             if (runway === null) {
-                runway = airport_get().getRunway(this.rwy_dep);
+                runway = window.airportController.airport_get().getRunway(this.rwy_dep);
             }
 
             if (runway === null) {
@@ -1533,7 +1533,7 @@ const Aircraft = Fiber.extend(function() {
                 return false;
             } else  if (this.isTaxiing()) {
                 // show only the first aircraft in the takeoff queue
-                const runway = airport_get().getRunway(this.rwy_dep);
+                const runway = window.airportController.airport_get().getRunway(this.rwy_dep);
                 const waiting = runway.inQueue(this);
 
                 return this.mode === FLIGHT_MODES.WAITING && waiting === 0;
@@ -1549,7 +1549,7 @@ const Aircraft = Fiber.extend(function() {
             };
 
             if (this.rwy_dep) {
-                const airport = airport_get();
+                const airport = window.airportController.airport_get();
                 const wind = airport.wind;
                 const runway = airport.getRunway(this.rwy_dep);
                 const angle =  abs(angle_offset(runway.angle, wind.angle));
@@ -1573,13 +1573,13 @@ const Aircraft = Fiber.extend(function() {
             const callsign_S = this.getRadioCallsign();
 
             if (sectorType) {
-                call += airport_get().radio[sectorType];
+                call += window.airportController.airport_get().radio[sectorType];
             }
 
             // call += ", " + this.getCallsign() + " " + msg;
 
             // TODO: quick abstraction, this doesn't belong here.
-            const logMessage = (callsign) => `${airport_get().radio[sectorType]}, ${callsign} ${msg}`;
+            const logMessage = (callsign) => `${window.airportController.airport_get().radio[sectorType]}, ${callsign} ${msg}`;
             if (alert) {
                 const isWarning = true;
                 ui_log(logMessage(callsign_L), isWarning);
@@ -1614,18 +1614,18 @@ const Aircraft = Fiber.extend(function() {
                     alt_say = `at ${radio_altitude(alt)}`;
                 }
 
-                ui_log(`${airport_get().radio.app}, ${this.getCallsign()} with you ${alt_log}`);
+                ui_log(`${window.airportController.airport_get().radio.app}, ${this.getCallsign()} with you ${alt_log}`);
                 speech_say([
-                    { type: 'text', content: `${airport_get().radio.app}, ` },
+                    { type: 'text', content: `${window.airportController.airport_get().radio.app}, ` },
                     { type: 'callsign', content: this },
                     { type: 'text', content: `with you ${alt_say}` }
                 ]);
             }
 
             if (this.category === FLIGHT_CATEGORY.DEPARTURE) {
-                ui_log(`${airport_get().radio.twr}, ${this.getCallsign()}, ready to taxi`);
+                ui_log(`${window.airportController.airport_get().radio.twr}, ${this.getCallsign()}, ready to taxi`);
                 speech_say([
-                    { type: 'text', content: airport_get().radio.twr },
+                    { type: 'text', content: window.airportController.airport_get().radio.twr },
                     { type: 'callsign', content: this },
                     { type: 'text', content: ', ready to taxi' }
                 ]);
@@ -1672,7 +1672,7 @@ const Aircraft = Fiber.extend(function() {
 
         // TODO: this method needs a lot of love. its much too long with waaay too many nested if/else ifs.
         updateTarget: function() {
-            let airport = airport_get();
+            let airport = window.airportController.airport_get();
             let runway  = null;
             let offset = null;
             let offset_angle = null;
@@ -1693,7 +1693,7 @@ const Aircraft = Fiber.extend(function() {
             }
 
             if (this.fms.currentWaypoint().navmode === WAYPOINT_NAV_MADE.RWY) {
-                airport = airport_get();
+                airport = window.airportController.airport_get();
                 runway  = airport.getRunway(this.rwy_arr);
                 offset = getOffset(this, runway.position, runway.angle);
                 offset_angle = vradial(offset);
@@ -1878,7 +1878,7 @@ const Aircraft = Fiber.extend(function() {
                     this.updateStrip();
                 }
             } else if (this.mode === FLIGHT_MODES.WAITING) {
-                runway = airport_get().getRunway(this.rwy_dep);
+                runway = window.airportController.airport_get().getRunway(this.rwy_dep);
 
                 position = runway.position;
                 this.position[0] = position[0];
@@ -1899,7 +1899,7 @@ const Aircraft = Fiber.extend(function() {
                     this.updateStrip();
                 }
             } else if (this.mode === FLIGHT_MODES.TAKEOFF) {
-                runway = airport_get().getRunway(this.rwy_dep);
+                runway = window.airportController.airport_get().getRunway(this.rwy_dep);
 
                 // Altitude Control
                 if (this.speed < this.model.speed.min) {
@@ -1909,7 +1909,7 @@ const Aircraft = Fiber.extend(function() {
                 }
 
                 // Heading Control
-                const rwyHdg = airport_get().getRunway(this.rwy_dep).angle;
+                const rwyHdg = window.airportController.airport_get().getRunway(this.rwy_dep).angle;
                 if ((this.altitude - runway.elevation) < 400) {
                     this.target.heading = rwyHdg;
                 } else {
@@ -2065,7 +2065,7 @@ const Aircraft = Fiber.extend(function() {
 
                 // Calculate movement including wind assuming wind speed
                 // increases 2% per 1000'
-                var wind = airport_get().wind;
+                var wind = window.airportController.airport_get().wind;
                 var vector;
 
                 if (this.isLanded()) {
@@ -2110,15 +2110,15 @@ const Aircraft = Fiber.extend(function() {
             }
 
             // polygonal airspace boundary
-            if (airport_get().perimeter) {
-                var inside = point_in_area(this.position, airport_get().perimeter);
+            if (window.airportController.airport_get().perimeter) {
+                var inside = point_in_area(this.position, window.airportController.airport_get().perimeter);
 
                 if (inside !== this.inside_ctr) {
                     this.crossBoundary(inside);
                 }
             } else {
                 // simple circular airspace boundary
-                var inside = (this.distance <= airport_get().ctr_radius && this.altitude <= airport_get().ctr_ceiling);
+                var inside = (this.distance <= window.airportController.airport_get().ctr_radius && this.altitude <= window.airportController.airport_get().ctr_ceiling);
 
                 if (inside !== this.inside_ctr) {
                     this.crossBoundary(inside);
@@ -2276,7 +2276,7 @@ const Aircraft = Fiber.extend(function() {
                 altitude.text('-');
             }
 
-            destination.text(this.destination || airport_get().icao);
+            destination.text(this.destination || window.airportController.airport_get().icao);
             speed.text(wp.speed);
 
             // When at the apron...
@@ -2355,7 +2355,7 @@ const Aircraft = Fiber.extend(function() {
                             altitude.addClass('followingSTAR');
                         }
 
-                        destination.text(this.fms.following.star + '.' + airport_get().icao);
+                        destination.text(this.fms.following.star + '.' + window.airportController.airport_get().icao);
                         destination.addClass('followingSTAR');
 
                         if (this.fms.currentWaypoint().fixRestrictions.speed) {

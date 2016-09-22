@@ -143,7 +143,7 @@ export default class AircraftController {
      * @param factor
      */
     aircraft_visible(aircraft, factor = 1) {
-        return vlen(aircraft.position) < airport_get().ctr_radius * factor;
+        return vlen(aircraft.position) < window.airportController.airport_get().ctr_radius * factor;
     }
 
     /**
@@ -166,7 +166,8 @@ export default class AircraftController {
         prop.aircraft.callsigns.splice(prop.aircraft.callsigns.indexOf(aircraft.callsign), 1);
         prop.aircraft.list.splice(prop.aircraft.list.indexOf(aircraft), 1);
 
-        window.update_aircraft_eids();
+        this.update_aircraft_eids();
+
         aircraft.cleanup();
     }
 

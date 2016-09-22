@@ -150,9 +150,10 @@ export default class ArrivalBase {
                     spawn_offsets[i] -= fixes[j][2];
                     continue;
                 } else {
+                    // TODO: set fixes to a const so ther is only one call to `airport_get()`
                     // if point before next fix
-                    const next = airport_get().fixes[fixes[j][0]];
-                    const prev = airport_get().fixes[fixes[j - 1][0]];
+                    const next = window.airportController.airport_get().fixes[fixes[j][0]];
+                    const prev = window.airportController.airport_get().fixes[fixes[j - 1][0]];
                     const brng = bearing(prev.gps, next.gps);
                     spawn_positions.push({
                         pos: fixRadialDist(prev.gps, brng, spawn_offsets[i]),
@@ -175,7 +176,7 @@ export default class ArrivalBase {
             }
 
             const { heading, pos, nextFix } = spawn_positions[i];
-            const { icao, position, magnetic_north } = airport_get();
+            const { icao, position, magnetic_north } = window.airportController.airport_get();
 
             window.aircraftController.aircraft_new({
                 category: 'arrival',
@@ -233,13 +234,20 @@ export default class ArrivalBase {
         // spawn at first fix
         if (this.fixes.length > 1) {
             // spawn at first fix
-            position = airport_get().getFix(this.fixes[0].fix);
-            heading = vradial(vsub(airport_get().getFix(this.fixes[1].fix), position));
+            position = window.airportController.airport_get().getFix(this.fixes[0].fix);
+            heading = vradial(vsub(window.airportController.airport_get().getFix(this.fixes[1].fix), position));
         } else if (this.route) {
             // STAR data is present
-            star = airport_get().getSTAR(this.route.split('.')[1], this.route.split('.')[0], airport_get().runway);
-            position = airport_get().getFix(star[0][0]);
-            heading = vradial(vsub(airport_get().getFix(star[1][0]), position));
+            star = window.airportController.airport_get().getSTAR(
+                this.route.split('.')[1], this.route.split('.')[0],
+                window.airportController.airport_get().runway
+            );
+
+            position = window.airportController.airport_get().getFix(star[0][0]);
+            heading = vradial(vsub(
+                window.airportController.airport_get().getFix(star[1][0]),
+                position
+            ));
         } else {
             // spawn outside the airspace along 'this.radial'
             distance = 2 * this.airport.ctr_radius;
@@ -255,7 +263,7 @@ export default class ArrivalBase {
 
         window.aircraftController.aircraft_new({
             category: 'arrival',
-            destination: airport_get().icao,
+            destination: window.airportController.airport_get().icao,
             airline: airline,
             fleet: fleet,
             altitude: altitude,

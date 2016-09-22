@@ -359,7 +359,7 @@ function input_run() {
     } else if (result.command === 'airport') {
         if (result.args) {
             if (result.args.toLowerCase() in prop.airport.airports) {
-                airport_set(result.args.toLowerCase());
+                window.airportController.airport_set(result.args.toLowerCase());
             } else {
                 ui_airport_toggle();
             }

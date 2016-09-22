@@ -5,6 +5,7 @@ import ContentQueue from './contentQueue/ContentQueue';
 import LoadingView from './LoadingView';
 import AirlineController from './airline/AirlineController';
 import AircraftController from './aircraft/AircraftController';
+import AirportController from './airport/AirportController';
 import { speech_init } from './speech';
 import { time, calculateDeltaTime } from './utilities/timeHelpers';
 import { LOG } from './constants/logLevel';
@@ -26,9 +27,6 @@ const tutorial = require('./tutorial/tutorial');
 const base = require('./base');
 const game = require('./game/game');
 const input = require('./input');
-
-// const aircraft = require('./aircraft/aircraft');
-const airport = require('./airport/airport');
 const canvas = require('./canvas');
 const ui = require('./ui');
 
@@ -63,6 +61,7 @@ export default class App {
         this.contentQueue = null;
         this.airlineController = null;
         this.aircraftController = null;
+        this.airportController = null;
 
         window.prop = prop;
 
@@ -101,6 +100,7 @@ export default class App {
         this.contentQueue = new ContentQueue(this.loadingView);
         this.airlineController = new AirlineController();
         this.aircraftController = new AircraftController();
+        this.airportController = new AirportController();
 
         return this;
     }
@@ -111,8 +111,13 @@ export default class App {
      */
     enable() {
         zlsa.atc.loadAsset = (options) => this.contentQueue.add(options);
+        // TEMPORARY!
+        // these instances are attached to the window here as an intermediate step away from global functions.
+        // this allows for any module file to full window.{module}.{method} and will make the transition to
+        // explicit instance parameters easier.
         window.airlineController = this.airlineController;
         window.aircraftController = this.aircraftController;
+        window.airportController = this.airportController;
 
         // This is the old entry point for the application. We include this here now so that
         // the app will run. This is a temporary implementation and should be refactored immediately.
@@ -141,8 +146,8 @@ export default class App {
         // that are instantiated and live in `App.js`.
 
         return this.init_pre()
-           .init()
-           .done();
+                   .init()
+                   .done();
     }
 
     /**
@@ -165,6 +170,7 @@ export default class App {
         this.loadingView = null;
         this.airlineController = null;
         this.aircraftController = null;
+        this.airportController = null;
 
         return this;
     }
@@ -180,8 +186,8 @@ export default class App {
 
         this.airlineController.init_pre();
         this.aircraftController.init_pre();
+        this.airportController.init_pre();
 
-        airport_init_pre();
         canvas_init_pre();
         ui_init_pre();
 
@@ -197,7 +203,8 @@ export default class App {
         tutorial_init();
         input_init();
 
-        airport_init();
+        this.airportController.init();
+
         canvas_init();
         ui_init();
 
@@ -237,8 +244,7 @@ export default class App {
      * @method ready
      */
     ready() {
-        // TODO: temp fix to get browserify working
-        airport_ready();
+        this.airportController.ready();
 
         return this;
     }

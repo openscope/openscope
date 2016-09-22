@@ -91,11 +91,11 @@ export default class Leg {
                 return;
             }
 
-            var pairs = airport_get(apt).getSID(sid, exit, rwy);
+            var pairs = window.airportController.airport_get(apt).getSID(sid, exit, rwy);
 
             // Remove the placeholder leg (if present)
             if (fms.my_aircraft.isLanded() && fms.legs.length > 0
-                && fms.legs[0].route === airport_get().icao && pairs.length > 0
+                && fms.legs[0].route === window.airportController.airport_get().icao && pairs.length > 0
             ) {
                 // remove the placeholder leg, to be replaced below with SID Leg
                 fms.legs.splice(0, 1);
@@ -148,7 +148,7 @@ export default class Leg {
             this.waypoints = [];
 
             // Generate the waypoints
-            var pairs = airport_get(apt).getSTAR(star, entry, rwy);
+            var pairs = window.airportController.airport_get(apt).getSTAR(star, entry, rwy);
 
             // for each fix/restr pair
             for (let i = 0; i < pairs.length; i++) {
@@ -189,7 +189,7 @@ export default class Leg {
             var airway = data.route.split('.')[1];
             var end = data.route.split('.')[2];
             // Verify airway is valid
-            var apt = airport_get();
+            var apt = window.airportController.airport_get();
 
             if (!_has(apt, 'airways') || !_has(apt.airways, 'airway')) {
                 log(`Airway ${airway} not defined at ${apt.icao}`, LOG.WARNING);

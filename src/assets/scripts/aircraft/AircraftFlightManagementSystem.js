@@ -63,7 +63,7 @@ const AircraftFlightManagementSystem = Fiber.extend(function() {
             if (options.aircraft.category === 'arrival') {
                 this.prependLeg({ route: 'KDBG' });
             } else if (options.aircraft.category === 'departure') {
-                this.prependLeg({ route: airport_get().icao });
+                this.prependLeg({ route: window.airportController.airport_get().icao });
             }
 
             this.update_fp_route();
@@ -417,7 +417,7 @@ const AircraftFlightManagementSystem = Fiber.extend(function() {
         followSID: function(route) {
             for (let i = 0; i < this.legs.length; i++) {
                 // sid assigned after taking off without SID
-                if (this.legs[i].route === airport_get().icao) {
+                if (this.legs[i].route === window.airportController.airport_get().icao) {
                     // remove the manual departure leg
                     this.legs.splice(i, 1);
                 } else if (this.legs[i].type === FP_LEG_TYPE.SID) {
@@ -433,7 +433,7 @@ const AircraftFlightManagementSystem = Fiber.extend(function() {
                 route: route
             });
             this.setAll({
-                altitude:  Math.max(airport_get().initial_alt, this.my_aircraft.altitude)
+                altitude:  Math.max(window.airportController.airport_get().initial_alt, this.my_aircraft.altitude)
             });
         },
 
@@ -460,8 +460,8 @@ const AircraftFlightManagementSystem = Fiber.extend(function() {
         formatRoute: function(data) {
             // Format the user's input
             let route = [];
-            const ap = airport_get;
-            const fixOK = ap().getFix;
+            // const ap = airport_get;
+            const fixOK = window.airportController.airport_get().getFix;
 
             if (data.indexOf(' ') !== -1) {
                 return; // input can't contain spaces
@@ -541,13 +541,13 @@ const AircraftFlightManagementSystem = Fiber.extend(function() {
                     // is an instrument procedure
                     pieces = route[i].split('.');
 
-                    if (Object.keys(airport_get().sids).indexOf(pieces[1]) > -1) {
+                    if (Object.keys(window.airportController.airport_get().sids).indexOf(pieces[1]) > -1) {
                         // it's a SID!
                         legs.push(new Leg({ type: FP_LEG_TYPE.SID, route: route[i] }, this));
-                    } else if (Object.keys(airport_get().stars).indexOf(pieces[1]) > -1) {
+                    } else if (Object.keys(window.airportController.airport_get().stars).indexOf(pieces[1]) > -1) {
                         // it's a STAR!
                         legs.push(new Leg({ type: FP_LEG_TYPE.STAR, route: route[i] }, this));
-                    } else if (Object.keys(airport_get().airways).indexOf(pieces[1]) > -1) {
+                    } else if (Object.keys(window.airportController.airport_get().airways).indexOf(pieces[1]) > -1) {
                         // it's an airway!
                         legs.push(new Leg({ type: FP_LEG_TYPE.AWY, route: route[i] }, this));
                     }
@@ -657,7 +657,7 @@ const AircraftFlightManagementSystem = Fiber.extend(function() {
                     if (altitude.indexOf('+') !== -1) {
                         // at-or-above altitude restriction
                         minAlt = parseInt(altitude.replace('+', ''), 10) * 100;
-                        alt = Math.min(airport_get().ctr_ceiling, cruise_alt);
+                        alt = Math.min(window.airportController.airport_get().ctr_ceiling, cruise_alt);
                     } else if (altitude.indexOf('-') !== -1) {
                         maxAlt = parseInt(altitude.replace('-', ''), 10) * 100;
                         // climb as high as restrictions permit
@@ -667,7 +667,7 @@ const AircraftFlightManagementSystem = Fiber.extend(function() {
                         alt = parseInt(altitude, 10) * 100;
                     }
                 } else {
-                    alt = Math.min(airport_get().ctr_ceiling, cruise_alt);
+                    alt = Math.min(window.airportController.airport_get().ctr_ceiling, cruise_alt);
                 }
 
                 wp[i].altitude = alt; // add altitudes to wp

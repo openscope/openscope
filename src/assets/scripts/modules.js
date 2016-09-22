@@ -1,37 +1,8 @@
-// import $ from 'jquery';
-// import { time, calculateDeltaTime } from './utilities/timeHelpers';
 import { LOG } from './constants/logLevel';
-
-// const prop = {};
-
-/*eslint-disable*/
-// const tutorial = require('./tutorial/tutorial');
-// const base = require('./base');
-// const game = require('./game/game');
-// const input = require('./input');
-// const airline = require('./airline/airline');
-// const aircraft = require('./aircraft/aircraft');
-// const airport = require('./airport/airport');
-// const canvas = require('./canvas');
-// const ui = require('./ui');
-
 
 // ////////////////////////////////////////////////////////////////////////////////////////
 
-// saved as prop.version and prop.version_string
-// const VERSION = [2, 1, 8];
-
-// are you using a main loop? (you must call update() afterward disable/reenable)
-// let UPDATE = true;
-
-// the framerate is updated this often (seconds)
-// const FRAME_DELAY = 1;
-
-// is this a release build?
-// const RELEASE = false;
-
 // Usage of async() etc:
-
 // async("image") // call async() once for every asyncLoaded() you'll call
 // $.get(...,function() {asyncLoaded("image");}) // call asyncLoaded once for each
 //                                                // image once it's loaded
@@ -92,33 +63,6 @@ if (!String.fromCodePoint) {
     };
 }
 
-/*eslint-enable*/
-/** ***************** Module Setup *******************/
-// PROP
-// window.propInit = function propInit() {
-    // window.prop = prop;
-    // prop.complete = false;
-    // prop.temp = 'nothing here';
-    // prop.version = VERSION;
-    // prop.version_string = `v${VERSION.join('.')}`;
-    // prop.time = {};
-    // prop.time.start = time();
-    // prop.time.frames = 0;
-    // prop.time.frame = {};
-    // prop.time.frame.start = time();
-    // prop.time.frame.delay = FRAME_DELAY;
-    // prop.time.frame.count = 0;
-    // prop.time.frame.last = time();
-    // prop.time.frame.delta = 0;
-    // prop.time.fps = 0;
-    // prop.log = LOG.DEBUG;
-    // prop.loaded = false;
-    //
-    // if (RELEASE) {
-    //     prop.log = LOG.WARNING;
-    // }
-// };
-
 // MISC
 window.log = function log(message, level = LOG.INFO) {
     const logStrings = {
@@ -139,127 +83,6 @@ window.log = function log(message, level = LOG.INFO) {
         }
     }
 };
-
-/*eslint-disable*/
-// FIXME: is this needed anymore?
-// function callModule(name, func, args) {
-//     // TODO: remove before merging back to `zsla/gh-pages`, for development only
-//     console.warn('-- callModule :: func:', func);
-//
-//     return null;
-// }
-
-/*eslint-enable*/
-// TODO: enumerate the magic numbers
-/**
- * @function calculateDeltaTime
- * @param  {number} lastFrame
- * @return {number}
- */
-// const calculateDeltaTime = (lastFrame) => Math.min(time() - prop.time.frame.last, 1 / 20);
-
-// $(document).ready(() => {
-//     console.log('doc.ready');
-//     window.modules = {};
-//
-//     propInit();
-//     log(`Version ${prop.version_string}`);
-    // load_modules();
-
-    // TODO: temp to get browserify working. these calls should be moved to proper `class.init()` type methods
-    // that are instantiated and live in `App.js`.
-    // tutorial_init_pre();
-    // game_init_pre();
-    // input_init_pre();
-    // airline_init_pre();
-    // aircraft_init_pre();
-    // airport_init_pre();
-    // canvas_init_pre();
-    // ui_init_pre();
-    //
-    // speech_init();
-    // tutorial_init();
-    // input_init();
-    // aircraft_init();
-    // airport_init();
-    // canvas_init();
-    // ui_init();
-    //
-    // done();
-// });
-
-// function resize() {
-    // callModule('*', 'resize');
-    //
-    // // TODO: temp fix to get browserify working
-    // canvas_resize();
-// }
-
-// function update() {
-    // if (!prop.complete) {
-    //     callModule('*', 'complete');
-    //
-    //     // TODO: temp fix to get browserify working
-    //     // game_complete();
-    //     // canvas_complete();
-    //     // ui_complete();
-    //
-    //     // loadingView.complete();
-    //     prop.complete = true;
-    // }
-    //
-    // if (UPDATE) {
-    //     requestAnimationFrame(update);
-    // } else {
-    //     return;
-    // }
-    //
-    // game_update_pre();
-    // aircraft_update();
-    // canvas_update_post();
-    //
-    // prop.time.frames += 1;
-    // prop.time.frame.count += 1;
-    //
-    // const elapsed = time() - prop.time.frame.start;
-    //
-    // if (elapsed > prop.time.frame.delay) {
-    //     prop.time.fps = prop.time.frame.count / elapsed;
-    //     prop.time.frame.count = 0;
-    //     prop.time.frame.start = time();
-    // }
-    //
-    // prop.time.frame.delta = calculateDeltaTime(prop.time.frame.last);
-    // prop.time.frame.last = time();
-// }
-
-// function done() {
-    // $(window).resize(resize);
-    // resize();
-    //
-    // callModule('*', 'done');
-    // prop.loaded = true;
-    // callModule('*', 'ready');
-    //
-    // // TODO: temp fix to get browserify working
-    // // airport_ready();
-    //
-    // if (UPDATE) {
-    //     requestAnimationFrame(update);
-    // }
-// }
-
-// /**
-//  * Change whether updates should run
-//  */
-// window.updateRun = function updateRun(arg) {
-//     console.warn('updateRun: ', arg);
-//     // if (!UPDATE && arg) {
-//     //     requestAnimationFrame(update);
-//     // }
-//     //
-//     // UPDATE = arg;
-// };
 
 window.delta = function delta() {
     return window.prop.time.frame.delta;

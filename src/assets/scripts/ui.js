@@ -90,7 +90,7 @@ const ui_airport_open = () => {
         $previousActiveAirport.removeClass(SELECTORS.CLASSNAMES.ACTIVE);
     }
 
-    const icao = airport_get().icao.toLowerCase();
+    const icao = window.airportController.airport_get().icao.toLowerCase();
     $(`.airport.icao-${icao}`).addClass(SELECTORS.CLASSNAMES.ACTIVE);
 
     $(SELECTORS.DOM_SELECTORS.AIRPORT_SWITCH).addClass(SELECTORS.CLASSNAMES.OPEN);
@@ -277,8 +277,8 @@ export const ui_complete = () => {
 
         // TODO: replace with an onClick() handler
         html.click(airport.icao.toLowerCase(), (event) => {
-            if (event.data !== airport_get().icao) {
-                airport_set(event.data);
+            if (event.data !== window.airportController.airport_get().icao) {
+                window.airportController.airport_set(event.data);
                 ui_airport_close();
             }
         });

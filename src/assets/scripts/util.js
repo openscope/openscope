@@ -791,7 +791,7 @@ function array_sum(array) {
 }
 
 function inAirspace(pos) {
-    const apt = airport_get();
+    const apt = window.airportController.airport_get();
     const perim = apt.perimeter;
 
     if (perim) {
@@ -802,7 +802,7 @@ function inAirspace(pos) {
 }
 
 function dist_to_boundary(pos) {
-    const apt = airport_get();
+    const apt = window.airportController.airport_get();
     const perim = apt.perimeter;
 
     if (perim) {
@@ -984,11 +984,13 @@ function vturn(radians, v) {
  * Note: Please pass ONLY the runway identifier (eg '28r')
  */
 function runwaysIntersect(rwy1_name, rwy2_name) {
+    const airport = window.airportController.airport_get();
+
     return raysIntersect(
-        airport_get().getRunway(rwy1_name).position,
-        airport_get().getRunway(rwy1_name).angle,
-        airport_get().getRunway(rwy2_name).position,
-        airport_get().getRunway(rwy2_name).angle,
+        airport.getRunway(rwy1_name).position,
+        airport.getRunway(rwy1_name).angle,
+        airport.getRunway(rwy2_name).position,
+        airport.getRunway(rwy2_name).angle,
         9.9 // consider "parallel" if rwy hdgs differ by maximum of 9.9 degrees
     );
 }
