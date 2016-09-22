@@ -156,11 +156,6 @@ const game_delta = () => {
 };
 
 const game_speedup = () => {
-    // if (game_paused()) {
-    //     return 0;
-    // }
-    //
-    // return prop.game.speedup;
     return !game_paused() ? prop.game.speedup : 0;
 };
 
@@ -185,6 +180,7 @@ const game_clear_timeout = (to) => {
 };
 
 const updateScore = (score) => {
+    const $score = $(SELECTORS.DOM_SELECTORS.SCORE);
     $score.text(round(score));
 
     if (score < -0.51) {
@@ -197,8 +193,6 @@ const updateScore = (score) => {
 };
 
 const game_update_pre = () => {
-    // FIXME: update to DOM_SELECTORS
-    const $score = $(`#${SELECTORS.IDS.SCORE}`);
     const score = game_get_score();
 
     if (score !== prop.game.last_score) {

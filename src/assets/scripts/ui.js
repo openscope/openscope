@@ -1,5 +1,6 @@
 /* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand, no-undef, no-param-reassign */
 import $ from 'jquery';
+import _forEach from 'lodash/forEach';
 import _has from 'lodash/has';
 import _keys from 'lodash/keys';
 import { speech_toggle } from './speech';
@@ -198,38 +199,38 @@ export const ui_init = () => {
 
     ui_setup_handlers();
 
-    for (const key in descriptions) {
-        const opt = descriptions[key];
+    _forEach(descriptions, (opt) => {
+        if (opt.type !== 'select') {
+            return;
+        }
 
-        if (opt.type === 'select') {
-            const container = $('<div class="option"></div>');
-            container.append(`<span class="option-description">${opt.description}</span>`);
+        const container = $('<div class="option"></div>');
+        container.append(`<span class="option-description">${opt.description}</span>`);
 
-            const sel_span = $('<span class="option-selector option-type-select"></span>');
-            const selector = $(`<select id="opt-${opt.name}" name="${opt.name}"></select>`);
+        const sel_span = $('<span class="option-selector option-type-select"></span>');
+        const selector = $(`<select id="opt-${opt.name}" name="${opt.name}"></select>`);
 
-            selector.data('name', opt.name);
+        selector.data('name', opt.name);
 
-            const current = prop.game.option.get(opt.name);
-            for (let i = 0; i < opt.data.length; i++) {
-                let s = `<option value="${opt.data[i][1]}">${opt.data[i][0]}</option>`;
+        const current = prop.game.option.get(opt.name);
+        for (let i = 0; i < opt.data.length; i++) {
+            let s = `<option value="${opt.data[i][1]}">${opt.data[i][0]}</option>`;
 
-                if (opt.data[i][1] === current) {
-                    s = `<option value="${opt.data[i][1]}" selected="selected">${opt.data[i][0]}</option>`;
-                }
-
-                selector.append(s);
+            if (opt.data[i][1] === current) {
+                s = `<option value="${opt.data[i][1]}" selected="selected">${opt.data[i][0]}</option>`;
             }
 
-            selector.change(() => {
-                prop.game.option.set($(this).data('name'), $(this).val());
-            });
-
-            sel_span.append(selector);
-            container.append(sel_span);
-            $options.append(container);
+            selector.append(s);
         }
-    }
+
+        selector.change(() => {
+            prop.game.option.set($(this).data('name'), $(this).val());
+        });
+
+        sel_span.append(selector);
+        container.append(sel_span);
+        $options.append(container);
+    });
 
     $('body').append($options);
     $(SELECTORS.DOM_SELECTORS.TOGGLE_OPTIONS).click(() => {

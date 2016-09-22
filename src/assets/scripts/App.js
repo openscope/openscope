@@ -31,7 +31,7 @@ const canvas = require('./canvas');
 const ui = require('./ui');
 
 
-// saved as prop.version and prop.version_string
+// saved as this.prop.version and this.prop.version_string
 const VERSION = [3, 0, 0];
 
 // are you using a main loop? (you must call update() afterward disable/reenable)
@@ -61,25 +61,26 @@ export default class App {
         this.contentQueue = null;
 
         window.prop = prop;
-        prop.complete = false;
-        prop.temp = 'nothing here';
-        prop.version = VERSION;
-        prop.version_string = `v${VERSION.join('.')}`;
-        prop.time = {};
-        prop.time.start = time();
-        prop.time.frames = 0;
-        prop.time.frame = {};
-        prop.time.frame.start = time();
-        prop.time.frame.delay = FRAME_DELAY;
-        prop.time.frame.count = 0;
-        prop.time.frame.last = time();
-        prop.time.frame.delta = 0;
-        prop.time.fps = 0;
-        prop.log = LOG.DEBUG;
-        prop.loaded = false;
+        this.prop = prop;
+        this.prop.complete = false;
+        this.prop.temp = 'nothing here';
+        this.prop.version = VERSION;
+        this.prop.version_string = `v${VERSION.join('.')}`;
+        this.prop.time = {};
+        this.prop.time.start = time();
+        this.prop.time.frames = 0;
+        this.prop.time.frame = {};
+        this.prop.time.frame.start = time();
+        this.prop.time.frame.delay = FRAME_DELAY;
+        this.prop.time.frame.count = 0;
+        this.prop.time.frame.last = time();
+        this.prop.time.frame.delta = 0;
+        this.prop.time.fps = 0;
+        this.prop.log = LOG.DEBUG;
+        this.prop.loaded = false;
 
         if (RELEASE) {
-            prop.log = LOG.WARNING;
+            this.prop.log = LOG.WARNING;
         }
 
         return this.setupChildren()
@@ -125,7 +126,7 @@ export default class App {
             UPDATE = arg;
         };
 
-        log(`Version ${prop.version_string}`);
+        log(`Version ${this.prop.version_string}`);
 
         // TODO: temp to get browserify working. these calls should be moved to proper `class.init()` type methods
         // that are instantiated and live in `App.js`.
@@ -206,7 +207,7 @@ export default class App {
         $(window).resize(this.resize);
         this.resize();
 
-        prop.loaded = true;
+        this.prop.loaded = true;
 
         this.ready();
 
@@ -276,11 +277,11 @@ export default class App {
      * @method update
      */
     update() {
-        if (!prop.complete) {
+        if (!this.prop.complete) {
             this.complete();
             this.loadingView.complete();
 
-            prop.complete = true;
+            this.prop.complete = true;
         }
 
         if (!UPDATE) {
@@ -293,19 +294,19 @@ export default class App {
         aircraft_update();
         this.updatePost();
 
-        prop.time.frames += 1;
-        prop.time.frame.count += 1;
+        this.prop.time.frames += 1;
+        this.prop.time.frame.count += 1;
 
-        const elapsed = time() - prop.time.frame.start;
+        const elapsed = time() - this.prop.time.frame.start;
 
-        if (elapsed > prop.time.frame.delay) {
-            prop.time.fps = prop.time.frame.count / elapsed;
-            prop.time.frame.count = 0;
-            prop.time.frame.start = time();
+        if (elapsed > this.prop.time.frame.delay) {
+            this.prop.time.fps = this.prop.time.frame.count / elapsed;
+            this.prop.time.frame.count = 0;
+            this.prop.time.frame.start = time();
         }
 
-        prop.time.frame.delta = calculateDeltaTime(prop.time.frame.last);
-        prop.time.frame.last = time();
+        this.prop.time.frame.delta = calculateDeltaTime(this.prop.time.frame.last);
+        this.prop.time.frame.last = time();
 
         return this;
     }
