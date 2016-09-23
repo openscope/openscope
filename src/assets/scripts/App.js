@@ -6,8 +6,9 @@ import LoadingView from './LoadingView';
 import AirlineController from './airline/AirlineController';
 import AircraftController from './aircraft/AircraftController';
 import AirportController from './airport/AirportController';
-import GameController from './game/Gamecontroller';
+import GameController from './game/GameController';
 import TutorialView from './tutorial/TutorialView';
+import InputController from './InputController';
 import { speech_init } from './speech';
 import { time, calculateDeltaTime } from './utilities/timeHelpers';
 import { LOG } from './constants/logLevel';
@@ -19,18 +20,15 @@ const prop = {};
 
 // IIEFs are pulled in here to add functions to the global space.
 //
-// This will need to be re-worked, and current global functions should be exported and imported
-// as needed in each file.
+// This will need to be re-worked, and current global functions should be exported and
+// imported as needed in each file.
 require('./util');
 require('./animation');
 require('./parser');
 
-// const tutorial = require('./tutorial/tutorial');
 const base = require('./base');
-const input = require('./input');
 const canvas = require('./canvas');
 const ui = require('./ui');
-
 
 // saved as this.prop.version and this.prop.version_string
 const VERSION = [3, 0, 0];
@@ -54,7 +52,7 @@ export default class App {
     /**
      * @for App
      * @constructor
-     * @param $element {jquery|null}
+     * @param $element {HTML Element|null}
      */
     constructor(element) {
         /**
@@ -71,6 +69,7 @@ export default class App {
         this.aircraftController = null;
         this.airportController = null;
         this.tutorialView = null;
+        this.inputController = null;
 
         window.prop = prop;
 
@@ -112,6 +111,7 @@ export default class App {
         this.airportController = new AirportController();
         this.gameController = new GameController();
         this.tutorialView = new TutorialView(this.$element);
+        this.inputController = new InputController(this.$element);
 
         return this;
     }
@@ -131,6 +131,7 @@ export default class App {
         window.airportController = this.airportController;
         window.gameController = this.gameController;
         window.tutorialView = this.tutorialView;
+        window.inputController = this.inputController;
 
         // This is the old entry point for the application. We include this here now so that
         // the app will run. This is a temporary implementation and should be refactored immediately.
@@ -183,6 +184,7 @@ export default class App {
         this.airportController = null;
         this.gameController = null;
         this.tutorialView = null;
+        this.inputController = null;
 
         return this;
     }
@@ -194,9 +196,7 @@ export default class App {
     init_pre() {
         this.tutorialView.tutorial_init_pre();
         this.gameController.init_pre();
-
-        input_init_pre();
-
+        this.inputController.input_init_pre();
         this.airlineController.init_pre();
         this.aircraftController.init_pre();
         this.airportController.init_pre();
@@ -213,8 +213,8 @@ export default class App {
      */
     init() {
         speech_init();
-        input_init();
 
+        this.inputController.input_init();
         this.airportController.init();
 
         canvas_init();
@@ -324,21 +324,29 @@ export default class App {
         this.updatePre();
         this.aircraftController.aircraft_update();
         this.updatePost();
+        this.incrementFrame();
+
+        return this;
+    }
+
+    /**
+     * @for App
+     * @method incrementFrame
+     */
+    incrementFrame() {
+        const currentTime = time();
+        const elapsed = currentTime - this.prop.time.frame.start;
 
         this.prop.time.frames += 1;
         this.prop.time.frame.count += 1;
 
-        const elapsed = time() - this.prop.time.frame.start;
-
         if (elapsed > this.prop.time.frame.delay) {
             this.prop.time.fps = this.prop.time.frame.count / elapsed;
             this.prop.time.frame.count = 0;
-            this.prop.time.frame.start = time();
+            this.prop.time.frame.start = currentTime;
         }
 
         this.prop.time.frame.delta = calculateDeltaTime(this.prop.time.frame.last);
-        this.prop.time.frame.last = time();
-
-        return this;
+        this.prop.time.frame.last = currentTime;
     }
 }

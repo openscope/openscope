@@ -129,6 +129,7 @@ const radio_names = {
     '-': 'dash',
     '.': 'point'
 };
+window.radio_names = radio_names;
 
 const radio_cardinalDir_names = {
     n: 'north',
@@ -140,6 +141,7 @@ const radio_cardinalDir_names = {
     e: 'east',
     ne: 'northeast'
 };
+window.radio_cardinalDir_names = radio_cardinalDir_names;
 
 const radio_runway_names = clone(radio_names);
 radio_runway_names.l = 'left';

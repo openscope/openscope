@@ -4,6 +4,7 @@ import GameOptions from './GameOptions';
 import { round } from '../math/core';
 import { SELECTORS } from '../constants/selectors';
 
+// Temporary const declaration here to attach to the window AND use as internal propert
 const game = {};
 
 /**

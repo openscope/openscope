@@ -286,6 +286,7 @@ const Aircraft = Fiber.extend(function() {
          * Create the aircraft's flight strip and add to strip bay
          */
         createStrip: function() {
+            // TODO: abstract this to a new view file.
             this.html = $('<li class="strip"></li>');
 
             // Top Line Data
@@ -314,13 +315,13 @@ const Aircraft = Fiber.extend(function() {
             // Strip Interactivity Functions
             // show fp route on hover
             this.html.find('.strip').prop('title', this.fms.fp.route.join(' '));
-            this.html.click(this, function(e) {
-                input_select(e.data.getCallsign());
+            this.html.click(this, (event) => {
+                window.inputController.input_select(event.data.getCallsign());
             });
 
-            this.html.dblclick(this, function(e) {
-                prop.canvas.panX = 0 - round(km_to_px(e.data.position[0]));
-                prop.canvas.panY = round(km_to_px(e.data.position[1]));
+            this.html.dblclick(this, (event) => {
+                prop.canvas.panX = 0 - round(km_to_px(event.data.position[0]));
+                prop.canvas.panY = round(km_to_px(event.data.position[1]));
                 prop.canvas.dirty = true;
             });
 
