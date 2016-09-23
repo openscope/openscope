@@ -7,6 +7,7 @@ import AirlineController from './airline/AirlineController';
 import AircraftController from './aircraft/AircraftController';
 import AirportController from './airport/AirportController';
 import GameController from './game/Gamecontroller';
+import TutorialView from './tutorial/TutorialView';
 import { speech_init } from './speech';
 import { time, calculateDeltaTime } from './utilities/timeHelpers';
 import { LOG } from './constants/logLevel';
@@ -24,7 +25,7 @@ require('./util');
 require('./animation');
 require('./parser');
 
-const tutorial = require('./tutorial/tutorial');
+// const tutorial = require('./tutorial/tutorial');
 const base = require('./base');
 const input = require('./input');
 const canvas = require('./canvas');
@@ -55,13 +56,21 @@ export default class App {
      * @constructor
      * @param $element {jquery|null}
      */
-    constructor($element) {
-        this.$element = $element;
+    constructor(element) {
+        /**
+         * Root DOM element.
+         *
+         * @property $element
+         * @type {jQuery|HTML Element}
+         * @default body
+         */
+        this.$element = $(element);
         this.loadingView = null;
         this.contentQueue = null;
         this.airlineController = null;
         this.aircraftController = null;
         this.airportController = null;
+        this.tutorialView = null;
 
         window.prop = prop;
 
@@ -102,6 +111,7 @@ export default class App {
         this.aircraftController = new AircraftController();
         this.airportController = new AirportController();
         this.gameController = new GameController();
+        this.tutorialView = new TutorialView(this.$element);
 
         return this;
     }
@@ -120,6 +130,7 @@ export default class App {
         window.aircraftController = this.aircraftController;
         window.airportController = this.airportController;
         window.gameController = this.gameController;
+        window.tutorialView = this.tutorialView;
 
         // This is the old entry point for the application. We include this here now so that
         // the app will run. This is a temporary implementation and should be refactored immediately.
@@ -171,6 +182,7 @@ export default class App {
         this.aircraftController = null;
         this.airportController = null;
         this.gameController = null;
+        this.tutorialView = null;
 
         return this;
     }
@@ -180,7 +192,7 @@ export default class App {
      * @method init_pre
      */
     init_pre() {
-        tutorial_init_pre();
+        this.tutorialView.tutorial_init_pre();
         this.gameController.init_pre();
 
         input_init_pre();
@@ -201,7 +213,6 @@ export default class App {
      */
     init() {
         speech_init();
-        tutorial_init();
         input_init();
 
         this.airportController.init();

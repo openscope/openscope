@@ -329,7 +329,7 @@ function input_run() {
 
         return true;
     } else if (result.command === 'tutorial') {
-        tutorial_toggle();
+        window.tutorialView.tutorial_toggle();
 
         return true;
     } else if (result.command === 'auto') {

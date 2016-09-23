@@ -178,7 +178,7 @@ const ui_setup_handlers = () => {
         '.fast-forwards': window.gameController.game_timewarp_toggle,
         '.speech-toggle': speech_toggle,
         '.switch-airport': ui_airport_toggle,
-        '.toggle-tutorial': tutorial_toggle,
+        // '.toggle-tutorial': window.tutorialView.tutorial_toggle,
         // '.pause-toggle': window.gameController.game_pause_toggle,
         '#paused img': window.gameController.game_unpause,
         '.toggle-labels': canvas_labels_toggle,
@@ -190,6 +190,7 @@ const ui_setup_handlers = () => {
     // this handler was pulled out because it's scope was of the $.each function and not the destination.
     // all the other handlers work as expected
     // TODO: add enable/disable methods to setup andtear down these handlers
+    $('.toggle-tutorial').on('click', (event) => window.tutorialView.tutorial_toggle(event));
     $('.pause-toggle').on('click', (event) => window.gameController.game_pause_toggle(event));
 
     $.each(switches, (selector, fn) => {
