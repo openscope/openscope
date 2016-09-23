@@ -214,7 +214,6 @@ export default class App {
     init() {
         speech_init();
 
-        this.inputController.input_init();
         this.airportController.init();
 
         canvas_init();

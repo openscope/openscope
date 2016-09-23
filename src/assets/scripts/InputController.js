@@ -1,4 +1,4 @@
-/* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, object-shorthand, class-methods-use-this, no-undef, expected-return*/
+/* eslint-disable camelcase, no-mixed-operators, object-shorthand, class-methods-use-this, no-undef, expected-return*/
 import $ from 'jquery';
 import _clamp from 'lodash/clamp';
 import _get from 'lodash/get';
@@ -112,8 +112,17 @@ export default class InputController {
      * @method enable
      */
     enable() {
-        this.$commandInput.on('keydown', (event) => this.input_keydown(event));
-        this.$commandInput.on('input', (event) => this.input_change(event));
+        this.$window.on('keydown', (event) => this.onKeydownHandler(event));
+        this.$commandInput.on('keydown', (event) => this.onCommandInputKeydownHandler(event));
+        this.$commandInput.on('input', (event) => this.onCommandInputChangeHandler(event));
+        // FIXME: these are non-standard events and will be deprecated soon. this should be moved
+        // over to the `wheel` event. This should also be moved over to `.on()` instead of `.bind()`
+        // https://developer.mozilla.org/en-US/docs/Web/Events/wheel
+        // this.$commandInput.on('DOMMouseScroll mousewheel', (event) => this.onMouseScrollHandler(event));
+        this.$canvases.bind('DOMMouseScroll mousewheel', (event) => this.onMouseScrollHandler(event));
+        this.$canvases.on('mousemove', (event) => this.onMouseMoveHandler(event));
+        this.$canvases.on('mouseup', (event) => this.onMouseUpHandler(event));
+        this.$canvases.on('mousedown', (event) => this.onMouseDownHandler(event));
 
         return this;
     }
@@ -123,8 +132,14 @@ export default class InputController {
      * @method disable
      */
     disable() {
-        this.$commandInput.off('keydown', (event) => this.input_keydown(event));
-        this.$commandInput.off('input', (event) => this.input_change(event));
+        this.$window.off('keydown', (event) => this.onKeydownHandler(event));
+        this.$commandInput.off('keydown', (event) => this.onCommandInputKeydownHandler(event));
+        this.$commandInput.off('input', (event) => this.onCommandInputChangeHandler(event));
+        // uncomment only after `.on()` for this event has been implemented.
+        // this.$commandInput.off('DOMMouseScroll mousewheel', (event) => this.onMouseScrollHandler(event));
+        this.$canvases.off('mousemove', (event) => this.onMouseMoveHandler(event));
+        this.$canvases.off('mouseup', (event) => this.onMouseUpHandler(event));
+        this.$canvases.off('mousedown', (event) => this.onMouseDownHandler(event));
 
         return this.destroy();
     }
@@ -177,238 +192,142 @@ export default class InputController {
 
     /**
      * @for InputController
-     * @method input_init
+     * @method onMouseScrollHandler
+     * @param event {jquery Event}
      */
-    input_init() {
+    onMouseScrollHandler(event) {
+        if (event.originalEvent.wheelDelta > 0 || event.originalEvent.detail < 0) {
+            ui_zoom_in();
+        } else {
+            ui_zoom_out();
+        }
+    }
+
+    /**
+     * @for InputController
+     * @method onMouseMoveHandler
+     * @param event {jquery Event}
+     */
+    onMouseMoveHandler(event) {
+        if (!prop.input.isMouseDown) {
+            return this;
+        }
+
+        prop.input.mouseDelta = [
+            event.pageX - prop.input.mouseDown[0],
+            event.pageY - prop.input.mouseDown[1]
+        ];
+        prop.canvas.panX = prop.input.mouseDelta[0];
+        prop.canvas.panY = prop.input.mouseDelta[1];
+        prop.canvas.dirty = true;
+    }
+
+    /**
+     * @for InputController
+     * @method onMouseUpHandler
+     * @param event {jquery Event}
+     */
+    onMouseUpHandler(event) {
+        prop.input.isMouseDown = false;
+    }
+
+    /**
+     * @for InputController
+     * @method onMouseDownHandler
+     * @param event {jquery Event}
+     */
+    onMouseDownHandler(event) {
+        event.preventDefault();
+
+        if (event.which === MOUSE_EVENTS.MIDDLE_PESS) {
+            ui_zoom_reset();
+        } else if (event.which === MOUSE_EVENTS.LEFT_PRESS) {
+            // Record mouse down position for panning
+            prop.input.mouseDown = [
+                event.pageX - prop.canvas.panX,
+                event.pageY - prop.canvas.panY
+            ];
+            prop.input.isMouseDown = true;
+
+            // Aircraft label selection
+            let position = [event.pageX, -event.pageY];
+            position[0] -= prop.canvas.size.width / 2;
+            position[1] += prop.canvas.size.height / 2;
+
+            const nearest = window.aircraftController.aircraft_get_nearest([
+                px_to_km(position[0] - prop.canvas.panX),
+                px_to_km(position[1] + prop.canvas.panY)
+            ]);
+
+            if (nearest[0]) {
+                if (nearest[1] < px_to_km(80)) {
+                    this.input_select(nearest[0].getCallsign().toUpperCase());
+                } else {
+                    this.input_select();
+                }
+            }
+
+            position = [
+                px_to_km(position[0]),
+                px_to_km(position[1])
+            ];
+
+            position[0] = parseFloat(position[0].toFixed(2));
+            position[1] = parseFloat(position[1].toFixed(2));
+            prop.input.positions += `[${position.join(',')}]`;
+
+            return false;
+        }
+    }
+
+    /**
+     * @for InputController
+     * @method onKeydownHandler
+     * @param event {jQuery Event}
+     * @private
+     */
+    onKeydownHandler(event) {
         // For firefox see: https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/keyCode
         const is_firefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
 
-        this.$window.keydown((event) => {
-            if (event.which === KEY_CODES.ESCAPE) {
-                if (prop.tutorial.open) {
-                    window.tutorialView.tutorial_close();
-                } else if ($(SELECTORS.DOM_SELECTORS.AIRPORT_SWITCH).hasClass(SELECTORS.CLASSNAMES.OPEN)) {
-                    ui_airport_close();
-                }
+        if (!window.gameController.game_paused()) {
+            this.$commandInput.focus();
+        }
+
+        if (event.which === KEY_CODES.ESCAPE) {
+            if (prop.tutorial.open) {
+                window.tutorialView.tutorial_close();
+            } else if ($(SELECTORS.DOM_SELECTORS.AIRPORT_SWITCH).hasClass(SELECTORS.CLASSNAMES.OPEN)) {
+                ui_airport_close();
             }
+        }
 
-            if (event.which === KEY_CODES.DASH || (is_firefox && event.which === KEY_CODES.DASH_FIREFOX)) {
-                // Minus key to zoom out, plus to zoom in
-                ui_zoom_out();
-                return false;
-            } else if (event.which === KEY_CODES.EQUALS || (is_firefox && event.which === KEY_CODES.EQUALS_FIREFOX)) {
-                if (event.shiftKey) {
-                    ui_zoom_in();
-                } else {
-                    ui_zoom_reset();
-                }
-
-                return false;
-            }
-
-            if (!prop.tutorial.open) {
-                return;
-            }
-
-            if (event.which === KEY_CODES.PAGE_UP) {
-                window.tutorialView.tutorial_prev();
-                event.preventDefault();
-            } else if (event.which === KEY_CODES.PAGE_DOWN) {
-                window.tutorialView.tutorial_next();
-                event.preventDefault();
-            }
-        });
-
-        this.$canvases.bind('DOMMouseScroll mousewheel', (event) => {
-            if (event.originalEvent.wheelDelta > 0 || event.originalEvent.detail < 0) {
+        if (event.which === KEY_CODES.DASH || (is_firefox && event.which === KEY_CODES.DASH_FIREFOX)) {
+            // Minus key to zoom out, plus to zoom in
+            ui_zoom_out();
+            return false;
+        } else if (event.which === KEY_CODES.EQUALS || (is_firefox && event.which === KEY_CODES.EQUALS_FIREFOX)) {
+            if (event.shiftKey) {
                 ui_zoom_in();
             } else {
-                ui_zoom_out();
-            }
-        });
-
-        this.$canvases.mousemove((event) => {
-            if (prop.input.isMouseDown) {
-                prop.input.mouseDelta = [
-                    event.pageX - prop.input.mouseDown[0],
-                    event.pageY - prop.input.mouseDown[1]
-                ];
-                prop.canvas.panX = prop.input.mouseDelta[0];
-                prop.canvas.panY = prop.input.mouseDelta[1];
-                prop.canvas.dirty = true;
-            }
-        });
-
-        this.$canvases.mouseup((event) => {
-            prop.input.isMouseDown = false;
-        });
-
-        this.$canvases.mousedown((event) => {
-            event.preventDefault();
-
-            if (event.which === MOUSE_EVENTS.MIDDLE_PESS) {
                 ui_zoom_reset();
-            } else if (event.which === MOUSE_EVENTS.LEFT_PRESS) {
-                // Record mouse down position for panning
-                prop.input.mouseDown = [
-                    event.pageX - prop.canvas.panX,
-                    event.pageY - prop.canvas.panY
-                ];
-                prop.input.isMouseDown = true;
-
-                // Aircraft label selection
-                let position = [event.pageX, -event.pageY];
-                position[0] -= prop.canvas.size.width / 2;
-                position[1] += prop.canvas.size.height / 2;
-
-                const nearest = window.aircraftController.aircraft_get_nearest([
-                    px_to_km(position[0] - prop.canvas.panX),
-                    px_to_km(position[1] + prop.canvas.panY)
-                ]);
-
-                if (nearest[0]) {
-                    if (nearest[1] < px_to_km(80)) {
-                        this.input_select(nearest[0].getCallsign().toUpperCase());
-                    } else {
-                        this.input_select();
-                    }
-                }
-
-                position = [
-                    px_to_km(position[0]),
-                    px_to_km(position[1])
-                ];
-
-                position[0] = parseFloat(position[0].toFixed(2));
-                position[1] = parseFloat(position[1].toFixed(2));
-                prop.input.positions += `[${position.join(',')}]`;
-
-                return false;
             }
-        });
 
-        this.$window.keydown(() => {
-            if (!window.gameController.game_paused()) {
-                this.$commandInput.focus();
-            }
-        });
+            return false;
+        }
 
-        // this.$commandInput.on('keydown', (event) => this.input_keydown(event));
-        // this.$commandInput.on('input', (event) => this.input_change(event));
+        if (!prop.tutorial.open) {
+            return;
+        }
+
+        if (event.which === KEY_CODES.PAGE_UP) {
+            window.tutorialView.tutorial_prev();
+            event.preventDefault();
+        } else if (event.which === KEY_CODES.PAGE_DOWN) {
+            window.tutorialView.tutorial_next();
+            event.preventDefault();
+        }
     }
-
-    // _onMouseScroll(event) {
-    //     if (event.originalEvent.wheelDelta > 0 || event.originalEvent.detail < 0) {
-    //         ui_zoom_in();
-    //     } else {
-    //         ui_zoom_out();
-    //     }
-    // }
-
-    // _onMouseMove(event) {
-    //     if (!prop.input.isMouseDown) {
-    //         return this;
-    //     }
-    //
-    //     prop.input.mouseDelta = [
-    //         event.pageX - prop.input.mouseDown[0],
-    //         event.pageY - prop.input.mouseDown[1]
-    //     ];
-    //     prop.canvas.panX = prop.input.mouseDelta[0];
-    //     prop.canvas.panY = prop.input.mouseDelta[1];
-    //     prop.canvas.dirty = true;
-    // }
-
-    // _onMouseUp(event) {
-    //     prop.input.isMouseDown = false;
-    // }
-
-    // _onMouseDown(event) {
-    //     event.preventDefault();
-    //
-    //     if (event.which === MOUSE_EVENTS.MIDDLE_PESS) {
-    //         ui_zoom_reset();
-    //     } else if (event.which === MOUSE_EVENTS.LEFT_PRESS) {
-    //         // Record mouse down position for panning
-    //         prop.input.mouseDown = [
-    //             event.pageX - prop.canvas.panX,
-    //             event.pageY - prop.canvas.panY
-    //         ];
-    //         prop.input.isMouseDown = true;
-    //
-    //         // Aircraft label selection
-    //         let position = [event.pageX, -event.pageY];
-    //         position[0] -= prop.canvas.size.width / 2;
-    //         position[1] += prop.canvas.size.height / 2;
-    //
-    //         const nearest = window.aircraftController.aircraft_get_nearest([
-    //             px_to_km(position[0] - prop.canvas.panX),
-    //             px_to_km(position[1] + prop.canvas.panY)
-    //         ]);
-    //
-    //         if (nearest[0]) {
-    //             if (nearest[1] < px_to_km(80)) {
-    //                 this.input_select(nearest[0].getCallsign().toUpperCase());
-    //             } else {
-    //                 this.input_select();
-    //             }
-    //         }
-    //
-    //         position = [
-    //             px_to_km(position[0]),
-    //             px_to_km(position[1])
-    //         ];
-    //
-    //         position[0] = parseFloat(position[0].toFixed(2));
-    //         position[1] = parseFloat(position[1].toFixed(2));
-    //         prop.input.positions += `[${position.join(',')}]`;
-    //
-    //         return false;
-    //     }
-    // }
-
-    // _onKeydown(event) {
-    //     // For firefox see: https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/keyCode
-    //     const is_firefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
-    //
-    //     if (!window.gameController.game_paused()) {
-    //         this.$commandInput.focus();
-    //     }
-    //
-    //     if (event.which === KEY_CODES.ESCAPE) {
-    //         if (prop.tutorial.open) {
-    //             window.tutorialView.tutorial_close();
-    //         } else if ($(SELECTORS.DOM_SELECTORS.AIRPORT_SWITCH).hasClass(SELECTORS.CLASSNAMES.OPEN)) {
-    //             ui_airport_close();
-    //         }
-    //     }
-    //
-    //     if (event.which === KEY_CODES.DASH || (is_firefox && event.which === KEY_CODES.DASH_FIREFOX)) {
-    //         // Minus key to zoom out, plus to zoom in
-    //         ui_zoom_out();
-    //         return false;
-    //     } else if (event.which === KEY_CODES.EQUALS || (is_firefox && event.which === KEY_CODES.EQUALS_FIREFOX)) {
-    //         if (event.shiftKey) {
-    //             ui_zoom_in();
-    //         } else {
-    //             ui_zoom_reset();
-    //         }
-    //
-    //         return false;
-    //     }
-    //
-    //     if (!prop.tutorial.open) {
-    //         return;
-    //     }
-    //
-    //     if (event.which === KEY_CODES.PAGE_UP) {
-    //         window.tutorialView.tutorial_prev();
-    //         event.preventDefault();
-    //     } else if (event.which === KEY_CODES.PAGE_DOWN) {
-    //         window.tutorialView.tutorial_next();
-    //         event.preventDefault();
-    //     }
-    // }
 
     /**
      * @for InputController
@@ -462,9 +381,9 @@ export default class InputController {
 
     /**
      * @for InputController
-     * @method input_change
+     * @method onCommandInputChangeHandler
      */
-    input_change() {
+    onCommandInputChangeHandler() {
         this.tab_completion_reset();
 
         prop.input.command = this.$commandInput.val();
@@ -486,14 +405,14 @@ export default class InputController {
 
         this.$commandInput.focus();
 
-        this.input_change();
+        this.onCommandInputChangeHandler();
     }
 
     /**
      * @for InputController
-     * @method input_keydown
+     * @method onCommandInputKeydownHandler
      */
-    input_keydown(e) {
+    onCommandInputKeydownHandler(e) {
         const currentCommandInputValue = this.$commandInput.val();
 
         switch (e.which) {
@@ -530,7 +449,7 @@ export default class InputController {
                 if (prop.game.option.get('controlMethod') === 'arrows') {
                     this.$commandInput.val(`${currentCommandInputValue} \u2BA2`);
                     e.preventDefault();
-                    this.input_change();
+                    this.onCommandInputChangeHandler();
                 }
 
                 break;
@@ -539,7 +458,7 @@ export default class InputController {
                 if (prop.game.option.get('controlMethod') === 'arrows') { // shortKeys in use
                     this.$commandInput.val(`${currentCommandInputValue} \u2B61`);
                     e.preventDefault();
-                    this.input_change();
+                    this.onCommandInputChangeHandler();
                 } else {
                     // recall previous callsign
                     this.input_history_prev();
@@ -552,7 +471,7 @@ export default class InputController {
                 if (prop.game.option.get('controlMethod') === 'arrows') {
                     this.$commandInput.val(`${currentCommandInputValue} \u2BA3`);
                     e.preventDefault();
-                    this.input_change();
+                    this.onCommandInputChangeHandler();
                 }
 
                 break;
@@ -561,7 +480,7 @@ export default class InputController {
                 if (prop.game.option.get('controlMethod') === 'arrows') { // shortKeys in use
                     this.$commandInput.val(`${currentCommandInputValue} \u2B63`);
                     e.preventDefault();
-                    this.input_change();
+                    this.onCommandInputChangeHandler();
                 } else {
                     // recall previous callsign
                     this.input_history_prev();
@@ -573,42 +492,42 @@ export default class InputController {
             case KEY_CODES.MULTIPLY:
                 this.$commandInput.val(`${currentCommandInputValue} \u2B50`);
                 e.preventDefault();
-                this.input_change();
+                this.onCommandInputChangeHandler();
 
                 break;
 
             case KEY_CODES.ADD:
                 this.$commandInput.val(`${currentCommandInputValue} +`);
                 e.preventDefault();
-                this.input_change();
+                this.onCommandInputChangeHandler();
 
                 break;
 
             case KEY_CODES.EQUALS: // mac + (actually `=`)
                 this.$commandInput.val(`${currentCommandInputValue} +`);
                 e.preventDefault();
-                this.input_change();
+                this.onCommandInputChangeHandler();
 
                 break;
 
             case KEY_CODES.SUBTRACT:
                 this.$commandInput.val(`${currentCommandInputValue} -`);
                 e.preventDefault();
-                this.input_change();
+                this.onCommandInputChangeHandler();
 
                 break;
 
             case KEY_CODES.DASH: // mac -
                 this.$commandInput.val(`${currentCommandInputValue} -`);
                 e.preventDefault();
-                this.input_change();
+                this.onCommandInputChangeHandler();
 
                 break;
 
             case KEY_CODES.DIVIDE:
                 this.$commandInput.val(`${currentCommandInputValue} takeoff`);
                 e.preventDefault();
-                this.input_change();
+                this.onCommandInputChangeHandler();
 
                 break;
 
@@ -731,7 +650,7 @@ export default class InputController {
         const command = `${prop.input.history[prop.input.history_item]} `;
         this.$commandInput.val(command.toUpperCase());
 
-        this.input_change();
+        this.onCommandInputChangeHandler();
     }
 
     /**
@@ -748,7 +667,7 @@ export default class InputController {
         if (prop.input.history_item <= 0) {
             this.$commandInput.val(prop.input.history[0]);
 
-            this.input_change();
+            this.onCommandInputChangeHandler();
 
             prop.input.history.splice(0, 1);
             prop.input.history_item = null;
@@ -761,7 +680,7 @@ export default class InputController {
         const command = `${prop.input.history[prop.input.history_item]} `;
 
         this.$commandInput.val(command.toUpperCase());
-        this.input_change();
+        this.onCommandInputChangeHandler();
     }
 
     /**
