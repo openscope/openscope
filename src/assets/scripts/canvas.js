@@ -1240,11 +1240,11 @@ function canvas_draw_crosshairs(cc) {
 }
 
 window.canvas_update_post = function canvas_update_post() {
-    let elapsed = game_time() - window.window.airportController.airport_get().start;
+    let elapsed = window.gameController.game_time() - window.window.airportController.airport_get().start;
     let alpha = crange(0.1, elapsed, 0.4, 0, 1);
     let framestep = Math.round(crange(1, prop.game.speedup, 10, 30, 1));
 
-    if (prop.canvas.dirty || (!game_paused() && prop.time.frames % framestep === 0) || elapsed < 1) {
+    if (prop.canvas.dirty || (!window.gameController.game_paused() && prop.time.frames % framestep === 0) || elapsed < 1) {
         const cc = canvas_get('navaids');
         const fading = elapsed < 1;
 
@@ -1343,7 +1343,7 @@ window.canvas_update_post = function canvas_update_post() {
 }
 
 function canvas_draw_directions(cc) {
-    if (game_paused()) {
+    if (window.gameController.game_paused()) {
         return;
     }
 

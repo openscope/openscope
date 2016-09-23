@@ -103,8 +103,8 @@ export default class AircraftConflict {
 
 
         // Ignore aircraft in the first minute of their flight
-        if ((game_time() - this.aircraft[0].takeoffTime < 60) ||
-            (game_time() - this.aircraft[0].takeoffTime < 60)) {
+        if ((window.gameController.game_time() - this.aircraft[0].takeoffTime < 60) ||
+            (window.gameController.game_time() - this.aircraft[0].takeoffTime < 60)) {
             return;
         }
 

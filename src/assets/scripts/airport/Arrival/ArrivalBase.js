@@ -200,7 +200,7 @@ export default class ArrivalBase {
      */
     stop() {
         if (this.timeout) {
-            game_clear_timeout(this.timeout);
+            window.gameController.game_clear_timeout(this.timeout);
         }
     }
 
@@ -210,7 +210,7 @@ export default class ArrivalBase {
     start() {
         // TODO: what do these numbers mean? enumerate the magic numbers.
         const delay = random(0, 3600 / this.frequency);
-        this.timeout = game_timeout(this.spawnAircraft, delay, this, [true, true]);
+        this.timeout = window.gameController.game_timeout(this.spawnAircraft, delay, this, [true, true]);
 
         if (this.route) {
             this.preSpawn();
@@ -224,7 +224,7 @@ export default class ArrivalBase {
         let start_flag = args[0];
         let timeout_flag = args[1] || false;
         let altitude = round(random(this.altitude[0], this.altitude[1]) / 1000) * 1000;
-        let message = !(game_time() - this.airport.start < 2);
+        let message = !(window.gameController.game_time() - this.airport.start < 2);
         let position;
         let heading;
         let fleet;
@@ -276,7 +276,7 @@ export default class ArrivalBase {
         });
 
         if (timeout_flag) {
-            this.timeout = game_timeout(this.spawnAircraft, this.nextInterval(), this, [null, true]);
+            this.timeout = window.gameController.game_timeout(this.spawnAircraft, this.nextInterval(), this, [null, true]);
         }
     }
 

@@ -22,7 +22,7 @@ export default class AirlineController {
      */
     init_pre() {
         prop.airline = airline;
-        prop.airline.airlines = {};
+        // prop.airline.airlines = {};
     }
 
     /**
@@ -34,7 +34,7 @@ export default class AirlineController {
     airline_get(icao) {
         icao = icao.toLowerCase();
 
-        if (!(icao in prop.airline.airlines)) {
+        if (!(icao in this.airline.airlines)) {
             const airlineToAdd = new Airline(
                 icao,
                 {
@@ -42,9 +42,9 @@ export default class AirlineController {
                 }
             );
 
-            prop.airline.airlines[icao] = airlineToAdd;
+            this.airline.airlines[icao] = airlineToAdd;
         }
 
-        return prop.airline.airlines[icao];
+        return this.airline.airlines[icao];
     }
 }

@@ -47,7 +47,7 @@ export default class DepartureBase {
      */
     stop() {
         if (this.timeout) {
-            game_clear_timeout(this.timeout);
+            window.gameController.game_clear_timeout(this.timeout);
         }
     }
 
@@ -64,14 +64,14 @@ export default class DepartureBase {
 
         // TODO: enumerate the magic numbers
         // start spawning loop
-        this.timeout = game_timeout(this.spawnAircraft, random(this.frequency * 0.5, this.frequency * 1.5), this, true);
+        this.timeout = window.gameController.game_timeout(this.spawnAircraft, random(this.frequency * 0.5, this.frequency * 1.5), this, true);
     }
 
     /**
      * Spawn a new aircraft
      */
     spawnAircraft(timeout) {
-        const message = (game_time() - this.start >= 2);
+        const message = (window.gameController.game_time() - this.start >= 2);
         let airline = choose_weight(this.airlines);
         let fleet;
 
@@ -91,7 +91,7 @@ export default class DepartureBase {
         });
 
         if (timeout) {
-            this.timeout = game_timeout(this.spawnAircraft,
+            this.timeout = window.gameController.game_timeout(this.spawnAircraft,
             this.nextInterval(), this, true);
         }
     }

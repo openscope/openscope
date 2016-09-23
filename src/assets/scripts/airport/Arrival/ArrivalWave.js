@@ -104,6 +104,6 @@ export default class ArrivalWave extends ArrivalBase {
         const delay = random(0, 3600 / this.frequency);
 
         this.cycleStart = prop.game.time - this.offset + delay;
-        this.timeout = game_timeout(this.spawnAircraft, delay, this, [true, true]);
+        this.timeout = window.gameController.game_timeout(this.spawnAircraft, delay, this, [true, true]);
     }
 }

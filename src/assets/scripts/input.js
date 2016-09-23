@@ -343,13 +343,13 @@ function input_run() {
 
         return true;
     } else if (result.command === 'pause') {
-        game_pause_toggle();
+        window.gameController.game_pause_toggle();
         return true;
     } else if (result.command === 'timewarp') {
         if (result.args) {
             prop.game.speedup = result.args;
         } else {
-            game_timewarp_toggle();
+            window.gameController.game_timewarp_toggle();
         }
 
         return true;
@@ -529,7 +529,7 @@ function input_init() {
     });
 
     $window.keydown(() => {
-        if (!game_paused()) {
+        if (!window.gameController.game_paused()) {
             $command.focus();
         }
     });

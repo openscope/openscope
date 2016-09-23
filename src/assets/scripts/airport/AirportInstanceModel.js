@@ -82,10 +82,10 @@ export default class AirportInstance {
         // TODO: there are a lot of magic numbers here. What are they for and what do they mean? These should be enumerated.
         const wind = clone(this.wind);
         let s = 1;
-        const angle_factor = sin((s + game_time()) * 0.5) + sin((s + game_time()) * 2);
+        const angle_factor = sin((s + window.gameController.game_time()) * 0.5) + sin((s + window.gameController.game_time()) * 2);
         // TODO: why is this var getting reassigned to a magic number?
         s = 100;
-        const speed_factor = sin((s + game_time()) * 0.5) + sin((s + game_time()) * 2);
+        const speed_factor = sin((s + window.gameController.game_time()) * 0.5) + sin((s + window.gameController.game_time()) * 2);
         wind.angle += crange(-1, angle_factor, 1, degreesToRadians(-4), degreesToRadians(4));
         wind.speed *= crange(-1, speed_factor, 1, 0.9, 1.05);
 
@@ -373,8 +373,8 @@ export default class AirportInstance {
         prop.canvas.dirty = true;
         $('.toggle-terrain').toggle(!_isEmpty(this.terrain));
 
-        game_reset_score();
-        this.start = game_time();
+        window.gameController.game_reset_score();
+        this.start = window.gameController.game_time();
         this.updateRunway();
         this.addAircraft();
         updateRun(true);
@@ -388,7 +388,7 @@ export default class AirportInstance {
         this.departures.stop();
 
         if (this.timeout.runway) {
-            game_clear_timeout(this.timeout.runway);
+            window.gameController.game_clear_timeout(this.timeout.runway);
         }
     }
 
@@ -425,7 +425,7 @@ export default class AirportInstance {
         }
 
         this.runway = best_runway;
-        this.timeout.runway = game_timeout(this.updateRunway, Math.random() * 30, this);
+        this.timeout.runway = window.gameController.game_timeout(this.updateRunway, Math.random() * 30, this);
     }
 
     selectRunway(length) {

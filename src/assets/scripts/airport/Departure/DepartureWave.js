@@ -33,7 +33,7 @@ export default class DepartureWave extends DepartureCyclic {
     }
 
     nextInterval() {
-        const position = (game_time() + this._offset) % this.period;
+        const position = (window.gameController.game_time() + this._offset) % this.period;
 
         if (position >= this._waveLength) {
             return this.period - position;

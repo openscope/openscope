@@ -73,7 +73,7 @@ export const ui_log = (message, warn = false) => {
     $log.append(html);
     $log.scrollTop($log.get(0).scrollHeight);
 
-    game_timeout((html) => {
+    window.gameController.game_timeout((html) => {
         html.addClass(SELECTORS.CLASSNAMES.HIDDEN);
 
         setTimeout(() => {
@@ -175,17 +175,22 @@ export const ui_init_pre = () => {
 
 const ui_setup_handlers = () => {
     const switches = {
-        '.fast-forwards': game_timewarp_toggle,
+        '.fast-forwards': window.gameController.game_timewarp_toggle,
         '.speech-toggle': speech_toggle,
         '.switch-airport': ui_airport_toggle,
         '.toggle-tutorial': tutorial_toggle,
-        '.pause-toggle': game_pause_toggle,
-        '#paused img': game_unpause,
+        // '.pause-toggle': window.gameController.game_pause_toggle,
+        '#paused img': window.gameController.game_unpause,
         '.toggle-labels': canvas_labels_toggle,
         '.toggle-restricted-areas': canvas_restricted_toggle,
         '.toggle-sids': canvas_sids_toggle,
         '.toggle-terrain': canvas_terrain_toggle
     };
+
+    // this handler was pulled out because it's scope was of the $.each function and not the destination.
+    // all the other handlers work as expected
+    // TODO: add enable/disable methods to setup andtear down these handlers
+    $('.pause-toggle').on('click', (event) => window.gameController.game_pause_toggle(event));
 
     $.each(switches, (selector, fn) => {
         $(selector).on('click', (event) => fn(event));

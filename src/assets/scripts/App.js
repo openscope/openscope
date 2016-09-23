@@ -6,6 +6,7 @@ import LoadingView from './LoadingView';
 import AirlineController from './airline/AirlineController';
 import AircraftController from './aircraft/AircraftController';
 import AirportController from './airport/AirportController';
+import GameController from './game/Gamecontroller';
 import { speech_init } from './speech';
 import { time, calculateDeltaTime } from './utilities/timeHelpers';
 import { LOG } from './constants/logLevel';
@@ -25,7 +26,6 @@ require('./parser');
 
 const tutorial = require('./tutorial/tutorial');
 const base = require('./base');
-const game = require('./game/game');
 const input = require('./input');
 const canvas = require('./canvas');
 const ui = require('./ui');
@@ -101,6 +101,7 @@ export default class App {
         this.airlineController = new AirlineController();
         this.aircraftController = new AircraftController();
         this.airportController = new AirportController();
+        this.gameController = new GameController();
 
         return this;
     }
@@ -118,6 +119,7 @@ export default class App {
         window.airlineController = this.airlineController;
         window.aircraftController = this.aircraftController;
         window.airportController = this.airportController;
+        window.gameController = this.gameController;
 
         // This is the old entry point for the application. We include this here now so that
         // the app will run. This is a temporary implementation and should be refactored immediately.
@@ -141,9 +143,6 @@ export default class App {
         };
 
         log(`Version ${this.prop.version_string}`);
-
-        // TODO: temp to get browserify working. these calls should be moved to proper `class.init()` type methods
-        // that are instantiated and live in `App.js`.
 
         return this.init_pre()
                    .init()
@@ -171,6 +170,7 @@ export default class App {
         this.airlineController = null;
         this.aircraftController = null;
         this.airportController = null;
+        this.gameController = null;
 
         return this;
     }
@@ -181,7 +181,8 @@ export default class App {
      */
     init_pre() {
         tutorial_init_pre();
-        game_init_pre();
+        this.gameController.init_pre();
+
         input_init_pre();
 
         this.airlineController.init_pre();
@@ -264,7 +265,7 @@ export default class App {
      * @method complete
      */
     complete() {
-        game_complete();
+        this.gameController.complete();
         canvas_complete();
         ui_complete();
 
@@ -276,7 +277,7 @@ export default class App {
      * @method updatePre
      */
     updatePre() {
-        game_update_pre();
+        this.gameController.update_pre();
 
         return this;
     }

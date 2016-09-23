@@ -73,5 +73,5 @@ const Animation = (options) => {
         return this.value;
     };
 
-    this.step(game_time());
+    this.step(window.gameController.game_time());
 };

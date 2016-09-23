@@ -179,7 +179,7 @@ const Aircraft = Fiber.extend(function() {
                 this.setDepartureRunway(window.airportController.airport_get().runway);
             }
 
-            this.takeoffTime = (options.category === FLIGHT_CATEGORY.ARRIVAL) ? game_time() : null;
+            this.takeoffTime = (options.category === FLIGHT_CATEGORY.ARRIVAL) ? window.gameController.game_time() : null;
 
             this.parse(options);
             this.createStrip();
@@ -1262,7 +1262,7 @@ const Aircraft = Fiber.extend(function() {
             }
 
             // Start the taxi
-            this.taxi_start = game_time();
+            this.taxi_start = window.gameController.game_time();
             const runway = window.airportController.airport_get().getRunway(this.rwy_dep);
 
             runway.addQueue(this);
@@ -1303,7 +1303,7 @@ const Aircraft = Fiber.extend(function() {
             if (runway.removeQueue(this)) {
                 this.mode = FLIGHT_MODES.TAKEOFF;
                 prop.game.score.windy_takeoff += this.scoreWind('taking off');
-                this.takeoffTime = game_time();
+                this.takeoffTime = window.gameController.game_time();
 
                 if (this.fms.currentWaypoint().speed == null) {
                     this.fms.setCurrent({ speed: this.model.speed.cruise });
@@ -1869,7 +1869,7 @@ const Aircraft = Fiber.extend(function() {
             let was_taxi = false;
 
             if (this.mode === FLIGHT_MODES.TAXI) {
-                const elapsed = game_time() - this.taxi_start;
+                const elapsed = window.gameController.game_time() - this.taxi_start;
 
                 if (elapsed > this.taxi_time) {
                     this.mode = FLIGHT_MODES.WAITING;
@@ -1948,7 +1948,7 @@ const Aircraft = Fiber.extend(function() {
 
             if (this.hit) {
                 // 90fps fall rate?...
-                this.altitude -= 90 * game_delta();
+                this.altitude -= 90 * window.gameController.game_delta();
                 this.speed *= 0.99;
 
                 return;
@@ -1959,7 +1959,7 @@ const Aircraft = Fiber.extend(function() {
                     // requires less bank angle.
                     // Formula based on http://aviation.stackexchange.com/a/8013
                     const turn_rate = _clamp(0, 1 / (this.speed / 8.883031), 0.0523598776);
-                    const turn_amount = turn_rate * game_delta();
+                    const turn_amount = turn_rate * window.gameController.game_delta();
                     const offset = angle_offset(this.target.heading, this.heading);
 
                     if (abs(offset) < turn_amount) {
@@ -1977,7 +1977,7 @@ const Aircraft = Fiber.extend(function() {
                 this.trend = 0;
 
                 if (this.target.altitude < this.altitude - 0.02) {
-                    distance = -this.model.rate.descent / 60 * game_delta();
+                    distance = -this.model.rate.descent / 60 * window.gameController.game_delta();
 
                     if (this.mode === FLIGHT_MODES.LANDING) {
                         distance *= 3;
@@ -1986,7 +1986,7 @@ const Aircraft = Fiber.extend(function() {
                     this.trend -= 1;
                 } else if (this.target.altitude > this.altitude + 0.02) {
                     var climbrate = this.getClimbRate();
-                    distance = climbrate / 60 * game_delta();
+                    distance = climbrate / 60 * window.gameController.game_delta();
 
                     if (this.mode === FLIGHT_MODES.LANDING) {
                         distance *= 1.5;
@@ -2017,13 +2017,13 @@ const Aircraft = Fiber.extend(function() {
                 var difference = null;
 
                 if (this.target.speed < this.speed - 0.01) {
-                    difference = -this.model.rate.decelerate * game_delta() / 2;
+                    difference = -this.model.rate.decelerate * window.gameController.game_delta() / 2;
 
                     if (this.isLanded()) {
                         difference *= 3.5;
                     }
                 } else if (this.target.speed > this.speed + 0.01) {
-                    difference  = this.model.rate.accelerate * game_delta() / 2;
+                    difference  = this.model.rate.accelerate * window.gameController.game_delta() / 2;
                     difference *= crange(0, this.speed, this.model.speed.min, 2, 1);
                 }
 
@@ -2047,16 +2047,16 @@ const Aircraft = Fiber.extend(function() {
                 this.position_history.push([
                     this.position[0],
                     this.position[1],
-                    game_time() / game_speedup()
+                    window.gameController.game_time() / window.gameController.game_speedup()
                 ]);
                 // TODO: this can be abstracted
-            } else if (abs((game_time() / game_speedup()) - this.position_history[this.position_history.length - 1][2]) > 4 / game_speedup()) {
-                this.position_history.push([this.position[0], this.position[1], game_time() / game_speedup()]);
+            } else if (abs((window.gameController.game_time() / window.gameController.game_speedup()) - this.position_history[this.position_history.length - 1][2]) > 4 / window.gameController.game_speedup()) {
+                this.position_history.push([this.position[0], this.position[1], window.gameController.game_time() / window.gameController.game_speedup()]);
             }
 
             var angle = this.heading;
             // FIXME: is this ratio correct? is it 0.000514444 or 0.514444?
-            var scaleSpeed = this.speed * 0.000514444 * game_delta(); // knots to m/s
+            var scaleSpeed = this.speed * 0.000514444 * window.gameController.game_delta(); // knots to m/s
 
             if (prop.game.option.get('simplifySpeeds') === 'no') {
                 // TODO: this should be abstracted to a helper function
@@ -2083,7 +2083,7 @@ const Aircraft = Fiber.extend(function() {
                     // TODO: this should be abstracted to a helper function
                     vector = vadd(vscale(
                         vturn(wind.angle + Math.PI),
-                        wind.speed * 0.000514444 * game_delta()),
+                        wind.speed * 0.000514444 * window.gameController.game_delta()),
                         vscale(vturn(angle + crab_angle), scaleSpeed)
                     );
                 }
@@ -2091,7 +2091,7 @@ const Aircraft = Fiber.extend(function() {
                 this.ds = vlen(vector);
 
                 // TODO: this should be abstracted to a helper function
-                this.groundSpeed = this.ds / 0.000514444 / game_delta();
+                this.groundSpeed = this.ds / 0.000514444 / window.gameController.game_delta();
                 this.groundTrack = vradial(vector);
                 this.position = vadd(this.position, vector);
 
