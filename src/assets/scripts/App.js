@@ -9,6 +9,7 @@ import AirportController from './airport/AirportController';
 import GameController from './game/GameController';
 import TutorialView from './tutorial/TutorialView';
 import InputController from './InputController';
+import UiController from './UiController';
 import { speech_init } from './speech';
 import { time, calculateDeltaTime } from './utilities/timeHelpers';
 import { LOG } from './constants/logLevel';
@@ -28,7 +29,6 @@ require('./parser');
 
 const base = require('./base');
 const canvas = require('./canvas');
-const ui = require('./ui');
 
 // saved as this.prop.version and this.prop.version_string
 const VERSION = [3, 0, 0];
@@ -70,6 +70,7 @@ export default class App {
         this.airportController = null;
         this.tutorialView = null;
         this.inputController = null;
+        this.uiController = null;
 
         window.prop = prop;
 
@@ -112,6 +113,7 @@ export default class App {
         this.gameController = new GameController();
         this.tutorialView = new TutorialView(this.$element);
         this.inputController = new InputController(this.$element);
+        this.uiController = new UiController(this.$element);
 
         return this;
     }
@@ -132,6 +134,7 @@ export default class App {
         window.gameController = this.gameController;
         window.tutorialView = this.tutorialView;
         window.inputController = this.inputController;
+        window.uiController = this.uiController;
 
         // This is the old entry point for the application. We include this here now so that
         // the app will run. This is a temporary implementation and should be refactored immediately.
@@ -185,6 +188,7 @@ export default class App {
         this.gameController = null;
         this.tutorialView = null;
         this.inputController = null;
+        this.uiController = null;
 
         return this;
     }
@@ -202,7 +206,7 @@ export default class App {
         this.airportController.init_pre();
 
         canvas_init_pre();
-        ui_init_pre();
+        this.uiController.ui_init_pre();
 
         return this;
     }
@@ -217,7 +221,7 @@ export default class App {
         this.airportController.init();
 
         canvas_init();
-        ui_init();
+        this.uiController.ui_init();
 
         return this;
     }
@@ -277,7 +281,7 @@ export default class App {
     complete() {
         this.gameController.complete();
         canvas_complete();
-        ui_complete();
+        this.uiController.ui_complete();
 
         return this;
     }

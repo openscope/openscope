@@ -112,7 +112,7 @@ export const kn_ms = (kn = 0) => {
  */
 export const radiansToDegrees = (radians) => {
     return (radians / (tau())) * NUMBER_CONSTANTS.FULL_CIRCLE_DEGREES;
-}
+};
 
 /**
  * convert degrees to radians

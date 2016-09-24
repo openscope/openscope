@@ -86,7 +86,7 @@ export default class Leg {
             // Generate the waypoints
             if (!rwy) {
                 const isWarning = true;
-                ui_log(`${fms.my_aircraft.getCallsign()} unable to fly SID, we haven't been assigned a departure runway!`, isWarning);
+                window.uiController.ui_log(`${fms.my_aircraft.getCallsign()} unable to fly SID, we haven't been assigned a departure runway!`, isWarning);
 
                 return;
             }

@@ -134,7 +134,7 @@ export default class AircraftConflict {
         ) {
             this.collided = true;
             const isWarning = true;
-            ui_log(`${this.aircraft[0].getCallsign()} collided with ${this.aircraft[1].getCallsign()}`, isWarning);
+            window.uiController.ui_log(`${this.aircraft[0].getCallsign()} collided with ${this.aircraft[1].getCallsign()}`, isWarning);
 
             prop.game.score.hit += 1;
             this.aircraft[0].hit = true;
@@ -173,7 +173,7 @@ export default class AircraftConflict {
         ) {
             if (!this.conflicts.runwayCollision) {
                 this.conflicts.runwayCollision = true;
-                ui_log(
+                window.uiController.ui_log(
                     `${this.aircraft[0].getCallsign()} appears on a collision course with` +
                     ` ${this.aircraft[1].getCallsign()} on the same runway"`,
                     isWarning

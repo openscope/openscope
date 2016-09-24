@@ -197,9 +197,9 @@ export default class InputController {
      */
     onMouseScrollHandler(event) {
         if (event.originalEvent.wheelDelta > 0 || event.originalEvent.detail < 0) {
-            ui_zoom_in();
+            window.uiController.ui_zoom_in();
         } else {
-            ui_zoom_out();
+            window.uiController.ui_zoom_out();
         }
     }
 
@@ -240,7 +240,7 @@ export default class InputController {
         event.preventDefault();
 
         if (event.which === MOUSE_EVENTS.MIDDLE_PESS) {
-            ui_zoom_reset();
+            window.uiController.ui_zoom_reset();
         } else if (event.which === MOUSE_EVENTS.LEFT_PRESS) {
             // Record mouse down position for panning
             prop.input.mouseDown = [
@@ -255,12 +255,12 @@ export default class InputController {
             position[1] += prop.canvas.size.height / 2;
 
             const nearest = window.aircraftController.aircraft_get_nearest([
-                px_to_km(position[0] - prop.canvas.panX),
-                px_to_km(position[1] + prop.canvas.panY)
+                window.uiController.px_to_km(position[0] - prop.canvas.panX),
+                window.uiController.px_to_km(position[1] + prop.canvas.panY)
             ]);
 
             if (nearest[0]) {
-                if (nearest[1] < px_to_km(80)) {
+                if (nearest[1] < window.uiController.px_to_km(80)) {
                     this.input_select(nearest[0].getCallsign().toUpperCase());
                 } else {
                     this.input_select();
@@ -268,8 +268,8 @@ export default class InputController {
             }
 
             position = [
-                px_to_km(position[0]),
-                px_to_km(position[1])
+                window.uiController.px_to_km(position[0]),
+                window.uiController.px_to_km(position[1])
             ];
 
             position[0] = parseFloat(position[0].toFixed(2));
@@ -298,19 +298,19 @@ export default class InputController {
             if (prop.tutorial.open) {
                 window.tutorialView.tutorial_close();
             } else if ($(SELECTORS.DOM_SELECTORS.AIRPORT_SWITCH).hasClass(SELECTORS.CLASSNAMES.OPEN)) {
-                ui_airport_close();
+                window.uiController.ui_airport_close();
             }
         }
 
         if (event.which === KEY_CODES.DASH || (is_firefox && event.which === KEY_CODES.DASH_FIREFOX)) {
             // Minus key to zoom out, plus to zoom in
-            ui_zoom_out();
+            window.uiController.ui_zoom_out();
             return false;
         } else if (event.which === KEY_CODES.EQUALS || (is_firefox && event.which === KEY_CODES.EQUALS_FIREFOX)) {
             if (event.shiftKey) {
-                ui_zoom_in();
+                window.uiController.ui_zoom_in();
             } else {
-                ui_zoom_reset();
+                window.uiController.ui_zoom_reset();
             }
 
             return false;
@@ -696,7 +696,7 @@ export default class InputController {
             result = zlsa.atc.Parser.parse(prop.input.command.trim().toLowerCase());
         } catch (error) {
             if (_get(error, 'name', '') === 'SyntaxError') {
-                ui_log('Command not understood');
+                window.uiController.ui_log('Command not understood');
 
                 return;
             }
@@ -706,7 +706,7 @@ export default class InputController {
 
         // TODO: convert `result.command === { }` to a switch statement
         if (result.command === 'version') {
-            ui_log(`Air Traffic Control simulator version ${prop.version.join('.')}`);
+            window.uiController.ui_log(`Air Traffic Control simulator version ${prop.version.join('.')}`);
 
             return true;
         } else if (result.command === 'tutorial') {
@@ -718,9 +718,9 @@ export default class InputController {
             aircraft_toggle_auto();
 
             if (prop.aircraft.auto.enabled) {
-                ui_log('automatic controller ENGAGED');
+                window.uiController.ui_log('automatic controller ENGAGED');
             } else {
-                ui_log('automatic controller OFF');
+                window.uiController.ui_log('automatic controller OFF');
             }
 
             return true;
@@ -743,10 +743,10 @@ export default class InputController {
                 if (result.args.toLowerCase() in prop.airport.airports) {
                     window.airportController.airport_set(result.args.toLowerCase());
                 } else {
-                    ui_airport_toggle();
+                    window.uiController.ui_airport_toggle();
                 }
             } else {
-                ui_airport_toggle();
+                window.uiController.ui_airport_toggle();
             }
 
             return true;
@@ -773,13 +773,13 @@ export default class InputController {
         }
 
         if (matches > 1) {
-            ui_log('multiple aircraft match the callsign, say again');
+            window.uiController.ui_log('multiple aircraft match the callsign, say again');
 
             return true;
         }
 
         if (match === -1) {
-            ui_log('no such aircraft, say again');
+            window.uiController.ui_log('no such aircraft, say again');
 
             return true;
         }

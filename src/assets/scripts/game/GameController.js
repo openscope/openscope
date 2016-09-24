@@ -1,10 +1,10 @@
-/* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand, no-undef */
+/* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand, no-undef, class-methods-use-this */
 import $ from 'jquery';
 import GameOptions from './GameOptions';
 import { round } from '../math/core';
 import { SELECTORS } from '../constants/selectors';
 
-// Temporary const declaration here to attach to the window AND use as internal propert
+// Temporary const declaration here to attach to the window AND use as internal property
 const game = {};
 
 /**

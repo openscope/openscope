@@ -320,8 +320,8 @@ const Aircraft = Fiber.extend(function() {
             });
 
             this.html.dblclick(this, (event) => {
-                prop.canvas.panX = 0 - round(km_to_px(event.data.position[0]));
-                prop.canvas.panY = round(km_to_px(event.data.position[1]));
+                prop.canvas.panX = 0 - round(window.uiController.km_to_px(event.data.position[0]));
+                prop.canvas.panY = round(window.uiController.km_to_px(event.data.position[1]));
                 prop.canvas.dirty = true;
             });
 
@@ -591,7 +591,7 @@ const Aircraft = Fiber.extend(function() {
                 const r_log = _map(response, (r) => r.log).join(', ');
                 const r_say = _map(response, (r) => r.say).join(', ');
 
-                ui_log(`${this.getCallsign()}, ${r_log} ${response_end}`);
+                window.uiController.ui_log(`${this.getCallsign()}, ${r_log} ${response_end}`);
                 speech_say([
                     { type: 'callsign', content: this },
                     { type: 'text', content: `${r_say} ${response_end}` }
@@ -838,7 +838,7 @@ const Aircraft = Fiber.extend(function() {
 
             if (fail) {
                 const isWarning = true;
-                ui_log(`${this.getCallsign()} unable to climb via SID`, isWarning);
+                window.uiController.ui_log(`${this.getCallsign()} unable to climb via SID`, isWarning);
             }
         },
 
@@ -853,7 +853,7 @@ const Aircraft = Fiber.extend(function() {
             }
 
             const isWarning = true;
-            ui_log(`${this.getCallsign()}, unable to descend via STAR`, isWarning);
+            window.uiController.ui_log(`${this.getCallsign()}, unable to descend via STAR`, isWarning);
         },
 
         runSpeed: function(data) {
@@ -999,7 +999,7 @@ const Aircraft = Fiber.extend(function() {
                 });
             }
 
-            const inboundDir = radio_cardinalDir_names[getCardinalDirection(fix_angle(inboundHdg + Math.PI)).toLowerCase()];
+            const inboundDir = window.radio_cardinalDir_names[getCardinalDirection(fix_angle(inboundHdg + Math.PI)).toLowerCase()];
 
             if (holdFix) {
                 return ['ok', `proceed direct ${holdFix} and hold inbound, ${dirTurns} turns, ${legLength} legs`];
@@ -1355,7 +1355,7 @@ const Aircraft = Fiber.extend(function() {
                 console.log('aborted taxi to runway');
 
                 const isWarning = true;
-                ui_log(`${this.getCallsign()} aborted taxi to runway`, isWarning);
+                window.uiController.ui_log(`${this.getCallsign()} aborted taxi to runway`, isWarning);
                 prop.game.score.abort.taxi += 1;
 
                 return ['ok', 'taxiing back to terminal'];
@@ -1583,9 +1583,9 @@ const Aircraft = Fiber.extend(function() {
             const logMessage = (callsign) => `${window.airportController.airport_get().radio[sectorType]}, ${callsign} ${msg}`;
             if (alert) {
                 const isWarning = true;
-                ui_log(logMessage(callsign_L), isWarning);
+                window.uiController.ui_log(logMessage(callsign_L), isWarning);
             } else {
-                ui_log(logMessage(callsign_L));
+                window.uiController.ui_log(logMessage(callsign_L));
             }
 
             speech_say([{
@@ -1615,7 +1615,7 @@ const Aircraft = Fiber.extend(function() {
                     alt_say = `at ${radio_altitude(alt)}`;
                 }
 
-                ui_log(`${window.airportController.airport_get().radio.app}, ${this.getCallsign()} with you ${alt_log}`);
+                window.uiController.ui_log(`${window.airportController.airport_get().radio.app}, ${this.getCallsign()} with you ${alt_log}`);
                 speech_say([
                     { type: 'text', content: `${window.airportController.airport_get().radio.app}, ` },
                     { type: 'callsign', content: this },
@@ -1624,7 +1624,7 @@ const Aircraft = Fiber.extend(function() {
             }
 
             if (this.category === FLIGHT_CATEGORY.DEPARTURE) {
-                ui_log(`${window.airportController.airport_get().radio.twr}, ${this.getCallsign()}, ready to taxi`);
+                window.uiController.ui_log(`${window.airportController.airport_get().radio.twr}, ${this.getCallsign()}, ready to taxi`);
                 speech_say([
                     { type: 'text', content: window.airportController.airport_get().radio.twr },
                     { type: 'callsign', content: this },
@@ -1641,18 +1641,18 @@ const Aircraft = Fiber.extend(function() {
             // TODO: these two if blocks could be done in a single switch statement
             if (components.cross >= 20) {
                 score += 2;
-                ui_log(`${this.getCallsign()} ${action} with major crosswind'`, isWarning);
+                window.uiController.ui_log(`${this.getCallsign()} ${action} with major crosswind'`, isWarning);
             } else if (components.cross >= 10) {
                 score += 1;
-                ui_log(`${this.getCallsign()} ${action} with crosswind'`, isWarning);
+                window.uiController.ui_log(`${this.getCallsign()} ${action} with crosswind'`, isWarning);
             }
 
             if (components.head <= -10) {
                 score += 2;
-                ui_log(`${this.getCallsign()} ${action} with major tailwind'`, isWarning);
+                window.uiController.ui_log(`${this.getCallsign()} ${action} with major tailwind'`, isWarning);
             } else if (components.head <= -1) {
                 score += 1;
-                ui_log(`${this.getCallsign()} ${action} with tailwind'`, isWarning);
+                window.uiController.ui_log(`${this.getCallsign()} ${action} with tailwind'`, isWarning);
             }
 
             return score;
@@ -1731,7 +1731,7 @@ const Aircraft = Fiber.extend(function() {
                             degreesToRadians(parseInt(this.rwy_arr.substr(0, 2), 10) * 10, 10))) > degreesToRadians(30))
                         ) {
                             const isWarning = true;
-                            ui_log(`${this.getRadioCallsign()} approach course intercept angle was greater than 30 degrees`, isWarning);
+                            window.uiController.ui_log(`${this.getRadioCallsign()} approach course intercept angle was greater than 30 degrees`, isWarning);
                             prop.game.score.violation += 1;
                         }
 
@@ -1771,7 +1771,7 @@ const Aircraft = Fiber.extend(function() {
 
                     if (!this.projected) {
                         const isWarning = true;
-                        ui_log(`${this.getRadioCallsign()} aborting landing, lost ILS`, isWarning);
+                        window.uiController.ui_log(`${this.getRadioCallsign()} aborting landing, lost ILS`, isWarning);
                         speech_say([
                             { type: 'callsign', content: this },
                             { type: 'text', content: ' going around' }
@@ -1891,7 +1891,7 @@ const Aircraft = Fiber.extend(function() {
                     runway.inQueue(this) === 0 &&
                     was_taxi === true
                 ) {
-                    ui_log(`${this.getCallsign()}, holding short of runway ${this.rwy_dep}`);
+                    window.uiController.ui_log(`${this.getCallsign()}, holding short of runway ${this.rwy_dep}`);
                     speech_say([
                         { type: 'callsign', content: this },
                         { type: 'text', content: `holding short of runway ${radio_runway(this.rwy_dep)}` }
@@ -2227,7 +2227,7 @@ const Aircraft = Fiber.extend(function() {
 
                                 console.log('hit terrain');
                                 const isWarning = true;
-                                ui_log(`${this.getCallsign()} collided with terrain in controlled flight`, isWarning);
+                                window.uiController.ui_log(`${this.getCallsign()} collided with terrain in controlled flight`, isWarning);
                                 speech_say([
                                     { type: 'callsign', content: this },
                                     { type: 'text', content: ', we\'re going down!' }

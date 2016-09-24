@@ -59,6 +59,7 @@ export const IDS = {
     LOG: 'log',
     NAVAIDS_CANVAS: 'navaids-canvas',
     OPTIONS_DIALOG: 'options-dialog',
+    PAUSED: 'paused',
     TOGGLE_OPTIONS: 'toggle-options',
     TUTORIAL: 'tutorial',
     SCORE: 'score',
