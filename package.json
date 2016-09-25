@@ -60,7 +60,8 @@
     "fiber": "^1.0.4",
     "jquery": "^3.1.0",
     "lodash": "^4.15.0",
-    "pegjs": "^0.9.0"
+    "pegjs": "^0.9.0",
+    "raf": "^3.3.0"
   },
   "devDependencies": {
     "ava": "^0.16.0",

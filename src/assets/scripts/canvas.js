@@ -1,6 +1,4 @@
 /* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand, no-param-reassign, no-undef */
-// jshint latedef:nofunc, undef:true, eqnull:true, eqeqeq:true, browser:true, jquery:true, devel:true
-/* global prop:true, km:false, crange:false, clamp:false, lpad:false, airport_get:false, game_time:false, game_paused:false, time:false, round:false, distance2d:false, radians:false  */
 import $ from 'jquery';
 import _clamp from 'lodash/clamp';
 import _forEach from 'lodash/forEach';

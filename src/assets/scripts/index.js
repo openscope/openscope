@@ -1,3 +1,4 @@
+require ('raf').polyfill();
 import 'babel-polyfill';
 import App from './App';
 

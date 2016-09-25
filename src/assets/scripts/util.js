@@ -9,6 +9,21 @@ import { distance2d } from './math/distance';
 import { tau } from './math/circle';
 import { vlen, vradial, vsub } from './math/vector';
 
+/**
+ *
+ * The functions contained in this file should be migrated over to the `math/`
+ * files as soon as possible.
+ *
+ * These functions are all attached to the `window` and are global to the
+ * entire app. This is a problem because it polutes the global namespace,
+ * and files that don't need it have access to it. These functions should be imported
+ * only as needed.
+ *
+ * These functions should also have corresponding tests.
+ *
+ */
+
+
 window.AudioContext = window.AudioContext || window.webkitAudioContext;
 
 /*eslint-disable*/
@@ -26,32 +41,6 @@ function clone(obj) {
 
     return copy;
 };
-
-(function() {
-    var lastTime = 0;
-    var vendors = ['webkit', 'moz'];
-
-    for (var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
-        window.requestAnimationFrame = window[vendors[x]+'RequestAnimationFrame'];
-        window.cancelAnimationFrame =
-          window[vendors[x]+'CancelAnimationFrame'] || window[vendors[x]+'CancelRequestAnimationFrame'];
-    }
-
-  if (!window.requestAnimationFrame)
-    window.requestAnimationFrame = function(callback, element) {
-      var currTime = new Date().getTime();
-      var timeToCall = Math.max(0, 16 - (currTime - lastTime));
-      var id = window.setTimeout(function() { callback(currTime + timeToCall); },
-        timeToCall);
-      lastTime = currTime + timeToCall;
-      return id;
-    };
-
-  if (!window.cancelAnimationFrame)
-    window.cancelAnimationFrame = function(id) {
-      clearTimeout(id);
-    };
-}());
 
 // String repetition copied from http://stackoverflow.com/a/5450113
 if (!String.prototype.hasOwnProperty("repeat")) {
