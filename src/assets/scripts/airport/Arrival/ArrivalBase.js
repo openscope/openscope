@@ -13,7 +13,6 @@ import { LOG } from '../../constants/logLevel';
  *  Generate arrivals at random, averaging the specified arrival rate
  *
  * @class ArrivalBase
- * @etends Fiber
  */
 export default class ArrivalBase {
     constructor(airport, options) {

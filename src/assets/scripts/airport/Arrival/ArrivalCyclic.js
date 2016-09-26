@@ -13,7 +13,6 @@ import ArrivalBase from './ArrivalBase';
  * |<---period---->|           |<---period---->|
  *
  * @class ArrivalCyclic
- * @extends Fiber
  */
 export default class ArrivalCyclic extends ArrivalBase {
     constructor(airport, options) {

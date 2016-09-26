@@ -31,7 +31,6 @@ const ra = (n) => {
 // such defensiveness? or can some of that be accomplished on init and then smiply update the prop if need be?
 /**
  * @class AirportInstance
- * @extends Fiber
  */
 export default class AirportInstance {
     constructor(options = {}) {

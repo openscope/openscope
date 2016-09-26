@@ -2,6 +2,7 @@
 no-param-reassign, no-undef, class-methods-use-this */
 import $ from 'jquery';
 import _clamp from 'lodash/clamp';
+import _cloneDeep from 'lodash/cloneDeep';
 import _forEach from 'lodash/forEach';
 import _has from 'lodash/has';
 import { km, degreesToRadians } from '../utilities/unitConverters';
@@ -997,9 +998,12 @@ export default class ConvasController {
         let lockedStroke;
         let was_locked = false;
         const future_track = [];
+        debugger;
         const save_delta = prop.game.delta;
-        const fms_twin = $.extend(true, {}, aircraft.fms);
-        const twin = $.extend(true, {}, aircraft);
+        const fms_twin = _cloneDeep(aircraft.fms);
+        const twin = _cloneDeep(aircraft);
+        // const fms_twin = $.extend(true, {}, aircraft.fms);
+        // const twin = $.extend(true, {}, aircraft);
 
         twin.fms = fms_twin;
         twin.fms.aircraft = twin;

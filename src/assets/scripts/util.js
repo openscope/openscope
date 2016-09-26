@@ -1060,7 +1060,7 @@ i = (x3 + j x4 - x1) / x2
 function distance_to_poly(point, poly) {
     const dists = $.map(poly, (vertex1, i) => {
         const prev = (i == 0 ? poly.length : i) - 1;
-        const letvertex2 = poly[prev];
+        const vertex2 = poly[prev];
         const edge = vsub(vertex2, vertex1);
 
         if (vlen(edge) === 0) {

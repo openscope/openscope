@@ -15,7 +15,6 @@ const MIN_VERTICAL_SEPARATION_FT = 1000;
  * Details about aircraft in close proximity in relation to 'the rules'
  *
  * @class AircraftConflict
- * @extends Fiber
  */
 export default class AircraftConflict {
     constructor(first, second) {

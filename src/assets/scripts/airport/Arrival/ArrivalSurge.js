@@ -15,7 +15,6 @@ import { LOG } from '../../constants/logLevel';
  * |<--- up time --->|<----- down time ----->|<--- up time --->|
  *
  * @class ArrivalSurge
- * @extends Fiber
  */
 export default class ArrivalSurge extends ArrivalBase {
     constructor(airport, options) {

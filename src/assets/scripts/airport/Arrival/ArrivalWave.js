@@ -21,7 +21,6 @@ import { LOG } from '../../constants/logLevel';
   * |<  -  -  -  -  -  -  -  - period -  -  -  -  -  -  -  >|
   *
   * @class ArrivalWave
-  * @extend Fiber
  */
 export default class ArrivalWave extends ArrivalBase {
     constructor(airport, options) {
