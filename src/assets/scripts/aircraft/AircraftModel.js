@@ -1,5 +1,6 @@
 /* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand, no-param-reassign, no-undef */
 import $ from 'jquery';
+import _get from 'lodash/get';
 import AircraftInstanceModel from './AircraftInstanceModel';
 
 /**
@@ -12,13 +13,11 @@ export default class Model {
         this.loading = true;
         this.loaded = false;
         this.priorityLoad = false;
-
-        this.name = null;
-        this.icao = null;
-
+        this.name = _get(options, 'name', null);
+        this.icao = _get(options, 'icao', null);
         this.engines = null;
-        this.weightclass = null;
-        this.category = null;
+        this.weightclass = _get(options, 'weightClass', null);
+        this.category = _get(options, 'category', null);
 
         this.rate = {
             // radians per second
@@ -55,15 +54,22 @@ export default class Model {
 
     parse(data) {
         // TODO: how much of this could happen in the constructor/init methods?
-        if (data.name) this.name = data.name;
-        if (data.icao) this.icao = data.icao;
+        if (data.engines) {
+            this.engines = data.engines;
+        }
 
-        if (data.engines) this.engines = data.engines;
-        if (data.weightclass) this.weightclass = data.weightclass;
-        if (data.category) this.category = data.category;
-        if (data.ceiling) this.ceiling = data.ceiling;
-        if (data.runway) this.runway = data.runway;
-        if (data.speed) this.speed = data.speed;
+        if (data.ceiling) {
+            this.ceiling = data.ceiling;
+        }
+
+        if (data.runway) {
+            this.runway = data.runway;
+        }
+
+        if (data.speed) {
+            this.speed = data.speed;
+        }
+
         if (data.rate) {
             this.rate = data.rate;
         }
@@ -127,6 +133,7 @@ export default class Model {
     _generateAircraft(options) {
         options.model = this;
         const aircraft = new AircraftInstanceModel(options);
+        
         prop.aircraft.list.push(aircraft);
 
         console.log(`Spawning ${options.category} : ${aircraft.getCallsign()}`);

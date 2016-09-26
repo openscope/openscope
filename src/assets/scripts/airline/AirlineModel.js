@@ -72,11 +72,11 @@ export default class AirlineModel {
             this.fleets.default = data.aircraft;
         }
 
-        for (const f in this.fleets) {
-            for (let j = 0; j < this.fleets[f].length; j++) {
-                this.fleets[f][j][0] = this.fleets[f][j][0].toLowerCase();
+        _forEach(this.fleets, (fleet, i) => {
+            for (let j = 0; j < fleet.length; j++) {
+                fleet[j][0] = fleet[j][0].toLowerCase();
             }
-        }
+        });
     }
 
     /**
@@ -227,16 +227,16 @@ export default class AirlineModel {
      * @method validateFleets
      */
     validateFleets () {
-        for (const f in this.fleets) {
-            for (let j = 0; j < this.fleets[f].length; j++) {
+        _forEach(this.fleets, (fleet, i) => {
+            for (let j = 0; j < fleet.length; j++) {
                 // Preload the aircraft model
-                window.aircraftController.aircraft_model_get(this.fleets[f][j][0]);
+                window.aircraftController.aircraft_model_get(fleet[j][0]);
 
-                if (typeof this.fleets[f][j][1] !== 'number') {
-                    console.warn(`Airline ${this.icao.toUpperCase()} uses non numeric weight for aircraft ${this.fleets[f][j][0]}, expect errors`);
+                if (typeof fleet[j][1] !== 'number') {
+                    console.warn(`Airline ${this.icao.toUpperCase()} uses non numeric weight for aircraft ${fleet[j][0]}, expect errors`);
                 }
             }
-        }
+        });
     }
 
     /**

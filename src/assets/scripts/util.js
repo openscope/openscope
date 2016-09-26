@@ -1,4 +1,4 @@
-/* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand */
+/* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand, no-unused-vars, no-undef, no-param-reassign */
 import $ from 'jquery';
 import _clamp from 'lodash/clamp';
 import _has from 'lodash/has';
@@ -437,9 +437,9 @@ function groupNumbers(callsign, /* optional */ airline) {
         // GA, eg '117KS' = 'one-one-seven-kilo-sierra')
         if (airline === 'November') {
             // callsign "November"
-            var s = [];
+            let s = [];
 
-            for (var k in callsign) {
+            for (const k in callsign) {
                 // one after another (eg 'one one seven kilo sierra')
                 s.push(radio_names[callsign[k]]);
             }
@@ -505,6 +505,7 @@ function groupNumbers(callsign, /* optional */ airline) {
             return s.join(' ');
         }
     } else {
+        // FIXME: this block is unreachable
         switch (callsign.length) {
             case 0:
                 return callsign; break;
@@ -541,8 +542,7 @@ function radio_runway(input) {
 }
 
 function radio_heading(heading) {
-    let str = heading.toString();
-    let hdg = [];
+    const str = heading.toString();
 
     if (str) {
         if (str.length === 1) {
@@ -558,8 +558,8 @@ function radio_heading(heading) {
 }
 
 function radio_spellOut(alphanumeric) {
-    let str = alphanumeric.toString();
-    let arr = [];
+    const str = alphanumeric.toString();
+    const arr = [];
 
     if (!str) {
         return;
@@ -588,10 +588,10 @@ function radio_altitude(altitude) {
         s.push(radio_names[alt_s[0]], 'thousand');
 
         if (!(altitude % (Math.floor(altitude / 1000) * 1000) === 0)) {
-        s.push(radio_names[alt_s[1]], 'hundred');
+            s.push(radio_names[alt_s[1]], 'hundred');
         }
     } else if (altitude >= 100) {
-        s.push(radio_names[alt_s[0]], "hundred");
+        s.push(radio_names[alt_s[0]], 'hundred');
     } else {
         return altitude;
     }
@@ -601,8 +601,8 @@ function radio_altitude(altitude) {
 
 function radio_trend(category, measured, target) {
     const CATEGORIES = {
-        'altitude': ['descend and maintain', 'climb and maintain',  'maintain'],
-        'speed':    ['reduce speed to',  'increase speed to', 'maintain present speed of']
+        altitude: ['descend and maintain', 'climb and maintain',  'maintain'],
+        speed: ['reduce speed to',  'increase speed to', 'maintain present speed of']
     };
 
     if (measured > target) {
@@ -643,28 +643,27 @@ function to_canvas_pos(pos) {
  * - array of 2 numbers on a rectangle boundary, in case of an intersection.
  */
 function positive_intersection_with_rect(pos, dir, rectPos, rectSize) {
-    let left = rectPos[0];
-    let right = rectPos[0] + rectSize[0];
-    let top = rectPos[1];
-    let bottom = rectPos[1] + rectSize[1];
+    const left = rectPos[0];
+    const right = rectPos[0] + rectSize[0];
+    const top = rectPos[1];
+    const bottom = rectPos[1] + rectSize[1];
+    let t;
+    let x;
+    let y;
 
     dir = vnorm(dir);
 
     // Check if pos is outside of rectangle.
-    if (_clamp(left, pos[0], right) != pos[0] || _clamp(top, pos[1], bottom) != pos[1]) {
+    if (_clamp(left, pos[0], right) !== pos[0] || _clamp(top, pos[1], bottom) !== pos[1]) {
         return undefined;
     }
 
-
-    let t;
-    let x;
-    let y;
     // Check intersection with top segment.
     if (dir[1] < 0) {
         t = (top - pos[1]) / dir[1];
         x = pos[0] + dir[0] * t;
 
-        if (_clamp(left, x, right) == x) {
+        if (_clamp(left, x, right) === x) {
             return [x, top];
         }
     }
@@ -674,7 +673,7 @@ function positive_intersection_with_rect(pos, dir, rectPos, rectSize) {
         t = (bottom - pos[1]) / dir[1];
         x = pos[0] + dir[0] * t;
 
-        if (_clamp(left, x, right) == x) {
+        if (_clamp(left, x, right) === x) {
             return [x, bottom];
         }
     }
@@ -684,7 +683,7 @@ function positive_intersection_with_rect(pos, dir, rectPos, rectSize) {
         t = (left - pos[0]) / dir[0];
         y = pos[1] + dir[1] * t;
 
-        if (_clamp(top, y, bottom) == y) {
+        if (_clamp(top, y, bottom) === y) {
             return [left, y];
         }
     }
@@ -694,13 +693,13 @@ function positive_intersection_with_rect(pos, dir, rectPos, rectSize) {
         t = (right - pos[0]) / dir[0];
         y = pos[1] + dir[1] * t;
 
-        if (_clamp(top, y, bottom) == y) {
+        if (_clamp(top, y, bottom) === y) {
             return [right, y];
         }
     }
 
-  // Failed to compute intersection due to numerical precision.
-  return undefined;
+    // Failed to compute intersection due to numerical precision.
+    return undefined;
 }
 
 /**
@@ -821,10 +820,10 @@ function vnorm(v, length) {
         length = 1;
     }
 
-    return([
+    return [
         sin(angle) * length,
         cos(angle) * length
-    ]);
+    ];
 }
 
 /**
@@ -863,7 +862,7 @@ function vadd(v1, v2) {
 function vmul(v1, v2) {
     try {
         let v = [];
-        let lim = Math.min(v1.length,v2.length);
+        let lim = Math.min(v1.length, v2.length);
 
         // TODO: this can be done with a _map()
         for (let i = 0; i < lim; i++) {
@@ -891,7 +890,7 @@ function vdiv(v1, v2) {
 
         return v;
     } catch (err) {
-      console.error(`call to vdiv() failed. v1:${v1} | v2:${v2} | Err:${err}`);
+        console.error(`call to vdiv() failed. v1:${v1} | v2:${v2} | Err:${err}`);
     }
 }
 
@@ -906,9 +905,14 @@ function vscale(vectors, factor) {
  * Vector dot product (all dimensions)
  */
 function vdp(v1, v2) {
-    var n = 0;
-    var lim = Math.min(v1.length, v2.length);
-    for (var i = 0; i < lim; i++) n += v1[i] * v2[i];
+    let n = 0;
+    const lim = Math.min(v1.length, v2.length);
+
+    // TODO: mabye use _map() here?
+    for (let i = 0; i < lim; i++) {
+        n += v1[i] * v2[i];
+    }
+
     return n;
 }
 
@@ -959,10 +963,10 @@ function vturn(radians, v) {
         v = [0, 1];
     }
 
-    let x = v[0];
-    let y = v[1];
-    let cs = cos(-radians);
-    let sn = sin(-radians);
+    const x = v[0];
+    const y = v[1];
+    const cs = cos(-radians);
+    const sn = sin(-radians);
 
     return [
         x * cs - y * sn,
@@ -1054,46 +1058,45 @@ j = (y3 - y1 - y2 x3 / x2 + y2 x1 / x2) / (y2 x4 / x2 - y4)
 i = (x3 + j x4 - x1) / x2
 */
 function distance_to_poly(point, poly) {
-    var dists = $.map(poly, function(vertex1, i) {
-        var prev = (i == 0 ? poly.length : i) - 1,
-            vertex2 = poly[prev],
-            edge = vsub(vertex2, vertex1);
+    const dists = $.map(poly, (vertex1, i) => {
+        const prev = (i == 0 ? poly.length : i) - 1;
+        const letvertex2 = poly[prev];
+        const edge = vsub(vertex2, vertex1);
 
         if (vlen(edge) === 0) {
             return vlen(vsub(point, vertex1));
         }
 
-
         // point + normal * i == vertex1 + edge * j
-        var norm = vflipY(edge),
-            x1 = point[0],
-            x2 = norm[0],
-            x3 = vertex1[0],
-            x4 = edge[0],
-            y1 = point[1],
-            y2 = norm[1],
-            y3 = vertex1[1],
-            y4 = edge[1],
-            i, j;
+        const norm = vflipY(edge);
+        const x1 = point[0];
+        const x2 = norm[0];
+        const x3 = vertex1[0];
+        const x4 = edge[0];
+        const y1 = point[1];
+        const y2 = norm[1];
+        const y3 = vertex1[1];
+        const y4 = edge[1];
+        var i, j;
 
         if (y2 != 0) {
-          j = (x3 - x1 - x2 * y3 / y2 + x2 * y1 / y2) / (x2 * y4 / y2 - x4);
-          i = (y3 + j * y4 - y1) / y2;
-        }
-        else if (x2 != 0) { // normal can't be zero unless the edge has 0 length
+            j = (x3 - x1 - x2 * y3 / y2 + x2 * y1 / y2) / (x2 * y4 / y2 - x4);
+            i = (y3 + j * y4 - y1) / y2;
+        } else if (x2 !== 0) { // normal can't be zero unless the edge has 0 length
           j = (y3 - y1 - y2 * x3 / x2 + y2 * x1 / x2) / (y2 * x4 / x2 - y4);
           i = (x3 + j * x4 - x1) / x2;
         }
 
         if (j < 0 || j > 1 || j == null)
-          return Math.min(
-            vlen(vsub(point, vertex1)),
-            vlen(vsub(point, vertex2)));
+            return Math.min(
+                vlen(vsub(point, vertex1)),
+                vlen(vsub(point, vertex2))
+            );
 
-        return vlen(vscale(norm, i));
+            return vlen(vscale(norm, i));
     });
 
-  return Math.min.apply(null, dists);
+    return Math.min.apply(null, dists);
 }
 
 
@@ -1131,16 +1134,16 @@ function point_to_mpoly(point, mpoly) {
 function point_in_poly(point, vs) {
     // ray-casting algorithm based on
     // http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html
-    let x = point[0];
-    let y = point[1];
+    const x = point[0];
+    const y = point[1];
     let i;
     let j = vs.length - 1;
     let inside = false;
 
     for (i in vs) {
-        let xi = vs[i][0], yi = vs[i][1];
-        let xj = vs[j][0], yj = vs[j][1];
-        let intersect = ((yi > y) != (yj > y)) && (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
+        const xi = vs[i][0], yi = vs[i][1];
+        const xj = vs[j][0], yj = vs[j][1];
+        const intersect = ((yi > y) != (yj > y)) && (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
 
         if (intersect) {
             inside = !inside;
@@ -1174,7 +1177,7 @@ function parseElevation(ele) {
     const alt = /^(Infinity|(\d+(\.\d+)?)(m|ft))$/.exec(ele);
 
     if (alt == null) {
-        log('Unable to parse elevation ' + ele);
+        log(`Unable to parse elevation ${ele}`);
         return;
     }
 

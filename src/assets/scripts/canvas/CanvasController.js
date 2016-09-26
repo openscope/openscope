@@ -656,7 +656,6 @@ export default class ConvasController {
         const airport = window.airportController.airport_get();
 
         _forEach(airport.sids, (sid, s) => {
-            debugger;
             let write_sid_name = true;
             let fx = null;
             let fy = null;
@@ -985,7 +984,6 @@ export default class ConvasController {
         cc.stroke();
     }
 
-
     /**
      * Run physics updates into the future, draw future track
      *
@@ -995,18 +993,18 @@ export default class ConvasController {
      * @param aircraft
      */
     canvas_draw_future_track(cc, aircraft) {
+        let ils_locked;
+        let lockedStroke;
+        let was_locked = false;
+        const future_track = [];
+        const save_delta = prop.game.delta;
         const fms_twin = $.extend(true, {}, aircraft.fms);
         const twin = $.extend(true, {}, aircraft);
 
         twin.fms = fms_twin;
         twin.fms.aircraft = twin;
         twin.projected = true;
-
-        const save_delta = prop.game.delta;
-
         prop.game.delta = 5;
-        const future_track = [];
-        let ils_locked;
 
         for (let i = 0; i < 60; i++) {
             twin.update();
@@ -1025,7 +1023,6 @@ export default class ConvasController {
         prop.game.delta = save_delta;
         cc.save();
 
-        let lockedStroke;
         if (aircraft.category === FLIGHT_CATEGORY.DEPARTURE) {
             cc.strokeStyle = COLORS.DEPARTURE_COLOR;
         } else {
@@ -1034,15 +1031,15 @@ export default class ConvasController {
         }
 
         cc.globalCompositeOperation = 'screen';
-
         cc.lineWidth = 2;
         cc.beginPath();
 
-        let was_locked = false;
         for (let i = 0; i < future_track.length; i++) {
-            ils_locked = future_track[i][2];
-            const x = window.uiController.km_to_px(future_track[i][0]) + this.canvas.panX;
-            const y = -window.uiController.km_to_px(future_track[i][1]) + this.canvas.panY;
+            const track = future_track[i];
+            ils_locked = track[2];
+
+            const x = window.uiController.km_to_px(track[0]) + this.canvas.panX;
+            const y = -window.uiController.km_to_px(track[1]) + this.canvas.panY;
 
             if (ils_locked && !was_locked) {
                 cc.lineTo(x, y);
