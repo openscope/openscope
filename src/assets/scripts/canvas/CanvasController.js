@@ -655,15 +655,16 @@ export default class ConvasController {
 
         const airport = window.airportController.airport_get();
 
-        for (const s in airport.sids) {
+        _forEach(airport.sids, (sid, s) => {
+            debugger;
             let write_sid_name = true;
             let fx = null;
             let fy = null;
 
             // TODO: this if should be reversed to check for the opposite condition and return early.
-            if (_has(airport.sids[s], 'draw')) {
-                for (const i in airport.sids[s].draw) {
-                    const fixList = airport.sids[s].draw[i];
+            if (_has(sid, 'draw')) {
+                _forEach(sid.draw, (fixList, i) => {
+                    // const fixList = airport.sids[s].draw[i];
                     let exit_name = null;
 
                     for (let j = 0; j < fixList.length; j++) {
@@ -702,13 +703,13 @@ export default class ConvasController {
 
                         text_at_point[exit_name] += 1;  // Increment the count for this transition
                     }
-                }
+                });
 
                 if (write_sid_name) {
                     cc.fillText(s, fx + 10, fy);
                 }
             }
-        }
+        });
     }
 
     /**
@@ -774,12 +775,11 @@ export default class ConvasController {
      * @param aircraft
      */
     canvas_draw_aircraft_departure_window(cc, aircraft) {
+        const angle = aircraft.destination - Math.PI / 2;
+
         cc.save();
         cc.strokeStyle = COLORS.DEPARTURE_STROKE;
-
         cc.beginPath();
-
-        const angle = aircraft.destination - Math.PI / 2;
         cc.arc(
             this.canvas.panX,
             this.canvas.panY,
@@ -1519,12 +1519,12 @@ export default class ConvasController {
     canvas_draw_poly(cc, poly) {
         cc.beginPath();
 
-        for (const v in poly) {
+        _forEach(poly, (singlePoly, v) => {
             cc.lineTo(
-                window.uiController.km_to_px(poly[v][0]),
-                -window.uiController.km_to_px(poly[v][1])
+                window.uiController.km_to_px(singlePoly[0]),
+                -window.uiController.km_to_px(singlePoly[1])
             );
-        }
+        });
 
         cc.closePath();
         cc.stroke();
@@ -1554,10 +1554,10 @@ export default class ConvasController {
 
         $.each(airport.terrain || [], (elevation, terrainLevel) => {
             max_elevation = Math.max(max_elevation, elevation);
-            const color = 'rgba(' + prop.ui.terrain.colors[elevation] + ', ';
+            const color = `rgba(${prop.ui.terrain.colors[elevation]}, `;
 
-            cc.strokeStyle = color + prop.ui.terrain.border_opacity + ')';
-            cc.fillStyle = color + prop.ui.terrain.fill_opacity + ')';
+            cc.strokeStyle = `${color} ${prop.ui.terrain.border_opacity})`;
+            cc.fillStyle = `${color} ${prop.ui.terrain.fill_opacity})`;
 
             _forEach(terrainLevel, (terrainGroup) => {
                 cc.beginPath();
@@ -1567,10 +1567,16 @@ export default class ConvasController {
                     _forEach(terrainItem, (value, index) => {
                         // Loose equals is important here.
                         if (index === 0) {
-                            cc.moveTo(window.uiController.km_to_px(terrainItem[index][0]), -window.uiController.km_to_px(terrainItem[index][1]));
+                            cc.moveTo(
+                                window.uiController.km_to_px(terrainItem[index][0]),
+                                -window.uiController.km_to_px(terrainItem[index][1])
+                            );
                         }
 
-                        cc.lineTo(window.uiController.km_to_px(terrainItem[index][0]), -window.uiController.km_to_px(terrainItem[index][1]));
+                        cc.lineTo(
+                            window.uiController.km_to_px(terrainItem[index][0]),
+                            -window.uiController.km_to_px(terrainItem[index][1])
+                        );
                     });
 
                     cc.closePath();
@@ -1612,11 +1618,11 @@ export default class ConvasController {
             // in the map, terrain of higher levels has fill of all the lower levels
             // so we need to fill it below exactly as in the map
             for (let j = 0; j <= i; j += 1000) {
-                cc.fillStyle = 'rgba(' + prop.ui.terrain.colors[j] + ', ' + prop.ui.terrain.fill_opacity + ')';
+                cc.fillStyle = `rgba(${prop.ui.terrain.colors[j]}, ${prop.ui.terrain.fill_opacity})`;
                 cc.fill();
             }
 
-            cc.strokeStyle = 'rgba(' + prop.ui.terrain.colors[i] + ', ' + prop.ui.terrain.border_opacity + ')';
+            cc.strokeStyle = `rgba(${prop.ui.terrain.colors[i]}, ${prop.ui.terrain.border_opacity})`;
             cc.stroke();
 
             // write elevation signs only for the outer elevations
@@ -1651,9 +1657,7 @@ export default class ConvasController {
         cc.save();
         cc.translate(this.canvas.panX, this.canvas.panY);
 
-        for (const i in airport.restricted_areas) {
-            const area = airport.restricted_areas[i];
-
+        _forEach(airport.restricted_areas, (area) => {
             cc.fillStyle = 'transparent';
             this.canvas_draw_poly(cc, area.coordinates);
 
@@ -1679,7 +1683,7 @@ export default class ConvasController {
                 round(window.uiController.km_to_px(area.center[0])),
                 height_shift - round(window.uiController.km_to_px(area.center[1]))
             );
-        }
+        });
 
         cc.restore();
     }
@@ -1705,11 +1709,11 @@ export default class ConvasController {
         cc.save();
         cc.translate(this.canvas.panX, this.canvas.panY);
 
-        for (const i in map) {
-            cc.moveTo(window.uiController.km_to_px(map[i][0]), -window.uiController.km_to_px(map[i][1]));
+        _forEach(map, (mapItem, i) => {
+            cc.moveTo(window.uiController.km_to_px(mapItem[0]), -window.uiController.km_to_px(mapItem[1]));
             // cc.beginPath();
-            cc.lineTo(window.uiController.km_to_px(map[i][2]), -window.uiController.km_to_px(map[i][3]));
-        }
+            cc.lineTo(window.uiController.km_to_px(mapItem[2]), -window.uiController.km_to_px(mapItem[3]));
+        });
 
         cc.stroke();
         cc.restore();
