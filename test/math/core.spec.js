@@ -1,8 +1,17 @@
 import ava from 'ava'
 
-import { ceil } from '../../src/assets/scripts/math/core';
+import { calculateMiddle } from '../../src/assets/scripts/math/core';
 
-ava('PLACEHOLDER FOR FUTURE TESTS', t => {
-    // single test case added here to bring in `/math/core.js` to test coverage report
-    t.true(true);
+ava('.calculateMiddle() returns a number the is the mid-point of a given number, rounded up', t => {
+    t.throws(() => calculateMiddle('10'));
+    t.throws(() => calculateMiddle([]));
+    t.throws(() => calculateMiddle({}));
+    t.throws(() => calculateMiddle(null));
+    t.throws(() => calculateMiddle(false));
+
+    t.notThrows(() => calculateMiddle(undefined));
+    t.notThrows(() => calculateMiddle());
+
+    t.true(calculateMiddle(10) === 5);
+    t.true(calculateMiddle(17) === 9);
 });

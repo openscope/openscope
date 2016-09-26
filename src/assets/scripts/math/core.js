@@ -1,3 +1,5 @@
+import _isNumber from 'lodash/isNumber';
+
 /**
   * @function ceil
   */
@@ -84,3 +86,19 @@ export const within = (n, c, r) => {
 // window.randint = randint;
 // window.s = s;
 // window.within = within;
+
+// TODO: add a divisor paramater that dfaults to `2`
+/**
+ * Given a number, find the middle value.
+ *
+ * @method calculateMiddle
+ * @param  {number} value
+ * @return {number}
+ */
+export const calculateMiddle = (value = 0) => {
+    if (!_isNumber(value)) {
+        throw new TypeError(`Invalid parameter, expected a number but found ${typeof value}`);
+    }
+
+    return round(value / 2);
+};

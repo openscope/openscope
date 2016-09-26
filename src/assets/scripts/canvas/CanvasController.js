@@ -6,7 +6,7 @@ import _forEach from 'lodash/forEach';
 import _has from 'lodash/has';
 import { km, degreesToRadians } from '../utilities/unitConverters';
 import { time } from '../utilities/timeHelpers';
-import { sin, cos, round } from '../math/core';
+import { sin, cos, round, calculateMiddle } from '../math/core';
 import { tau } from '../math/circle';
 import { distance2d } from '../math/distance';
 import { SELECTORS } from '../constants/selectors';
@@ -252,8 +252,8 @@ export default class ConvasController {
                 this.canvas_clear(cc);
 
                 cc.translate(
-                    round(this.canvas.size.width / 2),
-                    round(this.canvas.size.height / 2)
+                    calculateMiddle(this.canvas.size.width),
+                    calculateMiddle(this.canvas.size.height)
                 );
 
                 cc.save();
@@ -295,8 +295,8 @@ export default class ConvasController {
             if (window.airportController.airport_get().icao === 'ENGM') {
                 cc.save();
                 cc.translate(
-                    round(this.canvas.size.width / 2),
-                    round(this.canvas.size.height / 2)
+                    calculateMiddle(this.canvas.size.width),
+                    calculateMiddle(this.canvas.size.height)
                 );
                 this.canvas_draw_engm_range_rings(cc);
                 cc.restore();
@@ -308,8 +308,8 @@ export default class ConvasController {
             if (this.canvas.dirty || fading || true) {
                 cc.save();
                 cc.translate(
-                    round(this.canvas.size.width / 2),
-                    round(this.canvas.size.height / 2)
+                    calculateMiddle(this.canvas.size.width),
+                    calculateMiddle(this.canvas.size.height)
                 );
 
                 this.canvas_draw_compass(cc);
@@ -322,8 +322,8 @@ export default class ConvasController {
                 cc.save();
                 cc.globalAlpha = alpha;
                 cc.translate(
-                    round(this.canvas.size.width / 2),
-                    round(this.canvas.size.height / 2)
+                    calculateMiddle(this.canvas.size.width),
+                    calculateMiddle(this.canvas.size.height)
                 );
                 this.canvas_draw_all_aircraft(cc);
                 cc.restore();
@@ -331,13 +331,20 @@ export default class ConvasController {
 
             cc.save();
             cc.globalAlpha = alpha;
-            cc.translate(round(this.canvas.size.width / 2), round(this.canvas.size.height / 2));
+            cc.translate(
+                calculateMiddle(this.canvas.size.width),
+                calculateMiddle(this.canvas.size.height)
+            );
             this.canvas_draw_all_info(cc);
             cc.restore();
 
             cc.save();
             cc.globalAlpha = alpha;
-            cc.translate(round(this.canvas.size.width / 2), round(this.canvas.size.height / 2));
+            cc.translate(
+                calculateMiddle(this.canvas.size.width),
+                calculateMiddle(this.canvas.size.height)
+            );
+
             this.canvas_draw_runway_labels(cc);
             cc.restore();
 
@@ -462,7 +469,10 @@ export default class ConvasController {
         cc.textBaseline = 'middle';
 
         cc.save();
-        cc.translate(0, length2 + text_height);
+        cc.translate(
+            0,
+            length2 + text_height
+        );
         cc.rotate(-angle);
         cc.translate(
             round(window.uiController.km_to_px(runway.labelPos[0])),
@@ -1293,8 +1303,8 @@ export default class ConvasController {
      */
     canvas_draw_compass(cc) {
         cc.translate(
-            round(this.canvas.size.width / 2),
-            round(this.canvas.size.height / 2)
+            calculateMiddle(this.canvas.size.width),
+            calculateMiddle(this.canvas.size.height)
         );
 
         const airport = window.airportController.airport_get();
@@ -1340,7 +1350,10 @@ export default class ConvasController {
         }
 
         cc.save();
-        cc.translate(-dot / 2 * sin(airport.wind.angle), dot / 2 * cos(airport.wind.angle));
+        cc.translate(
+            -dot / 2 * sin(airport.wind.angle),
+            dot / 2 * cos(airport.wind.angle)
+        );
         cc.beginPath();
         cc.moveTo(0, 0);
         cc.rotate(airport.wind.angle);
