@@ -10,6 +10,7 @@ import GameController from './game/GameController';
 import TutorialView from './tutorial/TutorialView';
 import InputController from './InputController';
 import UiController from './UiController';
+import CanvasController from './canvas/CanvasController';
 import { speech_init } from './speech';
 import { time, calculateDeltaTime } from './utilities/timeHelpers';
 import { LOG } from './constants/logLevel';
@@ -24,11 +25,11 @@ const prop = {};
 // This will need to be re-worked, and current global functions should be exported and
 // imported as needed in each file.
 require('./util');
+// this module doesnt appear to be in use anywhere
 require('./animation');
 require('./parser');
 
 const base = require('./base');
-const canvas = require('./canvas');
 
 // saved as this.prop.version and this.prop.version_string
 const VERSION = [3, 0, 0];
@@ -71,6 +72,7 @@ export default class App {
         this.tutorialView = null;
         this.inputController = null;
         this.uiController = null;
+        this.canvasController = null;
 
         window.prop = prop;
 
@@ -114,6 +116,7 @@ export default class App {
         this.tutorialView = new TutorialView(this.$element);
         this.inputController = new InputController(this.$element);
         this.uiController = new UiController(this.$element);
+        this.canvasController = new CanvasController(this.$element);
 
         return this;
     }
@@ -135,6 +138,7 @@ export default class App {
         window.tutorialView = this.tutorialView;
         window.inputController = this.inputController;
         window.uiController = this.uiController;
+        window.canvasController = this.canvasController;
 
         // This is the old entry point for the application. We include this here now so that
         // the app will run. This is a temporary implementation and should be refactored immediately.
@@ -189,6 +193,7 @@ export default class App {
         this.tutorialView = null;
         this.inputController = null;
         this.uiController = null;
+        this.canvasController = null;
 
         return this;
     }
@@ -204,8 +209,7 @@ export default class App {
         this.airlineController.init_pre();
         this.aircraftController.init_pre();
         this.airportController.init_pre();
-
-        canvas_init_pre();
+        this.canvasController.canvas_init_pre();
         this.uiController.ui_init_pre();
 
         return this;
@@ -219,8 +223,7 @@ export default class App {
         speech_init();
 
         this.airportController.init();
-
-        canvas_init();
+        this.canvasController.canvas_init();
         this.uiController.ui_init();
 
         return this;
@@ -269,7 +272,7 @@ export default class App {
      * @method resize
      */
     resize() {
-        canvas_resize();
+        this.canvasController.canvas_resize();
 
         return this;
     }
@@ -280,7 +283,7 @@ export default class App {
      */
     complete() {
         this.gameController.complete();
-        canvas_complete();
+        this.canvasController.canvas_complete();
         this.uiController.ui_complete();
 
         return this;
@@ -301,7 +304,7 @@ export default class App {
      * @method updatePost
      */
     updatePost() {
-        canvas_update_post();
+        this.canvasController.canvas_update_post();
 
         return this;
     }
