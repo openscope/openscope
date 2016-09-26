@@ -1,4 +1,4 @@
-/* eslint-disable no-underscore-dangle, no-mixed-operators, func-names, object-shorthand */
+/* eslint-disable no-underscore-dangle, no-mixed-operators, func-names, object-shorthand, no-undef */
 import $ from 'jquery';
 
 /**

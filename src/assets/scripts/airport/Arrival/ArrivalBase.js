@@ -2,6 +2,7 @@
 import $ from 'jquery';
 import _has from 'lodash/has';
 
+import PositionModel from '../../base/PositionModel';
 import { nm, degreesToRadians } from '../../utilities/unitConverters';
 import { round, sin, cos } from '../../math/core';
 import { distance2d } from '../../math/distance';
@@ -188,7 +189,7 @@ export default class ArrivalBase {
                 heading: heading || this.heading,
                 waypoints: this.fixes,
                 route: this.route,
-                position: new Position(pos, position, magnetic_north, 'GPS').position,
+                position: new PositionModel(pos, position, magnetic_north, 'GPS').position,
                 speed: this.speed,
                 nextFix: nextFix
             });

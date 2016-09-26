@@ -5,6 +5,7 @@ import _map from 'lodash/map';
 import _isEmpty from 'lodash/isEmpty';
 import _uniq from 'lodash/uniq';
 
+import PositionModel from '../base/PositionModel';
 import Runway from './Runway';
 import { ArrivalFactory } from './Arrival/ArrivalFactory';
 import { DepartureFactory } from './Departure/DepartureFactory';
@@ -97,7 +98,7 @@ export default class AirportInstance {
     // way too much.  Simplify!
     parse(data) {
         if (data.position) {
-            this.position = new Position(data.position);
+            this.position = new PositionModel(data.position);
         }
 
         if (this.position && (this.position.elevation != null)) {
@@ -166,7 +167,7 @@ export default class AirportInstance {
                 // for each point
                 for (let j = 0; j < data.airspace[i].poly.length; j++) {
                     positions.push(
-                        new Position(data.airspace[i].poly[j], this.position, this.magnetic_north)
+                        new PositionModel(data.airspace[i].poly[j], this.position, this.magnetic_north)
                     );
                 }
 
@@ -180,7 +181,7 @@ export default class AirportInstance {
             this.perimeter = areas[0];
 
             // change ctr_radius to point along perimeter that's farthest from rr_center
-            const pos = new Position(this.perimeter.poly[0].position, this.position, this.magnetic_north);
+            const pos = new PositionModel(this.perimeter.poly[0].position, this.position, this.magnetic_north);
             // FIXME: it doesnt look like this var is being used at all?
             // const len = nm(vlen(vsub(pos.position, this.position.position)));
             // FIXME: this reassignment is not needed
@@ -191,7 +192,7 @@ export default class AirportInstance {
                 _map(this.perimeter.poly, (v) => vlen(
                     vsub(
                         v.position,
-                        new Position(apt.rr_center, apt.position, apt.magnetic_north).position
+                        new PositionModel(apt.rr_center, apt.position, apt.magnetic_north).position
                     )
                 ))
             );
@@ -213,7 +214,7 @@ export default class AirportInstance {
             for (const fix in data.fixes) {
                 const fixName = fix.toUpperCase();
 
-                this.fixes[fixName] = new Position(data.fixes[fix], this.position, this.magnetic_north);
+                this.fixes[fixName] = new PositionModel(data.fixes[fix], this.position, this.magnetic_north);
 
                 if (fix.indexOf('_') !== 0) {
                     this.real_fixes[fixName] = this.fixes[fixName];
@@ -256,8 +257,8 @@ export default class AirportInstance {
 
                 // convert GPS coordinates to km-based position rel to airport
                 for (const i in lines) {
-                    const start = new Position([lines[i][0], lines[i][1]], this.position, this.magnetic_north).position;
-                    const end = new Position([lines[i][2], lines[i][3]], this.position, this.magnetic_north).position;
+                    const start = new PositionModel([lines[i][0], lines[i][1]], this.position, this.magnetic_north).position;
+                    const end = new PositionModel([lines[i][2], lines[i][3]], this.position, this.magnetic_north).position;
 
                     this.maps[m].push([start[0], start[1], end[0], end[1]]);
                 }
@@ -280,7 +281,7 @@ export default class AirportInstance {
 
                 obj.height = parseElevation(r[i].height);
                 obj.coordinates = $.map(r[i].coordinates, (v) => {
-                    return [(new Position(v, self.position, self.magnetic_north)).position];
+                    return [(new PositionModel(v, self.position, self.magnetic_north)).position];
                 });
 
                 // TODO: is this right? max and min are getting set to the same value?
@@ -460,7 +461,7 @@ export default class AirportInstance {
                 apt.terrain[ele].push($.map(poly, function(line_string) {
                     return [
                         $.map(line_string, function(pt) {
-                            var pos = new Position(pt, apt.position, apt.magnetic_north);
+                            var pos = new PositionModel(pt, apt.position, apt.magnetic_north);
                             pos.parse4326();
                             return [pos.position];
                         })

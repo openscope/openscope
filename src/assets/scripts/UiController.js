@@ -1,4 +1,5 @@
-/* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand, no-undef, no-param-reassign, class-methods-use-this */
+/* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand, no-undef,
+no-param-reassign, class-methods-use-this */
 import $ from 'jquery';
 import _forEach from 'lodash/forEach';
 import _has from 'lodash/has';
@@ -92,7 +93,7 @@ export default class UiView {
     createChildren() {
         this.$airportList = this.$element.find(SELECTORS.DOM_SELECTORS.AIRPORT_LIST);
         this.$airportListNotes = this.$element.find(SELECTORS.DOM_SELECTORS.AIRPORT_LIST_NOTES);
-        this.$airportSwitch = this.$element.find(SELECTORS.DOM_SELECTORS.AIRPORT_SWITCH)
+        this.$airportSwitch = this.$element.find(SELECTORS.DOM_SELECTORS.AIRPORT_SWITCH);
         this.$toggleTutorial = this.$element.find(SELECTORS.DOM_SELECTORS.TOGGLE_TUTORIAL);
         this.$fastForwards = this.$element.find(SELECTORS.DOM_SELECTORS.FAST_FORWARDS);
         this.$pauseToggle = this.$element.find(SELECTORS.DOM_SELECTORS.PAUSE_TOGGLE);
@@ -119,7 +120,7 @@ export default class UiView {
         this.$pausedImg.on('click', (event) => window.gameController.game_unpause(event));
         this.$speechToggle.on('click', (event) => speech_toggle(event));
         this.$switchAirport.on('click', (event) => this.ui_airport_toggle(event));
-        this.$toggleLabels.on('click', (event) => this.canvas_labels_toggle(event))
+        this.$toggleLabels.on('click', (event) => this.canvas_labels_toggle(event));
         this.$toggleRestrictedAreas.on('click', (event) => this.canvas_restricted_toggle(event));
         this.$toggleSids.on('click', (event) => this.canvas_sids_toggle(event));
         this.$toggleTerrain.on('click', (event) => this.canvas_terrain_toggle(event));
@@ -139,7 +140,7 @@ export default class UiView {
         this.$pausedImg.off('click', (event) => window.gameController.game_unpause(event));
         this.$speechToggle.off('click', (event) => speech_toggle(event));
         this.$switchAirport.off('click', (event) => this.ui_airport_toggle(event));
-        this.$toggleLabels.off('click', (event) => this.canvas_labels_toggle(event))
+        this.$toggleLabels.off('click', (event) => this.canvas_labels_toggle(event));
         this.$toggleRestrictedAreas.off('click', (event) => this.canvas_restricted_toggle(event));
         this.$toggleSids.off('click', (event) => this.canvas_sids_toggle(event));
         this.$toggleTerrain.off('click', (event) => this.canvas_terrain_toggle(event));
@@ -271,12 +272,11 @@ export default class UiView {
      * @return {DOM element|string}
      */
     buildAirportListItemTemplate(icao, difficulty, name) {
-        return `` +
-            `<li class="airport icao-${icao.toLowerCase()}">` +
-                `<span style="font-size: 7pt" class="difficulty">${difficulty}</span>` +
-                `<span class="icao">${icao.toUpperCase()}</span>` +
-                `<span class="name">${name}</span>` +
-            `</li>`;
+        return `<li class="airport icao-${icao.toLowerCase()}">` +
+                    `<span style="font-size: 7pt" class="difficulty">${difficulty}</span>` +
+                    `<span class="icao">${icao.toUpperCase()}</span>` +
+                    `<span class="name">${name}</span>` +
+                '</li>';
     }
 
     /**
@@ -377,7 +377,7 @@ export default class UiView {
      * @for UiController
      * @method ui_zoom_out
      */
-    ui_zoom_out(){
+    ui_zoom_out() {
         const lastpos = [
             round(this.px_to_km(prop.canvas.panX)),
             round(this.px_to_km(prop.canvas.panY))
@@ -413,7 +413,7 @@ export default class UiView {
 
         prop.canvas.panX = round(this.km_to_px(lastpos[0]));
         prop.canvas.panY = round(this.km_to_px(lastpos[1]));
-    };
+    }
 
     /**
      * @for UiController
@@ -440,11 +440,11 @@ export default class UiView {
         $log.append(html);
         $log.scrollTop($log.get(0).scrollHeight);
 
-        window.gameController.game_timeout((html) => {
-            html.addClass(SELECTORS.CLASSNAMES.HIDDEN);
+        window.gameController.game_timeout((uiLogView) => {
+            uiLogView.addClass(SELECTORS.CLASSNAMES.HIDDEN);
 
             setTimeout(() => {
-                html.remove();
+                uiLogView.remove();
             }, 10000);
         }, 3, window, html);
     }
@@ -558,5 +558,5 @@ export default class UiView {
         }
 
         prop.ui.scale = localStorage[STORAGE_KEY.ATC_SCALE];
-    };
+    }
 }

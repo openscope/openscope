@@ -221,10 +221,10 @@ export default class ConvasController {
         this.canvas.size.width -= 250;
         this.canvas.size.height -= 36;
 
-        for (const i in this.canvas.contexts) {
-            this.canvas.contexts[i].canvas.height = this.canvas.size.height;
-            this.canvas.contexts[i].canvas.width = this.canvas.size.width;
-        }
+        _forEach(this.canvas.contexts, (context) => {
+            context.canvas.height = this.canvas.size.height;
+            context.canvas.width = this.canvas.size.width;
+        });
 
         this.canvas.dirty = true;
         this.canvas_adjust_hidpi();
@@ -608,11 +608,12 @@ export default class ConvasController {
         cc.font = BASE_CANVAS_FONT;
 
         const airport = window.airportController.airport_get();
-        for (const i in airport.real_fixes) {
+        // TODO: perhaps this could be a model method?
+        _forEach(airport.real_fixes, (fix, i) => {
             cc.save();
             cc.translate(
-                round(window.uiController.km_to_px(airport.fixes[i].position[0])) + this.canvas.panX,
-                -round(window.uiController.km_to_px(airport.fixes[i].position[1])) + this.canvas.panY
+                round(window.uiController.km_to_px(fix.position[0])) + this.canvas.panX,
+                -round(window.uiController.km_to_px(fix.position[1])) + this.canvas.panY
             );
 
             // draw outline (draw with eraser)
@@ -621,16 +622,16 @@ export default class ConvasController {
             cc.globalCompositeOperation = 'destination-out';
             cc.lineWidth = 4;
 
-            this.canvas_draw_fix(cc, i, airport.fixes[i].position);
+            this.canvas_draw_fix(cc, i, fix.position);
 
             cc.strokeStyle = COLORS.WHITE_00;
             cc.fillStyle = COLORS.WHITE_05;
             cc.globalCompositeOperation = 'source-over';
             cc.lineWidth = 1;
 
-            this.canvas_draw_fix(cc, i, airport.fixes[i].position);
+            this.canvas_draw_fix(cc, i, fix.position);
             cc.restore();
-        }
+        });
     }
 
     /**

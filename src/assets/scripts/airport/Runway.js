@@ -1,4 +1,5 @@
 /* eslint-disable no-multi-spaces, func-names, camelcase, no-undef, max-len, object-shorthand */
+import PositionModel from '../base/PositionModel';
 import { abs, tan } from '../math/core';
 import { km, degreesToRadians } from '../utilities/unitConverters';
 import { vlen, vradial, vsub } from '../math/vector';
@@ -76,9 +77,9 @@ export default class Runway {
         }
 
         if (data.end) {
-            const thisSide = new Position(data.end[end], data.reference_position, data.magnetic_north);
+            const thisSide = new PositionModel(data.end[end], data.reference_position, data.magnetic_north);
             // FIXME: ressignment of an argument with an inline ternary? this line needs some work.
-            const farSide = new Position(data.end[(end === 0) ? 1 : 0], data.reference_position, data.magnetic_north);
+            const farSide = new PositionModel(data.end[(end === 0) ? 1 : 0], data.reference_position, data.magnetic_north);
 
             // GPS latitude and longitude position
             this.gps = [thisSide.latitude, thisSide.longitude];

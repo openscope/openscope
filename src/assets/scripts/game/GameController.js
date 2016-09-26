@@ -1,4 +1,5 @@
-/* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand, no-undef, class-methods-use-this */
+/* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand,
+no-undef, class-methods-use-this */
 import $ from 'jquery';
 import GameOptions from './GameOptions';
 import { round } from '../math/core';

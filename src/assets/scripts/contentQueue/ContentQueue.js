@@ -22,7 +22,7 @@ import LoadableContentModel from './LoadableContentModel';
 */
 export default class ContentQueueClass {
     constructor(loadingView) {
-        this.loadingView = loadingView
+        this.loadingView = loadingView;
         this.isLoading = false;
         this.lowPriorityQueue = [];
         this.highPriorityQueue = [];
