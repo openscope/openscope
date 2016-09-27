@@ -1,6 +1,8 @@
 /* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand, no-undef, guard-for-in, no-restricted-syntax, max-len, prefer-arrow-callback, */
 import $ from 'jquery';
 import _clamp from 'lodash/clamp';
+import _forEach from 'lodash/forEach';
+import _get from 'lodash/get';
 import _has from 'lodash/has';
 import _isNaN from 'lodash/isNaN';
 import _map from 'lodash/map';
@@ -45,7 +47,6 @@ const WAYPOINT_NAV_MADE = {
     RWY: 'rwy'
 };
 
-// TODO: this seems like an odd place for a constant. What is this and why is it here? should it go somewhere else?
 const COMMANDS = {
     abort: 'runAbort',
     altitude: 'runAltitude',
@@ -114,20 +115,6 @@ export default class Aircraft {
         this.terrain_ranges = false;
         /* eslint-enable multi-spaces*/
 
-        if (prop.airport.current.terrain) {
-            const terrain = prop.airport.current.terrain;
-            this.terrain_ranges = {};
-            this.terrain_level = 0;
-
-            for (const k in terrain) {
-                this.terrain_ranges[k] = {};
-
-                for (const j in terrain[k]) {
-                    this.terrain_ranges[k][j] = Infinity;
-                }
-            }
-        }
-
         // Set to true when simulating future movements of the aircraft
         // Should be checked before updating global state such as score
         // or HTML.
@@ -183,41 +170,84 @@ export default class Aircraft {
         };
 
         this.emergency = {};
+        this.takeoffTime = options.category === FLIGHT_CATEGORY.ARRIVAL
+            ? window.gameController.game_time()
+            : null;
 
-        // TODO: should be in own method
-        // Setting up links to restricted areas
-        const restrictedArea = prop.airport.current.restricted_areas;
-        for (const i in restrictedArea) {
-            this.restricted.list.push({
-                data: restrictedArea[i],
-                range: null,
-                inside: false
-            });
-        }
 
-        // Initial Runway Assignment
-        if (options.category === FLIGHT_CATEGORY.ARRIVAL) {
-            this.setArrivalRunway(window.airportController.airport_get().runway);
-        } else if (options.category === FLIGHT_CATEGORY.DEPARTURE) {
-            this.setDepartureRunway(window.airportController.airport_get().runway);
-        }
-
-        this.takeoffTime = (options.category === FLIGHT_CATEGORY.ARRIVAL) ? window.gameController.game_time() : null;
-
+        this.buildCurrentTerrainRanges();
+        this.buildRestrictedAreaLinks();
+        this.assignInitialRunway(options);
         this.parse(options);
         this.createStrip();
         this.updateStrip();
     }
 
+    /**
+     * @for AircraftInstanceModel
+     * @method buildCurrentTerrainRanges
+     */
+    buildCurrentTerrainRanges() {
+        const terrain = _get(prop, 'airport.current.terrain', null);
+
+        if (!terrain) {
+            return;
+        }
+
+        this.terrain_ranges = {};
+        this.terrain_level = 0;
+
+        _forEach(terrain, (terrainRange, k) => {
+            this.terrain_ranges[k] = {};
+
+            _forEach(terrainRange, (range, j) => {
+                this.terrain_ranges[k][j] = Infinity;
+            });
+        });
+    }
+
+    /**
+     * Set up links to restricted areas
+     *
+     * @for AircraftInstanceModel
+     * @method buildRestrictedAreaLinks
+     */
+    buildRestrictedAreaLinks() {
+        const restrictedAreas = prop.airport.current.restricted_areas;
+
+        _forEach(restrictedAreas, (area) => {
+            this.restricted.list.push({
+                data: area,
+                range: null,
+                inside: false
+            });
+        });
+    }
+
+    /**
+     * Initial Runway Assignment
+     *
+     * @for AircraftInstanceModel
+     * @method assignInitialRunway
+     * @param options {object}
+     */
+    assignInitialRunway(options) {
+        if (options.category === FLIGHT_CATEGORY.ARRIVAL) {
+            this.setArrivalRunway(window.airportController.airport_get().runway);
+
+        } else if (options.category === FLIGHT_CATEGORY.DEPARTURE) {
+            this.setDepartureRunway(window.airportController.airport_get().runway);
+        }
+    }
+
     parse(data) {
-        // TODO: why is this not an array to start with?
         const keys = ['position', 'model', 'airline', 'callsign', 'category', 'heading', 'altitude', 'speed'];
 
-        for (const i in keys) {
-            if (data[keys[i]]) {
-                this[keys[i]] = data[keys[i]];
+        _forEach(keys, (key) => {
+            if (_has(data, key)) {
+                this[key] = data[key];
             }
-        }
+        });
 
         if (this.category === FLIGHT_CATEGORY.ARRIVAL) {
             if (data.waypoints.length > 0) {
@@ -288,12 +318,12 @@ export default class Aircraft {
         this.rwy_dep = rwy;
 
         // Update the assigned SID to use the portion for the new runway
-        const l = this.fms.currentLeg();
+        const leg = this.fms.currentLeg();
 
-        if (l.type === 'sid') {
-            const a = _map(l.waypoints, (v) => v.altitude);
+        if (leg.type === 'sid') {
+            const a = _map(leg.waypoints, (v) => v.altitude);
             const cvs = !a.every((v) => v === window.airportController.airport_get().initial_alt);
-            this.fms.followSID(l.route);
+            this.fms.followSID(leg.route);
 
             if (cvs) {
                 this.fms.climbViaSID();
