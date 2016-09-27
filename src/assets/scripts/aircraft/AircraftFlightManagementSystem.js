@@ -798,6 +798,7 @@ export default class AircraftFlightManagementSystem {
      * True if waypoint of the given name exists
      */
     hasWaypoint(name) {
+        // TODO: lodash will simplify this logic block
         for (let i = 0; i < this.legs.length; i++) {
             for (let j = 0; j < this.legs[i].waypoints.length; j++) {
                 if (this.legs[i].waypoints[j].fix === name) {

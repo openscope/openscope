@@ -378,7 +378,12 @@ export default class Aircraft {
         }
     }
 
-    // Called when the aircraft crosses the center boundary
+    // Called when the aircraft crosses the center boundary (ie, leaving our airspace)
+    /**
+     * @for AircraftInstanceModel
+     * @method crossBoundary
+     * @param inbound {}
+     */
     crossBoundary(inbound) {
         this.inside_ctr = inbound;
 
@@ -386,68 +391,97 @@ export default class Aircraft {
             return;
         }
 
-        // TODO: this is a very large block with lots of branching logic. this should be split up and abstracted.
         // Crossing into the center
         if (inbound) {
             this.showStrip();
             this.callUp();
         } else {
-            // Leaving the facility's airspace
-            this.hideStrip();
-
-            if (this.category === FLIGHT_CATEGORY.DEPARTURE) {
-                if (this.destination === 'number') {
-                    // TODO: enumerate the magic number
-                    // Within 5 degrees of destination heading
-                    if (abs(this.radial - this.destination) < 0.08726) {
-                        this.radioCall('switching to center, good day', 'dep');
-                        prop.game.score.departure += 1;
-                    } else {
-                        this.radioCall('leaving radar coverage outside departure window', 'dep', true);
-                        prop.game.score.departure -= 1;
-                    }
-                } else {
-                    // following a Standard Instrument Departure procedure
-                    // Find the desired SID exitPoint
-                    let exit;
-                    for (const l in this.fms.legs) {
-                        if (this.fms.legs[l].type === 'sid') {
-                            exit = this.fms.legs[l].waypoints[this.fms.legs[l].waypoints.length - 1].fix;
-                            break;
-                        }
-                    }
-
-                    // Verify aircraft was cleared to departure fix
-                    let ok = false;
-                    for (let i = 0; i < this.fms.waypoints().length; i++) {
-                        if (this.fms.waypoints()[i].fix === exit) {
-                            ok = true;
-                            break;
-                        }
-                    }
-
-                    if (ok) {
-                        this.radioCall('switching to center, good day', 'dep');
-                        prop.game.score.departure += 1;
-                    } else {
-                        this.radioCall(`leaving radar coverage without being cleared to ${this.fms.fp.route[1].split('.')[1]}`, 'dep', true);
-                        prop.game.score.departure -= 1;
-                    }
-                }
-
-                this.fms.setCurrent({
-                    altitude: this.fms.fp.altitude,
-                    speed: this.model.speed.cruise
-                });
-            }
-
-            if (this.category === FLIGHT_CATEGORY.ARRIVAL) {
-                this.radioCall('leaving radar coverage as arrival', 'app', true);
-                prop.game.score.failed_arrival += 1;
-            }
+            // leaving airspace
+            this.onAirspaceExit();
         }
     }
 
+    /**
+     * @for AircraftInstanceModel
+     * @method onAirspaceExit
+     */
+    onAirspaceExit() {
+        if (this.category === FLIGHT_CATEGORY.ARRIVAL) {
+            this.arrivalExit();
+        }
+
+        // Leaving the facility's airspace
+        this.hideStrip();
+
+        // TODO: is this supposed to be `typeof === 'number'` or is destination a literal string 'number' here?
+        if (this.destination === 'number') {
+            // an aircraft was given a radial  clearance
+            if (this.isHeadingInsideDepartureWindow()) {
+                this.radioCall('switching to center, good day', 'dep');
+                prop.game.score.departure += 1;
+            } else {
+                this.radioCall('leaving radar coverage outside departure window', 'dep', true);
+                prop.game.score.departure -= 1;
+            }
+        } else {
+            // following a Standard Instrument Departure procedure
+            // Find the desired SID exitPoint
+            let exit;
+
+            // TODO: if we just need the last fix in the list, why loop through all the legs?
+            _forEach(this.fms.legs, (leg) => {
+                if (leg.type === 'sid') {
+                    exit = leg.waypoints[leg.waypoints.length - 1].fix;
+                    return;
+                }
+            });
+
+            // Verify aircraft was cleared to departure fix
+            const ok = this.fms.hasWaypoint(exit);
+
+            if (ok) {
+                this.radioCall('switching to center, good day', 'dep');
+                prop.game.score.departure += 1;
+            } else {
+                this.radioCall(`leaving radar coverage without being cleared to ${this.fms.fp.route[1].split('.')[1]}`, 'dep', true);
+                prop.game.score.departure -= 1;
+            }
+        }
+
+        this.fms.setCurrent({
+            altitude: this.fms.fp.altitude,
+            speed: this.model.speed.cruise
+        });
+    }
+
+    /**
+     * An arriving aircraft is exiting the airpsace
+     *
+     * @for AircraftInstanceModel
+     * @method arrivalExit
+     */
+    arrivalExit() {
+        this.radioCall('leaving radar coverage as arrival', 'app', true);
+        prop.game.score.failed_arrival += 1;
+    }
+
+    /**
+     * Is an aircraft's current heading within a specific range
+     *
+     * @for AircraftInstanceModel
+     * @method isHeadingInsideDepartureWindow
+     */
+    isHeadingInsideDepartureWindow() {
+        // TODO: enumerate the magic number
+        // Within 5 degrees of destination heading
+        return abs(this.radial - this.destination) < 0.08726;
+    }
+
+    /**
+     * @for AircraftInstanceModel
+     * @method matchCallsign
+     * @param callsign {string}
+     */
     matchCallsign(callsign) {
         if (callsign === '*') {
             return true;
@@ -459,14 +493,29 @@ export default class Aircraft {
         return this_callsign.indexOf(callsign) === 0;
     }
 
+    /**
+     * @for AircraftInstanceModel
+     * @method getCallsign
+     * @return {string}
+     */
     getCallsign() {
         return (this.getAirline().icao + this.callsign).toUpperCase();
     }
 
+    /**
+     * @for AircraftInstanceModel
+     * @method getAirline
+     * @return {string}
+     */
     getAirline() {
         return window.airlineController.airline_get(this.airline);
     }
 
+    /**
+     * @for AircraftInstanceModel
+     * @method getRadioCallsign
+     * @param condensed
+     */
     getRadioCallsign(condensed) {
         let heavy = '';
 
@@ -495,10 +544,15 @@ export default class Aircraft {
         return cs;
     }
 
+    /**
+     * @for AircraftInstanceModel
+     * @method getClimbRate
+     * @return {number}
+     */
     getClimbRate() {
-        const a = this.altitude;
-        const r = this.model.rate.climb;
-        const c = this.model.ceiling;
+        const altitude = this.altitude;
+        const rate = this.model.rate.climb;
+        const ceiling = this.model.ceiling;
         let serviceCeilingClimbRate;
         let cr_uncorr;
         let cr_current;
@@ -513,8 +567,8 @@ export default class Aircraft {
         // in troposphere
         if (this.altitude < 36152) {
             // TODO: break this assignemnt up into smaller parts and holy magic numbers! enumerate the magic numbers
-            cr_uncorr = r * 420.7 * ((1.232 * Math.pow((518.6 - 0.00356 * a) / 518.6, 5.256)) / (518.6 - 0.00356 * a));
-            cr_current = cr_uncorr - (a / c * cr_uncorr) + (a / c * serviceCeilingClimbRate);
+            cr_uncorr = rate * 420.7 * ((1.232 * Math.pow((518.6 - 0.00356 * altitude) / 518.6, 5.256)) / (518.6 - 0.00356 * altitude));
+            cr_current = cr_uncorr - (altitude / ceiling * cr_uncorr) + (altitude / ceiling * serviceCeilingClimbRate);
         } else {
             // in lower stratosphere
             // re-do for lower stratosphere
@@ -526,10 +580,19 @@ export default class Aircraft {
         return cr_current;
     }
 
+    /**
+     * @for AircraftInstanceModel
+     * @method hideStrip
+     */
     hideStrip() {
         this.$html.hide(600);
     }
 
+    /**
+     * @for AircraftInstanceModel
+     * @method runCommands
+     * @param commands
+     */
     runCommands(commands) {
         if (!this.inside_ctr) {
             return true;
@@ -616,6 +679,13 @@ export default class Aircraft {
         return true;
     }
 
+    /**
+     * @for AircraftInstanceModel
+     * @method run
+     * @param command
+     * @param data
+     * @return {function}
+     */
     run(command, data) {
         let call_func;
 
@@ -631,6 +701,11 @@ export default class Aircraft {
         return this[call_func].apply(this, [data]);
     }
 
+    /**
+     * @for AircraftInstanceModel
+     * @method runHeading
+     * @param data
+     */
     runHeading(data) {
         const direction = data[0];
         let heading = data[1];
@@ -1305,6 +1380,7 @@ export default class Aircraft {
             return ['fail', `taxi to runway ${radio_runway(this.rwy_dep)} not yet complete`];
         }
         if (this.mode === FLIGHT_MODES.TAKEOFF) {
+            // FIXME: this is showing immediately after a to clearance.
             return ['fail', 'already taking off'];
         }
 
@@ -2127,6 +2203,7 @@ export default class Aircraft {
         if (window.airportController.airport_get().perimeter) {
             var inside = point_in_area(this.position, window.airportController.airport_get().perimeter);
 
+            // TODO: this logic is duplicated below. abstract to new method
             if (inside !== this.inside_ctr) {
                 this.crossBoundary(inside);
             }
