@@ -15,6 +15,7 @@ import { ceil, round, abs, sin, cos } from '../math/core';
 import { distance2d } from '../math/distance';
 import { vlen, vradial, vsub } from '../math/vector';
 import { km, radiansToDegrees, degreesToRadians } from '../utilities/unitConverters';
+import { SELECTORS } from '../constants/selectors';
 
 /**
  * @property FLIGHT_MODES
@@ -116,6 +117,8 @@ export default class Aircraft {
         this.terrain_ranges = false;
         // FIXME: change name, and update refs in `InputController`
         this.$html = null;
+        // TODO: this initialization should live in a `createChildren()` init method and not the constructor
+        this.$strips = $(SELECTORS.DOM_SELECTORS.STRIPS);
         /* eslint-enable multi-spaces*/
 
         // Set to true when simulating future movements of the aircraft
@@ -344,20 +347,14 @@ export default class Aircraft {
     createStrip() {
         const aircraftStrip = new AircraftStripView(
             this.getCallsign(),
-            this.model,
-            this.destination,
-            this.category
+            this
         );
 
         this.$html = aircraftStrip.$element;
 
         // Strip Interactivity Functions
-        // show fp route on hover
-        this.$html.find('.strip').prop('title', this.fms.fp.route.join(' '));
-        this.$html.click(this, (event) => {
-            window.inputController.input_select(event.data.getCallsign());
-        });
 
+        // TODO: this click handler should live in the `AircraftStripView` class.
         this.$html.dblclick(this, (event) => {
             prop.canvas.panX = 0 - round(window.uiController.km_to_px(event.data.position[0]));
             prop.canvas.panY = round(window.uiController.km_to_px(event.data.position[1]));
@@ -365,15 +362,18 @@ export default class Aircraft {
         });
 
         // Add the strip to the html
-        const scrollPos = $('#strips').scrollTop();
-        $('#strips').prepend(this.$html);
+        const scrollPos = this.$strips.scrollTop();
+        this.$strips.prepend(this.$html);
         // shift scroll down one strip's height
-        $('#strips').scrollTop(scrollPos + 45);
+        this.$strips.scrollTop(scrollPos + aircraftStrip.height);
 
+        // TODO: this can be accomplished with an `.isHidden` css class and done in the `AircraftStripView`
+        // class, this doesn't belong here
         // Determine whether or not to show the strip in our bay
         if (this.category === FLIGHT_CATEGORY.ARRIVAL) {
             this.$html.hide(0);
         } else if (this.category === FLIGHT_CATEGORY.DEPARTURE) {
+            // TODO: does this have anything to do with the aircraft strip? if not this should live somewhere else.
             this.inside_ctr = true;
         }
     }
@@ -1675,13 +1675,13 @@ export default class Aircraft {
         this.$html.detach();
 
         // var scrollPos = $("#strips")[0].scrollHeight - $("#strips").scrollTop();
-        const $strips = $('#strips');
-        const scrollPos = $strips.scrollTop();
+        // this.$strips = $(SELECTORS.DOM_SELECTORS.STRIPS);
+        const scrollPos = this.$strips.scrollTop();
 
-        $strips.prepend(this.$html);
+        this.$strips.prepend(this.$html);
         this.$html.show();
          // shift scroll down one strip's height
-        $strips.scrollTop(scrollPos + 45);
+        this.$strips.scrollTop(scrollPos + 45);
     }
 
     // TODO: this method needs a lot of love. its much too long with waaay too many nested if/else ifs.

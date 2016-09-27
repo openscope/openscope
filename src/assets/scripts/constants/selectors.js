@@ -67,7 +67,8 @@ export const IDS = {
     TOGGLE_OPTIONS: 'toggle-options',
     TUTORIAL: 'tutorial',
     SCORE: 'score',
-    SIDEBAR: 'sidebar'
+    SIDEBAR: 'sidebar',
+    STRIPS: 'strips'
 };
 
 /**
