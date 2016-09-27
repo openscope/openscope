@@ -7,6 +7,7 @@ import _has from 'lodash/has';
 import _isNaN from 'lodash/isNaN';
 import _map from 'lodash/map';
 import AircraftFlightManagementSystem from './AircraftFlightManagementSystem';
+import AircraftStripView from './AircraftStripView';
 import Waypoint from './Waypoint';
 import { speech_say } from '../speech';
 import { tau } from '../math/circle';
@@ -113,6 +114,8 @@ export default class Aircraft {
         this.datablockDir = -1;         // Direction the data block points (-1 means to ignore)
         this.conflicts    = {};         // List of aircraft that MAY be in conflict (bounding box)
         this.terrain_ranges = false;
+        // FIXME: change name, and update refs in `InputController`
+        this.$html = null;
         /* eslint-enable multi-spaces*/
 
         // Set to true when simulating future movements of the aircraft
@@ -332,47 +335,30 @@ export default class Aircraft {
     }
 
     cleanup() {
-        this.html.remove();
+        this.$html.remove();
     }
 
     /**
      * Create the aircraft's flight strip and add to strip bay
      */
     createStrip() {
-        // TODO: abstract this to a new view file.
-        this.html = $('<li class="strip"></li>');
+        const aircraftStrip = new AircraftStripView(
+            this.getCallsign(),
+            this.model,
+            this.destination,
+            this.category
+        );
 
-        // Top Line Data
-        this.html.append(`<span class='callsign'>${this.getCallsign()}</span>`);
-        this.html.append('<span class="heading">???</span>');
-        this.html.append('<span class="altitude">???</span>');
-
-        // TODO: this if/else can be simplified by setting the icoa string first
-        // Bottom Line Data
-        if (['H', 'U'].indexOf(this.model.weightclass) > -1) {
-            this.html.append(`<span class='aircraft'> H/${this.model.icao}</span>`);
-        } else {
-            this.html.append(`<span class='aircraft'>${this.model.icao}</span>`);
-        }
-
-        this.html.append(`<span class="destination">${this.destination}</span>`);
-        this.html.append('<span class="speed">???</span>');
-
-        // Initial Styling
-        if (this.category === FLIGHT_CATEGORY.DEPARTURE) {
-            this.html.addClass('departure');
-        } else {
-            this.html.addClass('arrival');
-        }
+        this.$html = aircraftStrip.$element;
 
         // Strip Interactivity Functions
         // show fp route on hover
-        this.html.find('.strip').prop('title', this.fms.fp.route.join(' '));
-        this.html.click(this, (event) => {
+        this.$html.find('.strip').prop('title', this.fms.fp.route.join(' '));
+        this.$html.click(this, (event) => {
             window.inputController.input_select(event.data.getCallsign());
         });
 
-        this.html.dblclick(this, (event) => {
+        this.$html.dblclick(this, (event) => {
             prop.canvas.panX = 0 - round(window.uiController.km_to_px(event.data.position[0]));
             prop.canvas.panY = round(window.uiController.km_to_px(event.data.position[1]));
             prop.canvas.dirty = true;
@@ -380,13 +366,13 @@ export default class Aircraft {
 
         // Add the strip to the html
         const scrollPos = $('#strips').scrollTop();
-        $('#strips').prepend(this.html);
+        $('#strips').prepend(this.$html);
         // shift scroll down one strip's height
         $('#strips').scrollTop(scrollPos + 45);
 
         // Determine whether or not to show the strip in our bay
         if (this.category === FLIGHT_CATEGORY.ARRIVAL) {
-            this.html.hide(0);
+            this.$html.hide(0);
         } else if (this.category === FLIGHT_CATEGORY.DEPARTURE) {
             this.inside_ctr = true;
         }
@@ -541,7 +527,7 @@ export default class Aircraft {
     }
 
     hideStrip() {
-        this.html.hide(600);
+        this.$html.hide(600);
     }
 
     runCommands(commands) {
@@ -1686,14 +1672,14 @@ export default class Aircraft {
     }
 
     showStrip() {
-        this.html.detach();
+        this.$html.detach();
 
         // var scrollPos = $("#strips")[0].scrollHeight - $("#strips").scrollTop();
         const $strips = $('#strips');
         const scrollPos = $strips.scrollTop();
 
-        $strips.prepend(this.html);
-        this.html.show();
+        $strips.prepend(this.$html);
+        this.$html.show();
          // shift scroll down one strip's height
         $strips.scrollTop(scrollPos + 45);
     }
@@ -2279,10 +2265,10 @@ export default class Aircraft {
             return;
         }
 
-        const heading  = this.html.find('.heading');
-        const altitude = this.html.find('.altitude');
-        const destination = this.html.find('.destination');
-        const speed = this.html.find('.speed');
+        const heading  = this.$html.find('.heading');
+        const altitude = this.$html.find('.altitude');
+        const destination = this.$html.find('.destination');
+        const speed = this.$html.find('.speed');
         const wp = this.fms.currentWaypoint();
 
         // Update fms.following

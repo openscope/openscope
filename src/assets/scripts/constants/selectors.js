@@ -9,8 +9,12 @@ import _mapValues from 'lodash/mapValues';
  */
 export const CLASSNAMES = {
     ACTIVE: 'active',
+    AIRCRAFT: 'aircraft',
     ALL_SET: 'allSet',
+    ARRIVAL: 'arrival',
+    CALLSIGN: 'callsign',
     CONTROL: 'control',
+    DEPARTURE: 'departure',
     FAST_FORWARDS: 'fast-forwards',
     FOLLOWING_STAR: 'followingSTAR',
     HIDDEN: 'hidden',

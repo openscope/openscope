@@ -362,20 +362,21 @@ export default class InputController {
             if (aircraft.matchCallsign(prop.input.callsign)) {
                 number += 1;
                 match = aircraft;
-                aircraft.html.addClass(SELECTORS.CLASSNAMES.ACTIVE);
+                // TODO: this should be from an encapsulated class on the window.
+                aircraft.$html.addClass(SELECTORS.CLASSNAMES.ACTIVE);
             }
         }
 
         // TODO: this logic block should be either abstracted or simplified.
         if (number === 1 && (
-                match.html.offset().top < 0 ||
+                match.$html.offset().top < 0 ||
                 (
-                    (match.html.offset().top + match.html.height() - this.$sidebar.offset().top) >
+                    (match.$html.offset().top + match.$html.height() - this.$sidebar.offset().top) >
                     this.$sidebar.height()
                 )
             )
         ) {
-            this.$sidebar.scrollTop(this.$sidebar.scrollTop() + match.html.offset().top - (this.$sidebar.height() / 2));
+            this.$sidebar.scrollTop(this.$sidebar.scrollTop() + match.$html.offset().top - (this.$sidebar.height() / 2));
         }
     }
 
