@@ -115,8 +115,10 @@ export default class Aircraft {
         this.datablockDir = -1;         // Direction the data block points (-1 means to ignore)
         this.conflicts    = {};         // List of aircraft that MAY be in conflict (bounding box)
         this.terrain_ranges = false;
-        // FIXME: change name, and update refs in `InputController`
+        // FIXME: change name, and update refs in `InputController`. perhaps change to be a ref to the AircraftStripView class instead of directly accessing the html?
+        this.aircraftStripView = null;
         this.$html = null;
+
         // TODO: this initialization should live in a `createChildren()` init method and not the constructor
         this.$strips = $(SELECTORS.DOM_SELECTORS.STRIPS);
         /* eslint-enable multi-spaces*/
@@ -345,34 +347,24 @@ export default class Aircraft {
      * Create the aircraft's flight strip and add to strip bay
      */
     createStrip() {
-        const aircraftStrip = new AircraftStripView(
+        this.aircraftStripView = new AircraftStripView(
             this.getCallsign(),
             this
         );
 
-        this.$html = aircraftStrip.$element;
-
-        // Strip Interactivity Functions
-
-        // TODO: this click handler should live in the `AircraftStripView` class.
-        this.$html.dblclick(this, (event) => {
-            prop.canvas.panX = 0 - round(window.uiController.km_to_px(event.data.position[0]));
-            prop.canvas.panY = round(window.uiController.km_to_px(event.data.position[1]));
-            prop.canvas.dirty = true;
-        });
-
+        this.$html = this.aircraftStripView.$element;
         // Add the strip to the html
         const scrollPos = this.$strips.scrollTop();
-        this.$strips.prepend(this.$html);
+        this.$strips.prepend(this.aircraftStripView.$element);
         // shift scroll down one strip's height
-        this.$strips.scrollTop(scrollPos + aircraftStrip.height);
+        this.$strips.scrollTop(scrollPos + this.aircraftStripView.height);
 
-        // TODO: this can be accomplished with an `.isHidden` css class and done in the `AircraftStripView`
-        // class, this doesn't belong here
         // Determine whether or not to show the strip in our bay
         if (this.category === FLIGHT_CATEGORY.ARRIVAL) {
-            this.$html.hide(0);
-        } else if (this.category === FLIGHT_CATEGORY.DEPARTURE) {
+            this.aircraftStripView.hide();
+        }
+
+        if (this.category === FLIGHT_CATEGORY.DEPARTURE) {
             // TODO: does this have anything to do with the aircraft strip? if not this should live somewhere else.
             this.inside_ctr = true;
         }
@@ -845,6 +837,11 @@ export default class Aircraft {
         return ['ok', readback];
     }
 
+    /**
+     * @for AircraftInstanceModel
+     * @method runAltitude
+     * @param data
+     */
     runAltitude(data) {
         const altitude = data[0];
         let expedite = data[1];
@@ -893,6 +890,10 @@ export default class Aircraft {
         return ['ok', readback];
     }
 
+    /**
+     * @for AircraftInstanceModel
+     * @method runClearedAsFiled
+     */
     runClearedAsFiled() {
         if (this.fms.clearedAsFiled()) {
             const readback = {};
@@ -910,6 +911,11 @@ export default class Aircraft {
         return [true, 'unable to clear as filed'];
     }
 
+    /**
+     * @for AircraftInstanceModel
+     * @method runClimbViaSID
+     * @param data
+     */
     runClimbViaSID() {
         let fail = false;
 
@@ -930,6 +936,11 @@ export default class Aircraft {
         }
     }
 
+    /**
+     * @for AircraftInstanceModel
+     * @method runDescendViaSTAR
+     * @param data
+     */
     runDescendViaSTAR() {
         if (this.fms.descendViaSTAR() && this.fms.following.star) {
             const readback = {
@@ -944,6 +955,11 @@ export default class Aircraft {
         window.uiController.ui_log(`${this.getCallsign()}, unable to descend via STAR`, isWarning);
     }
 
+    /**
+     * @for AircraftInstanceModel
+     * @method runSpeed
+     * @param data
+     */
     runSpeed(data) {
         const speed = data[0];
 
@@ -967,6 +983,11 @@ export default class Aircraft {
         return ['ok', readback];
     }
 
+    /**
+     * @for AircraftInstanceModel
+     * @method runHold
+     * @param data
+     */
     runHold(data) {
         let dirTurns = data[0];
         let legLength = data[1];
@@ -1096,6 +1117,11 @@ export default class Aircraft {
         return ['ok', `hold ${inboundDir} of present position, ${dirTurns} turns, ${legLength} legs`];
     }
 
+    /**
+     * @for AircraftInstanceModel
+     * @method runDirect
+     * @param data
+     */
     runDirect(data) {
         const fixname = data[0].toUpperCase();
         const fix = window.airportController.airport_get().getFix(fixname);
@@ -1154,6 +1180,11 @@ export default class Aircraft {
         return ['ok', `proceed direct ${fixes.join(', ')}`];
     }
 
+    /**
+     * @for AircraftInstanceModel
+     * @method runFlyPresentHeading
+     * @param data
+     */
     runFlyPresentHeading(data) {
         this.cancelFix();
         this.runHeading([null, radiansToDegrees(this.heading)]);
@@ -1161,6 +1192,11 @@ export default class Aircraft {
         return ['ok', 'fly present heading'];
     }
 
+    /**
+     * @for AircraftInstanceModel
+     * @method runSayRoute
+     * @param data
+     */
     runSayRoute(data) {
         return ['ok', {
             log: `route: ${this.fms.fp.route.join(' ')}`,
@@ -1168,6 +1204,11 @@ export default class Aircraft {
         }];
     }
 
+    /**
+     * @for AircraftInstanceModel
+     * @method runSID
+     * @param data
+     */
     runSID(data) {
         const apt = window.airportController.airport_get();
         const sid_id = data[0].toUpperCase();
@@ -1206,6 +1247,11 @@ export default class Aircraft {
         return ['ok', readback];
     }
 
+    /**
+     * @for AircraftInstanceModel
+     * @method runSTAR
+     * @param data
+     */
     runSTAR(data) {
         const entry = data[0].split('.')[0].toUpperCase();
         const star_id = data[0].split('.')[1].toUpperCase();
@@ -1235,6 +1281,11 @@ export default class Aircraft {
         return ['ok', readback];
     }
 
+    /**
+     * @for AircraftInstanceModel
+     * @method runMoveDataBlock
+     * @param data
+     */
     runMoveDataBlock(dir) {
         // TODO: what do all these numbers mean?
         const positions = { 8: 360, 9: 45, 6: 90, 3: 135, 2: 180, 1: 225, 4: 270, 7: 315, 5: 'ctr' };
@@ -1247,9 +1298,13 @@ export default class Aircraft {
     }
 
     /**
-      * Adds a new Leg to fms with a user specified route
-      * Note: See notes on 'runReroute' for how to format input for this command
-      */
+     * Adds a new Leg to fms with a user specified route
+     * Note: See notes on 'runReroute' for how to format input for this command
+     *
+     * @for AircraftInstanceModel
+     * @method runRoute
+     * @param data
+     */
     runRoute(data) {
          // capitalize everything
         data = data[0].toUpperCase();
@@ -1289,6 +1344,10 @@ export default class Aircraft {
       * procedurally-linked points (eg KSFO.OFFSH9.SXC or SGD.V87.MOVER), and
       * all other points that will be simply a fix direct to another fix need
       * to be connected with double-dots (eg HLI..SQS..BERRA..JAN..KJAN)
+      *
+      * @for AircraftInstanceModel
+      * @method runReroute
+      * @param data
       */
     runReroute(data) {
     // capitalize everything
@@ -1324,6 +1383,11 @@ export default class Aircraft {
         return ['fail', readback];
     }
 
+    /**
+     * @for AircraftInstanceModel
+     * @method runTaxi
+     * @param data
+     */
     runTaxi(data) {
         if (this.category !== FLIGHT_CATEGORY.DEPARTURE) {
             return ['fail', 'inbound'];
@@ -1365,6 +1429,11 @@ export default class Aircraft {
         return ['ok', readback];
     }
 
+    /**
+     * @for AircraftInstanceModel
+     * @method runTakeoff
+     * @param data
+     */
     runTakeoff(data) {
         if (this.category !== 'departure') {
             return ['fail', 'inbound'];
@@ -1436,6 +1505,11 @@ export default class Aircraft {
         return ['ok', readback];
     }
 
+    /**
+     * @for AircraftInstanceModel
+     * @method runAbort
+     * @param data
+     */
     runAbort(data) {
         if (this.mode === FLIGHT_MODES.TAXI) {
             this.mode = FLIGHT_MODES.APRON;
@@ -1481,15 +1555,27 @@ export default class Aircraft {
         return ['fail', 'unable to abort'];
     }
 
+    /**
+     * @for AircraftInstanceModel
+     * @method runDebug
+     */
     runDebug() {
         window.aircraft = this;
         return ['ok', { log: 'in the console, look at the variable &lsquo;aircraft&rsquo;', say: '' }];
     }
 
+    /**
+     * @for AircraftInstanceModel
+     * @method runDelete
+     */
     runDelete() {
         window.aircraftController.aircraft_remove(this);
     }
 
+    /**
+     * @for AircraftInstanceModel
+     * @method cancelFix
+     */
     cancelFix() {
         // TODO: this logic could be simplified. do an early return instead of wrapping the entire function in an if.
         if (this.fms.currentWaypoint().navmode === WAYPOINT_NAV_MADE.FIX) {
@@ -1511,6 +1597,10 @@ export default class Aircraft {
         return false;
     }
 
+    /**
+     * @for AircraftInstanceModel
+     * @method cancelLanding
+     */
     cancelLanding() {
         // TODO: this logic could be simplified. do an early return instead of wrapping the entire function in an if.
         if (this.fms.currentWaypoint().navmode === WAYPOINT_NAV_MADE.RWY) {
@@ -1540,6 +1630,10 @@ export default class Aircraft {
         return false;
     }
 
+    /**
+     * @for AircraftInstanceModel
+     * @method pushHistory
+     */
     pushHistory() {
         this.history.push([this.position[0], this.position[1]]);
 
@@ -1548,13 +1642,19 @@ export default class Aircraft {
         }
     }
 
+    /**
+     * @for AircraftInstanceModel
+     * @method moveForward
+     */
     moveForward() {
         this.mode = FLIGHT_MODES.TAXI;
         this.taxi_next  = true;
     }
 
     /**
-     ** Aircraft is established on FINAL APPROACH COURSE
+     * Aircraft is established on FINAL APPROACH COURSE
+     * @for AircraftInstanceModel
+     * @method runTakeoff
      */
     isEstablished() {
         if (this.mode !== FLIGHT_MODES.LANDING) {
@@ -1567,7 +1667,9 @@ export default class Aircraft {
     }
 
     /**
-     ** Aircraft is on the ground (can be a departure OR arrival)
+     * Aircraft is on the ground (can be a departure OR arrival)
+     * @for AircraftInstanceModel
+     * @method runTakeoff
      */
     isLanded() {
         // TODO: this logic can be simplified. there should really be another method that does more of the work here.
@@ -1588,7 +1690,9 @@ export default class Aircraft {
     }
 
     /**
-     ** Aircraft is actively following an instrument approach
+     * Aircraft is actively following an instrument approach
+     * @for AircraftInstanceModel
+     * @method runTakeoff
      */
     isPrecisionGuided() {
         // Whether this aircraft is elegible for reduced separation
@@ -1597,31 +1701,49 @@ export default class Aircraft {
         // approaches and visual/localizer/VOR/etc. this should
         // distinguish between them.  Until then, presume landing is via
         // ILS with appropriate procedures in place.
-        return (this.mode === FLIGHT_MODES.LANDING);
+        return this.mode === FLIGHT_MODES.LANDING;
     }
 
+    /**
+     * @for AircraftInstanceModel
+     * @method isStopped
+     */
     isStopped() {
         // TODO: enumerate the magic number.
         return this.isLanded() && this.speed < 5;
     }
 
+    /**
+     * @for AircraftInstanceModel
+     * @method isTaxiing
+     */
     isTaxiing() {
         return this.mode === FLIGHT_MODES.APRON ||
             this.mode === FLIGHT_MODES.TAXI ||
             this.mode === FLIGHT_MODES.WAITING;
     }
 
+    /**
+     * @for AircraftInstanceModel
+     * @method isTakeoff
+     */
     isTakeoff() {
         return this.isTaxiing() || this.mode === FLIGHT_MODES.TAKEOFF;
     }
 
     // TODO: the logic in this method can be cleaned up and simplified
+    /**
+     * @for AircraftInstanceModel
+     * @method isVisible
+     */
     isVisible() {
-        // TODO: this if/else if would be cleaner with just if (this.mode == FLIGHT_MODES.WAITING) {}
+        // TODO: this if/else if would be cleaner with just if (this.mode === FLIGHT_MODES.WAITING) {}
         // hide aircraft on twys
         if (this.mode === FLIGHT_MODES.APRON || this.mode === FLIGHT_MODES.TAXI) {
             return false;
-        } else  if (this.isTaxiing()) {
+        }
+
+        if (this.isTaxiing()) {
             // show only the first aircraft in the takeoff queue
             const runway = window.airportController.airport_get().getRunway(this.rwy_dep);
             const waiting = runway.inQueue(this);
@@ -1632,6 +1754,10 @@ export default class Aircraft {
         return true;
     }
 
+    /**
+     * @for AircraftInstanceModel
+     * @method getWind
+     */
     getWind() {
         const windForRunway = {
             cross: 0,
@@ -1652,6 +1778,13 @@ export default class Aircraft {
         return windForRunway;
     }
 
+    /**
+     * @for AircraftInstanceModel
+     * @method radioCall
+     * @param msg {string}
+     * @param sectorType {string}
+     * @param alert {string}
+     */
     radioCall(msg, sectorType, alert) {
         if (this.projected) {
             return;
@@ -1670,6 +1803,7 @@ export default class Aircraft {
 
         // TODO: quick abstraction, this doesn't belong here.
         const logMessage = (callsign) => `${window.airportController.airport_get().radio[sectorType]}, ${callsign} ${msg}`;
+
         if (alert) {
             const isWarning = true;
             window.uiController.ui_log(logMessage(callsign_L), isWarning);
@@ -1683,6 +1817,10 @@ export default class Aircraft {
         }]);
     }
 
+    /**
+     * @for AircraftInstanceModel
+     * @method callUp
+     */
     callUp() {
         let alt_log;
         let alt_say;
@@ -1722,6 +1860,11 @@ export default class Aircraft {
         }
     }
 
+    /**
+     * @for AircraftInstanceModel
+     * @method scoreWind
+     * @param action
+     */
     scoreWind(action) {
         let score = 0;
         const components = this.getWind();
@@ -1747,20 +1890,27 @@ export default class Aircraft {
         return score;
     }
 
+    /**
+     * @for AircraftInstanceModel
+     * @method showStrip
+     */
     showStrip() {
         this.$html.detach();
 
-        // var scrollPos = $("#strips")[0].scrollHeight - $("#strips").scrollTop();
-        // this.$strips = $(SELECTORS.DOM_SELECTORS.STRIPS);
         const scrollPos = this.$strips.scrollTop();
 
         this.$strips.prepend(this.$html);
         this.$html.show();
-         // shift scroll down one strip's height
+        // TODO enumerate the magic number
+        // shift scroll down one strip's height
         this.$strips.scrollTop(scrollPos + 45);
     }
 
     // TODO: this method needs a lot of love. its much too long with waaay too many nested if/else ifs.
+    /**
+     * @for AircraftInstanceModel
+     * @method updateTarget
+     */
     updateTarget() {
         let airport = window.airportController.airport_get();
         let runway  = null;
@@ -2031,6 +2181,10 @@ export default class Aircraft {
     }
 
     // TODO: this method needs a lot of love. its much too long with waaay too many nested if/else ifs.
+    /**
+     * @for AircraftInstanceModel
+     * @method updatePhysics
+     */
     updatePhysics() {
         if (this.isTaxiing()) {
             return;
@@ -2042,89 +2196,89 @@ export default class Aircraft {
             this.speed *= 0.99;
 
             return;
-        } else {
-            // TURNING
-            if (!this.isLanded() && this.heading !== this.target.heading) {
-                // Perform standard turns 3 deg/s or 25 deg bank, whichever
-                // requires less bank angle.
-                // Formula based on http://aviation.stackexchange.com/a/8013
-                const turn_rate = _clamp(0, 1 / (this.speed / 8.883031), 0.0523598776);
-                const turn_amount = turn_rate * window.gameController.game_delta();
-                const offset = angle_offset(this.target.heading, this.heading);
+        }
 
-                if (abs(offset) < turn_amount) {
-                    this.heading = this.target.heading;
-                } else if ((offset < 0 && this.target.turn === null) || this.target.turn === 'left') {
-                    this.heading -= turn_amount;
-                } else if ((offset > 0 && this.target.turn === null) || this.target.turn === 'right') {
-                    this.heading += turn_amount;
-                }
+        // TURNING
+        if (!this.isLanded() && this.heading !== this.target.heading) {
+            // Perform standard turns 3 deg/s or 25 deg bank, whichever
+            // requires less bank angle.
+            // Formula based on http://aviation.stackexchange.com/a/8013
+            const turn_rate = _clamp(0, 1 / (this.speed / 8.883031), 0.0523598776);
+            const turn_amount = turn_rate * window.gameController.game_delta();
+            const offset = angle_offset(this.target.heading, this.heading);
+
+            if (abs(offset) < turn_amount) {
+                this.heading = this.target.heading;
+            } else if ((offset < 0 && this.target.turn === null) || this.target.turn === 'left') {
+                this.heading -= turn_amount;
+            } else if ((offset > 0 && this.target.turn === null) || this.target.turn === 'right') {
+                this.heading += turn_amount;
+            }
+        }
+
+        // ALTITUDE
+        let distance = null;
+        let expedite_factor = 1.5;
+        this.trend = 0;
+
+        if (this.target.altitude < this.altitude - 0.02) {
+            distance = -this.model.rate.descent / 60 * window.gameController.game_delta();
+
+            if (this.mode === FLIGHT_MODES.LANDING) {
+                distance *= 3;
             }
 
-            // ALTITUDE
-            var distance = null;
-            var expedite_factor = 1.5;
+            this.trend -= 1;
+        } else if (this.target.altitude > this.altitude + 0.02) {
+            const climbrate = this.getClimbRate();
+            distance = climbrate / 60 * window.gameController.game_delta();
+
+            if (this.mode === FLIGHT_MODES.LANDING) {
+                distance *= 1.5;
+            }
+
+            this.trend = 1;
+        }
+
+        if (distance) {
+            if (this.target.expedite) {
+                distance *= expedite_factor;
+            }
+
+            const offset = this.altitude - this.target.altitude;
+
+            if (abs(offset) < abs(distance)) {
+                this.altitude = this.target.altitude;
+            } else {
+                this.altitude += distance;
+            }
+        }
+
+        if (this.isLanded()) {
             this.trend = 0;
+        }
 
-            if (this.target.altitude < this.altitude - 0.02) {
-                distance = -this.model.rate.descent / 60 * window.gameController.game_delta();
+        // SPEED
+        let difference = null;
 
-                if (this.mode === FLIGHT_MODES.LANDING) {
-                    distance *= 3;
-                }
-
-                this.trend -= 1;
-            } else if (this.target.altitude > this.altitude + 0.02) {
-                var climbrate = this.getClimbRate();
-                distance = climbrate / 60 * window.gameController.game_delta();
-
-                if (this.mode === FLIGHT_MODES.LANDING) {
-                    distance *= 1.5;
-                }
-
-                this.trend = 1;
-            }
-
-            if (distance) {
-                if (this.target.expedite) {
-                    distance *= expedite_factor;
-                }
-
-                var offset = this.altitude - this.target.altitude;
-
-                if (abs(offset) < abs(distance)) {
-                    this.altitude = this.target.altitude;
-                } else {
-                    this.altitude += distance;
-                }
-            }
+        if (this.target.speed < this.speed - 0.01) {
+            difference = -this.model.rate.decelerate * window.gameController.game_delta() / 2;
 
             if (this.isLanded()) {
-                this.trend = 0;
+                difference *= 3.5;
             }
+        } else if (this.target.speed > this.speed + 0.01) {
+            difference  = this.model.rate.accelerate * window.gameController.game_delta() / 2;
+            difference *= crange(0, this.speed, this.model.speed.min, 2, 1);
+        }
 
-            // SPEED
-            var difference = null;
+        if (difference) {
+            const offset = this.speed - this.target.speed;
 
-            if (this.target.speed < this.speed - 0.01) {
-                difference = -this.model.rate.decelerate * window.gameController.game_delta() / 2;
-
-                if (this.isLanded()) {
-                    difference *= 3.5;
-                }
-            } else if (this.target.speed > this.speed + 0.01) {
-                difference  = this.model.rate.accelerate * window.gameController.game_delta() / 2;
-                difference *= crange(0, this.speed, this.model.speed.min, 2, 1);
-            }
-
-            if (difference) {
-                var offset = this.speed - this.target.speed;
-
-                if (abs(offset) < abs(difference)) {
-                    this.speed = this.target.speed;
-                } else {
-                    this.speed += difference;
-                }
+            if (abs(offset) < abs(difference)) {
+                this.speed = this.target.speed;
+            } else {
+                this.speed += difference;
             }
         }
 
@@ -2144,9 +2298,9 @@ export default class Aircraft {
             this.position_history.push([this.position[0], this.position[1], window.gameController.game_time() / window.gameController.game_speedup()]);
         }
 
-        var angle = this.heading;
+        let angle = this.heading;
         // FIXME: is this ratio correct? is it 0.000514444 or 0.514444?
-        var scaleSpeed = this.speed * 0.000514444 * window.gameController.game_delta(); // knots to m/s
+        let scaleSpeed = this.speed * 0.000514444 * window.gameController.game_delta(); // knots to m/s
 
         if (prop.game.option.get('simplifySpeeds') === 'no') {
             // TODO: this should be abstracted to a helper function
@@ -2155,18 +2309,18 @@ export default class Aircraft {
 
             // Calculate movement including wind assuming wind speed
             // increases 2% per 1000'
-            var wind = window.airportController.airport_get().wind;
-            var vector;
+            let wind = window.airportController.airport_get().wind;
+            let vector;
 
             if (this.isLanded()) {
                 vector = vscale([sin(angle), cos(angle)], scaleSpeed);
             } else {
-                var crab_angle = 0;
+                let crab_angle = 0;
 
                 // Compensate for crosswind while tracking a fix or on ILS
                 if (this.fms.currentWaypoint().navmode === WAYPOINT_NAV_MADE.FIX || this.mode === FLIGHT_MODES.LANDING) {
                     // TODO: this should be abstracted to a helper function
-                    var offset = angle_offset(this.heading, wind.angle + Math.PI);
+                    let offset = angle_offset(this.heading, wind.angle + Math.PI);
                     crab_angle = Math.asin((wind.speed * sin(offset)) / this.speed);
                 }
 
@@ -2218,6 +2372,10 @@ export default class Aircraft {
     }
 
     // TODO: this method needs a lot of love. its much too long with waaay too many nested if/else ifs.
+    /**
+     * @for AircraftInstanceModel
+     * @method updateWarning
+     */
     updateWarning() {
         let area;
         let warning;
@@ -2336,12 +2494,17 @@ export default class Aircraft {
         this.warning = warning;
     }
 
-
+    // TODO: abstract to AircraftStripView class
+    /**
+     * @for AircraftInstanceModel
+     * @method updateStrip
+     */
     updateStrip() {
         if (this.projected) {
             return;
         }
 
+        // TODO: abstract everything below in to `aircraftStripView`
         const heading  = this.$html.find('.heading');
         const altitude = this.$html.find('.altitude');
         const destination = this.$html.find('.destination');
@@ -2351,74 +2514,78 @@ export default class Aircraft {
         // Update fms.following
         this.fms.followCheck();
 
-        // Remove all old styling
-        const classnamesToRemove = 'runway hold waiting taxi lookingGood allSet';
-        heading.removeClass(classnamesToRemove);
-        altitude.removeClass(classnamesToRemove);
-        destination.removeClass(classnamesToRemove);
-        speed.removeClass(classnamesToRemove);
-
         // Populate strip fields with default values
-        heading.text(heading_to_string(wp.heading));
+        const headingText = heading_to_string(wp.heading);
+        const altitudeText = _get(wp, 'altitude', '-');
+        const destinationText = _get(this, 'destination', window.airportController.airport_get().icao);
+        const currentSpeedText = wp.speed;
 
-        if (wp.altitude) {
-            altitude.text(wp.altitude);
-        } else {
-            altitude.text('-');
-        }
+        this.aircraftStripView.update(headingText, altitudeText, destinationText, currentSpeedText);
 
-        destination.text(this.destination || window.airportController.airport_get().icao);
-        speed.text(wp.speed);
+        // switch (this.mode) {
+        //     case FLIGHT_MODES.APRON:
+        //         break;
+        //     case FLIGHT_MODES.TAXI:
+        //         break;
+        //     case FLIGHT_MODES.WAITING:
+        //         break;
+        //     case FLIGHT_MODES.TAKEOFF:
+        //         break;
+        //     case FLIGHT_MODES.CRUISE:
+        //         break;
+        //     case FLIGHT_MODES.LANDING:
+        //         break;
+        // }
 
         // When at the apron...
         if (this.mode === FLIGHT_MODES.APRON) {
-            heading.addClass('runway');
+            heading.addClass(SELECTORS.CLASSNAMES.RUNWAY);
             heading.text(FLIGHT_MODES.APRON);
 
             if (wp.altitude) {
-                altitude.addClass('runway');
+                altitude.addClass(SELECTORS.CLASSNAMES.RUNWAY);
             }
 
             if (this.fms.following.sid) {
                 destination.text(this.fms.following.sid + '.' + this.fms.currentLeg().route.split('.')[2]);
-                destination.addClass('runway');
+                destination.addClass(SELECTORS.CLASSNAMES.RUNWAY);
             }
 
-            speed.addClass('runway');
+            speed.addClass(SELECTORS.CLASSNAMES.RUNWAY);
         } else if (this.mode === FLIGHT_MODES.TAXI) {
             // When taxiing...
-            heading.addClass('runway');
+            heading.addClass(SELECTORS.CLASSNAMES.RUNWAY);
             heading.text(FLIGHT_MODES.TAXI);
 
             if (wp.altitude) {
-                altitude.addClass('runway');
+                altitude.addClass(SELECTORS.CLASSNAMES.RUNWAY);
             }
 
             if (this.fms.following.sid) {
                 destination.text(this.fms.following.sid + '.' + this.fms.currentLeg().route.split('.')[2]);
-                destination.addClass('runway');
+                destination.addClass(SELECTORS.CLASSNAMES.RUNWAY);
             }
 
-            speed.addClass('runway');
+            speed.addClass(SELECTORS.CLASSNAMES.RUNWAY);
 
             if (this.taxi_next) {
                 altitude.text('ready');
             }
         } else if (this.mode === FLIGHT_MODES.WAITING) {
             // When waiting in the takeoff queue
-            heading.addClass('runway');
+            heading.addClass(SELECTORS.CLASSNAMES.RUNWAY);
             heading.text('ready');
 
             if (wp.altitude) {
-                altitude.addClass('runway');
+                altitude.addClass(SELECTORS.CLASSNAMES.RUNWAY);
             }
 
             if (this.fms.following.sid) {
                 destination.text(this.fms.following.sid + '.' + this.fms.currentLeg().route.split('.')[2]);
-                destination.addClass('runway');
+                destination.addClass(SELECTORS.CLASSNAMES.RUNWAY);
             }
 
-            speed.addClass('runway');
+            speed.addClass(SELECTORS.CLASSNAMES.RUNWAY);
         } else if (this.mode === FLIGHT_MODES.TAKEOFF) {
             // When taking off...
             heading.text(FLIGHT_MODES.TAKEOFF);
@@ -2477,8 +2644,16 @@ export default class Aircraft {
         }
     }
 
+    /**
+     * @for AircraftInstanceModel
+     * @method updateAuto
+     */
     updateAuto() {}
 
+    /**
+     * @for AircraftInstanceModel
+     * @method update
+     */
     update() {
         if (prop.aircraft.auto.enabled) {
             this.updateAuto();
@@ -2488,10 +2663,18 @@ export default class Aircraft {
         this.updatePhysics();
     }
 
+    /**
+     * @for AircraftInstanceModel
+     * @method addConflict
+     */
     addConflict(conflict, other) {
         this.conflicts[other.getCallsign()] = conflict;
     }
 
+    /**
+     * @for AircraftInstanceModel
+     * @method checkConflict
+     */
     checkConflict(other) {
         if (this.conflicts[other.getCallsign()]) {
             this.conflicts[other.getCallsign()].update();
@@ -2501,6 +2684,10 @@ export default class Aircraft {
         return false;
     }
 
+    /**
+     * @for AircraftInstanceModel
+     * @method hasAlerts
+     */
     hasAlerts() {
         const a = [false, false];
         let c = null;
@@ -2513,6 +2700,11 @@ export default class Aircraft {
         return a;
     }
 
+    /**
+     * @for AircraftInstanceModel
+     * @method removeConflict
+     * @param other
+     */
     removeConflict(other) {
         delete this.conflicts[other.getCallsign()];
     }

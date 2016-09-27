@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import { round } from '../math/core';
 import { FLIGHT_CATEGORY } from './AircraftInstanceModel';
 import { SELECTORS } from '../constants/selectors';
 
@@ -11,6 +12,8 @@ import { SELECTORS } from '../constants/selectors';
 let ID = 0;
 
 /**
+ * Root html element
+ *
  * @property AIRCRAFT_STRIP_TEMPLATE
  * @type {string}
  * @final
@@ -40,7 +43,14 @@ export default class AircraftStripView {
      */
     constructor(callsign = '', aircraftInstanceModel) {
         this._id = ID++;
+
         this.$element = null;
+        this.$callsign = null;
+        this.$aircraft = null;
+        this.$heading = null;
+        this.$altitude = null;
+        this.$destination = null;
+        this.$speed = null;
 
         this.height = AIRCRAFT_STRIP_HEIGHT;
         this.callsign = callsign;
@@ -62,6 +72,12 @@ export default class AircraftStripView {
      */
     createChildren() {
         this.$element = $(AIRCRAFT_STRIP_TEMPLATE);
+        this.$aircraft = $(this.buildSpanForViewItem(SELECTORS.CLASSNAMES.AIRCRAFT, this.buildIcaoWithWeightClass()));
+        this.$callsign = $(this.buildSpanForViewItem(SELECTORS.CLASSNAMES.CALLSIGN, this.callsign));
+        this.$heading = $(this.buildSpanForViewItem(SELECTORS.CLASSNAMES.HEADING));
+        this.$altitude = $(this.buildSpanForViewItem(SELECTORS.CLASSNAMES.ALTITUDE));
+        this.$destination = $(this.buildSpanForViewItem(SELECTORS.CLASSNAMES.DESTINATION, this.destination));
+        this.$speed = $(this.buildSpanForViewItem(SELECTORS.CLASSNAMES.SPEED));
 
         return this;
     }
@@ -72,7 +88,7 @@ export default class AircraftStripView {
      */
     setupHandlers(aircraftInstanceModel) {
         this.$element.on('click', this.onClickHandler);
-        // this.$element.on('dblclick', aircraftInstanceModel.onDoubleClickAircraftStripHandler);
+        this.$element.on('dblclick', aircraftInstanceModel, this.onDoubleClickHandler);
 
         return this;
     }
@@ -83,12 +99,12 @@ export default class AircraftStripView {
      */
     layout() {
         // TODO: some of the static HTML here could be moved to template constants
-        this.$element.append(`<span class='callsign'>${this.callsign}</span>`);
-        this.$element.append('<span class="heading">???</span>');
-        this.$element.append('<span class="altitude">???</span>');
-        this.$element.append(`<span class='aircraft'>${this.buildIcaoWithWeightClass()}</span>`);
-        this.$element.append(`<span class="destination">${this.destination}</span>`);
-        this.$element.append('<span class="speed">???</span>');
+        this.$element.append(this.$callsign);
+        this.$element.append(this.$heading);
+        this.$element.append(this.$altitude);
+        this.$element.append(this.$aircraft);
+        this.$element.append(this.$destination);
+        this.$element.append(this.$speed);
         this.$element.addClass(this.findClassnameForFlightCateogry());
         // TODO: this doesnt appear to be doing what the below comment says it should be doing
         // show fp route on hover
@@ -119,7 +135,7 @@ export default class AircraftStripView {
      */
     disable() {
         this.$element.off('click', this.onClickHandler);
-        // this.$element.off('dblclick', aircraftInstanceModel.onDoubleClickAircraftStripHandler);
+        this.$element.off('dblclick', this.onDoubleClickHandler);
 
         return this.destroy();
     }
@@ -130,6 +146,13 @@ export default class AircraftStripView {
      */
     destroy() {
         this.$element = null;
+        this.$callsign = null;
+        this.$aircraft = null;
+        this.$heading = null;
+        this.$altitude = null;
+        this.$destination = null;
+        this.$speed = null;
+
         this.callsign = '';
         this.icao = '';
         this.destination = '';
@@ -138,6 +161,21 @@ export default class AircraftStripView {
         this.flightPlan = '';
 
         return this;
+    }
+
+    /**
+     * Return a span with a classname and/or content string.
+     *
+     * Used when initializing templates. Removes the need for having individual template constants for each line
+     * when the only difference is a classname and content. Also provides a way to cache all the AircraftStripView
+     * selectors on instantiation.
+     *
+     * @for AircraftStripView
+     * @param className {string}
+     * @param content {string}
+     */
+    buildSpanForViewItem(className, content = '') {
+        return `<span class="${className}">${content}</span>`;
     }
 
     /**
@@ -168,11 +206,78 @@ export default class AircraftStripView {
     }
 
     /**
+     * Fascade method for jquery `.hide()`
+     *
+     * @for AircraftStripView
+     * @method hide
+     * @param duration {number}
+     */
+    hide(duration = 0) {
+        this.$element.hide(duration);
+    }
+
+    /**
+     * @for AircraftStripView
+     * @method update
+     */
+    update(headingText, altitudeText, destinationText, currentSpeedText) {
+        this.resetStripStyles();
+        this.updateAircraftTelemetryText(headingText, altitudeText, destinationText, currentSpeedText);
+
+        return this;
+    }
+
+    /**
+     * Remove all old styling
+     *
+     * @for AircraftStripView
+     * @method resetStripStyles
+     * @param headingText {string}
+     * @param altitudeText {string}
+     * @param destinationText {string}
+     * @param currentSpeedText {string}
+     */
+    resetStripStyles() {
+        const classnamesToRemove = 'runway hold waiting taxi lookingGood allSet';
+
+        this.$heading.removeClass(classnamesToRemove);
+        this.$altitude.removeClass(classnamesToRemove);
+        this.$destination.removeClass(classnamesToRemove);
+        this.$speed.removeClass(classnamesToRemove);
+    }
+
+    /**
+     * @for AircraftStripView
+     * @method updateAircraftTelemetryText
+     * @param headingText {string}
+     * @param altitudeText {string}
+     * @param destinationText {string}
+     * @param currentSpeedText {string}
+     */
+    updateAircraftTelemetryText(headingText, altitudeText, destinationText, currentSpeedText) {
+        this.$heading.text(headingText);
+        this.$altitude.text(altitudeText);
+        this.$destination.text(destinationText);
+        this.$speed.text(currentSpeedText);
+    }
+
+    /**
      * @for AircraftStripView
      * @method onClickHandler
      * @param event {jquery event}
      */
     onClickHandler = (event) => {
         window.inputController.input_select(this.callsign);
+    };
+
+    /**
+     * @for AircraftStripView
+     * @method onDoubleClickHandler
+     * @param  event {jquery event}
+     */
+    onDoubleClickHandler = (event) => {
+        prop.canvas.panX = 0 - round(window.uiController.km_to_px(event.data.position[0]));
+        prop.canvas.panY = round(window.uiController.km_to_px(event.data.position[1]));
+        prop.canvas.dirty = true;
     };
 }
