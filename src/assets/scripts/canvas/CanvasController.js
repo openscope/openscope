@@ -998,12 +998,9 @@ export default class ConvasController {
         let lockedStroke;
         let was_locked = false;
         const future_track = [];
-        debugger;
         const save_delta = prop.game.delta;
         const fms_twin = _cloneDeep(aircraft.fms);
         const twin = _cloneDeep(aircraft);
-        // const fms_twin = $.extend(true, {}, aircraft.fms);
-        // const twin = $.extend(true, {}, aircraft);
 
         twin.fms = fms_twin;
         twin.fms.aircraft = twin;
