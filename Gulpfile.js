@@ -20,13 +20,12 @@ require('./tools/tasks/utilityTasks')(gulp, OPTIONS);
 ////////////////////////////////////////////////////////////////////
 // gulp.task('copy:data', ['clean:data:json', 'json']);
 gulp.task('lint', ['lint:scripts']);
-gulp.task('build', function() {
-    runSequence(
-        'clean:build',
-        'build:scripts',
-        'build:styles'
-    );
-});
+gulp.task('build', [
+    'clean:build:scripts',
+    'clean:build:styles',
+    'build:scripts',
+    'build:styles'
+]);
 gulp.task('dist', function() {
     runSequence(
         'clean:dist',

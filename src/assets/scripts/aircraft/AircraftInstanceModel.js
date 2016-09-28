@@ -15,6 +15,16 @@ import { tau } from '../math/circle';
 import { ceil, round, abs, sin, cos } from '../math/core';
 import { distance2d } from '../math/distance';
 import { vlen, vradial, vsub } from '../math/vector';
+import {
+    radio_cardinalDir_names,
+    digits_decimal,
+    groupNumbers,
+    radio_runway,
+    radio_heading,
+    radio_spellOut,
+    radio_altitude,
+    radio_trend
+} from '../utilities/radioUtilities';
 import { km, radiansToDegrees, degreesToRadians } from '../utilities/unitConverters';
 import { SELECTORS } from '../constants/selectors';
 
@@ -1116,7 +1126,8 @@ export default class Aircraft {
             });
         }
 
-        const inboundDir = window.radio_cardinalDir_names[getCardinalDirection(fix_angle(inboundHdg + Math.PI)).toLowerCase()];
+        // TODO: abstract to method `.getInboundCardinalDirection()`
+        const inboundDir = radio_cardinalDir_names[getCardinalDirection(fix_angle(inboundHdg + Math.PI)).toLowerCase()];
 
         if (holdFix) {
             return ['ok', `proceed direct ${holdFix} and hold inbound, ${dirTurns} turns, ${legLength} legs`];

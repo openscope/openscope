@@ -149,3 +149,27 @@ export const px_to_km = (pixels, scale) => {
 export const km_to_px = (kilometers, scale) => {
     return kilometers * scale;
 };
+
+/**
+ *
+ * @function heading_to_string
+ * @param heading {string}
+ * @return {string}
+ */
+export const heading_to_string = (heading) => {
+    heading = round(mod(radiansToDegrees(heading), 360)).toString();
+
+    if (heading === '0') {
+        heading = '360';
+    }
+
+    if (heading.length === 1) {
+        heading = `00${heading}`;
+    }
+
+    if (heading.length === 2) {
+        heading = `0${heading}`;
+    }
+
+    return heading;
+};

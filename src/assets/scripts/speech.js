@@ -2,6 +2,7 @@
 import $ from 'jquery';
 import _get from 'lodash/get';
 import _has from 'lodash/has';
+import { radio_heading, radio_altitude } from './utilities/radioUtilities';
 import { STORAGE_KEY } from './constants/storageKeys';
 import { SELECTORS } from './constants/selectors';
 

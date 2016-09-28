@@ -4,6 +4,7 @@ import _clamp from 'lodash/clamp';
 import _has from 'lodash/has';
 import _map from 'lodash/map';
 import { km, radiansToDegrees, degreesToRadians } from './utilities/unitConverters';
+import { radio_names, radio_cardinalDir_names } from './utilities/radioUtilities';
 import { abs, sin, cos, tab, round } from './math/core';
 import { distance2d } from './math/distance';
 import { tau } from './math/circle';
@@ -60,78 +61,7 @@ const CONSTANTS = {
     EARTH_RADIUS_NM: 3440
 };
 
-const radio_names = {
-    0: 'zero',
-    1: 'one',
-    2: 'two',
-    3: 'three',
-    4: 'four',
-    5: 'five',
-    6: 'six',
-    7: 'seven',
-    8: 'eight',
-    9: 'niner',
-    10: 'ten',
-    11: 'eleven',
-    12: 'twelve',
-    13: 'thirteen',
-    14: 'fourteen',
-    15: 'fifteen',
-    16: 'sixteen',
-    17: 'seventeen',
-    18: 'eighteen',
-    19: 'nineteen',
-    20: 'twenty',
-    30: 'thirty',
-    40: 'fourty',
-    50: 'fifty',
-    60: 'sixty',
-    70: 'seventy',
-    80: 'eighty',
-    90: 'ninety',
-    a: 'alpha',
-    b: 'bravo',
-    c: 'charlie',
-    d: 'delta',
-    e: 'echo',
-    f: 'foxtrot',
-    g: 'golf',
-    h: 'hotel',
-    i: 'india',
-    j: 'juliet',
-    k: 'kilo',
-    l: 'lima',
-    m: 'mike',
-    n: 'november',
-    o: 'oscar',
-    p: 'papa',
-    q: 'quebec',
-    r: 'romeo',
-    s: 'sierra',
-    t: 'tango',
-    u: 'uniform',
-    v: 'victor',
-    w: 'whiskey',
-    x: 'x-ray',
-    y: 'yankee',
-    z: 'zulu',
-    '-': 'dash',
-    '.': 'point'
-};
-window.radio_names = radio_names;
-
-const radio_cardinalDir_names = {
-    n: 'north',
-    nw: 'northwest',
-    w: 'west',
-    sw: 'southwest',
-    s: 'south',
-    se: 'southeast',
-    e: 'east',
-    ne: 'northeast'
-};
-window.radio_cardinalDir_names = radio_cardinalDir_names;
-
+// TODO: is this being used?
 const radio_runway_names = clone(radio_names);
 radio_runway_names.l = 'left';
 radio_runway_names.c = 'center';
@@ -153,6 +83,7 @@ function srange(il, i, ih) {
 }
 
 // TODO: rename distanceEuclid
+// FIXME: unused
 function distEuclid(gps1, gps2) {
     // FIXME: enumerate the magic number
     const R = 6371; // nm
@@ -284,6 +215,7 @@ function bearing(a, b) {
 
 /**
  * Returns an offset array showing how far [fwd/bwd, left/right] 'aircraft' is of 'target'
+ *
  * @param {Aircraft} aircraft - the aircraft in question
  * @param {array} target - positional array of the targeted position [x,y]
  * @param {number} headingThruTarget - (optional) The heading the aircraft should
@@ -327,295 +259,6 @@ function heading_to_string(heading) {
     return heading;
 }
 
-/**
- * Force a number to an integer with a specific # of digits
- * @return {string} with leading zeros to reach 'digits' places
- *
- * If the rounded integer has more digits than requested, it will be returned
- * anyway, as chopping them off the end would change the value by orders of
- * magnitude, which is almost definitely going to be undesirable.
- */
-function digits_integer(number, digits, /* optional */ truncate) {
-    if (truncate) {
-        number = Math.floor(number).toString();
-    } else {
-        number = Math.round(number).toString();
-    }
-
-    if (number.length > digits) {
-        return number;
-    }
-
-    while (number.length < digits) {
-        number = '0' + number; // add leading zeros
-    }
-
-    return number;
-}
-
-/**
- * Round a number to a specific # of digits after the decimal
- *
- * @param {boolean} force - (optional) Forces presence of trailing zeros.
- *        Must be set to true if you want '3' to be able to go to '3.0', or
- *        for '32.168420' to not be squished to '32.16842'. If true, fxn will
- *        return a string, because otherwise, js removes all trailing zeros.
- * @param {boolean} truncate - (optional) Selects shortening method.
- *        to truncate: 'true', to round: 'false' (default)
- * @return {number} if !force
- * @return {string} if force
- *
- * Also supports negative digits. Ex: '-2' would do 541.246 --> 500
- */
-function digits_decimal(number, digits, /* optional */ force, truncate) {
-    const shorten = (truncate) ? Math.floor : Math.round;
-
-    if (!force) {
-        return shorten(number * Math.pow(10, digits)) / Math.pow(10, digits);
-    }
-
-    // check if needs extra trailing zeros
-    if (digits <= 0) {
-        return (shorten(number * Math.pow(10, digits)) / Math.pow(10, digits)).toString();
-    }
-
-    number = number.toString();
-
-    for (let i = 0; i < number.length; i++) {
-        if (number[i] == '.') {
-            const trailingDigits = number.length - (i + 1);
-
-            if (trailingDigits == digits) {
-                return number.toString();
-            } else if (trailingDigits < digits) {
-                // add trailing zeros
-                return number + Array(digits - trailingDigits + 1).join('0');
-            } else if (trailingDigits > digits) {
-                if (truncate) {
-                    return number.substr(0, number.length - (trailingDigits - digits));
-                } else {
-                    const len = number.length - (trailingDigits - digits + 1);
-                    const part1 = number.substr(0, len);
-                    const part2 = (digits === 0) ? '' : shorten(parseInt(number.substr(len, 2), 10) / 10).toString();
-
-                    return part1 + part2;
-                }
-            }
-        }
-    }
-}
-
-function getGrouping(groupable) {
-    const digit1 = groupable[0];
-    const digit2 = groupable[1];
-
-    if (digit1 === 0) {
-        if (digit2 === 0) {
-            return 'hundred';
-        } else {
-            // just digits (eg 'zero seven')
-            return radio_names[digit1] + ' ' + radio_names[digit2];
-        }
-    } else if (digit1 === 1) {
-        // exact number (eg 'seventeen')
-        return radio_names[groupable];
-    } else if (digit1 >= 2) {
-        if (digit2 === 0) {
-            // to avoid 'five twenty zero'
-            return radio_names[(digit1 + '0')];
-        } else {
-            // combo number (eg 'fifty one')
-            return radio_names[(digit1 + '0')] + ' ' + radio_names[digit2];
-        }
-    }
-
-    return `${radio_names[digit1]} ${radio_names[digit2]}`;
-}
-
-function groupNumbers(callsign, /* optional */ airline) {
-    if (!/^\d+$/.test(callsign)) {
-        // GA, eg '117KS' = 'one-one-seven-kilo-sierra')
-        if (airline === 'November') {
-            // callsign "November"
-            let s = [];
-
-            for (const k in callsign) {
-                // one after another (eg 'one one seven kilo sierra')
-                s.push(radio_names[callsign[k]]);
-            }
-
-            return s.join(' ');
-        } else {
-            // airline grouped, eg '3110A' = 'thirty-one-ten-alpha'
-            // divide callsign into alpha/numeric sections
-            let sections = [];
-            let cs = callsign, thisIsDigit;
-            let index = cs.length - 1;
-            let lastWasDigit = !isNaN(parseInt(cs[index], 10));
-            index--;
-
-            while (index >= 0) {
-                thisIsDigit = !isNaN(parseInt(cs[index], 10));
-
-                while (thisIsDigit === lastWasDigit) {
-                    index--;
-                    thisIsDigit = !isNaN(parseInt(cs[index], 10));
-
-                    if (index < 0) {
-                        break;
-                    }
-                }
-                sections.unshift(cs.substr(index + 1));
-                cs = cs.substr(0, index + 1);
-                lastWasDigit = thisIsDigit;
-            }
-
-            // build words, section by section
-            let s = [];
-
-            for (const i in sections) {
-                if (isNaN(parseInt(sections[i], 10))) {
-                    // alpha section
-                    s.push(radio_spellOut(sections[i]));
-                } else {
-                    // numeric section
-                    switch (sections[i].length) {
-                        case 0:
-                            s.push(sections[i]);
-                            break;
-                        case 1:
-                            s.push(radio_names[sections[i]]);
-                            break;
-                        case 2:
-                            s.push(getGrouping(sections[i]));
-                            break;
-                        case 3:
-                            s.push(`${radio_names[sections[i][0]]} ${getGrouping(sections[i].substr(1))}`);
-                            break;
-                        case 4:
-                            s.push(`${getGrouping(sections[i].substr(0, 2))} ${getGrouping(sections[i].substr(2))}`);
-                            break;
-                        default:
-                            s.push(radio_spellOut(sections[i]));
-                            break;
-                    }
-                }
-            }
-
-            return s.join(' ');
-        }
-    } else {
-        // FIXME: this block is unreachable
-        switch (callsign.length) {
-            case 0:
-                return callsign; break;
-            case 1:
-                return radio_names[callsign]; break;
-            case 2:
-                return getGrouping(callsign); break;
-            case 3:
-                return `${radio_names[callsign[0]]} ${getGrouping(callsign.substr(1))}`;
-                break;
-            case 4:
-                return `${getGrouping(callsign.substr(0, 2))} ${getGrouping(callsign.substr(2))}`;
-                break;
-            default:
-                return callsign;
-        }
-    }
-}
-
-function radio_runway(input) {
-    input = `${input} `;
-    input = input.toLowerCase();
-    let s = [];
-
-    for (let i = 0; i < input.length; i++) {
-        const c = radio_runway_names[input[i]];
-
-        if (c) {
-            s.push(c);
-        }
-    }
-
-    return s.join(' ');
-}
-
-function radio_heading(heading) {
-    const str = heading.toString();
-
-    if (str) {
-        if (str.length === 1) {
-            return `zero zero ${radio_names[str]}`;
-        } else if (str.length === 2) {
-            return `zero ${radio_names[str[0]]} ${radio_names[str[1]]}`;
-        } else {
-            return `${radio_names[str[0]]} ${radio_names[str[1]]} ${radio_names[str[2]]}`;
-        }
-    }
-
-    return heading;
-}
-
-function radio_spellOut(alphanumeric) {
-    const str = alphanumeric.toString();
-    const arr = [];
-
-    if (!str) {
-        return;
-    }
-
-    for (let i = 0; i < str.length; i++) {
-        arr.push(radio_names[str[i]]);
-    }
-
-    return arr.join(' ');
-}
-
-function radio_altitude(altitude) {
-    let alt_s = altitude.toString();
-    let s = [];
-
-    if (altitude >= 18000) {
-        s.push('flight level', radio_names[alt_s[0]], radio_names[alt_s[1]], radio_names[alt_s[2]]);
-    } else if (altitude >= 10000) {
-        s.push(radio_names[alt_s[0]], radio_names[alt_s[1]], 'thousand');
-
-        if (!(altitude % (Math.floor(altitude / 1000) * 1000) === 0)) {
-            s.push(radio_names[alt_s[2]], 'hundred');
-        }
-    } else if (altitude >= 1000) {
-        s.push(radio_names[alt_s[0]], 'thousand');
-
-        if (!(altitude % (Math.floor(altitude / 1000) * 1000) === 0)) {
-            s.push(radio_names[alt_s[1]], 'hundred');
-        }
-    } else if (altitude >= 100) {
-        s.push(radio_names[alt_s[0]], 'hundred');
-    } else {
-        return altitude;
-    }
-
-    return s.join(' ');
-}
-
-function radio_trend(category, measured, target) {
-    const CATEGORIES = {
-        altitude: ['descend and maintain', 'climb and maintain',  'maintain'],
-        speed: ['reduce speed to',  'increase speed to', 'maintain present speed of']
-    };
-
-    if (measured > target) {
-        return CATEGORIES[category][0];
-    }
-
-    if (measured < target) {
-        return CATEGORIES[category][1];
-    }
-
-    return CATEGORIES[category][2];
-}
-
 function getCardinalDirection(angle) {
     const directions = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW', 'N'];
 
@@ -629,8 +272,11 @@ function to_canvas_pos(pos) {
     ];
 }
 
+// TODO: this might be best accomplished with a Rectangle class, with this function working as the middleman
+// creating the class and asking if there is an intersection.
 /**
  * Compute a point of intersection of a ray with a rectangle.
+ *
  * Args:
  *   pos: array of 2 numbers, representing ray source.
  *   dir: array of 2 numbers, representing ray direction.
@@ -702,6 +348,7 @@ function positive_intersection_with_rect(pos, dir, rectPos, rectSize) {
     return undefined;
 }
 
+// TODO: replace with lodash _random()
 /**
  * Return a random number within the given interval
  *  With one argument return a number between 0 and argument
@@ -725,10 +372,11 @@ function random(low, high) {
 
 /**
  * Get new position by fix-radial-distance method
- * @param {array} fix - positional array of start point, in decimal-degrees [lat,lon]
- * @param {number} radial - heading to project along, in radians
- * @param {number} dist - distance to project, in nm
- * @returns {array} location of the projected fix
+ *
+ * @param {array} fix       positional array of start point, in decimal-degrees [lat,lon]
+ * @param {number} radial   heading to project along, in radians
+ * @param {number} dist     distance to project, in nm
+ * @returns {array}         location of the projected fix
  */
 function fixRadialDist(fix, radial, dist) {
     // convert GPS coordinates to radians
@@ -738,7 +386,7 @@ function fixRadialDist(fix, radial, dist) {
     ];
 
     const R = CONSTANTS.EARTH_RADIUS_NM;
-    // TODO: abstract these two calculateions to own functions
+    // TODO: abstract these two calculations to functions
     const lat2 = Math.asin(sin(fix[1]) * cos(dist / R) + cos(fix[1]) * sin(dist / R) * cos(radial));
     const lon2 = fix[0] + Math.atan2(
         sin(radial) * sin(dist / R) * cos(fix[1]),
@@ -751,6 +399,7 @@ function fixRadialDist(fix, radial, dist) {
     ];
 }
 
+// TODO: lodash _compact()
 /**
  * Splices all empty elements out of an array
  */
@@ -772,7 +421,6 @@ function array_clean(array, deleteValue) {
 function array_sum(array) {
     let total = 0;
 
-    // TODO: use _map() instead of for loop
     for (let i = 0; i < array.length; i++) {
         total += parseFloat(array[i]);
     }
@@ -780,6 +428,7 @@ function array_sum(array) {
     return total;
 }
 
+// TODO: this logic should live in the `AirportController`
 function inAirspace(pos) {
     const apt = window.airportController.airport_get();
     const perim = apt.perimeter;
@@ -791,12 +440,14 @@ function inAirspace(pos) {
     return distance2d(pos, apt.position.position) <= apt.ctr_radius;
 }
 
+// TODO: this logic should live in the `AirportController`
 function dist_to_boundary(pos) {
     const apt = window.airportController.airport_get();
     const perim = apt.perimeter;
 
     if (perim) {
-        return distance_to_poly(pos, area_to_poly(perim));  // km
+        // km
+        return distance_to_poly(pos, area_to_poly(perim));
     }
 
     return abs(distance2d(pos, apt.position.position) - apt.ctr_radius);
@@ -828,7 +479,7 @@ function vnorm(v, length) {
 
 /**
  * Create a 2D vector
- * Pass a heading (rad), and this will return the corresponding unit vector
+ * Pass a heading (rad) and this will return the corresponding unit vector
  */
 function vectorize_2d(direction) {
     return [
@@ -841,12 +492,13 @@ function vectorize_2d(direction) {
  * Adds Vectors (all dimensions)
  */
 function vadd(v1, v2) {
+    // TODO: why try/catch?
     try {
         let v = [];
-        let lim = Math.min(v1.length, v2.length);
+        let limit = Math.min(v1.length, v2.length);
 
         // TODO: this can be done with a _map()
-        for (let i = 0; i < lim; i++) {
+        for (let i = 0; i < limit; i++) {
             v.push(v1[i] + v2[i]);
         }
 
@@ -860,12 +512,13 @@ function vadd(v1, v2) {
  * Multiplies Vectors (all dimensions)
  */
 function vmul(v1, v2) {
+    // TODO: why try/catch?
     try {
         let v = [];
-        let lim = Math.min(v1.length, v2.length);
+        let limit = Math.min(v1.length, v2.length);
 
         // TODO: this can be done with a _map()
-        for (let i = 0; i < lim; i++) {
+        for (let i = 0; i < limit; i++) {
             v.push(v1[i] * v2[i]);
         }
 
@@ -879,6 +532,7 @@ function vmul(v1, v2) {
  * Divides Vectors (all dimensions)
  */
 function vdiv(v1, v2) {
+    // TODO: why try/catch?
     try {
         let v = [];
         let lim = Math.min(v1.length, v2.length);
@@ -1203,16 +857,10 @@ window.angle_offset = angle_offset;
 window.bearing = bearing;
 window.getOffset = getOffset;
 window.heading_to_string = heading_to_string;
-window.digits_integer = digits_integer;
-window.digits_decimal = digits_decimal;
-window.getGrouping = getGrouping;
-window.groupNumbers = groupNumbers;
 
-window.radio_runway = radio_runway;
-window.radio_heading = radio_heading;
-window.radio_spellOut = radio_spellOut;
-window.radio_altitude = radio_altitude;
-window.radio_trend = radio_trend;
+// window.radio_spellOut = radio_spellOut;
+// window.radio_altitude = radio_altitude;
+// window.radio_trend = radio_trend;
 
 window.getCardinalDirection = getCardinalDirection;
 window.to_canvas_pos = to_canvas_pos;
