@@ -988,4 +988,13 @@ export default class AircraftFlightManagementSystem {
     getDesinationIcaoWithRunway() {
         return `${_last(this.fp.route)} ${this.currentWaypoint().runway}`;
     }
+
+    /**
+     * @for AircraftFlightManagementSystem
+     * @method altitudeForCurrentWaypoint
+     * @return {number|null}
+     */
+    altitudeForCurrentWaypoint() {
+        return this.currentWaypoint().altitude;
+    }
 }

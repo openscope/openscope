@@ -314,5 +314,11 @@ export const AIRPORT_LOAD_LIST = [
         icao: 'zspd',
         level: 'hard',
         name: 'Shanghai Pudong International Airport'
-    }
+    }// ,
+    // {
+    //     icao: {AIRPORT_ICAO},
+    //     level: {AIRPORT_DIFFICULTY},
+    //     name: {AIRPORT_NAME}
+    // }
+
 ];
