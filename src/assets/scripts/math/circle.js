@@ -6,4 +6,4 @@
  */
 export const tau = () => {
     return Math.PI * 2;
-}
+};

@@ -22,7 +22,7 @@ const CONSTANTS = {
  */
 export const calcTurnRadius = (speed, bankAngle) => {
     return (speed * speed) / (CONSTANTS.GRAVITATIONAL_MAGNITUDE * tan(bankAngle));
-}
+};
 
 /**
  * @function calcTurnInitiationDistance

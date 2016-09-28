@@ -572,7 +572,7 @@ export default class InputController {
             i = (i >= matches.length - 1) ? 0 : i + 1;
         }
 
-        this.$commandInput.val(matches[i] + ' ');
+        this.$commandInput.val(`${matches[i]} `);
 
         prop.input.command = matches[i];
         prop.input.tab_compl.cycle_item = i;
@@ -590,7 +590,7 @@ export default class InputController {
         let aircrafts = prop.aircraft.list;
 
         if (prop.input.callsign) {
-            aircrafts = aircrafts.filter(function(a) {
+            aircrafts = aircrafts.filter((a) => {
                 return a.matchCallsign(prop.input.callsign);
             });
         }
@@ -601,10 +601,10 @@ export default class InputController {
 
         if (aircrafts.length === 1 && (prop.input.data || val[val.length - 1] === ' ')) {
             // TODO: update inline functions
-            matches = aircrafts[0].COMMANDS.filter(function(c) {
+            matches = aircrafts[0].COMMANDS.filter((c) => {
                 return c.toLowerCase().indexOf(prop.input.data.toLowerCase()) === 0;
             })
-            .map(function(c) {
+            .map((c) => {
                 return val.substring(0, prop.input.callsign.length + 1) + c;
             });
         }
