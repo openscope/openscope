@@ -1,6 +1,6 @@
 {
   "name": "atc",
-  "version": "3.0.0-beta1",
+  "version": "3.1.0",
   "description": "An ATC simulator in HTML5",
   "engines": {
     "node": ">=4.2.4",
@@ -34,7 +34,8 @@
     "Erik Quinn (https://github.com/erikquinn)",
     "indianbhaji (https://github.com/indianbhaji)",
     "Dmitri Lebedev <ryba4@ryba4.com> (http://one-giant-leap.info)",
-    "tedrek (https://github.com/tedrek)"
+    "tedrek (https://github.com/tedrek)",
+    "Nate Geslin <teamtomkins23@gmail.com> (https://github.com/n8rzz)"
   ],
   "license": "MIT",
   "bugs": {
@@ -57,7 +58,6 @@
     ]
   },
   "dependencies": {
-    "fiber": "^1.0.4",
     "jquery": "^3.1.0",
     "lodash": "^4.15.0",
     "pegjs": "^0.9.0",
