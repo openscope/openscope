@@ -1,6 +1,10 @@
 import $ from 'jquery';
 import { round } from '../math/core';
-import { FLIGHT_CATEGORY } from './AircraftInstanceModel';
+import {
+    FLIGHT_CATEGORY,
+    FLIGHT_MODES,
+    WAYPOINT_NAV_MODE
+} from './AircraftInstanceModel';
 import { SELECTORS } from '../constants/selectors';
 
 /**
@@ -263,6 +267,178 @@ export default class AircraftStripView {
 
     /**
      * @for AircraftStripView
+     * @method updateViewForApron
+     * @param destinationText {string}
+     * @param hasAltitude {boolean}
+     * @param isFollowingSID {boolean}
+     */
+    updateViewForApron(destinationText, hasAltitude, isFollowingSID) {
+        this.$speed.addClass(SELECTORS.CLASSNAMES.RUNWAY);
+        this.$heading.addClass(SELECTORS.CLASSNAMES.RUNWAY);
+        this.$heading.text(FLIGHT_MODES.APRON);
+
+        if (hasAltitude) {
+            this.$altitude.addClass(SELECTORS.CLASSNAMES.RUNWAY);
+        }
+
+        if (isFollowingSID) {
+            // TODO: this should be a class method on the FMS
+            this.$destination.text(destinationText);
+            this.$destination.addClass(SELECTORS.CLASSNAMES.RUNWAY);
+        }
+    }
+
+    /**
+     * @for AircraftStripView
+     * @method updateViewForTaxi
+     * @param destinationText {string}
+     * @param hasAltitude {boolean}
+     * @param isFollowingSID {boolean}
+     * @param altitudeText {string}
+     */
+    updateViewForTaxi(destinationText, hasAltitude, isFollowingSID, altitudeText) {
+        // TODO: abstract FROM HERE
+        this.$speed.addClass(SELECTORS.CLASSNAMES.RUNWAY);
+        this.$heading.addClass(SELECTORS.CLASSNAMES.RUNWAY);
+        this.$heading.text(FLIGHT_MODES.TAXI);
+
+        if (hasAltitude) {
+            this.$altitude.addClass(SELECTORS.CLASSNAMES.RUNWAY);
+        }
+
+        if (isFollowingSID) {
+            // TODO: this should be a class method on the FMS
+            this.$destination.text(destinationText);
+            this.$destination.addClass(SELECTORS.CLASSNAMES.RUNWAY);
+        }
+        // TODO: abstract TO HERE
+
+        if (altitudeText) {
+            this.$altitude.text(altitudeText);
+        }
+    }
+
+    /**
+     * @for AircraftStripView
+     * @method updateViewForWaiting
+     * @param destinationText {string}
+     * @param hasAltitude {boolean}
+     * @param isFollowingSID {boolean}
+     */
+    updateViewForWaiting(destinationText, hasAltitude, isFollowingSID) {
+        this.$speed.addClass(SELECTORS.CLASSNAMES.RUNWAY);
+        this.$heading.addClass(SELECTORS.CLASSNAMES.RUNWAY);
+        this.$heading.text(FLIGHT_MODES.WAITING);
+
+        if (hasAltitude) {
+            this.$altitude.addClass(SELECTORS.CLASSNAMES.RUNWAY);
+        }
+
+        if (isFollowingSID) {
+            // TODO: this should be a class method on the FMS
+            this.$destination.text(destinationText);
+            this.$destination.addClass(SELECTORS.CLASSNAMES.RUNWAY);
+        }
+    }
+
+    /**
+     * @for AircraftStripView
+     * @method updateTakeOffView
+     * @param destinationText {string}
+     */
+    updateViewForTakeoff(destinationText, isFollowingSID) {
+        this.$heading.text(FLIGHT_MODES.TAKEOFF);
+
+        if (isFollowingSID) {
+            this.$destination.text(destinationText);
+            this.$destination.addClass(SELECTORS.CLASSNAMES.LOOKING_GOOD);
+        }
+    }
+
+    /**
+     * @for AircraftStripView
+     * @method updateViewForLanding
+     * @param destinationText {string}
+     */
+    updateViewForLanding(destinationText) {
+        const ON_GLIDESLOPE = 'GS';
+        const ON_ILS = 'on ILS';
+
+        this.$heading.addClass(SELECTORS.CLASSNAMES.ALL_SET);
+        this.$heading.text(ON_ILS);
+        this.$altitude.addClass(SELECTORS.CLASSNAMES.ALL_SET);
+        this.$altitude.text(ON_GLIDESLOPE);
+        this.$speed.addClass(SELECTORS.CLASSNAMES.ALL_SET);
+        this.$destination.addClass(SELECTORS.CLASSNAMES.ALL_SET);
+        this.$destination.text(destinationText);
+    }
+
+    /**
+     * @for AircraftStripView
+     * @method updateViewForCruise
+     * @param navMode
+     * @param headingText {string}
+     * @param destinationText {string}
+     * @param isFollowingSID {boolean}
+     * @param isFollowingSTAR {boolean}
+     * @param fixRestrictions {object}
+     */
+    updateViewForCruise(
+        navMode,
+        headingText = '',
+        destinationText = '',
+        isFollowingSID = false,
+        isFollowingSTAR = false,
+        fixRestrictions = {}
+    ) {
+        switch (navMode) {
+            case WAYPOINT_NAV_MODE.FIX:
+                this.$heading.text(headingText);
+
+                if (isFollowingSID) {
+                    this.$heading.addClass(SELECTORS.CLASSNAMES.ALL_SET);
+                    this.$altitude.addClass(SELECTORS.CLASSNAMES.ALL_SET);
+                    this.$destination.addClass(SELECTORS.CLASSNAMES.ALL_SET);
+                    this.$speed.addClass(SELECTORS.CLASSNAMES.ALL_SET);
+                }
+
+                if (isFollowingSTAR) {
+                    this.$heading.addClass(SELECTORS.CLASSNAMES.FOLLOWING_STAR);
+                    this.$destination.text(destinationText);
+                    this.$destination.addClass(SELECTORS.CLASSNAMES.FOLLOWING_STAR);
+
+                    if (fixRestrictions.altitude) {
+                        this.$altitude.addClass(SELECTORS.CLASSNAMES.FOLLOWING_STAR);
+                    }
+
+                    if (fixRestrictions.speed) {
+                        this.$speed.addClass(SELECTORS.CLASSNAMES.FOLLOWING_STAR);
+                    }
+                }
+
+                break;
+            case WAYPOINT_NAV_MODE.HOLD:
+                this.$heading.text(headingText);
+                this.$heading.addClass(SELECTORS.CLASSNAMES.HOLD);
+                break;
+            case WAYPOINT_NAV_MODE.RWY:
+                // attempting ILS intercept
+                this.$heading.addClass(SELECTORS.CLASSNAMES.LOOKING_GOOD);
+                this.$heading.text(headingText);
+                this.$altitude.addClass(SELECTORS.CLASSNAMES.LOOKING_GOOD);
+                this.$speed.addClass(SELECTORS.CLASSNAMES.LOOKING_GOOD);
+                this.$destination.addClass(SELECTORS.CLASSNAMES.LOOKING_GOOD);
+                this.$destination.text(destinationText);
+                break;
+            default:
+                break;
+        }
+    }
+
+    /**
+     * Click handler for a single click on an AircraftStripView
+     *
+     * @for AircraftStripView
      * @method onClickHandler
      * @param event {jquery event}
      */
@@ -271,6 +447,8 @@ export default class AircraftStripView {
     };
 
     /**
+     * Click handler for a double-click on an AircraftStripView
+     *
      * @for AircraftStripView
      * @method onDoubleClickHandler
      * @param  event {jquery event}

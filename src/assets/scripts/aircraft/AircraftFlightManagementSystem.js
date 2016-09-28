@@ -1,6 +1,7 @@
 /* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand */
 import $ from 'jquery';
 import _clamp from 'lodash/clamp';
+import _last from 'lodash/last';
 import _map from 'lodash/map';
 import Waypoint from './Waypoint';
 import Leg, { FP_LEG_TYPE } from './Leg';
@@ -938,5 +939,53 @@ export default class AircraftFlightManagementSystem {
 
     atLastWaypoint() {
         return this.indexOfCurrentWaypoint().wp === this.waypoints().length - 1;
+    }
+
+    /**
+     * Given a SID that is currently being followed, return a string of: `SID_NAME.LAST_FIX`
+     *
+     * ex:
+     * - current SID name = OFFSH9
+     * - current SID route = KSFO.OFFSH9.SXC
+     *
+     * Given the above current values, this function would return:
+     * `OFFSH9.SXC`
+     *
+     * @for AircraftFlightManagementSystem
+     * @method getFollowingSideText
+     * @return {string|null}
+     */
+    getFollowingSIDText() {
+        if (!this.following.sid) {
+            return null;
+        }
+
+        return `${this.following.sid}.${this.currentLeg().route.split('.')[2]}`;
+    }
+
+    /**
+     * @for AircraftFlightManagementSystem
+     * @method getFollowingSTARText
+     * @return {string|null}
+     */
+    getFollowingSTARText() {
+        if (!this.following.star) {
+            return null;
+        }
+
+        return `${this.following.star}.${window.airportController.airport_get().icao}`;
+    }
+
+    /**
+     * Returns a string used in the `AircraftStripView` for a landing aircraft.
+     *
+     * `KSFO 28L`
+     *
+     * @for AircraftFlightManagementSystem
+     * @method getDesinationIcaoWithRunway
+     * @return {string}
+     */
+    getDesinationIcaoWithRunway() {
+        return `${_last(this.fp.route)} ${this.currentWaypoint().runway}`;
     }
 }

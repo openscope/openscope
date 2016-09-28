@@ -5,6 +5,7 @@ import _forEach from 'lodash/forEach';
 import _get from 'lodash/get';
 import _has from 'lodash/has';
 import _isNaN from 'lodash/isNaN';
+import _isString from 'lodash/isString';
 import _map from 'lodash/map';
 import AircraftFlightManagementSystem from './AircraftFlightManagementSystem';
 import AircraftStripView from './AircraftStripView';
@@ -42,7 +43,7 @@ export const FLIGHT_CATEGORY = {
 };
 
 // TODO: this shouldn't live here, it should (possibly) be defined in the fms class and imported here
-const WAYPOINT_NAV_MADE = {
+export const WAYPOINT_NAV_MODE = {
     FIX: 'fix',
     HEADING: 'heading',
     HOLD: 'hold',
@@ -303,7 +304,7 @@ export default class Aircraft {
             });
         }
 
-        if (this.fms.currentWaypoint().navmode === WAYPOINT_NAV_MADE.HEADING) {
+        if (this.fms.currentWaypoint().navmode === WAYPOINT_NAV_MODE.HEADING) {
             // aim aircraft at airport
             this.fms.setCurrent({
                 heading: vradial(this.position) + Math.PI
@@ -725,7 +726,7 @@ export default class Aircraft {
         const leg = this.fms.currentLeg();
         const f = this.fms.following;
 
-        if (wp.navmode === WAYPOINT_NAV_MADE.RWY) {
+        if (wp.navmode === WAYPOINT_NAV_MODE.RWY) {
             this.cancelLanding();
         }
 
@@ -733,7 +734,7 @@ export default class Aircraft {
         if (['heading'].indexOf(wp.navmode) > -1) {
             this.fms.setCurrent({
                 altitude: wp.altitude,
-                navmode: WAYPOINT_NAV_MADE.HEADING,
+                navmode: WAYPOINT_NAV_MODE.HEADING,
                 heading: degreesToRadians(heading),
                 speed: wp.speed,
                 turn: direction,
@@ -745,7 +746,7 @@ export default class Aircraft {
             const waypointLeg = new Waypoint(
                 {
                     altitude: wp.altitude,
-                    navmode: WAYPOINT_NAV_MADE.HEADING,
+                    navmode: WAYPOINT_NAV_MODE.HEADING,
                     heading: degreesToRadians(heading),
                     speed: wp.speed,
                     turn: direction,
@@ -766,7 +767,7 @@ export default class Aircraft {
             const waypointLeg = new Waypoint(
                 {
                     altitude: wp.altitude,
-                    navmode: WAYPOINT_NAV_MADE.HEADING,
+                    navmode: WAYPOINT_NAV_MODE.HEADING,
                     heading: degreesToRadians(heading),
                     speed: wp.speed,
                     turn: direction,
@@ -783,7 +784,7 @@ export default class Aircraft {
                 const waypointLeg = new Waypoint(
                     {
                         altitude: wp.altitude,
-                        navmode: WAYPOINT_NAV_MADE.HEADING,
+                        navmode: WAYPOINT_NAV_MODE.HEADING,
                         heading: degreesToRadians(heading),
                         speed: wp.speed,
                         turn: direction,
@@ -801,7 +802,7 @@ export default class Aircraft {
                 const waypointLeg = new Waypoint(
                     {
                         altitude: wp.altitude,
-                        navmode: WAYPOINT_NAV_MADE.HEADING,
+                        navmode: WAYPOINT_NAV_MODE.HEADING,
                         heading: degreesToRadians(heading),
                         speed: wp.speed,
                         turn: direction,
@@ -1040,7 +1041,7 @@ export default class Aircraft {
                         // then enter the hold
                         new Waypoint(
                             {
-                                navmode: WAYPOINT_NAV_MADE.HOLD,
+                                navmode: WAYPOINT_NAV_MODE.HOLD,
                                 speed: this.fms.currentWaypoint().speed,
                                 altitude: this.fms.currentWaypoint().altitude,
                                 fix: null,
@@ -1061,7 +1062,7 @@ export default class Aircraft {
                 // already currently going to the hold fix
                 // Force the initial turn to outbound heading when entering the hold
                 this.fms.appendWaypoint({
-                    navmode: WAYPOINT_NAV_MADE.HOLD,
+                    navmode: WAYPOINT_NAV_MODE.HOLD,
                     speed: this.fms.currentWaypoint().speed,
                     altitude: this.fms.currentWaypoint().altitude,
                     fix: null,
@@ -1084,14 +1085,14 @@ export default class Aircraft {
                 type: 'fix',
                 waypoints: [
                     { // document the present position as the 'fix' we're holding over
-                        navmode: WAYPOINT_NAV_MADE.FIX,
+                        navmode: WAYPOINT_NAV_MODE.FIX,
                         fix: '[custom]',
                         location: holdFixLocation,
                         altitude: this.fms.currentWaypoint().altitude,
                         speed: this.fms.currentWaypoint().speed
                     },
                     { // Force the initial turn to outbound heading when entering the hold
-                        navmode: WAYPOINT_NAV_MADE.HOLD,
+                        navmode: WAYPOINT_NAV_MODE.HOLD,
                         speed: this.fms.currentWaypoint().speed,
                         altitude: this.fms.currentWaypoint().altitude,
                         fix: null,
@@ -1532,7 +1533,7 @@ export default class Aircraft {
             };
 
             return ['ok', readback];
-        } else if (this.mode === FLIGHT_MODES.CRUISE && this.fms.currentWaypoint().navmode === WAYPOINT_NAV_MADE.RWY) {
+        } else if (this.mode === FLIGHT_MODES.CRUISE && this.fms.currentWaypoint().navmode === WAYPOINT_NAV_MODE.RWY) {
             this.cancelLanding();
 
             const readback = {
@@ -1541,7 +1542,7 @@ export default class Aircraft {
             };
 
             return ['ok', readback];
-        } else if (this.mode === FLIGHT_MODES.CRUISE && this.fms.currentWaypoint().navmode === WAYPOINT_NAV_MADE.FIX) {
+        } else if (this.mode === FLIGHT_MODES.CRUISE && this.fms.currentWaypoint().navmode === WAYPOINT_NAV_MODE.FIX) {
             this.cancelFix();
 
             if (this.category === FLIGHT_CATEGORY.ARRIVAL) {
@@ -1578,12 +1579,12 @@ export default class Aircraft {
      */
     cancelFix() {
         // TODO: this logic could be simplified. do an early return instead of wrapping the entire function in an if.
-        if (this.fms.currentWaypoint().navmode === WAYPOINT_NAV_MADE.FIX) {
+        if (this.fms.currentWaypoint().navmode === WAYPOINT_NAV_MODE.FIX) {
             const curr = this.fms.currentWaypoint();
 
             this.fms.appendLeg({
                 altitude: curr.altitude,
-                navmode: WAYPOINT_NAV_MADE.HEADING,
+                navmode: WAYPOINT_NAV_MODE.HEADING,
                 heading: this.heading,
                 speed: curr.speed
             });
@@ -1603,7 +1604,7 @@ export default class Aircraft {
      */
     cancelLanding() {
         // TODO: this logic could be simplified. do an early return instead of wrapping the entire function in an if.
-        if (this.fms.currentWaypoint().navmode === WAYPOINT_NAV_MADE.RWY) {
+        if (this.fms.currentWaypoint().navmode === WAYPOINT_NAV_MODE.RWY) {
             const runway = window.airportController.airport_get().getRunway(this.rwy_arr);
 
             if (this.mode === FLIGHT_MODES.LANDING) {
@@ -1615,7 +1616,7 @@ export default class Aircraft {
             }
 
             this.fms.setCurrent({
-                navmode: WAYPOINT_NAV_MADE.HEADING,
+                navmode: WAYPOINT_NAV_MODE.HEADING,
                 runway: null
             });
 
@@ -1932,7 +1933,7 @@ export default class Aircraft {
             });
         }
 
-        if (this.fms.currentWaypoint().navmode === WAYPOINT_NAV_MADE.RWY) {
+        if (this.fms.currentWaypoint().navmode === WAYPOINT_NAV_MODE.RWY) {
             airport = window.airportController.airport_get();
             runway  = airport.getRunway(this.rwy_arr);
             offset = getOffset(this, runway.position, runway.angle);
@@ -2029,7 +2030,7 @@ export default class Aircraft {
             if (this.isLanded()) {
                 this.target.speed = 0;
             }
-        } else if (this.fms.currentWaypoint().navmode === WAYPOINT_NAV_MADE.FIX) {
+        } else if (this.fms.currentWaypoint().navmode === WAYPOINT_NAV_MODE.FIX) {
             const fix = this.fms.currentWaypoint().location;
             if (!fix) {
                 console.error(`${this.getCallsign()} using "fix" navmode, but no fix location!`);
@@ -2056,7 +2057,7 @@ export default class Aircraft {
                 this.target.heading = vradial(vector_to_fix) - Math.PI;
                 this.target.turn = null;
             }
-        } else if (this.fms.currentWaypoint().navmode === WAYPOINT_NAV_MADE.HOLD) {
+        } else if (this.fms.currentWaypoint().navmode === WAYPOINT_NAV_MODE.HOLD) {
             const hold = this.fms.currentWaypoint().hold;
             const angle_off_of_leg_hdg = abs(angle_offset(this.heading, this.target.heading));
 
@@ -2318,7 +2319,7 @@ export default class Aircraft {
                 let crab_angle = 0;
 
                 // Compensate for crosswind while tracking a fix or on ILS
-                if (this.fms.currentWaypoint().navmode === WAYPOINT_NAV_MADE.FIX || this.mode === FLIGHT_MODES.LANDING) {
+                if (this.fms.currentWaypoint().navmode === WAYPOINT_NAV_MODE.FIX || this.mode === FLIGHT_MODES.LANDING) {
                     // TODO: this should be abstracted to a helper function
                     let offset = angle_offset(this.heading, wind.angle + Math.PI);
                     crab_angle = Math.asin((wind.speed * sin(offset)) / this.speed);
@@ -2494,7 +2495,6 @@ export default class Aircraft {
         this.warning = warning;
     }
 
-    // TODO: abstract to AircraftStripView class
     /**
      * @for AircraftInstanceModel
      * @method updateStrip
@@ -2504,143 +2504,67 @@ export default class Aircraft {
             return;
         }
 
-        // TODO: abstract everything below in to `aircraftStripView`
-        const heading  = this.$html.find('.heading');
-        const altitude = this.$html.find('.altitude');
-        const destination = this.$html.find('.destination');
-        const speed = this.$html.find('.speed');
-        const wp = this.fms.currentWaypoint();
-
         // Update fms.following
         this.fms.followCheck();
 
+        const wp = this.fms.currentWaypoint();
         // Populate strip fields with default values
-        const headingText = heading_to_string(wp.heading);
-        const altitudeText = _get(wp, 'altitude', '-');
-        const destinationText = _get(this, 'destination', window.airportController.airport_get().icao);
+        const defaultHeadingText = heading_to_string(wp.heading);
+        const defaultAltitudeText = _get(wp, 'altitude', '-');
+        const defaultDestinationText = _get(this, 'destination', window.airportController.airport_get().icao);
         const currentSpeedText = wp.speed;
 
-        this.aircraftStripView.update(headingText, altitudeText, destinationText, currentSpeedText);
+        let headingText;
+        let altitudeText = this.taxi_next ? 'ready' : null;
+        let destinationText = this.fms.getFollowingSIDText();
+        const hasAltitude = _has(wp, 'altitude');
+        const isFollowingSID = _isString(destinationText);
+        const isFollowingSTAR = _isString(this.fms.following.star);
 
-        // switch (this.mode) {
-        //     case FLIGHT_MODES.APRON:
-        //         break;
-        //     case FLIGHT_MODES.TAXI:
-        //         break;
-        //     case FLIGHT_MODES.WAITING:
-        //         break;
-        //     case FLIGHT_MODES.TAKEOFF:
-        //         break;
-        //     case FLIGHT_MODES.CRUISE:
-        //         break;
-        //     case FLIGHT_MODES.LANDING:
-        //         break;
-        // }
+        this.aircraftStripView.update(defaultHeadingText, defaultAltitudeText, defaultDestinationText, currentSpeedText);
 
-        // When at the apron...
-        if (this.mode === FLIGHT_MODES.APRON) {
-            heading.addClass(SELECTORS.CLASSNAMES.RUNWAY);
-            heading.text(FLIGHT_MODES.APRON);
+        switch (this.mode) {
+            case FLIGHT_MODES.APRON:
+                this.aircraftStripView.updateViewForApron(destinationText, hasAltitude, isFollowingSID);
+                break;
+            case FLIGHT_MODES.TAXI:
+                this.aircraftStripView.updateViewForTaxi(destinationText, hasAltitude, isFollowingSID, altitudeText);
+                break;
+            case FLIGHT_MODES.WAITING:
+                this.aircraftStripView.updateViewForWaiting(destinationText, hasAltitude, isFollowingSID);
+                break;
+            case FLIGHT_MODES.TAKEOFF:
+                // When taking off...
+                this.aircraftStripView.updateViewForTakeoff(destinationText, isFollowingSID);
 
-            if (wp.altitude) {
-                altitude.addClass(SELECTORS.CLASSNAMES.RUNWAY);
-            }
+                break;
+            case FLIGHT_MODES.CRUISE:
+                // When in normal flight...
+                const { fixRestrictions } = this.fms.currentWaypoint();
 
-            if (this.fms.following.sid) {
-                destination.text(this.fms.following.sid + '.' + this.fms.currentLeg().route.split('.')[2]);
-                destination.addClass(SELECTORS.CLASSNAMES.RUNWAY);
-            }
+                if (wp.navmode === WAYPOINT_NAV_MODE.FIX) {
+                    headingText = wp.fix[0] === '_'
+                        ? '[RNAV]'
+                        : wp.fix;
+                    destinationText = this.fms.getFollowingSTARText();
 
-            speed.addClass(SELECTORS.CLASSNAMES.RUNWAY);
-        } else if (this.mode === FLIGHT_MODES.TAXI) {
-            // When taxiing...
-            heading.addClass(SELECTORS.CLASSNAMES.RUNWAY);
-            heading.text(FLIGHT_MODES.TAXI);
-
-            if (wp.altitude) {
-                altitude.addClass(SELECTORS.CLASSNAMES.RUNWAY);
-            }
-
-            if (this.fms.following.sid) {
-                destination.text(this.fms.following.sid + '.' + this.fms.currentLeg().route.split('.')[2]);
-                destination.addClass(SELECTORS.CLASSNAMES.RUNWAY);
-            }
-
-            speed.addClass(SELECTORS.CLASSNAMES.RUNWAY);
-
-            if (this.taxi_next) {
-                altitude.text('ready');
-            }
-        } else if (this.mode === FLIGHT_MODES.WAITING) {
-            // When waiting in the takeoff queue
-            heading.addClass(SELECTORS.CLASSNAMES.RUNWAY);
-            heading.text('ready');
-
-            if (wp.altitude) {
-                altitude.addClass(SELECTORS.CLASSNAMES.RUNWAY);
-            }
-
-            if (this.fms.following.sid) {
-                destination.text(this.fms.following.sid + '.' + this.fms.currentLeg().route.split('.')[2]);
-                destination.addClass(SELECTORS.CLASSNAMES.RUNWAY);
-            }
-
-            speed.addClass(SELECTORS.CLASSNAMES.RUNWAY);
-        } else if (this.mode === FLIGHT_MODES.TAKEOFF) {
-            // When taking off...
-            heading.text(FLIGHT_MODES.TAKEOFF);
-
-            if (this.fms.following.sid) {
-                destination.text(this.fms.following.sid + '.' + this.fms.currentLeg().route.split('.')[2]);
-                destination.addClass('lookingGood');
-            }
-        } else if (this.mode === FLIGHT_MODES.CRUISE) {
-            // When in normal flight...
-            if (wp.navmode === WAYPOINT_NAV_MADE.FIX) {
-                heading.text((wp.fix[0] === '_') ? '[RNAV]' : wp.fix);
-
-                if (this.fms.following.sid) {
-                    heading.addClass('allSet');
-                    altitude.addClass('allSet');
-                    destination.addClass('allSet');
-                    speed.addClass('allSet');
+                } else if (wp.navmode === WAYPOINT_NAV_MODE.HOLD) {
+                    headingText = 'holding';
+                } else if (wp.navmode === WAYPOINT_NAV_MODE.RWY) {
+                    headingText = 'intercept';
+                    destinationText = this.fms.getDesinationIcaoWithRunway();
                 }
 
-                if (this.fms.following.star) {
-                    heading.addClass('followingSTAR');
+                this.aircraftStripView.updateViewForCruise(wp.navmode, headingText, destinationText, isFollowingSID, isFollowingSTAR, fixRestrictions);
+                break;
+            case FLIGHT_MODES.LANDING:
+                destinationText = this.fms.getDesinationIcaoWithRunway();
 
-                    if (this.fms.currentWaypoint().fixRestrictions.altitude) {
-                        altitude.addClass('followingSTAR');
-                    }
-
-                    destination.text(this.fms.following.star + '.' + window.airportController.airport_get().icao);
-                    destination.addClass('followingSTAR');
-
-                    if (this.fms.currentWaypoint().fixRestrictions.speed) {
-                        speed.addClass('followingSTAR');
-                    }
-                }
-            } else if (wp.navmode === WAYPOINT_NAV_MADE.HOLD) {
-                heading.text('holding');
-                heading.addClass('hold');
-            } else if (wp.navmode === WAYPOINT_NAV_MADE.RWY) {
-                // attempting ILS intercept
-                heading.addClass('lookingGood');
-                heading.text('intercept');
-                altitude.addClass('lookingGood');
-                destination.addClass('lookingGood');
-                destination.text(this.fms.fp.route[this.fms.fp.route.length - 1] + ' ' + wp.runway);
-                speed.addClass('lookingGood');
-            }
-        } else if (this.mode === FLIGHT_MODES.LANDING) {
-            // When established on the ILS...
-            heading.addClass('allSet');
-            heading.text('on ILS');
-            altitude.addClass('allSet');
-            altitude.text('GS');
-            destination.addClass('allSet');
-            destination.text(this.fms.fp.route[this.fms.fp.route.length - 1] + ' ' + wp.runway);
-            speed.addClass('allSet');
+                this.aircraftStripView.updateViewForLanding(destinationText);
+                break;
+            default:
+                throw new TypeError('Invalid FLIGHT_MODE passed to .updateStrip().');
+                break;
         }
     }
 
