@@ -1,6 +1,7 @@
 /* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand */
+import _random from 'lodash/random';
 import ArrivalBase from './ArrivalBase';
-import { ceil, round } from '../../math/core';
+import { round } from '../../math/core';
 import { LOG } from '../../constants/logLevel';
 
 /**
@@ -76,16 +77,16 @@ export default class ArrivalSurge extends ArrivalBase {
 
         // Verify we can comply with the requested arrival rate based on entrail spacing
         if (this.frequency > this.acph_up) {
-            log(this.airport.icao + ": TOO MANY ARRIVALS IN SURGE! Requested: "
-                + this.frequency + "acph | Acceptable Range for requested entrail distance: "
-                + Math.ceil(this.acph_dn) + "acph - " + Math.floor(this.acph_up) + "acph", LOG.WARNING);
+            log(this.airport.icao + ': TOO MANY ARRIVALS IN SURGE! Requested: '
+                + this.frequency + 'acph | Acceptable Range for requested entrail distance: '
+                + Math.ceil(this.acph_dn) + 'acph - ' + Math.floor(this.acph_up) + 'acph', LOG.WARNING);
 
             this.frequency = this.acph_up;
             this.acph_dn = this.acph_up;
         } else if (this.frequency < this.acph_dn) {
-            log(this.airport.icao + ": TOO FEW ARRIVALS IN SURGE! Requested: "
-                + this.frequency + "acph | Acceptable Range for requested entrail distance: "
-                + Math.ceil(this.acph_dn) + "acph - " + Math.floor(this.acph_up) + "acph", LOG.WARNING);
+            log(this.airport.icao + ': TOO FEW ARRIVALS IN SURGE! Requested: '
+                + this.frequency + 'acph | Acceptable Range for requested entrail distance: '
+                + Math.ceil(this.acph_dn) + 'acph - ' + Math.floor(this.acph_up) + 'acph', LOG.WARNING);
 
             this.frequency = this.acph_dn;
             this.acph_up = this.acph_dn;
@@ -126,7 +127,7 @@ export default class ArrivalSurge extends ArrivalBase {
     }
 
     start() {
-        const delay = random(0, 3600 / this.frequency);
+        const delay = _random(0, 3600 / this.frequency);
         this.cycleStart = prop.game.time - this.offset + delay;
         this.timeout = window.gameController.game_timeout(this.spawnAircraft, delay, this, [true, true]);
     }

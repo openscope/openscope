@@ -1,6 +1,7 @@
 /* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand */
 import $ from 'jquery';
 import _has from 'lodash/has';
+import _random from 'lodash/random';
 
 import PositionModel from '../../base/PositionModel';
 import { nm, degreesToRadians } from '../../utilities/unitConverters';
@@ -131,6 +132,7 @@ export default class ArrivalBase {
         const spawn_offsets = [];
         // distance between succ. arrivals, nm
         const entrail_dist = this.speed / this.frequency;
+        // TODO: replace with _map
         const dist_total = array_sum($.map(fixes, function(v) {
             return v[2];
         })) + extra;
@@ -209,7 +211,7 @@ export default class ArrivalBase {
      */
     start() {
         // TODO: what do these numbers mean? enumerate the magic numbers.
-        const delay = random(0, 3600 / this.frequency);
+        const delay = _random(0, 3600 / this.frequency);
         this.timeout = window.gameController.game_timeout(this.spawnAircraft, delay, this, [true, true]);
 
         if (this.route) {
@@ -223,7 +225,7 @@ export default class ArrivalBase {
     spawnAircraft(args) {
         let start_flag = args[0];
         let timeout_flag = args[1] || false;
-        let altitude = round(random(this.altitude[0], this.altitude[1]) / 1000) * 1000;
+        let altitude = round(_random(this.altitude[0], this.altitude[1]) / 1000) * 1000;
         let message = !(window.gameController.game_time() - this.airport.start < 2);
         let position;
         let heading;
@@ -300,6 +302,6 @@ export default class ArrivalBase {
 
         const max_interval = tgt_interval + (tgt_interval - min_interval);
 
-        return random(min_interval, max_interval);
+        return _random(min_interval, max_interval);
     }
 }

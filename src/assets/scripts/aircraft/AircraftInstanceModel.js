@@ -11,8 +11,8 @@ import AircraftFlightManagementSystem from './AircraftFlightManagementSystem';
 import AircraftStripView from './AircraftStripView';
 import Waypoint from './Waypoint';
 import { speech_say } from '../speech';
-import { tau } from '../math/circle';
-import { ceil, round, abs, sin, cos } from '../math/core';
+import { tau, fix_angle, angle_offset } from '../math/circle';
+import { round, abs, sin, cos } from '../math/core';
 import { distance2d } from '../math/distance';
 import { vlen, vradial, vsub } from '../math/vector';
 import {
@@ -2467,7 +2467,7 @@ export default class Aircraft {
         if (this.terrain_ranges && !this.isLanded()) {
             const terrain = prop.airport.current.terrain;
             const prev_level = this.terrain_ranges[this.terrain_level];
-            const ele = ceil(this.altitude, 1000);
+            const ele = Math.ceil(this.altitude, 1000);
             let curr_ranges = this.terrain_ranges[ele];
 
             if (ele !== this.terrain_level) {

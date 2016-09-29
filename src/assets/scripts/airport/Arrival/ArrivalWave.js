@@ -1,5 +1,6 @@
 /* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand */
 import $ from 'jquery';
+import _random from 'lodash/random';
 import ArrivalBase from './ArrivalBase';
 import { sin } from '../../math/core';
 import { tau } from '../../math/circle';
@@ -100,7 +101,7 @@ export default class ArrivalWave extends ArrivalBase {
     }
 
     start() {
-        const delay = random(0, 3600 / this.frequency);
+        const delay = _random(0, 3600 / this.frequency);
 
         this.cycleStart = prop.game.time - this.offset + delay;
         this.timeout = window.gameController.game_timeout(this.spawnAircraft, delay, this, [true, true]);

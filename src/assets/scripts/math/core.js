@@ -1,13 +1,6 @@
 import _isNumber from 'lodash/isNumber';
 
 /**
-  * @function ceil
-  */
-export const ceil = (n, factor = 1) => {
-    return Math.ceil(n / factor) * factor;
-};
-
-/**
  * @function round
  */
 export const round = (n, factor = 1) => {

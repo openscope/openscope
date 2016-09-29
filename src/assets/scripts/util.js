@@ -99,21 +99,6 @@ function distEuclid(gps1, gps2) {
     return d; // distance, in kilometers
 }
 
-/**
- * Constrains an angle to within 0 --> Math.PI*2
- */
-function fix_angle(radians) {
-    while (radians > tau()) {
-        radians -= tau();
-    }
-
-    while (radians < 0) {
-        radians += tau();
-    }
-
-    return radians;
-}
-
 function choose(l) {
     return l[Math.floor(Math.random() * l.length)];
 }
@@ -137,13 +122,13 @@ function choose_weight(l) {
         weight += l[i][1];
     }
 
-    const random = Math.random() * weight;
+    const randomWeight = Math.random() * weight;
     weight = 0;
 
     for (let i = 0; i < l.length; i++) {
         weight += l[i][1];
 
-        if (weight > random) {
+        if (weight > randomWeight) {
             return l[i][0];
         }
     }
@@ -168,39 +153,6 @@ function lpad(n, width) {
     const x = `0000000000000${n}`;
 
     return x.substr(x.length - width, width);
-}
-
-/**
- * Returns the angle difference between two headings
- *
- * @param {number} a - heading, in radians
- * @param {number} b - heading, in radians
- */
-function angle_offset(a, b) {
-    a = radiansToDegrees(a);
-    b = radiansToDegrees(b);
-    let invert = false;
-
-    if (b > a) {
-        invert = true;
-        const temp = a;
-
-        a = b;
-        b = temp;
-    }
-
-    let offset = mod(a - b, 360);
-    if (offset > 180) {
-        offset -= 360;
-    }
-
-    if (invert) {
-        offset *= -1;
-    }
-
-    offset = degreesToRadians(offset);
-
-    return offset;
 }
 
 /**
@@ -346,28 +298,6 @@ function positive_intersection_with_rect(pos, dir, rectPos, rectSize) {
 
     // Failed to compute intersection due to numerical precision.
     return undefined;
-}
-
-// TODO: replace with lodash _random()
-/**
- * Return a random number within the given interval
- *  With one argument return a number between 0 and argument
- *  With no arguments return a number between 0 and 1
- */
-function random(low, high) {
-    if (low === high) {
-        return low;
-    }
-
-    if (low == null) {
-        return Math.random();
-    }
-
-    if (high == null) {
-        return Math.random() * low;
-    }
-
-    return low + (Math.random() * (high - low));
 }
 
 /**
@@ -847,25 +777,19 @@ window.trange = trange;
 window.crange = crange;
 window.srange = srange;
 window.distEuclid = distEuclid;
-window.fix_angle = fix_angle;
+// window.fix_angle = fix_angle;
 window.choose = choose;
 window.choose_weight = choose_weight;
 window.mod = mod;
 window.lpad = lpad;
 
-window.angle_offset = angle_offset;
 window.bearing = bearing;
 window.getOffset = getOffset;
 window.heading_to_string = heading_to_string;
 
-// window.radio_spellOut = radio_spellOut;
-// window.radio_altitude = radio_altitude;
-// window.radio_trend = radio_trend;
-
 window.getCardinalDirection = getCardinalDirection;
 window.to_canvas_pos = to_canvas_pos;
 window.positive_intersection_with_rect = positive_intersection_with_rect;
-window.random = random;
 window.fixRadialDist = fixRadialDist;
 window.array_clean = array_clean;
 window.array_sum = array_sum;

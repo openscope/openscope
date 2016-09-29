@@ -1,5 +1,6 @@
 /* eslint-disable no-underscore-dangle, no-mixed-operators, func-names, object-shorthand, no-undef */
 import $ from 'jquery';
+import _random from 'lodash/random';
 
 /**
  * Generate departures at random, averaging the specified spawn rate
@@ -36,6 +37,9 @@ export default class DepartureBase {
             }
         }
 
+        // TODO: the airlineController should be able to supply the airline name without having the caller do
+        // the splitting. any splits should happen in the airlineController or the data should be stored in a way
+        // that doesn't require splitting.
         // Pre-load the airlines
         $.each(this.airlines, (i, data) => {
             window.airlineController.airline_get(data[0].split('/')[0]);
@@ -55,25 +59,28 @@ export default class DepartureBase {
      * Start this departure stream
      */
     start() {
-        const r = Math.floor(random(2, 5.99));
+        const r = Math.floor(_random(2, 5.99));
 
         for (let i = 1; i <= r; i++) {
             // spawn 2-5 departures to start with
             this.spawnAircraft(false);
         }
 
-        // TODO: enumerate the magic numbers
+        const minFrequency = this.frequency * 0.5;
+        const maxFrequency = this.frequency * 1.5;
+        const randomNumberForTimeout = _random(minFrequency, maxFrequency);
+
         // start spawning loop
-        this.timeout = window.gameController.game_timeout(this.spawnAircraft, random(this.frequency * 0.5, this.frequency * 1.5), this, true);
+        this.timeout = window.gameController.game_timeout(this.spawnAircraft, randomNumberForTimeout, this, true);
     }
 
     /**
      * Spawn a new aircraft
      */
     spawnAircraft(timeout) {
+        let fleet;
         const message = (window.gameController.game_time() - this.start >= 2);
         let airline = choose_weight(this.airlines);
-        let fleet;
 
         if (airline.indexOf('/') > -1) {
             // TODO: enumerate the magic numbers
@@ -105,6 +112,6 @@ export default class DepartureBase {
         const tgt_interval = 3600 / this.frequency;
         const max_interval = tgt_interval + (tgt_interval - min_interval);
 
-        return random(min_interval, max_interval);
+        return _random(min_interval, max_interval);
     }
 }

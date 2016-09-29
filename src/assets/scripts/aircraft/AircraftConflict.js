@@ -1,5 +1,6 @@
 /* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand, no-param-reassign, no-undef */
 import { abs } from '../math/core';
+import { angle_offset } from '../math/circle';
 import { vlen, vsub } from '../math/vector';
 import { km_ft, degreesToRadians } from '../utilities/unitConverters';
 

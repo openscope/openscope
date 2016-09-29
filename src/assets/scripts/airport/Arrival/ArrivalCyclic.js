@@ -1,4 +1,5 @@
 /* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand */
+import _random from 'lodash/random';
 import ArrivalBase from './ArrivalBase';
 
 /**
@@ -49,7 +50,7 @@ export default class ArrivalCyclic extends ArrivalBase {
 
     start() {
         this.cycleStart = prop.game.time - this.offset;
-        const delay = random(0, 3600 / this.frequency);
+        const delay = _random(0, 3600 / this.frequency);
         this.timeout = window.gameController.game_timeout(this.spawnAircraft, delay, this, [true, true]);
     }
 

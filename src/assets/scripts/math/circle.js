@@ -13,8 +13,10 @@ export const tau = () => {
 /**
  * Returns the angle difference between two headings
  *
- * @param {number} a - heading, in radians
- * @param {number} b - heading, in radians
+ * @function angle_offset
+ * @param {number} a     heading, in radians
+ * @param {number} b     heading, in radians
+ * @return {number}
  */
 export const angle_offset = (a, b) => {
     a = radiansToDegrees(a);
@@ -41,4 +43,23 @@ export const angle_offset = (a, b) => {
     offset = degreesToRadians(offset);
 
     return offset;
+};
+
+/**
+ * Constrains an angle to within 0 --> Math.PI * 2
+ *
+ * @function fix_angle
+ * @param radians {number}
+ * @return {number}
+ */
+export const fix_angle = (radians) => {
+    while (radians > tau()) {
+        radians -= tau();
+    }
+
+    while (radians < 0) {
+        radians += tau();
+    }
+
+    return radians;
 };

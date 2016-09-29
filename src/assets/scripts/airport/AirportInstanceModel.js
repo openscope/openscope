@@ -11,6 +11,7 @@ import { ArrivalFactory } from './Arrival/ArrivalFactory';
 import { DepartureFactory } from './Departure/DepartureFactory';
 import { degreesToRadians } from '../utilities/unitConverters';
 import { round, abs, sin } from '../math/core';
+import { angle_offset } from '../math/circle';
 import { vlen, vsub } from '../math/vector';
 import { LOG } from '../constants/logLevel';
 import { STORAGE_KEY } from '../constants/storageKeys';
