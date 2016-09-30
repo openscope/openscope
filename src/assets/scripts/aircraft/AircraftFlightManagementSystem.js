@@ -1,4 +1,3 @@
-/* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand */
 import $ from 'jquery';
 import _clamp from 'lodash/clamp';
 import _last from 'lodash/last';
@@ -341,18 +340,16 @@ export default class AircraftFlightManagementSystem {
      */
     followCheck() {
         const leg = this.currentLeg();
+        this.following.anything = true;
 
         switch (leg.type) {
             case FP_LEG_TYPE.SID:
-                this.following.anything = true;
                 this.following.sid = leg.route.split('.')[1];
                 break;
             case FP_LEG_TYPE.STAR:
-                this.following.anything = true;
                 this.following.star = leg.route.split('.')[1];
                 break;
             case FP_LEG_TYPE.IAP:
-                this.following.anything = true;
                 // *******NEEDS TO BE FINISHED***************************
                 // this.following.iap = ;
                 break;
@@ -363,14 +360,11 @@ export default class AircraftFlightManagementSystem {
                 break;
             case FP_LEG_TYPE.AWY:
                 // **FUTURE FUNCTIONALITY**
-                this.following.anything = true;
                 this.following.awy = leg.route.split('.')[1];
                 break;
             default:
                 this.followClear();
-
                 return false;
-                break;
         }
 
         return this.following;
@@ -433,6 +427,7 @@ export default class AircraftFlightManagementSystem {
             type: FP_LEG_TYPE.SID,
             route: route
         });
+
         this.setAll({
             altitude:  Math.max(window.airportController.airport_get().initial_alt, this.my_aircraft.altitude)
         });
@@ -454,7 +449,7 @@ export default class AircraftFlightManagementSystem {
     }
 
     /**
-     * Takes a single-string route and converts it to a semented route the fms can understand
+     * Takes a single-string route and converts it to a segmented route the fms can understand
      * Note: Input Data Format : "KSFO.OFFSH9.SXC.V458.IPL.J2.JCT..LLO..ACT..KACT"
      *       Return Data Format: ["KSFO.OFFSH9.SXC", "SXC.V458.IPL", "IPL.J2.JCT", "LLO", "ACT", "KACT"]
      */
@@ -859,6 +854,8 @@ export default class AircraftFlightManagementSystem {
 
     /** ************************* FMS GET FUNCTIONS ***************************/
 
+    // TODO: this set upd methods could be used as getters instead
+    // ex: `get currentLeg()` and then used like `this.fms.currentLeg`
     /**
      * Return the current leg
      */

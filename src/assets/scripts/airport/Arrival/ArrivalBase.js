@@ -7,6 +7,7 @@ import PositionModel from '../../base/PositionModel';
 import { nm, degreesToRadians } from '../../utilities/unitConverters';
 import { round, sin, cos } from '../../math/core';
 import { distance2d } from '../../math/distance';
+import { bearing } from '../../math/flightMath';
 import { vradial, vsub } from '../../math/vector';
 import { LOG } from '../../constants/logLevel';
 

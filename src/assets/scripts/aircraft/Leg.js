@@ -23,13 +23,15 @@ export const FP_LEG_TYPE = {
 
 /**
   * Build a 'leg' of the route (contains series of waypoints)
-  * @param {object} data = {route: "KSFO.OFFSH9.SXC", // either a fix, or with format 'start.procedure.end', or "[RNAV/GPS]" for custom positions
-  *                         type: "sid",              // can be 'sid', 'star', 'iap', 'awy', 'fix'
-  *                         firstIndex: 0}            // the position in fms.legs to insert this leg
+  *
+  * @param {object} data = {route: "KSFO.OFFSH9.SXC", either a fix, or with format 'start.procedure.end', or
+  *                                                   "[RNAV/GPS]" for custom positions
+  *                         type: "sid",              can be 'sid', 'star', 'iap', 'awy', 'fix'
+  *                         firstIndex: 0}            the position in fms.legs to insert this leg
   */
 export default class Leg {
     /**
-     * Initialize leg with empty values, then call the parser
+     * @constructor
      */
     constructor(data = {}, fms) {
         this.route = '[radar vectors]'; // eg 'KSFO.OFFSH9.SXC' or 'FAITH'
@@ -77,6 +79,7 @@ export default class Leg {
                 return;
             }
 
+            // const { apt, sid, exit } = data.route.split('.');
             var apt = data.route.split('.')[0];
             var sid = data.route.split('.')[1];
             var exit = data.route.split('.')[2];
