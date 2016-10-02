@@ -15,7 +15,18 @@ import { tau, fix_angle, angle_offset } from '../math/circle';
 import { round, abs, sin, cos } from '../math/core';
 import { distance2d } from '../math/distance';
 import { getOffset } from '../math/flightMath';
-import { vlen, vradial, vsub } from '../math/vector';
+import {
+    vlen,
+    vradial,
+    vsub,
+    vadd,
+    vscale,
+    vturn,
+    distance_to_poly,
+    point_to_mpoly,
+    point_in_poly,
+    point_in_area
+} from '../math/vector';
 import {
     radio_cardinalDir_names,
     digits_decimal,

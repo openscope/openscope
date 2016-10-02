@@ -13,7 +13,7 @@ import { degreesToRadians } from '../utilities/unitConverters';
 import { round, abs, sin } from '../math/core';
 import { angle_offset } from '../math/circle';
 import { getOffset } from '../math/flightMath';
-import { vlen, vsub } from '../math/vector';
+import { vlen, vsub, vadd, vscale, raysIntersect } from '../math/vector';
 import { LOG } from '../constants/logLevel';
 import { STORAGE_KEY } from '../constants/storageKeys';
 

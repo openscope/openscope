@@ -1,4 +1,5 @@
 import { tau } from '../math/circle';
+import { mod } from '../math/core';
 
 // TODO: This should be moved to its own file once it has been filled in a little more
 /**
@@ -64,21 +65,21 @@ export const km = (nm = 0) => {
  * kilometers --> nautical miles
  *
  * @function nm
- * @param nm {number}
+ * @param kilometers {number}
  * @return {number}
  */
-export const nm = (km = 0) => {
-    return km / UNIT_CONVERSION_CONSTANTS.NM_KM;
+export const nm = (kilometers = 0) => {
+    return kilometers / UNIT_CONVERSION_CONSTANTS.NM_KM;
 };
 /**
  * kilometers --> feet
  *
  * @function km_ft
- * @param km {number}
+ * @param kilometers {number}
  * @return {number}
  */
-export const km_ft = (km = 0) => {
-    return km / UNIT_CONVERSION_CONSTANTS.KM_FT;
+export const km_ft = (kilometers = 0) => {
+    return kilometers / UNIT_CONVERSION_CONSTANTS.KM_FT;
 };
 
 /**

@@ -10,6 +10,7 @@ import { time } from '../utilities/timeHelpers';
 import { sin, cos, round, calculateMiddle } from '../math/core';
 import { tau } from '../math/circle';
 import { distance2d } from '../math/distance';
+import { vscale, vturn, positive_intersection_with_rect } from '../math/vector';
 import { SELECTORS } from '../constants/selectors';
 import { LOG } from '../constants/logLevel';
 import { FLIGHT_MODES, FLIGHT_CATEGORY } from '../aircraft/AircraftInstanceModel';
@@ -1763,7 +1764,7 @@ export default class ConvasController {
             return;
         }
 
-        const pos = to_canvas_pos(aircraft.position);
+        const pos = this.to_canvas_pos(aircraft.position);
         const rectPos = [0, 0];
         const rectSize = [this.canvas.size.width, this.canvas.size.height];
 
@@ -1823,5 +1824,17 @@ export default class ConvasController {
         }
 
         cc.restore();
+    }
+
+    /**
+     * @for CanvasController
+     * @method to_canvas_
+     * @param pos {}
+     */
+    to_canvas_pos(pos) {
+        return [
+            this.canvas.size.width / 2 + this.canvas.panX + km(pos[0]),
+            this.canvas.size.height / 2 + this.canvas.panY - km(pos[1])
+        ];
     }
 }

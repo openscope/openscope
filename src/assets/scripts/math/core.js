@@ -95,3 +95,14 @@ export const calculateMiddle = (value = 0) => {
 
     return round(value / 2);
 };
+
+/**
+ *
+ * @function mod
+ * @param firstValue {number}
+ * @param secondValue {number}
+ * @return {number}
+ */
+export const mod = (firstValue, secondValue) => {
+    return ((firstValue % secondValue) + secondValue) % secondValue;
+};

@@ -1,3 +1,4 @@
+import { mod } from './core';
 import { radiansToDegrees, degreesToRadians } from '../utilities/unitConverters';
 
 /**

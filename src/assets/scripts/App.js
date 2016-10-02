@@ -1,4 +1,3 @@
-/* eslint-disable no-underscore-dangle, no-unused-vars, no-undef, global-require */
 import $ from 'jquery';
 import peg from 'pegjs';
 import ContentQueue from './contentQueue/ContentQueue';

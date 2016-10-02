@@ -1,5 +1,6 @@
 import { sin, cos, tan } from './core';
 import { vradial, vsub, vlen } from './vector';
+import { degreesToRadians, radiansToDegrees } from '../utilities/unitConverters';
 
 /**
  * @property CONSTANTS
@@ -12,7 +13,14 @@ const CONSTANTS = {
      * @type {number}
      * @final
      */
-    GRAVITATIONAL_MAGNITUDE: 9.81
+    GRAVITATIONAL_MAGNITUDE: 9.81,
+
+    /**
+     * @property EARTH_RADIUS_NM
+     * @type {number}
+     * @final
+     */
+    EARTH_RADIUS_NM: 3440
 };
 
 /**
@@ -76,4 +84,34 @@ export const getOffset = (aircraft, target, headingThruTarget = null) => {
     offset[1] = offset[2] * cos(headingThruTarget - bearingToTarget);
 
     return offset;
+};
+
+
+/**
+ * Get new position by fix-radial-distance method
+ *
+ * @param {array} fix       positional array of start point, in decimal-degrees [lat,lon]
+ * @param {number} radial   heading to project along, in radians
+ * @param {number} dist     distance to project, in nm
+ * @returns {array}         location of the projected fix
+ */
+export const fixRadialDist = (fix, radial, dist) => {
+    // convert GPS coordinates to radians
+    fix = [
+        degreesToRadians(fix[0]),
+        degreesToRadians(fix[1])
+    ];
+
+    const R = CONSTANTS.EARTH_RADIUS_NM;
+    // TODO: abstract these two calculations to functions
+    const lat2 = Math.asin(sin(fix[1]) * cos(dist / R) + cos(fix[1]) * sin(dist / R) * cos(radial));
+    const lon2 = fix[0] + Math.atan2(
+        sin(radial) * sin(dist / R) * cos(fix[1]),
+        cos(dist / R) - sin(fix[1]) * sin(lat2)
+    );
+
+    return [
+        radiansToDegrees(lon2),
+        radiansToDegrees(lat2)
+    ];
 };

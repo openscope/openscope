@@ -69,7 +69,7 @@ export default class TutorialView {
          */
         this.$tutorialNext = null;
 
-        prop.tutorial = tutorial
+        prop.tutorial = tutorial;
         this.tutorial = tutorial;
         this.tutorial.steps = [];
         this.tutorial.step = 0;

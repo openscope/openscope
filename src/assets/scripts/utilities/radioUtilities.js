@@ -161,13 +161,15 @@ export const digits_decimal = (number, digits, force, truncate) => {
             } else if (trailingDigits > digits) {
                 if (truncate) {
                     return number.substr(0, number.length - (trailingDigits - digits));
-                } else {
-                    const len = number.length - (trailingDigits - digits + 1);
-                    const part1 = number.substr(0, len);
-                    const part2 = (digits === 0) ? '' : shorten(parseInt(number.substr(len, 2), 10) / 10).toString();
-
-                    return part1 + part2;
                 }
+
+                const len = number.length - (trailingDigits - digits + 1);
+                const part1 = number.substr(0, len);
+                const part2 = (digits === 0)
+                    ? ''
+                    : shorten(parseInt(number.substr(len, 2), 10) / 10).toString();
+
+                return part1 + part2;
             }
         }
     }
@@ -188,17 +190,19 @@ export const getGrouping = (groupable) => {
             return 'hundred';
         }
         // just digits (eg 'zero seven')
-        return radio_names[digit1] + ' ' + radio_names[digit2];
+        return `${radio_names[digit1]} ${radio_names[digit2]}`;
     } else if (digit1 === 1) {
         // exact number (eg 'seventeen')
         return radio_names[groupable];
     } else if (digit1 >= 2) {
+        const firstDigit = `${digit1}0`;
+
         if (digit2 === 0) {
             // to avoid 'five twenty zero'
-            return radio_names[(digit1 + '0')];
+            return radio_names[firstDigit];
         }
         // combo number (eg 'fifty one')
-        return radio_names[(digit1 + '0')] + ' ' + radio_names[digit2];
+        return `${radio_names[firstDigit]} ${radio_names[digit2]}`;
     }
 
     return `${radio_names[digit1]} ${radio_names[digit2]}`;
@@ -225,65 +229,66 @@ export const groupNumbers = (callsign, airline) => {
             }
 
             return s.join(' ');
-        } else {
-            // airline grouped, eg '3110A' = 'thirty-one-ten-alpha'
-            // divide callsign into alpha/numeric sections
-            let sections = [];
-            let cs = callsign, thisIsDigit;
-            let index = cs.length - 1;
-            let lastWasDigit = !isNaN(parseInt(cs[index], 10));
-            index--;
+        }
 
-            while (index >= 0) {
+        // airline grouped, eg '3110A' = 'thirty-one-ten-alpha'
+        // divide callsign into alpha/numeric sections
+        const sections = [];
+        let cs = callsign;
+        let thisIsDigit;
+        let index = cs.length - 1;
+        let lastWasDigit = !isNaN(parseInt(cs[index], 10));
+        index--;
+
+        while (index >= 0) {
+            thisIsDigit = !isNaN(parseInt(cs[index], 10));
+
+            while (thisIsDigit === lastWasDigit) {
+                index--;
                 thisIsDigit = !isNaN(parseInt(cs[index], 10));
 
-                while (thisIsDigit === lastWasDigit) {
-                    index--;
-                    thisIsDigit = !isNaN(parseInt(cs[index], 10));
-
-                    if (index < 0) {
-                        break;
-                    }
-                }
-                sections.unshift(cs.substr(index + 1));
-                cs = cs.substr(0, index + 1);
-                lastWasDigit = thisIsDigit;
-            }
-
-            // build words, section by section
-            let s = [];
-
-            for (const i in sections) {
-                if (isNaN(parseInt(sections[i], 10))) {
-                    // alpha section
-                    s.push(radio_spellOut(sections[i]));
-                } else {
-                    // numeric section
-                    switch (sections[i].length) {
-                        case 0:
-                            s.push(sections[i]);
-                            break;
-                        case 1:
-                            s.push(radio_names[sections[i]]);
-                            break;
-                        case 2:
-                            s.push(getGrouping(sections[i]));
-                            break;
-                        case 3:
-                            s.push(`${radio_names[sections[i][0]]} ${getGrouping(sections[i].substr(1))}`);
-                            break;
-                        case 4:
-                            s.push(`${getGrouping(sections[i].substr(0, 2))} ${getGrouping(sections[i].substr(2))}`);
-                            break;
-                        default:
-                            s.push(radio_spellOut(sections[i]));
-                            break;
-                    }
+                if (index < 0) {
+                    break;
                 }
             }
-
-            return s.join(' ');
+            sections.unshift(cs.substr(index + 1));
+            cs = cs.substr(0, index + 1);
+            lastWasDigit = thisIsDigit;
         }
+
+        // build words, section by section
+        const s = [];
+
+        for (const i in sections) {
+            if (isNaN(parseInt(sections[i], 10))) {
+                // alpha section
+                s.push(radio_spellOut(sections[i]));
+            } else {
+                // numeric section
+                switch (sections[i].length) {
+                    case 0:
+                        s.push(sections[i]);
+                        break;
+                    case 1:
+                        s.push(radio_names[sections[i]]);
+                        break;
+                    case 2:
+                        s.push(getGrouping(sections[i]));
+                        break;
+                    case 3:
+                        s.push(`${radio_names[sections[i][0]]} ${getGrouping(sections[i].substr(1))}`);
+                        break;
+                    case 4:
+                        s.push(`${getGrouping(sections[i].substr(0, 2))} ${getGrouping(sections[i].substr(2))}`);
+                        break;
+                    default:
+                        s.push(radio_spellOut(sections[i]));
+                        break;
+                }
+            }
+        }
+
+        return s.join(' ');
     } else {
         // FIXME: this block is unreachable
         switch (callsign.length) {
@@ -367,8 +372,8 @@ export const radio_spellOut = (alphanumeric) => {
  * @return
  */
 export const radio_altitude = (altitude) => {
-    let alt_s = altitude.toString();
-    let s = [];
+    const alt_s = altitude.toString();
+    const s = [];
 
     if (altitude >= 18000) {
         s.push('flight level', radio_names[alt_s[0]], radio_names[alt_s[1]], radio_names[alt_s[2]]);
@@ -403,8 +408,8 @@ export const radio_altitude = (altitude) => {
  */
 export const radio_trend = (category, measured, target) => {
     const CATEGORIES = {
-        altitude: ['descend and maintain', 'climb and maintain',  'maintain'],
-        speed: ['reduce speed to',  'increase speed to', 'maintain present speed of']
+        altitude: ['descend and maintain', 'climb and maintain', 'maintain'],
+        speed: ['reduce speed to', 'increase speed to', 'maintain present speed of']
     };
 
     if (measured > target) {
