@@ -8,14 +8,10 @@ require("regenerator-runtime/runtime");
 
 require("core-js/fn/regexp/escape");
 
-/* eslint max-len: 0 */
-
 if (global._babelPolyfill) {
   throw new Error("only one instance of babel-polyfill is allowed");
 }
 global._babelPolyfill = true;
-
-// Should be removed in the next major release:
 
 var DEFINE_PROPERTY = "defineProperty";
 function define(O, key, value) {
@@ -29946,8 +29942,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /* eslint-disable no-underscore-dangle, no-unused-vars, no-undef, global-require */
-
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _jquery = require('jquery');
 
@@ -30018,10 +30013,10 @@ var prop = {};
 // imported as needed in each file.
 require('./util');
 // this module doesnt appear to be in use anywhere
-require('./animation');
+// require('./animation');
 require('./parser');
 // this module doesnt appear to be in use anywhere
-require('./base/AreaModel');
+// require('./base/AreaModel');
 
 // saved as this.prop.version and this.prop.version_string
 var VERSION = [3, 0, 0];
@@ -30035,9 +30030,6 @@ var FRAME_DELAY = 1;
 // is this a release build?
 var RELEASE = false;
 
-// just a place to store modules.js. this will go away eventually.
-var modules = void 0;
-
 /**
  * @class App
  */
@@ -30049,7 +30041,24 @@ var App = function () {
      * @param $element {HTML Element|null}
      */
     function App(element) {
+        var _this = this;
+
         _classCallCheck(this, App);
+
+        this.getDeltaTime = function () {
+            return _this.prop.time.frame.delta;
+        };
+
+        this.updateRun = function (shouldUpdate) {
+            // console.warn('updateRun: ', shouldUpdate);
+            if (!UPDATE && shouldUpdate) {
+                requestAnimationFrame(function () {
+                    return _this.update();
+                });
+            }
+
+            UPDATE = shouldUpdate;
+        };
 
         /**
          * Root DOM element.
@@ -30097,6 +30106,10 @@ var App = function () {
     }
 
     /**
+     * Lifecycle method. Should be called only once on initialization.
+     *
+     * Used to setup properties and initialize dependant classes.
+     *
      * @for App
      * @method setupChildren
      */
@@ -30109,8 +30122,8 @@ var App = function () {
             this.contentQueue = new _ContentQueue2.default(this.loadingView);
             this.airlineController = new _AirlineController2.default();
             this.aircraftController = new _AircraftController2.default();
-            this.airportController = new _AirportController2.default();
-            this.gameController = new _GameController2.default();
+            this.airportController = new _AirportController2.default(this.updateRun);
+            this.gameController = new _GameController2.default(this.getDeltaTime);
             this.tutorialView = new _TutorialView2.default(this.$element);
             this.inputController = new _InputController2.default(this.$element);
             this.uiController = new _UiController2.default(this.$element);
@@ -30120,6 +30133,10 @@ var App = function () {
         }
 
         /**
+         * Lifecycle method. Should be called only once on initialization.
+         *
+         * Used to fire off `init` and `init_pre` methods and also start the game loop
+         *
          * @for App
          * @method enable
          */
@@ -30127,14 +30144,14 @@ var App = function () {
     }, {
         key: 'enable',
         value: function enable() {
-            var _this = this;
+            var _this2 = this;
 
             zlsa.atc.loadAsset = function (options) {
-                return _this.contentQueue.add(options);
+                return _this2.contentQueue.add(options);
             };
             // TEMPORARY!
             // these instances are attached to the window here as an intermediate step away from global functions.
-            // this allows for any module file to full window.{module}.{method} and will make the transition to
+            // this allows for any module file to call window.{module}.{method} and will make the transition to
             // explicit instance parameters easier.
             window.airlineController = this.airlineController;
             window.aircraftController = this.aircraftController;
@@ -30144,29 +30161,6 @@ var App = function () {
             window.inputController = this.inputController;
             window.uiController = this.uiController;
             window.canvasController = this.canvasController;
-
-            // This is the old entry point for the application. We include this here now so that
-            // the app will run. This is a temporary implementation and should be refactored immediately.
-            //
-            // Eventually, this method will contain all of the initiation logic currently contained in
-            // modules.js and the modules file will no longer be needed. This class will be in charge of
-            // running the game loop and keeping up with housekeeping tasks.
-            modules = require('./modules');
-
-            // TODO: MOVE THIS!!!
-            /**
-             * Change whether updates should run
-             */
-            window.updateRun = function (arg) {
-                console.warn('updateRun: ', arg);
-                if (!UPDATE && arg) {
-                    requestAnimationFrame(function () {
-                        return _this.update();
-                    });
-                }
-
-                UPDATE = arg;
-            };
 
             log('Version ' + this.prop.version_string);
 
@@ -30186,6 +30180,8 @@ var App = function () {
 
         /**
          * Tear down the application
+         *
+         * Should never be called directly, only cia `this.disable()`
          *
          * @for App
          * @method destroy
@@ -30208,6 +30204,26 @@ var App = function () {
 
             return this;
         }
+
+        // === CALLBACKS (all optional and do not need to be defined) ===
+        // INIT:
+        // module_init_pre()
+        // module_init()
+        // module_init_post()
+
+        // module_done()
+        // -- wait until all async has finished (could take a long time)
+        // module_ready()
+        // -- wait until first frame is ready (only triggered if UPDATE == true)
+        // module_complete()
+
+        // UPDATE:
+        // module_update_pre()
+        // module_update()
+        // module_update_post()
+
+        // RESIZE (called at least once during init and whenever page changes size)
+        // module_resize()
 
         /**
          * @for App
@@ -30265,7 +30281,7 @@ var App = function () {
     }, {
         key: 'done',
         value: function done() {
-            var _this2 = this;
+            var _this3 = this;
 
             (0, _jquery2.default)(window).resize(this.resize);
             this.resize();
@@ -30276,7 +30292,7 @@ var App = function () {
 
             if (UPDATE) {
                 requestAnimationFrame(function () {
-                    return _this2.update();
+                    return _this3.update();
                 });
             }
 
@@ -30358,7 +30374,7 @@ var App = function () {
     }, {
         key: 'update',
         value: function update() {
-            var _this3 = this;
+            var _this4 = this;
 
             if (!this.prop.complete) {
                 this.complete();
@@ -30372,7 +30388,7 @@ var App = function () {
             }
 
             requestAnimationFrame(function () {
-                return _this3.update();
+                return _this4.update();
             });
 
             this.updatePre();
@@ -30406,6 +30422,20 @@ var App = function () {
             this.prop.time.frame.delta = (0, _timeHelpers.calculateDeltaTime)(this.prop.time.frame.last);
             this.prop.time.frame.last = currentTime;
         }
+
+        /**
+         * @for App
+         * @method getDeltaTime
+         * @return {number}
+         */
+
+
+        /**
+         * @for App
+         * @method updateRun
+         * @param shouldUpdate {boolean}
+         */
+
     }]);
 
     return App;
@@ -30413,7 +30443,7 @@ var App = function () {
 
 exports.default = App;
 
-},{"./InputController":490,"./LoadingView":491,"./UiController":492,"./aircraft/AircraftController":494,"./airline/AirlineController":501,"./airport/AirportController":503,"./animation":516,"./base/AreaModel":517,"./canvas/CanvasController":519,"./constants/logLevel":520,"./contentQueue/ContentQueue":523,"./game/GameController":525,"./modules":534,"./parser":535,"./speech":536,"./tutorial/TutorialView":538,"./util":539,"./utilities/timeHelpers":541,"jquery":296,"pegjs":481}],490:[function(require,module,exports){
+},{"./InputController":490,"./LoadingView":491,"./UiController":492,"./aircraft/AircraftController":494,"./airline/AirlineController":501,"./airport/AirportController":503,"./canvas/CanvasController":517,"./constants/logLevel":518,"./contentQueue/ContentQueue":521,"./game/GameController":523,"./parser":532,"./speech":533,"./tutorial/TutorialView":535,"./util":536,"./utilities/timeHelpers":538,"jquery":296,"pegjs":481}],490:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -30946,7 +30976,7 @@ var InputController = function () {
                 case KEY_CODES.LEFT_ARROW:
                     // shortKeys in use
                     if (prop.game.option.get('controlMethod') === 'arrows') {
-                        this.$commandInput.val(currentCommandInputValue + ' ⮢');
+                        this.$commandInput.val(currentCommandInputValue + ' \u2BA2');
                         e.preventDefault();
                         this.onCommandInputChangeHandler();
                     }
@@ -30956,7 +30986,7 @@ var InputController = function () {
                 case KEY_CODES.UP_ARROW:
                     if (prop.game.option.get('controlMethod') === 'arrows') {
                         // shortKeys in use
-                        this.$commandInput.val(currentCommandInputValue + ' ⭡');
+                        this.$commandInput.val(currentCommandInputValue + ' \u2B61');
                         e.preventDefault();
                         this.onCommandInputChangeHandler();
                     } else {
@@ -30969,7 +30999,7 @@ var InputController = function () {
                 case KEY_CODES.RIGHT_ARROW:
                     // shortKeys in use
                     if (prop.game.option.get('controlMethod') === 'arrows') {
-                        this.$commandInput.val(currentCommandInputValue + ' ⮣');
+                        this.$commandInput.val(currentCommandInputValue + ' \u2BA3');
                         e.preventDefault();
                         this.onCommandInputChangeHandler();
                     }
@@ -30979,7 +31009,7 @@ var InputController = function () {
                 case KEY_CODES.DOWN_ARROW:
                     if (prop.game.option.get('controlMethod') === 'arrows') {
                         // shortKeys in use
-                        this.$commandInput.val(currentCommandInputValue + ' ⭣');
+                        this.$commandInput.val(currentCommandInputValue + ' \u2B63');
                         e.preventDefault();
                         this.onCommandInputChangeHandler();
                     } else {
@@ -30991,7 +31021,7 @@ var InputController = function () {
                     break;
 
                 case KEY_CODES.MULTIPLY:
-                    this.$commandInput.val(currentCommandInputValue + ' ⭐');
+                    this.$commandInput.val(currentCommandInputValue + ' \u2B50');
                     e.preventDefault();
                     this.onCommandInputChangeHandler();
 
@@ -31318,7 +31348,7 @@ var InputController = function () {
 
 exports.default = InputController;
 
-},{"./constants/selectors":521,"jquery":296,"lodash/clamp":429,"lodash/get":435,"lodash/map":456}],491:[function(require,module,exports){
+},{"./constants/selectors":519,"jquery":296,"lodash/clamp":429,"lodash/get":435,"lodash/map":456}],491:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -31572,7 +31602,7 @@ var LoadingView = function () {
 
 exports.default = LoadingView;
 
-},{"./constants/selectors":521,"./utilities/timeHelpers":541,"jquery":296}],492:[function(require,module,exports){
+},{"./constants/selectors":519,"./utilities/timeHelpers":538,"jquery":296}],492:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -32129,7 +32159,7 @@ var UiView = function () {
     }, {
         key: 'ui_log',
         value: function ui_log(message) {
-            var warn = arguments.length <= 1 || arguments[1] === undefined ? false : arguments[1];
+            var warn = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
 
             var html = (0, _jquery2.default)('<span class="item"><span class="message">' + message + '</span></span>');
 
@@ -32293,7 +32323,7 @@ var UiView = function () {
 
 exports.default = UiView;
 
-},{"./constants/selectors":521,"./constants/storageKeys":522,"./math/core":530,"./speech":536,"jquery":296,"lodash/forEach":434,"lodash/has":436,"lodash/keys":454}],493:[function(require,module,exports){
+},{"./constants/selectors":519,"./constants/storageKeys":520,"./math/core":528,"./speech":533,"jquery":296,"lodash/forEach":434,"lodash/has":436,"lodash/keys":454}],493:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -32595,8 +32625,8 @@ var AircraftConflict = function () {
                         // TODO: this should definitely be a helper function that lives in one of the math/ files
                         // 'same' or 'crossing' courses
                         // Ray intersection from http://stackoverflow.com/a/2932601
-                        var ad = vturn(a1.groundTrack);
-                        var bd = vturn(a2.groundTrack);
+                        var ad = (0, _vector.vturn)(a1.groundTrack);
+                        var bd = (0, _vector.vturn)(a2.groundTrack);
                         var dx = a2.position[0] - a1.position[0];
                         var dy = a2.position[1] - a1.position[1];
                         var det = bd[0] * ad[1] - bd[1] * ad[0];
@@ -32639,7 +32669,7 @@ var AircraftConflict = function () {
 
 exports.default = AircraftConflict;
 
-},{"../math/circle":529,"../math/core":530,"../math/vector":533,"../utilities/unitConverters":542}],494:[function(require,module,exports){
+},{"../math/circle":527,"../math/core":528,"../math/vector":531,"../utilities/unitConverters":539}],494:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -32840,7 +32870,7 @@ var AircraftController = function () {
     }, {
         key: 'aircraft_visible',
         value: function aircraft_visible(aircraft) {
-            var factor = arguments.length <= 1 || arguments[1] === undefined ? 1 : arguments[1];
+            var factor = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
 
             return (0, _vector.vlen)(aircraft.position) < window.airportController.airport_get().ctr_radius * factor;
         }
@@ -33019,7 +33049,7 @@ var AircraftController = function () {
     }, {
         key: 'aircraft_get',
         value: function aircraft_get() {
-            var eid = arguments.length <= 0 || arguments[0] === undefined ? null : arguments[0];
+            var eid = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
 
             if (eid === null) {
                 return null;
@@ -33118,15 +33148,14 @@ var AircraftController = function () {
 
 exports.default = AircraftController;
 
-},{"../math/circle":529,"../math/core":530,"../math/distance":531,"../math/flightMath":532,"../math/vector":533,"../speech":536,"../utilities/unitConverters":542,"./AircraftConflict":493,"./AircraftFlightManagementSystem":495,"./AircraftModel":497}],495:[function(require,module,exports){
+},{"../math/circle":527,"../math/core":528,"../math/distance":529,"../math/flightMath":530,"../math/vector":531,"../speech":533,"../utilities/unitConverters":539,"./AircraftConflict":493,"./AircraftFlightManagementSystem":495,"./AircraftModel":497}],495:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand */
-
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _jquery = require('jquery');
 
@@ -33535,18 +33564,16 @@ var AircraftFlightManagementSystem = function () {
         key: 'followCheck',
         value: function followCheck() {
             var leg = this.currentLeg();
+            this.following.anything = true;
 
             switch (leg.type) {
                 case _Leg.FP_LEG_TYPE.SID:
-                    this.following.anything = true;
                     this.following.sid = leg.route.split('.')[1];
                     break;
                 case _Leg.FP_LEG_TYPE.STAR:
-                    this.following.anything = true;
                     this.following.star = leg.route.split('.')[1];
                     break;
                 case _Leg.FP_LEG_TYPE.IAP:
-                    this.following.anything = true;
                     // *******NEEDS TO BE FINISHED***************************
                     // this.following.iap = ;
                     break;
@@ -33557,14 +33584,11 @@ var AircraftFlightManagementSystem = function () {
                     break;
                 case _Leg.FP_LEG_TYPE.AWY:
                     // **FUTURE FUNCTIONALITY**
-                    this.following.anything = true;
                     this.following.awy = leg.route.split('.')[1];
                     break;
                 default:
                     this.followClear();
-
                     return false;
-                    break;
             }
 
             return this.following;
@@ -33636,6 +33660,7 @@ var AircraftFlightManagementSystem = function () {
                 type: _Leg.FP_LEG_TYPE.SID,
                 route: route
             });
+
             this.setAll({
                 altitude: Math.max(window.airportController.airport_get().initial_alt, this.my_aircraft.altitude)
             });
@@ -33660,7 +33685,7 @@ var AircraftFlightManagementSystem = function () {
         }
 
         /**
-         * Takes a single-string route and converts it to a semented route the fms can understand
+         * Takes a single-string route and converts it to a segmented route the fms can understand
          * Note: Input Data Format : "KSFO.OFFSH9.SXC.V458.IPL.J2.JCT..LLO..ACT..KACT"
          *       Return Data Format: ["KSFO.OFFSH9.SXC", "SXC.V458.IPL", "IPL.J2.JCT", "LLO", "ACT", "KACT"]
          */
@@ -34088,6 +34113,8 @@ var AircraftFlightManagementSystem = function () {
 
         /** ************************* FMS GET FUNCTIONS ***************************/
 
+        // TODO: this set upd methods could be used as getters instead
+        // ex: `get currentLeg()` and then used like `this.fms.currentLeg`
         /**
          * Return the current leg
          */
@@ -34268,7 +34295,7 @@ var AircraftFlightManagementSystem = function () {
 
 exports.default = AircraftFlightManagementSystem;
 
-},{"../constants/logLevel":520,"./Leg":499,"./Waypoint":500,"jquery":296,"lodash/clamp":429,"lodash/last":455,"lodash/map":456}],496:[function(require,module,exports){
+},{"../constants/logLevel":518,"./Leg":499,"./Waypoint":500,"jquery":296,"lodash/clamp":429,"lodash/last":455,"lodash/map":456}],496:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -34330,6 +34357,8 @@ var _circle = require('../math/circle');
 var _core = require('../math/core');
 
 var _distance = require('../math/distance');
+
+var _flightMath = require('../math/flightMath');
 
 var _vector = require('../math/vector');
 
@@ -34408,7 +34437,7 @@ var COMMANDS = {
 
 var Aircraft = function () {
     function Aircraft() {
-        var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+        var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
         _classCallCheck(this, Aircraft);
 
@@ -35213,8 +35242,8 @@ var Aircraft = function () {
                 readback.log = 'turn ' + amount + ' degrees ' + direction;
                 readback.say = 'turn ' + (0, _radioUtilities.groupNumbers)(amount) + ' degrees ' + direction;
             } else {
-                readback.log = instruction + ' ' + heading_to_string(wp.heading);
-                readback.say = instruction + ' ' + (0, _radioUtilities.radio_heading)(heading_to_string(wp.heading));
+                readback.log = instruction + ' ' + (0, _unitConverters.heading_to_string)(wp.heading);
+                readback.say = instruction + ' ' + (0, _radioUtilities.radio_heading)((0, _unitConverters.heading_to_string)(wp.heading));
             }
 
             return ['ok', readback];
@@ -35490,7 +35519,7 @@ var Aircraft = function () {
             }
 
             // TODO: abstract to method `.getInboundCardinalDirection()`
-            var inboundDir = _radioUtilities.radio_cardinalDir_names[getCardinalDirection((0, _circle.fix_angle)(inboundHdg + Math.PI)).toLowerCase()];
+            var inboundDir = _radioUtilities.radio_cardinalDir_names[(0, _radioUtilities.getCardinalDirection)((0, _circle.fix_angle)(inboundHdg + Math.PI)).toLowerCase()];
 
             if (holdFix) {
                 return ['ok', 'proceed direct ' + holdFix + ' and hold inbound, ' + dirTurns + ' turns, ' + legLength + ' legs'];
@@ -36396,7 +36425,7 @@ var Aircraft = function () {
             if (this.fms.currentWaypoint().navmode === WAYPOINT_NAV_MODE.RWY) {
                 airport = window.airportController.airport_get();
                 runway = airport.getRunway(this.rwy_arr);
-                offset = getOffset(this, runway.position, runway.angle);
+                offset = (0, _flightMath.getOffset)(this, runway.position, runway.angle);
                 offset_angle = (0, _vector.vradial)(offset);
                 this.offset_angle = offset_angle;
                 this.approachOffset = (0, _core.abs)(offset[0]);
@@ -36459,7 +36488,7 @@ var Aircraft = function () {
                         this.fms.setCurrent({ start_speed: this.fms.currentWaypoint().speed });
                     }
 
-                    this.target.speed = crange(3, offset[1], 10, this.model.speed.landing, this.fms.currentWaypoint().start_speed);
+                    this.target.speed = (0, _core.crange)(3, offset[1], 10, this.model.speed.landing, this.fms.currentWaypoint().start_speed);
                 } else if (this.altitude - runway_elevation >= 300 && this.mode === FLIGHT_MODES.LANDING) {
                     this.updateStrip();
                     this.cancelLanding();
@@ -36512,7 +36541,7 @@ var Aircraft = function () {
 
                 // within ~2° of upwd/dnwd
                 if (angle_off_of_leg_hdg < 0.035) {
-                    offset = getOffset(this, hold.fixPos);
+                    offset = (0, _flightMath.getOffset)(this, hold.fixPos);
 
                     // entering hold, just passed the fix
                     if (hold.timer === null && offset[1] < 0 && offset[2] < 2) {
@@ -36716,7 +36745,7 @@ var Aircraft = function () {
                 }
             } else if (this.target.speed > this.speed + 0.01) {
                 difference = this.model.rate.accelerate * window.gameController.game_delta() / 2;
-                difference *= crange(0, this.speed, this.model.speed.min, 2, 1);
+                difference *= (0, _core.crange)(0, this.speed, this.model.speed.min, 2, 1);
             }
 
             if (difference) {
@@ -36756,7 +36785,7 @@ var Aircraft = function () {
                 var vector = void 0;
 
                 if (this.isLanded()) {
-                    vector = vscale([(0, _core.sin)(angle), (0, _core.cos)(angle)], scaleSpeed);
+                    vector = (0, _vector.vscale)([(0, _core.sin)(angle), (0, _core.cos)(angle)], scaleSpeed);
                 } else {
                     var crab_angle = 0;
 
@@ -36768,19 +36797,19 @@ var Aircraft = function () {
                     }
 
                     // TODO: this should be abstracted to a helper function
-                    vector = vadd(vscale(vturn(wind.angle + Math.PI), wind.speed * 0.000514444 * window.gameController.game_delta()), vscale(vturn(angle + crab_angle), scaleSpeed));
+                    vector = (0, _vector.vadd)((0, _vector.vscale)((0, _vector.vturn)(wind.angle + Math.PI), wind.speed * 0.000514444 * window.gameController.game_delta()), (0, _vector.vscale)((0, _vector.vturn)(angle + crab_angle), scaleSpeed));
                 }
 
                 this.ds = (0, _vector.vlen)(vector);
                 // TODO: this should be abstracted to a helper function
                 this.groundSpeed = this.ds / 0.000514444 / window.gameController.game_delta();
                 this.groundTrack = (0, _vector.vradial)(vector);
-                this.position = vadd(this.position, vector);
+                this.position = (0, _vector.vadd)(this.position, vector);
             } else {
                 this.ds = scaleSpeed;
                 this.groundSpeed = this.speed;
                 this.groundTrack = this.heading;
-                this.position = vadd(this.position, vscale([(0, _core.sin)(angle), (0, _core.cos)(angle)], scaleSpeed));
+                this.position = (0, _vector.vadd)(this.position, (0, _vector.vscale)([(0, _core.sin)(angle), (0, _core.cos)(angle)], scaleSpeed));
             }
 
             this.distance = (0, _vector.vlen)(this.position);
@@ -36792,7 +36821,7 @@ var Aircraft = function () {
 
             // polygonal airspace boundary
             if (window.airportController.airport_get().perimeter) {
-                var inside = point_in_area(this.position, window.airportController.airport_get().perimeter);
+                var inside = (0, _vector.point_in_area)(this.position, window.airportController.airport_get().perimeter);
 
                 // TODO: this logic is duplicated below. abstract to new method
                 if (inside !== this.inside_ctr) {
@@ -36861,7 +36890,7 @@ var Aircraft = function () {
 
                     // recalculate for new areas or those that should be checked
                     if (!area.range || area.range <= 0) {
-                        new_inside = point_in_poly(this.position, area.data.coordinates);
+                        new_inside = (0, _vector.point_in_poly)(this.position, area.data.coordinates);
 
                         // ac has just entered the area: .inside is still false, but st is true
                         if (new_inside && !area.inside) {
@@ -36871,7 +36900,7 @@ var Aircraft = function () {
                             // if a plane got into restricted area, don't check it too often
                         } else {
                             // don't calculate more often than every 10 seconds
-                            area.range = Math.max(this.speed * 1.85 / 36 / 1000 * 10, distance_to_poly(this.position, area.data.coordinates));
+                            area.range = Math.max(this.speed * 1.85 / 36 / 1000 * 10, (0, _vector.distance_to_poly)(this.position, area.data.coordinates));
                         }
 
                         area.inside = new_inside;
@@ -36904,7 +36933,7 @@ var Aircraft = function () {
 
                     if (curr_ranges[id] < 0 || curr_ranges[id] === Infinity) {
                         area = terrain[ele][id];
-                        status = point_to_mpoly(this.position, area, id);
+                        status = (0, _vector.point_to_mpoly)(this.position, area, id);
 
                         if (status.inside) {
                             this.altitude = 0;
@@ -36947,7 +36976,7 @@ var Aircraft = function () {
 
             var wp = this.fms.currentWaypoint();
             // Populate strip fields with default values
-            var defaultHeadingText = heading_to_string(wp.heading);
+            var defaultHeadingText = (0, _unitConverters.heading_to_string)(wp.heading);
             var defaultAltitudeText = (0, _get3.default)(wp, 'altitude', '-');
             var defaultDestinationText = (0, _get3.default)(this, 'destination', window.airportController.airport_get().icao);
             var currentSpeedText = wp.speed;
@@ -37094,7 +37123,7 @@ var Aircraft = function () {
 
 exports.default = Aircraft;
 
-},{"../constants/selectors":521,"../math/circle":529,"../math/core":530,"../math/distance":531,"../math/vector":533,"../speech":536,"../utilities/radioUtilities":540,"../utilities/unitConverters":542,"./AircraftFlightManagementSystem":495,"./AircraftStripView":498,"./Waypoint":500,"jquery":296,"lodash/clamp":429,"lodash/forEach":434,"lodash/get":435,"lodash/has":436,"lodash/isNaN":447,"lodash/isString":451,"lodash/map":456}],497:[function(require,module,exports){
+},{"../constants/selectors":519,"../math/circle":527,"../math/core":528,"../math/distance":529,"../math/flightMath":530,"../math/vector":531,"../speech":533,"../utilities/radioUtilities":537,"../utilities/unitConverters":539,"./AircraftFlightManagementSystem":495,"./AircraftStripView":498,"./Waypoint":500,"jquery":296,"lodash/clamp":429,"lodash/forEach":434,"lodash/get":435,"lodash/has":436,"lodash/isNaN":447,"lodash/isString":451,"lodash/map":456}],497:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -37127,7 +37156,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
  */
 var Model = function () {
     function Model() {
-        var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+        var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
         _classCallCheck(this, Model);
 
@@ -37200,22 +37229,24 @@ var Model = function () {
     }, {
         key: 'load',
         value: function load(url) {
+            var _this = this;
+
             this._url = url;
 
             zlsa.atc.loadAsset({
                 url: url,
                 immediate: false
             }).done(function (data) {
-                this.parse(data);
-                this.loading = false;
-                this.loaded = true;
-                this._generatePendingAircraft();
-            }.bind(this)).fail(function (jqXHR, textStatus, errorThrown) {
-                this.loading = false;
-                this._pendingAircraft = [];
+                _this.parse(data);
+                _this.loading = false;
+                _this.loaded = true;
+                _this._generatePendingAircraft();
+            }).fail(function (jqXHR, textStatus, errorThrown) {
+                _this.loading = false;
+                _this._pendingAircraft = [];
 
-                console.error('Unable to load aircraft/ ' + this.icao + ' : ' + textStatus);
-            }.bind(this));
+                console.error('Unable to load aircraft/ ' + _this.icao + ' : ' + textStatus);
+            });
         }
 
         /**
@@ -37276,11 +37307,11 @@ var Model = function () {
     }, {
         key: '_generatePendingAircraft',
         value: function _generatePendingAircraft() {
-            var _this = this;
+            var _this2 = this;
 
             // TODO: replace $ with _map()
             _jquery2.default.each(this._pendingAircraft, function (idx, options) {
-                _this._generateAircraft(options);
+                _this2._generateAircraft(options);
             });
 
             this._pendingAircraft = [];
@@ -37357,7 +37388,7 @@ var AircraftStripView = function () {
     function AircraftStripView() {
         var _this = this;
 
-        var callsign = arguments.length <= 0 || arguments[0] === undefined ? '' : arguments[0];
+        var callsign = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
         var aircraftInstanceModel = arguments[1];
 
         _classCallCheck(this, AircraftStripView);
@@ -37527,7 +37558,7 @@ var AircraftStripView = function () {
     }, {
         key: 'buildSpanForViewItem',
         value: function buildSpanForViewItem(className) {
-            var content = arguments.length <= 1 || arguments[1] === undefined ? '' : arguments[1];
+            var content = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
 
             return '<span class="' + className + '">' + content + '</span>';
         }
@@ -37574,7 +37605,7 @@ var AircraftStripView = function () {
     }, {
         key: 'hide',
         value: function hide() {
-            var duration = arguments.length <= 0 || arguments[0] === undefined ? 0 : arguments[0];
+            var duration = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
 
             this.$element.hide(duration);
         }
@@ -37770,11 +37801,11 @@ var AircraftStripView = function () {
     }, {
         key: 'updateViewForCruise',
         value: function updateViewForCruise(navMode) {
-            var headingText = arguments.length <= 1 || arguments[1] === undefined ? '' : arguments[1];
-            var destinationText = arguments.length <= 2 || arguments[2] === undefined ? '' : arguments[2];
-            var isFollowingSID = arguments.length <= 3 || arguments[3] === undefined ? false : arguments[3];
-            var isFollowingSTAR = arguments.length <= 4 || arguments[4] === undefined ? false : arguments[4];
-            var fixRestrictions = arguments.length <= 5 || arguments[5] === undefined ? {} : arguments[5];
+            var headingText = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
+            var destinationText = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '';
+            var isFollowingSID = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
+            var isFollowingSTAR = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : false;
+            var fixRestrictions = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : {};
 
             switch (navMode) {
                 case _AircraftInstanceModel.WAYPOINT_NAV_MODE.FIX:
@@ -37844,7 +37875,7 @@ var AircraftStripView = function () {
 
 exports.default = AircraftStripView;
 
-},{"../constants/selectors":521,"../math/core":530,"./AircraftInstanceModel":496,"jquery":296}],499:[function(require,module,exports){
+},{"../constants/selectors":519,"../math/core":528,"./AircraftInstanceModel":496,"jquery":296}],499:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -37852,8 +37883,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.FP_LEG_TYPE = undefined;
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /* eslint-disable no-param-reassign */
-
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _has2 = require('lodash/has');
 
@@ -37892,17 +37922,19 @@ var FP_LEG_TYPE = exports.FP_LEG_TYPE = {
 
 /**
   * Build a 'leg' of the route (contains series of waypoints)
-  * @param {object} data = {route: "KSFO.OFFSH9.SXC", // either a fix, or with format 'start.procedure.end', or "[RNAV/GPS]" for custom positions
-  *                         type: "sid",              // can be 'sid', 'star', 'iap', 'awy', 'fix'
-  *                         firstIndex: 0}            // the position in fms.legs to insert this leg
+  *
+  * @param {object} data = {route: "KSFO.OFFSH9.SXC", either a fix, or with format 'start.procedure.end', or
+  *                                                   "[RNAV/GPS]" for custom positions
+  *                         type: "sid",              can be 'sid', 'star', 'iap', 'awy', 'fix'
+  *                         firstIndex: 0}            the position in fms.legs to insert this leg
   */
 
 var Leg = function () {
     /**
-     * Initialize leg with empty values, then call the parser
+     * @constructor
      */
     function Leg() {
-        var data = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+        var data = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
         var fms = arguments[1];
 
         _classCallCheck(this, Leg);
@@ -37961,6 +37993,7 @@ var Leg = function () {
                     return;
                 }
 
+                // const { apt, sid, exit } = data.route.split('.');
                 var apt = data.route.split('.')[0];
                 var sid = data.route.split('.')[1];
                 var exit = data.route.split('.')[2];
@@ -38022,35 +38055,36 @@ var Leg = function () {
 
                 var entry = data.route.split('.')[0];
                 var star = data.route.split('.')[1];
-                var apt = data.route.split('.')[2];
-                var rwy = fms.my_aircraft.rwy_arr;
+                var _apt = data.route.split('.')[2];
+                var _rwy = fms.my_aircraft.rwy_arr;
                 this.waypoints = [];
 
                 // Generate the waypoints
-                var pairs = window.airportController.airport_get(apt).getSTAR(star, entry, rwy);
+                var _pairs = window.airportController.airport_get(_apt).getSTAR(star, entry, _rwy);
 
                 // for each fix/restr pair
-                for (var _i = 0; _i < pairs.length; _i++) {
-                    var f = pairs[_i][0];
-                    var a = null;
-                    var s = null;
+                for (var _i = 0; _i < _pairs.length; _i++) {
+                    var _f = _pairs[_i][0];
+                    var _a = null;
+                    var _s = null;
 
-                    if (pairs[_i][1]) {
-                        var a_n_s = pairs[_i][1].toUpperCase().split('|');
-                        for (var _j in a_n_s) {
-                            if (a_n_s[_j][0] === 'A') {
-                                a = a_n_s[_j].substr(1);
-                            } else if (a_n_s[_j][0] === 'S') {
-                                s = a_n_s[_j].substr(1);
+                    if (_pairs[_i][1]) {
+                        var _a_n_s = _pairs[_i][1].toUpperCase().split('|');
+
+                        for (var _j in _a_n_s) {
+                            if (_a_n_s[_j][0] === 'A') {
+                                _a = _a_n_s[_j].substr(1);
+                            } else if (_a_n_s[_j][0] === 'S') {
+                                _s = _a_n_s[_j].substr(1);
                             }
                         }
                     }
 
                     this.waypoints.push(new _Waypoint2.default({
-                        fix: f,
+                        fix: _f,
                         fixRestrictions: {
-                            alt: a,
-                            spd: s
+                            alt: _a,
+                            spd: _s
                         }
                     }, fms));
                 }
@@ -38065,15 +38099,15 @@ var Leg = function () {
                 var airway = data.route.split('.')[1];
                 var end = data.route.split('.')[2];
                 // Verify airway is valid
-                var apt = window.airportController.airport_get();
+                var _apt2 = window.airportController.airport_get();
 
-                if (!(0, _has3.default)(apt, 'airways') || !(0, _has3.default)(apt.airways, 'airway')) {
-                    log('Airway ' + airway + ' not defined at ' + apt.icao, _logLevel.LOG.WARNING);
+                if (!(0, _has3.default)(_apt2, 'airways') || !(0, _has3.default)(_apt2.airways, 'airway')) {
+                    log('Airway ' + airway + ' not defined at ' + _apt2.icao, _logLevel.LOG.WARNING);
                     return;
                 }
 
                 // Verify start/end points are along airway
-                var awy = apt.airways[airway];
+                var awy = _apt2.airways[airway];
                 if (!(awy.indexOf(start) !== -1 && awy.indexOf(end) !== -1)) {
                     log('Unable to follow ' + airway + ' from ' + start + ' to ' + end, _logLevel.LOG.WARNING);
                     return;
@@ -38084,12 +38118,12 @@ var Leg = function () {
                 var readFwd = awy.indexOf(end) > awy.indexOf(start);
 
                 if (readFwd) {
-                    for (var _f = awy.indexOf(start); _f <= awy.indexOf(end); _f++) {
-                        fixes.push(awy[_f]);
+                    for (var _f2 = awy.indexOf(start); _f2 <= awy.indexOf(end); _f2++) {
+                        fixes.push(awy[_f2]);
                     }
                 } else {
-                    for (var _f2 = awy.indexOf(start); _f2 >= awy.indexOf(end); _f2--) {
-                        fixes.push(awy[_f2]);
+                    for (var _f3 = awy.indexOf(start); _f3 >= awy.indexOf(end); _f3--) {
+                        fixes.push(awy[_f3]);
                     }
                 }
 
@@ -38112,7 +38146,7 @@ var Leg = function () {
 
 exports.default = Leg;
 
-},{"../constants/logLevel":520,"./Waypoint":500,"lodash/has":436,"lodash/map":456}],500:[function(require,module,exports){
+},{"../constants/logLevel":518,"./Waypoint":500,"lodash/has":436,"lodash/map":456}],500:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -38148,7 +38182,7 @@ var Waypoint = function () {
      * Initialize Waypoint with empty values, then call the parser
      */
     function Waypoint() {
-        var data = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+        var data = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
         var fms = arguments[1];
 
         _classCallCheck(this, Waypoint);
@@ -38230,10 +38264,6 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _has2 = require('lodash/has');
-
-var _has3 = _interopRequireDefault(_has2);
-
 var _AirlineModel = require('./AirlineModel');
 
 var _AirlineModel2 = _interopRequireDefault(_AirlineModel);
@@ -38302,7 +38332,7 @@ var AirlineController = function () {
 
 exports.default = AirlineController;
 
-},{"./AirlineModel":502,"lodash/has":436}],502:[function(require,module,exports){
+},{"./AirlineModel":502}],502:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -38400,7 +38430,7 @@ var AirlineModel = function () {
                 this.fleets.default = data.aircraft;
             }
 
-            (0, _forEach3.default)(this.fleets, function (fleet, i) {
+            (0, _forEach3.default)(this.fleets, function (fleet) {
                 for (var j = 0; j < fleet.length; j++) {
                     fleet[j][0] = fleet[j][0].toLowerCase();
                 }
@@ -38485,7 +38515,7 @@ var AirlineModel = function () {
     }, {
         key: 'chooseAircraft',
         value: function chooseAircraft() {
-            var fleet = arguments.length <= 0 || arguments[0] === undefined ? '' : arguments[0];
+            var fleet = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
 
             if (fleet === '') {
                 fleet = 'default';
@@ -38586,7 +38616,7 @@ var AirlineModel = function () {
         value: function validateFleets() {
             var _this2 = this;
 
-            (0, _forEach3.default)(this.fleets, function (fleet, i) {
+            (0, _forEach3.default)(this.fleets, function (fleet) {
                 for (var j = 0; j < fleet.length; j++) {
                     // Preload the aircraft model
                     window.aircraftController.aircraft_model_get(fleet[j][0]);
@@ -38666,9 +38696,9 @@ var _forEach2 = require('lodash/forEach');
 
 var _forEach3 = _interopRequireDefault(_forEach2);
 
-var _AirportInstanceModel = require('./AirportInstanceModel');
+var _AirportModel = require('./AirportModel');
 
-var _AirportInstanceModel2 = _interopRequireDefault(_AirportInstanceModel);
+var _AirportModel2 = _interopRequireDefault(_AirportModel);
 
 var _airportLoadList = require('./airportLoadList');
 
@@ -38689,9 +38719,10 @@ var AirportController = function () {
     /**
      * @constructor
      */
-    function AirportController() {
+    function AirportController(updateRun) {
         _classCallCheck(this, AirportController);
 
+        this.updateRun = updateRun;
         this.airport = airport;
         this.airport.airports = {};
         this.airport.current = null;
@@ -38800,36 +38831,37 @@ var AirportController = function () {
                 return null;
             }
 
-            var airport = new _AirportInstanceModel2.default({
+            // create a new Airport with a reference to this.updateRun()
+            var airport = new _AirportModel2.default({
                 icao: icao,
                 level: level,
                 name: name
-            });
+            }, this.updateRun);
 
             this.airport_add(airport);
 
             return airport;
         }
-    }, {
-        key: 'airport_add',
-
 
         /**
          * @function airport_add
          * @param airport
          */
+
+    }, {
+        key: 'airport_add',
         value: function airport_add(airport) {
             prop.airport.airports[airport.icao.toLowerCase()] = airport;
         }
-    }, {
-        key: 'airport_get',
-
 
         /**
          * @function airport_get
          * @param icao {string}
          * @return
          */
+
+    }, {
+        key: 'airport_get',
         value: function airport_get(icao) {
             if (!icao) {
                 return prop.airport.current;
@@ -38844,7 +38876,7 @@ var AirportController = function () {
 
 exports.default = AirportController;
 
-},{"../constants/storageKeys":522,"./AirportInstanceModel":504,"./airportLoadList":515,"lodash/forEach":434,"lodash/has":436}],504:[function(require,module,exports){
+},{"../constants/storageKeys":520,"./AirportModel":504,"./airportLoadList":515,"lodash/forEach":434,"lodash/has":436}],504:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -38892,6 +38924,8 @@ var _core = require('../math/core');
 
 var _circle = require('../math/circle');
 
+var _flightMath = require('../math/flightMath');
+
 var _vector = require('../math/vector');
 
 var _logLevel = require('../constants/logLevel');
@@ -38911,21 +38945,28 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
  */
 var ra = function ra(n) {
     var deviation = (0, _unitConverters.degreesToRadians)(10);
-    return n + crange(0, Math.random(), 1, -deviation, deviation);
+    return n + (0, _core.crange)(0, Math.random(), 1, -deviation, deviation);
 };
 
 // TODO: this class contains a lot of .hasOwnProperty() type checks (converted to _has for now). is there a need for
 // such defensiveness? or can some of that be accomplished on init and then smiply update the prop if need be?
 /**
- * @class AirportInstance
+ * @class AirportModel
  */
 
-var AirportInstance = function () {
-    function AirportInstance() {
-        var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+var AirportModel = function () {
+    /**
+     * @constructor
+     * @param options {object}
+     * @param updateRun {function}
+     */
+    function AirportModel() {
+        var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+        var updateRun = arguments[1];
 
-        _classCallCheck(this, AirportInstance);
+        _classCallCheck(this, AirportModel);
 
+        this.updateRun = updateRun;
         // FIXME: All properties of this class should be instantiated here, even if they wont have values yet.
         // there is a lot of logic below that can be elimininated by simply instantiating values here.
         this.loaded = false;
@@ -38970,7 +39011,7 @@ var AirportInstance = function () {
         this.parse(options);
     }
 
-    _createClass(AirportInstance, [{
+    _createClass(AirportModel, [{
         key: 'getWind',
         value: function getWind() {
             // TODO: there are a lot of magic numbers here. What are they for and what do they mean? These should be enumerated.
@@ -38980,8 +39021,8 @@ var AirportInstance = function () {
             // TODO: why is this var getting reassigned to a magic number?
             s = 100;
             var speed_factor = (0, _core.sin)((s + window.gameController.game_time()) * 0.5) + (0, _core.sin)((s + window.gameController.game_time()) * 2);
-            wind.angle += crange(-1, angle_factor, 1, (0, _unitConverters.degreesToRadians)(-4), (0, _unitConverters.degreesToRadians)(4));
-            wind.speed *= crange(-1, speed_factor, 1, 0.9, 1.05);
+            wind.angle += (0, _core.crange)(-1, angle_factor, 1, (0, _unitConverters.degreesToRadians)(-4), (0, _unitConverters.degreesToRadians)(4));
+            wind.speed *= (0, _core.crange)(-1, speed_factor, 1, 0.9, 1.05);
 
             return wind;
         }
@@ -39168,7 +39209,7 @@ var AirportInstance = function () {
                             obj.name = r[_i3].name;
                         }
 
-                        obj.height = parseElevation(r[_i3].height);
+                        obj.height = (0, _unitConverters.parseElevation)(r[_i3].height);
                         obj.coordinates = _jquery2.default.map(r[_i3].coordinates, function (v) {
                             return [new _PositionModel2.default(v, self.position, self.magnetic_north).position];
                         });
@@ -39184,7 +39225,7 @@ var AirportInstance = function () {
                             coords_min = [Math.min(v[0], coords_min[0]), Math.min(v[1], coords_min[1])];
                         }
 
-                        obj.center = vscale(vadd(coords_max, coords_min), 0.5);
+                        obj.center = (0, _vector.vscale)((0, _vector.vadd)(coords_max, coords_min), 0.5);
                         self.restricted_areas.push(obj);
                     }
                 })();
@@ -39229,13 +39270,13 @@ var AirportInstance = function () {
                             //setup secondary runway subobject
                             var r1 = this.runways[rwy1][rwy1end];
                             var r2 = this.runways[rwy2][rwy2end];
-                            var offset = getOffset(r1, r2.position, r1.angle);
+                            var offset = (0, _flightMath.getOffset)(r1, r2.position, r1.angle);
                             this.metadata.rwy[r1.name][r2.name] = {};
 
                             // generate this runway pair's relationship data
                             this.metadata.rwy[r1.name][r2.name].lateral_dist = (0, _core.abs)(offset[0]);
                             this.metadata.rwy[r1.name][r2.name].straight_dist = (0, _core.abs)(offset[2]);
-                            this.metadata.rwy[r1.name][r2.name].converging = raysIntersect(r1.position, r1.angle, r2.position, r2.angle);
+                            this.metadata.rwy[r1.name][r2.name].converging = (0, _vector.raysIntersect)(r1.position, r1.angle, r2.position, r2.angle);
                             this.metadata.rwy[r1.name][r2.name].parallel = (0, _core.abs)((0, _circle.angle_offset)(r1.angle, r2.angle)) < (0, _unitConverters.degreesToRadians)(10);
                         }
                     }
@@ -39267,7 +39308,7 @@ var AirportInstance = function () {
             this.start = window.gameController.game_time();
             this.updateRunway();
             this.addAircraft();
-            updateRun(true);
+            this.updateRun(true);
         }
     }, {
         key: 'unset',
@@ -39298,7 +39339,7 @@ var AirportInstance = function () {
     }, {
         key: 'updateRunway',
         value: function updateRunway() {
-            var length = arguments.length <= 0 || arguments[0] === undefined ? 0 : arguments[0];
+            var length = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
 
             // TODO: this method contains some ambiguous names. need better names.
             var wind = this.getWind();
@@ -39371,6 +39412,8 @@ var AirportInstance = function () {
     }, {
         key: 'loadTerrain',
         value: function loadTerrain() {
+            var _this2 = this;
+
             // TODO: there is a lot of binding here, use => functions and this probably wont be an issue.
             zlsa.atc.loadAsset({
                 url: 'assets/airports/terrain/' + this.icao.toLowerCase() + '.geojson',
@@ -39378,19 +39421,19 @@ var AirportInstance = function () {
             }).done(function (data) {
                 try {
                     log('Parsing terrain');
-                    this.parseTerrain(data);
+                    _this2.parseTerrain(data);
                 } catch (e) {
                     log(e.message);
                 }
 
-                this.loading = false;
-                this.loaded = true;
-                this.set();
-            }.bind(this)).fail(function (jqXHR, textStatus, errorThrown) {
-                this.loading = false;
-                console.error('Unable to load airport/terrain/' + this.icao + ': ' + textStatus);
+                _this2.loading = false;
+                _this2.loaded = true;
+                _this2.set();
+            }).fail(function (jqXHR, textStatus, errorThrown) {
+                _this2.loading = false;
+                console.error('Unable to load airport/terrain/' + _this2.icao + ': ' + textStatus);
                 prop.airport.current.set();
-            }.bind(this));
+            });
         }
 
         // TODO: there is a lot of binding here, use => functions and this probably wont be an issue.
@@ -39398,31 +39441,33 @@ var AirportInstance = function () {
     }, {
         key: 'load',
         value: function load() {
+            var _this3 = this;
+
             if (this.loaded) {
                 return;
             }
 
-            updateRun(false);
+            this.updateRun(false);
             this.loading = true;
 
             zlsa.atc.loadAsset({
                 url: 'assets/airports/' + this.icao.toLowerCase() + '.json',
                 immediate: true
             }).done(function (data) {
-                this.parse(data);
+                _this3.parse(data);
 
-                if (this.has_terrain) {
+                if (_this3.has_terrain) {
                     return;
                 }
 
-                this.loading = false;
-                this.loaded = true;
-                this.set();
-            }.bind(this)).fail(function (jqXHR, textStatus, errorThrown) {
-                this.loading = false;
-                console.error('Unable to load airport/' + this.icao + ': ' + textStatus);
+                _this3.loading = false;
+                _this3.loaded = true;
+                _this3.set();
+            }).fail(function (jqXHR, textStatus, errorThrown) {
+                _this3.loading = false;
+                console.error('Unable to load airport/' + _this3.icao + ': ' + textStatus);
                 prop.airport.current.set();
-            }.bind(this));
+            });
         }
     }, {
         key: 'getRestrictedAreas',
@@ -39741,20 +39786,19 @@ var AirportInstance = function () {
         }
     }]);
 
-    return AirportInstance;
+    return AirportModel;
 }();
 
-exports.default = AirportInstance;
+exports.default = AirportModel;
 
-},{"../base/PositionModel":518,"../constants/logLevel":520,"../constants/storageKeys":522,"../math/circle":529,"../math/core":530,"../math/vector":533,"../utilities/unitConverters":542,"./Arrival/ArrivalFactory":507,"./Departure/DepartureFactory":512,"./Runway":514,"jquery":296,"lodash/has":436,"lodash/isEmpty":444,"lodash/map":456,"lodash/uniq":467}],505:[function(require,module,exports){
+},{"../base/PositionModel":516,"../constants/logLevel":518,"../constants/storageKeys":520,"../math/circle":527,"../math/core":528,"../math/flightMath":530,"../math/vector":531,"../utilities/unitConverters":539,"./Arrival/ArrivalFactory":507,"./Departure/DepartureFactory":512,"./Runway":514,"jquery":296,"lodash/has":436,"lodash/isEmpty":444,"lodash/map":456,"lodash/uniq":467}],505:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand */
-
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _jquery = require('jquery');
 
@@ -39777,6 +39821,8 @@ var _unitConverters = require('../../utilities/unitConverters');
 var _core = require('../../math/core');
 
 var _distance = require('../../math/distance');
+
+var _flightMath = require('../../math/flightMath');
 
 var _vector = require('../../math/vector');
 
@@ -39902,9 +39948,9 @@ var ArrivalBase = function () {
                 var fix_prev = _i2 > 0 ? fixes[_i2 - 1][0] : fix;
                 var pos_prev = _i2 > 0 ? this.airport.fixes[fix_prev].position : pos;
 
-                if (inAirspace(pos)) {
+                if ((0, _flightMath.inAirspace)(this.airport, pos)) {
                     if (_i2 >= 1) {
-                        extra = (0, _unitConverters.nm)(dist_to_boundary(pos_prev));
+                        extra = (0, _unitConverters.nm)((0, _flightMath.dist_to_boundary)(this.airport, pos_prev));
                         break;
                     }
                 } else {
@@ -39941,9 +39987,9 @@ var ArrivalBase = function () {
                         // if point before next fix
                         var next = window.airportController.airport_get().fixes[fixes[j][0]];
                         var prev = window.airportController.airport_get().fixes[fixes[j - 1][0]];
-                        var brng = bearing(prev.gps, next.gps);
+                        var brng = (0, _flightMath.bearing)(prev.gps, next.gps);
                         spawn_positions.push({
-                            pos: fixRadialDist(prev.gps, brng, spawn_offsets[_i4]),
+                            pos: (0, _flightMath.fixRadialDist)(prev.gps, brng, spawn_offsets[_i4]),
                             nextFix: fixes[j][0],
                             heading: brng
                         });
@@ -40095,7 +40141,7 @@ var ArrivalBase = function () {
 
             if (tgt_interval < min_interval) {
                 tgt_interval = min_interval;
-                log("Requested arrival rate of " + this.frequency + " acph overridden to " + "maintain minimum of " + min_entrail + " miles entrail on arrival stream " + "following route " + _jquery2.default.map(this.fixes, function (v) {
+                log('Requested arrival rate of ' + this.frequency + ' acph overridden to ' + 'maintain minimum of ' + min_entrail + ' miles entrail on arrival stream ' + 'following route ' + _jquery2.default.map(this.fixes, function (v) {
                     return v.fix;
                 }).join('-'), _logLevel.LOG.INFO);
             }
@@ -40111,7 +40157,7 @@ var ArrivalBase = function () {
 
 exports.default = ArrivalBase;
 
-},{"../../base/PositionModel":518,"../../constants/logLevel":520,"../../math/core":530,"../../math/distance":531,"../../math/vector":533,"../../utilities/unitConverters":542,"jquery":296,"lodash/has":436,"lodash/random":461}],506:[function(require,module,exports){
+},{"../../base/PositionModel":516,"../../constants/logLevel":518,"../../math/core":528,"../../math/distance":529,"../../math/flightMath":530,"../../math/vector":531,"../../utilities/unitConverters":539,"jquery":296,"lodash/has":436,"lodash/random":461}],506:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -40285,7 +40331,7 @@ var ArrivalFactory = exports.ArrivalFactory = function ArrivalFactory(airport, o
     }
 }; /* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand */
 
-},{"../../constants/logLevel":520,"./ArrivalBase":505,"./ArrivalCyclic":506,"./ArrivalSurge":508,"./ArrivalWave":509}],508:[function(require,module,exports){
+},{"../../constants/logLevel":518,"./ArrivalBase":505,"./ArrivalCyclic":506,"./ArrivalSurge":508,"./ArrivalWave":509}],508:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -40459,7 +40505,7 @@ var ArrivalSurge = function (_ArrivalBase) {
 
 exports.default = ArrivalSurge;
 
-},{"../../constants/logLevel":520,"../../math/core":530,"./ArrivalBase":505,"lodash/random":461}],509:[function(require,module,exports){
+},{"../../constants/logLevel":518,"../../math/core":528,"./ArrivalBase":505,"lodash/random":461}],509:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -40574,14 +40620,14 @@ var ArrivalWave = function (_ArrivalBase) {
 
                 // can reduce variation to achieve acceptable spawn rate
                 if (diff <= 3600 / this.variation) {
-                    log("Requested arrival rate variation of +/-" + this.variation + " acph reduced to " + "maintain minimum of " + entrail_dist + " miles entrail on arrival stream following " + "route " + _jquery2.default.map(this.fixes, function (v) {
+                    log('Requested arrival rate variation of +/-' + this.variation + ' acph reduced to ' + 'maintain minimum of ' + entrail_dist + ' miles entrail on arrival stream following ' + 'route ' + _jquery2.default.map(this.fixes, function (v) {
                         return v.fix;
                     }).join('-'), _logLevel.LOG.WARNING);
 
                     this.variation = this.variation - 3600 / diff; // reduce the variation
                 } else {
                     // need to reduce frequency to achieve acceptable spawn rate
-                    log("Requested arrival rate of " + this.frequency + " acph overridden to " + "maintain minimum of " + entrail_dist + " miles entrail on arrival stream " + "following route " + _jquery2.default.map(this.fixes, function (v) {
+                    log('Requested arrival rate of ' + this.frequency + ' acph overridden to ' + 'maintain minimum of ' + entrail_dist + ' miles entrail on arrival stream ' + 'following route ' + _jquery2.default.map(this.fixes, function (v) {
                         return v.fix;
                     }).join('-'), _logLevel.LOG.WARNING);
 
@@ -40618,7 +40664,7 @@ var ArrivalWave = function (_ArrivalBase) {
 
 exports.default = ArrivalWave;
 
-},{"../../constants/logLevel":520,"../../math/circle":529,"../../math/core":530,"./ArrivalBase":505,"jquery":296,"lodash/random":461}],510:[function(require,module,exports){
+},{"../../constants/logLevel":518,"../../math/circle":527,"../../math/core":528,"./ArrivalBase":505,"jquery":296,"lodash/random":461}],510:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -40869,7 +40915,7 @@ var DepartureCyclic = function (_DepartureBase) {
 
 exports.default = DepartureCyclic;
 
-},{"../../math/circle":529,"../../math/core":530,"./DepartureBase":510}],512:[function(require,module,exports){
+},{"../../math/circle":527,"../../math/core":528,"./DepartureBase":510}],512:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -40920,7 +40966,7 @@ var DepartureFactory = exports.DepartureFactory = function DepartureFactory(airp
     }
 };
 
-},{"../../constants/logLevel":520,"./DepartureBase":510,"./DepartureCyclic":511,"./DepartureWave":513}],513:[function(require,module,exports){
+},{"../../constants/logLevel":518,"./DepartureBase":510,"./DepartureCyclic":511,"./DepartureWave":513}],513:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41022,7 +41068,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 var Runway = function () {
     function Runway() {
-        var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+        var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
         var end = arguments[1];
         var airport = arguments[2];
 
@@ -41125,7 +41171,7 @@ var Runway = function () {
                 this.position = thisSide.position;
                 this.length = (0, _vector.vlen)((0, _vector.vsub)(farSide.position, thisSide.position));
                 // TODO: what is the 0.5 for? enumerate the magic number
-                this.midfield = vscale(vadd(thisSide.position, farSide.position), 0.5);
+                this.midfield = (0, _vector.vscale)((0, _vector.vadd)(thisSide.position, farSide.position), 0.5);
                 this.angle = (0, _vector.vradial)((0, _vector.vsub)(farSide.position, thisSide.position));
             }
 
@@ -41164,7 +41210,7 @@ var Runway = function () {
 
 exports.default = Runway;
 
-},{"../base/PositionModel":518,"../math/core":530,"../math/vector":533,"../utilities/unitConverters":542}],515:[function(require,module,exports){
+},{"../base/PositionModel":516,"../math/core":528,"../math/vector":531,"../utilities/unitConverters":539}],515:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41438,165 +41484,6 @@ var AIRPORT_LOAD_LIST = exports.AIRPORT_LOAD_LIST = [{
 },{}],516:[function(require,module,exports){
 'use strict';
 
-var _timeHelpers = require('./utilities/timeHelpers');
-
-// Is this even in use?
-// @deprecated
-var Animation = function Animation(options) {
-    undefined.value = 0;
-    undefined.start_value = 0;
-    undefined.end_value = 1;
-    undefined.progress = 0;
-    undefined.easing = 'smooth';
-    undefined.duration = 0;
-    undefined.start = 0;
-    undefined.animating = false;
-
-    // FIXME: lodash this block; .get() all the things
-    if (options) {
-        if ('value' in options) {
-            undefined.value = options.value;
-        }
-
-        if ('start_value' in options) {
-            undefined.start_value = options.start_value;
-        }
-
-        if ('end_value' in options) {
-            undefined.end_value = options.end_value;
-        }
-
-        if ('easing' in options) {
-            undefined.easing = options.easing;
-        }
-
-        if ('duration' in options) {
-            undefined.duration = options.duration;
-        }
-    }
-
-    undefined.set = function (value) {
-        undefined.animate(value);
-    };
-
-    undefined.get = function (progress) {
-        return undefined.step((0, _timeHelpers.time)());
-    };
-
-    undefined.animate = function (value) {
-        undefined.animating = true;
-        undefined.progress = 0;
-        undefined.start = (0, _timeHelpers.time)();
-        undefined.start_value = undefined.value + 0;
-        undefined.end_value = value;
-    };
-
-    undefined.ease = function () {
-        if (undefined.easing === 'linear') {
-            undefined.value = crange(0, undefined.progress, 1, undefined.start_value, undefined.end_value);
-        } else if (undefined.easing === 'smooth') {
-            undefined.value = srange(0, undefined.progress, 1, undefined.start_value, undefined.end_value);
-        } else {
-            console.log('Unknown easing ' + undefined.easing);
-        }
-    };
-
-    undefined.step = function (t) {
-        undefined.progress = crange(undefined.start, t, undefined.start + undefined.duration, 0, 1);
-
-        if (!undefined.animating) {
-            undefined.progress = 0;
-        }
-
-        undefined.ease();
-
-        return undefined.value;
-    };
-
-    undefined.step(window.gameController.game_time());
-};
-
-},{"./utilities/timeHelpers":541}],517:[function(require,module,exports){
-"use strict";
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-// TODO: this class does not appear to be in use?
-/**
- * An enclosed region defined by a series of Position objects and an altitude range
- *
- * @class AreaModel
- */
-var AreaModel = function () {
-    /**
-     * @for AreaModel
-     * @constructor
-     * @param {array} poly - series of Position objects that outline the shape
-     *                Note: DO NOT repeat the origin to 'close' the shape. Unnecessary.
-     * @param {number} floor - (optional) altitude of bottom of area, in hundreds of feet
-     * @param {number} ceiling - (optional) altitude of top of area, in hundreds of feet
-     * @param {string} airspace_class - (optional) FAA airspace classification (A,B,C,D,E,G)
-     */
-    function AreaModel(positions, floor, ceiling, airspace_class) {
-        _classCallCheck(this, AreaModel);
-
-        if (!positions) {
-            return;
-        }
-
-        this.poly = [];
-        this.floor = null;
-        this.ceiling = null;
-        this.airspace_class = null;
-
-        if (floor != null) {
-            this.floor = floor;
-        }
-
-        if (ceiling != null) {
-            this.ceiling = ceiling;
-        }
-
-        if (airspace_class) {
-            this.airspace_class = airspace_class;
-        }
-
-        this.parse(positions);
-    }
-
-    /**
-     * @for AreaModel
-     * @method parse
-     * @param positions {array}
-     */
-
-
-    _createClass(AreaModel, [{
-        key: "parse",
-        value: function parse(positions) {
-            for (var i = 0; i < positions.length; i++) {
-                this.poly.push(positions[i]);
-            }
-
-            if (this.poly[0] === this.poly[this.poly.length - 1]) {
-                this.poly.pop(); // shape shouldn't fully close; will draw with 'cc.closepath()'
-            }
-        }
-    }]);
-
-    return AreaModel;
-}();
-
-// TODO: temporarily attached to the window here until useages of AreaModel can be converted to an explicit import.
-
-
-window.Area = AreaModel;
-
-},{}],518:[function(require,module,exports){
-'use strict';
-
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
@@ -41656,9 +41543,9 @@ var Position = function () {
      *                            that should be converted to positions
      */
     function Position() {
-        var coordinates = arguments.length <= 0 || arguments[0] === undefined ? [] : arguments[0];
+        var coordinates = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
         var reference = arguments[1];
-        var magnetic_north = arguments.length <= 2 || arguments[2] === undefined ? 0 : arguments[2];
+        var magnetic_north = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
         var mode = arguments[3];
 
         _classCallCheck(this, Position);
@@ -41705,7 +41592,7 @@ var Position = function () {
 
             // TODO: this is using coersion and shoudld be updated to be more explicit
             if (coordinates[2] != null) {
-                this.elevation = parseElevation(coordinates[2]);
+                this.elevation = (0, _unitConverters.parseElevation)(coordinates[2]);
             }
 
             // this function (parse4326) is moved to be able to call it if point is
@@ -41834,7 +41721,7 @@ var Position = function () {
 
 exports.default = Position;
 
-},{"../math/core":530,"../utilities/unitConverters":542}],519:[function(require,module,exports){
+},{"../math/core":528,"../utilities/unitConverters":539}],517:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41874,6 +41761,8 @@ var _core = require('../math/core');
 var _circle = require('../math/circle');
 
 var _distance = require('../math/distance');
+
+var _vector = require('../math/vector');
 
 var _selectors = require('../constants/selectors');
 
@@ -42145,8 +42034,8 @@ var ConvasController = function () {
         key: 'canvas_update_post',
         value: function canvas_update_post() {
             var elapsed = window.gameController.game_time() - window.airportController.airport_get().start;
-            var alpha = crange(0.1, elapsed, 0.4, 0, 1);
-            var framestep = Math.round(crange(1, prop.game.speedup, 10, 30, 1));
+            var alpha = (0, _core.crange)(0.1, elapsed, 0.4, 0, 1);
+            var framestep = Math.round((0, _core.crange)(1, prop.game.speedup, 10, 30, 1));
 
             if (this.canvas.dirty || !window.gameController.game_paused() && prop.time.frames % framestep === 0 || elapsed < 1) {
                 var cc = this.canvas_get('navaids');
@@ -42822,7 +42711,7 @@ var ConvasController = function () {
                 }
 
                 var angle = aircraft.groundTrack;
-                var end = vscale(vturn(angle), tail_length);
+                var end = (0, _vector.vscale)((0, _vector.vturn)(angle), tail_length);
 
                 cc.beginPath();
                 cc.moveTo(0, 0);
@@ -43253,7 +43142,7 @@ var ConvasController = function () {
             cc.beginPath();
             cc.moveTo(0, 0);
             cc.rotate(airport.wind.angle);
-            cc.lineTo(0, crange(0, windspeed_line, 15, 0, size2 - dot));
+            cc.lineTo(0, (0, _core.crange)(0, windspeed_line, 15, 0, size2 - dot));
 
             // TODO: simplify. replace with initial assignment and re-assignment in if condition
             // Color wind line red for high-wind
@@ -43668,7 +43557,7 @@ var ConvasController = function () {
                 return;
             }
 
-            var pos = to_canvas_pos(aircraft.position);
+            var pos = this.to_canvas_pos(aircraft.position);
             var rectPos = [0, 0];
             var rectSize = [this.canvas.size.width, this.canvas.size.height];
 
@@ -43681,7 +43570,7 @@ var ConvasController = function () {
             for (var alpha = 0; alpha < 360; alpha++) {
                 var dir = [(0, _core.sin)((0, _unitConverters.degreesToRadians)(alpha)), -(0, _core.cos)((0, _unitConverters.degreesToRadians)(alpha))];
 
-                var p = positive_intersection_with_rect(pos, dir, rectPos, rectSize);
+                var p = (0, _vector.positive_intersection_with_rect)(pos, dir, rectPos, rectSize);
 
                 if (p) {
                     var markLen = alpha % 5 === 0 ? alpha % 10 === 0 ? 16 : 12 : 8;
@@ -43713,6 +43602,18 @@ var ConvasController = function () {
 
             cc.restore();
         }
+
+        /**
+         * @for CanvasController
+         * @method to_canvas_
+         * @param pos {}
+         */
+
+    }, {
+        key: 'to_canvas_pos',
+        value: function to_canvas_pos(pos) {
+            return [this.canvas.size.width / 2 + this.canvas.panX + (0, _unitConverters.km)(pos[0]), this.canvas.size.height / 2 + this.canvas.panY - (0, _unitConverters.km)(pos[1])];
+        }
     }]);
 
     return ConvasController;
@@ -43720,7 +43621,7 @@ var ConvasController = function () {
 
 exports.default = ConvasController;
 
-},{"../aircraft/AircraftInstanceModel":496,"../constants/logLevel":520,"../constants/selectors":521,"../math/circle":529,"../math/core":530,"../math/distance":531,"../utilities/timeHelpers":541,"../utilities/unitConverters":542,"jquery":296,"lodash/clamp":429,"lodash/cloneDeep":431,"lodash/forEach":434,"lodash/has":436}],520:[function(require,module,exports){
+},{"../aircraft/AircraftInstanceModel":496,"../constants/logLevel":518,"../constants/selectors":519,"../math/circle":527,"../math/core":528,"../math/distance":529,"../math/vector":531,"../utilities/timeHelpers":538,"../utilities/unitConverters":539,"jquery":296,"lodash/clamp":429,"lodash/cloneDeep":431,"lodash/forEach":434,"lodash/has":436}],518:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -43739,7 +43640,7 @@ var LOG = exports.LOG = {
     FATAL: 4
 };
 
-},{}],521:[function(require,module,exports){
+},{}],519:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -43879,7 +43780,7 @@ var SELECTORS = exports.SELECTORS = {
     DOM_SELECTORS: DOM_SELECTORS
 };
 
-},{"lodash/mapValues":457}],522:[function(require,module,exports){
+},{"lodash/mapValues":457}],520:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -43897,7 +43798,7 @@ var STORAGE_KEY = exports.STORAGE_KEY = {
   FIRST_RUN_TIME: 'first-run-time'
 };
 
-},{}],523:[function(require,module,exports){
+},{}],521:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44048,7 +43949,7 @@ var ContentQueueClass = function () {
 
 exports.default = ContentQueueClass;
 
-},{"./LoadableContentModel":524,"jquery":296}],524:[function(require,module,exports){
+},{"./LoadableContentModel":522,"jquery":296}],522:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44079,7 +43980,7 @@ var LoadableContentModel = function LoadableContentModel(options) {
 
 exports.default = LoadableContentModel;
 
-},{"jquery":296}],525:[function(require,module,exports){
+},{"jquery":296}],523:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44117,10 +44018,12 @@ var GameController = function () {
     /**
      * @constructor
      */
-    function GameController() {
+    function GameController(getDeltaTime) {
         var _this = this;
 
         _classCallCheck(this, GameController);
+
+        this.getDeltaTime = getDeltaTime;
 
         this.game = game;
         this.game.paused = true;
@@ -44498,7 +44401,7 @@ var GameController = function () {
                 this.updateScore(score);
             }
 
-            prop.game.delta = Math.min(delta() * prop.game.speedup, 100);
+            prop.game.delta = Math.min(this.getDeltaTime() * prop.game.speedup, 100);
 
             if (this.game_paused()) {
                 prop.game.delta = 0;
@@ -44546,7 +44449,7 @@ var GameController = function () {
 
 exports.default = GameController;
 
-},{"../constants/selectors":521,"../math/core":530,"./GameOptions":526,"jquery":296}],526:[function(require,module,exports){
+},{"../constants/selectors":519,"../math/core":528,"./GameOptions":524,"jquery":296}],524:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44664,7 +44567,7 @@ var GameOptions = function () {
 
 exports.default = GameOptions;
 
-},{"./gameOptionValues":527,"lodash/has":436}],527:[function(require,module,exports){
+},{"./gameOptionValues":525,"lodash/has":436}],525:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44699,7 +44602,7 @@ var GAME_OPTION_VALUES = exports.GAME_OPTION_VALUES = [{
     data: [['Yes', 'yes'], ['No', 'no']]
 }];
 
-},{}],528:[function(require,module,exports){
+},{}],526:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44718,6 +44621,7 @@ var _App2 = _interopRequireDefault(_App);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+/* eslint-disable */
 require('raf').polyfill();
 
 /**
@@ -44730,13 +44634,15 @@ exports.default = function () {
   var app = new _App2.default($body);
 }();
 
-},{"./App":489,"babel-polyfill":1,"jquery":296,"raf":487}],529:[function(require,module,exports){
+},{"./App":489,"babel-polyfill":1,"jquery":296,"raf":487}],527:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
 exports.fix_angle = exports.angle_offset = exports.tau = undefined;
+
+var _core = require('./core');
 
 var _unitConverters = require('../utilities/unitConverters');
 
@@ -44771,7 +44677,7 @@ var angle_offset = exports.angle_offset = function angle_offset(a, b) {
         b = temp;
     }
 
-    var offset = mod(a - b, 360);
+    var offset = (0, _core.mod)(a - b, 360);
     if (offset > 180) {
         offset -= 360;
     }
@@ -44804,15 +44710,19 @@ var fix_angle = exports.fix_angle = function fix_angle(radians) {
     return radians;
 };
 
-},{"../utilities/unitConverters":542}],530:[function(require,module,exports){
+},{"../utilities/unitConverters":539,"./core":528}],528:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.calculateMiddle = exports.within = exports.s = exports.randint = exports.fl = exports.tan = exports.cos = exports.sin = exports.abs = exports.round = undefined;
+exports.crange = exports.mod = exports.calculateMiddle = exports.within = exports.s = exports.randint = exports.fl = exports.tan = exports.cos = exports.sin = exports.abs = exports.round = undefined;
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var _clamp2 = require('lodash/clamp');
+
+var _clamp3 = _interopRequireDefault(_clamp2);
 
 var _isNumber2 = require('lodash/isNumber');
 
@@ -44824,7 +44734,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @function round
  */
 var round = exports.round = function round(n) {
-    var factor = arguments.length <= 1 || arguments[1] === undefined ? 1 : arguments[1];
+    var factor = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
 
     return Math.round(n / factor) * factor;
 };
@@ -44866,7 +44776,7 @@ var tan = exports.tan = function tan(a) {
  * @return {number}
  */
 var fl = exports.fl = function fl(n) {
-    var number = arguments.length <= 1 || arguments[1] === undefined ? 1 : arguments[1];
+    var number = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
 
     return Math.floor(n / number) * number;
 };
@@ -44912,7 +44822,7 @@ var within = exports.within = function within(n, c, r) {
  * @return {number}
  */
 var calculateMiddle = exports.calculateMiddle = function calculateMiddle() {
-    var value = arguments.length <= 0 || arguments[0] === undefined ? 0 : arguments[0];
+    var value = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
 
     if (!(0, _isNumber3.default)(value)) {
         throw new TypeError('Invalid parameter, expected a number but found ' + (typeof value === 'undefined' ? 'undefined' : _typeof(value)));
@@ -44921,7 +44831,47 @@ var calculateMiddle = exports.calculateMiddle = function calculateMiddle() {
     return round(value / 2);
 };
 
-},{"lodash/isNumber":448}],531:[function(require,module,exports){
+/**
+ *
+ * @function mod
+ * @param firstValue {number}
+ * @param secondValue {number}
+ * @return {number}
+ */
+var mod = exports.mod = function mod(firstValue, secondValue) {
+    return (firstValue % secondValue + secondValue) % secondValue;
+};
+
+// TODO: find better names/enumerate the params for these next two functions
+/**
+ * @function trange
+ * @param il {number}
+ * @param i {number}
+ * @param ih {number}
+ * @param ol {number}
+ * @param oh {number}
+ * @return {number}
+ */
+var trange = function trange(il, i, ih, ol, oh) {
+    return ol + (oh - ol) * (i - il) / (ih - il);
+    // i=(i/(ih-il))-il;       // purpose unknown
+    // return (i*(oh-ol))+ol;  // purpose unknown
+};
+
+/**
+ * @function crange
+ * @param il {number}
+ * @param i {number}
+ * @param ih {number}
+ * @param ol {number}
+ * @param oh {number}
+ * @return {number}
+ */
+var crange = exports.crange = function crange(il, i, ih, ol, oh) {
+    return (0, _clamp3.default)(ol, trange(il, i, ih, ol, oh), oh);
+};
+
+},{"lodash/clamp":429,"lodash/isNumber":448}],529:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -44942,15 +44892,21 @@ var distance2d = exports.distance2d = function distance2d(a, b) {
   return Math.sqrt(x * x + y * y);
 };
 
-},{}],532:[function(require,module,exports){
+},{}],530:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
-exports.calcTurnInitiationDistance = exports.calcTurnRadius = undefined;
+exports.dist_to_boundary = exports.inAirspace = exports.fixRadialDist = exports.getOffset = exports.bearing = exports.calcTurnInitiationDistance = exports.calcTurnRadius = undefined;
 
 var _core = require('./core');
+
+var _distance = require('./distance');
+
+var _vector = require('./vector');
+
+var _unitConverters = require('../utilities/unitConverters');
 
 /**
  * @property CONSTANTS
@@ -44958,12 +44914,19 @@ var _core = require('./core');
  * @final
  */
 var CONSTANTS = {
-  /**
-   * @property
-   * @type {number}
-   * @final
-   */
-  GRAVITATIONAL_MAGNITUDE: 9.81
+    /**
+     * @property
+     * @type {number}
+     * @final
+     */
+    GRAVITATIONAL_MAGNITUDE: 9.81,
+
+    /**
+     * @property EARTH_RADIUS_NM
+     * @type {number}
+     * @final
+     */
+    EARTH_RADIUS_NM: 3440
 };
 
 /**
@@ -44973,28 +44936,153 @@ var CONSTANTS = {
  * @return {number}
  */
 var calcTurnRadius = exports.calcTurnRadius = function calcTurnRadius(speed, bankAngle) {
-  return speed * speed / (CONSTANTS.GRAVITATIONAL_MAGNITUDE * (0, _core.tan)(bankAngle));
+    return speed * speed / (CONSTANTS.GRAVITATIONAL_MAGNITUDE * (0, _core.tan)(bankAngle));
 };
 
 /**
  * @function calcTurnInitiationDistance
- * @param speed {number} currentSpeed of an aircraft
- * @param bankAngle {number} bank angle of an aircraft
+ * @param speed {number}            currentSpeed of an aircraft
+ * @param bankAngle {number}        bank angle of an aircraft
  * @param courseChange {number}
  * @return {number}
  */
 var calcTurnInitiationDistance = exports.calcTurnInitiationDistance = function calcTurnInitiationDistance(speed, bankAngle, courseChange) {
-  var turnRadius = calcTurnRadius(speed, bankAngle);
+    var turnRadius = calcTurnRadius(speed, bankAngle);
 
-  return turnRadius * (0, _core.tan)(courseChange / 2) + speed;
+    return turnRadius * (0, _core.tan)(courseChange / 2) + speed;
 };
 
-},{"./core":530}],533:[function(require,module,exports){
-"use strict";
+/**
+ * Returns the bearing from `startPosition` to `endPosition`
+ *
+ * @param startPosition {array}     positional array, start point
+ * @param endPosition {array}       positional array, end point
+ */
+var bearing = exports.bearing = function bearing(startPosition, endPosition) {
+    return (0, _vector.vradial)((0, _vector.vsub)(endPosition, startPosition));
+};
+
+// TODO: this may be better suited to live in an Aircraft model somewhere.
+/**
+ * Returns an offset array showing how far [fwd/bwd, left/right] 'aircraft' is of 'target'
+ *
+ * @param aircraft {Aircraft}           the aircraft in question
+ * @param target {array}                positional array of the targeted position [x,y]
+ * @param headingThruTarget {number}    (optional) The heading the aircraft should
+ *                                      be established on when passing the target.
+ *                                      Default value is the aircraft's heading.
+ * @returns {array} with two elements:  retval[0] is the lateral offset, in km
+ *                                      retval[1] is the longitudinal offset, in km
+ *                                      retval[2] is the hypotenuse (straight-line distance), in km
+ */
+var getOffset = exports.getOffset = function getOffset(aircraft, target) {
+    var headingThruTarget = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+
+    if (!headingThruTarget) {
+        headingThruTarget = aircraft.heading;
+    }
+
+    var offset = [0, 0, 0];
+    var vector = (0, _vector.vsub)(target, aircraft.position); // vector from aircraft pointing to target
+    var bearingToTarget = (0, _vector.vradial)(vector);
+
+    offset[2] = (0, _vector.vlen)(vector);
+    offset[0] = offset[2] * (0, _core.sin)(headingThruTarget - bearingToTarget);
+    offset[1] = offset[2] * (0, _core.cos)(headingThruTarget - bearingToTarget);
+
+    return offset;
+};
+
+/**
+ * Get new position by fix-radial-distance method
+ *
+ * @param {array} fix       positional array of start point, in decimal-degrees [lat,lon]
+ * @param {number} radial   heading to project along, in radians
+ * @param {number} dist     distance to project, in nm
+ * @returns {array}         location of the projected fix
+ */
+var fixRadialDist = exports.fixRadialDist = function fixRadialDist(fix, radial, dist) {
+    // convert GPS coordinates to radians
+    fix = [(0, _unitConverters.degreesToRadians)(fix[0]), (0, _unitConverters.degreesToRadians)(fix[1])];
+
+    var R = CONSTANTS.EARTH_RADIUS_NM;
+    // TODO: abstract these two calculations to functions
+    var lat2 = Math.asin((0, _core.sin)(fix[1]) * (0, _core.cos)(dist / R) + (0, _core.cos)(fix[1]) * (0, _core.sin)(dist / R) * (0, _core.cos)(radial));
+    var lon2 = fix[0] + Math.atan2((0, _core.sin)(radial) * (0, _core.sin)(dist / R) * (0, _core.cos)(fix[1]), (0, _core.cos)(dist / R) - (0, _core.sin)(fix[1]) * (0, _core.sin)(lat2));
+
+    return [(0, _unitConverters.radiansToDegrees)(lon2), (0, _unitConverters.radiansToDegrees)(lat2)];
+};
+
+// TODO: this logic should live in the `AirportController`
+/**
+ *
+ * @function inAirspace
+ * @param airport {AirportModel}
+ * @param  pos {array}
+ * @return {boolean}
+ */
+var inAirspace = exports.inAirspace = function inAirspace(airport, pos) {
+    var perim = airport.perimeter;
+
+    if (perim) {
+        return point_in_area(pos, perim);
+    }
+
+    return (0, _distance.distance2d)(pos, airport.position.position) <= airport.ctr_radius;
+};
+
+// TODO: this logic should live in the `AirportController`
+/**
+ *
+ * @function dist_to_boundary
+ * @param airport {AirportModel}
+ * @param pos {array}
+ * @return {boolean}
+ */
+var dist_to_boundary = exports.dist_to_boundary = function dist_to_boundary(airport, pos) {
+    var perim = airport.perimeter;
+
+    if (perim) {
+        // km
+        return distance_to_poly(pos, area_to_poly(perim));
+    }
+
+    // TODO: hmm, `position.position`? that seems fishy
+    return (0, _core.abs)((0, _distance.distance2d)(pos, airport.position.position) - airport.ctr_radius);
+};
+
+},{"../utilities/unitConverters":539,"./core":528,"./distance":529,"./vector":531}],531:[function(require,module,exports){
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+exports.positive_intersection_with_rect = exports.point_in_area = exports.area_to_poly = exports.point_to_mpoly = exports.point_in_poly = exports.distance_to_poly = exports.raysIntersect = exports.vturn = exports.vscale = exports.vadd = exports.vnorm = exports.vsub = exports.vradial = exports.vlen = undefined;
+
+var _jquery = require('jquery');
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+var _clamp2 = require('lodash/clamp');
+
+var _clamp3 = _interopRequireDefault(_clamp2);
+
+var _forEach2 = require('lodash/forEach');
+
+var _forEach3 = _interopRequireDefault(_forEach2);
+
+var _map2 = require('lodash/map');
+
+var _map3 = _interopRequireDefault(_map2);
+
+var _core = require('./core');
+
+var _unitConverters = require('../utilities/unitConverters');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 /**
  * Computes length of 2D vector
  *
@@ -45002,10 +45090,9 @@ Object.defineProperty(exports, "__esModule", {
  */
 var vlen = exports.vlen = function vlen(v) {
     try {
-        var len = Math.sqrt(v[0] * v[0] + v[1] * v[1]);
-        return len;
+        return Math.sqrt(v[0] * v[0] + v[1] * v[1]);
     } catch (err) {
-        console.error("call to vlen() failed. v:" + v + " | Err:" + err);
+        console.error('call to vlen() failed. v:' + v + ' | Err:' + err);
     }
 };
 
@@ -45030,115 +45117,473 @@ var vradial = exports.vradial = function vradial(v) {
  */
 var vsub = exports.vsub = function vsub(v1, v2) {
     try {
-        var v = [],
-            limit = Math.min(v1.length, v2.length);
+        var v = [];
+        var limit = Math.min(v1.length, v2.length);
 
+        // TODO: this is easie rwith _map()
         for (var i = 0; i < limit; i++) {
             v.push(v1[i] - v2[i]);
         }
 
         return v;
     } catch (err) {
-        console.error("call to vsub() failed. v1: " + v1 + " | v2:" + v2 + " | Err: " + err);
+        console.error('call to vsub() failed. v1: ' + v1 + ' | v2:' + v2 + ' | Err: ' + err);
     }
 };
 
-},{}],534:[function(require,module,exports){
-'use strict';
+// ************************ VECTOR FUNCTIONS ************************
+// For more info, see http://threejs.org/docs/#Reference/Math/Vector3
+// Remember: [x,y] convention is used, and doesn't match [lat,lon]
 
-var _logLevel = require('./constants/logLevel');
-
-// ////////////////////////////////////////////////////////////////////////////////////////
-
-// Usage of async() etc:
-// async("image") // call async() once for every asyncLoaded() you'll call
-// $.get(...,function() {asyncLoaded("image");}) // call asyncLoaded once for each
-//                                                // image once it's loaded
-// if asyncLoaded() is NOT called the same number of times as async() the page will
-// NEVER load!
-
-// === CALLBACKS (all optional and do not need to be defined) ===
-
-// INIT:
-// module_init_pre()
-// module_init()
-// module_init_post()
-
-// module_done()
-// -- wait until all async has finished (could take a long time) --
-// module_ready()
-// -- wait until first frame is ready (only triggered if UPDATE == true) --
-// module_complete()
-
-// UPDATE:
-// module_update_pre()
-// module_update()
-// module_update_post()
-
-// RESIZE (called at least once during init and whenever page changes size)
-// module_resize()
-
-// ////////////////////////////////////////////////////////////////////////////////////////
-
-/*eslint-disable*/
-/** ******* Various fixes for browser issues *********/
 /**
- * Necessary for Internet Explorer 11 (IE11) to not die while using String.fromCodePoint()
- * This function is not natively available in IE11, as noted on this MSDN page:
- * https://msdn.microsoft.com/en-us/library/dn890630(v=vs.94).aspx
- *
- * Apparently, it is fine with pre-Win8.1 MS Edge 11, but never okay in IE.
- * Here, the function is added to the String prototype to make later code usable.
- *
- * Solution from: http://xahlee.info/js/js_unicode_code_point.html
-*/
-if (!String.fromCodePoint) {
-    // ES6 Unicode Shims 0.1 , © 2012 Steven Levithan , MIT License
-    String.fromCodePoint = function fromCodePoint() {
-        var chars = [];
-        var point = void 0;
-        var offset = void 0;
-        var units = void 0;
+ * Normalize a 2D vector
+ * eg scaling elements such that net length is 1
+ * Turns vector 'v' into a 'unit vector'
+ */
+var vnorm = exports.vnorm = function vnorm(v, length) {
+    var x = v[0];
+    var y = v[1];
+    var angle = Math.atan2(x, y);
 
-        for (var i = 0; i < arguments.length; i++) {
-            point = arguments[i];
-            offset = point - 0x10000;
-            units = point > 0xFFFF ? [0xD800 + (offset >> 10), 0xDC00 + (offset & 0x3FF)] : [point];
-            chars.push(String.fromCharCode.apply(null, units));
+    if (!length) {
+        length = 1;
+    }
+
+    return [(0, _core.sin)(angle) * length, (0, _core.cos)(angle) * length];
+};
+
+/**
+ * Create a 2D vector
+ * Pass a heading (rad) and this will return the corresponding unit vector
+ */
+var vectorize_2d = function vectorize_2d(direction) {
+    return [(0, _core.sin)(direction), (0, _core.cos)(direction)];
+};
+
+/**
+ * Adds Vectors (all dimensions)
+ */
+var vadd = exports.vadd = function vadd(v1, v2) {
+    // TODO: why try/catch?
+    try {
+        var v = [];
+        var limit = Math.min(v1.length, v2.length);
+
+        // TODO: this can be done with a _map()
+        for (var i = 0; i < limit; i++) {
+            v.push(v1[i] + v2[i]);
         }
 
-        return chars.join('');
-    };
-}
-
-// MISC
-window.log = function log(message) {
-    var level = arguments.length <= 1 || arguments[1] === undefined ? _logLevel.LOG.INFO : arguments[1];
-
-    var logStrings = {
-        0: 'DEBUG',
-        1: 'INFO',
-        2: 'WARN',
-        3: 'ERROR',
-        4: 'FATAL'
-    };
-
-    if (prop.log <= level) {
-        var text = '[ ' + logStrings[level] + ' ]';
-
-        if (level >= _logLevel.LOG.WARNING) {
-            console.warn(text, message);
-        } else {
-            console.log(text, message);
-        }
+        return v;
+    } catch (err) {
+        console.error('call to vadd() failed. v1:' + v1 + ' | v2:' + v2 + ' | Err:' + err);
     }
 };
 
-window.delta = function delta() {
-    return window.prop.time.frame.delta;
+/**
+ * Multiplies Vectors (all dimensions)
+ */
+// const vmul = (v1, v2) => {
+//     // TODO: why try/catch?
+//     try {
+//         const v = [];
+//         const limit = Math.min(v1.length, v2.length);
+//
+//         // TODO: this can be done with a _map()
+//         for (let i = 0; i < limit; i++) {
+//             v.push(v1[i] * v2[i]);
+//         }
+//
+//         return v;
+//     } catch (err) {
+//         console.error(`call to vmul() failed. v1:${v1} | v2:${v2} | Err:${err}`);
+//     }
+// };
+
+/**
+ * Divides Vectors (all dimensions)
+ */
+// const vdiv = (v1, v2) => {
+//     // TODO: why try/catch?
+//     try {
+//         const v = [];
+//         const lim = Math.min(v1.length, v2.length);
+//
+//         // TODO: this can be done with a _map()
+//         for (let i = 0; i < lim; i++) {
+//             v.push(v1[i] / v2[i]);
+//         }
+//
+//         return v;
+//     } catch (err) {
+//         console.error(`call to vdiv() failed. v1:${v1} | v2:${v2} | Err:${err}`);
+//     }
+// };
+
+/**
+ * Scales vectors in magnitude (all dimensions)
+ */
+var vscale = exports.vscale = function vscale(vectors, factor) {
+    return (0, _map3.default)(vectors, function (v) {
+        return v * factor;
+    });
 };
 
-},{"./constants/logLevel":520}],535:[function(require,module,exports){
+/**
+ * Vector dot product (all dimensions)
+ */
+// const vdp = (v1, v2) => {
+//     let n = 0;
+//     const lim = Math.min(v1.length, v2.length);
+//
+//     // TODO: mabye use _map() here?
+//     for (let i = 0; i < lim; i++) {
+//         n += v1[i] * v2[i];
+//     }
+//
+//     return n;
+// };
+
+/**
+ * Compute determinant of 2D/3D vectors
+ * Remember: May return negative values (undesirable in some situations)
+ */
+var vdet = function vdet(v1, v2, /* optional */v3) {
+    if (Math.min(v1.length, v2.length) === 2) {
+        // 2x2 determinant
+        return v1[0] * v2[1] - v1[1] * v2[0];
+    } else if (Math.min(v1.length, v2.length, v3.length) === 3 && v3) {
+        // 3x3 determinant
+        return v1[0] * vdet([v2[1], v2[2]], [v3[1], v3[2]]) - v1[1] * vdet([v2[0], v2[2]], [v3[0], v3[2]]) + v1[2] * vdet([v2[0], v2[1]], [v3[0], v3[1]]);
+    }
+};
+
+/**
+ * Vector cross product (3D/2D*)
+ * Passing 3D vector returns 3D vector
+ * Passing 2D vector (classically improper) returns z-axis SCALAR
+ * *Note on 2D implementation: http://stackoverflow.com/a/243984/5774767
+ */
+var vcp = function vcp(v1, v2) {
+    if (Math.min(v1.length, v2.length) === 2) {
+        // for 2D vector (returns z-axis scalar)
+        return vcp([v1[0], v1[1], 0], [v2[0], v2[1], 0])[2];
+    }
+
+    if (Math.min(v1.length, v2.length) === 3) {
+        // for 3D vector (returns 3D vector)
+        return [vdet([v1[1], v1[2]], [v2[1], v2[2]]), -vdet([v1[0], v1[2]], [v2[0], v2[2]]), vdet([v1[0], v1[1]], [v2[0], v2[1]])];
+    }
+};
+
+/**
+ * Returns vector rotated by "radians" radians
+ */
+var vturn = exports.vturn = function vturn(radians, v) {
+    if (!v) {
+        v = [0, 1];
+    }
+
+    var x = v[0];
+    var y = v[1];
+    var cs = (0, _core.cos)(-radians);
+    var sn = (0, _core.sin)(-radians);
+
+    return [x * cs - y * sn, x * sn + y * cs];
+};
+
+/**
+ * Determines if and where two rays will intersect. All angles in radians.
+ * Variation based on http://stackoverflow.com/a/565282/5774767
+ */
+var raysIntersect = exports.raysIntersect = function raysIntersect(pos1, dir1, pos2, dir2, deg_allowance) {
+    if (!deg_allowance) {
+        // degrees divergence still considered 'parallel'
+        deg_allowance = 0;
+    }
+
+    var p = pos1;
+    var q = pos2;
+    var r = vectorize_2d(dir1);
+    var s = vectorize_2d(dir2);
+    var t = (0, _core.abs)(vcp(vsub(q, p), s) / vcp(r, s));
+    var t_norm = (0, _core.abs)(vcp(vsub(vnorm(q), vnorm(p)), s) / vcp(r, s));
+    var u_norm = (0, _core.abs)(vcp(vsub(vnorm(q), vnorm(p)), r) / vcp(r, s));
+
+    if ((0, _core.abs)(vcp(r, s)) < (0, _core.abs)(vcp([0, 1], vectorize_2d((0, _unitConverters.degreesToRadians)(deg_allowance))))) {
+        // parallel (within allowance)
+        var crossProduct = vcp(vsub(vnorm(q), vnorm(p)), r);
+
+        if (crossProduct === 0) {
+            // collinear
+            return true;
+        }
+
+        // parallel, non-intersecting
+        return false;
+    } else if (t_norm >= 0 && t_norm <= 1 && u_norm >= 0 && u_norm <= 1) {
+        // rays intersect here
+        return vadd(p, vscale(r, t));
+    }
+
+    // diverging, non-intersecting
+    return false;
+};
+
+/**
+ * Determines if and where two runways will intersect.
+ * Note: Please pass ONLY the runway identifier (eg '28r')
+ */
+// const runwaysIntersect = (rwy1_name, rwy2_name) => {
+//     const airport = window.airportController.airport_get();
+//
+//     return raysIntersect(
+//         airport.getRunway(rwy1_name).position,
+//         airport.getRunway(rwy1_name).angle,
+//         airport.getRunway(rwy2_name).position,
+//         airport.getRunway(rwy2_name).angle,
+//         9.9 // consider "parallel" if rwy hdgs differ by maximum of 9.9 degrees
+//     );
+// };
+
+/**
+ * 'Flips' vector's Y component in direction
+ * Helper function for culebron's poly edge vector functions
+ */
+var vflipY = function vflipY(v) {
+    return [-v[1], v[0]];
+};
+
+/**
+ *
+ *
+ * solution by @culebron
+ * turn poly edge into a vector.
+ * the edge vector scaled by j and its normal vector scaled by i meet
+ * if the edge vector points between the vertices,
+ * then normal is the shortest distance.
+ * --------
+ * x1 + x2 * i == x3 + x4 * j
+ * y1 + y2 * i == y3 + y4 * j
+ * 0 < j < 1
+ * --------
+ *
+ * i == (y3 + j y4 - y1) / y2
+ * x1 + x2 y3 / y2 + j x2 y4 / y2 - x2 y1 / y2 == x3 + j x4
+ * j x2 y4 / y2 - j x4 == x3 - x1 - x2 y3 / y2 + x2 y1 / y2
+ * j = (x3 - x1 - x2 y3 / y2 + x2 y1 / y2) / (x2 y4 / y2 - x4)
+ * i = (y3 + j y4 - y1) / y2
+ *
+ * i == (x3 + j x4 - x1) / x2
+ * y1 + y2 x3 / x2 + j y2 x4 / x2 - y2 x1 / x2 == y3 + j y4
+ * j y2 x4 / x2 - j y4 == y3 - y1 - y2 x3 / x2 + y2 x1 / x2
+ * j = (y3 - y1 - y2 x3 / x2 + y2 x1 / x2) / (y2 x4 / x2 - y4)
+ * i = (x3 + j x4 - x1) / x2
+ *
+ * @fnuction distance_to_poly
+ * @param point {array}
+ * @param poly {array}
+ * @return number
+ */
+var distance_to_poly = exports.distance_to_poly = function distance_to_poly(point, poly) {
+    var dists = (0, _map3.default)(poly, function (vertex1, i) {
+        var prev = (i === 0 ? poly.length : i) - 1;
+        var vertex2 = poly[prev];
+        var edge = vsub(vertex2, vertex1);
+
+        if (vlen(edge) === 0) {
+            return vlen(vsub(point, vertex1));
+        }
+
+        // point + normal * i == vertex1 + edge * j
+        var norm = vflipY(edge);
+        var x1 = point[0];
+        var x2 = norm[0];
+        var x3 = vertex1[0];
+        var x4 = edge[0];
+        var y1 = point[1];
+        var y2 = norm[1];
+        var y3 = vertex1[1];
+        var y4 = edge[1];
+        var k = void 0;
+        var j = void 0;
+
+        if (y2 !== 0) {
+            j = (x3 - x1 - x2 * y3 / y2 + x2 * y1 / y2) / (x2 * y4 / y2 - x4);
+            k = (y3 + j * y4 - y1) / y2;
+        } else if (x2 !== 0) {
+            // normal can't be zero unless the edge has 0 length
+            j = (y3 - y1 - y2 * x3 / x2 + y2 * x1 / x2) / (y2 * x4 / x2 - y4);
+            k = (x3 + j * x4 - x1) / x2;
+        }
+
+        if (j < 0 || j > 1 || !j) {
+            return Math.min(vlen(vsub(point, vertex1)), vlen(vsub(point, vertex2)));
+        }
+
+        return vlen(vscale(norm, k));
+    });
+
+    return Math.min.apply(Math, _toConsumableArray(dists));
+};
+
+// source: https://github.com/substack/point-in-polygon/
+var point_in_poly = exports.point_in_poly = function point_in_poly(point, vs) {
+    // ray-casting algorithm based on
+    // http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html
+    var x = point[0];
+    var y = point[1];
+    var j = vs.length - 1;
+    var inside = false;
+
+    // poly might not be the correct term here
+    (0, _forEach3.default)(vs, function (poly, i) {
+        var xi = poly[0];
+        var yi = poly[1];
+        var xj = vs[j][0];
+        var yj = vs[j][1];
+        var intersect = yi > y !== yj > y && x < (xj - xi) * (y - yi) / (yj - yi) + xi;
+
+        if (intersect) {
+            inside = !inside;
+        }
+
+        j = i;
+    });
+
+    return inside;
+};
+
+/**
+ *
+ * @function point_to_mpoly
+ * @param point {array}
+ * @param mpoly {array}
+ * @return {object}
+ */
+var point_to_mpoly = exports.point_to_mpoly = function point_to_mpoly(point, mpoly) {
+    // returns: boolean inside/outside & distance to the polygon
+    var inside = false;
+
+    (0, _forEach3.default)(mpoly, function (ring, k) {
+        // ring = mpoly[k];
+
+        if (point_in_poly(point, ring)) {
+            if (k === 0) {
+                // if inside outer ring, remember that and wait till the end
+                inside = true;
+            }
+
+            // if by change in one of inner rings, it's out of poly, return distance to the inner ring
+            return {
+                inside: false,
+                distance: distance_to_poly(point, ring)
+            };
+        }
+    });
+
+    // if not matched to inner circles, return the match to outer and distance to it
+    return {
+        inside: inside,
+        distance: distance_to_poly(point, mpoly[0])
+    };
+};
+
+/**
+ * Converts an 'area' to a 'poly'
+ */
+var area_to_poly = exports.area_to_poly = function area_to_poly(area) {
+    // TODO: this should be _map()
+    // What is the significance of returning `[v.position]`? isnt position already an array?
+    return _jquery2.default.map(area.poly, function (v) {
+        return [v.position];
+    });
+};
+
+/**
+ * Checks to see if a point is in an area
+ */
+var point_in_area = exports.point_in_area = function point_in_area(point, area) {
+    return point_in_poly(point, area_to_poly(area));
+};
+
+// TODO: this might be best accomplished with a Rectangle class, with this function working as the middleman
+// creating the class and asking if there is an intersection.
+/**
+ * Compute a point of intersection of a ray with a rectangle.
+ *
+ * Args:
+ *   pos: array of 2 numbers, representing ray source.
+ *   dir: array of 2 numbers, representing ray direction.
+ *   rectPos: array of 2 numbers, representing rectangle corner position.
+ *   rectSize: array of 2 positive numbers, representing size of the rectangle.
+ *
+ * Returns:
+ * - undefined, if pos is outside of the rectangle.
+ * - undefined, in case of a numerical error.
+ * - array of 2 numbers on a rectangle boundary, in case of an intersection.
+ */
+var positive_intersection_with_rect = exports.positive_intersection_with_rect = function positive_intersection_with_rect(pos, dir, rectPos, rectSize) {
+    var left = rectPos[0];
+    var right = rectPos[0] + rectSize[0];
+    var top = rectPos[1];
+    var bottom = rectPos[1] + rectSize[1];
+    var t = void 0;
+    var x = void 0;
+    var y = void 0;
+
+    dir = vnorm(dir);
+
+    // Check if pos is outside of rectangle.
+    if ((0, _clamp3.default)(left, pos[0], right) !== pos[0] || (0, _clamp3.default)(top, pos[1], bottom) !== pos[1]) {
+        return undefined;
+    }
+
+    // Check intersection with top segment.
+    if (dir[1] < 0) {
+        t = (top - pos[1]) / dir[1];
+        x = pos[0] + dir[0] * t;
+
+        if ((0, _clamp3.default)(left, x, right) === x) {
+            return [x, top];
+        }
+    }
+
+    // Check intersection with bottom segment.
+    if (dir[1] > 0) {
+        t = (bottom - pos[1]) / dir[1];
+        x = pos[0] + dir[0] * t;
+
+        if ((0, _clamp3.default)(left, x, right) === x) {
+            return [x, bottom];
+        }
+    }
+
+    // Check intersection with left segment.
+    if (dir[0] < 0) {
+        t = (left - pos[0]) / dir[0];
+        y = pos[1] + dir[1] * t;
+
+        if ((0, _clamp3.default)(top, y, bottom) === y) {
+            return [left, y];
+        }
+    }
+
+    // Check intersection with right segment.
+    if (dir[0] > 0) {
+        t = (right - pos[0]) / dir[0];
+        y = pos[1] + dir[1] * t;
+
+        if ((0, _clamp3.default)(top, y, bottom) === y) {
+            return [right, y];
+        }
+    }
+
+    // Failed to compute intersection due to numerical precision.
+    return undefined;
+};
+
+},{"../utilities/unitConverters":539,"./core":528,"jquery":296,"lodash/clamp":429,"lodash/forEach":434,"lodash/map":456}],532:[function(require,module,exports){
 "use strict";
 
 /* eslint-disable */
@@ -45229,10 +45674,10 @@ zlsa.atc.Parser = function () {
         peg$c32 = function peg$c32() {
       return ["abort"];
     },
-        peg$c33 = "⭡",
-        peg$c34 = { type: "literal", value: "⭡", description: "\"\\u2B61\"" },
-        peg$c35 = "⭣",
-        peg$c36 = { type: "literal", value: "⭣", description: "\"\\u2B63\"" },
+        peg$c33 = "\u2B61",
+        peg$c34 = { type: "literal", value: "\u2B61", description: "\"\\u2B61\"" },
+        peg$c35 = "\u2B63",
+        peg$c36 = { type: "literal", value: "\u2B63", description: "\"\\u2B63\"" },
         peg$c37 = function peg$c37(arg) {
       return ["altitude", arg * 100, null];
     },
@@ -45327,13 +45772,13 @@ zlsa.atc.Parser = function () {
         peg$c102 = function peg$c102(cmd) {
       return [cmd[0], cmd[1], cmd[2][0], cmd[2][1]];
     },
-        peg$c103 = "⮢",
-        peg$c104 = { type: "literal", value: "⮢", description: "\"\\u2BA2\"" },
+        peg$c103 = "\u2BA2",
+        peg$c104 = { type: "literal", value: "\u2BA2", description: "\"\\u2BA2\"" },
         peg$c105 = function peg$c105() {
       return "left";
     },
-        peg$c106 = "⮣",
-        peg$c107 = { type: "literal", value: "⮣", description: "\"\\u2BA3\"" },
+        peg$c106 = "\u2BA3",
+        peg$c107 = { type: "literal", value: "\u2BA3", description: "\"\\u2BA3\"" },
         peg$c108 = function peg$c108() {
       return "right";
     },
@@ -45396,8 +45841,8 @@ zlsa.atc.Parser = function () {
         peg$c145 = function peg$c145(cmd, arg) {
       return [cmd, arg[0], arg[1]];
     },
-        peg$c146 = "⭐",
-        peg$c147 = { type: "literal", value: "⭐", description: "\"\\u2B50\"" },
+        peg$c146 = "\u2B50",
+        peg$c147 = { type: "literal", value: "\u2B50", description: "\"\\u2B50\"" },
         peg$c148 = "movedatablock",
         peg$c149 = { type: "literal", value: "movedatablock", description: "\"movedatablock\"" },
         peg$c150 = "`",
@@ -48207,7 +48652,7 @@ zlsa.atc.Parser = function () {
   };
 }();
 
-},{}],536:[function(require,module,exports){
+},{}],533:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -48312,7 +48757,7 @@ var speech_toggle = exports.speech_toggle = function speech_toggle() {
     localStorage[_storageKeys.STORAGE_KEY.ATC_SPEECH_ENABLED] = prop.speech.enabled;
 };
 
-},{"./constants/selectors":521,"./constants/storageKeys":522,"./utilities/radioUtilities":540,"jquery":296,"lodash/get":435,"lodash/has":436}],537:[function(require,module,exports){
+},{"./constants/selectors":519,"./constants/storageKeys":520,"./utilities/radioUtilities":537,"jquery":296,"lodash/get":435,"lodash/has":436}],534:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -48345,7 +48790,7 @@ var TutorialStep = function () {
      * @constructor
      */
     function TutorialStep() {
-        var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+        var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
         _classCallCheck(this, TutorialStep);
 
@@ -48380,7 +48825,7 @@ var TutorialStep = function () {
 
 exports.default = TutorialStep;
 
-},{"lodash/get":435}],538:[function(require,module,exports){
+},{"lodash/get":435}],535:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -48410,6 +48855,8 @@ var _core = require('../math/core');
 
 var _timeHelpers = require('../utilities/timeHelpers');
 
+var _unitConverters = require('../utilities/unitConverters');
+
 var _storageKeys = require('../constants/storageKeys');
 
 var _selectors = require('../constants/selectors');
@@ -48431,7 +48878,7 @@ var TutorialView = function () {
      * @constructor
      */
     function TutorialView() {
-        var $element = arguments.length <= 0 || arguments[0] === undefined ? null : arguments[0];
+        var $element = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
 
         _classCallCheck(this, TutorialView);
 
@@ -48767,7 +49214,7 @@ var TutorialView = function () {
                         return t;
                     }
 
-                    return t.replace(/{ANGLE}/g, heading_to_string(prop.aircraft.list[0].destination));
+                    return t.replace(/{ANGLE}/g, (0, _unitConverters.heading_to_string)(prop.aircraft.list[0].destination));
                 },
                 side: 'left',
                 position: tutorial_position
@@ -48910,7 +49357,7 @@ var TutorialView = function () {
     }, {
         key: 'tutorial_get',
         value: function tutorial_get() {
-            var step = arguments.length <= 0 || arguments[0] === undefined ? null : arguments[0];
+            var step = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
 
             if (!step) {
                 step = prop.tutorial.step;
@@ -49067,39 +49514,18 @@ var TutorialView = function () {
 
 exports.default = TutorialView;
 
-},{"../constants/selectors":521,"../constants/storageKeys":522,"../math/core":530,"../utilities/timeHelpers":541,"./TutorialStep":537,"jquery":296,"lodash/clamp":429,"lodash/has":436}],539:[function(require,module,exports){
+},{"../constants/selectors":519,"../constants/storageKeys":520,"../math/core":528,"../utilities/timeHelpers":538,"../utilities/unitConverters":539,"./TutorialStep":534,"jquery":296,"lodash/clamp":429,"lodash/has":436}],536:[function(require,module,exports){
 'use strict';
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; }; /* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand, no-unused-vars, no-undef, no-param-reassign */
-
-
-var _jquery = require('jquery');
-
-var _jquery2 = _interopRequireDefault(_jquery);
-
-var _clamp2 = require('lodash/clamp');
-
-var _clamp3 = _interopRequireDefault(_clamp2);
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 var _has2 = require('lodash/has');
 
 var _has3 = _interopRequireDefault(_has2);
 
-var _map2 = require('lodash/map');
-
-var _map3 = _interopRequireDefault(_map2);
-
-var _unitConverters = require('./utilities/unitConverters');
-
 var _radioUtilities = require('./utilities/radioUtilities');
 
-var _core = require('./math/core');
-
-var _distance = require('./math/distance');
-
-var _circle = require('./math/circle');
-
-var _vector = require('./math/vector');
+var _logLevel = require('./constants/logLevel');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -49120,6 +49546,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 window.AudioContext = window.AudioContext || window.webkitAudioContext;
 
 /*eslint-disable*/
+// TODO: this should be replaced with lodash _clone()
 function clone(obj) {
     if (null == obj || 'object' != (typeof obj === 'undefined' ? 'undefined' : _typeof(obj))) {
         return obj;
@@ -49136,61 +49563,99 @@ function clone(obj) {
 };
 
 // String repetition copied from http://stackoverflow.com/a/5450113
-if (!String.prototype.hasOwnProperty("repeat")) {
+if (!String.prototype.hasOwnProperty('repeat')) {
     String.prototype.repeat = function (count) {
-        if (count < 1) return '';
-        var result = '',
-            pattern = this.valueOf();
+        if (count < 1) {
+            return '';
+        }
+
+        var result = '';
+        var pattern = this.valueOf();
+
         while (count > 1) {
             if (count & 1) result += pattern;
             count >>= 1, pattern += pattern;
         }
+
         return result + pattern;
     };
 }
-/*eslint-enable*/
-var CONSTANTS = {
-    // radius of Earth, nm
-    EARTH_RADIUS_NM: 3440
-};
 
-// TODO: is this being used?
+/**
+ * Necessary for Internet Explorer 11 (IE11) to not die while using String.fromCodePoint()
+ * This function is not natively available in IE11, as noted on this MSDN page:
+ * https://msdn.microsoft.com/en-us/library/dn890630(v=vs.94).aspx
+ *
+ * Apparently, it is fine with pre-Win8.1 MS Edge 11, but never okay in IE.
+ * Here, the function is added to the String prototype to make later code usable.
+ *
+ * Solution from: http://xahlee.info/js/js_unicode_code_point.html
+*/
+if (!String.fromCodePoint) {
+    // ES6 Unicode Shims 0.1 , © 2012 Steven Levithan , MIT License
+    String.fromCodePoint = function fromCodePoint() {
+        var chars = [];
+        var point = void 0;
+        var offset = void 0;
+        var units = void 0;
+
+        for (var i = 0; i < arguments.length; i++) {
+            point = arguments[i];
+            offset = point - 0x10000;
+            units = point > 0xFFFF ? [0xD800 + (offset >> 10), 0xDC00 + (offset & 0x3FF)] : [point];
+            chars.push(String.fromCharCode.apply(null, units));
+        }
+
+        return chars.join('');
+    };
+}
+
+var log = function log(message) {
+    var level = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : _logLevel.LOG.INFO;
+
+    var logStrings = {
+        0: 'DEBUG',
+        1: 'INFO',
+        2: 'WARN',
+        3: 'ERROR',
+        4: 'FATAL'
+    };
+
+    if (prop.log <= level) {
+        var text = '[ ' + logStrings[level] + ' ]';
+
+        if (level >= _logLevel.LOG.WARNING) {
+            console.warn(text, message);
+        } else {
+            console.log(text, message);
+        }
+    }
+};
+window.log = log;
+
+/*eslint-enable*/
+
+// TODO: is this being used? and why are we cloning radio_names here?
 var radio_runway_names = clone(_radioUtilities.radio_names);
 radio_runway_names.l = 'left';
 radio_runway_names.c = 'center';
 radio_runway_names.r = 'right';
 
-// ************************ GENERAL FUNCTIONS ************************
-function trange(il, i, ih, ol, oh) {
-    return ol + (oh - ol) * (i - il) / (ih - il);
-    // i=(i/(ih-il))-il;       // purpose unknown
-    // return (i*(oh-ol))+ol;  // purpose unknown
-}
-
-function crange(il, i, ih, ol, oh) {
-    return (0, _clamp3.default)(ol, trange(il, i, ih, ol, oh), oh);
-}
-
-function srange(il, i, ih) {}
-//    return cos(();
-
-
-// TODO: rename distanceEuclid
 // FIXME: unused
-function distEuclid(gps1, gps2) {
-    // FIXME: enumerate the magic number
-    var R = 6371; // nm
-    var lat1 = (0, _unitConverters.degreesToRadians)(lat1);
-    var lat2 = (0, _unitConverters.degreesToRadians)(lat2);
-    var dlat = (0, _unitConverters.degreesToRadians)(lat2 - lat1);
-    var dlon = (0, _unitConverters.degreesToRadians)(lon2 - lon1);
-    // TODO: this should probably be abstracted
-    var a = (0, _core.sin)(dlat / 2) * (0, _core.sin)(dlat / 2) + (0, _core.cos)(lat1) * (0, _core.cos)(lat2) * (0, _core.sin)(dlon / 2) * (0, _core.sin)(dlon / 2);
-    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    var d = R * c;
-
-    return d; // distance, in kilometers
-}
+// function distEuclid(gps1, gps2) {
+//     // FIXME: enumerate the magic number
+//     const R = 6371; // nm
+//     const lat1 = degreesToRadians(lat1);
+//     const lat2 = degreesToRadians(lat2);
+//     const dlat = degreesToRadians(lat2 - lat1);
+//     const dlon = degreesToRadians(lon2 - lon1);
+//     // TODO: this should probably be abstracted
+//     const a = sin(dlat / 2) * sin(dlat / 2) + cos(lat1) * cos(lat2) * sin(dlon / 2) * sin(dlon / 2);
+//     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+//     const d = R * c;
+//
+//     return d; // distance, in kilometers
+// }
 
 function choose(l) {
     return l[Math.floor(Math.random() * l.length)];
@@ -49203,11 +49668,12 @@ function choose_weight(l) {
     }
 
     // FIXME: this is not checking if l is an array. assuming `l[0]` is and array,
-    // `typeof l[0]` will return 'object'
     // `typeof []` will always return 'object'
     // if this was ment to check if `l[0]` is an array, `Array.isArray(l[0])` is one way to do it.
     // or lodash _isArray(l[0]) would work too.
-    if (_typeof(l[0]) != _typeof([])) return choose(l);
+    if (_typeof(l[0]) != _typeof([])) {
+        return choose(l);
+    }
 
     // l = [[item, weight], [item, weight] ... ];
     var weight = 0;
@@ -49230,10 +49696,6 @@ function choose_weight(l) {
     return null;
 }
 
-function mod(a, b) {
-    return (a % b + b) % b;
-}
-
 // TODO: rename leftPad
 /**
  * Prepends zeros to front of str/num to make it the desired width
@@ -49248,171 +49710,14 @@ function lpad(n, width) {
     return x.substr(x.length - width, width);
 }
 
-/**
- * Returns the bearing from position 'a' to position 'b'
- *
- * @param {array} a - positional array, start point
- * @param {array} a - positional array, end point
- */
-function bearing(a, b) {
-    return (0, _vector.vradial)((0, _vector.vsub)(b, a));
-}
+// FIXME: unused
+// function endsWith(str, suffix) {
+//     return str.indexOf(suffix, str.length - suffix.length) !== -1;
+// }
+// window.endsWith = endsWith;
 
-/**
- * Returns an offset array showing how far [fwd/bwd, left/right] 'aircraft' is of 'target'
- *
- * @param {Aircraft} aircraft - the aircraft in question
- * @param {array} target - positional array of the targeted position [x,y]
- * @param {number} headingThruTarget - (optional) The heading the aircraft should
- *                                     be established on when passing the target.
- *                                     Default value is the aircraft's heading.
- * @returns {array} with two elements: retval[0] is the lateral offset, in km
- *                                     retval[1] is the longitudinal offset, in km
- *                                     retval[2] is the hypotenuse (straight-line distance), in km
- */
-function getOffset(aircraft, target) {
-    var headingThruTarget = arguments.length <= 2 || arguments[2] === undefined ? null : arguments[2];
 
-    if (!headingThruTarget) {
-        headingThruTarget = aircraft.heading;
-    }
-
-    var offset = [0, 0, 0];
-    var vector = (0, _vector.vsub)(target, aircraft.position); // vector from aircraft pointing to target
-    var bearingToTarget = (0, _vector.vradial)(vector);
-
-    offset[2] = (0, _vector.vlen)(vector);
-    offset[0] = offset[2] * (0, _core.sin)(headingThruTarget - bearingToTarget);
-    offset[1] = offset[2] * (0, _core.cos)(headingThruTarget - bearingToTarget);
-
-    return offset;
-}
-
-function heading_to_string(heading) {
-    heading = (0, _core.round)(mod((0, _unitConverters.radiansToDegrees)(heading), 360)).toString();
-
-    if (heading === '0') {
-        heading = '360';
-    }
-
-    if (heading.length === 1) {
-        heading = '00' + heading;
-    }
-
-    if (heading.length === 2) {
-        heading = '0' + heading;
-    }
-
-    return heading;
-}
-
-function getCardinalDirection(angle) {
-    var directions = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW', 'N'];
-
-    return directions[(0, _core.round)(angle / (0, _circle.tau)() * 8)];
-}
-
-function to_canvas_pos(pos) {
-    return [prop.canvas.size.width / 2 + prop.canvas.panX + (0, _unitConverters.km)(pos[0]), prop.canvas.size.height / 2 + prop.canvas.panY - (0, _unitConverters.km)(pos[1])];
-}
-
-// TODO: this might be best accomplished with a Rectangle class, with this function working as the middleman
-// creating the class and asking if there is an intersection.
-/**
- * Compute a point of intersection of a ray with a rectangle.
- *
- * Args:
- *   pos: array of 2 numbers, representing ray source.
- *   dir: array of 2 numbers, representing ray direction.
- *   rectPos: array of 2 numbers, representing rectangle corner position.
- *   rectSize: array of 2 positive numbers, representing size of the rectangle.
- *
- * Returns:
- * - undefined, if pos is outside of the rectangle.
- * - undefined, in case of a numerical error.
- * - array of 2 numbers on a rectangle boundary, in case of an intersection.
- */
-function positive_intersection_with_rect(pos, dir, rectPos, rectSize) {
-    var left = rectPos[0];
-    var right = rectPos[0] + rectSize[0];
-    var top = rectPos[1];
-    var bottom = rectPos[1] + rectSize[1];
-    var t = void 0;
-    var x = void 0;
-    var y = void 0;
-
-    dir = vnorm(dir);
-
-    // Check if pos is outside of rectangle.
-    if ((0, _clamp3.default)(left, pos[0], right) !== pos[0] || (0, _clamp3.default)(top, pos[1], bottom) !== pos[1]) {
-        return undefined;
-    }
-
-    // Check intersection with top segment.
-    if (dir[1] < 0) {
-        t = (top - pos[1]) / dir[1];
-        x = pos[0] + dir[0] * t;
-
-        if ((0, _clamp3.default)(left, x, right) === x) {
-            return [x, top];
-        }
-    }
-
-    // Check intersection with bottom segment.
-    if (dir[1] > 0) {
-        t = (bottom - pos[1]) / dir[1];
-        x = pos[0] + dir[0] * t;
-
-        if ((0, _clamp3.default)(left, x, right) === x) {
-            return [x, bottom];
-        }
-    }
-
-    // Check intersection with left segment.
-    if (dir[0] < 0) {
-        t = (left - pos[0]) / dir[0];
-        y = pos[1] + dir[1] * t;
-
-        if ((0, _clamp3.default)(top, y, bottom) === y) {
-            return [left, y];
-        }
-    }
-
-    // Check intersection with right segment.
-    if (dir[0] > 0) {
-        t = (right - pos[0]) / dir[0];
-        y = pos[1] + dir[1] * t;
-
-        if ((0, _clamp3.default)(top, y, bottom) === y) {
-            return [right, y];
-        }
-    }
-
-    // Failed to compute intersection due to numerical precision.
-    return undefined;
-}
-
-/**
- * Get new position by fix-radial-distance method
- *
- * @param {array} fix       positional array of start point, in decimal-degrees [lat,lon]
- * @param {number} radial   heading to project along, in radians
- * @param {number} dist     distance to project, in nm
- * @returns {array}         location of the projected fix
- */
-function fixRadialDist(fix, radial, dist) {
-    // convert GPS coordinates to radians
-    fix = [(0, _unitConverters.degreesToRadians)(fix[0]), (0, _unitConverters.degreesToRadians)(fix[1])];
-
-    var R = CONSTANTS.EARTH_RADIUS_NM;
-    // TODO: abstract these two calculations to functions
-    var lat2 = Math.asin((0, _core.sin)(fix[1]) * (0, _core.cos)(dist / R) + (0, _core.cos)(fix[1]) * (0, _core.sin)(dist / R) * (0, _core.cos)(radial));
-    var lon2 = fix[0] + Math.atan2((0, _core.sin)(radial) * (0, _core.sin)(dist / R) * (0, _core.cos)(fix[1]), (0, _core.cos)(dist / R) - (0, _core.sin)(fix[1]) * (0, _core.sin)(lat2));
-
-    return [(0, _unitConverters.radiansToDegrees)(lon2), (0, _unitConverters.radiansToDegrees)(lat2)];
-}
-
-// TODO: lodash _compact()
+// TODO: lodash _compact() might be useful here
 /**
  * Splices all empty elements out of an array
  */
@@ -49441,455 +49746,21 @@ function array_sum(array) {
     return total;
 }
 
-// TODO: this logic should live in the `AirportController`
-function inAirspace(pos) {
-    var apt = window.airportController.airport_get();
-    var perim = apt.perimeter;
-
-    if (perim) {
-        return point_in_area(pos, perim);
-    }
-
-    return (0, _distance.distance2d)(pos, apt.position.position) <= apt.ctr_radius;
-}
-
-// TODO: this logic should live in the `AirportController`
-function dist_to_boundary(pos) {
-    var apt = window.airportController.airport_get();
-    var perim = apt.perimeter;
-
-    if (perim) {
-        // km
-        return distance_to_poly(pos, area_to_poly(perim));
-    }
-
-    return (0, _core.abs)((0, _distance.distance2d)(pos, apt.position.position) - apt.ctr_radius);
-}
-
-// ************************ VECTOR FUNCTIONS ************************
-// For more info, see http://threejs.org/docs/#Reference/Math/Vector3
-// Remember: [x,y] convention is used, and doesn't match [lat,lon]
-
-/**
- * Normalize a 2D vector
- * eg scaling elements such that net length is 1
- * Turns vector 'v' into a 'unit vector'
- */
-function vnorm(v, length) {
-    var x = v[0];
-    var y = v[1];
-    var angle = Math.atan2(x, y);
-
-    if (!length) {
-        length = 1;
-    }
-
-    return [(0, _core.sin)(angle) * length, (0, _core.cos)(angle) * length];
-}
-
-/**
- * Create a 2D vector
- * Pass a heading (rad) and this will return the corresponding unit vector
- */
-function vectorize_2d(direction) {
-    return [(0, _core.sin)(direction), (0, _core.cos)(direction)];
-}
-
-/**
- * Adds Vectors (all dimensions)
- */
-function vadd(v1, v2) {
-    // TODO: why try/catch?
-    try {
-        var v = [];
-        var limit = Math.min(v1.length, v2.length);
-
-        // TODO: this can be done with a _map()
-        for (var i = 0; i < limit; i++) {
-            v.push(v1[i] + v2[i]);
-        }
-
-        return v;
-    } catch (err) {
-        console.error('call to vadd() failed. v1:' + v1 + ' | v2:' + v2 + ' | Err:' + err);
-    }
-}
-
-/**
- * Multiplies Vectors (all dimensions)
- */
-function vmul(v1, v2) {
-    // TODO: why try/catch?
-    try {
-        var v = [];
-        var limit = Math.min(v1.length, v2.length);
-
-        // TODO: this can be done with a _map()
-        for (var i = 0; i < limit; i++) {
-            v.push(v1[i] * v2[i]);
-        }
-
-        return v;
-    } catch (err) {
-        console.error('call to vmul() failed. v1:' + v1 + ' | v2:' + v2 + ' | Err:' + err);
-    }
-}
-
-/**
- * Divides Vectors (all dimensions)
- */
-function vdiv(v1, v2) {
-    // TODO: why try/catch?
-    try {
-        var v = [];
-        var lim = Math.min(v1.length, v2.length);
-
-        // TODO: this can be done with a _map()
-        for (var i = 0; i < lim; i++) {
-            v.push(v1[i] / v2[i]);
-        }
-
-        return v;
-    } catch (err) {
-        console.error('call to vdiv() failed. v1:' + v1 + ' | v2:' + v2 + ' | Err:' + err);
-    }
-}
-
-/**
- * Scales vectors in magnitude (all dimensions)
- */
-function vscale(vectors, factor) {
-    return (0, _map3.default)(vectors, function (v) {
-        return v * factor;
-    });
-}
-
-/**
- * Vector dot product (all dimensions)
- */
-function vdp(v1, v2) {
-    var n = 0;
-    var lim = Math.min(v1.length, v2.length);
-
-    // TODO: mabye use _map() here?
-    for (var i = 0; i < lim; i++) {
-        n += v1[i] * v2[i];
-    }
-
-    return n;
-}
-
-/**
- * Vector cross product (3D/2D*)
- * Passing 3D vector returns 3D vector
- * Passing 2D vector (classically improper) returns z-axis SCALAR
- * *Note on 2D implementation: http://stackoverflow.com/a/243984/5774767
- */
-function vcp(v1, v2) {
-    if (Math.min(v1.length, v2.length) === 2) {
-        // for 2D vector (returns z-axis scalar)
-        return vcp([v1[0], v1[1], 0], [v2[0], v2[1], 0])[2];
-    }
-
-    if (Math.min(v1.length, v2.length) === 3) {
-        // for 3D vector (returns 3D vector)
-        return [vdet([v1[1], v1[2]], [v2[1], v2[2]]), -vdet([v1[0], v1[2]], [v2[0], v2[2]]), vdet([v1[0], v1[1]], [v2[0], v2[1]])];
-    }
-}
-
-/**
- * Compute determinant of 2D/3D vectors
- * Remember: May return negative values (undesirable in some situations)
- */
-function vdet(v1, v2, /* optional */v3) {
-    if (Math.min(v1.length, v2.length) === 2) {
-        // 2x2 determinant
-        return v1[0] * v2[1] - v1[1] * v2[0];
-    } else if (Math.min(v1.length, v2.length, v3.length) === 3 && v3) {
-        // 3x3 determinant
-        return v1[0] * vdet([v2[1], v2[2]], [v3[1], v3[2]]) - v1[1] * vdet([v2[0], v2[2]], [v3[0], v3[2]]) + v1[2] * vdet([v2[0], v2[1]], [v3[0], v3[1]]);
-    }
-}
-
-/**
- * Returns vector rotated by "radians" radians
- */
-function vturn(radians, v) {
-    if (!v) {
-        v = [0, 1];
-    }
-
-    var x = v[0];
-    var y = v[1];
-    var cs = (0, _core.cos)(-radians);
-    var sn = (0, _core.sin)(-radians);
-
-    return [x * cs - y * sn, x * sn + y * cs];
-}
-
-/**
- * Determines if and where two runways will intersect.
- * Note: Please pass ONLY the runway identifier (eg '28r')
- */
-function runwaysIntersect(rwy1_name, rwy2_name) {
-    var airport = window.airportController.airport_get();
-
-    return raysIntersect(airport.getRunway(rwy1_name).position, airport.getRunway(rwy1_name).angle, airport.getRunway(rwy2_name).position, airport.getRunway(rwy2_name).angle, 9.9 // consider "parallel" if rwy hdgs differ by maximum of 9.9 degrees
-    );
-}
-
-/**
- * Determines if and where two rays will intersect. All angles in radians.
- * Variation based on http://stackoverflow.com/a/565282/5774767
- */
-function raysIntersect(pos1, dir1, pos2, dir2, deg_allowance) {
-    if (!deg_allowance) {
-        // degrees divergence still considered 'parallel'
-        deg_allowance = 0;
-    }
-
-    var p = pos1;
-    var q = pos2;
-    var r = vectorize_2d(dir1);
-    var s = vectorize_2d(dir2);
-    var t = (0, _core.abs)(vcp((0, _vector.vsub)(q, p), s) / vcp(r, s));
-    var t_norm = (0, _core.abs)(vcp((0, _vector.vsub)(vnorm(q), vnorm(p)), s) / vcp(r, s));
-    var u_norm = (0, _core.abs)(vcp((0, _vector.vsub)(vnorm(q), vnorm(p)), r) / vcp(r, s));
-
-    if ((0, _core.abs)(vcp(r, s)) < (0, _core.abs)(vcp([0, 1], vectorize_2d((0, _unitConverters.degreesToRadians)(deg_allowance))))) {
-        // parallel (within allowance)
-        if (vcp((0, _vector.vsub)(vnorm(q), vnorm(p)), r) === 0) {
-            // collinear
-            return true;
-        } else {
-            // parallel, non-intersecting
-            return false;
-        }
-    } else if (0 <= t_norm && t_norm <= 1 && 0 <= u_norm && u_norm <= 1) {
-        // rays intersect here
-        return vadd(p, vscale(r, t));
-    }
-
-    // diverging, non-intersecting
-    return false;
-}
-
-/**
- * 'Flips' vector's Y component in direction
- * Helper function for culebron's poly edge vector functions
- */
-function vflipY(v) {
-    return [-v[1], v[0]];
-}
-
-/*
-solution by @culebron
-turn poly edge into a vector.
-the edge vector scaled by j and its normal vector scaled by i meet
-if the edge vector points between the vertices,
-then normal is the shortest distance.
---------
-x1 + x2 * i == x3 + x4 * j
-y1 + y2 * i == y3 + y4 * j
-0 < j < 1
---------
-
-i == (y3 + j y4 - y1) / y2
-x1 + x2 y3 / y2 + j x2 y4 / y2 - x2 y1 / y2 == x3 + j x4
-j x2 y4 / y2 - j x4 == x3 - x1 - x2 y3 / y2 + x2 y1 / y2
-j = (x3 - x1 - x2 y3 / y2 + x2 y1 / y2) / (x2 y4 / y2 - x4)
-i = (y3 + j y4 - y1) / y2
-
-i == (x3 + j x4 - x1) / x2
-y1 + y2 x3 / x2 + j y2 x4 / x2 - y2 x1 / x2 == y3 + j y4
-j y2 x4 / x2 - j y4 == y3 - y1 - y2 x3 / x2 + y2 x1 / x2
-j = (y3 - y1 - y2 x3 / x2 + y2 x1 / x2) / (y2 x4 / x2 - y4)
-i = (x3 + j x4 - x1) / x2
-*/
-function distance_to_poly(point, poly) {
-    var dists = _jquery2.default.map(poly, function (vertex1, i) {
-        var prev = (i == 0 ? poly.length : i) - 1;
-        var vertex2 = poly[prev];
-        var edge = (0, _vector.vsub)(vertex2, vertex1);
-
-        if ((0, _vector.vlen)(edge) === 0) {
-            return (0, _vector.vlen)((0, _vector.vsub)(point, vertex1));
-        }
-
-        // point + normal * i == vertex1 + edge * j
-        var norm = vflipY(edge);
-        var x1 = point[0];
-        var x2 = norm[0];
-        var x3 = vertex1[0];
-        var x4 = edge[0];
-        var y1 = point[1];
-        var y2 = norm[1];
-        var y3 = vertex1[1];
-        var y4 = edge[1];
-        var i, j;
-
-        if (y2 != 0) {
-            j = (x3 - x1 - x2 * y3 / y2 + x2 * y1 / y2) / (x2 * y4 / y2 - x4);
-            i = (y3 + j * y4 - y1) / y2;
-        } else if (x2 !== 0) {
-            // normal can't be zero unless the edge has 0 length
-            j = (y3 - y1 - y2 * x3 / x2 + y2 * x1 / x2) / (y2 * x4 / x2 - y4);
-            i = (x3 + j * x4 - x1) / x2;
-        }
-
-        if (j < 0 || j > 1 || j == null) return Math.min((0, _vector.vlen)((0, _vector.vsub)(point, vertex1)), (0, _vector.vlen)((0, _vector.vsub)(point, vertex2)));
-
-        return (0, _vector.vlen)(vscale(norm, i));
-    });
-
-    return Math.min.apply(null, dists);
-}
-
-function point_to_mpoly(point, mpoly) {
-    // returns: boolean inside/outside & distance to the polygon
-    var k = void 0;
-    var ring = void 0;
-    var inside = false;
-
-    for (var _k in mpoly) {
-        ring = mpoly[_k];
-
-        if (point_in_poly(point, ring)) {
-            if (_k === 0) {
-                // if inside outer ring, remember that and wait till the end
-                inside = true;
-            } else {
-                // if by change in one of inner rings, it's out of poly, return distance to the inner ring
-                return {
-                    inside: false,
-                    distance: distance_to_poly(point, ring)
-                };
-            }
-        }
-    }
-
-    // if not matched to inner circles, return the match to outer and distance to it
-    return {
-        inside: inside,
-        distance: distance_to_poly(point, mpoly[0])
-    };
-}
-
-// source: https://github.com/substack/point-in-polygon/
-function point_in_poly(point, vs) {
-    // ray-casting algorithm based on
-    // http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html
-    var x = point[0];
-    var y = point[1];
-    var i = void 0;
-    var j = vs.length - 1;
-    var inside = false;
-
-    for (i in vs) {
-        var xi = vs[i][0],
-            yi = vs[i][1];
-        var xj = vs[j][0],
-            yj = vs[j][1];
-        var intersect = yi > y != yj > y && x < (xj - xi) * (y - yi) / (yj - yi) + xi;
-
-        if (intersect) {
-            inside = !inside;
-        }
-
-        j = i;
-    }
-
-    return inside;
-}
-
-/**
- * Converts an 'area' to a 'poly'
- */
-function area_to_poly(area) {
-    return _jquery2.default.map(area.poly, function (v) {
-        return [v.position];
-    });
-}
-
-/**
- * Checks to see if a point is in an area
- */
-function point_in_area(point, area) {
-    return point_in_poly(point, area_to_poly(area));
-}
-
-function endsWith(str, suffix) {
-    return str.indexOf(suffix, str.length - suffix.length) !== -1;
-}
-
-function parseElevation(ele) {
-    var alt = /^(Infinity|(\d+(\.\d+)?)(m|ft))$/.exec(ele);
-
-    if (alt == null) {
-        log('Unable to parse elevation ' + ele);
-        return;
-    }
-
-    if (alt[1] == 'Infinity') {
-        return Infinity;
-    }
-
-    return parseFloat(alt[2]) / (alt[4] == 'm' ? 0.3048 : 1);
-}
-
 window.clone = clone;
-window.trange = trange;
-window.crange = crange;
-window.srange = srange;
-window.distEuclid = distEuclid;
-// window.fix_angle = fix_angle;
+// window.distEuclid = distEuclid;
 window.choose = choose;
 window.choose_weight = choose_weight;
-window.mod = mod;
 window.lpad = lpad;
-
-window.bearing = bearing;
-window.getOffset = getOffset;
-window.heading_to_string = heading_to_string;
-
-window.getCardinalDirection = getCardinalDirection;
-window.to_canvas_pos = to_canvas_pos;
-window.positive_intersection_with_rect = positive_intersection_with_rect;
-window.fixRadialDist = fixRadialDist;
 window.array_clean = array_clean;
 window.array_sum = array_sum;
-window.inAirspace = inAirspace;
-window.dist_to_boundary = dist_to_boundary;
 
-window.vnorm = vnorm;
-window.vectorize_2d = vectorize_2d;
-window.vadd = vadd;
-window.vsub = _vector.vsub;
-window.vmul = vmul;
-window.vdiv = vdiv;
-window.vscale = vscale;
-window.vdp = vdp;
-window.vcp = vcp;
-window.vdet = vdet;
-window.vturn = vturn;
-window.runwaysIntersect = runwaysIntersect;
-window.raysIntersect = raysIntersect;
-window.vflipY = vflipY;
-window.distance_to_poly = distance_to_poly;
-window.point_to_mpoly = point_to_mpoly;
-window.point_in_poly = point_in_poly;
-window.area_to_poly = area_to_poly;
-window.point_in_area = point_in_area;
-window.endsWith = endsWith;
-window.parseElevation = parseElevation;
-
-},{"./math/circle":529,"./math/core":530,"./math/distance":531,"./math/vector":533,"./utilities/radioUtilities":540,"./utilities/unitConverters":542,"jquery":296,"lodash/clamp":429,"lodash/has":436,"lodash/map":456}],540:[function(require,module,exports){
+},{"./constants/logLevel":518,"./utilities/radioUtilities":537,"lodash/has":436}],537:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.radio_trend = exports.radio_altitude = exports.radio_spellOut = exports.radio_heading = exports.radio_runway = exports.groupNumbers = exports.getGrouping = exports.digits_decimal = exports.digits_integer = exports.radio_runway_names = exports.radio_cardinalDir_names = exports.radio_names = undefined;
+exports.getCardinalDirection = exports.radio_trend = exports.radio_altitude = exports.radio_spellOut = exports.radio_heading = exports.radio_runway = exports.groupNumbers = exports.getGrouping = exports.digits_decimal = exports.digits_integer = exports.radio_runway_names = exports.radio_cardinalDir_names = exports.radio_names = undefined;
 
 var _clone2 = require('lodash/clone');
 
@@ -49903,7 +49774,18 @@ var _map2 = require('lodash/map');
 
 var _map3 = _interopRequireDefault(_map2);
 
+var _core = require('../math/core');
+
+var _circle = require('../math/circle');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * @property CARDINAL_DIRECTION
+ * @type {Array}
+ * @final
+ */
+var CARDINAL_DIRECTION = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW', 'N'];
 
 /**
  * @property radio_names
@@ -49969,6 +49851,8 @@ var radio_names = exports.radio_names = {
     '.': 'point'
 };
 
+// TODO: this and CARDINAL_DIRECTION seem to be duplicating logic. look into smoothing that out by using
+// just this enum and `toUpperCase()` where necessary.
 /**
  * @property radio_cardinalDir_names
  * @type {Object}
@@ -50006,7 +49890,7 @@ radio_runway_names.r = 'right';
  * @return {string} with leading zeros to reach 'digits' places
  */
 var digits_integer = exports.digits_integer = function digits_integer(number, digits) {
-    var truncate = arguments.length <= 2 || arguments[2] === undefined ? false : arguments[2];
+    var truncate = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
 
     if (truncate) {
         number = Math.floor(number).toString();
@@ -50066,13 +49950,13 @@ var digits_decimal = exports.digits_decimal = function digits_decimal(number, di
             } else if (trailingDigits > digits) {
                 if (truncate) {
                     return number.substr(0, number.length - (trailingDigits - digits));
-                } else {
-                    var len = number.length - (trailingDigits - digits + 1);
-                    var part1 = number.substr(0, len);
-                    var part2 = digits === 0 ? '' : shorten(parseInt(number.substr(len, 2), 10) / 10).toString();
-
-                    return part1 + part2;
                 }
+
+                var len = number.length - (trailingDigits - digits + 1);
+                var part1 = number.substr(0, len);
+                var part2 = digits === 0 ? '' : shorten(parseInt(number.substr(len, 2), 10) / 10).toString();
+
+                return part1 + part2;
             }
         }
     }
@@ -50098,12 +49982,14 @@ var getGrouping = exports.getGrouping = function getGrouping(groupable) {
         // exact number (eg 'seventeen')
         return radio_names[groupable];
     } else if (digit1 >= 2) {
+        var firstDigit = digit1 + '0';
+
         if (digit2 === 0) {
             // to avoid 'five twenty zero'
-            return radio_names[digit1 + '0'];
+            return radio_names[firstDigit];
         }
         // combo number (eg 'fifty one')
-        return radio_names[digit1 + '0'] + ' ' + radio_names[digit2];
+        return radio_names[firstDigit] + ' ' + radio_names[digit2];
     }
 
     return radio_names[digit1] + ' ' + radio_names[digit2];
@@ -50122,74 +50008,74 @@ var groupNumbers = exports.groupNumbers = function groupNumbers(callsign, airlin
         // GA, eg '117KS' = 'one-one-seven-kilo-sierra')
         if (airline === 'November') {
             // callsign "November"
-            var s = [];
+            var _s = [];
 
             for (var k in callsign) {
                 // one after another (eg 'one one seven kilo sierra')
-                s.push(radio_names[callsign[k]]);
-            }
-
-            return s.join(' ');
-        } else {
-            // airline grouped, eg '3110A' = 'thirty-one-ten-alpha'
-            // divide callsign into alpha/numeric sections
-            var sections = [];
-            var cs = callsign,
-                thisIsDigit = void 0;
-            var index = cs.length - 1;
-            var lastWasDigit = !isNaN(parseInt(cs[index], 10));
-            index--;
-
-            while (index >= 0) {
-                thisIsDigit = !isNaN(parseInt(cs[index], 10));
-
-                while (thisIsDigit === lastWasDigit) {
-                    index--;
-                    thisIsDigit = !isNaN(parseInt(cs[index], 10));
-
-                    if (index < 0) {
-                        break;
-                    }
-                }
-                sections.unshift(cs.substr(index + 1));
-                cs = cs.substr(0, index + 1);
-                lastWasDigit = thisIsDigit;
-            }
-
-            // build words, section by section
-            var _s = [];
-
-            for (var i in sections) {
-                if (isNaN(parseInt(sections[i], 10))) {
-                    // alpha section
-                    _s.push(radio_spellOut(sections[i]));
-                } else {
-                    // numeric section
-                    switch (sections[i].length) {
-                        case 0:
-                            _s.push(sections[i]);
-                            break;
-                        case 1:
-                            _s.push(radio_names[sections[i]]);
-                            break;
-                        case 2:
-                            _s.push(getGrouping(sections[i]));
-                            break;
-                        case 3:
-                            _s.push(radio_names[sections[i][0]] + ' ' + getGrouping(sections[i].substr(1)));
-                            break;
-                        case 4:
-                            _s.push(getGrouping(sections[i].substr(0, 2)) + ' ' + getGrouping(sections[i].substr(2)));
-                            break;
-                        default:
-                            _s.push(radio_spellOut(sections[i]));
-                            break;
-                    }
-                }
+                _s.push(radio_names[callsign[k]]);
             }
 
             return _s.join(' ');
         }
+
+        // airline grouped, eg '3110A' = 'thirty-one-ten-alpha'
+        // divide callsign into alpha/numeric sections
+        var sections = [];
+        var cs = callsign;
+        var thisIsDigit = void 0;
+        var index = cs.length - 1;
+        var lastWasDigit = !isNaN(parseInt(cs[index], 10));
+        index--;
+
+        while (index >= 0) {
+            thisIsDigit = !isNaN(parseInt(cs[index], 10));
+
+            while (thisIsDigit === lastWasDigit) {
+                index--;
+                thisIsDigit = !isNaN(parseInt(cs[index], 10));
+
+                if (index < 0) {
+                    break;
+                }
+            }
+            sections.unshift(cs.substr(index + 1));
+            cs = cs.substr(0, index + 1);
+            lastWasDigit = thisIsDigit;
+        }
+
+        // build words, section by section
+        var s = [];
+
+        for (var i in sections) {
+            if (isNaN(parseInt(sections[i], 10))) {
+                // alpha section
+                s.push(radio_spellOut(sections[i]));
+            } else {
+                // numeric section
+                switch (sections[i].length) {
+                    case 0:
+                        s.push(sections[i]);
+                        break;
+                    case 1:
+                        s.push(radio_names[sections[i]]);
+                        break;
+                    case 2:
+                        s.push(getGrouping(sections[i]));
+                        break;
+                    case 3:
+                        s.push(radio_names[sections[i][0]] + ' ' + getGrouping(sections[i].substr(1)));
+                        break;
+                    case 4:
+                        s.push(getGrouping(sections[i].substr(0, 2)) + ' ' + getGrouping(sections[i].substr(2)));
+                        break;
+                    default:
+                        s.push(radio_spellOut(sections[i]));
+                        break;
+                }
+            }
+        }
+
+        return s.join(' ');
     } else {
         // FIXME: this block is unreachable
         switch (callsign.length) {
@@ -50261,6 +50147,7 @@ var radio_spellOut = exports.radio_spellOut = function radio_spellOut(alphanumer
         return;
     }
 
+    // TODO: change to _map()
     for (var i = 0; i < str.length; i++) {
         arr.push(radio_names[str[i]]);
     }
@@ -50278,6 +50165,7 @@ var radio_altitude = exports.radio_altitude = function radio_altitude(altitude) 
     var alt_s = altitude.toString();
     var s = [];
 
+    // TODO can this block be simplified?
     if (altitude >= 18000) {
         s.push('flight level', radio_names[alt_s[0]], radio_names[alt_s[1]], radio_names[alt_s[2]]);
     } else if (altitude >= 10000) {
@@ -50326,7 +50214,17 @@ var radio_trend = exports.radio_trend = function radio_trend(category, measured,
     return CATEGORIES[category][2];
 };
 
-},{"lodash/clone":430,"lodash/compact":432,"lodash/map":456}],541:[function(require,module,exports){
+/**
+ *
+ * @function getCardinalDirection
+ * @param angle
+ * @return {string}
+ */
+var getCardinalDirection = exports.getCardinalDirection = function getCardinalDirection(angle) {
+    return CARDINAL_DIRECTION[(0, _core.round)(angle / (0, _circle.tau)() * 8)];
+};
+
+},{"../math/circle":527,"../math/core":528,"lodash/clone":430,"lodash/compact":432,"lodash/map":456}],538:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -50357,15 +50255,17 @@ var calculateDeltaTime = exports.calculateDeltaTime = function calculateDeltaTim
   return Math.min(time() - lastFrame, 1 / 20);
 };
 
-},{}],542:[function(require,module,exports){
+},{}],539:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
-exports.heading_to_string = exports.km_to_px = exports.px_to_km = exports.degreesToRadians = exports.radiansToDegrees = exports.kn_ms = exports.ft_km = exports.km_ft = exports.nm = exports.km = exports.NUMBER_CONSTANTS = exports.UNIT_CONVERSION_CONSTANTS = undefined;
+exports.parseElevation = exports.heading_to_string = exports.km_to_px = exports.px_to_km = exports.degreesToRadians = exports.radiansToDegrees = exports.kn_ms = exports.ft_km = exports.km_ft = exports.nm = exports.km = exports.NUMBER_CONSTANTS = exports.UNIT_CONVERSION_CONSTANTS = undefined;
 
 var _circle = require('../math/circle');
+
+var _core = require('../math/core');
 
 // TODO: This should be moved to its own file once it has been filled in a little more
 /**
@@ -50373,30 +50273,30 @@ var _circle = require('../math/circle');
  * @type {Object}
  */
 var UNIT_CONVERSION_CONSTANTS = exports.UNIT_CONVERSION_CONSTANTS = {
-  /**
-   * nautical mile per kilometer ratio
-   *
-   * @property NM_KM
-   * @type {number}
-   * @final
-   */
-  NM_KM: 1.852,
-  /**
-   * kilometer per foot ratio
-   *
-   * @property KM_FT
-   * @type {number}
-   * @final
-   */
-  KM_FT: 0.0003048,
-  /**
-   * knots per m/s ratio
-   *
-   * @property KN_MS
-   * @type {number}
-   * @final
-   */
-  KN_MS: 0.51444444
+    /**
+     * nautical mile per kilometer ratio
+     *
+     * @property NM_KM
+     * @type {number}
+     * @final
+     */
+    NM_KM: 1.852,
+    /**
+     * kilometer per foot ratio
+     *
+     * @property KM_FT
+     * @type {number}
+     * @final
+     */
+    KM_FT: 0.0003048,
+    /**
+     * knots per m/s ratio
+     *
+     * @property KN_MS
+     * @type {number}
+     * @final
+     */
+    KN_MS: 0.51444444
 };
 
 // TODO: This should be moved to its own file once it has been filled in a little more
@@ -50406,14 +50306,14 @@ var UNIT_CONVERSION_CONSTANTS = exports.UNIT_CONVERSION_CONSTANTS = {
  * @final
  */
 var NUMBER_CONSTANTS = exports.NUMBER_CONSTANTS = {
-  /**
-   * Degrees in a circle
-   *
-   * @property FULL_CIRCLE_DEGREES
-   * @type {number}
-   * @final
-   */
-  FULL_CIRCLE_DEGREES: 360
+    /**
+     * Degrees in a circle
+     *
+     * @property FULL_CIRCLE_DEGREES
+     * @type {number}
+     * @final
+     */
+    FULL_CIRCLE_DEGREES: 360
 };
 
 /**
@@ -50424,34 +50324,34 @@ var NUMBER_CONSTANTS = exports.NUMBER_CONSTANTS = {
  * @return {number}
  */
 var km = exports.km = function km() {
-  var nm = arguments.length <= 0 || arguments[0] === undefined ? 0 : arguments[0];
+    var nm = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
 
-  return nm * UNIT_CONVERSION_CONSTANTS.NM_KM;
+    return nm * UNIT_CONVERSION_CONSTANTS.NM_KM;
 };
 
 /**
  * kilometers --> nautical miles
  *
  * @function nm
- * @param nm {number}
+ * @param kilometers {number}
  * @return {number}
  */
 var nm = exports.nm = function nm() {
-  var km = arguments.length <= 0 || arguments[0] === undefined ? 0 : arguments[0];
+    var kilometers = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
 
-  return km / UNIT_CONVERSION_CONSTANTS.NM_KM;
+    return kilometers / UNIT_CONVERSION_CONSTANTS.NM_KM;
 };
 /**
  * kilometers --> feet
  *
  * @function km_ft
- * @param km {number}
+ * @param kilometers {number}
  * @return {number}
  */
 var km_ft = exports.km_ft = function km_ft() {
-  var km = arguments.length <= 0 || arguments[0] === undefined ? 0 : arguments[0];
+    var kilometers = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
 
-  return km / UNIT_CONVERSION_CONSTANTS.KM_FT;
+    return kilometers / UNIT_CONVERSION_CONSTANTS.KM_FT;
 };
 
 /**
@@ -50462,9 +50362,9 @@ var km_ft = exports.km_ft = function km_ft() {
  * @return {number}
  */
 var ft_km = exports.ft_km = function ft_km() {
-  var ft = arguments.length <= 0 || arguments[0] === undefined ? 0 : arguments[0];
+    var ft = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
 
-  return ft * UNIT_CONVERSION_CONSTANTS.KM_FT;
+    return ft * UNIT_CONVERSION_CONSTANTS.KM_FT;
 };
 
 /**
@@ -50475,9 +50375,9 @@ var ft_km = exports.ft_km = function ft_km() {
  * @return {number}
  */
 var kn_ms = exports.kn_ms = function kn_ms() {
-  var kn = arguments.length <= 0 || arguments[0] === undefined ? 0 : arguments[0];
+    var kn = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
 
-  return kn * UNIT_CONVERSION_CONSTANTS.KN_MS;
+    return kn * UNIT_CONVERSION_CONSTANTS.KN_MS;
 };
 
 /**
@@ -50488,7 +50388,7 @@ var kn_ms = exports.kn_ms = function kn_ms() {
  * @return {number}
  */
 var radiansToDegrees = exports.radiansToDegrees = function radiansToDegrees(radians) {
-  return radians / (0, _circle.tau)() * NUMBER_CONSTANTS.FULL_CIRCLE_DEGREES;
+    return radians / (0, _circle.tau)() * NUMBER_CONSTANTS.FULL_CIRCLE_DEGREES;
 };
 
 /**
@@ -50499,7 +50399,7 @@ var radiansToDegrees = exports.radiansToDegrees = function radiansToDegrees(radi
  * @return {number}
  */
 var degreesToRadians = exports.degreesToRadians = function degreesToRadians(degrees) {
-  return degrees / NUMBER_CONSTANTS.FULL_CIRCLE_DEGREES * (0, _circle.tau)();
+    return degrees / NUMBER_CONSTANTS.FULL_CIRCLE_DEGREES * (0, _circle.tau)();
 };
 
 /**
@@ -50512,7 +50412,7 @@ var degreesToRadians = exports.degreesToRadians = function degreesToRadians(degr
  * @return {number}
  */
 var px_to_km = exports.px_to_km = function px_to_km(pixels, scale) {
-  return pixels / scale;
+    return pixels / scale;
 };
 
 /**
@@ -50524,7 +50424,7 @@ var px_to_km = exports.px_to_km = function px_to_km(pixels, scale) {
  * @return {number}
  */
 var km_to_px = exports.km_to_px = function km_to_px(kilometers, scale) {
-  return kilometers * scale;
+    return kilometers * scale;
 };
 
 /**
@@ -50534,24 +50434,51 @@ var km_to_px = exports.km_to_px = function km_to_px(kilometers, scale) {
  * @return {string}
  */
 var heading_to_string = exports.heading_to_string = function heading_to_string(heading) {
-  heading = round(mod(radiansToDegrees(heading), 360)).toString();
+    heading = (0, _core.round)((0, _core.mod)(radiansToDegrees(heading), 360)).toString();
 
-  if (heading === '0') {
-    heading = '360';
-  }
+    if (heading === '0') {
+        heading = '360';
+    }
 
-  if (heading.length === 1) {
-    heading = '00' + heading;
-  }
+    if (heading.length === 1) {
+        heading = '00' + heading;
+    }
 
-  if (heading.length === 2) {
-    heading = '0' + heading;
-  }
+    if (heading.length === 2) {
+        heading = '0' + heading;
+    }
 
-  return heading;
+    return heading;
 };
 
-},{"../math/circle":529}]},{},[528])
+// TODO: this function could be simlified.
+// It appears to accept an elevation with units, ex: 13.7ft or 5.5m
+// and then returns that number, less the units, in feet. So this function is doing two things: trimming units
+// and converting the elevation to feet.
+/**
+ * @function parseElevation
+ * @param elevation {string}    ex: 13.4ft, 3m, 5ft
+ * @return {number}             elevation in feet
+ */
+var parseElevation = exports.parseElevation = function parseElevation(elevation) {
+    var VALUE_UNITS = 4;
+    var altitude = /^(Infinity|(\d+(\.\d+)?)(m|ft))$/.exec(elevation);
+
+    if (!altitude) {
+        log('Unable to parse elevation ' + elevation);
+        return;
+    }
+
+    if (altitude[1] === 'Infinity') {
+        return Infinity;
+    }
+
+    var metersOrFeetCoversionValue = altitude[VALUE_UNITS] === 'm' ? 0.3048 : 1;
+
+    return parseFloat(altitude[2]) / metersOrFeetCoversionValue;
+};
+
+},{"../math/circle":527,"../math/core":528}]},{},[526])
 
 
 //# sourceMappingURL=bundle.js.map
