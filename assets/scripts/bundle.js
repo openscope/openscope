@@ -30015,8 +30015,6 @@ require('./util');
 // this module doesnt appear to be in use anywhere
 // require('./animation');
 require('./parser');
-// this module doesnt appear to be in use anywhere
-// require('./base/AreaModel');
 
 // saved as this.prop.version and this.prop.version_string
 var VERSION = [3, 0, 0];
@@ -30443,7 +30441,7 @@ var App = function () {
 
 exports.default = App;
 
-},{"./InputController":490,"./LoadingView":491,"./UiController":492,"./aircraft/AircraftController":494,"./airline/AirlineController":501,"./airport/AirportController":503,"./canvas/CanvasController":517,"./constants/logLevel":518,"./contentQueue/ContentQueue":521,"./game/GameController":523,"./parser":532,"./speech":533,"./tutorial/TutorialView":535,"./util":536,"./utilities/timeHelpers":538,"jquery":296,"pegjs":481}],490:[function(require,module,exports){
+},{"./InputController":490,"./LoadingView":491,"./UiController":492,"./aircraft/AircraftController":494,"./airline/AirlineController":501,"./airport/AirportController":503,"./canvas/CanvasController":518,"./constants/logLevel":519,"./contentQueue/ContentQueue":522,"./game/GameController":524,"./parser":533,"./speech":534,"./tutorial/TutorialView":536,"./util":537,"./utilities/timeHelpers":539,"jquery":296,"pegjs":481}],490:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -31348,7 +31346,7 @@ var InputController = function () {
 
 exports.default = InputController;
 
-},{"./constants/selectors":519,"jquery":296,"lodash/clamp":429,"lodash/get":435,"lodash/map":456}],491:[function(require,module,exports){
+},{"./constants/selectors":520,"jquery":296,"lodash/clamp":429,"lodash/get":435,"lodash/map":456}],491:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -31602,7 +31600,7 @@ var LoadingView = function () {
 
 exports.default = LoadingView;
 
-},{"./constants/selectors":519,"./utilities/timeHelpers":538,"jquery":296}],492:[function(require,module,exports){
+},{"./constants/selectors":520,"./utilities/timeHelpers":539,"jquery":296}],492:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -32323,7 +32321,7 @@ var UiView = function () {
 
 exports.default = UiView;
 
-},{"./constants/selectors":519,"./constants/storageKeys":520,"./math/core":528,"./speech":533,"jquery":296,"lodash/forEach":434,"lodash/has":436,"lodash/keys":454}],493:[function(require,module,exports){
+},{"./constants/selectors":520,"./constants/storageKeys":521,"./math/core":529,"./speech":534,"jquery":296,"lodash/forEach":434,"lodash/has":436,"lodash/keys":454}],493:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -32669,7 +32667,7 @@ var AircraftConflict = function () {
 
 exports.default = AircraftConflict;
 
-},{"../math/circle":527,"../math/core":528,"../math/vector":531,"../utilities/unitConverters":539}],494:[function(require,module,exports){
+},{"../math/circle":528,"../math/core":529,"../math/vector":532,"../utilities/unitConverters":540}],494:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -33148,7 +33146,7 @@ var AircraftController = function () {
 
 exports.default = AircraftController;
 
-},{"../math/circle":527,"../math/core":528,"../math/distance":529,"../math/flightMath":530,"../math/vector":531,"../speech":533,"../utilities/unitConverters":539,"./AircraftConflict":493,"./AircraftFlightManagementSystem":495,"./AircraftModel":497}],495:[function(require,module,exports){
+},{"../math/circle":528,"../math/core":529,"../math/distance":530,"../math/flightMath":531,"../math/vector":532,"../speech":534,"../utilities/unitConverters":540,"./AircraftConflict":493,"./AircraftFlightManagementSystem":495,"./AircraftModel":497}],495:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -34295,7 +34293,7 @@ var AircraftFlightManagementSystem = function () {
 
 exports.default = AircraftFlightManagementSystem;
 
-},{"../constants/logLevel":518,"./Leg":499,"./Waypoint":500,"jquery":296,"lodash/clamp":429,"lodash/last":455,"lodash/map":456}],496:[function(require,module,exports){
+},{"../constants/logLevel":519,"./Leg":499,"./Waypoint":500,"jquery":296,"lodash/clamp":429,"lodash/last":455,"lodash/map":456}],496:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -37123,7 +37121,7 @@ var Aircraft = function () {
 
 exports.default = Aircraft;
 
-},{"../constants/selectors":519,"../math/circle":527,"../math/core":528,"../math/distance":529,"../math/flightMath":530,"../math/vector":531,"../speech":533,"../utilities/radioUtilities":537,"../utilities/unitConverters":539,"./AircraftFlightManagementSystem":495,"./AircraftStripView":498,"./Waypoint":500,"jquery":296,"lodash/clamp":429,"lodash/forEach":434,"lodash/get":435,"lodash/has":436,"lodash/isNaN":447,"lodash/isString":451,"lodash/map":456}],497:[function(require,module,exports){
+},{"../constants/selectors":520,"../math/circle":528,"../math/core":529,"../math/distance":530,"../math/flightMath":531,"../math/vector":532,"../speech":534,"../utilities/radioUtilities":538,"../utilities/unitConverters":540,"./AircraftFlightManagementSystem":495,"./AircraftStripView":498,"./Waypoint":500,"jquery":296,"lodash/clamp":429,"lodash/forEach":434,"lodash/get":435,"lodash/has":436,"lodash/isNaN":447,"lodash/isString":451,"lodash/map":456}],497:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -37875,7 +37873,7 @@ var AircraftStripView = function () {
 
 exports.default = AircraftStripView;
 
-},{"../constants/selectors":519,"../math/core":528,"./AircraftInstanceModel":496,"jquery":296}],499:[function(require,module,exports){
+},{"../constants/selectors":520,"../math/core":529,"./AircraftInstanceModel":496,"jquery":296}],499:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -38146,7 +38144,7 @@ var Leg = function () {
 
 exports.default = Leg;
 
-},{"../constants/logLevel":518,"./Waypoint":500,"lodash/has":436,"lodash/map":456}],500:[function(require,module,exports){
+},{"../constants/logLevel":519,"./Waypoint":500,"lodash/has":436,"lodash/map":456}],500:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -38876,7 +38874,7 @@ var AirportController = function () {
 
 exports.default = AirportController;
 
-},{"../constants/storageKeys":520,"./AirportModel":504,"./airportLoadList":515,"lodash/forEach":434,"lodash/has":436}],504:[function(require,module,exports){
+},{"../constants/storageKeys":521,"./AirportModel":504,"./airportLoadList":515,"lodash/forEach":434,"lodash/has":436}],504:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -38905,6 +38903,10 @@ var _isEmpty3 = _interopRequireDefault(_isEmpty2);
 var _uniq2 = require('lodash/uniq');
 
 var _uniq3 = _interopRequireDefault(_uniq2);
+
+var _AreaModel = require('../base/AreaModel');
+
+var _AreaModel2 = _interopRequireDefault(_AreaModel);
 
 var _PositionModel = require('../base/PositionModel');
 
@@ -39109,7 +39111,7 @@ var AirportModel = function () {
                             positions.push(new _PositionModel2.default(data.airspace[i].poly[j], _this.position, _this.magnetic_north));
                         }
 
-                        areas.push(new Area(positions, data.airspace[i].floor * 100, data.airspace[i].ceiling * 100, data.airspace[i].airspace_class));
+                        areas.push(new _AreaModel2.default(positions, data.airspace[i].floor * 100, data.airspace[i].ceiling * 100, data.airspace[i].airspace_class));
                     }
 
                     _this.airspace = areas;
@@ -39791,7 +39793,7 @@ var AirportModel = function () {
 
 exports.default = AirportModel;
 
-},{"../base/PositionModel":516,"../constants/logLevel":518,"../constants/storageKeys":520,"../math/circle":527,"../math/core":528,"../math/flightMath":530,"../math/vector":531,"../utilities/unitConverters":539,"./Arrival/ArrivalFactory":507,"./Departure/DepartureFactory":512,"./Runway":514,"jquery":296,"lodash/has":436,"lodash/isEmpty":444,"lodash/map":456,"lodash/uniq":467}],505:[function(require,module,exports){
+},{"../base/AreaModel":516,"../base/PositionModel":517,"../constants/logLevel":519,"../constants/storageKeys":521,"../math/circle":528,"../math/core":529,"../math/flightMath":531,"../math/vector":532,"../utilities/unitConverters":540,"./Arrival/ArrivalFactory":507,"./Departure/DepartureFactory":512,"./Runway":514,"jquery":296,"lodash/has":436,"lodash/isEmpty":444,"lodash/map":456,"lodash/uniq":467}],505:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -40157,7 +40159,7 @@ var ArrivalBase = function () {
 
 exports.default = ArrivalBase;
 
-},{"../../base/PositionModel":516,"../../constants/logLevel":518,"../../math/core":528,"../../math/distance":529,"../../math/flightMath":530,"../../math/vector":531,"../../utilities/unitConverters":539,"jquery":296,"lodash/has":436,"lodash/random":461}],506:[function(require,module,exports){
+},{"../../base/PositionModel":517,"../../constants/logLevel":519,"../../math/core":529,"../../math/distance":530,"../../math/flightMath":531,"../../math/vector":532,"../../utilities/unitConverters":540,"jquery":296,"lodash/has":436,"lodash/random":461}],506:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -40331,7 +40333,7 @@ var ArrivalFactory = exports.ArrivalFactory = function ArrivalFactory(airport, o
     }
 }; /* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand */
 
-},{"../../constants/logLevel":518,"./ArrivalBase":505,"./ArrivalCyclic":506,"./ArrivalSurge":508,"./ArrivalWave":509}],508:[function(require,module,exports){
+},{"../../constants/logLevel":519,"./ArrivalBase":505,"./ArrivalCyclic":506,"./ArrivalSurge":508,"./ArrivalWave":509}],508:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -40505,7 +40507,7 @@ var ArrivalSurge = function (_ArrivalBase) {
 
 exports.default = ArrivalSurge;
 
-},{"../../constants/logLevel":518,"../../math/core":528,"./ArrivalBase":505,"lodash/random":461}],509:[function(require,module,exports){
+},{"../../constants/logLevel":519,"../../math/core":529,"./ArrivalBase":505,"lodash/random":461}],509:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -40664,7 +40666,7 @@ var ArrivalWave = function (_ArrivalBase) {
 
 exports.default = ArrivalWave;
 
-},{"../../constants/logLevel":518,"../../math/circle":527,"../../math/core":528,"./ArrivalBase":505,"jquery":296,"lodash/random":461}],510:[function(require,module,exports){
+},{"../../constants/logLevel":519,"../../math/circle":528,"../../math/core":529,"./ArrivalBase":505,"jquery":296,"lodash/random":461}],510:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -40915,7 +40917,7 @@ var DepartureCyclic = function (_DepartureBase) {
 
 exports.default = DepartureCyclic;
 
-},{"../../math/circle":527,"../../math/core":528,"./DepartureBase":510}],512:[function(require,module,exports){
+},{"../../math/circle":528,"../../math/core":529,"./DepartureBase":510}],512:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -40966,7 +40968,7 @@ var DepartureFactory = exports.DepartureFactory = function DepartureFactory(airp
     }
 };
 
-},{"../../constants/logLevel":518,"./DepartureBase":510,"./DepartureCyclic":511,"./DepartureWave":513}],513:[function(require,module,exports){
+},{"../../constants/logLevel":519,"./DepartureBase":510,"./DepartureCyclic":511,"./DepartureWave":513}],513:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41210,7 +41212,7 @@ var Runway = function () {
 
 exports.default = Runway;
 
-},{"../base/PositionModel":516,"../math/core":528,"../math/vector":531,"../utilities/unitConverters":539}],515:[function(require,module,exports){
+},{"../base/PositionModel":517,"../math/core":529,"../math/vector":532,"../utilities/unitConverters":540}],515:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41482,6 +41484,82 @@ var AIRPORT_LOAD_LIST = exports.AIRPORT_LOAD_LIST = [{
 ];
 
 },{}],516:[function(require,module,exports){
+"use strict";
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+// TODO: this class does not appear to be in use?
+/**
+ * An enclosed region defined by a series of Position objects and an altitude range
+ *
+ * @class AreaModel
+ */
+var AreaModel = function () {
+    /**
+     * @for AreaModel
+     * @constructor
+     * @param {array} poly - series of Position objects that outline the shape
+     *                Note: DO NOT repeat the origin to 'close' the shape. Unnecessary.
+     * @param {number} floor - (optional) altitude of bottom of area, in hundreds of feet
+     * @param {number} ceiling - (optional) altitude of top of area, in hundreds of feet
+     * @param {string} airspace_class - (optional) FAA airspace classification (A,B,C,D,E,G)
+     */
+    function AreaModel(positions, floor, ceiling, airspace_class) {
+        _classCallCheck(this, AreaModel);
+
+        if (!positions) {
+            return;
+        }
+
+        this.poly = [];
+        this.floor = null;
+        this.ceiling = null;
+        this.airspace_class = null;
+
+        if (floor != null) {
+            this.floor = floor;
+        }
+
+        if (ceiling != null) {
+            this.ceiling = ceiling;
+        }
+
+        if (airspace_class) {
+            this.airspace_class = airspace_class;
+        }
+
+        this.parse(positions);
+    }
+
+    /**
+     * @for AreaModel
+     * @method parse
+     * @param positions {array}
+     */
+
+
+    _createClass(AreaModel, [{
+        key: "parse",
+        value: function parse(positions) {
+            for (var i = 0; i < positions.length; i++) {
+                this.poly.push(positions[i]);
+            }
+
+            if (this.poly[0] === this.poly[this.poly.length - 1]) {
+                this.poly.pop(); // shape shouldn't fully close; will draw with 'cc.closepath()'
+            }
+        }
+    }]);
+
+    return AreaModel;
+}();
+
+// TODO: temporarily attached to the window here until useages of AreaModel can be converted to an explicit import.
+// window.Area = AreaModel;
+
+},{}],517:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41721,7 +41799,7 @@ var Position = function () {
 
 exports.default = Position;
 
-},{"../math/core":528,"../utilities/unitConverters":539}],517:[function(require,module,exports){
+},{"../math/core":529,"../utilities/unitConverters":540}],518:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -43621,7 +43699,7 @@ var ConvasController = function () {
 
 exports.default = ConvasController;
 
-},{"../aircraft/AircraftInstanceModel":496,"../constants/logLevel":518,"../constants/selectors":519,"../math/circle":527,"../math/core":528,"../math/distance":529,"../math/vector":531,"../utilities/timeHelpers":538,"../utilities/unitConverters":539,"jquery":296,"lodash/clamp":429,"lodash/cloneDeep":431,"lodash/forEach":434,"lodash/has":436}],518:[function(require,module,exports){
+},{"../aircraft/AircraftInstanceModel":496,"../constants/logLevel":519,"../constants/selectors":520,"../math/circle":528,"../math/core":529,"../math/distance":530,"../math/vector":532,"../utilities/timeHelpers":539,"../utilities/unitConverters":540,"jquery":296,"lodash/clamp":429,"lodash/cloneDeep":431,"lodash/forEach":434,"lodash/has":436}],519:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -43640,7 +43718,7 @@ var LOG = exports.LOG = {
     FATAL: 4
 };
 
-},{}],519:[function(require,module,exports){
+},{}],520:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -43780,7 +43858,7 @@ var SELECTORS = exports.SELECTORS = {
     DOM_SELECTORS: DOM_SELECTORS
 };
 
-},{"lodash/mapValues":457}],520:[function(require,module,exports){
+},{"lodash/mapValues":457}],521:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -43798,7 +43876,7 @@ var STORAGE_KEY = exports.STORAGE_KEY = {
   FIRST_RUN_TIME: 'first-run-time'
 };
 
-},{}],521:[function(require,module,exports){
+},{}],522:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -43949,7 +44027,7 @@ var ContentQueueClass = function () {
 
 exports.default = ContentQueueClass;
 
-},{"./LoadableContentModel":522,"jquery":296}],522:[function(require,module,exports){
+},{"./LoadableContentModel":523,"jquery":296}],523:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -43980,7 +44058,7 @@ var LoadableContentModel = function LoadableContentModel(options) {
 
 exports.default = LoadableContentModel;
 
-},{"jquery":296}],523:[function(require,module,exports){
+},{"jquery":296}],524:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44449,7 +44527,7 @@ var GameController = function () {
 
 exports.default = GameController;
 
-},{"../constants/selectors":519,"../math/core":528,"./GameOptions":524,"jquery":296}],524:[function(require,module,exports){
+},{"../constants/selectors":520,"../math/core":529,"./GameOptions":525,"jquery":296}],525:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44567,7 +44645,7 @@ var GameOptions = function () {
 
 exports.default = GameOptions;
 
-},{"./gameOptionValues":525,"lodash/has":436}],525:[function(require,module,exports){
+},{"./gameOptionValues":526,"lodash/has":436}],526:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44602,7 +44680,7 @@ var GAME_OPTION_VALUES = exports.GAME_OPTION_VALUES = [{
     data: [['Yes', 'yes'], ['No', 'no']]
 }];
 
-},{}],526:[function(require,module,exports){
+},{}],527:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44634,7 +44712,7 @@ exports.default = function () {
   var app = new _App2.default($body);
 }();
 
-},{"./App":489,"babel-polyfill":1,"jquery":296,"raf":487}],527:[function(require,module,exports){
+},{"./App":489,"babel-polyfill":1,"jquery":296,"raf":487}],528:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44710,7 +44788,7 @@ var fix_angle = exports.fix_angle = function fix_angle(radians) {
     return radians;
 };
 
-},{"../utilities/unitConverters":539,"./core":528}],528:[function(require,module,exports){
+},{"../utilities/unitConverters":540,"./core":529}],529:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44871,7 +44949,7 @@ var crange = exports.crange = function crange(il, i, ih, ol, oh) {
     return (0, _clamp3.default)(ol, trange(il, i, ih, ol, oh), oh);
 };
 
-},{"lodash/clamp":429,"lodash/isNumber":448}],529:[function(require,module,exports){
+},{"lodash/clamp":429,"lodash/isNumber":448}],530:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -44892,7 +44970,7 @@ var distance2d = exports.distance2d = function distance2d(a, b) {
   return Math.sqrt(x * x + y * y);
 };
 
-},{}],530:[function(require,module,exports){
+},{}],531:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -45051,7 +45129,7 @@ var dist_to_boundary = exports.dist_to_boundary = function dist_to_boundary(airp
     return (0, _core.abs)((0, _distance.distance2d)(pos, airport.position.position) - airport.ctr_radius);
 };
 
-},{"../utilities/unitConverters":539,"./core":528,"./distance":529,"./vector":531}],531:[function(require,module,exports){
+},{"../utilities/unitConverters":540,"./core":529,"./distance":530,"./vector":532}],532:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -45583,7 +45661,7 @@ var positive_intersection_with_rect = exports.positive_intersection_with_rect = 
     return undefined;
 };
 
-},{"../utilities/unitConverters":539,"./core":528,"jquery":296,"lodash/clamp":429,"lodash/forEach":434,"lodash/map":456}],532:[function(require,module,exports){
+},{"../utilities/unitConverters":540,"./core":529,"jquery":296,"lodash/clamp":429,"lodash/forEach":434,"lodash/map":456}],533:[function(require,module,exports){
 "use strict";
 
 /* eslint-disable */
@@ -48652,7 +48730,7 @@ zlsa.atc.Parser = function () {
   };
 }();
 
-},{}],533:[function(require,module,exports){
+},{}],534:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -48757,7 +48835,7 @@ var speech_toggle = exports.speech_toggle = function speech_toggle() {
     localStorage[_storageKeys.STORAGE_KEY.ATC_SPEECH_ENABLED] = prop.speech.enabled;
 };
 
-},{"./constants/selectors":519,"./constants/storageKeys":520,"./utilities/radioUtilities":537,"jquery":296,"lodash/get":435,"lodash/has":436}],534:[function(require,module,exports){
+},{"./constants/selectors":520,"./constants/storageKeys":521,"./utilities/radioUtilities":538,"jquery":296,"lodash/get":435,"lodash/has":436}],535:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -48825,7 +48903,7 @@ var TutorialStep = function () {
 
 exports.default = TutorialStep;
 
-},{"lodash/get":435}],535:[function(require,module,exports){
+},{"lodash/get":435}],536:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -49514,7 +49592,7 @@ var TutorialView = function () {
 
 exports.default = TutorialView;
 
-},{"../constants/selectors":519,"../constants/storageKeys":520,"../math/core":528,"../utilities/timeHelpers":538,"../utilities/unitConverters":539,"./TutorialStep":534,"jquery":296,"lodash/clamp":429,"lodash/has":436}],536:[function(require,module,exports){
+},{"../constants/selectors":520,"../constants/storageKeys":521,"../math/core":529,"../utilities/timeHelpers":539,"../utilities/unitConverters":540,"./TutorialStep":535,"jquery":296,"lodash/clamp":429,"lodash/has":436}],537:[function(require,module,exports){
 'use strict';
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -49754,7 +49832,7 @@ window.lpad = lpad;
 window.array_clean = array_clean;
 window.array_sum = array_sum;
 
-},{"./constants/logLevel":518,"./utilities/radioUtilities":537,"lodash/has":436}],537:[function(require,module,exports){
+},{"./constants/logLevel":519,"./utilities/radioUtilities":538,"lodash/has":436}],538:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -50224,7 +50302,7 @@ var getCardinalDirection = exports.getCardinalDirection = function getCardinalDi
     return CARDINAL_DIRECTION[(0, _core.round)(angle / (0, _circle.tau)() * 8)];
 };
 
-},{"../math/circle":527,"../math/core":528,"lodash/clone":430,"lodash/compact":432,"lodash/map":456}],538:[function(require,module,exports){
+},{"../math/circle":528,"../math/core":529,"lodash/clone":430,"lodash/compact":432,"lodash/map":456}],539:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -50255,7 +50333,7 @@ var calculateDeltaTime = exports.calculateDeltaTime = function calculateDeltaTim
   return Math.min(time() - lastFrame, 1 / 20);
 };
 
-},{}],539:[function(require,module,exports){
+},{}],540:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -50478,7 +50556,7 @@ var parseElevation = exports.parseElevation = function parseElevation(elevation)
     return parseFloat(altitude[2]) / metersOrFeetCoversionValue;
 };
 
-},{"../math/circle":527,"../math/core":528}]},{},[526])
+},{"../math/circle":528,"../math/core":529}]},{},[527])
 
 
 //# sourceMappingURL=bundle.js.map
