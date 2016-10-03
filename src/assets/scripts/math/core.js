@@ -1,3 +1,4 @@
+import _clamp from 'lodash/clamp';
 import _isNumber from 'lodash/isNumber';
 
 /**
@@ -105,4 +106,37 @@ export const calculateMiddle = (value = 0) => {
  */
 export const mod = (firstValue, secondValue) => {
     return ((firstValue % secondValue) + secondValue) % secondValue;
+};
+
+// TODO: find better names/enumerate the params for these next two functions
+/**
+ * @function trange
+ * @param il {number}
+ * @param i {number}
+ * @param ih {number}
+ * @param ol {number}
+ * @param oh {number}
+ * @return {number}
+ */
+const trange = (il, i, ih, ol, oh) => {
+    return ol + (oh - ol) * (i - il) / (ih - il);
+    // i=(i/(ih-il))-il;       // purpose unknown
+    // return (i*(oh-ol))+ol;  // purpose unknown
+};
+
+/**
+ * @function crange
+ * @param il {number}
+ * @param i {number}
+ * @param ih {number}
+ * @param ol {number}
+ * @param oh {number}
+ * @return {number}
+ */
+export const crange = (il, i, ih, ol, oh) => {
+    return _clamp(
+        ol,
+        trange(il, i, ih, ol, oh),
+        oh
+    );
 };

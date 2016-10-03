@@ -7,7 +7,7 @@ import _forEach from 'lodash/forEach';
 import _has from 'lodash/has';
 import { km, degreesToRadians } from '../utilities/unitConverters';
 import { time } from '../utilities/timeHelpers';
-import { sin, cos, round, calculateMiddle } from '../math/core';
+import { sin, cos, round, calculateMiddle, crange } from '../math/core';
 import { tau } from '../math/circle';
 import { distance2d } from '../math/distance';
 import { vscale, vturn, positive_intersection_with_rect } from '../math/vector';

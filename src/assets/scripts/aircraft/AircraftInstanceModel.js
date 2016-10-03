@@ -12,7 +12,7 @@ import AircraftStripView from './AircraftStripView';
 import Waypoint from './Waypoint';
 import { speech_say } from '../speech';
 import { tau, fix_angle, angle_offset } from '../math/circle';
-import { round, abs, sin, cos } from '../math/core';
+import { round, abs, sin, cos, crange } from '../math/core';
 import { distance2d } from '../math/distance';
 import { getOffset } from '../math/flightMath';
 import {
@@ -37,7 +37,7 @@ import {
     radio_altitude,
     radio_trend
 } from '../utilities/radioUtilities';
-import { km, radiansToDegrees, degreesToRadians } from '../utilities/unitConverters';
+import { km, radiansToDegrees, degreesToRadians, heading_to_string } from '../utilities/unitConverters';
 import { SELECTORS } from '../constants/selectors';
 
 /**

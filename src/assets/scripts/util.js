@@ -35,6 +35,7 @@ import {
 window.AudioContext = window.AudioContext || window.webkitAudioContext;
 
 /*eslint-disable*/
+// TODO: this should be replaced with lodash _clone()
 function clone(obj) {
     if (null == obj || 'object' != typeof obj) {
         return obj;
@@ -71,26 +72,11 @@ if (!String.prototype.hasOwnProperty('repeat')) {
 
 /*eslint-enable*/
 
-// TODO: is this being used?
+// TODO: is this being used? and why are we cloning radio_names here?
 const radio_runway_names = clone(radio_names);
 radio_runway_names.l = 'left';
 radio_runway_names.c = 'center';
 radio_runway_names.r = 'right';
-
-// ************************ GENERAL FUNCTIONS ************************
-function trange(il, i, ih, ol, oh) {
-    return ol + (oh - ol) * (i - il) / (ih - il);
-    // i=(i/(ih-il))-il;       // purpose unknown
-    // return (i*(oh-ol))+ol;  // purpose unknown
-}
-
-function crange(il, i, ih, ol, oh) {
-    return _clamp(ol, trange(il, i, ih, ol, oh), oh);
-}
-
-function srange(il, i, ih) {
-  //    return cos(();
-}
 
 // TODO: rename distanceEuclid
 // FIXME: unused
@@ -162,45 +148,11 @@ function lpad(n, width) {
     return x.substr(x.length - width, width);
 }
 
-function endsWith(str, suffix) {
-    return str.indexOf(suffix, str.length - suffix.length) !== -1;
-}
-
-function parseElevation(ele) {
-    const alt = /^(Infinity|(\d+(\.\d+)?)(m|ft))$/.exec(ele);
-
-    if (alt == null) {
-        log(`Unable to parse elevation ${ele}`);
-        return;
-    }
-
-    if (alt[1] === 'Infinity') {
-        return Infinity;
-    }
-
-    return parseFloat(alt[2]) / (alt[4] === 'm' ? 0.3048 : 1);
-}
-
-window.endsWith = endsWith;
-window.parseElevation = parseElevation;
-
-function heading_to_string(heading) {
-    heading = round(mod(radiansToDegrees(heading), 360)).toString();
-
-    if (heading === '0') {
-        heading = '360';
-    }
-
-    if (heading.length === 1) {
-        heading = `00${heading}`;
-    }
-
-    if (heading.length === 2) {
-        heading = `0${heading}`;
-    }
-
-    return heading;
-}
+// FIXME: unused
+// function endsWith(str, suffix) {
+//     return str.indexOf(suffix, str.length - suffix.length) !== -1;
+// }
+// window.endsWith = endsWith;
 
 function getCardinalDirection(angle) {
     const directions = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW', 'N'];
@@ -263,15 +215,11 @@ function dist_to_boundary(pos) {
 }
 
 window.clone = clone;
-window.trange = trange;
-window.crange = crange;
-window.srange = srange;
 // window.distEuclid = distEuclid;
 window.choose = choose;
 window.choose_weight = choose_weight;
 window.lpad = lpad;
 
-window.heading_to_string = heading_to_string;
 window.getCardinalDirection = getCardinalDirection;
 
 window.array_clean = array_clean;

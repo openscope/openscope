@@ -1,5 +1,5 @@
 import { tau } from '../math/circle';
-import { mod } from '../math/core';
+import { round, mod } from '../math/core';
 
 // TODO: This should be moved to its own file once it has been filled in a little more
 /**
@@ -173,4 +173,33 @@ export const heading_to_string = (heading) => {
     }
 
     return heading;
+};
+
+// TODO: this function could be simlified.
+// It appears to accept an elevation with units, ex: 13.7ft or 5.5m
+// and then returns that number, less the units, in feet. So this function is doing two things: trimming units
+// and converting the elevation to feet.
+/**
+ * @function parseElevation
+ * @param elevation {string}    ex: 13.4ft, 3m, 5ft
+ * @return {number}             elevation in feet
+ */
+export const parseElevation = (elevation) => {
+    const VALUE_UNITS = 4;
+    const altitude = /^(Infinity|(\d+(\.\d+)?)(m|ft))$/.exec(elevation);
+
+    if (!altitude) {
+        log(`Unable to parse elevation ${elevation}`);
+        return;
+    }
+
+    if (altitude[1] === 'Infinity') {
+        return Infinity;
+    }
+
+    const metersOrFeetCoversionValue = altitude[VALUE_UNITS] === 'm'
+        ? 0.3048
+        : 1;
+
+    return parseFloat(altitude[2]) / metersOrFeetCoversionValue;
 };
