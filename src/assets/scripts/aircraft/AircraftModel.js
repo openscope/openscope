@@ -3,6 +3,7 @@ import $ from 'jquery';
 import _get from 'lodash/get';
 import AircraftInstanceModel from './AircraftInstanceModel';
 
+// TODO: this class could use a better name. What differentiates this class from `AircraftInstanceModel`?
 /**
  * Definitions for characteristics of a particular aircraft type
  *

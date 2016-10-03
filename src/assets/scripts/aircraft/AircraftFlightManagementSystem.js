@@ -6,7 +6,22 @@ import Waypoint from './Waypoint';
 import Leg, { FP_LEG_TYPE } from './Leg';
 import { LOG } from '../constants/logLevel';
 
+/**
+ * Enumeration of the Leg index in `this.current`
+ *
+ * @property
+ * @type {number}
+ * @final
+ */
 const LEG = 0;
+
+/**
+ * Enumeration of the Waypoint within leg index in `this.current`
+ *
+ * @property
+ * @type {number}
+ * @final
+ */
 const WAYPOINT_WITHIN_LEG = 1;
 
 /**
@@ -283,7 +298,7 @@ export default class AircraftFlightManagementSystem {
         const r = [];
 
         // TODO: simplify this
-        // FIXME: is this.legs an array? if so this should be a for and not a for in loop.
+        // FIXME: is this.legs an array?
         for (const l in this.legs) {
             if (!this.legs[l].type) {
                 continue;
@@ -291,7 +306,7 @@ export default class AircraftFlightManagementSystem {
 
             switch (this.legs[l].type) {
                 case FP_LEG_TYPE.SID:
-                    // TODO: this split logic and string building should live in helper functions
+                    // TODO: this split logic and string building should live in a helper function or or class method
                     // departure airport
                     r.push(this.legs[l].route.split('.')[0]);
                     // 'sidname.exitPoint'
@@ -613,8 +628,11 @@ export default class AircraftFlightManagementSystem {
      * Invokes flySID() for the SID in the flightplan (fms.fp.route)
      */
     clearedAsFiled() {
+        // FIXME: why keep a reference to the aircraft id if we just get it from the aircraftController? Also,
+        // if this bit of logic is simply getting the aircraft instance, why not use `this.my_aircraft` for
+        // the whole thing?
         const retval = this.my_aircraft.runSID([window.aircraftController.aircraft_get(this.my_aircrafts_eid).destination]);
-        // TODO: this could be the return for this method
+        // TODO: this method could simply return the logic being set to `ok`
         const ok = !(Array.isArray(retval) && retval[0] === 'fail');
 
         return ok;

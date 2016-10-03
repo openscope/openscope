@@ -185,7 +185,7 @@ export const heading_to_string = (heading) => {
  * @return {number}             elevation in feet
  */
 export const parseElevation = (elevation) => {
-    const VALUE_UNITS = 4;
+    const VALUE_UNITS_INDEX = 4;
     const altitude = /^(Infinity|(\d+(\.\d+)?)(m|ft))$/.exec(elevation);
 
     if (!altitude) {
@@ -197,7 +197,7 @@ export const parseElevation = (elevation) => {
         return Infinity;
     }
 
-    const metersOrFeetCoversionValue = altitude[VALUE_UNITS] === 'm'
+    const metersOrFeetCoversionValue = altitude[VALUE_UNITS_INDEX] === 'm'
         ? 0.3048
         : 1;
 

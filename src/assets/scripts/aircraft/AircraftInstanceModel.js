@@ -41,6 +41,7 @@ import {
 import { km, radiansToDegrees, degreesToRadians, heading_to_string } from '../utilities/unitConverters';
 import { SELECTORS } from '../constants/selectors';
 
+// TODO: these constants don't belong in this class. they should probably live on their own in a different file.
 /**
  * @property FLIGHT_MODES
  * @type {Object}
@@ -65,7 +66,11 @@ export const FLIGHT_CATEGORY = {
     DEPARTURE: 'departure'
 };
 
-// TODO: this shouldn't live here, it should (possibly) be defined in the fms class and imported here
+/**
+ * @property WAYPOINT_NAV_MODE
+ * @type {Object}
+ * @final
+ */
 export const WAYPOINT_NAV_MODE = {
     FIX: 'fix',
     HEADING: 'heading',
@@ -73,6 +78,16 @@ export const WAYPOINT_NAV_MODE = {
     RWY: 'rwy'
 };
 
+/**
+ * Enum of commands and thier corresponding function.
+ *
+ * Used to build a call to the correct function when an UI command, or commands,
+ * for an aircraft have been issued.
+ *
+ * @property COMMANDS
+ * @type {Object}
+ * @final
+ */
 const COMMANDS = {
     abort: 'runAbort',
     altitude: 'runAltitude',
@@ -99,11 +114,26 @@ const COMMANDS = {
 };
 
 /**
+ * @property FLIGHT_RULES
+ * @type {Object}
+ * @final
+ */
+const FLIGHT_RULES = {
+    VFR: 'vfr',
+    IFR: 'ifr'
+};
+
+/**
  * Each simulated aircraft in the game. Contains a model, fms, and conflicts.
  *
  * @class AircraftInstanceModel
  */
 export default class Aircraft {
+    /**
+     * @for AircraftInstanceModel
+     * @constructor
+     * @param options {object}
+     */
     constructor(options = {}) {
         /* eslint-disable no-multi-spaces*/
         this.eid          = prop.aircraft.list.length;  // entity ID
@@ -134,7 +164,7 @@ export default class Aircraft {
         this.taxi_next    = false;      //
         this.taxi_start   = 0;          //
         this.taxi_time    = 3;          // Time spent taxiing to the runway. *NOTE* this should be INCREASED to around 60 once the taxi vs LUAW issue is resolved (#406)
-        this.rules        = 'ifr';      // Either IFR or VFR (Instrument/Visual Flight Rules)
+        this.rules        = FLIGHT_RULES.IFR;      // Either IFR or VFR (Instrument/Visual Flight Rules)
         this.inside_ctr   = false;      // Inside ATC Airspace
         this.datablockDir = -1;         // Direction the data block points (-1 means to ignore)
         this.conflicts    = {};         // List of aircraft that MAY be in conflict (bounding box)
@@ -153,7 +183,7 @@ export default class Aircraft {
         this.projected = false;
         this.position_history = [];
 
-        this.category = options.category; // or "departure"
+        this.category = options.category; // 'arrival' or 'departure'
         this.mode = FLIGHT_MODES.CRUISE;  // 'apron', 'taxi', 'waiting', 'takeoff', 'cruise', or 'landing'
         // where:
         // - 'apron' is the initial status of a new departing plane. After
