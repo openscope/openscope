@@ -4,7 +4,7 @@ import _has from 'lodash/has';
 import _map from 'lodash/map';
 import _isEmpty from 'lodash/isEmpty';
 import _uniq from 'lodash/uniq';
-
+import Area from '../base/AreaModel';
 import PositionModel from '../base/PositionModel';
 import Runway from './Runway';
 import { ArrivalFactory } from './Arrival/ArrivalFactory';

@@ -27,8 +27,6 @@ require('./util');
 // this module doesnt appear to be in use anywhere
 // require('./animation');
 require('./parser');
-// this module doesnt appear to be in use anywhere
-// require('./base/AreaModel');
 
 // saved as this.prop.version and this.prop.version_string
 const VERSION = [3, 0, 0];

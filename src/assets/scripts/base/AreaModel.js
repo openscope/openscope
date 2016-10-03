@@ -57,4 +57,4 @@ class AreaModel {
 }
 
 // TODO: temporarily attached to the window here until useages of AreaModel can be converted to an explicit import.
-window.Area = AreaModel;
+// window.Area = AreaModel;
