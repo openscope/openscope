@@ -35,7 +35,8 @@ import {
     radio_heading,
     radio_spellOut,
     radio_altitude,
-    radio_trend
+    radio_trend,
+    getCardinalDirection
 } from '../utilities/radioUtilities';
 import { km, radiansToDegrees, degreesToRadians, heading_to_string } from '../utilities/unitConverters';
 import { SELECTORS } from '../constants/selectors';

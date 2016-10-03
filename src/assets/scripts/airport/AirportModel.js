@@ -32,10 +32,16 @@ const ra = (n) => {
 // TODO: this class contains a lot of .hasOwnProperty() type checks (converted to _has for now). is there a need for
 // such defensiveness? or can some of that be accomplished on init and then smiply update the prop if need be?
 /**
- * @class AirportInstance
+ * @class AirportModel
  */
-export default class AirportInstance {
-    constructor(options = {}) {
+export default class AirportModel {
+    /**
+     * @constructor
+     * @param options {object}
+     * @param updateRun {function}
+     */
+    constructor(options = {}, updateRun) {
+        this.updateRun = updateRun;
         // FIXME: All properties of this class should be instantiated here, even if they wont have values yet.
         // there is a lot of logic below that can be elimininated by simply instantiating values here.
         this.loaded   = false;
@@ -68,7 +74,7 @@ export default class AirportInstance {
         this.departures = null;
         this.arrivals   = [];
 
-        this.wind     = {
+        this.wind  = {
             speed: 10,
             angle: 0
         };
@@ -379,7 +385,7 @@ export default class AirportInstance {
         this.start = window.gameController.game_time();
         this.updateRunway();
         this.addAircraft();
-        updateRun(true);
+        this.updateRun(true);
     }
 
     unset() {
@@ -503,7 +509,7 @@ export default class AirportInstance {
             return;
         }
 
-        updateRun(false);
+        this.updateRun(false);
         this.loading = true;
 
         zlsa.atc.loadAsset({

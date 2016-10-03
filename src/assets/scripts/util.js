@@ -1,22 +1,6 @@
-/* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand, no-unused-vars, no-undef, no-param-reassign */
-import $ from 'jquery';
-import _clamp from 'lodash/clamp';
 import _has from 'lodash/has';
-import _map from 'lodash/map';
-import { km, radiansToDegrees, degreesToRadians } from './utilities/unitConverters';
-import { radio_names, radio_cardinalDir_names } from './utilities/radioUtilities';
-import { abs, sin, cos, tab, round, mod } from './math/core';
-import { distance2d } from './math/distance';
-import { tau } from './math/circle';
-import {
-    vlen,
-    vradial,
-    vsub,
-    vnorm,
-    distance_to_poly,
-    area_to_poly,
-    point_in_area
-} from './math/vector';
+import { radio_names } from './utilities/radioUtilities';
+import { LOG } from './constants/logLevel';
 
 /**
  *
@@ -70,6 +54,56 @@ if (!String.prototype.hasOwnProperty('repeat')) {
     };
 }
 
+/**
+ * Necessary for Internet Explorer 11 (IE11) to not die while using String.fromCodePoint()
+ * This function is not natively available in IE11, as noted on this MSDN page:
+ * https://msdn.microsoft.com/en-us/library/dn890630(v=vs.94).aspx
+ *
+ * Apparently, it is fine with pre-Win8.1 MS Edge 11, but never okay in IE.
+ * Here, the function is added to the String prototype to make later code usable.
+ *
+ * Solution from: http://xahlee.info/js/js_unicode_code_point.html
+*/
+if (!String.fromCodePoint) {
+    // ES6 Unicode Shims 0.1 , © 2012 Steven Levithan , MIT License
+    String.fromCodePoint = function fromCodePoint() {
+        const chars = [];
+        let point;
+        let offset;
+        let units;
+
+        for (let i = 0; i < arguments.length; i++) {
+            point = arguments[i];
+            offset = point - 0x10000;
+            units = point > 0xFFFF ? [0xD800 + (offset >> 10), 0xDC00 + (offset & 0x3FF)] : [point];
+            chars.push(String.fromCharCode.apply(null, units));
+        }
+
+        return chars.join('');
+    };
+}
+
+const log = (message, level = LOG.INFO) => {
+    const logStrings = {
+        0: 'DEBUG',
+        1: 'INFO',
+        2: 'WARN',
+        3: 'ERROR',
+        4: 'FATAL'
+    };
+
+    if (prop.log <= level) {
+        const text = `[ ${logStrings[level]} ]`;
+
+        if (level >= LOG.WARNING) {
+            console.warn(text, message);
+        } else {
+            console.log(text, message);
+        }
+    }
+};
+window.log = log;
+
 /*eslint-enable*/
 
 // TODO: is this being used? and why are we cloning radio_names here?
@@ -78,7 +112,6 @@ radio_runway_names.l = 'left';
 radio_runway_names.c = 'center';
 radio_runway_names.r = 'right';
 
-// TODO: rename distanceEuclid
 // FIXME: unused
 // function distEuclid(gps1, gps2) {
 //     // FIXME: enumerate the magic number
@@ -154,13 +187,8 @@ function lpad(n, width) {
 // }
 // window.endsWith = endsWith;
 
-function getCardinalDirection(angle) {
-    const directions = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW', 'N'];
 
-    return directions[round(angle / tau() * 8)];
-}
-
-// TODO: lodash _compact()
+// TODO: lodash _compact() might be useful here
 /**
  * Splices all empty elements out of an array
  */
@@ -189,40 +217,10 @@ function array_sum(array) {
     return total;
 }
 
-// TODO: this logic should live in the `AirportController`
-function inAirspace(pos) {
-    const apt = window.airportController.airport_get();
-    const perim = apt.perimeter;
-
-    if (perim) {
-        return point_in_area(pos, perim);
-    }
-
-    return distance2d(pos, apt.position.position) <= apt.ctr_radius;
-}
-
-// TODO: this logic should live in the `AirportController`
-function dist_to_boundary(pos) {
-    const apt = window.airportController.airport_get();
-    const perim = apt.perimeter;
-
-    if (perim) {
-        // km
-        return distance_to_poly(pos, area_to_poly(perim));
-    }
-
-    return abs(distance2d(pos, apt.position.position) - apt.ctr_radius);
-}
-
 window.clone = clone;
 // window.distEuclid = distEuclid;
 window.choose = choose;
 window.choose_weight = choose_weight;
 window.lpad = lpad;
-
-window.getCardinalDirection = getCardinalDirection;
-
 window.array_clean = array_clean;
 window.array_sum = array_sum;
-window.inAirspace = inAirspace;
-window.dist_to_boundary = dist_to_boundary;

@@ -25,10 +25,10 @@ const prop = {};
 // imported as needed in each file.
 require('./util');
 // this module doesnt appear to be in use anywhere
-require('./animation');
+// require('./animation');
 require('./parser');
 // this module doesnt appear to be in use anywhere
-require('./base/AreaModel');
+// require('./base/AreaModel');
 
 // saved as this.prop.version and this.prop.version_string
 const VERSION = [3, 0, 0];
@@ -41,9 +41,6 @@ const FRAME_DELAY = 1;
 
 // is this a release build?
 const RELEASE = false;
-
-// just a place to store modules.js. this will go away eventually.
-let modules;
 
 /**
  * @class App
@@ -102,6 +99,10 @@ export default class App {
     }
 
     /**
+     * Lifecycle method. Should be called only once on initialization.
+     *
+     * Used to setup properties and initialize dependant classes.
+     *
      * @for App
      * @method setupChildren
      */
@@ -110,8 +111,8 @@ export default class App {
         this.contentQueue = new ContentQueue(this.loadingView);
         this.airlineController = new AirlineController();
         this.aircraftController = new AircraftController();
-        this.airportController = new AirportController();
-        this.gameController = new GameController();
+        this.airportController = new AirportController(this.updateRun);
+        this.gameController = new GameController(this.getDeltaTime);
         this.tutorialView = new TutorialView(this.$element);
         this.inputController = new InputController(this.$element);
         this.uiController = new UiController(this.$element);
@@ -121,6 +122,10 @@ export default class App {
     }
 
     /**
+     * Lifecycle method. Should be called only once on initialization.
+     *
+     * Used fire off `init` and `init_pre` methods and also start the game loop
+     *
      * @for App
      * @method enable
      */
@@ -128,7 +133,7 @@ export default class App {
         zlsa.atc.loadAsset = (options) => this.contentQueue.add(options);
         // TEMPORARY!
         // these instances are attached to the window here as an intermediate step away from global functions.
-        // this allows for any module file to full window.{module}.{method} and will make the transition to
+        // this allows for any module file to call window.{module}.{method} and will make the transition to
         // explicit instance parameters easier.
         window.airlineController = this.airlineController;
         window.aircraftController = this.aircraftController;
@@ -139,26 +144,18 @@ export default class App {
         window.uiController = this.uiController;
         window.canvasController = this.canvasController;
 
-        // This is the old entry point for the application. We include this here now so that
-        // the app will run. This is a temporary implementation and should be refactored immediately.
+        // // TODO: MOVE THIS!!!
+        // /**
+        //  * Change whether updates should run
+        //  */
+        // window.updateRun = (arg) => {
+        //     console.warn('updateRun: ', arg);
+        //     if (!UPDATE && arg) {
+        //         requestAnimationFrame(() => this.update());
+        //     }
         //
-        // Eventually, this method will contain all of the initiation logic currently contained in
-        // modules.js and the modules file will no longer be needed. This class will be in charge of
-        // running the game loop and keeping up with housekeeping tasks.
-        modules = require('./modules');
-
-        // TODO: MOVE THIS!!!
-        /**
-         * Change whether updates should run
-         */
-        window.updateRun = (arg) => {
-            console.warn('updateRun: ', arg);
-            if (!UPDATE && arg) {
-                requestAnimationFrame(() => this.update());
-            }
-
-            UPDATE = arg;
-        };
+        //     UPDATE = arg;
+        // };
 
         log(`Version ${this.prop.version_string}`);
 
@@ -178,6 +175,8 @@ export default class App {
     /**
      * Tear down the application
      *
+     * Should never be called directly, only cia `this.disable()`
+     *
      * @for App
      * @method destroy
      */
@@ -196,6 +195,26 @@ export default class App {
 
         return this;
     }
+
+    // === CALLBACKS (all optional and do not need to be defined) ===
+    // INIT:
+    // module_init_pre()
+    // module_init()
+    // module_init_post()
+
+    // module_done()
+    // -- wait until all async has finished (could take a long time)
+    // module_ready()
+    // -- wait until first frame is ready (only triggered if UPDATE == true)
+    // module_complete()
+
+    // UPDATE:
+    // module_update_pre()
+    // module_update()
+    // module_update_post()
+
+    // RESIZE (called at least once during init and whenever page changes size)
+    // module_resize()
 
     /**
      * @for App
@@ -354,4 +373,27 @@ export default class App {
         this.prop.time.frame.delta = calculateDeltaTime(this.prop.time.frame.last);
         this.prop.time.frame.last = currentTime;
     }
+
+    /**
+     * @for App
+     * @method getDeltaTime
+     * @return {number}
+     */
+    getDeltaTime = () => {
+        return this.prop.time.frame.delta;
+    };
+
+    /**
+     * @for App
+     * @method updateRun
+     * @param shouldUpdate {boolean}
+     */
+    updateRun = (shouldUpdate) => {
+        // console.warn('updateRun: ', shouldUpdate);
+        if (!UPDATE && shouldUpdate) {
+            requestAnimationFrame(() => this.update());
+        }
+
+        UPDATE = shouldUpdate;
+    };
 }

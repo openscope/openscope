@@ -1,6 +1,25 @@
 import _clone from 'lodash/clone';
 import _compact from 'lodash/compact';
 import _map from 'lodash/map';
+import { round } from '../math/core';
+import { tau } from '../math/circle';
+
+/**
+ * @property CARDINAL_DIRECTION
+ * @type {Array}
+ * @final
+ */
+const CARDINAL_DIRECTION = [
+    'N',
+    'NE',
+    'E',
+    'SE',
+    'S',
+    'SW',
+    'W',
+    'NW',
+    'N'
+];
 
 /**
  * @property radio_names
@@ -66,6 +85,8 @@ export const radio_names = {
     '.': 'point'
 };
 
+// TODO: this and CARDINAL_DIRECTION seem to be duplicating logic. look into smoothing that out by using
+// just this enum and `toUpperCase()` where necessary.
 /**
  * @property radio_cardinalDir_names
  * @type {Object}
@@ -358,6 +379,7 @@ export const radio_spellOut = (alphanumeric) => {
         return;
     }
 
+    // TODO: change to _map()
     for (let i = 0; i < str.length; i++) {
         arr.push(radio_names[str[i]]);
     }
@@ -375,6 +397,7 @@ export const radio_altitude = (altitude) => {
     const alt_s = altitude.toString();
     const s = [];
 
+    // TODO can this block be simplified?
     if (altitude >= 18000) {
         s.push('flight level', radio_names[alt_s[0]], radio_names[alt_s[1]], radio_names[alt_s[2]]);
     } else if (altitude >= 10000) {
@@ -421,4 +444,14 @@ export const radio_trend = (category, measured, target) => {
     }
 
     return CATEGORIES[category][2];
+};
+
+/**
+ *
+ * @function getCardinalDirection
+ * @param angle
+ * @return {string}
+ */
+export const getCardinalDirection = (angle) => {
+    return CARDINAL_DIRECTION[round(angle / tau() * 8)];
 };

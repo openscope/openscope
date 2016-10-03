@@ -1,6 +1,6 @@
 import _has from 'lodash/has';
 import _forEach from 'lodash/forEach';
-import Airport from './AirportInstanceModel';
+import Airport from './AirportModel';
 import { AIRPORT_LOAD_LIST } from './airportLoadList';
 import { STORAGE_KEY } from '../constants/storageKeys';
 
@@ -14,7 +14,8 @@ export default class AirportController {
     /**
      * @constructor
      */
-    constructor() {
+    constructor(updateRun) {
+        this.updateRun = updateRun;
         this.airport = airport;
         this.airport.airports = {};
         this.airport.current = null;
@@ -103,11 +104,15 @@ export default class AirportController {
             return null;
         }
 
-        const airport = new Airport({
-            icao,
-            level,
-            name
-        });
+        // create a new Airport with a reference to this.updateRun()
+        const airport = new Airport(
+            {
+                icao,
+                level,
+                name
+            },
+            this.updateRun
+        );
 
         this.airport_add(airport);
 

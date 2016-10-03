@@ -1,4 +1,3 @@
-/* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand */
 import $ from 'jquery';
 import _has from 'lodash/has';
 import _random from 'lodash/random';
@@ -7,7 +6,7 @@ import PositionModel from '../../base/PositionModel';
 import { nm, degreesToRadians } from '../../utilities/unitConverters';
 import { round, sin, cos } from '../../math/core';
 import { distance2d } from '../../math/distance';
-import { bearing, fixRadialDist } from '../../math/flightMath';
+import { bearing, fixRadialDist, inAirspace, dist_to_boundary } from '../../math/flightMath';
 import { vradial, vsub } from '../../math/vector';
 import { LOG } from '../../constants/logLevel';
 
@@ -115,12 +114,16 @@ export default class ArrivalBase {
         for (const i in fixes) {
             const fix = fixes[i][0];
             const pos = this.airport.fixes[fix].position;
-            const fix_prev = (i > 0) ? fixes[i - 1][0] : fix;
-            const pos_prev = (i > 0) ? this.airport.fixes[fix_prev].position : pos;
+            const fix_prev = (i > 0)
+                ? fixes[i - 1][0]
+                : fix;
+            const pos_prev = (i > 0)
+                ? this.airport.fixes[fix_prev].position
+                : pos;
 
-            if (inAirspace(pos)) {
+            if (inAirspace(this.airport, pos)) {
                 if (i >= 1) {
-                    extra = nm(dist_to_boundary(pos_prev));
+                    extra = nm(dist_to_boundary(this.airport, pos_prev));
                     break;
                 }
             } else {
@@ -296,9 +299,9 @@ export default class ArrivalBase {
 
         if (tgt_interval < min_interval) {
             tgt_interval = min_interval;
-            log("Requested arrival rate of " + this.frequency + " acph overridden to " +
-            "maintain minimum of " + min_entrail + " miles entrail on arrival stream " +
-            "following route " + $.map(this.fixes, function(v) { return v.fix; }).join('-'), LOG.INFO);
+            log('Requested arrival rate of ' + this.frequency + ' acph overridden to ' +
+                'maintain minimum of ' + min_entrail + ' miles entrail on arrival stream ' +
+                'following route ' + $.map(this.fixes, function(v) { return v.fix; }).join('-'), LOG.INFO);
         }
 
         const max_interval = tgt_interval + (tgt_interval - min_interval);

@@ -1,4 +1,5 @@
-import { sin, cos, tan } from './core';
+import { sin, cos, tan, abs } from './core';
+import { distance2d } from './distance';
 import { vradial, vsub, vlen } from './vector';
 import { degreesToRadians, radiansToDegrees } from '../utilities/unitConverters';
 
@@ -114,4 +115,43 @@ export const fixRadialDist = (fix, radial, dist) => {
         radiansToDegrees(lon2),
         radiansToDegrees(lat2)
     ];
+};
+
+
+// TODO: this logic should live in the `AirportController`
+/**
+ *
+ * @function inAirspace
+ * @param airport {AirportModel}
+ * @param  pos {array}
+ * @return {boolean}
+ */
+export const inAirspace = (airport, pos) => {
+    const perim = airport.perimeter;
+
+    if (perim) {
+        return point_in_area(pos, perim);
+    }
+
+    return distance2d(pos, airport.position.position) <= airport.ctr_radius;
+};
+
+// TODO: this logic should live in the `AirportController`
+/**
+ *
+ * @function dist_to_boundary
+ * @param airport {AirportModel}
+ * @param pos {array}
+ * @return {boolean}
+ */
+export const dist_to_boundary = (airport, pos) => {
+    const perim = airport.perimeter;
+
+    if (perim) {
+        // km
+        return distance_to_poly(pos, area_to_poly(perim));
+    }
+
+    // TODO: hmm, `position.position`? that seems fishy
+    return abs(distance2d(pos, airport.position.position) - airport.ctr_radius);
 };
