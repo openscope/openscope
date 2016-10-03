@@ -41486,6 +41486,10 @@ var AIRPORT_LOAD_LIST = exports.AIRPORT_LOAD_LIST = [{
 },{}],516:[function(require,module,exports){
 "use strict";
 
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -41558,6 +41562,9 @@ var AreaModel = function () {
 
 // TODO: temporarily attached to the window here until useages of AreaModel can be converted to an explicit import.
 // window.Area = AreaModel;
+
+
+exports.default = AreaModel;
 
 },{}],517:[function(require,module,exports){
 'use strict';
