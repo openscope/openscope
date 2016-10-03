@@ -2,7 +2,7 @@
 import PositionModel from '../base/PositionModel';
 import { abs, tan } from '../math/core';
 import { km, degreesToRadians } from '../utilities/unitConverters';
-import { vlen, vradial, vsub } from '../math/vector';
+import { vlen, vradial, vsub, vadd, vscale } from '../math/vector';
 
 export default class Runway {
     constructor(options = {}, end, airport) {

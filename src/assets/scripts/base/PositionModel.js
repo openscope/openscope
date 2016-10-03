@@ -1,7 +1,7 @@
 /* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand,
 no-undef, class-methods-use-this */
 import { sin, cos } from '../math/core';
-import { degreesToRadians } from '../utilities/unitConverters';
+import { degreesToRadians, parseElevation } from '../utilities/unitConverters';
 
 /**
  * @property REGEX

@@ -72,7 +72,7 @@ export default class AirlineModel {
             this.fleets.default = data.aircraft;
         }
 
-        _forEach(this.fleets, (fleet, i) => {
+        _forEach(this.fleets, (fleet) => {
             for (let j = 0; j < fleet.length; j++) {
                 fleet[j][0] = fleet[j][0].toLowerCase();
             }
@@ -161,30 +161,30 @@ export default class AirlineModel {
      * @param options {object}
      * @return
      */
-     generateAircraft(options) {
-         if (!this.loaded) {
-             if (this.loading) {
-                 this._pendingAircraft.push(options);
+    generateAircraft(options) {
+        if (!this.loaded) {
+            if (this.loading) {
+                this._pendingAircraft.push(options);
 
-                 if (!this.priorityLoad) {
-                     zlsa.atc.loadAsset({
-                         url: this._url,
-                         immediate: true
-                     });
+                if (!this.priorityLoad) {
+                    zlsa.atc.loadAsset({
+                        url: this._url,
+                        immediate: true
+                    });
 
-                     this.priorityLoad = true;
-                 }
+                    this.priorityLoad = true;
+                }
 
-                 return true;
-             } else {
-                 console.warn(`Unable to spawn aircraft for airline/ ${this.icao} as loading failed`);
+                return true;
+            } else {
+                console.warn(`Unable to spawn aircraft for airline/ ${this.icao} as loading failed`);
 
-                 return false;
-             }
-         }
+                return false;
+            }
+        }
 
-         return this._generateAircraft(options);
-     }
+        return this._generateAircraft(options);
+    }
 
     /**
      * Create a flight number/identifier
@@ -193,7 +193,7 @@ export default class AirlineModel {
      * @method generateFlightNumber
      * @return flightNumber {string}
      */
-    generateFlightNumber () {
+    generateFlightNumber() {
         const flightNumberLength = this.flightNumberGeneration.length;
         let flightNumber = '';
         let list = '0123456789';
@@ -226,8 +226,8 @@ export default class AirlineModel {
      * @for AirlineModel
      * @method validateFleets
      */
-    validateFleets () {
-        _forEach(this.fleets, (fleet, i) => {
+    validateFleets() {
+        _forEach(this.fleets, (fleet) => {
             for (let j = 0; j < fleet.length; j++) {
                 // Preload the aircraft model
                 window.aircraftController.aircraft_model_get(fleet[j][0]);

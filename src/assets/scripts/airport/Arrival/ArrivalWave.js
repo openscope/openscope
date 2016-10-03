@@ -71,16 +71,16 @@ export default class ArrivalWave extends ArrivalBase {
 
             // can reduce variation to achieve acceptable spawn rate
             if (diff <= (3600 / this.variation)) {
-                log("Requested arrival rate variation of +/-" + this.variation + " acph reduced to " +
-                    "maintain minimum of " + entrail_dist + " miles entrail on arrival stream following " +
-                    "route " + $.map(this.fixes, function(v) { return v.fix; }).join('-'), LOG.WARNING);
+                log('Requested arrival rate variation of +/-' + this.variation + ' acph reduced to ' +
+                    'maintain minimum of ' + entrail_dist + ' miles entrail on arrival stream following ' +
+                    'route ' + $.map(this.fixes, (v) => v.fix).join('-'), LOG.WARNING);
 
                 this.variation = this.variation - 3600 / diff; // reduce the variation
             } else {
                 // need to reduce frequency to achieve acceptable spawn rate
-                log("Requested arrival rate of " + this.frequency + " acph overridden to " +
-                    "maintain minimum of " + entrail_dist + " miles entrail on arrival stream " +
-                    "following route " + $.map(this.fixes, function(v) { return v.fix; }).join('-'), LOG.WARNING);
+                log('Requested arrival rate of ' + this.frequency + ' acph overridden to ' +
+                    'maintain minimum of ' + entrail_dist + ' miles entrail on arrival stream ' +
+                    'following route ' + $.map(this.fixes, (v) => v.fix).join('-'), LOG.WARNING);
 
                 this.variation = 0; // make spawn at constant interval
                 this.frequency = 3600 / entrail_interval; // reduce the frequency

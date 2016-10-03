@@ -1,3 +1,4 @@
+/* eslint-disable */
 require('raf').polyfill();
 import 'babel-polyfill';
 import $ from 'jquery';

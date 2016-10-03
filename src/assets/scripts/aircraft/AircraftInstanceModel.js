@@ -12,9 +12,21 @@ import AircraftStripView from './AircraftStripView';
 import Waypoint from './Waypoint';
 import { speech_say } from '../speech';
 import { tau, fix_angle, angle_offset } from '../math/circle';
-import { round, abs, sin, cos } from '../math/core';
+import { round, abs, sin, cos, crange } from '../math/core';
 import { distance2d } from '../math/distance';
-import { vlen, vradial, vsub } from '../math/vector';
+import { getOffset } from '../math/flightMath';
+import {
+    vlen,
+    vradial,
+    vsub,
+    vadd,
+    vscale,
+    vturn,
+    distance_to_poly,
+    point_to_mpoly,
+    point_in_poly,
+    point_in_area
+} from '../math/vector';
 import {
     radio_cardinalDir_names,
     digits_decimal,
@@ -23,9 +35,10 @@ import {
     radio_heading,
     radio_spellOut,
     radio_altitude,
-    radio_trend
+    radio_trend,
+    getCardinalDirection
 } from '../utilities/radioUtilities';
-import { km, radiansToDegrees, degreesToRadians } from '../utilities/unitConverters';
+import { km, radiansToDegrees, degreesToRadians, heading_to_string } from '../utilities/unitConverters';
 import { SELECTORS } from '../constants/selectors';
 
 /**
@@ -2459,7 +2472,7 @@ export default class Aircraft {
             }
 
             // raise warning if in at least one restricted area
-            $.each(this.restricted.list, function(k, v) {
+            $.each(this.restricted.list, (k, v) => {
                 warning = warning || v.inside;
             });
         }

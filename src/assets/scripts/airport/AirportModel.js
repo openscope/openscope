@@ -9,10 +9,11 @@ import PositionModel from '../base/PositionModel';
 import Runway from './Runway';
 import { ArrivalFactory } from './Arrival/ArrivalFactory';
 import { DepartureFactory } from './Departure/DepartureFactory';
-import { degreesToRadians } from '../utilities/unitConverters';
-import { round, abs, sin } from '../math/core';
+import { degreesToRadians, parseElevation } from '../utilities/unitConverters';
+import { round, abs, sin, crange } from '../math/core';
 import { angle_offset } from '../math/circle';
-import { vlen, vsub } from '../math/vector';
+import { getOffset } from '../math/flightMath';
+import { vlen, vsub, vadd, vscale, raysIntersect } from '../math/vector';
 import { LOG } from '../constants/logLevel';
 import { STORAGE_KEY } from '../constants/storageKeys';
 
@@ -31,10 +32,16 @@ const ra = (n) => {
 // TODO: this class contains a lot of .hasOwnProperty() type checks (converted to _has for now). is there a need for
 // such defensiveness? or can some of that be accomplished on init and then smiply update the prop if need be?
 /**
- * @class AirportInstance
+ * @class AirportModel
  */
-export default class AirportInstance {
-    constructor(options = {}) {
+export default class AirportModel {
+    /**
+     * @constructor
+     * @param options {object}
+     * @param updateRun {function}
+     */
+    constructor(options = {}, updateRun) {
+        this.updateRun = updateRun;
         // FIXME: All properties of this class should be instantiated here, even if they wont have values yet.
         // there is a lot of logic below that can be elimininated by simply instantiating values here.
         this.loaded   = false;
@@ -67,7 +74,7 @@ export default class AirportInstance {
         this.departures = null;
         this.arrivals   = [];
 
-        this.wind     = {
+        this.wind  = {
             speed: 10,
             angle: 0
         };
@@ -378,7 +385,7 @@ export default class AirportInstance {
         this.start = window.gameController.game_time();
         this.updateRunway();
         this.addAircraft();
-        updateRun(true);
+        this.updateRun(true);
     }
 
     unset() {
@@ -455,12 +462,12 @@ export default class AirportInstance {
                 multipoly = [multipoly];
             }
 
-            $.each(multipoly, function(i, poly) {
+            $.each(multipoly, (i, poly) => {
                   // multipoly contains several polys
                   // each poly has 1st outer ring and other rings are holes
-                apt.terrain[ele].push($.map(poly, function(line_string) {
+                apt.terrain[ele].push($.map(poly, (line_string) => {
                     return [
-                        $.map(line_string, function(pt) {
+                        $.map(line_string, (pt) => {
                             var pos = new PositionModel(pt, apt.position, apt.magnetic_north);
                             pos.parse4326();
                             return [pos.position];
@@ -477,7 +484,7 @@ export default class AirportInstance {
             url: `assets/airports/terrain/${this.icao.toLowerCase()}.geojson`,
             immediate: true
         })
-        .done(function(data) {
+        .done((data) => {
             try {
                 log('Parsing terrain');
                 this.parseTerrain(data);
@@ -488,12 +495,12 @@ export default class AirportInstance {
             this.loading = false;
             this.loaded = true;
             this.set();
-        }.bind(this))
-        .fail(function(jqXHR, textStatus, errorThrown) {
+        })
+        .fail((jqXHR, textStatus, errorThrown) => {
             this.loading = false;
             console.error(`Unable to load airport/terrain/${this.icao}: ${textStatus}`);
             prop.airport.current.set();
-        }.bind(this));
+        });
     }
 
     // TODO: there is a lot of binding here, use => functions and this probably wont be an issue.
@@ -502,14 +509,14 @@ export default class AirportInstance {
             return;
         }
 
-        updateRun(false);
+        this.updateRun(false);
         this.loading = true;
 
         zlsa.atc.loadAsset({
             url: `assets/airports/${this.icao.toLowerCase()}.json`,
             immediate: true
         })
-        .done(function(data) {
+        .done((data) => {
             this.parse(data);
 
             if (this.has_terrain) {
@@ -519,12 +526,12 @@ export default class AirportInstance {
             this.loading = false;
             this.loaded = true;
             this.set();
-        }.bind(this))
-        .fail(function(jqXHR, textStatus, errorThrown) {
+        })
+        .fail((jqXHR, textStatus, errorThrown) => {
             this.loading = false;
             console.error(`Unable to load airport/${this.icao}: ${textStatus}`);
             prop.airport.current.set();
-        }.bind(this));
+        });
     }
 
     getRestrictedAreas() {

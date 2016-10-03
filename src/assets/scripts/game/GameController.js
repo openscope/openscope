@@ -15,7 +15,9 @@ export default class GameController {
     /**
      * @constructor
      */
-    constructor() {
+    constructor(getDeltaTime) {
+        this.getDeltaTime = getDeltaTime;
+
         this.game = game;
         this.game.paused = true;
         this.game.focused = true;
@@ -340,7 +342,7 @@ export default class GameController {
             this.updateScore(score);
         }
 
-        prop.game.delta = Math.min(delta() * prop.game.speedup, 100);
+        prop.game.delta = Math.min(this.getDeltaTime() * prop.game.speedup, 100);
 
         if (this.game_paused()) {
             prop.game.delta = 0;

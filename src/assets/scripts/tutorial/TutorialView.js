@@ -5,6 +5,7 @@ import _has from 'lodash/has';
 import TutorialStep from './TutorialStep';
 import { round } from '../math/core';
 import { time } from '../utilities/timeHelpers';
+import { heading_to_string } from '../utilities/unitConverters';
 import { STORAGE_KEY } from '../constants/storageKeys';
 import { SELECTORS } from '../constants/selectors';
 
@@ -69,7 +70,7 @@ export default class TutorialView {
          */
         this.$tutorialNext = null;
 
-        prop.tutorial = tutorial
+        prop.tutorial = tutorial;
         this.tutorial = tutorial;
         this.tutorial.steps = [];
         this.tutorial.step = 0;

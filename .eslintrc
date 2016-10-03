@@ -22,12 +22,17 @@
 
         # The rules below are only included to get through the first rounds of refactor. the
         # rules should be re-implemented and errors addressed at a later date
+        "block-scoped-var": 0,
         "consistent-return": 0,
-        "no-param-reassign": 0,
-        "no-underscore-dangle": 0,
-        "no-undef": 0,
-        "no-mixed-operators": 0,
         "func-names": 0,
+        "guard-for-in": 0,
+        "import/prefer-default-export": 0,
+        "no-param-reassign": 0,
+        "no-restricted-syntax": 0,
+        "no-shadow": 0,
+        "no-mixed-operators": 0,
+        "no-undef": 0,
+        "no-underscore-dangle": 0,
         "object-shorthand": 0
     }
 }
