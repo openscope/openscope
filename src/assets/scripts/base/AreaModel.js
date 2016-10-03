@@ -4,7 +4,7 @@
  *
  * @class AreaModel
  */
-class AreaModel {
+export default class AreaModel {
     /**
      * @for AreaModel
      * @constructor
