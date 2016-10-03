@@ -82,18 +82,18 @@ export default class Model {
             url,
             immediate: false
         })
-        .done(function(data) {
+        .done((data) => {
             this.parse(data);
             this.loading = false;
             this.loaded = true;
             this._generatePendingAircraft();
-        }.bind(this))
-        .fail(function(jqXHR, textStatus, errorThrown) {
+        })
+        .fail((jqXHR, textStatus, errorThrown) => {
             this.loading = false;
             this._pendingAircraft = [];
 
             console.error(`Unable to load aircraft/ ${this.icao} : ${textStatus}`);
-        }.bind(this));
+        });
     }
 
     /**
@@ -133,7 +133,7 @@ export default class Model {
     _generateAircraft(options) {
         options.model = this;
         const aircraft = new AircraftInstanceModel(options);
-        
+
         prop.aircraft.list.push(aircraft);
 
         console.log(`Spawning ${options.category} : ${aircraft.getCallsign()}`);

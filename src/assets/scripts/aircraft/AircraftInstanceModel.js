@@ -2472,7 +2472,7 @@ export default class Aircraft {
             }
 
             // raise warning if in at least one restricted area
-            $.each(this.restricted.list, function(k, v) {
+            $.each(this.restricted.list, (k, v) => {
                 warning = warning || v.inside;
             });
         }

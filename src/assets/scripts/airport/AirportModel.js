@@ -462,12 +462,12 @@ export default class AirportModel {
                 multipoly = [multipoly];
             }
 
-            $.each(multipoly, function(i, poly) {
+            $.each(multipoly, (i, poly) => {
                   // multipoly contains several polys
                   // each poly has 1st outer ring and other rings are holes
-                apt.terrain[ele].push($.map(poly, function(line_string) {
+                apt.terrain[ele].push($.map(poly, (line_string) => {
                     return [
-                        $.map(line_string, function(pt) {
+                        $.map(line_string, (pt) => {
                             var pos = new PositionModel(pt, apt.position, apt.magnetic_north);
                             pos.parse4326();
                             return [pos.position];
@@ -484,7 +484,7 @@ export default class AirportModel {
             url: `assets/airports/terrain/${this.icao.toLowerCase()}.geojson`,
             immediate: true
         })
-        .done(function(data) {
+        .done((data) => {
             try {
                 log('Parsing terrain');
                 this.parseTerrain(data);
@@ -495,12 +495,12 @@ export default class AirportModel {
             this.loading = false;
             this.loaded = true;
             this.set();
-        }.bind(this))
-        .fail(function(jqXHR, textStatus, errorThrown) {
+        })
+        .fail((jqXHR, textStatus, errorThrown) => {
             this.loading = false;
             console.error(`Unable to load airport/terrain/${this.icao}: ${textStatus}`);
             prop.airport.current.set();
-        }.bind(this));
+        });
     }
 
     // TODO: there is a lot of binding here, use => functions and this probably wont be an issue.
@@ -516,7 +516,7 @@ export default class AirportModel {
             url: `assets/airports/${this.icao.toLowerCase()}.json`,
             immediate: true
         })
-        .done(function(data) {
+        .done((data) => {
             this.parse(data);
 
             if (this.has_terrain) {
@@ -526,12 +526,12 @@ export default class AirportModel {
             this.loading = false;
             this.loaded = true;
             this.set();
-        }.bind(this))
-        .fail(function(jqXHR, textStatus, errorThrown) {
+        })
+        .fail((jqXHR, textStatus, errorThrown) => {
             this.loading = false;
             console.error(`Unable to load airport/${this.icao}: ${textStatus}`);
             prop.airport.current.set();
-        }.bind(this));
+        });
     }
 
     getRestrictedAreas() {

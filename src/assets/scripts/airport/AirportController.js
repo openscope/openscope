@@ -117,7 +117,7 @@ export default class AirportController {
         this.airport_add(airport);
 
         return airport;
-    };
+    }
 
     /**
      * @function airport_add
@@ -125,7 +125,7 @@ export default class AirportController {
      */
     airport_add(airport) {
         prop.airport.airports[airport.icao.toLowerCase()] = airport;
-    };
+    }
 
     /**
      * @function airport_get
@@ -138,5 +138,5 @@ export default class AirportController {
         }
 
         return prop.airport.airports[icao.toLowerCase()];
-    };
+    }
 }

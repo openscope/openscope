@@ -137,7 +137,7 @@ export default class ArrivalBase {
         // distance between succ. arrivals, nm
         const entrail_dist = this.speed / this.frequency;
         // TODO: replace with _map
-        const dist_total = array_sum($.map(fixes, function(v) {
+        const dist_total = array_sum($.map(fixes, (v) => {
             return v[2];
         })) + extra;
 
@@ -301,7 +301,7 @@ export default class ArrivalBase {
             tgt_interval = min_interval;
             log('Requested arrival rate of ' + this.frequency + ' acph overridden to ' +
                 'maintain minimum of ' + min_entrail + ' miles entrail on arrival stream ' +
-                'following route ' + $.map(this.fixes, function(v) { return v.fix; }).join('-'), LOG.INFO);
+                'following route ' + $.map(this.fixes, (v) => v.fix).join('-'), LOG.INFO);
         }
 
         const max_interval = tgt_interval + (tgt_interval - min_interval);

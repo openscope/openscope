@@ -12,7 +12,7 @@ import { LOG } from '../../constants/logLevel';
  * @param options
  * @return {function}
  */
-export const DepartureFactory = function(airport, options) {
+export const DepartureFactory = (airport, options) => {
     if (options.type === '') {
         return log(`${airport.icao} departure stream not given type!`, LOG.WARNING);
     }

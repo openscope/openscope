@@ -1,4 +1,3 @@
-/* eslint-disable no-param-reassign */
 import _has from 'lodash/has';
 import _map from 'lodash/map';
 import Waypoint from './Waypoint';
@@ -80,10 +79,10 @@ export default class Leg {
             }
 
             // const { apt, sid, exit } = data.route.split('.');
-            var apt = data.route.split('.')[0];
-            var sid = data.route.split('.')[1];
-            var exit = data.route.split('.')[2];
-            var rwy = fms.my_aircraft.rwy_dep;
+            const apt = data.route.split('.')[0];
+            const sid = data.route.split('.')[1];
+            const exit = data.route.split('.')[2];
+            const rwy = fms.my_aircraft.rwy_dep;
             this.waypoints = [];
 
             // Generate the waypoints
@@ -94,7 +93,7 @@ export default class Leg {
                 return;
             }
 
-            var pairs = window.airportController.airport_get(apt).getSID(sid, exit, rwy);
+            const pairs = window.airportController.airport_get(apt).getSID(sid, exit, rwy);
 
             // Remove the placeholder leg (if present)
             if (fms.my_aircraft.isLanded() && fms.legs.length > 0
@@ -106,12 +105,12 @@ export default class Leg {
 
             // for each fix/restr pair
             for (let i = 0; i < pairs.length; i++) {
-                var f = pairs[i][0];
-                var a = null;
-                var s = null;
+                const f = pairs[i][0];
+                let a = null;
+                let s = null;
 
                 if (pairs[i][1]) {
-                    var a_n_s = pairs[i][1].toUpperCase().split('|');
+                    const a_n_s = pairs[i][1].toUpperCase().split('|');
 
                     for (const j in a_n_s) {
                         if (a_n_s[j][0] === 'A') {
@@ -144,24 +143,25 @@ export default class Leg {
                 return;
             }
 
-            var entry = data.route.split('.')[0];
-            var star = data.route.split('.')[1];
-            var apt = data.route.split('.')[2];
-            var rwy = fms.my_aircraft.rwy_arr;
+            const entry = data.route.split('.')[0];
+            const star = data.route.split('.')[1];
+            const apt = data.route.split('.')[2];
+            const rwy = fms.my_aircraft.rwy_arr;
             this.waypoints = [];
 
             // Generate the waypoints
-            var pairs = window.airportController.airport_get(apt).getSTAR(star, entry, rwy);
+            const pairs = window.airportController.airport_get(apt).getSTAR(star, entry, rwy);
 
             // for each fix/restr pair
             for (let i = 0; i < pairs.length; i++) {
-                var f = pairs[i][0];
-                var a = null;
-                var s = null;
+                const f = pairs[i][0];
+                let a = null;
+                let s = null;
 
                 if (pairs[i][1]) {
-                    var a_n_s = pairs[i][1].toUpperCase().split('|');
-                    for(const j in a_n_s) {
+                    const a_n_s = pairs[i][1].toUpperCase().split('|');
+
+                    for (const j in a_n_s) {
                         if (a_n_s[j][0] === 'A') {
                             a = a_n_s[j].substr(1);
                         } else if (a_n_s[j][0] === 'S') {
@@ -188,11 +188,11 @@ export default class Leg {
         } else if (this.type === FP_LEG_TYPE.IAP) {
             // FUTURE FUNCTIONALITY
         } else if (this.type === FP_LEG_TYPE.AWY) {
-            var start = data.route.split('.')[0];
-            var airway = data.route.split('.')[1];
-            var end = data.route.split('.')[2];
+            const start = data.route.split('.')[0];
+            const airway = data.route.split('.')[1];
+            const end = data.route.split('.')[2];
             // Verify airway is valid
-            var apt = window.airportController.airport_get();
+            const apt = window.airportController.airport_get();
 
             if (!_has(apt, 'airways') || !_has(apt.airways, 'airway')) {
                 log(`Airway ${airway} not defined at ${apt.icao}`, LOG.WARNING);
@@ -200,15 +200,15 @@ export default class Leg {
             }
 
             // Verify start/end points are along airway
-            var awy = apt.airways[airway];
+            const awy = apt.airways[airway];
             if (!(awy.indexOf(start) !== -1 && awy.indexOf(end) !== -1)) {
                 log(`Unable to follow ${airway} from ${start} to ${end}`, LOG.WARNING);
                 return;
             }
 
             // Build list of fixes, depending on direction traveling along airway
-            var fixes = [];
-            var readFwd = (awy.indexOf(end) > awy.indexOf(start));
+            const fixes = [];
+            const readFwd = (awy.indexOf(end) > awy.indexOf(start));
 
             if (readFwd) {
                 for (let f = awy.indexOf(start); f <= awy.indexOf(end); f++) {

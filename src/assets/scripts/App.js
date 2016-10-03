@@ -124,7 +124,7 @@ export default class App {
     /**
      * Lifecycle method. Should be called only once on initialization.
      *
-     * Used fire off `init` and `init_pre` methods and also start the game loop
+     * Used to fire off `init` and `init_pre` methods and also start the game loop
      *
      * @for App
      * @method enable
@@ -143,19 +143,6 @@ export default class App {
         window.inputController = this.inputController;
         window.uiController = this.uiController;
         window.canvasController = this.canvasController;
-
-        // // TODO: MOVE THIS!!!
-        // /**
-        //  * Change whether updates should run
-        //  */
-        // window.updateRun = (arg) => {
-        //     console.warn('updateRun: ', arg);
-        //     if (!UPDATE && arg) {
-        //         requestAnimationFrame(() => this.update());
-        //     }
-        //
-        //     UPDATE = arg;
-        // };
 
         log(`Version ${this.prop.version_string}`);
 
