@@ -3,6 +3,7 @@
 _atc-call-stack.js
 _site/
 assets/scripts/
+assets/style/
 coverage/
 .idea/
 .nyc_output/
