@@ -7,3 +7,5 @@ coverage/
 .nyc_output/
 node_modules/
 npm-debug.log
+assets/styles/
+assets/scripts/
