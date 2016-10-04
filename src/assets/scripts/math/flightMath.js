@@ -1,6 +1,6 @@
 import { sin, cos, tan, abs } from './core';
 import { distance2d } from './distance';
-import { vradial, vsub, vlen } from './vector';
+import { vradial, vsub, vlen, point_in_area, distance_to_poly, area_to_poly } from './vector';
 import { degreesToRadians, radiansToDegrees } from '../utilities/unitConverters';
 
 /**
