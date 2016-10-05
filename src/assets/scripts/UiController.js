@@ -343,6 +343,7 @@ export default class UiView {
         this.$airportListNotes.append(notes);
     }
 
+    //TODO: this function should live in a helper file somewhere
     /**
      * @for UiController
      * @method px_to_km
@@ -353,6 +354,7 @@ export default class UiView {
         return pixels / prop.ui.scale;
     }
 
+    //TODO: this function should live in a helper file somewhere
     /**
      * @for UiController
      * @method km_to_px
@@ -384,6 +386,7 @@ export default class UiView {
         ];
 
         prop.ui.scale *= 0.9;
+
         if (prop.ui.scale < prop.ui.scale_min) {
             prop.ui.scale = prop.ui.scale_min;
         }
@@ -454,7 +457,9 @@ export default class UiView {
      * @method ui_airport_open
      */
     ui_airport_open() {
-        const $previousActiveAirport = this.$airportList.find(SELECTORS.CLASSNAMES.ACTIVE);
+        this.$airportSwitch.addClass(SELECTORS.CLASSNAMES.OPEN);
+
+        const $previousActiveAirport = this.$airportList.find(SELECTORS.DOM_SELECTORS.ACTIVE);
 
         // Remove the active class from a no-longer-selected airport in the list.
         if ($previousActiveAirport.length !== 0) {
@@ -464,7 +469,6 @@ export default class UiView {
         const icao = window.airportController.airport_get().icao.toLowerCase();
         $(`.airport.icao-${icao}`).addClass(SELECTORS.CLASSNAMES.ACTIVE);
 
-        this.$airportSwitch.addClass(SELECTORS.CLASSNAMES.OPEN);
         this.$switchAirport.addClass(SELECTORS.CLASSNAMES.ACTIVE);
     }
 
