@@ -8,6 +8,13 @@ import { STORAGE_KEY } from '../constants/storageKeys';
 const airport = {};
 
 /**
+ * @property DEFAULT_AIRPORT_ICAO
+ * @type {string}
+ * @final
+ */
+const DEFAULT_AIRPORT_ICAO = 'ksfo';
+
+/**
  * @class AirportController
  */
 export default class AirportController {
@@ -22,6 +29,8 @@ export default class AirportController {
     }
 
     /**
+     * Lifecycle method. Should run only once on App initialiazation
+     *
      * @for AirportController
      * @method init_pre
      */
@@ -32,6 +41,8 @@ export default class AirportController {
     }
 
     /**
+     * Lifecycle method. Should run only once on App initialiazation
+     *
      * Load each airport in the `airportLoadList`
      *
      * @for AirportController
@@ -44,16 +55,18 @@ export default class AirportController {
     }
 
     /**
+     * Lifecycle method. Should run only once on App initialiazation
+     *
      * @for AirportController
      * @method ready
      */
     ready() {
-        let airportName = 'ksfo';
+        let airportName = DEFAULT_AIRPORT_ICAO;
 
-        if (!_has(localStorage, STORAGE_KEY.ATC_LAST_AIRPORT) ||
-            !_has(prop.airport.airports, STORAGE_KEY.ATC_LAST_AIRPORT)
+        if (_has(localStorage, STORAGE_KEY.ATC_LAST_AIRPORT) ||
+            _has(prop.airport.airports, localStorage[STORAGE_KEY.ATC_LAST_AIRPORT].toLowerCase())
         ) {
-            airportName = 'ksfo';
+            airportName = localStorage[STORAGE_KEY.ATC_LAST_AIRPORT].toLowerCase();
         }
 
         this.airport_set(airportName);
@@ -64,16 +77,13 @@ export default class AirportController {
      * @method airport_set
      */
     airport_set(icao) {
-        // TODO: simplify these ifs by combining them
-        if (!icao) {
-            if (_has(localStorage, STORAGE_KEY.ATC_LAST_AIRPORT)) {
-                icao = localStorage[STORAGE_KEY.ATC_LAST_AIRPORT];
-            }
+        if (!icao && _has(localStorage, STORAGE_KEY.ATC_LAST_AIRPORT)) {
+            icao = localStorage[STORAGE_KEY.ATC_LAST_AIRPORT];
         }
 
         icao = icao.toLowerCase();
 
-        if (!icao in prop.airport.airports) {
+        if (!prop.airport.airports[icao]) {
             console.log(`${icao}: no such airport`);
 
             return;

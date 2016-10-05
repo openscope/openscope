@@ -15,6 +15,7 @@ import { angle_offset } from '../math/circle';
 import { getOffset } from '../math/flightMath';
 import { vlen, vsub, vadd, vscale, raysIntersect } from '../math/vector';
 import { LOG } from '../constants/logLevel';
+import { SELECTORS } from '../constants/selectors';
 import { STORAGE_KEY } from '../constants/storageKeys';
 
 // TODO: This function should really live in a different file and have tests.
@@ -369,17 +370,17 @@ export default class AirportModel {
         localStorage[STORAGE_KEY.ATC_LAST_AIRPORT] = this.icao;
         prop.airport.current = this;
 
-        $('#airport')
+        $(SELECTORS.DOM_SELECTORS.AIRPORT)
             .text(this.icao.toUpperCase())
             .attr('title', this.name);
 
         prop.canvas.draw_labels = true;
-        $('.toggle-labels').toggle(!_isEmpty(this.maps));
-        $('.toggle-restricted-areas').toggle((this.restricted_areas || []).length > 0);
-        $('.toggle-sids').toggle(!_isEmpty(this.sids));
+        $(SELECTORS.DOM_SELECTORS.TOGGLE_LABELS).toggle(!_isEmpty(this.maps));
+        $(SELECTORS.DOM_SELECTORS.TOGGLE_RESTRICTED_AREAS).toggle((this.restricted_areas || []).length > 0);
+        $(SELECTORS.DOM_SELECTORS.TOGGLE_SIDS).toggle(!_isEmpty(this.sids));
 
         prop.canvas.dirty = true;
-        $('.toggle-terrain').toggle(!_isEmpty(this.terrain));
+        $(SELECTORS.DOM_SELECTORS.TOGGLE_TERRAIN).toggle(!_isEmpty(this.terrain));
 
         window.gameController.game_reset_score();
         this.start = window.gameController.game_time();
@@ -446,8 +447,8 @@ export default class AirportModel {
         apt.terrain = {};
 
         for (const i in data.features) {
-            const f = data.features[i],
-            ele = round(f.properties.elevation / 0.3048, 1000); // m => ft, rounded to 1K (but not divided)
+            const f = data.features[i];
+            const ele = round(f.properties.elevation / 0.3048, 1000); // m => ft, rounded to 1K (but not divided)
 
             if (!apt.terrain[ele]) {
                 apt.terrain[ele] = [];
