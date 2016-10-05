@@ -81,16 +81,16 @@ export default class InputController {
         this.input.mouseDown = [0, 0];
         this.input.isMouseDown = false;
 
-        this.createChildren()
+        this._init()
             .setupHandlers()
             .enable();
     }
 
     /**
      * @for InputController
-     * @method createChildren
+     * @method _init
      */
-    createChildren() {
+    _init() {
         this.$window = $(window);
         this.$commandInput = this.$element.find(SELECTORS.DOM_SELECTORS.COMMAND);
         this.$canvases = this.$element.find(SELECTORS.DOM_SELECTORS.CANVASES);

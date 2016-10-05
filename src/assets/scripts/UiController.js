@@ -82,15 +82,15 @@ export default class UiView {
         };
 
 
-        return this.createChildren()
+        return this._init()
                     .enable();
     }
 
     /**
      * @for UiController
-     * @method createChildren
+     * @method _init
      */
-    createChildren() {
+    _init() {
         this.$airportList = this.$element.find(SELECTORS.DOM_SELECTORS.AIRPORT_LIST);
         this.$airportListNotes = this.$element.find(SELECTORS.DOM_SELECTORS.AIRPORT_LIST_NOTES);
         this.$airportSwitch = this.$element.find(SELECTORS.DOM_SELECTORS.AIRPORT_SWITCH);

@@ -64,7 +64,7 @@ export default class AircraftStripView {
         this.category = aircraftInstanceModel.category;
         this.flightPlan = aircraftInstanceModel.fms.fp.route.join(' ');
 
-        return this.createChildren()
+        return this._init()
                     .setupHandlers(aircraftInstanceModel)
                     .layout()
                     .redraw()
@@ -74,7 +74,7 @@ export default class AircraftStripView {
      * @for AircraftStripView
      * @method
      */
-    createChildren() {
+    _init() {
         this.$element = $(AIRCRAFT_STRIP_TEMPLATE);
         this.$aircraft = $(this.buildSpanForViewItem(SELECTORS.CLASSNAMES.AIRCRAFT, this.buildIcaoWithWeightClass()));
         this.$callsign = $(this.buildSpanForViewItem(SELECTORS.CLASSNAMES.CALLSIGN, this.callsign));

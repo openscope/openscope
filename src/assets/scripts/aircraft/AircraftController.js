@@ -13,6 +13,7 @@ import { tau } from '../math/circle';
 // Temporary const declaration here to attach to the window AND use as internal property
 const aircraft = {};
 
+// TODO: this should be renamed to `AircraftCollection`
 /**
  * @class AircraftController
  */
@@ -35,13 +36,6 @@ export default class AircraftController {
      */
     init_pre() {
         prop.aircraft = aircraft;
-        prop.aircraft.models = {};
-        prop.aircraft.callsigns = [];
-        prop.aircraft.list = [];
-        prop.aircraft.current = null;
-        prop.aircraft.auto = {
-            enabled: false
-        };
     }
 
     /**
@@ -50,6 +44,7 @@ export default class AircraftController {
      * @param airlineName
      */
     aircraft_generate_callsign(airlineName) {
+        // TODO: this should live in the AirlineModel
         const airline = window.airlineController.airline_get(airlineName);
 
         if (!airline) {
@@ -66,7 +61,7 @@ export default class AircraftController {
      * @method aircraft_auto_toggle
      */
     aircraft_auto_toggle() {
-        prop.aircraft.auto.enabled = !prop.aircraft.auto.enabled;
+        prop.aircraft.auto.enabled = !this.aircraft.auto.enabled;
     }
 
     /**
@@ -77,19 +72,11 @@ export default class AircraftController {
     aircraft_callsign_new(airline) {
         // TODO: the logic needs work here. if `callsign` is always initialized as null, one would imagine that
         // this function would always result in the creation of a callsign?
-        let callsign = null;
+        let callsign = this.aircraft_generate_callsign(airline);
 
-        // TODO: is this while loop needed? there may be a cleaner way to accomplish this.
-        while (true) {
-            callsign = this.aircraft_generate_callsign(airline);
-
-            if (prop.aircraft.callsigns.indexOf(callsign) === -1) {
-                break;
-            }
+        if (this.aircraft.callsigns.indexOf(callsign) === -1) {
+            this.aircraft.callsigns.push(callsign);
         }
-
-        // FIXME: this is a global object and needs to be localized
-        prop.aircraft.callsigns.push(callsign);
 
         return callsign;
     }
@@ -114,8 +101,8 @@ export default class AircraftController {
         let nearest = null;
         let distance = Infinity;
 
-        for (let i = 0; i < prop.aircraft.list.length; i++) {
-            const aircraft = prop.aircraft.list[i];
+        for (let i = 0; i < this.aircraft.list.length; i++) {
+            const aircraft = this.aircraft.list[i];
             const d = distance2d(aircraft.position, position);
 
             if (d < distance && aircraft.isVisible() && !aircraft.hit) {
@@ -124,7 +111,7 @@ export default class AircraftController {
             }
         }
 
-        return [prop.aircraft.list[nearest], distance];
+        return [this.aircraft.list[nearest], distance];
     }
 
     /**
@@ -133,7 +120,7 @@ export default class AircraftController {
      * @param model {AircraftModel|object}
      */
     aircraft_add(model) {
-        prop.aircraft.models[model.icao.toLowerCase()] = model;
+        this.aircraft.models[model.icao.toLowerCase()] = model;
     }
 
     /**
@@ -151,11 +138,11 @@ export default class AircraftController {
      * @method aircraft_remove_all
      */
     aircraft_remove_all() {
-        for (let i = 0; i < prop.aircraft.list.length; i++) {
-            prop.aircraft.list[i].cleanup();
+        for (let i = 0; i < this.aircraft.list.length; i++) {
+            this.aircraft.list[i].cleanup();
         }
 
-        prop.aircraft.list = [];
+        this.aircraft.list = [];
     }
 
     /**
@@ -163,8 +150,8 @@ export default class AircraftController {
      * @method aircraft_remove
      */
     aircraft_remove(aircraft) {
-        prop.aircraft.callsigns.splice(prop.aircraft.callsigns.indexOf(aircraft.callsign), 1);
-        prop.aircraft.list.splice(prop.aircraft.list.indexOf(aircraft), 1);
+        this.aircraft.callsigns.splice(this.aircraft.callsigns.indexOf(aircraft.callsign), 1);
+        this.aircraft.list.splice(this.aircraft.list.indexOf(aircraft), 1);
 
         this.update_aircraft_eids();
 
@@ -176,15 +163,16 @@ export default class AircraftController {
      * @method aircraft_update
      */
     aircraft_update() {
-        for (let i = 0; i < prop.aircraft.list.length; i++) {
-            prop.aircraft.list[i].update();
-            prop.aircraft.list[i].updateWarning();
+        // TODO: change to _forEach()
+        for (let i = 0; i < this.aircraft.list.length; i++) {
+            this.aircraft.list[i].update();
+            this.aircraft.list[i].updateWarning();
 
             // TODO: move this InnerLoop thing to a function so we can get rid of the continue InnerLoop thing.
-            for (let j = i + 1; j < prop.aircraft.list.length; j++) {
+            for (let j = i + 1; j < this.aircraft.list.length; j++) {
                 // TODO: need better names here. what is `that`?  what is `other`?
-                const aircraft = prop.aircraft.list[i];
-                const otherAircraft = prop.aircraft.list[j];
+                const aircraft = this.aircraft.list[i];
+                const otherAircraft = this.aircraft.list[j];
 
                 if (aircraft.checkConflict(otherAircraft)) {
                     continue;
@@ -208,13 +196,13 @@ export default class AircraftController {
             }
         }
 
-        for (let i = prop.aircraft.list.length - 1; i >= 0; i--) {
+        for (let i = this.aircraft.list.length - 1; i >= 0; i--) {
             let remove = false;
-            const aircraft = prop.aircraft.list[i];
+            const aircraft = this.aircraft.list[i];
             // let is_visible = aircraft_visible(aircraft);
 
             if (aircraft.isStopped() && aircraft.category === 'arrival') {
-                prop.game.score.windy_landing += aircraft.scoreWind('landed');
+                window.gameController.game.score.windy_landing += aircraft.scoreWind('landed');
 
                 window.uiController.ui_log(`${aircraft.getCallsign()} switching to ground, good day`);
                 speech_say([
@@ -222,7 +210,7 @@ export default class AircraftController {
                     { type: 'text', content: ', switching to ground, good day' }
                 ]);
 
-                prop.game.score.arrival += 1;
+                window.gameController.game.score.arrival += 1;
                 remove = true;
             }
 
@@ -319,8 +307,8 @@ export default class AircraftController {
         }
 
         // prevent out-of-range error
-        if (prop.aircraft.list.length > eid && eid >= 0) {
-            return prop.aircraft.list[eid];
+        if (this.aircraft.list.length > eid && eid >= 0) {
+            return this.aircraft.list[eid];
         }
 
         return null;
@@ -334,9 +322,9 @@ export default class AircraftController {
     aircraft_get_by_callsign(callsign) {
         callsign = String(callsign);
 
-        for (let i = 0; i < prop.aircraft.list.length; i++) {
-            if (prop.aircraft.list[i].callsign === callsign.toLowerCase()) {
-                return prop.aircraft.list[i];
+        for (let i = 0; i < this.aircraft.list.length; i++) {
+            if (this.aircraft.list[i].callsign === callsign.toLowerCase()) {
+                return this.aircraft.list[i];
             }
         }
 
@@ -349,8 +337,8 @@ export default class AircraftController {
      * @param callsign {string}
      */
     aircraft_get_eid_by_callsign(callsign) {
-        for (let i = 0; i < prop.aircraft.list.length; i++) {
-            const aircraft = prop.aircraft.list[i];
+        for (let i = 0; i < this.aircraft.list.length; i++) {
+            const aircraft = this.aircraft.list[i];
 
             if (aircraft.callsign === callsign.toLowerCase()) {
                 return aircraft.eid;
@@ -366,16 +354,16 @@ export default class AircraftController {
      * @param icao {string}
      */
     aircraft_model_get(icao) {
-        if (!(icao in prop.aircraft.models)) {
+        if (!(this.aircraft.models[icao])) {
             const model = new AircraftModel({
                 icao,
                 url: `assets/aircraft/${icao}.json`
             });
 
-            prop.aircraft.models[icao] = model;
+            this.aircraft.models[icao] = model;
         }
 
-        return prop.aircraft.models[icao];
+        return this.aircraft.models[icao];
     }
 
     /**
@@ -385,11 +373,11 @@ export default class AircraftController {
      * @method update_aircraft_eids
      */
     update_aircraft_eids() {
-        for (let i = 0; i < prop.aircraft.list.length; i++) {
+        for (let i = 0; i < this.aircraft.list.length; i++) {
             // update eid in aircraft
-            prop.aircraft.list[i].eid = i;
+            this.aircraft.list[i].eid = i;
             // update eid in aircraft's fms
-            prop.aircraft.list[i].fms.my_aircrafts_eid = i;
+            this.aircraft.list[i].fms.my_aircrafts_eid = i;
         }
     }
 }

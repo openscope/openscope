@@ -18,6 +18,7 @@ import { LOG } from '../../constants/logLevel';
 export default class ArrivalBase {
     constructor(airport, options) {
         this.airlines = [];
+        // FIXME: this creates a circular reference and should be refactored
         this.airport = airport;
         this.altitude = [1000, 1000];
         this.frequency = 0;
@@ -183,7 +184,6 @@ export default class ArrivalBase {
 
             const { heading, pos, nextFix } = spawn_positions[i];
             const { icao, position, magnetic_north } = window.airportController.airport_get();
-
             window.aircraftController.aircraft_new({
                 category: 'arrival',
                 destination: icao,
@@ -194,6 +194,8 @@ export default class ArrivalBase {
                 heading: heading || this.heading,
                 waypoints: this.fixes,
                 route: this.route,
+                // TODO: this should really use the `PositionModel` instead of just using it to get a position
+                // this will take a lot of refactoring, though, as aircraft.position is used all over the app.
                 position: new PositionModel(pos, position, magnetic_north, 'GPS').position,
                 speed: this.speed,
                 nextFix: nextFix
@@ -240,8 +242,8 @@ export default class ArrivalBase {
         // spawn at first fix
         if (this.fixes.length > 1) {
             // spawn at first fix
-            position = window.airportController.airport_get().getFix(this.fixes[0].fix);
-            heading = vradial(vsub(window.airportController.airport_get().getFix(this.fixes[1].fix), position));
+            position = window.airportController.airport_get().getFixPosition(this.fixes[0].fix);
+            heading = vradial(vsub(window.airportController.airport_get().getFixPosition(this.fixes[1].fix), position));
         } else if (this.route) {
             // STAR data is present
             star = window.airportController.airport_get().getSTAR(
@@ -249,15 +251,19 @@ export default class ArrivalBase {
                 window.airportController.airport_get().runway
             );
 
-            position = window.airportController.airport_get().getFix(star[0][0]);
+            position = window.airportController.airport_get().getFixPosition(star[0][0]);
             heading = vradial(vsub(
-                window.airportController.airport_get().getFix(star[1][0]),
+                window.airportController.airport_get().getFixPosition(star[1][0]),
                 position
             ));
         } else {
             // spawn outside the airspace along 'this.radial'
             distance = 2 * this.airport.ctr_radius;
-            position = [sin(this.radial) * distance, cos(this.radial) * distance];
+            // TODO: this should be a `PositionModel`, see below.
+            position = [
+                sin(this.radial) * distance,
+                cos(this.radial) * distance
+            ];
             heading = this.heading || this.radial + Math.PI;
         }
 
@@ -277,12 +283,19 @@ export default class ArrivalBase {
             waypoints: this.fixes,
             route: this.route,
             message: message,
+            // TODO: this should really use the `PositionModel` instead of just using it to get a position
+            // this will take a lot of refactoring, though, as aircraft.position is used all over the app.
             position: position,
             speed: this.speed
         });
 
         if (timeout_flag) {
-            this.timeout = window.gameController.game_timeout(this.spawnAircraft, this.nextInterval(), this, [null, true]);
+            this.timeout = window.gameController.game_timeout(
+                this.spawnAircraft,
+                this.nextInterval(),
+                this,
+                [null, true]
+            );
         }
     }
 

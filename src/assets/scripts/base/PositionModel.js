@@ -1,5 +1,3 @@
-/* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand,
-no-undef, class-methods-use-this */
 import { sin, cos } from '../math/core';
 import { degreesToRadians, parseElevation } from '../utilities/unitConverters';
 
@@ -55,6 +53,7 @@ export default class Position {
         this.magnetic_north = magnetic_north;
         this.x = 0;
         this.y = 0;
+        // TODO: make this a getter;
         this.position = [this.x, this.y];
         this.gps = [0, 0];
 
@@ -69,6 +68,7 @@ export default class Position {
         if (!REGEX.COMPASS_DIRECTION.test(coordinates[0])) {
             this.x = coordinates[0];
             this.y = coordinates[1];
+            // TODO: remove once this property is a getter
             this.position = [this.x, this.y];
 
             if (mode === 'GPS') {
