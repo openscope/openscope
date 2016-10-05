@@ -1,3 +1,6 @@
+import _includes from 'lodash/includes';
+import _isNumber from 'lodash/isNumber';
+import _startsWith from 'lodash/startsWith';
 import { tau } from '../math/circle';
 import { round, mod } from '../math/core';
 
@@ -15,6 +18,14 @@ export const UNIT_CONVERSION_CONSTANTS = {
      * @final
      */
     NM_KM: 1.852,
+    /**
+     * Meters to feet ratio
+     *
+     * @property M_FT
+     * @type {number}
+     * @final
+     */
+    M_FT: 0.3048,
     /**
      * kilometer per foot ratio
      *
@@ -71,6 +82,18 @@ export const km = (nm = 0) => {
 export const nm = (kilometers = 0) => {
     return kilometers / UNIT_CONVERSION_CONSTANTS.NM_KM;
 };
+
+/**
+ * meters -> feet
+ *
+ * @function m_ft
+ * @param {number} [meters=0]
+ * @return {number}
+ */
+export const m_ft = (meters = 0) => {
+    return meters / UNIT_CONVERSION_CONSTANTS.M_FT;
+};
+
 /**
  * kilometers --> feet
  *
@@ -175,31 +198,37 @@ export const heading_to_string = (heading) => {
     return heading;
 };
 
-// TODO: this function could be simlified.
-// It appears to accept an elevation with units, ex: 13.7ft or 5.5m
-// and then returns that number, less the units, in feet. So this function is doing two things: trimming units
-// and converting the elevation to feet.
 /**
+ * Accept a string elevation and return a number representing elevation in ft.
+ *
  * @function parseElevation
  * @param elevation {string}    ex: 13.4ft, 3m, 5ft
  * @return {number}             elevation in feet
  */
 export const parseElevation = (elevation) => {
-    const VALUE_UNITS_INDEX = 4;
-    const altitude = /^(Infinity|(\d+(\.\d+)?)(m|ft))$/.exec(elevation);
+    // TODO: move to master REGEX constant
+    // this regex will catch the following: `-`, `m`, `ft`, `Infinity`, and is used to extract a number
+    // from a string containing these symbols.
+    const REGEX = /(-)|(m|ft|Infinity)/gi;
 
-    if (!altitude) {
-        log(`Unable to parse elevation ${elevation}`);
-        return;
+    // if its a number, we're done here.
+    // This will catch whole numbers, floats, Infinity and -Infinity.
+    if (_isNumber(elevation)) {
+        return parseFloat(elevation);
     }
 
-    if (altitude[1] === 'Infinity') {
-        return Infinity;
+    let parsedElevation = elevation.replace(REGEX, '');
+    const elevationUnit = elevation.match(REGEX);
+
+    // if its in meters, convert it to feet
+    if (_includes(elevationUnit, 'm')) {
+        parsedElevation = m_ft(parsedElevation);
     }
 
-    const metersOrFeetCoversionValue = altitude[VALUE_UNITS_INDEX] === 'm'
-        ? 0.3048
-        : 1;
+    // if it came in as a negative number,return it as a negative number
+    if (_startsWith(elevation, '-')) {
+        parsedElevation *=  -1;
+    }
 
-    return parseFloat(altitude[2]) / metersOrFeetCoversionValue;
+    return parseFloat(parsedElevation);
 };

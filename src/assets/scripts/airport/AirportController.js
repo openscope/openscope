@@ -26,7 +26,7 @@ export default class AirportController {
      * @method init_pre
      */
     init_pre() {
-        prop.airport = {};
+        prop.airport = airport;
         prop.airport.airports = {};
         prop.airport.current = null;
     }

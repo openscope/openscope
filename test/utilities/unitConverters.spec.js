@@ -5,11 +5,13 @@ import {
     UNIT_CONVERSION_CONSTANTS,
     km,
     nm,
+    m_ft,
     km_ft,
     ft_km,
     kn_ms,
     radiansToDegrees,
-    degreesToRadians
+    degreesToRadians,
+    parseElevation
 } from '../../src/assets/scripts/utilities/unitConverters';
 
 ava('.km() converts kilometers to nautical miles', t => {
@@ -36,6 +38,13 @@ ava('.nm() converts nautical miles to kilometers', t => {
 ava('.nm() sets a default for the km parameter', t => {
     const result = nm();
     const expectedResult = 0 / UNIT_CONVERSION_CONSTANTS.NM_KM;
+
+    t.true(result === expectedResult);
+});
+
+ava('.m_ft() converts meters to feet', t => {
+    const result = m_ft(10);
+    const expectedResult = 10 / UNIT_CONVERSION_CONSTANTS.M_FT;
 
     t.true(result === expectedResult);
 });
@@ -79,7 +88,7 @@ ava('.kn_ms() converts knots to m/s', t => {
 ava('.radiansToDegrees() converts radians to degrees', t => {
     const result = radiansToDegrees(2.1467549799530254);
     const expectedResult = 123;
-    
+
     t.true(result === expectedResult);
 });
 
@@ -88,4 +97,19 @@ ava('.degreesToRadians() converts degrees to radians', t => {
     const expectedResult = 2.1467549799530254;
 
     t.true(result === expectedResult);
+});
+
+ava('.parseElevation() should parse a string elevation into an elevation in feet', t => {
+    t.false(parseElevation('5.5m') === 5.5);
+    t.false(parseElevation('-23m') === -23);
+
+    t.true(parseElevation('13.3ft') === 13.3);
+    t.true(parseElevation('13ft') === 13);
+    t.true(parseElevation(13) === 13);
+    t.true(parseElevation('5.5m') === 18.04461942257218);
+    t.true(parseElevation(5.5) === 5.5);
+    t.true(parseElevation('-11ft') === -11);
+    t.true(parseElevation('-23m') === -75.45931758530183);
+    t.true(parseElevation(Infinity) === Infinity);
+    t.true(parseElevation(-Infinity) === -Infinity);
 });
