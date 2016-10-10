@@ -1,3 +1,4 @@
+import _uniqueId from 'lodash/uniqueId';
 import { sin, cos } from '../math/core';
 import { degreesToRadians, parseElevation } from '../utilities/unitConverters';
 
@@ -45,6 +46,7 @@ export default class Position {
      *                            that should be converted to positions
      */
     constructor(coordinates = [], reference, magnetic_north = 0, mode) {
+        this._id = _uniqueId();
         // TODO: it might make more sense to abstract `coordinates` out to another Model object.
         this.latitude = 0;
         this.longitude = 0;

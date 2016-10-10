@@ -60,8 +60,6 @@ export default class AirportModel {
         this.level    = null;
 
         this.position = null;
-        this.elevation = 0;
-        this.magnetic_north = 0;
 
         this.runways  = [];
         this.runway   = null;
@@ -102,20 +100,16 @@ export default class AirportModel {
         this.parse(options);
     }
 
+    get elevation() {
+        return this.position.elevation;
+    }
+
+    get magnetic_north() {
+        return degreesToRadians(this.position.magnetic_north);
+    }
+
     parse(data) {
-        if (data.position) {
-            this.position = new PositionModel(data.position);
-        }
-
-        // TODO: these next two props should be pulled from the `PositionModel`. If there is an absolute need for
-        // these properties to be part of this class, make them getters for the values in `PositionModel`
-        if (this.position && (this.position.elevation != null)) {
-            this.elevation = this.position.elevation;
-        }
-
-        if (data.magnetic_north) {
-            this.magnetic_north = degreesToRadians(data.magnetic_north);
-        }
+        this.setCurrentPosition(data.position, data.magnetic_north);
 
         this.name = _get(data, 'name', null);
         this.icao = _get(data, 'icao', null);
@@ -142,6 +136,19 @@ export default class AirportModel {
         this.buildArrivals(data.arrivals);
         this.checkFixes();
         this.buildRunwayMetaData()
+    }
+
+    /**
+     * @for AirportModel
+     * @method setCurrentPosition
+     * @param currentPosition {array}
+     */
+    setCurrentPosition(currentPosition, magneticNorth) {
+        if (!currentPosition) {
+            return;
+        }
+
+        this.position = new PositionModel(currentPosition, null, magneticNorth);
     }
 
     /**
