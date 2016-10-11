@@ -48,6 +48,9 @@
     "files": [
       "test/**/*.spec.js"
     ],
+    "source": [
+      "!**/_mocks/**"
+    ],
     "verbose": true,
     "require": [
       "babel-core/register"
@@ -56,7 +59,8 @@
   "nyc": {
     "all": false,
     "include": [
-      "src/assets/scripts/**/*.js"
+      "src/assets/scripts/**/*.js",
+      "!**/_mocks/**"
     ]
   },
   "dependencies": {

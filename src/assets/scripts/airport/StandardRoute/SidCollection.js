@@ -3,6 +3,7 @@ import _forEach from 'lodash/forEach';
 import _has from 'lodash/has';
 import _keys from 'lodash/keys';
 import _random from 'lodash/random';
+import SidModel from './SidModel';
 
 /**
  * @class SidCollection
@@ -27,6 +28,7 @@ export default class SidCollection {
      * @for SidCollection
      * @method _init
      * @param sidList {object}
+     * @private
      */
     _init(sidList) {
         this._addSidListToCollection(sidList);
@@ -38,6 +40,7 @@ export default class SidCollection {
      * @for SidCollection
      * @method _addSidListToCollection
      * @param sidList {object}
+     * @private
      */
     _addSidListToCollection(sidList) {
         _forEach(sidList, (sid) => {
@@ -51,9 +54,12 @@ export default class SidCollection {
      * @for SidCollection
      * @method _addSidToCollection
      * @param sid {object}
+     * @private
      */
     _addSidToCollection(sid) {
-        this._sids.push(sid);
+        const sidModel = new SidModel(sid);
+
+        this._sids.push(sidModel);
         this.length = this._sids.length;
 
         return this;
@@ -67,12 +73,14 @@ export default class SidCollection {
      * @param exit
      * @param runway
      */
-    getSID(icao, exit, runway) {
+    findFixesForSidByRunwayAndExit(icao, exit, runway) {
         if (!icao && !exit && !runway) {
             return;
         }
 
         const sid = this.findSidByIcao(icao);
+
+        console.log(sid.getFixesAndRestrictionsForRunway(runway));
 
         return sid;
         // return [
@@ -90,6 +98,7 @@ export default class SidCollection {
     getRandomExitPointForSIDIcao(icao) {
         const sid = this.findSidByIcao(icao);
 
+        // TODO: move to SidModel
         // if sid ends at fix for which the SID is named, return end fixName
         if (!_has(sid, 'exitPoints')) {
             return sid.icao;
@@ -101,36 +110,6 @@ export default class SidCollection {
 
         return exitPointIcaos[randomIndex];
     }
-
-    // /**
-    //  * @for SidCollection
-    //  * @method getSIDName
-    //  * @param id {string}
-    //  * @param runway
-    //  */
-    // getSIDName(id, runway) {
-    //     if (_has(this.sids[id], 'suffix')) {
-    //         return `${this.sids[id].name} ${this.sids[id].suffix[runway]}`;
-    //     }
-    //
-    //     return this.sids[id].name;
-    // }
-
-    // /**
-    //  * @for SidCollection
-    //  * @method getSIDid
-    //  * @param id {string}
-    //  * @param runway
-    //  */
-    // getSIDid(id, runway) {
-    //     console.log('getSIDid: ', id, runway);
-    //     if (_has(this.sids[id], 'suffix')) {
-    //         return this.sids[id].icao + this.sids[id].suffix[runway];
-    //     }
-    //
-    //     return this.sids[id].icao;
-    // }
-
 
     /**
      * @for SidCollection

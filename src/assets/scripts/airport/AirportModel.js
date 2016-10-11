@@ -657,7 +657,7 @@ export default class AirportModel {
 
     getSID(id, exit, rwy) {
         const fixes = [];
-        const sid = this.sidCollection.getSID(id, exit, rwy);
+        const sid = this.sidCollection.findFixesForSidByRunwayAndExit(id, exit, rwy);
 
         if (!sid) {
             throw new TypeError(`SID ${sid} does not exist in the current SidCollection.`);

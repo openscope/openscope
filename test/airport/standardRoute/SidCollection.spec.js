@@ -3,7 +3,7 @@ import sinon from 'sinon';
 import _isArray from 'lodash/isArray';
 
 import SidCollection from '../../../src/assets/scripts/airport/StandardRoute/SidCollection';
-import { SID_LIST_MOCK } from './_mocks_/sidListMock';
+import { SID_LIST_MOCK } from './_mocks/sidListMock';
 
 ava('SidCollection does not throw when no parameters are passed', t => t.notThrows(() => new SidCollection()));
 
@@ -26,7 +26,4 @@ ava('SidCollection.getSID() returns a list of fixes that make up a SID when give
     const RUNWAY = '19R';
 
     const result = collection.getSID(ID, EXIT, RUNWAY);
-
-    console.log(result);
-    // t.true(_isArray(result));
 });
