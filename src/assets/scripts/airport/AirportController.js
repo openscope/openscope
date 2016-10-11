@@ -1,5 +1,6 @@
 import _has from 'lodash/has';
 import _forEach from 'lodash/forEach';
+import _lowerCase from 'lodash/lowerCase';
 import Airport from './AirportModel';
 import { AIRPORT_LOAD_LIST } from './airportLoadList';
 import { STORAGE_KEY } from '../constants/storageKeys';
@@ -20,7 +21,7 @@ const DEFAULT_AIRPORT_ICAO = 'ksfo';
 export default class AirportController {
     /**
      * @constructor
-     * @param updateRun {function}  
+     * @param updateRun {function}
      */
     constructor(updateRun) {
         this.updateRun = updateRun;
@@ -65,9 +66,9 @@ export default class AirportController {
         let airportName = DEFAULT_AIRPORT_ICAO;
 
         if (_has(localStorage, STORAGE_KEY.ATC_LAST_AIRPORT) ||
-            _has(prop.airport.airports, localStorage[STORAGE_KEY.ATC_LAST_AIRPORT].toLowerCase())
+            _has(prop.airport.airports, _lowerCase(localStorage[STORAGE_KEY.ATC_LAST_AIRPORT]))
         ) {
-            airportName = localStorage[STORAGE_KEY.ATC_LAST_AIRPORT].toLowerCase();
+            airportName = _lowerCase(localStorage[STORAGE_KEY.ATC_LAST_AIRPORT]);
         }
 
         this.airport_set(airportName);
