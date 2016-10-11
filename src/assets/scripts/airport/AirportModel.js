@@ -9,6 +9,7 @@ import _uniq from 'lodash/uniq';
 import Area from '../base/AreaModel';
 import PositionModel from '../base/PositionModel';
 import RunwayModel from './RunwayModel';
+import SidCollection from './StandardRoute/SidCollection';
 import { ArrivalFactory } from './Arrival/ArrivalFactory';
 import { DepartureFactory } from './Departure/DepartureFactory';
 import { degreesToRadians, parseElevation } from '../utilities/unitConverters';
@@ -123,6 +124,7 @@ export default class AirportModel {
         this.rr_radius_nm = _get(data, 'rr_radius_nm');
         this.rr_center = _get(data, 'rr_center');
         this.level = _get(data, 'level', null);
+        this.sidCollection = new SidCollection(data.sids);
 
         this.loadTerrain();
         this.buildAirportAirspace(data.airspace);
@@ -654,16 +656,12 @@ export default class AirportModel {
     }
 
     getSID(id, exit, rwy) {
-        if (!(id && exit && rwy)) {
-            return null;
-        }
-
-        if (Object.keys(this.sids).indexOf(id) === -1) {
-            return;
-        }
-
         const fixes = [];
-        const sid = this.sids[id];
+        const sid = this.sidCollection.getSID(id, exit, rwy);
+
+        if (!sid) {
+            throw new TypeError(`SID ${sid} does not exist in the current SidCollection.`);
+        }
 
         // runway portion
         if (_has(sid.rwy, rwy)) {
@@ -701,18 +699,19 @@ export default class AirportModel {
         return fixes;
     }
 
-    getSIDExitPoint(id) {
-        // if ends at fix for which the SID is named, return end fix
-        if (!_has(this.sids[id], 'exitPoints')) {
-            return this.sids[id].icao;
-        }
-
-        // if has exitPoints, return a randomly selected one
-        const exits = Object.keys(this.sids[id].exitPoints);
-        return exits[Math.floor(Math.random() * exits.length)];
+    /**
+     * @for AirportModel
+     * @method getSIDExitPoint
+     * @param icao {string}  Name of SID
+     * @return {string}  Name of Exit fix in SID
+     */
+    getSIDExitPoint(icao) {
+        return this.sidCollection.getRandomExitPointForSIDIcao(icao);
     }
 
     getSIDName(id, rwy) {
+        console.log('getSIDName: ', id, rwy);
+        debugger;
         if (_has(this.sids[id], 'suffix')) {
             return `${this.sids[id].name} ${this.sids[id].suffix[rwy]}`;
         }
@@ -721,6 +720,7 @@ export default class AirportModel {
     }
 
     getSIDid(id, rwy) {
+        console.log('getSIDid: ', id, rwy);
         if (_has(this.sids[id], 'suffix')) {
             return this.sids[id].icao + this.sids[id].suffix[rwy];
         }
