@@ -214,7 +214,7 @@ export default class AircraftController {
             // let is_visible = aircraft_visible(aircraft);
 
             if (aircraft.isStopped() && aircraft.category === 'arrival') {
-                prop.game.score.windy_landing += aircraft.scoreWind('landed');
+                window.gameController.game.score.windy_landing += aircraft.scoreWind('landed');
 
                 window.uiController.ui_log(`${aircraft.getCallsign()} switching to ground, good day`);
                 speech_say([
@@ -222,7 +222,7 @@ export default class AircraftController {
                     { type: 'text', content: ', switching to ground, good day' }
                 ]);
 
-                prop.game.score.arrival += 1;
+                window.gameController.game.score.arrival += 1;
                 remove = true;
             }
 
