@@ -38,40 +38,22 @@ export default class SidCollection {
 
     /**
      * @for SidCollection
-     * @method _addSidListToCollection
-     * @param sidList {object}
-     * @private
+     * @method destroy
      */
-    _addSidListToCollection(sidList) {
-        _forEach(sidList, (sid) => {
-            this._addSidToCollection(sid);
-        });
+    destroy() {
+        this._sids = [];
+        this.length = 0;
 
         return this;
     }
-
-    /**
-     * @for SidCollection
-     * @method _addSidToCollection
-     * @param sid {object}
-     * @private
-     */
-    _addSidToCollection(sid) {
-        const sidModel = new SidModel(sid);
-
-        this._sids.push(sidModel);
-        this.length = this._sids.length;
-
-        return this;
-    }
-
 
     /**
      * @for SidCollection
      * @method getSID
-     * @param icao
-     * @param exit
-     * @param runway
+     * @param icao {string}
+     * @param exit {string}
+     * @param runway {string}
+     * @return {array}
      */
     findFixesForSidByRunwayAndExit(icao, exit, runway) {
         if (!icao && !exit && !runway) {
@@ -80,14 +62,7 @@ export default class SidCollection {
 
         const sid = this.findSidByIcao(icao);
 
-        console.log(sid.getFixesAndRestrictionsForRunway(runway));
-
-        return sid;
-        // return [
-        //     ...sid.initialClimbFixes,
-        //     ...sid.baseFixes,
-        //     ...sid.exitFixes
-        // ];
+        return sid.findFixesAndRestrictionsForRunwayWithExit(runway, exit)
     }
 
     /**
@@ -119,5 +94,34 @@ export default class SidCollection {
      */
     findSidByIcao(icao) {
         return _find(this._sids, { icao: icao });
+    }
+
+    /**
+     * @for SidCollection
+     * @method _addSidListToCollection
+     * @param sidList {object}
+     * @private
+     */
+    _addSidListToCollection(sidList) {
+        _forEach(sidList, (sid) => {
+            this._addSidToCollection(sid);
+        });
+
+        return this;
+    }
+
+    /**
+     * @for SidCollection
+     * @method _addSidToCollection
+     * @param sid {object}
+     * @private
+     */
+    _addSidToCollection(sid) {
+        const sidModel = new SidModel(sid);
+
+        this._sids.push(sidModel);
+        this.length = this._sids.length;
+
+        return this;
     }
 }

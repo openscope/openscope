@@ -8,7 +8,8 @@ import StandardRouteWaypointModel from './StandardRouteWaypointModel';
 export default class RouteSegmentModel {
     /**
      * @constructor
-     * @param routeSegment {array}
+     * @param name {string}
+     * @param segmentWaypoints {array}
      */
     constructor(name, segmentWaypoints) {
         if (typeof segmentWaypoints === 'undefined') {
@@ -17,12 +18,19 @@ export default class RouteSegmentModel {
 
         this._id = _uniqId();
         this.name = '';
-        this.items = [];
+        this._items = [];
         this.length = 0;
 
         return this._init(name, segmentWaypoints);
     }
 
+    /**
+     * @for RouteSegmentModel
+     * @method _init
+     * @param name {string}
+     * @param segmentWaypoints {array}
+     * @private
+     */
     _init(name, segmentWaypoints) {
         this.name = name;
 
@@ -33,8 +41,36 @@ export default class RouteSegmentModel {
         });
     }
 
+    /**
+     * @for destroy
+     * @method destroy
+     */
+    destroy() {
+        this._id = '';
+        this.name = '';
+        this._items = [];
+        this.length = -1;
+    }
+
+    /**
+     * @for RouteSegmentModel
+     * @method findWaypointsForSegment
+     * @return {array}
+     */
+    findWaypointsForSegment() {
+        const waypoints = _map(this._items, (waypoint) => waypoint.fix);
+
+        return waypoints;
+    }
+
+    /**
+     * @for RouteSegmentModel
+     * @method _addWaypointToCollection
+     * @param waypoint {StandardRouteWaypointModel}
+     * @private
+     */
     _addWaypointToCollection(waypoint) {
-        this.items.push(waypoint);
-        this.length = this.items.length;
+        this._items.push(waypoint);
+        this.length = this._items.length;
     }
 }

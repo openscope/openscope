@@ -655,46 +655,44 @@ export default class AirportModel {
         return this.fixes[fixName].position;
     }
 
+    /**
+     *
+     */
     getSID(id, exit, rwy) {
-        const fixes = [];
-        const sid = this.sidCollection.findFixesForSidByRunwayAndExit(id, exit, rwy);
+        const fixes = this.sidCollection.findFixesForSidByRunwayAndExit(id, exit, rwy);
 
-        if (!sid) {
-            throw new TypeError(`SID ${sid} does not exist in the current SidCollection.`);
-        }
-
-        // runway portion
-        if (_has(sid.rwy, rwy)) {
-            for (let i = 0; i < sid.rwy[rwy].length; i++) {
-                if (typeof sid.rwy[rwy][i] === 'string') {
-                    fixes.push([sid.rwy[rwy][i], null]);
-                } else {
-                    fixes.push(sid.rwy[rwy][i]);
-                }
-            }
-        }
-
-        // body portion
-        if (_has(sid, 'body')) {
-            for (let i = 0; i < sid.body.length; i++) {
-                if (typeof sid.body[i] === 'string') {
-                    fixes.push([sid.body[i], null]);
-                } else {
-                    fixes.push(sid.body[i]);
-                }
-            }
-        }
-
-        // exit portion
-        if (_has(sid, 'exitPoints')) {
-            for (let i = 0; i < sid.exitPoints[exit].length; i++) {
-                if (typeof sid.exitPoints[exit][i] === 'string') {
-                    fixes.push([sid.exitPoints[exit][i], null]);
-                } else {
-                    fixes.push(sid.exitPoints[exit][i]);
-                }
-            }
-        }
+        // // runway portion
+        // if (_has(sid.rwy, rwy)) {
+        //     for (let i = 0; i < sid.rwy[rwy].length; i++) {
+        //         if (typeof sid.rwy[rwy][i] === 'string') {
+        //             fixes.push([sid.rwy[rwy][i], null]);
+        //         } else {
+        //             fixes.push(sid.rwy[rwy][i]);
+        //         }
+        //     }
+        // }
+        //
+        // // body portion
+        // if (_has(sid, 'body')) {
+        //     for (let i = 0; i < sid.body.length; i++) {
+        //         if (typeof sid.body[i] === 'string') {
+        //             fixes.push([sid.body[i], null]);
+        //         } else {
+        //             fixes.push(sid.body[i]);
+        //         }
+        //     }
+        // }
+        //
+        // // exit portion
+        // if (_has(sid, 'exitPoints')) {
+        //     for (let i = 0; i < sid.exitPoints[exit].length; i++) {
+        //         if (typeof sid.exitPoints[exit][i] === 'string') {
+        //             fixes.push([sid.exitPoints[exit][i], null]);
+        //         } else {
+        //             fixes.push(sid.exitPoints[exit][i]);
+        //         }
+        //     }
+        // }
 
         return fixes;
     }
@@ -709,8 +707,9 @@ export default class AirportModel {
         return this.sidCollection.getRandomExitPointForSIDIcao(icao);
     }
 
+    // FIXME: possibly unused
     getSIDName(id, rwy) {
-        console.log('getSIDName: ', id, rwy);
+        console.warn('AirportModel.getSIDName() IS IN USE: ', id, rwy);
         debugger;
         if (_has(this.sids[id], 'suffix')) {
             return `${this.sids[id].name} ${this.sids[id].suffix[rwy]}`;
@@ -719,8 +718,9 @@ export default class AirportModel {
         return this.sids[id].name;
     }
 
+    // FIXME: possibly unused
     getSIDid(id, rwy) {
-        console.log('getSIDid: ', id, rwy);
+        console.warn('AirportModel.getSIDid IS IN USE: ', id, rwy);
         if (_has(this.sids[id], 'suffix')) {
             return this.sids[id].icao + this.sids[id].suffix[rwy];
         }

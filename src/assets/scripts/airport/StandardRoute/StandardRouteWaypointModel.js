@@ -35,7 +35,6 @@ export default class StandardRouteWaypointModel {
         }
 
         this._id = _uniqId();
-
         this._name = '';
         // using null here to match current api. should be an empty string.
         this._restrictions = null;
@@ -44,6 +43,15 @@ export default class StandardRouteWaypointModel {
         this._speed = -1;
 
         return this._init(routeWaypoint)
+    }
+
+    /**
+     * @for StandardRouteWaypointModel
+     * @property fix
+     * @return {array}
+     */
+    get fix() {
+        return [this._name, this._restrictions];
     }
 
     /**
@@ -63,6 +71,8 @@ export default class StandardRouteWaypointModel {
         // temporary property. should end up as a getter that wraps private methods.
         this._restrictions = routeWaypoint[RESTRICTION_INDEX];
 
+        // TODO: implement this method. altitude and speed should be parsed into real numbers so
+        // they can be used elsewhere in the app.
         this._parseWaypointRestrictions(routeWaypoint[RESTRICTION_INDEX]);
 
         return this;
@@ -70,12 +80,34 @@ export default class StandardRouteWaypointModel {
 
     /**
      * @for StandardRouteWaypointModel
+     * @method destroy
+     */
+    destroy() {
+        this._id = '';
+        this._name = '';
+        this._restrictions = null;
+        this._alititude = -1000;
+        this._alititudeConstraint = ''
+        this._speed = -1;
+
+        return this;
+    }
+
+    /**
+     *
+     *
+     * Exapmles:
+     * - "A80+|S210"
+     * - "A80-|S210"
+     * - "A80"
+     * - "S210"
+     *
+     * @for StandardRouteWaypointModel
      * @method _parseWaypointRestrictions
      * @param waypointRestrictions {string}
      * @private
      */
     _parseWaypointRestrictions(waypointRestrictions) {
-        // console.log('restriction: ', waypointRestrictions);
-        return this;
+        return;
     }
 }
