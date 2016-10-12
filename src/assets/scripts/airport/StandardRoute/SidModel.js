@@ -4,7 +4,6 @@ import _isObject from 'lodash/isObject';
 import _uniqId from 'lodash/uniqueId';
 import RouteSegmentCollection from './RouteSegmentCollection';
 import RouteSegmentModel from './RouteSegmentModel';
-import StandardRouteWaypointModel from './StandardRouteWaypointModel';
 
 /**
  * @class SidModel
@@ -19,21 +18,112 @@ export default class SidModel {
             throw new TypeError(`Expected sid to be an object, instead received ${typeof sid}`);
         }
 
+        /**
+         * Unigue string id that can be used to differentiate this model instance from another.
+         *
+         * @property _id
+         * @type {string}
+         * @private
+         */
         this._id = _uniqId();
-        this.icao = '';
+
+        /**
+         * Name of the fix
+         *
+         * @property name
+         * @type {string}
+         * @default ''
+         */
         this.name = '';
+
+        /**
+         * SID icoa identifier
+         *
+         * @property icao
+         * @type {string}
+         * @default ''
+         */
+        this.icao = '';
+
+        /**
+         * List of fixes in the order that they should be drawn
+         *
+         * Pulled straight from the `.json` file.
+         * Currently unused and is only a place to put the data.
+         *
+         * @property draw
+         * @type {array}
+         * @default
+         */
         this.draw = [];
-        this.rwy = [];
-        this._runwayCollection = null;
+
+        /**
+         * List of `rwy` segments and fixes
+         *
+         * Pulled straight from the `.json` file.
+         * Currently unused and is only a place to put the data.
+         *
+         * @property rwy
+         * @type {object}
+         * @default {}
+         */
+        this.rwy = {};
+
+        /**
+         * @property body
+         * @type {array}
+         * @default []
+         */
         this.body = [];
-        this._bodyCollection = null;
-        this.exitPoints = [];
+
+        /**
+         * List of `exitPoints` segments and fixes
+         *
+         * Pulled straight from the `.json` file.
+         * Currently unused and is only a place to put the data.
+         *
+         * @property exitPoints
+         * @type {object}
+         * @default {}
+         */
+        this.exitPoints = {};
+
+        /**
+         * Collection object of the `rwy` route segments
+         *
+         * @property _runwayCollection
+         * @type {RouteSegmentCollection}
+         * @default null
+         * @private
+         */
+        this._runwayCollection = null;
+
+        /**
+         * `RouteSegmentModel` for the fixes belonging to the `body` segment
+         *
+         * @property _bodySegmentModel
+         * @type {RouteSegmentModel}
+         * @default null
+         * @private
+         */
+        this._bodySegmentModel = null;
+
+        /**
+         * Collection object of the `exitPoints` route segments
+         *
+         * @property _exitCollection
+         * @type {RouteSegmentCollection}
+         * @default null
+         * @private
+         */
         this._exitCollection = null;
 
         return this._init(sid);
     }
 
     /**
+     * Lifecycle method. Should be run only once on instantiation.
+     *
      * @for SidModel
      * @method _init
      * @param sid {object}
@@ -44,14 +134,16 @@ export default class SidModel {
         this.name = sid.name;
         this.draw = sid.draw;
         this.rwy = sid.rwy;
-        this._runwayCollection = this._buildSegmentCollection(sid.rwy);
         this.body = sid.body;
-        this._bodySegment = this._buildBodySegment(sid.body);
         this.exitPoints = sid.exitPoints;
+        this._runwayCollection = this._buildSegmentCollection(sid.rwy);
+        this._bodySegmentModel = this._buildBodySegmentModel(sid.body);
         this._exitCollection = this._buildSegmentCollection(sid.exitPoints);
     }
 
     /**
+     * Destroy the current instance
+     *
      * @for SidModel
      * @method destroy
      */
@@ -62,7 +154,7 @@ export default class SidModel {
         this.rwy = [];
         this._runwayCollection = null;
         this.body = [];
-        this._bodySegment = null;
+        this._bodySegmentModel = null;
         this.exitPoints = [];
         this._exitCollection = null;
         this.draw = [];
@@ -81,26 +173,52 @@ export default class SidModel {
      * @param exitFixName {string}
      * @return {array}
      */
-    findFixesAndRestrictionsForRunwayWithExit(runwayName, exitFixName) {
+    findFixesAndRestrictionsForRunwayWithExit(runwayName = '', exitFixName = '') {
         return this._findFixListForSegmentByName(runwayName, exitFixName);
     }
 
     /**
-     *
+     * Return the fixnames for the `_exitCollection`
      *
      * @for SidModel
-     * @method _buildBodySegment
-     * @param segmentFixeList {array}
-     * @return {SegmentModel}
+     * @method gatherExitPointNames
+     * @return {array}
      */
-    _buildBodySegment(segmentFixeList) {
-        const segmentModel = new RouteSegmentModel('body', segmentFixeList);
+    gatherExitPointNames() {
+        return this._exitCollection.gatherFixNamesForCollection();
+    }
+
+    /**
+     * Does the `_exitCollection` have any exitPoints?
+     *
+     * @for SidModel
+     * @method hasExitPoints
+     * @return {boolean}
+     */
+    hasExitPoints() {
+        return this._exitCollection.length > 0;
+    }
+
+    /**
+     * Build a new RouteSegmentModel for a segmentFixList
+     *
+     * `body` segment is expected to be an array, so instead of creating a collection like with `rwy` and
+     * `exitPoints`, here we just create a model.  This provides the same methods the collections use, only
+     * without the collection layer.
+     *
+     * @for SidModel
+     * @method _buildBodySegmentModel
+     * @param segmentFixList {array}
+     * @return segmentModel {SegmentModel}
+     */
+    _buildBodySegmentModel(segmentFixList) {
+        const segmentModel = new RouteSegmentModel('body', segmentFixList);
 
         return segmentModel;
     }
 
     /**
-     *
+     * Build a collection of `RouteSegmentModel`s from a segment.
      *
      * @for SidModel
      * @method _buildSegmentCollection
@@ -115,7 +233,7 @@ export default class SidModel {
     }
 
     /**
-     *
+     * Given a runwayName and exitFixName, return a list of fixes for the `rwy`, `body` and `exitPoints` segments.
      *
      * @for SidModel
      * @method _findFixListForSegmentByName
@@ -124,60 +242,66 @@ export default class SidModel {
      * @return fixList {array}
      */
     _findFixListForSegmentByName(runwayName, exitFixName) {
-        // in the event that one of these functions doesnt find a result set it will return null. we leverage
-        // `lodash.compact()`` below to remove any falsy values from the array before returning the `fixList`
+        // in the event that one of these functions doesnt find a result set it will return an empty array.
+        // we leverage then `lodash.compact()` below to remove any empty values from the array before
+        // returning the `fixList`.
+        // These functions are called synchronously and order of operation is very important here.
         const fixList = [
-            ...this._findRunwayFixList(runwayName),
+            ...this._findFixListForRunwayName(runwayName),
             ...this._findBodyFixList(),
-            ...this._findExitFixList(exitFixName)
+            ...this._findFixListForExitFixName(exitFixName)
         ];
 
         return _compact(fixList);
     }
 
     /**
-     *
+     * Find list of fixes for a given `runwayName`
      *
      * @for SidModel
-     * @method _findRunwayFixList
+     * @method _findFixListForRunwayName
      * @param runwayName {string}
-     * @return {array|null}
+     * @return {array}
      */
-    _findRunwayFixList(runwayName) {
-        if (typeof runwayName === 'undefined') {
-            return null;
+    _findFixListForRunwayName(runwayName) {
+        // specifically checking for an empty string here because this param gets a default of '' when
+        // it is received in to the public method
+        if (runwayName === '') {
+            return [];
         }
 
-        return this._runwayCollection.findFixesForSegmentName(runwayName)
+        return this._runwayCollection.findFixesForSegmentName(runwayName);
     }
 
     /**
-     *
+     * Find list of waypoints for the `body` segment
      *
      * @for SidModel
      * @method _findBodyFixList
-     * @return {array|null}
+     * @return {array}
      */
     _findBodyFixList() {
         if (this.body.length === 0) {
-            return null;
+            return [];
         }
 
-        return this._bodySegment.findWaypointsForSegment();
+        return this._bodySegmentModel.findWaypointsForSegment();
     }
 
     /**
+     * Find a list of fixes in the `exitPoint` segment given an `exitFixName`
      *
-     * 
      * @for SidModel
-     * @method _findExitFixList
+     * @method _findFixListForExitFixName
      * @param exitFixName {string}
-     * @return {array|null}
+     * @return {array}
      * @private
      */
-    _findExitFixList(exitFixName) {
-        if (typeof exitFixName === 'undefined') {
-            return null;
+    _findFixListForExitFixName(exitFixName) {
+        // specifically checking for an empty string here because this param gets a default of '' when
+        // it is received in to the public method
+        if (exitFixName === '') {
+            return [];
         }
 
         return this._exitCollection.findFixesForSegmentName(exitFixName);

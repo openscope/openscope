@@ -137,7 +137,7 @@ export default class AirportModel {
         this.buildAirportDepartures(data.departures);
         this.buildArrivals(data.arrivals);
         this.checkFixes();
-        this.buildRunwayMetaData()
+        this.buildRunwayMetaData();
     }
 
     /**
@@ -168,7 +168,7 @@ export default class AirportModel {
         const areas = [];
 
         // for each area
-        _forEach(airspace, (airspaceSection, i) => {
+        _forEach(airspace, (airspaceSection) => {
             const positions = [];
 
             // for each point
@@ -293,7 +293,7 @@ export default class AirportModel {
             this.maps[key] = [];
             const lines = map;
 
-            _forEach(lines, (line, i) => {
+            _forEach(lines, (line) => {
                 const start = new PositionModel([line[0], line[1]], this.position, this.magnetic_north).position;
                 const end = new PositionModel([line[2], line[3]], this.position, this.magnetic_north).position;
 
@@ -362,7 +362,7 @@ export default class AirportModel {
 
     buildAirportDepartures(departures) {
         if (!departures) {
-            return ;
+            return;
         }
 
         this.departures = DepartureFactory(this, departures);
@@ -404,7 +404,7 @@ export default class AirportModel {
                     }
 
                     for (const rwy2end in this.runways[rwy2]) {
-                        //setup secondary runway subobject
+                        // setup secondary runway subobject
                         const r1 = this.runways[rwy1][rwy1end];
                         const r2 = this.runways[rwy2][rwy2end];
                         const offset = getOffset(r1, r2.position, r1.angle);
@@ -419,20 +419,6 @@ export default class AirportModel {
                 }
             }
         }
-    }
-
-    getWind() {
-        // TODO: there are a lot of magic numbers here. What are they for and what do they mean? These should be enumerated.
-        const wind = clone(this.wind);
-        let s = 1;
-        const angle_factor = sin((s + window.gameController.game_time()) * 0.5) + sin((s + window.gameController.game_time()) * 2);
-        // TODO: why is this var getting reassigned to a magic number?
-        s = 100;
-        const speed_factor = sin((s + window.gameController.game_time()) * 0.5) + sin((s + window.gameController.game_time()) * 2);
-        wind.angle += crange(-1, angle_factor, 1, degreesToRadians(-4), degreesToRadians(4));
-        wind.speed *= crange(-1, speed_factor, 1, 0.9, 1.05);
-
-        return wind;
     }
 
     set() {
@@ -544,11 +530,13 @@ export default class AirportModel {
             }
 
             let multipoly = f.geometry.coordinates;
-            if (f.geometry.type == 'LineString') {
+            // TODO: add enumeration
+            if (f.geometry.type === 'LineString') {
                 multipoly = [[multipoly]];
             }
 
-            if (f.geometry.type == 'Polygon') {
+            // TODO: add enumeration
+            if (f.geometry.type === 'Polygon') {
                 multipoly = [multipoly];
             }
 
@@ -558,8 +546,9 @@ export default class AirportModel {
                 apt.terrain[ele].push($.map(poly, (line_string) => {
                     return [
                         $.map(line_string, (pt) => {
-                            var pos = new PositionModel(pt, apt.position, apt.magnetic_north);
+                            const pos = new PositionModel(pt, apt.position, apt.magnetic_north);
                             pos.parse4326();
+
                             return [pos.position];
                         })
                     ];
@@ -659,42 +648,7 @@ export default class AirportModel {
      *
      */
     getSID(id, exit, rwy) {
-        const fixes = this.sidCollection.findFixesForSidByRunwayAndExit(id, exit, rwy);
-
-        // // runway portion
-        // if (_has(sid.rwy, rwy)) {
-        //     for (let i = 0; i < sid.rwy[rwy].length; i++) {
-        //         if (typeof sid.rwy[rwy][i] === 'string') {
-        //             fixes.push([sid.rwy[rwy][i], null]);
-        //         } else {
-        //             fixes.push(sid.rwy[rwy][i]);
-        //         }
-        //     }
-        // }
-        //
-        // // body portion
-        // if (_has(sid, 'body')) {
-        //     for (let i = 0; i < sid.body.length; i++) {
-        //         if (typeof sid.body[i] === 'string') {
-        //             fixes.push([sid.body[i], null]);
-        //         } else {
-        //             fixes.push(sid.body[i]);
-        //         }
-        //     }
-        // }
-        //
-        // // exit portion
-        // if (_has(sid, 'exitPoints')) {
-        //     for (let i = 0; i < sid.exitPoints[exit].length; i++) {
-        //         if (typeof sid.exitPoints[exit][i] === 'string') {
-        //             fixes.push([sid.exitPoints[exit][i], null]);
-        //         } else {
-        //             fixes.push(sid.exitPoints[exit][i]);
-        //         }
-        //     }
-        // }
-
-        return fixes;
+        return this.sidCollection.findFixesForSidByRunwayAndExit(id, exit, rwy);
     }
 
     /**
@@ -704,13 +658,13 @@ export default class AirportModel {
      * @return {string}  Name of Exit fix in SID
      */
     getSIDExitPoint(icao) {
-        return this.sidCollection.getRandomExitPointForSIDIcao(icao);
+        return this.sidCollection.findRandomExitPointForSIDIcao(icao);
     }
 
     // FIXME: possibly unused
     getSIDName(id, rwy) {
         console.warn('AirportModel.getSIDName() IS IN USE: ', id, rwy);
-        debugger;
+
         if (_has(this.sids[id], 'suffix')) {
             return `${this.sids[id].name} ${this.sids[id].suffix[rwy]}`;
         }
@@ -721,6 +675,7 @@ export default class AirportModel {
     // FIXME: possibly unused
     getSIDid(id, rwy) {
         console.warn('AirportModel.getSIDid IS IN USE: ', id, rwy);
+
         if (_has(this.sids[id], 'suffix')) {
             return this.sids[id].icao + this.sids[id].suffix[rwy];
         }
@@ -856,8 +811,8 @@ export default class AirportModel {
 
                 // draw portion
                 if (_has(this.sids[s], 'draw')) {
-                    for(let i in this.sids[s].draw) {
-                        for(let j = 0; j < this.sids[s].draw[i].length; j++) {
+                    for (let i in this.sids[s].draw) {
+                        for (let j = 0; j < this.sids[s].draw[i].length; j++) {
                             fixes.push(this.sids[s].draw[i][j].replace('*', ''));
                         }
                     }
@@ -879,7 +834,6 @@ export default class AirportModel {
                             }
                         }
                     }
-
                 }
 
                 // body portion

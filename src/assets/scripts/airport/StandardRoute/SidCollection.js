@@ -1,7 +1,5 @@
 import _find from 'lodash/find';
 import _forEach from 'lodash/forEach';
-import _has from 'lodash/has';
-import _keys from 'lodash/keys';
 import _random from 'lodash/random';
 import SidModel from './SidModel';
 
@@ -11,20 +9,38 @@ import SidModel from './SidModel';
 export default class SidCollection {
     /**
      * @constructor
-     * @param sidList
+     * @param sidList {object}
      */
     constructor(sidList) {
         if (typeof sidList === 'undefined') {
             return;
         }
 
-        this._sids = [];
+        /**
+         * List of `SidModel` objects
+         *
+         * @property _items
+         * @type {array}
+         * @default []
+         * @private
+         */
+        this._items = [];
+
+        /**
+         * Current size of the collection
+         *
+         * @property legth
+         * @type {number}
+         * @default 0
+         */
         this.length = 0;
 
         return this._init(sidList);
     }
 
     /**
+     * Lifecycle method. Should be run only once on instantiation.
+     *
      * @for SidCollection
      * @method _init
      * @param sidList {object}
@@ -37,17 +53,21 @@ export default class SidCollection {
     }
 
     /**
+     * Destroy the current instance
+     *
      * @for SidCollection
      * @method destroy
      */
     destroy() {
-        this._sids = [];
+        this._items = [];
         this.length = 0;
 
         return this;
     }
 
     /**
+     * Find a list of fixes for a route, given an `icao`, `exit` and `runway` parameter.
+     *
      * @for SidCollection
      * @method getSID
      * @param icao {string}
@@ -56,47 +76,53 @@ export default class SidCollection {
      * @return {array}
      */
     findFixesForSidByRunwayAndExit(icao, exit, runway) {
-        if (!icao && !exit && !runway) {
+        if (!icao) {
             return;
         }
 
         const sid = this.findSidByIcao(icao);
 
-        return sid.findFixesAndRestrictionsForRunwayWithExit(runway, exit)
+        return sid.findFixesAndRestrictionsForRunwayWithExit(runway, exit);
     }
 
     /**
+     * Find a random name of an `exitPoint` segment that exists within the collection.
+     *
      * @for SidCollection
-     * @method getRandomExitPointForSIDIcao
-     * @param id {string}
+     * @method findRandomExitPointForSIDIcao
+     * @param icao {string}
+     * @return {string}
      */
-    getRandomExitPointForSIDIcao(icao) {
+    findRandomExitPointForSIDIcao(icao) {
         const sid = this.findSidByIcao(icao);
 
-        // TODO: move to SidModel
-        // if sid ends at fix for which the SID is named, return end fixName
-        if (!_has(sid, 'exitPoints')) {
+        // if sid doesnt have any exit points it ends at fix for which the SID is named
+        if (!sid.hasExitPoints()) {
             return sid.icao;
         }
 
         // if has exitPoints, return a randomly selected one
-        const exitPointIcaos = _keys(sid.exitPoints);
+        const exitPointIcaos = sid.gatherExitPointNames();
         const randomIndex = _random(0, exitPointIcaos.length);
 
         return exitPointIcaos[randomIndex];
     }
 
     /**
+     * Find a sid within the collection given an icao
+     *
      * @for SidCollection
      * @method findSidByIcao
      * @param icao {string}
-     * @return {object|undefined}
+     * @return {SidModel|undefined}
      */
     findSidByIcao(icao) {
-        return _find(this._sids, { icao: icao });
+        return _find(this._items, { icao: icao });
     }
 
     /**
+     * Add a list of sids to the collection
+     *
      * @for SidCollection
      * @method _addSidListToCollection
      * @param sidList {object}
@@ -104,23 +130,29 @@ export default class SidCollection {
      */
     _addSidListToCollection(sidList) {
         _forEach(sidList, (sid) => {
-            this._addSidToCollection(sid);
+            const sidModel = new SidModel(sid);
+
+            this._addSidToCollection(sidModel);
         });
 
         return this;
     }
 
     /**
+     * Add a `SidModel` to the collection and update length.
+     *
      * @for SidCollection
      * @method _addSidToCollection
-     * @param sid {object}
+     * @param sidModel {SidModel}
      * @private
      */
-    _addSidToCollection(sid) {
-        const sidModel = new SidModel(sid);
+    _addSidToCollection(sidModel) {
+        if (!(sidModel instanceof SidModel)) {
+            throw new TypeError(`Expected sidModel to be an instance of SidModel, instead received ${sidModel}`);
+        }
 
-        this._sids.push(sidModel);
-        this.length = this._sids.length;
+        this._items.push(sidModel);
+        this.length = this._items.length;
 
         return this;
     }
