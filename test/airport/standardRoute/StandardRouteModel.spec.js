@@ -3,7 +3,7 @@ import ava from 'ava';
 import sinon from 'sinon';
 import _isEqual from 'lodash/isEqual';
 
-import SidModel from '../../../src/assets/scripts/airport/StandardRoute/SidModel';
+import StandardRouteModel from '../../../src/assets/scripts/airport/StandardRoute/StandardRouteModel';
 import RouteSegmentCollection from '../../../src/assets/scripts/airport/StandardRoute/RouteSegmentCollection';
 import RouteSegmentModel from '../../../src/assets/scripts/airport/StandardRoute/RouteSegmentModel';
 import { SID_LIST_MOCK, SID_WITHOUT_BODY_MOCK } from './_mocks/sidMocks';
@@ -13,17 +13,17 @@ const RUNWAY_NAME_MOCK = '25L';
 const EXIT_FIXNAME_MOCK = 'KENNO';
 
 ava('throws when instantiated with invaild parameters', t => {
-    t.throws(() => new SidModel());
-    t.throws(() => new SidModel([]));
-    t.throws(() => new SidModel(''));
-    t.throws(() => new SidModel(42));
-    t.throws(() => new SidModel(false));
+    t.throws(() => new StandardRouteModel());
+    t.throws(() => new StandardRouteModel([]));
+    t.throws(() => new StandardRouteModel(''));
+    t.throws(() => new StandardRouteModel(42));
+    t.throws(() => new StandardRouteModel(false));
 });
 
 ava('does not throw when instantiated with vaild parameters', t => {
-    const result = new SidModel(SID_MOCK);
+    const result = new StandardRouteModel(SID_MOCK);
 
-    t.notThrows(() => new SidModel(SID_MOCK));
+    t.notThrows(() => new StandardRouteModel(SID_MOCK));
     t.true(result.name === SID_MOCK.name);
     t.true(result.icao === SID_MOCK.icao);
     t.true(result._runwayCollection instanceof RouteSegmentCollection);
@@ -43,7 +43,7 @@ ava('.findFixesAndRestrictionsForRunwayWithExit() returns an array of fixes for 
         ['KENNO', null]
     ];
     const expectedArguments = [RUNWAY_NAME_MOCK, EXIT_FIXNAME_MOCK];
-    const model = new SidModel(SID_MOCK);
+    const model = new StandardRouteModel(SID_MOCK);
     const spy = sinon.spy(model, '_findFixListForSegmentByName');
 
     const result = model.findFixesAndRestrictionsForRunwayWithExit(RUNWAY_NAME_MOCK, EXIT_FIXNAME_MOCK);
@@ -56,7 +56,7 @@ ava('.findFixesAndRestrictionsForRunwayWithExit() returns an array of fixes for 
 ava('.findFixesAndRestrictionsForRunwayWithExit() returns body segment fixes when no runwayName or exitFixName is passed', t => {
     const expectedResult = [['SHEAD', 'A140+']];
     const expectedArguments = ['', ''];
-    const model = new SidModel(SID_MOCK);
+    const model = new StandardRouteModel(SID_MOCK);
     const spy = sinon.spy(model, '_findFixListForSegmentByName');
 
     const result = model.findFixesAndRestrictionsForRunwayWithExit('', '');
@@ -74,7 +74,7 @@ ava('.findFixesAndRestrictionsForRunwayWithExit() returns body and exitPoint seg
         ['KENNO', null]
     ];
     const expectedArguments = ['', EXIT_FIXNAME_MOCK];
-    const model = new SidModel(SID_MOCK);
+    const model = new StandardRouteModel(SID_MOCK);
     const spy = sinon.spy(model, '_findFixListForSegmentByName');
 
     const result = model.findFixesAndRestrictionsForRunwayWithExit('', EXIT_FIXNAME_MOCK);
@@ -93,7 +93,7 @@ ava('.findFixesAndRestrictionsForRunwayWithExit() returns rwy and body segment f
         ['SHEAD', 'A140+']
     ];
     const expectedArguments = [RUNWAY_NAME_MOCK, ''];
-    const model = new SidModel(SID_MOCK);
+    const model = new StandardRouteModel(SID_MOCK);
     const spy = sinon.spy(model, '_findFixListForSegmentByName');
 
     const result = model.findFixesAndRestrictionsForRunwayWithExit(RUNWAY_NAME_MOCK, '');
@@ -112,7 +112,7 @@ ava('.findFixesAndRestrictionsForRunwayWithExit() returns rrwy and exitPoints fi
         ['WILLW', 'A140+'],
         ['MLF', null]
     ];
-    const model = new SidModel(SID_WITHOUT_BODY_MOCK);
+    const model = new StandardRouteModel(SID_WITHOUT_BODY_MOCK);
     const result = model.findFixesAndRestrictionsForRunwayWithExit(RUNWAY_NAME_MOCK, 'MLF');
 
     t.true(_isEqual(result, expectedResult));

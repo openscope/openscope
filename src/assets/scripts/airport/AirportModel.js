@@ -9,7 +9,7 @@ import _uniq from 'lodash/uniq';
 import Area from '../base/AreaModel';
 import PositionModel from '../base/PositionModel';
 import RunwayModel from './RunwayModel';
-import SidCollection from './StandardRoute/SidCollection';
+import StandardRouteCollection from './StandardRoute/StandardRouteCollection';
 import { ArrivalFactory } from './Arrival/ArrivalFactory';
 import { DepartureFactory } from './Departure/DepartureFactory';
 import { degreesToRadians, parseElevation } from '../utilities/unitConverters';
@@ -124,7 +124,7 @@ export default class AirportModel {
         this.rr_radius_nm = _get(data, 'rr_radius_nm');
         this.rr_center = _get(data, 'rr_center');
         this.level = _get(data, 'level', null);
-        this.sidCollection = new SidCollection(data.sids);
+        this.sidCollection = new StandardRouteCollection(data.sids);
 
         this.loadTerrain();
         this.buildAirportAirspace(data.airspace);

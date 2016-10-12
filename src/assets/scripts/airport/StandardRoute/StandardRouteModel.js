@@ -6,9 +6,9 @@ import RouteSegmentCollection from './RouteSegmentCollection';
 import RouteSegmentModel from './RouteSegmentModel';
 
 /**
- * @class SidModel
+ * @class StandardRouteModel
  */
-export default class SidModel {
+export default class StandardRouteModel {
     /**
      * @constructor
      * @param sid {object}
@@ -124,7 +124,7 @@ export default class SidModel {
     /**
      * Lifecycle method. Should be run only once on instantiation.
      *
-     * @for SidModel
+     * @for StandardRouteModel
      * @method _init
      * @param sid {object}
      * @private
@@ -144,7 +144,7 @@ export default class SidModel {
     /**
      * Destroy the current instance
      *
-     * @for SidModel
+     * @for StandardRouteModel
      * @method destroy
      */
     destroy() {
@@ -152,12 +152,12 @@ export default class SidModel {
         this.icao = '';
         this.name = '';
         this.rwy = [];
-        this._runwayCollection = null;
         this.body = [];
-        this._bodySegmentModel = null;
         this.exitPoints = [];
-        this._exitCollection = null;
         this.draw = [];
+        this._runwayCollection = null;
+        this._bodySegmentModel = null;
+        this._exitCollection = null;
 
         return this;
     }
@@ -167,7 +167,7 @@ export default class SidModel {
      *
      * This method gathers the fixes from all the route segments.
      *
-     * @for SidModel
+     * @for StandardRouteModel
      * @method findFixesAndRestrictionsForRunwayWithExit
      * @param runwayName {string}
      * @param exitFixName {string}
@@ -180,7 +180,7 @@ export default class SidModel {
     /**
      * Return the fixnames for the `_exitCollection`
      *
-     * @for SidModel
+     * @for StandardRouteModel
      * @method gatherExitPointNames
      * @return {array}
      */
@@ -191,7 +191,7 @@ export default class SidModel {
     /**
      * Does the `_exitCollection` have any exitPoints?
      *
-     * @for SidModel
+     * @for StandardRouteModel
      * @method hasExitPoints
      * @return {boolean}
      */
@@ -206,7 +206,7 @@ export default class SidModel {
      * `exitPoints`, here we just create a model.  This provides the same methods the collections use, only
      * without the collection layer.
      *
-     * @for SidModel
+     * @for StandardRouteModel
      * @method _buildBodySegmentModel
      * @param segmentFixList {array}
      * @return segmentModel {SegmentModel}
@@ -220,7 +220,7 @@ export default class SidModel {
     /**
      * Build a collection of `RouteSegmentModel`s from a segment.
      *
-     * @for SidModel
+     * @for StandardRouteModel
      * @method _buildSegmentCollection
      * @param segment {object}
      * @return segmentCollection {SegmentCollection}
@@ -235,7 +235,7 @@ export default class SidModel {
     /**
      * Given a runwayName and exitFixName, return a list of fixes for the `rwy`, `body` and `exitPoints` segments.
      *
-     * @for SidModel
+     * @for StandardRouteModel
      * @method _findFixListForSegmentByName
      * @param runwayName {string}
      * @param exitFixName {string}
@@ -258,7 +258,7 @@ export default class SidModel {
     /**
      * Find list of fixes for a given `runwayName`
      *
-     * @for SidModel
+     * @for StandardRouteModel
      * @method _findFixListForRunwayName
      * @param runwayName {string}
      * @return {array}
@@ -276,7 +276,7 @@ export default class SidModel {
     /**
      * Find list of waypoints for the `body` segment
      *
-     * @for SidModel
+     * @for StandardRouteModel
      * @method _findBodyFixList
      * @return {array}
      */
@@ -291,7 +291,7 @@ export default class SidModel {
     /**
      * Find a list of fixes in the `exitPoint` segment given an `exitFixName`
      *
-     * @for SidModel
+     * @for StandardRouteModel
      * @method _findFixListForExitFixName
      * @param exitFixName {string}
      * @return {array}

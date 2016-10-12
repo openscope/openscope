@@ -1,12 +1,12 @@
 import _find from 'lodash/find';
 import _forEach from 'lodash/forEach';
 import _random from 'lodash/random';
-import SidModel from './SidModel';
+import StandardRouteModel from './StandardRouteModel';
 
 /**
- * @class SidCollection
+ * @class StandardRouteCollection
  */
-export default class SidCollection {
+export default class StandardRouteCollection {
     /**
      * @constructor
      * @param sidList {object}
@@ -17,7 +17,7 @@ export default class SidCollection {
         }
 
         /**
-         * List of `SidModel` objects
+         * List of `StandardRouteModel` objects
          *
          * @property _items
          * @type {array}
@@ -41,7 +41,7 @@ export default class SidCollection {
     /**
      * Lifecycle method. Should be run only once on instantiation.
      *
-     * @for SidCollection
+     * @for StandardRouteCollection
      * @method _init
      * @param sidList {object}
      * @private
@@ -55,7 +55,7 @@ export default class SidCollection {
     /**
      * Destroy the current instance
      *
-     * @for SidCollection
+     * @for StandardRouteCollection
      * @method destroy
      */
     destroy() {
@@ -68,7 +68,7 @@ export default class SidCollection {
     /**
      * Find a list of fixes for a route, given an `icao`, `exit` and `runway` parameter.
      *
-     * @for SidCollection
+     * @for StandardRouteCollection
      * @method getSID
      * @param icao {string}
      * @param exit {string}
@@ -88,7 +88,7 @@ export default class SidCollection {
     /**
      * Find a random name of an `exitPoint` segment that exists within the collection.
      *
-     * @for SidCollection
+     * @for StandardRouteCollection
      * @method findRandomExitPointForSIDIcao
      * @param icao {string}
      * @return {string}
@@ -111,10 +111,10 @@ export default class SidCollection {
     /**
      * Find a sid within the collection given an icao
      *
-     * @for SidCollection
+     * @for StandardRouteCollection
      * @method findSidByIcao
      * @param icao {string}
-     * @return {SidModel|undefined}
+     * @return {StandardRouteModel|undefined}
      */
     findSidByIcao(icao) {
         return _find(this._items, { icao: icao });
@@ -123,35 +123,35 @@ export default class SidCollection {
     /**
      * Add a list of sids to the collection
      *
-     * @for SidCollection
+     * @for StandardRouteCollection
      * @method _addSidListToCollection
      * @param sidList {object}
      * @private
      */
     _addSidListToCollection(sidList) {
         _forEach(sidList, (sid) => {
-            const sidModel = new SidModel(sid);
+            const routeModel = new StandardRouteModel(sid);
 
-            this._addSidToCollection(sidModel);
+            this._addSidToCollection(routeModel);
         });
 
         return this;
     }
 
     /**
-     * Add a `SidModel` to the collection and update length.
+     * Add a `StandardRouteModel` to the collection and update length.
      *
-     * @for SidCollection
+     * @for StandardRouteCollection
      * @method _addSidToCollection
-     * @param sidModel {SidModel}
+     * @param routeModel {StandardRouteModel}
      * @private
      */
-    _addSidToCollection(sidModel) {
-        if (!(sidModel instanceof SidModel)) {
-            throw new TypeError(`Expected sidModel to be an instance of SidModel, instead received ${sidModel}`);
+    _addSidToCollection(routeModel) {
+        if (!(routeModel instanceof StandardRouteModel)) {
+            throw new TypeError(`Expected routeModel to be an instance of StandardRouteModel, instead received ${routeModel}`);
         }
 
-        this._items.push(sidModel);
+        this._items.push(routeModel);
         this.length = this._items.length;
 
         return this;
