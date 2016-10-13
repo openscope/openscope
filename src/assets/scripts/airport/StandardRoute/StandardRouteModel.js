@@ -7,6 +7,8 @@ import RouteSegmentCollection from './RouteSegmentCollection';
 import RouteSegmentModel from './RouteSegmentModel';
 
 /**
+ * Accepts a single route belonging to a SID or STAR and provides methods to reason about its contents.
+ *
  * @class StandardRouteModel
  */
 export default class StandardRouteModel {

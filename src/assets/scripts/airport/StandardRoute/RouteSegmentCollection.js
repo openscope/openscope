@@ -7,15 +7,15 @@ import _uniqId from 'lodash/uniqueId';
 import RouteSegmentModel from './RouteSegmentModel';
 
 /**
- * A collection of `RouteSegment`s. These could effectively be called transitions.
+ * A collection of `RouteSegment`s.
  *
- * The original intent was to provide a way to deal with the different parts of a StandardProcedureRoute as
- * defined in each airport .json file. Each SID/STAR is broken up into three route segments:
+ * The original intent was to provide a way to deal with the different parts of a `StandardProcedureRoute` as
+ * defined in each airport json file. Each SID/STAR is broken up into three route segments:
  * - `rwy`
  * - `body`
- * - `exitPoints`
+ * - `exitPoints` or `entryPoints`
  *
- * This collection is meant to contain the routes for a single segment.
+ * This collection is meant to contain the fixes for a single segment.
  *
  * @class RouteSegmentCollection
  */

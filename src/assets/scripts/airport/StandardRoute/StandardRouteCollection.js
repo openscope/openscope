@@ -4,15 +4,20 @@ import _random from 'lodash/random';
 import StandardRouteModel from './StandardRouteModel';
 
 /**
+ * Accept `sids` or `stars` data from an airport json file and create a collection of model objects.
+ *
+ * Provides and interface to reason about a `StandardRoute`, defined as either a SID or STAR.
+ * Creates a `StandardRouteModel` for each route defined in the StandardRoute.
+ *
  * @class StandardRouteCollection
  */
 export default class StandardRouteCollection {
     /**
      * @constructor
-     * @param sidList {object}
+     * @param standardRouteEnum {object}
      */
-    constructor(sidList) {
-        if (typeof sidList === 'undefined') {
+    constructor(standardRouteEnum) {
+        if (typeof standardRouteEnum === 'undefined') {
             return;
         }
 
@@ -35,7 +40,7 @@ export default class StandardRouteCollection {
          */
         this.length = 0;
 
-        return this._init(sidList);
+        return this._init(standardRouteEnum);
     }
 
     /**
@@ -43,11 +48,11 @@ export default class StandardRouteCollection {
      *
      * @for StandardRouteCollection
      * @method _init
-     * @param sidList {object}
+     * @param standardRouteEnum {object}
      * @private
      */
-    _init(sidList) {
-        this._addSidListToCollection(sidList);
+    _init(standardRouteEnum) {
+        this._addSidListToCollection(standardRouteEnum);
 
         return this;
     }
@@ -66,37 +71,45 @@ export default class StandardRouteCollection {
     }
 
     /**
-     * Find a list of fixes for a route, given an `icao`, `exit` and `runway` parameter.
+     * Find a list of fixes for a route, given an `icao`, `exitFixName` and `runwayName` parameter.
      *
      * @for StandardRouteCollection
      * @method getSID
      * @param icao {string}
-     * @param exit {string}
-     * @param runway {string}
+     * @param exitFixName {string}
+     * @param runwayName {string}
      * @return {array}
      */
-    findFixesForSidByRunwayAndExit(icao, exit, runway) {
+    findFixesForSidByRunwayAndExit(icao, exitFixName, runwayName) {
         if (!icao) {
             return;
         }
 
         const sid = this.findSidByIcao(icao);
 
-        return sid.findFixesAndRestrictionsForRunwayAndExit(runway, exit);
+        return sid.findFixesAndRestrictionsForRunwayAndExit(runwayName, exitFixName);
     }
 
     /**
+     * Find a list of fixes for a route, given an `icao`, `entryFixName` and `runwayName` parameter.
      *
+     * Used to gather all the fixes for a give STAR route.
      *
+     * @for StandardRouteCollection
+     * @method getSID
+     * @param icao {string}
+     * @param entryFixName {string}
+     * @param runwayName {string} (optional)
+     * @return {array}
      */
-    findFixesForStarByEntryAndRunway(icao, entry, runway) {
+    findFixesForStarByEntryAndRunway(icao, entryFixName, runwayName) {
         if (!icao) {
             return;
         }
 
         const sid = this.findSidByIcao(icao);
 
-        return sid.findFixesAndRestrictionsForEntryAndRunway(entry, runway);
+        return sid.findFixesAndRestrictionsForEntryAndRunway(entryFixName, runwayName);
     }
 
     /**
