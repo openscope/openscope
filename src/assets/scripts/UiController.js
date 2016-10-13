@@ -4,6 +4,7 @@ import $ from 'jquery';
 import _forEach from 'lodash/forEach';
 import _has from 'lodash/has';
 import _keys from 'lodash/keys';
+import _startCase from 'lodash/startCase';
 import { speech_toggle } from './speech';
 import { round } from './math/core';
 import { SELECTORS } from './constants/selectors';
@@ -212,6 +213,7 @@ export default class UiView {
      */
     ui_init() {
         this.$fastForwards.prop('title', 'Set time warp to 2');
+
         const $options = $(UI_OPTIONS_TEMPLATE);
         const descriptions = prop.game.option.getDescriptions();
 
@@ -220,35 +222,68 @@ export default class UiView {
                 return;
             }
 
-            const $container = $(UI_OPTION_CONTAINER_TEMPLATE);
-            $container.append(`<span class="option-description">${opt.description}</span>`);
-
-            const $optionSelector = $(UI_OPTION_SELECTOR_TEMPLATE);
-            const $selector = $(`<select id="opt-${opt.name}" name="${opt.name}"></select>`);
-            // TODO: this line seems redundant
-            $selector.data('name', opt.name);
-
-            const current = prop.game.option.get(opt.name);
-            for (let i = 0; i < opt.data.length; i++) {
-                let s = `<option value="${opt.data[i][1]}">${opt.data[i][0]}</option>`;
-
-                if (opt.data[i][1] === current) {
-                    s = `<option value="${opt.data[i][1]}" selected="selected">${opt.data[i][0]}</option>`;
-                }
-
-                $selector.append(s);
-            }
-
-            $selector.change(() => {
-                prop.game.option.set($(this).data('name'), $(this).val());
-            });
-
-            $optionSelector.append($selector);
-            $container.append($optionSelector);
+            const $container = this._buildOptionTemplate(opt);
             $options.append($container);
         });
 
         $('body').append($options);
+    }
+
+    /**
+     * Build the html for a game option and its cooresponding value elements.
+     *
+     * @for UiController
+     * @method _buildOptionTemplate
+     * @param option {object}
+     * @return $container {jquery Element}
+     * @private
+     */
+    _buildOptionTemplate(option) {
+        const $container = $(UI_OPTION_CONTAINER_TEMPLATE);
+        $container.append(`<span class="option-description">${option.description}</span>`);
+
+        const $optionSelector = $(UI_OPTION_SELECTOR_TEMPLATE);
+        const $selector = $(`<select id="opt-${option.name}" name="${option.name}"></select>`);
+        const selectedOption = prop.game.option.get(option.name);
+
+        // this could me done with a _map(), but verbosity here makes the code easier to read
+        for (let i = 0; i < option.data.length; i++) {
+            const $optionSelectTempalate = this._buildOptionSelectTemplate(option.data[i][1], selectedOption);
+
+            $selector.append($optionSelectTempalate);
+        }
+
+        // TODO: this should be moved to a `setupHandlers()` or a click handler
+        $selector.change((event) => {
+            const $currentTarget = $(event.currentTarget);
+
+            prop.game.option.set($currentTarget.attr('name'), $currentTarget.val());
+        });
+
+        $optionSelector.append($selector);
+        $container.append($optionSelector);
+
+        return $container;
+    }
+
+    /**
+     * Build the html for a select option.
+     *
+     * @for UiController
+     * @method _buildOptionTemplate
+     * @param optionData
+     * @param selectedOption {string}
+     * @return optionSelectTempalate {string}
+     * @private
+     */
+    _buildOptionSelectTemplate(optionData, selectedOption) {
+        let optionSelectTempalate = `<option value="${optionData}">${_startCase(optionData)}</option>`;
+
+        if (optionData === selectedOption) {
+            optionSelectTempalate = `<option value="${optionData}" selected="selected">${_startCase(optionData)}</option>`;
+        }
+
+        return optionSelectTempalate;
     }
 
     /**
