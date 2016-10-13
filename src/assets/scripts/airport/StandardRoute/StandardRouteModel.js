@@ -1,4 +1,5 @@
 import _compact from 'lodash/compact';
+import _get from 'lodash/get';
 import _isArray from 'lodash/isArray';
 import _isObject from 'lodash/isObject';
 import _uniqId from 'lodash/uniqueId';
@@ -109,7 +110,9 @@ export default class StandardRouteModel {
         this._bodySegmentModel = null;
 
         /**
-         * Collection object of the `exitPoints` route segments
+         * Collection of `exitPoints` route segments
+         *
+         * This property should only be defined for SIDs and null for STAR routes
          *
          * @property _exitCollection
          * @type {RouteSegmentCollection}
@@ -117,6 +120,16 @@ export default class StandardRouteModel {
          * @private
          */
         this._exitCollection = null;
+
+        /**
+         * Collection of the `entryPoints` route segments.
+         *
+         * This property should only be defined for STARs and null for SID routes
+         * @type {RouteSegmentCollection}
+         * @default null
+         * @private
+         */
+        this._entryCollection = null;
 
         return this._init(sid);
     }
@@ -135,10 +148,12 @@ export default class StandardRouteModel {
         this.draw = sid.draw;
         this.rwy = sid.rwy;
         this.body = sid.body;
-        this.exitPoints = sid.exitPoints;
+        this.exitPoints = _get(sid, 'exitPoints', {});
+        this.entryPoints = _get(sid, 'entryPoints', {});
         this._runwayCollection = this._buildSegmentCollection(sid.rwy);
         this._bodySegmentModel = this._buildBodySegmentModel(sid.body);
         this._exitCollection = this._buildSegmentCollection(sid.exitPoints);
+        this._entryCollection = this._buildSegmentCollection(sid.entryPoints);
     }
 
     /**
@@ -158,6 +173,7 @@ export default class StandardRouteModel {
         this._runwayCollection = null;
         this._bodySegmentModel = null;
         this._exitCollection = null;
+        this._entryCollection = null;
 
         return this;
     }
@@ -168,15 +184,28 @@ export default class StandardRouteModel {
      * This method gathers the fixes from all the route segments.
      *
      * @for StandardRouteModel
-     * @method findFixesAndRestrictionsForRunwayWithExit
+     * @method findFixesAndRestrictionsForRunwayAndExit
      * @param runwayName {string}
      * @param exitFixName {string}
      * @return {array}
      */
-    findFixesAndRestrictionsForRunwayWithExit(runwayName = '', exitFixName = '') {
-        return this._findFixListForSegmentByName(runwayName, exitFixName);
+    findFixesAndRestrictionsForRunwayAndExit(runwayName = '', exitFixName = '') {
+        return this._findFixListForSidByRunwayAndExit(runwayName, exitFixName);
     }
 
+    /**
+     *
+     * This method gathers the fixes from all the route segments.
+     *
+     * @for StandardRouteModel
+     * @method findFixesAndRestrictionsForEntryAndRunway
+     * @param entryFixName {string}
+     * @param runwayName {string}
+     * @return {array}
+     */
+    findFixesAndRestrictionsForEntryAndRunway(entryFixName = '', runwayName = '') {
+        return this._findFixListForStarByEntryAndRunway(entryFixName, runwayName);
+    }
     /**
      * Return the fixnames for the `_exitCollection`
      *
@@ -227,34 +256,93 @@ export default class StandardRouteModel {
      * @private
      */
     _buildSegmentCollection(segment) {
+        // SIDS have `exitPoints` while STARs have `entryPoints`. one or the other will be `undefined`
+        // depending on the route type.
+        if (typeof segment === 'undefined') {
+            return null;
+        }
+
         const segmentCollection = new RouteSegmentCollection(segment);
 
         return segmentCollection;
     }
 
     /**
-     * Given a runwayName and exitFixName, return a list of fixes for the `rwy`, `body` and `exitPoints` segments.
+     * Given three functions, spread their result in an array then return the compacted result.
+     *
+     * This method expects to receive arrays as results from the three methods passed in.
+     * This wrapper method is provided to maintain a consistent interface while allowing for a varying set
+     * of methods to be called in the place of each parameter.
      *
      * @for StandardRouteModel
-     * @method _findFixListForSegmentByName
-     * @param runwayName {string}
-     * @param exitFixName {string}
-     * @return fixList {array}
+     * @method _generateFixList
+     * @param originSegment {function}
+     * @param bodySegment {function}
+     * @param destinationSegment {function}
+     * @return {array}
+     * @private
      */
-    _findFixListForSegmentByName(runwayName, exitFixName) {
+    _generateFixList = (originSegment, bodySegment, destinationSegment) => {
         // in the event that one of these functions doesnt find a result set it will return an empty array.
         // we leverage then `lodash.compact()` below to remove any empty values from the array before
         // returning the `fixList`.
         // These functions are called synchronously and order of operation is very important here.
         const fixList = [
-            ...this._findFixListForRunwayName(runwayName),
-            ...this._findBodyFixList(),
-            ...this._findFixListForExitFixName(exitFixName)
+            ...originSegment,
+            ...bodySegment,
+            ...destinationSegment
         ];
 
         return _compact(fixList);
+    };
+
+    /**
+     * Given a `runwayName` and `exitFixName`, find a list of fixes for the `rwy`, `body` and `exitPoints` segments.
+     *
+     * @for StandardRouteModel
+     * @method _findFixListForSidByRunwayAndExit
+     * @param runwayName {string}
+     * @param exitFixName {string}
+     * @return fixList {array}
+     */
+    _findFixListForSidByRunwayAndExit = (runwayName, exitFixName) => this._generateFixList(
+        this._findFixListForRunwayName(runwayName),
+        this._findBodyFixList(),
+        this._findFixListForExitFixName(exitFixName)
+    );
+
+    /**
+     * Given an `entryFixName` and/or a `runwayName`, find a list of fixes for the `entryPoints`, `body` and `rwy` segments.
+     *
+     * @for StandardRouteModel
+     * @method _findFixListForStarByEntryAndRunway
+     * @param entryFixName {string}
+     * @param runwayName {string} (optional)
+     * @return {array}
+     */
+    _findFixListForStarByEntryAndRunway = (entryFixName, runwayName) => this._generateFixList(
+        this._findFixListForEntryFixName(entryFixName),
+        this._findBodyFixList(),
+        this._findFixListForRunwayName(runwayName)
+    );
+
+    /**
+     * Find list of waypoints for the `body` segment
+     *
+     * @for StandardRouteModel
+     * @method _findBodyFixList
+     * @return {array}
+     */
+    _findBodyFixList() {
+        if (this.body.length === 0) {
+            return [];
+        }
+
+        return this._bodySegmentModel.findWaypointsForSegment();
     }
 
+    // TODO: simplify these next three functions into a single function. they are doing exactly the same thing
+    // only with a different collection object.
     /**
      * Find list of fixes for a given `runwayName`
      *
@@ -274,21 +362,6 @@ export default class StandardRouteModel {
     }
 
     /**
-     * Find list of waypoints for the `body` segment
-     *
-     * @for StandardRouteModel
-     * @method _findBodyFixList
-     * @return {array}
-     */
-    _findBodyFixList() {
-        if (this.body.length === 0) {
-            return [];
-        }
-
-        return this._bodySegmentModel.findWaypointsForSegment();
-    }
-
-    /**
      * Find a list of fixes in the `exitPoint` segment given an `exitFixName`
      *
      * @for StandardRouteModel
@@ -305,5 +378,24 @@ export default class StandardRouteModel {
         }
 
         return this._exitCollection.findFixesForSegmentName(exitFixName);
+    }
+
+    /**
+     * Find a list of fixes in the `entryPoint` segment given an `entryFixName`
+     *
+     * @for StandardRouteModel
+     * @method _findFixListForEntryFixName
+     * @param entryFixName {string}
+     * @return {array}
+     * @private
+     */
+    _findFixListForEntryFixName(entryFixName) {
+        // specifically checking for an empty string here because this param gets a default of '' when
+        // it is received in to the public method
+        if (entryFixName === '') {
+            return [];
+        }
+
+        return this._entryCollection.findFixesForSegmentName(entryFixName);
     }
 }

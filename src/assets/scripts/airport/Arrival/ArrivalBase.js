@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import _forEach from 'lodash/forEach';
 import _has from 'lodash/has';
 import _random from 'lodash/random';
 
@@ -247,7 +248,8 @@ export default class ArrivalBase {
         } else if (this.route) {
             // STAR data is present
             star = window.airportController.airport_get().getSTAR(
-                this.route.split('.')[1], this.route.split('.')[0],
+                this.route.split('.')[1],
+                this.route.split('.')[0],
                 window.airportController.airport_get().runway
             );
 

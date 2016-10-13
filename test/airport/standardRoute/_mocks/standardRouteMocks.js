@@ -1,5 +1,88 @@
 // mock data pulled directly from `klas.json` with very few modifications
 
+export const STAR_LIST_MOCK = {
+    'GRNPA1': {
+        'icao': 'GRNPA1',
+        'name': 'Grandpa One',
+        'entryPoints': {
+            'BETHL': ['BETHL', ['HOLDM', 'A270']],
+            'BCE':   ['BCE'],
+            'DVC':   ['DVC', 'BETHL', ['HOLDM', 'A270']],
+            'MLF':   ['MLF']
+        },
+        'body': [['KSINO', 'A170'], ['LUXOR', 'A120|S250'], ['GRNPA', 'A110'], ['DUBLX', 'A90'], ['FRAWG', 'A80|S210'], 'TRROP', 'LEMNZ'],
+        'rwy': {
+            '01L': [],
+            '01R': [],
+            '07L': [],
+            '07R': [],
+            '19L': [],
+            '19R': [],
+            '25L': [],
+            '25R': []
+        }
+    },
+    'KEPEC3': {
+        'icao': 'KEPEC3',
+        'name': 'Kepec Three',
+        'entryPoints': {
+            'DAG': ['DAG', ['MISEN', 'A240']],
+            'TNP': ['TNP', 'JOTNU', ['ZELMA', 'A310-']]
+        },
+        'body': [['CLARR', 'A130|S250'], 'SKEBR', ['KEPEC', 'A130'], ['IPUMY', 'A110|S230'], ['NIPZO', 'A90'], ['SUNST', 'A80|S210'], ['KIMME', 'A80|S210'], ['CHIPZ', 'A80|S170'], 'POKRR', 'PRINO'],
+        'rwy': {
+            '01L': [],
+            '01R': [],
+            '07L': [],
+            '07R': [],
+            '19L': [],
+            '19R': [],
+            '25L': [],
+            '25R': []
+        }
+    },
+    'SUNST3': {
+        'icao': 'SUNST3',
+        'name': 'Sunset Three',
+        'entryPoints': {
+            'BTY':   ['BTY'],
+            'TACUS': ['TACUS', 'TUMBE']
+        },
+        'body': [['MYCAL', 'A240'], ['FUZZY', 'A160|S250'], 'TRAGR', ['IPUMY', 'A110|S230'], ['NIPZO', 'A90'], ['SUNST', 'A80|S210'], ['KIMME', 'A80|S210'], ['CHIPZ', 'A80|S170'], 'POKRR', 'PRINO'],
+        'rwy': {
+            '01L': [],
+            '01R': [],
+            '07L': [],
+            '07R': [],
+            '19L': [],
+            '19R': [],
+            '25L': [],
+            '25R': []
+        }
+    },
+    'TYSSN4': {
+        'icao': 'TYSSN4',
+        'name': 'Tyson Three',
+        'entryPoints': {
+            'DRK':   ['DRK', ['IGM', 'A240'], ['ZATES', 'A190']],
+            'IGM':   [['IGM', 'A240'], ['ZATES', 'A190']],
+            'PGS':   ['PGS', ['CEJAY', 'A190']],
+            'LRAIN': ['LRAIN', ['CORKR', 'A200+'], ['ONRUE', 'A340-'], ['CEJAY', 'A190']]
+        },
+        'body': [['KADDY', 'A120|S250'], 'TYSSN', ['SUZSI', 'A100|S210'], ['PRINO', 'A80']],
+        'rwy': {
+            '01L': [],
+            '01R': [],
+            '07L': [],
+            '07R': [],
+            '19L': [],
+            '19R': [],
+            '25L': [],
+            '25R': []
+        }
+    }
+};
+
 export const SID_LIST_MOCK = {
     'BOACH6': {
         'icao': 'BOACH6',

@@ -82,7 +82,21 @@ export default class StandardRouteCollection {
 
         const sid = this.findSidByIcao(icao);
 
-        return sid.findFixesAndRestrictionsForRunwayWithExit(runway, exit);
+        return sid.findFixesAndRestrictionsForRunwayAndExit(runway, exit);
+    }
+
+    /**
+     *
+     *
+     */
+    findFixesForStarByEntryAndRunway(icao, entry, runway) {
+        if (!icao) {
+            return;
+        }
+
+        const sid = this.findSidByIcao(icao);
+
+        return sid.findFixesAndRestrictionsForEntryAndRunway(entry, runway);
     }
 
     /**
@@ -101,9 +115,10 @@ export default class StandardRouteCollection {
             return sid.icao;
         }
 
-        // if has exitPoints, return a randomly selected one
+        // if has exitPoints, return a randomly selected one from a list of exitFixNames
         const exitPointIcaos = sid.gatherExitPointNames();
-        const randomIndex = _random(0, exitPointIcaos.length);
+        const maxIndex = exitPointIcaos.length - 1;
+        const randomIndex = _random(0, maxIndex);
 
         return exitPointIcaos[randomIndex];
     }

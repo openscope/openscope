@@ -69,7 +69,9 @@ export default class AirportModel {
         // TODO: what is the difference between a `real_fix` and `fix`?
         this.real_fixes = {};
         this.sids     = {};
+        this.sidCollection = null;
         this.stars    = {};
+        this.starCollection = null;
         this.maps     = {};
         this.airways  = {};
         this.restricted_areas = [];
@@ -125,6 +127,7 @@ export default class AirportModel {
         this.rr_center = _get(data, 'rr_center');
         this.level = _get(data, 'level', null);
         this.sidCollection = new StandardRouteCollection(data.sids);
+        this.starCollection = new StandardRouteCollection(data.stars);
 
         this.loadTerrain();
         this.buildAirportAirspace(data.airspace);
@@ -424,6 +427,7 @@ export default class AirportModel {
     set() {
         if (!this.loaded) {
             this.load();
+
             return;
         }
 
@@ -685,6 +689,7 @@ export default class AirportModel {
 
     /**
       * Return an array of [Waypoint, fixRestrictions] for a given STAR
+      *
       * @param {string} id - the identifier for the STAR (eg 'LENDY6')
       * @param {string} entry - the entryPoint from which to join the STAR
       * @param {string} rwy - (optional) the planned arrival runway
@@ -695,48 +700,8 @@ export default class AirportModel {
       *       it will cause an incomplete route in many cases (depends on the
       *       design of the actual STAR in the airport's json file).
      */
-    getSTAR(id, entry, /* optional */ rwy) {
-        if (!(id && entry) || Object.keys(this.stars).indexOf(id) === -1) {
-            return null;
-        }
-
-        const fixes = [];
-        const star = this.stars[id];
-
-        // entry portion
-        if (_has(star, 'entryPoints')) {
-            for (let i = 0; i < star.entryPoints[entry].length; i++) {
-                if (typeof star.entryPoints[entry][i] === 'string') {
-                    fixes.push([star.entryPoints[entry][i], null]);
-                } else {
-                    fixes.push(star.entryPoints[entry][i]);
-                }
-            }
-        }
-
-        // body portion
-        if (_has(star, 'body')) {
-            for (let i = 0; i < star.body.length; i++) {
-                if (typeof star.body[i] === 'string') {
-                    fixes.push([star.body[i], null]);
-                } else {
-                    fixes.push(star.body[i]);
-                }
-            }
-        }
-
-        // runway portion
-        if (star.rwy && _has(star.rwy, rwy)) {
-            for (let i = 0; i < star.rwy[rwy].length; i++) {
-                if (typeof star.rwy[rwy][i] === 'string') {
-                    fixes.push([star.rwy[rwy][i], null]);
-                } else {
-                    fixes.push(star.rwy[rwy][i]);
-                }
-            }
-        }
-
-        return fixes;
+    getSTAR(id, entry, rwy) {
+        return this.starCollection.findFixesForStarByEntryAndRunway(id, entry, rwy);
     }
 
     getRunway(name) {
