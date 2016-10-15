@@ -173,7 +173,7 @@ export default class Aircraft {
         this.aircraftStripView = null;
         this.$html = null;
 
-        // TODO: this initialization should live in a `createChildren()` init method and not the constructor
+        // TODO: this initialization should live in a `_init()` init method and not the constructor
         this.$strips = $(SELECTORS.DOM_SELECTORS.STRIPS);
         /* eslint-enable multi-spaces*/
 
@@ -1068,7 +1068,7 @@ export default class Aircraft {
 
         if (holdFix !== null) {
             holdFix = holdFix.toUpperCase();
-            holdFixLocation = window.airportController.airport_get().getFix(holdFix);
+            holdFixLocation = window.airportController.airport_get().getFixPosition(holdFix);
 
             if (!holdFixLocation) {
                 return ['fail', `unable to find fix ${holdFix}`];
@@ -1186,7 +1186,7 @@ export default class Aircraft {
      */
     runDirect(data) {
         const fixname = data[0].toUpperCase();
-        const fix = window.airportController.airport_get().getFix(fixname);
+        const fix = window.airportController.airport_get().getFixPosition(fixname);
 
         if (!fix) {
             return ['fail', `unable to find fix called ${fixname}`];
@@ -1206,7 +1206,7 @@ export default class Aircraft {
         let last_fix;
         let fail;
         const fixes = _map(data[0], (fixname) => {
-            const fix = window.airportController.airport_get().getFix(fixname);
+            const fix = window.airportController.airport_get().getFixPosition(fixname);
             if (!fix) {
                 fail = ['fail', `unable to find fix called ${fixname}`];
 

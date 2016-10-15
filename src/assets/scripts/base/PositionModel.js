@@ -1,5 +1,4 @@
-/* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand,
-no-undef, class-methods-use-this */
+import _uniqueId from 'lodash/uniqueId';
 import { sin, cos } from '../math/core';
 import { degreesToRadians, parseElevation } from '../utilities/unitConverters';
 
@@ -47,6 +46,7 @@ export default class Position {
      *                            that should be converted to positions
      */
     constructor(coordinates = [], reference, magnetic_north = 0, mode) {
+        this._id = _uniqueId();
         // TODO: it might make more sense to abstract `coordinates` out to another Model object.
         this.latitude = 0;
         this.longitude = 0;
@@ -55,6 +55,7 @@ export default class Position {
         this.magnetic_north = magnetic_north;
         this.x = 0;
         this.y = 0;
+        // TODO: make this a getter;
         this.position = [this.x, this.y];
         this.gps = [0, 0];
 
@@ -69,6 +70,7 @@ export default class Position {
         if (!REGEX.COMPASS_DIRECTION.test(coordinates[0])) {
             this.x = coordinates[0];
             this.y = coordinates[1];
+            // TODO: remove once this property is a getter
             this.position = [this.x, this.y];
 
             if (mode === 'GPS') {

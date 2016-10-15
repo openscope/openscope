@@ -4,9 +4,13 @@ import { abs, tan } from '../math/core';
 import { km, degreesToRadians } from '../utilities/unitConverters';
 import { vlen, vradial, vsub, vadd, vscale } from '../math/vector';
 
-export default class Runway {
+/**
+ * @class RunwayModel
+ */
+export default class RunwayModel {
     constructor(options = {}, end, airport) {
         options.airport     = airport;
+        this.airport        = null;
         this.angle          = null;
         this.elevation      = 0;
         this.delay          = 2;
@@ -29,46 +33,6 @@ export default class Runway {
         this.parse(options, end);
     }
 
-    addQueue(aircraft) {
-        this.queue.push(aircraft);
-    }
-
-    removeQueue(aircraft, force) {
-        if (this.queue[0] === aircraft || force) {
-            this.queue.shift(aircraft);
-
-            if (this.queue.length >= 1) {
-                this.queue[0].moveForward();
-            }
-
-            return true;
-        }
-
-        return false;
-    }
-
-    inQueue(aircraft) {
-        return this.queue.indexOf(aircraft);
-    }
-
-    taxiDelay() {
-        // TODO: what does 3 mean? enumerate the magic numbers.
-        return (this.delay + Math.random()) * 3;
-    }
-
-    getGlideslopeAltitude(distance, /* optional */ gs_gradient) {
-        if (!gs_gradient) {
-            gs_gradient = this.ils.gs_gradient;
-        }
-
-        distance = Math.max(0, distance);
-        const rise = tan(abs(gs_gradient));
-
-        // TODO: this logic could be abstracted to a helper.
-        // TODO: what does 3280 mean? enumerate the magic number
-        return this.elevation + (rise * distance * 3280);
-    }
-
     parse(data, end) {
         this.airport = data.airport;
 
@@ -81,6 +45,8 @@ export default class Runway {
             // FIXME: ressignment of an argument with an inline ternary? this line needs some work.
             const farSide = new PositionModel(data.end[(end === 0) ? 1 : 0], data.reference_position, data.magnetic_north);
 
+            // TODO: `gps` and `elevation` are available from the `PositionModel` and should be pulled from there
+            // instead of setting direct properties. If direct properties are needed, use getters isntead.
             // GPS latitude and longitude position
             this.gps = [thisSide.latitude, thisSide.longitude];
 
@@ -127,5 +93,45 @@ export default class Runway {
         if (data.sepFromAdjacent) {
             this.sepFromAdjacent = km(data.sepFromAdjacent[end]);
         }
+    }
+
+    addQueue(aircraft) {
+        this.queue.push(aircraft);
+    }
+
+    removeQueue(aircraft, force) {
+        if (this.queue[0] === aircraft || force) {
+            this.queue.shift(aircraft);
+
+            if (this.queue.length >= 1) {
+                this.queue[0].moveForward();
+            }
+
+            return true;
+        }
+
+        return false;
+    }
+
+    inQueue(aircraft) {
+        return this.queue.indexOf(aircraft);
+    }
+
+    taxiDelay() {
+        // TODO: what does 3 mean? enumerate the magic numbers.
+        return (this.delay + Math.random()) * 3;
+    }
+
+    getGlideslopeAltitude(distance, /* optional */ gs_gradient) {
+        if (!gs_gradient) {
+            gs_gradient = this.ils.gs_gradient;
+        }
+
+        distance = Math.max(0, distance);
+        const rise = tan(abs(gs_gradient));
+
+        // TODO: this logic could be abstracted to a helper.
+        // TODO: what does 3280 mean? enumerate the magic number
+        return this.elevation + (rise * distance * 3280);
     }
 }

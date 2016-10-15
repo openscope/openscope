@@ -1,4 +1,3 @@
-/* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand, no-param-reassign, no-undef */
 import $ from 'jquery';
 import _get from 'lodash/get';
 import AircraftInstanceModel from './AircraftInstanceModel';
@@ -7,18 +6,26 @@ import AircraftInstanceModel from './AircraftInstanceModel';
 /**
  * Definitions for characteristics of a particular aircraft type
  *
- * @class Model
+ * @class AircraftModel
  */
-export default class Model {
+export default class AircraftModel {
+    /**
+     * @for AircraftModel
+     * @constructor
+     * @param options {object}
+     */
     constructor(options = {}) {
         this.loading = true;
         this.loaded = false;
+
         this.priorityLoad = false;
         this.name = _get(options, 'name', null);
         this.icao = _get(options, 'icao', null);
         this.engines = null;
+        this.ceiling= null;
         this.weightclass = _get(options, 'weightClass', null);
         this.category = _get(options, 'category', null);
+        this._pendingAircraft = [];
 
         this.rate = {
             // radians per second
@@ -44,8 +51,6 @@ export default class Model {
             cruise: 0
         };
 
-        this._pendingAircraft = [];
-
         this.parse(options);
 
         if (options.url) {
@@ -53,6 +58,11 @@ export default class Model {
         }
     }
 
+    /**
+     * @for AircraftModel
+     * @method parse
+     * @param data {object}
+     */
     parse(data) {
         // TODO: how much of this could happen in the constructor/init methods?
         if (data.engines) {
@@ -76,6 +86,11 @@ export default class Model {
         }
     }
 
+    /**
+     * @for AircraftModel
+     * @method load
+     * @param url {string}
+     */
     load(url) {
         this._url = url;
 
@@ -83,24 +98,45 @@ export default class Model {
             url,
             immediate: false
         })
-        .done((data) => {
-            this.parse(data);
-            this.loading = false;
-            this.loaded = true;
-            this._generatePendingAircraft();
-        })
-        .fail((jqXHR, textStatus, errorThrown) => {
-            this.loading = false;
-            this._pendingAircraft = [];
-
-            console.error(`Unable to load aircraft/ ${this.icao} : ${textStatus}`);
-        });
+        .done((response) => this.onLoadSuccess(response))
+        .fail((...args) => this.onLoadError(...args));
     }
+
+    /**
+     * @for AircraftModel
+     * @method onLoadSuccess
+     * @param response {object}
+     */
+    onLoadSuccess = (response) => {
+        this.parse(response);
+
+        this.loading = false;
+        this.loaded = true;
+
+        this._generatePendingAircraft();
+    };
+
+    /**
+     * @for AircraftModel
+     * @method onLoadError
+     * @param textStatus {string}
+     */
+    onLoadError = ({ textStatus }) => {
+        this.loading = false;
+        this._pendingAircraft = [];
+
+        console.error(`Unable to load aircraft/ ${this.icao} : ${textStatus}`);
+    };
+
 
     /**
      * Generate a new aircraft of this model
      *
      * Handles the case where this model may be asynchronously loaded
+     *
+     * @for AircraftModel
+     * @method generateAircraft
+     * @param options {object}
      */
     generateAircraft(options) {
         // TODO: prop names of loaded and loading are concerning. there may need to be state
@@ -130,6 +166,12 @@ export default class Model {
 
     /**
      * Actual implementation of generateAircraft
+     *
+     * @for AircraftModel
+     * @method _generateAircraft
+     * @param options {object}
+     * @return {boolean}
+     * @private
      */
     _generateAircraft(options) {
         options.model = this;
@@ -144,9 +186,12 @@ export default class Model {
 
     /**
      * Generate aircraft which were queued while the model loaded
+     *
+     * @for AircraftModel
+     * @method _generatePendingAircraft
      */
     _generatePendingAircraft() {
-        // TODO: replace $ with _map()
+        // TODO: replace $.each() with _map()
         $.each(this._pendingAircraft, (idx, options) => {
             this._generateAircraft(options);
         });

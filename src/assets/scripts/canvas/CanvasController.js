@@ -95,15 +95,15 @@ export default class ConvasController {
         this.canvas.draw_sids = true;
         this.canvas.draw_terrain = true;
 
-        return this.createChildren()
+        return this._init()
                     .enable();
     }
 
     /**
      * @for CanvasController
-     * @method createChildren
+     * @method _init
      */
-    createChildren() {
+    _init() {
         return this;
     }
 
@@ -648,10 +648,9 @@ export default class ConvasController {
 
         // Store the count of sid text drawn for a specific transition
         const text_at_point = [];
-        const departureColor = COLORS.DEPARTURE_COLOR;
 
-        cc.strokeStyle = departureColor;
-        cc.fillStyle = departureColor;
+        cc.strokeStyle = COLORS.DEPARTURE_COLOR;
+        cc.fillStyle = COLORS.DEPARTURE_COLOR;
         cc.setLineDash([1, 10]);
         cc.font = 'italic 14px monoOne, monospace';
 
@@ -675,7 +674,7 @@ export default class ConvasController {
                             write_sid_name = false;
                         }
 
-                        let fix = airport.getFix(fixList[j].replace('*', ''));
+                        let fix = airport.getFixPosition(fixList[j].replace('*', ''));
 
                         if (!fix) {
                             log(`Unable to draw line to '${fixList[j]}' because its position is not defined!`, LOG.WARNING);
@@ -695,11 +694,14 @@ export default class ConvasController {
                     cc.stroke();
 
                     if (exit_name) {
-                        if (isNaN(text_at_point[exit_name])) {  // Initialize count for this transition
+                        // Initialize count for this transition
+                        if (isNaN(text_at_point[exit_name])) {
                             text_at_point[exit_name] = 0;
                         }
 
-                        const y_point = fy + (15 * text_at_point[exit_name]);  // Move the y point for drawing depending on how many sids we have drawn text for at this point already
+                        // Move the y point for drawing depending on how many sids we have drawn text for
+                        // at this point already
+                        const y_point = fy + (15 * text_at_point[exit_name]);
                         cc.fillText(`${s}.${exit_name}`, fx + 10, y_point);
 
                         text_at_point[exit_name] += 1;  // Increment the count for this transition
@@ -1446,9 +1448,9 @@ export default class ConvasController {
      */
     canvas_draw_fancy_rings(cc, fix_origin, fix1, fix2) {
         const airport = window.airportController.airport_get();
-        const origin = airport.getFix(fix_origin);
-        const f1 = airport.getFix(fix1);
-        const f2 = airport.getFix(fix2);
+        const origin = airport.getFixPosition(fix_origin);
+        const f1 = airport.getFixPosition(fix1);
+        const f2 = airport.getFixPosition(fix2);
         const minDist = Math.min(distance2d(origin, f1), distance2d(origin, f2));
         const halfPI = Math.PI / 2;
         const extend_ring = degreesToRadians(10);

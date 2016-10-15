@@ -76,7 +76,7 @@ export default class TutorialView {
         this.tutorial.step = 0;
         this.tutorial.open = false;
 
-        this.createChildren()
+        this._init()
             .layout()
             .enable();
     }
@@ -87,10 +87,10 @@ export default class TutorialView {
      * Caches selectors in variabls so they only need to be looked up one time.
      *
      * @for tutorialView
-     * @method createChildren
+     * @method _init
      * @chainable
      */
-    createChildren() {
+    _init() {
         this.$tutorialView = $(TUTORIAL_TEMPLATE);
         this.$tutorialToggle = $(SELECTORS.DOM_SELECTORS.TOGGLE_TUTORIAL);
         this.$tutorialPrevious = this.$tutorialView.find(SELECTORS.DOM_SELECTORS.PREV);

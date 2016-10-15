@@ -1,12 +1,15 @@
 /* eslint-disable no-multi-spaces, func-names, camelcase, no-undef, max-len, object-shorthand */
 import $ from 'jquery';
+import _forEach from 'lodash/forEach';
+import _get from 'lodash/get';
 import _has from 'lodash/has';
 import _map from 'lodash/map';
 import _isEmpty from 'lodash/isEmpty';
 import _uniq from 'lodash/uniq';
 import Area from '../base/AreaModel';
 import PositionModel from '../base/PositionModel';
-import Runway from './Runway';
+import RunwayModel from './RunwayModel';
+import SidCollection from './StandardRoute/SidCollection';
 import { ArrivalFactory } from './Arrival/ArrivalFactory';
 import { DepartureFactory } from './Departure/DepartureFactory';
 import { degreesToRadians, parseElevation } from '../utilities/unitConverters';
@@ -30,6 +33,11 @@ const ra = (n) => {
     return n + crange(0, Math.random(), 1, -deviation, deviation);
 };
 
+const DEFAULT_CTR_RADIUS_NM = 80;
+const DEFAULT_CTR_CEILING_FT = 10000;
+const DEFAULT_INITIAL_ALTITUDE_FT = 5000;
+const DEAFULT_RR_RADIUS_NM = 5;
+
 // TODO: this class contains a lot of .hasOwnProperty() type checks (converted to _has for now). is there a need for
 // such defensiveness? or can some of that be accomplished on init and then smiply update the prop if need be?
 /**
@@ -51,10 +59,14 @@ export default class AirportModel {
         this.icao     = null;
         this.radio    = null;
         this.level    = null;
-        this.elevation = 0;
+
+        this.position = null;
+
         this.runways  = [];
         this.runway   = null;
+
         this.fixes    = {};
+        // TODO: what is the difference between a `real_fix` and `fix`?
         this.real_fixes = {};
         this.sids     = {};
         this.stars    = {};
@@ -83,256 +95,304 @@ export default class AirportModel {
         this.ctr_radius  = 80;
         this.ctr_ceiling = 10000;
         this.initial_alt = 5000;
+        this.rr_radius_nm = 0;
+        this.rr_center = 0;
 
         this.parse(options);
     }
 
-    getWind() {
-        // TODO: there are a lot of magic numbers here. What are they for and what do they mean? These should be enumerated.
-        const wind = clone(this.wind);
-        let s = 1;
-        const angle_factor = sin((s + window.gameController.game_time()) * 0.5) + sin((s + window.gameController.game_time()) * 2);
-        // TODO: why is this var getting reassigned to a magic number?
-        s = 100;
-        const speed_factor = sin((s + window.gameController.game_time()) * 0.5) + sin((s + window.gameController.game_time()) * 2);
-        wind.angle += crange(-1, angle_factor, 1, degreesToRadians(-4), degreesToRadians(4));
-        wind.speed *= crange(-1, speed_factor, 1, 0.9, 1.05);
-
-        return wind;
+    get elevation() {
+        return this.position.elevation;
     }
 
-    // FIXME: this method is waaaaay to long. there is a lot here that can be abstracted or flat out removed and
-    // moved to init(). Other bits could be moved to class methods instead of inline. this function does
-    // way too much.  Simplify!
+    get magnetic_north() {
+        return degreesToRadians(this.position.magnetic_north);
+    }
+
     parse(data) {
-        if (data.position) {
-            this.position = new PositionModel(data.position);
+        this.setCurrentPosition(data.position, data.magnetic_north);
+
+        this.name = _get(data, 'name', null);
+        this.icao = _get(data, 'icao', null);
+        this.radio = _get(data, 'radio', null);
+        this.has_terrain = _get(data, 'has_terrain', false);
+        this.stars = _get(data, 'stars', {});
+        this.airways = _get(data, 'airways', {});
+        this.ctr_radius = _get(data, 'ctr_radius', DEFAULT_CTR_RADIUS_NM);
+        this.ctr_ceiling = _get(data, 'ctr_ceiling', DEFAULT_CTR_CEILING_FT);
+        this.initial_alt = _get(data, 'initial_alt', DEFAULT_INITIAL_ALTITUDE_FT);
+        this.rr_radius_nm = _get(data, 'rr_radius_nm');
+        this.rr_center = _get(data, 'rr_center');
+        this.level = _get(data, 'level', null);
+        this.sidCollection = new SidCollection(data.sids);
+
+        this.loadTerrain();
+        this.buildAirportAirspace(data.airspace);
+        this.buildAirportRunways(data.runways);
+        this.buildFixes(data.fixes);
+        this.verifySidFixes(data.sids);
+        this.buildAirportMaps(data.maps);
+        this.buildRestrictedAreas(data.restricted);
+        this.updateCurrentWind(data.wind);
+        this.buildAirportDepartures(data.departures);
+        this.buildArrivals(data.arrivals);
+        this.checkFixes();
+        this.buildRunwayMetaData()
+    }
+
+    /**
+     * @for AirportModel
+     * @method setCurrentPosition
+     * @param currentPosition {array}
+     */
+    setCurrentPosition(currentPosition, magneticNorth) {
+        if (!currentPosition) {
+            return;
         }
 
-        if (this.position && (this.position.elevation != null)) {
-            this.elevation = this.position.elevation;
+        this.position = new PositionModel(currentPosition, null, magneticNorth);
+    }
+
+    /**
+     * create 3d polygonal airspace
+     *
+     * @for AirportModel
+     * @method buildAirportAirspace
+     * @param airspace
+     */
+    buildAirportAirspace(airspace) {
+        if (!airspace) {
+            return;
         }
 
-        if (data.magnetic_north) {
-            this.magnetic_north = degreesToRadians(data.magnetic_north);
-        } else {
-            // TODO: this else could be plced in init().
-            this.magnetic_north = 0;
-        }
+        const areas = [];
 
-        // FIXME: the rest of these ifs could bet done with a simple `this.prop = data.prop || null`
-        // or any other appropriate invaild value for the data type.
-        if (data.name) {
-            this.name = data.name;
-        }
+        // for each area
+        _forEach(airspace, (airspaceSection, i) => {
+            const positions = [];
 
-        if (data.icao) {
-            this.icao = data.icao;
-        }
+            // for each point
+            _forEach(airspaceSection.poly, (poly) => {
+                const polyPosition = new PositionModel(poly, this.position, this.magnetic_north);
 
-        if (data.radio) {
-            this.radio = data.radio;
-        }
+                positions.push(polyPosition);
+            });
 
-        if (data.ctr_radius) {
-            this.ctr_radius = data.ctr_radius;
-        }
-
-        if (data.ctr_ceiling) {
-            this.ctr_ceiling = data.ctr_ceiling;
-        }
-
-        if (data.initial_alt) {
-            this.initial_alt = data.initial_alt;
-        }
-
-        if (data.rr_radius_nm) {
-            this.rr_radius_nm = data.rr_radius_nm;
-        }
-
-        if (data.rr_center) {
-            this.rr_center = data.rr_center;
-        }
-
-        if (data.level) {
-            this.level = data.level;
-        }
-
-        this.has_terrain = false || data.has_terrain;
-
-        if (this.has_terrain) {
-            this.loadTerrain();
-        }
-
-        // TODO: this should be its own method, or own group of methods
-        // create 3d polygonal airspace
-        if (data.airspace) {
-            const areas = [];
-            // for each area
-            for (let i = 0; i < data.airspace.length; i++) {
-                const positions = [];
-
-                // for each point
-                for (let j = 0; j < data.airspace[i].poly.length; j++) {
-                    positions.push(
-                        new PositionModel(data.airspace[i].poly[j], this.position, this.magnetic_north)
-                    );
-                }
-
-                areas.push(new Area(positions, data.airspace[i].floor * 100,
-                data.airspace[i].ceiling * 100, data.airspace[i].airspace_class));
-            }
-
-            this.airspace = areas;
-
-            // airspace perimeter (assumed to be first entry in data.airspace)
-            this.perimeter = areas[0];
-
-            // change ctr_radius to point along perimeter that's farthest from rr_center
-            const pos = new PositionModel(this.perimeter.poly[0].position, this.position, this.magnetic_north);
-            // FIXME: it doesnt look like this var is being used at all?
-            // const len = nm(vlen(vsub(pos.position, this.position.position)));
-            // FIXME: this reassignment is not needed
-            const apt = this;
-
-            this.ctr_radius = Math.max.apply(
-                Math,
-                _map(this.perimeter.poly, (v) => vlen(
-                    vsub(
-                        v.position,
-                        new PositionModel(apt.rr_center, apt.position, apt.magnetic_north).position
-                    )
-                ))
+            const positionArea = new Area(
+                positions,
+                airspaceSection.floor * 100,
+                airspaceSection.ceiling * 100,
+                airspaceSection.airspace_class
             );
+
+            areas.push(positionArea);
+        });
+
+        this.airspace = areas;
+
+        // airspace perimeter (assumed to be first entry in data.airspace)
+        this.perimeter = areas[0];
+
+        // change ctr_radius to point along perimeter that's farthest from rr_center
+        const pos = new PositionModel(this.perimeter.poly[0].position, this.position, this.magnetic_north);
+
+        this.ctr_radius = Math.max(..._map(
+            this.perimeter.poly, (v) => vlen(
+                vsub(
+                    v.position,
+                    new PositionModel(this.rr_center, this.position, this.magnetic_north).position
+                )
+            )
+        ));
+    }
+
+    /**
+     * @for AirportModel
+     * @method buildAirportRunways
+     * @param runways {array}
+     */
+    buildAirportRunways(runways) {
+        if (!runways) {
+            return;
         }
 
-        if (data.runways) {
-            for (let i = 0; i < data.runways.length; i++) {
-                data.runways[i].reference_position = this.position;
-                data.runways[i].magnetic_north = this.magnetic_north;
-                // TODO: what do the 0 and 1 mean? magic numbers should be enumerated
-                this.runways.push([
-                    new Runway(data.runways[i], 0, this),
-                    new Runway(data.runways[i], 1, this)
-                ]);
+        _forEach(runways, (runway) => {
+            runway.reference_position = this.position;
+            runway.magnetic_north = this.magnetic_north;
+
+            // TODO: what do the 0 and 1 mean? magic numbers should be enumerated
+
+            this.runways.push([
+                new RunwayModel(runway, 0, this),
+                new RunwayModel(runway, 1, this)
+            ]);
+        });
+    }
+
+    /**
+     * @for AirportModel
+     * @method buildFixes
+     * @param fixes {object}
+     */
+    buildFixes(fixes) {
+        if (!fixes) {
+            return;
+        }
+
+        _forEach(fixes, (fix, key) => {
+            const fixName = key.toUpperCase();
+            this.fixes[fixName] = new PositionModel(fix, this.position, this.magnetic_north);
+
+            if (fixName.indexOf('_') !== 0) {
+                this.real_fixes[fixName] = this.fixes[fixName];
             }
+        });
+    }
+
+    /**
+     * import the sids
+     *
+     * @for AirportModel
+     * @method verifySidFixes
+     * @param sids {object}
+     */
+    verifySidFixes(sids) {
+        if (!sids) {
+            return;
         }
 
-        if (data.fixes) {
-            for (const fix in data.fixes) {
-                const fixName = fix.toUpperCase();
+        this.sids = sids;
 
-                this.fixes[fixName] = new PositionModel(data.fixes[fix], this.position, this.magnetic_north);
+        // Check each SID fix and log if not found in the airport fix list
+        _forEach(this.sids, (sid) => {
+            if (_has(this.sids, sid)) {
+                const fixList = this.sids[sid];
 
-                if (fix.indexOf('_') !== 0) {
-                    this.real_fixes[fixName] = this.fixes[fixName];
-                }
-            }
-        }
+                for (let i = 0; i < fixList.length; i++) {
+                    const fixname = fixList[i];
 
-        // import the sids
-        if (data.sids) {
-            this.sids = data.sids;
-
-            // Check each SID fix and log if not found in the airport fix list
-            for (const sid in this.sids) {
-                if (_has(this.sids, sid)) {
-                    const fixList = this.sids[sid];
-
-                    for (let i = 0; i < fixList.length; i++) {
-                        const fixname = fixList[i];
-
-                        if (!this.airport.fixes[fixname]) {
-                            log(`SID ${sid} fix not found: ${fixname}`, LOG.WARNING);
-                        }
+                    if (!this.airport.fixes[fixname]) {
+                        log(`SID ${sid} fix not found: ${fixname}`, LOG.WARNING);
                     }
                 }
             }
+        });
+    }
+
+    /**
+     * @for AirportModel
+     * @method buildAirportMaps
+     * @param maps {object}
+     */
+    buildAirportMaps(maps) {
+        if (!maps) {
+            return;
         }
 
-        if (data.stars) {
-            this.stars = data.stars;
+        _forEach(maps, (map, key) => {
+            this.maps[key] = [];
+            const lines = map;
+
+            _forEach(lines, (line, i) => {
+                const start = new PositionModel([line[0], line[1]], this.position, this.magnetic_north).position;
+                const end = new PositionModel([line[2], line[3]], this.position, this.magnetic_north).position;
+
+                this.maps[key].push([start[0], start[1], end[0], end[1]]);
+            });
+        });
+    }
+
+    /**
+     * @for AirportModel
+     * @method buildRestrictedAreas
+     * @param restrictedAreas
+     */
+    buildRestrictedAreas(restrictedAreas) {
+        if (restrictedAreas) {
+            return;
         }
 
-        if (data.airways) {
-            this.airways = data.airways;
+        _forEach(restrictedAreas, (area) => {
+            // TODO: what is `obj` going to be? need better name.
+            const obj = {};
+            if (area.name) {
+                obj.name = area.name;
+            }
+
+            obj.height = parseElevation(area.height);
+            obj.coordinates = $.map(area.coordinates, (v) => {
+                return [(new PositionModel(v, this.position, this.magnetic_north)).position];
+            });
+
+            // TODO: is this right? max and min are getting set to the same value?
+            // const coords = obj.coordinates;
+            let coords_max = obj.coordinates[0];
+            let coords_min = obj.coordinates[0];
+
+            _forEach(obj.coordinates, (v) => {
+                coords_max = [
+                    Math.max(v[0], coords_max[0]),
+                    Math.max(v[1], coords_max[1])
+                ];
+                coords_min = [
+                    Math.min(v[0], coords_min[0]),
+                    Math.min(v[1], coords_min[1])
+                ];
+            });
+
+            obj.center = vscale(vadd(coords_max, coords_min), 0.5);
+
+            this.restricted_areas.push(obj);
+        });
+    }
+
+    /**
+     * @for AirportModel
+     * @method updateCurrentWind
+     * @param currentWind
+     */
+    updateCurrentWind(currentWind) {
+        if (!currentWind) {
+            return;
         }
 
-        if (data.maps) {
-            for (const m in data.maps) {
-                this.maps[m] = [];
-                const lines = data.maps[m];
+        this.wind.speed = currentWind.speed;
+        this.wind.angle = degreesToRadians(currentWind.angle);
+    }
 
-                // convert GPS coordinates to km-based position rel to airport
-                for (const i in lines) {
-                    const start = new PositionModel([lines[i][0], lines[i][1]], this.position, this.magnetic_north).position;
-                    const end = new PositionModel([lines[i][2], lines[i][3]], this.position, this.magnetic_north).position;
+    buildAirportDepartures(departures) {
+        if (!departures) {
+            return ;
+        }
 
-                    this.maps[m].push([start[0], start[1], end[0], end[1]]);
-                }
+        this.departures = DepartureFactory(this, departures);
+    }
+
+    /**
+     * @for AirportModel
+     * @method buildArrivals
+     * @param arrivals {array}
+     */
+    buildArrivals(arrivals) {
+        if (!arrivals) {
+            return;
+        }
+
+        for (let i = 0; i < arrivals.length; i++) {
+            if (!_has(arrivals[i], 'type')) {
+                log(`${this.icao} arrival stream #${i} not given type!`, LOG.WARNING);
+            } else {
+                this.arrivals.push(ArrivalFactory(this, arrivals[i]));
             }
         }
+    }
 
-        if (data.restricted) {
-            // TODO: need better name than `r`.
-            const r = data.restricted;
-            // FIXME: this is a big no no. This makes me think there are scoping issues here. with es2015 that
-            // shouldnt be as much of a problem now.
-            const self = this;
-
-            for (const i in r) {
-                // TODO: what is `obj` going to be? need better name.
-                const obj = {};
-                if (r[i].name) {
-                    obj.name = r[i].name;
-                }
-
-                obj.height = parseElevation(r[i].height);
-                obj.coordinates = $.map(r[i].coordinates, (v) => {
-                    return [(new PositionModel(v, self.position, self.magnetic_north)).position];
-                });
-
-                // TODO: is this right? max and min are getting set to the same value?
-                const coords = obj.coordinates;
-                let coords_max = coords[0];
-                let coords_min = coords[0];
-
-                for (const i in coords) {
-                    const v = coords[i];
-                    coords_max = [Math.max(v[0], coords_max[0]), Math.max(v[1], coords_max[1])];
-                    coords_min = [Math.min(v[0], coords_min[0]), Math.min(v[1], coords_min[1])];
-                }
-
-                obj.center = vscale(vadd(coords_max, coords_min), 0.5);
-                self.restricted_areas.push(obj);
-            }
-        }
-
-        if (data.wind) {
-            this.wind = data.wind;
-            this.wind.angle = degreesToRadians(this.wind.angle);
-        }
-
-        if (data.departures) {
-            this.departures = DepartureFactory(this, data.departures);
-        }
-
-        if (data.arrivals) {
-            for (let i = 0; i < data.arrivals.length; i++) {
-                if (!_has(data.arrivals[i], 'type')) {
-                    log(`${this.icao} arrival stream #${i} not given type!`, LOG.WARNING);
-                } else {
-                    this.arrivals.push(ArrivalFactory(this, data.arrivals[i]));
-                }
-            }
-        }
-
-        // verify we know where all the fixes are
-        this.checkFixes();
-
-        // ***** Generate Airport Metadata *****
-
-        // Runway Metadata
+    /**
+     * @for AirportModel
+     * @method buildRunwayMetaData
+     */
+    buildRunwayMetaData() {
+        // TODO: translate these tol _forEach()
         for (const rwy1 in this.runways) {
             for (const rwy1end in this.runways[rwy1]) {
                 // setup primary runway object
@@ -359,6 +419,20 @@ export default class AirportModel {
                 }
             }
         }
+    }
+
+    getWind() {
+        // TODO: there are a lot of magic numbers here. What are they for and what do they mean? These should be enumerated.
+        const wind = clone(this.wind);
+        let s = 1;
+        const angle_factor = sin((s + window.gameController.game_time()) * 0.5) + sin((s + window.gameController.game_time()) * 2);
+        // TODO: why is this var getting reassigned to a magic number?
+        s = 100;
+        const speed_factor = sin((s + window.gameController.game_time()) * 0.5) + sin((s + window.gameController.game_time()) * 2);
+        wind.angle += crange(-1, angle_factor, 1, degreesToRadians(-4), degreesToRadians(4));
+        wind.speed *= crange(-1, speed_factor, 1, 0.9, 1.05);
+
+        return wind;
     }
 
     set() {
@@ -413,6 +487,20 @@ export default class AirportModel {
         }
     }
 
+    getWind() {
+        // TODO: there are a lot of magic numbers here. What are they for and what do they mean? These should be enumerated.
+        const wind = clone(this.wind);
+        let s = 1;
+        const angle_factor = sin((s + window.gameController.game_time()) * 0.5) + sin((s + window.gameController.game_time()) * 2);
+        // TODO: why is this var getting reassigned to a magic number?
+        s = 100;
+        const speed_factor = sin((s + window.gameController.game_time()) * 0.5) + sin((s + window.gameController.game_time()) * 2);
+        wind.angle += crange(-1, angle_factor, 1, degreesToRadians(-4), degreesToRadians(4));
+        wind.speed *= crange(-1, speed_factor, 1, 0.9, 1.05);
+
+        return wind;
+    }
+
     updateRunway(length = 0) {
         // TODO: this method contains some ambiguous names. need better names.
         const wind = this.getWind();
@@ -446,8 +534,9 @@ export default class AirportModel {
         const apt = this;
         apt.terrain = {};
 
-        for (const i in data.features) {
-            const f = data.features[i];
+
+        _forEach(data.features, (f) => {
+            // const f = data.features[i];
             const ele = round(f.properties.elevation / 0.3048, 1000); // m => ft, rounded to 1K (but not divided)
 
             if (!apt.terrain[ele]) {
@@ -464,8 +553,8 @@ export default class AirportModel {
             }
 
             $.each(multipoly, (i, poly) => {
-                  // multipoly contains several polys
-                  // each poly has 1st outer ring and other rings are holes
+                // multipoly contains several polys
+                // each poly has 1st outer ring and other rings are holes
                 apt.terrain[ele].push($.map(poly, (line_string) => {
                     return [
                         $.map(line_string, (pt) => {
@@ -476,15 +565,20 @@ export default class AirportModel {
                     ];
                 }));
             });
-        }
+        });
     }
 
     loadTerrain() {
+        if (!this.has_terrain) {
+            return;
+        }
+
         // TODO: there is a lot of binding here, use => functions and this probably wont be an issue.
         zlsa.atc.loadAsset({
             url: `assets/airports/terrain/${this.icao.toLowerCase()}.geojson`,
             immediate: true
         })
+        // TODO: change to onSuccess and onError handler abstractions
         .done((data) => {
             try {
                 log('Parsing terrain');
@@ -504,7 +598,6 @@ export default class AirportModel {
         });
     }
 
-    // TODO: there is a lot of binding here, use => functions and this probably wont be an issue.
     load() {
         if (this.loaded) {
             return;
@@ -517,6 +610,7 @@ export default class AirportModel {
             url: `assets/airports/${this.icao.toLowerCase()}.json`,
             immediate: true
         })
+        // TODO: change to onSuccess and onError handler abstractions
         .done((data) => {
             this.parse(data);
 
@@ -535,85 +629,88 @@ export default class AirportModel {
         });
     }
 
+    /**
+     * @for AirportModel
+     * @method getRestrictedAreas
+     * @return {array|null}
+     */
     getRestrictedAreas() {
-        return this.restricted_areas || null;
+        return _get(this, 'restricted_areas', null);
     }
 
-    getFix(name) {
-        if (!name) {
+    /**
+     * @for AirportModel
+     * @method getFixPosition
+     * @param name {string}
+     * @return {array}
+     */
+    getFixPosition(name) {
+        if (!name || !_has(this.fixes, name)) {
             return null;
         }
 
-        const fixes = window.airportController.airport_get().fixes;
+        // TODO: this may be overly defensive
+        const fixName = name.toUpperCase();
 
-        // FIXME: simplify this
-        if (Object.keys(fixes).indexOf(name.toUpperCase()) === -1) {
-            return;
-        }
-
-        return fixes[name.toUpperCase()].position;
+        return this.fixes[fixName].position;
     }
 
+    /**
+     *
+     */
     getSID(id, exit, rwy) {
-        if (!(id && exit && rwy)) {
-            return null;
-        }
+        const fixes = this.sidCollection.findFixesForSidByRunwayAndExit(id, exit, rwy);
 
-        if (Object.keys(this.sids).indexOf(id) === -1) {
-            return;
-        }
-
-        const fixes = [];
-        const sid = this.sids[id];
-
-        // runway portion
-        if (_has(sid.rwy, rwy)) {
-            for (let i = 0; i < sid.rwy[rwy].length; i++) {
-                if (typeof sid.rwy[rwy][i] === 'string') {
-                    fixes.push([sid.rwy[rwy][i], null]);
-                } else {
-                    fixes.push(sid.rwy[rwy][i]);
-                }
-            }
-        }
-
-        // body portion
-        if (_has(sid, 'body')) {
-            for (let i = 0; i < sid.body.length; i++) {
-                if (typeof sid.body[i] === 'string') {
-                    fixes.push([sid.body[i], null]);
-                } else {
-                    fixes.push(sid.body[i]);
-                }
-            }
-        }
-
-        // exit portion
-        if (_has(sid, 'exitPoints')) {
-            for (let i = 0; i < sid.exitPoints[exit].length; i++) {
-                if (typeof sid.exitPoints[exit][i] === 'string') {
-                    fixes.push([sid.exitPoints[exit][i], null]);
-                } else {
-                    fixes.push(sid.exitPoints[exit][i]);
-                }
-            }
-        }
+        // // runway portion
+        // if (_has(sid.rwy, rwy)) {
+        //     for (let i = 0; i < sid.rwy[rwy].length; i++) {
+        //         if (typeof sid.rwy[rwy][i] === 'string') {
+        //             fixes.push([sid.rwy[rwy][i], null]);
+        //         } else {
+        //             fixes.push(sid.rwy[rwy][i]);
+        //         }
+        //     }
+        // }
+        //
+        // // body portion
+        // if (_has(sid, 'body')) {
+        //     for (let i = 0; i < sid.body.length; i++) {
+        //         if (typeof sid.body[i] === 'string') {
+        //             fixes.push([sid.body[i], null]);
+        //         } else {
+        //             fixes.push(sid.body[i]);
+        //         }
+        //     }
+        // }
+        //
+        // // exit portion
+        // if (_has(sid, 'exitPoints')) {
+        //     for (let i = 0; i < sid.exitPoints[exit].length; i++) {
+        //         if (typeof sid.exitPoints[exit][i] === 'string') {
+        //             fixes.push([sid.exitPoints[exit][i], null]);
+        //         } else {
+        //             fixes.push(sid.exitPoints[exit][i]);
+        //         }
+        //     }
+        // }
 
         return fixes;
     }
 
-    getSIDExitPoint(id) {
-        // if ends at fix for which the SID is named, return end fix
-        if (!_has(this.sids[id], 'exitPoints')) {
-            return this.sids[id].icao;
-        }
-
-        // if has exitPoints, return a randomly selected one
-        const exits = Object.keys(this.sids[id].exitPoints);
-        return exits[Math.floor(Math.random() * exits.length)];
+    /**
+     * @for AirportModel
+     * @method getSIDExitPoint
+     * @param icao {string}  Name of SID
+     * @return {string}  Name of Exit fix in SID
+     */
+    getSIDExitPoint(icao) {
+        return this.sidCollection.getRandomExitPointForSIDIcao(icao);
     }
 
+    // FIXME: possibly unused
     getSIDName(id, rwy) {
+        console.warn('AirportModel.getSIDName() IS IN USE: ', id, rwy);
+        debugger;
         if (_has(this.sids[id], 'suffix')) {
             return `${this.sids[id].name} ${this.sids[id].suffix[rwy]}`;
         }
@@ -621,7 +718,9 @@ export default class AirportModel {
         return this.sids[id].name;
     }
 
+    // FIXME: possibly unused
     getSIDid(id, rwy) {
+        console.warn('AirportModel.getSIDid IS IN USE: ', id, rwy);
         if (_has(this.sids[id], 'suffix')) {
             return this.sids[id].icao + this.sids[id].suffix[rwy];
         }
@@ -708,6 +807,9 @@ export default class AirportModel {
     // to several smaller methods?
     /**
      * Verifies all fixes used in the airport also have defined positions
+     *
+     * @for AirportModel
+     * @method checkFixes
      */
     checkFixes() {
         const fixes = [];

@@ -21,6 +21,7 @@ const DEFAULT_AIRPORT_ICAO = 'ksfo';
 export default class AirportController {
     /**
      * @constructor
+     * @param updateRun {function}
      */
     constructor(updateRun) {
         this.updateRun = updateRun;
@@ -37,8 +38,8 @@ export default class AirportController {
      */
     init_pre() {
         prop.airport = airport;
-        prop.airport.airports = {};
-        prop.airport.current = null;
+        // prop.airport.airports = {};
+        // prop.airport.current = null;
     }
 
     /**
@@ -109,7 +110,7 @@ export default class AirportController {
     airport_load({ icao, level, name }) {
         icao = icao.toLowerCase();
 
-        if (icao in prop.airport.airports) {
+        if (_has(prop.airport.airports, icao)) {
             console.log(`${icao}: already loaded`);
 
             return null;
