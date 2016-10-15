@@ -25,5 +25,5 @@ ava('SidCollection.getSID() returns a list of fixes that make up a SID when give
     const EXIT = 'KENNO';
     const RUNWAY = '19R';
 
-    const result = collection.getSID(ID, EXIT, RUNWAY);
+    const result = collection.findFixesForSidByRunwayAndExit(ID, EXIT, RUNWAY);
 });

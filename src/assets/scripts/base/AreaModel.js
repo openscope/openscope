@@ -1,4 +1,19 @@
-// TODO: this class does not appear to be in use?
+import _isEqual from 'lodash/isEqual';
+import _map from 'lodash/map';
+import _uniqueId from 'lodash/uniqueId';
+import PositionModel from './PositionModel';
+
+/**
+ * Utility function to convert a number to thousands.
+ *
+ * Given a flightlevel FL180, this function outs puts 18,000
+ *
+ * @function covertToThousands
+ * @param  {number} value
+ * @return {number}
+ */
+const convertToThousands = (value) => parseInt(value, 10) * 100;
+
 /**
  * An enclosed region defined by a series of Position objects and an altitude range
  *
@@ -8,53 +23,115 @@ export default class AreaModel {
     /**
      * @for AreaModel
      * @constructor
-     * @param {array} poly - series of Position objects that outline the shape
-     *                Note: DO NOT repeat the origin to 'close' the shape. Unnecessary.
-     * @param {number} floor - (optional) altitude of bottom of area, in hundreds of feet
-     * @param {number} ceiling - (optional) altitude of top of area, in hundreds of feet
-     * @param {string} airspace_class - (optional) FAA airspace classification (A,B,C,D,E,G)
+     * @param airspace {object}
+     * @param airportPosition {PositionModel}
+     * @param magneticNorth {number}
      */
-    constructor(positions, floor, ceiling, airspace_class) {
-        if (!positions) {
-            return;
+    constructor(airspace, airportPosition, magneticNorth) {
+        if (!airspace || !airportPosition || !magneticNorth) {
+            throw new TypeError('Invalid parameter, expected airspace, airportPosition and magneticNorth to be defined');
         }
 
+        /**
+         * @property _id
+         * @type {string}
+         */
+        this._id = _uniqueId();
+
+        /**
+         * List of lat/long coordinates that outline the shape of the area
+         *
+         * DO NOT repeat the origin to 'close' the shape, this happens programatically
+         *
+         * @property poly
+         * @type {array}
+         */
         this.poly = [];
-        this.floor = null;
-        this.ceiling = null;
-        this.airspace_class = null;
 
-        if (floor != null) {
-            this.floor = floor;
-        }
+        /**
+         * Altitude at bottom of area, in hundreds of feet
+         *
+         * @property floor
+         * @type {number}
+         */
+        this.floor = -1;
 
-        if (ceiling != null) {
-            this.ceiling = ceiling;
-        }
+        /**
+         * Altitude of top of area, in hundreds of feet
+         *
+         * @property ceiling
+         * @type {number}
+         */
+        this.ceiling = -1;
 
-        if (airspace_class) {
-            this.airspace_class = airspace_class;
-        }
+        /**
+         * FAA airspace classification (A,B,C,D,E,G)
+         *
+         * @property airspace_class
+         * @type {string}
+         */
+        this.airspace_class = '';
 
+        return this._init(airspace, airportPosition, magneticNorth);
+    }
 
-        this.parse(positions);
+    /**
+     * Initialize the model
+     *
+     * @for AreaModel
+     * @method _init
+     * @param airspace {array}
+     * @param airportPosition {PositionModel}
+     * @param magneticNorth {number}
+     * @private
+     */
+    _init(airspace, airportPosition, magneticNorth) {
+        this.floor = convertToThousands(airspace.floor);
+        this.ceiling = convertToThousands(airspace.ceiling);
+        this.airspace_class = airspace.airspace_class;
+        this.poly = this._buildPolyPositionModels(airspace.poly, airportPosition, magneticNorth);
+
+        return this;
     }
 
     /**
      * @for AreaModel
-     * @method parse
-     * @param positions {array}
+     * @method destroy
      */
-    parse(positions) {
-        for (let i = 0; i < positions.length; i++) {
-            this.poly.push(positions[i]);
+    destroy() {
+        this._id = '';
+        this.poly = [];
+        this.floor = -1;
+        this.ceiling = -1;
+        this.airspace_class = '';
+    }
+
+    /**
+     * Create a PositionModel for each poly listed in `airspace.poly`.
+     *
+     * If the last entry is the same as the first, remove it because the path will be closed automatically.
+     *
+     * @for AreaModel
+     * @method _buildPolyPositionModels
+     * @param polyList {array}
+     * @param airportPosition {PositionModel}
+     * @param magneticNorth {number}
+     * @return polyPositionModels {array}
+     * @private
+     */
+    _buildPolyPositionModels(polyList, airportPosition, magneticNorth) {
+        const polyPositionModels = _map(polyList, (poly) => {
+            return new PositionModel(poly, airportPosition, magneticNorth);
+        });
+
+        const firstIndex = 0;
+        const lastIndex = polyPositionModels.length - 1;
+
+        if (_isEqual(polyPositionModels[firstIndex].position, polyPositionModels[lastIndex].position)) {
+            // shape shouldn't fully close; will draw with 'cc.closepath()' so we remove the last item
+            polyPositionModels.pop();
         }
 
-        if (this.poly[0] === this.poly[this.poly.length - 1]) {
-            this.poly.pop();  // shape shouldn't fully close; will draw with 'cc.closepath()'
-        }
+        return polyPositionModels;
     }
 }
-
-// TODO: temporarily attached to the window here until useages of AreaModel can be converted to an explicit import.
-// window.Area = AreaModel;

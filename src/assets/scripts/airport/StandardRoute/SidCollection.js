@@ -56,6 +56,7 @@ export default class SidCollection {
      * @return {array}
      */
     findFixesForSidByRunwayAndExit(icao, exit, runway) {
+        // TODO: abstract to method to make this block easily testable
         if (!icao && !exit && !runway) {
             return;
         }
@@ -81,7 +82,7 @@ export default class SidCollection {
 
         // if has exitPoints, return a randomly selected one
         const exitPointIcaos = _keys(sid.exitPoints);
-        const randomIndex = _random(0, exitPointIcaos.length);
+        const randomIndex = _random(0, exitPointIcaos.length - 1);
 
         return exitPointIcaos[randomIndex];
     }

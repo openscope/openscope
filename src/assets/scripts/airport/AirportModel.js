@@ -3,6 +3,7 @@ import $ from 'jquery';
 import _forEach from 'lodash/forEach';
 import _get from 'lodash/get';
 import _has from 'lodash/has';
+import _head from 'lodash/head';
 import _map from 'lodash/map';
 import _isEmpty from 'lodash/isEmpty';
 import _uniq from 'lodash/uniq';
@@ -171,18 +172,10 @@ export default class AirportModel {
         _forEach(airspace, (airspaceSection, i) => {
             const positions = [];
 
-            // for each point
-            _forEach(airspaceSection.poly, (poly) => {
-                const polyPosition = new PositionModel(poly, this.position, this.magnetic_north);
-
-                positions.push(polyPosition);
-            });
-
             const positionArea = new Area(
-                positions,
-                airspaceSection.floor * 100,
-                airspaceSection.ceiling * 100,
-                airspaceSection.airspace_class
+                airspaceSection,
+                this.position,
+                this.magnetic_north
             );
 
             areas.push(positionArea);
@@ -191,10 +184,10 @@ export default class AirportModel {
         this.airspace = areas;
 
         // airspace perimeter (assumed to be first entry in data.airspace)
-        this.perimeter = areas[0];
+        this.perimeter = _head(areas);
 
         // change ctr_radius to point along perimeter that's farthest from rr_center
-        const pos = new PositionModel(this.perimeter.poly[0].position, this.position, this.magnetic_north);
+        // const pos = new PositionModel(this.perimeter.poly[0].position, this.position, this.magnetic_north);
 
         this.ctr_radius = Math.max(..._map(
             this.perimeter.poly, (v) => vlen(
