@@ -114,9 +114,10 @@ export default class AirportModel {
     parse(data) {
         this.setCurrentPosition(data.position, data.magnetic_north);
 
-        this.name = _get(data, 'name', null);
-        this.icao = _get(data, 'icao', null);
-        this.radio = _get(data, 'radio', null);
+        this.name = _get(data, 'name', this.name);
+        this.icao = _get(data, 'icao', this.icao);
+        this.radio = _get(data, 'radio', this.radio);
+        this.level = _get(data, 'level', this.level);
         this.has_terrain = _get(data, 'has_terrain', false);
         this.stars = _get(data, 'stars', {});
         this.airways = _get(data, 'airways', {});
@@ -125,7 +126,6 @@ export default class AirportModel {
         this.initial_alt = _get(data, 'initial_alt', DEFAULT_INITIAL_ALTITUDE_FT);
         this.rr_radius_nm = _get(data, 'rr_radius_nm');
         this.rr_center = _get(data, 'rr_center');
-        this.level = _get(data, 'level', null);
         this.sidCollection = new StandardRouteCollection(data.sids);
         this.starCollection = new StandardRouteCollection(data.stars);
 
