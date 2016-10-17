@@ -5,8 +5,8 @@ import StandardRouteCollection from '../../../src/assets/scripts/airport/Standar
 import { STAR_LIST_MOCK, SID_LIST_MOCK, SID_WITHOUT_EXIT_MOCK } from './_mocks/standardRouteMocks';
 
 const SID_ICAO_MOCK = 'SHEAD9';
-const STAR_ICAO_MOCK = 'GRNPA1'
-const ENTRY_FIXNAME_MOCK = 'MLF'
+const STAR_ICAO_MOCK = 'GRNPA1';
+const ENTRY_FIXNAME_MOCK = 'MLF';
 const EXIT_FIXNAME_MOCK = 'KENNO';
 const RUNWAY_NAME_MOCK = '19R';
 

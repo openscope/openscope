@@ -83,6 +83,18 @@ export const STAR_LIST_MOCK = {
     }
 };
 
+export const STAR_WITHOUT_RWY = {
+    'icao': 'GRNPA1',
+    'name': 'Grandpa One',
+    'entryPoints': {
+        'BETHL': ['BETHL', ['HOLDM', 'A270']],
+        'BCE':   ['BCE'],
+        'DVC':   ['DVC', 'BETHL', ['HOLDM', 'A270']],
+        'MLF':   ['MLF']
+    },
+    'body': [['KSINO', 'A170'], ['LUXOR', 'A120|S250'], ['GRNPA', 'A110'], ['DUBLX', 'A90'], ['FRAWG', 'A80|S210'], 'TRROP', 'LEMNZ']
+};
+
 export const SID_LIST_MOCK = {
     'BOACH6': {
         'icao': 'BOACH6',
@@ -203,7 +215,6 @@ export const SID_WITHOUT_BODY_MOCK = {
         '25L': ['PIRMD', ['ROPPR', 'A70'], ['CEASR', 'A80+'], 'FORGE', ['WILLW', 'A140+']],
         '25R': ['RBELL', ['ROPPR', 'A70'], ['CEASR', 'A80+'], 'FORGE', ['WILLW', 'A140+']]
     },
-    'body': [],
     'exitPoints': {
         'MLF': ['MLF'],
         'BCE': ['BCE'],
@@ -231,7 +242,6 @@ export const SID_WITHOUT_EXIT_MOCK = {
             '25R': ['RBELL', ['ROPPR', 'A70'], ['CEASR', 'A80+'], 'FORGE', ['WILLW', 'A140+']]
         },
         'body': ['TRALR'],
-        'exitPoints': {},
         'draw': [
             ['BAKRR', 'TRALR', 'NICLE', 'DVC*'],
             ['CEASR', 'FORGE', 'WILLW', 'TRALR', 'BCE*'],

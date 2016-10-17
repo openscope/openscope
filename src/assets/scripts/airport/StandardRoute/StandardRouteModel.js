@@ -1,6 +1,7 @@
 import _compact from 'lodash/compact';
 import _get from 'lodash/get';
 import _isArray from 'lodash/isArray';
+import _isEmpty from 'lodash/isEmpty';
 import _isObject from 'lodash/isObject';
 import _uniqId from 'lodash/uniqueId';
 import RouteSegmentCollection from './RouteSegmentCollection';
@@ -153,7 +154,7 @@ export default class StandardRouteModel {
         this.exitPoints = _get(sid, 'exitPoints', {});
         this.entryPoints = _get(sid, 'entryPoints', {});
         this._runwayCollection = this._buildSegmentCollection(sid.rwy);
-        this._bodySegmentModel = this._buildBodySegmentModel(sid.body);
+        this._bodySegmentModel = this._buildSegmentModel(sid.body);
         this._exitCollection = this._buildSegmentCollection(sid.exitPoints);
         this._entryCollection = this._buildSegmentCollection(sid.entryPoints);
     }
@@ -216,6 +217,10 @@ export default class StandardRouteModel {
      * @return {array}
      */
     gatherExitPointNames() {
+        if (!this.hasExitPoints()) {
+            return [];
+        }
+
         return this._exitCollection.gatherFixNamesForCollection();
     }
 
@@ -227,7 +232,7 @@ export default class StandardRouteModel {
      * @return {boolean}
      */
     hasExitPoints() {
-        return this._exitCollection.length > 0;
+        return this._exitCollection !== null && this._exitCollection.length > 0;
     }
 
     /**
@@ -238,11 +243,11 @@ export default class StandardRouteModel {
      * without the collection layer.
      *
      * @for StandardRouteModel
-     * @method _buildBodySegmentModel
+     * @method _buildSegmentModel
      * @param segmentFixList {array}
      * @return segmentModel {SegmentModel}
      */
-    _buildBodySegmentModel(segmentFixList) {
+    _buildSegmentModel(segmentFixList) {
         const segmentModel = new RouteSegmentModel('body', segmentFixList);
 
         return segmentModel;
@@ -260,7 +265,7 @@ export default class StandardRouteModel {
     _buildSegmentCollection(segment) {
         // SIDS have `exitPoints` while STARs have `entryPoints`. one or the other will be `undefined`
         // depending on the route type.
-        if (typeof segment === 'undefined') {
+        if (typeof segment === 'undefined' || _isEmpty(segment)) {
             return null;
         }
 
@@ -336,7 +341,7 @@ export default class StandardRouteModel {
      * @return {array}
      */
     _findBodyFixList() {
-        if (this.body.length === 0) {
+        if (typeof this.body === 'undefined' || this.body.length === 0) {
             return [];
         }
 
@@ -356,7 +361,7 @@ export default class StandardRouteModel {
     _findFixListForRunwayName(runwayName) {
         // specifically checking for an empty string here because this param gets a default of '' when
         // it is received in to the public method
-        if (runwayName === '') {
+        if (typeof this.rwy === 'undefined' || runwayName === '') {
             return [];
         }
 
@@ -375,7 +380,7 @@ export default class StandardRouteModel {
     _findFixListForExitFixName(exitFixName) {
         // specifically checking for an empty string here because this param gets a default of '' when
         // it is received in to the public method
-        if (exitFixName === '') {
+        if (typeof this.exitPoints === 'undefined' || _isEmpty(this._exitCollection) || exitFixName === '') {
             return [];
         }
 

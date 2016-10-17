@@ -28,6 +28,7 @@ export default class ArrivalBase {
         this.speed = 250;
         this.timeout = null;
         this.fixes = [];
+        // TODO: create RouteModel class to handle storing and transforming the active route
         this.route = '';
 
         this.parse(options);

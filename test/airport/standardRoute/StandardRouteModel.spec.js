@@ -1,12 +1,19 @@
 /* eslint-disable arrow-parens, max-len, import/no-extraneous-dependencies*/
 import ava from 'ava';
 import sinon from 'sinon';
+import _isArray from 'lodash/isArray';
 import _isEqual from 'lodash/isEqual';
 
 import StandardRouteModel from '../../../src/assets/scripts/airport/StandardRoute/StandardRouteModel';
 import RouteSegmentCollection from '../../../src/assets/scripts/airport/StandardRoute/RouteSegmentCollection';
 import RouteSegmentModel from '../../../src/assets/scripts/airport/StandardRoute/RouteSegmentModel';
-import { STAR_LIST_MOCK, SID_LIST_MOCK, SID_WITHOUT_BODY_MOCK } from './_mocks/standardRouteMocks';
+import {
+    STAR_LIST_MOCK,
+    SID_LIST_MOCK,
+    SID_WITHOUT_BODY_MOCK,
+    SID_WITHOUT_EXIT_MOCK,
+    STAR_WITHOUT_RWY
+} from './_mocks/standardRouteMocks';
 
 const SID_MOCK = SID_LIST_MOCK.SHEAD9;
 const STAR_MOCK = STAR_LIST_MOCK.TYSSN4;
@@ -27,6 +34,8 @@ ava('does not throw when instantiated with vaild parameters', t => {
 
     t.notThrows(() => new StandardRouteModel(STAR_MOCK));
     t.notThrows(() => new StandardRouteModel(SID_MOCK));
+    t.notThrows(() => new StandardRouteModel(SID_WITHOUT_BODY_MOCK));
+    t.notThrows(() => new StandardRouteModel(STAR_WITHOUT_RWY));
     t.true(result.name === SID_MOCK.name);
     t.true(result.icao === SID_MOCK.icao);
     t.true(result._runwayCollection instanceof RouteSegmentCollection);
@@ -163,6 +172,33 @@ ava('.findFixesAndRestrictionsForEntryAndRunway() returns entry and body fixes w
     t.true(_isEqual(actualArguments, expectedArguments));
 });
 
+ava('.gatherExitPointNames() retuns a list of the exitPoint fix names', t => {
+    const expectedResult = ['KENNO', 'OAL'];
+    const model = new StandardRouteModel(SID_MOCK);
+    const result = model.gatherExitPointNames();
+
+    t.true(_isEqual(result, expectedResult));
+});
+
+ava('.gatherExitPointNames() retuns an empty array if not exitPoints exist or the collection is undefined', t => {
+    const model = new StandardRouteModel(SID_WITHOUT_EXIT_MOCK);
+    const result = model.gatherExitPointNames();
+
+    t.true(_isArray(result));
+    t.true(result.length === 0);
+});
+
+
+ava('.hasExitPoints() returns a boolean', t => {
+    let model;
+
+    model = new StandardRouteModel(SID_MOCK);
+    t.true(model.hasExitPoints());
+
+    model = new StandardRouteModel(SID_WITHOUT_EXIT_MOCK);
+    t.false(model.hasExitPoints());
+});
+
 ava('._buildSegmentCollection() returns null if segment is undefined', t => {
     const model = new StandardRouteModel(STAR_MOCK);
     const result = model._buildSegmentCollection();
@@ -170,18 +206,53 @@ ava('._buildSegmentCollection() returns null if segment is undefined', t => {
     t.true(result === null);
 });
 
-ava('._generateFixList() accepts 3 functions and spreads their result over a compacted array', t => {
-    const expectedResult = [
-        ['PIRMD', null],
-        ['ROPPR', 'A70'],
-        ['MDDOG', 'A90'],
-        ['TARRK', 'A110'],
-        ['SHEAD', 'A140+'],
-        ['DBIGE', 'A210+'],
-        ['BIKKR', 'A210+'],
-        ['KENNO', null]
-    ];
-    const model = new StandardRouteModel(SID_MOCK);
-    const result = model._findFixListForSidByRunwayAndExit(RUNWAY_NAME_MOCK, EXIT_FIXNAME_MOCK);
+ava('._buildSegmentCollection() returns null if segment is an empty object', t => {
+    const model = new StandardRouteModel(STAR_MOCK);
+    const result = model._buildSegmentCollection({});
 
+    t.true(result === null);
+});
+
+ava('._findBodyFixList() returns an empty array when ._bodySegmentModel is undefined', t => {
+    const model = new StandardRouteModel(SID_WITHOUT_BODY_MOCK);
+
+    t.notThrows(() => model._findBodyFixList());
+
+    const result = model._findBodyFixList();
+
+    t.true(_isArray(result));
+    t.true(result.length === 0);
+});
+
+ava('._findFixListForRunwayName() returns an empty array when ._runwayCollection() is undefined', t => {
+    const model = new StandardRouteModel(STAR_WITHOUT_RWY);
+
+    t.notThrows(() => model._findFixListForRunwayName('25R'));
+
+    const result = model._findFixListForRunwayName('25R');
+
+    t.true(_isArray(result));
+    t.true(result.length === 0);
+});
+
+ava('._findFixListForExitFixName() returns an empty array when ._exitCollection is undefined', t => {
+    const model = new StandardRouteModel(SID_WITHOUT_EXIT_MOCK);
+
+    t.notThrows(() => model._findFixListForExitFixName('DRK'));
+
+    const result = model._findFixListForExitFixName('DRK');
+
+    t.true(_isArray(result));
+    t.true(result.length === 0);
+});
+
+ava('._findFixListForEntryFixName() returns an empty array when entryFixName is an empty string', t => {
+    const model = new StandardRouteModel(SID_WITHOUT_EXIT_MOCK);
+
+    t.notThrows(() => model._findFixListForEntryFixName(''));
+
+    const result = model._findFixListForEntryFixName('');
+
+    t.true(_isArray(result));
+    t.true(result.length === 0);
 });

@@ -311,7 +311,7 @@ export default class AirportModel {
      * @param restrictedAreas
      */
     buildRestrictedAreas(restrictedAreas) {
-        if (restrictedAreas) {
+        if (!restrictedAreas) {
             return;
         }
 

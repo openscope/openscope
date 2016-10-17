@@ -17,12 +17,7 @@ export default class RouteSegmentModel {
      * @param name {string}  Icao of particular waypoint
      * @param segmentWaypoints {array}  a mixed array of strings or arrays of strings
      */
-    constructor(name, segmentWaypoints) {
-        // TODO: this may need to be a little more defensive by chacking name also
-        if (typeof segmentWaypoints === 'undefined' || !_isArray(segmentWaypoints)) {
-            throw new TypeError(`Expected segmentWaypoints to be an array. Instead received ${typeof segmentWaypoints}`);
-        }
-
+    constructor(name, segmentWaypoints = []) {
         /**
          * Unigue string id that can be used to differentiate this model instance from another
          *
@@ -80,11 +75,11 @@ export default class RouteSegmentModel {
     _init(name, segmentWaypoints) {
         this.name = name;
 
-        _map(segmentWaypoints, (fixAndRestrictions) => {
-            const waypointModel = new StandardRouteWaypointModel(fixAndRestrictions);
+        if (_isArray(segmentWaypoints)) {
+            this._createWaypointModelsFromList(segmentWaypoints);
+        }
 
-            this._addWaypointToCollection(waypointModel);
-        });
+        return this;
     }
 
     /**
@@ -117,6 +112,17 @@ export default class RouteSegmentModel {
         const fixList = _map(this._items, (waypoint) => waypoint.fix);
 
         return fixList;
+    }
+
+
+    _createWaypointModelsFromList(segmentWaypoints) {
+        const waypointModelList = _map(segmentWaypoints, (fixAndRestrictions) => {
+            const waypointModel = new StandardRouteWaypointModel(fixAndRestrictions);
+
+            this._addWaypointToCollection(waypointModel);
+        });
+
+        return waypointModelList;
     }
 
     /**
