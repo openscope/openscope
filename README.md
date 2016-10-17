@@ -3,6 +3,9 @@
 
 An ATC simulator in HTML5.
 
+## Running Locally
+It is possible to run this application locally.  You will need to have node and npm install in order for this to work.  For more information, view the [Tools Documentation](tools/README.md)
+
 ## Privacy
 
 Page hits are tracked with Google Analytics; feel free to use an

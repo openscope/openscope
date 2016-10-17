@@ -1,14 +1,15 @@
 /**
  * List of airports to load.
  *
- *    {
- *      icao: {AIRPORT_ICAO},
- *      level: {AIRPORT_DIFFICULTY},
- *      name: {AIRPORT_NAME}
- *    }
- *
- *    If the airport is a work in progress, please include this icon after the `name` (see kmsp or ksea):
- *    - name: {AIRPORT_NAME} &#9983
+ * {
+ *   icao: {AIRPORT_ICAO},
+ *   level: {AIRPORT_DIFFICULTY},
+ *   name: {AIRPORT_NAME}
+ * }
+ * 
+ * If the airport is a work in progress, please include the icon character `&#9983` after the
+ * `name` (see kmsp or ksea):
+ * - name: {AIRPORT_NAME} &#9983
  *
  * @property AIRPORT_LOAD_LIST
  * @type {Array}

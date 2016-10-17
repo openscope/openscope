@@ -3,12 +3,12 @@
 #### Node
 You will need to have [Node.js](https://nodejs.org/) installed to run any of the commands below.
 
-#### Installation
+#### Project Installation
 
 After you have node installed, navigate to the project folder and run `npm install && npm run build`.  This will install the project dependencies and run the build tasks for the css and javascript.
 
 #### Folder Structure
-This project is organized with the following main folders:
+Folders are organized with the following main folders:
 ```
 - assets
 - documentation
@@ -25,7 +25,7 @@ This is where the code that runs the application lives. This folder also contain
 
 * `src/`
 
-The application's CSS and Javascript source files.  If you are developing Javascript or CSS the files you want to edit live in this folder.
+The application's CSS and Javascript source files.  If you are developing Javascript or CSS, the files you want to edit live in this folder.
 
 * `test/`
 
@@ -37,12 +37,13 @@ Any `gulp` task is defined in one of the files in this folder.
 
 * `Gulpfile.js`
 
-This is the entry point for all `gulp` tasks.  There should never be a process defined in this file, just references to the tasks defined in the `tools/tasks` folder.
+This is the entry point for all `gulp` tasks.  There should never be a process defined in this file, just references to a tasks defined in the `tools/tasks` folder.  The only exception to this is for root tasks like `build`, `lint`, `watch`, etc.  These root tasks are just wrappers for a collections of other tasks.
 
 ---
 
 #### NPM Commands
 Available `npm` commands:
+* `npm run start` Will spool up a small web server using the `http-server` package.  Once the server successfully starts, you can view the app at localhost:3003 in your web browser.
 
 * `npm run build` _alias for_ `gulp dist && npm run test`.
 
