@@ -9,6 +9,7 @@ import _uniq from 'lodash/uniq';
 import Area from '../base/AreaModel';
 import PositionModel from '../base/PositionModel';
 import RunwayModel from './RunwayModel';
+import FixCollection from './Fix/FixCollection';
 import StandardRouteCollection from './StandardRoute/StandardRouteCollection';
 import { ArrivalFactory } from './Arrival/ArrivalFactory';
 import { DepartureFactory } from './Departure/DepartureFactory';
@@ -68,6 +69,7 @@ export default class AirportModel {
         this.fixes    = {};
         // TODO: what is the difference between a `real_fix` and `fix`?
         this.real_fixes = {};
+        this.fixCollection = null;
         this.sids     = {};
         this.sidCollection = null;
         this.stars    = {};
@@ -126,6 +128,7 @@ export default class AirportModel {
         this.initial_alt = _get(data, 'initial_alt', DEFAULT_INITIAL_ALTITUDE_FT);
         this.rr_radius_nm = _get(data, 'rr_radius_nm');
         this.rr_center = _get(data, 'rr_center');
+        this.fixCollection = new FixCollection(data.fixes);
         this.sidCollection = new StandardRouteCollection(data.sids);
         this.starCollection = new StandardRouteCollection(data.stars);
 
