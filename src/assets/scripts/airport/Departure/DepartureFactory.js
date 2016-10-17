@@ -8,11 +8,11 @@ import { LOG } from '../../constants/logLevel';
  * Calls constructor of the appropriate arrival type
  *
  * @function DepartureFactory
- * @param airport
- * @param options
- * @return {function}
+ * @param airport {AirportModel}
+ * @param options {object}
+ * @return {constructor}
  */
-export const DepartureFactory = (airport, options) => {
+export const departureFactory = (airport, options) => {
     if (options.type === '') {
         return log(`${airport.icao} departure stream not given type!`, LOG.WARNING);
     }
