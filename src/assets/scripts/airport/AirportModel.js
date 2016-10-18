@@ -13,7 +13,7 @@ import SidCollection from './StandardRoute/SidCollection';
 import { arrivalFactory } from './Arrival/arrivalFactory';
 import { departureFactory } from './Departure/departureFactory';
 import { degreesToRadians, parseElevation } from '../utilities/unitConverters';
-import { round, abs, sin, crange } from '../math/core';
+import { round, abs, sin, extrapolate_range_clamp } from '../math/core';
 import { angle_offset } from '../math/circle';
 import { getOffset } from '../math/flightMath';
 import { vlen, vsub, vadd, vscale, raysIntersect } from '../math/vector';
@@ -30,7 +30,7 @@ import { STORAGE_KEY } from '../constants/storageKeys';
  */
 const ra = (n) => {
     const deviation = degreesToRadians(10);
-    return n + crange(0, Math.random(), 1, -deviation, deviation);
+    return n + extrapolate_range_clamp(0, Math.random(), 1, -deviation, deviation);
 };
 
 const DEFAULT_CTR_RADIUS_NM = 80;

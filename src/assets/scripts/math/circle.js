@@ -47,20 +47,25 @@ export const angle_offset = (a, b) => {
 };
 
 /**
- * Constrains an angle to within 0 --> Math.PI * 2
- *
- * @function fix_angle
- * @param radians {number}
- * @return {number}
+ * normalize angles to within 0° - 360°
+ * @param  {number} degrees an angle
+ * @return {number}         an angle within [0,360]
  */
-export const fix_angle = (radians) => {
-    while (radians > tau()) {
-        radians -= tau();
+export const degrees_normalize = (degrees) => {
+    if (degrees >= 0) {
+      return degrees % 360;
     }
+    return 360 + (degrees % 360);
+};
 
-    while (radians < 0) {
-        radians += tau();
+/**
+ * normalize angles to within 0 - 2π
+ * @param  {number} radians an angle
+ * @return {number}         an angle within [0,2π]
+ */
+export const radians_normalize = (radians) => {
+    if (radians >= 0) {
+      return radians % (tau());
     }
-
-    return radians;
+    return tau() + (radians % tau());
 };
