@@ -1,9 +1,9 @@
 import $ from 'jquery';
-import _clamp from 'lodash/clamp';
 import _last from 'lodash/last';
 import _map from 'lodash/map';
 import Waypoint from './Waypoint';
 import Leg, { FP_LEG_TYPE } from './Leg';
+import { clamp } from '../math/core';
 import { LOG } from '../constants/logLevel';
 
 /**
@@ -73,7 +73,7 @@ export default class AircraftFlightManagementSystem {
         };
 
         // set initial
-        this.fp.altitude = _clamp(1000, options.model.ceiling, 60000);
+        this.fp.altitude = clamp(1000, options.model.ceiling, 60000);
 
         if (options.aircraft.category === 'arrival') {
             this.prependLeg({ route: 'KDBG' });

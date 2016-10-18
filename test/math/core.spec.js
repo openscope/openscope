@@ -1,6 +1,6 @@
 import ava from 'ava'
 
-import { calculateMiddle } from '../../src/assets/scripts/math/core';
+import { calculateMiddle, clamp } from '../../src/assets/scripts/math/core';
 
 ava('.calculateMiddle() returns a number the is the mid-point of a given number, rounded up', t => {
     t.throws(() => calculateMiddle('10'));
@@ -14,4 +14,16 @@ ava('.calculateMiddle() returns a number the is the mid-point of a given number,
 
     t.true(calculateMiddle(10) === 5);
     t.true(calculateMiddle(17) === 9);
+});
+
+ava('.clamp() returns a number within a range, or the specified min/max number', t => {
+    t.throws(() => clamp(7, []));
+    t.throws(() => clamp(7, {}));
+    t.throws(() => clamp(7, false));
+    t.throws(() => clamp(7, ''));
+    t.throws(() => clamp(7));
+
+    t.true(clamp(0, 20, 5) === 5);
+    t.true(clamp(-5, -10, 5) === -5);
+    t.true(clamp(1, 10) === 10);
 });

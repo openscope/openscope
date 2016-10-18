@@ -1,8 +1,8 @@
-import _clamp from 'lodash/clamp';
 import _isNumber from 'lodash/isNumber';
 
 /**
  * @function round
+ * @return {number}
  */
 export const round = (n, factor = 1) => {
     return Math.round(n / factor) * factor;
@@ -10,6 +10,7 @@ export const round = (n, factor = 1) => {
 
 /**
  * @function abs
+ * @return {number}
  */
 export const abs = (n) => {
     return Math.abs(n);
@@ -69,17 +70,14 @@ export const s = (i) => {
 // TODO: rename to isWithin
 /**
  * @function within
+ * @param n
+ * @param c
+ * @param r
  * @return {number}
  */
 export const within = (n, c, r) => {
     return n > (c + r) || n < (c - r);
 };
-
-
-// TODO: update references to use exports instead of functions attached to window
-// window.randint = randint;
-// window.s = s;
-// window.within = within;
 
 // TODO: add a divisor paramater that dfaults to `2`
 /**
@@ -125,6 +123,47 @@ const trange = (il, i, ih, ol, oh) => {
 };
 
 /**
+ * Clamp a value to be within a certain range
+ *
+ * @function clamp
+ * @param min {number}
+ * @param valueToClamp {number}
+ * @param max {number} (optional)
+ * @return {number}
+ */
+export const clamp = (min, valueToClamp, max = Infinity) => {
+    let temp;
+
+    if (!_isNumber(valueToClamp)) {
+        throw new TypeError('Invalid parameter. Expected `valueToClamp` to be a number');
+    }
+
+    if (max === Infinity) {
+        if (min > valueToClamp) {
+            return min;
+        }
+
+        return valueToClamp;
+    }
+
+    if (min > max) {
+        temp = max;
+        max = min;
+        min = temp;
+    }
+
+    if (min > valueToClamp) {
+        return min;
+    }
+
+    if (max < valueToClamp) {
+        return max;
+    }
+
+    return valueToClamp;
+};
+
+/**
  * @function crange
  * @param il {number}
  * @param i {number}
@@ -134,7 +173,7 @@ const trange = (il, i, ih, ol, oh) => {
  * @return {number}
  */
 export const crange = (il, i, ih, ol, oh) => {
-    return _clamp(
+    return clamp(
         ol,
         trange(il, i, ih, ol, oh),
         oh
