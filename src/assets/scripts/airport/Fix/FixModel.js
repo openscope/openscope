@@ -46,6 +46,14 @@ export default class FixModel {
     }
 
     /**
+     * @property position
+     * @return {array}
+     */
+    get position() {
+        return this._fixPosition.position;
+    }
+
+    /**
      * Lifecycle method. Should be run only once on instantiation.
      *
      * @for FixModel

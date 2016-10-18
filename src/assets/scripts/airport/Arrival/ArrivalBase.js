@@ -95,8 +95,10 @@ export default class ArrivalBase {
         let entry;
         const runway = this.airport.runway;
 
+        // TODO: abstract to helper or class for handling Route
         // Find STAR & entry point
         const pieces = array_clean(this.route.split('.'));
+
         for (const i in pieces) {
             if (_has(this.airport.stars, pieces[i])) {
                 star = pieces[i];
@@ -111,6 +113,7 @@ export default class ArrivalBase {
         const fixes = this.airport.getSTAR(star, entry, runway);
         // FIXME: this is never used. is it needed?
         // const lastFix = fixes[0][0];
+        //
         // distance between closest fix outside a/s and a/s border, nm
         let extra = 0;
 

@@ -68,16 +68,15 @@ export default class AirportModel {
         this.runways  = [];
         this.runway   = null;
 
-        this.fixes    = {};
-        // TODO: what is the difference between a `real_fix` and `fix`?
-        this.real_fixes = {};
+        this.fixes = {};
         this.fixCollection = null;
-        this.sids     = {};
+        this.sids = {};
         this.sidCollection = null;
-        this.stars    = {};
+        this.stars = {};
         this.starCollection = null;
-        this.maps     = {};
-        this.airways  = {};
+
+        this.maps = {};
+        this.airways = {};
         this.restricted_areas = [];
         this.metadata = {
             rwy: {}
@@ -90,7 +89,7 @@ export default class AirportModel {
             runway: null,
             departure: null
         };
-        this.departures = null;
+        this.departures = [];
         this.arrivals   = [];
 
         this.wind  = {
@@ -105,6 +104,10 @@ export default class AirportModel {
         this.rr_center = 0;
 
         this.parse(options);
+    }
+
+    get real_fixes() {
+        return this.fixCollection.findRealFixes();
     }
 
     get elevation() {
@@ -131,6 +134,7 @@ export default class AirportModel {
         this.initial_alt = _get(data, 'initial_alt', DEFAULT_INITIAL_ALTITUDE_FT);
         this.rr_radius_nm = _get(data, 'rr_radius_nm');
         this.rr_center = _get(data, 'rr_center');
+
         this.fixCollection = new FixCollection(data.fixes, this.position);
         this.sidCollection = new StandardRouteCollection(data.sids);
         this.starCollection = new StandardRouteCollection(data.stars);
@@ -138,15 +142,16 @@ export default class AirportModel {
         this.loadTerrain();
         this.buildAirportAirspace(data.airspace);
         this.buildAirportRunways(data.runways);
-        this.buildFixes(data.fixes);
-        this.verifySidFixes(data.sids);
+        // TODO: remove once `fixCollection` is fully implemented
+        // this.buildFixes(data.fixes);
         this.buildAirportMaps(data.maps);
         this.buildRestrictedAreas(data.restricted);
         this.updateCurrentWind(data.wind);
         this.buildAirportDepartures(data.departures);
         this.buildArrivals(data.arrivals);
-        this.checkFixes();
         this.buildRunwayMetaData();
+        // this.verifySidFixes(data.sids);
+        // this.checkFixes();
     }
 
     /**
@@ -238,57 +243,25 @@ export default class AirportModel {
         });
     }
 
-    /**
-     * @for AirportModel
-     * @method buildFixes
-     * @param fixes {object}
-     */
-    buildFixes(fixes) {
-        if (!fixes) {
-            return;
-        }
-
-
-
-        _forEach(fixes, (fix, key) => {
-            const fixName = key.toUpperCase();
-            this.fixes[fixName] = new PositionModel(fix, this.position, this.magnetic_north);
-
-            if (fixName.indexOf('_') !== 0) {
-                this.real_fixes[fixName] = this.fixes[fixName];
-            }
-        });
-    }
-
-    /**
-     * import the sids
-     *
-     * @for AirportModel
-     * @method verifySidFixes
-     * @param sids {object}
-     */
-    verifySidFixes(sids) {
-        if (!sids) {
-            return;
-        }
-
-        this.sids = sids;
-
-        // Check each SID fix and log if not found in the airport fix list
-        _forEach(this.sids, (sid) => {
-            if (_has(this.sids, sid)) {
-                const fixList = this.sids[sid];
-
-                for (let i = 0; i < fixList.length; i++) {
-                    const fixname = fixList[i];
-
-                    if (!this.airport.fixes[fixname]) {
-                        log(`SID ${sid} fix not found: ${fixname}`, LOG.WARNING);
-                    }
-                }
-            }
-        });
-    }
+    // /**
+    //  * @for AirportModel
+    //  * @method buildFixes
+    //  * @param fixes {object}
+    //  */
+    // buildFixes(fixes) {
+    //     if (!fixes) {
+    //         return;
+    //     }
+    //
+    //     _forEach(fixes, (fix, key) => {
+    //         const fixName = key.toUpperCase();
+    //         this.fixes[fixName] = new PositionModel(fix, this.position, this.magnetic_north);
+    //
+    //         if (fixName.indexOf('_') !== 0) {
+    //             this.real_fixes[fixName] = this.fixes[fixName];
+    //         }
+    //     });
+    // }
 
     /**
      * @for AirportModel
@@ -639,20 +612,17 @@ export default class AirportModel {
     }
 
     /**
+     * Get the position of a FixModel
+     *
      * @for AirportModel
      * @method getFixPosition
-     * @param name {string}
+     * @param fixName {string}
      * @return {array}
      */
-    getFixPosition(name) {
-        if (!name || !_has(this.fixes, name)) {
-            return null;
-        }
+    getFixPosition(fixName) {
+        const fixModel = this.fixCollection.findFixByName(fixName);
 
-        // TODO: this may be overly defensive
-        const fixName = name.toUpperCase();
-
-        return this.fixes[fixName].position;
+        return fixModel.position;
     }
 
     /**
@@ -730,137 +700,167 @@ export default class AirportModel {
         return null;
     }
 
+    // /**
+    //  * import the sids
+    //  *
+    //  * @for AirportModel
+    //  * @method verifySidFixes
+    //  * @param sids {object}
+    //  */
+    // verifySidFixes(sids) {
+    //     if (!sids) {
+    //         return;
+    //     }
+    //
+    //     this.sids = sids;
+    //
+    //     // Check each SID fix and log if not found in the airport fix list
+    //     _forEach(this.sids, (sid) => {
+    //         if (_has(this.sids, sid)) {
+    //             const fixList = this.sids[sid];
+    //
+    //             for (let i = 0; i < fixList.length; i++) {
+    //                 const fixname = fixList[i];
+    //
+    //                 if (!this.airport.fixes[fixname]) {
+    //                     log(`SID ${sid} fix not found: ${fixname}`, LOG.WARNING);
+    //                 }
+    //             }
+    //         }
+    //     });
+    // }
+
     // TODO: this method has A LOT of nested for loops. perhaps some of this logic could be abstracted
     // to several smaller methods?
-    /**
-     * Verifies all fixes used in the airport also have defined positions
-     *
-     * @for AirportModel
-     * @method checkFixes
-     */
-    checkFixes() {
-        const fixes = [];
-
-        // Gather fixes used by SIDs
-        if (_has(this, 'sids')) {
-            for (const s in this.sids) {
-                // runway portion
-                if (_has(this.sids[s], 'rwy')) {
-                    for (const r in this.sids[s].rwy) {
-                        for (const i in this.sids[s].rwy[r]) {
-                            if (typeof this.sids[s].rwy[r][i] === 'string') {
-                                fixes.push(this.sids[s].rwy[r][i]);
-                            } else {
-                                fixes.push(this.sids[s].rwy[r][i][0]);
-                            }
-                        }
-                    }
-                }
-
-                // body portion
-                if (_has(this.sids[s], 'body')) {
-                    for (let i in this.sids[s].body) {
-                        if (typeof this.sids[s].body[i] === 'string') {
-                            fixes.push(this.sids[s].body[i]);
-                        } else {
-                            fixes.push(this.sids[s].body[i][0]);
-                        }
-                    }
-                }
-
-                // exitPoints portion
-                if (_has(this.sids[s], 'exitPoints')) {
-                    for (let t in this.sids[s].exitPoints) {
-                        for (let i in this.sids[s].exitPoints[t]) {
-                            if (typeof this.sids[s].exitPoints[t][i] === 'string') {
-                                fixes.push(this.sids[s].exitPoints[t][i]);
-                            } else {
-                                fixes.push(this.sids[s].exitPoints[t][i][0]);
-                            }
-                        }
-                    }
-                }
-
-                // draw portion
-                if (_has(this.sids[s], 'draw')) {
-                    for (let i in this.sids[s].draw) {
-                        for (let j = 0; j < this.sids[s].draw[i].length; j++) {
-                            fixes.push(this.sids[s].draw[i][j].replace('*', ''));
-                        }
-                    }
-                }
-            }
-        }
-
-        // Gather fixes used by STARs
-        if (_has(this, 'stars')) {
-            for (const s in this.stars) {
-                // entryPoints portion
-                if (_has(this.stars[s], 'entryPoints')) {
-                    for (const t in this.stars[s].entryPoints) {
-                        for (const i in this.stars[s].entryPoints[t]) {
-                            if (typeof this.stars[s].entryPoints[t][i] === 'string') {
-                                fixes.push(this.stars[s].entryPoints[t][i]);
-                            } else {
-                                fixes.push(this.stars[s].entryPoints[t][i][0]);
-                            }
-                        }
-                    }
-                }
-
-                // body portion
-                if (_has(this.stars[s], 'body')) {
-                    for (const i in this.stars[s].body) {
-                        if (typeof this.stars[s].body[i] === 'string') {
-                            fixes.push(this.stars[s].body[i]);
-                        } else {
-                            fixes.push(this.stars[s].body[i][0]);
-                        }
-                    }
-                }
-
-                // runway portion
-                if (_has(this.stars[s], 'rwy')) {
-                    for (const r in this.stars[s].rwy) {
-                        for (const i in this.stars[s].rwy[r]) {
-                            if (typeof this.stars[s].rwy[r][i] === 'string') {
-                                fixes.push(this.stars[s].rwy[r][i]);
-                            } else {
-                                fixes.push(this.stars[s].rwy[r][i][0]);
-                            }
-                        }
-                    }
-                }
-
-                // draw portion
-                if (_has(this.stars[s], 'draw')) {
-                    for (const i in this.stars[s].draw) {
-                        for (const j in this.stars[s].draw[i]) {
-                            fixes.push(this.stars[s].draw[i][j].replace('*', ''));
-                        }
-                    }
-                }
-            }
-        }
-
-        // Gather fixes used by airways
-        if (_has(this, 'airways')) {
-            for (const a in this.airways) {
-                for (const i in this.airways[a]) {
-                    fixes.push(this.airways[a][i]);
-                }
-            }
-        }
-
-        // Get (unique) list of fixes used that are not in 'this.fixes'
-        // FIXME: this reassignment is propably not needed anymore.
-        const apt = this;
-        // TODO: this could also be done with _sortedUniq
-        const missing = _uniq(fixes.filter((f) => !apt.fixes.hasOwnProperty(f)).sort());
-
-        // there are some... yell at the airport designer!!! :)
-        if (missing.length > 0) {
-            log(`${this.icao} uses the following fixes which are not listed in ${airport.fixes}: ${missing.join(' ')}`, LOG.WARNING);
-        }
-    }
+    // /**
+    //  * Verifies all fixes used in the airport also have defined positions
+    //  *
+    //  * @for AirportModel
+    //  * @method checkFixes
+    //  */
+    // checkFixes() {
+    //     const fixes = [];
+    //
+    //     // Gather fixes used by SIDs
+    //     if (_has(this, 'sids')) {
+    //         for (const s in this.sids) {
+    //             // runway portion
+    //             if (_has(this.sids[s], 'rwy')) {
+    //                 for (const r in this.sids[s].rwy) {
+    //                     for (const i in this.sids[s].rwy[r]) {
+    //                         if (typeof this.sids[s].rwy[r][i] === 'string') {
+    //                             fixes.push(this.sids[s].rwy[r][i]);
+    //                         } else {
+    //                             fixes.push(this.sids[s].rwy[r][i][0]);
+    //                         }
+    //                     }
+    //                 }
+    //             }
+    //
+    //             // body portion
+    //             if (_has(this.sids[s], 'body')) {
+    //                 for (let i in this.sids[s].body) {
+    //                     if (typeof this.sids[s].body[i] === 'string') {
+    //                         fixes.push(this.sids[s].body[i]);
+    //                     } else {
+    //                         fixes.push(this.sids[s].body[i][0]);
+    //                     }
+    //                 }
+    //             }
+    //
+    //             // exitPoints portion
+    //             if (_has(this.sids[s], 'exitPoints')) {
+    //                 for (let t in this.sids[s].exitPoints) {
+    //                     for (let i in this.sids[s].exitPoints[t]) {
+    //                         if (typeof this.sids[s].exitPoints[t][i] === 'string') {
+    //                             fixes.push(this.sids[s].exitPoints[t][i]);
+    //                         } else {
+    //                             fixes.push(this.sids[s].exitPoints[t][i][0]);
+    //                         }
+    //                     }
+    //                 }
+    //             }
+    //
+    //             // draw portion
+    //             if (_has(this.sids[s], 'draw')) {
+    //                 for (let i in this.sids[s].draw) {
+    //                     for (let j = 0; j < this.sids[s].draw[i].length; j++) {
+    //                         fixes.push(this.sids[s].draw[i][j].replace('*', ''));
+    //                     }
+    //                 }
+    //             }
+    //         }
+    //     }
+    //
+    //     // Gather fixes used by STARs
+    //     if (_has(this, 'stars')) {
+    //         for (const s in this.stars) {
+    //             // entryPoints portion
+    //             if (_has(this.stars[s], 'entryPoints')) {
+    //                 for (const t in this.stars[s].entryPoints) {
+    //                     for (const i in this.stars[s].entryPoints[t]) {
+    //                         if (typeof this.stars[s].entryPoints[t][i] === 'string') {
+    //                             fixes.push(this.stars[s].entryPoints[t][i]);
+    //                         } else {
+    //                             fixes.push(this.stars[s].entryPoints[t][i][0]);
+    //                         }
+    //                     }
+    //                 }
+    //             }
+    //
+    //             // body portion
+    //             if (_has(this.stars[s], 'body')) {
+    //                 for (const i in this.stars[s].body) {
+    //                     if (typeof this.stars[s].body[i] === 'string') {
+    //                         fixes.push(this.stars[s].body[i]);
+    //                     } else {
+    //                         fixes.push(this.stars[s].body[i][0]);
+    //                     }
+    //                 }
+    //             }
+    //
+    //             // runway portion
+    //             if (_has(this.stars[s], 'rwy')) {
+    //                 for (const r in this.stars[s].rwy) {
+    //                     for (const i in this.stars[s].rwy[r]) {
+    //                         if (typeof this.stars[s].rwy[r][i] === 'string') {
+    //                             fixes.push(this.stars[s].rwy[r][i]);
+    //                         } else {
+    //                             fixes.push(this.stars[s].rwy[r][i][0]);
+    //                         }
+    //                     }
+    //                 }
+    //             }
+    //
+    //             // draw portion
+    //             if (_has(this.stars[s], 'draw')) {
+    //                 for (const i in this.stars[s].draw) {
+    //                     for (const j in this.stars[s].draw[i]) {
+    //                         fixes.push(this.stars[s].draw[i][j].replace('*', ''));
+    //                     }
+    //                 }
+    //             }
+    //         }
+    //     }
+    //
+    //     // Gather fixes used by airways
+    //     if (_has(this, 'airways')) {
+    //         for (const a in this.airways) {
+    //             for (const i in this.airways[a]) {
+    //                 fixes.push(this.airways[a][i]);
+    //             }
+    //         }
+    //     }
+    //
+    //     // Get (unique) list of fixes used that are not in 'this.fixes'
+    //     // FIXME: this reassignment is propably not needed anymore.
+    //     debugger;
+    //     // TODO: this could also be done with _sortedUniq
+    //     const missing = _uniq(fixes.filter((fix) => !this.fixes.hasOwnProperty(fix)).sort());
+    //
+    //     // there are some... yell at the airport designer!!! :)
+    //     if (missing.length > 0) {
+    //         log(`${this.icao} uses the following fixes which are not listed in ${airport.fixes}: ${missing.join(' ')}`, LOG.WARNING);
+    //     }
+    // }
 }
