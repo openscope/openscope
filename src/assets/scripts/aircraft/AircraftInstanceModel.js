@@ -1,6 +1,4 @@
-/* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand, no-undef, guard-for-in, no-restricted-syntax, max-len, prefer-arrow-callback, */
 import $ from 'jquery';
-import _clamp from 'lodash/clamp';
 import _forEach from 'lodash/forEach';
 import _get from 'lodash/get';
 import _has from 'lodash/has';
@@ -12,7 +10,7 @@ import AircraftStripView from './AircraftStripView';
 import Waypoint from './Waypoint';
 import { speech_say } from '../speech';
 import { tau, fix_angle, angle_offset } from '../math/circle';
-import { round, abs, sin, cos, crange } from '../math/core';
+import { round, abs, sin, cos, crange, clamp } from '../math/core';
 import { distance2d } from '../math/distance';
 import { getOffset } from '../math/flightMath';
 import {
@@ -932,7 +930,7 @@ export default class Aircraft {
 
         this.fms.setAll({
             // TODO: enumerate the magic numbers
-            altitude: _clamp(round(window.airportController.airport_get().elevation / 100) * 100 + 1000, altitude, ceiling),
+            altitude: clamp(round(window.airportController.airport_get().elevation / 100) * 100 + 1000, altitude, ceiling),
             expedite: expedite
         });
 
@@ -1029,7 +1027,7 @@ export default class Aircraft {
         }
 
         this.fms.setAll({
-            speed: _clamp(
+            speed: clamp(
                 this.model.speed.min,
                 speed,
                 this.model.speed.max
@@ -2008,7 +2006,7 @@ export default class Aircraft {
                 angle -= tau();
             }
 
-            glideslope_altitude = _clamp(0, runway.getGlideslopeAltitude(offset[1]), this.altitude);
+            glideslope_altitude = clamp(0, runway.getGlideslopeAltitude(offset[1]), this.altitude);
             glideslope_window   = abs(runway.getGlideslopeAltitude(offset[1], degreesToRadians(1)));
 
             if (this.mode === FLIGHT_MODES.LANDING) {
@@ -2053,7 +2051,7 @@ export default class Aircraft {
                     // Steer to within 3m of the centerline while at least 200m out
                     if (offset[1] > 0.2 && abs(offset[0]) > 0.003) {
                         // TODO: enumerate the magic numbers
-                        this.target.heading = _clamp(degreesToRadians(-30), -12 * offset_angle, degreesToRadians(30)) + angle;
+                        this.target.heading = clamp(degreesToRadians(-30), -12 * offset_angle, degreesToRadians(30)) + angle;
                     }
 
                     // Follow the glideslope
@@ -2159,7 +2157,7 @@ export default class Aircraft {
             this.target.expedite = this.fms.currentWaypoint().expedite;
             this.target.altitude = Math.max(1000, this.target.altitude);
             this.target.speed = this.fms.currentWaypoint().speed;
-            this.target.speed = _clamp(this.model.speed.min, this.target.speed, this.model.speed.max);
+            this.target.speed = clamp(this.model.speed.min, this.target.speed, this.model.speed.max);
         }
 
         // If stalling, make like a meteorite and fall to the earth!
@@ -2265,7 +2263,7 @@ export default class Aircraft {
             // Perform standard turns 3 deg/s or 25 deg bank, whichever
             // requires less bank angle.
             // Formula based on http://aviation.stackexchange.com/a/8013
-            const turn_rate = _clamp(0, 1 / (this.speed / 8.883031), 0.0523598776);
+            const turn_rate = clamp(0, 1 / (this.speed / 8.883031), 0.0523598776);
             const turn_amount = turn_rate * window.gameController.game_delta();
             const offset = angle_offset(this.target.heading, this.heading);
 

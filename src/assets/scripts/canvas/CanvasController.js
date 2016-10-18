@@ -1,13 +1,10 @@
-/* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand,
-no-param-reassign, no-undef, class-methods-use-this */
 import $ from 'jquery';
-import _clamp from 'lodash/clamp';
 import _cloneDeep from 'lodash/cloneDeep';
 import _forEach from 'lodash/forEach';
 import _has from 'lodash/has';
 import { km, degreesToRadians } from '../utilities/unitConverters';
 import { time } from '../utilities/timeHelpers';
-import { sin, cos, round, calculateMiddle, crange } from '../math/core';
+import { sin, cos, round, calculateMiddle, crange, clamp } from '../math/core';
 import { tau } from '../math/circle';
 import { distance2d } from '../math/distance';
 import { vscale, vturn, positive_intersection_with_rect } from '../math/vector';
@@ -905,8 +902,8 @@ export default class ConvasController {
             const h = this.canvas.size.height / 2;
 
             cc.translate(
-                _clamp(-w, window.uiController.km_to_px(aircraft.position[0]) + this.canvas.panX, w),
-                _clamp(-h, -window.uiController.km_to_px(aircraft.position[1]) + this.canvas.panY, h)
+                clamp(-w, window.uiController.km_to_px(aircraft.position[0]) + this.canvas.panX, w),
+                clamp(-h, -window.uiController.km_to_px(aircraft.position[1]) + this.canvas.panY, h)
             );
 
             cc.beginPath();
@@ -1110,7 +1107,7 @@ export default class ConvasController {
             const cs = aircraft.getCallsign();
             const paddingLR = 5;
             // width of datablock (scales to fit callsign)
-            const width = _clamp(1, 5.8 * cs.length) + (paddingLR * 2);
+            const width = clamp(1, 5.8 * cs.length) + (paddingLR * 2);
             const width2 = width / 2;
             // height of datablock
             const height = 31;
@@ -1255,9 +1252,9 @@ export default class ConvasController {
 
             // TODO: remove the if/else in favor of an initial assignment, and update with if condition
             if (aircraft.inside_ctr) {
-                cc.fillStyle = COLORS.WHITE;
+                cc.fillStyle = COLORS.WHITE_08;
             } else {
-                cc.fillStyle = COLORS.LIGHT_SILVER;
+                cc.fillStyle = COLORS.WHITE_02;
             }
 
             if (aircraft.trend === 0) {
@@ -1542,7 +1539,7 @@ export default class ConvasController {
 
         cc.strokeStyle = COLORS.WHITE_04;
         cc.fillStyle = COLORS.WHITE_02;
-        cc.lineWidth = _clamp(0.5, (prop.ui.scale / 10), 2);
+        cc.lineWidth = clamp(0.5, (prop.ui.scale / 10), 2);
         cc.lineJoin = 'round';
 
         const airport = window.airportController.airport_get();
