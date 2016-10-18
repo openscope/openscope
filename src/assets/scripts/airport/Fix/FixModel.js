@@ -16,13 +16,17 @@ export default class FixModel {
             return;
         }
 
-        /**g
+        /**
+         * Unigue string id that can be used to differentiate this model instance from another.
+         *
          * @property _id
          * @type {string}
          */
         this._id = _uniqueId();
 
         /**
+         * Name of the Fix
+         *
          * @property name
          * @type {string}
          * @default ''
@@ -30,24 +34,45 @@ export default class FixModel {
         this.name = '';
 
         /**
-         * @property position
+         * Coordinates of the fix
+         *
+         * @property _fixPosition
          * @type {PositionModel}
          * @default null
          */
-        this.position = null;
+        this._fixPosition = null;
 
         return this._init(fixName, fixCoordinate, airportPosition);
     }
 
     /**
+     * Lifecycle method. Should be run only once on instantiation.
+     *
      * @for FixModel
      * @method _init
-     * @param fixName
-     * @param fixCoordinate
+     * @param fixName {string}
+     * @param fixCoordinate {array}
      * @param airportPosition {PositionModel}
+     * @private
      */
     _init(fixName, fixCoordinate, airportPosition) {
         this.name = fixName.toUpperCase();
-        this.position = new PositionModel(fixCoordinate, airportPosition, airportPosition.magneticNorthInRadians);
+        this._fixPosition = new PositionModel(fixCoordinate, airportPosition, airportPosition.magneticNorthInRadians);
+
+        return this;
+    }
+
+    /**
+     * Destroy the current instance
+     *
+     * @for FixModel
+     * @method destroy
+     */
+    destroy() {
+        this._id = '';
+        this.name = '';
+        this._fixPosition = null;
+
+        return this;
     }
 }

@@ -131,7 +131,7 @@ export default class AirportModel {
         this.initial_alt = _get(data, 'initial_alt', DEFAULT_INITIAL_ALTITUDE_FT);
         this.rr_radius_nm = _get(data, 'rr_radius_nm');
         this.rr_center = _get(data, 'rr_center');
-        this.fixCollection = new FixCollection(data.fixes);
+        this.fixCollection = new FixCollection(data.fixes, this.position);
         this.sidCollection = new StandardRouteCollection(data.sids);
         this.starCollection = new StandardRouteCollection(data.stars);
 
@@ -247,6 +247,8 @@ export default class AirportModel {
         if (!fixes) {
             return;
         }
+
+
 
         _forEach(fixes, (fix, key) => {
             const fixName = key.toUpperCase();
@@ -529,7 +531,6 @@ export default class AirportModel {
         // terrain must be in geojson format
         const apt = this;
         apt.terrain = {};
-
 
         _forEach(data.features, (f) => {
             // const f = data.features[i];

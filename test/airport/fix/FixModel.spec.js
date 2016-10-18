@@ -23,32 +23,32 @@ ava('FixModel returns early when instantiated with incorrect parameters', t => {
 
     model = new FixModel(FIXNAME_MOCK);
     t.true(typeof model.name === 'undefined');
-    t.true(typeof model.position === 'undefined');
+    t.true(typeof model._fixPosition === 'undefined');
 
     model = new FixModel(FIXNAME_MOCK, FIX_COORDINATE_MOCK);
     t.true(typeof model.name === 'undefined');
-    t.true(typeof model.position === 'undefined');
+    t.true(typeof model._fixPosition === 'undefined');
 
     model = new FixModel(null, FIX_COORDINATE_MOCK, airportPositionFixture);
     t.true(typeof model.name === 'undefined');
-    t.true(typeof model.position === 'undefined');
+    t.true(typeof model._fixPosition === 'undefined');
 
     model = new FixModel(FIXNAME_MOCK, null, airportPositionFixture);
     t.true(typeof model.name === 'undefined');
-    t.true(typeof model.position === 'undefined');
+    t.true(typeof model._fixPosition === 'undefined');
 
     model = new FixModel(null, null, airportPositionFixture);
     t.true(typeof model.name === 'undefined');
-    t.true(typeof model.position === 'undefined');
+    t.true(typeof model._fixPosition === 'undefined');
 });
 
 ava('FixModel accepts a `fixName`, an array `fixCoordinate` and an `airportPosition` as its parameters', t => {
     const model = new FixModel(FIXNAME_MOCK, FIX_COORDINATE_MOCK, airportPositionFixture);
 
     t.false(model.name === '');
-    t.false(model.position === null);
+    t.false(model._fixPosition === null);
     t.true(model.name === FIXNAME_MOCK);
-    t.true(model.position instanceof PositionModel);
+    t.true(model._fixPosition instanceof PositionModel);
 });
 
 ava('FixModel._init() sets name in upperCase', t => {
