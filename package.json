@@ -49,7 +49,8 @@
       "test/**/*.spec.js"
     ],
     "source": [
-      "!**/_mocks/**"
+      "!**/_mocks/**",
+      "!**/fixtures/**"
     ],
     "verbose": true,
     "require": [
@@ -60,7 +61,8 @@
     "all": false,
     "include": [
       "src/assets/scripts/**/*.js",
-      "!**/_mocks/**"
+      "!**/_mocks/**",
+      "!**/fixtures/**"
     ]
   },
   "dependencies": {

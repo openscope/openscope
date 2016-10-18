@@ -2,7 +2,11 @@
 import ava from 'ava';
 
 import StandardRouteCollection from '../../../src/assets/scripts/airport/StandardRoute/StandardRouteCollection';
-import { STAR_LIST_MOCK, SID_LIST_MOCK, SID_WITHOUT_EXIT_MOCK } from './_mocks/standardRouteMocks';
+import {
+    STAR_LIST_MOCK,
+    SID_LIST_MOCK,
+    SID_WITHOUT_EXIT_MOCK
+} from './_mocks/standardRouteMocks';
 
 const SID_ICAO_MOCK = 'SHEAD9';
 const STAR_ICAO_MOCK = 'GRNPA1';

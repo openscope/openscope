@@ -109,6 +109,7 @@ export default class AirportModel {
         return this.position.elevation;
     }
 
+    // TODO: move this to PositionModel as `.magneticNorthInRadians`
     get magnetic_north() {
         return degreesToRadians(this.position.magnetic_north);
     }

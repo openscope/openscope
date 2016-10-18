@@ -4,6 +4,7 @@ import _isEqual from 'lodash/isEqual';
 
 import RouteSegmentCollection from '../../../src/assets/scripts/airport/StandardRoute/RouteSegmentCollection';
 import RouteSegmentModel from '../../../src/assets/scripts/airport/StandardRoute/RouteSegmentModel';
+
 import { ROUTE_SEGMENTS_MOCK } from './_mocks/standardRouteMocks';
 
 ava('throws with invalid parameters', t => {

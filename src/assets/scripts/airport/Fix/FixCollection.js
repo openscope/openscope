@@ -12,17 +12,16 @@ export default class FixCollection {
      * @constructor
      * @param fixList {object}
      */
-    constructor(fixList) {
+    constructor(fixList, airportPosition) {
         if (typeof fixList === 'undefined' || !_isObject(fixList) || _isArray(fixList)) {
             return null;
-            // throw new TypeError(`Expected fixList to be an object, instead received ${typeof fixList}`);
         }
 
         this._id = _uniqueId();
         this._items = [];
         this.length = 0;
 
-        return this._init(fixList);
+        return this._init(fixList, airportPosition);
     }
 
     /**
@@ -31,8 +30,8 @@ export default class FixCollection {
      * @param fixList {object}
      * @private
      */
-    _init(fixList) {
-        this._buildFixModelsFromList(fixList);
+    _init(fixList, airportPosition) {
+        this._buildFixModelsFromList(fixList, airportPosition);
     }
 
     /**
@@ -51,7 +50,7 @@ export default class FixCollection {
      * @param fixList {object}
      * @private
      */
-    _buildFixModelsFromList(fixList) {
+    _buildFixModelsFromList(fixList, airportPosition) {
         _forEach(fixList, (fix, fixName) => {
             const fixModel = {
                 name: fixName,
