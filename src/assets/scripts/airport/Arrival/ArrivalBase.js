@@ -98,6 +98,14 @@ export default class ArrivalBase {
 
         // find last fix along STAR that is outside of airspace, ie: next fix is within airspace
 
+        // TODO: future implementation
+        // StandardRouteCollection accepts fixCollection
+        // passes fixCollection down to RouteSegmentModel
+        // RouteSegmentModel verifies fix is in fixCollection
+        // obtains clone of found fix position
+        // creates new StandardRouteWaypointModel with fixPosition
+        // RouteSegmentModel.findFirstFixOutSideAirspace() returns the StandardRouteWaypointModel for the appropriate fix
+
         // distance between closest fix outside a/s and a/s border, nm
         let extra = 0;
 
