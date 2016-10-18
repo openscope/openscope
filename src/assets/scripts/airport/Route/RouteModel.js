@@ -110,9 +110,14 @@ export default class RouteModel {
 
     /**
      *
-     *
+     * @for RouteModel
+     * @method _isValidRouteString
+     * @param routeString {string}
+     * @return {boolean}
+     * @private
      */
     _isValidRouteString(routeString) {
+        // TODO: replace magic number with enumeration
         return routeString.split(SEGMENT_SEPERATION_SYMBOL).length === 3;
     }
 }

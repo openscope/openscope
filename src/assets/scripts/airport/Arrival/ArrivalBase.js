@@ -2,7 +2,7 @@ import $ from 'jquery';
 import _forEach from 'lodash/forEach';
 import _has from 'lodash/has';
 import _random from 'lodash/random';
-
+import RouteModel from '../Route/RouteModel';
 import PositionModel from '../../base/PositionModel';
 import { nm, degreesToRadians } from '../../utilities/unitConverters';
 import { round, sin, cos } from '../../math/core';
@@ -29,6 +29,7 @@ export default class ArrivalBase {
         this.timeout = null;
         this.fixes = [];
         // TODO: create RouteModel class to handle storing and transforming the active route
+        this.routeModel = null;
         this.route = '';
 
         this.parse(options);
@@ -68,6 +69,8 @@ export default class ArrivalBase {
         }
 
         if (options.route) {
+            this.routeModel = new RouteModel(options.route);
+
             this.route = options.route;
         } else if (options.fixes) {
             for (let i = 0; i < options.fixes.length; i++) {
@@ -91,29 +94,10 @@ export default class ArrivalBase {
      * ensure the player is not kept waiting for their first arrival aircraft.
      */
     preSpawn() {
-        let star;
-        let entry;
-        const runway = this.airport.runway;
+        const fixes = this.airport.getSTAR(this.routeModel.base, this.routeModel.origin, this.airport.runway);
 
-        // TODO: abstract to helper or class for handling Route
-        // Find STAR & entry point
-        const pieces = array_clean(this.route.split('.'));
+        // find last fix along STAR that is outside of airspace, ie: next fix is within airspace
 
-        for (const i in pieces) {
-            if (_has(this.airport.stars, pieces[i])) {
-                star = pieces[i];
-
-                if (i > 0) {
-                    entry = pieces[i - 1];
-                }
-            }
-        }
-
-        // Find the last fix that's outside the airspace boundary
-        const fixes = this.airport.getSTAR(star, entry, runway);
-        // FIXME: this is never used. is it needed?
-        // const lastFix = fixes[0][0];
-        //
         // distance between closest fix outside a/s and a/s border, nm
         let extra = 0;
 
@@ -151,6 +135,7 @@ export default class ArrivalBase {
             spawn_offsets.push(i);
         }
 
+        // TODO: move to new method
         // Determine spawn points
         const spawn_positions = [];
         // for each new aircraft
@@ -177,6 +162,7 @@ export default class ArrivalBase {
             }
         }
 
+        // TODO: move to new method
         // Spawn aircraft along the route, ahead of the standard spawn point
         for (const i in spawn_positions) {
             let airline = choose_weight(this.airlines);
