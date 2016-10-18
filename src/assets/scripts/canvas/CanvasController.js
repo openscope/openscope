@@ -4,7 +4,7 @@ import _forEach from 'lodash/forEach';
 import _has from 'lodash/has';
 import { km, degreesToRadians } from '../utilities/unitConverters';
 import { time } from '../utilities/timeHelpers';
-import { sin, cos, round, calculateMiddle, crange, clamp } from '../math/core';
+import { sin, cos, round, calculateMiddle, extrapolate_range_clamp, clamp } from '../math/core';
 import { tau } from '../math/circle';
 import { distance2d } from '../math/distance';
 import { vscale, vturn, positive_intersection_with_rect } from '../math/vector';
@@ -235,8 +235,8 @@ export default class ConvasController {
      */
     canvas_update_post() {
         const elapsed = window.gameController.game_time() - window.airportController.airport_get().start;
-        const alpha = crange(0.1, elapsed, 0.4, 0, 1);
-        const framestep = Math.round(crange(1, prop.game.speedup, 10, 30, 1));
+        const alpha = extrapolate_range_clamp(0.1, elapsed, 0.4, 0, 1);
+        const framestep = Math.round(extrapolate_range_clamp(1, prop.game.speedup, 10, 30, 1));
 
         if (this.canvas.dirty || (!window.gameController.game_paused() && prop.time.frames % framestep === 0) || elapsed < 1) {
             const cc = this.canvas_get('navaids');
@@ -1356,7 +1356,7 @@ export default class ConvasController {
         cc.beginPath();
         cc.moveTo(0, 0);
         cc.rotate(airport.wind.angle);
-        cc.lineTo(0, crange(0, windspeed_line, 15, 0, size2 - dot));
+        cc.lineTo(0, extrapolate_range_clamp(0, windspeed_line, 15, 0, size2 - dot));
 
         // TODO: simplify. replace with initial assignment and re-assignment in if condition
         // Color wind line red for high-wind

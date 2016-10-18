@@ -1,6 +1,7 @@
 /* eslint-disable no-multi-spaces, func-names, camelcase, no-undef, max-len, object-shorthand */
 import PositionModel from '../base/PositionModel';
 import { abs, tan } from '../math/core';
+import { radians_normalize } from '../math/circle.js';
 import { km, degreesToRadians } from '../utilities/unitConverters';
 import { vlen, vradial, vsub, vadd, vscale } from '../math/vector';
 
@@ -63,7 +64,7 @@ export default class RunwayModel {
             this.length = vlen(vsub(farSide.position, thisSide.position));
             // TODO: what is the 0.5 for? enumerate the magic number
             this.midfield = vscale(vadd(thisSide.position, farSide.position), 0.5);
-            this.angle = vradial(vsub(farSide.position, thisSide.position));
+            this.angle = radians_normalize(vradial(vsub(farSide.position, thisSide.position)));
         }
 
         if (data.ils) {
