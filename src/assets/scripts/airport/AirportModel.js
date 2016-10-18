@@ -13,6 +13,8 @@ import FixCollection from './Fix/FixCollection';
 import StandardRouteCollection from './StandardRoute/StandardRouteCollection';
 import { ArrivalFactory } from './Arrival/ArrivalFactory';
 import { DepartureFactory } from './Departure/DepartureFactory';
+import { arrivalFactory } from './Arrival/arrivalFactory';
+import { departureFactory } from './Departure/departureFactory';
 import { degreesToRadians, parseElevation } from '../utilities/unitConverters';
 import { round, abs, sin, crange } from '../math/core';
 import { angle_offset } from '../math/circle';
@@ -372,7 +374,7 @@ export default class AirportModel {
             return;
         }
 
-        this.departures = DepartureFactory(this, departures);
+        this.departures = departureFactory(this, departures);
     }
 
     /**
@@ -389,7 +391,7 @@ export default class AirportModel {
             if (!_has(arrivals[i], 'type')) {
                 log(`${this.icao} arrival stream #${i} not given type!`, LOG.WARNING);
             } else {
-                this.arrivals.push(ArrivalFactory(this, arrivals[i]));
+                this.arrivals.push(arrivalFactory(this, arrivals[i]));
             }
         }
     }
