@@ -1,3 +1,4 @@
+import _cloneDeep from 'lodash/cloneDeep';
 import _uniqueId from 'lodash/uniqueId';
 import PositionModel from '../../base/PositionModel';
 
@@ -82,5 +83,13 @@ export default class FixModel {
         this._fixPosition = null;
 
         return this;
+    }
+
+    /**
+     *
+     *
+     */
+    clonePosition() {
+        return _cloneDeep(this._fixPosition);
     }
 }

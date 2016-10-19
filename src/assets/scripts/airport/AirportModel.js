@@ -136,8 +136,8 @@ export default class AirportModel {
         this.rr_center = _get(data, 'rr_center');
 
         this.fixCollection = new FixCollection(data.fixes, this.position);
-        this.sidCollection = new StandardRouteCollection(data.sids);
-        this.starCollection = new StandardRouteCollection(data.stars);
+        this.sidCollection = new StandardRouteCollection(data.sids, this.fixCollection);
+        this.starCollection = new StandardRouteCollection(data.stars, this.fixCollection);
 
         this.loadTerrain();
         this.buildAirportAirspace(data.airspace);
@@ -466,8 +466,8 @@ export default class AirportModel {
         // TODO: why is this var getting reassigned to a magic number?
         s = 100;
         const speed_factor = sin((s + window.gameController.game_time()) * 0.5) + sin((s + window.gameController.game_time()) * 2);
-        wind.angle += crange(-1, angle_factor, 1, degreesToRadians(-4), degreesToRadians(4));
-        wind.speed *= crange(-1, speed_factor, 1, 0.9, 1.05);
+        wind.angle += extrapolate_range_clamp(-1, angle_factor, 1, degreesToRadians(-4), degreesToRadians(4));
+        wind.speed *= extrapolate_range_clamp(-1, speed_factor, 1, 0.9, 1.05);
 
         return wind;
     }

@@ -58,3 +58,12 @@ ava('FixModel._init() sets name in upperCase', t => {
     model = new FixModel('u443rcas3', FIX_COORDINATE_MOCK, airportPositionFixture);
     t.true(model.name === 'U443RCAS3');
 });
+
+ava('.clonePosition() returns a PositionModel with the position information of the FixModel', t => {
+    const model = new FixModel(FIXNAME_MOCK, FIX_COORDINATE_MOCK, airportPositionFixture);
+    const result = model.clonePosition();
+
+    t.true(result instanceof PositionModel);
+    t.true(result.latitude === result.latitude);
+    t.true(result.longitude === result.longitude);
+});
