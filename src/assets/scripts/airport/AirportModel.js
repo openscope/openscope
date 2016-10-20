@@ -682,7 +682,7 @@ export default class AirportModel {
 
     /**
      *
-     * 
+     *
      */
     findFixModelsForStar(id, entry, rwy) {
         return this.starCollection.findFixModelsForRouteByEntryAndExit(id, entry, rwy);
