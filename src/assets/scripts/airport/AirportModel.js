@@ -69,7 +69,6 @@ export default class AirportModel {
         this.runway   = null;
 
         this.fixes = {};
-        this.fixCollection = null;
         this.sids = {};
         this.sidCollection = null;
         this.stars = {};
@@ -107,7 +106,7 @@ export default class AirportModel {
     }
 
     get real_fixes() {
-        return this.fixCollection.findRealFixes();
+        return FixCollection.findRealFixes();
     }
 
     get elevation() {
@@ -135,9 +134,9 @@ export default class AirportModel {
         this.rr_radius_nm = _get(data, 'rr_radius_nm');
         this.rr_center = _get(data, 'rr_center');
 
-        this.fixCollection = new FixCollection(data.fixes, this.position);
-        this.sidCollection = new StandardRouteCollection(data.sids, this.fixCollection);
-        this.starCollection = new StandardRouteCollection(data.stars, this.fixCollection);
+        FixCollection.init(data.fixes, this.position);
+        this.sidCollection = new StandardRouteCollection(data.sids);
+        this.starCollection = new StandardRouteCollection(data.stars);
 
         this.loadTerrain();
         this.buildAirportAirspace(data.airspace);
@@ -620,7 +619,7 @@ export default class AirportModel {
      * @return {array}
      */
     getFixPosition(fixName) {
-        const fixModel = this.fixCollection.findFixByName(fixName);
+        const fixModel = FixCollection.findFixByName(fixName);
 
         return fixModel.position;
     }
@@ -679,6 +678,14 @@ export default class AirportModel {
      */
     getSTAR(id, entry, rwy) {
         return this.starCollection.findFixesForStarByEntryAndRunway(id, entry, rwy);
+    }
+
+    /**
+     *
+     * 
+     */
+    findFixModelsForStar(id, entry, rwy) {
+        return this.starCollection.findFixModelsForRouteByEntryAndExit(id, entry, rwy);
     }
 
     getRunway(name) {

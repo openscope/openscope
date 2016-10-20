@@ -7,6 +7,12 @@ import _isEqual from 'lodash/isEqual';
 import StandardRouteModel from '../../../src/assets/scripts/airport/StandardRoute/StandardRouteModel';
 import RouteSegmentCollection from '../../../src/assets/scripts/airport/StandardRoute/RouteSegmentCollection';
 import RouteSegmentModel from '../../../src/assets/scripts/airport/StandardRoute/RouteSegmentModel';
+import StandardRouteWaypointModel from '../../../src/assets/scripts/airport/StandardRoute/StandardRouteWaypointModel';
+
+import FixCollection from '../../../src/assets/scripts/airport/Fix/FixCollection';
+import { airportPositionFixture } from '../../fixtures/airportFixtures';
+import { FIX_LIST_MOCK } from '../Fix/_mocks/fixMocks';
+
 import {
     STAR_LIST_MOCK,
     SID_LIST_MOCK,
@@ -20,6 +26,9 @@ const STAR_MOCK = STAR_LIST_MOCK.TYSSN4;
 const RUNWAY_NAME_MOCK = '25L';
 const EXIT_FIXNAME_MOCK = 'KENNO';
 const ENTRY_FIXNAME_MOCK = 'DRK';
+
+ava.before(() => FixCollection.init(FIX_LIST_MOCK, airportPositionFixture));
+ava.after(() => FixCollection.destroy());
 
 ava('throws when instantiated with invaild parameters', t => {
     t.throws(() => new StandardRouteModel());
@@ -172,6 +181,20 @@ ava('.findFixesAndRestrictionsForEntryAndRunway() returns entry and body fixes w
     t.true(_isEqual(actualArguments, expectedArguments));
 });
 
+ava('.findFixeModelsForEntryAndExit() returns a list of `StandardRouteWaypointModel`s for a given STAR', t => {
+    const expectedArguments = [ 'MLF', '19R' ]
+    const model = new StandardRouteModel(STAR_LIST_MOCK.GRNPA1);
+    const spy = sinon.spy(model, '_findFixModelsForRoute');
+
+    const result = model.findFixeModelsForEntryAndExit('MLF', '19R');
+    const actualArguments = spy.getCall(0).args;
+
+    t.true(_isEqual(actualArguments, expectedArguments));
+    t.true(result.length === 8);
+    t.true(result[0] instanceof StandardRouteWaypointModel);
+    t.true(result[0].position !== null);
+});
+
 ava('.gatherExitPointNames() retuns a list of the exitPoint fix names', t => {
     const expectedResult = ['KENNO', 'OAL'];
     const model = new StandardRouteModel(SID_MOCK);
@@ -187,7 +210,6 @@ ava('.gatherExitPointNames() retuns an empty array if not exitPoints exist or th
     t.true(_isArray(result));
     t.true(result.length === 0);
 });
-
 
 ava('.hasExitPoints() returns a boolean', t => {
     let model;

@@ -10,24 +10,20 @@ import FixModel from './FixModel';
 /**
  * @class FixCollection
  */
-export default class FixCollection {
+class FixCollection {
     /**
      * @for FixCollection
      * @constructor
-     * @param fixList {object}
      */
-    constructor(fixList, airportPosition) {
-        if (typeof fixList === 'undefined' || !_isObject(fixList) || _isArray(fixList)) {
-            return null;
-        }
-
+    constructor() {
         /**
          * Unigue string id that can be used to differentiate this model instance from another.
          *
          * @property _id
          * @type {string}
+         * @default ''
          */
-        this._id = _uniqueId();
+        this._id = '';
 
         /**
          * Array of `FixModel`s
@@ -47,20 +43,19 @@ export default class FixCollection {
          * @default -1
          */
         this.length = -1;
-
-        return this._init(fixList, airportPosition);
     }
 
     /**
      * Lifecycle method. Should be run only once on instantiation.
      *
      * @for FixCollection
-     * @method _init
+     * @method init
      * @param fixList {object}
      * @param airportPosition {PositionModel}
-     * @private
      */
-    _init(fixList, airportPosition) {
+    init(fixList, airportPosition) {
+        this._id = _uniqueId();
+
         this._buildFixModelsFromList(fixList, airportPosition);
     }
 
@@ -141,3 +136,5 @@ export default class FixCollection {
         return _compact(realFixList);
     }
 }
+
+export default new FixCollection();

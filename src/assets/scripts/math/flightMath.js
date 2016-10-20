@@ -97,6 +97,7 @@ export const getOffset = (aircraft, target, headingThruTarget = null) => {
  * @returns {array}         location of the projected fix
  */
 export const fixRadialDist = (fix, radial, dist) => {
+    // FIXME: if fix is a FixModel, there may already be a method for this. if there isnt there should be. `fix.positionInRadians`
     // convert GPS coordinates to radians
     fix = [
         degreesToRadians(fix[0]),
@@ -117,16 +118,14 @@ export const fixRadialDist = (fix, radial, dist) => {
     ];
 };
 
-
-// TODO: this logic should live in the `AirportController`
 /**
  *
- * @function inAirspace
+ * @function isWithinAirspace
  * @param airport {AirportModel}
  * @param  pos {array}
  * @return {boolean}
  */
-export const inAirspace = (airport, pos) => {
+export const isWithinAirspace = (airport, pos) => {
     const perim = airport.perimeter;
 
     if (perim) {
@@ -136,15 +135,14 @@ export const inAirspace = (airport, pos) => {
     return distance2d(pos, airport.position.position) <= airport.ctr_radius;
 };
 
-// TODO: this logic should live in the `AirportController`
 /**
  *
- * @function dist_to_boundary
+ * @function calculateDistanceToBoundary
  * @param airport {AirportModel}
  * @param pos {array}
  * @return {boolean}
  */
-export const dist_to_boundary = (airport, pos) => {
+export const calculateDistanceToBoundary = (airport, pos) => {
     const perim = airport.perimeter;
 
     if (perim) {

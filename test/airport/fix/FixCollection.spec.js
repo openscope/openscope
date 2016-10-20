@@ -3,54 +3,44 @@ import ava from 'ava';
 import FixCollection from '../../../src/assets/scripts/airport/Fix/FixCollection';
 import FixModel from '../../../src/assets/scripts/airport/Fix/FixModel';
 import { airportPositionFixture } from '../../fixtures/airportFixtures';
-import { FIX_LIST } from './_mocks/fixMocks';
+import { FIX_LIST_MOCK } from './_mocks/fixMocks';
 
-ava('FixCollection returns early when instantiated with invalid parameters', t => {
-    t.notThrows(() => new FixCollection());
-    const collection = new FixCollection();
 
-    t.true(typeof collection._id === 'undefined');
-    t.true(typeof collection._items === 'undefined');
+ava.serial('FixCollection throws when an attempt to instantiate is made', t => {
+    t.throws(() => new FixCollection());
+
+    t.true(FixCollection._id === '');
+    t.true(FixCollection._items.length === 0);
+    t.true(FixCollection.length === -1);
 });
 
-ava('FixCollection accepts an object `fixList` as the only paramater', t => {
-    t.notThrows(() => new FixCollection(FIX_LIST, airportPositionFixture));
+ava.serial('FixCollection sets its properties when it receives a valid fixList', t => {
+    FixCollection.init(FIX_LIST_MOCK, airportPositionFixture);
+
+    t.false(FixCollection._id === '');
+    t.true(FixCollection._items.length > 0);
+    t.true(FixCollection.length === FixCollection._items.length);
 });
 
-ava('FixCollection sets its properties when it receives a valid fixList', t => {
-    const collection = new FixCollection(FIX_LIST, airportPositionFixture);
-
-    t.false(typeof collection._id === 'undefined');
-    t.true(collection._items.length > 0);
-    t.true(collection.length === collection._items.length);
+ava.serial('.addFixToCollection() throws if it doesnt receive a FixModel instance', t => {
+    t.throws(() => FixCollection.addFixToCollection({}));
 });
 
-ava('.addFixToCollection() throws if it doesnt receive a FixModel instance', t => {
-    const collection = new FixCollection(FIX_LIST, airportPositionFixture);
-
-    t.throws(() => collection.addFixToCollection({}));
-});
-
-ava('.findFixByName() returns a FixModel if it exists within the collection', t => {
-    const collection = new FixCollection(FIX_LIST, airportPositionFixture);
-    const result = collection.findFixByName('BAKRR');
+ava.serial('.findFixByName() returns a FixModel if it exists within the collection', t => {
+    const result = FixCollection.findFixByName('BAKRR');
 
     t.true(result.name === 'BAKRR');
     t.true(result instanceof FixModel);
 });
 
-ava('.findFixByName() returns null if a FixModel does not exist within the collection', t => {
-    const collection = new FixCollection(FIX_LIST, airportPositionFixture);
-    const result = collection.findFixByName('');
+ava.serial('.findFixByName() returns null if a FixModel does not exist within the collection', t => {
+    const result = FixCollection.findFixByName('');
 
     t.true(result === null);
 });
 
-ava('.findRealFixes() returns a list of fixes that dont have `_` prepedning thier name', t => {
-    const collection = new FixCollection(FIX_LIST, airportPositionFixture);
-    const result = collection.findRealFixes();
+ava.serial('.findRealFixes() returns a list of fixes that dont have `_` prepedning thier name', t => {
+    const result = FixCollection.findRealFixes();
 
-    t.true(result.length === 2);
-    t.true(result[0].name === 'BAKRR');
-    t.true(result[1].name === 'BCE');
+    t.true(result.length === 104);
 });

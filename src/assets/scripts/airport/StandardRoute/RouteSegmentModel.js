@@ -1,3 +1,4 @@
+import _forEach from 'lodash/forEach';
 import _map from 'lodash/map';
 import _isArray from 'lodash/isArray';
 import _uniqId from 'lodash/uniqueId';
@@ -64,6 +65,16 @@ export default class RouteSegmentModel {
     }
 
     /**
+     *
+     * 
+     * @property items
+     * @return {array}
+     */
+    get items() {
+        return this._items;
+    }
+
+    /**
      * Lifecycle method. Should be run only once on instantiation.
      *
      * @for RouteSegmentModel
@@ -114,15 +125,19 @@ export default class RouteSegmentModel {
         return fixList;
     }
 
-
+    /**
+     *
+     * @for RouteSegmentModel
+     * @method _createWaypointModelsFromList
+     * @param segmentWaypoints {array}
+     * @return waypointModelList {array}
+     */
     _createWaypointModelsFromList(segmentWaypoints) {
-        const waypointModelList = _map(segmentWaypoints, (fixAndRestrictions) => {
+        _forEach(segmentWaypoints, (fixAndRestrictions) => {
             const waypointModel = new StandardRouteWaypointModel(fixAndRestrictions);
 
             this._addWaypointToCollection(waypointModel);
         });
-
-        return waypointModelList;
     }
 
     /**

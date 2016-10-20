@@ -2,6 +2,11 @@
 import ava from 'ava';
 
 import StandardRouteCollection from '../../../src/assets/scripts/airport/StandardRoute/StandardRouteCollection';
+import FixCollection from '../../../src/assets/scripts/airport/Fix/FixCollection';
+
+import { airportPositionFixture } from '../../fixtures/airportFixtures';
+import { FIX_LIST_MOCK } from '../Fix/_mocks/fixMocks';
+
 import {
     STAR_LIST_MOCK,
     SID_LIST_MOCK,
@@ -13,6 +18,9 @@ const STAR_ICAO_MOCK = 'GRNPA1';
 const ENTRY_FIXNAME_MOCK = 'MLF';
 const EXIT_FIXNAME_MOCK = 'KENNO';
 const RUNWAY_NAME_MOCK = '19R';
+
+ava.before(() => FixCollection.init(FIX_LIST_MOCK, airportPositionFixture));
+ava.after(() => FixCollection.destroy());
 
 ava('does not throw when no parameters are passed', t => t.notThrows(() => new StandardRouteCollection()));
 
@@ -71,8 +79,14 @@ ava('.findRandomExitPointForSIDIcao() returns the name of this StandardRoute if 
     const collection = new StandardRouteCollection(SID_WITHOUT_EXIT_MOCK);
     const result = collection.findRandomExitPointForSIDIcao(ICAO);
 
-
     t.true(result === ICAO);
+});
+
+ava('.findFixModelsForRouteByEntryAndExit() returns a list of `StandardRouteWaypointModel`s for a given STAR', t => {
+    const collection = new StandardRouteCollection(STAR_LIST_MOCK);
+    const result = collection.findFixModelsForRouteByEntryAndExit(STAR_ICAO_MOCK, ENTRY_FIXNAME_MOCK, RUNWAY_NAME_MOCK);
+
+    t.true(result.length === 8);
 });
 
 ava('._addSidToCollection() throws if it doesnt receive a SidModel', t => {

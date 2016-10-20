@@ -3,13 +3,18 @@ import ava from 'ava';
 import sinon from 'sinon';
 
 import RouteSegmentModel from '../../../src/assets/scripts/airport/StandardRoute/RouteSegmentModel';
+import FixCollection from '../../../src/assets/scripts/airport/Fix/FixCollection';
+
+import { airportPositionFixture } from '../../fixtures/airportFixtures';
+import { FIX_LIST_MOCK } from '../Fix/_mocks/fixMocks';
 
 const NAME_MOCK = '25R';
 const SEGMENT_WAYPOINTS_MOCK = ['RBELL', ['ROPPR', 'A70'], ['MDDOG', 'A90'], ['TARRK', 'A110']];
 
-ava('throws with invalid parameters', t => {
-    // t.throws(() => new RouteSegmentModel());
+ava.before(() => FixCollection.init(FIX_LIST_MOCK, airportPositionFixture));
+ava.after(() => FixCollection.destroy());
 
+ava('throws with invalid parameters', t => {
     t.notThrows(() => new RouteSegmentModel(NAME_MOCK, SEGMENT_WAYPOINTS_MOCK));
 });
 

@@ -1,3 +1,4 @@
+import FixCollection from '../Fix/FixCollection';
 import _uniqId from 'lodash/uniqueId';
 
 /**
@@ -74,6 +75,8 @@ export default class StandardRouteWaypointModel {
         this._restrictions = null;
 
         /**
+         * NOT IN USE
+         *
          * Required altitude for a fix
          *
          * @property _alititude (optional)
@@ -85,6 +88,8 @@ export default class StandardRouteWaypointModel {
 
         // TODO: This will need to be implemented in the future as an emuneration. Something to the effect of: {BELOW|AT|ABOVE}
         /**
+         * NOT IN USE
+         *
          * Altitude constraints, if any, for a fix.
          *
          * @property _alititudeConstraint (options)
@@ -95,6 +100,8 @@ export default class StandardRouteWaypointModel {
         this._alititudeConstraint = '';
 
         /**
+         * NOT IN USE
+         *
          * Speed constraint, if any, for a fix.
          *
          * @property _speedConstraint (optional)
@@ -104,7 +111,17 @@ export default class StandardRouteWaypointModel {
          */
         this._speedConstraint = -1;
 
-        return this._init(routeWaypoint);
+        /**
+         *
+         *
+         * @property _waypointPosition
+         * @type {PositionModel}
+         * @default null
+         */
+        this._waypointPosition = null;
+
+        return this._init(routeWaypoint)
+                   .clonePoisitonFromFix();
     }
 
     /**
@@ -128,6 +145,7 @@ export default class StandardRouteWaypointModel {
      * @for StandardRouteWaypointModel
      * @method _init
      * @param routeWaypoint {array|string}
+     * @chainable
      * @private
      */
     _init(routeWaypoint) {
@@ -142,9 +160,6 @@ export default class StandardRouteWaypointModel {
         // temporary property. should end up as a getter that wraps private methods
         this._restrictions = routeWaypoint[RESTRICTION_INDEX];
 
-        // TODO: NOT IN USE
-        // TODO: implement this method. altitude and speed should be parsed into real numbers so
-        // they can be used elsewhere in the app.
         this._parseWaypointRestrictions(routeWaypoint[RESTRICTION_INDEX]);
 
         return this;
@@ -168,6 +183,32 @@ export default class StandardRouteWaypointModel {
     }
 
     /**
+     *
+     *
+     * @for StandardRouteWaypointModel
+     * @method _clonePoisitonFromFix
+     * @param fixCollection {FixCollection}
+     * @private
+     */
+    clonePoisitonFromFix() {
+        const fixModel = FixCollection.findFixByName(this._name);
+
+        if (!fixModel) {
+            console.warn(`The following fix was not found in the list of fixes for this Airport: ${this._name}`);
+
+            return this;
+        }
+
+        this._waypointPosition = fixModel.clonePosition();
+
+        return this;
+    }
+
+    /**
+     * NOT IN USE
+     * // TODO: implement this method. altitude and speed should be parsed into real numbers so
+     *          they can be used elsewhere in the app.
+     *
      * Parse a single string into:
      * - `this._alititude`            = expressed in feet
      * - `this._alititudeConstraint`  = {BELOW|AT|ABOVE}
@@ -185,7 +226,6 @@ export default class StandardRouteWaypointModel {
      * @private
      */
     _parseWaypointRestrictions(waypointRestrictions) {
-        // NOT IN USE
-        return;
+        return this;
     }
 }

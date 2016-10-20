@@ -70,6 +70,7 @@ export default class StandardRouteCollection {
         return this;
     }
 
+    // TODO: update implementations to accept the FixModel instead of an array
     /**
      * Find a list of fixes for a route, given an `icao`, `exitFixName` and `runwayName` parameter.
      *
@@ -85,11 +86,12 @@ export default class StandardRouteCollection {
             return;
         }
 
-        const sid = this.findSidByIcao(icao);
+        const sid = this.findRouteByIcao(icao);
 
         return sid.findFixesAndRestrictionsForRunwayAndExit(runwayName, exitFixName);
     }
 
+    // TODO: update implementations to accept the FixModel instead of an array
     /**
      * Find a list of fixes for a route, given an `icao`, `entryFixName` and `runwayName` parameter.
      *
@@ -107,9 +109,23 @@ export default class StandardRouteCollection {
             return;
         }
 
-        const sid = this.findSidByIcao(icao);
+        const sid = this.findRouteByIcao(icao);
 
         return sid.findFixesAndRestrictionsForEntryAndRunway(entryFixName, runwayName);
+    }
+
+    /**
+     *
+     *
+     */
+    findFixModelsForRouteByEntryAndExit(icao, entry, exit) {
+        if (!icao) {
+            return;
+        }
+
+        const route = this.findRouteByIcao(icao);
+
+        return route.findFixeModelsForEntryAndExit(entry, exit);
     }
 
     /**
@@ -121,7 +137,7 @@ export default class StandardRouteCollection {
      * @return {string}
      */
     findRandomExitPointForSIDIcao(icao) {
-        const sid = this.findSidByIcao(icao);
+        const sid = this.findRouteByIcao(icao);
 
         // if sid doesnt have any exit points it ends at fix for which the SID is named
         if (!sid.hasExitPoints()) {
@@ -137,14 +153,14 @@ export default class StandardRouteCollection {
     }
 
     /**
-     * Find a sid within the collection given an icao
+     * Find a `StandardRouteModel` within the collection given an `icao`
      *
      * @for StandardRouteCollection
-     * @method findSidByIcao
+     * @method findRouteByIcao
      * @param icao {string}
      * @return {StandardRouteModel|undefined}
      */
-    findSidByIcao(icao) {
+    findRouteByIcao(icao) {
         return _find(this._items, { icao: icao });
     }
 

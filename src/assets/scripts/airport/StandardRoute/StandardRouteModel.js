@@ -209,6 +209,16 @@ export default class StandardRouteModel {
     findFixesAndRestrictionsForEntryAndRunway(entryFixName = '', runwayName = '') {
         return this._findFixListForStarByEntryAndRunway(entryFixName, runwayName);
     }
+
+    /**
+     *
+     *
+     */
+    findFixeModelsForEntryAndExit(entry, exit) {
+        return this._findFixModelsForRoute(entry, exit);
+    }
+
+
     /**
      * Return the fixnames for the `_exitCollection`
      *
@@ -404,5 +414,25 @@ export default class StandardRouteModel {
         }
 
         return this._entryCollection.findFixesForSegmentName(entryFixName);
+    }
+
+    /**
+     *
+     *
+     */
+    _findFixModelsForRoute(entry, exit) {
+        const entrySegment = this._entryCollection.findSegmentByName(entry);
+        // TODO: this is icky, do something different with this
+        const exitSegment = this._runwayCollection
+            ? this._runwayCollection.findSegmentByName(exit)
+            : null;
+
+        const fixModels = [
+            ...entrySegment.items,
+            ...this._bodySegmentModel.items,
+            ...exitSegment
+        ];
+
+        return _compact(fixModels);
     }
 }
