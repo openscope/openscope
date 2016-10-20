@@ -19,11 +19,11 @@ ava('SidCollection adds a list of SIDs to the collection and updates the .length
     t.true(collection._sids.length === collection.length);
 });
 
-ava('SidCollection.getSID() returns a list of fixes that make up a SID when given an id, exit and runway paramater', t => {
+ava('SidCollection.findFixesForSidByRunwayAndExit() returns a list of fixes that make up a SID when given an id, exit and runway paramater', t => {
     const collection = new SidCollection(SID_LIST_MOCK);
     const ID = 'SHEAD9';
     const EXIT = 'KENNO';
     const RUNWAY = '19R';
 
-    const result = collection.getSID(ID, EXIT, RUNWAY);
+    const result = collection.findFixesForSidByRunwayAndExit(ID, EXIT, RUNWAY);
 });

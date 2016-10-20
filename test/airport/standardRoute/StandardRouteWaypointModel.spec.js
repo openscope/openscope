@@ -20,7 +20,6 @@ ava('StandardRouteWaypointModel sets only `_name` when provided a string', t => 
 
     t.true(typeof model._id === 'string');
     t.true(model._name === 'GOPHR');
-    t.true(model._name === null);
     t.true(model._alititude === -1000);
     t.true(model._alititudeConstraint === '');
     t.true(model._speed === -1);

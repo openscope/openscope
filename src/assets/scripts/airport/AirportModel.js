@@ -429,8 +429,8 @@ export default class AirportModel {
         // TODO: why is this var getting reassigned to a magic number?
         s = 100;
         const speed_factor = sin((s + window.gameController.game_time()) * 0.5) + sin((s + window.gameController.game_time()) * 2);
-        wind.angle += crange(-1, angle_factor, 1, degreesToRadians(-4), degreesToRadians(4));
-        wind.speed *= crange(-1, speed_factor, 1, 0.9, 1.05);
+        wind.angle += extrapolate_range_clamp(-1, angle_factor, 1, degreesToRadians(-4), degreesToRadians(4));
+        wind.speed *= extrapolate_range_clamp(-1, speed_factor, 1, 0.9, 1.05);
 
         return wind;
     }
@@ -495,8 +495,8 @@ export default class AirportModel {
         // TODO: why is this var getting reassigned to a magic number?
         s = 100;
         const speed_factor = sin((s + window.gameController.game_time()) * 0.5) + sin((s + window.gameController.game_time()) * 2);
-        wind.angle += crange(-1, angle_factor, 1, degreesToRadians(-4), degreesToRadians(4));
-        wind.speed *= crange(-1, speed_factor, 1, 0.9, 1.05);
+        wind.angle += extrapolate_range_clamp(-1, angle_factor, 1, degreesToRadians(-4), degreesToRadians(4));
+        wind.speed *= extrapolate_range_clamp(-1, speed_factor, 1, 0.9, 1.05);
 
         return wind;
     }
