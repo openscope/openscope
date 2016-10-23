@@ -23,11 +23,11 @@ ava('StandardRouteWaypointModel exits early when instantiated without parameters
     t.true(typeof model._id === 'undefined');
 });
 
-ava('StandardRouteWaypointModel sets only `_name` when provided a string', t => {
+ava('StandardRouteWaypointModel sets only `name` when provided a string', t => {
     const model = new StandardRouteWaypointModel(NAME_MOCK);
 
     t.true(typeof model._id === 'string');
-    t.true(model._name === NAME_MOCK);
+    t.true(model.name === NAME_MOCK);
     t.true(model._alititude === -1000);
     t.true(model._alititudeConstraint === '');
     t.true(model._speedConstraint === -1);

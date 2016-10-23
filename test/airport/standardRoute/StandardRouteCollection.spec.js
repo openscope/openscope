@@ -86,6 +86,8 @@ ava('.findFixModelsForRouteByEntryAndExit() returns a list of `StandardRouteWayp
     const collection = new StandardRouteCollection(STAR_LIST_MOCK);
     const result = collection.findFixModelsForRouteByEntryAndExit(STAR_ICAO_MOCK, ENTRY_FIXNAME_MOCK, RUNWAY_NAME_MOCK);
 
+    // console.log('findFixModelsForRouteByEntryAndExit ::: ', result);
+
     t.true(result.length === 8);
 });
 

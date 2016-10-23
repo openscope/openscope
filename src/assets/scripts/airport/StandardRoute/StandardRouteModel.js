@@ -1,4 +1,5 @@
 import _compact from 'lodash/compact';
+import _forEach from 'lodash/forEach';
 import _get from 'lodash/get';
 import _isArray from 'lodash/isArray';
 import _isEmpty from 'lodash/isEmpty';
@@ -6,6 +7,8 @@ import _isObject from 'lodash/isObject';
 import _uniqId from 'lodash/uniqueId';
 import RouteSegmentCollection from './RouteSegmentCollection';
 import RouteSegmentModel from './RouteSegmentModel';
+import { distance2d } from '../../math/distance';
+import { nm } from '../../utilities/unitConverters';
 
 /**
  * Accepts a single route belonging to a SID or STAR and provides methods to reason about its contents.
@@ -213,11 +216,43 @@ export default class StandardRouteModel {
     /**
      *
      *
+     * @for StandardRouteModel
+     * @method findFixModelsForEntryAndExit
+     * @param entry {string}
+     * @parma exit {string}
+     * @return waypointList {array<StandardWaypointModel>}
      */
-    findFixeModelsForEntryAndExit(entry, exit) {
-        return this._findFixModelsForRoute(entry, exit);
+    findFixModelsForEntryAndExit(entry, exit) {
+        const waypointList = this._findStandardWaypointModelsForRoute(entry, exit);
+
+        _forEach(waypointList, (waypoint, i) => {
+            let previousWaypoint = waypointList[i - 1];
+            if (i === 0) {
+                previousWaypoint = waypoint;
+            }
+
+            const distance = this.calculateDistanceBetweenWaypoints(waypoint.position, previousWaypoint.position);
+            waypoint.distanceFromPreviousWaypoint = distance;
+            waypoint.previousFixName = previousWaypoint.name;
+        });
+
+        return waypointList;
     }
 
+    /**
+     * Given two `StandardWaypointModel` objects, calculate the distance in `nm` between them
+     *
+     * @for StandardRouteModel
+     * @method calculateDistanceBetweenWaypoints
+     * @param waypoint {StandardWaypointModel}
+     * @param previousWaypoint {StandardWaypointModel}
+     * @return distance {number}
+     */
+    calculateDistanceBetweenWaypoints(waypoint, previousWaypoint) {
+        const distance = distance2d(previousWaypoint, waypoint);
+
+        return nm(distance);
+    }
 
     /**
      * Return the fixnames for the `_exitCollection`
@@ -256,6 +291,7 @@ export default class StandardRouteModel {
      * @method _buildSegmentModel
      * @param segmentFixList {array}
      * @return segmentModel {SegmentModel}
+     * @private
      */
     _buildSegmentModel(segmentFixList) {
         const segmentModel = new RouteSegmentModel('body', segmentFixList);
@@ -321,6 +357,7 @@ export default class StandardRouteModel {
      * @param runwayName {string}
      * @param exitFixName {string}
      * @return fixList {array}
+     * @private
      */
     _findFixListForSidByRunwayAndExit = (runwayName, exitFixName) => this._generateFixList(
         this._findFixListForRunwayName(runwayName),
@@ -371,7 +408,7 @@ export default class StandardRouteModel {
     _findFixListForRunwayName(runwayName) {
         // specifically checking for an empty string here because this param gets a default of '' when
         // it is received in to the public method
-        if (typeof this.rwy === 'undefined' || runwayName === '') {
+        if (typeof this.rwy === 'undefined' || !this._runwayCollection || runwayName === '') {
             return [];
         }
 
@@ -390,7 +427,7 @@ export default class StandardRouteModel {
     _findFixListForExitFixName(exitFixName) {
         // specifically checking for an empty string here because this param gets a default of '' when
         // it is received in to the public method
-        if (typeof this.exitPoints === 'undefined' || _isEmpty(this._exitCollection) || exitFixName === '') {
+        if (typeof this.exitPoints === 'undefined' || !this._exitCollection || exitFixName === '') {
             return [];
         }
 
@@ -409,7 +446,7 @@ export default class StandardRouteModel {
     _findFixListForEntryFixName(entryFixName) {
         // specifically checking for an empty string here because this param gets a default of '' when
         // it is received in to the public method
-        if (entryFixName === '') {
+        if (typeof this.entryPoints === 'undefined' || !this._entryCollection || entryFixName === '') {
             return [];
         }
 
@@ -417,22 +454,34 @@ export default class StandardRouteModel {
     }
 
     /**
+     * Gather a list of `StandardWaypointModel` objects for a particular route.
      *
-     *
+     * @for StandardRouteModel
+     * @method _findStandardWaypointModelsForRoute
+     * @param entry {string}
+     * @param exti {string}
+     * @return waypointModelList {array<StandardWaypointModel>}
      */
-    _findFixModelsForRoute(entry, exit) {
-        const entrySegment = this._entryCollection.findSegmentByName(entry);
+    _findStandardWaypointModelsForRoute(entry, exit) {
         // TODO: this is icky, do something different with this
-        const exitSegment = this._runwayCollection
-            ? this._runwayCollection.findSegmentByName(exit)
-            : null;
+        let entrySegmentItems = [];
+        if (this._entryCollection) {
+            const entrySegment = this._entryCollection.findSegmentByName(entry);
+            entrySegmentItems = entrySegment.items;
+        }
 
-        const fixModels = [
-            ...entrySegment.items,
+        let exitSegmentItems = [];
+        if (this._runwayCollection) {
+            const exitSegment = this._runwayCollection.findSegmentByName(exit);
+            exitSegmentItems = exitSegment.items;
+        }
+
+        const waypointModelList = [
+            ...entrySegmentItems,
             ...this._bodySegmentModel.items,
-            ...exitSegment
+            ...exitSegmentItems
         ];
 
-        return _compact(fixModels);
+        return _compact(waypointModelList);
     }
 }

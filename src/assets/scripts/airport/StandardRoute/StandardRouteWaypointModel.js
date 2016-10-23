@@ -49,12 +49,12 @@ export default class StandardRouteWaypointModel {
         /**
          * Name of the fix
          *
-         * @property _name
+         * @property name
          * @type {string}
          * @default ''
          * @private
          */
-        this._name = '';
+        this.name = '';
 
         /**
          * Any restrictions for a given fix
@@ -120,8 +120,46 @@ export default class StandardRouteWaypointModel {
          */
         this._waypointPosition = null;
 
+        /**
+         *
+         *
+         * @property distanceFromPreviousWaypoint
+         * @type {number}
+         * @default -1
+         */
+        this.distanceFromPreviousWaypoint = -1;
+
+        /**
+         *
+         *
+         * @property previousFixName
+         * @type {string}
+         * @default ''
+         */
+        this.previousFixName = '';
+
         return this._init(routeWaypoint)
                    .clonePoisitonFromFix();
+    }
+
+    /**
+     *
+     *
+     * @property position
+     * @return {array}
+     */
+    get position() {
+        return this._waypointPosition.position;
+    }
+
+    /**
+     *
+     *
+     * @property gps
+     * @return {array}
+     */
+    get gps() {
+        return this._waypointPosition.gps;
     }
 
     /**
@@ -136,7 +174,7 @@ export default class StandardRouteWaypointModel {
      * @return {array}
      */
     get fix() {
-        return [this._name, this._restrictions];
+        return [this.name, this._restrictions];
     }
 
     /**
@@ -149,14 +187,14 @@ export default class StandardRouteWaypointModel {
      * @private
      */
     _init(routeWaypoint) {
-        // if we receive a string, this fix doesnt have any restrictions so we only need to set `_name`
+        // if we receive a string, this fix doesnt have any restrictions so we only need to set `name`
         if (typeof routeWaypoint === 'string') {
-            this._name = routeWaypoint;
+            this.name = routeWaypoint;
 
             return this;
         }
 
-        this._name = routeWaypoint[NAME_INDEX];
+        this.name = routeWaypoint[NAME_INDEX];
         // temporary property. should end up as a getter that wraps private methods
         this._restrictions = routeWaypoint[RESTRICTION_INDEX];
 
@@ -173,7 +211,7 @@ export default class StandardRouteWaypointModel {
      */
     destroy() {
         this._id = '';
-        this._name = '';
+        this.name = '';
         this._restrictions = null;
         this._alititude = -1000;
         this._alititudeConstraint = '';
@@ -191,10 +229,10 @@ export default class StandardRouteWaypointModel {
      * @private
      */
     clonePoisitonFromFix() {
-        const fixModel = FixCollection.findFixByName(this._name);
+        const fixModel = FixCollection.findFixByName(this.name);
 
         if (!fixModel) {
-            console.warn(`The following fix was not found in the list of fixes for this Airport: ${this._name}`);
+            console.warn(`The following fix was not found in the list of fixes for this Airport: ${this.name}`);
 
             return this;
         }

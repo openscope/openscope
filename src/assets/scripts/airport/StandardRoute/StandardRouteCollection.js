@@ -52,7 +52,7 @@ export default class StandardRouteCollection {
      * @private
      */
     _init(standardRouteEnum) {
-        this._addSidListToCollection(standardRouteEnum);
+        this._addRouteListToCollection(standardRouteEnum);
 
         return this;
     }
@@ -115,8 +115,14 @@ export default class StandardRouteCollection {
     }
 
     /**
+     * Find a list of `StandardWaypointModel`s for a specific route
      *
-     *
+     * @for StandardRouteCollection
+     * @method findFixModelsForRouteByEntryAndExit
+     * @param icao {string}
+     * @param entry {string}
+     * @param exit {string}
+     * @return {StandardRouteModel}
      */
     findFixModelsForRouteByEntryAndExit(icao, entry, exit) {
         if (!icao) {
@@ -125,7 +131,7 @@ export default class StandardRouteCollection {
 
         const route = this.findRouteByIcao(icao);
 
-        return route.findFixeModelsForEntryAndExit(entry, exit);
+        return route.findFixModelsForEntryAndExit(entry, exit);
     }
 
     /**
@@ -168,13 +174,13 @@ export default class StandardRouteCollection {
      * Add a list of sids to the collection
      *
      * @for StandardRouteCollection
-     * @method _addSidListToCollection
-     * @param sidList {object}
+     * @method _addRouteListToCollection
+     * @param routeList {object}
      * @private
      */
-    _addSidListToCollection(sidList) {
-        _forEach(sidList, (sid) => {
-            const routeModel = new StandardRouteModel(sid);
+    _addRouteListToCollection(routeList) {
+        _forEach(routeList, (route) => {
+            const routeModel = new StandardRouteModel(route);
 
             this._addSidToCollection(routeModel);
         });

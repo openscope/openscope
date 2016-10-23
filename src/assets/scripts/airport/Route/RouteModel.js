@@ -60,6 +60,16 @@ export default class RouteModel {
     }
 
     /**
+     * A single string that represents the entire route
+     *
+     * @property routeString
+     * @return {string}
+     */
+    get routeString() {
+        return `${this.origin}.${this.base}.${this.destination}`;
+    }
+
+    /**
      * Lifecycle method. Should be run only once on instantiation
      *
      * @for RouteModel

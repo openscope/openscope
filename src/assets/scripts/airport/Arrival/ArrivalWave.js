@@ -9,6 +9,7 @@ import { LOG } from '../../constants/logLevel';
 /** Generate arrivals in a repeating wave
   * Arrival rate varies as pictured below. Arrival rate will increase
   * and decrease faster when changing between the lower/higher rates.
+  *
   * ------------o-o-o---------------------------------------+-----------o-o < - - - - - max arrival rate
   *        o             o                                  |      o      |       ^
   *    o                     o                              |  o          |  +variation
@@ -32,7 +33,6 @@ export default class ArrivalWave extends ArrivalBase {
         this.period = 1800;   // 30 minute cycle
         this.variation = 0;   // amount to deviate from the prescribed frequency
 
-        super.parse(options);
         this.parse(options);
         this.clampSpawnRate(5.5); // minimum of 5.5nm entrail
     }
@@ -44,6 +44,8 @@ export default class ArrivalWave extends ArrivalBase {
      * @param {integer} offset - (optional) minutes to shift starting position in cycle
      */
     parse(options) {
+        super.parse(options);
+
         if (options.offset) {
             this.offset = options.offset * 60; // min --> sec
         }
@@ -97,6 +99,7 @@ export default class ArrivalWave extends ArrivalBase {
         }
 
         const rate = this.frequency + this.variation * sin(done * tau());
+
         return 3600 / rate;
     }
 
