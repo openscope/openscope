@@ -9,13 +9,21 @@ import RouteSegmentModel from './RouteSegmentModel';
 /**
  * A collection of `RouteSegment`s.
  *
- * The original intent was to provide a way to deal with the different parts of a `StandardProcedureRoute` as
- * defined in each airport json file. Each SID/STAR is broken up into three route segments:
- * - `rwy`
- * - `body`
- * - `exitPoints` or `entryPoints`
+ * Provide a way to deal with the various parts of a `StandardProcedureRoute` as defined in each
+ * airport json file.
  *
- * This collection is meant to contain the fixes for a single segment.
+ * Each SID is broken up into three route segments:
+ * - `rwy` (optional)
+ * - `body`
+ * - `exitPoints` (optional)
+ *
+ * Each STAR is broken up into three route segments:
+ * - `entryPoints` (optional)
+ * - `body`
+ * - `rwy` (optional)
+ *
+ * This collection is meant to contain the waypoints for a single route segment and can be
+ * used to resaon about the route as a single unit.
  *
  * @class RouteSegmentCollection
  */
@@ -57,20 +65,11 @@ export default class RouteSegmentCollection {
          */
         this._items = [];
 
-        /**
-         * Convenience property to get at the current length of `_items`.
-         *
-         * @property length
-         * @type {number}
-         * @default -1
-         */
-        this.length = -1;
-
         return this._init(routeSegments);
     }
 
     /**
-     * Public getter that provides access to the contents of `_items`
+     * Provide access to the contents of `_items`
      *
      * @property items
      * @return {array}
@@ -80,11 +79,22 @@ export default class RouteSegmentCollection {
     }
 
     /**
+     * Convenience property to get the current length of `_items`
+     *
+     * @property length
+     * @type {number}
+     */
+    get length() {
+        return this._items.length;
+    }
+
+    /**
      * Lifecycle method. Should be run only once on instantiation.
      *
      * @for RouteSegmentCollection
      * @method _init
      * @param routeSegments {object}
+     * @chainable
      * @private
      */
     _init(routeSegments) {
@@ -93,6 +103,8 @@ export default class RouteSegmentCollection {
 
             this._addSegmentToCollection(routeSegmentModel);
         });
+
+        return this;
     }
 
     /**
@@ -100,12 +112,12 @@ export default class RouteSegmentCollection {
      *
      * @for RouteSegmentCollection
      * @method destroy
+     * @chainable
      */
     destroy() {
         this._id = '';
         this.name = '';
         this._items = [];
-        this.length = -1;
 
         return this;
     }
@@ -126,11 +138,11 @@ export default class RouteSegmentCollection {
      * Find a list of fixes for a given `segmentName`
      *
      * @for RouteSegmentCollection
-     * @method findFixesForSegmentName
+     * @method findWaypointsForSegmentName
      * @param segmentName {string}
      * @return {array}
      */
-    findFixesForSegmentName(segmentName) {
+    findWaypointsForSegmentName(segmentName) {
         const segment = this.findSegmentByName(segmentName);
 
         return segment.findWaypointsForSegment();
@@ -153,6 +165,7 @@ export default class RouteSegmentCollection {
      * @for RouteSegmentCollection
      * @method _addSegmentToCollection
      * @param segment {SegmentModel}
+     * @chainable
      * @private
      */
     _addSegmentToCollection(segment) {
@@ -161,7 +174,6 @@ export default class RouteSegmentCollection {
         }
 
         this._items.push(segment);
-        this.length = this._items.length;
 
         return this;
     }

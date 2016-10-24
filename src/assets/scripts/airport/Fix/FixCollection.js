@@ -1,13 +1,18 @@
 import _compact from 'lodash/compact';
 import _find from 'lodash/find';
 import _forEach from 'lodash/forEach';
-import _isArray from 'lodash/isArray';
-import _isObject from 'lodash/isObject';
 import _map from 'lodash/map';
 import _uniqueId from 'lodash/uniqueId';
 import FixModel from './FixModel';
 
 /**
+ * A collection of all the `FixModel`s defined in an airport json file.
+ *
+ * This is built as a static class, so there is only ever once instance.
+ * We use a static class here because the methods contained herein are needed by several
+ * different classes. This provides a single source of truth for all the `FixModel`s
+ * belonging to an Airport.
+ *
  * @class FixCollection
  */
 class FixCollection {
@@ -22,6 +27,7 @@ class FixCollection {
          * @property _id
          * @type {string}
          * @default ''
+         * @private
          */
         this._id = '';
 
@@ -29,20 +35,21 @@ class FixCollection {
          * Array of `FixModel`s
          *
          * @property _items
-         * @type {Array}
+         * @type {array<FixModel>}
          * @default []
          * @private
          */
         this._items = [];
+    }
 
-        /**
-         * Convenience property to get at the current length of `_items`.
-         *
-         * @property length
-         * @type {number}
-         * @default -1
-         */
-        this.length = -1;
+    /**
+     * Convenience property to get at the current length of `_items`.
+     *
+     * @property length
+     * @type {number}
+     */
+    get length() {
+        return this._items.length;
     }
 
     /**
@@ -68,7 +75,6 @@ class FixCollection {
     destroy() {
         this._id = '';
         this._items = [];
-        this.length = 0;
     }
 
     /**
@@ -82,14 +88,14 @@ class FixCollection {
      */
     _buildFixModelsFromList(fixList, airportPosition) {
         _forEach(fixList, (fixCoordinates, fixName) => {
-            const fixModel = new FixModel(fixName, fixCoordinates, airportPosition)
+            const fixModel = new FixModel(fixName, fixCoordinates, airportPosition);
 
             this.addFixToCollection(fixModel);
         });
     }
 
     /**
-     * Add a `FixModel` to the collection and update the length property
+     * Add a `FixModel` to the collection
      *
      * @for FixCollection
      * @method addFixToCollection
@@ -97,11 +103,10 @@ class FixCollection {
      */
     addFixToCollection(fixToAdd) {
         if (!(fixToAdd instanceof FixModel)) {
-            throw TypeError('Expected fixToAdd to be an instance of FixModel');
+            throw new TypeError('Expected fixToAdd to be an instance of FixModel');
         }
 
         this._items.push(fixToAdd);
-        this.length = this._items.length;
     }
 
     /**
@@ -124,7 +129,7 @@ class FixCollection {
      *
      * @for FixCollection
      * @method findRealFixes
-     * @return {array}
+     * @return {array<FixModel>}
      */
     findRealFixes() {
         const realFixList = _map(this._items, (item) => {

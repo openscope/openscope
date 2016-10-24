@@ -1,4 +1,3 @@
-/* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand */
 import ArrivalBase from './ArrivalBase';
 import ArrivalCyclic from './ArrivalCyclic';
 import ArrivalWave from './ArrivalWave';

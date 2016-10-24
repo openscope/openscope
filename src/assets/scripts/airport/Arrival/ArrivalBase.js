@@ -11,7 +11,18 @@ import { vradial, vsub } from '../../math/vector';
 import { FLIGHT_CATEGORY } from '../../aircraft/AircraftInstanceModel';
 import { LOG } from '../../constants/logLevel';
 
+/**
+ * @property MIN_ENTRAIL_DISTANCE_NM
+ * @type {number}
+ * @final
+ */
 const MIN_ENTRAIL_DISTANCE_NM = 5.5;
+
+/**
+ * @property INTERVAL_DELAY_IN_MS
+ * @type {number}
+ * @final
+ */
 const INTERVAL_DELAY_IN_MS = 3600;
 
 /**
@@ -20,6 +31,12 @@ const INTERVAL_DELAY_IN_MS = 3600;
  * @class ArrivalBase
  */
 export default class ArrivalBase {
+    /**
+     * @for ArrivalBase
+     * @constructor
+     * @param airport {AirportInstanceModel}
+     * @param options {object}
+     */
     constructor(airport, options) {
         this.airlines = [];
         // FIXME: this creates a circular reference and should be refactored
@@ -35,7 +52,7 @@ export default class ArrivalBase {
         // TODO: create RouteModel class to handle storing and transforming the active route
         this.routeModel = null;
 
-        this.parse(options);
+        this._init(options);
     }
 
     /**
@@ -47,17 +64,27 @@ export default class ArrivalBase {
      * fixes: {array} Set of fixes to traverse (eg. for STARs). Spawns at first listed.
      * radial: {integer} bearing from airspace center to spawn point (don't use w/ fixes)
      * speed: {integer} Speed in knots of spawned aircraft
+     *
+     * @for ArrivalBase
+     * @method _init
+     * @param options {object}
+     * @private
      */
-    parse(options) {
+    _init(options) {
+        this.airlines = _get(options, 'airlines', this.airlines);
+        this.altitude = _get(options, 'altitude', this.altitude);
+        this.frequency = _get(options, 'frequency', this.frequency);
+        this.speed = _get(options, 'speed', this.speed);
+
         // TODO: replace with _get()
-        const params = ['airlines', 'altitude', 'frequency', 'speed'];
+        // const params = ['airlines', 'altitude', 'frequency', 'speed'];
 
         // Populate the data
-        for (const i in params) {
-            if (options[params[i]]) {
-                this[params[i]] = options[params[i]];
-            }
-        }
+        // for (const i in params) {
+        //     if (options[params[i]]) {
+        //         this[params[i]] = options[params[i]];
+        //     }
+        // }
 
         // Make corrections to data
         if (options.radial) {
@@ -176,7 +203,7 @@ export default class ArrivalBase {
         const spawnPositions = [];
 
         // for each new aircraft
-        for (let i = 0; i < spawnOffsets.length; i++ ) {
+        for (let i = 0; i < spawnOffsets.length; i++) {
             let spawnOffset = spawnOffsets[i];
 
             // for each fix ahead
@@ -220,7 +247,6 @@ export default class ArrivalBase {
         // TODO: this should be a standard for loop
         // Spawn aircraft along the route, ahead of the standard spawn point
         for (let i = 0; i < spawnPositions.length; i++) {
-            debugger;
             const { heading, pos, nextFix } = spawnPositions[i];
             const { icao, position, magnetic_north } = this.airport;
             const aircraftPosition = new PositionModel(pos, position, magnetic_north, 'GPS').position;
@@ -315,7 +341,7 @@ export default class ArrivalBase {
             );
 
             // grab position of first fix
-            position = waypointModelList[0].position
+            position = waypointModelList[0].position;
             // calculate heading from first waypoint to second waypoint
             heading = vradial(vsub(
                 waypointModelList[1].position,

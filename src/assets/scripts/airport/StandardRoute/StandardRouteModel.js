@@ -200,7 +200,6 @@ export default class StandardRouteModel {
     }
 
     /**
-     *
      * This method gathers the fixes from all the route segments.
      *
      * @for StandardRouteModel
@@ -214,17 +213,18 @@ export default class StandardRouteModel {
     }
 
     /**
-     *
+     * Collect all the `StandardWaypointModel` objects for a given route.
      *
      * @for StandardRouteModel
-     * @method findFixModelsForEntryAndExit
+     * @method findStandardWaypointModelsForEntryAndExit
      * @param entry {string}
      * @parma exit {string}
      * @return waypointList {array<StandardWaypointModel>}
      */
-    findFixModelsForEntryAndExit(entry, exit) {
+    findStandardWaypointModelsForEntryAndExit(entry, exit) {
         const waypointList = this._findStandardWaypointModelsForRoute(entry, exit);
 
+        // TODO: this should live closer to where these models are being created
         _forEach(waypointList, (waypoint, i) => {
             let previousWaypoint = waypointList[i - 1];
             if (i === 0) {
@@ -233,7 +233,7 @@ export default class StandardRouteModel {
 
             const distance = this.calculateDistanceBetweenWaypoints(waypoint.position, previousWaypoint.position);
             waypoint.distanceFromPreviousWaypoint = distance;
-            waypoint.previousFixName = previousWaypoint.name;
+            waypoint.previousStandardWaypointName = previousWaypoint.name;
         });
 
         return waypointList;
@@ -318,6 +318,38 @@ export default class StandardRouteModel {
         const segmentCollection = new RouteSegmentCollection(segment);
 
         return segmentCollection;
+    }
+
+    /**
+     * Gather a list of `StandardWaypointModel` objects for a particular route.
+     *
+     * @for StandardRouteModel
+     * @method _findStandardWaypointModelsForRoute
+     * @param entry {string}
+     * @param exti {string}
+     * @return waypointModelList {array<StandardWaypointModel>}
+     */
+    _findStandardWaypointModelsForRoute(entry, exit) {
+        // TODO: this is icky, do something different with this
+        let entrySegmentItems = [];
+        if (this._entryCollection) {
+            const entrySegment = this._entryCollection.findSegmentByName(entry);
+            entrySegmentItems = entrySegment.items;
+        }
+
+        let exitSegmentItems = [];
+        if (this._runwayCollection) {
+            const exitSegment = this._runwayCollection.findSegmentByName(exit);
+            exitSegmentItems = exitSegment.items;
+        }
+
+        const waypointModelList = [
+            ...entrySegmentItems,
+            ...this._bodySegmentModel.items,
+            ...exitSegmentItems
+        ];
+
+        return _compact(waypointModelList);
     }
 
     /**
@@ -412,7 +444,7 @@ export default class StandardRouteModel {
             return [];
         }
 
-        return this._runwayCollection.findFixesForSegmentName(runwayName);
+        return this._runwayCollection.findWaypointsForSegmentName(runwayName);
     }
 
     /**
@@ -431,7 +463,7 @@ export default class StandardRouteModel {
             return [];
         }
 
-        return this._exitCollection.findFixesForSegmentName(exitFixName);
+        return this._exitCollection.findWaypointsForSegmentName(exitFixName);
     }
 
     /**
@@ -450,38 +482,6 @@ export default class StandardRouteModel {
             return [];
         }
 
-        return this._entryCollection.findFixesForSegmentName(entryFixName);
-    }
-
-    /**
-     * Gather a list of `StandardWaypointModel` objects for a particular route.
-     *
-     * @for StandardRouteModel
-     * @method _findStandardWaypointModelsForRoute
-     * @param entry {string}
-     * @param exti {string}
-     * @return waypointModelList {array<StandardWaypointModel>}
-     */
-    _findStandardWaypointModelsForRoute(entry, exit) {
-        // TODO: this is icky, do something different with this
-        let entrySegmentItems = [];
-        if (this._entryCollection) {
-            const entrySegment = this._entryCollection.findSegmentByName(entry);
-            entrySegmentItems = entrySegment.items;
-        }
-
-        let exitSegmentItems = [];
-        if (this._runwayCollection) {
-            const exitSegment = this._runwayCollection.findSegmentByName(exit);
-            exitSegmentItems = exitSegment.items;
-        }
-
-        const waypointModelList = [
-            ...entrySegmentItems,
-            ...this._bodySegmentModel.items,
-            ...exitSegmentItems
-        ];
-
-        return _compact(waypointModelList);
+        return this._entryCollection.findWaypointsForSegmentName(entryFixName);
     }
 }

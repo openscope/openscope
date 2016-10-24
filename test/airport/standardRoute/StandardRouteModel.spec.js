@@ -181,12 +181,12 @@ ava('.findFixesAndRestrictionsForEntryAndRunway() returns entry and body fixes w
     t.true(_isEqual(actualArguments, expectedArguments));
 });
 
-ava('.findFixModelsForEntryAndExit() returns a list of `StandardRouteWaypointModel`s for a given STAR', t => {
+ava('.findStandardWaypointModelsForEntryAndExit() returns a list of `StandardRouteWaypointModel`s for a given STAR', t => {
     const expectedArguments = [ 'MLF', '19R' ]
     const model = new StandardRouteModel(STAR_LIST_MOCK.GRNPA1);
     const spy = sinon.spy(model, '_findStandardWaypointModelsForRoute');
 
-    const result = model.findFixModelsForEntryAndExit('MLF', '19R');
+    const result = model.findStandardWaypointModelsForEntryAndExit('MLF', '19R');
     const actualArguments = spy.getCall(0).args;
 
     t.true(_isEqual(actualArguments, expectedArguments));
@@ -198,7 +198,7 @@ ava('.findFixModelsForEntryAndExit() returns a list of `StandardRouteWaypointMod
 ava('.calculateDistanceBetweenWaypoints() calculates the distance between two `StandardRouteWaypointModel` positions', t => {
     const expectedResult = 118.63498218153836;
     const model = new StandardRouteModel(STAR_LIST_MOCK.GRNPA1);
-    const waypointList = model.findFixModelsForEntryAndExit('MLF', '19R');
+    const waypointList = model.findStandardWaypointModelsForEntryAndExit('MLF', '19R');
     const result = model.calculateDistanceBetweenWaypoints(waypointList[0].position, waypointList[1].position);
 
     t.true(result === expectedResult);

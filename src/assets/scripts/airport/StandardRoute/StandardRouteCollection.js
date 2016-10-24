@@ -109,9 +109,9 @@ export default class StandardRouteCollection {
             return;
         }
 
-        const sid = this.findRouteByIcao(icao);
+        const star = this.findRouteByIcao(icao);
 
-        return sid.findFixesAndRestrictionsForEntryAndRunway(entryFixName, runwayName);
+        return star.findFixesAndRestrictionsForEntryAndRunway(entryFixName, runwayName);
     }
 
     /**
@@ -131,7 +131,7 @@ export default class StandardRouteCollection {
 
         const route = this.findRouteByIcao(icao);
 
-        return route.findFixModelsForEntryAndExit(entry, exit);
+        return route.findStandardWaypointModelsForEntryAndExit(entry, exit);
     }
 
     /**

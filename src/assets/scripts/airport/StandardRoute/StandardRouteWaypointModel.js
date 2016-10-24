@@ -112,16 +112,23 @@ export default class StandardRouteWaypointModel {
         this._speedConstraint = -1;
 
         /**
+         * Positon information for the current waypoint
          *
+         * Specific bits of this property are exposed via public getters.
+         * This property should never be modified by an exteral method.
          *
          * @property _waypointPosition
          * @type {PositionModel}
          * @default null
+         * @private
          */
         this._waypointPosition = null;
 
         /**
+         * Dustance in nm from the previous waypoint.
          *
+         * TODO: finish this
+         * This property is set exterally by
          *
          * @property distanceFromPreviousWaypoint
          * @type {number}
@@ -130,20 +137,23 @@ export default class StandardRouteWaypointModel {
         this.distanceFromPreviousWaypoint = -1;
 
         /**
+         * Name of the previous `StandardWaypointModel` object in a route
          *
+         * TODO: finish this
+         * This property is set externall by
          *
-         * @property previousFixName
+         * @property previousStandardWaypointName
          * @type {string}
          * @default ''
          */
-        this.previousFixName = '';
+        this.previousStandardWaypointName = '';
 
         return this._init(routeWaypoint)
                    .clonePoisitonFromFix();
     }
 
     /**
-     *
+     * Return this waypoint's `position` propery
      *
      * @property position
      * @return {array}
@@ -153,7 +163,7 @@ export default class StandardRouteWaypointModel {
     }
 
     /**
-     *
+     * Return this waypoint's `gps` position property
      *
      * @property gps
      * @return {array}
@@ -221,7 +231,7 @@ export default class StandardRouteWaypointModel {
     }
 
     /**
-     *
+     * Find the matching fix from the `FixCollection` and clone its `PositionModel` this `_waypointPosition`
      *
      * @for StandardRouteWaypointModel
      * @method _clonePoisitonFromFix

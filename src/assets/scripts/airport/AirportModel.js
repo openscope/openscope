@@ -11,8 +11,6 @@ import PositionModel from '../base/PositionModel';
 import RunwayModel from './RunwayModel';
 import FixCollection from './Fix/FixCollection';
 import StandardRouteCollection from './StandardRoute/StandardRouteCollection';
-import { ArrivalFactory } from './Arrival/ArrivalFactory';
-import { DepartureFactory } from './Departure/DepartureFactory';
 import { arrivalFactory } from './Arrival/arrivalFactory';
 import { departureFactory } from './Departure/departureFactory';
 import { degreesToRadians, parseElevation } from '../utilities/unitConverters';
@@ -105,10 +103,18 @@ export default class AirportModel {
         this.parse(options);
     }
 
+    /**
+     * @property real_fixes
+     * @return {array<FixModel>}
+     */
     get real_fixes() {
         return FixCollection.findRealFixes();
     }
 
+    /**
+     * @property elevation
+     * @return {number}
+     */
     get elevation() {
         return this.position.elevation;
     }
@@ -126,6 +132,7 @@ export default class AirportModel {
         this.radio = _get(data, 'radio', this.radio);
         this.level = _get(data, 'level', this.level);
         this.has_terrain = _get(data, 'has_terrain', false);
+        this.sids = _get(data, 'sids', {});
         this.stars = _get(data, 'stars', {});
         this.airways = _get(data, 'airways', {});
         this.ctr_radius = _get(data, 'ctr_radius', DEFAULT_CTR_RADIUS_NM);

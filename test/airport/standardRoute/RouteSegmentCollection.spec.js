@@ -50,10 +50,10 @@ ava('.findSegmentByName() returns undefined if a segment name cannot be found', 
     t.true(typeof result === 'undefined');
 });
 
-ava('.findFixesForSegmentName() returns an array of fixes for a given segment name', t => {
+ava('.findWaypointsForSegmentName() returns an array of fixes for a given segment name', t => {
     const SEGMENT_NAME = '25L';
     const collection = new RouteSegmentCollection(ROUTE_SEGMENTS_MOCK);
-    const result = collection.findFixesForSegmentName(SEGMENT_NAME);
+    const result = collection.findWaypointsForSegmentName(SEGMENT_NAME);
 
     t.true(result.length === ROUTE_SEGMENTS_MOCK[SEGMENT_NAME].length);
     t.true(_isEqual(result[0], ['PIRMD', null]), 'Expected to receive and array that is [`{string}`, `{string|null}`]');

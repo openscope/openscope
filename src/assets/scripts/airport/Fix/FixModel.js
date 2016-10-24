@@ -3,11 +3,17 @@ import _uniqueId from 'lodash/uniqueId';
 import PositionModel from '../../base/PositionModel';
 
 /**
+ * Defines a navigational `FixModel`
+ *
+ * A `FixModel` can be used as part of a `StandardRoute` or as a naviagtional aid.
+ * Not all `FixModel`s are a part of a `StandardRoute`.
+ *
  * @class FixModel
  */
 export default class FixModel {
     /**
      * @for FixModel
+     * @constructor
      * @param fixName {string}
      * @param fixCoordinate {array}
      * @param airportPosition {PositionModel}
@@ -47,6 +53,8 @@ export default class FixModel {
     }
 
     /**
+     * Provides access to the position data of the instance
+     *
      * @property position
      * @return {array}
      */
@@ -62,6 +70,7 @@ export default class FixModel {
      * @param fixName {string}
      * @param fixCoordinate {array}
      * @param airportPosition {PositionModel}
+     * @chainable
      * @private
      */
     _init(fixName, fixCoordinate, airportPosition) {
@@ -76,6 +85,7 @@ export default class FixModel {
      *
      * @for FixModel
      * @method destroy
+     * @chainable
      */
     destroy() {
         this._id = '';
@@ -86,8 +96,17 @@ export default class FixModel {
     }
 
     /**
+     * Returns a clone of an instance's `_fixPosition` property.
      *
+     * It is important to note that this is a _clone_ and not a copy. Once any changes made to this instance will
+     * not be reflected in the clone. This creates an entirely new instance of the `_fixPosition` property,
+     * and after creation is completely independant of this instance.
      *
+     * This is used with `StandardRouteWaypointModel` objects to obtain the position of a fix. This method
+     * provides easy access to the `PositionModel` that already exists here.
+     *
+     * @for FixModel
+     * @return {PositionModel}  a clone of the current `_fixPosition` property
      */
     clonePosition() {
         return _cloneDeep(this._fixPosition);

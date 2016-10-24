@@ -11,7 +11,7 @@ ava.serial('FixCollection throws when an attempt to instantiate is made', t => {
 
     t.true(FixCollection._id === '');
     t.true(FixCollection._items.length === 0);
-    t.true(FixCollection.length === -1);
+    t.true(FixCollection.length === 0);
 });
 
 ava.serial('FixCollection sets its properties when it receives a valid fixList', t => {

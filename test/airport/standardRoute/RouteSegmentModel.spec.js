@@ -30,8 +30,8 @@ ava('accepts name as a single parameter', t => {
     const result = new RouteSegmentModel(NAME_MOCK);
 
     t.true(result.name === NAME_MOCK);
-    t.true(result.length === -1);
     t.true(result._items.length === 0);
+    t.true(result.length === 0);
 });
 
 ava('._init() does not call ._createWaypointModelsFromList() when it receives only a `name`', t => {

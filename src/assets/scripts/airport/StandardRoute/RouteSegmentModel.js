@@ -48,30 +48,27 @@ export default class RouteSegmentModel {
          */
         this._items = [];
 
-        /**
-         * Convenience property to get at the current length of `_items`.
-         *
-         * If a remove method is every added, this property will need to be updated in addition
-         * to any changes that need to happen within the collection.
-         *
-         * @property length
-         * @type {number}
-         * @default -1
-         * @private
-         */
-        this.length = -1;
-
         return this._init(name, segmentWaypoints);
     }
 
     /**
+     * Return the items in the collection
      *
-     * 
      * @property items
      * @return {array}
      */
     get items() {
         return this._items;
+    }
+
+    /**
+     * Convenience property to get at the current length of `_items`.
+     *
+     * @property length
+     * @type {number}
+     */
+    get length() {
+        return this._items.length;
     }
 
     /**
@@ -94,7 +91,7 @@ export default class RouteSegmentModel {
     }
 
     /**
-     * Destroy the current model instance
+     * Destroy the current instance
      *
      * @for destroy
      * @method destroy
@@ -103,7 +100,6 @@ export default class RouteSegmentModel {
         this._id = '';
         this.name = '';
         this._items = [];
-        this.length = -1;
 
         return this;
     }
@@ -126,7 +122,6 @@ export default class RouteSegmentModel {
     }
 
     /**
-     *
      * @for RouteSegmentModel
      * @method _createWaypointModelsFromList
      * @param segmentWaypoints {array}
@@ -135,6 +130,8 @@ export default class RouteSegmentModel {
     _createWaypointModelsFromList(segmentWaypoints) {
         _forEach(segmentWaypoints, (fixAndRestrictions) => {
             const waypointModel = new StandardRouteWaypointModel(fixAndRestrictions);
+
+            // TODO: calculate distance here
 
             this._addWaypointToCollection(waypointModel);
         });
@@ -154,6 +151,5 @@ export default class RouteSegmentModel {
         }
 
         this._items.push(waypoint);
-        this.length = this._items.length;
     }
 }
