@@ -1,8 +1,8 @@
 /* eslint-disable camelcase, no-mixed-operators, object-shorthand, class-methods-use-this, no-undef, expected-return*/
 import $ from 'jquery';
-import _clamp from 'lodash/clamp';
 import _get from 'lodash/get';
-import _map from 'lodash/map';
+import _map from 'lodash/map'
+import { clamp } from './math/core';
 import { SELECTORS } from './constants/selectors';
 
 // Temporary const declaration here to attach to the window AND use as internal propert
@@ -628,7 +628,7 @@ export default class InputController {
      * @method input_history_clamp
      */
     input_history_clamp() {
-        prop.input.history_item = _clamp(0, prop.input.history_item, prop.input.history.length - 1);
+        prop.input.history_item = clamp(0, prop.input.history_item, prop.input.history.length - 1);
     }
 
     /**

@@ -11,10 +11,10 @@ import Area from '../base/AreaModel';
 import PositionModel from '../base/PositionModel';
 import RunwayModel from './RunwayModel';
 import SidCollection from './StandardRoute/SidCollection';
-import { ArrivalFactory } from './Arrival/ArrivalFactory';
-import { DepartureFactory } from './Departure/DepartureFactory';
+import { arrivalFactory } from './Arrival/arrivalFactory';
+import { departureFactory } from './Departure/departureFactory';
 import { degreesToRadians, parseElevation } from '../utilities/unitConverters';
-import { round, abs, sin, crange } from '../math/core';
+import { round, abs, sin, extrapolate_range_clamp } from '../math/core';
 import { angle_offset } from '../math/circle';
 import { getOffset } from '../math/flightMath';
 import { vlen, vsub, vadd, vscale, raysIntersect } from '../math/vector';
@@ -31,7 +31,7 @@ import { STORAGE_KEY } from '../constants/storageKeys';
  */
 const ra = (n) => {
     const deviation = degreesToRadians(10);
-    return n + crange(0, Math.random(), 1, -deviation, deviation);
+    return n + extrapolate_range_clamp(0, Math.random(), 1, -deviation, deviation);
 };
 
 const DEFAULT_CTR_RADIUS_NM = 80;
@@ -358,7 +358,7 @@ export default class AirportModel {
             return ;
         }
 
-        this.departures = DepartureFactory(this, departures);
+        this.departures = departureFactory(this, departures);
     }
 
     /**
@@ -375,7 +375,7 @@ export default class AirportModel {
             if (!_has(arrivals[i], 'type')) {
                 log(`${this.icao} arrival stream #${i} not given type!`, LOG.WARNING);
             } else {
-                this.arrivals.push(ArrivalFactory(this, arrivals[i]));
+                this.arrivals.push(arrivalFactory(this, arrivals[i]));
             }
         }
     }
@@ -422,8 +422,8 @@ export default class AirportModel {
         // TODO: why is this var getting reassigned to a magic number?
         s = 100;
         const speed_factor = sin((s + window.gameController.game_time()) * 0.5) + sin((s + window.gameController.game_time()) * 2);
-        wind.angle += crange(-1, angle_factor, 1, degreesToRadians(-4), degreesToRadians(4));
-        wind.speed *= crange(-1, speed_factor, 1, 0.9, 1.05);
+        wind.angle += extrapolate_range_clamp(-1, angle_factor, 1, degreesToRadians(-4), degreesToRadians(4));
+        wind.speed *= extrapolate_range_clamp(-1, speed_factor, 1, 0.9, 1.05);
 
         return wind;
     }
@@ -488,8 +488,8 @@ export default class AirportModel {
         // TODO: why is this var getting reassigned to a magic number?
         s = 100;
         const speed_factor = sin((s + window.gameController.game_time()) * 0.5) + sin((s + window.gameController.game_time()) * 2);
-        wind.angle += crange(-1, angle_factor, 1, degreesToRadians(-4), degreesToRadians(4));
-        wind.speed *= crange(-1, speed_factor, 1, 0.9, 1.05);
+        wind.angle += extrapolate_range_clamp(-1, angle_factor, 1, degreesToRadians(-4), degreesToRadians(4));
+        wind.speed *= extrapolate_range_clamp(-1, speed_factor, 1, 0.9, 1.05);
 
         return wind;
     }

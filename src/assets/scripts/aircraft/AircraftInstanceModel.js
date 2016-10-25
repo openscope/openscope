@@ -1,6 +1,4 @@
-/* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand, no-undef, guard-for-in, no-restricted-syntax, max-len, prefer-arrow-callback, */
 import $ from 'jquery';
-import _clamp from 'lodash/clamp';
 import _forEach from 'lodash/forEach';
 import _get from 'lodash/get';
 import _has from 'lodash/has';
@@ -11,8 +9,8 @@ import AircraftFlightManagementSystem from './AircraftFlightManagementSystem';
 import AircraftStripView from './AircraftStripView';
 import Waypoint from './Waypoint';
 import { speech_say } from '../speech';
-import { tau, fix_angle, angle_offset } from '../math/circle';
-import { round, abs, sin, cos, crange } from '../math/core';
+import { tau, radians_normalize, angle_offset } from '../math/circle';
+import { round, abs, sin, cos, extrapolate_range_clamp, clamp } from '../math/core';
 import { distance2d } from '../math/distance';
 import { getOffset } from '../math/flightMath';
 import {
@@ -317,12 +315,13 @@ export default class Aircraft {
 
             this.destination = data.destination;
             this.setArrivalRunway(window.airportController.airport_get(this.destination).runway);
-        } else if (this.category === FLIGHT_CATEGORY.DEPARTURE && this.isLanded()) {
-            this.speed = 0;
+        } else if (this.category === FLIGHT_CATEGORY.DEPARTURE) {
+            const airport = window.airportController.airport_get();
             this.mode = FLIGHT_MODES.APRON;
             this.destination = data.destination;
-
-            this.setDepartureRunway(window.airportController.airport_get().runway);
+            this.setDepartureRunway(airport.runway);
+            this.altitude = airport.position.elevation;
+            this.speed = 0;
         }
 
         if (data.heading) {
@@ -932,7 +931,7 @@ export default class Aircraft {
 
         this.fms.setAll({
             // TODO: enumerate the magic numbers
-            altitude: _clamp(round(window.airportController.airport_get().elevation / 100) * 100 + 1000, altitude, ceiling),
+            altitude: clamp(round(window.airportController.airport_get().elevation / 100) * 100 + 1000, altitude, ceiling),
             expedite: expedite
         });
 
@@ -1029,7 +1028,7 @@ export default class Aircraft {
         }
 
         this.fms.setAll({
-            speed: _clamp(
+            speed: clamp(
                 this.model.speed.min,
                 speed,
                 this.model.speed.max
@@ -1170,7 +1169,7 @@ export default class Aircraft {
         }
 
         // TODO: abstract to method `.getInboundCardinalDirection()`
-        const inboundDir = radio_cardinalDir_names[getCardinalDirection(fix_angle(inboundHdg + Math.PI)).toLowerCase()];
+        const inboundDir = radio_cardinalDir_names[getCardinalDirection(radians_normalize(inboundHdg + Math.PI)).toLowerCase()];
 
         if (holdFix) {
             return ['ok', `proceed direct ${holdFix} and hold inbound, ${dirTurns} turns, ${legLength} legs`];
@@ -1501,7 +1500,7 @@ export default class Aircraft {
             return ['fail', 'inbound'];
         }
 
-        if (!this.isLanded()) {
+        if (!this.wow()) {
             return ['fail', 'already airborne'];
         }
         if (this.mode === FLIGHT_MODES.APRON) {
@@ -1729,29 +1728,6 @@ export default class Aircraft {
     }
 
     /**
-     * Aircraft is on the ground (can be a departure OR arrival)
-     * @for AircraftInstanceModel
-     * @method runTakeoff
-     */
-    isLanded() {
-        // TODO: this logic can be simplified. there should really be another method that does more of the work here.
-        let runway = window.airportController.airport_get().getRunway(this.rwy_arr);
-        if (runway === null) {
-            runway = window.airportController.airport_get().getRunway(this.rwy_dep);
-        }
-
-        if (runway === null) {
-            return false;
-        }
-
-        if ((this.altitude - runway.elevation) < 5) {
-            return true;
-        }
-
-        return false;
-    }
-
-    /**
      * Aircraft is actively following an instrument approach
      * @for AircraftInstanceModel
      * @method runTakeoff
@@ -1772,7 +1748,7 @@ export default class Aircraft {
      */
     isStopped() {
         // TODO: enumerate the magic number.
-        return this.isLanded() && this.speed < 5;
+        return this.wow() && this.speed < 5;
     }
 
     /**
@@ -1975,11 +1951,10 @@ export default class Aircraft {
      */
     updateTarget() {
         let airport = window.airportController.airport_get();
-        let runway  = null;
+        let runway = null;
         let offset = null;
         let offset_angle = null;
         let glideslope_altitude = null;
-        let glideslope_window   = null;
         let angle = null;
         let runway_elevation = 0;
         let position;
@@ -1995,45 +1970,98 @@ export default class Aircraft {
         }
 
         if (this.fms.currentWaypoint().navmode === WAYPOINT_NAV_MODE.RWY) {
-            airport = window.airportController.airport_get();
             runway  = airport.getRunway(this.rwy_arr);
             offset = getOffset(this, runway.position, runway.angle);
             offset_angle = vradial(offset);
+            angle = radians_normalize(runway.angle);
+            glideslope_altitude = clamp(runway.elevation, runway.getGlideslopeAltitude(offset[1]), this.altitude);
+            const assignedHdg = this.fms.currentWaypoint().heading;
+            const localizerRange = runway.ils.enabled ? runway.ils.loc_maxDist : 40;
             this.offset_angle = offset_angle;
             this.approachOffset = abs(offset[0]);
             this.approachDistance = offset[1];
-            angle = runway.angle;
+            this.target.heading = assignedHdg;
+            this.target.turn = this.fms.currentWaypoint().turn;
+            this.target.altitude = this.fms.currentWaypoint().altitude;
+            this.target.speed = this.fms.currentWaypoint().speed;
 
-            if (angle > tau()) {
-                angle -= tau();
-            }
-
-            glideslope_altitude = _clamp(0, runway.getGlideslopeAltitude(offset[1]), this.altitude);
-            glideslope_window   = abs(runway.getGlideslopeAltitude(offset[1], degreesToRadians(1)));
-
+            // Established on ILS
             if (this.mode === FLIGHT_MODES.LANDING) {
-                this.target.altitude = glideslope_altitude;
-            }
+                // Final Approach Heading Control
+                const severity_of_correction = 25;  // controls steepness of heading adjustments during localizer tracking
+                const tgtHdg = angle + (offset_angle * -severity_of_correction);
+                const minHdg = angle - degreesToRadians(30);
+                const maxHdg = angle + degreesToRadians(30);
+                this.target.heading = clamp(tgtHdg, minHdg, maxHdg);
 
-            let ils = runway.ils.loc_maxDist;
-            if (!runway.ils.enabled || !ils) {
-                ils = 40;
-            }
+                // Final Approach Altitude Control
+                this.target.altitude = Math.min(this.fms.currentWaypoint().altitude, glideslope_altitude);
 
-            // lock ILS if at the right angle and altitude
-            if ((abs(this.altitude - glideslope_altitude) < glideslope_window)
-                && (abs(offset_angle) < degreesToRadians(10))
-                && (offset[1] < ils)
-            ) {
-                if (abs(offset[0]) < 0.05 && this.mode !== FLIGHT_MODES.LANDING) {
-                    this.mode = FLIGHT_MODES.LANDING;
+                // Final Approach Speed Control
+                if (this.fms.currentWaypoint().speed > 0) {
+                    this.fms.setCurrent({ start_speed: this.fms.currentWaypoint().speed });
+                }
 
-                    if (!this.projected && (abs(angle_offset(this.fms.currentWaypoint().heading,
-                        degreesToRadians(parseInt(this.rwy_arr.substr(0, 2), 10) * 10, 10))) > degreesToRadians(30))
-                    ) {
+                if (this.wow()) {
+                    this.target.altitude = runway.elevation;
+                    this.target.speed = 0;
+                } else {
+                    const dist_final_app_spd = 3.5; // 3.5km ~= 2nm
+                    const dist_assigned_spd = 9.5;  // 9.5km ~= 5nm
+                    this.target.speed = extrapolate_range_clamp(
+                        dist_final_app_spd, offset[1],
+                        dist_assigned_spd,
+                        this.model.speed.landing,
+                        this.fms.currentWaypoint().start_speed
+                    );
+                }
+
+                // Failed Approach
+                if (abs(offset[0]) > 0.100) {
+                    if (!this.projected) {
+                        this.updateStrip();
+                        this.cancelLanding();
                         const isWarning = true;
-                        window.uiController.ui_log(`${this.getRadioCallsign()} approach course intercept angle was greater than 30 degrees`, isWarning);
-                        prop.game.score.violation += 1;
+                        window.uiController.ui_log(`${this.getRadioCallsign()} aborting landing, lost ILS`, isWarning);
+                        speech_say([
+                            { type: 'callsign', content: this },
+                            { type: 'text', content: ' going around' }
+                        ]);
+                        prop.game.score.abort.landing += 1;
+                    }
+                }
+            } else if (offset[1] < localizerRange) {  // Joining the ILS
+                // Check if aircraft has just become established on the localizer
+                const alignedWithRunway = abs(offset[0]) < 0.050;  // within 50m
+                const onRunwayHeading = abs(this.heading - angle) < degreesToRadians(5);
+                const runwayNominalHeading = degreesToRadians(parseInt(this.rwy_arr.substr(0, 2), 10) * 10, 10);
+                const maxInterceptAngle = degreesToRadians(30);
+                const maxAboveGlideslope = 250;
+                const interceptAngle = abs(angle_offset(assignedHdg, runwayNominalHeading));
+                const courseDifference = abs(angle_offset(this.heading, runwayNominalHeading));
+                if (alignedWithRunway && onRunwayHeading && this.mode !== FLIGHT_MODES.LANDING) {
+                    this.mode = FLIGHT_MODES.LANDING;
+                    this.target.heading = angle;
+                    // Check legality of localizer interception
+                    if (!this.projected) {  // do not give penalty during a future projection
+                        // TODO: Abstraction on the below, to remove duplicate code
+                        // Intercept Angle
+                        if (!assignedHdg && courseDifference > maxInterceptAngle) { // intercept via fixes
+                            const isWarning = true;
+                            window.uiController.ui_log(`${this.getCallsign()} approach course intercept angle was greater than 30 degrees`, isWarning);
+                            prop.game.score.violation += 1;
+                        } else if (interceptAngle > maxInterceptAngle) {    // intercept via vectors
+                            const isWarning = true;
+                            window.uiController.ui_log(`${this.getCallsign()} approach course intercept angle was greater than 30 degrees`, isWarning);
+                            prop.game.score.violation += 1;
+                        }
+
+                        // Glideslope intercept
+                        if(this.altitude > glideslope_altitude + maxAboveGlideslope) {
+                            const isWarning = true;
+                            window.uiController.ui_log(`${this.getRadioCallsign()} joined localizer above glideslope altitude`, isWarning);
+                            prop.game.score.violation += 1;
+                        }
                     }
 
                     this.updateStrip();
@@ -2041,55 +2069,22 @@ export default class Aircraft {
                 }
 
                 // TODO: this math section should be absctracted to a helper function
-                // Intercept localizer and glideslope and follow them inbound
+                // Guide aircraft onto the localizer
                 const angle_diff = angle_offset(angle, this.heading);
                 const turning_time = Math.abs(radiansToDegrees(angle_diff)) / 3; // time to turn angle_diff degrees at 3 deg/s
                 const turning_radius = km(this.speed) / 3600 * turning_time; // dist covered in the turn, km
                 const dist_to_localizer = offset[0] / sin(angle_diff); // dist from the localizer intercept point, km
+                const turn_early_km = 1;    // start turn 1km early, to avoid overshoots from tailwind
+                const should_attempt_intercept = (0 < dist_to_localizer && dist_to_localizer <= turning_radius + turn_early_km);
+                const in_the_window = abs(offset_angle) < degreesToRadians(1.5);  // if true, aircraft will move to localizer, regardless of assigned heading
 
-                if (dist_to_localizer <= turning_radius || dist_to_localizer < 0.5) {
-                    this.target.heading = angle;
-
-                    // Steer to within 3m of the centerline while at least 200m out
-                    if (offset[1] > 0.2 && abs(offset[0]) > 0.003) {
-                        // TODO: enumerate the magic numbers
-                        this.target.heading = _clamp(degreesToRadians(-30), -12 * offset_angle, degreesToRadians(30)) + angle;
-                    }
-
-                    // Follow the glideslope
-                    this.target.altitude = glideslope_altitude;
+                if (should_attempt_intercept || in_the_window) {  // time to begin turn
+                    const severity_of_correction = 50;  // controls steepness of heading adjustments during localizer tracking
+                    const tgtHdg = angle + (offset_angle * -severity_of_correction);
+                    const minHdg = angle - degreesToRadians(30);
+                    const maxHdg = angle + degreesToRadians(30);
+                    this.target.heading = clamp(tgtHdg, minHdg, maxHdg);
                 }
-
-                // Speed control on final approach
-                if (this.fms.currentWaypoint().speed > 0) {
-                    this.fms.setCurrent({ start_speed: this.fms.currentWaypoint().speed });
-                }
-
-                this.target.speed = crange(3, offset[1], 10, this.model.speed.landing, this.fms.currentWaypoint().start_speed);
-            } else if ((this.altitude - runway_elevation) >= 300 && this.mode === FLIGHT_MODES.LANDING) {
-                this.updateStrip();
-                this.cancelLanding();
-
-                if (!this.projected) {
-                    const isWarning = true;
-                    window.uiController.ui_log(`${this.getRadioCallsign()} aborting landing, lost ILS`, isWarning);
-                    speech_say([
-                        { type: 'callsign', content: this },
-                        { type: 'text', content: ' going around' }
-                    ]);
-
-                    prop.game.score.abort.landing += 1;
-                }
-            } else if (this.altitude >= 300) {
-                this.target.heading = this.fms.currentWaypoint().heading;
-                this.target.turn = this.fms.currentWaypoint().turn;
-            }
-
-            // this has to be outside of the glide slope if, as the plane is no
-            // longer on the glide slope once it is on the runway (as the runway is
-            // behind the ILS marker)
-            if (this.isLanded()) {
-                this.target.speed = 0;
             }
         } else if (this.fms.currentWaypoint().navmode === WAYPOINT_NAV_MODE.FIX) {
             const fix = this.fms.currentWaypoint().location;
@@ -2159,12 +2154,12 @@ export default class Aircraft {
             this.target.expedite = this.fms.currentWaypoint().expedite;
             this.target.altitude = Math.max(1000, this.target.altitude);
             this.target.speed = this.fms.currentWaypoint().speed;
-            this.target.speed = _clamp(this.model.speed.min, this.target.speed, this.model.speed.max);
+            this.target.speed = clamp(this.model.speed.min, this.target.speed, this.model.speed.max);
         }
 
         // If stalling, make like a meteorite and fall to the earth!
-        if (this.speed < this.model.speed.min) {
-            this.target.altitude = 0;
+        if (this.speed < this.model.speed.min && !this.wow()) {
+            this.target.altitude = Math.min(0, this.target.altitude);
         }
 
         // finally, taxi overrides everything
@@ -2261,11 +2256,12 @@ export default class Aircraft {
         }
 
         // TURNING
-        if (!this.isLanded() && this.heading !== this.target.heading) {
+        // this.target.heading = radians_normalize(this.target.heading);
+        if (!this.wow() && this.heading !== this.target.heading) {
             // Perform standard turns 3 deg/s or 25 deg bank, whichever
             // requires less bank angle.
             // Formula based on http://aviation.stackexchange.com/a/8013
-            const turn_rate = _clamp(0, 1 / (this.speed / 8.883031), 0.0523598776);
+            const turn_rate = clamp(0, 1 / (this.speed / 8.883031), 0.0523598776);
             const turn_amount = turn_rate * window.gameController.game_delta();
             const offset = angle_offset(this.target.heading, this.heading);
 
@@ -2316,7 +2312,7 @@ export default class Aircraft {
             }
         }
 
-        if (this.isLanded()) {
+        if (this.wow()) {
             this.trend = 0;
         }
 
@@ -2326,12 +2322,12 @@ export default class Aircraft {
         if (this.target.speed < this.speed - 0.01) {
             difference = -this.model.rate.decelerate * window.gameController.game_delta() / 2;
 
-            if (this.isLanded()) {
+            if (this.wow()) {
                 difference *= 3.5;
             }
         } else if (this.target.speed > this.speed + 0.01) {
             difference  = this.model.rate.accelerate * window.gameController.game_delta() / 2;
-            difference *= crange(0, this.speed, this.model.speed.min, 2, 1);
+            difference *= extrapolate_range_clamp(0, this.speed, this.model.speed.min, 2, 1);
         }
 
         if (difference) {
@@ -2374,7 +2370,7 @@ export default class Aircraft {
             const wind = window.airportController.airport_get().wind;
             let vector;
 
-            if (this.isLanded()) {
+            if (this.wow()) {
                 vector = vscale([sin(angle), cos(angle)], scaleSpeed);
             } else {
                 let crab_angle = 0;
@@ -2507,7 +2503,7 @@ export default class Aircraft {
             });
         }
 
-        if (this.terrain_ranges && !this.isLanded()) {
+        if (this.terrain_ranges && !this.wow()) {
             const terrain = prop.airport.current.terrain;
             const prev_level = this.terrain_ranges[this.terrain_level];
             const ele = Math.ceil(this.altitude, 1000);
@@ -2689,5 +2685,18 @@ export default class Aircraft {
      */
     removeConflict(other) {
         delete this.conflicts[other.getCallsign()];
+    }
+
+    /**
+     * Aircraft has "weight-on-wheels" (on the ground)
+     * @for AircraftInstanceModel
+     * @method wow
+     */
+    wow() {
+        const error_allowance = 5;
+        const apt = window.airportController.airport_get();
+        const rwy_elev = apt.getRunway(this.rwy_dep || this.rwy_arr).elevation;
+        const apt_elev = apt.position.elevation;
+        return this.altitude - (rwy_elev || apt_elev) < error_allowance;
     }
 }

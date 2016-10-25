@@ -53,7 +53,7 @@ const Animation = (options) => {
 
     this.ease = () => {
         if (this.easing === 'linear') {
-            this.value = crange(0, this.progress, 1, this.start_value, this.end_value);
+            this.value = extrapolate_range_clamp(0, this.progress, 1, this.start_value, this.end_value);
         } else if (this.easing === 'smooth') {
             this.value = srange(0, this.progress, 1, this.start_value, this.end_value);
         } else {
@@ -62,7 +62,7 @@ const Animation = (options) => {
     };
 
     this.step = (t) => {
-        this.progress = crange(this.start, t, this.start + this.duration, 0, 1);
+        this.progress = extrapolate_range_clamp(this.start, t, this.start + this.duration, 0, 1);
 
         if (!this.animating) {
             this.progress = 0;

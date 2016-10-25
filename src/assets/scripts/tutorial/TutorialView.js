@@ -1,9 +1,8 @@
-/* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand, no-undef, max-len */
+/* eslint-disable max-len */
 import $ from 'jquery';
-import _clamp from 'lodash/clamp';
 import _has from 'lodash/has';
 import TutorialStep from './TutorialStep';
-import { round } from '../math/core';
+import { round, clamp } from '../math/core';
 import { time } from '../utilities/timeHelpers';
 import { heading_to_string } from '../utilities/unitConverters';
 import { STORAGE_KEY } from '../constants/storageKeys';
@@ -640,7 +639,7 @@ export default class TutorialView {
             return;
         }
 
-        prop.tutorial.step = _clamp(0, prop.tutorial.step + 1, prop.tutorial.steps.length - 1);
+        prop.tutorial.step = clamp(0, prop.tutorial.step + 1, prop.tutorial.steps.length - 1);
 
         this.tutorial_update_content();
     }
@@ -649,7 +648,7 @@ export default class TutorialView {
      * @method tutorial_prev
      */
     tutorial_prev() {
-        prop.tutorial.step = _clamp(0, prop.tutorial.step - 1, prop.tutorial.steps.length - 1);
+        prop.tutorial.step = clamp(0, prop.tutorial.step - 1, prop.tutorial.steps.length - 1);
 
         this.tutorial_update_content();
     }
