@@ -607,7 +607,7 @@
     },
     "BENRI1A": {
       "_comment": "BENRI1A is meant to be dependent on runway usage.",
-      "icao": "BENRI1B",
+      "icao": "BENRI1A",
       "name": "Benri One Alfa",
       "entryPoints": {
         "PULIP":  ["PULIP"],
@@ -689,7 +689,7 @@
     },
     "KIDOT1C": {
       "_comment": "KIDOT1C is meant to be dependent on runway usage.",
-      "icao": "KIDOT1D",
+      "icao": "KIDOT1C",
       "name": "Kidot One Charlie",
       "entryPoints": {
         "PULIP":  ["PULIP"],

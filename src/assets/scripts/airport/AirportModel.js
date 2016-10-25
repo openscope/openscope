@@ -10,7 +10,7 @@ import Runway from './Runway';
 import { ArrivalFactory } from './Arrival/ArrivalFactory';
 import { DepartureFactory } from './Departure/DepartureFactory';
 import { degreesToRadians, parseElevation } from '../utilities/unitConverters';
-import { round, abs, sin, crange } from '../math/core';
+import { round, abs, sin, extrapolate_range_clamp } from '../math/core';
 import { angle_offset } from '../math/circle';
 import { getOffset } from '../math/flightMath';
 import { vlen, vsub, vadd, vscale, raysIntersect } from '../math/vector';
@@ -27,7 +27,7 @@ import { STORAGE_KEY } from '../constants/storageKeys';
  */
 const ra = (n) => {
     const deviation = degreesToRadians(10);
-    return n + crange(0, Math.random(), 1, -deviation, deviation);
+    return n + extrapolate_range_clamp(0, Math.random(), 1, -deviation, deviation);
 };
 
 // TODO: this class contains a lot of .hasOwnProperty() type checks (converted to _has for now). is there a need for
@@ -95,8 +95,8 @@ export default class AirportModel {
         // TODO: why is this var getting reassigned to a magic number?
         s = 100;
         const speed_factor = sin((s + window.gameController.game_time()) * 0.5) + sin((s + window.gameController.game_time()) * 2);
-        wind.angle += crange(-1, angle_factor, 1, degreesToRadians(-4), degreesToRadians(4));
-        wind.speed *= crange(-1, speed_factor, 1, 0.9, 1.05);
+        wind.angle += extrapolate_range_clamp(-1, angle_factor, 1, degreesToRadians(-4), degreesToRadians(4));
+        wind.speed *= extrapolate_range_clamp(-1, speed_factor, 1, 0.9, 1.05);
 
         return wind;
     }

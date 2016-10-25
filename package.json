@@ -12,7 +12,7 @@
     "report": "nyc report --reporter=cobertura  --reporter=lcov",
     "coverage": "npm run test && npm run report",
     "lint": "eslint src/**; exit 0",
-    "start": "gulp dist && http-server -p 3003"
+    "start": "gulp dist && http-server -p 3003 -c -1"
   },
   "repository": {
     "type": "git",

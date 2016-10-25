@@ -96,7 +96,7 @@ export default class Leg {
             const pairs = window.airportController.airport_get(apt).getSID(sid, exit, rwy);
 
             // Remove the placeholder leg (if present)
-            if (fms.my_aircraft.isLanded() && fms.legs.length > 0
+            if (fms.my_aircraft.wow() && fms.legs.length > 0
                 && fms.legs[0].route === window.airportController.airport_get().icao && pairs.length > 0
             ) {
                 // remove the placeholder leg, to be replaced below with SID Leg
