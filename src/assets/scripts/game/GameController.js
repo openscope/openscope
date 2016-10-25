@@ -67,7 +67,9 @@ export default class GameController {
      * @method init_pre
      */
     init_pre() {
-        prop.game = {};
+        prop.game = game;
+        // TODO: with the assignment of `prop.game = game`, the rest of these assignments are redundant and can
+        // be removed after proper testing
         prop.game.paused = true;
         prop.game.focused = true;
         prop.game.speedup = 1;
@@ -277,14 +279,14 @@ export default class GameController {
      * @pram delay {number}
      * @param that
      * @param data
-     * @return to
+     * @return gameTimeout
      */
     game_timeout(func, delay, that, data) {
-        const to = [func, this.game_time() + delay, data, delay, false, that];
+        const gameTimeout = [func, this.game_time() + delay, data, delay, false, that];
 
-        prop.game.timeouts.push(to);
+        prop.game.timeouts.push(gameTimeout);
 
-        return to;
+        return gameTimeout;
     }
 
     /**
@@ -307,10 +309,10 @@ export default class GameController {
     /**
      * @for GameController
      * @method game_clear_timeout
-     * @param to
+     * @param gameTimeout
      */
-    game_clear_timeout(to) {
-        prop.game.timeouts.splice(prop.game.timeouts.indexOf(to), 1);
+    game_clear_timeout(gameTimeout) {
+        prop.game.timeouts.splice(prop.game.timeouts.indexOf(gameTimeout), 1);
     }
 
     /**
