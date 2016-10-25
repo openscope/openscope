@@ -123,7 +123,7 @@ export default class AircraftConflict {
      * Check for collision
      */
     checkCollision() {
-        if (this.aircraft[0].isLanded() || this.aircraft[1].isLanded()) {
+        if (this.aircraft[0].wow() || this.aircraft[1].wow()) {
             return;  // TEMPORARY FIX FOR CRASHES BTWN ARRIVALS AND TAXIIED A/C
         }
 
