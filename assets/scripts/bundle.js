@@ -31211,10 +31211,6 @@ var _jquery = require('jquery');
 
 var _jquery2 = _interopRequireDefault(_jquery);
 
-var _clamp2 = require('lodash/clamp');
-
-var _clamp3 = _interopRequireDefault(_clamp2);
-
 var _get2 = require('lodash/get');
 
 var _get3 = _interopRequireDefault(_get2);
@@ -31222,6 +31218,8 @@ var _get3 = _interopRequireDefault(_get2);
 var _map2 = require('lodash/map');
 
 var _map3 = _interopRequireDefault(_map2);
+
+var _core = require('./math/core');
 
 var _selectors = require('./constants/selectors');
 
@@ -31925,7 +31923,7 @@ var InputController = function () {
     }, {
         key: 'input_history_clamp',
         value: function input_history_clamp() {
-            prop.input.history_item = (0, _clamp3.default)(0, prop.input.history_item, prop.input.history.length - 1);
+            prop.input.history_item = (0, _core.clamp)(0, prop.input.history_item, prop.input.history.length - 1);
         }
 
         /**
@@ -32102,7 +32100,7 @@ var InputController = function () {
 
 exports.default = InputController;
 
-},{"./constants/selectors":543,"jquery":296,"lodash/clamp":443,"lodash/get":450,"lodash/map":473}],514:[function(require,module,exports){
+},{"./constants/selectors":543,"./math/core":552,"jquery":296,"lodash/get":450,"lodash/map":473}],514:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -33283,7 +33281,7 @@ var AircraftConflict = function () {
     }, {
         key: 'checkCollision',
         value: function checkCollision() {
-            if (this.aircraft[0].isLanded() || this.aircraft[1].isLanded()) {
+            if (this.aircraft[0].wow() || this.aircraft[1].wow()) {
                 return; // TEMPORARY FIX FOR CRASHES BTWN ARRIVALS AND TAXIIED A/C
             }
 
@@ -33763,7 +33761,7 @@ var AircraftController = function () {
                     remove = true;
                 }
 
-                if (_aircraft3.hit && _aircraft3.isLanded()) {
+                if (_aircraft3.hit && _aircraft3.wow()) {
                     window.uiController.ui_log('Lost radar contact with ' + _aircraft3.getCallsign());
                     (0, _speech.speech_say)([{ type: 'callsign', content: _aircraft3 }, { type: 'text', content: ', radar contact lost' }]);
 
@@ -33963,10 +33961,6 @@ var _jquery = require('jquery');
 
 var _jquery2 = _interopRequireDefault(_jquery);
 
-var _clamp2 = require('lodash/clamp');
-
-var _clamp3 = _interopRequireDefault(_clamp2);
-
 var _last2 = require('lodash/last');
 
 var _last3 = _interopRequireDefault(_last2);
@@ -33982,6 +33976,8 @@ var _Waypoint2 = _interopRequireDefault(_Waypoint);
 var _Leg = require('./Leg');
 
 var _Leg2 = _interopRequireDefault(_Leg);
+
+var _core = require('../math/core');
 
 var _logLevel = require('../constants/logLevel');
 
@@ -34059,7 +34055,7 @@ var AircraftFlightManagementSystem = function () {
         };
 
         // set initial
-        this.fp.altitude = (0, _clamp3.default)(1000, options.model.ceiling, 60000);
+        this.fp.altitude = (0, _core.clamp)(1000, options.model.ceiling, 60000);
 
         if (options.aircraft.category === 'arrival') {
             this.prependLeg({ route: 'KDBG' });
@@ -35115,7 +35111,7 @@ var AircraftFlightManagementSystem = function () {
 
 exports.default = AircraftFlightManagementSystem;
 
-},{"../constants/logLevel":542,"./Leg":522,"./Waypoint":523,"jquery":296,"lodash/clamp":443,"lodash/last":471,"lodash/map":473}],519:[function(require,module,exports){
+},{"../constants/logLevel":542,"../math/core":552,"./Leg":522,"./Waypoint":523,"jquery":296,"lodash/last":471,"lodash/map":473}],519:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -35123,16 +35119,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.WAYPOINT_NAV_MODE = exports.FLIGHT_CATEGORY = exports.FLIGHT_MODES = undefined;
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand, no-undef, guard-for-in, no-restricted-syntax, max-len, prefer-arrow-callback, */
-
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _jquery = require('jquery');
 
 var _jquery2 = _interopRequireDefault(_jquery);
-
-var _clamp2 = require('lodash/clamp');
-
-var _clamp3 = _interopRequireDefault(_clamp2);
 
 var _forEach2 = require('lodash/forEach');
 
@@ -35487,12 +35478,13 @@ var Aircraft = function () {
 
                 this.destination = data.destination;
                 this.setArrivalRunway(window.airportController.airport_get(this.destination).runway);
-            } else if (this.category === FLIGHT_CATEGORY.DEPARTURE && this.isLanded()) {
-                this.speed = 0;
+            } else if (this.category === FLIGHT_CATEGORY.DEPARTURE) {
+                var airport = window.airportController.airport_get();
                 this.mode = FLIGHT_MODES.APRON;
                 this.destination = data.destination;
-
-                this.setDepartureRunway(window.airportController.airport_get().runway);
+                this.setDepartureRunway(airport.runway);
+                this.altitude = airport.position.elevation;
+                this.speed = 0;
             }
 
             if (data.heading) {
@@ -36134,7 +36126,7 @@ var Aircraft = function () {
 
             this.fms.setAll({
                 // TODO: enumerate the magic numbers
-                altitude: (0, _clamp3.default)((0, _core.round)(window.airportController.airport_get().elevation / 100) * 100 + 1000, altitude, ceiling),
+                altitude: (0, _core.clamp)((0, _core.round)(window.airportController.airport_get().elevation / 100) * 100 + 1000, altitude, ceiling),
                 expedite: expedite
             });
 
@@ -36239,7 +36231,7 @@ var Aircraft = function () {
             }
 
             this.fms.setAll({
-                speed: (0, _clamp3.default)(this.model.speed.min, speed, this.model.speed.max)
+                speed: (0, _core.clamp)(this.model.speed.min, speed, this.model.speed.max)
             });
 
             var readback = {
@@ -36369,7 +36361,7 @@ var Aircraft = function () {
             }
 
             // TODO: abstract to method `.getInboundCardinalDirection()`
-            var inboundDir = _radioUtilities.radio_cardinalDir_names[(0, _radioUtilities.getCardinalDirection)((0, _circle.fix_angle)(inboundHdg + Math.PI)).toLowerCase()];
+            var inboundDir = _radioUtilities.radio_cardinalDir_names[(0, _radioUtilities.getCardinalDirection)((0, _circle.radians_normalize)(inboundHdg + Math.PI)).toLowerCase()];
 
             if (holdFix) {
                 return ['ok', 'proceed direct ' + holdFix + ' and hold inbound, ' + dirTurns + ' turns, ' + legLength + ' legs'];
@@ -36727,7 +36719,7 @@ var Aircraft = function () {
                 return ['fail', 'inbound'];
             }
 
-            if (!this.isLanded()) {
+            if (!this.wow()) {
                 return ['fail', 'already airborne'];
             }
             if (this.mode === FLIGHT_MODES.APRON) {
@@ -36979,32 +36971,6 @@ var Aircraft = function () {
         }
 
         /**
-         * Aircraft is on the ground (can be a departure OR arrival)
-         * @for AircraftInstanceModel
-         * @method runTakeoff
-         */
-
-    }, {
-        key: 'isLanded',
-        value: function isLanded() {
-            // TODO: this logic can be simplified. there should really be another method that does more of the work here.
-            var runway = window.airportController.airport_get().getRunway(this.rwy_arr);
-            if (runway === null) {
-                runway = window.airportController.airport_get().getRunway(this.rwy_dep);
-            }
-
-            if (runway === null) {
-                return false;
-            }
-
-            if (this.altitude - runway.elevation < 5) {
-                return true;
-            }
-
-            return false;
-        }
-
-        /**
          * Aircraft is actively following an instrument approach
          * @for AircraftInstanceModel
          * @method runTakeoff
@@ -37031,7 +36997,7 @@ var Aircraft = function () {
         key: 'isStopped',
         value: function isStopped() {
             // TODO: enumerate the magic number.
-            return this.isLanded() && this.speed < 5;
+            return this.wow() && this.speed < 5;
         }
 
         /**
@@ -37257,7 +37223,6 @@ var Aircraft = function () {
             var offset = null;
             var offset_angle = null;
             var glideslope_altitude = null;
-            var glideslope_window = null;
             var angle = null;
             var runway_elevation = 0;
             var position = void 0;
@@ -37273,40 +37238,94 @@ var Aircraft = function () {
             }
 
             if (this.fms.currentWaypoint().navmode === WAYPOINT_NAV_MODE.RWY) {
-                airport = window.airportController.airport_get();
                 runway = airport.getRunway(this.rwy_arr);
                 offset = (0, _flightMath.getOffset)(this, runway.position, runway.angle);
                 offset_angle = (0, _vector.vradial)(offset);
+                angle = (0, _circle.radians_normalize)(runway.angle);
+                glideslope_altitude = (0, _core.clamp)(runway.elevation, runway.getGlideslopeAltitude(offset[1]), this.altitude);
+                var assignedHdg = this.fms.currentWaypoint().heading;
+                var localizerRange = runway.ils.enabled ? runway.ils.loc_maxDist : 40;
                 this.offset_angle = offset_angle;
                 this.approachOffset = (0, _core.abs)(offset[0]);
                 this.approachDistance = offset[1];
-                angle = runway.angle;
+                this.target.heading = assignedHdg;
+                this.target.turn = this.fms.currentWaypoint().turn;
+                this.target.altitude = this.fms.currentWaypoint().altitude;
+                this.target.speed = this.fms.currentWaypoint().speed;
 
-                if (angle > (0, _circle.tau)()) {
-                    angle -= (0, _circle.tau)();
-                }
-
-                glideslope_altitude = (0, _clamp3.default)(0, runway.getGlideslopeAltitude(offset[1]), this.altitude);
-                glideslope_window = (0, _core.abs)(runway.getGlideslopeAltitude(offset[1], (0, _unitConverters.degreesToRadians)(1)));
-
+                // Established on ILS
                 if (this.mode === FLIGHT_MODES.LANDING) {
-                    this.target.altitude = glideslope_altitude;
-                }
+                    // Final Approach Heading Control
+                    var severity_of_correction = 25; // controls steepness of heading adjustments during localizer tracking
+                    var tgtHdg = angle + offset_angle * -severity_of_correction;
+                    var minHdg = angle - (0, _unitConverters.degreesToRadians)(30);
+                    var maxHdg = angle + (0, _unitConverters.degreesToRadians)(30);
+                    this.target.heading = (0, _core.clamp)(tgtHdg, minHdg, maxHdg);
 
-                var ils = runway.ils.loc_maxDist;
-                if (!runway.ils.enabled || !ils) {
-                    ils = 40;
-                }
+                    // Final Approach Altitude Control
+                    this.target.altitude = Math.min(this.fms.currentWaypoint().altitude, glideslope_altitude);
 
-                // lock ILS if at the right angle and altitude
-                if ((0, _core.abs)(this.altitude - glideslope_altitude) < glideslope_window && (0, _core.abs)(offset_angle) < (0, _unitConverters.degreesToRadians)(10) && offset[1] < ils) {
-                    if ((0, _core.abs)(offset[0]) < 0.05 && this.mode !== FLIGHT_MODES.LANDING) {
-                        this.mode = FLIGHT_MODES.LANDING;
+                    // Final Approach Speed Control
+                    if (this.fms.currentWaypoint().speed > 0) {
+                        this.fms.setCurrent({ start_speed: this.fms.currentWaypoint().speed });
+                    }
 
-                        if (!this.projected && (0, _core.abs)((0, _circle.angle_offset)(this.fms.currentWaypoint().heading, (0, _unitConverters.degreesToRadians)(parseInt(this.rwy_arr.substr(0, 2), 10) * 10, 10))) > (0, _unitConverters.degreesToRadians)(30)) {
+                    if (this.wow()) {
+                        this.target.altitude = runway.elevation;
+                        this.target.speed = 0;
+                    } else {
+                        var dist_final_app_spd = 3.5; // 3.5km ~= 2nm
+                        var dist_assigned_spd = 9.5; // 9.5km ~= 5nm
+                        this.target.speed = (0, _core.extrapolate_range_clamp)(dist_final_app_spd, offset[1], dist_assigned_spd, this.model.speed.landing, this.fms.currentWaypoint().start_speed);
+                    }
+
+                    // Failed Approach
+                    if ((0, _core.abs)(offset[0]) > 0.100) {
+                        if (!this.projected) {
+                            this.updateStrip();
+                            this.cancelLanding();
                             var isWarning = true;
-                            window.uiController.ui_log(this.getRadioCallsign() + ' approach course intercept angle was greater than 30 degrees', isWarning);
-                            prop.game.score.violation += 1;
+                            window.uiController.ui_log(this.getRadioCallsign() + ' aborting landing, lost ILS', isWarning);
+                            (0, _speech.speech_say)([{ type: 'callsign', content: this }, { type: 'text', content: ' going around' }]);
+                            prop.game.score.abort.landing += 1;
+                        }
+                    }
+                } else if (offset[1] < localizerRange) {
+                    // Joining the ILS
+                    // Check if aircraft has just become established on the localizer
+                    var alignedWithRunway = (0, _core.abs)(offset[0]) < 0.050; // within 50m
+                    var onRunwayHeading = (0, _core.abs)(this.heading - angle) < (0, _unitConverters.degreesToRadians)(5);
+                    var runwayNominalHeading = (0, _unitConverters.degreesToRadians)(parseInt(this.rwy_arr.substr(0, 2), 10) * 10, 10);
+                    var maxInterceptAngle = (0, _unitConverters.degreesToRadians)(30);
+                    var maxAboveGlideslope = 250;
+                    var interceptAngle = (0, _core.abs)((0, _circle.angle_offset)(assignedHdg, runwayNominalHeading));
+                    var courseDifference = (0, _core.abs)((0, _circle.angle_offset)(this.heading, runwayNominalHeading));
+                    if (alignedWithRunway && onRunwayHeading && this.mode !== FLIGHT_MODES.LANDING) {
+                        this.mode = FLIGHT_MODES.LANDING;
+                        this.target.heading = angle;
+                        // Check legality of localizer interception
+                        if (!this.projected) {
+                            // do not give penalty during a future projection
+                            // TODO: Abstraction on the below, to remove duplicate code
+                            // Intercept Angle
+                            if (!assignedHdg && courseDifference > maxInterceptAngle) {
+                                // intercept via fixes
+                                var _isWarning = true;
+                                window.uiController.ui_log(this.getCallsign() + ' approach course intercept angle was greater than 30 degrees', _isWarning);
+                                prop.game.score.violation += 1;
+                            } else if (interceptAngle > maxInterceptAngle) {
+                                // intercept via vectors
+                                var _isWarning2 = true;
+                                window.uiController.ui_log(this.getCallsign() + ' approach course intercept angle was greater than 30 degrees', _isWarning2);
+                                prop.game.score.violation += 1;
+                            }
+
+                            // Glideslope intercept
+                            if (this.altitude > glideslope_altitude + maxAboveGlideslope) {
+                                var _isWarning3 = true;
+                                window.uiController.ui_log(this.getRadioCallsign() + ' joined localizer above glideslope altitude', _isWarning3);
+                                prop.game.score.violation += 1;
+                            }
                         }
 
                         this.updateStrip();
@@ -37314,52 +37333,23 @@ var Aircraft = function () {
                     }
 
                     // TODO: this math section should be absctracted to a helper function
-                    // Intercept localizer and glideslope and follow them inbound
+                    // Guide aircraft onto the localizer
                     var angle_diff = (0, _circle.angle_offset)(angle, this.heading);
                     var turning_time = Math.abs((0, _unitConverters.radiansToDegrees)(angle_diff)) / 3; // time to turn angle_diff degrees at 3 deg/s
                     var turning_radius = (0, _unitConverters.km)(this.speed) / 3600 * turning_time; // dist covered in the turn, km
                     var dist_to_localizer = offset[0] / (0, _core.sin)(angle_diff); // dist from the localizer intercept point, km
+                    var turn_early_km = 1; // start turn 1km early, to avoid overshoots from tailwind
+                    var should_attempt_intercept = 0 < dist_to_localizer && dist_to_localizer <= turning_radius + turn_early_km;
+                    var in_the_window = (0, _core.abs)(offset_angle) < (0, _unitConverters.degreesToRadians)(1.5); // if true, aircraft will move to localizer, regardless of assigned heading
 
-                    if (dist_to_localizer <= turning_radius || dist_to_localizer < 0.5) {
-                        this.target.heading = angle;
-
-                        // Steer to within 3m of the centerline while at least 200m out
-                        if (offset[1] > 0.2 && (0, _core.abs)(offset[0]) > 0.003) {
-                            // TODO: enumerate the magic numbers
-                            this.target.heading = (0, _clamp3.default)((0, _unitConverters.degreesToRadians)(-30), -12 * offset_angle, (0, _unitConverters.degreesToRadians)(30)) + angle;
-                        }
-
-                        // Follow the glideslope
-                        this.target.altitude = glideslope_altitude;
+                    if (should_attempt_intercept || in_the_window) {
+                        // time to begin turn
+                        var _severity_of_correction = 50; // controls steepness of heading adjustments during localizer tracking
+                        var _tgtHdg = angle + offset_angle * -_severity_of_correction;
+                        var _minHdg = angle - (0, _unitConverters.degreesToRadians)(30);
+                        var _maxHdg = angle + (0, _unitConverters.degreesToRadians)(30);
+                        this.target.heading = (0, _core.clamp)(_tgtHdg, _minHdg, _maxHdg);
                     }
-
-                    // Speed control on final approach
-                    if (this.fms.currentWaypoint().speed > 0) {
-                        this.fms.setCurrent({ start_speed: this.fms.currentWaypoint().speed });
-                    }
-
-                    this.target.speed = (0, _core.crange)(3, offset[1], 10, this.model.speed.landing, this.fms.currentWaypoint().start_speed);
-                } else if (this.altitude - runway_elevation >= 300 && this.mode === FLIGHT_MODES.LANDING) {
-                    this.updateStrip();
-                    this.cancelLanding();
-
-                    if (!this.projected) {
-                        var _isWarning = true;
-                        window.uiController.ui_log(this.getRadioCallsign() + ' aborting landing, lost ILS', _isWarning);
-                        (0, _speech.speech_say)([{ type: 'callsign', content: this }, { type: 'text', content: ' going around' }]);
-
-                        prop.game.score.abort.landing += 1;
-                    }
-                } else if (this.altitude >= 300) {
-                    this.target.heading = this.fms.currentWaypoint().heading;
-                    this.target.turn = this.fms.currentWaypoint().turn;
-                }
-
-                // this has to be outside of the glide slope if, as the plane is no
-                // longer on the glide slope once it is on the runway (as the runway is
-                // behind the ILS marker)
-                if (this.isLanded()) {
-                    this.target.speed = 0;
                 }
             } else if (this.fms.currentWaypoint().navmode === WAYPOINT_NAV_MODE.FIX) {
                 var fix = this.fms.currentWaypoint().location;
@@ -37426,12 +37416,12 @@ var Aircraft = function () {
                 this.target.expedite = this.fms.currentWaypoint().expedite;
                 this.target.altitude = Math.max(1000, this.target.altitude);
                 this.target.speed = this.fms.currentWaypoint().speed;
-                this.target.speed = (0, _clamp3.default)(this.model.speed.min, this.target.speed, this.model.speed.max);
+                this.target.speed = (0, _core.clamp)(this.model.speed.min, this.target.speed, this.model.speed.max);
             }
 
             // If stalling, make like a meteorite and fall to the earth!
-            if (this.speed < this.model.speed.min) {
-                this.target.altitude = 0;
+            if (this.speed < this.model.speed.min && !this.wow()) {
+                this.target.altitude = Math.min(0, this.target.altitude);
             }
 
             // finally, taxi overrides everything
@@ -37525,11 +37515,12 @@ var Aircraft = function () {
             }
 
             // TURNING
-            if (!this.isLanded() && this.heading !== this.target.heading) {
+            // this.target.heading = radians_normalize(this.target.heading);
+            if (!this.wow() && this.heading !== this.target.heading) {
                 // Perform standard turns 3 deg/s or 25 deg bank, whichever
                 // requires less bank angle.
                 // Formula based on http://aviation.stackexchange.com/a/8013
-                var turn_rate = (0, _clamp3.default)(0, 1 / (this.speed / 8.883031), 0.0523598776);
+                var turn_rate = (0, _core.clamp)(0, 1 / (this.speed / 8.883031), 0.0523598776);
                 var turn_amount = turn_rate * window.gameController.game_delta();
                 var offset = (0, _circle.angle_offset)(this.target.heading, this.heading);
 
@@ -37580,7 +37571,7 @@ var Aircraft = function () {
                 }
             }
 
-            if (this.isLanded()) {
+            if (this.wow()) {
                 this.trend = 0;
             }
 
@@ -37590,12 +37581,12 @@ var Aircraft = function () {
             if (this.target.speed < this.speed - 0.01) {
                 difference = -this.model.rate.decelerate * window.gameController.game_delta() / 2;
 
-                if (this.isLanded()) {
+                if (this.wow()) {
                     difference *= 3.5;
                 }
             } else if (this.target.speed > this.speed + 0.01) {
                 difference = this.model.rate.accelerate * window.gameController.game_delta() / 2;
-                difference *= (0, _core.crange)(0, this.speed, this.model.speed.min, 2, 1);
+                difference *= (0, _core.extrapolate_range_clamp)(0, this.speed, this.model.speed.min, 2, 1);
             }
 
             if (difference) {
@@ -37634,7 +37625,7 @@ var Aircraft = function () {
                 var wind = window.airportController.airport_get().wind;
                 var vector = void 0;
 
-                if (this.isLanded()) {
+                if (this.wow()) {
                     vector = (0, _vector.vscale)([(0, _core.sin)(angle), (0, _core.cos)(angle)], scaleSpeed);
                 } else {
                     var crab_angle = 0;
@@ -37763,7 +37754,7 @@ var Aircraft = function () {
                 });
             }
 
-            if (this.terrain_ranges && !this.isLanded()) {
+            if (this.terrain_ranges && !this.wow()) {
                 var terrain = prop.airport.current.terrain;
                 var prev_level = this.terrain_ranges[this.terrain_level];
                 var ele = Math.ceil(this.altitude, 1000);
@@ -37966,6 +37957,22 @@ var Aircraft = function () {
         value: function removeConflict(other) {
             delete this.conflicts[other.getCallsign()];
         }
+
+        /**
+         * Aircraft has "weight-on-wheels" (on the ground)
+         * @for AircraftInstanceModel
+         * @method wow
+         */
+
+    }, {
+        key: 'wow',
+        value: function wow() {
+            var error_allowance = 5;
+            var apt = window.airportController.airport_get();
+            var rwy_elev = apt.getRunway(this.rwy_dep || this.rwy_arr).elevation;
+            var apt_elev = apt.position.elevation;
+            return this.altitude - (rwy_elev || apt_elev) < error_allowance;
+        }
     }]);
 
     return Aircraft;
@@ -37973,7 +37980,7 @@ var Aircraft = function () {
 
 exports.default = Aircraft;
 
-},{"../constants/selectors":543,"../math/circle":551,"../math/core":552,"../math/distance":553,"../math/flightMath":554,"../math/vector":555,"../speech":557,"../utilities/radioUtilities":561,"../utilities/unitConverters":563,"./AircraftFlightManagementSystem":518,"./AircraftStripView":521,"./Waypoint":523,"jquery":296,"lodash/clamp":443,"lodash/forEach":449,"lodash/get":450,"lodash/has":451,"lodash/isNaN":463,"lodash/isString":467,"lodash/map":473}],520:[function(require,module,exports){
+},{"../constants/selectors":543,"../math/circle":551,"../math/core":552,"../math/distance":553,"../math/flightMath":554,"../math/vector":555,"../speech":557,"../utilities/radioUtilities":561,"../utilities/unitConverters":563,"./AircraftFlightManagementSystem":518,"./AircraftStripView":521,"./Waypoint":523,"jquery":296,"lodash/forEach":449,"lodash/get":450,"lodash/has":451,"lodash/isNaN":463,"lodash/isString":467,"lodash/map":473}],520:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -38862,7 +38869,7 @@ var Leg = function () {
                 var pairs = window.airportController.airport_get(apt).getSID(sid, exit, rwy);
 
                 // Remove the placeholder leg (if present)
-                if (fms.my_aircraft.isLanded() && fms.legs.length > 0 && fms.legs[0].route === window.airportController.airport_get().icao && pairs.length > 0) {
+                if (fms.my_aircraft.wow() && fms.legs.length > 0 && fms.legs[0].route === window.airportController.airport_get().icao && pairs.length > 0) {
                     // remove the placeholder leg, to be replaced below with SID Leg
                     fms.legs.splice(0, 1);
                 }
@@ -39816,7 +39823,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
  */
 var ra = function ra(n) {
     var deviation = (0, _unitConverters.degreesToRadians)(10);
-    return n + (0, _core.crange)(0, Math.random(), 1, -deviation, deviation);
+    return n + (0, _core.extrapolate_range_clamp)(0, Math.random(), 1, -deviation, deviation);
 };
 
 // TODO: this class contains a lot of .hasOwnProperty() type checks (converted to _has for now). is there a need for
@@ -39892,8 +39899,8 @@ var AirportModel = function () {
             // TODO: why is this var getting reassigned to a magic number?
             s = 100;
             var speed_factor = (0, _core.sin)((s + window.gameController.game_time()) * 0.5) + (0, _core.sin)((s + window.gameController.game_time()) * 2);
-            wind.angle += (0, _core.crange)(-1, angle_factor, 1, (0, _unitConverters.degreesToRadians)(-4), (0, _unitConverters.degreesToRadians)(4));
-            wind.speed *= (0, _core.crange)(-1, speed_factor, 1, 0.9, 1.05);
+            wind.angle += (0, _core.extrapolate_range_clamp)(-1, angle_factor, 1, (0, _unitConverters.degreesToRadians)(-4), (0, _unitConverters.degreesToRadians)(4));
+            wind.speed *= (0, _core.extrapolate_range_clamp)(-1, speed_factor, 1, 0.9, 1.05);
 
             return wind;
         }
@@ -41929,6 +41936,8 @@ var _PositionModel2 = _interopRequireDefault(_PositionModel);
 
 var _core = require('../math/core');
 
+var _circle = require('../math/circle.js');
+
 var _unitConverters = require('../utilities/unitConverters');
 
 var _vector = require('../math/vector');
@@ -42043,7 +42052,7 @@ var Runway = function () {
                 this.length = (0, _vector.vlen)((0, _vector.vsub)(farSide.position, thisSide.position));
                 // TODO: what is the 0.5 for? enumerate the magic number
                 this.midfield = (0, _vector.vscale)((0, _vector.vadd)(thisSide.position, farSide.position), 0.5);
-                this.angle = (0, _vector.vradial)((0, _vector.vsub)(farSide.position, thisSide.position));
+                this.angle = (0, _circle.radians_normalize)((0, _vector.vradial)((0, _vector.vsub)(farSide.position, thisSide.position)));
             }
 
             if (data.ils) {
@@ -42081,7 +42090,7 @@ var Runway = function () {
 
 exports.default = Runway;
 
-},{"../base/PositionModel":540,"../math/core":552,"../math/vector":555,"../utilities/unitConverters":563}],538:[function(require,module,exports){
+},{"../base/PositionModel":540,"../math/circle.js":551,"../math/core":552,"../math/vector":555,"../utilities/unitConverters":563}],538:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -42683,17 +42692,11 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     no-param-reassign, no-undef, class-methods-use-this */
-
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _jquery = require('jquery');
 
 var _jquery2 = _interopRequireDefault(_jquery);
-
-var _clamp2 = require('lodash/clamp');
-
-var _clamp3 = _interopRequireDefault(_clamp2);
 
 var _cloneDeep2 = require('lodash/cloneDeep');
 
@@ -42989,8 +42992,8 @@ var ConvasController = function () {
         key: 'canvas_update_post',
         value: function canvas_update_post() {
             var elapsed = window.gameController.game_time() - window.airportController.airport_get().start;
-            var alpha = (0, _core.crange)(0.1, elapsed, 0.4, 0, 1);
-            var framestep = Math.round((0, _core.crange)(1, prop.game.speedup, 10, 30, 1));
+            var alpha = (0, _core.extrapolate_range_clamp)(0.1, elapsed, 0.4, 0, 1);
+            var framestep = Math.round((0, _core.extrapolate_range_clamp)(1, prop.game.speedup, 10, 30, 1));
 
             if (this.canvas.dirty || !window.gameController.game_paused() && prop.time.frames % framestep === 0 || elapsed < 1) {
                 var cc = this.canvas_get('navaids');
@@ -43646,7 +43649,7 @@ var ConvasController = function () {
                 var w = this.canvas.size.width / 2;
                 var h = this.canvas.size.height / 2;
 
-                cc.translate((0, _clamp3.default)(-w, window.uiController.km_to_px(aircraft.position[0]) + this.canvas.panX, w), (0, _clamp3.default)(-h, -window.uiController.km_to_px(aircraft.position[1]) + this.canvas.panY, h));
+                cc.translate((0, _core.clamp)(-w, window.uiController.km_to_px(aircraft.position[0]) + this.canvas.panX, w), (0, _core.clamp)(-h, -window.uiController.km_to_px(aircraft.position[1]) + this.canvas.panY, h));
 
                 cc.beginPath();
                 cc.arc(0, 0, (0, _core.round)(size * 1.5), 0, (0, _circle.tau)());
@@ -43856,7 +43859,7 @@ var ConvasController = function () {
                 var cs = aircraft.getCallsign();
                 var paddingLR = 5;
                 // width of datablock (scales to fit callsign)
-                var width = (0, _clamp3.default)(1, 5.8 * cs.length) + paddingLR * 2;
+                var width = (0, _core.clamp)(1, 5.8 * cs.length) + paddingLR * 2;
                 var width2 = width / 2;
                 // height of datablock
                 var height = 31;
@@ -43995,9 +43998,9 @@ var ConvasController = function () {
 
                 // TODO: remove the if/else in favor of an initial assignment, and update with if condition
                 if (aircraft.inside_ctr) {
-                    cc.fillStyle = COLORS.WHITE;
+                    cc.fillStyle = COLORS.WHITE_08;
                 } else {
-                    cc.fillStyle = COLORS.LIGHT_SILVER;
+                    cc.fillStyle = COLORS.WHITE_02;
                 }
 
                 if (aircraft.trend === 0) {
@@ -44097,7 +44100,7 @@ var ConvasController = function () {
             cc.beginPath();
             cc.moveTo(0, 0);
             cc.rotate(airport.wind.angle);
-            cc.lineTo(0, (0, _core.crange)(0, windspeed_line, 15, 0, size2 - dot));
+            cc.lineTo(0, (0, _core.extrapolate_range_clamp)(0, windspeed_line, 15, 0, size2 - dot));
 
             // TODO: simplify. replace with initial assignment and re-assignment in if condition
             // Color wind line red for high-wind
@@ -44294,7 +44297,7 @@ var ConvasController = function () {
 
             cc.strokeStyle = COLORS.WHITE_04;
             cc.fillStyle = COLORS.WHITE_02;
-            cc.lineWidth = (0, _clamp3.default)(0.5, prop.ui.scale / 10, 2);
+            cc.lineWidth = (0, _core.clamp)(0.5, prop.ui.scale / 10, 2);
             cc.lineJoin = 'round';
 
             var airport = window.airportController.airport_get();
@@ -44576,7 +44579,7 @@ var ConvasController = function () {
 
 exports.default = ConvasController;
 
-},{"../aircraft/AircraftInstanceModel":519,"../constants/logLevel":542,"../constants/selectors":543,"../math/circle":551,"../math/core":552,"../math/distance":553,"../math/vector":555,"../utilities/timeHelpers":562,"../utilities/unitConverters":563,"jquery":296,"lodash/clamp":443,"lodash/cloneDeep":445,"lodash/forEach":449,"lodash/has":451}],542:[function(require,module,exports){
+},{"../aircraft/AircraftInstanceModel":519,"../constants/logLevel":542,"../constants/selectors":543,"../math/circle":551,"../math/core":552,"../math/distance":553,"../math/vector":555,"../utilities/timeHelpers":562,"../utilities/unitConverters":563,"jquery":296,"lodash/cloneDeep":445,"lodash/forEach":449,"lodash/has":451}],542:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -45595,7 +45598,7 @@ exports.default = function () {
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.fix_angle = exports.angle_offset = exports.tau = undefined;
+exports.radians_normalize = exports.degrees_normalize = exports.angle_offset = exports.tau = undefined;
 
 var _core = require('./core');
 
@@ -45647,22 +45650,27 @@ var angle_offset = exports.angle_offset = function angle_offset(a, b) {
 };
 
 /**
- * Constrains an angle to within 0 --> Math.PI * 2
- *
- * @function fix_angle
- * @param radians {number}
- * @return {number}
+ * normalize angles to within 0° - 360°
+ * @param  {number} degrees an angle
+ * @return {number}         an angle within [0,360]
  */
-var fix_angle = exports.fix_angle = function fix_angle(radians) {
-    while (radians > tau()) {
-        radians -= tau();
+var degrees_normalize = exports.degrees_normalize = function degrees_normalize(degrees) {
+    if (degrees >= 0) {
+        return degrees % 360;
     }
+    return 360 + degrees % 360;
+};
 
-    while (radians < 0) {
-        radians += tau();
+/**
+ * normalize angles to within 0 - 2π
+ * @param  {number} radians an angle
+ * @return {number}         an angle within [0,2π]
+ */
+var radians_normalize = exports.radians_normalize = function radians_normalize(radians) {
+    if (radians >= 0) {
+        return radians % tau();
     }
-
-    return radians;
+    return tau() + radians % tau();
 };
 
 },{"../utilities/unitConverters":563,"./core":552}],552:[function(require,module,exports){
@@ -45671,13 +45679,9 @@ var fix_angle = exports.fix_angle = function fix_angle(radians) {
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.crange = exports.mod = exports.calculateMiddle = exports.within = exports.s = exports.randint = exports.fl = exports.tan = exports.cos = exports.sin = exports.abs = exports.round = undefined;
+exports.extrapolate_range_clamp = exports.clamp = exports.mod = exports.calculateMiddle = exports.within = exports.s = exports.randint = exports.fl = exports.tan = exports.cos = exports.sin = exports.abs = exports.round = undefined;
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-var _clamp2 = require('lodash/clamp');
-
-var _clamp3 = _interopRequireDefault(_clamp2);
 
 var _isNumber2 = require('lodash/isNumber');
 
@@ -45687,6 +45691,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 /**
  * @function round
+ * @return {number}
  */
 var round = exports.round = function round(n) {
     var factor = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
@@ -45696,6 +45701,7 @@ var round = exports.round = function round(n) {
 
 /**
  * @function abs
+ * @return {number}
  */
 var abs = exports.abs = function abs(n) {
     return Math.abs(n);
@@ -45757,16 +45763,14 @@ var s = exports.s = function s(i) {
 // TODO: rename to isWithin
 /**
  * @function within
+ * @param n
+ * @param c
+ * @param r
  * @return {number}
  */
 var within = exports.within = function within(n, c, r) {
     return n > c + r || n < c - r;
 };
-
-// TODO: update references to use exports instead of functions attached to window
-// window.randint = randint;
-// window.s = s;
-// window.within = within;
 
 // TODO: add a divisor paramater that dfaults to `2`
 /**
@@ -45797,36 +45801,84 @@ var mod = exports.mod = function mod(firstValue, secondValue) {
     return (firstValue % secondValue + secondValue) % secondValue;
 };
 
-// TODO: find better names/enumerate the params for these next two functions
 /**
- * @function trange
- * @param il {number}
- * @param i {number}
- * @param ih {number}
- * @param ol {number}
- * @param oh {number}
+ * Clamp a value to be within a certain range
+ *
+ * @function clamp
+ * @param min {number}
+ * @param valueToClamp {number}
+ * @param max {number} (optional)
  * @return {number}
  */
-var trange = function trange(il, i, ih, ol, oh) {
-    return ol + (oh - ol) * (i - il) / (ih - il);
-    // i=(i/(ih-il))-il;       // purpose unknown
-    // return (i*(oh-ol))+ol;  // purpose unknown
+var clamp = exports.clamp = function clamp(min, valueToClamp) {
+    var max = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : Infinity;
+
+    var temp = void 0;
+
+    if (!(0, _isNumber3.default)(valueToClamp)) {
+        throw new TypeError('Invalid parameter. Expected `valueToClamp` to be a number');
+    }
+
+    if (max === Infinity) {
+        if (min > valueToClamp) {
+            return min;
+        }
+
+        return valueToClamp;
+    }
+
+    if (min > max) {
+        temp = max;
+        max = min;
+        min = temp;
+    }
+
+    if (min > valueToClamp) {
+        return min;
+    }
+
+    if (max < valueToClamp) {
+        return max;
+    }
+
+    return valueToClamp;
 };
 
 /**
- * @function crange
- * @param il {number}
- * @param i {number}
- * @param ih {number}
- * @param ol {number}
- * @param oh {number}
- * @return {number}
+ * Takes a value's position relative to a given range, and extrapolates to another range.
+ * Note: Return will be outside range2 if target_val is outside range1.
+ *       If you wish to clamp it within range2, use extrapolate_range_clamp.
+ * @function extrapolate_range
+ * @param  {number} range1_min minimum value of range 1
+ * @param  {number} target_val target value within range 1
+ * @param  {number} range1_max maximum value of range 1
+ * @param  {number} range2_min minimum value of range 2
+ * @param  {number} range2_max maximum value of range 2
+ * @return {number}            target value wihtin range 2
  */
-var crange = exports.crange = function crange(il, i, ih, ol, oh) {
-    return (0, _clamp3.default)(ol, trange(il, i, ih, ol, oh), oh);
+var extrapolate_range = function extrapolate_range(range1_min, target_val, range1_max, range2_min, range2_max) {
+    return range2_min + (range2_max - range2_min) * (target_val - range1_min) / (range1_max - range1_min);
 };
 
-},{"lodash/clamp":443,"lodash/isNumber":464}],553:[function(require,module,exports){
+/**
+ * Takes a value's position relative to a given range, and extrapolates to (and clamps within) another range.
+ * Note: Return will be clamped within range2, even if target_val is outside range1.
+ *       If you wish to allow extrapolation beyond the bounds of range2, us extrapolate_range.
+ * @function extrapolate_range_clamp
+ * @param  {number} range1_min minimum value of range1
+ * @param  {number} target_val target value relative to range1
+ * @param  {number} range1_max maximum value of range1
+ * @param  {number} range2_min minimum value of range2
+ * @param  {number} range2_max maximum value of range2
+ * @return {number}            target value within range2
+ */
+var extrapolate_range_clamp = exports.extrapolate_range_clamp = function extrapolate_range_clamp(range1_min, target_val, range1_max, range2_min, range2_max) {
+    var extrapolation_result = extrapolate_range(range1_min, target_val, range1_max, range2_min, range2_max);
+
+    return clamp(extrapolation_result, range2_min, range2_max);
+};
+
+},{"lodash/isNumber":464}],553:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -49787,16 +49839,12 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand, no-undef, max-len */
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /* eslint-disable max-len */
 
 
 var _jquery = require('jquery');
 
 var _jquery2 = _interopRequireDefault(_jquery);
-
-var _clamp2 = require('lodash/clamp');
-
-var _clamp3 = _interopRequireDefault(_clamp2);
 
 var _has2 = require('lodash/has');
 
@@ -50435,7 +50483,7 @@ var TutorialView = function () {
                 return;
             }
 
-            prop.tutorial.step = (0, _clamp3.default)(0, prop.tutorial.step + 1, prop.tutorial.steps.length - 1);
+            prop.tutorial.step = (0, _core.clamp)(0, prop.tutorial.step + 1, prop.tutorial.steps.length - 1);
 
             this.tutorial_update_content();
         }
@@ -50447,7 +50495,7 @@ var TutorialView = function () {
     }, {
         key: 'tutorial_prev',
         value: function tutorial_prev() {
-            prop.tutorial.step = (0, _clamp3.default)(0, prop.tutorial.step - 1, prop.tutorial.steps.length - 1);
+            prop.tutorial.step = (0, _core.clamp)(0, prop.tutorial.step - 1, prop.tutorial.steps.length - 1);
 
             this.tutorial_update_content();
         }
@@ -50469,7 +50517,7 @@ var TutorialView = function () {
 
 exports.default = TutorialView;
 
-},{"../constants/selectors":543,"../constants/storageKeys":544,"../math/core":552,"../utilities/timeHelpers":562,"../utilities/unitConverters":563,"./TutorialStep":558,"jquery":296,"lodash/clamp":443,"lodash/has":451}],560:[function(require,module,exports){
+},{"../constants/selectors":543,"../constants/storageKeys":544,"../math/core":552,"../utilities/timeHelpers":562,"../utilities/unitConverters":563,"./TutorialStep":558,"jquery":296,"lodash/has":451}],560:[function(require,module,exports){
 'use strict';
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
