@@ -1,6 +1,7 @@
 /* eslint-disable no-underscore-dangle, no-mixed-operators, func-names, object-shorthand, no-undef */
 import $ from 'jquery';
 import _random from 'lodash/random';
+import { choose, choose_weight } from '../../utilities/generalUtilities';
 
 /**
  * Generate departures at random, averaging the specified spawn rate

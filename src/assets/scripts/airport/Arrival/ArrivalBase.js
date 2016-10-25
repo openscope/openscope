@@ -4,6 +4,7 @@ import _map from 'lodash/map';
 import _random from 'lodash/random';
 import RouteModel from '../Route/RouteModel';
 import PositionModel from '../../base/PositionModel';
+import { choose, choose_weight } from '../../utilities/generalUtilities';
 import { nm, degreesToRadians } from '../../utilities/unitConverters';
 import { round, sin, cos } from '../../math/core';
 import { bearing, fixRadialDist, isWithinAirspace, calculateDistanceToBoundary } from '../../math/flightMath';
