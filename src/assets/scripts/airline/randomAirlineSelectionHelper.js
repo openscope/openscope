@@ -1,8 +1,10 @@
 import _isArray from 'lodash/isArray';
 import { choose_weight } from '../utilities/generalUtilities';
 
+// TODO: this file needs to be renamed to something more generalized.
+
 /**
- * Symobl that possibly seperates and airline icao from its fleet classification
+ * Symobl that possibly seperates and airline name from its fleet classification
  *
  * @property NAME_FLEET_SEPERATOR
  * @type {string}
@@ -59,14 +61,42 @@ const _extractNameAndFleetFromCurrentAirline = (selectedAirline, airlineNameAndF
 };
 
 /**
+ * Accepts an airline, as defined in an airport json file from the `departures` and `arrivals` sections,
+ * and returns a consistent object containing an airline name and fleet classification.
+ *
+ * @method airlineNameAndFleetHelper
+ * @param airline {string}
+ * @return airlineNameAndFleet {object}
+ */
+export const airlineNameAndFleetHelper = (airline) => {
+    if (!_isArray(airline)) {
+        throw new TypeError(`Invalid parameter. Expected airline to be an array but instead received ${typeof airline}`);
+    }
+
+    // this could be a model object, but the values used here are temporary so we just use a constant
+    // and update its key values as needed.
+    const airlineNameAndFleet = {
+        name: '',
+        fleet: ''
+    };
+
+    if (airline.length === 0) {
+        return airlineNameAndFleet;
+    }
+
+    return _extractNameAndFleetFromCurrentAirline(airline[FIRST_INDEX], airlineNameAndFleet);
+};
+
+/**
  * Accepts a list of airlines, as defined in an airport json file from the `departures` and `arrivals` sections,
- * and returns a consistent object containing an airline icao and fleet classification.
+ * and returns a consistent object containing an airline name and fleet classification.
  *
  * @function randomAirlineSelectionHelper
  * @param airlineList {array}
  * @return {object}
  */
 export const randomAirlineSelectionHelper = (airlineList) => {
+    // TODO: a large portion of this function is duplicated above, refactor
     if (!_isArray(airlineList)) {
         throw new TypeError(`Invalid parameter. Expected airlineList to be an array but instead received ${typeof airlineList}`);
     }

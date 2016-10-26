@@ -4,7 +4,10 @@ import _map from 'lodash/map';
 import _random from 'lodash/random';
 import RouteModel from '../Route/RouteModel';
 import PositionModel from '../../base/PositionModel';
-import { randomAirlineSelectionHelper } from '../../airline/randomAirlineSelectionHelper';
+import {
+    airlineNameAndFleetHelper,
+    randomAirlineSelectionHelper
+} from '../../airline/randomAirlineSelectionHelper';
 import { nm, degreesToRadians } from '../../utilities/unitConverters';
 import { round, sin, cos } from '../../math/core';
 import { bearing, fixRadialDist, isWithinAirspace, calculateDistanceToBoundary } from '../../math/flightMath';
@@ -193,12 +196,24 @@ export default class ArrivalBase {
             });
         }
 
+        this.preloadAirlines();
+    }
+
+    /**
+     * Loop through each airline provided from the airport json and ensure it had been loaded.
+     *
+     * @for ArrivalBase
+     * @method preloadAirlines
+     */
+    preloadAirlines() {
         // TODO: this really doesn't belong here and should be moved
-        // TODO: this should be a for loop
         // Pre-load the airlines
-        _forEach(this.airlines, (data, i) => {
-            window.airlineController.airline_get(data[0].split('/')[0]);
-        });
+        for (let i = 0; i < this.airlines.lenth; i++) {
+            const airline = this.airlines[i];
+            const { name: airlineName } = airlineNameAndFleetHelper(airline);
+
+            window.airlineController.airline_get(airlineName);
+        }
     }
 
     /**
@@ -399,11 +414,10 @@ export default class ArrivalBase {
         let position;
         let heading;
         let distance;
-        // What are these next two for and can they be removed?
+        // What is this next variable for, why is it here and can it be removed?
         // FIXME: this is not used
         let start_flag = args[0];
-        // FIXME: this is not used
-        let timeout_flag = args[1] || false;
+        const timeout_flag = args[1] || false;
 
         // spawn at first fix
         if (this.fixes.length > 1) {

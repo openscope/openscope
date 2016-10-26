@@ -1,7 +1,10 @@
 /* eslint-disable import/no-extraneous-dependencies, arrow-parens */
 import ava from 'ava';
 
-import { randomAirlineSelectionHelper } from '../../src/assets/scripts/airline/randomAirlineSelectionHelper';
+import {
+    airlineNameAndFleetHelper,
+    randomAirlineSelectionHelper,
+} from '../../src/assets/scripts/airline/randomAirlineSelectionHelper';
 
 const AIRLINE_LIST_WITH_SEPERATOR_MOCK = [
     ['aca/long', 4],
@@ -13,7 +16,33 @@ const AIRLINE_LIST_WITHOUT_SEPERATOR_MOCK = [
     ['aay', 15]
 ];
 
-ava('.randomAirlineSelectionHelper() thows when called with an invalid parameter', t => {
+ava('.airlineNameAndFleetHelper() throws when called with an invalid parameter', t => {
+    t.throws(() => airlineNameAndFleetHelper());
+    t.throws(() => airlineNameAndFleetHelper({}));
+    t.throws(() => airlineNameAndFleetHelper(''));
+    t.throws(() => airlineNameAndFleetHelper(42));
+    t.throws(() => airlineNameAndFleetHelper(false));
+
+    t.notThrows(() => airlineNameAndFleetHelper([]));
+});
+
+ava('.airlineNameAndFleetHelper() returns an object with two keys: name and fleet when an empty string is passed', t => {
+    const result = airlineNameAndFleetHelper([]);
+
+    t.true(typeof result === 'object');
+    t.true(result.name === '');
+    t.true(result.fleet === '');
+});
+
+ava('.airlineNameAndFleetHelper() returns an object with two keys: name and fleet when a string is passed', t => {
+    const result = airlineNameAndFleetHelper(AIRLINE_LIST_WITH_SEPERATOR_MOCK[0]);
+
+    t.true(typeof result === 'object');
+    t.true(result.name === 'aca');
+    t.true(result.fleet === 'long');
+});
+
+ava('.randomAirlineSelectionHelper() throws when called with an invalid parameter', t => {
     t.throws(() => randomAirlineSelectionHelper());
     t.throws(() => randomAirlineSelectionHelper({}));
     t.throws(() => randomAirlineSelectionHelper(''));
