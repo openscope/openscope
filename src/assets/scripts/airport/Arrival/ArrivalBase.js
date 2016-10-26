@@ -108,7 +108,9 @@ export default class ArrivalBase {
         /**
          * Set of fixes to traverse (eg. for STARs) as defined in the airport json file.
          *
-         * Spawn occurs at first listed.
+         * Spawn occurs at first fix listed.
+         * This property gets sent to an `AirportInstanceModel` and becomes that aircraft's
+         * waypoint list in the fms.
          *
          * @property fixes
          * @type {array}
@@ -117,6 +119,12 @@ export default class ArrivalBase {
         this.fixes = [];
 
         /**
+         * Text representation of a `StandardRoute`.
+         *
+         * `RouteModel` object provides methods for dealing with a route string.
+         * Expects string to be in the shape of:
+         * - `ORIGIN_FIXNAME.ROUTE_NAME.DESTINATION_FIXNAME`
+         *
          * @property activeRouteModel
          * @type {RouteModel}
          * @default null
@@ -133,6 +141,8 @@ export default class ArrivalBase {
         this.altitude = [DEFAULT_SPAWN_ALTITUDE_MIN, DEFAULT_SPAWN_ALTITUDE_MAX];
 
         /**
+         * Initial heading of a spawned aircraft
+         *
          * @property heading
          * @type {number}
          * @default null
@@ -142,7 +152,7 @@ export default class ArrivalBase {
         /**
          * Bearing from airspace center to spawn point.
          *
-         * Don't use with fixes
+         * Shouldn't be used with fixes
          *
          * @property radial
          * @type {number}
@@ -151,7 +161,7 @@ export default class ArrivalBase {
         this.radial = 0;
 
         /**
-         * Speed in knots of spawned aircraft.
+         * Initial speed in knots of spawned aircraft.
          *
          * @property speed
          * @type {number}
@@ -226,7 +236,7 @@ export default class ArrivalBase {
     }
 
     /**
-     * Loop through each airline provided from the airport json and ensure it had been loaded.
+     * Loop through each airline provided from an airport json and ensure it had been loaded.
      *
      * @for ArrivalBase
      * @method preloadAirlines
@@ -236,6 +246,7 @@ export default class ArrivalBase {
         // Pre-load the airlines
         for (let i = 0; i < this.airlines.lenth; i++) {
             const airline = this.airlines[i];
+            // reassigns `airline.name` to `airlineName` for readability
             const { name: airlineName } = airlineNameAndFleetHelper(airline);
 
             window.airlineController.airline_get(airlineName);
@@ -257,16 +268,15 @@ export default class ArrivalBase {
      * @method preSpawn
      */
     preSpawn() {
+        // find last fix along STAR that is outside of airspace, ie: next fix is within airspace
+        // distance between closest fix outside airspace and airspace border in nm
+        let extra = 0;
+        let totalDistance = 0;
         const waypointModelList = this.airport.findWaypointModelsForStar(
             this.activeRouteModel.base,
             this.activeRouteModel.origin,
             this.airport.runway
         );
-
-        // find last fix along STAR that is outside of airspace, ie: next fix is within airspace
-        // distance between closest fix outside airspace and airspace border in nm
-        let extra = 0;
-        let totalDistance = 0;
 
         for (let i = 0; i < waypointModelList.length; i++) {
             const waypoint = waypointModelList[i];
@@ -291,7 +301,7 @@ export default class ArrivalBase {
         // FIXME: incluing this causes aircraft to spawn within airspace. something goofy is going on here.
         // totalDistance += extra;
 
-        // distance between each arrival, in nm
+        // distance between each arriving aircraft, in nm
         const entrailDistance = this.speed / this.frequency;
         const spawnOffsets = this.assembleSpawnOffsets(entrailDistance, totalDistance);
         const spawnPositions = this.calculateSpawnPositions(waypointModelList, spawnOffsets);
@@ -300,7 +310,6 @@ export default class ArrivalBase {
     }
 
     /**
-     *
      * @for ArrivalBase
      * @method assembleSpawnOffsets
      * @param entrailDistance {number}
@@ -337,7 +346,7 @@ export default class ArrivalBase {
                 const waypoint = waypointModelList[j];
 
                 if (spawnOffset > waypoint.distanceFromPreviousWaypoint) {
-                    // if point beyond next fix
+                    // if point beyond next fix subtract distance from spawnOffset and continue
                     spawnOffset -= waypoint.distanceFromPreviousWaypoint;
 
                     continue;
@@ -364,6 +373,7 @@ export default class ArrivalBase {
     }
 
     /**
+     * Given an array of `spawnPositions`, create new aircraft for each `spawnPosition`
      *
      * @for ArrivalBase
      * @method createAircraftAtSpawnPositions
@@ -374,7 +384,7 @@ export default class ArrivalBase {
         for (let i = 0; i < spawnPositions.length; i++) {
             const { heading, pos, nextFix } = spawnPositions[i];
             const { icao, position, magnetic_north } = this.airport;
-            const aircraftPosition = new PositionModel(pos, position, magnetic_north, 'GPS').position;
+            const aircraftPosition = new PositionModel(pos, position, magnetic_north, 'GPS');
             const airline = randomAirlineSelectionHelper(this.airlines);
             const aircraftToAdd = {
                 category: FLIGHT_CATEGORY.ARRIVAL,
@@ -388,7 +398,7 @@ export default class ArrivalBase {
                 heading: heading || this.heading,
                 waypoints: this.fixes,
                 route: _get(this, 'activeRouteModel.routeString', ''),
-                position: aircraftPosition,
+                position: aircraftPosition.position,
                 speed: this.speed,
                 nextFix: nextFix
             };
