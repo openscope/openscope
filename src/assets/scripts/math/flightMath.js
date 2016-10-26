@@ -1,6 +1,13 @@
 import { sin, cos, tan, abs } from './core';
 import { distance2d } from './distance';
-import { vradial, vsub, vlen, point_in_area, distance_to_poly, area_to_poly } from './vector';
+import {
+    vradial,
+    vsub,
+    vlen,
+    point_in_area,
+    distance_to_poly,
+    area_to_poly
+} from './vector';
 import { degreesToRadians, radiansToDegrees } from '../utilities/unitConverters';
 
 /**
@@ -153,3 +160,14 @@ export const calculateDistanceToBoundary = (airport, pos) => {
     // TODO: hmm, `position.position`? that seems fishy
     return abs(distance2d(pos, airport.position.position) - airport.ctr_radius);
 };
+
+/**
+ *
+ *
+ *
+ * @function calculateHeadingFromTwoPositions
+ * @param positionEnd {array}
+ * @param positionStart {array}
+ * @return {number}
+ */
+export const calculateHeadingFromTwoPositions = (positionEnd, positionStart) => vradial(vsub(positionEnd, positionStart));

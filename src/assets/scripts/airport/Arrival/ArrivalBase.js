@@ -1,7 +1,7 @@
-import _forEach from 'lodash/forEach';
 import _get from 'lodash/get';
 import _map from 'lodash/map';
 import _random from 'lodash/random';
+import FixCollection from '../Fix/FixCollection';
 import RouteModel from '../Route/RouteModel';
 import PositionModel from '../../base/PositionModel';
 import {
@@ -10,8 +10,13 @@ import {
 } from '../../airline/randomAirlineSelectionHelper';
 import { nm, degreesToRadians } from '../../utilities/unitConverters';
 import { round, sin, cos } from '../../math/core';
-import { bearing, fixRadialDist, isWithinAirspace, calculateDistanceToBoundary } from '../../math/flightMath';
-import { vradial, vsub } from '../../math/vector';
+import {
+    bearing,
+    fixRadialDist,
+    isWithinAirspace,
+    calculateDistanceToBoundary,
+    calculateHeadingFromTwoPositions
+} from '../../math/flightMath';
 import { FLIGHT_CATEGORY } from '../../aircraft/AircraftInstanceModel';
 import { LOG } from '../../constants/logLevel';
 
@@ -49,6 +54,23 @@ const MIN_ENTRAIL_DISTANCE_NM = 5.5;
  * @final
  */
 const INTERVAL_DELAY_IN_MS = 3600;
+
+// TODO: this shouldn't live here. perhaps move to `FixCollection` as an exported function?
+/**
+ * Encapsulation of a `FixCollection` method.
+ *
+ * This allows for centralization of this logic, while avoiding the need for
+ * another class method.
+ *
+ * @method getFixPostiion
+ * @param fixName {string}
+ * @return fix.position {array}
+ */
+const getFixPosition = (fixName) => {
+    const fix = FixCollection.findFixByName(fixName);
+
+    return fix.position;
+};
 
 /**
  * Generate arrivals at random, averaging the specified arrival rate
@@ -189,6 +211,10 @@ export default class ArrivalBase {
         if (options.route) {
             this.activeRouteModel = new RouteModel(options.route);
         } else if (options.fixes) {
+            // TODO: this may not be needed at all. we could just use `_get()` instead.
+            // `this.fixes` eventually makes its way to the `AircraftInstanceModel.fms` via
+            // `AircraftInstanceModel.setArrivalWaypoints()`. that method simply builds another object and
+            // pulls each item from this array. creating an object here is doesn't appear to serve any real purpose.
             this.fixes = _map(options.fixes, (fix) => {
                 return {
                     fix: fix
@@ -416,16 +442,15 @@ export default class ArrivalBase {
         let distance;
         // What is this next variable for, why is it here and can it be removed?
         // FIXME: this is not used
-        let start_flag = args[0];
+        const start_flag = args[0];
         const timeout_flag = args[1] || false;
 
         // spawn at first fix
         if (this.fixes.length > 1) {
-            // TODO: this should use the FixCollection to find a fix
-            // spawn at first fix
-            position = this.airport.getFixPosition(this.fixes[0].fix);
-            // TODO: this should probably be a helper function, `.calculateHeadingFromTwoPositions()`
-            heading = vradial(vsub(this.airport.getFixPosition(this.fixes[1].fix), position));
+            // calculate heading to next fix
+            position = getFixPosition(this.fixes[0].fix);
+            const nextPosition = getFixPosition(this.fixes[1].fix);
+            heading = calculateHeadingFromTwoPositions(nextPosition, position);
         } else if (this.activeRouteModel) {
             const waypointModelList = this.airport.findWaypointModelsForStar(
                 this.activeRouteModel.base,
@@ -436,10 +461,7 @@ export default class ArrivalBase {
             // grab position of first fix
             position = waypointModelList[0].position;
             // calculate heading from first waypoint to second waypoint
-            heading = vradial(vsub(
-                waypointModelList[1].position,
-                position
-            ));
+            heading = calculateHeadingFromTwoPositions(waypointModelList[1].position, position);
         } else {
             // spawn outside the airspace along 'this.radial'
             distance = 2 * this.airport.ctr_radius;
@@ -461,7 +483,7 @@ export default class ArrivalBase {
             waypoints: this.fixes,
             route: _get(this, 'activeRouteModel.routeString', ''),
             message: message,
-            // TODO: this should really use the `PositionModel` instead of just using it to get a position
+            // TODO: this should use a `PositionModel` instead of just using it to get a position
             // this will take a lot of refactoring, though, as aircraft.position is used all over the app.
             position: position,
             speed: this.speed

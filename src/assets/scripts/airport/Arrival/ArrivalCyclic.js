@@ -6,6 +6,7 @@ import ArrivalBase from './ArrivalBase';
  * Generate arrivals in cyclic pattern
  * Arrival rate varies as pictured below. Rate at which the arrival rate
  * increases or decreases remains constant throughout the cycle.
+
  * |---o---------------o---------------o---------------o-----------| < - - - - - - max arrival rate
  * | o   o           o   o           o   o           o   o         |   +variation
  * o-------o-------o-------o-------o-------o-------o-------o-------o < - - - - - - avg arrival rate
@@ -14,6 +15,7 @@ import ArrivalBase from './ArrivalBase';
  * |<---period---->|           |<---period---->|
  *
  * @class ArrivalCyclic
+ * @extends ArrivalBase
  */
 export default class ArrivalCyclic extends ArrivalBase {
     constructor(airport, options) {
@@ -24,7 +26,6 @@ export default class ArrivalCyclic extends ArrivalBase {
         this.period = 1800;   // 30 minute cycle
         this.variation = 0;   // amount to deviate from the prescribed frequency
 
-        super.parse(options);
         this.parse(options);
     }
 
@@ -35,6 +36,8 @@ export default class ArrivalCyclic extends ArrivalBase {
      * @param {integer} offset - (optional) minutes to shift starting position in cycle
      */
     parse(options) {
+        super.parse(options);
+        
         if (options.offset) {
             this.offset = options.offset * 60; // min --> sec
         }

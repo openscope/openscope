@@ -23,6 +23,7 @@ import { LOG } from '../../constants/logLevel';
   * |<  -  -  -  -  -  -  -  - period -  -  -  -  -  -  -  >|
   *
   * @class ArrivalWave
+  * @extends ArrivalBase
  */
 export default class ArrivalWave extends ArrivalBase {
     constructor(airport, options) {
@@ -40,7 +41,7 @@ export default class ArrivalWave extends ArrivalBase {
     /**
      * Arrival Stream Settings
      *
-     *  @param {integer} period - (optional) length of a cycle, in minutes
+     * @param {integer} period - (optional) length of a cycle, in minutes
      * @param {integer} offset - (optional) minutes to shift starting position in cycle
      */
     parse(options) {
@@ -62,12 +63,13 @@ export default class ArrivalWave extends ArrivalBase {
     /**
      * Ensures the spawn rate will be at least the required entrail distance
      *
-     *  @param {number} entrail_dist - minimum distance between successive arrivals, in nm
+     * @param {number} entrail_dist - minimum distance between successive arrivals, in nm
      */
     clampSpawnRate(entrail_dist) {
         const entrail_interval = entrail_dist * (3600 / this.speed);
         const min_interval = 3600 / (this.frequency + this.variation);
 
+        // TODO: return early here to avoid this wrapping if
         if (min_interval < entrail_interval) {
             const diff = entrail_interval - min_interval;
 
@@ -106,6 +108,7 @@ export default class ArrivalWave extends ArrivalBase {
     start() {
         const delay = _random(0, 3600 / this.frequency);
 
+        // TODO: this might not be available on `window.prop` update reference
         this.cycleStart = prop.game.time - this.offset + delay;
         this.timeout = window.gameController.game_timeout(this.spawnAircraft, delay, this, [true, true]);
     }

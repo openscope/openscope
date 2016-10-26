@@ -6,8 +6,11 @@ import { LOG } from '../../constants/logLevel';
 
 /**
  * Generate arrivals in a repeating surge
- * Arrival rate goes from very low and steeply increases to a
- * sustained "arrival surge" of densely packed aircraft.
+ *
+ * Arrival rate goes from very low and steeply increases to a sustained arrival surge of densely packed aircraft.
+ *
+ * Example airport: `EDDT - Berlin Tegel Airport`
+ *
  * o o o o o o o o o o - - - - - - - - - - - o o o o o o o o o o-----+ < - - - max arrival rate (*this.factor)
  * o                 o                       o                 o     |
  * o                 o                       o                 o     |   x(this.factor)
@@ -31,13 +34,13 @@ export default class ArrivalSurge extends ArrivalBase {
         this.acph_up = 0;     // arrival rate when "in the surge"
         this.acph_dn = 0;     // arrival rate when not "in the surge"
 
-        super.parse(options);
         this.parse(options);
         this.shapeTheSurge();
     }
 
     /**
      * Arrival Stream Settings
+     *
      * @param {integer} period - Optionally specify the length of a cycle in minutes
      * @param {integer} offset - Optionally specify the center of the wave in minutes
      * @param {array} entrail - 2-element array with [fast,slow] nm between each
@@ -49,6 +52,8 @@ export default class ArrivalSurge extends ArrivalBase {
      *                          help us hit the mark on the aircraft-per-hour rate.
      */
     parse(options) {
+        super.parse(options);
+
         if (options.offset) {
             this.offset = options.offset * 60; // min --> sec
         }
@@ -75,6 +80,7 @@ export default class ArrivalSurge extends ArrivalBase {
         this.acph_dn = Math.floor(
             this.frequency * this.period / 3600 - Math.round(this.acph_up * this.uptime / 3600)) * 3600 / (this.period - this.uptime);
 
+        // TODO: abstract this if/else block
         // Verify we can comply with the requested arrival rate based on entrail spacing
         if (this.frequency > this.acph_up) {
             log(this.airport.icao + ': TOO MANY ARRIVALS IN SURGE! Requested: '
