@@ -4,7 +4,7 @@ import _map from 'lodash/map';
 import _random from 'lodash/random';
 import RouteModel from '../Route/RouteModel';
 import PositionModel from '../../base/PositionModel';
-import { choose, choose_weight } from '../../utilities/generalUtilities';
+import { randomAirlineSelectionHelper } from '../../airline/randomAirlineSelectionHelper';
 import { nm, degreesToRadians } from '../../utilities/unitConverters';
 import { round, sin, cos } from '../../math/core';
 import { bearing, fixRadialDist, isWithinAirspace, calculateDistanceToBoundary } from '../../math/flightMath';
@@ -334,21 +334,12 @@ export default class ArrivalBase {
             const { heading, pos, nextFix } = spawnPositions[i];
             const { icao, position, magnetic_north } = this.airport;
             const aircraftPosition = new PositionModel(pos, position, magnetic_north, 'GPS').position;
-
-            // TODO: this should be a helper method/function and shouldn't live here
-            let airline = choose_weight(this.airlines);
-            let fleet = '';
-
-            if (airline.indexOf('/') > -1) {
-                fleet = airline.split('/')[1];
-                airline = airline.split('/')[0];
-            }
-
+            const airline = randomAirlineSelectionHelper(this.airlines);
             const aircraftToAdd = {
                 category: FLIGHT_CATEGORY.ARRIVAL,
                 destination: icao,
-                airline: airline,
-                fleet: fleet,
+                airline: airline.name,
+                fleet: airline.fleet,
                 // TODO: should eventually look up altitude restrictions and try to spawn in an appropriate range
                 //       this can be done with the `waypointModelList` and `StandardWaypointModel` objects,
                 //       in conjuntion with the `RouteModel`.
@@ -404,12 +395,15 @@ export default class ArrivalBase {
         // args = [boolean, boolean]
         const altitude = round(_random(this.altitude[0], this.altitude[1]) / 1000) * 1000;
         const message = !(window.gameController.game_time() - this.airport.start < 2);
-        let start_flag = args[0];
-        let timeout_flag = args[1] || false;
+        const airline = randomAirlineSelectionHelper(this.airlines);
         let position;
         let heading;
-        let fleet;
         let distance;
+        // What are these next two for and can they be removed?
+        // FIXME: this is not used
+        let start_flag = args[0];
+        // FIXME: this is not used
+        let timeout_flag = args[1] || false;
 
         // spawn at first fix
         if (this.fixes.length > 1) {
@@ -443,19 +437,11 @@ export default class ArrivalBase {
             heading = this.heading || this.radial + Math.PI;
         }
 
-        // TODO: this should be a helper method/function and shouldn't live here
-        let airline = choose_weight(this.airlines);
-
-        if (airline.indexOf('/') > -1) {
-            fleet = airline.split('/')[1];
-            airline = airline.split('/')[0];
-        }
-
         const aircraftToAdd = {
             category: FLIGHT_CATEGORY.ARRIVAL,
             destination: this.airport.icao,
-            airline: airline,
-            fleet: fleet,
+            airline: airline.name,
+            fleet: airline.fleet,
             altitude: altitude,
             heading: heading,
             waypoints: this.fixes,

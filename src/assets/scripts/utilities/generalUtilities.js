@@ -5,7 +5,9 @@ import _isArray from 'lodash/isArray';
  * @function choose
  */
 export const choose = (l) => {
-    return l[Math.floor(Math.random() * l.length)];
+    const randomIndexFromLength = Math.floor(Math.random() * l.length);
+
+    return l[randomIndexFromLength];
 };
 
 /**
@@ -39,5 +41,6 @@ export const choose_weight = (l) => {
     }
 
     console.log('OHSHIT');
+
     return null;
 };
