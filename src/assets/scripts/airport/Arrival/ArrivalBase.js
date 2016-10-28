@@ -18,6 +18,7 @@ import {
     calculateHeadingFromTwoPositions
 } from '../../math/flightMath';
 import { FLIGHT_CATEGORY } from '../../aircraft/AircraftInstanceModel';
+import { TIME } from '../../constants/globalConstants';
 import { LOG } from '../../constants/logLevel';
 
 /**
@@ -53,7 +54,7 @@ const MIN_ENTRAIL_DISTANCE_NM = 5.5;
  * @type {number}
  * @final
  */
-const INTERVAL_DELAY_IN_MS = 3600;
+const INTERVAL_DELAY_IN_MS = TIME.ONE_HOUR_IN_SECONDS;
 
 // TODO: this shouldn't live here. perhaps move to `FixCollection` as an exported function?
 /**
@@ -359,9 +360,9 @@ export default class ArrivalBase {
 
                     // TODO: this looks like it should be a model object
                     spawnPositions.push({
+                        heading,
                         pos: calculatedRadialDistance,
-                        nextFix: nextFix.name,
-                        heading: heading
+                        nextFix: nextFix.name
                     });
 
                     break;
@@ -395,6 +396,7 @@ export default class ArrivalBase {
                 //       this can be done with the `waypointModelList` and `StandardWaypointModel` objects,
                 //       in conjuntion with the `RouteModel`.
                 altitude: 10000,
+                // TODO: this could be a _get() instead of an || assignment
                 heading: heading || this.heading,
                 waypoints: this.fixes,
                 route: _get(this, 'activeRouteModel.routeString', ''),
@@ -427,10 +429,9 @@ export default class ArrivalBase {
      */
     start() {
         // TODO: what do these numbers mean? enumerate the magic numbers.
-        const delay = _random(0, 3600 / this.frequency);
+        const delay = _random(0, TIME.ONE_HOUR_IN_SECONDS / this.frequency);
         this.timeout = window.gameController.game_timeout(this.spawnAircraft, delay, this, [true, true]);
 
-        // TODO: what is this actually doing?
         if (this.activeRouteModel) {
             this.preSpawn();
         }
@@ -443,13 +444,13 @@ export default class ArrivalBase {
      * @method spawnAircraft
      */
     spawnAircraft(args) {
+        let position;
+        let heading;
+        let distance;
         // args = [boolean, boolean]
         const altitude = round(_random(this.altitude[0], this.altitude[1]) / 1000) * 1000;
         const message = !(window.gameController.game_time() - this.airport.start < 2);
         const airline = randomAirlineSelectionHelper(this.airlines);
-        let position;
-        let heading;
-        let distance;
         // What is this next variable for, why is it here and can it be removed?
         // FIXME: this is not used
         const start_flag = args[0];
@@ -484,18 +485,18 @@ export default class ArrivalBase {
         }
 
         const aircraftToAdd = {
+            altitude,
+            heading,
+            message,
+            position,
             category: FLIGHT_CATEGORY.ARRIVAL,
             destination: this.airport.icao,
             airline: airline.name,
             fleet: airline.fleet,
-            altitude: altitude,
-            heading: heading,
             waypoints: this.fixes,
             route: _get(this, 'activeRouteModel.routeString', ''),
-            message: message,
             // TODO: this should use a `PositionModel` instead of just using it to get a position
             // this will take a lot of refactoring, though, as aircraft.position is used all over the app.
-            position: position,
             speed: this.speed
         };
 
