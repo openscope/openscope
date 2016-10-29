@@ -1,4 +1,3 @@
-import $ from 'jquery';
 import _get from 'lodash/get';
 import _random from 'lodash/random';
 import RouteModel from '../Route/RouteModel';
@@ -6,9 +5,8 @@ import {
     airlineNameAndFleetHelper,
     randomAirlineSelectionHelper
 } from '../../airline/randomAirlineSelectionHelper';
-import { choose, choose_weight } from '../../utilities/generalUtilities';
+import { choose } from '../../utilities/generalUtilities';
 import { FLIGHT_CATEGORY } from '../../aircraft/AircraftInstanceModel';
-import { AIRPORT_CONSTANTS } from '../../constants/airportConstants';
 import { TIME } from '../../constants/globalConstants';
 
 /**

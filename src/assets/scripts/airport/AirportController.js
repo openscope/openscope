@@ -1,5 +1,4 @@
 import _has from 'lodash/has';
-import _forEach from 'lodash/forEach';
 import _lowerCase from 'lodash/lowerCase';
 import Airport from './AirportModel';
 import { AIRPORT_LOAD_LIST } from './airportLoadList';
@@ -37,9 +36,7 @@ export default class AirportController {
      * @method init_pre
      */
     init_pre() {
-        prop.airport = airport;
-        // prop.airport.airports = {};
-        // prop.airport.current = null;
+        this.airport = airport;
     }
 
     /**
@@ -51,9 +48,9 @@ export default class AirportController {
      * @method init
      */
     init() {
-        _forEach(AIRPORT_LOAD_LIST, (airport) => {
+        for (let i = 0; i < AIRPORT_LOAD_LIST.length; i++) {
             this.airport_load(airport);
-        });
+        }
     }
 
     /**
@@ -66,7 +63,7 @@ export default class AirportController {
         let airportName = DEFAULT_AIRPORT_ICAO;
 
         if (_has(localStorage, STORAGE_KEY.ATC_LAST_AIRPORT) ||
-            _has(prop.airport.airports, _lowerCase(localStorage[STORAGE_KEY.ATC_LAST_AIRPORT]))
+            _has(this.airport.airports, _lowerCase(localStorage[STORAGE_KEY.ATC_LAST_AIRPORT]))
         ) {
             airportName = _lowerCase(localStorage[STORAGE_KEY.ATC_LAST_AIRPORT]);
         }
@@ -85,18 +82,18 @@ export default class AirportController {
 
         icao = icao.toLowerCase();
 
-        if (!prop.airport.airports[icao]) {
+        if (!this.airport.airports[icao]) {
             console.log(`${icao}: no such airport`);
 
             return;
         }
 
-        if (prop.airport.current) {
-            prop.airport.current.unset();
+        if (this.airport.current) {
+            this.airport.current.unset();
             window.aircraftController.aircraft_remove_all();
         }
 
-        const newAirport = prop.airport.airports[icao];
+        const newAirport = this.airport.airports[icao];
         newAirport.set();
     }
 
@@ -110,7 +107,7 @@ export default class AirportController {
     airport_load({ icao, level, name }) {
         icao = icao.toLowerCase();
 
-        if (_has(prop.airport.airports, icao)) {
+        if (_has(this.airport.airports, icao)) {
             console.log(`${icao}: already loaded`);
 
             return null;
@@ -136,7 +133,7 @@ export default class AirportController {
      * @param airport
      */
     airport_add(airport) {
-        prop.airport.airports[airport.icao.toLowerCase()] = airport;
+        this.airport.airports[airport.icao.toLowerCase()] = airport;
     }
 
     /**
@@ -146,9 +143,9 @@ export default class AirportController {
      */
     airport_get(icao) {
         if (!icao) {
-            return prop.airport.current;
+            return this.airport.current;
         }
 
-        return prop.airport.airports[icao.toLowerCase()];
+        return this.airport.airports[icao.toLowerCase()];
     }
 }
