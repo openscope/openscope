@@ -36,7 +36,7 @@ export default class AirportController {
      * @method init_pre
      */
     init_pre() {
-        this.airport = airport;
+        prop.airport = airport;
     }
 
     /**
@@ -49,6 +49,8 @@ export default class AirportController {
      */
     init() {
         for (let i = 0; i < AIRPORT_LOAD_LIST.length; i++) {
+            const airport = AIRPORT_LOAD_LIST[i];
+
             this.airport_load(airport);
         }
     }
