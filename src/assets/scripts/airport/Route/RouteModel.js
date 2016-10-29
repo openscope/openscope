@@ -26,6 +26,7 @@ export default class RouteModel {
         }
 
         if (!this._isValidRouteString(routeString)) {
+            // eslint-disable-next-line max-len
             throw new TypeError(`Invalid routeString passed to RouteModel. Expected a routeString of the shape ORIGIN.BASE.DESTINATION but instead received ${routeString}`);
         }
 

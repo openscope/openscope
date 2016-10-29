@@ -23,7 +23,7 @@ ava('StandardRouteWaypointModel exits early when instantiated without parameters
     t.true(typeof model._id === 'undefined');
 });
 
-ava('StandardRouteWaypointModel sets only `name` when provided a string', t => {
+ava('sets only `name` when provided a string', t => {
     const model = new StandardRouteWaypointModel(NAME_MOCK);
 
     t.true(typeof model._id === 'string');
@@ -33,7 +33,13 @@ ava('StandardRouteWaypointModel sets only `name` when provided a string', t => {
     t.true(model._speedConstraint === -1);
 });
 
-ava('StandardRouteWaypointModel does not call ._parseWaypointRestrictions() when provided a string', t => {
+ava('.clonePoisitonFromFix() does not throw when no fix exists', t => {
+    const model = new StandardRouteWaypointModel('ABCD');
+
+    t.notThrows(() => model.clonePoisitonFromFix());
+});
+
+ava('does not call ._parseWaypointRestrictions() when provided a string', t => {
     const model = new StandardRouteWaypointModel(NAME_MOCK);
     const spy = sinon.spy(model, '_parseWaypointRestrictions');
 
@@ -42,7 +48,7 @@ ava('StandardRouteWaypointModel does not call ._parseWaypointRestrictions() when
     t.true(spy.callCount === 0);
 });
 
-ava('StandardRouteWaypointModel calls ._parseWaypointRestrictions() when provided and array', t => {
+ava('calls ._parseWaypointRestrictions() when provided and array', t => {
     const model = new StandardRouteWaypointModel(ROUTE_WAYPOINT_MOCK);
     const spy = sinon.spy(model, '_parseWaypointRestrictions');
 

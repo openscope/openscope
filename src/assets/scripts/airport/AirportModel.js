@@ -30,6 +30,7 @@ import { STORAGE_KEY } from '../constants/storageKeys';
  */
 const ra = (n) => {
     const deviation = degreesToRadians(10);
+
     return n + extrapolate_range_clamp(0, Math.random(), 1, -deviation, deviation);
 };
 
@@ -38,9 +39,9 @@ const DEFAULT_CTR_CEILING_FT = 10000;
 const DEFAULT_INITIAL_ALTITUDE_FT = 5000;
 const DEAFULT_RR_RADIUS_NM = 5;
 
-// TODO: this class contains a lot of .hasOwnProperty() type checks (converted to _has for now). is there a need for
-// such defensiveness? or can some of that be accomplished on init and then smiply update the prop if need be?
 /**
+ *
+ *
  * @class AirportModel
  */
 export default class AirportModel {
@@ -86,14 +87,14 @@ export default class AirportModel {
             departure: null
         };
         this.departures = [];
-        this.arrivals   = [];
+        this.arrivals = [];
 
         this.wind  = {
             speed: 10,
             angle: 0
         };
 
-        this.ctr_radius  = 80;
+        this.ctr_radius = 80;
         this.ctr_ceiling = 10000;
         this.initial_alt = 5000;
         this.rr_radius_nm = 0;
@@ -118,11 +119,19 @@ export default class AirportModel {
         return this.position.elevation;
     }
 
-    // TODO: move this to PositionModel as `.magneticNorthInRadians`
+    /**
+     * @property magnetic_north
+     * @return {number}
+     */
     get magnetic_north() {
-        return degreesToRadians(this.position.magnetic_north);
+        return this.position.magneticNorthInRadians;
     }
 
+    /**
+     * @for AirportModel
+     * @method parse
+     * @param data {object}
+     */
     parse(data) {
         this.setCurrentPosition(data.position, data.magnetic_north);
 
@@ -147,16 +156,12 @@ export default class AirportModel {
         this.loadTerrain();
         this.buildAirportAirspace(data.airspace);
         this.buildAirportRunways(data.runways);
-        // TODO: remove once `fixCollection` is fully implemented
-        // this.buildFixes(data.fixes);
         this.buildAirportMaps(data.maps);
         this.buildRestrictedAreas(data.restricted);
         this.updateCurrentWind(data.wind);
         this.buildAirportDepartures(data.departures);
         this.buildArrivals(data.arrivals);
         this.buildRunwayMetaData();
-        // this.verifySidFixes(data.sids);
-        // this.checkFixes();
     }
 
     /**
@@ -361,7 +366,7 @@ export default class AirportModel {
      * @method buildRunwayMetaData
      */
     buildRunwayMetaData() {
-        // TODO: translate these tol _forEach()
+        // TODO: translate these to _forEach()
         for (const rwy1 in this.runways) {
             for (const rwy1end in this.runways[rwy1]) {
                 // setup primary runway object
@@ -390,6 +395,10 @@ export default class AirportModel {
         }
     }
 
+    /**
+     * @for AirportModel
+     * @method set
+     */
     set() {
         if (!this.loaded) {
             this.load();
@@ -419,6 +428,10 @@ export default class AirportModel {
         this.updateRun(true);
     }
 
+    /**
+     * @for AirportModel
+     * @method unset
+     */
     unset() {
         for (let i = 0; i < this.arrivals.length; i++) {
             this.arrivals[i].stop();
@@ -431,6 +444,10 @@ export default class AirportModel {
         }
     }
 
+    /**
+     * @for AirportModel
+     * @method addAircraft
+     */
     addAircraft() {
         if (this.departures) {
             this.departures.start();
@@ -443,6 +460,11 @@ export default class AirportModel {
         }
     }
 
+    /**
+     * @for AirportModel
+     * @method getWind
+     * @return wind {number}
+     */
     getWind() {
         // TODO: there are a lot of magic numbers here. What are they for and what do they mean? These should be enumerated.
         const wind = clone(this.wind);
@@ -457,6 +479,10 @@ export default class AirportModel {
         return wind;
     }
 
+    /**
+     * @for AirportModel
+     * @method updateRunway
+     */
     updateRunway(length = 0) {
         // TODO: this method contains some ambiguous names. need better names.
         const wind = this.getWind();
@@ -481,6 +507,10 @@ export default class AirportModel {
         this.timeout.runway = window.gameController.game_timeout(this.updateRunway, Math.random() * 30, this);
     }
 
+    /**
+     * @for AirportModel
+     * @method selectRunway
+     */
     selectRunway() {
         return this.runway;
     }
@@ -492,7 +522,8 @@ export default class AirportModel {
 
         _forEach(data.features, (f) => {
             // const f = data.features[i];
-            const ele = round(f.properties.elevation / 0.3048, 1000); // m => ft, rounded to 1K (but not divided)
+            // m => ft, rounded to 1K (but not divided)
+            const ele = round(f.properties.elevation / 0.3048, 1000);
 
             if (!apt.terrain[ele]) {
                 apt.terrain[ele] = [];
@@ -526,6 +557,10 @@ export default class AirportModel {
         });
     }
 
+    /**
+     * @for AirportModel
+     * @method loadTerrain
+     */
     loadTerrain() {
         if (!this.has_terrain) {
             return;
@@ -556,6 +591,10 @@ export default class AirportModel {
         });
     }
 
+    /**
+     * @for AirportModel
+     * @method load
+     */
     load() {
         if (this.loaded) {
             return;
@@ -568,23 +607,36 @@ export default class AirportModel {
             url: `assets/airports/${this.icao.toLowerCase()}.json`,
             immediate: true
         })
-        // TODO: change to onSuccess and onError handler abstractions
-        .done((data) => {
-            this.parse(data);
+        .done((response) => this.onLoadAirportSuccess(response))
+        .fail((...args) => this.onLoadAirportError(...args));
+    }
 
-            if (this.has_terrain) {
-                return;
-            }
+    /**
+     * @method onLoadAirportSuccess
+     * @param response {object}
+     */
+    onLoadAirportSuccess = (response) => {
+        this.parse(response);
 
-            this.loading = false;
-            this.loaded = true;
-            this.set();
-        })
-        .fail((jqXHR, textStatus, errorThrown) => {
-            this.loading = false;
-            console.error(`Unable to load airport/${this.icao}: ${textStatus}`);
-            prop.airport.current.set();
-        });
+        if (this.has_terrain) {
+            return;
+        }
+
+        this.loading = false;
+        this.loaded = true;
+        this.set();
+    };
+
+    /**
+     * @for AirportModel
+     * @method onLoadAirportError
+     * @param textStatus {string}
+     */
+    onLoadAirportError = ({ textStatus }) => {
+        console.error(`Unable to load airport/${this.icao}: ${textStatus}`);
+
+        this.loading = false;
+        this.airport.current.set();
     }
 
     /**
@@ -632,30 +684,25 @@ export default class AirportModel {
     }
 
     // FIXME: possibly unused
-    getSIDName(id, rwy) {
-        console.warn('AirportModel.getSIDName() IS IN USE: ', id, rwy);
-
-        if (_has(this.sids[id], 'suffix')) {
-            return `${this.sids[id].name} ${this.sids[id].suffix[rwy]}`;
-        }
-
-        return this.sids[id].name;
-    }
+    // getSIDName(id, rwy) {
+    //     if (_has(this.sids[id], 'suffix')) {
+    //         return `${this.sids[id].name} ${this.sids[id].suffix[rwy]}`;
+    //     }
+    //
+    //     return this.sids[id].name;
+    // }
 
     // FIXME: possibly unused
-    getSIDid(id, rwy) {
-        console.warn('AirportModel.getSIDid IS IN USE: ', id, rwy);
-
-        if (_has(this.sids[id], 'suffix')) {
-            return this.sids[id].icao + this.sids[id].suffix[rwy];
-        }
-
-        return this.sids[id].icao;
-    }
+    // getSIDid(id, rwy) {
+    //     if (_has(this.sids[id], 'suffix')) {
+    //         return this.sids[id].icao + this.sids[id].suffix[rwy];
+    //     }
+    //
+    //     return this.sids[id].icao;
+    // }
 
     /**
      * Return an array of [Waypoint, fixRestrictions] for a given STAR
-     *
      *
      * Note: Passing a value for 'rwy' will help the fms distinguish between
      *       different branches of a STAR, when it splits into different paths
@@ -667,7 +714,7 @@ export default class AirportModel {
      * @param {string} id - the identifier for the STAR (eg 'LENDY6')
      * @param {string} entry - the entryPoint from which to join the STAR
      * @param {string} rwy - (optional) the planned arrival runway
-     * @return {array}
+     * @return {array<string>}
      */
     getSTAR(id, entry, rwy) {
         return this.starCollection.findFixesForStarByEntryAndRunway(id, entry, rwy);
@@ -685,6 +732,10 @@ export default class AirportModel {
         return this.starCollection.findFixModelsForRouteByEntryAndExit(id, entry, runway);
     }
 
+    /**
+     *
+     *
+     */
     getRunway(name) {
         if (!name) {
             return null;
