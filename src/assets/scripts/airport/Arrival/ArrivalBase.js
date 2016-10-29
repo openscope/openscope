@@ -18,36 +18,9 @@ import {
     calculateHeadingFromTwoPositions
 } from '../../math/flightMath';
 import { FLIGHT_CATEGORY } from '../../aircraft/AircraftInstanceModel';
+import { AIRPORT_CONSTANTS } from '../../constants/airportConstants';
 import { TIME } from '../../constants/globalConstants';
 import { LOG } from '../../constants/logLevel';
-
-/**
- * @property DEFAULT_SPAWN_ALTITUDE_MIN
- * @type {number}
- * @final
- */
-const DEFAULT_SPAWN_ALTITUDE_MIN = 10000;
-
-/**
- * @property DEFAULT_SPAWN_ALTITUDE_MAX
- * @type {number}
- * @final
- */
-const DEFAULT_SPAWN_ALTITUDE_MAX = 10000;
-
-/**
- * @property DEFAULT_SPAWN_AIRCRAFT_SPEED_KTS
- * @type {number}
- * @final
- */
-const DEFAULT_SPAWN_AIRCRAFT_SPEED_KTS = 250;
-
-/**
- * @property MIN_ENTRAIL_DISTANCE_NM
- * @type {number}
- * @final
- */
-const MIN_ENTRAIL_DISTANCE_NM = 5.5;
 
 /**
  * @property INTERVAL_DELAY_IN_MS
@@ -137,9 +110,9 @@ export default class ArrivalBase {
          *
          * @property altitude
          * @type {array}
-         * @default [DEFAULT_SPAWN_ALTITUDE_MIN, DEFAULT_SPAWN_ALTITUDE_MAX]
+         * @default [AIRPORT_CONSTANTS.DEFAULT_SPAWN_ALTITUDE_MIN, AIRPORT_CONSTANTS.DEFAULT_SPAWN_ALTITUDE_MAX]
          */
-        this.altitude = [DEFAULT_SPAWN_ALTITUDE_MIN, DEFAULT_SPAWN_ALTITUDE_MAX];
+        this.altitude = [AIRPORT_CONSTANTS.DEFAULT_SPAWN_ALTITUDE_MIN, AIRPORT_CONSTANTS.DEFAULT_SPAWN_ALTITUDE_MAX];
 
         /**
          * Initial heading of a spawned aircraft
@@ -166,9 +139,9 @@ export default class ArrivalBase {
          *
          * @property speed
          * @type {number}
-         * @default DEFAULT_SPAWN_AIRCRAFT_SPEED_KTS
+         * @default AIRPORT_CONSTANTS.DEFAULT_SPAWN_AIRCRAFT_SPEED_KTS
          */
-        this.speed = DEFAULT_SPAWN_AIRCRAFT_SPEED_KTS;
+        this.speed = AIRPORT_CONSTANTS.DEFAULT_SPAWN_AIRCRAFT_SPEED_KTS;
 
         /**
          * Arrival rate along this stream.
@@ -520,14 +493,14 @@ export default class ArrivalBase {
      * @return {number}
      */
     nextInterval() {
-        const min_interval = MIN_ENTRAIL_DISTANCE_NM * (INTERVAL_DELAY_IN_MS / this.speed);
+        const min_interval = AIRPORT_CONSTANTS.MIN_ENTRAIL_DISTANCE_NM * (INTERVAL_DELAY_IN_MS / this.speed);
         let tgt_interval = INTERVAL_DELAY_IN_MS / this.frequency;
 
         if (tgt_interval < min_interval) {
             tgt_interval = min_interval;
 
             log(`Requested arrival rate of ${this.frequency} acph overridden to ` +
-                `maintain minimum of ${MIN_ENTRAIL_DISTANCE_NM} miles entrail on arrival stream ` +
+                `maintain minimum of ${AIRPORT_CONSTANTS.MIN_ENTRAIL_DISTANCE_NM} miles entrail on arrival stream ` +
                 `following route ${this.activeRouteModel.routeString}`, LOG.INFO);
         }
 

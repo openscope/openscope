@@ -1,6 +1,15 @@
 import $ from 'jquery';
+import _get from 'lodash/get';
 import _random from 'lodash/random';
+import RouteModel from '../Route/RouteModel';
+import {
+    airlineNameAndFleetHelper,
+    randomAirlineSelectionHelper
+} from '../../airline/randomAirlineSelectionHelper';
 import { choose, choose_weight } from '../../utilities/generalUtilities';
+import { FLIGHT_CATEGORY } from '../../aircraft/AircraftInstanceModel';
+import { AIRPORT_CONSTANTS } from '../../constants/airportConstants';
+import { TIME } from '../../constants/globalConstants';
 
 /**
  * Generate departures at random, averaging the specified spawn rate
@@ -9,14 +18,59 @@ import { choose, choose_weight } from '../../utilities/generalUtilities';
  */
 export default class DepartureBase {
     /**
-     * Initialize member variables with default values
+     * @for DepartureBase
+     * @constructor
+     * @param airport {AirportInstanceModel}
+     * @param options {object}
      */
     constructor(airport, options) {
+        /**
+         * List of airlines with weight for each
+         *
+         * @property airlines
+         * @type {array}
+         * @default []
+         */
         this.airlines = [];
+
+        /**
+         * @property airport
+         * @type {AirportInstanceModel}
+         */
         this.airport = airport;
+
+        // TODO: are we initializing an array with a value here?
+        /**
+         * List of SIDs or departure fix names
+         *
+         * @property destinations
+         * @type {array}
+         * @default [0]
+         */
         this.destinations = [0];
+
+        /**
+         * Spawn rate, in aircraft per hour (acph)
+         *
+         * @property frequency
+         * @type {number}
+         * @default 0
+         */
         this.frequency = 0;
+
+        /**
+         * @property timeout
+         * @type {function}
+         * @default null
+         */
         this.timeout = null;
+
+        /**
+         * @property activeRouteModel
+         * @type {RouteModel}
+         * @default null
+         */
+        this.activeRouteModel = null;
 
         this.parse(options);
     }
@@ -24,30 +78,28 @@ export default class DepartureBase {
     /**
      * Departure Stream Settings
      *
-     * @param {array of array} airlines - List of airlines with weight for each
-     * @param {integer} frequency - Spawn rate, in aircraft per hour (acph)
-     * @param {array of string} destinations - List of SIDs or departure fixes for departures
+     * @for DepartureBase
+     * @method parse
      */
     parse(options) {
-        const params = ['airlines', 'destinations', 'frequency'];
+        this.airlines = _get(options, 'airlines', this.airlines);
+        this.destinations = _get(options, 'destinations', this.destinations);
+        this.frequency = _get(options, 'frequency', this.frequency);
 
-        for (const i in params) {
-            if (options[params[i]]) {
-                this[params[i]] = options[params[i]];
-            }
+        for (let i = 0; i < this.airlines.lenth; i++) {
+            const airline = this.airlines[i];
+            // reassigns `airline.name` to `airlineName` for readability
+            const { name: airlineName } = airlineNameAndFleetHelper(airline);
+
+            window.airlineController.airline_get(airlineName);
         }
-
-        // TODO: the airlineController should be able to supply the airline name without having the caller do
-        // the splitting. any splits should happen in the airlineController or the data should be stored in a way
-        // that doesn't require splitting.
-        // Pre-load the airlines
-        $.each(this.airlines, (i, data) => {
-            window.airlineController.airline_get(data[0].split('/')[0]);
-        });
     }
 
     /**
      * Stop this departure stream
+     *
+     * @for DepartureBase
+     * @method stop
      */
     stop() {
         if (this.timeout) {
@@ -57,15 +109,26 @@ export default class DepartureBase {
 
     /**
      * Start this departure stream
+     *
+     * @for DepartureBase
+     * @method start
      */
     start() {
-        const r = Math.floor(_random(2, 5.99));
+        const randomSpawnCount = Math.floor(_random(2, 5.99));
 
-        for (let i = 1; i <= r; i++) {
+        for (let i = 1; i <= randomSpawnCount; i++) {
             // spawn 2-5 departures to start with
             this.spawnAircraft(false);
         }
 
+        this.initiateSpawningLoop();
+    }
+
+    /**
+     * @for DepartureBase
+     * @method initiateSpawningLoop
+     */
+    initiateSpawningLoop() {
         const minFrequency = this.frequency * 0.5;
         const maxFrequency = this.frequency * 1.5;
         const randomNumberForTimeout = _random(minFrequency, maxFrequency);
@@ -76,40 +139,44 @@ export default class DepartureBase {
 
     /**
      * Spawn a new aircraft
+     *
+     * @for DepartureBase
+     * @method spawnAircraft
      */
     spawnAircraft(timeout) {
-        let fleet;
         const message = (window.gameController.game_time() - this.start >= 2);
-        let airline = choose_weight(this.airlines);
-
-        if (airline.indexOf('/') > -1) {
-            // TODO: enumerate the magic numbers
-            // TODO: I see a lot of splitting on '/', why? this should be a helper function since its used so much.
-            fleet = airline.split('/', 2)[1];
-            airline = airline.split('/', 2)[0];
-        }
-
-        window.aircraftController.aircraft_new({
-            airline,
-            fleet,
+        const airline = randomAirlineSelectionHelper(this.airlines);
+        const aircraftToAdd = {
             message,
-            category: 'departure',
+            airline: airline.name,
+            fleet: airline.fleet,
+            category: FLIGHT_CATEGORY.DEPARTURE,
             destination: choose(this.destinations)
-        });
+        };
+
+        window.aircraftController.aircraft_new(aircraftToAdd);
 
         if (timeout) {
-            this.timeout = window.gameController.game_timeout(this.spawnAircraft,
-            this.nextInterval(), this, true);
+            this.timeout = window.gameController.game_timeout(
+                this.spawnAircraft,
+                this.nextInterval(),
+                this,
+                true
+            );
         }
     }
 
     /**
      * Determine delay until next spawn
+     *
+     * @for DepartureBase
+     * @method nextInterval
+     * @return {number}
      */
     nextInterval() {
         // fastest possible between back-to-back departures, in seconds
         const min_interval = 5;
-        const tgt_interval = 3600 / this.frequency;
+        const tgt_interval = TIME.ONE_HOUR_IN_SECONDS / this.frequency;
         const max_interval = tgt_interval + (tgt_interval - min_interval);
 
         return _random(min_interval, max_interval);
