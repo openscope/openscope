@@ -135,7 +135,7 @@ export default class RouteSegmentCollection {
     }
 
     /**
-     * Find a list of fixes for a given `segmentName`
+     * Find a list of waypoints for a given `segmentName`
      *
      * @for RouteSegmentCollection
      * @method findWaypointsForSegmentName
@@ -170,6 +170,7 @@ export default class RouteSegmentCollection {
      */
     _addSegmentToCollection(segment) {
         if (!(segment instanceof RouteSegmentModel)) {
+            // eslint-disable-next-line max-len
             throw new TypeError(`Expected segment to be an instance of RouteSegmentModel, instead received ${segment}.`);
         }
 

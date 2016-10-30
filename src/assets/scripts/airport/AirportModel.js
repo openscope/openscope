@@ -56,24 +56,20 @@ export default class AirportModel {
         this.updateRun = updateRun;
         // FIXME: All properties of this class should be instantiated here, even if they wont have values yet.
         // there is a lot of logic below that can be elimininated by simply instantiating values here.
-        this.loaded   = false;
-        this.loading  = false;
-        this.name     = null;
-        this.icao     = null;
-        this.radio    = null;
-        this.level    = null;
-
+        this.loaded = false;
+        this.loading = false;
+        this.name = null;
+        this.icao = null;
+        this.radio = null;
+        this.level = null;
         this.position = null;
-
-        this.runways  = [];
-        this.runway   = null;
-
+        this.runways = [];
+        this.runway = null;
         this.fixes = {};
         this.sids = {};
         this.sidCollection = null;
         this.stars = {};
         this.starCollection = null;
-
         this.maps = {};
         this.airways = {};
         this.restricted_areas = [];
@@ -510,6 +506,7 @@ export default class AirportModel {
     }
 
     parseTerrain(data) {
+        // TODO: reassignment of this to apt is not needed here. change apt to this.
         // terrain must be in geojson format
         const apt = this;
         apt.terrain = {};
@@ -579,9 +576,10 @@ export default class AirportModel {
             this.set();
         })
         .fail((jqXHR, textStatus, errorThrown) => {
-            this.loading = false;
             console.error(`Unable to load airport/terrain/${this.icao}: ${textStatus}`);
-            prop.airport.current.set();
+
+            this.loading = false;
+            this.airport.current.set();
         });
     }
 

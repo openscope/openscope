@@ -79,7 +79,7 @@ export default class RouteModel {
      * @private
      */
     _init(routeString) {
-        const { origin, base, destination } = this._extractSegmentsFromRouteString(routeString);
+        const { origin, base, destination } = this._extractSegmentNamesFromRouteString(routeString);
 
         this.origin = origin;
         this.base = base;
@@ -104,12 +104,12 @@ export default class RouteModel {
     /**
      *
      * @for RouteModel
-     * @method _extractSegmentsFromRouteString
+     * @method _extractSegmentNamesFromRouteString
      * @param routeString {string}
      * @return {object}
      * @private
      */
-    _extractSegmentsFromRouteString(routeString) {
+    _extractSegmentNamesFromRouteString(routeString) {
         const routeSegments = routeString.split(SEGMENT_SEPERATION_SYMBOL);
 
         return {

@@ -49,14 +49,14 @@ ava('_isValidRouteString() accepts a `routeString` and returns true when it is t
     t.true(model._isValidRouteString('A.B.C'));
 });
 
-ava('_extractSegmentsFromRouteString() accepts a `routeString` and returns an object', t => {
+ava('_extractSegmentNamesFromRouteString() accepts a `routeString` and returns an object', t => {
     const expectedResult = {
         origin: 'BETHL',
         base: 'GRNPA1',
         destination: 'KLAS'
     };
     const model = new RouteModel(ROUTE_MOCK);
-    const result = model._extractSegmentsFromRouteString(ROUTE_MOCK);
+    const result = model._extractSegmentNamesFromRouteString(ROUTE_MOCK);
 
     t.true(_isEqual(result, expectedResult));
 });

@@ -55,7 +55,7 @@ export default class StandardRouteModel {
         /**
          * List of fixes in the order that they should be drawn
          *
-         * Pulled straight from the `.json` file.
+         * Pulled straight from the json file.
          * Currently unused and is only a place to put the data.
          *
          * @property draw
@@ -67,7 +67,7 @@ export default class StandardRouteModel {
         /**
          * List of `rwy` segments and fixes
          *
-         * Pulled straight from the `.json` file.
+         * Pulled straight from the json file.
          * Currently unused and is only a place to put the data.
          *
          * @property rwy
@@ -86,7 +86,7 @@ export default class StandardRouteModel {
         /**
          * List of `exitPoints` segments and fixes
          *
-         * Pulled straight from the `.json` file.
+         * Pulled straight from the json file.
          * Currently unused and is only a place to put the data.
          *
          * @property exitPoints
@@ -185,9 +185,10 @@ export default class StandardRouteModel {
     }
 
     /**
-     * Public method that returns an 2d array in the shape of [[FIXNAME, FIX_RESTRICTIONS], [FIXNAME, FIX_RESTRICTIONS]]
+     * Gather the fixes from all the route segments.
      *
-     * This method gathers the fixes from all the route segments.
+     * Returns an 2d array in the shape of
+     * - [[FIXNAME, FIX_RESTRICTIONS], [FIXNAME, FIX_RESTRICTIONS]]
      *
      * @for StandardRouteModel
      * @method findFixesAndRestrictionsForRunwayAndExit
@@ -200,7 +201,7 @@ export default class StandardRouteModel {
     }
 
     /**
-     * This method gathers the fixes from all the route segments.
+     * Gather the fixes from all the route segments.
      *
      * @for StandardRouteModel
      * @method findFixesAndRestrictionsForEntryAndRunway

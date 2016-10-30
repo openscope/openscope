@@ -1,7 +1,6 @@
-/* eslint-disable no-multi-spaces, func-names, camelcase, no-undef, max-len, object-shorthand */
 import PositionModel from '../base/PositionModel';
 import { abs, tan } from '../math/core';
-import { radians_normalize } from '../math/circle.js';
+import { radians_normalize } from '../math/circle';
 import { km, degreesToRadians } from '../utilities/unitConverters';
 import { vlen, vradial, vsub, vadd, vscale } from '../math/vector';
 
@@ -9,31 +8,44 @@ import { vlen, vradial, vsub, vadd, vscale } from '../math/vector';
  * @class RunwayModel
  */
 export default class RunwayModel {
+    /**
+     * @for RunwayModel
+     * @constructor
+     * @param options {object}
+     * @param end
+     * @param airport {AirportModel}
+     */
     constructor(options = {}, end, airport) {
-        options.airport     = airport;
-        this.airport        = null;
-        this.angle          = null;
-        this.elevation      = 0;
-        this.delay          = 2;
-        this.gps            = [];
-        this.ils            = {
+        options.airport = airport;
+        this.airport = null;
+        this.angle = null;
+        this.elevation = 0;
+        this.delay = 2;
+        this.gps = [];
+        this.ils = {
             // TODO: what do these numbers mean? enumerate the magic numbers
             enabled: true,
             loc_maxDist: km(25),
             gs_maxHeight: 9999,
             gs_gradient: degreesToRadians(3)
         };
-        this.labelPos       = [];
-        this.length         = null;
-        this.midfield       = [];
-        this.name           = '';
-        this.position       = [];
-        this.queue          = [];
+        this.labelPos = [];
+        this.length = null;
+        this.midfield = [];
+        this.name = '';
+        this.position = [];
+        this.queue = [];
         this.sepFromAdjacent = km(3);
 
         this.parse(options, end);
     }
 
+    /**
+     * @for RunwayModel
+     * @method parse
+     * @param data
+     * @param end
+     */
     parse(data, end) {
         this.airport = data.airport;
 
@@ -96,10 +108,22 @@ export default class RunwayModel {
         }
     }
 
+    /**
+     *
+     *
+     * @for RunwayModel
+     * @method
+     */
     addQueue(aircraft) {
         this.queue.push(aircraft);
     }
 
+    /**
+     *
+     *
+     * @for RunwayModel
+     * @method
+     */
     removeQueue(aircraft, force) {
         if (this.queue[0] === aircraft || force) {
             this.queue.shift(aircraft);
@@ -114,15 +138,33 @@ export default class RunwayModel {
         return false;
     }
 
+    /**
+     *
+     *
+     * @for RunwayModel
+     * @method
+     */
     inQueue(aircraft) {
         return this.queue.indexOf(aircraft);
     }
 
+    /**
+     *
+     *
+     * @for RunwayModel
+     * @method
+     */
     taxiDelay() {
         // TODO: what does 3 mean? enumerate the magic numbers.
         return (this.delay + Math.random()) * 3;
     }
 
+    /**
+     *
+     *
+     * @for RunwayModel
+     * @method
+     */
     getGlideslopeAltitude(distance, /* optional */ gs_gradient) {
         if (!gs_gradient) {
             gs_gradient = this.ils.gs_gradient;
