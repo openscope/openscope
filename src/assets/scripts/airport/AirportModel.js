@@ -7,7 +7,7 @@ import _head from 'lodash/head';
 import _map from 'lodash/map';
 import _isEmpty from 'lodash/isEmpty';
 import _uniq from 'lodash/uniq';
-import Area from '../base/AreaModel';
+import AirspaceModel from './AirspaceModel';
 import PositionModel from '../base/PositionModel';
 import RunwayModel from './RunwayModel';
 import SidCollection from './StandardRoute/SidCollection';
@@ -172,7 +172,7 @@ export default class AirportModel {
         _forEach(airspace, (airspaceSection, i) => {
             const positions = [];
 
-            const positionArea = new Area(
+            const positionArea = new AirspaceModel(
                 airspaceSection,
                 this.position,
                 this.magnetic_north

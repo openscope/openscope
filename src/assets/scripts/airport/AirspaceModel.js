@@ -1,7 +1,7 @@
 import _isEqual from 'lodash/isEqual';
 import _map from 'lodash/map';
 import _uniqueId from 'lodash/uniqueId';
-import PositionModel from './PositionModel';
+import PositionModel from '../base/PositionModel';
 
 /**
  * Utility function to convert a number to thousands.
@@ -17,11 +17,11 @@ const convertToThousands = (value) => parseInt(value, 10) * 100;
 /**
  * An enclosed region defined by a series of Position objects and an altitude range
  *
- * @class AreaModel
+ * @class AirspaceModel
  */
-export default class AreaModel {
+export default class AirspaceModel {
     /**
-     * @for AreaModel
+     * @for AirspaceModel
      * @constructor
      * @param airspace {object}
      * @param airportPosition {PositionModel}
@@ -29,6 +29,7 @@ export default class AreaModel {
      */
     constructor(airspace, airportPosition, magneticNorth) {
         if (!airspace || !airportPosition || !magneticNorth) {
+            // eslint-disable-next-line max-len
             throw new TypeError('Invalid parameter, expected airspace, airportPosition and magneticNorth to be defined');
         }
 
@@ -78,7 +79,7 @@ export default class AreaModel {
     /**
      * Initialize the model
      *
-     * @for AreaModel
+     * @for AirspaceModel
      * @method _init
      * @param airspace {array}
      * @param airportPosition {PositionModel}
@@ -95,7 +96,7 @@ export default class AreaModel {
     }
 
     /**
-     * @for AreaModel
+     * @for AirspaceModel
      * @method destroy
      */
     destroy() {
@@ -111,7 +112,7 @@ export default class AreaModel {
      *
      * If the last entry is the same as the first, remove it because the path will be closed automatically.
      *
-     * @for AreaModel
+     * @for AirspaceModel
      * @method _buildPolyPositionModels
      * @param polyList {array}
      * @param airportPosition {PositionModel}
