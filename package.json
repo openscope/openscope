@@ -12,7 +12,7 @@
     "report": "nyc report --reporter=cobertura  --reporter=lcov",
     "coverage": "npm run test && npm run report",
     "lint": "eslint src/**; exit 0",
-    "start": "gulp dist && http-server -p 3003 -c -1"
+    "start": "gulp server"
   },
   "repository": {
     "type": "git",
@@ -88,13 +88,13 @@
     "gulp-cache": "^0.4.5",
     "gulp-clean": "^0.3.2",
     "gulp-concat": "^2.6.0",
+    "gulp-connect": "^5.0.0",
     "gulp-eslint": "^3.0.1",
     "gulp-imagemin": "^3.0.3",
     "gulp-minify-css": "^1.2.4",
     "gulp-rename": "^1.2.2",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-util": "^3.0.7",
-    "http-server": "^0.9.0",
     "nyc": "^6.2.0",
     "path": "^0.12.7",
     "rimraf": "^2.5.4",
