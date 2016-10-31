@@ -72,12 +72,15 @@ export default class AircraftFlightManagementSystem {
             anything: false    // T/F flag for if anything is being "followed"
         };
 
+        // TODO: enumerate the magic numbers
         // set initial
         this.fp.altitude = clamp(1000, options.model.ceiling, 60000);
 
         if (options.aircraft.category === 'arrival') {
+            // TODO: why KDBG?
             this.prependLeg({ route: 'KDBG' });
         } else if (options.aircraft.category === 'departure') {
+            // TODO: if we already have a reference to the aircraft with, this.my_aircraft, whay are we getting it again here?
             this.prependLeg({ route: window.airportController.airport_get().icao });
         }
 
@@ -95,6 +98,7 @@ export default class AircraftFlightManagementSystem {
         this.legs.unshift(new Leg(data, this));
         this.update_fp_route();
 
+        // TODO: these if blocks a repeated elsewhere, perhaps currentWaypoint can handle this logic?
         // Verify altitude & speed not null
         const curr = this.currentWaypoint();
         if (prev && !curr.altitude) {
@@ -112,9 +116,11 @@ export default class AircraftFlightManagementSystem {
     insertWaypointHere(data) {
         const prev = this.currentWaypoint();
 
+        // TODO: split this up into smaller chunks
         this.currentLeg().waypoints.splice(this.current[WAYPOINT_WITHIN_LEG], 0, new Waypoint(data, this));
         this.update_fp_route();
 
+        // TODO: these if blocks a repeated elsewhere, perhaps currentWaypoint can handle this logic?
         // Verify altitude & speed not null
         const curr = this.currentWaypoint();
         if (prev && !curr.altitude) {
@@ -131,11 +137,13 @@ export default class AircraftFlightManagementSystem {
      * Note: if no position passed in, defaults to add to the end
      */
     insertLeg(data) {
+        // TODO: reassigining data here is dangerous.
         if (data.firstIndex == null) {
             data.firstIndex = this.legs.length;
         }
 
         const prev = this.currentWaypoint();
+        // TODO: split up into smaller chunks
         this.legs.splice(data.firstIndex, 0, new Leg(data, this));
 
         this.update_fp_route();
@@ -145,6 +153,7 @@ export default class AircraftFlightManagementSystem {
             this.current[WAYPOINT_WITHIN_LEG] = 0;
         }
 
+        // TODO: these if blocks a repeated elsewhere, perhaps currentWaypoint can handle this logic?
         // Verify altitude & speed not null
         const curr = this.currentWaypoint();
         if (prev && !curr.altitude) {
@@ -172,6 +181,7 @@ export default class AircraftFlightManagementSystem {
      *  Insert a Leg at the end of the flightplan
      */
     appendLeg(data) {
+        // TODO: split this up into smaller chunks
         this.legs.push(new Leg(data, this));
         this.update_fp_route();
     }
@@ -180,6 +190,7 @@ export default class AircraftFlightManagementSystem {
      *  Insert a waypoint after the *current* waypoint
      */
     appendWaypoint(data) {
+        // TODO: split this up into smaller chunks
         this.currentLeg().waypoints.splice(this.current[WAYPOINT_WITHIN_LEG] + 1, 0, new Waypoint(data, this));
         this.update_fp_route();
     }
@@ -201,6 +212,7 @@ export default class AircraftFlightManagementSystem {
             this.current[WAYPOINT_WITHIN_LEG] = 0;  // look to the first waypoint of that leg
         }
 
+        // TODO: these if blocks a repeated elsewhere, perhaps currentWaypoint can handle this logic?
         // Replace null values with current values
         const curr = this.currentWaypoint();
         if (prev && !curr.altitude) {
@@ -224,6 +236,7 @@ export default class AircraftFlightManagementSystem {
         this.current[LEG]++;
         this.current[WAYPOINT_WITHIN_LEG] = 0;
 
+        // TODO: these if blocks a repeated elsewhere, perhaps currentWaypoint can handle this logic?
         // Replace null values with current values
         const curr = this.currentWaypoint();
         if (prev && !curr.altitude) {
@@ -246,11 +259,13 @@ export default class AircraftFlightManagementSystem {
     skipToFix(name) {
         const prev = this.currentWaypoint();
 
+        // TODO: these nested for loops should be simplified
         for (let l = 0; l < this.legs.length; l++) {
             for (let w = 0; w < this.legs[l].waypoints.length; w++) {
                 if (this.legs[l].waypoints[w].fix === name) {
                     this.current = [l, w];
 
+                    // TODO: these if blocks a repeated elsewhere, perhaps currentWaypoint can handle this logic?
                     // Verify altitude & speed not null
                     const curr = this.currentWaypoint();
                     if (prev && !curr.altitude) {
@@ -273,6 +288,7 @@ export default class AircraftFlightManagementSystem {
      * Modify all waypoints
      */
     setAll(data) {
+        // TODO: refactor this, what is actually happening here?
         for (let i = 0; i < this.legs.length; i++) {
             for (let j = 0; j < this.legs[i].waypoints.length; j++) {
                 for (const k in data) {
@@ -286,6 +302,7 @@ export default class AircraftFlightManagementSystem {
      * Modify the current waypoint
      */
     setCurrent(data) {
+        // TODO: refactor this, what is actually happening here?
         for (const i in data) {
             this.currentWaypoint()[i] = data[i];
         }
@@ -304,6 +321,7 @@ export default class AircraftFlightManagementSystem {
                 continue;
             }
 
+            // FIXME: replace the string splitting with the `RouteModel` class methods
             switch (this.legs[l].type) {
                 case FP_LEG_TYPE.SID:
                     // TODO: this split logic and string building should live in a helper function or or class method
@@ -357,6 +375,7 @@ export default class AircraftFlightManagementSystem {
         const leg = this.currentLeg();
         this.following.anything = true;
 
+        // tODO replace the string splitting with the `RouteModel`
         switch (leg.type) {
             case FP_LEG_TYPE.SID:
                 this.following.sid = leg.route.split('.')[1];
@@ -385,6 +404,7 @@ export default class AircraftFlightManagementSystem {
         return this.following;
     }
 
+    // TODO: rename to something more accurate like `resetFollowingType`
     /**
      * Clears any current follows by updating the 'fms.following' flags
      */
@@ -410,6 +430,7 @@ export default class AircraftFlightManagementSystem {
       // Note: 'variant' is set up to pass to this function, but is not used here yet.
         if (type === 'ils') {
             this.my_aircraft.cancelFix();
+            // TODO: this looks like a model object
             this.setCurrent({
                 navmode: 'rwy',
                 runway: rwy.toUpperCase(),
@@ -463,8 +484,10 @@ export default class AircraftFlightManagementSystem {
         this.appendLeg({ type: FP_LEG_TYPE.STAR, route: route });
     }
 
+    // TODO: move this logic to the `RouteModel`
     /**
      * Takes a single-string route and converts it to a segmented route the fms can understand
+     *
      * Note: Input Data Format : "KSFO.OFFSH9.SXC.V458.IPL.J2.JCT..LLO..ACT..KACT"
      *       Return Data Format: ["KSFO.OFFSH9.SXC", "SXC.V458.IPL", "IPL.J2.JCT", "LLO", "ACT", "KACT"]
      */
@@ -530,6 +553,7 @@ export default class AircraftFlightManagementSystem {
         return route;
     }
 
+    // TODO: refactor this to use `RouteModel` and possibly a `LegsCollection` class
     /**
      * Take an array of leg routes and build the legs that will go into the fms
      * @param {array} route - an array of properly formatted route strings
@@ -666,6 +690,7 @@ export default class AircraftFlightManagementSystem {
             let alt;
             let maxAlt;
 
+            // TODO: use `StandardWaypointModel` methods for this logic
             // Altitude Control
             if (altitude) {
                 if (altitude.indexOf('+') !== -1) {
@@ -755,6 +780,7 @@ export default class AircraftFlightManagementSystem {
             let alt;
             let maxAlt;
 
+            // TODO: use `StandardWaypointModel` methods for this logic
             // Altitude Control
             if (a) {
                 if (a.indexOf('+') !== -1) {
@@ -826,6 +852,7 @@ export default class AircraftFlightManagementSystem {
 
     /**
      * Returns object's position in flightplan as object with 2 formats
+     *
      * @param {string} fix - name of the fix to look for in the flightplan
      * @returns {wp: "position-of-fix-in-waypoint-list",
      *           lw: "position-of-fix-in-leg-wp-matrix"}
@@ -836,6 +863,7 @@ export default class AircraftFlightManagementSystem {
         for (let l = 0; l < this.legs.length; l++) {
             for (let w = 0; w < this.legs[l].waypoints.length; w++) {
                 if (this.legs[l].waypoints[w].fix === fix) {
+                    // TODO: what do wp and lw stand for?
                     return {
                         wp: wp,
                         lw: [l, w]
@@ -863,6 +891,7 @@ export default class AircraftFlightManagementSystem {
 
         wp += this.current[WAYPOINT_WITHIN_LEG];
 
+        // TODO: what do wp and lw stand for?
         return {
             wp: wp,
             lw: this.current
@@ -872,7 +901,7 @@ export default class AircraftFlightManagementSystem {
 
     /** ************************* FMS GET FUNCTIONS ***************************/
 
-    // TODO: this set upd methods could be used as getters instead
+    // TODO: this set of methods could be used as getters instead
     // ex: `get currentLeg()` and then used like `this.fms.currentLeg`
     /**
      * Return the current leg
@@ -905,6 +934,7 @@ export default class AircraftFlightManagementSystem {
      * Return this fms's parent aircraft
      */
     my_aircraft() {
+        // TODO: if we already have a ref to the current aircraft, `this.my_aircraft`, why are we getting it again here?
         return window.aircraftController.aircraft_get(this.my_aircrafts_eid);
     }
 
@@ -946,6 +976,7 @@ export default class AircraftFlightManagementSystem {
     * Returns all waypoints in fms, in order
     */
     waypoints() {
+        // TODO: move to _map() or refactor
         // TODO: there is a better way to do this with lodash
         const waypointList = $.map(this.legs, (v) => v.waypoints);
 
@@ -953,6 +984,7 @@ export default class AircraftFlightManagementSystem {
     }
 
     atLastWaypoint() {
+        // TODO: simplify
         return this.indexOfCurrentWaypoint().wp === this.waypoints().length - 1;
     }
 
@@ -975,6 +1007,7 @@ export default class AircraftFlightManagementSystem {
             return null;
         }
 
+        // TODO: use the `RouteModel` for this
         return `${this.following.sid}.${this.currentLeg().route.split('.')[2]}`;
     }
 
@@ -988,6 +1021,7 @@ export default class AircraftFlightManagementSystem {
             return null;
         }
 
+        // TODO: if we already have a reference to the aircraft in, `this.my_aircraft`, why are we getting it again?
         return `${this.following.star}.${window.airportController.airport_get().icao}`;
     }
 

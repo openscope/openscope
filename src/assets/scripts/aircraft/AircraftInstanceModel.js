@@ -1633,6 +1633,7 @@ export default class Aircraft {
         window.aircraftController.aircraft_remove(this);
     }
 
+    // TODO: move to `fms.cancelFix()`
     /**
      * @for AircraftInstanceModel
      * @method cancelFix
