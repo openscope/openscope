@@ -246,10 +246,12 @@ export default class ArrivalBase {
         // distance between closest fix outside airspace and airspace border in nm
         let extra = 0;
         let totalDistance = 0;
+        const isPreSpawn = true;
         const waypointModelList = this.airport.findWaypointModelsForStar(
             this.activeRouteModel.base,
             this.activeRouteModel.origin,
-            this.airport.runway
+            this.airport.runway,
+            isPreSpawn
         );
 
         for (let i = 0; i < waypointModelList.length; i++) {
@@ -436,10 +438,12 @@ export default class ArrivalBase {
             const nextPosition = getFixPosition(this.fixes[1].fix);
             heading = calculateHeadingFromTwoPositions(nextPosition, position);
         } else if (this.activeRouteModel) {
+            const isPreSpawn = false;
             const waypointModelList = this.airport.findWaypointModelsForStar(
                 this.activeRouteModel.base,
                 this.activeRouteModel.origin,
-                this.airport.runway
+                this.airport.runway,
+                isPreSpawn
             );
 
             // grab position of first fix

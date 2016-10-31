@@ -718,10 +718,11 @@ export default class AirportModel {
      * @param id {string}
      * @param entry {string}
      * @param runway {string}
+     * @param isPreSpawn {boolean} flag used to determine if distances between waypoints should be calculated
      * @return {array<StandardWaypointModel>}
      */
-    findWaypointModelsForStar(id, entry, runway) {
-        return this.starCollection.findFixModelsForRouteByEntryAndExit(id, entry, runway);
+    findWaypointModelsForStar(id, entry, runway, isPreSpawn = false) {
+        return this.starCollection.findFixModelsForRouteByEntryAndExit(id, entry, runway, isPreSpawn);
     }
 
     /**

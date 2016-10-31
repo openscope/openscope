@@ -86,9 +86,14 @@ ava('.findFixModelsForRouteByEntryAndExit() returns a list of `StandardRouteWayp
     const collection = new StandardRouteCollection(STAR_LIST_MOCK);
     const result = collection.findFixModelsForRouteByEntryAndExit(STAR_ICAO_MOCK, ENTRY_FIXNAME_MOCK, RUNWAY_NAME_MOCK);
 
-    // console.log('findFixModelsForRouteByEntryAndExit ::: ', result);
-
     t.true(result.length === 8);
+});
+
+ava('.findFixModelsForRouteByEntryAndExit() returns early if not provided an `icao`', t => {
+    const collection = new StandardRouteCollection(STAR_LIST_MOCK);
+    const result = collection.findFixModelsForRouteByEntryAndExit(null, ENTRY_FIXNAME_MOCK, RUNWAY_NAME_MOCK);
+
+    t.true(typeof result === 'undefined');
 });
 
 ava('._addSidToCollection() throws if it doesnt receive a SidModel', t => {

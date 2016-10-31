@@ -1,5 +1,5 @@
+/* eslint-disable */
 // mock data pulled directly from `klas.json` with very few modifications
-
 export const STAR_LIST_MOCK = {
     'GRNPA1': {
         'icao': 'GRNPA1',

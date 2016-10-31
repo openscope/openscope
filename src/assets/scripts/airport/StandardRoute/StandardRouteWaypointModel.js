@@ -125,10 +125,12 @@ export default class StandardRouteWaypointModel {
         this._waypointPosition = null;
 
         /**
-         * Dustance in nm from the previous waypoint.
+         * Distance in nm from the previous waypoint.
          *
-         * TODO: finish this
-         * This property is set exterally by
+         * This property is set exterally by the `StandardRouteModel` and used only when called via
+         * `ArrivalBase.preSpawn()`.
+         *
+         * This value is mutable and is not intended to be re-used after its initial use.
          *
          * @property distanceFromPreviousWaypoint
          * @type {number}
@@ -139,8 +141,10 @@ export default class StandardRouteWaypointModel {
         /**
          * Name of the previous `StandardWaypointModel` object in a route
          *
-         * TODO: finish this
-         * This property is set externall by
+         * This property is set exterally by the `StandardRouteModel` and used only when called via
+         * `ArrivalBase.preSpawn()`.
+         *
+         * This value is mutable and is not intended to be re-used after its initial use.
          *
          * @property previousStandardWaypointName
          * @type {string}

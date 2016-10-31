@@ -17,12 +17,45 @@ import { nm } from '../../utilities/unitConverters';
  */
 export default class StandardRouteModel {
     /**
+     * Expects an object in the form of (taken from `klas.sids.SHEAD9`):
+     *
+     *  {
+     *    'icao': 'SHEAD9',
+     *    'name': 'Shead Nine',
+     *    'rwy': {
+     *      '01L': [['BESSY', 'S230'], ['MDDOG', 'A90'], ['TARRK', 'A110']],
+     *      '01R': [['BESSY', 'S230'], ['MDDOG', 'A90'], ['TARRK', 'A110']],
+     *      '07L': ['WASTE', ['BAKRR', 'A70'], ['MINEY', 'A80+'], 'HITME'],
+     *      '07R': ['JESJI', ['BAKRR', 'A70'], ['MINEY', 'A80+'], 'HITME'],
+     *      '19L': ['FIXIX', ['ROPPR', 'A70'], ['MDDOG', 'A90'], ['TARRK', 'A110']],
+     *      '19R': ['JAKER', ['ROPPR', 'A70'], ['MDDOG', 'A90'], ['TARRK', 'A110']],
+     *      '25L': ['PIRMD', ['ROPPR', 'A70'], ['MDDOG', 'A90'], ['TARRK', 'A110']],
+     *      '25R': ['RBELL', ['ROPPR', 'A70'], ['MDDOG', 'A90'], ['TARRK', 'A110']]
+     *    },
+     *    'body': [['SHEAD', 'A140+']],
+     *    'exitPoints': {
+     *      'KENNO': [['DBIGE', 'A210+'], ['BIKKR', 'A210+'], 'KENNO'],
+     *      'OAL': [['DBIGE', 'A210+'], ['BIKKR', 'A210+'], 'KENNO', 'OAL']
+     *    },
+     *    'draw': [
+     *      ['BESSY', 'MDDOG'],
+     *      ['ROPPR', 'MDDOG', 'TARRK', 'SHEAD'],
+     *      ['HITME', 'SHEAD', 'DBIGE', 'BIKKR', 'KENNO*'],
+     *      ['KENNO', 'OAL*']
+     *    ]
+     *  }
+     *
+     * - `rwy` becomes the `_runwayCollection`. may not be included in a route definition
+     * - `body` becomes the `_bodySegmentModel`. may not be included in a route definition
+     * - `exitPoints` becomes the  `_exitCollection`. will only be present on SID routes
+     * - `entryPoints` (not shown above) becomes the `_entryCollection`. will only be present on STAR routes
+     *
      * @constructor
-     * @param sid {object}
+     * @param standardRoute {object}
      */
-    constructor(sid) {
-        if (!_isObject(sid) || _isArray(sid)) {
-            throw new TypeError(`Expected sid to be an object, instead received ${typeof sid}`);
+    constructor(standardRoute) {
+        if (!_isObject(standardRoute) || _isArray(standardRoute)) {
+            throw new TypeError(`Expected standardRoute to be an object, instead received ${typeof standardRoute}`);
         }
 
         /**
@@ -137,7 +170,7 @@ export default class StandardRouteModel {
          */
         this._entryCollection = null;
 
-        return this._init(sid);
+        return this._init(standardRoute);
     }
 
     /**
@@ -145,21 +178,21 @@ export default class StandardRouteModel {
      *
      * @for StandardRouteModel
      * @method _init
-     * @param sid {object}
+     * @param standardRoute {object}
      * @private
      */
-    _init(sid) {
-        this.icao = sid.icao;
-        this.name = sid.name;
-        this.draw = sid.draw;
-        this.rwy = sid.rwy;
-        this.body = sid.body;
-        this.exitPoints = _get(sid, 'exitPoints', {});
-        this.entryPoints = _get(sid, 'entryPoints', {});
-        this._runwayCollection = this._buildSegmentCollection(sid.rwy);
-        this._bodySegmentModel = this._buildSegmentModel(sid.body);
-        this._exitCollection = this._buildSegmentCollection(sid.exitPoints);
-        this._entryCollection = this._buildSegmentCollection(sid.entryPoints);
+    _init(standardRoute) {
+        this.icao = standardRoute.icao;
+        this.name = standardRoute.name;
+        this.draw = standardRoute.draw;
+        this.rwy = standardRoute.rwy;
+        this.body = standardRoute.body;
+        this.exitPoints = _get(standardRoute, 'exitPoints', {});
+        this.entryPoints = _get(standardRoute, 'entryPoints', {});
+        this._runwayCollection = this._buildSegmentCollection(standardRoute.rwy);
+        this._bodySegmentModel = this._buildSegmentModel(standardRoute.body);
+        this._exitCollection = this._buildSegmentCollection(standardRoute.exitPoints);
+        this._entryCollection = this._buildSegmentCollection(standardRoute.entryPoints);
     }
 
     /**
@@ -196,7 +229,7 @@ export default class StandardRouteModel {
      * @param exitFixName {string}
      * @return {array}
      */
-    findFixesAndRestrictionsForRunwayAndExit(runwayName = '', exitFixName = '') {
+    findFixesAndRestrictionsForRunwayAndExit(runwayName, exitFixName) {
         return this._findFixListForSidByRunwayAndExit(runwayName, exitFixName);
     }
 
@@ -209,7 +242,7 @@ export default class StandardRouteModel {
      * @param runwayName {string}
      * @return {array}
      */
-    findFixesAndRestrictionsForEntryAndRunway(entryFixName = '', runwayName = '') {
+    findFixesAndRestrictionsForEntryAndRunway(entryFixName, runwayName) {
         return this._findFixListForStarByEntryAndRunway(entryFixName, runwayName);
     }
 
@@ -219,23 +252,16 @@ export default class StandardRouteModel {
      * @for StandardRouteModel
      * @method findStandardWaypointModelsForEntryAndExit
      * @param entry {string}
-     * @parma exit {string}
+     * @param exit {string}
+     * @param isPreSpawn {boolean} flag used to determine if distances between waypoints should be calculated
      * @return waypointList {array<StandardWaypointModel>}
      */
-    findStandardWaypointModelsForEntryAndExit(entry, exit) {
+    findStandardWaypointModelsForEntryAndExit(entry, exit, isPreSpawn) {
         const waypointList = this._findStandardWaypointModelsForRoute(entry, exit);
 
-        // TODO: this should live closer to where these models are being created
-        _forEach(waypointList, (waypoint, i) => {
-            let previousWaypoint = waypointList[i - 1];
-            if (i === 0) {
-                previousWaypoint = waypoint;
-            }
-
-            const distance = this.calculateDistanceBetweenWaypoints(waypoint.position, previousWaypoint.position);
-            waypoint.distanceFromPreviousWaypoint = distance;
-            waypoint.previousStandardWaypointName = previousWaypoint.name;
-        });
+        if (isPreSpawn) {
+            this._updateWaypointsWithPreviousWaypointData(waypointList);
+        }
 
         return waypointList;
     }
@@ -322,38 +348,6 @@ export default class StandardRouteModel {
     }
 
     /**
-     * Gather a list of `StandardWaypointModel` objects for a particular route.
-     *
-     * @for StandardRouteModel
-     * @method _findStandardWaypointModelsForRoute
-     * @param entry {string}
-     * @param exti {string}
-     * @return waypointModelList {array<StandardWaypointModel>}
-     */
-    _findStandardWaypointModelsForRoute(entry, exit) {
-        // TODO: this is icky, do something different with this
-        let entrySegmentItems = [];
-        if (this._entryCollection) {
-            const entrySegment = this._entryCollection.findSegmentByName(entry);
-            entrySegmentItems = entrySegment.items;
-        }
-
-        let exitSegmentItems = [];
-        if (this._runwayCollection) {
-            const exitSegment = this._runwayCollection.findSegmentByName(exit);
-            exitSegmentItems = exitSegment.items;
-        }
-
-        const waypointModelList = [
-            ...entrySegmentItems,
-            ...this._bodySegmentModel.items,
-            ...exitSegmentItems
-        ];
-
-        return _compact(waypointModelList);
-    }
-
-    /**
      * Given three functions, spread their result in an array then return the compacted result.
      *
      * This method expects to receive arrays as results from the three methods passed in.
@@ -393,13 +387,14 @@ export default class StandardRouteModel {
      * @private
      */
     _findFixListForSidByRunwayAndExit = (runwayName, exitFixName) => this._generateFixList(
-        this._findFixListForRunwayName(runwayName),
+        this._findFixListInByCollectionAndSegmentName('rwy', '_runwayCollection', runwayName),
         this._findBodyFixList(),
-        this._findFixListForExitFixName(exitFixName)
+        this._findFixListInByCollectionAndSegmentName('exitPoints', '_exitCollection', exitFixName)
     );
 
     /**
-     * Given an `entryFixName` and/or a `runwayName`, find a list of fixes for the `entryPoints`, `body` and `rwy` segments.
+     * Given an `entryFixName` and/or a `runwayName`, find a list of fixes for the `entryPoints`,
+     * `body` and `rwy` segments.
      *
      * @for StandardRouteModel
      * @method _findFixListForStarByEntryAndRunway
@@ -408,10 +403,67 @@ export default class StandardRouteModel {
      * @return {array}
      */
     _findFixListForStarByEntryAndRunway = (entryFixName, runwayName) => this._generateFixList(
-        this._findFixListForEntryFixName(entryFixName),
+        this._findFixListInByCollectionAndSegmentName('entryPoints', '_entryCollection', entryFixName),
         this._findBodyFixList(),
-        this._findFixListForRunwayName(runwayName)
+        this._findFixListInByCollectionAndSegmentName('rwy', '_runwayCollection', runwayName)
     );
+
+
+    /**
+     * Gather a list of `StandardWaypointModel` objects for a particular route.
+     *
+     * @for StandardRouteModel
+     * @method _findStandardWaypointModelsForRoute
+     * @param entry {string}
+     * @param exti {string}
+     * @return {array<StandardWaypointModel>}
+     */
+    _findStandardWaypointModelsForRoute(entry, exit) {
+        let entrySegmentItems = [];
+        let exitSegmentItems = [];
+
+        if (this._entryCollection) {
+            const entrySegment = this._entryCollection.findSegmentByName(entry);
+            entrySegmentItems = entrySegment.items;
+        }
+
+        if (this._runwayCollection) {
+            const exitSegment = this._runwayCollection.findSegmentByName(exit);
+            exitSegmentItems = exitSegment.items;
+        }
+
+        return this._generateFixList(
+            entrySegmentItems,
+            this._bodySegmentModel.items,
+            exitSegmentItems
+        );
+    }
+
+    /**
+     * Given an `originalCollectionName`, `collectionName` and a `segmentName`, return a normalized list of
+     * fixes with restrictions.
+     *
+     * @for StandardRouteModel
+     * @method _findFixListInByCollectionAndSegmentName
+     * @param originalCollectionName {string}  the name of the original collection from airport json,
+     *                                         one of: [entryPoints, rwy, exitPoints]
+     * @param collectionName {string}  collectionName as defined here, one of:
+     *                                 [_runwayCollection, _entryCollection, _exitCollection]
+     * @segmentName {string}  name of the segment to search for
+     * @return array {array<array>}
+     */
+    _findFixListInByCollectionAndSegmentName(originalCollectionName, collectionName, segmentName) {
+        const originalCollection = _get(this, originalCollectionName, null);
+        const collection = _get(this, collectionName, null);
+
+        // specifically checking for an empty string here because this param gets a default of '' when
+        // it is received in to the public method
+        if (!originalCollection || !collection || segmentName === '') {
+            return [];
+        }
+
+        return collection.findWaypointsForSegmentName(segmentName);
+    }
 
     /**
      * Find list of waypoints for the `body` segment
@@ -419,6 +471,7 @@ export default class StandardRouteModel {
      * @for StandardRouteModel
      * @method _findBodyFixList
      * @return {array}
+     * @private
      */
     _findBodyFixList() {
         if (typeof this.body === 'undefined' || this.body.length === 0) {
@@ -428,61 +481,25 @@ export default class StandardRouteModel {
         return this._bodySegmentModel.findWaypointsForSegment();
     }
 
-    // TODO: simplify these next three functions into a single function. they are doing exactly the same thing
-    // only with a different collection object.
     /**
-     * Find list of fixes for a given `runwayName`
+     * Update each `StandardRouteWaypointModel` in the list the with disance from the previous waypoint, and
+     * that waypoint's name.
      *
      * @for StandardRouteModel
-     * @method _findFixListForRunwayName
-     * @param runwayName {string}
-     * @return {array}
-     */
-    _findFixListForRunwayName(runwayName) {
-        // specifically checking for an empty string here because this param gets a default of '' when
-        // it is received in to the public method
-        if (typeof this.rwy === 'undefined' || !this._runwayCollection || runwayName === '') {
-            return [];
-        }
-
-        return this._runwayCollection.findWaypointsForSegmentName(runwayName);
-    }
-
-    /**
-     * Find a list of fixes in the `exitPoint` segment given an `exitFixName`
-     *
-     * @for StandardRouteModel
-     * @method _findFixListForExitFixName
-     * @param exitFixName {string}
-     * @return {array}
+     * @method _updateWaypointsWithPreviousWaypointData
+     * @parma waypointModelList {array<StandardRouteWaypointModel>}
      * @private
      */
-    _findFixListForExitFixName(exitFixName) {
-        // specifically checking for an empty string here because this param gets a default of '' when
-        // it is received in to the public method
-        if (typeof this.exitPoints === 'undefined' || !this._exitCollection || exitFixName === '') {
-            return [];
-        }
+    _updateWaypointsWithPreviousWaypointData(waypointModelList) {
+        _forEach(waypointModelList, (waypoint, i) => {
+            let previousWaypoint = waypointModelList[i - 1];
+            if (i === 0) {
+                previousWaypoint = waypoint;
+            }
 
-        return this._exitCollection.findWaypointsForSegmentName(exitFixName);
-    }
-
-    /**
-     * Find a list of fixes in the `entryPoint` segment given an `entryFixName`
-     *
-     * @for StandardRouteModel
-     * @method _findFixListForEntryFixName
-     * @param entryFixName {string}
-     * @return {array}
-     * @private
-     */
-    _findFixListForEntryFixName(entryFixName) {
-        // specifically checking for an empty string here because this param gets a default of '' when
-        // it is received in to the public method
-        if (typeof this.entryPoints === 'undefined' || !this._entryCollection || entryFixName === '') {
-            return [];
-        }
-
-        return this._entryCollection.findWaypointsForSegmentName(entryFixName);
+            const distance = this.calculateDistanceBetweenWaypoints(waypoint.position, previousWaypoint.position);
+            waypoint.distanceFromPreviousWaypoint = distance;
+            waypoint.previousStandardWaypointName = previousWaypoint.name;
+        });
     }
 }

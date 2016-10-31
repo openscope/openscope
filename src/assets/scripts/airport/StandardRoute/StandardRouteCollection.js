@@ -31,16 +31,17 @@ export default class StandardRouteCollection {
          */
         this._items = [];
 
-        /**
-         * Current size of the collection
-         *
-         * @property legth
-         * @type {number}
-         * @default 0
-         */
-        this.length = 0;
-
         return this._init(standardRouteEnum);
+    }
+
+    /**
+     * Convenience property to get at the current length of `_items`
+     *
+     * @property length
+     * @return {number}
+     */
+    get length() {
+        return this._items.length;
     }
 
     /**
@@ -65,7 +66,6 @@ export default class StandardRouteCollection {
      */
     destroy() {
         this._items = [];
-        this.length = 0;
 
         return this;
     }
@@ -122,16 +122,17 @@ export default class StandardRouteCollection {
      * @param icao {string}
      * @param entry {string}
      * @param exit {string}
+     * @param isPreSpawn {boolean} flag used to determine if distances between waypoints should be calculated
      * @return {StandardRouteModel}
      */
-    findFixModelsForRouteByEntryAndExit(icao, entry, exit) {
+    findFixModelsForRouteByEntryAndExit(icao, entry, exit, isPreSpawn) {
         if (!icao) {
             return;
         }
 
         const route = this.findRouteByIcao(icao);
 
-        return route.findStandardWaypointModelsForEntryAndExit(entry, exit);
+        return route.findStandardWaypointModelsForEntryAndExit(entry, exit, isPreSpawn);
     }
 
     /**
@@ -198,11 +199,11 @@ export default class StandardRouteCollection {
      */
     _addSidToCollection(routeModel) {
         if (!(routeModel instanceof StandardRouteModel)) {
+            // eslint-disable-next-line max-len
             throw new TypeError(`Expected routeModel to be an instance of StandardRouteModel, instead received ${routeModel}`);
         }
 
         this._items.push(routeModel);
-        this.length = this._items.length;
 
         return this;
     }
