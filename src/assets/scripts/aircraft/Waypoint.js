@@ -1,5 +1,6 @@
 /* eslint-disable no-multi-spaces, no-undef */
 import _forEach from 'lodash/forEach';
+import _get from 'lodash/get';
 import _has from 'lodash/has';
 
 /**
@@ -37,6 +38,8 @@ export default class Waypoint {
             spd: null
         };
 
+        this.route = '';
+
         this.parse(data, fms);
     }
 
@@ -51,9 +54,12 @@ export default class Waypoint {
             this.location = window.airportController.airport_get().getFixPosition(data.fix);
         }
 
+        this.route = _get(data, 'route', this.route);
+
         _forEach(data, (value, key) => {
             if (_has(this, key)) {
-                this[key] = data[key];
+                console.log(key);
+                // this[key] = data[key];
             }
         });
 
@@ -62,10 +68,10 @@ export default class Waypoint {
             this.navmode = 'heading';
             const apt = window.airportController.airport_get();
 
-            if (data.route.split('.')[0] === apt.icao && this.heading === null) {
+            if (this.route.split('.')[0] === apt.icao && this.heading === null) {
                 // aim departure along runway heading
                 this.heading = apt.getRunway(apt.runway).angle;
-            } else if (data.route.split('.')[0] === 'KDBG' && this.heading === null) {
+            } else if (this.route.split('.')[0] === 'KDBG' && this.heading === null) {
                 // aim arrival @ middle of airspace
                 this.heading = this.radial + Math.PI;
             }

@@ -227,7 +227,7 @@ export default class AircraftController {
             // Clean up the screen from aircraft that are too far
             if (
                 (!this.aircraft_visible(aircraft, 2) && !aircraft.inside_ctr) &&
-                aircraft.fms.currentWaypoint().navmode === 'heading'
+                aircraft.fms.currentWaypoint.navmode === 'heading'
             ) {
                 if (aircraft.category === 'arrival' || aircraft.category === 'departure') {
                     remove = true;
