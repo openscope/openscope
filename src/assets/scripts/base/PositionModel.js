@@ -63,6 +63,16 @@ export default class Position {
     }
 
     /**
+     * Magnetic north of the current instance expressed in radians
+     *
+     * @property magneticNorthInRadians
+     * @return {number}
+     */
+    get magneticNorthInRadians() {
+        return degreesToRadians(this.magnetic_north);
+    }
+
+    /**
      * @for PositionModel
      * @method parse
      */
