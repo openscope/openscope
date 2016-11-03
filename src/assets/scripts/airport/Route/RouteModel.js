@@ -3,11 +3,20 @@ import _uniqueId from 'lodash/uniqueId';
 /**
  * Symbol that divides each route segment
  *
- * @property SEGMENT_SEPERATION_SYMBOL
+ * @property SEGMENT_SEPARATION_SYMBOL
  * @type {string}
  * @final
  */
-const SEGMENT_SEPERATION_SYMBOL = '.';
+const SEGMENT_SEPARATION_SYMBOL = '.';
+
+/**
+ * A route is assumed to have, at most, three parts.
+ *
+ * @property MAXIMUM_ROUTE_SEGMENT_LENGTH
+ * @type {number}
+ * @final
+ */
+const MAXIMUM_ROUTE_SEGMENT_LENGTH = 3;
 
 /**
  * @class RouteModel
@@ -37,25 +46,25 @@ export default class RouteModel {
         this._id = _uniqueId();
 
         /**
-         * @property origin
+         * @property entry
          * @type {string}
          * @default ''
          */
-        this.origin = '';
+        this.entry = '';
 
         /**
-         * @property base
+         * @property procedure
          * @type {string}
          * @default ''
          */
-        this.base = '';
+        this.procedure = '';
 
         /**
-         * @property destination
+         * @property exit
          * @type {string}
          * @default ''
          */
-        this.destination = '';
+        this.exit = '';
 
         return this._init(routeString);
     }
@@ -67,7 +76,7 @@ export default class RouteModel {
      * @return {string}
      */
     get routeString() {
-        return `${this.origin}.${this.base}.${this.destination}`;
+        return `${this.entry}.${this.procedure}.${this.exit}`;
     }
 
     /**
@@ -79,11 +88,11 @@ export default class RouteModel {
      * @private
      */
     _init(routeString) {
-        const { origin, base, destination } = this._extractSegmentNamesFromRouteString(routeString);
+        const { entry, base, exit } = this._extractSegmentNamesFromRouteString(routeString);
 
-        this.origin = origin;
-        this.base = base;
-        this.destination = destination;
+        this.entry = entry;
+        this.procedure = base;
+        this.exit = exit;
 
         return this;
     }
@@ -96,13 +105,12 @@ export default class RouteModel {
      */
     destroy() {
         this._id = '';
-        this.origin = '';
-        this.base = '';
-        this.destination = '';
+        this.entry = '';
+        this.procedure = '';
+        this.exit = '';
     }
 
     /**
-     *
      * @for RouteModel
      * @method _extractSegmentNamesFromRouteString
      * @param routeString {string}
@@ -110,16 +118,17 @@ export default class RouteModel {
      * @private
      */
     _extractSegmentNamesFromRouteString(routeString) {
-        const routeSegments = routeString.split(SEGMENT_SEPERATION_SYMBOL);
+        const routeSegments = routeString.split(SEGMENT_SEPARATION_SYMBOL);
 
         return {
-            origin: routeSegments[0],
+            entry: routeSegments[0],
             base: routeSegments[1],
-            destination: routeSegments[2]
+            exit: routeSegments[2]
         };
     }
 
     /**
+     * Verify that a routestring has exactly 3 segments
      *
      * @for RouteModel
      * @method _isValidRouteString
@@ -128,7 +137,6 @@ export default class RouteModel {
      * @private
      */
     _isValidRouteString(routeString) {
-        // TODO: replace magic number with enumeration
-        return routeString.split(SEGMENT_SEPERATION_SYMBOL).length === 3;
+        return routeString.split(SEGMENT_SEPARATION_SYMBOL).length === MAXIMUM_ROUTE_SEGMENT_LENGTH;
     }
 }

@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies, arrow-parens */
 import ava from 'ava';
 import _isEqual from 'lodash/isEqual';
 
@@ -14,9 +15,9 @@ ava('RouteModel returns early when instantiated with invalid parameters', t => {
 
     const model = new RouteModel();
     t.true(typeof model._id === 'undefined');
-    t.true(typeof model.origin === 'undefined');
-    t.true(typeof model.base === 'undefined');
-    t.true(typeof model.destination === 'undefined');
+    t.true(typeof model.entry === 'undefined');
+    t.true(typeof model.procedure === 'undefined');
+    t.true(typeof model.exit === 'undefined');
 });
 
 ava('RouteModel throws when instantiated with incorrect parameters', t => {
@@ -31,9 +32,9 @@ ava('RouteModel accepts a string `routeString` as its only parameter and sets it
     const model = new RouteModel(ROUTE_MOCK);
 
     t.false(typeof model._id === 'undefined');
-    t.true(model.origin === 'BETHL');
-    t.true(model.base === 'GRNPA1');
-    t.true(model.destination === 'KLAS');
+    t.true(model.entry === 'BETHL');
+    t.true(model.procedure === 'GRNPA1');
+    t.true(model.exit === 'KLAS');
 });
 
 ava('_isValidRouteString() accepts a `routeString` and returns false when it is not the correct length', t => {
@@ -51,9 +52,9 @@ ava('_isValidRouteString() accepts a `routeString` and returns true when it is t
 
 ava('_extractSegmentNamesFromRouteString() accepts a `routeString` and returns an object', t => {
     const expectedResult = {
-        origin: 'BETHL',
+        entry: 'BETHL',
         base: 'GRNPA1',
-        destination: 'KLAS'
+        exit: 'KLAS'
     };
     const model = new RouteModel(ROUTE_MOCK);
     const result = model._extractSegmentNamesFromRouteString(ROUTE_MOCK);
