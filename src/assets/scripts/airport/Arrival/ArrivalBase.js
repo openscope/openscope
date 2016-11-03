@@ -108,6 +108,8 @@ export default class ArrivalBase {
         /**
          * Altitude in feet or min/max range of altitudes
          *
+         * Altitude may be passed in as either an array of altitudes [min, max], or as a single number.
+         *
          * @property altitude
          * @type {array}
          * @default [AIRPORT_CONSTANTS.DEFAULT_SPAWN_ALTITUDE_MIN, AIRPORT_CONSTANTS.DEFAULT_SPAWN_ALTITUDE_MAX]
@@ -187,7 +189,8 @@ export default class ArrivalBase {
             this.heading = degreesToRadians(options.heading);
         }
 
-        // TODO: is altitude ever not a number?
+        // altitude may be passed in as either an array of altitudes [min, max], or as a single number.
+        // here we check for the single number and transform it into a [min, max] format.
         if (typeof this.altitude === 'number') {
             this.altitude = [this.altitude, this.altitude];
         }
@@ -248,8 +251,8 @@ export default class ArrivalBase {
         let totalDistance = 0;
         const isPreSpawn = true;
         const waypointModelList = this.airport.findWaypointModelsForStar(
-            this.activeRouteModel.base,
-            this.activeRouteModel.origin,
+            this.activeRouteModel.procedure,
+            this.activeRouteModel.entry,
             this.airport.runway,
             isPreSpawn
         );
@@ -412,6 +415,7 @@ export default class ArrivalBase {
         }
     }
 
+    // TODO: this method should accept explicit arguments
     /**
      * Spawn a new aircraft
      *
@@ -440,8 +444,8 @@ export default class ArrivalBase {
         } else if (this.activeRouteModel) {
             const isPreSpawn = false;
             const waypointModelList = this.airport.findWaypointModelsForStar(
-                this.activeRouteModel.base,
-                this.activeRouteModel.origin,
+                this.activeRouteModel.procedure,
+                this.activeRouteModel.entry,
                 this.airport.runway,
                 isPreSpawn
             );
