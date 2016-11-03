@@ -2,6 +2,7 @@ import _get from 'lodash/get';
 import _has from 'lodash/has';
 import _forEach from 'lodash/forEach';
 import _map from 'lodash/map';
+import { choose, choose_weight } from '../utilities/generalUtilities';
 
 /**
  * An aircrcraft operating agency

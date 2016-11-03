@@ -1,11 +1,14 @@
 /* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand */
 import _random from 'lodash/random';
 import ArrivalBase from './ArrivalBase';
+import { convertMinutesToSeconds } from '../../utilities/unitConverters';
+import { TIME } from '../../constants/globalConstants';
 
 /**
  * Generate arrivals in cyclic pattern
  * Arrival rate varies as pictured below. Rate at which the arrival rate
  * increases or decreases remains constant throughout the cycle.
+
  * |---o---------------o---------------o---------------o-----------| < - - - - - - max arrival rate
  * | o   o           o   o           o   o           o   o         |   +variation
  * o-------o-------o-------o-------o-------o-------o-------o-------o < - - - - - - avg arrival rate
@@ -14,17 +17,54 @@ import ArrivalBase from './ArrivalBase';
  * |<---period---->|           |<---period---->|
  *
  * @class ArrivalCyclic
+ * @extends ArrivalBase
  */
 export default class ArrivalCyclic extends ArrivalBase {
+    /**
+     * @for ArrivalCyclic
+     * @constructor
+     * @param airport {AirportInstanceModel}
+     * @param options {object}
+     */
     constructor(airport, options) {
         super(airport, options);
 
-        this.cycleStart = 0;  // game time
-        this.offset = 0;      // Start at the average, and increasing
-        this.period = 1800;   // 30 minute cycle
-        this.variation = 0;   // amount to deviate from the prescribed frequency
+        /**
+         * game time
+         *
+         * @property cycleStart
+         * @type {number}
+         * @default 0
+         */
+        this.cycleStart = 0;
 
-        super.parse(options);
+        /**
+         * Start at the average, and increasing
+         *
+         * @property offset
+         * @type {number}
+         * @default 0
+         */
+        this.offset = 0;
+
+        /**
+         * 30 minute cycle
+         *
+         * @property period
+         * @type {number}
+         * @default 1800
+         */
+        this.period = TIME.ONE_HOUR_IN_SECONDS / 2;
+
+        /**
+         * amount to deviate from the prescribed frequency
+         *
+         * @property variation
+         * @type {number}
+         * @default 0
+         */
+        this.variation = 0;
+
         this.parse(options);
     }
 
@@ -35,12 +75,14 @@ export default class ArrivalCyclic extends ArrivalBase {
      * @param {integer} offset - (optional) minutes to shift starting position in cycle
      */
     parse(options) {
+        super.parse(options);
+
         if (options.offset) {
-            this.offset = options.offset * 60; // min --> sec
+            this.offset = convertMinutesToSeconds(options.offset)
         }
 
         if (options.period) {
-            this.period = options.period * 60; // min --> sec
+            this.period = convertMinutesToSeconds(options.period);
         }
 
         if (options.variation) {
@@ -50,7 +92,7 @@ export default class ArrivalCyclic extends ArrivalBase {
 
     start() {
         this.cycleStart = prop.game.time - this.offset;
-        const delay = _random(0, 3600 / this.frequency);
+        const delay = _random(0, TIME.ONE_HOUR_IN_SECONDS / this.frequency);
         this.timeout = window.gameController.game_timeout(this.spawnAircraft, delay, this, [true, true]);
     }
 
@@ -62,15 +104,15 @@ export default class ArrivalCyclic extends ArrivalBase {
         if (done >= 4) {
             this.cycleStart += this.period;
 
-            return 3600 / (this.frequency + (done - 4) * this.variation);
+            return TIME.ONE_HOUR_IN_SECONDS / (this.frequency + (done - 4) * this.variation);
         } else if (done <= 1) {
-            return 3600 / (this.frequency + done * this.variation);
+            return TIME.ONE_HOUR_IN_SECONDS / (this.frequency + done * this.variation);
         } else if (done <= 2) {
-            return 3600 / (this.frequency + (2 * (this.period - 2 * t) / this.period) * this.variation);
+            return TIME.ONE_HOUR_IN_SECONDS / (this.frequency + (2 * (this.period - 2 * t) / this.period) * this.variation);
         } else if (done <= 3) {
-            return 3600 / (this.frequency - (done - 2) * this.variation);
+            return TIME.ONE_HOUR_IN_SECONDS / (this.frequency - (done - 2) * this.variation);
         } else if (done < 4) {
-            return 3600 / (this.frequency - (4 * (this.period - t) / this.period) * this.variation);
+            return TIME.ONE_HOUR_IN_SECONDS / (this.frequency - (4 * (this.period - t) / this.period) * this.variation);
         }
     }
 }

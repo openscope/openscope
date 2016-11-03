@@ -621,14 +621,15 @@ export default class ConvasController {
             cc.globalCompositeOperation = 'destination-out';
             cc.lineWidth = 4;
 
-            this.canvas_draw_fix(cc, i, fix.position);
+            this.canvas_draw_fix(cc, fix.name, fix.position);
 
             cc.strokeStyle = COLORS.WHITE_00;
             cc.fillStyle = COLORS.WHITE_05;
             cc.globalCompositeOperation = 'source-over';
             cc.lineWidth = 1;
 
-            this.canvas_draw_fix(cc, i, fix.position);
+            this.canvas_draw_fix(cc, fix.name, fix.position);
+
             cc.restore();
         });
     }

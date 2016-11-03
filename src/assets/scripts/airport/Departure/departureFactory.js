@@ -1,4 +1,3 @@
-/* eslint-disable func-names, no-undef */
 import DepartureBase from './DepartureBase';
 import DepartureCyclic from './DepartureCyclic';
 import DepartureWave from './DepartureWave';

@@ -1,56 +1,184 @@
-import $ from 'jquery';
-import _has from 'lodash/has';
+import _get from 'lodash/get';
+import _map from 'lodash/map';
 import _random from 'lodash/random';
-
+import FixCollection from '../Fix/FixCollection';
+import RouteModel from '../Route/RouteModel';
 import PositionModel from '../../base/PositionModel';
+import {
+    airlineNameAndFleetHelper,
+    randomAirlineSelectionHelper
+} from '../../airline/randomAirlineSelectionHelper';
 import { nm, degreesToRadians } from '../../utilities/unitConverters';
 import { round, sin, cos } from '../../math/core';
-import { distance2d } from '../../math/distance';
-import { bearing, fixRadialDist, inAirspace, dist_to_boundary } from '../../math/flightMath';
-import { vradial, vsub } from '../../math/vector';
+import {
+    bearing,
+    fixRadialDist,
+    isWithinAirspace,
+    calculateDistanceToBoundary,
+    calculateHeadingFromTwoPositions
+} from '../../math/flightMath';
+import { FLIGHT_CATEGORY } from '../../aircraft/AircraftInstanceModel';
+import { AIRPORT_CONSTANTS } from '../../constants/airportConstants';
+import { TIME } from '../../constants/globalConstants';
 import { LOG } from '../../constants/logLevel';
 
 /**
- *  Generate arrivals at random, averaging the specified arrival rate
+ * @property INTERVAL_DELAY_IN_MS
+ * @type {number}
+ * @final
+ */
+const INTERVAL_DELAY_IN_MS = TIME.ONE_HOUR_IN_SECONDS;
+
+// TODO: this shouldn't live here. perhaps move to `FixCollection` as an exported function?
+/**
+ * Encapsulation of a `FixCollection` method.
+ *
+ * This allows for centralization of this logic, while avoiding the need for
+ * another class method.
+ *
+ * @method getFixPostiion
+ * @param fixName {string}
+ * @return fix.position {array}
+ */
+const getFixPosition = (fixName) => {
+    const fix = FixCollection.findFixByName(fixName);
+
+    return fix.position;
+};
+
+/**
+ * Generate arrivals at random, averaging the specified arrival rate
  *
  * @class ArrivalBase
  */
 export default class ArrivalBase {
+    /**
+     * @for ArrivalBase
+     * @constructor
+     * @param airport {AirportInstanceModel}
+     * @param options {object}
+     */
     constructor(airport, options) {
-        this.airlines = [];
         // FIXME: this creates a circular reference and should be refactored
+        /**
+         * Airport that arrivals belong to
+         *
+         * @property airport
+         * @type {AirportInstanceModel}
+         * @default airport
+         */
         this.airport = airport;
-        this.altitude = [1000, 1000];
-        this.frequency = 0;
-        this.heading = null;
-        this.radial = 0;
-        this.speed = 250;
-        this.timeout = null;
+
+        /**
+         * List of airlines with weight for each
+         *
+         * @property airlines
+         * @type {array[]}
+         * @default []
+         */
+        this.airlines = [];
+
+        // TODO: this needs a better name. this is actually fixes for a route
+        /**
+         * Set of fixes to traverse (eg. for STARs) as defined in the airport json file.
+         *
+         * Spawn occurs at first fix listed.
+         * This property gets sent to an `AirportInstanceModel` and becomes that aircraft's
+         * waypoint list in the fms.
+         *
+         * @property fixes
+         * @type {array}
+         * @default []
+         */
         this.fixes = [];
-        this.route = '';
+
+        /**
+         * Text representation of a `StandardRoute`.
+         *
+         * `RouteModel` object provides methods for dealing with a route string.
+         * Expects string to be in the shape of:
+         * - `ORIGIN_FIXNAME.ROUTE_NAME.DESTINATION_FIXNAME`
+         *
+         * @property activeRouteModel
+         * @type {RouteModel}
+         * @default null
+         */
+        this.activeRouteModel = null;
+
+        /**
+         * Altitude in feet or min/max range of altitudes
+         *
+         * Altitude may be passed in as either an array of altitudes [min, max], or as a single number.
+         *
+         * @property altitude
+         * @type {array}
+         * @default [AIRPORT_CONSTANTS.DEFAULT_SPAWN_ALTITUDE_MIN, AIRPORT_CONSTANTS.DEFAULT_SPAWN_ALTITUDE_MAX]
+         */
+        this.altitude = [AIRPORT_CONSTANTS.DEFAULT_SPAWN_ALTITUDE_MIN, AIRPORT_CONSTANTS.DEFAULT_SPAWN_ALTITUDE_MAX];
+
+        /**
+         * Initial heading of a spawned aircraft
+         *
+         * @property heading
+         * @type {number}
+         * @default null
+         */
+        this.heading = null;
+
+        /**
+         * Bearing from airspace center to spawn point.
+         *
+         * Shouldn't be used with fixes
+         *
+         * @property radial
+         * @type {number}
+         * @default 0
+         */
+        this.radial = 0;
+
+        /**
+         * Initial speed in knots of spawned aircraft.
+         *
+         * @property speed
+         * @type {number}
+         * @default AIRPORT_CONSTANTS.DEFAULT_SPAWN_AIRCRAFT_SPEED_KTS
+         */
+        this.speed = AIRPORT_CONSTANTS.DEFAULT_SPAWN_AIRCRAFT_SPEED_KTS;
+
+        /**
+         * Arrival rate along this stream.
+         *
+         * Number represents aircraft per hour (acph)
+         *
+         * @property frequency
+         * @type {number}
+         * @default 0
+         */
+        this.frequency = 0;
+
+        /**
+         * @property timeout
+         * @type {function}
+         * @default null
+         */
+        this.timeout = null;
 
         this.parse(options);
     }
 
     /**
-     * Arrival Stream Settings
-     * airlines: {array of array} List of airlines with weight for each
-     * altitude: {array or integer} Altitude in feet or range of altitudes
-     * frequency: {integer} Arrival rate along this stream, in aircraft per hour (acph)
-     * heading: {integer} Heading to fly when spawned, in degrees (don't use w/ fixes)
-     * fixes: {array} Set of fixes to traverse (eg. for STARs). Spawns at first listed.
-     * radial: {integer} bearing from airspace center to spawn point (don't use w/ fixes)
-     * speed: {integer} Speed in knots of spawned aircraft
+     * Initialize arrival stream
+     *
+     * @for ArrivalBase
+     * @method parse
+     * @param options {object}
+     * @private
      */
     parse(options) {
-        const params = ['airlines', 'altitude', 'frequency', 'speed'];
-
-        // Populate the data
-        for (const i in params) {
-            if (options[params[i]]) {
-                this[params[i]] = options[params[i]];
-            }
-        }
+        this.airlines = _get(options, 'airlines', this.airlines);
+        this.altitude = _get(options, 'altitude', this.altitude);
+        this.frequency = _get(options, 'frequency', this.frequency);
+        this.speed = _get(options, 'speed', this.speed);
 
         // Make corrections to data
         if (options.radial) {
@@ -61,150 +189,209 @@ export default class ArrivalBase {
             this.heading = degreesToRadians(options.heading);
         }
 
+        // altitude may be passed in as either an array of altitudes [min, max], or as a single number.
+        // here we check for the single number and transform it into a [min, max] format.
         if (typeof this.altitude === 'number') {
             this.altitude = [this.altitude, this.altitude];
         }
 
         if (options.route) {
-            this.route = options.route;
+            this.activeRouteModel = new RouteModel(options.route);
         } else if (options.fixes) {
-            for (let i = 0; i < options.fixes.length; i++) {
-                this.fixes.push({ fix: options.fixes[i] });
-            }
+            // TODO: this may not be needed at all. we could just use `_get()` instead.
+            // `this.fixes` eventually makes its way to the `AircraftInstanceModel.fms` via
+            // `AircraftInstanceModel.setArrivalWaypoints()`. that method simply builds another object and
+            // pulls each item from this array. creating an object here is doesn't appear to serve any real purpose.
+            this.fixes = _map(options.fixes, (fix) => {
+                return {
+                    fix: fix
+                };
+            });
         }
 
-        // Pre-load the airlines
-        $.each(this.airlines, (i, data) => {
-            window.airlineController.airline_get(data[0].split('/')[0]);
-        });
+        this.preloadAirlines();
     }
 
     /**
-     * Backfill STAR routes with arrivals closer than the spawn point
-     * Aircraft spawn at the first point defined in the route of the entry in
-     * "arrivals" in the airport json file. When that spawn point is very far
-     * from the airspace boundary, it obviously takes quite a while for them
-     * to reach the airspace. This function spawns (all at once) arrivals along
+     * Loop through each airline provided from an airport json and ensure it had been loaded.
+     *
+     * @for ArrivalBase
+     * @method preloadAirlines
+     */
+    preloadAirlines() {
+        // TODO: this really doesn't belong here and should be moved
+        // Pre-load the airlines
+        for (let i = 0; i < this.airlines.lenth; i++) {
+            const airline = this.airlines[i];
+            // reassigns `airline.name` to `airlineName` for readability
+            const { name: airlineName } = airlineNameAndFleetHelper(airline);
+
+            window.airlineController.airline_get(airlineName);
+        }
+    }
+
+    /**
+     * Backfill STAR routes with arrivals closer than the spawn point.
+     *
+     * Should be run only once on airport load.
+     *
+     * Aircraft spawn at the first point defined in the `arrivals` entry of the airport json file.
+     * When that spawn point is very far from the airspace boundary, it obviously takes quite a
+     * while for them to reach the airspace. This function spawns (all at once) arrivals along
      * the route, between the spawn point and the airspace boundary, in order to
      * ensure the player is not kept waiting for their first arrival aircraft.
+     *
+     * @for ArrivalBase
+     * @method preSpawn
      */
     preSpawn() {
-        let star;
-        let entry;
-        const runway = this.airport.runway;
-
-        // Find STAR & entry point
-        const pieces = array_clean(this.route.split('.'));
-        for (const i in pieces) {
-            if (_has(this.airport.stars, pieces[i])) {
-                star = pieces[i];
-
-                if (i > 0) {
-                    entry = pieces[i - 1];
-                }
-            }
-        }
-
-        // Find the last fix that's outside the airspace boundary
-        const fixes = this.airport.getSTAR(star, entry, runway);
-        // FIXME: this is never used. is it needed?
-        // const lastFix = fixes[0][0];
-        // distance between closest fix outside a/s and a/s border, nm
+        // find last fix along STAR that is outside of airspace, ie: next fix is within airspace
+        // distance between closest fix outside airspace and airspace border in nm
         let extra = 0;
+        let totalDistance = 0;
+        const isPreSpawn = true;
+        const waypointModelList = this.airport.findWaypointModelsForStar(
+            this.activeRouteModel.procedure,
+            this.activeRouteModel.entry,
+            this.airport.runway,
+            isPreSpawn
+        );
 
-        for (const i in fixes) {
-            const fix = fixes[i][0];
-            const pos = this.airport.fixes[fix].position;
-            const fix_prev = (i > 0)
-                ? fixes[i - 1][0]
-                : fix;
-            const pos_prev = (i > 0)
-                ? this.airport.fixes[fix_prev].position
-                : pos;
+        for (let i = 0; i < waypointModelList.length; i++) {
+            const waypoint = waypointModelList[i];
+            const waypointPosition = waypoint.position;
+            let previousWaypoint = waypoint;
+            let previousPosition = waypoint.position;
 
-            if (inAirspace(this.airport, pos)) {
-                if (i >= 1) {
-                    extra = nm(dist_to_boundary(this.airport, pos_prev));
-                    break;
-                }
-            } else {
-                // calculate distance between fixes
-                fixes[i][2] = nm(distance2d(pos_prev, pos));
+            if (i > 0) {
+                previousWaypoint = waypointModelList[i - 1];
+                previousPosition = previousWaypoint.position;
             }
+
+            if (isWithinAirspace(this.airport, waypointPosition) && i > 0) {
+                extra = nm(calculateDistanceToBoundary(this.airport, previousPosition));
+
+                continue;
+            }
+
+            totalDistance += waypoint.distanceFromPreviousWaypoint;
         }
 
-        // Determine spawn offsets
-        const spawn_offsets = [];
-        // distance between succ. arrivals, nm
-        const entrail_dist = this.speed / this.frequency;
-        // TODO: replace with _map
-        const dist_total = array_sum($.map(fixes, (v) => {
-            return v[2];
-        })) + extra;
+        // FIXME: incluing this causes aircraft to spawn within airspace. something goofy is going on here.
+        // totalDistance += extra;
 
-        for (let i = entrail_dist; i < dist_total; i += entrail_dist) {
-            spawn_offsets.push(i);
+        // distance between each arriving aircraft, in nm
+        const entrailDistance = this.speed / this.frequency;
+        const spawnOffsets = this.assembleSpawnOffsets(entrailDistance, totalDistance);
+        const spawnPositions = this.calculateSpawnPositions(waypointModelList, spawnOffsets);
+
+        this.createAircraftAtSpawnPositions(spawnPositions);
+    }
+
+    /**
+     * @for ArrivalBase
+     * @method assembleSpawnOffsets
+     * @param entrailDistance {number}
+     * @param totalDistance {number}
+     * @return spawnOffsets {array}
+     */
+    assembleSpawnOffsets(entrailDistance, totalDistance) {
+        const spawnOffsets = [];
+
+        // distance between successive arrivals in nm
+        for (let i = entrailDistance; i < totalDistance; i += entrailDistance) {
+            spawnOffsets.push(i);
         }
 
-        // Determine spawn points
-        const spawn_positions = [];
+        return spawnOffsets;
+    }
+
+    /**
+     * @for ArrivalBase
+     * @method calculateSpawnPositions
+     * @param waypointModelList {array<StandardWaypointModel>}
+     * @param spawnOffsets {array}
+     * @return spawnPositions {array}
+     */
+    calculateSpawnPositions(waypointModelList, spawnOffsets) {
+        const spawnPositions = [];
+
         // for each new aircraft
-        for (const i in spawn_offsets) {
+        for (let i = 0; i < spawnOffsets.length; i++) {
+            let spawnOffset = spawnOffsets[i];
+
             // for each fix ahead
-            for (let j = 1; j < fixes.length; j++) {
-                if (spawn_offsets[i] > fixes[j][2]) {
-                    // if point beyond next fix
-                    spawn_offsets[i] -= fixes[j][2];
+            for (let j = 1; j < waypointModelList.length; j++) {
+                const waypoint = waypointModelList[j];
+
+                if (spawnOffset > waypoint.distanceFromPreviousWaypoint) {
+                    // if point beyond next fix subtract distance from spawnOffset and continue
+                    spawnOffset -= waypoint.distanceFromPreviousWaypoint;
+
                     continue;
                 } else {
-                    // TODO: set fixes to a const so ther is only one call to `airport_get()`
                     // if point before next fix
-                    const next = window.airportController.airport_get().fixes[fixes[j][0]];
-                    const prev = window.airportController.airport_get().fixes[fixes[j - 1][0]];
-                    const brng = bearing(prev.gps, next.gps);
-                    spawn_positions.push({
-                        pos: fixRadialDist(prev.gps, brng, spawn_offsets[i]),
-                        nextFix: fixes[j][0],
-                        heading: brng
+                    const nextFix = waypoint;
+                    const previousFix = waypointModelList[j - 1];
+                    const heading = bearing(previousFix.gps, nextFix.gps);
+                    const calculatedRadialDistance = fixRadialDist(previousFix.gps, heading, spawnOffset);
+
+                    // TODO: this looks like it should be a model object
+                    spawnPositions.push({
+                        heading,
+                        pos: calculatedRadialDistance,
+                        nextFix: nextFix.name
                     });
+
                     break;
                 }
             }
         }
 
+        return spawnPositions;
+    }
+
+    /**
+     * Given an array of `spawnPositions`, create new aircraft for each `spawnPosition`
+     *
+     * @for ArrivalBase
+     * @method createAircraftAtSpawnPositions
+     * @param spawnPositions {array}
+     */
+    createAircraftAtSpawnPositions(spawnPositions) {
         // Spawn aircraft along the route, ahead of the standard spawn point
-        for (const i in spawn_positions) {
-            let airline = choose_weight(this.airlines);
-            let fleet = '';
-
-            if (airline.indexOf('/') > -1) {
-                fleet = airline.split('/')[1];
-                airline = airline.split('/')[0];
-            }
-
-            const { heading, pos, nextFix } = spawn_positions[i];
-            const { icao, position, magnetic_north } = window.airportController.airport_get();
-            window.aircraftController.aircraft_new({
-                category: 'arrival',
+        for (let i = 0; i < spawnPositions.length; i++) {
+            const { heading, pos, nextFix } = spawnPositions[i];
+            const { icao, position, magnetic_north } = this.airport;
+            const aircraftPosition = new PositionModel(pos, position, magnetic_north, 'GPS');
+            const airline = randomAirlineSelectionHelper(this.airlines);
+            const aircraftToAdd = {
+                category: FLIGHT_CATEGORY.ARRIVAL,
                 destination: icao,
-                airline: airline,
-                fleet: fleet,
+                airline: airline.name,
+                fleet: airline.fleet,
                 // TODO: should eventually look up altitude restrictions and try to spawn in an appropriate range
+                //       this can be done with the `waypointModelList` and `StandardWaypointModel` objects,
+                //       in conjuntion with the `RouteModel`.
                 altitude: 10000,
+                // TODO: this could be a _get() instead of an || assignment
                 heading: heading || this.heading,
                 waypoints: this.fixes,
-                route: this.route,
-                // TODO: this should really use the `PositionModel` instead of just using it to get a position
-                // this will take a lot of refactoring, though, as aircraft.position is used all over the app.
-                position: new PositionModel(pos, position, magnetic_north, 'GPS').position,
+                route: _get(this, 'activeRouteModel.routeString', ''),
+                position: aircraftPosition.position,
                 speed: this.speed,
                 nextFix: nextFix
-            });
+            };
+
+            window.aircraftController.aircraft_new(aircraftToAdd);
         }
     }
 
     /**
      * Stop this arrival stream
+     *
+     * @for ArrivalBase
+     * @method stop
      */
     stop() {
         if (this.timeout) {
@@ -214,52 +401,63 @@ export default class ArrivalBase {
 
     /**
      * Start this arrival stream
+     *
+     * @for ArrivalBase
+     * @method start
      */
     start() {
         // TODO: what do these numbers mean? enumerate the magic numbers.
-        const delay = _random(0, 3600 / this.frequency);
+        const delay = _random(0, TIME.ONE_HOUR_IN_SECONDS / this.frequency);
         this.timeout = window.gameController.game_timeout(this.spawnAircraft, delay, this, [true, true]);
 
-        if (this.route) {
+        if (this.activeRouteModel) {
             this.preSpawn();
         }
     }
 
+    // TODO: this method should accept explicit arguments
     /**
      * Spawn a new aircraft
+     *
+     * @for ArrivalBase
+     * @method spawnAircraft
      */
     spawnAircraft(args) {
-        let start_flag = args[0];
-        let timeout_flag = args[1] || false;
-        let altitude = round(_random(this.altitude[0], this.altitude[1]) / 1000) * 1000;
-        let message = !(window.gameController.game_time() - this.airport.start < 2);
         let position;
         let heading;
-        let fleet;
-        let star;
         let distance;
+        // args = [boolean, boolean]
+        const altitude = round(_random(this.altitude[0], this.altitude[1]) / 1000) * 1000;
+        const message = !(window.gameController.game_time() - this.airport.start < 2);
+        const airline = randomAirlineSelectionHelper(this.airlines);
+        // What is this next variable for, why is it here and can it be removed?
+        // FIXME: this is not used
+        const start_flag = args[0];
+        const timeout_flag = args[1] || false;
 
         // spawn at first fix
         if (this.fixes.length > 1) {
-            // spawn at first fix
-            position = window.airportController.airport_get().getFixPosition(this.fixes[0].fix);
-            heading = vradial(vsub(window.airportController.airport_get().getFixPosition(this.fixes[1].fix), position));
-        } else if (this.route) {
-            // STAR data is present
-            star = window.airportController.airport_get().getSTAR(
-                this.route.split('.')[1], this.route.split('.')[0],
-                window.airportController.airport_get().runway
+            // calculate heading to next fix
+            position = getFixPosition(this.fixes[0].fix);
+            const nextPosition = getFixPosition(this.fixes[1].fix);
+            heading = calculateHeadingFromTwoPositions(nextPosition, position);
+        } else if (this.activeRouteModel) {
+            const isPreSpawn = false;
+            const waypointModelList = this.airport.findWaypointModelsForStar(
+                this.activeRouteModel.procedure,
+                this.activeRouteModel.entry,
+                this.airport.runway,
+                isPreSpawn
             );
 
-            position = window.airportController.airport_get().getFixPosition(star[0][0]);
-            heading = vradial(vsub(
-                window.airportController.airport_get().getFixPosition(star[1][0]),
-                position
-            ));
+            // grab position of first fix
+            position = waypointModelList[0].position;
+            // calculate heading from first waypoint to second waypoint
+            heading = calculateHeadingFromTwoPositions(waypointModelList[1].position, position);
         } else {
             // spawn outside the airspace along 'this.radial'
             distance = 2 * this.airport.ctr_radius;
-            // TODO: this should be a `PositionModel`, see below.
+            // TODO: this should really use `PositionModel`
             position = [
                 sin(this.radial) * distance,
                 cos(this.radial) * distance
@@ -267,27 +465,23 @@ export default class ArrivalBase {
             heading = this.heading || this.radial + Math.PI;
         }
 
-        let airline = choose_weight(this.airlines);
-        if (airline.indexOf('/') > -1) {
-            fleet = airline.split('/')[1];
-            airline = airline.split('/')[0];
-        }
-
-        window.aircraftController.aircraft_new({
-            category: 'arrival',
-            destination: window.airportController.airport_get().icao,
-            airline: airline,
-            fleet: fleet,
-            altitude: altitude,
-            heading: heading,
+        const aircraftToAdd = {
+            altitude,
+            heading,
+            message,
+            position,
+            category: FLIGHT_CATEGORY.ARRIVAL,
+            destination: this.airport.icao,
+            airline: airline.name,
+            fleet: airline.fleet,
             waypoints: this.fixes,
-            route: this.route,
-            message: message,
-            // TODO: this should really use the `PositionModel` instead of just using it to get a position
+            route: _get(this, 'activeRouteModel.routeString', ''),
+            // TODO: this should use a `PositionModel` instead of just using it to get a position
             // this will take a lot of refactoring, though, as aircraft.position is used all over the app.
-            position: position,
             speed: this.speed
-        });
+        };
+
+        window.aircraftController.aircraft_new(aircraftToAdd);
 
         if (timeout_flag) {
             this.timeout = window.gameController.game_timeout(
@@ -301,20 +495,21 @@ export default class ArrivalBase {
 
     /**
      * Determine delay until next spawn
+     *
+     * @for ArrivalBase
+     * @method nextInterval
+     * @return {number}
      */
     nextInterval() {
-        // TODO: these next 3 vars could easily be moved to a constants file
-        // nautical miles
-        const min_entrail = 5.5;
-        // in seconds
-        const min_interval = min_entrail * (3600 / this.speed);
-        let tgt_interval = 3600 / this.frequency;
+        const min_interval = AIRPORT_CONSTANTS.MIN_ENTRAIL_DISTANCE_NM * (INTERVAL_DELAY_IN_MS / this.speed);
+        let tgt_interval = INTERVAL_DELAY_IN_MS / this.frequency;
 
         if (tgt_interval < min_interval) {
             tgt_interval = min_interval;
-            log('Requested arrival rate of ' + this.frequency + ' acph overridden to ' +
-                'maintain minimum of ' + min_entrail + ' miles entrail on arrival stream ' +
-                'following route ' + $.map(this.fixes, (v) => v.fix).join('-'), LOG.INFO);
+
+            log(`Requested arrival rate of ${this.frequency} acph overridden to ` +
+                `maintain minimum of ${AIRPORT_CONSTANTS.MIN_ENTRAIL_DISTANCE_NM} miles entrail on arrival stream ` +
+                `following route ${this.activeRouteModel.routeString}`, LOG.INFO);
         }
 
         const max_interval = tgt_interval + (tgt_interval - min_interval);
