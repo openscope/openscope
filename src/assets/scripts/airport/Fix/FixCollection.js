@@ -125,6 +125,23 @@ class FixCollection {
     }
 
     /**
+     * @for FixCollection
+     * @method getFixPositionCoordinates
+     * @param fixName {string}
+     * @return {array<number>}
+     */
+    getFixPositionCoordinates(fixName) {
+        const fixModel = this.findFixByName(fixName);
+
+        if (!fixModel) {
+            // error
+            return null;
+        }
+
+        return fixModel.position
+    }
+
+    /**
      * Find a list of all `FixModel`s within the collection that have a name that does not start with an underscore.
      *
      * @for FixCollection
