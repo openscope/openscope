@@ -37,44 +37,49 @@ import {
     getCardinalDirection
 } from '../utilities/radioUtilities';
 import { km, radiansToDegrees, degreesToRadians, heading_to_string } from '../utilities/unitConverters';
+import {
+    FLIGHT_MODES,
+    FLIGHT_CATEGORY,
+    WAYPOINT_NAV_MODE
+} from '../constants/aircraftConstants';
 import { SELECTORS } from '../constants/selectors';
 
 // TODO: these constants don't belong in this class. they should probably live on their own in a different file.
-/**
- * @property FLIGHT_MODES
- * @type {Object}
- * @final
- */
-export const FLIGHT_MODES = {
-    APRON: 'apron',
-    TAXI: 'taxi',
-    WAITING: 'waiting',
-    TAKEOFF: 'takeoff',
-    CRUISE: 'cruise',
-    LANDING: 'landing'
-};
-
-/**
- * @property FLIGHT_CATEGORY
- * @type {Object}
- * @final
- */
-export const FLIGHT_CATEGORY = {
-    ARRIVAL: 'arrival',
-    DEPARTURE: 'departure'
-};
-
-/**
- * @property WAYPOINT_NAV_MODE
- * @type {Object}
- * @final
- */
-export const WAYPOINT_NAV_MODE = {
-    FIX: 'fix',
-    HEADING: 'heading',
-    HOLD: 'hold',
-    RWY: 'rwy'
-};
+// /**
+//  * @property FLIGHT_MODES
+//  * @type {Object}
+//  * @final
+//  */
+// export const FLIGHT_MODES = {
+//     APRON: 'apron',
+//     TAXI: 'taxi',
+//     WAITING: 'waiting',
+//     TAKEOFF: 'takeoff',
+//     CRUISE: 'cruise',
+//     LANDING: 'landing'
+// };
+//
+// /**
+//  * @property FLIGHT_CATEGORY
+//  * @type {Object}
+//  * @final
+//  */
+// export const FLIGHT_CATEGORY = {
+//     ARRIVAL: 'arrival',
+//     DEPARTURE: 'departure'
+// };
+//
+// /**
+//  * @property WAYPOINT_NAV_MODE
+//  * @type {Object}
+//  * @final
+//  */
+// export const WAYPOINT_NAV_MODE = {
+//     FIX: 'fix',
+//     HEADING: 'heading',
+//     HOLD: 'hold',
+//     RWY: 'rwy'
+// };
 
 /**
  * Enum of commands and thier corresponding function.
@@ -239,6 +244,7 @@ export default class Aircraft {
         this.buildRestrictedAreaLinks();
         this.assignInitialRunway(options);
         this.parse(options);
+        this.updateFmsAfterInitialLoad(options);
         this.createStrip();
         this.updateStrip();
     }
@@ -300,14 +306,24 @@ export default class Aircraft {
     }
 
     parse(data) {
-        const keys = ['position', 'model', 'airline', 'callsign', 'category', 'heading', 'altitude', 'speed'];
+        // const keys = ['position', 'model', 'airline', 'callsign', 'category', 'heading', 'altitude', 'speed'];
+        // _forEach(keys, (key) => {
+        //     if (_has(data, key)) {
+        //         this[key] = data[key];
+        //     }
+        // });
 
-        _forEach(keys, (key) => {
-            if (_has(data, key)) {
-                this[key] = data[key];
-            }
-        });
+        this.position = _get(data, 'position', this.position);
+        this.model = _get(data, 'model', this.model);
+        this.airline = _get(data, 'airline', this.airline);
+        this.callsign = _get(data, 'callsign', this.callsign);
+        this.category = _get(data, 'category', this.category);
+        this.heading = _get(data, 'heading', this.heading);
+        this.altitude = _get(data, 'altitude', this.altitude);
+        this.speed = _get(data, 'speed', this.speed);
+    }
 
+    updateFmsAfterInitialLoad(data) {
         if (this.category === FLIGHT_CATEGORY.ARRIVAL) {
             if (data.waypoints.length > 0) {
                 this.setArrivalWaypoints(data.waypoints);
@@ -336,8 +352,9 @@ export default class Aircraft {
         this.fms.setCurrent({ speed: speed });
 
         if (data.route) {
-            // TODO: what is the true for? enumerate that.
-            this.fms.customRoute(this.fms.formatRoute(data.route), true);
+            const route = this.fms.formatRoute(data.route);
+
+            this.fms.customRoute(route, true);
             this.fms.descendViaSTAR();
         }
 

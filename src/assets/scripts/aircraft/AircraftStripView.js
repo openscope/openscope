@@ -4,7 +4,7 @@ import {
     FLIGHT_CATEGORY,
     FLIGHT_MODES,
     WAYPOINT_NAV_MODE
-} from './AircraftInstanceModel';
+} from '../constants/aircraftConstants';
 import { SELECTORS } from '../constants/selectors';
 
 /**

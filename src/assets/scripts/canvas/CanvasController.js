@@ -10,7 +10,7 @@ import { distance2d } from '../math/distance';
 import { vscale, vturn, positive_intersection_with_rect } from '../math/vector';
 import { SELECTORS } from '../constants/selectors';
 import { LOG } from '../constants/logLevel';
-import { FLIGHT_MODES, FLIGHT_CATEGORY } from '../aircraft/AircraftInstanceModel';
+import { FLIGHT_MODES, FLIGHT_CATEGORY } from '../constants/aircraftConstants';
 
 // Temporary const declaration here to attach to the window AND use as internal property
 const canvas = {};
