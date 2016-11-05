@@ -649,6 +649,7 @@ export default class AirportModel {
      * @return {array}
      */
     getFixPosition(fixName) {
+        // TODO: if possible, replace with FoxCollection.getFixPositionCoordinates
         const fixModel = FixCollection.findFixByName(fixName);
 
         return fixModel.position;
@@ -663,6 +664,20 @@ export default class AirportModel {
      */
     getSID(id, exit, runway) {
         return this.sidCollection.findFixesForSidByRunwayAndExit(id, exit, runway);
+    }
+
+    /**
+     *
+     * @for AirportModel
+     * @method findWaypointModelsForSid
+     * @param id {string}
+     * @param entry {string}
+     * @param runway {string}
+     * @param isPreSpawn {boolean} flag used to determine if distances between waypoints should be calculated
+     * @return {array<StandardWaypointModel>}
+     */
+    findWaypointModelsForSid(id, entry, runway, isPreSpawn = false) {
+        return this.sidCollection.findFixModelsForRouteByEntryAndExit(id, entry, runway, isPreSpawn);
     }
 
     /**
@@ -715,6 +730,7 @@ export default class AirportModel {
     /**
      *
      * @for AirportModel
+     * @method findWaypointModelsForStar
      * @param id {string}
      * @param entry {string}
      * @param runway {string}

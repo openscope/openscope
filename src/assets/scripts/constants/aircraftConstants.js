@@ -33,3 +33,19 @@ export const WAYPOINT_NAV_MODE = {
     HOLD: 'hold',
     RWY: 'rwy'
 };
+
+/**
+ * Enumeration of possible FLight Plan Leg types.
+ *
+ * @property FP_LEG_TYPE
+ * @type {Object}
+ * @final
+ */
+export const FP_LEG_TYPE = {
+    SID: 'sid',
+    STAR: 'star',
+    IAP: 'iap',
+    AWY: 'awy',
+    FIX: 'fix',
+    MANUAL: '[manual]'
+};

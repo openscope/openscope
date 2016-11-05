@@ -2,9 +2,10 @@ import $ from 'jquery';
 import _last from 'lodash/last';
 import _map from 'lodash/map';
 import Waypoint from './Waypoint';
-import Leg, { FP_LEG_TYPE } from './Leg';
+import Leg from './Leg';
 import RouteModel from '../airport/Route/RouteModel';
 import { clamp } from '../math/core';
+import { FP_LEG_TYPE } from '../constants/aircraftConstants';
 import { LOG } from '../constants/logLevel';
 
 /**
