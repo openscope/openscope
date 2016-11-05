@@ -3,6 +3,7 @@ import _last from 'lodash/last';
 import _map from 'lodash/map';
 import Waypoint from './Waypoint';
 import Leg, { FP_LEG_TYPE } from './Leg';
+import RouteModel from '../airport/Route/RouteModel';
 import { clamp } from '../math/core';
 import { LOG } from '../constants/logLevel';
 
@@ -500,6 +501,8 @@ export default class AircraftFlightManagementSystem {
      *       Return Data Format: ["KSFO.OFFSH9.SXC", "SXC.V458.IPL", "IPL.J2.JCT", "LLO", "ACT", "KACT"]
      */
     formatRoute(data) {
+        const routeModel = new RouteModel(data);
+
         // Format the user's input
         let route = [];
         // const ap = airport_get;
@@ -571,28 +574,39 @@ export default class AircraftFlightManagementSystem {
      *                                       replace the current contents of 'this.legs'
      */
     customRoute(route, fullRouteClearance) {
+        // save the current waypoint
+        const curr = this.currentWaypoint;
+
         const legs = [];
-        const curr = this.currentWaypoint; // save the current waypoint
+        // const legs = this._generateLegsForFixOrStandardRoute(route);
 
         for (let i = 0; i < route.length; i++) {
-            let pieces;
+            const routeSections = route[i].split('.');
 
             // just a fix/navaid
-            if (route[i].split('.').length === 1) {
-                legs.push(new Leg({ type: FP_LEG_TYPE.FIX, route: route[i] }, this));
-            } else if (route[i].split('.').length === 3) {
-                // is an instrument procedure
-                pieces = route[i].split('.');
+            if (routeSections.length === 1) {
+                const legToAdd = new Leg({ type: FP_LEG_TYPE.FIX, route: route[i] }, this);
 
-                if (Object.keys(window.airportController.airport_get().sids).indexOf(pieces[1]) > -1) {
+                legs.push(legToAdd);
+            } else if (routeSections.length === 3) {
+                const routeModel = new RouteModel(route[i]);
+                const currentAirport = window.airportController.airport_get();
+
+                if (typeof currentAirport.sidCollection.findRouteByIcao(routeModel.procedure) !== 'undefined') {
                     // it's a SID!
-                    legs.push(new Leg({ type: FP_LEG_TYPE.SID, route: route[i] }, this));
-                } else if (Object.keys(window.airportController.airport_get().stars).indexOf(pieces[1]) > -1) {
+                    const legToAdd = new Leg({ type: FP_LEG_TYPE.SID, route: routeModel.routeString }, this);
+
+                    legs.push(legToAdd);
+                } else if (typeof currentAirport.starCollection.findRouteByIcao(routeModel.procedure) !== 'undefined') {
                     // it's a STAR!
-                    legs.push(new Leg({ type: FP_LEG_TYPE.STAR, route: route[i] }, this));
-                } else if (Object.keys(window.airportController.airport_get().airways).indexOf(pieces[1]) > -1) {
+                    const legToAdd = new Leg({ type: FP_LEG_TYPE.STAR, route: routeModel.routeString }, this);
+
+                    legs.push(legToAdd);
+                } else if (Object.keys(window.airportController.airport_get().airways).indexOf(routeModel.procedure) > -1) {
                     // it's an airway!
-                    legs.push(new Leg({ type: FP_LEG_TYPE.AWY, route: route[i] }, this));
+                    const legToAdd = new Leg({ type: FP_LEG_TYPE.AWY, route: routeModel.routeString }, this);
+
+                    legs.push(legToAdd);
                 }
             } else {
                 // neither formatted like "JAN" nor "JAN.V18.MLU"
@@ -601,8 +615,8 @@ export default class AircraftFlightManagementSystem {
             }
         }
 
-        // TODO: this could be simplified. there is a lot of brnaching logic here that makes this block
-        // tough to follow.
+        // TODO: this should be its own method
+        // TODO: this could be simplified. there is a lot of brnaching logic here that makes this block tough to follow.
         // insert user's route to the legs
         if (!fullRouteClearance) {
             // Check if user's route hooks up to the current Legs anywhere
@@ -637,6 +651,7 @@ export default class AircraftFlightManagementSystem {
                 this.nextLeg();
             }
         } else {
+            // TODO: move up and return early
             // replace all legs with the legs we've built here in this function
             this.legs = legs;
             this.current = [0, 0]; // look to beginning of route
