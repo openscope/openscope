@@ -30,7 +30,7 @@ ava('sets only `name` when provided a string', t => {
     t.true(model.name === NAME_MOCK);
     t.true(model._alititude === -1000);
     t.true(model._alititudeConstraint === '');
-    t.true(model._speedConstraint === -1);
+    t.true(model._speed === -1)
 });
 
 ava('.clonePoisitonFromFix() does not throw when no fix exists', t => {
@@ -55,4 +55,44 @@ ava('calls ._parseWaypointRestrictions() when provided and array', t => {
     model._init(ROUTE_WAYPOINT_MOCK);
 
     t.true(spy.callCount === 1);
+});
+
+ava('._parseWaypointRestrictions() extracts alititude and speed restrictions from a waypointRestrictions string', t => {
+    const model = new StandardRouteWaypointModel(ROUTE_WAYPOINT_MOCK);
+
+    model._parseWaypointRestrictions(RESTRICTIONS_MOCK);
+
+    t.true(model._alititude === '80+');
+    t.true(model._speed === '250')
+});
+
+ava('._parseWaypointRestrictions() extracts an alititude restriction from a waypointRestrictions string by calling ._setAltitudeRestriction()', t => {
+    const model = new StandardRouteWaypointModel(['BAKRR', 'A80+']);
+    const spy = sinon.spy(model, '_setAltitudeRestriction');
+
+    model._parseWaypointRestrictions('A80+');
+
+    t.true(spy.callCount === 1);
+    t.true(model._alititude === '80+');
+    t.true(model._speed === -1);
+});
+
+ava('._parseWaypointRestrictions() extracts a speed restriction from a waypointRestrictions string by calling ._setSpeedRestriction()', t => {
+    const model = new StandardRouteWaypointModel(['BAKRR', 'S280']);
+    const spy = sinon.spy(model, '_setSpeedRestriction');
+
+    model._parseWaypointRestrictions('XYZ|S280');
+
+    t.true(spy.callCount === 1);
+    t.true(model._alititude === -1000);
+    t.true(model._speed === '280')
+});
+
+ava('._parseWaypointRestrictions() returns early if no paramater is received', t => {
+    const model = new StandardRouteWaypointModel(['BAKRR']);
+
+    model._parseWaypointRestrictions();
+
+    t.true(model._alititude === -1000);
+    t.true(model._speed === -1)
 });

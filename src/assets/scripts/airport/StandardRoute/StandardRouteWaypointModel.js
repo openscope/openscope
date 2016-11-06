@@ -1,4 +1,7 @@
 import FixCollection from '../Fix/FixCollection';
+import _head from 'lodash/head';
+import _last from 'lodash/last';
+import _isNil from 'lodash/isNil';
 import _uniqId from 'lodash/uniqueId';
 
 /**
@@ -14,6 +17,27 @@ const NAME_INDEX = 0;
  * @final
  */
 const RESTRICTION_INDEX = 1;
+
+/**
+ * @property RESTRICTION_SEPARATOR
+ * @type {string}
+ * @final
+ */
+const RESTRICTION_SEPARATOR = '|';
+
+/**
+ * @property ALTITUDE_RESTRICTION_PREFIX
+ * @type {string}
+ * @final
+ */
+const ALTITUDE_RESTRICTION_PREFIX = 'A';
+
+/**
+ * @property SPEED_RESTRICTION_PREFIX
+ * @type {string}
+ * @final
+ */
+const SPEED_RESTRICTION_PREFIX = 'S';
 
 /**
  * A route waypoint describes a `fixName` and any altitude or speed restrictions for that fix.
@@ -104,12 +128,12 @@ export default class StandardRouteWaypointModel {
          *
          * Speed constraint, if any, for a fix.
          *
-         * @property _speedConstraint (optional)
+         * @property _speed (optional)
          * @type {string}
          * @default -1
          * @private
          */
-        this._speedConstraint = -1;
+        this._speed = -1;
 
         /**
          * Positon information for the current waypoint
@@ -229,7 +253,7 @@ export default class StandardRouteWaypointModel {
         this._restrictions = null;
         this._alititude = -1000;
         this._alititudeConstraint = '';
-        this._speedConstraint = -1;
+        this._speed = -1;
 
         return this;
     }
@@ -257,14 +281,12 @@ export default class StandardRouteWaypointModel {
     }
 
     /**
-     * NOT IN USE
-     * // TODO: implement this method. altitude and speed should be parsed into real numbers so
-     *          they can be used elsewhere in the app.
+     * Parse any waypoint restrictions
      *
      * Parse a single string into:
      * - `this._alititude`            = expressed in feet
      * - `this._alititudeConstraint`  = {BELOW|AT|ABOVE}
-     * - `this._speedConstraint`      = expressed in kts
+     * - `this._speed`      = expressed in kts
      *
      * Exapmles:
      * - "A80+|S210"
@@ -278,6 +300,52 @@ export default class StandardRouteWaypointModel {
      * @private
      */
     _parseWaypointRestrictions(waypointRestrictions) {
-        return this;
+        if (_isNil(waypointRestrictions)) {
+            return;
+        }
+
+        const restrictionPieces = this._extractRestrictionPieces(waypointRestrictions);
+
+        for (let i = 0; i < restrictionPieces.length; i++) {
+            const restriction = restrictionPieces[i];
+
+            // looking at the first letter of a restrictionPiece here.
+            if (restriction[0] === ALTITUDE_RESTRICTION_PREFIX) {
+                this._setAltitudeRestriction(restriction);
+            } else if (restriction[0] === SPEED_RESTRICTION_PREFIX) {
+                this._setSpeedRestriction(restriction);
+            }
+        }
+    }
+
+    /**
+     * @for StandardRouteWaypointModel
+     * @method _setAltitudeRestriction
+     * @param altitudeRestriction {string}
+     * @private
+     */
+    _setAltitudeRestriction(altitudeRestriction) {
+        this._alititude = altitudeRestriction.substr(1);
+    }
+
+    /**
+     * @for StandardRouteWaypointModel
+     * @method _setSpeedRestriction
+     * @param speedRestriction {string}
+     * @private
+     */
+    _setSpeedRestriction(speedRestriction) {
+        this._speed = speedRestriction.substr(1);
+    }
+
+    /**
+     * @for StandardRouteWaypointModel
+     * @method _extractRestrictionPieces
+     * @param waypointRestrictions {array<string>}
+     * @@return {string}
+     * @private
+     */
+    _extractRestrictionPieces(waypointRestrictions) {
+        return waypointRestrictions.split(RESTRICTION_SEPARATOR);
     }
 }
