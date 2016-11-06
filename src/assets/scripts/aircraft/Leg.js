@@ -63,6 +63,7 @@ export default class Leg {
      * @param fms {AircraftFlightManagementSystem}
      */
     parse(data, fms) {
+        // TODO: move radar vectors to constants file
         this.route = _get(data, 'route', '[radar vectors]');
         this.type = _get(data, 'type', FP_LEG_TYPE.MANUAL);
         this.waypoints = _get(data, 'waypoints', []);
@@ -131,15 +132,13 @@ export default class Leg {
             return;
         }
 
-        this.waypoints = [];
-        // const apt = this.route.split('.')[0];
-        // const sid = this.route.split('.')[1];
-        // const exit = this.route.split('.')[2];
+        this._resetWaypoints();
+
         const rwy = fms.my_aircraft.rwy_dep;
 
-        // Generate the waypoints
         if (!rwy) {
             const isWarning = true;
+
             window.uiController.ui_log(
                 `${fms.my_aircraft.getCallsign()} unable to fly SID, we haven't been assigned a departure runway!`,
                 isWarning
@@ -150,55 +149,27 @@ export default class Leg {
 
         const airport = window.airportController.airport_get(this.route.entry);
         const pairs = airport.getSID(this.route.procedure, this.route.exit, rwy);
-        const sid = airport.findWaypointModelsForSid(this.route.procedure, this.route.exit, rwy);
+        const waypointsForSid = airport.findWaypointModelsForSid(this.route.procedure, this.route.exit, rwy);
 
-
+        // TODO: refactor this if
         // Remove the placeholder leg (if present)
         if (fms.my_aircraft.wow() && fms.legs.length > 0
-            && fms.legs[0].route === window.airportController.airport_get().icao && pairs.length > 0
+            && fms.legs[0].route === airport.icao && pairs.length > 0
         ) {
             // remove the placeholder leg, to be replaced below with SID Leg
             fms.legs.splice(0, 1);
         }
 
-        // for each fix/restr pair
-        for (let i = 0; i < pairs.length; i++) {
-            // fix
-            const f = pairs[i][0];
-            // altitude
-            let a = null;
-            // speed
-            let s = null;
+        for (let i = 0; i < waypointsForSid.length; i++) {
+            const waypointToAdd = waypointsForSid[i].generateFmsWaypoint(fms);
 
-            if (pairs[i][1]) {
-                const a_n_s = pairs[i][1].toUpperCase().split('|');
-
-                for (const j in a_n_s) {
-                    if (a_n_s[j][0] === 'A') {
-                        a = a_n_s[j].substr(1);
-                    } else if (a_n_s[j][0] === 'S') {
-                        s = a_n_s[j].substr(1);
-                    }
-                }
-            }
-
-            this.waypoints.push(new Waypoint(
-                {
-                    fix: f,
-                    fixRestrictions: {
-                        alt: a,
-                        spd: s
-                    }
-                },
-                fms
-            ));
+            this.waypoints.push(waypointToAdd);
         }
 
         if (!this.waypoints[0].speed) {
             this.waypoints[0].speed = fms.my_aircraft.model.speed.cruise;
         }
     }
-
 
     _generateWaypointsForStar(data, fms) {
         if (!fms) {
@@ -207,45 +178,16 @@ export default class Leg {
             return;
         }
 
-        this.waypoints = [];
-        // const entry = this.route.split('.')[0];
-        // const star = this.route.split('.')[1];
-        // const apt = this.route.split('.')[2];
+        this._resetWaypoints();
+
         const rwy = fms.my_aircraft.rwy_arr;
         const airport = window.airportController.airport_get(this.route.exit);
-        const pairs = airport.getSTAR(this.route.procedure, this.route.entry, rwy);
-        const star = airport.findWaypointModelsForStar(this.route.procedure, this.route.entry, rwy);
+        const waypointsForStar = airport.findWaypointModelsForStar(this.route.procedure, this.route.entry, rwy);
 
-        // Create a new WaypointModel for each fix found in the Star.
+        for (let i = 0; i < waypointsForStar.length; i++) {
+            const waypointToAdd = waypointsForStar[i].generateFmsWaypoint(fms);
 
-        // for each fix/restr pair
-        for (let i = 0; i < pairs.length; i++) {
-            const f = pairs[i][0];
-            let a = null;
-            let s = null;
-
-            if (pairs[i][1]) {
-                const a_n_s = pairs[i][1].toUpperCase().split('|');
-
-                for (const j in a_n_s) {
-                    if (a_n_s[j][0] === 'A') {
-                        a = a_n_s[j].substr(1);
-                    } else if (a_n_s[j][0] === 'S') {
-                        s = a_n_s[j].substr(1);
-                    }
-                }
-            }
-
-            this.waypoints.push(new Waypoint(
-                {
-                    fix: f,
-                    fixRestrictions: {
-                        alt: a,
-                        spd: s
-                    }
-                },
-                fms
-            ));
+            this.waypoints.push(waypointToAdd);
         }
 
         if (!this.waypoints[0].speed) {
@@ -294,7 +236,7 @@ export default class Leg {
         }
 
         // Add list of fixes to this.waypoints
-        this.waypoints = [];
+        this._resetWaypoints();
         this.waypoints = _map(fixes, (fix) => new Waypoint({ fix }, fms));
     }
 
@@ -317,5 +259,19 @@ export default class Leg {
         const waypointToAdd = new Waypoint({ route: '' }, fms);
 
         this.waypoints = [waypointToAdd];
+    }
+
+    /**
+     * Reset the waypoint property to an empty array.
+     *
+     * Provides a single method that encapsulates common functionality that
+     * can be used throughout the class.
+     *
+     * @for Leg
+     * @method _resetWaypoints
+     * @private
+     */
+    _resetWaypoints() {
+        this.waypoints = [];
     }
 }

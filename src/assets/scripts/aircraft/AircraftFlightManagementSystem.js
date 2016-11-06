@@ -333,16 +333,16 @@ export default class AircraftFlightManagementSystem {
                 case FP_LEG_TYPE.SID:
                     // TODO: this split logic and string building should live in a helper function or or class method
                     // departure airport
-                    flightPlanRoute.push(leg.route.split('.')[0]);
+                    flightPlanRoute.push(leg.route.entry);
                     // 'sidname.exitPoint'
-                    flightPlanRoute.push(leg.route.split('.')[1] + '.' + leg.route.split('.')[2]);
+                    flightPlanRoute.push(`${leg.route.procedure}.${leg.route.exit}`);
 
                     break;
                 case FP_LEG_TYPE.STAR:
                     // 'entryPoint.starname.exitPoint'
-                    flightPlanRoute.push(leg.route.split('.')[0] + '.' + leg.route.split('.')[1]);
+                    flightPlanRoute.push(`${leg.route.entry}.${leg.route.procedure}`);
                     // arrival airport
-                    flightPlanRoute.push(leg.route.split('.')[2]);
+                    flightPlanRoute.push(leg.route.exit);
 
                     break;
                 case FP_LEG_TYPE.IAP:
@@ -388,10 +388,10 @@ export default class AircraftFlightManagementSystem {
         // tODO replace the string splitting with the `RouteModel`
         switch (leg.type) {
             case FP_LEG_TYPE.SID:
-                this.following.sid = leg.route.split('.')[1];
+                this.following.sid = leg.route.procedure;
                 break;
             case FP_LEG_TYPE.STAR:
-                this.following.star = leg.route.split('.')[1];
+                this.following.star = leg.route.procedure;
                 break;
             case FP_LEG_TYPE.IAP:
                 // *******NEEDS TO BE FINISHED***************************
