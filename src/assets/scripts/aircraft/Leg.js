@@ -1,3 +1,4 @@
+import _forEach from 'lodash/forEach';
 import _get from 'lodash/get';
 import _has from 'lodash/has';
 import _map from 'lodash/map';
@@ -7,26 +8,28 @@ import { FP_LEG_TYPE } from '../constants/aircraftConstants';
 import { LOG } from '../constants/logLevel';
 
 /**
-  * Build a 'leg' of the route (contains series of waypoints)
+  * This class acts as a collection of Waypoint model objects.
   *
+  * @class Leg
   */
 export default class Leg {
     /**
-     * @param {object} route:           "KSFO.OFFSH9.SXC", either a fix, or with format 'start.procedure.end', or
-     *                                  "[RNAV/GPS]" for custom positions
-     *                 type: "sid",     can be 'sid', 'star', 'iap', 'awy', 'fix'
-     *                 firstIndex: 0    the position (index) in fms.legs to insert this leg
      *
      * @for Leg
      * @constructor
      * @param data
+     * @param {object} route:           "KSFO.OFFSH9.SXC", either a fix, or with format 'start.procedure.end', or
+     *                                  "[RNAV/GPS]" for custom positions
+     *                 type: "sid",     can be 'sid', 'star', 'iap', 'awy', 'fix'
+     *                 firstIndex: 0    the position (index) in fms.legs to insert this leg
      */
     constructor(data = {}, fms) {
         /**
+         * String representation of a route.
          *
-         *
-         * - 'KSFO.OFFSH9.SXC'
-         * - 'FAITH'
+         * May be a single fix or a route expressed in dot notation. ex:
+         * - `KSFO.OFFSH9.SXC`
+         * - `FAITH`
          *
          * @property route
          * @type {string}
@@ -43,7 +46,7 @@ export default class Leg {
 
         // TODO: possibly implement as a waypointCollection
         /**
-         * Waypoint objects to follow
+         * A collection of Waypoint instances
          *
          * @property waypoints
          * @type {Array}
@@ -125,6 +128,27 @@ export default class Leg {
         }
     }
 
+    /**
+     * Add a new Waypoint to the collection
+     *
+     * @method addWaypointToLeg
+     * @param waypointToAdd {Waypoint}
+     */
+    addWaypointToLeg(waypointToAdd) {
+        if (!(waypointToAdd instanceof Waypoint)) {
+            throw new TypeError('Invalid parameter, expecte waypointToAdd to be an instanceof the Waypoint class');
+        }
+
+        this.waypoints.push(waypointToAdd);
+    }
+
+    /**
+     * @for Leg
+     * @method _generateWaypointsForSid
+     * @param data {object}
+     * @param fms {AircraftFlightManagementSystem}
+     * @private
+     */
     _generateWaypointsForSid(data, fms) {
         if (!fms) {
             log('Attempted to generate waypoints for SID, but cannot because fms ref not passed!', LOG.WARNING);
@@ -163,7 +187,7 @@ export default class Leg {
         for (let i = 0; i < waypointsForSid.length; i++) {
             const waypointToAdd = waypointsForSid[i].generateFmsWaypoint(fms);
 
-            this.waypoints.push(waypointToAdd);
+            this.addWaypointToLeg(waypointToAdd);
         }
 
         if (!this.waypoints[0].speed) {
@@ -171,6 +195,13 @@ export default class Leg {
         }
     }
 
+    /**
+     * @for Leg
+     * @method _generateWaypointsForStar
+     * @param data {object}
+     * @param fms {AircraftFlightManagementSystem}
+     * @private
+     */
     _generateWaypointsForStar(data, fms) {
         if (!fms) {
             log('Attempted to generate waypoints for STAR, but cannot because fms ref not passed!', LOG.WARNING);
@@ -187,7 +218,7 @@ export default class Leg {
         for (let i = 0; i < waypointsForStar.length; i++) {
             const waypointToAdd = waypointsForStar[i].generateFmsWaypoint(fms);
 
-            this.waypoints.push(waypointToAdd);
+            this.addWaypointToLeg(waypointToAdd);
         }
 
         if (!this.waypoints[0].speed) {
@@ -195,13 +226,19 @@ export default class Leg {
         }
     }
 
-
+    // NOT IN USE
     _generateWaypointsForIap(data, fms) {
-        // NOT IN USE
         return;
     }
 
-
+    // NOT IN USE
+    /**
+     * @for Leg
+     * @method _generateWaypointsForAirway
+     * @param data {object}
+     * @param fms {AircraftFlightManagementSystem}
+     * @private
+     */
     _generateWaypointsForAirway(data, fms) {
         const start = this.route.split('.')[0];
         const airway = this.route.split('.')[1];
@@ -221,6 +258,7 @@ export default class Leg {
             return;
         }
 
+        // TODO: abstract this logic
         // Build list of fixes, depending on direction traveling along airway
         const fixes = [];
         const readFwd = (awy.indexOf(end) > awy.indexOf(start));
@@ -235,30 +273,51 @@ export default class Leg {
             }
         }
 
-        // Add list of fixes to this.waypoints
         this._resetWaypoints();
-        this.waypoints = _map(fixes, (fix) => new Waypoint({ fix }, fms));
+
+        _forEach(fixes, (fix) => {
+            const waypointToAdd = new Waypoint({ fix }, fms);
+
+            this.addWaypointToLeg(waypointToAdd);
+        });
     }
 
-
+    /**
+     * @for Leg
+     * @method _generateWaypointForFix
+     * @param fms {AircraftFlightManagementSystem}
+     * @private
+     */
     _generateWaypointForFix(fms) {
-        this.waypoints = [];
+        this._resetWaypoints();
+
         const waypointToAdd = new Waypoint({ fix: this.route }, fms);
 
-        this.waypoints.push(waypointToAdd);
+        this.addWaypointToLeg(waypointToAdd);
     }
 
-
+    /**
+     * @for Leg
+     * @method _generateManualWaypoint
+     * @param fms {AircraftFlightManagementSystem}
+     * @private
+     */
     _generateManualWaypoint(fms) {
         const waypointToAdd = new Waypoint(this.route, fms);
 
-        this.waypoints.push(waypointToAdd);
+        this.addWaypointToLeg(waypointToAdd);
     }
 
+    /**
+     * @for Leg
+     * @method _generateEmptyWaypoint
+     * @param fms {AircraftFlightManagementSystem}
+     * @private
+     */
     _generateEmptyWaypoint(fms) {
         const waypointToAdd = new Waypoint({ route: '' }, fms);
 
-        this.waypoints = [waypointToAdd];
+        this.addWaypointToLeg(waypointToAdd);
     }
 
     /**

@@ -58,15 +58,20 @@ const WAYPOINT_WITHIN_LEG = 1;
 export default class AircraftFlightManagementSystem {
     constructor(options) {
         this.my_aircrafts_eid = options.aircraft.eid;
+
         // TODO: we should remove this reference and instead supply methods that the aircraft can call via the fms
         this.my_aircraft = options.aircraft;
+
         this.legs = [];
+
         this.current = [0, 0]; // [current_Leg, current_Waypoint_within_that_Leg]
+
         // TODO: possible model object here
         this.fp = {
             altitude: null,
             route: []
         };
+
         // TODO: possible model object here
         this.following = {
             sid: null,         // Standard Instrument Departure Procedure
@@ -331,7 +336,6 @@ export default class AircraftFlightManagementSystem {
             // FIXME: replace the string splitting with the `RouteModel` class methods
             switch (leg.type) {
                 case FP_LEG_TYPE.SID:
-                    // TODO: this split logic and string building should live in a helper function or or class method
                     // departure airport
                     flightPlanRoute.push(leg.route.entry);
                     // 'sidname.exitPoint'
@@ -359,6 +363,7 @@ export default class AircraftFlightManagementSystem {
 
                     break;
                 case FP_LEG_TYPE.FIX:
+                    // this is just a fixname
                     flightPlanRoute.push(leg.route);
 
                     break;
@@ -758,6 +763,7 @@ export default class AircraftFlightManagementSystem {
             wp[i].speed = spd;
         }
 
+        // TODO; this completely replaces an existing Waypoint, why not just update the instance?
         // change fms waypoints to wp (which contains the altitudes and speeds)
         this.legs[this.current[LEG]].waypoints = wp;
 
@@ -950,19 +956,6 @@ export default class AircraftFlightManagementSystem {
     }
 
     /**
-     * Return the current waypoint
-     */
-    // currentWaypoint() {
-    //     if (this.legs.length < 1) {
-    //         return null;
-    //     }
-    //
-    //     const currentLeg = this.currentLeg();
-    //
-    //     return currentLeg.waypoints[this.current[WAYPOINT_WITHIN_LEG]];
-    // }
-
-    /**
     * Returns an array of all fixes along the flightplan route
     */
     fixes() {
@@ -1047,7 +1040,7 @@ export default class AircraftFlightManagementSystem {
         }
 
         // TODO: use the `RouteModel` for this
-        return `${this.following.sid}.${this.currentLeg.route.split('.')[2]}`;
+        return `${this.following.sid}.${this.currentLeg.route.exit}`;
     }
 
     /**

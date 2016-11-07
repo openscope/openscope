@@ -40,7 +40,8 @@ import { km, radiansToDegrees, degreesToRadians, heading_to_string } from '../ut
 import {
     FLIGHT_MODES,
     FLIGHT_CATEGORY,
-    WAYPOINT_NAV_MODE
+    WAYPOINT_NAV_MODE,
+    FP_LEG_TYPE
 } from '../constants/aircraftConstants';
 import { SELECTORS } from '../constants/selectors';
 
@@ -933,66 +934,72 @@ export default class Aircraft {
     /**
      * @for AircraftInstanceModel
      * @method runClearedAsFiled
+     * @return {array}
      */
     runClearedAsFiled() {
-        if (this.fms.clearedAsFiled()) {
-            const readback = {};
-
-            readback.log = `cleared to destination via the ${window.airportController.airport_get().sids[this.destination].icao} ` +
-                `departure, then as filed. Climb and maintain ${window.airportController.airport_get().initial_alt}, ` +
-                `expect ${this.fms.fp.altitude} 10 minutes after departure `;
-            readback.say = `cleared to destination via the ${window.airportController.airport_get().sids[this.destination].name} ` +
-                `departure, then as filed. Climb and maintain ${radio_altitude(window.airportController.airport_get().initial_alt)}, ` +
-                `expect ${radio_altitude(this.fms.fp.altitude)}, ${radio_spellOut(' 10 ')} minutes after departure'`;
-
-            return ['ok', readback];
+        if (!this.fms.clearedAsFiled()) {
+            return [true, 'unable to clear as filed'];
         }
 
-        return [true, 'unable to clear as filed'];
+        const airport = window.airportController.airport_get();
+        const { name: procedureName } = airport.sidCollection.findRouteByIcao(this.dstination);
+        const readback = {};
+
+        readback.log = `cleared to destination via the ${this.destination} ` +
+            `departure, then as filed. Climb and maintain ${airport.initial_alt}, ` +
+            `expect ${this.fms.fp.altitude} 10 minutes after departure `;
+        readback.say = `cleared to destination via the ${procedureName} ` +
+            `departure, then as filed. Climb and maintain ${radio_altitude(airport.initial_alt)}, ` +
+            `expect ${radio_altitude(this.fms.fp.altitude)}, ${radio_spellOut(' 10 ')} minutes after departure'`;
+
+        return ['ok', readback];
     }
 
     /**
      * @for AircraftInstanceModel
      * @method runClimbViaSID
-     * @param data
      */
     runClimbViaSID() {
-        let fail = false;
-
-        if (!(this.fms.currentLeg.type === 'sid')) {
-            fail = true;
-        } else if (this.fms.climbViaSID()) {
-            const readback = {
-                log: `climb via the ${this.fms.currentLeg.route.split('.')[1]} departure`,
-                say: `climb via the ${window.airportController.airport_get().sids[this.fms.currentLeg.route.split('.')[1]].name} departure`
-            };
-
-            return ['ok', readback];
-        }
-
-        if (fail) {
+        if (this.fms.currentLeg.type !== FP_LEG_TYPE.SID || !this.fms.climbViaSID()) {
             const isWarning = true;
+
             window.uiController.ui_log(`${this.getCallsign()} unable to climb via SID`, isWarning);
+
+            return;
         }
+
+        const airport = window.airportController.airport_get();
+        const { name: procedureName } = airport.sidCollection.findRouteByIcao(this.fms.currentLeg.route.procedure);
+        const readback = {
+            log: `climb via the ${this.fms.currentLeg.route.procedure} departure`,
+            say: `climb via the ${procedureName} departure`
+        };
+
+        return ['ok', readback];
     }
 
     /**
      * @for AircraftInstanceModel
      * @method runDescendViaSTAR
      * @param data
+     * @return {boolean|undefined}
      */
     runDescendViaSTAR() {
-        if (this.fms.descendViaSTAR() && this.fms.following.star) {
-            const readback = {
-                log: `descend via the ${this.fms.following.star} arrival`,
-                say: `descend via the ${window.airportController.airport_get().stars[this.fms.following.star].name} arrival`
-            };
+        if (!this.fms.descendViaSTAR() || !this.fms.following.star) {
+            const isWarning = true;
+            window.uiController.ui_log(`${this.getCallsign()}, unable to descend via STAR`, isWarning);
 
-            return ['ok', readback];
+            return;
         }
 
-        const isWarning = true;
-        window.uiController.ui_log(`${this.getCallsign()}, unable to descend via STAR`, isWarning);
+        const airport = window.airportController.airport_get();
+        const { name: procedureName } = airport.starCollection.findRouteByIcao(this.fms.currentLeg.route.procedure);
+        const readback = {
+            log: `descend via the ${this.fms.following.star} arrival`,
+            say: `descend via the ${procedureName} arrival`
+        };
+
+        return ['ok', readback];
     }
 
     /**
