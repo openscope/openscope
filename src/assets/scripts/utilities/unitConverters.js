@@ -181,7 +181,7 @@ export const km_to_px = (kilometers, scale) => {
  * @param minutes {number}
  * @return {number}
  */
-export const convertMinutesToSeconds = (minutes) => mintues * 60;
+export const convertMinutesToSeconds = (minutes) => minutes * 60;
 
 /**
  *
