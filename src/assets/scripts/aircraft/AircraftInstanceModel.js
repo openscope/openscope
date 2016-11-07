@@ -48,7 +48,7 @@ import { SELECTORS } from '../constants/selectors';
 /**
  * Enum of commands and thier corresponding function.
  *
- * Used to build a call to the correct function when an UI command, or commands,
+ * Used to build a call to the correct function when a UI command, or commands,
  * for an aircraft have been issued.
  *
  * @property COMMANDS
@@ -140,7 +140,6 @@ export default class Aircraft {
         this.aircraftStripView = null;
         this.$html = null;
 
-        // TODO: this initialization should live in a `_init()` init method and not the constructor
         this.$strips = $(SELECTORS.DOM_SELECTORS.STRIPS);
         /* eslint-enable multi-spaces*/
 
@@ -151,25 +150,7 @@ export default class Aircraft {
         this.position_history = [];
 
         this.category = options.category; // 'arrival' or 'departure'
-        this.mode = FLIGHT_MODES.CRUISE;  // 'apron', 'taxi', 'waiting', 'takeoff', 'cruise', or 'landing'
-        // where:
-        // - 'apron' is the initial status of a new departing plane. After
-        //   the plane is issued the 'taxi' command, the plane transitions to
-        //   'taxi' mode
-        // - 'taxi' describes the process of getting ready for takeoff. After
-        //   a delay, the plane becomes ready and transitions into 'waiting' mode
-        // - 'waiting': the plane is ready for takeoff and awaits clearence to
-        //   take off
-        // - 'takeoff' is assigned to planes in the process of taking off. These
-        //   planes are still on the ground or have not yet reached the minimum
-        //   altitude
-        // - 'cruse' describes, that a plane is currently in flight and
-        //   not following an ILS path. Planes of category 'arrival' entering the
-        //   playing field also have this state. If an ILS path is picked up, the
-        //   plane transitions to 'landing'
-        // - 'landing' the plane is following an ILS path or is on the runway in
-        //   the process of stopping. If an ILS approach or a landing is aborted,
-        //   the plane reenters 'cruise' mode
+        this.mode = FLIGHT_MODES.CRUISE;
 
         /*
          * the following diagram illustrates all allowed mode transitions:
@@ -270,13 +251,6 @@ export default class Aircraft {
     }
 
     parse(data) {
-        // const keys = ['position', 'model', 'airline', 'callsign', 'category', 'heading', 'altitude', 'speed'];
-        // _forEach(keys, (key) => {
-        //     if (_has(data, key)) {
-        //         this[key] = data[key];
-        //     }
-        // });
-
         this.position = _get(data, 'position', this.position);
         this.model = _get(data, 'model', this.model);
         this.airline = _get(data, 'airline', this.airline);
@@ -304,6 +278,7 @@ export default class Aircraft {
             this.speed = 0;
         }
 
+        // TODO: combine these two to asingle constant
         if (data.heading) {
             this.fms.setCurrent({ heading: data.heading });
         }
@@ -312,7 +287,7 @@ export default class Aircraft {
             this.fms.setCurrent({ altitude: data.altitude });
         }
 
-        const speed = data.speed || this.model.speed.cruise;
+        const speed = _get(data, 'speed', this.model.speed.cruise);
         this.fms.setCurrent({ speed: speed });
 
         if (data.route) {
@@ -328,7 +303,6 @@ export default class Aircraft {
     }
 
     setArrivalWaypoints(waypoints) {
-        // TODO: change to _forEach
         // add arrival fixes to fms
         for (let i = 0; i < waypoints.length; i++) {
             this.fms.appendLeg({
@@ -617,6 +591,8 @@ export default class Aircraft {
         this.$html.hide(600);
     }
 
+
+    // TODO: move aircraftCommands to a new class
     /**
      * @for AircraftInstanceModel
      * @method runCommands
