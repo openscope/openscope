@@ -1,8 +1,7 @@
 import $ from 'jquery';
-import _clamp from 'lodash/clamp';
 import _forEach from 'lodash/forEach';
 import _map from 'lodash/map';
-import { sin, cos, abs } from './core';
+import { sin, cos, abs, clamp } from './core';
 import { degreesToRadians } from '../utilities/unitConverters';
 
 /**
@@ -477,7 +476,7 @@ export const positive_intersection_with_rect = (pos, dir, rectPos, rectSize) => 
     dir = vnorm(dir);
 
     // Check if pos is outside of rectangle.
-    if (_clamp(left, pos[0], right) !== pos[0] || _clamp(top, pos[1], bottom) !== pos[1]) {
+    if (clamp(left, pos[0], right) !== pos[0] || clamp(top, pos[1], bottom) !== pos[1]) {
         return undefined;
     }
 
@@ -486,7 +485,7 @@ export const positive_intersection_with_rect = (pos, dir, rectPos, rectSize) => 
         t = (top - pos[1]) / dir[1];
         x = pos[0] + dir[0] * t;
 
-        if (_clamp(left, x, right) === x) {
+        if (clamp(left, x, right) === x) {
             return [x, top];
         }
     }
@@ -496,7 +495,7 @@ export const positive_intersection_with_rect = (pos, dir, rectPos, rectSize) => 
         t = (bottom - pos[1]) / dir[1];
         x = pos[0] + dir[0] * t;
 
-        if (_clamp(left, x, right) === x) {
+        if (clamp(left, x, right) === x) {
             return [x, bottom];
         }
     }
@@ -506,7 +505,7 @@ export const positive_intersection_with_rect = (pos, dir, rectPos, rectSize) => 
         t = (left - pos[0]) / dir[0];
         y = pos[1] + dir[1] * t;
 
-        if (_clamp(top, y, bottom) === y) {
+        if (clamp(top, y, bottom) === y) {
             return [left, y];
         }
     }
@@ -516,7 +515,7 @@ export const positive_intersection_with_rect = (pos, dir, rectPos, rectSize) => 
         t = (right - pos[0]) / dir[0];
         y = pos[1] + dir[1] * t;
 
-        if (_clamp(top, y, bottom) === y) {
+        if (clamp(top, y, bottom) === y) {
             return [right, y];
         }
     }
