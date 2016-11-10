@@ -1,15 +1,25 @@
 /**
  * List of airports to load.
  *
+ * If you are adding a new airport to the game, be sure to include:
+ *
+ * - the airport json file in `assets/airports/AIRPORT_NAME.json` where `AIRPORT_NAME` is
+ *   the airport icao. (ex: KSFO would be `assets/airports/ksfo.json`)
+ * - the terrain geojson file (if one exists) in `assets/airports/terrain/AIRPORT_NAME.geojson`
+ *   where `AIRPORT_NAME` is the airport icao. (ex: KSFO would be `assets/airports/terrain/ksfo.geojson`)
+ * - add a new data block at the bottom of this file in the shape of:
+ * ```
  * {
  *   icao: {AIRPORT_ICAO},
  *   level: {AIRPORT_DIFFICULTY},
  *   name: {AIRPORT_NAME}
  * }
- * 
- * If the airport is a work in progress, please include the icon character `&#9983` after the
- * `name` (see kmsp or ksea):
- * - name: {AIRPORT_NAME} &#9983
+ * ```
+ * - `AIRPORT_ICAO` is the airport icao in lowercase (ex: ksfo)
+ * - `AIRPORT_DIFFICULTY` is the difficulty level (one of: easy, beginner, medium, hard)
+ * - `AIRPORT_NAME` is the name of the airport (ex: San Francisco International Airport)
+ *   If the airport is a work in progress, please include the icon character `&#9983` after the `name` (see ebbr, kmsp or ksea):
+ *   `name: 'Brussels-National &#9983'`
  *
  * @property AIRPORT_LOAD_LIST
  * @type {Array}
