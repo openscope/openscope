@@ -656,7 +656,7 @@ export default class Aircraft {
 
             if (command === FLIGHT_MODES.TAKEOFF) {
                 deferred.push([command, args]);
-                continue
+                continue;
             }
 
             let retval = this.run(command, args);
