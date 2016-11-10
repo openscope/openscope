@@ -51,11 +51,16 @@ export default class AirlineModel {
     /**
      * Initialize object from data
      *
+     * This method will be called twice at minimum; once on instantiation and again once
+     * `onLoadSuccess`. Most of the properties below will only be available `onLoadSuccess`
+     *
      * @for AirlineModel
      * @method parse
      * @param data {object}
      */
     parse(data) {
+        this.icao = _get(data, 'icao', this.icao);
+
         if (data.callsign) {
             this.callsign = data.callsign.name;
 
