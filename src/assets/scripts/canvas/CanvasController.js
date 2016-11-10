@@ -59,6 +59,7 @@ const COLORS = {
     DEPARTURE_STROKE: 'rgba(128, 255, 255, 0.9)',
     AIRSPACE_RADIUS_FILL: 'rgba(200, 255, 200, 0.02)',
     AIRSPACE_RADIUS_STROKE: 'rgba(200, 255, 200, 0.25)',
+    AIRSPACE_RANGE_RING_COLOR: 'rgba(200, 255, 200, 0.1)',
     CROSSHAIR_STROKE: 'rgba(136, 153, 153, 1)',
     RESTRICTED_AIRSPACE_STROKE: 'rgba(150, 200, 255, 0.3)',
     RESTRICTED_AIRSPACE_FILL: 'rgba(150, 200, 255, 0.4)'
@@ -1501,7 +1502,7 @@ export default class ConvasController {
             cc.beginPath();
             cc.linewidth = 1;
             cc.arc(0, 0, rangeRingRadius * prop.ui.scale * i, 0, tau());
-            cc.strokeStyle = COLORS.AIRSPACE_RADIUS_STROKE;
+            cc.strokeStyle = COLORS.AIRSPACE_RANGE_RING_COLOR;
             cc.stroke();
         }
     }
