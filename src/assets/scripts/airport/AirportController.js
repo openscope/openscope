@@ -1,5 +1,7 @@
 import _has from 'lodash/has';
 import _lowerCase from 'lodash/lowerCase';
+import AirlineController from '../airline/AirlineController';
+import AircraftController from '../aircraft/AircraftController';
 import Airport from './AirportModel';
 import { AIRPORT_LOAD_LIST } from './airportLoadList';
 import { STORAGE_KEY } from '../constants/storageKeys';
@@ -27,6 +29,8 @@ export default class AirportController {
         this.airport = airport;
         this.airport.airports = {};
         this.airport.current = null;
+        this.airlineController = null;
+        this.aircraftController = null;
     }
 
     /**
@@ -37,6 +41,12 @@ export default class AirportController {
      */
     init_pre() {
         prop.airport = airport;
+
+        this.airlineController = new AirlineController();
+        this.aircraftController = new AircraftController();
+
+        window.airlineController = this.airlineController;
+        window.aircraftController = this.aircraftController;
     }
 
     /**
@@ -56,6 +66,18 @@ export default class AirportController {
     }
 
     /**
+     * Lifecycle method called from `App`.
+     *
+     * This acts as a fascade for the `aircraftController.aircraft_update` method,
+     * where aircraft data is recalculated before re-rendering
+     *
+     * @method recalculate
+     */
+    recalculate() {
+        this.aircraftController.aircraft_update();
+    }
+
+    /**
      * Lifecycle method. Should run only once on App initialiazation
      *
      * @for AirportController
@@ -71,32 +93,6 @@ export default class AirportController {
         }
 
         this.airport_set(airportName);
-    }
-
-    /**
-     * @for AirportController
-     * @method airport_set
-     */
-    airport_set(icao) {
-        if (!icao && _has(localStorage, STORAGE_KEY.ATC_LAST_AIRPORT)) {
-            icao = localStorage[STORAGE_KEY.ATC_LAST_AIRPORT];
-        }
-
-        icao = icao.toLowerCase();
-
-        if (!this.airport.airports[icao]) {
-            console.log(`${icao}: no such airport`);
-
-            return;
-        }
-
-        if (this.airport.current) {
-            this.airport.current.unset();
-            window.aircraftController.aircraft_remove_all();
-        }
-
-        const newAirport = this.airport.airports[icao];
-        newAirport.set();
     }
 
     /**
@@ -138,6 +134,31 @@ export default class AirportController {
         this.airport.airports[airport.icao.toLowerCase()] = airport;
     }
 
+    /**
+     * @for AirportController
+     * @method airport_set
+     */
+    airport_set(icao) {
+        if (!icao && _has(localStorage, STORAGE_KEY.ATC_LAST_AIRPORT)) {
+            icao = localStorage[STORAGE_KEY.ATC_LAST_AIRPORT];
+        }
+
+        icao = icao.toLowerCase();
+
+        if (!this.airport.airports[icao]) {
+            console.log(`${icao}: no such airport`);
+
+            return;
+        }
+
+        if (this.airport.current) {
+            this.airport.current.unset();
+            this.aircraftController.aircraft_remove_all();
+        }
+
+        const newAirport = this.airport.airports[icao];
+        newAirport.set();
+    }
     /**
      * @function airport_get
      * @param icao {string}

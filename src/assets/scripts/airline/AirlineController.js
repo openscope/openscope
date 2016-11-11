@@ -14,13 +14,6 @@ export default class AirlineController {
     constructor() {
         this.airline = airline;
         this.airline.airlines = {};
-    }
-
-    /**
-     * @for AirlineController
-     * @method init_pre
-     */
-    init_pre() {
         prop.airline = airline;
     }
 

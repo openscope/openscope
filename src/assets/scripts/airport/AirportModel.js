@@ -6,7 +6,6 @@ import _has from 'lodash/has';
 import _head from 'lodash/head';
 import _map from 'lodash/map';
 import _isEmpty from 'lodash/isEmpty';
-import _uniq from 'lodash/uniq';
 import AirspaceModel from './AirspaceModel';
 import PositionModel from '../base/PositionModel';
 import RunwayModel from './RunwayModel';
@@ -187,12 +186,8 @@ export default class AirportModel {
             return;
         }
 
-        const areas = [];
-
         // for each area
-        _forEach(airspace, (airspaceSection) => {
-            const positions = [];
-
+        this.airspace = _map(airspace, (airspaceSection) => {
             const positionArea = new AirspaceModel(
                 airspaceSection,
                 this.position,
@@ -201,8 +196,6 @@ export default class AirportModel {
 
             areas.push(positionArea);
         });
-
-        this.airspace = areas;
 
         // airspace perimeter (assumed to be first entry in data.airspace)
         this.perimeter = _head(areas);
