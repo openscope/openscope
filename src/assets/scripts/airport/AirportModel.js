@@ -130,12 +130,20 @@ export default class AirportModel {
      * @param data {object}
      */
     parse(data) {
+        this.name = _get(data, 'name', this.name);
+        this.icao = _get(data, 'icao', this.icao).toLowerCase();
+        this.level = _get(data, 'level', this.level);
+
+        // exit early if `position` doesnt exist in data. on app initialiazation, we loop through every airport
+        // in the `airportLoadList` and instantiate a model for each but wont have the full data set until the
+        // airport json file is loaded.
+        if (!data.position) {
+            return;
+        }
+
         this.setCurrentPosition(data.position, data.magnetic_north);
 
-        this.name = _get(data, 'name', this.name);
-        this.icao = _get(data, 'icao', this.icao);
         this.radio = _get(data, 'radio', this.radio);
-        this.level = _get(data, 'level', this.level);
         this.has_terrain = _get(data, 'has_terrain', false);
         this.sids = _get(data, 'sids', {});
         this.stars = _get(data, 'stars', {});
