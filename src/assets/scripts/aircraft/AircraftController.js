@@ -28,13 +28,6 @@ export default class AircraftController {
         this.aircraft.list = [];
         this.aircraft.current = null;
         this.aircraft.auto = { enabled: false };
-    }
-
-    /**
-     * @for AircraftController
-     * @method
-     */
-    init_pre() {
         prop.aircraft = aircraft;
     }
 
