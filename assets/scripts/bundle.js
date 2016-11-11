@@ -35836,12 +35836,13 @@ var Aircraft = function () {
             var response_end = '';
             var deferred = [];
 
-            for (var i = 0; i < commands.length; i += 1) {
+            for (var i = 0; i < commands.length; i++) {
                 var command = commands[i][0];
                 var args = commands[i].splice(1);
 
                 if (command === FLIGHT_MODES.TAKEOFF) {
                     deferred.push([command, args]);
+                    continue;
                 }
 
                 var retval = this.run(command, args);
@@ -35869,8 +35870,10 @@ var Aircraft = function () {
                 var _retval = this.run(_command, _args);
 
                 if (_retval) {
+                    // TODO: fix the logic here this very purposly using `!=`. length is not an object and thus,
+                    // never null but by using coercion it evaluates to falsey if its not an array
                     // true if array, and not log/say object
-                    if (_retval[1].length !== null) {
+                    if (_retval[1].length != null) {
                         // make into log/say object
                         _retval[1] = {
                             say: _retval[1],
