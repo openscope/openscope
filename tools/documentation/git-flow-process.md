@@ -8,7 +8,7 @@ Below you will find information about the main git branches as well as the overa
 
 - **bugfix/ATC-XX** - branches off of `release/3.0.0` for current `v3.0.0` bugfixes. should have a corresponding github issue where the `XX` in `ATC-XX` is the issue number. once a fix is finished, a pull request should be submitted targeting the branch it was created from.
 
-- release/3.0.0 - `v3.0.0` release branch. currently the only branch getting merged into `gh-pages`. only bugfix branches should be merged into this branch. when new fixes are merged, this branch is pulled into both `release/3.x.x` _and_ `develop`. at the conclusion of UAT, `gh-pages` will be tagged `release/3.0.0` and this branch will be deleted. unless there is a good reason, there should not be any direct commits to this branch.
+- **release/3.0.0** - `v3.0.0` release branch. currently the only branch getting merged into `gh-pages`. only bugfix branches should be merged into this branch. when new fixes are merged, this branch is pulled into both `release/3.x.x` _and_ `develop`. at the conclusion of UAT, `gh-pages` will be tagged `release/3.0.0` and this branch will be deleted. unless there is a good reason, there should not be any direct commits to this branch.
 
 - **release/3.x.x** - the next release. post `v3`, this will become the main release branch and will be the only branch merging into `gh-pages`. same bugfix rules from `release/3.0.0` apply to this branch. bugfix changes here get pulled into develop. feature merges in develop get pulled into this branch once a feature is complete. unless there is a good reason, there should not be any direct commits to this branch.
 
