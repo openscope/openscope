@@ -490,8 +490,13 @@ export default class Aircraft {
                 this.radioCall('switching to center, good day', 'dep');
                 prop.game.score.departure += 1;
             } else {
+                // TODO: this is a temporary fix for `release/3.0.0`. this will need to be refactored
+                let fmsDestination = this.fms.fp.route[1].indexOf('.') !== -1
+                    ? this.fms.fp.route[1].split('.')[1]
+                    : this.fms.fp.route[1];
+
                 // TODO: add helper method to FMS class for this
-                this.radioCall(`leaving radar coverage without being cleared to ${this.fms.fp.route[1].split('.')[1]}`, 'dep', true);
+                this.radioCall(`leaving radar coverage without being cleared to ${fmsDestination}`, 'dep', true);
                 prop.game.score.departure -= 1;
             }
         }

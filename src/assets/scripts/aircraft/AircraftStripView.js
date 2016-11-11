@@ -46,6 +46,7 @@ export default class AircraftStripView {
      * @param aircraftInstanceModel {AircraftInstanceModel}
      */
     constructor(callsign = '', aircraftInstanceModel) {
+        // TODO: change to use lodash _uniqueId
         this._id = ID++;
 
         this.$element = null;
@@ -190,12 +191,13 @@ export default class AircraftStripView {
     buildIcaoWithWeightClass() {
         let aircraftIcao = this.icao;
 
+        // TODO: indexOf is goofy here, this can be simplified
         // Bottom Line Data
         if (['H', 'U'].indexOf(this.weightclass) > -1) {
             aircraftIcao = `H/${this.icao}`;
         }
 
-        return aircraftIcao;
+        return aircraftIcao.toUpperCase();
     }
 
     /**
