@@ -105,7 +105,7 @@ export default class AirportController {
     airport_load({ icao, level, name }) {
         icao = icao.toLowerCase();
 
-        if (_has(this.airport.airports, icao)) {
+        if (this.hasAirport()) {
             console.log(`${icao}: already loaded`);
 
             return null;
@@ -131,7 +131,7 @@ export default class AirportController {
      * @param airport
      */
     airport_add(airport) {
-        this.airport.airports[airport.icao.toLowerCase()] = airport;
+        this.airport.airports[airport.icao] = airport;
     }
 
     /**
@@ -139,7 +139,7 @@ export default class AirportController {
      * @method airport_set
      */
     airport_set(icao) {
-        if (!icao && _has(localStorage, STORAGE_KEY.ATC_LAST_AIRPORT)) {
+        if (this.hasStoredIcao(icao)) {
             icao = localStorage[STORAGE_KEY.ATC_LAST_AIRPORT];
         }
 
@@ -170,5 +170,21 @@ export default class AirportController {
         }
 
         return this.airport.airports[icao.toLowerCase()];
+    }
+
+    /**
+     * @method hasStoredIcao
+     * @return {boolean}
+     */
+    hasStoredIcao(icao) {
+        return !icao && _has(localStorage, STORAGE_KEY.ATC_LAST_AIRPORT);
+    }
+
+    /**
+     * @method hasAirport
+     * @return {boolean}
+     */
+    hasAirport(icao) {
+        return _has(this.airport.airports, icao);
     }
 }
