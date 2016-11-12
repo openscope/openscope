@@ -7,8 +7,9 @@ title: Airport format
 
 The airport JSON file must be in `assets/airports`; the filename
 should be `icao.json` where `icao` is the lowercase four-letter ICAO
-airport code, such as `ksfo` or `kmsp`.
-
+airport code, such as `ksfo` or `kmsp`.  If this is a new airport, there
+should also be an entry added to the end of [`airportLoadList.js`](../src.assets/scripts/airport/airportLoadList.js)
+See the comments for information on the correct structure to use.
 ```
 {
   "radio": {
@@ -54,12 +55,12 @@ airport code, such as `ksfo` or `kmsp`.
                                                           // Common for European-style SIDs. If not needed (like in USA), leave this part out.
       "rwy": {  // (req) ALL runways usable on this SID must be listed below. If a runway isn't listed, aircraft departing
                 // that runway will need to be re-assigned a different SID or runway (this is realistic and intended).
-          "1L" : [["SEPDY", "A19+"], "ZUPAX"],  // Each runway for which this SID is valid must be listed here. The value assigned to each runway is an array 
+          "1L" : [["SEPDY", "A19+"], "ZUPAX"],  // Each runway for which this SID is valid must be listed here. The value assigned to each runway is an array
           "1R" : [["SEPDY", "A19+"], "ZUPAX"],  // of fixes, entered as strings. As shown, you may also enter an array containing the fix name and restrictions
-          "28L": [["SENZY", "A25+"], "ZUPAX"],  // at that fix, separated by a pipe symbol ('|'). For example, see the following: ["FIXNAME", "A50-|S220+"]. In 
+          "28L": [["SENZY", "A25+"], "ZUPAX"],  // at that fix, separated by a pipe symbol ('|'). For example, see the following: ["FIXNAME", "A50-|S220+"]. In
           "28R": [["SENZY", "A25+"], "ZUPAX"]   // that example, restrictions of Altitude 5,000' or lower, and Speed 220kts or higher would be placed on that fix.
         },
-      "body": ["EUGEN", "SHOEY"],   // (optional) If there is a very long series of fixes in a SID, it may be 
+      "body": ["EUGEN", "SHOEY"],   // (optional) If there is a very long series of fixes in a SID, it may be
                                     // helpful to put some of it here, while all segments follow the same path.
       "exitPoints": {     // (optional) Defines exitPoints for a given SID. Common for FAA-style (USA) SIDs. If not needed (like in Europe), leave this part out.
           "SNS": ["SNS"], // defines the "OFFSH9.SNS" transition as being a single fix, "SNS". Is often a list instead.
@@ -176,7 +177,7 @@ parameters in order for you to shape the airport's traffic to your liking.
 
 At the very least, an arrival stream MUST have definitions for the
 following parameters. Additional may be required if the spawn method
-is set to one other than 'random'. 
+is set to one other than 'random'.
 
             BARE MINIMUM PARAMETERS:
    PARAMETER   REQ      PARAMETER DESCRIPTION

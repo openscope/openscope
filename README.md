@@ -3,6 +3,9 @@
 
 An ATC simulator in HTML5.
 
+## Running Locally
+It is possible to run this application locally.  You will need to have node and npm install in order for this to work.  For more information, view the [Tools Documentation](tools/README.md)
+
 ## Privacy
 
 Page hits are tracked with Google Analytics; feel free to use an
@@ -21,9 +24,6 @@ Note: the license was formerly CC0; it was set before I was familiar with licens
 
 The following files are NOT MIT licensed:
 
-* [`fiber.min.js`](https://github.com/linkedin/Fiber) is licensed
-  under the Apache license. Thanks, LinkedIn! (Boy, I never thought
-  I'd say _that_.)
 * [`terrain.svg`](http://www.flaticon.com/free-icon/mountain-summit_27798) by [OCHA](http://www.flaticon.com/authors/ocha) is licensed CC BY 3.0.
 
 <!--
