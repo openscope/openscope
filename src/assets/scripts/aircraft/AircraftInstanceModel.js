@@ -612,12 +612,13 @@ export default class Aircraft {
         let response_end = '';
         const deferred = [];
 
-        for (let i = 0; i < commands.length; i += 1) {
+        for (let i = 0; i < commands.length; i++) {
             const command = commands[i][0];
             const args = commands[i].splice(1);
 
             if (command === FLIGHT_MODES.TAKEOFF) {
                 deferred.push([command, args]);
+                continue;
             }
 
             let retval = this.run(command, args);
@@ -648,8 +649,10 @@ export default class Aircraft {
             const retval  = this.run(command, args);
 
             if (retval) {
-                 // true if array, and not log/say object
-                if (retval[1].length !== null) {
+                // TODO: fix the logic here this very purposly using `!=`. length is not an object and thus,
+                // never null but by using coercion it evaluates to falsey if its not an array
+                // true if array, and not log/say object
+                if (retval[1].length != null) {
                     // make into log/say object
                     retval[1] = {
                         say: retval[1],
@@ -1496,7 +1499,6 @@ export default class Aircraft {
             if (this.fms.currentWaypoint.speed == null) {
                 this.fms.setCurrent({ speed: this.model.speed.cruise });
             }
-
 
             const wind = window.airportController.airport_get().getWind();
             const wind_dir = round(radiansToDegrees(wind.angle));
