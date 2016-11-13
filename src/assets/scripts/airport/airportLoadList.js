@@ -292,6 +292,11 @@ export const AIRPORT_LOAD_LIST = [
         name: 'Kolkata Netaji Subhas Chandra Bose Int\'l'
     },
     {
+        icao: 'vobl',
+        level: 'medium',
+        name: 'Kempegowda International Airport Bengaluru'
+    },
+    {
         icao: 'vhhh',
         level: 'medium',
         name: 'Hong Kong Chep Lap Kok International Airport'
