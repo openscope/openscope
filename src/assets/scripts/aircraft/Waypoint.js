@@ -1,9 +1,54 @@
-/* eslint-disable no-multi-spaces, no-undef */
-import _forEach from 'lodash/forEach';
 import _get from 'lodash/get';
 import _head from 'lodash/head';
+import _isNil from 'lodash/isNil';
 import FixCollection from '../airport/Fix/FixCollection';
 import { WAYPOINT_NAV_MODE } from '../constants/aircraftConstants';
+
+/**
+ * Symbol denoting a greater than restriction
+ *
+ * @property ABOVE_SYMBOL
+ * @type {string}
+ * @final
+ */
+const ABOVE_SYMBOL = '+';
+
+/**
+ * Symbol denoting a less than restriction
+ *
+ * @property ABOVE_SYMBOL
+ * @type {string}
+ * @final
+ */
+const BELOW_SYMBOL = '-';
+
+// TODO: there should be a helper function for this
+/**
+ * Number to used to cnovert a FL altitude to an altitude in thousands
+ *
+ * @property ABOVE_SYMBOL
+ * @type {string}
+ * @final
+ */
+const FL_TO_THOUSANDS_MULTIPLIER = 100;
+
+/**
+ * Enemuration for an invalid index number.
+ *
+ * @property INVALID_INDEX
+ * @type {number}
+ * @final
+ */
+const INVALID_INDEX = -1;
+
+/**
+ * Enumeration for the radix value of `parseInt`
+ *
+ * @proeprty DECIMAL_RADIX
+ * @type {number}
+ * @final
+ */
+const DECIMAL_RADIX = 10;
 
 /**
   * Build a waypoint object
@@ -56,10 +101,13 @@ export default class Waypoint {
      *
      * @for Waypoint
      * @method parse
+     * @param data {object}
+     * @param fms {AircraftFlightManagementSystem}
      */
     parse(data, fms) {
+        this.extractFixRestrictions(data);
+
         this.route = _get(data, 'route', this.route);
-        this.fixRestrictions = _get(data, 'fixRestrictions', this.fixRestrictions);
 
         // Populate Waypoint with data
         if (data.fix) {
@@ -68,21 +116,107 @@ export default class Waypoint {
             this.location = FixCollection.getFixPositionCoordinates(data.fix);
         }
 
+        if (this.navmode) {
+            return;
+        }
+
         // for aircraft that don't yet have proper guidance (eg: SID/STAR, or departing aircraft)
-        if (!this.navmode) {
-            this.navmode = WAYPOINT_NAV_MODE.HEADING;
-            const airport = window.airportController.airport_get();
-            const firstRouteSegment = _head(this.route.split('.'));
+        this.setInitialNavMode();
+    }
 
-            if (firstRouteSegment === airport.icao && this.heading === null) {
-                // aim departure along runway heading
-                const { angle } = airport.getRunway(airport.runway);
+    /**
+     * @for Waypoint
+     * @method extractFixRestrictions
+     * @param fixRestrictions {object}
+     */
+    extractFixRestrictions({ fixRestrictions }) {
+        if (_isNil(fixRestrictions)) {
+            return;
+        }
 
-                this.heading = angle;
-            } else if (firstRouteSegment === 'KDBG' && this.heading === null) {
-                // aim arrival @ middle of airspace
-                this.heading = this.radial + Math.PI;
-            }
+        this.fixRestrictions = fixRestrictions;
+    }
+
+    /**
+     * If there isn't a navmode set, set one here
+     *
+     * @for Waypoint
+     * @setInitialNavMode
+     */
+    setInitialNavMode() {
+        this.navmode = WAYPOINT_NAV_MODE.HEADING;
+        const airport = window.airportController.airport_get();
+        const firstRouteSegment = _head(this.route.split('.'));
+
+        if (firstRouteSegment === airport.icao && this.heading === null) {
+            // aim departure along runway heading
+            const { angle } = airport.getRunway(airport.runway);
+
+            this.heading = angle;
+        } else if (firstRouteSegment === 'KDBG' && this.heading === null) {
+            // aim arrival @ middle of airspace
+            this.heading = this.radial + Math.PI;
+        }
+    }
+
+    /**
+     * @for Waypoint
+     * @method setAltitude
+     * @param centerCeiling {number}  ceiling of the airspace in feet
+     * @param cruiseAltitude {number} cruiseAltitude of the current aircraft
+     */
+    setAltitude(centerCeiling, cruiseAltitude) {
+        const { alt: altitudeRestriction } = this.fixRestrictions;
+
+        if (!altitudeRestriction) {
+            this.altitude = Math.min(centerCeiling, cruiseAltitude);
+
+            return;
+        }
+
+        // TODO: enumerate symbols
+        // TODO: enumerate magic numbers
+        if (altitudeRestriction.indexOf(ABOVE_SYMBOL) !== INVALID_INDEX) {
+            // at-or-above altitudeRestriction restriction
+            const minAlt = parseInt(altitudeRestriction.replace(ABOVE_SYMBOL, ''), DECIMAL_RADIX) * FL_TO_THOUSANDS_MULTIPLIER;
+            this.altitude = Math.min(centerCeiling, cruiseAltitude);
+        } else if (altitudeRestriction.indexOf(BELOW_SYMBOL) !== INVALID_INDEX) {
+            const maxAlt = parseInt(altitudeRestriction.replace(BELOW_SYMBOL, ''), DECIMAL_RADIX) * FL_TO_THOUSANDS_MULTIPLIER;
+            // climb as high as restrictions permit
+            this.altitude = Math.min(maxAlt, cruiseAltitude);
+        } else {
+             // cross AT this altitudeRestriction
+            this.altitude = parseInt(altitudeRestriction, DECIMAL_RADIX) * FL_TO_THOUSANDS_MULTIPLIER;
+        }
+    }
+
+    /**
+     * @for Waypoint
+     * @method setSpeed
+     * @param cruiseSpeed {number}  cruiseSpeed of the current aircraft
+     */
+    setSpeed(cruiseSpeed) {
+        const { spd: speedRestriction } = this.fixRestrictions;
+
+        if (!speedRestriction) {
+            this.speed = cruiseSpeed;
+
+            return;
+        }
+
+        // TODO: enumerate symbols
+        // TODO: enumerate magic numbers
+        if (speedRestriction.indexOf(ABOVE_SYMBOL) !== INVALID_INDEX) {
+            // at-or-above speed restriction
+            const minSpd = parseInt(speedRestriction.replace(ABOVE_SYMBOL, ''), DECIMAL_RADIX);
+            this.speed = Math.min(minSpd, cruiseSpeed);
+        } else if (speedRestriction.indexOf(BELOW_SYMBOL) !== INVALID_INDEX) {
+            const maxSpd = parseInt(speedRestriction.replace(BELOW_SYMBOL, ''), DECIMAL_RADIX);
+            // go as fast as restrictions permit
+            this.speed = Math.min(maxSpd, cruiseSpeed);
+        } else {
+             // cross AT this speed
+            this.speed = parseInt(speedRestriction, DECIMAL_RADIX);
         }
     }
 }

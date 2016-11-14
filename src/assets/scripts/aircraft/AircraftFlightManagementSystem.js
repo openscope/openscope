@@ -678,22 +678,6 @@ export default class AircraftFlightManagementSystem {
     }
 
     /**
-     * Invokes flySID() for the SID in the flightplan (fms.fp.route)
-     */
-    clearedAsFiled() {
-        // FIXME: why keep a reference to the aircraft id if we just get it from the aircraftController? Also,
-        // if this bit of logic is simply getting the aircraft instance, why not use `this.my_aircraft` for
-        // the whole thing?
-        const retval = this.my_aircraft.runSID([window.aircraftController.aircraft_get(this.my_aircrafts_eid).destination]);
-        // TODO: this method could simply return the logic being set to `ok`
-        const ok = !(Array.isArray(retval) && retval[0] === 'fail');
-
-        return ok;
-    }
-
-    // FIXME the logic in this method is remarkably similiar to the logic in .descendViaSID(). perhpas there
-    // are opportunities for abstraction here.
-    /**
      * Climbs aircraft in compliance with the SID they're following
      * Adds altitudes and speeds to each waypoint that are as high as
      * possible without exceeding any the following:
@@ -704,65 +688,23 @@ export default class AircraftFlightManagementSystem {
      *    - (spd) waypoint's speed restriction
      */
     climbViaSID() {
-        if (!this.currentLeg.type === FP_LEG_TYPE.SID) {
-            return;
+        if (this.currentLeg.type !== FP_LEG_TYPE.SID) {
+            return false;
         }
 
-        let wp = this.currentLeg.waypoints;
-        let cruise_alt = this.fp.altitude;
-        let cruise_spd = this.my_aircraft.model.speed.cruise;
+        const wp = this.currentLeg.waypoints;
+        const cruise_alt = this.fp.altitude;
+        const cruise_spd = this.my_aircraft.model.speed.cruise;
 
         for (let i = 0; i < wp.length; i++) {
-            let altitude = wp[i].fixRestrictions.alt;
-            let speed = wp[i].fixRestrictions.spd;
-            let minAlt;
-            let alt;
-            let maxAlt;
+            const waypoint = wp[i];
+            const { ctr_ceiling } = window.airportController.airport_get();
 
-            // TODO: use `StandardWaypointModel` methods for this logic
-            // Altitude Control
-            if (altitude) {
-                if (altitude.indexOf('+') !== -1) {
-                    // at-or-above altitude restriction
-                    minAlt = parseInt(altitude.replace('+', ''), 10) * 100;
-                    alt = Math.min(window.airportController.airport_get().ctr_ceiling, cruise_alt);
-                } else if (altitude.indexOf('-') !== -1) {
-                    maxAlt = parseInt(altitude.replace('-', ''), 10) * 100;
-                    // climb as high as restrictions permit
-                    alt = Math.min(maxAlt, cruise_alt);
-                } else {
-                     // cross AT this altitude
-                    alt = parseInt(altitude, 10) * 100;
-                }
-            } else {
-                alt = Math.min(window.airportController.airport_get().ctr_ceiling, cruise_alt);
-            }
-
-            wp[i].altitude = alt; // add altitudes to wp
-
-            let minSpd;
-            let spd = cruise_spd;
-            let maxSpd;
-            // Speed Control
-            if (speed) {
-                if (speed.indexOf('+') !== -1) {
-                    // at-or-above speed restriction
-                    minSpd = parseInt(speed.replace('+', ''), 10);
-                    spd = Math.min(minSpd, cruise_spd);
-                } else if (speed.indexOf('-') !== -1) {
-                    maxSpd = parseInt(speed.replace('-', ''), 10);
-                    // go as fast as restrictions permit
-                    spd = Math.min(maxSpd, cruise_spd);
-                } else {
-                     // cross AT this speed
-                    spd = parseInt(speed, 10);
-                }
-            }
-
-            // add speeds to wp
-            wp[i].speed = spd;
+            waypoint.setAltitude(ctr_ceiling, cruise_alt);
+            waypoint.setSpeed(cruise_spd);
         }
 
+        // TODO: this may not be needed anymore now that we are operating on the Waypoint model itself.
         // TODO; this completely replaces an existing Waypoint, why not just update the instance?
         // change fms waypoints to wp (which contains the altitudes and speeds)
         this.legs[this.current[LEG]].waypoints = wp;
@@ -810,7 +752,7 @@ export default class AircraftFlightManagementSystem {
             let alt;
             let maxAlt;
 
-            // TODO: use `StandardWaypointModel` methods for this logic
+            // TODO: use `Waypoint` model methods for this logic
             // Altitude Control
             if (a) {
                 if (a.indexOf('+') !== -1) {
@@ -835,6 +777,7 @@ export default class AircraftFlightManagementSystem {
             let spd;
             let maxSpd;
 
+            // TODO: use `Waypoint` model methods for this logic
             // Speed Control
             if (s) {
                 if (s.indexOf('+') !== -1) {

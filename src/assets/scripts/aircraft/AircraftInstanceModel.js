@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import $ from 'jquery';
 import _forEach from 'lodash/forEach';
 import _get from 'lodash/get';
@@ -921,20 +922,21 @@ export default class Aircraft {
      * @return {array}
      */
     runClearedAsFiled() {
-        if (!this.fms.clearedAsFiled()) {
+        // TODO: the `runSID` method does not always return a boolean, in some cases it returns readbacks
+        // which look to never be used?
+        if (!this.runSID()) {
             return [true, 'unable to clear as filed'];
         }
 
         const airport = window.airportController.airport_get();
-        const { name: procedureName } = airport.sidCollection.findRouteByIcao(this.dstination);
+        const { name: procedureName } = airport.sidCollection.findRouteByIcao(this.destination);
         const readback = {};
 
-        readback.log = `cleared to destination via the ${this.destination} ` +
-            `departure, then as filed. Climb and maintain ${airport.initial_alt}, ` +
-            `expect ${this.fms.fp.altitude} 10 minutes after departure `;
+        readback.log = `cleared to destination via the ${this.destination} departure, then as filed. Climb and ` +
+            `maintain ${airport.initial_alt}, expect ${this.fms.fp.altitude} 10 minutes after departure `;
         readback.say = `cleared to destination via the ${procedureName} ` +
             `departure, then as filed. Climb and maintain ${radio_altitude(airport.initial_alt)}, ` +
-            `expect ${radio_altitude(this.fms.fp.altitude)}, ${radio_spellOut(' 10 ')} minutes after departure'`;
+            `expect ${radio_altitude(this.fms.fp.altitude)}, ${radio_spellOut('10')} minutes after departure'`;
 
         return ['ok', readback];
     }
@@ -1239,16 +1241,16 @@ export default class Aircraft {
     /**
      * @for AircraftInstanceModel
      * @method runSID
-     * @param data
      */
-    runSID(data) {
+    runSID() {
         const apt = window.airportController.airport_get();
-        const sid_id = data[0].toUpperCase();
+        const sid_id = this.destination;
 
         if (!_has(apt.sids, sid_id)) {
-            return;
+            return ['fail', 'SID name not understood'];
         }
 
+        // TODO: refactor to use `StandardRouteCollection`
         const sid_name = apt.sids[sid_id].name;
         const exit = apt.getSIDExitPoint(sid_id);
         const route = `${apt.icao}.${sid_id}.${exit}`;
@@ -1257,12 +1259,8 @@ export default class Aircraft {
             return ['fail', 'unable to fly SID, we are an inbound'];
         }
 
-        if (data[0].length === 0 || !_has(apt.sids, sid_id)) {
-            return ['fail', 'SID name not understood'];
-        }
-
         if (!this.rwy_dep) {
-            this.setDepartureRunway(window.airportController.airport_get().runway);
+            this.setDepartureRunway(apt.runway);
         }
 
         if (!_has(apt.sids[sid_id].rwy, this.rwy_dep)) {
@@ -1276,7 +1274,9 @@ export default class Aircraft {
             say: `cleared to destination via the ${sid_name} departure, then as filed`
         };
 
-        return ['ok', readback];
+        // TODO: this return format is never used by the calling method. the calling method expects a boolean
+        // return ['ok', readback];
+        return true;
     }
 
     /**
