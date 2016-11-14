@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import _find from 'lodash/find';
 import _last from 'lodash/last';
 import _map from 'lodash/map';
 import Waypoint from './Waypoint';
@@ -704,104 +705,36 @@ export default class AircraftFlightManagementSystem {
             waypoint.setSpeed(cruise_spd);
         }
 
-        // TODO: this may not be needed anymore now that we are operating on the Waypoint model itself.
-        // TODO; this completely replaces an existing Waypoint, why not just update the instance?
-        // change fms waypoints to wp (which contains the altitudes and speeds)
-        this.legs[this.current[LEG]].waypoints = wp;
-
         return true;
     }
 
-    // FIXME the logic in this method is remarkably similiar to the logic in .climbViaSID(). perhaps there
-    // are opportunities for abstraction here.
     /**
      * Descends aircraft in compliance with the STAR they're following
      * Adds altitudes and speeds to each waypoint in accordance with the STAR
      */
     descendViaSTAR() {
-        // Find the STAR leg
-        let wp;
-        let legIndex;
+        const waypointList = this.getStarLegWaypoints();
 
-        // TODO: if this.legs is an array this should be a for and not a for/in loop
-        for (const l in this.legs) {
-            if (this.legs[l].type === FP_LEG_TYPE.STAR) {
-                legIndex = l;
-                wp = this.legs[l].waypoints;
-
-                break;
-            }
-        }
-
-        if (!wp) {
+        // TODO: would a star leg ever not have waypoints?
+        if (!waypointList) {
             return;
         }
 
         let start_alt = this.currentWaypoint.altitude || this.my_aircraft.altitude;
         let start_spd = this.currentWaypoint.speed || this.my_aircraft.model.speed.cruise;
 
-        for (let i = 0; i < wp.length; i++) {
+        for (let i = 0; i < waypointList.length; i++) {
+            const waypoint = waypointList[i];
+            const previousWaypoint = waypointList[i - 1];
+
             if (i >= 1) {
-                start_alt = wp[i - 1].altitude;
-                start_spd = wp[i - 1].speed;
+                start_alt = previousWaypoint.altitude;
+                start_spd = previousWaypoint.speed;
             }
 
-            const a = wp[i].fixRestrictions.alt;
-            const s = wp[i].fixRestrictions.spd;
-            let minAlt;
-            let alt;
-            let maxAlt;
-
-            // TODO: use `Waypoint` model methods for this logic
-            // Altitude Control
-            if (a) {
-                if (a.indexOf('+') !== -1) {
-                    // at-or-above altitude restriction
-                    minAlt = parseInt(a.replace('+', ''), 10) * 100;
-                    alt = Math.max(minAlt, start_alt);
-                } else if (a.indexOf('-') !== -1) {
-                    maxAlt = parseInt(a.replace('-', '')) * 100;
-                    // climb as high as restrictions permit
-                    alt = Math.min(maxAlt, start_alt);
-                } else {
-                    // cross AT this altitude
-                    alt = parseInt(a) * 100;
-                }
-            } else {
-                alt = start_alt;
-            }
-
-            wp[i].altitude = alt; // add altitudes to wp
-
-            let minSpd;
-            let spd;
-            let maxSpd;
-
-            // TODO: use `Waypoint` model methods for this logic
-            // Speed Control
-            if (s) {
-                if (s.indexOf('+') !== -1) {
-                    // at-or-above speed restriction
-                    minSpd = parseInt(s.replace('+', ''));
-                    spd = Math.min(minSpd, start_spd);
-                } else if (s.indexOf('-') !== -1) {
-                    maxSpd = parseInt(s.replace('-', ''));
-                    // go as fast as restrictions permit
-                    spd = Math.min(maxSpd, start_spd);
-                } else {
-                    // cross AT this speed
-                    spd = parseInt(s);
-                }
-            } else {
-                spd = start_spd;
-            }
-
-            // add speeds to wp
-            wp[i].speed = spd;
+            waypoint.setAltitude(null, start_alt);
+            waypoint.setSpeed(start_spd);
         }
-
-        // change fms waypoints to wp (which contains the altitudes and speeds)
-        this.legs[legIndex].waypoints = wp;
 
         return true;
     }
@@ -874,19 +807,9 @@ export default class AircraftFlightManagementSystem {
 
     /** ************************* FMS GET FUNCTIONS ***************************/
 
-    // TODO: this set of methods could be used as getters instead
-    // ex: `get currentLeg()` and then used like `this.fms.currentLeg`
     get currentLeg() {
         return this.legs[this.current[LEG]];
     }
-
-    /**
-     * Return the current leg
-     * @deprecated
-     */
-    // currentLeg() {
-    //     return this.legs[this.current[LEG]];
-    // }
 
     get currentWaypoint() {
         if (this.legs.length < 1) {
@@ -945,6 +868,18 @@ export default class AircraftFlightManagementSystem {
         }
 
         return;
+    }
+
+    /**
+     * Find a leg with type `star` and return that leg's waypoints.
+     *
+     * @method getSt
+     * @return {array<Waypoint>}
+     */
+    getStarLegWaypoints() {
+        const starLeg = _find(this.legs, { type: FP_LEG_TYPE.STAR });
+
+        return starLeg.waypoints || [];
     }
 
     /**

@@ -111,16 +111,11 @@ export default class Waypoint {
 
         // Populate Waypoint with data
         if (data.fix) {
-            this.navmode = 'fix';
+            this.navmode = WAYPOINT_NAV_MODE.FIX;
             this.fix = data.fix;
             this.location = FixCollection.getFixPositionCoordinates(data.fix);
         }
 
-        if (this.navmode) {
-            return;
-        }
-
-        // for aircraft that don't yet have proper guidance (eg: SID/STAR, or departing aircraft)
         this.setInitialNavMode();
     }
 
@@ -140,10 +135,16 @@ export default class Waypoint {
     /**
      * If there isn't a navmode set, set one here
      *
+     * For aircraft that don't yet have proper guidance (eg: SID/STAR, or departing aircraft)
+     *
      * @for Waypoint
      * @setInitialNavMode
      */
     setInitialNavMode() {
+        if (this.navmode) {
+            return;
+        }
+
         this.navmode = WAYPOINT_NAV_MODE.HEADING;
         const airport = window.airportController.airport_get();
         const firstRouteSegment = _head(this.route.split('.'));
@@ -154,36 +155,43 @@ export default class Waypoint {
 
             this.heading = angle;
         } else if (firstRouteSegment === 'KDBG' && this.heading === null) {
+            // FIXME: radial is not defined or set anywhere in this class
             // aim arrival @ middle of airspace
             this.heading = this.radial + Math.PI;
         }
     }
 
+    // TODO: rename centerCeiling and make this method more flexible
     /**
      * @for Waypoint
      * @method setAltitude
      * @param centerCeiling {number}  ceiling of the airspace in feet
      * @param cruiseAltitude {number} cruiseAltitude of the current aircraft
      */
-    setAltitude(centerCeiling, cruiseAltitude) {
+    setAltitude(centerCeiling = null, cruiseAltitude) {
         const { alt: altitudeRestriction } = this.fixRestrictions;
 
         if (!altitudeRestriction) {
-            this.altitude = Math.min(centerCeiling, cruiseAltitude);
+            this.altitude = !_isNil(centerCeiling)
+                ? Math.min(centerCeiling, cruiseAltitude)
+                : cruiseAltitude;
 
             return;
         }
 
-        // TODO: enumerate symbols
-        // TODO: enumerate magic numbers
+        // TODO: there has to be an easier way to do this logic.
         if (altitudeRestriction.indexOf(ABOVE_SYMBOL) !== INVALID_INDEX) {
             // at-or-above altitudeRestriction restriction
-            const minAlt = parseInt(altitudeRestriction.replace(ABOVE_SYMBOL, ''), DECIMAL_RADIX) * FL_TO_THOUSANDS_MULTIPLIER;
-            this.altitude = Math.min(centerCeiling, cruiseAltitude);
+            const minAlt = parseInt(altitudeRestriction.replace(ABOVE_SYMBOL, ''), DECIMAL_RADIX);
+            const minimumAltitudeWithoutSymbol = minAlt * FL_TO_THOUSANDS_MULTIPLIER;
+
+            this.altitude = Math.min(minimumAltitudeWithoutSymbol, cruiseAltitude);
         } else if (altitudeRestriction.indexOf(BELOW_SYMBOL) !== INVALID_INDEX) {
-            const maxAlt = parseInt(altitudeRestriction.replace(BELOW_SYMBOL, ''), DECIMAL_RADIX) * FL_TO_THOUSANDS_MULTIPLIER;
+            const maxAlt = parseInt(altitudeRestriction.replace(BELOW_SYMBOL, ''), DECIMAL_RADIX);
+            const maximumAltitudeWithoutSymbol = maxAlt * FL_TO_THOUSANDS_MULTIPLIER;
+
             // climb as high as restrictions permit
-            this.altitude = Math.min(maxAlt, cruiseAltitude);
+            this.altitude = Math.min(maximumAltitudeWithoutSymbol, cruiseAltitude);
         } else {
              // cross AT this altitudeRestriction
             this.altitude = parseInt(altitudeRestriction, DECIMAL_RADIX) * FL_TO_THOUSANDS_MULTIPLIER;
@@ -204,8 +212,7 @@ export default class Waypoint {
             return;
         }
 
-        // TODO: enumerate symbols
-        // TODO: enumerate magic numbers
+        // TODO: there has to be an easier way to do this logic.
         if (speedRestriction.indexOf(ABOVE_SYMBOL) !== INVALID_INDEX) {
             // at-or-above speed restriction
             const minSpd = parseInt(speedRestriction.replace(ABOVE_SYMBOL, ''), DECIMAL_RADIX);
