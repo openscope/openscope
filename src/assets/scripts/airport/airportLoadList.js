@@ -127,6 +127,11 @@ export const AIRPORT_LOAD_LIST = [
         name: 'Reagan National Airport'
     },
     {
+        icao: 'kdfw',
+        level: 'hard',
+        name: 'Dallas-Fort Worth International Airport'
+    },
+    {
         icao: 'kiad',
         level: 'hard',
         name: 'Washington-Dulles International Airport'
