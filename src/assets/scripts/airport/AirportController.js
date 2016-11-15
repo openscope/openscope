@@ -3,7 +3,6 @@ import _lowerCase from 'lodash/lowerCase';
 import AirlineController from '../airline/AirlineController';
 import AircraftController from '../aircraft/AircraftController';
 import Airport from './AirportModel';
-import { AIRPORT_LOAD_LIST } from './airportLoadList';
 import { STORAGE_KEY } from '../constants/storageKeys';
 
 // Temporary const declaration here to attach to the window AND use as internal property
@@ -58,8 +57,11 @@ export default class AirportController {
      * @method init
      */
     init() {
-        for (let i = 0; i < AIRPORT_LOAD_LIST.length; i++) {
-            const airport = AIRPORT_LOAD_LIST[i];
+        // see `/assets/airports/airportLoadList.js` for more information on why this is attached to the `window` object
+        const airportList = window.AIRPORT_LOAD_LIST;
+
+        for (let i = 0; i < airportList.length; i++) {
+            const airport = airportList[i];
 
             this.airport_load(airport);
         }
