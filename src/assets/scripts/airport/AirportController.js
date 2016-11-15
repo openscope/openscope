@@ -21,15 +21,17 @@ const DEFAULT_AIRPORT_ICAO = 'ksfo';
 export default class AirportController {
     /**
      * @constructor
+     * @param airportLoadList {array<object>}  List of airports to load
      * @param updateRun {function}
      */
-    constructor(updateRun) {
+    constructor(airportLoadList, updateRun) {
         this.updateRun = updateRun;
         this.airport = airport;
         this.airport.airports = {};
         this.airport.current = null;
         this.airlineController = null;
         this.aircraftController = null;
+        this._airportListToLoad = airportLoadList;
     }
 
     /**
@@ -57,11 +59,8 @@ export default class AirportController {
      * @method init
      */
     init() {
-        // see `/assets/airports/airportLoadList.js` for more information on why this is attached to the `window` object
-        const airportList = window.AIRPORT_LOAD_LIST;
-
-        for (let i = 0; i < airportList.length; i++) {
-            const airport = airportList[i];
+        for (let i = 0; i < this._airportListToLoad.length; i++) {
+            const airport = this._airportListToLoad[i];
 
             this.airport_load(airport);
         }
