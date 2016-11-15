@@ -6,7 +6,10 @@ import StandardRouteWaypointModel from '../../../src/assets/scripts/airport/Stan
 import FixCollection from '../../../src/assets/scripts/airport/Fix/FixCollection';
 import Waypoint from '../../../src/assets/scripts/aircraft/Waypoint';
 
-import { airportPositionFixture } from '../../fixtures/airportFixtures';
+import {
+    airportPositionFixture,
+    airportModelFixtureForWaypoint
+} from '../../fixtures/airportFixtures'
 import { FIX_LIST_MOCK } from '../Fix/_mocks/fixMocks';
 
 const NAME_MOCK = 'BIKKR';
@@ -61,7 +64,7 @@ ava('calls ._parseWaypointRestrictions() when provided and array', t => {
 ava('.generateFmsWaypoint() returns a new instance of an FMS Waypoint object', t => {
     const fmsMock = {};
     const model = new StandardRouteWaypointModel(ROUTE_WAYPOINT_MOCK);
-    const result = model.generateFmsWaypoint(fmsMock);
+    const result = model.generateFmsWaypoint(airportModelFixtureForWaypoint);
 
     t.true(result instanceof Waypoint);
     t.true(model.name === result.fix);

@@ -63,6 +63,7 @@ export default class AirportModel {
         this.level = null;
         this.position = null;
         this.runways = [];
+        // TODO: rename to `runwayName`
         this.runway = null;
         this.fixes = {};
         this.sids = {};

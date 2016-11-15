@@ -284,9 +284,10 @@ export default class StandardRouteWaypointModel {
     /**
      * @for StandardRouteWaypointModel
      * @method generateFmsWaypoint
+     * @param airport {AirportInstanceModel}
      * @return {Waypoint}
      */
-    generateFmsWaypoint(fms) {
+    generateFmsWaypoint(airport) {
         const fmsWaypoint = {
             fix: this.name,
             fixRestrictions: {
@@ -295,7 +296,7 @@ export default class StandardRouteWaypointModel {
             }
         }
 
-        return new Waypoint(fmsWaypoint, fms);
+        return new Waypoint(fmsWaypoint, airport);
     }
 
     /**

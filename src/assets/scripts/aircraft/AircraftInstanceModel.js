@@ -721,6 +721,7 @@ export default class Aircraft {
      * @param data
      */
     runHeading(data) {
+        const airport = window.airportController.airport_get();
         const direction = data[0];
         let heading = data[1];
         const incremental = data[2];
@@ -775,7 +776,7 @@ export default class Aircraft {
                     turn: direction,
                     hold: false
                 },
-                this.fms
+                airport
             );
 
             // add new Leg after hold leg
@@ -796,7 +797,7 @@ export default class Aircraft {
                     turn: direction,
                     hold: false
                 },
-                this.fms
+                airport
             );
 
             // TODO: this should be an FMS class method that accepts a new `waypointLeg`
@@ -814,7 +815,7 @@ export default class Aircraft {
                         turn: direction,
                         hold: false
                     },
-                    this.fms
+                    airport
                 );
 
                 this.fms.appendLeg({
@@ -832,7 +833,7 @@ export default class Aircraft {
                         turn: direction,
                         hold: false
                     },
-                    this.fms
+                    airport
                 );
 
                 this.fms.insertLegHere({
@@ -1022,6 +1023,7 @@ export default class Aircraft {
      * @param data
      */
     runHold(data) {
+        const airport = window.airportController.airport_get();
         let dirTurns = data[0];
         let legLength = data[1];
         let holdFix = data[2];
@@ -1068,7 +1070,7 @@ export default class Aircraft {
                                 altitude: this.fms.altitudeForCurrentWaypoint(),
                                 speed: this.fms.currentWaypoint.speed
                             },
-                            this.fms
+                            airport
                         ),
                         // then enter the hold
                         new Waypoint(
@@ -1086,11 +1088,12 @@ export default class Aircraft {
                                     timer: null
                                 }
                             },
-                            this.fms
+                            airport
                         )
                     ]
                 });
             } else {
+                // TODO: this should be a `Waypoint`
                 // already currently going to the hold fix
                 // Force the initial turn to outbound heading when entering the hold
                 this.fms.appendWaypoint({
@@ -1113,6 +1116,7 @@ export default class Aircraft {
             holdFixLocation = this.position; // make a/c hold over their present position
             inboundHdg = this.heading;
 
+            // TODO: these aren't `Waypoints` and they should be
             this.fms.insertLegHere({
                 type: 'fix',
                 waypoints: [

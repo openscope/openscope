@@ -125,10 +125,11 @@ export default class AircraftFlightManagementSystem {
      * Insert a waypoint at current position and immediately activate it
      */
     insertWaypointHere(data) {
+        const airport = window.airportController.airport_get();
         const prev = this.currentWaypoint;
 
         // TODO: split this up into smaller chunks
-        this.currentLeg.waypoints.splice(this.current[WAYPOINT_WITHIN_LEG], 0, new Waypoint(data, this));
+        this.currentLeg.waypoints.splice(this.current[WAYPOINT_WITHIN_LEG], 0, new Waypoint(data, airport));
         this.update_fp_route();
 
         // TODO: these if blocks a repeated elsewhere, perhaps currentWaypoint can handle this logic?
@@ -201,8 +202,9 @@ export default class AircraftFlightManagementSystem {
      *  Insert a waypoint after the *current* waypoint
      */
     appendWaypoint(data) {
+        const airport = window.airportController.airport_get();
         // TODO: split this up into smaller chunks
-        this.currentLeg.waypoints.splice(this.current[WAYPOINT_WITHIN_LEG] + 1, 0, new Waypoint(data, this));
+        this.currentLeg.waypoints.splice(this.current[WAYPOINT_WITHIN_LEG] + 1, 0, new Waypoint(data, airport));
         this.update_fp_route();
     }
 

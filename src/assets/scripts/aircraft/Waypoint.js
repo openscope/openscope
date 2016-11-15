@@ -67,7 +67,7 @@ export default class Waypoint {
      * @for Waypoint
      * @constructor
      */
-    constructor(data = {}, fms) {
+    constructor(data = {}, airport) {
         this.altitude = null;
         this.fix = null;
         this.navmode = null;
@@ -93,7 +93,7 @@ export default class Waypoint {
 
         this.route = '';
 
-        this.parse(data, fms);
+        this.parse(data, airport);
     }
 
     /**
@@ -102,11 +102,9 @@ export default class Waypoint {
      * @for Waypoint
      * @method parse
      * @param data {object}
-     * @param fms {AircraftFlightManagementSystem}
      */
-    parse(data, fms) {
-        this.extractFixRestrictions(data);
-
+    parse(data, airport) {
+        // TODO: is this used?
         this.route = _get(data, 'route', this.route);
 
         // Populate Waypoint with data
@@ -116,7 +114,8 @@ export default class Waypoint {
             this.location = FixCollection.getFixPositionCoordinates(data.fix);
         }
 
-        this.setInitialNavMode();
+        this.extractFixRestrictions(data);
+        this.setInitialNavMode(airport);
     }
 
     /**
@@ -138,15 +137,14 @@ export default class Waypoint {
      * For aircraft that don't yet have proper guidance (eg: SID/STAR, or departing aircraft)
      *
      * @for Waypoint
-     * @setInitialNavMode
+     * @method setInitialNavMode
      */
-    setInitialNavMode() {
+    setInitialNavMode(airport) {
         if (this.navmode) {
             return;
         }
 
         this.navmode = WAYPOINT_NAV_MODE.HEADING;
-        const airport = window.airportController.airport_get();
         const firstRouteSegment = _head(this.route.split('.'));
 
         if (firstRouteSegment === airport.icao && this.heading === null) {
@@ -162,6 +160,7 @@ export default class Waypoint {
     }
 
     // TODO: rename centerCeiling and make this method more flexible
+    // TODO: use a default constant for cruiseAltitude
     /**
      * @for Waypoint
      * @method setAltitude

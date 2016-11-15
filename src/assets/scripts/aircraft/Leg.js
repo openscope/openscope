@@ -89,6 +89,8 @@ export default class Leg {
             return;
         }
 
+        const airport = window.airportController.airport_get();
+
         switch (this.type) {
             case FP_LEG_TYPE.SID:
                 // TODO: this is gross. we instantiate route with a string and new mutate it here to a RouteModel.
@@ -104,25 +106,25 @@ export default class Leg {
                 break;
             case FP_LEG_TYPE.IAP:
                 // FUTURE FUNCTIONALITY
-                this._generateWaypointsForIap(data, fms);
+                this._generateWaypointsForIap(data, airport);
 
                 break;
             case FP_LEG_TYPE.AWY:
                 // TODO: this is gross. we instantiate route with a string and new mutate it here to a RouteModel.
                 this.route = new RouteModel(data.route);
-                this._generateWaypointsForAirway(data, fms);
+                this._generateWaypointsForAirway(data, airport);
 
                 break;
             case FP_LEG_TYPE.FIX:
-                this._generateWaypointForFix(fms);
+                this._generateWaypointForFix(airport);
 
                 break;
             case FP_LEG_TYPE.MANUAL:
-                this._generateManualWaypoint(fms);
+                this._generateManualWaypoint(airport);
 
                 break;
             default:
-                this._generateEmptyWaypoint(fms);
+                this._generateEmptyWaypoint(airport);
 
                 break;
         }
@@ -185,7 +187,7 @@ export default class Leg {
         }
 
         for (let i = 0; i < waypointsForSid.length; i++) {
-            const waypointToAdd = waypointsForSid[i].generateFmsWaypoint(fms);
+            const waypointToAdd = waypointsForSid[i].generateFmsWaypoint(airport);
 
             this.addWaypointToLeg(waypointToAdd);
         }
@@ -216,7 +218,7 @@ export default class Leg {
         const waypointsForStar = airport.findWaypointModelsForStar(this.route.procedure, this.route.entry, rwy);
 
         for (let i = 0; i < waypointsForStar.length; i++) {
-            const waypointToAdd = waypointsForStar[i].generateFmsWaypoint(fms);
+            const waypointToAdd = waypointsForStar[i].generateFmsWaypoint(airport);
 
             this.addWaypointToLeg(waypointToAdd);
         }
@@ -227,7 +229,7 @@ export default class Leg {
     }
 
     // NOT IN USE
-    _generateWaypointsForIap(data, fms) {
+    _generateWaypointsForIap(data, airport) {
         return;
     }
 
@@ -239,7 +241,7 @@ export default class Leg {
      * @param fms {AircraftFlightManagementSystem}
      * @private
      */
-    _generateWaypointsForAirway(data, fms) {
+    _generateWaypointsForAirway(data, airport) {
         const start = this.route.split('.')[0];
         const airway = this.route.split('.')[1];
         const end = this.route.split('.')[2];
@@ -276,7 +278,7 @@ export default class Leg {
         this._resetWaypoints();
 
         _forEach(fixes, (fix) => {
-            const waypointToAdd = new Waypoint({ fix }, fms);
+            const waypointToAdd = new Waypoint({ fix }, airport);
 
             this.addWaypointToLeg(waypointToAdd);
         });
@@ -285,13 +287,13 @@ export default class Leg {
     /**
      * @for Leg
      * @method _generateWaypointForFix
-     * @param fms {AircraftFlightManagementSystem}
+     * @param airport {AirportInstanceModel}
      * @private
      */
-    _generateWaypointForFix(fms) {
+    _generateWaypointForFix(airport) {
         this._resetWaypoints();
 
-        const waypointToAdd = new Waypoint({ fix: this.route }, fms);
+        const waypointToAdd = new Waypoint({ fix: this.route }, airport);
 
         this.addWaypointToLeg(waypointToAdd);
     }
@@ -299,11 +301,11 @@ export default class Leg {
     /**
      * @for Leg
      * @method _generateManualWaypoint
-     * @param fms {AircraftFlightManagementSystem}
+     * @param airport {AirportInstanceModel}
      * @private
      */
-    _generateManualWaypoint(fms) {
-        const waypointToAdd = new Waypoint(this.route, fms);
+    _generateManualWaypoint(airport) {
+        const waypointToAdd = new Waypoint({ fix: this.route }, airport);
 
         this.addWaypointToLeg(waypointToAdd);
     }
@@ -311,11 +313,11 @@ export default class Leg {
     /**
      * @for Leg
      * @method _generateEmptyWaypoint
-     * @param fms {AircraftFlightManagementSystem}
+     * @param airport {AirportInstanceModel}
      * @private
      */
-    _generateEmptyWaypoint(fms) {
-        const waypointToAdd = new Waypoint({ route: '' }, fms);
+    _generateEmptyWaypoint(airport) {
+        const waypointToAdd = new Waypoint({ route: '' }, airport);
 
         this.addWaypointToLeg(waypointToAdd);
     }
