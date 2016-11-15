@@ -196,17 +196,15 @@ export default class AirportModel {
 
         // for each area
         this.airspace = _map(airspace, (airspaceSection) => {
-            const positionArea = new AirspaceModel(
+            return new AirspaceModel(
                 airspaceSection,
                 this.position,
                 this.magnetic_north
             );
-
-            areas.push(positionArea);
         });
 
         // airspace perimeter (assumed to be first entry in data.airspace)
-        this.perimeter = _head(areas);
+        this.perimeter = _head(this.airspace);
 
         // change ctr_radius to point along perimeter that's farthest from rr_center
         // const pos = new PositionModel(this.perimeter.poly[0].position, this.position, this.magnetic_north);
