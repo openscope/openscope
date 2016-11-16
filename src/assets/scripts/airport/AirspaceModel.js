@@ -1,6 +1,6 @@
 import _isEqual from 'lodash/isEqual';
 import _map from 'lodash/map';
-import _uniqueId from 'lodash/uniqueId';
+import BaseModel from '../base/BaseModel';
 import PositionModel from '../base/PositionModel';
 
 /**
@@ -19,7 +19,7 @@ const convertToThousands = (value) => parseInt(value, 10) * 100;
  *
  * @class AirspaceModel
  */
-export default class AirspaceModel {
+export default class AirspaceModel extends BaseModel {
     /**
      * @for AirspaceModel
      * @constructor
@@ -28,16 +28,12 @@ export default class AirspaceModel {
      * @param magneticNorth {number}
      */
     constructor(airspace, airportPosition, magneticNorth) {
+        super();
+
         if (!airspace || !airportPosition || !magneticNorth) {
             // eslint-disable-next-line max-len
             throw new TypeError('Invalid parameter, expected airspace, airportPosition and magneticNorth to be defined');
         }
-
-        /**
-         * @property _id
-         * @type {string}
-         */
-        this._id = _uniqueId();
 
         /**
          * List of lat/long coordinates that outline the shape of the area

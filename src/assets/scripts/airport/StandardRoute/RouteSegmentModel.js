@@ -1,7 +1,7 @@
 import _forEach from 'lodash/forEach';
 import _map from 'lodash/map';
 import _isArray from 'lodash/isArray';
-import _uniqId from 'lodash/uniqueId';
+import BaseModel from '../../base/BaseModel';
 import StandardRouteWaypointModel from './StandardRouteWaypointModel';
 
 /**
@@ -9,7 +9,7 @@ import StandardRouteWaypointModel from './StandardRouteWaypointModel';
  *
  * @class RouteSegmentModel
  */
-export default class RouteSegmentModel {
+export default class RouteSegmentModel extends BaseModel {
     /**
      * segmentWaypoints should come in a similar shape to:
      * - ["_NAPSE068", "NAPSE", ["RIOOS", "A130+"], "COMPS"]
@@ -19,14 +19,7 @@ export default class RouteSegmentModel {
      * @param segmentWaypoints {array}  a mixed array of strings or arrays of strings
      */
     constructor(name, segmentWaypoints = []) {
-        /**
-         * Unigue string id that can be used to differentiate this model instance from another
-         *
-         * @property _id
-         * @type {string}
-         * @private
-         */
-        this._id = _uniqId();
+        super();
 
         /**
          * Name of the RouteSegment
