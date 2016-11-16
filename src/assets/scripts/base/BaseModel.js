@@ -3,8 +3,6 @@ import _uniqueId from 'lodash/uniqueId';
 /**
  * Base class for all Model objects to inherit from.
  *
- * All Model objects should implement their own `_init` and `destroy` methods.
- *
  * This class is meant to be extended and should never be used directly.
  *
  * @class BaseModel
@@ -27,6 +25,7 @@ export default class BaseModel {
      *
      * This method may be called by the constructor or from a public fascade.
      *
+     * @for BaseModel
      * @method _init
      * @private
      */
@@ -40,6 +39,7 @@ export default class BaseModel {
      * When implemented by the inheriting class, this method should un-set all class properties
      * and remove any handlers.
      *
+     * @for BaseModel
      * @method destroy
      */
     destroy() {
