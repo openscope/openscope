@@ -1,6 +1,12 @@
 import _uniqueId from 'lodash/uniqueId';
 
 /**
+ * Base class for all Model objects to inherit from.
+ *
+ * All Model objects should implement their own `_init` and `destroy` methods.
+ *
+ * This class is meant to be extended and should never be used directly.
+ *
  * @class BaseModel
  */
 export default class BaseModel {
@@ -15,10 +21,27 @@ export default class BaseModel {
         this._id = _uniqueId();
     }
 
+    /**
+     * Initialize the model properties. Should be run on instantiation and, though not desired,
+     * could be run multiple times after instantiation.
+     *
+     * This method may be called by the constructor or from a public fascade.
+     *
+     * @method _init
+     * @private
+     */
     _init() {
         throw new TypeError('._init() method must be implemented by the class extending BaseModel');
     }
 
+    /**
+     * Destory the current instance.
+     *
+     * When implemented by the inheriting class, this method should un-set all class properties
+     * and remove any handlers.
+     *
+     * @method destroy
+     */
     destroy() {
         throw new TypeError('.destroy() method must be implemented by the class extending BaseModel');
     }

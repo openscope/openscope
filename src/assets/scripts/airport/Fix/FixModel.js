@@ -1,5 +1,5 @@
 import _cloneDeep from 'lodash/cloneDeep';
-import _uniqueId from 'lodash/uniqueId';
+import BaseModel from '../../base/BaseModel';
 import PositionModel from '../../base/PositionModel';
 
 /**
@@ -10,7 +10,7 @@ import PositionModel from '../../base/PositionModel';
  *
  * @class FixModel
  */
-export default class FixModel {
+export default class FixModel extends BaseModel {
     /**
      * @for FixModel
      * @constructor
@@ -19,17 +19,11 @@ export default class FixModel {
      * @param airportPosition {PositionModel}
      */
     constructor(fixName, fixCoordinate, airportPosition) {
+        super();
+
         if (!fixName || !fixCoordinate || !airportPosition) {
             return;
         }
-
-        /**
-         * Unigue string id that can be used to differentiate this model instance from another.
-         *
-         * @property _id
-         * @type {string}
-         */
-        this._id = _uniqueId();
 
         /**
          * Name of the Fix
