@@ -1012,8 +1012,8 @@ export default class ConvasController {
         for (let i = 0; i < 60; i++) {
             twin.update();
 
-            ils_locked = twin.fms.currentWaypoint.runway &&
-                twin.category === FLIGHT_MODES.ARRIVAL &&
+            ils_locked = twin.isPrecisionGuided() &&
+                twin.category === FLIGHT_CATEGORY.ARRIVAL &&
                 twin.mode === FLIGHT_MODES.LANDING;
 
             future_track.push([twin.position[0], twin.position[1], ils_locked]);
