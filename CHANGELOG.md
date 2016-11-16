@@ -1,4 +1,4 @@
-## v3.1.0 (2016/11/19)
+## 3.1.0 (November 19, 2016)
 ---
 ### Major
 - Adds `FixModel` and static class `FixCollection` for reasoning about airport fixes [#18](https://github.com/n8rzz/atc/issues/18)
