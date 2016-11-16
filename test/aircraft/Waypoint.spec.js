@@ -1,6 +1,6 @@
  /* eslint-disable import/no-extraneous-dependencies, arrow-parens, max-len */
 import ava from 'ava';
-
+import _isEqual from 'lodash/isEqual';
 import Waypoint from '../../src/assets/scripts/aircraft/Waypoint';
 import { airportModelFixtureForWaypoint } from '../airport/_fixtures/airportModelFixture';
 import {
@@ -24,6 +24,17 @@ ava('accepts and object as a parameter and sets its internal properties', t => {
     t.true(result.fix === BASIC_WAYPOINT_MOCK.fix);
     t.true(result.fixRestrictions.alt === BASIC_WAYPOINT_MOCK.fixRestrictions.alt);
     t.true(result.fixRestrictions.spd === BASIC_WAYPOINT_MOCK.fixRestrictions.spd);
+});
+
+ava('accepts and object as a parameter and sets its internal properties', t => {
+    const result = new Waypoint(EXPANDED_WAYPOINT_MOCK, airportModelFixtureForWaypoint);
+
+    t.true(result.fix === EXPANDED_WAYPOINT_MOCK.fix);
+    t.true(result.navmode === EXPANDED_WAYPOINT_MOCK.navmode);
+    t.true(result.speed === EXPANDED_WAYPOINT_MOCK.speed);
+    t.true(result.altitude === EXPANDED_WAYPOINT_MOCK.altitude);
+    t.true(result.fix === EXPANDED_WAYPOINT_MOCK.fix);
+    t.true(_isEqual(result.fix, EXPANDED_WAYPOINT_MOCK.fix));
 });
 
 ava('.extractFixRestrictions() does not set fixRestrictions if none are provided', t => {

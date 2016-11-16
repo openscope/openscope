@@ -106,6 +106,15 @@ export default class Waypoint {
     parse(data, airport) {
         // TODO: is this used?
         this.route = _get(data, 'route', this.route);
+        this.altitude = _get(data, 'altitude', this.altitude);
+        this.navmode = _get(data, 'navmode', this.navmode);
+        this.heading = _get(data, 'heading', this.heading);
+        this.turn = _get(data, 'turn', this.turn);
+        this.location = _get(data, 'location', this.location);
+        this.expedite = _get(data, 'expedite', this.expedite);
+        this.speed = _get(data, 'speed', this.speed);
+        this.hold = _get(data, 'hold', this.hold);
+
 
         // Populate Waypoint with data
         if (data.fix) {
