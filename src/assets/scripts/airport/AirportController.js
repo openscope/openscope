@@ -3,7 +3,6 @@ import _lowerCase from 'lodash/lowerCase';
 import AirlineController from '../airline/AirlineController';
 import AircraftController from '../aircraft/AircraftController';
 import Airport from './AirportModel';
-import { AIRPORT_LOAD_LIST } from './airportLoadList';
 import { STORAGE_KEY } from '../constants/storageKeys';
 
 // Temporary const declaration here to attach to the window AND use as internal property
@@ -22,15 +21,17 @@ const DEFAULT_AIRPORT_ICAO = 'ksfo';
 export default class AirportController {
     /**
      * @constructor
+     * @param airportLoadList {array<object>}  List of airports to load
      * @param updateRun {function}
      */
-    constructor(updateRun) {
+    constructor(airportLoadList, updateRun) {
         this.updateRun = updateRun;
         this.airport = airport;
         this.airport.airports = {};
         this.airport.current = null;
         this.airlineController = null;
         this.aircraftController = null;
+        this._airportListToLoad = airportLoadList;
     }
 
     /**
@@ -58,8 +59,8 @@ export default class AirportController {
      * @method init
      */
     init() {
-        for (let i = 0; i < AIRPORT_LOAD_LIST.length; i++) {
-            const airport = AIRPORT_LOAD_LIST[i];
+        for (let i = 0; i < this._airportListToLoad.length; i++) {
+            const airport = this._airportListToLoad[i];
 
             this.airport_load(airport);
         }

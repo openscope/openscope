@@ -46,8 +46,9 @@ export default class App {
      * @for App
      * @constructor
      * @param $element {HTML Element|null}
+     * @param airportLoadList {array<object>}  List of airports to load
      */
-    constructor(element) {
+    constructor(element, airportLoadList) {
         /**
          * Root DOM element.
          *
@@ -88,7 +89,7 @@ export default class App {
             this.prop.log = LOG.WARNING;
         }
 
-        return this.setupChildren()
+        return this.setupChildren(airportLoadList)
                     .enable();
     }
 
@@ -99,11 +100,12 @@ export default class App {
      *
      * @for App
      * @method setupChildren
+     * @param airportLoadList {array<object>}  List of airports to load
      */
-    setupChildren() {
+    setupChildren(airportLoadList) {
         this.loadingView = new LoadingView();
         this.contentQueue = new ContentQueue(this.loadingView);
-        this.airportController = new AirportController(this.updateRun);
+        this.airportController = new AirportController(airportLoadList, this.updateRun);
         this.gameController = new GameController(this.getDeltaTime);
         this.tutorialView = new TutorialView(this.$element);
         this.inputController = new InputController(this.$element);
