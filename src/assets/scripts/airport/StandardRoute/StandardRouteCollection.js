@@ -24,28 +24,8 @@ export default class StandardRouteCollection extends BaseCollection {
             return;
         }
 
-        // /**
-        //  * List of `StandardRouteModel` objects
-        //  *
-        //  * @property _items
-        //  * @type {array}
-        //  * @default []
-        //  * @private
-        //  */
-        // this._items = [];
-
         return this._init(standardRouteEnum);
     }
-
-    // /**
-    //  * Convenience property to get at the current length of `_items`
-    //  *
-    //  * @property length
-    //  * @return {number}
-    //  */
-    // get length() {
-    //     return this._items.length;
-    // }
 
     /**
      * Lifecycle method. Should be run only once on instantiation.
