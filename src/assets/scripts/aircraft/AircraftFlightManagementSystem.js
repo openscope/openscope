@@ -988,7 +988,9 @@ export default class AircraftFlightManagementSystem {
             return null;
         }
 
-        return `${this.following.star}.${window.airportController.airport_get().icao}`;
+        const { icao } = window.airportController.airport_get();
+
+        return `${this.following.star}.${icao.toUpperCase()}`;
     }
 
     /**
