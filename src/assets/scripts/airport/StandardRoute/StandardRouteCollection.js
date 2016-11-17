@@ -1,6 +1,7 @@
 import _find from 'lodash/find';
 import _forEach from 'lodash/forEach';
 import _random from 'lodash/random';
+import BaseCollection from '../../base/BaseCollection';
 import StandardRouteModel from './StandardRouteModel';
 
 /**
@@ -11,38 +12,40 @@ import StandardRouteModel from './StandardRouteModel';
  *
  * @class StandardRouteCollection
  */
-export default class StandardRouteCollection {
+export default class StandardRouteCollection extends BaseCollection {
     /**
      * @constructor
      * @param standardRouteEnum {object}
      */
     constructor(standardRouteEnum) {
+        super(standardRouteEnum);
+
         if (typeof standardRouteEnum === 'undefined') {
             return;
         }
 
-        /**
-         * List of `StandardRouteModel` objects
-         *
-         * @property _items
-         * @type {array}
-         * @default []
-         * @private
-         */
-        this._items = [];
+        // /**
+        //  * List of `StandardRouteModel` objects
+        //  *
+        //  * @property _items
+        //  * @type {array}
+        //  * @default []
+        //  * @private
+        //  */
+        // this._items = [];
 
         return this._init(standardRouteEnum);
     }
 
-    /**
-     * Convenience property to get at the current length of `_items`
-     *
-     * @property length
-     * @return {number}
-     */
-    get length() {
-        return this._items.length;
-    }
+    // /**
+    //  * Convenience property to get at the current length of `_items`
+    //  *
+    //  * @property length
+    //  * @return {number}
+    //  */
+    // get length() {
+    //     return this._items.length;
+    // }
 
     /**
      * Lifecycle method. Should be run only once on instantiation.
