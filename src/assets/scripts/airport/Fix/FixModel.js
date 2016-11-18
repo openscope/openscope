@@ -21,7 +21,10 @@ export default class FixModel extends BaseModel {
     constructor(fixName, fixCoordinate, airportPosition) {
         super();
 
+        // TODO: should this be a throwing instead of returning early?
         if (!fixName || !fixCoordinate || !airportPosition) {
+            console.error(`Invalid parameter. one of fixName, fixCoordinate or airportPosition is undefined or null in FixModel`);
+
             return;
         }
 
