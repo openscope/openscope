@@ -1,3 +1,4 @@
+import BaseModel from '../base/BaseModel';
 import PositionModel from '../base/PositionModel';
 import { abs, tan } from '../math/core';
 import { radians_normalize } from '../math/circle';
@@ -7,7 +8,7 @@ import { vlen, vradial, vsub, vadd, vscale } from '../math/vector';
 /**
  * @class RunwayModel
  */
-export default class RunwayModel {
+export default class RunwayModel extends BaseModel {
     /**
      * @for RunwayModel
      * @constructor
@@ -16,6 +17,8 @@ export default class RunwayModel {
      * @param airport {AirportModel}
      */
     constructor(options = {}, end, airport) {
+        super();
+
         options.airport = airport;
         this.airport = null;
         this.angle = null;
