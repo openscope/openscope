@@ -22,14 +22,14 @@ ava('._init() does not throw when called by an extending class', t => {
     t.notThrows(() => model._init());
 });
 
-ava('.destroy() throws when called from BaseModel', t => {
+ava('.reset() throws when called from BaseModel', t => {
     const model = new BaseModel();
 
-    t.throws(() => model.destroy());
+    t.throws(() => model.reset());
 });
 
-ava('.destroy() does not throw when called from and extending class', t => {
+ava('.reset() does not throw when called from and extending class', t => {
     const model = new ExtendedBaseModelFixture();
 
-    t.notThrows(() => model.destroy());
+    t.notThrows(() => model.reset());
 });

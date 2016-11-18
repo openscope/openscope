@@ -75,14 +75,13 @@ export default class FixModel extends BaseModel {
     }
 
     /**
-     * Destroy the current instance
+     * reset the current instance
      *
      * @for FixModel
-     * @method destroy
+     * @method reset
      * @chainable
      */
-    destroy() {
-        this._id = '';
+    reset() {
         this.name = '';
         this._fixPosition = null;
 

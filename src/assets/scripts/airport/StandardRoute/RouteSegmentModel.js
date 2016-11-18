@@ -84,13 +84,12 @@ export default class RouteSegmentModel extends BaseModel {
     }
 
     /**
-     * Destroy the current instance
+     * rest the current instance
      *
-     * @for destroy
-     * @method destroy
+     * @for RouteSegmentModel
+     * @method reset
      */
-    destroy() {
-        this._id = '';
+    reset() {
         this.name = '';
         this._items = [];
 

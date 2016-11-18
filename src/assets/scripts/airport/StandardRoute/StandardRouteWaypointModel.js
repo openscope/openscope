@@ -212,13 +212,12 @@ export default class StandardRouteWaypointModel extends BaseModel {
     }
 
     /**
-     * Destroy the current model instance
+     * reset the current model instance
      *
      * @for StandardRouteWaypointModel
-     * @method destroy
+     * @method reset
      */
-    destroy() {
-        this._id = '';
+    reset() {
         this.name = '';
         this._restrictions = null;
         this._alititude = -1000;

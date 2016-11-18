@@ -67,30 +67,4 @@ export default class BaseCollection {
     destroy() {
         throw new TypeError('BaseCollection#destroy has not been implemented by the extending class');
     }
-
-    /**
-     * Accept a list of items then call `_addItem` with each item in the list.
-     *
-     * When implemented by the inheriting class, this method should call `_addItem`
-     *
-     * @for BaseCollection
-     * @method _addItems
-     * @private
-     */
-    _addItems() {
-        throw new TypeError('BaseCollection#_addItems has not been implemented by the extending class');
-    }
-
-    /**
-     * Adds a single item to the collection.
-     *
-     * Usually called by `_addItems` but may be called elsewhere for single item additions
-     *
-     * @for BaseCollection
-     * @method _addItem
-     * @private
-     */
-    _addItem() {
-        throw new TypeError('BaseCollection#_addItem has not been implemented by the extending class');
-    }
 }
