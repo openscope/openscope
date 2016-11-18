@@ -9,8 +9,8 @@ import Waypoint from '../../../src/assets/scripts/aircraft/Waypoint';
 import {
     airportPositionFixture,
     airportModelFixtureForWaypoint
-} from '../../fixtures/airportFixtures'
-import { FIX_LIST_MOCK } from '../Fix/_mocks/fixMocks';
+} from '../../fixtures/airportFixtures';
+import { FIX_LIST_MOCK } from '../fix/_mocks/fixMocks';
 
 const NAME_MOCK = 'BIKKR';
 const RESTRICTIONS_MOCK = 'A80+|S250';
@@ -24,7 +24,7 @@ ava('StandardRouteWaypointModel exits early when instantiated without parameters
 
     const model = new StandardRouteWaypointModel();
 
-    t.true(typeof model._id === 'undefined');
+    t.true(typeof model.name === 'undefined');
 });
 
 ava('sets only `name` when provided a string', t => {
@@ -34,7 +34,7 @@ ava('sets only `name` when provided a string', t => {
     t.true(model.name === NAME_MOCK);
     t.true(model._altitude === null);
     t.true(model._altitudeConstraint === '');
-    t.true(model._speed === null)
+    t.true(model._speed === null);
 });
 
 ava('.clonePoisitonFromFix() does not throw when no fix exists', t => {
@@ -78,7 +78,7 @@ ava('._parseWaypointRestrictions() extracts alititude and speed restrictions fro
     model._parseWaypointRestrictions(RESTRICTIONS_MOCK);
 
     t.true(model._altitude === '80+');
-    t.true(model._speed === '250')
+    t.true(model._speed === '250');
 });
 
 ava('._parseWaypointRestrictions() extracts an alititude restriction from a waypointRestrictions string by calling ._setAltitudeRestriction()', t => {
@@ -100,7 +100,7 @@ ava('._parseWaypointRestrictions() extracts a speed restriction from a waypointR
 
     t.true(spy.callCount === 1);
     t.true(model._altitude === null);
-    t.true(model._speed === '280')
+    t.true(model._speed === '280');
 });
 
 ava('._parseWaypointRestrictions() returns early if no paramater is received', t => {
@@ -109,5 +109,5 @@ ava('._parseWaypointRestrictions() returns early if no paramater is received', t
     model._parseWaypointRestrictions();
 
     t.true(model._altitude === null);
-    t.true(model._speed === null)
+    t.true(model._speed === null);
 });

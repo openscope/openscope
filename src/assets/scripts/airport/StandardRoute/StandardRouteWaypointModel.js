@@ -1,9 +1,5 @@
-import _head from 'lodash/head';
-import _last from 'lodash/last';
-import _isNil from 'lodash/isNil';
-import _uniqId from 'lodash/uniqueId';
+import BaseModel from '../../base/BaseModel';
 import FixCollection from '../Fix/FixCollection';
-import Waypoint from '../../aircraft/Waypoint';
 
 /**
  * @property NAME_INDEX
@@ -44,8 +40,9 @@ const SPEED_RESTRICTION_PREFIX = 'S';
  * A route waypoint describes a `fixName` and any altitude or speed restrictions for that fix.
  *
  * @class StandardRouteWaypointModel
+ * @extends BaseModel
  */
-export default class StandardRouteWaypointModel {
+export default class StandardRouteWaypointModel extends BaseModel {
     /**
      * Expects `routeWaypoint` to be in one of these forms:
      * - ["FRAWG", "A80+|S210+"]
@@ -58,18 +55,11 @@ export default class StandardRouteWaypointModel {
      * @param routeWaypoint {array|string}
      */
     constructor(routeWaypoint) {
+        super(routeWaypoint);
+
         if (typeof routeWaypoint === 'undefined') {
             return this;
         }
-
-        /**
-         * Unigue string id that can be used to differentiate this model instance from another.
-         *
-         * @property _id
-         * @type {string}
-         * @private
-         */
-        this._id = _uniqId();
 
         /**
          * Name of the fix
@@ -243,13 +233,12 @@ export default class StandardRouteWaypointModel {
     }
 
     /**
-     * Destroy the current model instance
+     * reset the current model instance
      *
      * @for StandardRouteWaypointModel
-     * @method destroy
+     * @method reset
      */
-    destroy() {
-        this._id = '';
+    reset() {
         this.name = '';
         this._restrictions = null;
         this._altitude = null;

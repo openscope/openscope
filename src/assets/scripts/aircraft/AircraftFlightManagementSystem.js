@@ -933,8 +933,9 @@ export default class AircraftFlightManagementSystem {
             return null;
         }
 
-        // TODO: if we already have a reference to the aircraft in, `this.my_aircraft`, why are we getting it again?
-        return `${this.following.star}.${window.airportController.airport_get().icao}`;
+        const { icao } = window.airportController.airport_get();
+
+        return `${this.following.star}.${icao.toUpperCase()}`;
     }
 
     /**

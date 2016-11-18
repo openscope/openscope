@@ -3,7 +3,7 @@ import _forEach from 'lodash/forEach';
 import _isArray from 'lodash/isArray';
 import _isObject from 'lodash/isObject';
 import _map from 'lodash/map';
-import _uniqId from 'lodash/uniqueId';
+import BaseCollection from '../../base/BaseCollection';
 import RouteSegmentModel from './RouteSegmentModel';
 
 /**
@@ -27,24 +27,17 @@ import RouteSegmentModel from './RouteSegmentModel';
  *
  * @class RouteSegmentCollection
  */
-export default class RouteSegmentCollection {
+export default class RouteSegmentCollection extends BaseCollection {
     /**
      * @constructor
      * @param routeSegments {object}
      */
     constructor(routeSegments) {
+        super(routeSegments);
+
         if (typeof routeSegments === 'undefined' || !_isObject(routeSegments) || _isArray(routeSegments)) {
             throw new TypeError(`Expected routeSegments to be an object. Instead received ${typeof routeSegments}`);
         }
-
-        /**
-         * Unigue string id that can be used to differentiate this instance from another
-         *
-         * @property _id
-         * @type {string}
-         * @private
-         */
-        this._id = _uniqId();
 
         /**
          * Name of the RouteSegment
@@ -54,16 +47,6 @@ export default class RouteSegmentCollection {
          * @default ''
          */
         this.name = '';
-
-        /**
-         * An array of `RouteSegmentModel`s
-         *
-         * @property _items
-         * @type {array}
-         * @default []
-         * @private
-         */
-        this._items = [];
 
         return this._init(routeSegments);
     }
@@ -76,16 +59,6 @@ export default class RouteSegmentCollection {
      */
     get items() {
         return this._items;
-    }
-
-    /**
-     * Convenience property to get the current length of `_items`
-     *
-     * @property length
-     * @type {number}
-     */
-    get length() {
-        return this._items.length;
     }
 
     /**

@@ -1,4 +1,4 @@
-import _uniqueId from 'lodash/uniqueId';
+import BaseModel from '../../base/BaseModel';
 
 /**
  * Symbol that divides each route segment
@@ -22,7 +22,7 @@ const MAXIMUM_ROUTE_SEGMENT_LENGTH = 3;
 /**
  * @class RouteModel
  */
-export default class RouteModel {
+export default class RouteModel extends BaseModel {
     /**
      * example `routeString`
      *
@@ -40,6 +40,8 @@ export default class RouteModel {
      * @param routeString {string}
      */
     constructor(routeString) {
+        super();
+
         if (typeof routeString === 'undefined' || typeof routeString !== 'string') {
             return;
         }
@@ -48,12 +50,6 @@ export default class RouteModel {
             // eslint-disable-next-line max-len
             throw new TypeError(`Invalid routeString passed to RouteModel. Expected a routeString of the shape ORIGIN.BASE.DESTINATION but instead received ${routeString}`);
         }
-
-        /**
-         * @property
-         * @type {string}
-         */
-        this._id = _uniqueId();
 
         /**
          * @property entry
@@ -108,13 +104,12 @@ export default class RouteModel {
     }
 
     /**
-     * Destroy this instance
+     * reset this instance
      *
      * @for RouteModel
-     * @method destroy
+     * @method reset
      */
-    destroy() {
-        this._id = '';
+    reset() {
         this.entry = '';
         this.procedure = '';
         this.exit = '';
