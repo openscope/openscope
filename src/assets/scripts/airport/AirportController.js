@@ -157,8 +157,8 @@ export default class AirportController {
             this.aircraftController.aircraft_remove_all();
         }
 
-        const newAirport = this.airport.airports[icao];
-        newAirport.set();
+        const nextAirportModel = this.airport.airports[icao];
+        nextAirportModel.set();
     }
     /**
      * @function airport_get
