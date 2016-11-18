@@ -94,13 +94,12 @@ export default class RouteModel extends BaseModel {
     }
 
     /**
-     * Destroy this instance
+     * reset this instance
      *
      * @for RouteModel
-     * @method destroy
+     * @method reset
      */
-    destroy() {
-        this._id = '';
+    reset() {
         this.entry = '';
         this.procedure = '';
         this.exit = '';

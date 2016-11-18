@@ -11,7 +11,7 @@ export default class ExtendedBaseModelMock extends BaseModel {
         return this;
     }
 
-    destroy() {
+    reset() {
         return this;
     }
 }

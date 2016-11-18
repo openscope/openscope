@@ -93,10 +93,9 @@ export default class AirspaceModel extends BaseModel {
 
     /**
      * @for AirspaceModel
-     * @method destroy
+     * @method reset
      */
-    destroy() {
-        this._id = '';
+    reset() {
         this.poly = [];
         this.floor = -1;
         this.ceiling = -1;

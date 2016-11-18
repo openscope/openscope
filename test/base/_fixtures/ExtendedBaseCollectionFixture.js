@@ -14,12 +14,4 @@ export default class ExtendedBaseCollectionMock extends BaseCollection {
     destroy() {
         return this;
     }
-
-    _addItems() {
-        return this;
-    }
-
-    _addItem() {
-        return this;
-    }
 }

@@ -30,7 +30,7 @@ export default class BaseModel {
      * @private
      */
     _init() {
-        throw new TypeError('._init() method must be implemented by the class extending BaseModel');
+        throw new TypeError('BaseModel#_init method must be implemented by the class extending BaseModel');
     }
 
     /**
@@ -40,9 +40,9 @@ export default class BaseModel {
      * and remove any handlers.
      *
      * @for BaseModel
-     * @method destroy
+     * @method reset
      */
-    destroy() {
-        throw new TypeError('.destroy() method must be implemented by the class extending BaseModel');
+    reset() {
+        throw new TypeError('BaseModel#reset method must be implemented by the class extending BaseModel');
     }
 }

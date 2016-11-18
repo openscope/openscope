@@ -189,13 +189,12 @@ export default class StandardRouteModel extends BaseModel {
     }
 
     /**
-     * Destroy the current instance
+     * reset the current instance
      *
      * @for StandardRouteModel
-     * @method destroy
+     * @method reset
      */
-    destroy() {
-        this._id = '';
+    reset() {
         this.icao = '';
         this.name = '';
         this.rwy = [];

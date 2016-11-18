@@ -35,27 +35,3 @@ ava('.destroy() does not throw when called from and extending class', t => {
 
     t.notThrows(() => collection.destroy());
 });
-
-ava('._addItems() throws when called from BaseCollection', t => {
-    const collection = new BaseCollection();
-
-    t.throws(() => collection._addItems());
-});
-
-ava('._addItems() does not throw when called from and extending class', t => {
-    const collection = new ExtendedBaseCollectionFixture();
-
-    t.notThrows(() => collection._addItems());
-});
-
-ava('._addItem() throws when called from BaseCollection', t => {
-    const collection = new BaseCollection();
-
-    t.throws(() => collection._addItem());
-});
-
-ava('._addItem() does not throw when called from and extending class', t => {
-    const collection = new ExtendedBaseCollectionFixture();
-
-    t.notThrows(() => collection._addItem());
-});
