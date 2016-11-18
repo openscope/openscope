@@ -4,7 +4,7 @@ import _get from 'lodash/get';
 import _isArray from 'lodash/isArray';
 import _isEmpty from 'lodash/isEmpty';
 import _isObject from 'lodash/isObject';
-import _uniqId from 'lodash/uniqueId';
+import BaseModel from '../../base/BaseModel';
 import RouteSegmentCollection from './RouteSegmentCollection';
 import RouteSegmentModel from './RouteSegmentModel';
 import { distance2d } from '../../math/distance';
@@ -15,7 +15,7 @@ import { nm } from '../../utilities/unitConverters';
  *
  * @class StandardRouteModel
  */
-export default class StandardRouteModel {
+export default class StandardRouteModel extends BaseModel {
     /**
      * Expects an object in the form of (taken from `klas.sids.SHEAD9`):
      *
@@ -54,18 +54,11 @@ export default class StandardRouteModel {
      * @param standardRoute {object}
      */
     constructor(standardRoute) {
+        super();
+
         if (!_isObject(standardRoute) || _isArray(standardRoute)) {
             throw new TypeError(`Expected standardRoute to be an object, instead received ${typeof standardRoute}`);
         }
-
-        /**
-         * Unigue string id that can be used to differentiate this model instance from another.
-         *
-         * @property _id
-         * @type {string}
-         * @private
-         */
-        this._id = _uniqId();
 
         /**
          * Name of the fix
@@ -196,13 +189,12 @@ export default class StandardRouteModel {
     }
 
     /**
-     * Destroy the current instance
+     * reset the current instance
      *
      * @for StandardRouteModel
-     * @method destroy
+     * @method reset
      */
-    destroy() {
-        this._id = '';
+    reset() {
         this.icao = '';
         this.name = '';
         this.rwy = [];
