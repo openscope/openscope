@@ -2,9 +2,9 @@
 import ava from 'ava';
 
 import modelSourceFactory from '../../../src/assets/scripts/base/ModelSource/ModelSourceFactory';
-import PositionModel from '../../../src/assets/scripts/base/PositionModel';
+import FixModel from '../../../src/assets/scripts/airport/Fix/FixModel';
 
-const SOURCE_NAME_MOCK = 'PositionModel';
+const SOURCE_NAME_MOCK = 'FixModel';
 
 ava('throws when attempting to instantiate', t => {
     t.throws(() => new modelSourceFactory());
@@ -21,15 +21,15 @@ ava('.getModelSourceForType() does not throw when provided a supported type', t 
 ava('.getModelSourceForType() returns a constructor when one doesnt exist in the pool', t => {
     const result = modelSourceFactory.getModelSourceForType(SOURCE_NAME_MOCK);
 
-    t.true(result instanceof PositionModel);
+    t.true(result instanceof FixModel);
 });
 
 ava('.getModelSourceForType() returns a constructor that exists in the pool', t => {
-    const model = new PositionModel();
+    const model = new FixModel();
     modelSourceFactory.returnModelToPool(model);
     const result = modelSourceFactory.getModelSourceForType(SOURCE_NAME_MOCK);
 
-    t.true(result instanceof PositionModel);
+    t.true(result instanceof FixModel);
 });
 
 ava('.returnModelToPool() throws when provided an unsupported type', t => {
@@ -39,7 +39,7 @@ ava('.returnModelToPool() throws when provided an unsupported type', t => {
 });
 
 ava('.returnModelToPool() accepts a class instance', t => {
-    const model = new PositionModel();
+    const model = new FixModel();
 
     t.notThrows(() => modelSourceFactory.returnModelToPool(model));
 });

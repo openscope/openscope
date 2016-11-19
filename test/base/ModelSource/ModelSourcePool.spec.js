@@ -3,9 +3,9 @@ import ava from 'ava';
 import sinon from 'sinon';
 
 import modelSourcePool from '../../../src/assets/scripts/base/ModelSource/ModelSourcePool';
-import PositionModel from '../../../src/assets/scripts/base/PositionModel';
+import FixModel from '../../../src/assets/scripts/airport/Fix/FixModel';
 
-const SOURCE_NAME_MOCK = 'PositionModel';
+const SOURCE_NAME_MOCK = 'FixModel';
 
 ava.serial('throws when attempting to instantiate', t => {
     t.throws(() => new modelSourcePool());
@@ -22,7 +22,7 @@ ava.serial('.addModelToPool() throws if the modelToAdd is the incorrect type', t
 });
 
 ava.serial('.addModelToPool() adds the modelToAdd to the pool', t => {
-    const modelToAdd = new PositionModel();
+    const modelToAdd = new FixModel();
     const expectedResult = modelSourcePool.length + 1;
 
     modelSourcePool.addModelToPool(modelToAdd);
@@ -40,12 +40,12 @@ ava.serial('.releasModelFromPool() calls _findModelOfType() with the correct arg
 
 ava.serial('.releasModelFromPool() returns a model if one exists within the pool', t => {
     const result = modelSourcePool.releaseModelFromPool(SOURCE_NAME_MOCK);
-    t.true(result instanceof PositionModel);
+    t.true(result instanceof FixModel);
 });
 
 ava.serial('.releasModelFromPool() returns a model if none exist within the pool', t => {
     modelSourcePool._items = [];
     const result = modelSourcePool.releaseModelFromPool(SOURCE_NAME_MOCK);
 
-    t.true(result instanceof PositionModel);
+    t.true(result instanceof FixModel);
 });

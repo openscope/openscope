@@ -1,6 +1,7 @@
 import _keys from 'lodash/keys';
 import FixModel from '../../airport/Fix/FixModel';
-import PositionModel from '../PositionModel';
+// import Waypoint from '../../aircraft/Waypoint';
+// import PositionModel from '../PositionModel';
 
 /**
  *
@@ -13,13 +14,22 @@ export const CLASS_MAP = {
      *
      *
      */
-    FixModel: FixModel,
+    FixModel: FixModel
 
-    /**
-     *
-     *
-     */
-    PositionModel: PositionModel
+    // TODO: Future additions to the pool each of these models need some work in orer to integrate
+    // into the pool structure
+    //
+    // /**
+    //  *
+    //  *
+    //  */
+    // Waypoint: Waypoint
+    //
+    // /**
+    //  *
+    //  *
+    //  */
+    // PositionModel: PositionModel
 };
 
 export const CLASS_MAP_LENGTH = _keys(CLASS_MAP).length;
