@@ -30,8 +30,8 @@ ava.serial('.returnReusable() adds the modelToAdd to the pool', t => {
     t.true(modelSourcePool.length === expectedResult);
 });
 
-ava.serial('.releasModelFromPool() calls _findModelOfType() with the correct argument', t => {
-    const stub = sinon.stub(modelSourcePool, '_findModelOfType');
+ava.serial('.releasModelFromPool() calls _findModelByConstructorName() with the correct argument', t => {
+    const stub = sinon.stub(modelSourcePool, '_findModelByConstructorName');
     modelSourcePool.releaseReusable(SOURCE_NAME_MOCK);
 
     t.true(stub.calledOnce);
