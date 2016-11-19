@@ -1,3 +1,5 @@
+import _keys from 'lodash/keys';
+import FixModel from '../../airport/Fix/FixModel';
 import PositionModel from '../PositionModel';
 
 /**
@@ -11,5 +13,13 @@ export const CLASS_MAP = {
      *
      *
      */
-    Position: PositionModel
+    FixModel: FixModel,
+
+    /**
+     *
+     *
+     */
+    PositionModel: PositionModel
 };
+
+export const CLASS_MAP_LENGTH = _keys(CLASS_MAP).length;

@@ -12,7 +12,6 @@ import {
 ava.serial('FixCollection throws when an attempt to instantiate is made with invalid params', t => {
     t.throws(() => new FixCollection());
 
-    t.true(FixCollection._id === '');
     t.true(FixCollection._items.length === 0);
     t.true(FixCollection.length === 0);
 });
@@ -20,7 +19,6 @@ ava.serial('FixCollection throws when an attempt to instantiate is made with inv
 ava.serial('FixCollection sets its properties when it receives a valid fixList', t => {
     FixCollection.init(FIX_LIST_MOCK, airportPositionFixture);
 
-    t.false(FixCollection._id === '');
     t.true(FixCollection._items.length > 0);
     t.true(FixCollection.length === FixCollection._items.length);
 });

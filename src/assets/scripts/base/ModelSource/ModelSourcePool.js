@@ -3,9 +3,14 @@ import _forEach from 'lodash/forEach';
 import _has from 'lodash/has';
 import _without from 'lodash/without';
 import BaseCollection from '../BaseCollection';
-import { CLASS_MAP } from './modelSourceClassMap';
+import {
+    CLASS_MAP,
+    CLASS_MAP_LENGTH
+} from './modelSourceClassMap';
 
-const MAX_POOL_SIZE_PER_MODEL = 10;
+const MAX_POOL_SIZE_PER_MODEL = 300;
+
+const MAX_POOL_SIZE = MAX_POOL_SIZE_PER_MODEL * CLASS_MAP_LENGTH;
 
 /**
  *
@@ -21,7 +26,7 @@ class ModelSourcePool extends BaseCollection {
     constructor() {
         super();
 
-        this._maxPoolSizePerModel = MAX_POOL_SIZE_PER_MODEL;
+        this._maxPoolSizePerModel = MAX_POOL_SIZE;
 
         return this._hydratePool();
     }
@@ -67,7 +72,7 @@ class ModelSourcePool extends BaseCollection {
      */
     _hydratePool() {
         _forEach(CLASS_MAP, (ModelSource) => {
-            for (let i = 0; i < this._maxPoolSizePerModel; i++) {
+            for (let i = 0; i < MAX_POOL_SIZE_PER_MODEL; i++) {
                 const model = new ModelSource();
 
                 this._items.push(model);

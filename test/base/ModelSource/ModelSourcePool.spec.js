@@ -5,7 +5,7 @@ import sinon from 'sinon';
 import modelSourcePool from '../../../src/assets/scripts/base/ModelSource/ModelSourcePool';
 import PositionModel from '../../../src/assets/scripts/base/PositionModel';
 
-const SOURCE_NAME_MOCK = 'Position';
+const SOURCE_NAME_MOCK = 'PositionModel';
 
 ava.serial('throws when attempting to instantiate', t => {
     t.throws(() => new modelSourcePool());

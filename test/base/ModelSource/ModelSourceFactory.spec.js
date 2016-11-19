@@ -4,7 +4,7 @@ import ava from 'ava';
 import modelSourceFactory from '../../../src/assets/scripts/base/ModelSource/ModelSourceFactory';
 import PositionModel from '../../../src/assets/scripts/base/PositionModel';
 
-const SOURCE_NAME_MOCK = 'Position';
+const SOURCE_NAME_MOCK = 'PositionModel';
 
 ava('throws when attempting to instantiate', t => {
     t.throws(() => new modelSourceFactory());
