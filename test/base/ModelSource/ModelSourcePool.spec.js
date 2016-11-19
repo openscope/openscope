@@ -15,37 +15,37 @@ ava.serial('pre-populates pool with the specified number models', t => {
     t.true(modelSourcePool.length === modelSourcePool._maxPoolSizePerModel);
 });
 
-ava.serial('.addModelToPool() throws if the modelToAdd is the incorrect type', t => {
+ava.serial('.returnReusable() throws if the modelToAdd is the incorrect type', t => {
     const modelToAdd = new Date();
 
-    t.throws(() => modelSourcePool.addModelToPool(modelToAdd));
+    t.throws(() => modelSourcePool.returnReusable(modelToAdd));
 });
 
-ava.serial('.addModelToPool() adds the modelToAdd to the pool', t => {
+ava.serial('.returnReusable() adds the modelToAdd to the pool', t => {
     const modelToAdd = new FixModel();
     const expectedResult = modelSourcePool.length + 1;
 
-    modelSourcePool.addModelToPool(modelToAdd);
+    modelSourcePool.returnReusable(modelToAdd);
 
     t.true(modelSourcePool.length === expectedResult);
 });
 
 ava.serial('.releasModelFromPool() calls _findModelOfType() with the correct argument', t => {
     const stub = sinon.stub(modelSourcePool, '_findModelOfType');
-    modelSourcePool.releaseModelFromPool(SOURCE_NAME_MOCK);
+    modelSourcePool.releaseReusable(SOURCE_NAME_MOCK);
 
     t.true(stub.calledOnce);
     t.true(stub.getCall(0).args[0] === SOURCE_NAME_MOCK);
 });
 
 ava.serial('.releasModelFromPool() returns a model if one exists within the pool', t => {
-    const result = modelSourcePool.releaseModelFromPool(SOURCE_NAME_MOCK);
+    const result = modelSourcePool.releaseReusable(SOURCE_NAME_MOCK);
     t.true(result instanceof FixModel);
 });
 
 ava.serial('.releasModelFromPool() returns a model if none exist within the pool', t => {
     modelSourcePool._items = [];
-    const result = modelSourcePool.releaseModelFromPool(SOURCE_NAME_MOCK);
+    const result = modelSourcePool.releaseReusable(SOURCE_NAME_MOCK);
 
     t.true(result instanceof FixModel);
 });
