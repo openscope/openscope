@@ -934,7 +934,7 @@ export default class Aircraft {
 
 
         let ceiling = window.airportController.airport_get().ctr_ceiling;
-        if (prop.game.option.get('softCeiling') === 'yes') {
+        if (window.gameController.game.option.get('softCeiling') === 'yes') {
             ceiling += 1000;
         }
 
@@ -2140,8 +2140,8 @@ export default class Aircraft {
                 if (hold.timer && hold.legLength.includes('min')) {
                     if (hold.timer === -1) {
                         // save the time
-                        hold.timer = prop.game.time;
-                    } else if (prop.game.time >= hold.timer + parseInt(hold.legLength.replace('min', ''), 10) * 60) {
+                        hold.timer = window.gameController.game.time;
+                    } else if (window.gameController.game.time >= hold.timer + parseInt(hold.legLength.replace('min', ''), 10) * 60) {
                         // time to turn
                         this.target.heading += Math.PI;   // turn to other leg
                         this.target.turn = hold.dirTurns;
@@ -2368,7 +2368,7 @@ export default class Aircraft {
         // FIXME: is this ratio correct? is it 0.000514444 or 0.514444?
         let scaleSpeed = this.speed * 0.000514444 * window.gameController.game_delta(); // knots to m/s
 
-        if (prop.game.option.get('simplifySpeeds') === 'no') {
+        if (window.gameController.game.option.get('simplifySpeeds') === 'no') {
             // TODO: this should be abstracted to a helper function
             // Calculate the true air speed as indicated airspeed * 1.6% per 1000'
             scaleSpeed *= 1 + (this.altitude * 0.000016);

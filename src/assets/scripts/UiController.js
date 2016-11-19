@@ -215,7 +215,7 @@ export default class UiView {
         this.$fastForwards.prop('title', 'Set time warp to 2');
 
         const $options = $(UI_OPTIONS_TEMPLATE);
-        const descriptions = prop.game.option.getDescriptions();
+        const descriptions = window.gameController.game.option.getDescriptions();
 
         _forEach(descriptions, (opt) => {
             if (opt.type !== 'select') {
@@ -244,7 +244,7 @@ export default class UiView {
 
         const $optionSelector = $(UI_OPTION_SELECTOR_TEMPLATE);
         const $selector = $(`<select id="opt-${option.name}" name="${option.name}"></select>`);
-        const selectedOption = prop.game.option.get(option.name);
+        const selectedOption = window.gameController.game.option.get(option.name);
 
         // this could me done with a _map(), but verbosity here makes the code easier to read
         for (let i = 0; i < option.data.length; i++) {
@@ -257,7 +257,7 @@ export default class UiView {
         $selector.change((event) => {
             const $currentTarget = $(event.currentTarget);
 
-            prop.game.option.set($currentTarget.attr('name'), $currentTarget.val());
+            window.gameController.game.option.set($currentTarget.attr('name'), $currentTarget.val());
         });
 
         $optionSelector.append($selector);

@@ -91,14 +91,14 @@ export default class ArrivalCyclic extends ArrivalBase {
     }
 
     start() {
-        this.cycleStart = prop.game.time - this.offset;
+        this.cycleStart = window.gameController.game.time - this.offset;
         const delay = _random(0, TIME.ONE_HOUR_IN_SECONDS / this.frequency);
         this.timeout = window.gameController.game_timeout(this.spawnAircraft, delay, this, [true, true]);
     }
 
     nextInterval() {
         // TODO: what do all these magic numbers mean? enumerate the magic numbers.
-        const t = prop.game.time - this.cycleStart;
+        const t = window.gameController.game.time - this.cycleStart;
         const done = t / (this.period / 4); // progress in current quarter-period
 
         if (done >= 4) {

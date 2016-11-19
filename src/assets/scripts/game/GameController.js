@@ -78,7 +78,6 @@ export default class GameController {
      * @method init_pre
      */
     init_pre() {
-        prop.game = game;
         this.game_initializeBlurFunctions();
         this.events_initializeEventCount();
     }
@@ -120,13 +119,11 @@ export default class GameController {
         // Set blurring function
         $(window).blur(() => {
             this.game.focused = false;
-            prop.game.focused = false;
         });
 
         // Set un-blurring function
         $(window).focus(() => {
             this.game.focused = true;
-            prop.game.focused = true;
         });
     }
 
@@ -162,18 +159,18 @@ export default class GameController {
     game_timewarp_toggle() {
         const $fastForwards = $(`.${SELECTORS.CLASSNAMES.FAST_FORWARDS}`);
 
-        if (prop.game.speedup === 5) {
-            prop.game.speedup = 1;
+        if (this.game.speedup === 5) {
+            this.game.speedup = 1;
 
             $fastForwards.removeClass(SELECTORS.CLASSNAMES.SPEED_5);
             $fastForwards.prop('title', 'Set time warp to 2');
-        } else if (prop.game.speedup === 1) {
-            prop.game.speedup = 2;
+        } else if (this.game.speedup === 1) {
+            this.game.speedup = 2;
 
             $fastForwards.addClass(SELECTORS.CLASSNAMES.SPEED_2);
             $fastForwards.prop('title', 'Set time warp to 5');
         } else {
-            prop.game.speedup = 5;
+            this.game.speedup = 5;
 
             $fastForwards.removeClass(SELECTORS.CLASSNAMES.SPEED_2);
             $fastForwards.addClass(SELECTORS.CLASSNAMES.SPEED_5);
@@ -187,7 +184,7 @@ export default class GameController {
      */
     game_pause() {
         const $pauseToggle = $(`.${SELECTORS.CLASSNAMES.PAUSE_TOGGLE}`);
-        prop.game.paused = true;
+        this.game.paused = true;
 
         $pauseToggle.addClass(SELECTORS.CLASSNAMES.ACTIVE);
         $pauseToggle.attr('title', 'Resume simulation');
@@ -200,7 +197,7 @@ export default class GameController {
      */
     game_unpause() {
         const $pauseToggle = $(`.${SELECTORS.CLASSNAMES.PAUSE_TOGGLE}`);
-        prop.game.paused = false;
+        this.game.paused = false;
 
         $pauseToggle.removeClass(SELECTORS.CLASSNAMES.ACTIVE);
         $pauseToggle.attr('title', 'Pause simulation');
@@ -213,7 +210,7 @@ export default class GameController {
      */
     game_pause_toggle() {
         // TODO: simplify if/else logic. should only need an if with an early exit
-        if (prop.game.paused) {
+        if (this.game.paused) {
             this.game_unpause();
         } else {
             this.game_pause();
@@ -226,7 +223,7 @@ export default class GameController {
      * @return
      */
     game_paused() {
-        return !prop.game.focused || prop.game.paused;
+        return !this.game.focused || this.game.paused;
     }
 
     /**
@@ -235,7 +232,7 @@ export default class GameController {
      * @return {number}
      */
     game_time() {
-        return prop.game.time;
+        return this.game.time;
     }
 
     /**
@@ -244,7 +241,7 @@ export default class GameController {
      * @return {number}
      */
     game_delta() {
-        return prop.game.delta;
+        return this.game.delta;
     }
 
     /**
@@ -253,7 +250,7 @@ export default class GameController {
      * @return
      */
     game_speedup() {
-        return !this.game_paused() ? prop.game.speedup : 0;
+        return !this.game_paused() ? this.game.speedup : 0;
     }
 
     /**
@@ -268,7 +265,7 @@ export default class GameController {
     game_timeout(func, delay, that, data) {
         const gameTimeout = [func, this.game_time() + delay, data, delay, false, that];
 
-        prop.game.timeouts.push(gameTimeout);
+        this.game.timeouts.push(gameTimeout);
 
         return gameTimeout;
     }
@@ -285,7 +282,7 @@ export default class GameController {
     game_interval(func, delay, that, data) {
         const to = [func, this.game_time() + delay, data, delay, true, that];
 
-        prop.game.timeouts.push(to);
+        this.game.timeouts.push(to);
 
         return to;
     }
@@ -296,7 +293,7 @@ export default class GameController {
      * @param gameTimeout
      */
     game_clear_timeout(gameTimeout) {
-        prop.game.timeouts.splice(prop.game.timeouts.indexOf(gameTimeout), 1);
+        this.game.timeouts.splice(this.game.timeouts.indexOf(gameTimeout), 1);
     }
 
     /**
@@ -314,7 +311,7 @@ export default class GameController {
             $score.removeClass(SELECTORS.CLASSNAMES.NEGATIVE);
         }
 
-        prop.game.last_score = score;
+        this.game.last_score = score;
     }
 
     /**
@@ -322,23 +319,23 @@ export default class GameController {
      * @method update_pre
      */
     update_pre() {
-        if (this.game.score !== prop.game.last_score) {
+        if (this.game.score !== this.game.last_score) {
             this.game_updateScore(this.game.score);
         }
 
-        prop.game.delta = Math.min(this.getDeltaTime() * prop.game.speedup, 100);
+        this.game.delta = Math.min(this.getDeltaTime() * this.game.speedup, 100);
 
         if (this.game_paused()) {
-            prop.game.delta = 0;
+            this.game.delta = 0;
         } else {
             $('html').removeClass(SELECTORS.CLASSNAMES.PAUSED);
         }
 
-        prop.game.time += prop.game.delta;
+        this.game.time += this.game.delta;
 
-        for (let i = prop.game.timeouts.length - 1; i >= 0; i--) {
+        for (let i = this.game.timeouts.length - 1; i >= 0; i--) {
             let remove = false;
-            const timeout = prop.game.timeouts[i];
+            const timeout = this.game.timeouts[i];
 
             if (this.game_time() > timeout[1]) {
                 timeout[0].call(timeout[5], timeout[2]);
@@ -351,7 +348,7 @@ export default class GameController {
             }
 
             if (remove) {
-                prop.game.timeouts.splice(i, 1);
+                this.game.timeouts.splice(i, 1);
                 i -= 1;
             }
         }
@@ -362,6 +359,6 @@ export default class GameController {
      * @method complete
      */
     complete() {
-        prop.game.paused = false;
+        this.game.paused = false;
     }
 }
