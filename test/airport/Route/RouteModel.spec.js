@@ -14,7 +14,6 @@ ava('RouteModel returns early when instantiated with invalid parameters', t => {
     t.notThrows(() => new RouteModel(false));
 
     const model = new RouteModel();
-    t.true(typeof model._id === 'undefined');
     t.true(typeof model.entry === 'undefined');
     t.true(typeof model.procedure === 'undefined');
     t.true(typeof model.exit === 'undefined');
@@ -31,7 +30,6 @@ ava('RouteModel accepts a string `routeString` as its only parameter and sets it
 
     const model = new RouteModel(ROUTE_MOCK);
 
-    t.false(typeof model._id === 'undefined');
     t.true(model.entry === 'BETHL');
     t.true(model.procedure === 'GRNPA1');
     t.true(model.exit === 'KLAS');

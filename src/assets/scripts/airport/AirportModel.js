@@ -154,7 +154,9 @@ export default class AirportModel {
         this.rr_radius_nm = _get(data, 'rr_radius_nm');
         this.rr_center = _get(data, 'rr_center');
 
-        FixCollection.init(data.fixes, this.position);
+        this.fixes = _get(data, 'fixes', {});
+        FixCollection.init(this.fixes, this.position);
+
         this.sidCollection = new StandardRouteCollection(data.sids);
         this.starCollection = new StandardRouteCollection(data.stars);
 
@@ -196,17 +198,15 @@ export default class AirportModel {
 
         // for each area
         this.airspace = _map(airspace, (airspaceSection) => {
-            const positionArea = new AirspaceModel(
+            return new AirspaceModel(
                 airspaceSection,
                 this.position,
                 this.magnetic_north
             );
-
-            areas.push(positionArea);
         });
 
         // airspace perimeter (assumed to be first entry in data.airspace)
-        this.perimeter = _head(areas);
+        this.perimeter = _head(this.airspace);
 
         // change ctr_radius to point along perimeter that's farthest from rr_center
         // const pos = new PositionModel(this.perimeter.poly[0].position, this.position, this.magnetic_north);
@@ -413,7 +413,14 @@ export default class AirportModel {
         $(SELECTORS.DOM_SELECTORS.TOGGLE_TERRAIN).toggle(!_isEmpty(this.terrain));
 
         window.gameController.game_reset_score_and_events();
+
         this.start = window.gameController.game_time();
+
+        // when the parse method is run, this method also runs. however, when an airport is being re-loaded,
+        // only this method runs. this doesnt belong here but needs to be here so the fixes get populated correctly.
+        // FIXME: make FixCollection a instance class ainstead of a static class
+        FixCollection.init(this.fixes, this.position);
+
         this.updateRunway();
         this.addAircraft();
         this.updateRun(true);

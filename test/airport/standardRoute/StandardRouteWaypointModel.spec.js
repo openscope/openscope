@@ -6,7 +6,7 @@ import StandardRouteWaypointModel from '../../../src/assets/scripts/airport/Stan
 import FixCollection from '../../../src/assets/scripts/airport/Fix/FixCollection';
 
 import { airportPositionFixture } from '../../fixtures/airportFixtures';
-import { FIX_LIST_MOCK } from '../Fix/_mocks/fixMocks';
+import { FIX_LIST_MOCK } from '../fix/_mocks/fixMocks';
 
 const NAME_MOCK = 'BIKKR';
 const RESTRICTIONS_MOCK = 'A80+|S250';
@@ -20,7 +20,7 @@ ava('StandardRouteWaypointModel exits early when instantiated without parameters
 
     const model = new StandardRouteWaypointModel();
 
-    t.true(typeof model._id === 'undefined');
+    t.true(typeof model.name === 'undefined');
 });
 
 ava('sets only `name` when provided a string', t => {

@@ -45,8 +45,6 @@ ava('FixModel returns early when instantiated with incorrect parameters', t => {
 ava('FixModel accepts a `fixName`, an array `fixCoordinate` and an `airportPosition` as its parameters', t => {
     const model = new FixModel(FIXNAME_MOCK, FIX_COORDINATE_MOCK, airportPositionFixture);
 
-    t.false(model.name === '');
-    t.false(model._fixPosition === null);
     t.true(model.name === FIXNAME_MOCK);
     t.true(model._fixPosition instanceof PositionModel);
 });
