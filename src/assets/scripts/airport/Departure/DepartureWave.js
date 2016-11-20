@@ -49,6 +49,6 @@ export default class DepartureWave extends DepartureCyclic {
             return this.period - position;
         }
 
-        return this._separation / prop.game.frequency;
+        return this._separation / window.gameController.game.frequency;
     }
 }

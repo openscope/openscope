@@ -143,7 +143,7 @@ export default class ArrivalWave extends ArrivalBase {
      * return {number}
      */
     nextInterval() {
-        const t = prop.game.time - this.cycleStart;
+        const t = window.gameController.game.time - this.cycleStart;
         const done = t / this.period; // progress in period
 
         if (done >= 1) {
@@ -162,7 +162,7 @@ export default class ArrivalWave extends ArrivalBase {
     start() {
         const delay = _random(0, TIME.ONE_HOUR_IN_SECONDS / this.frequency);
         // TODO: this might not be available on `window.prop` update reference
-        this.cycleStart = prop.game.time - this.offset + delay;
+        this.cycleStart = window.gameController.game.time - this.offset + delay;
         this.timeout = window.gameController.game_timeout(this.spawnAircraft, delay, this, [true, true]);
     }
 }

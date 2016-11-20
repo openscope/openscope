@@ -175,7 +175,7 @@ export default class ArrivalSurge extends ArrivalBase {
      * @return interval_up {number}
      */
     nextInterval() {
-        const t = prop.game.time - this.cycleStart;
+        const t = window.gameController.game.time - this.cycleStart;
         const done = t / this.period; // progress in period
         const interval_up = TIME.ONE_HOUR_IN_SECONDS / this.acph_up;
         const interval_dn = TIME.ONE_HOUR_IN_SECONDS / this.acph_dn;
@@ -213,7 +213,7 @@ export default class ArrivalSurge extends ArrivalBase {
      */
     start() {
         const delay = _random(0, TIME.ONE_HOUR_IN_SECONDS / this.frequency);
-        this.cycleStart = prop.game.time - this.offset + delay;
+        this.cycleStart = window.gameController.game.time - this.offset + delay;
         this.timeout = window.gameController.game_timeout(this.spawnAircraft, delay, this, [true, true]);
     }
 }
