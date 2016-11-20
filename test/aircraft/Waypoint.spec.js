@@ -78,7 +78,7 @@ ava('.setAltitude() if fix restrictions do not exist, sets the altitude by the m
     t.true(model.altitude === 10000);
 });
 
-ava.skip('.setAltitude() sets the altitude from existing fixRestrictions and cruiseAltitude when restriction is at or above', t => {
+ava('.setAltitude() sets the altitude from existing fixRestrictions and cruiseAltitude when restriction is at or above', t => {
     const centerCeilingMock = 10000;
     const cruiseAltitudeMock = 23000;
     const expectedResult = 27000;
@@ -110,7 +110,7 @@ ava('.setAltitude() sets the altitude from existing fixRestrictions and cruiseAl
     t.true(model.altitude === expectedResult);
 });
 
-ava.skip('.setSpeed() sets the speed from existing fixRestrictions and cruiseSpeed when restriction is at or above', t => {
+ava('.setSpeed() sets the speed from existing fixRestrictions and cruiseSpeed when restriction is at or above', t => {
     const cruiseSpeedMock = 300;
     const expectedResult = 300;
     const model = new Waypoint(BASIC_WAYPOINT_MOCK, airportModelFixtureForWaypoint);

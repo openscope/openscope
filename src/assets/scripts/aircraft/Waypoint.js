@@ -162,9 +162,10 @@ export default class Waypoint {
 
             this.heading = angle;
         } else if (firstRouteSegment === 'KDBG' && this.heading === null) {
+            console.warn('It was determined that this else block is unused. If you see this message, it is in use and should be refactored.');
             // FIXME: radial is not defined or set anywhere in this class
             // aim arrival @ middle of airspace
-            this.heading = this.radial + Math.PI;
+            // this.heading = this.radial + Math.PI;
         }
     }
 
@@ -193,7 +194,10 @@ export default class Waypoint {
             const minAlt = parseInt(altitudeRestriction.replace(ABOVE_SYMBOL, ''), DECIMAL_RADIX);
             const minimumAltitudeWithoutSymbol = minAlt * FL_TO_THOUSANDS_MULTIPLIER;
 
-            this.altitude = Math.min(minimumAltitudeWithoutSymbol, cruiseAltitude);
+            // not a fan of this ternary, but I don't think there is a better way to do it
+            this.altitude = minimumAltitudeWithoutSymbol > cruiseAltitude
+                ? minimumAltitudeWithoutSymbol
+                : cruiseAltitude;
         } else if (altitudeRestriction.indexOf(BELOW_SYMBOL) !== INVALID_INDEX) {
             const maxAlt = parseInt(altitudeRestriction.replace(BELOW_SYMBOL, ''), DECIMAL_RADIX);
             const maximumAltitudeWithoutSymbol = maxAlt * FL_TO_THOUSANDS_MULTIPLIER;
@@ -224,9 +228,13 @@ export default class Waypoint {
         if (speedRestriction.indexOf(ABOVE_SYMBOL) !== INVALID_INDEX) {
             // at-or-above speed restriction
             const minSpd = parseInt(speedRestriction.replace(ABOVE_SYMBOL, ''), DECIMAL_RADIX);
-            this.speed = Math.min(minSpd, cruiseSpeed);
+
+            this.speed = minSpd > cruiseSpeed
+                ? minSpd
+                : cruiseSpeed;
         } else if (speedRestriction.indexOf(BELOW_SYMBOL) !== INVALID_INDEX) {
             const maxSpd = parseInt(speedRestriction.replace(BELOW_SYMBOL, ''), DECIMAL_RADIX);
+
             // go as fast as restrictions permit
             this.speed = Math.min(maxSpd, cruiseSpeed);
         } else {
