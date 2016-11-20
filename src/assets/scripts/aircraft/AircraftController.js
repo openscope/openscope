@@ -9,6 +9,7 @@ import { vlen, vradial, vsub } from '../math/vector';
 import { kn_ms, radiansToDegrees, degreesToRadians } from '../utilities/unitConverters';
 import { calcTurnInitiationDistance } from '../math/flightMath';
 import { tau } from '../math/circle';
+import { GAME_EVENTS } from '../game/GameController';
 
 // Temporary const declaration here to attach to the window AND use as internal property
 const aircraft = {};
@@ -195,7 +196,7 @@ export default class AircraftController {
             // let is_visible = aircraft_visible(aircraft);
 
             if (aircraft.isStopped() && aircraft.category === 'arrival') {
-                window.gameController.game.score.windy_landing += aircraft.scoreWind('landed');
+                aircraft.scoreWind('landed');
 
                 window.uiController.ui_log(`${aircraft.getCallsign()} switching to ground, good day`);
                 speech_say([
@@ -203,7 +204,7 @@ export default class AircraftController {
                     { type: 'text', content: ', switching to ground, good day' }
                 ]);
 
-                window.gameController.game.score.arrival += 1;
+                window.gameController.events_recordNew(GAME_EVENTS.ARRIVAL);
                 remove = true;
             }
 

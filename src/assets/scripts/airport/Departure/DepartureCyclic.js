@@ -81,6 +81,6 @@ export default class DepartureCyclic extends DepartureBase {
         const sinOffsetOverPeriod = sin(tau() * (gameTimeWithOffset / this.period));
         const amplitudeTimesSinOffsetOverPeriod = this._amplitude * sinOffsetOverPeriod;
 
-        return (amplitudeTimesSinOffsetOverPeriod + this._average) / prop.game.frequency;
+        return (amplitudeTimesSinOffsetOverPeriod + this._average) / window.gameController.game.frequency;
     }
 }
