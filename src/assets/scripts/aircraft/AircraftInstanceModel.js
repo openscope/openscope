@@ -38,6 +38,7 @@ import {
 } from '../utilities/radioUtilities';
 import { km, radiansToDegrees, degreesToRadians, heading_to_string } from '../utilities/unitConverters';
 import { SELECTORS } from '../constants/selectors';
+import { GAME_EVENTS } from '../game/GameController';
 
 // TODO: these constants don't belong in this class. they should probably live on their own in a different file.
 /**
@@ -464,10 +465,10 @@ export default class Aircraft {
             // an aircraft was given a radial  clearance
             if (this.isHeadingInsideDepartureWindow()) {
                 this.radioCall('switching to center, good day', 'dep');
-                prop.game.score.departure += 1;
+                window.gameController.events_recordNew(GAME_EVENTS.DEPARTURE);
             } else {
                 this.radioCall('leaving radar coverage outside departure window', 'dep', true);
-                prop.game.score.departure -= 1;
+                window.gameController.events_recordNew(GAME_EVENTS.NOT_CLEARED_ON_ROUTE);
             }
         } else {
             // following a Standard Instrument Departure procedure
@@ -488,7 +489,7 @@ export default class Aircraft {
 
             if (ok) {
                 this.radioCall('switching to center, good day', 'dep');
-                prop.game.score.departure += 1;
+                window.gameController.events_recordNew(GAME_EVENTS.DEPARTURE);
             } else {
                 // TODO: this is a temporary fix for `release/3.0.0`. this will need to be refactored
                 let fmsDestination = this.fms.fp.route[1].indexOf('.') !== -1
@@ -497,7 +498,7 @@ export default class Aircraft {
 
                 // TODO: add helper method to FMS class for this
                 this.radioCall(`leaving radar coverage without being cleared to ${fmsDestination}`, 'dep', true);
-                prop.game.score.departure -= 1;
+                window.gameController.events_recordNew(GAME_EVENTS.NOT_CLEARED_ON_ROUTE);
             }
         }
 
@@ -515,7 +516,7 @@ export default class Aircraft {
      */
     arrivalExit() {
         this.radioCall('leaving radar coverage as arrival', 'app', true);
-        prop.game.score.failed_arrival += 1;
+        window.gameController.events_recordNew(GAME_EVENTS.AIRSPACE_BUST);
     }
 
     /**
@@ -933,7 +934,7 @@ export default class Aircraft {
 
 
         let ceiling = window.airportController.airport_get().ctr_ceiling;
-        if (prop.game.option.get('softCeiling') === 'yes') {
+        if (window.gameController.game.option.get('softCeiling') === 'yes') {
             ceiling += 1000;
         }
 
@@ -1530,7 +1531,7 @@ export default class Aircraft {
 
         if (runway.removeQueue(this)) {
             this.mode = FLIGHT_MODES.TAKEOFF;
-            prop.game.score.windy_takeoff += this.scoreWind('taking off');
+            this.scoreWind('taking off');
             this.takeoffTime = window.gameController.game_time();
 
             if (this.fms.currentWaypoint().speed == null) {
@@ -1587,7 +1588,6 @@ export default class Aircraft {
 
             const isWarning = true;
             window.uiController.ui_log(`${this.getCallsign()} aborted taxi to runway`, isWarning);
-            prop.game.score.abort.taxi += 1;
 
             return ['ok', 'taxiing back to terminal'];
         } else if (this.mode === FLIGHT_MODES.WAITING) {
@@ -1905,6 +1905,7 @@ export default class Aircraft {
         }
     }
 
+    // TODO: This method should be moved elsewhere, since it doesn't really belong to the aircraft itself
     /**
      * @for AircraftInstanceModel
      * @method scoreWind
@@ -1917,18 +1918,18 @@ export default class Aircraft {
 
         // TODO: these two if blocks could be done in a single switch statement
         if (components.cross >= 20) {
-            score += 2;
+            window.gameController.events_recordNew(GAME_EVENTS.EXTREME_CROSSWIND_OPERATION);
             window.uiController.ui_log(`${this.getCallsign()} ${action} with major crosswind'`, isWarning);
         } else if (components.cross >= 10) {
-            score += 1;
+            window.gameController.events_recordNew(GAME_EVENTS.HIGH_CROSSWIND_OPERATION);
             window.uiController.ui_log(`${this.getCallsign()} ${action} with crosswind'`, isWarning);
         }
 
         if (components.head <= -10) {
-            score += 2;
+            window.gameController.events_recordNew(GAME_EVENTS.EXTREME_TAILWIND_OPERATION);
             window.uiController.ui_log(`${this.getCallsign()} ${action} with major tailwind'`, isWarning);
         } else if (components.head <= -1) {
-            score += 1;
+            window.gameController.events_recordNew(GAME_EVENTS.HIGH_TAILWIND_OPERATION);
             window.uiController.ui_log(`${this.getCallsign()} ${action} with tailwind'`, isWarning);
         }
 
@@ -2034,7 +2035,7 @@ export default class Aircraft {
                             { type: 'callsign', content: this },
                             { type: 'text', content: ' going around' }
                         ]);
-                        prop.game.score.abort.landing += 1;
+                        window.gameController.events_recordNew(GAME_EVENTS.GO_AROUND);
                     }
                 }
             } else if (offset[1] < localizerRange) {  // Joining the ILS
@@ -2056,18 +2057,18 @@ export default class Aircraft {
                         if (!assignedHdg && courseDifference > maxInterceptAngle) { // intercept via fixes
                             const isWarning = true;
                             window.uiController.ui_log(`${this.getCallsign()} approach course intercept angle was greater than 30 degrees`, isWarning);
-                            prop.game.score.violation += 1;
+                            window.gameController.events_recordNew(GAME_EVENTS.ILLEGAL_APPROACH_CLEARANCE);
                         } else if (interceptAngle > maxInterceptAngle) {    // intercept via vectors
                             const isWarning = true;
                             window.uiController.ui_log(`${this.getCallsign()} approach course intercept angle was greater than 30 degrees`, isWarning);
-                            prop.game.score.violation += 1;
+                            window.gameController.events_recordNew(GAME_EVENTS.ILLEGAL_APPROACH_CLEARANCE);
                         }
 
                         // Glideslope intercept
-                        if(this.altitude > glideslope_altitude + maxAboveGlideslope) {
+                        if (this.altitude > glideslope_altitude + maxAboveGlideslope) {
                             const isWarning = true;
                             window.uiController.ui_log(`${this.getRadioCallsign()} joined localizer above glideslope altitude`, isWarning);
-                            prop.game.score.violation += 1;
+                            window.gameController.events_recordNew(GAME_EVENTS.ILLEGAL_APPROACH_CLEARANCE);
                         }
                     }
 
@@ -2139,8 +2140,8 @@ export default class Aircraft {
                 if (hold.timer && hold.legLength.includes('min')) {
                     if (hold.timer === -1) {
                         // save the time
-                        hold.timer = prop.game.time;
-                    } else if (prop.game.time >= hold.timer + parseInt(hold.legLength.replace('min', ''), 10) * 60) {
+                        hold.timer = window.gameController.game.time;
+                    } else if (window.gameController.game.time >= hold.timer + parseInt(hold.legLength.replace('min', ''), 10) * 60) {
                         // time to turn
                         this.target.heading += Math.PI;   // turn to other leg
                         this.target.turn = hold.dirTurns;
@@ -2367,7 +2368,7 @@ export default class Aircraft {
         // FIXME: is this ratio correct? is it 0.000514444 or 0.514444?
         let scaleSpeed = this.speed * 0.000514444 * window.gameController.game_delta(); // knots to m/s
 
-        if (prop.game.option.get('simplifySpeeds') === 'no') {
+        if (window.gameController.game.option.get('simplifySpeeds') === 'no') {
             // TODO: this should be abstracted to a helper function
             // Calculate the true air speed as indicated airspeed * 1.6% per 1000'
             scaleSpeed *= 1 + (this.altitude * 0.000016);
@@ -2489,7 +2490,7 @@ export default class Aircraft {
 
                     // ac has just entered the area: .inside is still false, but st is true
                     if (new_inside && !area.inside) {
-                        prop.game.score.restrictions += 1;
+                        window.gameController.events_recordNew(GAME_EVENTS.AIRSPACE_BUST);
                         area.range = this.speed * 1.85 / 3.6 * 50 / 1000; // check in 50 seconds
                         // speed is kts, range is km.
                         // if a plane got into restricted area, don't check it too often
@@ -2546,7 +2547,7 @@ export default class Aircraft {
                                 { type: 'text', content: ', we\'re going down!' }
                             ]);
 
-                            prop.game.score.hit += 1;
+                            window.gameController.events_recordNew(GAME_EVENTS.COLLISION);
                         }
                     } else {
                         curr_ranges[id] = Math.max(0.2, status.distance);
