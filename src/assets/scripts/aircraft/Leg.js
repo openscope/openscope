@@ -305,7 +305,7 @@ export default class Leg {
      * @private
      */
     _generateManualWaypoint(airport) {
-        const waypointToAdd = new Waypoint({ fix: this.route }, airport);
+        const waypointToAdd = new Waypoint({ route: this.route }, airport);
 
         this.addWaypointToLeg(waypointToAdd);
     }

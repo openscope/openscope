@@ -165,7 +165,7 @@ export default class Waypoint {
             console.warn('It was determined that this else block is unused. If you see this message, it is in use and should be refactored.');
             // FIXME: radial is not defined or set anywhere in this class
             // aim arrival @ middle of airspace
-            // this.heading = this.radial + Math.PI;
+            this.heading = this.radial + Math.PI;
         }
     }
 
