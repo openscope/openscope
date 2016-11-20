@@ -6,7 +6,11 @@ import Waypoint from './Waypoint';
 import Leg from './Leg';
 import RouteModel from '../airport/Route/RouteModel';
 import { clamp } from '../math/core';
-import { FP_LEG_TYPE } from '../constants/aircraftConstants';
+import {
+    FP_LEG_TYPE,
+    FLIGHT_CATEGORY,
+    WAYPOINT_NAV_MODE
+} from '../constants/aircraftConstants';
 import { LOG } from '../constants/logLevel';
 
 /**
@@ -87,11 +91,9 @@ export default class AircraftFlightManagementSystem {
         // set initial
         this.fp.altitude = clamp(1000, options.model.ceiling, 60000);
 
-        if (options.aircraft.category === 'arrival') {
-            // TODO: why KDBG?
-            this.prependLeg({ route: 'KDBG' });
-        } else if (options.aircraft.category === 'departure') {
-            // TODO: if we already have a reference to the aircraft with, this.my_aircraft, whay are we getting it again here?
+        if (options.aircraft.category === FLIGHT_CATEGORY.ARRIVAL) {
+            this.prependLeg({ route: 'UNASSIGNED' });
+        } else if (options.aircraft.category === FLIGHT_CATEGORY.DEPARTURE) {
             this.prependLeg({ route: window.airportController.airport_get().icao });
         }
 
@@ -236,7 +238,7 @@ export default class AircraftFlightManagementSystem {
             curr.speed = prev.speed;
         }
 
-        if (!curr.heading && curr.navmode === 'heading') {
+        if (!curr.heading && curr.navmode === WAYPOINT_NAV_MODE.HEADING) {
             curr.heading = prev.heading;
         }
     }
@@ -260,7 +262,7 @@ export default class AircraftFlightManagementSystem {
             curr.speed = prev.speed;
         }
 
-        if (!curr.heading && curr.navmode === 'heading') {
+        if (!curr.heading && curr.navmode === WAYPOINT_NAV_MODE.HEADING) {
             curr.heading = prev.heading;
         }
     }
@@ -483,7 +485,7 @@ export default class AircraftFlightManagementSystem {
         });
 
         this.setAll({
-            altitude:  Math.max(window.airportController.airport_get().initial_alt, this.my_aircraft.altitude)
+            altitude: Math.max(window.airportController.airport_get().initial_alt, this.my_aircraft.altitude)
         });
     }
 

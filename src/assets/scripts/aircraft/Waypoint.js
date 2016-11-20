@@ -161,9 +161,10 @@ export default class Waypoint {
             const { angle } = airport.getRunway(airport.runway);
 
             this.heading = angle;
-        } else if (firstRouteSegment === 'KDBG' && this.heading === null) {
-            console.warn('It was determined that this else block is unused. If you see this message, it is in use and should be refactored.');
-            // FIXME: radial is not defined or set anywhere in this class
+        } else if (firstRouteSegment === 'UNASSIGNED' && this.heading === null) {
+            // FIXME: radial is not defined or set anywhere in this class. this block DOES get hit for
+            // every arriving aircraft
+
             // aim arrival @ middle of airspace
             this.heading = this.radial + Math.PI;
         }
