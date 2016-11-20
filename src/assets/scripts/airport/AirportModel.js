@@ -413,7 +413,7 @@ export default class AirportModel {
         prop.canvas.dirty = true;
         $(SELECTORS.DOM_SELECTORS.TOGGLE_TERRAIN).toggle(!_isEmpty(this.terrain));
 
-        window.gameController.game_reset_score();
+        window.gameController.game_reset_score_and_events();
 
         this.start = window.gameController.game_time();
 

@@ -237,7 +237,7 @@ export default class ConvasController {
     canvas_update_post() {
         const elapsed = window.gameController.game_time() - window.airportController.airport_get().start;
         const alpha = extrapolate_range_clamp(0.1, elapsed, 0.4, 0, 1);
-        const framestep = Math.round(extrapolate_range_clamp(1, prop.game.speedup, 10, 30, 1));
+        const framestep = Math.round(extrapolate_range_clamp(1, window.gameController.game.speedup, 10, 30, 1));
 
         if (this.canvas.dirty || (!window.gameController.game_paused() && prop.time.frames % framestep === 0) || elapsed < 1) {
             const cc = this.canvas_get('navaids');
@@ -398,7 +398,7 @@ export default class ConvasController {
     canvas_should_draw() {
         const elapsed = time() - this.canvas.last;
 
-        if (elapsed > (1 / prop.game.speedup)) {
+        if (elapsed > (1 / window.gameController.game.speedup)) {
             this.canvas.last = time();
             return true;
         }
@@ -868,8 +868,8 @@ export default class ConvasController {
         // TODO: if all these parens are actally needed, abstract this out to a function that can return a bool.
         // Aircraft
         // Draw the future path
-        if ((prop.game.option.get('drawProjectedPaths') === 'always') ||
-          ((prop.game.option.get('drawProjectedPaths') === 'selected') &&
+        if ((window.gameController.game.option.get('drawProjectedPaths') === 'always') ||
+          ((window.gameController.game.option.get('drawProjectedPaths') === 'selected') &&
            ((aircraft.warning || match) && !aircraft.isTaxiing()))
         ) {
             this.canvas_draw_future_track(cc, aircraft);
@@ -1000,14 +1000,14 @@ export default class ConvasController {
         let lockedStroke;
         let was_locked = false;
         const future_track = [];
-        const save_delta = prop.game.delta;
+        const save_delta = window.gameController.game.delta;
         const fms_twin = _cloneDeep(aircraft.fms);
         const twin = _cloneDeep(aircraft);
 
         twin.fms = fms_twin;
         twin.fms.aircraft = twin;
         twin.projected = true;
-        prop.game.delta = 5;
+        window.gameController.game.delta = 5;
 
         for (let i = 0; i < 60; i++) {
             twin.update();
@@ -1023,7 +1023,7 @@ export default class ConvasController {
             }
         }
 
-        prop.game.delta = save_delta;
+        window.gameController.game.delta = save_delta;
         cc.save();
 
         if (aircraft.category === FLIGHT_CATEGORY.DEPARTURE) {
