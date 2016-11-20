@@ -62,7 +62,6 @@ ava('calls ._parseWaypointRestrictions() when provided and array', t => {
 });
 
 ava('.generateFmsWaypoint() returns a new instance of an FMS Waypoint object', t => {
-    const fmsMock = {};
     const model = new StandardRouteWaypointModel(ROUTE_WAYPOINT_MOCK);
     const result = model.generateFmsWaypoint(airportModelFixtureForWaypoint);
 

@@ -1,5 +1,7 @@
+import _isNil from 'lodash/isNil';
 import BaseModel from '../../base/BaseModel';
 import FixCollection from '../Fix/FixCollection';
+import Waypoint from '../../aircraft/Waypoint';
 
 /**
  * @property NAME_INDEX
@@ -283,7 +285,7 @@ export default class StandardRouteWaypointModel extends BaseModel {
                 alt: this._altitude,
                 spd: this._speed
             }
-        }
+        };
 
         return new Waypoint(fmsWaypoint, airport);
     }
