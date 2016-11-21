@@ -3,6 +3,7 @@ import { abs } from '../math/core';
 import { angle_offset } from '../math/circle';
 import { vlen, vsub, vturn } from '../math/vector';
 import { km_ft, degreesToRadians } from '../utilities/unitConverters';
+import { GAME_EVENTS } from '../game/GameController';
 
 // TODO: move these to a constants file
 // 14.816km = 8nm (max possible sep minmum)
@@ -136,7 +137,7 @@ export default class AircraftConflict {
             const isWarning = true;
             window.uiController.ui_log(`${this.aircraft[0].getCallsign()} collided with ${this.aircraft[1].getCallsign()}`, isWarning);
 
-            prop.game.score.hit += 1;
+            window.gameController.events_recordNew(GAME_EVENTS.COLLISION);
             this.aircraft[0].hit = true;
             this.aircraft[1].hit = true;
 
@@ -178,8 +179,6 @@ export default class AircraftConflict {
                     ` ${this.aircraft[1].getCallsign()} on the same runway"`,
                     isWarning
                 );
-
-                prop.game.score.warning += 1;
             }
         } else {
             this.conflicts.runwayCollision = false;
@@ -305,6 +304,7 @@ export default class AircraftConflict {
 
         if (violation) {
             this.violations.proximityViolation = true;
+            // TODO: Add score penalty for 'SEPARATION_LOSS', but only ONCE
         } else {
             this.violations.proximityViolation = false;
         }

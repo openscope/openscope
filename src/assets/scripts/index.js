@@ -10,6 +10,7 @@ import App from './App';
  * Provides a way to grab the `body` element of the document and pass it to the app.
  */
 export default (() => {
+    const airportLoadList = window.AIRPORT_LOAD_LIST;
     const $body = $('body');
-    const app = new App($body);
+    const app = new App($body, airportLoadList);
 })();

@@ -1,4 +1,3 @@
-/* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand */
 import ArrivalBase from './ArrivalBase';
 import ArrivalCyclic from './ArrivalCyclic';
 import ArrivalWave from './ArrivalWave';
@@ -9,11 +8,11 @@ import { LOG } from '../../constants/logLevel';
  * Calls constructor of the appropriate arrival type
  *
  * @function ArrivalFactory
- * @param airport
- * @param options
- * @return {function}
+ * @param airport {AirportModel}
+ * @param options {obejct}
+ * @return {constructor}
  */
-export const ArrivalFactory = (airport, options) => {
+export const arrivalFactory = (airport, options) => {
     if (options.type === '') {
         log(`${airport.icao} arrival stream not given type!`, LOG.WARNING);
         return null;

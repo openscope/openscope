@@ -128,45 +128,6 @@ radio_runway_names.r = 'right';
 //     return d; // distance, in kilometers
 // }
 
-function choose(l) {
-    return l[Math.floor(Math.random() * l.length)];
-}
-
-// TODO: rename
-function choose_weight(l) {
-    if (l.length === 0) {
-        return;
-    }
-
-    // FIXME: this is not checking if l is an array. assuming `l[0]` is and array,
-    // `typeof []` will always return 'object'
-    // if this was ment to check if `l[0]` is an array, `Array.isArray(l[0])` is one way to do it.
-    // or lodash _isArray(l[0]) would work too.
-    if (typeof l[0] != typeof []) {
-        return choose(l);
-    }
-
-    // l = [[item, weight], [item, weight] ... ];
-    let weight = 0;
-    for (let i = 0; i < l.length; i++) {
-        weight += l[i][1];
-    }
-
-    const randomWeight = Math.random() * weight;
-    weight = 0;
-
-    for (let i = 0; i < l.length; i++) {
-        weight += l[i][1];
-
-        if (weight > randomWeight) {
-            return l[i][0];
-        }
-    }
-
-    console.log('OHSHIT');
-    return null;
-}
-
 // TODO: rename leftPad
 /**
  * Prepends zeros to front of str/num to make it the desired width
@@ -219,8 +180,6 @@ function array_sum(array) {
 
 window.clone = clone;
 // window.distEuclid = distEuclid;
-window.choose = choose;
-window.choose_weight = choose_weight;
 window.lpad = lpad;
 window.array_clean = array_clean;
 window.array_sum = array_sum;

@@ -11,6 +11,7 @@ import {
     kn_ms,
     radiansToDegrees,
     degreesToRadians,
+    convertMinutesToSeconds,
     parseElevation
 } from '../../src/assets/scripts/utilities/unitConverters';
 
@@ -95,6 +96,13 @@ ava('.radiansToDegrees() converts radians to degrees', t => {
 ava('.degreesToRadians() converts degrees to radians', t => {
     const result = degreesToRadians(123);
     const expectedResult = 2.1467549799530254;
+
+    t.true(result === expectedResult);
+});
+
+ava('.convertMinutesToSeconds() converts minutes to seconds', t => {
+    const result = convertMinutesToSeconds(10);
+    const expectedResult = 10 * 60;
 
     t.true(result === expectedResult);
 });

@@ -2,8 +2,6 @@ import $ from 'jquery';
 import peg from 'pegjs';
 import ContentQueue from './contentQueue/ContentQueue';
 import LoadingView from './LoadingView';
-import AirlineController from './airline/AirlineController';
-import AircraftController from './aircraft/AircraftController';
 import AirportController from './airport/AirportController';
 import GameController from './game/GameController';
 import TutorialView from './tutorial/TutorialView';
@@ -48,8 +46,9 @@ export default class App {
      * @for App
      * @constructor
      * @param $element {HTML Element|null}
+     * @param airportLoadList {array<object>}  List of airports to load
      */
-    constructor(element) {
+    constructor(element, airportLoadList) {
         /**
          * Root DOM element.
          *
@@ -60,8 +59,6 @@ export default class App {
         this.$element = $(element);
         this.loadingView = null;
         this.contentQueue = null;
-        this.airlineController = null;
-        this.aircraftController = null;
         this.airportController = null;
         this.tutorialView = null;
         this.inputController = null;
@@ -92,7 +89,7 @@ export default class App {
             this.prop.log = LOG.WARNING;
         }
 
-        return this.setupChildren()
+        return this.setupChildren(airportLoadList)
                     .enable();
     }
 
@@ -103,13 +100,12 @@ export default class App {
      *
      * @for App
      * @method setupChildren
+     * @param airportLoadList {array<object>}  List of airports to load
      */
-    setupChildren() {
+    setupChildren(airportLoadList) {
         this.loadingView = new LoadingView();
         this.contentQueue = new ContentQueue(this.loadingView);
-        this.airlineController = new AirlineController();
-        this.aircraftController = new AircraftController();
-        this.airportController = new AirportController(this.updateRun);
+        this.airportController = new AirportController(airportLoadList, this.updateRun);
         this.gameController = new GameController(this.getDeltaTime);
         this.tutorialView = new TutorialView(this.$element);
         this.inputController = new InputController(this.$element);
@@ -133,8 +129,6 @@ export default class App {
         // these instances are attached to the window here as an intermediate step away from global functions.
         // this allows for any module file to call window.{module}.{method} and will make the transition to
         // explicit instance parameters easier.
-        window.airlineController = this.airlineController;
-        window.aircraftController = this.aircraftController;
         window.airportController = this.airportController;
         window.gameController = this.gameController;
         window.tutorialView = this.tutorialView;
@@ -169,8 +163,6 @@ export default class App {
         this.$element = null;
         this.contentQueue = null;
         this.loadingView = null;
-        this.airlineController = null;
-        this.aircraftController = null;
         this.airportController = null;
         this.gameController = null;
         this.tutorialView = null;
@@ -209,8 +201,6 @@ export default class App {
         this.tutorialView.tutorial_init_pre();
         this.gameController.init_pre();
         this.inputController.input_init_pre();
-        this.airlineController.init_pre();
-        this.aircraftController.init_pre();
         this.airportController.init_pre();
         this.canvasController.canvas_init_pre();
         this.uiController.ui_init_pre();
@@ -331,7 +321,7 @@ export default class App {
         requestAnimationFrame(() => this.update());
 
         this.updatePre();
-        this.aircraftController.aircraft_update();
+        this.airportController.recalculate();
         this.updatePost();
         this.incrementFrame();
 

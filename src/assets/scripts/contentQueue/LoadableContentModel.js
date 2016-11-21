@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import _get from 'lodash/get';
 
 /**
  * Simple container for a given piece of content
@@ -8,7 +9,7 @@ import $ from 'jquery';
 export default class LoadableContentModel {
     constructor(options) {
         this.url = options.url;
-        this.immediate = (options.immediate ? true : false);
+        this.immediate = _get(options, 'immediate', false);
         this.type = 'json';
         this.deferred = $.Deferred();
     }
