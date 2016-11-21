@@ -10,7 +10,9 @@ import UiController from './UiController';
 import CanvasController from './canvas/CanvasController';
 import { speech_init } from './speech';
 import { time, calculateDeltaTime } from './utilities/timeHelpers';
+import { digits_integer } from './utilities/radioUtilities';
 import { LOG } from './constants/logLevel';
+import { SELECTORS } from './constants/selectors';
 
 window.peg = peg;
 window.zlsa = {};
@@ -324,8 +326,25 @@ export default class App {
         this.airportController.recalculate();
         this.updatePost();
         this.incrementFrame();
+        this.tickClock();
 
         return this;
+    }
+
+    /**
+     * Update $("#clock") to the current game time
+     * @for App
+     * @method tickClock
+     * @return
+     */
+    tickClock() {
+        const game = window.gameController.game;
+        const gameDate = new Date(game.startTime + (game.time * 1000));
+        const hours = digits_integer(gameDate.getHours(), 2);
+        const minutes = digits_integer(gameDate.getMinutes(), 2);
+        const seconds = digits_integer(gameDate.getSeconds(), 2);
+        const gameTime = `${hours}:${minutes}:${seconds}`;
+        $(SELECTORS.DOM_SELECTORS.CLOCK).text(gameTime);
     }
 
     /**
