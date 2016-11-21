@@ -81,16 +81,16 @@ export default class InputController {
         this.input.mouseDown = [0, 0];
         this.input.isMouseDown = false;
 
-        this.createChildren()
+        this._init()
             .setupHandlers()
             .enable();
     }
 
     /**
      * @for InputController
-     * @method createChildren
+     * @method _init
      */
-    createChildren() {
+    _init() {
         this.$window = $(window);
         this.$commandInput = this.$element.find(SELECTORS.DOM_SELECTORS.COMMAND);
         this.$canvases = this.$element.find(SELECTORS.DOM_SELECTORS.CANVASES);
@@ -447,7 +447,7 @@ export default class InputController {
 
             case KEY_CODES.LEFT_ARROW:
                 // shortKeys in use
-                if (prop.game.option.get('controlMethod') === 'arrows') {
+                if (window.gameController.game.option.get('controlMethod') === 'arrows') {
                     this.$commandInput.val(`${currentCommandInputValue} \u2BA2`);
                     e.preventDefault();
                     this.onCommandInputChangeHandler();
@@ -456,7 +456,7 @@ export default class InputController {
                 break;
 
             case KEY_CODES.UP_ARROW:
-                if (prop.game.option.get('controlMethod') === 'arrows') { // shortKeys in use
+                if (window.gameController.game.option.get('controlMethod') === 'arrows') { // shortKeys in use
                     this.$commandInput.val(`${currentCommandInputValue} \u2B61`);
                     e.preventDefault();
                     this.onCommandInputChangeHandler();
@@ -469,7 +469,7 @@ export default class InputController {
 
             case KEY_CODES.RIGHT_ARROW:
                 // shortKeys in use
-                if (prop.game.option.get('controlMethod') === 'arrows') {
+                if (window.gameController.game.option.get('controlMethod') === 'arrows') {
                     this.$commandInput.val(`${currentCommandInputValue} \u2BA3`);
                     e.preventDefault();
                     this.onCommandInputChangeHandler();
@@ -478,7 +478,7 @@ export default class InputController {
                 break;
 
             case KEY_CODES.DOWN_ARROW:
-                if (prop.game.option.get('controlMethod') === 'arrows') { // shortKeys in use
+                if (window.gameController.game.option.get('controlMethod') === 'arrows') { // shortKeys in use
                     this.$commandInput.val(`${currentCommandInputValue} \u2B63`);
                     e.preventDefault();
                     this.onCommandInputChangeHandler();
@@ -730,7 +730,7 @@ export default class InputController {
             return true;
         } else if (result.command === 'timewarp') {
             if (result.args) {
-                prop.game.speedup = result.args;
+                window.gameController.game.speedup = result.args;
             } else {
                 window.gameController.game_timewarp_toggle();
             }
@@ -753,7 +753,7 @@ export default class InputController {
             return true;
         } else if (result.command === 'rate') {
             if (result.args && result.args > 0) {
-                prop.game.frequency = result.args;
+                window.gameController.game.frequency = result.args;
             }
 
             return true;

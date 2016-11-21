@@ -1,8 +1,10 @@
+/* eslint-disable import/no-extraneous-dependencies, arrow-parens */
 import ava from 'ava';
 
 import {
     calcTurnRadius,
-    calcTurnInitiationDistance
+    calcTurnInitiationDistance,
+    calculateHeadingFromTwoPositions
 } from '../../src/assets/scripts/math/flightMath';
 
 ava('.calcTurnRadius() returns a turn radius based on speed and bank angle', t => {
@@ -20,6 +22,15 @@ ava('.calcTurnRadius() returns a turn radius based on speed and bank angle', t =
     const courseChange = 0.26420086153126987;
     const expectedResult = 746.732042830424;
     const result = calcTurnInitiationDistance(speed, bankAngle, courseChange);
+
+    t.true(result === expectedResult);
+});
+
+ava('.calculateHeadingFromTwoPositions()', t => {
+    const positionStart = [-99.76521626690608, -148.0266530993096];
+    const positionEnd = [-87.64380662924125, -129.57471627889475];
+    const expectedResult = 0.5812231343277809;
+    const result = calculateHeadingFromTwoPositions(positionEnd, positionStart);
 
     t.true(result === expectedResult);
 });

@@ -93,15 +93,15 @@ export default class ConvasController {
         this.canvas.draw_sids = true;
         this.canvas.draw_terrain = true;
 
-        return this.createChildren()
+        return this._init()
                     .enable();
     }
 
     /**
      * @for CanvasController
-     * @method createChildren
+     * @method _init
      */
-    createChildren() {
+    _init() {
         return this;
     }
 
@@ -237,7 +237,7 @@ export default class ConvasController {
     canvas_update_post() {
         const elapsed = window.gameController.game_time() - window.airportController.airport_get().start;
         const alpha = extrapolate_range_clamp(0.1, elapsed, 0.4, 0, 1);
-        const framestep = Math.round(extrapolate_range_clamp(1, prop.game.speedup, 10, 30, 1));
+        const framestep = Math.round(extrapolate_range_clamp(1, window.gameController.game.speedup, 10, 30, 1));
 
         if (this.canvas.dirty || (!window.gameController.game_paused() && prop.time.frames % framestep === 0) || elapsed < 1) {
             const cc = this.canvas_get('navaids');
@@ -398,7 +398,7 @@ export default class ConvasController {
     canvas_should_draw() {
         const elapsed = time() - this.canvas.last;
 
-        if (elapsed > (1 / prop.game.speedup)) {
+        if (elapsed > (1 / window.gameController.game.speedup)) {
             this.canvas.last = time();
             return true;
         }
@@ -622,14 +622,15 @@ export default class ConvasController {
             cc.globalCompositeOperation = 'destination-out';
             cc.lineWidth = 4;
 
-            this.canvas_draw_fix(cc, i, fix.position);
+            this.canvas_draw_fix(cc, fix.name, fix.position);
 
             cc.strokeStyle = COLORS.WHITE_00;
             cc.fillStyle = COLORS.WHITE_05;
             cc.globalCompositeOperation = 'source-over';
             cc.lineWidth = 1;
 
-            this.canvas_draw_fix(cc, i, fix.position);
+            this.canvas_draw_fix(cc, fix.name, fix.position);
+
             cc.restore();
         });
     }
@@ -646,10 +647,9 @@ export default class ConvasController {
 
         // Store the count of sid text drawn for a specific transition
         const text_at_point = [];
-        const departureColor = COLORS.DEPARTURE_COLOR;
 
-        cc.strokeStyle = departureColor;
-        cc.fillStyle = departureColor;
+        cc.strokeStyle = COLORS.DEPARTURE_COLOR;
+        cc.fillStyle = COLORS.DEPARTURE_COLOR;
         cc.setLineDash([1, 10]);
         cc.font = 'italic 14px monoOne, monospace';
 
@@ -673,7 +673,7 @@ export default class ConvasController {
                             write_sid_name = false;
                         }
 
-                        let fix = airport.getFix(fixList[j].replace('*', ''));
+                        let fix = airport.getFixPosition(fixList[j].replace('*', ''));
 
                         if (!fix) {
                             log(`Unable to draw line to '${fixList[j]}' because its position is not defined!`, LOG.WARNING);
@@ -693,11 +693,14 @@ export default class ConvasController {
                     cc.stroke();
 
                     if (exit_name) {
-                        if (isNaN(text_at_point[exit_name])) {  // Initialize count for this transition
+                        // Initialize count for this transition
+                        if (isNaN(text_at_point[exit_name])) {
                             text_at_point[exit_name] = 0;
                         }
 
-                        const y_point = fy + (15 * text_at_point[exit_name]);  // Move the y point for drawing depending on how many sids we have drawn text for at this point already
+                        // Move the y point for drawing depending on how many sids we have drawn text for
+                        // at this point already
+                        const y_point = fy + (15 * text_at_point[exit_name]);
                         cc.fillText(`${s}.${exit_name}`, fx + 10, y_point);
 
                         text_at_point[exit_name] += 1;  // Increment the count for this transition
@@ -865,8 +868,8 @@ export default class ConvasController {
         // TODO: if all these parens are actally needed, abstract this out to a function that can return a bool.
         // Aircraft
         // Draw the future path
-        if ((prop.game.option.get('drawProjectedPaths') === 'always') ||
-          ((prop.game.option.get('drawProjectedPaths') === 'selected') &&
+        if ((window.gameController.game.option.get('drawProjectedPaths') === 'always') ||
+          ((window.gameController.game.option.get('drawProjectedPaths') === 'selected') &&
            ((aircraft.warning || match) && !aircraft.isTaxiing()))
         ) {
             this.canvas_draw_future_track(cc, aircraft);
@@ -997,20 +1000,20 @@ export default class ConvasController {
         let lockedStroke;
         let was_locked = false;
         const future_track = [];
-        const save_delta = prop.game.delta;
+        const save_delta = window.gameController.game.delta;
         const fms_twin = _cloneDeep(aircraft.fms);
         const twin = _cloneDeep(aircraft);
 
         twin.fms = fms_twin;
         twin.fms.aircraft = twin;
         twin.projected = true;
-        prop.game.delta = 5;
+        window.gameController.game.delta = 5;
 
         for (let i = 0; i < 60; i++) {
             twin.update();
 
-            ils_locked = twin.fms.currentWaypoint().runway &&
-                twin.category === FLIGHT_MODES.ARRIVAL &&
+            ils_locked = twin.isPrecisionGuided() &&
+                twin.category === FLIGHT_CATEGORY.ARRIVAL &&
                 twin.mode === FLIGHT_MODES.LANDING;
 
             future_track.push([twin.position[0], twin.position[1], ils_locked]);
@@ -1020,7 +1023,7 @@ export default class ConvasController {
             }
         }
 
-        prop.game.delta = save_delta;
+        window.gameController.game.delta = save_delta;
         cc.save();
 
         if (aircraft.category === FLIGHT_CATEGORY.DEPARTURE) {
@@ -1444,9 +1447,9 @@ export default class ConvasController {
      */
     canvas_draw_fancy_rings(cc, fix_origin, fix1, fix2) {
         const airport = window.airportController.airport_get();
-        const origin = airport.getFix(fix_origin);
-        const f1 = airport.getFix(fix1);
-        const f2 = airport.getFix(fix2);
+        const origin = airport.getFixPosition(fix_origin);
+        const f1 = airport.getFixPosition(fix1);
+        const f2 = airport.getFixPosition(fix2);
         const minDist = Math.min(distance2d(origin, f1), distance2d(origin, f2));
         const halfPI = Math.PI / 2;
         const extend_ring = degreesToRadians(10);

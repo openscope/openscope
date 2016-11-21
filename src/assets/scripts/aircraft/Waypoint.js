@@ -48,7 +48,7 @@ export default class Waypoint {
         if (data.fix) {
             this.navmode = 'fix';
             this.fix = data.fix;
-            this.location = window.airportController.airport_get().getFix(data.fix);
+            this.location = window.airportController.airport_get().getFixPosition(data.fix);
         }
 
         _forEach(data, (value, key) => {

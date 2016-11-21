@@ -2,53 +2,85 @@
 import DepartureBase from './DepartureBase';
 import { sin } from '../../math/core';
 import { tau } from '../../math/circle';
+import { convertMinutesToSeconds } from '../../utilities/unitConverters';
+import { TIME } from '../../constants/globalConstants';
 
 /**
  * Generate departures in cyclic pattern
  *
  * @class DepartureCyclic
+ * @extends DepartureBase
  */
 export default class DepartureCyclic extends DepartureBase {
+    /**
+     * @for DepartureBase
+     * @constructor
+     * @param airport {AirportInstanceModel}
+     * @param options {object}
+     */
     constructor(airport, options) {
         super(airport, options);
 
-        // TODO: what do all these numbers mean? enumerate the magic numbers.
-        this.period = 60 * 60;
-        this.offset = -15 * 60; // Start at the peak
+        /**
+         * length of a cycle
+         *
+         * @property period
+         * @type {number}
+         * @default TIME.ONE_HOUR_IN_SECONDS
+         */
+        this.period = TIME.ONE_HOUR_IN_SECONDS;
 
-        this._amplitude = 3600 / this.frequency / 2;
-        this._average = 3600 / this.frequency;
+        /**
+         * Start at the peak
+         *
+         * Optionally specify when the cycle peaks
+         *
+         * @property offset
+         * @type {number}
+         * @default -900
+         */
+        this.offset = -900;
+
+        /**
+         * @property _amplitude
+         * @type {number}
+         */
+        this._amplitude = TIME.ONE_HOUR_IN_SECONDS / this.frequency / 2;
+
+        /**
+         * @property _average
+         * @type {number}
+         */
+        this._average = TIME.ONE_HOUR_IN_SECONDS / this.frequency;
     }
 
     /**
-     * Additional supported options
-     *
-     * period: {integer} Optionally specify the length of a cycle in minutes
-     * offset: {integer} Optionally specify when the cycle peaks in minutes
+     * @for DepartureCyclic
+     * @method parse
      */
     parse(options) {
         super.parse(options);
 
         if (options.period) {
-            this.period = options.period * 60;
+            this.period = convertMinutesToSeconds(options.period);
         }
 
         if (options.offset) {
             // TODO: enumerate the magic numbers
-            this.offset = -this.period / 4 + options.offset * 60;
+            this.offset = -this.period / 4 + convertMinutesToSeconds(options.offset);
         }
     }
 
+    /**
+     * @for DepartureCyclic
+     * @method nextInterval
+     * @return {number}
+     */
     nextInterval() {
-        // This is a [poorly named] example of how a really long calculation can be broken up into
-        // more readable bits. the original calculation much harder to read.
-        //
-        // (this._amplitude * Math.sin(tau() * ((game_time() + this.offset) / this.period)) + this._average) / prop.game.frequency;
-
         const gameTimeWithOffset = window.gameController.game_time() + this.offset;
         const sinOffsetOverPeriod = sin(tau() * (gameTimeWithOffset / this.period));
         const amplitudeTimesSinOffsetOverPeriod = this._amplitude * sinOffsetOverPeriod;
 
-        return (amplitudeTimesSinOffsetOverPeriod + this._average) / prop.game.frequency;
+        return (amplitudeTimesSinOffsetOverPeriod + this._average) / window.gameController.game.frequency;
     }
 }

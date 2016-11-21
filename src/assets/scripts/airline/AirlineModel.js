@@ -1,6 +1,8 @@
-/* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand */
 import _get from 'lodash/get';
+import _has from 'lodash/has';
 import _forEach from 'lodash/forEach';
+import _map from 'lodash/map';
+import { choose, choose_weight } from '../utilities/generalUtilities';
 
 /**
  * An aircrcraft operating agency
@@ -68,7 +70,7 @@ export default class AirlineModel {
                 this.flightNumberGeneration.length = data.callsign.length;
             }
 
-            this.flightNumberGeneration.alpha = (data.callsign.alpha === true);
+            this.flightNumberGeneration.alpha = _has(data, 'callsign.alpha');
         }
 
         if (data.fleets) {
@@ -78,9 +80,10 @@ export default class AirlineModel {
         }
 
         _forEach(this.fleets, (fleet) => {
-            for (let j = 0; j < fleet.length; j++) {
-                fleet[j][0] = fleet[j][0].toLowerCase();
-            }
+            _forEach(fleet, (aircraftInFleet) => {
+                const NAME_INDEX = 0;
+                aircraftInFleet[NAME_INDEX] = aircraftInFleet[NAME_INDEX].toLowerCase()
+            });
         });
     }
 
@@ -143,11 +146,12 @@ export default class AirlineModel {
      * @param fleet
      * @return
      */
-    chooseAircraft(fleet = '') {
-        if (fleet === '') {
-            fleet = 'default';
+    chooseAircraft(fleet) {
+        if (!fleet) {
+             fleet = 'default'
         }
 
+        // TODO: why is this a try/catch?
         // TODO: this try/catch block could be improved. its hard to tell what his block is actually doing.
         try {
             return choose_weight(this.fleets[fleet.toLowerCase()]);
@@ -181,16 +185,17 @@ export default class AirlineModel {
                 }
 
                 return true;
-            } else {
-                console.warn(`Unable to spawn aircraft for airline/ ${this.icao} as loading failed`);
-
-                return false;
             }
+
+            console.warn(`Unable to spawn aircraft for airline/ ${this.icao} as loading failed`);
+
+            return false;
         }
 
         return this._generateAircraft(options);
     }
 
+    // TODO: the logic here can be simplified.
     /**
      * Create a flight number/identifier
      *
@@ -199,7 +204,6 @@ export default class AirlineModel {
      * @return flightNumber {string}
      */
     generateFlightNumber() {
-        const flightNumberLength = this.flightNumberGeneration.length;
         let flightNumber = '';
         let list = '0123456789';
 
@@ -207,7 +211,8 @@ export default class AirlineModel {
         flightNumber += choose(list.substr(1));
 
         if (this.flightNumberGeneration.alpha) {
-            for (let i = 0; i < flightNumberLength - 3; i++) {
+            // TODO: why `this.flightNumberGeneration.length - 3`?  enumerate the magic number.
+            for (let i = 0; i < this.flightNumberGeneration.length - 3; i++) {
                 flightNumber += choose(list);
             }
 
@@ -217,7 +222,7 @@ export default class AirlineModel {
                 flightNumber += choose(list);
             }
         } else {
-            for (let i = 1; i < flightNumberLength; i++) {
+            for (let i = 1; i < this.flightNumberGeneration.length; i++) {
                 flightNumber += choose(list);
             }
         }
@@ -233,37 +238,16 @@ export default class AirlineModel {
      */
     validateFleets() {
         _forEach(this.fleets, (fleet) => {
-            for (let j = 0; j < fleet.length; j++) {
+            _forEach(fleet, (fleetAircraft) => {
+                const NAME_INDEX = 0;
                 // Preload the aircraft model
-                window.aircraftController.aircraft_model_get(fleet[j][0]);
+                window.aircraftController.aircraft_model_get(fleetAircraft[NAME_INDEX]);
 
-                if (typeof fleet[j][1] !== 'number') {
-                    console.warn(`Airline ${this.icao.toUpperCase()} uses non numeric weight for aircraft ${fleet[j][0]}, expect errors`);
+                if (typeof fleetAircraft[1] !== 'number') {
+                    console.warn(`Airline ${this.icao.toUpperCase()} uses non numeric weight for aircraft ${fleetAircraft[NAME_INDEX]}, expect errors`);
                 }
-            }
+            });
         });
-    }
-
-    /**
-     * @for AirlineModel
-     * @method _generateAircraft
-     * @param options {object}
-     * @return {function}
-     */
-    _generateAircraft(options) {
-        if (!options.callsign) {
-            options.callsign = window.aircraftController.aircraft_callsign_new(options.airline);
-        }
-
-        if (!options.icao) {
-            options.icao = this.chooseAircraft(options.fleet);
-        }
-
-        const model = window.aircraftController.aircraft_model_get(options.icao.toLowerCase());
-
-        return model.generateAircraft(options);
-        // FIXME: this block is unreachable, is it needed?
-        // var icao = options.icao.toLowerCase();
     }
 
     /**
@@ -279,5 +263,29 @@ export default class AirlineModel {
         });
 
         this._pendingAircraft = null;
+    }
+
+    /**
+     * @for AirlineModel
+     * @method _generateAircraft
+     * @param options {object}
+     * @return {function}
+     */
+    _generateAircraft(options) {
+        if (!options.callsign) {
+            // TODO: Why is the `AircraftController` repsonsible for generating a callsign, but this is responsible for
+            // generating the flight number? callsign generation logi should live in this class.
+            options.callsign = window.aircraftController.aircraft_callsign_new(options.airline);
+        }
+
+        if (!options.icao) {
+            options.icao = this.chooseAircraft(options.fleet);
+        }
+
+        const model = window.aircraftController.aircraft_model_get(options.icao.toLowerCase());
+
+        return model.generateAircraft(options);
+        // FIXME: this block is unreachable, is it needed?
+        // var icao = options.icao.toLowerCase();
     }
 }

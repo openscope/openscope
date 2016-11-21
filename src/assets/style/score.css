@@ -3,8 +3,9 @@
   position: absolute;
   bottom: 0;
   right: 0;
-  width: 56px;
-  padding: 8px 15px;
+  width: 75px;
+  padding: 8px 10px;
+  text-align: right;
 }
 
 #score.negative {

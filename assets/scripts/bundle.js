@@ -16315,7 +16315,7 @@ var DataView = getNative(root, 'DataView');
 
 module.exports = DataView;
 
-},{"./_getNative":394,"./_root":438}],298:[function(require,module,exports){
+},{"./_getNative":391,"./_root":435}],298:[function(require,module,exports){
 var hashClear = require('./_hashClear'),
     hashDelete = require('./_hashDelete'),
     hashGet = require('./_hashGet'),
@@ -16349,7 +16349,7 @@ Hash.prototype.set = hashSet;
 
 module.exports = Hash;
 
-},{"./_hashClear":404,"./_hashDelete":405,"./_hashGet":406,"./_hashHas":407,"./_hashSet":408}],299:[function(require,module,exports){
+},{"./_hashClear":401,"./_hashDelete":402,"./_hashGet":403,"./_hashHas":404,"./_hashSet":405}],299:[function(require,module,exports){
 var listCacheClear = require('./_listCacheClear'),
     listCacheDelete = require('./_listCacheDelete'),
     listCacheGet = require('./_listCacheGet'),
@@ -16383,7 +16383,7 @@ ListCache.prototype.set = listCacheSet;
 
 module.exports = ListCache;
 
-},{"./_listCacheClear":419,"./_listCacheDelete":420,"./_listCacheGet":421,"./_listCacheHas":422,"./_listCacheSet":423}],300:[function(require,module,exports){
+},{"./_listCacheClear":416,"./_listCacheDelete":417,"./_listCacheGet":418,"./_listCacheHas":419,"./_listCacheSet":420}],300:[function(require,module,exports){
 var getNative = require('./_getNative'),
     root = require('./_root');
 
@@ -16392,7 +16392,7 @@ var Map = getNative(root, 'Map');
 
 module.exports = Map;
 
-},{"./_getNative":394,"./_root":438}],301:[function(require,module,exports){
+},{"./_getNative":391,"./_root":435}],301:[function(require,module,exports){
 var mapCacheClear = require('./_mapCacheClear'),
     mapCacheDelete = require('./_mapCacheDelete'),
     mapCacheGet = require('./_mapCacheGet'),
@@ -16426,7 +16426,7 @@ MapCache.prototype.set = mapCacheSet;
 
 module.exports = MapCache;
 
-},{"./_mapCacheClear":424,"./_mapCacheDelete":425,"./_mapCacheGet":426,"./_mapCacheHas":427,"./_mapCacheSet":428}],302:[function(require,module,exports){
+},{"./_mapCacheClear":421,"./_mapCacheDelete":422,"./_mapCacheGet":423,"./_mapCacheHas":424,"./_mapCacheSet":425}],302:[function(require,module,exports){
 var getNative = require('./_getNative'),
     root = require('./_root');
 
@@ -16435,7 +16435,7 @@ var Promise = getNative(root, 'Promise');
 
 module.exports = Promise;
 
-},{"./_getNative":394,"./_root":438}],303:[function(require,module,exports){
+},{"./_getNative":391,"./_root":435}],303:[function(require,module,exports){
 var getNative = require('./_getNative'),
     root = require('./_root');
 
@@ -16444,7 +16444,7 @@ var Set = getNative(root, 'Set');
 
 module.exports = Set;
 
-},{"./_getNative":394,"./_root":438}],304:[function(require,module,exports){
+},{"./_getNative":391,"./_root":435}],304:[function(require,module,exports){
 var MapCache = require('./_MapCache'),
     setCacheAdd = require('./_setCacheAdd'),
     setCacheHas = require('./_setCacheHas');
@@ -16473,7 +16473,7 @@ SetCache.prototype.has = setCacheHas;
 
 module.exports = SetCache;
 
-},{"./_MapCache":301,"./_setCacheAdd":439,"./_setCacheHas":440}],305:[function(require,module,exports){
+},{"./_MapCache":301,"./_setCacheAdd":436,"./_setCacheHas":437}],305:[function(require,module,exports){
 var ListCache = require('./_ListCache'),
     stackClear = require('./_stackClear'),
     stackDelete = require('./_stackDelete'),
@@ -16502,7 +16502,7 @@ Stack.prototype.set = stackSet;
 
 module.exports = Stack;
 
-},{"./_ListCache":299,"./_stackClear":442,"./_stackDelete":443,"./_stackGet":444,"./_stackHas":445,"./_stackSet":446}],306:[function(require,module,exports){
+},{"./_ListCache":299,"./_stackClear":439,"./_stackDelete":440,"./_stackGet":441,"./_stackHas":442,"./_stackSet":443}],306:[function(require,module,exports){
 var root = require('./_root');
 
 /** Built-in value references. */
@@ -16510,7 +16510,7 @@ var Symbol = root.Symbol;
 
 module.exports = Symbol;
 
-},{"./_root":438}],307:[function(require,module,exports){
+},{"./_root":435}],307:[function(require,module,exports){
 var root = require('./_root');
 
 /** Built-in value references. */
@@ -16518,7 +16518,7 @@ var Uint8Array = root.Uint8Array;
 
 module.exports = Uint8Array;
 
-},{"./_root":438}],308:[function(require,module,exports){
+},{"./_root":435}],308:[function(require,module,exports){
 var getNative = require('./_getNative'),
     root = require('./_root');
 
@@ -16527,7 +16527,7 @@ var WeakMap = getNative(root, 'WeakMap');
 
 module.exports = WeakMap;
 
-},{"./_getNative":394,"./_root":438}],309:[function(require,module,exports){
+},{"./_getNative":391,"./_root":435}],309:[function(require,module,exports){
 /**
  * Adds the key-value `pair` to `map`.
  *
@@ -16586,49 +16586,6 @@ function arrayEach(array, iteratee) {
 module.exports = arrayEach;
 
 },{}],312:[function(require,module,exports){
-var baseIndexOf = require('./_baseIndexOf');
-
-/**
- * A specialized version of `_.includes` for arrays without support for
- * specifying an index to search from.
- *
- * @private
- * @param {Array} [array] The array to inspect.
- * @param {*} target The value to search for.
- * @returns {boolean} Returns `true` if `target` is found, else `false`.
- */
-function arrayIncludes(array, value) {
-  var length = array == null ? 0 : array.length;
-  return !!length && baseIndexOf(array, value, 0) > -1;
-}
-
-module.exports = arrayIncludes;
-
-},{"./_baseIndexOf":338}],313:[function(require,module,exports){
-/**
- * This function is like `arrayIncludes` except that it accepts a comparator.
- *
- * @private
- * @param {Array} [array] The array to inspect.
- * @param {*} target The value to search for.
- * @param {Function} comparator The comparator invoked per element.
- * @returns {boolean} Returns `true` if `target` is found, else `false`.
- */
-function arrayIncludesWith(array, value, comparator) {
-  var index = -1,
-      length = array == null ? 0 : array.length;
-
-  while (++index < length) {
-    if (comparator(value, array[index])) {
-      return true;
-    }
-  }
-  return false;
-}
-
-module.exports = arrayIncludesWith;
-
-},{}],314:[function(require,module,exports){
 var baseTimes = require('./_baseTimes'),
     isArguments = require('./isArguments'),
     isArray = require('./isArray'),
@@ -16679,7 +16636,7 @@ function arrayLikeKeys(value, inherited) {
 
 module.exports = arrayLikeKeys;
 
-},{"./_baseTimes":357,"./_isIndex":412,"./isArguments":465,"./isArray":466,"./isBuffer":468,"./isTypedArray":478}],315:[function(require,module,exports){
+},{"./_baseTimes":355,"./_isIndex":409,"./isArguments":465,"./isArray":466,"./isBuffer":468,"./isTypedArray":479}],313:[function(require,module,exports){
 /**
  * A specialized version of `_.map` for arrays without support for iteratee
  * shorthands.
@@ -16702,7 +16659,7 @@ function arrayMap(array, iteratee) {
 
 module.exports = arrayMap;
 
-},{}],316:[function(require,module,exports){
+},{}],314:[function(require,module,exports){
 /**
  * Appends the elements of `values` to `array`.
  *
@@ -16724,7 +16681,7 @@ function arrayPush(array, values) {
 
 module.exports = arrayPush;
 
-},{}],317:[function(require,module,exports){
+},{}],315:[function(require,module,exports){
 /**
  * A specialized version of `_.reduce` for arrays without support for
  * iteratee shorthands.
@@ -16752,7 +16709,7 @@ function arrayReduce(array, iteratee, accumulator, initAccum) {
 
 module.exports = arrayReduce;
 
-},{}],318:[function(require,module,exports){
+},{}],316:[function(require,module,exports){
 /**
  * A specialized version of `_.some` for arrays without support for iteratee
  * shorthands.
@@ -16777,7 +16734,7 @@ function arraySome(array, predicate) {
 
 module.exports = arraySome;
 
-},{}],319:[function(require,module,exports){
+},{}],317:[function(require,module,exports){
 /**
  * Converts an ASCII `string` to an array.
  *
@@ -16791,7 +16748,7 @@ function asciiToArray(string) {
 
 module.exports = asciiToArray;
 
-},{}],320:[function(require,module,exports){
+},{}],318:[function(require,module,exports){
 /** Used to match words composed of alphanumeric characters. */
 var reAsciiWord = /[^\x00-\x2f\x3a-\x40\x5b-\x60\x7b-\x7f]+/g;
 
@@ -16808,7 +16765,7 @@ function asciiWords(string) {
 
 module.exports = asciiWords;
 
-},{}],321:[function(require,module,exports){
+},{}],319:[function(require,module,exports){
 var baseAssignValue = require('./_baseAssignValue'),
     eq = require('./eq');
 
@@ -16838,7 +16795,7 @@ function assignValue(object, key, value) {
 
 module.exports = assignValue;
 
-},{"./_baseAssignValue":325,"./eq":458}],322:[function(require,module,exports){
+},{"./_baseAssignValue":323,"./eq":455}],320:[function(require,module,exports){
 var eq = require('./eq');
 
 /**
@@ -16861,7 +16818,7 @@ function assocIndexOf(array, key) {
 
 module.exports = assocIndexOf;
 
-},{"./eq":458}],323:[function(require,module,exports){
+},{"./eq":455}],321:[function(require,module,exports){
 var copyObject = require('./_copyObject'),
     keys = require('./keys');
 
@@ -16880,7 +16837,7 @@ function baseAssign(object, source) {
 
 module.exports = baseAssign;
 
-},{"./_copyObject":375,"./keys":479}],324:[function(require,module,exports){
+},{"./_copyObject":372,"./keys":480}],322:[function(require,module,exports){
 var copyObject = require('./_copyObject'),
     keysIn = require('./keysIn');
 
@@ -16899,7 +16856,7 @@ function baseAssignIn(object, source) {
 
 module.exports = baseAssignIn;
 
-},{"./_copyObject":375,"./keysIn":480}],325:[function(require,module,exports){
+},{"./_copyObject":372,"./keysIn":481}],323:[function(require,module,exports){
 var defineProperty = require('./_defineProperty');
 
 /**
@@ -16926,7 +16883,7 @@ function baseAssignValue(object, key, value) {
 
 module.exports = baseAssignValue;
 
-},{"./_defineProperty":385}],326:[function(require,module,exports){
+},{"./_defineProperty":382}],324:[function(require,module,exports){
 /**
  * The base implementation of `_.clamp` which doesn't coerce arguments.
  *
@@ -16950,7 +16907,7 @@ function baseClamp(number, lower, upper) {
 
 module.exports = baseClamp;
 
-},{}],327:[function(require,module,exports){
+},{}],325:[function(require,module,exports){
 var Stack = require('./_Stack'),
     arrayEach = require('./_arrayEach'),
     assignValue = require('./_assignValue'),
@@ -17105,7 +17062,7 @@ function baseClone(value, bitmask, customizer, key, object, stack) {
 
 module.exports = baseClone;
 
-},{"./_Stack":305,"./_arrayEach":311,"./_assignValue":321,"./_baseAssign":323,"./_baseAssignIn":324,"./_cloneBuffer":367,"./_copyArray":374,"./_copySymbols":376,"./_copySymbolsIn":377,"./_getAllKeys":390,"./_getAllKeysIn":391,"./_getTag":399,"./_initCloneArray":409,"./_initCloneByTag":410,"./_initCloneObject":411,"./isArray":466,"./isBuffer":468,"./isObject":474,"./keys":479}],328:[function(require,module,exports){
+},{"./_Stack":305,"./_arrayEach":311,"./_assignValue":319,"./_baseAssign":321,"./_baseAssignIn":322,"./_cloneBuffer":364,"./_copyArray":371,"./_copySymbols":373,"./_copySymbolsIn":374,"./_getAllKeys":387,"./_getAllKeysIn":388,"./_getTag":396,"./_initCloneArray":406,"./_initCloneByTag":407,"./_initCloneObject":408,"./isArray":466,"./isBuffer":468,"./isObject":475,"./keys":480}],326:[function(require,module,exports){
 var isObject = require('./isObject');
 
 /** Built-in value references. */
@@ -17137,7 +17094,7 @@ var baseCreate = (function() {
 
 module.exports = baseCreate;
 
-},{"./isObject":474}],329:[function(require,module,exports){
+},{"./isObject":475}],327:[function(require,module,exports){
 var baseForOwn = require('./_baseForOwn'),
     createBaseEach = require('./_createBaseEach');
 
@@ -17153,7 +17110,7 @@ var baseEach = createBaseEach(baseForOwn);
 
 module.exports = baseEach;
 
-},{"./_baseForOwn":332,"./_createBaseEach":379}],330:[function(require,module,exports){
+},{"./_baseForOwn":330,"./_createBaseEach":376}],328:[function(require,module,exports){
 /**
  * The base implementation of `_.findIndex` and `_.findLastIndex` without
  * support for iteratee shorthands.
@@ -17179,7 +17136,7 @@ function baseFindIndex(array, predicate, fromIndex, fromRight) {
 
 module.exports = baseFindIndex;
 
-},{}],331:[function(require,module,exports){
+},{}],329:[function(require,module,exports){
 var createBaseFor = require('./_createBaseFor');
 
 /**
@@ -17197,7 +17154,7 @@ var baseFor = createBaseFor();
 
 module.exports = baseFor;
 
-},{"./_createBaseFor":380}],332:[function(require,module,exports){
+},{"./_createBaseFor":377}],330:[function(require,module,exports){
 var baseFor = require('./_baseFor'),
     keys = require('./keys');
 
@@ -17215,7 +17172,7 @@ function baseForOwn(object, iteratee) {
 
 module.exports = baseForOwn;
 
-},{"./_baseFor":331,"./keys":479}],333:[function(require,module,exports){
+},{"./_baseFor":329,"./keys":480}],331:[function(require,module,exports){
 var castPath = require('./_castPath'),
     toKey = require('./_toKey');
 
@@ -17241,7 +17198,7 @@ function baseGet(object, path) {
 
 module.exports = baseGet;
 
-},{"./_castPath":364,"./_toKey":450}],334:[function(require,module,exports){
+},{"./_castPath":361,"./_toKey":447}],332:[function(require,module,exports){
 var arrayPush = require('./_arrayPush'),
     isArray = require('./isArray');
 
@@ -17263,7 +17220,7 @@ function baseGetAllKeys(object, keysFunc, symbolsFunc) {
 
 module.exports = baseGetAllKeys;
 
-},{"./_arrayPush":316,"./isArray":466}],335:[function(require,module,exports){
+},{"./_arrayPush":314,"./isArray":466}],333:[function(require,module,exports){
 var Symbol = require('./_Symbol'),
     getRawTag = require('./_getRawTag'),
     objectToString = require('./_objectToString');
@@ -17294,7 +17251,7 @@ function baseGetTag(value) {
 
 module.exports = baseGetTag;
 
-},{"./_Symbol":306,"./_getRawTag":396,"./_objectToString":436}],336:[function(require,module,exports){
+},{"./_Symbol":306,"./_getRawTag":393,"./_objectToString":433}],334:[function(require,module,exports){
 /** Used for built-in method references. */
 var objectProto = Object.prototype;
 
@@ -17315,7 +17272,7 @@ function baseHas(object, key) {
 
 module.exports = baseHas;
 
-},{}],337:[function(require,module,exports){
+},{}],335:[function(require,module,exports){
 /**
  * The base implementation of `_.hasIn` without support for deep paths.
  *
@@ -17330,7 +17287,7 @@ function baseHasIn(object, key) {
 
 module.exports = baseHasIn;
 
-},{}],338:[function(require,module,exports){
+},{}],336:[function(require,module,exports){
 var baseFindIndex = require('./_baseFindIndex'),
     baseIsNaN = require('./_baseIsNaN'),
     strictIndexOf = require('./_strictIndexOf');
@@ -17352,7 +17309,7 @@ function baseIndexOf(array, value, fromIndex) {
 
 module.exports = baseIndexOf;
 
-},{"./_baseFindIndex":330,"./_baseIsNaN":343,"./_strictIndexOf":447}],339:[function(require,module,exports){
+},{"./_baseFindIndex":328,"./_baseIsNaN":341,"./_strictIndexOf":444}],337:[function(require,module,exports){
 var baseGetTag = require('./_baseGetTag'),
     isObjectLike = require('./isObjectLike');
 
@@ -17372,7 +17329,7 @@ function baseIsArguments(value) {
 
 module.exports = baseIsArguments;
 
-},{"./_baseGetTag":335,"./isObjectLike":475}],340:[function(require,module,exports){
+},{"./_baseGetTag":333,"./isObjectLike":476}],338:[function(require,module,exports){
 var baseIsEqualDeep = require('./_baseIsEqualDeep'),
     isObject = require('./isObject'),
     isObjectLike = require('./isObjectLike');
@@ -17403,7 +17360,7 @@ function baseIsEqual(value, other, bitmask, customizer, stack) {
 
 module.exports = baseIsEqual;
 
-},{"./_baseIsEqualDeep":341,"./isObject":474,"./isObjectLike":475}],341:[function(require,module,exports){
+},{"./_baseIsEqualDeep":339,"./isObject":475,"./isObjectLike":476}],339:[function(require,module,exports){
 var Stack = require('./_Stack'),
     equalArrays = require('./_equalArrays'),
     equalByTag = require('./_equalByTag'),
@@ -17493,7 +17450,7 @@ function baseIsEqualDeep(object, other, bitmask, customizer, equalFunc, stack) {
 
 module.exports = baseIsEqualDeep;
 
-},{"./_Stack":305,"./_equalArrays":386,"./_equalByTag":387,"./_equalObjects":388,"./_getTag":399,"./isArray":466,"./isBuffer":468,"./isTypedArray":478}],342:[function(require,module,exports){
+},{"./_Stack":305,"./_equalArrays":383,"./_equalByTag":384,"./_equalObjects":385,"./_getTag":396,"./isArray":466,"./isBuffer":468,"./isTypedArray":479}],340:[function(require,module,exports){
 var Stack = require('./_Stack'),
     baseIsEqual = require('./_baseIsEqual');
 
@@ -17557,7 +17514,7 @@ function baseIsMatch(object, source, matchData, customizer) {
 
 module.exports = baseIsMatch;
 
-},{"./_Stack":305,"./_baseIsEqual":340}],343:[function(require,module,exports){
+},{"./_Stack":305,"./_baseIsEqual":338}],341:[function(require,module,exports){
 /**
  * The base implementation of `_.isNaN` without support for number objects.
  *
@@ -17571,7 +17528,7 @@ function baseIsNaN(value) {
 
 module.exports = baseIsNaN;
 
-},{}],344:[function(require,module,exports){
+},{}],342:[function(require,module,exports){
 var isFunction = require('./isFunction'),
     isMasked = require('./_isMasked'),
     isObject = require('./isObject'),
@@ -17620,7 +17577,7 @@ function baseIsNative(value) {
 
 module.exports = baseIsNative;
 
-},{"./_isMasked":416,"./_toSource":451,"./isFunction":470,"./isObject":474}],345:[function(require,module,exports){
+},{"./_isMasked":413,"./_toSource":448,"./isFunction":471,"./isObject":475}],343:[function(require,module,exports){
 var baseGetTag = require('./_baseGetTag'),
     isLength = require('./isLength'),
     isObjectLike = require('./isObjectLike');
@@ -17682,7 +17639,7 @@ function baseIsTypedArray(value) {
 
 module.exports = baseIsTypedArray;
 
-},{"./_baseGetTag":335,"./isLength":471,"./isObjectLike":475}],346:[function(require,module,exports){
+},{"./_baseGetTag":333,"./isLength":472,"./isObjectLike":476}],344:[function(require,module,exports){
 var baseMatches = require('./_baseMatches'),
     baseMatchesProperty = require('./_baseMatchesProperty'),
     identity = require('./identity'),
@@ -17715,7 +17672,7 @@ function baseIteratee(value) {
 
 module.exports = baseIteratee;
 
-},{"./_baseMatches":350,"./_baseMatchesProperty":351,"./identity":463,"./isArray":466,"./property":487}],347:[function(require,module,exports){
+},{"./_baseMatches":348,"./_baseMatchesProperty":349,"./identity":463,"./isArray":466,"./property":487}],345:[function(require,module,exports){
 var isPrototype = require('./_isPrototype'),
     nativeKeys = require('./_nativeKeys');
 
@@ -17747,7 +17704,7 @@ function baseKeys(object) {
 
 module.exports = baseKeys;
 
-},{"./_isPrototype":417,"./_nativeKeys":433}],348:[function(require,module,exports){
+},{"./_isPrototype":414,"./_nativeKeys":430}],346:[function(require,module,exports){
 var isObject = require('./isObject'),
     isPrototype = require('./_isPrototype'),
     nativeKeysIn = require('./_nativeKeysIn');
@@ -17782,7 +17739,7 @@ function baseKeysIn(object) {
 
 module.exports = baseKeysIn;
 
-},{"./_isPrototype":417,"./_nativeKeysIn":434,"./isObject":474}],349:[function(require,module,exports){
+},{"./_isPrototype":414,"./_nativeKeysIn":431,"./isObject":475}],347:[function(require,module,exports){
 var baseEach = require('./_baseEach'),
     isArrayLike = require('./isArrayLike');
 
@@ -17806,7 +17763,7 @@ function baseMap(collection, iteratee) {
 
 module.exports = baseMap;
 
-},{"./_baseEach":329,"./isArrayLike":467}],350:[function(require,module,exports){
+},{"./_baseEach":327,"./isArrayLike":467}],348:[function(require,module,exports){
 var baseIsMatch = require('./_baseIsMatch'),
     getMatchData = require('./_getMatchData'),
     matchesStrictComparable = require('./_matchesStrictComparable');
@@ -17830,7 +17787,7 @@ function baseMatches(source) {
 
 module.exports = baseMatches;
 
-},{"./_baseIsMatch":342,"./_getMatchData":393,"./_matchesStrictComparable":430}],351:[function(require,module,exports){
+},{"./_baseIsMatch":340,"./_getMatchData":390,"./_matchesStrictComparable":427}],349:[function(require,module,exports){
 var baseIsEqual = require('./_baseIsEqual'),
     get = require('./get'),
     hasIn = require('./hasIn'),
@@ -17865,7 +17822,7 @@ function baseMatchesProperty(path, srcValue) {
 
 module.exports = baseMatchesProperty;
 
-},{"./_baseIsEqual":340,"./_isKey":414,"./_isStrictComparable":418,"./_matchesStrictComparable":430,"./_toKey":450,"./get":460,"./hasIn":462}],352:[function(require,module,exports){
+},{"./_baseIsEqual":338,"./_isKey":411,"./_isStrictComparable":415,"./_matchesStrictComparable":427,"./_toKey":447,"./get":459,"./hasIn":461}],350:[function(require,module,exports){
 /**
  * The base implementation of `_.property` without support for deep paths.
  *
@@ -17881,7 +17838,7 @@ function baseProperty(key) {
 
 module.exports = baseProperty;
 
-},{}],353:[function(require,module,exports){
+},{}],351:[function(require,module,exports){
 var baseGet = require('./_baseGet');
 
 /**
@@ -17899,7 +17856,7 @@ function basePropertyDeep(path) {
 
 module.exports = basePropertyDeep;
 
-},{"./_baseGet":333}],354:[function(require,module,exports){
+},{"./_baseGet":331}],352:[function(require,module,exports){
 /**
  * The base implementation of `_.propertyOf` without support for deep paths.
  *
@@ -17915,7 +17872,7 @@ function basePropertyOf(object) {
 
 module.exports = basePropertyOf;
 
-},{}],355:[function(require,module,exports){
+},{}],353:[function(require,module,exports){
 /* Built-in method references for those with the same name as other `lodash` methods. */
 var nativeFloor = Math.floor,
     nativeRandom = Math.random;
@@ -17935,7 +17892,7 @@ function baseRandom(lower, upper) {
 
 module.exports = baseRandom;
 
-},{}],356:[function(require,module,exports){
+},{}],354:[function(require,module,exports){
 /**
  * The base implementation of `_.slice` without an iteratee call guard.
  *
@@ -17968,7 +17925,7 @@ function baseSlice(array, start, end) {
 
 module.exports = baseSlice;
 
-},{}],357:[function(require,module,exports){
+},{}],355:[function(require,module,exports){
 /**
  * The base implementation of `_.times` without support for iteratee shorthands
  * or max array length checks.
@@ -17990,7 +17947,7 @@ function baseTimes(n, iteratee) {
 
 module.exports = baseTimes;
 
-},{}],358:[function(require,module,exports){
+},{}],356:[function(require,module,exports){
 var Symbol = require('./_Symbol'),
     arrayMap = require('./_arrayMap'),
     isArray = require('./isArray'),
@@ -18029,7 +17986,7 @@ function baseToString(value) {
 
 module.exports = baseToString;
 
-},{"./_Symbol":306,"./_arrayMap":315,"./isArray":466,"./isSymbol":477}],359:[function(require,module,exports){
+},{"./_Symbol":306,"./_arrayMap":313,"./isArray":466,"./isSymbol":478}],357:[function(require,module,exports){
 /**
  * The base implementation of `_.unary` without support for storing metadata.
  *
@@ -18045,81 +18002,7 @@ function baseUnary(func) {
 
 module.exports = baseUnary;
 
-},{}],360:[function(require,module,exports){
-var SetCache = require('./_SetCache'),
-    arrayIncludes = require('./_arrayIncludes'),
-    arrayIncludesWith = require('./_arrayIncludesWith'),
-    cacheHas = require('./_cacheHas'),
-    createSet = require('./_createSet'),
-    setToArray = require('./_setToArray');
-
-/** Used as the size to enable large array optimizations. */
-var LARGE_ARRAY_SIZE = 200;
-
-/**
- * The base implementation of `_.uniqBy` without support for iteratee shorthands.
- *
- * @private
- * @param {Array} array The array to inspect.
- * @param {Function} [iteratee] The iteratee invoked per element.
- * @param {Function} [comparator] The comparator invoked per element.
- * @returns {Array} Returns the new duplicate free array.
- */
-function baseUniq(array, iteratee, comparator) {
-  var index = -1,
-      includes = arrayIncludes,
-      length = array.length,
-      isCommon = true,
-      result = [],
-      seen = result;
-
-  if (comparator) {
-    isCommon = false;
-    includes = arrayIncludesWith;
-  }
-  else if (length >= LARGE_ARRAY_SIZE) {
-    var set = iteratee ? null : createSet(array);
-    if (set) {
-      return setToArray(set);
-    }
-    isCommon = false;
-    includes = cacheHas;
-    seen = new SetCache;
-  }
-  else {
-    seen = iteratee ? [] : result;
-  }
-  outer:
-  while (++index < length) {
-    var value = array[index],
-        computed = iteratee ? iteratee(value) : value;
-
-    value = (comparator || value !== 0) ? value : 0;
-    if (isCommon && computed === computed) {
-      var seenIndex = seen.length;
-      while (seenIndex--) {
-        if (seen[seenIndex] === computed) {
-          continue outer;
-        }
-      }
-      if (iteratee) {
-        seen.push(computed);
-      }
-      result.push(value);
-    }
-    else if (!includes(seen, computed, comparator)) {
-      if (seen !== result) {
-        seen.push(computed);
-      }
-      result.push(value);
-    }
-  }
-  return result;
-}
-
-module.exports = baseUniq;
-
-},{"./_SetCache":304,"./_arrayIncludes":312,"./_arrayIncludesWith":313,"./_cacheHas":362,"./_createSet":383,"./_setToArray":441}],361:[function(require,module,exports){
+},{}],358:[function(require,module,exports){
 var arrayMap = require('./_arrayMap');
 
 /**
@@ -18140,7 +18023,7 @@ function baseValues(object, props) {
 
 module.exports = baseValues;
 
-},{"./_arrayMap":315}],362:[function(require,module,exports){
+},{"./_arrayMap":313}],359:[function(require,module,exports){
 /**
  * Checks if a `cache` value for `key` exists.
  *
@@ -18155,7 +18038,7 @@ function cacheHas(cache, key) {
 
 module.exports = cacheHas;
 
-},{}],363:[function(require,module,exports){
+},{}],360:[function(require,module,exports){
 var identity = require('./identity');
 
 /**
@@ -18171,7 +18054,7 @@ function castFunction(value) {
 
 module.exports = castFunction;
 
-},{"./identity":463}],364:[function(require,module,exports){
+},{"./identity":463}],361:[function(require,module,exports){
 var isArray = require('./isArray'),
     isKey = require('./_isKey'),
     stringToPath = require('./_stringToPath'),
@@ -18194,7 +18077,7 @@ function castPath(value, object) {
 
 module.exports = castPath;
 
-},{"./_isKey":414,"./_stringToPath":449,"./isArray":466,"./toString":496}],365:[function(require,module,exports){
+},{"./_isKey":411,"./_stringToPath":446,"./isArray":466,"./toString":496}],362:[function(require,module,exports){
 var baseSlice = require('./_baseSlice');
 
 /**
@@ -18214,7 +18097,7 @@ function castSlice(array, start, end) {
 
 module.exports = castSlice;
 
-},{"./_baseSlice":356}],366:[function(require,module,exports){
+},{"./_baseSlice":354}],363:[function(require,module,exports){
 var Uint8Array = require('./_Uint8Array');
 
 /**
@@ -18232,7 +18115,7 @@ function cloneArrayBuffer(arrayBuffer) {
 
 module.exports = cloneArrayBuffer;
 
-},{"./_Uint8Array":307}],367:[function(require,module,exports){
+},{"./_Uint8Array":307}],364:[function(require,module,exports){
 var root = require('./_root');
 
 /** Detect free variable `exports`. */
@@ -18269,7 +18152,7 @@ function cloneBuffer(buffer, isDeep) {
 
 module.exports = cloneBuffer;
 
-},{"./_root":438}],368:[function(require,module,exports){
+},{"./_root":435}],365:[function(require,module,exports){
 var cloneArrayBuffer = require('./_cloneArrayBuffer');
 
 /**
@@ -18287,7 +18170,7 @@ function cloneDataView(dataView, isDeep) {
 
 module.exports = cloneDataView;
 
-},{"./_cloneArrayBuffer":366}],369:[function(require,module,exports){
+},{"./_cloneArrayBuffer":363}],366:[function(require,module,exports){
 var addMapEntry = require('./_addMapEntry'),
     arrayReduce = require('./_arrayReduce'),
     mapToArray = require('./_mapToArray');
@@ -18311,7 +18194,7 @@ function cloneMap(map, isDeep, cloneFunc) {
 
 module.exports = cloneMap;
 
-},{"./_addMapEntry":309,"./_arrayReduce":317,"./_mapToArray":429}],370:[function(require,module,exports){
+},{"./_addMapEntry":309,"./_arrayReduce":315,"./_mapToArray":426}],367:[function(require,module,exports){
 /** Used to match `RegExp` flags from their coerced string values. */
 var reFlags = /\w*$/;
 
@@ -18330,7 +18213,7 @@ function cloneRegExp(regexp) {
 
 module.exports = cloneRegExp;
 
-},{}],371:[function(require,module,exports){
+},{}],368:[function(require,module,exports){
 var addSetEntry = require('./_addSetEntry'),
     arrayReduce = require('./_arrayReduce'),
     setToArray = require('./_setToArray');
@@ -18354,7 +18237,7 @@ function cloneSet(set, isDeep, cloneFunc) {
 
 module.exports = cloneSet;
 
-},{"./_addSetEntry":310,"./_arrayReduce":317,"./_setToArray":441}],372:[function(require,module,exports){
+},{"./_addSetEntry":310,"./_arrayReduce":315,"./_setToArray":438}],369:[function(require,module,exports){
 var Symbol = require('./_Symbol');
 
 /** Used to convert symbols to primitives and strings. */
@@ -18374,7 +18257,7 @@ function cloneSymbol(symbol) {
 
 module.exports = cloneSymbol;
 
-},{"./_Symbol":306}],373:[function(require,module,exports){
+},{"./_Symbol":306}],370:[function(require,module,exports){
 var cloneArrayBuffer = require('./_cloneArrayBuffer');
 
 /**
@@ -18392,7 +18275,7 @@ function cloneTypedArray(typedArray, isDeep) {
 
 module.exports = cloneTypedArray;
 
-},{"./_cloneArrayBuffer":366}],374:[function(require,module,exports){
+},{"./_cloneArrayBuffer":363}],371:[function(require,module,exports){
 /**
  * Copies the values of `source` to `array`.
  *
@@ -18414,7 +18297,7 @@ function copyArray(source, array) {
 
 module.exports = copyArray;
 
-},{}],375:[function(require,module,exports){
+},{}],372:[function(require,module,exports){
 var assignValue = require('./_assignValue'),
     baseAssignValue = require('./_baseAssignValue');
 
@@ -18456,7 +18339,7 @@ function copyObject(source, props, object, customizer) {
 
 module.exports = copyObject;
 
-},{"./_assignValue":321,"./_baseAssignValue":325}],376:[function(require,module,exports){
+},{"./_assignValue":319,"./_baseAssignValue":323}],373:[function(require,module,exports){
 var copyObject = require('./_copyObject'),
     getSymbols = require('./_getSymbols');
 
@@ -18474,7 +18357,7 @@ function copySymbols(source, object) {
 
 module.exports = copySymbols;
 
-},{"./_copyObject":375,"./_getSymbols":397}],377:[function(require,module,exports){
+},{"./_copyObject":372,"./_getSymbols":394}],374:[function(require,module,exports){
 var copyObject = require('./_copyObject'),
     getSymbolsIn = require('./_getSymbolsIn');
 
@@ -18492,7 +18375,7 @@ function copySymbolsIn(source, object) {
 
 module.exports = copySymbolsIn;
 
-},{"./_copyObject":375,"./_getSymbolsIn":398}],378:[function(require,module,exports){
+},{"./_copyObject":372,"./_getSymbolsIn":395}],375:[function(require,module,exports){
 var root = require('./_root');
 
 /** Used to detect overreaching core-js shims. */
@@ -18500,7 +18383,7 @@ var coreJsData = root['__core-js_shared__'];
 
 module.exports = coreJsData;
 
-},{"./_root":438}],379:[function(require,module,exports){
+},{"./_root":435}],376:[function(require,module,exports){
 var isArrayLike = require('./isArrayLike');
 
 /**
@@ -18534,7 +18417,7 @@ function createBaseEach(eachFunc, fromRight) {
 
 module.exports = createBaseEach;
 
-},{"./isArrayLike":467}],380:[function(require,module,exports){
+},{"./isArrayLike":467}],377:[function(require,module,exports){
 /**
  * Creates a base function for methods like `_.forIn` and `_.forOwn`.
  *
@@ -18561,7 +18444,7 @@ function createBaseFor(fromRight) {
 
 module.exports = createBaseFor;
 
-},{}],381:[function(require,module,exports){
+},{}],378:[function(require,module,exports){
 var castSlice = require('./_castSlice'),
     hasUnicode = require('./_hasUnicode'),
     stringToArray = require('./_stringToArray'),
@@ -18596,7 +18479,7 @@ function createCaseFirst(methodName) {
 
 module.exports = createCaseFirst;
 
-},{"./_castSlice":365,"./_hasUnicode":402,"./_stringToArray":448,"./toString":496}],382:[function(require,module,exports){
+},{"./_castSlice":362,"./_hasUnicode":399,"./_stringToArray":445,"./toString":496}],379:[function(require,module,exports){
 var arrayReduce = require('./_arrayReduce'),
     deburr = require('./deburr'),
     words = require('./words');
@@ -18622,28 +18505,34 @@ function createCompounder(callback) {
 
 module.exports = createCompounder;
 
-},{"./_arrayReduce":317,"./deburr":457,"./words":500}],383:[function(require,module,exports){
-var Set = require('./_Set'),
-    noop = require('./noop'),
-    setToArray = require('./_setToArray');
-
-/** Used as references for various `Number` constants. */
-var INFINITY = 1 / 0;
+},{"./_arrayReduce":315,"./deburr":454,"./words":500}],380:[function(require,module,exports){
+var baseIteratee = require('./_baseIteratee'),
+    isArrayLike = require('./isArrayLike'),
+    keys = require('./keys');
 
 /**
- * Creates a set object of `values`.
+ * Creates a `_.find` or `_.findLast` function.
  *
  * @private
- * @param {Array} values The values to add to the set.
- * @returns {Object} Returns the new set.
+ * @param {Function} findIndexFunc The function to find the collection index.
+ * @returns {Function} Returns the new find function.
  */
-var createSet = !(Set && (1 / setToArray(new Set([,-0]))[1]) == INFINITY) ? noop : function(values) {
-  return new Set(values);
-};
+function createFind(findIndexFunc) {
+  return function(collection, predicate, fromIndex) {
+    var iterable = Object(collection);
+    if (!isArrayLike(collection)) {
+      var iteratee = baseIteratee(predicate, 3);
+      collection = keys(collection);
+      predicate = function(key) { return iteratee(iterable[key], key, iterable); };
+    }
+    var index = findIndexFunc(collection, predicate, fromIndex);
+    return index > -1 ? iterable[iteratee ? collection[index] : index] : undefined;
+  };
+}
 
-module.exports = createSet;
+module.exports = createFind;
 
-},{"./_Set":303,"./_setToArray":441,"./noop":486}],384:[function(require,module,exports){
+},{"./_baseIteratee":344,"./isArrayLike":467,"./keys":480}],381:[function(require,module,exports){
 var basePropertyOf = require('./_basePropertyOf');
 
 /** Used to map Latin Unicode letters to basic Latin letters. */
@@ -18716,7 +18605,7 @@ var deburrLetter = basePropertyOf(deburredLetters);
 
 module.exports = deburrLetter;
 
-},{"./_basePropertyOf":354}],385:[function(require,module,exports){
+},{"./_basePropertyOf":352}],382:[function(require,module,exports){
 var getNative = require('./_getNative');
 
 var defineProperty = (function() {
@@ -18729,7 +18618,7 @@ var defineProperty = (function() {
 
 module.exports = defineProperty;
 
-},{"./_getNative":394}],386:[function(require,module,exports){
+},{"./_getNative":391}],383:[function(require,module,exports){
 var SetCache = require('./_SetCache'),
     arraySome = require('./_arraySome'),
     cacheHas = require('./_cacheHas');
@@ -18814,7 +18703,7 @@ function equalArrays(array, other, bitmask, customizer, equalFunc, stack) {
 
 module.exports = equalArrays;
 
-},{"./_SetCache":304,"./_arraySome":318,"./_cacheHas":362}],387:[function(require,module,exports){
+},{"./_SetCache":304,"./_arraySome":316,"./_cacheHas":359}],384:[function(require,module,exports){
 var Symbol = require('./_Symbol'),
     Uint8Array = require('./_Uint8Array'),
     eq = require('./eq'),
@@ -18928,7 +18817,7 @@ function equalByTag(object, other, tag, bitmask, customizer, equalFunc, stack) {
 
 module.exports = equalByTag;
 
-},{"./_Symbol":306,"./_Uint8Array":307,"./_equalArrays":386,"./_mapToArray":429,"./_setToArray":441,"./eq":458}],388:[function(require,module,exports){
+},{"./_Symbol":306,"./_Uint8Array":307,"./_equalArrays":383,"./_mapToArray":426,"./_setToArray":438,"./eq":455}],385:[function(require,module,exports){
 var keys = require('./keys');
 
 /** Used to compose bitmasks for value comparisons. */
@@ -19019,7 +18908,7 @@ function equalObjects(object, other, bitmask, customizer, equalFunc, stack) {
 
 module.exports = equalObjects;
 
-},{"./keys":479}],389:[function(require,module,exports){
+},{"./keys":480}],386:[function(require,module,exports){
 (function (global){
 /** Detect free variable `global` from Node.js. */
 var freeGlobal = typeof global == 'object' && global && global.Object === Object && global;
@@ -19028,7 +18917,7 @@ module.exports = freeGlobal;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 
-},{}],390:[function(require,module,exports){
+},{}],387:[function(require,module,exports){
 var baseGetAllKeys = require('./_baseGetAllKeys'),
     getSymbols = require('./_getSymbols'),
     keys = require('./keys');
@@ -19046,7 +18935,7 @@ function getAllKeys(object) {
 
 module.exports = getAllKeys;
 
-},{"./_baseGetAllKeys":334,"./_getSymbols":397,"./keys":479}],391:[function(require,module,exports){
+},{"./_baseGetAllKeys":332,"./_getSymbols":394,"./keys":480}],388:[function(require,module,exports){
 var baseGetAllKeys = require('./_baseGetAllKeys'),
     getSymbolsIn = require('./_getSymbolsIn'),
     keysIn = require('./keysIn');
@@ -19065,7 +18954,7 @@ function getAllKeysIn(object) {
 
 module.exports = getAllKeysIn;
 
-},{"./_baseGetAllKeys":334,"./_getSymbolsIn":398,"./keysIn":480}],392:[function(require,module,exports){
+},{"./_baseGetAllKeys":332,"./_getSymbolsIn":395,"./keysIn":481}],389:[function(require,module,exports){
 var isKeyable = require('./_isKeyable');
 
 /**
@@ -19085,7 +18974,7 @@ function getMapData(map, key) {
 
 module.exports = getMapData;
 
-},{"./_isKeyable":415}],393:[function(require,module,exports){
+},{"./_isKeyable":412}],390:[function(require,module,exports){
 var isStrictComparable = require('./_isStrictComparable'),
     keys = require('./keys');
 
@@ -19111,7 +19000,7 @@ function getMatchData(object) {
 
 module.exports = getMatchData;
 
-},{"./_isStrictComparable":418,"./keys":479}],394:[function(require,module,exports){
+},{"./_isStrictComparable":415,"./keys":480}],391:[function(require,module,exports){
 var baseIsNative = require('./_baseIsNative'),
     getValue = require('./_getValue');
 
@@ -19130,7 +19019,7 @@ function getNative(object, key) {
 
 module.exports = getNative;
 
-},{"./_baseIsNative":344,"./_getValue":400}],395:[function(require,module,exports){
+},{"./_baseIsNative":342,"./_getValue":397}],392:[function(require,module,exports){
 var overArg = require('./_overArg');
 
 /** Built-in value references. */
@@ -19138,7 +19027,7 @@ var getPrototype = overArg(Object.getPrototypeOf, Object);
 
 module.exports = getPrototype;
 
-},{"./_overArg":437}],396:[function(require,module,exports){
+},{"./_overArg":434}],393:[function(require,module,exports){
 var Symbol = require('./_Symbol');
 
 /** Used for built-in method references. */
@@ -19186,7 +19075,7 @@ function getRawTag(value) {
 
 module.exports = getRawTag;
 
-},{"./_Symbol":306}],397:[function(require,module,exports){
+},{"./_Symbol":306}],394:[function(require,module,exports){
 var overArg = require('./_overArg'),
     stubArray = require('./stubArray');
 
@@ -19204,7 +19093,7 @@ var getSymbols = nativeGetSymbols ? overArg(nativeGetSymbols, Object) : stubArra
 
 module.exports = getSymbols;
 
-},{"./_overArg":437,"./stubArray":491}],398:[function(require,module,exports){
+},{"./_overArg":434,"./stubArray":491}],395:[function(require,module,exports){
 var arrayPush = require('./_arrayPush'),
     getPrototype = require('./_getPrototype'),
     getSymbols = require('./_getSymbols'),
@@ -19231,7 +19120,7 @@ var getSymbolsIn = !nativeGetSymbols ? stubArray : function(object) {
 
 module.exports = getSymbolsIn;
 
-},{"./_arrayPush":316,"./_getPrototype":395,"./_getSymbols":397,"./stubArray":491}],399:[function(require,module,exports){
+},{"./_arrayPush":314,"./_getPrototype":392,"./_getSymbols":394,"./stubArray":491}],396:[function(require,module,exports){
 var DataView = require('./_DataView'),
     Map = require('./_Map'),
     Promise = require('./_Promise'),
@@ -19291,7 +19180,7 @@ if ((DataView && getTag(new DataView(new ArrayBuffer(1))) != dataViewTag) ||
 
 module.exports = getTag;
 
-},{"./_DataView":297,"./_Map":300,"./_Promise":302,"./_Set":303,"./_WeakMap":308,"./_baseGetTag":335,"./_toSource":451}],400:[function(require,module,exports){
+},{"./_DataView":297,"./_Map":300,"./_Promise":302,"./_Set":303,"./_WeakMap":308,"./_baseGetTag":333,"./_toSource":448}],397:[function(require,module,exports){
 /**
  * Gets the value at `key` of `object`.
  *
@@ -19306,7 +19195,7 @@ function getValue(object, key) {
 
 module.exports = getValue;
 
-},{}],401:[function(require,module,exports){
+},{}],398:[function(require,module,exports){
 var castPath = require('./_castPath'),
     isArguments = require('./isArguments'),
     isArray = require('./isArray'),
@@ -19347,7 +19236,7 @@ function hasPath(object, path, hasFunc) {
 
 module.exports = hasPath;
 
-},{"./_castPath":364,"./_isIndex":412,"./_toKey":450,"./isArguments":465,"./isArray":466,"./isLength":471}],402:[function(require,module,exports){
+},{"./_castPath":361,"./_isIndex":409,"./_toKey":447,"./isArguments":465,"./isArray":466,"./isLength":472}],399:[function(require,module,exports){
 /** Used to compose unicode character classes. */
 var rsAstralRange = '\\ud800-\\udfff',
     rsComboMarksRange = '\\u0300-\\u036f',
@@ -19375,7 +19264,7 @@ function hasUnicode(string) {
 
 module.exports = hasUnicode;
 
-},{}],403:[function(require,module,exports){
+},{}],400:[function(require,module,exports){
 /** Used to detect strings that need a more robust regexp to match words. */
 var reHasUnicodeWord = /[a-z][A-Z]|[A-Z]{2,}[a-z]|[0-9][a-zA-Z]|[a-zA-Z][0-9]|[^a-zA-Z0-9 ]/;
 
@@ -19392,7 +19281,7 @@ function hasUnicodeWord(string) {
 
 module.exports = hasUnicodeWord;
 
-},{}],404:[function(require,module,exports){
+},{}],401:[function(require,module,exports){
 var nativeCreate = require('./_nativeCreate');
 
 /**
@@ -19409,7 +19298,7 @@ function hashClear() {
 
 module.exports = hashClear;
 
-},{"./_nativeCreate":432}],405:[function(require,module,exports){
+},{"./_nativeCreate":429}],402:[function(require,module,exports){
 /**
  * Removes `key` and its value from the hash.
  *
@@ -19428,7 +19317,7 @@ function hashDelete(key) {
 
 module.exports = hashDelete;
 
-},{}],406:[function(require,module,exports){
+},{}],403:[function(require,module,exports){
 var nativeCreate = require('./_nativeCreate');
 
 /** Used to stand-in for `undefined` hash values. */
@@ -19460,7 +19349,7 @@ function hashGet(key) {
 
 module.exports = hashGet;
 
-},{"./_nativeCreate":432}],407:[function(require,module,exports){
+},{"./_nativeCreate":429}],404:[function(require,module,exports){
 var nativeCreate = require('./_nativeCreate');
 
 /** Used for built-in method references. */
@@ -19485,7 +19374,7 @@ function hashHas(key) {
 
 module.exports = hashHas;
 
-},{"./_nativeCreate":432}],408:[function(require,module,exports){
+},{"./_nativeCreate":429}],405:[function(require,module,exports){
 var nativeCreate = require('./_nativeCreate');
 
 /** Used to stand-in for `undefined` hash values. */
@@ -19510,7 +19399,7 @@ function hashSet(key, value) {
 
 module.exports = hashSet;
 
-},{"./_nativeCreate":432}],409:[function(require,module,exports){
+},{"./_nativeCreate":429}],406:[function(require,module,exports){
 /** Used for built-in method references. */
 var objectProto = Object.prototype;
 
@@ -19538,7 +19427,7 @@ function initCloneArray(array) {
 
 module.exports = initCloneArray;
 
-},{}],410:[function(require,module,exports){
+},{}],407:[function(require,module,exports){
 var cloneArrayBuffer = require('./_cloneArrayBuffer'),
     cloneDataView = require('./_cloneDataView'),
     cloneMap = require('./_cloneMap'),
@@ -19620,7 +19509,7 @@ function initCloneByTag(object, tag, cloneFunc, isDeep) {
 
 module.exports = initCloneByTag;
 
-},{"./_cloneArrayBuffer":366,"./_cloneDataView":368,"./_cloneMap":369,"./_cloneRegExp":370,"./_cloneSet":371,"./_cloneSymbol":372,"./_cloneTypedArray":373}],411:[function(require,module,exports){
+},{"./_cloneArrayBuffer":363,"./_cloneDataView":365,"./_cloneMap":366,"./_cloneRegExp":367,"./_cloneSet":368,"./_cloneSymbol":369,"./_cloneTypedArray":370}],408:[function(require,module,exports){
 var baseCreate = require('./_baseCreate'),
     getPrototype = require('./_getPrototype'),
     isPrototype = require('./_isPrototype');
@@ -19640,7 +19529,7 @@ function initCloneObject(object) {
 
 module.exports = initCloneObject;
 
-},{"./_baseCreate":328,"./_getPrototype":395,"./_isPrototype":417}],412:[function(require,module,exports){
+},{"./_baseCreate":326,"./_getPrototype":392,"./_isPrototype":414}],409:[function(require,module,exports){
 /** Used as references for various `Number` constants. */
 var MAX_SAFE_INTEGER = 9007199254740991;
 
@@ -19664,7 +19553,7 @@ function isIndex(value, length) {
 
 module.exports = isIndex;
 
-},{}],413:[function(require,module,exports){
+},{}],410:[function(require,module,exports){
 var eq = require('./eq'),
     isArrayLike = require('./isArrayLike'),
     isIndex = require('./_isIndex'),
@@ -19696,7 +19585,7 @@ function isIterateeCall(value, index, object) {
 
 module.exports = isIterateeCall;
 
-},{"./_isIndex":412,"./eq":458,"./isArrayLike":467,"./isObject":474}],414:[function(require,module,exports){
+},{"./_isIndex":409,"./eq":455,"./isArrayLike":467,"./isObject":475}],411:[function(require,module,exports){
 var isArray = require('./isArray'),
     isSymbol = require('./isSymbol');
 
@@ -19727,7 +19616,7 @@ function isKey(value, object) {
 
 module.exports = isKey;
 
-},{"./isArray":466,"./isSymbol":477}],415:[function(require,module,exports){
+},{"./isArray":466,"./isSymbol":478}],412:[function(require,module,exports){
 /**
  * Checks if `value` is suitable for use as unique object key.
  *
@@ -19744,7 +19633,7 @@ function isKeyable(value) {
 
 module.exports = isKeyable;
 
-},{}],416:[function(require,module,exports){
+},{}],413:[function(require,module,exports){
 var coreJsData = require('./_coreJsData');
 
 /** Used to detect methods masquerading as native. */
@@ -19766,7 +19655,7 @@ function isMasked(func) {
 
 module.exports = isMasked;
 
-},{"./_coreJsData":378}],417:[function(require,module,exports){
+},{"./_coreJsData":375}],414:[function(require,module,exports){
 /** Used for built-in method references. */
 var objectProto = Object.prototype;
 
@@ -19786,7 +19675,7 @@ function isPrototype(value) {
 
 module.exports = isPrototype;
 
-},{}],418:[function(require,module,exports){
+},{}],415:[function(require,module,exports){
 var isObject = require('./isObject');
 
 /**
@@ -19803,7 +19692,7 @@ function isStrictComparable(value) {
 
 module.exports = isStrictComparable;
 
-},{"./isObject":474}],419:[function(require,module,exports){
+},{"./isObject":475}],416:[function(require,module,exports){
 /**
  * Removes all key-value entries from the list cache.
  *
@@ -19818,7 +19707,7 @@ function listCacheClear() {
 
 module.exports = listCacheClear;
 
-},{}],420:[function(require,module,exports){
+},{}],417:[function(require,module,exports){
 var assocIndexOf = require('./_assocIndexOf');
 
 /** Used for built-in method references. */
@@ -19855,7 +19744,7 @@ function listCacheDelete(key) {
 
 module.exports = listCacheDelete;
 
-},{"./_assocIndexOf":322}],421:[function(require,module,exports){
+},{"./_assocIndexOf":320}],418:[function(require,module,exports){
 var assocIndexOf = require('./_assocIndexOf');
 
 /**
@@ -19876,7 +19765,7 @@ function listCacheGet(key) {
 
 module.exports = listCacheGet;
 
-},{"./_assocIndexOf":322}],422:[function(require,module,exports){
+},{"./_assocIndexOf":320}],419:[function(require,module,exports){
 var assocIndexOf = require('./_assocIndexOf');
 
 /**
@@ -19894,7 +19783,7 @@ function listCacheHas(key) {
 
 module.exports = listCacheHas;
 
-},{"./_assocIndexOf":322}],423:[function(require,module,exports){
+},{"./_assocIndexOf":320}],420:[function(require,module,exports){
 var assocIndexOf = require('./_assocIndexOf');
 
 /**
@@ -19922,7 +19811,7 @@ function listCacheSet(key, value) {
 
 module.exports = listCacheSet;
 
-},{"./_assocIndexOf":322}],424:[function(require,module,exports){
+},{"./_assocIndexOf":320}],421:[function(require,module,exports){
 var Hash = require('./_Hash'),
     ListCache = require('./_ListCache'),
     Map = require('./_Map');
@@ -19945,7 +19834,7 @@ function mapCacheClear() {
 
 module.exports = mapCacheClear;
 
-},{"./_Hash":298,"./_ListCache":299,"./_Map":300}],425:[function(require,module,exports){
+},{"./_Hash":298,"./_ListCache":299,"./_Map":300}],422:[function(require,module,exports){
 var getMapData = require('./_getMapData');
 
 /**
@@ -19965,7 +19854,7 @@ function mapCacheDelete(key) {
 
 module.exports = mapCacheDelete;
 
-},{"./_getMapData":392}],426:[function(require,module,exports){
+},{"./_getMapData":389}],423:[function(require,module,exports){
 var getMapData = require('./_getMapData');
 
 /**
@@ -19983,7 +19872,7 @@ function mapCacheGet(key) {
 
 module.exports = mapCacheGet;
 
-},{"./_getMapData":392}],427:[function(require,module,exports){
+},{"./_getMapData":389}],424:[function(require,module,exports){
 var getMapData = require('./_getMapData');
 
 /**
@@ -20001,7 +19890,7 @@ function mapCacheHas(key) {
 
 module.exports = mapCacheHas;
 
-},{"./_getMapData":392}],428:[function(require,module,exports){
+},{"./_getMapData":389}],425:[function(require,module,exports){
 var getMapData = require('./_getMapData');
 
 /**
@@ -20025,7 +19914,7 @@ function mapCacheSet(key, value) {
 
 module.exports = mapCacheSet;
 
-},{"./_getMapData":392}],429:[function(require,module,exports){
+},{"./_getMapData":389}],426:[function(require,module,exports){
 /**
  * Converts `map` to its key-value pairs.
  *
@@ -20045,7 +19934,7 @@ function mapToArray(map) {
 
 module.exports = mapToArray;
 
-},{}],430:[function(require,module,exports){
+},{}],427:[function(require,module,exports){
 /**
  * A specialized version of `matchesProperty` for source values suitable
  * for strict equality comparisons, i.e. `===`.
@@ -20067,7 +19956,7 @@ function matchesStrictComparable(key, srcValue) {
 
 module.exports = matchesStrictComparable;
 
-},{}],431:[function(require,module,exports){
+},{}],428:[function(require,module,exports){
 var memoize = require('./memoize');
 
 /** Used as the maximum memoize cache size. */
@@ -20095,7 +19984,7 @@ function memoizeCapped(func) {
 
 module.exports = memoizeCapped;
 
-},{"./memoize":485}],432:[function(require,module,exports){
+},{"./memoize":486}],429:[function(require,module,exports){
 var getNative = require('./_getNative');
 
 /* Built-in method references that are verified to be native. */
@@ -20103,7 +19992,7 @@ var nativeCreate = getNative(Object, 'create');
 
 module.exports = nativeCreate;
 
-},{"./_getNative":394}],433:[function(require,module,exports){
+},{"./_getNative":391}],430:[function(require,module,exports){
 var overArg = require('./_overArg');
 
 /* Built-in method references for those with the same name as other `lodash` methods. */
@@ -20111,7 +20000,7 @@ var nativeKeys = overArg(Object.keys, Object);
 
 module.exports = nativeKeys;
 
-},{"./_overArg":437}],434:[function(require,module,exports){
+},{"./_overArg":434}],431:[function(require,module,exports){
 /**
  * This function is like
  * [`Object.keys`](http://ecma-international.org/ecma-262/7.0/#sec-object.keys)
@@ -20133,7 +20022,7 @@ function nativeKeysIn(object) {
 
 module.exports = nativeKeysIn;
 
-},{}],435:[function(require,module,exports){
+},{}],432:[function(require,module,exports){
 var freeGlobal = require('./_freeGlobal');
 
 /** Detect free variable `exports`. */
@@ -20157,7 +20046,7 @@ var nodeUtil = (function() {
 
 module.exports = nodeUtil;
 
-},{"./_freeGlobal":389}],436:[function(require,module,exports){
+},{"./_freeGlobal":386}],433:[function(require,module,exports){
 /** Used for built-in method references. */
 var objectProto = Object.prototype;
 
@@ -20181,7 +20070,7 @@ function objectToString(value) {
 
 module.exports = objectToString;
 
-},{}],437:[function(require,module,exports){
+},{}],434:[function(require,module,exports){
 /**
  * Creates a unary function that invokes `func` with its argument transformed.
  *
@@ -20198,7 +20087,7 @@ function overArg(func, transform) {
 
 module.exports = overArg;
 
-},{}],438:[function(require,module,exports){
+},{}],435:[function(require,module,exports){
 var freeGlobal = require('./_freeGlobal');
 
 /** Detect free variable `self`. */
@@ -20209,7 +20098,7 @@ var root = freeGlobal || freeSelf || Function('return this')();
 
 module.exports = root;
 
-},{"./_freeGlobal":389}],439:[function(require,module,exports){
+},{"./_freeGlobal":386}],436:[function(require,module,exports){
 /** Used to stand-in for `undefined` hash values. */
 var HASH_UNDEFINED = '__lodash_hash_undefined__';
 
@@ -20230,7 +20119,7 @@ function setCacheAdd(value) {
 
 module.exports = setCacheAdd;
 
-},{}],440:[function(require,module,exports){
+},{}],437:[function(require,module,exports){
 /**
  * Checks if `value` is in the array cache.
  *
@@ -20246,7 +20135,7 @@ function setCacheHas(value) {
 
 module.exports = setCacheHas;
 
-},{}],441:[function(require,module,exports){
+},{}],438:[function(require,module,exports){
 /**
  * Converts `set` to an array of its values.
  *
@@ -20266,7 +20155,7 @@ function setToArray(set) {
 
 module.exports = setToArray;
 
-},{}],442:[function(require,module,exports){
+},{}],439:[function(require,module,exports){
 var ListCache = require('./_ListCache');
 
 /**
@@ -20283,7 +20172,7 @@ function stackClear() {
 
 module.exports = stackClear;
 
-},{"./_ListCache":299}],443:[function(require,module,exports){
+},{"./_ListCache":299}],440:[function(require,module,exports){
 /**
  * Removes `key` and its value from the stack.
  *
@@ -20303,7 +20192,7 @@ function stackDelete(key) {
 
 module.exports = stackDelete;
 
-},{}],444:[function(require,module,exports){
+},{}],441:[function(require,module,exports){
 /**
  * Gets the stack value for `key`.
  *
@@ -20319,7 +20208,7 @@ function stackGet(key) {
 
 module.exports = stackGet;
 
-},{}],445:[function(require,module,exports){
+},{}],442:[function(require,module,exports){
 /**
  * Checks if a stack value for `key` exists.
  *
@@ -20335,7 +20224,7 @@ function stackHas(key) {
 
 module.exports = stackHas;
 
-},{}],446:[function(require,module,exports){
+},{}],443:[function(require,module,exports){
 var ListCache = require('./_ListCache'),
     Map = require('./_Map'),
     MapCache = require('./_MapCache');
@@ -20371,7 +20260,7 @@ function stackSet(key, value) {
 
 module.exports = stackSet;
 
-},{"./_ListCache":299,"./_Map":300,"./_MapCache":301}],447:[function(require,module,exports){
+},{"./_ListCache":299,"./_Map":300,"./_MapCache":301}],444:[function(require,module,exports){
 /**
  * A specialized version of `_.indexOf` which performs strict equality
  * comparisons of values, i.e. `===`.
@@ -20396,7 +20285,7 @@ function strictIndexOf(array, value, fromIndex) {
 
 module.exports = strictIndexOf;
 
-},{}],448:[function(require,module,exports){
+},{}],445:[function(require,module,exports){
 var asciiToArray = require('./_asciiToArray'),
     hasUnicode = require('./_hasUnicode'),
     unicodeToArray = require('./_unicodeToArray');
@@ -20416,7 +20305,7 @@ function stringToArray(string) {
 
 module.exports = stringToArray;
 
-},{"./_asciiToArray":319,"./_hasUnicode":402,"./_unicodeToArray":452}],449:[function(require,module,exports){
+},{"./_asciiToArray":317,"./_hasUnicode":399,"./_unicodeToArray":449}],446:[function(require,module,exports){
 var memoizeCapped = require('./_memoizeCapped');
 
 /** Used to match property names within property paths. */
@@ -20446,7 +20335,7 @@ var stringToPath = memoizeCapped(function(string) {
 
 module.exports = stringToPath;
 
-},{"./_memoizeCapped":431}],450:[function(require,module,exports){
+},{"./_memoizeCapped":428}],447:[function(require,module,exports){
 var isSymbol = require('./isSymbol');
 
 /** Used as references for various `Number` constants. */
@@ -20469,7 +20358,7 @@ function toKey(value) {
 
 module.exports = toKey;
 
-},{"./isSymbol":477}],451:[function(require,module,exports){
+},{"./isSymbol":478}],448:[function(require,module,exports){
 /** Used for built-in method references. */
 var funcProto = Function.prototype;
 
@@ -20497,7 +20386,7 @@ function toSource(func) {
 
 module.exports = toSource;
 
-},{}],452:[function(require,module,exports){
+},{}],449:[function(require,module,exports){
 /** Used to compose unicode character classes. */
 var rsAstralRange = '\\ud800-\\udfff',
     rsComboMarksRange = '\\u0300-\\u036f',
@@ -20539,7 +20428,7 @@ function unicodeToArray(string) {
 
 module.exports = unicodeToArray;
 
-},{}],453:[function(require,module,exports){
+},{}],450:[function(require,module,exports){
 /** Used to compose unicode character classes. */
 var rsAstralRange = '\\ud800-\\udfff',
     rsComboMarksRange = '\\u0300-\\u036f',
@@ -20610,7 +20499,7 @@ function unicodeWords(string) {
 
 module.exports = unicodeWords;
 
-},{}],454:[function(require,module,exports){
+},{}],451:[function(require,module,exports){
 var baseClone = require('./_baseClone');
 
 /** Used to compose bitmasks for cloning. */
@@ -20648,7 +20537,7 @@ function clone(value) {
 
 module.exports = clone;
 
-},{"./_baseClone":327}],455:[function(require,module,exports){
+},{"./_baseClone":325}],452:[function(require,module,exports){
 var baseClone = require('./_baseClone');
 
 /** Used to compose bitmasks for cloning. */
@@ -20679,7 +20568,7 @@ function cloneDeep(value) {
 
 module.exports = cloneDeep;
 
-},{"./_baseClone":327}],456:[function(require,module,exports){
+},{"./_baseClone":325}],453:[function(require,module,exports){
 /**
  * Creates an array with all falsey values removed. The values `false`, `null`,
  * `0`, `""`, `undefined`, and `NaN` are falsey.
@@ -20712,7 +20601,7 @@ function compact(array) {
 
 module.exports = compact;
 
-},{}],457:[function(require,module,exports){
+},{}],454:[function(require,module,exports){
 var deburrLetter = require('./_deburrLetter'),
     toString = require('./toString');
 
@@ -20759,7 +20648,7 @@ function deburr(string) {
 
 module.exports = deburr;
 
-},{"./_deburrLetter":384,"./toString":496}],458:[function(require,module,exports){
+},{"./_deburrLetter":381,"./toString":496}],455:[function(require,module,exports){
 /**
  * Performs a
  * [`SameValueZero`](http://ecma-international.org/ecma-262/7.0/#sec-samevaluezero)
@@ -20798,7 +20687,108 @@ function eq(value, other) {
 
 module.exports = eq;
 
-},{}],459:[function(require,module,exports){
+},{}],456:[function(require,module,exports){
+var createFind = require('./_createFind'),
+    findIndex = require('./findIndex');
+
+/**
+ * Iterates over elements of `collection`, returning the first element
+ * `predicate` returns truthy for. The predicate is invoked with three
+ * arguments: (value, index|key, collection).
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Collection
+ * @param {Array|Object} collection The collection to inspect.
+ * @param {Function} [predicate=_.identity] The function invoked per iteration.
+ * @param {number} [fromIndex=0] The index to search from.
+ * @returns {*} Returns the matched element, else `undefined`.
+ * @example
+ *
+ * var users = [
+ *   { 'user': 'barney',  'age': 36, 'active': true },
+ *   { 'user': 'fred',    'age': 40, 'active': false },
+ *   { 'user': 'pebbles', 'age': 1,  'active': true }
+ * ];
+ *
+ * _.find(users, function(o) { return o.age < 40; });
+ * // => object for 'barney'
+ *
+ * // The `_.matches` iteratee shorthand.
+ * _.find(users, { 'age': 1, 'active': true });
+ * // => object for 'pebbles'
+ *
+ * // The `_.matchesProperty` iteratee shorthand.
+ * _.find(users, ['active', false]);
+ * // => object for 'fred'
+ *
+ * // The `_.property` iteratee shorthand.
+ * _.find(users, 'active');
+ * // => object for 'barney'
+ */
+var find = createFind(findIndex);
+
+module.exports = find;
+
+},{"./_createFind":380,"./findIndex":457}],457:[function(require,module,exports){
+var baseFindIndex = require('./_baseFindIndex'),
+    baseIteratee = require('./_baseIteratee'),
+    toInteger = require('./toInteger');
+
+/* Built-in method references for those with the same name as other `lodash` methods. */
+var nativeMax = Math.max;
+
+/**
+ * This method is like `_.find` except that it returns the index of the first
+ * element `predicate` returns truthy for instead of the element itself.
+ *
+ * @static
+ * @memberOf _
+ * @since 1.1.0
+ * @category Array
+ * @param {Array} array The array to inspect.
+ * @param {Function} [predicate=_.identity] The function invoked per iteration.
+ * @param {number} [fromIndex=0] The index to search from.
+ * @returns {number} Returns the index of the found element, else `-1`.
+ * @example
+ *
+ * var users = [
+ *   { 'user': 'barney',  'active': false },
+ *   { 'user': 'fred',    'active': false },
+ *   { 'user': 'pebbles', 'active': true }
+ * ];
+ *
+ * _.findIndex(users, function(o) { return o.user == 'barney'; });
+ * // => 0
+ *
+ * // The `_.matches` iteratee shorthand.
+ * _.findIndex(users, { 'user': 'fred', 'active': false });
+ * // => 1
+ *
+ * // The `_.matchesProperty` iteratee shorthand.
+ * _.findIndex(users, ['active', false]);
+ * // => 0
+ *
+ * // The `_.property` iteratee shorthand.
+ * _.findIndex(users, 'active');
+ * // => 2
+ */
+function findIndex(array, predicate, fromIndex) {
+  var length = array == null ? 0 : array.length;
+  if (!length) {
+    return -1;
+  }
+  var index = fromIndex == null ? 0 : toInteger(fromIndex);
+  if (index < 0) {
+    index = nativeMax(length + index, 0);
+  }
+  return baseFindIndex(array, baseIteratee(predicate, 3), index);
+}
+
+module.exports = findIndex;
+
+},{"./_baseFindIndex":328,"./_baseIteratee":344,"./toInteger":494}],458:[function(require,module,exports){
 var arrayEach = require('./_arrayEach'),
     baseEach = require('./_baseEach'),
     castFunction = require('./_castFunction'),
@@ -20841,7 +20831,7 @@ function forEach(collection, iteratee) {
 
 module.exports = forEach;
 
-},{"./_arrayEach":311,"./_baseEach":329,"./_castFunction":363,"./isArray":466}],460:[function(require,module,exports){
+},{"./_arrayEach":311,"./_baseEach":327,"./_castFunction":360,"./isArray":466}],459:[function(require,module,exports){
 var baseGet = require('./_baseGet');
 
 /**
@@ -20876,7 +20866,7 @@ function get(object, path, defaultValue) {
 
 module.exports = get;
 
-},{"./_baseGet":333}],461:[function(require,module,exports){
+},{"./_baseGet":331}],460:[function(require,module,exports){
 var baseHas = require('./_baseHas'),
     hasPath = require('./_hasPath');
 
@@ -20913,7 +20903,7 @@ function has(object, path) {
 
 module.exports = has;
 
-},{"./_baseHas":336,"./_hasPath":401}],462:[function(require,module,exports){
+},{"./_baseHas":334,"./_hasPath":398}],461:[function(require,module,exports){
 var baseHasIn = require('./_baseHasIn'),
     hasPath = require('./_hasPath');
 
@@ -20949,7 +20939,32 @@ function hasIn(object, path) {
 
 module.exports = hasIn;
 
-},{"./_baseHasIn":337,"./_hasPath":401}],463:[function(require,module,exports){
+},{"./_baseHasIn":335,"./_hasPath":398}],462:[function(require,module,exports){
+/**
+ * Gets the first element of `array`.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @alias first
+ * @category Array
+ * @param {Array} array The array to query.
+ * @returns {*} Returns the first element of `array`.
+ * @example
+ *
+ * _.head([1, 2, 3]);
+ * // => 1
+ *
+ * _.head([]);
+ * // => undefined
+ */
+function head(array) {
+  return (array && array.length) ? array[0] : undefined;
+}
+
+module.exports = head;
+
+},{}],463:[function(require,module,exports){
 /**
  * This method returns the first argument it receives.
  *
@@ -21027,7 +21042,7 @@ function includes(collection, value, fromIndex, guard) {
 
 module.exports = includes;
 
-},{"./_baseIndexOf":338,"./isArrayLike":467,"./isString":476,"./toInteger":494,"./values":499}],465:[function(require,module,exports){
+},{"./_baseIndexOf":336,"./isArrayLike":467,"./isString":477,"./toInteger":494,"./values":499}],465:[function(require,module,exports){
 var baseIsArguments = require('./_baseIsArguments'),
     isObjectLike = require('./isObjectLike');
 
@@ -21065,7 +21080,7 @@ var isArguments = baseIsArguments(function() { return arguments; }()) ? baseIsAr
 
 module.exports = isArguments;
 
-},{"./_baseIsArguments":339,"./isObjectLike":475}],466:[function(require,module,exports){
+},{"./_baseIsArguments":337,"./isObjectLike":476}],466:[function(require,module,exports){
 /**
  * Checks if `value` is classified as an `Array` object.
  *
@@ -21128,7 +21143,7 @@ function isArrayLike(value) {
 
 module.exports = isArrayLike;
 
-},{"./isFunction":470,"./isLength":471}],468:[function(require,module,exports){
+},{"./isFunction":471,"./isLength":472}],468:[function(require,module,exports){
 var root = require('./_root'),
     stubFalse = require('./stubFalse');
 
@@ -21168,7 +21183,7 @@ var isBuffer = nativeIsBuffer || stubFalse;
 
 module.exports = isBuffer;
 
-},{"./_root":438,"./stubFalse":492}],469:[function(require,module,exports){
+},{"./_root":435,"./stubFalse":492}],469:[function(require,module,exports){
 var baseKeys = require('./_baseKeys'),
     getTag = require('./_getTag'),
     isArguments = require('./isArguments'),
@@ -21247,7 +21262,44 @@ function isEmpty(value) {
 
 module.exports = isEmpty;
 
-},{"./_baseKeys":347,"./_getTag":399,"./_isPrototype":417,"./isArguments":465,"./isArray":466,"./isArrayLike":467,"./isBuffer":468,"./isTypedArray":478}],470:[function(require,module,exports){
+},{"./_baseKeys":345,"./_getTag":396,"./_isPrototype":414,"./isArguments":465,"./isArray":466,"./isArrayLike":467,"./isBuffer":468,"./isTypedArray":479}],470:[function(require,module,exports){
+var baseIsEqual = require('./_baseIsEqual');
+
+/**
+ * Performs a deep comparison between two values to determine if they are
+ * equivalent.
+ *
+ * **Note:** This method supports comparing arrays, array buffers, booleans,
+ * date objects, error objects, maps, numbers, `Object` objects, regexes,
+ * sets, strings, symbols, and typed arrays. `Object` objects are compared
+ * by their own, not inherited, enumerable properties. Functions and DOM
+ * nodes are **not** supported.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to compare.
+ * @param {*} other The other value to compare.
+ * @returns {boolean} Returns `true` if the values are equivalent, else `false`.
+ * @example
+ *
+ * var object = { 'a': 1 };
+ * var other = { 'a': 1 };
+ *
+ * _.isEqual(object, other);
+ * // => true
+ *
+ * object === other;
+ * // => false
+ */
+function isEqual(value, other) {
+  return baseIsEqual(value, other);
+}
+
+module.exports = isEqual;
+
+},{"./_baseIsEqual":338}],471:[function(require,module,exports){
 var baseGetTag = require('./_baseGetTag'),
     isObject = require('./isObject');
 
@@ -21286,7 +21338,7 @@ function isFunction(value) {
 
 module.exports = isFunction;
 
-},{"./_baseGetTag":335,"./isObject":474}],471:[function(require,module,exports){
+},{"./_baseGetTag":333,"./isObject":475}],472:[function(require,module,exports){
 /** Used as references for various `Number` constants. */
 var MAX_SAFE_INTEGER = 9007199254740991;
 
@@ -21323,7 +21375,7 @@ function isLength(value) {
 
 module.exports = isLength;
 
-},{}],472:[function(require,module,exports){
+},{}],473:[function(require,module,exports){
 var isNumber = require('./isNumber');
 
 /**
@@ -21363,7 +21415,7 @@ function isNaN(value) {
 
 module.exports = isNaN;
 
-},{"./isNumber":473}],473:[function(require,module,exports){
+},{"./isNumber":474}],474:[function(require,module,exports){
 var baseGetTag = require('./_baseGetTag'),
     isObjectLike = require('./isObjectLike');
 
@@ -21403,7 +21455,7 @@ function isNumber(value) {
 
 module.exports = isNumber;
 
-},{"./_baseGetTag":335,"./isObjectLike":475}],474:[function(require,module,exports){
+},{"./_baseGetTag":333,"./isObjectLike":476}],475:[function(require,module,exports){
 /**
  * Checks if `value` is the
  * [language type](http://www.ecma-international.org/ecma-262/7.0/#sec-ecmascript-language-types)
@@ -21436,7 +21488,7 @@ function isObject(value) {
 
 module.exports = isObject;
 
-},{}],475:[function(require,module,exports){
+},{}],476:[function(require,module,exports){
 /**
  * Checks if `value` is object-like. A value is object-like if it's not `null`
  * and has a `typeof` result of "object".
@@ -21467,7 +21519,7 @@ function isObjectLike(value) {
 
 module.exports = isObjectLike;
 
-},{}],476:[function(require,module,exports){
+},{}],477:[function(require,module,exports){
 var baseGetTag = require('./_baseGetTag'),
     isArray = require('./isArray'),
     isObjectLike = require('./isObjectLike');
@@ -21499,7 +21551,7 @@ function isString(value) {
 
 module.exports = isString;
 
-},{"./_baseGetTag":335,"./isArray":466,"./isObjectLike":475}],477:[function(require,module,exports){
+},{"./_baseGetTag":333,"./isArray":466,"./isObjectLike":476}],478:[function(require,module,exports){
 var baseGetTag = require('./_baseGetTag'),
     isObjectLike = require('./isObjectLike');
 
@@ -21530,7 +21582,7 @@ function isSymbol(value) {
 
 module.exports = isSymbol;
 
-},{"./_baseGetTag":335,"./isObjectLike":475}],478:[function(require,module,exports){
+},{"./_baseGetTag":333,"./isObjectLike":476}],479:[function(require,module,exports){
 var baseIsTypedArray = require('./_baseIsTypedArray'),
     baseUnary = require('./_baseUnary'),
     nodeUtil = require('./_nodeUtil');
@@ -21559,7 +21611,7 @@ var isTypedArray = nodeIsTypedArray ? baseUnary(nodeIsTypedArray) : baseIsTypedA
 
 module.exports = isTypedArray;
 
-},{"./_baseIsTypedArray":345,"./_baseUnary":359,"./_nodeUtil":435}],479:[function(require,module,exports){
+},{"./_baseIsTypedArray":343,"./_baseUnary":357,"./_nodeUtil":432}],480:[function(require,module,exports){
 var arrayLikeKeys = require('./_arrayLikeKeys'),
     baseKeys = require('./_baseKeys'),
     isArrayLike = require('./isArrayLike');
@@ -21598,7 +21650,7 @@ function keys(object) {
 
 module.exports = keys;
 
-},{"./_arrayLikeKeys":314,"./_baseKeys":347,"./isArrayLike":467}],480:[function(require,module,exports){
+},{"./_arrayLikeKeys":312,"./_baseKeys":345,"./isArrayLike":467}],481:[function(require,module,exports){
 var arrayLikeKeys = require('./_arrayLikeKeys'),
     baseKeysIn = require('./_baseKeysIn'),
     isArrayLike = require('./isArrayLike');
@@ -21632,7 +21684,7 @@ function keysIn(object) {
 
 module.exports = keysIn;
 
-},{"./_arrayLikeKeys":314,"./_baseKeysIn":348,"./isArrayLike":467}],481:[function(require,module,exports){
+},{"./_arrayLikeKeys":312,"./_baseKeysIn":346,"./isArrayLike":467}],482:[function(require,module,exports){
 /**
  * Gets the last element of `array`.
  *
@@ -21654,7 +21706,7 @@ function last(array) {
 
 module.exports = last;
 
-},{}],482:[function(require,module,exports){
+},{}],483:[function(require,module,exports){
 var createCompounder = require('./_createCompounder');
 
 /**
@@ -21683,7 +21735,7 @@ var lowerCase = createCompounder(function(result, word, index) {
 
 module.exports = lowerCase;
 
-},{"./_createCompounder":382}],483:[function(require,module,exports){
+},{"./_createCompounder":379}],484:[function(require,module,exports){
 var arrayMap = require('./_arrayMap'),
     baseIteratee = require('./_baseIteratee'),
     baseMap = require('./_baseMap'),
@@ -21738,7 +21790,7 @@ function map(collection, iteratee) {
 
 module.exports = map;
 
-},{"./_arrayMap":315,"./_baseIteratee":346,"./_baseMap":349,"./isArray":466}],484:[function(require,module,exports){
+},{"./_arrayMap":313,"./_baseIteratee":344,"./_baseMap":347,"./isArray":466}],485:[function(require,module,exports){
 var baseAssignValue = require('./_baseAssignValue'),
     baseForOwn = require('./_baseForOwn'),
     baseIteratee = require('./_baseIteratee');
@@ -21783,7 +21835,7 @@ function mapValues(object, iteratee) {
 
 module.exports = mapValues;
 
-},{"./_baseAssignValue":325,"./_baseForOwn":332,"./_baseIteratee":346}],485:[function(require,module,exports){
+},{"./_baseAssignValue":323,"./_baseForOwn":330,"./_baseIteratee":344}],486:[function(require,module,exports){
 var MapCache = require('./_MapCache');
 
 /** Error message constants. */
@@ -21858,26 +21910,7 @@ memoize.Cache = MapCache;
 
 module.exports = memoize;
 
-},{"./_MapCache":301}],486:[function(require,module,exports){
-/**
- * This method returns `undefined`.
- *
- * @static
- * @memberOf _
- * @since 2.3.0
- * @category Util
- * @example
- *
- * _.times(2, _.noop);
- * // => [undefined, undefined]
- */
-function noop() {
-  // No operation performed.
-}
-
-module.exports = noop;
-
-},{}],487:[function(require,module,exports){
+},{"./_MapCache":301}],487:[function(require,module,exports){
 var baseProperty = require('./_baseProperty'),
     basePropertyDeep = require('./_basePropertyDeep'),
     isKey = require('./_isKey'),
@@ -21911,7 +21944,7 @@ function property(path) {
 
 module.exports = property;
 
-},{"./_baseProperty":352,"./_basePropertyDeep":353,"./_isKey":414,"./_toKey":450}],488:[function(require,module,exports){
+},{"./_baseProperty":350,"./_basePropertyDeep":351,"./_isKey":411,"./_toKey":447}],488:[function(require,module,exports){
 var baseRandom = require('./_baseRandom'),
     isIterateeCall = require('./_isIterateeCall'),
     toFinite = require('./toFinite');
@@ -21995,7 +22028,7 @@ function random(lower, upper, floating) {
 
 module.exports = random;
 
-},{"./_baseRandom":355,"./_isIterateeCall":413,"./toFinite":493}],489:[function(require,module,exports){
+},{"./_baseRandom":353,"./_isIterateeCall":410,"./toFinite":493}],489:[function(require,module,exports){
 var createCompounder = require('./_createCompounder'),
     upperFirst = require('./upperFirst');
 
@@ -22026,7 +22059,7 @@ var startCase = createCompounder(function(result, word, index) {
 
 module.exports = startCase;
 
-},{"./_createCompounder":382,"./upperFirst":498}],490:[function(require,module,exports){
+},{"./_createCompounder":379,"./upperFirst":498}],490:[function(require,module,exports){
 var baseClamp = require('./_baseClamp'),
     baseToString = require('./_baseToString'),
     toInteger = require('./toInteger'),
@@ -22064,7 +22097,7 @@ function startsWith(string, target, position) {
 
 module.exports = startsWith;
 
-},{"./_baseClamp":326,"./_baseToString":358,"./toInteger":494,"./toString":496}],491:[function(require,module,exports){
+},{"./_baseClamp":324,"./_baseToString":356,"./toInteger":494,"./toString":496}],491:[function(require,module,exports){
 /**
  * This method returns a new empty array.
  *
@@ -22259,7 +22292,7 @@ function toNumber(value) {
 
 module.exports = toNumber;
 
-},{"./isObject":474,"./isSymbol":477}],496:[function(require,module,exports){
+},{"./isObject":475,"./isSymbol":478}],496:[function(require,module,exports){
 var baseToString = require('./_baseToString');
 
 /**
@@ -22289,34 +22322,37 @@ function toString(value) {
 
 module.exports = toString;
 
-},{"./_baseToString":358}],497:[function(require,module,exports){
-var baseUniq = require('./_baseUniq');
+},{"./_baseToString":356}],497:[function(require,module,exports){
+var toString = require('./toString');
+
+/** Used to generate unique IDs. */
+var idCounter = 0;
 
 /**
- * Creates a duplicate-free version of an array, using
- * [`SameValueZero`](http://ecma-international.org/ecma-262/7.0/#sec-samevaluezero)
- * for equality comparisons, in which only the first occurrence of each element
- * is kept. The order of result values is determined by the order they occur
- * in the array.
+ * Generates a unique ID. If `prefix` is given, the ID is appended to it.
  *
  * @static
- * @memberOf _
  * @since 0.1.0
- * @category Array
- * @param {Array} array The array to inspect.
- * @returns {Array} Returns the new duplicate free array.
+ * @memberOf _
+ * @category Util
+ * @param {string} [prefix=''] The value to prefix the ID with.
+ * @returns {string} Returns the unique ID.
  * @example
  *
- * _.uniq([2, 1, 2]);
- * // => [2, 1]
+ * _.uniqueId('contact_');
+ * // => 'contact_104'
+ *
+ * _.uniqueId();
+ * // => '105'
  */
-function uniq(array) {
-  return (array && array.length) ? baseUniq(array) : [];
+function uniqueId(prefix) {
+  var id = ++idCounter;
+  return toString(prefix) + id;
 }
 
-module.exports = uniq;
+module.exports = uniqueId;
 
-},{"./_baseUniq":360}],498:[function(require,module,exports){
+},{"./toString":496}],498:[function(require,module,exports){
 var createCaseFirst = require('./_createCaseFirst');
 
 /**
@@ -22340,7 +22376,7 @@ var upperFirst = createCaseFirst('toUpperCase');
 
 module.exports = upperFirst;
 
-},{"./_createCaseFirst":381}],499:[function(require,module,exports){
+},{"./_createCaseFirst":378}],499:[function(require,module,exports){
 var baseValues = require('./_baseValues'),
     keys = require('./keys');
 
@@ -22376,7 +22412,7 @@ function values(object) {
 
 module.exports = values;
 
-},{"./_baseValues":361,"./keys":479}],500:[function(require,module,exports){
+},{"./_baseValues":358,"./keys":480}],500:[function(require,module,exports){
 var asciiWords = require('./_asciiWords'),
     hasUnicodeWord = require('./_hasUnicodeWord'),
     toString = require('./toString'),
@@ -22413,7 +22449,7 @@ function words(string, pattern, guard) {
 
 module.exports = words;
 
-},{"./_asciiWords":320,"./_hasUnicodeWord":403,"./_unicodeWords":453,"./toString":496}],501:[function(require,module,exports){
+},{"./_asciiWords":318,"./_hasUnicodeWord":400,"./_unicodeWords":450,"./toString":496}],501:[function(require,module,exports){
 "use strict";
 
 var arrays  = require("./utils/arrays"),
@@ -30947,14 +30983,6 @@ var _LoadingView = require('./LoadingView');
 
 var _LoadingView2 = _interopRequireDefault(_LoadingView);
 
-var _AirlineController = require('./airline/AirlineController');
-
-var _AirlineController2 = _interopRequireDefault(_AirlineController);
-
-var _AircraftController = require('./aircraft/AircraftController');
-
-var _AircraftController2 = _interopRequireDefault(_AircraftController);
-
 var _AirportController = require('./airport/AirportController');
 
 var _AirportController2 = _interopRequireDefault(_AirportController);
@@ -31024,8 +31052,9 @@ var App = function () {
      * @for App
      * @constructor
      * @param $element {HTML Element|null}
+     * @param airportLoadList {array<object>}  List of airports to load
      */
-    function App(element) {
+    function App(element, airportLoadList) {
         var _this = this;
 
         _classCallCheck(this, App);
@@ -31055,8 +31084,6 @@ var App = function () {
         this.$element = (0, _jquery2.default)(element);
         this.loadingView = null;
         this.contentQueue = null;
-        this.airlineController = null;
-        this.aircraftController = null;
         this.airportController = null;
         this.tutorialView = null;
         this.inputController = null;
@@ -31087,7 +31114,7 @@ var App = function () {
             this.prop.log = _logLevel.LOG.WARNING;
         }
 
-        return this.setupChildren().enable();
+        return this.setupChildren(airportLoadList).enable();
     }
 
     /**
@@ -31097,17 +31124,16 @@ var App = function () {
      *
      * @for App
      * @method setupChildren
+     * @param airportLoadList {array<object>}  List of airports to load
      */
 
 
     _createClass(App, [{
         key: 'setupChildren',
-        value: function setupChildren() {
+        value: function setupChildren(airportLoadList) {
             this.loadingView = new _LoadingView2.default();
             this.contentQueue = new _ContentQueue2.default(this.loadingView);
-            this.airlineController = new _AirlineController2.default();
-            this.aircraftController = new _AircraftController2.default();
-            this.airportController = new _AirportController2.default(this.updateRun);
+            this.airportController = new _AirportController2.default(airportLoadList, this.updateRun);
             this.gameController = new _GameController2.default(this.getDeltaTime);
             this.tutorialView = new _TutorialView2.default(this.$element);
             this.inputController = new _InputController2.default(this.$element);
@@ -31138,8 +31164,6 @@ var App = function () {
             // these instances are attached to the window here as an intermediate step away from global functions.
             // this allows for any module file to call window.{module}.{method} and will make the transition to
             // explicit instance parameters easier.
-            window.airlineController = this.airlineController;
-            window.aircraftController = this.aircraftController;
             window.airportController = this.airportController;
             window.gameController = this.gameController;
             window.tutorialView = this.tutorialView;
@@ -31178,8 +31202,6 @@ var App = function () {
             this.$element = null;
             this.contentQueue = null;
             this.loadingView = null;
-            this.airlineController = null;
-            this.aircraftController = null;
             this.airportController = null;
             this.gameController = null;
             this.tutorialView = null;
@@ -31221,8 +31243,6 @@ var App = function () {
             this.tutorialView.tutorial_init_pre();
             this.gameController.init_pre();
             this.inputController.input_init_pre();
-            this.airlineController.init_pre();
-            this.aircraftController.init_pre();
             this.airportController.init_pre();
             this.canvasController.canvas_init_pre();
             this.uiController.ui_init_pre();
@@ -31377,7 +31397,7 @@ var App = function () {
             });
 
             this.updatePre();
-            this.aircraftController.aircraft_update();
+            this.airportController.recalculate();
             this.updatePost();
             this.incrementFrame();
 
@@ -31428,7 +31448,7 @@ var App = function () {
 
 exports.default = App;
 
-},{"./InputController":523,"./LoadingView":524,"./UiController":525,"./aircraft/AircraftController":527,"./airline/AirlineController":534,"./airport/AirportController":536,"./canvas/CanvasController":551,"./constants/logLevel":552,"./contentQueue/ContentQueue":555,"./game/GameController":557,"./parser":566,"./speech":567,"./tutorial/TutorialView":569,"./util":570,"./utilities/timeHelpers":572,"jquery":296,"pegjs":514}],523:[function(require,module,exports){
+},{"./InputController":523,"./LoadingView":524,"./UiController":525,"./airport/AirportController":537,"./canvas/CanvasController":561,"./constants/logLevel":564,"./contentQueue/ContentQueue":567,"./game/GameController":569,"./parser":578,"./speech":579,"./tutorial/TutorialView":581,"./util":582,"./utilities/timeHelpers":585,"jquery":296,"pegjs":514}],523:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -31537,18 +31557,18 @@ var InputController = function () {
         this.input.mouseDown = [0, 0];
         this.input.isMouseDown = false;
 
-        this.createChildren().setupHandlers().enable();
+        this._init().setupHandlers().enable();
     }
 
     /**
      * @for InputController
-     * @method createChildren
+     * @method _init
      */
 
 
     _createClass(InputController, [{
-        key: 'createChildren',
-        value: function createChildren() {
+        key: '_init',
+        value: function _init() {
             this.$window = (0, _jquery2.default)(window);
             this.$commandInput = this.$element.find(_selectors.SELECTORS.DOM_SELECTORS.COMMAND);
             this.$canvases = this.$element.find(_selectors.SELECTORS.DOM_SELECTORS.CANVASES);
@@ -31958,7 +31978,7 @@ var InputController = function () {
 
                 case KEY_CODES.LEFT_ARROW:
                     // shortKeys in use
-                    if (prop.game.option.get('controlMethod') === 'arrows') {
+                    if (window.gameController.game.option.get('controlMethod') === 'arrows') {
                         this.$commandInput.val(currentCommandInputValue + ' \u2BA2');
                         e.preventDefault();
                         this.onCommandInputChangeHandler();
@@ -31967,7 +31987,7 @@ var InputController = function () {
                     break;
 
                 case KEY_CODES.UP_ARROW:
-                    if (prop.game.option.get('controlMethod') === 'arrows') {
+                    if (window.gameController.game.option.get('controlMethod') === 'arrows') {
                         // shortKeys in use
                         this.$commandInput.val(currentCommandInputValue + ' \u2B61');
                         e.preventDefault();
@@ -31981,7 +32001,7 @@ var InputController = function () {
 
                 case KEY_CODES.RIGHT_ARROW:
                     // shortKeys in use
-                    if (prop.game.option.get('controlMethod') === 'arrows') {
+                    if (window.gameController.game.option.get('controlMethod') === 'arrows') {
                         this.$commandInput.val(currentCommandInputValue + ' \u2BA3');
                         e.preventDefault();
                         this.onCommandInputChangeHandler();
@@ -31990,7 +32010,7 @@ var InputController = function () {
                     break;
 
                 case KEY_CODES.DOWN_ARROW:
-                    if (prop.game.option.get('controlMethod') === 'arrows') {
+                    if (window.gameController.game.option.get('controlMethod') === 'arrows') {
                         // shortKeys in use
                         this.$commandInput.val(currentCommandInputValue + ' \u2B63');
                         e.preventDefault();
@@ -32265,7 +32285,7 @@ var InputController = function () {
                 return true;
             } else if (result.command === 'timewarp') {
                 if (result.args) {
-                    prop.game.speedup = result.args;
+                    window.gameController.game.speedup = result.args;
                 } else {
                     window.gameController.game_timewarp_toggle();
                 }
@@ -32288,7 +32308,7 @@ var InputController = function () {
                 return true;
             } else if (result.command === 'rate') {
                 if (result.args && result.args > 0) {
-                    prop.game.frequency = result.args;
+                    window.gameController.game.frequency = result.args;
                 }
 
                 return true;
@@ -32331,7 +32351,7 @@ var InputController = function () {
 
 exports.default = InputController;
 
-},{"./constants/selectors":553,"./math/core":562,"jquery":296,"lodash/get":460,"lodash/map":483}],524:[function(require,module,exports){
+},{"./constants/selectors":565,"./math/core":574,"jquery":296,"lodash/get":459,"lodash/map":484}],524:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -32585,7 +32605,7 @@ var LoadingView = function () {
 
 exports.default = LoadingView;
 
-},{"./constants/selectors":553,"./utilities/timeHelpers":572,"jquery":296}],525:[function(require,module,exports){
+},{"./constants/selectors":565,"./utilities/timeHelpers":585,"jquery":296}],525:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -32703,18 +32723,18 @@ var UiView = function () {
             fill_opacity: 0.1
         };
 
-        return this.createChildren().enable();
+        return this._init().enable();
     }
 
     /**
      * @for UiController
-     * @method createChildren
+     * @method _init
      */
 
 
     _createClass(UiView, [{
-        key: 'createChildren',
-        value: function createChildren() {
+        key: '_init',
+        value: function _init() {
             this.$airportList = this.$element.find(_selectors.SELECTORS.DOM_SELECTORS.AIRPORT_LIST);
             this.$airportListNotes = this.$element.find(_selectors.SELECTORS.DOM_SELECTORS.AIRPORT_LIST_NOTES);
             this.$airportSwitch = this.$element.find(_selectors.SELECTORS.DOM_SELECTORS.AIRPORT_SWITCH);
@@ -32902,7 +32922,7 @@ var UiView = function () {
             this.$fastForwards.prop('title', 'Set time warp to 2');
 
             var $options = (0, _jquery2.default)(UI_OPTIONS_TEMPLATE);
-            var descriptions = prop.game.option.getDescriptions();
+            var descriptions = window.gameController.game.option.getDescriptions();
 
             (0, _forEach3.default)(descriptions, function (opt) {
                 if (opt.type !== 'select') {
@@ -32934,7 +32954,7 @@ var UiView = function () {
 
             var $optionSelector = (0, _jquery2.default)(UI_OPTION_SELECTOR_TEMPLATE);
             var $selector = (0, _jquery2.default)('<select id="opt-' + option.name + '" name="' + option.name + '"></select>');
-            var selectedOption = prop.game.option.get(option.name);
+            var selectedOption = window.gameController.game.option.get(option.name);
 
             // this could me done with a _map(), but verbosity here makes the code easier to read
             for (var i = 0; i < option.data.length; i++) {
@@ -32947,7 +32967,7 @@ var UiView = function () {
             $selector.change(function (event) {
                 var $currentTarget = (0, _jquery2.default)(event.currentTarget);
 
-                prop.game.option.set($currentTarget.attr('name'), $currentTarget.val());
+                window.gameController.game.option.set($currentTarget.attr('name'), $currentTarget.val());
             });
 
             $optionSelector.append($selector);
@@ -33354,7 +33374,7 @@ var UiView = function () {
 
 exports.default = UiView;
 
-},{"./constants/selectors":553,"./constants/storageKeys":554,"./math/core":562,"./speech":567,"jquery":296,"lodash/forEach":459,"lodash/has":461,"lodash/keys":479,"lodash/startCase":489}],526:[function(require,module,exports){
+},{"./constants/selectors":565,"./constants/storageKeys":566,"./math/core":574,"./speech":579,"jquery":296,"lodash/forEach":458,"lodash/has":460,"lodash/keys":480,"lodash/startCase":489}],526:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -33371,6 +33391,8 @@ var _circle = require('../math/circle');
 var _vector = require('../math/vector');
 
 var _unitConverters = require('../utilities/unitConverters');
+
+var _GameController = require('../game/GameController');
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -33523,7 +33545,7 @@ var AircraftConflict = function () {
                 var _isWarning = true;
                 window.uiController.ui_log(this.aircraft[0].getCallsign() + ' collided with ' + this.aircraft[1].getCallsign(), _isWarning);
 
-                prop.game.score.hit += 1;
+                window.gameController.events_recordNew(_GameController.GAME_EVENTS.COLLISION);
                 this.aircraft[0].hit = true;
                 this.aircraft[1].hit = true;
 
@@ -33559,8 +33581,6 @@ var AircraftConflict = function () {
                 if (!this.conflicts.runwayCollision) {
                     this.conflicts.runwayCollision = true;
                     window.uiController.ui_log(this.aircraft[0].getCallsign() + ' appears on a collision course with' + (' ' + this.aircraft[1].getCallsign() + ' on the same runway"'), isWarning);
-
-                    prop.game.score.warning += 1;
                 }
             } else {
                 this.conflicts.runwayCollision = false;
@@ -33689,6 +33709,7 @@ var AircraftConflict = function () {
 
             if (violation) {
                 this.violations.proximityViolation = true;
+                // TODO: Add score penalty for 'SEPARATION_LOSS', but only ONCE
             } else {
                 this.violations.proximityViolation = false;
             }
@@ -33700,7 +33721,7 @@ var AircraftConflict = function () {
 
 exports.default = AircraftConflict;
 
-},{"../math/circle":561,"../math/core":562,"../math/vector":565,"../utilities/unitConverters":573}],527:[function(require,module,exports){
+},{"../game/GameController":569,"../math/circle":573,"../math/core":574,"../math/vector":577,"../utilities/unitConverters":586}],527:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -33736,6 +33757,8 @@ var _flightMath = require('../math/flightMath');
 
 var _circle = require('../math/circle');
 
+var _GameController = require('../game/GameController');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -33743,6 +33766,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 // Temporary const declaration here to attach to the window AND use as internal property
 var aircraft = {};
 
+// TODO: this should be renamed to `AircraftCollection`
 /**
  * @class AircraftController
  */
@@ -33760,36 +33784,20 @@ var AircraftController = function () {
         this.aircraft.list = [];
         this.aircraft.current = null;
         this.aircraft.auto = { enabled: false };
+        prop.aircraft = aircraft;
     }
 
     /**
      * @for AircraftController
-     * @method
+     * @method aircraft_generate_callsign
+     * @param airlineName
      */
 
 
     _createClass(AircraftController, [{
-        key: 'init_pre',
-        value: function init_pre() {
-            prop.aircraft = aircraft;
-            prop.aircraft.models = {};
-            prop.aircraft.callsigns = [];
-            prop.aircraft.list = [];
-            prop.aircraft.current = null;
-            prop.aircraft.auto = {
-                enabled: false
-            };
-        }
-
-        /**
-         * @for AircraftController
-         * @method aircraft_generate_callsign
-         * @param airlineName
-         */
-
-    }, {
         key: 'aircraft_generate_callsign',
         value: function aircraft_generate_callsign(airlineName) {
+            // TODO: this should live in the AirlineModel
             var airline = window.airlineController.airline_get(airlineName);
 
             if (!airline) {
@@ -33809,7 +33817,7 @@ var AircraftController = function () {
     }, {
         key: 'aircraft_auto_toggle',
         value: function aircraft_auto_toggle() {
-            prop.aircraft.auto.enabled = !prop.aircraft.auto.enabled;
+            prop.aircraft.auto.enabled = !this.aircraft.auto.enabled;
         }
 
         /**
@@ -33823,19 +33831,11 @@ var AircraftController = function () {
         value: function aircraft_callsign_new(airline) {
             // TODO: the logic needs work here. if `callsign` is always initialized as null, one would imagine that
             // this function would always result in the creation of a callsign?
-            var callsign = null;
+            var callsign = this.aircraft_generate_callsign(airline);
 
-            // TODO: is this while loop needed? there may be a cleaner way to accomplish this.
-            while (true) {
-                callsign = this.aircraft_generate_callsign(airline);
-
-                if (prop.aircraft.callsigns.indexOf(callsign) === -1) {
-                    break;
-                }
+            if (this.aircraft.callsigns.indexOf(callsign) === -1) {
+                this.aircraft.callsigns.push(callsign);
             }
-
-            // FIXME: this is a global object and needs to be localized
-            prop.aircraft.callsigns.push(callsign);
 
             return callsign;
         }
@@ -33866,8 +33866,8 @@ var AircraftController = function () {
             var nearest = null;
             var distance = Infinity;
 
-            for (var i = 0; i < prop.aircraft.list.length; i++) {
-                var _aircraft = prop.aircraft.list[i];
+            for (var i = 0; i < this.aircraft.list.length; i++) {
+                var _aircraft = this.aircraft.list[i];
                 var d = (0, _distance.distance2d)(_aircraft.position, position);
 
                 if (d < distance && _aircraft.isVisible() && !_aircraft.hit) {
@@ -33876,7 +33876,7 @@ var AircraftController = function () {
                 }
             }
 
-            return [prop.aircraft.list[nearest], distance];
+            return [this.aircraft.list[nearest], distance];
         }
 
         /**
@@ -33888,7 +33888,7 @@ var AircraftController = function () {
     }, {
         key: 'aircraft_add',
         value: function aircraft_add(model) {
-            prop.aircraft.models[model.icao.toLowerCase()] = model;
+            this.aircraft.models[model.icao.toLowerCase()] = model;
         }
 
         /**
@@ -33914,11 +33914,11 @@ var AircraftController = function () {
     }, {
         key: 'aircraft_remove_all',
         value: function aircraft_remove_all() {
-            for (var i = 0; i < prop.aircraft.list.length; i++) {
-                prop.aircraft.list[i].cleanup();
+            for (var i = 0; i < this.aircraft.list.length; i++) {
+                this.aircraft.list[i].cleanup();
             }
 
-            prop.aircraft.list = [];
+            this.aircraft.list = [];
         }
 
         /**
@@ -33929,8 +33929,8 @@ var AircraftController = function () {
     }, {
         key: 'aircraft_remove',
         value: function aircraft_remove(aircraft) {
-            prop.aircraft.callsigns.splice(prop.aircraft.callsigns.indexOf(aircraft.callsign), 1);
-            prop.aircraft.list.splice(prop.aircraft.list.indexOf(aircraft), 1);
+            this.aircraft.callsigns.splice(this.aircraft.callsigns.indexOf(aircraft.callsign), 1);
+            this.aircraft.list.splice(this.aircraft.list.indexOf(aircraft), 1);
 
             this.update_aircraft_eids();
 
@@ -33945,15 +33945,16 @@ var AircraftController = function () {
     }, {
         key: 'aircraft_update',
         value: function aircraft_update() {
-            for (var i = 0; i < prop.aircraft.list.length; i++) {
-                prop.aircraft.list[i].update();
-                prop.aircraft.list[i].updateWarning();
+            // TODO: change to _forEach()
+            for (var i = 0; i < this.aircraft.list.length; i++) {
+                this.aircraft.list[i].update();
+                this.aircraft.list[i].updateWarning();
 
                 // TODO: move this InnerLoop thing to a function so we can get rid of the continue InnerLoop thing.
-                for (var j = i + 1; j < prop.aircraft.list.length; j++) {
+                for (var j = i + 1; j < this.aircraft.list.length; j++) {
                     // TODO: need better names here. what is `that`?  what is `other`?
-                    var _aircraft2 = prop.aircraft.list[i];
-                    var otherAircraft = prop.aircraft.list[j];
+                    var _aircraft2 = this.aircraft.list[i];
+                    var otherAircraft = this.aircraft.list[j];
 
                     if (_aircraft2.checkConflict(otherAircraft)) {
                         continue;
@@ -33977,18 +33978,18 @@ var AircraftController = function () {
                 }
             }
 
-            for (var _i = prop.aircraft.list.length - 1; _i >= 0; _i--) {
+            for (var _i = this.aircraft.list.length - 1; _i >= 0; _i--) {
                 var remove = false;
-                var _aircraft3 = prop.aircraft.list[_i];
+                var _aircraft3 = this.aircraft.list[_i];
                 // let is_visible = aircraft_visible(aircraft);
 
                 if (_aircraft3.isStopped() && _aircraft3.category === 'arrival') {
-                    window.gameController.game.score.windy_landing += _aircraft3.scoreWind('landed');
+                    _aircraft3.scoreWind('landed');
 
                     window.uiController.ui_log(_aircraft3.getCallsign() + ' switching to ground, good day');
                     (0, _speech.speech_say)([{ type: 'callsign', content: _aircraft3 }, { type: 'text', content: ', switching to ground, good day' }]);
 
-                    window.gameController.game.score.arrival += 1;
+                    window.gameController.events_recordNew(_GameController.GAME_EVENTS.ARRIVAL);
                     remove = true;
                 }
 
@@ -34087,8 +34088,8 @@ var AircraftController = function () {
             }
 
             // prevent out-of-range error
-            if (prop.aircraft.list.length > eid && eid >= 0) {
-                return prop.aircraft.list[eid];
+            if (this.aircraft.list.length > eid && eid >= 0) {
+                return this.aircraft.list[eid];
             }
 
             return null;
@@ -34105,9 +34106,9 @@ var AircraftController = function () {
         value: function aircraft_get_by_callsign(callsign) {
             callsign = String(callsign);
 
-            for (var i = 0; i < prop.aircraft.list.length; i++) {
-                if (prop.aircraft.list[i].callsign === callsign.toLowerCase()) {
-                    return prop.aircraft.list[i];
+            for (var i = 0; i < this.aircraft.list.length; i++) {
+                if (this.aircraft.list[i].callsign === callsign.toLowerCase()) {
+                    return this.aircraft.list[i];
                 }
             }
 
@@ -34123,8 +34124,8 @@ var AircraftController = function () {
     }, {
         key: 'aircraft_get_eid_by_callsign',
         value: function aircraft_get_eid_by_callsign(callsign) {
-            for (var i = 0; i < prop.aircraft.list.length; i++) {
-                var _aircraft4 = prop.aircraft.list[i];
+            for (var i = 0; i < this.aircraft.list.length; i++) {
+                var _aircraft4 = this.aircraft.list[i];
 
                 if (_aircraft4.callsign === callsign.toLowerCase()) {
                     return _aircraft4.eid;
@@ -34143,16 +34144,16 @@ var AircraftController = function () {
     }, {
         key: 'aircraft_model_get',
         value: function aircraft_model_get(icao) {
-            if (!(icao in prop.aircraft.models)) {
+            if (!this.aircraft.models[icao]) {
                 var model = new _AircraftModel2.default({
                     icao: icao,
                     url: 'assets/aircraft/' + icao + '.json'
                 });
 
-                prop.aircraft.models[icao] = model;
+                this.aircraft.models[icao] = model;
             }
 
-            return prop.aircraft.models[icao];
+            return this.aircraft.models[icao];
         }
 
         /**
@@ -34165,11 +34166,11 @@ var AircraftController = function () {
     }, {
         key: 'update_aircraft_eids',
         value: function update_aircraft_eids() {
-            for (var i = 0; i < prop.aircraft.list.length; i++) {
+            for (var i = 0; i < this.aircraft.list.length; i++) {
                 // update eid in aircraft
-                prop.aircraft.list[i].eid = i;
+                this.aircraft.list[i].eid = i;
                 // update eid in aircraft's fms
-                prop.aircraft.list[i].fms.my_aircrafts_eid = i;
+                this.aircraft.list[i].fms.my_aircrafts_eid = i;
             }
         }
     }]);
@@ -34179,7 +34180,7 @@ var AircraftController = function () {
 
 exports.default = AircraftController;
 
-},{"../math/circle":561,"../math/core":562,"../math/distance":563,"../math/flightMath":564,"../math/vector":565,"../speech":567,"../utilities/unitConverters":573,"./AircraftConflict":526,"./AircraftFlightManagementSystem":528,"./AircraftModel":530}],528:[function(require,module,exports){
+},{"../game/GameController":569,"../math/circle":573,"../math/core":574,"../math/distance":575,"../math/flightMath":576,"../math/vector":577,"../speech":579,"../utilities/unitConverters":586,"./AircraftConflict":526,"./AircraftFlightManagementSystem":528,"./AircraftModel":530}],528:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -35305,7 +35306,10 @@ var AircraftFlightManagementSystem = function () {
                 return null;
             }
 
-            return this.following.star + '.' + window.airportController.airport_get().icao;
+            var _window$airportContro = window.airportController.airport_get(),
+                icao = _window$airportContro.icao;
+
+            return this.following.star + '.' + icao.toUpperCase();
         }
 
         /**
@@ -35342,7 +35346,7 @@ var AircraftFlightManagementSystem = function () {
 
 exports.default = AircraftFlightManagementSystem;
 
-},{"../constants/logLevel":552,"../math/core":562,"./Leg":532,"./Waypoint":533,"jquery":296,"lodash/last":481,"lodash/map":483}],529:[function(require,module,exports){
+},{"../constants/logLevel":564,"../math/core":574,"./Leg":532,"./Waypoint":533,"jquery":296,"lodash/last":482,"lodash/map":484}],529:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -35409,6 +35413,8 @@ var _radioUtilities = require('../utilities/radioUtilities');
 var _unitConverters = require('../utilities/unitConverters');
 
 var _selectors = require('../constants/selectors');
+
+var _GameController = require('../game/GameController');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -35551,7 +35557,7 @@ var Aircraft = function () {
         this.aircraftStripView = null;
         this.$html = null;
 
-        // TODO: this initialization should live in a `createChildren()` init method and not the constructor
+        // TODO: this initialization should live in a `_init()` init method and not the constructor
         this.$strips = (0, _jquery2.default)(_selectors.SELECTORS.DOM_SELECTORS.STRIPS);
         /* eslint-enable multi-spaces*/
 
@@ -35872,10 +35878,10 @@ var Aircraft = function () {
                 // an aircraft was given a radial  clearance
                 if (this.isHeadingInsideDepartureWindow()) {
                     this.radioCall('switching to center, good day', 'dep');
-                    prop.game.score.departure += 1;
+                    window.gameController.events_recordNew(_GameController.GAME_EVENTS.DEPARTURE);
                 } else {
                     this.radioCall('leaving radar coverage outside departure window', 'dep', true);
-                    prop.game.score.departure -= 1;
+                    window.gameController.events_recordNew(_GameController.GAME_EVENTS.NOT_CLEARED_ON_ROUTE);
                 }
             } else {
                 // following a Standard Instrument Departure procedure
@@ -35896,14 +35902,14 @@ var Aircraft = function () {
 
                 if (ok) {
                     this.radioCall('switching to center, good day', 'dep');
-                    prop.game.score.departure += 1;
+                    window.gameController.events_recordNew(_GameController.GAME_EVENTS.DEPARTURE);
                 } else {
                     // TODO: this is a temporary fix for `release/3.0.0`. this will need to be refactored
                     var fmsDestination = this.fms.fp.route[1].indexOf('.') !== -1 ? this.fms.fp.route[1].split('.')[1] : this.fms.fp.route[1];
 
                     // TODO: add helper method to FMS class for this
                     this.radioCall('leaving radar coverage without being cleared to ' + fmsDestination, 'dep', true);
-                    prop.game.score.departure -= 1;
+                    window.gameController.events_recordNew(_GameController.GAME_EVENTS.NOT_CLEARED_ON_ROUTE);
                 }
             }
 
@@ -35924,7 +35930,7 @@ var Aircraft = function () {
         key: 'arrivalExit',
         value: function arrivalExit() {
             this.radioCall('leaving radar coverage as arrival', 'app', true);
-            prop.game.score.failed_arrival += 1;
+            window.gameController.events_recordNew(_GameController.GAME_EVENTS.AIRSPACE_BUST);
         }
 
         /**
@@ -36357,7 +36363,7 @@ var Aircraft = function () {
             }
 
             var ceiling = window.airportController.airport_get().ctr_ceiling;
-            if (prop.game.option.get('softCeiling') === 'yes') {
+            if (window.gameController.game.option.get('softCeiling') === 'yes') {
                 ceiling += 1000;
             }
 
@@ -36506,7 +36512,7 @@ var Aircraft = function () {
 
             if (holdFix !== null) {
                 holdFix = holdFix.toUpperCase();
-                holdFixLocation = window.airportController.airport_get().getFix(holdFix);
+                holdFixLocation = window.airportController.airport_get().getFixPosition(holdFix);
 
                 if (!holdFixLocation) {
                     return ['fail', 'unable to find fix ' + holdFix];
@@ -36617,7 +36623,7 @@ var Aircraft = function () {
         key: 'runDirect',
         value: function runDirect(data) {
             var fixname = data[0].toUpperCase();
-            var fix = window.airportController.airport_get().getFix(fixname);
+            var fix = window.airportController.airport_get().getFixPosition(fixname);
 
             if (!fix) {
                 return ['fail', 'unable to find fix called ' + fixname];
@@ -36638,7 +36644,7 @@ var Aircraft = function () {
             var last_fix = void 0;
             var fail = void 0;
             var fixes = (0, _map3.default)(data[0], function (fixname) {
-                var fix = window.airportController.airport_get().getFix(fixname);
+                var fix = window.airportController.airport_get().getFixPosition(fixname);
                 if (!fix) {
                     fail = ['fail', 'unable to find fix called ' + fixname];
 
@@ -36978,7 +36984,7 @@ var Aircraft = function () {
 
             if (runway.removeQueue(this)) {
                 this.mode = FLIGHT_MODES.TAKEOFF;
-                prop.game.score.windy_takeoff += this.scoreWind('taking off');
+                this.scoreWind('taking off');
                 this.takeoffTime = window.gameController.game_time();
 
                 if (this.fms.currentWaypoint().speed == null) {
@@ -37039,7 +37045,6 @@ var Aircraft = function () {
 
                 var isWarning = true;
                 window.uiController.ui_log(this.getCallsign() + ' aborted taxi to runway', isWarning);
-                prop.game.score.abort.taxi += 1;
 
                 return ['ok', 'taxiing back to terminal'];
             } else if (this.mode === FLIGHT_MODES.WAITING) {
@@ -37394,6 +37399,7 @@ var Aircraft = function () {
             }
         }
 
+        // TODO: This method should be moved elsewhere, since it doesn't really belong to the aircraft itself
         /**
          * @for AircraftInstanceModel
          * @method scoreWind
@@ -37409,18 +37415,18 @@ var Aircraft = function () {
 
             // TODO: these two if blocks could be done in a single switch statement
             if (components.cross >= 20) {
-                score += 2;
+                window.gameController.events_recordNew(_GameController.GAME_EVENTS.EXTREME_CROSSWIND_OPERATION);
                 window.uiController.ui_log(this.getCallsign() + ' ' + action + ' with major crosswind\'', isWarning);
             } else if (components.cross >= 10) {
-                score += 1;
+                window.gameController.events_recordNew(_GameController.GAME_EVENTS.HIGH_CROSSWIND_OPERATION);
                 window.uiController.ui_log(this.getCallsign() + ' ' + action + ' with crosswind\'', isWarning);
             }
 
             if (components.head <= -10) {
-                score += 2;
+                window.gameController.events_recordNew(_GameController.GAME_EVENTS.EXTREME_TAILWIND_OPERATION);
                 window.uiController.ui_log(this.getCallsign() + ' ' + action + ' with major tailwind\'', isWarning);
             } else if (components.head <= -1) {
-                score += 1;
+                window.gameController.events_recordNew(_GameController.GAME_EVENTS.HIGH_TAILWIND_OPERATION);
                 window.uiController.ui_log(this.getCallsign() + ' ' + action + ' with tailwind\'', isWarning);
             }
 
@@ -37524,7 +37530,7 @@ var Aircraft = function () {
                             var isWarning = true;
                             window.uiController.ui_log(this.getRadioCallsign() + ' aborting landing, lost ILS', isWarning);
                             (0, _speech.speech_say)([{ type: 'callsign', content: this }, { type: 'text', content: ' going around' }]);
-                            prop.game.score.abort.landing += 1;
+                            window.gameController.events_recordNew(_GameController.GAME_EVENTS.GO_AROUND);
                         }
                     }
                 } else if (offset[1] < localizerRange) {
@@ -37549,19 +37555,19 @@ var Aircraft = function () {
                                 // intercept via fixes
                                 var _isWarning = true;
                                 window.uiController.ui_log(this.getCallsign() + ' approach course intercept angle was greater than 30 degrees', _isWarning);
-                                prop.game.score.violation += 1;
+                                window.gameController.events_recordNew(_GameController.GAME_EVENTS.ILLEGAL_APPROACH_CLEARANCE);
                             } else if (interceptAngle > maxInterceptAngle) {
                                 // intercept via vectors
                                 var _isWarning2 = true;
                                 window.uiController.ui_log(this.getCallsign() + ' approach course intercept angle was greater than 30 degrees', _isWarning2);
-                                prop.game.score.violation += 1;
+                                window.gameController.events_recordNew(_GameController.GAME_EVENTS.ILLEGAL_APPROACH_CLEARANCE);
                             }
 
                             // Glideslope intercept
                             if (this.altitude > glideslope_altitude + maxAboveGlideslope) {
                                 var _isWarning3 = true;
                                 window.uiController.ui_log(this.getRadioCallsign() + ' joined localizer above glideslope altitude', _isWarning3);
-                                prop.game.score.violation += 1;
+                                window.gameController.events_recordNew(_GameController.GAME_EVENTS.ILLEGAL_APPROACH_CLEARANCE);
                             }
                         }
 
@@ -37631,8 +37637,8 @@ var Aircraft = function () {
                     if (hold.timer && hold.legLength.includes('min')) {
                         if (hold.timer === -1) {
                             // save the time
-                            hold.timer = prop.game.time;
-                        } else if (prop.game.time >= hold.timer + parseInt(hold.legLength.replace('min', ''), 10) * 60) {
+                            hold.timer = window.gameController.game.time;
+                        } else if (window.gameController.game.time >= hold.timer + parseInt(hold.legLength.replace('min', ''), 10) * 60) {
                             // time to turn
                             this.target.heading += Math.PI; // turn to other leg
                             this.target.turn = hold.dirTurns;
@@ -37852,7 +37858,7 @@ var Aircraft = function () {
             // FIXME: is this ratio correct? is it 0.000514444 or 0.514444?
             var scaleSpeed = this.speed * 0.000514444 * window.gameController.game_delta(); // knots to m/s
 
-            if (prop.game.option.get('simplifySpeeds') === 'no') {
+            if (window.gameController.game.option.get('simplifySpeeds') === 'no') {
                 // TODO: this should be abstracted to a helper function
                 // Calculate the true air speed as indicated airspeed * 1.6% per 1000'
                 scaleSpeed *= 1 + this.altitude * 0.000016;
@@ -37972,7 +37978,7 @@ var Aircraft = function () {
 
                         // ac has just entered the area: .inside is still false, but st is true
                         if (new_inside && !area.inside) {
-                            prop.game.score.restrictions += 1;
+                            window.gameController.events_recordNew(_GameController.GAME_EVENTS.AIRSPACE_BUST);
                             area.range = this.speed * 1.85 / 3.6 * 50 / 1000; // check in 50 seconds
                             // speed is kts, range is km.
                             // if a plane got into restricted area, don't check it too often
@@ -38024,7 +38030,7 @@ var Aircraft = function () {
                                 window.uiController.ui_log(this.getCallsign() + ' collided with terrain in controlled flight', isWarning);
                                 (0, _speech.speech_say)([{ type: 'callsign', content: this }, { type: 'text', content: ', we\'re going down!' }]);
 
-                                prop.game.score.hit += 1;
+                                window.gameController.events_recordNew(_GameController.GAME_EVENTS.COLLISION);
                             }
                         } else {
                             curr_ranges[id] = Math.max(0.2, status.distance);
@@ -38215,15 +38221,14 @@ var Aircraft = function () {
 
 exports.default = Aircraft;
 
-},{"../constants/selectors":553,"../math/circle":561,"../math/core":562,"../math/distance":563,"../math/flightMath":564,"../math/vector":565,"../speech":567,"../utilities/radioUtilities":571,"../utilities/unitConverters":573,"./AircraftFlightManagementSystem":528,"./AircraftStripView":531,"./Waypoint":533,"jquery":296,"lodash/forEach":459,"lodash/get":460,"lodash/has":461,"lodash/isNaN":472,"lodash/isString":476,"lodash/map":483}],530:[function(require,module,exports){
+},{"../constants/selectors":565,"../game/GameController":569,"../math/circle":573,"../math/core":574,"../math/distance":575,"../math/flightMath":576,"../math/vector":577,"../speech":579,"../utilities/radioUtilities":584,"../utilities/unitConverters":586,"./AircraftFlightManagementSystem":528,"./AircraftStripView":531,"./Waypoint":533,"jquery":296,"lodash/forEach":458,"lodash/get":459,"lodash/has":460,"lodash/isNaN":473,"lodash/isString":477,"lodash/map":484}],530:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand, no-param-reassign, no-undef */
-
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _jquery = require('jquery');
 
@@ -38245,22 +38250,50 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 /**
  * Definitions for characteristics of a particular aircraft type
  *
- * @class Model
+ * @class AircraftModel
  */
-var Model = function () {
-    function Model() {
+var AircraftModel = function () {
+    /**
+     * @for AircraftModel
+     * @constructor
+     * @param options {object}
+     */
+    function AircraftModel() {
+        var _this = this;
+
         var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
-        _classCallCheck(this, Model);
+        _classCallCheck(this, AircraftModel);
+
+        this.onLoadSuccess = function (response) {
+            _this.parse(response);
+
+            _this.loading = false;
+            _this.loaded = true;
+
+            _this._generatePendingAircraft();
+        };
+
+        this.onLoadError = function (_ref) {
+            var textStatus = _ref.textStatus;
+
+            _this.loading = false;
+            _this._pendingAircraft = [];
+
+            console.error('Unable to load aircraft/ ' + _this.icao + ' : ' + textStatus);
+        };
 
         this.loading = true;
         this.loaded = false;
+
         this.priorityLoad = false;
         this.name = (0, _get3.default)(options, 'name', null);
         this.icao = (0, _get3.default)(options, 'icao', null);
         this.engines = null;
+        this.ceiling = null;
         this.weightclass = (0, _get3.default)(options, 'weightClass', null);
         this.category = (0, _get3.default)(options, 'category', null);
+        this._pendingAircraft = [];
 
         this.rate = {
             // radians per second
@@ -38286,8 +38319,6 @@ var Model = function () {
             cruise: 0
         };
 
-        this._pendingAircraft = [];
-
         this.parse(options);
 
         if (options.url) {
@@ -38295,7 +38326,14 @@ var Model = function () {
         }
     }
 
-    _createClass(Model, [{
+    /**
+     * @for AircraftModel
+     * @method parse
+     * @param data {object}
+     */
+
+
+    _createClass(AircraftModel, [{
         key: 'parse',
         value: function parse(data) {
             // TODO: how much of this could happen in the constructor/init methods?
@@ -38319,37 +38357,56 @@ var Model = function () {
                 this.rate = data.rate;
             }
         }
+
+        /**
+         * @for AircraftModel
+         * @method load
+         * @param url {string}
+         */
+
     }, {
         key: 'load',
         value: function load(url) {
-            var _this = this;
+            var _this2 = this;
 
             this._url = url;
 
             zlsa.atc.loadAsset({
                 url: url,
                 immediate: false
-            }).done(function (data) {
-                _this.parse(data);
-                _this.loading = false;
-                _this.loaded = true;
-                _this._generatePendingAircraft();
-            }).fail(function (jqXHR, textStatus, errorThrown) {
-                _this.loading = false;
-                _this._pendingAircraft = [];
-
-                console.error('Unable to load aircraft/ ' + _this.icao + ' : ' + textStatus);
+            }).done(function (response) {
+                return _this2.onLoadSuccess(response);
+            }).fail(function () {
+                return _this2.onLoadError.apply(_this2, arguments);
             });
         }
+
+        /**
+         * @for AircraftModel
+         * @method onLoadSuccess
+         * @param response {object}
+         */
+
+
+        /**
+         * @for AircraftModel
+         * @method onLoadError
+         * @param textStatus {string}
+         */
+
+    }, {
+        key: 'generateAircraft',
+
 
         /**
          * Generate a new aircraft of this model
          *
          * Handles the case where this model may be asynchronously loaded
+         *
+         * @for AircraftModel
+         * @method generateAircraft
+         * @param options {object}
          */
-
-    }, {
-        key: 'generateAircraft',
         value: function generateAircraft(options) {
             // TODO: prop names of loaded and loading are concerning. there may need to be state
             // machine magic happening here that could lead to issues
@@ -38378,6 +38435,12 @@ var Model = function () {
 
         /**
          * Actual implementation of generateAircraft
+         *
+         * @for AircraftModel
+         * @method _generateAircraft
+         * @param options {object}
+         * @return {boolean}
+         * @private
          */
 
     }, {
@@ -38395,28 +38458,31 @@ var Model = function () {
 
         /**
          * Generate aircraft which were queued while the model loaded
+         *
+         * @for AircraftModel
+         * @method _generatePendingAircraft
          */
 
     }, {
         key: '_generatePendingAircraft',
         value: function _generatePendingAircraft() {
-            var _this2 = this;
+            var _this3 = this;
 
-            // TODO: replace $ with _map()
+            // TODO: replace $.each() with _map()
             _jquery2.default.each(this._pendingAircraft, function (idx, options) {
-                _this2._generateAircraft(options);
+                _this3._generateAircraft(options);
             });
 
             this._pendingAircraft = [];
         }
     }]);
 
-    return Model;
+    return AircraftModel;
 }();
 
-exports.default = Model;
+exports.default = AircraftModel;
 
-},{"./AircraftInstanceModel":529,"jquery":296,"lodash/get":460}],531:[function(require,module,exports){
+},{"./AircraftInstanceModel":529,"jquery":296,"lodash/get":459}],531:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -38515,7 +38581,7 @@ var AircraftStripView = function () {
         this.category = aircraftInstanceModel.category;
         this.flightPlan = aircraftInstanceModel.fms.fp.route.join(' ');
 
-        return this.createChildren().setupHandlers(aircraftInstanceModel).layout().redraw();
+        return this._init().setupHandlers(aircraftInstanceModel).layout().redraw();
     }
 
     /**
@@ -38525,8 +38591,8 @@ var AircraftStripView = function () {
 
 
     _createClass(AircraftStripView, [{
-        key: 'createChildren',
-        value: function createChildren() {
+        key: '_init',
+        value: function _init() {
             this.$element = (0, _jquery2.default)(AIRCRAFT_STRIP_TEMPLATE);
             this.$aircraft = (0, _jquery2.default)(this.buildSpanForViewItem(_selectors.SELECTORS.CLASSNAMES.AIRCRAFT, this.buildIcaoWithWeightClass()));
             this.$callsign = (0, _jquery2.default)(this.buildSpanForViewItem(_selectors.SELECTORS.CLASSNAMES.CALLSIGN, this.callsign));
@@ -38970,7 +39036,7 @@ var AircraftStripView = function () {
 
 exports.default = AircraftStripView;
 
-},{"../constants/selectors":553,"../math/core":562,"./AircraftInstanceModel":529,"jquery":296}],532:[function(require,module,exports){
+},{"../constants/selectors":565,"../math/core":574,"./AircraftInstanceModel":529,"jquery":296}],532:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -39241,7 +39307,7 @@ var Leg = function () {
 
 exports.default = Leg;
 
-},{"../constants/logLevel":552,"./Waypoint":533,"lodash/has":461,"lodash/map":483}],533:[function(require,module,exports){
+},{"../constants/logLevel":564,"./Waypoint":533,"lodash/has":460,"lodash/map":484}],533:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -39320,7 +39386,7 @@ var Waypoint = function () {
             if (data.fix) {
                 this.navmode = 'fix';
                 this.fix = data.fix;
-                this.location = window.airportController.airport_get().getFix(data.fix);
+                this.location = window.airportController.airport_get().getFixPosition(data.fix);
             }
 
             (0, _forEach3.default)(data, function (value, key) {
@@ -39350,7 +39416,7 @@ var Waypoint = function () {
 
 exports.default = Waypoint;
 
-},{"lodash/forEach":459,"lodash/has":461}],534:[function(require,module,exports){
+},{"lodash/forEach":458,"lodash/has":460}],534:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -39358,6 +39424,10 @@ Object.defineProperty(exports, "__esModule", {
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _has2 = require('lodash/has');
+
+var _has3 = _interopRequireDefault(_has2);
 
 var _AirlineModel = require('./AirlineModel');
 
@@ -39383,42 +39453,43 @@ var AirlineController = function () {
 
         this.airline = airline;
         this.airline.airlines = {};
+        prop.airline = airline;
     }
 
     /**
      * @for AirlineController
-     * @method init_pre
+     * @method airline_get
+     * @param icao {string}
+     * return {AirlineModel|null}
      */
 
 
     _createClass(AirlineController, [{
-        key: 'init_pre',
-        value: function init_pre() {
-            prop.airline = airline;
-            // prop.airline.airlines = {};
-        }
-
-        /**
-         * @for AirlineController
-         * @method airline_get
-         * @param icao {string}
-         * return {AirlineModel|object|null}
-         */
-
-    }, {
         key: 'airline_get',
         value: function airline_get(icao) {
             icao = icao.toLowerCase();
 
-            if (!(icao in this.airline.airlines)) {
-                var airlineToAdd = new _AirlineModel2.default(icao, {
-                    url: 'assets/airlines/' + icao + '.json'
-                });
-
-                this.airline.airlines[icao] = airlineToAdd;
+            if (!(0, _has3.default)(this.airline.airlines, icao)) {
+                this.addAirline(icao);
             }
 
             return this.airline.airlines[icao];
+        }
+
+        /**
+         * @for airlineController
+         * @method addAirline
+         * @param icao {string}
+         */
+
+    }, {
+        key: 'addAirline',
+        value: function addAirline(icao) {
+            var airlineToAdd = new _AirlineModel2.default(icao, {
+                url: 'assets/airlines/' + icao + '.json'
+            });
+
+            this.airline.airlines[icao] = airlineToAdd;
         }
     }]);
 
@@ -39427,23 +39498,32 @@ var AirlineController = function () {
 
 exports.default = AirlineController;
 
-},{"./AirlineModel":535}],535:[function(require,module,exports){
+},{"./AirlineModel":535,"lodash/has":460}],535:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand */
-
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _get2 = require('lodash/get');
 
 var _get3 = _interopRequireDefault(_get2);
 
+var _has2 = require('lodash/has');
+
+var _has3 = _interopRequireDefault(_has2);
+
 var _forEach2 = require('lodash/forEach');
 
 var _forEach3 = _interopRequireDefault(_forEach2);
+
+var _map2 = require('lodash/map');
+
+var _map3 = _interopRequireDefault(_map2);
+
+var _generalUtilities = require('../utilities/generalUtilities');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -39521,7 +39601,7 @@ var AirlineModel = function () {
                     this.flightNumberGeneration.length = data.callsign.length;
                 }
 
-                this.flightNumberGeneration.alpha = data.callsign.alpha === true;
+                this.flightNumberGeneration.alpha = (0, _has3.default)(data, 'callsign.alpha');
             }
 
             if (data.fleets) {
@@ -39531,9 +39611,10 @@ var AirlineModel = function () {
             }
 
             (0, _forEach3.default)(this.fleets, function (fleet) {
-                for (var j = 0; j < fleet.length; j++) {
-                    fleet[j][0] = fleet[j][0].toLowerCase();
-                }
+                (0, _forEach3.default)(fleet, function (aircraftInFleet) {
+                    var NAME_INDEX = 0;
+                    aircraftInFleet[NAME_INDEX] = aircraftInFleet[NAME_INDEX].toLowerCase();
+                });
             });
         }
 
@@ -39614,16 +39695,15 @@ var AirlineModel = function () {
 
     }, {
         key: 'chooseAircraft',
-        value: function chooseAircraft() {
-            var fleet = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
-
-            if (fleet === '') {
+        value: function chooseAircraft(fleet) {
+            if (!fleet) {
                 fleet = 'default';
             }
 
+            // TODO: why is this a try/catch?
             // TODO: this try/catch block could be improved. its hard to tell what his block is actually doing.
             try {
-                return choose_weight(this.fleets[fleet.toLowerCase()]);
+                return (0, _generalUtilities.choose_weight)(this.fleets[fleet.toLowerCase()]);
             } catch (error) {
                 console.log('Unable to find fleet ' + fleet + ' for airline ' + this.icao);
 
@@ -39657,16 +39737,17 @@ var AirlineModel = function () {
                     }
 
                     return true;
-                } else {
-                    console.warn('Unable to spawn aircraft for airline/ ' + this.icao + ' as loading failed');
-
-                    return false;
                 }
+
+                console.warn('Unable to spawn aircraft for airline/ ' + this.icao + ' as loading failed');
+
+                return false;
             }
 
             return this._generateAircraft(options);
         }
 
+        // TODO: the logic here can be simplified.
         /**
          * Create a flight number/identifier
          *
@@ -39678,26 +39759,26 @@ var AirlineModel = function () {
     }, {
         key: 'generateFlightNumber',
         value: function generateFlightNumber() {
-            var flightNumberLength = this.flightNumberGeneration.length;
             var flightNumber = '';
             var list = '0123456789';
 
             // Start with a number other than zero
-            flightNumber += choose(list.substr(1));
+            flightNumber += (0, _generalUtilities.choose)(list.substr(1));
 
             if (this.flightNumberGeneration.alpha) {
-                for (var i = 0; i < flightNumberLength - 3; i++) {
-                    flightNumber += choose(list);
+                // TODO: why `this.flightNumberGeneration.length - 3`?  enumerate the magic number.
+                for (var i = 0; i < this.flightNumberGeneration.length - 3; i++) {
+                    flightNumber += (0, _generalUtilities.choose)(list);
                 }
 
                 list = 'abcdefghijklmnopqrstuvwxyz';
 
                 for (var _i = 0; _i < 2; _i++) {
-                    flightNumber += choose(list);
+                    flightNumber += (0, _generalUtilities.choose)(list);
                 }
             } else {
-                for (var _i2 = 1; _i2 < flightNumberLength; _i2++) {
-                    flightNumber += choose(list);
+                for (var _i2 = 1; _i2 < this.flightNumberGeneration.length; _i2++) {
+                    flightNumber += (0, _generalUtilities.choose)(list);
                 }
             }
 
@@ -39717,40 +39798,16 @@ var AirlineModel = function () {
             var _this2 = this;
 
             (0, _forEach3.default)(this.fleets, function (fleet) {
-                for (var j = 0; j < fleet.length; j++) {
+                (0, _forEach3.default)(fleet, function (fleetAircraft) {
+                    var NAME_INDEX = 0;
                     // Preload the aircraft model
-                    window.aircraftController.aircraft_model_get(fleet[j][0]);
+                    window.aircraftController.aircraft_model_get(fleetAircraft[NAME_INDEX]);
 
-                    if (typeof fleet[j][1] !== 'number') {
-                        console.warn('Airline ' + _this2.icao.toUpperCase() + ' uses non numeric weight for aircraft ' + fleet[j][0] + ', expect errors');
+                    if (typeof fleetAircraft[1] !== 'number') {
+                        console.warn('Airline ' + _this2.icao.toUpperCase() + ' uses non numeric weight for aircraft ' + fleetAircraft[NAME_INDEX] + ', expect errors');
                     }
-                }
+                });
             });
-        }
-
-        /**
-         * @for AirlineModel
-         * @method _generateAircraft
-         * @param options {object}
-         * @return {function}
-         */
-
-    }, {
-        key: '_generateAircraft',
-        value: function _generateAircraft(options) {
-            if (!options.callsign) {
-                options.callsign = window.aircraftController.aircraft_callsign_new(options.airline);
-            }
-
-            if (!options.icao) {
-                options.icao = this.chooseAircraft(options.fleet);
-            }
-
-            var model = window.aircraftController.aircraft_model_get(options.icao.toLowerCase());
-
-            return model.generateAircraft(options);
-            // FIXME: this block is unreachable, is it needed?
-            // var icao = options.icao.toLowerCase();
         }
 
         /**
@@ -39772,6 +39829,33 @@ var AirlineModel = function () {
 
             this._pendingAircraft = null;
         }
+
+        /**
+         * @for AirlineModel
+         * @method _generateAircraft
+         * @param options {object}
+         * @return {function}
+         */
+
+    }, {
+        key: '_generateAircraft',
+        value: function _generateAircraft(options) {
+            if (!options.callsign) {
+                // TODO: Why is the `AircraftController` repsonsible for generating a callsign, but this is responsible for
+                // generating the flight number? callsign generation logi should live in this class.
+                options.callsign = window.aircraftController.aircraft_callsign_new(options.airline);
+            }
+
+            if (!options.icao) {
+                options.icao = this.chooseAircraft(options.fleet);
+            }
+
+            var model = window.aircraftController.aircraft_model_get(options.icao.toLowerCase());
+
+            return model.generateAircraft(options);
+            // FIXME: this block is unreachable, is it needed?
+            // var icao = options.icao.toLowerCase();
+        }
     }]);
 
     return AirlineModel;
@@ -39779,7 +39863,140 @@ var AirlineModel = function () {
 
 exports.default = AirlineModel;
 
-},{"lodash/forEach":459,"lodash/get":460}],536:[function(require,module,exports){
+},{"../utilities/generalUtilities":583,"lodash/forEach":458,"lodash/get":459,"lodash/has":460,"lodash/map":484}],536:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.randomAirlineSelectionHelper = exports.airlineNameAndFleetHelper = undefined;
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var _isArray2 = require('lodash/isArray');
+
+var _isArray3 = _interopRequireDefault(_isArray2);
+
+var _generalUtilities = require('../utilities/generalUtilities');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// TODO: this file needs to be renamed to something more generalized.
+
+/**
+ * Symobl that possibly seperates and airline name from its fleet classification
+ *
+ * @property NAME_FLEET_SEPERATOR
+ * @type {string}
+ * @final
+ */
+var NAME_FLEET_SEPERATOR = '/';
+
+/**
+ * @property INVALID_INDEX
+ * @type {number}
+ * @final
+ */
+var INVALID_INDEX = -1;
+
+/**
+ * Enemeration of an index value of `0`
+ *
+ * @property FIRST_INDEX
+ * @type {number}
+ * @final
+ */
+var FIRST_INDEX = 0;
+
+/**
+ * Enemeration of an index value of `1`
+ *
+ * @property SECOND_INDEX
+ * @type {number}
+ * @final
+ */
+var SECOND_INDEX = 1;
+
+/**
+ * Accepts a selected airline name, which may or may not contain the `NAME_FLEET_SEPERATOR`, and
+ * returns the `airlineNameAndFleet` object with updated property values.
+ *
+ * @function _extractNameAndFleetFromCurrentAirline
+ * @param selectedAirline {string}
+ * @param airlineNameAndFleet {object}
+ * @return airlineNameAndFleet {object}
+ */
+var _extractNameAndFleetFromCurrentAirline = function _extractNameAndFleetFromCurrentAirline(selectedAirline, airlineNameAndFleet) {
+    airlineNameAndFleet.name = selectedAirline;
+
+    if (selectedAirline.indexOf(NAME_FLEET_SEPERATOR) > INVALID_INDEX) {
+        var nameAndFleet = selectedAirline.split(NAME_FLEET_SEPERATOR);
+
+        airlineNameAndFleet.name = nameAndFleet[FIRST_INDEX];
+        airlineNameAndFleet.fleet = nameAndFleet[SECOND_INDEX];
+    }
+
+    return airlineNameAndFleet;
+};
+
+/**
+ * Accepts an airline, as defined in an airport json file from the `departures` and `arrivals` sections,
+ * and returns a consistent object containing an airline name and fleet classification.
+ *
+ * @method airlineNameAndFleetHelper
+ * @param airline {string}
+ * @return airlineNameAndFleet {object}
+ */
+var airlineNameAndFleetHelper = exports.airlineNameAndFleetHelper = function airlineNameAndFleetHelper(airline) {
+    if (!(0, _isArray3.default)(airline)) {
+        throw new TypeError('Invalid parameter. Expected airline to be an array but instead received ' + (typeof airline === 'undefined' ? 'undefined' : _typeof(airline)));
+    }
+
+    // this could be a model object, but the values used here are temporary so we just use a constant
+    // and update its key values as needed.
+    var airlineNameAndFleet = {
+        name: '',
+        fleet: ''
+    };
+
+    if (airline.length === 0) {
+        return airlineNameAndFleet;
+    }
+
+    return _extractNameAndFleetFromCurrentAirline(airline[FIRST_INDEX], airlineNameAndFleet);
+};
+
+/**
+ * Accepts a list of airlines, as defined in an airport json file from the `departures` and `arrivals` sections,
+ * and returns a consistent object containing an airline name and fleet classification.
+ *
+ * @function randomAirlineSelectionHelper
+ * @param airlineList {array}
+ * @return {object}
+ */
+var randomAirlineSelectionHelper = exports.randomAirlineSelectionHelper = function randomAirlineSelectionHelper(airlineList) {
+    // TODO: a large portion of this function is duplicated above, refactor
+    if (!(0, _isArray3.default)(airlineList)) {
+        throw new TypeError('Invalid parameter. Expected airlineList to be an array but instead received ' + (typeof airlineList === 'undefined' ? 'undefined' : _typeof(airlineList)));
+    }
+
+    // this could be a model object, but the values used here are temporary so we just use a constant
+    // and update its key values as needed.
+    var airlineNameAndFleet = {
+        name: '',
+        fleet: ''
+    };
+
+    if (airlineList.length === 0) {
+        return airlineNameAndFleet;
+    }
+
+    var selectedAirline = (0, _generalUtilities.choose_weight)(airlineList);
+
+    return _extractNameAndFleetFromCurrentAirline(selectedAirline, airlineNameAndFleet);
+};
+
+},{"../utilities/generalUtilities":583,"lodash/isArray":466}],537:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -39792,19 +40009,21 @@ var _has2 = require('lodash/has');
 
 var _has3 = _interopRequireDefault(_has2);
 
-var _forEach2 = require('lodash/forEach');
-
-var _forEach3 = _interopRequireDefault(_forEach2);
-
 var _lowerCase2 = require('lodash/lowerCase');
 
 var _lowerCase3 = _interopRequireDefault(_lowerCase2);
 
+var _AirlineController = require('../airline/AirlineController');
+
+var _AirlineController2 = _interopRequireDefault(_AirlineController);
+
+var _AircraftController = require('../aircraft/AircraftController');
+
+var _AircraftController2 = _interopRequireDefault(_AircraftController);
+
 var _AirportModel = require('./AirportModel');
 
 var _AirportModel2 = _interopRequireDefault(_AirportModel);
-
-var _airportLoadList = require('./airportLoadList');
 
 var _storageKeys = require('../constants/storageKeys');
 
@@ -39829,14 +40048,19 @@ var DEFAULT_AIRPORT_ICAO = 'ksfo';
 var AirportController = function () {
     /**
      * @constructor
+     * @param airportLoadList {array<object>}  List of airports to load
+     * @param updateRun {function}
      */
-    function AirportController(updateRun) {
+    function AirportController(airportLoadList, updateRun) {
         _classCallCheck(this, AirportController);
 
         this.updateRun = updateRun;
         this.airport = airport;
         this.airport.airports = {};
         this.airport.current = null;
+        this.airlineController = null;
+        this.aircraftController = null;
+        this._airportListToLoad = airportLoadList;
     }
 
     /**
@@ -39851,8 +40075,12 @@ var AirportController = function () {
         key: 'init_pre',
         value: function init_pre() {
             prop.airport = airport;
-            prop.airport.airports = {};
-            prop.airport.current = null;
+
+            this.airlineController = new _AirlineController2.default();
+            this.aircraftController = new _AircraftController2.default();
+
+            window.airlineController = this.airlineController;
+            window.aircraftController = this.aircraftController;
         }
 
         /**
@@ -39867,11 +40095,26 @@ var AirportController = function () {
     }, {
         key: 'init',
         value: function init() {
-            var _this = this;
+            for (var i = 0; i < this._airportListToLoad.length; i++) {
+                var _airport = this._airportListToLoad[i];
 
-            (0, _forEach3.default)(_airportLoadList.AIRPORT_LOAD_LIST, function (airport) {
-                _this.airport_load(airport);
-            });
+                this.airport_load(_airport);
+            }
+        }
+
+        /**
+         * Lifecycle method called from `App`.
+         *
+         * This acts as a fascade for the `aircraftController.aircraft_update` method,
+         * where aircraft data is recalculated before re-rendering
+         *
+         * @method recalculate
+         */
+
+    }, {
+        key: 'recalculate',
+        value: function recalculate() {
+            this.aircraftController.aircraft_update();
         }
 
         /**
@@ -39886,40 +40129,11 @@ var AirportController = function () {
         value: function ready() {
             var airportName = DEFAULT_AIRPORT_ICAO;
 
-            if ((0, _has3.default)(localStorage, _storageKeys.STORAGE_KEY.ATC_LAST_AIRPORT) || (0, _has3.default)(prop.airport.airports, (0, _lowerCase3.default)(localStorage[_storageKeys.STORAGE_KEY.ATC_LAST_AIRPORT]))) {
+            if ((0, _has3.default)(localStorage, _storageKeys.STORAGE_KEY.ATC_LAST_AIRPORT) || (0, _has3.default)(this.airport.airports, (0, _lowerCase3.default)(localStorage[_storageKeys.STORAGE_KEY.ATC_LAST_AIRPORT]))) {
                 airportName = (0, _lowerCase3.default)(localStorage[_storageKeys.STORAGE_KEY.ATC_LAST_AIRPORT]);
             }
 
             this.airport_set(airportName);
-        }
-
-        /**
-         * @for AirportController
-         * @method airport_set
-         */
-
-    }, {
-        key: 'airport_set',
-        value: function airport_set(icao) {
-            if (!icao && (0, _has3.default)(localStorage, _storageKeys.STORAGE_KEY.ATC_LAST_AIRPORT)) {
-                icao = localStorage[_storageKeys.STORAGE_KEY.ATC_LAST_AIRPORT];
-            }
-
-            icao = icao.toLowerCase();
-
-            if (!prop.airport.airports[icao]) {
-                console.log(icao + ': no such airport');
-
-                return;
-            }
-
-            if (prop.airport.current) {
-                prop.airport.current.unset();
-                window.aircraftController.aircraft_remove_all();
-            }
-
-            var newAirport = prop.airport.airports[icao];
-            newAirport.set();
         }
 
         /**
@@ -39939,7 +40153,7 @@ var AirportController = function () {
 
             icao = icao.toLowerCase();
 
-            if (icao in prop.airport.airports) {
+            if (this.hasAirport()) {
                 console.log(icao + ': already loaded');
 
                 return null;
@@ -39965,9 +40179,37 @@ var AirportController = function () {
     }, {
         key: 'airport_add',
         value: function airport_add(airport) {
-            prop.airport.airports[airport.icao.toLowerCase()] = airport;
+            this.airport.airports[airport.icao] = airport;
         }
 
+        /**
+         * @for AirportController
+         * @method airport_set
+         */
+
+    }, {
+        key: 'airport_set',
+        value: function airport_set(icao) {
+            if (this.hasStoredIcao(icao)) {
+                icao = localStorage[_storageKeys.STORAGE_KEY.ATC_LAST_AIRPORT];
+            }
+
+            icao = icao.toLowerCase();
+
+            if (!this.airport.airports[icao]) {
+                console.log(icao + ': no such airport');
+
+                return;
+            }
+
+            if (this.airport.current) {
+                this.airport.current.unset();
+                this.aircraftController.aircraft_remove_all();
+            }
+
+            var nextAirportModel = this.airport.airports[icao];
+            nextAirportModel.set();
+        }
         /**
          * @function airport_get
          * @param icao {string}
@@ -39978,10 +40220,32 @@ var AirportController = function () {
         key: 'airport_get',
         value: function airport_get(icao) {
             if (!icao) {
-                return prop.airport.current;
+                return this.airport.current;
             }
 
-            return prop.airport.airports[icao.toLowerCase()];
+            return this.airport.airports[icao.toLowerCase()];
+        }
+
+        /**
+         * @method hasStoredIcao
+         * @return {boolean}
+         */
+
+    }, {
+        key: 'hasStoredIcao',
+        value: function hasStoredIcao(icao) {
+            return !icao && (0, _has3.default)(localStorage, _storageKeys.STORAGE_KEY.ATC_LAST_AIRPORT);
+        }
+
+        /**
+         * @method hasAirport
+         * @return {boolean}
+         */
+
+    }, {
+        key: 'hasAirport',
+        value: function hasAirport(icao) {
+            return (0, _has3.default)(this.airport.airports, icao);
         }
     }]);
 
@@ -39990,7 +40254,7 @@ var AirportController = function () {
 
 exports.default = AirportController;
 
-},{"../constants/storageKeys":554,"./AirportModel":537,"./airportLoadList":548,"lodash/forEach":459,"lodash/has":461,"lodash/lowerCase":482}],537:[function(require,module,exports){
+},{"../aircraft/AircraftController":527,"../airline/AirlineController":534,"../constants/storageKeys":566,"./AirportModel":538,"lodash/has":460,"lodash/lowerCase":483}],538:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -40004,9 +40268,21 @@ var _jquery = require('jquery');
 
 var _jquery2 = _interopRequireDefault(_jquery);
 
+var _forEach2 = require('lodash/forEach');
+
+var _forEach3 = _interopRequireDefault(_forEach2);
+
+var _get2 = require('lodash/get');
+
+var _get3 = _interopRequireDefault(_get2);
+
 var _has2 = require('lodash/has');
 
 var _has3 = _interopRequireDefault(_has2);
+
+var _head2 = require('lodash/head');
+
+var _head3 = _interopRequireDefault(_head2);
 
 var _map2 = require('lodash/map');
 
@@ -40016,25 +40292,29 @@ var _isEmpty2 = require('lodash/isEmpty');
 
 var _isEmpty3 = _interopRequireDefault(_isEmpty2);
 
-var _uniq2 = require('lodash/uniq');
+var _AirspaceModel = require('./AirspaceModel');
 
-var _uniq3 = _interopRequireDefault(_uniq2);
-
-var _AreaModel = require('../base/AreaModel');
-
-var _AreaModel2 = _interopRequireDefault(_AreaModel);
+var _AirspaceModel2 = _interopRequireDefault(_AirspaceModel);
 
 var _PositionModel = require('../base/PositionModel');
 
 var _PositionModel2 = _interopRequireDefault(_PositionModel);
 
-var _Runway = require('./Runway');
+var _RunwayModel = require('./RunwayModel');
 
-var _Runway2 = _interopRequireDefault(_Runway);
+var _RunwayModel2 = _interopRequireDefault(_RunwayModel);
 
-var _ArrivalFactory = require('./Arrival/ArrivalFactory');
+var _FixCollection = require('./Fix/FixCollection');
 
-var _DepartureFactory = require('./Departure/DepartureFactory');
+var _FixCollection2 = _interopRequireDefault(_FixCollection);
+
+var _StandardRouteCollection = require('./StandardRoute/StandardRouteCollection');
+
+var _StandardRouteCollection2 = _interopRequireDefault(_StandardRouteCollection);
+
+var _arrivalFactory = require('./Arrival/arrivalFactory');
+
+var _departureFactory = require('./Departure/departureFactory');
 
 var _unitConverters = require('../utilities/unitConverters');
 
@@ -40054,6 +40334,8 @@ var _storageKeys = require('../constants/storageKeys');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 // TODO: This function should really live in a different file and have tests.
@@ -40065,12 +40347,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
  */
 var ra = function ra(n) {
     var deviation = (0, _unitConverters.degreesToRadians)(10);
+
     return n + (0, _core.extrapolate_range_clamp)(0, Math.random(), 1, -deviation, deviation);
 };
 
-// TODO: this class contains a lot of .hasOwnProperty() type checks (converted to _has for now). is there a need for
-// such defensiveness? or can some of that be accomplished on init and then smiply update the prop if need be?
+var DEFAULT_CTR_RADIUS_NM = 80;
+var DEFAULT_CTR_CEILING_FT = 10000;
+var DEFAULT_INITIAL_ALTITUDE_FT = 5000;
+var DEAFULT_RR_RADIUS_NM = 5;
+
 /**
+ *
+ *
  * @class AirportModel
  */
 
@@ -40081,10 +40369,33 @@ var AirportModel = function () {
      * @param updateRun {function}
      */
     function AirportModel() {
+        var _this = this;
+
         var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
         var updateRun = arguments[1];
 
         _classCallCheck(this, AirportModel);
+
+        this.onLoadAirportSuccess = function (response) {
+            _this.parse(response);
+
+            if (_this.has_terrain) {
+                return;
+            }
+
+            _this.loading = false;
+            _this.loaded = true;
+            _this.set();
+        };
+
+        this.onLoadAirportError = function (_ref) {
+            var textStatus = _ref.textStatus;
+
+            console.error('Unable to load airport/' + _this.icao + ': ' + textStatus);
+
+            _this.loading = false;
+            _this.airport.current.set();
+        };
 
         this.updateRun = updateRun;
         // FIXME: All properties of this class should be instantiated here, even if they wont have values yet.
@@ -40095,13 +40406,14 @@ var AirportModel = function () {
         this.icao = null;
         this.radio = null;
         this.level = null;
-        this.elevation = 0;
+        this.position = null;
         this.runways = [];
         this.runway = null;
         this.fixes = {};
-        this.real_fixes = {};
         this.sids = {};
+        this.sidCollection = null;
         this.stars = {};
+        this.starCollection = null;
         this.maps = {};
         this.airways = {};
         this.restricted_areas = [];
@@ -40116,7 +40428,7 @@ var AirportModel = function () {
             runway: null,
             departure: null
         };
-        this.departures = null;
+        this.departures = [];
         this.arrivals = [];
 
         this.wind = {
@@ -40127,255 +40439,271 @@ var AirportModel = function () {
         this.ctr_radius = 80;
         this.ctr_ceiling = 10000;
         this.initial_alt = 5000;
+        this.rr_radius_nm = 0;
+        this.rr_center = 0;
 
         this.parse(options);
     }
 
-    _createClass(AirportModel, [{
-        key: 'getWind',
-        value: function getWind() {
-            // TODO: there are a lot of magic numbers here. What are they for and what do they mean? These should be enumerated.
-            var wind = clone(this.wind);
-            var s = 1;
-            var angle_factor = (0, _core.sin)((s + window.gameController.game_time()) * 0.5) + (0, _core.sin)((s + window.gameController.game_time()) * 2);
-            // TODO: why is this var getting reassigned to a magic number?
-            s = 100;
-            var speed_factor = (0, _core.sin)((s + window.gameController.game_time()) * 0.5) + (0, _core.sin)((s + window.gameController.game_time()) * 2);
-            wind.angle += (0, _core.extrapolate_range_clamp)(-1, angle_factor, 1, (0, _unitConverters.degreesToRadians)(-4), (0, _unitConverters.degreesToRadians)(4));
-            wind.speed *= (0, _core.extrapolate_range_clamp)(-1, speed_factor, 1, 0.9, 1.05);
+    /**
+     * @property real_fixes
+     * @return {array<FixModel>}
+     */
 
-            return wind;
+
+    _createClass(AirportModel, [{
+        key: 'parse',
+
+
+        /**
+         * @for AirportModel
+         * @method parse
+         * @param data {object}
+         */
+        value: function parse(data) {
+            this.name = (0, _get3.default)(data, 'name', this.name);
+            this.icao = (0, _get3.default)(data, 'icao', this.icao).toLowerCase();
+            this.level = (0, _get3.default)(data, 'level', this.level);
+
+            // exit early if `position` doesnt exist in data. on app initialiazation, we loop through every airport
+            // in the `airportLoadList` and instantiate a model for each but wont have the full data set until the
+            // airport json file is loaded.
+            if (!data.position) {
+                return;
+            }
+
+            this.setCurrentPosition(data.position, data.magnetic_north);
+
+            this.radio = (0, _get3.default)(data, 'radio', this.radio);
+            this.has_terrain = (0, _get3.default)(data, 'has_terrain', false);
+            this.sids = (0, _get3.default)(data, 'sids', {});
+            this.stars = (0, _get3.default)(data, 'stars', {});
+            this.airways = (0, _get3.default)(data, 'airways', {});
+            this.ctr_radius = (0, _get3.default)(data, 'ctr_radius', DEFAULT_CTR_RADIUS_NM);
+            this.ctr_ceiling = (0, _get3.default)(data, 'ctr_ceiling', DEFAULT_CTR_CEILING_FT);
+            this.initial_alt = (0, _get3.default)(data, 'initial_alt', DEFAULT_INITIAL_ALTITUDE_FT);
+            this.rr_radius_nm = (0, _get3.default)(data, 'rr_radius_nm');
+            this.rr_center = (0, _get3.default)(data, 'rr_center');
+
+            this.fixes = (0, _get3.default)(data, 'fixes', {});
+            _FixCollection2.default.init(this.fixes, this.position);
+
+            this.sidCollection = new _StandardRouteCollection2.default(data.sids);
+            this.starCollection = new _StandardRouteCollection2.default(data.stars);
+
+            this.loadTerrain();
+            this.buildAirportAirspace(data.airspace);
+            this.buildAirportRunways(data.runways);
+            this.buildAirportMaps(data.maps);
+            this.buildRestrictedAreas(data.restricted);
+            this.updateCurrentWind(data.wind);
+            this.buildAirportDepartures(data.departures);
+            this.buildArrivals(data.arrivals);
+            this.buildRunwayMetaData();
         }
 
-        // FIXME: this method is waaaaay to long. there is a lot here that can be abstracted or flat out removed and
-        // moved to init(). Other bits could be moved to class methods instead of inline. this function does
-        // way too much.  Simplify!
+        /**
+         * @for AirportModel
+         * @method setCurrentPosition
+         * @param currentPosition {array}
+         */
 
     }, {
-        key: 'parse',
-        value: function parse(data) {
-            var _this = this;
-
-            if (data.position) {
-                this.position = new _PositionModel2.default(data.position);
+        key: 'setCurrentPosition',
+        value: function setCurrentPosition(currentPosition, magneticNorth) {
+            if (!currentPosition) {
+                return;
             }
 
-            if (this.position && this.position.elevation != null) {
-                this.elevation = this.position.elevation;
+            this.position = new _PositionModel2.default(currentPosition, null, magneticNorth);
+        }
+
+        /**
+         * create 3d polygonal airspace
+         *
+         * @for AirportModel
+         * @method buildAirportAirspace
+         * @param airspace
+         */
+
+    }, {
+        key: 'buildAirportAirspace',
+        value: function buildAirportAirspace(airspace) {
+            var _this2 = this;
+
+            if (!airspace) {
+                return;
             }
 
-            if (data.magnetic_north) {
-                this.magnetic_north = (0, _unitConverters.degreesToRadians)(data.magnetic_north);
-            } else {
-                // TODO: this else could be plced in init().
-                this.magnetic_north = 0;
+            // for each area
+            this.airspace = (0, _map3.default)(airspace, function (airspaceSection) {
+                return new _AirspaceModel2.default(airspaceSection, _this2.position, _this2.magnetic_north);
+            });
+
+            // airspace perimeter (assumed to be first entry in data.airspace)
+            this.perimeter = (0, _head3.default)(this.airspace);
+
+            // change ctr_radius to point along perimeter that's farthest from rr_center
+            // const pos = new PositionModel(this.perimeter.poly[0].position, this.position, this.magnetic_north);
+
+            this.ctr_radius = Math.max.apply(Math, _toConsumableArray((0, _map3.default)(this.perimeter.poly, function (v) {
+                return (0, _vector.vlen)((0, _vector.vsub)(v.position, new _PositionModel2.default(_this2.rr_center, _this2.position, _this2.magnetic_north).position));
+            })));
+        }
+
+        /**
+         * @for AirportModel
+         * @method buildAirportRunways
+         * @param runways {array}
+         */
+
+    }, {
+        key: 'buildAirportRunways',
+        value: function buildAirportRunways(runways) {
+            var _this3 = this;
+
+            if (!runways) {
+                return;
             }
 
-            // FIXME: the rest of these ifs could bet done with a simple `this.prop = data.prop || null`
-            // or any other appropriate invaild value for the data type.
-            if (data.name) {
-                this.name = data.name;
+            (0, _forEach3.default)(runways, function (runway) {
+                runway.reference_position = _this3.position;
+                runway.magnetic_north = _this3.magnetic_north;
+
+                // TODO: what do the 0 and 1 mean? magic numbers should be enumerated
+
+                _this3.runways.push([new _RunwayModel2.default(runway, 0, _this3), new _RunwayModel2.default(runway, 1, _this3)]);
+            });
+        }
+
+        /**
+         * @for AirportModel
+         * @method buildAirportMaps
+         * @param maps {object}
+         */
+
+    }, {
+        key: 'buildAirportMaps',
+        value: function buildAirportMaps(maps) {
+            var _this4 = this;
+
+            if (!maps) {
+                return;
             }
 
-            if (data.icao) {
-                this.icao = data.icao;
+            (0, _forEach3.default)(maps, function (map, key) {
+                _this4.maps[key] = [];
+                var lines = map;
+
+                (0, _forEach3.default)(lines, function (line) {
+                    var start = new _PositionModel2.default([line[0], line[1]], _this4.position, _this4.magnetic_north).position;
+                    var end = new _PositionModel2.default([line[2], line[3]], _this4.position, _this4.magnetic_north).position;
+
+                    _this4.maps[key].push([start[0], start[1], end[0], end[1]]);
+                });
+            });
+        }
+
+        /**
+         * @for AirportModel
+         * @method buildRestrictedAreas
+         * @param restrictedAreas
+         */
+
+    }, {
+        key: 'buildRestrictedAreas',
+        value: function buildRestrictedAreas(restrictedAreas) {
+            var _this5 = this;
+
+            if (!restrictedAreas) {
+                return;
             }
 
-            if (data.radio) {
-                this.radio = data.radio;
+            (0, _forEach3.default)(restrictedAreas, function (area) {
+                // TODO: what is `obj` going to be? need better name.
+                var obj = {};
+                if (area.name) {
+                    obj.name = area.name;
+                }
+
+                obj.height = (0, _unitConverters.parseElevation)(area.height);
+                obj.coordinates = _jquery2.default.map(area.coordinates, function (v) {
+                    return [new _PositionModel2.default(v, _this5.position, _this5.magnetic_north).position];
+                });
+
+                // TODO: is this right? max and min are getting set to the same value?
+                // const coords = obj.coordinates;
+                var coords_max = obj.coordinates[0];
+                var coords_min = obj.coordinates[0];
+
+                (0, _forEach3.default)(obj.coordinates, function (v) {
+                    coords_max = [Math.max(v[0], coords_max[0]), Math.max(v[1], coords_max[1])];
+                    coords_min = [Math.min(v[0], coords_min[0]), Math.min(v[1], coords_min[1])];
+                });
+
+                obj.center = (0, _vector.vscale)((0, _vector.vadd)(coords_max, coords_min), 0.5);
+
+                _this5.restricted_areas.push(obj);
+            });
+        }
+
+        /**
+         * @for AirportModel
+         * @method updateCurrentWind
+         * @param currentWind
+         */
+
+    }, {
+        key: 'updateCurrentWind',
+        value: function updateCurrentWind(currentWind) {
+            if (!currentWind) {
+                return;
             }
 
-            if (data.ctr_radius) {
-                this.ctr_radius = data.ctr_radius;
+            this.wind.speed = currentWind.speed;
+            this.wind.angle = (0, _unitConverters.degreesToRadians)(currentWind.angle);
+        }
+    }, {
+        key: 'buildAirportDepartures',
+        value: function buildAirportDepartures(departures) {
+            if (!departures) {
+                return;
             }
 
-            if (data.ctr_ceiling) {
-                this.ctr_ceiling = data.ctr_ceiling;
+            this.departures = (0, _departureFactory.departureFactory)(this, departures);
+        }
+
+        /**
+         * @for AirportModel
+         * @method buildArrivals
+         * @param arrivals {array}
+         */
+
+    }, {
+        key: 'buildArrivals',
+        value: function buildArrivals(arrivals) {
+            if (!arrivals) {
+                return;
             }
 
-            if (data.initial_alt) {
-                this.initial_alt = data.initial_alt;
-            }
-
-            if (data.rr_radius_nm) {
-                this.rr_radius_nm = data.rr_radius_nm;
-            }
-
-            if (data.rr_center) {
-                this.rr_center = data.rr_center;
-            }
-
-            if (data.level) {
-                this.level = data.level;
-            }
-
-            this.has_terrain = false || data.has_terrain;
-
-            if (this.has_terrain) {
-                this.loadTerrain();
-            }
-
-            // TODO: this should be its own method, or own group of methods
-            // create 3d polygonal airspace
-            if (data.airspace) {
-                (function () {
-                    var areas = [];
-                    // for each area
-                    for (var i = 0; i < data.airspace.length; i++) {
-                        var positions = [];
-
-                        // for each point
-                        for (var j = 0; j < data.airspace[i].poly.length; j++) {
-                            positions.push(new _PositionModel2.default(data.airspace[i].poly[j], _this.position, _this.magnetic_north));
-                        }
-
-                        areas.push(new _AreaModel2.default(positions, data.airspace[i].floor * 100, data.airspace[i].ceiling * 100, data.airspace[i].airspace_class));
-                    }
-
-                    _this.airspace = areas;
-
-                    // airspace perimeter (assumed to be first entry in data.airspace)
-                    _this.perimeter = areas[0];
-
-                    // change ctr_radius to point along perimeter that's farthest from rr_center
-                    var pos = new _PositionModel2.default(_this.perimeter.poly[0].position, _this.position, _this.magnetic_north);
-                    // FIXME: it doesnt look like this var is being used at all?
-                    // const len = nm(vlen(vsub(pos.position, this.position.position)));
-                    // FIXME: this reassignment is not needed
-                    var apt = _this;
-
-                    _this.ctr_radius = Math.max.apply(Math, (0, _map3.default)(_this.perimeter.poly, function (v) {
-                        return (0, _vector.vlen)((0, _vector.vsub)(v.position, new _PositionModel2.default(apt.rr_center, apt.position, apt.magnetic_north).position));
-                    }));
-                })();
-            }
-
-            if (data.runways) {
-                for (var i = 0; i < data.runways.length; i++) {
-                    data.runways[i].reference_position = this.position;
-                    data.runways[i].magnetic_north = this.magnetic_north;
-                    // TODO: what do the 0 and 1 mean? magic numbers should be enumerated
-                    this.runways.push([new _Runway2.default(data.runways[i], 0, this), new _Runway2.default(data.runways[i], 1, this)]);
+            for (var i = 0; i < arrivals.length; i++) {
+                if (!(0, _has3.default)(arrivals[i], 'type')) {
+                    log(this.icao + ' arrival stream #' + i + ' not given type!', _logLevel.LOG.WARNING);
+                } else {
+                    this.arrivals.push((0, _arrivalFactory.arrivalFactory)(this, arrivals[i]));
                 }
             }
+        }
 
-            if (data.fixes) {
-                for (var fix in data.fixes) {
-                    var fixName = fix.toUpperCase();
+        /**
+         * @for AirportModel
+         * @method buildRunwayMetaData
+         */
 
-                    this.fixes[fixName] = new _PositionModel2.default(data.fixes[fix], this.position, this.magnetic_north);
-
-                    if (fix.indexOf('_') !== 0) {
-                        this.real_fixes[fixName] = this.fixes[fixName];
-                    }
-                }
-            }
-
-            // import the sids
-            if (data.sids) {
-                this.sids = data.sids;
-
-                // Check each SID fix and log if not found in the airport fix list
-                for (var sid in this.sids) {
-                    if ((0, _has3.default)(this.sids, sid)) {
-                        var fixList = this.sids[sid];
-
-                        for (var _i = 0; _i < fixList.length; _i++) {
-                            var fixname = fixList[_i];
-
-                            if (!this.airport.fixes[fixname]) {
-                                log('SID ' + sid + ' fix not found: ' + fixname, _logLevel.LOG.WARNING);
-                            }
-                        }
-                    }
-                }
-            }
-
-            if (data.stars) {
-                this.stars = data.stars;
-            }
-
-            if (data.airways) {
-                this.airways = data.airways;
-            }
-
-            if (data.maps) {
-                for (var m in data.maps) {
-                    this.maps[m] = [];
-                    var lines = data.maps[m];
-
-                    // convert GPS coordinates to km-based position rel to airport
-                    for (var _i2 in lines) {
-                        var start = new _PositionModel2.default([lines[_i2][0], lines[_i2][1]], this.position, this.magnetic_north).position;
-                        var end = new _PositionModel2.default([lines[_i2][2], lines[_i2][3]], this.position, this.magnetic_north).position;
-
-                        this.maps[m].push([start[0], start[1], end[0], end[1]]);
-                    }
-                }
-            }
-
-            if (data.restricted) {
-                (function () {
-                    // TODO: need better name than `r`.
-                    var r = data.restricted;
-                    // FIXME: this is a big no no. This makes me think there are scoping issues here. with es2015 that
-                    // shouldnt be as much of a problem now.
-                    var self = _this;
-
-                    for (var _i3 in r) {
-                        // TODO: what is `obj` going to be? need better name.
-                        var obj = {};
-                        if (r[_i3].name) {
-                            obj.name = r[_i3].name;
-                        }
-
-                        obj.height = (0, _unitConverters.parseElevation)(r[_i3].height);
-                        obj.coordinates = _jquery2.default.map(r[_i3].coordinates, function (v) {
-                            return [new _PositionModel2.default(v, self.position, self.magnetic_north).position];
-                        });
-
-                        // TODO: is this right? max and min are getting set to the same value?
-                        var coords = obj.coordinates;
-                        var coords_max = coords[0];
-                        var coords_min = coords[0];
-
-                        for (var _i4 in coords) {
-                            var v = coords[_i4];
-                            coords_max = [Math.max(v[0], coords_max[0]), Math.max(v[1], coords_max[1])];
-                            coords_min = [Math.min(v[0], coords_min[0]), Math.min(v[1], coords_min[1])];
-                        }
-
-                        obj.center = (0, _vector.vscale)((0, _vector.vadd)(coords_max, coords_min), 0.5);
-                        self.restricted_areas.push(obj);
-                    }
-                })();
-            }
-
-            if (data.wind) {
-                this.wind = data.wind;
-                this.wind.angle = (0, _unitConverters.degreesToRadians)(this.wind.angle);
-            }
-
-            if (data.departures) {
-                this.departures = (0, _DepartureFactory.DepartureFactory)(this, data.departures);
-            }
-
-            if (data.arrivals) {
-                for (var _i5 = 0; _i5 < data.arrivals.length; _i5++) {
-                    if (!(0, _has3.default)(data.arrivals[_i5], 'type')) {
-                        log(this.icao + ' arrival stream #' + _i5 + ' not given type!', _logLevel.LOG.WARNING);
-                    } else {
-                        this.arrivals.push((0, _ArrivalFactory.ArrivalFactory)(this, data.arrivals[_i5]));
-                    }
-                }
-            }
-
-            // verify we know where all the fixes are
-            this.checkFixes();
-
-            // ***** Generate Airport Metadata *****
-
-            // Runway Metadata
+    }, {
+        key: 'buildRunwayMetaData',
+        value: function buildRunwayMetaData() {
+            // TODO: translate these to _forEach()
             for (var rwy1 in this.runways) {
                 for (var rwy1end in this.runways[rwy1]) {
                     // setup primary runway object
@@ -40387,7 +40715,7 @@ var AirportModel = function () {
                         }
 
                         for (var rwy2end in this.runways[rwy2]) {
-                            //setup secondary runway subobject
+                            // setup secondary runway subobject
                             var r1 = this.runways[rwy1][rwy1end];
                             var r2 = this.runways[rwy2][rwy2end];
                             var offset = (0, _flightMath.getOffset)(r1, r2.position, r1.angle);
@@ -40403,11 +40731,18 @@ var AirportModel = function () {
                 }
             }
         }
+
+        /**
+         * @for AirportModel
+         * @method set
+         */
+
     }, {
         key: 'set',
         value: function set() {
             if (!this.loaded) {
                 this.load();
+
                 return;
             }
 
@@ -40424,12 +40759,25 @@ var AirportModel = function () {
             prop.canvas.dirty = true;
             (0, _jquery2.default)(_selectors.SELECTORS.DOM_SELECTORS.TOGGLE_TERRAIN).toggle(!(0, _isEmpty3.default)(this.terrain));
 
-            window.gameController.game_reset_score();
+            window.gameController.game_reset_score_and_events();
+
             this.start = window.gameController.game_time();
+
+            // when the parse method is run, this method also runs. however, when an airport is being re-loaded,
+            // only this method runs. this doesnt belong here but needs to be here so the fixes get populated correctly.
+            // FIXME: make FixCollection a instance class ainstead of a static class
+            _FixCollection2.default.init(this.fixes, this.position);
+
             this.updateRunway();
             this.addAircraft();
             this.updateRun(true);
         }
+
+        /**
+         * @for AirportModel
+         * @method unset
+         */
+
     }, {
         key: 'unset',
         value: function unset() {
@@ -40443,6 +40791,12 @@ var AirportModel = function () {
                 window.gameController.game_clear_timeout(this.timeout.runway);
             }
         }
+
+        /**
+         * @for AirportModel
+         * @method addAircraft
+         */
+
     }, {
         key: 'addAircraft',
         value: function addAircraft() {
@@ -40456,6 +40810,34 @@ var AirportModel = function () {
                 }
             }
         }
+
+        /**
+         * @for AirportModel
+         * @method getWind
+         * @return wind {number}
+         */
+
+    }, {
+        key: 'getWind',
+        value: function getWind() {
+            // TODO: there are a lot of magic numbers here. What are they for and what do they mean? These should be enumerated.
+            var wind = clone(this.wind);
+            var s = 1;
+            var angle_factor = (0, _core.sin)((s + window.gameController.game_time()) * 0.5) + (0, _core.sin)((s + window.gameController.game_time()) * 2);
+            // TODO: why is this var getting reassigned to a magic number?
+            s = 100;
+            var speed_factor = (0, _core.sin)((s + window.gameController.game_time()) * 0.5) + (0, _core.sin)((s + window.gameController.game_time()) * 2);
+            wind.angle += (0, _core.extrapolate_range_clamp)(-1, angle_factor, 1, (0, _unitConverters.degreesToRadians)(-4), (0, _unitConverters.degreesToRadians)(4));
+            wind.speed *= (0, _core.extrapolate_range_clamp)(-1, speed_factor, 1, 0.9, 1.05);
+
+            return wind;
+        }
+
+        /**
+         * @for AirportModel
+         * @method updateRunway
+         */
+
     }, {
         key: 'updateRunway',
         value: function updateRunway() {
@@ -40483,32 +40865,42 @@ var AirportModel = function () {
             this.runway = best_runway;
             this.timeout.runway = window.gameController.game_timeout(this.updateRunway, Math.random() * 30, this);
         }
+
+        /**
+         * @for AirportModel
+         * @method selectRunway
+         */
+
     }, {
         key: 'selectRunway',
-        value: function selectRunway(length) {
+        value: function selectRunway() {
             return this.runway;
         }
     }, {
         key: 'parseTerrain',
         value: function parseTerrain(data) {
+            // TODO: reassignment of this to apt is not needed here. change apt to this.
             // terrain must be in geojson format
             var apt = this;
             apt.terrain = {};
 
-            var _loop = function _loop(i) {
-                var f = data.features[i];
-                var ele = (0, _core.round)(f.properties.elevation / 0.3048, 1000); // m => ft, rounded to 1K (but not divided)
+            (0, _forEach3.default)(data.features, function (f) {
+                // const f = data.features[i];
+                // m => ft, rounded to 1K (but not divided)
+                var ele = (0, _core.round)(f.properties.elevation / 0.3048, 1000);
 
                 if (!apt.terrain[ele]) {
                     apt.terrain[ele] = [];
                 }
 
                 var multipoly = f.geometry.coordinates;
-                if (f.geometry.type == 'LineString') {
+                // TODO: add enumeration
+                if (f.geometry.type === 'LineString') {
                     multipoly = [[multipoly]];
                 }
 
-                if (f.geometry.type == 'Polygon') {
+                // TODO: add enumeration
+                if (f.geometry.type === 'Polygon') {
                     multipoly = [multipoly];
                 }
 
@@ -40519,49 +40911,62 @@ var AirportModel = function () {
                         return [_jquery2.default.map(line_string, function (pt) {
                             var pos = new _PositionModel2.default(pt, apt.position, apt.magnetic_north);
                             pos.parse4326();
+
                             return [pos.position];
                         })];
                     }));
                 });
-            };
-
-            for (var i in data.features) {
-                _loop(i);
-            }
+            });
         }
+
+        /**
+         * @for AirportModel
+         * @method loadTerrain
+         */
+
     }, {
         key: 'loadTerrain',
         value: function loadTerrain() {
-            var _this2 = this;
+            var _this6 = this;
+
+            if (!this.has_terrain) {
+                return;
+            }
 
             // TODO: there is a lot of binding here, use => functions and this probably wont be an issue.
             zlsa.atc.loadAsset({
                 url: 'assets/airports/terrain/' + this.icao.toLowerCase() + '.geojson',
                 immediate: true
-            }).done(function (data) {
+            })
+            // TODO: change to onSuccess and onError handler abstractions
+            .done(function (data) {
                 try {
                     log('Parsing terrain');
-                    _this2.parseTerrain(data);
+                    _this6.parseTerrain(data);
                 } catch (e) {
                     log(e.message);
                 }
 
-                _this2.loading = false;
-                _this2.loaded = true;
-                _this2.set();
+                _this6.loading = false;
+                _this6.loaded = true;
+                _this6.set();
             }).fail(function (jqXHR, textStatus, errorThrown) {
-                _this2.loading = false;
-                console.error('Unable to load airport/terrain/' + _this2.icao + ': ' + textStatus);
-                prop.airport.current.set();
+                console.error('Unable to load airport/terrain/' + _this6.icao + ': ' + textStatus);
+
+                _this6.loading = false;
+                _this6.airport.current.set();
             });
         }
 
-        // TODO: there is a lot of binding here, use => functions and this probably wont be an issue.
+        /**
+         * @for AirportModel
+         * @method load
+         */
 
     }, {
         key: 'load',
         value: function load() {
-            var _this3 = this;
+            var _this7 = this;
 
             if (this.loaded) {
                 return;
@@ -40573,181 +40978,145 @@ var AirportModel = function () {
             zlsa.atc.loadAsset({
                 url: 'assets/airports/' + this.icao.toLowerCase() + '.json',
                 immediate: true
-            }).done(function (data) {
-                _this3.parse(data);
-
-                if (_this3.has_terrain) {
-                    return;
-                }
-
-                _this3.loading = false;
-                _this3.loaded = true;
-                _this3.set();
-            }).fail(function (jqXHR, textStatus, errorThrown) {
-                _this3.loading = false;
-                console.error('Unable to load airport/' + _this3.icao + ': ' + textStatus);
-                prop.airport.current.set();
+            }).done(function (response) {
+                return _this7.onLoadAirportSuccess(response);
+            }).fail(function () {
+                return _this7.onLoadAirportError.apply(_this7, arguments);
             });
-        }
-    }, {
-        key: 'getRestrictedAreas',
-        value: function getRestrictedAreas() {
-            return this.restricted_areas || null;
-        }
-    }, {
-        key: 'getFix',
-        value: function getFix(name) {
-            if (!name) {
-                return null;
-            }
-
-            var fixes = window.airportController.airport_get().fixes;
-
-            // FIXME: simplify this
-            if (Object.keys(fixes).indexOf(name.toUpperCase()) === -1) {
-                return;
-            }
-
-            return fixes[name.toUpperCase()].position;
-        }
-    }, {
-        key: 'getSID',
-        value: function getSID(id, exit, rwy) {
-            if (!(id && exit && rwy)) {
-                return null;
-            }
-
-            if (Object.keys(this.sids).indexOf(id) === -1) {
-                return;
-            }
-
-            var fixes = [];
-            var sid = this.sids[id];
-
-            // runway portion
-            if ((0, _has3.default)(sid.rwy, rwy)) {
-                for (var i = 0; i < sid.rwy[rwy].length; i++) {
-                    if (typeof sid.rwy[rwy][i] === 'string') {
-                        fixes.push([sid.rwy[rwy][i], null]);
-                    } else {
-                        fixes.push(sid.rwy[rwy][i]);
-                    }
-                }
-            }
-
-            // body portion
-            if ((0, _has3.default)(sid, 'body')) {
-                for (var _i6 = 0; _i6 < sid.body.length; _i6++) {
-                    if (typeof sid.body[_i6] === 'string') {
-                        fixes.push([sid.body[_i6], null]);
-                    } else {
-                        fixes.push(sid.body[_i6]);
-                    }
-                }
-            }
-
-            // exit portion
-            if ((0, _has3.default)(sid, 'exitPoints')) {
-                for (var _i7 = 0; _i7 < sid.exitPoints[exit].length; _i7++) {
-                    if (typeof sid.exitPoints[exit][_i7] === 'string') {
-                        fixes.push([sid.exitPoints[exit][_i7], null]);
-                    } else {
-                        fixes.push(sid.exitPoints[exit][_i7]);
-                    }
-                }
-            }
-
-            return fixes;
-        }
-    }, {
-        key: 'getSIDExitPoint',
-        value: function getSIDExitPoint(id) {
-            // if ends at fix for which the SID is named, return end fix
-            if (!(0, _has3.default)(this.sids[id], 'exitPoints')) {
-                return this.sids[id].icao;
-            }
-
-            // if has exitPoints, return a randomly selected one
-            var exits = Object.keys(this.sids[id].exitPoints);
-            return exits[Math.floor(Math.random() * exits.length)];
-        }
-    }, {
-        key: 'getSIDName',
-        value: function getSIDName(id, rwy) {
-            if ((0, _has3.default)(this.sids[id], 'suffix')) {
-                return this.sids[id].name + ' ' + this.sids[id].suffix[rwy];
-            }
-
-            return this.sids[id].name;
-        }
-    }, {
-        key: 'getSIDid',
-        value: function getSIDid(id, rwy) {
-            if ((0, _has3.default)(this.sids[id], 'suffix')) {
-                return this.sids[id].icao + this.sids[id].suffix[rwy];
-            }
-
-            return this.sids[id].icao;
         }
 
         /**
-          * Return an array of [Waypoint, fixRestrictions] for a given STAR
-          * @param {string} id - the identifier for the STAR (eg 'LENDY6')
-          * @param {string} entry - the entryPoint from which to join the STAR
-          * @param {string} rwy - (optional) the planned arrival runway
-          * Note: Passing a value for 'rwy' will help the fms distinguish between
-          *       different branches of a STAR, when it splits into different paths
-          *       for landing on different runways (eg 'HAWKZ4, landing south' vs
-          *       'HAWKZ4, landing north'). Not strictly required, but not passing
-          *       it will cause an incomplete route in many cases (depends on the
-          *       design of the actual STAR in the airport's json file).
+         * @method onLoadAirportSuccess
+         * @param response {object}
+         */
+
+
+        /**
+         * @for AirportModel
+         * @method onLoadAirportError
+         * @param textStatus {string}
+         */
+
+    }, {
+        key: 'getRestrictedAreas',
+
+
+        /**
+         * @for AirportModel
+         * @method getRestrictedAreas
+         * @return {array|null}
+         */
+        value: function getRestrictedAreas() {
+            return (0, _get3.default)(this, 'restricted_areas', null);
+        }
+
+        /**
+         * Get the position of a FixModel
+         *
+         * @for AirportModel
+         * @method getFixPosition
+         * @param fixName {string}
+         * @return {array}
+         */
+
+    }, {
+        key: 'getFixPosition',
+        value: function getFixPosition(fixName) {
+            var fixModel = _FixCollection2.default.findFixByName(fixName);
+
+            return fixModel.position;
+        }
+
+        /**
+         * @for AirportModel
+         * @param id {string}
+         * @param exit {string}
+         * @param runway {string}
+         * @return {array}
+         */
+
+    }, {
+        key: 'getSID',
+        value: function getSID(id, exit, runway) {
+            return this.sidCollection.findFixesForSidByRunwayAndExit(id, exit, runway);
+        }
+
+        /**
+         * @for AirportModel
+         * @method getSIDExitPoint
+         * @param icao {string}  Name of SID
+         * @return {string}  Name of Exit fix in SID
+         */
+
+    }, {
+        key: 'getSIDExitPoint',
+        value: function getSIDExitPoint(icao) {
+            return this.sidCollection.findRandomExitPointForSIDIcao(icao);
+        }
+
+        // FIXME: possibly unused
+        // getSIDName(id, rwy) {
+        //     if (_has(this.sids[id], 'suffix')) {
+        //         return `${this.sids[id].name} ${this.sids[id].suffix[rwy]}`;
+        //     }
+        //
+        //     return this.sids[id].name;
+        // }
+
+        // FIXME: possibly unused
+        // getSIDid(id, rwy) {
+        //     if (_has(this.sids[id], 'suffix')) {
+        //         return this.sids[id].icao + this.sids[id].suffix[rwy];
+        //     }
+        //
+        //     return this.sids[id].icao;
+        // }
+
+        /**
+         * Return an array of [Waypoint, fixRestrictions] for a given STAR
+         *
+         * Note: Passing a value for 'rwy' will help the fms distinguish between
+         *       different branches of a STAR, when it splits into different paths
+         *       for landing on different runways (eg 'HAWKZ4, landing south' vs
+         *       'HAWKZ4, landing north'). Not strictly required, but not passing
+         *       it will cause an incomplete route in many cases (depends on the
+         *       design of the actual STAR in the airport's json file).
+         *
+         * @param {string} id - the identifier for the STAR (eg 'LENDY6')
+         * @param {string} entry - the entryPoint from which to join the STAR
+         * @param {string} rwy - (optional) the planned arrival runway
+         * @return {array<string>}
          */
 
     }, {
         key: 'getSTAR',
-        value: function getSTAR(id, entry, /* optional */rwy) {
-            if (!(id && entry) || Object.keys(this.stars).indexOf(id) === -1) {
-                return null;
-            }
-
-            var fixes = [];
-            var star = this.stars[id];
-
-            // entry portion
-            if ((0, _has3.default)(star, 'entryPoints')) {
-                for (var i = 0; i < star.entryPoints[entry].length; i++) {
-                    if (typeof star.entryPoints[entry][i] === 'string') {
-                        fixes.push([star.entryPoints[entry][i], null]);
-                    } else {
-                        fixes.push(star.entryPoints[entry][i]);
-                    }
-                }
-            }
-
-            // body portion
-            if ((0, _has3.default)(star, 'body')) {
-                for (var _i8 = 0; _i8 < star.body.length; _i8++) {
-                    if (typeof star.body[_i8] === 'string') {
-                        fixes.push([star.body[_i8], null]);
-                    } else {
-                        fixes.push(star.body[_i8]);
-                    }
-                }
-            }
-
-            // runway portion
-            if (star.rwy && (0, _has3.default)(star.rwy, rwy)) {
-                for (var _i9 = 0; _i9 < star.rwy[rwy].length; _i9++) {
-                    if (typeof star.rwy[rwy][_i9] === 'string') {
-                        fixes.push([star.rwy[rwy][_i9], null]);
-                    } else {
-                        fixes.push(star.rwy[rwy][_i9]);
-                    }
-                }
-            }
-
-            return fixes;
+        value: function getSTAR(id, entry, rwy) {
+            return this.starCollection.findFixesForStarByEntryAndRunway(id, entry, rwy);
         }
+
+        /**
+         *
+         * @for AirportModel
+         * @param id {string}
+         * @param entry {string}
+         * @param runway {string}
+         * @param isPreSpawn {boolean} flag used to determine if distances between waypoints should be calculated
+         * @return {array<StandardWaypointModel>}
+         */
+
+    }, {
+        key: 'findWaypointModelsForStar',
+        value: function findWaypointModelsForStar(id, entry, runway) {
+            var isPreSpawn = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
+
+            return this.starCollection.findFixModelsForRouteByEntryAndExit(id, entry, runway, isPreSpawn);
+        }
+
+        /**
+         *
+         *
+         */
+
     }, {
         key: 'getRunway',
         value: function getRunway(name) {
@@ -40768,141 +41137,32 @@ var AirportModel = function () {
 
             return null;
         }
+    }, {
+        key: 'real_fixes',
+        get: function get() {
+            return _FixCollection2.default.findRealFixes();
+        }
 
-        // TODO: this method has A LOT of nested for loops. perhaps some of this logic could be abstracted
-        // to several smaller methods?
         /**
-         * Verifies all fixes used in the airport also have defined positions
+         * @property elevation
+         * @return {number}
          */
 
     }, {
-        key: 'checkFixes',
-        value: function checkFixes() {
-            var fixes = [];
+        key: 'elevation',
+        get: function get() {
+            return this.position.elevation;
+        }
 
-            // Gather fixes used by SIDs
-            if ((0, _has3.default)(this, 'sids')) {
-                for (var s in this.sids) {
-                    // runway portion
-                    if ((0, _has3.default)(this.sids[s], 'rwy')) {
-                        for (var r in this.sids[s].rwy) {
-                            for (var i in this.sids[s].rwy[r]) {
-                                if (typeof this.sids[s].rwy[r][i] === 'string') {
-                                    fixes.push(this.sids[s].rwy[r][i]);
-                                } else {
-                                    fixes.push(this.sids[s].rwy[r][i][0]);
-                                }
-                            }
-                        }
-                    }
+        /**
+         * @property magnetic_north
+         * @return {number}
+         */
 
-                    // body portion
-                    if ((0, _has3.default)(this.sids[s], 'body')) {
-                        for (var _i10 in this.sids[s].body) {
-                            if (typeof this.sids[s].body[_i10] === 'string') {
-                                fixes.push(this.sids[s].body[_i10]);
-                            } else {
-                                fixes.push(this.sids[s].body[_i10][0]);
-                            }
-                        }
-                    }
-
-                    // exitPoints portion
-                    if ((0, _has3.default)(this.sids[s], 'exitPoints')) {
-                        for (var t in this.sids[s].exitPoints) {
-                            for (var _i11 in this.sids[s].exitPoints[t]) {
-                                if (typeof this.sids[s].exitPoints[t][_i11] === 'string') {
-                                    fixes.push(this.sids[s].exitPoints[t][_i11]);
-                                } else {
-                                    fixes.push(this.sids[s].exitPoints[t][_i11][0]);
-                                }
-                            }
-                        }
-                    }
-
-                    // draw portion
-                    if ((0, _has3.default)(this.sids[s], 'draw')) {
-                        for (var _i12 in this.sids[s].draw) {
-                            for (var j = 0; j < this.sids[s].draw[_i12].length; j++) {
-                                fixes.push(this.sids[s].draw[_i12][j].replace('*', ''));
-                            }
-                        }
-                    }
-                }
-            }
-
-            // Gather fixes used by STARs
-            if ((0, _has3.default)(this, 'stars')) {
-                for (var _s in this.stars) {
-                    // entryPoints portion
-                    if ((0, _has3.default)(this.stars[_s], 'entryPoints')) {
-                        for (var _t in this.stars[_s].entryPoints) {
-                            for (var _i13 in this.stars[_s].entryPoints[_t]) {
-                                if (typeof this.stars[_s].entryPoints[_t][_i13] === 'string') {
-                                    fixes.push(this.stars[_s].entryPoints[_t][_i13]);
-                                } else {
-                                    fixes.push(this.stars[_s].entryPoints[_t][_i13][0]);
-                                }
-                            }
-                        }
-                    }
-
-                    // body portion
-                    if ((0, _has3.default)(this.stars[_s], 'body')) {
-                        for (var _i14 in this.stars[_s].body) {
-                            if (typeof this.stars[_s].body[_i14] === 'string') {
-                                fixes.push(this.stars[_s].body[_i14]);
-                            } else {
-                                fixes.push(this.stars[_s].body[_i14][0]);
-                            }
-                        }
-                    }
-
-                    // runway portion
-                    if ((0, _has3.default)(this.stars[_s], 'rwy')) {
-                        for (var _r in this.stars[_s].rwy) {
-                            for (var _i15 in this.stars[_s].rwy[_r]) {
-                                if (typeof this.stars[_s].rwy[_r][_i15] === 'string') {
-                                    fixes.push(this.stars[_s].rwy[_r][_i15]);
-                                } else {
-                                    fixes.push(this.stars[_s].rwy[_r][_i15][0]);
-                                }
-                            }
-                        }
-                    }
-
-                    // draw portion
-                    if ((0, _has3.default)(this.stars[_s], 'draw')) {
-                        for (var _i16 in this.stars[_s].draw) {
-                            for (var _j in this.stars[_s].draw[_i16]) {
-                                fixes.push(this.stars[_s].draw[_i16][_j].replace('*', ''));
-                            }
-                        }
-                    }
-                }
-            }
-
-            // Gather fixes used by airways
-            if ((0, _has3.default)(this, 'airways')) {
-                for (var a in this.airways) {
-                    for (var _i17 in this.airways[a]) {
-                        fixes.push(this.airways[a][_i17]);
-                    }
-                }
-            }
-
-            // Get (unique) list of fixes used that are not in 'this.fixes'
-            // FIXME: this reassignment is propably not needed anymore.
-            var apt = this;
-            // TODO: this could also be done with _sortedUniq
-            var missing = (0, _uniq3.default)(fixes.filter(function (f) {
-                return !apt.fixes.hasOwnProperty(f);
-            }).sort());
-
-            // there are some... yell at the airport designer!!! :)
-            if (missing.length > 0) {
-                log(this.icao + ' uses the following fixes which are not listed in ' + airport.fixes + ': ' + missing.join(' '), _logLevel.LOG.WARNING);
-            }
+    }, {
+        key: 'magnetic_north',
+        get: function get() {
+            return this.position.magneticNorthInRadians;
         }
     }]);
 
@@ -40911,7 +41171,193 @@ var AirportModel = function () {
 
 exports.default = AirportModel;
 
-},{"../base/AreaModel":549,"../base/PositionModel":550,"../constants/logLevel":552,"../constants/selectors":553,"../constants/storageKeys":554,"../math/circle":561,"../math/core":562,"../math/flightMath":564,"../math/vector":565,"../utilities/unitConverters":573,"./Arrival/ArrivalFactory":540,"./Departure/DepartureFactory":545,"./Runway":547,"jquery":296,"lodash/has":461,"lodash/isEmpty":469,"lodash/map":483,"lodash/uniq":497}],538:[function(require,module,exports){
+},{"../base/PositionModel":560,"../constants/logLevel":564,"../constants/selectors":565,"../constants/storageKeys":566,"../math/circle":573,"../math/core":574,"../math/flightMath":576,"../math/vector":577,"../utilities/unitConverters":586,"./AirspaceModel":539,"./Arrival/arrivalFactory":544,"./Departure/departureFactory":548,"./Fix/FixCollection":549,"./RunwayModel":552,"./StandardRoute/StandardRouteCollection":555,"jquery":296,"lodash/forEach":458,"lodash/get":459,"lodash/has":460,"lodash/head":462,"lodash/isEmpty":469,"lodash/map":484}],539:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _isEqual2 = require('lodash/isEqual');
+
+var _isEqual3 = _interopRequireDefault(_isEqual2);
+
+var _map2 = require('lodash/map');
+
+var _map3 = _interopRequireDefault(_map2);
+
+var _BaseModel2 = require('../base/BaseModel');
+
+var _BaseModel3 = _interopRequireDefault(_BaseModel2);
+
+var _PositionModel = require('../base/PositionModel');
+
+var _PositionModel2 = _interopRequireDefault(_PositionModel);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+/**
+ * Utility function to convert a number to thousands.
+ *
+ * Given a flightlevel FL180, this function outs puts 18,000
+ *
+ * @function covertToThousands
+ * @param  {number} value
+ * @return {number}
+ */
+var convertToThousands = function convertToThousands(value) {
+  return parseInt(value, 10) * 100;
+};
+
+/**
+ * An enclosed region defined by a series of Position objects and an altitude range
+ *
+ * @class AirspaceModel
+ */
+
+var AirspaceModel = function (_BaseModel) {
+  _inherits(AirspaceModel, _BaseModel);
+
+  /**
+   * @for AirspaceModel
+   * @constructor
+   * @param airspace {object}
+   * @param airportPosition {PositionModel}
+   * @param magneticNorth {number}
+   */
+  function AirspaceModel(airspace, airportPosition, magneticNorth) {
+    var _ret;
+
+    _classCallCheck(this, AirspaceModel);
+
+    var _this = _possibleConstructorReturn(this, (AirspaceModel.__proto__ || Object.getPrototypeOf(AirspaceModel)).call(this));
+
+    if (!airspace || !airportPosition || !magneticNorth) {
+      // eslint-disable-next-line max-len
+      throw new TypeError('Invalid parameter, expected airspace, airportPosition and magneticNorth to be defined');
+    }
+
+    /**
+     * List of lat/long coordinates that outline the shape of the area
+     *
+     * DO NOT repeat the origin to 'close' the shape, this happens programatically
+     *
+     * @property poly
+     * @type {array}
+     */
+    _this.poly = [];
+
+    /**
+     * Altitude at bottom of area, in hundreds of feet
+     *
+     * @property floor
+     * @type {number}
+     */
+    _this.floor = -1;
+
+    /**
+     * Altitude of top of area, in hundreds of feet
+     *
+     * @property ceiling
+     * @type {number}
+     */
+    _this.ceiling = -1;
+
+    /**
+     * FAA airspace classification (A,B,C,D,E,G)
+     *
+     * @property airspace_class
+     * @type {string}
+     */
+    _this.airspace_class = '';
+
+    return _ret = _this._init(airspace, airportPosition, magneticNorth), _possibleConstructorReturn(_this, _ret);
+  }
+
+  /**
+   * Initialize the model
+   *
+   * @for AirspaceModel
+   * @method _init
+   * @param airspace {array}
+   * @param airportPosition {PositionModel}
+   * @param magneticNorth {number}
+   * @private
+   */
+
+
+  _createClass(AirspaceModel, [{
+    key: '_init',
+    value: function _init(airspace, airportPosition, magneticNorth) {
+      this.floor = convertToThousands(airspace.floor);
+      this.ceiling = convertToThousands(airspace.ceiling);
+      this.airspace_class = airspace.airspace_class;
+      this.poly = this._buildPolyPositionModels(airspace.poly, airportPosition, magneticNorth);
+
+      return this;
+    }
+
+    /**
+     * @for AirspaceModel
+     * @method reset
+     */
+
+  }, {
+    key: 'reset',
+    value: function reset() {
+      this.poly = [];
+      this.floor = -1;
+      this.ceiling = -1;
+      this.airspace_class = '';
+    }
+
+    /**
+     * Create a PositionModel for each poly listed in `airspace.poly`.
+     *
+     * If the last entry is the same as the first, remove it because the path will be closed automatically.
+     *
+     * @for AirspaceModel
+     * @method _buildPolyPositionModels
+     * @param polyList {array}
+     * @param airportPosition {PositionModel}
+     * @param magneticNorth {number}
+     * @return polyPositionModels {array}
+     * @private
+     */
+
+  }, {
+    key: '_buildPolyPositionModels',
+    value: function _buildPolyPositionModels(polyList, airportPosition, magneticNorth) {
+      var polyPositionModels = (0, _map3.default)(polyList, function (poly) {
+        return new _PositionModel2.default(poly, airportPosition, magneticNorth);
+      });
+
+      var firstIndex = 0;
+      var lastIndex = polyPositionModels.length - 1;
+
+      if ((0, _isEqual3.default)(polyPositionModels[firstIndex].position, polyPositionModels[lastIndex].position)) {
+        // shape shouldn't fully close; will draw with 'cc.closepath()' so we remove the last item
+        polyPositionModels.pop();
+      }
+
+      return polyPositionModels;
+    }
+  }]);
+
+  return AirspaceModel;
+}(_BaseModel3.default);
+
+exports.default = AirspaceModel;
+
+},{"../base/BaseModel":559,"../base/PositionModel":560,"lodash/isEqual":470,"lodash/map":484}],540:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -40920,31 +41366,43 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _jquery = require('jquery');
+var _get2 = require('lodash/get');
 
-var _jquery2 = _interopRequireDefault(_jquery);
+var _get3 = _interopRequireDefault(_get2);
 
-var _has2 = require('lodash/has');
+var _map2 = require('lodash/map');
 
-var _has3 = _interopRequireDefault(_has2);
+var _map3 = _interopRequireDefault(_map2);
 
 var _random2 = require('lodash/random');
 
 var _random3 = _interopRequireDefault(_random2);
 
+var _FixCollection = require('../Fix/FixCollection');
+
+var _FixCollection2 = _interopRequireDefault(_FixCollection);
+
+var _RouteModel = require('../Route/RouteModel');
+
+var _RouteModel2 = _interopRequireDefault(_RouteModel);
+
 var _PositionModel = require('../../base/PositionModel');
 
 var _PositionModel2 = _interopRequireDefault(_PositionModel);
+
+var _randomAirlineSelectionHelper = require('../../airline/randomAirlineSelectionHelper');
 
 var _unitConverters = require('../../utilities/unitConverters');
 
 var _core = require('../../math/core');
 
-var _distance = require('../../math/distance');
-
 var _flightMath = require('../../math/flightMath');
 
-var _vector = require('../../math/vector');
+var _AircraftInstanceModel = require('../../aircraft/AircraftInstanceModel');
+
+var _airportConstants = require('../../constants/airportConstants');
+
+var _globalConstants = require('../../constants/globalConstants');
 
 var _logLevel = require('../../constants/logLevel');
 
@@ -40953,51 +41411,169 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 /**
- *  Generate arrivals at random, averaging the specified arrival rate
+ * @property INTERVAL_DELAY_IN_MS
+ * @type {number}
+ * @final
+ */
+var INTERVAL_DELAY_IN_MS = _globalConstants.TIME.ONE_HOUR_IN_SECONDS;
+
+// TODO: this shouldn't live here. perhaps move to `FixCollection` as an exported function?
+/**
+ * Encapsulation of a `FixCollection` method.
+ *
+ * This allows for centralization of this logic, while avoiding the need for
+ * another class method.
+ *
+ * @method getFixPostiion
+ * @param fixName {string}
+ * @return fix.position {array}
+ */
+var getFixPosition = function getFixPosition(fixName) {
+    var fix = _FixCollection2.default.findFixByName(fixName);
+
+    return fix.position;
+};
+
+/**
+ * Generate arrivals at random, averaging the specified arrival rate
  *
  * @class ArrivalBase
  */
+
 var ArrivalBase = function () {
+    /**
+     * @for ArrivalBase
+     * @constructor
+     * @param airport {AirportInstanceModel}
+     * @param options {object}
+     */
     function ArrivalBase(airport, options) {
         _classCallCheck(this, ArrivalBase);
 
-        this.airlines = [];
+        // FIXME: this creates a circular reference and should be refactored
+        /**
+         * Airport that arrivals belong to
+         *
+         * @property airport
+         * @type {AirportInstanceModel}
+         * @default airport
+         */
         this.airport = airport;
-        this.altitude = [1000, 1000];
-        this.frequency = 0;
-        this.heading = null;
-        this.radial = 0;
-        this.speed = 250;
-        this.timeout = null;
+
+        /**
+         * List of airlines with weight for each
+         *
+         * @property airlines
+         * @type {array[]}
+         * @default []
+         */
+        this.airlines = [];
+
+        // TODO: this needs a better name. this is actually fixes for a route
+        /**
+         * Set of fixes to traverse (eg. for STARs) as defined in the airport json file.
+         *
+         * Spawn occurs at first fix listed.
+         * This property gets sent to an `AirportInstanceModel` and becomes that aircraft's
+         * waypoint list in the fms.
+         *
+         * @property fixes
+         * @type {array}
+         * @default []
+         */
         this.fixes = [];
-        this.route = '';
+
+        /**
+         * Text representation of a `StandardRoute`.
+         *
+         * `RouteModel` object provides methods for dealing with a route string.
+         * Expects string to be in the shape of:
+         * - `ORIGIN_FIXNAME.ROUTE_NAME.DESTINATION_FIXNAME`
+         *
+         * @property activeRouteModel
+         * @type {RouteModel}
+         * @default null
+         */
+        this.activeRouteModel = null;
+
+        /**
+         * Altitude in feet or min/max range of altitudes
+         *
+         * Altitude may be passed in as either an array of altitudes [min, max], or as a single number.
+         *
+         * @property altitude
+         * @type {array}
+         * @default [AIRPORT_CONSTANTS.DEFAULT_SPAWN_ALTITUDE_MIN, AIRPORT_CONSTANTS.DEFAULT_SPAWN_ALTITUDE_MAX]
+         */
+        this.altitude = [_airportConstants.AIRPORT_CONSTANTS.DEFAULT_SPAWN_ALTITUDE_MIN, _airportConstants.AIRPORT_CONSTANTS.DEFAULT_SPAWN_ALTITUDE_MAX];
+
+        /**
+         * Initial heading of a spawned aircraft
+         *
+         * @property heading
+         * @type {number}
+         * @default null
+         */
+        this.heading = null;
+
+        /**
+         * Bearing from airspace center to spawn point.
+         *
+         * Shouldn't be used with fixes
+         *
+         * @property radial
+         * @type {number}
+         * @default 0
+         */
+        this.radial = 0;
+
+        /**
+         * Initial speed in knots of spawned aircraft.
+         *
+         * @property speed
+         * @type {number}
+         * @default AIRPORT_CONSTANTS.DEFAULT_SPAWN_AIRCRAFT_SPEED_KTS
+         */
+        this.speed = _airportConstants.AIRPORT_CONSTANTS.DEFAULT_SPAWN_AIRCRAFT_SPEED_KTS;
+
+        /**
+         * Arrival rate along this stream.
+         *
+         * Number represents aircraft per hour (acph)
+         *
+         * @property frequency
+         * @type {number}
+         * @default 0
+         */
+        this.frequency = 0;
+
+        /**
+         * @property timeout
+         * @type {function}
+         * @default null
+         */
+        this.timeout = null;
 
         this.parse(options);
     }
 
     /**
-     * Arrival Stream Settings
-     * airlines: {array of array} List of airlines with weight for each
-     * altitude: {array or integer} Altitude in feet or range of altitudes
-     * frequency: {integer} Arrival rate along this stream, in aircraft per hour (acph)
-     * heading: {integer} Heading to fly when spawned, in degrees (don't use w/ fixes)
-     * fixes: {array} Set of fixes to traverse (eg. for STARs). Spawns at first listed.
-     * radial: {integer} bearing from airspace center to spawn point (don't use w/ fixes)
-     * speed: {integer} Speed in knots of spawned aircraft
+     * Initialize arrival stream
+     *
+     * @for ArrivalBase
+     * @method parse
+     * @param options {object}
+     * @private
      */
 
 
     _createClass(ArrivalBase, [{
         key: 'parse',
         value: function parse(options) {
-            var params = ['airlines', 'altitude', 'frequency', 'speed'];
-
-            // Populate the data
-            for (var i in params) {
-                if (options[params[i]]) {
-                    this[params[i]] = options[params[i]];
-                }
-            }
+            this.airlines = (0, _get3.default)(options, 'airlines', this.airlines);
+            this.altitude = (0, _get3.default)(options, 'altitude', this.altitude);
+            this.frequency = (0, _get3.default)(options, 'frequency', this.frequency);
+            this.speed = (0, _get3.default)(options, 'speed', this.speed);
 
             // Make corrections to data
             if (options.radial) {
@@ -41008,155 +41584,228 @@ var ArrivalBase = function () {
                 this.heading = (0, _unitConverters.degreesToRadians)(options.heading);
             }
 
+            // altitude may be passed in as either an array of altitudes [min, max], or as a single number.
+            // here we check for the single number and transform it into a [min, max] format.
             if (typeof this.altitude === 'number') {
                 this.altitude = [this.altitude, this.altitude];
             }
 
             if (options.route) {
-                this.route = options.route;
+                this.activeRouteModel = new _RouteModel2.default(options.route);
             } else if (options.fixes) {
-                for (var _i = 0; _i < options.fixes.length; _i++) {
-                    this.fixes.push({ fix: options.fixes[_i] });
-                }
+                // TODO: this may not be needed at all. we could just use `_get()` instead.
+                // `this.fixes` eventually makes its way to the `AircraftInstanceModel.fms` via
+                // `AircraftInstanceModel.setArrivalWaypoints()`. that method simply builds another object and
+                // pulls each item from this array. creating an object here is doesn't appear to serve any real purpose.
+                this.fixes = (0, _map3.default)(options.fixes, function (fix) {
+                    return {
+                        fix: fix
+                    };
+                });
             }
 
-            // Pre-load the airlines
-            _jquery2.default.each(this.airlines, function (i, data) {
-                window.airlineController.airline_get(data[0].split('/')[0]);
-            });
+            this.preloadAirlines();
         }
 
         /**
-         * Backfill STAR routes with arrivals closer than the spawn point
-         * Aircraft spawn at the first point defined in the route of the entry in
-         * "arrivals" in the airport json file. When that spawn point is very far
-         * from the airspace boundary, it obviously takes quite a while for them
-         * to reach the airspace. This function spawns (all at once) arrivals along
+         * Loop through each airline provided from an airport json and ensure it had been loaded.
+         *
+         * @for ArrivalBase
+         * @method preloadAirlines
+         */
+
+    }, {
+        key: 'preloadAirlines',
+        value: function preloadAirlines() {
+            // TODO: this really doesn't belong here and should be moved
+            // Pre-load the airlines
+            for (var i = 0; i < this.airlines.lenth; i++) {
+                var airline = this.airlines[i];
+                // reassigns `airline.name` to `airlineName` for readability
+
+                var _airlineNameAndFleetH = (0, _randomAirlineSelectionHelper.airlineNameAndFleetHelper)(airline),
+                    airlineName = _airlineNameAndFleetH.name;
+
+                window.airlineController.airline_get(airlineName);
+            }
+        }
+
+        /**
+         * Backfill STAR routes with arrivals closer than the spawn point.
+         *
+         * Should be run only once on airport load.
+         *
+         * Aircraft spawn at the first point defined in the `arrivals` entry of the airport json file.
+         * When that spawn point is very far from the airspace boundary, it obviously takes quite a
+         * while for them to reach the airspace. This function spawns (all at once) arrivals along
          * the route, between the spawn point and the airspace boundary, in order to
          * ensure the player is not kept waiting for their first arrival aircraft.
+         *
+         * @for ArrivalBase
+         * @method preSpawn
          */
 
     }, {
         key: 'preSpawn',
         value: function preSpawn() {
-            var star = void 0;
-            var entry = void 0;
-            var runway = this.airport.runway;
-
-            // Find STAR & entry point
-            var pieces = array_clean(this.route.split('.'));
-            for (var i in pieces) {
-                if ((0, _has3.default)(this.airport.stars, pieces[i])) {
-                    star = pieces[i];
-
-                    if (i > 0) {
-                        entry = pieces[i - 1];
-                    }
-                }
-            }
-
-            // Find the last fix that's outside the airspace boundary
-            var fixes = this.airport.getSTAR(star, entry, runway);
-            // FIXME: this is never used. is it needed?
-            // const lastFix = fixes[0][0];
-            // distance between closest fix outside a/s and a/s border, nm
+            // find last fix along STAR that is outside of airspace, ie: next fix is within airspace
+            // distance between closest fix outside airspace and airspace border in nm
             var extra = 0;
+            var totalDistance = 0;
+            var isPreSpawn = true;
+            var waypointModelList = this.airport.findWaypointModelsForStar(this.activeRouteModel.procedure, this.activeRouteModel.entry, this.airport.runway, isPreSpawn);
 
-            for (var _i2 in fixes) {
-                var fix = fixes[_i2][0];
-                var pos = this.airport.fixes[fix].position;
-                var fix_prev = _i2 > 0 ? fixes[_i2 - 1][0] : fix;
-                var pos_prev = _i2 > 0 ? this.airport.fixes[fix_prev].position : pos;
+            for (var i = 0; i < waypointModelList.length; i++) {
+                var waypoint = waypointModelList[i];
+                var waypointPosition = waypoint.position;
+                var previousWaypoint = waypoint;
+                var previousPosition = waypoint.position;
 
-                if ((0, _flightMath.inAirspace)(this.airport, pos)) {
-                    if (_i2 >= 1) {
-                        extra = (0, _unitConverters.nm)((0, _flightMath.dist_to_boundary)(this.airport, pos_prev));
-                        break;
-                    }
-                } else {
-                    // calculate distance between fixes
-                    fixes[_i2][2] = (0, _unitConverters.nm)((0, _distance.distance2d)(pos_prev, pos));
+                if (i > 0) {
+                    previousWaypoint = waypointModelList[i - 1];
+                    previousPosition = previousWaypoint.position;
                 }
+
+                if ((0, _flightMath.isWithinAirspace)(this.airport, waypointPosition) && i > 0) {
+                    extra = (0, _unitConverters.nm)((0, _flightMath.calculateDistanceToBoundary)(this.airport, previousPosition));
+
+                    continue;
+                }
+
+                totalDistance += waypoint.distanceFromPreviousWaypoint;
             }
 
-            // Determine spawn offsets
-            var spawn_offsets = [];
-            // distance between succ. arrivals, nm
-            var entrail_dist = this.speed / this.frequency;
-            // TODO: replace with _map
-            var dist_total = array_sum(_jquery2.default.map(fixes, function (v) {
-                return v[2];
-            })) + extra;
+            // FIXME: incluing this causes aircraft to spawn within airspace. something goofy is going on here.
+            // totalDistance += extra;
 
-            for (var _i3 = entrail_dist; _i3 < dist_total; _i3 += entrail_dist) {
-                spawn_offsets.push(_i3);
+            // distance between each arriving aircraft, in nm
+            var entrailDistance = this.speed / this.frequency;
+            var spawnOffsets = this.assembleSpawnOffsets(entrailDistance, totalDistance);
+            var spawnPositions = this.calculateSpawnPositions(waypointModelList, spawnOffsets);
+
+            this.createAircraftAtSpawnPositions(spawnPositions);
+        }
+
+        /**
+         * @for ArrivalBase
+         * @method assembleSpawnOffsets
+         * @param entrailDistance {number}
+         * @param totalDistance {number}
+         * @return spawnOffsets {array}
+         */
+
+    }, {
+        key: 'assembleSpawnOffsets',
+        value: function assembleSpawnOffsets(entrailDistance, totalDistance) {
+            var spawnOffsets = [];
+
+            // distance between successive arrivals in nm
+            for (var i = entrailDistance; i < totalDistance; i += entrailDistance) {
+                spawnOffsets.push(i);
             }
 
-            // Determine spawn points
-            var spawn_positions = [];
+            return spawnOffsets;
+        }
+
+        /**
+         * @for ArrivalBase
+         * @method calculateSpawnPositions
+         * @param waypointModelList {array<StandardWaypointModel>}
+         * @param spawnOffsets {array}
+         * @return spawnPositions {array}
+         */
+
+    }, {
+        key: 'calculateSpawnPositions',
+        value: function calculateSpawnPositions(waypointModelList, spawnOffsets) {
+            var spawnPositions = [];
+
             // for each new aircraft
-            for (var _i4 in spawn_offsets) {
+            for (var i = 0; i < spawnOffsets.length; i++) {
+                var spawnOffset = spawnOffsets[i];
+
                 // for each fix ahead
-                for (var j = 1; j < fixes.length; j++) {
-                    if (spawn_offsets[_i4] > fixes[j][2]) {
-                        // if point beyond next fix
-                        spawn_offsets[_i4] -= fixes[j][2];
+                for (var j = 1; j < waypointModelList.length; j++) {
+                    var waypoint = waypointModelList[j];
+
+                    if (spawnOffset > waypoint.distanceFromPreviousWaypoint) {
+                        // if point beyond next fix subtract distance from spawnOffset and continue
+                        spawnOffset -= waypoint.distanceFromPreviousWaypoint;
+
                         continue;
                     } else {
-                        // TODO: set fixes to a const so ther is only one call to `airport_get()`
                         // if point before next fix
-                        var next = window.airportController.airport_get().fixes[fixes[j][0]];
-                        var prev = window.airportController.airport_get().fixes[fixes[j - 1][0]];
-                        var brng = (0, _flightMath.bearing)(prev.gps, next.gps);
-                        spawn_positions.push({
-                            pos: (0, _flightMath.fixRadialDist)(prev.gps, brng, spawn_offsets[_i4]),
-                            nextFix: fixes[j][0],
-                            heading: brng
+                        var nextFix = waypoint;
+                        var previousFix = waypointModelList[j - 1];
+                        var heading = (0, _flightMath.bearing)(previousFix.gps, nextFix.gps);
+                        var calculatedRadialDistance = (0, _flightMath.fixRadialDist)(previousFix.gps, heading, spawnOffset);
+
+                        // TODO: this looks like it should be a model object
+                        spawnPositions.push({
+                            heading: heading,
+                            pos: calculatedRadialDistance,
+                            nextFix: nextFix.name
                         });
+
                         break;
                     }
                 }
             }
 
+            return spawnPositions;
+        }
+
+        /**
+         * Given an array of `spawnPositions`, create new aircraft for each `spawnPosition`
+         *
+         * @for ArrivalBase
+         * @method createAircraftAtSpawnPositions
+         * @param spawnPositions {array}
+         */
+
+    }, {
+        key: 'createAircraftAtSpawnPositions',
+        value: function createAircraftAtSpawnPositions(spawnPositions) {
             // Spawn aircraft along the route, ahead of the standard spawn point
-            for (var _i5 in spawn_positions) {
-                var airline = choose_weight(this.airlines);
-                var fleet = '';
+            for (var i = 0; i < spawnPositions.length; i++) {
+                var _spawnPositions$i = spawnPositions[i],
+                    heading = _spawnPositions$i.heading,
+                    pos = _spawnPositions$i.pos,
+                    nextFix = _spawnPositions$i.nextFix;
+                var _airport = this.airport,
+                    icao = _airport.icao,
+                    position = _airport.position,
+                    magnetic_north = _airport.magnetic_north;
 
-                if (airline.indexOf('/') > -1) {
-                    fleet = airline.split('/')[1];
-                    airline = airline.split('/')[0];
-                }
-
-                var _spawn_positions$_i = spawn_positions[_i5],
-                    heading = _spawn_positions$_i.heading,
-                    _pos = _spawn_positions$_i.pos,
-                    nextFix = _spawn_positions$_i.nextFix;
-
-                var _window$airportContro = window.airportController.airport_get(),
-                    icao = _window$airportContro.icao,
-                    position = _window$airportContro.position,
-                    magnetic_north = _window$airportContro.magnetic_north;
-
-                window.aircraftController.aircraft_new({
-                    category: 'arrival',
+                var aircraftPosition = new _PositionModel2.default(pos, position, magnetic_north, 'GPS');
+                var airline = (0, _randomAirlineSelectionHelper.randomAirlineSelectionHelper)(this.airlines);
+                var aircraftToAdd = {
+                    category: _AircraftInstanceModel.FLIGHT_CATEGORY.ARRIVAL,
                     destination: icao,
-                    airline: airline,
-                    fleet: fleet,
+                    airline: airline.name,
+                    fleet: airline.fleet,
                     // TODO: should eventually look up altitude restrictions and try to spawn in an appropriate range
+                    //       this can be done with the `waypointModelList` and `StandardWaypointModel` objects,
+                    //       in conjuntion with the `RouteModel`.
                     altitude: 10000,
+                    // TODO: this could be a _get() instead of an || assignment
                     heading: heading || this.heading,
                     waypoints: this.fixes,
-                    route: this.route,
-                    position: new _PositionModel2.default(_pos, position, magnetic_north, 'GPS').position,
+                    route: (0, _get3.default)(this, 'activeRouteModel.routeString', ''),
+                    position: aircraftPosition.position,
                     speed: this.speed,
                     nextFix: nextFix
-                });
+                };
+
+                window.aircraftController.aircraft_new(aircraftToAdd);
             }
         }
 
         /**
          * Stop this arrival stream
+         *
+         * @for ArrivalBase
+         * @method stop
          */
 
     }, {
@@ -41169,74 +41818,85 @@ var ArrivalBase = function () {
 
         /**
          * Start this arrival stream
+         *
+         * @for ArrivalBase
+         * @method start
          */
 
     }, {
         key: 'start',
         value: function start() {
             // TODO: what do these numbers mean? enumerate the magic numbers.
-            var delay = (0, _random3.default)(0, 3600 / this.frequency);
+            var delay = (0, _random3.default)(0, _globalConstants.TIME.ONE_HOUR_IN_SECONDS / this.frequency);
             this.timeout = window.gameController.game_timeout(this.spawnAircraft, delay, this, [true, true]);
 
-            if (this.route) {
+            if (this.activeRouteModel) {
                 this.preSpawn();
             }
         }
 
+        // TODO: this method should accept explicit arguments
         /**
          * Spawn a new aircraft
+         *
+         * @for ArrivalBase
+         * @method spawnAircraft
          */
 
     }, {
         key: 'spawnAircraft',
         value: function spawnAircraft(args) {
-            var start_flag = args[0];
-            var timeout_flag = args[1] || false;
-            var altitude = (0, _core.round)((0, _random3.default)(this.altitude[0], this.altitude[1]) / 1000) * 1000;
-            var message = !(window.gameController.game_time() - this.airport.start < 2);
             var position = void 0;
             var heading = void 0;
-            var fleet = void 0;
-            var star = void 0;
             var distance = void 0;
+            // args = [boolean, boolean]
+            var altitude = (0, _core.round)((0, _random3.default)(this.altitude[0], this.altitude[1]) / 1000) * 1000;
+            var message = !(window.gameController.game_time() - this.airport.start < 2);
+            var airline = (0, _randomAirlineSelectionHelper.randomAirlineSelectionHelper)(this.airlines);
+            // What is this next variable for, why is it here and can it be removed?
+            // FIXME: this is not used
+            var start_flag = args[0];
+            var timeout_flag = args[1] || false;
 
             // spawn at first fix
             if (this.fixes.length > 1) {
-                // spawn at first fix
-                position = window.airportController.airport_get().getFix(this.fixes[0].fix);
-                heading = (0, _vector.vradial)((0, _vector.vsub)(window.airportController.airport_get().getFix(this.fixes[1].fix), position));
-            } else if (this.route) {
-                // STAR data is present
-                star = window.airportController.airport_get().getSTAR(this.route.split('.')[1], this.route.split('.')[0], window.airportController.airport_get().runway);
+                // calculate heading to next fix
+                position = getFixPosition(this.fixes[0].fix);
+                var nextPosition = getFixPosition(this.fixes[1].fix);
+                heading = (0, _flightMath.calculateHeadingFromTwoPositions)(nextPosition, position);
+            } else if (this.activeRouteModel) {
+                var isPreSpawn = false;
+                var waypointModelList = this.airport.findWaypointModelsForStar(this.activeRouteModel.procedure, this.activeRouteModel.entry, this.airport.runway, isPreSpawn);
 
-                position = window.airportController.airport_get().getFix(star[0][0]);
-                heading = (0, _vector.vradial)((0, _vector.vsub)(window.airportController.airport_get().getFix(star[1][0]), position));
+                // grab position of first fix
+                position = waypointModelList[0].position;
+                // calculate heading from first waypoint to second waypoint
+                heading = (0, _flightMath.calculateHeadingFromTwoPositions)(waypointModelList[1].position, position);
             } else {
                 // spawn outside the airspace along 'this.radial'
                 distance = 2 * this.airport.ctr_radius;
+                // TODO: this should really use `PositionModel`
                 position = [(0, _core.sin)(this.radial) * distance, (0, _core.cos)(this.radial) * distance];
                 heading = this.heading || this.radial + Math.PI;
             }
 
-            var airline = choose_weight(this.airlines);
-            if (airline.indexOf('/') > -1) {
-                fleet = airline.split('/')[1];
-                airline = airline.split('/')[0];
-            }
-
-            window.aircraftController.aircraft_new({
-                category: 'arrival',
-                destination: window.airportController.airport_get().icao,
-                airline: airline,
-                fleet: fleet,
+            var aircraftToAdd = {
                 altitude: altitude,
                 heading: heading,
-                waypoints: this.fixes,
-                route: this.route,
                 message: message,
                 position: position,
+                category: _AircraftInstanceModel.FLIGHT_CATEGORY.ARRIVAL,
+                destination: this.airport.icao,
+                airline: airline.name,
+                fleet: airline.fleet,
+                waypoints: this.fixes,
+                route: (0, _get3.default)(this, 'activeRouteModel.routeString', ''),
+                // TODO: this should use a `PositionModel` instead of just using it to get a position
+                // this will take a lot of refactoring, though, as aircraft.position is used all over the app.
                 speed: this.speed
-            });
+            };
+
+            window.aircraftController.aircraft_new(aircraftToAdd);
 
             if (timeout_flag) {
                 this.timeout = window.gameController.game_timeout(this.spawnAircraft, this.nextInterval(), this, [null, true]);
@@ -41245,23 +41905,22 @@ var ArrivalBase = function () {
 
         /**
          * Determine delay until next spawn
+         *
+         * @for ArrivalBase
+         * @method nextInterval
+         * @return {number}
          */
 
     }, {
         key: 'nextInterval',
         value: function nextInterval() {
-            // TODO: these next 3 vars could easily be moved to a constants file
-            // nautical miles
-            var min_entrail = 5.5;
-            // in seconds
-            var min_interval = min_entrail * (3600 / this.speed);
-            var tgt_interval = 3600 / this.frequency;
+            var min_interval = _airportConstants.AIRPORT_CONSTANTS.MIN_ENTRAIL_DISTANCE_NM * (INTERVAL_DELAY_IN_MS / this.speed);
+            var tgt_interval = INTERVAL_DELAY_IN_MS / this.frequency;
 
             if (tgt_interval < min_interval) {
                 tgt_interval = min_interval;
-                log('Requested arrival rate of ' + this.frequency + ' acph overridden to ' + 'maintain minimum of ' + min_entrail + ' miles entrail on arrival stream ' + 'following route ' + _jquery2.default.map(this.fixes, function (v) {
-                    return v.fix;
-                }).join('-'), _logLevel.LOG.INFO);
+
+                log('Requested arrival rate of ' + this.frequency + ' acph overridden to ' + ('maintain minimum of ' + _airportConstants.AIRPORT_CONSTANTS.MIN_ENTRAIL_DISTANCE_NM + ' miles entrail on arrival stream ') + ('following route ' + this.activeRouteModel.routeString), _logLevel.LOG.INFO);
             }
 
             var max_interval = tgt_interval + (tgt_interval - min_interval);
@@ -41275,7 +41934,7 @@ var ArrivalBase = function () {
 
 exports.default = ArrivalBase;
 
-},{"../../base/PositionModel":550,"../../constants/logLevel":552,"../../math/core":562,"../../math/distance":563,"../../math/flightMath":564,"../../math/vector":565,"../../utilities/unitConverters":573,"jquery":296,"lodash/has":461,"lodash/random":488}],539:[function(require,module,exports){
+},{"../../aircraft/AircraftInstanceModel":529,"../../airline/randomAirlineSelectionHelper":536,"../../base/PositionModel":560,"../../constants/airportConstants":562,"../../constants/globalConstants":563,"../../constants/logLevel":564,"../../math/core":574,"../../math/flightMath":576,"../../utilities/unitConverters":586,"../Fix/FixCollection":549,"../Route/RouteModel":551,"lodash/get":459,"lodash/map":484,"lodash/random":488}],541:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41284,8 +41943,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } }; /* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand */
-
+var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
 var _random2 = require('lodash/random');
 
@@ -41295,18 +41953,24 @@ var _ArrivalBase2 = require('./ArrivalBase');
 
 var _ArrivalBase3 = _interopRequireDefault(_ArrivalBase2);
 
+var _unitConverters = require('../../utilities/unitConverters');
+
+var _globalConstants = require('../../constants/globalConstants');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand */
+
 
 /**
  * Generate arrivals in cyclic pattern
  * Arrival rate varies as pictured below. Rate at which the arrival rate
  * increases or decreases remains constant throughout the cycle.
+
  * |---o---------------o---------------o---------------o-----------| < - - - - - - max arrival rate
  * | o   o           o   o           o   o           o   o         |   +variation
  * o-------o-------o-------o-------o-------o-------o-------o-------o < - - - - - - avg arrival rate
@@ -41315,21 +41979,58 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  * |<---period---->|           |<---period---->|
  *
  * @class ArrivalCyclic
+ * @extends ArrivalBase
  */
 var ArrivalCyclic = function (_ArrivalBase) {
     _inherits(ArrivalCyclic, _ArrivalBase);
 
+    /**
+     * @for ArrivalCyclic
+     * @constructor
+     * @param airport {AirportInstanceModel}
+     * @param options {object}
+     */
     function ArrivalCyclic(airport, options) {
         _classCallCheck(this, ArrivalCyclic);
 
+        /**
+         * game time
+         *
+         * @property cycleStart
+         * @type {number}
+         * @default 0
+         */
         var _this = _possibleConstructorReturn(this, (ArrivalCyclic.__proto__ || Object.getPrototypeOf(ArrivalCyclic)).call(this, airport, options));
 
-        _this.cycleStart = 0; // game time
-        _this.offset = 0; // Start at the average, and increasing
-        _this.period = 1800; // 30 minute cycle
-        _this.variation = 0; // amount to deviate from the prescribed frequency
+        _this.cycleStart = 0;
 
-        _get(ArrivalCyclic.prototype.__proto__ || Object.getPrototypeOf(ArrivalCyclic.prototype), 'parse', _this).call(_this, options);
+        /**
+         * Start at the average, and increasing
+         *
+         * @property offset
+         * @type {number}
+         * @default 0
+         */
+        _this.offset = 0;
+
+        /**
+         * 30 minute cycle
+         *
+         * @property period
+         * @type {number}
+         * @default 1800
+         */
+        _this.period = _globalConstants.TIME.ONE_HOUR_IN_SECONDS / 2;
+
+        /**
+         * amount to deviate from the prescribed frequency
+         *
+         * @property variation
+         * @type {number}
+         * @default 0
+         */
+        _this.variation = 0;
+
         _this.parse(options);
         return _this;
     }
@@ -41345,12 +42046,14 @@ var ArrivalCyclic = function (_ArrivalBase) {
     _createClass(ArrivalCyclic, [{
         key: 'parse',
         value: function parse(options) {
+            _get(ArrivalCyclic.prototype.__proto__ || Object.getPrototypeOf(ArrivalCyclic.prototype), 'parse', this).call(this, options);
+
             if (options.offset) {
-                this.offset = options.offset * 60; // min --> sec
+                this.offset = (0, _unitConverters.convertMinutesToSeconds)(options.offset);
             }
 
             if (options.period) {
-                this.period = options.period * 60; // min --> sec
+                this.period = (0, _unitConverters.convertMinutesToSeconds)(options.period);
             }
 
             if (options.variation) {
@@ -41360,29 +42063,29 @@ var ArrivalCyclic = function (_ArrivalBase) {
     }, {
         key: 'start',
         value: function start() {
-            this.cycleStart = prop.game.time - this.offset;
-            var delay = (0, _random3.default)(0, 3600 / this.frequency);
+            this.cycleStart = window.gameController.game.time - this.offset;
+            var delay = (0, _random3.default)(0, _globalConstants.TIME.ONE_HOUR_IN_SECONDS / this.frequency);
             this.timeout = window.gameController.game_timeout(this.spawnAircraft, delay, this, [true, true]);
         }
     }, {
         key: 'nextInterval',
         value: function nextInterval() {
             // TODO: what do all these magic numbers mean? enumerate the magic numbers.
-            var t = prop.game.time - this.cycleStart;
+            var t = window.gameController.game.time - this.cycleStart;
             var done = t / (this.period / 4); // progress in current quarter-period
 
             if (done >= 4) {
                 this.cycleStart += this.period;
 
-                return 3600 / (this.frequency + (done - 4) * this.variation);
+                return _globalConstants.TIME.ONE_HOUR_IN_SECONDS / (this.frequency + (done - 4) * this.variation);
             } else if (done <= 1) {
-                return 3600 / (this.frequency + done * this.variation);
+                return _globalConstants.TIME.ONE_HOUR_IN_SECONDS / (this.frequency + done * this.variation);
             } else if (done <= 2) {
-                return 3600 / (this.frequency + 2 * (this.period - 2 * t) / this.period * this.variation);
+                return _globalConstants.TIME.ONE_HOUR_IN_SECONDS / (this.frequency + 2 * (this.period - 2 * t) / this.period * this.variation);
             } else if (done <= 3) {
-                return 3600 / (this.frequency - (done - 2) * this.variation);
+                return _globalConstants.TIME.ONE_HOUR_IN_SECONDS / (this.frequency - (done - 2) * this.variation);
             } else if (done < 4) {
-                return 3600 / (this.frequency - 4 * (this.period - t) / this.period * this.variation);
+                return _globalConstants.TIME.ONE_HOUR_IN_SECONDS / (this.frequency - 4 * (this.period - t) / this.period * this.variation);
             }
         }
     }]);
@@ -41392,13 +42095,502 @@ var ArrivalCyclic = function (_ArrivalBase) {
 
 exports.default = ArrivalCyclic;
 
-},{"./ArrivalBase":538,"lodash/random":488}],540:[function(require,module,exports){
+},{"../../constants/globalConstants":563,"../../utilities/unitConverters":586,"./ArrivalBase":540,"lodash/random":488}],542:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.ArrivalFactory = undefined;
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+
+var _random2 = require('lodash/random');
+
+var _random3 = _interopRequireDefault(_random2);
+
+var _ArrivalBase2 = require('./ArrivalBase');
+
+var _ArrivalBase3 = _interopRequireDefault(_ArrivalBase2);
+
+var _core = require('../../math/core');
+
+var _unitConverters = require('../../utilities/unitConverters');
+
+var _globalConstants = require('../../constants/globalConstants');
+
+var _logLevel = require('../../constants/logLevel');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand */
+
+
+/**
+ * Generate arrivals in a repeating surge
+ *
+ * Arrival rate goes from very low and steeply increases to a sustained arrival surge of densely packed aircraft.
+ *
+ * Example airport: `EDDT - Berlin Tegel Airport`
+ *
+ * o o o o o o o o o o - - - - - - - - - - - o o o o o o o o o o-----+ < - - - max arrival rate (*this.factor)
+ * o                 o                       o                 o     |
+ * o                 o                       o                 o     |   x(this.factor)
+ * o                 o                       o                 o     |
+ * o - - - - - - - - o o o o o o o o o o o o o - - - - - - - - o o o-+ < - - - min arrival rate (n)
+ * |<--- up time --->|<----- down time ----->|<--- up time --->|
+ *
+ * @class ArrivalSurge
+ * @extends ArrivalBase
+ */
+var ArrivalSurge = function (_ArrivalBase) {
+    _inherits(ArrivalSurge, _ArrivalBase);
+
+    /**
+     * @for ArrivalBase
+     * @constructor
+     * @param airport {AirportInstanceModel}
+     * @param options {object}
+     */
+    function ArrivalSurge(airport, options) {
+        _classCallCheck(this, ArrivalSurge);
+
+        /**
+         * game time
+         *
+         * @property cycleStart
+         * @type {number}
+         * @default 0
+         */
+        var _this = _possibleConstructorReturn(this, (ArrivalSurge.__proto__ || Object.getPrototypeOf(ArrivalSurge)).call(this, airport, options));
+
+        _this.cycleStart = 0;
+
+        /**
+         * Start at the beginning of the surge
+         *
+         * @property offset
+         * @type {number}
+         * @default 0
+         */
+        _this.offset = 0;
+
+        /**
+         * 30 minute cycle
+         *
+         * @property period
+         * @type {number}
+         * @default 1800
+         */
+        _this.period = _globalConstants.TIME.ONE_HOUR_IN_SECONDS / 2;
+
+        /**
+         * miles entrail during the surge [fast,slow]
+         *
+         * @property entrail
+         * @type {number}
+         * @default
+         */
+        _this.entrail = [5.5, 10];
+
+        // Calculated
+        /**
+         * time length of surge, in minutes
+         *
+         * @property uptime
+         * @type {number}
+         * @default 0
+         */
+        _this.uptime = 0;
+
+        /**
+         * arrival rate when "in the surge"
+         *
+         * @property acph_up
+         * @type {number}
+         * @default 0
+         */
+        _this.acph_up = 0;
+
+        /**
+         * arrival rate when not "in the surge"
+         *
+         * @property acph_dn
+         * @type {number}
+         * @default 0
+         */
+        _this.acph_dn = 0;
+
+        _this.parse(options);
+        _this.shapeTheSurge();
+        return _this;
+    }
+
+    /**
+     * Arrival Stream Settings
+     *
+     * @for ArrivalSurge
+     * @method parse
+     * @param {integer} period - Optionally specify the length of a cycle in minutes
+     * @param {integer} offset - Optionally specify the center of the wave in minutes
+     * @param {array} entrail - 2-element array with [fast,slow] nm between each
+     *                          successive arrival. Note that the entrail distance on
+     *                          the larger gap ("slow") will be adjusted slightly in
+     *                          order to maintain the requested frequency. This is
+     *                          simply due to the fact that we can't divide perfectly
+     *                          across each period, so we squish the gap a tiny bit to
+     *                          help us hit the mark on the aircraft-per-hour rate.
+     */
+
+
+    _createClass(ArrivalSurge, [{
+        key: 'parse',
+        value: function parse(options) {
+            _get(ArrivalSurge.prototype.__proto__ || Object.getPrototypeOf(ArrivalSurge.prototype), 'parse', this).call(this, options);
+
+            if (options.offset) {
+                this.offset = (0, _unitConverters.convertMinutesToSeconds)(options.offset);
+            }
+
+            if (options.period) {
+                this.period = (0, _unitConverters.convertMinutesToSeconds)(options.period);
+            }
+
+            if (options.entrail) {
+                this.entrail = options.entrail;
+            }
+        }
+
+        /**
+         * Determines the time spent at elevated and slow spawn rates
+         *
+         * @for ArrivalSurge
+         * @method shapeTheSurge
+         */
+
+    }, {
+        key: 'shapeTheSurge',
+        value: function shapeTheSurge() {
+            this.acph_up = this.speed / this.entrail[0];
+            this.acph_dn = this.speed / this.entrail[1]; // to help the uptime calculation
+
+            this.uptime = (this.period * this.frequency - this.period * this.acph_dn) / (this.acph_up - this.acph_dn);
+            this.uptime -= this.uptime % (_globalConstants.TIME.ONE_HOUR_IN_SECONDS / this.acph_up);
+            // FIXME: This would better belong in a helper method and should be simplified
+            // adjust to maintain correct acph rate
+            this.acph_dn = Math.floor(this.frequency * this.period / _globalConstants.TIME.ONE_HOUR_IN_SECONDS - Math.round(this.acph_up * this.uptime / _globalConstants.TIME.ONE_HOUR_IN_SECONDS)) * _globalConstants.TIME.ONE_HOUR_IN_SECONDS / (this.period - this.uptime);
+
+            // TODO: abstract this if/else block
+            // Verify we can comply with the requested arrival rate based on entrail spacing
+            if (this.frequency > this.acph_up) {
+                log(this.airport.icao + ': TOO MANY ARRIVALS IN SURGE! Requested: ' + (this.frequency + ' acph | Acceptable Range for requested entrail distance: ') + (Math.ceil(this.acph_dn) + ' acph - ' + Math.floor(this.acph_up) + ' acph'), _logLevel.LOG.WARNING);
+
+                this.frequency = this.acph_up;
+                this.acph_dn = this.acph_up;
+            } else if (this.frequency < this.acph_dn) {
+                log(this.airport.icao + ': TOO FEW ARRIVALS IN SURGE! Requested: ' + (this.frequency + ' acph | Acceptable Range for requested entrail distance: ') + (Math.ceil(this.acph_dn) + ' acph - ' + Math.floor(this.acph_up) + ' acph'), _logLevel.LOG.WARNING);
+
+                this.frequency = this.acph_dn;
+                this.acph_up = this.acph_dn;
+            }
+        }
+
+        /**
+         * @for ArrivalSurge
+         * @method nextInterval
+         * @return interval_up {number}
+         */
+
+    }, {
+        key: 'nextInterval',
+        value: function nextInterval() {
+            var t = window.gameController.game.time - this.cycleStart;
+            var done = t / this.period; // progress in period
+            var interval_up = _globalConstants.TIME.ONE_HOUR_IN_SECONDS / this.acph_up;
+            var interval_dn = _globalConstants.TIME.ONE_HOUR_IN_SECONDS / this.acph_dn;
+            // reduced spawn rate
+            var timeleft = this.period - t;
+
+            if (done >= 1) {
+                this.cycleStart += this.period;
+
+                return interval_up;
+            }
+
+            // elevated spawn rate
+            if (t <= this.uptime) {
+                return interval_up;
+            }
+
+            if (timeleft > interval_dn + interval_up) {
+                // plenty of time until new period
+                return interval_dn;
+            } else if (timeleft > interval_dn) {
+                // next plane will delay the first arrival of the next period
+                return interval_dn - (t + interval_dn + interval_up - this.period);
+            }
+
+            // next plane is first of elevated spawn rate
+            this.cycleStart += this.period;
+
+            return interval_up;
+        }
+
+        /**
+         * @for ArrivalSurge
+         * @method start
+         */
+
+    }, {
+        key: 'start',
+        value: function start() {
+            var delay = (0, _random3.default)(0, _globalConstants.TIME.ONE_HOUR_IN_SECONDS / this.frequency);
+            this.cycleStart = window.gameController.game.time - this.offset + delay;
+            this.timeout = window.gameController.game_timeout(this.spawnAircraft, delay, this, [true, true]);
+        }
+    }]);
+
+    return ArrivalSurge;
+}(_ArrivalBase3.default);
+
+exports.default = ArrivalSurge;
+
+},{"../../constants/globalConstants":563,"../../constants/logLevel":564,"../../math/core":574,"../../utilities/unitConverters":586,"./ArrivalBase":540,"lodash/random":488}],543:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+
+var _jquery = require('jquery');
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+var _random2 = require('lodash/random');
+
+var _random3 = _interopRequireDefault(_random2);
+
+var _ArrivalBase2 = require('./ArrivalBase');
+
+var _ArrivalBase3 = _interopRequireDefault(_ArrivalBase2);
+
+var _core = require('../../math/core');
+
+var _circle = require('../../math/circle');
+
+var _unitConverters = require('../../utilities/unitConverters');
+
+var _globalConstants = require('../../constants/globalConstants');
+
+var _logLevel = require('../../constants/logLevel');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand */
+
+
+/** Generate arrivals in a repeating wave
+  * Arrival rate varies as pictured below. Arrival rate will increase
+  * and decrease faster when changing between the lower/higher rates.
+  *
+  * ------------o-o-o---------------------------------------+-----------o-o < - - - - - max arrival rate
+  *        o             o                                  |      o      |       ^
+  *    o                     o                              |  o          |  +variation
+  *  o                         o                            |o            |       v
+  * o-------------------------- o---------------------------o-------------+ < - - - - - avg arrival rate
+  * |                            o                         o|             |       ^
+  * |                              o                     o  |             |  -variation
+  * |                                  o             o      |             |       v
+  * +---------------------------------------o-o-o-----------+-------------+ < - - - - - min arrival rate
+  * |                                                       |
+  * |<  -  -  -  -  -  -  -  - period -  -  -  -  -  -  -  >|
+  *
+  * @class ArrivalWave
+  * @extends ArrivalBase
+ */
+var ArrivalWave = function (_ArrivalBase) {
+    _inherits(ArrivalWave, _ArrivalBase);
+
+    /**
+     * @for ArrivalWave
+     * @constructor
+     * @param airport {AirportInstanceModel}
+     * @param options {object}
+     */
+    function ArrivalWave(airport, options) {
+        _classCallCheck(this, ArrivalWave);
+
+        /**
+         * game time
+         *
+         * @property cycleStart
+         * @type {number}
+         * @default 0
+         */
+        var _this = _possibleConstructorReturn(this, (ArrivalWave.__proto__ || Object.getPrototypeOf(ArrivalWave)).call(this, airport, options));
+
+        _this.cycleStart = 0;
+
+        /**
+         * Start at the beginning of the surge
+         *
+         * @property offset
+         * @type {number}
+         * @default 0
+         */
+        _this.offset = 0;
+
+        /**
+         * 30 minute cycle
+         *
+         * @property period
+         * @type {number}
+         * @default 1800
+         */
+        _this.period = _globalConstants.TIME.ONE_HOUR_IN_SECONDS / 2;
+
+        /**
+         * amount to deviate from the prescribed frequency
+         *
+         * @propery variation
+         * @type {number}
+         * @default 0
+         */
+        _this.variation = 0;
+
+        _this.parse(options);
+        _this.clampSpawnRate(5.5); // minimum of 5.5nm entrail
+        return _this;
+    }
+
+    /**
+     * Arrival Stream Settings
+     *
+     * @for ArrivalWave
+     * @method parse
+     * @param {integer} period - (optional) length of a cycle, in minutes
+     * @param {integer} offset - (optional) minutes to shift starting position in cycle
+     */
+
+
+    _createClass(ArrivalWave, [{
+        key: 'parse',
+        value: function parse(options) {
+            _get(ArrivalWave.prototype.__proto__ || Object.getPrototypeOf(ArrivalWave.prototype), 'parse', this).call(this, options);
+
+            if (options.offset) {
+                this.offset = (0, _unitConverters.convertMinutesToSeconds)(options.offset);
+            }
+
+            if (options.period) {
+                this.period = (0, _unitConverters.convertMinutesToSeconds)(options.period);
+            }
+
+            if (options.variation) {
+                this.variation = options.variation;
+            }
+        }
+
+        /**
+         * Ensures the spawn rate will be at least the required entrail distance
+         *
+         * @for ArrivalWave
+         * @method clampSpawnRate
+         * @param {number} entrail_dist - minimum distance between successive arrivals, in nm
+         */
+
+    }, {
+        key: 'clampSpawnRate',
+        value: function clampSpawnRate(entrail_dist) {
+            var entrail_interval = entrail_dist * (_globalConstants.TIME.ONE_HOUR_IN_SECONDS / this.speed);
+            var min_interval = _globalConstants.TIME.ONE_HOUR_IN_SECONDS / (this.frequency + this.variation);
+
+            // TODO: return early here to avoid this wrapping if
+            if (min_interval < entrail_interval) {
+                var diff = entrail_interval - min_interval;
+
+                // can reduce variation to achieve acceptable spawn rate
+                if (diff <= _globalConstants.TIME.ONE_HOUR_IN_SECONDS / this.variation) {
+                    log('Requested arrival rate variation of +/-' + this.variation + ' acph reduced to ' + 'maintain minimum of ' + entrail_dist + ' miles entrail on arrival stream following ' + 'route ' + _jquery2.default.map(this.fixes, function (v) {
+                        return v.fix;
+                    }).join('-'), _logLevel.LOG.WARNING);
+
+                    this.variation = this.variation - _globalConstants.TIME.ONE_HOUR_IN_SECONDS / diff; // reduce the variation
+                } else {
+                    // need to reduce frequency to achieve acceptable spawn rate
+                    log('Requested arrival rate of ' + this.frequency + ' acph overridden to ' + 'maintain minimum of ' + entrail_dist + ' miles entrail on arrival stream ' + 'following route ' + _jquery2.default.map(this.fixes, function (v) {
+                        return v.fix;
+                    }).join('-'), _logLevel.LOG.WARNING);
+
+                    // make spawn at constant interval
+                    this.variation = 0;
+                    // reduce the frequency
+                    this.frequency = _globalConstants.TIME.ONE_HOUR_IN_SECONDS / entrail_interval;
+                }
+            }
+        }
+
+        /**
+         * @for ArrivalWave
+         * @method nextInterval
+         * return {number}
+         */
+
+    }, {
+        key: 'nextInterval',
+        value: function nextInterval() {
+            var t = window.gameController.game.time - this.cycleStart;
+            var done = t / this.period; // progress in period
+
+            if (done >= 1) {
+                this.cycleStart += this.period;
+            }
+
+            var rate = this.frequency + this.variation * (0, _core.sin)(done * (0, _circle.tau)());
+
+            return _globalConstants.TIME.ONE_HOUR_IN_SECONDS / rate;
+        }
+
+        /**
+         * @for ArrivalWave
+         * @method start
+         */
+
+    }, {
+        key: 'start',
+        value: function start() {
+            var delay = (0, _random3.default)(0, _globalConstants.TIME.ONE_HOUR_IN_SECONDS / this.frequency);
+            // TODO: this might not be available on `window.prop` update reference
+            this.cycleStart = window.gameController.game.time - this.offset + delay;
+            this.timeout = window.gameController.game_timeout(this.spawnAircraft, delay, this, [true, true]);
+        }
+    }]);
+
+    return ArrivalWave;
+}(_ArrivalBase3.default);
+
+exports.default = ArrivalWave;
+
+},{"../../constants/globalConstants":563,"../../constants/logLevel":564,"../../math/circle":573,"../../math/core":574,"../../utilities/unitConverters":586,"./ArrivalBase":540,"jquery":296,"lodash/random":488}],544:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.arrivalFactory = undefined;
 
 var _ArrivalBase = require('./ArrivalBase');
 
@@ -41424,11 +42616,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * Calls constructor of the appropriate arrival type
  *
  * @function ArrivalFactory
- * @param airport
- * @param options
- * @return {function}
+ * @param airport {AirportModel}
+ * @param options {obejct}
+ * @return {constructor}
  */
-var ArrivalFactory = exports.ArrivalFactory = function ArrivalFactory(airport, options) {
+var arrivalFactory = exports.arrivalFactory = function arrivalFactory(airport, options) {
     if (options.type === '') {
         log(airport.icao + ' arrival stream not given type!', _logLevel.LOG.WARNING);
         return null;
@@ -41447,9 +42639,9 @@ var ArrivalFactory = exports.ArrivalFactory = function ArrivalFactory(airport, o
             log(airport.icao + ' using unsupported arrival type "' + options.type + '"', _logLevel.LOG.WARNING);
             return null;
     }
-}; /* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand */
+};
 
-},{"../../constants/logLevel":552,"./ArrivalBase":538,"./ArrivalCyclic":539,"./ArrivalSurge":541,"./ArrivalWave":542}],541:[function(require,module,exports){
+},{"../../constants/logLevel":564,"./ArrivalBase":540,"./ArrivalCyclic":541,"./ArrivalSurge":542,"./ArrivalWave":543}],545:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41458,347 +42650,25 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } }; /* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand */
+var _get2 = require('lodash/get');
 
-
-var _random2 = require('lodash/random');
-
-var _random3 = _interopRequireDefault(_random2);
-
-var _ArrivalBase2 = require('./ArrivalBase');
-
-var _ArrivalBase3 = _interopRequireDefault(_ArrivalBase2);
-
-var _core = require('../../math/core');
-
-var _logLevel = require('../../constants/logLevel');
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-/**
- * Generate arrivals in a repeating surge
- * Arrival rate goes from very low and steeply increases to a
- * sustained "arrival surge" of densely packed aircraft.
- * o o o o o o o o o o - - - - - - - - - - - o o o o o o o o o o-----+ < - - - max arrival rate (*this.factor)
- * o                 o                       o                 o     |
- * o                 o                       o                 o     |   x(this.factor)
- * o                 o                       o                 o     |
- * o - - - - - - - - o o o o o o o o o o o o o - - - - - - - - o o o-+ < - - - min arrival rate (n)
- * |<--- up time --->|<----- down time ----->|<--- up time --->|
- *
- * @class ArrivalSurge
- */
-var ArrivalSurge = function (_ArrivalBase) {
-    _inherits(ArrivalSurge, _ArrivalBase);
-
-    function ArrivalSurge(airport, options) {
-        _classCallCheck(this, ArrivalSurge);
-
-        var _this = _possibleConstructorReturn(this, (ArrivalSurge.__proto__ || Object.getPrototypeOf(ArrivalSurge)).call(this, airport, options));
-
-        _this.cycleStart = 0; // game time
-        _this.offset = 0; // Start at the beginning of the surge
-        _this.period = 1800; // 30 minute cycle
-        _this.entrail = [5.5, 10]; // miles entrail during the surge [fast,slow]
-
-        // Calculated
-        _this.uptime = 0; // time length of surge, in minutes
-        _this.acph_up = 0; // arrival rate when "in the surge"
-        _this.acph_dn = 0; // arrival rate when not "in the surge"
-
-        _get(ArrivalSurge.prototype.__proto__ || Object.getPrototypeOf(ArrivalSurge.prototype), 'parse', _this).call(_this, options);
-        _this.parse(options);
-        _this.shapeTheSurge();
-        return _this;
-    }
-
-    /**
-     * Arrival Stream Settings
-     * @param {integer} period - Optionally specify the length of a cycle in minutes
-     * @param {integer} offset - Optionally specify the center of the wave in minutes
-     * @param {array} entrail - 2-element array with [fast,slow] nm between each
-     *                          successive arrival. Note that the entrail distance on
-     *                          the larger gap ("slow") will be adjusted slightly in
-     *                          order to maintain the requested frequency. This is
-     *                          simply due to the fact that we can't divide perfectly
-     *                          across each period, so we squish the gap a tiny bit to
-     *                          help us hit the mark on the aircraft-per-hour rate.
-     */
-
-
-    _createClass(ArrivalSurge, [{
-        key: 'parse',
-        value: function parse(options) {
-            if (options.offset) {
-                this.offset = options.offset * 60; // min --> sec
-            }
-
-            if (options.period) {
-                this.period = options.period * 60; // min --> sec
-            }
-
-            if (options.entrail) {
-                this.entrail = options.entrail;
-            }
-        }
-
-        /**
-         * Determines the time spent at elevated and slow spawn rates
-         */
-
-    }, {
-        key: 'shapeTheSurge',
-        value: function shapeTheSurge() {
-            this.acph_up = this.speed / this.entrail[0];
-            this.acph_dn = this.speed / this.entrail[1]; // to help the uptime calculation
-            this.uptime = (this.period * this.frequency - this.period * this.acph_dn) / (this.acph_up - this.acph_dn);
-            this.uptime -= this.uptime % (3600 / this.acph_up);
-            // FIXME: This would better belong in a helper method and should be simplified
-            // adjust to maintain correct acph rate
-            this.acph_dn = Math.floor(this.frequency * this.period / 3600 - Math.round(this.acph_up * this.uptime / 3600)) * 3600 / (this.period - this.uptime);
-
-            // Verify we can comply with the requested arrival rate based on entrail spacing
-            if (this.frequency > this.acph_up) {
-                log(this.airport.icao + ': TOO MANY ARRIVALS IN SURGE! Requested: ' + this.frequency + 'acph | Acceptable Range for requested entrail distance: ' + Math.ceil(this.acph_dn) + 'acph - ' + Math.floor(this.acph_up) + 'acph', _logLevel.LOG.WARNING);
-
-                this.frequency = this.acph_up;
-                this.acph_dn = this.acph_up;
-            } else if (this.frequency < this.acph_dn) {
-                log(this.airport.icao + ': TOO FEW ARRIVALS IN SURGE! Requested: ' + this.frequency + 'acph | Acceptable Range for requested entrail distance: ' + Math.ceil(this.acph_dn) + 'acph - ' + Math.floor(this.acph_up) + 'acph', _logLevel.LOG.WARNING);
-
-                this.frequency = this.acph_dn;
-                this.acph_up = this.acph_dn;
-            }
-        }
-    }, {
-        key: 'nextInterval',
-        value: function nextInterval() {
-            var t = prop.game.time - this.cycleStart;
-            var done = t / this.period; // progress in period
-            var interval_up = 3600 / this.acph_up;
-            var interval_dn = 3600 / this.acph_dn;
-            // reduced spawn rate
-            var timeleft = this.period - t;
-
-            if (done >= 1) {
-                this.cycleStart += this.period;
-
-                return interval_up;
-            }
-
-            // elevated spawn rate
-            if (t <= this.uptime) {
-                return interval_up;
-            }
-
-            if (timeleft > interval_dn + interval_up) {
-                // plenty of time until new period
-                return interval_dn;
-            } else if (timeleft > interval_dn) {
-                // next plane will delay the first arrival of the next period
-                return interval_dn - (t + interval_dn + interval_up - this.period);
-            }
-
-            // next plane is first of elevated spawn rate
-            this.cycleStart += this.period;
-            return interval_up;
-        }
-    }, {
-        key: 'start',
-        value: function start() {
-            var delay = (0, _random3.default)(0, 3600 / this.frequency);
-            this.cycleStart = prop.game.time - this.offset + delay;
-            this.timeout = window.gameController.game_timeout(this.spawnAircraft, delay, this, [true, true]);
-        }
-    }]);
-
-    return ArrivalSurge;
-}(_ArrivalBase3.default);
-
-exports.default = ArrivalSurge;
-
-},{"../../constants/logLevel":552,"../../math/core":562,"./ArrivalBase":538,"lodash/random":488}],542:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } }; /* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand */
-
-
-var _jquery = require('jquery');
-
-var _jquery2 = _interopRequireDefault(_jquery);
+var _get3 = _interopRequireDefault(_get2);
 
 var _random2 = require('lodash/random');
 
 var _random3 = _interopRequireDefault(_random2);
 
-var _ArrivalBase2 = require('./ArrivalBase');
+var _RouteModel = require('../Route/RouteModel');
 
-var _ArrivalBase3 = _interopRequireDefault(_ArrivalBase2);
+var _RouteModel2 = _interopRequireDefault(_RouteModel);
 
-var _core = require('../../math/core');
+var _randomAirlineSelectionHelper = require('../../airline/randomAirlineSelectionHelper');
 
-var _circle = require('../../math/circle');
+var _generalUtilities = require('../../utilities/generalUtilities');
 
-var _logLevel = require('../../constants/logLevel');
+var _AircraftInstanceModel = require('../../aircraft/AircraftInstanceModel');
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-/** Generate arrivals in a repeating wave
-  * Arrival rate varies as pictured below. Arrival rate will increase
-  * and decrease faster when changing between the lower/higher rates.
-  * ------------o-o-o---------------------------------------+-----------o-o < - - - - - max arrival rate
-  *        o             o                                  |      o      |       ^
-  *    o                     o                              |  o          |  +variation
-  *  o                         o                            |o            |       v
-  * o-------------------------- o---------------------------o-------------+ < - - - - - avg arrival rate
-  * |                            o                         o|             |       ^
-  * |                              o                     o  |             |  -variation
-  * |                                  o             o      |             |       v
-  * +---------------------------------------o-o-o-----------+-------------+ < - - - - - min arrival rate
-  * |                                                       |
-  * |<  -  -  -  -  -  -  -  - period -  -  -  -  -  -  -  >|
-  *
-  * @class ArrivalWave
- */
-var ArrivalWave = function (_ArrivalBase) {
-    _inherits(ArrivalWave, _ArrivalBase);
-
-    function ArrivalWave(airport, options) {
-        _classCallCheck(this, ArrivalWave);
-
-        var _this = _possibleConstructorReturn(this, (ArrivalWave.__proto__ || Object.getPrototypeOf(ArrivalWave)).call(this, airport, options));
-
-        _this.cycleStart = 0; // game time
-        _this.offset = 0; // Start at the average, and increasing
-        _this.period = 1800; // 30 minute cycle
-        _this.variation = 0; // amount to deviate from the prescribed frequency
-
-        _get(ArrivalWave.prototype.__proto__ || Object.getPrototypeOf(ArrivalWave.prototype), 'parse', _this).call(_this, options);
-        _this.parse(options);
-        _this.clampSpawnRate(5.5); // minimum of 5.5nm entrail
-        return _this;
-    }
-
-    /**
-     * Arrival Stream Settings
-     *
-     *  @param {integer} period - (optional) length of a cycle, in minutes
-     * @param {integer} offset - (optional) minutes to shift starting position in cycle
-     */
-
-
-    _createClass(ArrivalWave, [{
-        key: 'parse',
-        value: function parse(options) {
-            if (options.offset) {
-                this.offset = options.offset * 60; // min --> sec
-            }
-
-            if (options.period) {
-                this.period = options.period * 60; // min --> sec
-            }
-
-            if (options.variation) {
-                this.variation = options.variation;
-            }
-        }
-
-        /**
-         * Ensures the spawn rate will be at least the required entrail distance
-         *
-         *  @param {number} entrail_dist - minimum distance between successive arrivals, in nm
-         */
-
-    }, {
-        key: 'clampSpawnRate',
-        value: function clampSpawnRate(entrail_dist) {
-            var entrail_interval = entrail_dist * (3600 / this.speed);
-            var min_interval = 3600 / (this.frequency + this.variation);
-
-            if (min_interval < entrail_interval) {
-                var diff = entrail_interval - min_interval;
-
-                // can reduce variation to achieve acceptable spawn rate
-                if (diff <= 3600 / this.variation) {
-                    log('Requested arrival rate variation of +/-' + this.variation + ' acph reduced to ' + 'maintain minimum of ' + entrail_dist + ' miles entrail on arrival stream following ' + 'route ' + _jquery2.default.map(this.fixes, function (v) {
-                        return v.fix;
-                    }).join('-'), _logLevel.LOG.WARNING);
-
-                    this.variation = this.variation - 3600 / diff; // reduce the variation
-                } else {
-                    // need to reduce frequency to achieve acceptable spawn rate
-                    log('Requested arrival rate of ' + this.frequency + ' acph overridden to ' + 'maintain minimum of ' + entrail_dist + ' miles entrail on arrival stream ' + 'following route ' + _jquery2.default.map(this.fixes, function (v) {
-                        return v.fix;
-                    }).join('-'), _logLevel.LOG.WARNING);
-
-                    this.variation = 0; // make spawn at constant interval
-                    this.frequency = 3600 / entrail_interval; // reduce the frequency
-                }
-            }
-        }
-    }, {
-        key: 'nextInterval',
-        value: function nextInterval() {
-            var t = prop.game.time - this.cycleStart;
-            var done = t / this.period; // progress in period
-
-            if (done >= 1) {
-                this.cycleStart += this.period;
-            }
-
-            var rate = this.frequency + this.variation * (0, _core.sin)(done * (0, _circle.tau)());
-            return 3600 / rate;
-        }
-    }, {
-        key: 'start',
-        value: function start() {
-            var delay = (0, _random3.default)(0, 3600 / this.frequency);
-
-            this.cycleStart = prop.game.time - this.offset + delay;
-            this.timeout = window.gameController.game_timeout(this.spawnAircraft, delay, this, [true, true]);
-        }
-    }]);
-
-    return ArrivalWave;
-}(_ArrivalBase3.default);
-
-exports.default = ArrivalWave;
-
-},{"../../constants/logLevel":552,"../../math/circle":561,"../../math/core":562,"./ArrivalBase":538,"jquery":296,"lodash/random":488}],543:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /* eslint-disable no-underscore-dangle, no-mixed-operators, func-names, object-shorthand, no-undef */
-
-
-var _jquery = require('jquery');
-
-var _jquery2 = _interopRequireDefault(_jquery);
-
-var _random2 = require('lodash/random');
-
-var _random3 = _interopRequireDefault(_random2);
+var _globalConstants = require('../../constants/globalConstants');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -41811,16 +42681,61 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
  */
 var DepartureBase = function () {
     /**
-     * Initialize member variables with default values
+     * @for DepartureBase
+     * @constructor
+     * @param airport {AirportInstanceModel}
+     * @param options {object}
      */
     function DepartureBase(airport, options) {
         _classCallCheck(this, DepartureBase);
 
+        /**
+         * List of airlines with weight for each
+         *
+         * @property airlines
+         * @type {array}
+         * @default []
+         */
         this.airlines = [];
+
+        /**
+         * @property airport
+         * @type {AirportInstanceModel}
+         */
         this.airport = airport;
+
+        // TODO: are we initializing an array with a value here?
+        /**
+         * List of SIDs or departure fix names
+         *
+         * @property destinations
+         * @type {array}
+         * @default [0]
+         */
         this.destinations = [0];
+
+        /**
+         * Spawn rate, in aircraft per hour (acph)
+         *
+         * @property frequency
+         * @type {number}
+         * @default 0
+         */
         this.frequency = 0;
+
+        /**
+         * @property timeout
+         * @type {function}
+         * @default null
+         */
         this.timeout = null;
+
+        /**
+         * @property activeRouteModel
+         * @type {RouteModel}
+         * @default null
+         */
+        this.activeRouteModel = null;
 
         this.parse(options);
     }
@@ -41828,34 +42743,34 @@ var DepartureBase = function () {
     /**
      * Departure Stream Settings
      *
-     * @param {array of array} airlines - List of airlines with weight for each
-     * @param {integer} frequency - Spawn rate, in aircraft per hour (acph)
-     * @param {array of string} destinations - List of SIDs or departure fixes for departures
+     * @for DepartureBase
+     * @method parse
      */
 
 
     _createClass(DepartureBase, [{
         key: 'parse',
         value: function parse(options) {
-            var params = ['airlines', 'destinations', 'frequency'];
+            this.airlines = (0, _get3.default)(options, 'airlines', this.airlines);
+            this.destinations = (0, _get3.default)(options, 'destinations', this.destinations);
+            this.frequency = (0, _get3.default)(options, 'frequency', this.frequency);
 
-            for (var i in params) {
-                if (options[params[i]]) {
-                    this[params[i]] = options[params[i]];
-                }
+            for (var i = 0; i < this.airlines.lenth; i++) {
+                var airline = this.airlines[i];
+                // reassigns `airline.name` to `airlineName` for readability
+
+                var _airlineNameAndFleetH = (0, _randomAirlineSelectionHelper.airlineNameAndFleetHelper)(airline),
+                    airlineName = _airlineNameAndFleetH.name;
+
+                window.airlineController.airline_get(airlineName);
             }
-
-            // TODO: the airlineController should be able to supply the airline name without having the caller do
-            // the splitting. any splits should happen in the airlineController or the data should be stored in a way
-            // that doesn't require splitting.
-            // Pre-load the airlines
-            _jquery2.default.each(this.airlines, function (i, data) {
-                window.airlineController.airline_get(data[0].split('/')[0]);
-            });
         }
 
         /**
          * Stop this departure stream
+         *
+         * @for DepartureBase
+         * @method stop
          */
 
     }, {
@@ -41868,18 +42783,32 @@ var DepartureBase = function () {
 
         /**
          * Start this departure stream
+         *
+         * @for DepartureBase
+         * @method start
          */
 
     }, {
         key: 'start',
         value: function start() {
-            var r = Math.floor((0, _random3.default)(2, 5.99));
+            var randomSpawnCount = Math.floor((0, _random3.default)(2, 5.99));
 
-            for (var i = 1; i <= r; i++) {
+            for (var i = 1; i <= randomSpawnCount; i++) {
                 // spawn 2-5 departures to start with
                 this.spawnAircraft(false);
             }
 
+            this.initiateSpawningLoop();
+        }
+
+        /**
+         * @for DepartureBase
+         * @method initiateSpawningLoop
+         */
+
+    }, {
+        key: 'initiateSpawningLoop',
+        value: function initiateSpawningLoop() {
             var minFrequency = this.frequency * 0.5;
             var maxFrequency = this.frequency * 1.5;
             var randomNumberForTimeout = (0, _random3.default)(minFrequency, maxFrequency);
@@ -41890,29 +42819,25 @@ var DepartureBase = function () {
 
         /**
          * Spawn a new aircraft
+         *
+         * @for DepartureBase
+         * @method spawnAircraft
          */
 
     }, {
         key: 'spawnAircraft',
         value: function spawnAircraft(timeout) {
-            var fleet = void 0;
             var message = window.gameController.game_time() - this.start >= 2;
-            var airline = choose_weight(this.airlines);
-
-            if (airline.indexOf('/') > -1) {
-                // TODO: enumerate the magic numbers
-                // TODO: I see a lot of splitting on '/', why? this should be a helper function since its used so much.
-                fleet = airline.split('/', 2)[1];
-                airline = airline.split('/', 2)[0];
-            }
-
-            window.aircraftController.aircraft_new({
-                airline: airline,
-                fleet: fleet,
+            var airline = (0, _randomAirlineSelectionHelper.randomAirlineSelectionHelper)(this.airlines);
+            var aircraftToAdd = {
                 message: message,
-                category: 'departure',
-                destination: choose(this.destinations)
-            });
+                airline: airline.name,
+                fleet: airline.fleet,
+                category: _AircraftInstanceModel.FLIGHT_CATEGORY.DEPARTURE,
+                destination: (0, _generalUtilities.choose)(this.destinations)
+            };
+
+            window.aircraftController.aircraft_new(aircraftToAdd);
 
             if (timeout) {
                 this.timeout = window.gameController.game_timeout(this.spawnAircraft, this.nextInterval(), this, true);
@@ -41921,6 +42846,10 @@ var DepartureBase = function () {
 
         /**
          * Determine delay until next spawn
+         *
+         * @for DepartureBase
+         * @method nextInterval
+         * @return {number}
          */
 
     }, {
@@ -41928,7 +42857,7 @@ var DepartureBase = function () {
         value: function nextInterval() {
             // fastest possible between back-to-back departures, in seconds
             var min_interval = 5;
-            var tgt_interval = 3600 / this.frequency;
+            var tgt_interval = _globalConstants.TIME.ONE_HOUR_IN_SECONDS / this.frequency;
             var max_interval = tgt_interval + (tgt_interval - min_interval);
 
             return (0, _random3.default)(min_interval, max_interval);
@@ -41940,11 +42869,11 @@ var DepartureBase = function () {
 
 exports.default = DepartureBase;
 
-},{"jquery":296,"lodash/random":488}],544:[function(require,module,exports){
+},{"../../aircraft/AircraftInstanceModel":529,"../../airline/randomAirlineSelectionHelper":536,"../../constants/globalConstants":563,"../../utilities/generalUtilities":583,"../Route/RouteModel":551,"lodash/get":459,"lodash/random":488}],546:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -41959,6 +42888,10 @@ var _core = require('../../math/core');
 
 var _circle = require('../../math/circle');
 
+var _unitConverters = require('../../utilities/unitConverters');
+
+var _globalConstants = require('../../constants/globalConstants');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -41972,74 +42905,195 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
  * Generate departures in cyclic pattern
  *
  * @class DepartureCyclic
+ * @extends DepartureBase
  */
 var DepartureCyclic = function (_DepartureBase) {
-    _inherits(DepartureCyclic, _DepartureBase);
+  _inherits(DepartureCyclic, _DepartureBase);
 
-    function DepartureCyclic(airport, options) {
-        _classCallCheck(this, DepartureCyclic);
+  /**
+   * @for DepartureBase
+   * @constructor
+   * @param airport {AirportInstanceModel}
+   * @param options {object}
+   */
+  function DepartureCyclic(airport, options) {
+    _classCallCheck(this, DepartureCyclic);
 
-        // TODO: what do all these numbers mean? enumerate the magic numbers.
-        var _this = _possibleConstructorReturn(this, (DepartureCyclic.__proto__ || Object.getPrototypeOf(DepartureCyclic)).call(this, airport, options));
+    /**
+     * length of a cycle
+     *
+     * @property period
+     * @type {number}
+     * @default TIME.ONE_HOUR_IN_SECONDS
+     */
+    var _this = _possibleConstructorReturn(this, (DepartureCyclic.__proto__ || Object.getPrototypeOf(DepartureCyclic)).call(this, airport, options));
 
-        _this.period = 60 * 60;
-        _this.offset = -15 * 60; // Start at the peak
+    _this.period = _globalConstants.TIME.ONE_HOUR_IN_SECONDS;
 
-        _this._amplitude = 3600 / _this.frequency / 2;
-        _this._average = 3600 / _this.frequency;
-        return _this;
+    /**
+     * Start at the peak
+     *
+     * Optionally specify when the cycle peaks
+     *
+     * @property offset
+     * @type {number}
+     * @default -900
+     */
+    _this.offset = -900;
+
+    /**
+     * @property _amplitude
+     * @type {number}
+     */
+    _this._amplitude = _globalConstants.TIME.ONE_HOUR_IN_SECONDS / _this.frequency / 2;
+
+    /**
+     * @property _average
+     * @type {number}
+     */
+    _this._average = _globalConstants.TIME.ONE_HOUR_IN_SECONDS / _this.frequency;
+    return _this;
+  }
+
+  /**
+   * @for DepartureCyclic
+   * @method parse
+   */
+
+
+  _createClass(DepartureCyclic, [{
+    key: 'parse',
+    value: function parse(options) {
+      _get(DepartureCyclic.prototype.__proto__ || Object.getPrototypeOf(DepartureCyclic.prototype), 'parse', this).call(this, options);
+
+      if (options.period) {
+        this.period = (0, _unitConverters.convertMinutesToSeconds)(options.period);
+      }
+
+      if (options.offset) {
+        // TODO: enumerate the magic numbers
+        this.offset = -this.period / 4 + (0, _unitConverters.convertMinutesToSeconds)(options.offset);
+      }
     }
 
     /**
-     * Additional supported options
-     *
-     * period: {integer} Optionally specify the length of a cycle in minutes
-     * offset: {integer} Optionally specify when the cycle peaks in minutes
+     * @for DepartureCyclic
+     * @method nextInterval
+     * @return {number}
      */
 
+  }, {
+    key: 'nextInterval',
+    value: function nextInterval() {
+      var gameTimeWithOffset = window.gameController.game_time() + this.offset;
+      var sinOffsetOverPeriod = (0, _core.sin)((0, _circle.tau)() * (gameTimeWithOffset / this.period));
+      var amplitudeTimesSinOffsetOverPeriod = this._amplitude * sinOffsetOverPeriod;
 
-    _createClass(DepartureCyclic, [{
-        key: 'parse',
-        value: function parse(options) {
-            _get(DepartureCyclic.prototype.__proto__ || Object.getPrototypeOf(DepartureCyclic.prototype), 'parse', this).call(this, options);
+      return (amplitudeTimesSinOffsetOverPeriod + this._average) / window.gameController.game.frequency;
+    }
+  }]);
 
-            if (options.period) {
-                this.period = options.period * 60;
-            }
-
-            if (options.offset) {
-                // TODO: enumerate the magic numbers
-                this.offset = -this.period / 4 + options.offset * 60;
-            }
-        }
-    }, {
-        key: 'nextInterval',
-        value: function nextInterval() {
-            // This is a [poorly named] example of how a really long calculation can be broken up into
-            // more readable bits. the original calculation much harder to read.
-            //
-            // (this._amplitude * Math.sin(tau() * ((game_time() + this.offset) / this.period)) + this._average) / prop.game.frequency;
-
-            var gameTimeWithOffset = window.gameController.game_time() + this.offset;
-            var sinOffsetOverPeriod = (0, _core.sin)((0, _circle.tau)() * (gameTimeWithOffset / this.period));
-            var amplitudeTimesSinOffsetOverPeriod = this._amplitude * sinOffsetOverPeriod;
-
-            return (amplitudeTimesSinOffsetOverPeriod + this._average) / prop.game.frequency;
-        }
-    }]);
-
-    return DepartureCyclic;
+  return DepartureCyclic;
 }(_DepartureBase3.default);
 
 exports.default = DepartureCyclic;
 
-},{"../../math/circle":561,"../../math/core":562,"./DepartureBase":543}],545:[function(require,module,exports){
+},{"../../constants/globalConstants":563,"../../math/circle":573,"../../math/core":574,"../../utilities/unitConverters":586,"./DepartureBase":545}],547:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.DepartureFactory = undefined;
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _DepartureCyclic2 = require('./DepartureCyclic');
+
+var _DepartureCyclic3 = _interopRequireDefault(_DepartureCyclic2);
+
+var _globalConstants = require('../../constants/globalConstants');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+/**
+ * Generate departures in a repeating wave
+ *
+ * @class DepartureWave
+ * @extends DepartureCyclic
+ */
+var DepartureWave = function (_DepartureCyclic) {
+    _inherits(DepartureWave, _DepartureCyclic);
+
+    /**
+     * @for DepartureCyclic
+     * @constructor
+     * @param airport {AirportInstanceModel}
+     * @param options {object}
+     */
+    function DepartureWave(airport, options) {
+        _classCallCheck(this, DepartureWave);
+
+        // TODO: better commenting of the magic numbers in this file. enumerate the magic numbers.
+        // Time between aircraft in the wave
+        var _this = _possibleConstructorReturn(this, (DepartureWave.__proto__ || Object.getPrototypeOf(DepartureWave)).call(this, airport, options));
+
+        _this._separation = 10;
+
+        // Aircraft per wave
+        _this._count = Math.floor(_this._average / _globalConstants.TIME.ONE_HOUR_IN_SECONDS * _this.period);
+
+        if (_this.period / _this._separation < _this._count) {
+            console.log('Reducing average departure frequency from ' + _this._average + '/hour to maintain minimum interval');
+
+            _this._count = Math.floor(_globalConstants.TIME.ONE_HOUR_IN_SECONDS / _this._separation);
+        }
+
+        // length of a wave in seconds
+        _this._waveLength = _this._separation * _this._count - 1;
+
+        // Offset to have center of wave at 0 time
+        _this._offset = (_this._waveLength - _this._separation) / 2 + _this.offset;
+        return _this;
+    }
+
+    /**
+     * @for DepartureCyclic
+     * @method nextInterval
+     * @return {number}
+     */
+
+
+    _createClass(DepartureWave, [{
+        key: 'nextInterval',
+        value: function nextInterval() {
+            var position = (window.gameController.game_time() + this._offset) % this.period;
+
+            if (position >= this._waveLength) {
+                return this.period - position;
+            }
+
+            return this._separation / window.gameController.game.frequency;
+        }
+    }]);
+
+    return DepartureWave;
+}(_DepartureCyclic3.default);
+
+exports.default = DepartureWave;
+
+},{"../../constants/globalConstants":563,"./DepartureCyclic":546}],548:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.departureFactory = undefined;
 
 var _DepartureBase = require('./DepartureBase');
 
@@ -42061,12 +43115,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * Calls constructor of the appropriate arrival type
  *
  * @function DepartureFactory
- * @param airport
- * @param options
- * @return {function}
+ * @param airport {AirportModel}
+ * @param options {object}
+ * @return {constructor}
  */
-/* eslint-disable func-names, no-undef */
-var DepartureFactory = exports.DepartureFactory = function DepartureFactory(airport, options) {
+var departureFactory = exports.departureFactory = function departureFactory(airport, options) {
     if (options.type === '') {
         return log(airport.icao + ' departure stream not given type!', _logLevel.LOG.WARNING);
     }
@@ -42084,18 +43137,239 @@ var DepartureFactory = exports.DepartureFactory = function DepartureFactory(airp
     }
 };
 
-},{"../../constants/logLevel":552,"./DepartureBase":543,"./DepartureCyclic":544,"./DepartureWave":546}],546:[function(require,module,exports){
+},{"../../constants/logLevel":564,"./DepartureBase":545,"./DepartureCyclic":546,"./DepartureWave":547}],549:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-        value: true
+    value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _DepartureCyclic2 = require('./DepartureCyclic');
+var _compact2 = require('lodash/compact');
 
-var _DepartureCyclic3 = _interopRequireDefault(_DepartureCyclic2);
+var _compact3 = _interopRequireDefault(_compact2);
+
+var _find2 = require('lodash/find');
+
+var _find3 = _interopRequireDefault(_find2);
+
+var _forEach2 = require('lodash/forEach');
+
+var _forEach3 = _interopRequireDefault(_forEach2);
+
+var _map2 = require('lodash/map');
+
+var _map3 = _interopRequireDefault(_map2);
+
+var _uniqueId2 = require('lodash/uniqueId');
+
+var _uniqueId3 = _interopRequireDefault(_uniqueId2);
+
+var _FixModel = require('./FixModel');
+
+var _FixModel2 = _interopRequireDefault(_FixModel);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+/**
+ * A collection of all the `FixModel`s defined in an airport json file.
+ *
+ * This is built as a static class, so there is only ever once instance.
+ * We use a static class here because the methods contained herein are needed by several
+ * different classes. This provides a single source of truth for all the `FixModel`s
+ * belonging to an Airport.
+ *
+ * @class FixCollection
+ */
+var FixCollection = function () {
+    /**
+     * @for FixCollection
+     * @constructor
+     */
+    function FixCollection() {
+        _classCallCheck(this, FixCollection);
+
+        /**
+         * Unigue string id that can be used to differentiate this model instance from another.
+         *
+         * @property _id
+         * @type {string}
+         * @default ''
+         * @private
+         */
+        this._id = '';
+
+        /**
+         * Array of `FixModel`s
+         *
+         * @property _items
+         * @type {array<FixModel>}
+         * @default []
+         * @private
+         */
+        this._items = [];
+    }
+
+    /**
+     * Convenience property to get at the current length of `_items`.
+     *
+     * @property length
+     * @type {number}
+     */
+
+
+    _createClass(FixCollection, [{
+        key: 'init',
+
+
+        /**
+         * Lifecycle method. Should be run only once on instantiation.
+         *
+         * @for FixCollection
+         * @method init
+         * @param fixList {object}
+         * @param airportPosition {PositionModel}
+         */
+        value: function init(fixList, airportPosition) {
+            if (this.length !== 0) {
+                // you made it here because an airport has changed.
+                // in `AirportModel.parse()` this method is called with the fix data for the new airport. We don't want
+                // or need to keep the fixes from a previous airport so if `_items` has a length, we need to reset that
+                // property before we begin to add fixes for the new airport.
+                this.destroy();
+            }
+
+            this._id = (0, _uniqueId3.default)();
+
+            this._buildFixModelsFromList(fixList, airportPosition);
+        }
+
+        /**
+         * Destroy the current instance
+         *
+         * @for FixCollection
+         * @method destroy
+         */
+
+    }, {
+        key: 'destroy',
+        value: function destroy() {
+            this._id = '';
+            this._items = [];
+        }
+
+        /**
+         * Loop through each fix provided in the fix list, create a new `FixModel` instance, then send it off
+         * to be added to the collection.
+         *
+         * @for FixCollection
+         * @method _buildFixModelsFromList
+         * @param fixList {object}
+         * @private
+         */
+
+    }, {
+        key: '_buildFixModelsFromList',
+        value: function _buildFixModelsFromList(fixList, airportPosition) {
+            var _this = this;
+
+            (0, _forEach3.default)(fixList, function (fixCoordinates, fixName) {
+                var fixModel = new _FixModel2.default(fixName, fixCoordinates, airportPosition);
+
+                _this.addFixToCollection(fixModel);
+            });
+        }
+
+        /**
+         * Add a `FixModel` to the collection
+         *
+         * @for FixCollection
+         * @method addFixToCollection
+         * @param fixToAdd {FixModel}
+         */
+
+    }, {
+        key: 'addFixToCollection',
+        value: function addFixToCollection(fixToAdd) {
+            if (!(fixToAdd instanceof _FixModel2.default)) {
+                throw new TypeError('Expected fixToAdd to be an instance of FixModel');
+            }
+
+            this._items.push(fixToAdd);
+        }
+
+        /**
+         * Find a `FixModel` by `name` if it exists within the collection.
+         *
+         * @for FixCollection
+         * @method findFixByName
+         * @param fixName {string}
+         * @return {FixModel|null}
+         */
+
+    }, {
+        key: 'findFixByName',
+        value: function findFixByName(fixName) {
+            var fixModel = (0, _find3.default)(this._items, { name: fixName.toUpperCase() });
+
+            // if a fix is not found, _find() returns `undefined` so we specifically return null here if a fix is not found
+            return fixModel || null;
+        }
+
+        /**
+         * Find a list of all `FixModel`s within the collection that have a name that does not start with an underscore.
+         *
+         * @for FixCollection
+         * @method findRealFixes
+         * @return {array<FixModel>}
+         */
+
+    }, {
+        key: 'findRealFixes',
+        value: function findRealFixes() {
+            var realFixList = (0, _map3.default)(this._items, function (item) {
+                if (item.name.indexOf('_') !== 0) {
+                    return item;
+                }
+            });
+
+            return (0, _compact3.default)(realFixList);
+        }
+    }, {
+        key: 'length',
+        get: function get() {
+            return this._items.length;
+        }
+    }]);
+
+    return FixCollection;
+}();
+
+exports.default = new FixCollection();
+
+},{"./FixModel":550,"lodash/compact":453,"lodash/find":456,"lodash/forEach":458,"lodash/map":484,"lodash/uniqueId":497}],550:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _cloneDeep2 = require('lodash/cloneDeep');
+
+var _cloneDeep3 = _interopRequireDefault(_cloneDeep2);
+
+var _BaseModel2 = require('../../base/BaseModel');
+
+var _BaseModel3 = _interopRequireDefault(_BaseModel2);
+
+var _PositionModel = require('../../base/PositionModel');
+
+var _PositionModel2 = _interopRequireDefault(_PositionModel);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -42103,72 +43377,339 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /* eslint-disable no-underscore-dangle, no-mixed-operators, func-names */
-
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 /**
- * Generate departures in a repeating wave
+ * Defines a navigational `FixModel`
  *
- * @class DepartureWave
+ * A `FixModel` can be used as part of a `StandardRoute` or as a naviagtional aid.
+ * Not all `FixModel`s are a part of a `StandardRoute`.
+ *
+ * @class FixModel
  */
-var DepartureWave = function (_DepartureCyclic) {
-        _inherits(DepartureWave, _DepartureCyclic);
+var FixModel = function (_BaseModel) {
+  _inherits(FixModel, _BaseModel);
 
-        function DepartureWave(airport, options) {
-                _classCallCheck(this, DepartureWave);
+  /**
+   * @for FixModel
+   * @constructor
+   * @param fixName {string}
+   * @param fixCoordinate {array}
+   * @param airportPosition {PositionModel}
+   */
+  function FixModel(fixName, fixCoordinate, airportPosition) {
+    var _ret;
 
-                var _this = _possibleConstructorReturn(this, (DepartureWave.__proto__ || Object.getPrototypeOf(DepartureWave)).call(this, airport, options));
+    _classCallCheck(this, FixModel);
 
-                base.init.call(_this, airport, options);
+    // TODO: should this be a throwing instead of returning early?
+    var _this = _possibleConstructorReturn(this, (FixModel.__proto__ || Object.getPrototypeOf(FixModel)).call(this));
 
-                // TODO: better commenting of the magic numbers in this file. enumerate the magic numbers.
-                // Time between aircraft in the wave
-                _this._separation = 10;
+    if (!fixName || !fixCoordinate || !airportPosition) {
+      console.error('Invalid parameter. one of fixName, fixCoordinate or airportPosition is undefined or null in FixModel');
 
-                // Aircraft per wave
-                _this._count = Math.floor(_this._average / 3600 * _this.period);
+      return _possibleConstructorReturn(_this);
+    }
 
-                if (_this.period / _this._separation < _this._count) {
-                        console.log('Reducing average departure frequency from ' + _this._average + '/hour to maintain minimum interval');
+    /**
+     * Name of the Fix
+     *
+     * @property name
+     * @type {string}
+     * @default ''
+     */
+    _this.name = '';
 
-                        _this._count = Math.floor(3600 / _this._separation);
-                }
+    /**
+     * Coordinates of the fix
+     *
+     * @property _fixPosition
+     * @type {PositionModel}
+     * @default null
+     */
+    _this._fixPosition = null;
 
-                // length of a wave in seconds
-                _this._waveLength = _this._separation * _this._count - 1;
+    return _ret = _this._init(fixName, fixCoordinate, airportPosition), _possibleConstructorReturn(_this, _ret);
+  }
 
-                // Offset to have center of wave at 0 time
-                _this._offset = (_this._waveLength - _this._separation) / 2 + _this.offset;
-                return _this;
-        }
+  /**
+   * Provides access to the position data of the instance
+   *
+   * @property position
+   * @return {array}
+   */
 
-        _createClass(DepartureWave, [{
-                key: 'nextInterval',
-                value: function nextInterval() {
-                        var position = (window.gameController.game_time() + this._offset) % this.period;
 
-                        if (position >= this._waveLength) {
-                                return this.period - position;
-                        }
+  _createClass(FixModel, [{
+    key: '_init',
 
-                        return this._separation / prop.game.frequency;
-                }
-        }]);
 
-        return DepartureWave;
-}(_DepartureCyclic3.default);
+    /**
+     * Lifecycle method. Should be run only once on instantiation.
+     *
+     * @for FixModel
+     * @method _init
+     * @param fixName {string}
+     * @param fixCoordinate {array}
+     * @param airportPosition {PositionModel}
+     * @chainable
+     * @private
+     */
+    value: function _init(fixName, fixCoordinate, airportPosition) {
+      this.name = fixName.toUpperCase();
+      this._fixPosition = new _PositionModel2.default(fixCoordinate, airportPosition, airportPosition.magneticNorthInRadians);
 
-exports.default = DepartureWave;
+      return this;
+    }
 
-},{"./DepartureCyclic":544}],547:[function(require,module,exports){
+    /**
+     * reset the current instance
+     *
+     * @for FixModel
+     * @method reset
+     * @chainable
+     */
+
+  }, {
+    key: 'reset',
+    value: function reset() {
+      this.name = '';
+      this._fixPosition = null;
+
+      return this;
+    }
+
+    /**
+     * Returns a clone of an instance's `_fixPosition` property.
+     *
+     * It is important to note that this is a _clone_ and not a copy. Once any changes made to this instance will
+     * not be reflected in the clone. This creates an entirely new instance of the `_fixPosition` property,
+     * and after creation is completely independant of this instance.
+     *
+     * This is used with `StandardRouteWaypointModel` objects to obtain the position of a fix. This method
+     * provides easy access to the `PositionModel` that already exists here.
+     *
+     * @for FixModel
+     * @return {PositionModel}  a clone of the current `_fixPosition` property
+     */
+
+  }, {
+    key: 'clonePosition',
+    value: function clonePosition() {
+      return (0, _cloneDeep3.default)(this._fixPosition);
+    }
+  }, {
+    key: 'position',
+    get: function get() {
+      return this._fixPosition.position;
+    }
+  }]);
+
+  return FixModel;
+}(_BaseModel3.default);
+
+exports.default = FixModel;
+
+},{"../../base/BaseModel":559,"../../base/PositionModel":560,"lodash/cloneDeep":452}],551:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _BaseModel2 = require('../../base/BaseModel');
+
+var _BaseModel3 = _interopRequireDefault(_BaseModel2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+/**
+ * Symbol that divides each route segment
+ *
+ * @property SEGMENT_SEPARATION_SYMBOL
+ * @type {string}
+ * @final
+ */
+var SEGMENT_SEPARATION_SYMBOL = '.';
+
+/**
+ * A route is assumed to have, at most, three parts.
+ *
+ * @property MAXIMUM_ROUTE_SEGMENT_LENGTH
+ * @type {number}
+ * @final
+ */
+var MAXIMUM_ROUTE_SEGMENT_LENGTH = 3;
+
+/**
+ * @class RouteModel
+ */
+
+var RouteModel = function (_BaseModel) {
+  _inherits(RouteModel, _BaseModel);
+
+  /**
+   * 'BETHL.GRNPA1.KLAS'
+   *
+   * @for RouteModel
+   * @constructor
+   * @param routeString {string}
+   */
+  function RouteModel(routeString) {
+    var _ret;
+
+    _classCallCheck(this, RouteModel);
+
+    var _this = _possibleConstructorReturn(this, (RouteModel.__proto__ || Object.getPrototypeOf(RouteModel)).call(this));
+
+    if (typeof routeString === 'undefined' || typeof routeString !== 'string') {
+      return _possibleConstructorReturn(_this);
+    }
+
+    if (!_this._isValidRouteString(routeString)) {
+      // eslint-disable-next-line max-len
+      throw new TypeError('Invalid routeString passed to RouteModel. Expected a routeString of the shape ORIGIN.BASE.DESTINATION but instead received ' + routeString);
+    }
+
+    /**
+     * @property entry
+     * @type {string}
+     * @default ''
+     */
+    _this.entry = '';
+
+    /**
+     * @property procedure
+     * @type {string}
+     * @default ''
+     */
+    _this.procedure = '';
+
+    /**
+     * @property exit
+     * @type {string}
+     * @default ''
+     */
+    _this.exit = '';
+
+    return _ret = _this._init(routeString), _possibleConstructorReturn(_this, _ret);
+  }
+
+  /**
+   * A single string that represents the entire route
+   *
+   * @property routeString
+   * @return {string}
+   */
+
+
+  _createClass(RouteModel, [{
+    key: '_init',
+
+
+    /**
+     * Lifecycle method. Should be run only once on instantiation
+     *
+     * @for RouteModel
+     * @method _init
+     * @param routeString {string}
+     * @private
+     */
+    value: function _init(routeString) {
+      var _extractSegmentNamesF = this._extractSegmentNamesFromRouteString(routeString),
+          entry = _extractSegmentNamesF.entry,
+          base = _extractSegmentNamesF.base,
+          exit = _extractSegmentNamesF.exit;
+
+      this.entry = entry;
+      this.procedure = base;
+      this.exit = exit;
+
+      return this;
+    }
+
+    /**
+     * reset this instance
+     *
+     * @for RouteModel
+     * @method reset
+     */
+
+  }, {
+    key: 'reset',
+    value: function reset() {
+      this.entry = '';
+      this.procedure = '';
+      this.exit = '';
+    }
+
+    /**
+     * @for RouteModel
+     * @method _extractSegmentNamesFromRouteString
+     * @param routeString {string}
+     * @return {object}
+     * @private
+     */
+
+  }, {
+    key: '_extractSegmentNamesFromRouteString',
+    value: function _extractSegmentNamesFromRouteString(routeString) {
+      var routeSegments = routeString.split(SEGMENT_SEPARATION_SYMBOL);
+
+      return {
+        entry: routeSegments[0],
+        base: routeSegments[1],
+        exit: routeSegments[2]
+      };
+    }
+
+    /**
+     * Verify that a routestring has exactly 3 segments
+     *
+     * @for RouteModel
+     * @method _isValidRouteString
+     * @param routeString {string}
+     * @return {boolean}
+     * @private
+     */
+
+  }, {
+    key: '_isValidRouteString',
+    value: function _isValidRouteString(routeString) {
+      return routeString.split(SEGMENT_SEPARATION_SYMBOL).length === MAXIMUM_ROUTE_SEGMENT_LENGTH;
+    }
+  }, {
+    key: 'routeString',
+    get: function get() {
+      return this.entry + '.' + this.procedure + '.' + this.exit;
+    }
+  }]);
+
+  return RouteModel;
+}(_BaseModel3.default);
+
+exports.default = RouteModel;
+
+},{"../../base/BaseModel":559}],552:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /* eslint-disable no-multi-spaces, func-names, camelcase, no-undef, max-len, object-shorthand */
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+var _BaseModel2 = require('../base/BaseModel');
+
+var _BaseModel3 = _interopRequireDefault(_BaseModel2);
 
 var _PositionModel = require('../base/PositionModel');
 
@@ -42176,7 +43717,7 @@ var _PositionModel2 = _interopRequireDefault(_PositionModel);
 
 var _core = require('../math/core');
 
-var _circle = require('../math/circle.js');
+var _circle = require('../math/circle');
 
 var _unitConverters = require('../utilities/unitConverters');
 
@@ -42186,83 +43727,66 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var Runway = function () {
-    function Runway() {
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+/**
+ * @class RunwayModel
+ */
+var RunwayModel = function (_BaseModel) {
+    _inherits(RunwayModel, _BaseModel);
+
+    /**
+     * @for RunwayModel
+     * @constructor
+     * @param options {object}
+     * @param end
+     * @param airport {AirportModel}
+     */
+    function RunwayModel() {
         var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
         var end = arguments[1];
         var airport = arguments[2];
 
-        _classCallCheck(this, Runway);
+        _classCallCheck(this, RunwayModel);
+
+        var _this = _possibleConstructorReturn(this, (RunwayModel.__proto__ || Object.getPrototypeOf(RunwayModel)).call(this));
 
         options.airport = airport;
-        this.angle = null;
-        this.elevation = 0;
-        this.delay = 2;
-        this.gps = [];
-        this.ils = {
+        _this.airport = null;
+        _this.angle = null;
+        _this.elevation = 0;
+        _this.delay = 2;
+        _this.gps = [];
+        _this.ils = {
             // TODO: what do these numbers mean? enumerate the magic numbers
             enabled: true,
             loc_maxDist: (0, _unitConverters.km)(25),
             gs_maxHeight: 9999,
             gs_gradient: (0, _unitConverters.degreesToRadians)(3)
         };
-        this.labelPos = [];
-        this.length = null;
-        this.midfield = [];
-        this.name = '';
-        this.position = [];
-        this.queue = [];
-        this.sepFromAdjacent = (0, _unitConverters.km)(3);
+        _this.labelPos = [];
+        _this.length = null;
+        _this.midfield = [];
+        _this.name = '';
+        _this.position = [];
+        _this.queue = [];
+        _this.sepFromAdjacent = (0, _unitConverters.km)(3);
 
-        this.parse(options, end);
+        _this.parse(options, end);
+        return _this;
     }
 
-    _createClass(Runway, [{
-        key: 'addQueue',
-        value: function addQueue(aircraft) {
-            this.queue.push(aircraft);
-        }
-    }, {
-        key: 'removeQueue',
-        value: function removeQueue(aircraft, force) {
-            if (this.queue[0] === aircraft || force) {
-                this.queue.shift(aircraft);
+    /**
+     * @for RunwayModel
+     * @method parse
+     * @param data
+     * @param end
+     */
 
-                if (this.queue.length >= 1) {
-                    this.queue[0].moveForward();
-                }
 
-                return true;
-            }
-
-            return false;
-        }
-    }, {
-        key: 'inQueue',
-        value: function inQueue(aircraft) {
-            return this.queue.indexOf(aircraft);
-        }
-    }, {
-        key: 'taxiDelay',
-        value: function taxiDelay() {
-            // TODO: what does 3 mean? enumerate the magic numbers.
-            return (this.delay + Math.random()) * 3;
-        }
-    }, {
-        key: 'getGlideslopeAltitude',
-        value: function getGlideslopeAltitude(distance, /* optional */gs_gradient) {
-            if (!gs_gradient) {
-                gs_gradient = this.ils.gs_gradient;
-            }
-
-            distance = Math.max(0, distance);
-            var rise = (0, _core.tan)((0, _core.abs)(gs_gradient));
-
-            // TODO: this logic could be abstracted to a helper.
-            // TODO: what does 3280 mean? enumerate the magic number
-            return this.elevation + rise * distance * 3280;
-        }
-    }, {
+    _createClass(RunwayModel, [{
         key: 'parse',
         value: function parse(data, end) {
             this.airport = data.airport;
@@ -42276,6 +43800,8 @@ var Runway = function () {
                 // FIXME: ressignment of an argument with an inline ternary? this line needs some work.
                 var farSide = new _PositionModel2.default(data.end[end === 0 ? 1 : 0], data.reference_position, data.magnetic_north);
 
+                // TODO: `gps` and `elevation` are available from the `PositionModel` and should be pulled from there
+                // instead of setting direct properties. If direct properties are needed, use getters isntead.
                 // GPS latitude and longitude position
                 this.gps = [thisSide.latitude, thisSide.longitude];
 
@@ -42323,305 +43849,331 @@ var Runway = function () {
                 this.sepFromAdjacent = (0, _unitConverters.km)(data.sepFromAdjacent[end]);
             }
         }
+
+        /**
+         *
+         *
+         * @for RunwayModel
+         * @method
+         */
+
+    }, {
+        key: 'addQueue',
+        value: function addQueue(aircraft) {
+            this.queue.push(aircraft);
+        }
+
+        /**
+         *
+         *
+         * @for RunwayModel
+         * @method
+         */
+
+    }, {
+        key: 'removeQueue',
+        value: function removeQueue(aircraft, force) {
+            if (this.queue[0] === aircraft || force) {
+                this.queue.shift(aircraft);
+
+                if (this.queue.length >= 1) {
+                    this.queue[0].moveForward();
+                }
+
+                return true;
+            }
+
+            return false;
+        }
+
+        /**
+         *
+         *
+         * @for RunwayModel
+         * @method
+         */
+
+    }, {
+        key: 'inQueue',
+        value: function inQueue(aircraft) {
+            return this.queue.indexOf(aircraft);
+        }
+
+        /**
+         *
+         *
+         * @for RunwayModel
+         * @method
+         */
+
+    }, {
+        key: 'taxiDelay',
+        value: function taxiDelay() {
+            // TODO: what does 3 mean? enumerate the magic numbers.
+            return (this.delay + Math.random()) * 3;
+        }
+
+        /**
+         *
+         *
+         * @for RunwayModel
+         * @method
+         */
+
+    }, {
+        key: 'getGlideslopeAltitude',
+        value: function getGlideslopeAltitude(distance, /* optional */gs_gradient) {
+            if (!gs_gradient) {
+                gs_gradient = this.ils.gs_gradient;
+            }
+
+            distance = Math.max(0, distance);
+            var rise = (0, _core.tan)((0, _core.abs)(gs_gradient));
+
+            // TODO: this logic could be abstracted to a helper.
+            // TODO: what does 3280 mean? enumerate the magic number
+            return this.elevation + rise * distance * 3280;
+        }
     }]);
 
-    return Runway;
-}();
+    return RunwayModel;
+}(_BaseModel3.default);
 
-exports.default = Runway;
+exports.default = RunwayModel;
 
-},{"../base/PositionModel":550,"../math/circle.js":561,"../math/core":562,"../math/vector":565,"../utilities/unitConverters":573}],548:[function(require,module,exports){
+},{"../base/BaseModel":559,"../base/PositionModel":560,"../math/circle":573,"../math/core":574,"../math/vector":577,"../utilities/unitConverters":586}],553:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _find2 = require('lodash/find');
+
+var _find3 = _interopRequireDefault(_find2);
+
+var _forEach2 = require('lodash/forEach');
+
+var _forEach3 = _interopRequireDefault(_forEach2);
+
+var _isArray2 = require('lodash/isArray');
+
+var _isArray3 = _interopRequireDefault(_isArray2);
+
+var _isObject2 = require('lodash/isObject');
+
+var _isObject3 = _interopRequireDefault(_isObject2);
+
+var _map2 = require('lodash/map');
+
+var _map3 = _interopRequireDefault(_map2);
+
+var _BaseCollection2 = require('../../base/BaseCollection');
+
+var _BaseCollection3 = _interopRequireDefault(_BaseCollection2);
+
+var _RouteSegmentModel = require('./RouteSegmentModel');
+
+var _RouteSegmentModel2 = _interopRequireDefault(_RouteSegmentModel);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 /**
- * List of airports to load.
+ * A collection of `RouteSegment`s.
  *
- * If you are adding a new airport to the game, be sure to include:
+ * Provide a way to deal with the various parts of a `StandardProcedureRoute` as defined in each
+ * airport json file.
  *
- * - the airport json file in `assets/airports/AIRPORT_NAME.json` where `AIRPORT_NAME` is
- *   the airport icao. (ex: KSFO would be `assets/airports/ksfo.json`)
- * - the terrain geojson file (if one exists) in `assets/airports/terrain/AIRPORT_NAME.geojson`
- *   where `AIRPORT_NAME` is the airport icao. (ex: KSFO would be `assets/airports/terrain/ksfo.geojson`)
- * - add a new data block at the bottom of this file in the shape of:
- * ```
- * {
- *   icao: {AIRPORT_ICAO},
- *   level: {AIRPORT_DIFFICULTY},
- *   name: {AIRPORT_NAME}
- * }
- * ```
- * - `AIRPORT_ICAO` is the airport icao in lowercase (ex: ksfo)
- * - `AIRPORT_DIFFICULTY` is the difficulty level (one of: easy, beginner, medium, hard)
- * - `AIRPORT_NAME` is the name of the airport (ex: San Francisco International Airport)
- *   If the airport is a work in progress, please include the icon character `&#9983` after the `name` (see ebbr, kmsp or ksea):
- *   `name: 'Brussels-National &#9983'`
+ * Each SID is broken up into three route segments:
+ * - `rwy` (optional)
+ * - `body`
+ * - `exitPoints` (optional)
  *
- * @property AIRPORT_LOAD_LIST
- * @type {Array}
- * @final
+ * Each STAR is broken up into three route segments:
+ * - `entryPoints` (optional)
+ * - `body`
+ * - `rwy` (optional)
+ *
+ * This collection is meant to contain the waypoints for a single route segment and can be
+ * used to resaon about the route as a single unit.
+ *
+ * @class RouteSegmentCollection
  */
-var AIRPORT_LOAD_LIST = exports.AIRPORT_LOAD_LIST = [{
-    icao: 'ebbr',
-    level: 'easy',
-    name: 'Brussels-National &#9983'
-}, {
-    icao: 'eddf',
-    level: 'medium',
-    name: 'Frankfurt Airport'
-}, {
-    icao: 'eddh',
-    level: 'easy',
-    name: 'Hamburg Airport'
-}, {
-    icao: 'eddm',
-    level: 'beginner',
-    name: 'Franz Josef Strauß International Airport'
-}, {
-    icao: 'eddt',
-    level: 'medium',
-    name: 'Berlin Tegel Airport'
-}, {
-    icao: 'egcc',
-    level: 'hard',
-    name: 'Manchester Airport'
-}, {
-    icao: 'eggw',
-    level: 'medium',
-    name: 'London Luton Airport'
-}, {
-    icao: 'egkk',
-    level: 'easy',
-    name: 'London Gatwick Airport'
-}, {
-    icao: 'eglc',
-    level: 'medium',
-    name: 'London City Airport'
-}, {
-    icao: 'egll',
-    level: 'hard',
-    name: 'London Heathrow Airport'
-}, {
-    icao: 'egnm',
-    level: 'beginner',
-    name: 'Leeds Bradford International Airport'
-}, {
-    icao: 'eham',
-    level: 'medium',
-    name: 'Amsterdam Airport Schiphol'
-}, {
-    icao: 'eidw',
-    level: 'easy',
-    name: 'Dublin Airport'
-}, {
-    icao: 'einn',
-    level: 'easy',
-    name: 'Shannon Airport'
-}, {
-    icao: 'ekch',
-    level: 'medium',
-    name: 'Copenhagen Kastrup Airport'
-}, {
-    icao: 'engm',
-    level: 'easy',
-    name: 'Oslo Gardermoen International Airport'
-}, {
-    icao: 'espa',
-    level: 'easy',
-    name: 'Luleå Airport'
-}, {
-    icao: 'gcrr',
-    level: 'easy',
-    name: 'Lanzarote Airport'
-}, {
-    icao: 'kbos',
-    level: 'medium',
-    name: 'Boston Logan International Airport'
-}, {
-    icao: 'kdca',
-    level: 'medium',
-    name: 'Reagan National Airport'
-}, {
-    icao: 'kdfw',
-    level: 'hard',
-    name: 'Dallas-Fort Worth International Airport'
-}, {
-    icao: 'kiad',
-    level: 'hard',
-    name: 'Washington-Dulles International Airport'
-}, {
-    icao: 'kjfk',
-    level: 'hard',
-    name: 'John F Kennedy International Airport &#9983'
-}, {
-    icao: 'klas',
-    level: 'medium',
-    name: 'McCarran International Airport'
-}, {
-    icao: 'klax90',
-    level: 'medium',
-    name: 'Los Angeles International Airport 1990'
-}, {
-    icao: 'klax',
-    level: 'medium',
-    name: 'Los Angeles International Airport'
-}, {
-    icao: 'kmia',
-    level: 'hard',
-    name: 'Miami International Airport &#9983'
-}, {
-    icao: 'kmsp',
-    level: 'hard',
-    name: 'Minneapolis/St. Paul International Airport &#9983'
-}, {
-    icao: 'kord',
-    level: 'hard',
-    name: 'Chicago O\'Hare International Airport'
-}, {
-    icao: 'kpdx',
-    level: 'easy',
-    name: 'Portland International Airport'
-}, {
-    icao: 'kphx',
-    level: 'easy',
-    name: 'Phoenix Sky Harbor International Airport'
-}, {
-    icao: 'ksan',
-    level: 'easy',
-    name: 'San Diego International Airport'
-}, {
-    icao: 'ksea',
-    level: 'medium',
-    name: 'Seattle-Tacoma International Airport &#9983'
-}, {
-    icao: 'ksfo',
-    level: 'medium',
-    name: 'San Francisco International Airport &#9983'
-}, {
-    icao: 'lkpr',
-    level: 'easy',
-    name: 'Vaclav Havel International Airport'
-}, {
-    icao: 'loww',
-    level: 'medium',
-    name: 'Vienna International Airport'
-}, {
-    icao: 'ltba',
-    level: 'hard',
-    name: 'Atatürk International Airport &#9983'
-}, {
-    icao: 'omaa',
-    level: 'medium',
-    name: 'Abu Dhabi International Airport'
-}, {
-    icao: 'omdb',
-    level: 'hard',
-    name: 'Dubai International Airport'
-}, {
-    icao: 'osdi',
-    level: 'easy',
-    name: 'Damascus International Airport'
-}, {
-    icao: 'othh',
-    level: 'hard',
-    name: 'Doha Hamad International Airport'
-}, {
-    icao: 'rjtt',
-    level: 'hard',
-    name: 'Tokyo Haneda International Airport'
-}, {
-    icao: 'rksi',
-    level: 'hard',
-    name: 'Incheon International Airport'
-}, {
-    icao: 'saez',
-    level: 'medium',
-    name: 'Aeropuerto Internacional Ministro Pistarini'
-}, {
-    icao: 'same',
-    level: 'medium',
-    name: 'Aeropuerto Internacional El Plumerillo'
-}, {
-    icao: 'sawh',
-    level: 'beginner',
-    name: 'Aeropuerto Internacional Malvinas Argentinas'
-}, {
-    icao: 'sbgl',
-    level: 'beginner',
-    name: 'Aeroporto Internacional Tom Jobim'
-}, {
-    icao: 'sbgr',
-    level: 'beginner',
-    name: 'Aeroporto Internacional de São Paulo/Guarulhos'
-}, {
-    icao: 'tjsj',
-    level: 'easy',
-    name: 'Luis Muñoz Marín International Airport'
-}, {
-    icao: 'tncm',
-    level: 'easy',
-    name: 'Princess Juliana International Airport'
-}, {
-    icao: 'uudd',
-    level: 'easy',
-    name: 'Moscow Domodedovo Airport'
-}, {
-    icao: 'vabb',
-    level: 'hard',
-    name: 'Chhatrapati Shivaji International Airport'
-}, {
-    icao: 'vecc',
-    level: 'medium',
-    name: 'Kolkata Netaji Subhas Chandra Bose Int\'l'
-}, {
-    icao: 'vobl',
-    level: 'medium',
-    name: 'Kempegowda International Airport Bengaluru'
-}, {
-    icao: 'vhhh',
-    level: 'medium',
-    name: 'Hong Kong Chep Lap Kok International Airport'
-}, {
-    icao: 'vidp',
-    level: 'hard',
-    name: 'Indira Gandhi International Airport'
-}, {
-    icao: 'wiii',
-    level: 'medium',
-    name: 'Soekarno-Hatta International Airport'
-}, {
-    icao: 'wimm',
-    level: 'easy',
-    name: 'Kuala Namu International Airport'
-}, {
-    icao: 'wmkp',
-    level: 'medium',
-    name: 'Pulau Pinang International Airport'
-}, {
-    icao: 'wmkk',
-    level: 'hard',
-    name: 'Kuala Lumpur International Airport (KLIA)'
-}, {
-    icao: 'wsss',
-    level: 'hard',
-    name: 'Singapore Changi International Airport'
-}, {
-    icao: 'zspd',
-    level: 'hard',
-    name: 'Shanghai Pudong International Airport'
-} // ,
-// {
-//     icao: {AIRPORT_ICAO},
-//     level: {AIRPORT_DIFFICULTY},
-//     name: {AIRPORT_NAME}
-// }
+var RouteSegmentCollection = function (_BaseCollection) {
+    _inherits(RouteSegmentCollection, _BaseCollection);
 
-];
+    /**
+     * @constructor
+     * @param routeSegments {object}
+     */
+    function RouteSegmentCollection(routeSegments) {
+        var _ret;
 
-},{}],549:[function(require,module,exports){
-"use strict";
+        _classCallCheck(this, RouteSegmentCollection);
+
+        var _this = _possibleConstructorReturn(this, (RouteSegmentCollection.__proto__ || Object.getPrototypeOf(RouteSegmentCollection)).call(this, routeSegments));
+
+        if (typeof routeSegments === 'undefined' || !(0, _isObject3.default)(routeSegments) || (0, _isArray3.default)(routeSegments)) {
+            throw new TypeError('Expected routeSegments to be an object. Instead received ' + (typeof routeSegments === 'undefined' ? 'undefined' : _typeof(routeSegments)));
+        }
+
+        /**
+         * Name of the RouteSegment
+         *
+         * @property name
+         * @type {string}
+         * @default ''
+         */
+        _this.name = '';
+
+        return _ret = _this._init(routeSegments), _possibleConstructorReturn(_this, _ret);
+    }
+
+    /**
+     * Provide access to the contents of `_items`
+     *
+     * @property items
+     * @return {array}
+     */
+
+
+    _createClass(RouteSegmentCollection, [{
+        key: '_init',
+
+
+        /**
+         * Lifecycle method. Should be run only once on instantiation.
+         *
+         * @for RouteSegmentCollection
+         * @method _init
+         * @param routeSegments {object}
+         * @chainable
+         * @private
+         */
+        value: function _init(routeSegments) {
+            var _this2 = this;
+
+            (0, _forEach3.default)(routeSegments, function (routeWaypoints, key) {
+                var routeSegmentModel = new _RouteSegmentModel2.default(key, routeWaypoints);
+
+                _this2._addSegmentToCollection(routeSegmentModel);
+            });
+
+            return this;
+        }
+
+        /**
+         * Destroy the current instance
+         *
+         * @for RouteSegmentCollection
+         * @method destroy
+         * @chainable
+         */
+
+    }, {
+        key: 'destroy',
+        value: function destroy() {
+            this._id = '';
+            this.name = '';
+            this._items = [];
+
+            return this;
+        }
+
+        /**
+         * Find a `RouteSegmentModel` within the collection by its name
+         *
+         * @for RouteSegmentCollection
+         * @method findSegmentByName
+         * @param segmentName {string}
+         * @return {SegmentModel}
+         */
+
+    }, {
+        key: 'findSegmentByName',
+        value: function findSegmentByName(segmentName) {
+            return (0, _find3.default)(this._items, { name: segmentName });
+        }
+
+        /**
+         * Find a list of waypoints for a given `segmentName`
+         *
+         * @for RouteSegmentCollection
+         * @method findWaypointsForSegmentName
+         * @param segmentName {string}
+         * @return {array}
+         */
+
+    }, {
+        key: 'findWaypointsForSegmentName',
+        value: function findWaypointsForSegmentName(segmentName) {
+            var segment = this.findSegmentByName(segmentName);
+
+            return segment.findWaypointsForSegment();
+        }
+
+        /**
+         * Return a list of fixNames for all of the `RouteSegmentModel`s in the collection
+         *
+         * @for RouteSegmentCollection
+         * @method gatherFixNamesForCollection
+         * @return {array}
+         */
+
+    }, {
+        key: 'gatherFixNamesForCollection',
+        value: function gatherFixNamesForCollection() {
+            return (0, _map3.default)(this._items, function (item) {
+                return item.name;
+            });
+        }
+
+        /**
+         * Add a new segment to the collection
+         *
+         * @for RouteSegmentCollection
+         * @method _addSegmentToCollection
+         * @param segment {SegmentModel}
+         * @chainable
+         * @private
+         */
+
+    }, {
+        key: '_addSegmentToCollection',
+        value: function _addSegmentToCollection(segment) {
+            if (!(segment instanceof _RouteSegmentModel2.default)) {
+                // eslint-disable-next-line max-len
+                throw new TypeError('Expected segment to be an instance of RouteSegmentModel, instead received ' + segment + '.');
+            }
+
+            this._items.push(segment);
+
+            return this;
+        }
+    }, {
+        key: 'items',
+        get: function get() {
+            return this._items;
+        }
+    }]);
+
+    return RouteSegmentCollection;
+}(_BaseCollection3.default);
+
+exports.default = RouteSegmentCollection;
+
+},{"../../base/BaseCollection":558,"./RouteSegmentModel":554,"lodash/find":456,"lodash/forEach":458,"lodash/isArray":466,"lodash/isObject":475,"lodash/map":484}],554:[function(require,module,exports){
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
@@ -42629,94 +44181,1610 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+var _forEach2 = require('lodash/forEach');
+
+var _forEach3 = _interopRequireDefault(_forEach2);
+
+var _map2 = require('lodash/map');
+
+var _map3 = _interopRequireDefault(_map2);
+
+var _isArray2 = require('lodash/isArray');
+
+var _isArray3 = _interopRequireDefault(_isArray2);
+
+var _BaseModel2 = require('../../base/BaseModel');
+
+var _BaseModel3 = _interopRequireDefault(_BaseModel2);
+
+var _StandardRouteWaypointModel = require('./StandardRouteWaypointModel');
+
+var _StandardRouteWaypointModel2 = _interopRequireDefault(_StandardRouteWaypointModel);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-// TODO: this class does not appear to be in use?
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 /**
- * An enclosed region defined by a series of Position objects and an altitude range
+ * Provides an interface for dealing with a list of `StandardRouteWaypointModel`s that make up a given route segment.
  *
- * @class AreaModel
+ * @class RouteSegmentModel
  */
-var AreaModel = function () {
+var RouteSegmentModel = function (_BaseModel) {
+    _inherits(RouteSegmentModel, _BaseModel);
+
     /**
-     * @for AreaModel
+     * segmentWaypoints should come in a similar shape to:
+     * - ["_NAPSE068", "NAPSE", ["RIOOS", "A130+"], "COMPS"]
+     *
      * @constructor
-     * @param {array} poly - series of Position objects that outline the shape
-     *                Note: DO NOT repeat the origin to 'close' the shape. Unnecessary.
-     * @param {number} floor - (optional) altitude of bottom of area, in hundreds of feet
-     * @param {number} ceiling - (optional) altitude of top of area, in hundreds of feet
-     * @param {string} airspace_class - (optional) FAA airspace classification (A,B,C,D,E,G)
+     * @param name {string}  Icao of particular waypoint
+     * @param segmentWaypoints {array}  a mixed array of strings or arrays of strings
      */
-    function AreaModel(positions, floor, ceiling, airspace_class) {
-        _classCallCheck(this, AreaModel);
+    function RouteSegmentModel(name) {
+        var _ret;
 
-        if (!positions) {
-            return;
-        }
+        var segmentWaypoints = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
 
-        this.poly = [];
-        this.floor = null;
-        this.ceiling = null;
-        this.airspace_class = null;
+        _classCallCheck(this, RouteSegmentModel);
 
-        if (floor != null) {
-            this.floor = floor;
-        }
+        /**
+         * Name of the RouteSegment
+         *
+         * @property name
+         * @type {string}
+         * @default ''
+         * @private
+         */
+        var _this = _possibleConstructorReturn(this, (RouteSegmentModel.__proto__ || Object.getPrototypeOf(RouteSegmentModel)).call(this));
 
-        if (ceiling != null) {
-            this.ceiling = ceiling;
-        }
+        _this.name = '';
 
-        if (airspace_class) {
-            this.airspace_class = airspace_class;
-        }
+        /**
+         * `StandardRouteWaypointModel`s that make up the RouteSegment
+         *
+         * @property _items
+         * @type {array}
+         * @default []
+         * @private
+         */
+        _this._items = [];
 
-        this.parse(positions);
+        return _ret = _this._init(name, segmentWaypoints), _possibleConstructorReturn(_this, _ret);
     }
 
     /**
-     * @for AreaModel
-     * @method parse
-     * @param positions {array}
+     * Return the items in the collection
+     *
+     * @property items
+     * @return {array}
      */
 
 
-    _createClass(AreaModel, [{
-        key: "parse",
-        value: function parse(positions) {
-            for (var i = 0; i < positions.length; i++) {
-                this.poly.push(positions[i]);
+    _createClass(RouteSegmentModel, [{
+        key: '_init',
+
+
+        /**
+         * Lifecycle method. Should be run only once on instantiation.
+         *
+         * @for RouteSegmentModel
+         * @method _init
+         * @param name {string}
+         * @param segmentWaypoints {array}
+         * @private
+         */
+        value: function _init(name, segmentWaypoints) {
+            this.name = name;
+
+            if ((0, _isArray3.default)(segmentWaypoints)) {
+                this._createWaypointModelsFromList(segmentWaypoints);
             }
 
-            if (this.poly[0] === this.poly[this.poly.length - 1]) {
-                this.poly.pop(); // shape shouldn't fully close; will draw with 'cc.closepath()'
+            return this;
+        }
+
+        /**
+         * rest the current instance
+         *
+         * @for RouteSegmentModel
+         * @method reset
+         */
+
+    }, {
+        key: 'reset',
+        value: function reset() {
+            this.name = '';
+            this._items = [];
+
+            return this;
+        }
+
+        /**
+         * Return a list of fixes for the RouteSegment.
+         *
+         * This will return a normalized list of fixes, ex:
+         * - [FIXNAME, null]
+         * - [FIXNAME, RESTRICTIONS]
+         *
+         * @for RouteSegmentModel
+         * @method findWaypointsForSegment
+         * @return fixList {array}
+         */
+
+    }, {
+        key: 'findWaypointsForSegment',
+        value: function findWaypointsForSegment() {
+            var fixList = (0, _map3.default)(this._items, function (waypoint) {
+                return waypoint.fix;
+            });
+
+            return fixList;
+        }
+
+        /**
+         * @for RouteSegmentModel
+         * @method _createWaypointModelsFromList
+         * @param segmentWaypoints {array}
+         * @return waypointModelList {array}
+         */
+
+    }, {
+        key: '_createWaypointModelsFromList',
+        value: function _createWaypointModelsFromList(segmentWaypoints) {
+            var _this2 = this;
+
+            (0, _forEach3.default)(segmentWaypoints, function (fixAndRestrictions) {
+                var waypointModel = new _StandardRouteWaypointModel2.default(fixAndRestrictions);
+
+                // TODO: calculate distance here
+
+                _this2._addWaypointToCollection(waypointModel);
+            });
+        }
+
+        /**
+         * Add a new model to the collection and update length.
+         *
+         * @for RouteSegmentModel
+         * @method _addWaypointToCollection
+         * @param waypoint {StandardRouteWaypointModel}
+         * @private
+         */
+
+    }, {
+        key: '_addWaypointToCollection',
+        value: function _addWaypointToCollection(waypoint) {
+            if (!(waypoint instanceof _StandardRouteWaypointModel2.default)) {
+                throw new TypeError('Expected waypoint to be an instance of StandardRouteWaypointModel, instead received ' + waypoint + '.');
             }
+
+            this._items.push(waypoint);
+        }
+    }, {
+        key: 'items',
+        get: function get() {
+            return this._items;
+        }
+
+        /**
+         * Convenience property to get at the current length of `_items`.
+         *
+         * @property length
+         * @type {number}
+         */
+
+    }, {
+        key: 'length',
+        get: function get() {
+            return this._items.length;
         }
     }]);
 
-    return AreaModel;
-}();
+    return RouteSegmentModel;
+}(_BaseModel3.default);
 
-// TODO: temporarily attached to the window here until useages of AreaModel can be converted to an explicit import.
-// window.Area = AreaModel;
+exports.default = RouteSegmentModel;
 
-
-exports.default = AreaModel;
-
-},{}],550:[function(require,module,exports){
+},{"../../base/BaseModel":559,"./StandardRouteWaypointModel":557,"lodash/forEach":458,"lodash/isArray":466,"lodash/map":484}],555:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand,
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     no-undef, class-methods-use-this */
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+var _find2 = require('lodash/find');
+
+var _find3 = _interopRequireDefault(_find2);
+
+var _forEach2 = require('lodash/forEach');
+
+var _forEach3 = _interopRequireDefault(_forEach2);
+
+var _random2 = require('lodash/random');
+
+var _random3 = _interopRequireDefault(_random2);
+
+var _BaseCollection2 = require('../../base/BaseCollection');
+
+var _BaseCollection3 = _interopRequireDefault(_BaseCollection2);
+
+var _StandardRouteModel = require('./StandardRouteModel');
+
+var _StandardRouteModel2 = _interopRequireDefault(_StandardRouteModel);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+/**
+ * Accept `sids` or `stars` data from an airport json file and create a collection of model objects.
+ *
+ * Provides and interface to reason about a `StandardRoute`, defined as either a SID or STAR.
+ * Creates a `StandardRouteModel` for each route defined in the StandardRoute.
+ *
+ * @class StandardRouteCollection
+ */
+var StandardRouteCollection = function (_BaseCollection) {
+    _inherits(StandardRouteCollection, _BaseCollection);
+
+    /**
+     * @constructor
+     * @param standardRouteEnum {object}
+     */
+    function StandardRouteCollection(standardRouteEnum) {
+        var _ret;
+
+        _classCallCheck(this, StandardRouteCollection);
+
+        var _this = _possibleConstructorReturn(this, (StandardRouteCollection.__proto__ || Object.getPrototypeOf(StandardRouteCollection)).call(this, standardRouteEnum));
+
+        if (typeof standardRouteEnum === 'undefined') {
+            return _possibleConstructorReturn(_this);
+        }
+
+        return _ret = _this._init(standardRouteEnum), _possibleConstructorReturn(_this, _ret);
+    }
+
+    /**
+     * Lifecycle method. Should be run only once on instantiation.
+     *
+     * @for StandardRouteCollection
+     * @method _init
+     * @param standardRouteEnum {object}
+     * @private
+     */
+
+
+    _createClass(StandardRouteCollection, [{
+        key: '_init',
+        value: function _init(standardRouteEnum) {
+            this._addRouteListToCollection(standardRouteEnum);
+
+            return this;
+        }
+
+        /**
+         * Destroy the current instance
+         *
+         * @for StandardRouteCollection
+         * @method destroy
+         */
+
+    }, {
+        key: 'destroy',
+        value: function destroy() {
+            this._items = [];
+
+            return this;
+        }
+
+        // TODO: update implementations to accept the FixModel instead of an array
+        /**
+         * Find a list of fixes for a route, given an `icao`, `exitFixName` and `runwayName` parameter.
+         *
+         * @for StandardRouteCollection
+         * @method getSID
+         * @param icao {string}
+         * @param exitFixName {string}
+         * @param runwayName {string}
+         * @return {array}
+         */
+
+    }, {
+        key: 'findFixesForSidByRunwayAndExit',
+        value: function findFixesForSidByRunwayAndExit(icao, exitFixName, runwayName) {
+            if (!icao) {
+                return;
+            }
+
+            var sid = this.findRouteByIcao(icao);
+
+            return sid.findFixesAndRestrictionsForRunwayAndExit(runwayName, exitFixName);
+        }
+
+        // TODO: update implementations to accept the FixModel instead of an array
+        /**
+         * Find a list of fixes for a route, given an `icao`, `entryFixName` and `runwayName` parameter.
+         *
+         * Used to gather all the fixes for a give STAR route.
+         *
+         * @for StandardRouteCollection
+         * @method getSID
+         * @param icao {string}
+         * @param entryFixName {string}
+         * @param runwayName {string} (optional)
+         * @return {array}
+         */
+
+    }, {
+        key: 'findFixesForStarByEntryAndRunway',
+        value: function findFixesForStarByEntryAndRunway(icao, entryFixName, runwayName) {
+            if (!icao) {
+                return;
+            }
+
+            var star = this.findRouteByIcao(icao);
+
+            return star.findFixesAndRestrictionsForEntryAndRunway(entryFixName, runwayName);
+        }
+
+        /**
+         * Find a list of `StandardWaypointModel`s for a specific route
+         *
+         * @for StandardRouteCollection
+         * @method findFixModelsForRouteByEntryAndExit
+         * @param icao {string}
+         * @param entry {string}
+         * @param exit {string}
+         * @param isPreSpawn {boolean} flag used to determine if distances between waypoints should be calculated
+         * @return {StandardRouteModel}
+         */
+
+    }, {
+        key: 'findFixModelsForRouteByEntryAndExit',
+        value: function findFixModelsForRouteByEntryAndExit(icao, entry, exit, isPreSpawn) {
+            if (!icao) {
+                return;
+            }
+
+            var route = this.findRouteByIcao(icao);
+
+            return route.findStandardWaypointModelsForEntryAndExit(entry, exit, isPreSpawn);
+        }
+
+        /**
+         * Find a random name of an `exitPoint` segment that exists within the collection.
+         *
+         * @for StandardRouteCollection
+         * @method findRandomExitPointForSIDIcao
+         * @param icao {string}
+         * @return {string}
+         */
+
+    }, {
+        key: 'findRandomExitPointForSIDIcao',
+        value: function findRandomExitPointForSIDIcao(icao) {
+            var sid = this.findRouteByIcao(icao);
+
+            // if sid doesnt have any exit points it ends at fix for which the SID is named
+            if (!sid.hasExitPoints()) {
+                return sid.icao;
+            }
+
+            // if has exitPoints, return a randomly selected one from a list of exitFixNames
+            var exitPointIcaos = sid.gatherExitPointNames();
+            var maxIndex = exitPointIcaos.length - 1;
+            var randomIndex = (0, _random3.default)(0, maxIndex);
+
+            return exitPointIcaos[randomIndex];
+        }
+
+        /**
+         * Find a `StandardRouteModel` within the collection given an `icao`
+         *
+         * @for StandardRouteCollection
+         * @method findRouteByIcao
+         * @param icao {string}
+         * @return {StandardRouteModel|undefined}
+         */
+
+    }, {
+        key: 'findRouteByIcao',
+        value: function findRouteByIcao(icao) {
+            return (0, _find3.default)(this._items, { icao: icao });
+        }
+
+        /**
+         * Add a list of sids to the collection
+         *
+         * @for StandardRouteCollection
+         * @method _addRouteListToCollection
+         * @param routeList {object}
+         * @private
+         */
+
+    }, {
+        key: '_addRouteListToCollection',
+        value: function _addRouteListToCollection(routeList) {
+            var _this2 = this;
+
+            (0, _forEach3.default)(routeList, function (route) {
+                var routeModel = new _StandardRouteModel2.default(route);
+
+                _this2._addSidToCollection(routeModel);
+            });
+
+            return this;
+        }
+
+        /**
+         * Add a `StandardRouteModel` to the collection and update length.
+         *
+         * @for StandardRouteCollection
+         * @method _addSidToCollection
+         * @param routeModel {StandardRouteModel}
+         * @private
+         */
+
+    }, {
+        key: '_addSidToCollection',
+        value: function _addSidToCollection(routeModel) {
+            if (!(routeModel instanceof _StandardRouteModel2.default)) {
+                // eslint-disable-next-line max-len
+                throw new TypeError('Expected routeModel to be an instance of StandardRouteModel, instead received ' + routeModel);
+            }
+
+            this._items.push(routeModel);
+
+            return this;
+        }
+    }]);
+
+    return StandardRouteCollection;
+}(_BaseCollection3.default);
+
+exports.default = StandardRouteCollection;
+
+},{"../../base/BaseCollection":558,"./StandardRouteModel":556,"lodash/find":456,"lodash/forEach":458,"lodash/random":488}],556:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _compact2 = require('lodash/compact');
+
+var _compact3 = _interopRequireDefault(_compact2);
+
+var _forEach2 = require('lodash/forEach');
+
+var _forEach3 = _interopRequireDefault(_forEach2);
+
+var _get2 = require('lodash/get');
+
+var _get3 = _interopRequireDefault(_get2);
+
+var _isArray2 = require('lodash/isArray');
+
+var _isArray3 = _interopRequireDefault(_isArray2);
+
+var _isEmpty2 = require('lodash/isEmpty');
+
+var _isEmpty3 = _interopRequireDefault(_isEmpty2);
+
+var _isObject2 = require('lodash/isObject');
+
+var _isObject3 = _interopRequireDefault(_isObject2);
+
+var _BaseModel2 = require('../../base/BaseModel');
+
+var _BaseModel3 = _interopRequireDefault(_BaseModel2);
+
+var _RouteSegmentCollection = require('./RouteSegmentCollection');
+
+var _RouteSegmentCollection2 = _interopRequireDefault(_RouteSegmentCollection);
+
+var _RouteSegmentModel = require('./RouteSegmentModel');
+
+var _RouteSegmentModel2 = _interopRequireDefault(_RouteSegmentModel);
+
+var _distance = require('../../math/distance');
+
+var _unitConverters = require('../../utilities/unitConverters');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+/**
+ * Accepts a single route belonging to a SID or STAR and provides methods to reason about its contents.
+ *
+ * @class StandardRouteModel
+ */
+var StandardRouteModel = function (_BaseModel) {
+    _inherits(StandardRouteModel, _BaseModel);
+
+    /**
+     * Expects an object in the form of (taken from `klas.sids.SHEAD9`):
+     *
+     *  {
+     *    'icao': 'SHEAD9',
+     *    'name': 'Shead Nine',
+     *    'rwy': {
+     *      '01L': [['BESSY', 'S230'], ['MDDOG', 'A90'], ['TARRK', 'A110']],
+     *      '01R': [['BESSY', 'S230'], ['MDDOG', 'A90'], ['TARRK', 'A110']],
+     *      '07L': ['WASTE', ['BAKRR', 'A70'], ['MINEY', 'A80+'], 'HITME'],
+     *      '07R': ['JESJI', ['BAKRR', 'A70'], ['MINEY', 'A80+'], 'HITME'],
+     *      '19L': ['FIXIX', ['ROPPR', 'A70'], ['MDDOG', 'A90'], ['TARRK', 'A110']],
+     *      '19R': ['JAKER', ['ROPPR', 'A70'], ['MDDOG', 'A90'], ['TARRK', 'A110']],
+     *      '25L': ['PIRMD', ['ROPPR', 'A70'], ['MDDOG', 'A90'], ['TARRK', 'A110']],
+     *      '25R': ['RBELL', ['ROPPR', 'A70'], ['MDDOG', 'A90'], ['TARRK', 'A110']]
+     *    },
+     *    'body': [['SHEAD', 'A140+']],
+     *    'exitPoints': {
+     *      'KENNO': [['DBIGE', 'A210+'], ['BIKKR', 'A210+'], 'KENNO'],
+     *      'OAL': [['DBIGE', 'A210+'], ['BIKKR', 'A210+'], 'KENNO', 'OAL']
+     *    },
+     *    'draw': [
+     *      ['BESSY', 'MDDOG'],
+     *      ['ROPPR', 'MDDOG', 'TARRK', 'SHEAD'],
+     *      ['HITME', 'SHEAD', 'DBIGE', 'BIKKR', 'KENNO*'],
+     *      ['KENNO', 'OAL*']
+     *    ]
+     *  }
+     *
+     * - `rwy` becomes the `_runwayCollection`. may not be included in a route definition
+     * - `body` becomes the `_bodySegmentModel`. may not be included in a route definition
+     * - `exitPoints` becomes the  `_exitCollection`. will only be present on SID routes
+     * - `entryPoints` (not shown above) becomes the `_entryCollection`. will only be present on STAR routes
+     *
+     * @constructor
+     * @param standardRoute {object}
+     */
+    function StandardRouteModel(standardRoute) {
+        var _ret;
+
+        _classCallCheck(this, StandardRouteModel);
+
+        var _this = _possibleConstructorReturn(this, (StandardRouteModel.__proto__ || Object.getPrototypeOf(StandardRouteModel)).call(this));
+
+        _this._generateFixList = function (originSegment, bodySegment, destinationSegment) {
+            // in the event that one of these functions doesnt find a result set it will return an empty array.
+            // we leverage then `lodash.compact()` below to remove any empty values from the array before
+            // returning the `fixList`.
+            // These functions are called synchronously and order of operation is very important here.
+            var fixList = [].concat(_toConsumableArray(originSegment), _toConsumableArray(bodySegment), _toConsumableArray(destinationSegment));
+
+            return (0, _compact3.default)(fixList);
+        };
+
+        _this._findFixListForSidByRunwayAndExit = function (runwayName, exitFixName) {
+            return _this._generateFixList(_this._findFixListInByCollectionAndSegmentName('rwy', '_runwayCollection', runwayName), _this._findBodyFixList(), _this._findFixListInByCollectionAndSegmentName('exitPoints', '_exitCollection', exitFixName));
+        };
+
+        _this._findFixListForStarByEntryAndRunway = function (entryFixName, runwayName) {
+            return _this._generateFixList(_this._findFixListInByCollectionAndSegmentName('entryPoints', '_entryCollection', entryFixName), _this._findBodyFixList(), _this._findFixListInByCollectionAndSegmentName('rwy', '_runwayCollection', runwayName));
+        };
+
+        if (!(0, _isObject3.default)(standardRoute) || (0, _isArray3.default)(standardRoute)) {
+            throw new TypeError('Expected standardRoute to be an object, instead received ' + (typeof standardRoute === 'undefined' ? 'undefined' : _typeof(standardRoute)));
+        }
+
+        /**
+         * Name of the fix
+         *
+         * @property name
+         * @type {string}
+         * @default ''
+         */
+        _this.name = '';
+
+        /**
+         * SID icoa identifier
+         *
+         * @property icao
+         * @type {string}
+         * @default ''
+         */
+        _this.icao = '';
+
+        /**
+         * List of fixes in the order that they should be drawn
+         *
+         * Pulled straight from the json file.
+         * Currently unused and is only a place to put the data.
+         *
+         * @property draw
+         * @type {array}
+         * @default
+         */
+        _this.draw = [];
+
+        /**
+         * List of `rwy` segments and fixes
+         *
+         * Pulled straight from the json file.
+         * Currently unused and is only a place to put the data.
+         *
+         * @property rwy
+         * @type {object}
+         * @default {}
+         */
+        _this.rwy = {};
+
+        /**
+         * @property body
+         * @type {array}
+         * @default []
+         */
+        _this.body = [];
+
+        /**
+         * List of `exitPoints` segments and fixes
+         *
+         * Pulled straight from the json file.
+         * Currently unused and is only a place to put the data.
+         *
+         * @property exitPoints
+         * @type {object}
+         * @default {}
+         */
+        _this.exitPoints = {};
+
+        /**
+         * Collection object of the `rwy` route segments
+         *
+         * @property _runwayCollection
+         * @type {RouteSegmentCollection}
+         * @default null
+         * @private
+         */
+        _this._runwayCollection = null;
+
+        /**
+         * `RouteSegmentModel` for the fixes belonging to the `body` segment
+         *
+         * @property _bodySegmentModel
+         * @type {RouteSegmentModel}
+         * @default null
+         * @private
+         */
+        _this._bodySegmentModel = null;
+
+        /**
+         * Collection of `exitPoints` route segments
+         *
+         * This property should only be defined for SIDs and null for STAR routes
+         *
+         * @property _exitCollection
+         * @type {RouteSegmentCollection}
+         * @default null
+         * @private
+         */
+        _this._exitCollection = null;
+
+        /**
+         * Collection of the `entryPoints` route segments.
+         *
+         * This property should only be defined for STARs and null for SID routes
+         * @type {RouteSegmentCollection}
+         * @default null
+         * @private
+         */
+        _this._entryCollection = null;
+
+        return _ret = _this._init(standardRoute), _possibleConstructorReturn(_this, _ret);
+    }
+
+    /**
+     * Lifecycle method. Should be run only once on instantiation.
+     *
+     * @for StandardRouteModel
+     * @method _init
+     * @param standardRoute {object}
+     * @private
+     */
+
+
+    _createClass(StandardRouteModel, [{
+        key: '_init',
+        value: function _init(standardRoute) {
+            this.icao = standardRoute.icao;
+            this.name = standardRoute.name;
+            this.draw = standardRoute.draw;
+            this.rwy = standardRoute.rwy;
+            this.body = standardRoute.body;
+            this.exitPoints = (0, _get3.default)(standardRoute, 'exitPoints', {});
+            this.entryPoints = (0, _get3.default)(standardRoute, 'entryPoints', {});
+            this._runwayCollection = this._buildSegmentCollection(standardRoute.rwy);
+            this._bodySegmentModel = this._buildSegmentModel(standardRoute.body);
+            this._exitCollection = this._buildSegmentCollection(standardRoute.exitPoints);
+            this._entryCollection = this._buildSegmentCollection(standardRoute.entryPoints);
+        }
+
+        /**
+         * reset the current instance
+         *
+         * @for StandardRouteModel
+         * @method reset
+         */
+
+    }, {
+        key: 'reset',
+        value: function reset() {
+            this.icao = '';
+            this.name = '';
+            this.rwy = [];
+            this.body = [];
+            this.exitPoints = [];
+            this.draw = [];
+            this._runwayCollection = null;
+            this._bodySegmentModel = null;
+            this._exitCollection = null;
+            this._entryCollection = null;
+
+            return this;
+        }
+
+        /**
+         * Gather the fixes from all the route segments.
+         *
+         * Returns an 2d array in the shape of
+         * - [[FIXNAME, FIX_RESTRICTIONS], [FIXNAME, FIX_RESTRICTIONS]]
+         *
+         * @for StandardRouteModel
+         * @method findFixesAndRestrictionsForRunwayAndExit
+         * @param runwayName {string}
+         * @param exitFixName {string}
+         * @return {array}
+         */
+
+    }, {
+        key: 'findFixesAndRestrictionsForRunwayAndExit',
+        value: function findFixesAndRestrictionsForRunwayAndExit(runwayName, exitFixName) {
+            return this._findFixListForSidByRunwayAndExit(runwayName, exitFixName);
+        }
+
+        /**
+         * Gather the fixes from all the route segments.
+         *
+         * @for StandardRouteModel
+         * @method findFixesAndRestrictionsForEntryAndRunway
+         * @param entryFixName {string}
+         * @param runwayName {string}
+         * @return {array}
+         */
+
+    }, {
+        key: 'findFixesAndRestrictionsForEntryAndRunway',
+        value: function findFixesAndRestrictionsForEntryAndRunway(entryFixName, runwayName) {
+            return this._findFixListForStarByEntryAndRunway(entryFixName, runwayName);
+        }
+
+        /**
+         * Collect all the `StandardWaypointModel` objects for a given route.
+         *
+         * @for StandardRouteModel
+         * @method findStandardWaypointModelsForEntryAndExit
+         * @param entry {string}
+         * @param exit {string}
+         * @param isPreSpawn {boolean} flag used to determine if distances between waypoints should be calculated
+         * @return waypointList {array<StandardWaypointModel>}
+         */
+
+    }, {
+        key: 'findStandardWaypointModelsForEntryAndExit',
+        value: function findStandardWaypointModelsForEntryAndExit(entry, exit, isPreSpawn) {
+            var waypointList = this._findStandardWaypointModelsForRoute(entry, exit);
+
+            if (isPreSpawn) {
+                this._updateWaypointsWithPreviousWaypointData(waypointList);
+            }
+
+            return waypointList;
+        }
+
+        /**
+         * Given two `StandardWaypointModel` objects, calculate the distance in `nm` between them
+         *
+         * @for StandardRouteModel
+         * @method calculateDistanceBetweenWaypoints
+         * @param waypoint {StandardWaypointModel}
+         * @param previousWaypoint {StandardWaypointModel}
+         * @return distance {number}
+         */
+
+    }, {
+        key: 'calculateDistanceBetweenWaypoints',
+        value: function calculateDistanceBetweenWaypoints(waypoint, previousWaypoint) {
+            var distance = (0, _distance.distance2d)(previousWaypoint, waypoint);
+
+            return (0, _unitConverters.nm)(distance);
+        }
+
+        /**
+         * Return the fixnames for the `_exitCollection`
+         *
+         * @for StandardRouteModel
+         * @method gatherExitPointNames
+         * @return {array}
+         */
+
+    }, {
+        key: 'gatherExitPointNames',
+        value: function gatherExitPointNames() {
+            if (!this.hasExitPoints()) {
+                return [];
+            }
+
+            return this._exitCollection.gatherFixNamesForCollection();
+        }
+
+        /**
+         * Does the `_exitCollection` have any exitPoints?
+         *
+         * @for StandardRouteModel
+         * @method hasExitPoints
+         * @return {boolean}
+         */
+
+    }, {
+        key: 'hasExitPoints',
+        value: function hasExitPoints() {
+            return this._exitCollection !== null && this._exitCollection.length > 0;
+        }
+
+        /**
+         * Build a new RouteSegmentModel for a segmentFixList
+         *
+         * `body` segment is expected to be an array, so instead of creating a collection like with `rwy` and
+         * `exitPoints`, here we just create a model.  This provides the same methods the collections use, only
+         * without the collection layer.
+         *
+         * @for StandardRouteModel
+         * @method _buildSegmentModel
+         * @param segmentFixList {array}
+         * @return segmentModel {SegmentModel}
+         * @private
+         */
+
+    }, {
+        key: '_buildSegmentModel',
+        value: function _buildSegmentModel(segmentFixList) {
+            var segmentModel = new _RouteSegmentModel2.default('body', segmentFixList);
+
+            return segmentModel;
+        }
+
+        /**
+         * Build a collection of `RouteSegmentModel`s from a segment.
+         *
+         * @for StandardRouteModel
+         * @method _buildSegmentCollection
+         * @param segment {object}
+         * @return segmentCollection {SegmentCollection}
+         * @private
+         */
+
+    }, {
+        key: '_buildSegmentCollection',
+        value: function _buildSegmentCollection(segment) {
+            // SIDS have `exitPoints` while STARs have `entryPoints`. one or the other will be `undefined`
+            // depending on the route type.
+            if (typeof segment === 'undefined' || (0, _isEmpty3.default)(segment)) {
+                return null;
+            }
+
+            var segmentCollection = new _RouteSegmentCollection2.default(segment);
+
+            return segmentCollection;
+        }
+
+        /**
+         * Given three functions, spread their result in an array then return the compacted result.
+         *
+         * This method expects to receive arrays as results from the three methods passed in.
+         * This wrapper method is provided to maintain a consistent interface while allowing for a varying set
+         * of methods to be called in the place of each parameter.
+         *
+         * @for StandardRouteModel
+         * @method _generateFixList
+         * @param originSegment {function}
+         * @param bodySegment {function}
+         * @param destinationSegment {function}
+         * @return {array}
+         * @private
+         */
+
+
+        /**
+         * Given a `runwayName` and `exitFixName`, find a list of fixes for the `rwy`, `body` and `exitPoints` segments.
+         *
+         * @for StandardRouteModel
+         * @method _findFixListForSidByRunwayAndExit
+         * @param runwayName {string}
+         * @param exitFixName {string}
+         * @return fixList {array}
+         * @private
+         */
+
+
+        /**
+         * Given an `entryFixName` and/or a `runwayName`, find a list of fixes for the `entryPoints`,
+         * `body` and `rwy` segments.
+         *
+         * @for StandardRouteModel
+         * @method _findFixListForStarByEntryAndRunway
+         * @param entryFixName {string}
+         * @param runwayName {string} (optional)
+         * @return {array}
+         */
+
+    }, {
+        key: '_findStandardWaypointModelsForRoute',
+
+
+        /**
+         * Gather a list of `StandardWaypointModel` objects for a particular route.
+         *
+         * @for StandardRouteModel
+         * @method _findStandardWaypointModelsForRoute
+         * @param entry {string}
+         * @param exti {string}
+         * @return {array<StandardWaypointModel>}
+         */
+        value: function _findStandardWaypointModelsForRoute(entry, exit) {
+            var entrySegmentItems = [];
+            var exitSegmentItems = [];
+
+            if (this._entryCollection) {
+                var entrySegment = this._entryCollection.findSegmentByName(entry);
+                entrySegmentItems = entrySegment.items;
+            }
+
+            if (this._runwayCollection) {
+                var exitSegment = this._runwayCollection.findSegmentByName(exit);
+                exitSegmentItems = exitSegment.items;
+            }
+
+            return this._generateFixList(entrySegmentItems, this._bodySegmentModel.items, exitSegmentItems);
+        }
+
+        /**
+         * Given an `originalCollectionName`, `collectionName` and a `segmentName`, return a normalized list of
+         * fixes with restrictions.
+         *
+         * @for StandardRouteModel
+         * @method _findFixListInByCollectionAndSegmentName
+         * @param originalCollectionName {string}  the name of the original collection from airport json,
+         *                                         one of: [entryPoints, rwy, exitPoints]
+         * @param collectionName {string}  collectionName as defined here, one of:
+         *                                 [_runwayCollection, _entryCollection, _exitCollection]
+         * @segmentName {string}  name of the segment to search for
+         * @return array {array<array>}
+         */
+
+    }, {
+        key: '_findFixListInByCollectionAndSegmentName',
+        value: function _findFixListInByCollectionAndSegmentName(originalCollectionName, collectionName, segmentName) {
+            var originalCollection = (0, _get3.default)(this, originalCollectionName, null);
+            var collection = (0, _get3.default)(this, collectionName, null);
+
+            // specifically checking for an empty string here because this param gets a default of '' when
+            // it is received in to the public method
+            if (!originalCollection || !collection || segmentName === '') {
+                return [];
+            }
+
+            return collection.findWaypointsForSegmentName(segmentName);
+        }
+
+        /**
+         * Find list of waypoints for the `body` segment
+         *
+         * @for StandardRouteModel
+         * @method _findBodyFixList
+         * @return {array}
+         * @private
+         */
+
+    }, {
+        key: '_findBodyFixList',
+        value: function _findBodyFixList() {
+            if (typeof this.body === 'undefined' || this.body.length === 0) {
+                return [];
+            }
+
+            return this._bodySegmentModel.findWaypointsForSegment();
+        }
+
+        /**
+         * Update each `StandardRouteWaypointModel` in the list the with disance from the previous waypoint, and
+         * that waypoint's name.
+         *
+         * @for StandardRouteModel
+         * @method _updateWaypointsWithPreviousWaypointData
+         * @parma waypointModelList {array<StandardRouteWaypointModel>}
+         * @private
+         */
+
+    }, {
+        key: '_updateWaypointsWithPreviousWaypointData',
+        value: function _updateWaypointsWithPreviousWaypointData(waypointModelList) {
+            var _this2 = this;
+
+            (0, _forEach3.default)(waypointModelList, function (waypoint, i) {
+                var previousWaypoint = waypointModelList[i - 1];
+                if (i === 0) {
+                    previousWaypoint = waypoint;
+                }
+
+                var distance = _this2.calculateDistanceBetweenWaypoints(waypoint.position, previousWaypoint.position);
+                waypoint.distanceFromPreviousWaypoint = distance;
+                waypoint.previousStandardWaypointName = previousWaypoint.name;
+            });
+        }
+    }]);
+
+    return StandardRouteModel;
+}(_BaseModel3.default);
+
+exports.default = StandardRouteModel;
+
+},{"../../base/BaseModel":559,"../../math/distance":575,"../../utilities/unitConverters":586,"./RouteSegmentCollection":553,"./RouteSegmentModel":554,"lodash/compact":453,"lodash/forEach":458,"lodash/get":459,"lodash/isArray":466,"lodash/isEmpty":469,"lodash/isObject":475}],557:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _BaseModel2 = require('../../base/BaseModel');
+
+var _BaseModel3 = _interopRequireDefault(_BaseModel2);
+
+var _FixCollection = require('../Fix/FixCollection');
+
+var _FixCollection2 = _interopRequireDefault(_FixCollection);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+/**
+ * @property NAME_INDEX
+ * @type {number}
+ * @final
+ */
+var NAME_INDEX = 0;
+
+/**
+ * @property RESTRICTION_INDEX
+ * @type {number}
+ * @final
+ */
+var RESTRICTION_INDEX = 1;
+
+/**
+ * A route waypoint describes a `fixName` and any altitude or speed restrictions for that fix.
+ *
+ * @class StandardRouteWaypointModel
+ * @extends BaseModel
+ */
+
+var StandardRouteWaypointModel = function (_BaseModel) {
+  _inherits(StandardRouteWaypointModel, _BaseModel);
+
+  /**
+   * Expects `routeWaypoint` to be in one of these forms:
+   * - ["FRAWG", "A80+|S210+"]
+   * - ["FRAWG", "A80-|S210"]
+   * - ["FRAWG", "A80"]
+   * - ["FRAWG", "S210"]
+   * - "FRAWG"
+   *
+   * @constructor
+   * @param routeWaypoint {array|string}
+   */
+  function StandardRouteWaypointModel(routeWaypoint) {
+    var _ret2;
+
+    _classCallCheck(this, StandardRouteWaypointModel);
+
+    var _this = _possibleConstructorReturn(this, (StandardRouteWaypointModel.__proto__ || Object.getPrototypeOf(StandardRouteWaypointModel)).call(this, routeWaypoint));
+
+    if (typeof routeWaypoint === 'undefined') {
+      var _ret;
+
+      return _ret = _this, _possibleConstructorReturn(_this, _ret);
+    }
+
+    /**
+     * Name of the fix
+     *
+     * @property name
+     * @type {string}
+     * @default ''
+     * @private
+     */
+    _this.name = '';
+
+    /**
+     * Any restrictions for a given fix
+     *
+     * ex:
+     * - "A80+|S210"
+     * - "A80-"
+     * - "S230"
+     *
+     * using null here to match current api, if restrictions dont exist for a given waypoint
+     * the consumers are expecting this to be null.
+     *
+     * @property _restrictions
+     * @type {string|null}
+     * @default null
+     * @private
+     */
+    _this._restrictions = null;
+
+    /**
+     * NOT IN USE
+     *
+     * Required altitude for a fix
+     *
+     * @property _alititude (optional)
+     * @type {number}
+     * @default -1000
+     * @private
+     */
+    _this._alititude = -1000;
+
+    // TODO: This will need to be implemented in the future as an emuneration. Something to the effect of: {BELOW|AT|ABOVE}
+    /**
+     * NOT IN USE
+     *
+     * Altitude constraints, if any, for a fix.
+     *
+     * @property _alititudeConstraint (options)
+     * @type {string}
+     * @default ''
+     * @private
+     */
+    _this._alititudeConstraint = '';
+
+    /**
+     * NOT IN USE
+     *
+     * Speed constraint, if any, for a fix.
+     *
+     * @property _speedConstraint (optional)
+     * @type {string}
+     * @default -1
+     * @private
+     */
+    _this._speedConstraint = -1;
+
+    /**
+     * Positon information for the current waypoint
+     *
+     * Specific bits of this property are exposed via public getters.
+     * This property should never be modified by an exteral method.
+     *
+     * @property _waypointPosition
+     * @type {PositionModel}
+     * @default null
+     * @private
+     */
+    _this._waypointPosition = null;
+
+    /**
+     * Distance in nm from the previous waypoint.
+     *
+     * This property is set exterally by the `StandardRouteModel` and used only when called via
+     * `ArrivalBase.preSpawn()`.
+     *
+     * This value is mutable and is not intended to be re-used after its initial use.
+     *
+     * @property distanceFromPreviousWaypoint
+     * @type {number}
+     * @default -1
+     */
+    _this.distanceFromPreviousWaypoint = -1;
+
+    /**
+     * Name of the previous `StandardWaypointModel` object in a route
+     *
+     * This property is set exterally by the `StandardRouteModel` and used only when called via
+     * `ArrivalBase.preSpawn()`.
+     *
+     * This value is mutable and is not intended to be re-used after its initial use.
+     *
+     * @property previousStandardWaypointName
+     * @type {string}
+     * @default ''
+     */
+    _this.previousStandardWaypointName = '';
+
+    return _ret2 = _this._init(routeWaypoint).clonePoisitonFromFix(), _possibleConstructorReturn(_this, _ret2);
+  }
+
+  /**
+   * Return this waypoint's `position` propery
+   *
+   * @property position
+   * @return {array}
+   */
+
+
+  _createClass(StandardRouteWaypointModel, [{
+    key: '_init',
+
+
+    /**
+     * Lifecycle method. Should be run only once on instantiation.
+     *
+     * @for StandardRouteWaypointModel
+     * @method _init
+     * @param routeWaypoint {array|string}
+     * @chainable
+     * @private
+     */
+    value: function _init(routeWaypoint) {
+      // if we receive a string, this fix doesnt have any restrictions so we only need to set `name`
+      if (typeof routeWaypoint === 'string') {
+        this.name = routeWaypoint;
+
+        return this;
+      }
+
+      this.name = routeWaypoint[NAME_INDEX];
+      // temporary property. should end up as a getter that wraps private methods
+      this._restrictions = routeWaypoint[RESTRICTION_INDEX];
+
+      this._parseWaypointRestrictions(routeWaypoint[RESTRICTION_INDEX]);
+
+      return this;
+    }
+
+    /**
+     * reset the current model instance
+     *
+     * @for StandardRouteWaypointModel
+     * @method reset
+     */
+
+  }, {
+    key: 'reset',
+    value: function reset() {
+      this.name = '';
+      this._restrictions = null;
+      this._alititude = -1000;
+      this._alititudeConstraint = '';
+      this._speedConstraint = -1;
+
+      return this;
+    }
+
+    /**
+     * Find the matching fix from the `FixCollection` and clone its `PositionModel` this `_waypointPosition`
+     *
+     * @for StandardRouteWaypointModel
+     * @method _clonePoisitonFromFix
+     * @param fixCollection {FixCollection}
+     * @private
+     */
+
+  }, {
+    key: 'clonePoisitonFromFix',
+    value: function clonePoisitonFromFix() {
+      var fixModel = _FixCollection2.default.findFixByName(this.name);
+
+      if (!fixModel) {
+        console.warn('The following fix was not found in the list of fixes for this Airport: ' + this.name);
+
+        return this;
+      }
+
+      this._waypointPosition = fixModel.clonePosition();
+
+      return this;
+    }
+
+    /**
+     * NOT IN USE
+     * // TODO: implement this method. altitude and speed should be parsed into real numbers so
+     *          they can be used elsewhere in the app.
+     *
+     * Parse a single string into:
+     * - `this._alititude`            = expressed in feet
+     * - `this._alititudeConstraint`  = {BELOW|AT|ABOVE}
+     * - `this._speedConstraint`      = expressed in kts
+     *
+     * Exapmles:
+     * - "A80+|S210"
+     * - "A80-|S210"
+     * - "A80"
+     * - "S210"
+     *
+     * @for StandardRouteWaypointModel
+     * @method _parseWaypointRestrictions
+     * @param waypointRestrictions {string}
+     * @private
+     */
+
+  }, {
+    key: '_parseWaypointRestrictions',
+    value: function _parseWaypointRestrictions(waypointRestrictions) {
+      return this;
+    }
+  }, {
+    key: 'position',
+    get: function get() {
+      return this._waypointPosition.position;
+    }
+
+    /**
+     * Return this waypoint's `gps` position property
+     *
+     * @property gps
+     * @return {array}
+     */
+
+  }, {
+    key: 'gps',
+    get: function get() {
+      return this._waypointPosition.gps;
+    }
+
+    /**
+     * This will return a normalized fix in the shape of `[FIXNAME, FIX_RESTRICTIONS]`.
+     *
+     * Fixes without restrictions are brought in to the application as a single string, however, all
+     * fixes are consumed as an array. `_restrictions` are initialized as null, thus if there are
+     * no restrictions for a fix this getter will return `[FIXNAME, null]`
+     *
+     * @for StandardRouteWaypointModel
+     * @property fix
+     * @return {array}
+     */
+
+  }, {
+    key: 'fix',
+    get: function get() {
+      return [this.name, this._restrictions];
+    }
+  }]);
+
+  return StandardRouteWaypointModel;
+}(_BaseModel3.default);
+
+exports.default = StandardRouteWaypointModel;
+
+},{"../../base/BaseModel":559,"../Fix/FixCollection":549}],558:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _uniqueId2 = require('lodash/uniqueId');
+
+var _uniqueId3 = _interopRequireDefault(_uniqueId2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+/**
+ * Base class from which a collection type class can inherit from.
+ *
+ * This class is meant to be extended and should never be used directly.
+ *
+ * @class BaseCollection
+ */
+var BaseCollection = function () {
+  /**
+   * @constructor
+   * @for BaseCollection
+   */
+  function BaseCollection() {
+    _classCallCheck(this, BaseCollection);
+
+    /**
+     * Unigue string id that can be used to differentiate this model instance from another.
+     *
+     * @property _id
+     * @type {string}
+     * @private
+     */
+    this._id = (0, _uniqueId3.default)();
+
+    /**
+     * @property _items
+     * @type {array}
+     * @default []
+     * @private
+     */
+    this._items = [];
+  }
+
+  /**
+   * Current length of the collection
+   *
+   * @property length
+   * @return {number}
+   */
+
+
+  _createClass(BaseCollection, [{
+    key: '_init',
+
+
+    /**
+     * Initialize the model properties. Should be run on instantiation and, though not desired,
+     * could be run multiple times after instantiation.
+     *
+     * This method may be called by the constructor or from a public fascade.
+     *
+     * @for BaseCollection
+     * @method _init
+     * @private
+     */
+    value: function _init() {
+      throw new TypeError('BaseCollection#_init has not been implemented by the extending class');
+    }
+
+    /**
+     * Destory the current instance.
+     *
+     * When implemented by the inheriting class, this method should un-set all class properties
+     * and remove any handlers.
+     *
+     * @for BaseCollection
+     * @method destroy
+     */
+
+  }, {
+    key: 'destroy',
+    value: function destroy() {
+      throw new TypeError('BaseCollection#destroy has not been implemented by the extending class');
+    }
+  }, {
+    key: 'length',
+    get: function get() {
+      return this._items.length;
+    }
+  }]);
+
+  return BaseCollection;
+}();
+
+exports.default = BaseCollection;
+
+},{"lodash/uniqueId":497}],559:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _uniqueId2 = require('lodash/uniqueId');
+
+var _uniqueId3 = _interopRequireDefault(_uniqueId2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+/**
+ * Base class for all Model objects to inherit from.
+ *
+ * This class is meant to be extended and should never be used directly.
+ *
+ * @class BaseModel
+ */
+var BaseModel = function () {
+  function BaseModel() {
+    _classCallCheck(this, BaseModel);
+
+    /**
+     * Unigue string id that can be used to differentiate this model instance from another.
+     *
+     * @property _id
+     * @type {string}
+     * @private
+     */
+    this._id = (0, _uniqueId3.default)();
+  }
+
+  /**
+   * Initialize the model properties. Should be run on instantiation and, though not desired,
+   * could be run multiple times after instantiation.
+   *
+   * This method may be called by the constructor or from a public fascade.
+   *
+   * @for BaseModel
+   * @method _init
+   * @private
+   */
+
+
+  _createClass(BaseModel, [{
+    key: '_init',
+    value: function _init() {
+      throw new TypeError('BaseModel#_init method must be implemented by the class extending BaseModel');
+    }
+
+    /**
+     * Destory the current instance.
+     *
+     * When implemented by the inheriting class, this method should un-set all class properties
+     * and remove any handlers.
+     *
+     * @for BaseModel
+     * @method reset
+     */
+
+  }, {
+    key: 'reset',
+    value: function reset() {
+      throw new TypeError('BaseModel#reset method must be implemented by the class extending BaseModel');
+    }
+  }]);
+
+  return BaseModel;
+}();
+
+exports.default = BaseModel;
+
+},{"lodash/uniqueId":497}],560:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _uniqueId2 = require('lodash/uniqueId');
+
+var _uniqueId3 = _interopRequireDefault(_uniqueId2);
 
 var _core = require('../math/core');
 
 var _unitConverters = require('../utilities/unitConverters');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -42772,6 +45840,7 @@ var Position = function () {
 
         _classCallCheck(this, Position);
 
+        this._id = (0, _uniqueId3.default)();
         // TODO: it might make more sense to abstract `coordinates` out to another Model object.
         this.latitude = 0;
         this.longitude = 0;
@@ -42780,6 +45849,7 @@ var Position = function () {
         this.magnetic_north = magnetic_north;
         this.x = 0;
         this.y = 0;
+        // TODO: make this a getter;
         this.position = [this.x, this.y];
         this.gps = [0, 0];
 
@@ -42787,17 +45857,26 @@ var Position = function () {
     }
 
     /**
-     * @for PositionModel
-     * @method parse
+     * Magnetic north of the current instance expressed in radians
+     *
+     * @property magneticNorthInRadians
+     * @return {number}
      */
 
 
     _createClass(Position, [{
         key: 'parse',
+
+
+        /**
+         * @for PositionModel
+         * @method parse
+         */
         value: function parse(coordinates, mode) {
             if (!REGEX.COMPASS_DIRECTION.test(coordinates[0])) {
                 this.x = coordinates[0];
                 this.y = coordinates[1];
+                // TODO: remove once this property is a getter
                 this.position = [this.x, this.y];
 
                 if (mode === 'GPS') {
@@ -42936,6 +46015,11 @@ var Position = function () {
 
             return ret;
         }
+    }, {
+        key: 'magneticNorthInRadians',
+        get: function get() {
+            return (0, _unitConverters.degreesToRadians)(this.magnetic_north);
+        }
     }]);
 
     return Position;
@@ -42943,7 +46027,7 @@ var Position = function () {
 
 exports.default = Position;
 
-},{"../math/core":562,"../utilities/unitConverters":573}],551:[function(require,module,exports){
+},{"../math/core":574,"../utilities/unitConverters":586,"lodash/uniqueId":497}],561:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -43074,18 +46158,18 @@ var ConvasController = function () {
         this.canvas.draw_sids = true;
         this.canvas.draw_terrain = true;
 
-        return this.createChildren().enable();
+        return this._init().enable();
     }
 
     /**
      * @for CanvasController
-     * @method createChildren
+     * @method _init
      */
 
 
     _createClass(ConvasController, [{
-        key: 'createChildren',
-        value: function createChildren() {
+        key: '_init',
+        value: function _init() {
             return this;
         }
 
@@ -43252,7 +46336,7 @@ var ConvasController = function () {
         value: function canvas_update_post() {
             var elapsed = window.gameController.game_time() - window.airportController.airport_get().start;
             var alpha = (0, _core.extrapolate_range_clamp)(0.1, elapsed, 0.4, 0, 1);
-            var framestep = Math.round((0, _core.extrapolate_range_clamp)(1, prop.game.speedup, 10, 30, 1));
+            var framestep = Math.round((0, _core.extrapolate_range_clamp)(1, window.gameController.game.speedup, 10, 30, 1));
 
             if (this.canvas.dirty || !window.gameController.game_paused() && prop.time.frames % framestep === 0 || elapsed < 1) {
                 var cc = this.canvas_get('navaids');
@@ -43400,7 +46484,7 @@ var ConvasController = function () {
         value: function canvas_should_draw() {
             var elapsed = (0, _timeHelpers.time)() - this.canvas.last;
 
-            if (elapsed > 1 / prop.game.speedup) {
+            if (elapsed > 1 / window.gameController.game.speedup) {
                 this.canvas.last = (0, _timeHelpers.time)();
                 return true;
             }
@@ -43629,14 +46713,15 @@ var ConvasController = function () {
                 cc.globalCompositeOperation = 'destination-out';
                 cc.lineWidth = 4;
 
-                _this3.canvas_draw_fix(cc, i, fix.position);
+                _this3.canvas_draw_fix(cc, fix.name, fix.position);
 
                 cc.strokeStyle = COLORS.WHITE_00;
                 cc.fillStyle = COLORS.WHITE_05;
                 cc.globalCompositeOperation = 'source-over';
                 cc.lineWidth = 1;
 
-                _this3.canvas_draw_fix(cc, i, fix.position);
+                _this3.canvas_draw_fix(cc, fix.name, fix.position);
+
                 cc.restore();
             });
         }
@@ -43658,10 +46743,9 @@ var ConvasController = function () {
 
             // Store the count of sid text drawn for a specific transition
             var text_at_point = [];
-            var departureColor = COLORS.DEPARTURE_COLOR;
 
-            cc.strokeStyle = departureColor;
-            cc.fillStyle = departureColor;
+            cc.strokeStyle = COLORS.DEPARTURE_COLOR;
+            cc.fillStyle = COLORS.DEPARTURE_COLOR;
             cc.setLineDash([1, 10]);
             cc.font = 'italic 14px monoOne, monospace';
 
@@ -43685,7 +46769,7 @@ var ConvasController = function () {
                                 write_sid_name = false;
                             }
 
-                            var fix = airport.getFix(fixList[j].replace('*', ''));
+                            var fix = airport.getFixPosition(fixList[j].replace('*', ''));
 
                             if (!fix) {
                                 log('Unable to draw line to \'' + fixList[j] + '\' because its position is not defined!', _logLevel.LOG.WARNING);
@@ -43705,12 +46789,14 @@ var ConvasController = function () {
                         cc.stroke();
 
                         if (exit_name) {
+                            // Initialize count for this transition
                             if (isNaN(text_at_point[exit_name])) {
-                                // Initialize count for this transition
                                 text_at_point[exit_name] = 0;
                             }
 
-                            var y_point = fy + 15 * text_at_point[exit_name]; // Move the y point for drawing depending on how many sids we have drawn text for at this point already
+                            // Move the y point for drawing depending on how many sids we have drawn text for
+                            // at this point already
+                            var y_point = fy + 15 * text_at_point[exit_name];
                             cc.fillText(s + '.' + exit_name, fx + 10, y_point);
 
                             text_at_point[exit_name] += 1; // Increment the count for this transition
@@ -43874,7 +46960,7 @@ var ConvasController = function () {
             // TODO: if all these parens are actally needed, abstract this out to a function that can return a bool.
             // Aircraft
             // Draw the future path
-            if (prop.game.option.get('drawProjectedPaths') === 'always' || prop.game.option.get('drawProjectedPaths') === 'selected' && (aircraft.warning || match) && !aircraft.isTaxiing()) {
+            if (window.gameController.game.option.get('drawProjectedPaths') === 'always' || window.gameController.game.option.get('drawProjectedPaths') === 'selected' && (aircraft.warning || match) && !aircraft.isTaxiing()) {
                 this.canvas_draw_future_track(cc, aircraft);
             }
 
@@ -44003,19 +47089,19 @@ var ConvasController = function () {
             var lockedStroke = void 0;
             var was_locked = false;
             var future_track = [];
-            var save_delta = prop.game.delta;
+            var save_delta = window.gameController.game.delta;
             var fms_twin = (0, _cloneDeep3.default)(aircraft.fms);
             var twin = (0, _cloneDeep3.default)(aircraft);
 
             twin.fms = fms_twin;
             twin.fms.aircraft = twin;
             twin.projected = true;
-            prop.game.delta = 5;
+            window.gameController.game.delta = 5;
 
             for (var i = 0; i < 60; i++) {
                 twin.update();
 
-                ils_locked = twin.fms.currentWaypoint().runway && twin.category === _AircraftInstanceModel.FLIGHT_MODES.ARRIVAL && twin.mode === _AircraftInstanceModel.FLIGHT_MODES.LANDING;
+                ils_locked = twin.isPrecisionGuided() && twin.category === _AircraftInstanceModel.FLIGHT_CATEGORY.ARRIVAL && twin.mode === _AircraftInstanceModel.FLIGHT_MODES.LANDING;
 
                 future_track.push([twin.position[0], twin.position[1], ils_locked]);
 
@@ -44024,7 +47110,7 @@ var ConvasController = function () {
                 }
             }
 
-            prop.game.delta = save_delta;
+            window.gameController.game.delta = save_delta;
             cc.save();
 
             if (aircraft.category === _AircraftInstanceModel.FLIGHT_CATEGORY.DEPARTURE) {
@@ -44457,9 +47543,9 @@ var ConvasController = function () {
         key: 'canvas_draw_fancy_rings',
         value: function canvas_draw_fancy_rings(cc, fix_origin, fix1, fix2) {
             var airport = window.airportController.airport_get();
-            var origin = airport.getFix(fix_origin);
-            var f1 = airport.getFix(fix1);
-            var f2 = airport.getFix(fix2);
+            var origin = airport.getFixPosition(fix_origin);
+            var f1 = airport.getFixPosition(fix1);
+            var f2 = airport.getFixPosition(fix2);
             var minDist = Math.min((0, _distance.distance2d)(origin, f1), (0, _distance.distance2d)(origin, f2));
             var halfPI = Math.PI / 2;
             var extend_ring = (0, _unitConverters.degreesToRadians)(10);
@@ -44724,7 +47810,7 @@ var ConvasController = function () {
         }
 
         /** Draws crosshairs that point to the currently translated location
-          /**
+         /**
          * @for CanvasController
          * @method canvas_draw_crosshairs
          * @param cc
@@ -44838,7 +47924,63 @@ var ConvasController = function () {
 
 exports.default = ConvasController;
 
-},{"../aircraft/AircraftInstanceModel":529,"../constants/logLevel":552,"../constants/selectors":553,"../math/circle":561,"../math/core":562,"../math/distance":563,"../math/vector":565,"../utilities/timeHelpers":572,"../utilities/unitConverters":573,"jquery":296,"lodash/cloneDeep":455,"lodash/forEach":459,"lodash/has":461}],552:[function(require,module,exports){
+},{"../aircraft/AircraftInstanceModel":529,"../constants/logLevel":564,"../constants/selectors":565,"../math/circle":573,"../math/core":574,"../math/distance":575,"../math/vector":577,"../utilities/timeHelpers":585,"../utilities/unitConverters":586,"jquery":296,"lodash/cloneDeep":452,"lodash/forEach":458,"lodash/has":460}],562:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+/**
+ * @property AIRPORT_CONSTANTS
+ * @type {Object}
+ * @final
+ */
+var AIRPORT_CONSTANTS = exports.AIRPORT_CONSTANTS = {
+  /**
+   * @property DEFAULT_SPAWN_ALTITUDE_MIN
+   * @type {number}
+   * @final
+   */
+  DEFAULT_SPAWN_ALTITUDE_MIN: 10000,
+
+  /**
+   * @property DEFAULT_SPAWN_ALTITUDE_MAX
+   * @type {number}
+   * @final
+   */
+  DEFAULT_SPAWN_ALTITUDE_MAX: 10000,
+
+  /**
+   * @property DEFAULT_SPAWN_AIRCRAFT_SPEED_KTS
+   * @type {number}
+   * @final
+   */
+  DEFAULT_SPAWN_AIRCRAFT_SPEED_KTS: 250,
+
+  /**
+   * @property MIN_ENTRAIL_DISTANCE_NM
+   * @type {number}
+   * @final
+   */
+  MIN_ENTRAIL_DISTANCE_NM: 5.5
+};
+
+},{}],563:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var TIME = exports.TIME = {
+  /**
+   * @property ONE_HOUR_IN_SECONDS
+   * @type {number}
+   * @final
+   */
+  ONE_HOUR_IN_SECONDS: 3600
+};
+
+},{}],564:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -44857,7 +47999,7 @@ var LOG = exports.LOG = {
     FATAL: 4
 };
 
-},{}],553:[function(require,module,exports){
+},{}],565:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44997,7 +48139,7 @@ var SELECTORS = exports.SELECTORS = {
     DOM_SELECTORS: DOM_SELECTORS
 };
 
-},{"lodash/mapValues":484}],554:[function(require,module,exports){
+},{"lodash/mapValues":485}],566:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -45015,7 +48157,7 @@ var STORAGE_KEY = exports.STORAGE_KEY = {
   FIRST_RUN_TIME: 'first-run-time'
 };
 
-},{}],555:[function(require,module,exports){
+},{}],567:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -45166,7 +48308,7 @@ var ContentQueueClass = function () {
 
 exports.default = ContentQueueClass;
 
-},{"./LoadableContentModel":556,"jquery":296}],556:[function(require,module,exports){
+},{"./LoadableContentModel":568,"jquery":296}],568:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -45176,6 +48318,10 @@ Object.defineProperty(exports, "__esModule", {
 var _jquery = require('jquery');
 
 var _jquery2 = _interopRequireDefault(_jquery);
+
+var _get2 = require('lodash/get');
+
+var _get3 = _interopRequireDefault(_get2);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -45190,19 +48336,20 @@ var LoadableContentModel = function LoadableContentModel(options) {
     _classCallCheck(this, LoadableContentModel);
 
     this.url = options.url;
-    this.immediate = options.immediate ? true : false;
+    this.immediate = (0, _get3.default)(options, 'immediate', false);
     this.type = 'json';
     this.deferred = _jquery2.default.Deferred();
 };
 
 exports.default = LoadableContentModel;
 
-},{"jquery":296}],557:[function(require,module,exports){
+},{"jquery":296,"lodash/get":459}],569:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+exports.GAME_EVENTS = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand,
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      no-undef, class-methods-use-this */
@@ -45212,6 +48359,14 @@ var _jquery = require('jquery');
 
 var _jquery2 = _interopRequireDefault(_jquery);
 
+var _forEach2 = require('lodash/forEach');
+
+var _forEach3 = _interopRequireDefault(_forEach2);
+
+var _has2 = require('lodash/has');
+
+var _has3 = _interopRequireDefault(_has2);
+
 var _GameOptions = require('./GameOptions');
 
 var _GameOptions2 = _interopRequireDefault(_GameOptions);
@@ -45220,12 +48375,53 @@ var _core = require('../math/core');
 
 var _selectors = require('../constants/selectors');
 
+var _globalConstants = require('../constants/globalConstants');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 // Temporary const declaration here to attach to the window AND use as internal property
 var game = {};
+
+// TODO: Remember to move me to wherever the constants end up being moved to
+/**
+ * Definitions of point values for given game events
+ * @type {Object}
+ */
+var GAME_EVENTS_POINT_VALUES = {
+    AIRSPACE_BUST: -200,
+    ARRIVAL: 10,
+    COLLISION: -1000,
+    DEPARTURE: 10,
+    EXTREME_CROSSWIND_OPERATION: -15,
+    EXTREME_TAILWIND_OPERATION: -75,
+    GO_AROUND: -50,
+    HIGH_CROSSWIND_OPERATION: -5,
+    HIGH_TAILWIND_OPERATION: -25,
+    ILLEGAL_APPROACH_CLEARANCE: -10,
+    NOT_CLEARED_ON_ROUTE: -25,
+    SEPARATION_LOSS: -200
+};
+
+/**
+ * List of game events
+ * @type {Object}
+ */
+var GAME_EVENTS = exports.GAME_EVENTS = {
+    AIRSPACE_BUST: 'AIRSPACE_BUST',
+    ARRIVAL: 'ARRIVAL',
+    COLLISION: 'COLLISION',
+    DEPARTURE: 'DEPARTURE',
+    EXTREME_CROSSWIND_OPERATION: 'EXTREME_CROSSWIND_OPERATION',
+    EXTREME_TAILWIND_OPERATION: 'EXTREME_TAILWIND_OPERATION',
+    GO_AROUND: 'GO_AROUND',
+    HIGH_CROSSWIND_OPERATION: 'HIGH_CROSSWIND_OPERATION',
+    HIGH_TAILWIND_OPERATION: 'HIGH_TAILWIND_OPERATION',
+    ILLEGAL_APPROACH_CLEARANCE: 'ILLEGAL_APPROACH_CLEARANCE',
+    NOT_CLEARED_ON_ROUTE: 'NOT_CLEARED_ON_ROUTE',
+    SEPARATION_LOSS: 'SEPARATION_LOSS'
+};
 
 /**
  * @class GameController
@@ -45236,12 +48432,9 @@ var GameController = function () {
      * @constructor
      */
     function GameController(getDeltaTime) {
-        var _this = this;
-
         _classCallCheck(this, GameController);
 
         this.getDeltaTime = getDeltaTime;
-
         this.game = game;
         this.game.paused = true;
         this.game.focused = true;
@@ -45249,40 +48442,10 @@ var GameController = function () {
         this.game.frequency = 1;
         this.game.time = 0;
         this.game.delta = 0;
+        this.game.events = {};
         this.game.timeouts = [];
-
-        // TODO: move to `setupHandlers()`
-        (0, _jquery2.default)(window).blur(function () {
-            _this.game.focused = false;
-        });
-
-        (0, _jquery2.default)(window).focus(function () {
-            _this.game.focused = true;
-        });
-
         this.game.last_score = 0;
-        this.game.score = {
-            arrival: 0,
-            departure: 0,
-
-            windy_landing: 0,
-            windy_takeoff: 0,
-
-            failed_arrival: 0,
-            failed_departure: 0,
-
-            warning: 0,
-            hit: 0,
-
-            abort: {
-                landing: 0,
-                taxi: 0
-            },
-
-            violation: 0,
-            restrictions: 0
-        };
-
+        this.game.score = 0;
         this.game.option = new _GameOptions2.default();
     }
 
@@ -45295,78 +48458,66 @@ var GameController = function () {
     _createClass(GameController, [{
         key: 'init_pre',
         value: function init_pre() {
-            prop.game = {};
-            prop.game.paused = true;
-            prop.game.focused = true;
-            prop.game.speedup = 1;
-            prop.game.frequency = 1;
-            prop.game.time = 0;
-            prop.game.delta = 0;
-            prop.game.timeouts = [];
-
-            (0, _jquery2.default)(window).blur(function () {
-                prop.game.focused = false;
-            });
-
-            (0, _jquery2.default)(window).focus(function () {
-                prop.game.focused = true;
-            });
-
-            prop.game.last_score = 0;
-            prop.game.score = {
-                arrival: 0,
-                departure: 0,
-
-                windy_landing: 0,
-                windy_takeoff: 0,
-
-                failed_arrival: 0,
-                failed_departure: 0,
-
-                warning: 0,
-                hit: 0,
-
-                abort: {
-                    landing: 0,
-                    taxi: 0
-                },
-
-                violation: 0,
-                restrictions: 0
-            };
-
-            prop.game.option = new _GameOptions2.default();
+            this.game_initializeBlurFunctions();
+            this.events_initializeEventCount();
         }
 
         /**
-         * @for GameController
-         * @method game_get_score
-         */
+        * Initialize `GameController.events` to contain appropriate properties with values of 0
+        * @for GameController
+        * @method events_initializeEventCount
+        * @return
+        */
 
     }, {
-        key: 'game_get_score',
-        value: function game_get_score() {
-            var score = 0;
+        key: 'events_initializeEventCount',
+        value: function events_initializeEventCount() {
+            var _this = this;
 
-            score += prop.game.score.arrival * 10;
-            score += prop.game.score.departure * 10;
+            (0, _forEach3.default)(GAME_EVENTS, function (gameEvent, key) {
+                _this.game.events[key] = 0;
+            });
+        }
 
-            score -= prop.game.score.windy_landing * 0.5;
-            score -= prop.game.score.windy_takeoff * 0.5;
+        /**
+        * Record a game event to this.game.events, and update this.game.score
+        * @for GameController
+        * @method events_recordNew
+        * @param gameEvent {String} one of the events listed in GAME_EVENTS
+        */
 
-            score -= prop.game.score.failed_arrival * 20;
-            score -= prop.game.score.failed_departure * 2;
+    }, {
+        key: 'events_recordNew',
+        value: function events_recordNew(gameEvent) {
+            if (!(0, _has3.default)(GAME_EVENTS, gameEvent)) {
+                throw new TypeError('Expected a game event listed in GAME_EVENTS, but instead received ' + gameEvent);
+            }
 
-            score -= prop.game.score.warning * 5;
-            score -= prop.game.score.hit * 50;
+            this.game.events[gameEvent] += 1;
+            this.game.score += GAME_EVENTS_POINT_VALUES[gameEvent];
+        }
 
-            score -= prop.game.score.abort.landing * 5;
-            score -= prop.game.score.abort.taxi * 2;
+        /**
+        * Initialize blur functions used during game pausing
+        * @for GameController
+        * @method game_initializeBlurFunctions
+        * @return
+        */
 
-            score -= prop.game.score.violation;
-            score -= prop.game.score.restrictions * 10;
+    }, {
+        key: 'game_initializeBlurFunctions',
+        value: function game_initializeBlurFunctions() {
+            var _this2 = this;
 
-            return score;
+            // Set blurring function
+            (0, _jquery2.default)(window).blur(function () {
+                _this2.game.focused = false;
+            });
+
+            // Set un-blurring function
+            (0, _jquery2.default)(window).focus(function () {
+                _this2.game.focused = true;
+            });
         }
 
         /**
@@ -45377,33 +48528,29 @@ var GameController = function () {
     }, {
         key: 'game_get_weighted_score',
         value: function game_get_weighted_score() {
-            var score = this.game_get_score();
+            var hoursPlayed = this.game_time() / _globalConstants.TIME.ONE_HOUR_IN_SECONDS;
+            var scorePerHour = this.game.score / hoursPlayed;
 
-            score = score / (this.game_time() / 60);
-            score *= 500;
-
-            return score;
+            return scorePerHour;
         }
 
         /**
          * @for GameController
-         * @method game_reset_score
+         * @method game_reset_score_and_events
          */
 
     }, {
-        key: 'game_reset_score',
-        value: function game_reset_score() {
-            prop.game.score.abort = { landing: 0, taxi: 0 };
-            prop.game.score.arrival = 0;
-            prop.game.score.departure = 0;
-            prop.game.score.failed_arrival = 0;
-            prop.game.score.failed_departure = 0;
-            prop.game.score.hit = 0;
-            prop.game.score.restrictions = 0;
-            prop.game.score.violation = 0;
-            prop.game.score.warning = 0;
-            prop.game.score.windy_landing = 0;
-            prop.game.score.windy_takeoff = 0;
+        key: 'game_reset_score_and_events',
+        value: function game_reset_score_and_events() {
+            var _this3 = this;
+
+            // Reset events
+            (0, _forEach3.default)(this.game.events, function (gameEvent, key) {
+                _this3.game.events[key] = 0;
+            });
+
+            // Reset score
+            this.game.score = 0;
         }
 
         /**
@@ -45416,18 +48563,18 @@ var GameController = function () {
         value: function game_timewarp_toggle() {
             var $fastForwards = (0, _jquery2.default)('.' + _selectors.SELECTORS.CLASSNAMES.FAST_FORWARDS);
 
-            if (prop.game.speedup === 5) {
-                prop.game.speedup = 1;
+            if (this.game.speedup === 5) {
+                this.game.speedup = 1;
 
                 $fastForwards.removeClass(_selectors.SELECTORS.CLASSNAMES.SPEED_5);
                 $fastForwards.prop('title', 'Set time warp to 2');
-            } else if (prop.game.speedup === 1) {
-                prop.game.speedup = 2;
+            } else if (this.game.speedup === 1) {
+                this.game.speedup = 2;
 
                 $fastForwards.addClass(_selectors.SELECTORS.CLASSNAMES.SPEED_2);
                 $fastForwards.prop('title', 'Set time warp to 5');
             } else {
-                prop.game.speedup = 5;
+                this.game.speedup = 5;
 
                 $fastForwards.removeClass(_selectors.SELECTORS.CLASSNAMES.SPEED_2);
                 $fastForwards.addClass(_selectors.SELECTORS.CLASSNAMES.SPEED_5);
@@ -45444,7 +48591,7 @@ var GameController = function () {
         key: 'game_pause',
         value: function game_pause() {
             var $pauseToggle = (0, _jquery2.default)('.' + _selectors.SELECTORS.CLASSNAMES.PAUSE_TOGGLE);
-            prop.game.paused = true;
+            this.game.paused = true;
 
             $pauseToggle.addClass(_selectors.SELECTORS.CLASSNAMES.ACTIVE);
             $pauseToggle.attr('title', 'Resume simulation');
@@ -45460,7 +48607,7 @@ var GameController = function () {
         key: 'game_unpause',
         value: function game_unpause() {
             var $pauseToggle = (0, _jquery2.default)('.' + _selectors.SELECTORS.CLASSNAMES.PAUSE_TOGGLE);
-            prop.game.paused = false;
+            this.game.paused = false;
 
             $pauseToggle.removeClass(_selectors.SELECTORS.CLASSNAMES.ACTIVE);
             $pauseToggle.attr('title', 'Pause simulation');
@@ -45476,7 +48623,7 @@ var GameController = function () {
         key: 'game_pause_toggle',
         value: function game_pause_toggle() {
             // TODO: simplify if/else logic. should only need an if with an early exit
-            if (prop.game.paused) {
+            if (this.game.paused) {
                 this.game_unpause();
             } else {
                 this.game_pause();
@@ -45492,7 +48639,7 @@ var GameController = function () {
     }, {
         key: 'game_paused',
         value: function game_paused() {
-            return !prop.game.focused || prop.game.paused;
+            return !this.game.focused || this.game.paused;
         }
 
         /**
@@ -45504,7 +48651,7 @@ var GameController = function () {
     }, {
         key: 'game_time',
         value: function game_time() {
-            return prop.game.time;
+            return this.game.time;
         }
 
         /**
@@ -45516,7 +48663,7 @@ var GameController = function () {
     }, {
         key: 'game_delta',
         value: function game_delta() {
-            return prop.game.delta;
+            return this.game.delta;
         }
 
         /**
@@ -45528,7 +48675,7 @@ var GameController = function () {
     }, {
         key: 'game_speedup',
         value: function game_speedup() {
-            return !this.game_paused() ? prop.game.speedup : 0;
+            return !this.game_paused() ? this.game.speedup : 0;
         }
 
         /**
@@ -45538,17 +48685,17 @@ var GameController = function () {
          * @pram delay {number}
          * @param that
          * @param data
-         * @return to
+         * @return gameTimeout
          */
 
     }, {
         key: 'game_timeout',
         value: function game_timeout(func, delay, that, data) {
-            var to = [func, this.game_time() + delay, data, delay, false, that];
+            var gameTimeout = [func, this.game_time() + delay, data, delay, false, that];
 
-            prop.game.timeouts.push(to);
+            this.game.timeouts.push(gameTimeout);
 
-            return to;
+            return gameTimeout;
         }
 
         /**
@@ -45566,7 +48713,7 @@ var GameController = function () {
         value: function game_interval(func, delay, that, data) {
             var to = [func, this.game_time() + delay, data, delay, true, that];
 
-            prop.game.timeouts.push(to);
+            this.game.timeouts.push(to);
 
             return to;
         }
@@ -45574,24 +48721,24 @@ var GameController = function () {
         /**
          * @for GameController
          * @method game_clear_timeout
-         * @param to
+         * @param gameTimeout
          */
 
     }, {
         key: 'game_clear_timeout',
-        value: function game_clear_timeout(to) {
-            prop.game.timeouts.splice(prop.game.timeouts.indexOf(to), 1);
+        value: function game_clear_timeout(gameTimeout) {
+            this.game.timeouts.splice(this.game.timeouts.indexOf(gameTimeout), 1);
         }
 
         /**
          * @for GameController
-         * @method updateScore
+         * @method game_updateScore
          * @param score {number}
          */
 
     }, {
-        key: 'updateScore',
-        value: function updateScore(score) {
+        key: 'game_updateScore',
+        value: function game_updateScore(score) {
             var $score = (0, _jquery2.default)(_selectors.SELECTORS.DOM_SELECTORS.SCORE);
             $score.text((0, _core.round)(score));
 
@@ -45601,7 +48748,7 @@ var GameController = function () {
                 $score.removeClass(_selectors.SELECTORS.CLASSNAMES.NEGATIVE);
             }
 
-            prop.game.last_score = score;
+            this.game.last_score = score;
         }
 
         /**
@@ -45612,25 +48759,23 @@ var GameController = function () {
     }, {
         key: 'update_pre',
         value: function update_pre() {
-            var score = this.game_get_score();
-
-            if (score !== prop.game.last_score) {
-                this.updateScore(score);
+            if (this.game.score !== this.game.last_score) {
+                this.game_updateScore(this.game.score);
             }
 
-            prop.game.delta = Math.min(this.getDeltaTime() * prop.game.speedup, 100);
+            this.game.delta = Math.min(this.getDeltaTime() * this.game.speedup, 100);
 
             if (this.game_paused()) {
-                prop.game.delta = 0;
+                this.game.delta = 0;
             } else {
                 (0, _jquery2.default)('html').removeClass(_selectors.SELECTORS.CLASSNAMES.PAUSED);
             }
 
-            prop.game.time += prop.game.delta;
+            this.game.time += this.game.delta;
 
-            for (var i = prop.game.timeouts.length - 1; i >= 0; i--) {
+            for (var i = this.game.timeouts.length - 1; i >= 0; i--) {
                 var remove = false;
-                var timeout = prop.game.timeouts[i];
+                var timeout = this.game.timeouts[i];
 
                 if (this.game_time() > timeout[1]) {
                     timeout[0].call(timeout[5], timeout[2]);
@@ -45643,7 +48788,7 @@ var GameController = function () {
                 }
 
                 if (remove) {
-                    prop.game.timeouts.splice(i, 1);
+                    this.game.timeouts.splice(i, 1);
                     i -= 1;
                 }
             }
@@ -45657,7 +48802,7 @@ var GameController = function () {
     }, {
         key: 'complete',
         value: function complete() {
-            prop.game.paused = false;
+            this.game.paused = false;
         }
     }]);
 
@@ -45666,7 +48811,7 @@ var GameController = function () {
 
 exports.default = GameController;
 
-},{"../constants/selectors":553,"../math/core":562,"./GameOptions":558,"jquery":296}],558:[function(require,module,exports){
+},{"../constants/globalConstants":563,"../constants/selectors":565,"../math/core":574,"./GameOptions":570,"jquery":296,"lodash/forEach":458,"lodash/has":460}],570:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -45784,7 +48929,7 @@ var GameOptions = function () {
 
 exports.default = GameOptions;
 
-},{"./gameOptionValues":559,"lodash/has":461}],559:[function(require,module,exports){
+},{"./gameOptionValues":571,"lodash/has":460}],571:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -45819,7 +48964,7 @@ var GAME_OPTION_VALUES = exports.GAME_OPTION_VALUES = [{
     data: [['Yes', 'yes'], ['No', 'no']]
 }];
 
-},{}],560:[function(require,module,exports){
+},{}],572:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -45847,11 +48992,12 @@ require('raf').polyfill();
  * Provides a way to grab the `body` element of the document and pass it to the app.
  */
 exports.default = function () {
+  var airportLoadList = window.AIRPORT_LOAD_LIST;
   var $body = (0, _jquery2.default)('body');
-  var app = new _App2.default($body);
+  var app = new _App2.default($body, airportLoadList);
 }();
 
-},{"./App":522,"babel-polyfill":1,"jquery":296,"raf":520}],561:[function(require,module,exports){
+},{"./App":522,"babel-polyfill":1,"jquery":296,"raf":520}],573:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -45932,7 +49078,7 @@ var radians_normalize = exports.radians_normalize = function radians_normalize(r
     return tau() + radians % tau();
 };
 
-},{"../utilities/unitConverters":573,"./core":562}],562:[function(require,module,exports){
+},{"../utilities/unitConverters":586,"./core":574}],574:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -46137,7 +49283,7 @@ var extrapolate_range_clamp = exports.extrapolate_range_clamp = function extrapo
     return clamp(extrapolation_result, range2_min, range2_max);
 };
 
-},{"lodash/isNumber":473}],563:[function(require,module,exports){
+},{"lodash/isNumber":474}],575:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -46158,13 +49304,13 @@ var distance2d = exports.distance2d = function distance2d(a, b) {
     return Math.sqrt(x * x + y * y);
 };
 
-},{}],564:[function(require,module,exports){
+},{}],576:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.dist_to_boundary = exports.inAirspace = exports.fixRadialDist = exports.getOffset = exports.bearing = exports.calcTurnInitiationDistance = exports.calcTurnRadius = undefined;
+exports.calculateHeadingFromTwoPositions = exports.calculateDistanceToBoundary = exports.isWithinAirspace = exports.fixRadialDist = exports.getOffset = exports.bearing = exports.calcTurnInitiationDistance = exports.calcTurnRadius = undefined;
 
 var _core = require('./core');
 
@@ -46268,6 +49414,7 @@ var getOffset = exports.getOffset = function getOffset(aircraft, target) {
  * @returns {array}         location of the projected fix
  */
 var fixRadialDist = exports.fixRadialDist = function fixRadialDist(fix, radial, dist) {
+    // FIXME: if fix is a FixModel, there may already be a method for this. if there isnt there should be. `fix.positionInRadians`
     // convert GPS coordinates to radians
     fix = [(0, _unitConverters.degreesToRadians)(fix[0]), (0, _unitConverters.degreesToRadians)(fix[1])];
 
@@ -46279,15 +49426,14 @@ var fixRadialDist = exports.fixRadialDist = function fixRadialDist(fix, radial, 
     return [(0, _unitConverters.radiansToDegrees)(lon2), (0, _unitConverters.radiansToDegrees)(lat2)];
 };
 
-// TODO: this logic should live in the `AirportController`
 /**
  *
- * @function inAirspace
+ * @function isWithinAirspace
  * @param airport {AirportModel}
  * @param  pos {array}
  * @return {boolean}
  */
-var inAirspace = exports.inAirspace = function inAirspace(airport, pos) {
+var isWithinAirspace = exports.isWithinAirspace = function isWithinAirspace(airport, pos) {
     var perim = airport.perimeter;
 
     if (perim) {
@@ -46297,15 +49443,14 @@ var inAirspace = exports.inAirspace = function inAirspace(airport, pos) {
     return (0, _distance.distance2d)(pos, airport.position.position) <= airport.ctr_radius;
 };
 
-// TODO: this logic should live in the `AirportController`
 /**
  *
- * @function dist_to_boundary
+ * @function calculateDistanceToBoundary
  * @param airport {AirportModel}
  * @param pos {array}
  * @return {boolean}
  */
-var dist_to_boundary = exports.dist_to_boundary = function dist_to_boundary(airport, pos) {
+var calculateDistanceToBoundary = exports.calculateDistanceToBoundary = function calculateDistanceToBoundary(airport, pos) {
     var perim = airport.perimeter;
 
     if (perim) {
@@ -46317,7 +49462,20 @@ var dist_to_boundary = exports.dist_to_boundary = function dist_to_boundary(airp
     return (0, _core.abs)((0, _distance.distance2d)(pos, airport.position.position) - airport.ctr_radius);
 };
 
-},{"../utilities/unitConverters":573,"./core":562,"./distance":563,"./vector":565}],565:[function(require,module,exports){
+/**
+ *
+ *
+ *
+ * @function calculateHeadingFromTwoPositions
+ * @param positionEnd {array}
+ * @param positionStart {array}
+ * @return {number}
+ */
+var calculateHeadingFromTwoPositions = exports.calculateHeadingFromTwoPositions = function calculateHeadingFromTwoPositions(positionEnd, positionStart) {
+    return (0, _vector.vradial)((0, _vector.vsub)(positionEnd, positionStart));
+};
+
+},{"../utilities/unitConverters":586,"./core":574,"./distance":575,"./vector":577}],577:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -46845,7 +50003,7 @@ var positive_intersection_with_rect = exports.positive_intersection_with_rect = 
     return undefined;
 };
 
-},{"../utilities/unitConverters":573,"./core":562,"jquery":296,"lodash/forEach":459,"lodash/map":483}],566:[function(require,module,exports){
+},{"../utilities/unitConverters":586,"./core":574,"jquery":296,"lodash/forEach":458,"lodash/map":484}],578:[function(require,module,exports){
 "use strict";
 
 /* eslint-disable */
@@ -49914,7 +53072,7 @@ zlsa.atc.Parser = function () {
   };
 }();
 
-},{}],567:[function(require,module,exports){
+},{}],579:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -50019,7 +53177,7 @@ var speech_toggle = exports.speech_toggle = function speech_toggle() {
     localStorage[_storageKeys.STORAGE_KEY.ATC_SPEECH_ENABLED] = prop.speech.enabled;
 };
 
-},{"./constants/selectors":553,"./constants/storageKeys":554,"./utilities/radioUtilities":571,"jquery":296,"lodash/get":460,"lodash/has":461}],568:[function(require,module,exports){
+},{"./constants/selectors":565,"./constants/storageKeys":566,"./utilities/radioUtilities":584,"jquery":296,"lodash/get":459,"lodash/has":460}],580:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -50087,7 +53245,7 @@ var TutorialStep = function () {
 
 exports.default = TutorialStep;
 
-},{"lodash/get":460}],569:[function(require,module,exports){
+},{"lodash/get":459}],581:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -50189,7 +53347,7 @@ var TutorialView = function () {
         this.tutorial.step = 0;
         this.tutorial.open = false;
 
-        this.createChildren().layout().enable();
+        this._init().layout().enable();
     }
 
     /**
@@ -50198,14 +53356,14 @@ var TutorialView = function () {
      * Caches selectors in variabls so they only need to be looked up one time.
      *
      * @for tutorialView
-     * @method createChildren
+     * @method _init
      * @chainable
      */
 
 
     _createClass(TutorialView, [{
-        key: 'createChildren',
-        value: function createChildren() {
+        key: '_init',
+        value: function _init() {
             this.$tutorialView = (0, _jquery2.default)(TUTORIAL_TEMPLATE);
             this.$tutorialToggle = (0, _jquery2.default)(_selectors.SELECTORS.DOM_SELECTORS.TOGGLE_TUTORIAL);
             this.$tutorialPrevious = this.$tutorialView.find(_selectors.SELECTORS.DOM_SELECTORS.PREV);
@@ -50772,7 +53930,7 @@ var TutorialView = function () {
 
 exports.default = TutorialView;
 
-},{"../constants/selectors":553,"../constants/storageKeys":554,"../math/core":562,"../utilities/timeHelpers":572,"../utilities/unitConverters":573,"./TutorialStep":568,"jquery":296,"lodash/has":461}],570:[function(require,module,exports){
+},{"../constants/selectors":565,"../constants/storageKeys":566,"../math/core":574,"../utilities/timeHelpers":585,"../utilities/unitConverters":586,"./TutorialStep":580,"jquery":296,"lodash/has":460}],582:[function(require,module,exports){
 'use strict';
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -50915,45 +54073,6 @@ radio_runway_names.r = 'right';
 //     return d; // distance, in kilometers
 // }
 
-function choose(l) {
-    return l[Math.floor(Math.random() * l.length)];
-}
-
-// TODO: rename
-function choose_weight(l) {
-    if (l.length === 0) {
-        return;
-    }
-
-    // FIXME: this is not checking if l is an array. assuming `l[0]` is and array,
-    // `typeof []` will always return 'object'
-    // if this was ment to check if `l[0]` is an array, `Array.isArray(l[0])` is one way to do it.
-    // or lodash _isArray(l[0]) would work too.
-    if (_typeof(l[0]) != _typeof([])) {
-        return choose(l);
-    }
-
-    // l = [[item, weight], [item, weight] ... ];
-    var weight = 0;
-    for (var i = 0; i < l.length; i++) {
-        weight += l[i][1];
-    }
-
-    var randomWeight = Math.random() * weight;
-    weight = 0;
-
-    for (var _i = 0; _i < l.length; _i++) {
-        weight += l[_i][1];
-
-        if (weight > randomWeight) {
-            return l[_i][0];
-        }
-    }
-
-    console.log('OHSHIT');
-    return null;
-}
-
 // TODO: rename leftPad
 /**
  * Prepends zeros to front of str/num to make it the desired width
@@ -51006,13 +54125,70 @@ function array_sum(array) {
 
 window.clone = clone;
 // window.distEuclid = distEuclid;
-window.choose = choose;
-window.choose_weight = choose_weight;
 window.lpad = lpad;
 window.array_clean = array_clean;
 window.array_sum = array_sum;
 
-},{"./constants/logLevel":552,"./utilities/radioUtilities":571,"lodash/has":461}],571:[function(require,module,exports){
+},{"./constants/logLevel":564,"./utilities/radioUtilities":584,"lodash/has":460}],583:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.choose_weight = exports.choose = undefined;
+
+var _isArray2 = require('lodash/isArray');
+
+var _isArray3 = _interopRequireDefault(_isArray2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ *
+ * @function choose
+ */
+var choose = exports.choose = function choose(l) {
+    var randomIndexFromLength = Math.floor(Math.random() * l.length);
+
+    return l[randomIndexFromLength];
+};
+
+/**
+ *
+ * @function choose_weight
+ */
+var choose_weight = exports.choose_weight = function choose_weight(l) {
+    if (l.length === 0) {
+        return;
+    }
+
+    if (!(0, _isArray3.default)(l[0])) {
+        return choose(l);
+    }
+
+    // l = [[item, weight], [item, weight] ... ];
+    var weight = 0;
+    for (var i = 0; i < l.length; i++) {
+        weight += l[i][1];
+    }
+
+    var randomWeight = Math.random() * weight;
+    weight = 0;
+
+    for (var _i = 0; _i < l.length; _i++) {
+        weight += l[_i][1];
+
+        if (weight > randomWeight) {
+            return l[_i][0];
+        }
+    }
+
+    console.log('OHSHIT');
+
+    return null;
+};
+
+},{"lodash/isArray":466}],584:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -51482,7 +54658,7 @@ var getCardinalDirection = exports.getCardinalDirection = function getCardinalDi
     return CARDINAL_DIRECTION[(0, _core.round)(angle / (0, _circle.tau)() * 8)];
 };
 
-},{"../math/circle":561,"../math/core":562,"lodash/clone":454,"lodash/compact":456,"lodash/map":483}],572:[function(require,module,exports){
+},{"../math/circle":573,"../math/core":574,"lodash/clone":451,"lodash/compact":453,"lodash/map":484}],585:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -51513,13 +54689,13 @@ var calculateDeltaTime = exports.calculateDeltaTime = function calculateDeltaTim
   return Math.min(time() - lastFrame, 1 / 20);
 };
 
-},{}],573:[function(require,module,exports){
+},{}],586:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
-exports.parseElevation = exports.heading_to_string = exports.km_to_px = exports.px_to_km = exports.degreesToRadians = exports.radiansToDegrees = exports.kn_ms = exports.ft_km = exports.km_ft = exports.m_ft = exports.nm = exports.km = exports.NUMBER_CONSTANTS = exports.UNIT_CONVERSION_CONSTANTS = undefined;
+exports.parseElevation = exports.heading_to_string = exports.convertMinutesToSeconds = exports.km_to_px = exports.px_to_km = exports.degreesToRadians = exports.radiansToDegrees = exports.kn_ms = exports.ft_km = exports.km_ft = exports.m_ft = exports.nm = exports.km = exports.NUMBER_CONSTANTS = exports.UNIT_CONVERSION_CONSTANTS = undefined;
 
 var _includes2 = require('lodash/includes');
 
@@ -51545,38 +54721,38 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @type {Object}
  */
 var UNIT_CONVERSION_CONSTANTS = exports.UNIT_CONVERSION_CONSTANTS = {
-    /**
-     * nautical mile per kilometer ratio
-     *
-     * @property NM_KM
-     * @type {number}
-     * @final
-     */
-    NM_KM: 1.852,
-    /**
-     * Meters to feet ratio
-     *
-     * @property M_FT
-     * @type {number}
-     * @final
-     */
-    M_FT: 0.3048,
-    /**
-     * kilometer per foot ratio
-     *
-     * @property KM_FT
-     * @type {number}
-     * @final
-     */
-    KM_FT: 0.0003048,
-    /**
-     * knots per m/s ratio
-     *
-     * @property KN_MS
-     * @type {number}
-     * @final
-     */
-    KN_MS: 0.51444444
+  /**
+   * nautical mile per kilometer ratio
+   *
+   * @property NM_KM
+   * @type {number}
+   * @final
+   */
+  NM_KM: 1.852,
+  /**
+   * Meters to feet ratio
+   *
+   * @property M_FT
+   * @type {number}
+   * @final
+   */
+  M_FT: 0.3048,
+  /**
+   * kilometer per foot ratio
+   *
+   * @property KM_FT
+   * @type {number}
+   * @final
+   */
+  KM_FT: 0.0003048,
+  /**
+   * knots per m/s ratio
+   *
+   * @property KN_MS
+   * @type {number}
+   * @final
+   */
+  KN_MS: 0.51444444
 };
 
 // TODO: This should be moved to its own file once it has been filled in a little more
@@ -51586,14 +54762,14 @@ var UNIT_CONVERSION_CONSTANTS = exports.UNIT_CONVERSION_CONSTANTS = {
  * @final
  */
 var NUMBER_CONSTANTS = exports.NUMBER_CONSTANTS = {
-    /**
-     * Degrees in a circle
-     *
-     * @property FULL_CIRCLE_DEGREES
-     * @type {number}
-     * @final
-     */
-    FULL_CIRCLE_DEGREES: 360
+  /**
+   * Degrees in a circle
+   *
+   * @property FULL_CIRCLE_DEGREES
+   * @type {number}
+   * @final
+   */
+  FULL_CIRCLE_DEGREES: 360
 };
 
 /**
@@ -51604,9 +54780,9 @@ var NUMBER_CONSTANTS = exports.NUMBER_CONSTANTS = {
  * @return {number}
  */
 var km = exports.km = function km() {
-    var nm = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+  var nm = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
 
-    return nm * UNIT_CONVERSION_CONSTANTS.NM_KM;
+  return nm * UNIT_CONVERSION_CONSTANTS.NM_KM;
 };
 
 /**
@@ -51617,9 +54793,9 @@ var km = exports.km = function km() {
  * @return {number}
  */
 var nm = exports.nm = function nm() {
-    var kilometers = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+  var kilometers = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
 
-    return kilometers / UNIT_CONVERSION_CONSTANTS.NM_KM;
+  return kilometers / UNIT_CONVERSION_CONSTANTS.NM_KM;
 };
 
 /**
@@ -51630,9 +54806,9 @@ var nm = exports.nm = function nm() {
  * @return {number}
  */
 var m_ft = exports.m_ft = function m_ft() {
-    var meters = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+  var meters = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
 
-    return meters / UNIT_CONVERSION_CONSTANTS.M_FT;
+  return meters / UNIT_CONVERSION_CONSTANTS.M_FT;
 };
 
 /**
@@ -51643,9 +54819,9 @@ var m_ft = exports.m_ft = function m_ft() {
  * @return {number}
  */
 var km_ft = exports.km_ft = function km_ft() {
-    var kilometers = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+  var kilometers = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
 
-    return kilometers / UNIT_CONVERSION_CONSTANTS.KM_FT;
+  return kilometers / UNIT_CONVERSION_CONSTANTS.KM_FT;
 };
 
 /**
@@ -51656,9 +54832,9 @@ var km_ft = exports.km_ft = function km_ft() {
  * @return {number}
  */
 var ft_km = exports.ft_km = function ft_km() {
-    var ft = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+  var ft = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
 
-    return ft * UNIT_CONVERSION_CONSTANTS.KM_FT;
+  return ft * UNIT_CONVERSION_CONSTANTS.KM_FT;
 };
 
 /**
@@ -51669,9 +54845,9 @@ var ft_km = exports.ft_km = function ft_km() {
  * @return {number}
  */
 var kn_ms = exports.kn_ms = function kn_ms() {
-    var kn = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+  var kn = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
 
-    return kn * UNIT_CONVERSION_CONSTANTS.KN_MS;
+  return kn * UNIT_CONVERSION_CONSTANTS.KN_MS;
 };
 
 /**
@@ -51682,7 +54858,7 @@ var kn_ms = exports.kn_ms = function kn_ms() {
  * @return {number}
  */
 var radiansToDegrees = exports.radiansToDegrees = function radiansToDegrees(radians) {
-    return radians / (0, _circle.tau)() * NUMBER_CONSTANTS.FULL_CIRCLE_DEGREES;
+  return radians / (0, _circle.tau)() * NUMBER_CONSTANTS.FULL_CIRCLE_DEGREES;
 };
 
 /**
@@ -51693,7 +54869,7 @@ var radiansToDegrees = exports.radiansToDegrees = function radiansToDegrees(radi
  * @return {number}
  */
 var degreesToRadians = exports.degreesToRadians = function degreesToRadians(degrees) {
-    return degrees / NUMBER_CONSTANTS.FULL_CIRCLE_DEGREES * (0, _circle.tau)();
+  return degrees / NUMBER_CONSTANTS.FULL_CIRCLE_DEGREES * (0, _circle.tau)();
 };
 
 /**
@@ -51706,7 +54882,7 @@ var degreesToRadians = exports.degreesToRadians = function degreesToRadians(degr
  * @return {number}
  */
 var px_to_km = exports.px_to_km = function px_to_km(pixels, scale) {
-    return pixels / scale;
+  return pixels / scale;
 };
 
 /**
@@ -51718,7 +54894,18 @@ var px_to_km = exports.px_to_km = function px_to_km(pixels, scale) {
  * @return {number}
  */
 var km_to_px = exports.km_to_px = function km_to_px(kilometers, scale) {
-    return kilometers * scale;
+  return kilometers * scale;
+};
+
+/**
+ *
+ *
+ * @function convertMinutesToSeconds
+ * @param minutes {number}
+ * @return {number}
+ */
+var convertMinutesToSeconds = exports.convertMinutesToSeconds = function convertMinutesToSeconds(minutes) {
+  return minutes * 60;
 };
 
 /**
@@ -51728,21 +54915,21 @@ var km_to_px = exports.km_to_px = function km_to_px(kilometers, scale) {
  * @return {string}
  */
 var heading_to_string = exports.heading_to_string = function heading_to_string(heading) {
-    heading = (0, _core.round)((0, _core.mod)(radiansToDegrees(heading), 360)).toString();
+  heading = (0, _core.round)((0, _core.mod)(radiansToDegrees(heading), 360)).toString();
 
-    if (heading === '0') {
-        heading = '360';
-    }
+  if (heading === '0') {
+    heading = '360';
+  }
 
-    if (heading.length === 1) {
-        heading = '00' + heading;
-    }
+  if (heading.length === 1) {
+    heading = '00' + heading;
+  }
 
-    if (heading.length === 2) {
-        heading = '0' + heading;
-    }
+  if (heading.length === 2) {
+    heading = '0' + heading;
+  }
 
-    return heading;
+  return heading;
 };
 
 /**
@@ -51753,34 +54940,34 @@ var heading_to_string = exports.heading_to_string = function heading_to_string(h
  * @return {number}             elevation in feet
  */
 var parseElevation = exports.parseElevation = function parseElevation(elevation) {
-    // TODO: move to master REGEX constant
-    // this regex will catch the following: `-`, `m`, `ft`, `Infinity`, and is used to extract a number
-    // from a string containing these symbols.
-    var REGEX = /(-)|(m|ft|Infinity)/gi;
+  // TODO: move to master REGEX constant
+  // this regex will catch the following: `-`, `m`, `ft`, `Infinity`, and is used to extract a number
+  // from a string containing these symbols.
+  var REGEX = /(-)|(m|ft|Infinity)/gi;
 
-    // if its a number, we're done here.
-    // This will catch whole numbers, floats, Infinity and -Infinity.
-    if ((0, _isNumber3.default)(elevation)) {
-        return parseFloat(elevation);
-    }
+  // if its a number, we're done here.
+  // This will catch whole numbers, floats, Infinity and -Infinity.
+  if ((0, _isNumber3.default)(elevation)) {
+    return parseFloat(elevation);
+  }
 
-    var parsedElevation = elevation.replace(REGEX, '');
-    var elevationUnit = elevation.match(REGEX);
+  var parsedElevation = elevation.replace(REGEX, '');
+  var elevationUnit = elevation.match(REGEX);
 
-    // if its in meters, convert it to feet
-    if ((0, _includes3.default)(elevationUnit, 'm')) {
-        parsedElevation = m_ft(parsedElevation);
-    }
+  // if its in meters, convert it to feet
+  if ((0, _includes3.default)(elevationUnit, 'm')) {
+    parsedElevation = m_ft(parsedElevation);
+  }
 
-    // if it came in as a negative number,return it as a negative number
-    if ((0, _startsWith3.default)(elevation, '-')) {
-        parsedElevation *= -1;
-    }
+  // if it came in as a negative number,return it as a negative number
+  if ((0, _startsWith3.default)(elevation, '-')) {
+    parsedElevation *= -1;
+  }
 
-    return parseFloat(parsedElevation);
+  return parseFloat(parsedElevation);
 };
 
-},{"../math/circle":561,"../math/core":562,"lodash/includes":464,"lodash/isNumber":473,"lodash/startsWith":490}]},{},[560])
+},{"../math/circle":573,"../math/core":574,"lodash/includes":464,"lodash/isNumber":474,"lodash/startsWith":490}]},{},[572])
 
 
 //# sourceMappingURL=bundle.js.map

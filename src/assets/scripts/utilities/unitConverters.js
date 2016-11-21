@@ -176,6 +176,15 @@ export const km_to_px = (kilometers, scale) => {
 
 /**
  *
+ *
+ * @function convertMinutesToSeconds
+ * @param minutes {number}
+ * @return {number}
+ */
+export const convertMinutesToSeconds = (minutes) => minutes * 60;
+
+/**
+ *
  * @function heading_to_string
  * @param heading {string}
  * @return {string}
