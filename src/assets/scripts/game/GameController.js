@@ -80,7 +80,6 @@ export default class GameController {
      */
     init_pre() {
         this.game_initializeBlurFunctions();
-        this.game_initializeStartTime();
         this.events_initializeEventCount();
     }
 
@@ -127,19 +126,6 @@ export default class GameController {
         $(window).focus(() => {
             this.game.focused = true;
         });
-    }
-
-    /**
-     * Initialize game.time with current time in UTC
-     * @for GameController
-     * @method game_initializeStartTime
-     * @return
-     */
-    game_initializeStartTime() {
-        const ms_per_timezone = 60000;
-        const date = new Date();
-        const utc = date.getTime() + (date.getTimezoneOffset() * ms_per_timezone);
-        this.game.startTime = utc;
     }
 
     /**
@@ -347,7 +333,6 @@ export default class GameController {
         }
 
         this.game.time += this.game.delta;
-        $(SELECTORS.DOM_SELECTORS.CLOCK).text(this.game.startTime);
 
         for (let i = this.game.timeouts.length - 1; i >= 0; i--) {
             let remove = false;

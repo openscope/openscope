@@ -27,6 +27,7 @@ export const CLASSNAMES = {
     MESSAGE: 'message',
     NEGATIVE: 'negative',
     NEXT: 'next',
+    NOT_SELECTABLE: 'notSelectable',
     OPEN: 'open',
     PAUSED: 'paused',
     PAUSE_TOGGLE: 'pause-toggle',
