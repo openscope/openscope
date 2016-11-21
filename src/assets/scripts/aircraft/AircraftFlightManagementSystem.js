@@ -2,6 +2,7 @@ import $ from 'jquery';
 import _find from 'lodash/find';
 import _last from 'lodash/last';
 import _map from 'lodash/map';
+import _isNil from 'lodash/isNil';
 import Waypoint from './Waypoint';
 import Leg from './Leg';
 import RouteModel from '../airport/Route/RouteModel';
@@ -329,8 +330,6 @@ export default class AircraftFlightManagementSystem {
     update_fp_route() {
         const flightPlanRoute = [];
 
-        // TODO: simplify this
-        // FIXME: is this.legs an array?
         for (let i = 0; i < this.legs.length; i++) {
             const leg = this.legs[i];
 
@@ -589,7 +588,6 @@ export default class AircraftFlightManagementSystem {
         const curr = this.currentWaypoint;
 
         const legs = [];
-        // const legs = this._generateLegsForFixOrStandardRoute(route);
 
         for (let i = 0; i < route.length; i++) {
             const routeSections = route[i].split('.');
@@ -603,12 +601,12 @@ export default class AircraftFlightManagementSystem {
                 const routeModel = new RouteModel(route[i]);
                 const currentAirport = window.airportController.airport_get();
 
-                if (typeof currentAirport.sidCollection.findRouteByIcao(routeModel.procedure) !== 'undefined') {
+                if (!_isNil(currentAirport.sidCollection.findRouteByIcao(routeModel.procedure))) {
                     // it's a SID!
                     const legToAdd = new Leg({ type: FP_LEG_TYPE.SID, route: routeModel.routeString }, this);
 
                     legs.push(legToAdd);
-                } else if (typeof currentAirport.starCollection.findRouteByIcao(routeModel.procedure) !== 'undefined') {
+                } else if (!_isNil(currentAirport.starCollection.findRouteByIcao(routeModel.procedure))) {
                     // it's a STAR!
                     const legToAdd = new Leg({ type: FP_LEG_TYPE.STAR, route: routeModel.routeString }, this);
 
@@ -627,7 +625,7 @@ export default class AircraftFlightManagementSystem {
         }
 
         // TODO: this should be its own method
-        // TODO: this could be simplified. there is a lot of brnaching logic here that makes this block tough to follow.
+        // TODO: this could be simplified. there is a lot of branching logic here that makes this block tough to follow.
         // insert user's route to the legs
         if (!fullRouteClearance) {
             // Check if user's route hooks up to the current Legs anywhere
@@ -808,7 +806,6 @@ export default class AircraftFlightManagementSystem {
         };
     }
 
-
     /** ************************* FMS GET FUNCTIONS ***************************/
 
     get currentLeg() {
@@ -921,7 +918,6 @@ export default class AircraftFlightManagementSystem {
             return null;
         }
 
-        // TODO: use the `RouteModel` for this
         return `${this.following.sid}.${this.currentLeg.route.exit}`;
     }
 
