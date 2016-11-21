@@ -1,10 +1,10 @@
-## 3.1.0 (November 19, 2016)
+## 3.1.0 (November 20, 2016)
 ---
 ### Major
 - Adds `FixModel` and static class `FixCollection` for reasoning about airport fixes [#18](https://github.com/n8rzz/atc/issues/18)
 - Adds `StandardRoute` classes reasoning about SIDs and STARs [#19](https://github.com/n8rzz/atc/issues/19)
 - Moves `airlineController` and `aircraftController` to instantiate from within `airportController` instead from `App` [#82](https://github.com/n8rzz/atc/issues/82)
-- Enable airport load without bundling [#88](https://github.com/n8rzz/atc/issues/88)
+- Enable airport load without bundling and moves `airportLoadList.js` out of the `src` folder [#88](https://github.com/n8rzz/atc/issues/88)
 - Updates score calculations and how they are recorded [#96](https://github.com/n8rzz/atc/issues/96)
 
 ### Minor
