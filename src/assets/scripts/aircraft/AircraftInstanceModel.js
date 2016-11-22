@@ -1258,7 +1258,7 @@ export default class Aircraft {
         // TODO: refactor to use `StandardRouteCollection`
         const sid_name = apt.sids[sid_id].name;
         const exit = apt.getSIDExitPoint(sid_id);
-        const route = `${apt.icao}.${sid_id}.${exit}`;
+        const route = `${apt.icao.toUpperCase()}.${sid_id}.${exit}`;
 
         if (this.category !== FLIGHT_CATEGORY.DEPARTURE) {
             return ['fail', 'unable to fly SID, we are an inbound'];

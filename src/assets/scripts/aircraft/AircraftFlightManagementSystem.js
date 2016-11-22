@@ -108,8 +108,9 @@ export default class AircraftFlightManagementSystem {
      */
     prependLeg(data) {
         const prev = this.currentWaypoint;
+        const legToAdd = new Leg(data, this);
 
-        this.legs.unshift(new Leg(data, this));
+        this.legs.unshift(legToAdd);
         this.update_fp_route();
 
         // TODO: these if blocks a repeated elsewhere, perhaps currentWaypoint can handle this logic?

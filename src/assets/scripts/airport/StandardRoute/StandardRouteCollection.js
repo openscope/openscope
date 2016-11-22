@@ -17,8 +17,9 @@ export default class StandardRouteCollection extends BaseCollection {
      * @constructor
      * @param standardRouteEnum {object}
      */
+    /* istanbul ignore next */
     constructor(standardRouteEnum) {
-        super(standardRouteEnum);
+        super();
 
         if (typeof standardRouteEnum === 'undefined') {
             return;

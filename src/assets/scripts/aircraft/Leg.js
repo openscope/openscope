@@ -174,13 +174,14 @@ export default class Leg {
         }
 
         const airport = window.airportController.airport_get(this.route.entry);
-        const pairs = airport.getSID(this.route.procedure, this.route.exit, rwy);
-        const waypointsForSid = airport.findWaypointModelsForSid(this.route.procedure, this.route.exit, rwy);
+        const waypointsForSid = airport.findWaypointModelsForSid(this.route.procedure, rwy, this.route.exit);
 
-        // TODO: refactor this if
+        // TODO: refactor/abstract this boolean logic
         // Remove the placeholder leg (if present)
-        if (fms.my_aircraft.wow() && fms.legs.length > 0
-            && fms.legs[0].route === airport.icao && pairs.length > 0
+        if (fms.my_aircraft.wow() &&
+            fms.legs.length > 0 &&
+            fms.legs[0].route === airport.icao &&
+            pairs.length > 0
         ) {
             // remove the placeholder leg, to be replaced below with SID Leg
             fms.legs.splice(0, 1);
