@@ -1,5 +1,6 @@
 import _find from 'lodash/find';
 import _forEach from 'lodash/forEach';
+import _map from 'lodash/map';
 import _random from 'lodash/random';
 import BaseCollection from '../../base/BaseCollection';
 import StandardRouteModel from './StandardRouteModel';
@@ -25,6 +26,20 @@ export default class StandardRouteCollection extends BaseCollection {
         }
 
         return this._init(standardRouteEnum);
+    }
+
+    // TODO: refactor into a reusable class that can be fed an `item` and will be consumed by the `CanvasController`
+    /**
+     *
+     *
+     * @property draw
+     * @return {array}
+     */
+    get draw() {
+        return _map(this._items, (item) => ({
+            identifier: item.icao,
+            draw: item.draw
+        }));
     }
 
     /**
