@@ -4,7 +4,7 @@
 
 
 ### Minor
-
+- Implements `modelSourceFactory` and `modelSourcePool` [#77](https://github.com/n8rzz/atc/issues/77)
 
 ### Bugfixes
 
