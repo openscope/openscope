@@ -15,15 +15,16 @@ class ModelSourceFactory {
      *
      * @for ModelSourceFactory
      * @method getModelSourceForType
-     * @param type {string}  constructor name. must be incldued in `CLASS_MAP` dictonary
-     * @return modelSource {constructor}  one of CLASS_MAP
+     * @param type {string}                 constructor name. must be incldued in `CLASS_MAP` dictonary
+     * @param args {*[]}                    parameters used for initializing a `modelSource` instance
+     * @return modelSource {constructor}    one of CLASS_MAP
      */
-    getModelSourceForType(type) {
+    getModelSourceForType(type, ...args) {
         if (!_has(CLASS_MAP, type)) {
             throw new TypeError(`Unsupported type passed to ModelSourceFactory: ${type}`);
         }
 
-        const modelSource = modelSourcePool.releaseReusable(type);
+        const modelSource = modelSourcePool.releaseReusable(type, ...args);
 
         return modelSource;
     }

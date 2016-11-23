@@ -2,7 +2,6 @@ import _compact from 'lodash/compact';
 import _find from 'lodash/find';
 import _forEach from 'lodash/forEach';
 import _map from 'lodash/map';
-import _uniqueId from 'lodash/uniqueId';
 import modelSourceFactory from '../../base/ModelSource/ModelSourceFactory';
 import BaseCollection from '../../base/BaseCollection';
 import FixModel from './FixModel';
@@ -109,8 +108,7 @@ class FixCollection extends BaseCollection {
      */
     _buildFixModelsFromList(fixList, airportPosition) {
         _forEach(fixList, (fixCoordinates, fixName) => {
-            const fixModel = modelSourceFactory.getModelSourceForType('FixModel');
-            fixModel.init(fixName, fixCoordinates, airportPosition);
+            const fixModel = modelSourceFactory.getModelSourceForType('FixModel', fixName, fixCoordinates, airportPosition);
 
             this.addFixToCollection(fixModel);
         });

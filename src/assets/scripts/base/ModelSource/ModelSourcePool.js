@@ -1,6 +1,7 @@
 import _find from 'lodash/find';
 import _forEach from 'lodash/forEach';
 import _has from 'lodash/has';
+import _isNil from 'lodash/isNil';
 import _without from 'lodash/without';
 import BaseCollection from '../BaseCollection';
 import {
@@ -26,16 +27,15 @@ const MAX_POOL_SIZE = MAX_POOL_SIZE_PER_MODEL * CLASS_MAP_LENGTH;
  * A collection of model objects that are not in use.
  *
  * This provides:
- * - a way to instantiate a `MAX_POOL_SIZE_PER_MODEL` number of model objects on app start
- * - a way to release a model for use within the app, and remove it from the pool
- * - a way to return a model after use and add it to the pool
+ * - a way to instantiate a `MAX_POOL_SIZE_PER_MODEL` number of model objects
+ * - a way to release a model for use within the app and remove it from the pool
+ * - a way to return a model after use and add it back into the pool
  *
- * This allows for decreased garbage collection because the models being used are the ones that have already
- * been created. The app isn't always creating and destroying classes, instead it is creating, using and
- * re-using the same models.
+ * This allows for decreased garbage collection because the model instances being used are already created. The
+ * app isn't always creating and destroying classes, instead it is creating, using and re-using the same models.
  *
- * see: (Object Pool)[https://sourcemaking.com/design_patterns/object_pool] on (sourcemaking.com)[sourcemaking.com]
- * for more information.
+ * see: (Object Pool)[https://sourcemaking.com/design_patterns/object_pool] on
+ * (sourcemaking.com)[https://sourcemaking.com] for more information.
  *
  * @class ModelSourcePool
  * @extends BaseCollection
@@ -55,7 +55,8 @@ class ModelSourcePool extends BaseCollection {
          * This property is also used for pre-warming the pool on instantiation
          *
          * @property _maxPoolSizePerModel
-         * @type {nubmer}
+         * @type {number}
+         * @default MAX_POOL_SIZE
          * @private
          */
         this._maxPoolSizePerModel = MAX_POOL_SIZE;
@@ -68,43 +69,44 @@ class ModelSourcePool extends BaseCollection {
      *
      * @for ModelSourcePool
      * @method returnReusable
-     * @param modelToAdd {constructor} on of CLASS_MAP
+     * @param modelToAdd {constructor} one of CLASS_MAP
      */
     returnReusable(modelToAdd) {
         if (!_has(CLASS_MAP, modelToAdd.constructor.name)) {
-            throw new TypeError(`Unsupported type passed to ModelSourcePool: ${modelToAdd.constructor.name}`);
+            throw new TypeError(`Unsupported constructor passed to ModelSourcePool: ${modelToAdd.constructor.name}`);
         }
 
         this._items.push(modelToAdd);
     }
 
     // TODO: this method currenty accepts only a string. It may be easier to pass the constructor
-    // TODO: accept parameters so the model returned is fully formed. the caller won't need to worry
-    //       about `model.init()`
     /**
      * Remove a reusable from the collection and return it for use by the caller
      *
      * @for ModelSourcePool
      * @method releasModelFromPool
-     * @param type {string}  constructor name
-     * @return model {constructor} on of CLASS_MAP
+     * @param constructorName {string}  constructor name
+     * @param args {*[]}                parameters used for initializing a `modelSource` instance
+     * @return model {constructor}      one of CLASS_MAP
      */
-    releaseReusable(type) {
-        let model = this._findModelByConstructorName(type);
+    releaseReusable(constructorName, ...args) {
+        let model = this._findModelByConstructorName(constructorName);
 
         if (!model) {
-            model = new CLASS_MAP[type]();
+            model = new CLASS_MAP[constructorName](...args);
         }
+
+        model.init(...args);
 
         return model;
     }
 
     /**
-     * On instantiation pre-warm the pool with reusables so they don't need
-     * to be created at run time.
+     * On instantiation pre-warm the pool with reusables so they don't need to be created at run time.
      *
      * @for ModelSourcePool
      * @method _hydratePool
+     * @private
      */
     _hydratePool() {
         _forEach(CLASS_MAP, (ModelSource) => {
@@ -119,13 +121,14 @@ class ModelSourcePool extends BaseCollection {
     /**
      * @for ModelSourcePool
      * @method _findModelByConstructorName
-     * @param constructorName {string} the name of a constructor
-     * @return model {constructor} one of CLASS_MAP
+     * @param constructorName {string}  the name of a constructor
+     * @return model {constructor}      one of CLASS_MAP
+     * @private
      */
     _findModelByConstructorName(constructorName) {
         const model = _find(this._items, (model) => model.constructor.name === constructorName);
 
-        if (!model) {
+        if (_isNil(model)) {
             return null;
         }
 
@@ -141,7 +144,8 @@ class ModelSourcePool extends BaseCollection {
      *
      * @for ModelSourcePool
      * @method _removeItem
-     * @param model {constructor} on of CLASS_MAP
+     * @param model {constructor} one of CLASS_MAP
+     * @private
      */
     _removeItem(model) {
         this._items = _without(this._items, model);
