@@ -1005,8 +1005,8 @@
         ["PESER", "STD", "RIVER"]
       ]
     },
-    "_comment": "ARTIP1X is a day transition for 36R",
     "ARTIP1X": {
+      "_comment": "ARTIP1X is a day transition for 36R",
       "icao": "ARTIP1X",
       "name": "Artip One Xray",
       "entryPoint": {
@@ -1017,8 +1017,8 @@
         ["ARTIP", "PAM", "EH611", "EH612", "SOKSI", "EH613", "EH614", "EH609"]
       ]
     },
-    "_comment_": "Beyond this point are the instrument approach procedures/transitions for night usage",
     "ARTIP2A": {
+      "_comment_": "Beyond this point are the instrument approach procedures/transitions for night usage",
       "icao": "ARTIP2A",
       "name": "Artip Two Alfa",
       "entryPoint": {
