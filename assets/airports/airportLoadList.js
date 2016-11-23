@@ -142,6 +142,11 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             name: 'Reagan National Airport'
         },
         {
+            icao: 'kdfw',
+            level: 'hard',
+            name: 'Dallas-Fort Worth International Airport'
+        },
+        {
             icao: 'kiad',
             level: 'hard',
             name: 'Washington-Dulles International Airport'
@@ -300,6 +305,11 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             icao: 'vecc',
             level: 'medium',
             name: 'Kolkata Netaji Subhas Chandra Bose Int\'l'
+        },
+        {
+            icao: 'vobl',
+            level: 'medium',
+            name: 'Kempegowda International Airport Bengaluru'
         },
         {
             icao: 'vhhh',
