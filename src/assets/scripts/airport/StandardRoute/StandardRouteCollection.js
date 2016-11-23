@@ -1,5 +1,6 @@
 import _find from 'lodash/find';
 import _forEach from 'lodash/forEach';
+import _isEmpty from 'lodash/isEmpty';
 import _map from 'lodash/map';
 import _random from 'lodash/random';
 import BaseCollection from '../../base/BaseCollection';
@@ -30,16 +31,24 @@ export default class StandardRouteCollection extends BaseCollection {
 
     // TODO: refactor into a reusable class that can be fed an `item` and will be consumed by the `CanvasController`
     /**
+     * Return an idwntifier and a list of fixes in the order in which they should be drawn.
      *
+     * Pulled directly from an airport json `draw` definition per route.
      *
      * @property draw
      * @return {array}
      */
     get draw() {
-        return _map(this._items, (item) => ({
-            identifier: item.icao,
-            draw: item.draw
-        }));
+        return _map(this._items, (item) => {
+            const sidForCanvas = {};
+            sidForCanvas.identifier = item.icao;
+
+            if (!_isEmpty(item.draw)) {
+                sidForCanvas.draw = item.draw;
+            }
+
+            return sidForCanvas;
+        });
     }
 
     /**

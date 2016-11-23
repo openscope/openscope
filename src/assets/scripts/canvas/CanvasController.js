@@ -635,6 +635,7 @@ export default class ConvasController {
         });
     }
 
+    // TODO: break this method up into smaller chunks
     /**
      * @for CanvasController
      * @method canvas_draw_sids
@@ -656,10 +657,9 @@ export default class ConvasController {
 
         _forEach(airport.sidCollection.draw, (sid) => {
             let write_sid_name = true;
-            let fx = null;
-            let fy = null;
+            let fixX = null;
+            let fixY = null;
 
-            // TODO: this if should be reversed to check for the opposite condition and return early.
             if (!_has(sid, 'draw')) {
                 return;
             }
@@ -680,14 +680,14 @@ export default class ConvasController {
                         log(`Unable to draw line to '${fixList[j]}' because its position is not defined!`, LOG.WARNING);
                     }
 
-                    fx = window.uiController.km_to_px(fix[0]) + this.canvas.panX;
-                    fy = -window.uiController.km_to_px(fix[1]) + this.canvas.panY;
+                    fixX = window.uiController.km_to_px(fix[0]) + this.canvas.panX;
+                    fixY = -window.uiController.km_to_px(fix[1]) + this.canvas.panY;
 
                     if (j === 0) {
                         cc.beginPath();
-                        cc.moveTo(fx, fy);
+                        cc.moveTo(fixX, fixY);
                     } else {
-                        cc.lineTo(fx, fy);
+                        cc.lineTo(fixX, fixY);
                     }
                 }
 
@@ -701,15 +701,15 @@ export default class ConvasController {
 
                     // Move the y point for drawing depending on how many sids we have drawn text for
                     // at this point already
-                    const y_point = fy + (15 * text_at_point[exit_name]);
-                    cc.fillText(`${sid.identifier}.${exit_name}`, fx + 10, y_point);
+                    const y_point = fixY + (15 * text_at_point[exit_name]);
+                    cc.fillText(`${sid.identifier}.${exit_name}`, fixX + 10, y_point);
 
                     text_at_point[exit_name] += 1;  // Increment the count for this transition
                 }
             });
 
             if (write_sid_name) {
-                cc.fillText(sid.identifier, fx + 10, fy);
+                cc.fillText(sid.identifier, fixX + 10, fixY);
             }
         });
     }
