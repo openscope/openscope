@@ -31,7 +31,7 @@ export default class StandardRouteCollection extends BaseCollection {
 
     // TODO: refactor into a reusable class that can be fed an `item` and will be consumed by the `CanvasController`
     /**
-     * Return an idwntifier and a list of fixes in the order in which they should be drawn.
+     * Return an identifier and a list of fixes in the order in which they should be drawn.
      *
      * Pulled directly from an airport json `draw` definition per route.
      *
