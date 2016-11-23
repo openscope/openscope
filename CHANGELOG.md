@@ -4,6 +4,7 @@
 
 
 ### Minor
+- Refactors `canvasController.canvas_draw_sids` method to use `airport.sidCollection` instead of `airport.sid` [#144](https://github.com/n8rzz/atc/issues/144)
 
 
 ### Bugfixes
