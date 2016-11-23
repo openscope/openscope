@@ -1,6 +1,18 @@
 ## 3.1.0 (November 20, 2016)
 ---
 ### Major
+
+
+### Minor
+
+
+### Bugfixes
+
+
+
+## 3.1.0 (November 20, 2016)
+---
+### Major
 - Adds `FixModel` and static class `FixCollection` for reasoning about airport fixes [#18](https://github.com/n8rzz/atc/issues/18)
 - Adds `StandardRoute` classes reasoning about SIDs and STARs [#19](https://github.com/n8rzz/atc/issues/19)
 - Moves `airlineController` and `aircraftController` to instantiate from within `airportController` instead from `App` [#82](https://github.com/n8rzz/atc/issues/82)
