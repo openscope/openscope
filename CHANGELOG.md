@@ -4,23 +4,11 @@
 
 
 ### Minor
-
+- Refactors `canvasController.canvas_draw_sids` method to use `airport.sidCollection` instead of `airport.sid` [#144](https://github.com/n8rzz/atc/issues/144)
+- Removes `$.each()` from `AirportModel` in favor of `_forEach()` and uses `_get()` inside `AircraftModel.parse()` instead of if statements [#52](https://github.com/n8rzz/atc/issues/52)
 
 ### Bugfixes
 - Moves `_comment` blocks in airport json file to be within object the are describing [#145](https://github.com/n8rzz/atc/issues/145)
-
-
-## 3.1.0 (November 20, 2016)
----
-### Major
-
-
-### Minor
-- Refactors `canvasController.canvas_draw_sids` method to use `airport.sidCollection` instead of `airport.sid` [#144](https://github.com/n8rzz/atc/issues/144)
-
-
-### Bugfixes
-
 
 
 ## 3.1.0 (November 20, 2016)
