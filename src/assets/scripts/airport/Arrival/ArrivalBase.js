@@ -137,6 +137,33 @@ export default class ArrivalBase {
         this.radial = 0;
 
         /**
+         * game time
+         *
+         * @property cycleStart
+         * @type {number}
+         * @default 0
+         */
+        this.cycleStart = 0;
+
+        /**
+         * Start at the beginning of the surge
+         *
+         * @property offset
+         * @type {number}
+         * @default 0
+         */
+        this.offset = 0;
+
+        /**
+         * 30 minute cycle
+         *
+         * @property period
+         * @type {number}
+         * @default 1800
+         */
+        this.period = TIME.ONE_HOUR_IN_SECONDS / 2;
+
+        /**
          * Initial speed in knots of spawned aircraft.
          *
          * @property speed
