@@ -1,6 +1,10 @@
 ## 3.2.0 (December 20, 2016)
 ---
 ### Major
+* Integrates `sidCollection` and `starCollection` with `RouteModel` within `AircraftInstanceModel` [#53](https://github.com/n8rzz/atc/issues/53)
+    - Creates getters for `currentLeg` and `currentWaypoint`
+    - Abstracts restrictions logic to live within `Waypoint`
+    - Consolidates `runSID()` and `climbViaSid()` logic
 
 
 
