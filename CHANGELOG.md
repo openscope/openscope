@@ -1,13 +1,18 @@
-## 3.1.0 (November 20, 2016)
+## 3.2.0 (December 20, 2016)
 ---
 ### Major
+
 
 
 ### Minor
 - Refactors `canvasController.canvas_draw_sids` method to use `airport.sidCollection` instead of `airport.sid` [#144](https://github.com/n8rzz/atc/issues/144)
 
 
+
+
 ### Bugfixes
+- Moves `_comment` blocks in airport json file to be within object the are describing [#145](https://github.com/n8rzz/atc/issues/145)
+
 
 
 
