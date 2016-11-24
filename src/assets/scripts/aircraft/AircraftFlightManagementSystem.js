@@ -169,9 +169,10 @@ export default class AircraftFlightManagementSystem {
     insertWaypointHere(data) {
         const airport = window.airportController.airport_get();
         const prev = this.currentWaypoint;
+        const waypointToAdd = new Waypoint(data, airport);
 
         // TODO: split this up into smaller chunks
-        this.currentLeg.waypoints.splice(this.current[WAYPOINT_WITHIN_LEG], 0, new Waypoint(data, airport));
+        this.currentLeg.waypoints.splice(this.current[WAYPOINT_WITHIN_LEG], 0, waypointToAdd);
         this.update_fp_route();
 
         // TODO: these if blocks a repeated elsewhere, perhaps currentWaypoint can handle this logic?
@@ -197,8 +198,9 @@ export default class AircraftFlightManagementSystem {
         }
 
         const prev = this.currentWaypoint;
-        // TODO: split up into smaller chunks
-        this.legs.splice(data.firstIndex, 0, new Leg(data, this));
+        const legToAdd = new Leg(data, this)
+
+        this.legs.splice(data.firstIndex, 0, legToAdd);
 
         this.update_fp_route();
 
@@ -235,8 +237,9 @@ export default class AircraftFlightManagementSystem {
      *  Insert a Leg at the end of the flightplan
      */
     appendLeg(data) {
-        // TODO: split this up into smaller chunks
-        this.legs.push(new Leg(data, this));
+        const legToAdd = new Leg(data, this);
+
+        this.legs.push(legToAdd);
         this.update_fp_route();
     }
 
@@ -245,8 +248,9 @@ export default class AircraftFlightManagementSystem {
      */
     appendWaypoint(data) {
         const airport = window.airportController.airport_get();
-        // TODO: split this up into smaller chunks
-        this.currentLeg.waypoints.splice(this.current[WAYPOINT_WITHIN_LEG] + 1, 0, new Waypoint(data, airport));
+        const waypointToAdd = new Waypoint(data, airport);
+
+        this.currentLeg.waypoints.splice(this.current[WAYPOINT_WITHIN_LEG] + 1, 0, waypointToAdd);
         this.update_fp_route();
     }
 
