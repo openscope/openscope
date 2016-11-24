@@ -6,6 +6,7 @@ import _has from 'lodash/has';
 import _head from 'lodash/head';
 import _map from 'lodash/map';
 import _isEmpty from 'lodash/isEmpty';
+import _isNil from 'lodash/isNil';
 import AirspaceModel from './AirspaceModel';
 import PositionModel from '../base/PositionModel';
 import RunwayModel from './RunwayModel';
@@ -408,7 +409,7 @@ export default class AirportModel {
         prop.canvas.draw_labels = true;
         $(SELECTORS.DOM_SELECTORS.TOGGLE_LABELS).toggle(!_isEmpty(this.maps));
         $(SELECTORS.DOM_SELECTORS.TOGGLE_RESTRICTED_AREAS).toggle((this.restricted_areas || []).length > 0);
-        $(SELECTORS.DOM_SELECTORS.TOGGLE_SIDS).toggle(!_isEmpty(this.sids));
+        $(SELECTORS.DOM_SELECTORS.TOGGLE_SIDS).toggle(!_isNil(this.sidCollection));
 
         prop.canvas.dirty = true;
         $(SELECTORS.DOM_SELECTORS.TOGGLE_TERRAIN).toggle(!_isEmpty(this.terrain));
@@ -698,24 +699,6 @@ export default class AirportModel {
     getSIDExitPoint(icao) {
         return this.sidCollection.findRandomExitPointForSIDIcao(icao);
     }
-
-    // FIXME: possibly unused
-    // getSIDName(id, rwy) {
-    //     if (_has(this.sids[id], 'suffix')) {
-    //         return `${this.sids[id].name} ${this.sids[id].suffix[rwy]}`;
-    //     }
-    //
-    //     return this.sids[id].name;
-    // }
-
-    // FIXME: possibly unused
-    // getSIDid(id, rwy) {
-    //     if (_has(this.sids[id], 'suffix')) {
-    //         return this.sids[id].icao + this.sids[id].suffix[rwy];
-    //     }
-    //
-    //     return this.sids[id].icao;
-    // }
 
     /**
      * Return an array of [Waypoint, fixRestrictions] for a given STAR
