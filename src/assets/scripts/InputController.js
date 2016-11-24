@@ -3,21 +3,41 @@ import $ from 'jquery';
 import _get from 'lodash/get';
 import _map from 'lodash/map'
 import { clamp } from './math/core';
+import { GAME_OPTION_NAMES } from './constants/gameOptionConstants';
 import { SELECTORS } from './constants/selectors';
 
 // Temporary const declaration here to attach to the window AND use as internal propert
 const input = {};
 
 /**
+ * Name of a command returned from the Parser
+ *
+ * @property PARSED_COMMAND_NAME
+ * @type {Object}
+ * @final
+ */
+const PARSED_COMMAND_NAME = {
+    VERSION: 'version',
+    TUTORIAL: 'tutorial',
+    AUTO: 'auto',
+    PAUSE: 'pause',
+    TIMEWARP: 'timewarp',
+    CLEAR: 'clear',
+    AIRPORT: 'airport',
+    RATE: 'rate',
+    TRANSMIT: 'transmit'
+};
+
+/**
  * Enumeration of mouse events returned from $event.which
  *
  * These codes can only be used with jQuery event object.
  *
- * @property MOUSE_EVENTS
+ * @property MOUSE_EVENT_CODE
  * @type {Object}
  * @final
  */
-const MOUSE_EVENTS = {
+const MOUSE_EVENT_CODE = {
     LEFT_PRESS: 1,
     MIDDLE_PESS: 2,
     RIGHT_PRESS: 3
@@ -239,9 +259,9 @@ export default class InputController {
     onMouseDownHandler(event) {
         event.preventDefault();
 
-        if (event.which === MOUSE_EVENTS.MIDDLE_PESS) {
+        if (event.which === MOUSE_EVENT_CODE.MIDDLE_PESS) {
             window.uiController.ui_zoom_reset();
-        } else if (event.which === MOUSE_EVENTS.LEFT_PRESS) {
+        } else if (event.which === MOUSE_EVENT_CODE.LEFT_PRESS) {
             // Record mouse down position for panning
             prop.input.mouseDown = [
                 event.pageX - prop.canvas.panX,
@@ -456,7 +476,7 @@ export default class InputController {
                 break;
 
             case KEY_CODES.UP_ARROW:
-                if (window.gameController.game.option.get('controlMethod') === 'arrows') { // shortKeys in use
+                if (this._isArrowControlMethod()) { // shortKeys in use
                     this.$commandInput.val(`${currentCommandInputValue} \u2B61`);
                     e.preventDefault();
                     this.onCommandInputChangeHandler();
@@ -469,7 +489,7 @@ export default class InputController {
 
             case KEY_CODES.RIGHT_ARROW:
                 // shortKeys in use
-                if (window.gameController.game.option.get('controlMethod') === 'arrows') {
+                if (this._isArrowControlMethod()) {
                     this.$commandInput.val(`${currentCommandInputValue} \u2BA3`);
                     e.preventDefault();
                     this.onCommandInputChangeHandler();
@@ -478,7 +498,7 @@ export default class InputController {
                 break;
 
             case KEY_CODES.DOWN_ARROW:
-                if (window.gameController.game.option.get('controlMethod') === 'arrows') { // shortKeys in use
+                if (this._isArrowControlMethod()) { // shortKeys in use
                     this.$commandInput.val(`${currentCommandInputValue} \u2B63`);
                     e.preventDefault();
                     this.onCommandInputChangeHandler();
@@ -788,5 +808,16 @@ export default class InputController {
         const aircraft = prop.aircraft.list[match];
 
         return aircraft.runCommands(result.args);
+    }
+
+    /**
+     * Encapsulation of repeated boolean logic
+     *
+     * @for InputController
+     * @method _isArrowControlMethod
+     * @return {boolean}
+     */
+    _isArrowControlMethod() {
+        return window.gameController.game.option.get(GAME_OPTION_NAMES.CONTROL_METHOD) === 'arrows';
     }
 }
