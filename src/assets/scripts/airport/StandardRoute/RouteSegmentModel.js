@@ -18,6 +18,7 @@ export default class RouteSegmentModel extends BaseModel {
      * @param name {string}  Icao of particular waypoint
      * @param segmentWaypoints {array}  a mixed array of strings or arrays of strings
      */
+    /* istanbul ignore next */
     constructor(name, segmentWaypoints = []) {
         super();
 
