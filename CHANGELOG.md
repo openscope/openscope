@@ -1,6 +1,11 @@
-## 3.1.0 (November 20, 2016)
+## 3.2.0 (December 20, 2016)
 ---
 ### Major
+* Integrates `sidCollection` and `starCollection` with `RouteModel` within `AircraftInstanceModel` [#53](https://github.com/n8rzz/atc/issues/53)
+    - Creates getters for `currentLeg` and `currentWaypoint`
+    - Abstracts restrictions logic to live within `Waypoint`
+    - Consolidates `runSID()` and `climbViaSid()` logic
+
 
 
 ### Minor
@@ -8,7 +13,11 @@
 - Refactors `canvasController.canvas_draw_sids` method to use `airport.sidCollection` instead of `airport.sid` [#144](https://github.com/n8rzz/atc/issues/144)
 
 
+
+
 ### Bugfixes
+- Moves `_comment` blocks in airport json file to be within object the are describing [#145](https://github.com/n8rzz/atc/issues/145)
+
 
 
 

@@ -3,6 +3,8 @@ import ava from 'ava';
 import sinon from 'sinon';
 import _isArray from 'lodash/isArray';
 import _isEqual from 'lodash/isEqual';
+import _keys from 'lodash/keys';
+import _map from 'lodash/map';
 
 import StandardRouteModel from '../../../src/assets/scripts/airport/StandardRoute/StandardRouteModel';
 import RouteSegmentCollection from '../../../src/assets/scripts/airport/StandardRoute/RouteSegmentCollection';
@@ -11,7 +13,7 @@ import StandardRouteWaypointModel from '../../../src/assets/scripts/airport/Stan
 
 import FixCollection from '../../../src/assets/scripts/airport/Fix/FixCollection';
 import { airportPositionFixture } from '../../fixtures/airportFixtures';
-import { FIX_LIST_MOCK } from '../Fix/_mocks/fixMocks';
+import { FIX_LIST_MOCK } from '../fix/_mocks/fixMocks';
 
 import {
     STAR_LIST_MOCK,
@@ -47,7 +49,7 @@ ava('does not throw when instantiated with vaild parameters', t => {
     t.notThrows(() => new StandardRouteModel(STAR_WITHOUT_RWY));
     t.true(result.name === SID_MOCK.name);
     t.true(result.icao === SID_MOCK.icao);
-    t.true(result._runwayCollection instanceof RouteSegmentCollection);
+    t.true(result._entryCollection instanceof RouteSegmentCollection);
     t.true(result._bodySegmentModel instanceof RouteSegmentModel);
     t.true(result._exitCollection instanceof RouteSegmentCollection);
 });
@@ -158,7 +160,7 @@ ava('.findStandardWaypointModelsForEntryAndExit() returns a list of `StandardRou
 ava('.findStandardWaypointModelsForEntryAndExit() does call ._updateWaypointsWithPreviousWaypointData() if isPreSpawn is true', t => {
     const model = new StandardRouteModel(STAR_LIST_MOCK.GRNPA1);
     const spy = sinon.spy(model, '_updateWaypointsWithPreviousWaypointData');
-    const isPreSpawn = true
+    const isPreSpawn = true;
 
     model.findStandardWaypointModelsForEntryAndExit('MLF', '19R', isPreSpawn);
 
@@ -168,7 +170,7 @@ ava('.findStandardWaypointModelsForEntryAndExit() does call ._updateWaypointsWit
 ava('.findStandardWaypointModelsForEntryAndExit() does not call ._updateWaypointsWithPreviousWaypointData() if isPreSpawn is false', t => {
     const model = new StandardRouteModel(STAR_LIST_MOCK.GRNPA1);
     const spy = sinon.spy(model, '_updateWaypointsWithPreviousWaypointData');
-    const isPreSpawn = false
+    const isPreSpawn = false;
 
     model.findStandardWaypointModelsForEntryAndExit('MLF', '19R', isPreSpawn);
 
@@ -224,6 +226,24 @@ ava('._buildSegmentCollection() returns null if segment is an empty object', t =
     t.true(result === null);
 });
 
+ava('._buildEntryAndExitCollections() maps rwy fixes to _exitCollection when entryPoints is present', t => {
+    const model = new StandardRouteModel(STAR_MOCK);
+    model._buildEntryAndExitCollections(STAR_MOCK);
+
+    const segmentModelNames = _map(model._exitCollection._items, (segmentModel) => segmentModel.name);
+
+    t.true(_isEqual(segmentModelNames, _keys(STAR_MOCK.rwy)));
+});
+
+ava('._buildEntryAndExitCollections() maps rwy fixes to _entryCollection when exitPoints is present', t => {
+    const model = new StandardRouteModel(SID_MOCK);
+    model._buildEntryAndExitCollections(SID_MOCK);
+
+    const segmentModelNames = _map(model._entryCollection._items, (segmentModel) => segmentModel.name);
+
+    t.true(_isEqual(segmentModelNames, _keys(SID_MOCK.rwy)));
+});
+
 ava('._findBodyFixList() returns an empty array when ._bodySegmentModel is undefined', t => {
     const model = new StandardRouteModel(SID_WITHOUT_BODY_MOCK);
 
@@ -235,7 +255,7 @@ ava('._findBodyFixList() returns an empty array when ._bodySegmentModel is undef
     t.true(result.length === 0);
 });
 
-ava('._findStandardWaypointModelsForRoute() returns a list of StandardRouteWaypointModels when _entryCollection and _runwayCollection exist', t => {
+ava('._findStandardWaypointModelsForRoute() returns a list of StandardRouteWaypointModels when _entryCollection and _exitCollection exist', t => {
     const model = new StandardRouteModel(STAR_MOCK);
     const result = model._findStandardWaypointModelsForRoute(ENTRY_FIXNAME_MOCK, RUNWAY_NAME_MOCK);
 
@@ -244,12 +264,12 @@ ava('._findStandardWaypointModelsForRoute() returns a list of StandardRouteWaypo
 
 ava('._findStandardWaypointModelsForRoute() returns a list of StandardRouteWaypointModels when _bodySegmentModel does not exist', t => {
     const model = new StandardRouteModel(SID_WITHOUT_BODY_MOCK);
-    const result = model._findStandardWaypointModelsForRoute(ENTRY_FIXNAME_MOCK, RUNWAY_NAME_MOCK);
+    const result = model._findStandardWaypointModelsForRoute(RUNWAY_NAME_MOCK, 'MLF');
 
-    t.true(result.length === 5);
+    t.true(result.length === 6);
 });
 
-ava('._findStandardWaypointModelsForRoute() returns a list of StandardRouteWaypointModels when _runwayCollection does not exist', t => {
+ava('._findStandardWaypointModelsForRoute() returns a list of StandardRouteWaypointModels when _exitCollection does not exist', t => {
     const model = new StandardRouteModel(STAR_WITHOUT_RWY);
     const result = model._findStandardWaypointModelsForRoute('BETHL', '');
 
@@ -267,22 +287,6 @@ ava('._findFixListInByCollectionAndSegmentName() returns an array of normalized 
     t.notThrows(() => model._findFixListInByCollectionAndSegmentName('entryPoints', '_entryCollection', ENTRY_FIXNAME_MOCK));
 
     const result = model._findFixListInByCollectionAndSegmentName('entryPoints', '_entryCollection', ENTRY_FIXNAME_MOCK);
-
-    t.true(_isEqual(result, expectedResult));
-});
-
-ava('._findFixListInByCollectionAndSegmentName() returns an array of normalized fixes from the _runwayCollection', t => {
-    const expectedResult = [
-        ['PIRMD', null],
-        ['ROPPR', 'A70'],
-        ['MDDOG', 'A90'],
-        ['TARRK', 'A110']
-    ];
-    const model = new StandardRouteModel(SID_MOCK);
-
-    t.notThrows(() => model._findFixListInByCollectionAndSegmentName('rwy', '_runwayCollection', RUNWAY_NAME_MOCK));
-
-    const result = model._findFixListInByCollectionAndSegmentName('rwy', '_runwayCollection', RUNWAY_NAME_MOCK);
 
     t.true(_isEqual(result, expectedResult));
 });

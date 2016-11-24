@@ -6,7 +6,7 @@ import {
     randomAirlineSelectionHelper
 } from '../../airline/randomAirlineSelectionHelper';
 import { choose } from '../../utilities/generalUtilities';
-import { FLIGHT_CATEGORY } from '../../aircraft/AircraftInstanceModel';
+import { FLIGHT_CATEGORY } from '../../constants/aircraftConstants';
 import { TIME } from '../../constants/globalConstants';
 
 /**
