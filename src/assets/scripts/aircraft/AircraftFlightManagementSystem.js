@@ -62,23 +62,60 @@ const WAYPOINT_WITHIN_LEG = 1;
   * @class AircraftFlightManagementSystem
  */
 export default class AircraftFlightManagementSystem {
+    /**
+     * @for AircraftFlightManagementSystem
+     * @constructor
+     * @param options {object}
+     */
     constructor(options) {
+        /**
+         * @property may_aircrafts_eid
+         * @type {number}
+         * @default options.aircraft.eid
+         */
         this.my_aircrafts_eid = options.aircraft.eid;
 
         // TODO: we should remove this reference and instead supply methods that the aircraft can call via the fms
+        /**
+         * @property my_aircraft
+         * @type {AircrafInstanceModel}
+         * @default options.aircraft
+         */
         this.my_aircraft = options.aircraft;
 
+        /**
+         * @property legs
+         * @type {array}
+         * @default []
+         */
         this.legs = [];
 
-        this.current = [0, 0]; // [current_Leg, current_Waypoint_within_that_Leg]
+        /**
+         * Current indicies for Leg and Waypoint within that Leg.
+         *
+         * [current_Leg, current_Waypoint_within_that_Leg]
+         *
+         * @property current
+         * @type {array}
+         * @default [0, 0]
+         */
+        this.current = [0, 0];
 
         // TODO: possible model object here
+        /**
+         * @property fp
+         * @type {object}
+         */
         this.fp = {
             altitude: null,
             route: []
         };
 
         // TODO: possible model object here
+        /**
+         * @property following
+         * @type {object}
+         */
         this.following = {
             sid: null,         // Standard Instrument Departure Procedure
             star: null,        // Standard Terminal Arrival Route Procedure
@@ -88,8 +125,9 @@ export default class AircraftFlightManagementSystem {
             anything: false    // T/F flag for if anything is being "followed"
         };
 
+        // TODO: this doesn't belong in the constructor
         // TODO: enumerate the magic numbers
-        // set initial
+        // set initial altitude
         this.fp.altitude = clamp(1000, options.model.ceiling, 60000);
 
         if (options.aircraft.category === FLIGHT_CATEGORY.ARRIVAL) {
