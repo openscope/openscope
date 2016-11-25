@@ -5,14 +5,14 @@ import _map from 'lodash/map';
 import _isNil from 'lodash/isNil';
 import Waypoint from './Waypoint';
 import Leg from './Leg';
-import RouteModel from '../airport/Route/RouteModel';
-import { clamp } from '../math/core';
+import RouteModel from '../../airport/Route/RouteModel';
+import { clamp } from '../../math/core';
 import {
     FP_LEG_TYPE,
     FLIGHT_CATEGORY,
     WAYPOINT_NAV_MODE
-} from '../constants/aircraftConstants';
-import { LOG } from '../constants/logLevel';
+} from '../../constants/aircraftConstants';
+import { LOG } from '../../constants/logLevel';
 
 /**
  * Enumeration of the Leg index in `this.current`

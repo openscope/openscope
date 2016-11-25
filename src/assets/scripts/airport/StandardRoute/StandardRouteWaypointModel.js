@@ -1,7 +1,7 @@
 import _isNil from 'lodash/isNil';
 import BaseModel from '../../base/BaseModel';
 import FixCollection from '../Fix/FixCollection';
-import Waypoint from '../../aircraft/Waypoint';
+import Waypoint from '../../aircraft/FlightManagementSystem/Waypoint';
 
 /**
  * @property NAME_INDEX

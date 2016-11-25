@@ -1,7 +1,6 @@
 /* eslint-disable no-underscore-dangle, no-unused-vars, no-undef, global-require */
 import AircraftConflict from './AircraftConflict';
 import AircraftModel from './AircraftModel';
-import AircraftFlightManagementSystem from './AircraftFlightManagementSystem';
 import { speech_say } from '../speech';
 import { abs } from '../math/core';
 import { distance2d } from '../math/distance';

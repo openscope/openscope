@@ -4,7 +4,7 @@ import sinon from 'sinon';
 
 import StandardRouteWaypointModel from '../../../src/assets/scripts/airport/StandardRoute/StandardRouteWaypointModel';
 import FixCollection from '../../../src/assets/scripts/airport/Fix/FixCollection';
-import Waypoint from '../../../src/assets/scripts/aircraft/Waypoint';
+import Waypoint from '../../../src/assets/scripts/aircraft/FlightManagementSystem/Waypoint';
 
 import {
     airportPositionFixture,
