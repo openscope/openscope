@@ -33,24 +33,6 @@ export default class AircraftController {
 
     /**
      * @for AircraftController
-     * @method aircraft_generate_callsign
-     * @param airlineName
-     */
-    aircraft_generate_callsign(airlineName) {
-        // TODO: this should live in the AirlineModel
-        const airline = window.airlineController.airline_get(airlineName);
-
-        if (!airline) {
-            console.warn(`Airline not found: ${airlineName}`);
-
-            return `airline-${airlineName}-not-found`;
-        }
-
-        return airline.generateFlightNumber();
-    }
-
-    /**
-     * @for AircraftController
      * @method aircraft_auto_toggle
      */
     aircraft_auto_toggle() {
@@ -59,19 +41,15 @@ export default class AircraftController {
 
     /**
      * @for AircraftController
-     * @method aircraft_callsign_new
-     * @param airline {string}
+     * @method addCallsignToList
+     * @param callsign {string}
      */
-    aircraft_callsign_new(airline) {
-        // TODO: the logic needs work here. if `callsign` is always initialized as null, one would imagine that
-        // this function would always result in the creation of a callsign?
-        let callsign = this.aircraft_generate_callsign(airline);
-
-        if (this.aircraft.callsigns.indexOf(callsign) === -1) {
-            this.aircraft.callsigns.push(callsign);
+    addCallsignToList(callsign) {
+        if (this.aircraft.callsigns.indexOf(callsign) !== -1) {
+            return;
         }
 
-        return callsign;
+        this.aircraft.callsigns.push(callsign);
     }
 
     /**
@@ -359,6 +337,7 @@ export default class AircraftController {
         return this.aircraft.models[icao];
     }
 
+    // TODO: what is an `eid` and why would it beed to be updated?
     /**
      * Adjust all aircraft's eid values
      *
