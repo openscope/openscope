@@ -4,7 +4,7 @@ import FixModel from '../../airport/Fix/FixModel';
 // import PositionModel from '../PositionModel';
 
 /**
- * A map of Constructor names
+ * A map of Constructor names to constructor functions
  *
  * @property CLASS_MAP
  * @type {object}

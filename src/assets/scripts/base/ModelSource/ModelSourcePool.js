@@ -79,12 +79,11 @@ class ModelSourcePool extends BaseCollection {
         this._items.push(modelToAdd);
     }
 
-    // TODO: this method currenty accepts only a string. It may be easier to pass the constructor
     /**
      * Remove a reusable from the collection and return it for use by the caller
      *
      * @for ModelSourcePool
-     * @method releasModelFromPool
+     * @method releaseReusable
      * @param constructorName {string}  constructor name
      * @param args {*[]}                parameters used for initializing a `modelSource` instance
      * @return model {constructor}      one of CLASS_MAP
