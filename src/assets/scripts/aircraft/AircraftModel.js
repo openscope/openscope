@@ -1,4 +1,4 @@
-import $ from 'jquery';
+import _forEach from 'lodash/forEach';
 import _get from 'lodash/get';
 import AircraftInstanceModel from './AircraftInstanceModel';
 
@@ -17,14 +17,14 @@ export default class AircraftModel {
     constructor(options = {}) {
         this.loading = true;
         this.loaded = false;
-
         this.priorityLoad = false;
         this.name = _get(options, 'name', null);
         this.icao = _get(options, 'icao', null);
         this.engines = null;
-        this.ceiling= null;
+        this.ceiling = null;
         this.weightclass = _get(options, 'weightClass', null);
         this.category = _get(options, 'category', null);
+        this._url = '';
         this._pendingAircraft = [];
 
         this.rate = {
@@ -59,31 +59,20 @@ export default class AircraftModel {
     }
 
     /**
+     * Set class properties with `data`.
+     *
+     * This method is run once on instantiation and again `onLoadSuccess`
+     *
      * @for AircraftModel
      * @method parse
      * @param data {object}
      */
     parse(data) {
-        // TODO: how much of this could happen in the constructor/init methods?
-        if (data.engines) {
-            this.engines = data.engines;
-        }
-
-        if (data.ceiling) {
-            this.ceiling = data.ceiling;
-        }
-
-        if (data.runway) {
-            this.runway = data.runway;
-        }
-
-        if (data.speed) {
-            this.speed = data.speed;
-        }
-
-        if (data.rate) {
-            this.rate = data.rate;
-        }
+        this.engines = _get(data, 'engines', this.engines);
+        this.ceiling = _get(data, 'ceiling', this.ceiling);
+        this.runway = _get(data, 'runway', this.runway);
+        this.speed = _get(data, 'speed', this.speed);
+        this.rate = _get(data, 'rate', this.rate);
     }
 
     /**
@@ -139,8 +128,8 @@ export default class AircraftModel {
      * @param options {object}
      */
     generateAircraft(options) {
-        // TODO: prop names of loaded and loading are concerning. there may need to be state
-        // machine magic happening here that could lead to issues
+        // TODO: prop names of loaded and loading are concerning. there may be state machine magic happening here
+        // that could lead to issues
         if (!this.loaded) {
             if (this.loading) {
                 this._pendingAircraft.push(options);
@@ -158,6 +147,7 @@ export default class AircraftModel {
             }
 
             console.warn(`Unable to spawn aircraft/ ${options.icao} as loading failed`);
+
             return false;
         }
 
@@ -191,9 +181,8 @@ export default class AircraftModel {
      * @method _generatePendingAircraft
      */
     _generatePendingAircraft() {
-        // TODO: replace $.each() with _map()
-        $.each(this._pendingAircraft, (idx, options) => {
-            this._generateAircraft(options);
+        _forEach(this._pendingAircraft, (pendingAircraftOptions) => {
+            this._generateAircraft(pendingAircraftOptions);
         });
 
         this._pendingAircraft = [];
