@@ -226,6 +226,11 @@ export default class AirlineModel {
             }
         }
 
+        // if this flightNumber already exists, repeat the process of generating a new flightNumber
+        if (window.aircraftController.isCallsignInList(flightNumber)) {
+            return this.generateFlightNumber();
+        }
+
         return flightNumber;
     }
 
@@ -273,6 +278,7 @@ export default class AirlineModel {
     _generateAircraft(options) {
         if (!options.callsign) {
             options.callsign = this.generateFlightNumber();
+
             window.aircraftController.addCallsignToList(options.callsign);
         }
 

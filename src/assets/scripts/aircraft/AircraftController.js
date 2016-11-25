@@ -41,11 +41,21 @@ export default class AircraftController {
 
     /**
      * @for AircraftController
+     * @method isCallsignInList
+     * @param callsign {string}
+     * return {boolean}
+     */
+    isCallsignInList(callsign) {
+        return this.aircraft.callsigns.indexOf(callsign) !== -1;
+    }
+
+    /**
+     * @for AircraftController
      * @method addCallsignToList
      * @param callsign {string}
      */
     addCallsignToList(callsign) {
-        if (this.aircraft.callsigns.indexOf(callsign) !== -1) {
+        if (this.isCallsignInList(callsign)) {
             return;
         }
 
