@@ -18,12 +18,22 @@ const SEGMENT_SEPARATION_SYMBOL = '.';
  */
 const MAXIMUM_ROUTE_SEGMENT_LENGTH = 3;
 
+// TODO: this class needs a better name
 /**
  * @class RouteModel
  */
 export default class RouteModel extends BaseModel {
     /**
+     * example `routeString`
+     *
+     * ```
      * 'BETHL.GRNPA1.KLAS'
+     * ```
+     *
+     * // TODO: should be able to support input of:
+     * - KSFO.OFFSH9.SXC.V458.IPL.J2.JCT..LLO..ACT..KACT
+     * which can be returned as:
+     * - ['KSFO.OFFSH9.SXC', 'SXC.V458.IPL', 'IPL.J2.JCT', 'LLO', 'ACT', 'KACT']
      *
      * @for RouteModel
      * @constructor

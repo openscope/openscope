@@ -10,7 +10,7 @@ import { distance2d } from '../math/distance';
 import { vscale, vturn, positive_intersection_with_rect } from '../math/vector';
 import { SELECTORS } from '../constants/selectors';
 import { LOG } from '../constants/logLevel';
-import { FLIGHT_MODES, FLIGHT_CATEGORY } from '../aircraft/AircraftInstanceModel';
+import { FLIGHT_MODES, FLIGHT_CATEGORY } from '../constants/aircraftConstants';
 
 // Temporary const declaration here to attach to the window AND use as internal property
 const canvas = {};
@@ -722,7 +722,7 @@ export default class ConvasController {
      */
     canvas_draw_separation_indicator(cc, aircraft) {
         // Draw a trailing indicator 2.5 NM (4.6km) behind landing aircraft to help with traffic spacing
-        const rwy = window.airportController.airport_get().getRunway(aircraft.fms.currentWaypoint().runway);
+        const rwy = window.airportController.airport_get().getRunway(aircraft.fms.currentWaypoint.runway);
 
         if (!rwy) {
             return;
@@ -1119,7 +1119,7 @@ export default class ConvasController {
             // width of colored bar
             const bar_width = width / 18;
             const bar_width2 = bar_width / 2;
-            const ILS_enabled = aircraft.fms.currentWaypoint().runway && aircraft.category === FLIGHT_CATEGORY.ARRIVAL;
+            const ILS_enabled = aircraft.fms.currentWaypoint.runway && aircraft.category === FLIGHT_CATEGORY.ARRIVAL;
             const lock_size = height / 3;
             const lock_offset = lock_size / 8;
             const pi = Math.PI;
