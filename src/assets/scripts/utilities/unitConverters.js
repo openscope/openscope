@@ -208,6 +208,49 @@ export const heading_to_string = (heading) => {
 };
 
 /**
+ * Accept a lat/long coordinate and return a value in decimal notation
+ *
+ * Latitude and Longitude numbers may be one of the following forms:
+ *   Decimal degrees - 'N47.112388112'
+ *   Decimal minutes - 'N38d38.109808'
+ *   Decimal seconds - 'N58d27m12.138'
+ *
+ * @function parseCoordinate
+ * @param coordinate {string}
+ * @return transformedCoordinate {number}
+ */
+export const parseCoordinate = (coordintae) => {
+    const REGEX = {
+        SW: /[SW]/,
+        LAT_LONG: /^([NESW])(\d+(\.\d+)?)([d °](\d+(\.\d+)?))?([m '](\d+(\.\d+)?))?$/
+    };
+
+    const match = REGEX.LAT_LONG.exec(coordintae);
+
+    if (match == null) {
+        log(`Unable to parse coordinate ${coordintae}`);
+
+        return;
+    }
+
+    let transformedCoordinate = parseFloat(match[2]);
+
+    if (match[5] != null) {
+        transformedCoordinate += parseFloat(match[5]) / 60;
+
+        if (match[8] != null) {
+            transformedCoordinate += parseFloat(match[8]) / 3600;
+        }
+    }
+
+    if (REGEX.SW.test(match[1])) {
+        transformedCoordinate *= -1;
+    }
+
+    return transformedCoordinate;
+};
+
+/**
  * Accept a string elevation and return a number representing elevation in ft.
  *
  * @function parseElevation
@@ -236,7 +279,7 @@ export const parseElevation = (elevation) => {
 
     // if it came in as a negative number,return it as a negative number
     if (_startsWith(elevation, '-')) {
-        parsedElevation *=  -1;
+        parsedElevation *= -1;
     }
 
     return parseFloat(parsedElevation);
