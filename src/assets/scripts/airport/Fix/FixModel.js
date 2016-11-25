@@ -21,13 +21,6 @@ export default class FixModel extends BaseModel {
     constructor(fixName, fixCoordinate, airportPosition) {
         super();
 
-        // TODO: should this be a throwing instead of returning early?
-        if (!fixName || !fixCoordinate || !airportPosition) {
-            console.error(`Invalid parameter. one of fixName, fixCoordinate or airportPosition is undefined or null in FixModel`);
-
-            return;
-        }
-
         /**
          * Name of the Fix
          *
@@ -46,7 +39,7 @@ export default class FixModel extends BaseModel {
          */
         this._fixPosition = null;
 
-        return this._init(fixName, fixCoordinate, airportPosition);
+        this.init(fixName, fixCoordinate, airportPosition);
     }
 
     /**
@@ -63,14 +56,18 @@ export default class FixModel extends BaseModel {
      * Lifecycle method. Should be run only once on instantiation.
      *
      * @for FixModel
-     * @method _init
+     * @method init
      * @param fixName {string}
      * @param fixCoordinate {array}
      * @param airportPosition {PositionModel}
      * @chainable
-     * @private
      */
-    _init(fixName, fixCoordinate, airportPosition) {
+    init(fixName, fixCoordinate, airportPosition) {
+        // TODO: should this be a throwing instead of returning early?
+        if (!fixName || !fixCoordinate || !airportPosition) {
+            return;
+        }
+
         this.name = fixName.toUpperCase();
         this._fixPosition = new PositionModel(fixCoordinate, airportPosition, airportPosition.magneticNorthInRadians);
 

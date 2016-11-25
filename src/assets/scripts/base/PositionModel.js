@@ -27,7 +27,7 @@ const REGEX = {
  *
  * @class Position
  */
-export default class Position {
+export default class PositionModel {
     /**
      * coordinates may contain an optional elevation as a third element.
      * It must be suffixed by either 'ft' or 'm' to indicate the units.

@@ -32,8 +32,9 @@ export default class RouteSegmentCollection extends BaseCollection {
      * @constructor
      * @param routeSegments {object}
      */
+    /* istanbul ignore next */
     constructor(routeSegments) {
-        super(routeSegments);
+        super();
 
         if (typeof routeSegments === 'undefined' || !_isObject(routeSegments) || _isArray(routeSegments)) {
             throw new TypeError(`Expected routeSegments to be an object. Instead received ${typeof routeSegments}`);
