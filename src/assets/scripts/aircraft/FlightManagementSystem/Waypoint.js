@@ -1,8 +1,8 @@
 import _get from 'lodash/get';
 import _head from 'lodash/head';
 import _isNil from 'lodash/isNil';
-import FixCollection from '../airport/Fix/FixCollection';
-import { WAYPOINT_NAV_MODE } from '../constants/aircraftConstants';
+import FixCollection from '../../airport/Fix/FixCollection';
+import { WAYPOINT_NAV_MODE } from '../../constants/aircraftConstants';
 
 /**
  * Symbol denoting a greater than restriction

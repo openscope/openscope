@@ -1,14 +1,14 @@
  /* eslint-disable import/no-extraneous-dependencies, arrow-parens, max-len */
 import ava from 'ava';
 import _isEqual from 'lodash/isEqual';
-import Waypoint from '../../src/assets/scripts/aircraft/Waypoint';
-import { airportModelFixtureForWaypoint } from '../airport/_fixtures/airportModelFixture';
+import Waypoint from '../../../src/assets/scripts/aircraft/FlightManagementSystem/Waypoint';
+import { airportModelFixtureForWaypoint } from '../../airport/_fixtures/airportModelFixture';
 import {
     MINIMAL_WAYPOINT_MOCK,
     BASIC_WAYPOINT_MOCK,
     ENROUTE_TO_HOLD_WAYPOINT_MOCK,
     EXPANDED_WAYPOINT_MOCK
-} from './_mocks/waypointMocks';
+} from '../_mocks/waypointMocks';
 
 ava('should not throw if instantiated with a string as an arguemnt', t => {
     t.notThrows(() => new Waypoint(BASIC_WAYPOINT_MOCK, airportModelFixtureForWaypoint));
