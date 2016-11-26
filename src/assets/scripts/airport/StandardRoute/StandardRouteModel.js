@@ -302,8 +302,8 @@ export default class StandardRouteModel extends BaseModel {
      * @return {boolean}
      */
     hasFixName(fixName) {
-        // eslint-disable-next-line max-len
-        return !_isNil(this._entryCollection.findSegmentByName(fixName)) || !_isNil(this._exitCollection.findSegmentByName(fixName));
+        return this._entryCollection && !_isNil(this._entryCollection.findSegmentByName(fixName)) ||
+            this._exitCollection && !_isNil(this._exitCollection.findSegmentByName(fixName));
     }
 
     /**

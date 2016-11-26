@@ -66,9 +66,9 @@ export default class AirportModel {
         this.runways = [];
         // TODO: rename to `runwayName`
         this.runway = null;
+        // this property is kept for each airport to allow for re-hydration of the `FixCollection` on airport change
         this.fixes = {};
         this.sidCollection = null;
-        this.stars = {};
         this.starCollection = null;
         this.maps = {};
         this.airways = {};
@@ -146,7 +146,6 @@ export default class AirportModel {
 
         this.radio = _get(data, 'radio', this.radio);
         this.has_terrain = _get(data, 'has_terrain', false);
-        this.stars = _get(data, 'stars', {});
         this.airways = _get(data, 'airways', {});
         this.ctr_radius = _get(data, 'ctr_radius', DEFAULT_CTR_RADIUS_NM);
         this.ctr_ceiling = _get(data, 'ctr_ceiling', DEFAULT_CTR_CEILING_FT);
