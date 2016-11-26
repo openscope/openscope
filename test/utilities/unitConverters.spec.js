@@ -1,4 +1,4 @@
-/* eslint import/no-extraneous-dependencies: [2, {"devDependencies": true}] */
+/* eslint-disable arrow-parens, max-len, import/no-extraneous-dependencies*/
 import ava from 'ava';
 
 import {
@@ -12,6 +12,7 @@ import {
     radiansToDegrees,
     degreesToRadians,
     convertMinutesToSeconds,
+    parseCoordinate,
     parseElevation
 } from '../../src/assets/scripts/utilities/unitConverters';
 
@@ -105,6 +106,14 @@ ava('.convertMinutesToSeconds() converts minutes to seconds', t => {
     const expectedResult = 10 * 60;
 
     t.true(result === expectedResult);
+});
+
+ava('.parseCoordinate() should accept a lat/long coordinate and convet it to decimal notation', t => {
+    const latitudeMock = 'N35d57m50.000';
+    const longitudeMock = 'W115d51m15.000';
+
+    t.true(parseCoordinate(latitudeMock) === 35.96388888888889);
+    t.true(parseCoordinate(longitudeMock) === -115.85416666666666);
 });
 
 ava('.parseElevation() should parse a string elevation into an elevation in feet', t => {
