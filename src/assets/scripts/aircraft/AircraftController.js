@@ -50,12 +50,18 @@ export default class AircraftController {
     }
 
     /**
+     * Add a new callsign to `aircraft.callsigns`
+     *
      * @for AircraftController
      * @method addCallsignToList
      * @param callsign {string}
      */
     addCallsignToList(callsign) {
         if (this.isCallsignInList(callsign)) {
+            // if you've made it here something has gone very wrong. generation of a callsign/flightNumber should
+            // also include verification that the callsign/flightNumber is unique
+            console.warn(`${callsign} already exists within the callsigns list!`);
+
             return;
         }
 
