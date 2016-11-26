@@ -67,7 +67,6 @@ export default class AirportModel {
         // TODO: rename to `runwayName`
         this.runway = null;
         this.fixes = {};
-        this.sids = {};
         this.sidCollection = null;
         this.stars = {};
         this.starCollection = null;
@@ -147,7 +146,6 @@ export default class AirportModel {
 
         this.radio = _get(data, 'radio', this.radio);
         this.has_terrain = _get(data, 'has_terrain', false);
-        this.sids = _get(data, 'sids', {});
         this.stars = _get(data, 'stars', {});
         this.airways = _get(data, 'airways', {});
         this.ctr_radius = _get(data, 'ctr_radius', DEFAULT_CTR_RADIUS_NM);

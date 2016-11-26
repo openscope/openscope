@@ -1248,35 +1248,34 @@ export default class Aircraft {
      * @method runSID
      */
     runSID() {
-        const apt = window.airportController.airport_get();
-        const sid_id = this.destination;
+        const airport = window.airportController.airport_get();
+        const { sidCollection } = airport;
 
-        if (!_has(apt.sids, sid_id)) {
+        if (!airport.sidCollection.hasRoute(this.destination)) {
             return ['fail', 'SID name not understood'];
         }
 
-        // TODO: refactor to use `StandardRouteCollection`
-        const sid_name = apt.sids[sid_id].name;
-        const exit = apt.getSIDExitPoint(sid_id);
-        const route = `${apt.icao.toUpperCase()}.${sid_id}.${exit}`;
+        const standardRouteModel = sidCollection.findRouteByIcao(this.destination);
+        const exitFixName = airport.getSIDExitPoint(this.destination);
+        const route = `${airport.icao.toUpperCase()}.${this.destination}.${exitFixName}`;
 
         if (this.category !== FLIGHT_CATEGORY.DEPARTURE) {
             return ['fail', 'unable to fly SID, we are an inbound'];
         }
 
         if (!this.rwy_dep) {
-            this.setDepartureRunway(apt.runway);
+            this.setDepartureRunway(airport.runway);
         }
 
-        if (!_has(apt.sids[sid_id].rwy, this.rwy_dep)) {
-            return ['fail', `unable, the ${sid_name} departure not valid from Runway ${this.rwy_dep}`];
+        if (!standardRouteModel.hasFixName(this.rwy_dep)) {
+            return ['fail', `unable, the ${standardRouteModel.name} departure not valid from Runway ${this.rwy_dep}`];
         }
 
         this.fms.followSID(route);
 
         const readback = {
-            log: `cleared to destination via the ${sid_id} departure, then as filed`,
-            say: `cleared to destination via the ${sid_name} departure, then as filed`
+            log: `cleared to destination via the ${this.destination} departure, then as filed`,
+            say: `cleared to destination via the ${standardRouteModel.name} departure, then as filed`
         };
 
         // TODO: this return format is never used by the calling method. the calling method expects a boolean

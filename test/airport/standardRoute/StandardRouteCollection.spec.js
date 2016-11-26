@@ -96,6 +96,14 @@ ava('.findFixModelsForRouteByEntryAndExit() returns early if not provided an `ic
     t.true(typeof result === 'undefined');
 });
 
+ava('.hasRoute() returns a boolean if a route exists within the collection', t => {
+    const collection = new StandardRouteCollection(STAR_LIST_MOCK);
+
+    t.true(collection.hasRoute(STAR_ICAO_MOCK));
+    t.false(collection.hasRoute(SID_ICAO_MOCK));
+    t.false(collection.hasRoute(''));
+});
+
 ava('._addSidToCollection() throws if it doesnt receive a SidModel', t => {
     const collection = new StandardRouteCollection(SID_WITHOUT_EXIT_MOCK);
 
