@@ -177,7 +177,7 @@ export default class StandardRouteCollection extends BaseCollection {
      * @return {StandardRouteModel|undefined}
      */
     findRouteByIcao(icao) {
-        return _find(this._items, { icao: icao });
+        return _find(this._items, { icao: icao.toUpperCase() });
     }
 
     /**

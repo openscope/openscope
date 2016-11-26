@@ -9,6 +9,7 @@ import _map from 'lodash/map';
 import AircraftFlightManagementSystem from './FlightManagementSystem/AircraftFlightManagementSystem';
 import AircraftStripView from './AircraftStripView';
 import Waypoint from './FlightManagementSystem/Waypoint';
+import RouteModel from '../airport/Route/RouteModel';
 import { speech_say } from '../speech';
 import { tau, radians_normalize, angle_offset } from '../math/circle';
 import { round, abs, sin, cos, extrapolate_range_clamp, clamp } from '../math/core';
@@ -1273,6 +1274,7 @@ export default class Aircraft {
 
         this.fms.followSID(route);
 
+        // TODO: casing may be an issue here.
         const readback = {
             log: `cleared to destination via the ${this.destination} departure, then as filed`,
             say: `cleared to destination via the ${standardRouteModel.name} departure, then as filed`
@@ -1286,28 +1288,26 @@ export default class Aircraft {
     /**
      * @for AircraftInstanceModel
      * @method runSTAR
-     * @param data {string} a string representation of the STAR, ex: `QUINN.BDEGA2.KSFO`
+     * @param data {array<string>} a string representation of the STAR, ex: `QUINN.BDEGA2.KSFO`
      */
     runSTAR(data) {
-        // TODO: This should use the `RouteModel` and then, with that model, verify
-        const entry = data[0].split('.')[0].toUpperCase();
-        const star_id = data[0].split('.')[1].toUpperCase();
+        const routeModel = new RouteModel(data[0]);
         const airport = window.airportController.airport_get();
-        const { name: starName } = airport.starCollection.findRouteByIcao(star_id);
-        const route = `${entry}.${star_id}.${airport.icao}`;
+        const { name: starName } = airport.starCollection.findRouteByIcao(routeModel.procedure);
 
         if (this.category !== FLIGHT_CATEGORY.ARRIVAL) {
             return ['fail', 'unable to fly STAR, we are a departure!'];
         }
 
-        if (data[0].length === 0 || !airport.starCollection.hasRoute(star_id)) {
+        if (data[0].length === 0 || !airport.starCollection.hasRoute(routeModel.procedure)) {
             return ['fail', 'STAR name not understood'];
         }
 
-        this.fms.followSTAR(route);
+        this.fms.followSTAR(routeModel.routeString);
 
+        // TODO: casing may be an issue here.
         const readback = {
-            log: `cleared to the ${airport.name} via the ${star_id} arrival`,
+            log: `cleared to the ${airport.name} via the ${routeModel.procedure} arrival`,
             say: `cleared to the ${airport.name} via the ${starName} arrival`
         };
 
