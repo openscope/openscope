@@ -1,6 +1,10 @@
 import _uniqueId from 'lodash/uniqueId';
 import { sin, cos } from '../math/core';
-import { degreesToRadians, parseElevation } from '../utilities/unitConverters';
+import {
+    degreesToRadians,
+    parseCoordinate,
+    parseElevation
+} from '../utilities/unitConverters';
 
 /**
  * @property REGEX
@@ -47,7 +51,6 @@ export default class PositionModel {
      */
     constructor(coordinates = [], reference, magnetic_north = 0, mode) {
         this._id = _uniqueId();
-        // TODO: it might make more sense to abstract `coordinates` out to another Model object.
         this.latitude = 0;
         this.longitude = 0;
         this.elevation = 0;
@@ -90,8 +93,8 @@ export default class PositionModel {
             return;
         }
 
-        this.latitude = this.parseCoordinate(coordinates[0]);
-        this.longitude = this.parseCoordinate(coordinates[1]);
+        this.latitude = parseCoordinate(coordinates[0]);
+        this.longitude = parseCoordinate(coordinates[1]);
         // GPS coordinates in [x,y] order
         this.gps = [
             this.longitude,
@@ -186,46 +189,17 @@ export default class PositionModel {
         const d_lat = degreesToRadians(lat_a - lat_b);
         const d_lng = degreesToRadians(lng_a - lng_b);
 
-        // TODO: what do these vars mean? a & c?
-        // TODO: could the maths here be abstracted?
+        // TODO: what is actually getting set to `a` here? and what does `a` represent?
         const a = Math.pow(sin(d_lat / 2), 2) +
-            (cos(degreesToRadians(lat_a)) *
-            cos(degreesToRadians(lat_b)) *
-            Math.pow(sin(d_lng / 2), 2));
+            (
+                cos(degreesToRadians(lat_a)) *
+                cos(degreesToRadians(lat_b)) *
+                Math.pow(sin(d_lng / 2), 2)
+            );
+        // TODO: what is actually getting set to `c` here? and what does `c` represent?
         const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
         // TODO: what does this number mean? enumerate the magic nubmer
         return c * 6371.00;
-    }
-
-    /**
-     * @for PositionModel
-     * @method parseCoordinate
-     * @param coord
-     */
-    parseCoordinate(coord) {
-        const match = REGEX.LAT_LONG.exec(coord);
-
-        if (match == null) {
-            log(`Unable to parse coordinate ${coord}`);
-
-            return;
-        }
-
-        let ret = parseFloat(match[2]);
-
-        if (match[5] != null) {
-            ret += parseFloat(match[5]) / 60;
-
-            if (match[8] != null) {
-                ret += parseFloat(match[8]) / 3600;
-            }
-        }
-
-        if (REGEX.SW.test(match[1])) {
-            ret *= -1;
-        }
-
-        return ret;
     }
 }
