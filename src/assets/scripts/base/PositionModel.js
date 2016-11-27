@@ -1,5 +1,6 @@
 import _uniqueId from 'lodash/uniqueId';
 import { sin, cos } from '../math/core';
+import { distanceToPoint } from '../math/circle';
 import {
     degreesToRadians,
     parseCoordinate,
@@ -103,12 +104,6 @@ export default class PositionModel {
          */
         this.y = 0;
 
-        /**
-         * @property gps
-         * @type {array}
-         */
-        this.gps = [0, 0];
-
         return this.init(coordinates, mode);
     }
 
@@ -122,6 +117,19 @@ export default class PositionModel {
         return [
             this.x,
             this.y
+        ];
+    }
+
+    /**
+     * GPS coordinates in [x,y] order
+     *
+     * @property gps
+     * @return {array}
+     */
+    get gps() {
+        return [
+            this.longitude,
+            this.latitude
         ];
     }
 
@@ -153,38 +161,38 @@ export default class PositionModel {
 
         this.latitude = parseCoordinate(coordinates[0]);
         this.longitude = parseCoordinate(coordinates[1]);
-        // GPS coordinates in [x,y] order
-        this.gps = [
-            this.longitude,
-            this.latitude
-        ];
 
         // TODO: this is using coersion and shoudld be updated to be more explicit
         if (coordinates[2] != null) {
             this.elevation = parseElevation(coordinates[2]);
         }
 
-      // this function (parse4326) is moved to be able to call it if point is
-      // EPSG:4326, numeric decimal, like those from GeoJSON
-        if (this.reference_position != null) {
-            // FIXME: why do x/y get assigned with lat/long here, and then in parse4326 lat/long gets assigned with x/y?
-            this.x = this.longitude;
-            this.y = this.latitude;
-
-            this.parse4326();
+        // if there is no reference_position, x and y are both 0 and we don't have enough
+        // information to run `parse4326()`
+        if (!this.reference_position) {
+            return;
         }
+
+        // this function (parse4326) is moved to be able to call it if point is
+        // EPSG:4326, numeric decimal, like those from GeoJSON
+        // FIXME: why do x/y get assigned with lat/long here, and then in parse4326 lat/long gets assigned with x/y?
+        this.x = this.longitude;
+        this.y = this.latitude;
+
+        this.parse4326();
     }
 
     /**
+     * If coordinates were in WGS84 EPSG:4326 (signed decimal lat/lon -12.123,83.456) parse them
+     *
      * @for PositionModel
      * @method parse4326
      */
     parse4326() {
-        // if coordinates were in WGS84 EPSG:4326 (signed decimal lat/lon -12.123,83.456)
-        // parse them
         this.longitude = this.x;
         this.latitude = this.y;
-        this.x = this.distanceToPoint(
+
+        this.x = distanceToPoint(
             this.reference_position.latitude,
             this.reference_position.longitude,
             this.reference_position.latitude,
@@ -195,7 +203,7 @@ export default class PositionModel {
             this.x *= -1;
         }
 
-        this.y = this.distanceToPoint(
+        this.y = distanceToPoint(
             this.reference_position.latitude,
             this.reference_position.longitude,
             this.latitude,
@@ -206,14 +214,7 @@ export default class PositionModel {
             this.y *= -1;
         }
 
-        // Adjust to use magnetic north instead of true north
-        let t = Math.atan2(this.y, this.x);
-        const r = Math.sqrt((this.x * this.x) + (this.y * this.y));
-
-        t += this.magnetic_north;
-
-        this.x = r * cos(t);
-        this.y = r * sin(t);
+        this.adjustForMagneticNorth();
     }
 
     /**
@@ -223,7 +224,7 @@ export default class PositionModel {
      * @return {number}
      */
     distanceTo(point) {
-        return this.distanceToPoint(
+        return distanceToPoint(
             this.latitude,
             this.longitude,
             point.latitude,
@@ -232,31 +233,17 @@ export default class PositionModel {
     }
 
     /**
-     * The distance in km between two locations
      *
-     * @for PositionModel
-     * @method distanceToPoint
-     * @param lat_a
-     * @param lng_a
-     * @param lat_b
-     * @param lng_b
-     * return {number}
+     *
      */
-    distanceToPoint(lat_a, lng_a, lat_b, lng_b) {
-        const d_lat = degreesToRadians(lat_a - lat_b);
-        const d_lng = degreesToRadians(lng_a - lng_b);
+    adjustForMagneticNorth() {
+        // Adjust to use magnetic north instead of true north
+        let t = Math.atan2(this.y, this.x);
+        const r = Math.sqrt((this.x * this.x) + (this.y * this.y));
 
-        // TODO: what is actually getting set to `a` here? and what does `a` represent?
-        const a = Math.pow(sin(d_lat / 2), 2) +
-            (
-                cos(degreesToRadians(lat_a)) *
-                cos(degreesToRadians(lat_b)) *
-                Math.pow(sin(d_lng / 2), 2)
-            );
-        // TODO: what is actually getting set to `c` here? and what does `c` represent?
-        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        t += this.magnetic_north;
 
-        // TODO: what does this number mean? enumerate the magic nubmer
-        return c * 6371.00;
+        this.x = r * cos(t);
+        this.y = r * sin(t);
     }
 }
