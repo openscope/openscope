@@ -105,7 +105,7 @@ export default class RouteSegmentCollection extends BaseCollection {
      * @return {SegmentModel}
      */
     findSegmentByName(segmentName) {
-        return _find(this._items, { name: segmentName });
+        return _find(this._items, { name: segmentName.toUpperCase() });
     }
 
     /**

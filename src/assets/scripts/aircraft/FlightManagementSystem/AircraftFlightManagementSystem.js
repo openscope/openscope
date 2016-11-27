@@ -1,8 +1,10 @@
+/* eslint-disable no-plusplus */
 import $ from 'jquery';
 import _find from 'lodash/find';
 import _last from 'lodash/last';
 import _map from 'lodash/map';
 import _isNil from 'lodash/isNil';
+import FixCollection from '../../airport/Fix/FixCollection';
 import Waypoint from './Waypoint';
 import Leg from './Leg';
 import RouteModel from '../../airport/Route/RouteModel';
@@ -198,7 +200,7 @@ export default class AircraftFlightManagementSystem {
         }
 
         const prev = this.currentWaypoint;
-        const legToAdd = new Leg(data, this)
+        const legToAdd = new Leg(data, this);
 
         this.legs.splice(data.firstIndex, 0, legToAdd);
 
@@ -554,12 +556,12 @@ export default class AircraftFlightManagementSystem {
      *       Return Data Format: ["KSFO.OFFSH9.SXC", "SXC.V458.IPL", "IPL.J2.JCT", "LLO", "ACT", "KACT"]
      */
     formatRoute(data) {
-        const routeModel = new RouteModel(data);
+        // const routeModel = new RouteModel(data);
 
         // Format the user's input
         let route = [];
-        // const ap = airport_get;
-        const fixOK = window.airportController.airport_get().getFix;
+        const airport = window.airportController.airport_get();
+        const fixOK = (fixName) => FixCollection.findFixByName(fixName) !== null;
 
         if (data.indexOf(' ') !== -1) {
             return; // input can't contain spaces
@@ -587,26 +589,26 @@ export default class AircraftFlightManagementSystem {
                 if (data[i].split('.').length % 2 !== 1) {
                     // user either didn't specify start point or end point
                     return;
-                } else {
-                    // TODO: this should be abstracted to another class method.
-                    const pieces = data[i].split('.');
-                    // FIXME: what does 'a' mean? better naming
-                    a = [pieces[0] + '.' + pieces[1] + '.' + pieces[2]];
+                }
 
-                    // chop up the multilink
-                    for (let j = 3; j < data[i].split('.').length; j + 2) {
-                        if (!fixOK(pieces[0]) || !fixOK(pieces[2])) {
-                            return;  // invalid join/exit points
-                        }
+                // TODO: this should be abstracted to another class method.
+                const pieces = data[i].split('.');
+                // FIXME: what does 'a' mean? better naming
+                a = [pieces[0] + '.' + pieces[1] + '.' + pieces[2]];
 
-                        if (!Object.keys(ap().sids).indexOf(pieces[1]) ||
-                            !Object.keys(ap().airways).indexOf(pieces[1])) {
-                            // invalid procedure
-                            return;
-                        }
-
-                        a.push(pieces[j - 1] + '.' + pieces[j] + pieces[j + 1]);
+                // chop up the multilink
+                for (let j = 3; j < data[i].split('.').length; j + 2) {
+                    if (!fixOK(pieces[0]) || !fixOK(pieces[2])) {
+                        return;  // invalid join/exit points
                     }
+
+                    if (!airport.sidCollection.hasRoute(pieces[1]) ||
+                        !Object.keys(airport.airways).indexOf(pieces[1])) {
+                        // invalid procedure
+                        return;
+                    }
+
+                    a.push(pieces[j - 1] + '.' + pieces[j] + pieces[j + 1]);
                 }
             }
 

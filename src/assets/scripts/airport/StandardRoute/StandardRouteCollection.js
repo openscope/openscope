@@ -1,6 +1,7 @@
 import _find from 'lodash/find';
 import _forEach from 'lodash/forEach';
 import _isEmpty from 'lodash/isEmpty';
+import _isNil from 'lodash/isNil';
 import _map from 'lodash/map';
 import _random from 'lodash/random';
 import BaseCollection from '../../base/BaseCollection';
@@ -176,7 +177,17 @@ export default class StandardRouteCollection extends BaseCollection {
      * @return {StandardRouteModel|undefined}
      */
     findRouteByIcao(icao) {
-        return _find(this._items, { icao: icao });
+        return _find(this._items, { icao: icao.toUpperCase() });
+    }
+
+    /**
+     * @for StandardRouteCollection
+     * @method hasRoute
+     * @param routeName {string}
+     * @return {boolean}
+     */
+    hasRoute(routeName) {
+        return !_isNil(this.findRouteByIcao(routeName));
     }
 
     /**
