@@ -43,6 +43,8 @@ export default class RouteModel extends BaseModel {
         super();
 
         if (typeof routeString === 'undefined' || typeof routeString !== 'string') {
+            console.error(`Invalid data type passed to RouteModel. Expected a string but received ${routeString}`);
+
             return;
         }
 
@@ -82,7 +84,8 @@ export default class RouteModel extends BaseModel {
      * @return {string}
      */
     get routeString() {
-        return `${this.entry}.${this.procedure}.${this.exit}`;
+        // FIXME: these inline `toUpperCase` is a temp fix and are very ugly. this needs to be done differently.
+        return `${this.entry.toUpperCase()}.${this.procedure.toUpperCase()}.${this.exit.toUpperCase()}`;
     }
 
     /**
