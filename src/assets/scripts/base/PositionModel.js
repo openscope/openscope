@@ -43,26 +43,86 @@ export default class PositionModel {
      *
      * @for PositionModel
      * @constructor
-     * @param coordinates {array} Array containing offset pair or latitude/longitude pair
-     * @param reference {}        Position to use for calculating offsets when lat/long given
-     * @param magnetic_north
-     * @param mode {string}       optional. Set to 'GPS' to indicate you are inputting lat/lon
-     *                            that should be converted to positions
+     * @param coordinates {array}               Array containing offset pair or latitude/longitude pair
+     * @param reference {PositionModel|null}    Position to use for calculating offsets when lat/long given
+     * @param magnetic_north {number}           magnetic north direction
+     * @param mode {string}                     Set to 'GPS' to indicate you are inputting lat/long that should
+     *                                          be converted to positions
      */
     constructor(coordinates = [], reference, magnetic_north = 0, mode) {
-        this._id = _uniqueId();
+        /**
+         * @property _id
+         * @type {string}
+         */
+        this._id = _uniqueId('position-model-');
+
+        /**
+         * @property latitude
+         * @type {number}
+         * @default 0
+         */
         this.latitude = 0;
+
+        /**
+         * @property longitude
+         * @type {number}
+         * @default 0
+         */
         this.longitude = 0;
+
+        /**
+         * @property elevation
+         * @type {number}
+         * @default 0
+         */
         this.elevation = 0;
+
+        /**
+         * @property reference_position
+         * @type {PositionModel|null}
+         */
         this.reference_position = reference;
+
+        /**
+         * @property magnetic_north
+         * @type {number}
+         */
         this.magnetic_north = magnetic_north;
+
+        /**
+         * @property x
+         * @type {number}
+         * @default 0
+         */
         this.x = 0;
+
+        /**
+         * @property y
+         * @type {number}
+         * @default 0
+         */
         this.y = 0;
-        // TODO: make this a getter;
-        this.position = [this.x, this.y];
+
+        /**
+         * @property gps
+         * @type {array}
+         */
         this.gps = [0, 0];
 
-        return this.parse(coordinates, mode);
+        return this.init(coordinates, mode);
+    }
+
+    /**
+     *
+     *
+     * @property position
+     * @return {array}
+     */
+    get position() {
+        return [
+            this.x,
+            this.y
+        ];
     }
 
     /**
@@ -77,14 +137,12 @@ export default class PositionModel {
 
     /**
      * @for PositionModel
-     * @method parse
+     * @method init
      */
-    parse(coordinates, mode) {
+    init(coordinates, mode) {
         if (!REGEX.COMPASS_DIRECTION.test(coordinates[0])) {
             this.x = coordinates[0];
             this.y = coordinates[1];
-            // TODO: remove once this property is a getter
-            this.position = [this.x, this.y];
 
             if (mode === 'GPS') {
                 this.parse4326();
@@ -109,6 +167,7 @@ export default class PositionModel {
       // this function (parse4326) is moved to be able to call it if point is
       // EPSG:4326, numeric decimal, like those from GeoJSON
         if (this.reference_position != null) {
+            // FIXME: why do x/y get assigned with lat/long here, and then in parse4326 lat/long gets assigned with x/y?
             this.x = this.longitude;
             this.y = this.latitude;
 
@@ -155,8 +214,6 @@ export default class PositionModel {
 
         this.x = r * cos(t);
         this.y = r * sin(t);
-
-        this.position = [this.x, this.y];
     }
 
     /**
