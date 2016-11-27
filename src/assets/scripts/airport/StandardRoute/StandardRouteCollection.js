@@ -182,7 +182,7 @@ export default class StandardRouteCollection extends BaseCollection {
 
     /**
      * @for StandardRouteCollection
-     * @metho hasRoute
+     * @method hasRoute
      * @param routeName {string}
      * @return {boolean}
      */
