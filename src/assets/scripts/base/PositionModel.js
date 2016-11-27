@@ -167,8 +167,7 @@ export default class PositionModel {
             this.elevation = parseElevation(coordinates[2]);
         }
 
-        // if there is no reference_position, x and y are both 0 and we don't have enough
-        // information to run `parse4326()`
+        // if !reference_position, x and y are both 0 and we don't have enough information to run `parse4326()`
         if (!this.reference_position) {
             return;
         }

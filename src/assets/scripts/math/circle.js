@@ -75,8 +75,11 @@ export const radians_normalize = (radians) => {
 /**
  * Calculate the distance between two lat/long coordinates in km
  *
- * see: http://stackoverflow.com/questions/27928/calculate-distance-between-two-latitude-longitude-points-haversine-formula
- * for more information on the math here
+ * This is a javascript implementation of the Haversine Formula
+ *
+ * for more information on the math see:
+ * - http://www.movable-type.co.uk/scripts/latlong.html
+ * - http://stackoverflow.com/questions/27928/calculate-distance-between-two-latitude-longitude-points-haversine-formula
  *
  * @function distanceToPoint
  * @param startLatitude {number}
@@ -86,17 +89,41 @@ export const radians_normalize = (radians) => {
  * return {number}
  */
 export const distanceToPoint = (startLatitude, startLongitude, endLatitude, endLongitude) => {
+    // TODO: add to global constants
     const EARTH_RADIUS_KM = 6371;
     const startLatitudeRadians = degreesToRadians(startLatitude);
     const endLatitudeRadians = degreesToRadians(endLatitude);
     const distanceLatitude = degreesToRadians(startLatitude - endLatitude);
     const distanceLongitude = degreesToRadians(startLongitude - endLongitude);
 
-    // TODO: what is actually getting set to `a` here? and what does `a` represent?
+    // the square of half the chord length between points
     const a = Math.pow(Math.sin(distanceLatitude / 2), 2) +
         (Math.cos(startLatitudeRadians) * Math.cos(endLatitudeRadians) * Math.pow(Math.sin(distanceLongitude / 2), 2));
-    // TODO: what is actually getting set to `c` here? and what does `c` represent?
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
-    return c * EARTH_RADIUS_KM;
+
+    const angularDistanceInRadians = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+    return angularDistanceInRadians * EARTH_RADIUS_KM;
 };
+
+// /**
+//  *
+//  * @function distEuclid
+//  * @param
+//  * @param
+//  * @return
+//  */
+// export const distEuclid = (lat1, lon1, lat2, lon2) => {
+//     // TODO: add to global constants
+//     const EARTH_RADIUS_KM = 6371;
+//     const lat1 = degreesToRadians(lat1);
+//     const lat2 = degreesToRadians(lat2);
+//     const dlat = degreesToRadians(lat2 - lat1);
+//     const dlon = degreesToRadians(lon2 - lon1);
+//
+//     const a = Math.sin(dlat / 2) * Math.sin(dlat / 2) + Math.cos(lat1) * Math.cos(lat2) * Math.sin(dlon / 2) * Math.sin(dlon / 2);
+//     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+//     const d = EARTH_RADIUS_KM * c;
+//
+//     return d; // distance, in kilometers
+// };
