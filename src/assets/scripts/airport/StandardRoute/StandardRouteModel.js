@@ -4,6 +4,7 @@ import _get from 'lodash/get';
 import _has from 'lodash/has';
 import _isArray from 'lodash/isArray';
 import _isEmpty from 'lodash/isEmpty';
+import _isNil from 'lodash/isNil';
 import _isObject from 'lodash/isObject';
 import BaseModel from '../../base/BaseModel';
 import RouteSegmentCollection from './RouteSegmentCollection';
@@ -287,6 +288,22 @@ export default class StandardRouteModel extends BaseModel {
      */
     hasExitPoints() {
         return this._exitCollection !== null && this._exitCollection.length > 0;
+    }
+
+    /**
+     * Checks if a given `fixName` is present in the `_entryCollection` or `_exitCollection`.
+     *
+     * This method does not check for items within the `_bodySegmentModel`. In the future
+     * this method may need to be extended to work with `_bodySegmentModel` items as well.
+     *
+     * @for StandardRouteModel
+     * @method hasFixName
+     * @param {string}
+     * @return {boolean}
+     */
+    hasFixName(fixName) {
+        return this._entryCollection && !_isNil(this._entryCollection.findSegmentByName(fixName)) ||
+            this._exitCollection && !_isNil(this._exitCollection.findSegmentByName(fixName));
     }
 
     /**

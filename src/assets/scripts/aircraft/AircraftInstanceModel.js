@@ -1248,35 +1248,34 @@ export default class Aircraft {
      * @method runSID
      */
     runSID() {
-        const apt = window.airportController.airport_get();
-        const sid_id = this.destination;
+        const airport = window.airportController.airport_get();
+        const { sidCollection } = airport;
 
-        if (!_has(apt.sids, sid_id)) {
+        if (!airport.sidCollection.hasRoute(this.destination)) {
             return ['fail', 'SID name not understood'];
         }
 
-        // TODO: refactor to use `StandardRouteCollection`
-        const sid_name = apt.sids[sid_id].name;
-        const exit = apt.getSIDExitPoint(sid_id);
-        const route = `${apt.icao.toUpperCase()}.${sid_id}.${exit}`;
+        const standardRouteModel = sidCollection.findRouteByIcao(this.destination);
+        const exitFixName = airport.getSIDExitPoint(this.destination);
+        const route = `${airport.icao.toUpperCase()}.${this.destination}.${exitFixName}`;
 
         if (this.category !== FLIGHT_CATEGORY.DEPARTURE) {
             return ['fail', 'unable to fly SID, we are an inbound'];
         }
 
         if (!this.rwy_dep) {
-            this.setDepartureRunway(apt.runway);
+            this.setDepartureRunway(airport.runway);
         }
 
-        if (!_has(apt.sids[sid_id].rwy, this.rwy_dep)) {
-            return ['fail', `unable, the ${sid_name} departure not valid from Runway ${this.rwy_dep}`];
+        if (!standardRouteModel.hasFixName(this.rwy_dep)) {
+            return ['fail', `unable, the ${standardRouteModel.name} departure not valid from Runway ${this.rwy_dep}`];
         }
 
         this.fms.followSID(route);
 
         const readback = {
-            log: `cleared to destination via the ${sid_id} departure, then as filed`,
-            say: `cleared to destination via the ${sid_name} departure, then as filed`
+            log: `cleared to destination via the ${this.destination} departure, then as filed`,
+            say: `cleared to destination via the ${standardRouteModel.name} departure, then as filed`
         };
 
         // TODO: this return format is never used by the calling method. the calling method expects a boolean
@@ -1287,32 +1286,29 @@ export default class Aircraft {
     /**
      * @for AircraftInstanceModel
      * @method runSTAR
-     * @param data
+     * @param data {string} a string representation of the STAR, ex: `QUINN.BDEGA2.KSFO`
      */
     runSTAR(data) {
+        // TODO: This should use the `RouteModel` and then, with that model, verify
         const entry = data[0].split('.')[0].toUpperCase();
         const star_id = data[0].split('.')[1].toUpperCase();
-        const apt = window.airportController.airport_get();
-        const star_name = apt.stars[star_id].name;
-        const route = `${entry}.${star_id}.${apt.icao}`;
+        const airport = window.airportController.airport_get();
+        const { name: starName } = airport.starCollection.findRouteByIcao(star_id);
+        const route = `${entry}.${star_id}.${airport.icao}`;
 
         if (this.category !== FLIGHT_CATEGORY.ARRIVAL) {
             return ['fail', 'unable to fly STAR, we are a departure!'];
         }
 
-        if (data[0].length === 0) {
-            return ['fail', 'STAR name not understood'];
-        }
-
-        if (!_has(apt.stars, star_id)) {
+        if (data[0].length === 0 || !airport.starCollection.hasRoute(star_id)) {
             return ['fail', 'STAR name not understood'];
         }
 
         this.fms.followSTAR(route);
 
         const readback = {
-            log: `cleared to the ${apt.name} via the ${star_id} arrival`,
-            say: `cleared to the ${apt.name} via the ${star_name} arrival`
+            log: `cleared to the ${airport.name} via the ${star_id} arrival`,
+            say: `cleared to the ${airport.name} via the ${starName} arrival`
         };
 
         return ['ok', readback];

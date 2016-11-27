@@ -5,7 +5,7 @@
     - Creates getters for `currentLeg` and `currentWaypoint`
     - Abstracts restrictions logic to live within `Waypoint`
     - Consolidates `runSID()` and `climbViaSid()` logic
-
+- Deprecates `sid` and `star` properties of the `AirportModel` in favor of `sidCollection` and `starCollection` [#54](https://github.com/n8rzz/atc/issues/54)
 
 
 
