@@ -3,6 +3,7 @@ import _isNumber from 'lodash/isNumber';
 import _startsWith from 'lodash/startsWith';
 import { tau } from '../math/circle';
 import { round, mod } from '../math/core';
+import { REGEX } from '../constants/globalConstants';
 
 // TODO: This should be moved to its own file once it has been filled in a little more
 /**
@@ -220,11 +221,6 @@ export const heading_to_string = (heading) => {
  * @return transformedCoordinate {number}
  */
 export const parseCoordinate = (coordintae) => {
-    const REGEX = {
-        SW: /[SW]/,
-        LAT_LONG: /^([NESW])(\d+(\.\d+)?)([d °](\d+(\.\d+)?))?([m '](\d+(\.\d+)?))?$/
-    };
-
     const match = REGEX.LAT_LONG.exec(coordintae);
 
     if (match == null) {

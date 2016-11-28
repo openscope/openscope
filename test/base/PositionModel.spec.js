@@ -1,4 +1,5 @@
 import ava from 'ava';
+import _isEqual from 'lodash/isEqual';
 
 import PositionModel from '../../src/assets/scripts/base/PositionModel';
 
@@ -24,4 +25,15 @@ ava('sets internal properties when provided valid parameters', t => {
     t.true(result.y === 70.38079821863909);
     t.true(result.gps[0] === -114.60478305555554);
     t.true(result.gps[1] === 36.63366638888889);
+});
+
+ava('.getPosition() throws when it receives the wrong arguments', t => {
+    t.throws(() => PositionModel.getPosition());
+});
+
+ava('.getPostiion() returns an array with a calculated x, y value that is the same as an instance x,y', t => {
+    const expectedResult = new PositionModel(LAT_LONG_MOCK, AIRPORT_POSITION_FIXTURE, MAGNETIC_NORTH_MOCK);
+    const result = PositionModel.getPosition(LAT_LONG_MOCK, AIRPORT_POSITION_FIXTURE, MAGNETIC_NORTH_MOCK);
+
+    t.true(_isEqual(result, expectedResult.position));
 });
