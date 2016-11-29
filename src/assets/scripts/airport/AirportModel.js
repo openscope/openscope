@@ -399,10 +399,6 @@ export default class AirportModel {
         localStorage[STORAGE_KEY.ATC_LAST_AIRPORT] = this.icao;
         prop.airport.current = this;
 
-        $(SELECTORS.DOM_SELECTORS.AIRPORT)
-            .text(this.icao.toUpperCase())
-            .attr('title', this.name);
-
         prop.canvas.draw_labels = true;
         $(SELECTORS.DOM_SELECTORS.TOGGLE_LABELS).toggle(!_isEmpty(this.maps));
         $(SELECTORS.DOM_SELECTORS.TOGGLE_RESTRICTED_AREAS).toggle((this.restricted_areas || []).length > 0);

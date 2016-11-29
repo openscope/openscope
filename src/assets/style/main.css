@@ -30,18 +30,15 @@ html {
   font-family: monoOne, monospace;
 }
 
-#airport {
+#clock {
+  font-size: 12px;
   color: #ddd;
   position: absolute;
   top: 0;
   left: 0;
   width: auto;
-  padding: 10px;
+  padding: 8px;
   z-index: 1000;
-
-  -webkit-user-select: text;
-  -moz-select: text;
-  user-select: text;
 }
 
 #options-dialog {
