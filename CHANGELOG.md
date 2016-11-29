@@ -21,7 +21,7 @@
 - Adds `RouteModel` to `AircraftInstanceModel.runSTAR` for easier handling of a route string [#163](https://github.com/n8rzz/atc/issues/163)
 - Adds static `calculatePosition` method to `PositionModel` and abstracts common functions [#159](https://github.com/n8rzz/atc/issues/159)
 - Replaces active airport icao in view with a zulu time clock [#135](https://github.com/n8rzz/atc/issues/135)
-
+- Consolidates test fixtures in fixtures directory [#167](https://github.com/n8rzz/atc/issues/167)
 
 
 

@@ -1,9 +1,10 @@
+/* eslint-disable import/no-extraneous-dependencies, arrow-parens */
 import ava from 'ava';
 import _isEqual from 'lodash/isEqual';
 
 import FixCollection from '../../../src/assets/scripts/airport/Fix/FixCollection';
 import FixModel from '../../../src/assets/scripts/airport/Fix/FixModel';
-import { airportPositionFixture } from '../../fixtures/airportFixtures';
+import { airportPositionFixtureKSFO } from '../../fixtures/airportFixtures';
 import {
     FIX_LIST_MOCK,
     SMALL_FIX_LIST_MOCK
@@ -18,7 +19,7 @@ ava.serial('FixCollection throws when an attempt to instantiate is made with inv
 });
 
 ava.serial('FixCollection sets its properties when it receives a valid fixList', t => {
-    FixCollection.init(FIX_LIST_MOCK, airportPositionFixture);
+    FixCollection.init(FIX_LIST_MOCK, airportPositionFixtureKSFO);
 
     t.true(FixCollection._items.length > 0);
     t.true(FixCollection.length === FixCollection._items.length);
@@ -57,7 +58,7 @@ ava.serial('.findFixByName() returns null if a FixModel does not exist within th
 
 ava.serial('.getFixPositionCoordinates() returns the position of a FixModel', t => {
     const result = FixCollection.getFixPositionCoordinates('BAKRR');
-    const expectedResult = [ 675.477318026648, -12.012221291734532 ];
+    const expectedResult = [675.477318026648, -12.012221291734532];
 
     t.true(_isEqual(result, expectedResult));
 });

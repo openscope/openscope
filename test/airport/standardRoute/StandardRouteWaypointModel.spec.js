@@ -7,7 +7,7 @@ import FixCollection from '../../../src/assets/scripts/airport/Fix/FixCollection
 import Waypoint from '../../../src/assets/scripts/aircraft/FlightManagementSystem/Waypoint';
 
 import {
-    airportPositionFixture,
+    airportPositionFixtureKSFO,
     airportModelFixtureForWaypoint
 } from '../../fixtures/airportFixtures';
 import { FIX_LIST_MOCK } from '../fix/_mocks/fixMocks';
@@ -16,7 +16,7 @@ const NAME_MOCK = 'BIKKR';
 const RESTRICTIONS_MOCK = 'A80+|S250';
 const ROUTE_WAYPOINT_MOCK = [NAME_MOCK, RESTRICTIONS_MOCK];
 
-ava.before(() => FixCollection.init(FIX_LIST_MOCK, airportPositionFixture));
+ava.before(() => FixCollection.init(FIX_LIST_MOCK, airportPositionFixtureKSFO));
 ava.after(() => FixCollection.destroy());
 
 ava('StandardRouteWaypointModel exits early when instantiated without parameters', t => {

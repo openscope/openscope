@@ -5,7 +5,7 @@ import _isEqual from 'lodash/isEqual';
 
 import modelSourcePool from '../../../src/assets/scripts/base/ModelSource/ModelSourcePool';
 import FixModel from '../../../src/assets/scripts/airport/Fix/FixModel';
-import { airportPositionFixture } from '../../fixtures/airportFixtures';
+import { airportPositionFixtureKSFO } from '../../fixtures/airportFixtures';
 import {
     FIXNAME_MOCK,
     FIX_COORDINATE_MOCK
@@ -28,7 +28,7 @@ ava.serial('.returnReusable() throws if the modelToAdd is the incorrect type', t
 });
 
 ava.serial('.returnReusable() adds the modelToAdd to the pool', t => {
-    const reusableModel = new FixModel(FIXNAME_MOCK, FIX_COORDINATE_MOCK, airportPositionFixture);
+    const reusableModel = new FixModel(FIXNAME_MOCK, FIX_COORDINATE_MOCK, airportPositionFixtureKSFO);
     const expectedResult = modelSourcePool.length + 1;
 
     modelSourcePool.returnReusable(reusableModel);
@@ -58,7 +58,7 @@ ava.serial('._findModelByConstructorName() calls ._removeItem() when an instance
 
 ava.serial('.releasModelFromPool() calls _findModelByConstructorName() with the correct argument', t => {
     const stub = sinon.stub(modelSourcePool, '_findModelByConstructorName');
-    modelSourcePool.releaseReusable(SOURCE_NAME_MOCK, FIXNAME_MOCK, FIX_COORDINATE_MOCK, airportPositionFixture);
+    modelSourcePool.releaseReusable(SOURCE_NAME_MOCK, FIXNAME_MOCK, FIX_COORDINATE_MOCK, airportPositionFixtureKSFO);
 
     t.true(stub.calledOnce);
     t.true(stub.getCall(0).args[0] === SOURCE_NAME_MOCK);
@@ -66,7 +66,7 @@ ava.serial('.releasModelFromPool() calls _findModelByConstructorName() with the 
 
 ava.serial('.releasModelFromPool() returns a model if one exists within the pool', t => {
     const expectedPosition = [110.09968269139137, -7.686691271034179];
-    const result = modelSourcePool.releaseReusable(SOURCE_NAME_MOCK, FIXNAME_MOCK, FIX_COORDINATE_MOCK, airportPositionFixture);
+    const result = modelSourcePool.releaseReusable(SOURCE_NAME_MOCK, FIXNAME_MOCK, FIX_COORDINATE_MOCK, airportPositionFixtureKSFO);
 
     t.true(result instanceof FixModel);
     t.true(result.name === FIXNAME_MOCK);
@@ -76,7 +76,7 @@ ava.serial('.releasModelFromPool() returns a model if one exists within the pool
 ava.serial('.releasModelFromPool() returns a model if none exist within the pool', t => {
     modelSourcePool._items = [];
     const expectedPosition = [110.09968269139137, -7.686691271034179];
-    const result = modelSourcePool.releaseReusable(SOURCE_NAME_MOCK, FIXNAME_MOCK, FIX_COORDINATE_MOCK, airportPositionFixture);
+    const result = modelSourcePool.releaseReusable(SOURCE_NAME_MOCK, FIXNAME_MOCK, FIX_COORDINATE_MOCK, airportPositionFixtureKSFO);
 
     t.true(result instanceof FixModel);
     t.true(result.name === FIXNAME_MOCK);

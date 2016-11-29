@@ -2,7 +2,7 @@
 import ava from 'ava';
 import _isEqual from 'lodash/isEqual';
 import Waypoint from '../../../src/assets/scripts/aircraft/FlightManagementSystem/Waypoint';
-import { airportModelFixtureForWaypoint } from '../../airport/_fixtures/airportModelFixture';
+import { airportModelFixtureForWaypoint } from '../../fixtures/airportFixtures';
 import {
     MINIMAL_WAYPOINT_MOCK,
     BASIC_WAYPOINT_MOCK,

@@ -12,7 +12,7 @@ import RouteSegmentModel from '../../../src/assets/scripts/airport/StandardRoute
 import StandardRouteWaypointModel from '../../../src/assets/scripts/airport/StandardRoute/StandardRouteWaypointModel';
 
 import FixCollection from '../../../src/assets/scripts/airport/Fix/FixCollection';
-import { airportPositionFixture } from '../../fixtures/airportFixtures';
+import { airportPositionFixtureKSFO } from '../../fixtures/airportFixtures';
 import { FIX_LIST_MOCK } from '../fix/_mocks/fixMocks';
 
 import {
@@ -29,7 +29,7 @@ const RUNWAY_NAME_MOCK = '25L';
 const EXIT_FIXNAME_MOCK = 'KENNO';
 const ENTRY_FIXNAME_MOCK = 'DRK';
 
-ava.before(() => FixCollection.init(FIX_LIST_MOCK, airportPositionFixture));
+ava.before(() => FixCollection.init(FIX_LIST_MOCK, airportPositionFixtureKSFO));
 ava.after(() => FixCollection.destroy());
 
 ava('throws when instantiated with invaild parameters', t => {
