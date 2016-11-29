@@ -112,22 +112,6 @@ radio_runway_names.l = 'left';
 radio_runway_names.c = 'center';
 radio_runway_names.r = 'right';
 
-// FIXME: unused
-// function distEuclid(gps1, gps2) {
-//     // FIXME: enumerate the magic number
-//     const R = 6371; // nm
-//     const lat1 = degreesToRadians(lat1);
-//     const lat2 = degreesToRadians(lat2);
-//     const dlat = degreesToRadians(lat2 - lat1);
-//     const dlon = degreesToRadians(lon2 - lon1);
-//     // TODO: this should probably be abstracted
-//     const a = sin(dlat / 2) * sin(dlat / 2) + cos(lat1) * cos(lat2) * sin(dlon / 2) * sin(dlon / 2);
-//     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-//     const d = R * c;
-//
-//     return d; // distance, in kilometers
-// }
-
 // TODO: rename leftPad
 /**
  * Prepends zeros to front of str/num to make it the desired width

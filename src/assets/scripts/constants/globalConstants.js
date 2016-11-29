@@ -11,3 +11,16 @@ export const TIME = {
     ONE_MINUTE_IN_MILLISECONDS: 60000,
     ONE_SECOND_IN_MILLISECONDS: 1000
 };
+
+/**
+ * Regular expressions
+ *
+ * @property REGEX
+ * @type {Object}
+ * @final
+ */
+export const REGEX = {
+    COMPASS_DIRECTION: /^[NESW]/,
+    SW: /[SW]/,
+    LAT_LONG: /^([NESW])(\d+(\.\d+)?)([d °](\d+(\.\d+)?))?([m '](\d+(\.\d+)?))?$/
+};
