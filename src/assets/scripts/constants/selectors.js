@@ -27,6 +27,7 @@ export const CLASSNAMES = {
     MESSAGE: 'message',
     NEGATIVE: 'negative',
     NEXT: 'next',
+    NOT_SELECTABLE: 'notSelectable',
     OPEN: 'open',
     PAUSED: 'paused',
     PAUSE_TOGGLE: 'pause-toggle',
@@ -56,11 +57,11 @@ export const CLASSNAMES = {
  * @final
  */
 export const IDS = {
-    AIRPORT: 'airport',
     AIRPORT_LIST: 'airport-list',
     AIRPORT_LIST_NOTES: 'airport-list-notes',
     AIRPORT_SWITCH: 'airport-switch',
     CANVASES: 'canvases',
+    CLOCK: 'clock',
     COMMAND: 'command',
     LOADING: 'loading',
     LOADING_INDICATOR: 'loadingIndicator',
