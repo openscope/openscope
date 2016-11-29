@@ -112,7 +112,7 @@ export default class App {
         this.inputController = new InputController(this.$element);
         this.uiController = new UiController(this.$element);
         this.canvasController = new CanvasController(this.$element);
-        this.gameClockView = new GameClockView();
+        this.gameClockView = new GameClockView(this.$element);
 
         return this;
     }

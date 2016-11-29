@@ -1,9 +1,9 @@
-import $ from 'jquery';
 import { digits_integer } from '../utilities/radioUtilities';
 import { SELECTORS } from '../constants/selectors';
 import { TIME } from '../constants/globalConstants';
 
 /**
+ * Manages a clock that stays in sync with the current game time
  * @class GameClockView
  */
 export default class GameClockView {
@@ -11,52 +11,35 @@ export default class GameClockView {
      * @for GameClockView
      * @constructor
      */
-    constructor() {
-        this.$element = null;
+    constructor($element) {
+        this.$element = $element;
         this.startTime = 0;
         this.time = 0;
 
-        return this._init();
+        return this._init($element);
     }
 
     /**
-     * @for GameClockView
-     * @method _init
-     * @private
-     */
-    _init() {
-        this.$element = $(SELECTORS.DOM_SELECTORS.CLOCK);
-        this.$element.addClass(SELECTORS.CLASSNAMES.NOT_SELECTABLE);
-        this._setToCurrentZuluTime();
-
-        return this;
-    }
-
-    /**
-    * Updates the time stored in the clock
+    * Get current time in the user's time zone
     * @for GameClockView
-    * @method _tick
-    * @private
+    * @property realWorldCurrentLocalTime
+    * @return {number} ms since 01/01/1970, 00:00:00 (user's time zone)
     */
-    _tick() {
-        const elapsedTime = window.gameController.game.time * TIME.ONE_SECOND_IN_MILLISECONDS;
-        this.time = this.startTime + elapsedTime;
+    get realWorldCurrentLocalTime() {
+        return new Date().getTime();
     }
 
     /**
-    * Updates the DOM with the new game time
+    * Get current zulu time in milliseconds
     * @for GameClockView
-    * @method _render
-    * @private
+    * @property realWorldCurrentZuluTime
+    * @return utc {number} ms since 01/01/1970, 00:00:00 UTC
     */
-    _render() {
-        const gameTime = window.gameController.game.time;
-        const clockDate = new Date(this.startTime + (gameTime * TIME.ONE_SECOND_IN_MILLISECONDS));
-        const hours = digits_integer(clockDate.getHours(), 2);
-        const minutes = digits_integer(clockDate.getMinutes(), 2);
-        const seconds = digits_integer(clockDate.getSeconds(), 2);
-        const clockTime = `${hours}:${minutes}:${seconds}`;
-        this.$element.text(clockTime);
+    get realWorldCurrentZuluTime() {
+        const date = new Date();
+        const utc = date.getTime() + (date.getTimezoneOffset() * TIME.ONE_MINUTE_IN_MILLISECONDS);
+
+        return utc;
     }
 
     /**
@@ -73,24 +56,63 @@ export default class GameClockView {
     }
 
     /**
-     * Set game clock to the current zulu time (UTC)
-     * @for GameClockView
-     * @method setToCurrentZuluTime
-     * @private
-     */
-    _setToCurrentZuluTime() {
-        const date = new Date();
-        const utc = date.getTime() + (date.getTimezoneOffset() * TIME.ONE_MINUTE_IN_MILLISECONDS);
-        this.startTime = utc;
+    * Generates a string of the current game time in a human-readable format
+    * @for GameClockView
+    * @property timeString
+    * @return clockTime {string} current game time formatted like '03:44:17'
+    */
+    generateCurrentTimeString() {
+        const gameTime = window.gameController.game.time;
+        const clockDate = new Date(this.startTime + (gameTime * TIME.ONE_SECOND_IN_MILLISECONDS));
+        const hours = digits_integer(clockDate.getHours(), 2);
+        const minutes = digits_integer(clockDate.getMinutes(), 2);
+        const seconds = digits_integer(clockDate.getSeconds(), 2);
+        const clockTime = `${hours}:${minutes}:${seconds}`;
+
+        return clockTime;
     }
 
     /**
-     * Updates the stored time and displayed time in webpage
-     * @for GameClockView
-     * @method update
-     */
+    * Updates the stored time and displayed time in webpage
+    * @for GameClockView
+    * @method update
+    */
     update() {
         this._tick();
         this._render();
+    }
+
+    /**
+    * @for GameClockView
+    * @method _init
+    * @private
+    */
+    _init($element) {
+        this.$element = $element.find(SELECTORS.DOM_SELECTORS.CLOCK);
+        this.$element.addClass(SELECTORS.CLASSNAMES.NOT_SELECTABLE);
+        this.startTime = this.realWorldCurrentZuluTime;
+
+        return this;
+    }
+
+    /**
+    * Updates the DOM with the new game time
+    * @for GameClockView
+    * @method _render
+    * @private
+    */
+    _render() {
+        this.$element.text(this.generateCurrentTimeString());
+    }
+
+    /**
+    * Updates the time stored in the clock
+    * @for GameClockView
+    * @method _tick
+    * @private
+    */
+    _tick() {
+        const elapsedTime = window.gameController.game.time * TIME.ONE_SECOND_IN_MILLISECONDS;
+        this.time = this.startTime + elapsedTime;
     }
 }
