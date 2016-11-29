@@ -1,14 +1,15 @@
-var express = require('express');
-var app = express();
-var http = require('http').Server(app);
-var path = require('path');
+const express = require('express');
 
-var PORT = 3003;
+const app = express();
+const http = require('http').Server(app);
+const path = require('path');
 
-app.use('/assets', express.static(path.join(__dirname + '/assets')));
+const PORT = 3003;
+
+app.use('/assets', express.static(path.join(__dirname, '/assets')));
 
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/index.html');
+    res.sendFile(path.join(__dirname, '/index.html'));
 });
 
 http.listen(PORT, () => {
