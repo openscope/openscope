@@ -124,7 +124,7 @@ export default class PositionModel {
     }
 
     /**
-     *
+     * Current x, y position
      *
      * @property position
      * @return {array}
@@ -256,7 +256,7 @@ export default class PositionModel {
 /**
  * Calculate x/y position from latitude and longitude and a referencePostion
  *
- * Provides a static method to calculate a position without instantiating a `PositionModel` class.
+ * Provides a static method to calculate position without instantiating a `PositionModel` class.
  *
  * @function getPosition
  * @param coordinates {array<string>}

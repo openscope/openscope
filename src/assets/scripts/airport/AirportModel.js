@@ -214,7 +214,7 @@ export default class AirportModel {
             this.perimeter.poly, (v) => vlen(
                 vsub(
                     v.position,
-                    new PositionModel(this.rr_center, this.position, this.magnetic_north).position
+                    PositionModel.calculatePosition(this.rr_center, this.position, this.magnetic_north)
                 )
             )
         ));
@@ -258,8 +258,8 @@ export default class AirportModel {
             const lines = map;
 
             _forEach(lines, (line) => {
-                const start = new PositionModel([line[0], line[1]], this.position, this.magnetic_north).position;
-                const end = new PositionModel([line[2], line[3]], this.position, this.magnetic_north).position;
+                const start = PositionModel.calculatePosition([line[0], line[1]], this.position, this.magnetic_north);
+                const end = PositionModel.calculatePosition([line[2], line[3]], this.position, this.magnetic_north);
 
                 this.maps[key].push([start[0], start[1], end[0], end[1]]);
             });
@@ -285,7 +285,7 @@ export default class AirportModel {
 
             obj.height = parseElevation(area.height);
             obj.coordinates = $.map(area.coordinates, (v) => {
-                return [(new PositionModel(v, this.position, this.magnetic_north)).position];
+                return [(PositionModel.calculatePosition(v, this.position, this.magnetic_north))];
             });
 
             // TODO: is this right? max and min are getting set to the same value?
