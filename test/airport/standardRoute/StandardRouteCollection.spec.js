@@ -4,7 +4,7 @@ import ava from 'ava';
 import StandardRouteCollection from '../../../src/assets/scripts/airport/StandardRoute/StandardRouteCollection';
 import FixCollection from '../../../src/assets/scripts/airport/Fix/FixCollection';
 
-import { airportPositionFixture } from '../../fixtures/airportFixtures';
+import { airportPositionFixtureKSFO } from '../../fixtures/airportFixtures';
 import { FIX_LIST_MOCK } from '../Fix/_mocks/fixMocks';
 
 import {
@@ -19,7 +19,7 @@ const ENTRY_FIXNAME_MOCK = 'MLF';
 const EXIT_FIXNAME_MOCK = 'KENNO';
 const RUNWAY_NAME_MOCK = '19R';
 
-ava.before(() => FixCollection.init(FIX_LIST_MOCK, airportPositionFixture));
+ava.before(() => FixCollection.init(FIX_LIST_MOCK, airportPositionFixtureKSFO));
 ava.after(() => FixCollection.destroy());
 
 ava('does not throw when no parameters are passed', t => t.notThrows(() => new StandardRouteCollection()));

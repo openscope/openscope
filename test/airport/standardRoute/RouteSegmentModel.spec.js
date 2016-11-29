@@ -5,13 +5,13 @@ import sinon from 'sinon';
 import RouteSegmentModel from '../../../src/assets/scripts/airport/StandardRoute/RouteSegmentModel';
 import FixCollection from '../../../src/assets/scripts/airport/Fix/FixCollection';
 
-import { airportPositionFixture } from '../../fixtures/airportFixtures';
+import { airportPositionFixtureKSFO } from '../../fixtures/airportFixtures';
 import { FIX_LIST_MOCK } from '../Fix/_mocks/fixMocks';
 
 const NAME_MOCK = '25R';
 const SEGMENT_WAYPOINTS_MOCK = ['RBELL', ['ROPPR', 'A70'], ['MDDOG', 'A90'], ['TARRK', 'A110']];
 
-ava.before(() => FixCollection.init(FIX_LIST_MOCK, airportPositionFixture));
+ava.before(() => FixCollection.init(FIX_LIST_MOCK, airportPositionFixtureKSFO));
 ava.after(() => FixCollection.destroy());
 
 ava('throws with invalid parameters', t => {
