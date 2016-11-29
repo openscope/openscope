@@ -8,6 +8,7 @@ import TutorialView from './tutorial/TutorialView';
 import InputController from './InputController';
 import UiController from './UiController';
 import CanvasController from './canvas/CanvasController';
+import GameClockView from './game/GameClockView';
 import { speech_init } from './speech';
 import { time, calculateDeltaTime } from './utilities/timeHelpers';
 import { LOG } from './constants/logLevel';
@@ -111,6 +112,7 @@ export default class App {
         this.inputController = new InputController(this.$element);
         this.uiController = new UiController(this.$element);
         this.canvasController = new CanvasController(this.$element);
+        this.gameClockView = new GameClockView(this.$element);
 
         return this;
     }
@@ -324,6 +326,7 @@ export default class App {
         this.airportController.recalculate();
         this.updatePost();
         this.incrementFrame();
+        this.gameClockView.update();
 
         return this;
     }
