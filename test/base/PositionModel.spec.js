@@ -2,18 +2,17 @@ import ava from 'ava';
 import _isEqual from 'lodash/isEqual';
 
 import PositionModel from '../../src/assets/scripts/base/PositionModel';
+import { airportPositionFixtureKLAS } from '../fixtures/airportFixtures';
 
-// klas airport reference
-const AIRPORT_POSITION_FIXTURE = new PositionModel(['N36.080056', 'W115.15225', '2181ft'], null, 11);
 const LAT_LONG_MOCK = ['N36d38m01.199', 'W114d36m17.219'];
 const MAGNETIC_NORTH_MOCK = 0.2076941809873252;
 
 ava('does not throw when called to instantiate without parameters', t => {
-    t.notThrows(() => new PositionModel(AIRPORT_POSITION_FIXTURE));
+    t.notThrows(() => new PositionModel(airportPositionFixtureKLAS));
 });
 
 ava('sets internal properties when provided valid parameters', t => {
-    const result = new PositionModel(LAT_LONG_MOCK, AIRPORT_POSITION_FIXTURE, MAGNETIC_NORTH_MOCK);
+    const result = new PositionModel(LAT_LONG_MOCK, airportPositionFixtureKLAS, MAGNETIC_NORTH_MOCK);
 
     t.true(result.latitude === 36.63366638888889);
     t.true(result.longitude === -114.60478305555554);
@@ -32,8 +31,8 @@ ava('.calculatePosition() throws when it receives the wrong arguments', t => {
 });
 
 ava('.getPostiion() returns an array with a calculated x, y value that is the same as an instance x,y', t => {
-    const expectedResult = new PositionModel(LAT_LONG_MOCK, AIRPORT_POSITION_FIXTURE, MAGNETIC_NORTH_MOCK);
-    const result = PositionModel.calculatePosition(LAT_LONG_MOCK, AIRPORT_POSITION_FIXTURE, MAGNETIC_NORTH_MOCK);
+    const expectedResult = new PositionModel(LAT_LONG_MOCK, airportPositionFixtureKLAS, MAGNETIC_NORTH_MOCK);
+    const result = PositionModel.calculatePosition(LAT_LONG_MOCK, airportPositionFixtureKLAS, MAGNETIC_NORTH_MOCK);
 
     t.true(_isEqual(result, expectedResult.position));
 });

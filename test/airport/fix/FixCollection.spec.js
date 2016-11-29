@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies, arrow-parens */
 import ava from 'ava';
 import _isEqual from 'lodash/isEqual';
 
@@ -57,7 +58,7 @@ ava.serial('.findFixByName() returns null if a FixModel does not exist within th
 
 ava.serial('.getFixPositionCoordinates() returns the position of a FixModel', t => {
     const result = FixCollection.getFixPositionCoordinates('BAKRR');
-    const expectedResult = [ 675.477318026648, -12.012221291734532 ];
+    const expectedResult = [675.477318026648, -12.012221291734532];
 
     t.true(_isEqual(result, expectedResult));
 });

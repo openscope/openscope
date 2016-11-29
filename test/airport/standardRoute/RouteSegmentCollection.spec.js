@@ -7,7 +7,7 @@ import RouteSegmentModel from '../../../src/assets/scripts/airport/StandardRoute
 import FixCollection from '../../../src/assets/scripts/airport/Fix/FixCollection';
 
 import { airportPositionFixtureKSFO } from '../../fixtures/airportFixtures';
-import { FIX_LIST_MOCK } from '../Fix/_mocks/fixMocks';
+import { FIX_LIST_MOCK } from '../fix/_mocks/fixMocks';
 import { ROUTE_SEGMENTS_MOCK } from './_mocks/standardRouteMocks';
 
 ava.before(() => FixCollection.init(FIX_LIST_MOCK, airportPositionFixtureKSFO));

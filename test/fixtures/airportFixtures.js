@@ -4,6 +4,9 @@ import PositionModel from '../../src/assets/scripts/base/PositionModel';
 // airport position for KSFO
 export const airportPositionFixtureKSFO = new PositionModel(['N37.6195', 'W122.3738333', '13ft'], null, 13.7);
 
+// klas airport reference
+export const airportPositionFixtureKLAS = new PositionModel(['N36.080056', 'W115.15225', '2181ft'], null, 11);
+
 export const airportModelFixtureForWaypoint = new AirportModel({
     icao: 'KLAS',
     iata: 'LAS',

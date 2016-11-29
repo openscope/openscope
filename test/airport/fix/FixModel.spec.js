@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies, arrow-parens */
 import ava from 'ava';
 
 import FixModel from '../../../src/assets/scripts/airport/Fix/FixModel';
@@ -6,7 +7,6 @@ import PositionModel from '../../../src/assets/scripts/base/PositionModel';
 import { airportPositionFixtureKSFO } from '../../fixtures/airportFixtures';
 import {
     FIXNAME_MOCK,
-    REAL_FIXNAME_MOCK,
     FIX_COORDINATE_MOCK
 } from './_mocks/fixMocks';
 
