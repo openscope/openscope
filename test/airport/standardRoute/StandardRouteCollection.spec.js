@@ -5,7 +5,7 @@ import StandardRouteCollection from '../../../src/assets/scripts/airport/Standar
 import FixCollection from '../../../src/assets/scripts/airport/Fix/FixCollection';
 
 import { airportPositionFixture } from '../../fixtures/airportFixtures';
-import { FIX_LIST_MOCK } from '../Fix/_mocks/fixMocks';
+import { FIX_LIST_MOCK } from '../fix/_mocks/fixMocks';
 
 import {
     STAR_LIST_MOCK,
