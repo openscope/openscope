@@ -6,7 +6,7 @@ import RouteSegmentModel from '../../../src/assets/scripts/airport/StandardRoute
 import FixCollection from '../../../src/assets/scripts/airport/Fix/FixCollection';
 
 import { airportPositionFixture } from '../../fixtures/airportFixtures';
-import { FIX_LIST_MOCK } from '../Fix/_mocks/fixMocks';
+import { FIX_LIST_MOCK } from '../fix/_mocks/fixMocks';
 
 const NAME_MOCK = '25R';
 const SEGMENT_WAYPOINTS_MOCK = ['RBELL', ['ROPPR', 'A70'], ['MDDOG', 'A90'], ['TARRK', 'A110']];
