@@ -6,7 +6,7 @@
     - Abstracts restrictions logic to live within `Waypoint`
     - Consolidates `runSID()` and `climbViaSid()` logic
 - Deprecates `sid` and `star` properties of the `AirportModel` in favor of `sidCollection` and `starCollection` [#54](https://github.com/n8rzz/atc/issues/54)
-
+- Adds [Express](expressjs.com) server to serve static assets and add [travis](travis-ci.org) config file for travis continuous integration [#169](https://github.com/n8rzz/atc/issues/169)
 
 
 

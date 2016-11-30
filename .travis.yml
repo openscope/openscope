@@ -4,8 +4,5 @@ node_js:
   - '6'
 branches:
   only:
-  - feature/ATC-169
   - develop
   - master
-# after_success:
-#   - npm run coveralls
