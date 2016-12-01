@@ -2,6 +2,7 @@
 import $ from 'jquery';
 import _get from 'lodash/get';
 import _map from 'lodash/map'
+import CommandParser from './commandParser/CommandParser';
 import { clamp } from './math/core';
 import { GAME_OPTION_NAMES } from './constants/gameOptionConstants';
 import { SELECTORS } from './constants/selectors';
@@ -440,6 +441,9 @@ export default class InputController {
             case KEY_CODES.ENTER:
                 this.input_parse();
 
+                const commandParser = new CommandParser(this.$commandInput.val());
+                console.log(commandParser);
+
                 if (this.input_run()) {
                     prop.input.history.unshift(prop.input.callsign);
                     this.$commandInput.val('');
@@ -711,7 +715,6 @@ export default class InputController {
     input_run() {
         let result;
 
-        // TODO: does this need to be in a try/catch?
         // TODO: abstract this to another method and only hanlde the return with this method.
         try {
             result = zlsa.atc.Parser.parse(prop.input.command.trim().toLowerCase());
