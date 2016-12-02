@@ -220,11 +220,11 @@ export const heading_to_string = (heading) => {
  * @param coordinate {string}
  * @return transformedCoordinate {number}
  */
-export const parseCoordinate = (coordintae) => {
-    const match = REGEX.LAT_LONG.exec(coordintae);
+export const parseCoordinate = (coordinate) => {
+    const match = REGEX.LAT_LONG.exec(coordinate);
 
     if (match == null) {
-        log(`Unable to parse coordinate ${coordintae}`);
+        log(`Unable to parse coordinate ${coordinate}`);
 
         return;
     }
