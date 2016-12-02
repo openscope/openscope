@@ -137,12 +137,25 @@ export default class PositionModel {
     }
 
     /**
-     * GPS coordinates in [x,y] order
-     *
+     * GPS coordinates in [latitude, longitude] order
+     * For reverse order, see `PositionModel.gpsXY`
      * @property gps
      * @return {array}
      */
     get gps() {
+        return [
+            this.latitude,
+            this.longitude
+        ];
+    }
+
+    /**
+     * GPS coordinates in [x,y] order
+     * For reverse order, see `PositionModel.gps`
+     * @property gpsXY
+     * @return {array}
+     */
+    get gpsXY() {
         return [
             this.longitude,
             this.latitude
@@ -247,8 +260,8 @@ export default class PositionModel {
  */
 PositionModel.calculatePosition = (coordinates, referencePostion, magneticNorth) => {
     if (!coordinates || !referencePostion || !magneticNorth) {
-        throw new TypeError(`Invalid parameter. PositionModel.getPosition() requires
-                            coordinates, referencePostion and magneticNorth as parameters`);
+        throw new TypeError('Invalid parameter. PositionModel.getPosition() requires coordinates, referencePostion ' +
+            'and magneticNorth as parameters');
     }
 
     const latitude = parseCoordinate(coordinates[LATITUDE_INDEX]);

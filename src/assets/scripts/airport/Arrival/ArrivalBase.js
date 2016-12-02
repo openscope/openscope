@@ -360,8 +360,8 @@ export default class ArrivalBase {
                     // if point before next fix
                     const nextFix = waypoint;
                     const previousFix = waypointModelList[j - 1];
-                    const heading = bearingToPoint(previousFix.gps, nextFix.gps);
-                    const spawnPoint = fixRadialDist(previousFix.gps, heading, spawnOffset).reverse();
+                    const heading = bearingToPoint(previousFix.gpsXY, nextFix.gpsXY);
+                    const spawnPoint = fixRadialDist(previousFix.gps, heading, spawnOffset);
                     const spawnPosition = new PositionModel(spawnPoint, this.airport.position, this.airport.magnetic_north);
 
                     // TODO: this looks like it should be a model object

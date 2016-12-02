@@ -22,8 +22,10 @@ ava('sets internal properties when provided valid parameters', t => {
     t.true(result.magnetic_north === 0.2076941809873252);
     t.true(result.x === 35.448246791634254);
     t.true(result.y === 70.38079821863909);
-    t.true(result.gps[0] === -114.60478305555554);
-    t.true(result.gps[1] === 36.63366638888889);
+    t.true(result.gpsXY[0] === -114.60478305555554);
+    t.true(result.gpsXY[1] === 36.63366638888889);
+    t.true(result.gps[0] === 36.63366638888889);
+    t.true(result.gps[1] === -114.60478305555554);
 });
 
 ava('.calculatePosition() throws when it receives the wrong arguments', t => {
