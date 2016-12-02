@@ -3,7 +3,7 @@ import _isNumber from 'lodash/isNumber';
 import _startsWith from 'lodash/startsWith';
 import { tau } from '../math/circle';
 import { round, mod } from '../math/core';
-import { REGEX } from '../constants/globalConstants';
+import { TIME, REGEX } from '../constants/globalConstants';
 
 // TODO: This should be moved to its own file once it has been filled in a little more
 /**
@@ -223,27 +223,32 @@ export const heading_to_string = (heading) => {
 export const parseCoordinate = (coordinate) => {
     const match = REGEX.LAT_LONG.exec(coordinate);
 
+    // If coordinate already in WGS84 ESPG:4326 form ('39.427618, -75.296011'), just return it as-is
     if (match == null) {
-        log(`Unable to parse coordinate ${coordinate}`);
-
-        return;
+        return coordinate;
     }
 
-    let transformedCoordinate = parseFloat(match[2]);
+    const degrees = parseFloat(match[2]);
+    let minutes = 0;
+    let seconds = 0;
 
+    // Gather minutes/seconds as decimal of a degree, if available
     if (match[5] != null) {
-        transformedCoordinate += parseFloat(match[5]) / 60;
+        minutes = (parseFloat(match[5]) * TIME.ONE_MINUTE_IN_HOURS);
 
         if (match[8] != null) {
-            transformedCoordinate += parseFloat(match[8]) / 3600;
+            seconds = (parseFloat(match[8]) * TIME.ONE_SECOND_IN_HOURS);
         }
     }
 
+    let decimalDegrees = degrees + minutes + seconds;
+
+    // Apply negative to value if coordinate is "South" or "West"
     if (REGEX.SW.test(match[1])) {
-        transformedCoordinate *= -1;
+        decimalDegrees *= -1;
     }
 
-    return transformedCoordinate;
+    return decimalDegrees;
 };
 
 /**

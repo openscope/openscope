@@ -66,7 +66,7 @@ export default class PositionModel {
      * @param mode {string}                     Set to 'GPS' to indicate you are inputting lat/long that should
      *                                          be converted to positions
      */
-    constructor(coordinates = [], reference, magnetic_north = 0, mode) {
+    constructor(coordinates = [], reference, magnetic_north = 0) {
         /**
          * @property _id
          * @type {string}
@@ -120,7 +120,7 @@ export default class PositionModel {
          */
         this.y = 0;
 
-        return this.init(coordinates, mode);
+        return this.init(coordinates);
     }
 
     /**
@@ -163,18 +163,7 @@ export default class PositionModel {
      * @for PositionModel
      * @method init
      */
-    init(coordinates, mode) {
-        if (!hasCardinalDirectionInCoordinate(coordinates[LATITUDE_INDEX])) {
-            this.x = coordinates[LATITUDE_INDEX];
-            this.y = coordinates[LONGITUDE_INDEX];
-
-            if (mode === 'GPS') {
-                this.parse4326();
-            }
-
-            return;
-        }
-
+    init(coordinates) {
         this.latitude = parseCoordinate(coordinates[LATITUDE_INDEX]);
         this.longitude = parseCoordinate(coordinates[LONGITUDE_INDEX]);
 
@@ -183,43 +172,7 @@ export default class PositionModel {
             this.elevation = parseElevation(coordinates[ELEVATION_INDEX]);
         }
 
-        // if !reference_position, x and y are both 0 and we don't have enough information to run `parse4326()`
-        if (!this.reference_position) {
-            return;
-        }
-
-        // this function (parse4326) is moved to be able to call it if point is
-        // EPSG:4326, numeric decimal, like those from GeoJSON
-        // FIXME: why do x/y get assigned with lat/long here, and then in parse4326 lat/long gets assigned with x/y?
-        this.x = this.longitude;
-        this.y = this.latitude;
-
-        this.parse4326();
-    }
-
-    /**
-     * If coordinates were in WGS84 EPSG:4326 (signed decimal lat/lon -12.123,83.456) parse them
-     *
-     * @for PositionModel
-     * @method parse4326
-     */
-    parse4326() {
-        this.longitude = this.x;
-        this.latitude = this.y;
-
-        this.x = calculateDistanceToPointForX(
-            this.reference_position,
-            this.reference_position.latitude,
-            this.longitude
-        );
-
-        this.y = calculateDistanceToPointForY(
-            this.reference_position,
-            this.latitude,
-            this.reference_position.longitude
-        );
-
-        this.adjustXYForMagneticNorth();
+        this._calculateScreenPosition();
     }
 
     /**
@@ -243,13 +196,40 @@ export default class PositionModel {
      * Adjusts x & y coordinates from true north to magnetic north
      *
      * @for PositionModel
-     * @method adjustXYForMagneticNorth
+     * @method _adjustXYForMagneticNorth
+     * @private
      */
-    adjustXYForMagneticNorth() {
+    _adjustXYForMagneticNorth() {
         const { x, y } = adjustForMagneticNorth(this.x, this.y, this.magnetic_north);
 
         this.x = x;
         this.y = y;
+    }
+
+    /**
+     * Determine the `x` and `y` values of the `PositionModel`, used for drawing on the canvas
+     * @for PositionModel
+     * @method _calculateScreenPosition
+     * @private
+     */
+    _calculateScreenPosition() {
+        if (!this.reference_position) {
+            return;
+        }
+
+        this.x = calculateDistanceToPointForX(
+            this.reference_position,
+            this.reference_position.latitude,
+            this.longitude
+        );
+
+        this.y = calculateDistanceToPointForY(
+            this.reference_position,
+            this.latitude,
+            this.reference_position.longitude
+        );
+
+        this._adjustXYForMagneticNorth();
     }
 }
 

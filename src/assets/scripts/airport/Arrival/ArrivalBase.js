@@ -361,12 +361,13 @@ export default class ArrivalBase {
                     const nextFix = waypoint;
                     const previousFix = waypointModelList[j - 1];
                     const heading = bearingToPoint(previousFix.gps, nextFix.gps);
-                    const calculatedRadialDistance = fixRadialDist(previousFix.gps, heading, spawnOffset);
+                    const spawnPoint = fixRadialDist(previousFix.gps, heading, spawnOffset).reverse();
+                    const spawnPosition = new PositionModel(spawnPoint, this.airport.position, this.airport.magnetic_north);
 
                     // TODO: this looks like it should be a model object
                     spawnPositions.push({
                         heading,
-                        pos: calculatedRadialDistance,
+                        pos: spawnPosition,
                         nextFix: nextFix.name
                     });
 
@@ -389,8 +390,7 @@ export default class ArrivalBase {
         // Spawn aircraft along the route, ahead of the standard spawn point
         for (let i = 0; i < spawnPositions.length; i++) {
             const { heading, pos, nextFix } = spawnPositions[i];
-            const { icao, position, magnetic_north } = this.airport;
-            const aircraftPosition = new PositionModel(pos, position, magnetic_north, 'GPS');
+            const { icao } = this.airport;
             const airline = randomAirlineSelectionHelper(this.airlines);
             const aircraftToAdd = {
                 category: FLIGHT_CATEGORY.ARRIVAL,
@@ -405,7 +405,7 @@ export default class ArrivalBase {
                 heading: heading || this.heading,
                 waypoints: this.fixes,
                 route: _get(this, 'activeRouteModel.routeString', ''),
-                position: aircraftPosition.position,
+                position: pos.position,
                 speed: this.speed,
                 nextFix: nextFix
             };
