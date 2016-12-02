@@ -204,45 +204,16 @@ export default class PositionModel {
     }
 
     /**
-     * Fascade for `adjustForMagneticNorth`
-     *
-     * Adjusts x & y coordinates from true north to magnetic north
-     *
-     * @for PositionModel
-     * @method _adjustXYForMagneticNorth
-     * @private
-     */
-    _adjustXYForMagneticNorth() {
-        const { x, y } = adjustForMagneticNorth(this.x, this.y, this.magnetic_north);
-
-        this.x = x;
-        this.y = y;
-    }
-
-    /**
      * Determine the `x` and `y` values of the `PositionModel`, used for drawing on the canvas
      * @for PositionModel
      * @method _calculateScreenPosition
      * @private
      */
     _calculateScreenPosition() {
-        if (!this.reference_position) {
-            return;
-        }
+        const [x, y] = PositionModel.calculatePosition(this.gps, this.reference_position, this.magnetic_north);
 
-        this.x = calculateDistanceToPointForX(
-            this.reference_position,
-            this.reference_position.latitude,
-            this.longitude
-        );
-
-        this.y = calculateDistanceToPointForY(
-            this.reference_position,
-            this.latitude,
-            this.reference_position.longitude
-        );
-
-        this._adjustXYForMagneticNorth();
+        this.x = x;
+        this.y = y;
     }
 }
 
