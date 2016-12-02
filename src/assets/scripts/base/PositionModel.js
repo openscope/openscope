@@ -267,49 +267,26 @@ export default class PositionModel {
  */
 PositionModel.calculatePosition = (coordinates, referencePostion, magneticNorth) => {
     if (!coordinates || !referencePostion || !magneticNorth) {
-        throw new TypeError('Invalid parameter. PositionModel.getPosition() requires coordinates, referencePostion and magneticNorth as parameters');
+        throw new TypeError(`Invalid parameter. PositionModel.getPosition() requires
+                            coordinates, referencePostion and magneticNorth as parameters`);
     }
 
-    let latitude;
-    let longitude;
-    let rawX = 0;
-    let rawY = 0;
+    const latitude = parseCoordinate(coordinates[LATITUDE_INDEX]);
+    const longitude = parseCoordinate(coordinates[LONGITUDE_INDEX]);
 
-    if (!hasCardinalDirectionInCoordinate(coordinates[LATITUDE_INDEX])) {
-        rawX = coordinates[LATITUDE_INDEX];
-        rawY = coordinates[LONGITUDE_INDEX];
-    }
-
-    latitude = parseCoordinate(coordinates[LATITUDE_INDEX]);
-    longitude = parseCoordinate(coordinates[LONGITUDE_INDEX]);
-
-    // FIXME: this still seems weird, but it seems to be necessary for some reason
-    rawX = longitude;
-    rawY = latitude;
-    longitude = rawX;
-    latitude = rawY;
-
-    rawX = calculateDistanceToPointForX(
+    const canvasPositionX = calculateDistanceToPointForX(
         referencePostion,
         referencePostion.latitude,
         longitude
     );
 
-    if (referencePostion.longitude > longitude) {
-        rawX *= -1;
-    }
-
-    rawY = calculateDistanceToPointForY(
+    const canvasPositionY = calculateDistanceToPointForY(
         referencePostion,
         latitude,
         referencePostion.longitude
     );
 
-    if (referencePostion.latitude > latitude) {
-        rawY *= -1;
-    }
-
-    const { x, y } = adjustForMagneticNorth(rawX, rawY, magneticNorth);
+    const { x, y } = adjustForMagneticNorth(canvasPositionX, canvasPositionY, magneticNorth);
 
     return [
         x,
