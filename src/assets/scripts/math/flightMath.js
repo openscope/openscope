@@ -54,16 +54,14 @@ export const calcTurnInitiationDistance = (speed, bankAngle, courseChange) => {
     return turnRadius * tan(courseChange / 2) + speed;
 };
 
-
 /**
  * Returns the bearing from `startPosition` to `endPosition`
- *
+ * @function bearingToPoint
  * @param startPosition {array}     positional array, start point
  * @param endPosition {array}       positional array, end point
+ * @return {number}
  */
-export const bearing = (startPosition, endPosition) => {
-    return vradial(vsub(endPosition, startPosition));
-};
+export const bearingToPoint = (startPosition, endPosition) => vradial(vsub(endPosition, startPosition));
 
 // TODO: this may be better suited to live in an Aircraft model somewhere.
 /**
@@ -93,7 +91,6 @@ export const getOffset = (aircraft, target, headingThruTarget = null) => {
 
     return offset;
 };
-
 
 /**
  * Get new position by fix-radial-distance method
@@ -160,14 +157,3 @@ export const calculateDistanceToBoundary = (airport, pos) => {
     // TODO: hmm, `position.position`? that seems fishy
     return abs(distance2d(pos, airport.position.position) - airport.ctr_radius);
 };
-
-/**
- *
- *
- *
- * @function calculateHeadingFromTwoPositions
- * @param positionEnd {array}
- * @param positionStart {array}
- * @return {number}
- */
-export const calculateHeadingFromTwoPositions = (positionEnd, positionStart) => vradial(vsub(positionEnd, positionStart));

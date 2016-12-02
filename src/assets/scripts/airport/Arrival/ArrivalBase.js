@@ -15,7 +15,7 @@ import {
     fixRadialDist,
     isWithinAirspace,
     calculateDistanceToBoundary,
-    calculateHeadingFromTwoPositions
+    bearingToPoint
 } from '../../math/flightMath';
 import { FLIGHT_CATEGORY } from '../../constants/aircraftConstants';
 import { AIRPORT_CONSTANTS } from '../../constants/airportConstants';
@@ -360,7 +360,7 @@ export default class ArrivalBase {
                     // if point before next fix
                     const nextFix = waypoint;
                     const previousFix = waypointModelList[j - 1];
-                    const heading = bearing(previousFix.gps, nextFix.gps);
+                    const heading = bearingToPoint(previousFix.gps, nextFix.gps);
                     const calculatedRadialDistance = fixRadialDist(previousFix.gps, heading, spawnOffset);
 
                     // TODO: this looks like it should be a model object
@@ -467,7 +467,7 @@ export default class ArrivalBase {
             // calculate heading to next fix
             position = getFixPosition(this.fixes[0].fix);
             const nextPosition = getFixPosition(this.fixes[1].fix);
-            heading = calculateHeadingFromTwoPositions(nextPosition, position);
+            heading = bearingToPoint(position, nextPosition);
         } else if (this.activeRouteModel) {
             const isPreSpawn = false;
             const waypointModelList = this.airport.findWaypointModelsForStar(
@@ -480,7 +480,7 @@ export default class ArrivalBase {
             // grab position of first fix
             position = waypointModelList[0].position;
             // calculate heading from first waypoint to second waypoint
-            heading = calculateHeadingFromTwoPositions(waypointModelList[1].position, position);
+            heading = bearingToPoint(position, waypointModelList[1].position);
         } else {
             // spawn outside the airspace along 'this.radial'
             distance = 2 * this.airport.ctr_radius;
