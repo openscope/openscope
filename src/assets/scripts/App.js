@@ -28,9 +28,9 @@ require('./util');
 require('./parser');
 
 // saved as this.prop.version and this.prop.version_string
-const VERSION = [3, 0, 0];
+const VERSION = [3, 2, 0];
 
-// are you using a main loop? (you must call update() afterward disable/reenable)
+// are you using a main loop? (you must call update() afterward disable/re-enable)
 let UPDATE = true;
 
 // the framerate is updated this often (seconds)

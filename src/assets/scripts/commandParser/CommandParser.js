@@ -4,13 +4,23 @@ import _isString from 'lodash/isString';
 import _map from 'lodash/map';
 import _tail from 'lodash/tail';
 import CommandModel from './CommandModel';
-import { COMMANDS } from './commandDefinitions';
+import {
+    TOP_LEVEL_COMMANDS,
+    COMMANDS
+} from './commandDefinitions';
 
 // TODO: add to global constants
 const REGEX = {
     UNICODE: /[^\u0000-\u00ff]/
 };
 
+/**
+ * Helper method to translate a unicode character into a readable string value
+ *
+ * @method unicodeToString
+ * @param char {characterCode}
+ * @return {string}
+ */
 const unicodeToString = (char) => `\\u${char.charCodeAt(0).toString(16).toUpperCase()}`;
 
 /**
@@ -28,19 +38,58 @@ export default class CommandParser {
             throw new TypeError(`Invalid parameter. CommandParser expects a string but received ${typeof commandValueString}`);
         }
 
+        /**
+         *
+         * @type {string}
+         */
+        this.command = '';
+
+        /**
+         *
+         *
+         * @type {string}
+         */
         this.callsign = '';
+
+        /**
+         *
+         *
+         * @type {array<CommandModel>}
+         */
         this.commandList = [];
 
         this._extractCommandsAndArgs(commandValueString.toLowerCase());
     }
 
-    get legacyCommands() {
-        return {
-            args: this.commandList,
-            callsign: this.callsign,
-            command: 'transmit'
-        };
+    /**
+     * @property args
+     * @return {string}
+     */
+    get args() {
+        if (this.command !== TOP_LEVEL_COMMANDS.TRANSMIT) {
+            return this.commandList[0].args[0];
+        }
     }
+
+    // /**
+    //  *
+    //  * @property legacyCommands
+    //  * @return
+    //  */
+    // get legacyCommands() {
+    //     if (this.command !== TOP_LEVEL_COMMANDS.TRANSMIT) {
+    //         return {
+    //             args: this.commandList[0].args[0],
+    //             command: this.command
+    //         };
+    //     }
+    //
+    //     return {
+    //         args: this.commandList,
+    //         callsign: this.callsign,
+    //         command: 'transmit'
+    //     };
+    // }
 
     /**
      * @for CommandParser
@@ -50,10 +99,36 @@ export default class CommandParser {
      */
     _extractCommandsAndArgs(commandValueString) {
         const commandArgSegmentsWithCallsign = commandValueString.split(' ') || [];
+        const callsignOrTopLevelCommandName = commandArgSegmentsWithCallsign[0];
         const commandArgSegments = _tail(commandArgSegmentsWithCallsign);
 
-        this.callsign = commandArgSegmentsWithCallsign[0];
+        if (
+            _has(TOP_LEVEL_COMMANDS, callsignOrTopLevelCommandName) &&
+            callsignOrTopLevelCommandName !== TOP_LEVEL_COMMANDS.TRANSMIT
+        ) {
+            this._buildTopLevelCommandModel(commandArgSegmentsWithCallsign);
+
+            return;
+        }
+
+        this.command = TOP_LEVEL_COMMANDS.TRANSMIT;
+        this.callsign = callsignOrTopLevelCommandName;
         this.commandList = this._buildCommandList(commandArgSegments);
+    }
+
+    /**
+     *
+     *
+     */
+    _buildTopLevelCommandModel(commandArgSegments) {
+        const commandIndex = 0;
+        const argIndex = 1;
+        const commandName = TOP_LEVEL_COMMANDS[commandArgSegments[commandIndex]];
+        const commandModel = new CommandModel(commandName);
+        commandModel.args.push(commandArgSegments[argIndex]);
+
+        this.command = commandName;
+        this.commandList.push(commandModel);
     }
 
     /**
@@ -64,7 +139,10 @@ export default class CommandParser {
      * @private
      */
     _buildCommandList(commandArgSegments) {
+        // console.log('_buildCommandList', this.callsign, commandArgSegments);
         let commandModel;
+
+        // TODO: this still feels icky and could be simplified some more
         const commandList = _map(commandArgSegments, (commandOrArg) => {
             if (commandOrArg === '') {
                 return;
@@ -85,45 +163,3 @@ export default class CommandParser {
         return _compact(commandList);
     }
 }
-
-
-// function commandA(arg1, arg2) {
-//
-// }
-//
-// commandA.validate = (args) => {
-//     if (args.length !== 2) return 'Command A needs two arguments';
-//     return false;
-// }
-//
-// const commands = {
-//     commandA
-// };
-//
-// const test = 'commandA one two';
-//
-// const testSplit = test.split(' ');
-//
-// const resultingCommands = [];
-//
-// let currentCommand = null;
-//
-// testSplit.forEach(value => {
-//     if (commands[value]) {
-//         currentCommand = {
-//             command: commands[value],
-//             args: []
-//         };
-//         resultingCommands.push(currentCommand);
-//     } else {
-//         currentCommand.args.push(value);
-//     }
-// });
-//
-// resultingCommands.forEach(commandObj => {
-//     const error = commandObj.command.validate(commandObj.args);
-//
-//     if (error) throw error;
-// });
-//
-// resultingCommands.forEach(commandObj => commandObj.command(...commandObj.args));

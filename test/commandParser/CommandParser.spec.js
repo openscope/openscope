@@ -8,6 +8,7 @@ import _tail from 'lodash/tail';
 import CommandParser from '../../src/assets/scripts/commandParser/CommandParser';
 import CommandModel from '../../src/assets/scripts/commandParser/CommandModel';
 
+const TIMEWARP_50_MOCK = 'timewarp 50';
 const CALLSIGN_MOCK = 'AA777';
 const FH_COMMAND_MOCK = 'fh 180';
 const D_COMMAND_MOCK = 'd 030';
@@ -32,18 +33,19 @@ ava('throws when called without parameters', t => {
     t.throws(() => new CommandParser());
 });
 
-ava('._extractCommandsAndArgs() calls _buildCommandList()', t => {
-    const commandStringMock = buildCommandString(CAF_MOCK, CVS_MOCK, TO_MOCK);
-    const expectedArgs = buildCommandList(CAF_MOCK, CVS_MOCK, TO_MOCK);
-    const model = new CommandParser('');
-    const _buildCommandListStub = sinon.stub(model, '_buildCommandList');
+ava('sets _topLevelCommandName with the correct name', t => {
+    const model = new CommandParser(TIMEWARP_50_MOCK);
 
-    model._extractCommandsAndArgs(commandStringMock);
-
-    t.true(_buildCommandListStub.calledWithExactly(_tail(expectedArgs)));
+    t.true(model._topLevelCommandName === 'timewarp');
 });
 
-ava('._extractCommandsAndArgs() sets commandList with CommandModel objects', t => {
+ava('sets commandList with a CommandModel object when it receives a top level command', t => {
+    const model = new CommandParser(TIMEWARP_50_MOCK);
+
+    t.true(model.commandList[0] instanceof CommandModel);
+});
+
+ava('sets commandList with CommandModel objects when it receives transmit commands', t => {
     const commandStringMock = buildCommandString(CAF_MOCK, CVS_MOCK, TO_MOCK);
     const model = new CommandParser(commandStringMock);
 
@@ -54,9 +56,20 @@ ava('._extractCommandsAndArgs() sets commandList with CommandModel objects', t =
     });
 });
 
+ava('._extractCommandsAndArgs() calls _buildCommandList() when provided transmit commands', t => {
+    const commandStringMock = buildCommandString(CAF_MOCK, CVS_MOCK, TO_MOCK);
+    const expectedArgs = buildCommandList(CAF_MOCK, CVS_MOCK, TO_MOCK);
+    const model = new CommandParser(commandStringMock);
+    const _buildCommandListSpy = sinon.spy(model, '_buildCommandList');
+
+    model._extractCommandsAndArgs(commandStringMock);
+
+    t.true(_buildCommandListSpy.calledWithExactly(_tail(expectedArgs)));
+});
+
 ava('._buildCommandList() finds correct command when it recieves a space before a unicode value', t => {
     const commandListMock = buildCommandList('', UNICODE_HEADING_MOCK);
-    const model = new CommandParser('');
+    const model = new CommandParser(buildCommandString('', UNICODE_HEADING_MOCK));
     const result = model._buildCommandList(_tail(commandListMock));
 
     t.true(result[0].name === 'heading');

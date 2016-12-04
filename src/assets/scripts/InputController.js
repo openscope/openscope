@@ -1,7 +1,7 @@
 /* eslint-disable camelcase, no-mixed-operators, object-shorthand, class-methods-use-this, no-undef, expected-return*/
 import $ from 'jquery';
 import _get from 'lodash/get';
-import _map from 'lodash/map'
+import _map from 'lodash/map';
 import CommandParser from './commandParser/CommandParser';
 import { clamp } from './math/core';
 import { GAME_OPTION_NAMES } from './constants/gameOptionConstants';
@@ -712,7 +712,8 @@ export default class InputController {
     input_run() {
         let result;
 
-        // TODO: abstract this to another method and only hanlde the return with this method.
+        const commandParser = new CommandParser(prop.input.command.trim().toLowerCase());
+
         try {
             result = zlsa.atc.Parser.parse(prop.input.command.trim().toLowerCase());
         } catch (error) {
@@ -725,63 +726,61 @@ export default class InputController {
             throw error;
         }
 
-        console.log('legacy :::', result);
-        const commandParser = new CommandParser(this.$commandInput.val());
-        console.log(commandParser);
-
-        // TODO: convert `result.command === { }` to a switch statement
-        if (result.command === 'version') {
-            window.uiController.ui_log(`Air Traffic Control simulator version ${prop.version.join('.')}`);
-
-            return true;
-        } else if (result.command === 'tutorial') {
-            window.tutorialView.tutorial_toggle();
-
-            return true;
-        } else if (result.command === 'auto') {
-            // TODO: this is undefined
-            aircraft_toggle_auto();
-
-            if (prop.aircraft.auto.enabled) {
-                window.uiController.ui_log('automatic controller ENGAGED');
-            } else {
-                window.uiController.ui_log('automatic controller OFF');
-            }
-
-            return true;
-        } else if (result.command === 'pause') {
-            window.gameController.game_pause_toggle();
-            return true;
-        } else if (result.command === 'timewarp') {
-            if (result.args) {
-                window.gameController.game.speedup = result.args;
-            } else {
-                window.gameController.game_timewarp_toggle();
-            }
-
-            return true;
-        } else if (result.command === 'clear') {
-            localStorage.clear();
-            location.reload();
-        } else if (result.command === 'airport') {
-            if (result.args) {
-                if (result.args.toLowerCase() in prop.airport.airports) {
-                    window.airportController.airport_set(result.args.toLowerCase());
-                } else {
-                    window.uiController.ui_airport_toggle();
-                }
-            } else {
-                window.uiController.ui_airport_toggle();
-            }
-
-            return true;
-        } else if (result.command === 'rate') {
-            if (result.args && result.args > 0) {
-                window.gameController.game.frequency = result.args;
-            }
-
-            return true;
-        } else if (result.command !== 'transmit') {
+        this.processCommand(commandParser, result);
+        // REMOVE
+        // if (result.command === 'version') {
+        //     window.uiController.ui_log(`Air Traffic Control simulator version ${prop.version.join('.')}`);
+        //
+        //     return true;
+        // } else if (result.command === 'tutorial') {
+        //     window.tutorialView.tutorial_toggle();
+        //
+        //     return true;
+        // } else if (result.command === 'auto') {
+        //     // TODO: this is undefined
+        //     aircraft_toggle_auto();
+        //
+        //     if (prop.aircraft.auto.enabled) {
+        //         window.uiController.ui_log('automatic controller ENGAGED');
+        //     } else {
+        //         window.uiController.ui_log('automatic controller OFF');
+        //     }
+        //
+        //     return true;
+        // } else if (result.command === 'pause') {
+        //     window.gameController.game_pause_toggle();
+        //     return true;
+        // } else if (result.command === 'timewarp') {
+        //     if (result.args) {
+        //         window.gameController.game.speedup = parseInt(result.args, 10);
+        //     } else {
+        //         window.gameController.game_timewarp_toggle();
+        //     }
+        //
+        //     return true;
+        // } else if (result.command === 'clear') {
+        //     localStorage.clear();
+        //     location.reload();
+        // } else if (result.command === 'airport') {
+        //     if (result.args) {
+        //         if (result.args.toLowerCase() in prop.airport.airports) {
+        //             window.airportController.airport_set(result.args.toLowerCase());
+        //         } else {
+        //             window.uiController.ui_airport_toggle();
+        //         }
+        //     } else {
+        //         window.uiController.ui_airport_toggle();
+        //     }
+        //
+        //     return true;
+        // } else if (result.command === 'rate') {
+        //     if (result.args && result.args > 0) {
+        //         window.gameController.game.frequency = result.args;
+        //     }
+        //
+        //     return true;
+        // } else
+        if (result.command !== 'transmit') {
             return true;
         }
 
@@ -812,6 +811,80 @@ export default class InputController {
         const aircraft = prop.aircraft.list[match];
 
         return aircraft.runCommands(result.args);
+    }
+
+    /**
+     * @for InputController
+     * @param commandParser {CommandParser}
+     * @param result {object}                legacy values from PEG parser
+     * @return {boolean}
+     */
+    processCommand(commandParser, result) {
+        // console.log('legacy :::', result);
+        // console.log(commandParser);
+
+        switch (commandParser.command) {
+            case PARSED_COMMAND_NAME.VERSION:
+                window.uiController.ui_log(`Air Traffic Control simulator version ${prop.version.join('.')}`);
+
+                return true;
+
+            case PARSED_COMMAND_NAME.TUTORIAL:
+                window.tutorialView.tutorial_toggle();
+
+                return true;
+
+            case PARSED_COMMAND_NAME.AUTO:
+                // FIXME: does this function exist anywhere?
+                // aircraft_toggle_auto();
+                //
+                // if (prop.aircraft.auto.enabled) {
+                //     window.uiController.ui_log('automatic controller ENGAGED');
+                // } else {
+                //     window.uiController.ui_log('automatic controller OFF');
+                // }
+
+                return true;
+
+            case PARSED_COMMAND_NAME.PAUSE:
+                window.gameController.game_pause_toggle();
+
+                return true;
+
+            case PARSED_COMMAND_NAME.TIMEWARP:
+                if (commandParser.args) {
+                    window.gameController.game.speedup = parseInt(commandParser.args, 10);
+                } else {
+                    window.gameController.game_timewarp_toggle();
+                }
+
+                return true;
+
+            case PARSED_COMMAND_NAME.CLEAR:
+                localStorage.clear();
+                location.reload();
+
+            case PARSED_COMMAND_NAME.AIRPORT:
+            // TODO: simplify this logic
+                if (commandParser.args) {
+                    if (commandParser.args in prop.airport.airports) {
+                        window.airportController.airport_set(commandParser.args);
+                    } else {
+                        window.uiController.ui_airport_toggle();
+                    }
+                } else {
+                    window.uiController.ui_airport_toggle();
+                }
+
+                return true;
+
+            case PARSED_COMMAND_NAME.RATE:
+                if (commandParser.args && commandParser.args > 0) {
+                    window.gameController.game.frequency = parseInt(commandParser.args, 10);
+                }
+
+                return true;
+        }
     }
 
     /**

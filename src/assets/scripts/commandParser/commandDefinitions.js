@@ -1,13 +1,4 @@
-export const UNICODE_COMMNDS = {
-    '\\u2B61': 'altitude',
-    '\\u2B63': 'altitude',
-    '\\u2BA2': 'heading',
-    '\\u2BA3': 'heading'
-};
-
-export const COMMANDS = {
-    ...UNICODE_COMMNDS,
-
+export const TOP_LEVEL_COMMANDS = {
     version: 'version',
     tutorial: 'tutorial',
     auto: 'auto',
@@ -16,7 +7,21 @@ export const COMMANDS = {
     clear: 'clear',
     airport: 'airport',
     rate: 'rate',
-    transmit: 'transmit',
+    transmit: 'transmit'
+};
+
+export const UNICODE_COMMNDS = {
+    '\\u2B61': 'altitude',
+    '\\u2B63': 'altitude',
+    '\\u2BA2': 'heading',
+    '\\u2BA3': 'heading'
+};
+
+
+
+export const COMMANDS = {
+    ...TOP_LEVEL_COMMANDS,
+    ...UNICODE_COMMNDS,
 
     taxi: 'taxi',
     wait: 'taxi',
