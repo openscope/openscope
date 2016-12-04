@@ -204,12 +204,27 @@ export default class PositionModel {
     }
 
     /**
+     * Checks whether or not this `PositionModel` has a reference `PositionModel`
+     * Without the reference position, the rotation due to magnetic variation will not be applied
+     * @for PositionModel
+     * @method _hasReferencePosition
+     * @return {Boolean} whether this position is based on a reference position
+     */
+    _hasReferencePosition() {
+        return this.reference_position !== null;
+    }
+
+    /**
      * Determine the `x` and `y` values of the `PositionModel`, used for drawing on the canvas
      * @for PositionModel
      * @method _calculateScreenPosition
      * @private
      */
     _calculateScreenPosition() {
+        if (!this._hasReferencePosition()) {
+            return;
+        }
+
         const [x, y] = PositionModel.calculatePosition(this.gps, this.reference_position, this.magnetic_north);
 
         this.x = x;
