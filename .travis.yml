@@ -2,7 +2,5 @@ sudo: false
 language: node_js
 node_js:
   - '6'
-branches:
-  only:
-  - develop
-  - master
+git:
+  depth: 3
