@@ -441,9 +441,6 @@ export default class InputController {
             case KEY_CODES.ENTER:
                 this.input_parse();
 
-                const commandParser = new CommandParser(this.$commandInput.val());
-                console.log(commandParser);
-
                 if (this.input_run()) {
                     prop.input.history.unshift(prop.input.callsign);
                     this.$commandInput.val('');
@@ -727,6 +724,10 @@ export default class InputController {
 
             throw error;
         }
+
+        console.log('legacy :::', result);
+        const commandParser = new CommandParser(this.$commandInput.val());
+        console.log(commandParser);
 
         // TODO: convert `result.command === { }` to a switch statement
         if (result.command === 'version') {

@@ -1586,6 +1586,7 @@ export default class Aircraft {
         return ['fail', 'unable to abort'];
     }
 
+    // FIXME: is this in use?
     /**
      * @for AircraftInstanceModel
      * @method runDebug
@@ -1595,6 +1596,7 @@ export default class Aircraft {
         return ['ok', { log: 'in the console, look at the variable &lsquo;aircraft&rsquo;', say: '' }];
     }
 
+    // FIXME: is this in use?
     /**
      * @for AircraftInstanceModel
      * @method runDelete

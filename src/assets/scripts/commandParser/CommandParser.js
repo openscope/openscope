@@ -2,8 +2,16 @@ import _compact from 'lodash/compact';
 import _has from 'lodash/has';
 import _isString from 'lodash/isString';
 import _map from 'lodash/map';
+import _tail from 'lodash/tail';
 import CommandModel from './CommandModel';
 import { COMMANDS } from './commandDefinitions';
+
+// TODO: add to global constants
+const REGEX = {
+    UNICODE: /[^\u0000-\u00ff]/
+};
+
+const unicodeToString = (char) => `\\u${char.charCodeAt(0).toString(16).toUpperCase()}`;
 
 /**
  * @class CommandParser
@@ -16,19 +24,20 @@ export default class CommandParser {
      */
     constructor(commandValueString) {
         if (!_isString(commandValueString)) {
+            // eslint-disable-next-line max-len
             throw new TypeError(`Invalid parameter. CommandParser expects a string but received ${typeof commandValueString}`);
         }
 
+        this.callsign = '';
         this.commandList = [];
 
-        this._extractCommandsAndArgs(commandValueString);
+        this._extractCommandsAndArgs(commandValueString.toLowerCase());
     }
 
     get legacyCommands() {
-        const args = [];
-
         return {
-            args,
+            args: this.commandList,
+            callsign: this.callsign,
             command: 'transmit'
         };
     }
@@ -40,26 +49,40 @@ export default class CommandParser {
      * @private
      */
     _extractCommandsAndArgs(commandValueString) {
-        const commandList = commandValueString.split(' ') || [];
-        const foundCommandIndicies = this._findCommandIndicies(commandList);
+        const commandArgSegmentsWithCallsign = commandValueString.split(' ') || [];
+        const commandArgSegments = _tail(commandArgSegmentsWithCallsign);
 
-        this.commandList = _map(foundCommandIndicies, (commandIndex, i) => {
-            const commandModel = new CommandModel();
-            commandModel.location = commandIndex;
-            commandModel.name = commandList[commandIndex];
-            commandModel.args = commandList.slice(commandIndex + 1, foundCommandIndicies[i + 1]);
-
-            return commandModel;
-        });
+        this.callsign = commandArgSegmentsWithCallsign[0];
+        this.commandList = this._buildCommandList(commandArgSegments);
     }
 
-    // find the index of a command in the command list
-    _findCommandIndicies(commandList) {
-        return _compact(_map(commandList, (command, i) => {
-            if (_has(COMMANDS, command)) {
-                return i;
+    /**
+     * @for CommandParser
+     * @method _buildCommandList
+     * @param commandArgSegments {array<string>}
+     * @return {array<CommandModel>}
+     * @private
+     */
+    _buildCommandList(commandArgSegments) {
+        let commandModel;
+        const commandList = _map(commandArgSegments, (commandOrArg) => {
+            if (commandOrArg === '') {
+                return;
+            } else if (REGEX.UNICODE.test(commandOrArg)) {
+                const commandString = unicodeToString(commandOrArg);
+                commandModel = new CommandModel(COMMANDS[commandString]);
+
+                return commandModel;
+            } else if (_has(COMMANDS, commandOrArg)) {
+                commandModel = new CommandModel(COMMANDS[commandOrArg]);
+
+                return commandModel;
             }
-        }));
+
+            commandModel.args.push(commandOrArg);
+        });
+
+        return _compact(commandList);
     }
 }
 

@@ -3,6 +3,7 @@ import ava from 'ava';
 import sinon from 'sinon';
 import _isEqual from 'lodash/isEqual';
 import _map from 'lodash/map';
+import _tail from 'lodash/tail';
 
 import CommandParser from '../../src/assets/scripts/commandParser/CommandParser';
 import CommandModel from '../../src/assets/scripts/commandParser/CommandModel';
@@ -14,11 +15,12 @@ const CAF_MOCK = 'caf';
 const CVS_MOCK = 'cvs';
 const TO_MOCK = 'to';
 const STAR_MOCK = 'star quiet7';
-const COMPLEX_COMMAND_MOCK = 'caf cvs w 27l c 50 fix wetor dumba to';
+const ROUTE_MOCK = 'route KSEA.MTN7.ELN..HAMUR.J12.DNJ';
+const COMPLEX_HOLD_MOCK = 'hold dumba right 2min';
+const UNICODE_HEADING_MOCK = '\u2BA2 180';
+// _Syntax -_ `AAL123 fh[hdg]` or `AAL123 (rightarrow)[hdg]` or `AAL123 t r [hdg]`
 
-const buildCommandString = (...args) => {
-    return `${CALLSIGN_MOCK} ${args.join(' ')}`;
-};
+const buildCommandString = (...args) => `${CALLSIGN_MOCK} ${args.join(' ')}`;
 
 const buildCommandList = (...args) => {
     const commandString = buildCommandString(...args);
@@ -30,15 +32,15 @@ ava('throws when called without parameters', t => {
     t.throws(() => new CommandParser());
 });
 
-ava('._extractCommandsAndArgs() calls _findCommandIndicies()', t => {
+ava('._extractCommandsAndArgs() calls _buildCommandList()', t => {
     const commandStringMock = buildCommandString(CAF_MOCK, CVS_MOCK, TO_MOCK);
     const expectedArgs = buildCommandList(CAF_MOCK, CVS_MOCK, TO_MOCK);
     const model = new CommandParser('');
-    const _findCommandIndiciesStub = sinon.stub(model, '_findCommandIndicies');
+    const _buildCommandListStub = sinon.stub(model, '_buildCommandList');
 
     model._extractCommandsAndArgs(commandStringMock);
 
-    t.true(_findCommandIndiciesStub.calledWithExactly(expectedArgs));
+    t.true(_buildCommandListStub.calledWithExactly(_tail(expectedArgs)));
 });
 
 ava('._extractCommandsAndArgs() sets commandList with CommandModel objects', t => {
@@ -52,11 +54,11 @@ ava('._extractCommandsAndArgs() sets commandList with CommandModel objects', t =
     });
 });
 
-ava('._findCommandIndicies() returns the indicies of valid commands within the commandValueString', t => {
-    const commandListMock = buildCommandList(CAF_MOCK, CVS_MOCK, FH_COMMAND_MOCK);
+ava('._buildCommandList() finds correct command when it recieves a space before a unicode value', t => {
+    const commandListMock = buildCommandList('', UNICODE_HEADING_MOCK);
     const model = new CommandParser('');
-    const result = model._findCommandIndicies(commandListMock);
-    const expectedResult = [1, 2, 3];
+    const result = model._buildCommandList(_tail(commandListMock));
 
-    t.true(_isEqual(result, expectedResult));
+    t.true(result[0].name === 'heading');
+    t.true(result[0].args[0] === '180');
 });

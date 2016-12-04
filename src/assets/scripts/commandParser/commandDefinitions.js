@@ -1,4 +1,13 @@
+export const UNICODE_COMMNDS = {
+    '\\u2B61': 'altitude',
+    '\\u2B63': 'altitude',
+    '\\u2BA2': 'heading',
+    '\\u2BA3': 'heading'
+};
+
 export const COMMANDS = {
+    ...UNICODE_COMMNDS,
+
     version: 'version',
     tutorial: 'tutorial',
     auto: 'auto',
@@ -14,9 +23,9 @@ export const COMMANDS = {
     w: 'taxi',
     sid: 'sid',
     star: 'star',
-    caf: 'caf',
-    cvs: 'cvs',
-    dvs: 'dvs',
+    caf: 'clearedAsFiled',
+    cvs: 'climbViaSID',
+    dvs: 'descendViaSTAR',
     climb: 'altitude',
     c: 'altitude',
     descend: 'altitude',
@@ -26,67 +35,65 @@ export const COMMANDS = {
     takeoff: 'takeoff',
     to: 'takeoff',
     cto: 'takeoff',
+    fph: 'flyPresentHeading',
     heading: 'heading',
-    fh: 'fh',
-    h: 'h',
-    turn: 'turn',
-    t: 't',
+    fh: 'heading',
+    h: 'heading',
+    turn: 'heading',
+    t: 'heading',
     speed: 'speed',
-    slow: 'slow',
-    sp: 'sp',
-    ils: 'ils',
-    i: 'i',
+    slow: 'speed',
+    sp: 'speed',
+    '+': 'speed',
+    '-': 'speed',
+    ils: 'land',
+    i: 'land',
     land: 'land',
-    l: 'l',
+    l: 'land',
+    '*': 'land',
     reroute: 'reroute',
-    rr: 'rr',
+    rr: 'reroute',
     route: 'route',
-    sr: 'sr',
-    f: 'f',
+    sr: 'sayRouter',
+    f: 'fix',
     fix: 'fix',
-    track: 'track',
+    track: 'fix',
     direct: 'direct',
-    pd: 'pd',
-    dct: 'dct',
+    pd: 'direct',
+    dct: 'direct',
     abort: 'abort',
-    hold: 'hold'
+    hold: 'hold',
+    '`': 'moveDataBlock'
 };
 
-export const COMMAND_DEFINITION = {
-    taxi: {
-        argsLength: 0,
-        isDeferrable: false
-    },
-    sid: {
-        argsLength: 1,
-        isDeferrable: false
-    },
-    star: {
-        argsLength: 1,
-        isDeferrable: false
-    },
-    caf: {
-        argsLength: 0,
-        isDeferrable: false
-    },
-    cvs: {
-        argsLength: 0,
-        isDeferrable: false
-    },
-    dvs: {
-        argsLength: 0,
-        isDeferrable: false
-    },
-    climb: {
-        argsLength: 1,
-        isDeferrable: false
-    },
-    altitude: {
-        argsLength: 1,
-        isDeferrable: false
-    },
-    takeoff: {
-        argsLength: 0,
-        isDeferrable: true
-    },
-};
+// function genericZeroArgumentCommand() {}
+//
+// function genericOneArgumentCommand() {}
+//
+// function genericTwoArgumentCommand() {}
+//
+// function genericThreeArgumentCommand() {}
+//
+// function genericFourArgumentCommand() {}
+
+// export const COMMAND_DEFINITION = {
+//     taxi: {},
+//     sid: {},
+//     star: {},
+//     caf: {},
+//     cvs: {},
+//     dvs: {},
+//     climb: {},
+//     altitude: {},
+//     takeoff: {},
+//     heading: {},
+//     speed: {},
+//     ils: {},
+//     reroute: {},
+//     route: {},
+//     sr: {},
+//     fix: {},
+//     direct: {},
+//     abort: {},
+//     hold: {}
+// };
