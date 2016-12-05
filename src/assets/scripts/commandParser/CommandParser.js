@@ -62,13 +62,25 @@ export default class CommandParser {
     }
 
     /**
+     * When command is not transmit:
+     * - commandList is assumed to have a length on 1
+     * - commandList[0].args is assumed to have a single string value
+     *
+     *
      * @property args
      * @return {string}
      */
     get args() {
-        if (this.command !== TOP_LEVEL_COMMANDS.TRANSMIT) {
+        if (this.command !== TOP_LEVEL_COMMANDS.transmit) {
             return this.commandList[0].args[0];
         }
+
+        return _map(this.commandList, (command) => {
+            return [
+                command.name,
+                ...command.parsedArgs
+            ];
+        });
     }
 
     // /**
@@ -77,7 +89,7 @@ export default class CommandParser {
     //  * @return
     //  */
     // get legacyCommands() {
-    //     if (this.command !== TOP_LEVEL_COMMANDS.TRANSMIT) {
+    //     if (this.command !== TOP_LEVEL_COMMANDS.transmit) {
     //         return {
     //             args: this.commandList[0].args[0],
     //             command: this.command
@@ -104,14 +116,14 @@ export default class CommandParser {
 
         if (
             _has(TOP_LEVEL_COMMANDS, callsignOrTopLevelCommandName) &&
-            callsignOrTopLevelCommandName !== TOP_LEVEL_COMMANDS.TRANSMIT
+            callsignOrTopLevelCommandName !== TOP_LEVEL_COMMANDS.transmit
         ) {
             this._buildTopLevelCommandModel(commandArgSegmentsWithCallsign);
 
             return;
         }
 
-        this.command = TOP_LEVEL_COMMANDS.TRANSMIT;
+        this.command = TOP_LEVEL_COMMANDS.transmit;
         this.callsign = callsignOrTopLevelCommandName;
         this.commandList = this._buildCommandList(commandArgSegments);
     }

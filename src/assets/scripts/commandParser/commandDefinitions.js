@@ -17,8 +17,6 @@ export const UNICODE_COMMNDS = {
     '\\u2BA3': 'heading'
 };
 
-
-
 export const COMMANDS = {
     ...TOP_LEVEL_COMMANDS,
     ...UNICODE_COMMNDS,

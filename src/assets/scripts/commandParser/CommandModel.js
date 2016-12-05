@@ -1,3 +1,6 @@
+import _isNaN from 'lodash/isNaN';
+import _map from 'lodash/map';
+
 /**
  * @class CommandModel
  */
@@ -7,12 +10,41 @@ export default class CommandModel {
      * @for CommandModel
      */
     constructor(name = '') {
-        // where in the commandValueString does this command live
-        // this.index = -1;
-        // command name, should match available commands in the COMMANDS constant
+        /**
+         * command name, should match a command in the COMMANDS constant
+         *
+         * @property name
+         * @type {string}
+         */
         this.name = name;
-        // command arguments
-        // assumed to be text between found command names
+
+        /**
+         * command arguments
+         * assumed to be text between found command names
+         *
+         * @property args
+         * @type {array}
+         * @default []
+         */
         this.args = [];
+    }
+
+    // TODO: this validation/translation logic should live in another function
+    /**
+     *
+     *
+     * @property parsedArgs
+     * @return {array}
+     */
+    get parsedArgs() {
+        return _map(this.args, (arg) => {
+            let parsedArg = parseInt(arg, 10);
+
+            if (_isNaN(parsedArg) || arg[0] === '0') {
+                parsedArg = arg;
+            }
+
+            return parsedArg;
+        });
     }
 }

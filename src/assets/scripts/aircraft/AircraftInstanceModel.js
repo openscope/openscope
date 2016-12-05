@@ -713,8 +713,7 @@ export default class Aircraft {
             return ['fail', 'not understood'];
         }
 
-
-        return this[call_func].apply(this, [data]);
+        return this[call_func](data);
     }
 
     /**
@@ -1164,6 +1163,7 @@ export default class Aircraft {
      */
     runDirect(data) {
         const fixname = data[0].toUpperCase();
+        // TODO replace with FixCollection
         const fix = window.airportController.airport_get().getFixPosition(fixname);
 
         if (!fix) {

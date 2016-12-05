@@ -710,77 +710,23 @@ export default class InputController {
      * @method input_run
      */
     input_run() {
-        let result;
-
         const commandParser = new CommandParser(prop.input.command.trim().toLowerCase());
-
-        try {
-            result = zlsa.atc.Parser.parse(prop.input.command.trim().toLowerCase());
-        } catch (error) {
-            if (_get(error, 'name', '') === 'SyntaxError') {
-                window.uiController.ui_log('Command not understood');
-
-                return;
-            }
-
-            throw error;
-        }
-
-        this.processCommand(commandParser, result);
-        // REMOVE
-        // if (result.command === 'version') {
-        //     window.uiController.ui_log(`Air Traffic Control simulator version ${prop.version.join('.')}`);
+        let result; // = zlsa.atc.Parser.parse(prop.input.command.trim().toLowerCase());
+        // try {
+        //     result = zlsa.atc.Parser.parse(prop.input.command.trim().toLowerCase());
+        // } catch (error) {
+        //     if (_get(error, 'name', '') === 'SyntaxError') {
+        //         window.uiController.ui_log('Command not understood');
         //
-        //     return true;
-        // } else if (result.command === 'tutorial') {
-        //     window.tutorialView.tutorial_toggle();
-        //
-        //     return true;
-        // } else if (result.command === 'auto') {
-        //     // TODO: this is undefined
-        //     aircraft_toggle_auto();
-        //
-        //     if (prop.aircraft.auto.enabled) {
-        //         window.uiController.ui_log('automatic controller ENGAGED');
-        //     } else {
-        //         window.uiController.ui_log('automatic controller OFF');
+        //         return;
         //     }
         //
-        //     return true;
-        // } else if (result.command === 'pause') {
-        //     window.gameController.game_pause_toggle();
-        //     return true;
-        // } else if (result.command === 'timewarp') {
-        //     if (result.args) {
-        //         window.gameController.game.speedup = parseInt(result.args, 10);
-        //     } else {
-        //         window.gameController.game_timewarp_toggle();
-        //     }
-        //
-        //     return true;
-        // } else if (result.command === 'clear') {
-        //     localStorage.clear();
-        //     location.reload();
-        // } else if (result.command === 'airport') {
-        //     if (result.args) {
-        //         if (result.args.toLowerCase() in prop.airport.airports) {
-        //             window.airportController.airport_set(result.args.toLowerCase());
-        //         } else {
-        //             window.uiController.ui_airport_toggle();
-        //         }
-        //     } else {
-        //         window.uiController.ui_airport_toggle();
-        //     }
-        //
-        //     return true;
-        // } else if (result.command === 'rate') {
-        //     if (result.args && result.args > 0) {
-        //         window.gameController.game.frequency = result.args;
-        //     }
-        //
-        //     return true;
-        // } else
-        if (result.command !== 'transmit') {
+        //     throw error;
+        // }
+
+        if (commandParser.command !== 'transmit') {
+            this.processCommand(commandParser, result);
+
             return true;
         }
 
@@ -790,7 +736,7 @@ export default class InputController {
         for (let i = 0; i < prop.aircraft.list.length; i++) {
             const aircraft = prop.aircraft.list[i];
 
-            if (aircraft.matchCallsign(result.callsign)) {
+            if (aircraft.matchCallsign(commandParser.callsign)) {
                 matches += 1;
                 match = i;
             }
@@ -810,7 +756,9 @@ export default class InputController {
 
         const aircraft = prop.aircraft.list[match];
 
-        return aircraft.runCommands(result.args);
+        console.log(commandParser);
+
+        return aircraft.runCommands(commandParser.args);
     }
 
     /**
@@ -883,6 +831,8 @@ export default class InputController {
                     window.gameController.game.frequency = parseInt(commandParser.args, 10);
                 }
 
+                return true;
+            default:
                 return true;
         }
     }

@@ -33,16 +33,30 @@ ava('throws when called without parameters', t => {
     t.throws(() => new CommandParser());
 });
 
-ava('sets _topLevelCommandName with the correct name', t => {
+ava('sets #command with the correct name when provided a top level command', t => {
     const model = new CommandParser(TIMEWARP_50_MOCK);
 
-    t.true(model._topLevelCommandName === 'timewarp');
+    t.true(model.command === 'timewarp');
 });
 
-ava('sets commandList with a CommandModel object when it receives a top level command', t => {
+ava('sets #command with the correct name when provided a transmit command', t => {
+    const commandStringMock = buildCommandString(CAF_MOCK, CVS_MOCK, TO_MOCK);
+    const model = new CommandParser(commandStringMock);
+
+    t.true(model.command === 'transmit');
+});
+
+ava('sets commandList with a CommandModel object when provided a top level command', t => {
     const model = new CommandParser(TIMEWARP_50_MOCK);
 
     t.true(model.commandList[0] instanceof CommandModel);
+});
+
+ava('#args returns a string when #command is not transmit', t => {
+    const model = new CommandParser(TIMEWARP_50_MOCK);
+
+    t.true(typeof model.args === 'string');
+    t.true(model.args === '50');
 });
 
 ava('sets commandList with CommandModel objects when it receives transmit commands', t => {
