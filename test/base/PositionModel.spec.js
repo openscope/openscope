@@ -7,8 +7,8 @@ import { airportPositionFixtureKLAS } from '../fixtures/airportFixtures';
 const LAT_LONG_MOCK = ['N36d38m01.199', 'W114d36m17.219'];
 const MAGNETIC_NORTH_MOCK = 0.2076941809873252;
 
-ava('does not throw when called to instantiate without parameters', t => {
-    t.notThrows(() => new PositionModel(airportPositionFixtureKLAS));
+ava('throws when called to instantiate without parameters', t => {
+    t.throws(() => new PositionModel());
 });
 
 ava('sets internal properties when provided valid parameters', t => {
