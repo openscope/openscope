@@ -1,12 +1,15 @@
+import { convertToThousands } from '../utilities/unitConverters';
 import {
     zeroArgumentsValidator,
     singleArgumentValidator,
     zeroOrOneArgumentValidator,
     // oneOrTwoArgumentValidator,
-    altitudeArgumentValidator
+    altitudeValidator,
+    headingValidator
 } from './argumentValidators';
 import {
-    altitudeArgumentParser
+    altitudeParser,
+    headingParser
 } from './argumentParsers';
 
 const noop = (args) => args;
@@ -86,12 +89,8 @@ export const COMMAND_DEFINITION = {
     },
     speed: {
         validate: singleArgumentValidator,
-        parse: (arg) => {
-            const numberFromString = parseInt(arg, 10);
-
-            // calling method is expecting an array, thus we return an array here
-            return [numberFromString];
-        }
+        // calling method is expecting an array, thus we purposly return an array here
+        parse: (arg) => [convertToThousands(arg)]
     },
     star: {
         validate: singleArgumentValidator,
@@ -106,16 +105,12 @@ export const COMMAND_DEFINITION = {
     // these commands have specific argument requirements and may need to be parsed
     // into the correct type (sting -> number)
     altitude: {
-        validate: altitudeArgumentValidator,
-        parse: altitudeArgumentParser
+        validate: altitudeValidator,
+        parse: altitudeParser
     },
     heading: {
-        validate: (args) => {
-
-        },
-        parse: (args) => {
-            console.log('parse', args);
-        }
+        validate: headingValidator,
+        parse: headingParser
     },
     hold: {
         validate: (args) => {

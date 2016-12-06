@@ -2,17 +2,7 @@ import _isEqual from 'lodash/isEqual';
 import _map from 'lodash/map';
 import BaseModel from '../base/BaseModel';
 import PositionModel from '../base/PositionModel';
-
-/**
- * Utility function to convert a number to thousands.
- *
- * Given a flightlevel FL180, this function outs puts 18,000
- *
- * @function covertToThousands
- * @param  {number} value
- * @return {number}
- */
-const convertToThousands = (value) => parseInt(value, 10) * 100;
+import { convertToThousands } from '../utilities/unitConverters';
 
 /**
  * An enclosed region defined by a series of Position objects and an altitude range

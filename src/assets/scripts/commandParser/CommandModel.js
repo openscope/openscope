@@ -36,13 +36,6 @@ export default class CommandModel {
      * @return {array}
      */
     get nameAndArgs() {
-        // if (this.args.length < 2) {
-        //     return [
-        //         this.name,
-        //         this.args[0]
-        //     ];
-        // }
-
         return [
             this.name,
             ...this.args

@@ -5,6 +5,13 @@ import { tau } from '../math/circle';
 import { round, mod } from '../math/core';
 import { REGEX } from '../constants/globalConstants';
 
+/**
+ * @property DECIMAL_RADIX
+ * @type {number}
+ * @final
+ */
+const DECIMAL_RADIX = 10;
+
 // TODO: This should be moved to its own file once it has been filled in a little more
 /**
  * @property UNIT_CONVERSION_CONSTANTS
@@ -42,7 +49,15 @@ export const UNIT_CONVERSION_CONSTANTS = {
      * @type {number}
      * @final
      */
-    KN_MS: 0.51444444
+    KN_MS: 0.51444444,
+    /**
+     * Number used to obtain feet from a flight level number
+     *
+     * @property FL_TO_FT_MULTIPLIER
+     * @type {number}
+     * @final
+     */
+    FL_TO_FT_MULTIPLIER: 100
 };
 
 // TODO: This should be moved to its own file once it has been filled in a little more
@@ -176,13 +191,33 @@ export const km_to_px = (kilometers, scale) => {
 };
 
 /**
- *
- *
  * @function convertMinutesToSeconds
  * @param minutes {number}
  * @return {number}
  */
 export const convertMinutesToSeconds = (minutes) => minutes * 60;
+
+/**
+ * Utility function to convert a number to thousands.
+ *
+ * Given a flightlevel FL180, this function outputs 18,000
+ *
+ * @function covertToThousands
+ * @param  {number} value
+ * @return {number}
+ */
+export const convertToThousands = (value) => parseInt(value, DECIMAL_RADIX) * UNIT_CONVERSION_CONSTANTS.FL_TO_FT_MULTIPLIER;
+
+/**
+ * Attempt to convert a string to a number
+ *
+ * The implementor will have to handle the case where `parseInt` returns `NaN`
+ *
+ * @function convertStringToNumber
+ * @param  value {string|*}
+ * @return {number|NaN}
+ */
+export const convertStringToNumber = (value) => parseInt(value, DECIMAL_RADIX);
 
 /**
  *
