@@ -872,16 +872,16 @@ export default class Aircraft {
     runAltitude(data) {
         const altitude = data[0];
         let expedite = data[1];
+        const airport = window.airportController.airport_get();
+        const radioTrendAltitude = radio_trend('altitude', this.altitude, this.fms.altitudeForCurrentWaypoint());
+        const currentWaypointRadioAltitude = radio_altitude(this.fms.altitudeForCurrentWaypoint());
 
         if ((altitude == null) || isNaN(altitude)) {
+            // FIXME: move this to it's own command. if expedite can be passed as a sole command it should be its own command
             if (expedite) {
                 this.fms.setCurrent({ expedite: true });
 
-                return [
-                    'ok',
-                    // TODO: add FMSclass method for current waypoint altitude
-                    `${radio_trend('altitude', this.altitude, this.fms.altitudeForCurrentWaypoint())} ${this.fms.altitudeForCurrentWaypoint()} expedite`
-                ];
+                return ['ok', `${radioTrendAltitude} ${this.fms.altitudeForCurrentWaypoint()} expedite`];
             }
 
             return ['fail', 'altitude not understood'];
@@ -891,28 +891,25 @@ export default class Aircraft {
             this.cancelLanding();
         }
 
-
-        let ceiling = window.airportController.airport_get().ctr_ceiling;
+        let ceiling = airport.ctr_ceiling;
         if (window.gameController.game.option.get('softCeiling') === 'yes') {
             ceiling += 1000;
         }
 
         this.fms.setAll({
             // TODO: enumerate the magic numbers
-            altitude: clamp(round(window.airportController.airport_get().elevation / 100) * 100 + 1000, altitude, ceiling),
+            altitude: clamp(round(airport.elevation / 100) * 100 + 1000, altitude, ceiling),
             expedite: expedite
         });
 
-        // TODO: this seems like a strange reassignment. perhaps this should be renamed or commented as to why.
+        let isExpeditingString = '';
         if (expedite) {
-            expedite = ' and expedite';
-        } else {
-            expedite = '';
+            isExpeditingString = 'and expedite';
         }
 
         const readback = {
-            log: `${radio_trend('altitude', this.altitude, this.fms.altitudeForCurrentWaypoint())} ${this.fms.altitudeForCurrentWaypoint()} ${expedite}`,
-            say: `${radio_trend('altitude', this.altitude, this.fms.altitudeForCurrentWaypoint())} ${radio_altitude(this.fms.altitudeForCurrentWaypoint())} ${expedite}`
+            log: `${radioTrendAltitude} ${this.fms.altitudeForCurrentWaypoint()} ${isExpeditingString}`,
+            say: `${radioTrendAltitude} ${currentWaypointRadioAltitude} ${isExpeditingString}`
         };
 
         return ['ok', readback];
@@ -1002,17 +999,13 @@ export default class Aircraft {
             return ['fail', 'speed not understood'];
         }
 
-        this.fms.setAll({
-            speed: clamp(
-                this.model.speed.min,
-                speed,
-                this.model.speed.max
-            )
-        });
+        const clampedSpeed = clamp(this.model.speed.min, speed, this.model.speed.max);
+        this.fms.setAll({ speed: clampedSpeed });
 
+        const radioTrendSpeed = radio_trend('speed', this.speed, this.fms.currentWaypoint.speed);
         const readback = {
-            log: `${radio_trend('speed', this.speed, this.fms.currentWaypoint.speed)} ${this.fms.currentWaypoint.speed}`,
-            say: `${radio_trend('speed', this.speed, this.fms.currentWaypoint.speed)} ${radio_spellOut(this.fms.currentWaypoint.speed)}`
+            log: `${radioTrendSpeed} ${this.fms.currentWaypoint.speed}`,
+            say: `${radioTrendSpeed} ${radio_spellOut(this.fms.currentWaypoint.speed)}`
         };
 
         return ['ok', readback];

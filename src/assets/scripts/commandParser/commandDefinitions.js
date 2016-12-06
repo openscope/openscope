@@ -1,102 +1,128 @@
-export const TOP_LEVEL_COMMANDS = {
-    version: 'version',
-    tutorial: 'tutorial',
-    auto: 'auto',
-    pause: 'pause',
-    timewarp: 'timewarp',
-    clear: 'clear',
-    airport: 'airport',
-    rate: 'rate',
-    transmit: 'transmit'
+import {
+    zeroArgumentsValidator,
+    singleArgumentValidator,
+    zeroOrOneArgumentValidator,
+    // oneOrTwoArgumentValidator,
+    altitudeArgumentValidator
+} from './argumentValidators';
+import {
+    altitudeArgumentParser
+} from './argumentParsers';
+
+const noop = (args) => args;
+
+/**
+ * @property COMMAND_DEFINITION
+ * @type {Object}
+ * @final
+ */
+export const COMMAND_DEFINITION = {
+    // these commands accept zero arguments
+    abort: {
+        validate: zeroArgumentsValidator,
+        parse: noop
+    },
+    clearedAsFiled: {
+        validate: zeroArgumentsValidator,
+        parse: noop
+    },
+    climbViaSID: {
+        validate: zeroArgumentsValidator,
+        parse: noop
+    },
+    debug: {
+        validate: zeroArgumentsValidator,
+        parse: noop
+    },
+    delete: {
+        validate: zeroArgumentsValidator,
+        parse: noop
+    },
+    descendViaSTAR: {
+        validate: zeroArgumentsValidator,
+        parse: noop
+    },
+    flyPresentHeading: {
+        validate: zeroArgumentsValidator,
+        parse: noop
+    },
+    land: {
+        validate: zeroArgumentsValidator,
+        parse: noop
+    },
+    sayRoute: {
+        validate: zeroArgumentsValidator,
+        parse: noop
+    },
+    takeoff: {
+        validate: zeroArgumentsValidator,
+        parse: noop
+    },
+
+    // these commands accept a single argument and may require further parsing, eg: (string -> number)
+    direct: {
+        validate: singleArgumentValidator,
+        parse: noop
+    },
+    fix: {
+        validate: singleArgumentValidator,
+        parse: noop
+    },
+    moveDataBlock: {
+        validate: singleArgumentValidator,
+        parse: noop
+    },
+    route: {
+        validate: singleArgumentValidator,
+        parse: noop
+    },
+    reroute: {
+        validate: singleArgumentValidator,
+        parse: noop
+    },
+    sid: {
+        validate: singleArgumentValidator,
+        parse: noop
+    },
+    speed: {
+        validate: singleArgumentValidator,
+        parse: (arg) => {
+            const numberFromString = parseInt(arg, 10);
+
+            // calling method is expecting an array, thus we return an array here
+            return [numberFromString];
+        }
+    },
+    star: {
+        validate: singleArgumentValidator,
+        parse: noop
+    },
+
+    taxi: {
+        validate: zeroOrOneArgumentValidator,
+        parse: noop
+    },
+
+    // these commands have specific argument requirements and may need to be parsed
+    // into the correct type (sting -> number)
+    altitude: {
+        validate: altitudeArgumentValidator,
+        parse: altitudeArgumentParser
+    },
+    heading: {
+        validate: (args) => {
+
+        },
+        parse: (args) => {
+            console.log('parse', args);
+        }
+    },
+    hold: {
+        validate: (args) => {
+
+        },
+        parse: (args) => {
+            console.log('parse', args);
+        }
+    }
 };
-
-export const UNICODE_COMMNDS = {
-    '\\u2B61': 'altitude',
-    '\\u2B63': 'altitude',
-    '\\u2BA2': 'heading',
-    '\\u2BA3': 'heading'
-};
-
-export const COMMANDS = {
-    ...TOP_LEVEL_COMMANDS,
-    ...UNICODE_COMMNDS,
-
-    taxi: 'taxi',
-    wait: 'taxi',
-    w: 'taxi',
-    sid: 'sid',
-    star: 'star',
-    caf: 'clearedAsFiled',
-    cvs: 'climbViaSID',
-    dvs: 'descendViaSTAR',
-    climb: 'altitude',
-    c: 'altitude',
-    descend: 'altitude',
-    d: 'altitude',
-    altitude: 'altitude',
-    a: 'altitude',
-    takeoff: 'takeoff',
-    to: 'takeoff',
-    cto: 'takeoff',
-    fph: 'flyPresentHeading',
-    heading: 'heading',
-    fh: 'heading',
-    h: 'heading',
-    turn: 'heading',
-    t: 'heading',
-    speed: 'speed',
-    slow: 'speed',
-    sp: 'speed',
-    '+': 'speed',
-    '-': 'speed',
-    ils: 'land',
-    i: 'land',
-    land: 'land',
-    l: 'land',
-    '*': 'land',
-    reroute: 'reroute',
-    rr: 'reroute',
-    route: 'route',
-    sr: 'sayRouter',
-    f: 'fix',
-    fix: 'fix',
-    track: 'fix',
-    direct: 'direct',
-    pd: 'direct',
-    dct: 'direct',
-    abort: 'abort',
-    hold: 'hold',
-    '`': 'moveDataBlock'
-};
-
-// function genericZeroArgumentCommand() {}
-//
-// function genericOneArgumentCommand() {}
-//
-// function genericTwoArgumentCommand() {}
-//
-// function genericThreeArgumentCommand() {}
-//
-// function genericFourArgumentCommand() {}
-
-// export const COMMAND_DEFINITION = {
-//     taxi: {},
-//     sid: {},
-//     star: {},
-//     caf: {},
-//     cvs: {},
-//     dvs: {},
-//     climb: {},
-//     altitude: {},
-//     takeoff: {},
-//     heading: {},
-//     speed: {},
-//     ils: {},
-//     reroute: {},
-//     route: {},
-//     sr: {},
-//     fix: {},
-//     direct: {},
-//     abort: {},
-//     hold: {}
-// };

@@ -1,5 +1,6 @@
 import _isNaN from 'lodash/isNaN';
 import _map from 'lodash/map';
+import { COMMAND_DEFINITION } from './commandDefinitions';
 
 /**
  * @class CommandModel
@@ -29,22 +30,42 @@ export default class CommandModel {
         this.args = [];
     }
 
-    // TODO: this validation/translation logic should live in another function
+    /**
+     *
+     * @property nameAndArgs
+     * @return {array}
+     */
+    get nameAndArgs() {
+        // if (this.args.length < 2) {
+        //     return [
+        //         this.name,
+        //         this.args[0]
+        //     ];
+        // }
+
+        return [
+            this.name,
+            ...this.args
+        ];
+    }
+
     /**
      *
      *
-     * @property parsedArgs
-     * @return {array}
      */
-    get parsedArgs() {
-        return _map(this.args, (arg) => {
-            let parsedArg = parseInt(arg, 10);
+    validateArgs() {
+        const commandDefinition = COMMAND_DEFINITION[this.name];
 
-            if (_isNaN(parsedArg) || arg[0] === '0') {
-                parsedArg = arg;
-            }
+        return commandDefinition.validate(this.args);
+    }
 
-            return parsedArg;
-        });
+    /**
+     *
+     *
+     */
+    parseArgs() {
+        const commandDefinition = COMMAND_DEFINITION[this.name];
+
+        return commandDefinition.parse(this.args);
     }
 }
