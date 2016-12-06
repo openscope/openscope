@@ -726,10 +726,10 @@ export default class Aircraft {
         const direction = data[0];
         let heading = data[1];
         const incremental = data[2];
-        let instruction = null;
         let amount = 0;
+        let instruction;
 
-        if (isNaN(heading)) {
+        if (_isNaN(heading)) {
             return ['fail', 'heading not understood'];
         }
 
@@ -753,10 +753,8 @@ export default class Aircraft {
             this.cancelLanding();
         }
 
-        // TODO: improve these if blocks. ['heading'].indexOf(wp.navmode) should be simplified to _has()
-        //  or something similiar. indexOf is confusing here.
         // already being vectored or holding. Will now just change the assigned heading.
-        if (['heading'].indexOf(wp.navmode) > -1) {
+        if (wp.navmode === WAYPOINT_NAV_MODE.HEADING) {
             this.fms.setCurrent({
                 altitude: wp.altitude,
                 navmode: WAYPOINT_NAV_MODE.HEADING,
@@ -765,10 +763,10 @@ export default class Aircraft {
                 turn: direction,
                 hold: false
             });
-        } else if (['hold'].indexOf(wp.navmode) > -1) {
+        } else if (wp.navmode === WAYPOINT_NAV_MODE.HOLD) {
             // in hold. Should leave the hold, and add leg for vectors
             const index = this.fms.current[0] + 1;
-            const waypointLeg = new Waypoint(
+            const waypointToAdd = new Waypoint(
                 {
                     altitude: wp.altitude,
                     navmode: WAYPOINT_NAV_MODE.HEADING,
@@ -783,13 +781,13 @@ export default class Aircraft {
             // add new Leg after hold leg
             this.fms.insertLeg({
                 firstIndex: index,
-                waypoints: [waypointLeg]
+                waypoints: [waypointToAdd]
             });
 
             // move from hold leg to vector leg.
             this.fms.nextWaypoint();
         } else if (f.sid || f.star || f.awy) {
-            const waypointLeg = new Waypoint(
+            const waypointToAdd = new Waypoint(
                 {
                     altitude: wp.altitude,
                     navmode: WAYPOINT_NAV_MODE.HEADING,
@@ -801,13 +799,13 @@ export default class Aircraft {
                 airport
             );
 
-            // TODO: this should be an FMS class method that accepts a new `waypointLeg`
+            // TODO: this should be an FMS class method that accepts a new `waypointToAdd`
             // insert wp with heading at current position within the already active leg
-            leg.waypoints.splice(this.fms.current[1], 0, waypointLeg);
+            leg.waypoints.splice(this.fms.current[1], 0, waypointToAdd);
         } else if (leg.route !== '[radar vectors]') {
             // needs new leg added
             if (this.fms.atLastWaypoint()) {
-                const waypointLeg = new Waypoint(
+                const waypointToAdd = new Waypoint(
                     {
                         altitude: wp.altitude,
                         navmode: WAYPOINT_NAV_MODE.HEADING,
@@ -820,12 +818,12 @@ export default class Aircraft {
                 );
 
                 this.fms.appendLeg({
-                    waypoints: [waypointLeg]
+                    waypoints: [waypointToAdd]
                 });
 
                 this.fms.nextLeg();
             } else {
-                const waypointLeg = new Waypoint(
+                const waypointToAdd = new Waypoint(
                     {
                         altitude: wp.altitude,
                         navmode: WAYPOINT_NAV_MODE.HEADING,
@@ -838,7 +836,7 @@ export default class Aircraft {
                 );
 
                 this.fms.insertLegHere({
-                    waypoints: [waypointLeg]
+                    waypoints: [waypointToAdd]
                 });
             }
         }
@@ -846,19 +844,18 @@ export default class Aircraft {
         wp = this.fms.currentWaypoint;  // update 'wp'
 
         // Construct the readback
+        instruction = 'fly heading';
         if (direction) {
             instruction = `turn ${direction} heading`;
-        } else {
-            instruction = 'fly heading ';
         }
 
         const readback = {};
+        readback.log = `${instruction} ${heading_to_string(wp.heading)}`;
+        readback.say = `${instruction} ${radio_heading(heading_to_string(wp.heading))}`;
+
         if (incremental) {
             readback.log = `turn ${amount} degrees ${direction}`;
             readback.say = `turn ${groupNumbers(amount)} degrees ${direction}`;
-        } else {
-            readback.log = `${instruction} ${heading_to_string(wp.heading)}`;
-            readback.say = `${instruction} ${radio_heading(heading_to_string(wp.heading))}`;
         }
 
         return ['ok', readback];

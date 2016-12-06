@@ -364,6 +364,7 @@ export default class AircraftFlightManagementSystem {
      */
     setCurrent(data) {
         // TODO: refactor this, what is actually happening here?
+        // FIXME: it may be easier to replace current waypoint with a new one?
         for (const i in data) {
             this.currentWaypoint[i] = data[i];
         }
