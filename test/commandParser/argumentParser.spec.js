@@ -1,8 +1,10 @@
+/* eslint-disable arrow-parens, max-len, import/no-extraneous-dependencies*/
 import ava from 'ava';
 
 import {
     altitudeParser,
-    headingParser
+    headingParser,
+    holdParser
 } from '../../src/assets/scripts/commandParser/argumentParsers';
 
 ava('.altitudeParser() converts a string flight level altitude to a number altitude in thousands', t => {
@@ -26,7 +28,7 @@ ava('.altitudeParser() returns an array of length two when passed a single argum
 });
 
 ava('.headingParser() returns an array of length 3 when passed new heading as the second argument', t => {
-    const result = headingParser(['042'])
+    const result = headingParser(['042']);
 
     t.true(result.length === 3);
     t.true(result[0] === '');
@@ -35,7 +37,7 @@ ava('.headingParser() returns an array of length 3 when passed new heading as th
 });
 
 ava('.headingParser() returns an array of length 3 when passed direction and heading as arguments', t => {
-    const result = headingParser(['left', '042'])
+    const result = headingParser(['left', '042']);
 
     t.true(result.length === 3);
     t.true(result[0] === 'left');
@@ -44,19 +46,19 @@ ava('.headingParser() returns an array of length 3 when passed direction and hea
 });
 
 ava('.headingParser() translates l to left as the first value', t => {
-    const result = headingParser(['l', '042'])
+    const result = headingParser(['l', '042']);
 
     t.true(result[0] === 'left');
 });
 
 ava('.headingParser() translates r to right as the first value', t => {
-    const result = headingParser(['r', '042'])
+    const result = headingParser(['r', '042']);
 
     t.true(result[0] === 'right');
 });
 
 ava('.headingParser() returns an array of length 3 when passed direction, heading and incremental as arguments', t => {
-    const result = headingParser(['left', '042', true])
+    const result = headingParser(['left', '042', true]);
 
     t.true(result.length === 3);
     t.true(result[0] === 'left');
@@ -67,4 +69,27 @@ ava('.headingParser() returns an array of length 3 when passed direction, headin
 ava('.headingParser() throws if it receives less than 1 or more than 3 arguments', t => {
     t.throws(() => headingParser([]));
     t.throws(() => headingParser(['l', '042', true, '']));
+});
+
+ava('.holdParser() throws if it does not receive 1 or 3 arguments', t => {
+    t.throws(() => holdParser([]));
+    t.throws(() => holdParser(['', 'left', '1min', '']));
+});
+
+ava('.holdParser() returns an array of length 3 when passed a fixname as the only argument', t => {
+    const result = holdParser(['dumba']);
+
+    t.true(result.length === 3);
+    t.true(result[0] === '');
+    t.true(result[1] === '');
+    t.true(result[2] === 'dumba');
+});
+
+ava('.holdParser() returns an array of length 3 when passed a direction, legLength and fixname as arguments', t => {
+    const result = holdParser(['left', '1min', 'dumba']);
+
+    t.true(result.length === 3);
+    t.true(result[0] === 'left');
+    t.true(result[1] === '1min');
+    t.true(result[2] === 'dumba');
 });

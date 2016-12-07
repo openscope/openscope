@@ -173,7 +173,7 @@ export const isValidDirectionString = (value) => {
  * @param args {array}
  * @return {string|undefined}
  */
-export const headingValidator = (args) => {
+export const headingValidator = (args = []) => {
     const length = args.length;
     const hasLengthError = oneToThreeArgumentsValidator(args);
     let numberFromString;
@@ -219,8 +219,10 @@ export const headingValidator = (args) => {
             }
 
             break;
+        // default case is included only for semtantics, this should not ever be reachable
+        // istanbul ignore next
         default:
-            break;
+            throw new Error('An error ocurred parsing the Heading arguments');
     }
 };
 
@@ -269,5 +271,9 @@ export const holdValidator = (args = []) => {
             }
 
             break;
+        // default case is included only for semtantics, this should not ever be reachable
+        // istanbul ignore next
+        default:
+            throw new Error('An error ocurred parsing the Hold arguments');
     }
 };

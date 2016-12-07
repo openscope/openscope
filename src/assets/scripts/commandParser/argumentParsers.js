@@ -63,3 +63,33 @@ export const headingParser = (args) => {
             throw new Error('An error ocurred parsing the Heading arguments');
     }
 };
+
+/**
+ *
+ * @function holdParser
+ * @param args {array}
+ * @return {array<>}
+ */
+export const holdParser = (args) => {
+    const length = args.length;
+    let turnDirection;
+    let legLength;
+    let fixName;
+
+    switch (length) {
+        case 1:
+            turnDirection = '';
+            legLength = '';
+            fixName = args[0];
+
+            return [turnDirection, legLength, fixName];
+        case 3:
+            turnDirection = args[0];
+            legLength = args[1];
+            fixName = args[2];
+
+            return [turnDirection, legLength, fixName];
+        default:
+            throw new Error('An error ocurred parsing the Hold arguments');
+    }
+};

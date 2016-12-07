@@ -6,13 +6,18 @@ import {
     singleArgumentValidator,
     zeroOrOneArgumentValidator,
     oneOrTwoArgumentValidator,
+    oneToThreeArgumentsValidator,
+    oneOrThreeArgumentsValidator,
     altitudeValidator,
     headingValidator,
     holdValidator
 } from '../../src/assets/scripts/commandParser/argumentValidators';
 
 ava('.zeroArgumentsValidator() returns a string when passed the wrong number of arguments', t => {
-    let result = zeroArgumentsValidator([]);
+    let result = zeroArgumentsValidator();
+    t.true(typeof result === 'undefined');
+
+    result = zeroArgumentsValidator([]);
     t.true(typeof result === 'undefined');
 
     result = zeroArgumentsValidator(['', '']);
@@ -23,10 +28,13 @@ ava('.singleArgumentValidator() returns a string when passed the wrong number of
     let result = singleArgumentValidator(['']);
     t.true(typeof result === 'undefined');
 
-    result = singleArgumentValidator(['', '']);
+    result = singleArgumentValidator();
     t.true(result === 'Invalid argument length. Expected exactly one argument');
 
     result = singleArgumentValidator([]);
+    t.true(result === 'Invalid argument length. Expected exactly one argument');
+
+    result = singleArgumentValidator(['', '']);
     t.true(result === 'Invalid argument length. Expected exactly one argument');
 });
 
@@ -55,12 +63,46 @@ ava('.oneOrTwoArgumentValidator() returns a string when passed the wrong number 
     t.true(result === 'Invalid argument length. Expected one or two arguments');
 });
 
+ava('.oneToThreeArgumentsValidator() returns a string when passed the wrong number of arguments', t => {
+    let result = oneToThreeArgumentsValidator(['']);
+    t.true(typeof result === 'undefined');
+
+    result = oneToThreeArgumentsValidator(['', '']);
+    t.true(typeof result === 'undefined');
+
+    result = oneToThreeArgumentsValidator(['', '', '']);
+    t.true(typeof result === 'undefined');
+
+    result = oneToThreeArgumentsValidator();
+    t.true(result === 'Invalid argument length. Expected one, two, or three arguments');
+
+    result = oneToThreeArgumentsValidator(['', '', '', '']);
+    t.true(result === 'Invalid argument length. Expected one, two, or three arguments');
+});
+
+ava('.oneOrThreeArgumentValidator() returns a string when passed the wrong number of arguments', t => {
+    let result = oneOrThreeArgumentsValidator(['']);
+    t.true(typeof result === 'undefined');
+
+    result = oneOrThreeArgumentsValidator(['', '', '']);
+    t.true(typeof result === 'undefined');
+
+    result = oneOrThreeArgumentsValidator();
+    t.true(result === 'Invalid argument length. Expected one or three arguments');
+
+    result = oneOrThreeArgumentsValidator(['', '', '', '']);
+    t.true(result === 'Invalid argument length. Expected one or three arguments');
+});
+
 ava('.altitudeValidator() returns a string when passed the wrong number of arguments', t => {
     let result = altitudeValidator(['']);
     t.true(typeof result === 'undefined');
 
     result = altitudeValidator(['', 'expedite']);
     t.true(typeof result === 'undefined');
+
+    result = altitudeValidator();
+    t.true(result === 'Invalid argument length. Expected one or two arguments');
 
     result = altitudeValidator([]);
     t.true(result === 'Invalid argument length. Expected one or two arguments');
@@ -86,6 +128,9 @@ ava('.headingValidator() returns a string when passed the wrong number of argume
 
     result = headingValidator(['l', '42', true]);
     t.true(typeof result === 'undefined');
+
+    result = headingValidator();
+    t.true(result === 'Invalid argument length. Expected one, two, or three arguments');
 
     result = headingValidator([]);
     t.true(result === 'Invalid argument length. Expected one, two, or three arguments');
@@ -119,7 +164,10 @@ ava('.headingValidator() returns undefined when passed a string, number and bool
 });
 
 ava('.holdValidator() returns a string when passed the wrong number of arguments', t => {
-    let result = holdValidator([]);
+    let result = holdValidator();
+    t.true(result === 'Invalid argument length. Expected one or three arguments');
+
+    result = holdValidator([]);
     t.true(result === 'Invalid argument length. Expected one or three arguments');
 
     result = holdValidator(['', 'left', '1min', '']);

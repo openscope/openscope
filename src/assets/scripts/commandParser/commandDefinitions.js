@@ -3,7 +3,6 @@ import {
     zeroArgumentsValidator,
     singleArgumentValidator,
     zeroOrOneArgumentValidator,
-    // oneOrTwoArgumentValidator,
     altitudeValidator,
     headingValidator,
     holdValidator
