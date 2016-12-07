@@ -5,11 +5,13 @@ import {
     zeroOrOneArgumentValidator,
     // oneOrTwoArgumentValidator,
     altitudeValidator,
-    headingValidator
+    headingValidator,
+    holdValidator
 } from './argumentValidators';
 import {
     altitudeParser,
-    headingParser
+    headingParser,
+    holdParser
 } from './argumentParsers';
 
 const noop = (args) => args;
@@ -113,11 +115,7 @@ export const COMMAND_DEFINITION = {
         parse: headingParser
     },
     hold: {
-        validate: (args) => {
-
-        },
-        parse: (args) => {
-            console.log('parse', args);
-        }
+        validate: holdValidator,
+        parse: holdParser
     }
 };

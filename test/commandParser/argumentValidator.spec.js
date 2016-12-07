@@ -7,7 +7,8 @@ import {
     zeroOrOneArgumentValidator,
     oneOrTwoArgumentValidator,
     altitudeValidator,
-    headingValidator
+    headingValidator,
+    holdValidator
 } from '../../src/assets/scripts/commandParser/argumentValidators';
 
 ava('.zeroArgumentsValidator() returns a string when passed the wrong number of arguments', t => {
@@ -114,5 +115,41 @@ ava('.headingValidator() returns undefined when passed a string and a number as 
 
 ava('.headingValidator() returns undefined when passed a string, number and boolean as arguments', t => {
     const result = headingValidator(['l', '042', true]);
+    t.true(typeof result === 'undefined');
+});
+
+ava('.holdValidator() returns a string when passed the wrong number of arguments', t => {
+    let result = holdValidator([]);
+    t.true(result === 'Invalid argument length. Expected one or three arguments');
+
+    result = holdValidator(['', 'left', '1min', '']);
+    t.true(result === 'Invalid argument length. Expected one or three arguments');
+});
+
+ava('.holdValidator() returns a string when passed the wrong type of arguments', t => {
+    t.true(holdValidator([false]) === 'Invalid argument. Must be a string');
+    t.true(holdValidator([false, '42', '1min']) === 'Invalid argument. Must be a string');
+    t.true(holdValidator(['42', false, '1min']) === 'Invalid argument. Must be a string');
+    t.true(holdValidator(['42', 'left', false]) === 'Invalid argument. Must be a string');
+    t.true(holdValidator(['42', 'up', '1min']) === 'Invalid argument. Hold direction must be either left or right');
+    t.true(holdValidator(['42', 'left', '1wookie']) === 'Invalid argument. Hold length must be either min (minutes) or nm (nautical miles)');
+});
+
+ava('.holdValidator() returns undefined when passed a string as an argument', t => {
+    const result = holdValidator(['']);
+    t.true(typeof result === 'undefined');
+});
+
+ava('.holdValidator() returns undefined when passed three strings as arguments', t => {
+    let result = holdValidator(['dumba', 'left', '1min']);
+    t.true(typeof result === 'undefined');
+
+    result = holdValidator(['dumba', 'right', '1nm']);
+    t.true(typeof result === 'undefined');
+
+    result = holdValidator(['dumba', 'right', '1min']);
+    t.true(typeof result === 'undefined');
+
+    result = holdValidator(['dumba', 'right', '1nm']);
     t.true(typeof result === 'undefined');
 });
