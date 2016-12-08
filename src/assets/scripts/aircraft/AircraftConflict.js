@@ -141,18 +141,9 @@ export default class AircraftConflict {
             this.aircraft[0].hit = true;
             this.aircraft[1].hit = true;
 
-            // If either are in runway queue, remove them from it
-            for (const i in window.airportController.airport_get().runways) {
-                const runway = window.airportController.airport_get().runways[i];
-
-                // Primary End of Runway
-                runway[0].removeQueue(this.aircraft[0], true);
-                runway[0].removeQueue(this.aircraft[1], true);
-
-                // Secondary End of Runway
-                runway[1].removeQueue(this.aircraft[0], true);
-                runway[1].removeQueue(this.aircraft[1], true);
-            }
+            // If either are in a runway queue, remove them from it
+            window.airportController.removeAircraftFromAllRunwayQueues(this.aircraft[0]);
+            window.airportController.removeAircraftFromAllRunwayQueues(this.aircraft[1]);
         }
     }
 
