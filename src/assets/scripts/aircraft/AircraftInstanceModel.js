@@ -347,7 +347,7 @@ export default class Aircraft {
         if (leg.type === 'sid') {
             const a = _map(leg.waypoints, (v) => v.altitude);
             const cvs = !a.every((v) => v === window.airportController.airport_get().initial_alt);
-            this.fms.followSID(leg.route);
+            this.fms.followSID(leg.route.routeCode);
 
             if (cvs) {
                 this.fms.climbViaSID();
