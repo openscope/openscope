@@ -5,25 +5,12 @@ import _isString from 'lodash/isString';
 import _map from 'lodash/map';
 import _tail from 'lodash/tail';
 import CommandModel from './CommandModel';
+import { unicodeToString } from '../utilities/generalUtilities';
 import {
     SYSTEM_COMMANDS,
     COMMAND_MAP
 } from './commandMap';
-
-// TODO: add to global constants
-const REGEX = {
-    UNICODE: /[^\u0000-\u00ff]/
-};
-
-// TODO: move to helper function file somewhere
-/**
- * Helper method to translate a unicode character into a readable string value
- *
- * @method unicodeToString
- * @param char {characterCode}
- * @return {string}
- */
-const unicodeToString = (char) => `\\u${char.charCodeAt(0).toString(16).toUpperCase()}`;
+import { REGEX } from '../constants/globalConstants';
 
 /**
  *
