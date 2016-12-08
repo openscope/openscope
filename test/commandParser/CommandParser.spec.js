@@ -10,11 +10,11 @@ import CommandModel from '../../src/assets/scripts/commandParser/CommandModel';
 
 const TIMEWARP_50_MOCK = 'timewarp 50';
 const CALLSIGN_MOCK = 'AA777';
-const FH_COMMAND_MOCK = 'fh 180';
-const D_COMMAND_MOCK = 'd 030';
 const CAF_MOCK = 'caf';
 const CVS_MOCK = 'cvs';
 const TO_MOCK = 'to';
+const FH_COMMAND_MOCK = 'fh 180';
+const D_COMMAND_MOCK = 'd 030';
 const STAR_MOCK = 'star quiet7';
 const ROUTE_MOCK = 'route KSEA.MTN7.ELN..HAMUR.J12.DNJ';
 const COMPLEX_HOLD_MOCK = 'hold dumba right 2min';
@@ -30,10 +30,33 @@ const buildCommandList = (...args) => {
 };
 
 ava('throws when called without parameters', t => {
-    t.throws(() => new CommandParser());
+    t.throws(() => new CommandParser(false));
+    t.throws(() => new CommandParser(42));
+    t.throws(() => new CommandParser({}));
+
+    t.notThrows(() => new CommandParser());
 });
 
-ava.skip('sets #command with the correct name when provided a top level command', t => {
+ava('throws when called with invalid arguments', (t) => {
+    const commandStringMock = buildCommandString(TO_MOCK, 'threeve');
+
+    t.throws(() => new CommandParser(commandStringMock));
+});
+
+ava('#args returns one item when a system command is present', t => {
+    const model = new CommandParser(TIMEWARP_50_MOCK);
+
+    t.true(model.args === '50');
+});
+
+ava('#args an array for each command with arg values when a transmit command is present', t => {
+    const commandStringMock = buildCommandString(FH_COMMAND_MOCK, D_COMMAND_MOCK, STAR_MOCK);
+    const model = new CommandParser(commandStringMock);
+
+    t.true(model.args.length === 3);
+});
+
+ava('sets #command with the correct name when provided a system command', t => {
     const model = new CommandParser(TIMEWARP_50_MOCK);
 
     t.true(model.command === 'timewarp');
@@ -46,17 +69,11 @@ ava('sets #command with the correct name when provided a transmit command', t =>
     t.true(model.command === 'transmit');
 });
 
-ava.skip('sets commandList with a CommandModel object when provided a top level command', t => {
+ava('sets commandList with a CommandModel object when provided a system command', t => {
     const model = new CommandParser(TIMEWARP_50_MOCK);
 
+    t.true(model.commandList.length === 1);
     t.true(model.commandList[0] instanceof CommandModel);
-});
-
-ava.skip('#args returns a string when #command is not transmit', t => {
-    const model = new CommandParser(TIMEWARP_50_MOCK);
-
-    t.true(typeof model.args === 'string');
-    t.true(model.args === '50');
 });
 
 ava('sets commandList with CommandModel objects when it receives transmit commands', t => {
@@ -88,4 +105,14 @@ ava('._buildCommandList() finds correct command when it recieves a space before 
 
     t.true(result[0].name === 'heading');
     t.true(result[0].args[0] === '180');
+});
+
+ava('._validateAndParseCommandArguments() calls ._validateCommandArguments()', t => {
+    const commandStringMock = buildCommandString(CAF_MOCK, CVS_MOCK, TO_MOCK);
+    const model = new CommandParser();
+
+    const _validateCommandArgumentsSpy = sinon.spy(model, '_validateCommandArguments');
+    model._validateCommandArguments();
+
+    t.true(_validateCommandArgumentsSpy.called);
 });

@@ -22,12 +22,13 @@ export default class CommandParser {
     /**
      * @constructor
      * @for CommandParser
-     * @param commandValueString {string}
+     * @param rawCommandWithArgs {string}
      */
-    constructor(commandValueString) {
-        if (!_isString(commandValueString)) {
+    constructor(rawCommandWithArgs = '') {
+        if (!_isString(rawCommandWithArgs)) {
+            // istanbul ignore next
             // eslint-disable-next-line max-len
-            throw new TypeError(`Invalid parameter. CommandParser expects a string but received ${typeof commandValueString}`);
+            throw new TypeError(`Invalid parameter. CommandParser expects a string but received ${typeof rawCommandWithArgs}`);
         }
 
         /**
@@ -50,7 +51,7 @@ export default class CommandParser {
          */
         this.commandList = [];
 
-        this._extractCommandsAndArgs(commandValueString.toLowerCase());
+        this._extractCommandsAndArgs(rawCommandWithArgs.toLowerCase());
     }
 
     /**
@@ -73,11 +74,11 @@ export default class CommandParser {
     /**
      * @for CommandParser
      * @method _extractCommandsAndArgs
-     * @param commandValueString {string}
+     * @param rawCommandWithArgs {string}
      * @private
      */
-    _extractCommandsAndArgs(commandValueString) {
-        const commandArgSegmentsWithCallsign = commandValueString.split(' ') || [];
+    _extractCommandsAndArgs(rawCommandWithArgs) {
+        const commandArgSegmentsWithCallsign = rawCommandWithArgs.split(' ');
         const callsignOrTopLevelCommandName = commandArgSegmentsWithCallsign[0];
         const commandArgSegments = _tail(commandArgSegmentsWithCallsign);
 
