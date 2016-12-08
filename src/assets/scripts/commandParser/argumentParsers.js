@@ -78,15 +78,15 @@ export const holdParser = (args) => {
 
     switch (length) {
         case 1:
+            fixName = args[0];
             turnDirection = '';
             legLength = '';
-            fixName = args[0];
 
             return [turnDirection, legLength, fixName];
         case 3:
-            turnDirection = args[0];
-            legLength = args[1];
-            fixName = args[2];
+            fixName = args[0];
+            turnDirection = args[1];
+            legLength = args[2];
 
             return [turnDirection, legLength, fixName];
         default:

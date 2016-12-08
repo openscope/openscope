@@ -26,6 +26,9 @@ const REGEX = {
 const unicodeToString = (char) => `\\u${char.charCodeAt(0).toString(16).toUpperCase()}`;
 
 /**
+ *
+ *
+ *
  * @class CommandParser
  */
 export default class CommandParser {
@@ -61,7 +64,6 @@ export default class CommandParser {
         this.commandList = [];
 
         this._extractCommandsAndArgs(commandValueString.toLowerCase());
-        this._validateAndParseCommandArguments();
     }
 
     /**
@@ -104,11 +106,13 @@ export default class CommandParser {
         this.command = SYSTEM_COMMANDS.transmit;
         this.callsign = callsignOrTopLevelCommandName;
         this.commandList = this._buildCommandList(commandArgSegments);
+
+        this._validateAndParseCommandArguments();
     }
 
     /**
      *
-     *
+     * @private
      */
     _buildTopLevelCommandModel(commandArgSegments) {
         const commandIndex = 0;
@@ -162,8 +166,8 @@ export default class CommandParser {
         const validationErrors = this._validateCommandArguments();
 
         if (validationErrors.length > 0) {
-            _forEach(validationErrors, (e) => {
-                throw e;
+            _forEach(validationErrors, (error) => {
+                throw error;
             });
         }
     }
@@ -178,14 +182,11 @@ export default class CommandParser {
         return _compact(_map(this.commandList, (command) => {
             const hasError = command.validateArgs();
 
-            if (!hasError) {
-                // this completely overwrites current args, this is intended because all args are received as
-                // strings but consumed as strings, numbers or booleans. and when the args are initially set
-                // they may not all be available yet
-                command.args = command.parseArgs() || [];
+            if (hasError) {
+                return hasError;
             }
 
-            return hasError;
+            command.parseArgs();
         }));
     }
 }

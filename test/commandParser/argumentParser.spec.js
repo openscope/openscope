@@ -86,7 +86,7 @@ ava('.holdParser() returns an array of length 3 when passed a fixname as the onl
 });
 
 ava('.holdParser() returns an array of length 3 when passed a direction, legLength and fixname as arguments', t => {
-    const result = holdParser(['left', '1min', 'dumba']);
+    const result = holdParser(['dumba', 'left', '1min']);
 
     t.true(result.length === 3);
     t.true(result[0] === 'left');

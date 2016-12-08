@@ -20,6 +20,15 @@ export default class CommandModel {
         this.name = name;
 
         /**
+         *
+         *
+         * @property _commandDefinition
+         * @type {object}
+         * @private
+         */
+        this._commandDefinition = COMMAND_DEFINITION[name];
+
+        /**
          * command arguments
          * assumed to be text between found command names
          *
@@ -47,9 +56,9 @@ export default class CommandModel {
      *
      */
     validateArgs() {
-        const commandDefinition = COMMAND_DEFINITION[this.name];
+        // const commandDefinition = COMMAND_DEFINITION[this.name];
 
-        return commandDefinition.validate(this.args);
+        return this._commandDefinition.validate(this.args);
     }
 
     /**
@@ -57,8 +66,11 @@ export default class CommandModel {
      *
      */
     parseArgs() {
-        const commandDefinition = COMMAND_DEFINITION[this.name];
+        // const commandDefinition = COMMAND_DEFINITION[this.name];
 
-        return commandDefinition.parse(this.args);
+        // this completely overwrites current args. this is intended because all args are received as
+        // strings but consumed as strings, numbers or booleans. and when the args are initially set
+        // they may not all be available yet
+        this.args = this._commandDefinition.parse(this.args);
     }
 }
