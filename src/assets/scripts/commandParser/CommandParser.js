@@ -13,8 +13,31 @@ import {
 import { REGEX } from '../constants/globalConstants';
 
 /**
+ * @property COMMAND_ARGS_SEPARATOR
+ * @type {string}
+ */
+const COMMAND_ARGS_SEPARATOR = ' ';
+
+/**
+ * This class is responsible for taking the content of the `$commandInput` and parsing it
+ * out into commands and arguments.
  *
+ * Everything this class, and its children, needs comes in as a single string provided by
+ * the `InputController.input_run()`.
  *
+ * Commands are broken out into two categories: `System` and `Transmit`.
+ * - System commands are single argument commands that are used for interacting with the app
+ *   itslef. Things like `timewarp` or `tutorial` are examples of system commands.
+ *
+ * - Transmit commands are instructions meant for a specific aircraft within the controlled airspace.
+ *   These commands can have zero arguments or many depending on the command. Some examples of
+ *   transmit commands are `to`, `taxi`, `hold`, etc.
+ *
+ * Commands go through a lifecycle as they moves from raw to parsed:
+ * - instantiation within this class
+ * - creation of CommandModel objects for each found command
+ * - validate command arguments (number of arguments and data type)
+ * - parse command arguments
  *
  * @class CommandParser
  */
@@ -22,7 +45,7 @@ export default class CommandParser {
     /**
      * @constructor
      * @for CommandParser
-     * @param rawCommandWithArgs {string}
+     * @param rawCommandWithArgs {string}  string present in the `$commandInput` when the user pressed `enter`
      */
     constructor(rawCommandWithArgs = '') {
         if (!_isString(rawCommandWithArgs)) {
@@ -32,20 +55,33 @@ export default class CommandParser {
         }
 
         /**
+         * Command name
+         *
+         * Could be either Transmit or a System command
+         *
+         * This is consumed by the `InputController` when determining what to do with
+         * the parsed command(s)
          *
          * @type {string}
+         * @default ''
          */
         this.command = '';
 
         /**
+         * Aircraft callsign
          *
+         * this is optional and not required for system commands
          *
          * @type {string}
+         * @default ''
          */
         this.callsign = '';
 
         /**
+         * List of `CommandModel` objects.
          *
+         * Each command is contained within a `CommandModel`, even System commands. This provides
+         * a way to keep them together.
          *
          * @type {array<CommandModel>}
          */
@@ -55,13 +91,16 @@ export default class CommandParser {
     }
 
     /**
-     * When command is not transmit:
-     * - commandList is assumed to have a length on 1
-     * - commandList[0].args is assumed to have a single string value
+     * Return an array of [commandName, ...args]
      *
+     * We use this shape solely to match the existing api.
+     *
+     * When command is a System command:
+     * - commandList is assumed to have a length on 1
+     * - commandList[0].args[0] is assumed to have a single string value
      *
      * @property args
-     * @return {string}
+     * @return {string|array<string>}
      */
     get args() {
         if (this.command !== SYSTEM_COMMANDS.transmit) {
@@ -72,40 +111,42 @@ export default class CommandParser {
     }
 
     /**
+     * Accept the entire string provided to the constructor and attempt to break it up into:
+     * - System command and its arguments
+     * - Transmit commands and thier arguments
+     *
      * @for CommandParser
      * @method _extractCommandsAndArgs
      * @param rawCommandWithArgs {string}
      * @private
      */
     _extractCommandsAndArgs(rawCommandWithArgs) {
-        const commandArgSegmentsWithCallsign = rawCommandWithArgs.split(' ');
-        const callsignOrTopLevelCommandName = commandArgSegmentsWithCallsign[0];
+        const commandOrCallsignIndex = 0;
+        const commandArgSegmentsWithCallsign = rawCommandWithArgs.split(COMMAND_ARGS_SEPARATOR);
+        const callsignOrSystemCommandName = commandArgSegmentsWithCallsign[commandOrCallsignIndex];
+        // effectively a slice of the array that returns everything but the first item
         const commandArgSegments = _tail(commandArgSegmentsWithCallsign);
 
-        if (
-            _has(SYSTEM_COMMANDS, callsignOrTopLevelCommandName) &&
-            callsignOrTopLevelCommandName !== SYSTEM_COMMANDS.transmit
-        ) {
-            this._buildTopLevelCommandModel(commandArgSegmentsWithCallsign);
+        if (this._isSystemCommand(callsignOrSystemCommandName)) {
+            this._buildSystemCommandModel(commandArgSegmentsWithCallsign);
 
             return;
         }
 
-        this.command = SYSTEM_COMMANDS.transmit;
-        this.callsign = callsignOrTopLevelCommandName;
-        this.commandList = this._buildCommandList(commandArgSegments);
-
-        this._validateAndParseCommandArguments();
+        this._buildTransmitCommandModels(callsignOrSystemCommandName, commandArgSegments);
     }
 
     /**
+     * Build a `CommandModel` for a found System command then add it to the `commandList`
      *
+     * @for CommandParser
+     * @method _buildSystemCommandModel
      * @private
      */
-    _buildTopLevelCommandModel(commandArgSegments) {
+    _buildSystemCommandModel(commandArgSegments) {
         const commandIndex = 0;
         const argIndex = 1;
-        const commandName = SYSTEM_COMMANDS[commandArgSegments[commandIndex]];
+        const commandName = commandArgSegments[commandIndex];
         const commandModel = new CommandModel(commandName);
         commandModel.args.push(commandArgSegments[argIndex]);
 
@@ -114,6 +155,31 @@ export default class CommandParser {
     }
 
     /**
+     * Build `CommandModel` objects for found transmit commands then add them to the `commandList`
+     *
+     * @private
+     */
+    _buildTransmitCommandModels(callsignOrSystemCommandName, commandArgSegments) {
+        this.command = SYSTEM_COMMANDS.transmit;
+        this.callsign = callsignOrSystemCommandName;
+        this.commandList = this._buildCommandList(commandArgSegments);
+
+        this._validateAndParseCommandArguments();
+    }
+
+    /**
+     * Loop through the commandArgSegments array and either create a new `CommandModel` or add
+     * arguments to a `CommandModel`.
+     *
+     * commandArgSegments will contain both commands and arguments (very contrived example):
+     * - `[cmd, arg, arg, cmd, cmd, arg, arg, arg]`
+     *
+     * this method is expecting that
+     * the first item it receives, that is not a space, is a command. we then push each successive
+     * array item to the args array until we find another command. then we repeat the process.
+     *
+     * this allows us to create several `CommandModel` with arguments and only loop over them once.
+     *
      * @for CommandParser
      * @method _buildCommandList
      * @param commandArgSegments {array<string>}
@@ -145,8 +211,9 @@ export default class CommandParser {
     }
 
     /**
+     * Fire off the `_validateCommandArguments` method and throws any errors returned
      *
-     *
+     * @for CommandParser
      * @method _validateAndParseCommandArguments
      * @private
      */
@@ -161,8 +228,10 @@ export default class CommandParser {
     }
 
     /**
+     * For each `CommandModel` in the `commandList`, first validate it's arguments
+     * then parse those arguments into a consumable array.
      *
-     *
+     * @for CommandParser
      * @method _validateCommandArguments
      * @private
      */
@@ -171,10 +240,27 @@ export default class CommandParser {
             const hasError = command.validateArgs();
 
             if (hasError) {
+                // we only return here so all the errors can be thrown at once
+                // from within the calling method
                 return hasError;
             }
 
             command.parseArgs();
         }));
+    }
+
+    /**
+     * Encapsulation of boolean logic used to determine if the `callsignOrSystemCommandName`
+     * is in fact a system command.
+     *
+     *
+     * @for CommandParser
+     * @method _isSystemCommand
+     * @param callsignOrSystemCommandName {string}
+     * @return {boolean}
+     */
+    _isSystemCommand(callsignOrSystemCommandName) {
+        return _has(SYSTEM_COMMANDS, callsignOrSystemCommandName) &&
+            callsignOrSystemCommandName !== SYSTEM_COMMANDS.transmit;
     }
 }

@@ -37,6 +37,10 @@ ava('throws when called without parameters', t => {
     t.notThrows(() => new CommandParser());
 });
 
+ava('throws when called with an invalid command', (t) => {
+    t.throws(() => new CommandParser(['threeve']));
+});
+
 ava('throws when called with invalid arguments', (t) => {
     const commandStringMock = buildCommandString(TO_MOCK, 'threeve');
 
@@ -69,14 +73,14 @@ ava('sets #command with the correct name when provided a transmit command', t =>
     t.true(model.command === 'transmit');
 });
 
-ava('sets commandList with a CommandModel object when provided a system command', t => {
+ava('sets #commandList with a CommandModel object when provided a system command', t => {
     const model = new CommandParser(TIMEWARP_50_MOCK);
 
     t.true(model.commandList.length === 1);
     t.true(model.commandList[0] instanceof CommandModel);
 });
 
-ava('sets commandList with CommandModel objects when it receives transmit commands', t => {
+ava('sets #commandList with CommandModel objects when it receives transmit commands', t => {
     const commandStringMock = buildCommandString(CAF_MOCK, CVS_MOCK, TO_MOCK);
     const model = new CommandParser(commandStringMock);
 
@@ -109,10 +113,17 @@ ava('._buildCommandList() finds correct command when it recieves a space before 
 
 ava('._validateAndParseCommandArguments() calls ._validateCommandArguments()', t => {
     const commandStringMock = buildCommandString(CAF_MOCK, CVS_MOCK, TO_MOCK);
-    const model = new CommandParser();
+    const model = new CommandParser(commandStringMock);
 
     const _validateCommandArgumentsSpy = sinon.spy(model, '_validateCommandArguments');
     model._validateCommandArguments();
 
     t.true(_validateCommandArgumentsSpy.called);
+});
+
+ava('._isSystemCommand() returns true if callsignOrTopLevelCommandName exists within SYSTEM_COMMANDS and is not transmit', t => {
+    const systemCommandMock = 'timewarp';
+    const model = new CommandParser();
+
+    t.true(model._isSystemCommand(systemCommandMock));
 });
