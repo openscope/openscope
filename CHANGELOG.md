@@ -6,7 +6,7 @@
     - Abstracts restrictions logic to live within `Waypoint`
     - Consolidates `runSID()` and `climbViaSid()` logic
 - Deprecates `sid` and `star` properties of the `AirportModel` in favor of `sidCollection` and `starCollection` [#54](https://github.com/n8rzz/atc/issues/54)
-
+- Adds [Express](expressjs.com) server to serve static assets and add [travis](travis-ci.org) config file for travis continuous integration [#169](https://github.com/n8rzz/atc/issues/169)
 
 
 
@@ -22,6 +22,8 @@
 - Adds static `calculatePosition` method to `PositionModel` and abstracts common functions [#159](https://github.com/n8rzz/atc/issues/159)
 - Replaces active airport icao in view with a zulu time clock [#135](https://github.com/n8rzz/atc/issues/135)
 - Consolidates test fixtures in fixtures directory [#167](https://github.com/n8rzz/atc/issues/167)
+* Addresses issue with video maps being drawn incorrectly. [#176](https://github.com/n8rzz/atc/issues/176)
+    - Updates `PositionModel` to run all calculations through the static `.calculatePosition()` method and vastly simplifies internal logic. 
 
 
 

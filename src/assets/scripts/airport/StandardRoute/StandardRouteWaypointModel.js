@@ -194,6 +194,16 @@ export default class StandardRouteWaypointModel extends BaseModel {
     }
 
     /**
+     * Return this waypoint's `gpsXY` position property
+     *
+     * @property gps
+     * @return {array}
+     */
+    get gpsXY() {
+        return this._waypointPosition.gpsXY;
+    }
+
+    /**
      * This will return a normalized fix in the shape of `[FIXNAME, FIX_RESTRICTIONS]`.
      *
      * Fixes without restrictions are brought in to the application as a single string, however, all
