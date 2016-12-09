@@ -540,8 +540,8 @@ export default class AirportModel {
                 apt.terrain[ele].push($.map(poly, (line_string) => {
                     return [
                         $.map(line_string, (pt) => {
+                            pt.reverse();   // `PositionModel` requires [lat,lon] order
                             const pos = new PositionModel(pt, apt.position, apt.magnetic_north);
-                            pos.parse4326();
 
                             return [pos.position];
                         })

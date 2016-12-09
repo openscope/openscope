@@ -7,8 +7,8 @@ import { airportPositionFixtureKLAS } from '../fixtures/airportFixtures';
 const LAT_LONG_MOCK = ['N36d38m01.199', 'W114d36m17.219'];
 const MAGNETIC_NORTH_MOCK = 0.2076941809873252;
 
-ava('does not throw when called to instantiate without parameters', t => {
-    t.notThrows(() => new PositionModel(airportPositionFixtureKLAS));
+ava('throws when called to instantiate without parameters', t => {
+    t.throws(() => new PositionModel());
 });
 
 ava('sets internal properties when provided valid parameters', t => {
@@ -22,8 +22,10 @@ ava('sets internal properties when provided valid parameters', t => {
     t.true(result.magnetic_north === 0.2076941809873252);
     t.true(result.x === 35.448246791634254);
     t.true(result.y === 70.38079821863909);
-    t.true(result.gps[0] === -114.60478305555554);
-    t.true(result.gps[1] === 36.63366638888889);
+    t.true(result.gpsXY[0] === -114.60478305555554);
+    t.true(result.gpsXY[1] === 36.63366638888889);
+    t.true(result.gps[0] === 36.63366638888889);
+    t.true(result.gps[1] === -114.60478305555554);
 });
 
 ava('.calculatePosition() throws when it receives the wrong arguments', t => {
