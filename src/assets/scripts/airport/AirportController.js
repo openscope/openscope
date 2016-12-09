@@ -196,10 +196,12 @@ export default class AirportController {
      * @param  {aircraft} aircraft The aircraft to remove
      */
     removeAircraftFromAllRunwayQueues(aircraft) {
+        const runwayPrimaryEndIndex = 0;
+        const runwaySecondaryEndIndex = 1;
         const runways = this.airport_get().runways;
         for (let runwayPair = 0; runwayPair < runways.length; runwayPair++) {
-            runways[runwayPair][0].removeQueue(aircraft, true);
-            runways[runwayPair][1].removeQueue(aircraft, true);
+            runways[runwayPair][runwayPrimaryEndIndex].removeQueue(aircraft, true);
+            runways[runwayPair][runwaySecondaryEndIndex].removeQueue(aircraft, true);
         }
     }
 

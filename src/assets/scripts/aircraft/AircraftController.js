@@ -1,5 +1,5 @@
 /* eslint-disable no-underscore-dangle, no-unused-vars, no-undef, global-require */
-import _pull from 'lodash/pull';
+import _without from 'lodash/without';
 import AircraftConflict from './AircraftConflict';
 import AircraftModel from './AircraftModel';
 import { speech_say } from '../speech';
@@ -358,7 +358,7 @@ export default class AircraftController {
      * @param  {Aircraft} aircraft the aircraft to remove
      */
     removeAircraftInstanceModelFromList(aircraft) {
-        _pull(this.aircraft.list, aircraft);
+        this.aircraft.list = _without(this.aircraft.list, aircraft);
     }
 
     /**
@@ -368,7 +368,7 @@ export default class AircraftController {
      * @param  {string} callsign the flight number to remove
      */
     removeCallsignFromList(callsign) {
-        _pull(this.aircraft.callsigns, callsign);
+        this.aircraft.callsigns = _without(this.aircraft.callsigns, callsign);
     }
 
     // TODO: what is an `eid` and why would it beed to be updated?
