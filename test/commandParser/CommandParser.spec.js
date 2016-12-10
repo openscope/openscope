@@ -50,7 +50,7 @@ ava('throws when called with invalid arguments', (t) => {
 ava('#args returns one item when a system command is present', t => {
     const model = new CommandParser(TIMEWARP_50_MOCK);
 
-    t.true(model.args === '50');
+    t.true(_isEqual(model.args, [50]));
 });
 
 ava('#args an array for each command with arg values when a transmit command is present', t => {
