@@ -22,8 +22,11 @@ const COMMAND_ARGS_SEPARATOR = ' ';
  * This class is responsible for taking the content of the `$commandInput` and parsing it
  * out into commands and arguments.
  *
- * Everything this class, and its children, needs comes in as a single string provided by
- * the `InputController.input_run()`.
+ * Everything this class needs comes in as a single string provided by `InputController.input_run()`.
+ * ex:
+ * - `timewarp 50`
+ * - `AA777 fh 0270 d 050 sp 200`
+ * - `AA777 hold dumba left 2min`
  *
  * Commands are broken out into two categories: `System` and `Transmit`.
  * - System commands are single argument commands that are used for interacting with the app
@@ -33,11 +36,15 @@ const COMMAND_ARGS_SEPARATOR = ' ';
  *   These commands can have zero arguments or many depending on the command. Some examples of
  *   transmit commands are `to`, `taxi`, `hold`, etc.
  *
- * Commands go through a lifecycle as they moves from raw to parsed:
+ * Commands go through a lifecycle as they move from raw to parsed:
  * - instantiation within this class
- * - creation of CommandModel objects for each found command
+ * - creation of `CommandModel` objects for each command/argment group found
  * - validate command arguments (number of arguments and data type)
  * - parse command arguments
+ *
+ * All available commands are defined in the `commandMap` and every alias maps to a single root command.
+ * That root command is then used to find the correct validator and parser. The root command is also
+ * what the `AircraftInstanceModel` is expecting when it receives commands from the `InputController`.
  *
  * @class CommandParser
  */
@@ -59,8 +66,8 @@ export default class CommandParser {
          *
          * Could be either Transmit or a System command
          *
-         * This is consumed by the `InputController` when determining what to do with
-         * the parsed command(s)
+         * This is consumed by the `InputController` after parsing here and is used to
+         * determine what to do with the parsed command(s)
          *
          * @type {string}
          * @default ''
@@ -70,7 +77,7 @@ export default class CommandParser {
         /**
          * Aircraft callsign
          *
-         * this is optional and not required for system commands
+         * this is optional and not included with system commands
          *
          * @type {string}
          * @default ''
@@ -104,7 +111,7 @@ export default class CommandParser {
      */
     get args() {
         if (this.command !== SYSTEM_COMMANDS.transmit) {
-            return this.commandList[0].args[0];
+            return this.commandList[0].args;
         }
 
         return _map(this.commandList, (command) => command.nameAndArgs);
@@ -137,7 +144,7 @@ export default class CommandParser {
     }
 
     /**
-     * Build a `CommandModel` for a found System command then add it to the `commandList`
+     * Build a `CommandModel` for a System command then add that model to the `commandList`
      *
      * @for CommandParser
      * @method _buildSystemCommandModel
@@ -152,10 +159,12 @@ export default class CommandParser {
 
         this.command = commandName;
         this.commandList.push(commandModel);
+
+        this._validateAndParseCommandArguments();
     }
 
     /**
-     * Build `CommandModel` objects for found transmit commands then add them to the `commandList`
+     * Build `CommandModel` objects for each transmit commands then add them to the `commandList`
      *
      * @private
      */
@@ -204,6 +213,7 @@ export default class CommandParser {
                 return commandModel;
             }
 
+            // TODO: what happens if CommandModel is undefined here?
             commandModel.args.push(commandOrArg);
         });
 

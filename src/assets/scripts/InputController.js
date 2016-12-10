@@ -707,25 +707,40 @@ export default class InputController {
 
     /**
      * @for InputController
+     * @method _parseUserCommand
+     * @return result {CommandParser}
+     */
+    _parseUserCommand() {
+        const userCommand = prop.input.command.trim().toLowerCase();
+        let result;
+
+        // Using try/catch here very much on purpose. the `CommandParser` will throw when it encounters any kind
+        // of error; invalid length, validation, parse, etc. Here we catch those errors, log them to the screen
+        // and then throw them all at once
+        try {
+            result = new CommandParser(userCommand);
+        } catch (error) {
+            // if (_get(error, 'name', '') === 'SyntaxError') {
+            window.uiController.ui_log('Command not understood');
+
+            //     return;
+            // }
+
+            throw error;
+        }
+
+        return result;
+    }
+
+    /**
+     * @for InputController
      * @method input_run
      */
     input_run() {
-        const commandParser = new CommandParser(prop.input.command.trim().toLowerCase());
-        let result; // = zlsa.atc.Parser.parse(prop.input.command.trim().toLowerCase());
-        // try {
-        //     result = zlsa.atc.Parser.parse(prop.input.command.trim().toLowerCase());
-        // } catch (error) {
-        //     if (_get(error, 'name', '') === 'SyntaxError') {
-        //         window.uiController.ui_log('Command not understood');
-        //
-        //         return;
-        //     }
-        //
-        //     throw error;
-        // }
+        const commandParser = this._parseUserCommand();
 
         if (commandParser.command !== 'transmit') {
-            this.processCommand(commandParser, result);
+            this.processCommand(commandParser);
 
             return true;
         }
@@ -801,7 +816,7 @@ export default class InputController {
 
             case PARSED_COMMAND_NAME.TIMEWARP:
                 if (commandParser.args) {
-                    window.gameController.game.speedup = parseInt(commandParser.args, 10);
+                    window.gameController.game.speedup = commandParser.args;
                 } else {
                     window.gameController.game_timewarp_toggle();
                 }
@@ -827,8 +842,9 @@ export default class InputController {
                 return true;
 
             case PARSED_COMMAND_NAME.RATE:
-                if (commandParser.args && commandParser.args > 0) {
-                    window.gameController.game.frequency = parseInt(commandParser.args, 10);
+                // TODO: is this if even needed?
+                if (commandParser.args) {
+                    window.gameController.game.frequency = commandParser.args;
                 }
 
                 return true;

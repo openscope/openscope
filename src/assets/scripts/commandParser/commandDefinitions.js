@@ -1,4 +1,7 @@
-import { convertToThousands } from '../utilities/unitConverters';
+import {
+    convertToThousands,
+    convertStringToNumber
+} from '../utilities/unitConverters';
 import {
     zeroArgumentsValidator,
     singleArgumentValidator,
@@ -33,6 +36,27 @@ const noop = (args) => args;
  */
 export const COMMAND_DEFINITION = {
     // these commands accept zero arguments
+    auto: {
+        validate: zeroArgumentsValidator,
+        parse: noop
+    },
+    clear: {
+        validate: zeroArgumentsValidator,
+        parse: noop
+    },
+    pause: {
+        validate: zeroArgumentsValidator,
+        parse: noop
+    },
+    tutorial: {
+        validate: zeroArgumentsValidator,
+        parse: noop
+    },
+    version: {
+        validate: zeroArgumentsValidator,
+        parse: noop
+    },
+
     abort: {
         validate: zeroArgumentsValidator,
         parse: noop
@@ -75,6 +99,29 @@ export const COMMAND_DEFINITION = {
     },
 
     // these commands accept a single argument and may require further parsing, eg: (string -> number)
+    '`': {
+        validate: singleArgumentValidator,
+        // calling method is expecting an array with values that will get spread later, thus we purposly
+        // return an array here
+        parse: (args) => [convertStringToNumber(args)]
+    },
+    airport: {
+        validate: singleArgumentValidator,
+        parse: noop
+    },
+    rate: {
+        validate: singleArgumentValidator,
+        // calling method is expecting an array with values that will get spread later, thus we purposly
+        // return an array here
+        parse: (args) => [convertStringToNumber(args)]
+    },
+    timewarp: {
+        validate: singleArgumentValidator,
+        // calling method is expecting an array with values that will get spread later, thus we purposly
+        // return an array here
+        parse: (args) => [convertStringToNumber(args)]
+    },
+
     direct: {
         validate: singleArgumentValidator,
         parse: noop
@@ -101,7 +148,8 @@ export const COMMAND_DEFINITION = {
     },
     speed: {
         validate: singleArgumentValidator,
-        // calling method is expecting an array, thus we purposly return an array here
+        // calling method is expecting an array with values that will get spread later, thus we purposly
+        // return an array here
         parse: (arg) => [convertToThousands(arg)]
     },
     star: {
