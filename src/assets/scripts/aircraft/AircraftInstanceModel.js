@@ -918,9 +918,7 @@ export default class Aircraft {
      * @return {array}
      */
     runClearedAsFiled() {
-        // TODO: the `runSID` method does not always return a boolean, in some cases it returns readbacks
-        // which look to never be used?
-        if (!this.runSID()) {
+        if (!this.runSID([this.destination])) {
             return [true, 'unable to clear as filed'];
         }
 
@@ -1242,41 +1240,42 @@ export default class Aircraft {
      * @for AircraftInstanceModel
      * @method runSID
      */
-    runSID() {
+    runSID(data) {
         const airport = window.airportController.airport_get();
-        const { sidCollection } = airport;
+        const sid_id = data[0].toUpperCase();
 
-        if (!sidCollection.hasRoute(this.destination)) {
-            return ['fail', 'SID name not understood'];
+        if (!airport.sidCollection.hasRoute(sid_id)) {
+            return;
         }
 
-        const standardRouteModel = sidCollection.findRouteByIcao(this.destination);
-        const exitFixName = airport.getSIDExitPoint(this.destination);
-        const route = `${airport.icao.toUpperCase()}.${this.destination}.${exitFixName}`;
+        const { name } = airport.sidCollection.findRouteByIcao(sid_id);
+        const exit = airport.getSIDExitPoint(sid_id);
+        const route = `${airport.icao}.${sid_id}.${exit}`;
 
         if (this.category !== FLIGHT_CATEGORY.DEPARTURE) {
             return ['fail', 'unable to fly SID, we are an inbound'];
         }
 
-        if (!this.rwy_dep) {
-            this.setDepartureRunway(airport.runway);
+        if (data[0].length === 0 || !airport.sidCollection.hasRoute(sid_id)) {
+            return ['fail', 'SID name not understood'];
         }
 
-        if (!standardRouteModel.hasFixName(this.rwy_dep)) {
-            return ['fail', `unable, the ${standardRouteModel.name} departure not valid from Runway ${this.rwy_dep}`];
+        if (!this.rwy_dep) {
+            this.setDepartureRunway(airportController.airport_get().runway);
         }
+
+        // if (!_has(airport.sids[sid_id].rwy, this.rwy_dep)) {
+        //     return ['fail', `unable, the ${name} departure not valid from Runway ${this.rwy_dep}`];
+        // }
 
         this.fms.followSID(route);
 
-        // TODO: casing may be an issue here.
         const readback = {
-            log: `cleared to destination via the ${this.destination} departure, then as filed`,
-            say: `cleared to destination via the ${standardRouteModel.name} departure, then as filed`
+            log: `cleared to destination via the ${sid_id} departure, then as filed`,
+            say: `cleared to destination via the ${name} departure, then as filed`
         };
 
-        // TODO: this return format is never used by the calling method. the calling method expects a boolean
         return ['ok', readback];
-        // return true;
     }
 
     /**
