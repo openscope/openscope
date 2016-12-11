@@ -1,4 +1,5 @@
 import _isEqual from 'lodash/isEqual';
+import _isNumber from 'lodash/isNumber';
 import _map from 'lodash/map';
 import BaseModel from '../base/BaseModel';
 import PositionModel from '../base/PositionModel';
@@ -30,7 +31,7 @@ export default class AirspaceModel extends BaseModel {
     constructor(airspace, airportPosition, magneticNorth) {
         super();
 
-        if (!airspace || !airportPosition || !magneticNorth) {
+        if (!airspace || !airportPosition || !_isNumber(magneticNorth)) {
             // eslint-disable-next-line max-len
             throw new TypeError('Invalid parameter, expected airspace, airportPosition and magneticNorth to be defined');
         }
