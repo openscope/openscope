@@ -27,6 +27,11 @@ ava('.altitudeParser() returns an array of length two when passed a single argum
     t.false(result[1]);
 });
 
+ava('.headingParser() throws if it does not receive 1 or 2 arguments', t => {
+    t.throws(() => headingParser([]));
+    t.throws(() => headingParser(['l', '042', 'threeve']));
+});
+
 ava('.headingParser() returns an array of length 3 when passed new heading as the second argument', t => {
     const result = headingParser(['042']);
 
@@ -37,12 +42,12 @@ ava('.headingParser() returns an array of length 3 when passed new heading as th
 });
 
 ava('.headingParser() returns an array of length 3 when passed direction and heading as arguments', t => {
-    const result = headingParser(['left', '042']);
+    const result = headingParser(['left', '42']);
 
     t.true(result.length === 3);
     t.true(result[0] === 'left');
     t.true(result[1] === 42);
-    t.false(result[2]);
+    t.true(result[2]);
 });
 
 ava('.headingParser() translates l to left as the first value', t => {
@@ -57,18 +62,21 @@ ava('.headingParser() translates r to right as the first value', t => {
     t.true(result[0] === 'right');
 });
 
-ava('.headingParser() returns an array of length 3 when passed direction, heading and incremental as arguments', t => {
-    const result = headingParser(['left', '042', true]);
+// specfic use cases for headingParser
+ava('.headingParser() parses two digit heading as an incremental heading', t => {
+    const result = headingParser(['r', '42']);
 
-    t.true(result.length === 3);
-    t.true(result[0] === 'left');
+    t.true(result[0] === 'right');
     t.true(result[1] === 42);
     t.true(result[2]);
 });
 
-ava('.headingParser() throws if it receives less than 1 or more than 3 arguments', t => {
-    t.throws(() => headingParser([]));
-    t.throws(() => headingParser(['l', '042', true, '']));
+ava('.headingParser() parses three digit heading as a generic heading', t => {
+    const result = headingParser(['r', '042']);
+
+    t.true(result[0] === 'right');
+    t.true(result[1] === 42);
+    t.false(result[2]);
 });
 
 ava('.holdParser() throws if it does not receive 1 or 3 arguments', t => {

@@ -150,7 +150,7 @@ export const COMMAND_DEFINITION = {
         validate: singleArgumentValidator,
         // calling method is expecting an array with values that will get spread later, thus we purposly
         // return an array here
-        parse: (arg) => [convertToThousands(arg)]
+        parse: (arg) => [convertStringToNumber(arg)]
     },
     star: {
         validate: singleArgumentValidator,

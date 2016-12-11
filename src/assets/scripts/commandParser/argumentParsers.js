@@ -13,10 +13,32 @@ import {
 export const altitudeParser = (args) => {
     const altitude = convertToThousands(args[0]);
     // the validator will have already caught an invalid value here. if one exists, it is assumed to be valid and
-    // thus we return true. other wise its false
+    // thus we return true. otherwise its false
     const shouldExpedite = typeof args[1] !== 'undefined';
 
     return [altitude, shouldExpedite];
+};
+
+/**
+ * Accepts a direction string:
+ * - `left / l / right / r`
+ *
+ * and returns `left / right`
+ *
+ * @function directionNormalizer
+ * @param direction {string}
+ * @return normalizedDirection {string}
+ */
+const directionNormalizer = (direction) => {
+    let normalizedDirection = direction;
+
+    if (direction === 'l') {
+        normalizedDirection = 'left';
+    } else if (direction === 'r') {
+        normalizedDirection = 'right';
+    }
+
+    return normalizedDirection;
 };
 
 /**
@@ -29,36 +51,22 @@ export const altitudeParser = (args) => {
  * @return {array<string, number, boolean>}
  */
 export const headingParser = (args) => {
-    const length = args.length;
     let direction;
     let heading;
-    let incremental;
+    let isIncremental = false;
 
-    switch (length) {
+    switch (args.length) {
         case 1:
             direction = '';
             heading = convertStringToNumber(args[0]);
-            incremental = false;
 
-            return [direction, heading, incremental];
+            return [direction, heading, isIncremental];
         case 2:
-            direction = args[0];
-            if (args[0] === 'l') {
-                direction = 'left';
-            } else if (args[0] === 'r') {
-                direction = 'right';
-            }
-
+            isIncremental = args[1].length === 2;
+            direction = directionNormalizer(args[0]);
             heading = convertStringToNumber(args[1]);
-            incremental = false;
 
-            return [direction, heading, incremental];
-        case 3:
-            direction = args[0];
-            heading = convertStringToNumber(args[1]);
-            incremental = args[2];
-
-            return [direction, heading, incremental];
+            return [direction, heading, isIncremental];
         default:
             throw new Error('An error ocurred parsing the Heading arguments');
     }

@@ -1242,7 +1242,7 @@ export default class Aircraft {
         const airport = window.airportController.airport_get();
         const { sidCollection } = airport;
 
-        if (!airport.sidCollection.hasRoute(this.destination)) {
+        if (!sidCollection.hasRoute(this.destination)) {
             return ['fail', 'SID name not understood'];
         }
 
@@ -1271,8 +1271,8 @@ export default class Aircraft {
         };
 
         // TODO: this return format is never used by the calling method. the calling method expects a boolean
-        // return ['ok', readback];
-        return true;
+        return ['ok', readback];
+        // return true;
     }
 
     /**

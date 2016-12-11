@@ -121,7 +121,7 @@ export const isValidDirectionString = (value) => {
         value === 'l' ||
         value === 'right' ||
         value === 'r';
-}
+};
 
 /**
  * Checks that args is the required length and the data is of the correct type for the number of arguments
@@ -131,8 +131,8 @@ export const isValidDirectionString = (value) => {
  * - ['180']
  * - ['left', '180']
  * - ['l', '180']
- * - ['right', '180', true]
- * - ['r', '180', true]
+ * - ['left', '80']
+ * - ['l', '80']
  * ```
  *
  * @function headingValidator
@@ -141,7 +141,7 @@ export const isValidDirectionString = (value) => {
  */
 export const headingValidator = (args = []) => {
     const length = args.length;
-    const hasLengthError = oneToThreeArgumentsValidator(args);
+    const hasLengthError = oneOrTwoArgumentValidator(args);
     let numberFromString;
 
     if (hasLengthError) {
@@ -166,22 +166,6 @@ export const headingValidator = (args = []) => {
 
             if (isNaN(numberFromString)) {
                 return ERROR_MESSAGE.HEADING_MUST_BE_NUMBER;
-            }
-
-            break;
-        case 3:
-            numberFromString = convertStringToNumber(args[1]);
-
-            if (!isValidDirectionString(args[0])) {
-                return ERROR_MESSAGE.INVALID_DIRECTION_STRING;
-            }
-
-            if (isNaN(numberFromString)) {
-                return ERROR_MESSAGE.HEADING_MUST_BE_NUMBER;
-            }
-
-            if (!_isBoolean(args[2])) {
-                return ERROR_MESSAGE.HEADING_ACCEPTS_BOOLEAN_AS_THIRD_ARG;
             }
 
             break;
