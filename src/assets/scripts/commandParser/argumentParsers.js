@@ -79,16 +79,14 @@ export const headingParser = (args) => {
  * @return {array<>}
  */
 export const holdParser = (args) => {
-    const length = args.length;
-    let turnDirection;
-    let legLength;
+    // setting these two as null on purpose. existing api is expeting undefined values to be exactly null
+    let turnDirection = null;
+    let legLength = null;
     let fixName;
 
-    switch (length) {
+    switch (args.length) {
         case 1:
             fixName = args[0];
-            turnDirection = '';
-            legLength = '';
 
             return [turnDirection, legLength, fixName];
         case 3:

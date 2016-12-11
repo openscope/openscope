@@ -1022,18 +1022,21 @@ export default class Aircraft {
         let inboundHdg;
         // let inboundDir;
 
+        // TODO: this might be better handled from within the parser
         if (dirTurns == null) {
             // standard for holding patterns is right-turns
             dirTurns = 'right';
         }
 
+        // TODO: this might be better handled from within the parser
         if (legLength == null) {
             legLength = '1min';
         }
 
+        // TODO: simplify this nested if.
         if (holdFix !== null) {
             holdFix = holdFix.toUpperCase();
-            holdFixLocation = window.airportController.airport_get().getFixPosition(holdFix);
+            holdFixLocation = airport.getFixPosition(holdFix);
 
             if (!holdFixLocation) {
                 return ['fail', `unable to find fix ${holdFix}`];
@@ -1048,6 +1051,7 @@ export default class Aircraft {
         if (holdFix) {
             // holding over a specific fix (currently only able to do so on inbound course)
             inboundHdg = vradial(vsub(this.position, holdFixLocation));
+
             if (holdFix !== this.fms.currentWaypoint.fix) {
                 // not yet headed to the hold fix
                 this.fms.insertLegHere({
