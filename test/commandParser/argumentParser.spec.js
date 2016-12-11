@@ -88,8 +88,8 @@ ava('.holdParser() returns an array of length 3 when passed a fixname as the onl
     const result = holdParser(['dumba']);
 
     t.true(result.length === 3);
-    t.true(result[0] === '');
-    t.true(result[1] === '');
+    t.true(result[0] === null);
+    t.true(result[1] === null);
     t.true(result[2] === 'dumba');
 });
 
