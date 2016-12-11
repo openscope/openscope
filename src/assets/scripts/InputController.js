@@ -468,8 +468,8 @@ export default class InputController {
 
             case KEY_CODES.LEFT_ARROW:
                 // shortKeys in use
-                if (window.gameController.game.option.get('controlMethod') === 'arrows') {
-                    this.$commandInput.val(`${currentCommandInputValue} \u2BA2`);
+                if (this._isArrowControlMethod()) {
+                    this.$commandInput.val(`${currentCommandInputValue} \u2BA2 `);
                     e.preventDefault();
                     this.onCommandInputChangeHandler();
                 }
@@ -477,8 +477,8 @@ export default class InputController {
                 break;
 
             case KEY_CODES.UP_ARROW:
-                if (this._isArrowControlMethod()) { // shortKeys in use
-                    this.$commandInput.val(`${currentCommandInputValue} \u2B61`);
+                if (this._isArrowControlMethod()) {
+                    this.$commandInput.val(`${currentCommandInputValue} \u2B61 `);
                     e.preventDefault();
                     this.onCommandInputChangeHandler();
                 } else {
@@ -491,7 +491,7 @@ export default class InputController {
             case KEY_CODES.RIGHT_ARROW:
                 // shortKeys in use
                 if (this._isArrowControlMethod()) {
-                    this.$commandInput.val(`${currentCommandInputValue} \u2BA3`);
+                    this.$commandInput.val(`${currentCommandInputValue} \u2BA3 `);
                     e.preventDefault();
                     this.onCommandInputChangeHandler();
                 }
@@ -499,8 +499,8 @@ export default class InputController {
                 break;
 
             case KEY_CODES.DOWN_ARROW:
-                if (this._isArrowControlMethod()) { // shortKeys in use
-                    this.$commandInput.val(`${currentCommandInputValue} \u2B63`);
+                if (this._isArrowControlMethod()) {
+                    this.$commandInput.val(`${currentCommandInputValue} \u2B63 `);
                     e.preventDefault();
                     this.onCommandInputChangeHandler();
                 } else {

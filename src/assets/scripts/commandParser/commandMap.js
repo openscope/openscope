@@ -104,7 +104,10 @@ export const COMMAND_MAP = {
     pd: 'direct',
     dct: 'direct',
     abort: 'abort',
-    hold: 'hold'
+    hold: 'hold',
+    delete: 'delete',
+    del: 'delete',
+    kill: 'delete'
 };
 
 /**
