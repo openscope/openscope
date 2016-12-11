@@ -57,7 +57,8 @@ export const headingParser = (args) => {
 
     switch (args.length) {
         case 1:
-            direction = '';
+            // existing api is expeting undefined values to be exactly null
+            direction = null;
             heading = convertStringToNumber(args[0]);
 
             return [direction, heading, isIncremental];
@@ -79,7 +80,7 @@ export const headingParser = (args) => {
  * @return {array<>}
  */
 export const holdParser = (args) => {
-    // setting these two as null on purpose. existing api is expeting undefined values to be exactly null
+    // existing api is expeting undefined values to be exactly null
     let turnDirection = null;
     let legLength = null;
     let fixName;
