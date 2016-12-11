@@ -30,12 +30,14 @@ import {
 const noop = (args) => args;
 
 /**
- * @property COMMAND_DEFINITION
+ * System and Aircraft command definitions that accept zero arguments
+ *
+ * @property ZERO_ARG_COMMANDS
  * @type {Object}
  * @final
  */
-export const COMMAND_DEFINITION = {
-    // these commands accept zero arguments
+const ZERO_ARG_COMMANDS = {
+    // system commands
     auto: {
         validate: zeroArgumentsValidator,
         parse: noop
@@ -57,6 +59,7 @@ export const COMMAND_DEFINITION = {
         parse: noop
     },
 
+    // Aircraft commands
     abort: {
         validate: zeroArgumentsValidator,
         parse: noop
@@ -85,10 +88,6 @@ export const COMMAND_DEFINITION = {
         validate: zeroArgumentsValidator,
         parse: noop
     },
-    land: {
-        validate: zeroArgumentsValidator,
-        parse: noop
-    },
     sayRoute: {
         validate: zeroArgumentsValidator,
         parse: noop
@@ -96,9 +95,19 @@ export const COMMAND_DEFINITION = {
     takeoff: {
         validate: zeroArgumentsValidator,
         parse: noop
-    },
+    }
+};
 
-    // these commands accept a single argument and may require further parsing, eg: (string -> number)
+/**
+ * System and Aircraft commands that accept a single argument
+ *
+ * these commands accept a single argument and may require further parsing, eg: (string -> number)
+ *
+ * @property SINGLE_ARG_COMMANDS
+ * @type {Object}
+ * @final
+ */
+const SINGLE_ARG_COMMANDS = {
     '`': {
         validate: singleArgumentValidator,
         // calling method is expecting an array with values that will get spread later, thus we purposly
@@ -130,6 +139,11 @@ export const COMMAND_DEFINITION = {
         validate: singleArgumentValidator,
         parse: noop
     },
+    land: {
+        validate: singleArgumentValidator,
+        // TODO: split this out to custom parser once the null value is defined
+        parse: (args) => [null, args[0]]
+    },
     moveDataBlock: {
         validate: singleArgumentValidator,
         parse: noop
@@ -155,8 +169,20 @@ export const COMMAND_DEFINITION = {
     star: {
         validate: singleArgumentValidator,
         parse: noop
-    },
+    }
+};
 
+/**
+ * System and Aircraft commands that accept arguments specific to the command
+ *
+ * These definitions will likely reference functions for validate and parse that are specific only
+ * to one command
+ *
+ * @property CUSTOM_ARG_COMMANDS
+ * @type {Object}
+ * @final
+ */
+const CUSTOM_ARG_COMMANDS = {
     taxi: {
         validate: zeroOrOneArgumentValidator,
         parse: noop
@@ -176,4 +202,17 @@ export const COMMAND_DEFINITION = {
         validate: holdValidator,
         parse: holdParser
     }
+};
+
+/**
+ * Single exported constant that combines all the definitions above
+ *
+ * @property COMMAND_DEFINITION
+ * @type {Object}
+ * @final
+ */
+export const COMMAND_DEFINITION = {
+    ...ZERO_ARG_COMMANDS,
+    ...SINGLE_ARG_COMMANDS,
+    ...CUSTOM_ARG_COMMANDS
 };
