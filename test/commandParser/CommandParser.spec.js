@@ -90,24 +90,6 @@ ava('sets #commandList with CommandModel objects when it receives transmit comma
     });
 });
 
-ava('when passed t l 042 as a command it adds l as an argument and not a new command', t => {
-    const commandStringMock = buildCommandString('t', 'l', '042');
-    const model = new CommandParser(commandStringMock);
-
-    t.true(model.args[0][0] === 'heading');
-    t.true(model.args[0][1] === 'left');
-});
-
-ava('when passed l as command it adds land as a new command', t => {
-    const commandStringMock = buildCommandString('t', 'l', '042', 'l', '28l');
-    const model = new CommandParser(commandStringMock);
-
-    t.true(model.args[0][0] === 'heading');
-    t.true(model.args[0][1] === 'left');
-    t.true(model.args[1][0] === 'land');
-    t.true(model.args[1][2] === '28l');
-});
-
 ava('._extractCommandsAndArgs() calls _buildCommandList() when provided transmit commands', t => {
     const commandStringMock = buildCommandString(CAF_MOCK, CVS_MOCK, TO_MOCK);
     const expectedArgs = buildCommandList(CAF_MOCK, CVS_MOCK, TO_MOCK);
@@ -143,4 +125,57 @@ ava('._isSystemCommand() returns true if callsignOrTopLevelCommandName exists wi
     const model = new CommandParser();
 
     t.true(model._isSystemCommand(systemCommandMock));
+});
+
+// specific use case tests
+ava('when passed t l 042 as a command it adds l as an argument and not a new command', t => {
+    const commandStringMock = buildCommandString('t', 'l', '042');
+    const model = new CommandParser(commandStringMock);
+
+    t.true(model.args[0][0] === 'heading');
+    t.true(model.args[0][1] === 'left');
+});
+
+ava('when passed l as command it adds land as a new command', t => {
+    const commandStringMock = buildCommandString('t', 'l', '042', 'l', '28l');
+    const model = new CommandParser(commandStringMock);
+
+    t.true(model.args[0][0] === 'heading');
+    t.true(model.args[0][1] === 'left');
+    t.true(model.args[1][0] === 'land');
+    t.true(model.args[1][2] === '28l');
+});
+
+ava('when passed hold LAM it creates the correct command with the correct arguments', t => {
+    const commandStringMock = buildCommandString('hold', 'LAM');
+    const model = new CommandParser(commandStringMock);
+
+    t.true(model.args[0][0] === 'hold');
+    t.true(model.args[0][1] === null);
+    t.true(model.args[0][2] === null);
+    t.true(model.args[0][3] === 'lam');
+});
+
+ava('when passed dct WHAMY it creates the correct command with the correct arguments', t => {
+    const commandStringMock = buildCommandString('dct', 'WHAMY');
+    const model = new CommandParser(commandStringMock);
+
+    t.true(model.args[0][0] === 'direct');
+    t.true(model.args[0][1] === 'whamy');
+});
+
+ava('when passed dct TOU it creates the correct command with the correct arguments', t => {
+    const commandStringMock = buildCommandString('dct', 'TOU');
+    const model = new CommandParser(commandStringMock);
+
+    t.true(model.args[0][0] === 'direct');
+    t.true(model.args[0][1] === 'tou');
+});
+
+ava('when passed dct TOR it creates the correct command with the correct arguments', t => {
+    const commandStringMock = buildCommandString('dct', 'TOR');
+    const model = new CommandParser(commandStringMock);
+
+    t.true(model.args[0][0] === 'direct');
+    t.true(model.args[0][1] === 'tor');
 });
