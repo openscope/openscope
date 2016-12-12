@@ -18,8 +18,7 @@ const D_COMMAND_MOCK = 'd 030';
 const STAR_MOCK = 'star quiet7';
 const ROUTE_MOCK = 'route KSEA.MTN7.ELN..HAMUR.J12.DNJ';
 const COMPLEX_HOLD_MOCK = 'hold dumba right 2min';
-const UNICODE_HEADING_MOCK = '\u2BA2 180';
-// _Syntax -_ `AAL123 fh[hdg]` or `AAL123 (rightarrow)[hdg]` or `AAL123 t r [hdg]`
+const UNICODE_HEADING_MOCK = '\u2BA2 180'
 
 const buildCommandString = (...args) => `${CALLSIGN_MOCK} ${args.join(' ')}`;
 
@@ -89,6 +88,24 @@ ava('sets #commandList with CommandModel objects when it receives transmit comma
     _map(model.commandList, (command) => {
         t.true(command instanceof CommandModel);
     });
+});
+
+ava('when passed t l 042 as a command it adds l as an argument and not a new command', t => {
+    const commandStringMock = buildCommandString('t', 'l', '042');
+    const model = new CommandParser(commandStringMock);
+
+    t.true(model.args[0][0] === 'heading');
+    t.true(model.args[0][1] === 'left');
+});
+
+ava('when passed l as command it adds land as a new command', t => {
+    const commandStringMock = buildCommandString('t', 'l', '042', 'l', '28l');
+    const model = new CommandParser(commandStringMock);
+
+    t.true(model.args[0][0] === 'heading');
+    t.true(model.args[0][1] === 'left');
+    t.true(model.args[1][0] === 'land');
+    t.true(model.args[1][2] === '28l');
 });
 
 ava('._extractCommandsAndArgs() calls _buildCommandList() when provided transmit commands', t => {

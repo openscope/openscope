@@ -49,6 +49,9 @@ const UNICODE_COMMANDS = {
  * each root command. Some commands have very unique demands for how arguments are formatted,
  * those functions let us do that on a case by case basis.
  *
+ * Keys are lowercased here so they can be accessed programatically using input string segments
+ * that are converted to lowercase for ease of comparison.
+ *
  * @propery COMMAND_MAP
  * @type {Object}
  * @final

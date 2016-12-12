@@ -207,7 +207,7 @@ export default class CommandParser {
                 commandModel = new CommandModel(COMMAND_MAP[commandString]);
 
                 return commandModel;
-            } else if (_has(COMMAND_MAP, commandOrArg)) {
+            } else if (_has(COMMAND_MAP, commandOrArg) && !this._isAliasCommandAnArg(commandModel, commandOrArg)) {
                 commandModel = new CommandModel(COMMAND_MAP[commandOrArg]);
 
                 return commandModel;
@@ -218,6 +218,32 @@ export default class CommandParser {
         });
 
         return _compact(commandList);
+    }
+
+    /**
+     * This method is used for addressing a very specific situation
+     *
+     * When the current command is `heading` and one of the arguments is `l`, the parser interprets
+     * the `l` as another command. `l` is an alias for the `land` command.
+     *
+     * This method expects that a commandString will look like:
+     * `AA321 t l 042`
+     *
+     * We look for the `heading` command and no existing arguments, as the `l` would become the
+     * first argument in this situation.
+     *
+     * @for CommandParser
+     * @method _isAliasCommandAnArg
+     * @param commandModel {CommandModel}
+     * @param commandOrArg {string}
+     * @return {boolean}
+     */
+    _isAliasCommandAnArg(commandModel, commandOrArg) {
+        if (!commandModel) {
+            return false;
+        }
+
+        return commandModel.name === 'heading' && commandModel.args.length === 0 && commandOrArg === 'l';
     }
 
     /**
