@@ -22,17 +22,17 @@ class FixCollection extends BaseCollection {
      * Lifecycle method. Should be run only once on instantiation.
      *
      * @for FixCollection
-     * @method init
+     * @method addItems
      * @param fixList {object}
      * @param airportPosition {PositionModel}
      */
-    init(fixList, airportPosition) {
+    addItems(fixList, airportPosition) {
         if (this.length !== 0) {
             // you made it here because an airport has changed.
             // in `AirportModel.parse()` this method is called with the fix data for the new airport. We don't want
             // or need to keep the fixes from a previous airport so if `_items` has a length, we need to reset that
             // property before we begin to add fixes for the new airport.
-            this.destroy();
+            this.removeItems();
         }
 
         this._buildFixModelsFromList(fixList, airportPosition);
@@ -42,9 +42,9 @@ class FixCollection extends BaseCollection {
      * Destroy the current instance
      *
      * @for FixCollection
-     * @method destroy
+     * @method removeItems
      */
-    destroy() {
+    removeItems() {
         this._resetFixModels();
 
         this._items = [];

@@ -11,8 +11,8 @@ import { FIX_LIST_MOCK } from '../fix/_mocks/fixMocks';
 const NAME_MOCK = '25R';
 const SEGMENT_WAYPOINTS_MOCK = ['RBELL', ['ROPPR', 'A70'], ['MDDOG', 'A90'], ['TARRK', 'A110']];
 
-ava.before(() => FixCollection.init(FIX_LIST_MOCK, airportPositionFixtureKSFO));
-ava.after(() => FixCollection.destroy());
+ava.before(() => FixCollection.addItems(FIX_LIST_MOCK, airportPositionFixtureKSFO));
+ava.after(() => FixCollection.removeItems());
 
 ava('throws with invalid parameters', t => {
     t.notThrows(() => new RouteSegmentModel(NAME_MOCK, SEGMENT_WAYPOINTS_MOCK));
