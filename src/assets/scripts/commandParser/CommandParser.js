@@ -211,11 +211,14 @@ export default class CommandParser {
                 commandModel = new CommandModel(COMMAND_MAP[commandOrArg]);
 
                 return commandModel;
+            } else if (typeof commandModel === 'undefined') {
+                // if we've made it here and commandModel is still undefined, a command was not found
+                return;
             }
 
-            // TODO: what happens if CommandModel is undefined here?
             commandModel.args.push(commandOrArg);
         });
+
 
         return _compact(commandList);
     }

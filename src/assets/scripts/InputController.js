@@ -722,8 +722,9 @@ export default class InputController {
      * @return result {CommandParser}
      */
     _parseUserCommand() {
-        const userCommand = prop.input.command.trim().toLowerCase();
         let result;
+        // this could use $commandInput.val() as an alternative
+        const userCommand = prop.input.command.trim().toLowerCase();
 
         // Using try/catch here very much on purpose. the `CommandParser` will throw when it encounters any kind
         // of error; invalid length, validation, parse, etc. Here we catch those errors, log them to the screen
@@ -731,11 +732,7 @@ export default class InputController {
         try {
             result = new CommandParser(userCommand);
         } catch (error) {
-            // if (_get(error, 'name', '') === 'SyntaxError') {
             window.uiController.ui_log('Command not understood');
-
-            //     return;
-            // }
 
             throw error;
         }

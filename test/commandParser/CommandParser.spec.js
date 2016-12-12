@@ -110,6 +110,16 @@ ava('._buildCommandList() finds correct command when it recieves a space before 
     t.true(result[0].args[0] === '180');
 });
 
+ava('._buildCommandList() does not throw when it trys to add args to an undefined commandModel and returns an empty array', t => {
+    const model = new CommandParser();
+
+    t.notThrows(() =>  model._buildCommandList(['threeve', '$texas']));
+
+    const result =  model._buildCommandList(['threeve', '$texas']);
+
+    t.true(result.length === 0);
+});
+
 ava('._validateAndParseCommandArguments() calls ._validateCommandArguments()', t => {
     const commandStringMock = buildCommandString(CAF_MOCK, CVS_MOCK, TO_MOCK);
     const model = new CommandParser(commandStringMock);
