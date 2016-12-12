@@ -511,9 +511,11 @@ export default class AircraftFlightManagementSystem {
      * Inserts the SID as the first Leg in the fms's flightplan
      */
     followSID(route) {
+        const airport = window.airportController.airport_get();
+
         for (let i = 0; i < this.legs.length; i++) {
             // sid assigned after taking off without SID
-            if (this.legs[i].route === window.airportController.airport_get().icao) {
+            if (this.legs[i].route === airport.icao) {
                 // remove the manual departure leg
                 this.legs.splice(i, 1);
             } else if (this.legs[i].type === FP_LEG_TYPE.SID) {
@@ -530,7 +532,7 @@ export default class AircraftFlightManagementSystem {
         });
 
         this.setAll({
-            altitude: Math.max(window.airportController.airport_get().initial_alt, this.my_aircraft.altitude)
+            altitude: Math.max(airport.initial_alt, this.my_aircraft.altitude)
         });
     }
 

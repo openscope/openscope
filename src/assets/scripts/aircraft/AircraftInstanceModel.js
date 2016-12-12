@@ -4,6 +4,7 @@ import _forEach from 'lodash/forEach';
 import _get from 'lodash/get';
 import _has from 'lodash/has';
 import _isNaN from 'lodash/isNaN';
+import _isNil from 'lodash/isNil';
 import _isString from 'lodash/isString';
 import _map from 'lodash/map';
 import AircraftFlightManagementSystem from './FlightManagementSystem/AircraftFlightManagementSystem';
@@ -1242,37 +1243,35 @@ export default class Aircraft {
      */
     runSID(data) {
         const airport = window.airportController.airport_get();
-        const sid_id = data[0].toUpperCase();
+        const { sidCollection } = airport;
+        const sidId = data[0];
+        const standardRouteModel = sidCollection.findRouteByIcao(sidId);
+        const exit = airport.getSIDExitPoint(sidId);
+        // TODO: perhaps this should use the `RouteModel`?
+        const route = `${airport.icao}.${sidId}.${exit}`;
 
-        if (!airport.sidCollection.hasRoute(sid_id)) {
-            return;
+        if (_isNil(standardRouteModel)) {
+            return ['fail', 'SID name not understood'];
         }
-
-        const { name } = airport.sidCollection.findRouteByIcao(sid_id);
-        const exit = airport.getSIDExitPoint(sid_id);
-        const route = `${airport.icao}.${sid_id}.${exit}`;
 
         if (this.category !== FLIGHT_CATEGORY.DEPARTURE) {
             return ['fail', 'unable to fly SID, we are an inbound'];
-        }
-
-        if (data[0].length === 0 || !airport.sidCollection.hasRoute(sid_id)) {
-            return ['fail', 'SID name not understood'];
         }
 
         if (!this.rwy_dep) {
             this.setDepartureRunway(airportController.airport_get().runway);
         }
 
-        // if (!_has(airport.sids[sid_id].rwy, this.rwy_dep)) {
-        //     return ['fail', `unable, the ${name} departure not valid from Runway ${this.rwy_dep}`];
-        // }
+        if (!standardRouteModel.hasFixName(this.rwy_dep)) {
+            return ['fail', `unable, the ${standardRouteModel.name} departure not valid from Runway ${this.rwy_dep}`];
+        }
 
-        this.fms.followSID(route);
+        // TODO: this is the wrong place for this `.toUpperCase()`
+        this.fms.followSID(route.toUpperCase());
 
         const readback = {
-            log: `cleared to destination via the ${sid_id} departure, then as filed`,
-            say: `cleared to destination via the ${name} departure, then as filed`
+            log: `cleared to destination via the ${sidId} departure, then as filed`,
+            say: `cleared to destination via the ${standardRouteModel.name} departure, then as filed`
         };
 
         return ['ok', readback];
@@ -1292,6 +1291,8 @@ export default class Aircraft {
             return ['fail', 'unable to fly STAR, we are a departure!'];
         }
 
+        // TODO: the data[0].length check might not be needed. this is covered via the CommandParser when
+        // this method runs as the result of a command.
         if (data[0].length === 0 || !airport.starCollection.hasRoute(routeModel.procedure)) {
             return ['fail', 'STAR name not understood'];
         }
@@ -1415,6 +1416,7 @@ export default class Aircraft {
      * @param data
      */
     runTaxi(data) {
+        // TODO: all this if logic should be simplified or abstracted
         if (this.category !== FLIGHT_CATEGORY.DEPARTURE) {
             return ['fail', 'inbound'];
         }
@@ -1461,6 +1463,7 @@ export default class Aircraft {
      * @param data
      */
     runTakeoff(data) {
+        // TODO: all this if logic should be simplified or abstracted
         if (this.category !== 'departure') {
             return ['fail', 'inbound'];
         }
@@ -1536,6 +1539,7 @@ export default class Aircraft {
      * @param data
      */
     runAbort(data) {
+        // TODO: these ifs on `mode` should be converted to a switch
         if (this.mode === FLIGHT_MODES.TAXI) {
             this.mode = FLIGHT_MODES.APRON;
             this.taxi_start = 0;
@@ -1550,6 +1554,7 @@ export default class Aircraft {
             return ['fail', 'unable to return to the terminal'];
         } else if (this.mode === FLIGHT_MODES.LANDING) {
             this.cancelLanding();
+
             const readback = {
                 log: `go around, fly present heading, maintain ${this.fms.altitudeForCurrentWaypoint()}`,
                 say: `go around, fly present heading, maintain ${radio_altitude(this.fms.altitudeForCurrentWaypoint())}`
@@ -1657,6 +1662,7 @@ export default class Aircraft {
         return false;
     }
 
+    // FIXME: is this method still in use?
     /**
      * @for AircraftInstanceModel
      * @method pushHistory
@@ -1694,17 +1700,17 @@ export default class Aircraft {
     }
 
     /**
-     * Aircraft is actively following an instrument approach
+     * Aircraft is actively following an instrument approach and is elegible for reduced separation
+     *
+     * If the game ever distinguishes between ILS/MLS/LAAS
+     * approaches and visual/localizer/VOR/etc. this should
+     * distinguish between them.  Until then, presume landing is via
+     * ILS with appropriate procedures in place.
+     *
      * @for AircraftInstanceModel
      * @method runTakeoff
      */
     isPrecisionGuided() {
-        // Whether this aircraft is elegible for reduced separation
-        //
-        // If the game ever distinguishes between ILS/MLS/LAAS
-        // approaches and visual/localizer/VOR/etc. this should
-        // distinguish between them.  Until then, presume landing is via
-        // ILS with appropriate procedures in place.
         return this.mode === FLIGHT_MODES.LANDING;
     }
 
