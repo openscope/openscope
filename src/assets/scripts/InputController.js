@@ -706,6 +706,17 @@ export default class InputController {
     }
 
     /**
+     * Encapsulation of repeated boolean logic
+     *
+     * @for InputController
+     * @method _isArrowControlMethod
+     * @return {boolean}
+     */
+    _isArrowControlMethod() {
+        return window.gameController.game.option.get(GAME_OPTION_NAMES.CONTROL_METHOD) === 'arrows';
+    }
+
+    /**
      * @for InputController
      * @method _parseUserCommand
      * @return result {CommandParser}
@@ -740,52 +751,19 @@ export default class InputController {
         const commandParser = this._parseUserCommand();
 
         if (commandParser.command !== 'transmit') {
-            this.processCommand(commandParser);
-
-            return true;
+            return this.processSystemCommand(commandParser);
         }
 
-        let matches = 0;
-        let match = -1;
-
-        for (let i = 0; i < prop.aircraft.list.length; i++) {
-            const aircraft = prop.aircraft.list[i];
-
-            if (aircraft.matchCallsign(commandParser.callsign)) {
-                matches += 1;
-                match = i;
-            }
-        }
-
-        if (matches > 1) {
-            window.uiController.ui_log('multiple aircraft match the callsign, say again');
-
-            return true;
-        }
-
-        if (match === -1) {
-            window.uiController.ui_log('no such aircraft, say again');
-
-            return true;
-        }
-
-        const aircraft = prop.aircraft.list[match];
-
-        console.log(commandParser);
-
-        return aircraft.runCommands(commandParser.args);
+        return this.processTransmitCommand(commandParser);
     }
 
     /**
      * @for InputController
+     * @method processSystemCommand
      * @param commandParser {CommandParser}
-     * @param result {object}                legacy values from PEG parser
      * @return {boolean}
      */
-    processCommand(commandParser, result) {
-        // console.log('legacy :::', result);
-        // console.log(commandParser);
-
+    processSystemCommand(commandParser) {
         switch (commandParser.command) {
             case PARSED_COMMAND_NAME.VERSION:
                 window.uiController.ui_log(`Air Traffic Control simulator version ${prop.version.join('.')}`);
@@ -854,13 +832,39 @@ export default class InputController {
     }
 
     /**
-     * Encapsulation of repeated boolean logic
-     *
      * @for InputController
-     * @method _isArrowControlMethod
+     * @method processTransmitCommand
+     * @param commandParser {CommandParser}
      * @return {boolean}
      */
-    _isArrowControlMethod() {
-        return window.gameController.game.option.get(GAME_OPTION_NAMES.CONTROL_METHOD) === 'arrows';
+    processTransmitCommand(commandParser) {
+        // TODO: abstract the aircraft callsign matching
+        let matches = 0;
+        let match = -1;
+
+        for (let i = 0; i < prop.aircraft.list.length; i++) {
+            const aircraft = prop.aircraft.list[i];
+
+            if (aircraft.matchCallsign(commandParser.callsign)) {
+                matches += 1;
+                match = i;
+            }
+        }
+
+        if (matches > 1) {
+            window.uiController.ui_log('multiple aircraft match the callsign, say again');
+
+            return true;
+        }
+
+        if (match === -1) {
+            window.uiController.ui_log('no such aircraft, say again');
+
+            return true;
+        }
+
+        const aircraft = prop.aircraft.list[match];
+
+        return aircraft.runCommands(commandParser.args);
     }
 }

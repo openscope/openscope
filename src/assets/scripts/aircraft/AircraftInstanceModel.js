@@ -3,6 +3,7 @@ import $ from 'jquery';
 import _forEach from 'lodash/forEach';
 import _get from 'lodash/get';
 import _has from 'lodash/has';
+import _isEqual from 'lodash/isEqual';
 import _isNaN from 'lodash/isNaN';
 import _isNil from 'lodash/isNil';
 import _isString from 'lodash/isString';
@@ -341,6 +342,8 @@ export default class Aircraft {
         // Update the assigned SID to use the portion for the new runway
         const leg = this.fms.currentLeg;
 
+        // TODO: this should return early
+        // TODO: use existing enumeration for `sid`
         if (leg.type === 'sid') {
             const a = _map(leg.waypoints, (v) => v.altitude);
             const cvs = !a.every((v) => v === window.airportController.airport_get().initial_alt);
@@ -494,17 +497,15 @@ export default class Aircraft {
      * @method matchCallsign
      * @param callsign {string}
      */
-    matchCallsign(callsign) {
-        if (callsign === '*') {
+    matchCallsign(callsignToMatch) {
+        if (callsignToMatch === '*') {
             return true;
         }
 
-        callsign = callsign.toLowerCase();
-        const this_callsign = this.getCallsign().toLowerCase();
-
-        return this_callsign.indexOf(callsign) === 0;
+        return _isEqual(callsignToMatch.toUpperCase(), this.getCallsign());
     }
 
+    // TODO: this could be a getter
     /**
      * @for AircraftInstanceModel
      * @method getCallsign
@@ -514,6 +515,7 @@ export default class Aircraft {
         return (this.getAirline().icao + this.callsign).toUpperCase();
     }
 
+    // TODO: this could be a getter
     /**
      * @for AircraftInstanceModel
      * @method getAirline
