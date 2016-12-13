@@ -19,7 +19,7 @@ ava.serial('FixCollection throws when an attempt to instantiate is made with inv
 });
 
 ava.serial('FixCollection sets its properties when it receives a valid fixList', t => {
-    FixCollection.init(FIX_LIST_MOCK, airportPositionFixtureKSFO);
+    FixCollection.addItems(FIX_LIST_MOCK, airportPositionFixtureKSFO);
 
     t.true(FixCollection._items.length > 0);
     t.true(FixCollection.length === FixCollection._items.length);
@@ -75,10 +75,10 @@ ava.serial('.findRealFixes() returns a list of fixes that dont have `_` prependi
     t.true(result.length === 104);
 });
 
-ava.serial('.init() resets _items when it is called with an existing collection', t => {
+ava.serial('.addItems() resets _items when it is called with an existing collection', t => {
     t.true(FixCollection.length === 105);
 
-    FixCollection.init(SMALL_FIX_LIST_MOCK);
+    FixCollection.addItems(SMALL_FIX_LIST_MOCK);
 
     t.false(FixCollection.length === 105);
     t.true(FixCollection.length === 2);
