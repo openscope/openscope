@@ -23,9 +23,9 @@
 - Replaces active airport icao in view with a zulu time clock [#135](https://github.com/n8rzz/atc/issues/135)
 - Consolidates test fixtures in fixtures directory [#167](https://github.com/n8rzz/atc/issues/167)
 * Addresses issue with video maps being drawn incorrectly. [#176](https://github.com/n8rzz/atc/issues/176)
-    - Updates `PositionModel` to run all calculations through the static `.calculatePosition()` method and vastly simplifies internal logic. 
+    - Updates `PositionModel` to run all calculations through the static `.calculatePosition()` method and vastly simplifies internal logic.
 - Refactors the the function names in `FixCollection` to better fit their function. `init()` to `addItems()` and `destroy()` to `removeItems()` [#186] (https://github.com/n8rzz/atc/issues/186)
-
+- Adds gulp-cli and adds [tools readme](tools/README.md) link to gulp issues with Windows [#194](https://github.com/n8rzz/atc/issues/194)
 
 
 
