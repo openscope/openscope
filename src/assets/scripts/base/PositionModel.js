@@ -1,3 +1,4 @@
+import _isNumber from 'lodash/isNumber';
 import _uniqueId from 'lodash/uniqueId';
 import {
     calculateDistanceToPointForX,
@@ -245,7 +246,7 @@ export default class PositionModel {
  * @static
  */
 PositionModel.calculatePosition = (coordinates, referencePostion, magneticNorth) => {
-    if (!coordinates || !referencePostion || !magneticNorth) {
+    if (!coordinates || !referencePostion || !_isNumber(magneticNorth)) {
         throw new TypeError('Invalid parameter. PositionModel.getPosition() requires coordinates, referencePostion ' +
             'and magneticNorth as parameters');
     }
