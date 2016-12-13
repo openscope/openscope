@@ -52,18 +52,18 @@ const MOUSE_EVENT_CODE = {
  * @final
  */
 const KEY_CODES = {
-    // `+`
+    // +
     ADD: 107,
-    // `-`
+    // -
     DASH: 189,
     DASH_FIREFOX: 173,
     DIVIDE: 111,
     DOWN_ARROW: 40,
     ENTER: 13,
-    // `=`
+    // =
     EQUALS: 187,
     EQUALS_FIREFOX: 61,
-    // `esc`
+    // esc
     ESCAPE: 27,
     LEFT_ARROW: 37,
     MULTIPLY: 106,
@@ -72,7 +72,9 @@ const KEY_CODES = {
     RIGHT_ARROW: 39,
     SUBTRACT: 109,
     TAB: 9,
-    UP_ARROW: 38
+    UP_ARROW: 38,
+    // `
+    BAT_TICK: 192
 };
 
 /**
@@ -437,7 +439,14 @@ export default class InputController {
     onCommandInputKeydownHandler(e) {
         const currentCommandInputValue = this.$commandInput.val();
 
+        // TODO: this swtich can be simplified, there is a lot of repetition here
         switch (e.which) {
+            case KEY_CODES.BAT_TICK:
+                this.$commandInput.val(`${currentCommandInputValue}\` `);
+                e.preventDefault();
+                this.onCommandInputChangeHandler();
+
+                break;
             case KEY_CODES.ENTER:
                 this.input_parse();
 
