@@ -6,7 +6,7 @@ import { speech_say } from '../speech';
 import { abs } from '../math/core';
 import { distance2d } from '../math/distance';
 import { vlen, vradial, vsub } from '../math/vector';
-import { kn_ms, radiansToDegrees, degreesToRadians } from '../utilities/unitConverters';
+import { km, kn_ms, radiansToDegrees, degreesToRadians } from '../utilities/unitConverters';
 import { calcTurnInitiationDistance } from '../math/flightMath';
 import { tau } from '../math/circle';
 import { GAME_EVENTS } from '../game/GameController';
@@ -29,6 +29,7 @@ export default class AircraftController {
         this.aircraft.list = [];
         this.aircraft.current = null;
         this.aircraft.auto = { enabled: false };
+        this.conflicts = [];
         prop.aircraft = aircraft;
     }
 
@@ -67,6 +68,22 @@ export default class AircraftController {
         }
 
         this.aircraft.callsigns.push(callsign);
+    }
+
+    /**
+     * Add a new `AircraftConflict` instance to the list of existing conflicts
+     *
+     * @for AircraftController
+     * @method addConflict
+     * @param  {Aircraft} aircraft      aircraft 1
+     * @param  {Aircraft} otherAircraft aircraft 2
+     */
+    addConflict(aircraft, otherAircraft) {
+        const conflict = new AircraftConflict(aircraft, otherAircraft);
+
+        if (!conflict.isDuplicate() && !conflict.shouldBeRemoved()) {
+            this.conflicts.push(conflict);
+        }
     }
 
     /**
@@ -170,14 +187,10 @@ export default class AircraftController {
                 // http://gamedev.stackexchange.com/questions/586/what-is-the-fastest-way-to-work-out-2d-bounding-box-intersection
                 const dx = abs(aircraft.position[0] - otherAircraft.position[0]);
                 const dy = abs(aircraft.position[1] - otherAircraft.position[1]);
+                const boundingBoxLength = km(8);
 
-                // TODO: move this value to a constant
-                // TODO: this if/else doesn't make sense
-                if ((dx > 14.816) || (dy > 14.816)) {
-                    continue;
-                } else {
-                    // TODO: this should go somewhere and not just be instantiated
-                    new AircraftConflict(aircraft, otherAircraft);
+                if (dx < boundingBoxLength && dy < boundingBoxLength) {
+                    this.addConflict(aircraft, otherAircraft);
                 }
             }
         }
@@ -369,6 +382,19 @@ export default class AircraftController {
      */
     removeCallsignFromList(callsign) {
         this.aircraft.callsigns = _without(this.aircraft.callsigns, callsign);
+    }
+
+    /**
+     * Remove an `AircraftConflict` instance from the list of existing conflicts
+     *
+     * @for AircraftController
+     * @method removeConflict
+     * @param  {AircraftConflict} conflict - the conflict instance to remove
+     */
+    removeConflict(conflict) {
+        conflict.aircraft[0].removeConflict(conflict.aircraft[1]);
+        conflict.aircraft[1].removeConflict(conflict.aircraft[0]);
+        this.conflicts = _without(this.conflicts, conflict);
     }
 
     // TODO: what is an `eid` and why would it beed to be updated?

@@ -8,6 +8,7 @@ import _isNaN from 'lodash/isNaN';
 import _isNil from 'lodash/isNil';
 import _isString from 'lodash/isString';
 import _map from 'lodash/map';
+import _without from 'lodash/without';
 import AircraftFlightManagementSystem from './FlightManagementSystem/AircraftFlightManagementSystem';
 import AircraftStripView from './AircraftStripView';
 import Waypoint from './FlightManagementSystem/Waypoint';
@@ -2685,6 +2686,7 @@ export default class Aircraft {
      * @param other
      */
     removeConflict(other) {
-        delete this.conflicts[other.getCallsign()];
+        const conflictBeingRemoved = this.conflicts[other.getCallsign()];
+        this.conflicts = _without(this.conflicts, conflictBeingRemoved);
     }
 }
