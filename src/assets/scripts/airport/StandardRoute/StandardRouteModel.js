@@ -363,8 +363,8 @@ export default class StandardRouteModel extends BaseModel {
         } else if (_has(standardRoute, 'exitPoints')) {
             this._entryCollection = this._buildSegmentCollection(standardRoute.rwy);
             this._exitCollection = this._buildSegmentCollection(standardRoute.exitPoints);
-        } else if (!_has(standardRoute, 'entryPoints') || !_has(standardRoute, 'exitPoints')) {
-            // edge case that should be handled under n8rzz#196
+        } else if (_has(standardRoute, 'rwy')) {
+            this._entryCollection = this._buildSegmentCollection(standardRoute.rwy);
         }
     }
 
