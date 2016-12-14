@@ -17,6 +17,10 @@ ava('throws if called with invalid parameters', t => {
     t.throws(() => new AirspaceModel(AIRSPACE_MOCK, airportPositionFixtureKSFO));
 });
 
+ava('does not throw when instantiated with a 0 magneticNorth', t => {
+    t.notThrows(() => new AirspaceModel(AIRSPACE_MOCK, airportPositionFixtureKSFO, 0));
+})
+
 ava('accepts an airspace object that is used to set the class properties', t => {
     const model = new AirspaceModel(AIRSPACE_MOCK, airportPositionFixtureKSFO, magneticNorth);
 

@@ -19,8 +19,8 @@ const ENTRY_FIXNAME_MOCK = 'MLF';
 const EXIT_FIXNAME_MOCK = 'KENNO';
 const RUNWAY_NAME_MOCK = '19R';
 
-ava.before(() => FixCollection.init(FIX_LIST_MOCK, airportPositionFixtureKSFO));
-ava.after(() => FixCollection.destroy());
+ava.before(() => FixCollection.addItems(FIX_LIST_MOCK, airportPositionFixtureKSFO));
+ava.after(() => FixCollection.removeItems());
 
 ava('does not throw when no parameters are passed', t => t.notThrows(() => new StandardRouteCollection()));
 

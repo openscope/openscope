@@ -38,3 +38,9 @@ ava('.getPostiion() returns an array with a calculated x, y value that is the sa
 
     t.true(_isEqual(result, expectedResult.position));
 });
+
+// user bug test cases
+ava('.calculatePosition() does not throw when it receives 0 for magnetic_north', t => {
+    t.notThrows(() => new PositionModel(LAT_LONG_MOCK, airportPositionFixtureKLAS, 0));
+    t.notThrows(() => PositionModel.calculatePosition(LAT_LONG_MOCK, airportPositionFixtureKLAS, 0));
+});
