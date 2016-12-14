@@ -26,6 +26,9 @@
     - Updates `PositionModel` to run all calculations through the static `.calculatePosition()` method and vastly simplifies internal logic.
 - Refactors the the function names in `FixCollection` to better fit their function. `init()` to `addItems()` and `destroy()` to `removeItems()` [#186] (https://github.com/n8rzz/atc/issues/186)
 - Adds gulp-cli and adds [tools readme](tools/README.md) link to gulp issues with Windows [#194](https://github.com/n8rzz/atc/issues/194)
+- Changes `routeString` to `routeCode` to better fit what it is and also fixs trancpercy in to the `routeModel` [#188] (https://github.com/n8rzz/atc/issues/188)
+    -.toUpperCase() is now called on intilization and removed from the getter
+
 
 
 
