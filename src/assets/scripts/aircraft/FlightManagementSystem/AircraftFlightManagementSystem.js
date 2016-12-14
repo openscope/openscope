@@ -648,17 +648,17 @@ export default class AircraftFlightManagementSystem {
 
                 if (!_isNil(currentAirport.sidCollection.findRouteByIcao(routeModel.procedure))) {
                     // it's a SID!
-                    const legToAdd = new Leg({ type: FP_LEG_TYPE.SID, route: routeModel.routeString }, this);
+                    const legToAdd = new Leg({ type: FP_LEG_TYPE.SID, route: routeModel.routeCode }, this);
 
                     legs.push(legToAdd);
                 } else if (!_isNil(currentAirport.starCollection.findRouteByIcao(routeModel.procedure))) {
                     // it's a STAR!
-                    const legToAdd = new Leg({ type: FP_LEG_TYPE.STAR, route: routeModel.routeString }, this);
+                    const legToAdd = new Leg({ type: FP_LEG_TYPE.STAR, route: routeModel.routeCode }, this);
 
                     legs.push(legToAdd);
                 } else if (Object.keys(window.airportController.airport_get().airways).indexOf(routeModel.procedure) > -1) {
                     // it's an airway!
-                    const legToAdd = new Leg({ type: FP_LEG_TYPE.AWY, route: routeModel.routeString }, this);
+                    const legToAdd = new Leg({ type: FP_LEG_TYPE.AWY, route: routeModel.routeCode }, this);
 
                     legs.push(legToAdd);
                 }

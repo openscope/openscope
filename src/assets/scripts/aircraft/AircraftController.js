@@ -1,4 +1,5 @@
 /* eslint-disable no-underscore-dangle, no-unused-vars, no-undef, global-require */
+import _without from 'lodash/without';
 import AircraftConflict from './AircraftConflict';
 import AircraftModel from './AircraftModel';
 import { speech_say } from '../speech';
@@ -137,11 +138,9 @@ export default class AircraftController {
      * @method aircraft_remove
      */
     aircraft_remove(aircraft) {
-        this.aircraft.callsigns.splice(this.aircraft.callsigns.indexOf(aircraft.callsign), 1);
-        this.aircraft.list.splice(this.aircraft.list.indexOf(aircraft), 1);
-
-        this.update_aircraft_eids();
-
+        window.airportController.removeAircraftFromAllRunwayQueues(aircraft);
+        this.removeCallsignFromList(aircraft.callsign);
+        this.removeAircraftInstanceModelFromList(aircraft);
         aircraft.cleanup();
     }
 
@@ -351,6 +350,25 @@ export default class AircraftController {
         }
 
         return this.aircraft.models[icao];
+    }
+
+    /**
+     * Remove the specified aircraft from `AircraftController.aircraft`
+     * @method removeAircraftInstanceModelFromList
+     * @param  {Aircraft} aircraft the aircraft to remove
+     */
+    removeAircraftInstanceModelFromList(aircraft) {
+        this.aircraft.list = _without(this.aircraft.list, aircraft);
+    }
+
+    /**
+     * Remove a flight number from the list stored in `AircraftController.aircraft.callsigns`
+     * @for AircraftController
+     * @method removeCallsignFromList
+     * @param  {string} callsign the flight number to remove
+     */
+    removeCallsignFromList(callsign) {
+        this.aircraft.callsigns = _without(this.aircraft.callsigns, callsign);
     }
 
     // TODO: what is an `eid` and why would it beed to be updated?

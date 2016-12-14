@@ -10,8 +10,8 @@ import { airportPositionFixtureKSFO } from '../../fixtures/airportFixtures';
 import { FIX_LIST_MOCK } from '../fix/_mocks/fixMocks';
 import { ROUTE_SEGMENTS_MOCK } from './_mocks/standardRouteMocks';
 
-ava.before(() => FixCollection.init(FIX_LIST_MOCK, airportPositionFixtureKSFO));
-ava.after(() => FixCollection.destroy());
+ava.before(() => FixCollection.addItems(FIX_LIST_MOCK, airportPositionFixtureKSFO));
+ava.after(() => FixCollection.removeItems());
 
 ava('throws with invalid parameters', t => {
     t.throws(() => new RouteSegmentCollection());
