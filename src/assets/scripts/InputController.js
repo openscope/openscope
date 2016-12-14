@@ -1,6 +1,7 @@
 /* eslint-disable camelcase, no-mixed-operators, object-shorthand, class-methods-use-this, no-undef, expected-return*/
 import $ from 'jquery';
 import _get from 'lodash/get';
+import _has from 'lodash/has';
 import _map from 'lodash/map';
 import CommandParser from './commandParser/CommandParser';
 import { clamp } from './math/core';
@@ -812,15 +813,11 @@ export default class InputController {
                 location.reload();
 
             case PARSED_COMMAND_NAME.AIRPORT:
-            // TODO: simplify this logic
-                if (commandParser.args) {
-                    if (commandParser.args in prop.airport.airports) {
-                        window.airportController.airport_set(commandParser.args);
-                    } else {
-                        window.uiController.ui_airport_toggle();
-                    }
-                } else {
-                    window.uiController.ui_airport_toggle();
+                // TODO: it may be better to do this in the parser
+                const airportIcao = commandParser.args[0];
+
+                if (_has(prop.airport.airports, airportIcao)) {
+                    window.airportController.airport_set(airportIcao);
                 }
 
                 return true;

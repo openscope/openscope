@@ -7,6 +7,7 @@ import {
     singleArgumentValidator,
     zeroOrOneArgumentValidator,
     altitudeValidator,
+    fixValidator,
     headingValidator,
     holdValidator
 } from './argumentValidators';
@@ -135,10 +136,6 @@ const SINGLE_ARG_COMMANDS = {
         validate: singleArgumentValidator,
         parse: noop
     },
-    fix: {
-        validate: singleArgumentValidator,
-        parse: noop
-    },
     land: {
         validate: singleArgumentValidator,
         // TODO: split this out to custom parser once the null value is defined
@@ -193,6 +190,10 @@ const CUSTOM_ARG_COMMANDS = {
     altitude: {
         validate: altitudeValidator,
         parse: altitudeParser
+    },
+    fix: {
+        validate: fixValidator,
+        parse: noop
     },
     heading: {
         validate: headingValidator,

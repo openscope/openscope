@@ -110,6 +110,16 @@ export const altitudeValidator = (args = []) => {
 };
 
 /**
+ *
+ * @function fixValidator
+ * @param args {array}
+ * @return {array<string>}
+ */
+export const fixValidator = (args) => {
+    console.log(args);
+};
+
+/**
  * Returns true if value is one of `left / l / right / r`
  *
  * @function isValidDirectionString
