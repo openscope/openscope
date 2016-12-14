@@ -3,6 +3,8 @@
 #### Node
 You will need to have [Node.js](https://nodejs.org/) installed to run any of the commands below.
 
+_If you are a Windows user and are having issues running `gulp` commands, please see here: [http://stackoverflow.com/questions/24027551/gulp-command-not-found-error-after-installing-gulp](http://stackoverflow.com/questions/24027551/gulp-command-not-found-error-after-installing-gulp)_
+
 #### Project Installation
 
 After you have node installed, navigate to the project folder and run `npm install && npm run build`.  This will install the project dependencies and run the build tasks for the css and javascript.
