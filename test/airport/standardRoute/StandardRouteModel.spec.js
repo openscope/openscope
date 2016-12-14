@@ -244,13 +244,13 @@ ava('._buildEntryAndExitCollections() maps rwy fixes to _entryCollection when ex
     t.true(_isEqual(segmentModelNames, _keys(SID_MOCK.rwy)));
 });
 
-ava.skip('._buildEntryAndExitCollections() maps rwy fixes to _entryCollection when exitPoints is not present and rwy is present', t => {
-    const model = new StandardRouteModel(SID_WITHOUT_EXIT_MOCK);
-    model._buildEntryAndExitCollections(SID_WITHOUT_EXIT_MOCK);
+ava('._buildEntryAndExitCollections() maps rwy fixes to _entryCollection when exitPoints is not present and rwy is present', t => {
+    const model = new StandardRouteModel(SID_WITHOUT_EXIT_MOCK.TRALR6);
+    model._buildEntryAndExitCollections(SID_WITHOUT_EXIT_MOCK.TRALR6);
 
     const segmentModelNames = _map(model._entryCollection._items, (segmentModel) => segmentModel.name);
 
-    t.true(_isEqual(segmentModelNames, _keys(SID_WITHOUT_EXIT_MOCK.rwy)));
+    t.true(_isEqual(segmentModelNames, _keys(SID_WITHOUT_EXIT_MOCK.TRALR6.rwy)));
 });
 
 ava('._findBodyFixList() returns an empty array when ._bodySegmentModel is undefined', t => {

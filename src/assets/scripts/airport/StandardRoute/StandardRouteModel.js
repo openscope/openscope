@@ -364,6 +364,9 @@ export default class StandardRouteModel extends BaseModel {
             this._entryCollection = this._buildSegmentCollection(standardRoute.rwy);
             this._exitCollection = this._buildSegmentCollection(standardRoute.exitPoints);
         } else if (_has(standardRoute, 'rwy')) {
+            console.error(`${this.icao} - (${this.name}) Does not contain exitPoints or entryPoints. ` +
+                `Please update the '${this.icao.toLowerCase()}.json' file to include exitPoints, if this is a SID, ` +
+                `or entryPoints if this is a STAR.`);
             this._entryCollection = this._buildSegmentCollection(standardRoute.rwy);
         }
     }
