@@ -24,7 +24,7 @@
 - Consolidates test fixtures in fixtures directory [#167](https://github.com/n8rzz/atc/issues/167)
 * Addresses issue with video maps being drawn incorrectly. [#176](https://github.com/n8rzz/atc/issues/176)
     - Updates `PositionModel` to run all calculations through the static `.calculatePosition()` method and vastly simplifies internal logic. 
-
+- Changes `routeString` to `routeCode` to better fit what it is and also fixs trancpercy in to the `routeModel`
 
 
 
