@@ -23,7 +23,7 @@
 - Replaces active airport icao in view with a zulu time clock [#135](https://github.com/n8rzz/atc/issues/135)
 - Consolidates test fixtures in fixtures directory [#167](https://github.com/n8rzz/atc/issues/167)
 * Addresses issue with video maps being drawn incorrectly. [#176](https://github.com/n8rzz/atc/issues/176)
-    - Updates `PositionModel` to run all calculations through the static `.calculatePosition()` method and vastly simplifies internal logic. 
+    - Updates `PositionModel` to run all calculations through the static `.calculatePosition()` method and vastly simplifies internal logic.
 
 
 
@@ -37,6 +37,9 @@
 - Streamlines flight number generation and adds new method to add new callsigns to the existing list [#151](https://github.com/n8rzz/atc/issues/151)
 - Adds `_isNumber` check instead of `!magneticNorth` inside `PositionModel.calculatePosition()` and the `AirspaceModel` constructor. [#182](https://github.com/n8rzz/atc/issues/182)
     - Originally reported under [#754](https://github.com/zlsa/atc/issues/754)
+- Adds additional handling to `StandardRouteModel._buildEntryAndExitCollections` to handle case where `entryPoints` and `exitPoints` don't exist in the `airport.sids` definition [#196](https://github.com/n8rzz/atc/issues/196)
+    - Originally reported under [#760](https://github.com/zlsa/atc/issues/760)
+
 
 
 

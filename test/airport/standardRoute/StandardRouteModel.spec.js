@@ -194,7 +194,7 @@ ava('.gatherExitPointNames() retuns a list of the exitPoint fix names', t => {
     t.true(_isEqual(result, expectedResult));
 });
 
-ava('.gatherExitPointNames() retuns an empty array if not exitPoints exist or the collection is undefined', t => {
+ava('.gatherExitPointNames() retuns an empty array if no exitPoints exist or the collection is undefined', t => {
     const model = new StandardRouteModel(SID_WITHOUT_EXIT_MOCK.TRALR6);
     const result = model.gatherExitPointNames();
 
@@ -242,6 +242,15 @@ ava('._buildEntryAndExitCollections() maps rwy fixes to _entryCollection when ex
     const segmentModelNames = _map(model._entryCollection._items, (segmentModel) => segmentModel.name);
 
     t.true(_isEqual(segmentModelNames, _keys(SID_MOCK.rwy)));
+});
+
+ava.skip('._buildEntryAndExitCollections() maps rwy fixes to _entryCollection when exitPoints is not present and rwy is present', t => {
+    const model = new StandardRouteModel(SID_WITHOUT_EXIT_MOCK);
+    model._buildEntryAndExitCollections(SID_WITHOUT_EXIT_MOCK);
+
+    const segmentModelNames = _map(model._entryCollection._items, (segmentModel) => segmentModel.name);
+
+    t.true(_isEqual(segmentModelNames, _keys(SID_WITHOUT_EXIT_MOCK.rwy)));
 });
 
 ava('._findBodyFixList() returns an empty array when ._bodySegmentModel is undefined', t => {
