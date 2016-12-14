@@ -270,6 +270,10 @@ export const parseElevation = (elevation) => {
         return parseFloat(elevation);
     }
 
+    if (elevation === 'Infinity' || elevation === '-Infinity')  {
+        return parseFloat(elevation);
+    }
+
     let parsedElevation = elevation.replace(REGEX, '');
     const elevationUnit = elevation.match(REGEX);
 
@@ -285,3 +289,4 @@ export const parseElevation = (elevation) => {
 
     return parseFloat(parsedElevation);
 };
+
