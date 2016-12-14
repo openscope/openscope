@@ -6,7 +6,7 @@
     - Abstracts restrictions logic to live within `Waypoint`
     - Consolidates `runSID()` and `climbViaSid()` logic
 - Deprecates `sid` and `star` properties of the `AirportModel` in favor of `sidCollection` and `starCollection` [#54](https://github.com/n8rzz/atc/issues/54)
-
+- Adds [Express](expressjs.com) server to serve static assets and add [travis](travis-ci.org) config file for travis continuous integration [#169](https://github.com/n8rzz/atc/issues/169)
 
 
 
@@ -22,8 +22,10 @@
 - Adds static `calculatePosition` method to `PositionModel` and abstracts common functions [#159](https://github.com/n8rzz/atc/issues/159)
 - Replaces active airport icao in view with a zulu time clock [#135](https://github.com/n8rzz/atc/issues/135)
 - Consolidates test fixtures in fixtures directory [#167](https://github.com/n8rzz/atc/issues/167)
-
-
+* Addresses issue with video maps being drawn incorrectly. [#176](https://github.com/n8rzz/atc/issues/176)
+    - Updates `PositionModel` to run all calculations through the static `.calculatePosition()` method and vastly simplifies internal logic.
+- Refactors the the function names in `FixCollection` to better fit their function. `init()` to `addItems()` and `destroy()` to `removeItems()` [#186] (https://github.com/n8rzz/atc/issues/186)
+- Adds gulp-cli and adds [tools readme](tools/README.md) link to gulp issues with Windows [#194](https://github.com/n8rzz/atc/issues/194)
 
 
 
@@ -33,6 +35,8 @@
 ### Bugfixes
 - Moves `_comment` blocks in airport json file to be within object the are describing [#145](https://github.com/n8rzz/atc/issues/145)
 - Streamlines flight number generation and adds new method to add new callsigns to the existing list [#151](https://github.com/n8rzz/atc/issues/151)
+- Adds `_isNumber` check instead of `!magneticNorth` inside `PositionModel.calculatePosition()` and the `AirspaceModel` constructor. [#182](https://github.com/n8rzz/atc/issues/182)
+    - Originally reported under [#754](https://github.com/zlsa/atc/issues/754)
 
 
 

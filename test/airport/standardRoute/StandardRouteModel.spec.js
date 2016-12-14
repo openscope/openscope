@@ -29,8 +29,8 @@ const RUNWAY_NAME_MOCK = '25L';
 const EXIT_FIXNAME_MOCK = 'KENNO';
 const ENTRY_FIXNAME_MOCK = 'DRK';
 
-ava.before(() => FixCollection.init(FIX_LIST_MOCK, airportPositionFixtureKSFO));
-ava.after(() => FixCollection.destroy());
+ava.before(() => FixCollection.addItems(FIX_LIST_MOCK, airportPositionFixtureKSFO));
+ava.after(() => FixCollection.removeItems());
 
 ava('throws when instantiated with invaild parameters', t => {
     t.throws(() => new StandardRouteModel());

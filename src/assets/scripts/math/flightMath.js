@@ -54,16 +54,14 @@ export const calcTurnInitiationDistance = (speed, bankAngle, courseChange) => {
     return turnRadius * tan(courseChange / 2) + speed;
 };
 
-
 /**
  * Returns the bearing from `startPosition` to `endPosition`
- *
+ * @function bearingToPoint
  * @param startPosition {array}     positional array, start point
  * @param endPosition {array}       positional array, end point
+ * @return {number}
  */
-export const bearing = (startPosition, endPosition) => {
-    return vradial(vsub(endPosition, startPosition));
-};
+export const bearingToPoint = (startPosition, endPosition) => vradial(vsub(endPosition, startPosition));
 
 // TODO: this may be better suited to live in an Aircraft model somewhere.
 /**
@@ -94,14 +92,13 @@ export const getOffset = (aircraft, target, headingThruTarget = null) => {
     return offset;
 };
 
-
 /**
  * Get new position by fix-radial-distance method
  *
  * @param {array} fix       positional array of start point, in decimal-degrees [lat,lon]
  * @param {number} radial   heading to project along, in radians
  * @param {number} dist     distance to project, in nm
- * @returns {array}         location of the projected fix
+ * @returns {array}         location of the projected fix, in decimal-degrees [lat,lon]
  */
 export const fixRadialDist = (fix, radial, dist) => {
     // FIXME: if fix is a FixModel, there may already be a method for this. if there isnt there should be. `fix.positionInRadians`
@@ -113,15 +110,15 @@ export const fixRadialDist = (fix, radial, dist) => {
 
     const R = CONSTANTS.EARTH_RADIUS_NM;
     // TODO: abstract these two calculations to functions
-    const lat2 = Math.asin(sin(fix[1]) * cos(dist / R) + cos(fix[1]) * sin(dist / R) * cos(radial));
-    const lon2 = fix[0] + Math.atan2(
-        sin(radial) * sin(dist / R) * cos(fix[1]),
-        cos(dist / R) - sin(fix[1]) * sin(lat2)
+    const lat2 = Math.asin(sin(fix[0]) * cos(dist / R) + cos(fix[0]) * sin(dist / R) * cos(radial));
+    const lon2 = fix[1] + Math.atan2(
+        sin(radial) * sin(dist / R) * cos(fix[0]),
+        cos(dist / R) - sin(fix[0]) * sin(lat2)
     );
 
     return [
-        radiansToDegrees(lon2),
-        radiansToDegrees(lat2)
+        radiansToDegrees(lat2),
+        radiansToDegrees(lon2)
     ];
 };
 
@@ -160,14 +157,3 @@ export const calculateDistanceToBoundary = (airport, pos) => {
     // TODO: hmm, `position.position`? that seems fishy
     return abs(distance2d(pos, airport.position.position) - airport.ctr_radius);
 };
-
-/**
- *
- *
- *
- * @function calculateHeadingFromTwoPositions
- * @param positionEnd {array}
- * @param positionStart {array}
- * @return {number}
- */
-export const calculateHeadingFromTwoPositions = (positionEnd, positionStart) => vradial(vsub(positionEnd, positionStart));

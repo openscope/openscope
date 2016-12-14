@@ -1,0 +1,22 @@
+{
+  "name": "atc",
+  "scripts": {},
+  "env": {
+    "LANG": "en_US.UTF-8",
+    "NODE_ENV": "staging",
+    "NPM_CONFIG_PRODUCTION": "false"
+  },
+  "formation": {
+    "web": {
+      "quantity": 1
+    }
+  },
+  "addons": [
+    "logentries"
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}
