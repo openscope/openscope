@@ -1383,7 +1383,7 @@ export default class Aircraft {
       * @param data
       */
     runReroute(data) {
-    // capitalize everything
+        // TODO: capitalize everything?
         data = data[0].toUpperCase();
         let worked = true;
         const route = this.fms.formatRoute(data);
@@ -1696,6 +1696,26 @@ export default class Aircraft {
         // TODO: why 48m?  whats the significance of that number?
         // 160 feet or 48 meters
         return this.approachOffset <= 0.048;
+    }
+
+    /**
+     * Checks if the aircraft is inside the airspace of a specified airport
+     *
+     * @for AircraftInstanceModel
+     * @method isInsideAirspace
+     * @param  {airport} airport the airport whose airspace we are checking
+     * @return {Boolean}
+     * @private
+     */
+    isInsideAirspace(airport) {
+        let withinAirspaceLateralBoundaries = this.distance <= airport.ctr_radius;
+        const withinAirspaceAltitudeRange = this.altitude <= airport.ctr_ceiling;
+
+        if (_has(airport, 'perimeter')) {    // polygonal airspace boundary
+            withinAirspaceLateralBoundaries = point_in_area(this.position, airport.perimeter);
+        }
+
+        return withinAirspaceAltitudeRange && withinAirspaceLateralBoundaries;
     }
 
     /**
@@ -2381,22 +2401,10 @@ export default class Aircraft {
             this.radial += tau();
         }
 
-        // polygonal airspace boundary
-        if (window.airportController.airport_get().perimeter) {
-            let inside = point_in_area(this.position, window.airportController.airport_get().perimeter);
+        const isInsideAirspace = this.isInsideAirspace(window.airportController.airport_get());
 
-            // TODO: this logic is duplicated below. abstract to new method
-            if (inside !== this.inside_ctr) {
-                this.crossBoundary(inside);
-            }
-        } else {
-            // simple circular airspace boundary
-            let inside = this.distance <= window.airportController.airport_get().ctr_radius &&
-                this.altitude <= window.airportController.airport_get().ctr_ceiling;
-
-            if (inside !== this.inside_ctr) {
-                this.crossBoundary(inside);
-            }
+        if (isInsideAirspace !== this.inside_ctr) {
+            this.crossBoundary(isInsideAirspace);
         }
     }
 
