@@ -130,8 +130,10 @@ export default class AircraftConflict {
 
         // TODO: enumerate the magic numbers.
         // Collide within 160 feet
+        const airport = window.airportController.airport_get();
+
         if (((this.distance < 0.05) && (this.altitude < 160)) &&
-            (this.aircraft[0].isVisible() && this.aircraft[1].isVisible())
+            (this.aircraft[0].isInsideAirspace(airport) && this.aircraft[1].isInsideAirspace(airport))
         ) {
             this.collided = true;
             const isWarning = true;
