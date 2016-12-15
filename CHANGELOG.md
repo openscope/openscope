@@ -28,7 +28,8 @@
 - Adds gulp-cli and adds [tools readme](tools/README.md) link to gulp issues with Windows [#194](https://github.com/n8rzz/atc/issues/194)
 - Changes `routeString` to `routeCode` to better fit what it is and also fixs trancpercy in to the `routeModel` [#188] (https://github.com/n8rzz/atc/issues/188)
     -.toUpperCase() is now called on intilization and removed from the getter
-
+- Prevents collision detection for aircraft that are outside of our airspace [#134](https://github.com/n8rzz/atc/issues/134)
+    - Originally reported under [#736](https://github.com/zlsa/atc/issues/736)
 
 
 
