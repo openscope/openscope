@@ -1,6 +1,6 @@
-import _isBoolean from 'lodash/isBoolean';
-import _isNan from 'lodash/isNaN';
+import _isNaN from 'lodash/isNaN';
 import _isString from 'lodash/isString';
+import _forEach from 'lodash/forEach';
 import { convertStringToNumber } from '../utilities/unitConverters';
 import { EXPEDITE } from './commandMap';
 import { ERROR_MESSAGE } from './commandParserMessages';
@@ -110,13 +110,28 @@ export const altitudeValidator = (args = []) => {
 };
 
 /**
+ * Verifies a list of fix names are all strings and that there is at least one
  *
  * @function fixValidator
  * @param args {array}
  * @return {array<string>}
  */
-export const fixValidator = (args) => {
-    console.log(args);
+export const fixValidator = (args = []) => {
+    let hasTypeError;
+
+    if (args.length < 1) {
+        return ERROR_MESSAGE.ONE_OR_MORE_ARG_LENGTH;
+    }
+
+    _forEach(args, (arg) => {
+        if (!_isString(arg) && !hasTypeError) {
+            hasTypeError = ERROR_MESSAGE.MUST_BE_STRING;
+        }
+    });
+
+    if (hasTypeError) {
+        return hasTypeError;
+    }
 };
 
 /**
@@ -162,7 +177,7 @@ export const headingValidator = (args = []) => {
         case 1:
             numberFromString = convertStringToNumber(args[0]);
 
-            if (_isNan(numberFromString)) {
+            if (_isNaN(numberFromString)) {
                 return ERROR_MESSAGE.HEADING_MUST_BE_NUMBER;
             }
 

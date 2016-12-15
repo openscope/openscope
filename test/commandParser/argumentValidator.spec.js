@@ -9,6 +9,7 @@ import {
     oneToThreeArgumentsValidator,
     oneOrThreeArgumentsValidator,
     altitudeValidator,
+    fixValidator,
     headingValidator,
     holdValidator
 } from '../../src/assets/scripts/commandParser/argumentValidators';
@@ -117,6 +118,22 @@ ava('.altitudeValidator() returns a string when passed anything other than exped
 
     result = altitudeValidator(['', '']);
     t.true(result === 'Invalid argument. Altitude accepts only "expedite" or "x" as a second argument');
+});
+
+ava('.fixValidator() returns undefined when it receives at least one valid argument', (t) => {
+    let result = fixValidator(['one']);
+    t.true(typeof result === 'undefined');
+
+    result = fixValidator(['one', 'two', 'th33', '4F1o']);
+    t.true(typeof result === 'undefined');
+
+    t.true(fixValidator([]) === 'Invalid argument length. Expected one or more arguments');
+});
+
+ava('.fixValidator() returns a string when passed anything other than a string', (t) => {
+    t.true(fixValidator([42, '', '']) === 'Invalid argument. Must be a string');
+    t.true(fixValidator(['', false, '']) === 'Invalid argument. Must be a string');
+    t.true(fixValidator([42, false, '', {}]) === 'Invalid argument. Must be a string');
 });
 
 ava('.headingValidator() returns a string when passed the wrong number of arguments', t => {

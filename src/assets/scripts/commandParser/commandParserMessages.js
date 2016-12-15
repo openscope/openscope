@@ -24,6 +24,7 @@ export const ERROR_MESSAGE = {
     ZERO_ARG_LENGTH: `${INVALID_ARG_LENGTH}. Expected exactly zero arguments`,
     SINGLE_ARG_LENGTH: `${INVALID_ARG_LENGTH}. Expected exactly one argument`,
     ZERO_OR_ONE_ARG_LENGTH: `${INVALID_ARG_LENGTH}. Expected zero or one argument`,
+    ONE_OR_MORE_ARG_LENGTH: `${INVALID_ARG_LENGTH}. Expected one or more arguments`,
     ONE_OR_TWO_ARG_LENGTH: `${INVALID_ARG_LENGTH}. Expected one or two arguments`,
     ONE_TO_THREE_ARG_LENGTH: `${INVALID_ARG_LENGTH}. Expected one, two, or three arguments`,
     ONE_OR_THREE_ARG_LENGTH: `${INVALID_ARG_LENGTH}. Expected one or three arguments`,

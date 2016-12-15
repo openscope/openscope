@@ -1178,8 +1178,10 @@ export default class Aircraft {
     runFix(data) {
         let last_fix;
         let fail;
-        const fixes = _map(data[0], (fixname) => {
+        const fixes = _map(data, (fixname) => {
+            // TODO: this may beed to be the FixCollection
             const fix = window.airportController.airport_get().getFixPosition(fixname);
+
             if (!fix) {
                 fail = ['fail', `unable to find fix called ${fixname}`];
 
@@ -1200,7 +1202,8 @@ export default class Aircraft {
             return fail;
         }
 
-        for (let i = fixes.length - 1; i >= 0; i--) {
+        for (let i = 0; i < fixes.length; i++) {
+            // FIXME: use enumerated constant for type
             this.fms.insertLegHere({ type: 'fix', route: fixes[i] });
         }
 
