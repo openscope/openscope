@@ -440,7 +440,6 @@ export default class InputController {
      * @method onCommandInputKeydownHandler
      */
     onCommandInputKeydownHandler(e) {
-        // this will result in a string that has a space at the end
         const currentCommandInputValue = this.$commandInput.val();
 
         // TODO: this swtich can be simplified, there is a lot of repetition here
@@ -482,7 +481,7 @@ export default class InputController {
             case KEY_CODES.LEFT_ARROW:
                 // shortKeys in use
                 if (this._isArrowControlMethod()) {
-                    this.$commandInput.val(`${currentCommandInputValue}t l `);
+                    this.$commandInput.val(`${currentCommandInputValue} t l `);
                     e.preventDefault();
                     this.onCommandInputChangeHandler();
                 }
@@ -491,7 +490,7 @@ export default class InputController {
 
             case KEY_CODES.UP_ARROW:
                 if (this._isArrowControlMethod()) {
-                    this.$commandInput.val(`${currentCommandInputValue}\u2B61 `);
+                    this.$commandInput.val(`${currentCommandInputValue} \u2B61 `);
                     e.preventDefault();
                     this.onCommandInputChangeHandler();
                 } else {
@@ -504,7 +503,7 @@ export default class InputController {
             case KEY_CODES.RIGHT_ARROW:
                 // shortKeys in use
                 if (this._isArrowControlMethod()) {
-                    this.$commandInput.val(`${currentCommandInputValue}t r `);
+                    this.$commandInput.val(`${currentCommandInputValue} t r `);
                     e.preventDefault();
                     this.onCommandInputChangeHandler();
                 }
@@ -513,7 +512,7 @@ export default class InputController {
 
             case KEY_CODES.DOWN_ARROW:
                 if (this._isArrowControlMethod()) {
-                    this.$commandInput.val(`${currentCommandInputValue}\u2B63 `);
+                    this.$commandInput.val(`${currentCommandInputValue} \u2B63 `);
                     e.preventDefault();
                     this.onCommandInputChangeHandler();
                 } else {
@@ -525,21 +524,21 @@ export default class InputController {
                 break;
 
             case KEY_CODES.MULTIPLY:
-                this.$commandInput.val(`${currentCommandInputValue}\u2B50 `);
+                this.$commandInput.val(`${currentCommandInputValue} \u2B50 `);
                 e.preventDefault();
                 this.onCommandInputChangeHandler();
 
                 break;
 
             case KEY_CODES.ADD:
-                this.$commandInput.val(`${currentCommandInputValue}+ `);
+                this.$commandInput.val(`${currentCommandInputValue} + `);
                 e.preventDefault();
                 this.onCommandInputChangeHandler();
 
                 break;
 
             case KEY_CODES.EQUALS: // mac + (actually `=`)
-                this.$commandInput.val(`${currentCommandInputValue}+ `);
+                this.$commandInput.val(`${currentCommandInputValue} + `);
                 e.preventDefault();
                 this.onCommandInputChangeHandler();
 
@@ -553,14 +552,14 @@ export default class InputController {
                 break;
 
             case KEY_CODES.DASH: // mac -
-                this.$commandInput.val(`${currentCommandInputValue}- `);
+                this.$commandInput.val(`${currentCommandInputValue} - `);
                 e.preventDefault();
                 this.onCommandInputChangeHandler();
 
                 break;
 
             case KEY_CODES.DIVIDE:
-                this.$commandInput.val(`${currentCommandInputValue}takeoff `);
+                this.$commandInput.val(`${currentCommandInputValue} takeoff `);
                 e.preventDefault();
                 this.onCommandInputChangeHandler();
 

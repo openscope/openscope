@@ -202,7 +202,7 @@ export const headingValidator = (args = []) => {
 };
 
 /**
- * Checks that args is the required length and the data is of the correct type for the number of arguments
+ * Checks that args is the required length and the data is of the correct type
  *
  * ```
  * Allowed argument shapes:
@@ -218,37 +218,15 @@ export const headingValidator = (args = []) => {
  * @return {array<string>}
  */
 export const holdValidator = (args = []) => {
-    const length = args.length;
-    const hasLengthError = oneOrThreeArgumentsValidator(args);
+    const hasLengthError = oneToThreeArgumentsValidator(args);
 
     if (hasLengthError) {
         return hasLengthError;
     }
 
-    switch (length) {
-        case 1:
-            if (!_isString(args[0])) {
-                return ERROR_MESSAGE.MUST_BE_STRING;
-            }
-
-            break;
-        case 3:
-            if (!_isString(args[0]) || !_isString(args[1]) || !_isString(args[2])) {
-                return ERROR_MESSAGE.MUST_BE_STRING;
-            }
-
-            if (args[1] !== 'left' && args[1] !== 'right') {
-                return ERROR_MESSAGE.INVALID_HOLD_DIRECTION;
-            }
-
-            if (args[2].indexOf('min') === -1 && args[2].indexOf('nm') === -1) {
-                return ERROR_MESSAGE.INVALID_HOLD_LENGTH_UNIT;
-            }
-
-            break;
-        // default case is included only for semtantics, this should not ever be reachable
-        // istanbul ignore next
-        default:
-            throw new Error('An error ocurred parsing the Hold arguments');
+    for (let i = 0; i < args.length; i++) {
+        if (!_isString(args[i])) {
+            return ERROR_MESSAGE.MUST_BE_STRING;
+        }
     }
 };

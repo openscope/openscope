@@ -1,7 +1,24 @@
+import { isValidDirectionString } from './argumentValidators';
 import {
     convertToThousands,
     convertStringToNumber
 } from '../utilities/unitConverters';
+
+/**
+ * Enumeration of possible the hold command argument names.
+ *
+ * Enumerated here base these nanes are shared accross several functions and this
+ * provides a single source of truth.
+ *
+ * @property HOLD_COMMAND_ARG_NAMES
+ * @type {Object}
+ * @final
+ */
+const HOLD_COMMAND_ARG_NAMES = {
+    TURN_DIRECTION: 'turnDirection',
+    LEG_LENGTH: 'legLength',
+    FIX_NAME: 'fixName'
+};
 
 /**
  * Converts a flight level altitude to a number in thousands and converts second arg to a boolean
@@ -42,9 +59,9 @@ const directionNormalizer = (direction) => {
 };
 
 /**
- * Converts a flight level altitude to a number in thousands and converts second arg to a boolean
- *
  * Returns a consistent array with the same shape no matter the number of arguments received
+ *
+ * Converts a flight level altitude to a number in thousands and converts second arg to a boolean
  *
  * @function headingParser
  * @param args {array}
@@ -74,29 +91,77 @@ export const headingParser = (args) => {
 };
 
 /**
+ * Abstracted boolean logic used to detmine if a string contains `min` or `nm`.
+ *
+ * This is useful specifically with the `findHoldCommandByType`.
+ *
+ * @function isLegLengthArg
+ * @param arg {string}
+ * @return {boolean}
+ */
+const isLegLengthArg = (arg) => arg.indexOf('min') !== -1 || arg.indexOf('nm') !== -1;
+
+/**
+ * Given a type and an argument list, find the first occurance of `type` from within the argument list.
+ *
+ * We are looking for one of three things here:
+ * - `turnDirection` - a variation of left or right
+ * - `legLength` - length of hold leg in either minutes (min) or nautical miles (nm)
+ * - `fixName` - assumed to be a string that isn't a `turnDirection` or `legLength`. The parser has no way of
+ *               knowing if a certain string is an actual `fixName`. We can only determine that it isn't a
+ *               `turnDirection` or `legLength`. This will error from within the `runHold` method if the
+ *               `fixName` is not valid.
+ *
+ * @function findHoldCommandByType
+ * @param type {HOLD_COMMAND_ARG_NAMES}
+ * @param args {array}
+ * @return {string|null}
+ */
+export const findHoldCommandByType = (type, args) => {
+    for (let i = 0; i < args.length; i++) {
+        const arg = args[i];
+
+        switch (type) {
+            case HOLD_COMMAND_ARG_NAMES.TURN_DIRECTION:
+                if (!isValidDirectionString(arg)) {
+                    continue;
+                }
+
+                return directionNormalizer(arg);
+            case HOLD_COMMAND_ARG_NAMES.LEG_LENGTH:
+                if (!isLegLengthArg(arg)) {
+                    continue;
+                }
+
+                return arg;
+            case HOLD_COMMAND_ARG_NAMES.FIX_NAME:
+                if (isValidDirectionString(arg) || isLegLengthArg(arg)) {
+                    continue;
+                }
+
+                return arg;
+            default:
+                return null;
+        }
+    }
+
+    return null;
+};
+
+/**
+ * The `hold` command accepts arguments in any order thus, we use the `findHoldCommandByType` helper
+ * method to do that for us. This provides an easy way tp find the correct argument, no matter the order,
+ * and consistently return an array of the same shape.
  *
  * @function holdParser
  * @param args {array}
- * @return {array<>}
+ * @return {array<string>}
  */
 export const holdParser = (args) => {
     // existing api is expeting undefined values to be exactly null
-    let turnDirection = null;
-    let legLength = null;
-    let fixName;
+    const fixName = findHoldCommandByType(HOLD_COMMAND_ARG_NAMES.FIX_NAME, args);
+    const turnDirection = findHoldCommandByType(HOLD_COMMAND_ARG_NAMES.TURN_DIRECTION, args);
+    const legLength = findHoldCommandByType(HOLD_COMMAND_ARG_NAMES.LEG_LENGTH, args);
 
-    switch (args.length) {
-        case 1:
-            fixName = args[0];
-
-            return [turnDirection, legLength, fixName];
-        case 3:
-            fixName = args[0];
-            turnDirection = args[1];
-            legLength = args[2];
-
-            return [turnDirection, legLength, fixName];
-        default:
-            throw new Error('An error ocurred parsing the Hold arguments');
-    }
+    return [turnDirection, legLength, fixName];
 };

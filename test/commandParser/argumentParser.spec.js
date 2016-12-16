@@ -1,9 +1,11 @@
 /* eslint-disable arrow-parens, max-len, import/no-extraneous-dependencies*/
 import ava from 'ava';
+import _isEqual from 'lodash/isEqual';
 
 import {
     altitudeParser,
     headingParser,
+    findHoldCommandByType,
     holdParser
 } from '../../src/assets/scripts/commandParser/argumentParsers';
 
@@ -79,25 +81,53 @@ ava('.headingParser() parses three digit heading as a generic heading', t => {
     t.false(result[2]);
 });
 
-ava('.holdParser() throws if it does not receive 1 or 3 arguments', t => {
-    t.throws(() => holdParser([]));
-    t.throws(() => holdParser(['', 'left', '1min', '']));
+ava('.findHoldCommandByType() returns a turnDirection when passed a variation of left or right', (t) => {
+    const argsMock = ['dumba', 'l', '3nm'];
+    t.true(findHoldCommandByType('turnDirection', argsMock) === 'left');
+});
+
+ava('.findHoldCommandByType() returns a legLength when passed a valid legLength in min', (t) => {
+    const argsMock = ['dumba', 'l', '3min'];
+    t.true(findHoldCommandByType('legLength', argsMock) === '3min');
+});
+
+ava('.findHoldCommandByType() returns a legLength when passed a valid legLength in nm', (t) => {
+    const argsMock = ['dumba', 'l', '3nm'];
+    t.true(findHoldCommandByType('legLength', argsMock) === '3nm');
+});
+
+ava('.findHoldCommandByType() returns a fixName when passed a valid fixName', (t) => {
+    const argsMock = ['dumba', 'l', '3nm'];
+    t.true(findHoldCommandByType('fixName', argsMock) === 'dumba');
 });
 
 ava('.holdParser() returns an array of length 3 when passed a fixname as the only argument', t => {
+    const expectedResult = [null, null, 'dumba'];
     const result = holdParser(['dumba']);
 
-    t.true(result.length === 3);
-    t.true(result[0] === null);
-    t.true(result[1] === null);
-    t.true(result[2] === 'dumba');
+    t.true(_isEqual(result, expectedResult));
+});
+
+ava('.holdParser() returns an array of length 3 when passed a direction and fixname as arguments', t => {
+    const expectedResult = ['left', null, 'dumba'];
+    let result = holdParser(['dumba', 'left']);
+    t.true(_isEqual(result, expectedResult));
+
+    result = holdParser(['left', 'dumba']);
+    t.true(_isEqual(result, expectedResult));
 });
 
 ava('.holdParser() returns an array of length 3 when passed a direction, legLength and fixname as arguments', t => {
-    const result = holdParser(['dumba', 'left', '1min']);
+    const expectedResult = ['left', '1min', 'dumba'];
+    let result = holdParser(['dumba', 'left', '1min']);
+    t.true(_isEqual(result, expectedResult));
 
-    t.true(result.length === 3);
-    t.true(result[0] === 'left');
-    t.true(result[1] === '1min');
-    t.true(result[2] === 'dumba');
+    result = holdParser(['left', '1min', 'dumba']);
+    t.true(_isEqual(result, expectedResult));
+
+    result = holdParser(['1min', 'left', 'dumba']);
+    t.true(_isEqual(result, expectedResult));
+
+    result = holdParser(['left', 'dumba', '1min']);
+    t.true(_isEqual(result, expectedResult));
 });

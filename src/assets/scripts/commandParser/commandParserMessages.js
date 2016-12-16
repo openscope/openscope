@@ -32,7 +32,5 @@ export const ERROR_MESSAGE = {
     HEADING_MUST_BE_NUMBER: `${INVALID_ARG}. Heading must be a number`,
     MUST_BE_STRING: `${INVALID_ARG}. Must be a string`,
     INVALID_DIRECTION_STRING: `${INVALID_ARG}. Expected one of 'left / l / right / r' as the first argument when passed three arguments`,
-    HEADING_ACCEPTS_BOOLEAN_AS_THIRD_ARG: `${INVALID_ARG}. Heading accepts a boolean for the third argument when passed three arguments`,
-    INVALID_HOLD_DIRECTION: `${INVALID_ARG}. Hold direction must be either left or right`,
-    INVALID_HOLD_LENGTH_UNIT: `${INVALID_ARG}. Hold length must be either min (minutes) or nm (nautical miles)`
+    HEADING_ACCEPTS_BOOLEAN_AS_THIRD_ARG: `${INVALID_ARG}. Heading accepts a boolean for the third argument when passed three arguments`
 };
