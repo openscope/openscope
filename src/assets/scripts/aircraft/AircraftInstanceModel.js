@@ -1302,7 +1302,7 @@ export default class Aircraft {
             return ['fail', 'STAR name not understood'];
         }
 
-        this.fms.followSTAR(routeModel.routeString);
+        this.fms.followSTAR(routeModel.routeCode);
 
         // TODO: casing may be an issue here.
         const readback = {
