@@ -1,3 +1,14 @@
+/**
+ * Root commands defined in the `commandMap` have a matching definition defined here. This definition
+ * give us access to vaildate and parse functions. Some commands don't require either function and simply
+ * pass the arguments through via `noop`. Other commands commands have very unique demands for how
+ * arguments are formatted, these functions let us validate and parse on a case by case basis.
+ *
+ * Keys are lowercased here so they can be accessed programatically using input string segments
+ * that are converted to lowercase for ease of comparison.
+ *
+ * @fileoverview
+ */
 import {
     convertToThousands,
     convertStringToNumber

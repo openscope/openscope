@@ -218,10 +218,8 @@ export const headingValidator = (args = []) => {
  * @return {array<string>}
  */
 export const holdValidator = (args = []) => {
-    const hasLengthError = oneToThreeArgumentsValidator(args);
-
-    if (hasLengthError) {
-        return hasLengthError;
+    if (args.length > 3) {
+        return ERROR_MESSAGE.ZERO_TO_THREE_ARG_LENGTH;
     }
 
     for (let i = 0; i < args.length; i++) {

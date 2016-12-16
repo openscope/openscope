@@ -13,8 +13,11 @@ import {
 import { REGEX } from '../constants/globalConstants';
 
 /**
+ * Symbol used to split the command string as it enters the class.
+ *
  * @property COMMAND_ARGS_SEPARATOR
  * @type {string}
+ * @final
  */
 const COMMAND_ARGS_SEPARATOR = ' ';
 
@@ -28,23 +31,31 @@ const COMMAND_ARGS_SEPARATOR = ' ';
  * - `AA777 fh 0270 d 050 sp 200`
  * - `AA777 hold dumba left 2min`
  *
+ * **Differentiation of commands and arguments is determinied by splitting the string on an empty space. This
+ * is very important, so legacy commands did not have spaces between the command and argument. With this
+ * implementation _every_ command shall have a space between itself and it's arguments.**
+ *
  * Commands are broken out into two categories: `System` and `Transmit`.
- * - System commands are single argument commands that are used for interacting with the app
+ * - System commands are zero or single argument commands that are used for interacting with the app
  *   itslef. Things like `timewarp` or `tutorial` are examples of system commands.
  *
  * - Transmit commands are instructions meant for a specific aircraft within the controlled airspace.
- *   These commands can have zero arguments or many depending on the command. Some examples of
- *   transmit commands are `to`, `taxi`, `hold`, etc.
+ *   These commands can have zero to many arguments, depending on the command. Some examples of transmit
+ *   commands are `to`, `taxi`, `hold`.
  *
  * Commands go through a lifecycle as they move from raw to parsed:
- * - instantiation within this class
+ * - user types command and presses enter
+ * - command string is captured via input value, then passed as an argument to this class
+ * - determine if command string is a `System Command` or `Transmit`
  * - creation of `CommandModel` objects for each command/argment group found
  * - validate command arguments (number of arguments and data type)
  * - parse command arguments
  *
- * All available commands are defined in the `commandMap` and every alias maps to a single root command.
- * That root command is then used to find the correct validator and parser. The root command is also
- * what the `AircraftInstanceModel` is expecting when it receives commands from the `InputController`.
+ * All available commands are defined in the `commandMap`. Two terms of note are alias and root command.
+ * We would call the `takeoff` command a root command and `to` and `cto` alises. The root command is the
+ * one that shares the same key as the command definition which gives us the correct validator and parser.
+ * The root command is also what the `AircraftInstanceModel` is expecting when it receives commands
+ * from the `InputController`.
  *
  * @class CommandParser
  */
@@ -88,7 +99,8 @@ export default class CommandParser {
          * List of `CommandModel` objects.
          *
          * Each command is contained within a `CommandModel`, even System commands. This provides
-         * a way to keep them together.
+         * a consistent interface for obtaining commands and arguments (via getter) and also
+         * aloows for easy implementation of the legacy API structure.
          *
          * @type {array<CommandModel>}
          */

@@ -15,6 +15,7 @@ export const SYSTEM_COMMANDS = {
     tutorial: 'tutorial',
     version: 'version',
 
+    // single arg commands
     '`': 'moveDataBlock',
     airport: 'airport',
     rate: 'rate',
