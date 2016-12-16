@@ -545,7 +545,7 @@ export default class InputController {
                 break;
 
             case KEY_CODES.SUBTRACT:
-                this.$commandInput.val(`${currentCommandInputValue}- `);
+                this.$commandInput.val(`${currentCommandInputValue} - `);
                 e.preventDefault();
                 this.onCommandInputChangeHandler();
 
