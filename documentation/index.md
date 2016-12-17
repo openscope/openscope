@@ -108,7 +108,9 @@ writing altitudes you would drop the last two zeros. For example, 3,000ft =
 "30", 8,300ft = "83", 10,000ft = "100", and FL180 (18,000ft) = "180".
 Airplanes will not descend below 1000 feet (unless locked on ILS).
 
-_Syntax -_ `AAL123 c [alt]`
+Altitude also accepts an `expedite` or `x` argument which can be used as the last item in the command.
+
+_Syntax -_ `AAL123 c [alt]` or `AAL123 c [alt] x`
 
 ### Takeoff
 _Aliases -_ `takeoff`, `to`, `cto`
@@ -123,9 +125,9 @@ for an altitude assignment before they agree to take off.
 _Syntax -_ `AAL123 cto`
 
 ### Heading
-_Aliases -_ `heading` / `h` / `turn` / `t`
+_Aliases -_ `heading` / `h` / `turn` / `t` / `fh`
 
-_Shortkeys -_ `fh` / `left arrow` / `right arrow` (if "Control Method" setting = "Arrow Keys")
+_Shortkeys -_ `left arrow` / `right arrow` (if "Control Method" setting = "Arrow Keys")
 
 _Information -_ This command sets the target heading; up (north) is 360,
 right (east) is 090, down (south) is 180, and left (west) is 270. Of course
