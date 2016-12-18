@@ -1717,7 +1717,7 @@ export default class Aircraft {
         let withinAirspaceLateralBoundaries = this.distance <= airport.ctr_radius;
         const withinAirspaceAltitudeRange = this.altitude <= airport.ctr_ceiling;
 
-        if (_has(airport, 'perimeter')) {    // polygonal airspace boundary
+        if (!_isNil(airport.perimeter)) {    // polygonal airspace boundary
             withinAirspaceLateralBoundaries = point_in_area(this.position, airport.perimeter);
         }
 
