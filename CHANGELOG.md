@@ -7,6 +7,7 @@
     - Consolidates `runSID()` and `climbViaSid()` logic
 - Deprecates `sid` and `star` properties of the `AirportModel` in favor of `sidCollection` and `starCollection` [#54](https://github.com/n8rzz/atc/issues/54)
 - Adds [Express](expressjs.com) server to serve static assets and add [travis](travis-ci.org) config file for travis continuous integration [#169](https://github.com/n8rzz/atc/issues/169)
+- Rewrites the CommandParser from the ground up [#114](https://github.com/n8rzz/atc/issues/114)
 
 
 
@@ -30,6 +31,7 @@
     -.toUpperCase() is now called on intilization and removed from the getter
 - Prevents collision detection for aircraft that are outside of our airspace [#134](https://github.com/n8rzz/atc/issues/134)
     - Originally reported under [#736](https://github.com/zlsa/atc/issues/736)
+
 
 
 
@@ -74,3 +76,5 @@
 - Aircraft strips show arrival airport in uppercase [#108](https://github.com/n8rzz/atc/issues/108)
 - Updates `FixCollection.findFixByName()` to accept upper, mixed, or lower case fix name [#109](https://github.com/n8rzz/atc/issues/109)
 - Switching to a previously loaded airport does not clear previous airport fixes [#115](https://github.com/n8rzz/atc/issues/115)
+- Fixes `parseElevation()` so that it does not return NaN when it is given the string `'Infinity'` [#191] (https://github.com/n8rzz/atc/issues/191)
+    - Originally reported under [#756](https://github.com/zlsa/atc/issues/756)

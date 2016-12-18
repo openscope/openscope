@@ -1,7 +1,9 @@
 /* eslint-disable camelcase, no-mixed-operators, object-shorthand, class-methods-use-this, no-undef, expected-return*/
 import $ from 'jquery';
 import _get from 'lodash/get';
-import _map from 'lodash/map'
+import _has from 'lodash/has';
+import _map from 'lodash/map';
+import CommandParser from './commandParser/CommandParser';
 import { clamp } from './math/core';
 import { GAME_OPTION_NAMES } from './constants/gameOptionConstants';
 import { SELECTORS } from './constants/selectors';
@@ -51,18 +53,18 @@ const MOUSE_EVENT_CODE = {
  * @final
  */
 const KEY_CODES = {
-    // `+`
+    // +
     ADD: 107,
-    // `-`
+    // -
     DASH: 189,
     DASH_FIREFOX: 173,
     DIVIDE: 111,
     DOWN_ARROW: 40,
     ENTER: 13,
-    // `=`
+    // =
     EQUALS: 187,
     EQUALS_FIREFOX: 61,
-    // `esc`
+    // esc
     ESCAPE: 27,
     LEFT_ARROW: 37,
     MULTIPLY: 106,
@@ -71,7 +73,9 @@ const KEY_CODES = {
     RIGHT_ARROW: 39,
     SUBTRACT: 109,
     TAB: 9,
-    UP_ARROW: 38
+    UP_ARROW: 38,
+    // `
+    BAT_TICK: 192
 };
 
 /**
@@ -196,6 +200,7 @@ export default class InputController {
      * @method input_init_pre
      */
     input_init_pre() {
+        // TODO: these prop properties can be removed except for `prop.input`
         prop.input = input;
         prop.input.command = '';
         prop.input.callsign = '';
@@ -364,6 +369,7 @@ export default class InputController {
             return;
         }
 
+        // TODO: move to master REGEX constant
         let match = /^\s*(\w+)/.exec(prop.input.command);
 
         if (!match) {
@@ -436,7 +442,14 @@ export default class InputController {
     onCommandInputKeydownHandler(e) {
         const currentCommandInputValue = this.$commandInput.val();
 
+        // TODO: this swtich can be simplified, there is a lot of repetition here
         switch (e.which) {
+            case KEY_CODES.BAT_TICK:
+                this.$commandInput.val(`${currentCommandInputValue}\` `);
+                e.preventDefault();
+                this.onCommandInputChangeHandler();
+
+                break;
             case KEY_CODES.ENTER:
                 this.input_parse();
 
@@ -467,8 +480,8 @@ export default class InputController {
 
             case KEY_CODES.LEFT_ARROW:
                 // shortKeys in use
-                if (window.gameController.game.option.get('controlMethod') === 'arrows') {
-                    this.$commandInput.val(`${currentCommandInputValue} \u2BA2`);
+                if (this._isArrowControlMethod()) {
+                    this.$commandInput.val(`${currentCommandInputValue} t l `);
                     e.preventDefault();
                     this.onCommandInputChangeHandler();
                 }
@@ -476,8 +489,8 @@ export default class InputController {
                 break;
 
             case KEY_CODES.UP_ARROW:
-                if (this._isArrowControlMethod()) { // shortKeys in use
-                    this.$commandInput.val(`${currentCommandInputValue} \u2B61`);
+                if (this._isArrowControlMethod()) {
+                    this.$commandInput.val(`${currentCommandInputValue} \u2B61 `);
                     e.preventDefault();
                     this.onCommandInputChangeHandler();
                 } else {
@@ -490,7 +503,7 @@ export default class InputController {
             case KEY_CODES.RIGHT_ARROW:
                 // shortKeys in use
                 if (this._isArrowControlMethod()) {
-                    this.$commandInput.val(`${currentCommandInputValue} \u2BA3`);
+                    this.$commandInput.val(`${currentCommandInputValue} t r `);
                     e.preventDefault();
                     this.onCommandInputChangeHandler();
                 }
@@ -498,8 +511,8 @@ export default class InputController {
                 break;
 
             case KEY_CODES.DOWN_ARROW:
-                if (this._isArrowControlMethod()) { // shortKeys in use
-                    this.$commandInput.val(`${currentCommandInputValue} \u2B63`);
+                if (this._isArrowControlMethod()) {
+                    this.$commandInput.val(`${currentCommandInputValue} \u2B63 `);
                     e.preventDefault();
                     this.onCommandInputChangeHandler();
                 } else {
@@ -511,42 +524,42 @@ export default class InputController {
                 break;
 
             case KEY_CODES.MULTIPLY:
-                this.$commandInput.val(`${currentCommandInputValue} \u2B50`);
+                this.$commandInput.val(`${currentCommandInputValue} \u2B50 `);
                 e.preventDefault();
                 this.onCommandInputChangeHandler();
 
                 break;
 
             case KEY_CODES.ADD:
-                this.$commandInput.val(`${currentCommandInputValue} +`);
+                this.$commandInput.val(`${currentCommandInputValue} + `);
                 e.preventDefault();
                 this.onCommandInputChangeHandler();
 
                 break;
 
             case KEY_CODES.EQUALS: // mac + (actually `=`)
-                this.$commandInput.val(`${currentCommandInputValue} +`);
+                this.$commandInput.val(`${currentCommandInputValue} + `);
                 e.preventDefault();
                 this.onCommandInputChangeHandler();
 
                 break;
 
             case KEY_CODES.SUBTRACT:
-                this.$commandInput.val(`${currentCommandInputValue} -`);
+                this.$commandInput.val(`${currentCommandInputValue} - `);
                 e.preventDefault();
                 this.onCommandInputChangeHandler();
 
                 break;
 
             case KEY_CODES.DASH: // mac -
-                this.$commandInput.val(`${currentCommandInputValue} -`);
+                this.$commandInput.val(`${currentCommandInputValue} - `);
                 e.preventDefault();
                 this.onCommandInputChangeHandler();
 
                 break;
 
             case KEY_CODES.DIVIDE:
-                this.$commandInput.val(`${currentCommandInputValue} takeoff`);
+                this.$commandInput.val(`${currentCommandInputValue} takeoff `);
                 e.preventDefault();
                 this.onCommandInputChangeHandler();
 
@@ -705,89 +718,139 @@ export default class InputController {
     }
 
     /**
+     * Encapsulation of repeated boolean logic
+     *
      * @for InputController
-     * @method input_run
+     * @method _isArrowControlMethod
+     * @return {boolean}
      */
-    input_run() {
+    _isArrowControlMethod() {
+        return window.gameController.game.option.get(GAME_OPTION_NAMES.CONTROL_METHOD) === 'arrows';
+    }
+
+    /**
+     * @for InputController
+     * @method _parseUserCommand
+     * @return result {CommandParser}
+     */
+    _parseUserCommand() {
         let result;
+        // this could use $commandInput.val() as an alternative
+        const userCommand = prop.input.command.trim().toLowerCase();
 
-        // TODO: does this need to be in a try/catch?
-        // TODO: abstract this to another method and only hanlde the return with this method.
+        // Using try/catch here very much on purpose. the `CommandParser` will throw when it encounters any kind
+        // of error; invalid length, validation, parse, etc. Here we catch those errors, log them to the screen
+        // and then throw them all at once
         try {
-            result = zlsa.atc.Parser.parse(prop.input.command.trim().toLowerCase());
+            result = new CommandParser(userCommand);
         } catch (error) {
-            if (_get(error, 'name', '') === 'SyntaxError') {
-                window.uiController.ui_log('Command not understood');
-
-                return;
-            }
+            window.uiController.ui_log('Command not understood');
 
             throw error;
         }
 
-        // TODO: convert `result.command === { }` to a switch statement
-        if (result.command === 'version') {
-            window.uiController.ui_log(`Air Traffic Control simulator version ${prop.version.join('.')}`);
+        return result;
+    }
 
-            return true;
-        } else if (result.command === 'tutorial') {
-            window.tutorialView.tutorial_toggle();
+    /**
+     * @for InputController
+     * @method input_run
+     */
+    input_run() {
+        const commandParser = this._parseUserCommand();
 
-            return true;
-        } else if (result.command === 'auto') {
-            // TODO: this is undefined
-            aircraft_toggle_auto();
-
-            if (prop.aircraft.auto.enabled) {
-                window.uiController.ui_log('automatic controller ENGAGED');
-            } else {
-                window.uiController.ui_log('automatic controller OFF');
-            }
-
-            return true;
-        } else if (result.command === 'pause') {
-            window.gameController.game_pause_toggle();
-            return true;
-        } else if (result.command === 'timewarp') {
-            if (result.args) {
-                window.gameController.game.speedup = result.args;
-            } else {
-                window.gameController.game_timewarp_toggle();
-            }
-
-            return true;
-        } else if (result.command === 'clear') {
-            localStorage.clear();
-            location.reload();
-        } else if (result.command === 'airport') {
-            if (result.args) {
-                if (result.args.toLowerCase() in prop.airport.airports) {
-                    window.airportController.airport_set(result.args.toLowerCase());
-                } else {
-                    window.uiController.ui_airport_toggle();
-                }
-            } else {
-                window.uiController.ui_airport_toggle();
-            }
-
-            return true;
-        } else if (result.command === 'rate') {
-            if (result.args && result.args > 0) {
-                window.gameController.game.frequency = result.args;
-            }
-
-            return true;
-        } else if (result.command !== 'transmit') {
-            return true;
+        if (commandParser.command !== 'transmit') {
+            return this.processSystemCommand(commandParser);
         }
 
+        return this.processTransmitCommand(commandParser);
+    }
+
+    /**
+     * @for InputController
+     * @method processSystemCommand
+     * @param commandParser {CommandParser}
+     * @return {boolean}
+     */
+    processSystemCommand(commandParser) {
+        switch (commandParser.command) {
+            case PARSED_COMMAND_NAME.VERSION:
+                window.uiController.ui_log(`Air Traffic Control simulator version ${prop.version.join('.')}`);
+
+                return true;
+
+            case PARSED_COMMAND_NAME.TUTORIAL:
+                window.tutorialView.tutorial_toggle();
+
+                return true;
+
+            case PARSED_COMMAND_NAME.AUTO:
+                // FIXME: does this function exist anywhere?
+                // aircraft_toggle_auto();
+                //
+                // if (prop.aircraft.auto.enabled) {
+                //     window.uiController.ui_log('automatic controller ENGAGED');
+                // } else {
+                //     window.uiController.ui_log('automatic controller OFF');
+                // }
+
+                return true;
+
+            case PARSED_COMMAND_NAME.PAUSE:
+                window.gameController.game_pause_toggle();
+
+                return true;
+
+            case PARSED_COMMAND_NAME.TIMEWARP:
+                if (commandParser.args) {
+                    window.gameController.game.speedup = commandParser.args;
+                } else {
+                    window.gameController.game_timewarp_toggle();
+                }
+
+                return true;
+
+            case PARSED_COMMAND_NAME.CLEAR:
+                localStorage.clear();
+                location.reload();
+
+            case PARSED_COMMAND_NAME.AIRPORT:
+                // TODO: it may be better to do this in the parser
+                const airportIcao = commandParser.args[0];
+
+                if (_has(prop.airport.airports, airportIcao)) {
+                    window.airportController.airport_set(airportIcao);
+                }
+
+                return true;
+
+            case PARSED_COMMAND_NAME.RATE:
+                // TODO: is this if even needed?
+                if (commandParser.args) {
+                    window.gameController.game.frequency = commandParser.args;
+                }
+
+                return true;
+            default:
+                return true;
+        }
+    }
+
+    /**
+     * @for InputController
+     * @method processTransmitCommand
+     * @param commandParser {CommandParser}
+     * @return {boolean}
+     */
+    processTransmitCommand(commandParser) {
+        // TODO: abstract the aircraft callsign matching
         let matches = 0;
         let match = -1;
 
         for (let i = 0; i < prop.aircraft.list.length; i++) {
             const aircraft = prop.aircraft.list[i];
 
-            if (aircraft.matchCallsign(result.callsign)) {
+            if (aircraft.matchCallsign(commandParser.callsign)) {
                 matches += 1;
                 match = i;
             }
@@ -807,17 +870,6 @@ export default class InputController {
 
         const aircraft = prop.aircraft.list[match];
 
-        return aircraft.runCommands(result.args);
-    }
-
-    /**
-     * Encapsulation of repeated boolean logic
-     *
-     * @for InputController
-     * @method _isArrowControlMethod
-     * @return {boolean}
-     */
-    _isArrowControlMethod() {
-        return window.gameController.game.option.get(GAME_OPTION_NAMES.CONTROL_METHOD) === 'arrows';
+        return aircraft.runCommands(commandParser.args);
     }
 }
