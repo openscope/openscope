@@ -534,11 +534,11 @@ export default class Aircraft {
         let heavy = '';
 
         if (this.model.weightclass === 'H') {
-            heavy = ' heavy';
+            heavy = 'heavy';
         }
 
         if (this.model.weightclass === 'U') {
-            heavy = ' super';
+            heavy = 'super';
         }
 
         let callsign = this.callsign;
@@ -1506,7 +1506,7 @@ export default class Aircraft {
             const wind_dir = round(radiansToDegrees(wind.angle));
             const readback = {
                 // TODO: the wind_dir calculation should be abstracted
-                log: `wind ${round(wind_dir / 10) * 10} ${round(wind.speed)}, runway ${this.rwy_dep} , cleared for takeoff`,
+                log: `wind ${round(wind_dir / 10) * 10} ${round(wind.speed)}, runway ${this.rwy_dep}, cleared for takeoff`,
                 say: `wind ${radio_spellOut(round(wind_dir / 10) * 10)} at ${radio_spellOut(round(wind.speed))}, runway ${radio_runway(this.rwy_dep)}, cleared for takeoff`
             };
 
@@ -1849,8 +1849,8 @@ export default class Aircraft {
                     alt_log = `descending through ${alt} for ${this.target.altitude}`;
                     alt_say = `descending through ${radio_altitude(alt)} for ${radio_altitude(this.target.altitude)}`;
                 } else if (altdiff < 0) {
-                    alt_log = ` climbing through ${alt} for ${this.target.altitude}`;
-                    alt_say = ` climbing through ${radio_altitude(alt)} for ${radio_altitude(this.target.altitude)}`;
+                    alt_log = `climbing through ${alt} for ${this.target.altitude}`;
+                    alt_say = `climbing through ${radio_altitude(alt)} for ${radio_altitude(this.target.altitude)}`;
                 }
             } else {
                 alt_log = `at ${alt}`;
