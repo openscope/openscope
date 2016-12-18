@@ -124,7 +124,7 @@ export default class AircraftConflict {
      * Check for collision
      */
     checkCollision() {
-        if (this.aircraft[0].wow() || this.aircraft[1].wow()) {
+        if (this.aircraft[0].isOnGround() || this.aircraft[1].isOnGround()) {
             return;  // TEMPORARY FIX FOR CRASHES BTWN ARRIVALS AND TAXIIED A/C
         }
 
