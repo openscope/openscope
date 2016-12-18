@@ -129,4 +129,6 @@ ava('.parseElevation() should parse a string elevation into an elevation in feet
     t.true(parseElevation('-23m') === -75.45931758530183);
     t.true(parseElevation(Infinity) === Infinity);
     t.true(parseElevation(-Infinity) === -Infinity);
+    t.true(parseElevation('Infinity') === Infinity);
+    t.true(parseElevation('-Infinity') === -Infinity);
 });

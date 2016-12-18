@@ -36,6 +36,7 @@
 
 
 
+
 ### Bugfixes
 - Moves `_comment` blocks in airport json file to be within object the are describing [#145](https://github.com/n8rzz/atc/issues/145)
 - Streamlines flight number generation and adds new method to add new callsigns to the existing list [#151](https://github.com/n8rzz/atc/issues/151)
@@ -74,3 +75,5 @@
 - Aircraft strips show arrival airport in uppercase [#108](https://github.com/n8rzz/atc/issues/108)
 - Updates `FixCollection.findFixByName()` to accept upper, mixed, or lower case fix name [#109](https://github.com/n8rzz/atc/issues/109)
 - Switching to a previously loaded airport does not clear previous airport fixes [#115](https://github.com/n8rzz/atc/issues/115)
+- Fixes `parseElevation()` so that it does not return NaN when it is given the string `'Infinity'` [#191] (https://github.com/n8rzz/atc/issues/191)
+    - Originally reported under [#756](https://github.com/zlsa/atc/issues/756)
