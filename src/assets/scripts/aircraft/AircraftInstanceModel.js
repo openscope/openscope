@@ -1731,11 +1731,10 @@ export default class Aircraft {
      */
     isOnGround() {
         const error_allowance_ft = 5;
-        const apt = window.airportController.airport_get();
-        const rwy_elev = apt.getRunway(this.rwy_dep || this.rwy_arr).elevation;
-        const apt_elev = apt.position.elevation;
-        const nearRunwayAltitude = abs(this.altitude - rwy_elev) < error_allowance_ft;
-        const nearAirportAltitude = abs(this.altitude - apt_elev) < error_allowance_ft;
+        const airport = window.airportController.airport_get();
+        const runway = airport.getRunway(this.rwy_dep || this.rwy_arr);
+        const nearRunwayAltitude = abs(this.altitude - runway.elevation) < error_allowance_ft;
+        const nearAirportAltitude = abs(this.altitude - airport.position.elevation) < error_allowance_ft;
 
         return nearRunwayAltitude || nearAirportAltitude;
     }
