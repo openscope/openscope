@@ -178,7 +178,7 @@ export default class Leg {
 
         // TODO: refactor/abstract this boolean logic
         // Remove the placeholder leg (if present)
-        if (fms.my_aircraft.wow() &&
+        if (fms.my_aircraft.isOnGround() &&
             fms.legs.length > 0 &&
             fms.legs[0].route === airport.icao &&
             pairs.length > 0

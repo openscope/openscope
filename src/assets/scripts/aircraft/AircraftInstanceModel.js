@@ -1382,7 +1382,7 @@ export default class Aircraft {
       * @param data
       */
     runReroute(data) {
-    // capitalize everything
+        // TODO: capitalize everything?
         data = data[0].toUpperCase();
         let worked = true;
         const route = this.fms.formatRoute(data);
@@ -1473,7 +1473,7 @@ export default class Aircraft {
             return ['fail', 'inbound'];
         }
 
-        if (!this.wow()) {
+        if (!this.isOnGround()) {
             return ['fail', 'already airborne'];
         }
         if (this.mode === FLIGHT_MODES.APRON) {
@@ -1705,6 +1705,41 @@ export default class Aircraft {
     }
 
     /**
+     * Checks if the aircraft is inside the airspace of a specified airport
+     *
+     * @for AircraftInstanceModel
+     * @method isInsideAirspace
+     * @param  {airport} airport the airport whose airspace we are checking
+     * @return {Boolean}
+     * @private
+     */
+    isInsideAirspace(airport) {
+        let withinAirspaceLateralBoundaries = this.distance <= airport.ctr_radius;
+        const withinAirspaceAltitudeRange = this.altitude <= airport.ctr_ceiling;
+
+        if (!_isNil(airport.perimeter)) {    // polygonal airspace boundary
+            withinAirspaceLateralBoundaries = point_in_area(this.position, airport.perimeter);
+        }
+
+        return withinAirspaceAltitudeRange && withinAirspaceLateralBoundaries;
+    }
+
+    /**
+     * Aircraft has "weight-on-wheels" (on the ground)
+     * @for AircraftInstanceModel
+     * @method isOnGround
+     */
+    isOnGround() {
+        const error_allowance_ft = 5;
+        const airport = window.airportController.airport_get();
+        const runway = airport.getRunway(this.rwy_dep || this.rwy_arr);
+        const nearRunwayAltitude = abs(this.altitude - runway.elevation) < error_allowance_ft;
+        const nearAirportAltitude = abs(this.altitude - airport.position.elevation) < error_allowance_ft;
+
+        return nearRunwayAltitude || nearAirportAltitude;
+    }
+
+    /**
      * Aircraft is actively following an instrument approach and is elegible for reduced separation
      *
      * If the game ever distinguishes between ILS/MLS/LAAS
@@ -1725,7 +1760,7 @@ export default class Aircraft {
      */
     isStopped() {
         // TODO: enumerate the magic number.
-        return this.wow() && this.speed < 5;
+        return this.isOnGround() && this.speed < 5;
     }
 
     /**
@@ -1980,7 +2015,7 @@ export default class Aircraft {
                     this.fms.setCurrent({ start_speed: this.fms.currentWaypoint.speed });
                 }
 
-                if (this.wow()) {
+                if (this.isOnGround()) {
                     this.target.altitude = runway.elevation;
                     this.target.speed = 0;
                 } else {
@@ -2136,7 +2171,7 @@ export default class Aircraft {
         }
 
         // If stalling, make like a meteorite and fall to the earth!
-        if (this.speed < this.model.speed.min && !this.wow()) {
+        if (this.speed < this.model.speed.min && !this.isOnGround()) {
             this.target.altitude = Math.min(0, this.target.altitude);
         }
 
@@ -2235,7 +2270,7 @@ export default class Aircraft {
 
         // TURNING
         // this.target.heading = radians_normalize(this.target.heading);
-        if (!this.wow() && this.heading !== this.target.heading) {
+        if (!this.isOnGround() && this.heading !== this.target.heading) {
             // Perform standard turns 3 deg/s or 25 deg bank, whichever
             // requires less bank angle.
             // Formula based on http://aviation.stackexchange.com/a/8013
@@ -2290,7 +2325,7 @@ export default class Aircraft {
             }
         }
 
-        if (this.wow()) {
+        if (this.isOnGround()) {
             this.trend = 0;
         }
 
@@ -2300,7 +2335,7 @@ export default class Aircraft {
         if (this.target.speed < this.speed - 0.01) {
             difference = -this.model.rate.decelerate * window.gameController.game_delta() / 2;
 
-            if (this.wow()) {
+            if (this.isOnGround()) {
                 difference *= 3.5;
             }
         } else if (this.target.speed > this.speed + 0.01) {
@@ -2348,7 +2383,7 @@ export default class Aircraft {
             const wind = window.airportController.airport_get().wind;
             let vector;
 
-            if (this.wow()) {
+            if (this.isOnGround()) {
                 vector = vscale([sin(angle), cos(angle)], scaleSpeed);
             } else {
                 let crab_angle = 0;
@@ -2387,22 +2422,10 @@ export default class Aircraft {
             this.radial += tau();
         }
 
-        // polygonal airspace boundary
-        if (window.airportController.airport_get().perimeter) {
-            let inside = point_in_area(this.position, window.airportController.airport_get().perimeter);
+        const isInsideAirspace = this.isInsideAirspace(window.airportController.airport_get());
 
-            // TODO: this logic is duplicated below. abstract to new method
-            if (inside !== this.inside_ctr) {
-                this.crossBoundary(inside);
-            }
-        } else {
-            // simple circular airspace boundary
-            let inside = this.distance <= window.airportController.airport_get().ctr_radius &&
-                this.altitude <= window.airportController.airport_get().ctr_ceiling;
-
-            if (inside !== this.inside_ctr) {
-                this.crossBoundary(inside);
-            }
+        if (isInsideAirspace !== this.inside_ctr) {
+            this.crossBoundary(isInsideAirspace);
         }
     }
 
@@ -2481,7 +2504,7 @@ export default class Aircraft {
             });
         }
 
-        if (this.terrain_ranges && !this.wow()) {
+        if (this.terrain_ranges && !this.isOnGround()) {
             const terrain = prop.airport.current.terrain;
             const prev_level = this.terrain_ranges[this.terrain_level];
             const ele = Math.ceil(this.altitude, 1000);
@@ -2663,18 +2686,5 @@ export default class Aircraft {
      */
     removeConflict(other) {
         delete this.conflicts[other.getCallsign()];
-    }
-
-    /**
-     * Aircraft has "weight-on-wheels" (on the ground)
-     * @for AircraftInstanceModel
-     * @method wow
-     */
-    wow() {
-        const error_allowance = 5;
-        const apt = window.airportController.airport_get();
-        const rwy_elev = apt.getRunway(this.rwy_dep || this.rwy_arr).elevation;
-        const apt_elev = apt.position.elevation;
-        return this.altitude - (rwy_elev || apt_elev) < error_allowance;
     }
 }

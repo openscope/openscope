@@ -182,7 +182,7 @@ export default class InputController {
         this.input = input;
         this.input.command = '';
         this.input.callsign = '';
-        this.input.data = '';
+        // this.input.data = '';
         this.input.history = [];
         this.input.history_item = null;
         this.input.click = [0, 0];
@@ -286,7 +286,9 @@ export default class InputController {
 
             if (nearest[0]) {
                 if (nearest[1] < window.uiController.px_to_km(80)) {
-                    this.input_select(nearest[0].getCallsign().toUpperCase());
+                    this.input.callsign = nearest[0].getCallsign().toUpperCase();
+
+                    this.input_select(this.input.callsign);
                 } else {
                     this.input_select();
                 }
@@ -576,8 +578,16 @@ export default class InputController {
                 break;
 
             case KEY_CODES.ESCAPE:
+                const currentCommandValue = this.$commandInput.val();
+
+                // if the current commandInput value contains a callsign and commands, only clear the commands
+                if (currentCommandValue.trim() !== this.input.callsign) {
+                    this.$commandInput.val(`${this.input.callsign} `);
+
+                    return;
+                }
+
                 this.$commandInput.val('');
-                e.preventDefault();
 
                 break;
             default:
