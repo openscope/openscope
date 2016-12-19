@@ -200,7 +200,7 @@ export default class AircraftController {
                 remove = true;
             }
 
-            if (aircraft.hit && aircraft.wow()) {
+            if (aircraft.hit && aircraft.isOnGround()) {
                 window.uiController.ui_log(`Lost radar contact with ${aircraft.getCallsign()}`);
                 speech_say([
                     { type: 'callsign', content: aircraft },
