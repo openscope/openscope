@@ -1,5 +1,4 @@
 import $ from 'jquery';
-import peg from 'pegjs';
 import ContentQueue from './contentQueue/ContentQueue';
 import LoadingView from './LoadingView';
 import AirportController from './airport/AirportController';
@@ -13,7 +12,6 @@ import { speech_init } from './speech';
 import { time, calculateDeltaTime } from './utilities/timeHelpers';
 import { LOG } from './constants/logLevel';
 
-window.peg = peg;
 window.zlsa = {};
 window.zlsa.atc = {};
 const prop = {};
@@ -23,9 +21,6 @@ const prop = {};
 // This will need to be re-worked, and current global functions should be exported and
 // imported as needed in each file.
 require('./util');
-// this module doesnt appear to be in use anywhere
-// require('./animation');
-require('./parser');
 
 // saved as this.prop.version and this.prop.version_string
 const VERSION = [3, 2, 0];
