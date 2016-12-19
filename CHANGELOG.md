@@ -8,6 +8,7 @@
 - Deprecates `sid` and `star` properties of the `AirportModel` in favor of `sidCollection` and `starCollection` [#54](https://github.com/n8rzz/atc/issues/54)
 - Adds [Express](expressjs.com) server to serve static assets and add [travis](travis-ci.org) config file for travis continuous integration [#169](https://github.com/n8rzz/atc/issues/169)
 - Rewrites the CommandParser from the ground up [#114](https://github.com/n8rzz/atc/issues/114)
+- Removes `Pegjs` and references completing switch to new CommandParser [#216](https://github.com/n8rzz/atc/issues/216)
 
 
 
