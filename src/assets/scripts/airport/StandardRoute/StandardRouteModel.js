@@ -468,7 +468,7 @@ export default class StandardRouteModel extends BaseModel {
         if (this._entryCollection) {
             const entrySegment = this._entryCollection.findSegmentByName(entry);
 
-            if (entrySegment === undefined) {
+            if (typeof entrySegment === 'undefined') {
                 throw new TypeError(`Expected 'entry' to exist in the RouteSegmentCollection, but '${this.icao}' ` +
                 `does not have an entry of '${entry}'`);
             }
@@ -479,7 +479,7 @@ export default class StandardRouteModel extends BaseModel {
         if (this._exitCollection) {
             const exitSegment = this._exitCollection.findSegmentByName(exit);
 
-            if (exitSegment === undefined) {
+            if (typeof exitSegment === 'undefined') {
                 throw new TypeError(`Expected 'exit' to exist in the RouteSegmentCollection, but '${this.icao}' ` +
                 `does not have an exit of '${exit}'`);
             }

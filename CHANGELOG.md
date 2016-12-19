@@ -9,8 +9,6 @@
 - Adds [Express](expressjs.com) server to serve static assets and add [travis](travis-ci.org) config file for travis continuous integration [#169](https://github.com/n8rzz/atc/issues/169)
 - Rewrites the CommandParser from the ground up [#114](https://github.com/n8rzz/atc/issues/114)
 
-
-
 ### Minor
 - Implements `modelSourceFactory` and `modelSourcePool` [#77](https://github.com/n8rzz/atc/issues/77)
 - Refactors `canvasController.canvas_draw_sids` method to use `airport.sidCollection` instead of `airport.sid` [#144](https://github.com/n8rzz/atc/issues/144)
@@ -27,15 +25,8 @@
     - Updates `PositionModel` to run all calculations through the static `.calculatePosition()` method and vastly simplifies internal logic.
 - Refactors the the function names in `FixCollection` to better fit their function. `init()` to `addItems()` and `destroy()` to `removeItems()` [#186] (https://github.com/n8rzz/atc/issues/186)
 - Adds gulp-cli and adds [tools readme](tools/README.md) link to gulp issues with Windows [#194](https://github.com/n8rzz/atc/issues/194)
-- Changes `routeString` to `routeCode` to better fit what it is and also fixs trancpercy in to the `routeModel` [#188] (https://github.com/n8rzz/atc/issues/188)
-    -.toUpperCase() is now called on intilization and removed from the getter
-
-
-
-
-
-
-
+- Changes `routeString` to `routeCode` in `RouteModel` and moves `.toUpperCase()` from the getter to `.init()` [#188] (https://github.com/n8rzz/atc/issues/188)
+- Updates `StandardRouteModel` to throw when entry/exit point doesn't exist within a collection and updates `.setDepartureRunway()` to send the `routeCode` to `Leg` on instantiation [#175](https://github.com/n8rzz/atc/issues/175)
 
 ### Bugfixes
 - Moves `_comment` blocks in airport json file to be within object the are describing [#145](https://github.com/n8rzz/atc/issues/145)
@@ -44,8 +35,6 @@
     - Originally reported under [#754](https://github.com/zlsa/atc/issues/754)
 - Ensures proper removal of aircraft from the runway queue(s) when that aircraft has been deleted. [#132](https://github.com/n8rzz/atc/issues/132)
     - Originally reported under [#706](https://github.com/zlsa/atc/issues/706)
-
-
 
 
 ## 3.1.0 (November 20, 2016)

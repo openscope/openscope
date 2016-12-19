@@ -255,6 +255,18 @@ ava('._findBodyFixList() returns an empty array when ._bodySegmentModel is undef
     t.true(result.length === 0);
 });
 
+ava('._findStandardWaypointModelsForRoute() throws if entry does not exist within the collection', t => {
+    const model = new StandardRouteModel(STAR_MOCK);
+
+    t.throws(() => model._findStandardWaypointModelsForRoute('threeve', '25R'));
+});
+
+ava('._findStandardWaypointModelsForRoute() throws if exit does not exist within the collection', t => {
+    const model = new StandardRouteModel(STAR_MOCK);
+
+    t.throws(() => model._findStandardWaypointModelsForRoute('DRK', 'threeve'));
+});
+
 ava('._findStandardWaypointModelsForRoute() returns a list of StandardRouteWaypointModels when _entryCollection and _exitCollection exist', t => {
     const model = new StandardRouteModel(STAR_MOCK);
     const result = model._findStandardWaypointModelsForRoute(ENTRY_FIXNAME_MOCK, RUNWAY_NAME_MOCK);
