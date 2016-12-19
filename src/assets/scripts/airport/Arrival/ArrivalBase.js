@@ -404,7 +404,7 @@ export default class ArrivalBase {
                 // TODO: this could be a _get() instead of an || assignment
                 heading: heading || this.heading,
                 waypoints: this.fixes,
-                route: _get(this, 'activeRouteModel.routeString', ''),
+                route: _get(this, 'activeRouteModel.routeCode', ''),
                 position: pos.position,
                 speed: this.speed,
                 nextFix: nextFix
@@ -502,7 +502,7 @@ export default class ArrivalBase {
             airline: airline.name,
             fleet: airline.fleet,
             waypoints: this.fixes,
-            route: _get(this, 'activeRouteModel.routeString', ''),
+            route: _get(this, 'activeRouteModel.routeCode', ''),
             // TODO: this should use a `PositionModel` instead of just using it to get a position
             // this will take a lot of refactoring, though, as aircraft.position is used all over the app.
             speed: this.speed
@@ -536,7 +536,7 @@ export default class ArrivalBase {
 
             log(`Requested arrival rate of ${this.frequency} acph overridden to ` +
                 `maintain minimum of ${AIRPORT_CONSTANTS.MIN_ENTRAIL_DISTANCE_NM} miles entrail on arrival stream ` +
-                `following route ${this.activeRouteModel.routeString}`, LOG.INFO);
+                `following route ${this.activeRouteModel.routeCode}`, LOG.INFO);
         }
 
         const max_interval = tgt_interval + (tgt_interval - min_interval);

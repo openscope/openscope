@@ -16,8 +16,8 @@ const NAME_MOCK = 'BIKKR';
 const RESTRICTIONS_MOCK = 'A80+|S250';
 const ROUTE_WAYPOINT_MOCK = [NAME_MOCK, RESTRICTIONS_MOCK];
 
-ava.before(() => FixCollection.init(FIX_LIST_MOCK, airportPositionFixtureKSFO));
-ava.after(() => FixCollection.destroy());
+ava.before(() => FixCollection.addItems(FIX_LIST_MOCK, airportPositionFixtureKSFO));
+ava.after(() => FixCollection.removeItems());
 
 ava('StandardRouteWaypointModel exits early when instantiated without parameters', t => {
     t.notThrows(() => new StandardRouteWaypointModel());

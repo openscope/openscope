@@ -7,6 +7,8 @@
     - Consolidates `runSID()` and `climbViaSid()` logic
 - Deprecates `sid` and `star` properties of the `AirportModel` in favor of `sidCollection` and `starCollection` [#54](https://github.com/n8rzz/atc/issues/54)
 - Adds [Express](expressjs.com) server to serve static assets and add [travis](travis-ci.org) config file for travis continuous integration [#169](https://github.com/n8rzz/atc/issues/169)
+- Rewrites the CommandParser from the ground up [#114](https://github.com/n8rzz/atc/issues/114)
+- Removes `Pegjs` and references completing switch to new CommandParser [#216](https://github.com/n8rzz/atc/issues/216)
 
 
 
@@ -24,6 +26,13 @@
 - Consolidates test fixtures in fixtures directory [#167](https://github.com/n8rzz/atc/issues/167)
 * Addresses issue with video maps being drawn incorrectly. [#176](https://github.com/n8rzz/atc/issues/176)
     - Updates `PositionModel` to run all calculations through the static `.calculatePosition()` method and vastly simplifies internal logic.
+- Refactors the the function names in `FixCollection` to better fit their function. `init()` to `addItems()` and `destroy()` to `removeItems()` [#186] (https://github.com/n8rzz/atc/issues/186)
+- Adds gulp-cli and adds [tools readme](tools/README.md) link to gulp issues with Windows [#194](https://github.com/n8rzz/atc/issues/194)
+- Changes `routeString` to `routeCode` in `routeModel` [#188] (https://github.com/n8rzz/atc/issues/188)
+    -`.toUpperCase()` is now called on initialization and removed from the getter
+- Escape clears commands but not callsign if commands are present [#211] (https://github.com/n8rzz/atc/issues/211)
+    - Originally reported under [#763](https://github.com/zlsa/atc/issues/763)
+
 
 
 
@@ -39,7 +48,8 @@
     - Originally reported under [#754](https://github.com/zlsa/atc/issues/754)
 - Adds additional handling to `StandardRouteModel._buildEntryAndExitCollections` to handle case where `entryPoints` and `exitPoints` don't exist in the `airport.sids` definition [#196](https://github.com/n8rzz/atc/issues/196)
     - Originally reported under [#760](https://github.com/zlsa/atc/issues/760)
-
+- Ensures proper removal of aircraft from the runway queue(s) when that aircraft has been deleted. [#132](https://github.com/n8rzz/atc/issues/132)
+    - Originally reported under [#706](https://github.com/zlsa/atc/issues/706)
 
 
 
@@ -71,3 +81,5 @@
 - Aircraft strips show arrival airport in uppercase [#108](https://github.com/n8rzz/atc/issues/108)
 - Updates `FixCollection.findFixByName()` to accept upper, mixed, or lower case fix name [#109](https://github.com/n8rzz/atc/issues/109)
 - Switching to a previously loaded airport does not clear previous airport fixes [#115](https://github.com/n8rzz/atc/issues/115)
+- Fixes `parseElevation()` so that it does not return NaN when it is given the string `'Infinity'` [#191] (https://github.com/n8rzz/atc/issues/191)
+    - Originally reported under [#756](https://github.com/zlsa/atc/issues/756)

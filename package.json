@@ -70,7 +70,6 @@
     "express": "^4.14.0",
     "jquery": "^3.1.0",
     "lodash": "^4.15.0",
-    "pegjs": "^0.9.0",
     "raf": "^3.3.0"
   },
   "devDependencies": {
@@ -95,6 +94,7 @@
     "gulp-autoprefixer": "^3.1.1",
     "gulp-cache": "^0.4.5",
     "gulp-clean": "^0.3.2",
+    "gulp-cli": "^1.2.2",
     "gulp-concat": "^2.6.0",
     "gulp-connect": "^5.0.0",
     "gulp-eslint": "^3.0.1",

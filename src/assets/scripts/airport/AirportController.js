@@ -188,4 +188,21 @@ export default class AirportController {
     hasAirport(icao) {
         return _has(this.airport.airports, icao);
     }
+
+    /**
+     * Remove an aircraft from the queue of any runway(s) at the AirportModel
+     * @for AirportModel
+     * @method removeAircraftFromAllRunwayQueues
+     * @param  {aircraft} aircraft The aircraft to remove
+     */
+    removeAircraftFromAllRunwayQueues(aircraft) {
+        const runwayPrimaryEndIndex = 0;
+        const runwaySecondaryEndIndex = 1;
+        const runways = this.airport_get().runways;
+        for (let runwayPair = 0; runwayPair < runways.length; runwayPair++) {
+            runways[runwayPair][runwayPrimaryEndIndex].removeQueue(aircraft, true);
+            runways[runwayPair][runwaySecondaryEndIndex].removeQueue(aircraft, true);
+        }
+    }
+
 }

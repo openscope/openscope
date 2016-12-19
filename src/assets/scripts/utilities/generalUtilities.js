@@ -1,6 +1,15 @@
 import _isArray from 'lodash/isArray';
 
 /**
+ * Helper method to translate a unicode character into a readable string value
+ *
+ * @method unicodeToString
+ * @param char {characterCode}
+ * @return {string}
+ */
+export const unicodeToString = (char) => `\\u${char.charCodeAt(0).toString(16).toUpperCase()}`;
+
+/**
  *
  * @function choose
  */
