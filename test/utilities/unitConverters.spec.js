@@ -14,7 +14,7 @@ import {
     convertMinutesToSeconds,
     parseCoordinate,
     parseElevation
-} from '../../src/assets/scripts/utilities/unitConverters';
+} from '../../src/assets/scripts/client/utilities/unitConverters';
 
 ava('.km() converts kilometers to nautical miles', t => {
     const result = km(10);

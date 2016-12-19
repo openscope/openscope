@@ -3,8 +3,8 @@ import ava from 'ava';
 import sinon from 'sinon';
 import _isEqual from 'lodash/isEqual';
 
-import modelSourcePool from '../../../src/assets/scripts/base/ModelSource/ModelSourcePool';
-import FixModel from '../../../src/assets/scripts/airport/Fix/FixModel';
+import modelSourcePool from '../../../src/assets/scripts/client/base/ModelSource/ModelSourcePool';
+import FixModel from '../../../src/assets/scripts/client/airport/Fix/FixModel';
 import { airportPositionFixtureKSFO } from '../../fixtures/airportFixtures';
 import {
     FIXNAME_MOCK,

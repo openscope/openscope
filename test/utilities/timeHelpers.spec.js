@@ -1,6 +1,6 @@
 import ava from 'ava';
 
-import { calculateDeltaTime } from '../../src/assets/scripts/utilities/timeHelpers';
+import { calculateDeltaTime } from '../../src/assets/scripts/client/utilities/timeHelpers';
 
 ava('.calculateDeltaTime() should calculate the next DeltaTime', t => {
     const currentTime = 1474388830.375;

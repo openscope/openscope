@@ -12,7 +12,7 @@ import {
     fixValidator,
     headingValidator,
     holdValidator
-} from '../../src/assets/scripts/commandParser/argumentValidators';
+} from '../../src/assets/scripts/client/commandParser/argumentValidators';
 
 // TODO: import ERROR_MESSAGE and use actual values to test against
 
