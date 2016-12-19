@@ -363,6 +363,12 @@ export default class StandardRouteModel extends BaseModel {
         } else if (_has(standardRoute, 'exitPoints')) {
             this._entryCollection = this._buildSegmentCollection(standardRoute.rwy);
             this._exitCollection = this._buildSegmentCollection(standardRoute.exitPoints);
+        } else if (_has(standardRoute, 'rwy')) {
+            console.error(`The '${this.icao}' procedure does not contain exitPoints or entryPoints. ` +
+                `If this is a SID, at least one exitPoint must be defined. If this is a STAR, at least ` +
+                `one entryPoint must be defined.`);
+
+            this._entryCollection = this._buildSegmentCollection(standardRoute.rwy);
         }
     }
 

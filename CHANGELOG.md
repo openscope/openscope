@@ -38,6 +38,8 @@
 - Streamlines flight number generation and adds new method to add new callsigns to the existing list [#151](https://github.com/n8rzz/atc/issues/151)
 - Adds `_isNumber` check instead of `!magneticNorth` inside `PositionModel.calculatePosition()` and the `AirspaceModel` constructor. [#182](https://github.com/n8rzz/atc/issues/182)
     - Originally reported under [#754](https://github.com/zlsa/atc/issues/754)
+- Adds additional handling to `StandardRouteModel._buildEntryAndExitCollections` to handle case where `entryPoints` and `exitPoints` don't exist in the `airport.sids` definition [#196](https://github.com/n8rzz/atc/issues/196)
+    - Originally reported under [#760](https://github.com/zlsa/atc/issues/760)
 - Ensures proper removal of aircraft from the runway queue(s) when that aircraft has been deleted. [#132](https://github.com/n8rzz/atc/issues/132)
     - Originally reported under [#706](https://github.com/zlsa/atc/issues/706)
 
