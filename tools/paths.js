@@ -8,6 +8,7 @@ var src = './src';
 var srcAssetsDir = path.join(src, 'assets');
 var scrScriptsFonts = path.join(srcAssetsDir, 'fonts');
 var srcScriptsDir = path.join(srcAssetsDir, 'scripts');
+var srcScriptsClientDir = path.join(srcScriptsDir, 'client');
 var srcStylesDir = path.join(srcAssetsDir, 'style');
 var srcImagesDir = path.join(srcAssetsDir, 'images');
 var srcAircraft = path.join(srcAssetsDir, 'aircraft');
@@ -18,6 +19,7 @@ var build = ROOT;
 var buildAssetsDir = path.join(ROOT, 'assets');
 var buildFontsDir = path.join(buildAssetsDir, 'fonts');
 var buildScriptsDir = path.join(buildAssetsDir, 'scripts');
+var buildScriptsClientDir = path.join(buildScriptsDir, 'client');
 var buildStylesDir = path.join(buildAssetsDir, 'style');
 var buildImagesDir = path.join(buildAssetsDir, 'images');
 var buildAircraft = path.join(buildAssetsDir, 'aircraft');
@@ -32,6 +34,7 @@ options.DIR = {
     SRC_ASSETS: srcAssetsDir,
     SRC_FONTS: scrScriptsFonts,
     SRC_SCRIPTS: srcScriptsDir,
+    SRC_SCRIPTS_CLIENT: srcScriptsClientDir,
     SRC_STYLE: srcStylesDir,
     SRC_IMAGES: srcImagesDir,
     SRC_AIRCRAFT: srcAircraft,
@@ -42,6 +45,7 @@ options.DIR = {
     BUILD_ASSETS: buildAssetsDir,
     BUILD_FONTS: buildFontsDir,
     BUILD_SCRIPTS: buildScriptsDir,
+    BUILD_SCRIPTS_CLIENT: buildScriptsClientDir,
     BUILD_STYLE: buildStylesDir,
     BUILD_IMAGES: buildImagesDir,
     BUILD_AIRCRAFT: buildAircraft,
@@ -51,7 +55,7 @@ options.DIR = {
 
 // for specific files
 options.FILE = {
-    JS_ENTRY: path.join(options.DIR.SRC_SCRIPTS, 'index.js'),
+    JS_ENTRY: path.join(options.DIR.SRC_SCRIPTS_CLIENT, 'index.js'),
     CSS_MAIN: path.join(options.DIR.SRC_STYLE, 'main.css'),
     PKG_JSON: path.join(options.ROOT, 'package.json')
 };

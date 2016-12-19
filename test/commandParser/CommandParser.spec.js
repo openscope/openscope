@@ -5,8 +5,8 @@ import _isEqual from 'lodash/isEqual';
 import _map from 'lodash/map';
 import _tail from 'lodash/tail';
 
-import CommandParser from '../../src/assets/scripts/commandParser/CommandParser';
-import CommandModel from '../../src/assets/scripts/commandParser/CommandModel';
+import CommandParser from '../../src/assets/scripts/client/commandParser/CommandParser';
+import CommandModel from '../../src/assets/scripts/client/commandParser/CommandModel';
 
 const TIMEWARP_50_MOCK = 'timewarp 50';
 const CALLSIGN_MOCK = 'AA777';

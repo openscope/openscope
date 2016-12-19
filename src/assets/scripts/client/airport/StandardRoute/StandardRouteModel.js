@@ -363,6 +363,12 @@ export default class StandardRouteModel extends BaseModel {
         } else if (_has(standardRoute, 'exitPoints')) {
             this._entryCollection = this._buildSegmentCollection(standardRoute.rwy);
             this._exitCollection = this._buildSegmentCollection(standardRoute.exitPoints);
+        } else if (_has(standardRoute, 'rwy')) {
+            console.error(`The '${this.icao}' procedure does not contain exitPoints or entryPoints. ` +
+                `If this is a SID, at least one exitPoint must be defined. If this is a STAR, at least ` +
+                `one entryPoint must be defined.`);
+
+            this._entryCollection = this._buildSegmentCollection(standardRoute.rwy);
         }
     }
 
@@ -467,11 +473,23 @@ export default class StandardRouteModel extends BaseModel {
 
         if (this._entryCollection) {
             const entrySegment = this._entryCollection.findSegmentByName(entry);
+
+            if (typeof entrySegment === 'undefined') {
+                throw new TypeError(`Expected 'entry' to exist in the RouteSegmentCollection, but '${this.icao}' ` +
+                `does not have an entry of '${entry}'`);
+            }
+
             entrySegmentItems = entrySegment.items;
         }
 
         if (this._exitCollection) {
             const exitSegment = this._exitCollection.findSegmentByName(exit);
+
+            if (typeof exitSegment === 'undefined') {
+                throw new TypeError(`Expected 'exit' to exist in the RouteSegmentCollection, but '${this.icao}' ` +
+                `does not have an exit of '${exit}'`);
+            }
+
             exitSegmentItems = exitSegment.items;
         }
 

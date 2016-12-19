@@ -14,7 +14,7 @@ import {
     convertMinutesToSeconds,
     parseCoordinate,
     parseElevation
-} from '../../src/assets/scripts/utilities/unitConverters';
+} from '../../src/assets/scripts/client/utilities/unitConverters';
 
 ava('.km() converts kilometers to nautical miles', t => {
     const result = km(10);
@@ -129,4 +129,6 @@ ava('.parseElevation() should parse a string elevation into an elevation in feet
     t.true(parseElevation('-23m') === -75.45931758530183);
     t.true(parseElevation(Infinity) === Infinity);
     t.true(parseElevation(-Infinity) === -Infinity);
+    t.true(parseElevation('Infinity') === Infinity);
+    t.true(parseElevation('-Infinity') === -Infinity);
 });

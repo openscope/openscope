@@ -301,7 +301,9 @@ export const parseElevation = (elevation) => {
 
     // if its a number, we're done here.
     // This will catch whole numbers, floats, Infinity and -Infinity.
-    if (_isNumber(elevation)) {
+    // This checks if strings are given will skip the regex and exit early
+    // Also stops the function from returning NaN
+    if (_isNumber(elevation) || elevation === 'Infinity' || elevation === '-Infinity') {
         return parseFloat(elevation);
     }
 
@@ -320,3 +322,4 @@ export const parseElevation = (elevation) => {
 
     return parseFloat(parsedElevation);
 };
+

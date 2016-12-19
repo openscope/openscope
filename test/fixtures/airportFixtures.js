@@ -1,5 +1,5 @@
-import AirportModel from '../../src/assets/scripts/airport/AirportModel';
-import PositionModel from '../../src/assets/scripts/base/PositionModel';
+import AirportModel from '../../src/assets/scripts/client/airport/AirportModel';
+import PositionModel from '../../src/assets/scripts/client/base/PositionModel';
 
 // airport position for KSFO
 export const airportPositionFixtureKSFO = new PositionModel(['N37.6195', 'W122.3738333', '13ft'], null, 13.7);
