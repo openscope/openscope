@@ -904,12 +904,12 @@ export default class Aircraft {
 
         let isExpeditingString = '';
         if (expedite) {
-            isExpeditingString = 'and expedite';
+            isExpeditingString = ' and expedite';
         }
 
         const readback = {
-            log: `${radioTrendAltitude} ${this.fms.altitudeForCurrentWaypoint()} ${isExpeditingString}`,
-            say: `${radioTrendAltitude} ${currentWaypointRadioAltitude} ${isExpeditingString}`
+            log: `${radioTrendAltitude} ${this.fms.altitudeForCurrentWaypoint()}${isExpeditingString}`,
+            say: `${radioTrendAltitude} ${currentWaypointRadioAltitude}${isExpeditingString}`
         };
 
         return ['ok', readback];
