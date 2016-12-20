@@ -11,7 +11,7 @@
 
 
 ### Minor
-
+- Changes `AircraftStripView` text outputs to be all uppercase
 
 
 
