@@ -1,4 +1,4 @@
-import BaseCollection from '../../../src/assets/scripts/base/BaseCollection';
+import BaseCollection from '../../../src/assets/scripts/client/base/BaseCollection';
 
 export default class ExtendedBaseCollectionMock extends BaseCollection {
     constructor() {

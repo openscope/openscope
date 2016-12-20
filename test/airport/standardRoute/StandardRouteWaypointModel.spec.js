@@ -2,9 +2,9 @@
 import ava from 'ava';
 import sinon from 'sinon';
 
-import StandardRouteWaypointModel from '../../../src/assets/scripts/airport/StandardRoute/StandardRouteWaypointModel';
-import FixCollection from '../../../src/assets/scripts/airport/Fix/FixCollection';
-import Waypoint from '../../../src/assets/scripts/aircraft/FlightManagementSystem/Waypoint';
+import StandardRouteWaypointModel from '../../../src/assets/scripts/client/airport/StandardRoute/StandardRouteWaypointModel';
+import FixCollection from '../../../src/assets/scripts/client/airport/Fix/FixCollection';
+import Waypoint from '../../../src/assets/scripts/client/aircraft/FlightManagementSystem/Waypoint';
 
 import {
     airportPositionFixtureKSFO,

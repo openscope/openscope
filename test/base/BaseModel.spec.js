@@ -1,7 +1,7 @@
 import ava from 'ava';
 import _isString from 'lodash/isString';
 
-import BaseModel from '../../src/assets/scripts/base/BaseModel';
+import BaseModel from '../../src/assets/scripts/client/base/BaseModel';
 import ExtendedBaseModelFixture from './_fixtures/ExtendedBaseModelFixture';
 
 ava('instantiates with an _id property', t => {

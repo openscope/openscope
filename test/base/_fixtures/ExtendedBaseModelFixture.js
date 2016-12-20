@@ -1,4 +1,4 @@
-import BaseModel from '../../../src/assets/scripts/base/BaseModel';
+import BaseModel from '../../../src/assets/scripts/client/base/BaseModel';
 
 export default class ExtendedBaseModelMock extends BaseModel {
     constructor() {
