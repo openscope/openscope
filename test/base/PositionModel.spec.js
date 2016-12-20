@@ -1,7 +1,7 @@
 import ava from 'ava';
 import _isEqual from 'lodash/isEqual';
 
-import PositionModel from '../../src/assets/scripts/base/PositionModel';
+import PositionModel from '../../src/assets/scripts/client/base/PositionModel';
 import { airportPositionFixtureKLAS } from '../fixtures/airportFixtures';
 
 const LAT_LONG_MOCK = ['N36d38m01.199', 'W114d36m17.219'];

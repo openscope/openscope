@@ -4,7 +4,7 @@ import ava from 'ava';
 import {
     airlineNameAndFleetHelper,
     randomAirlineSelectionHelper,
-} from '../../src/assets/scripts/airline/randomAirlineSelectionHelper';
+} from '../../src/assets/scripts/client/airline/randomAirlineSelectionHelper';
 
 const AIRLINE_LIST_WITH_SEPERATOR_MOCK = [
     ['aca/long', 4],

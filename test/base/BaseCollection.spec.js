@@ -1,7 +1,7 @@
 import ava from 'ava';
 import _isArray from 'lodash/isArray';
 import _isString from 'lodash/isString';
-import BaseCollection from '../../src/assets/scripts/base/BaseCollection';
+import BaseCollection from '../../src/assets/scripts/client/base/BaseCollection';
 import ExtendedBaseCollectionFixture from './_fixtures/ExtendedBaseCollectionFixture';
 
 ava('instantiates with a _id and _items properties', t => {

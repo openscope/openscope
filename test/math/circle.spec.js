@@ -3,7 +3,7 @@ import ava from 'ava';
 import {
     tau,
     distanceToPoint
-} from '../../src/assets/scripts/math/circle';
+} from '../../src/assets/scripts/client/math/circle';
 
 ava('.tau() returns PI * 2', t => {
     const result = tau();

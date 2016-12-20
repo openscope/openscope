@@ -19,12 +19,18 @@ module.exports = (gulp, config) => {
         });
     });
 
-
     ////////////////////////////////////////////////////////////////////
     // CLEAN DESTINATION SCRIPT FILES
     ////////////////////////////////////////////////////////////////////
     gulp.task('clean:build:scripts', (cb) => {
-        rimraf(OPTIONS.DIR.BUILD_SCRIPTS, cb);
+        rimraf(OPTIONS.DIR.BUILD_SCRIPTS_CLIENT, cb);
+    });
+
+    ////////////////////////////////////////////////////////////////////
+    // CLEAN DESTINATION SCRIPT FILES
+    ////////////////////////////////////////////////////////////////////
+    gulp.task('clean:build:server', (cb) => {
+        rimraf(OPTIONS.DIR.BUILD_SCRIPTS_SERVER, cb);
     });
 
     ////////////////////////////////////////////////////////////////////
@@ -35,41 +41,6 @@ module.exports = (gulp, config) => {
     });
 
     ////////////////////////////////////////////////////////////////////
-    // CLEAN DESTINATION IMAGES
-    ////////////////////////////////////////////////////////////////////
-    gulp.task('clean:build:images', (cb) => {
-        rimraf(OPTIONS.DIR.BUILD_IMAGES, cb);
-    });
-
-    ////////////////////////////////////////////////////////////////////
-    // CLEAN DESTINATION FONT FILES
-    ////////////////////////////////////////////////////////////////////
-    gulp.task('clean:build:fonts', (cb) => {
-        rimraf(OPTIONS.DIR.BUILD_FONTS, cb);
-    });
-
-    ////////////////////////////////////////////////////////////////////
-    // CLEAN JSON DATA FOLDERS
-    ////////////////////////////////////////////////////////////////////
-    gulp.task('clean:aircraft', (cb) => {
-        rimraf(OPTIONS.DIR.BUILD_AIRCRAFT, cb);
-    });
-
-    gulp.task('clean:airlines', (cb) => {
-        rimraf(OPTIONS.DIR.BUILD_AIRLINES, cb);
-    });
-
-    gulp.task('clean:airports', (cb) => {
-        rimraf(OPTIONS.DIR.BUILD_AIRPORTS, cb);
-    });
-
-    gulp.task('clean:data:json', [
-        'clean:aircraft',
-        'clean:airlines',
-        'clean:airports'
-    ]);
-
-    ////////////////////////////////////////////////////////////////////
     // TASKS
     ////////////////////////////////////////////////////////////////////
     gulp.task('clean:build', [
@@ -78,11 +49,6 @@ module.exports = (gulp, config) => {
     ]);
 
     gulp.task('clean:dist', [
-        // 'clean:build:fonts',
-        // 'clean:aircraft',
-        // 'clean:airlines',
-        // 'clean:airports',
-        // 'clean:build:images',
         'clean:build'
     ]);
 
