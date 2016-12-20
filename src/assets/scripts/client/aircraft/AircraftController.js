@@ -83,9 +83,11 @@ export default class AircraftController {
     addConflict(aircraft, otherAircraft) {
         const conflict = new AircraftConflict(aircraft, otherAircraft);
 
-        if (!conflict.isDuplicate() && !conflict.shouldBeRemoved()) {
-            this.conflicts.push(conflict);
+        if (conflict.isDuplicate() || conflict.shouldBeRemoved()) {
+            return;
         }
+
+        this.conflicts.push(conflict);
     }
 
     /**
@@ -160,7 +162,7 @@ export default class AircraftController {
         window.airportController.removeAircraftFromAllRunwayQueues(aircraft);
         this.removeCallsignFromList(aircraft.callsign);
         this.removeAircraftInstanceModelFromList(aircraft);
-        this.removeAllAircraftConflictsInvolving(aircraft);
+        this.removeAllAircraftConflictsForAircraft(aircraft);
         aircraft.cleanup();
     }
 
@@ -383,10 +385,10 @@ export default class AircraftController {
      * Remove any conflicts that involve the specified aircraft
      *
      * @for AircraftController
-     * @method removeAllAircraftConflictsInvolving
+     * @method removeAllAircraftConflictsForAircraft
      * @param  {Aircraft} aircraft - the aircraft to remove
      */
-    removeAllAircraftConflictsInvolving(aircraft) {
+    removeAllAircraftConflictsForAircraft(aircraft) {
         _each(this.conflicts, (conflict) => {
             if (_includes(conflict.aircraft, aircraft)) {
                 this.removeConflict(conflict);
@@ -414,6 +416,7 @@ export default class AircraftController {
     removeConflict(conflict) {
         conflict.aircraft[0].removeConflict(conflict.aircraft[1]);
         conflict.aircraft[1].removeConflict(conflict.aircraft[0]);
+
         this.conflicts = _without(this.conflicts, conflict);
     }
 

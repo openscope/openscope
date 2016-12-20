@@ -2646,18 +2646,21 @@ export default class Aircraft {
     /**
      * @for AircraftInstanceModel
      * @method addConflict
+     * @param {AircraftConflict} conflict
+     * @param {Aircraft} conflictingAircraft
      */
-    addConflict(conflict, other) {
-        this.conflicts[other.getCallsign()] = conflict;
+    addConflict(conflict, conflictingAircraft) {
+        this.conflicts[conflictingAircraft.getCallsign()] = conflict;
     }
 
     /**
      * @for AircraftInstanceModel
      * @method checkConflict
+     * @param {Aircraft} conflictingAircraft
      */
-    checkConflict(other) {
-        if (this.conflicts[other.getCallsign()]) {
-            this.conflicts[other.getCallsign()].update();
+    checkConflict(conflictingAircraft) {
+        if (this.conflicts[conflictingAircraft.getCallsign()]) {
+            this.conflicts[conflictingAircraft.getCallsign()].update();
             return true;
         }
 
@@ -2683,10 +2686,10 @@ export default class Aircraft {
     /**
      * @for AircraftInstanceModel
      * @method removeConflict
-     * @param other
+     * @param {Aircraft} conflictingAircraft
      */
-    removeConflict(other) {
-        const conflictBeingRemoved = this.conflicts[other.getCallsign()];
+    removeConflict(conflictingAircraft) {
+        const conflictBeingRemoved = this.conflicts[conflictingAircraft.getCallsign()];
         this.conflicts = _without(this.conflicts, conflictBeingRemoved);
     }
 }

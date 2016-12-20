@@ -318,12 +318,7 @@ export default class AircraftConflict {
      * @return {Boolean}
      */
     shouldBeRemoved() {
-        const reasonsToRemove = [
-            this._isOutsideBoundingBox(),
-            this.isDuplicate()
-        ];
-
-        return _some(reasonsToRemove);
+        return this._isOutsideBoundingBox() || this.isDuplicate();
     }
 
     /**
