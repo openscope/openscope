@@ -1,4 +1,6 @@
 /* eslint-disable no-underscore-dangle, no-unused-vars, no-undef, global-require */
+import _each from 'lodash/each';
+import _includes from 'lodash/includes';
 import _without from 'lodash/without';
 import AircraftConflict from './AircraftConflict';
 import AircraftModel from './AircraftModel';
@@ -158,6 +160,7 @@ export default class AircraftController {
         window.airportController.removeAircraftFromAllRunwayQueues(aircraft);
         this.removeCallsignFromList(aircraft.callsign);
         this.removeAircraftInstanceModelFromList(aircraft);
+        this.removeAllAircraftConflictsInvolving(aircraft);
         aircraft.cleanup();
     }
 
@@ -367,11 +370,28 @@ export default class AircraftController {
 
     /**
      * Remove the specified aircraft from `AircraftController.aircraft`
+     *
+     * @for AircraftController
      * @method removeAircraftInstanceModelFromList
      * @param  {Aircraft} aircraft the aircraft to remove
      */
     removeAircraftInstanceModelFromList(aircraft) {
         this.aircraft.list = _without(this.aircraft.list, aircraft);
+    }
+
+    /**
+     * Remove any conflicts that involve the specified aircraft
+     *
+     * @for AircraftController
+     * @method removeAllAircraftConflictsInvolving
+     * @param  {Aircraft} aircraft - the aircraft to remove
+     */
+    removeAllAircraftConflictsInvolving(aircraft) {
+        _each(this.conflicts, (conflict) => {
+            if (_includes(conflict.aircraft, aircraft)) {
+                this.removeConflict(conflict);
+            }
+        });
     }
 
     /**
