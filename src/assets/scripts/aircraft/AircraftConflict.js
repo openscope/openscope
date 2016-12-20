@@ -320,7 +320,7 @@ export default class AircraftConflict {
     shouldBeRemoved() {
         const reasonsToRemove = [
             this._isOutsideBoundingBox(),
-            this._isEitherAircraftRemoved()
+            this.isDuplicate()
         ];
 
         return _some(reasonsToRemove);
@@ -337,19 +337,5 @@ export default class AircraftConflict {
      */
     _isOutsideBoundingBox() {
         return this.distance > MAXIMUM_SEPARATION_KM;
-    }
-
-    /**
-     * Checks whether either of the aircraft in the conflict does not appear in the simulation's aircraft list
-     *
-     * @for AircraftConflict
-     * @method _isEitherAircraftRemoved
-     * @return {Boolean}
-     */
-    _isEitherAircraftRemoved() {
-        const aircraft1_is_present = _includes(aircraftController.aircraft.list, this.aircraft[0]);
-        const aircraft2_is_present = _includes(aircraftController.aircraft.list, this.aircraft[1]);
-        const eitherIsMissing = !aircraft1_is_present || !aircraft2_is_present;
-        return eitherIsMissing;
     }
 }
