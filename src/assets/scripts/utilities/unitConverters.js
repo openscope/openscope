@@ -3,6 +3,14 @@ import _isNumber from 'lodash/isNumber';
 import _startsWith from 'lodash/startsWith';
 import { tau } from '../math/circle';
 import { round, mod } from '../math/core';
+import { TIME, REGEX } from '../constants/globalConstants';
+
+/**
+ * @property DECIMAL_RADIX
+ * @type {number}
+ * @final
+ */
+const DECIMAL_RADIX = 10;
 
 // TODO: This should be moved to its own file once it has been filled in a little more
 /**
@@ -41,7 +49,15 @@ export const UNIT_CONVERSION_CONSTANTS = {
      * @type {number}
      * @final
      */
-    KN_MS: 0.51444444
+    KN_MS: 0.51444444,
+    /**
+     * Number used to obtain feet from a flight level number
+     *
+     * @property FL_TO_FT_MULTIPLIER
+     * @type {number}
+     * @final
+     */
+    FL_TO_FT_MULTIPLIER: 100
 };
 
 // TODO: This should be moved to its own file once it has been filled in a little more
@@ -175,13 +191,33 @@ export const km_to_px = (kilometers, scale) => {
 };
 
 /**
- *
- *
  * @function convertMinutesToSeconds
  * @param minutes {number}
  * @return {number}
  */
 export const convertMinutesToSeconds = (minutes) => minutes * 60;
+
+/**
+ * Utility function to convert a number to thousands.
+ *
+ * Given a flightlevel FL180, this function outputs 18,000
+ *
+ * @function covertToThousands
+ * @param  {number} value
+ * @return {number}
+ */
+export const convertToThousands = (value) => parseInt(value, DECIMAL_RADIX) * UNIT_CONVERSION_CONSTANTS.FL_TO_FT_MULTIPLIER;
+
+/**
+ * Attempt to convert a string to a number
+ *
+ * The implementor will have to handle the case where `parseInt` returns `NaN`
+ *
+ * @function convertStringToNumber
+ * @param  value {string|*}
+ * @return {number|NaN}
+ */
+export const convertStringToNumber = (value) => parseInt(value, DECIMAL_RADIX);
 
 /**
  *
@@ -208,6 +244,49 @@ export const heading_to_string = (heading) => {
 };
 
 /**
+ * Accept a lat/long coordinate and return a value in decimal notation
+ *
+ * Latitude and Longitude numbers may be one of the following forms:
+ *   Decimal degrees - 'N47.112388112'
+ *   Decimal minutes - 'N38d38.109808'
+ *   Decimal seconds - 'N58d27m12.138'
+ *
+ * @function parseCoordinate
+ * @param coordinate {string}
+ * @return transformedCoordinate {number}
+ */
+export const parseCoordinate = (coordinate) => {
+    const match = REGEX.LAT_LONG.exec(coordinate);
+
+    // If coordinate already in WGS84 ESPG:4326 form ('39.427618, -75.296011'), just return it as-is
+    if (match == null) {
+        return coordinate;
+    }
+
+    const degrees = parseFloat(match[2]);
+    let minutes = 0;
+    let seconds = 0;
+
+    // Gather minutes/seconds as decimal of a degree, if available
+    if (match[5] != null) {
+        minutes = (parseFloat(match[5]) * TIME.ONE_MINUTE_IN_HOURS);
+
+        if (match[8] != null) {
+            seconds = (parseFloat(match[8]) * TIME.ONE_SECOND_IN_HOURS);
+        }
+    }
+
+    let decimalDegrees = degrees + minutes + seconds;
+
+    // Apply negative to value if coordinate is "South" or "West"
+    if (REGEX.SW.test(match[1])) {
+        decimalDegrees *= -1;
+    }
+
+    return decimalDegrees;
+};
+
+/**
  * Accept a string elevation and return a number representing elevation in ft.
  *
  * @function parseElevation
@@ -222,7 +301,9 @@ export const parseElevation = (elevation) => {
 
     // if its a number, we're done here.
     // This will catch whole numbers, floats, Infinity and -Infinity.
-    if (_isNumber(elevation)) {
+    // This checks if strings are given will skip the regex and exit early
+    // Also stops the function from returning NaN
+    if (_isNumber(elevation) || elevation === 'Infinity' || elevation === '-Infinity') {
         return parseFloat(elevation);
     }
 
@@ -236,8 +317,9 @@ export const parseElevation = (elevation) => {
 
     // if it came in as a negative number,return it as a negative number
     if (_startsWith(elevation, '-')) {
-        parsedElevation *=  -1;
+        parsedElevation *= -1;
     }
 
     return parseFloat(parsedElevation);
 };
+

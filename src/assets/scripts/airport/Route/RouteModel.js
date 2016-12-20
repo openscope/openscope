@@ -18,27 +18,39 @@ const SEGMENT_SEPARATION_SYMBOL = '.';
  */
 const MAXIMUM_ROUTE_SEGMENT_LENGTH = 3;
 
+// TODO: this class needs a better name
 /**
  * @class RouteModel
  */
 export default class RouteModel extends BaseModel {
     /**
+     * example `routeCode`
+     *
+     * ```
      * 'BETHL.GRNPA1.KLAS'
+     * ```
+     *
+     * // TODO: should be able to support input of:
+     * - KSFO.OFFSH9.SXC.V458.IPL.J2.JCT..LLO..ACT..KACT
+     * which can be returned as:
+     * - ['KSFO.OFFSH9.SXC', 'SXC.V458.IPL', 'IPL.J2.JCT', 'LLO', 'ACT', 'KACT']
      *
      * @for RouteModel
      * @constructor
-     * @param routeString {string}
+     * @param routeCode {string}
      */
-    constructor(routeString) {
+    constructor(routeCode) {
         super();
 
-        if (typeof routeString === 'undefined' || typeof routeString !== 'string') {
+        if (typeof routeCode === 'undefined' || typeof routeCode !== 'string') {
+            console.error(`Invalid data type passed to RouteModel. Expected a string but received ${routeCode}`);
+
             return;
         }
 
-        if (!this._isValidRouteString(routeString)) {
+        if (!this._isValidRouteCode(routeCode)) {
             // eslint-disable-next-line max-len
-            throw new TypeError(`Invalid routeString passed to RouteModel. Expected a routeString of the shape ORIGIN.BASE.DESTINATION but instead received ${routeString}`);
+            throw new TypeError(`Invalid routeCode passed to RouteModel. Expected a routeCode of the shape ORIGIN.BASE.DESTINATION but instead received ${routeCode}`);
         }
 
         /**
@@ -62,16 +74,16 @@ export default class RouteModel extends BaseModel {
          */
         this.exit = '';
 
-        return this._init(routeString);
+        return this._init(routeCode);
     }
 
     /**
      * A single string that represents the entire route
      *
-     * @property routeString
+     * @property routeCode
      * @return {string}
      */
-    get routeString() {
+    get routeCode() {
         return `${this.entry}.${this.procedure}.${this.exit}`;
     }
 
@@ -80,15 +92,15 @@ export default class RouteModel extends BaseModel {
      *
      * @for RouteModel
      * @method _init
-     * @param routeString {string}
+     * @param routeCode {string}
      * @private
      */
-    _init(routeString) {
-        const { entry, base, exit } = this._extractSegmentNamesFromRouteString(routeString);
+    _init(routeCode) {
+        const { entry, base, exit } = this._extractSegmentNamesFromRouteCode(routeCode);
 
-        this.entry = entry;
-        this.procedure = base;
-        this.exit = exit;
+        this.entry = entry.toUpperCase();
+        this.procedure = base.toUpperCase();
+        this.exit = exit.toUpperCase();
 
         return this;
     }
@@ -107,13 +119,13 @@ export default class RouteModel extends BaseModel {
 
     /**
      * @for RouteModel
-     * @method _extractSegmentNamesFromRouteString
-     * @param routeString {string}
+     * @method _extractSegmentNamesFromRouteCode
+     * @param routeCode {string}
      * @return {object}
      * @private
      */
-    _extractSegmentNamesFromRouteString(routeString) {
-        const routeSegments = routeString.split(SEGMENT_SEPARATION_SYMBOL);
+    _extractSegmentNamesFromRouteCode(routeCode) {
+        const routeSegments = routeCode.split(SEGMENT_SEPARATION_SYMBOL);
 
         return {
             entry: routeSegments[0],
@@ -123,15 +135,15 @@ export default class RouteModel extends BaseModel {
     }
 
     /**
-     * Verify that a routestring has exactly 3 segments
+     * Verify that a routeCode has exactly 3 segments
      *
      * @for RouteModel
-     * @method _isValidRouteString
-     * @param routeString {string}
+     * @method _isValidRouteCode
+     * @param routeCode {string}
      * @return {boolean}
      * @private
      */
-    _isValidRouteString(routeString) {
-        return routeString.split(SEGMENT_SEPARATION_SYMBOL).length === MAXIMUM_ROUTE_SEGMENT_LENGTH;
+    _isValidRouteCode(routeCode) {
+        return routeCode.split(SEGMENT_SEPARATION_SYMBOL).length === MAXIMUM_ROUTE_SEGMENT_LENGTH;
     }
 }

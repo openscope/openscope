@@ -124,14 +124,16 @@ export default class AircraftConflict {
      * Check for collision
      */
     checkCollision() {
-        if (this.aircraft[0].wow() || this.aircraft[1].wow()) {
+        if (this.aircraft[0].isOnGround() || this.aircraft[1].isOnGround()) {
             return;  // TEMPORARY FIX FOR CRASHES BTWN ARRIVALS AND TAXIIED A/C
         }
 
         // TODO: enumerate the magic numbers.
         // Collide within 160 feet
+        const airport = window.airportController.airport_get();
+
         if (((this.distance < 0.05) && (this.altitude < 160)) &&
-            (this.aircraft[0].isVisible() && this.aircraft[1].isVisible())
+            (this.aircraft[0].isInsideAirspace(airport) && this.aircraft[1].isInsideAirspace(airport))
         ) {
             this.collided = true;
             const isWarning = true;
@@ -141,18 +143,9 @@ export default class AircraftConflict {
             this.aircraft[0].hit = true;
             this.aircraft[1].hit = true;
 
-            // If either are in runway queue, remove them from it
-            for (const i in window.airportController.airport_get().runways) {
-                const runway = window.airportController.airport_get().runways[i];
-
-                // Primary End of Runway
-                runway[0].removeQueue(this.aircraft[0], true);
-                runway[0].removeQueue(this.aircraft[1], true);
-
-                // Secondary End of Runway
-                runway[1].removeQueue(this.aircraft[0], true);
-                runway[1].removeQueue(this.aircraft[1], true);
-            }
+            // If either are in a runway queue, remove them from it
+            window.airportController.removeAircraftFromAllRunwayQueues(this.aircraft[0]);
+            window.airportController.removeAircraftFromAllRunwayQueues(this.aircraft[1]);
         }
     }
 

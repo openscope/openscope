@@ -1,17 +1,39 @@
+import _isNumber from 'lodash/isNumber';
 import _uniqueId from 'lodash/uniqueId';
-import { sin, cos } from '../math/core';
-import { degreesToRadians, parseElevation } from '../utilities/unitConverters';
+import {
+    calculateDistanceToPointForX,
+    calculateDistanceToPointForY,
+    adjustForMagneticNorth,
+    hasCardinalDirectionInCoordinate
+} from './positionModelHelpers';
+import { distanceToPoint } from '../math/circle';
+import {
+    degreesToRadians,
+    parseCoordinate,
+    parseElevation
+} from '../utilities/unitConverters';
 
 /**
- * @property REGEX
- * @type {Object}
+ * @property LATITUDE_INDEX
+ * @type {number}
  * @final
  */
-const REGEX = {
-    COMPASS_DIRECTION: /^[NESW]/,
-    SW: /[SW]/,
-    LAT_LONG: /^([NESW])(\d+(\.\d+)?)([d °](\d+(\.\d+)?))?([m '](\d+(\.\d+)?))?$/
-};
+const LATITUDE_INDEX = 0;
+
+/**
+ * @property LONGITUDE_INDEX
+ * @type {number}
+ * @final
+ */
+const LONGITUDE_INDEX = 1;
+
+/**
+ * @property ELEVATION_INDEX
+ * @type {number}
+ * @final
+ */
+const ELEVATION_INDEX = 2;
+
 
 /**
  * A physical location on the Earth's surface
@@ -27,7 +49,7 @@ const REGEX = {
  *
  * @class Position
  */
-export default class Position {
+export default class PositionModel {
     /**
      * coordinates may contain an optional elevation as a third element.
      * It must be suffixed by either 'ft' or 'm' to indicate the units.
@@ -39,27 +61,106 @@ export default class Position {
      *
      * @for PositionModel
      * @constructor
-     * @param coordinates {array} Array containing offset pair or latitude/longitude pair
-     * @param reference {}        Position to use for calculating offsets when lat/long given
-     * @param magnetic_north
-     * @param mode {string}       optional. Set to 'GPS' to indicate you are inputting lat/lon
-     *                            that should be converted to positions
+     * @param coordinates {array}               Array containing offset pair or latitude/longitude pair
+     * @param reference {PositionModel|null}    Position to use for calculating offsets when lat/long given
+     * @param magnetic_north {number}           magnetic north direction
+     * @param mode {string}                     Set to 'GPS' to indicate you are inputting lat/long that should
+     *                                          be converted to positions
      */
-    constructor(coordinates = [], reference, magnetic_north = 0, mode) {
-        this._id = _uniqueId();
-        // TODO: it might make more sense to abstract `coordinates` out to another Model object.
-        this.latitude = 0;
-        this.longitude = 0;
-        this.elevation = 0;
-        this.reference_position = reference;
-        this.magnetic_north = magnetic_north;
-        this.x = 0;
-        this.y = 0;
-        // TODO: make this a getter;
-        this.position = [this.x, this.y];
-        this.gps = [0, 0];
+    constructor(coordinates = [], reference, magnetic_north = 0) {
+        /**
+         * @property _id
+         * @type {string}
+         */
+        this._id = _uniqueId('position-model-');
 
-        return this.parse(coordinates, mode);
+        /**
+         * @property latitude
+         * @type {number}
+         * @default 0
+         */
+        this.latitude = 0;
+
+        /**
+         * @property longitude
+         * @type {number}
+         * @default 0
+         */
+        this.longitude = 0;
+
+        /**
+         * @property elevation
+         * @type {number}
+         * @default 0
+         */
+        this.elevation = 0;
+
+        /**
+         * @property reference_position
+         * @type {PositionModel|null}
+         */
+        this.reference_position = reference;
+
+        /**
+         * @property magnetic_north
+         * @type {number}
+         */
+        this.magnetic_north = magnetic_north;
+
+        /**
+         * @property x
+         * @type {number}
+         * @default 0
+         */
+        this.x = 0;
+
+        /**
+         * @property y
+         * @type {number}
+         * @default 0
+         */
+        this.y = 0;
+
+        return this.init(coordinates);
+    }
+
+    /**
+     * Current x, y position
+     *
+     * @property position
+     * @return {array}
+     */
+    get position() {
+        return [
+            this.x,
+            this.y
+        ];
+    }
+
+    /**
+     * GPS coordinates in [latitude, longitude] order
+     * For reverse order, see `PositionModel.gpsXY`
+     * @property gps
+     * @return {array}
+     */
+    get gps() {
+        return [
+            this.latitude,
+            this.longitude
+        ];
+    }
+
+    /**
+     * GPS coordinates in [x,y] order
+     * For reverse order, see `PositionModel.gps`
+     * @property gpsXY
+     * @return {array}
+     */
+    get gpsXY() {
+        return [
+            this.longitude,
+            this.latitude
+        ];
     }
 
     /**
@@ -74,86 +175,18 @@ export default class Position {
 
     /**
      * @for PositionModel
-     * @method parse
+     * @method init
      */
-    parse(coordinates, mode) {
-        if (!REGEX.COMPASS_DIRECTION.test(coordinates[0])) {
-            this.x = coordinates[0];
-            this.y = coordinates[1];
-            // TODO: remove once this property is a getter
-            this.position = [this.x, this.y];
-
-            if (mode === 'GPS') {
-                this.parse4326();
-            }
-
-            return;
-        }
-
-        this.latitude = this.parseCoordinate(coordinates[0]);
-        this.longitude = this.parseCoordinate(coordinates[1]);
-        // GPS coordinates in [x,y] order
-        this.gps = [
-            this.longitude,
-            this.latitude
-        ];
+    init(coordinates) {
+        this.latitude = parseCoordinate(coordinates[LATITUDE_INDEX]);
+        this.longitude = parseCoordinate(coordinates[LONGITUDE_INDEX]);
 
         // TODO: this is using coersion and shoudld be updated to be more explicit
-        if (coordinates[2] != null) {
-            this.elevation = parseElevation(coordinates[2]);
+        if (coordinates[ELEVATION_INDEX] != null) {
+            this.elevation = parseElevation(coordinates[ELEVATION_INDEX]);
         }
 
-      // this function (parse4326) is moved to be able to call it if point is
-      // EPSG:4326, numeric decimal, like those from GeoJSON
-        if (this.reference_position != null) {
-            this.x = this.longitude;
-            this.y = this.latitude;
-
-            this.parse4326();
-        }
-    }
-
-    /**
-     * @for PositionModel
-     * @method parse4326
-     */
-    parse4326() {
-        // if coordinates were in WGS84 EPSG:4326 (signed decimal lat/lon -12.123,83.456)
-        // parse them
-        this.longitude = this.x;
-        this.latitude = this.y;
-        this.x = this.distanceToPoint(
-            this.reference_position.latitude,
-            this.reference_position.longitude,
-            this.reference_position.latitude,
-            this.longitude
-        );
-
-        if (this.reference_position.longitude > this.longitude) {
-            this.x *= -1;
-        }
-
-        this.y = this.distanceToPoint(
-            this.reference_position.latitude,
-            this.reference_position.longitude,
-            this.latitude,
-            this.reference_position.longitude
-        );
-
-        if (this.reference_position.latitude > this.latitude) {
-            this.y *= -1;
-        }
-
-        // Adjust to use magnetic north instead of true north
-        let t = Math.atan2(this.y, this.x);
-        const r = Math.sqrt((this.x * this.x) + (this.y * this.y));
-
-        t += this.magnetic_north;
-
-        this.x = r * cos(t);
-        this.y = r * sin(t);
-
-        this.position = [this.x, this.y];
+        this._calculateScreenPosition();
     }
 
     /**
@@ -163,7 +196,7 @@ export default class Position {
      * @return {number}
      */
     distanceTo(point) {
-        return this.distanceToPoint(
+        return distanceToPoint(
             this.latitude,
             this.longitude,
             point.latitude,
@@ -172,60 +205,71 @@ export default class Position {
     }
 
     /**
-     * The distance in km between two locations
-     *
+     * Checks whether or not this `PositionModel` has a reference `PositionModel`
+     * Without the reference position, the rotation due to magnetic variation will not be applied
      * @for PositionModel
-     * @method distanceToPoint
-     * @param lat_a
-     * @param lng_a
-     * @param lat_b
-     * @param lng_b
-     * return {number}
+     * @method _hasReferencePosition
+     * @return {Boolean} whether this position is based on a reference position
      */
-    distanceToPoint(lat_a, lng_a, lat_b, lng_b) {
-        const d_lat = degreesToRadians(lat_a - lat_b);
-        const d_lng = degreesToRadians(lng_a - lng_b);
-
-        // TODO: what do these vars mean? a & c?
-        // TODO: could the maths here be abstracted?
-        const a = Math.pow(sin(d_lat / 2), 2) +
-            (cos(degreesToRadians(lat_a)) *
-            cos(degreesToRadians(lat_b)) *
-            Math.pow(sin(d_lng / 2), 2));
-        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-
-        // TODO: what does this number mean? enumerate the magic nubmer
-        return c * 6371.00;
+    _hasReferencePosition() {
+        return this.reference_position !== null;
     }
 
     /**
+     * Determine the `x` and `y` values of the `PositionModel`, used for drawing on the canvas
      * @for PositionModel
-     * @method parseCoordinate
-     * @param coord
+     * @method _calculateScreenPosition
+     * @private
      */
-    parseCoordinate(coord) {
-        const match = REGEX.LAT_LONG.exec(coord);
-
-        if (match == null) {
-            log(`Unable to parse coordinate ${coord}`);
-
+    _calculateScreenPosition() {
+        if (!this._hasReferencePosition()) {
             return;
         }
 
-        let ret = parseFloat(match[2]);
+        const [x, y] = PositionModel.calculatePosition(this.gps, this.reference_position, this.magnetic_north);
 
-        if (match[5] != null) {
-            ret += parseFloat(match[5]) / 60;
-
-            if (match[8] != null) {
-                ret += parseFloat(match[8]) / 3600;
-            }
-        }
-
-        if (REGEX.SW.test(match[1])) {
-            ret *= -1;
-        }
-
-        return ret;
+        this.x = x;
+        this.y = y;
     }
 }
+
+/**
+ * Calculate x/y position from latitude and longitude and a referencePostion
+ *
+ * Provides a static method to calculate position without instantiating a `PositionModel` class.
+ *
+ * @function getPosition
+ * @param coordinates {array<string>}
+ * @param referencePostion {PositionModel|null}
+ * @param magneticNorth {number}
+ * @return {array}
+ * @static
+ */
+PositionModel.calculatePosition = (coordinates, referencePostion, magneticNorth) => {
+    if (!coordinates || !referencePostion || !_isNumber(magneticNorth)) {
+        throw new TypeError('Invalid parameter. PositionModel.getPosition() requires coordinates, referencePostion ' +
+            'and magneticNorth as parameters');
+    }
+
+    const latitude = parseCoordinate(coordinates[LATITUDE_INDEX]);
+    const longitude = parseCoordinate(coordinates[LONGITUDE_INDEX]);
+
+    const canvasPositionX = calculateDistanceToPointForX(
+        referencePostion,
+        referencePostion.latitude,
+        longitude
+    );
+
+    const canvasPositionY = calculateDistanceToPointForY(
+        referencePostion,
+        latitude,
+        referencePostion.longitude
+    );
+
+    const { x, y } = adjustForMagneticNorth(canvasPositionX, canvasPositionY, magneticNorth);
+
+    return [
+        x,
+        y
+    ];
+};

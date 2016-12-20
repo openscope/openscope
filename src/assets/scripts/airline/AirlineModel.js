@@ -1,7 +1,6 @@
 import _get from 'lodash/get';
 import _has from 'lodash/has';
 import _forEach from 'lodash/forEach';
-import _map from 'lodash/map';
 import { choose, choose_weight } from '../utilities/generalUtilities';
 
 /**
@@ -82,7 +81,7 @@ export default class AirlineModel {
         _forEach(this.fleets, (fleet) => {
             _forEach(fleet, (aircraftInFleet) => {
                 const NAME_INDEX = 0;
-                aircraftInFleet[NAME_INDEX] = aircraftInFleet[NAME_INDEX].toLowerCase()
+                aircraftInFleet[NAME_INDEX] = aircraftInFleet[NAME_INDEX].toLowerCase();
             });
         });
     }
@@ -148,7 +147,7 @@ export default class AirlineModel {
      */
     chooseAircraft(fleet) {
         if (!fleet) {
-             fleet = 'default'
+            fleet = 'default';
         }
 
         // TODO: why is this a try/catch?
@@ -227,6 +226,11 @@ export default class AirlineModel {
             }
         }
 
+        // if this flightNumber already exists, repeat the process of generating a new flightNumber
+        if (window.aircraftController.isCallsignInList(flightNumber)) {
+            return this.generateFlightNumber();
+        }
+
         return flightNumber;
     }
 
@@ -273,9 +277,9 @@ export default class AirlineModel {
      */
     _generateAircraft(options) {
         if (!options.callsign) {
-            // TODO: Why is the `AircraftController` repsonsible for generating a callsign, but this is responsible for
-            // generating the flight number? callsign generation logi should live in this class.
-            options.callsign = window.aircraftController.aircraft_callsign_new(options.airline);
+            options.callsign = this.generateFlightNumber();
+
+            window.aircraftController.addCallsignToList(options.callsign);
         }
 
         if (!options.icao) {
@@ -285,7 +289,5 @@ export default class AirlineModel {
         const model = window.aircraftController.aircraft_model_get(options.icao.toLowerCase());
 
         return model.generateAircraft(options);
-        // FIXME: this block is unreachable, is it needed?
-        // var icao = options.icao.toLowerCase();
     }
 }

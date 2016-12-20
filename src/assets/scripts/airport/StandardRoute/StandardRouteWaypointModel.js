@@ -1,5 +1,7 @@
+import _isNil from 'lodash/isNil';
 import BaseModel from '../../base/BaseModel';
 import FixCollection from '../Fix/FixCollection';
+import Waypoint from '../../aircraft/FlightManagementSystem/Waypoint';
 
 /**
  * @property NAME_INDEX
@@ -14,6 +16,27 @@ const NAME_INDEX = 0;
  * @final
  */
 const RESTRICTION_INDEX = 1;
+
+/**
+ * @property RESTRICTION_SEPARATOR
+ * @type {string}
+ * @final
+ */
+const RESTRICTION_SEPARATOR = '|';
+
+/**
+ * @property ALTITUDE_RESTRICTION_PREFIX
+ * @type {string}
+ * @final
+ */
+const ALTITUDE_RESTRICTION_PREFIX = 'A';
+
+/**
+ * @property SPEED_RESTRICTION_PREFIX
+ * @type {string}
+ * @final
+ */
+const SPEED_RESTRICTION_PREFIX = 'S';
 
 /**
  * A route waypoint describes a `fixName` and any altitude or speed restrictions for that fix.
@@ -73,12 +96,12 @@ export default class StandardRouteWaypointModel extends BaseModel {
          *
          * Required altitude for a fix
          *
-         * @property _alititude (optional)
+         * @property _altitude (optional)
          * @type {number}
-         * @default -1000
+         * @default null
          * @private
          */
-        this._alititude = -1000;
+        this._altitude = null;
 
         // TODO: This will need to be implemented in the future as an emuneration. Something to the effect of: {BELOW|AT|ABOVE}
         /**
@@ -86,24 +109,24 @@ export default class StandardRouteWaypointModel extends BaseModel {
          *
          * Altitude constraints, if any, for a fix.
          *
-         * @property _alititudeConstraint (options)
+         * @property _altitudeConstraint (options)
          * @type {string}
          * @default ''
          * @private
          */
-        this._alititudeConstraint = '';
+        this._altitudeConstraint = '';
 
         /**
          * NOT IN USE
          *
          * Speed constraint, if any, for a fix.
          *
-         * @property _speedConstraint (optional)
+         * @property _speed (optional)
          * @type {string}
-         * @default -1
+         * @default null
          * @private
          */
-        this._speedConstraint = -1;
+        this._speed = null;
 
         /**
          * Positon information for the current waypoint
@@ -171,6 +194,16 @@ export default class StandardRouteWaypointModel extends BaseModel {
     }
 
     /**
+     * Return this waypoint's `gpsXY` position property
+     *
+     * @property gps
+     * @return {array}
+     */
+    get gpsXY() {
+        return this._waypointPosition.gpsXY;
+    }
+
+    /**
      * This will return a normalized fix in the shape of `[FIXNAME, FIX_RESTRICTIONS]`.
      *
      * Fixes without restrictions are brought in to the application as a single string, however, all
@@ -220,9 +253,9 @@ export default class StandardRouteWaypointModel extends BaseModel {
     reset() {
         this.name = '';
         this._restrictions = null;
-        this._alititude = -1000;
-        this._alititudeConstraint = '';
-        this._speedConstraint = -1;
+        this._altitude = null;
+        this._altitudeConstraint = '';
+        this._speed = null;
 
         return this;
     }
@@ -250,14 +283,30 @@ export default class StandardRouteWaypointModel extends BaseModel {
     }
 
     /**
-     * NOT IN USE
-     * // TODO: implement this method. altitude and speed should be parsed into real numbers so
-     *          they can be used elsewhere in the app.
+     * @for StandardRouteWaypointModel
+     * @method generateFmsWaypoint
+     * @param airport {AirportInstanceModel}
+     * @return {Waypoint}
+     */
+    generateFmsWaypoint(airport) {
+        const fmsWaypoint = {
+            fix: this.name,
+            fixRestrictions: {
+                alt: this._altitude,
+                spd: this._speed
+            }
+        };
+
+        return new Waypoint(fmsWaypoint, airport);
+    }
+
+    /**
+     * Parse any waypoint restrictions
      *
      * Parse a single string into:
-     * - `this._alititude`            = expressed in feet
-     * - `this._alititudeConstraint`  = {BELOW|AT|ABOVE}
-     * - `this._speedConstraint`      = expressed in kts
+     * - `this._altitude`            = expressed in feet
+     * - `this._altitudeConstraint`  = {BELOW|AT|ABOVE}
+     * - `this._speed`      = expressed in kts
      *
      * Exapmles:
      * - "A80+|S210"
@@ -271,6 +320,52 @@ export default class StandardRouteWaypointModel extends BaseModel {
      * @private
      */
     _parseWaypointRestrictions(waypointRestrictions) {
-        return this;
+        if (_isNil(waypointRestrictions)) {
+            return;
+        }
+
+        const restrictionPieces = this._extractRestrictionPieces(waypointRestrictions);
+
+        for (let i = 0; i < restrictionPieces.length; i++) {
+            const restriction = restrictionPieces[i];
+
+            // looking at the first letter of a restrictionPiece here.
+            if (restriction[0] === ALTITUDE_RESTRICTION_PREFIX) {
+                this._setAltitudeRestriction(restriction);
+            } else if (restriction[0] === SPEED_RESTRICTION_PREFIX) {
+                this._setSpeedRestriction(restriction);
+            }
+        }
+    }
+
+    /**
+     * @for StandardRouteWaypointModel
+     * @method _setAltitudeRestriction
+     * @param altitudeRestriction {string}
+     * @private
+     */
+    _setAltitudeRestriction(altitudeRestriction) {
+        this._altitude = altitudeRestriction.substr(1);
+    }
+
+    /**
+     * @for StandardRouteWaypointModel
+     * @method _setSpeedRestriction
+     * @param speedRestriction {string}
+     * @private
+     */
+    _setSpeedRestriction(speedRestriction) {
+        this._speed = speedRestriction.substr(1);
+    }
+
+    /**
+     * @for StandardRouteWaypointModel
+     * @method _extractRestrictionPieces
+     * @param waypointRestrictions {array<string>}
+     * @@return {string}
+     * @private
+     */
+    _extractRestrictionPieces(waypointRestrictions) {
+        return waypointRestrictions.split(RESTRICTION_SEPARATOR);
     }
 }

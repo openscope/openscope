@@ -1,12 +1,13 @@
 {
   "name": "atc",
-  "version": "3.1.0",
+  "version": "3.2.0",
   "description": "An ATC simulator in HTML5",
   "engines": {
-    "node": ">=6.0.0",
-    "npm": ">=3.0.0"
+    "node": "6.4.0",
+    "npm": "3.10.3"
   },
   "scripts": {
+    "postinstall": "gulp build",
     "test": "nyc --require babel-core/register ava --serial --concurrency=5",
     "build": "gulp dist && npm run test",
     "report": "nyc report --reporter=cobertura  --reporter=lcov",
@@ -37,7 +38,8 @@
     "indianbhaji (https://github.com/indianbhaji)",
     "Dmitri Lebedev <ryba4@ryba4.com> (http://one-giant-leap.info)",
     "tedrek (https://github.com/tedrek)",
-    "Nate Geslin <teamtomkins23@gmail.com> (https://github.com/n8rzz)"
+    "Nate Geslin <teamtomkins23@gmail.com> (https://github.com/n8rzz)",
+    "Abraham Anderson <abeis@msn.com> (https://github.com/Dabea)"
   ],
   "license": "MIT",
   "bugs": {
@@ -66,9 +68,9 @@
     ]
   },
   "dependencies": {
+    "express": "^4.14.0",
     "jquery": "^3.1.0",
     "lodash": "^4.15.0",
-    "pegjs": "^0.9.0",
     "raf": "^3.3.0"
   },
   "devDependencies": {
@@ -93,6 +95,7 @@
     "gulp-autoprefixer": "^3.1.1",
     "gulp-cache": "^0.4.5",
     "gulp-clean": "^0.3.2",
+    "gulp-cli": "^1.2.2",
     "gulp-concat": "^2.6.0",
     "gulp-connect": "^5.0.0",
     "gulp-eslint": "^3.0.1",

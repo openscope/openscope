@@ -1,10 +1,20 @@
+/* eslint-disable no-plusplus */
 import $ from 'jquery';
+import _find from 'lodash/find';
 import _last from 'lodash/last';
 import _map from 'lodash/map';
+import _isNil from 'lodash/isNil';
+import FixCollection from '../../airport/Fix/FixCollection';
 import Waypoint from './Waypoint';
-import Leg, { FP_LEG_TYPE } from './Leg';
-import { clamp } from '../math/core';
-import { LOG } from '../constants/logLevel';
+import Leg from './Leg';
+import RouteModel from '../../airport/Route/RouteModel';
+import { clamp } from '../../math/core';
+import {
+    FP_LEG_TYPE,
+    FLIGHT_CATEGORY,
+    WAYPOINT_NAV_MODE
+} from '../../constants/aircraftConstants';
+import { LOG } from '../../constants/logLevel';
 
 /**
  * Enumeration of the Leg index in `this.current`
@@ -54,15 +64,60 @@ const WAYPOINT_WITHIN_LEG = 1;
   * @class AircraftFlightManagementSystem
  */
 export default class AircraftFlightManagementSystem {
+    /**
+     * @for AircraftFlightManagementSystem
+     * @constructor
+     * @param options {object}
+     */
     constructor(options) {
+        /**
+         * @property may_aircrafts_eid
+         * @type {number}
+         * @default options.aircraft.eid
+         */
         this.my_aircrafts_eid = options.aircraft.eid;
+
+        // TODO: we should remove this reference and instead supply methods that the aircraft can call via the fms
+        /**
+         * @property my_aircraft
+         * @type {AircrafInstanceModel}
+         * @default options.aircraft
+         */
         this.my_aircraft = options.aircraft;
+
+        /**
+         * @property legs
+         * @type {array}
+         * @default []
+         */
         this.legs = [];
-        this.current = [0, 0]; // [current_Leg, current_Waypoint_within_that_Leg]
+
+        /**
+         * Current indicies for Leg and Waypoint within that Leg.
+         *
+         * [current_Leg, current_Waypoint_within_that_Leg]
+         *
+         * @property current
+         * @type {array}
+         * @default [0, 0]
+         */
+        this.current = [0, 0];
+
+        // TODO: possible model object here
+        /**
+         * @property fp
+         * @type {object}
+         */
         this.fp = {
             altitude: null,
             route: []
         };
+
+        // TODO: possible model object here
+        /**
+         * @property following
+         * @type {object}
+         */
         this.following = {
             sid: null,         // Standard Instrument Departure Procedure
             star: null,        // Standard Terminal Arrival Route Procedure
@@ -72,12 +127,14 @@ export default class AircraftFlightManagementSystem {
             anything: false    // T/F flag for if anything is being "followed"
         };
 
-        // set initial
+        // TODO: this doesn't belong in the constructor
+        // TODO: enumerate the magic numbers
+        // set initial altitude
         this.fp.altitude = clamp(1000, options.model.ceiling, 60000);
 
-        if (options.aircraft.category === 'arrival') {
-            this.prependLeg({ route: 'KDBG' });
-        } else if (options.aircraft.category === 'departure') {
+        if (options.aircraft.category === FLIGHT_CATEGORY.ARRIVAL) {
+            this.prependLeg({ route: 'UNASSIGNED' });
+        } else if (options.aircraft.category === FLIGHT_CATEGORY.DEPARTURE) {
             this.prependLeg({ route: window.airportController.airport_get().icao });
         }
 
@@ -90,13 +147,15 @@ export default class AircraftFlightManagementSystem {
      * Insert a Leg at the front of the flightplan
      */
     prependLeg(data) {
-        const prev = this.currentWaypoint();
+        const prev = this.currentWaypoint;
+        const legToAdd = new Leg(data, this);
 
-        this.legs.unshift(new Leg(data, this));
+        this.legs.unshift(legToAdd);
         this.update_fp_route();
 
+        // TODO: these if blocks a repeated elsewhere, perhaps currentWaypoint can handle this logic?
         // Verify altitude & speed not null
-        const curr = this.currentWaypoint();
+        const curr = this.currentWaypoint;
         if (prev && !curr.altitude) {
             curr.altitude = prev.altitude;
         }
@@ -110,13 +169,17 @@ export default class AircraftFlightManagementSystem {
      * Insert a waypoint at current position and immediately activate it
      */
     insertWaypointHere(data) {
-        const prev = this.currentWaypoint();
+        const airport = window.airportController.airport_get();
+        const prev = this.currentWaypoint;
+        const waypointToAdd = new Waypoint(data, airport);
 
-        this.currentLeg().waypoints.splice(this.current[WAYPOINT_WITHIN_LEG], 0, new Waypoint(data, this));
+        // TODO: split this up into smaller chunks
+        this.currentLeg.waypoints.splice(this.current[WAYPOINT_WITHIN_LEG], 0, waypointToAdd);
         this.update_fp_route();
 
+        // TODO: these if blocks a repeated elsewhere, perhaps currentWaypoint can handle this logic?
         // Verify altitude & speed not null
-        const curr = this.currentWaypoint();
+        const curr = this.currentWaypoint;
         if (prev && !curr.altitude) {
             curr.altitude = prev.altitude;
         }
@@ -131,12 +194,15 @@ export default class AircraftFlightManagementSystem {
      * Note: if no position passed in, defaults to add to the end
      */
     insertLeg(data) {
+        // TODO: reassigining data here is dangerous.
         if (data.firstIndex == null) {
             data.firstIndex = this.legs.length;
         }
 
-        const prev = this.currentWaypoint();
-        this.legs.splice(data.firstIndex, 0, new Leg(data, this));
+        const prev = this.currentWaypoint;
+        const legToAdd = new Leg(data, this);
+
+        this.legs.splice(data.firstIndex, 0, legToAdd);
 
         this.update_fp_route();
 
@@ -145,8 +211,9 @@ export default class AircraftFlightManagementSystem {
             this.current[WAYPOINT_WITHIN_LEG] = 0;
         }
 
+        // TODO: these if blocks a repeated elsewhere, perhaps currentWaypoint can handle this logic?
         // Verify altitude & speed not null
-        const curr = this.currentWaypoint();
+        const curr = this.currentWaypoint;
         if (prev && !curr.altitude) {
             curr.altitude = prev.altitude;
         }
@@ -172,7 +239,9 @@ export default class AircraftFlightManagementSystem {
      *  Insert a Leg at the end of the flightplan
      */
     appendLeg(data) {
-        this.legs.push(new Leg(data, this));
+        const legToAdd = new Leg(data, this);
+
+        this.legs.push(legToAdd);
         this.update_fp_route();
     }
 
@@ -180,7 +249,10 @@ export default class AircraftFlightManagementSystem {
      *  Insert a waypoint after the *current* waypoint
      */
     appendWaypoint(data) {
-        this.currentLeg().waypoints.splice(this.current[WAYPOINT_WITHIN_LEG] + 1, 0, new Waypoint(data, this));
+        const airport = window.airportController.airport_get();
+        const waypointToAdd = new Waypoint(data, airport);
+
+        this.currentLeg.waypoints.splice(this.current[WAYPOINT_WITHIN_LEG] + 1, 0, waypointToAdd);
         this.update_fp_route();
     }
 
@@ -188,7 +260,7 @@ export default class AircraftFlightManagementSystem {
      *  Switch to the next waypoint
      */
     nextWaypoint() {
-        const prev = this.currentWaypoint();
+        const prev = this.currentWaypoint;
         const leg = this.current[LEG];
         const wp = this.current[WAYPOINT_WITHIN_LEG] + 1;
 
@@ -201,8 +273,9 @@ export default class AircraftFlightManagementSystem {
             this.current[WAYPOINT_WITHIN_LEG] = 0;  // look to the first waypoint of that leg
         }
 
+        // TODO: these if blocks a repeated elsewhere, perhaps currentWaypoint can handle this logic?
         // Replace null values with current values
-        const curr = this.currentWaypoint();
+        const curr = this.currentWaypoint;
         if (prev && !curr.altitude) {
             curr.altitude = prev.altitude;
         }
@@ -211,7 +284,7 @@ export default class AircraftFlightManagementSystem {
             curr.speed = prev.speed;
         }
 
-        if (!curr.heading && curr.navmode === 'heading') {
+        if (!curr.heading && curr.navmode === WAYPOINT_NAV_MODE.HEADING) {
             curr.heading = prev.heading;
         }
     }
@@ -220,12 +293,13 @@ export default class AircraftFlightManagementSystem {
      *  Switch to the next Leg
      */
     nextLeg() {
-        const prev = this.currentWaypoint();
+        const prev = this.currentWaypoint;
         this.current[LEG]++;
         this.current[WAYPOINT_WITHIN_LEG] = 0;
 
+        // TODO: these if blocks a repeated elsewhere, perhaps currentWaypoint can handle this logic?
         // Replace null values with current values
-        const curr = this.currentWaypoint();
+        const curr = this.currentWaypoint;
         if (prev && !curr.altitude) {
             curr.altitude = prev.altitude;
         }
@@ -234,7 +308,7 @@ export default class AircraftFlightManagementSystem {
             curr.speed = prev.speed;
         }
 
-        if (!curr.heading && curr.navmode === 'heading') {
+        if (!curr.heading && curr.navmode === WAYPOINT_NAV_MODE.HEADING) {
             curr.heading = prev.heading;
         }
     }
@@ -244,15 +318,17 @@ export default class AircraftFlightManagementSystem {
      * @param {string} name - the name of the fix to skip to
      */
     skipToFix(name) {
-        const prev = this.currentWaypoint();
+        const prev = this.currentWaypoint;
 
+        // TODO: these nested for loops should be simplified
         for (let l = 0; l < this.legs.length; l++) {
             for (let w = 0; w < this.legs[l].waypoints.length; w++) {
                 if (this.legs[l].waypoints[w].fix === name) {
                     this.current = [l, w];
 
+                    // TODO: these if blocks a repeated elsewhere, perhaps currentWaypoint can handle this logic?
                     // Verify altitude & speed not null
-                    const curr = this.currentWaypoint();
+                    const curr = this.currentWaypoint;
                     if (prev && !curr.altitude) {
                         curr.altitude = prev.altitude;
                     }
@@ -273,6 +349,7 @@ export default class AircraftFlightManagementSystem {
      * Modify all waypoints
      */
     setAll(data) {
+        // TODO: refactor this, what is actually happening here?
         for (let i = 0; i < this.legs.length; i++) {
             for (let j = 0; j < this.legs[i].waypoints.length; j++) {
                 for (const k in data) {
@@ -286,8 +363,10 @@ export default class AircraftFlightManagementSystem {
      * Modify the current waypoint
      */
     setCurrent(data) {
+        // TODO: refactor this, what is actually happening here?
+        // FIXME: it may be easier to replace current waypoint with a new one?
         for (const i in data) {
-            this.currentWaypoint()[i] = data[i];
+            this.currentWaypoint[i] = data[i];
         }
     }
 
@@ -295,44 +374,47 @@ export default class AircraftFlightManagementSystem {
      * Updates fms.fp.route to correspond with the fms Legs
      */
     update_fp_route() {
-        const r = [];
+        const flightPlanRoute = [];
 
-        // TODO: simplify this
-        // FIXME: is this.legs an array?
-        for (const l in this.legs) {
-            if (!this.legs[l].type) {
+        for (let i = 0; i < this.legs.length; i++) {
+            const leg = this.legs[i];
+
+            if (!leg.type) {
                 continue;
             }
 
-            switch (this.legs[l].type) {
+            // FIXME: replace the string splitting with the `RouteModel` class methods
+            switch (leg.type) {
                 case FP_LEG_TYPE.SID:
-                    // TODO: this split logic and string building should live in a helper function or or class method
                     // departure airport
-                    r.push(this.legs[l].route.split('.')[0]);
+                    flightPlanRoute.push(leg.route.entry);
                     // 'sidname.exitPoint'
-                    r.push(this.legs[l].route.split('.')[1] + '.' + this.legs[l].route.split('.')[2]);
+                    flightPlanRoute.push(`${leg.route.procedure}.${leg.route.exit}`);
 
                     break;
                 case FP_LEG_TYPE.STAR:
                     // 'entryPoint.starname.exitPoint'
-                    r.push(this.legs[l].route.split('.')[0] + '.' + this.legs[l].route.split('.')[1]);
+                    flightPlanRoute.push(`${leg.route.entry}.${leg.route.procedure}`);
                     // arrival airport
-                    r.push(this.legs[l].route.split('.')[2]);
+                    flightPlanRoute.push(leg.route.exit);
 
                     break;
                 case FP_LEG_TYPE.IAP:
                     // no need to include these in flightplan (because wouldn't happen in real life)
                     break;
                 case FP_LEG_TYPE.AWY:
-                    if (r[r.length - 1] !== this.legs[l].route.split('.')[0]) {
-                        r.push(this.legs[l].route.split('.')[0]); // airway entry fix
-                        r.push(this.legs[l].route.split('.')[1]); // airway identifier
-                        r.push(this.legs[l].route.split('.')[2]); // airway exit fix
+                    const previousFlightPlanRoute = flightPlanRoute[flightPlanRoute.length - 1];
+
+                    if (previousFlightPlanRoute !== leg.route.split('.')[0]) {
+                        flightPlanRoute.push(leg.route.split('.')[0]); // airway entry fix
+                        flightPlanRoute.push(leg.route.split('.')[1]); // airway identifier
+                        flightPlanRoute.push(leg.route.split('.')[2]); // airway exit fix
                     }
 
                     break;
                 case FP_LEG_TYPE.FIX:
-                    r.push(this.legs[l].route);
+                    // this is just a fixname
+                    flightPlanRoute.push(leg.route);
 
                     break;
                 case FP_LEG_TYPE.MANUAL:
@@ -342,27 +424,29 @@ export default class AircraftFlightManagementSystem {
                     break;
             }
 
-            if (r.length === 0) {
-                r.push(this.legs[0].route);
+            // TODO: this should be first and return early
+            if (flightPlanRoute.length === 0) {
+                flightPlanRoute.push(this.legs[0].route);
             }
         }
 
-        this.fp.route = r;
+        this.fp.route = flightPlanRoute;
     }
 
     /**
      * Calls various task-based functions and sets 'fms.following' flags
      */
     followCheck() {
-        const leg = this.currentLeg();
+        const leg = this.currentLeg;
         this.following.anything = true;
 
+        // tODO replace the string splitting with the `RouteModel`
         switch (leg.type) {
             case FP_LEG_TYPE.SID:
-                this.following.sid = leg.route.split('.')[1];
+                this.following.sid = leg.route.procedure;
                 break;
             case FP_LEG_TYPE.STAR:
-                this.following.star = leg.route.split('.')[1];
+                this.following.star = leg.route.procedure;
                 break;
             case FP_LEG_TYPE.IAP:
                 // *******NEEDS TO BE FINISHED***************************
@@ -385,6 +469,7 @@ export default class AircraftFlightManagementSystem {
         return this.following;
     }
 
+    // TODO: rename to something more accurate like `resetFollowingType`
     /**
      * Clears any current follows by updating the 'fms.following' flags
      */
@@ -410,6 +495,7 @@ export default class AircraftFlightManagementSystem {
       // Note: 'variant' is set up to pass to this function, but is not used here yet.
         if (type === 'ils') {
             this.my_aircraft.cancelFix();
+            // TODO: this looks like a model object
             this.setCurrent({
                 navmode: 'rwy',
                 runway: rwy.toUpperCase(),
@@ -425,9 +511,11 @@ export default class AircraftFlightManagementSystem {
      * Inserts the SID as the first Leg in the fms's flightplan
      */
     followSID(route) {
+        const airport = window.airportController.airport_get();
+
         for (let i = 0; i < this.legs.length; i++) {
             // sid assigned after taking off without SID
-            if (this.legs[i].route === window.airportController.airport_get().icao) {
+            if (this.legs[i].route === airport.icao) {
                 // remove the manual departure leg
                 this.legs.splice(i, 1);
             } else if (this.legs[i].type === FP_LEG_TYPE.SID) {
@@ -444,7 +532,7 @@ export default class AircraftFlightManagementSystem {
         });
 
         this.setAll({
-            altitude:  Math.max(window.airportController.airport_get().initial_alt, this.my_aircraft.altitude)
+            altitude: Math.max(airport.initial_alt, this.my_aircraft.altitude)
         });
     }
 
@@ -463,16 +551,20 @@ export default class AircraftFlightManagementSystem {
         this.appendLeg({ type: FP_LEG_TYPE.STAR, route: route });
     }
 
+    // TODO: move this logic to the `RouteModel`
     /**
      * Takes a single-string route and converts it to a segmented route the fms can understand
+     *
      * Note: Input Data Format : "KSFO.OFFSH9.SXC.V458.IPL.J2.JCT..LLO..ACT..KACT"
      *       Return Data Format: ["KSFO.OFFSH9.SXC", "SXC.V458.IPL", "IPL.J2.JCT", "LLO", "ACT", "KACT"]
      */
     formatRoute(data) {
+        // const routeModel = new RouteModel(data);
+
         // Format the user's input
         let route = [];
-        // const ap = airport_get;
-        const fixOK = window.airportController.airport_get().getFix;
+        const airport = window.airportController.airport_get();
+        const fixOK = (fixName) => FixCollection.findFixByName(fixName) !== null;
 
         if (data.indexOf(' ') !== -1) {
             return; // input can't contain spaces
@@ -500,26 +592,26 @@ export default class AircraftFlightManagementSystem {
                 if (data[i].split('.').length % 2 !== 1) {
                     // user either didn't specify start point or end point
                     return;
-                } else {
-                    // TODO: this should be abstracted to another class method.
-                    const pieces = data[i].split('.');
-                    // FIXME: what does 'a' mean? better naming
-                    a = [pieces[0] + '.' + pieces[1] + '.' + pieces[2]];
+                }
 
-                    // chop up the multilink
-                    for (let j = 3; j < data[i].split('.').length; j + 2) {
-                        if (!fixOK(pieces[0]) || !fixOK(pieces[2])) {
-                            return;  // invalid join/exit points
-                        }
+                // TODO: this should be abstracted to another class method.
+                const pieces = data[i].split('.');
+                // FIXME: what does 'a' mean? better naming
+                a = [pieces[0] + '.' + pieces[1] + '.' + pieces[2]];
 
-                        if (!Object.keys(ap().sids).indexOf(pieces[1]) ||
-                            !Object.keys(ap().airways).indexOf(pieces[1])) {
-                            // invalid procedure
-                            return;
-                        }
-
-                        a.push(pieces[j - 1] + '.' + pieces[j] + pieces[j + 1]);
+                // chop up the multilink
+                for (let j = 3; j < data[i].split('.').length; j + 2) {
+                    if (!fixOK(pieces[0]) || !fixOK(pieces[2])) {
+                        return;  // invalid join/exit points
                     }
+
+                    if (!airport.sidCollection.hasRoute(pieces[1]) ||
+                        !Object.keys(airport.airways).indexOf(pieces[1])) {
+                        // invalid procedure
+                        return;
+                    }
+
+                    a.push(pieces[j - 1] + '.' + pieces[j] + pieces[j + 1]);
                 }
             }
 
@@ -530,6 +622,7 @@ export default class AircraftFlightManagementSystem {
         return route;
     }
 
+    // TODO: refactor this to use `RouteModel` and possibly a `LegsCollection` class
     /**
      * Take an array of leg routes and build the legs that will go into the fms
      * @param {array} route - an array of properly formatted route strings
@@ -539,28 +632,38 @@ export default class AircraftFlightManagementSystem {
      *                                       replace the current contents of 'this.legs'
      */
     customRoute(route, fullRouteClearance) {
+        // save the current waypoint
+        const curr = this.currentWaypoint;
+
         const legs = [];
-        const curr = this.currentWaypoint(); // save the current waypoint
 
         for (let i = 0; i < route.length; i++) {
-            let pieces;
+            const routeSections = route[i].split('.');
 
             // just a fix/navaid
-            if (route[i].split('.').length === 1) {
-                legs.push(new Leg({ type: FP_LEG_TYPE.FIX, route: route[i] }, this));
-            } else if (route[i].split('.').length === 3) {
-                // is an instrument procedure
-                pieces = route[i].split('.');
+            if (routeSections.length === 1) {
+                const legToAdd = new Leg({ type: FP_LEG_TYPE.FIX, route: route[i] }, this);
 
-                if (Object.keys(window.airportController.airport_get().sids).indexOf(pieces[1]) > -1) {
+                legs.push(legToAdd);
+            } else if (routeSections.length === 3) {
+                const routeModel = new RouteModel(route[i]);
+                const currentAirport = window.airportController.airport_get();
+
+                if (!_isNil(currentAirport.sidCollection.findRouteByIcao(routeModel.procedure))) {
                     // it's a SID!
-                    legs.push(new Leg({ type: FP_LEG_TYPE.SID, route: route[i] }, this));
-                } else if (Object.keys(window.airportController.airport_get().stars).indexOf(pieces[1]) > -1) {
+                    const legToAdd = new Leg({ type: FP_LEG_TYPE.SID, route: routeModel.routeCode }, this);
+
+                    legs.push(legToAdd);
+                } else if (!_isNil(currentAirport.starCollection.findRouteByIcao(routeModel.procedure))) {
                     // it's a STAR!
-                    legs.push(new Leg({ type: FP_LEG_TYPE.STAR, route: route[i] }, this));
-                } else if (Object.keys(window.airportController.airport_get().airways).indexOf(pieces[1]) > -1) {
+                    const legToAdd = new Leg({ type: FP_LEG_TYPE.STAR, route: routeModel.routeCode }, this);
+
+                    legs.push(legToAdd);
+                } else if (Object.keys(window.airportController.airport_get().airways).indexOf(routeModel.procedure) > -1) {
                     // it's an airway!
-                    legs.push(new Leg({ type: FP_LEG_TYPE.AWY, route: route[i] }, this));
+                    const legToAdd = new Leg({ type: FP_LEG_TYPE.AWY, route: routeModel.routeCode }, this);
+
+                    legs.push(legToAdd);
                 }
             } else {
                 // neither formatted like "JAN" nor "JAN.V18.MLU"
@@ -569,8 +672,8 @@ export default class AircraftFlightManagementSystem {
             }
         }
 
-        // TODO: this could be simplified. there is a lot of brnaching logic here that makes this block
-        // tough to follow.
+        // TODO: this should be its own method
+        // TODO: this could be simplified. there is a lot of branching logic here that makes this block tough to follow.
         // insert user's route to the legs
         if (!fullRouteClearance) {
             // Check if user's route hooks up to the current Legs anywhere
@@ -605,6 +708,7 @@ export default class AircraftFlightManagementSystem {
                 this.nextLeg();
             }
         } else {
+            // TODO: move up and return early
             // replace all legs with the legs we've built here in this function
             this.legs = legs;
             this.current = [0, 0]; // look to beginning of route
@@ -613,33 +717,17 @@ export default class AircraftFlightManagementSystem {
         this.update_fp_route();
 
         // Maintain old speed and altitude
-        if (this.currentWaypoint().altitude == null) {
+        if (this.currentWaypoint.altitude == null) {
             this.setCurrent({ altitude: curr.altitude });
         }
 
-        if (this.currentWaypoint().speed == null) {
+        if (this.currentWaypoint.speed == null) {
             this.setCurrent({ speed: curr.speed });
         }
 
         return true;
     }
 
-    /**
-     * Invokes flySID() for the SID in the flightplan (fms.fp.route)
-     */
-    clearedAsFiled() {
-        // FIXME: why keep a reference to the aircraft id if we just get it from the aircraftController? Also,
-        // if this bit of logic is simply getting the aircraft instance, why not use `this.my_aircraft` for
-        // the whole thing?
-        const retval = this.my_aircraft.runSID([window.aircraftController.aircraft_get(this.my_aircrafts_eid).destination]);
-        // TODO: this method could simply return the logic being set to `ok`
-        const ok = !(Array.isArray(retval) && retval[0] === 'fail');
-
-        return ok;
-    }
-
-    // FIXME the logic in this method is remarkably similiar to the logic in .descendViaSID(). perhpas there
-    // are opportunities for abstraction here.
     /**
      * Climbs aircraft in compliance with the SID they're following
      * Adds altitudes and speeds to each waypoint that are as high as
@@ -651,158 +739,52 @@ export default class AircraftFlightManagementSystem {
      *    - (spd) waypoint's speed restriction
      */
     climbViaSID() {
-        if (!this.currentLeg().type === FP_LEG_TYPE.SID) {
-            return;
+        if (this.currentLeg.type !== FP_LEG_TYPE.SID) {
+            return false;
         }
 
-        let wp = this.currentLeg().waypoints;
-        let cruise_alt = this.fp.altitude;
-        let cruise_spd = this.my_aircraft.model.speed.cruise;
+        const wp = this.currentLeg.waypoints;
+        const cruise_alt = this.fp.altitude;
+        const cruise_spd = this.my_aircraft.model.speed.cruise;
 
         for (let i = 0; i < wp.length; i++) {
-            let altitude = wp[i].fixRestrictions.alt;
-            let speed = wp[i].fixRestrictions.spd;
-            let minAlt;
-            let alt;
-            let maxAlt;
+            const waypoint = wp[i];
+            const { ctr_ceiling } = window.airportController.airport_get();
 
-            // Altitude Control
-            if (altitude) {
-                if (altitude.indexOf('+') !== -1) {
-                    // at-or-above altitude restriction
-                    minAlt = parseInt(altitude.replace('+', ''), 10) * 100;
-                    alt = Math.min(window.airportController.airport_get().ctr_ceiling, cruise_alt);
-                } else if (altitude.indexOf('-') !== -1) {
-                    maxAlt = parseInt(altitude.replace('-', ''), 10) * 100;
-                    // climb as high as restrictions permit
-                    alt = Math.min(maxAlt, cruise_alt);
-                } else {
-                     // cross AT this altitude
-                    alt = parseInt(altitude, 10) * 100;
-                }
-            } else {
-                alt = Math.min(window.airportController.airport_get().ctr_ceiling, cruise_alt);
-            }
-
-            wp[i].altitude = alt; // add altitudes to wp
-
-            let minSpd;
-            let spd = cruise_spd;
-            let maxSpd;
-            // Speed Control
-            if (speed) {
-                if (speed.indexOf('+') !== -1) {
-                    // at-or-above speed restriction
-                    minSpd = parseInt(speed.replace('+', ''), 10);
-                    spd = Math.min(minSpd, cruise_spd);
-                } else if (speed.indexOf('-') !== -1) {
-                    maxSpd = parseInt(speed.replace('-', ''), 10);
-                    // go as fast as restrictions permit
-                    spd = Math.min(maxSpd, cruise_spd);
-                } else {
-                     // cross AT this speed
-                    spd = parseInt(speed, 10);
-                }
-            }
-
-            // add speeds to wp
-            wp[i].speed = spd;
+            waypoint.setAltitude(ctr_ceiling, cruise_alt);
+            waypoint.setSpeed(cruise_spd);
         }
-
-        // change fms waypoints to wp (which contains the altitudes and speeds)
-        this.legs[this.current[LEG]].waypoints = wp;
 
         return true;
     }
 
-    // FIXME the logic in this method is remarkably similiar to the logic in .climbViaSID(). perhaps there
-    // are opportunities for abstraction here.
     /**
      * Descends aircraft in compliance with the STAR they're following
      * Adds altitudes and speeds to each waypoint in accordance with the STAR
      */
     descendViaSTAR() {
-        // Find the STAR leg
-        let wp;
-        let legIndex;
+        const waypointList = this.getStarLegWaypoints();
 
-        // TODO: if this.legs is an array this should be a for and not a for/in loop
-        for (const l in this.legs) {
-            if (this.legs[l].type === FP_LEG_TYPE.STAR) {
-                legIndex = l;
-                wp = this.legs[l].waypoints;
-
-                break;
-            }
-        }
-
-        if (!wp) {
+        // TODO: would a star leg ever not have waypoints?
+        if (!waypointList) {
             return;
         }
 
-        let start_alt = this.currentWaypoint().altitude || this.my_aircraft.altitude;
-        let start_spd = this.currentWaypoint().speed || this.my_aircraft.model.speed.cruise;
+        let start_alt = this.currentWaypoint.altitude || this.my_aircraft.altitude;
+        let start_spd = this.currentWaypoint.speed || this.my_aircraft.model.speed.cruise;
 
-        for (let i = 0; i < wp.length; i++) {
+        for (let i = 0; i < waypointList.length; i++) {
+            const waypoint = waypointList[i];
+            const previousWaypoint = waypointList[i - 1];
+
             if (i >= 1) {
-                start_alt = wp[i - 1].altitude;
-                start_spd = wp[i - 1].speed;
+                start_alt = previousWaypoint.altitude;
+                start_spd = previousWaypoint.speed;
             }
 
-            const a = wp[i].fixRestrictions.alt;
-            const s = wp[i].fixRestrictions.spd;
-            let minAlt;
-            let alt;
-            let maxAlt;
-
-            // Altitude Control
-            if (a) {
-                if (a.indexOf('+') !== -1) {
-                    // at-or-above altitude restriction
-                    minAlt = parseInt(a.replace('+', ''), 10) * 100;
-                    alt = Math.max(minAlt, start_alt);
-                } else if (a.indexOf('-') !== -1) {
-                    maxAlt = parseInt(a.replace('-', '')) * 100;
-                    // climb as high as restrictions permit
-                    alt = Math.min(maxAlt, start_alt);
-                } else {
-                    // cross AT this altitude
-                    alt = parseInt(a) * 100;
-                }
-            } else {
-                alt = start_alt;
-            }
-
-            wp[i].altitude = alt; // add altitudes to wp
-
-            let minSpd;
-            let spd;
-            let maxSpd;
-
-            // Speed Control
-            if (s) {
-                if (s.indexOf('+') !== -1) {
-                    // at-or-above speed restriction
-                    minSpd = parseInt(s.replace('+', ''));
-                    spd = Math.min(minSpd, start_spd);
-                } else if (s.indexOf('-') !== -1) {
-                    maxSpd = parseInt(s.replace('-', ''));
-                    // go as fast as restrictions permit
-                    spd = Math.min(maxSpd, start_spd);
-                } else {
-                    // cross AT this speed
-                    spd = parseInt(s);
-                }
-            } else {
-                spd = start_spd;
-            }
-
-            // add speeds to wp
-            wp[i].speed = spd;
+            waypoint.setAltitude(null, start_alt);
+            waypoint.setSpeed(start_spd);
         }
-
-        // change fms waypoints to wp (which contains the altitudes and speeds)
-        this.legs[legIndex].waypoints = wp;
 
         return true;
     }
@@ -826,6 +808,7 @@ export default class AircraftFlightManagementSystem {
 
     /**
      * Returns object's position in flightplan as object with 2 formats
+     *
      * @param {string} fix - name of the fix to look for in the flightplan
      * @returns {wp: "position-of-fix-in-waypoint-list",
      *           lw: "position-of-fix-in-leg-wp-matrix"}
@@ -836,6 +819,7 @@ export default class AircraftFlightManagementSystem {
         for (let l = 0; l < this.legs.length; l++) {
             for (let w = 0; w < this.legs[l].waypoints.length; w++) {
                 if (this.legs[l].waypoints[w].fix === fix) {
+                    // TODO: what do wp and lw stand for?
                     return {
                         wp: wp,
                         lw: [l, w]
@@ -863,33 +847,25 @@ export default class AircraftFlightManagementSystem {
 
         wp += this.current[WAYPOINT_WITHIN_LEG];
 
+        // TODO: what do wp and lw stand for?
         return {
             wp: wp,
             lw: this.current
         };
     }
 
-
     /** ************************* FMS GET FUNCTIONS ***************************/
 
-    // TODO: this set upd methods could be used as getters instead
-    // ex: `get currentLeg()` and then used like `this.fms.currentLeg`
-    /**
-     * Return the current leg
-     */
-    currentLeg() {
+    get currentLeg() {
         return this.legs[this.current[LEG]];
     }
 
-    /**
-     * Return the current waypoint
-     */
-    currentWaypoint() {
+    get currentWaypoint() {
         if (this.legs.length < 1) {
             return null;
         }
 
-        const currentLeg = this.currentLeg();
+        const currentLeg = this.currentLeg;
 
         return currentLeg.waypoints[this.current[WAYPOINT_WITHIN_LEG]];
     }
@@ -905,6 +881,7 @@ export default class AircraftFlightManagementSystem {
      * Return this fms's parent aircraft
      */
     my_aircraft() {
+        // TODO: if we already have a ref to the current aircraft, `this.my_aircraft`, why are we getting it again here?
         return window.aircraftController.aircraft_get(this.my_aircrafts_eid);
     }
 
@@ -943,9 +920,22 @@ export default class AircraftFlightManagementSystem {
     }
 
     /**
+     * Find a leg with type `star` and return that leg's waypoints.
+     *
+     * @method getSt
+     * @return {array<Waypoint>}
+     */
+    getStarLegWaypoints() {
+        const starLeg = _find(this.legs, { type: FP_LEG_TYPE.STAR });
+
+        return starLeg.waypoints || [];
+    }
+
+    /**
     * Returns all waypoints in fms, in order
     */
     waypoints() {
+        // TODO: move to _map() or refactor
         // TODO: there is a better way to do this with lodash
         const waypointList = $.map(this.legs, (v) => v.waypoints);
 
@@ -953,6 +943,7 @@ export default class AircraftFlightManagementSystem {
     }
 
     atLastWaypoint() {
+        // TODO: simplify
         return this.indexOfCurrentWaypoint().wp === this.waypoints().length - 1;
     }
 
@@ -975,7 +966,7 @@ export default class AircraftFlightManagementSystem {
             return null;
         }
 
-        return `${this.following.sid}.${this.currentLeg().route.split('.')[2]}`;
+        return `${this.following.sid}.${this.currentLeg.route.exit}`;
     }
 
     /**
@@ -1003,7 +994,7 @@ export default class AircraftFlightManagementSystem {
      * @return {string}
      */
     getDesinationIcaoWithRunway() {
-        return `${_last(this.fp.route)} ${this.currentWaypoint().runway}`;
+        return `${_last(this.fp.route)} ${this.currentWaypoint.runway}`;
     }
 
     /**
@@ -1012,6 +1003,6 @@ export default class AircraftFlightManagementSystem {
      * @return {number|null}
      */
     altitudeForCurrentWaypoint() {
-        return this.currentWaypoint().altitude;
+        return this.currentWaypoint.altitude;
     }
 }

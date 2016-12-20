@@ -1,18 +1,9 @@
 import _isEqual from 'lodash/isEqual';
+import _isNumber from 'lodash/isNumber';
 import _map from 'lodash/map';
 import BaseModel from '../base/BaseModel';
 import PositionModel from '../base/PositionModel';
-
-/**
- * Utility function to convert a number to thousands.
- *
- * Given a flightlevel FL180, this function outs puts 18,000
- *
- * @function covertToThousands
- * @param  {number} value
- * @return {number}
- */
-const convertToThousands = (value) => parseInt(value, 10) * 100;
+import { convertToThousands } from '../utilities/unitConverters';
 
 /**
  * An enclosed region defined by a series of Position objects and an altitude range
@@ -30,7 +21,7 @@ export default class AirspaceModel extends BaseModel {
     constructor(airspace, airportPosition, magneticNorth) {
         super();
 
-        if (!airspace || !airportPosition || !magneticNorth) {
+        if (!airspace || !airportPosition || !_isNumber(magneticNorth)) {
             // eslint-disable-next-line max-len
             throw new TypeError('Invalid parameter, expected airspace, airportPosition and magneticNorth to be defined');
         }

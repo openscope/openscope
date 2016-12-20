@@ -10,7 +10,7 @@ import { distance2d } from '../math/distance';
 import { vscale, vturn, positive_intersection_with_rect } from '../math/vector';
 import { SELECTORS } from '../constants/selectors';
 import { LOG } from '../constants/logLevel';
-import { FLIGHT_MODES, FLIGHT_CATEGORY } from '../aircraft/AircraftInstanceModel';
+import { FLIGHT_MODES, FLIGHT_CATEGORY } from '../constants/aircraftConstants';
 
 // Temporary const declaration here to attach to the window AND use as internal property
 const canvas = {};
@@ -635,6 +635,7 @@ export default class ConvasController {
         });
     }
 
+    // TODO: break this method up into smaller chunks
     /**
      * @for CanvasController
      * @method canvas_draw_sids
@@ -647,69 +648,68 @@ export default class ConvasController {
 
         // Store the count of sid text drawn for a specific transition
         const text_at_point = [];
+        const airport = window.airportController.airport_get();
 
         cc.strokeStyle = COLORS.DEPARTURE_COLOR;
         cc.fillStyle = COLORS.DEPARTURE_COLOR;
         cc.setLineDash([1, 10]);
         cc.font = 'italic 14px monoOne, monospace';
 
-        const airport = window.airportController.airport_get();
-
-        _forEach(airport.sids, (sid, s) => {
+        _forEach(airport.sidCollection.draw, (sid) => {
             let write_sid_name = true;
-            let fx = null;
-            let fy = null;
+            let fixX = null;
+            let fixY = null;
 
-            // TODO: this if should be reversed to check for the opposite condition and return early.
-            if (_has(sid, 'draw')) {
-                _forEach(sid.draw, (fixList, i) => {
-                    // const fixList = airport.sids[s].draw[i];
-                    let exit_name = null;
+            if (!_has(sid, 'draw')) {
+                return;
+            }
 
-                    for (let j = 0; j < fixList.length; j++) {
-                        // write exitPoint name
-                        if (fixList[j].indexOf('*') !== -1) {
-                            exit_name = fixList[j].replace('*', '');
-                            write_sid_name = false;
-                        }
+            _forEach(sid.draw, (fixList, i) => {
+                let exit_name = null;
 
-                        let fix = airport.getFixPosition(fixList[j].replace('*', ''));
-
-                        if (!fix) {
-                            log(`Unable to draw line to '${fixList[j]}' because its position is not defined!`, LOG.WARNING);
-                        }
-
-                        fx = window.uiController.km_to_px(fix[0]) + this.canvas.panX;
-                        fy = -window.uiController.km_to_px(fix[1]) + this.canvas.panY;
-
-                        if (j === 0) {
-                            cc.beginPath();
-                            cc.moveTo(fx, fy);
-                        } else {
-                            cc.lineTo(fx, fy);
-                        }
+                for (let j = 0; j < fixList.length; j++) {
+                    // write exitPoint name
+                    if (fixList[j].indexOf('*') !== -1) {
+                        exit_name = fixList[j].replace('*', '');
+                        write_sid_name = false;
                     }
 
-                    cc.stroke();
+                    let fix = airport.getFixPosition(fixList[j].replace('*', ''));
 
-                    if (exit_name) {
-                        // Initialize count for this transition
-                        if (isNaN(text_at_point[exit_name])) {
-                            text_at_point[exit_name] = 0;
-                        }
-
-                        // Move the y point for drawing depending on how many sids we have drawn text for
-                        // at this point already
-                        const y_point = fy + (15 * text_at_point[exit_name]);
-                        cc.fillText(`${s}.${exit_name}`, fx + 10, y_point);
-
-                        text_at_point[exit_name] += 1;  // Increment the count for this transition
+                    if (!fix) {
+                        log(`Unable to draw line to '${fixList[j]}' because its position is not defined!`, LOG.WARNING);
                     }
-                });
 
-                if (write_sid_name) {
-                    cc.fillText(s, fx + 10, fy);
+                    fixX = window.uiController.km_to_px(fix[0]) + this.canvas.panX;
+                    fixY = -window.uiController.km_to_px(fix[1]) + this.canvas.panY;
+
+                    if (j === 0) {
+                        cc.beginPath();
+                        cc.moveTo(fixX, fixY);
+                    } else {
+                        cc.lineTo(fixX, fixY);
+                    }
                 }
+
+                cc.stroke();
+
+                if (exit_name) {
+                    // Initialize count for this transition
+                    if (isNaN(text_at_point[exit_name])) {
+                        text_at_point[exit_name] = 0;
+                    }
+
+                    // Move the y point for drawing depending on how many sids we have drawn text for
+                    // at this point already
+                    const y_point = fixY + (15 * text_at_point[exit_name]);
+                    cc.fillText(`${sid.identifier}.${exit_name}`, fixX + 10, y_point);
+
+                    text_at_point[exit_name] += 1;  // Increment the count for this transition
+                }
+            });
+
+            if (write_sid_name) {
+                cc.fillText(sid.identifier, fixX + 10, fixY);
             }
         });
     }
@@ -722,7 +722,7 @@ export default class ConvasController {
      */
     canvas_draw_separation_indicator(cc, aircraft) {
         // Draw a trailing indicator 2.5 NM (4.6km) behind landing aircraft to help with traffic spacing
-        const rwy = window.airportController.airport_get().getRunway(aircraft.fms.currentWaypoint().runway);
+        const rwy = window.airportController.airport_get().getRunway(aircraft.fms.currentWaypoint.runway);
 
         if (!rwy) {
             return;
@@ -1119,7 +1119,7 @@ export default class ConvasController {
             // width of colored bar
             const bar_width = width / 18;
             const bar_width2 = bar_width / 2;
-            const ILS_enabled = aircraft.fms.currentWaypoint().runway && aircraft.category === FLIGHT_CATEGORY.ARRIVAL;
+            const ILS_enabled = aircraft.fms.currentWaypoint.runway && aircraft.category === FLIGHT_CATEGORY.ARRIVAL;
             const lock_size = height / 3;
             const lock_offset = lock_size / 8;
             const pi = Math.PI;

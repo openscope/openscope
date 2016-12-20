@@ -1,8 +1,10 @@
+/* eslint-disable import/no-extraneous-dependencies, arrow-parens */
 import ava from 'ava';
+import _isEqual from 'lodash/isEqual';
 
 import FixCollection from '../../../src/assets/scripts/airport/Fix/FixCollection';
 import FixModel from '../../../src/assets/scripts/airport/Fix/FixModel';
-import { airportPositionFixture } from '../../fixtures/airportFixtures';
+import { airportPositionFixtureKSFO } from '../../fixtures/airportFixtures';
 import {
     FIX_LIST_MOCK,
     SMALL_FIX_LIST_MOCK
@@ -12,15 +14,13 @@ import {
 ava.serial('FixCollection throws when an attempt to instantiate is made with invalid params', t => {
     t.throws(() => new FixCollection());
 
-    t.true(FixCollection._id === '');
     t.true(FixCollection._items.length === 0);
     t.true(FixCollection.length === 0);
 });
 
 ava.serial('FixCollection sets its properties when it receives a valid fixList', t => {
-    FixCollection.init(FIX_LIST_MOCK, airportPositionFixture);
+    FixCollection.addItems(FIX_LIST_MOCK, airportPositionFixtureKSFO);
 
-    t.false(FixCollection._id === '');
     t.true(FixCollection._items.length > 0);
     t.true(FixCollection.length === FixCollection._items.length);
 });
@@ -56,16 +56,29 @@ ava.serial('.findFixByName() returns null if a FixModel does not exist within th
     t.true(result === null);
 });
 
-ava.serial('.findRealFixes() returns a list of fixes that dont have `_` prepedning thier name', t => {
+ava.serial('.getFixPositionCoordinates() returns the position of a FixModel', t => {
+    const result = FixCollection.getFixPositionCoordinates('BAKRR');
+    const expectedResult = [675.477318026648, -12.012221291734532];
+
+    t.true(_isEqual(result, expectedResult));
+});
+
+ava.serial('.getFixPositionCoordinates() returns null if a FixModel does not exist within the collection', t => {
+    const result = FixCollection.getFixPositionCoordinates('');
+
+    t.true(result === null);
+});
+
+ava.serial('.findRealFixes() returns a list of fixes that dont have `_` prepending thier name', t => {
     const result = FixCollection.findRealFixes();
 
     t.true(result.length === 104);
 });
 
-ava.serial('.init() resets _items when it is called with an existing collection', t => {
+ava.serial('.addItems() resets _items when it is called with an existing collection', t => {
     t.true(FixCollection.length === 105);
 
-    FixCollection.init(SMALL_FIX_LIST_MOCK);
+    FixCollection.addItems(SMALL_FIX_LIST_MOCK);
 
     t.false(FixCollection.length === 105);
     t.true(FixCollection.length === 2);

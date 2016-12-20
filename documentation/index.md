@@ -30,9 +30,9 @@ other support for pilots. - [Wikipedia](https://en.wikipedia.org/wiki/Air_traffi
 Although the tutorial gives a large amount of information, if you find
 remembering the commands too complicated, here's a reference. Remember
 that you can type out multiple commands in one go; for example:
-`BAW231 fh090 d 30 sp 180` will work as well as all three commands run
-separately. Additionally, some have "shortKeys", where you can skip the
-space that is normally included, like in `BAW231 fh090` (heading).
+`BAW231 fh 090 d 30 sp 180` will work as well as all three commands run
+separately. Some commands have "alises" that are shorter to type. An
+example of that would be the `takeoff` command which has an alias `to`.
 
 ### Taxi
 _Aliases -_ `taxi` / `wait` / `w`
@@ -65,7 +65,7 @@ on rerouting for further detail.
 
 _Syntax -_ `AAL123 star [transition].[STAR name].[airport]`
 
-### "Cleared As Filed"
+### Cleared As Filed
 _Aliases -_ `caf`
 
 _Information -_ This command tells the airplane that they are cleared to follow
@@ -76,7 +76,7 @@ there is no need to use the `sid` command. Just clear him "as filed" with the
 
 _Syntax -_ `AAL123 caf`
 
-### "Climb Via SID"
+### Climb Via SID
 _Aliases -_ `cvs`
 
 _Information -_ Authorizes the aircraft to climb in accordance with the
@@ -86,7 +86,7 @@ posted in the procedure.
 
 _Syntax -_ `AAL123 cvs`
 
-### "Descend via STAR"
+### Descend via STAR
 _Aliases -_ `dvs`
 
 _Information -_ Authorizes the aircraft to descend in accordance with the
@@ -108,7 +108,9 @@ writing altitudes you would drop the last two zeros. For example, 3,000ft =
 "30", 8,300ft = "83", 10,000ft = "100", and FL180 (18,000ft) = "180".
 Airplanes will not descend below 1000 feet (unless locked on ILS).
 
-_Syntax -_ `AAL123 c [alt]`
+Altitude also accepts an `expedite` or `x` argument which can be used as the last item in the command.
+
+_Syntax -_ `AAL123 c [alt]` or `AAL123 c [alt] x`
 
 ### Takeoff
 _Aliases -_ `takeoff`, `to`, `cto`
@@ -123,9 +125,9 @@ for an altitude assignment before they agree to take off.
 _Syntax -_ `AAL123 cto`
 
 ### Heading
-_Aliases -_ `heading` / `h` / `turn` / `t`
+_Aliases -_ `heading` / `h` / `turn` / `t` / `fh`
 
-_Shortkeys -_ `fh` / `left arrow` / `right arrow` (if "Control Method" setting = "Arrow Keys")
+_Shortkeys -_ `left arrow` / `right arrow` (if "Control Method" setting = "Arrow Keys")
 
 _Information -_ This command sets the target heading; up (north) is 360,
 right (east) is 090, down (south) is 180, and left (west) is 270. Of course
@@ -134,7 +136,7 @@ before takeoff, the aircraft will turn to that heading after takeoff. You
 can force the aircraft to reach the heading by turning left or right by
 inserting `l` or `r` before the new heading, as demonstrated below.
 
-_Syntax -_ `AAL123 fh[hdg]` or `AAL123 (rightarrow)[hdg]` or `AAL123 t r [hdg]`
+_Syntax -_ `AAL123 fh [hdg]` or `AAL123 (rightarrow) [hdg]` or `AAL123 t r [hdg]`
 
 ### Speed
 _Aliases -_ `speed` / `slow` / `sp`
@@ -146,7 +148,7 @@ their safe speeds if you tell them to fly faster or slower than they are able
 to. It takes some time to increase and reduce speed. Remember that speed is
 always expressed in knots.
 
-_Syntax -_ `AAL123 -[spd]` or `AAL123 +[spd]`
+_Syntax -_ `AAL123 - [spd]` or `AAL123 + [spd]`
 
 ### Land
 _Aliases -_ `ils` / `i` / `land` / `l`
@@ -232,7 +234,7 @@ should probably use the more powerful `route` or `rr` commands.
 
 _Syntax -_ `AAL123 f [fixname]`
 
-### "Proceed Direct"
+### Proceed Direct
 _Aliases -_ `direct` / `pd` / `dct`
 
 _Information -_ This command instructs the aircraft to go direct to a
@@ -277,7 +279,7 @@ is sometimes used by controllers to indicate the status of the aircraft, in
 reference to whether or not they have been told to do something yet (for
 instance, approach might move all the blocks down for a/c that have been
 switched to tower frequency). In this sim, you can shift it in any of the 8
-subcardinal directions, in reference to their relative position on the numpad: 
+subcardinal directions, in reference to their relative position on the numpad:
 `(8:N, 9:NE, 6:E, 3:SE, 2:S, 1:SW, 4:W, 7:NW)`. Additionally, position `5` can
 be used to "shortstem" the aircraft, which puts the data block right on top of
 the aircraft's position symbol.

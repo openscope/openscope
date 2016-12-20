@@ -1,8 +1,10 @@
 import _compact from 'lodash/compact';
 import _forEach from 'lodash/forEach';
 import _get from 'lodash/get';
+import _has from 'lodash/has';
 import _isArray from 'lodash/isArray';
 import _isEmpty from 'lodash/isEmpty';
+import _isNil from 'lodash/isNil';
 import _isObject from 'lodash/isObject';
 import BaseModel from '../../base/BaseModel';
 import RouteSegmentCollection from './RouteSegmentCollection';
@@ -53,6 +55,7 @@ export default class StandardRouteModel extends BaseModel {
      * @constructor
      * @param standardRoute {object}
      */
+    /* istanbul ignore next */
     constructor(standardRoute) {
         super();
 
@@ -122,16 +125,6 @@ export default class StandardRouteModel extends BaseModel {
         this.exitPoints = {};
 
         /**
-         * Collection object of the `rwy` route segments
-         *
-         * @property _runwayCollection
-         * @type {RouteSegmentCollection}
-         * @default null
-         * @private
-         */
-        this._runwayCollection = null;
-
-        /**
          * `RouteSegmentModel` for the fixes belonging to the `body` segment
          *
          * @property _bodySegmentModel
@@ -182,10 +175,9 @@ export default class StandardRouteModel extends BaseModel {
         this.body = standardRoute.body;
         this.exitPoints = _get(standardRoute, 'exitPoints', {});
         this.entryPoints = _get(standardRoute, 'entryPoints', {});
-        this._runwayCollection = this._buildSegmentCollection(standardRoute.rwy);
         this._bodySegmentModel = this._buildSegmentModel(standardRoute.body);
-        this._exitCollection = this._buildSegmentCollection(standardRoute.exitPoints);
-        this._entryCollection = this._buildSegmentCollection(standardRoute.entryPoints);
+
+        this._buildEntryAndExitCollections(standardRoute);
     }
 
     /**
@@ -201,7 +193,6 @@ export default class StandardRouteModel extends BaseModel {
         this.body = [];
         this.exitPoints = [];
         this.draw = [];
-        this._runwayCollection = null;
         this._bodySegmentModel = null;
         this._exitCollection = null;
         this._entryCollection = null;
@@ -300,6 +291,22 @@ export default class StandardRouteModel extends BaseModel {
     }
 
     /**
+     * Checks if a given `fixName` is present in the `_entryCollection` or `_exitCollection`.
+     *
+     * This method does not check for items within the `_bodySegmentModel`. In the future
+     * this method may need to be extended to work with `_bodySegmentModel` items as well.
+     *
+     * @for StandardRouteModel
+     * @method hasFixName
+     * @param {string}
+     * @return {boolean}
+     */
+    hasFixName(fixName) {
+        return this._entryCollection && !_isNil(this._entryCollection.findSegmentByName(fixName)) ||
+            this._exitCollection && !_isNil(this._exitCollection.findSegmentByName(fixName));
+    }
+
+    /**
      * Build a new RouteSegmentModel for a segmentFixList
      *
      * `body` segment is expected to be an array, so instead of creating a collection like with `rwy` and
@@ -328,8 +335,6 @@ export default class StandardRouteModel extends BaseModel {
      * @private
      */
     _buildSegmentCollection(segment) {
-        // SIDS have `exitPoints` while STARs have `entryPoints`. one or the other will be `undefined`
-        // depending on the route type.
         if (typeof segment === 'undefined' || _isEmpty(segment)) {
             return null;
         }
@@ -337,6 +342,34 @@ export default class StandardRouteModel extends BaseModel {
         const segmentCollection = new RouteSegmentCollection(segment);
 
         return segmentCollection;
+    }
+
+    /**
+     * Determine if the `standardRoute` is a sid or a star and build the entry/exit collections
+     * with the correct data.
+     *
+     * STARS will have `entryPoints` defined so `rwy` becomes the `_exitCollection`
+     * SIDS will have `exitPoints` defined so `rwy` becomes the `_entryCollection`
+     *
+     * @for StandardRouteModel
+     * @method _buildEntryAndExitCollections
+     * @param standardRoute
+     * @private
+     */
+    _buildEntryAndExitCollections(standardRoute) {
+        if (_has(standardRoute, 'entryPoints')) {
+            this._entryCollection = this._buildSegmentCollection(standardRoute.entryPoints);
+            this._exitCollection = this._buildSegmentCollection(standardRoute.rwy);
+        } else if (_has(standardRoute, 'exitPoints')) {
+            this._entryCollection = this._buildSegmentCollection(standardRoute.rwy);
+            this._exitCollection = this._buildSegmentCollection(standardRoute.exitPoints);
+        } else if (_has(standardRoute, 'rwy')) {
+            console.error(`The '${this.icao}' procedure does not contain exitPoints or entryPoints. ` +
+                `If this is a SID, at least one exitPoint must be defined. If this is a STAR, at least ` +
+                `one entryPoint must be defined.`);
+
+            this._entryCollection = this._buildSegmentCollection(standardRoute.rwy);
+        }
     }
 
     /**
@@ -348,21 +381,21 @@ export default class StandardRouteModel extends BaseModel {
      *
      * @for StandardRouteModel
      * @method _generateFixList
-     * @param originSegment {function}
+     * @param entrySegment {function}
      * @param bodySegment {function}
-     * @param destinationSegment {function}
+     * @param exitSegment {function}
      * @return {array}
      * @private
      */
-    _generateFixList = (originSegment, bodySegment, destinationSegment) => {
+    _generateFixList = (entrySegment, bodySegment, exitSegment) => {
         // in the event that one of these functions doesnt find a result set it will return an empty array.
         // we leverage then `lodash.compact()` below to remove any empty values from the array before
         // returning the `fixList`.
         // These functions are called synchronously and order of operation is very important here.
         const fixList = [
-            ...originSegment,
+            ...entrySegment,
             ...bodySegment,
-            ...destinationSegment
+            ...exitSegment
         ];
 
         return _compact(fixList);
@@ -379,7 +412,7 @@ export default class StandardRouteModel extends BaseModel {
      * @private
      */
     _findFixListForSidByRunwayAndExit = (runwayName, exitFixName) => this._generateFixList(
-        this._findFixListInByCollectionAndSegmentName('rwy', '_runwayCollection', runwayName),
+        this._findFixListInByCollectionAndSegmentName('rwy', '_entryCollection', runwayName),
         this._findBodyFixList(),
         this._findFixListInByCollectionAndSegmentName('exitPoints', '_exitCollection', exitFixName)
     );
@@ -397,9 +430,33 @@ export default class StandardRouteModel extends BaseModel {
     _findFixListForStarByEntryAndRunway = (entryFixName, runwayName) => this._generateFixList(
         this._findFixListInByCollectionAndSegmentName('entryPoints', '_entryCollection', entryFixName),
         this._findBodyFixList(),
-        this._findFixListInByCollectionAndSegmentName('rwy', '_runwayCollection', runwayName)
+        this._findFixListInByCollectionAndSegmentName('rwy', '_exitCollection', runwayName)
     );
 
+    /**
+     * Given an `originalCollectionName`, `collectionName` and a `segmentName`, return a normalized list of
+     * fixes with restrictions.
+     *
+     * @for StandardRouteModel
+     * @method _findFixListInByCollectionAndSegmentName
+     * @param originalCollectionName {string}  the name of the original collection from airport json,
+     *                                         one of: [entryPoints, rwy, exitPoints]
+     * @param collectionName {string}  collectionName as defined here, one of: [_entryCollection, _exitCollection]
+     * @segmentName {string}  name of the segment to search for
+     * @return array {array<array>}
+     */
+    _findFixListInByCollectionAndSegmentName(originalCollectionName, collectionName, segmentName) {
+        const originalCollection = _get(this, originalCollectionName, null);
+        const collection = _get(this, collectionName, null);
+
+        // specifically checking for an empty string here because this param gets a default of '' when
+        // it is received in to the public method
+        if (!originalCollection || !collection || segmentName === '') {
+            return [];
+        }
+
+        return collection.findWaypointsForSegmentName(segmentName);
+    }
 
     /**
      * Gather a list of `StandardWaypointModel` objects for a particular route.
@@ -416,11 +473,23 @@ export default class StandardRouteModel extends BaseModel {
 
         if (this._entryCollection) {
             const entrySegment = this._entryCollection.findSegmentByName(entry);
+
+            if (typeof entrySegment === 'undefined') {
+                throw new TypeError(`Expected 'entry' to exist in the RouteSegmentCollection, but '${this.icao}' ` +
+                `does not have an entry of '${entry}'`);
+            }
+
             entrySegmentItems = entrySegment.items;
         }
 
-        if (this._runwayCollection) {
-            const exitSegment = this._runwayCollection.findSegmentByName(exit);
+        if (this._exitCollection) {
+            const exitSegment = this._exitCollection.findSegmentByName(exit);
+
+            if (typeof exitSegment === 'undefined') {
+                throw new TypeError(`Expected 'exit' to exist in the RouteSegmentCollection, but '${this.icao}' ` +
+                `does not have an exit of '${exit}'`);
+            }
+
             exitSegmentItems = exitSegment.items;
         }
 
@@ -429,32 +498,6 @@ export default class StandardRouteModel extends BaseModel {
             this._bodySegmentModel.items,
             exitSegmentItems
         );
-    }
-
-    /**
-     * Given an `originalCollectionName`, `collectionName` and a `segmentName`, return a normalized list of
-     * fixes with restrictions.
-     *
-     * @for StandardRouteModel
-     * @method _findFixListInByCollectionAndSegmentName
-     * @param originalCollectionName {string}  the name of the original collection from airport json,
-     *                                         one of: [entryPoints, rwy, exitPoints]
-     * @param collectionName {string}  collectionName as defined here, one of:
-     *                                 [_runwayCollection, _entryCollection, _exitCollection]
-     * @segmentName {string}  name of the segment to search for
-     * @return array {array<array>}
-     */
-    _findFixListInByCollectionAndSegmentName(originalCollectionName, collectionName, segmentName) {
-        const originalCollection = _get(this, originalCollectionName, null);
-        const collection = _get(this, collectionName, null);
-
-        // specifically checking for an empty string here because this param gets a default of '' when
-        // it is received in to the public method
-        if (!originalCollection || !collection || segmentName === '') {
-            return [];
-        }
-
-        return collection.findWaypointsForSegmentName(segmentName);
     }
 
     /**

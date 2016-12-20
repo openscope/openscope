@@ -1,5 +1,4 @@
 import $ from 'jquery';
-import peg from 'pegjs';
 import ContentQueue from './contentQueue/ContentQueue';
 import LoadingView from './LoadingView';
 import AirportController from './airport/AirportController';
@@ -8,11 +7,11 @@ import TutorialView from './tutorial/TutorialView';
 import InputController from './InputController';
 import UiController from './UiController';
 import CanvasController from './canvas/CanvasController';
+import GameClockView from './game/GameClockView';
 import { speech_init } from './speech';
 import { time, calculateDeltaTime } from './utilities/timeHelpers';
 import { LOG } from './constants/logLevel';
 
-window.peg = peg;
 window.zlsa = {};
 window.zlsa.atc = {};
 const prop = {};
@@ -22,14 +21,11 @@ const prop = {};
 // This will need to be re-worked, and current global functions should be exported and
 // imported as needed in each file.
 require('./util');
-// this module doesnt appear to be in use anywhere
-// require('./animation');
-require('./parser');
 
 // saved as this.prop.version and this.prop.version_string
-const VERSION = [3, 0, 0];
+const VERSION = [3, 2, 0];
 
-// are you using a main loop? (you must call update() afterward disable/reenable)
+// are you using a main loop? (you must call update() afterward disable/re-enable)
 let UPDATE = true;
 
 // the framerate is updated this often (seconds)
@@ -111,6 +107,7 @@ export default class App {
         this.inputController = new InputController(this.$element);
         this.uiController = new UiController(this.$element);
         this.canvasController = new CanvasController(this.$element);
+        this.gameClockView = new GameClockView(this.$element);
 
         return this;
     }
@@ -324,6 +321,7 @@ export default class App {
         this.airportController.recalculate();
         this.updatePost();
         this.incrementFrame();
+        this.gameClockView.update();
 
         return this;
     }

@@ -15,9 +15,9 @@ import {
     fixRadialDist,
     isWithinAirspace,
     calculateDistanceToBoundary,
-    calculateHeadingFromTwoPositions
+    bearingToPoint
 } from '../../math/flightMath';
-import { FLIGHT_CATEGORY } from '../../aircraft/AircraftInstanceModel';
+import { FLIGHT_CATEGORY } from '../../constants/aircraftConstants';
 import { AIRPORT_CONSTANTS } from '../../constants/airportConstants';
 import { TIME } from '../../constants/globalConstants';
 import { LOG } from '../../constants/logLevel';
@@ -135,6 +135,33 @@ export default class ArrivalBase {
          * @default 0
          */
         this.radial = 0;
+
+        /**
+         * game time
+         *
+         * @property cycleStart
+         * @type {number}
+         * @default 0
+         */
+        this.cycleStart = 0;
+
+        /**
+         * Start at the beginning of the surge
+         *
+         * @property offset
+         * @type {number}
+         * @default 0
+         */
+        this.offset = 0;
+
+        /**
+         * 30 minute cycle
+         *
+         * @property period
+         * @type {number}
+         * @default 1800
+         */
+        this.period = TIME.ONE_HOUR_IN_SECONDS / 2;
 
         /**
          * Initial speed in knots of spawned aircraft.
@@ -333,13 +360,14 @@ export default class ArrivalBase {
                     // if point before next fix
                     const nextFix = waypoint;
                     const previousFix = waypointModelList[j - 1];
-                    const heading = bearing(previousFix.gps, nextFix.gps);
-                    const calculatedRadialDistance = fixRadialDist(previousFix.gps, heading, spawnOffset);
+                    const heading = bearingToPoint(previousFix.gpsXY, nextFix.gpsXY);
+                    const spawnPoint = fixRadialDist(previousFix.gps, heading, spawnOffset);
+                    const spawnPosition = new PositionModel(spawnPoint, this.airport.position, this.airport.magnetic_north);
 
                     // TODO: this looks like it should be a model object
                     spawnPositions.push({
                         heading,
-                        pos: calculatedRadialDistance,
+                        pos: spawnPosition,
                         nextFix: nextFix.name
                     });
 
@@ -362,8 +390,7 @@ export default class ArrivalBase {
         // Spawn aircraft along the route, ahead of the standard spawn point
         for (let i = 0; i < spawnPositions.length; i++) {
             const { heading, pos, nextFix } = spawnPositions[i];
-            const { icao, position, magnetic_north } = this.airport;
-            const aircraftPosition = new PositionModel(pos, position, magnetic_north, 'GPS');
+            const { icao } = this.airport;
             const airline = randomAirlineSelectionHelper(this.airlines);
             const aircraftToAdd = {
                 category: FLIGHT_CATEGORY.ARRIVAL,
@@ -377,8 +404,8 @@ export default class ArrivalBase {
                 // TODO: this could be a _get() instead of an || assignment
                 heading: heading || this.heading,
                 waypoints: this.fixes,
-                route: _get(this, 'activeRouteModel.routeString', ''),
-                position: aircraftPosition.position,
+                route: _get(this, 'activeRouteModel.routeCode', ''),
+                position: pos.position,
                 speed: this.speed,
                 nextFix: nextFix
             };
@@ -440,7 +467,7 @@ export default class ArrivalBase {
             // calculate heading to next fix
             position = getFixPosition(this.fixes[0].fix);
             const nextPosition = getFixPosition(this.fixes[1].fix);
-            heading = calculateHeadingFromTwoPositions(nextPosition, position);
+            heading = bearingToPoint(position, nextPosition);
         } else if (this.activeRouteModel) {
             const isPreSpawn = false;
             const waypointModelList = this.airport.findWaypointModelsForStar(
@@ -453,7 +480,7 @@ export default class ArrivalBase {
             // grab position of first fix
             position = waypointModelList[0].position;
             // calculate heading from first waypoint to second waypoint
-            heading = calculateHeadingFromTwoPositions(waypointModelList[1].position, position);
+            heading = bearingToPoint(position, waypointModelList[1].position);
         } else {
             // spawn outside the airspace along 'this.radial'
             distance = 2 * this.airport.ctr_radius;
@@ -475,7 +502,7 @@ export default class ArrivalBase {
             airline: airline.name,
             fleet: airline.fleet,
             waypoints: this.fixes,
-            route: _get(this, 'activeRouteModel.routeString', ''),
+            route: _get(this, 'activeRouteModel.routeCode', ''),
             // TODO: this should use a `PositionModel` instead of just using it to get a position
             // this will take a lot of refactoring, though, as aircraft.position is used all over the app.
             speed: this.speed
@@ -509,7 +536,7 @@ export default class ArrivalBase {
 
             log(`Requested arrival rate of ${this.frequency} acph overridden to ` +
                 `maintain minimum of ${AIRPORT_CONSTANTS.MIN_ENTRAIL_DISTANCE_NM} miles entrail on arrival stream ` +
-                `following route ${this.activeRouteModel.routeString}`, LOG.INFO);
+                `following route ${this.activeRouteModel.routeCode}`, LOG.INFO);
         }
 
         const max_interval = tgt_interval + (tgt_interval - min_interval);

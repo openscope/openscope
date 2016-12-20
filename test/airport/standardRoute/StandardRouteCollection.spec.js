@@ -4,8 +4,8 @@ import ava from 'ava';
 import StandardRouteCollection from '../../../src/assets/scripts/airport/StandardRoute/StandardRouteCollection';
 import FixCollection from '../../../src/assets/scripts/airport/Fix/FixCollection';
 
-import { airportPositionFixture } from '../../fixtures/airportFixtures';
-import { FIX_LIST_MOCK } from '../Fix/_mocks/fixMocks';
+import { airportPositionFixtureKSFO } from '../../fixtures/airportFixtures';
+import { FIX_LIST_MOCK } from '../fix/_mocks/fixMocks';
 
 import {
     STAR_LIST_MOCK,
@@ -19,8 +19,8 @@ const ENTRY_FIXNAME_MOCK = 'MLF';
 const EXIT_FIXNAME_MOCK = 'KENNO';
 const RUNWAY_NAME_MOCK = '19R';
 
-ava.before(() => FixCollection.init(FIX_LIST_MOCK, airportPositionFixture));
-ava.after(() => FixCollection.destroy());
+ava.before(() => FixCollection.addItems(FIX_LIST_MOCK, airportPositionFixtureKSFO));
+ava.after(() => FixCollection.removeItems());
 
 ava('does not throw when no parameters are passed', t => t.notThrows(() => new StandardRouteCollection()));
 
@@ -94,6 +94,14 @@ ava('.findFixModelsForRouteByEntryAndExit() returns early if not provided an `ic
     const result = collection.findFixModelsForRouteByEntryAndExit(null, ENTRY_FIXNAME_MOCK, RUNWAY_NAME_MOCK);
 
     t.true(typeof result === 'undefined');
+});
+
+ava('.hasRoute() returns a boolean if a route exists within the collection', t => {
+    const collection = new StandardRouteCollection(STAR_LIST_MOCK);
+
+    t.true(collection.hasRoute(STAR_ICAO_MOCK));
+    t.false(collection.hasRoute(SID_ICAO_MOCK));
+    t.false(collection.hasRoute(''));
 });
 
 ava('._addSidToCollection() throws if it doesnt receive a SidModel', t => {

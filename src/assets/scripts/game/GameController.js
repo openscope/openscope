@@ -65,6 +65,7 @@ export default class GameController {
         this.game.speedup = 1;
         this.game.frequency = 1;
         this.game.time = 0;
+        this.game.startTime = 0;
         this.game.delta = 0;
         this.game.events = {};
         this.game.timeouts = [];

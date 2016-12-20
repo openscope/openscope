@@ -1,7 +1,7 @@
 /* eslint-disable no-underscore-dangle, no-unused-vars, no-undef, global-require */
+import _without from 'lodash/without';
 import AircraftConflict from './AircraftConflict';
 import AircraftModel from './AircraftModel';
-import AircraftFlightManagementSystem from './AircraftFlightManagementSystem';
 import { speech_say } from '../speech';
 import { abs } from '../math/core';
 import { distance2d } from '../math/distance';
@@ -34,24 +34,6 @@ export default class AircraftController {
 
     /**
      * @for AircraftController
-     * @method aircraft_generate_callsign
-     * @param airlineName
-     */
-    aircraft_generate_callsign(airlineName) {
-        // TODO: this should live in the AirlineModel
-        const airline = window.airlineController.airline_get(airlineName);
-
-        if (!airline) {
-            console.warn(`Airline not found: ${airlineName}`);
-
-            return `airline-${airlineName}-not-found`;
-        }
-
-        return airline.generateFlightNumber();
-    }
-
-    /**
-     * @for AircraftController
      * @method aircraft_auto_toggle
      */
     aircraft_auto_toggle() {
@@ -60,19 +42,31 @@ export default class AircraftController {
 
     /**
      * @for AircraftController
-     * @method aircraft_callsign_new
-     * @param airline {string}
+     * @method isCallsignInList
+     * @param callsign {string}
+     * return {boolean}
      */
-    aircraft_callsign_new(airline) {
-        // TODO: the logic needs work here. if `callsign` is always initialized as null, one would imagine that
-        // this function would always result in the creation of a callsign?
-        let callsign = this.aircraft_generate_callsign(airline);
+    isCallsignInList(callsign) {
+        return this.aircraft.callsigns.indexOf(callsign) !== -1;
+    }
 
-        if (this.aircraft.callsigns.indexOf(callsign) === -1) {
-            this.aircraft.callsigns.push(callsign);
+    /**
+     * Add a new callsign to `aircraft.callsigns`
+     *
+     * @for AircraftController
+     * @method addCallsignToList
+     * @param callsign {string}
+     */
+    addCallsignToList(callsign) {
+        if (this.isCallsignInList(callsign)) {
+            // if you've made it here something has gone very wrong. generation of a callsign/flightNumber should
+            // also include verification that the callsign/flightNumber is unique
+            console.warn(`${callsign} already exists within the callsigns list!`);
+
+            return;
         }
 
-        return callsign;
+        this.aircraft.callsigns.push(callsign);
     }
 
     /**
@@ -144,11 +138,9 @@ export default class AircraftController {
      * @method aircraft_remove
      */
     aircraft_remove(aircraft) {
-        this.aircraft.callsigns.splice(this.aircraft.callsigns.indexOf(aircraft.callsign), 1);
-        this.aircraft.list.splice(this.aircraft.list.indexOf(aircraft), 1);
-
-        this.update_aircraft_eids();
-
+        window.airportController.removeAircraftFromAllRunwayQueues(aircraft);
+        this.removeCallsignFromList(aircraft.callsign);
+        this.removeAircraftInstanceModelFromList(aircraft);
         aircraft.cleanup();
     }
 
@@ -208,7 +200,7 @@ export default class AircraftController {
                 remove = true;
             }
 
-            if (aircraft.hit && aircraft.wow()) {
+            if (aircraft.hit && aircraft.isOnGround()) {
                 window.uiController.ui_log(`Lost radar contact with ${aircraft.getCallsign()}`);
                 speech_say([
                     { type: 'callsign', content: aircraft },
@@ -221,7 +213,7 @@ export default class AircraftController {
             // Clean up the screen from aircraft that are too far
             if (
                 (!this.aircraft_visible(aircraft, 2) && !aircraft.inside_ctr) &&
-                aircraft.fms.currentWaypoint().navmode === 'heading'
+                aircraft.fms.currentWaypoint.navmode === 'heading'
             ) {
                 if (aircraft.category === 'arrival' || aircraft.category === 'departure') {
                     remove = true;
@@ -360,6 +352,26 @@ export default class AircraftController {
         return this.aircraft.models[icao];
     }
 
+    /**
+     * Remove the specified aircraft from `AircraftController.aircraft`
+     * @method removeAircraftInstanceModelFromList
+     * @param  {Aircraft} aircraft the aircraft to remove
+     */
+    removeAircraftInstanceModelFromList(aircraft) {
+        this.aircraft.list = _without(this.aircraft.list, aircraft);
+    }
+
+    /**
+     * Remove a flight number from the list stored in `AircraftController.aircraft.callsigns`
+     * @for AircraftController
+     * @method removeCallsignFromList
+     * @param  {string} callsign the flight number to remove
+     */
+    removeCallsignFromList(callsign) {
+        this.aircraft.callsigns = _without(this.aircraft.callsigns, callsign);
+    }
+
+    // TODO: what is an `eid` and why would it beed to be updated?
     /**
      * Adjust all aircraft's eid values
      *

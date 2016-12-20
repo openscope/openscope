@@ -25,7 +25,7 @@ ava('RouteModel throws when instantiated with incorrect parameters', t => {
     t.throws(() => new RouteModel('A.B.C.D'));
 });
 
-ava('RouteModel accepts a string `routeString` as its only parameter and sets its properties', t => {
+ava('RouteModel accepts a string `routeCode` as its only parameter and sets its properties', t => {
     t.notThrows(() => new RouteModel(ROUTE_MOCK));
 
     const model = new RouteModel(ROUTE_MOCK);
@@ -35,27 +35,27 @@ ava('RouteModel accepts a string `routeString` as its only parameter and sets it
     t.true(model.exit === 'KLAS');
 });
 
-ava('_isValidRouteString() accepts a `routeString` and returns false when it is not the correct length', t => {
+ava('_isValidRouteCode() accepts a `routeCode` and returns false when it is not the correct length', t => {
     const model = new RouteModel(ROUTE_MOCK);
 
-    t.false(model._isValidRouteString(''));
-    t.false(model._isValidRouteString('A.B'));
+    t.false(model._isValidRouteCode(''));
+    t.false(model._isValidRouteCode('A.B'));
 });
 
-ava('_isValidRouteString() accepts a `routeString` and returns true when it is the correct length', t => {
+ava('_isValidRouteCode() accepts a `routeCode` and returns true when it is the correct length', t => {
     const model = new RouteModel(ROUTE_MOCK);
 
-    t.true(model._isValidRouteString('A.B.C'));
+    t.true(model._isValidRouteCode('A.B.C'));
 });
 
-ava('_extractSegmentNamesFromRouteString() accepts a `routeString` and returns an object', t => {
+ava('_extractSegmentNamesFromRouteCode() accepts a `routeCode` and returns an object', t => {
     const expectedResult = {
         entry: 'BETHL',
         base: 'GRNPA1',
         exit: 'KLAS'
     };
     const model = new RouteModel(ROUTE_MOCK);
-    const result = model._extractSegmentNamesFromRouteString(ROUTE_MOCK);
+    const result = model._extractSegmentNamesFromRouteCode(ROUTE_MOCK);
 
     t.true(_isEqual(result, expectedResult));
 });

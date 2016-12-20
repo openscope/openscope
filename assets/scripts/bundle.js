@@ -30,7 +30,7 @@ define(String.prototype, "padRight", "".padEnd);
 });
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 
-},{"core-js/fn/regexp/escape":2,"core-js/shim":295,"regenerator-runtime/runtime":521}],2:[function(require,module,exports){
+},{"core-js/fn/regexp/escape":2,"core-js/shim":295,"regenerator-runtime/runtime":518}],2:[function(require,module,exports){
 require('../../modules/core.regexp.escape');
 module.exports = require('../../modules/_core').RegExp.escape;
 },{"../../modules/_core":23,"../../modules/core.regexp.escape":119}],3:[function(require,module,exports){
@@ -16315,7 +16315,7 @@ var DataView = getNative(root, 'DataView');
 
 module.exports = DataView;
 
-},{"./_getNative":391,"./_root":435}],298:[function(require,module,exports){
+},{"./_getNative":397,"./_root":442}],298:[function(require,module,exports){
 var hashClear = require('./_hashClear'),
     hashDelete = require('./_hashDelete'),
     hashGet = require('./_hashGet'),
@@ -16349,7 +16349,7 @@ Hash.prototype.set = hashSet;
 
 module.exports = Hash;
 
-},{"./_hashClear":401,"./_hashDelete":402,"./_hashGet":403,"./_hashHas":404,"./_hashSet":405}],299:[function(require,module,exports){
+},{"./_hashClear":407,"./_hashDelete":408,"./_hashGet":409,"./_hashHas":410,"./_hashSet":411}],299:[function(require,module,exports){
 var listCacheClear = require('./_listCacheClear'),
     listCacheDelete = require('./_listCacheDelete'),
     listCacheGet = require('./_listCacheGet'),
@@ -16383,7 +16383,7 @@ ListCache.prototype.set = listCacheSet;
 
 module.exports = ListCache;
 
-},{"./_listCacheClear":416,"./_listCacheDelete":417,"./_listCacheGet":418,"./_listCacheHas":419,"./_listCacheSet":420}],300:[function(require,module,exports){
+},{"./_listCacheClear":422,"./_listCacheDelete":423,"./_listCacheGet":424,"./_listCacheHas":425,"./_listCacheSet":426}],300:[function(require,module,exports){
 var getNative = require('./_getNative'),
     root = require('./_root');
 
@@ -16392,7 +16392,7 @@ var Map = getNative(root, 'Map');
 
 module.exports = Map;
 
-},{"./_getNative":391,"./_root":435}],301:[function(require,module,exports){
+},{"./_getNative":397,"./_root":442}],301:[function(require,module,exports){
 var mapCacheClear = require('./_mapCacheClear'),
     mapCacheDelete = require('./_mapCacheDelete'),
     mapCacheGet = require('./_mapCacheGet'),
@@ -16426,7 +16426,7 @@ MapCache.prototype.set = mapCacheSet;
 
 module.exports = MapCache;
 
-},{"./_mapCacheClear":421,"./_mapCacheDelete":422,"./_mapCacheGet":423,"./_mapCacheHas":424,"./_mapCacheSet":425}],302:[function(require,module,exports){
+},{"./_mapCacheClear":427,"./_mapCacheDelete":428,"./_mapCacheGet":429,"./_mapCacheHas":430,"./_mapCacheSet":431}],302:[function(require,module,exports){
 var getNative = require('./_getNative'),
     root = require('./_root');
 
@@ -16435,7 +16435,7 @@ var Promise = getNative(root, 'Promise');
 
 module.exports = Promise;
 
-},{"./_getNative":391,"./_root":435}],303:[function(require,module,exports){
+},{"./_getNative":397,"./_root":442}],303:[function(require,module,exports){
 var getNative = require('./_getNative'),
     root = require('./_root');
 
@@ -16444,7 +16444,7 @@ var Set = getNative(root, 'Set');
 
 module.exports = Set;
 
-},{"./_getNative":391,"./_root":435}],304:[function(require,module,exports){
+},{"./_getNative":397,"./_root":442}],304:[function(require,module,exports){
 var MapCache = require('./_MapCache'),
     setCacheAdd = require('./_setCacheAdd'),
     setCacheHas = require('./_setCacheHas');
@@ -16473,7 +16473,7 @@ SetCache.prototype.has = setCacheHas;
 
 module.exports = SetCache;
 
-},{"./_MapCache":301,"./_setCacheAdd":436,"./_setCacheHas":437}],305:[function(require,module,exports){
+},{"./_MapCache":301,"./_setCacheAdd":443,"./_setCacheHas":444}],305:[function(require,module,exports){
 var ListCache = require('./_ListCache'),
     stackClear = require('./_stackClear'),
     stackDelete = require('./_stackDelete'),
@@ -16502,7 +16502,7 @@ Stack.prototype.set = stackSet;
 
 module.exports = Stack;
 
-},{"./_ListCache":299,"./_stackClear":439,"./_stackDelete":440,"./_stackGet":441,"./_stackHas":442,"./_stackSet":443}],306:[function(require,module,exports){
+},{"./_ListCache":299,"./_stackClear":448,"./_stackDelete":449,"./_stackGet":450,"./_stackHas":451,"./_stackSet":452}],306:[function(require,module,exports){
 var root = require('./_root');
 
 /** Built-in value references. */
@@ -16510,7 +16510,7 @@ var Symbol = root.Symbol;
 
 module.exports = Symbol;
 
-},{"./_root":435}],307:[function(require,module,exports){
+},{"./_root":442}],307:[function(require,module,exports){
 var root = require('./_root');
 
 /** Built-in value references. */
@@ -16518,7 +16518,7 @@ var Uint8Array = root.Uint8Array;
 
 module.exports = Uint8Array;
 
-},{"./_root":435}],308:[function(require,module,exports){
+},{"./_root":442}],308:[function(require,module,exports){
 var getNative = require('./_getNative'),
     root = require('./_root');
 
@@ -16527,7 +16527,7 @@ var WeakMap = getNative(root, 'WeakMap');
 
 module.exports = WeakMap;
 
-},{"./_getNative":391,"./_root":435}],309:[function(require,module,exports){
+},{"./_getNative":397,"./_root":442}],309:[function(require,module,exports){
 /**
  * Adds the key-value `pair` to `map`.
  *
@@ -16563,6 +16563,29 @@ module.exports = addSetEntry;
 
 },{}],311:[function(require,module,exports){
 /**
+ * A faster alternative to `Function#apply`, this function invokes `func`
+ * with the `this` binding of `thisArg` and the arguments of `args`.
+ *
+ * @private
+ * @param {Function} func The function to invoke.
+ * @param {*} thisArg The `this` binding of `func`.
+ * @param {Array} args The arguments to invoke `func` with.
+ * @returns {*} Returns the result of `func`.
+ */
+function apply(func, thisArg, args) {
+  switch (args.length) {
+    case 0: return func.call(thisArg);
+    case 1: return func.call(thisArg, args[0]);
+    case 2: return func.call(thisArg, args[0], args[1]);
+    case 3: return func.call(thisArg, args[0], args[1], args[2]);
+  }
+  return func.apply(thisArg, args);
+}
+
+module.exports = apply;
+
+},{}],312:[function(require,module,exports){
+/**
  * A specialized version of `_.forEach` for arrays without support for
  * iteratee shorthands.
  *
@@ -16585,7 +16608,50 @@ function arrayEach(array, iteratee) {
 
 module.exports = arrayEach;
 
-},{}],312:[function(require,module,exports){
+},{}],313:[function(require,module,exports){
+var baseIndexOf = require('./_baseIndexOf');
+
+/**
+ * A specialized version of `_.includes` for arrays without support for
+ * specifying an index to search from.
+ *
+ * @private
+ * @param {Array} [array] The array to inspect.
+ * @param {*} target The value to search for.
+ * @returns {boolean} Returns `true` if `target` is found, else `false`.
+ */
+function arrayIncludes(array, value) {
+  var length = array == null ? 0 : array.length;
+  return !!length && baseIndexOf(array, value, 0) > -1;
+}
+
+module.exports = arrayIncludes;
+
+},{"./_baseIndexOf":340}],314:[function(require,module,exports){
+/**
+ * This function is like `arrayIncludes` except that it accepts a comparator.
+ *
+ * @private
+ * @param {Array} [array] The array to inspect.
+ * @param {*} target The value to search for.
+ * @param {Function} comparator The comparator invoked per element.
+ * @returns {boolean} Returns `true` if `target` is found, else `false`.
+ */
+function arrayIncludesWith(array, value, comparator) {
+  var index = -1,
+      length = array == null ? 0 : array.length;
+
+  while (++index < length) {
+    if (comparator(value, array[index])) {
+      return true;
+    }
+  }
+  return false;
+}
+
+module.exports = arrayIncludesWith;
+
+},{}],315:[function(require,module,exports){
 var baseTimes = require('./_baseTimes'),
     isArguments = require('./isArguments'),
     isArray = require('./isArray'),
@@ -16636,7 +16702,7 @@ function arrayLikeKeys(value, inherited) {
 
 module.exports = arrayLikeKeys;
 
-},{"./_baseTimes":355,"./_isIndex":409,"./isArguments":465,"./isArray":466,"./isBuffer":468,"./isTypedArray":479}],313:[function(require,module,exports){
+},{"./_baseTimes":361,"./_isIndex":415,"./isArguments":475,"./isArray":476,"./isBuffer":479,"./isTypedArray":491}],316:[function(require,module,exports){
 /**
  * A specialized version of `_.map` for arrays without support for iteratee
  * shorthands.
@@ -16659,7 +16725,7 @@ function arrayMap(array, iteratee) {
 
 module.exports = arrayMap;
 
-},{}],314:[function(require,module,exports){
+},{}],317:[function(require,module,exports){
 /**
  * Appends the elements of `values` to `array`.
  *
@@ -16681,7 +16747,7 @@ function arrayPush(array, values) {
 
 module.exports = arrayPush;
 
-},{}],315:[function(require,module,exports){
+},{}],318:[function(require,module,exports){
 /**
  * A specialized version of `_.reduce` for arrays without support for
  * iteratee shorthands.
@@ -16709,7 +16775,7 @@ function arrayReduce(array, iteratee, accumulator, initAccum) {
 
 module.exports = arrayReduce;
 
-},{}],316:[function(require,module,exports){
+},{}],319:[function(require,module,exports){
 /**
  * A specialized version of `_.some` for arrays without support for iteratee
  * shorthands.
@@ -16734,7 +16800,7 @@ function arraySome(array, predicate) {
 
 module.exports = arraySome;
 
-},{}],317:[function(require,module,exports){
+},{}],320:[function(require,module,exports){
 /**
  * Converts an ASCII `string` to an array.
  *
@@ -16748,7 +16814,7 @@ function asciiToArray(string) {
 
 module.exports = asciiToArray;
 
-},{}],318:[function(require,module,exports){
+},{}],321:[function(require,module,exports){
 /** Used to match words composed of alphanumeric characters. */
 var reAsciiWord = /[^\x00-\x2f\x3a-\x40\x5b-\x60\x7b-\x7f]+/g;
 
@@ -16765,7 +16831,7 @@ function asciiWords(string) {
 
 module.exports = asciiWords;
 
-},{}],319:[function(require,module,exports){
+},{}],322:[function(require,module,exports){
 var baseAssignValue = require('./_baseAssignValue'),
     eq = require('./eq');
 
@@ -16795,7 +16861,7 @@ function assignValue(object, key, value) {
 
 module.exports = assignValue;
 
-},{"./_baseAssignValue":323,"./eq":455}],320:[function(require,module,exports){
+},{"./_baseAssignValue":326,"./eq":465}],323:[function(require,module,exports){
 var eq = require('./eq');
 
 /**
@@ -16818,7 +16884,7 @@ function assocIndexOf(array, key) {
 
 module.exports = assocIndexOf;
 
-},{"./eq":455}],321:[function(require,module,exports){
+},{"./eq":465}],324:[function(require,module,exports){
 var copyObject = require('./_copyObject'),
     keys = require('./keys');
 
@@ -16837,7 +16903,7 @@ function baseAssign(object, source) {
 
 module.exports = baseAssign;
 
-},{"./_copyObject":372,"./keys":480}],322:[function(require,module,exports){
+},{"./_copyObject":378,"./keys":492}],325:[function(require,module,exports){
 var copyObject = require('./_copyObject'),
     keysIn = require('./keysIn');
 
@@ -16856,7 +16922,7 @@ function baseAssignIn(object, source) {
 
 module.exports = baseAssignIn;
 
-},{"./_copyObject":372,"./keysIn":481}],323:[function(require,module,exports){
+},{"./_copyObject":378,"./keysIn":493}],326:[function(require,module,exports){
 var defineProperty = require('./_defineProperty');
 
 /**
@@ -16883,7 +16949,7 @@ function baseAssignValue(object, key, value) {
 
 module.exports = baseAssignValue;
 
-},{"./_defineProperty":382}],324:[function(require,module,exports){
+},{"./_defineProperty":388}],327:[function(require,module,exports){
 /**
  * The base implementation of `_.clamp` which doesn't coerce arguments.
  *
@@ -16907,7 +16973,7 @@ function baseClamp(number, lower, upper) {
 
 module.exports = baseClamp;
 
-},{}],325:[function(require,module,exports){
+},{}],328:[function(require,module,exports){
 var Stack = require('./_Stack'),
     arrayEach = require('./_arrayEach'),
     assignValue = require('./_assignValue'),
@@ -17062,7 +17128,7 @@ function baseClone(value, bitmask, customizer, key, object, stack) {
 
 module.exports = baseClone;
 
-},{"./_Stack":305,"./_arrayEach":311,"./_assignValue":319,"./_baseAssign":321,"./_baseAssignIn":322,"./_cloneBuffer":364,"./_copyArray":371,"./_copySymbols":373,"./_copySymbolsIn":374,"./_getAllKeys":387,"./_getAllKeysIn":388,"./_getTag":396,"./_initCloneArray":406,"./_initCloneByTag":407,"./_initCloneObject":408,"./isArray":466,"./isBuffer":468,"./isObject":475,"./keys":480}],326:[function(require,module,exports){
+},{"./_Stack":305,"./_arrayEach":312,"./_assignValue":322,"./_baseAssign":324,"./_baseAssignIn":325,"./_cloneBuffer":370,"./_copyArray":377,"./_copySymbols":379,"./_copySymbolsIn":380,"./_getAllKeys":393,"./_getAllKeysIn":394,"./_getTag":402,"./_initCloneArray":412,"./_initCloneByTag":413,"./_initCloneObject":414,"./isArray":476,"./isBuffer":479,"./isObject":487,"./keys":492}],329:[function(require,module,exports){
 var isObject = require('./isObject');
 
 /** Built-in value references. */
@@ -17094,7 +17160,76 @@ var baseCreate = (function() {
 
 module.exports = baseCreate;
 
-},{"./isObject":475}],327:[function(require,module,exports){
+},{"./isObject":487}],330:[function(require,module,exports){
+var SetCache = require('./_SetCache'),
+    arrayIncludes = require('./_arrayIncludes'),
+    arrayIncludesWith = require('./_arrayIncludesWith'),
+    arrayMap = require('./_arrayMap'),
+    baseUnary = require('./_baseUnary'),
+    cacheHas = require('./_cacheHas');
+
+/** Used as the size to enable large array optimizations. */
+var LARGE_ARRAY_SIZE = 200;
+
+/**
+ * The base implementation of methods like `_.difference` without support
+ * for excluding multiple arrays or iteratee shorthands.
+ *
+ * @private
+ * @param {Array} array The array to inspect.
+ * @param {Array} values The values to exclude.
+ * @param {Function} [iteratee] The iteratee invoked per element.
+ * @param {Function} [comparator] The comparator invoked per element.
+ * @returns {Array} Returns the new array of filtered values.
+ */
+function baseDifference(array, values, iteratee, comparator) {
+  var index = -1,
+      includes = arrayIncludes,
+      isCommon = true,
+      length = array.length,
+      result = [],
+      valuesLength = values.length;
+
+  if (!length) {
+    return result;
+  }
+  if (iteratee) {
+    values = arrayMap(values, baseUnary(iteratee));
+  }
+  if (comparator) {
+    includes = arrayIncludesWith;
+    isCommon = false;
+  }
+  else if (values.length >= LARGE_ARRAY_SIZE) {
+    includes = cacheHas;
+    isCommon = false;
+    values = new SetCache(values);
+  }
+  outer:
+  while (++index < length) {
+    var value = array[index],
+        computed = iteratee == null ? value : iteratee(value);
+
+    value = (comparator || value !== 0) ? value : 0;
+    if (isCommon && computed === computed) {
+      var valuesIndex = valuesLength;
+      while (valuesIndex--) {
+        if (values[valuesIndex] === computed) {
+          continue outer;
+        }
+      }
+      result.push(value);
+    }
+    else if (!includes(values, computed, comparator)) {
+      result.push(value);
+    }
+  }
+  return result;
+}
+
+module.exports = baseDifference;
+
+},{"./_SetCache":304,"./_arrayIncludes":313,"./_arrayIncludesWith":314,"./_arrayMap":316,"./_baseUnary":363,"./_cacheHas":365}],331:[function(require,module,exports){
 var baseForOwn = require('./_baseForOwn'),
     createBaseEach = require('./_createBaseEach');
 
@@ -17110,7 +17245,7 @@ var baseEach = createBaseEach(baseForOwn);
 
 module.exports = baseEach;
 
-},{"./_baseForOwn":330,"./_createBaseEach":376}],328:[function(require,module,exports){
+},{"./_baseForOwn":334,"./_createBaseEach":382}],332:[function(require,module,exports){
 /**
  * The base implementation of `_.findIndex` and `_.findLastIndex` without
  * support for iteratee shorthands.
@@ -17136,7 +17271,7 @@ function baseFindIndex(array, predicate, fromIndex, fromRight) {
 
 module.exports = baseFindIndex;
 
-},{}],329:[function(require,module,exports){
+},{}],333:[function(require,module,exports){
 var createBaseFor = require('./_createBaseFor');
 
 /**
@@ -17154,7 +17289,7 @@ var baseFor = createBaseFor();
 
 module.exports = baseFor;
 
-},{"./_createBaseFor":377}],330:[function(require,module,exports){
+},{"./_createBaseFor":383}],334:[function(require,module,exports){
 var baseFor = require('./_baseFor'),
     keys = require('./keys');
 
@@ -17172,7 +17307,7 @@ function baseForOwn(object, iteratee) {
 
 module.exports = baseForOwn;
 
-},{"./_baseFor":329,"./keys":480}],331:[function(require,module,exports){
+},{"./_baseFor":333,"./keys":492}],335:[function(require,module,exports){
 var castPath = require('./_castPath'),
     toKey = require('./_toKey');
 
@@ -17198,7 +17333,7 @@ function baseGet(object, path) {
 
 module.exports = baseGet;
 
-},{"./_castPath":361,"./_toKey":447}],332:[function(require,module,exports){
+},{"./_castPath":367,"./_toKey":456}],336:[function(require,module,exports){
 var arrayPush = require('./_arrayPush'),
     isArray = require('./isArray');
 
@@ -17220,7 +17355,7 @@ function baseGetAllKeys(object, keysFunc, symbolsFunc) {
 
 module.exports = baseGetAllKeys;
 
-},{"./_arrayPush":314,"./isArray":466}],333:[function(require,module,exports){
+},{"./_arrayPush":317,"./isArray":476}],337:[function(require,module,exports){
 var Symbol = require('./_Symbol'),
     getRawTag = require('./_getRawTag'),
     objectToString = require('./_objectToString');
@@ -17251,7 +17386,7 @@ function baseGetTag(value) {
 
 module.exports = baseGetTag;
 
-},{"./_Symbol":306,"./_getRawTag":393,"./_objectToString":433}],334:[function(require,module,exports){
+},{"./_Symbol":306,"./_getRawTag":399,"./_objectToString":439}],338:[function(require,module,exports){
 /** Used for built-in method references. */
 var objectProto = Object.prototype;
 
@@ -17272,7 +17407,7 @@ function baseHas(object, key) {
 
 module.exports = baseHas;
 
-},{}],335:[function(require,module,exports){
+},{}],339:[function(require,module,exports){
 /**
  * The base implementation of `_.hasIn` without support for deep paths.
  *
@@ -17287,7 +17422,7 @@ function baseHasIn(object, key) {
 
 module.exports = baseHasIn;
 
-},{}],336:[function(require,module,exports){
+},{}],340:[function(require,module,exports){
 var baseFindIndex = require('./_baseFindIndex'),
     baseIsNaN = require('./_baseIsNaN'),
     strictIndexOf = require('./_strictIndexOf');
@@ -17309,7 +17444,7 @@ function baseIndexOf(array, value, fromIndex) {
 
 module.exports = baseIndexOf;
 
-},{"./_baseFindIndex":328,"./_baseIsNaN":341,"./_strictIndexOf":444}],337:[function(require,module,exports){
+},{"./_baseFindIndex":332,"./_baseIsNaN":345,"./_strictIndexOf":453}],341:[function(require,module,exports){
 var baseGetTag = require('./_baseGetTag'),
     isObjectLike = require('./isObjectLike');
 
@@ -17329,7 +17464,7 @@ function baseIsArguments(value) {
 
 module.exports = baseIsArguments;
 
-},{"./_baseGetTag":333,"./isObjectLike":476}],338:[function(require,module,exports){
+},{"./_baseGetTag":337,"./isObjectLike":488}],342:[function(require,module,exports){
 var baseIsEqualDeep = require('./_baseIsEqualDeep'),
     isObject = require('./isObject'),
     isObjectLike = require('./isObjectLike');
@@ -17360,7 +17495,7 @@ function baseIsEqual(value, other, bitmask, customizer, stack) {
 
 module.exports = baseIsEqual;
 
-},{"./_baseIsEqualDeep":339,"./isObject":475,"./isObjectLike":476}],339:[function(require,module,exports){
+},{"./_baseIsEqualDeep":343,"./isObject":487,"./isObjectLike":488}],343:[function(require,module,exports){
 var Stack = require('./_Stack'),
     equalArrays = require('./_equalArrays'),
     equalByTag = require('./_equalByTag'),
@@ -17450,7 +17585,7 @@ function baseIsEqualDeep(object, other, bitmask, customizer, equalFunc, stack) {
 
 module.exports = baseIsEqualDeep;
 
-},{"./_Stack":305,"./_equalArrays":383,"./_equalByTag":384,"./_equalObjects":385,"./_getTag":396,"./isArray":466,"./isBuffer":468,"./isTypedArray":479}],340:[function(require,module,exports){
+},{"./_Stack":305,"./_equalArrays":389,"./_equalByTag":390,"./_equalObjects":391,"./_getTag":402,"./isArray":476,"./isBuffer":479,"./isTypedArray":491}],344:[function(require,module,exports){
 var Stack = require('./_Stack'),
     baseIsEqual = require('./_baseIsEqual');
 
@@ -17514,7 +17649,7 @@ function baseIsMatch(object, source, matchData, customizer) {
 
 module.exports = baseIsMatch;
 
-},{"./_Stack":305,"./_baseIsEqual":338}],341:[function(require,module,exports){
+},{"./_Stack":305,"./_baseIsEqual":342}],345:[function(require,module,exports){
 /**
  * The base implementation of `_.isNaN` without support for number objects.
  *
@@ -17528,7 +17663,7 @@ function baseIsNaN(value) {
 
 module.exports = baseIsNaN;
 
-},{}],342:[function(require,module,exports){
+},{}],346:[function(require,module,exports){
 var isFunction = require('./isFunction'),
     isMasked = require('./_isMasked'),
     isObject = require('./isObject'),
@@ -17577,7 +17712,7 @@ function baseIsNative(value) {
 
 module.exports = baseIsNative;
 
-},{"./_isMasked":413,"./_toSource":448,"./isFunction":471,"./isObject":475}],343:[function(require,module,exports){
+},{"./_isMasked":419,"./_toSource":457,"./isFunction":482,"./isObject":487}],347:[function(require,module,exports){
 var baseGetTag = require('./_baseGetTag'),
     isLength = require('./isLength'),
     isObjectLike = require('./isObjectLike');
@@ -17639,7 +17774,7 @@ function baseIsTypedArray(value) {
 
 module.exports = baseIsTypedArray;
 
-},{"./_baseGetTag":333,"./isLength":472,"./isObjectLike":476}],344:[function(require,module,exports){
+},{"./_baseGetTag":337,"./isLength":483,"./isObjectLike":488}],348:[function(require,module,exports){
 var baseMatches = require('./_baseMatches'),
     baseMatchesProperty = require('./_baseMatchesProperty'),
     identity = require('./identity'),
@@ -17672,7 +17807,7 @@ function baseIteratee(value) {
 
 module.exports = baseIteratee;
 
-},{"./_baseMatches":348,"./_baseMatchesProperty":349,"./identity":463,"./isArray":466,"./property":487}],345:[function(require,module,exports){
+},{"./_baseMatches":352,"./_baseMatchesProperty":353,"./identity":473,"./isArray":476,"./property":499}],349:[function(require,module,exports){
 var isPrototype = require('./_isPrototype'),
     nativeKeys = require('./_nativeKeys');
 
@@ -17704,7 +17839,7 @@ function baseKeys(object) {
 
 module.exports = baseKeys;
 
-},{"./_isPrototype":414,"./_nativeKeys":430}],346:[function(require,module,exports){
+},{"./_isPrototype":420,"./_nativeKeys":436}],350:[function(require,module,exports){
 var isObject = require('./isObject'),
     isPrototype = require('./_isPrototype'),
     nativeKeysIn = require('./_nativeKeysIn');
@@ -17739,7 +17874,7 @@ function baseKeysIn(object) {
 
 module.exports = baseKeysIn;
 
-},{"./_isPrototype":414,"./_nativeKeysIn":431,"./isObject":475}],347:[function(require,module,exports){
+},{"./_isPrototype":420,"./_nativeKeysIn":437,"./isObject":487}],351:[function(require,module,exports){
 var baseEach = require('./_baseEach'),
     isArrayLike = require('./isArrayLike');
 
@@ -17763,7 +17898,7 @@ function baseMap(collection, iteratee) {
 
 module.exports = baseMap;
 
-},{"./_baseEach":327,"./isArrayLike":467}],348:[function(require,module,exports){
+},{"./_baseEach":331,"./isArrayLike":477}],352:[function(require,module,exports){
 var baseIsMatch = require('./_baseIsMatch'),
     getMatchData = require('./_getMatchData'),
     matchesStrictComparable = require('./_matchesStrictComparable');
@@ -17787,7 +17922,7 @@ function baseMatches(source) {
 
 module.exports = baseMatches;
 
-},{"./_baseIsMatch":340,"./_getMatchData":390,"./_matchesStrictComparable":427}],349:[function(require,module,exports){
+},{"./_baseIsMatch":344,"./_getMatchData":396,"./_matchesStrictComparable":433}],353:[function(require,module,exports){
 var baseIsEqual = require('./_baseIsEqual'),
     get = require('./get'),
     hasIn = require('./hasIn'),
@@ -17822,7 +17957,7 @@ function baseMatchesProperty(path, srcValue) {
 
 module.exports = baseMatchesProperty;
 
-},{"./_baseIsEqual":338,"./_isKey":411,"./_isStrictComparable":415,"./_matchesStrictComparable":427,"./_toKey":447,"./get":459,"./hasIn":461}],350:[function(require,module,exports){
+},{"./_baseIsEqual":342,"./_isKey":417,"./_isStrictComparable":421,"./_matchesStrictComparable":433,"./_toKey":456,"./get":469,"./hasIn":471}],354:[function(require,module,exports){
 /**
  * The base implementation of `_.property` without support for deep paths.
  *
@@ -17838,7 +17973,7 @@ function baseProperty(key) {
 
 module.exports = baseProperty;
 
-},{}],351:[function(require,module,exports){
+},{}],355:[function(require,module,exports){
 var baseGet = require('./_baseGet');
 
 /**
@@ -17856,7 +17991,7 @@ function basePropertyDeep(path) {
 
 module.exports = basePropertyDeep;
 
-},{"./_baseGet":331}],352:[function(require,module,exports){
+},{"./_baseGet":335}],356:[function(require,module,exports){
 /**
  * The base implementation of `_.propertyOf` without support for deep paths.
  *
@@ -17872,7 +18007,7 @@ function basePropertyOf(object) {
 
 module.exports = basePropertyOf;
 
-},{}],353:[function(require,module,exports){
+},{}],357:[function(require,module,exports){
 /* Built-in method references for those with the same name as other `lodash` methods. */
 var nativeFloor = Math.floor,
     nativeRandom = Math.random;
@@ -17892,7 +18027,50 @@ function baseRandom(lower, upper) {
 
 module.exports = baseRandom;
 
-},{}],354:[function(require,module,exports){
+},{}],358:[function(require,module,exports){
+var identity = require('./identity'),
+    overRest = require('./_overRest'),
+    setToString = require('./_setToString');
+
+/**
+ * The base implementation of `_.rest` which doesn't validate or coerce arguments.
+ *
+ * @private
+ * @param {Function} func The function to apply a rest parameter to.
+ * @param {number} [start=func.length-1] The start position of the rest parameter.
+ * @returns {Function} Returns the new function.
+ */
+function baseRest(func, start) {
+  return setToString(overRest(func, start, identity), func + '');
+}
+
+module.exports = baseRest;
+
+},{"./_overRest":441,"./_setToString":446,"./identity":473}],359:[function(require,module,exports){
+var constant = require('./constant'),
+    defineProperty = require('./_defineProperty'),
+    identity = require('./identity');
+
+/**
+ * The base implementation of `setToString` without support for hot loop shorting.
+ *
+ * @private
+ * @param {Function} func The function to modify.
+ * @param {Function} string The `toString` result.
+ * @returns {Function} Returns `func`.
+ */
+var baseSetToString = !defineProperty ? identity : function(func, string) {
+  return defineProperty(func, 'toString', {
+    'configurable': true,
+    'enumerable': false,
+    'value': constant(string),
+    'writable': true
+  });
+};
+
+module.exports = baseSetToString;
+
+},{"./_defineProperty":388,"./constant":463,"./identity":473}],360:[function(require,module,exports){
 /**
  * The base implementation of `_.slice` without an iteratee call guard.
  *
@@ -17925,7 +18103,7 @@ function baseSlice(array, start, end) {
 
 module.exports = baseSlice;
 
-},{}],355:[function(require,module,exports){
+},{}],361:[function(require,module,exports){
 /**
  * The base implementation of `_.times` without support for iteratee shorthands
  * or max array length checks.
@@ -17947,7 +18125,7 @@ function baseTimes(n, iteratee) {
 
 module.exports = baseTimes;
 
-},{}],356:[function(require,module,exports){
+},{}],362:[function(require,module,exports){
 var Symbol = require('./_Symbol'),
     arrayMap = require('./_arrayMap'),
     isArray = require('./isArray'),
@@ -17986,7 +18164,7 @@ function baseToString(value) {
 
 module.exports = baseToString;
 
-},{"./_Symbol":306,"./_arrayMap":313,"./isArray":466,"./isSymbol":478}],357:[function(require,module,exports){
+},{"./_Symbol":306,"./_arrayMap":316,"./isArray":476,"./isSymbol":490}],363:[function(require,module,exports){
 /**
  * The base implementation of `_.unary` without support for storing metadata.
  *
@@ -18002,7 +18180,7 @@ function baseUnary(func) {
 
 module.exports = baseUnary;
 
-},{}],358:[function(require,module,exports){
+},{}],364:[function(require,module,exports){
 var arrayMap = require('./_arrayMap');
 
 /**
@@ -18023,7 +18201,7 @@ function baseValues(object, props) {
 
 module.exports = baseValues;
 
-},{"./_arrayMap":313}],359:[function(require,module,exports){
+},{"./_arrayMap":316}],365:[function(require,module,exports){
 /**
  * Checks if a `cache` value for `key` exists.
  *
@@ -18038,7 +18216,7 @@ function cacheHas(cache, key) {
 
 module.exports = cacheHas;
 
-},{}],360:[function(require,module,exports){
+},{}],366:[function(require,module,exports){
 var identity = require('./identity');
 
 /**
@@ -18054,7 +18232,7 @@ function castFunction(value) {
 
 module.exports = castFunction;
 
-},{"./identity":463}],361:[function(require,module,exports){
+},{"./identity":473}],367:[function(require,module,exports){
 var isArray = require('./isArray'),
     isKey = require('./_isKey'),
     stringToPath = require('./_stringToPath'),
@@ -18077,7 +18255,7 @@ function castPath(value, object) {
 
 module.exports = castPath;
 
-},{"./_isKey":411,"./_stringToPath":446,"./isArray":466,"./toString":496}],362:[function(require,module,exports){
+},{"./_isKey":417,"./_stringToPath":455,"./isArray":476,"./toString":509}],368:[function(require,module,exports){
 var baseSlice = require('./_baseSlice');
 
 /**
@@ -18097,7 +18275,7 @@ function castSlice(array, start, end) {
 
 module.exports = castSlice;
 
-},{"./_baseSlice":354}],363:[function(require,module,exports){
+},{"./_baseSlice":360}],369:[function(require,module,exports){
 var Uint8Array = require('./_Uint8Array');
 
 /**
@@ -18115,7 +18293,7 @@ function cloneArrayBuffer(arrayBuffer) {
 
 module.exports = cloneArrayBuffer;
 
-},{"./_Uint8Array":307}],364:[function(require,module,exports){
+},{"./_Uint8Array":307}],370:[function(require,module,exports){
 var root = require('./_root');
 
 /** Detect free variable `exports`. */
@@ -18152,7 +18330,7 @@ function cloneBuffer(buffer, isDeep) {
 
 module.exports = cloneBuffer;
 
-},{"./_root":435}],365:[function(require,module,exports){
+},{"./_root":442}],371:[function(require,module,exports){
 var cloneArrayBuffer = require('./_cloneArrayBuffer');
 
 /**
@@ -18170,7 +18348,7 @@ function cloneDataView(dataView, isDeep) {
 
 module.exports = cloneDataView;
 
-},{"./_cloneArrayBuffer":363}],366:[function(require,module,exports){
+},{"./_cloneArrayBuffer":369}],372:[function(require,module,exports){
 var addMapEntry = require('./_addMapEntry'),
     arrayReduce = require('./_arrayReduce'),
     mapToArray = require('./_mapToArray');
@@ -18194,7 +18372,7 @@ function cloneMap(map, isDeep, cloneFunc) {
 
 module.exports = cloneMap;
 
-},{"./_addMapEntry":309,"./_arrayReduce":315,"./_mapToArray":426}],367:[function(require,module,exports){
+},{"./_addMapEntry":309,"./_arrayReduce":318,"./_mapToArray":432}],373:[function(require,module,exports){
 /** Used to match `RegExp` flags from their coerced string values. */
 var reFlags = /\w*$/;
 
@@ -18213,7 +18391,7 @@ function cloneRegExp(regexp) {
 
 module.exports = cloneRegExp;
 
-},{}],368:[function(require,module,exports){
+},{}],374:[function(require,module,exports){
 var addSetEntry = require('./_addSetEntry'),
     arrayReduce = require('./_arrayReduce'),
     setToArray = require('./_setToArray');
@@ -18237,7 +18415,7 @@ function cloneSet(set, isDeep, cloneFunc) {
 
 module.exports = cloneSet;
 
-},{"./_addSetEntry":310,"./_arrayReduce":315,"./_setToArray":438}],369:[function(require,module,exports){
+},{"./_addSetEntry":310,"./_arrayReduce":318,"./_setToArray":445}],375:[function(require,module,exports){
 var Symbol = require('./_Symbol');
 
 /** Used to convert symbols to primitives and strings. */
@@ -18257,7 +18435,7 @@ function cloneSymbol(symbol) {
 
 module.exports = cloneSymbol;
 
-},{"./_Symbol":306}],370:[function(require,module,exports){
+},{"./_Symbol":306}],376:[function(require,module,exports){
 var cloneArrayBuffer = require('./_cloneArrayBuffer');
 
 /**
@@ -18275,7 +18453,7 @@ function cloneTypedArray(typedArray, isDeep) {
 
 module.exports = cloneTypedArray;
 
-},{"./_cloneArrayBuffer":363}],371:[function(require,module,exports){
+},{"./_cloneArrayBuffer":369}],377:[function(require,module,exports){
 /**
  * Copies the values of `source` to `array`.
  *
@@ -18297,7 +18475,7 @@ function copyArray(source, array) {
 
 module.exports = copyArray;
 
-},{}],372:[function(require,module,exports){
+},{}],378:[function(require,module,exports){
 var assignValue = require('./_assignValue'),
     baseAssignValue = require('./_baseAssignValue');
 
@@ -18339,7 +18517,7 @@ function copyObject(source, props, object, customizer) {
 
 module.exports = copyObject;
 
-},{"./_assignValue":319,"./_baseAssignValue":323}],373:[function(require,module,exports){
+},{"./_assignValue":322,"./_baseAssignValue":326}],379:[function(require,module,exports){
 var copyObject = require('./_copyObject'),
     getSymbols = require('./_getSymbols');
 
@@ -18357,7 +18535,7 @@ function copySymbols(source, object) {
 
 module.exports = copySymbols;
 
-},{"./_copyObject":372,"./_getSymbols":394}],374:[function(require,module,exports){
+},{"./_copyObject":378,"./_getSymbols":400}],380:[function(require,module,exports){
 var copyObject = require('./_copyObject'),
     getSymbolsIn = require('./_getSymbolsIn');
 
@@ -18375,7 +18553,7 @@ function copySymbolsIn(source, object) {
 
 module.exports = copySymbolsIn;
 
-},{"./_copyObject":372,"./_getSymbolsIn":395}],375:[function(require,module,exports){
+},{"./_copyObject":378,"./_getSymbolsIn":401}],381:[function(require,module,exports){
 var root = require('./_root');
 
 /** Used to detect overreaching core-js shims. */
@@ -18383,7 +18561,7 @@ var coreJsData = root['__core-js_shared__'];
 
 module.exports = coreJsData;
 
-},{"./_root":435}],376:[function(require,module,exports){
+},{"./_root":442}],382:[function(require,module,exports){
 var isArrayLike = require('./isArrayLike');
 
 /**
@@ -18417,7 +18595,7 @@ function createBaseEach(eachFunc, fromRight) {
 
 module.exports = createBaseEach;
 
-},{"./isArrayLike":467}],377:[function(require,module,exports){
+},{"./isArrayLike":477}],383:[function(require,module,exports){
 /**
  * Creates a base function for methods like `_.forIn` and `_.forOwn`.
  *
@@ -18444,7 +18622,7 @@ function createBaseFor(fromRight) {
 
 module.exports = createBaseFor;
 
-},{}],378:[function(require,module,exports){
+},{}],384:[function(require,module,exports){
 var castSlice = require('./_castSlice'),
     hasUnicode = require('./_hasUnicode'),
     stringToArray = require('./_stringToArray'),
@@ -18479,7 +18657,7 @@ function createCaseFirst(methodName) {
 
 module.exports = createCaseFirst;
 
-},{"./_castSlice":362,"./_hasUnicode":399,"./_stringToArray":445,"./toString":496}],379:[function(require,module,exports){
+},{"./_castSlice":368,"./_hasUnicode":405,"./_stringToArray":454,"./toString":509}],385:[function(require,module,exports){
 var arrayReduce = require('./_arrayReduce'),
     deburr = require('./deburr'),
     words = require('./words');
@@ -18505,7 +18683,7 @@ function createCompounder(callback) {
 
 module.exports = createCompounder;
 
-},{"./_arrayReduce":315,"./deburr":454,"./words":500}],380:[function(require,module,exports){
+},{"./_arrayReduce":318,"./deburr":464,"./words":514}],386:[function(require,module,exports){
 var baseIteratee = require('./_baseIteratee'),
     isArrayLike = require('./isArrayLike'),
     keys = require('./keys');
@@ -18532,7 +18710,7 @@ function createFind(findIndexFunc) {
 
 module.exports = createFind;
 
-},{"./_baseIteratee":344,"./isArrayLike":467,"./keys":480}],381:[function(require,module,exports){
+},{"./_baseIteratee":348,"./isArrayLike":477,"./keys":492}],387:[function(require,module,exports){
 var basePropertyOf = require('./_basePropertyOf');
 
 /** Used to map Latin Unicode letters to basic Latin letters. */
@@ -18605,7 +18783,7 @@ var deburrLetter = basePropertyOf(deburredLetters);
 
 module.exports = deburrLetter;
 
-},{"./_basePropertyOf":352}],382:[function(require,module,exports){
+},{"./_basePropertyOf":356}],388:[function(require,module,exports){
 var getNative = require('./_getNative');
 
 var defineProperty = (function() {
@@ -18618,7 +18796,7 @@ var defineProperty = (function() {
 
 module.exports = defineProperty;
 
-},{"./_getNative":391}],383:[function(require,module,exports){
+},{"./_getNative":397}],389:[function(require,module,exports){
 var SetCache = require('./_SetCache'),
     arraySome = require('./_arraySome'),
     cacheHas = require('./_cacheHas');
@@ -18703,7 +18881,7 @@ function equalArrays(array, other, bitmask, customizer, equalFunc, stack) {
 
 module.exports = equalArrays;
 
-},{"./_SetCache":304,"./_arraySome":316,"./_cacheHas":359}],384:[function(require,module,exports){
+},{"./_SetCache":304,"./_arraySome":319,"./_cacheHas":365}],390:[function(require,module,exports){
 var Symbol = require('./_Symbol'),
     Uint8Array = require('./_Uint8Array'),
     eq = require('./eq'),
@@ -18817,7 +18995,7 @@ function equalByTag(object, other, tag, bitmask, customizer, equalFunc, stack) {
 
 module.exports = equalByTag;
 
-},{"./_Symbol":306,"./_Uint8Array":307,"./_equalArrays":383,"./_mapToArray":426,"./_setToArray":438,"./eq":455}],385:[function(require,module,exports){
+},{"./_Symbol":306,"./_Uint8Array":307,"./_equalArrays":389,"./_mapToArray":432,"./_setToArray":445,"./eq":465}],391:[function(require,module,exports){
 var keys = require('./keys');
 
 /** Used to compose bitmasks for value comparisons. */
@@ -18908,7 +19086,7 @@ function equalObjects(object, other, bitmask, customizer, equalFunc, stack) {
 
 module.exports = equalObjects;
 
-},{"./keys":480}],386:[function(require,module,exports){
+},{"./keys":492}],392:[function(require,module,exports){
 (function (global){
 /** Detect free variable `global` from Node.js. */
 var freeGlobal = typeof global == 'object' && global && global.Object === Object && global;
@@ -18917,7 +19095,7 @@ module.exports = freeGlobal;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 
-},{}],387:[function(require,module,exports){
+},{}],393:[function(require,module,exports){
 var baseGetAllKeys = require('./_baseGetAllKeys'),
     getSymbols = require('./_getSymbols'),
     keys = require('./keys');
@@ -18935,7 +19113,7 @@ function getAllKeys(object) {
 
 module.exports = getAllKeys;
 
-},{"./_baseGetAllKeys":332,"./_getSymbols":394,"./keys":480}],388:[function(require,module,exports){
+},{"./_baseGetAllKeys":336,"./_getSymbols":400,"./keys":492}],394:[function(require,module,exports){
 var baseGetAllKeys = require('./_baseGetAllKeys'),
     getSymbolsIn = require('./_getSymbolsIn'),
     keysIn = require('./keysIn');
@@ -18954,7 +19132,7 @@ function getAllKeysIn(object) {
 
 module.exports = getAllKeysIn;
 
-},{"./_baseGetAllKeys":332,"./_getSymbolsIn":395,"./keysIn":481}],389:[function(require,module,exports){
+},{"./_baseGetAllKeys":336,"./_getSymbolsIn":401,"./keysIn":493}],395:[function(require,module,exports){
 var isKeyable = require('./_isKeyable');
 
 /**
@@ -18974,7 +19152,7 @@ function getMapData(map, key) {
 
 module.exports = getMapData;
 
-},{"./_isKeyable":412}],390:[function(require,module,exports){
+},{"./_isKeyable":418}],396:[function(require,module,exports){
 var isStrictComparable = require('./_isStrictComparable'),
     keys = require('./keys');
 
@@ -19000,7 +19178,7 @@ function getMatchData(object) {
 
 module.exports = getMatchData;
 
-},{"./_isStrictComparable":415,"./keys":480}],391:[function(require,module,exports){
+},{"./_isStrictComparable":421,"./keys":492}],397:[function(require,module,exports){
 var baseIsNative = require('./_baseIsNative'),
     getValue = require('./_getValue');
 
@@ -19019,7 +19197,7 @@ function getNative(object, key) {
 
 module.exports = getNative;
 
-},{"./_baseIsNative":342,"./_getValue":397}],392:[function(require,module,exports){
+},{"./_baseIsNative":346,"./_getValue":403}],398:[function(require,module,exports){
 var overArg = require('./_overArg');
 
 /** Built-in value references. */
@@ -19027,7 +19205,7 @@ var getPrototype = overArg(Object.getPrototypeOf, Object);
 
 module.exports = getPrototype;
 
-},{"./_overArg":434}],393:[function(require,module,exports){
+},{"./_overArg":440}],399:[function(require,module,exports){
 var Symbol = require('./_Symbol');
 
 /** Used for built-in method references. */
@@ -19075,7 +19253,7 @@ function getRawTag(value) {
 
 module.exports = getRawTag;
 
-},{"./_Symbol":306}],394:[function(require,module,exports){
+},{"./_Symbol":306}],400:[function(require,module,exports){
 var overArg = require('./_overArg'),
     stubArray = require('./stubArray');
 
@@ -19093,7 +19271,7 @@ var getSymbols = nativeGetSymbols ? overArg(nativeGetSymbols, Object) : stubArra
 
 module.exports = getSymbols;
 
-},{"./_overArg":434,"./stubArray":491}],395:[function(require,module,exports){
+},{"./_overArg":440,"./stubArray":503}],401:[function(require,module,exports){
 var arrayPush = require('./_arrayPush'),
     getPrototype = require('./_getPrototype'),
     getSymbols = require('./_getSymbols'),
@@ -19120,7 +19298,7 @@ var getSymbolsIn = !nativeGetSymbols ? stubArray : function(object) {
 
 module.exports = getSymbolsIn;
 
-},{"./_arrayPush":314,"./_getPrototype":392,"./_getSymbols":394,"./stubArray":491}],396:[function(require,module,exports){
+},{"./_arrayPush":317,"./_getPrototype":398,"./_getSymbols":400,"./stubArray":503}],402:[function(require,module,exports){
 var DataView = require('./_DataView'),
     Map = require('./_Map'),
     Promise = require('./_Promise'),
@@ -19180,7 +19358,7 @@ if ((DataView && getTag(new DataView(new ArrayBuffer(1))) != dataViewTag) ||
 
 module.exports = getTag;
 
-},{"./_DataView":297,"./_Map":300,"./_Promise":302,"./_Set":303,"./_WeakMap":308,"./_baseGetTag":333,"./_toSource":448}],397:[function(require,module,exports){
+},{"./_DataView":297,"./_Map":300,"./_Promise":302,"./_Set":303,"./_WeakMap":308,"./_baseGetTag":337,"./_toSource":457}],403:[function(require,module,exports){
 /**
  * Gets the value at `key` of `object`.
  *
@@ -19195,7 +19373,7 @@ function getValue(object, key) {
 
 module.exports = getValue;
 
-},{}],398:[function(require,module,exports){
+},{}],404:[function(require,module,exports){
 var castPath = require('./_castPath'),
     isArguments = require('./isArguments'),
     isArray = require('./isArray'),
@@ -19236,7 +19414,7 @@ function hasPath(object, path, hasFunc) {
 
 module.exports = hasPath;
 
-},{"./_castPath":361,"./_isIndex":409,"./_toKey":447,"./isArguments":465,"./isArray":466,"./isLength":472}],399:[function(require,module,exports){
+},{"./_castPath":367,"./_isIndex":415,"./_toKey":456,"./isArguments":475,"./isArray":476,"./isLength":483}],405:[function(require,module,exports){
 /** Used to compose unicode character classes. */
 var rsAstralRange = '\\ud800-\\udfff',
     rsComboMarksRange = '\\u0300-\\u036f',
@@ -19264,7 +19442,7 @@ function hasUnicode(string) {
 
 module.exports = hasUnicode;
 
-},{}],400:[function(require,module,exports){
+},{}],406:[function(require,module,exports){
 /** Used to detect strings that need a more robust regexp to match words. */
 var reHasUnicodeWord = /[a-z][A-Z]|[A-Z]{2,}[a-z]|[0-9][a-zA-Z]|[a-zA-Z][0-9]|[^a-zA-Z0-9 ]/;
 
@@ -19281,7 +19459,7 @@ function hasUnicodeWord(string) {
 
 module.exports = hasUnicodeWord;
 
-},{}],401:[function(require,module,exports){
+},{}],407:[function(require,module,exports){
 var nativeCreate = require('./_nativeCreate');
 
 /**
@@ -19298,7 +19476,7 @@ function hashClear() {
 
 module.exports = hashClear;
 
-},{"./_nativeCreate":429}],402:[function(require,module,exports){
+},{"./_nativeCreate":435}],408:[function(require,module,exports){
 /**
  * Removes `key` and its value from the hash.
  *
@@ -19317,7 +19495,7 @@ function hashDelete(key) {
 
 module.exports = hashDelete;
 
-},{}],403:[function(require,module,exports){
+},{}],409:[function(require,module,exports){
 var nativeCreate = require('./_nativeCreate');
 
 /** Used to stand-in for `undefined` hash values. */
@@ -19349,7 +19527,7 @@ function hashGet(key) {
 
 module.exports = hashGet;
 
-},{"./_nativeCreate":429}],404:[function(require,module,exports){
+},{"./_nativeCreate":435}],410:[function(require,module,exports){
 var nativeCreate = require('./_nativeCreate');
 
 /** Used for built-in method references. */
@@ -19374,7 +19552,7 @@ function hashHas(key) {
 
 module.exports = hashHas;
 
-},{"./_nativeCreate":429}],405:[function(require,module,exports){
+},{"./_nativeCreate":435}],411:[function(require,module,exports){
 var nativeCreate = require('./_nativeCreate');
 
 /** Used to stand-in for `undefined` hash values. */
@@ -19399,7 +19577,7 @@ function hashSet(key, value) {
 
 module.exports = hashSet;
 
-},{"./_nativeCreate":429}],406:[function(require,module,exports){
+},{"./_nativeCreate":435}],412:[function(require,module,exports){
 /** Used for built-in method references. */
 var objectProto = Object.prototype;
 
@@ -19427,7 +19605,7 @@ function initCloneArray(array) {
 
 module.exports = initCloneArray;
 
-},{}],407:[function(require,module,exports){
+},{}],413:[function(require,module,exports){
 var cloneArrayBuffer = require('./_cloneArrayBuffer'),
     cloneDataView = require('./_cloneDataView'),
     cloneMap = require('./_cloneMap'),
@@ -19509,7 +19687,7 @@ function initCloneByTag(object, tag, cloneFunc, isDeep) {
 
 module.exports = initCloneByTag;
 
-},{"./_cloneArrayBuffer":363,"./_cloneDataView":365,"./_cloneMap":366,"./_cloneRegExp":367,"./_cloneSet":368,"./_cloneSymbol":369,"./_cloneTypedArray":370}],408:[function(require,module,exports){
+},{"./_cloneArrayBuffer":369,"./_cloneDataView":371,"./_cloneMap":372,"./_cloneRegExp":373,"./_cloneSet":374,"./_cloneSymbol":375,"./_cloneTypedArray":376}],414:[function(require,module,exports){
 var baseCreate = require('./_baseCreate'),
     getPrototype = require('./_getPrototype'),
     isPrototype = require('./_isPrototype');
@@ -19529,7 +19707,7 @@ function initCloneObject(object) {
 
 module.exports = initCloneObject;
 
-},{"./_baseCreate":326,"./_getPrototype":392,"./_isPrototype":414}],409:[function(require,module,exports){
+},{"./_baseCreate":329,"./_getPrototype":398,"./_isPrototype":420}],415:[function(require,module,exports){
 /** Used as references for various `Number` constants. */
 var MAX_SAFE_INTEGER = 9007199254740991;
 
@@ -19553,7 +19731,7 @@ function isIndex(value, length) {
 
 module.exports = isIndex;
 
-},{}],410:[function(require,module,exports){
+},{}],416:[function(require,module,exports){
 var eq = require('./eq'),
     isArrayLike = require('./isArrayLike'),
     isIndex = require('./_isIndex'),
@@ -19585,7 +19763,7 @@ function isIterateeCall(value, index, object) {
 
 module.exports = isIterateeCall;
 
-},{"./_isIndex":409,"./eq":455,"./isArrayLike":467,"./isObject":475}],411:[function(require,module,exports){
+},{"./_isIndex":415,"./eq":465,"./isArrayLike":477,"./isObject":487}],417:[function(require,module,exports){
 var isArray = require('./isArray'),
     isSymbol = require('./isSymbol');
 
@@ -19616,7 +19794,7 @@ function isKey(value, object) {
 
 module.exports = isKey;
 
-},{"./isArray":466,"./isSymbol":478}],412:[function(require,module,exports){
+},{"./isArray":476,"./isSymbol":490}],418:[function(require,module,exports){
 /**
  * Checks if `value` is suitable for use as unique object key.
  *
@@ -19633,7 +19811,7 @@ function isKeyable(value) {
 
 module.exports = isKeyable;
 
-},{}],413:[function(require,module,exports){
+},{}],419:[function(require,module,exports){
 var coreJsData = require('./_coreJsData');
 
 /** Used to detect methods masquerading as native. */
@@ -19655,7 +19833,7 @@ function isMasked(func) {
 
 module.exports = isMasked;
 
-},{"./_coreJsData":375}],414:[function(require,module,exports){
+},{"./_coreJsData":381}],420:[function(require,module,exports){
 /** Used for built-in method references. */
 var objectProto = Object.prototype;
 
@@ -19675,7 +19853,7 @@ function isPrototype(value) {
 
 module.exports = isPrototype;
 
-},{}],415:[function(require,module,exports){
+},{}],421:[function(require,module,exports){
 var isObject = require('./isObject');
 
 /**
@@ -19692,7 +19870,7 @@ function isStrictComparable(value) {
 
 module.exports = isStrictComparable;
 
-},{"./isObject":475}],416:[function(require,module,exports){
+},{"./isObject":487}],422:[function(require,module,exports){
 /**
  * Removes all key-value entries from the list cache.
  *
@@ -19707,7 +19885,7 @@ function listCacheClear() {
 
 module.exports = listCacheClear;
 
-},{}],417:[function(require,module,exports){
+},{}],423:[function(require,module,exports){
 var assocIndexOf = require('./_assocIndexOf');
 
 /** Used for built-in method references. */
@@ -19744,7 +19922,7 @@ function listCacheDelete(key) {
 
 module.exports = listCacheDelete;
 
-},{"./_assocIndexOf":320}],418:[function(require,module,exports){
+},{"./_assocIndexOf":323}],424:[function(require,module,exports){
 var assocIndexOf = require('./_assocIndexOf');
 
 /**
@@ -19765,7 +19943,7 @@ function listCacheGet(key) {
 
 module.exports = listCacheGet;
 
-},{"./_assocIndexOf":320}],419:[function(require,module,exports){
+},{"./_assocIndexOf":323}],425:[function(require,module,exports){
 var assocIndexOf = require('./_assocIndexOf');
 
 /**
@@ -19783,7 +19961,7 @@ function listCacheHas(key) {
 
 module.exports = listCacheHas;
 
-},{"./_assocIndexOf":320}],420:[function(require,module,exports){
+},{"./_assocIndexOf":323}],426:[function(require,module,exports){
 var assocIndexOf = require('./_assocIndexOf');
 
 /**
@@ -19811,7 +19989,7 @@ function listCacheSet(key, value) {
 
 module.exports = listCacheSet;
 
-},{"./_assocIndexOf":320}],421:[function(require,module,exports){
+},{"./_assocIndexOf":323}],427:[function(require,module,exports){
 var Hash = require('./_Hash'),
     ListCache = require('./_ListCache'),
     Map = require('./_Map');
@@ -19834,7 +20012,7 @@ function mapCacheClear() {
 
 module.exports = mapCacheClear;
 
-},{"./_Hash":298,"./_ListCache":299,"./_Map":300}],422:[function(require,module,exports){
+},{"./_Hash":298,"./_ListCache":299,"./_Map":300}],428:[function(require,module,exports){
 var getMapData = require('./_getMapData');
 
 /**
@@ -19854,7 +20032,7 @@ function mapCacheDelete(key) {
 
 module.exports = mapCacheDelete;
 
-},{"./_getMapData":389}],423:[function(require,module,exports){
+},{"./_getMapData":395}],429:[function(require,module,exports){
 var getMapData = require('./_getMapData');
 
 /**
@@ -19872,7 +20050,7 @@ function mapCacheGet(key) {
 
 module.exports = mapCacheGet;
 
-},{"./_getMapData":389}],424:[function(require,module,exports){
+},{"./_getMapData":395}],430:[function(require,module,exports){
 var getMapData = require('./_getMapData');
 
 /**
@@ -19890,7 +20068,7 @@ function mapCacheHas(key) {
 
 module.exports = mapCacheHas;
 
-},{"./_getMapData":389}],425:[function(require,module,exports){
+},{"./_getMapData":395}],431:[function(require,module,exports){
 var getMapData = require('./_getMapData');
 
 /**
@@ -19914,7 +20092,7 @@ function mapCacheSet(key, value) {
 
 module.exports = mapCacheSet;
 
-},{"./_getMapData":389}],426:[function(require,module,exports){
+},{"./_getMapData":395}],432:[function(require,module,exports){
 /**
  * Converts `map` to its key-value pairs.
  *
@@ -19934,7 +20112,7 @@ function mapToArray(map) {
 
 module.exports = mapToArray;
 
-},{}],427:[function(require,module,exports){
+},{}],433:[function(require,module,exports){
 /**
  * A specialized version of `matchesProperty` for source values suitable
  * for strict equality comparisons, i.e. `===`.
@@ -19956,7 +20134,7 @@ function matchesStrictComparable(key, srcValue) {
 
 module.exports = matchesStrictComparable;
 
-},{}],428:[function(require,module,exports){
+},{}],434:[function(require,module,exports){
 var memoize = require('./memoize');
 
 /** Used as the maximum memoize cache size. */
@@ -19984,7 +20162,7 @@ function memoizeCapped(func) {
 
 module.exports = memoizeCapped;
 
-},{"./memoize":486}],429:[function(require,module,exports){
+},{"./memoize":498}],435:[function(require,module,exports){
 var getNative = require('./_getNative');
 
 /* Built-in method references that are verified to be native. */
@@ -19992,7 +20170,7 @@ var nativeCreate = getNative(Object, 'create');
 
 module.exports = nativeCreate;
 
-},{"./_getNative":391}],430:[function(require,module,exports){
+},{"./_getNative":397}],436:[function(require,module,exports){
 var overArg = require('./_overArg');
 
 /* Built-in method references for those with the same name as other `lodash` methods. */
@@ -20000,7 +20178,7 @@ var nativeKeys = overArg(Object.keys, Object);
 
 module.exports = nativeKeys;
 
-},{"./_overArg":434}],431:[function(require,module,exports){
+},{"./_overArg":440}],437:[function(require,module,exports){
 /**
  * This function is like
  * [`Object.keys`](http://ecma-international.org/ecma-262/7.0/#sec-object.keys)
@@ -20022,7 +20200,7 @@ function nativeKeysIn(object) {
 
 module.exports = nativeKeysIn;
 
-},{}],432:[function(require,module,exports){
+},{}],438:[function(require,module,exports){
 var freeGlobal = require('./_freeGlobal');
 
 /** Detect free variable `exports`. */
@@ -20046,7 +20224,7 @@ var nodeUtil = (function() {
 
 module.exports = nodeUtil;
 
-},{"./_freeGlobal":386}],433:[function(require,module,exports){
+},{"./_freeGlobal":392}],439:[function(require,module,exports){
 /** Used for built-in method references. */
 var objectProto = Object.prototype;
 
@@ -20070,7 +20248,7 @@ function objectToString(value) {
 
 module.exports = objectToString;
 
-},{}],434:[function(require,module,exports){
+},{}],440:[function(require,module,exports){
 /**
  * Creates a unary function that invokes `func` with its argument transformed.
  *
@@ -20087,7 +20265,45 @@ function overArg(func, transform) {
 
 module.exports = overArg;
 
-},{}],435:[function(require,module,exports){
+},{}],441:[function(require,module,exports){
+var apply = require('./_apply');
+
+/* Built-in method references for those with the same name as other `lodash` methods. */
+var nativeMax = Math.max;
+
+/**
+ * A specialized version of `baseRest` which transforms the rest array.
+ *
+ * @private
+ * @param {Function} func The function to apply a rest parameter to.
+ * @param {number} [start=func.length-1] The start position of the rest parameter.
+ * @param {Function} transform The rest array transform.
+ * @returns {Function} Returns the new function.
+ */
+function overRest(func, start, transform) {
+  start = nativeMax(start === undefined ? (func.length - 1) : start, 0);
+  return function() {
+    var args = arguments,
+        index = -1,
+        length = nativeMax(args.length - start, 0),
+        array = Array(length);
+
+    while (++index < length) {
+      array[index] = args[start + index];
+    }
+    index = -1;
+    var otherArgs = Array(start + 1);
+    while (++index < start) {
+      otherArgs[index] = args[index];
+    }
+    otherArgs[start] = transform(array);
+    return apply(func, this, otherArgs);
+  };
+}
+
+module.exports = overRest;
+
+},{"./_apply":311}],442:[function(require,module,exports){
 var freeGlobal = require('./_freeGlobal');
 
 /** Detect free variable `self`. */
@@ -20098,7 +20314,7 @@ var root = freeGlobal || freeSelf || Function('return this')();
 
 module.exports = root;
 
-},{"./_freeGlobal":386}],436:[function(require,module,exports){
+},{"./_freeGlobal":392}],443:[function(require,module,exports){
 /** Used to stand-in for `undefined` hash values. */
 var HASH_UNDEFINED = '__lodash_hash_undefined__';
 
@@ -20119,7 +20335,7 @@ function setCacheAdd(value) {
 
 module.exports = setCacheAdd;
 
-},{}],437:[function(require,module,exports){
+},{}],444:[function(require,module,exports){
 /**
  * Checks if `value` is in the array cache.
  *
@@ -20135,7 +20351,7 @@ function setCacheHas(value) {
 
 module.exports = setCacheHas;
 
-},{}],438:[function(require,module,exports){
+},{}],445:[function(require,module,exports){
 /**
  * Converts `set` to an array of its values.
  *
@@ -20155,7 +20371,62 @@ function setToArray(set) {
 
 module.exports = setToArray;
 
-},{}],439:[function(require,module,exports){
+},{}],446:[function(require,module,exports){
+var baseSetToString = require('./_baseSetToString'),
+    shortOut = require('./_shortOut');
+
+/**
+ * Sets the `toString` method of `func` to return `string`.
+ *
+ * @private
+ * @param {Function} func The function to modify.
+ * @param {Function} string The `toString` result.
+ * @returns {Function} Returns `func`.
+ */
+var setToString = shortOut(baseSetToString);
+
+module.exports = setToString;
+
+},{"./_baseSetToString":359,"./_shortOut":447}],447:[function(require,module,exports){
+/** Used to detect hot functions by number of calls within a span of milliseconds. */
+var HOT_COUNT = 800,
+    HOT_SPAN = 16;
+
+/* Built-in method references for those with the same name as other `lodash` methods. */
+var nativeNow = Date.now;
+
+/**
+ * Creates a function that'll short out and invoke `identity` instead
+ * of `func` when it's called `HOT_COUNT` or more times in `HOT_SPAN`
+ * milliseconds.
+ *
+ * @private
+ * @param {Function} func The function to restrict.
+ * @returns {Function} Returns the new shortable function.
+ */
+function shortOut(func) {
+  var count = 0,
+      lastCalled = 0;
+
+  return function() {
+    var stamp = nativeNow(),
+        remaining = HOT_SPAN - (stamp - lastCalled);
+
+    lastCalled = stamp;
+    if (remaining > 0) {
+      if (++count >= HOT_COUNT) {
+        return arguments[0];
+      }
+    } else {
+      count = 0;
+    }
+    return func.apply(undefined, arguments);
+  };
+}
+
+module.exports = shortOut;
+
+},{}],448:[function(require,module,exports){
 var ListCache = require('./_ListCache');
 
 /**
@@ -20172,7 +20443,7 @@ function stackClear() {
 
 module.exports = stackClear;
 
-},{"./_ListCache":299}],440:[function(require,module,exports){
+},{"./_ListCache":299}],449:[function(require,module,exports){
 /**
  * Removes `key` and its value from the stack.
  *
@@ -20192,7 +20463,7 @@ function stackDelete(key) {
 
 module.exports = stackDelete;
 
-},{}],441:[function(require,module,exports){
+},{}],450:[function(require,module,exports){
 /**
  * Gets the stack value for `key`.
  *
@@ -20208,7 +20479,7 @@ function stackGet(key) {
 
 module.exports = stackGet;
 
-},{}],442:[function(require,module,exports){
+},{}],451:[function(require,module,exports){
 /**
  * Checks if a stack value for `key` exists.
  *
@@ -20224,7 +20495,7 @@ function stackHas(key) {
 
 module.exports = stackHas;
 
-},{}],443:[function(require,module,exports){
+},{}],452:[function(require,module,exports){
 var ListCache = require('./_ListCache'),
     Map = require('./_Map'),
     MapCache = require('./_MapCache');
@@ -20260,7 +20531,7 @@ function stackSet(key, value) {
 
 module.exports = stackSet;
 
-},{"./_ListCache":299,"./_Map":300,"./_MapCache":301}],444:[function(require,module,exports){
+},{"./_ListCache":299,"./_Map":300,"./_MapCache":301}],453:[function(require,module,exports){
 /**
  * A specialized version of `_.indexOf` which performs strict equality
  * comparisons of values, i.e. `===`.
@@ -20285,7 +20556,7 @@ function strictIndexOf(array, value, fromIndex) {
 
 module.exports = strictIndexOf;
 
-},{}],445:[function(require,module,exports){
+},{}],454:[function(require,module,exports){
 var asciiToArray = require('./_asciiToArray'),
     hasUnicode = require('./_hasUnicode'),
     unicodeToArray = require('./_unicodeToArray');
@@ -20305,7 +20576,7 @@ function stringToArray(string) {
 
 module.exports = stringToArray;
 
-},{"./_asciiToArray":317,"./_hasUnicode":399,"./_unicodeToArray":449}],446:[function(require,module,exports){
+},{"./_asciiToArray":320,"./_hasUnicode":405,"./_unicodeToArray":458}],455:[function(require,module,exports){
 var memoizeCapped = require('./_memoizeCapped');
 
 /** Used to match property names within property paths. */
@@ -20335,7 +20606,7 @@ var stringToPath = memoizeCapped(function(string) {
 
 module.exports = stringToPath;
 
-},{"./_memoizeCapped":428}],447:[function(require,module,exports){
+},{"./_memoizeCapped":434}],456:[function(require,module,exports){
 var isSymbol = require('./isSymbol');
 
 /** Used as references for various `Number` constants. */
@@ -20358,7 +20629,7 @@ function toKey(value) {
 
 module.exports = toKey;
 
-},{"./isSymbol":478}],448:[function(require,module,exports){
+},{"./isSymbol":490}],457:[function(require,module,exports){
 /** Used for built-in method references. */
 var funcProto = Function.prototype;
 
@@ -20386,7 +20657,7 @@ function toSource(func) {
 
 module.exports = toSource;
 
-},{}],449:[function(require,module,exports){
+},{}],458:[function(require,module,exports){
 /** Used to compose unicode character classes. */
 var rsAstralRange = '\\ud800-\\udfff',
     rsComboMarksRange = '\\u0300-\\u036f',
@@ -20428,7 +20699,7 @@ function unicodeToArray(string) {
 
 module.exports = unicodeToArray;
 
-},{}],450:[function(require,module,exports){
+},{}],459:[function(require,module,exports){
 /** Used to compose unicode character classes. */
 var rsAstralRange = '\\ud800-\\udfff',
     rsComboMarksRange = '\\u0300-\\u036f',
@@ -20499,7 +20770,7 @@ function unicodeWords(string) {
 
 module.exports = unicodeWords;
 
-},{}],451:[function(require,module,exports){
+},{}],460:[function(require,module,exports){
 var baseClone = require('./_baseClone');
 
 /** Used to compose bitmasks for cloning. */
@@ -20537,7 +20808,7 @@ function clone(value) {
 
 module.exports = clone;
 
-},{"./_baseClone":325}],452:[function(require,module,exports){
+},{"./_baseClone":328}],461:[function(require,module,exports){
 var baseClone = require('./_baseClone');
 
 /** Used to compose bitmasks for cloning. */
@@ -20568,7 +20839,7 @@ function cloneDeep(value) {
 
 module.exports = cloneDeep;
 
-},{"./_baseClone":325}],453:[function(require,module,exports){
+},{"./_baseClone":328}],462:[function(require,module,exports){
 /**
  * Creates an array with all falsey values removed. The values `false`, `null`,
  * `0`, `""`, `undefined`, and `NaN` are falsey.
@@ -20601,7 +20872,35 @@ function compact(array) {
 
 module.exports = compact;
 
-},{}],454:[function(require,module,exports){
+},{}],463:[function(require,module,exports){
+/**
+ * Creates a function that returns `value`.
+ *
+ * @static
+ * @memberOf _
+ * @since 2.4.0
+ * @category Util
+ * @param {*} value The value to return from the new function.
+ * @returns {Function} Returns the new constant function.
+ * @example
+ *
+ * var objects = _.times(2, _.constant({ 'a': 1 }));
+ *
+ * console.log(objects);
+ * // => [{ 'a': 1 }, { 'a': 1 }]
+ *
+ * console.log(objects[0] === objects[1]);
+ * // => true
+ */
+function constant(value) {
+  return function() {
+    return value;
+  };
+}
+
+module.exports = constant;
+
+},{}],464:[function(require,module,exports){
 var deburrLetter = require('./_deburrLetter'),
     toString = require('./toString');
 
@@ -20648,7 +20947,7 @@ function deburr(string) {
 
 module.exports = deburr;
 
-},{"./_deburrLetter":381,"./toString":496}],455:[function(require,module,exports){
+},{"./_deburrLetter":387,"./toString":509}],465:[function(require,module,exports){
 /**
  * Performs a
  * [`SameValueZero`](http://ecma-international.org/ecma-262/7.0/#sec-samevaluezero)
@@ -20687,7 +20986,7 @@ function eq(value, other) {
 
 module.exports = eq;
 
-},{}],456:[function(require,module,exports){
+},{}],466:[function(require,module,exports){
 var createFind = require('./_createFind'),
     findIndex = require('./findIndex');
 
@@ -20731,7 +21030,7 @@ var find = createFind(findIndex);
 
 module.exports = find;
 
-},{"./_createFind":380,"./findIndex":457}],457:[function(require,module,exports){
+},{"./_createFind":386,"./findIndex":467}],467:[function(require,module,exports){
 var baseFindIndex = require('./_baseFindIndex'),
     baseIteratee = require('./_baseIteratee'),
     toInteger = require('./toInteger');
@@ -20788,7 +21087,7 @@ function findIndex(array, predicate, fromIndex) {
 
 module.exports = findIndex;
 
-},{"./_baseFindIndex":328,"./_baseIteratee":344,"./toInteger":494}],458:[function(require,module,exports){
+},{"./_baseFindIndex":332,"./_baseIteratee":348,"./toInteger":507}],468:[function(require,module,exports){
 var arrayEach = require('./_arrayEach'),
     baseEach = require('./_baseEach'),
     castFunction = require('./_castFunction'),
@@ -20831,7 +21130,7 @@ function forEach(collection, iteratee) {
 
 module.exports = forEach;
 
-},{"./_arrayEach":311,"./_baseEach":327,"./_castFunction":360,"./isArray":466}],459:[function(require,module,exports){
+},{"./_arrayEach":312,"./_baseEach":331,"./_castFunction":366,"./isArray":476}],469:[function(require,module,exports){
 var baseGet = require('./_baseGet');
 
 /**
@@ -20866,7 +21165,7 @@ function get(object, path, defaultValue) {
 
 module.exports = get;
 
-},{"./_baseGet":331}],460:[function(require,module,exports){
+},{"./_baseGet":335}],470:[function(require,module,exports){
 var baseHas = require('./_baseHas'),
     hasPath = require('./_hasPath');
 
@@ -20903,7 +21202,7 @@ function has(object, path) {
 
 module.exports = has;
 
-},{"./_baseHas":334,"./_hasPath":398}],461:[function(require,module,exports){
+},{"./_baseHas":338,"./_hasPath":404}],471:[function(require,module,exports){
 var baseHasIn = require('./_baseHasIn'),
     hasPath = require('./_hasPath');
 
@@ -20939,7 +21238,7 @@ function hasIn(object, path) {
 
 module.exports = hasIn;
 
-},{"./_baseHasIn":335,"./_hasPath":398}],462:[function(require,module,exports){
+},{"./_baseHasIn":339,"./_hasPath":404}],472:[function(require,module,exports){
 /**
  * Gets the first element of `array`.
  *
@@ -20964,7 +21263,7 @@ function head(array) {
 
 module.exports = head;
 
-},{}],463:[function(require,module,exports){
+},{}],473:[function(require,module,exports){
 /**
  * This method returns the first argument it receives.
  *
@@ -20987,7 +21286,7 @@ function identity(value) {
 
 module.exports = identity;
 
-},{}],464:[function(require,module,exports){
+},{}],474:[function(require,module,exports){
 var baseIndexOf = require('./_baseIndexOf'),
     isArrayLike = require('./isArrayLike'),
     isString = require('./isString'),
@@ -21042,7 +21341,7 @@ function includes(collection, value, fromIndex, guard) {
 
 module.exports = includes;
 
-},{"./_baseIndexOf":336,"./isArrayLike":467,"./isString":477,"./toInteger":494,"./values":499}],465:[function(require,module,exports){
+},{"./_baseIndexOf":340,"./isArrayLike":477,"./isString":489,"./toInteger":507,"./values":512}],475:[function(require,module,exports){
 var baseIsArguments = require('./_baseIsArguments'),
     isObjectLike = require('./isObjectLike');
 
@@ -21080,7 +21379,7 @@ var isArguments = baseIsArguments(function() { return arguments; }()) ? baseIsAr
 
 module.exports = isArguments;
 
-},{"./_baseIsArguments":337,"./isObjectLike":476}],466:[function(require,module,exports){
+},{"./_baseIsArguments":341,"./isObjectLike":488}],476:[function(require,module,exports){
 /**
  * Checks if `value` is classified as an `Array` object.
  *
@@ -21108,7 +21407,7 @@ var isArray = Array.isArray;
 
 module.exports = isArray;
 
-},{}],467:[function(require,module,exports){
+},{}],477:[function(require,module,exports){
 var isFunction = require('./isFunction'),
     isLength = require('./isLength');
 
@@ -21143,7 +21442,42 @@ function isArrayLike(value) {
 
 module.exports = isArrayLike;
 
-},{"./isFunction":471,"./isLength":472}],468:[function(require,module,exports){
+},{"./isFunction":482,"./isLength":483}],478:[function(require,module,exports){
+var isArrayLike = require('./isArrayLike'),
+    isObjectLike = require('./isObjectLike');
+
+/**
+ * This method is like `_.isArrayLike` except that it also checks if `value`
+ * is an object.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an array-like object,
+ *  else `false`.
+ * @example
+ *
+ * _.isArrayLikeObject([1, 2, 3]);
+ * // => true
+ *
+ * _.isArrayLikeObject(document.body.children);
+ * // => true
+ *
+ * _.isArrayLikeObject('abc');
+ * // => false
+ *
+ * _.isArrayLikeObject(_.noop);
+ * // => false
+ */
+function isArrayLikeObject(value) {
+  return isObjectLike(value) && isArrayLike(value);
+}
+
+module.exports = isArrayLikeObject;
+
+},{"./isArrayLike":477,"./isObjectLike":488}],479:[function(require,module,exports){
 var root = require('./_root'),
     stubFalse = require('./stubFalse');
 
@@ -21183,7 +21517,7 @@ var isBuffer = nativeIsBuffer || stubFalse;
 
 module.exports = isBuffer;
 
-},{"./_root":435,"./stubFalse":492}],469:[function(require,module,exports){
+},{"./_root":442,"./stubFalse":504}],480:[function(require,module,exports){
 var baseKeys = require('./_baseKeys'),
     getTag = require('./_getTag'),
     isArguments = require('./isArguments'),
@@ -21262,7 +21596,7 @@ function isEmpty(value) {
 
 module.exports = isEmpty;
 
-},{"./_baseKeys":345,"./_getTag":396,"./_isPrototype":414,"./isArguments":465,"./isArray":466,"./isArrayLike":467,"./isBuffer":468,"./isTypedArray":479}],470:[function(require,module,exports){
+},{"./_baseKeys":349,"./_getTag":402,"./_isPrototype":420,"./isArguments":475,"./isArray":476,"./isArrayLike":477,"./isBuffer":479,"./isTypedArray":491}],481:[function(require,module,exports){
 var baseIsEqual = require('./_baseIsEqual');
 
 /**
@@ -21299,7 +21633,7 @@ function isEqual(value, other) {
 
 module.exports = isEqual;
 
-},{"./_baseIsEqual":338}],471:[function(require,module,exports){
+},{"./_baseIsEqual":342}],482:[function(require,module,exports){
 var baseGetTag = require('./_baseGetTag'),
     isObject = require('./isObject');
 
@@ -21338,7 +21672,7 @@ function isFunction(value) {
 
 module.exports = isFunction;
 
-},{"./_baseGetTag":333,"./isObject":475}],472:[function(require,module,exports){
+},{"./_baseGetTag":337,"./isObject":487}],483:[function(require,module,exports){
 /** Used as references for various `Number` constants. */
 var MAX_SAFE_INTEGER = 9007199254740991;
 
@@ -21375,7 +21709,7 @@ function isLength(value) {
 
 module.exports = isLength;
 
-},{}],473:[function(require,module,exports){
+},{}],484:[function(require,module,exports){
 var isNumber = require('./isNumber');
 
 /**
@@ -21415,7 +21749,34 @@ function isNaN(value) {
 
 module.exports = isNaN;
 
-},{"./isNumber":474}],474:[function(require,module,exports){
+},{"./isNumber":486}],485:[function(require,module,exports){
+/**
+ * Checks if `value` is `null` or `undefined`.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is nullish, else `false`.
+ * @example
+ *
+ * _.isNil(null);
+ * // => true
+ *
+ * _.isNil(void 0);
+ * // => true
+ *
+ * _.isNil(NaN);
+ * // => false
+ */
+function isNil(value) {
+  return value == null;
+}
+
+module.exports = isNil;
+
+},{}],486:[function(require,module,exports){
 var baseGetTag = require('./_baseGetTag'),
     isObjectLike = require('./isObjectLike');
 
@@ -21455,7 +21816,7 @@ function isNumber(value) {
 
 module.exports = isNumber;
 
-},{"./_baseGetTag":333,"./isObjectLike":476}],475:[function(require,module,exports){
+},{"./_baseGetTag":337,"./isObjectLike":488}],487:[function(require,module,exports){
 /**
  * Checks if `value` is the
  * [language type](http://www.ecma-international.org/ecma-262/7.0/#sec-ecmascript-language-types)
@@ -21488,7 +21849,7 @@ function isObject(value) {
 
 module.exports = isObject;
 
-},{}],476:[function(require,module,exports){
+},{}],488:[function(require,module,exports){
 /**
  * Checks if `value` is object-like. A value is object-like if it's not `null`
  * and has a `typeof` result of "object".
@@ -21519,7 +21880,7 @@ function isObjectLike(value) {
 
 module.exports = isObjectLike;
 
-},{}],477:[function(require,module,exports){
+},{}],489:[function(require,module,exports){
 var baseGetTag = require('./_baseGetTag'),
     isArray = require('./isArray'),
     isObjectLike = require('./isObjectLike');
@@ -21551,7 +21912,7 @@ function isString(value) {
 
 module.exports = isString;
 
-},{"./_baseGetTag":333,"./isArray":466,"./isObjectLike":476}],478:[function(require,module,exports){
+},{"./_baseGetTag":337,"./isArray":476,"./isObjectLike":488}],490:[function(require,module,exports){
 var baseGetTag = require('./_baseGetTag'),
     isObjectLike = require('./isObjectLike');
 
@@ -21582,7 +21943,7 @@ function isSymbol(value) {
 
 module.exports = isSymbol;
 
-},{"./_baseGetTag":333,"./isObjectLike":476}],479:[function(require,module,exports){
+},{"./_baseGetTag":337,"./isObjectLike":488}],491:[function(require,module,exports){
 var baseIsTypedArray = require('./_baseIsTypedArray'),
     baseUnary = require('./_baseUnary'),
     nodeUtil = require('./_nodeUtil');
@@ -21611,7 +21972,7 @@ var isTypedArray = nodeIsTypedArray ? baseUnary(nodeIsTypedArray) : baseIsTypedA
 
 module.exports = isTypedArray;
 
-},{"./_baseIsTypedArray":343,"./_baseUnary":357,"./_nodeUtil":432}],480:[function(require,module,exports){
+},{"./_baseIsTypedArray":347,"./_baseUnary":363,"./_nodeUtil":438}],492:[function(require,module,exports){
 var arrayLikeKeys = require('./_arrayLikeKeys'),
     baseKeys = require('./_baseKeys'),
     isArrayLike = require('./isArrayLike');
@@ -21650,7 +22011,7 @@ function keys(object) {
 
 module.exports = keys;
 
-},{"./_arrayLikeKeys":312,"./_baseKeys":345,"./isArrayLike":467}],481:[function(require,module,exports){
+},{"./_arrayLikeKeys":315,"./_baseKeys":349,"./isArrayLike":477}],493:[function(require,module,exports){
 var arrayLikeKeys = require('./_arrayLikeKeys'),
     baseKeysIn = require('./_baseKeysIn'),
     isArrayLike = require('./isArrayLike');
@@ -21684,7 +22045,7 @@ function keysIn(object) {
 
 module.exports = keysIn;
 
-},{"./_arrayLikeKeys":312,"./_baseKeysIn":346,"./isArrayLike":467}],482:[function(require,module,exports){
+},{"./_arrayLikeKeys":315,"./_baseKeysIn":350,"./isArrayLike":477}],494:[function(require,module,exports){
 /**
  * Gets the last element of `array`.
  *
@@ -21706,7 +22067,7 @@ function last(array) {
 
 module.exports = last;
 
-},{}],483:[function(require,module,exports){
+},{}],495:[function(require,module,exports){
 var createCompounder = require('./_createCompounder');
 
 /**
@@ -21735,7 +22096,7 @@ var lowerCase = createCompounder(function(result, word, index) {
 
 module.exports = lowerCase;
 
-},{"./_createCompounder":379}],484:[function(require,module,exports){
+},{"./_createCompounder":385}],496:[function(require,module,exports){
 var arrayMap = require('./_arrayMap'),
     baseIteratee = require('./_baseIteratee'),
     baseMap = require('./_baseMap'),
@@ -21790,7 +22151,7 @@ function map(collection, iteratee) {
 
 module.exports = map;
 
-},{"./_arrayMap":313,"./_baseIteratee":344,"./_baseMap":347,"./isArray":466}],485:[function(require,module,exports){
+},{"./_arrayMap":316,"./_baseIteratee":348,"./_baseMap":351,"./isArray":476}],497:[function(require,module,exports){
 var baseAssignValue = require('./_baseAssignValue'),
     baseForOwn = require('./_baseForOwn'),
     baseIteratee = require('./_baseIteratee');
@@ -21835,7 +22196,7 @@ function mapValues(object, iteratee) {
 
 module.exports = mapValues;
 
-},{"./_baseAssignValue":323,"./_baseForOwn":330,"./_baseIteratee":344}],486:[function(require,module,exports){
+},{"./_baseAssignValue":326,"./_baseForOwn":334,"./_baseIteratee":348}],498:[function(require,module,exports){
 var MapCache = require('./_MapCache');
 
 /** Error message constants. */
@@ -21910,7 +22271,7 @@ memoize.Cache = MapCache;
 
 module.exports = memoize;
 
-},{"./_MapCache":301}],487:[function(require,module,exports){
+},{"./_MapCache":301}],499:[function(require,module,exports){
 var baseProperty = require('./_baseProperty'),
     basePropertyDeep = require('./_basePropertyDeep'),
     isKey = require('./_isKey'),
@@ -21944,7 +22305,7 @@ function property(path) {
 
 module.exports = property;
 
-},{"./_baseProperty":350,"./_basePropertyDeep":351,"./_isKey":411,"./_toKey":447}],488:[function(require,module,exports){
+},{"./_baseProperty":354,"./_basePropertyDeep":355,"./_isKey":417,"./_toKey":456}],500:[function(require,module,exports){
 var baseRandom = require('./_baseRandom'),
     isIterateeCall = require('./_isIterateeCall'),
     toFinite = require('./toFinite');
@@ -22028,7 +22389,7 @@ function random(lower, upper, floating) {
 
 module.exports = random;
 
-},{"./_baseRandom":353,"./_isIterateeCall":410,"./toFinite":493}],489:[function(require,module,exports){
+},{"./_baseRandom":357,"./_isIterateeCall":416,"./toFinite":506}],501:[function(require,module,exports){
 var createCompounder = require('./_createCompounder'),
     upperFirst = require('./upperFirst');
 
@@ -22059,7 +22420,7 @@ var startCase = createCompounder(function(result, word, index) {
 
 module.exports = startCase;
 
-},{"./_createCompounder":379,"./upperFirst":498}],490:[function(require,module,exports){
+},{"./_createCompounder":385,"./upperFirst":511}],502:[function(require,module,exports){
 var baseClamp = require('./_baseClamp'),
     baseToString = require('./_baseToString'),
     toInteger = require('./toInteger'),
@@ -22097,7 +22458,7 @@ function startsWith(string, target, position) {
 
 module.exports = startsWith;
 
-},{"./_baseClamp":324,"./_baseToString":356,"./toInteger":494,"./toString":496}],491:[function(require,module,exports){
+},{"./_baseClamp":327,"./_baseToString":362,"./toInteger":507,"./toString":509}],503:[function(require,module,exports){
 /**
  * This method returns a new empty array.
  *
@@ -22122,7 +22483,7 @@ function stubArray() {
 
 module.exports = stubArray;
 
-},{}],492:[function(require,module,exports){
+},{}],504:[function(require,module,exports){
 /**
  * This method returns `false`.
  *
@@ -22142,7 +22503,31 @@ function stubFalse() {
 
 module.exports = stubFalse;
 
-},{}],493:[function(require,module,exports){
+},{}],505:[function(require,module,exports){
+var baseSlice = require('./_baseSlice');
+
+/**
+ * Gets all but the first element of `array`.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Array
+ * @param {Array} array The array to query.
+ * @returns {Array} Returns the slice of `array`.
+ * @example
+ *
+ * _.tail([1, 2, 3]);
+ * // => [2, 3]
+ */
+function tail(array) {
+  var length = array == null ? 0 : array.length;
+  return length ? baseSlice(array, 1, length) : [];
+}
+
+module.exports = tail;
+
+},{"./_baseSlice":360}],506:[function(require,module,exports){
 var toNumber = require('./toNumber');
 
 /** Used as references for various `Number` constants. */
@@ -22186,7 +22571,7 @@ function toFinite(value) {
 
 module.exports = toFinite;
 
-},{"./toNumber":495}],494:[function(require,module,exports){
+},{"./toNumber":508}],507:[function(require,module,exports){
 var toFinite = require('./toFinite');
 
 /**
@@ -22224,7 +22609,7 @@ function toInteger(value) {
 
 module.exports = toInteger;
 
-},{"./toFinite":493}],495:[function(require,module,exports){
+},{"./toFinite":506}],508:[function(require,module,exports){
 var isObject = require('./isObject'),
     isSymbol = require('./isSymbol');
 
@@ -22292,7 +22677,7 @@ function toNumber(value) {
 
 module.exports = toNumber;
 
-},{"./isObject":475,"./isSymbol":478}],496:[function(require,module,exports){
+},{"./isObject":487,"./isSymbol":490}],509:[function(require,module,exports){
 var baseToString = require('./_baseToString');
 
 /**
@@ -22322,7 +22707,7 @@ function toString(value) {
 
 module.exports = toString;
 
-},{"./_baseToString":356}],497:[function(require,module,exports){
+},{"./_baseToString":362}],510:[function(require,module,exports){
 var toString = require('./toString');
 
 /** Used to generate unique IDs. */
@@ -22352,7 +22737,7 @@ function uniqueId(prefix) {
 
 module.exports = uniqueId;
 
-},{"./toString":496}],498:[function(require,module,exports){
+},{"./toString":509}],511:[function(require,module,exports){
 var createCaseFirst = require('./_createCaseFirst');
 
 /**
@@ -22376,7 +22761,7 @@ var upperFirst = createCaseFirst('toUpperCase');
 
 module.exports = upperFirst;
 
-},{"./_createCaseFirst":378}],499:[function(require,module,exports){
+},{"./_createCaseFirst":384}],512:[function(require,module,exports){
 var baseValues = require('./_baseValues'),
     keys = require('./keys');
 
@@ -22412,7 +22797,40 @@ function values(object) {
 
 module.exports = values;
 
-},{"./_baseValues":358,"./keys":480}],500:[function(require,module,exports){
+},{"./_baseValues":364,"./keys":492}],513:[function(require,module,exports){
+var baseDifference = require('./_baseDifference'),
+    baseRest = require('./_baseRest'),
+    isArrayLikeObject = require('./isArrayLikeObject');
+
+/**
+ * Creates an array excluding all given values using
+ * [`SameValueZero`](http://ecma-international.org/ecma-262/7.0/#sec-samevaluezero)
+ * for equality comparisons.
+ *
+ * **Note:** Unlike `_.pull`, this method returns a new array.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Array
+ * @param {Array} array The array to inspect.
+ * @param {...*} [values] The values to exclude.
+ * @returns {Array} Returns the new array of filtered values.
+ * @see _.difference, _.xor
+ * @example
+ *
+ * _.without([2, 1, 2, 3], 1, 2);
+ * // => [3]
+ */
+var without = baseRest(function(array, values) {
+  return isArrayLikeObject(array)
+    ? baseDifference(array, values)
+    : [];
+});
+
+module.exports = without;
+
+},{"./_baseDifference":330,"./_baseRest":358,"./isArrayLikeObject":478}],514:[function(require,module,exports){
 var asciiWords = require('./_asciiWords'),
     hasUnicodeWord = require('./_hasUnicodeWord'),
     toString = require('./toString'),
@@ -22449,7546 +22867,7 @@ function words(string, pattern, guard) {
 
 module.exports = words;
 
-},{"./_asciiWords":318,"./_hasUnicodeWord":400,"./_unicodeWords":450,"./toString":496}],501:[function(require,module,exports){
-"use strict";
-
-var arrays  = require("./utils/arrays"),
-    objects = require("./utils/objects");
-
-var compiler = {
-  /*
-   * Compiler passes.
-   *
-   * Each pass is a function that is passed the AST. It can perform checks on it
-   * or modify it as needed. If the pass encounters a semantic error, it throws
-   * |PEG.GrammarError|.
-   */
-  passes: {
-    check: {
-      reportMissingRules:  require("./compiler/passes/report-missing-rules"),
-      reportLeftRecursion: require("./compiler/passes/report-left-recursion"),
-      reportInfiniteLoops: require("./compiler/passes/report-infinite-loops")
-    },
-    transform: {
-      removeProxyRules:    require("./compiler/passes/remove-proxy-rules")
-    },
-    generate: {
-      generateBytecode:    require("./compiler/passes/generate-bytecode"),
-      generateJavascript:  require("./compiler/passes/generate-javascript")
-    }
-  },
-
-  /*
-   * Generates a parser from a specified grammar AST. Throws |PEG.GrammarError|
-   * if the AST contains a semantic error. Note that not all errors are detected
-   * during the generation and some may protrude to the generated parser and
-   * cause its malfunction.
-   */
-  compile: function(ast, passes) {
-    var options = arguments.length > 2 ? objects.clone(arguments[2]) : {},
-        stage;
-
-    objects.defaults(options, {
-      allowedStartRules:  [ast.rules[0].name],
-      cache:              false,
-      trace:              false,
-      optimize:           "speed",
-      output:             "parser"
-    });
-
-    for (stage in passes) {
-      if (passes.hasOwnProperty(stage)) {
-        arrays.each(passes[stage], function(p) { p(ast, options); });
-      }
-    }
-
-    switch (options.output) {
-      case "parser": return eval(ast.code);
-      case "source": return ast.code;
-    }
-  }
-};
-
-module.exports = compiler;
-
-},{"./compiler/passes/generate-bytecode":505,"./compiler/passes/generate-javascript":506,"./compiler/passes/remove-proxy-rules":507,"./compiler/passes/report-infinite-loops":508,"./compiler/passes/report-left-recursion":509,"./compiler/passes/report-missing-rules":510,"./utils/arrays":515,"./utils/objects":517}],502:[function(require,module,exports){
-"use strict";
-
-var arrays  = require("../utils/arrays"),
-    visitor = require("./visitor");
-
-/* AST utilities. */
-var asts = {
-  findRule: function(ast, name) {
-    return arrays.find(ast.rules, function(r) { return r.name === name; });
-  },
-
-  indexOfRule: function(ast, name) {
-    return arrays.indexOf(ast.rules, function(r) { return r.name === name; });
-  },
-
-  alwaysAdvancesOnSuccess: function(ast, node) {
-    function advancesTrue()  { return true;  }
-    function advancesFalse() { return false; }
-
-    function advancesExpression(node) {
-      return advances(node.expression);
-    }
-
-    var advances = visitor.build({
-      rule:  advancesExpression,
-      named: advancesExpression,
-
-      choice: function(node) {
-        return arrays.every(node.alternatives, advances);
-      },
-
-      action: advancesExpression,
-
-      sequence: function(node) {
-        return arrays.some(node.elements, advances);
-      },
-
-      labeled:      advancesExpression,
-      text:         advancesExpression,
-      simple_and:   advancesFalse,
-      simple_not:   advancesFalse,
-      optional:     advancesFalse,
-      zero_or_more: advancesFalse,
-      one_or_more:  advancesExpression,
-      semantic_and: advancesFalse,
-      semantic_not: advancesFalse,
-
-      rule_ref: function(node) {
-        return advances(asts.findRule(ast, node.name));
-      },
-
-      literal: function(node) {
-        return node.value !== "";
-      },
-
-      "class": advancesTrue,
-      any:     advancesTrue
-    });
-
-    return advances(node);
-  }
-};
-
-module.exports = asts;
-
-},{"../utils/arrays":515,"./visitor":511}],503:[function(require,module,exports){
-"use strict";
-
-function hex(ch) { return ch.charCodeAt(0).toString(16).toUpperCase(); }
-
-/* JavaScript code generation helpers. */
-var javascript = {
-  stringEscape: function(s) {
-    /*
-     * ECMA-262, 5th ed., 7.8.4: All characters may appear literally in a string
-     * literal except for the closing quote character, backslash, carriage
-     * return, line separator, paragraph separator, and line feed. Any character
-     * may appear in the form of an escape sequence.
-     *
-     * For portability, we also escape all control and non-ASCII characters.
-     * Note that "\0" and "\v" escape sequences are not used because JSHint does
-     * not like the first and IE the second.
-     */
-    return s
-      .replace(/\\/g,   '\\\\')   // backslash
-      .replace(/"/g,    '\\"')    // closing double quote
-      .replace(/\x08/g, '\\b')    // backspace
-      .replace(/\t/g,   '\\t')    // horizontal tab
-      .replace(/\n/g,   '\\n')    // line feed
-      .replace(/\f/g,   '\\f')    // form feed
-      .replace(/\r/g,   '\\r')    // carriage return
-      .replace(/[\x00-\x07\x0B\x0E\x0F]/g, function(ch) { return '\\x0' + hex(ch); })
-      .replace(/[\x10-\x1F\x80-\xFF]/g,    function(ch) { return '\\x'  + hex(ch); })
-      .replace(/[\u0100-\u0FFF]/g,         function(ch) { return '\\u0' + hex(ch); })
-      .replace(/[\u1000-\uFFFF]/g,         function(ch) { return '\\u'  + hex(ch); });
-  },
-
-  regexpClassEscape: function(s) {
-    /*
-     * Based on ECMA-262, 5th ed., 7.8.5 & 15.10.1.
-     *
-     * For portability, we also escape all control and non-ASCII characters.
-     */
-    return s
-      .replace(/\\/g, '\\\\')    // backslash
-      .replace(/\//g, '\\/')     // closing slash
-      .replace(/\]/g, '\\]')     // closing bracket
-      .replace(/\^/g, '\\^')     // caret
-      .replace(/-/g,  '\\-')     // dash
-      .replace(/\0/g, '\\0')     // null
-      .replace(/\t/g, '\\t')     // horizontal tab
-      .replace(/\n/g, '\\n')     // line feed
-      .replace(/\v/g, '\\x0B')   // vertical tab
-      .replace(/\f/g, '\\f')     // form feed
-      .replace(/\r/g, '\\r')     // carriage return
-      .replace(/[\x00-\x08\x0E\x0F]/g,  function(ch) { return '\\x0' + hex(ch); })
-      .replace(/[\x10-\x1F\x80-\xFF]/g, function(ch) { return '\\x'  + hex(ch); })
-      .replace(/[\u0100-\u0FFF]/g,      function(ch) { return '\\u0' + hex(ch); })
-      .replace(/[\u1000-\uFFFF]/g,      function(ch) { return '\\u'  + hex(ch); });
-  }
-};
-
-module.exports = javascript;
-
-},{}],504:[function(require,module,exports){
-"use strict";
-
-/* Bytecode instruction opcodes. */
-var opcodes = {
-  /* Stack Manipulation */
-
-  PUSH:             0,    // PUSH c
-  PUSH_UNDEFINED:   1,    // PUSH_UNDEFINED
-  PUSH_NULL:        2,    // PUSH_NULL
-  PUSH_FAILED:      3,    // PUSH_FAILED
-  PUSH_EMPTY_ARRAY: 4,    // PUSH_EMPTY_ARRAY
-  PUSH_CURR_POS:    5,    // PUSH_CURR_POS
-  POP:              6,    // POP
-  POP_CURR_POS:     7,    // POP_CURR_POS
-  POP_N:            8,    // POP_N n
-  NIP:              9,    // NIP
-  APPEND:           10,   // APPEND
-  WRAP:             11,   // WRAP n
-  TEXT:             12,   // TEXT
-
-  /* Conditions and Loops */
-
-  IF:               13,   // IF t, f
-  IF_ERROR:         14,   // IF_ERROR t, f
-  IF_NOT_ERROR:     15,   // IF_NOT_ERROR t, f
-  WHILE_NOT_ERROR:  16,   // WHILE_NOT_ERROR b
-
-  /* Matching */
-
-  MATCH_ANY:        17,   // MATCH_ANY a, f, ...
-  MATCH_STRING:     18,   // MATCH_STRING s, a, f, ...
-  MATCH_STRING_IC:  19,   // MATCH_STRING_IC s, a, f, ...
-  MATCH_REGEXP:     20,   // MATCH_REGEXP r, a, f, ...
-  ACCEPT_N:         21,   // ACCEPT_N n
-  ACCEPT_STRING:    22,   // ACCEPT_STRING s
-  FAIL:             23,   // FAIL e
-
-  /* Calls */
-
-  LOAD_SAVED_POS:   24,   // LOAD_SAVED_POS p
-  UPDATE_SAVED_POS: 25,   // UPDATE_SAVED_POS
-  CALL:             26,   // CALL f, n, pc, p1, p2, ..., pN
-
-  /* Rules */
-
-  RULE:             27,   // RULE r
-
-  /* Failure Reporting */
-
-  SILENT_FAILS_ON:  28,   // SILENT_FAILS_ON
-  SILENT_FAILS_OFF: 29    // SILENT_FAILS_OFF
-};
-
-module.exports = opcodes;
-
-},{}],505:[function(require,module,exports){
-"use strict";
-
-var arrays  = require("../../utils/arrays"),
-    objects = require("../../utils/objects"),
-    asts    = require("../asts"),
-    visitor = require("../visitor"),
-    op      = require("../opcodes"),
-    js      = require("../javascript");
-
-/* Generates bytecode.
- *
- * Instructions
- * ============
- *
- * Stack Manipulation
- * ------------------
- *
- *  [0] PUSH c
- *
- *        stack.push(consts[c]);
- *
- *  [1] PUSH_UNDEFINED
- *
- *        stack.push(undefined);
- *
- *  [2] PUSH_NULL
- *
- *        stack.push(null);
- *
- *  [3] PUSH_FAILED
- *
- *        stack.push(FAILED);
- *
- *  [4] PUSH_EMPTY_ARRAY
- *
- *        stack.push([]);
- *
- *  [5] PUSH_CURR_POS
- *
- *        stack.push(currPos);
- *
- *  [6] POP
- *
- *        stack.pop();
- *
- *  [7] POP_CURR_POS
- *
- *        currPos = stack.pop();
- *
- *  [8] POP_N n
- *
- *        stack.pop(n);
- *
- *  [9] NIP
- *
- *        value = stack.pop();
- *        stack.pop();
- *        stack.push(value);
- *
- * [10] APPEND
- *
- *        value = stack.pop();
- *        array = stack.pop();
- *        array.push(value);
- *        stack.push(array);
- *
- * [11] WRAP n
- *
- *        stack.push(stack.pop(n));
- *
- * [12] TEXT
- *
- *        stack.push(input.substring(stack.pop(), currPos));
- *
- * Conditions and Loops
- * --------------------
- *
- * [13] IF t, f
- *
- *        if (stack.top()) {
- *          interpret(ip + 3, ip + 3 + t);
- *        } else {
- *          interpret(ip + 3 + t, ip + 3 + t + f);
- *        }
- *
- * [14] IF_ERROR t, f
- *
- *        if (stack.top() === FAILED) {
- *          interpret(ip + 3, ip + 3 + t);
- *        } else {
- *          interpret(ip + 3 + t, ip + 3 + t + f);
- *        }
- *
- * [15] IF_NOT_ERROR t, f
- *
- *        if (stack.top() !== FAILED) {
- *          interpret(ip + 3, ip + 3 + t);
- *        } else {
- *          interpret(ip + 3 + t, ip + 3 + t + f);
- *        }
- *
- * [16] WHILE_NOT_ERROR b
- *
- *        while(stack.top() !== FAILED) {
- *          interpret(ip + 2, ip + 2 + b);
- *        }
- *
- * Matching
- * --------
- *
- * [17] MATCH_ANY a, f, ...
- *
- *        if (input.length > currPos) {
- *          interpret(ip + 3, ip + 3 + a);
- *        } else {
- *          interpret(ip + 3 + a, ip + 3 + a + f);
- *        }
- *
- * [18] MATCH_STRING s, a, f, ...
- *
- *        if (input.substr(currPos, consts[s].length) === consts[s]) {
- *          interpret(ip + 4, ip + 4 + a);
- *        } else {
- *          interpret(ip + 4 + a, ip + 4 + a + f);
- *        }
- *
- * [19] MATCH_STRING_IC s, a, f, ...
- *
- *        if (input.substr(currPos, consts[s].length).toLowerCase() === consts[s]) {
- *          interpret(ip + 4, ip + 4 + a);
- *        } else {
- *          interpret(ip + 4 + a, ip + 4 + a + f);
- *        }
- *
- * [20] MATCH_REGEXP r, a, f, ...
- *
- *        if (consts[r].test(input.charAt(currPos))) {
- *          interpret(ip + 4, ip + 4 + a);
- *        } else {
- *          interpret(ip + 4 + a, ip + 4 + a + f);
- *        }
- *
- * [21] ACCEPT_N n
- *
- *        stack.push(input.substring(currPos, n));
- *        currPos += n;
- *
- * [22] ACCEPT_STRING s
- *
- *        stack.push(consts[s]);
- *        currPos += consts[s].length;
- *
- * [23] FAIL e
- *
- *        stack.push(FAILED);
- *        fail(consts[e]);
- *
- * Calls
- * -----
- *
- * [24] LOAD_SAVED_POS p
- *
- *        savedPos = stack[p];
- *
- * [25] UPDATE_SAVED_POS
- *
- *        savedPos = currPos;
- *
- * [26] CALL f, n, pc, p1, p2, ..., pN
- *
- *        value = consts[f](stack[p1], ..., stack[pN]);
- *        stack.pop(n);
- *        stack.push(value);
- *
- * Rules
- * -----
- *
- * [27] RULE r
- *
- *        stack.push(parseRule(r));
- *
- * Failure Reporting
- * -----------------
- *
- * [28] SILENT_FAILS_ON
- *
- *        silentFails++;
- *
- * [29] SILENT_FAILS_OFF
- *
- *        silentFails--;
- */
-function generateBytecode(ast) {
-  var consts = [];
-
-  function addConst(value) {
-    var index = arrays.indexOf(consts, value);
-
-    return index === -1 ? consts.push(value) - 1 : index;
-  }
-
-  function addFunctionConst(params, code) {
-    return addConst(
-      "function(" + params.join(", ") + ") {" + code + "}"
-    );
-  }
-
-  function buildSequence() {
-    return Array.prototype.concat.apply([], arguments);
-  }
-
-  function buildCondition(condCode, thenCode, elseCode) {
-    return condCode.concat(
-      [thenCode.length, elseCode.length],
-      thenCode,
-      elseCode
-    );
-  }
-
-  function buildLoop(condCode, bodyCode) {
-    return condCode.concat([bodyCode.length], bodyCode);
-  }
-
-  function buildCall(functionIndex, delta, env, sp) {
-    var params = arrays.map(objects.values(env), function(p) { return sp - p; });
-
-    return [op.CALL, functionIndex, delta, params.length].concat(params);
-  }
-
-  function buildSimplePredicate(expression, negative, context) {
-    return buildSequence(
-      [op.PUSH_CURR_POS],
-      [op.SILENT_FAILS_ON],
-      generate(expression, {
-        sp:     context.sp + 1,
-        env:    objects.clone(context.env),
-        action: null
-      }),
-      [op.SILENT_FAILS_OFF],
-      buildCondition(
-        [negative ? op.IF_ERROR : op.IF_NOT_ERROR],
-        buildSequence(
-          [op.POP],
-          [negative ? op.POP : op.POP_CURR_POS],
-          [op.PUSH_UNDEFINED]
-        ),
-        buildSequence(
-          [op.POP],
-          [negative ? op.POP_CURR_POS : op.POP],
-          [op.PUSH_FAILED]
-        )
-      )
-    );
-  }
-
-  function buildSemanticPredicate(code, negative, context) {
-    var functionIndex = addFunctionConst(objects.keys(context.env), code);
-
-    return buildSequence(
-      [op.UPDATE_SAVED_POS],
-      buildCall(functionIndex, 0, context.env, context.sp),
-      buildCondition(
-        [op.IF],
-        buildSequence(
-          [op.POP],
-          negative ? [op.PUSH_FAILED] : [op.PUSH_UNDEFINED]
-        ),
-        buildSequence(
-          [op.POP],
-          negative ? [op.PUSH_UNDEFINED] : [op.PUSH_FAILED]
-        )
-      )
-    );
-  }
-
-  function buildAppendLoop(expressionCode) {
-    return buildLoop(
-      [op.WHILE_NOT_ERROR],
-      buildSequence([op.APPEND], expressionCode)
-    );
-  }
-
-  var generate = visitor.build({
-    grammar: function(node) {
-      arrays.each(node.rules, generate);
-
-      node.consts = consts;
-    },
-
-    rule: function(node) {
-      node.bytecode = generate(node.expression, {
-        sp:     -1,    // stack pointer
-        env:    { },   // mapping of label names to stack positions
-        action: null   // action nodes pass themselves to children here
-      });
-    },
-
-    named: function(node, context) {
-      var nameIndex = addConst(
-        '{ type: "other", description: "' + js.stringEscape(node.name) + '" }'
-      );
-
-      /*
-       * The code generated below is slightly suboptimal because |FAIL| pushes
-       * to the stack, so we need to stick a |POP| in front of it. We lack a
-       * dedicated instruction that would just report the failure and not touch
-       * the stack.
-       */
-      return buildSequence(
-        [op.SILENT_FAILS_ON],
-        generate(node.expression, context),
-        [op.SILENT_FAILS_OFF],
-        buildCondition([op.IF_ERROR], [op.FAIL, nameIndex], [])
-      );
-    },
-
-    choice: function(node, context) {
-      function buildAlternativesCode(alternatives, context) {
-        return buildSequence(
-          generate(alternatives[0], {
-            sp:     context.sp,
-            env:    objects.clone(context.env),
-            action: null
-          }),
-          alternatives.length > 1
-            ? buildCondition(
-                [op.IF_ERROR],
-                buildSequence(
-                  [op.POP],
-                  buildAlternativesCode(alternatives.slice(1), context)
-                ),
-                []
-              )
-            : []
-        );
-      }
-
-      return buildAlternativesCode(node.alternatives, context);
-    },
-
-    action: function(node, context) {
-      var env            = objects.clone(context.env),
-          emitCall       = node.expression.type !== "sequence"
-                        || node.expression.elements.length === 0,
-          expressionCode = generate(node.expression, {
-            sp:     context.sp + (emitCall ? 1 : 0),
-            env:    env,
-            action: node
-          }),
-          functionIndex  = addFunctionConst(objects.keys(env), node.code);
-
-      return emitCall
-        ? buildSequence(
-            [op.PUSH_CURR_POS],
-            expressionCode,
-            buildCondition(
-              [op.IF_NOT_ERROR],
-              buildSequence(
-                [op.LOAD_SAVED_POS, 1],
-                buildCall(functionIndex, 1, env, context.sp + 2)
-              ),
-              []
-            ),
-            [op.NIP]
-          )
-        : expressionCode;
-    },
-
-    sequence: function(node, context) {
-      function buildElementsCode(elements, context) {
-        var processedCount, functionIndex;
-
-        if (elements.length > 0) {
-          processedCount = node.elements.length - elements.slice(1).length;
-
-          return buildSequence(
-            generate(elements[0], {
-              sp:     context.sp,
-              env:    context.env,
-              action: null
-            }),
-            buildCondition(
-              [op.IF_NOT_ERROR],
-              buildElementsCode(elements.slice(1), {
-                sp:     context.sp + 1,
-                env:    context.env,
-                action: context.action
-              }),
-              buildSequence(
-                processedCount > 1 ? [op.POP_N, processedCount] : [op.POP],
-                [op.POP_CURR_POS],
-                [op.PUSH_FAILED]
-              )
-            )
-          );
-        } else {
-          if (context.action) {
-            functionIndex = addFunctionConst(
-              objects.keys(context.env),
-              context.action.code
-            );
-
-            return buildSequence(
-              [op.LOAD_SAVED_POS, node.elements.length],
-              buildCall(
-                functionIndex,
-                node.elements.length,
-                context.env,
-                context.sp
-              ),
-              [op.NIP]
-            );
-          } else {
-            return buildSequence([op.WRAP, node.elements.length], [op.NIP]);
-          }
-        }
-      }
-
-      return buildSequence(
-        [op.PUSH_CURR_POS],
-        buildElementsCode(node.elements, {
-          sp:     context.sp + 1,
-          env:    context.env,
-          action: context.action
-        })
-      );
-    },
-
-    labeled: function(node, context) {
-      var env = objects.clone(context.env);
-
-      context.env[node.label] = context.sp + 1;
-
-      return generate(node.expression, {
-        sp:     context.sp,
-        env:    env,
-        action: null
-      });
-    },
-
-    text: function(node, context) {
-      return buildSequence(
-        [op.PUSH_CURR_POS],
-        generate(node.expression, {
-          sp:     context.sp + 1,
-          env:    objects.clone(context.env),
-          action: null
-        }),
-        buildCondition(
-          [op.IF_NOT_ERROR],
-          buildSequence([op.POP], [op.TEXT]),
-          [op.NIP]
-        )
-      );
-    },
-
-    simple_and: function(node, context) {
-      return buildSimplePredicate(node.expression, false, context);
-    },
-
-    simple_not: function(node, context) {
-      return buildSimplePredicate(node.expression, true, context);
-    },
-
-    optional: function(node, context) {
-      return buildSequence(
-        generate(node.expression, {
-          sp:     context.sp,
-          env:    objects.clone(context.env),
-          action: null
-        }),
-        buildCondition(
-          [op.IF_ERROR],
-          buildSequence([op.POP], [op.PUSH_NULL]),
-          []
-        )
-      );
-    },
-
-    zero_or_more: function(node, context) {
-      var expressionCode = generate(node.expression, {
-            sp:     context.sp + 1,
-            env:    objects.clone(context.env),
-            action: null
-          });
-
-      return buildSequence(
-        [op.PUSH_EMPTY_ARRAY],
-        expressionCode,
-        buildAppendLoop(expressionCode),
-        [op.POP]
-      );
-    },
-
-    one_or_more: function(node, context) {
-      var expressionCode = generate(node.expression, {
-            sp:     context.sp + 1,
-            env:    objects.clone(context.env),
-            action: null
-          });
-
-      return buildSequence(
-        [op.PUSH_EMPTY_ARRAY],
-        expressionCode,
-        buildCondition(
-          [op.IF_NOT_ERROR],
-          buildSequence(buildAppendLoop(expressionCode), [op.POP]),
-          buildSequence([op.POP], [op.POP], [op.PUSH_FAILED])
-        )
-      );
-    },
-
-    semantic_and: function(node, context) {
-      return buildSemanticPredicate(node.code, false, context);
-    },
-
-    semantic_not: function(node, context) {
-      return buildSemanticPredicate(node.code, true, context);
-    },
-
-    rule_ref: function(node) {
-      return [op.RULE, asts.indexOfRule(ast, node.name)];
-    },
-
-    literal: function(node) {
-      var stringIndex, expectedIndex;
-
-      if (node.value.length > 0) {
-        stringIndex = addConst('"'
-          + js.stringEscape(
-              node.ignoreCase ? node.value.toLowerCase() : node.value
-            )
-          + '"'
-        );
-        expectedIndex = addConst([
-          '{',
-          'type: "literal",',
-          'value: "' + js.stringEscape(node.value) + '",',
-          'description: "'
-             + js.stringEscape('"' + js.stringEscape(node.value) + '"')
-             + '"',
-          '}'
-        ].join(' '));
-
-        /*
-         * For case-sensitive strings the value must match the beginning of the
-         * remaining input exactly. As a result, we can use |ACCEPT_STRING| and
-         * save one |substr| call that would be needed if we used |ACCEPT_N|.
-         */
-        return buildCondition(
-          node.ignoreCase
-            ? [op.MATCH_STRING_IC, stringIndex]
-            : [op.MATCH_STRING, stringIndex],
-          node.ignoreCase
-            ? [op.ACCEPT_N, node.value.length]
-            : [op.ACCEPT_STRING, stringIndex],
-          [op.FAIL, expectedIndex]
-        );
-      } else {
-        stringIndex = addConst('""');
-
-        return [op.PUSH, stringIndex];
-      }
-    },
-
-    "class": function(node) {
-      var regexp, regexpIndex, expectedIndex;
-
-      if (node.parts.length > 0) {
-        regexp = '/^['
-          + (node.inverted ? '^' : '')
-          + arrays.map(node.parts, function(part) {
-              return part instanceof Array
-                ? js.regexpClassEscape(part[0])
-                  + '-'
-                  + js.regexpClassEscape(part[1])
-                : js.regexpClassEscape(part);
-            }).join('')
-          + ']/' + (node.ignoreCase ? 'i' : '');
-      } else {
-        /*
-         * IE considers regexps /[]/ and /[^]/ as syntactically invalid, so we
-         * translate them into euqivalents it can handle.
-         */
-        regexp = node.inverted ? '/^[\\S\\s]/' : '/^(?!)/';
-      }
-
-      regexpIndex   = addConst(regexp);
-      expectedIndex = addConst([
-        '{',
-        'type: "class",',
-        'value: "' + js.stringEscape(node.rawText) + '",',
-        'description: "' + js.stringEscape(node.rawText) + '"',
-        '}'
-      ].join(' '));
-
-      return buildCondition(
-        [op.MATCH_REGEXP, regexpIndex],
-        [op.ACCEPT_N, 1],
-        [op.FAIL, expectedIndex]
-      );
-    },
-
-    any: function() {
-      var expectedIndex = addConst('{ type: "any", description: "any character" }');
-
-      return buildCondition(
-        [op.MATCH_ANY],
-        [op.ACCEPT_N, 1],
-        [op.FAIL, expectedIndex]
-      );
-    }
-  });
-
-  generate(ast);
-}
-
-module.exports = generateBytecode;
-
-},{"../../utils/arrays":515,"../../utils/objects":517,"../asts":502,"../javascript":503,"../opcodes":504,"../visitor":511}],506:[function(require,module,exports){
-"use strict";
-
-var arrays = require("../../utils/arrays"),
-    asts   = require("../asts"),
-    op     = require("../opcodes"),
-    js     = require("../javascript");
-
-/* Generates parser JavaScript code. */
-function generateJavascript(ast, options) {
-  /* These only indent non-empty lines to avoid trailing whitespace. */
-  function indent2(code)  { return code.replace(/^(.+)$/gm, '  $1');         }
-  function indent4(code)  { return code.replace(/^(.+)$/gm, '    $1');       }
-  function indent8(code)  { return code.replace(/^(.+)$/gm, '        $1');   }
-  function indent10(code) { return code.replace(/^(.+)$/gm, '          $1'); }
-
-  function generateTables() {
-    if (options.optimize === "size") {
-      return [
-        'peg$consts = [',
-           indent2(ast.consts.join(',\n')),
-        '],',
-        '',
-        'peg$bytecode = [',
-           indent2(arrays.map(ast.rules, function(rule) {
-             return 'peg$decode("'
-                   + js.stringEscape(arrays.map(
-                       rule.bytecode,
-                       function(b) { return String.fromCharCode(b + 32); }
-                     ).join(''))
-                   + '")';
-           }).join(',\n')),
-        '],'
-      ].join('\n');
-    } else {
-      return arrays.map(
-        ast.consts,
-        function(c, i) { return 'peg$c' + i + ' = ' + c + ','; }
-      ).join('\n');
-    }
-  }
-
-  function generateRuleHeader(ruleNameCode, ruleIndexCode) {
-    var parts = [];
-
-    parts.push('');
-
-    if (options.trace) {
-      parts.push([
-        'peg$tracer.trace({',
-        '  type:     "rule.enter",',
-        '  rule:     ' + ruleNameCode + ',',
-        '  location: peg$computeLocation(startPos, startPos)',
-        '});',
-        ''
-      ].join('\n'));
-    }
-
-    if (options.cache) {
-      parts.push([
-        'var key    = peg$currPos * ' + ast.rules.length + ' + ' + ruleIndexCode + ',',
-        '    cached = peg$resultsCache[key];',
-        '',
-        'if (cached) {',
-        '  peg$currPos = cached.nextPos;',
-        '',
-      ].join('\n'));
-
-      if (options.trace) {
-        parts.push([
-          'if (cached.result !== peg$FAILED) {',
-          '  peg$tracer.trace({',
-          '    type:   "rule.match",',
-          '    rule:   ' + ruleNameCode + ',',
-          '    result: cached.result,',
-          '    location: peg$computeLocation(startPos, peg$currPos)',
-          '  });',
-          '} else {',
-          '  peg$tracer.trace({',
-          '    type: "rule.fail",',
-          '    rule: ' + ruleNameCode + ',',
-          '    location: peg$computeLocation(startPos, startPos)',
-          '  });',
-          '}',
-          ''
-        ].join('\n'));
-      }
-
-      parts.push([
-        '  return cached.result;',
-        '}',
-        ''
-      ].join('\n'));
-    }
-
-    return parts.join('\n');
-  }
-
-  function generateRuleFooter(ruleNameCode, resultCode) {
-    var parts = [];
-
-    if (options.cache) {
-      parts.push([
-        '',
-        'peg$resultsCache[key] = { nextPos: peg$currPos, result: ' + resultCode + ' };'
-      ].join('\n'));
-    }
-
-    if (options.trace) {
-      parts.push([
-          '',
-          'if (' + resultCode + ' !== peg$FAILED) {',
-          '  peg$tracer.trace({',
-          '    type:   "rule.match",',
-          '    rule:   ' + ruleNameCode + ',',
-          '    result: ' + resultCode + ',',
-          '    location: peg$computeLocation(startPos, peg$currPos)',
-          '  });',
-          '} else {',
-          '  peg$tracer.trace({',
-          '    type: "rule.fail",',
-          '    rule: ' + ruleNameCode + ',',
-          '    location: peg$computeLocation(startPos, startPos)',
-          '  });',
-          '}'
-      ].join('\n'));
-    }
-
-    parts.push([
-      '',
-      'return ' + resultCode + ';'
-    ].join('\n'));
-
-    return parts.join('\n');
-  }
-
-  function generateInterpreter() {
-    var parts = [];
-
-    function generateCondition(cond, argsLength) {
-      var baseLength      = argsLength + 3,
-          thenLengthCode = 'bc[ip + ' + (baseLength - 2) + ']',
-          elseLengthCode = 'bc[ip + ' + (baseLength - 1) + ']';
-
-      return [
-        'ends.push(end);',
-        'ips.push(ip + ' + baseLength + ' + ' + thenLengthCode + ' + ' + elseLengthCode + ');',
-        '',
-        'if (' + cond + ') {',
-        '  end = ip + ' + baseLength + ' + ' + thenLengthCode + ';',
-        '  ip += ' + baseLength + ';',
-        '} else {',
-        '  end = ip + ' + baseLength + ' + ' + thenLengthCode + ' + ' + elseLengthCode + ';',
-        '  ip += ' + baseLength + ' + ' + thenLengthCode + ';',
-        '}',
-        '',
-        'break;'
-      ].join('\n');
-    }
-
-    function generateLoop(cond) {
-      var baseLength     = 2,
-          bodyLengthCode = 'bc[ip + ' + (baseLength - 1) + ']';
-
-      return [
-        'if (' + cond + ') {',
-        '  ends.push(end);',
-        '  ips.push(ip);',
-        '',
-        '  end = ip + ' + baseLength + ' + ' + bodyLengthCode + ';',
-        '  ip += ' + baseLength + ';',
-        '} else {',
-        '  ip += ' + baseLength + ' + ' + bodyLengthCode + ';',
-        '}',
-        '',
-        'break;'
-      ].join('\n');
-    }
-
-    function generateCall() {
-      var baseLength       = 4,
-          paramsLengthCode = 'bc[ip + ' + (baseLength - 1) + ']';
-
-      return [
-        'params = bc.slice(ip + ' + baseLength + ', ip + ' + baseLength + ' + ' + paramsLengthCode + ');',
-        'for (i = 0; i < ' + paramsLengthCode + '; i++) {',
-        '  params[i] = stack[stack.length - 1 - params[i]];',
-        '}',
-        '',
-        'stack.splice(',
-        '  stack.length - bc[ip + 2],',
-        '  bc[ip + 2],',
-        '  peg$consts[bc[ip + 1]].apply(null, params)',
-        ');',
-        '',
-        'ip += ' + baseLength + ' + ' + paramsLengthCode + ';',
-        'break;'
-      ].join('\n');
-    }
-
-    parts.push([
-      'function peg$decode(s) {',
-      '  var bc = new Array(s.length), i;',
-      '',
-      '  for (i = 0; i < s.length; i++) {',
-      '    bc[i] = s.charCodeAt(i) - 32;',
-      '  }',
-      '',
-      '  return bc;',
-      '}',
-      '',
-      'function peg$parseRule(index) {',
-    ].join('\n'));
-
-    if (options.trace) {
-      parts.push([
-        '  var bc       = peg$bytecode[index],',
-        '      ip       = 0,',
-        '      ips      = [],',
-        '      end      = bc.length,',
-        '      ends     = [],',
-        '      stack    = [],',
-        '      startPos = peg$currPos,',
-        '      params, i;',
-      ].join('\n'));
-    } else {
-      parts.push([
-        '  var bc    = peg$bytecode[index],',
-        '      ip    = 0,',
-        '      ips   = [],',
-        '      end   = bc.length,',
-        '      ends  = [],',
-        '      stack = [],',
-        '      params, i;',
-      ].join('\n'));
-    }
-
-    parts.push(indent2(generateRuleHeader('peg$ruleNames[index]', 'index')));
-
-    parts.push([
-      /*
-       * The point of the outer loop and the |ips| & |ends| stacks is to avoid
-       * recursive calls for interpreting parts of bytecode. In other words, we
-       * implement the |interpret| operation of the abstract machine without
-       * function calls. Such calls would likely slow the parser down and more
-       * importantly cause stack overflows for complex grammars.
-       */
-      '  while (true) {',
-      '    while (ip < end) {',
-      '      switch (bc[ip]) {',
-      '        case ' + op.PUSH + ':',               // PUSH c
-      '          stack.push(peg$consts[bc[ip + 1]]);',
-      '          ip += 2;',
-      '          break;',
-      '',
-      '        case ' + op.PUSH_UNDEFINED + ':',     // PUSH_UNDEFINED
-      '          stack.push(void 0);',
-      '          ip++;',
-      '          break;',
-      '',
-      '        case ' + op.PUSH_NULL + ':',          // PUSH_NULL
-      '          stack.push(null);',
-      '          ip++;',
-      '          break;',
-      '',
-      '        case ' + op.PUSH_FAILED + ':',        // PUSH_FAILED
-      '          stack.push(peg$FAILED);',
-      '          ip++;',
-      '          break;',
-      '',
-      '        case ' + op.PUSH_EMPTY_ARRAY + ':',   // PUSH_EMPTY_ARRAY
-      '          stack.push([]);',
-      '          ip++;',
-      '          break;',
-      '',
-      '        case ' + op.PUSH_CURR_POS + ':',      // PUSH_CURR_POS
-      '          stack.push(peg$currPos);',
-      '          ip++;',
-      '          break;',
-      '',
-      '        case ' + op.POP + ':',                // POP
-      '          stack.pop();',
-      '          ip++;',
-      '          break;',
-      '',
-      '        case ' + op.POP_CURR_POS + ':',       // POP_CURR_POS
-      '          peg$currPos = stack.pop();',
-      '          ip++;',
-      '          break;',
-      '',
-      '        case ' + op.POP_N + ':',              // POP_N n
-      '          stack.length -= bc[ip + 1];',
-      '          ip += 2;',
-      '          break;',
-      '',
-      '        case ' + op.NIP + ':',                // NIP
-      '          stack.splice(-2, 1);',
-      '          ip++;',
-      '          break;',
-      '',
-      '        case ' + op.APPEND + ':',             // APPEND
-      '          stack[stack.length - 2].push(stack.pop());',
-      '          ip++;',
-      '          break;',
-      '',
-      '        case ' + op.WRAP + ':',               // WRAP n
-      '          stack.push(stack.splice(stack.length - bc[ip + 1], bc[ip + 1]));',
-      '          ip += 2;',
-      '          break;',
-      '',
-      '        case ' + op.TEXT + ':',               // TEXT
-      '          stack.push(input.substring(stack.pop(), peg$currPos));',
-      '          ip++;',
-      '          break;',
-      '',
-      '        case ' + op.IF + ':',                 // IF t, f
-                 indent10(generateCondition('stack[stack.length - 1]', 0)),
-      '',
-      '        case ' + op.IF_ERROR + ':',           // IF_ERROR t, f
-                 indent10(generateCondition(
-                   'stack[stack.length - 1] === peg$FAILED',
-                   0
-                 )),
-      '',
-      '        case ' + op.IF_NOT_ERROR + ':',       // IF_NOT_ERROR t, f
-                 indent10(
-                   generateCondition('stack[stack.length - 1] !== peg$FAILED',
-                   0
-                 )),
-      '',
-      '        case ' + op.WHILE_NOT_ERROR + ':',    // WHILE_NOT_ERROR b
-                 indent10(generateLoop('stack[stack.length - 1] !== peg$FAILED')),
-      '',
-      '        case ' + op.MATCH_ANY + ':',          // MATCH_ANY a, f, ...
-                 indent10(generateCondition('input.length > peg$currPos', 0)),
-      '',
-      '        case ' + op.MATCH_STRING + ':',       // MATCH_STRING s, a, f, ...
-                 indent10(generateCondition(
-                   'input.substr(peg$currPos, peg$consts[bc[ip + 1]].length) === peg$consts[bc[ip + 1]]',
-                   1
-                 )),
-      '',
-      '        case ' + op.MATCH_STRING_IC + ':',    // MATCH_STRING_IC s, a, f, ...
-                 indent10(generateCondition(
-                   'input.substr(peg$currPos, peg$consts[bc[ip + 1]].length).toLowerCase() === peg$consts[bc[ip + 1]]',
-                   1
-                 )),
-      '',
-      '        case ' + op.MATCH_REGEXP + ':',       // MATCH_REGEXP r, a, f, ...
-                 indent10(generateCondition(
-                   'peg$consts[bc[ip + 1]].test(input.charAt(peg$currPos))',
-                   1
-                 )),
-      '',
-      '        case ' + op.ACCEPT_N + ':',           // ACCEPT_N n
-      '          stack.push(input.substr(peg$currPos, bc[ip + 1]));',
-      '          peg$currPos += bc[ip + 1];',
-      '          ip += 2;',
-      '          break;',
-      '',
-      '        case ' + op.ACCEPT_STRING + ':',      // ACCEPT_STRING s
-      '          stack.push(peg$consts[bc[ip + 1]]);',
-      '          peg$currPos += peg$consts[bc[ip + 1]].length;',
-      '          ip += 2;',
-      '          break;',
-      '',
-      '        case ' + op.FAIL + ':',               // FAIL e
-      '          stack.push(peg$FAILED);',
-      '          if (peg$silentFails === 0) {',
-      '            peg$fail(peg$consts[bc[ip + 1]]);',
-      '          }',
-      '          ip += 2;',
-      '          break;',
-      '',
-      '        case ' + op.LOAD_SAVED_POS + ':',     // LOAD_SAVED_POS p
-      '          peg$savedPos = stack[stack.length - 1 - bc[ip + 1]];',
-      '          ip += 2;',
-      '          break;',
-      '',
-      '        case ' + op.UPDATE_SAVED_POS + ':',   // UPDATE_SAVED_POS
-      '          peg$savedPos = peg$currPos;',
-      '          ip++;',
-      '          break;',
-      '',
-      '        case ' + op.CALL + ':',               // CALL f, n, pc, p1, p2, ..., pN
-                 indent10(generateCall()),
-      '',
-      '        case ' + op.RULE + ':',               // RULE r
-      '          stack.push(peg$parseRule(bc[ip + 1]));',
-      '          ip += 2;',
-      '          break;',
-      '',
-      '        case ' + op.SILENT_FAILS_ON + ':',    // SILENT_FAILS_ON
-      '          peg$silentFails++;',
-      '          ip++;',
-      '          break;',
-      '',
-      '        case ' + op.SILENT_FAILS_OFF + ':',   // SILENT_FAILS_OFF
-      '          peg$silentFails--;',
-      '          ip++;',
-      '          break;',
-      '',
-      '        default:',
-      '          throw new Error("Invalid opcode: " + bc[ip] + ".");',
-      '      }',
-      '    }',
-      '',
-      '    if (ends.length > 0) {',
-      '      end = ends.pop();',
-      '      ip = ips.pop();',
-      '    } else {',
-      '      break;',
-      '    }',
-      '  }'
-    ].join('\n'));
-
-    parts.push(indent2(generateRuleFooter('peg$ruleNames[index]', 'stack[0]')));
-    parts.push('}');
-
-    return parts.join('\n');
-  }
-
-  function generateRuleFunction(rule) {
-    var parts = [], code;
-
-    function c(i) { return "peg$c" + i; } // |consts[i]| of the abstract machine
-    function s(i) { return "s"     + i; } // |stack[i]| of the abstract machine
-
-    var stack = {
-          sp:    -1,
-          maxSp: -1,
-
-          push: function(exprCode) {
-            var code = s(++this.sp) + ' = ' + exprCode + ';';
-
-            if (this.sp > this.maxSp) { this.maxSp = this.sp; }
-
-            return code;
-          },
-
-          pop: function() {
-            var n, values;
-
-            if (arguments.length === 0) {
-              return s(this.sp--);
-            } else {
-              n = arguments[0];
-              values = arrays.map(arrays.range(this.sp - n + 1, this.sp + 1), s);
-              this.sp -= n;
-
-              return values;
-            }
-          },
-
-          top: function() {
-            return s(this.sp);
-          },
-
-          index: function(i) {
-            return s(this.sp - i);
-          }
-        };
-
-    function compile(bc) {
-      var ip    = 0,
-          end   = bc.length,
-          parts = [],
-          value;
-
-      function compileCondition(cond, argCount) {
-        var baseLength = argCount + 3,
-            thenLength = bc[ip + baseLength - 2],
-            elseLength = bc[ip + baseLength - 1],
-            baseSp     = stack.sp,
-            thenCode, elseCode, thenSp, elseSp;
-
-        ip += baseLength;
-        thenCode = compile(bc.slice(ip, ip + thenLength));
-        thenSp = stack.sp;
-        ip += thenLength;
-
-        if (elseLength > 0) {
-          stack.sp = baseSp;
-          elseCode = compile(bc.slice(ip, ip + elseLength));
-          elseSp = stack.sp;
-          ip += elseLength;
-
-          if (thenSp !== elseSp) {
-            throw new Error(
-              "Branches of a condition must move the stack pointer in the same way."
-            );
-          }
-        }
-
-        parts.push('if (' + cond + ') {');
-        parts.push(indent2(thenCode));
-        if (elseLength > 0) {
-          parts.push('} else {');
-          parts.push(indent2(elseCode));
-        }
-        parts.push('}');
-      }
-
-      function compileLoop(cond) {
-        var baseLength = 2,
-            bodyLength = bc[ip + baseLength - 1],
-            baseSp     = stack.sp,
-            bodyCode, bodySp;
-
-        ip += baseLength;
-        bodyCode = compile(bc.slice(ip, ip + bodyLength));
-        bodySp = stack.sp;
-        ip += bodyLength;
-
-        if (bodySp !== baseSp) {
-          throw new Error("Body of a loop can't move the stack pointer.");
-        }
-
-        parts.push('while (' + cond + ') {');
-        parts.push(indent2(bodyCode));
-        parts.push('}');
-      }
-
-      function compileCall() {
-        var baseLength   = 4,
-            paramsLength = bc[ip + baseLength - 1];
-
-        var value = c(bc[ip + 1]) + '('
-              + arrays.map(
-                  bc.slice(ip + baseLength, ip + baseLength + paramsLength),
-                  function(p) { return stack.index(p); }
-                ).join(', ')
-              + ')';
-        stack.pop(bc[ip + 2]);
-        parts.push(stack.push(value));
-        ip += baseLength + paramsLength;
-      }
-
-      while (ip < end) {
-        switch (bc[ip]) {
-          case op.PUSH:               // PUSH c
-            parts.push(stack.push(c(bc[ip + 1])));
-            ip += 2;
-            break;
-
-          case op.PUSH_CURR_POS:      // PUSH_CURR_POS
-            parts.push(stack.push('peg$currPos'));
-            ip++;
-            break;
-
-          case op.PUSH_UNDEFINED:      // PUSH_UNDEFINED
-            parts.push(stack.push('void 0'));
-            ip++;
-            break;
-
-          case op.PUSH_NULL:          // PUSH_NULL
-            parts.push(stack.push('null'));
-            ip++;
-            break;
-
-          case op.PUSH_FAILED:        // PUSH_FAILED
-            parts.push(stack.push('peg$FAILED'));
-            ip++;
-            break;
-
-          case op.PUSH_EMPTY_ARRAY:   // PUSH_EMPTY_ARRAY
-            parts.push(stack.push('[]'));
-            ip++;
-            break;
-
-          case op.POP:                // POP
-            stack.pop();
-            ip++;
-            break;
-
-          case op.POP_CURR_POS:       // POP_CURR_POS
-            parts.push('peg$currPos = ' + stack.pop() + ';');
-            ip++;
-            break;
-
-          case op.POP_N:              // POP_N n
-            stack.pop(bc[ip + 1]);
-            ip += 2;
-            break;
-
-          case op.NIP:                // NIP
-            value = stack.pop();
-            stack.pop();
-            parts.push(stack.push(value));
-            ip++;
-            break;
-
-          case op.APPEND:             // APPEND
-            value = stack.pop();
-            parts.push(stack.top() + '.push(' + value + ');');
-            ip++;
-            break;
-
-          case op.WRAP:               // WRAP n
-            parts.push(
-              stack.push('[' + stack.pop(bc[ip + 1]).join(', ') + ']')
-            );
-            ip += 2;
-            break;
-
-          case op.TEXT:               // TEXT
-            parts.push(
-              stack.push('input.substring(' + stack.pop() + ', peg$currPos)')
-            );
-            ip++;
-            break;
-
-          case op.IF:                 // IF t, f
-            compileCondition(stack.top(), 0);
-            break;
-
-          case op.IF_ERROR:           // IF_ERROR t, f
-            compileCondition(stack.top() + ' === peg$FAILED', 0);
-            break;
-
-          case op.IF_NOT_ERROR:       // IF_NOT_ERROR t, f
-            compileCondition(stack.top() + ' !== peg$FAILED', 0);
-            break;
-
-          case op.WHILE_NOT_ERROR:    // WHILE_NOT_ERROR b
-            compileLoop(stack.top() + ' !== peg$FAILED', 0);
-            break;
-
-          case op.MATCH_ANY:          // MATCH_ANY a, f, ...
-            compileCondition('input.length > peg$currPos', 0);
-            break;
-
-          case op.MATCH_STRING:       // MATCH_STRING s, a, f, ...
-            compileCondition(
-              eval(ast.consts[bc[ip + 1]]).length > 1
-                ? 'input.substr(peg$currPos, '
-                    + eval(ast.consts[bc[ip + 1]]).length
-                    + ') === '
-                    + c(bc[ip + 1])
-                : 'input.charCodeAt(peg$currPos) === '
-                    + eval(ast.consts[bc[ip + 1]]).charCodeAt(0),
-              1
-            );
-            break;
-
-          case op.MATCH_STRING_IC:    // MATCH_STRING_IC s, a, f, ...
-            compileCondition(
-              'input.substr(peg$currPos, '
-                + eval(ast.consts[bc[ip + 1]]).length
-                + ').toLowerCase() === '
-                + c(bc[ip + 1]),
-              1
-            );
-            break;
-
-          case op.MATCH_REGEXP:       // MATCH_REGEXP r, a, f, ...
-            compileCondition(
-              c(bc[ip + 1]) + '.test(input.charAt(peg$currPos))',
-              1
-            );
-            break;
-
-          case op.ACCEPT_N:           // ACCEPT_N n
-            parts.push(stack.push(
-              bc[ip + 1] > 1
-                ? 'input.substr(peg$currPos, ' + bc[ip + 1] + ')'
-                : 'input.charAt(peg$currPos)'
-            ));
-            parts.push(
-              bc[ip + 1] > 1
-                ? 'peg$currPos += ' + bc[ip + 1] + ';'
-                : 'peg$currPos++;'
-            );
-            ip += 2;
-            break;
-
-          case op.ACCEPT_STRING:      // ACCEPT_STRING s
-            parts.push(stack.push(c(bc[ip + 1])));
-            parts.push(
-              eval(ast.consts[bc[ip + 1]]).length > 1
-                ? 'peg$currPos += ' + eval(ast.consts[bc[ip + 1]]).length + ';'
-                : 'peg$currPos++;'
-            );
-            ip += 2;
-            break;
-
-          case op.FAIL:               // FAIL e
-            parts.push(stack.push('peg$FAILED'));
-            parts.push('if (peg$silentFails === 0) { peg$fail(' + c(bc[ip + 1]) + '); }');
-            ip += 2;
-            break;
-
-          case op.LOAD_SAVED_POS:     // LOAD_SAVED_POS p
-            parts.push('peg$savedPos = ' + stack.index(bc[ip + 1]) + ';');
-            ip += 2;
-            break;
-
-          case op.UPDATE_SAVED_POS:   // UPDATE_SAVED_POS
-            parts.push('peg$savedPos = peg$currPos;');
-            ip++;
-            break;
-
-          case op.CALL:               // CALL f, n, pc, p1, p2, ..., pN
-            compileCall();
-            break;
-
-          case op.RULE:               // RULE r
-            parts.push(stack.push("peg$parse" + ast.rules[bc[ip + 1]].name + "()"));
-            ip += 2;
-            break;
-
-          case op.SILENT_FAILS_ON:    // SILENT_FAILS_ON
-            parts.push('peg$silentFails++;');
-            ip++;
-            break;
-
-          case op.SILENT_FAILS_OFF:   // SILENT_FAILS_OFF
-            parts.push('peg$silentFails--;');
-            ip++;
-            break;
-
-          default:
-            throw new Error("Invalid opcode: " + bc[ip] + ".");
-        }
-      }
-
-      return parts.join('\n');
-    }
-
-    code = compile(rule.bytecode);
-
-    parts.push('function peg$parse' + rule.name + '() {');
-
-    if (options.trace) {
-      parts.push([
-        '  var ' + arrays.map(arrays.range(0, stack.maxSp + 1), s).join(', ') + ',',
-        '      startPos = peg$currPos;'
-      ].join('\n'));
-    } else {
-      parts.push(
-        '  var ' + arrays.map(arrays.range(0, stack.maxSp + 1), s).join(', ') + ';'
-      );
-    }
-
-    parts.push(indent2(generateRuleHeader(
-      '"' + js.stringEscape(rule.name) + '"',
-      asts.indexOfRule(ast, rule.name)
-    )));
-    parts.push(indent2(code));
-    parts.push(indent2(generateRuleFooter(
-      '"' + js.stringEscape(rule.name) + '"',
-      s(0)
-    )));
-
-    parts.push('}');
-
-    return parts.join('\n');
-  }
-
-  var parts = [],
-      startRuleIndices,   startRuleIndex,
-      startRuleFunctions, startRuleFunction,
-      ruleNames;
-
-  parts.push([
-    '(function() {',
-    '  "use strict";',
-    '',
-    '  /*',
-    '   * Generated by PEG.js 0.9.0.',
-    '   *',
-    '   * http://pegjs.org/',
-    '   */',
-    '',
-    '  function peg$subclass(child, parent) {',
-    '    function ctor() { this.constructor = child; }',
-    '    ctor.prototype = parent.prototype;',
-    '    child.prototype = new ctor();',
-    '  }',
-    '',
-    '  function peg$SyntaxError(message, expected, found, location) {',
-    '    this.message  = message;',
-    '    this.expected = expected;',
-    '    this.found    = found;',
-    '    this.location = location;',
-    '    this.name     = "SyntaxError";',
-    '',
-    '    if (typeof Error.captureStackTrace === "function") {',
-    '      Error.captureStackTrace(this, peg$SyntaxError);',
-    '    }',
-    '  }',
-    '',
-    '  peg$subclass(peg$SyntaxError, Error);',
-    ''
-  ].join('\n'));
-
-  if (options.trace) {
-    parts.push([
-      '  function peg$DefaultTracer() {',
-      '    this.indentLevel = 0;',
-      '  }',
-      '',
-      '  peg$DefaultTracer.prototype.trace = function(event) {',
-      '    var that = this;',
-      '',
-      '    function log(event) {',
-      '      function repeat(string, n) {',
-      '         var result = "", i;',
-      '',
-      '         for (i = 0; i < n; i++) {',
-      '           result += string;',
-      '         }',
-      '',
-      '         return result;',
-      '      }',
-      '',
-      '      function pad(string, length) {',
-      '        return string + repeat(" ", length - string.length);',
-      '      }',
-      '',
-      '      if (typeof console === "object") {',   // IE 8-10
-      '        console.log(',
-      '          event.location.start.line + ":" + event.location.start.column + "-"',
-      '            + event.location.end.line + ":" + event.location.end.column + " "',
-      '            + pad(event.type, 10) + " "',
-      '            + repeat("  ", that.indentLevel) + event.rule',
-      '        );',
-      '      }',
-      '    }',
-      '',
-      '    switch (event.type) {',
-      '      case "rule.enter":',
-      '        log(event);',
-      '        this.indentLevel++;',
-      '        break;',
-      '',
-      '      case "rule.match":',
-      '        this.indentLevel--;',
-      '        log(event);',
-      '        break;',
-      '',
-      '      case "rule.fail":',
-      '        this.indentLevel--;',
-      '        log(event);',
-      '        break;',
-      '',
-      '      default:',
-      '        throw new Error("Invalid event type: " + event.type + ".");',
-      '    }',
-      '  };',
-      ''
-    ].join('\n'));
-  }
-
-  parts.push([
-    '  function peg$parse(input) {',
-    '    var options = arguments.length > 1 ? arguments[1] : {},',
-    '        parser  = this,',
-    '',
-    '        peg$FAILED = {},',
-    ''
-  ].join('\n'));
-
-  if (options.optimize === "size") {
-    startRuleIndices = '{ '
-                     + arrays.map(
-                         options.allowedStartRules,
-                         function(r) { return r + ': ' + asts.indexOfRule(ast, r); }
-                       ).join(', ')
-                     + ' }';
-    startRuleIndex = asts.indexOfRule(ast, options.allowedStartRules[0]);
-
-    parts.push([
-      '        peg$startRuleIndices = ' + startRuleIndices + ',',
-      '        peg$startRuleIndex   = ' + startRuleIndex + ','
-    ].join('\n'));
-  } else {
-    startRuleFunctions = '{ '
-                     + arrays.map(
-                         options.allowedStartRules,
-                         function(r) { return r + ': peg$parse' + r; }
-                       ).join(', ')
-                     + ' }';
-    startRuleFunction = 'peg$parse' + options.allowedStartRules[0];
-
-    parts.push([
-      '        peg$startRuleFunctions = ' + startRuleFunctions + ',',
-      '        peg$startRuleFunction  = ' + startRuleFunction + ','
-    ].join('\n'));
-  }
-
-  parts.push('');
-
-  parts.push(indent8(generateTables()));
-
-  parts.push([
-    '',
-    '        peg$currPos          = 0,',
-    '        peg$savedPos         = 0,',
-    '        peg$posDetailsCache  = [{ line: 1, column: 1, seenCR: false }],',
-    '        peg$maxFailPos       = 0,',
-    '        peg$maxFailExpected  = [],',
-    '        peg$silentFails      = 0,',   // 0 = report failures, > 0 = silence failures
-    ''
-  ].join('\n'));
-
-  if (options.cache) {
-    parts.push([
-      '        peg$resultsCache = {},',
-      ''
-    ].join('\n'));
-  }
-
-  if (options.trace) {
-    if (options.optimize === "size") {
-      ruleNames = '['
-                + arrays.map(
-                    ast.rules,
-                    function(r) { return '"' + js.stringEscape(r.name) + '"'; }
-                  ).join(', ')
-                + ']';
-
-      parts.push([
-        '        peg$ruleNames = ' + ruleNames + ',',
-        ''
-      ].join('\n'));
-    }
-
-    parts.push([
-      '        peg$tracer = "tracer" in options ? options.tracer : new peg$DefaultTracer(),',
-      ''
-    ].join('\n'));
-  }
-
-  parts.push([
-    '        peg$result;',
-    ''
-  ].join('\n'));
-
-  if (options.optimize === "size") {
-    parts.push([
-      '    if ("startRule" in options) {',
-      '      if (!(options.startRule in peg$startRuleIndices)) {',
-      '        throw new Error("Can\'t start parsing from rule \\"" + options.startRule + "\\".");',
-      '      }',
-      '',
-      '      peg$startRuleIndex = peg$startRuleIndices[options.startRule];',
-      '    }'
-    ].join('\n'));
-  } else {
-    parts.push([
-      '    if ("startRule" in options) {',
-      '      if (!(options.startRule in peg$startRuleFunctions)) {',
-      '        throw new Error("Can\'t start parsing from rule \\"" + options.startRule + "\\".");',
-      '      }',
-      '',
-      '      peg$startRuleFunction = peg$startRuleFunctions[options.startRule];',
-      '    }'
-    ].join('\n'));
-  }
-
-  parts.push([
-    '',
-    '    function text() {',
-    '      return input.substring(peg$savedPos, peg$currPos);',
-    '    }',
-    '',
-    '    function location() {',
-    '      return peg$computeLocation(peg$savedPos, peg$currPos);',
-    '    }',
-    '',
-    '    function expected(description) {',
-    '      throw peg$buildException(',
-    '        null,',
-    '        [{ type: "other", description: description }],',
-    '        input.substring(peg$savedPos, peg$currPos),',
-    '        peg$computeLocation(peg$savedPos, peg$currPos)',
-    '      );',
-    '    }',
-    '',
-    '    function error(message) {',
-    '      throw peg$buildException(',
-    '        message,',
-    '        null,',
-    '        input.substring(peg$savedPos, peg$currPos),',
-    '        peg$computeLocation(peg$savedPos, peg$currPos)',
-    '      );',
-    '    }',
-    '',
-    '    function peg$computePosDetails(pos) {',
-    '      var details = peg$posDetailsCache[pos],',
-    '          p, ch;',
-    '',
-    '      if (details) {',
-    '        return details;',
-    '      } else {',
-    '        p = pos - 1;',
-    '        while (!peg$posDetailsCache[p]) {',
-    '          p--;',
-    '        }',
-    '',
-    '        details = peg$posDetailsCache[p];',
-    '        details = {',
-    '          line:   details.line,',
-    '          column: details.column,',
-    '          seenCR: details.seenCR',
-    '        };',
-    '',
-    '        while (p < pos) {',
-    '          ch = input.charAt(p);',
-    '          if (ch === "\\n") {',
-    '            if (!details.seenCR) { details.line++; }',
-    '            details.column = 1;',
-    '            details.seenCR = false;',
-    '          } else if (ch === "\\r" || ch === "\\u2028" || ch === "\\u2029") {',
-    '            details.line++;',
-    '            details.column = 1;',
-    '            details.seenCR = true;',
-    '          } else {',
-    '            details.column++;',
-    '            details.seenCR = false;',
-    '          }',
-    '',
-    '          p++;',
-    '        }',
-    '',
-    '        peg$posDetailsCache[pos] = details;',
-    '        return details;',
-    '      }',
-    '    }',
-    '',
-    '    function peg$computeLocation(startPos, endPos) {',
-    '      var startPosDetails = peg$computePosDetails(startPos),',
-    '          endPosDetails   = peg$computePosDetails(endPos);',
-    '',
-    '      return {',
-    '        start: {',
-    '          offset: startPos,',
-    '          line:   startPosDetails.line,',
-    '          column: startPosDetails.column',
-    '        },',
-    '        end: {',
-    '          offset: endPos,',
-    '          line:   endPosDetails.line,',
-    '          column: endPosDetails.column',
-    '        }',
-    '      };',
-    '    }',
-    '',
-    '    function peg$fail(expected) {',
-    '      if (peg$currPos < peg$maxFailPos) { return; }',
-    '',
-    '      if (peg$currPos > peg$maxFailPos) {',
-    '        peg$maxFailPos = peg$currPos;',
-    '        peg$maxFailExpected = [];',
-    '      }',
-    '',
-    '      peg$maxFailExpected.push(expected);',
-    '    }',
-    '',
-    '    function peg$buildException(message, expected, found, location) {',
-    '      function cleanupExpected(expected) {',
-    '        var i = 1;',
-    '',
-    '        expected.sort(function(a, b) {',
-    '          if (a.description < b.description) {',
-    '            return -1;',
-    '          } else if (a.description > b.description) {',
-    '            return 1;',
-    '          } else {',
-    '            return 0;',
-    '          }',
-    '        });',
-    '',
-    /*
-     * This works because the bytecode generator guarantees that every
-     * expectation object exists only once, so it's enough to use |===| instead
-     * of deeper structural comparison.
-     */
-    '        while (i < expected.length) {',
-    '          if (expected[i - 1] === expected[i]) {',
-    '            expected.splice(i, 1);',
-    '          } else {',
-    '            i++;',
-    '          }',
-    '        }',
-    '      }',
-    '',
-    '      function buildMessage(expected, found) {',
-    '        function stringEscape(s) {',
-    '          function hex(ch) { return ch.charCodeAt(0).toString(16).toUpperCase(); }',
-    '',
-    /*
-     * ECMA-262, 5th ed., 7.8.4: All characters may appear literally in a string
-     * literal except for the closing quote character, backslash, carriage
-     * return, line separator, paragraph separator, and line feed. Any character
-     * may appear in the form of an escape sequence.
-     *
-     * For portability, we also escape all control and non-ASCII characters.
-     * Note that "\0" and "\v" escape sequences are not used because JSHint does
-     * not like the first and IE the second.
-     */
-    '          return s',
-    '            .replace(/\\\\/g,   \'\\\\\\\\\')',   // backslash
-    '            .replace(/"/g,    \'\\\\"\')',        // closing double quote
-    '            .replace(/\\x08/g, \'\\\\b\')',       // backspace
-    '            .replace(/\\t/g,   \'\\\\t\')',       // horizontal tab
-    '            .replace(/\\n/g,   \'\\\\n\')',       // line feed
-    '            .replace(/\\f/g,   \'\\\\f\')',       // form feed
-    '            .replace(/\\r/g,   \'\\\\r\')',       // carriage return
-    '            .replace(/[\\x00-\\x07\\x0B\\x0E\\x0F]/g, function(ch) { return \'\\\\x0\' + hex(ch); })',
-    '            .replace(/[\\x10-\\x1F\\x80-\\xFF]/g,    function(ch) { return \'\\\\x\'  + hex(ch); })',
-    '            .replace(/[\\u0100-\\u0FFF]/g,         function(ch) { return \'\\\\u0\' + hex(ch); })',
-    '            .replace(/[\\u1000-\\uFFFF]/g,         function(ch) { return \'\\\\u\'  + hex(ch); });',
-    '        }',
-    '',
-    '        var expectedDescs = new Array(expected.length),',
-    '            expectedDesc, foundDesc, i;',
-    '',
-    '        for (i = 0; i < expected.length; i++) {',
-    '          expectedDescs[i] = expected[i].description;',
-    '        }',
-    '',
-    '        expectedDesc = expected.length > 1',
-    '          ? expectedDescs.slice(0, -1).join(", ")',
-    '              + " or "',
-    '              + expectedDescs[expected.length - 1]',
-    '          : expectedDescs[0];',
-    '',
-    '        foundDesc = found ? "\\"" + stringEscape(found) + "\\"" : "end of input";',
-    '',
-    '        return "Expected " + expectedDesc + " but " + foundDesc + " found.";',
-    '      }',
-    '',
-    '      if (expected !== null) {',
-    '        cleanupExpected(expected);',
-    '      }',
-    '',
-    '      return new peg$SyntaxError(',
-    '        message !== null ? message : buildMessage(expected, found),',
-    '        expected,',
-    '        found,',
-    '        location',
-    '      );',
-    '    }',
-    ''
-  ].join('\n'));
-
-  if (options.optimize === "size") {
-    parts.push(indent4(generateInterpreter()));
-    parts.push('');
-  } else {
-    arrays.each(ast.rules, function(rule) {
-      parts.push(indent4(generateRuleFunction(rule)));
-      parts.push('');
-    });
-  }
-
-  if (ast.initializer) {
-    parts.push(indent4(ast.initializer.code));
-    parts.push('');
-  }
-
-  if (options.optimize === "size") {
-    parts.push('    peg$result = peg$parseRule(peg$startRuleIndex);');
-  } else {
-    parts.push('    peg$result = peg$startRuleFunction();');
-  }
-
-  parts.push([
-    '',
-    '    if (peg$result !== peg$FAILED && peg$currPos === input.length) {',
-    '      return peg$result;',
-    '    } else {',
-    '      if (peg$result !== peg$FAILED && peg$currPos < input.length) {',
-    '        peg$fail({ type: "end", description: "end of input" });',
-    '      }',
-    '',
-    '      throw peg$buildException(',
-    '        null,',
-    '        peg$maxFailExpected,',
-    '        peg$maxFailPos < input.length ? input.charAt(peg$maxFailPos) : null,',
-    '        peg$maxFailPos < input.length',
-    '          ? peg$computeLocation(peg$maxFailPos, peg$maxFailPos + 1)',
-    '          : peg$computeLocation(peg$maxFailPos, peg$maxFailPos)',
-    '      );',
-    '    }',
-    '  }',
-    '',
-    '  return {'
-  ].join('\n'));
-
-  if (options.trace) {
-    parts.push([
-      '    SyntaxError:   peg$SyntaxError,',
-      '    DefaultTracer: peg$DefaultTracer,',
-      '    parse:         peg$parse'
-    ].join('\n'));
-  } else {
-    parts.push([
-      '    SyntaxError: peg$SyntaxError,',
-      '    parse:       peg$parse'
-    ].join('\n'));
-  }
-
-  parts.push([
-    '  };',
-    '})()'
-  ].join('\n'));
-
-  ast.code = parts.join('\n');
-}
-
-module.exports = generateJavascript;
-
-},{"../../utils/arrays":515,"../asts":502,"../javascript":503,"../opcodes":504}],507:[function(require,module,exports){
-"use strict";
-
-var arrays  = require("../../utils/arrays"),
-    visitor = require("../visitor");
-
-/*
- * Removes proxy rules -- that is, rules that only delegate to other rule.
- */
-function removeProxyRules(ast, options) {
-  function isProxyRule(node) {
-    return node.type === "rule" && node.expression.type === "rule_ref";
-  }
-
-  function replaceRuleRefs(ast, from, to) {
-    var replace = visitor.build({
-      rule_ref: function(node) {
-        if (node.name === from) {
-          node.name = to;
-        }
-      }
-    });
-
-    replace(ast);
-  }
-
-  var indices = [];
-
-  arrays.each(ast.rules, function(rule, i) {
-    if (isProxyRule(rule)) {
-      replaceRuleRefs(ast, rule.name, rule.expression.name);
-      if (!arrays.contains(options.allowedStartRules, rule.name)) {
-        indices.push(i);
-      }
-    }
-  });
-
-  indices.reverse();
-
-  arrays.each(indices, function(i) { ast.rules.splice(i, 1); });
-}
-
-module.exports = removeProxyRules;
-
-},{"../../utils/arrays":515,"../visitor":511}],508:[function(require,module,exports){
-"use strict";
-
-var GrammarError = require("../../grammar-error"),
-    asts         = require("../asts"),
-    visitor      = require("../visitor");
-
-/*
- * Reports expressions that don't consume any input inside |*| or |+| in the
- * grammar, which prevents infinite loops in the generated parser.
- */
-function reportInfiniteLoops(ast) {
-  var check = visitor.build({
-    zero_or_more: function(node) {
-      if (!asts.alwaysAdvancesOnSuccess(ast, node.expression)) {
-        throw new GrammarError("Infinite loop detected.", node.location);
-      }
-    },
-
-    one_or_more: function(node) {
-      if (!asts.alwaysAdvancesOnSuccess(ast, node.expression)) {
-        throw new GrammarError("Infinite loop detected.", node.location);
-      }
-    }
-  });
-
-  check(ast);
-}
-
-module.exports = reportInfiniteLoops;
-
-},{"../../grammar-error":512,"../asts":502,"../visitor":511}],509:[function(require,module,exports){
-"use strict";
-
-var arrays       = require("../../utils/arrays"),
-    GrammarError = require("../../grammar-error"),
-    asts         = require("../asts"),
-    visitor      = require("../visitor");
-
-/*
- * Reports left recursion in the grammar, which prevents infinite recursion in
- * the generated parser.
- *
- * Both direct and indirect recursion is detected. The pass also correctly
- * reports cases like this:
- *
- *   start = "a"? start
- *
- * In general, if a rule reference can be reached without consuming any input,
- * it can lead to left recursion.
- */
-function reportLeftRecursion(ast) {
-  var visitedRules = [];
-
-  var check = visitor.build({
-    rule: function(node) {
-      visitedRules.push(node.name);
-      check(node.expression);
-      visitedRules.pop(node.name);
-    },
-
-    sequence: function(node) {
-      arrays.every(node.elements, function(element) {
-        check(element);
-
-        return !asts.alwaysAdvancesOnSuccess(ast, element);
-      });
-    },
-
-    rule_ref: function(node) {
-      if (arrays.contains(visitedRules, node.name)) {
-        throw new GrammarError(
-          "Left recursion detected for rule \"" + node.name + "\".",
-          node.location
-        );
-      }
-
-      check(asts.findRule(ast, node.name));
-    }
-  });
-
-  check(ast);
-}
-
-module.exports = reportLeftRecursion;
-
-},{"../../grammar-error":512,"../../utils/arrays":515,"../asts":502,"../visitor":511}],510:[function(require,module,exports){
-"use strict";
-
-var GrammarError = require("../../grammar-error"),
-    asts         = require("../asts"),
-    visitor      = require("../visitor");
-
-/* Checks that all referenced rules exist. */
-function reportMissingRules(ast) {
-  var check = visitor.build({
-    rule_ref: function(node) {
-      if (!asts.findRule(ast, node.name)) {
-        throw new GrammarError(
-          "Referenced rule \"" + node.name + "\" does not exist.",
-          node.location
-        );
-      }
-    }
-  });
-
-  check(ast);
-}
-
-module.exports = reportMissingRules;
-
-},{"../../grammar-error":512,"../asts":502,"../visitor":511}],511:[function(require,module,exports){
-"use strict";
-
-var objects = require("../utils/objects"),
-    arrays  = require("../utils/arrays");
-
-/* Simple AST node visitor builder. */
-var visitor = {
-  build: function(functions) {
-    function visit(node) {
-      return functions[node.type].apply(null, arguments);
-    }
-
-    function visitNop() { }
-
-    function visitExpression(node) {
-      var extraArgs = Array.prototype.slice.call(arguments, 1);
-
-      visit.apply(null, [node.expression].concat(extraArgs));
-    }
-
-    function visitChildren(property) {
-      return function(node) {
-        var extraArgs = Array.prototype.slice.call(arguments, 1);
-
-        arrays.each(node[property], function(child) {
-          visit.apply(null, [child].concat(extraArgs));
-        });
-      };
-    }
-
-    var DEFAULT_FUNCTIONS = {
-          grammar: function(node) {
-            var extraArgs = Array.prototype.slice.call(arguments, 1);
-
-            if (node.initializer) {
-              visit.apply(null, [node.initializer].concat(extraArgs));
-            }
-
-            arrays.each(node.rules, function(rule) {
-              visit.apply(null, [rule].concat(extraArgs));
-            });
-          },
-
-          initializer:  visitNop,
-          rule:         visitExpression,
-          named:        visitExpression,
-          choice:       visitChildren("alternatives"),
-          action:       visitExpression,
-          sequence:     visitChildren("elements"),
-          labeled:      visitExpression,
-          text:         visitExpression,
-          simple_and:   visitExpression,
-          simple_not:   visitExpression,
-          optional:     visitExpression,
-          zero_or_more: visitExpression,
-          one_or_more:  visitExpression,
-          semantic_and: visitNop,
-          semantic_not: visitNop,
-          rule_ref:     visitNop,
-          literal:      visitNop,
-          "class":      visitNop,
-          any:          visitNop
-        };
-
-    objects.defaults(functions, DEFAULT_FUNCTIONS);
-
-    return visit;
-  }
-};
-
-module.exports = visitor;
-
-},{"../utils/arrays":515,"../utils/objects":517}],512:[function(require,module,exports){
-"use strict";
-
-var classes = require("./utils/classes");
-
-/* Thrown when the grammar contains an error. */
-function GrammarError(message, location) {
-  this.name = "GrammarError";
-  this.message = message;
-  this.location = location;
-
-  if (typeof Error.captureStackTrace === "function") {
-    Error.captureStackTrace(this, GrammarError);
-  }
-}
-
-classes.subclass(GrammarError, Error);
-
-module.exports = GrammarError;
-
-},{"./utils/classes":516}],513:[function(require,module,exports){
-module.exports = (function() {
-  "use strict";
-
-  /*
-   * Generated by PEG.js 0.9.0.
-   *
-   * http://pegjs.org/
-   */
-
-  function peg$subclass(child, parent) {
-    function ctor() { this.constructor = child; }
-    ctor.prototype = parent.prototype;
-    child.prototype = new ctor();
-  }
-
-  function peg$SyntaxError(message, expected, found, location) {
-    this.message  = message;
-    this.expected = expected;
-    this.found    = found;
-    this.location = location;
-    this.name     = "SyntaxError";
-
-    if (typeof Error.captureStackTrace === "function") {
-      Error.captureStackTrace(this, peg$SyntaxError);
-    }
-  }
-
-  peg$subclass(peg$SyntaxError, Error);
-
-  function peg$parse(input) {
-    var options = arguments.length > 1 ? arguments[1] : {},
-        parser  = this,
-
-        peg$FAILED = {},
-
-        peg$startRuleFunctions = { Grammar: peg$parseGrammar },
-        peg$startRuleFunction  = peg$parseGrammar,
-
-        peg$c0 = function(initializer, rules) {
-              return {
-                type:        "grammar",
-                initializer: extractOptional(initializer, 0),
-                rules:       extractList(rules, 0),
-                location:    location()
-              };
-            },
-        peg$c1 = function(code) {
-              return { type: "initializer", code: code, location: location() };
-            },
-        peg$c2 = "=",
-        peg$c3 = { type: "literal", value: "=", description: "\"=\"" },
-        peg$c4 = function(name, displayName, expression) {
-              return {
-                type:        "rule",
-                name:        name,
-                expression:  displayName !== null
-                  ? {
-                      type:       "named",
-                      name:       displayName[0],
-                      expression: expression,
-                      location:   location()
-                    }
-                  : expression,
-                location:    location()
-              };
-            },
-        peg$c5 = "/",
-        peg$c6 = { type: "literal", value: "/", description: "\"/\"" },
-        peg$c7 = function(first, rest) {
-              return rest.length > 0
-                ? {
-                    type:         "choice",
-                    alternatives: buildList(first, rest, 3),
-                    location:     location()
-                  }
-                : first;
-            },
-        peg$c8 = function(expression, code) {
-              return code !== null
-                ? {
-                    type:       "action",
-                    expression: expression,
-                    code:       code[1],
-                    location:   location()
-                  }
-                : expression;
-            },
-        peg$c9 = function(first, rest) {
-              return rest.length > 0
-                ? {
-                    type:     "sequence",
-                    elements: buildList(first, rest, 1),
-                    location: location()
-                  }
-                : first;
-            },
-        peg$c10 = ":",
-        peg$c11 = { type: "literal", value: ":", description: "\":\"" },
-        peg$c12 = function(label, expression) {
-              return {
-                type:       "labeled",
-                label:      label,
-                expression: expression,
-                location:   location()
-              };
-            },
-        peg$c13 = function(operator, expression) {
-              return {
-                type:       OPS_TO_PREFIXED_TYPES[operator],
-                expression: expression,
-                location:   location()
-              };
-            },
-        peg$c14 = "$",
-        peg$c15 = { type: "literal", value: "$", description: "\"$\"" },
-        peg$c16 = "&",
-        peg$c17 = { type: "literal", value: "&", description: "\"&\"" },
-        peg$c18 = "!",
-        peg$c19 = { type: "literal", value: "!", description: "\"!\"" },
-        peg$c20 = function(expression, operator) {
-              return {
-                type:       OPS_TO_SUFFIXED_TYPES[operator],
-                expression: expression,
-                location:   location()
-              };
-            },
-        peg$c21 = "?",
-        peg$c22 = { type: "literal", value: "?", description: "\"?\"" },
-        peg$c23 = "*",
-        peg$c24 = { type: "literal", value: "*", description: "\"*\"" },
-        peg$c25 = "+",
-        peg$c26 = { type: "literal", value: "+", description: "\"+\"" },
-        peg$c27 = "(",
-        peg$c28 = { type: "literal", value: "(", description: "\"(\"" },
-        peg$c29 = ")",
-        peg$c30 = { type: "literal", value: ")", description: "\")\"" },
-        peg$c31 = function(expression) { return expression; },
-        peg$c32 = function(name) {
-              return { type: "rule_ref", name: name, location: location() };
-            },
-        peg$c33 = function(operator, code) {
-              return {
-                type:     OPS_TO_SEMANTIC_PREDICATE_TYPES[operator],
-                code:     code,
-                location: location()
-              };
-            },
-        peg$c34 = { type: "any", description: "any character" },
-        peg$c35 = { type: "other", description: "whitespace" },
-        peg$c36 = "\t",
-        peg$c37 = { type: "literal", value: "\t", description: "\"\\t\"" },
-        peg$c38 = "\x0B",
-        peg$c39 = { type: "literal", value: "\x0B", description: "\"\\x0B\"" },
-        peg$c40 = "\f",
-        peg$c41 = { type: "literal", value: "\f", description: "\"\\f\"" },
-        peg$c42 = " ",
-        peg$c43 = { type: "literal", value: " ", description: "\" \"" },
-        peg$c44 = "\xA0",
-        peg$c45 = { type: "literal", value: "\xA0", description: "\"\\xA0\"" },
-        peg$c46 = "\uFEFF",
-        peg$c47 = { type: "literal", value: "\uFEFF", description: "\"\\uFEFF\"" },
-        peg$c48 = /^[\n\r\u2028\u2029]/,
-        peg$c49 = { type: "class", value: "[\\n\\r\\u2028\\u2029]", description: "[\\n\\r\\u2028\\u2029]" },
-        peg$c50 = { type: "other", description: "end of line" },
-        peg$c51 = "\n",
-        peg$c52 = { type: "literal", value: "\n", description: "\"\\n\"" },
-        peg$c53 = "\r\n",
-        peg$c54 = { type: "literal", value: "\r\n", description: "\"\\r\\n\"" },
-        peg$c55 = "\r",
-        peg$c56 = { type: "literal", value: "\r", description: "\"\\r\"" },
-        peg$c57 = "\u2028",
-        peg$c58 = { type: "literal", value: "\u2028", description: "\"\\u2028\"" },
-        peg$c59 = "\u2029",
-        peg$c60 = { type: "literal", value: "\u2029", description: "\"\\u2029\"" },
-        peg$c61 = { type: "other", description: "comment" },
-        peg$c62 = "/*",
-        peg$c63 = { type: "literal", value: "/*", description: "\"/*\"" },
-        peg$c64 = "*/",
-        peg$c65 = { type: "literal", value: "*/", description: "\"*/\"" },
-        peg$c66 = "//",
-        peg$c67 = { type: "literal", value: "//", description: "\"//\"" },
-        peg$c68 = function(name) { return name; },
-        peg$c69 = { type: "other", description: "identifier" },
-        peg$c70 = function(first, rest) { return first + rest.join(""); },
-        peg$c71 = "_",
-        peg$c72 = { type: "literal", value: "_", description: "\"_\"" },
-        peg$c73 = "\\",
-        peg$c74 = { type: "literal", value: "\\", description: "\"\\\\\"" },
-        peg$c75 = function(sequence) { return sequence; },
-        peg$c76 = "\u200C",
-        peg$c77 = { type: "literal", value: "\u200C", description: "\"\\u200C\"" },
-        peg$c78 = "\u200D",
-        peg$c79 = { type: "literal", value: "\u200D", description: "\"\\u200D\"" },
-        peg$c80 = { type: "other", description: "literal" },
-        peg$c81 = "i",
-        peg$c82 = { type: "literal", value: "i", description: "\"i\"" },
-        peg$c83 = function(value, ignoreCase) {
-              return {
-                type:       "literal",
-                value:      value,
-                ignoreCase: ignoreCase !== null,
-                location:   location()
-              };
-            },
-        peg$c84 = { type: "other", description: "string" },
-        peg$c85 = "\"",
-        peg$c86 = { type: "literal", value: "\"", description: "\"\\\"\"" },
-        peg$c87 = function(chars) { return chars.join(""); },
-        peg$c88 = "'",
-        peg$c89 = { type: "literal", value: "'", description: "\"'\"" },
-        peg$c90 = function() { return text(); },
-        peg$c91 = { type: "other", description: "character class" },
-        peg$c92 = "[",
-        peg$c93 = { type: "literal", value: "[", description: "\"[\"" },
-        peg$c94 = "^",
-        peg$c95 = { type: "literal", value: "^", description: "\"^\"" },
-        peg$c96 = "]",
-        peg$c97 = { type: "literal", value: "]", description: "\"]\"" },
-        peg$c98 = function(inverted, parts, ignoreCase) {
-              return {
-                type:       "class",
-                parts:      filterEmptyStrings(parts),
-                inverted:   inverted !== null,
-                ignoreCase: ignoreCase !== null,
-                rawText:    text(),
-                location:   location()
-              };
-            },
-        peg$c99 = "-",
-        peg$c100 = { type: "literal", value: "-", description: "\"-\"" },
-        peg$c101 = function(begin, end) {
-              if (begin.charCodeAt(0) > end.charCodeAt(0)) {
-                error(
-                  "Invalid character range: " + text() + "."
-                );
-              }
-
-              return [begin, end];
-            },
-        peg$c102 = function() { return ""; },
-        peg$c103 = "0",
-        peg$c104 = { type: "literal", value: "0", description: "\"0\"" },
-        peg$c105 = function() { return "\0"; },
-        peg$c106 = "b",
-        peg$c107 = { type: "literal", value: "b", description: "\"b\"" },
-        peg$c108 = function() { return "\b";   },
-        peg$c109 = "f",
-        peg$c110 = { type: "literal", value: "f", description: "\"f\"" },
-        peg$c111 = function() { return "\f";   },
-        peg$c112 = "n",
-        peg$c113 = { type: "literal", value: "n", description: "\"n\"" },
-        peg$c114 = function() { return "\n";   },
-        peg$c115 = "r",
-        peg$c116 = { type: "literal", value: "r", description: "\"r\"" },
-        peg$c117 = function() { return "\r";   },
-        peg$c118 = "t",
-        peg$c119 = { type: "literal", value: "t", description: "\"t\"" },
-        peg$c120 = function() { return "\t";   },
-        peg$c121 = "v",
-        peg$c122 = { type: "literal", value: "v", description: "\"v\"" },
-        peg$c123 = function() { return "\x0B"; },
-        peg$c124 = "x",
-        peg$c125 = { type: "literal", value: "x", description: "\"x\"" },
-        peg$c126 = "u",
-        peg$c127 = { type: "literal", value: "u", description: "\"u\"" },
-        peg$c128 = function(digits) {
-              return String.fromCharCode(parseInt(digits, 16));
-            },
-        peg$c129 = /^[0-9]/,
-        peg$c130 = { type: "class", value: "[0-9]", description: "[0-9]" },
-        peg$c131 = /^[0-9a-f]/i,
-        peg$c132 = { type: "class", value: "[0-9a-f]i", description: "[0-9a-f]i" },
-        peg$c133 = ".",
-        peg$c134 = { type: "literal", value: ".", description: "\".\"" },
-        peg$c135 = function() { return { type: "any", location: location() }; },
-        peg$c136 = { type: "other", description: "code block" },
-        peg$c137 = "{",
-        peg$c138 = { type: "literal", value: "{", description: "\"{\"" },
-        peg$c139 = "}",
-        peg$c140 = { type: "literal", value: "}", description: "\"}\"" },
-        peg$c141 = function(code) { return code; },
-        peg$c142 = /^[{}]/,
-        peg$c143 = { type: "class", value: "[{}]", description: "[{}]" },
-        peg$c144 = /^[a-z\xB5\xDF-\xF6\xF8-\xFF\u0101\u0103\u0105\u0107\u0109\u010B\u010D\u010F\u0111\u0113\u0115\u0117\u0119\u011B\u011D\u011F\u0121\u0123\u0125\u0127\u0129\u012B\u012D\u012F\u0131\u0133\u0135\u0137-\u0138\u013A\u013C\u013E\u0140\u0142\u0144\u0146\u0148-\u0149\u014B\u014D\u014F\u0151\u0153\u0155\u0157\u0159\u015B\u015D\u015F\u0161\u0163\u0165\u0167\u0169\u016B\u016D\u016F\u0171\u0173\u0175\u0177\u017A\u017C\u017E-\u0180\u0183\u0185\u0188\u018C-\u018D\u0192\u0195\u0199-\u019B\u019E\u01A1\u01A3\u01A5\u01A8\u01AA-\u01AB\u01AD\u01B0\u01B4\u01B6\u01B9-\u01BA\u01BD-\u01BF\u01C6\u01C9\u01CC\u01CE\u01D0\u01D2\u01D4\u01D6\u01D8\u01DA\u01DC-\u01DD\u01DF\u01E1\u01E3\u01E5\u01E7\u01E9\u01EB\u01ED\u01EF-\u01F0\u01F3\u01F5\u01F9\u01FB\u01FD\u01FF\u0201\u0203\u0205\u0207\u0209\u020B\u020D\u020F\u0211\u0213\u0215\u0217\u0219\u021B\u021D\u021F\u0221\u0223\u0225\u0227\u0229\u022B\u022D\u022F\u0231\u0233-\u0239\u023C\u023F-\u0240\u0242\u0247\u0249\u024B\u024D\u024F-\u0293\u0295-\u02AF\u0371\u0373\u0377\u037B-\u037D\u0390\u03AC-\u03CE\u03D0-\u03D1\u03D5-\u03D7\u03D9\u03DB\u03DD\u03DF\u03E1\u03E3\u03E5\u03E7\u03E9\u03EB\u03ED\u03EF-\u03F3\u03F5\u03F8\u03FB-\u03FC\u0430-\u045F\u0461\u0463\u0465\u0467\u0469\u046B\u046D\u046F\u0471\u0473\u0475\u0477\u0479\u047B\u047D\u047F\u0481\u048B\u048D\u048F\u0491\u0493\u0495\u0497\u0499\u049B\u049D\u049F\u04A1\u04A3\u04A5\u04A7\u04A9\u04AB\u04AD\u04AF\u04B1\u04B3\u04B5\u04B7\u04B9\u04BB\u04BD\u04BF\u04C2\u04C4\u04C6\u04C8\u04CA\u04CC\u04CE-\u04CF\u04D1\u04D3\u04D5\u04D7\u04D9\u04DB\u04DD\u04DF\u04E1\u04E3\u04E5\u04E7\u04E9\u04EB\u04ED\u04EF\u04F1\u04F3\u04F5\u04F7\u04F9\u04FB\u04FD\u04FF\u0501\u0503\u0505\u0507\u0509\u050B\u050D\u050F\u0511\u0513\u0515\u0517\u0519\u051B\u051D\u051F\u0521\u0523\u0525\u0527\u0529\u052B\u052D\u052F\u0561-\u0587\u13F8-\u13FD\u1D00-\u1D2B\u1D6B-\u1D77\u1D79-\u1D9A\u1E01\u1E03\u1E05\u1E07\u1E09\u1E0B\u1E0D\u1E0F\u1E11\u1E13\u1E15\u1E17\u1E19\u1E1B\u1E1D\u1E1F\u1E21\u1E23\u1E25\u1E27\u1E29\u1E2B\u1E2D\u1E2F\u1E31\u1E33\u1E35\u1E37\u1E39\u1E3B\u1E3D\u1E3F\u1E41\u1E43\u1E45\u1E47\u1E49\u1E4B\u1E4D\u1E4F\u1E51\u1E53\u1E55\u1E57\u1E59\u1E5B\u1E5D\u1E5F\u1E61\u1E63\u1E65\u1E67\u1E69\u1E6B\u1E6D\u1E6F\u1E71\u1E73\u1E75\u1E77\u1E79\u1E7B\u1E7D\u1E7F\u1E81\u1E83\u1E85\u1E87\u1E89\u1E8B\u1E8D\u1E8F\u1E91\u1E93\u1E95-\u1E9D\u1E9F\u1EA1\u1EA3\u1EA5\u1EA7\u1EA9\u1EAB\u1EAD\u1EAF\u1EB1\u1EB3\u1EB5\u1EB7\u1EB9\u1EBB\u1EBD\u1EBF\u1EC1\u1EC3\u1EC5\u1EC7\u1EC9\u1ECB\u1ECD\u1ECF\u1ED1\u1ED3\u1ED5\u1ED7\u1ED9\u1EDB\u1EDD\u1EDF\u1EE1\u1EE3\u1EE5\u1EE7\u1EE9\u1EEB\u1EED\u1EEF\u1EF1\u1EF3\u1EF5\u1EF7\u1EF9\u1EFB\u1EFD\u1EFF-\u1F07\u1F10-\u1F15\u1F20-\u1F27\u1F30-\u1F37\u1F40-\u1F45\u1F50-\u1F57\u1F60-\u1F67\u1F70-\u1F7D\u1F80-\u1F87\u1F90-\u1F97\u1FA0-\u1FA7\u1FB0-\u1FB4\u1FB6-\u1FB7\u1FBE\u1FC2-\u1FC4\u1FC6-\u1FC7\u1FD0-\u1FD3\u1FD6-\u1FD7\u1FE0-\u1FE7\u1FF2-\u1FF4\u1FF6-\u1FF7\u210A\u210E-\u210F\u2113\u212F\u2134\u2139\u213C-\u213D\u2146-\u2149\u214E\u2184\u2C30-\u2C5E\u2C61\u2C65-\u2C66\u2C68\u2C6A\u2C6C\u2C71\u2C73-\u2C74\u2C76-\u2C7B\u2C81\u2C83\u2C85\u2C87\u2C89\u2C8B\u2C8D\u2C8F\u2C91\u2C93\u2C95\u2C97\u2C99\u2C9B\u2C9D\u2C9F\u2CA1\u2CA3\u2CA5\u2CA7\u2CA9\u2CAB\u2CAD\u2CAF\u2CB1\u2CB3\u2CB5\u2CB7\u2CB9\u2CBB\u2CBD\u2CBF\u2CC1\u2CC3\u2CC5\u2CC7\u2CC9\u2CCB\u2CCD\u2CCF\u2CD1\u2CD3\u2CD5\u2CD7\u2CD9\u2CDB\u2CDD\u2CDF\u2CE1\u2CE3-\u2CE4\u2CEC\u2CEE\u2CF3\u2D00-\u2D25\u2D27\u2D2D\uA641\uA643\uA645\uA647\uA649\uA64B\uA64D\uA64F\uA651\uA653\uA655\uA657\uA659\uA65B\uA65D\uA65F\uA661\uA663\uA665\uA667\uA669\uA66B\uA66D\uA681\uA683\uA685\uA687\uA689\uA68B\uA68D\uA68F\uA691\uA693\uA695\uA697\uA699\uA69B\uA723\uA725\uA727\uA729\uA72B\uA72D\uA72F-\uA731\uA733\uA735\uA737\uA739\uA73B\uA73D\uA73F\uA741\uA743\uA745\uA747\uA749\uA74B\uA74D\uA74F\uA751\uA753\uA755\uA757\uA759\uA75B\uA75D\uA75F\uA761\uA763\uA765\uA767\uA769\uA76B\uA76D\uA76F\uA771-\uA778\uA77A\uA77C\uA77F\uA781\uA783\uA785\uA787\uA78C\uA78E\uA791\uA793-\uA795\uA797\uA799\uA79B\uA79D\uA79F\uA7A1\uA7A3\uA7A5\uA7A7\uA7A9\uA7B5\uA7B7\uA7FA\uAB30-\uAB5A\uAB60-\uAB65\uAB70-\uABBF\uFB00-\uFB06\uFB13-\uFB17\uFF41-\uFF5A]/,
-        peg$c145 = { type: "class", value: "[\\u0061-\\u007A\\u00B5\\u00DF-\\u00F6\\u00F8-\\u00FF\\u0101\\u0103\\u0105\\u0107\\u0109\\u010B\\u010D\\u010F\\u0111\\u0113\\u0115\\u0117\\u0119\\u011B\\u011D\\u011F\\u0121\\u0123\\u0125\\u0127\\u0129\\u012B\\u012D\\u012F\\u0131\\u0133\\u0135\\u0137-\\u0138\\u013A\\u013C\\u013E\\u0140\\u0142\\u0144\\u0146\\u0148-\\u0149\\u014B\\u014D\\u014F\\u0151\\u0153\\u0155\\u0157\\u0159\\u015B\\u015D\\u015F\\u0161\\u0163\\u0165\\u0167\\u0169\\u016B\\u016D\\u016F\\u0171\\u0173\\u0175\\u0177\\u017A\\u017C\\u017E-\\u0180\\u0183\\u0185\\u0188\\u018C-\\u018D\\u0192\\u0195\\u0199-\\u019B\\u019E\\u01A1\\u01A3\\u01A5\\u01A8\\u01AA-\\u01AB\\u01AD\\u01B0\\u01B4\\u01B6\\u01B9-\\u01BA\\u01BD-\\u01BF\\u01C6\\u01C9\\u01CC\\u01CE\\u01D0\\u01D2\\u01D4\\u01D6\\u01D8\\u01DA\\u01DC-\\u01DD\\u01DF\\u01E1\\u01E3\\u01E5\\u01E7\\u01E9\\u01EB\\u01ED\\u01EF-\\u01F0\\u01F3\\u01F5\\u01F9\\u01FB\\u01FD\\u01FF\\u0201\\u0203\\u0205\\u0207\\u0209\\u020B\\u020D\\u020F\\u0211\\u0213\\u0215\\u0217\\u0219\\u021B\\u021D\\u021F\\u0221\\u0223\\u0225\\u0227\\u0229\\u022B\\u022D\\u022F\\u0231\\u0233-\\u0239\\u023C\\u023F-\\u0240\\u0242\\u0247\\u0249\\u024B\\u024D\\u024F-\\u0293\\u0295-\\u02AF\\u0371\\u0373\\u0377\\u037B-\\u037D\\u0390\\u03AC-\\u03CE\\u03D0-\\u03D1\\u03D5-\\u03D7\\u03D9\\u03DB\\u03DD\\u03DF\\u03E1\\u03E3\\u03E5\\u03E7\\u03E9\\u03EB\\u03ED\\u03EF-\\u03F3\\u03F5\\u03F8\\u03FB-\\u03FC\\u0430-\\u045F\\u0461\\u0463\\u0465\\u0467\\u0469\\u046B\\u046D\\u046F\\u0471\\u0473\\u0475\\u0477\\u0479\\u047B\\u047D\\u047F\\u0481\\u048B\\u048D\\u048F\\u0491\\u0493\\u0495\\u0497\\u0499\\u049B\\u049D\\u049F\\u04A1\\u04A3\\u04A5\\u04A7\\u04A9\\u04AB\\u04AD\\u04AF\\u04B1\\u04B3\\u04B5\\u04B7\\u04B9\\u04BB\\u04BD\\u04BF\\u04C2\\u04C4\\u04C6\\u04C8\\u04CA\\u04CC\\u04CE-\\u04CF\\u04D1\\u04D3\\u04D5\\u04D7\\u04D9\\u04DB\\u04DD\\u04DF\\u04E1\\u04E3\\u04E5\\u04E7\\u04E9\\u04EB\\u04ED\\u04EF\\u04F1\\u04F3\\u04F5\\u04F7\\u04F9\\u04FB\\u04FD\\u04FF\\u0501\\u0503\\u0505\\u0507\\u0509\\u050B\\u050D\\u050F\\u0511\\u0513\\u0515\\u0517\\u0519\\u051B\\u051D\\u051F\\u0521\\u0523\\u0525\\u0527\\u0529\\u052B\\u052D\\u052F\\u0561-\\u0587\\u13F8-\\u13FD\\u1D00-\\u1D2B\\u1D6B-\\u1D77\\u1D79-\\u1D9A\\u1E01\\u1E03\\u1E05\\u1E07\\u1E09\\u1E0B\\u1E0D\\u1E0F\\u1E11\\u1E13\\u1E15\\u1E17\\u1E19\\u1E1B\\u1E1D\\u1E1F\\u1E21\\u1E23\\u1E25\\u1E27\\u1E29\\u1E2B\\u1E2D\\u1E2F\\u1E31\\u1E33\\u1E35\\u1E37\\u1E39\\u1E3B\\u1E3D\\u1E3F\\u1E41\\u1E43\\u1E45\\u1E47\\u1E49\\u1E4B\\u1E4D\\u1E4F\\u1E51\\u1E53\\u1E55\\u1E57\\u1E59\\u1E5B\\u1E5D\\u1E5F\\u1E61\\u1E63\\u1E65\\u1E67\\u1E69\\u1E6B\\u1E6D\\u1E6F\\u1E71\\u1E73\\u1E75\\u1E77\\u1E79\\u1E7B\\u1E7D\\u1E7F\\u1E81\\u1E83\\u1E85\\u1E87\\u1E89\\u1E8B\\u1E8D\\u1E8F\\u1E91\\u1E93\\u1E95-\\u1E9D\\u1E9F\\u1EA1\\u1EA3\\u1EA5\\u1EA7\\u1EA9\\u1EAB\\u1EAD\\u1EAF\\u1EB1\\u1EB3\\u1EB5\\u1EB7\\u1EB9\\u1EBB\\u1EBD\\u1EBF\\u1EC1\\u1EC3\\u1EC5\\u1EC7\\u1EC9\\u1ECB\\u1ECD\\u1ECF\\u1ED1\\u1ED3\\u1ED5\\u1ED7\\u1ED9\\u1EDB\\u1EDD\\u1EDF\\u1EE1\\u1EE3\\u1EE5\\u1EE7\\u1EE9\\u1EEB\\u1EED\\u1EEF\\u1EF1\\u1EF3\\u1EF5\\u1EF7\\u1EF9\\u1EFB\\u1EFD\\u1EFF-\\u1F07\\u1F10-\\u1F15\\u1F20-\\u1F27\\u1F30-\\u1F37\\u1F40-\\u1F45\\u1F50-\\u1F57\\u1F60-\\u1F67\\u1F70-\\u1F7D\\u1F80-\\u1F87\\u1F90-\\u1F97\\u1FA0-\\u1FA7\\u1FB0-\\u1FB4\\u1FB6-\\u1FB7\\u1FBE\\u1FC2-\\u1FC4\\u1FC6-\\u1FC7\\u1FD0-\\u1FD3\\u1FD6-\\u1FD7\\u1FE0-\\u1FE7\\u1FF2-\\u1FF4\\u1FF6-\\u1FF7\\u210A\\u210E-\\u210F\\u2113\\u212F\\u2134\\u2139\\u213C-\\u213D\\u2146-\\u2149\\u214E\\u2184\\u2C30-\\u2C5E\\u2C61\\u2C65-\\u2C66\\u2C68\\u2C6A\\u2C6C\\u2C71\\u2C73-\\u2C74\\u2C76-\\u2C7B\\u2C81\\u2C83\\u2C85\\u2C87\\u2C89\\u2C8B\\u2C8D\\u2C8F\\u2C91\\u2C93\\u2C95\\u2C97\\u2C99\\u2C9B\\u2C9D\\u2C9F\\u2CA1\\u2CA3\\u2CA5\\u2CA7\\u2CA9\\u2CAB\\u2CAD\\u2CAF\\u2CB1\\u2CB3\\u2CB5\\u2CB7\\u2CB9\\u2CBB\\u2CBD\\u2CBF\\u2CC1\\u2CC3\\u2CC5\\u2CC7\\u2CC9\\u2CCB\\u2CCD\\u2CCF\\u2CD1\\u2CD3\\u2CD5\\u2CD7\\u2CD9\\u2CDB\\u2CDD\\u2CDF\\u2CE1\\u2CE3-\\u2CE4\\u2CEC\\u2CEE\\u2CF3\\u2D00-\\u2D25\\u2D27\\u2D2D\\uA641\\uA643\\uA645\\uA647\\uA649\\uA64B\\uA64D\\uA64F\\uA651\\uA653\\uA655\\uA657\\uA659\\uA65B\\uA65D\\uA65F\\uA661\\uA663\\uA665\\uA667\\uA669\\uA66B\\uA66D\\uA681\\uA683\\uA685\\uA687\\uA689\\uA68B\\uA68D\\uA68F\\uA691\\uA693\\uA695\\uA697\\uA699\\uA69B\\uA723\\uA725\\uA727\\uA729\\uA72B\\uA72D\\uA72F-\\uA731\\uA733\\uA735\\uA737\\uA739\\uA73B\\uA73D\\uA73F\\uA741\\uA743\\uA745\\uA747\\uA749\\uA74B\\uA74D\\uA74F\\uA751\\uA753\\uA755\\uA757\\uA759\\uA75B\\uA75D\\uA75F\\uA761\\uA763\\uA765\\uA767\\uA769\\uA76B\\uA76D\\uA76F\\uA771-\\uA778\\uA77A\\uA77C\\uA77F\\uA781\\uA783\\uA785\\uA787\\uA78C\\uA78E\\uA791\\uA793-\\uA795\\uA797\\uA799\\uA79B\\uA79D\\uA79F\\uA7A1\\uA7A3\\uA7A5\\uA7A7\\uA7A9\\uA7B5\\uA7B7\\uA7FA\\uAB30-\\uAB5A\\uAB60-\\uAB65\\uAB70-\\uABBF\\uFB00-\\uFB06\\uFB13-\\uFB17\\uFF41-\\uFF5A]", description: "[\\u0061-\\u007A\\u00B5\\u00DF-\\u00F6\\u00F8-\\u00FF\\u0101\\u0103\\u0105\\u0107\\u0109\\u010B\\u010D\\u010F\\u0111\\u0113\\u0115\\u0117\\u0119\\u011B\\u011D\\u011F\\u0121\\u0123\\u0125\\u0127\\u0129\\u012B\\u012D\\u012F\\u0131\\u0133\\u0135\\u0137-\\u0138\\u013A\\u013C\\u013E\\u0140\\u0142\\u0144\\u0146\\u0148-\\u0149\\u014B\\u014D\\u014F\\u0151\\u0153\\u0155\\u0157\\u0159\\u015B\\u015D\\u015F\\u0161\\u0163\\u0165\\u0167\\u0169\\u016B\\u016D\\u016F\\u0171\\u0173\\u0175\\u0177\\u017A\\u017C\\u017E-\\u0180\\u0183\\u0185\\u0188\\u018C-\\u018D\\u0192\\u0195\\u0199-\\u019B\\u019E\\u01A1\\u01A3\\u01A5\\u01A8\\u01AA-\\u01AB\\u01AD\\u01B0\\u01B4\\u01B6\\u01B9-\\u01BA\\u01BD-\\u01BF\\u01C6\\u01C9\\u01CC\\u01CE\\u01D0\\u01D2\\u01D4\\u01D6\\u01D8\\u01DA\\u01DC-\\u01DD\\u01DF\\u01E1\\u01E3\\u01E5\\u01E7\\u01E9\\u01EB\\u01ED\\u01EF-\\u01F0\\u01F3\\u01F5\\u01F9\\u01FB\\u01FD\\u01FF\\u0201\\u0203\\u0205\\u0207\\u0209\\u020B\\u020D\\u020F\\u0211\\u0213\\u0215\\u0217\\u0219\\u021B\\u021D\\u021F\\u0221\\u0223\\u0225\\u0227\\u0229\\u022B\\u022D\\u022F\\u0231\\u0233-\\u0239\\u023C\\u023F-\\u0240\\u0242\\u0247\\u0249\\u024B\\u024D\\u024F-\\u0293\\u0295-\\u02AF\\u0371\\u0373\\u0377\\u037B-\\u037D\\u0390\\u03AC-\\u03CE\\u03D0-\\u03D1\\u03D5-\\u03D7\\u03D9\\u03DB\\u03DD\\u03DF\\u03E1\\u03E3\\u03E5\\u03E7\\u03E9\\u03EB\\u03ED\\u03EF-\\u03F3\\u03F5\\u03F8\\u03FB-\\u03FC\\u0430-\\u045F\\u0461\\u0463\\u0465\\u0467\\u0469\\u046B\\u046D\\u046F\\u0471\\u0473\\u0475\\u0477\\u0479\\u047B\\u047D\\u047F\\u0481\\u048B\\u048D\\u048F\\u0491\\u0493\\u0495\\u0497\\u0499\\u049B\\u049D\\u049F\\u04A1\\u04A3\\u04A5\\u04A7\\u04A9\\u04AB\\u04AD\\u04AF\\u04B1\\u04B3\\u04B5\\u04B7\\u04B9\\u04BB\\u04BD\\u04BF\\u04C2\\u04C4\\u04C6\\u04C8\\u04CA\\u04CC\\u04CE-\\u04CF\\u04D1\\u04D3\\u04D5\\u04D7\\u04D9\\u04DB\\u04DD\\u04DF\\u04E1\\u04E3\\u04E5\\u04E7\\u04E9\\u04EB\\u04ED\\u04EF\\u04F1\\u04F3\\u04F5\\u04F7\\u04F9\\u04FB\\u04FD\\u04FF\\u0501\\u0503\\u0505\\u0507\\u0509\\u050B\\u050D\\u050F\\u0511\\u0513\\u0515\\u0517\\u0519\\u051B\\u051D\\u051F\\u0521\\u0523\\u0525\\u0527\\u0529\\u052B\\u052D\\u052F\\u0561-\\u0587\\u13F8-\\u13FD\\u1D00-\\u1D2B\\u1D6B-\\u1D77\\u1D79-\\u1D9A\\u1E01\\u1E03\\u1E05\\u1E07\\u1E09\\u1E0B\\u1E0D\\u1E0F\\u1E11\\u1E13\\u1E15\\u1E17\\u1E19\\u1E1B\\u1E1D\\u1E1F\\u1E21\\u1E23\\u1E25\\u1E27\\u1E29\\u1E2B\\u1E2D\\u1E2F\\u1E31\\u1E33\\u1E35\\u1E37\\u1E39\\u1E3B\\u1E3D\\u1E3F\\u1E41\\u1E43\\u1E45\\u1E47\\u1E49\\u1E4B\\u1E4D\\u1E4F\\u1E51\\u1E53\\u1E55\\u1E57\\u1E59\\u1E5B\\u1E5D\\u1E5F\\u1E61\\u1E63\\u1E65\\u1E67\\u1E69\\u1E6B\\u1E6D\\u1E6F\\u1E71\\u1E73\\u1E75\\u1E77\\u1E79\\u1E7B\\u1E7D\\u1E7F\\u1E81\\u1E83\\u1E85\\u1E87\\u1E89\\u1E8B\\u1E8D\\u1E8F\\u1E91\\u1E93\\u1E95-\\u1E9D\\u1E9F\\u1EA1\\u1EA3\\u1EA5\\u1EA7\\u1EA9\\u1EAB\\u1EAD\\u1EAF\\u1EB1\\u1EB3\\u1EB5\\u1EB7\\u1EB9\\u1EBB\\u1EBD\\u1EBF\\u1EC1\\u1EC3\\u1EC5\\u1EC7\\u1EC9\\u1ECB\\u1ECD\\u1ECF\\u1ED1\\u1ED3\\u1ED5\\u1ED7\\u1ED9\\u1EDB\\u1EDD\\u1EDF\\u1EE1\\u1EE3\\u1EE5\\u1EE7\\u1EE9\\u1EEB\\u1EED\\u1EEF\\u1EF1\\u1EF3\\u1EF5\\u1EF7\\u1EF9\\u1EFB\\u1EFD\\u1EFF-\\u1F07\\u1F10-\\u1F15\\u1F20-\\u1F27\\u1F30-\\u1F37\\u1F40-\\u1F45\\u1F50-\\u1F57\\u1F60-\\u1F67\\u1F70-\\u1F7D\\u1F80-\\u1F87\\u1F90-\\u1F97\\u1FA0-\\u1FA7\\u1FB0-\\u1FB4\\u1FB6-\\u1FB7\\u1FBE\\u1FC2-\\u1FC4\\u1FC6-\\u1FC7\\u1FD0-\\u1FD3\\u1FD6-\\u1FD7\\u1FE0-\\u1FE7\\u1FF2-\\u1FF4\\u1FF6-\\u1FF7\\u210A\\u210E-\\u210F\\u2113\\u212F\\u2134\\u2139\\u213C-\\u213D\\u2146-\\u2149\\u214E\\u2184\\u2C30-\\u2C5E\\u2C61\\u2C65-\\u2C66\\u2C68\\u2C6A\\u2C6C\\u2C71\\u2C73-\\u2C74\\u2C76-\\u2C7B\\u2C81\\u2C83\\u2C85\\u2C87\\u2C89\\u2C8B\\u2C8D\\u2C8F\\u2C91\\u2C93\\u2C95\\u2C97\\u2C99\\u2C9B\\u2C9D\\u2C9F\\u2CA1\\u2CA3\\u2CA5\\u2CA7\\u2CA9\\u2CAB\\u2CAD\\u2CAF\\u2CB1\\u2CB3\\u2CB5\\u2CB7\\u2CB9\\u2CBB\\u2CBD\\u2CBF\\u2CC1\\u2CC3\\u2CC5\\u2CC7\\u2CC9\\u2CCB\\u2CCD\\u2CCF\\u2CD1\\u2CD3\\u2CD5\\u2CD7\\u2CD9\\u2CDB\\u2CDD\\u2CDF\\u2CE1\\u2CE3-\\u2CE4\\u2CEC\\u2CEE\\u2CF3\\u2D00-\\u2D25\\u2D27\\u2D2D\\uA641\\uA643\\uA645\\uA647\\uA649\\uA64B\\uA64D\\uA64F\\uA651\\uA653\\uA655\\uA657\\uA659\\uA65B\\uA65D\\uA65F\\uA661\\uA663\\uA665\\uA667\\uA669\\uA66B\\uA66D\\uA681\\uA683\\uA685\\uA687\\uA689\\uA68B\\uA68D\\uA68F\\uA691\\uA693\\uA695\\uA697\\uA699\\uA69B\\uA723\\uA725\\uA727\\uA729\\uA72B\\uA72D\\uA72F-\\uA731\\uA733\\uA735\\uA737\\uA739\\uA73B\\uA73D\\uA73F\\uA741\\uA743\\uA745\\uA747\\uA749\\uA74B\\uA74D\\uA74F\\uA751\\uA753\\uA755\\uA757\\uA759\\uA75B\\uA75D\\uA75F\\uA761\\uA763\\uA765\\uA767\\uA769\\uA76B\\uA76D\\uA76F\\uA771-\\uA778\\uA77A\\uA77C\\uA77F\\uA781\\uA783\\uA785\\uA787\\uA78C\\uA78E\\uA791\\uA793-\\uA795\\uA797\\uA799\\uA79B\\uA79D\\uA79F\\uA7A1\\uA7A3\\uA7A5\\uA7A7\\uA7A9\\uA7B5\\uA7B7\\uA7FA\\uAB30-\\uAB5A\\uAB60-\\uAB65\\uAB70-\\uABBF\\uFB00-\\uFB06\\uFB13-\\uFB17\\uFF41-\\uFF5A]" },
-        peg$c146 = /^[\u02B0-\u02C1\u02C6-\u02D1\u02E0-\u02E4\u02EC\u02EE\u0374\u037A\u0559\u0640\u06E5-\u06E6\u07F4-\u07F5\u07FA\u081A\u0824\u0828\u0971\u0E46\u0EC6\u10FC\u17D7\u1843\u1AA7\u1C78-\u1C7D\u1D2C-\u1D6A\u1D78\u1D9B-\u1DBF\u2071\u207F\u2090-\u209C\u2C7C-\u2C7D\u2D6F\u2E2F\u3005\u3031-\u3035\u303B\u309D-\u309E\u30FC-\u30FE\uA015\uA4F8-\uA4FD\uA60C\uA67F\uA69C-\uA69D\uA717-\uA71F\uA770\uA788\uA7F8-\uA7F9\uA9CF\uA9E6\uAA70\uAADD\uAAF3-\uAAF4\uAB5C-\uAB5F\uFF70\uFF9E-\uFF9F]/,
-        peg$c147 = { type: "class", value: "[\\u02B0-\\u02C1\\u02C6-\\u02D1\\u02E0-\\u02E4\\u02EC\\u02EE\\u0374\\u037A\\u0559\\u0640\\u06E5-\\u06E6\\u07F4-\\u07F5\\u07FA\\u081A\\u0824\\u0828\\u0971\\u0E46\\u0EC6\\u10FC\\u17D7\\u1843\\u1AA7\\u1C78-\\u1C7D\\u1D2C-\\u1D6A\\u1D78\\u1D9B-\\u1DBF\\u2071\\u207F\\u2090-\\u209C\\u2C7C-\\u2C7D\\u2D6F\\u2E2F\\u3005\\u3031-\\u3035\\u303B\\u309D-\\u309E\\u30FC-\\u30FE\\uA015\\uA4F8-\\uA4FD\\uA60C\\uA67F\\uA69C-\\uA69D\\uA717-\\uA71F\\uA770\\uA788\\uA7F8-\\uA7F9\\uA9CF\\uA9E6\\uAA70\\uAADD\\uAAF3-\\uAAF4\\uAB5C-\\uAB5F\\uFF70\\uFF9E-\\uFF9F]", description: "[\\u02B0-\\u02C1\\u02C6-\\u02D1\\u02E0-\\u02E4\\u02EC\\u02EE\\u0374\\u037A\\u0559\\u0640\\u06E5-\\u06E6\\u07F4-\\u07F5\\u07FA\\u081A\\u0824\\u0828\\u0971\\u0E46\\u0EC6\\u10FC\\u17D7\\u1843\\u1AA7\\u1C78-\\u1C7D\\u1D2C-\\u1D6A\\u1D78\\u1D9B-\\u1DBF\\u2071\\u207F\\u2090-\\u209C\\u2C7C-\\u2C7D\\u2D6F\\u2E2F\\u3005\\u3031-\\u3035\\u303B\\u309D-\\u309E\\u30FC-\\u30FE\\uA015\\uA4F8-\\uA4FD\\uA60C\\uA67F\\uA69C-\\uA69D\\uA717-\\uA71F\\uA770\\uA788\\uA7F8-\\uA7F9\\uA9CF\\uA9E6\\uAA70\\uAADD\\uAAF3-\\uAAF4\\uAB5C-\\uAB5F\\uFF70\\uFF9E-\\uFF9F]" },
-        peg$c148 = /^[\xAA\xBA\u01BB\u01C0-\u01C3\u0294\u05D0-\u05EA\u05F0-\u05F2\u0620-\u063F\u0641-\u064A\u066E-\u066F\u0671-\u06D3\u06D5\u06EE-\u06EF\u06FA-\u06FC\u06FF\u0710\u0712-\u072F\u074D-\u07A5\u07B1\u07CA-\u07EA\u0800-\u0815\u0840-\u0858\u08A0-\u08B4\u0904-\u0939\u093D\u0950\u0958-\u0961\u0972-\u0980\u0985-\u098C\u098F-\u0990\u0993-\u09A8\u09AA-\u09B0\u09B2\u09B6-\u09B9\u09BD\u09CE\u09DC-\u09DD\u09DF-\u09E1\u09F0-\u09F1\u0A05-\u0A0A\u0A0F-\u0A10\u0A13-\u0A28\u0A2A-\u0A30\u0A32-\u0A33\u0A35-\u0A36\u0A38-\u0A39\u0A59-\u0A5C\u0A5E\u0A72-\u0A74\u0A85-\u0A8D\u0A8F-\u0A91\u0A93-\u0AA8\u0AAA-\u0AB0\u0AB2-\u0AB3\u0AB5-\u0AB9\u0ABD\u0AD0\u0AE0-\u0AE1\u0AF9\u0B05-\u0B0C\u0B0F-\u0B10\u0B13-\u0B28\u0B2A-\u0B30\u0B32-\u0B33\u0B35-\u0B39\u0B3D\u0B5C-\u0B5D\u0B5F-\u0B61\u0B71\u0B83\u0B85-\u0B8A\u0B8E-\u0B90\u0B92-\u0B95\u0B99-\u0B9A\u0B9C\u0B9E-\u0B9F\u0BA3-\u0BA4\u0BA8-\u0BAA\u0BAE-\u0BB9\u0BD0\u0C05-\u0C0C\u0C0E-\u0C10\u0C12-\u0C28\u0C2A-\u0C39\u0C3D\u0C58-\u0C5A\u0C60-\u0C61\u0C85-\u0C8C\u0C8E-\u0C90\u0C92-\u0CA8\u0CAA-\u0CB3\u0CB5-\u0CB9\u0CBD\u0CDE\u0CE0-\u0CE1\u0CF1-\u0CF2\u0D05-\u0D0C\u0D0E-\u0D10\u0D12-\u0D3A\u0D3D\u0D4E\u0D5F-\u0D61\u0D7A-\u0D7F\u0D85-\u0D96\u0D9A-\u0DB1\u0DB3-\u0DBB\u0DBD\u0DC0-\u0DC6\u0E01-\u0E30\u0E32-\u0E33\u0E40-\u0E45\u0E81-\u0E82\u0E84\u0E87-\u0E88\u0E8A\u0E8D\u0E94-\u0E97\u0E99-\u0E9F\u0EA1-\u0EA3\u0EA5\u0EA7\u0EAA-\u0EAB\u0EAD-\u0EB0\u0EB2-\u0EB3\u0EBD\u0EC0-\u0EC4\u0EDC-\u0EDF\u0F00\u0F40-\u0F47\u0F49-\u0F6C\u0F88-\u0F8C\u1000-\u102A\u103F\u1050-\u1055\u105A-\u105D\u1061\u1065-\u1066\u106E-\u1070\u1075-\u1081\u108E\u10D0-\u10FA\u10FD-\u1248\u124A-\u124D\u1250-\u1256\u1258\u125A-\u125D\u1260-\u1288\u128A-\u128D\u1290-\u12B0\u12B2-\u12B5\u12B8-\u12BE\u12C0\u12C2-\u12C5\u12C8-\u12D6\u12D8-\u1310\u1312-\u1315\u1318-\u135A\u1380-\u138F\u1401-\u166C\u166F-\u167F\u1681-\u169A\u16A0-\u16EA\u16F1-\u16F8\u1700-\u170C\u170E-\u1711\u1720-\u1731\u1740-\u1751\u1760-\u176C\u176E-\u1770\u1780-\u17B3\u17DC\u1820-\u1842\u1844-\u1877\u1880-\u18A8\u18AA\u18B0-\u18F5\u1900-\u191E\u1950-\u196D\u1970-\u1974\u1980-\u19AB\u19B0-\u19C9\u1A00-\u1A16\u1A20-\u1A54\u1B05-\u1B33\u1B45-\u1B4B\u1B83-\u1BA0\u1BAE-\u1BAF\u1BBA-\u1BE5\u1C00-\u1C23\u1C4D-\u1C4F\u1C5A-\u1C77\u1CE9-\u1CEC\u1CEE-\u1CF1\u1CF5-\u1CF6\u2135-\u2138\u2D30-\u2D67\u2D80-\u2D96\u2DA0-\u2DA6\u2DA8-\u2DAE\u2DB0-\u2DB6\u2DB8-\u2DBE\u2DC0-\u2DC6\u2DC8-\u2DCE\u2DD0-\u2DD6\u2DD8-\u2DDE\u3006\u303C\u3041-\u3096\u309F\u30A1-\u30FA\u30FF\u3105-\u312D\u3131-\u318E\u31A0-\u31BA\u31F0-\u31FF\u3400-\u4DB5\u4E00-\u9FD5\uA000-\uA014\uA016-\uA48C\uA4D0-\uA4F7\uA500-\uA60B\uA610-\uA61F\uA62A-\uA62B\uA66E\uA6A0-\uA6E5\uA78F\uA7F7\uA7FB-\uA801\uA803-\uA805\uA807-\uA80A\uA80C-\uA822\uA840-\uA873\uA882-\uA8B3\uA8F2-\uA8F7\uA8FB\uA8FD\uA90A-\uA925\uA930-\uA946\uA960-\uA97C\uA984-\uA9B2\uA9E0-\uA9E4\uA9E7-\uA9EF\uA9FA-\uA9FE\uAA00-\uAA28\uAA40-\uAA42\uAA44-\uAA4B\uAA60-\uAA6F\uAA71-\uAA76\uAA7A\uAA7E-\uAAAF\uAAB1\uAAB5-\uAAB6\uAAB9-\uAABD\uAAC0\uAAC2\uAADB-\uAADC\uAAE0-\uAAEA\uAAF2\uAB01-\uAB06\uAB09-\uAB0E\uAB11-\uAB16\uAB20-\uAB26\uAB28-\uAB2E\uABC0-\uABE2\uAC00-\uD7A3\uD7B0-\uD7C6\uD7CB-\uD7FB\uF900-\uFA6D\uFA70-\uFAD9\uFB1D\uFB1F-\uFB28\uFB2A-\uFB36\uFB38-\uFB3C\uFB3E\uFB40-\uFB41\uFB43-\uFB44\uFB46-\uFBB1\uFBD3-\uFD3D\uFD50-\uFD8F\uFD92-\uFDC7\uFDF0-\uFDFB\uFE70-\uFE74\uFE76-\uFEFC\uFF66-\uFF6F\uFF71-\uFF9D\uFFA0-\uFFBE\uFFC2-\uFFC7\uFFCA-\uFFCF\uFFD2-\uFFD7\uFFDA-\uFFDC]/,
-        peg$c149 = { type: "class", value: "[\\u00AA\\u00BA\\u01BB\\u01C0-\\u01C3\\u0294\\u05D0-\\u05EA\\u05F0-\\u05F2\\u0620-\\u063F\\u0641-\\u064A\\u066E-\\u066F\\u0671-\\u06D3\\u06D5\\u06EE-\\u06EF\\u06FA-\\u06FC\\u06FF\\u0710\\u0712-\\u072F\\u074D-\\u07A5\\u07B1\\u07CA-\\u07EA\\u0800-\\u0815\\u0840-\\u0858\\u08A0-\\u08B4\\u0904-\\u0939\\u093D\\u0950\\u0958-\\u0961\\u0972-\\u0980\\u0985-\\u098C\\u098F-\\u0990\\u0993-\\u09A8\\u09AA-\\u09B0\\u09B2\\u09B6-\\u09B9\\u09BD\\u09CE\\u09DC-\\u09DD\\u09DF-\\u09E1\\u09F0-\\u09F1\\u0A05-\\u0A0A\\u0A0F-\\u0A10\\u0A13-\\u0A28\\u0A2A-\\u0A30\\u0A32-\\u0A33\\u0A35-\\u0A36\\u0A38-\\u0A39\\u0A59-\\u0A5C\\u0A5E\\u0A72-\\u0A74\\u0A85-\\u0A8D\\u0A8F-\\u0A91\\u0A93-\\u0AA8\\u0AAA-\\u0AB0\\u0AB2-\\u0AB3\\u0AB5-\\u0AB9\\u0ABD\\u0AD0\\u0AE0-\\u0AE1\\u0AF9\\u0B05-\\u0B0C\\u0B0F-\\u0B10\\u0B13-\\u0B28\\u0B2A-\\u0B30\\u0B32-\\u0B33\\u0B35-\\u0B39\\u0B3D\\u0B5C-\\u0B5D\\u0B5F-\\u0B61\\u0B71\\u0B83\\u0B85-\\u0B8A\\u0B8E-\\u0B90\\u0B92-\\u0B95\\u0B99-\\u0B9A\\u0B9C\\u0B9E-\\u0B9F\\u0BA3-\\u0BA4\\u0BA8-\\u0BAA\\u0BAE-\\u0BB9\\u0BD0\\u0C05-\\u0C0C\\u0C0E-\\u0C10\\u0C12-\\u0C28\\u0C2A-\\u0C39\\u0C3D\\u0C58-\\u0C5A\\u0C60-\\u0C61\\u0C85-\\u0C8C\\u0C8E-\\u0C90\\u0C92-\\u0CA8\\u0CAA-\\u0CB3\\u0CB5-\\u0CB9\\u0CBD\\u0CDE\\u0CE0-\\u0CE1\\u0CF1-\\u0CF2\\u0D05-\\u0D0C\\u0D0E-\\u0D10\\u0D12-\\u0D3A\\u0D3D\\u0D4E\\u0D5F-\\u0D61\\u0D7A-\\u0D7F\\u0D85-\\u0D96\\u0D9A-\\u0DB1\\u0DB3-\\u0DBB\\u0DBD\\u0DC0-\\u0DC6\\u0E01-\\u0E30\\u0E32-\\u0E33\\u0E40-\\u0E45\\u0E81-\\u0E82\\u0E84\\u0E87-\\u0E88\\u0E8A\\u0E8D\\u0E94-\\u0E97\\u0E99-\\u0E9F\\u0EA1-\\u0EA3\\u0EA5\\u0EA7\\u0EAA-\\u0EAB\\u0EAD-\\u0EB0\\u0EB2-\\u0EB3\\u0EBD\\u0EC0-\\u0EC4\\u0EDC-\\u0EDF\\u0F00\\u0F40-\\u0F47\\u0F49-\\u0F6C\\u0F88-\\u0F8C\\u1000-\\u102A\\u103F\\u1050-\\u1055\\u105A-\\u105D\\u1061\\u1065-\\u1066\\u106E-\\u1070\\u1075-\\u1081\\u108E\\u10D0-\\u10FA\\u10FD-\\u1248\\u124A-\\u124D\\u1250-\\u1256\\u1258\\u125A-\\u125D\\u1260-\\u1288\\u128A-\\u128D\\u1290-\\u12B0\\u12B2-\\u12B5\\u12B8-\\u12BE\\u12C0\\u12C2-\\u12C5\\u12C8-\\u12D6\\u12D8-\\u1310\\u1312-\\u1315\\u1318-\\u135A\\u1380-\\u138F\\u1401-\\u166C\\u166F-\\u167F\\u1681-\\u169A\\u16A0-\\u16EA\\u16F1-\\u16F8\\u1700-\\u170C\\u170E-\\u1711\\u1720-\\u1731\\u1740-\\u1751\\u1760-\\u176C\\u176E-\\u1770\\u1780-\\u17B3\\u17DC\\u1820-\\u1842\\u1844-\\u1877\\u1880-\\u18A8\\u18AA\\u18B0-\\u18F5\\u1900-\\u191E\\u1950-\\u196D\\u1970-\\u1974\\u1980-\\u19AB\\u19B0-\\u19C9\\u1A00-\\u1A16\\u1A20-\\u1A54\\u1B05-\\u1B33\\u1B45-\\u1B4B\\u1B83-\\u1BA0\\u1BAE-\\u1BAF\\u1BBA-\\u1BE5\\u1C00-\\u1C23\\u1C4D-\\u1C4F\\u1C5A-\\u1C77\\u1CE9-\\u1CEC\\u1CEE-\\u1CF1\\u1CF5-\\u1CF6\\u2135-\\u2138\\u2D30-\\u2D67\\u2D80-\\u2D96\\u2DA0-\\u2DA6\\u2DA8-\\u2DAE\\u2DB0-\\u2DB6\\u2DB8-\\u2DBE\\u2DC0-\\u2DC6\\u2DC8-\\u2DCE\\u2DD0-\\u2DD6\\u2DD8-\\u2DDE\\u3006\\u303C\\u3041-\\u3096\\u309F\\u30A1-\\u30FA\\u30FF\\u3105-\\u312D\\u3131-\\u318E\\u31A0-\\u31BA\\u31F0-\\u31FF\\u3400-\\u4DB5\\u4E00-\\u9FD5\\uA000-\\uA014\\uA016-\\uA48C\\uA4D0-\\uA4F7\\uA500-\\uA60B\\uA610-\\uA61F\\uA62A-\\uA62B\\uA66E\\uA6A0-\\uA6E5\\uA78F\\uA7F7\\uA7FB-\\uA801\\uA803-\\uA805\\uA807-\\uA80A\\uA80C-\\uA822\\uA840-\\uA873\\uA882-\\uA8B3\\uA8F2-\\uA8F7\\uA8FB\\uA8FD\\uA90A-\\uA925\\uA930-\\uA946\\uA960-\\uA97C\\uA984-\\uA9B2\\uA9E0-\\uA9E4\\uA9E7-\\uA9EF\\uA9FA-\\uA9FE\\uAA00-\\uAA28\\uAA40-\\uAA42\\uAA44-\\uAA4B\\uAA60-\\uAA6F\\uAA71-\\uAA76\\uAA7A\\uAA7E-\\uAAAF\\uAAB1\\uAAB5-\\uAAB6\\uAAB9-\\uAABD\\uAAC0\\uAAC2\\uAADB-\\uAADC\\uAAE0-\\uAAEA\\uAAF2\\uAB01-\\uAB06\\uAB09-\\uAB0E\\uAB11-\\uAB16\\uAB20-\\uAB26\\uAB28-\\uAB2E\\uABC0-\\uABE2\\uAC00-\\uD7A3\\uD7B0-\\uD7C6\\uD7CB-\\uD7FB\\uF900-\\uFA6D\\uFA70-\\uFAD9\\uFB1D\\uFB1F-\\uFB28\\uFB2A-\\uFB36\\uFB38-\\uFB3C\\uFB3E\\uFB40-\\uFB41\\uFB43-\\uFB44\\uFB46-\\uFBB1\\uFBD3-\\uFD3D\\uFD50-\\uFD8F\\uFD92-\\uFDC7\\uFDF0-\\uFDFB\\uFE70-\\uFE74\\uFE76-\\uFEFC\\uFF66-\\uFF6F\\uFF71-\\uFF9D\\uFFA0-\\uFFBE\\uFFC2-\\uFFC7\\uFFCA-\\uFFCF\\uFFD2-\\uFFD7\\uFFDA-\\uFFDC]", description: "[\\u00AA\\u00BA\\u01BB\\u01C0-\\u01C3\\u0294\\u05D0-\\u05EA\\u05F0-\\u05F2\\u0620-\\u063F\\u0641-\\u064A\\u066E-\\u066F\\u0671-\\u06D3\\u06D5\\u06EE-\\u06EF\\u06FA-\\u06FC\\u06FF\\u0710\\u0712-\\u072F\\u074D-\\u07A5\\u07B1\\u07CA-\\u07EA\\u0800-\\u0815\\u0840-\\u0858\\u08A0-\\u08B4\\u0904-\\u0939\\u093D\\u0950\\u0958-\\u0961\\u0972-\\u0980\\u0985-\\u098C\\u098F-\\u0990\\u0993-\\u09A8\\u09AA-\\u09B0\\u09B2\\u09B6-\\u09B9\\u09BD\\u09CE\\u09DC-\\u09DD\\u09DF-\\u09E1\\u09F0-\\u09F1\\u0A05-\\u0A0A\\u0A0F-\\u0A10\\u0A13-\\u0A28\\u0A2A-\\u0A30\\u0A32-\\u0A33\\u0A35-\\u0A36\\u0A38-\\u0A39\\u0A59-\\u0A5C\\u0A5E\\u0A72-\\u0A74\\u0A85-\\u0A8D\\u0A8F-\\u0A91\\u0A93-\\u0AA8\\u0AAA-\\u0AB0\\u0AB2-\\u0AB3\\u0AB5-\\u0AB9\\u0ABD\\u0AD0\\u0AE0-\\u0AE1\\u0AF9\\u0B05-\\u0B0C\\u0B0F-\\u0B10\\u0B13-\\u0B28\\u0B2A-\\u0B30\\u0B32-\\u0B33\\u0B35-\\u0B39\\u0B3D\\u0B5C-\\u0B5D\\u0B5F-\\u0B61\\u0B71\\u0B83\\u0B85-\\u0B8A\\u0B8E-\\u0B90\\u0B92-\\u0B95\\u0B99-\\u0B9A\\u0B9C\\u0B9E-\\u0B9F\\u0BA3-\\u0BA4\\u0BA8-\\u0BAA\\u0BAE-\\u0BB9\\u0BD0\\u0C05-\\u0C0C\\u0C0E-\\u0C10\\u0C12-\\u0C28\\u0C2A-\\u0C39\\u0C3D\\u0C58-\\u0C5A\\u0C60-\\u0C61\\u0C85-\\u0C8C\\u0C8E-\\u0C90\\u0C92-\\u0CA8\\u0CAA-\\u0CB3\\u0CB5-\\u0CB9\\u0CBD\\u0CDE\\u0CE0-\\u0CE1\\u0CF1-\\u0CF2\\u0D05-\\u0D0C\\u0D0E-\\u0D10\\u0D12-\\u0D3A\\u0D3D\\u0D4E\\u0D5F-\\u0D61\\u0D7A-\\u0D7F\\u0D85-\\u0D96\\u0D9A-\\u0DB1\\u0DB3-\\u0DBB\\u0DBD\\u0DC0-\\u0DC6\\u0E01-\\u0E30\\u0E32-\\u0E33\\u0E40-\\u0E45\\u0E81-\\u0E82\\u0E84\\u0E87-\\u0E88\\u0E8A\\u0E8D\\u0E94-\\u0E97\\u0E99-\\u0E9F\\u0EA1-\\u0EA3\\u0EA5\\u0EA7\\u0EAA-\\u0EAB\\u0EAD-\\u0EB0\\u0EB2-\\u0EB3\\u0EBD\\u0EC0-\\u0EC4\\u0EDC-\\u0EDF\\u0F00\\u0F40-\\u0F47\\u0F49-\\u0F6C\\u0F88-\\u0F8C\\u1000-\\u102A\\u103F\\u1050-\\u1055\\u105A-\\u105D\\u1061\\u1065-\\u1066\\u106E-\\u1070\\u1075-\\u1081\\u108E\\u10D0-\\u10FA\\u10FD-\\u1248\\u124A-\\u124D\\u1250-\\u1256\\u1258\\u125A-\\u125D\\u1260-\\u1288\\u128A-\\u128D\\u1290-\\u12B0\\u12B2-\\u12B5\\u12B8-\\u12BE\\u12C0\\u12C2-\\u12C5\\u12C8-\\u12D6\\u12D8-\\u1310\\u1312-\\u1315\\u1318-\\u135A\\u1380-\\u138F\\u1401-\\u166C\\u166F-\\u167F\\u1681-\\u169A\\u16A0-\\u16EA\\u16F1-\\u16F8\\u1700-\\u170C\\u170E-\\u1711\\u1720-\\u1731\\u1740-\\u1751\\u1760-\\u176C\\u176E-\\u1770\\u1780-\\u17B3\\u17DC\\u1820-\\u1842\\u1844-\\u1877\\u1880-\\u18A8\\u18AA\\u18B0-\\u18F5\\u1900-\\u191E\\u1950-\\u196D\\u1970-\\u1974\\u1980-\\u19AB\\u19B0-\\u19C9\\u1A00-\\u1A16\\u1A20-\\u1A54\\u1B05-\\u1B33\\u1B45-\\u1B4B\\u1B83-\\u1BA0\\u1BAE-\\u1BAF\\u1BBA-\\u1BE5\\u1C00-\\u1C23\\u1C4D-\\u1C4F\\u1C5A-\\u1C77\\u1CE9-\\u1CEC\\u1CEE-\\u1CF1\\u1CF5-\\u1CF6\\u2135-\\u2138\\u2D30-\\u2D67\\u2D80-\\u2D96\\u2DA0-\\u2DA6\\u2DA8-\\u2DAE\\u2DB0-\\u2DB6\\u2DB8-\\u2DBE\\u2DC0-\\u2DC6\\u2DC8-\\u2DCE\\u2DD0-\\u2DD6\\u2DD8-\\u2DDE\\u3006\\u303C\\u3041-\\u3096\\u309F\\u30A1-\\u30FA\\u30FF\\u3105-\\u312D\\u3131-\\u318E\\u31A0-\\u31BA\\u31F0-\\u31FF\\u3400-\\u4DB5\\u4E00-\\u9FD5\\uA000-\\uA014\\uA016-\\uA48C\\uA4D0-\\uA4F7\\uA500-\\uA60B\\uA610-\\uA61F\\uA62A-\\uA62B\\uA66E\\uA6A0-\\uA6E5\\uA78F\\uA7F7\\uA7FB-\\uA801\\uA803-\\uA805\\uA807-\\uA80A\\uA80C-\\uA822\\uA840-\\uA873\\uA882-\\uA8B3\\uA8F2-\\uA8F7\\uA8FB\\uA8FD\\uA90A-\\uA925\\uA930-\\uA946\\uA960-\\uA97C\\uA984-\\uA9B2\\uA9E0-\\uA9E4\\uA9E7-\\uA9EF\\uA9FA-\\uA9FE\\uAA00-\\uAA28\\uAA40-\\uAA42\\uAA44-\\uAA4B\\uAA60-\\uAA6F\\uAA71-\\uAA76\\uAA7A\\uAA7E-\\uAAAF\\uAAB1\\uAAB5-\\uAAB6\\uAAB9-\\uAABD\\uAAC0\\uAAC2\\uAADB-\\uAADC\\uAAE0-\\uAAEA\\uAAF2\\uAB01-\\uAB06\\uAB09-\\uAB0E\\uAB11-\\uAB16\\uAB20-\\uAB26\\uAB28-\\uAB2E\\uABC0-\\uABE2\\uAC00-\\uD7A3\\uD7B0-\\uD7C6\\uD7CB-\\uD7FB\\uF900-\\uFA6D\\uFA70-\\uFAD9\\uFB1D\\uFB1F-\\uFB28\\uFB2A-\\uFB36\\uFB38-\\uFB3C\\uFB3E\\uFB40-\\uFB41\\uFB43-\\uFB44\\uFB46-\\uFBB1\\uFBD3-\\uFD3D\\uFD50-\\uFD8F\\uFD92-\\uFDC7\\uFDF0-\\uFDFB\\uFE70-\\uFE74\\uFE76-\\uFEFC\\uFF66-\\uFF6F\\uFF71-\\uFF9D\\uFFA0-\\uFFBE\\uFFC2-\\uFFC7\\uFFCA-\\uFFCF\\uFFD2-\\uFFD7\\uFFDA-\\uFFDC]" },
-        peg$c150 = /^[\u01C5\u01C8\u01CB\u01F2\u1F88-\u1F8F\u1F98-\u1F9F\u1FA8-\u1FAF\u1FBC\u1FCC\u1FFC]/,
-        peg$c151 = { type: "class", value: "[\\u01C5\\u01C8\\u01CB\\u01F2\\u1F88-\\u1F8F\\u1F98-\\u1F9F\\u1FA8-\\u1FAF\\u1FBC\\u1FCC\\u1FFC]", description: "[\\u01C5\\u01C8\\u01CB\\u01F2\\u1F88-\\u1F8F\\u1F98-\\u1F9F\\u1FA8-\\u1FAF\\u1FBC\\u1FCC\\u1FFC]" },
-        peg$c152 = /^[A-Z\xC0-\xD6\xD8-\xDE\u0100\u0102\u0104\u0106\u0108\u010A\u010C\u010E\u0110\u0112\u0114\u0116\u0118\u011A\u011C\u011E\u0120\u0122\u0124\u0126\u0128\u012A\u012C\u012E\u0130\u0132\u0134\u0136\u0139\u013B\u013D\u013F\u0141\u0143\u0145\u0147\u014A\u014C\u014E\u0150\u0152\u0154\u0156\u0158\u015A\u015C\u015E\u0160\u0162\u0164\u0166\u0168\u016A\u016C\u016E\u0170\u0172\u0174\u0176\u0178-\u0179\u017B\u017D\u0181-\u0182\u0184\u0186-\u0187\u0189-\u018B\u018E-\u0191\u0193-\u0194\u0196-\u0198\u019C-\u019D\u019F-\u01A0\u01A2\u01A4\u01A6-\u01A7\u01A9\u01AC\u01AE-\u01AF\u01B1-\u01B3\u01B5\u01B7-\u01B8\u01BC\u01C4\u01C7\u01CA\u01CD\u01CF\u01D1\u01D3\u01D5\u01D7\u01D9\u01DB\u01DE\u01E0\u01E2\u01E4\u01E6\u01E8\u01EA\u01EC\u01EE\u01F1\u01F4\u01F6-\u01F8\u01FA\u01FC\u01FE\u0200\u0202\u0204\u0206\u0208\u020A\u020C\u020E\u0210\u0212\u0214\u0216\u0218\u021A\u021C\u021E\u0220\u0222\u0224\u0226\u0228\u022A\u022C\u022E\u0230\u0232\u023A-\u023B\u023D-\u023E\u0241\u0243-\u0246\u0248\u024A\u024C\u024E\u0370\u0372\u0376\u037F\u0386\u0388-\u038A\u038C\u038E-\u038F\u0391-\u03A1\u03A3-\u03AB\u03CF\u03D2-\u03D4\u03D8\u03DA\u03DC\u03DE\u03E0\u03E2\u03E4\u03E6\u03E8\u03EA\u03EC\u03EE\u03F4\u03F7\u03F9-\u03FA\u03FD-\u042F\u0460\u0462\u0464\u0466\u0468\u046A\u046C\u046E\u0470\u0472\u0474\u0476\u0478\u047A\u047C\u047E\u0480\u048A\u048C\u048E\u0490\u0492\u0494\u0496\u0498\u049A\u049C\u049E\u04A0\u04A2\u04A4\u04A6\u04A8\u04AA\u04AC\u04AE\u04B0\u04B2\u04B4\u04B6\u04B8\u04BA\u04BC\u04BE\u04C0-\u04C1\u04C3\u04C5\u04C7\u04C9\u04CB\u04CD\u04D0\u04D2\u04D4\u04D6\u04D8\u04DA\u04DC\u04DE\u04E0\u04E2\u04E4\u04E6\u04E8\u04EA\u04EC\u04EE\u04F0\u04F2\u04F4\u04F6\u04F8\u04FA\u04FC\u04FE\u0500\u0502\u0504\u0506\u0508\u050A\u050C\u050E\u0510\u0512\u0514\u0516\u0518\u051A\u051C\u051E\u0520\u0522\u0524\u0526\u0528\u052A\u052C\u052E\u0531-\u0556\u10A0-\u10C5\u10C7\u10CD\u13A0-\u13F5\u1E00\u1E02\u1E04\u1E06\u1E08\u1E0A\u1E0C\u1E0E\u1E10\u1E12\u1E14\u1E16\u1E18\u1E1A\u1E1C\u1E1E\u1E20\u1E22\u1E24\u1E26\u1E28\u1E2A\u1E2C\u1E2E\u1E30\u1E32\u1E34\u1E36\u1E38\u1E3A\u1E3C\u1E3E\u1E40\u1E42\u1E44\u1E46\u1E48\u1E4A\u1E4C\u1E4E\u1E50\u1E52\u1E54\u1E56\u1E58\u1E5A\u1E5C\u1E5E\u1E60\u1E62\u1E64\u1E66\u1E68\u1E6A\u1E6C\u1E6E\u1E70\u1E72\u1E74\u1E76\u1E78\u1E7A\u1E7C\u1E7E\u1E80\u1E82\u1E84\u1E86\u1E88\u1E8A\u1E8C\u1E8E\u1E90\u1E92\u1E94\u1E9E\u1EA0\u1EA2\u1EA4\u1EA6\u1EA8\u1EAA\u1EAC\u1EAE\u1EB0\u1EB2\u1EB4\u1EB6\u1EB8\u1EBA\u1EBC\u1EBE\u1EC0\u1EC2\u1EC4\u1EC6\u1EC8\u1ECA\u1ECC\u1ECE\u1ED0\u1ED2\u1ED4\u1ED6\u1ED8\u1EDA\u1EDC\u1EDE\u1EE0\u1EE2\u1EE4\u1EE6\u1EE8\u1EEA\u1EEC\u1EEE\u1EF0\u1EF2\u1EF4\u1EF6\u1EF8\u1EFA\u1EFC\u1EFE\u1F08-\u1F0F\u1F18-\u1F1D\u1F28-\u1F2F\u1F38-\u1F3F\u1F48-\u1F4D\u1F59\u1F5B\u1F5D\u1F5F\u1F68-\u1F6F\u1FB8-\u1FBB\u1FC8-\u1FCB\u1FD8-\u1FDB\u1FE8-\u1FEC\u1FF8-\u1FFB\u2102\u2107\u210B-\u210D\u2110-\u2112\u2115\u2119-\u211D\u2124\u2126\u2128\u212A-\u212D\u2130-\u2133\u213E-\u213F\u2145\u2183\u2C00-\u2C2E\u2C60\u2C62-\u2C64\u2C67\u2C69\u2C6B\u2C6D-\u2C70\u2C72\u2C75\u2C7E-\u2C80\u2C82\u2C84\u2C86\u2C88\u2C8A\u2C8C\u2C8E\u2C90\u2C92\u2C94\u2C96\u2C98\u2C9A\u2C9C\u2C9E\u2CA0\u2CA2\u2CA4\u2CA6\u2CA8\u2CAA\u2CAC\u2CAE\u2CB0\u2CB2\u2CB4\u2CB6\u2CB8\u2CBA\u2CBC\u2CBE\u2CC0\u2CC2\u2CC4\u2CC6\u2CC8\u2CCA\u2CCC\u2CCE\u2CD0\u2CD2\u2CD4\u2CD6\u2CD8\u2CDA\u2CDC\u2CDE\u2CE0\u2CE2\u2CEB\u2CED\u2CF2\uA640\uA642\uA644\uA646\uA648\uA64A\uA64C\uA64E\uA650\uA652\uA654\uA656\uA658\uA65A\uA65C\uA65E\uA660\uA662\uA664\uA666\uA668\uA66A\uA66C\uA680\uA682\uA684\uA686\uA688\uA68A\uA68C\uA68E\uA690\uA692\uA694\uA696\uA698\uA69A\uA722\uA724\uA726\uA728\uA72A\uA72C\uA72E\uA732\uA734\uA736\uA738\uA73A\uA73C\uA73E\uA740\uA742\uA744\uA746\uA748\uA74A\uA74C\uA74E\uA750\uA752\uA754\uA756\uA758\uA75A\uA75C\uA75E\uA760\uA762\uA764\uA766\uA768\uA76A\uA76C\uA76E\uA779\uA77B\uA77D-\uA77E\uA780\uA782\uA784\uA786\uA78B\uA78D\uA790\uA792\uA796\uA798\uA79A\uA79C\uA79E\uA7A0\uA7A2\uA7A4\uA7A6\uA7A8\uA7AA-\uA7AD\uA7B0-\uA7B4\uA7B6\uFF21-\uFF3A]/,
-        peg$c153 = { type: "class", value: "[\\u0041-\\u005A\\u00C0-\\u00D6\\u00D8-\\u00DE\\u0100\\u0102\\u0104\\u0106\\u0108\\u010A\\u010C\\u010E\\u0110\\u0112\\u0114\\u0116\\u0118\\u011A\\u011C\\u011E\\u0120\\u0122\\u0124\\u0126\\u0128\\u012A\\u012C\\u012E\\u0130\\u0132\\u0134\\u0136\\u0139\\u013B\\u013D\\u013F\\u0141\\u0143\\u0145\\u0147\\u014A\\u014C\\u014E\\u0150\\u0152\\u0154\\u0156\\u0158\\u015A\\u015C\\u015E\\u0160\\u0162\\u0164\\u0166\\u0168\\u016A\\u016C\\u016E\\u0170\\u0172\\u0174\\u0176\\u0178-\\u0179\\u017B\\u017D\\u0181-\\u0182\\u0184\\u0186-\\u0187\\u0189-\\u018B\\u018E-\\u0191\\u0193-\\u0194\\u0196-\\u0198\\u019C-\\u019D\\u019F-\\u01A0\\u01A2\\u01A4\\u01A6-\\u01A7\\u01A9\\u01AC\\u01AE-\\u01AF\\u01B1-\\u01B3\\u01B5\\u01B7-\\u01B8\\u01BC\\u01C4\\u01C7\\u01CA\\u01CD\\u01CF\\u01D1\\u01D3\\u01D5\\u01D7\\u01D9\\u01DB\\u01DE\\u01E0\\u01E2\\u01E4\\u01E6\\u01E8\\u01EA\\u01EC\\u01EE\\u01F1\\u01F4\\u01F6-\\u01F8\\u01FA\\u01FC\\u01FE\\u0200\\u0202\\u0204\\u0206\\u0208\\u020A\\u020C\\u020E\\u0210\\u0212\\u0214\\u0216\\u0218\\u021A\\u021C\\u021E\\u0220\\u0222\\u0224\\u0226\\u0228\\u022A\\u022C\\u022E\\u0230\\u0232\\u023A-\\u023B\\u023D-\\u023E\\u0241\\u0243-\\u0246\\u0248\\u024A\\u024C\\u024E\\u0370\\u0372\\u0376\\u037F\\u0386\\u0388-\\u038A\\u038C\\u038E-\\u038F\\u0391-\\u03A1\\u03A3-\\u03AB\\u03CF\\u03D2-\\u03D4\\u03D8\\u03DA\\u03DC\\u03DE\\u03E0\\u03E2\\u03E4\\u03E6\\u03E8\\u03EA\\u03EC\\u03EE\\u03F4\\u03F7\\u03F9-\\u03FA\\u03FD-\\u042F\\u0460\\u0462\\u0464\\u0466\\u0468\\u046A\\u046C\\u046E\\u0470\\u0472\\u0474\\u0476\\u0478\\u047A\\u047C\\u047E\\u0480\\u048A\\u048C\\u048E\\u0490\\u0492\\u0494\\u0496\\u0498\\u049A\\u049C\\u049E\\u04A0\\u04A2\\u04A4\\u04A6\\u04A8\\u04AA\\u04AC\\u04AE\\u04B0\\u04B2\\u04B4\\u04B6\\u04B8\\u04BA\\u04BC\\u04BE\\u04C0-\\u04C1\\u04C3\\u04C5\\u04C7\\u04C9\\u04CB\\u04CD\\u04D0\\u04D2\\u04D4\\u04D6\\u04D8\\u04DA\\u04DC\\u04DE\\u04E0\\u04E2\\u04E4\\u04E6\\u04E8\\u04EA\\u04EC\\u04EE\\u04F0\\u04F2\\u04F4\\u04F6\\u04F8\\u04FA\\u04FC\\u04FE\\u0500\\u0502\\u0504\\u0506\\u0508\\u050A\\u050C\\u050E\\u0510\\u0512\\u0514\\u0516\\u0518\\u051A\\u051C\\u051E\\u0520\\u0522\\u0524\\u0526\\u0528\\u052A\\u052C\\u052E\\u0531-\\u0556\\u10A0-\\u10C5\\u10C7\\u10CD\\u13A0-\\u13F5\\u1E00\\u1E02\\u1E04\\u1E06\\u1E08\\u1E0A\\u1E0C\\u1E0E\\u1E10\\u1E12\\u1E14\\u1E16\\u1E18\\u1E1A\\u1E1C\\u1E1E\\u1E20\\u1E22\\u1E24\\u1E26\\u1E28\\u1E2A\\u1E2C\\u1E2E\\u1E30\\u1E32\\u1E34\\u1E36\\u1E38\\u1E3A\\u1E3C\\u1E3E\\u1E40\\u1E42\\u1E44\\u1E46\\u1E48\\u1E4A\\u1E4C\\u1E4E\\u1E50\\u1E52\\u1E54\\u1E56\\u1E58\\u1E5A\\u1E5C\\u1E5E\\u1E60\\u1E62\\u1E64\\u1E66\\u1E68\\u1E6A\\u1E6C\\u1E6E\\u1E70\\u1E72\\u1E74\\u1E76\\u1E78\\u1E7A\\u1E7C\\u1E7E\\u1E80\\u1E82\\u1E84\\u1E86\\u1E88\\u1E8A\\u1E8C\\u1E8E\\u1E90\\u1E92\\u1E94\\u1E9E\\u1EA0\\u1EA2\\u1EA4\\u1EA6\\u1EA8\\u1EAA\\u1EAC\\u1EAE\\u1EB0\\u1EB2\\u1EB4\\u1EB6\\u1EB8\\u1EBA\\u1EBC\\u1EBE\\u1EC0\\u1EC2\\u1EC4\\u1EC6\\u1EC8\\u1ECA\\u1ECC\\u1ECE\\u1ED0\\u1ED2\\u1ED4\\u1ED6\\u1ED8\\u1EDA\\u1EDC\\u1EDE\\u1EE0\\u1EE2\\u1EE4\\u1EE6\\u1EE8\\u1EEA\\u1EEC\\u1EEE\\u1EF0\\u1EF2\\u1EF4\\u1EF6\\u1EF8\\u1EFA\\u1EFC\\u1EFE\\u1F08-\\u1F0F\\u1F18-\\u1F1D\\u1F28-\\u1F2F\\u1F38-\\u1F3F\\u1F48-\\u1F4D\\u1F59\\u1F5B\\u1F5D\\u1F5F\\u1F68-\\u1F6F\\u1FB8-\\u1FBB\\u1FC8-\\u1FCB\\u1FD8-\\u1FDB\\u1FE8-\\u1FEC\\u1FF8-\\u1FFB\\u2102\\u2107\\u210B-\\u210D\\u2110-\\u2112\\u2115\\u2119-\\u211D\\u2124\\u2126\\u2128\\u212A-\\u212D\\u2130-\\u2133\\u213E-\\u213F\\u2145\\u2183\\u2C00-\\u2C2E\\u2C60\\u2C62-\\u2C64\\u2C67\\u2C69\\u2C6B\\u2C6D-\\u2C70\\u2C72\\u2C75\\u2C7E-\\u2C80\\u2C82\\u2C84\\u2C86\\u2C88\\u2C8A\\u2C8C\\u2C8E\\u2C90\\u2C92\\u2C94\\u2C96\\u2C98\\u2C9A\\u2C9C\\u2C9E\\u2CA0\\u2CA2\\u2CA4\\u2CA6\\u2CA8\\u2CAA\\u2CAC\\u2CAE\\u2CB0\\u2CB2\\u2CB4\\u2CB6\\u2CB8\\u2CBA\\u2CBC\\u2CBE\\u2CC0\\u2CC2\\u2CC4\\u2CC6\\u2CC8\\u2CCA\\u2CCC\\u2CCE\\u2CD0\\u2CD2\\u2CD4\\u2CD6\\u2CD8\\u2CDA\\u2CDC\\u2CDE\\u2CE0\\u2CE2\\u2CEB\\u2CED\\u2CF2\\uA640\\uA642\\uA644\\uA646\\uA648\\uA64A\\uA64C\\uA64E\\uA650\\uA652\\uA654\\uA656\\uA658\\uA65A\\uA65C\\uA65E\\uA660\\uA662\\uA664\\uA666\\uA668\\uA66A\\uA66C\\uA680\\uA682\\uA684\\uA686\\uA688\\uA68A\\uA68C\\uA68E\\uA690\\uA692\\uA694\\uA696\\uA698\\uA69A\\uA722\\uA724\\uA726\\uA728\\uA72A\\uA72C\\uA72E\\uA732\\uA734\\uA736\\uA738\\uA73A\\uA73C\\uA73E\\uA740\\uA742\\uA744\\uA746\\uA748\\uA74A\\uA74C\\uA74E\\uA750\\uA752\\uA754\\uA756\\uA758\\uA75A\\uA75C\\uA75E\\uA760\\uA762\\uA764\\uA766\\uA768\\uA76A\\uA76C\\uA76E\\uA779\\uA77B\\uA77D-\\uA77E\\uA780\\uA782\\uA784\\uA786\\uA78B\\uA78D\\uA790\\uA792\\uA796\\uA798\\uA79A\\uA79C\\uA79E\\uA7A0\\uA7A2\\uA7A4\\uA7A6\\uA7A8\\uA7AA-\\uA7AD\\uA7B0-\\uA7B4\\uA7B6\\uFF21-\\uFF3A]", description: "[\\u0041-\\u005A\\u00C0-\\u00D6\\u00D8-\\u00DE\\u0100\\u0102\\u0104\\u0106\\u0108\\u010A\\u010C\\u010E\\u0110\\u0112\\u0114\\u0116\\u0118\\u011A\\u011C\\u011E\\u0120\\u0122\\u0124\\u0126\\u0128\\u012A\\u012C\\u012E\\u0130\\u0132\\u0134\\u0136\\u0139\\u013B\\u013D\\u013F\\u0141\\u0143\\u0145\\u0147\\u014A\\u014C\\u014E\\u0150\\u0152\\u0154\\u0156\\u0158\\u015A\\u015C\\u015E\\u0160\\u0162\\u0164\\u0166\\u0168\\u016A\\u016C\\u016E\\u0170\\u0172\\u0174\\u0176\\u0178-\\u0179\\u017B\\u017D\\u0181-\\u0182\\u0184\\u0186-\\u0187\\u0189-\\u018B\\u018E-\\u0191\\u0193-\\u0194\\u0196-\\u0198\\u019C-\\u019D\\u019F-\\u01A0\\u01A2\\u01A4\\u01A6-\\u01A7\\u01A9\\u01AC\\u01AE-\\u01AF\\u01B1-\\u01B3\\u01B5\\u01B7-\\u01B8\\u01BC\\u01C4\\u01C7\\u01CA\\u01CD\\u01CF\\u01D1\\u01D3\\u01D5\\u01D7\\u01D9\\u01DB\\u01DE\\u01E0\\u01E2\\u01E4\\u01E6\\u01E8\\u01EA\\u01EC\\u01EE\\u01F1\\u01F4\\u01F6-\\u01F8\\u01FA\\u01FC\\u01FE\\u0200\\u0202\\u0204\\u0206\\u0208\\u020A\\u020C\\u020E\\u0210\\u0212\\u0214\\u0216\\u0218\\u021A\\u021C\\u021E\\u0220\\u0222\\u0224\\u0226\\u0228\\u022A\\u022C\\u022E\\u0230\\u0232\\u023A-\\u023B\\u023D-\\u023E\\u0241\\u0243-\\u0246\\u0248\\u024A\\u024C\\u024E\\u0370\\u0372\\u0376\\u037F\\u0386\\u0388-\\u038A\\u038C\\u038E-\\u038F\\u0391-\\u03A1\\u03A3-\\u03AB\\u03CF\\u03D2-\\u03D4\\u03D8\\u03DA\\u03DC\\u03DE\\u03E0\\u03E2\\u03E4\\u03E6\\u03E8\\u03EA\\u03EC\\u03EE\\u03F4\\u03F7\\u03F9-\\u03FA\\u03FD-\\u042F\\u0460\\u0462\\u0464\\u0466\\u0468\\u046A\\u046C\\u046E\\u0470\\u0472\\u0474\\u0476\\u0478\\u047A\\u047C\\u047E\\u0480\\u048A\\u048C\\u048E\\u0490\\u0492\\u0494\\u0496\\u0498\\u049A\\u049C\\u049E\\u04A0\\u04A2\\u04A4\\u04A6\\u04A8\\u04AA\\u04AC\\u04AE\\u04B0\\u04B2\\u04B4\\u04B6\\u04B8\\u04BA\\u04BC\\u04BE\\u04C0-\\u04C1\\u04C3\\u04C5\\u04C7\\u04C9\\u04CB\\u04CD\\u04D0\\u04D2\\u04D4\\u04D6\\u04D8\\u04DA\\u04DC\\u04DE\\u04E0\\u04E2\\u04E4\\u04E6\\u04E8\\u04EA\\u04EC\\u04EE\\u04F0\\u04F2\\u04F4\\u04F6\\u04F8\\u04FA\\u04FC\\u04FE\\u0500\\u0502\\u0504\\u0506\\u0508\\u050A\\u050C\\u050E\\u0510\\u0512\\u0514\\u0516\\u0518\\u051A\\u051C\\u051E\\u0520\\u0522\\u0524\\u0526\\u0528\\u052A\\u052C\\u052E\\u0531-\\u0556\\u10A0-\\u10C5\\u10C7\\u10CD\\u13A0-\\u13F5\\u1E00\\u1E02\\u1E04\\u1E06\\u1E08\\u1E0A\\u1E0C\\u1E0E\\u1E10\\u1E12\\u1E14\\u1E16\\u1E18\\u1E1A\\u1E1C\\u1E1E\\u1E20\\u1E22\\u1E24\\u1E26\\u1E28\\u1E2A\\u1E2C\\u1E2E\\u1E30\\u1E32\\u1E34\\u1E36\\u1E38\\u1E3A\\u1E3C\\u1E3E\\u1E40\\u1E42\\u1E44\\u1E46\\u1E48\\u1E4A\\u1E4C\\u1E4E\\u1E50\\u1E52\\u1E54\\u1E56\\u1E58\\u1E5A\\u1E5C\\u1E5E\\u1E60\\u1E62\\u1E64\\u1E66\\u1E68\\u1E6A\\u1E6C\\u1E6E\\u1E70\\u1E72\\u1E74\\u1E76\\u1E78\\u1E7A\\u1E7C\\u1E7E\\u1E80\\u1E82\\u1E84\\u1E86\\u1E88\\u1E8A\\u1E8C\\u1E8E\\u1E90\\u1E92\\u1E94\\u1E9E\\u1EA0\\u1EA2\\u1EA4\\u1EA6\\u1EA8\\u1EAA\\u1EAC\\u1EAE\\u1EB0\\u1EB2\\u1EB4\\u1EB6\\u1EB8\\u1EBA\\u1EBC\\u1EBE\\u1EC0\\u1EC2\\u1EC4\\u1EC6\\u1EC8\\u1ECA\\u1ECC\\u1ECE\\u1ED0\\u1ED2\\u1ED4\\u1ED6\\u1ED8\\u1EDA\\u1EDC\\u1EDE\\u1EE0\\u1EE2\\u1EE4\\u1EE6\\u1EE8\\u1EEA\\u1EEC\\u1EEE\\u1EF0\\u1EF2\\u1EF4\\u1EF6\\u1EF8\\u1EFA\\u1EFC\\u1EFE\\u1F08-\\u1F0F\\u1F18-\\u1F1D\\u1F28-\\u1F2F\\u1F38-\\u1F3F\\u1F48-\\u1F4D\\u1F59\\u1F5B\\u1F5D\\u1F5F\\u1F68-\\u1F6F\\u1FB8-\\u1FBB\\u1FC8-\\u1FCB\\u1FD8-\\u1FDB\\u1FE8-\\u1FEC\\u1FF8-\\u1FFB\\u2102\\u2107\\u210B-\\u210D\\u2110-\\u2112\\u2115\\u2119-\\u211D\\u2124\\u2126\\u2128\\u212A-\\u212D\\u2130-\\u2133\\u213E-\\u213F\\u2145\\u2183\\u2C00-\\u2C2E\\u2C60\\u2C62-\\u2C64\\u2C67\\u2C69\\u2C6B\\u2C6D-\\u2C70\\u2C72\\u2C75\\u2C7E-\\u2C80\\u2C82\\u2C84\\u2C86\\u2C88\\u2C8A\\u2C8C\\u2C8E\\u2C90\\u2C92\\u2C94\\u2C96\\u2C98\\u2C9A\\u2C9C\\u2C9E\\u2CA0\\u2CA2\\u2CA4\\u2CA6\\u2CA8\\u2CAA\\u2CAC\\u2CAE\\u2CB0\\u2CB2\\u2CB4\\u2CB6\\u2CB8\\u2CBA\\u2CBC\\u2CBE\\u2CC0\\u2CC2\\u2CC4\\u2CC6\\u2CC8\\u2CCA\\u2CCC\\u2CCE\\u2CD0\\u2CD2\\u2CD4\\u2CD6\\u2CD8\\u2CDA\\u2CDC\\u2CDE\\u2CE0\\u2CE2\\u2CEB\\u2CED\\u2CF2\\uA640\\uA642\\uA644\\uA646\\uA648\\uA64A\\uA64C\\uA64E\\uA650\\uA652\\uA654\\uA656\\uA658\\uA65A\\uA65C\\uA65E\\uA660\\uA662\\uA664\\uA666\\uA668\\uA66A\\uA66C\\uA680\\uA682\\uA684\\uA686\\uA688\\uA68A\\uA68C\\uA68E\\uA690\\uA692\\uA694\\uA696\\uA698\\uA69A\\uA722\\uA724\\uA726\\uA728\\uA72A\\uA72C\\uA72E\\uA732\\uA734\\uA736\\uA738\\uA73A\\uA73C\\uA73E\\uA740\\uA742\\uA744\\uA746\\uA748\\uA74A\\uA74C\\uA74E\\uA750\\uA752\\uA754\\uA756\\uA758\\uA75A\\uA75C\\uA75E\\uA760\\uA762\\uA764\\uA766\\uA768\\uA76A\\uA76C\\uA76E\\uA779\\uA77B\\uA77D-\\uA77E\\uA780\\uA782\\uA784\\uA786\\uA78B\\uA78D\\uA790\\uA792\\uA796\\uA798\\uA79A\\uA79C\\uA79E\\uA7A0\\uA7A2\\uA7A4\\uA7A6\\uA7A8\\uA7AA-\\uA7AD\\uA7B0-\\uA7B4\\uA7B6\\uFF21-\\uFF3A]" },
-        peg$c154 = /^[\u0903\u093B\u093E-\u0940\u0949-\u094C\u094E-\u094F\u0982-\u0983\u09BE-\u09C0\u09C7-\u09C8\u09CB-\u09CC\u09D7\u0A03\u0A3E-\u0A40\u0A83\u0ABE-\u0AC0\u0AC9\u0ACB-\u0ACC\u0B02-\u0B03\u0B3E\u0B40\u0B47-\u0B48\u0B4B-\u0B4C\u0B57\u0BBE-\u0BBF\u0BC1-\u0BC2\u0BC6-\u0BC8\u0BCA-\u0BCC\u0BD7\u0C01-\u0C03\u0C41-\u0C44\u0C82-\u0C83\u0CBE\u0CC0-\u0CC4\u0CC7-\u0CC8\u0CCA-\u0CCB\u0CD5-\u0CD6\u0D02-\u0D03\u0D3E-\u0D40\u0D46-\u0D48\u0D4A-\u0D4C\u0D57\u0D82-\u0D83\u0DCF-\u0DD1\u0DD8-\u0DDF\u0DF2-\u0DF3\u0F3E-\u0F3F\u0F7F\u102B-\u102C\u1031\u1038\u103B-\u103C\u1056-\u1057\u1062-\u1064\u1067-\u106D\u1083-\u1084\u1087-\u108C\u108F\u109A-\u109C\u17B6\u17BE-\u17C5\u17C7-\u17C8\u1923-\u1926\u1929-\u192B\u1930-\u1931\u1933-\u1938\u1A19-\u1A1A\u1A55\u1A57\u1A61\u1A63-\u1A64\u1A6D-\u1A72\u1B04\u1B35\u1B3B\u1B3D-\u1B41\u1B43-\u1B44\u1B82\u1BA1\u1BA6-\u1BA7\u1BAA\u1BE7\u1BEA-\u1BEC\u1BEE\u1BF2-\u1BF3\u1C24-\u1C2B\u1C34-\u1C35\u1CE1\u1CF2-\u1CF3\u302E-\u302F\uA823-\uA824\uA827\uA880-\uA881\uA8B4-\uA8C3\uA952-\uA953\uA983\uA9B4-\uA9B5\uA9BA-\uA9BB\uA9BD-\uA9C0\uAA2F-\uAA30\uAA33-\uAA34\uAA4D\uAA7B\uAA7D\uAAEB\uAAEE-\uAAEF\uAAF5\uABE3-\uABE4\uABE6-\uABE7\uABE9-\uABEA\uABEC]/,
-        peg$c155 = { type: "class", value: "[\\u0903\\u093B\\u093E-\\u0940\\u0949-\\u094C\\u094E-\\u094F\\u0982-\\u0983\\u09BE-\\u09C0\\u09C7-\\u09C8\\u09CB-\\u09CC\\u09D7\\u0A03\\u0A3E-\\u0A40\\u0A83\\u0ABE-\\u0AC0\\u0AC9\\u0ACB-\\u0ACC\\u0B02-\\u0B03\\u0B3E\\u0B40\\u0B47-\\u0B48\\u0B4B-\\u0B4C\\u0B57\\u0BBE-\\u0BBF\\u0BC1-\\u0BC2\\u0BC6-\\u0BC8\\u0BCA-\\u0BCC\\u0BD7\\u0C01-\\u0C03\\u0C41-\\u0C44\\u0C82-\\u0C83\\u0CBE\\u0CC0-\\u0CC4\\u0CC7-\\u0CC8\\u0CCA-\\u0CCB\\u0CD5-\\u0CD6\\u0D02-\\u0D03\\u0D3E-\\u0D40\\u0D46-\\u0D48\\u0D4A-\\u0D4C\\u0D57\\u0D82-\\u0D83\\u0DCF-\\u0DD1\\u0DD8-\\u0DDF\\u0DF2-\\u0DF3\\u0F3E-\\u0F3F\\u0F7F\\u102B-\\u102C\\u1031\\u1038\\u103B-\\u103C\\u1056-\\u1057\\u1062-\\u1064\\u1067-\\u106D\\u1083-\\u1084\\u1087-\\u108C\\u108F\\u109A-\\u109C\\u17B6\\u17BE-\\u17C5\\u17C7-\\u17C8\\u1923-\\u1926\\u1929-\\u192B\\u1930-\\u1931\\u1933-\\u1938\\u1A19-\\u1A1A\\u1A55\\u1A57\\u1A61\\u1A63-\\u1A64\\u1A6D-\\u1A72\\u1B04\\u1B35\\u1B3B\\u1B3D-\\u1B41\\u1B43-\\u1B44\\u1B82\\u1BA1\\u1BA6-\\u1BA7\\u1BAA\\u1BE7\\u1BEA-\\u1BEC\\u1BEE\\u1BF2-\\u1BF3\\u1C24-\\u1C2B\\u1C34-\\u1C35\\u1CE1\\u1CF2-\\u1CF3\\u302E-\\u302F\\uA823-\\uA824\\uA827\\uA880-\\uA881\\uA8B4-\\uA8C3\\uA952-\\uA953\\uA983\\uA9B4-\\uA9B5\\uA9BA-\\uA9BB\\uA9BD-\\uA9C0\\uAA2F-\\uAA30\\uAA33-\\uAA34\\uAA4D\\uAA7B\\uAA7D\\uAAEB\\uAAEE-\\uAAEF\\uAAF5\\uABE3-\\uABE4\\uABE6-\\uABE7\\uABE9-\\uABEA\\uABEC]", description: "[\\u0903\\u093B\\u093E-\\u0940\\u0949-\\u094C\\u094E-\\u094F\\u0982-\\u0983\\u09BE-\\u09C0\\u09C7-\\u09C8\\u09CB-\\u09CC\\u09D7\\u0A03\\u0A3E-\\u0A40\\u0A83\\u0ABE-\\u0AC0\\u0AC9\\u0ACB-\\u0ACC\\u0B02-\\u0B03\\u0B3E\\u0B40\\u0B47-\\u0B48\\u0B4B-\\u0B4C\\u0B57\\u0BBE-\\u0BBF\\u0BC1-\\u0BC2\\u0BC6-\\u0BC8\\u0BCA-\\u0BCC\\u0BD7\\u0C01-\\u0C03\\u0C41-\\u0C44\\u0C82-\\u0C83\\u0CBE\\u0CC0-\\u0CC4\\u0CC7-\\u0CC8\\u0CCA-\\u0CCB\\u0CD5-\\u0CD6\\u0D02-\\u0D03\\u0D3E-\\u0D40\\u0D46-\\u0D48\\u0D4A-\\u0D4C\\u0D57\\u0D82-\\u0D83\\u0DCF-\\u0DD1\\u0DD8-\\u0DDF\\u0DF2-\\u0DF3\\u0F3E-\\u0F3F\\u0F7F\\u102B-\\u102C\\u1031\\u1038\\u103B-\\u103C\\u1056-\\u1057\\u1062-\\u1064\\u1067-\\u106D\\u1083-\\u1084\\u1087-\\u108C\\u108F\\u109A-\\u109C\\u17B6\\u17BE-\\u17C5\\u17C7-\\u17C8\\u1923-\\u1926\\u1929-\\u192B\\u1930-\\u1931\\u1933-\\u1938\\u1A19-\\u1A1A\\u1A55\\u1A57\\u1A61\\u1A63-\\u1A64\\u1A6D-\\u1A72\\u1B04\\u1B35\\u1B3B\\u1B3D-\\u1B41\\u1B43-\\u1B44\\u1B82\\u1BA1\\u1BA6-\\u1BA7\\u1BAA\\u1BE7\\u1BEA-\\u1BEC\\u1BEE\\u1BF2-\\u1BF3\\u1C24-\\u1C2B\\u1C34-\\u1C35\\u1CE1\\u1CF2-\\u1CF3\\u302E-\\u302F\\uA823-\\uA824\\uA827\\uA880-\\uA881\\uA8B4-\\uA8C3\\uA952-\\uA953\\uA983\\uA9B4-\\uA9B5\\uA9BA-\\uA9BB\\uA9BD-\\uA9C0\\uAA2F-\\uAA30\\uAA33-\\uAA34\\uAA4D\\uAA7B\\uAA7D\\uAAEB\\uAAEE-\\uAAEF\\uAAF5\\uABE3-\\uABE4\\uABE6-\\uABE7\\uABE9-\\uABEA\\uABEC]" },
-        peg$c156 = /^[\u0300-\u036F\u0483-\u0487\u0591-\u05BD\u05BF\u05C1-\u05C2\u05C4-\u05C5\u05C7\u0610-\u061A\u064B-\u065F\u0670\u06D6-\u06DC\u06DF-\u06E4\u06E7-\u06E8\u06EA-\u06ED\u0711\u0730-\u074A\u07A6-\u07B0\u07EB-\u07F3\u0816-\u0819\u081B-\u0823\u0825-\u0827\u0829-\u082D\u0859-\u085B\u08E3-\u0902\u093A\u093C\u0941-\u0948\u094D\u0951-\u0957\u0962-\u0963\u0981\u09BC\u09C1-\u09C4\u09CD\u09E2-\u09E3\u0A01-\u0A02\u0A3C\u0A41-\u0A42\u0A47-\u0A48\u0A4B-\u0A4D\u0A51\u0A70-\u0A71\u0A75\u0A81-\u0A82\u0ABC\u0AC1-\u0AC5\u0AC7-\u0AC8\u0ACD\u0AE2-\u0AE3\u0B01\u0B3C\u0B3F\u0B41-\u0B44\u0B4D\u0B56\u0B62-\u0B63\u0B82\u0BC0\u0BCD\u0C00\u0C3E-\u0C40\u0C46-\u0C48\u0C4A-\u0C4D\u0C55-\u0C56\u0C62-\u0C63\u0C81\u0CBC\u0CBF\u0CC6\u0CCC-\u0CCD\u0CE2-\u0CE3\u0D01\u0D41-\u0D44\u0D4D\u0D62-\u0D63\u0DCA\u0DD2-\u0DD4\u0DD6\u0E31\u0E34-\u0E3A\u0E47-\u0E4E\u0EB1\u0EB4-\u0EB9\u0EBB-\u0EBC\u0EC8-\u0ECD\u0F18-\u0F19\u0F35\u0F37\u0F39\u0F71-\u0F7E\u0F80-\u0F84\u0F86-\u0F87\u0F8D-\u0F97\u0F99-\u0FBC\u0FC6\u102D-\u1030\u1032-\u1037\u1039-\u103A\u103D-\u103E\u1058-\u1059\u105E-\u1060\u1071-\u1074\u1082\u1085-\u1086\u108D\u109D\u135D-\u135F\u1712-\u1714\u1732-\u1734\u1752-\u1753\u1772-\u1773\u17B4-\u17B5\u17B7-\u17BD\u17C6\u17C9-\u17D3\u17DD\u180B-\u180D\u18A9\u1920-\u1922\u1927-\u1928\u1932\u1939-\u193B\u1A17-\u1A18\u1A1B\u1A56\u1A58-\u1A5E\u1A60\u1A62\u1A65-\u1A6C\u1A73-\u1A7C\u1A7F\u1AB0-\u1ABD\u1B00-\u1B03\u1B34\u1B36-\u1B3A\u1B3C\u1B42\u1B6B-\u1B73\u1B80-\u1B81\u1BA2-\u1BA5\u1BA8-\u1BA9\u1BAB-\u1BAD\u1BE6\u1BE8-\u1BE9\u1BED\u1BEF-\u1BF1\u1C2C-\u1C33\u1C36-\u1C37\u1CD0-\u1CD2\u1CD4-\u1CE0\u1CE2-\u1CE8\u1CED\u1CF4\u1CF8-\u1CF9\u1DC0-\u1DF5\u1DFC-\u1DFF\u20D0-\u20DC\u20E1\u20E5-\u20F0\u2CEF-\u2CF1\u2D7F\u2DE0-\u2DFF\u302A-\u302D\u3099-\u309A\uA66F\uA674-\uA67D\uA69E-\uA69F\uA6F0-\uA6F1\uA802\uA806\uA80B\uA825-\uA826\uA8C4\uA8E0-\uA8F1\uA926-\uA92D\uA947-\uA951\uA980-\uA982\uA9B3\uA9B6-\uA9B9\uA9BC\uA9E5\uAA29-\uAA2E\uAA31-\uAA32\uAA35-\uAA36\uAA43\uAA4C\uAA7C\uAAB0\uAAB2-\uAAB4\uAAB7-\uAAB8\uAABE-\uAABF\uAAC1\uAAEC-\uAAED\uAAF6\uABE5\uABE8\uABED\uFB1E\uFE00-\uFE0F\uFE20-\uFE2F]/,
-        peg$c157 = { type: "class", value: "[\\u0300-\\u036F\\u0483-\\u0487\\u0591-\\u05BD\\u05BF\\u05C1-\\u05C2\\u05C4-\\u05C5\\u05C7\\u0610-\\u061A\\u064B-\\u065F\\u0670\\u06D6-\\u06DC\\u06DF-\\u06E4\\u06E7-\\u06E8\\u06EA-\\u06ED\\u0711\\u0730-\\u074A\\u07A6-\\u07B0\\u07EB-\\u07F3\\u0816-\\u0819\\u081B-\\u0823\\u0825-\\u0827\\u0829-\\u082D\\u0859-\\u085B\\u08E3-\\u0902\\u093A\\u093C\\u0941-\\u0948\\u094D\\u0951-\\u0957\\u0962-\\u0963\\u0981\\u09BC\\u09C1-\\u09C4\\u09CD\\u09E2-\\u09E3\\u0A01-\\u0A02\\u0A3C\\u0A41-\\u0A42\\u0A47-\\u0A48\\u0A4B-\\u0A4D\\u0A51\\u0A70-\\u0A71\\u0A75\\u0A81-\\u0A82\\u0ABC\\u0AC1-\\u0AC5\\u0AC7-\\u0AC8\\u0ACD\\u0AE2-\\u0AE3\\u0B01\\u0B3C\\u0B3F\\u0B41-\\u0B44\\u0B4D\\u0B56\\u0B62-\\u0B63\\u0B82\\u0BC0\\u0BCD\\u0C00\\u0C3E-\\u0C40\\u0C46-\\u0C48\\u0C4A-\\u0C4D\\u0C55-\\u0C56\\u0C62-\\u0C63\\u0C81\\u0CBC\\u0CBF\\u0CC6\\u0CCC-\\u0CCD\\u0CE2-\\u0CE3\\u0D01\\u0D41-\\u0D44\\u0D4D\\u0D62-\\u0D63\\u0DCA\\u0DD2-\\u0DD4\\u0DD6\\u0E31\\u0E34-\\u0E3A\\u0E47-\\u0E4E\\u0EB1\\u0EB4-\\u0EB9\\u0EBB-\\u0EBC\\u0EC8-\\u0ECD\\u0F18-\\u0F19\\u0F35\\u0F37\\u0F39\\u0F71-\\u0F7E\\u0F80-\\u0F84\\u0F86-\\u0F87\\u0F8D-\\u0F97\\u0F99-\\u0FBC\\u0FC6\\u102D-\\u1030\\u1032-\\u1037\\u1039-\\u103A\\u103D-\\u103E\\u1058-\\u1059\\u105E-\\u1060\\u1071-\\u1074\\u1082\\u1085-\\u1086\\u108D\\u109D\\u135D-\\u135F\\u1712-\\u1714\\u1732-\\u1734\\u1752-\\u1753\\u1772-\\u1773\\u17B4-\\u17B5\\u17B7-\\u17BD\\u17C6\\u17C9-\\u17D3\\u17DD\\u180B-\\u180D\\u18A9\\u1920-\\u1922\\u1927-\\u1928\\u1932\\u1939-\\u193B\\u1A17-\\u1A18\\u1A1B\\u1A56\\u1A58-\\u1A5E\\u1A60\\u1A62\\u1A65-\\u1A6C\\u1A73-\\u1A7C\\u1A7F\\u1AB0-\\u1ABD\\u1B00-\\u1B03\\u1B34\\u1B36-\\u1B3A\\u1B3C\\u1B42\\u1B6B-\\u1B73\\u1B80-\\u1B81\\u1BA2-\\u1BA5\\u1BA8-\\u1BA9\\u1BAB-\\u1BAD\\u1BE6\\u1BE8-\\u1BE9\\u1BED\\u1BEF-\\u1BF1\\u1C2C-\\u1C33\\u1C36-\\u1C37\\u1CD0-\\u1CD2\\u1CD4-\\u1CE0\\u1CE2-\\u1CE8\\u1CED\\u1CF4\\u1CF8-\\u1CF9\\u1DC0-\\u1DF5\\u1DFC-\\u1DFF\\u20D0-\\u20DC\\u20E1\\u20E5-\\u20F0\\u2CEF-\\u2CF1\\u2D7F\\u2DE0-\\u2DFF\\u302A-\\u302D\\u3099-\\u309A\\uA66F\\uA674-\\uA67D\\uA69E-\\uA69F\\uA6F0-\\uA6F1\\uA802\\uA806\\uA80B\\uA825-\\uA826\\uA8C4\\uA8E0-\\uA8F1\\uA926-\\uA92D\\uA947-\\uA951\\uA980-\\uA982\\uA9B3\\uA9B6-\\uA9B9\\uA9BC\\uA9E5\\uAA29-\\uAA2E\\uAA31-\\uAA32\\uAA35-\\uAA36\\uAA43\\uAA4C\\uAA7C\\uAAB0\\uAAB2-\\uAAB4\\uAAB7-\\uAAB8\\uAABE-\\uAABF\\uAAC1\\uAAEC-\\uAAED\\uAAF6\\uABE5\\uABE8\\uABED\\uFB1E\\uFE00-\\uFE0F\\uFE20-\\uFE2F]", description: "[\\u0300-\\u036F\\u0483-\\u0487\\u0591-\\u05BD\\u05BF\\u05C1-\\u05C2\\u05C4-\\u05C5\\u05C7\\u0610-\\u061A\\u064B-\\u065F\\u0670\\u06D6-\\u06DC\\u06DF-\\u06E4\\u06E7-\\u06E8\\u06EA-\\u06ED\\u0711\\u0730-\\u074A\\u07A6-\\u07B0\\u07EB-\\u07F3\\u0816-\\u0819\\u081B-\\u0823\\u0825-\\u0827\\u0829-\\u082D\\u0859-\\u085B\\u08E3-\\u0902\\u093A\\u093C\\u0941-\\u0948\\u094D\\u0951-\\u0957\\u0962-\\u0963\\u0981\\u09BC\\u09C1-\\u09C4\\u09CD\\u09E2-\\u09E3\\u0A01-\\u0A02\\u0A3C\\u0A41-\\u0A42\\u0A47-\\u0A48\\u0A4B-\\u0A4D\\u0A51\\u0A70-\\u0A71\\u0A75\\u0A81-\\u0A82\\u0ABC\\u0AC1-\\u0AC5\\u0AC7-\\u0AC8\\u0ACD\\u0AE2-\\u0AE3\\u0B01\\u0B3C\\u0B3F\\u0B41-\\u0B44\\u0B4D\\u0B56\\u0B62-\\u0B63\\u0B82\\u0BC0\\u0BCD\\u0C00\\u0C3E-\\u0C40\\u0C46-\\u0C48\\u0C4A-\\u0C4D\\u0C55-\\u0C56\\u0C62-\\u0C63\\u0C81\\u0CBC\\u0CBF\\u0CC6\\u0CCC-\\u0CCD\\u0CE2-\\u0CE3\\u0D01\\u0D41-\\u0D44\\u0D4D\\u0D62-\\u0D63\\u0DCA\\u0DD2-\\u0DD4\\u0DD6\\u0E31\\u0E34-\\u0E3A\\u0E47-\\u0E4E\\u0EB1\\u0EB4-\\u0EB9\\u0EBB-\\u0EBC\\u0EC8-\\u0ECD\\u0F18-\\u0F19\\u0F35\\u0F37\\u0F39\\u0F71-\\u0F7E\\u0F80-\\u0F84\\u0F86-\\u0F87\\u0F8D-\\u0F97\\u0F99-\\u0FBC\\u0FC6\\u102D-\\u1030\\u1032-\\u1037\\u1039-\\u103A\\u103D-\\u103E\\u1058-\\u1059\\u105E-\\u1060\\u1071-\\u1074\\u1082\\u1085-\\u1086\\u108D\\u109D\\u135D-\\u135F\\u1712-\\u1714\\u1732-\\u1734\\u1752-\\u1753\\u1772-\\u1773\\u17B4-\\u17B5\\u17B7-\\u17BD\\u17C6\\u17C9-\\u17D3\\u17DD\\u180B-\\u180D\\u18A9\\u1920-\\u1922\\u1927-\\u1928\\u1932\\u1939-\\u193B\\u1A17-\\u1A18\\u1A1B\\u1A56\\u1A58-\\u1A5E\\u1A60\\u1A62\\u1A65-\\u1A6C\\u1A73-\\u1A7C\\u1A7F\\u1AB0-\\u1ABD\\u1B00-\\u1B03\\u1B34\\u1B36-\\u1B3A\\u1B3C\\u1B42\\u1B6B-\\u1B73\\u1B80-\\u1B81\\u1BA2-\\u1BA5\\u1BA8-\\u1BA9\\u1BAB-\\u1BAD\\u1BE6\\u1BE8-\\u1BE9\\u1BED\\u1BEF-\\u1BF1\\u1C2C-\\u1C33\\u1C36-\\u1C37\\u1CD0-\\u1CD2\\u1CD4-\\u1CE0\\u1CE2-\\u1CE8\\u1CED\\u1CF4\\u1CF8-\\u1CF9\\u1DC0-\\u1DF5\\u1DFC-\\u1DFF\\u20D0-\\u20DC\\u20E1\\u20E5-\\u20F0\\u2CEF-\\u2CF1\\u2D7F\\u2DE0-\\u2DFF\\u302A-\\u302D\\u3099-\\u309A\\uA66F\\uA674-\\uA67D\\uA69E-\\uA69F\\uA6F0-\\uA6F1\\uA802\\uA806\\uA80B\\uA825-\\uA826\\uA8C4\\uA8E0-\\uA8F1\\uA926-\\uA92D\\uA947-\\uA951\\uA980-\\uA982\\uA9B3\\uA9B6-\\uA9B9\\uA9BC\\uA9E5\\uAA29-\\uAA2E\\uAA31-\\uAA32\\uAA35-\\uAA36\\uAA43\\uAA4C\\uAA7C\\uAAB0\\uAAB2-\\uAAB4\\uAAB7-\\uAAB8\\uAABE-\\uAABF\\uAAC1\\uAAEC-\\uAAED\\uAAF6\\uABE5\\uABE8\\uABED\\uFB1E\\uFE00-\\uFE0F\\uFE20-\\uFE2F]" },
-        peg$c158 = /^[0-9\u0660-\u0669\u06F0-\u06F9\u07C0-\u07C9\u0966-\u096F\u09E6-\u09EF\u0A66-\u0A6F\u0AE6-\u0AEF\u0B66-\u0B6F\u0BE6-\u0BEF\u0C66-\u0C6F\u0CE6-\u0CEF\u0D66-\u0D6F\u0DE6-\u0DEF\u0E50-\u0E59\u0ED0-\u0ED9\u0F20-\u0F29\u1040-\u1049\u1090-\u1099\u17E0-\u17E9\u1810-\u1819\u1946-\u194F\u19D0-\u19D9\u1A80-\u1A89\u1A90-\u1A99\u1B50-\u1B59\u1BB0-\u1BB9\u1C40-\u1C49\u1C50-\u1C59\uA620-\uA629\uA8D0-\uA8D9\uA900-\uA909\uA9D0-\uA9D9\uA9F0-\uA9F9\uAA50-\uAA59\uABF0-\uABF9\uFF10-\uFF19]/,
-        peg$c159 = { type: "class", value: "[\\u0030-\\u0039\\u0660-\\u0669\\u06F0-\\u06F9\\u07C0-\\u07C9\\u0966-\\u096F\\u09E6-\\u09EF\\u0A66-\\u0A6F\\u0AE6-\\u0AEF\\u0B66-\\u0B6F\\u0BE6-\\u0BEF\\u0C66-\\u0C6F\\u0CE6-\\u0CEF\\u0D66-\\u0D6F\\u0DE6-\\u0DEF\\u0E50-\\u0E59\\u0ED0-\\u0ED9\\u0F20-\\u0F29\\u1040-\\u1049\\u1090-\\u1099\\u17E0-\\u17E9\\u1810-\\u1819\\u1946-\\u194F\\u19D0-\\u19D9\\u1A80-\\u1A89\\u1A90-\\u1A99\\u1B50-\\u1B59\\u1BB0-\\u1BB9\\u1C40-\\u1C49\\u1C50-\\u1C59\\uA620-\\uA629\\uA8D0-\\uA8D9\\uA900-\\uA909\\uA9D0-\\uA9D9\\uA9F0-\\uA9F9\\uAA50-\\uAA59\\uABF0-\\uABF9\\uFF10-\\uFF19]", description: "[\\u0030-\\u0039\\u0660-\\u0669\\u06F0-\\u06F9\\u07C0-\\u07C9\\u0966-\\u096F\\u09E6-\\u09EF\\u0A66-\\u0A6F\\u0AE6-\\u0AEF\\u0B66-\\u0B6F\\u0BE6-\\u0BEF\\u0C66-\\u0C6F\\u0CE6-\\u0CEF\\u0D66-\\u0D6F\\u0DE6-\\u0DEF\\u0E50-\\u0E59\\u0ED0-\\u0ED9\\u0F20-\\u0F29\\u1040-\\u1049\\u1090-\\u1099\\u17E0-\\u17E9\\u1810-\\u1819\\u1946-\\u194F\\u19D0-\\u19D9\\u1A80-\\u1A89\\u1A90-\\u1A99\\u1B50-\\u1B59\\u1BB0-\\u1BB9\\u1C40-\\u1C49\\u1C50-\\u1C59\\uA620-\\uA629\\uA8D0-\\uA8D9\\uA900-\\uA909\\uA9D0-\\uA9D9\\uA9F0-\\uA9F9\\uAA50-\\uAA59\\uABF0-\\uABF9\\uFF10-\\uFF19]" },
-        peg$c160 = /^[\u16EE-\u16F0\u2160-\u2182\u2185-\u2188\u3007\u3021-\u3029\u3038-\u303A\uA6E6-\uA6EF]/,
-        peg$c161 = { type: "class", value: "[\\u16EE-\\u16F0\\u2160-\\u2182\\u2185-\\u2188\\u3007\\u3021-\\u3029\\u3038-\\u303A\\uA6E6-\\uA6EF]", description: "[\\u16EE-\\u16F0\\u2160-\\u2182\\u2185-\\u2188\\u3007\\u3021-\\u3029\\u3038-\\u303A\\uA6E6-\\uA6EF]" },
-        peg$c162 = /^[_\u203F-\u2040\u2054\uFE33-\uFE34\uFE4D-\uFE4F\uFF3F]/,
-        peg$c163 = { type: "class", value: "[\\u005F\\u203F-\\u2040\\u2054\\uFE33-\\uFE34\\uFE4D-\\uFE4F\\uFF3F]", description: "[\\u005F\\u203F-\\u2040\\u2054\\uFE33-\\uFE34\\uFE4D-\\uFE4F\\uFF3F]" },
-        peg$c164 = /^[ \xA0\u1680\u2000-\u200A\u202F\u205F\u3000]/,
-        peg$c165 = { type: "class", value: "[\\u0020\\u00A0\\u1680\\u2000-\\u200A\\u202F\\u205F\\u3000]", description: "[\\u0020\\u00A0\\u1680\\u2000-\\u200A\\u202F\\u205F\\u3000]" },
-        peg$c166 = "break",
-        peg$c167 = { type: "literal", value: "break", description: "\"break\"" },
-        peg$c168 = "case",
-        peg$c169 = { type: "literal", value: "case", description: "\"case\"" },
-        peg$c170 = "catch",
-        peg$c171 = { type: "literal", value: "catch", description: "\"catch\"" },
-        peg$c172 = "class",
-        peg$c173 = { type: "literal", value: "class", description: "\"class\"" },
-        peg$c174 = "const",
-        peg$c175 = { type: "literal", value: "const", description: "\"const\"" },
-        peg$c176 = "continue",
-        peg$c177 = { type: "literal", value: "continue", description: "\"continue\"" },
-        peg$c178 = "debugger",
-        peg$c179 = { type: "literal", value: "debugger", description: "\"debugger\"" },
-        peg$c180 = "default",
-        peg$c181 = { type: "literal", value: "default", description: "\"default\"" },
-        peg$c182 = "delete",
-        peg$c183 = { type: "literal", value: "delete", description: "\"delete\"" },
-        peg$c184 = "do",
-        peg$c185 = { type: "literal", value: "do", description: "\"do\"" },
-        peg$c186 = "else",
-        peg$c187 = { type: "literal", value: "else", description: "\"else\"" },
-        peg$c188 = "enum",
-        peg$c189 = { type: "literal", value: "enum", description: "\"enum\"" },
-        peg$c190 = "export",
-        peg$c191 = { type: "literal", value: "export", description: "\"export\"" },
-        peg$c192 = "extends",
-        peg$c193 = { type: "literal", value: "extends", description: "\"extends\"" },
-        peg$c194 = "false",
-        peg$c195 = { type: "literal", value: "false", description: "\"false\"" },
-        peg$c196 = "finally",
-        peg$c197 = { type: "literal", value: "finally", description: "\"finally\"" },
-        peg$c198 = "for",
-        peg$c199 = { type: "literal", value: "for", description: "\"for\"" },
-        peg$c200 = "function",
-        peg$c201 = { type: "literal", value: "function", description: "\"function\"" },
-        peg$c202 = "if",
-        peg$c203 = { type: "literal", value: "if", description: "\"if\"" },
-        peg$c204 = "import",
-        peg$c205 = { type: "literal", value: "import", description: "\"import\"" },
-        peg$c206 = "instanceof",
-        peg$c207 = { type: "literal", value: "instanceof", description: "\"instanceof\"" },
-        peg$c208 = "in",
-        peg$c209 = { type: "literal", value: "in", description: "\"in\"" },
-        peg$c210 = "new",
-        peg$c211 = { type: "literal", value: "new", description: "\"new\"" },
-        peg$c212 = "null",
-        peg$c213 = { type: "literal", value: "null", description: "\"null\"" },
-        peg$c214 = "return",
-        peg$c215 = { type: "literal", value: "return", description: "\"return\"" },
-        peg$c216 = "super",
-        peg$c217 = { type: "literal", value: "super", description: "\"super\"" },
-        peg$c218 = "switch",
-        peg$c219 = { type: "literal", value: "switch", description: "\"switch\"" },
-        peg$c220 = "this",
-        peg$c221 = { type: "literal", value: "this", description: "\"this\"" },
-        peg$c222 = "throw",
-        peg$c223 = { type: "literal", value: "throw", description: "\"throw\"" },
-        peg$c224 = "true",
-        peg$c225 = { type: "literal", value: "true", description: "\"true\"" },
-        peg$c226 = "try",
-        peg$c227 = { type: "literal", value: "try", description: "\"try\"" },
-        peg$c228 = "typeof",
-        peg$c229 = { type: "literal", value: "typeof", description: "\"typeof\"" },
-        peg$c230 = "var",
-        peg$c231 = { type: "literal", value: "var", description: "\"var\"" },
-        peg$c232 = "void",
-        peg$c233 = { type: "literal", value: "void", description: "\"void\"" },
-        peg$c234 = "while",
-        peg$c235 = { type: "literal", value: "while", description: "\"while\"" },
-        peg$c236 = "with",
-        peg$c237 = { type: "literal", value: "with", description: "\"with\"" },
-        peg$c238 = ";",
-        peg$c239 = { type: "literal", value: ";", description: "\";\"" },
-
-        peg$currPos          = 0,
-        peg$savedPos         = 0,
-        peg$posDetailsCache  = [{ line: 1, column: 1, seenCR: false }],
-        peg$maxFailPos       = 0,
-        peg$maxFailExpected  = [],
-        peg$silentFails      = 0,
-
-        peg$result;
-
-    if ("startRule" in options) {
-      if (!(options.startRule in peg$startRuleFunctions)) {
-        throw new Error("Can't start parsing from rule \"" + options.startRule + "\".");
-      }
-
-      peg$startRuleFunction = peg$startRuleFunctions[options.startRule];
-    }
-
-    function text() {
-      return input.substring(peg$savedPos, peg$currPos);
-    }
-
-    function location() {
-      return peg$computeLocation(peg$savedPos, peg$currPos);
-    }
-
-    function expected(description) {
-      throw peg$buildException(
-        null,
-        [{ type: "other", description: description }],
-        input.substring(peg$savedPos, peg$currPos),
-        peg$computeLocation(peg$savedPos, peg$currPos)
-      );
-    }
-
-    function error(message) {
-      throw peg$buildException(
-        message,
-        null,
-        input.substring(peg$savedPos, peg$currPos),
-        peg$computeLocation(peg$savedPos, peg$currPos)
-      );
-    }
-
-    function peg$computePosDetails(pos) {
-      var details = peg$posDetailsCache[pos],
-          p, ch;
-
-      if (details) {
-        return details;
-      } else {
-        p = pos - 1;
-        while (!peg$posDetailsCache[p]) {
-          p--;
-        }
-
-        details = peg$posDetailsCache[p];
-        details = {
-          line:   details.line,
-          column: details.column,
-          seenCR: details.seenCR
-        };
-
-        while (p < pos) {
-          ch = input.charAt(p);
-          if (ch === "\n") {
-            if (!details.seenCR) { details.line++; }
-            details.column = 1;
-            details.seenCR = false;
-          } else if (ch === "\r" || ch === "\u2028" || ch === "\u2029") {
-            details.line++;
-            details.column = 1;
-            details.seenCR = true;
-          } else {
-            details.column++;
-            details.seenCR = false;
-          }
-
-          p++;
-        }
-
-        peg$posDetailsCache[pos] = details;
-        return details;
-      }
-    }
-
-    function peg$computeLocation(startPos, endPos) {
-      var startPosDetails = peg$computePosDetails(startPos),
-          endPosDetails   = peg$computePosDetails(endPos);
-
-      return {
-        start: {
-          offset: startPos,
-          line:   startPosDetails.line,
-          column: startPosDetails.column
-        },
-        end: {
-          offset: endPos,
-          line:   endPosDetails.line,
-          column: endPosDetails.column
-        }
-      };
-    }
-
-    function peg$fail(expected) {
-      if (peg$currPos < peg$maxFailPos) { return; }
-
-      if (peg$currPos > peg$maxFailPos) {
-        peg$maxFailPos = peg$currPos;
-        peg$maxFailExpected = [];
-      }
-
-      peg$maxFailExpected.push(expected);
-    }
-
-    function peg$buildException(message, expected, found, location) {
-      function cleanupExpected(expected) {
-        var i = 1;
-
-        expected.sort(function(a, b) {
-          if (a.description < b.description) {
-            return -1;
-          } else if (a.description > b.description) {
-            return 1;
-          } else {
-            return 0;
-          }
-        });
-
-        while (i < expected.length) {
-          if (expected[i - 1] === expected[i]) {
-            expected.splice(i, 1);
-          } else {
-            i++;
-          }
-        }
-      }
-
-      function buildMessage(expected, found) {
-        function stringEscape(s) {
-          function hex(ch) { return ch.charCodeAt(0).toString(16).toUpperCase(); }
-
-          return s
-            .replace(/\\/g,   '\\\\')
-            .replace(/"/g,    '\\"')
-            .replace(/\x08/g, '\\b')
-            .replace(/\t/g,   '\\t')
-            .replace(/\n/g,   '\\n')
-            .replace(/\f/g,   '\\f')
-            .replace(/\r/g,   '\\r')
-            .replace(/[\x00-\x07\x0B\x0E\x0F]/g, function(ch) { return '\\x0' + hex(ch); })
-            .replace(/[\x10-\x1F\x80-\xFF]/g,    function(ch) { return '\\x'  + hex(ch); })
-            .replace(/[\u0100-\u0FFF]/g,         function(ch) { return '\\u0' + hex(ch); })
-            .replace(/[\u1000-\uFFFF]/g,         function(ch) { return '\\u'  + hex(ch); });
-        }
-
-        var expectedDescs = new Array(expected.length),
-            expectedDesc, foundDesc, i;
-
-        for (i = 0; i < expected.length; i++) {
-          expectedDescs[i] = expected[i].description;
-        }
-
-        expectedDesc = expected.length > 1
-          ? expectedDescs.slice(0, -1).join(", ")
-              + " or "
-              + expectedDescs[expected.length - 1]
-          : expectedDescs[0];
-
-        foundDesc = found ? "\"" + stringEscape(found) + "\"" : "end of input";
-
-        return "Expected " + expectedDesc + " but " + foundDesc + " found.";
-      }
-
-      if (expected !== null) {
-        cleanupExpected(expected);
-      }
-
-      return new peg$SyntaxError(
-        message !== null ? message : buildMessage(expected, found),
-        expected,
-        found,
-        location
-      );
-    }
-
-    function peg$parseGrammar() {
-      var s0, s1, s2, s3, s4, s5, s6;
-
-      s0 = peg$currPos;
-      s1 = peg$parse__();
-      if (s1 !== peg$FAILED) {
-        s2 = peg$currPos;
-        s3 = peg$parseInitializer();
-        if (s3 !== peg$FAILED) {
-          s4 = peg$parse__();
-          if (s4 !== peg$FAILED) {
-            s3 = [s3, s4];
-            s2 = s3;
-          } else {
-            peg$currPos = s2;
-            s2 = peg$FAILED;
-          }
-        } else {
-          peg$currPos = s2;
-          s2 = peg$FAILED;
-        }
-        if (s2 === peg$FAILED) {
-          s2 = null;
-        }
-        if (s2 !== peg$FAILED) {
-          s3 = [];
-          s4 = peg$currPos;
-          s5 = peg$parseRule();
-          if (s5 !== peg$FAILED) {
-            s6 = peg$parse__();
-            if (s6 !== peg$FAILED) {
-              s5 = [s5, s6];
-              s4 = s5;
-            } else {
-              peg$currPos = s4;
-              s4 = peg$FAILED;
-            }
-          } else {
-            peg$currPos = s4;
-            s4 = peg$FAILED;
-          }
-          if (s4 !== peg$FAILED) {
-            while (s4 !== peg$FAILED) {
-              s3.push(s4);
-              s4 = peg$currPos;
-              s5 = peg$parseRule();
-              if (s5 !== peg$FAILED) {
-                s6 = peg$parse__();
-                if (s6 !== peg$FAILED) {
-                  s5 = [s5, s6];
-                  s4 = s5;
-                } else {
-                  peg$currPos = s4;
-                  s4 = peg$FAILED;
-                }
-              } else {
-                peg$currPos = s4;
-                s4 = peg$FAILED;
-              }
-            }
-          } else {
-            s3 = peg$FAILED;
-          }
-          if (s3 !== peg$FAILED) {
-            peg$savedPos = s0;
-            s1 = peg$c0(s2, s3);
-            s0 = s1;
-          } else {
-            peg$currPos = s0;
-            s0 = peg$FAILED;
-          }
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-
-      return s0;
-    }
-
-    function peg$parseInitializer() {
-      var s0, s1, s2;
-
-      s0 = peg$currPos;
-      s1 = peg$parseCodeBlock();
-      if (s1 !== peg$FAILED) {
-        s2 = peg$parseEOS();
-        if (s2 !== peg$FAILED) {
-          peg$savedPos = s0;
-          s1 = peg$c1(s1);
-          s0 = s1;
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-
-      return s0;
-    }
-
-    function peg$parseRule() {
-      var s0, s1, s2, s3, s4, s5, s6, s7;
-
-      s0 = peg$currPos;
-      s1 = peg$parseIdentifierName();
-      if (s1 !== peg$FAILED) {
-        s2 = peg$parse__();
-        if (s2 !== peg$FAILED) {
-          s3 = peg$currPos;
-          s4 = peg$parseStringLiteral();
-          if (s4 !== peg$FAILED) {
-            s5 = peg$parse__();
-            if (s5 !== peg$FAILED) {
-              s4 = [s4, s5];
-              s3 = s4;
-            } else {
-              peg$currPos = s3;
-              s3 = peg$FAILED;
-            }
-          } else {
-            peg$currPos = s3;
-            s3 = peg$FAILED;
-          }
-          if (s3 === peg$FAILED) {
-            s3 = null;
-          }
-          if (s3 !== peg$FAILED) {
-            if (input.charCodeAt(peg$currPos) === 61) {
-              s4 = peg$c2;
-              peg$currPos++;
-            } else {
-              s4 = peg$FAILED;
-              if (peg$silentFails === 0) { peg$fail(peg$c3); }
-            }
-            if (s4 !== peg$FAILED) {
-              s5 = peg$parse__();
-              if (s5 !== peg$FAILED) {
-                s6 = peg$parseChoiceExpression();
-                if (s6 !== peg$FAILED) {
-                  s7 = peg$parseEOS();
-                  if (s7 !== peg$FAILED) {
-                    peg$savedPos = s0;
-                    s1 = peg$c4(s1, s3, s6);
-                    s0 = s1;
-                  } else {
-                    peg$currPos = s0;
-                    s0 = peg$FAILED;
-                  }
-                } else {
-                  peg$currPos = s0;
-                  s0 = peg$FAILED;
-                }
-              } else {
-                peg$currPos = s0;
-                s0 = peg$FAILED;
-              }
-            } else {
-              peg$currPos = s0;
-              s0 = peg$FAILED;
-            }
-          } else {
-            peg$currPos = s0;
-            s0 = peg$FAILED;
-          }
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-
-      return s0;
-    }
-
-    function peg$parseChoiceExpression() {
-      var s0, s1, s2, s3, s4, s5, s6, s7;
-
-      s0 = peg$currPos;
-      s1 = peg$parseActionExpression();
-      if (s1 !== peg$FAILED) {
-        s2 = [];
-        s3 = peg$currPos;
-        s4 = peg$parse__();
-        if (s4 !== peg$FAILED) {
-          if (input.charCodeAt(peg$currPos) === 47) {
-            s5 = peg$c5;
-            peg$currPos++;
-          } else {
-            s5 = peg$FAILED;
-            if (peg$silentFails === 0) { peg$fail(peg$c6); }
-          }
-          if (s5 !== peg$FAILED) {
-            s6 = peg$parse__();
-            if (s6 !== peg$FAILED) {
-              s7 = peg$parseActionExpression();
-              if (s7 !== peg$FAILED) {
-                s4 = [s4, s5, s6, s7];
-                s3 = s4;
-              } else {
-                peg$currPos = s3;
-                s3 = peg$FAILED;
-              }
-            } else {
-              peg$currPos = s3;
-              s3 = peg$FAILED;
-            }
-          } else {
-            peg$currPos = s3;
-            s3 = peg$FAILED;
-          }
-        } else {
-          peg$currPos = s3;
-          s3 = peg$FAILED;
-        }
-        while (s3 !== peg$FAILED) {
-          s2.push(s3);
-          s3 = peg$currPos;
-          s4 = peg$parse__();
-          if (s4 !== peg$FAILED) {
-            if (input.charCodeAt(peg$currPos) === 47) {
-              s5 = peg$c5;
-              peg$currPos++;
-            } else {
-              s5 = peg$FAILED;
-              if (peg$silentFails === 0) { peg$fail(peg$c6); }
-            }
-            if (s5 !== peg$FAILED) {
-              s6 = peg$parse__();
-              if (s6 !== peg$FAILED) {
-                s7 = peg$parseActionExpression();
-                if (s7 !== peg$FAILED) {
-                  s4 = [s4, s5, s6, s7];
-                  s3 = s4;
-                } else {
-                  peg$currPos = s3;
-                  s3 = peg$FAILED;
-                }
-              } else {
-                peg$currPos = s3;
-                s3 = peg$FAILED;
-              }
-            } else {
-              peg$currPos = s3;
-              s3 = peg$FAILED;
-            }
-          } else {
-            peg$currPos = s3;
-            s3 = peg$FAILED;
-          }
-        }
-        if (s2 !== peg$FAILED) {
-          peg$savedPos = s0;
-          s1 = peg$c7(s1, s2);
-          s0 = s1;
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-
-      return s0;
-    }
-
-    function peg$parseActionExpression() {
-      var s0, s1, s2, s3, s4;
-
-      s0 = peg$currPos;
-      s1 = peg$parseSequenceExpression();
-      if (s1 !== peg$FAILED) {
-        s2 = peg$currPos;
-        s3 = peg$parse__();
-        if (s3 !== peg$FAILED) {
-          s4 = peg$parseCodeBlock();
-          if (s4 !== peg$FAILED) {
-            s3 = [s3, s4];
-            s2 = s3;
-          } else {
-            peg$currPos = s2;
-            s2 = peg$FAILED;
-          }
-        } else {
-          peg$currPos = s2;
-          s2 = peg$FAILED;
-        }
-        if (s2 === peg$FAILED) {
-          s2 = null;
-        }
-        if (s2 !== peg$FAILED) {
-          peg$savedPos = s0;
-          s1 = peg$c8(s1, s2);
-          s0 = s1;
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-
-      return s0;
-    }
-
-    function peg$parseSequenceExpression() {
-      var s0, s1, s2, s3, s4, s5;
-
-      s0 = peg$currPos;
-      s1 = peg$parseLabeledExpression();
-      if (s1 !== peg$FAILED) {
-        s2 = [];
-        s3 = peg$currPos;
-        s4 = peg$parse__();
-        if (s4 !== peg$FAILED) {
-          s5 = peg$parseLabeledExpression();
-          if (s5 !== peg$FAILED) {
-            s4 = [s4, s5];
-            s3 = s4;
-          } else {
-            peg$currPos = s3;
-            s3 = peg$FAILED;
-          }
-        } else {
-          peg$currPos = s3;
-          s3 = peg$FAILED;
-        }
-        while (s3 !== peg$FAILED) {
-          s2.push(s3);
-          s3 = peg$currPos;
-          s4 = peg$parse__();
-          if (s4 !== peg$FAILED) {
-            s5 = peg$parseLabeledExpression();
-            if (s5 !== peg$FAILED) {
-              s4 = [s4, s5];
-              s3 = s4;
-            } else {
-              peg$currPos = s3;
-              s3 = peg$FAILED;
-            }
-          } else {
-            peg$currPos = s3;
-            s3 = peg$FAILED;
-          }
-        }
-        if (s2 !== peg$FAILED) {
-          peg$savedPos = s0;
-          s1 = peg$c9(s1, s2);
-          s0 = s1;
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-
-      return s0;
-    }
-
-    function peg$parseLabeledExpression() {
-      var s0, s1, s2, s3, s4, s5;
-
-      s0 = peg$currPos;
-      s1 = peg$parseIdentifier();
-      if (s1 !== peg$FAILED) {
-        s2 = peg$parse__();
-        if (s2 !== peg$FAILED) {
-          if (input.charCodeAt(peg$currPos) === 58) {
-            s3 = peg$c10;
-            peg$currPos++;
-          } else {
-            s3 = peg$FAILED;
-            if (peg$silentFails === 0) { peg$fail(peg$c11); }
-          }
-          if (s3 !== peg$FAILED) {
-            s4 = peg$parse__();
-            if (s4 !== peg$FAILED) {
-              s5 = peg$parsePrefixedExpression();
-              if (s5 !== peg$FAILED) {
-                peg$savedPos = s0;
-                s1 = peg$c12(s1, s5);
-                s0 = s1;
-              } else {
-                peg$currPos = s0;
-                s0 = peg$FAILED;
-              }
-            } else {
-              peg$currPos = s0;
-              s0 = peg$FAILED;
-            }
-          } else {
-            peg$currPos = s0;
-            s0 = peg$FAILED;
-          }
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-      if (s0 === peg$FAILED) {
-        s0 = peg$parsePrefixedExpression();
-      }
-
-      return s0;
-    }
-
-    function peg$parsePrefixedExpression() {
-      var s0, s1, s2, s3;
-
-      s0 = peg$currPos;
-      s1 = peg$parsePrefixedOperator();
-      if (s1 !== peg$FAILED) {
-        s2 = peg$parse__();
-        if (s2 !== peg$FAILED) {
-          s3 = peg$parseSuffixedExpression();
-          if (s3 !== peg$FAILED) {
-            peg$savedPos = s0;
-            s1 = peg$c13(s1, s3);
-            s0 = s1;
-          } else {
-            peg$currPos = s0;
-            s0 = peg$FAILED;
-          }
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-      if (s0 === peg$FAILED) {
-        s0 = peg$parseSuffixedExpression();
-      }
-
-      return s0;
-    }
-
-    function peg$parsePrefixedOperator() {
-      var s0;
-
-      if (input.charCodeAt(peg$currPos) === 36) {
-        s0 = peg$c14;
-        peg$currPos++;
-      } else {
-        s0 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c15); }
-      }
-      if (s0 === peg$FAILED) {
-        if (input.charCodeAt(peg$currPos) === 38) {
-          s0 = peg$c16;
-          peg$currPos++;
-        } else {
-          s0 = peg$FAILED;
-          if (peg$silentFails === 0) { peg$fail(peg$c17); }
-        }
-        if (s0 === peg$FAILED) {
-          if (input.charCodeAt(peg$currPos) === 33) {
-            s0 = peg$c18;
-            peg$currPos++;
-          } else {
-            s0 = peg$FAILED;
-            if (peg$silentFails === 0) { peg$fail(peg$c19); }
-          }
-        }
-      }
-
-      return s0;
-    }
-
-    function peg$parseSuffixedExpression() {
-      var s0, s1, s2, s3;
-
-      s0 = peg$currPos;
-      s1 = peg$parsePrimaryExpression();
-      if (s1 !== peg$FAILED) {
-        s2 = peg$parse__();
-        if (s2 !== peg$FAILED) {
-          s3 = peg$parseSuffixedOperator();
-          if (s3 !== peg$FAILED) {
-            peg$savedPos = s0;
-            s1 = peg$c20(s1, s3);
-            s0 = s1;
-          } else {
-            peg$currPos = s0;
-            s0 = peg$FAILED;
-          }
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-      if (s0 === peg$FAILED) {
-        s0 = peg$parsePrimaryExpression();
-      }
-
-      return s0;
-    }
-
-    function peg$parseSuffixedOperator() {
-      var s0;
-
-      if (input.charCodeAt(peg$currPos) === 63) {
-        s0 = peg$c21;
-        peg$currPos++;
-      } else {
-        s0 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c22); }
-      }
-      if (s0 === peg$FAILED) {
-        if (input.charCodeAt(peg$currPos) === 42) {
-          s0 = peg$c23;
-          peg$currPos++;
-        } else {
-          s0 = peg$FAILED;
-          if (peg$silentFails === 0) { peg$fail(peg$c24); }
-        }
-        if (s0 === peg$FAILED) {
-          if (input.charCodeAt(peg$currPos) === 43) {
-            s0 = peg$c25;
-            peg$currPos++;
-          } else {
-            s0 = peg$FAILED;
-            if (peg$silentFails === 0) { peg$fail(peg$c26); }
-          }
-        }
-      }
-
-      return s0;
-    }
-
-    function peg$parsePrimaryExpression() {
-      var s0, s1, s2, s3, s4, s5;
-
-      s0 = peg$parseLiteralMatcher();
-      if (s0 === peg$FAILED) {
-        s0 = peg$parseCharacterClassMatcher();
-        if (s0 === peg$FAILED) {
-          s0 = peg$parseAnyMatcher();
-          if (s0 === peg$FAILED) {
-            s0 = peg$parseRuleReferenceExpression();
-            if (s0 === peg$FAILED) {
-              s0 = peg$parseSemanticPredicateExpression();
-              if (s0 === peg$FAILED) {
-                s0 = peg$currPos;
-                if (input.charCodeAt(peg$currPos) === 40) {
-                  s1 = peg$c27;
-                  peg$currPos++;
-                } else {
-                  s1 = peg$FAILED;
-                  if (peg$silentFails === 0) { peg$fail(peg$c28); }
-                }
-                if (s1 !== peg$FAILED) {
-                  s2 = peg$parse__();
-                  if (s2 !== peg$FAILED) {
-                    s3 = peg$parseChoiceExpression();
-                    if (s3 !== peg$FAILED) {
-                      s4 = peg$parse__();
-                      if (s4 !== peg$FAILED) {
-                        if (input.charCodeAt(peg$currPos) === 41) {
-                          s5 = peg$c29;
-                          peg$currPos++;
-                        } else {
-                          s5 = peg$FAILED;
-                          if (peg$silentFails === 0) { peg$fail(peg$c30); }
-                        }
-                        if (s5 !== peg$FAILED) {
-                          peg$savedPos = s0;
-                          s1 = peg$c31(s3);
-                          s0 = s1;
-                        } else {
-                          peg$currPos = s0;
-                          s0 = peg$FAILED;
-                        }
-                      } else {
-                        peg$currPos = s0;
-                        s0 = peg$FAILED;
-                      }
-                    } else {
-                      peg$currPos = s0;
-                      s0 = peg$FAILED;
-                    }
-                  } else {
-                    peg$currPos = s0;
-                    s0 = peg$FAILED;
-                  }
-                } else {
-                  peg$currPos = s0;
-                  s0 = peg$FAILED;
-                }
-              }
-            }
-          }
-        }
-      }
-
-      return s0;
-    }
-
-    function peg$parseRuleReferenceExpression() {
-      var s0, s1, s2, s3, s4, s5, s6, s7;
-
-      s0 = peg$currPos;
-      s1 = peg$parseIdentifierName();
-      if (s1 !== peg$FAILED) {
-        s2 = peg$currPos;
-        peg$silentFails++;
-        s3 = peg$currPos;
-        s4 = peg$parse__();
-        if (s4 !== peg$FAILED) {
-          s5 = peg$currPos;
-          s6 = peg$parseStringLiteral();
-          if (s6 !== peg$FAILED) {
-            s7 = peg$parse__();
-            if (s7 !== peg$FAILED) {
-              s6 = [s6, s7];
-              s5 = s6;
-            } else {
-              peg$currPos = s5;
-              s5 = peg$FAILED;
-            }
-          } else {
-            peg$currPos = s5;
-            s5 = peg$FAILED;
-          }
-          if (s5 === peg$FAILED) {
-            s5 = null;
-          }
-          if (s5 !== peg$FAILED) {
-            if (input.charCodeAt(peg$currPos) === 61) {
-              s6 = peg$c2;
-              peg$currPos++;
-            } else {
-              s6 = peg$FAILED;
-              if (peg$silentFails === 0) { peg$fail(peg$c3); }
-            }
-            if (s6 !== peg$FAILED) {
-              s4 = [s4, s5, s6];
-              s3 = s4;
-            } else {
-              peg$currPos = s3;
-              s3 = peg$FAILED;
-            }
-          } else {
-            peg$currPos = s3;
-            s3 = peg$FAILED;
-          }
-        } else {
-          peg$currPos = s3;
-          s3 = peg$FAILED;
-        }
-        peg$silentFails--;
-        if (s3 === peg$FAILED) {
-          s2 = void 0;
-        } else {
-          peg$currPos = s2;
-          s2 = peg$FAILED;
-        }
-        if (s2 !== peg$FAILED) {
-          peg$savedPos = s0;
-          s1 = peg$c32(s1);
-          s0 = s1;
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-
-      return s0;
-    }
-
-    function peg$parseSemanticPredicateExpression() {
-      var s0, s1, s2, s3;
-
-      s0 = peg$currPos;
-      s1 = peg$parseSemanticPredicateOperator();
-      if (s1 !== peg$FAILED) {
-        s2 = peg$parse__();
-        if (s2 !== peg$FAILED) {
-          s3 = peg$parseCodeBlock();
-          if (s3 !== peg$FAILED) {
-            peg$savedPos = s0;
-            s1 = peg$c33(s1, s3);
-            s0 = s1;
-          } else {
-            peg$currPos = s0;
-            s0 = peg$FAILED;
-          }
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-
-      return s0;
-    }
-
-    function peg$parseSemanticPredicateOperator() {
-      var s0;
-
-      if (input.charCodeAt(peg$currPos) === 38) {
-        s0 = peg$c16;
-        peg$currPos++;
-      } else {
-        s0 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c17); }
-      }
-      if (s0 === peg$FAILED) {
-        if (input.charCodeAt(peg$currPos) === 33) {
-          s0 = peg$c18;
-          peg$currPos++;
-        } else {
-          s0 = peg$FAILED;
-          if (peg$silentFails === 0) { peg$fail(peg$c19); }
-        }
-      }
-
-      return s0;
-    }
-
-    function peg$parseSourceCharacter() {
-      var s0;
-
-      if (input.length > peg$currPos) {
-        s0 = input.charAt(peg$currPos);
-        peg$currPos++;
-      } else {
-        s0 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c34); }
-      }
-
-      return s0;
-    }
-
-    function peg$parseWhiteSpace() {
-      var s0, s1;
-
-      peg$silentFails++;
-      if (input.charCodeAt(peg$currPos) === 9) {
-        s0 = peg$c36;
-        peg$currPos++;
-      } else {
-        s0 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c37); }
-      }
-      if (s0 === peg$FAILED) {
-        if (input.charCodeAt(peg$currPos) === 11) {
-          s0 = peg$c38;
-          peg$currPos++;
-        } else {
-          s0 = peg$FAILED;
-          if (peg$silentFails === 0) { peg$fail(peg$c39); }
-        }
-        if (s0 === peg$FAILED) {
-          if (input.charCodeAt(peg$currPos) === 12) {
-            s0 = peg$c40;
-            peg$currPos++;
-          } else {
-            s0 = peg$FAILED;
-            if (peg$silentFails === 0) { peg$fail(peg$c41); }
-          }
-          if (s0 === peg$FAILED) {
-            if (input.charCodeAt(peg$currPos) === 32) {
-              s0 = peg$c42;
-              peg$currPos++;
-            } else {
-              s0 = peg$FAILED;
-              if (peg$silentFails === 0) { peg$fail(peg$c43); }
-            }
-            if (s0 === peg$FAILED) {
-              if (input.charCodeAt(peg$currPos) === 160) {
-                s0 = peg$c44;
-                peg$currPos++;
-              } else {
-                s0 = peg$FAILED;
-                if (peg$silentFails === 0) { peg$fail(peg$c45); }
-              }
-              if (s0 === peg$FAILED) {
-                if (input.charCodeAt(peg$currPos) === 65279) {
-                  s0 = peg$c46;
-                  peg$currPos++;
-                } else {
-                  s0 = peg$FAILED;
-                  if (peg$silentFails === 0) { peg$fail(peg$c47); }
-                }
-                if (s0 === peg$FAILED) {
-                  s0 = peg$parseZs();
-                }
-              }
-            }
-          }
-        }
-      }
-      peg$silentFails--;
-      if (s0 === peg$FAILED) {
-        s1 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c35); }
-      }
-
-      return s0;
-    }
-
-    function peg$parseLineTerminator() {
-      var s0;
-
-      if (peg$c48.test(input.charAt(peg$currPos))) {
-        s0 = input.charAt(peg$currPos);
-        peg$currPos++;
-      } else {
-        s0 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c49); }
-      }
-
-      return s0;
-    }
-
-    function peg$parseLineTerminatorSequence() {
-      var s0, s1;
-
-      peg$silentFails++;
-      if (input.charCodeAt(peg$currPos) === 10) {
-        s0 = peg$c51;
-        peg$currPos++;
-      } else {
-        s0 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c52); }
-      }
-      if (s0 === peg$FAILED) {
-        if (input.substr(peg$currPos, 2) === peg$c53) {
-          s0 = peg$c53;
-          peg$currPos += 2;
-        } else {
-          s0 = peg$FAILED;
-          if (peg$silentFails === 0) { peg$fail(peg$c54); }
-        }
-        if (s0 === peg$FAILED) {
-          if (input.charCodeAt(peg$currPos) === 13) {
-            s0 = peg$c55;
-            peg$currPos++;
-          } else {
-            s0 = peg$FAILED;
-            if (peg$silentFails === 0) { peg$fail(peg$c56); }
-          }
-          if (s0 === peg$FAILED) {
-            if (input.charCodeAt(peg$currPos) === 8232) {
-              s0 = peg$c57;
-              peg$currPos++;
-            } else {
-              s0 = peg$FAILED;
-              if (peg$silentFails === 0) { peg$fail(peg$c58); }
-            }
-            if (s0 === peg$FAILED) {
-              if (input.charCodeAt(peg$currPos) === 8233) {
-                s0 = peg$c59;
-                peg$currPos++;
-              } else {
-                s0 = peg$FAILED;
-                if (peg$silentFails === 0) { peg$fail(peg$c60); }
-              }
-            }
-          }
-        }
-      }
-      peg$silentFails--;
-      if (s0 === peg$FAILED) {
-        s1 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c50); }
-      }
-
-      return s0;
-    }
-
-    function peg$parseComment() {
-      var s0, s1;
-
-      peg$silentFails++;
-      s0 = peg$parseMultiLineComment();
-      if (s0 === peg$FAILED) {
-        s0 = peg$parseSingleLineComment();
-      }
-      peg$silentFails--;
-      if (s0 === peg$FAILED) {
-        s1 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c61); }
-      }
-
-      return s0;
-    }
-
-    function peg$parseMultiLineComment() {
-      var s0, s1, s2, s3, s4, s5;
-
-      s0 = peg$currPos;
-      if (input.substr(peg$currPos, 2) === peg$c62) {
-        s1 = peg$c62;
-        peg$currPos += 2;
-      } else {
-        s1 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c63); }
-      }
-      if (s1 !== peg$FAILED) {
-        s2 = [];
-        s3 = peg$currPos;
-        s4 = peg$currPos;
-        peg$silentFails++;
-        if (input.substr(peg$currPos, 2) === peg$c64) {
-          s5 = peg$c64;
-          peg$currPos += 2;
-        } else {
-          s5 = peg$FAILED;
-          if (peg$silentFails === 0) { peg$fail(peg$c65); }
-        }
-        peg$silentFails--;
-        if (s5 === peg$FAILED) {
-          s4 = void 0;
-        } else {
-          peg$currPos = s4;
-          s4 = peg$FAILED;
-        }
-        if (s4 !== peg$FAILED) {
-          s5 = peg$parseSourceCharacter();
-          if (s5 !== peg$FAILED) {
-            s4 = [s4, s5];
-            s3 = s4;
-          } else {
-            peg$currPos = s3;
-            s3 = peg$FAILED;
-          }
-        } else {
-          peg$currPos = s3;
-          s3 = peg$FAILED;
-        }
-        while (s3 !== peg$FAILED) {
-          s2.push(s3);
-          s3 = peg$currPos;
-          s4 = peg$currPos;
-          peg$silentFails++;
-          if (input.substr(peg$currPos, 2) === peg$c64) {
-            s5 = peg$c64;
-            peg$currPos += 2;
-          } else {
-            s5 = peg$FAILED;
-            if (peg$silentFails === 0) { peg$fail(peg$c65); }
-          }
-          peg$silentFails--;
-          if (s5 === peg$FAILED) {
-            s4 = void 0;
-          } else {
-            peg$currPos = s4;
-            s4 = peg$FAILED;
-          }
-          if (s4 !== peg$FAILED) {
-            s5 = peg$parseSourceCharacter();
-            if (s5 !== peg$FAILED) {
-              s4 = [s4, s5];
-              s3 = s4;
-            } else {
-              peg$currPos = s3;
-              s3 = peg$FAILED;
-            }
-          } else {
-            peg$currPos = s3;
-            s3 = peg$FAILED;
-          }
-        }
-        if (s2 !== peg$FAILED) {
-          if (input.substr(peg$currPos, 2) === peg$c64) {
-            s3 = peg$c64;
-            peg$currPos += 2;
-          } else {
-            s3 = peg$FAILED;
-            if (peg$silentFails === 0) { peg$fail(peg$c65); }
-          }
-          if (s3 !== peg$FAILED) {
-            s1 = [s1, s2, s3];
-            s0 = s1;
-          } else {
-            peg$currPos = s0;
-            s0 = peg$FAILED;
-          }
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-
-      return s0;
-    }
-
-    function peg$parseMultiLineCommentNoLineTerminator() {
-      var s0, s1, s2, s3, s4, s5;
-
-      s0 = peg$currPos;
-      if (input.substr(peg$currPos, 2) === peg$c62) {
-        s1 = peg$c62;
-        peg$currPos += 2;
-      } else {
-        s1 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c63); }
-      }
-      if (s1 !== peg$FAILED) {
-        s2 = [];
-        s3 = peg$currPos;
-        s4 = peg$currPos;
-        peg$silentFails++;
-        if (input.substr(peg$currPos, 2) === peg$c64) {
-          s5 = peg$c64;
-          peg$currPos += 2;
-        } else {
-          s5 = peg$FAILED;
-          if (peg$silentFails === 0) { peg$fail(peg$c65); }
-        }
-        if (s5 === peg$FAILED) {
-          s5 = peg$parseLineTerminator();
-        }
-        peg$silentFails--;
-        if (s5 === peg$FAILED) {
-          s4 = void 0;
-        } else {
-          peg$currPos = s4;
-          s4 = peg$FAILED;
-        }
-        if (s4 !== peg$FAILED) {
-          s5 = peg$parseSourceCharacter();
-          if (s5 !== peg$FAILED) {
-            s4 = [s4, s5];
-            s3 = s4;
-          } else {
-            peg$currPos = s3;
-            s3 = peg$FAILED;
-          }
-        } else {
-          peg$currPos = s3;
-          s3 = peg$FAILED;
-        }
-        while (s3 !== peg$FAILED) {
-          s2.push(s3);
-          s3 = peg$currPos;
-          s4 = peg$currPos;
-          peg$silentFails++;
-          if (input.substr(peg$currPos, 2) === peg$c64) {
-            s5 = peg$c64;
-            peg$currPos += 2;
-          } else {
-            s5 = peg$FAILED;
-            if (peg$silentFails === 0) { peg$fail(peg$c65); }
-          }
-          if (s5 === peg$FAILED) {
-            s5 = peg$parseLineTerminator();
-          }
-          peg$silentFails--;
-          if (s5 === peg$FAILED) {
-            s4 = void 0;
-          } else {
-            peg$currPos = s4;
-            s4 = peg$FAILED;
-          }
-          if (s4 !== peg$FAILED) {
-            s5 = peg$parseSourceCharacter();
-            if (s5 !== peg$FAILED) {
-              s4 = [s4, s5];
-              s3 = s4;
-            } else {
-              peg$currPos = s3;
-              s3 = peg$FAILED;
-            }
-          } else {
-            peg$currPos = s3;
-            s3 = peg$FAILED;
-          }
-        }
-        if (s2 !== peg$FAILED) {
-          if (input.substr(peg$currPos, 2) === peg$c64) {
-            s3 = peg$c64;
-            peg$currPos += 2;
-          } else {
-            s3 = peg$FAILED;
-            if (peg$silentFails === 0) { peg$fail(peg$c65); }
-          }
-          if (s3 !== peg$FAILED) {
-            s1 = [s1, s2, s3];
-            s0 = s1;
-          } else {
-            peg$currPos = s0;
-            s0 = peg$FAILED;
-          }
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-
-      return s0;
-    }
-
-    function peg$parseSingleLineComment() {
-      var s0, s1, s2, s3, s4, s5;
-
-      s0 = peg$currPos;
-      if (input.substr(peg$currPos, 2) === peg$c66) {
-        s1 = peg$c66;
-        peg$currPos += 2;
-      } else {
-        s1 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c67); }
-      }
-      if (s1 !== peg$FAILED) {
-        s2 = [];
-        s3 = peg$currPos;
-        s4 = peg$currPos;
-        peg$silentFails++;
-        s5 = peg$parseLineTerminator();
-        peg$silentFails--;
-        if (s5 === peg$FAILED) {
-          s4 = void 0;
-        } else {
-          peg$currPos = s4;
-          s4 = peg$FAILED;
-        }
-        if (s4 !== peg$FAILED) {
-          s5 = peg$parseSourceCharacter();
-          if (s5 !== peg$FAILED) {
-            s4 = [s4, s5];
-            s3 = s4;
-          } else {
-            peg$currPos = s3;
-            s3 = peg$FAILED;
-          }
-        } else {
-          peg$currPos = s3;
-          s3 = peg$FAILED;
-        }
-        while (s3 !== peg$FAILED) {
-          s2.push(s3);
-          s3 = peg$currPos;
-          s4 = peg$currPos;
-          peg$silentFails++;
-          s5 = peg$parseLineTerminator();
-          peg$silentFails--;
-          if (s5 === peg$FAILED) {
-            s4 = void 0;
-          } else {
-            peg$currPos = s4;
-            s4 = peg$FAILED;
-          }
-          if (s4 !== peg$FAILED) {
-            s5 = peg$parseSourceCharacter();
-            if (s5 !== peg$FAILED) {
-              s4 = [s4, s5];
-              s3 = s4;
-            } else {
-              peg$currPos = s3;
-              s3 = peg$FAILED;
-            }
-          } else {
-            peg$currPos = s3;
-            s3 = peg$FAILED;
-          }
-        }
-        if (s2 !== peg$FAILED) {
-          s1 = [s1, s2];
-          s0 = s1;
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-
-      return s0;
-    }
-
-    function peg$parseIdentifier() {
-      var s0, s1, s2;
-
-      s0 = peg$currPos;
-      s1 = peg$currPos;
-      peg$silentFails++;
-      s2 = peg$parseReservedWord();
-      peg$silentFails--;
-      if (s2 === peg$FAILED) {
-        s1 = void 0;
-      } else {
-        peg$currPos = s1;
-        s1 = peg$FAILED;
-      }
-      if (s1 !== peg$FAILED) {
-        s2 = peg$parseIdentifierName();
-        if (s2 !== peg$FAILED) {
-          peg$savedPos = s0;
-          s1 = peg$c68(s2);
-          s0 = s1;
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-
-      return s0;
-    }
-
-    function peg$parseIdentifierName() {
-      var s0, s1, s2, s3;
-
-      peg$silentFails++;
-      s0 = peg$currPos;
-      s1 = peg$parseIdentifierStart();
-      if (s1 !== peg$FAILED) {
-        s2 = [];
-        s3 = peg$parseIdentifierPart();
-        while (s3 !== peg$FAILED) {
-          s2.push(s3);
-          s3 = peg$parseIdentifierPart();
-        }
-        if (s2 !== peg$FAILED) {
-          peg$savedPos = s0;
-          s1 = peg$c70(s1, s2);
-          s0 = s1;
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-      peg$silentFails--;
-      if (s0 === peg$FAILED) {
-        s1 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c69); }
-      }
-
-      return s0;
-    }
-
-    function peg$parseIdentifierStart() {
-      var s0, s1, s2;
-
-      s0 = peg$parseUnicodeLetter();
-      if (s0 === peg$FAILED) {
-        if (input.charCodeAt(peg$currPos) === 36) {
-          s0 = peg$c14;
-          peg$currPos++;
-        } else {
-          s0 = peg$FAILED;
-          if (peg$silentFails === 0) { peg$fail(peg$c15); }
-        }
-        if (s0 === peg$FAILED) {
-          if (input.charCodeAt(peg$currPos) === 95) {
-            s0 = peg$c71;
-            peg$currPos++;
-          } else {
-            s0 = peg$FAILED;
-            if (peg$silentFails === 0) { peg$fail(peg$c72); }
-          }
-          if (s0 === peg$FAILED) {
-            s0 = peg$currPos;
-            if (input.charCodeAt(peg$currPos) === 92) {
-              s1 = peg$c73;
-              peg$currPos++;
-            } else {
-              s1 = peg$FAILED;
-              if (peg$silentFails === 0) { peg$fail(peg$c74); }
-            }
-            if (s1 !== peg$FAILED) {
-              s2 = peg$parseUnicodeEscapeSequence();
-              if (s2 !== peg$FAILED) {
-                peg$savedPos = s0;
-                s1 = peg$c75(s2);
-                s0 = s1;
-              } else {
-                peg$currPos = s0;
-                s0 = peg$FAILED;
-              }
-            } else {
-              peg$currPos = s0;
-              s0 = peg$FAILED;
-            }
-          }
-        }
-      }
-
-      return s0;
-    }
-
-    function peg$parseIdentifierPart() {
-      var s0;
-
-      s0 = peg$parseIdentifierStart();
-      if (s0 === peg$FAILED) {
-        s0 = peg$parseUnicodeCombiningMark();
-        if (s0 === peg$FAILED) {
-          s0 = peg$parseNd();
-          if (s0 === peg$FAILED) {
-            s0 = peg$parsePc();
-            if (s0 === peg$FAILED) {
-              if (input.charCodeAt(peg$currPos) === 8204) {
-                s0 = peg$c76;
-                peg$currPos++;
-              } else {
-                s0 = peg$FAILED;
-                if (peg$silentFails === 0) { peg$fail(peg$c77); }
-              }
-              if (s0 === peg$FAILED) {
-                if (input.charCodeAt(peg$currPos) === 8205) {
-                  s0 = peg$c78;
-                  peg$currPos++;
-                } else {
-                  s0 = peg$FAILED;
-                  if (peg$silentFails === 0) { peg$fail(peg$c79); }
-                }
-              }
-            }
-          }
-        }
-      }
-
-      return s0;
-    }
-
-    function peg$parseUnicodeLetter() {
-      var s0;
-
-      s0 = peg$parseLu();
-      if (s0 === peg$FAILED) {
-        s0 = peg$parseLl();
-        if (s0 === peg$FAILED) {
-          s0 = peg$parseLt();
-          if (s0 === peg$FAILED) {
-            s0 = peg$parseLm();
-            if (s0 === peg$FAILED) {
-              s0 = peg$parseLo();
-              if (s0 === peg$FAILED) {
-                s0 = peg$parseNl();
-              }
-            }
-          }
-        }
-      }
-
-      return s0;
-    }
-
-    function peg$parseUnicodeCombiningMark() {
-      var s0;
-
-      s0 = peg$parseMn();
-      if (s0 === peg$FAILED) {
-        s0 = peg$parseMc();
-      }
-
-      return s0;
-    }
-
-    function peg$parseReservedWord() {
-      var s0;
-
-      s0 = peg$parseKeyword();
-      if (s0 === peg$FAILED) {
-        s0 = peg$parseFutureReservedWord();
-        if (s0 === peg$FAILED) {
-          s0 = peg$parseNullToken();
-          if (s0 === peg$FAILED) {
-            s0 = peg$parseBooleanLiteral();
-          }
-        }
-      }
-
-      return s0;
-    }
-
-    function peg$parseKeyword() {
-      var s0;
-
-      s0 = peg$parseBreakToken();
-      if (s0 === peg$FAILED) {
-        s0 = peg$parseCaseToken();
-        if (s0 === peg$FAILED) {
-          s0 = peg$parseCatchToken();
-          if (s0 === peg$FAILED) {
-            s0 = peg$parseContinueToken();
-            if (s0 === peg$FAILED) {
-              s0 = peg$parseDebuggerToken();
-              if (s0 === peg$FAILED) {
-                s0 = peg$parseDefaultToken();
-                if (s0 === peg$FAILED) {
-                  s0 = peg$parseDeleteToken();
-                  if (s0 === peg$FAILED) {
-                    s0 = peg$parseDoToken();
-                    if (s0 === peg$FAILED) {
-                      s0 = peg$parseElseToken();
-                      if (s0 === peg$FAILED) {
-                        s0 = peg$parseFinallyToken();
-                        if (s0 === peg$FAILED) {
-                          s0 = peg$parseForToken();
-                          if (s0 === peg$FAILED) {
-                            s0 = peg$parseFunctionToken();
-                            if (s0 === peg$FAILED) {
-                              s0 = peg$parseIfToken();
-                              if (s0 === peg$FAILED) {
-                                s0 = peg$parseInstanceofToken();
-                                if (s0 === peg$FAILED) {
-                                  s0 = peg$parseInToken();
-                                  if (s0 === peg$FAILED) {
-                                    s0 = peg$parseNewToken();
-                                    if (s0 === peg$FAILED) {
-                                      s0 = peg$parseReturnToken();
-                                      if (s0 === peg$FAILED) {
-                                        s0 = peg$parseSwitchToken();
-                                        if (s0 === peg$FAILED) {
-                                          s0 = peg$parseThisToken();
-                                          if (s0 === peg$FAILED) {
-                                            s0 = peg$parseThrowToken();
-                                            if (s0 === peg$FAILED) {
-                                              s0 = peg$parseTryToken();
-                                              if (s0 === peg$FAILED) {
-                                                s0 = peg$parseTypeofToken();
-                                                if (s0 === peg$FAILED) {
-                                                  s0 = peg$parseVarToken();
-                                                  if (s0 === peg$FAILED) {
-                                                    s0 = peg$parseVoidToken();
-                                                    if (s0 === peg$FAILED) {
-                                                      s0 = peg$parseWhileToken();
-                                                      if (s0 === peg$FAILED) {
-                                                        s0 = peg$parseWithToken();
-                                                      }
-                                                    }
-                                                  }
-                                                }
-                                              }
-                                            }
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-
-      return s0;
-    }
-
-    function peg$parseFutureReservedWord() {
-      var s0;
-
-      s0 = peg$parseClassToken();
-      if (s0 === peg$FAILED) {
-        s0 = peg$parseConstToken();
-        if (s0 === peg$FAILED) {
-          s0 = peg$parseEnumToken();
-          if (s0 === peg$FAILED) {
-            s0 = peg$parseExportToken();
-            if (s0 === peg$FAILED) {
-              s0 = peg$parseExtendsToken();
-              if (s0 === peg$FAILED) {
-                s0 = peg$parseImportToken();
-                if (s0 === peg$FAILED) {
-                  s0 = peg$parseSuperToken();
-                }
-              }
-            }
-          }
-        }
-      }
-
-      return s0;
-    }
-
-    function peg$parseBooleanLiteral() {
-      var s0;
-
-      s0 = peg$parseTrueToken();
-      if (s0 === peg$FAILED) {
-        s0 = peg$parseFalseToken();
-      }
-
-      return s0;
-    }
-
-    function peg$parseLiteralMatcher() {
-      var s0, s1, s2;
-
-      peg$silentFails++;
-      s0 = peg$currPos;
-      s1 = peg$parseStringLiteral();
-      if (s1 !== peg$FAILED) {
-        if (input.charCodeAt(peg$currPos) === 105) {
-          s2 = peg$c81;
-          peg$currPos++;
-        } else {
-          s2 = peg$FAILED;
-          if (peg$silentFails === 0) { peg$fail(peg$c82); }
-        }
-        if (s2 === peg$FAILED) {
-          s2 = null;
-        }
-        if (s2 !== peg$FAILED) {
-          peg$savedPos = s0;
-          s1 = peg$c83(s1, s2);
-          s0 = s1;
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-      peg$silentFails--;
-      if (s0 === peg$FAILED) {
-        s1 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c80); }
-      }
-
-      return s0;
-    }
-
-    function peg$parseStringLiteral() {
-      var s0, s1, s2, s3;
-
-      peg$silentFails++;
-      s0 = peg$currPos;
-      if (input.charCodeAt(peg$currPos) === 34) {
-        s1 = peg$c85;
-        peg$currPos++;
-      } else {
-        s1 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c86); }
-      }
-      if (s1 !== peg$FAILED) {
-        s2 = [];
-        s3 = peg$parseDoubleStringCharacter();
-        while (s3 !== peg$FAILED) {
-          s2.push(s3);
-          s3 = peg$parseDoubleStringCharacter();
-        }
-        if (s2 !== peg$FAILED) {
-          if (input.charCodeAt(peg$currPos) === 34) {
-            s3 = peg$c85;
-            peg$currPos++;
-          } else {
-            s3 = peg$FAILED;
-            if (peg$silentFails === 0) { peg$fail(peg$c86); }
-          }
-          if (s3 !== peg$FAILED) {
-            peg$savedPos = s0;
-            s1 = peg$c87(s2);
-            s0 = s1;
-          } else {
-            peg$currPos = s0;
-            s0 = peg$FAILED;
-          }
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-      if (s0 === peg$FAILED) {
-        s0 = peg$currPos;
-        if (input.charCodeAt(peg$currPos) === 39) {
-          s1 = peg$c88;
-          peg$currPos++;
-        } else {
-          s1 = peg$FAILED;
-          if (peg$silentFails === 0) { peg$fail(peg$c89); }
-        }
-        if (s1 !== peg$FAILED) {
-          s2 = [];
-          s3 = peg$parseSingleStringCharacter();
-          while (s3 !== peg$FAILED) {
-            s2.push(s3);
-            s3 = peg$parseSingleStringCharacter();
-          }
-          if (s2 !== peg$FAILED) {
-            if (input.charCodeAt(peg$currPos) === 39) {
-              s3 = peg$c88;
-              peg$currPos++;
-            } else {
-              s3 = peg$FAILED;
-              if (peg$silentFails === 0) { peg$fail(peg$c89); }
-            }
-            if (s3 !== peg$FAILED) {
-              peg$savedPos = s0;
-              s1 = peg$c87(s2);
-              s0 = s1;
-            } else {
-              peg$currPos = s0;
-              s0 = peg$FAILED;
-            }
-          } else {
-            peg$currPos = s0;
-            s0 = peg$FAILED;
-          }
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      }
-      peg$silentFails--;
-      if (s0 === peg$FAILED) {
-        s1 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c84); }
-      }
-
-      return s0;
-    }
-
-    function peg$parseDoubleStringCharacter() {
-      var s0, s1, s2;
-
-      s0 = peg$currPos;
-      s1 = peg$currPos;
-      peg$silentFails++;
-      if (input.charCodeAt(peg$currPos) === 34) {
-        s2 = peg$c85;
-        peg$currPos++;
-      } else {
-        s2 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c86); }
-      }
-      if (s2 === peg$FAILED) {
-        if (input.charCodeAt(peg$currPos) === 92) {
-          s2 = peg$c73;
-          peg$currPos++;
-        } else {
-          s2 = peg$FAILED;
-          if (peg$silentFails === 0) { peg$fail(peg$c74); }
-        }
-        if (s2 === peg$FAILED) {
-          s2 = peg$parseLineTerminator();
-        }
-      }
-      peg$silentFails--;
-      if (s2 === peg$FAILED) {
-        s1 = void 0;
-      } else {
-        peg$currPos = s1;
-        s1 = peg$FAILED;
-      }
-      if (s1 !== peg$FAILED) {
-        s2 = peg$parseSourceCharacter();
-        if (s2 !== peg$FAILED) {
-          peg$savedPos = s0;
-          s1 = peg$c90();
-          s0 = s1;
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-      if (s0 === peg$FAILED) {
-        s0 = peg$currPos;
-        if (input.charCodeAt(peg$currPos) === 92) {
-          s1 = peg$c73;
-          peg$currPos++;
-        } else {
-          s1 = peg$FAILED;
-          if (peg$silentFails === 0) { peg$fail(peg$c74); }
-        }
-        if (s1 !== peg$FAILED) {
-          s2 = peg$parseEscapeSequence();
-          if (s2 !== peg$FAILED) {
-            peg$savedPos = s0;
-            s1 = peg$c75(s2);
-            s0 = s1;
-          } else {
-            peg$currPos = s0;
-            s0 = peg$FAILED;
-          }
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-        if (s0 === peg$FAILED) {
-          s0 = peg$parseLineContinuation();
-        }
-      }
-
-      return s0;
-    }
-
-    function peg$parseSingleStringCharacter() {
-      var s0, s1, s2;
-
-      s0 = peg$currPos;
-      s1 = peg$currPos;
-      peg$silentFails++;
-      if (input.charCodeAt(peg$currPos) === 39) {
-        s2 = peg$c88;
-        peg$currPos++;
-      } else {
-        s2 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c89); }
-      }
-      if (s2 === peg$FAILED) {
-        if (input.charCodeAt(peg$currPos) === 92) {
-          s2 = peg$c73;
-          peg$currPos++;
-        } else {
-          s2 = peg$FAILED;
-          if (peg$silentFails === 0) { peg$fail(peg$c74); }
-        }
-        if (s2 === peg$FAILED) {
-          s2 = peg$parseLineTerminator();
-        }
-      }
-      peg$silentFails--;
-      if (s2 === peg$FAILED) {
-        s1 = void 0;
-      } else {
-        peg$currPos = s1;
-        s1 = peg$FAILED;
-      }
-      if (s1 !== peg$FAILED) {
-        s2 = peg$parseSourceCharacter();
-        if (s2 !== peg$FAILED) {
-          peg$savedPos = s0;
-          s1 = peg$c90();
-          s0 = s1;
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-      if (s0 === peg$FAILED) {
-        s0 = peg$currPos;
-        if (input.charCodeAt(peg$currPos) === 92) {
-          s1 = peg$c73;
-          peg$currPos++;
-        } else {
-          s1 = peg$FAILED;
-          if (peg$silentFails === 0) { peg$fail(peg$c74); }
-        }
-        if (s1 !== peg$FAILED) {
-          s2 = peg$parseEscapeSequence();
-          if (s2 !== peg$FAILED) {
-            peg$savedPos = s0;
-            s1 = peg$c75(s2);
-            s0 = s1;
-          } else {
-            peg$currPos = s0;
-            s0 = peg$FAILED;
-          }
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-        if (s0 === peg$FAILED) {
-          s0 = peg$parseLineContinuation();
-        }
-      }
-
-      return s0;
-    }
-
-    function peg$parseCharacterClassMatcher() {
-      var s0, s1, s2, s3, s4, s5;
-
-      peg$silentFails++;
-      s0 = peg$currPos;
-      if (input.charCodeAt(peg$currPos) === 91) {
-        s1 = peg$c92;
-        peg$currPos++;
-      } else {
-        s1 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c93); }
-      }
-      if (s1 !== peg$FAILED) {
-        if (input.charCodeAt(peg$currPos) === 94) {
-          s2 = peg$c94;
-          peg$currPos++;
-        } else {
-          s2 = peg$FAILED;
-          if (peg$silentFails === 0) { peg$fail(peg$c95); }
-        }
-        if (s2 === peg$FAILED) {
-          s2 = null;
-        }
-        if (s2 !== peg$FAILED) {
-          s3 = [];
-          s4 = peg$parseClassCharacterRange();
-          if (s4 === peg$FAILED) {
-            s4 = peg$parseClassCharacter();
-          }
-          while (s4 !== peg$FAILED) {
-            s3.push(s4);
-            s4 = peg$parseClassCharacterRange();
-            if (s4 === peg$FAILED) {
-              s4 = peg$parseClassCharacter();
-            }
-          }
-          if (s3 !== peg$FAILED) {
-            if (input.charCodeAt(peg$currPos) === 93) {
-              s4 = peg$c96;
-              peg$currPos++;
-            } else {
-              s4 = peg$FAILED;
-              if (peg$silentFails === 0) { peg$fail(peg$c97); }
-            }
-            if (s4 !== peg$FAILED) {
-              if (input.charCodeAt(peg$currPos) === 105) {
-                s5 = peg$c81;
-                peg$currPos++;
-              } else {
-                s5 = peg$FAILED;
-                if (peg$silentFails === 0) { peg$fail(peg$c82); }
-              }
-              if (s5 === peg$FAILED) {
-                s5 = null;
-              }
-              if (s5 !== peg$FAILED) {
-                peg$savedPos = s0;
-                s1 = peg$c98(s2, s3, s5);
-                s0 = s1;
-              } else {
-                peg$currPos = s0;
-                s0 = peg$FAILED;
-              }
-            } else {
-              peg$currPos = s0;
-              s0 = peg$FAILED;
-            }
-          } else {
-            peg$currPos = s0;
-            s0 = peg$FAILED;
-          }
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-      peg$silentFails--;
-      if (s0 === peg$FAILED) {
-        s1 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c91); }
-      }
-
-      return s0;
-    }
-
-    function peg$parseClassCharacterRange() {
-      var s0, s1, s2, s3;
-
-      s0 = peg$currPos;
-      s1 = peg$parseClassCharacter();
-      if (s1 !== peg$FAILED) {
-        if (input.charCodeAt(peg$currPos) === 45) {
-          s2 = peg$c99;
-          peg$currPos++;
-        } else {
-          s2 = peg$FAILED;
-          if (peg$silentFails === 0) { peg$fail(peg$c100); }
-        }
-        if (s2 !== peg$FAILED) {
-          s3 = peg$parseClassCharacter();
-          if (s3 !== peg$FAILED) {
-            peg$savedPos = s0;
-            s1 = peg$c101(s1, s3);
-            s0 = s1;
-          } else {
-            peg$currPos = s0;
-            s0 = peg$FAILED;
-          }
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-
-      return s0;
-    }
-
-    function peg$parseClassCharacter() {
-      var s0, s1, s2;
-
-      s0 = peg$currPos;
-      s1 = peg$currPos;
-      peg$silentFails++;
-      if (input.charCodeAt(peg$currPos) === 93) {
-        s2 = peg$c96;
-        peg$currPos++;
-      } else {
-        s2 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c97); }
-      }
-      if (s2 === peg$FAILED) {
-        if (input.charCodeAt(peg$currPos) === 92) {
-          s2 = peg$c73;
-          peg$currPos++;
-        } else {
-          s2 = peg$FAILED;
-          if (peg$silentFails === 0) { peg$fail(peg$c74); }
-        }
-        if (s2 === peg$FAILED) {
-          s2 = peg$parseLineTerminator();
-        }
-      }
-      peg$silentFails--;
-      if (s2 === peg$FAILED) {
-        s1 = void 0;
-      } else {
-        peg$currPos = s1;
-        s1 = peg$FAILED;
-      }
-      if (s1 !== peg$FAILED) {
-        s2 = peg$parseSourceCharacter();
-        if (s2 !== peg$FAILED) {
-          peg$savedPos = s0;
-          s1 = peg$c90();
-          s0 = s1;
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-      if (s0 === peg$FAILED) {
-        s0 = peg$currPos;
-        if (input.charCodeAt(peg$currPos) === 92) {
-          s1 = peg$c73;
-          peg$currPos++;
-        } else {
-          s1 = peg$FAILED;
-          if (peg$silentFails === 0) { peg$fail(peg$c74); }
-        }
-        if (s1 !== peg$FAILED) {
-          s2 = peg$parseEscapeSequence();
-          if (s2 !== peg$FAILED) {
-            peg$savedPos = s0;
-            s1 = peg$c75(s2);
-            s0 = s1;
-          } else {
-            peg$currPos = s0;
-            s0 = peg$FAILED;
-          }
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-        if (s0 === peg$FAILED) {
-          s0 = peg$parseLineContinuation();
-        }
-      }
-
-      return s0;
-    }
-
-    function peg$parseLineContinuation() {
-      var s0, s1, s2;
-
-      s0 = peg$currPos;
-      if (input.charCodeAt(peg$currPos) === 92) {
-        s1 = peg$c73;
-        peg$currPos++;
-      } else {
-        s1 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c74); }
-      }
-      if (s1 !== peg$FAILED) {
-        s2 = peg$parseLineTerminatorSequence();
-        if (s2 !== peg$FAILED) {
-          peg$savedPos = s0;
-          s1 = peg$c102();
-          s0 = s1;
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-
-      return s0;
-    }
-
-    function peg$parseEscapeSequence() {
-      var s0, s1, s2, s3;
-
-      s0 = peg$parseCharacterEscapeSequence();
-      if (s0 === peg$FAILED) {
-        s0 = peg$currPos;
-        if (input.charCodeAt(peg$currPos) === 48) {
-          s1 = peg$c103;
-          peg$currPos++;
-        } else {
-          s1 = peg$FAILED;
-          if (peg$silentFails === 0) { peg$fail(peg$c104); }
-        }
-        if (s1 !== peg$FAILED) {
-          s2 = peg$currPos;
-          peg$silentFails++;
-          s3 = peg$parseDecimalDigit();
-          peg$silentFails--;
-          if (s3 === peg$FAILED) {
-            s2 = void 0;
-          } else {
-            peg$currPos = s2;
-            s2 = peg$FAILED;
-          }
-          if (s2 !== peg$FAILED) {
-            peg$savedPos = s0;
-            s1 = peg$c105();
-            s0 = s1;
-          } else {
-            peg$currPos = s0;
-            s0 = peg$FAILED;
-          }
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-        if (s0 === peg$FAILED) {
-          s0 = peg$parseHexEscapeSequence();
-          if (s0 === peg$FAILED) {
-            s0 = peg$parseUnicodeEscapeSequence();
-          }
-        }
-      }
-
-      return s0;
-    }
-
-    function peg$parseCharacterEscapeSequence() {
-      var s0;
-
-      s0 = peg$parseSingleEscapeCharacter();
-      if (s0 === peg$FAILED) {
-        s0 = peg$parseNonEscapeCharacter();
-      }
-
-      return s0;
-    }
-
-    function peg$parseSingleEscapeCharacter() {
-      var s0, s1;
-
-      if (input.charCodeAt(peg$currPos) === 39) {
-        s0 = peg$c88;
-        peg$currPos++;
-      } else {
-        s0 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c89); }
-      }
-      if (s0 === peg$FAILED) {
-        if (input.charCodeAt(peg$currPos) === 34) {
-          s0 = peg$c85;
-          peg$currPos++;
-        } else {
-          s0 = peg$FAILED;
-          if (peg$silentFails === 0) { peg$fail(peg$c86); }
-        }
-        if (s0 === peg$FAILED) {
-          if (input.charCodeAt(peg$currPos) === 92) {
-            s0 = peg$c73;
-            peg$currPos++;
-          } else {
-            s0 = peg$FAILED;
-            if (peg$silentFails === 0) { peg$fail(peg$c74); }
-          }
-          if (s0 === peg$FAILED) {
-            s0 = peg$currPos;
-            if (input.charCodeAt(peg$currPos) === 98) {
-              s1 = peg$c106;
-              peg$currPos++;
-            } else {
-              s1 = peg$FAILED;
-              if (peg$silentFails === 0) { peg$fail(peg$c107); }
-            }
-            if (s1 !== peg$FAILED) {
-              peg$savedPos = s0;
-              s1 = peg$c108();
-            }
-            s0 = s1;
-            if (s0 === peg$FAILED) {
-              s0 = peg$currPos;
-              if (input.charCodeAt(peg$currPos) === 102) {
-                s1 = peg$c109;
-                peg$currPos++;
-              } else {
-                s1 = peg$FAILED;
-                if (peg$silentFails === 0) { peg$fail(peg$c110); }
-              }
-              if (s1 !== peg$FAILED) {
-                peg$savedPos = s0;
-                s1 = peg$c111();
-              }
-              s0 = s1;
-              if (s0 === peg$FAILED) {
-                s0 = peg$currPos;
-                if (input.charCodeAt(peg$currPos) === 110) {
-                  s1 = peg$c112;
-                  peg$currPos++;
-                } else {
-                  s1 = peg$FAILED;
-                  if (peg$silentFails === 0) { peg$fail(peg$c113); }
-                }
-                if (s1 !== peg$FAILED) {
-                  peg$savedPos = s0;
-                  s1 = peg$c114();
-                }
-                s0 = s1;
-                if (s0 === peg$FAILED) {
-                  s0 = peg$currPos;
-                  if (input.charCodeAt(peg$currPos) === 114) {
-                    s1 = peg$c115;
-                    peg$currPos++;
-                  } else {
-                    s1 = peg$FAILED;
-                    if (peg$silentFails === 0) { peg$fail(peg$c116); }
-                  }
-                  if (s1 !== peg$FAILED) {
-                    peg$savedPos = s0;
-                    s1 = peg$c117();
-                  }
-                  s0 = s1;
-                  if (s0 === peg$FAILED) {
-                    s0 = peg$currPos;
-                    if (input.charCodeAt(peg$currPos) === 116) {
-                      s1 = peg$c118;
-                      peg$currPos++;
-                    } else {
-                      s1 = peg$FAILED;
-                      if (peg$silentFails === 0) { peg$fail(peg$c119); }
-                    }
-                    if (s1 !== peg$FAILED) {
-                      peg$savedPos = s0;
-                      s1 = peg$c120();
-                    }
-                    s0 = s1;
-                    if (s0 === peg$FAILED) {
-                      s0 = peg$currPos;
-                      if (input.charCodeAt(peg$currPos) === 118) {
-                        s1 = peg$c121;
-                        peg$currPos++;
-                      } else {
-                        s1 = peg$FAILED;
-                        if (peg$silentFails === 0) { peg$fail(peg$c122); }
-                      }
-                      if (s1 !== peg$FAILED) {
-                        peg$savedPos = s0;
-                        s1 = peg$c123();
-                      }
-                      s0 = s1;
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-
-      return s0;
-    }
-
-    function peg$parseNonEscapeCharacter() {
-      var s0, s1, s2;
-
-      s0 = peg$currPos;
-      s1 = peg$currPos;
-      peg$silentFails++;
-      s2 = peg$parseEscapeCharacter();
-      if (s2 === peg$FAILED) {
-        s2 = peg$parseLineTerminator();
-      }
-      peg$silentFails--;
-      if (s2 === peg$FAILED) {
-        s1 = void 0;
-      } else {
-        peg$currPos = s1;
-        s1 = peg$FAILED;
-      }
-      if (s1 !== peg$FAILED) {
-        s2 = peg$parseSourceCharacter();
-        if (s2 !== peg$FAILED) {
-          peg$savedPos = s0;
-          s1 = peg$c90();
-          s0 = s1;
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-
-      return s0;
-    }
-
-    function peg$parseEscapeCharacter() {
-      var s0;
-
-      s0 = peg$parseSingleEscapeCharacter();
-      if (s0 === peg$FAILED) {
-        s0 = peg$parseDecimalDigit();
-        if (s0 === peg$FAILED) {
-          if (input.charCodeAt(peg$currPos) === 120) {
-            s0 = peg$c124;
-            peg$currPos++;
-          } else {
-            s0 = peg$FAILED;
-            if (peg$silentFails === 0) { peg$fail(peg$c125); }
-          }
-          if (s0 === peg$FAILED) {
-            if (input.charCodeAt(peg$currPos) === 117) {
-              s0 = peg$c126;
-              peg$currPos++;
-            } else {
-              s0 = peg$FAILED;
-              if (peg$silentFails === 0) { peg$fail(peg$c127); }
-            }
-          }
-        }
-      }
-
-      return s0;
-    }
-
-    function peg$parseHexEscapeSequence() {
-      var s0, s1, s2, s3, s4, s5;
-
-      s0 = peg$currPos;
-      if (input.charCodeAt(peg$currPos) === 120) {
-        s1 = peg$c124;
-        peg$currPos++;
-      } else {
-        s1 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c125); }
-      }
-      if (s1 !== peg$FAILED) {
-        s2 = peg$currPos;
-        s3 = peg$currPos;
-        s4 = peg$parseHexDigit();
-        if (s4 !== peg$FAILED) {
-          s5 = peg$parseHexDigit();
-          if (s5 !== peg$FAILED) {
-            s4 = [s4, s5];
-            s3 = s4;
-          } else {
-            peg$currPos = s3;
-            s3 = peg$FAILED;
-          }
-        } else {
-          peg$currPos = s3;
-          s3 = peg$FAILED;
-        }
-        if (s3 !== peg$FAILED) {
-          s2 = input.substring(s2, peg$currPos);
-        } else {
-          s2 = s3;
-        }
-        if (s2 !== peg$FAILED) {
-          peg$savedPos = s0;
-          s1 = peg$c128(s2);
-          s0 = s1;
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-
-      return s0;
-    }
-
-    function peg$parseUnicodeEscapeSequence() {
-      var s0, s1, s2, s3, s4, s5, s6, s7;
-
-      s0 = peg$currPos;
-      if (input.charCodeAt(peg$currPos) === 117) {
-        s1 = peg$c126;
-        peg$currPos++;
-      } else {
-        s1 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c127); }
-      }
-      if (s1 !== peg$FAILED) {
-        s2 = peg$currPos;
-        s3 = peg$currPos;
-        s4 = peg$parseHexDigit();
-        if (s4 !== peg$FAILED) {
-          s5 = peg$parseHexDigit();
-          if (s5 !== peg$FAILED) {
-            s6 = peg$parseHexDigit();
-            if (s6 !== peg$FAILED) {
-              s7 = peg$parseHexDigit();
-              if (s7 !== peg$FAILED) {
-                s4 = [s4, s5, s6, s7];
-                s3 = s4;
-              } else {
-                peg$currPos = s3;
-                s3 = peg$FAILED;
-              }
-            } else {
-              peg$currPos = s3;
-              s3 = peg$FAILED;
-            }
-          } else {
-            peg$currPos = s3;
-            s3 = peg$FAILED;
-          }
-        } else {
-          peg$currPos = s3;
-          s3 = peg$FAILED;
-        }
-        if (s3 !== peg$FAILED) {
-          s2 = input.substring(s2, peg$currPos);
-        } else {
-          s2 = s3;
-        }
-        if (s2 !== peg$FAILED) {
-          peg$savedPos = s0;
-          s1 = peg$c128(s2);
-          s0 = s1;
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-
-      return s0;
-    }
-
-    function peg$parseDecimalDigit() {
-      var s0;
-
-      if (peg$c129.test(input.charAt(peg$currPos))) {
-        s0 = input.charAt(peg$currPos);
-        peg$currPos++;
-      } else {
-        s0 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c130); }
-      }
-
-      return s0;
-    }
-
-    function peg$parseHexDigit() {
-      var s0;
-
-      if (peg$c131.test(input.charAt(peg$currPos))) {
-        s0 = input.charAt(peg$currPos);
-        peg$currPos++;
-      } else {
-        s0 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c132); }
-      }
-
-      return s0;
-    }
-
-    function peg$parseAnyMatcher() {
-      var s0, s1;
-
-      s0 = peg$currPos;
-      if (input.charCodeAt(peg$currPos) === 46) {
-        s1 = peg$c133;
-        peg$currPos++;
-      } else {
-        s1 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c134); }
-      }
-      if (s1 !== peg$FAILED) {
-        peg$savedPos = s0;
-        s1 = peg$c135();
-      }
-      s0 = s1;
-
-      return s0;
-    }
-
-    function peg$parseCodeBlock() {
-      var s0, s1, s2, s3;
-
-      peg$silentFails++;
-      s0 = peg$currPos;
-      if (input.charCodeAt(peg$currPos) === 123) {
-        s1 = peg$c137;
-        peg$currPos++;
-      } else {
-        s1 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c138); }
-      }
-      if (s1 !== peg$FAILED) {
-        s2 = peg$parseCode();
-        if (s2 !== peg$FAILED) {
-          if (input.charCodeAt(peg$currPos) === 125) {
-            s3 = peg$c139;
-            peg$currPos++;
-          } else {
-            s3 = peg$FAILED;
-            if (peg$silentFails === 0) { peg$fail(peg$c140); }
-          }
-          if (s3 !== peg$FAILED) {
-            peg$savedPos = s0;
-            s1 = peg$c141(s2);
-            s0 = s1;
-          } else {
-            peg$currPos = s0;
-            s0 = peg$FAILED;
-          }
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-      peg$silentFails--;
-      if (s0 === peg$FAILED) {
-        s1 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c136); }
-      }
-
-      return s0;
-    }
-
-    function peg$parseCode() {
-      var s0, s1, s2, s3, s4, s5;
-
-      s0 = peg$currPos;
-      s1 = [];
-      s2 = [];
-      s3 = peg$currPos;
-      s4 = peg$currPos;
-      peg$silentFails++;
-      if (peg$c142.test(input.charAt(peg$currPos))) {
-        s5 = input.charAt(peg$currPos);
-        peg$currPos++;
-      } else {
-        s5 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c143); }
-      }
-      peg$silentFails--;
-      if (s5 === peg$FAILED) {
-        s4 = void 0;
-      } else {
-        peg$currPos = s4;
-        s4 = peg$FAILED;
-      }
-      if (s4 !== peg$FAILED) {
-        s5 = peg$parseSourceCharacter();
-        if (s5 !== peg$FAILED) {
-          s4 = [s4, s5];
-          s3 = s4;
-        } else {
-          peg$currPos = s3;
-          s3 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s3;
-        s3 = peg$FAILED;
-      }
-      if (s3 !== peg$FAILED) {
-        while (s3 !== peg$FAILED) {
-          s2.push(s3);
-          s3 = peg$currPos;
-          s4 = peg$currPos;
-          peg$silentFails++;
-          if (peg$c142.test(input.charAt(peg$currPos))) {
-            s5 = input.charAt(peg$currPos);
-            peg$currPos++;
-          } else {
-            s5 = peg$FAILED;
-            if (peg$silentFails === 0) { peg$fail(peg$c143); }
-          }
-          peg$silentFails--;
-          if (s5 === peg$FAILED) {
-            s4 = void 0;
-          } else {
-            peg$currPos = s4;
-            s4 = peg$FAILED;
-          }
-          if (s4 !== peg$FAILED) {
-            s5 = peg$parseSourceCharacter();
-            if (s5 !== peg$FAILED) {
-              s4 = [s4, s5];
-              s3 = s4;
-            } else {
-              peg$currPos = s3;
-              s3 = peg$FAILED;
-            }
-          } else {
-            peg$currPos = s3;
-            s3 = peg$FAILED;
-          }
-        }
-      } else {
-        s2 = peg$FAILED;
-      }
-      if (s2 === peg$FAILED) {
-        s2 = peg$currPos;
-        if (input.charCodeAt(peg$currPos) === 123) {
-          s3 = peg$c137;
-          peg$currPos++;
-        } else {
-          s3 = peg$FAILED;
-          if (peg$silentFails === 0) { peg$fail(peg$c138); }
-        }
-        if (s3 !== peg$FAILED) {
-          s4 = peg$parseCode();
-          if (s4 !== peg$FAILED) {
-            if (input.charCodeAt(peg$currPos) === 125) {
-              s5 = peg$c139;
-              peg$currPos++;
-            } else {
-              s5 = peg$FAILED;
-              if (peg$silentFails === 0) { peg$fail(peg$c140); }
-            }
-            if (s5 !== peg$FAILED) {
-              s3 = [s3, s4, s5];
-              s2 = s3;
-            } else {
-              peg$currPos = s2;
-              s2 = peg$FAILED;
-            }
-          } else {
-            peg$currPos = s2;
-            s2 = peg$FAILED;
-          }
-        } else {
-          peg$currPos = s2;
-          s2 = peg$FAILED;
-        }
-      }
-      while (s2 !== peg$FAILED) {
-        s1.push(s2);
-        s2 = [];
-        s3 = peg$currPos;
-        s4 = peg$currPos;
-        peg$silentFails++;
-        if (peg$c142.test(input.charAt(peg$currPos))) {
-          s5 = input.charAt(peg$currPos);
-          peg$currPos++;
-        } else {
-          s5 = peg$FAILED;
-          if (peg$silentFails === 0) { peg$fail(peg$c143); }
-        }
-        peg$silentFails--;
-        if (s5 === peg$FAILED) {
-          s4 = void 0;
-        } else {
-          peg$currPos = s4;
-          s4 = peg$FAILED;
-        }
-        if (s4 !== peg$FAILED) {
-          s5 = peg$parseSourceCharacter();
-          if (s5 !== peg$FAILED) {
-            s4 = [s4, s5];
-            s3 = s4;
-          } else {
-            peg$currPos = s3;
-            s3 = peg$FAILED;
-          }
-        } else {
-          peg$currPos = s3;
-          s3 = peg$FAILED;
-        }
-        if (s3 !== peg$FAILED) {
-          while (s3 !== peg$FAILED) {
-            s2.push(s3);
-            s3 = peg$currPos;
-            s4 = peg$currPos;
-            peg$silentFails++;
-            if (peg$c142.test(input.charAt(peg$currPos))) {
-              s5 = input.charAt(peg$currPos);
-              peg$currPos++;
-            } else {
-              s5 = peg$FAILED;
-              if (peg$silentFails === 0) { peg$fail(peg$c143); }
-            }
-            peg$silentFails--;
-            if (s5 === peg$FAILED) {
-              s4 = void 0;
-            } else {
-              peg$currPos = s4;
-              s4 = peg$FAILED;
-            }
-            if (s4 !== peg$FAILED) {
-              s5 = peg$parseSourceCharacter();
-              if (s5 !== peg$FAILED) {
-                s4 = [s4, s5];
-                s3 = s4;
-              } else {
-                peg$currPos = s3;
-                s3 = peg$FAILED;
-              }
-            } else {
-              peg$currPos = s3;
-              s3 = peg$FAILED;
-            }
-          }
-        } else {
-          s2 = peg$FAILED;
-        }
-        if (s2 === peg$FAILED) {
-          s2 = peg$currPos;
-          if (input.charCodeAt(peg$currPos) === 123) {
-            s3 = peg$c137;
-            peg$currPos++;
-          } else {
-            s3 = peg$FAILED;
-            if (peg$silentFails === 0) { peg$fail(peg$c138); }
-          }
-          if (s3 !== peg$FAILED) {
-            s4 = peg$parseCode();
-            if (s4 !== peg$FAILED) {
-              if (input.charCodeAt(peg$currPos) === 125) {
-                s5 = peg$c139;
-                peg$currPos++;
-              } else {
-                s5 = peg$FAILED;
-                if (peg$silentFails === 0) { peg$fail(peg$c140); }
-              }
-              if (s5 !== peg$FAILED) {
-                s3 = [s3, s4, s5];
-                s2 = s3;
-              } else {
-                peg$currPos = s2;
-                s2 = peg$FAILED;
-              }
-            } else {
-              peg$currPos = s2;
-              s2 = peg$FAILED;
-            }
-          } else {
-            peg$currPos = s2;
-            s2 = peg$FAILED;
-          }
-        }
-      }
-      if (s1 !== peg$FAILED) {
-        s0 = input.substring(s0, peg$currPos);
-      } else {
-        s0 = s1;
-      }
-
-      return s0;
-    }
-
-    function peg$parseLl() {
-      var s0;
-
-      if (peg$c144.test(input.charAt(peg$currPos))) {
-        s0 = input.charAt(peg$currPos);
-        peg$currPos++;
-      } else {
-        s0 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c145); }
-      }
-
-      return s0;
-    }
-
-    function peg$parseLm() {
-      var s0;
-
-      if (peg$c146.test(input.charAt(peg$currPos))) {
-        s0 = input.charAt(peg$currPos);
-        peg$currPos++;
-      } else {
-        s0 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c147); }
-      }
-
-      return s0;
-    }
-
-    function peg$parseLo() {
-      var s0;
-
-      if (peg$c148.test(input.charAt(peg$currPos))) {
-        s0 = input.charAt(peg$currPos);
-        peg$currPos++;
-      } else {
-        s0 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c149); }
-      }
-
-      return s0;
-    }
-
-    function peg$parseLt() {
-      var s0;
-
-      if (peg$c150.test(input.charAt(peg$currPos))) {
-        s0 = input.charAt(peg$currPos);
-        peg$currPos++;
-      } else {
-        s0 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c151); }
-      }
-
-      return s0;
-    }
-
-    function peg$parseLu() {
-      var s0;
-
-      if (peg$c152.test(input.charAt(peg$currPos))) {
-        s0 = input.charAt(peg$currPos);
-        peg$currPos++;
-      } else {
-        s0 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c153); }
-      }
-
-      return s0;
-    }
-
-    function peg$parseMc() {
-      var s0;
-
-      if (peg$c154.test(input.charAt(peg$currPos))) {
-        s0 = input.charAt(peg$currPos);
-        peg$currPos++;
-      } else {
-        s0 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c155); }
-      }
-
-      return s0;
-    }
-
-    function peg$parseMn() {
-      var s0;
-
-      if (peg$c156.test(input.charAt(peg$currPos))) {
-        s0 = input.charAt(peg$currPos);
-        peg$currPos++;
-      } else {
-        s0 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c157); }
-      }
-
-      return s0;
-    }
-
-    function peg$parseNd() {
-      var s0;
-
-      if (peg$c158.test(input.charAt(peg$currPos))) {
-        s0 = input.charAt(peg$currPos);
-        peg$currPos++;
-      } else {
-        s0 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c159); }
-      }
-
-      return s0;
-    }
-
-    function peg$parseNl() {
-      var s0;
-
-      if (peg$c160.test(input.charAt(peg$currPos))) {
-        s0 = input.charAt(peg$currPos);
-        peg$currPos++;
-      } else {
-        s0 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c161); }
-      }
-
-      return s0;
-    }
-
-    function peg$parsePc() {
-      var s0;
-
-      if (peg$c162.test(input.charAt(peg$currPos))) {
-        s0 = input.charAt(peg$currPos);
-        peg$currPos++;
-      } else {
-        s0 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c163); }
-      }
-
-      return s0;
-    }
-
-    function peg$parseZs() {
-      var s0;
-
-      if (peg$c164.test(input.charAt(peg$currPos))) {
-        s0 = input.charAt(peg$currPos);
-        peg$currPos++;
-      } else {
-        s0 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c165); }
-      }
-
-      return s0;
-    }
-
-    function peg$parseBreakToken() {
-      var s0, s1, s2, s3;
-
-      s0 = peg$currPos;
-      if (input.substr(peg$currPos, 5) === peg$c166) {
-        s1 = peg$c166;
-        peg$currPos += 5;
-      } else {
-        s1 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c167); }
-      }
-      if (s1 !== peg$FAILED) {
-        s2 = peg$currPos;
-        peg$silentFails++;
-        s3 = peg$parseIdentifierPart();
-        peg$silentFails--;
-        if (s3 === peg$FAILED) {
-          s2 = void 0;
-        } else {
-          peg$currPos = s2;
-          s2 = peg$FAILED;
-        }
-        if (s2 !== peg$FAILED) {
-          s1 = [s1, s2];
-          s0 = s1;
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-
-      return s0;
-    }
-
-    function peg$parseCaseToken() {
-      var s0, s1, s2, s3;
-
-      s0 = peg$currPos;
-      if (input.substr(peg$currPos, 4) === peg$c168) {
-        s1 = peg$c168;
-        peg$currPos += 4;
-      } else {
-        s1 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c169); }
-      }
-      if (s1 !== peg$FAILED) {
-        s2 = peg$currPos;
-        peg$silentFails++;
-        s3 = peg$parseIdentifierPart();
-        peg$silentFails--;
-        if (s3 === peg$FAILED) {
-          s2 = void 0;
-        } else {
-          peg$currPos = s2;
-          s2 = peg$FAILED;
-        }
-        if (s2 !== peg$FAILED) {
-          s1 = [s1, s2];
-          s0 = s1;
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-
-      return s0;
-    }
-
-    function peg$parseCatchToken() {
-      var s0, s1, s2, s3;
-
-      s0 = peg$currPos;
-      if (input.substr(peg$currPos, 5) === peg$c170) {
-        s1 = peg$c170;
-        peg$currPos += 5;
-      } else {
-        s1 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c171); }
-      }
-      if (s1 !== peg$FAILED) {
-        s2 = peg$currPos;
-        peg$silentFails++;
-        s3 = peg$parseIdentifierPart();
-        peg$silentFails--;
-        if (s3 === peg$FAILED) {
-          s2 = void 0;
-        } else {
-          peg$currPos = s2;
-          s2 = peg$FAILED;
-        }
-        if (s2 !== peg$FAILED) {
-          s1 = [s1, s2];
-          s0 = s1;
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-
-      return s0;
-    }
-
-    function peg$parseClassToken() {
-      var s0, s1, s2, s3;
-
-      s0 = peg$currPos;
-      if (input.substr(peg$currPos, 5) === peg$c172) {
-        s1 = peg$c172;
-        peg$currPos += 5;
-      } else {
-        s1 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c173); }
-      }
-      if (s1 !== peg$FAILED) {
-        s2 = peg$currPos;
-        peg$silentFails++;
-        s3 = peg$parseIdentifierPart();
-        peg$silentFails--;
-        if (s3 === peg$FAILED) {
-          s2 = void 0;
-        } else {
-          peg$currPos = s2;
-          s2 = peg$FAILED;
-        }
-        if (s2 !== peg$FAILED) {
-          s1 = [s1, s2];
-          s0 = s1;
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-
-      return s0;
-    }
-
-    function peg$parseConstToken() {
-      var s0, s1, s2, s3;
-
-      s0 = peg$currPos;
-      if (input.substr(peg$currPos, 5) === peg$c174) {
-        s1 = peg$c174;
-        peg$currPos += 5;
-      } else {
-        s1 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c175); }
-      }
-      if (s1 !== peg$FAILED) {
-        s2 = peg$currPos;
-        peg$silentFails++;
-        s3 = peg$parseIdentifierPart();
-        peg$silentFails--;
-        if (s3 === peg$FAILED) {
-          s2 = void 0;
-        } else {
-          peg$currPos = s2;
-          s2 = peg$FAILED;
-        }
-        if (s2 !== peg$FAILED) {
-          s1 = [s1, s2];
-          s0 = s1;
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-
-      return s0;
-    }
-
-    function peg$parseContinueToken() {
-      var s0, s1, s2, s3;
-
-      s0 = peg$currPos;
-      if (input.substr(peg$currPos, 8) === peg$c176) {
-        s1 = peg$c176;
-        peg$currPos += 8;
-      } else {
-        s1 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c177); }
-      }
-      if (s1 !== peg$FAILED) {
-        s2 = peg$currPos;
-        peg$silentFails++;
-        s3 = peg$parseIdentifierPart();
-        peg$silentFails--;
-        if (s3 === peg$FAILED) {
-          s2 = void 0;
-        } else {
-          peg$currPos = s2;
-          s2 = peg$FAILED;
-        }
-        if (s2 !== peg$FAILED) {
-          s1 = [s1, s2];
-          s0 = s1;
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-
-      return s0;
-    }
-
-    function peg$parseDebuggerToken() {
-      var s0, s1, s2, s3;
-
-      s0 = peg$currPos;
-      if (input.substr(peg$currPos, 8) === peg$c178) {
-        s1 = peg$c178;
-        peg$currPos += 8;
-      } else {
-        s1 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c179); }
-      }
-      if (s1 !== peg$FAILED) {
-        s2 = peg$currPos;
-        peg$silentFails++;
-        s3 = peg$parseIdentifierPart();
-        peg$silentFails--;
-        if (s3 === peg$FAILED) {
-          s2 = void 0;
-        } else {
-          peg$currPos = s2;
-          s2 = peg$FAILED;
-        }
-        if (s2 !== peg$FAILED) {
-          s1 = [s1, s2];
-          s0 = s1;
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-
-      return s0;
-    }
-
-    function peg$parseDefaultToken() {
-      var s0, s1, s2, s3;
-
-      s0 = peg$currPos;
-      if (input.substr(peg$currPos, 7) === peg$c180) {
-        s1 = peg$c180;
-        peg$currPos += 7;
-      } else {
-        s1 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c181); }
-      }
-      if (s1 !== peg$FAILED) {
-        s2 = peg$currPos;
-        peg$silentFails++;
-        s3 = peg$parseIdentifierPart();
-        peg$silentFails--;
-        if (s3 === peg$FAILED) {
-          s2 = void 0;
-        } else {
-          peg$currPos = s2;
-          s2 = peg$FAILED;
-        }
-        if (s2 !== peg$FAILED) {
-          s1 = [s1, s2];
-          s0 = s1;
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-
-      return s0;
-    }
-
-    function peg$parseDeleteToken() {
-      var s0, s1, s2, s3;
-
-      s0 = peg$currPos;
-      if (input.substr(peg$currPos, 6) === peg$c182) {
-        s1 = peg$c182;
-        peg$currPos += 6;
-      } else {
-        s1 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c183); }
-      }
-      if (s1 !== peg$FAILED) {
-        s2 = peg$currPos;
-        peg$silentFails++;
-        s3 = peg$parseIdentifierPart();
-        peg$silentFails--;
-        if (s3 === peg$FAILED) {
-          s2 = void 0;
-        } else {
-          peg$currPos = s2;
-          s2 = peg$FAILED;
-        }
-        if (s2 !== peg$FAILED) {
-          s1 = [s1, s2];
-          s0 = s1;
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-
-      return s0;
-    }
-
-    function peg$parseDoToken() {
-      var s0, s1, s2, s3;
-
-      s0 = peg$currPos;
-      if (input.substr(peg$currPos, 2) === peg$c184) {
-        s1 = peg$c184;
-        peg$currPos += 2;
-      } else {
-        s1 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c185); }
-      }
-      if (s1 !== peg$FAILED) {
-        s2 = peg$currPos;
-        peg$silentFails++;
-        s3 = peg$parseIdentifierPart();
-        peg$silentFails--;
-        if (s3 === peg$FAILED) {
-          s2 = void 0;
-        } else {
-          peg$currPos = s2;
-          s2 = peg$FAILED;
-        }
-        if (s2 !== peg$FAILED) {
-          s1 = [s1, s2];
-          s0 = s1;
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-
-      return s0;
-    }
-
-    function peg$parseElseToken() {
-      var s0, s1, s2, s3;
-
-      s0 = peg$currPos;
-      if (input.substr(peg$currPos, 4) === peg$c186) {
-        s1 = peg$c186;
-        peg$currPos += 4;
-      } else {
-        s1 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c187); }
-      }
-      if (s1 !== peg$FAILED) {
-        s2 = peg$currPos;
-        peg$silentFails++;
-        s3 = peg$parseIdentifierPart();
-        peg$silentFails--;
-        if (s3 === peg$FAILED) {
-          s2 = void 0;
-        } else {
-          peg$currPos = s2;
-          s2 = peg$FAILED;
-        }
-        if (s2 !== peg$FAILED) {
-          s1 = [s1, s2];
-          s0 = s1;
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-
-      return s0;
-    }
-
-    function peg$parseEnumToken() {
-      var s0, s1, s2, s3;
-
-      s0 = peg$currPos;
-      if (input.substr(peg$currPos, 4) === peg$c188) {
-        s1 = peg$c188;
-        peg$currPos += 4;
-      } else {
-        s1 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c189); }
-      }
-      if (s1 !== peg$FAILED) {
-        s2 = peg$currPos;
-        peg$silentFails++;
-        s3 = peg$parseIdentifierPart();
-        peg$silentFails--;
-        if (s3 === peg$FAILED) {
-          s2 = void 0;
-        } else {
-          peg$currPos = s2;
-          s2 = peg$FAILED;
-        }
-        if (s2 !== peg$FAILED) {
-          s1 = [s1, s2];
-          s0 = s1;
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-
-      return s0;
-    }
-
-    function peg$parseExportToken() {
-      var s0, s1, s2, s3;
-
-      s0 = peg$currPos;
-      if (input.substr(peg$currPos, 6) === peg$c190) {
-        s1 = peg$c190;
-        peg$currPos += 6;
-      } else {
-        s1 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c191); }
-      }
-      if (s1 !== peg$FAILED) {
-        s2 = peg$currPos;
-        peg$silentFails++;
-        s3 = peg$parseIdentifierPart();
-        peg$silentFails--;
-        if (s3 === peg$FAILED) {
-          s2 = void 0;
-        } else {
-          peg$currPos = s2;
-          s2 = peg$FAILED;
-        }
-        if (s2 !== peg$FAILED) {
-          s1 = [s1, s2];
-          s0 = s1;
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-
-      return s0;
-    }
-
-    function peg$parseExtendsToken() {
-      var s0, s1, s2, s3;
-
-      s0 = peg$currPos;
-      if (input.substr(peg$currPos, 7) === peg$c192) {
-        s1 = peg$c192;
-        peg$currPos += 7;
-      } else {
-        s1 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c193); }
-      }
-      if (s1 !== peg$FAILED) {
-        s2 = peg$currPos;
-        peg$silentFails++;
-        s3 = peg$parseIdentifierPart();
-        peg$silentFails--;
-        if (s3 === peg$FAILED) {
-          s2 = void 0;
-        } else {
-          peg$currPos = s2;
-          s2 = peg$FAILED;
-        }
-        if (s2 !== peg$FAILED) {
-          s1 = [s1, s2];
-          s0 = s1;
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-
-      return s0;
-    }
-
-    function peg$parseFalseToken() {
-      var s0, s1, s2, s3;
-
-      s0 = peg$currPos;
-      if (input.substr(peg$currPos, 5) === peg$c194) {
-        s1 = peg$c194;
-        peg$currPos += 5;
-      } else {
-        s1 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c195); }
-      }
-      if (s1 !== peg$FAILED) {
-        s2 = peg$currPos;
-        peg$silentFails++;
-        s3 = peg$parseIdentifierPart();
-        peg$silentFails--;
-        if (s3 === peg$FAILED) {
-          s2 = void 0;
-        } else {
-          peg$currPos = s2;
-          s2 = peg$FAILED;
-        }
-        if (s2 !== peg$FAILED) {
-          s1 = [s1, s2];
-          s0 = s1;
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-
-      return s0;
-    }
-
-    function peg$parseFinallyToken() {
-      var s0, s1, s2, s3;
-
-      s0 = peg$currPos;
-      if (input.substr(peg$currPos, 7) === peg$c196) {
-        s1 = peg$c196;
-        peg$currPos += 7;
-      } else {
-        s1 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c197); }
-      }
-      if (s1 !== peg$FAILED) {
-        s2 = peg$currPos;
-        peg$silentFails++;
-        s3 = peg$parseIdentifierPart();
-        peg$silentFails--;
-        if (s3 === peg$FAILED) {
-          s2 = void 0;
-        } else {
-          peg$currPos = s2;
-          s2 = peg$FAILED;
-        }
-        if (s2 !== peg$FAILED) {
-          s1 = [s1, s2];
-          s0 = s1;
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-
-      return s0;
-    }
-
-    function peg$parseForToken() {
-      var s0, s1, s2, s3;
-
-      s0 = peg$currPos;
-      if (input.substr(peg$currPos, 3) === peg$c198) {
-        s1 = peg$c198;
-        peg$currPos += 3;
-      } else {
-        s1 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c199); }
-      }
-      if (s1 !== peg$FAILED) {
-        s2 = peg$currPos;
-        peg$silentFails++;
-        s3 = peg$parseIdentifierPart();
-        peg$silentFails--;
-        if (s3 === peg$FAILED) {
-          s2 = void 0;
-        } else {
-          peg$currPos = s2;
-          s2 = peg$FAILED;
-        }
-        if (s2 !== peg$FAILED) {
-          s1 = [s1, s2];
-          s0 = s1;
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-
-      return s0;
-    }
-
-    function peg$parseFunctionToken() {
-      var s0, s1, s2, s3;
-
-      s0 = peg$currPos;
-      if (input.substr(peg$currPos, 8) === peg$c200) {
-        s1 = peg$c200;
-        peg$currPos += 8;
-      } else {
-        s1 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c201); }
-      }
-      if (s1 !== peg$FAILED) {
-        s2 = peg$currPos;
-        peg$silentFails++;
-        s3 = peg$parseIdentifierPart();
-        peg$silentFails--;
-        if (s3 === peg$FAILED) {
-          s2 = void 0;
-        } else {
-          peg$currPos = s2;
-          s2 = peg$FAILED;
-        }
-        if (s2 !== peg$FAILED) {
-          s1 = [s1, s2];
-          s0 = s1;
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-
-      return s0;
-    }
-
-    function peg$parseIfToken() {
-      var s0, s1, s2, s3;
-
-      s0 = peg$currPos;
-      if (input.substr(peg$currPos, 2) === peg$c202) {
-        s1 = peg$c202;
-        peg$currPos += 2;
-      } else {
-        s1 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c203); }
-      }
-      if (s1 !== peg$FAILED) {
-        s2 = peg$currPos;
-        peg$silentFails++;
-        s3 = peg$parseIdentifierPart();
-        peg$silentFails--;
-        if (s3 === peg$FAILED) {
-          s2 = void 0;
-        } else {
-          peg$currPos = s2;
-          s2 = peg$FAILED;
-        }
-        if (s2 !== peg$FAILED) {
-          s1 = [s1, s2];
-          s0 = s1;
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-
-      return s0;
-    }
-
-    function peg$parseImportToken() {
-      var s0, s1, s2, s3;
-
-      s0 = peg$currPos;
-      if (input.substr(peg$currPos, 6) === peg$c204) {
-        s1 = peg$c204;
-        peg$currPos += 6;
-      } else {
-        s1 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c205); }
-      }
-      if (s1 !== peg$FAILED) {
-        s2 = peg$currPos;
-        peg$silentFails++;
-        s3 = peg$parseIdentifierPart();
-        peg$silentFails--;
-        if (s3 === peg$FAILED) {
-          s2 = void 0;
-        } else {
-          peg$currPos = s2;
-          s2 = peg$FAILED;
-        }
-        if (s2 !== peg$FAILED) {
-          s1 = [s1, s2];
-          s0 = s1;
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-
-      return s0;
-    }
-
-    function peg$parseInstanceofToken() {
-      var s0, s1, s2, s3;
-
-      s0 = peg$currPos;
-      if (input.substr(peg$currPos, 10) === peg$c206) {
-        s1 = peg$c206;
-        peg$currPos += 10;
-      } else {
-        s1 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c207); }
-      }
-      if (s1 !== peg$FAILED) {
-        s2 = peg$currPos;
-        peg$silentFails++;
-        s3 = peg$parseIdentifierPart();
-        peg$silentFails--;
-        if (s3 === peg$FAILED) {
-          s2 = void 0;
-        } else {
-          peg$currPos = s2;
-          s2 = peg$FAILED;
-        }
-        if (s2 !== peg$FAILED) {
-          s1 = [s1, s2];
-          s0 = s1;
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-
-      return s0;
-    }
-
-    function peg$parseInToken() {
-      var s0, s1, s2, s3;
-
-      s0 = peg$currPos;
-      if (input.substr(peg$currPos, 2) === peg$c208) {
-        s1 = peg$c208;
-        peg$currPos += 2;
-      } else {
-        s1 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c209); }
-      }
-      if (s1 !== peg$FAILED) {
-        s2 = peg$currPos;
-        peg$silentFails++;
-        s3 = peg$parseIdentifierPart();
-        peg$silentFails--;
-        if (s3 === peg$FAILED) {
-          s2 = void 0;
-        } else {
-          peg$currPos = s2;
-          s2 = peg$FAILED;
-        }
-        if (s2 !== peg$FAILED) {
-          s1 = [s1, s2];
-          s0 = s1;
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-
-      return s0;
-    }
-
-    function peg$parseNewToken() {
-      var s0, s1, s2, s3;
-
-      s0 = peg$currPos;
-      if (input.substr(peg$currPos, 3) === peg$c210) {
-        s1 = peg$c210;
-        peg$currPos += 3;
-      } else {
-        s1 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c211); }
-      }
-      if (s1 !== peg$FAILED) {
-        s2 = peg$currPos;
-        peg$silentFails++;
-        s3 = peg$parseIdentifierPart();
-        peg$silentFails--;
-        if (s3 === peg$FAILED) {
-          s2 = void 0;
-        } else {
-          peg$currPos = s2;
-          s2 = peg$FAILED;
-        }
-        if (s2 !== peg$FAILED) {
-          s1 = [s1, s2];
-          s0 = s1;
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-
-      return s0;
-    }
-
-    function peg$parseNullToken() {
-      var s0, s1, s2, s3;
-
-      s0 = peg$currPos;
-      if (input.substr(peg$currPos, 4) === peg$c212) {
-        s1 = peg$c212;
-        peg$currPos += 4;
-      } else {
-        s1 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c213); }
-      }
-      if (s1 !== peg$FAILED) {
-        s2 = peg$currPos;
-        peg$silentFails++;
-        s3 = peg$parseIdentifierPart();
-        peg$silentFails--;
-        if (s3 === peg$FAILED) {
-          s2 = void 0;
-        } else {
-          peg$currPos = s2;
-          s2 = peg$FAILED;
-        }
-        if (s2 !== peg$FAILED) {
-          s1 = [s1, s2];
-          s0 = s1;
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-
-      return s0;
-    }
-
-    function peg$parseReturnToken() {
-      var s0, s1, s2, s3;
-
-      s0 = peg$currPos;
-      if (input.substr(peg$currPos, 6) === peg$c214) {
-        s1 = peg$c214;
-        peg$currPos += 6;
-      } else {
-        s1 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c215); }
-      }
-      if (s1 !== peg$FAILED) {
-        s2 = peg$currPos;
-        peg$silentFails++;
-        s3 = peg$parseIdentifierPart();
-        peg$silentFails--;
-        if (s3 === peg$FAILED) {
-          s2 = void 0;
-        } else {
-          peg$currPos = s2;
-          s2 = peg$FAILED;
-        }
-        if (s2 !== peg$FAILED) {
-          s1 = [s1, s2];
-          s0 = s1;
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-
-      return s0;
-    }
-
-    function peg$parseSuperToken() {
-      var s0, s1, s2, s3;
-
-      s0 = peg$currPos;
-      if (input.substr(peg$currPos, 5) === peg$c216) {
-        s1 = peg$c216;
-        peg$currPos += 5;
-      } else {
-        s1 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c217); }
-      }
-      if (s1 !== peg$FAILED) {
-        s2 = peg$currPos;
-        peg$silentFails++;
-        s3 = peg$parseIdentifierPart();
-        peg$silentFails--;
-        if (s3 === peg$FAILED) {
-          s2 = void 0;
-        } else {
-          peg$currPos = s2;
-          s2 = peg$FAILED;
-        }
-        if (s2 !== peg$FAILED) {
-          s1 = [s1, s2];
-          s0 = s1;
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-
-      return s0;
-    }
-
-    function peg$parseSwitchToken() {
-      var s0, s1, s2, s3;
-
-      s0 = peg$currPos;
-      if (input.substr(peg$currPos, 6) === peg$c218) {
-        s1 = peg$c218;
-        peg$currPos += 6;
-      } else {
-        s1 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c219); }
-      }
-      if (s1 !== peg$FAILED) {
-        s2 = peg$currPos;
-        peg$silentFails++;
-        s3 = peg$parseIdentifierPart();
-        peg$silentFails--;
-        if (s3 === peg$FAILED) {
-          s2 = void 0;
-        } else {
-          peg$currPos = s2;
-          s2 = peg$FAILED;
-        }
-        if (s2 !== peg$FAILED) {
-          s1 = [s1, s2];
-          s0 = s1;
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-
-      return s0;
-    }
-
-    function peg$parseThisToken() {
-      var s0, s1, s2, s3;
-
-      s0 = peg$currPos;
-      if (input.substr(peg$currPos, 4) === peg$c220) {
-        s1 = peg$c220;
-        peg$currPos += 4;
-      } else {
-        s1 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c221); }
-      }
-      if (s1 !== peg$FAILED) {
-        s2 = peg$currPos;
-        peg$silentFails++;
-        s3 = peg$parseIdentifierPart();
-        peg$silentFails--;
-        if (s3 === peg$FAILED) {
-          s2 = void 0;
-        } else {
-          peg$currPos = s2;
-          s2 = peg$FAILED;
-        }
-        if (s2 !== peg$FAILED) {
-          s1 = [s1, s2];
-          s0 = s1;
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-
-      return s0;
-    }
-
-    function peg$parseThrowToken() {
-      var s0, s1, s2, s3;
-
-      s0 = peg$currPos;
-      if (input.substr(peg$currPos, 5) === peg$c222) {
-        s1 = peg$c222;
-        peg$currPos += 5;
-      } else {
-        s1 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c223); }
-      }
-      if (s1 !== peg$FAILED) {
-        s2 = peg$currPos;
-        peg$silentFails++;
-        s3 = peg$parseIdentifierPart();
-        peg$silentFails--;
-        if (s3 === peg$FAILED) {
-          s2 = void 0;
-        } else {
-          peg$currPos = s2;
-          s2 = peg$FAILED;
-        }
-        if (s2 !== peg$FAILED) {
-          s1 = [s1, s2];
-          s0 = s1;
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-
-      return s0;
-    }
-
-    function peg$parseTrueToken() {
-      var s0, s1, s2, s3;
-
-      s0 = peg$currPos;
-      if (input.substr(peg$currPos, 4) === peg$c224) {
-        s1 = peg$c224;
-        peg$currPos += 4;
-      } else {
-        s1 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c225); }
-      }
-      if (s1 !== peg$FAILED) {
-        s2 = peg$currPos;
-        peg$silentFails++;
-        s3 = peg$parseIdentifierPart();
-        peg$silentFails--;
-        if (s3 === peg$FAILED) {
-          s2 = void 0;
-        } else {
-          peg$currPos = s2;
-          s2 = peg$FAILED;
-        }
-        if (s2 !== peg$FAILED) {
-          s1 = [s1, s2];
-          s0 = s1;
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-
-      return s0;
-    }
-
-    function peg$parseTryToken() {
-      var s0, s1, s2, s3;
-
-      s0 = peg$currPos;
-      if (input.substr(peg$currPos, 3) === peg$c226) {
-        s1 = peg$c226;
-        peg$currPos += 3;
-      } else {
-        s1 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c227); }
-      }
-      if (s1 !== peg$FAILED) {
-        s2 = peg$currPos;
-        peg$silentFails++;
-        s3 = peg$parseIdentifierPart();
-        peg$silentFails--;
-        if (s3 === peg$FAILED) {
-          s2 = void 0;
-        } else {
-          peg$currPos = s2;
-          s2 = peg$FAILED;
-        }
-        if (s2 !== peg$FAILED) {
-          s1 = [s1, s2];
-          s0 = s1;
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-
-      return s0;
-    }
-
-    function peg$parseTypeofToken() {
-      var s0, s1, s2, s3;
-
-      s0 = peg$currPos;
-      if (input.substr(peg$currPos, 6) === peg$c228) {
-        s1 = peg$c228;
-        peg$currPos += 6;
-      } else {
-        s1 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c229); }
-      }
-      if (s1 !== peg$FAILED) {
-        s2 = peg$currPos;
-        peg$silentFails++;
-        s3 = peg$parseIdentifierPart();
-        peg$silentFails--;
-        if (s3 === peg$FAILED) {
-          s2 = void 0;
-        } else {
-          peg$currPos = s2;
-          s2 = peg$FAILED;
-        }
-        if (s2 !== peg$FAILED) {
-          s1 = [s1, s2];
-          s0 = s1;
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-
-      return s0;
-    }
-
-    function peg$parseVarToken() {
-      var s0, s1, s2, s3;
-
-      s0 = peg$currPos;
-      if (input.substr(peg$currPos, 3) === peg$c230) {
-        s1 = peg$c230;
-        peg$currPos += 3;
-      } else {
-        s1 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c231); }
-      }
-      if (s1 !== peg$FAILED) {
-        s2 = peg$currPos;
-        peg$silentFails++;
-        s3 = peg$parseIdentifierPart();
-        peg$silentFails--;
-        if (s3 === peg$FAILED) {
-          s2 = void 0;
-        } else {
-          peg$currPos = s2;
-          s2 = peg$FAILED;
-        }
-        if (s2 !== peg$FAILED) {
-          s1 = [s1, s2];
-          s0 = s1;
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-
-      return s0;
-    }
-
-    function peg$parseVoidToken() {
-      var s0, s1, s2, s3;
-
-      s0 = peg$currPos;
-      if (input.substr(peg$currPos, 4) === peg$c232) {
-        s1 = peg$c232;
-        peg$currPos += 4;
-      } else {
-        s1 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c233); }
-      }
-      if (s1 !== peg$FAILED) {
-        s2 = peg$currPos;
-        peg$silentFails++;
-        s3 = peg$parseIdentifierPart();
-        peg$silentFails--;
-        if (s3 === peg$FAILED) {
-          s2 = void 0;
-        } else {
-          peg$currPos = s2;
-          s2 = peg$FAILED;
-        }
-        if (s2 !== peg$FAILED) {
-          s1 = [s1, s2];
-          s0 = s1;
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-
-      return s0;
-    }
-
-    function peg$parseWhileToken() {
-      var s0, s1, s2, s3;
-
-      s0 = peg$currPos;
-      if (input.substr(peg$currPos, 5) === peg$c234) {
-        s1 = peg$c234;
-        peg$currPos += 5;
-      } else {
-        s1 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c235); }
-      }
-      if (s1 !== peg$FAILED) {
-        s2 = peg$currPos;
-        peg$silentFails++;
-        s3 = peg$parseIdentifierPart();
-        peg$silentFails--;
-        if (s3 === peg$FAILED) {
-          s2 = void 0;
-        } else {
-          peg$currPos = s2;
-          s2 = peg$FAILED;
-        }
-        if (s2 !== peg$FAILED) {
-          s1 = [s1, s2];
-          s0 = s1;
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-
-      return s0;
-    }
-
-    function peg$parseWithToken() {
-      var s0, s1, s2, s3;
-
-      s0 = peg$currPos;
-      if (input.substr(peg$currPos, 4) === peg$c236) {
-        s1 = peg$c236;
-        peg$currPos += 4;
-      } else {
-        s1 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c237); }
-      }
-      if (s1 !== peg$FAILED) {
-        s2 = peg$currPos;
-        peg$silentFails++;
-        s3 = peg$parseIdentifierPart();
-        peg$silentFails--;
-        if (s3 === peg$FAILED) {
-          s2 = void 0;
-        } else {
-          peg$currPos = s2;
-          s2 = peg$FAILED;
-        }
-        if (s2 !== peg$FAILED) {
-          s1 = [s1, s2];
-          s0 = s1;
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-
-      return s0;
-    }
-
-    function peg$parse__() {
-      var s0, s1;
-
-      s0 = [];
-      s1 = peg$parseWhiteSpace();
-      if (s1 === peg$FAILED) {
-        s1 = peg$parseLineTerminatorSequence();
-        if (s1 === peg$FAILED) {
-          s1 = peg$parseComment();
-        }
-      }
-      while (s1 !== peg$FAILED) {
-        s0.push(s1);
-        s1 = peg$parseWhiteSpace();
-        if (s1 === peg$FAILED) {
-          s1 = peg$parseLineTerminatorSequence();
-          if (s1 === peg$FAILED) {
-            s1 = peg$parseComment();
-          }
-        }
-      }
-
-      return s0;
-    }
-
-    function peg$parse_() {
-      var s0, s1;
-
-      s0 = [];
-      s1 = peg$parseWhiteSpace();
-      if (s1 === peg$FAILED) {
-        s1 = peg$parseMultiLineCommentNoLineTerminator();
-      }
-      while (s1 !== peg$FAILED) {
-        s0.push(s1);
-        s1 = peg$parseWhiteSpace();
-        if (s1 === peg$FAILED) {
-          s1 = peg$parseMultiLineCommentNoLineTerminator();
-        }
-      }
-
-      return s0;
-    }
-
-    function peg$parseEOS() {
-      var s0, s1, s2, s3;
-
-      s0 = peg$currPos;
-      s1 = peg$parse__();
-      if (s1 !== peg$FAILED) {
-        if (input.charCodeAt(peg$currPos) === 59) {
-          s2 = peg$c238;
-          peg$currPos++;
-        } else {
-          s2 = peg$FAILED;
-          if (peg$silentFails === 0) { peg$fail(peg$c239); }
-        }
-        if (s2 !== peg$FAILED) {
-          s1 = [s1, s2];
-          s0 = s1;
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-      if (s0 === peg$FAILED) {
-        s0 = peg$currPos;
-        s1 = peg$parse_();
-        if (s1 !== peg$FAILED) {
-          s2 = peg$parseSingleLineComment();
-          if (s2 === peg$FAILED) {
-            s2 = null;
-          }
-          if (s2 !== peg$FAILED) {
-            s3 = peg$parseLineTerminatorSequence();
-            if (s3 !== peg$FAILED) {
-              s1 = [s1, s2, s3];
-              s0 = s1;
-            } else {
-              peg$currPos = s0;
-              s0 = peg$FAILED;
-            }
-          } else {
-            peg$currPos = s0;
-            s0 = peg$FAILED;
-          }
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-        if (s0 === peg$FAILED) {
-          s0 = peg$currPos;
-          s1 = peg$parse__();
-          if (s1 !== peg$FAILED) {
-            s2 = peg$parseEOF();
-            if (s2 !== peg$FAILED) {
-              s1 = [s1, s2];
-              s0 = s1;
-            } else {
-              peg$currPos = s0;
-              s0 = peg$FAILED;
-            }
-          } else {
-            peg$currPos = s0;
-            s0 = peg$FAILED;
-          }
-        }
-      }
-
-      return s0;
-    }
-
-    function peg$parseEOF() {
-      var s0, s1;
-
-      s0 = peg$currPos;
-      peg$silentFails++;
-      if (input.length > peg$currPos) {
-        s1 = input.charAt(peg$currPos);
-        peg$currPos++;
-      } else {
-        s1 = peg$FAILED;
-        if (peg$silentFails === 0) { peg$fail(peg$c34); }
-      }
-      peg$silentFails--;
-      if (s1 === peg$FAILED) {
-        s0 = void 0;
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-
-      return s0;
-    }
-
-
-      var OPS_TO_PREFIXED_TYPES = {
-        "$": "text",
-        "&": "simple_and",
-        "!": "simple_not"
-      };
-
-      var OPS_TO_SUFFIXED_TYPES = {
-        "?": "optional",
-        "*": "zero_or_more",
-        "+": "one_or_more"
-      };
-
-      var OPS_TO_SEMANTIC_PREDICATE_TYPES = {
-        "&": "semantic_and",
-        "!": "semantic_not"
-      };
-
-      function filterEmptyStrings(array) {
-        var result = [], i;
-
-        for (i = 0; i < array.length; i++) {
-          if (array[i] !== "") {
-            result.push(array[i]);
-          }
-        }
-
-        return result;
-      }
-
-      function extractOptional(optional, index) {
-        return optional ? optional[index] : null;
-      }
-
-      function extractList(list, index) {
-        var result = new Array(list.length), i;
-
-        for (i = 0; i < list.length; i++) {
-          result[i] = list[i][index];
-        }
-
-        return result;
-      }
-
-      function buildList(first, rest, index) {
-        return [first].concat(extractList(rest, index));
-      }
-
-
-    peg$result = peg$startRuleFunction();
-
-    if (peg$result !== peg$FAILED && peg$currPos === input.length) {
-      return peg$result;
-    } else {
-      if (peg$result !== peg$FAILED && peg$currPos < input.length) {
-        peg$fail({ type: "end", description: "end of input" });
-      }
-
-      throw peg$buildException(
-        null,
-        peg$maxFailExpected,
-        peg$maxFailPos < input.length ? input.charAt(peg$maxFailPos) : null,
-        peg$maxFailPos < input.length
-          ? peg$computeLocation(peg$maxFailPos, peg$maxFailPos + 1)
-          : peg$computeLocation(peg$maxFailPos, peg$maxFailPos)
-      );
-    }
-  }
-
-  return {
-    SyntaxError: peg$SyntaxError,
-    parse:       peg$parse
-  };
-})();
-
-},{}],514:[function(require,module,exports){
-"use strict";
-
-var arrays  = require("./utils/arrays"),
-    objects = require("./utils/objects");
-
-var PEG = {
-  /* PEG.js version (uses semantic versioning). */
-  VERSION: "0.9.0",
-
-  GrammarError: require("./grammar-error"),
-  parser:       require("./parser"),
-  compiler:     require("./compiler"),
-
-  /*
-   * Generates a parser from a specified grammar and returns it.
-   *
-   * The grammar must be a string in the format described by the metagramar in
-   * the parser.pegjs file.
-   *
-   * Throws |PEG.parser.SyntaxError| if the grammar contains a syntax error or
-   * |PEG.GrammarError| if it contains a semantic error. Note that not all
-   * errors are detected during the generation and some may protrude to the
-   * generated parser and cause its malfunction.
-   */
-  buildParser: function(grammar) {
-    function convertPasses(passes) {
-      var converted = {}, stage;
-
-      for (stage in passes) {
-        if (passes.hasOwnProperty(stage)) {
-          converted[stage] = objects.values(passes[stage]);
-        }
-      }
-
-      return converted;
-    }
-
-    var options = arguments.length > 1 ? objects.clone(arguments[1]) : {},
-        plugins = "plugins" in options ? options.plugins : [],
-        config  = {
-          parser: this.parser,
-          passes: convertPasses(this.compiler.passes)
-        };
-
-    arrays.each(plugins, function(p) { p.use(config, options); });
-
-    return this.compiler.compile(
-      config.parser.parse(grammar),
-      config.passes,
-      options
-    );
-  }
-};
-
-module.exports = PEG;
-
-},{"./compiler":501,"./grammar-error":512,"./parser":513,"./utils/arrays":515,"./utils/objects":517}],515:[function(require,module,exports){
-"use strict";
-
-/* Array utilities. */
-var arrays = {
-  range: function(start, stop) {
-    var length = stop - start,
-        result = new Array(length),
-        i, j;
-
-    for (i = 0, j = start; i < length; i++, j++) {
-      result[i] = j;
-    }
-
-    return result;
-  },
-
-  find: function(array, valueOrPredicate) {
-    var length = array.length, i;
-
-    if (typeof valueOrPredicate === "function") {
-      for (i = 0; i < length; i++) {
-        if (valueOrPredicate(array[i])) {
-          return array[i];
-        }
-      }
-    } else {
-      for (i = 0; i < length; i++) {
-        if (array[i] === valueOrPredicate) {
-          return array[i];
-        }
-      }
-    }
-  },
-
-  indexOf: function(array, valueOrPredicate) {
-    var length = array.length, i;
-
-    if (typeof valueOrPredicate === "function") {
-      for (i = 0; i < length; i++) {
-        if (valueOrPredicate(array[i])) {
-          return i;
-        }
-      }
-    } else {
-      for (i = 0; i < length; i++) {
-        if (array[i] === valueOrPredicate) {
-          return i;
-        }
-      }
-    }
-
-    return -1;
-  },
-
-  contains: function(array, valueOrPredicate) {
-    return arrays.indexOf(array, valueOrPredicate) !== -1;
-  },
-
-  each: function(array, iterator) {
-    var length = array.length, i;
-
-    for (i = 0; i < length; i++) {
-      iterator(array[i], i);
-    }
-  },
-
-  map: function(array, iterator) {
-    var length = array.length,
-        result = new Array(length),
-        i;
-
-    for (i = 0; i < length; i++) {
-      result[i] = iterator(array[i], i);
-    }
-
-    return result;
-  },
-
-  pluck: function(array, key) {
-    return arrays.map(array, function (e) { return e[key]; });
-  },
-
-  every: function(array, predicate) {
-    var length = array.length, i;
-
-    for (i = 0; i < length; i++) {
-      if (!predicate(array[i])) {
-        return false;
-      }
-    }
-
-    return true;
-  },
-
-  some: function(array, predicate) {
-    var length = array.length, i;
-
-    for (i = 0; i < length; i++) {
-      if (predicate(array[i])) {
-        return true;
-      }
-    }
-
-    return false;
-  }
-};
-
-module.exports = arrays;
-
-},{}],516:[function(require,module,exports){
-"use strict";
-
-/* Class utilities */
-var classes = {
-  subclass: function(child, parent) {
-    function ctor() { this.constructor = child; }
-    ctor.prototype = parent.prototype;
-    child.prototype = new ctor();
-  }
-};
-
-module.exports = classes;
-
-},{}],517:[function(require,module,exports){
-"use strict";
-
-/* Object utilities. */
-var objects = {
-  keys: function(object) {
-    var result = [], key;
-
-    for (key in object) {
-      if (object.hasOwnProperty(key)) {
-        result.push(key);
-      }
-    }
-
-    return result;
-  },
-
-  values: function(object) {
-    var result = [], key;
-
-    for (key in object) {
-      if (object.hasOwnProperty(key)) {
-        result.push(object[key]);
-      }
-    }
-
-    return result;
-  },
-
-  clone: function(object) {
-    var result = {}, key;
-
-    for (key in object) {
-      if (object.hasOwnProperty(key)) {
-        result[key] = object[key];
-      }
-    }
-
-    return result;
-  },
-
-  defaults: function(object, defaults) {
-    var key;
-
-    for (key in defaults) {
-      if (defaults.hasOwnProperty(key)) {
-        if (!(key in object)) {
-          object[key] = defaults[key];
-        }
-      }
-    }
-  }
-};
-
-module.exports = objects;
-
-},{}],518:[function(require,module,exports){
+},{"./_asciiWords":321,"./_hasUnicodeWord":406,"./_unicodeWords":459,"./toString":509}],515:[function(require,module,exports){
 (function (process){
 // Generated by CoffeeScript 1.7.1
 (function() {
@@ -30025,7 +22904,7 @@ module.exports = objects;
 
 }).call(this,require('_process'))
 
-},{"_process":519}],519:[function(require,module,exports){
+},{"_process":516}],516:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -30207,7 +23086,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],520:[function(require,module,exports){
+},{}],517:[function(require,module,exports){
 (function (global){
 var now = require('performance-now')
   , root = typeof window === 'undefined' ? global : window
@@ -30284,7 +23163,7 @@ module.exports.polyfill = function() {
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 
-},{"performance-now":518}],521:[function(require,module,exports){
+},{"performance-now":515}],518:[function(require,module,exports){
 (function (process,global){
 /**
  * Copyright (c) 2014, Facebook, Inc.
@@ -30958,7 +23837,7 @@ module.exports.polyfill = function() {
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 
-},{"_process":519}],522:[function(require,module,exports){
+},{"_process":516}],519:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -30970,10 +23849,6 @@ var _createClass = function () { function defineProperties(target, props) { for 
 var _jquery = require('jquery');
 
 var _jquery2 = _interopRequireDefault(_jquery);
-
-var _pegjs = require('pegjs');
-
-var _pegjs2 = _interopRequireDefault(_pegjs);
 
 var _ContentQueue = require('./contentQueue/ContentQueue');
 
@@ -31007,6 +23882,10 @@ var _CanvasController = require('./canvas/CanvasController');
 
 var _CanvasController2 = _interopRequireDefault(_CanvasController);
 
+var _GameClockView = require('./game/GameClockView');
+
+var _GameClockView2 = _interopRequireDefault(_GameClockView);
+
 var _speech = require('./speech');
 
 var _timeHelpers = require('./utilities/timeHelpers');
@@ -31017,7 +23896,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-window.peg = _pegjs2.default;
 window.zlsa = {};
 window.zlsa.atc = {};
 var prop = {};
@@ -31027,14 +23905,11 @@ var prop = {};
 // This will need to be re-worked, and current global functions should be exported and
 // imported as needed in each file.
 require('./util');
-// this module doesnt appear to be in use anywhere
-// require('./animation');
-require('./parser');
 
 // saved as this.prop.version and this.prop.version_string
-var VERSION = [3, 0, 0];
+var VERSION = [3, 2, 0];
 
-// are you using a main loop? (you must call update() afterward disable/reenable)
+// are you using a main loop? (you must call update() afterward disable/re-enable)
 var UPDATE = true;
 
 // the framerate is updated this often (seconds)
@@ -31139,6 +24014,7 @@ var App = function () {
             this.inputController = new _InputController2.default(this.$element);
             this.uiController = new _UiController2.default(this.$element);
             this.canvasController = new _CanvasController2.default(this.$element);
+            this.gameClockView = new _GameClockView2.default(this.$element);
 
             return this;
         }
@@ -31400,6 +24276,7 @@ var App = function () {
             this.airportController.recalculate();
             this.updatePost();
             this.incrementFrame();
+            this.gameClockView.update();
 
             return this;
         }
@@ -31448,7 +24325,7 @@ var App = function () {
 
 exports.default = App;
 
-},{"./InputController":523,"./LoadingView":524,"./UiController":525,"./airport/AirportController":537,"./canvas/CanvasController":561,"./constants/logLevel":564,"./contentQueue/ContentQueue":567,"./game/GameController":569,"./parser":578,"./speech":579,"./tutorial/TutorialView":581,"./util":582,"./utilities/timeHelpers":585,"jquery":296,"pegjs":514}],523:[function(require,module,exports){
+},{"./InputController":520,"./LoadingView":521,"./UiController":522,"./airport/AirportController":534,"./canvas/CanvasController":562,"./constants/logLevel":574,"./contentQueue/ContentQueue":577,"./game/GameClockView":579,"./game/GameController":580,"./speech":588,"./tutorial/TutorialView":590,"./util":591,"./utilities/timeHelpers":594,"jquery":296}],520:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -31466,11 +24343,21 @@ var _get2 = require('lodash/get');
 
 var _get3 = _interopRequireDefault(_get2);
 
+var _has2 = require('lodash/has');
+
+var _has3 = _interopRequireDefault(_has2);
+
 var _map2 = require('lodash/map');
 
 var _map3 = _interopRequireDefault(_map2);
 
+var _CommandParser = require('./commandParser/CommandParser');
+
+var _CommandParser2 = _interopRequireDefault(_CommandParser);
+
 var _core = require('./math/core');
+
+var _gameOptionConstants = require('./constants/gameOptionConstants');
 
 var _selectors = require('./constants/selectors');
 
@@ -31482,15 +24369,34 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 var input = {};
 
 /**
+ * Name of a command returned from the Parser
+ *
+ * @property PARSED_COMMAND_NAME
+ * @type {Object}
+ * @final
+ */
+var PARSED_COMMAND_NAME = {
+    VERSION: 'version',
+    TUTORIAL: 'tutorial',
+    AUTO: 'auto',
+    PAUSE: 'pause',
+    TIMEWARP: 'timewarp',
+    CLEAR: 'clear',
+    AIRPORT: 'airport',
+    RATE: 'rate',
+    TRANSMIT: 'transmit'
+};
+
+/**
  * Enumeration of mouse events returned from $event.which
  *
  * These codes can only be used with jQuery event object.
  *
- * @property MOUSE_EVENTS
+ * @property MOUSE_EVENT_CODE
  * @type {Object}
  * @final
  */
-var MOUSE_EVENTS = {
+var MOUSE_EVENT_CODE = {
     LEFT_PRESS: 1,
     MIDDLE_PESS: 2,
     RIGHT_PRESS: 3
@@ -31504,18 +24410,18 @@ var MOUSE_EVENTS = {
  * @final
  */
 var KEY_CODES = {
-    // `+`
+    // +
     ADD: 107,
-    // `-`
+    // -
     DASH: 189,
     DASH_FIREFOX: 173,
     DIVIDE: 111,
     DOWN_ARROW: 40,
     ENTER: 13,
-    // `=`
+    // =
     EQUALS: 187,
     EQUALS_FIREFOX: 61,
-    // `esc`
+    // esc
     ESCAPE: 27,
     LEFT_ARROW: 37,
     MULTIPLY: 106,
@@ -31524,7 +24430,9 @@ var KEY_CODES = {
     RIGHT_ARROW: 39,
     SUBTRACT: 109,
     TAB: 9,
-    UP_ARROW: 38
+    UP_ARROW: 38,
+    // `
+    BAT_TICK: 192
 };
 
 /**
@@ -31678,7 +24586,7 @@ var InputController = function () {
             this.input = input;
             this.input.command = '';
             this.input.callsign = '';
-            this.input.data = '';
+            // this.input.data = '';
             this.input.history = [];
             this.input.history_item = null;
             this.input.click = [0, 0];
@@ -31699,6 +24607,7 @@ var InputController = function () {
     }, {
         key: 'input_init_pre',
         value: function input_init_pre() {
+            // TODO: these prop properties can be removed except for `prop.input`
             prop.input = input;
             prop.input.command = '';
             prop.input.callsign = '';
@@ -31771,9 +24680,9 @@ var InputController = function () {
         value: function onMouseDownHandler(event) {
             event.preventDefault();
 
-            if (event.which === MOUSE_EVENTS.MIDDLE_PESS) {
+            if (event.which === MOUSE_EVENT_CODE.MIDDLE_PESS) {
                 window.uiController.ui_zoom_reset();
-            } else if (event.which === MOUSE_EVENTS.LEFT_PRESS) {
+            } else if (event.which === MOUSE_EVENT_CODE.LEFT_PRESS) {
                 // Record mouse down position for panning
                 prop.input.mouseDown = [event.pageX - prop.canvas.panX, event.pageY - prop.canvas.panY];
                 prop.input.isMouseDown = true;
@@ -31787,7 +24696,9 @@ var InputController = function () {
 
                 if (nearest[0]) {
                     if (nearest[1] < window.uiController.px_to_km(80)) {
-                        this.input_select(nearest[0].getCallsign().toUpperCase());
+                        this.input.callsign = nearest[0].getCallsign().toUpperCase();
+
+                        this.input_select(this.input.callsign);
                     } else {
                         this.input_select();
                     }
@@ -31873,6 +24784,7 @@ var InputController = function () {
                 return;
             }
 
+            // TODO: move to master REGEX constant
             var match = /^\s*(\w+)/.exec(prop.input.command);
 
             if (!match) {
@@ -31947,7 +24859,14 @@ var InputController = function () {
         value: function onCommandInputKeydownHandler(e) {
             var currentCommandInputValue = this.$commandInput.val();
 
+            // TODO: this swtich can be simplified, there is a lot of repetition here
             switch (e.which) {
+                case KEY_CODES.BAT_TICK:
+                    this.$commandInput.val(currentCommandInputValue + '` ');
+                    e.preventDefault();
+                    this.onCommandInputChangeHandler();
+
+                    break;
                 case KEY_CODES.ENTER:
                     this.input_parse();
 
@@ -31978,8 +24897,8 @@ var InputController = function () {
 
                 case KEY_CODES.LEFT_ARROW:
                     // shortKeys in use
-                    if (window.gameController.game.option.get('controlMethod') === 'arrows') {
-                        this.$commandInput.val(currentCommandInputValue + ' \u2BA2');
+                    if (this._isArrowControlMethod()) {
+                        this.$commandInput.val(currentCommandInputValue + ' t l ');
                         e.preventDefault();
                         this.onCommandInputChangeHandler();
                     }
@@ -31987,9 +24906,8 @@ var InputController = function () {
                     break;
 
                 case KEY_CODES.UP_ARROW:
-                    if (window.gameController.game.option.get('controlMethod') === 'arrows') {
-                        // shortKeys in use
-                        this.$commandInput.val(currentCommandInputValue + ' \u2B61');
+                    if (this._isArrowControlMethod()) {
+                        this.$commandInput.val(currentCommandInputValue + ' \u2B61 ');
                         e.preventDefault();
                         this.onCommandInputChangeHandler();
                     } else {
@@ -32001,8 +24919,8 @@ var InputController = function () {
 
                 case KEY_CODES.RIGHT_ARROW:
                     // shortKeys in use
-                    if (window.gameController.game.option.get('controlMethod') === 'arrows') {
-                        this.$commandInput.val(currentCommandInputValue + ' \u2BA3');
+                    if (this._isArrowControlMethod()) {
+                        this.$commandInput.val(currentCommandInputValue + ' t r ');
                         e.preventDefault();
                         this.onCommandInputChangeHandler();
                     }
@@ -32010,9 +24928,8 @@ var InputController = function () {
                     break;
 
                 case KEY_CODES.DOWN_ARROW:
-                    if (window.gameController.game.option.get('controlMethod') === 'arrows') {
-                        // shortKeys in use
-                        this.$commandInput.val(currentCommandInputValue + ' \u2B63');
+                    if (this._isArrowControlMethod()) {
+                        this.$commandInput.val(currentCommandInputValue + ' \u2B63 ');
                         e.preventDefault();
                         this.onCommandInputChangeHandler();
                     } else {
@@ -32024,14 +24941,14 @@ var InputController = function () {
                     break;
 
                 case KEY_CODES.MULTIPLY:
-                    this.$commandInput.val(currentCommandInputValue + ' \u2B50');
+                    this.$commandInput.val(currentCommandInputValue + ' \u2B50 ');
                     e.preventDefault();
                     this.onCommandInputChangeHandler();
 
                     break;
 
                 case KEY_CODES.ADD:
-                    this.$commandInput.val(currentCommandInputValue + ' +');
+                    this.$commandInput.val(currentCommandInputValue + ' + ');
                     e.preventDefault();
                     this.onCommandInputChangeHandler();
 
@@ -32039,14 +24956,14 @@ var InputController = function () {
 
                 case KEY_CODES.EQUALS:
                     // mac + (actually `=`)
-                    this.$commandInput.val(currentCommandInputValue + ' +');
+                    this.$commandInput.val(currentCommandInputValue + ' + ');
                     e.preventDefault();
                     this.onCommandInputChangeHandler();
 
                     break;
 
                 case KEY_CODES.SUBTRACT:
-                    this.$commandInput.val(currentCommandInputValue + ' -');
+                    this.$commandInput.val(currentCommandInputValue + ' - ');
                     e.preventDefault();
                     this.onCommandInputChangeHandler();
 
@@ -32054,14 +24971,14 @@ var InputController = function () {
 
                 case KEY_CODES.DASH:
                     // mac -
-                    this.$commandInput.val(currentCommandInputValue + ' -');
+                    this.$commandInput.val(currentCommandInputValue + ' - ');
                     e.preventDefault();
                     this.onCommandInputChangeHandler();
 
                     break;
 
                 case KEY_CODES.DIVIDE:
-                    this.$commandInput.val(currentCommandInputValue + ' takeoff');
+                    this.$commandInput.val(currentCommandInputValue + ' takeoff ');
                     e.preventDefault();
                     this.onCommandInputChangeHandler();
 
@@ -32078,8 +24995,16 @@ var InputController = function () {
                     break;
 
                 case KEY_CODES.ESCAPE:
+                    var currentCommandValue = this.$commandInput.val();
+
+                    // if the current commandInput value contains a callsign and commands, only clear the commands
+                    if (currentCommandValue.trim() !== this.input.callsign) {
+                        this.$commandInput.val(this.input.callsign + ' ');
+
+                        return;
+                    }
+
                     this.$commandInput.val('');
-                    e.preventDefault();
 
                     break;
                 default:
@@ -32237,6 +25162,47 @@ var InputController = function () {
         }
 
         /**
+         * Encapsulation of repeated boolean logic
+         *
+         * @for InputController
+         * @method _isArrowControlMethod
+         * @return {boolean}
+         */
+
+    }, {
+        key: '_isArrowControlMethod',
+        value: function _isArrowControlMethod() {
+            return window.gameController.game.option.get(_gameOptionConstants.GAME_OPTION_NAMES.CONTROL_METHOD) === 'arrows';
+        }
+
+        /**
+         * @for InputController
+         * @method _parseUserCommand
+         * @return result {CommandParser}
+         */
+
+    }, {
+        key: '_parseUserCommand',
+        value: function _parseUserCommand() {
+            var result = void 0;
+            // this could use $commandInput.val() as an alternative
+            var userCommand = prop.input.command.trim().toLowerCase();
+
+            // Using try/catch here very much on purpose. the `CommandParser` will throw when it encounters any kind
+            // of error; invalid length, validation, parse, etc. Here we catch those errors, log them to the screen
+            // and then throw them all at once
+            try {
+                result = new _CommandParser2.default(userCommand);
+            } catch (error) {
+                window.uiController.ui_log('Command not understood');
+
+                throw error;
+            }
+
+            return result;
+        }
+
+        /**
          * @for InputController
          * @method input_run
          */
@@ -32244,85 +25210,106 @@ var InputController = function () {
     }, {
         key: 'input_run',
         value: function input_run() {
-            var result = void 0;
+            var commandParser = this._parseUserCommand();
 
-            // TODO: does this need to be in a try/catch?
-            // TODO: abstract this to another method and only hanlde the return with this method.
-            try {
-                result = zlsa.atc.Parser.parse(prop.input.command.trim().toLowerCase());
-            } catch (error) {
-                if ((0, _get3.default)(error, 'name', '') === 'SyntaxError') {
-                    window.uiController.ui_log('Command not understood');
-
-                    return;
-                }
-
-                throw error;
+            if (commandParser.command !== 'transmit') {
+                return this.processSystemCommand(commandParser);
             }
 
-            // TODO: convert `result.command === { }` to a switch statement
-            if (result.command === 'version') {
-                window.uiController.ui_log('Air Traffic Control simulator version ' + prop.version.join('.'));
+            return this.processTransmitCommand(commandParser);
+        }
 
-                return true;
-            } else if (result.command === 'tutorial') {
-                window.tutorialView.tutorial_toggle();
+        /**
+         * @for InputController
+         * @method processSystemCommand
+         * @param commandParser {CommandParser}
+         * @return {boolean}
+         */
 
-                return true;
-            } else if (result.command === 'auto') {
-                // TODO: this is undefined
-                aircraft_toggle_auto();
+    }, {
+        key: 'processSystemCommand',
+        value: function processSystemCommand(commandParser) {
+            switch (commandParser.command) {
+                case PARSED_COMMAND_NAME.VERSION:
+                    window.uiController.ui_log('Air Traffic Control simulator version ' + prop.version.join('.'));
 
-                if (prop.aircraft.auto.enabled) {
-                    window.uiController.ui_log('automatic controller ENGAGED');
-                } else {
-                    window.uiController.ui_log('automatic controller OFF');
-                }
+                    return true;
 
-                return true;
-            } else if (result.command === 'pause') {
-                window.gameController.game_pause_toggle();
-                return true;
-            } else if (result.command === 'timewarp') {
-                if (result.args) {
-                    window.gameController.game.speedup = result.args;
-                } else {
-                    window.gameController.game_timewarp_toggle();
-                }
+                case PARSED_COMMAND_NAME.TUTORIAL:
+                    window.tutorialView.tutorial_toggle();
 
-                return true;
-            } else if (result.command === 'clear') {
-                localStorage.clear();
-                location.reload();
-            } else if (result.command === 'airport') {
-                if (result.args) {
-                    if (result.args.toLowerCase() in prop.airport.airports) {
-                        window.airportController.airport_set(result.args.toLowerCase());
+                    return true;
+
+                case PARSED_COMMAND_NAME.AUTO:
+                    // FIXME: does this function exist anywhere?
+                    // aircraft_toggle_auto();
+                    //
+                    // if (prop.aircraft.auto.enabled) {
+                    //     window.uiController.ui_log('automatic controller ENGAGED');
+                    // } else {
+                    //     window.uiController.ui_log('automatic controller OFF');
+                    // }
+
+                    return true;
+
+                case PARSED_COMMAND_NAME.PAUSE:
+                    window.gameController.game_pause_toggle();
+
+                    return true;
+
+                case PARSED_COMMAND_NAME.TIMEWARP:
+                    if (commandParser.args) {
+                        window.gameController.game.speedup = commandParser.args;
                     } else {
-                        window.uiController.ui_airport_toggle();
+                        window.gameController.game_timewarp_toggle();
                     }
-                } else {
-                    window.uiController.ui_airport_toggle();
-                }
 
-                return true;
-            } else if (result.command === 'rate') {
-                if (result.args && result.args > 0) {
-                    window.gameController.game.frequency = result.args;
-                }
+                    return true;
 
-                return true;
-            } else if (result.command !== 'transmit') {
-                return true;
+                case PARSED_COMMAND_NAME.CLEAR:
+                    localStorage.clear();
+                    location.reload();
+
+                case PARSED_COMMAND_NAME.AIRPORT:
+                    // TODO: it may be better to do this in the parser
+                    var airportIcao = commandParser.args[0];
+
+                    if ((0, _has3.default)(prop.airport.airports, airportIcao)) {
+                        window.airportController.airport_set(airportIcao);
+                    }
+
+                    return true;
+
+                case PARSED_COMMAND_NAME.RATE:
+                    // TODO: is this if even needed?
+                    if (commandParser.args) {
+                        window.gameController.game.frequency = commandParser.args;
+                    }
+
+                    return true;
+                default:
+                    return true;
             }
+        }
 
+        /**
+         * @for InputController
+         * @method processTransmitCommand
+         * @param commandParser {CommandParser}
+         * @return {boolean}
+         */
+
+    }, {
+        key: 'processTransmitCommand',
+        value: function processTransmitCommand(commandParser) {
+            // TODO: abstract the aircraft callsign matching
             var matches = 0;
             var match = -1;
 
             for (var i = 0; i < prop.aircraft.list.length; i++) {
                 var _aircraft = prop.aircraft.list[i];
 
-                if (_aircraft.matchCallsign(result.callsign)) {
+                if (_aircraft.matchCallsign(commandParser.callsign)) {
                     matches += 1;
                     match = i;
                 }
@@ -32342,7 +25329,7 @@ var InputController = function () {
 
             var aircraft = prop.aircraft.list[match];
 
-            return aircraft.runCommands(result.args);
+            return aircraft.runCommands(commandParser.args);
         }
     }]);
 
@@ -32351,11 +25338,11 @@ var InputController = function () {
 
 exports.default = InputController;
 
-},{"./constants/selectors":565,"./math/core":574,"jquery":296,"lodash/get":459,"lodash/map":484}],524:[function(require,module,exports){
+},{"./commandParser/CommandParser":564,"./constants/gameOptionConstants":572,"./constants/selectors":575,"./math/core":584,"jquery":296,"lodash/get":469,"lodash/has":470,"lodash/map":496}],521:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /* eslint-disable no-underscore-dangle */
@@ -32390,222 +25377,222 @@ var MIN_DISPLAY_SECONDS = 2;
  */
 
 var LoadingView = function () {
+  /**
+   * @for LoadingView
+   * @constructor
+   */
+  function LoadingView() {
+    _classCallCheck(this, LoadingView);
+
     /**
-     * @for LoadingView
-     * @constructor
+     * @property $element
+     * @type {jquery|null}
      */
-    function LoadingView() {
-        _classCallCheck(this, LoadingView);
+    this.$element = null;
 
-        /**
-         * @property $element
-         * @type {jquery|null}
-         */
-        this.$element = null;
+    /**
+     * @property $loadingIndicator
+     * @type {jquery|null}
+     */
+    this.$loadingIdicator = null;
 
-        /**
-         * @property $loadingIndicator
-         * @type {jquery|null}
-         */
-        this.$loadingIdicator = null;
+    /**
+     * @property $loadingMessage
+     * @type {jquery|null}
+     */
+    this.$loadingMessage = null;
 
-        /**
-         * @property $loadingMessage
-         * @type {jquery|null}
-         */
-        this.$loadingMessage = null;
+    /**
+     * @property loadingState
+     * @type {Object}
+     * @final
+     */
+    this.loadingState = {
+      /**
+       *
+       * @property callback
+       * @method callback
+       * @return {Function}
+       */
+      callback: function callback() {},
 
-        /**
-         * @property loadingState
-         * @type {Object}
-         * @final
-         */
-        this.loadingState = {
-            /**
-             *
-             * @property callback
-             * @method callback
-             * @return {Function}
-             */
-            callback: function callback() {},
+      /**
+       * @property loadingState
+       * @type {Boolean}
+       */
+      loading: false,
 
-            /**
-             * @property loadingState
-             * @type {Boolean}
-             */
-            loading: false,
+      /**
+       * @property startTime
+       * @type {number}
+       */
+      startTime: -1
+    };
 
-            /**
-             * @property startTime
-             * @type {number}
-             */
-            startTime: -1
-        };
+    this._setupChildren();
+  }
 
-        this._setupChildren();
+  /**
+   * @for LoadingView
+   * @method _setupChildren
+   * @chainable
+   * @private
+   */
+
+
+  _createClass(LoadingView, [{
+    key: '_setupChildren',
+    value: function _setupChildren() {
+      this.$element = (0, _jquery2.default)(_selectors.SELECTORS.DOM_SELECTORS.LOADING);
+      this.$loadingIdicator = (0, _jquery2.default)(_selectors.SELECTORS.DOM_SELECTORS.LOADING_INDICATOR);
+      this.$loadingMessage = this.$element.find(_selectors.SELECTORS.DOM_SELECTORS.MESSAGE);
+
+      return this;
     }
 
     /**
      * @for LoadingView
-     * @method _setupChildren
+     * @method _disable
      * @chainable
      * @private
      */
 
+  }, {
+    key: '_disable',
+    value: function _disable() {
+      this.loadingState.callback = function () {};
+      this.loadingState.loading = false;
+      this.loadingState.startTime = -1;
 
-    _createClass(LoadingView, [{
-        key: '_setupChildren',
-        value: function _setupChildren() {
-            this.$element = (0, _jquery2.default)(_selectors.SELECTORS.DOM_SELECTORS.LOADING);
-            this.$loadingIdicator = (0, _jquery2.default)(_selectors.SELECTORS.DOM_SELECTORS.LOADING_INDICATOR);
-            this.$loadingMessage = this.$element.find(_selectors.SELECTORS.DOM_SELECTORS.MESSAGE);
+      return this;
+    }
 
-            return this;
+    /**
+     * @for LoadingView
+     * @method _resetCallback
+     * @chainable
+     * @private
+     */
+
+  }, {
+    key: '_resetCallback',
+    value: function _resetCallback() {
+      if (this.callback === null) {
+        return this;
+      }
+
+      clearTimeout(this.callback);
+
+      this.callback = null;
+
+      return this;
+    }
+
+    /**
+     * @for LoadingView
+     * @method _didExceedMinimumWaitTime
+     * @return {boolean}
+     * @chainable
+     * @private
+     */
+
+  }, {
+    key: '_didExceedMinimumWaitTime',
+    value: function _didExceedMinimumWaitTime() {
+      var timeNow = (0, _timeHelpers.time)();
+
+      return timeNow - this.loadingState.startTime > MIN_DISPLAY_SECONDS;
+    }
+
+    /**
+     * @for LoadingView
+     * @method _formatLoadingMessage
+     * @param message {string}  a string to be formatted
+     * @return {string}
+     * @private
+     */
+
+  }, {
+    key: '_formatLoadingMessage',
+    value: function _formatLoadingMessage(message) {
+      var minimumTruncationLength = 15;
+
+      if (message.length <= minimumTruncationLength) {
+        return message;
+      }
+
+      return '...' + message.substr(-12);
+    }
+
+    /**
+     * @for LoadingView
+     * @method startLoad
+     * @param url {string}  the url for a file being loaded
+     */
+
+  }, {
+    key: 'startLoad',
+    value: function startLoad(url) {
+      if (!this.loading) {
+        (0, _jquery2.default)(_selectors.SELECTORS.DOM_SELECTORS.LOADING_INDICATOR).show();
+        this.loadingState.startTime = (0, _timeHelpers.time)();
+      }
+
+      var msg = this._formatLoadingMessage(url);
+      this.$loadingMessage.text(msg);
+
+      this._resetCallback();
+    }
+
+    /**
+     * @for LoadingView
+     * @method stopLoad
+     */
+
+  }, {
+    key: 'stopLoad',
+    value: function stopLoad() {
+      var _this = this;
+
+      var timeNow = (0, _timeHelpers.time)();
+
+      if (this._didExceedMinimumWaitTime()) {
+        this.$loadingIdicator.hide();
+
+        this._disable();
+      } else {
+        if (this.callback !== null) {
+          return;
         }
 
-        /**
-         * @for LoadingView
-         * @method _disable
-         * @chainable
-         * @private
-         */
+        var delayTime = (MIN_DISPLAY_SECONDS - (timeNow - this.start)) * 1000;
+        this.callback = setTimeout(function () {
+          (0, _jquery2.default)(_selectors.SELECTORS.DOM_SELECTORS.LOADING_INDICATOR).hide();
 
-    }, {
-        key: '_disable',
-        value: function _disable() {
-            this.loadingState.callback = function () {};
-            this.loadingState.loading = false;
-            this.loadingState.startTime = -1;
+          _this._disable();
+        }, delayTime);
+      }
+    }
 
-            return this;
-        }
+    /**
+     * @for LoadingView
+     * @method complete
+     */
 
-        /**
-         * @for LoadingView
-         * @method _resetCallback
-         * @chainable
-         * @private
-         */
+  }, {
+    key: 'complete',
+    value: function complete() {
+      this.$element.fadeOut(1000);
+      this.$element.css('pointerEvents', 'none');
+    }
+  }]);
 
-    }, {
-        key: '_resetCallback',
-        value: function _resetCallback() {
-            if (this.callback === null) {
-                return this;
-            }
-
-            clearTimeout(this.callback);
-
-            this.callback = null;
-
-            return this;
-        }
-
-        /**
-         * @for LoadingView
-         * @method _didExceedMinimumWaitTime
-         * @return {boolean}
-         * @chainable
-         * @private
-         */
-
-    }, {
-        key: '_didExceedMinimumWaitTime',
-        value: function _didExceedMinimumWaitTime() {
-            var timeNow = (0, _timeHelpers.time)();
-
-            return timeNow - this.loadingState.startTime > MIN_DISPLAY_SECONDS;
-        }
-
-        /**
-         * @for LoadingView
-         * @method _formatLoadingMessage
-         * @param message {string}  a string to be formatted
-         * @return {string}
-         * @private
-         */
-
-    }, {
-        key: '_formatLoadingMessage',
-        value: function _formatLoadingMessage(message) {
-            var minimumTruncationLength = 15;
-
-            if (message.length <= minimumTruncationLength) {
-                return message;
-            }
-
-            return '...' + message.substr(-12);
-        }
-
-        /**
-         * @for LoadingView
-         * @method startLoad
-         * @param url {string}  the url for a file being loaded
-         */
-
-    }, {
-        key: 'startLoad',
-        value: function startLoad(url) {
-            if (!this.loading) {
-                (0, _jquery2.default)(_selectors.SELECTORS.DOM_SELECTORS.LOADING_INDICATOR).show();
-                this.loadingState.startTime = (0, _timeHelpers.time)();
-            }
-
-            var msg = this._formatLoadingMessage(url);
-            this.$loadingMessage.text(msg);
-
-            this._resetCallback();
-        }
-
-        /**
-         * @for LoadingView
-         * @method stopLoad
-         */
-
-    }, {
-        key: 'stopLoad',
-        value: function stopLoad() {
-            var _this = this;
-
-            var timeNow = (0, _timeHelpers.time)();
-
-            if (this._didExceedMinimumWaitTime()) {
-                this.$loadingIdicator.hide();
-
-                this._disable();
-            } else {
-                if (this.callback !== null) {
-                    return;
-                }
-
-                var delayTime = (MIN_DISPLAY_SECONDS - (timeNow - this.start)) * 1000;
-                this.callback = setTimeout(function () {
-                    (0, _jquery2.default)(_selectors.SELECTORS.DOM_SELECTORS.LOADING_INDICATOR).hide();
-
-                    _this._disable();
-                }, delayTime);
-            }
-        }
-
-        /**
-         * @for LoadingView
-         * @method complete
-         */
-
-    }, {
-        key: 'complete',
-        value: function complete() {
-            this.$element.fadeOut(1000);
-            this.$element.css('pointerEvents', 'none');
-        }
-    }]);
-
-    return LoadingView;
+  return LoadingView;
 }();
 
 exports.default = LoadingView;
 
-},{"./constants/selectors":565,"./utilities/timeHelpers":585,"jquery":296}],525:[function(require,module,exports){
+},{"./constants/selectors":575,"./utilities/timeHelpers":594,"jquery":296}],522:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -33374,7 +26361,7 @@ var UiView = function () {
 
 exports.default = UiView;
 
-},{"./constants/selectors":565,"./constants/storageKeys":566,"./math/core":574,"./speech":579,"jquery":296,"lodash/forEach":458,"lodash/has":460,"lodash/keys":480,"lodash/startCase":489}],526:[function(require,module,exports){
+},{"./constants/selectors":575,"./constants/storageKeys":576,"./math/core":584,"./speech":588,"jquery":296,"lodash/forEach":468,"lodash/has":470,"lodash/keys":492,"lodash/startCase":501}],523:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -33534,13 +26521,15 @@ var AircraftConflict = function () {
     }, {
         key: 'checkCollision',
         value: function checkCollision() {
-            if (this.aircraft[0].wow() || this.aircraft[1].wow()) {
+            if (this.aircraft[0].isOnGround() || this.aircraft[1].isOnGround()) {
                 return; // TEMPORARY FIX FOR CRASHES BTWN ARRIVALS AND TAXIIED A/C
             }
 
             // TODO: enumerate the magic numbers.
             // Collide within 160 feet
-            if (this.distance < 0.05 && this.altitude < 160 && this.aircraft[0].isVisible() && this.aircraft[1].isVisible()) {
+            var airport = window.airportController.airport_get();
+
+            if (this.distance < 0.05 && this.altitude < 160 && this.aircraft[0].isInsideAirspace(airport) && this.aircraft[1].isInsideAirspace(airport)) {
                 this.collided = true;
                 var _isWarning = true;
                 window.uiController.ui_log(this.aircraft[0].getCallsign() + ' collided with ' + this.aircraft[1].getCallsign(), _isWarning);
@@ -33549,18 +26538,9 @@ var AircraftConflict = function () {
                 this.aircraft[0].hit = true;
                 this.aircraft[1].hit = true;
 
-                // If either are in runway queue, remove them from it
-                for (var i in window.airportController.airport_get().runways) {
-                    var runway = window.airportController.airport_get().runways[i];
-
-                    // Primary End of Runway
-                    runway[0].removeQueue(this.aircraft[0], true);
-                    runway[0].removeQueue(this.aircraft[1], true);
-
-                    // Secondary End of Runway
-                    runway[1].removeQueue(this.aircraft[0], true);
-                    runway[1].removeQueue(this.aircraft[1], true);
-                }
+                // If either are in a runway queue, remove them from it
+                window.airportController.removeAircraftFromAllRunwayQueues(this.aircraft[0]);
+                window.airportController.removeAircraftFromAllRunwayQueues(this.aircraft[1]);
             }
         }
 
@@ -33721,7 +26701,7 @@ var AircraftConflict = function () {
 
 exports.default = AircraftConflict;
 
-},{"../game/GameController":569,"../math/circle":573,"../math/core":574,"../math/vector":577,"../utilities/unitConverters":586}],527:[function(require,module,exports){
+},{"../game/GameController":580,"../math/circle":583,"../math/core":584,"../math/vector":587,"../utilities/unitConverters":595}],524:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -33731,6 +26711,10 @@ Object.defineProperty(exports, "__esModule", {
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /* eslint-disable no-underscore-dangle, no-unused-vars, no-undef, global-require */
 
 
+var _without2 = require('lodash/without');
+
+var _without3 = _interopRequireDefault(_without2);
+
 var _AircraftConflict = require('./AircraftConflict');
 
 var _AircraftConflict2 = _interopRequireDefault(_AircraftConflict);
@@ -33738,10 +26722,6 @@ var _AircraftConflict2 = _interopRequireDefault(_AircraftConflict);
 var _AircraftModel = require('./AircraftModel');
 
 var _AircraftModel2 = _interopRequireDefault(_AircraftModel);
-
-var _AircraftFlightManagementSystem = require('./AircraftFlightManagementSystem');
-
-var _AircraftFlightManagementSystem2 = _interopRequireDefault(_AircraftFlightManagementSystem);
 
 var _speech = require('../speech');
 
@@ -33789,32 +26769,11 @@ var AircraftController = function () {
 
     /**
      * @for AircraftController
-     * @method aircraft_generate_callsign
-     * @param airlineName
+     * @method aircraft_auto_toggle
      */
 
 
     _createClass(AircraftController, [{
-        key: 'aircraft_generate_callsign',
-        value: function aircraft_generate_callsign(airlineName) {
-            // TODO: this should live in the AirlineModel
-            var airline = window.airlineController.airline_get(airlineName);
-
-            if (!airline) {
-                console.warn('Airline not found: ' + airlineName);
-
-                return 'airline-' + airlineName + '-not-found';
-            }
-
-            return airline.generateFlightNumber();
-        }
-
-        /**
-         * @for AircraftController
-         * @method aircraft_auto_toggle
-         */
-
-    }, {
         key: 'aircraft_auto_toggle',
         value: function aircraft_auto_toggle() {
             prop.aircraft.auto.enabled = !this.aircraft.auto.enabled;
@@ -33822,22 +26781,37 @@ var AircraftController = function () {
 
         /**
          * @for AircraftController
-         * @method aircraft_callsign_new
-         * @param airline {string}
+         * @method isCallsignInList
+         * @param callsign {string}
+         * return {boolean}
          */
 
     }, {
-        key: 'aircraft_callsign_new',
-        value: function aircraft_callsign_new(airline) {
-            // TODO: the logic needs work here. if `callsign` is always initialized as null, one would imagine that
-            // this function would always result in the creation of a callsign?
-            var callsign = this.aircraft_generate_callsign(airline);
+        key: 'isCallsignInList',
+        value: function isCallsignInList(callsign) {
+            return this.aircraft.callsigns.indexOf(callsign) !== -1;
+        }
 
-            if (this.aircraft.callsigns.indexOf(callsign) === -1) {
-                this.aircraft.callsigns.push(callsign);
+        /**
+         * Add a new callsign to `aircraft.callsigns`
+         *
+         * @for AircraftController
+         * @method addCallsignToList
+         * @param callsign {string}
+         */
+
+    }, {
+        key: 'addCallsignToList',
+        value: function addCallsignToList(callsign) {
+            if (this.isCallsignInList(callsign)) {
+                // if you've made it here something has gone very wrong. generation of a callsign/flightNumber should
+                // also include verification that the callsign/flightNumber is unique
+                console.warn(callsign + ' already exists within the callsigns list!');
+
+                return;
             }
 
-            return callsign;
+            this.aircraft.callsigns.push(callsign);
         }
 
         /**
@@ -33929,11 +26903,9 @@ var AircraftController = function () {
     }, {
         key: 'aircraft_remove',
         value: function aircraft_remove(aircraft) {
-            this.aircraft.callsigns.splice(this.aircraft.callsigns.indexOf(aircraft.callsign), 1);
-            this.aircraft.list.splice(this.aircraft.list.indexOf(aircraft), 1);
-
-            this.update_aircraft_eids();
-
+            window.airportController.removeAircraftFromAllRunwayQueues(aircraft);
+            this.removeCallsignFromList(aircraft.callsign);
+            this.removeAircraftInstanceModelFromList(aircraft);
             aircraft.cleanup();
         }
 
@@ -33993,7 +26965,7 @@ var AircraftController = function () {
                     remove = true;
                 }
 
-                if (_aircraft3.hit && _aircraft3.wow()) {
+                if (_aircraft3.hit && _aircraft3.isOnGround()) {
                     window.uiController.ui_log('Lost radar contact with ' + _aircraft3.getCallsign());
                     (0, _speech.speech_say)([{ type: 'callsign', content: _aircraft3 }, { type: 'text', content: ', radar contact lost' }]);
 
@@ -34001,7 +26973,7 @@ var AircraftController = function () {
                 }
 
                 // Clean up the screen from aircraft that are too far
-                if (!this.aircraft_visible(_aircraft3, 2) && !_aircraft3.inside_ctr && _aircraft3.fms.currentWaypoint().navmode === 'heading') {
+                if (!this.aircraft_visible(_aircraft3, 2) && !_aircraft3.inside_ctr && _aircraft3.fms.currentWaypoint.navmode === 'heading') {
                     if (_aircraft3.category === 'arrival' || _aircraft3.category === 'departure') {
                         remove = true;
                     }
@@ -34157,6 +27129,32 @@ var AircraftController = function () {
         }
 
         /**
+         * Remove the specified aircraft from `AircraftController.aircraft`
+         * @method removeAircraftInstanceModelFromList
+         * @param  {Aircraft} aircraft the aircraft to remove
+         */
+
+    }, {
+        key: 'removeAircraftInstanceModelFromList',
+        value: function removeAircraftInstanceModelFromList(aircraft) {
+            this.aircraft.list = (0, _without3.default)(this.aircraft.list, aircraft);
+        }
+
+        /**
+         * Remove a flight number from the list stored in `AircraftController.aircraft.callsigns`
+         * @for AircraftController
+         * @method removeCallsignFromList
+         * @param  {string} callsign the flight number to remove
+         */
+
+    }, {
+        key: 'removeCallsignFromList',
+        value: function removeCallsignFromList(callsign) {
+            this.aircraft.callsigns = (0, _without3.default)(this.aircraft.callsigns, callsign);
+        }
+
+        // TODO: what is an `eid` and why would it beed to be updated?
+        /**
          * Adjust all aircraft's eid values
          *
          * @for AircraftController
@@ -34180,1181 +27178,15 @@ var AircraftController = function () {
 
 exports.default = AircraftController;
 
-},{"../game/GameController":569,"../math/circle":573,"../math/core":574,"../math/distance":575,"../math/flightMath":576,"../math/vector":577,"../speech":579,"../utilities/unitConverters":586,"./AircraftConflict":526,"./AircraftFlightManagementSystem":528,"./AircraftModel":530}],528:[function(require,module,exports){
+},{"../game/GameController":580,"../math/circle":583,"../math/core":584,"../math/distance":585,"../math/flightMath":586,"../math/vector":587,"../speech":588,"../utilities/unitConverters":595,"./AircraftConflict":523,"./AircraftModel":526,"lodash/without":513}],525:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /* eslint-disable max-len */
 
-var _jquery = require('jquery');
-
-var _jquery2 = _interopRequireDefault(_jquery);
-
-var _last2 = require('lodash/last');
-
-var _last3 = _interopRequireDefault(_last2);
-
-var _map2 = require('lodash/map');
-
-var _map3 = _interopRequireDefault(_map2);
-
-var _Waypoint = require('./Waypoint');
-
-var _Waypoint2 = _interopRequireDefault(_Waypoint);
-
-var _Leg = require('./Leg');
-
-var _Leg2 = _interopRequireDefault(_Leg);
-
-var _core = require('../math/core');
-
-var _logLevel = require('../constants/logLevel');
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-/**
- * Enumeration of the Leg index in `this.current`
- *
- * @property
- * @type {number}
- * @final
- */
-var LEG = 0;
-
-/**
- * Enumeration of the Waypoint within leg index in `this.current`
- *
- * @property
- * @type {number}
- * @final
- */
-var WAYPOINT_WITHIN_LEG = 1;
-
-/**
-  * Manage current and future aircraft waypoints
-  *
-  * waypoint navmodes
-  * -----------------
-  * May be one of null, "fix", "heading", "hold", "rwy"
-  *
-  * * null is assigned, if the plane is not actively following an
-  *    objective. This is only the case, if a plane enters the airspace
-  *    or an action has been aborted and no new command issued
-  *
-  * * "fix" is assigned, if the plane is heading for a fix. In this
-  *    case, the attribute request.fix is used for navigation
-  *
-  * * "heading" is assigned, if the plane was given directive to follow
-  *    the course set out by the given heading. In this case, the
-  *    attributes request.heading and request.turn are used for
-  *    navigation
-  *
-  * * "hold" is assigned, if the plane should hold its position. As
-  *    this is archieved by continuously turning, request.turn is used
-  *    in this case
-  *
-  * * "rwy" is assigned, if the plane is heading for a runway. This is
-  *    only the case, if the plane was issued the command to land. In
-  *    this case, request.runway is used
-  *
-  * @class AircraftFlightManagementSystem
- */
-
-var AircraftFlightManagementSystem = function () {
-    function AircraftFlightManagementSystem(options) {
-        _classCallCheck(this, AircraftFlightManagementSystem);
-
-        this.my_aircrafts_eid = options.aircraft.eid;
-        this.my_aircraft = options.aircraft;
-        this.legs = [];
-        this.current = [0, 0]; // [current_Leg, current_Waypoint_within_that_Leg]
-        this.fp = {
-            altitude: null,
-            route: []
-        };
-        this.following = {
-            sid: null, // Standard Instrument Departure Procedure
-            star: null, // Standard Terminal Arrival Route Procedure
-            iap: null, // Instrument Approach Procedure (like ILS, GPS, RNAV, VOR-A, etc)
-            awy: null, // Airway (V, J, T, Q, etc.)
-            tfc: null, // Traffic (another airplane)
-            anything: false // T/F flag for if anything is being "followed"
-        };
-
-        // set initial
-        this.fp.altitude = (0, _core.clamp)(1000, options.model.ceiling, 60000);
-
-        if (options.aircraft.category === 'arrival') {
-            this.prependLeg({ route: 'KDBG' });
-        } else if (options.aircraft.category === 'departure') {
-            this.prependLeg({ route: window.airportController.airport_get().icao });
-        }
-
-        this.update_fp_route();
-    }
-
-    /** ***************** FMS FLIGHTPLAN CONTROL FUNCTIONS *******************/
-
-    /**
-     * Insert a Leg at the front of the flightplan
-     */
-
-
-    _createClass(AircraftFlightManagementSystem, [{
-        key: 'prependLeg',
-        value: function prependLeg(data) {
-            var prev = this.currentWaypoint();
-
-            this.legs.unshift(new _Leg2.default(data, this));
-            this.update_fp_route();
-
-            // Verify altitude & speed not null
-            var curr = this.currentWaypoint();
-            if (prev && !curr.altitude) {
-                curr.altitude = prev.altitude;
-            }
-
-            if (prev && !curr.speed) {
-                curr.speed = prev.speed;
-            }
-        }
-
-        /**
-         * Insert a waypoint at current position and immediately activate it
-         */
-
-    }, {
-        key: 'insertWaypointHere',
-        value: function insertWaypointHere(data) {
-            var prev = this.currentWaypoint();
-
-            this.currentLeg().waypoints.splice(this.current[WAYPOINT_WITHIN_LEG], 0, new _Waypoint2.default(data, this));
-            this.update_fp_route();
-
-            // Verify altitude & speed not null
-            var curr = this.currentWaypoint();
-            if (prev && !curr.altitude) {
-                curr.altitude = prev.altitude;
-            }
-
-            if (prev && !curr.speed) {
-                curr.speed = prev.speed;
-            }
-        }
-
-        /**
-         * Insert a Leg at a particular position in the flightplan
-         * Note: if no position passed in, defaults to add to the end
-         */
-
-    }, {
-        key: 'insertLeg',
-        value: function insertLeg(data) {
-            if (data.firstIndex == null) {
-                data.firstIndex = this.legs.length;
-            }
-
-            var prev = this.currentWaypoint();
-            this.legs.splice(data.firstIndex, 0, new _Leg2.default(data, this));
-
-            this.update_fp_route();
-
-            // Adjust 'current'
-            if (this.current[LEG] >= data.firstIndex) {
-                this.current[WAYPOINT_WITHIN_LEG] = 0;
-            }
-
-            // Verify altitude & speed not null
-            var curr = this.currentWaypoint();
-            if (prev && !curr.altitude) {
-                curr.altitude = prev.altitude;
-            }
-
-            if (prev && !curr.speed) {
-                curr.speed = prev.speed;
-            }
-        }
-
-        /**
-         * Insert a Leg at current position immediately activate it
-         */
-
-    }, {
-        key: 'insertLegHere',
-        value: function insertLegHere(data) {
-            // index of current leg
-            data.firstIndex = this.current[LEG];
-            // put new Leg at current position
-            this.insertLeg(data);
-            // start at first wp in this new leg
-            this.current[WAYPOINT_WITHIN_LEG] = 0;
-        }
-
-        /**
-         *  Insert a Leg at the end of the flightplan
-         */
-
-    }, {
-        key: 'appendLeg',
-        value: function appendLeg(data) {
-            this.legs.push(new _Leg2.default(data, this));
-            this.update_fp_route();
-        }
-
-        /**
-         *  Insert a waypoint after the *current* waypoint
-         */
-
-    }, {
-        key: 'appendWaypoint',
-        value: function appendWaypoint(data) {
-            this.currentLeg().waypoints.splice(this.current[WAYPOINT_WITHIN_LEG] + 1, 0, new _Waypoint2.default(data, this));
-            this.update_fp_route();
-        }
-
-        /**
-         *  Switch to the next waypoint
-         */
-
-    }, {
-        key: 'nextWaypoint',
-        value: function nextWaypoint() {
-            var prev = this.currentWaypoint();
-            var leg = this.current[LEG];
-            var wp = this.current[WAYPOINT_WITHIN_LEG] + 1;
-
-            if (wp < this.legs[leg].waypoints.length) {
-                // look to next waypoint in current leg
-                this.current[WAYPOINT_WITHIN_LEG]++;
-            } else if (leg + 1 < this.legs.length) {
-                // look to the next leg
-                this.current[LEG]++;
-                this.current[WAYPOINT_WITHIN_LEG] = 0; // look to the first waypoint of that leg
-            }
-
-            // Replace null values with current values
-            var curr = this.currentWaypoint();
-            if (prev && !curr.altitude) {
-                curr.altitude = prev.altitude;
-            }
-
-            if (prev && !curr.speed) {
-                curr.speed = prev.speed;
-            }
-
-            if (!curr.heading && curr.navmode === 'heading') {
-                curr.heading = prev.heading;
-            }
-        }
-
-        /**
-         *  Switch to the next Leg
-         */
-
-    }, {
-        key: 'nextLeg',
-        value: function nextLeg() {
-            var prev = this.currentWaypoint();
-            this.current[LEG]++;
-            this.current[WAYPOINT_WITHIN_LEG] = 0;
-
-            // Replace null values with current values
-            var curr = this.currentWaypoint();
-            if (prev && !curr.altitude) {
-                curr.altitude = prev.altitude;
-            }
-
-            if (prev && !curr.speed) {
-                curr.speed = prev.speed;
-            }
-
-            if (!curr.heading && curr.navmode === 'heading') {
-                curr.heading = prev.heading;
-            }
-        }
-
-        /**
-         * Skips to the given waypoint
-         * @param {string} name - the name of the fix to skip to
-         */
-
-    }, {
-        key: 'skipToFix',
-        value: function skipToFix(name) {
-            var prev = this.currentWaypoint();
-
-            for (var l = 0; l < this.legs.length; l++) {
-                for (var w = 0; w < this.legs[l].waypoints.length; w++) {
-                    if (this.legs[l].waypoints[w].fix === name) {
-                        this.current = [l, w];
-
-                        // Verify altitude & speed not null
-                        var curr = this.currentWaypoint();
-                        if (prev && !curr.altitude) {
-                            curr.altitude = prev.altitude;
-                        }
-
-                        if (prev && !curr.speed) {
-                            curr.speed = prev.speed;
-                        }
-
-                        return true;
-                    }
-                }
-            }
-
-            return false;
-        }
-
-        /**
-         * Modify all waypoints
-         */
-
-    }, {
-        key: 'setAll',
-        value: function setAll(data) {
-            for (var i = 0; i < this.legs.length; i++) {
-                for (var j = 0; j < this.legs[i].waypoints.length; j++) {
-                    for (var k in data) {
-                        this.legs[i].waypoints[j][k] = data[k];
-                    }
-                }
-            }
-        }
-
-        /**
-         * Modify the current waypoint
-         */
-
-    }, {
-        key: 'setCurrent',
-        value: function setCurrent(data) {
-            for (var i in data) {
-                this.currentWaypoint()[i] = data[i];
-            }
-        }
-
-        /**
-         * Updates fms.fp.route to correspond with the fms Legs
-         */
-
-    }, {
-        key: 'update_fp_route',
-        value: function update_fp_route() {
-            var r = [];
-
-            // TODO: simplify this
-            // FIXME: is this.legs an array?
-            for (var l in this.legs) {
-                if (!this.legs[l].type) {
-                    continue;
-                }
-
-                switch (this.legs[l].type) {
-                    case _Leg.FP_LEG_TYPE.SID:
-                        // TODO: this split logic and string building should live in a helper function or or class method
-                        // departure airport
-                        r.push(this.legs[l].route.split('.')[0]);
-                        // 'sidname.exitPoint'
-                        r.push(this.legs[l].route.split('.')[1] + '.' + this.legs[l].route.split('.')[2]);
-
-                        break;
-                    case _Leg.FP_LEG_TYPE.STAR:
-                        // 'entryPoint.starname.exitPoint'
-                        r.push(this.legs[l].route.split('.')[0] + '.' + this.legs[l].route.split('.')[1]);
-                        // arrival airport
-                        r.push(this.legs[l].route.split('.')[2]);
-
-                        break;
-                    case _Leg.FP_LEG_TYPE.IAP:
-                        // no need to include these in flightplan (because wouldn't happen in real life)
-                        break;
-                    case _Leg.FP_LEG_TYPE.AWY:
-                        if (r[r.length - 1] !== this.legs[l].route.split('.')[0]) {
-                            r.push(this.legs[l].route.split('.')[0]); // airway entry fix
-                            r.push(this.legs[l].route.split('.')[1]); // airway identifier
-                            r.push(this.legs[l].route.split('.')[2]); // airway exit fix
-                        }
-
-                        break;
-                    case _Leg.FP_LEG_TYPE.FIX:
-                        r.push(this.legs[l].route);
-
-                        break;
-                    case _Leg.FP_LEG_TYPE.MANUAL:
-                        // no need to include these in flightplan (because wouldn't happen in real life)
-                        break;
-                    default:
-                        break;
-                }
-
-                if (r.length === 0) {
-                    r.push(this.legs[0].route);
-                }
-            }
-
-            this.fp.route = r;
-        }
-
-        /**
-         * Calls various task-based functions and sets 'fms.following' flags
-         */
-
-    }, {
-        key: 'followCheck',
-        value: function followCheck() {
-            var leg = this.currentLeg();
-            this.following.anything = true;
-
-            switch (leg.type) {
-                case _Leg.FP_LEG_TYPE.SID:
-                    this.following.sid = leg.route.split('.')[1];
-                    break;
-                case _Leg.FP_LEG_TYPE.STAR:
-                    this.following.star = leg.route.split('.')[1];
-                    break;
-                case _Leg.FP_LEG_TYPE.IAP:
-                    // *******NEEDS TO BE FINISHED***************************
-                    // this.following.iap = ;
-                    break;
-                case 'tfc':
-                    // **FUTURE FUNCTIONALITY**
-                    // this.following.anything = true;
-                    // this.following.tfc = // EID of the traffic we're following
-                    break;
-                case _Leg.FP_LEG_TYPE.AWY:
-                    // **FUTURE FUNCTIONALITY**
-                    this.following.awy = leg.route.split('.')[1];
-                    break;
-                default:
-                    this.followClear();
-                    return false;
-            }
-
-            return this.following;
-        }
-
-        /**
-         * Clears any current follows by updating the 'fms.following' flags
-         */
-
-    }, {
-        key: 'followClear',
-        value: function followClear() {
-            this.following = {
-                sid: null,
-                star: null,
-                iap: null,
-                awy: null,
-                tfc: null,
-                anything: false
-            };
-        }
-
-        /**
-         * Join an instrument approach (eg. ILS/GPS/RNAV/VOR/LAAS/etc)
-         *
-         * @param {string} type - the type of approach (like "ils")
-         * @param {Runway} rwy - the Runway object the approach ends into
-         * @param {string} variant - (optional) for stuff like "RNAV-Z 17L"
-         */
-
-    }, {
-        key: 'followApproach',
-        value: function followApproach(type, rwy, variant) {
-            // Note: 'variant' is set up to pass to this function, but is not used here yet.
-            if (type === 'ils') {
-                this.my_aircraft.cancelFix();
-                this.setCurrent({
-                    navmode: 'rwy',
-                    runway: rwy.toUpperCase(),
-                    turn: null,
-                    start_speed: this.my_aircraft.speed
-                });
-            }
-            // if-else all the other approach types here...
-            // ILS, GPS, RNAV, VOR, NDB, LAAS/WAAS, MLS, etc...
-        }
-
-        /**
-         * Inserts the SID as the first Leg in the fms's flightplan
-         */
-
-    }, {
-        key: 'followSID',
-        value: function followSID(route) {
-            for (var i = 0; i < this.legs.length; i++) {
-                // sid assigned after taking off without SID
-                if (this.legs[i].route === window.airportController.airport_get().icao) {
-                    // remove the manual departure leg
-                    this.legs.splice(i, 1);
-                } else if (this.legs[i].type === _Leg.FP_LEG_TYPE.SID) {
-                    // check to see if SID already assigned
-                    // remove the old SID
-                    this.legs.splice(i, 1);
-                }
-            }
-
-            // Add the new SID Leg
-            this.prependLeg({
-                type: _Leg.FP_LEG_TYPE.SID,
-                route: route
-            });
-
-            this.setAll({
-                altitude: Math.max(window.airportController.airport_get().initial_alt, this.my_aircraft.altitude)
-            });
-        }
-
-        /**
-         * Inserts the STAR as the last Leg in the fms's flightplan
-         */
-
-    }, {
-        key: 'followSTAR',
-        value: function followSTAR(route) {
-            for (var i = 0; i < this.legs.length; i++) {
-                if (this.legs[i].type === _Leg.FP_LEG_TYPE.STAR) {
-                    // check to see if STAR already assigned
-                    this.legs.splice(i, 1); // remove the old STAR
-                }
-            }
-
-            // Add the new STAR Leg
-            this.appendLeg({ type: _Leg.FP_LEG_TYPE.STAR, route: route });
-        }
-
-        /**
-         * Takes a single-string route and converts it to a segmented route the fms can understand
-         * Note: Input Data Format : "KSFO.OFFSH9.SXC.V458.IPL.J2.JCT..LLO..ACT..KACT"
-         *       Return Data Format: ["KSFO.OFFSH9.SXC", "SXC.V458.IPL", "IPL.J2.JCT", "LLO", "ACT", "KACT"]
-         */
-
-    }, {
-        key: 'formatRoute',
-        value: function formatRoute(data) {
-            // Format the user's input
-            var route = [];
-            // const ap = airport_get;
-            var fixOK = window.airportController.airport_get().getFix;
-
-            if (data.indexOf(' ') !== -1) {
-                return; // input can't contain spaces
-            }
-
-            // TODO: this should be reassigned and returned instead of operating on the passed in paramater
-            // split apart "direct" pieces
-            data = data.split('..');
-
-            // TODO: This block needs some work. the logic could be simplified.
-            // deal with multilinks (eg 'KSFO.OFFSH9.SXC.V458.IPL')
-            for (var i = 0; i < data.length; i++) {
-                var a = void 0;
-
-                if (data[i].split('.').length === 1) {
-                    if (!fixOK(data[i])) {
-                        return;
-                    }
-
-                    // just a fix/navaid
-                    route.push(data[i]);
-                    continue;
-                } else {
-                    // is a procedure, eg SID, STAR, IAP, airway, etc.
-                    if (data[i].split('.').length % 2 !== 1) {
-                        // user either didn't specify start point or end point
-                        return;
-                    } else {
-                        // TODO: this should be abstracted to another class method.
-                        var pieces = data[i].split('.');
-                        // FIXME: what does 'a' mean? better naming
-                        a = [pieces[0] + '.' + pieces[1] + '.' + pieces[2]];
-
-                        // chop up the multilink
-                        for (var j = 3; j < data[i].split('.').length; j + 2) {
-                            if (!fixOK(pieces[0]) || !fixOK(pieces[2])) {
-                                return; // invalid join/exit points
-                            }
-
-                            if (!Object.keys(ap().sids).indexOf(pieces[1]) || !Object.keys(ap().airways).indexOf(pieces[1])) {
-                                // invalid procedure
-                                return;
-                            }
-
-                            a.push(pieces[j - 1] + '.' + pieces[j] + pieces[j + 1]);
-                        }
-                    }
-                }
-
-                // push the properly reformatted multilink
-                route = route.concat(a);
-            }
-
-            return route;
-        }
-
-        /**
-         * Take an array of leg routes and build the legs that will go into the fms
-         * @param {array} route - an array of properly formatted route strings
-         *                        Example: ["KSFO.OFFSH9.SXC", "SXC.V458.IPL",
-         *                                 "IPL.J2.JCT", "LLO", "ACT", "KACT"]
-         * @param {boolean} fullRouteClearance - set to true IF you want the provided route to completely
-         *                                       replace the current contents of 'this.legs'
-         */
-
-    }, {
-        key: 'customRoute',
-        value: function customRoute(route, fullRouteClearance) {
-            var legs = [];
-            var curr = this.currentWaypoint(); // save the current waypoint
-
-            for (var i = 0; i < route.length; i++) {
-                var pieces = void 0;
-
-                // just a fix/navaid
-                if (route[i].split('.').length === 1) {
-                    legs.push(new _Leg2.default({ type: _Leg.FP_LEG_TYPE.FIX, route: route[i] }, this));
-                } else if (route[i].split('.').length === 3) {
-                    // is an instrument procedure
-                    pieces = route[i].split('.');
-
-                    if (Object.keys(window.airportController.airport_get().sids).indexOf(pieces[1]) > -1) {
-                        // it's a SID!
-                        legs.push(new _Leg2.default({ type: _Leg.FP_LEG_TYPE.SID, route: route[i] }, this));
-                    } else if (Object.keys(window.airportController.airport_get().stars).indexOf(pieces[1]) > -1) {
-                        // it's a STAR!
-                        legs.push(new _Leg2.default({ type: _Leg.FP_LEG_TYPE.STAR, route: route[i] }, this));
-                    } else if (Object.keys(window.airportController.airport_get().airways).indexOf(pieces[1]) > -1) {
-                        // it's an airway!
-                        legs.push(new _Leg2.default({ type: _Leg.FP_LEG_TYPE.AWY, route: route[i] }, this));
-                    }
-                } else {
-                    // neither formatted like "JAN" nor "JAN.V18.MLU"
-                    log('Passed invalid route to fms. Unable to create leg from input: ' + route[i], _logLevel.LOG.WARNING);
-                    return false;
-                }
-            }
-
-            // TODO: this could be simplified. there is a lot of brnaching logic here that makes this block
-            // tough to follow.
-            // insert user's route to the legs
-            if (!fullRouteClearance) {
-                // Check if user's route hooks up to the current Legs anywhere
-                var _pieces = legs[legs.length - 1].route.split('.');
-                var last_fix = _pieces[_pieces.length - 1];
-                var continuity = this.indexOfWaypoint(last_fix);
-
-                // user route connects with existing legs
-                if (continuity) {
-                    var inMiddleOfLeg = continuity.lw[1] !== this.legs[continuity.lw[0]].waypoints.length - 1;
-                    var legsToRemove = Math.max(0, continuity.lw[0] - inMiddleOfLeg - this.current[LEG]);
-
-                    if (inMiddleOfLeg) {
-                        // change the existing leg @ merge point
-                        // Remove the waypoints before the merge point
-                        this.legs[continuity.lw[0]].waypoints.splice(0, continuity.lw[1]);
-                        var r = this.legs[continuity.lw[0]].route.split('.');
-
-                        // TODO: this should be a helper method
-                        // Update the leg's route to reflect the change
-                        this.legs[continuity.lw[0]].route = last_fix + '.' + r[1] + '.' + r[2];
-                    }
-
-                    // remove old legs before the point where the two routes join
-                    this.legs.splice.apply(this.legs, [Math.max(0, continuity.lw[0] - legsToRemove), legsToRemove].concat(legs));
-                    // move to the newly inserted Leg
-                    this.current[LEG] = Math.max(0, continuity.lw[0] - legsToRemove);
-                    this.current[WAYPOINT_WITHIN_LEG] = 0;
-                } else {
-                    // no route continuity... just adding legs
-                    // insert the legs after the active Leg
-                    this.legs.splice.apply(this.legs, [this.current[LEG] + 1, 0].concat(legs));
-                    this.nextLeg();
-                }
-            } else {
-                // replace all legs with the legs we've built here in this function
-                this.legs = legs;
-                this.current = [0, 0]; // look to beginning of route
-            }
-
-            this.update_fp_route();
-
-            // Maintain old speed and altitude
-            if (this.currentWaypoint().altitude == null) {
-                this.setCurrent({ altitude: curr.altitude });
-            }
-
-            if (this.currentWaypoint().speed == null) {
-                this.setCurrent({ speed: curr.speed });
-            }
-
-            return true;
-        }
-
-        /**
-         * Invokes flySID() for the SID in the flightplan (fms.fp.route)
-         */
-
-    }, {
-        key: 'clearedAsFiled',
-        value: function clearedAsFiled() {
-            // FIXME: why keep a reference to the aircraft id if we just get it from the aircraftController? Also,
-            // if this bit of logic is simply getting the aircraft instance, why not use `this.my_aircraft` for
-            // the whole thing?
-            var retval = this.my_aircraft.runSID([window.aircraftController.aircraft_get(this.my_aircrafts_eid).destination]);
-            // TODO: this method could simply return the logic being set to `ok`
-            var ok = !(Array.isArray(retval) && retval[0] === 'fail');
-
-            return ok;
-        }
-
-        // FIXME the logic in this method is remarkably similiar to the logic in .descendViaSID(). perhpas there
-        // are opportunities for abstraction here.
-        /**
-         * Climbs aircraft in compliance with the SID they're following
-         * Adds altitudes and speeds to each waypoint that are as high as
-         * possible without exceeding any the following:
-         *    - (alt) airspace ceiling ('ctr_ceiling')
-         *    - (alt) filed cruise altitude
-         *    - (alt) waypoint's altitude restriciton
-         *    - (spd) 250kts when under 10k ft
-         *    - (spd) waypoint's speed restriction
-         */
-
-    }, {
-        key: 'climbViaSID',
-        value: function climbViaSID() {
-            if (!this.currentLeg().type === _Leg.FP_LEG_TYPE.SID) {
-                return;
-            }
-
-            var wp = this.currentLeg().waypoints;
-            var cruise_alt = this.fp.altitude;
-            var cruise_spd = this.my_aircraft.model.speed.cruise;
-
-            for (var i = 0; i < wp.length; i++) {
-                var altitude = wp[i].fixRestrictions.alt;
-                var speed = wp[i].fixRestrictions.spd;
-                var minAlt = void 0;
-                var alt = void 0;
-                var maxAlt = void 0;
-
-                // Altitude Control
-                if (altitude) {
-                    if (altitude.indexOf('+') !== -1) {
-                        // at-or-above altitude restriction
-                        minAlt = parseInt(altitude.replace('+', ''), 10) * 100;
-                        alt = Math.min(window.airportController.airport_get().ctr_ceiling, cruise_alt);
-                    } else if (altitude.indexOf('-') !== -1) {
-                        maxAlt = parseInt(altitude.replace('-', ''), 10) * 100;
-                        // climb as high as restrictions permit
-                        alt = Math.min(maxAlt, cruise_alt);
-                    } else {
-                        // cross AT this altitude
-                        alt = parseInt(altitude, 10) * 100;
-                    }
-                } else {
-                    alt = Math.min(window.airportController.airport_get().ctr_ceiling, cruise_alt);
-                }
-
-                wp[i].altitude = alt; // add altitudes to wp
-
-                var minSpd = void 0;
-                var spd = cruise_spd;
-                var maxSpd = void 0;
-                // Speed Control
-                if (speed) {
-                    if (speed.indexOf('+') !== -1) {
-                        // at-or-above speed restriction
-                        minSpd = parseInt(speed.replace('+', ''), 10);
-                        spd = Math.min(minSpd, cruise_spd);
-                    } else if (speed.indexOf('-') !== -1) {
-                        maxSpd = parseInt(speed.replace('-', ''), 10);
-                        // go as fast as restrictions permit
-                        spd = Math.min(maxSpd, cruise_spd);
-                    } else {
-                        // cross AT this speed
-                        spd = parseInt(speed, 10);
-                    }
-                }
-
-                // add speeds to wp
-                wp[i].speed = spd;
-            }
-
-            // change fms waypoints to wp (which contains the altitudes and speeds)
-            this.legs[this.current[LEG]].waypoints = wp;
-
-            return true;
-        }
-
-        // FIXME the logic in this method is remarkably similiar to the logic in .climbViaSID(). perhaps there
-        // are opportunities for abstraction here.
-        /**
-         * Descends aircraft in compliance with the STAR they're following
-         * Adds altitudes and speeds to each waypoint in accordance with the STAR
-         */
-
-    }, {
-        key: 'descendViaSTAR',
-        value: function descendViaSTAR() {
-            // Find the STAR leg
-            var wp = void 0;
-            var legIndex = void 0;
-
-            // TODO: if this.legs is an array this should be a for and not a for/in loop
-            for (var l in this.legs) {
-                if (this.legs[l].type === _Leg.FP_LEG_TYPE.STAR) {
-                    legIndex = l;
-                    wp = this.legs[l].waypoints;
-
-                    break;
-                }
-            }
-
-            if (!wp) {
-                return;
-            }
-
-            var start_alt = this.currentWaypoint().altitude || this.my_aircraft.altitude;
-            var start_spd = this.currentWaypoint().speed || this.my_aircraft.model.speed.cruise;
-
-            for (var i = 0; i < wp.length; i++) {
-                if (i >= 1) {
-                    start_alt = wp[i - 1].altitude;
-                    start_spd = wp[i - 1].speed;
-                }
-
-                var a = wp[i].fixRestrictions.alt;
-                var s = wp[i].fixRestrictions.spd;
-                var minAlt = void 0;
-                var alt = void 0;
-                var maxAlt = void 0;
-
-                // Altitude Control
-                if (a) {
-                    if (a.indexOf('+') !== -1) {
-                        // at-or-above altitude restriction
-                        minAlt = parseInt(a.replace('+', ''), 10) * 100;
-                        alt = Math.max(minAlt, start_alt);
-                    } else if (a.indexOf('-') !== -1) {
-                        maxAlt = parseInt(a.replace('-', '')) * 100;
-                        // climb as high as restrictions permit
-                        alt = Math.min(maxAlt, start_alt);
-                    } else {
-                        // cross AT this altitude
-                        alt = parseInt(a) * 100;
-                    }
-                } else {
-                    alt = start_alt;
-                }
-
-                wp[i].altitude = alt; // add altitudes to wp
-
-                var minSpd = void 0;
-                var spd = void 0;
-                var maxSpd = void 0;
-
-                // Speed Control
-                if (s) {
-                    if (s.indexOf('+') !== -1) {
-                        // at-or-above speed restriction
-                        minSpd = parseInt(s.replace('+', ''));
-                        spd = Math.min(minSpd, start_spd);
-                    } else if (s.indexOf('-') !== -1) {
-                        maxSpd = parseInt(s.replace('-', ''));
-                        // go as fast as restrictions permit
-                        spd = Math.min(maxSpd, start_spd);
-                    } else {
-                        // cross AT this speed
-                        spd = parseInt(s);
-                    }
-                } else {
-                    spd = start_spd;
-                }
-
-                // add speeds to wp
-                wp[i].speed = spd;
-            }
-
-            // change fms waypoints to wp (which contains the altitudes and speeds)
-            this.legs[legIndex].waypoints = wp;
-
-            return true;
-        }
-
-        /** ************************ FMS QUERY FUNCTIONS **************************/
-        /**
-         * True if waypoint of the given name exists
-         */
-
-    }, {
-        key: 'hasWaypoint',
-        value: function hasWaypoint(name) {
-            // TODO: lodash will simplify this logic block
-            for (var i = 0; i < this.legs.length; i++) {
-                for (var j = 0; j < this.legs[i].waypoints.length; j++) {
-                    if (this.legs[i].waypoints[j].fix === name) {
-                        return true;
-                    }
-                }
-            }
-
-            return false;
-        }
-
-        /**
-         * Returns object's position in flightplan as object with 2 formats
-         * @param {string} fix - name of the fix to look for in the flightplan
-         * @returns {wp: "position-of-fix-in-waypoint-list",
-         *           lw: "position-of-fix-in-leg-wp-matrix"}
-         */
-
-    }, {
-        key: 'indexOfWaypoint',
-        value: function indexOfWaypoint(fix) {
-            var wp = 0;
-
-            for (var l = 0; l < this.legs.length; l++) {
-                for (var w = 0; w < this.legs[l].waypoints.length; w++) {
-                    if (this.legs[l].waypoints[w].fix === fix) {
-                        return {
-                            wp: wp,
-                            lw: [l, w]
-                        };
-                    }
-
-                    wp++;
-                }
-            }
-
-            return false;
-        }
-
-        /**
-         * Returns currentWaypoint's position in flightplan as object with 2 formats
-         * @returns {wp: "position-of-fix-in-waypoint-list",
-         *           lw: "position-of-fix-in-leg-wp-matrix"}
-         */
-
-    }, {
-        key: 'indexOfCurrentWaypoint',
-        value: function indexOfCurrentWaypoint() {
-            var wp = 0;
-            for (var i = 0; i < this.current[LEG]; i++) {
-                // add wp's of completed legs
-                wp += this.legs[i].waypoints.length;
-            }
-
-            wp += this.current[WAYPOINT_WITHIN_LEG];
-
-            return {
-                wp: wp,
-                lw: this.current
-            };
-        }
-
-        /** ************************* FMS GET FUNCTIONS ***************************/
-
-        // TODO: this set upd methods could be used as getters instead
-        // ex: `get currentLeg()` and then used like `this.fms.currentLeg`
-        /**
-         * Return the current leg
-         */
-
-    }, {
-        key: 'currentLeg',
-        value: function currentLeg() {
-            return this.legs[this.current[LEG]];
-        }
-
-        /**
-         * Return the current waypoint
-         */
-
-    }, {
-        key: 'currentWaypoint',
-        value: function currentWaypoint() {
-            if (this.legs.length < 1) {
-                return null;
-            }
-
-            var currentLeg = this.currentLeg();
-
-            return currentLeg.waypoints[this.current[WAYPOINT_WITHIN_LEG]];
-        }
-
-        /**
-        * Returns an array of all fixes along the flightplan route
-        */
-
-    }, {
-        key: 'fixes',
-        value: function fixes() {
-            return (0, _map3.default)(this.waypoints(), function (w) {
-                return w.fix;
-            });
-        }
-
-        /**
-         * Return this fms's parent aircraft
-         */
-
-    }, {
-        key: 'my_aircraft',
-        value: function my_aircraft() {
-            return window.aircraftController.aircraft_get(this.my_aircrafts_eid);
-        }
-
-        /**
-         * Returns a waypoint at the provided position
-         *
-         * @method waypoint
-         * @param {array or number} pos - position of the desired waypoint. May be
-         *                          provided either as an array showing the leg and
-         *                          waypoint within the leg (eg [l,w]), or as the
-         *                          number representing the position of the desired
-         *                          waypoint in the list of all waypoints (running
-         *                          this.waypoints() will return the list)
-         * @returns {Waypoint} - the Waypoint object at the specified location
-         */
-
-    }, {
-        key: 'waypoint',
-        value: function waypoint(pos) {
-            // input is like [leg, waypointWithinLeg]
-            if (Array.isArray(pos)) {
-                return this.legs[pos[0]].waypoints[pos[1]];
-            } else if (typeof pos === 'number') {
-                // input is a position of wp in list of all waypoints
-                var l = 0;
-
-                // count up to pos to locate the waypoint
-                while (pos >= 0) {
-                    if (this.legs[l].waypoints.length <= pos) {
-                        pos -= this.legs[l].waypoints.length;
-                        l++;
-                    } else {
-                        return this.legs[l].waypoints[pos];
-                    }
-                }
-            }
-
-            return;
-        }
-
-        /**
-        * Returns all waypoints in fms, in order
-        */
-
-    }, {
-        key: 'waypoints',
-        value: function waypoints() {
-            // TODO: there is a better way to do this with lodash
-            var waypointList = _jquery2.default.map(this.legs, function (v) {
-                return v.waypoints;
-            });
-
-            return waypointList;
-        }
-    }, {
-        key: 'atLastWaypoint',
-        value: function atLastWaypoint() {
-            return this.indexOfCurrentWaypoint().wp === this.waypoints().length - 1;
-        }
-
-        /**
-         * Given a SID that is currently being followed, return a string of: `SID_NAME.LAST_FIX`
-         *
-         * ex:
-         * - current SID name = OFFSH9
-         * - current SID route = KSFO.OFFSH9.SXC
-         *
-         * Given the above current values, this function would return:
-         * `OFFSH9.SXC`
-         *
-         * @for AircraftFlightManagementSystem
-         * @method getFollowingSideText
-         * @return {string|null}
-         */
-
-    }, {
-        key: 'getFollowingSIDText',
-        value: function getFollowingSIDText() {
-            if (!this.following.sid) {
-                return null;
-            }
-
-            return this.following.sid + '.' + this.currentLeg().route.split('.')[2];
-        }
-
-        /**
-         * @for AircraftFlightManagementSystem
-         * @method getFollowingSTARText
-         * @return {string|null}
-         */
-
-    }, {
-        key: 'getFollowingSTARText',
-        value: function getFollowingSTARText() {
-            if (!this.following.star) {
-                return null;
-            }
-
-            var _window$airportContro = window.airportController.airport_get(),
-                icao = _window$airportContro.icao;
-
-            return this.following.star + '.' + icao.toUpperCase();
-        }
-
-        /**
-         * Returns a string used in the `AircraftStripView` for a landing aircraft.
-         *
-         * `KSFO 28L`
-         *
-         * @for AircraftFlightManagementSystem
-         * @method getDesinationIcaoWithRunway
-         * @return {string}
-         */
-
-    }, {
-        key: 'getDesinationIcaoWithRunway',
-        value: function getDesinationIcaoWithRunway() {
-            return (0, _last3.default)(this.fp.route) + ' ' + this.currentWaypoint().runway;
-        }
-
-        /**
-         * @for AircraftFlightManagementSystem
-         * @method altitudeForCurrentWaypoint
-         * @return {number|null}
-         */
-
-    }, {
-        key: 'altitudeForCurrentWaypoint',
-        value: function altitudeForCurrentWaypoint() {
-            return this.currentWaypoint().altitude;
-        }
-    }]);
-
-    return AircraftFlightManagementSystem;
-}();
-
-exports.default = AircraftFlightManagementSystem;
-
-},{"../constants/logLevel":564,"../math/core":574,"./Leg":532,"./Waypoint":533,"jquery":296,"lodash/last":482,"lodash/map":484}],529:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.WAYPOINT_NAV_MODE = exports.FLIGHT_CATEGORY = exports.FLIGHT_MODES = undefined;
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _jquery = require('jquery');
 
@@ -35372,9 +27204,17 @@ var _has2 = require('lodash/has');
 
 var _has3 = _interopRequireDefault(_has2);
 
+var _isEqual2 = require('lodash/isEqual');
+
+var _isEqual3 = _interopRequireDefault(_isEqual2);
+
 var _isNaN2 = require('lodash/isNaN');
 
 var _isNaN3 = _interopRequireDefault(_isNaN2);
+
+var _isNil2 = require('lodash/isNil');
+
+var _isNil3 = _interopRequireDefault(_isNil2);
 
 var _isString2 = require('lodash/isString');
 
@@ -35384,7 +27224,7 @@ var _map2 = require('lodash/map');
 
 var _map3 = _interopRequireDefault(_map2);
 
-var _AircraftFlightManagementSystem = require('./AircraftFlightManagementSystem');
+var _AircraftFlightManagementSystem = require('./FlightManagementSystem/AircraftFlightManagementSystem');
 
 var _AircraftFlightManagementSystem2 = _interopRequireDefault(_AircraftFlightManagementSystem);
 
@@ -35392,9 +27232,13 @@ var _AircraftStripView = require('./AircraftStripView');
 
 var _AircraftStripView2 = _interopRequireDefault(_AircraftStripView);
 
-var _Waypoint = require('./Waypoint');
+var _Waypoint = require('./FlightManagementSystem/Waypoint');
 
 var _Waypoint2 = _interopRequireDefault(_Waypoint);
+
+var _RouteModel = require('../airport/Route/RouteModel');
+
+var _RouteModel2 = _interopRequireDefault(_RouteModel);
 
 var _speech = require('../speech');
 
@@ -35412,6 +27256,8 @@ var _radioUtilities = require('../utilities/radioUtilities');
 
 var _unitConverters = require('../utilities/unitConverters');
 
+var _aircraftConstants = require('../constants/aircraftConstants');
+
 var _selectors = require('../constants/selectors');
 
 var _GameController = require('../game/GameController');
@@ -35420,47 +27266,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-// TODO: these constants don't belong in this class. they should probably live on their own in a different file.
-/**
- * @property FLIGHT_MODES
- * @type {Object}
- * @final
- */
-var FLIGHT_MODES = exports.FLIGHT_MODES = {
-    APRON: 'apron',
-    TAXI: 'taxi',
-    WAITING: 'waiting',
-    TAKEOFF: 'takeoff',
-    CRUISE: 'cruise',
-    LANDING: 'landing'
-};
-
-/**
- * @property FLIGHT_CATEGORY
- * @type {Object}
- * @final
- */
-var FLIGHT_CATEGORY = exports.FLIGHT_CATEGORY = {
-    ARRIVAL: 'arrival',
-    DEPARTURE: 'departure'
-};
-
-/**
- * @property WAYPOINT_NAV_MODE
- * @type {Object}
- * @final
- */
-var WAYPOINT_NAV_MODE = exports.WAYPOINT_NAV_MODE = {
-    FIX: 'fix',
-    HEADING: 'heading',
-    HOLD: 'hold',
-    RWY: 'rwy'
-};
-
 /**
  * Enum of commands and thier corresponding function.
  *
- * Used to build a call to the correct function when an UI command, or commands,
+ * Used to build a call to the correct function when a UI command, or commands,
  * for an aircraft have been issued.
  *
  * @property COMMANDS
@@ -35557,7 +27366,6 @@ var Aircraft = function () {
         this.aircraftStripView = null;
         this.$html = null;
 
-        // TODO: this initialization should live in a `_init()` init method and not the constructor
         this.$strips = (0, _jquery2.default)(_selectors.SELECTORS.DOM_SELECTORS.STRIPS);
         /* eslint-enable multi-spaces*/
 
@@ -35568,25 +27376,7 @@ var Aircraft = function () {
         this.position_history = [];
 
         this.category = options.category; // 'arrival' or 'departure'
-        this.mode = FLIGHT_MODES.CRUISE; // 'apron', 'taxi', 'waiting', 'takeoff', 'cruise', or 'landing'
-        // where:
-        // - 'apron' is the initial status of a new departing plane. After
-        //   the plane is issued the 'taxi' command, the plane transitions to
-        //   'taxi' mode
-        // - 'taxi' describes the process of getting ready for takeoff. After
-        //   a delay, the plane becomes ready and transitions into 'waiting' mode
-        // - 'waiting': the plane is ready for takeoff and awaits clearence to
-        //   take off
-        // - 'takeoff' is assigned to planes in the process of taking off. These
-        //   planes are still on the ground or have not yet reached the minimum
-        //   altitude
-        // - 'cruse' describes, that a plane is currently in flight and
-        //   not following an ILS path. Planes of category 'arrival' entering the
-        //   playing field also have this state. If an ILS path is picked up, the
-        //   plane transitions to 'landing'
-        // - 'landing' the plane is following an ILS path or is on the runway in
-        //   the process of stopping. If an ILS approach or a landing is aborted,
-        //   the plane reenters 'cruise' mode
+        this.mode = _aircraftConstants.FLIGHT_MODES.CRUISE;
 
         /*
          * the following diagram illustrates all allowed mode transitions:
@@ -35616,12 +27406,13 @@ var Aircraft = function () {
         };
 
         this.emergency = {};
-        this.takeoffTime = options.category === FLIGHT_CATEGORY.ARRIVAL ? window.gameController.game_time() : null;
+        this.takeoffTime = options.category === _aircraftConstants.FLIGHT_CATEGORY.ARRIVAL ? window.gameController.game_time() : null;
 
         this.buildCurrentTerrainRanges();
         this.buildRestrictedAreaLinks();
         this.assignInitialRunway(options);
         this.parse(options);
+        this.updateFmsAfterInitialLoad(options);
         this.createStrip();
         this.updateStrip();
     }
@@ -35689,41 +27480,44 @@ var Aircraft = function () {
     }, {
         key: 'assignInitialRunway',
         value: function assignInitialRunway(options) {
-            if (options.category === FLIGHT_CATEGORY.ARRIVAL) {
+            if (options.category === _aircraftConstants.FLIGHT_CATEGORY.ARRIVAL) {
                 this.setArrivalRunway(window.airportController.airport_get().runway);
-            } else if (options.category === FLIGHT_CATEGORY.DEPARTURE) {
+            } else if (options.category === _aircraftConstants.FLIGHT_CATEGORY.DEPARTURE) {
                 this.setDepartureRunway(window.airportController.airport_get().runway);
             }
         }
     }, {
         key: 'parse',
         value: function parse(data) {
-            var _this3 = this;
-
-            var keys = ['position', 'model', 'airline', 'callsign', 'category', 'heading', 'altitude', 'speed'];
-
-            (0, _forEach3.default)(keys, function (key) {
-                if ((0, _has3.default)(data, key)) {
-                    _this3[key] = data[key];
-                }
-            });
-
-            if (this.category === FLIGHT_CATEGORY.ARRIVAL) {
+            this.position = (0, _get3.default)(data, 'position', this.position);
+            this.model = (0, _get3.default)(data, 'model', this.model);
+            this.airline = (0, _get3.default)(data, 'airline', this.airline);
+            this.callsign = (0, _get3.default)(data, 'callsign', this.callsign);
+            this.category = (0, _get3.default)(data, 'category', this.category);
+            this.heading = (0, _get3.default)(data, 'heading', this.heading);
+            this.altitude = (0, _get3.default)(data, 'altitude', this.altitude);
+            this.speed = (0, _get3.default)(data, 'speed', this.speed);
+        }
+    }, {
+        key: 'updateFmsAfterInitialLoad',
+        value: function updateFmsAfterInitialLoad(data) {
+            if (this.category === _aircraftConstants.FLIGHT_CATEGORY.ARRIVAL) {
                 if (data.waypoints.length > 0) {
                     this.setArrivalWaypoints(data.waypoints);
                 }
 
                 this.destination = data.destination;
                 this.setArrivalRunway(window.airportController.airport_get(this.destination).runway);
-            } else if (this.category === FLIGHT_CATEGORY.DEPARTURE) {
+            } else if (this.category === _aircraftConstants.FLIGHT_CATEGORY.DEPARTURE) {
                 var airport = window.airportController.airport_get();
-                this.mode = FLIGHT_MODES.APRON;
+                this.mode = _aircraftConstants.FLIGHT_MODES.APRON;
                 this.destination = data.destination;
                 this.setDepartureRunway(airport.runway);
                 this.altitude = airport.position.elevation;
                 this.speed = 0;
             }
 
+            // TODO: combine these two to asingle constant
             if (data.heading) {
                 this.fms.setCurrent({ heading: data.heading });
             }
@@ -35732,12 +27526,13 @@ var Aircraft = function () {
                 this.fms.setCurrent({ altitude: data.altitude });
             }
 
-            var speed = data.speed || this.model.speed.cruise;
+            var speed = (0, _get3.default)(data, 'speed', this.model.speed.cruise);
             this.fms.setCurrent({ speed: speed });
 
             if (data.route) {
-                // TODO: what is the true for? enumerate that.
-                this.fms.customRoute(this.fms.formatRoute(data.route), true);
+                var route = this.fms.formatRoute(data.route);
+
+                this.fms.customRoute(route, true);
                 this.fms.descendViaSTAR();
             }
 
@@ -35748,7 +27543,6 @@ var Aircraft = function () {
     }, {
         key: 'setArrivalWaypoints',
         value: function setArrivalWaypoints(waypoints) {
-            // TODO: change to _forEach
             // add arrival fixes to fms
             for (var i = 0; i < waypoints.length; i++) {
                 this.fms.appendLeg({
@@ -35758,7 +27552,7 @@ var Aircraft = function () {
             }
 
             // TODO: this could be another class method for FMS
-            if (this.fms.currentWaypoint().navmode === WAYPOINT_NAV_MODE.HEADING) {
+            if (this.fms.currentWaypoint.navmode === _aircraftConstants.WAYPOINT_NAV_MODE.HEADING) {
                 // aim aircraft at airport
                 this.fms.setCurrent({
                     heading: (0, _vector.vradial)(this.position) + Math.PI
@@ -35783,8 +27577,10 @@ var Aircraft = function () {
             this.rwy_dep = rwy;
 
             // Update the assigned SID to use the portion for the new runway
-            var leg = this.fms.currentLeg();
+            var leg = this.fms.currentLeg;
 
+            // TODO: this should return early
+            // TODO: use existing enumeration for `sid`
             if (leg.type === 'sid') {
                 var a = (0, _map3.default)(leg.waypoints, function (v) {
                     return v.altitude;
@@ -35792,7 +27588,7 @@ var Aircraft = function () {
                 var cvs = !a.every(function (v) {
                     return v === window.airportController.airport_get().initial_alt;
                 });
-                this.fms.followSID(leg.route);
+                this.fms.followSID(leg.route.routeCode);
 
                 if (cvs) {
                     this.fms.climbViaSID();
@@ -35822,11 +27618,11 @@ var Aircraft = function () {
             this.$strips.scrollTop(scrollPos + this.aircraftStripView.height);
 
             // Determine whether or not to show the strip in our bay
-            if (this.category === FLIGHT_CATEGORY.ARRIVAL) {
+            if (this.category === _aircraftConstants.FLIGHT_CATEGORY.ARRIVAL) {
                 this.aircraftStripView.hide();
             }
 
-            if (this.category === FLIGHT_CATEGORY.DEPARTURE) {
+            if (this.category === _aircraftConstants.FLIGHT_CATEGORY.DEPARTURE) {
                 // TODO: does this have anything to do with the aircraft strip? if not this should live somewhere else.
                 this.inside_ctr = true;
             }
@@ -35866,7 +27662,7 @@ var Aircraft = function () {
     }, {
         key: 'onAirspaceExit',
         value: function onAirspaceExit() {
-            if (this.category === FLIGHT_CATEGORY.ARRIVAL) {
+            if (this.category === _aircraftConstants.FLIGHT_CATEGORY.ARRIVAL) {
                 this.arrivalExit();
             }
 
@@ -35956,17 +27752,15 @@ var Aircraft = function () {
 
     }, {
         key: 'matchCallsign',
-        value: function matchCallsign(callsign) {
-            if (callsign === '*') {
+        value: function matchCallsign(callsignToMatch) {
+            if (callsignToMatch === '*') {
                 return true;
             }
 
-            callsign = callsign.toLowerCase();
-            var this_callsign = this.getCallsign().toLowerCase();
-
-            return this_callsign.indexOf(callsign) === 0;
+            return (0, _isEqual3.default)(callsignToMatch.toUpperCase(), this.getCallsign());
         }
 
+        // TODO: this could be a getter
         /**
          * @for AircraftInstanceModel
          * @method getCallsign
@@ -35979,6 +27773,7 @@ var Aircraft = function () {
             return (this.getAirline().icao + this.callsign).toUpperCase();
         }
 
+        // TODO: this could be a getter
         /**
          * @for AircraftInstanceModel
          * @method getAirline
@@ -36077,6 +27872,7 @@ var Aircraft = function () {
             this.$html.hide(600);
         }
 
+        // TODO: move aircraftCommands to a new class
         /**
          * @for AircraftInstanceModel
          * @method runCommands
@@ -36098,7 +27894,7 @@ var Aircraft = function () {
                 var command = commands[i][0];
                 var args = commands[i].splice(1);
 
-                if (command === FLIGHT_MODES.TAKEOFF) {
+                if (command === _aircraftConstants.FLIGHT_MODES.TAKEOFF) {
                     deferred.push([command, args]);
                     continue;
                 }
@@ -36193,7 +27989,7 @@ var Aircraft = function () {
                 return ['fail', 'not understood'];
             }
 
-            return this[call_func].apply(this, [data]);
+            return this[call_func](data);
         }
 
         /**
@@ -36205,13 +28001,14 @@ var Aircraft = function () {
     }, {
         key: 'runHeading',
         value: function runHeading(data) {
+            var airport = window.airportController.airport_get();
             var direction = data[0];
             var heading = data[1];
             var incremental = data[2];
-            var instruction = null;
             var amount = 0;
+            var instruction = void 0;
 
-            if (isNaN(heading)) {
+            if ((0, _isNaN3.default)(heading)) {
                 return ['fail', 'heading not understood'];
             }
 
@@ -36227,108 +28024,105 @@ var Aircraft = function () {
 
             // TODO: this probably shouldn't be the AircraftInstanceModel's job. this logic should belong somewhere else.
             // Update the FMS
-            var wp = this.fms.currentWaypoint();
-            var leg = this.fms.currentLeg();
+            var wp = this.fms.currentWaypoint;
+            var leg = this.fms.currentLeg;
             var f = this.fms.following;
 
-            if (wp.navmode === WAYPOINT_NAV_MODE.RWY) {
+            if (wp.navmode === _aircraftConstants.WAYPOINT_NAV_MODE.RWY) {
                 this.cancelLanding();
             }
 
-            // TODO: improve these if blocks. ['heading'].indexOf(wp.navmode) should be simplified to _has()
-            //  or something similiar. indexOf is confusing here.
             // already being vectored or holding. Will now just change the assigned heading.
-            if (['heading'].indexOf(wp.navmode) > -1) {
+            if (wp.navmode === _aircraftConstants.WAYPOINT_NAV_MODE.HEADING) {
                 this.fms.setCurrent({
                     altitude: wp.altitude,
-                    navmode: WAYPOINT_NAV_MODE.HEADING,
+                    navmode: _aircraftConstants.WAYPOINT_NAV_MODE.HEADING,
                     heading: (0, _unitConverters.degreesToRadians)(heading),
                     speed: wp.speed,
                     turn: direction,
                     hold: false
                 });
-            } else if (['hold'].indexOf(wp.navmode) > -1) {
+            } else if (wp.navmode === _aircraftConstants.WAYPOINT_NAV_MODE.HOLD) {
                 // in hold. Should leave the hold, and add leg for vectors
                 var index = this.fms.current[0] + 1;
-                var waypointLeg = new _Waypoint2.default({
+                var waypointToAdd = new _Waypoint2.default({
                     altitude: wp.altitude,
-                    navmode: WAYPOINT_NAV_MODE.HEADING,
+                    navmode: _aircraftConstants.WAYPOINT_NAV_MODE.HEADING,
                     heading: (0, _unitConverters.degreesToRadians)(heading),
                     speed: wp.speed,
                     turn: direction,
                     hold: false
-                }, this.fms);
+                }, airport);
 
                 // add new Leg after hold leg
                 this.fms.insertLeg({
                     firstIndex: index,
-                    waypoints: [waypointLeg]
+                    waypoints: [waypointToAdd]
                 });
 
                 // move from hold leg to vector leg.
                 this.fms.nextWaypoint();
             } else if (f.sid || f.star || f.awy) {
-                var _waypointLeg = new _Waypoint2.default({
+                var _waypointToAdd = new _Waypoint2.default({
                     altitude: wp.altitude,
-                    navmode: WAYPOINT_NAV_MODE.HEADING,
+                    navmode: _aircraftConstants.WAYPOINT_NAV_MODE.HEADING,
                     heading: (0, _unitConverters.degreesToRadians)(heading),
                     speed: wp.speed,
                     turn: direction,
                     hold: false
-                }, this.fms);
+                }, airport);
 
-                // TODO: this should be an FMS class method that accepts a new `waypointLeg`
+                // TODO: this should be an FMS class method that accepts a new `waypointToAdd`
                 // insert wp with heading at current position within the already active leg
-                leg.waypoints.splice(this.fms.current[1], 0, _waypointLeg);
+                leg.waypoints.splice(this.fms.current[1], 0, _waypointToAdd);
             } else if (leg.route !== '[radar vectors]') {
                 // needs new leg added
                 if (this.fms.atLastWaypoint()) {
-                    var _waypointLeg2 = new _Waypoint2.default({
+                    var _waypointToAdd2 = new _Waypoint2.default({
                         altitude: wp.altitude,
-                        navmode: WAYPOINT_NAV_MODE.HEADING,
+                        navmode: _aircraftConstants.WAYPOINT_NAV_MODE.HEADING,
                         heading: (0, _unitConverters.degreesToRadians)(heading),
                         speed: wp.speed,
                         turn: direction,
                         hold: false
-                    }, this.fms);
+                    }, airport);
 
                     this.fms.appendLeg({
-                        waypoints: [_waypointLeg2]
+                        waypoints: [_waypointToAdd2]
                     });
 
                     this.fms.nextLeg();
                 } else {
-                    var _waypointLeg3 = new _Waypoint2.default({
+                    var _waypointToAdd3 = new _Waypoint2.default({
                         altitude: wp.altitude,
-                        navmode: WAYPOINT_NAV_MODE.HEADING,
+                        navmode: _aircraftConstants.WAYPOINT_NAV_MODE.HEADING,
                         heading: (0, _unitConverters.degreesToRadians)(heading),
                         speed: wp.speed,
                         turn: direction,
                         hold: false
-                    }, this.fms);
+                    }, airport);
 
                     this.fms.insertLegHere({
-                        waypoints: [_waypointLeg3]
+                        waypoints: [_waypointToAdd3]
                     });
                 }
             }
 
-            wp = this.fms.currentWaypoint(); // update 'wp'
+            wp = this.fms.currentWaypoint; // update 'wp'
 
             // Construct the readback
+            instruction = 'fly heading';
             if (direction) {
                 instruction = 'turn ' + direction + ' heading';
-            } else {
-                instruction = 'fly heading ';
             }
 
             var readback = {};
+            readback.log = instruction + ' ' + (0, _unitConverters.heading_to_string)(wp.heading);
+            readback.say = instruction + ' ' + (0, _radioUtilities.radio_heading)((0, _unitConverters.heading_to_string)(wp.heading));
+
             if (incremental) {
                 readback.log = 'turn ' + amount + ' degrees ' + direction;
                 readback.say = 'turn ' + (0, _radioUtilities.groupNumbers)(amount) + ' degrees ' + direction;
-            } else {
-                readback.log = instruction + ' ' + (0, _unitConverters.heading_to_string)(wp.heading);
-                readback.say = instruction + ' ' + (0, _radioUtilities.radio_heading)((0, _unitConverters.heading_to_string)(wp.heading));
             }
 
             return ['ok', readback];
@@ -36345,44 +28139,44 @@ var Aircraft = function () {
         value: function runAltitude(data) {
             var altitude = data[0];
             var expedite = data[1];
+            var airport = window.airportController.airport_get();
+            var radioTrendAltitude = (0, _radioUtilities.radio_trend)('altitude', this.altitude, this.fms.altitudeForCurrentWaypoint());
+            var currentWaypointRadioAltitude = (0, _radioUtilities.radio_altitude)(this.fms.altitudeForCurrentWaypoint());
 
             if (altitude == null || isNaN(altitude)) {
+                // FIXME: move this to it's own command. if expedite can be passed as a sole command it should be its own command
                 if (expedite) {
                     this.fms.setCurrent({ expedite: true });
 
-                    return ['ok',
-                    // TODO: add FMSclass method for current waypoint altitude
-                    (0, _radioUtilities.radio_trend)('altitude', this.altitude, this.fms.altitudeForCurrentWaypoint()) + ' ' + this.fms.altitudeForCurrentWaypoint() + ' expedite'];
+                    return ['ok', radioTrendAltitude + ' ' + this.fms.altitudeForCurrentWaypoint() + ' expedite'];
                 }
 
                 return ['fail', 'altitude not understood'];
             }
 
-            if (this.mode === FLIGHT_MODES.LANDING) {
+            if (this.mode === _aircraftConstants.FLIGHT_MODES.LANDING) {
                 this.cancelLanding();
             }
 
-            var ceiling = window.airportController.airport_get().ctr_ceiling;
+            var ceiling = airport.ctr_ceiling;
             if (window.gameController.game.option.get('softCeiling') === 'yes') {
                 ceiling += 1000;
             }
 
             this.fms.setAll({
                 // TODO: enumerate the magic numbers
-                altitude: (0, _core.clamp)((0, _core.round)(window.airportController.airport_get().elevation / 100) * 100 + 1000, altitude, ceiling),
+                altitude: (0, _core.clamp)((0, _core.round)(airport.elevation / 100) * 100 + 1000, altitude, ceiling),
                 expedite: expedite
             });
 
-            // TODO: this seems like a strange reassignment. perhaps this should be renamed or commented as to why.
+            var isExpeditingString = '';
             if (expedite) {
-                expedite = ' and expedite';
-            } else {
-                expedite = '';
+                isExpeditingString = 'and expedite';
             }
 
             var readback = {
-                log: (0, _radioUtilities.radio_trend)('altitude', this.altitude, this.fms.altitudeForCurrentWaypoint()) + ' ' + this.fms.altitudeForCurrentWaypoint() + ' ' + expedite,
-                say: (0, _radioUtilities.radio_trend)('altitude', this.altitude, this.fms.altitudeForCurrentWaypoint()) + ' ' + (0, _radioUtilities.radio_altitude)(this.fms.altitudeForCurrentWaypoint()) + ' ' + expedite
+                log: radioTrendAltitude + ' ' + this.fms.altitudeForCurrentWaypoint() + ' ' + isExpeditingString,
+                say: radioTrendAltitude + ' ' + currentWaypointRadioAltitude + ' ' + isExpeditingString
             };
 
             return ['ok', readback];
@@ -36391,71 +28185,86 @@ var Aircraft = function () {
         /**
          * @for AircraftInstanceModel
          * @method runClearedAsFiled
+         * @return {array}
          */
 
     }, {
         key: 'runClearedAsFiled',
         value: function runClearedAsFiled() {
-            if (this.fms.clearedAsFiled()) {
-                var readback = {};
-
-                readback.log = 'cleared to destination via the ' + window.airportController.airport_get().sids[this.destination].icao + ' ' + ('departure, then as filed. Climb and maintain ' + window.airportController.airport_get().initial_alt + ', ') + ('expect ' + this.fms.fp.altitude + ' 10 minutes after departure ');
-                readback.say = 'cleared to destination via the ' + window.airportController.airport_get().sids[this.destination].name + ' ' + ('departure, then as filed. Climb and maintain ' + (0, _radioUtilities.radio_altitude)(window.airportController.airport_get().initial_alt) + ', ') + ('expect ' + (0, _radioUtilities.radio_altitude)(this.fms.fp.altitude) + ', ' + (0, _radioUtilities.radio_spellOut)(' 10 ') + ' minutes after departure\'');
-
-                return ['ok', readback];
+            if (!this.runSID([this.destination])) {
+                return [true, 'unable to clear as filed'];
             }
 
-            return [true, 'unable to clear as filed'];
+            var airport = window.airportController.airport_get();
+
+            var _airport$sidCollectio = airport.sidCollection.findRouteByIcao(this.destination),
+                procedureName = _airport$sidCollectio.name;
+
+            var readback = {};
+
+            readback.log = 'cleared to destination via the ' + this.destination + ' departure, then as filed. Climb and ' + ('maintain ' + airport.initial_alt + ', expect ' + this.fms.fp.altitude + ' 10 minutes after departure ');
+            readback.say = 'cleared to destination via the ' + procedureName + ' ' + ('departure, then as filed. Climb and maintain ' + (0, _radioUtilities.radio_altitude)(airport.initial_alt) + ', ') + ('expect ' + (0, _radioUtilities.radio_altitude)(this.fms.fp.altitude) + ', ' + (0, _radioUtilities.radio_spellOut)('10') + ' minutes after departure\'');
+
+            return ['ok', readback];
         }
 
         /**
          * @for AircraftInstanceModel
          * @method runClimbViaSID
-         * @param data
          */
 
     }, {
         key: 'runClimbViaSID',
         value: function runClimbViaSID() {
-            var fail = false;
-
-            if (!(this.fms.currentLeg().type === 'sid')) {
-                fail = true;
-            } else if (this.fms.climbViaSID()) {
-                var readback = {
-                    log: 'climb via the ' + this.fms.currentLeg().route.split('.')[1] + ' departure',
-                    say: 'climb via the ' + window.airportController.airport_get().sids[this.fms.currentLeg().route.split('.')[1]].name + ' departure'
-                };
-
-                return ['ok', readback];
-            }
-
-            if (fail) {
+            if (this.fms.currentLeg.type !== _aircraftConstants.FP_LEG_TYPE.SID || !this.fms.climbViaSID()) {
                 var isWarning = true;
+
                 window.uiController.ui_log(this.getCallsign() + ' unable to climb via SID', isWarning);
+
+                return;
             }
+
+            var airport = window.airportController.airport_get();
+
+            var _airport$sidCollectio2 = airport.sidCollection.findRouteByIcao(this.fms.currentLeg.route.procedure),
+                procedureName = _airport$sidCollectio2.name;
+
+            var readback = {
+                log: 'climb via the ' + this.fms.currentLeg.route.procedure + ' departure',
+                say: 'climb via the ' + procedureName + ' departure'
+            };
+
+            return ['ok', readback];
         }
 
         /**
          * @for AircraftInstanceModel
          * @method runDescendViaSTAR
          * @param data
+         * @return {boolean|undefined}
          */
 
     }, {
         key: 'runDescendViaSTAR',
         value: function runDescendViaSTAR() {
-            if (this.fms.descendViaSTAR() && this.fms.following.star) {
-                var readback = {
-                    log: 'descend via the ' + this.fms.following.star + ' arrival',
-                    say: 'descend via the ' + window.airportController.airport_get().stars[this.fms.following.star].name + ' arrival'
-                };
+            if (!this.fms.descendViaSTAR() || !this.fms.following.star) {
+                var isWarning = true;
+                window.uiController.ui_log(this.getCallsign() + ', unable to descend via STAR', isWarning);
 
-                return ['ok', readback];
+                return;
             }
 
-            var isWarning = true;
-            window.uiController.ui_log(this.getCallsign() + ', unable to descend via STAR', isWarning);
+            var airport = window.airportController.airport_get();
+
+            var _airport$starCollecti = airport.starCollection.findRouteByIcao(this.fms.currentLeg.route.procedure),
+                procedureName = _airport$starCollecti.name;
+
+            var readback = {
+                log: 'descend via the ' + this.fms.following.star + ' arrival',
+                say: 'descend via the ' + procedureName + ' arrival'
+            };
+
+            return ['ok', readback];
         }
 
         /**
@@ -36473,13 +28282,13 @@ var Aircraft = function () {
                 return ['fail', 'speed not understood'];
             }
 
-            this.fms.setAll({
-                speed: (0, _core.clamp)(this.model.speed.min, speed, this.model.speed.max)
-            });
+            var clampedSpeed = (0, _core.clamp)(this.model.speed.min, speed, this.model.speed.max);
+            this.fms.setAll({ speed: clampedSpeed });
 
+            var radioTrendSpeed = (0, _radioUtilities.radio_trend)('speed', this.speed, this.fms.currentWaypoint.speed);
             var readback = {
-                log: (0, _radioUtilities.radio_trend)('speed', this.speed, this.fms.currentWaypoint().speed) + ' ' + this.fms.currentWaypoint().speed,
-                say: (0, _radioUtilities.radio_trend)('speed', this.speed, this.fms.currentWaypoint().speed) + ' ' + (0, _radioUtilities.radio_spellOut)(this.fms.currentWaypoint().speed)
+                log: radioTrendSpeed + ' ' + this.fms.currentWaypoint.speed,
+                say: radioTrendSpeed + ' ' + (0, _radioUtilities.radio_spellOut)(this.fms.currentWaypoint.speed)
             };
 
             return ['ok', readback];
@@ -36494,6 +28303,7 @@ var Aircraft = function () {
     }, {
         key: 'runHold',
         value: function runHold(data) {
+            var airport = window.airportController.airport_get();
             var dirTurns = data[0];
             var legLength = data[1];
             var holdFix = data[2];
@@ -36501,18 +28311,21 @@ var Aircraft = function () {
             var inboundHdg = void 0;
             // let inboundDir;
 
+            // TODO: this might be better handled from within the parser
             if (dirTurns == null) {
                 // standard for holding patterns is right-turns
                 dirTurns = 'right';
             }
 
+            // TODO: this might be better handled from within the parser
             if (legLength == null) {
                 legLength = '1min';
             }
 
+            // TODO: simplify this nested if.
             if (holdFix !== null) {
                 holdFix = holdFix.toUpperCase();
-                holdFixLocation = window.airportController.airport_get().getFixPosition(holdFix);
+                holdFixLocation = airport.getFixPosition(holdFix);
 
                 if (!holdFixLocation) {
                     return ['fail', 'unable to find fix ' + holdFix];
@@ -36527,7 +28340,8 @@ var Aircraft = function () {
             if (holdFix) {
                 // holding over a specific fix (currently only able to do so on inbound course)
                 inboundHdg = (0, _vector.vradial)((0, _vector.vsub)(this.position, holdFixLocation));
-                if (holdFix !== this.fms.currentWaypoint().fix) {
+
+                if (holdFix !== this.fms.currentWaypoint.fix) {
                     // not yet headed to the hold fix
                     this.fms.insertLegHere({
                         type: 'fix',
@@ -36537,12 +28351,12 @@ var Aircraft = function () {
                         new _Waypoint2.default({
                             fix: holdFix,
                             altitude: this.fms.altitudeForCurrentWaypoint(),
-                            speed: this.fms.currentWaypoint().speed
-                        }, this.fms),
+                            speed: this.fms.currentWaypoint.speed
+                        }, airport),
                         // then enter the hold
                         new _Waypoint2.default({
-                            navmode: WAYPOINT_NAV_MODE.HOLD,
-                            speed: this.fms.currentWaypoint().speed,
+                            navmode: _aircraftConstants.WAYPOINT_NAV_MODE.HOLD,
+                            speed: this.fms.currentWaypoint.speed,
                             altitude: this.fms.altitudeForCurrentWaypoint(),
                             fix: null,
                             hold: {
@@ -36553,14 +28367,15 @@ var Aircraft = function () {
                                 inboundHdg: inboundHdg,
                                 timer: null
                             }
-                        }, this.fms)]
+                        }, airport)]
                     });
                 } else {
+                    // TODO: this should be a `Waypoint`
                     // already currently going to the hold fix
                     // Force the initial turn to outbound heading when entering the hold
                     this.fms.appendWaypoint({
-                        navmode: WAYPOINT_NAV_MODE.HOLD,
-                        speed: this.fms.currentWaypoint().speed,
+                        navmode: _aircraftConstants.WAYPOINT_NAV_MODE.HOLD,
+                        speed: this.fms.currentWaypoint.speed,
                         altitude: this.fms.altitudeForCurrentWaypoint(),
                         fix: null,
                         hold: {
@@ -36578,17 +28393,18 @@ var Aircraft = function () {
                 holdFixLocation = this.position; // make a/c hold over their present position
                 inboundHdg = this.heading;
 
+                // TODO: these aren't `Waypoints` and they should be
                 this.fms.insertLegHere({
                     type: 'fix',
                     waypoints: [{ // document the present position as the 'fix' we're holding over
-                        navmode: WAYPOINT_NAV_MODE.FIX,
+                        navmode: _aircraftConstants.WAYPOINT_NAV_MODE.FIX,
                         fix: '[custom]',
                         location: holdFixLocation,
                         altitude: this.fms.altitudeForCurrentWaypoint(),
-                        speed: this.fms.currentWaypoint().speed
+                        speed: this.fms.currentWaypoint.speed
                     }, { // Force the initial turn to outbound heading when entering the hold
-                        navmode: WAYPOINT_NAV_MODE.HOLD,
-                        speed: this.fms.currentWaypoint().speed,
+                        navmode: _aircraftConstants.WAYPOINT_NAV_MODE.HOLD,
+                        speed: this.fms.currentWaypoint.speed,
                         altitude: this.fms.altitudeForCurrentWaypoint(),
                         fix: null,
                         hold: {
@@ -36623,6 +28439,7 @@ var Aircraft = function () {
         key: 'runDirect',
         value: function runDirect(data) {
             var fixname = data[0].toUpperCase();
+            // TODO replace with FixCollection
             var fix = window.airportController.airport_get().getFixPosition(fixname);
 
             if (!fix) {
@@ -36630,7 +28447,7 @@ var Aircraft = function () {
             }
 
             // remove intermediate fixes
-            if (this.mode === FLIGHT_MODES.TAKEOFF) {
+            if (this.mode === _aircraftConstants.FLIGHT_MODES.TAKEOFF) {
                 this.fms.skipToFix(fixname);
             } else if (!this.fms.skipToFix(fixname)) {
                 return ['fail', fixname + ' is not in our flightplan'];
@@ -36643,8 +28460,10 @@ var Aircraft = function () {
         value: function runFix(data) {
             var last_fix = void 0;
             var fail = void 0;
-            var fixes = (0, _map3.default)(data[0], function (fixname) {
+            var fixes = (0, _map3.default)(data, function (fixname) {
+                // TODO: this may beed to be the FixCollection
                 var fix = window.airportController.airport_get().getFixPosition(fixname);
+
                 if (!fix) {
                     fail = ['fail', 'unable to find fix called ' + fixname];
 
@@ -36665,11 +28484,12 @@ var Aircraft = function () {
                 return fail;
             }
 
-            for (var i = fixes.length - 1; i >= 0; i--) {
+            for (var i = 0; i < fixes.length; i++) {
+                // FIXME: use enumerated constant for type
                 this.fms.insertLegHere({ type: 'fix', route: fixes[i] });
             }
 
-            if (this.mode !== FLIGHT_MODES.WAITING && this.mode !== FLIGHT_MODES.TAKEOFF && this.mode !== FLIGHT_MODES.APRON && this.mode !== FLIGHT_MODES.TAXI) {
+            if (this.mode !== _aircraftConstants.FLIGHT_MODES.WAITING && this.mode !== _aircraftConstants.FLIGHT_MODES.TAKEOFF && this.mode !== _aircraftConstants.FLIGHT_MODES.APRON && this.mode !== _aircraftConstants.FLIGHT_MODES.TAXI) {
                 this.cancelLanding();
             }
 
@@ -36709,44 +28529,42 @@ var Aircraft = function () {
         /**
          * @for AircraftInstanceModel
          * @method runSID
-         * @param data
          */
 
     }, {
         key: 'runSID',
         value: function runSID(data) {
-            var apt = window.airportController.airport_get();
-            var sid_id = data[0].toUpperCase();
+            var airport = window.airportController.airport_get();
+            var sidCollection = airport.sidCollection;
 
-            if (!(0, _has3.default)(apt.sids, sid_id)) {
-                return;
-            }
+            var sidId = data[0];
+            var standardRouteModel = sidCollection.findRouteByIcao(sidId);
+            var exit = airport.getSIDExitPoint(sidId);
+            // TODO: perhaps this should use the `RouteModel`?
+            var route = airport.icao + '.' + sidId + '.' + exit;
 
-            var sid_name = apt.sids[sid_id].name;
-            var exit = apt.getSIDExitPoint(sid_id);
-            var route = apt.icao + '.' + sid_id + '.' + exit;
-
-            if (this.category !== FLIGHT_CATEGORY.DEPARTURE) {
-                return ['fail', 'unable to fly SID, we are an inbound'];
-            }
-
-            if (data[0].length === 0 || !(0, _has3.default)(apt.sids, sid_id)) {
+            if ((0, _isNil3.default)(standardRouteModel)) {
                 return ['fail', 'SID name not understood'];
             }
 
+            if (this.category !== _aircraftConstants.FLIGHT_CATEGORY.DEPARTURE) {
+                return ['fail', 'unable to fly SID, we are an inbound'];
+            }
+
             if (!this.rwy_dep) {
-                this.setDepartureRunway(window.airportController.airport_get().runway);
+                this.setDepartureRunway(airportController.airport_get().runway);
             }
 
-            if (!(0, _has3.default)(apt.sids[sid_id].rwy, this.rwy_dep)) {
-                return ['fail', 'unable, the ' + sid_name + ' departure not valid from Runway ' + this.rwy_dep];
+            if (!standardRouteModel.hasFixName(this.rwy_dep)) {
+                return ['fail', 'unable, the ' + standardRouteModel.name + ' departure not valid from Runway ' + this.rwy_dep];
             }
 
-            this.fms.followSID(route);
+            // TODO: this is the wrong place for this `.toUpperCase()`
+            this.fms.followSID(route.toUpperCase());
 
             var readback = {
-                log: 'cleared to destination via the ' + sid_id + ' departure, then as filed',
-                say: 'cleared to destination via the ' + sid_name + ' departure, then as filed'
+                log: 'cleared to destination via the ' + sidId + ' departure, then as filed',
+                say: 'cleared to destination via the ' + standardRouteModel.name + ' departure, then as filed'
             };
 
             return ['ok', readback];
@@ -36755,35 +28573,34 @@ var Aircraft = function () {
         /**
          * @for AircraftInstanceModel
          * @method runSTAR
-         * @param data
+         * @param data {array<string>} a string representation of the STAR, ex: `QUINN.BDEGA2.KSFO`
          */
 
     }, {
         key: 'runSTAR',
         value: function runSTAR(data) {
-            var entry = data[0].split('.')[0].toUpperCase();
-            var star_id = data[0].split('.')[1].toUpperCase();
-            var apt = window.airportController.airport_get();
-            var star_name = apt.stars[star_id].name;
-            var route = entry + '.' + star_id + '.' + apt.icao;
+            var routeModel = new _RouteModel2.default(data[0]);
+            var airport = window.airportController.airport_get();
 
-            if (this.category !== FLIGHT_CATEGORY.ARRIVAL) {
+            var _airport$starCollecti2 = airport.starCollection.findRouteByIcao(routeModel.procedure),
+                starName = _airport$starCollecti2.name;
+
+            if (this.category !== _aircraftConstants.FLIGHT_CATEGORY.ARRIVAL) {
                 return ['fail', 'unable to fly STAR, we are a departure!'];
             }
 
-            if (data[0].length === 0) {
+            // TODO: the data[0].length check might not be needed. this is covered via the CommandParser when
+            // this method runs as the result of a command.
+            if (data[0].length === 0 || !airport.starCollection.hasRoute(routeModel.procedure)) {
                 return ['fail', 'STAR name not understood'];
             }
 
-            if (!(0, _has3.default)(apt.stars, star_id)) {
-                return ['fail', 'STAR name not understood'];
-            }
+            this.fms.followSTAR(routeModel.routeCode);
 
-            this.fms.followSTAR(route);
-
+            // TODO: casing may be an issue here.
             var readback = {
-                log: 'cleared to the ' + apt.name + ' via the ' + star_id + ' arrival',
-                say: 'cleared to the ' + apt.name + ' via the ' + star_name + ' arrival'
+                log: 'cleared to the ' + airport.name + ' via the ' + routeModel.procedure + ' arrival',
+                say: 'cleared to the ' + airport.name + ' via the ' + starName + ' arrival'
             };
 
             return ['ok', readback];
@@ -36867,7 +28684,7 @@ var Aircraft = function () {
     }, {
         key: 'runReroute',
         value: function runReroute(data) {
-            // capitalize everything
+            // TODO: capitalize everything?
             data = data[0].toUpperCase();
             var worked = true;
             var route = this.fms.formatRoute(data);
@@ -36909,19 +28726,20 @@ var Aircraft = function () {
     }, {
         key: 'runTaxi',
         value: function runTaxi(data) {
-            if (this.category !== FLIGHT_CATEGORY.DEPARTURE) {
+            // TODO: all this if logic should be simplified or abstracted
+            if (this.category !== _aircraftConstants.FLIGHT_CATEGORY.DEPARTURE) {
                 return ['fail', 'inbound'];
             }
 
-            if (this.mode === FLIGHT_MODES.TAXI) {
+            if (this.mode === _aircraftConstants.FLIGHT_MODES.TAXI) {
                 return ['fail', 'already taxiing to ' + (0, _radioUtilities.radio_runway)(this.rwy_dep)];
             }
 
-            if (this.mode === FLIGHT_MODES.WAITING) {
+            if (this.mode === _aircraftConstants.FLIGHT_MODES.WAITING) {
                 return ['fail', 'already waiting'];
             }
 
-            if (this.mode !== FLIGHT_MODES.APRON) {
+            if (this.mode !== _aircraftConstants.FLIGHT_MODES.APRON) {
                 return ['fail', 'wrong mode'];
             }
 
@@ -36939,7 +28757,7 @@ var Aircraft = function () {
             var runway = window.airportController.airport_get().getRunway(this.rwy_dep);
 
             runway.addQueue(this);
-            this.mode = FLIGHT_MODES.TAXI;
+            this.mode = _aircraftConstants.FLIGHT_MODES.TAXI;
 
             var readback = {
                 log: 'taxi to runway ' + runway.name,
@@ -36958,20 +28776,21 @@ var Aircraft = function () {
     }, {
         key: 'runTakeoff',
         value: function runTakeoff(data) {
+            // TODO: all this if logic should be simplified or abstracted
             if (this.category !== 'departure') {
                 return ['fail', 'inbound'];
             }
 
-            if (!this.wow()) {
+            if (!this.isOnGround()) {
                 return ['fail', 'already airborne'];
             }
-            if (this.mode === FLIGHT_MODES.APRON) {
+            if (this.mode === _aircraftConstants.FLIGHT_MODES.APRON) {
                 return ['fail', 'unable, we\'re still in the parking area'];
             }
-            if (this.mode === FLIGHT_MODES.TAXI) {
+            if (this.mode === _aircraftConstants.FLIGHT_MODES.TAXI) {
                 return ['fail', 'taxi to runway ' + (0, _radioUtilities.radio_runway)(this.rwy_dep) + ' not yet complete'];
             }
-            if (this.mode === FLIGHT_MODES.TAKEOFF) {
+            if (this.mode === _aircraftConstants.FLIGHT_MODES.TAKEOFF) {
                 // FIXME: this is showing immediately after a to clearance.
                 return ['fail', 'already taking off'];
             }
@@ -36983,11 +28802,11 @@ var Aircraft = function () {
             var runway = window.airportController.airport_get().getRunway(this.rwy_dep);
 
             if (runway.removeQueue(this)) {
-                this.mode = FLIGHT_MODES.TAKEOFF;
+                this.mode = _aircraftConstants.FLIGHT_MODES.TAKEOFF;
                 this.scoreWind('taking off');
                 this.takeoffTime = window.gameController.game_time();
 
-                if (this.fms.currentWaypoint().speed == null) {
+                if (this.fms.currentWaypoint.speed == null) {
                     this.fms.setCurrent({ speed: this.model.speed.cruise });
                 }
 
@@ -37037,8 +28856,9 @@ var Aircraft = function () {
     }, {
         key: 'runAbort',
         value: function runAbort(data) {
-            if (this.mode === FLIGHT_MODES.TAXI) {
-                this.mode = FLIGHT_MODES.APRON;
+            // TODO: these ifs on `mode` should be converted to a switch
+            if (this.mode === _aircraftConstants.FLIGHT_MODES.TAXI) {
+                this.mode = _aircraftConstants.FLIGHT_MODES.APRON;
                 this.taxi_start = 0;
 
                 console.log('aborted taxi to runway');
@@ -37047,17 +28867,18 @@ var Aircraft = function () {
                 window.uiController.ui_log(this.getCallsign() + ' aborted taxi to runway', isWarning);
 
                 return ['ok', 'taxiing back to terminal'];
-            } else if (this.mode === FLIGHT_MODES.WAITING) {
+            } else if (this.mode === _aircraftConstants.FLIGHT_MODES.WAITING) {
                 return ['fail', 'unable to return to the terminal'];
-            } else if (this.mode === FLIGHT_MODES.LANDING) {
+            } else if (this.mode === _aircraftConstants.FLIGHT_MODES.LANDING) {
                 this.cancelLanding();
+
                 var readback = {
                     log: 'go around, fly present heading, maintain ' + this.fms.altitudeForCurrentWaypoint(),
                     say: 'go around, fly present heading, maintain ' + (0, _radioUtilities.radio_altitude)(this.fms.altitudeForCurrentWaypoint())
                 };
 
                 return ['ok', readback];
-            } else if (this.mode === FLIGHT_MODES.CRUISE && this.fms.currentWaypoint().navmode === WAYPOINT_NAV_MODE.RWY) {
+            } else if (this.mode === _aircraftConstants.FLIGHT_MODES.CRUISE && this.fms.currentWaypoint.navmode === _aircraftConstants.WAYPOINT_NAV_MODE.RWY) {
                 this.cancelLanding();
 
                 var _readback3 = {
@@ -37066,10 +28887,10 @@ var Aircraft = function () {
                 };
 
                 return ['ok', _readback3];
-            } else if (this.mode === FLIGHT_MODES.CRUISE && this.fms.currentWaypoint().navmode === WAYPOINT_NAV_MODE.FIX) {
+            } else if (this.mode === _aircraftConstants.FLIGHT_MODES.CRUISE && this.fms.currentWaypoint.navmode === _aircraftConstants.WAYPOINT_NAV_MODE.FIX) {
                 this.cancelFix();
 
-                if (this.category === FLIGHT_CATEGORY.ARRIVAL) {
+                if (this.category === _aircraftConstants.FLIGHT_CATEGORY.ARRIVAL) {
                     return ['ok', 'fly present heading, vector to final approach course'];
                 } else if (this.category === 'departure') {
                     return ['ok', 'fly present heading, vector for entrail spacing'];
@@ -37080,6 +28901,7 @@ var Aircraft = function () {
             return ['fail', 'unable to abort'];
         }
 
+        // FIXME: is this in use?
         /**
          * @for AircraftInstanceModel
          * @method runDebug
@@ -37092,6 +28914,7 @@ var Aircraft = function () {
             return ['ok', { log: 'in the console, look at the variable &lsquo;aircraft&rsquo;', say: '' }];
         }
 
+        // FIXME: is this in use?
         /**
          * @for AircraftInstanceModel
          * @method runDelete
@@ -37103,6 +28926,7 @@ var Aircraft = function () {
             window.aircraftController.aircraft_remove(this);
         }
 
+        // TODO: move to `fms.cancelFix()`
         /**
          * @for AircraftInstanceModel
          * @method cancelFix
@@ -37112,12 +28936,12 @@ var Aircraft = function () {
         key: 'cancelFix',
         value: function cancelFix() {
             // TODO: this logic could be simplified. do an early return instead of wrapping the entire function in an if.
-            if (this.fms.currentWaypoint().navmode === WAYPOINT_NAV_MODE.FIX) {
-                var curr = this.fms.currentWaypoint();
+            if (this.fms.currentWaypoint.navmode === _aircraftConstants.WAYPOINT_NAV_MODE.FIX) {
+                var curr = this.fms.currentWaypoint;
 
                 this.fms.appendLeg({
                     altitude: curr.altitude,
-                    navmode: WAYPOINT_NAV_MODE.HEADING,
+                    navmode: _aircraftConstants.WAYPOINT_NAV_MODE.HEADING,
                     heading: this.heading,
                     speed: curr.speed
                 });
@@ -37140,10 +28964,10 @@ var Aircraft = function () {
         key: 'cancelLanding',
         value: function cancelLanding() {
             // TODO: this logic could be simplified. do an early return instead of wrapping the entire function in an if.
-            if (this.fms.currentWaypoint().navmode === WAYPOINT_NAV_MODE.RWY) {
+            if (this.fms.currentWaypoint.navmode === _aircraftConstants.WAYPOINT_NAV_MODE.RWY) {
                 var runway = window.airportController.airport_get().getRunway(this.rwy_arr);
 
-                if (this.mode === FLIGHT_MODES.LANDING) {
+                if (this.mode === _aircraftConstants.FLIGHT_MODES.LANDING) {
                     // TODO: enumerate the magic numbers
                     this.fms.setCurrent({
                         altitude: Math.max(2000, (0, _core.round)(this.altitude / 1000) * 1000),
@@ -37152,11 +28976,11 @@ var Aircraft = function () {
                 }
 
                 this.fms.setCurrent({
-                    navmode: WAYPOINT_NAV_MODE.HEADING,
+                    navmode: _aircraftConstants.WAYPOINT_NAV_MODE.HEADING,
                     runway: null
                 });
 
-                this.mode = FLIGHT_MODES.CRUISE;
+                this.mode = _aircraftConstants.FLIGHT_MODES.CRUISE;
                 this.updateStrip();
 
                 return true;
@@ -37167,6 +28991,7 @@ var Aircraft = function () {
             return false;
         }
 
+        // FIXME: is this method still in use?
         /**
          * @for AircraftInstanceModel
          * @method pushHistory
@@ -37190,7 +29015,7 @@ var Aircraft = function () {
     }, {
         key: 'moveForward',
         value: function moveForward() {
-            this.mode = FLIGHT_MODES.TAXI;
+            this.mode = _aircraftConstants.FLIGHT_MODES.TAXI;
             this.taxi_next = true;
         }
 
@@ -37203,7 +29028,7 @@ var Aircraft = function () {
     }, {
         key: 'isEstablished',
         value: function isEstablished() {
-            if (this.mode !== FLIGHT_MODES.LANDING) {
+            if (this.mode !== _aircraftConstants.FLIGHT_MODES.LANDING) {
                 return false;
             }
 
@@ -37213,7 +29038,55 @@ var Aircraft = function () {
         }
 
         /**
-         * Aircraft is actively following an instrument approach
+         * Checks if the aircraft is inside the airspace of a specified airport
+         *
+         * @for AircraftInstanceModel
+         * @method isInsideAirspace
+         * @param  {airport} airport the airport whose airspace we are checking
+         * @return {Boolean}
+         * @private
+         */
+
+    }, {
+        key: 'isInsideAirspace',
+        value: function isInsideAirspace(airport) {
+            var withinAirspaceLateralBoundaries = this.distance <= airport.ctr_radius;
+            var withinAirspaceAltitudeRange = this.altitude <= airport.ctr_ceiling;
+
+            if (!(0, _isNil3.default)(airport.perimeter)) {
+                // polygonal airspace boundary
+                withinAirspaceLateralBoundaries = (0, _vector.point_in_area)(this.position, airport.perimeter);
+            }
+
+            return withinAirspaceAltitudeRange && withinAirspaceLateralBoundaries;
+        }
+
+        /**
+         * Aircraft has "weight-on-wheels" (on the ground)
+         * @for AircraftInstanceModel
+         * @method isOnGround
+         */
+
+    }, {
+        key: 'isOnGround',
+        value: function isOnGround() {
+            var error_allowance_ft = 5;
+            var airport = window.airportController.airport_get();
+            var runway = airport.getRunway(this.rwy_dep || this.rwy_arr);
+            var nearRunwayAltitude = (0, _core.abs)(this.altitude - runway.elevation) < error_allowance_ft;
+            var nearAirportAltitude = (0, _core.abs)(this.altitude - airport.position.elevation) < error_allowance_ft;
+
+            return nearRunwayAltitude || nearAirportAltitude;
+        }
+
+        /**
+         * Aircraft is actively following an instrument approach and is elegible for reduced separation
+         *
+         * If the game ever distinguishes between ILS/MLS/LAAS
+         * approaches and visual/localizer/VOR/etc. this should
+         * distinguish between them.  Until then, presume landing is via
+         * ILS with appropriate procedures in place.
+         *
          * @for AircraftInstanceModel
          * @method runTakeoff
          */
@@ -37221,13 +29094,7 @@ var Aircraft = function () {
     }, {
         key: 'isPrecisionGuided',
         value: function isPrecisionGuided() {
-            // Whether this aircraft is elegible for reduced separation
-            //
-            // If the game ever distinguishes between ILS/MLS/LAAS
-            // approaches and visual/localizer/VOR/etc. this should
-            // distinguish between them.  Until then, presume landing is via
-            // ILS with appropriate procedures in place.
-            return this.mode === FLIGHT_MODES.LANDING;
+            return this.mode === _aircraftConstants.FLIGHT_MODES.LANDING;
         }
 
         /**
@@ -37239,7 +29106,7 @@ var Aircraft = function () {
         key: 'isStopped',
         value: function isStopped() {
             // TODO: enumerate the magic number.
-            return this.wow() && this.speed < 5;
+            return this.isOnGround() && this.speed < 5;
         }
 
         /**
@@ -37250,7 +29117,7 @@ var Aircraft = function () {
     }, {
         key: 'isTaxiing',
         value: function isTaxiing() {
-            return this.mode === FLIGHT_MODES.APRON || this.mode === FLIGHT_MODES.TAXI || this.mode === FLIGHT_MODES.WAITING;
+            return this.mode === _aircraftConstants.FLIGHT_MODES.APRON || this.mode === _aircraftConstants.FLIGHT_MODES.TAXI || this.mode === _aircraftConstants.FLIGHT_MODES.WAITING;
         }
 
         /**
@@ -37261,7 +29128,7 @@ var Aircraft = function () {
     }, {
         key: 'isTakeoff',
         value: function isTakeoff() {
-            return this.isTaxiing() || this.mode === FLIGHT_MODES.TAKEOFF;
+            return this.isTaxiing() || this.mode === _aircraftConstants.FLIGHT_MODES.TAKEOFF;
         }
 
         // TODO: the logic in this method can be cleaned up and simplified
@@ -37275,7 +29142,7 @@ var Aircraft = function () {
         value: function isVisible() {
             // TODO: this if/else if would be cleaner with just if (this.mode === FLIGHT_MODES.WAITING) {}
             // hide aircraft on twys
-            if (this.mode === FLIGHT_MODES.APRON || this.mode === FLIGHT_MODES.TAXI) {
+            if (this.mode === _aircraftConstants.FLIGHT_MODES.APRON || this.mode === _aircraftConstants.FLIGHT_MODES.TAXI) {
                 return false;
             }
 
@@ -37284,7 +29151,7 @@ var Aircraft = function () {
                 var runway = window.airportController.airport_get().getRunway(this.rwy_dep);
                 var waiting = runway.inQueue(this);
 
-                return this.mode === FLIGHT_MODES.WAITING && waiting === 0;
+                return this.mode === _aircraftConstants.FLIGHT_MODES.WAITING && waiting === 0;
             }
 
             return true;
@@ -37372,7 +29239,7 @@ var Aircraft = function () {
             var alt_log = void 0;
             var alt_say = void 0;
 
-            if (this.category === FLIGHT_CATEGORY.ARRIVAL) {
+            if (this.category === _aircraftConstants.FLIGHT_CATEGORY.ARRIVAL) {
                 var altdiff = this.altitude - this.fms.altitudeForCurrentWaypoint();
                 var alt = (0, _radioUtilities.digits_decimal)(this.altitude, -2);
 
@@ -37393,7 +29260,7 @@ var Aircraft = function () {
                 (0, _speech.speech_say)([{ type: 'text', content: window.airportController.airport_get().radio.app + ', ' }, { type: 'callsign', content: this }, { type: 'text', content: 'with you ' + alt_say }]);
             }
 
-            if (this.category === FLIGHT_CATEGORY.DEPARTURE) {
+            if (this.category === _aircraftConstants.FLIGHT_CATEGORY.DEPARTURE) {
                 window.uiController.ui_log(window.airportController.airport_get().radio.twr + ', ' + this.getCallsign() + ', ready to taxi');
                 (0, _speech.speech_say)([{ type: 'text', content: window.airportController.airport_get().radio.twr }, { type: 'callsign', content: this }, { type: 'text', content: ', ready to taxi' }]);
             }
@@ -37480,24 +29347,24 @@ var Aircraft = function () {
                 });
             }
 
-            if (this.fms.currentWaypoint().navmode === WAYPOINT_NAV_MODE.RWY) {
+            if (this.fms.currentWaypoint.navmode === _aircraftConstants.WAYPOINT_NAV_MODE.RWY) {
                 runway = airport.getRunway(this.rwy_arr);
                 offset = (0, _flightMath.getOffset)(this, runway.position, runway.angle);
                 offset_angle = (0, _vector.vradial)(offset);
                 angle = (0, _circle.radians_normalize)(runway.angle);
                 glideslope_altitude = (0, _core.clamp)(runway.elevation, runway.getGlideslopeAltitude(offset[1]), this.altitude);
-                var assignedHdg = this.fms.currentWaypoint().heading;
+                var assignedHdg = this.fms.currentWaypoint.heading;
                 var localizerRange = runway.ils.enabled ? runway.ils.loc_maxDist : 40;
                 this.offset_angle = offset_angle;
                 this.approachOffset = (0, _core.abs)(offset[0]);
                 this.approachDistance = offset[1];
                 this.target.heading = assignedHdg;
-                this.target.turn = this.fms.currentWaypoint().turn;
-                this.target.altitude = this.fms.currentWaypoint().altitude;
-                this.target.speed = this.fms.currentWaypoint().speed;
+                this.target.turn = this.fms.currentWaypoint.turn;
+                this.target.altitude = this.fms.currentWaypoint.altitude;
+                this.target.speed = this.fms.currentWaypoint.speed;
 
                 // Established on ILS
-                if (this.mode === FLIGHT_MODES.LANDING) {
+                if (this.mode === _aircraftConstants.FLIGHT_MODES.LANDING) {
                     // Final Approach Heading Control
                     var severity_of_correction = 25; // controls steepness of heading adjustments during localizer tracking
                     var tgtHdg = angle + offset_angle * -severity_of_correction;
@@ -37506,20 +29373,20 @@ var Aircraft = function () {
                     this.target.heading = (0, _core.clamp)(tgtHdg, minHdg, maxHdg);
 
                     // Final Approach Altitude Control
-                    this.target.altitude = Math.min(this.fms.currentWaypoint().altitude, glideslope_altitude);
+                    this.target.altitude = Math.min(this.fms.currentWaypoint.altitude, glideslope_altitude);
 
                     // Final Approach Speed Control
-                    if (this.fms.currentWaypoint().speed > 0) {
-                        this.fms.setCurrent({ start_speed: this.fms.currentWaypoint().speed });
+                    if (this.fms.currentWaypoint.speed > 0) {
+                        this.fms.setCurrent({ start_speed: this.fms.currentWaypoint.speed });
                     }
 
-                    if (this.wow()) {
+                    if (this.isOnGround()) {
                         this.target.altitude = runway.elevation;
                         this.target.speed = 0;
                     } else {
                         var dist_final_app_spd = 3.5; // 3.5km ~= 2nm
                         var dist_assigned_spd = 9.5; // 9.5km ~= 5nm
-                        this.target.speed = (0, _core.extrapolate_range_clamp)(dist_final_app_spd, offset[1], dist_assigned_spd, this.model.speed.landing, this.fms.currentWaypoint().start_speed);
+                        this.target.speed = (0, _core.extrapolate_range_clamp)(dist_final_app_spd, offset[1], dist_assigned_spd, this.model.speed.landing, this.fms.currentWaypoint.start_speed);
                     }
 
                     // Failed Approach
@@ -37543,8 +29410,8 @@ var Aircraft = function () {
                     var maxAboveGlideslope = 250;
                     var interceptAngle = (0, _core.abs)((0, _circle.angle_offset)(assignedHdg, runwayNominalHeading));
                     var courseDifference = (0, _core.abs)((0, _circle.angle_offset)(this.heading, runwayNominalHeading));
-                    if (alignedWithRunway && onRunwayHeading && this.mode !== FLIGHT_MODES.LANDING) {
-                        this.mode = FLIGHT_MODES.LANDING;
+                    if (alignedWithRunway && onRunwayHeading && this.mode !== _aircraftConstants.FLIGHT_MODES.LANDING) {
+                        this.mode = _aircraftConstants.FLIGHT_MODES.LANDING;
                         this.target.heading = angle;
                         // Check legality of localizer interception
                         if (!this.projected) {
@@ -37594,12 +29461,12 @@ var Aircraft = function () {
                         this.target.heading = (0, _core.clamp)(_tgtHdg, _minHdg, _maxHdg);
                     }
                 }
-            } else if (this.fms.currentWaypoint().navmode === WAYPOINT_NAV_MODE.FIX) {
-                var fix = this.fms.currentWaypoint().location;
+            } else if (this.fms.currentWaypoint.navmode === _aircraftConstants.WAYPOINT_NAV_MODE.FIX) {
+                var fix = this.fms.currentWaypoint.location;
                 if (!fix) {
                     console.error(this.getCallsign() + ' using "fix" navmode, but no fix location!');
                     console.log(this.fms);
-                    console.log(this.fms.currentWaypoint());
+                    console.log(this.fms.currentWaypoint);
                 }
 
                 var vector_to_fix = (0, _vector.vsub)(this.position, fix);
@@ -37618,8 +29485,8 @@ var Aircraft = function () {
                     this.target.heading = (0, _vector.vradial)(vector_to_fix) - Math.PI;
                     this.target.turn = null;
                 }
-            } else if (this.fms.currentWaypoint().navmode === WAYPOINT_NAV_MODE.HOLD) {
-                var hold = this.fms.currentWaypoint().hold;
+            } else if (this.fms.currentWaypoint.navmode === _aircraftConstants.WAYPOINT_NAV_MODE.HOLD) {
+                var hold = this.fms.currentWaypoint.hold;
                 var angle_off_of_leg_hdg = (0, _core.abs)((0, _circle.angle_offset)(this.heading, this.target.heading));
 
                 // within ~2° of upwd/dnwd
@@ -37650,36 +29517,36 @@ var Aircraft = function () {
                     }
                 }
             } else {
-                this.target.heading = this.fms.currentWaypoint().heading;
-                this.target.turn = this.fms.currentWaypoint().turn;
+                this.target.heading = this.fms.currentWaypoint.heading;
+                this.target.turn = this.fms.currentWaypoint.turn;
             }
 
-            if (this.mode !== FLIGHT_MODES.LANDING) {
+            if (this.mode !== _aircraftConstants.FLIGHT_MODES.LANDING) {
                 this.target.altitude = this.fms.altitudeForCurrentWaypoint();
-                this.target.expedite = this.fms.currentWaypoint().expedite;
+                this.target.expedite = this.fms.currentWaypoint.expedite;
                 this.target.altitude = Math.max(1000, this.target.altitude);
-                this.target.speed = this.fms.currentWaypoint().speed;
+                this.target.speed = this.fms.currentWaypoint.speed;
                 this.target.speed = (0, _core.clamp)(this.model.speed.min, this.target.speed, this.model.speed.max);
             }
 
             // If stalling, make like a meteorite and fall to the earth!
-            if (this.speed < this.model.speed.min && !this.wow()) {
+            if (this.speed < this.model.speed.min && !this.isOnGround()) {
                 this.target.altitude = Math.min(0, this.target.altitude);
             }
 
             // finally, taxi overrides everything
             var was_taxi = false;
 
-            if (this.mode === FLIGHT_MODES.TAXI) {
+            if (this.mode === _aircraftConstants.FLIGHT_MODES.TAXI) {
                 var elapsed = window.gameController.game_time() - this.taxi_start;
 
                 if (elapsed > this.taxi_time) {
-                    this.mode = FLIGHT_MODES.WAITING;
+                    this.mode = _aircraftConstants.FLIGHT_MODES.WAITING;
                     was_taxi = true;
 
                     this.updateStrip();
                 }
-            } else if (this.mode === FLIGHT_MODES.WAITING) {
+            } else if (this.mode === _aircraftConstants.FLIGHT_MODES.WAITING) {
                 runway = window.airportController.airport_get().getRunway(this.rwy_dep);
 
                 position = runway.position;
@@ -37694,7 +29561,7 @@ var Aircraft = function () {
 
                     this.updateStrip();
                 }
-            } else if (this.mode === FLIGHT_MODES.TAKEOFF) {
+            } else if (this.mode === _aircraftConstants.FLIGHT_MODES.TAKEOFF) {
                 runway = window.airportController.airport_get().getRunway(this.rwy_dep);
 
                 // Altitude Control
@@ -37709,13 +29576,13 @@ var Aircraft = function () {
                 if (this.altitude - runway.elevation < 400) {
                     this.target.heading = rwyHdg;
                 } else {
-                    if (!this.fms.followCheck().sid && this.fms.currentWaypoint().heading === null) {
+                    if (!this.fms.followCheck().sid && this.fms.currentWaypoint.heading === null) {
                         // if no directional instructions available after takeoff
                         // fly runway heading
                         this.fms.setCurrent({ heading: rwyHdg });
                     }
 
-                    this.mode = FLIGHT_MODES.CRUISE;
+                    this.mode = _aircraftConstants.FLIGHT_MODES.CRUISE;
                     this.updateStrip();
                 }
 
@@ -37731,7 +29598,7 @@ var Aircraft = function () {
                     this.target.speed = Math.min(this.target.speed, 250);
                 } else {
                     // btwn scheduled speed and 250
-                    this.target.speed = Math.min(this.fms.currentWaypoint().speed, 250);
+                    this.target.speed = Math.min(this.fms.currentWaypoint.speed, 250);
                 }
             }
         }
@@ -37759,7 +29626,7 @@ var Aircraft = function () {
 
             // TURNING
             // this.target.heading = radians_normalize(this.target.heading);
-            if (!this.wow() && this.heading !== this.target.heading) {
+            if (!this.isOnGround() && this.heading !== this.target.heading) {
                 // Perform standard turns 3 deg/s or 25 deg bank, whichever
                 // requires less bank angle.
                 // Formula based on http://aviation.stackexchange.com/a/8013
@@ -37784,7 +29651,7 @@ var Aircraft = function () {
             if (this.target.altitude < this.altitude - 0.02) {
                 distance = -this.model.rate.descent / 60 * window.gameController.game_delta();
 
-                if (this.mode === FLIGHT_MODES.LANDING) {
+                if (this.mode === _aircraftConstants.FLIGHT_MODES.LANDING) {
                     distance *= 3;
                 }
 
@@ -37793,7 +29660,7 @@ var Aircraft = function () {
                 var climbrate = this.getClimbRate();
                 distance = climbrate / 60 * window.gameController.game_delta();
 
-                if (this.mode === FLIGHT_MODES.LANDING) {
+                if (this.mode === _aircraftConstants.FLIGHT_MODES.LANDING) {
                     distance *= 1.5;
                 }
 
@@ -37814,7 +29681,7 @@ var Aircraft = function () {
                 }
             }
 
-            if (this.wow()) {
+            if (this.isOnGround()) {
                 this.trend = 0;
             }
 
@@ -37824,7 +29691,7 @@ var Aircraft = function () {
             if (this.target.speed < this.speed - 0.01) {
                 difference = -this.model.rate.decelerate * window.gameController.game_delta() / 2;
 
-                if (this.wow()) {
+                if (this.isOnGround()) {
                     difference *= 3.5;
                 }
             } else if (this.target.speed > this.speed + 0.01) {
@@ -37868,13 +29735,13 @@ var Aircraft = function () {
                 var wind = window.airportController.airport_get().wind;
                 var vector = void 0;
 
-                if (this.wow()) {
+                if (this.isOnGround()) {
                     vector = (0, _vector.vscale)([(0, _core.sin)(angle), (0, _core.cos)(angle)], scaleSpeed);
                 } else {
                     var crab_angle = 0;
 
                     // Compensate for crosswind while tracking a fix or on ILS
-                    if (this.fms.currentWaypoint().navmode === WAYPOINT_NAV_MODE.FIX || this.mode === FLIGHT_MODES.LANDING) {
+                    if (this.fms.currentWaypoint.navmode === _aircraftConstants.WAYPOINT_NAV_MODE.FIX || this.mode === _aircraftConstants.FLIGHT_MODES.LANDING) {
                         // TODO: this should be abstracted to a helper function
                         var _offset3 = (0, _circle.angle_offset)(this.heading, wind.angle + Math.PI);
                         crab_angle = Math.asin(wind.speed * (0, _core.sin)(_offset3) / this.speed);
@@ -37903,21 +29770,10 @@ var Aircraft = function () {
                 this.radial += (0, _circle.tau)();
             }
 
-            // polygonal airspace boundary
-            if (window.airportController.airport_get().perimeter) {
-                var inside = (0, _vector.point_in_area)(this.position, window.airportController.airport_get().perimeter);
+            var isInsideAirspace = this.isInsideAirspace(window.airportController.airport_get());
 
-                // TODO: this logic is duplicated below. abstract to new method
-                if (inside !== this.inside_ctr) {
-                    this.crossBoundary(inside);
-                }
-            } else {
-                // simple circular airspace boundary
-                var _inside = this.distance <= window.airportController.airport_get().ctr_radius && this.altitude <= window.airportController.airport_get().ctr_ceiling;
-
-                if (_inside !== this.inside_ctr) {
-                    this.crossBoundary(_inside);
-                }
+            if (isInsideAirspace !== this.inside_ctr) {
+                this.crossBoundary(isInsideAirspace);
             }
         }
 
@@ -37997,7 +29853,7 @@ var Aircraft = function () {
                 });
             }
 
-            if (this.terrain_ranges && !this.wow()) {
+            if (this.terrain_ranges && !this.isOnGround()) {
                 var terrain = prop.airport.current.terrain;
                 var prev_level = this.terrain_ranges[this.terrain_level];
                 var ele = Math.ceil(this.altitude, 1000);
@@ -38058,7 +29914,7 @@ var Aircraft = function () {
             // Update fms.following
             this.fms.followCheck();
 
-            var wp = this.fms.currentWaypoint();
+            var wp = this.fms.currentWaypoint;
             // Populate strip fields with default values
             var defaultHeadingText = (0, _unitConverters.heading_to_string)(wp.heading);
             var defaultAltitudeText = (0, _get3.default)(wp, 'altitude', '-');
@@ -38071,42 +29927,41 @@ var Aircraft = function () {
             var hasAltitude = (0, _has3.default)(wp, 'altitude');
             var isFollowingSID = (0, _isString3.default)(destinationText);
             var isFollowingSTAR = (0, _isString3.default)(this.fms.following.star);
+            var fixRestrictions = this.fms.currentWaypoint.fixRestrictions;
 
-            var _fms$currentWaypoint = this.fms.currentWaypoint(),
-                fixRestrictions = _fms$currentWaypoint.fixRestrictions;
 
             this.aircraftStripView.update(defaultHeadingText, defaultAltitudeText, defaultDestinationText, currentSpeedText);
 
             switch (this.mode) {
-                case FLIGHT_MODES.APRON:
+                case _aircraftConstants.FLIGHT_MODES.APRON:
                     this.aircraftStripView.updateViewForApron(destinationText, hasAltitude, isFollowingSID);
                     break;
-                case FLIGHT_MODES.TAXI:
+                case _aircraftConstants.FLIGHT_MODES.TAXI:
                     this.aircraftStripView.updateViewForTaxi(destinationText, hasAltitude, isFollowingSID, altitudeText);
                     break;
-                case FLIGHT_MODES.WAITING:
+                case _aircraftConstants.FLIGHT_MODES.WAITING:
                     this.aircraftStripView.updateViewForWaiting(destinationText, hasAltitude, isFollowingSID);
                     break;
-                case FLIGHT_MODES.TAKEOFF:
+                case _aircraftConstants.FLIGHT_MODES.TAKEOFF:
                     // When taking off...
                     this.aircraftStripView.updateViewForTakeoff(destinationText, isFollowingSID);
 
                     break;
-                case FLIGHT_MODES.CRUISE:
+                case _aircraftConstants.FLIGHT_MODES.CRUISE:
                     // When in normal flight...
-                    if (wp.navmode === WAYPOINT_NAV_MODE.FIX) {
+                    if (wp.navmode === _aircraftConstants.WAYPOINT_NAV_MODE.FIX) {
                         headingText = wp.fix[0] === '_' ? '[RNAV]' : wp.fix;
                         destinationText = this.fms.getFollowingSTARText();
-                    } else if (wp.navmode === WAYPOINT_NAV_MODE.HOLD) {
+                    } else if (wp.navmode === _aircraftConstants.WAYPOINT_NAV_MODE.HOLD) {
                         headingText = 'holding';
-                    } else if (wp.navmode === WAYPOINT_NAV_MODE.RWY) {
+                    } else if (wp.navmode === _aircraftConstants.WAYPOINT_NAV_MODE.RWY) {
                         headingText = 'intercept';
                         destinationText = this.fms.getDesinationIcaoWithRunway();
                     }
 
                     this.aircraftStripView.updateViewForCruise(wp.navmode, headingText, destinationText, isFollowingSID, isFollowingSTAR, fixRestrictions);
                     break;
-                case FLIGHT_MODES.LANDING:
+                case _aircraftConstants.FLIGHT_MODES.LANDING:
                     destinationText = this.fms.getDesinationIcaoWithRunway();
 
                     this.aircraftStripView.updateViewForLanding(destinationText);
@@ -38198,22 +30053,6 @@ var Aircraft = function () {
         value: function removeConflict(other) {
             delete this.conflicts[other.getCallsign()];
         }
-
-        /**
-         * Aircraft has "weight-on-wheels" (on the ground)
-         * @for AircraftInstanceModel
-         * @method wow
-         */
-
-    }, {
-        key: 'wow',
-        value: function wow() {
-            var error_allowance = 5;
-            var apt = window.airportController.airport_get();
-            var rwy_elev = apt.getRunway(this.rwy_dep || this.rwy_arr).elevation;
-            var apt_elev = apt.position.elevation;
-            return this.altitude - (rwy_elev || apt_elev) < error_allowance;
-        }
     }]);
 
     return Aircraft;
@@ -38221,7 +30060,7 @@ var Aircraft = function () {
 
 exports.default = Aircraft;
 
-},{"../constants/selectors":565,"../game/GameController":569,"../math/circle":573,"../math/core":574,"../math/distance":575,"../math/flightMath":576,"../math/vector":577,"../speech":579,"../utilities/radioUtilities":584,"../utilities/unitConverters":586,"./AircraftFlightManagementSystem":528,"./AircraftStripView":531,"./Waypoint":533,"jquery":296,"lodash/forEach":458,"lodash/get":459,"lodash/has":460,"lodash/isNaN":473,"lodash/isString":477,"lodash/map":484}],530:[function(require,module,exports){
+},{"../airport/Route/RouteModel":548,"../constants/aircraftConstants":570,"../constants/selectors":575,"../game/GameController":580,"../math/circle":583,"../math/core":584,"../math/distance":585,"../math/flightMath":586,"../math/vector":587,"../speech":588,"../utilities/radioUtilities":593,"../utilities/unitConverters":595,"./AircraftStripView":527,"./FlightManagementSystem/AircraftFlightManagementSystem":528,"./FlightManagementSystem/Waypoint":530,"jquery":296,"lodash/forEach":468,"lodash/get":469,"lodash/has":470,"lodash/isEqual":481,"lodash/isNaN":484,"lodash/isNil":485,"lodash/isString":489,"lodash/map":496}],526:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -38230,9 +30069,9 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _jquery = require('jquery');
+var _forEach2 = require('lodash/forEach');
 
-var _jquery2 = _interopRequireDefault(_jquery);
+var _forEach3 = _interopRequireDefault(_forEach2);
 
 var _get2 = require('lodash/get');
 
@@ -38285,7 +30124,6 @@ var AircraftModel = function () {
 
         this.loading = true;
         this.loaded = false;
-
         this.priorityLoad = false;
         this.name = (0, _get3.default)(options, 'name', null);
         this.icao = (0, _get3.default)(options, 'icao', null);
@@ -38293,6 +30131,7 @@ var AircraftModel = function () {
         this.ceiling = null;
         this.weightclass = (0, _get3.default)(options, 'weightClass', null);
         this.category = (0, _get3.default)(options, 'category', null);
+        this._url = '';
         this._pendingAircraft = [];
 
         this.rate = {
@@ -38327,6 +30166,10 @@ var AircraftModel = function () {
     }
 
     /**
+     * Set class properties with `data`.
+     *
+     * This method is run once on instantiation and again `onLoadSuccess`
+     *
      * @for AircraftModel
      * @method parse
      * @param data {object}
@@ -38336,26 +30179,11 @@ var AircraftModel = function () {
     _createClass(AircraftModel, [{
         key: 'parse',
         value: function parse(data) {
-            // TODO: how much of this could happen in the constructor/init methods?
-            if (data.engines) {
-                this.engines = data.engines;
-            }
-
-            if (data.ceiling) {
-                this.ceiling = data.ceiling;
-            }
-
-            if (data.runway) {
-                this.runway = data.runway;
-            }
-
-            if (data.speed) {
-                this.speed = data.speed;
-            }
-
-            if (data.rate) {
-                this.rate = data.rate;
-            }
+            this.engines = (0, _get3.default)(data, 'engines', this.engines);
+            this.ceiling = (0, _get3.default)(data, 'ceiling', this.ceiling);
+            this.runway = (0, _get3.default)(data, 'runway', this.runway);
+            this.speed = (0, _get3.default)(data, 'speed', this.speed);
+            this.rate = (0, _get3.default)(data, 'rate', this.rate);
         }
 
         /**
@@ -38408,8 +30236,8 @@ var AircraftModel = function () {
          * @param options {object}
          */
         value: function generateAircraft(options) {
-            // TODO: prop names of loaded and loading are concerning. there may need to be state
-            // machine magic happening here that could lead to issues
+            // TODO: prop names of loaded and loading are concerning. there may be state machine magic happening here
+            // that could lead to issues
             if (!this.loaded) {
                 if (this.loading) {
                     this._pendingAircraft.push(options);
@@ -38427,6 +30255,7 @@ var AircraftModel = function () {
                 }
 
                 console.warn('Unable to spawn aircraft/ ' + options.icao + ' as loading failed');
+
                 return false;
             }
 
@@ -38468,9 +30297,8 @@ var AircraftModel = function () {
         value: function _generatePendingAircraft() {
             var _this3 = this;
 
-            // TODO: replace $.each() with _map()
-            _jquery2.default.each(this._pendingAircraft, function (idx, options) {
-                _this3._generateAircraft(options);
+            (0, _forEach3.default)(this._pendingAircraft, function (pendingAircraftOptions) {
+                _this3._generateAircraft(pendingAircraftOptions);
             });
 
             this._pendingAircraft = [];
@@ -38482,7 +30310,7 @@ var AircraftModel = function () {
 
 exports.default = AircraftModel;
 
-},{"./AircraftInstanceModel":529,"jquery":296,"lodash/get":459}],531:[function(require,module,exports){
+},{"./AircraftInstanceModel":525,"lodash/forEach":468,"lodash/get":469}],527:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -38497,7 +30325,7 @@ var _jquery2 = _interopRequireDefault(_jquery);
 
 var _core = require('../math/core');
 
-var _AircraftInstanceModel = require('./AircraftInstanceModel');
+var _aircraftConstants = require('../constants/aircraftConstants');
 
 var _selectors = require('../constants/selectors');
 
@@ -38752,7 +30580,7 @@ var AircraftStripView = function () {
     }, {
         key: 'findClassnameForFlightCateogry',
         value: function findClassnameForFlightCateogry() {
-            return this.category === _AircraftInstanceModel.FLIGHT_CATEGORY.DEPARTURE ? _selectors.SELECTORS.CLASSNAMES.DEPARTURE : _selectors.SELECTORS.CLASSNAMES.ARRIVAL;
+            return this.category === _aircraftConstants.FLIGHT_CATEGORY.DEPARTURE ? _selectors.SELECTORS.CLASSNAMES.DEPARTURE : _selectors.SELECTORS.CLASSNAMES.ARRIVAL;
         }
 
         /**
@@ -38838,7 +30666,7 @@ var AircraftStripView = function () {
         value: function updateViewForApron(destinationText, hasAltitude, isFollowingSID) {
             this.$speed.addClass(_selectors.SELECTORS.CLASSNAMES.RUNWAY);
             this.$heading.addClass(_selectors.SELECTORS.CLASSNAMES.RUNWAY);
-            this.$heading.text(_AircraftInstanceModel.FLIGHT_MODES.APRON);
+            this.$heading.text(_aircraftConstants.FLIGHT_MODES.APRON);
 
             if (hasAltitude) {
                 this.$altitude.addClass(_selectors.SELECTORS.CLASSNAMES.RUNWAY);
@@ -38866,7 +30694,7 @@ var AircraftStripView = function () {
             // TODO: abstract FROM HERE
             this.$speed.addClass(_selectors.SELECTORS.CLASSNAMES.RUNWAY);
             this.$heading.addClass(_selectors.SELECTORS.CLASSNAMES.RUNWAY);
-            this.$heading.text(_AircraftInstanceModel.FLIGHT_MODES.TAXI);
+            this.$heading.text(_aircraftConstants.FLIGHT_MODES.TAXI);
 
             if (hasAltitude) {
                 this.$altitude.addClass(_selectors.SELECTORS.CLASSNAMES.RUNWAY);
@@ -38897,7 +30725,7 @@ var AircraftStripView = function () {
         value: function updateViewForWaiting(destinationText, hasAltitude, isFollowingSID) {
             this.$speed.addClass(_selectors.SELECTORS.CLASSNAMES.RUNWAY);
             this.$heading.addClass(_selectors.SELECTORS.CLASSNAMES.RUNWAY);
-            this.$heading.text(_AircraftInstanceModel.FLIGHT_MODES.WAITING);
+            this.$heading.text(_aircraftConstants.FLIGHT_MODES.WAITING);
 
             if (hasAltitude) {
                 this.$altitude.addClass(_selectors.SELECTORS.CLASSNAMES.RUNWAY);
@@ -38919,7 +30747,7 @@ var AircraftStripView = function () {
     }, {
         key: 'updateViewForTakeoff',
         value: function updateViewForTakeoff(destinationText, isFollowingSID) {
-            this.$heading.text(_AircraftInstanceModel.FLIGHT_MODES.TAKEOFF);
+            this.$heading.text(_aircraftConstants.FLIGHT_MODES.TAKEOFF);
 
             if (isFollowingSID) {
                 this.$destination.text(destinationText);
@@ -38969,7 +30797,7 @@ var AircraftStripView = function () {
             var fixRestrictions = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : {};
 
             switch (navMode) {
-                case _AircraftInstanceModel.WAYPOINT_NAV_MODE.FIX:
+                case _aircraftConstants.WAYPOINT_NAV_MODE.FIX:
                     this.$heading.text(headingText);
 
                     if (isFollowingSID) {
@@ -38994,11 +30822,11 @@ var AircraftStripView = function () {
                     }
 
                     break;
-                case _AircraftInstanceModel.WAYPOINT_NAV_MODE.HOLD:
+                case _aircraftConstants.WAYPOINT_NAV_MODE.HOLD:
                     this.$heading.text(headingText);
                     this.$heading.addClass(_selectors.SELECTORS.CLASSNAMES.HOLD);
                     break;
-                case _AircraftInstanceModel.WAYPOINT_NAV_MODE.RWY:
+                case _aircraftConstants.WAYPOINT_NAV_MODE.RWY:
                     // attempting ILS intercept
                     this.$heading.addClass(_selectors.SELECTORS.CLASSNAMES.LOOKING_GOOD);
                     this.$heading.text(headingText);
@@ -39036,15 +30864,1190 @@ var AircraftStripView = function () {
 
 exports.default = AircraftStripView;
 
-},{"../constants/selectors":565,"../math/core":574,"./AircraftInstanceModel":529,"jquery":296}],532:[function(require,module,exports){
+},{"../constants/aircraftConstants":570,"../constants/selectors":575,"../math/core":584,"jquery":296}],528:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.FP_LEG_TYPE = undefined;
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /* eslint-disable no-plusplus */
+
+
+var _jquery = require('jquery');
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+var _find2 = require('lodash/find');
+
+var _find3 = _interopRequireDefault(_find2);
+
+var _last2 = require('lodash/last');
+
+var _last3 = _interopRequireDefault(_last2);
+
+var _map2 = require('lodash/map');
+
+var _map3 = _interopRequireDefault(_map2);
+
+var _isNil2 = require('lodash/isNil');
+
+var _isNil3 = _interopRequireDefault(_isNil2);
+
+var _FixCollection = require('../../airport/Fix/FixCollection');
+
+var _FixCollection2 = _interopRequireDefault(_FixCollection);
+
+var _Waypoint = require('./Waypoint');
+
+var _Waypoint2 = _interopRequireDefault(_Waypoint);
+
+var _Leg = require('./Leg');
+
+var _Leg2 = _interopRequireDefault(_Leg);
+
+var _RouteModel = require('../../airport/Route/RouteModel');
+
+var _RouteModel2 = _interopRequireDefault(_RouteModel);
+
+var _core = require('../../math/core');
+
+var _aircraftConstants = require('../../constants/aircraftConstants');
+
+var _logLevel = require('../../constants/logLevel');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+/**
+ * Enumeration of the Leg index in `this.current`
+ *
+ * @property
+ * @type {number}
+ * @final
+ */
+var LEG = 0;
+
+/**
+ * Enumeration of the Waypoint within leg index in `this.current`
+ *
+ * @property
+ * @type {number}
+ * @final
+ */
+var WAYPOINT_WITHIN_LEG = 1;
+
+/**
+  * Manage current and future aircraft waypoints
+  *
+  * waypoint navmodes
+  * -----------------
+  * May be one of null, "fix", "heading", "hold", "rwy"
+  *
+  * * null is assigned, if the plane is not actively following an
+  *    objective. This is only the case, if a plane enters the airspace
+  *    or an action has been aborted and no new command issued
+  *
+  * * "fix" is assigned, if the plane is heading for a fix. In this
+  *    case, the attribute request.fix is used for navigation
+  *
+  * * "heading" is assigned, if the plane was given directive to follow
+  *    the course set out by the given heading. In this case, the
+  *    attributes request.heading and request.turn are used for
+  *    navigation
+  *
+  * * "hold" is assigned, if the plane should hold its position. As
+  *    this is archieved by continuously turning, request.turn is used
+  *    in this case
+  *
+  * * "rwy" is assigned, if the plane is heading for a runway. This is
+  *    only the case, if the plane was issued the command to land. In
+  *    this case, request.runway is used
+  *
+  * @class AircraftFlightManagementSystem
+ */
+
+var AircraftFlightManagementSystem = function () {
+    /**
+     * @for AircraftFlightManagementSystem
+     * @constructor
+     * @param options {object}
+     */
+    function AircraftFlightManagementSystem(options) {
+        _classCallCheck(this, AircraftFlightManagementSystem);
+
+        /**
+         * @property may_aircrafts_eid
+         * @type {number}
+         * @default options.aircraft.eid
+         */
+        this.my_aircrafts_eid = options.aircraft.eid;
+
+        // TODO: we should remove this reference and instead supply methods that the aircraft can call via the fms
+        /**
+         * @property my_aircraft
+         * @type {AircrafInstanceModel}
+         * @default options.aircraft
+         */
+        this.my_aircraft = options.aircraft;
+
+        /**
+         * @property legs
+         * @type {array}
+         * @default []
+         */
+        this.legs = [];
+
+        /**
+         * Current indicies for Leg and Waypoint within that Leg.
+         *
+         * [current_Leg, current_Waypoint_within_that_Leg]
+         *
+         * @property current
+         * @type {array}
+         * @default [0, 0]
+         */
+        this.current = [0, 0];
+
+        // TODO: possible model object here
+        /**
+         * @property fp
+         * @type {object}
+         */
+        this.fp = {
+            altitude: null,
+            route: []
+        };
+
+        // TODO: possible model object here
+        /**
+         * @property following
+         * @type {object}
+         */
+        this.following = {
+            sid: null, // Standard Instrument Departure Procedure
+            star: null, // Standard Terminal Arrival Route Procedure
+            iap: null, // Instrument Approach Procedure (like ILS, GPS, RNAV, VOR-A, etc)
+            awy: null, // Airway (V, J, T, Q, etc.)
+            tfc: null, // Traffic (another airplane)
+            anything: false // T/F flag for if anything is being "followed"
+        };
+
+        // TODO: this doesn't belong in the constructor
+        // TODO: enumerate the magic numbers
+        // set initial altitude
+        this.fp.altitude = (0, _core.clamp)(1000, options.model.ceiling, 60000);
+
+        if (options.aircraft.category === _aircraftConstants.FLIGHT_CATEGORY.ARRIVAL) {
+            this.prependLeg({ route: 'UNASSIGNED' });
+        } else if (options.aircraft.category === _aircraftConstants.FLIGHT_CATEGORY.DEPARTURE) {
+            this.prependLeg({ route: window.airportController.airport_get().icao });
+        }
+
+        this.update_fp_route();
+    }
+
+    /** ***************** FMS FLIGHTPLAN CONTROL FUNCTIONS *******************/
+
+    /**
+     * Insert a Leg at the front of the flightplan
+     */
+
+
+    _createClass(AircraftFlightManagementSystem, [{
+        key: 'prependLeg',
+        value: function prependLeg(data) {
+            var prev = this.currentWaypoint;
+            var legToAdd = new _Leg2.default(data, this);
+
+            this.legs.unshift(legToAdd);
+            this.update_fp_route();
+
+            // TODO: these if blocks a repeated elsewhere, perhaps currentWaypoint can handle this logic?
+            // Verify altitude & speed not null
+            var curr = this.currentWaypoint;
+            if (prev && !curr.altitude) {
+                curr.altitude = prev.altitude;
+            }
+
+            if (prev && !curr.speed) {
+                curr.speed = prev.speed;
+            }
+        }
+
+        /**
+         * Insert a waypoint at current position and immediately activate it
+         */
+
+    }, {
+        key: 'insertWaypointHere',
+        value: function insertWaypointHere(data) {
+            var airport = window.airportController.airport_get();
+            var prev = this.currentWaypoint;
+            var waypointToAdd = new _Waypoint2.default(data, airport);
+
+            // TODO: split this up into smaller chunks
+            this.currentLeg.waypoints.splice(this.current[WAYPOINT_WITHIN_LEG], 0, waypointToAdd);
+            this.update_fp_route();
+
+            // TODO: these if blocks a repeated elsewhere, perhaps currentWaypoint can handle this logic?
+            // Verify altitude & speed not null
+            var curr = this.currentWaypoint;
+            if (prev && !curr.altitude) {
+                curr.altitude = prev.altitude;
+            }
+
+            if (prev && !curr.speed) {
+                curr.speed = prev.speed;
+            }
+        }
+
+        /**
+         * Insert a Leg at a particular position in the flightplan
+         * Note: if no position passed in, defaults to add to the end
+         */
+
+    }, {
+        key: 'insertLeg',
+        value: function insertLeg(data) {
+            // TODO: reassigining data here is dangerous.
+            if (data.firstIndex == null) {
+                data.firstIndex = this.legs.length;
+            }
+
+            var prev = this.currentWaypoint;
+            var legToAdd = new _Leg2.default(data, this);
+
+            this.legs.splice(data.firstIndex, 0, legToAdd);
+
+            this.update_fp_route();
+
+            // Adjust 'current'
+            if (this.current[LEG] >= data.firstIndex) {
+                this.current[WAYPOINT_WITHIN_LEG] = 0;
+            }
+
+            // TODO: these if blocks a repeated elsewhere, perhaps currentWaypoint can handle this logic?
+            // Verify altitude & speed not null
+            var curr = this.currentWaypoint;
+            if (prev && !curr.altitude) {
+                curr.altitude = prev.altitude;
+            }
+
+            if (prev && !curr.speed) {
+                curr.speed = prev.speed;
+            }
+        }
+
+        /**
+         * Insert a Leg at current position immediately activate it
+         */
+
+    }, {
+        key: 'insertLegHere',
+        value: function insertLegHere(data) {
+            // index of current leg
+            data.firstIndex = this.current[LEG];
+            // put new Leg at current position
+            this.insertLeg(data);
+            // start at first wp in this new leg
+            this.current[WAYPOINT_WITHIN_LEG] = 0;
+        }
+
+        /**
+         *  Insert a Leg at the end of the flightplan
+         */
+
+    }, {
+        key: 'appendLeg',
+        value: function appendLeg(data) {
+            var legToAdd = new _Leg2.default(data, this);
+
+            this.legs.push(legToAdd);
+            this.update_fp_route();
+        }
+
+        /**
+         *  Insert a waypoint after the *current* waypoint
+         */
+
+    }, {
+        key: 'appendWaypoint',
+        value: function appendWaypoint(data) {
+            var airport = window.airportController.airport_get();
+            var waypointToAdd = new _Waypoint2.default(data, airport);
+
+            this.currentLeg.waypoints.splice(this.current[WAYPOINT_WITHIN_LEG] + 1, 0, waypointToAdd);
+            this.update_fp_route();
+        }
+
+        /**
+         *  Switch to the next waypoint
+         */
+
+    }, {
+        key: 'nextWaypoint',
+        value: function nextWaypoint() {
+            var prev = this.currentWaypoint;
+            var leg = this.current[LEG];
+            var wp = this.current[WAYPOINT_WITHIN_LEG] + 1;
+
+            if (wp < this.legs[leg].waypoints.length) {
+                // look to next waypoint in current leg
+                this.current[WAYPOINT_WITHIN_LEG]++;
+            } else if (leg + 1 < this.legs.length) {
+                // look to the next leg
+                this.current[LEG]++;
+                this.current[WAYPOINT_WITHIN_LEG] = 0; // look to the first waypoint of that leg
+            }
+
+            // TODO: these if blocks a repeated elsewhere, perhaps currentWaypoint can handle this logic?
+            // Replace null values with current values
+            var curr = this.currentWaypoint;
+            if (prev && !curr.altitude) {
+                curr.altitude = prev.altitude;
+            }
+
+            if (prev && !curr.speed) {
+                curr.speed = prev.speed;
+            }
+
+            if (!curr.heading && curr.navmode === _aircraftConstants.WAYPOINT_NAV_MODE.HEADING) {
+                curr.heading = prev.heading;
+            }
+        }
+
+        /**
+         *  Switch to the next Leg
+         */
+
+    }, {
+        key: 'nextLeg',
+        value: function nextLeg() {
+            var prev = this.currentWaypoint;
+            this.current[LEG]++;
+            this.current[WAYPOINT_WITHIN_LEG] = 0;
+
+            // TODO: these if blocks a repeated elsewhere, perhaps currentWaypoint can handle this logic?
+            // Replace null values with current values
+            var curr = this.currentWaypoint;
+            if (prev && !curr.altitude) {
+                curr.altitude = prev.altitude;
+            }
+
+            if (prev && !curr.speed) {
+                curr.speed = prev.speed;
+            }
+
+            if (!curr.heading && curr.navmode === _aircraftConstants.WAYPOINT_NAV_MODE.HEADING) {
+                curr.heading = prev.heading;
+            }
+        }
+
+        /**
+         * Skips to the given waypoint
+         * @param {string} name - the name of the fix to skip to
+         */
+
+    }, {
+        key: 'skipToFix',
+        value: function skipToFix(name) {
+            var prev = this.currentWaypoint;
+
+            // TODO: these nested for loops should be simplified
+            for (var l = 0; l < this.legs.length; l++) {
+                for (var w = 0; w < this.legs[l].waypoints.length; w++) {
+                    if (this.legs[l].waypoints[w].fix === name) {
+                        this.current = [l, w];
+
+                        // TODO: these if blocks a repeated elsewhere, perhaps currentWaypoint can handle this logic?
+                        // Verify altitude & speed not null
+                        var curr = this.currentWaypoint;
+                        if (prev && !curr.altitude) {
+                            curr.altitude = prev.altitude;
+                        }
+
+                        if (prev && !curr.speed) {
+                            curr.speed = prev.speed;
+                        }
+
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        /**
+         * Modify all waypoints
+         */
+
+    }, {
+        key: 'setAll',
+        value: function setAll(data) {
+            // TODO: refactor this, what is actually happening here?
+            for (var i = 0; i < this.legs.length; i++) {
+                for (var j = 0; j < this.legs[i].waypoints.length; j++) {
+                    for (var k in data) {
+                        this.legs[i].waypoints[j][k] = data[k];
+                    }
+                }
+            }
+        }
+
+        /**
+         * Modify the current waypoint
+         */
+
+    }, {
+        key: 'setCurrent',
+        value: function setCurrent(data) {
+            // TODO: refactor this, what is actually happening here?
+            // FIXME: it may be easier to replace current waypoint with a new one?
+            for (var i in data) {
+                this.currentWaypoint[i] = data[i];
+            }
+        }
+
+        /**
+         * Updates fms.fp.route to correspond with the fms Legs
+         */
+
+    }, {
+        key: 'update_fp_route',
+        value: function update_fp_route() {
+            var flightPlanRoute = [];
+
+            for (var i = 0; i < this.legs.length; i++) {
+                var leg = this.legs[i];
+
+                if (!leg.type) {
+                    continue;
+                }
+
+                // FIXME: replace the string splitting with the `RouteModel` class methods
+                switch (leg.type) {
+                    case _aircraftConstants.FP_LEG_TYPE.SID:
+                        // departure airport
+                        flightPlanRoute.push(leg.route.entry);
+                        // 'sidname.exitPoint'
+                        flightPlanRoute.push(leg.route.procedure + '.' + leg.route.exit);
+
+                        break;
+                    case _aircraftConstants.FP_LEG_TYPE.STAR:
+                        // 'entryPoint.starname.exitPoint'
+                        flightPlanRoute.push(leg.route.entry + '.' + leg.route.procedure);
+                        // arrival airport
+                        flightPlanRoute.push(leg.route.exit);
+
+                        break;
+                    case _aircraftConstants.FP_LEG_TYPE.IAP:
+                        // no need to include these in flightplan (because wouldn't happen in real life)
+                        break;
+                    case _aircraftConstants.FP_LEG_TYPE.AWY:
+                        var previousFlightPlanRoute = flightPlanRoute[flightPlanRoute.length - 1];
+
+                        if (previousFlightPlanRoute !== leg.route.split('.')[0]) {
+                            flightPlanRoute.push(leg.route.split('.')[0]); // airway entry fix
+                            flightPlanRoute.push(leg.route.split('.')[1]); // airway identifier
+                            flightPlanRoute.push(leg.route.split('.')[2]); // airway exit fix
+                        }
+
+                        break;
+                    case _aircraftConstants.FP_LEG_TYPE.FIX:
+                        // this is just a fixname
+                        flightPlanRoute.push(leg.route);
+
+                        break;
+                    case _aircraftConstants.FP_LEG_TYPE.MANUAL:
+                        // no need to include these in flightplan (because wouldn't happen in real life)
+                        break;
+                    default:
+                        break;
+                }
+
+                // TODO: this should be first and return early
+                if (flightPlanRoute.length === 0) {
+                    flightPlanRoute.push(this.legs[0].route);
+                }
+            }
+
+            this.fp.route = flightPlanRoute;
+        }
+
+        /**
+         * Calls various task-based functions and sets 'fms.following' flags
+         */
+
+    }, {
+        key: 'followCheck',
+        value: function followCheck() {
+            var leg = this.currentLeg;
+            this.following.anything = true;
+
+            // tODO replace the string splitting with the `RouteModel`
+            switch (leg.type) {
+                case _aircraftConstants.FP_LEG_TYPE.SID:
+                    this.following.sid = leg.route.procedure;
+                    break;
+                case _aircraftConstants.FP_LEG_TYPE.STAR:
+                    this.following.star = leg.route.procedure;
+                    break;
+                case _aircraftConstants.FP_LEG_TYPE.IAP:
+                    // *******NEEDS TO BE FINISHED***************************
+                    // this.following.iap = ;
+                    break;
+                case 'tfc':
+                    // **FUTURE FUNCTIONALITY**
+                    // this.following.anything = true;
+                    // this.following.tfc = // EID of the traffic we're following
+                    break;
+                case _aircraftConstants.FP_LEG_TYPE.AWY:
+                    // **FUTURE FUNCTIONALITY**
+                    this.following.awy = leg.route.split('.')[1];
+                    break;
+                default:
+                    this.followClear();
+                    return false;
+            }
+
+            return this.following;
+        }
+
+        // TODO: rename to something more accurate like `resetFollowingType`
+        /**
+         * Clears any current follows by updating the 'fms.following' flags
+         */
+
+    }, {
+        key: 'followClear',
+        value: function followClear() {
+            this.following = {
+                sid: null,
+                star: null,
+                iap: null,
+                awy: null,
+                tfc: null,
+                anything: false
+            };
+        }
+
+        /**
+         * Join an instrument approach (eg. ILS/GPS/RNAV/VOR/LAAS/etc)
+         *
+         * @param {string} type - the type of approach (like "ils")
+         * @param {Runway} rwy - the Runway object the approach ends into
+         * @param {string} variant - (optional) for stuff like "RNAV-Z 17L"
+         */
+
+    }, {
+        key: 'followApproach',
+        value: function followApproach(type, rwy, variant) {
+            // Note: 'variant' is set up to pass to this function, but is not used here yet.
+            if (type === 'ils') {
+                this.my_aircraft.cancelFix();
+                // TODO: this looks like a model object
+                this.setCurrent({
+                    navmode: 'rwy',
+                    runway: rwy.toUpperCase(),
+                    turn: null,
+                    start_speed: this.my_aircraft.speed
+                });
+            }
+            // if-else all the other approach types here...
+            // ILS, GPS, RNAV, VOR, NDB, LAAS/WAAS, MLS, etc...
+        }
+
+        /**
+         * Inserts the SID as the first Leg in the fms's flightplan
+         */
+
+    }, {
+        key: 'followSID',
+        value: function followSID(route) {
+            var airport = window.airportController.airport_get();
+
+            for (var i = 0; i < this.legs.length; i++) {
+                // sid assigned after taking off without SID
+                if (this.legs[i].route === airport.icao) {
+                    // remove the manual departure leg
+                    this.legs.splice(i, 1);
+                } else if (this.legs[i].type === _aircraftConstants.FP_LEG_TYPE.SID) {
+                    // check to see if SID already assigned
+                    // remove the old SID
+                    this.legs.splice(i, 1);
+                }
+            }
+
+            // Add the new SID Leg
+            this.prependLeg({
+                type: _aircraftConstants.FP_LEG_TYPE.SID,
+                route: route
+            });
+
+            this.setAll({
+                altitude: Math.max(airport.initial_alt, this.my_aircraft.altitude)
+            });
+        }
+
+        /**
+         * Inserts the STAR as the last Leg in the fms's flightplan
+         */
+
+    }, {
+        key: 'followSTAR',
+        value: function followSTAR(route) {
+            for (var i = 0; i < this.legs.length; i++) {
+                if (this.legs[i].type === _aircraftConstants.FP_LEG_TYPE.STAR) {
+                    // check to see if STAR already assigned
+                    this.legs.splice(i, 1); // remove the old STAR
+                }
+            }
+
+            // Add the new STAR Leg
+            this.appendLeg({ type: _aircraftConstants.FP_LEG_TYPE.STAR, route: route });
+        }
+
+        // TODO: move this logic to the `RouteModel`
+        /**
+         * Takes a single-string route and converts it to a segmented route the fms can understand
+         *
+         * Note: Input Data Format : "KSFO.OFFSH9.SXC.V458.IPL.J2.JCT..LLO..ACT..KACT"
+         *       Return Data Format: ["KSFO.OFFSH9.SXC", "SXC.V458.IPL", "IPL.J2.JCT", "LLO", "ACT", "KACT"]
+         */
+
+    }, {
+        key: 'formatRoute',
+        value: function formatRoute(data) {
+            // const routeModel = new RouteModel(data);
+
+            // Format the user's input
+            var route = [];
+            var airport = window.airportController.airport_get();
+            var fixOK = function fixOK(fixName) {
+                return _FixCollection2.default.findFixByName(fixName) !== null;
+            };
+
+            if (data.indexOf(' ') !== -1) {
+                return; // input can't contain spaces
+            }
+
+            // TODO: this should be reassigned and returned instead of operating on the passed in paramater
+            // split apart "direct" pieces
+            data = data.split('..');
+
+            // TODO: This block needs some work. the logic could be simplified.
+            // deal with multilinks (eg 'KSFO.OFFSH9.SXC.V458.IPL')
+            for (var i = 0; i < data.length; i++) {
+                var a = void 0;
+
+                if (data[i].split('.').length === 1) {
+                    if (!fixOK(data[i])) {
+                        return;
+                    }
+
+                    // just a fix/navaid
+                    route.push(data[i]);
+                    continue;
+                } else {
+                    // is a procedure, eg SID, STAR, IAP, airway, etc.
+                    if (data[i].split('.').length % 2 !== 1) {
+                        // user either didn't specify start point or end point
+                        return;
+                    }
+
+                    // TODO: this should be abstracted to another class method.
+                    var pieces = data[i].split('.');
+                    // FIXME: what does 'a' mean? better naming
+                    a = [pieces[0] + '.' + pieces[1] + '.' + pieces[2]];
+
+                    // chop up the multilink
+                    for (var j = 3; j < data[i].split('.').length; j + 2) {
+                        if (!fixOK(pieces[0]) || !fixOK(pieces[2])) {
+                            return; // invalid join/exit points
+                        }
+
+                        if (!airport.sidCollection.hasRoute(pieces[1]) || !Object.keys(airport.airways).indexOf(pieces[1])) {
+                            // invalid procedure
+                            return;
+                        }
+
+                        a.push(pieces[j - 1] + '.' + pieces[j] + pieces[j + 1]);
+                    }
+                }
+
+                // push the properly reformatted multilink
+                route = route.concat(a);
+            }
+
+            return route;
+        }
+
+        // TODO: refactor this to use `RouteModel` and possibly a `LegsCollection` class
+        /**
+         * Take an array of leg routes and build the legs that will go into the fms
+         * @param {array} route - an array of properly formatted route strings
+         *                        Example: ["KSFO.OFFSH9.SXC", "SXC.V458.IPL",
+         *                                 "IPL.J2.JCT", "LLO", "ACT", "KACT"]
+         * @param {boolean} fullRouteClearance - set to true IF you want the provided route to completely
+         *                                       replace the current contents of 'this.legs'
+         */
+
+    }, {
+        key: 'customRoute',
+        value: function customRoute(route, fullRouteClearance) {
+            // save the current waypoint
+            var curr = this.currentWaypoint;
+
+            var legs = [];
+
+            for (var i = 0; i < route.length; i++) {
+                var routeSections = route[i].split('.');
+
+                // just a fix/navaid
+                if (routeSections.length === 1) {
+                    var legToAdd = new _Leg2.default({ type: _aircraftConstants.FP_LEG_TYPE.FIX, route: route[i] }, this);
+
+                    legs.push(legToAdd);
+                } else if (routeSections.length === 3) {
+                    var routeModel = new _RouteModel2.default(route[i]);
+                    var currentAirport = window.airportController.airport_get();
+
+                    if (!(0, _isNil3.default)(currentAirport.sidCollection.findRouteByIcao(routeModel.procedure))) {
+                        // it's a SID!
+                        var _legToAdd = new _Leg2.default({ type: _aircraftConstants.FP_LEG_TYPE.SID, route: routeModel.routeCode }, this);
+
+                        legs.push(_legToAdd);
+                    } else if (!(0, _isNil3.default)(currentAirport.starCollection.findRouteByIcao(routeModel.procedure))) {
+                        // it's a STAR!
+                        var _legToAdd2 = new _Leg2.default({ type: _aircraftConstants.FP_LEG_TYPE.STAR, route: routeModel.routeCode }, this);
+
+                        legs.push(_legToAdd2);
+                    } else if (Object.keys(window.airportController.airport_get().airways).indexOf(routeModel.procedure) > -1) {
+                        // it's an airway!
+                        var _legToAdd3 = new _Leg2.default({ type: _aircraftConstants.FP_LEG_TYPE.AWY, route: routeModel.routeCode }, this);
+
+                        legs.push(_legToAdd3);
+                    }
+                } else {
+                    // neither formatted like "JAN" nor "JAN.V18.MLU"
+                    log('Passed invalid route to fms. Unable to create leg from input: ' + route[i], _logLevel.LOG.WARNING);
+                    return false;
+                }
+            }
+
+            // TODO: this should be its own method
+            // TODO: this could be simplified. there is a lot of branching logic here that makes this block tough to follow.
+            // insert user's route to the legs
+            if (!fullRouteClearance) {
+                // Check if user's route hooks up to the current Legs anywhere
+                var pieces = legs[legs.length - 1].route.split('.');
+                var last_fix = pieces[pieces.length - 1];
+                var continuity = this.indexOfWaypoint(last_fix);
+
+                // user route connects with existing legs
+                if (continuity) {
+                    var inMiddleOfLeg = continuity.lw[1] !== this.legs[continuity.lw[0]].waypoints.length - 1;
+                    var legsToRemove = Math.max(0, continuity.lw[0] - inMiddleOfLeg - this.current[LEG]);
+
+                    if (inMiddleOfLeg) {
+                        // change the existing leg @ merge point
+                        // Remove the waypoints before the merge point
+                        this.legs[continuity.lw[0]].waypoints.splice(0, continuity.lw[1]);
+                        var r = this.legs[continuity.lw[0]].route.split('.');
+
+                        // TODO: this should be a helper method
+                        // Update the leg's route to reflect the change
+                        this.legs[continuity.lw[0]].route = last_fix + '.' + r[1] + '.' + r[2];
+                    }
+
+                    // remove old legs before the point where the two routes join
+                    this.legs.splice.apply(this.legs, [Math.max(0, continuity.lw[0] - legsToRemove), legsToRemove].concat(legs));
+                    // move to the newly inserted Leg
+                    this.current[LEG] = Math.max(0, continuity.lw[0] - legsToRemove);
+                    this.current[WAYPOINT_WITHIN_LEG] = 0;
+                } else {
+                    // no route continuity... just adding legs
+                    // insert the legs after the active Leg
+                    this.legs.splice.apply(this.legs, [this.current[LEG] + 1, 0].concat(legs));
+                    this.nextLeg();
+                }
+            } else {
+                // TODO: move up and return early
+                // replace all legs with the legs we've built here in this function
+                this.legs = legs;
+                this.current = [0, 0]; // look to beginning of route
+            }
+
+            this.update_fp_route();
+
+            // Maintain old speed and altitude
+            if (this.currentWaypoint.altitude == null) {
+                this.setCurrent({ altitude: curr.altitude });
+            }
+
+            if (this.currentWaypoint.speed == null) {
+                this.setCurrent({ speed: curr.speed });
+            }
+
+            return true;
+        }
+
+        /**
+         * Climbs aircraft in compliance with the SID they're following
+         * Adds altitudes and speeds to each waypoint that are as high as
+         * possible without exceeding any the following:
+         *    - (alt) airspace ceiling ('ctr_ceiling')
+         *    - (alt) filed cruise altitude
+         *    - (alt) waypoint's altitude restriciton
+         *    - (spd) 250kts when under 10k ft
+         *    - (spd) waypoint's speed restriction
+         */
+
+    }, {
+        key: 'climbViaSID',
+        value: function climbViaSID() {
+            if (this.currentLeg.type !== _aircraftConstants.FP_LEG_TYPE.SID) {
+                return false;
+            }
+
+            var wp = this.currentLeg.waypoints;
+            var cruise_alt = this.fp.altitude;
+            var cruise_spd = this.my_aircraft.model.speed.cruise;
+
+            for (var i = 0; i < wp.length; i++) {
+                var waypoint = wp[i];
+
+                var _window$airportContro = window.airportController.airport_get(),
+                    ctr_ceiling = _window$airportContro.ctr_ceiling;
+
+                waypoint.setAltitude(ctr_ceiling, cruise_alt);
+                waypoint.setSpeed(cruise_spd);
+            }
+
+            return true;
+        }
+
+        /**
+         * Descends aircraft in compliance with the STAR they're following
+         * Adds altitudes and speeds to each waypoint in accordance with the STAR
+         */
+
+    }, {
+        key: 'descendViaSTAR',
+        value: function descendViaSTAR() {
+            var waypointList = this.getStarLegWaypoints();
+
+            // TODO: would a star leg ever not have waypoints?
+            if (!waypointList) {
+                return;
+            }
+
+            var start_alt = this.currentWaypoint.altitude || this.my_aircraft.altitude;
+            var start_spd = this.currentWaypoint.speed || this.my_aircraft.model.speed.cruise;
+
+            for (var i = 0; i < waypointList.length; i++) {
+                var waypoint = waypointList[i];
+                var previousWaypoint = waypointList[i - 1];
+
+                if (i >= 1) {
+                    start_alt = previousWaypoint.altitude;
+                    start_spd = previousWaypoint.speed;
+                }
+
+                waypoint.setAltitude(null, start_alt);
+                waypoint.setSpeed(start_spd);
+            }
+
+            return true;
+        }
+
+        /** ************************ FMS QUERY FUNCTIONS **************************/
+        /**
+         * True if waypoint of the given name exists
+         */
+
+    }, {
+        key: 'hasWaypoint',
+        value: function hasWaypoint(name) {
+            // TODO: lodash will simplify this logic block
+            for (var i = 0; i < this.legs.length; i++) {
+                for (var j = 0; j < this.legs[i].waypoints.length; j++) {
+                    if (this.legs[i].waypoints[j].fix === name) {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        /**
+         * Returns object's position in flightplan as object with 2 formats
+         *
+         * @param {string} fix - name of the fix to look for in the flightplan
+         * @returns {wp: "position-of-fix-in-waypoint-list",
+         *           lw: "position-of-fix-in-leg-wp-matrix"}
+         */
+
+    }, {
+        key: 'indexOfWaypoint',
+        value: function indexOfWaypoint(fix) {
+            var wp = 0;
+
+            for (var l = 0; l < this.legs.length; l++) {
+                for (var w = 0; w < this.legs[l].waypoints.length; w++) {
+                    if (this.legs[l].waypoints[w].fix === fix) {
+                        // TODO: what do wp and lw stand for?
+                        return {
+                            wp: wp,
+                            lw: [l, w]
+                        };
+                    }
+
+                    wp++;
+                }
+            }
+
+            return false;
+        }
+
+        /**
+         * Returns currentWaypoint's position in flightplan as object with 2 formats
+         * @returns {wp: "position-of-fix-in-waypoint-list",
+         *           lw: "position-of-fix-in-leg-wp-matrix"}
+         */
+
+    }, {
+        key: 'indexOfCurrentWaypoint',
+        value: function indexOfCurrentWaypoint() {
+            var wp = 0;
+            for (var i = 0; i < this.current[LEG]; i++) {
+                // add wp's of completed legs
+                wp += this.legs[i].waypoints.length;
+            }
+
+            wp += this.current[WAYPOINT_WITHIN_LEG];
+
+            // TODO: what do wp and lw stand for?
+            return {
+                wp: wp,
+                lw: this.current
+            };
+        }
+
+        /** ************************* FMS GET FUNCTIONS ***************************/
+
+    }, {
+        key: 'fixes',
+
+
+        /**
+        * Returns an array of all fixes along the flightplan route
+        */
+        value: function fixes() {
+            return (0, _map3.default)(this.waypoints(), function (w) {
+                return w.fix;
+            });
+        }
+
+        /**
+         * Return this fms's parent aircraft
+         */
+
+    }, {
+        key: 'my_aircraft',
+        value: function my_aircraft() {
+            // TODO: if we already have a ref to the current aircraft, `this.my_aircraft`, why are we getting it again here?
+            return window.aircraftController.aircraft_get(this.my_aircrafts_eid);
+        }
+
+        /**
+         * Returns a waypoint at the provided position
+         *
+         * @method waypoint
+         * @param {array or number} pos - position of the desired waypoint. May be
+         *                          provided either as an array showing the leg and
+         *                          waypoint within the leg (eg [l,w]), or as the
+         *                          number representing the position of the desired
+         *                          waypoint in the list of all waypoints (running
+         *                          this.waypoints() will return the list)
+         * @returns {Waypoint} - the Waypoint object at the specified location
+         */
+
+    }, {
+        key: 'waypoint',
+        value: function waypoint(pos) {
+            // input is like [leg, waypointWithinLeg]
+            if (Array.isArray(pos)) {
+                return this.legs[pos[0]].waypoints[pos[1]];
+            } else if (typeof pos === 'number') {
+                // input is a position of wp in list of all waypoints
+                var l = 0;
+
+                // count up to pos to locate the waypoint
+                while (pos >= 0) {
+                    if (this.legs[l].waypoints.length <= pos) {
+                        pos -= this.legs[l].waypoints.length;
+                        l++;
+                    } else {
+                        return this.legs[l].waypoints[pos];
+                    }
+                }
+            }
+
+            return;
+        }
+
+        /**
+         * Find a leg with type `star` and return that leg's waypoints.
+         *
+         * @method getSt
+         * @return {array<Waypoint>}
+         */
+
+    }, {
+        key: 'getStarLegWaypoints',
+        value: function getStarLegWaypoints() {
+            var starLeg = (0, _find3.default)(this.legs, { type: _aircraftConstants.FP_LEG_TYPE.STAR });
+
+            return starLeg.waypoints || [];
+        }
+
+        /**
+        * Returns all waypoints in fms, in order
+        */
+
+    }, {
+        key: 'waypoints',
+        value: function waypoints() {
+            // TODO: move to _map() or refactor
+            // TODO: there is a better way to do this with lodash
+            var waypointList = _jquery2.default.map(this.legs, function (v) {
+                return v.waypoints;
+            });
+
+            return waypointList;
+        }
+    }, {
+        key: 'atLastWaypoint',
+        value: function atLastWaypoint() {
+            // TODO: simplify
+            return this.indexOfCurrentWaypoint().wp === this.waypoints().length - 1;
+        }
+
+        /**
+         * Given a SID that is currently being followed, return a string of: `SID_NAME.LAST_FIX`
+         *
+         * ex:
+         * - current SID name = OFFSH9
+         * - current SID route = KSFO.OFFSH9.SXC
+         *
+         * Given the above current values, this function would return:
+         * `OFFSH9.SXC`
+         *
+         * @for AircraftFlightManagementSystem
+         * @method getFollowingSideText
+         * @return {string|null}
+         */
+
+    }, {
+        key: 'getFollowingSIDText',
+        value: function getFollowingSIDText() {
+            if (!this.following.sid) {
+                return null;
+            }
+
+            return this.following.sid + '.' + this.currentLeg.route.exit;
+        }
+
+        /**
+         * @for AircraftFlightManagementSystem
+         * @method getFollowingSTARText
+         * @return {string|null}
+         */
+
+    }, {
+        key: 'getFollowingSTARText',
+        value: function getFollowingSTARText() {
+            if (!this.following.star) {
+                return null;
+            }
+
+            var _window$airportContro2 = window.airportController.airport_get(),
+                icao = _window$airportContro2.icao;
+
+            return this.following.star + '.' + icao.toUpperCase();
+        }
+
+        /**
+         * Returns a string used in the `AircraftStripView` for a landing aircraft.
+         *
+         * `KSFO 28L`
+         *
+         * @for AircraftFlightManagementSystem
+         * @method getDesinationIcaoWithRunway
+         * @return {string}
+         */
+
+    }, {
+        key: 'getDesinationIcaoWithRunway',
+        value: function getDesinationIcaoWithRunway() {
+            return (0, _last3.default)(this.fp.route) + ' ' + this.currentWaypoint.runway;
+        }
+
+        /**
+         * @for AircraftFlightManagementSystem
+         * @method altitudeForCurrentWaypoint
+         * @return {number|null}
+         */
+
+    }, {
+        key: 'altitudeForCurrentWaypoint',
+        value: function altitudeForCurrentWaypoint() {
+            return this.currentWaypoint.altitude;
+        }
+    }, {
+        key: 'currentLeg',
+        get: function get() {
+            return this.legs[this.current[LEG]];
+        }
+    }, {
+        key: 'currentWaypoint',
+        get: function get() {
+            if (this.legs.length < 1) {
+                return null;
+            }
+
+            var currentLeg = this.currentLeg;
+
+            return currentLeg.waypoints[this.current[WAYPOINT_WITHIN_LEG]];
+        }
+    }]);
+
+    return AircraftFlightManagementSystem;
+}();
+
+exports.default = AircraftFlightManagementSystem;
+
+},{"../../airport/Fix/FixCollection":546,"../../airport/Route/RouteModel":548,"../../constants/aircraftConstants":570,"../../constants/logLevel":574,"../../math/core":584,"./Leg":529,"./Waypoint":530,"jquery":296,"lodash/find":466,"lodash/isNil":485,"lodash/last":494,"lodash/map":496}],529:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _forEach2 = require('lodash/forEach');
+
+var _forEach3 = _interopRequireDefault(_forEach2);
+
+var _get2 = require('lodash/get');
+
+var _get3 = _interopRequireDefault(_get2);
 
 var _has2 = require('lodash/has');
 
@@ -39058,41 +32061,33 @@ var _Waypoint = require('./Waypoint');
 
 var _Waypoint2 = _interopRequireDefault(_Waypoint);
 
-var _logLevel = require('../constants/logLevel');
+var _RouteModel = require('../../airport/Route/RouteModel');
+
+var _RouteModel2 = _interopRequireDefault(_RouteModel);
+
+var _aircraftConstants = require('../../constants/aircraftConstants');
+
+var _logLevel = require('../../constants/logLevel');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-// can be 'sid', 'star', 'iap', 'awy', 'fix', '[manual]'
 /**
- * Enumeration of possibl FLight Plan Leg types.
- *
- * @property FP_LEG_TYPE
- * @type {Object}
- * @final
- */
-var FP_LEG_TYPE = exports.FP_LEG_TYPE = {
-    SID: 'sid',
-    STAR: 'star',
-    IAP: 'iap',
-    AWY: 'awy',
-    FIX: 'fix',
-    MANUAL: '[manual]'
-};
-
-/**
-  * Build a 'leg' of the route (contains series of waypoints)
+  * This class acts as a collection of Waypoint model objects.
   *
-  * @param {object} data = {route: "KSFO.OFFSH9.SXC", either a fix, or with format 'start.procedure.end', or
-  *                                                   "[RNAV/GPS]" for custom positions
-  *                         type: "sid",              can be 'sid', 'star', 'iap', 'awy', 'fix'
-  *                         firstIndex: 0}            the position in fms.legs to insert this leg
+  * @class Leg
   */
-
 var Leg = function () {
     /**
+     *
+     * @for Leg
      * @constructor
+     * @param data
+     * @param {object} route:           "KSFO.OFFSH9.SXC", either a fix, or with format 'start.procedure.end', or
+     *                                  "[RNAV/GPS]" for custom positions
+     *                 type: "sid",     can be 'sid', 'star', 'iap', 'awy', 'fix'
+     *                 firstIndex: 0    the position (index) in fms.legs to insert this leg
      */
     function Leg() {
         var data = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
@@ -39100,44 +32095,69 @@ var Leg = function () {
 
         _classCallCheck(this, Leg);
 
-        this.route = '[radar vectors]'; // eg 'KSFO.OFFSH9.SXC' or 'FAITH'
-        this.type = FP_LEG_TYPE.MANUAL;
-        this.waypoints = []; // an array of zlsa.atc.Waypoint objects to follow
+        /**
+         * String representation of a route.
+         *
+         * May be a single fix or a route expressed in dot notation. ex:
+         * - `KSFO.OFFSH9.SXC`
+         * - `FAITH`
+         *
+         * @property route
+         * @type {string}
+         * @default ''
+         */
+        this.route = '';
 
-        // Fill data with default Leg properties if they aren't specified (prevents wp constructor from getting confused)
-        if (!data.route) {
-            data.route = this.route;
-        }
+        /**
+         * @property type
+         * @type {string}
+         * @default ''
+         */
+        this.type = '';
 
-        if (!data.type) {
-            data.type = this.type;
-        }
-
-        if (!data.waypoints) {
-            data.waypoints = this.waypoints;
-        }
+        // TODO: possibly implement as a waypointCollection
+        /**
+         * A collection of Waypoint instances
+         *
+         * @property waypoints
+         * @type {Array}
+         * @default []
+         */
+        this.waypoints = [];
 
         this.parse(data, fms);
     }
 
     /**
      * Parse input data and apply to this leg
+     *
+     * @for Leg
+     * @method parse
+     * @param data {object}
+     * @param fms {AircraftFlightManagementSystem}
      */
 
 
     _createClass(Leg, [{
         key: 'parse',
         value: function parse(data, fms) {
-            // FIXME: make these multi-line, single lines are hard to reason and prone to errors.
-            for (var i in data) {
-                if (this.hasOwnProperty(i)) this[i] = data[i];
-            } // Populate Leg with data
-            if (this.waypoints.length === 0) this.generateWaypoints(data, fms);
-            if (this.waypoints.length === 0) this.waypoints = [new _Waypoint2.default({ route: '' }, fms)];
+            // TODO: move radar vectors to constants file
+            this.route = (0, _get3.default)(data, 'route', '[radar vectors]');
+            this.type = (0, _get3.default)(data, 'type', _aircraftConstants.FP_LEG_TYPE.MANUAL);
+            this.waypoints = (0, _get3.default)(data, 'waypoints', []);
+
+            if (this.waypoints.length === 0) {
+                this.generateWaypoints(data, fms);
+            }
         }
 
         /**
-         * Adds Waypoint objects to this Leg, based on the route & type
+         * Adds Waypoint objects to this Leg based on the route type
+         *
+         * @for Leg
+         * @method generateWaypoints
+         * @param data {object}
+         * @param fms {AircraftFlightManagementSystem}
          */
 
     }, {
@@ -39147,158 +32167,274 @@ var Leg = function () {
                 return;
             }
 
-            if (this.type === FP_LEG_TYPE.SID) {
-                if (!fms) {
-                    log('Attempted to generate waypoints for SID, but cannot because fms ref not passed!', _logLevel.LOG.WARNING);
+            var airport = window.airportController.airport_get();
 
-                    return;
-                }
+            switch (this.type) {
+                case _aircraftConstants.FP_LEG_TYPE.SID:
+                    // TODO: this is gross. we instantiate route with a string and new mutate it here to a RouteModel.
+                    this.route = new _RouteModel2.default(data.route);
+                    this._generateWaypointsForSid(data, fms);
 
-                // const { apt, sid, exit } = data.route.split('.');
-                var apt = data.route.split('.')[0];
-                var sid = data.route.split('.')[1];
-                var exit = data.route.split('.')[2];
-                var rwy = fms.my_aircraft.rwy_dep;
-                this.waypoints = [];
+                    break;
+                case _aircraftConstants.FP_LEG_TYPE.STAR:
+                    // TODO: this is gross. we instantiate route with a string and new mutate it here to a RouteModel.
+                    this.route = new _RouteModel2.default(data.route);
+                    this._generateWaypointsForStar(data, fms);
 
-                // Generate the waypoints
-                if (!rwy) {
-                    var isWarning = true;
-                    window.uiController.ui_log(fms.my_aircraft.getCallsign() + ' unable to fly SID, we haven\'t been assigned a departure runway!', isWarning);
+                    break;
+                case _aircraftConstants.FP_LEG_TYPE.IAP:
+                    // FUTURE FUNCTIONALITY
+                    this._generateWaypointsForIap(data, airport);
 
-                    return;
-                }
+                    break;
+                case _aircraftConstants.FP_LEG_TYPE.AWY:
+                    // TODO: this is gross. we instantiate route with a string and new mutate it here to a RouteModel.
+                    this.route = new _RouteModel2.default(data.route);
+                    this._generateWaypointsForAirway(data, airport);
 
-                var pairs = window.airportController.airport_get(apt).getSID(sid, exit, rwy);
+                    break;
+                case _aircraftConstants.FP_LEG_TYPE.FIX:
+                    this._generateWaypointForFix(airport);
 
-                // Remove the placeholder leg (if present)
-                if (fms.my_aircraft.wow() && fms.legs.length > 0 && fms.legs[0].route === window.airportController.airport_get().icao && pairs.length > 0) {
-                    // remove the placeholder leg, to be replaced below with SID Leg
-                    fms.legs.splice(0, 1);
-                }
+                    break;
+                case _aircraftConstants.FP_LEG_TYPE.MANUAL:
+                    this._generateManualWaypoint(airport);
 
-                // for each fix/restr pair
-                for (var i = 0; i < pairs.length; i++) {
-                    var f = pairs[i][0];
-                    var a = null;
-                    var s = null;
+                    break;
+                default:
+                    this._generateEmptyWaypoint(airport);
 
-                    if (pairs[i][1]) {
-                        var a_n_s = pairs[i][1].toUpperCase().split('|');
-
-                        for (var j in a_n_s) {
-                            if (a_n_s[j][0] === 'A') {
-                                a = a_n_s[j].substr(1);
-                            } else if (a_n_s[j][0] === 'S') {
-                                s = a_n_s[j].substr(1);
-                            }
-                        }
-                    }
-
-                    this.waypoints.push(new _Waypoint2.default({
-                        fix: f,
-                        fixRestrictions: {
-                            alt: a,
-                            spd: s
-                        }
-                    }, fms));
-                }
-
-                if (!this.waypoints[0].speed) {
-                    this.waypoints[0].speed = fms.my_aircraft.model.speed.cruise;
-                }
-            } else if (this.type === FP_LEG_TYPE.STAR) {
-                if (!fms) {
-                    log('Attempted to generate waypoints for STAR, but cannot because fms ref not passed!', _logLevel.LOG.WARNING);
-
-                    return;
-                }
-
-                var entry = data.route.split('.')[0];
-                var star = data.route.split('.')[1];
-                var _apt = data.route.split('.')[2];
-                var _rwy = fms.my_aircraft.rwy_arr;
-                this.waypoints = [];
-
-                // Generate the waypoints
-                var _pairs = window.airportController.airport_get(_apt).getSTAR(star, entry, _rwy);
-
-                // for each fix/restr pair
-                for (var _i = 0; _i < _pairs.length; _i++) {
-                    var _f = _pairs[_i][0];
-                    var _a = null;
-                    var _s = null;
-
-                    if (_pairs[_i][1]) {
-                        var _a_n_s = _pairs[_i][1].toUpperCase().split('|');
-
-                        for (var _j in _a_n_s) {
-                            if (_a_n_s[_j][0] === 'A') {
-                                _a = _a_n_s[_j].substr(1);
-                            } else if (_a_n_s[_j][0] === 'S') {
-                                _s = _a_n_s[_j].substr(1);
-                            }
-                        }
-                    }
-
-                    this.waypoints.push(new _Waypoint2.default({
-                        fix: _f,
-                        fixRestrictions: {
-                            alt: _a,
-                            spd: _s
-                        }
-                    }, fms));
-                }
-
-                if (!this.waypoints[0].speed) {
-                    this.waypoints[0].speed = fms.my_aircraft.model.speed.cruise;
-                }
-            } else if (this.type === FP_LEG_TYPE.IAP) {
-                // FUTURE FUNCTIONALITY
-            } else if (this.type === FP_LEG_TYPE.AWY) {
-                var start = data.route.split('.')[0];
-                var airway = data.route.split('.')[1];
-                var end = data.route.split('.')[2];
-                // Verify airway is valid
-                var _apt2 = window.airportController.airport_get();
-
-                if (!(0, _has3.default)(_apt2, 'airways') || !(0, _has3.default)(_apt2.airways, 'airway')) {
-                    log('Airway ' + airway + ' not defined at ' + _apt2.icao, _logLevel.LOG.WARNING);
-                    return;
-                }
-
-                // Verify start/end points are along airway
-                var awy = _apt2.airways[airway];
-                if (!(awy.indexOf(start) !== -1 && awy.indexOf(end) !== -1)) {
-                    log('Unable to follow ' + airway + ' from ' + start + ' to ' + end, _logLevel.LOG.WARNING);
-                    return;
-                }
-
-                // Build list of fixes, depending on direction traveling along airway
-                var fixes = [];
-                var readFwd = awy.indexOf(end) > awy.indexOf(start);
-
-                if (readFwd) {
-                    for (var _f2 = awy.indexOf(start); _f2 <= awy.indexOf(end); _f2++) {
-                        fixes.push(awy[_f2]);
-                    }
-                } else {
-                    for (var _f3 = awy.indexOf(start); _f3 >= awy.indexOf(end); _f3--) {
-                        fixes.push(awy[_f3]);
-                    }
-                }
-
-                // Add list of fixes to this.waypoints
-                this.waypoints = [];
-                this.waypoints = (0, _map3.default)(fixes, function (f) {
-                    return new _Waypoint2.default({ fix: f }, fms);
-                });
-            } else if (this.type === FP_LEG_TYPE.FIX) {
-                this.waypoints = [];
-                this.waypoints.push(new _Waypoint2.default({ fix: data.route }, fms));
-            } else {
-                this.waypoints.push(new _Waypoint2.default(data, fms));
+                    break;
             }
+        }
+
+        /**
+         * Add a new Waypoint to the collection
+         *
+         * @method addWaypointToLeg
+         * @param waypointToAdd {Waypoint}
+         */
+
+    }, {
+        key: 'addWaypointToLeg',
+        value: function addWaypointToLeg(waypointToAdd) {
+            if (!(waypointToAdd instanceof _Waypoint2.default)) {
+                throw new TypeError('Invalid parameter, expecte waypointToAdd to be an instanceof the Waypoint class');
+            }
+
+            this.waypoints.push(waypointToAdd);
+        }
+
+        /**
+         * @for Leg
+         * @method _generateWaypointsForSid
+         * @param data {object}
+         * @param fms {AircraftFlightManagementSystem}
+         * @private
+         */
+
+    }, {
+        key: '_generateWaypointsForSid',
+        value: function _generateWaypointsForSid(data, fms) {
+            if (!fms) {
+                log('Attempted to generate waypoints for SID, but cannot because fms ref not passed!', _logLevel.LOG.WARNING);
+
+                return;
+            }
+
+            this._resetWaypoints();
+
+            var rwy = fms.my_aircraft.rwy_dep;
+
+            if (!rwy) {
+                var isWarning = true;
+
+                window.uiController.ui_log(fms.my_aircraft.getCallsign() + ' unable to fly SID, we haven\'t been assigned a departure runway!', isWarning);
+
+                return;
+            }
+
+            var airport = window.airportController.airport_get(this.route.entry);
+            var waypointsForSid = airport.findWaypointModelsForSid(this.route.procedure, rwy, this.route.exit);
+
+            // TODO: refactor/abstract this boolean logic
+            // Remove the placeholder leg (if present)
+            if (fms.my_aircraft.isOnGround() && fms.legs.length > 0 && fms.legs[0].route === airport.icao && pairs.length > 0) {
+                // remove the placeholder leg, to be replaced below with SID Leg
+                fms.legs.splice(0, 1);
+            }
+
+            for (var i = 0; i < waypointsForSid.length; i++) {
+                var waypointToAdd = waypointsForSid[i].generateFmsWaypoint(airport);
+
+                this.addWaypointToLeg(waypointToAdd);
+            }
+
+            if (!this.waypoints[0].speed) {
+                this.waypoints[0].speed = fms.my_aircraft.model.speed.cruise;
+            }
+        }
+
+        /**
+         * @for Leg
+         * @method _generateWaypointsForStar
+         * @param data {object}
+         * @param fms {AircraftFlightManagementSystem}
+         * @private
+         */
+
+    }, {
+        key: '_generateWaypointsForStar',
+        value: function _generateWaypointsForStar(data, fms) {
+            if (!fms) {
+                log('Attempted to generate waypoints for STAR, but cannot because fms ref not passed!', _logLevel.LOG.WARNING);
+
+                return;
+            }
+
+            this._resetWaypoints();
+
+            var rwy = fms.my_aircraft.rwy_arr;
+            var airport = window.airportController.airport_get(this.route.exit);
+            var waypointsForStar = airport.findWaypointModelsForStar(this.route.procedure, this.route.entry, rwy);
+
+            for (var i = 0; i < waypointsForStar.length; i++) {
+                var waypointToAdd = waypointsForStar[i].generateFmsWaypoint(airport);
+
+                this.addWaypointToLeg(waypointToAdd);
+            }
+
+            if (!this.waypoints[0].speed) {
+                this.waypoints[0].speed = fms.my_aircraft.model.speed.cruise;
+            }
+        }
+
+        // NOT IN USE
+
+    }, {
+        key: '_generateWaypointsForIap',
+        value: function _generateWaypointsForIap(data, airport) {
+            return;
+        }
+
+        // NOT IN USE
+        /**
+         * @for Leg
+         * @method _generateWaypointsForAirway
+         * @param data {object}
+         * @param fms {AircraftFlightManagementSystem}
+         * @private
+         */
+
+    }, {
+        key: '_generateWaypointsForAirway',
+        value: function _generateWaypointsForAirway(data, airport) {
+            var _this = this;
+
+            var start = this.route.split('.')[0];
+            var airway = this.route.split('.')[1];
+            var end = this.route.split('.')[2];
+            // Verify airway is valid
+            var apt = window.airportController.airport_get();
+
+            if (!(0, _has3.default)(apt, 'airways') || !(0, _has3.default)(apt.airways, 'airway')) {
+                log('Airway ' + airway + ' not defined at ' + apt.icao, _logLevel.LOG.WARNING);
+                return;
+            }
+
+            // Verify start/end points are along airway
+            var awy = apt.airways[airway];
+            if (!(awy.indexOf(start) !== -1 && awy.indexOf(end) !== -1)) {
+                log('Unable to follow ' + airway + ' from ' + start + ' to ' + end, _logLevel.LOG.WARNING);
+                return;
+            }
+
+            // TODO: abstract this logic
+            // Build list of fixes, depending on direction traveling along airway
+            var fixes = [];
+            var readFwd = awy.indexOf(end) > awy.indexOf(start);
+
+            if (readFwd) {
+                for (var f = awy.indexOf(start); f <= awy.indexOf(end); f++) {
+                    fixes.push(awy[f]);
+                }
+            } else {
+                for (var _f = awy.indexOf(start); _f >= awy.indexOf(end); _f--) {
+                    fixes.push(awy[_f]);
+                }
+            }
+
+            this._resetWaypoints();
+
+            (0, _forEach3.default)(fixes, function (fix) {
+                var waypointToAdd = new _Waypoint2.default({ fix: fix }, airport);
+
+                _this.addWaypointToLeg(waypointToAdd);
+            });
+        }
+
+        /**
+         * @for Leg
+         * @method _generateWaypointForFix
+         * @param airport {AirportInstanceModel}
+         * @private
+         */
+
+    }, {
+        key: '_generateWaypointForFix',
+        value: function _generateWaypointForFix(airport) {
+            this._resetWaypoints();
+
+            var waypointToAdd = new _Waypoint2.default({ fix: this.route }, airport);
+
+            this.addWaypointToLeg(waypointToAdd);
+        }
+
+        /**
+         * @for Leg
+         * @method _generateManualWaypoint
+         * @param airport {AirportInstanceModel}
+         * @private
+         */
+
+    }, {
+        key: '_generateManualWaypoint',
+        value: function _generateManualWaypoint(airport) {
+            var waypointToAdd = new _Waypoint2.default({ route: this.route }, airport);
+
+            this.addWaypointToLeg(waypointToAdd);
+        }
+
+        /**
+         * @for Leg
+         * @method _generateEmptyWaypoint
+         * @param airport {AirportInstanceModel}
+         * @private
+         */
+
+    }, {
+        key: '_generateEmptyWaypoint',
+        value: function _generateEmptyWaypoint(airport) {
+            var waypointToAdd = new _Waypoint2.default({ route: '' }, airport);
+
+            this.addWaypointToLeg(waypointToAdd);
+        }
+
+        /**
+         * Reset the waypoint property to an empty array.
+         *
+         * Provides a single method that encapsulates common functionality that
+         * can be used throughout the class.
+         *
+         * @for Leg
+         * @method _resetWaypoints
+         * @private
+         */
+
+    }, {
+        key: '_resetWaypoints',
+        value: function _resetWaypoints() {
+            this.waypoints = [];
         }
     }]);
 
@@ -39307,30 +32443,86 @@ var Leg = function () {
 
 exports.default = Leg;
 
-},{"../constants/logLevel":564,"./Waypoint":533,"lodash/has":460,"lodash/map":484}],533:[function(require,module,exports){
+},{"../../airport/Route/RouteModel":548,"../../constants/aircraftConstants":570,"../../constants/logLevel":574,"./Waypoint":530,"lodash/forEach":468,"lodash/get":469,"lodash/has":470,"lodash/map":496}],530:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /* eslint-disable no-multi-spaces, no-undef */
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+var _get2 = require('lodash/get');
 
-var _forEach2 = require('lodash/forEach');
+var _get3 = _interopRequireDefault(_get2);
 
-var _forEach3 = _interopRequireDefault(_forEach2);
+var _head2 = require('lodash/head');
 
-var _has2 = require('lodash/has');
+var _head3 = _interopRequireDefault(_head2);
 
-var _has3 = _interopRequireDefault(_has2);
+var _isNil2 = require('lodash/isNil');
+
+var _isNil3 = _interopRequireDefault(_isNil2);
+
+var _FixCollection = require('../../airport/Fix/FixCollection');
+
+var _FixCollection2 = _interopRequireDefault(_FixCollection);
+
+var _aircraftConstants = require('../../constants/aircraftConstants');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 /**
+ * Symbol denoting a greater than restriction
+ *
+ * @property ABOVE_SYMBOL
+ * @type {string}
+ * @final
+ */
+var ABOVE_SYMBOL = '+';
+
+/**
+ * Symbol denoting a less than restriction
+ *
+ * @property ABOVE_SYMBOL
+ * @type {string}
+ * @final
+ */
+var BELOW_SYMBOL = '-';
+
+// TODO: there should be a helper function for this
+/**
+ * Number to used to cnovert a FL altitude to an altitude in thousands
+ *
+ * @property ABOVE_SYMBOL
+ * @type {string}
+ * @final
+ */
+var FL_TO_THOUSANDS_MULTIPLIER = 100;
+
+/**
+ * Enemuration for an invalid index number.
+ *
+ * @property INVALID_INDEX
+ * @type {number}
+ * @final
+ */
+var INVALID_INDEX = -1;
+
+/**
+ * Enumeration for the radix value of `parseInt`
+ *
+ * @proeprty DECIMAL_RADIX
+ * @type {number}
+ * @final
+ */
+var DECIMAL_RADIX = 10;
+
+/**
   * Build a waypoint object
+  *
   * Note that .prependLeg() or .appendLeg() or .insertLeg()
   * should be called in order to add waypoints to the fms, based on which
   * you want. This function serves only to build the waypoint object; it is
@@ -39338,13 +32530,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
   *
   * @class Waypoint
   */
+
 var Waypoint = function () {
     /**
      * Initialize Waypoint with empty values, then call the parser
+     *
+     * @for Waypoint
+     * @constructor
      */
     function Waypoint() {
         var data = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-        var fms = arguments[1];
+        var airport = arguments[1];
 
         _classCallCheck(this, Waypoint);
 
@@ -39356,6 +32552,7 @@ var Waypoint = function () {
         this.location = null;
         this.expedite = false;
         this.speed = null;
+
         this.hold = {
             dirTurns: null,
             fixName: null,
@@ -39364,49 +32561,178 @@ var Waypoint = function () {
             legLength: null,
             timer: 0
         };
+
         this.fixRestrictions = {
             alt: null,
             spd: null
         };
 
-        this.parse(data, fms);
+        this.route = '';
+
+        this.parse(data, airport);
     }
 
     /**
      * Parse input data and apply to this waypoint
+     *
+     * @for Waypoint
+     * @method parse
+     * @param data {object}
      */
 
 
     _createClass(Waypoint, [{
         key: 'parse',
-        value: function parse(data, fms) {
-            var _this = this;
+        value: function parse(data, airport) {
+            // TODO: is this used?
+            this.route = (0, _get3.default)(data, 'route', this.route);
+            this.altitude = (0, _get3.default)(data, 'altitude', this.altitude);
+            this.navmode = (0, _get3.default)(data, 'navmode', this.navmode);
+            this.heading = (0, _get3.default)(data, 'heading', this.heading);
+            this.turn = (0, _get3.default)(data, 'turn', this.turn);
+            this.location = (0, _get3.default)(data, 'location', this.location);
+            this.expedite = (0, _get3.default)(data, 'expedite', this.expedite);
+            this.speed = (0, _get3.default)(data, 'speed', this.speed);
+            this.hold = (0, _get3.default)(data, 'hold', this.hold);
 
             // Populate Waypoint with data
             if (data.fix) {
-                this.navmode = 'fix';
+                this.navmode = _aircraftConstants.WAYPOINT_NAV_MODE.FIX;
                 this.fix = data.fix;
-                this.location = window.airportController.airport_get().getFixPosition(data.fix);
+                this.location = _FixCollection2.default.getFixPositionCoordinates(data.fix);
             }
 
-            (0, _forEach3.default)(data, function (value, key) {
-                if ((0, _has3.default)(_this, key)) {
-                    _this[key] = data[key];
-                }
-            });
+            this.extractFixRestrictions(data);
+            this.setInitialNavMode(airport);
+        }
 
-            // for aircraft that don't yet have proper guidance (eg SID/STAR, for example)
-            if (!this.navmode) {
-                this.navmode = 'heading';
-                var apt = window.airportController.airport_get();
+        /**
+         * @for Waypoint
+         * @method extractFixRestrictions
+         * @param fixRestrictions {object}
+         */
 
-                if (data.route.split('.')[0] === apt.icao && this.heading === null) {
-                    // aim departure along runway heading
-                    this.heading = apt.getRunway(apt.runway).angle;
-                } else if (data.route.split('.')[0] === 'KDBG' && this.heading === null) {
-                    // aim arrival @ middle of airspace
-                    this.heading = this.radial + Math.PI;
-                }
+    }, {
+        key: 'extractFixRestrictions',
+        value: function extractFixRestrictions(_ref) {
+            var fixRestrictions = _ref.fixRestrictions;
+
+            if ((0, _isNil3.default)(fixRestrictions)) {
+                return;
+            }
+
+            this.fixRestrictions = fixRestrictions;
+        }
+
+        /**
+         * If there isn't a navmode set, set one here
+         *
+         * For aircraft that don't yet have proper guidance (eg: SID/STAR, or departing aircraft)
+         *
+         * @for Waypoint
+         * @method setInitialNavMode
+         */
+
+    }, {
+        key: 'setInitialNavMode',
+        value: function setInitialNavMode(airport) {
+            if (this.navmode) {
+                return;
+            }
+
+            this.navmode = _aircraftConstants.WAYPOINT_NAV_MODE.HEADING;
+            var firstRouteSegment = (0, _head3.default)(this.route.split('.'));
+
+            if (firstRouteSegment === airport.icao && this.heading === null) {
+                // aim departure along runway heading
+                var _airport$getRunway = airport.getRunway(airport.runway),
+                    angle = _airport$getRunway.angle;
+
+                this.heading = angle;
+            } else if (firstRouteSegment === 'UNASSIGNED' && this.heading === null) {
+                // FIXME: radial is not defined or set anywhere in this class. this block DOES get hit for
+                // every arriving aircraft
+
+                // aim arrival @ middle of airspace
+                this.heading = this.radial + Math.PI;
+            }
+        }
+
+        // TODO: rename centerCeiling and make this method more flexible
+        // TODO: use a default constant for cruiseAltitude
+        /**
+         * @for Waypoint
+         * @method setAltitude
+         * @param centerCeiling {number}  ceiling of the airspace in feet
+         * @param cruiseAltitude {number} cruiseAltitude of the current aircraft
+         */
+
+    }, {
+        key: 'setAltitude',
+        value: function setAltitude() {
+            var centerCeiling = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+            var cruiseAltitude = arguments[1];
+            var altitudeRestriction = this.fixRestrictions.alt;
+
+
+            if (!altitudeRestriction) {
+                this.altitude = !(0, _isNil3.default)(centerCeiling) ? Math.min(centerCeiling, cruiseAltitude) : cruiseAltitude;
+
+                return;
+            }
+
+            // TODO: there has to be an easier way to do this logic.
+            if (altitudeRestriction.indexOf(ABOVE_SYMBOL) !== INVALID_INDEX) {
+                // at-or-above altitudeRestriction restriction
+                var minAlt = parseInt(altitudeRestriction.replace(ABOVE_SYMBOL, ''), DECIMAL_RADIX);
+                var minimumAltitudeWithoutSymbol = minAlt * FL_TO_THOUSANDS_MULTIPLIER;
+
+                // not a fan of this ternary, but I don't think there is a better way to do it
+                this.altitude = minimumAltitudeWithoutSymbol > cruiseAltitude ? minimumAltitudeWithoutSymbol : cruiseAltitude;
+            } else if (altitudeRestriction.indexOf(BELOW_SYMBOL) !== INVALID_INDEX) {
+                var maxAlt = parseInt(altitudeRestriction.replace(BELOW_SYMBOL, ''), DECIMAL_RADIX);
+                var maximumAltitudeWithoutSymbol = maxAlt * FL_TO_THOUSANDS_MULTIPLIER;
+
+                // climb as high as restrictions permit
+                this.altitude = Math.min(maximumAltitudeWithoutSymbol, cruiseAltitude);
+            } else {
+                // cross AT this altitudeRestriction
+                this.altitude = parseInt(altitudeRestriction, DECIMAL_RADIX) * FL_TO_THOUSANDS_MULTIPLIER;
+            }
+        }
+
+        /**
+         * @for Waypoint
+         * @method setSpeed
+         * @param cruiseSpeed {number}  cruiseSpeed of the current aircraft
+         */
+
+    }, {
+        key: 'setSpeed',
+        value: function setSpeed(cruiseSpeed) {
+            var speedRestriction = this.fixRestrictions.spd;
+
+
+            if (!speedRestriction) {
+                this.speed = cruiseSpeed;
+
+                return;
+            }
+
+            // TODO: there has to be an easier way to do this logic.
+            if (speedRestriction.indexOf(ABOVE_SYMBOL) !== INVALID_INDEX) {
+                // at-or-above speed restriction
+                var minSpd = parseInt(speedRestriction.replace(ABOVE_SYMBOL, ''), DECIMAL_RADIX);
+
+                this.speed = minSpd > cruiseSpeed ? minSpd : cruiseSpeed;
+            } else if (speedRestriction.indexOf(BELOW_SYMBOL) !== INVALID_INDEX) {
+                var maxSpd = parseInt(speedRestriction.replace(BELOW_SYMBOL, ''), DECIMAL_RADIX);
+
+                // go as fast as restrictions permit
+                this.speed = Math.min(maxSpd, cruiseSpeed);
+            } else {
+                // cross AT this speed
+                this.speed = parseInt(speedRestriction, DECIMAL_RADIX);
             }
         }
     }]);
@@ -39416,7 +32742,7 @@ var Waypoint = function () {
 
 exports.default = Waypoint;
 
-},{"lodash/forEach":458,"lodash/has":460}],534:[function(require,module,exports){
+},{"../../airport/Fix/FixCollection":546,"../../constants/aircraftConstants":570,"lodash/get":469,"lodash/head":472,"lodash/isNil":485}],531:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -39498,7 +32824,7 @@ var AirlineController = function () {
 
 exports.default = AirlineController;
 
-},{"./AirlineModel":535,"lodash/has":460}],535:[function(require,module,exports){
+},{"./AirlineModel":532,"lodash/has":470}],532:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -39518,10 +32844,6 @@ var _has3 = _interopRequireDefault(_has2);
 var _forEach2 = require('lodash/forEach');
 
 var _forEach3 = _interopRequireDefault(_forEach2);
-
-var _map2 = require('lodash/map');
-
-var _map3 = _interopRequireDefault(_map2);
 
 var _generalUtilities = require('../utilities/generalUtilities');
 
@@ -39782,6 +33104,11 @@ var AirlineModel = function () {
                 }
             }
 
+            // if this flightNumber already exists, repeat the process of generating a new flightNumber
+            if (window.aircraftController.isCallsignInList(flightNumber)) {
+                return this.generateFlightNumber();
+            }
+
             return flightNumber;
         }
 
@@ -39841,9 +33168,9 @@ var AirlineModel = function () {
         key: '_generateAircraft',
         value: function _generateAircraft(options) {
             if (!options.callsign) {
-                // TODO: Why is the `AircraftController` repsonsible for generating a callsign, but this is responsible for
-                // generating the flight number? callsign generation logi should live in this class.
-                options.callsign = window.aircraftController.aircraft_callsign_new(options.airline);
+                options.callsign = this.generateFlightNumber();
+
+                window.aircraftController.addCallsignToList(options.callsign);
             }
 
             if (!options.icao) {
@@ -39853,8 +33180,6 @@ var AirlineModel = function () {
             var model = window.aircraftController.aircraft_model_get(options.icao.toLowerCase());
 
             return model.generateAircraft(options);
-            // FIXME: this block is unreachable, is it needed?
-            // var icao = options.icao.toLowerCase();
         }
     }]);
 
@@ -39863,7 +33188,7 @@ var AirlineModel = function () {
 
 exports.default = AirlineModel;
 
-},{"../utilities/generalUtilities":583,"lodash/forEach":458,"lodash/get":459,"lodash/has":460,"lodash/map":484}],536:[function(require,module,exports){
+},{"../utilities/generalUtilities":592,"lodash/forEach":468,"lodash/get":469,"lodash/has":470}],533:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -39996,7 +33321,7 @@ var randomAirlineSelectionHelper = exports.randomAirlineSelectionHelper = functi
     return _extractNameAndFleetFromCurrentAirline(selectedAirline, airlineNameAndFleet);
 };
 
-},{"../utilities/generalUtilities":583,"lodash/isArray":466}],537:[function(require,module,exports){
+},{"../utilities/generalUtilities":592,"lodash/isArray":476}],534:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -40247,6 +33572,25 @@ var AirportController = function () {
         value: function hasAirport(icao) {
             return (0, _has3.default)(this.airport.airports, icao);
         }
+
+        /**
+         * Remove an aircraft from the queue of any runway(s) at the AirportModel
+         * @for AirportModel
+         * @method removeAircraftFromAllRunwayQueues
+         * @param  {aircraft} aircraft The aircraft to remove
+         */
+
+    }, {
+        key: 'removeAircraftFromAllRunwayQueues',
+        value: function removeAircraftFromAllRunwayQueues(aircraft) {
+            var runwayPrimaryEndIndex = 0;
+            var runwaySecondaryEndIndex = 1;
+            var runways = this.airport_get().runways;
+            for (var runwayPair = 0; runwayPair < runways.length; runwayPair++) {
+                runways[runwayPair][runwayPrimaryEndIndex].removeQueue(aircraft, true);
+                runways[runwayPair][runwaySecondaryEndIndex].removeQueue(aircraft, true);
+            }
+        }
     }]);
 
     return AirportController;
@@ -40254,7 +33598,7 @@ var AirportController = function () {
 
 exports.default = AirportController;
 
-},{"../aircraft/AircraftController":527,"../airline/AirlineController":534,"../constants/storageKeys":566,"./AirportModel":538,"lodash/has":460,"lodash/lowerCase":483}],538:[function(require,module,exports){
+},{"../aircraft/AircraftController":524,"../airline/AirlineController":531,"../constants/storageKeys":576,"./AirportModel":535,"lodash/has":470,"lodash/lowerCase":495}],535:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -40291,6 +33635,10 @@ var _map3 = _interopRequireDefault(_map2);
 var _isEmpty2 = require('lodash/isEmpty');
 
 var _isEmpty3 = _interopRequireDefault(_isEmpty2);
+
+var _isNil2 = require('lodash/isNil');
+
+var _isNil3 = _interopRequireDefault(_isNil2);
 
 var _AirspaceModel = require('./AirspaceModel');
 
@@ -40408,11 +33756,11 @@ var AirportModel = function () {
         this.level = null;
         this.position = null;
         this.runways = [];
+        // TODO: rename to `runwayName`
         this.runway = null;
+        // this property is kept for each airport to allow for re-hydration of the `FixCollection` on airport change
         this.fixes = {};
-        this.sids = {};
         this.sidCollection = null;
-        this.stars = {};
         this.starCollection = null;
         this.maps = {};
         this.airways = {};
@@ -40476,8 +33824,6 @@ var AirportModel = function () {
 
             this.radio = (0, _get3.default)(data, 'radio', this.radio);
             this.has_terrain = (0, _get3.default)(data, 'has_terrain', false);
-            this.sids = (0, _get3.default)(data, 'sids', {});
-            this.stars = (0, _get3.default)(data, 'stars', {});
             this.airways = (0, _get3.default)(data, 'airways', {});
             this.ctr_radius = (0, _get3.default)(data, 'ctr_radius', DEFAULT_CTR_RADIUS_NM);
             this.ctr_ceiling = (0, _get3.default)(data, 'ctr_ceiling', DEFAULT_CTR_CEILING_FT);
@@ -40486,7 +33832,7 @@ var AirportModel = function () {
             this.rr_center = (0, _get3.default)(data, 'rr_center');
 
             this.fixes = (0, _get3.default)(data, 'fixes', {});
-            _FixCollection2.default.init(this.fixes, this.position);
+            _FixCollection2.default.addItems(this.fixes, this.position);
 
             this.sidCollection = new _StandardRouteCollection2.default(data.sids);
             this.starCollection = new _StandardRouteCollection2.default(data.stars);
@@ -40547,7 +33893,7 @@ var AirportModel = function () {
             // const pos = new PositionModel(this.perimeter.poly[0].position, this.position, this.magnetic_north);
 
             this.ctr_radius = Math.max.apply(Math, _toConsumableArray((0, _map3.default)(this.perimeter.poly, function (v) {
-                return (0, _vector.vlen)((0, _vector.vsub)(v.position, new _PositionModel2.default(_this2.rr_center, _this2.position, _this2.magnetic_north).position));
+                return (0, _vector.vlen)((0, _vector.vsub)(v.position, _PositionModel2.default.calculatePosition(_this2.rr_center, _this2.position, _this2.magnetic_north)));
             })));
         }
 
@@ -40596,8 +33942,8 @@ var AirportModel = function () {
                 var lines = map;
 
                 (0, _forEach3.default)(lines, function (line) {
-                    var start = new _PositionModel2.default([line[0], line[1]], _this4.position, _this4.magnetic_north).position;
-                    var end = new _PositionModel2.default([line[2], line[3]], _this4.position, _this4.magnetic_north).position;
+                    var start = _PositionModel2.default.calculatePosition([line[0], line[1]], _this4.position, _this4.magnetic_north);
+                    var end = _PositionModel2.default.calculatePosition([line[2], line[3]], _this4.position, _this4.magnetic_north);
 
                     _this4.maps[key].push([start[0], start[1], end[0], end[1]]);
                 });
@@ -40628,7 +33974,7 @@ var AirportModel = function () {
 
                 obj.height = (0, _unitConverters.parseElevation)(area.height);
                 obj.coordinates = _jquery2.default.map(area.coordinates, function (v) {
-                    return [new _PositionModel2.default(v, _this5.position, _this5.magnetic_north).position];
+                    return [_PositionModel2.default.calculatePosition(v, _this5.position, _this5.magnetic_north)];
                 });
 
                 // TODO: is this right? max and min are getting set to the same value?
@@ -40749,12 +34095,10 @@ var AirportModel = function () {
             localStorage[_storageKeys.STORAGE_KEY.ATC_LAST_AIRPORT] = this.icao;
             prop.airport.current = this;
 
-            (0, _jquery2.default)(_selectors.SELECTORS.DOM_SELECTORS.AIRPORT).text(this.icao.toUpperCase()).attr('title', this.name);
-
             prop.canvas.draw_labels = true;
             (0, _jquery2.default)(_selectors.SELECTORS.DOM_SELECTORS.TOGGLE_LABELS).toggle(!(0, _isEmpty3.default)(this.maps));
             (0, _jquery2.default)(_selectors.SELECTORS.DOM_SELECTORS.TOGGLE_RESTRICTED_AREAS).toggle((this.restricted_areas || []).length > 0);
-            (0, _jquery2.default)(_selectors.SELECTORS.DOM_SELECTORS.TOGGLE_SIDS).toggle(!(0, _isEmpty3.default)(this.sids));
+            (0, _jquery2.default)(_selectors.SELECTORS.DOM_SELECTORS.TOGGLE_SIDS).toggle(!(0, _isNil3.default)(this.sidCollection));
 
             prop.canvas.dirty = true;
             (0, _jquery2.default)(_selectors.SELECTORS.DOM_SELECTORS.TOGGLE_TERRAIN).toggle(!(0, _isEmpty3.default)(this.terrain));
@@ -40766,7 +34110,7 @@ var AirportModel = function () {
             // when the parse method is run, this method also runs. however, when an airport is being re-loaded,
             // only this method runs. this doesnt belong here but needs to be here so the fixes get populated correctly.
             // FIXME: make FixCollection a instance class ainstead of a static class
-            _FixCollection2.default.init(this.fixes, this.position);
+            _FixCollection2.default.addItems(this.fixes, this.position);
 
             this.updateRunway();
             this.addAircraft();
@@ -40909,8 +34253,8 @@ var AirportModel = function () {
                     // each poly has 1st outer ring and other rings are holes
                     apt.terrain[ele].push(_jquery2.default.map(poly, function (line_string) {
                         return [_jquery2.default.map(line_string, function (pt) {
+                            pt.reverse(); // `PositionModel` requires [lat,lon] order
                             var pos = new _PositionModel2.default(pt, apt.position, apt.magnetic_north);
-                            pos.parse4326();
 
                             return [pos.position];
                         })];
@@ -41022,6 +34366,7 @@ var AirportModel = function () {
     }, {
         key: 'getFixPosition',
         value: function getFixPosition(fixName) {
+            // TODO: if possible, replace with FoxCollection.getFixPositionCoordinates
             var fixModel = _FixCollection2.default.findFixByName(fixName);
 
             return fixModel.position;
@@ -41042,6 +34387,25 @@ var AirportModel = function () {
         }
 
         /**
+         *
+         * @for AirportModel
+         * @method findWaypointModelsForSid
+         * @param id {string}
+         * @param entry {string}
+         * @param runway {string}
+         * @param isPreSpawn {boolean} flag used to determine if distances between waypoints should be calculated
+         * @return {array<StandardWaypointModel>}
+         */
+
+    }, {
+        key: 'findWaypointModelsForSid',
+        value: function findWaypointModelsForSid(id, entry, runway) {
+            var isPreSpawn = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
+
+            return this.sidCollection.findFixModelsForRouteByEntryAndExit(id, entry, runway, isPreSpawn);
+        }
+
+        /**
          * @for AirportModel
          * @method getSIDExitPoint
          * @param icao {string}  Name of SID
@@ -41053,24 +34417,6 @@ var AirportModel = function () {
         value: function getSIDExitPoint(icao) {
             return this.sidCollection.findRandomExitPointForSIDIcao(icao);
         }
-
-        // FIXME: possibly unused
-        // getSIDName(id, rwy) {
-        //     if (_has(this.sids[id], 'suffix')) {
-        //         return `${this.sids[id].name} ${this.sids[id].suffix[rwy]}`;
-        //     }
-        //
-        //     return this.sids[id].name;
-        // }
-
-        // FIXME: possibly unused
-        // getSIDid(id, rwy) {
-        //     if (_has(this.sids[id], 'suffix')) {
-        //         return this.sids[id].icao + this.sids[id].suffix[rwy];
-        //     }
-        //
-        //     return this.sids[id].icao;
-        // }
 
         /**
          * Return an array of [Waypoint, fixRestrictions] for a given STAR
@@ -41097,6 +34443,7 @@ var AirportModel = function () {
         /**
          *
          * @for AirportModel
+         * @method findWaypointModelsForStar
          * @param id {string}
          * @param entry {string}
          * @param runway {string}
@@ -41171,7 +34518,7 @@ var AirportModel = function () {
 
 exports.default = AirportModel;
 
-},{"../base/PositionModel":560,"../constants/logLevel":564,"../constants/selectors":565,"../constants/storageKeys":566,"../math/circle":573,"../math/core":574,"../math/flightMath":576,"../math/vector":577,"../utilities/unitConverters":586,"./AirspaceModel":539,"./Arrival/arrivalFactory":544,"./Departure/departureFactory":548,"./Fix/FixCollection":549,"./RunwayModel":552,"./StandardRoute/StandardRouteCollection":555,"jquery":296,"lodash/forEach":458,"lodash/get":459,"lodash/has":460,"lodash/head":462,"lodash/isEmpty":469,"lodash/map":484}],539:[function(require,module,exports){
+},{"../base/PositionModel":560,"../constants/logLevel":574,"../constants/selectors":575,"../constants/storageKeys":576,"../math/circle":583,"../math/core":584,"../math/flightMath":586,"../math/vector":587,"../utilities/unitConverters":595,"./AirspaceModel":536,"./Arrival/arrivalFactory":541,"./Departure/departureFactory":545,"./Fix/FixCollection":546,"./RunwayModel":549,"./StandardRoute/StandardRouteCollection":552,"jquery":296,"lodash/forEach":468,"lodash/get":469,"lodash/has":470,"lodash/head":472,"lodash/isEmpty":480,"lodash/isNil":485,"lodash/map":496}],536:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41183,6 +34530,10 @@ var _createClass = function () { function defineProperties(target, props) { for 
 var _isEqual2 = require('lodash/isEqual');
 
 var _isEqual3 = _interopRequireDefault(_isEqual2);
+
+var _isNumber2 = require('lodash/isNumber');
+
+var _isNumber3 = _interopRequireDefault(_isNumber2);
 
 var _map2 = require('lodash/map');
 
@@ -41196,6 +34547,8 @@ var _PositionModel = require('../base/PositionModel');
 
 var _PositionModel2 = _interopRequireDefault(_PositionModel);
 
+var _unitConverters = require('../utilities/unitConverters');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -41205,24 +34558,10 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 /**
- * Utility function to convert a number to thousands.
- *
- * Given a flightlevel FL180, this function outs puts 18,000
- *
- * @function covertToThousands
- * @param  {number} value
- * @return {number}
- */
-var convertToThousands = function convertToThousands(value) {
-  return parseInt(value, 10) * 100;
-};
-
-/**
  * An enclosed region defined by a series of Position objects and an altitude range
  *
  * @class AirspaceModel
  */
-
 var AirspaceModel = function (_BaseModel) {
   _inherits(AirspaceModel, _BaseModel);
 
@@ -41240,7 +34579,7 @@ var AirspaceModel = function (_BaseModel) {
 
     var _this = _possibleConstructorReturn(this, (AirspaceModel.__proto__ || Object.getPrototypeOf(AirspaceModel)).call(this));
 
-    if (!airspace || !airportPosition || !magneticNorth) {
+    if (!airspace || !airportPosition || !(0, _isNumber3.default)(magneticNorth)) {
       // eslint-disable-next-line max-len
       throw new TypeError('Invalid parameter, expected airspace, airportPosition and magneticNorth to be defined');
     }
@@ -41297,8 +34636,8 @@ var AirspaceModel = function (_BaseModel) {
   _createClass(AirspaceModel, [{
     key: '_init',
     value: function _init(airspace, airportPosition, magneticNorth) {
-      this.floor = convertToThousands(airspace.floor);
-      this.ceiling = convertToThousands(airspace.ceiling);
+      this.floor = (0, _unitConverters.convertToThousands)(airspace.floor);
+      this.ceiling = (0, _unitConverters.convertToThousands)(airspace.ceiling);
       this.airspace_class = airspace.airspace_class;
       this.poly = this._buildPolyPositionModels(airspace.poly, airportPosition, magneticNorth);
 
@@ -41357,7 +34696,7 @@ var AirspaceModel = function (_BaseModel) {
 
 exports.default = AirspaceModel;
 
-},{"../base/BaseModel":559,"../base/PositionModel":560,"lodash/isEqual":470,"lodash/map":484}],540:[function(require,module,exports){
+},{"../base/BaseModel":556,"../base/PositionModel":560,"../utilities/unitConverters":595,"lodash/isEqual":481,"lodash/isNumber":486,"lodash/map":496}],537:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41398,7 +34737,7 @@ var _core = require('../../math/core');
 
 var _flightMath = require('../../math/flightMath');
 
-var _AircraftInstanceModel = require('../../aircraft/AircraftInstanceModel');
+var _aircraftConstants = require('../../constants/aircraftConstants');
 
 var _airportConstants = require('../../constants/airportConstants');
 
@@ -41526,6 +34865,33 @@ var ArrivalBase = function () {
          * @default 0
          */
         this.radial = 0;
+
+        /**
+         * game time
+         *
+         * @property cycleStart
+         * @type {number}
+         * @default 0
+         */
+        this.cycleStart = 0;
+
+        /**
+         * Start at the beginning of the surge
+         *
+         * @property offset
+         * @type {number}
+         * @default 0
+         */
+        this.offset = 0;
+
+        /**
+         * 30 minute cycle
+         *
+         * @property period
+         * @type {number}
+         * @default 1800
+         */
+        this.period = _globalConstants.TIME.ONE_HOUR_IN_SECONDS / 2;
 
         /**
          * Initial speed in knots of spawned aircraft.
@@ -41737,13 +35103,14 @@ var ArrivalBase = function () {
                         // if point before next fix
                         var nextFix = waypoint;
                         var previousFix = waypointModelList[j - 1];
-                        var heading = (0, _flightMath.bearing)(previousFix.gps, nextFix.gps);
-                        var calculatedRadialDistance = (0, _flightMath.fixRadialDist)(previousFix.gps, heading, spawnOffset);
+                        var heading = (0, _flightMath.bearingToPoint)(previousFix.gpsXY, nextFix.gpsXY);
+                        var spawnPoint = (0, _flightMath.fixRadialDist)(previousFix.gps, heading, spawnOffset);
+                        var spawnPosition = new _PositionModel2.default(spawnPoint, this.airport.position, this.airport.magnetic_north);
 
                         // TODO: this looks like it should be a model object
                         spawnPositions.push({
                             heading: heading,
-                            pos: calculatedRadialDistance,
+                            pos: spawnPosition,
                             nextFix: nextFix.name
                         });
 
@@ -41772,15 +35139,11 @@ var ArrivalBase = function () {
                     heading = _spawnPositions$i.heading,
                     pos = _spawnPositions$i.pos,
                     nextFix = _spawnPositions$i.nextFix;
-                var _airport = this.airport,
-                    icao = _airport.icao,
-                    position = _airport.position,
-                    magnetic_north = _airport.magnetic_north;
+                var icao = this.airport.icao;
 
-                var aircraftPosition = new _PositionModel2.default(pos, position, magnetic_north, 'GPS');
                 var airline = (0, _randomAirlineSelectionHelper.randomAirlineSelectionHelper)(this.airlines);
                 var aircraftToAdd = {
-                    category: _AircraftInstanceModel.FLIGHT_CATEGORY.ARRIVAL,
+                    category: _aircraftConstants.FLIGHT_CATEGORY.ARRIVAL,
                     destination: icao,
                     airline: airline.name,
                     fleet: airline.fleet,
@@ -41791,8 +35154,8 @@ var ArrivalBase = function () {
                     // TODO: this could be a _get() instead of an || assignment
                     heading: heading || this.heading,
                     waypoints: this.fixes,
-                    route: (0, _get3.default)(this, 'activeRouteModel.routeString', ''),
-                    position: aircraftPosition.position,
+                    route: (0, _get3.default)(this, 'activeRouteModel.routeCode', ''),
+                    position: pos.position,
                     speed: this.speed,
                     nextFix: nextFix
                 };
@@ -41863,7 +35226,7 @@ var ArrivalBase = function () {
                 // calculate heading to next fix
                 position = getFixPosition(this.fixes[0].fix);
                 var nextPosition = getFixPosition(this.fixes[1].fix);
-                heading = (0, _flightMath.calculateHeadingFromTwoPositions)(nextPosition, position);
+                heading = (0, _flightMath.bearingToPoint)(position, nextPosition);
             } else if (this.activeRouteModel) {
                 var isPreSpawn = false;
                 var waypointModelList = this.airport.findWaypointModelsForStar(this.activeRouteModel.procedure, this.activeRouteModel.entry, this.airport.runway, isPreSpawn);
@@ -41871,7 +35234,7 @@ var ArrivalBase = function () {
                 // grab position of first fix
                 position = waypointModelList[0].position;
                 // calculate heading from first waypoint to second waypoint
-                heading = (0, _flightMath.calculateHeadingFromTwoPositions)(waypointModelList[1].position, position);
+                heading = (0, _flightMath.bearingToPoint)(position, waypointModelList[1].position);
             } else {
                 // spawn outside the airspace along 'this.radial'
                 distance = 2 * this.airport.ctr_radius;
@@ -41885,12 +35248,12 @@ var ArrivalBase = function () {
                 heading: heading,
                 message: message,
                 position: position,
-                category: _AircraftInstanceModel.FLIGHT_CATEGORY.ARRIVAL,
+                category: _aircraftConstants.FLIGHT_CATEGORY.ARRIVAL,
                 destination: this.airport.icao,
                 airline: airline.name,
                 fleet: airline.fleet,
                 waypoints: this.fixes,
-                route: (0, _get3.default)(this, 'activeRouteModel.routeString', ''),
+                route: (0, _get3.default)(this, 'activeRouteModel.routeCode', ''),
                 // TODO: this should use a `PositionModel` instead of just using it to get a position
                 // this will take a lot of refactoring, though, as aircraft.position is used all over the app.
                 speed: this.speed
@@ -41920,7 +35283,7 @@ var ArrivalBase = function () {
             if (tgt_interval < min_interval) {
                 tgt_interval = min_interval;
 
-                log('Requested arrival rate of ' + this.frequency + ' acph overridden to ' + ('maintain minimum of ' + _airportConstants.AIRPORT_CONSTANTS.MIN_ENTRAIL_DISTANCE_NM + ' miles entrail on arrival stream ') + ('following route ' + this.activeRouteModel.routeString), _logLevel.LOG.INFO);
+                log('Requested arrival rate of ' + this.frequency + ' acph overridden to ' + ('maintain minimum of ' + _airportConstants.AIRPORT_CONSTANTS.MIN_ENTRAIL_DISTANCE_NM + ' miles entrail on arrival stream ') + ('following route ' + this.activeRouteModel.routeCode), _logLevel.LOG.INFO);
             }
 
             var max_interval = tgt_interval + (tgt_interval - min_interval);
@@ -41934,7 +35297,7 @@ var ArrivalBase = function () {
 
 exports.default = ArrivalBase;
 
-},{"../../aircraft/AircraftInstanceModel":529,"../../airline/randomAirlineSelectionHelper":536,"../../base/PositionModel":560,"../../constants/airportConstants":562,"../../constants/globalConstants":563,"../../constants/logLevel":564,"../../math/core":574,"../../math/flightMath":576,"../../utilities/unitConverters":586,"../Fix/FixCollection":549,"../Route/RouteModel":551,"lodash/get":459,"lodash/map":484,"lodash/random":488}],541:[function(require,module,exports){
+},{"../../airline/randomAirlineSelectionHelper":533,"../../base/PositionModel":560,"../../constants/aircraftConstants":570,"../../constants/airportConstants":571,"../../constants/globalConstants":573,"../../constants/logLevel":574,"../../math/core":584,"../../math/flightMath":586,"../../utilities/unitConverters":595,"../Fix/FixCollection":546,"../Route/RouteModel":548,"lodash/get":469,"lodash/map":496,"lodash/random":500}],538:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -41994,41 +35357,14 @@ var ArrivalCyclic = function (_ArrivalBase) {
         _classCallCheck(this, ArrivalCyclic);
 
         /**
-         * game time
-         *
-         * @property cycleStart
-         * @type {number}
-         * @default 0
-         */
-        var _this = _possibleConstructorReturn(this, (ArrivalCyclic.__proto__ || Object.getPrototypeOf(ArrivalCyclic)).call(this, airport, options));
-
-        _this.cycleStart = 0;
-
-        /**
-         * Start at the average, and increasing
-         *
-         * @property offset
-         * @type {number}
-         * @default 0
-         */
-        _this.offset = 0;
-
-        /**
-         * 30 minute cycle
-         *
-         * @property period
-         * @type {number}
-         * @default 1800
-         */
-        _this.period = _globalConstants.TIME.ONE_HOUR_IN_SECONDS / 2;
-
-        /**
          * amount to deviate from the prescribed frequency
          *
          * @property variation
          * @type {number}
          * @default 0
          */
+        var _this = _possibleConstructorReturn(this, (ArrivalCyclic.__proto__ || Object.getPrototypeOf(ArrivalCyclic)).call(this, airport, options));
+
         _this.variation = 0;
 
         _this.parse(options);
@@ -42095,7 +35431,7 @@ var ArrivalCyclic = function (_ArrivalBase) {
 
 exports.default = ArrivalCyclic;
 
-},{"../../constants/globalConstants":563,"../../utilities/unitConverters":586,"./ArrivalBase":540,"lodash/random":488}],542:[function(require,module,exports){
+},{"../../constants/globalConstants":573,"../../utilities/unitConverters":595,"./ArrivalBase":537,"lodash/random":500}],539:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -42161,41 +35497,14 @@ var ArrivalSurge = function (_ArrivalBase) {
         _classCallCheck(this, ArrivalSurge);
 
         /**
-         * game time
-         *
-         * @property cycleStart
-         * @type {number}
-         * @default 0
-         */
-        var _this = _possibleConstructorReturn(this, (ArrivalSurge.__proto__ || Object.getPrototypeOf(ArrivalSurge)).call(this, airport, options));
-
-        _this.cycleStart = 0;
-
-        /**
-         * Start at the beginning of the surge
-         *
-         * @property offset
-         * @type {number}
-         * @default 0
-         */
-        _this.offset = 0;
-
-        /**
-         * 30 minute cycle
-         *
-         * @property period
-         * @type {number}
-         * @default 1800
-         */
-        _this.period = _globalConstants.TIME.ONE_HOUR_IN_SECONDS / 2;
-
-        /**
          * miles entrail during the surge [fast,slow]
          *
          * @property entrail
          * @type {number}
          * @default
          */
+        var _this = _possibleConstructorReturn(this, (ArrivalSurge.__proto__ || Object.getPrototypeOf(ArrivalSurge)).call(this, airport, options));
+
         _this.entrail = [5.5, 10];
 
         // Calculated
@@ -42360,7 +35669,7 @@ var ArrivalSurge = function (_ArrivalBase) {
 
 exports.default = ArrivalSurge;
 
-},{"../../constants/globalConstants":563,"../../constants/logLevel":564,"../../math/core":574,"../../utilities/unitConverters":586,"./ArrivalBase":540,"lodash/random":488}],543:[function(require,module,exports){
+},{"../../constants/globalConstants":573,"../../constants/logLevel":574,"../../math/core":584,"../../utilities/unitConverters":595,"./ArrivalBase":537,"lodash/random":500}],540:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -42434,41 +35743,14 @@ var ArrivalWave = function (_ArrivalBase) {
         _classCallCheck(this, ArrivalWave);
 
         /**
-         * game time
-         *
-         * @property cycleStart
-         * @type {number}
-         * @default 0
-         */
-        var _this = _possibleConstructorReturn(this, (ArrivalWave.__proto__ || Object.getPrototypeOf(ArrivalWave)).call(this, airport, options));
-
-        _this.cycleStart = 0;
-
-        /**
-         * Start at the beginning of the surge
-         *
-         * @property offset
-         * @type {number}
-         * @default 0
-         */
-        _this.offset = 0;
-
-        /**
-         * 30 minute cycle
-         *
-         * @property period
-         * @type {number}
-         * @default 1800
-         */
-        _this.period = _globalConstants.TIME.ONE_HOUR_IN_SECONDS / 2;
-
-        /**
          * amount to deviate from the prescribed frequency
          *
          * @propery variation
          * @type {number}
          * @default 0
          */
+        var _this = _possibleConstructorReturn(this, (ArrivalWave.__proto__ || Object.getPrototypeOf(ArrivalWave)).call(this, airport, options));
+
         _this.variation = 0;
 
         _this.parse(options);
@@ -42584,7 +35866,7 @@ var ArrivalWave = function (_ArrivalBase) {
 
 exports.default = ArrivalWave;
 
-},{"../../constants/globalConstants":563,"../../constants/logLevel":564,"../../math/circle":573,"../../math/core":574,"../../utilities/unitConverters":586,"./ArrivalBase":540,"jquery":296,"lodash/random":488}],544:[function(require,module,exports){
+},{"../../constants/globalConstants":573,"../../constants/logLevel":574,"../../math/circle":583,"../../math/core":584,"../../utilities/unitConverters":595,"./ArrivalBase":537,"jquery":296,"lodash/random":500}],541:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -42641,7 +35923,7 @@ var arrivalFactory = exports.arrivalFactory = function arrivalFactory(airport, o
     }
 };
 
-},{"../../constants/logLevel":564,"./ArrivalBase":540,"./ArrivalCyclic":541,"./ArrivalSurge":542,"./ArrivalWave":543}],545:[function(require,module,exports){
+},{"../../constants/logLevel":574,"./ArrivalBase":537,"./ArrivalCyclic":538,"./ArrivalSurge":539,"./ArrivalWave":540}],542:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -42666,7 +35948,7 @@ var _randomAirlineSelectionHelper = require('../../airline/randomAirlineSelectio
 
 var _generalUtilities = require('../../utilities/generalUtilities');
 
-var _AircraftInstanceModel = require('../../aircraft/AircraftInstanceModel');
+var _aircraftConstants = require('../../constants/aircraftConstants');
 
 var _globalConstants = require('../../constants/globalConstants');
 
@@ -42833,7 +36115,7 @@ var DepartureBase = function () {
                 message: message,
                 airline: airline.name,
                 fleet: airline.fleet,
-                category: _AircraftInstanceModel.FLIGHT_CATEGORY.DEPARTURE,
+                category: _aircraftConstants.FLIGHT_CATEGORY.DEPARTURE,
                 destination: (0, _generalUtilities.choose)(this.destinations)
             };
 
@@ -42869,7 +36151,7 @@ var DepartureBase = function () {
 
 exports.default = DepartureBase;
 
-},{"../../aircraft/AircraftInstanceModel":529,"../../airline/randomAirlineSelectionHelper":536,"../../constants/globalConstants":563,"../../utilities/generalUtilities":583,"../Route/RouteModel":551,"lodash/get":459,"lodash/random":488}],546:[function(require,module,exports){
+},{"../../airline/randomAirlineSelectionHelper":533,"../../constants/aircraftConstants":570,"../../constants/globalConstants":573,"../../utilities/generalUtilities":592,"../Route/RouteModel":548,"lodash/get":469,"lodash/random":500}],543:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -42998,7 +36280,7 @@ var DepartureCyclic = function (_DepartureBase) {
 
 exports.default = DepartureCyclic;
 
-},{"../../constants/globalConstants":563,"../../math/circle":573,"../../math/core":574,"../../utilities/unitConverters":586,"./DepartureBase":545}],547:[function(require,module,exports){
+},{"../../constants/globalConstants":573,"../../math/circle":583,"../../math/core":584,"../../utilities/unitConverters":595,"./DepartureBase":542}],544:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -43087,7 +36369,7 @@ var DepartureWave = function (_DepartureCyclic) {
 
 exports.default = DepartureWave;
 
-},{"../../constants/globalConstants":563,"./DepartureCyclic":546}],548:[function(require,module,exports){
+},{"../../constants/globalConstants":573,"./DepartureCyclic":543}],545:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -43137,7 +36419,7 @@ var departureFactory = exports.departureFactory = function departureFactory(airp
     }
 };
 
-},{"../../constants/logLevel":564,"./DepartureBase":545,"./DepartureCyclic":546,"./DepartureWave":547}],549:[function(require,module,exports){
+},{"../../constants/logLevel":574,"./DepartureBase":542,"./DepartureCyclic":543,"./DepartureWave":544}],546:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -43162,9 +36444,13 @@ var _map2 = require('lodash/map');
 
 var _map3 = _interopRequireDefault(_map2);
 
-var _uniqueId2 = require('lodash/uniqueId');
+var _ModelSourceFactory = require('../../base/ModelSource/ModelSourceFactory');
 
-var _uniqueId3 = _interopRequireDefault(_uniqueId2);
+var _ModelSourceFactory2 = _interopRequireDefault(_ModelSourceFactory);
+
+var _BaseCollection2 = require('../../base/BaseCollection');
+
+var _BaseCollection3 = _interopRequireDefault(_BaseCollection2);
 
 var _FixModel = require('./FixModel');
 
@@ -43173,6 +36459,10 @@ var _FixModel2 = _interopRequireDefault(_FixModel);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 /**
  * A collection of all the `FixModel`s defined in an airport json file.
@@ -43183,66 +36473,36 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
  * belonging to an Airport.
  *
  * @class FixCollection
+ * @extends BaseCollection
  */
-var FixCollection = function () {
-    /**
-     * @for FixCollection
-     * @constructor
-     */
+var FixCollection = function (_BaseCollection) {
+    _inherits(FixCollection, _BaseCollection);
+
     function FixCollection() {
         _classCallCheck(this, FixCollection);
 
-        /**
-         * Unigue string id that can be used to differentiate this model instance from another.
-         *
-         * @property _id
-         * @type {string}
-         * @default ''
-         * @private
-         */
-        this._id = '';
-
-        /**
-         * Array of `FixModel`s
-         *
-         * @property _items
-         * @type {array<FixModel>}
-         * @default []
-         * @private
-         */
-        this._items = [];
+        return _possibleConstructorReturn(this, (FixCollection.__proto__ || Object.getPrototypeOf(FixCollection)).apply(this, arguments));
     }
 
-    /**
-     * Convenience property to get at the current length of `_items`.
-     *
-     * @property length
-     * @type {number}
-     */
-
-
     _createClass(FixCollection, [{
-        key: 'init',
-
+        key: 'addItems',
 
         /**
          * Lifecycle method. Should be run only once on instantiation.
          *
          * @for FixCollection
-         * @method init
+         * @method addItems
          * @param fixList {object}
          * @param airportPosition {PositionModel}
          */
-        value: function init(fixList, airportPosition) {
+        value: function addItems(fixList, airportPosition) {
             if (this.length !== 0) {
                 // you made it here because an airport has changed.
                 // in `AirportModel.parse()` this method is called with the fix data for the new airport. We don't want
                 // or need to keep the fixes from a previous airport so if `_items` has a length, we need to reset that
                 // property before we begin to add fixes for the new airport.
-                this.destroy();
+                this.removeItems();
             }
-
-            this._id = (0, _uniqueId3.default)();
 
             this._buildFixModelsFromList(fixList, airportPosition);
         }
@@ -43251,36 +36511,15 @@ var FixCollection = function () {
          * Destroy the current instance
          *
          * @for FixCollection
-         * @method destroy
+         * @method removeItems
          */
 
     }, {
-        key: 'destroy',
-        value: function destroy() {
-            this._id = '';
+        key: 'removeItems',
+        value: function removeItems() {
+            this._resetFixModels();
+
             this._items = [];
-        }
-
-        /**
-         * Loop through each fix provided in the fix list, create a new `FixModel` instance, then send it off
-         * to be added to the collection.
-         *
-         * @for FixCollection
-         * @method _buildFixModelsFromList
-         * @param fixList {object}
-         * @private
-         */
-
-    }, {
-        key: '_buildFixModelsFromList',
-        value: function _buildFixModelsFromList(fixList, airportPosition) {
-            var _this = this;
-
-            (0, _forEach3.default)(fixList, function (fixCoordinates, fixName) {
-                var fixModel = new _FixModel2.default(fixName, fixCoordinates, airportPosition);
-
-                _this.addFixToCollection(fixModel);
-            });
         }
 
         /**
@@ -43320,6 +36559,26 @@ var FixCollection = function () {
         }
 
         /**
+         * @for FixCollection
+         * @method getFixPositionCoordinates
+         * @param fixName {string}
+         * @return {array<number>}
+         */
+
+    }, {
+        key: 'getFixPositionCoordinates',
+        value: function getFixPositionCoordinates(fixName) {
+            var fixModel = this.findFixByName(fixName);
+
+            if (!fixModel) {
+                // error
+                return null;
+            }
+
+            return fixModel.position;
+        }
+
+        /**
          * Find a list of all `FixModel`s within the collection that have a name that does not start with an underscore.
          *
          * @for FixCollection
@@ -43338,19 +36597,51 @@ var FixCollection = function () {
 
             return (0, _compact3.default)(realFixList);
         }
+
+        /**
+         * Loop through each fix provided in the fix list, create a new `FixModel` instance, then send it off
+         * to be added to the collection.
+         *
+         * @for FixCollection
+         * @method _buildFixModelsFromList
+         * @param fixList {object}
+         * @private
+         */
+
     }, {
-        key: 'length',
-        get: function get() {
-            return this._items.length;
+        key: '_buildFixModelsFromList',
+        value: function _buildFixModelsFromList(fixList, airportPosition) {
+            var _this2 = this;
+
+            (0, _forEach3.default)(fixList, function (fixCoordinates, fixName) {
+                var fixModel = _ModelSourceFactory2.default.getModelSourceForType('FixModel', fixName, fixCoordinates, airportPosition);
+
+                _this2.addFixToCollection(fixModel);
+            });
+        }
+
+        /**
+         * @for FixCollection
+         * @method _resetFixModels
+         * @private
+         */
+
+    }, {
+        key: '_resetFixModels',
+        value: function _resetFixModels() {
+            (0, _forEach3.default)(this._items, function (fixModel) {
+                fixModel.reset();
+                _ModelSourceFactory2.default.returnModelToPool(fixModel);
+            });
         }
     }]);
 
     return FixCollection;
-}();
+}(_BaseCollection3.default);
 
 exports.default = new FixCollection();
 
-},{"./FixModel":550,"lodash/compact":453,"lodash/find":456,"lodash/forEach":458,"lodash/map":484,"lodash/uniqueId":497}],550:[function(require,module,exports){
+},{"../../base/BaseCollection":555,"../../base/ModelSource/ModelSourceFactory":557,"./FixModel":547,"lodash/compact":462,"lodash/find":466,"lodash/forEach":468,"lodash/map":496}],547:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -43398,18 +36689,7 @@ var FixModel = function (_BaseModel) {
    * @param airportPosition {PositionModel}
    */
   function FixModel(fixName, fixCoordinate, airportPosition) {
-    var _ret;
-
     _classCallCheck(this, FixModel);
-
-    // TODO: should this be a throwing instead of returning early?
-    var _this = _possibleConstructorReturn(this, (FixModel.__proto__ || Object.getPrototypeOf(FixModel)).call(this));
-
-    if (!fixName || !fixCoordinate || !airportPosition) {
-      console.error('Invalid parameter. one of fixName, fixCoordinate or airportPosition is undefined or null in FixModel');
-
-      return _possibleConstructorReturn(_this);
-    }
 
     /**
      * Name of the Fix
@@ -43418,6 +36698,8 @@ var FixModel = function (_BaseModel) {
      * @type {string}
      * @default ''
      */
+    var _this = _possibleConstructorReturn(this, (FixModel.__proto__ || Object.getPrototypeOf(FixModel)).call(this));
+
     _this.name = '';
 
     /**
@@ -43429,7 +36711,8 @@ var FixModel = function (_BaseModel) {
      */
     _this._fixPosition = null;
 
-    return _ret = _this._init(fixName, fixCoordinate, airportPosition), _possibleConstructorReturn(_this, _ret);
+    _this.init(fixName, fixCoordinate, airportPosition);
+    return _this;
   }
 
   /**
@@ -43441,21 +36724,25 @@ var FixModel = function (_BaseModel) {
 
 
   _createClass(FixModel, [{
-    key: '_init',
+    key: 'init',
 
 
     /**
      * Lifecycle method. Should be run only once on instantiation.
      *
      * @for FixModel
-     * @method _init
+     * @method init
      * @param fixName {string}
      * @param fixCoordinate {array}
      * @param airportPosition {PositionModel}
      * @chainable
-     * @private
      */
-    value: function _init(fixName, fixCoordinate, airportPosition) {
+    value: function init(fixName, fixCoordinate, airportPosition) {
+      // TODO: should this be a throwing instead of returning early?
+      if (!fixName || !fixCoordinate || !airportPosition) {
+        return;
+      }
+
       this.name = fixName.toUpperCase();
       this._fixPosition = new _PositionModel2.default(fixCoordinate, airportPosition, airportPosition.magneticNorthInRadians);
 
@@ -43510,7 +36797,7 @@ var FixModel = function (_BaseModel) {
 
 exports.default = FixModel;
 
-},{"../../base/BaseModel":559,"../../base/PositionModel":560,"lodash/cloneDeep":452}],551:[function(require,module,exports){
+},{"../../base/BaseModel":556,"../../base/PositionModel":560,"lodash/cloneDeep":461}],548:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -43549,6 +36836,7 @@ var SEGMENT_SEPARATION_SYMBOL = '.';
  */
 var MAXIMUM_ROUTE_SEGMENT_LENGTH = 3;
 
+// TODO: this class needs a better name
 /**
  * @class RouteModel
  */
@@ -43557,26 +36845,37 @@ var RouteModel = function (_BaseModel) {
   _inherits(RouteModel, _BaseModel);
 
   /**
+   * example `routeCode`
+   *
+   * ```
    * 'BETHL.GRNPA1.KLAS'
+   * ```
+   *
+   * // TODO: should be able to support input of:
+   * - KSFO.OFFSH9.SXC.V458.IPL.J2.JCT..LLO..ACT..KACT
+   * which can be returned as:
+   * - ['KSFO.OFFSH9.SXC', 'SXC.V458.IPL', 'IPL.J2.JCT', 'LLO', 'ACT', 'KACT']
    *
    * @for RouteModel
    * @constructor
-   * @param routeString {string}
+   * @param routeCode {string}
    */
-  function RouteModel(routeString) {
+  function RouteModel(routeCode) {
     var _ret;
 
     _classCallCheck(this, RouteModel);
 
     var _this = _possibleConstructorReturn(this, (RouteModel.__proto__ || Object.getPrototypeOf(RouteModel)).call(this));
 
-    if (typeof routeString === 'undefined' || typeof routeString !== 'string') {
+    if (typeof routeCode === 'undefined' || typeof routeCode !== 'string') {
+      console.error('Invalid data type passed to RouteModel. Expected a string but received ' + routeCode);
+
       return _possibleConstructorReturn(_this);
     }
 
-    if (!_this._isValidRouteString(routeString)) {
+    if (!_this._isValidRouteCode(routeCode)) {
       // eslint-disable-next-line max-len
-      throw new TypeError('Invalid routeString passed to RouteModel. Expected a routeString of the shape ORIGIN.BASE.DESTINATION but instead received ' + routeString);
+      throw new TypeError('Invalid routeCode passed to RouteModel. Expected a routeCode of the shape ORIGIN.BASE.DESTINATION but instead received ' + routeCode);
     }
 
     /**
@@ -43600,13 +36899,13 @@ var RouteModel = function (_BaseModel) {
      */
     _this.exit = '';
 
-    return _ret = _this._init(routeString), _possibleConstructorReturn(_this, _ret);
+    return _ret = _this._init(routeCode), _possibleConstructorReturn(_this, _ret);
   }
 
   /**
    * A single string that represents the entire route
    *
-   * @property routeString
+   * @property routeCode
    * @return {string}
    */
 
@@ -43620,18 +36919,18 @@ var RouteModel = function (_BaseModel) {
      *
      * @for RouteModel
      * @method _init
-     * @param routeString {string}
+     * @param routeCode {string}
      * @private
      */
-    value: function _init(routeString) {
-      var _extractSegmentNamesF = this._extractSegmentNamesFromRouteString(routeString),
+    value: function _init(routeCode) {
+      var _extractSegmentNamesF = this._extractSegmentNamesFromRouteCode(routeCode),
           entry = _extractSegmentNamesF.entry,
           base = _extractSegmentNamesF.base,
           exit = _extractSegmentNamesF.exit;
 
-      this.entry = entry;
-      this.procedure = base;
-      this.exit = exit;
+      this.entry = entry.toUpperCase();
+      this.procedure = base.toUpperCase();
+      this.exit = exit.toUpperCase();
 
       return this;
     }
@@ -43653,16 +36952,16 @@ var RouteModel = function (_BaseModel) {
 
     /**
      * @for RouteModel
-     * @method _extractSegmentNamesFromRouteString
-     * @param routeString {string}
+     * @method _extractSegmentNamesFromRouteCode
+     * @param routeCode {string}
      * @return {object}
      * @private
      */
 
   }, {
-    key: '_extractSegmentNamesFromRouteString',
-    value: function _extractSegmentNamesFromRouteString(routeString) {
-      var routeSegments = routeString.split(SEGMENT_SEPARATION_SYMBOL);
+    key: '_extractSegmentNamesFromRouteCode',
+    value: function _extractSegmentNamesFromRouteCode(routeCode) {
+      var routeSegments = routeCode.split(SEGMENT_SEPARATION_SYMBOL);
 
       return {
         entry: routeSegments[0],
@@ -43672,22 +36971,22 @@ var RouteModel = function (_BaseModel) {
     }
 
     /**
-     * Verify that a routestring has exactly 3 segments
+     * Verify that a routeCode has exactly 3 segments
      *
      * @for RouteModel
-     * @method _isValidRouteString
-     * @param routeString {string}
+     * @method _isValidRouteCode
+     * @param routeCode {string}
      * @return {boolean}
      * @private
      */
 
   }, {
-    key: '_isValidRouteString',
-    value: function _isValidRouteString(routeString) {
-      return routeString.split(SEGMENT_SEPARATION_SYMBOL).length === MAXIMUM_ROUTE_SEGMENT_LENGTH;
+    key: '_isValidRouteCode',
+    value: function _isValidRouteCode(routeCode) {
+      return routeCode.split(SEGMENT_SEPARATION_SYMBOL).length === MAXIMUM_ROUTE_SEGMENT_LENGTH;
     }
   }, {
-    key: 'routeString',
+    key: 'routeCode',
     get: function get() {
       return this.entry + '.' + this.procedure + '.' + this.exit;
     }
@@ -43698,7 +36997,7 @@ var RouteModel = function (_BaseModel) {
 
 exports.default = RouteModel;
 
-},{"../../base/BaseModel":559}],552:[function(require,module,exports){
+},{"../../base/BaseModel":556}],549:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -43941,7 +37240,7 @@ var RunwayModel = function (_BaseModel) {
 
 exports.default = RunwayModel;
 
-},{"../base/BaseModel":559,"../base/PositionModel":560,"../math/circle":573,"../math/core":574,"../math/vector":577,"../utilities/unitConverters":586}],553:[function(require,module,exports){
+},{"../base/BaseModel":556,"../base/PositionModel":560,"../math/circle":583,"../math/core":584,"../math/vector":587,"../utilities/unitConverters":595}],550:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44016,12 +37315,13 @@ var RouteSegmentCollection = function (_BaseCollection) {
      * @constructor
      * @param routeSegments {object}
      */
+    /* istanbul ignore next */
     function RouteSegmentCollection(routeSegments) {
         var _ret;
 
         _classCallCheck(this, RouteSegmentCollection);
 
-        var _this = _possibleConstructorReturn(this, (RouteSegmentCollection.__proto__ || Object.getPrototypeOf(RouteSegmentCollection)).call(this, routeSegments));
+        var _this = _possibleConstructorReturn(this, (RouteSegmentCollection.__proto__ || Object.getPrototypeOf(RouteSegmentCollection)).call(this));
 
         if (typeof routeSegments === 'undefined' || !(0, _isObject3.default)(routeSegments) || (0, _isArray3.default)(routeSegments)) {
             throw new TypeError('Expected routeSegments to be an object. Instead received ' + (typeof routeSegments === 'undefined' ? 'undefined' : _typeof(routeSegments)));
@@ -44102,7 +37402,7 @@ var RouteSegmentCollection = function (_BaseCollection) {
     }, {
         key: 'findSegmentByName',
         value: function findSegmentByName(segmentName) {
-            return (0, _find3.default)(this._items, { name: segmentName });
+            return (0, _find3.default)(this._items, { name: segmentName.toUpperCase() });
         }
 
         /**
@@ -44172,7 +37472,7 @@ var RouteSegmentCollection = function (_BaseCollection) {
 
 exports.default = RouteSegmentCollection;
 
-},{"../../base/BaseCollection":558,"./RouteSegmentModel":554,"lodash/find":456,"lodash/forEach":458,"lodash/isArray":466,"lodash/isObject":475,"lodash/map":484}],554:[function(require,module,exports){
+},{"../../base/BaseCollection":555,"./RouteSegmentModel":551,"lodash/find":466,"lodash/forEach":468,"lodash/isArray":476,"lodash/isObject":487,"lodash/map":496}],551:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44225,6 +37525,7 @@ var RouteSegmentModel = function (_BaseModel) {
      * @param name {string}  Icao of particular waypoint
      * @param segmentWaypoints {array}  a mixed array of strings or arrays of strings
      */
+    /* istanbul ignore next */
     function RouteSegmentModel(name) {
         var _ret;
 
@@ -44390,7 +37691,7 @@ var RouteSegmentModel = function (_BaseModel) {
 
 exports.default = RouteSegmentModel;
 
-},{"../../base/BaseModel":559,"./StandardRouteWaypointModel":557,"lodash/forEach":458,"lodash/isArray":466,"lodash/map":484}],555:[function(require,module,exports){
+},{"../../base/BaseModel":556,"./StandardRouteWaypointModel":554,"lodash/forEach":468,"lodash/isArray":476,"lodash/map":496}],552:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44406,6 +37707,18 @@ var _find3 = _interopRequireDefault(_find2);
 var _forEach2 = require('lodash/forEach');
 
 var _forEach3 = _interopRequireDefault(_forEach2);
+
+var _isEmpty2 = require('lodash/isEmpty');
+
+var _isEmpty3 = _interopRequireDefault(_isEmpty2);
+
+var _isNil2 = require('lodash/isNil');
+
+var _isNil3 = _interopRequireDefault(_isNil2);
+
+var _map2 = require('lodash/map');
+
+var _map3 = _interopRequireDefault(_map2);
 
 var _random2 = require('lodash/random');
 
@@ -44442,12 +37755,13 @@ var StandardRouteCollection = function (_BaseCollection) {
      * @constructor
      * @param standardRouteEnum {object}
      */
+    /* istanbul ignore next */
     function StandardRouteCollection(standardRouteEnum) {
         var _ret;
 
         _classCallCheck(this, StandardRouteCollection);
 
-        var _this = _possibleConstructorReturn(this, (StandardRouteCollection.__proto__ || Object.getPrototypeOf(StandardRouteCollection)).call(this, standardRouteEnum));
+        var _this = _possibleConstructorReturn(this, (StandardRouteCollection.__proto__ || Object.getPrototypeOf(StandardRouteCollection)).call(this));
 
         if (typeof standardRouteEnum === 'undefined') {
             return _possibleConstructorReturn(_this);
@@ -44456,18 +37770,29 @@ var StandardRouteCollection = function (_BaseCollection) {
         return _ret = _this._init(standardRouteEnum), _possibleConstructorReturn(_this, _ret);
     }
 
+    // TODO: refactor into a reusable class that can be fed an `item` and will be consumed by the `CanvasController`
     /**
-     * Lifecycle method. Should be run only once on instantiation.
+     * Return an identifier and a list of fixes in the order in which they should be drawn.
      *
-     * @for StandardRouteCollection
-     * @method _init
-     * @param standardRouteEnum {object}
-     * @private
+     * Pulled directly from an airport json `draw` definition per route.
+     *
+     * @property draw
+     * @return {array}
      */
 
 
     _createClass(StandardRouteCollection, [{
         key: '_init',
+
+
+        /**
+         * Lifecycle method. Should be run only once on instantiation.
+         *
+         * @for StandardRouteCollection
+         * @method _init
+         * @param standardRouteEnum {object}
+         * @private
+         */
         value: function _init(standardRouteEnum) {
             this._addRouteListToCollection(standardRouteEnum);
 
@@ -44602,7 +37927,20 @@ var StandardRouteCollection = function (_BaseCollection) {
     }, {
         key: 'findRouteByIcao',
         value: function findRouteByIcao(icao) {
-            return (0, _find3.default)(this._items, { icao: icao });
+            return (0, _find3.default)(this._items, { icao: icao.toUpperCase() });
+        }
+
+        /**
+         * @for StandardRouteCollection
+         * @method hasRoute
+         * @param routeName {string}
+         * @return {boolean}
+         */
+
+    }, {
+        key: 'hasRoute',
+        value: function hasRoute(routeName) {
+            return !(0, _isNil3.default)(this.findRouteByIcao(routeName));
         }
 
         /**
@@ -44649,6 +37987,20 @@ var StandardRouteCollection = function (_BaseCollection) {
 
             return this;
         }
+    }, {
+        key: 'draw',
+        get: function get() {
+            return (0, _map3.default)(this._items, function (item) {
+                var sidForCanvas = {};
+                sidForCanvas.identifier = item.icao;
+
+                if (!(0, _isEmpty3.default)(item.draw)) {
+                    sidForCanvas.draw = item.draw;
+                }
+
+                return sidForCanvas;
+            });
+        }
     }]);
 
     return StandardRouteCollection;
@@ -44656,7 +38008,7 @@ var StandardRouteCollection = function (_BaseCollection) {
 
 exports.default = StandardRouteCollection;
 
-},{"../../base/BaseCollection":558,"./StandardRouteModel":556,"lodash/find":456,"lodash/forEach":458,"lodash/random":488}],556:[function(require,module,exports){
+},{"../../base/BaseCollection":555,"./StandardRouteModel":553,"lodash/find":466,"lodash/forEach":468,"lodash/isEmpty":480,"lodash/isNil":485,"lodash/map":496,"lodash/random":500}],553:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -44679,6 +38031,10 @@ var _get2 = require('lodash/get');
 
 var _get3 = _interopRequireDefault(_get2);
 
+var _has2 = require('lodash/has');
+
+var _has3 = _interopRequireDefault(_has2);
+
 var _isArray2 = require('lodash/isArray');
 
 var _isArray3 = _interopRequireDefault(_isArray2);
@@ -44686,6 +38042,10 @@ var _isArray3 = _interopRequireDefault(_isArray2);
 var _isEmpty2 = require('lodash/isEmpty');
 
 var _isEmpty3 = _interopRequireDefault(_isEmpty2);
+
+var _isNil2 = require('lodash/isNil');
+
+var _isNil3 = _interopRequireDefault(_isNil2);
 
 var _isObject2 = require('lodash/isObject');
 
@@ -44762,6 +38122,7 @@ var StandardRouteModel = function (_BaseModel) {
      * @constructor
      * @param standardRoute {object}
      */
+    /* istanbul ignore next */
     function StandardRouteModel(standardRoute) {
         var _ret;
 
@@ -44769,22 +38130,22 @@ var StandardRouteModel = function (_BaseModel) {
 
         var _this = _possibleConstructorReturn(this, (StandardRouteModel.__proto__ || Object.getPrototypeOf(StandardRouteModel)).call(this));
 
-        _this._generateFixList = function (originSegment, bodySegment, destinationSegment) {
+        _this._generateFixList = function (entrySegment, bodySegment, exitSegment) {
             // in the event that one of these functions doesnt find a result set it will return an empty array.
             // we leverage then `lodash.compact()` below to remove any empty values from the array before
             // returning the `fixList`.
             // These functions are called synchronously and order of operation is very important here.
-            var fixList = [].concat(_toConsumableArray(originSegment), _toConsumableArray(bodySegment), _toConsumableArray(destinationSegment));
+            var fixList = [].concat(_toConsumableArray(entrySegment), _toConsumableArray(bodySegment), _toConsumableArray(exitSegment));
 
             return (0, _compact3.default)(fixList);
         };
 
         _this._findFixListForSidByRunwayAndExit = function (runwayName, exitFixName) {
-            return _this._generateFixList(_this._findFixListInByCollectionAndSegmentName('rwy', '_runwayCollection', runwayName), _this._findBodyFixList(), _this._findFixListInByCollectionAndSegmentName('exitPoints', '_exitCollection', exitFixName));
+            return _this._generateFixList(_this._findFixListInByCollectionAndSegmentName('rwy', '_entryCollection', runwayName), _this._findBodyFixList(), _this._findFixListInByCollectionAndSegmentName('exitPoints', '_exitCollection', exitFixName));
         };
 
         _this._findFixListForStarByEntryAndRunway = function (entryFixName, runwayName) {
-            return _this._generateFixList(_this._findFixListInByCollectionAndSegmentName('entryPoints', '_entryCollection', entryFixName), _this._findBodyFixList(), _this._findFixListInByCollectionAndSegmentName('rwy', '_runwayCollection', runwayName));
+            return _this._generateFixList(_this._findFixListInByCollectionAndSegmentName('entryPoints', '_entryCollection', entryFixName), _this._findBodyFixList(), _this._findFixListInByCollectionAndSegmentName('rwy', '_exitCollection', runwayName));
         };
 
         if (!(0, _isObject3.default)(standardRoute) || (0, _isArray3.default)(standardRoute)) {
@@ -44853,16 +38214,6 @@ var StandardRouteModel = function (_BaseModel) {
         _this.exitPoints = {};
 
         /**
-         * Collection object of the `rwy` route segments
-         *
-         * @property _runwayCollection
-         * @type {RouteSegmentCollection}
-         * @default null
-         * @private
-         */
-        _this._runwayCollection = null;
-
-        /**
          * `RouteSegmentModel` for the fixes belonging to the `body` segment
          *
          * @property _bodySegmentModel
@@ -44917,10 +38268,9 @@ var StandardRouteModel = function (_BaseModel) {
             this.body = standardRoute.body;
             this.exitPoints = (0, _get3.default)(standardRoute, 'exitPoints', {});
             this.entryPoints = (0, _get3.default)(standardRoute, 'entryPoints', {});
-            this._runwayCollection = this._buildSegmentCollection(standardRoute.rwy);
             this._bodySegmentModel = this._buildSegmentModel(standardRoute.body);
-            this._exitCollection = this._buildSegmentCollection(standardRoute.exitPoints);
-            this._entryCollection = this._buildSegmentCollection(standardRoute.entryPoints);
+
+            this._buildEntryAndExitCollections(standardRoute);
         }
 
         /**
@@ -44939,7 +38289,6 @@ var StandardRouteModel = function (_BaseModel) {
             this.body = [];
             this.exitPoints = [];
             this.draw = [];
-            this._runwayCollection = null;
             this._bodySegmentModel = null;
             this._exitCollection = null;
             this._entryCollection = null;
@@ -45056,6 +38405,24 @@ var StandardRouteModel = function (_BaseModel) {
         }
 
         /**
+         * Checks if a given `fixName` is present in the `_entryCollection` or `_exitCollection`.
+         *
+         * This method does not check for items within the `_bodySegmentModel`. In the future
+         * this method may need to be extended to work with `_bodySegmentModel` items as well.
+         *
+         * @for StandardRouteModel
+         * @method hasFixName
+         * @param {string}
+         * @return {boolean}
+         */
+
+    }, {
+        key: 'hasFixName',
+        value: function hasFixName(fixName) {
+            return this._entryCollection && !(0, _isNil3.default)(this._entryCollection.findSegmentByName(fixName)) || this._exitCollection && !(0, _isNil3.default)(this._exitCollection.findSegmentByName(fixName));
+        }
+
+        /**
          * Build a new RouteSegmentModel for a segmentFixList
          *
          * `body` segment is expected to be an array, so instead of creating a collection like with `rwy` and
@@ -45090,8 +38457,6 @@ var StandardRouteModel = function (_BaseModel) {
     }, {
         key: '_buildSegmentCollection',
         value: function _buildSegmentCollection(segment) {
-            // SIDS have `exitPoints` while STARs have `entryPoints`. one or the other will be `undefined`
-            // depending on the route type.
             if (typeof segment === 'undefined' || (0, _isEmpty3.default)(segment)) {
                 return null;
             }
@@ -45099,6 +38464,35 @@ var StandardRouteModel = function (_BaseModel) {
             var segmentCollection = new _RouteSegmentCollection2.default(segment);
 
             return segmentCollection;
+        }
+
+        /**
+         * Determine if the `standardRoute` is a sid or a star and build the entry/exit collections
+         * with the correct data.
+         *
+         * STARS will have `entryPoints` defined so `rwy` becomes the `_exitCollection`
+         * SIDS will have `exitPoints` defined so `rwy` becomes the `_entryCollection`
+         *
+         * @for StandardRouteModel
+         * @method _buildEntryAndExitCollections
+         * @param standardRoute
+         * @private
+         */
+
+    }, {
+        key: '_buildEntryAndExitCollections',
+        value: function _buildEntryAndExitCollections(standardRoute) {
+            if ((0, _has3.default)(standardRoute, 'entryPoints')) {
+                this._entryCollection = this._buildSegmentCollection(standardRoute.entryPoints);
+                this._exitCollection = this._buildSegmentCollection(standardRoute.rwy);
+            } else if ((0, _has3.default)(standardRoute, 'exitPoints')) {
+                this._entryCollection = this._buildSegmentCollection(standardRoute.rwy);
+                this._exitCollection = this._buildSegmentCollection(standardRoute.exitPoints);
+            } else if ((0, _has3.default)(standardRoute, 'rwy')) {
+                console.error('The \'' + this.icao + '\' procedure does not contain exitPoints or entryPoints. ' + 'If this is a SID, at least one exitPoint must be defined. If this is a STAR, at least ' + 'one entryPoint must be defined.');
+
+                this._entryCollection = this._buildSegmentCollection(standardRoute.rwy);
+            }
         }
 
         /**
@@ -45110,9 +38504,9 @@ var StandardRouteModel = function (_BaseModel) {
          *
          * @for StandardRouteModel
          * @method _generateFixList
-         * @param originSegment {function}
+         * @param entrySegment {function}
          * @param bodySegment {function}
-         * @param destinationSegment {function}
+         * @param exitSegment {function}
          * @return {array}
          * @private
          */
@@ -45142,34 +38536,8 @@ var StandardRouteModel = function (_BaseModel) {
          */
 
     }, {
-        key: '_findStandardWaypointModelsForRoute',
+        key: '_findFixListInByCollectionAndSegmentName',
 
-
-        /**
-         * Gather a list of `StandardWaypointModel` objects for a particular route.
-         *
-         * @for StandardRouteModel
-         * @method _findStandardWaypointModelsForRoute
-         * @param entry {string}
-         * @param exti {string}
-         * @return {array<StandardWaypointModel>}
-         */
-        value: function _findStandardWaypointModelsForRoute(entry, exit) {
-            var entrySegmentItems = [];
-            var exitSegmentItems = [];
-
-            if (this._entryCollection) {
-                var entrySegment = this._entryCollection.findSegmentByName(entry);
-                entrySegmentItems = entrySegment.items;
-            }
-
-            if (this._runwayCollection) {
-                var exitSegment = this._runwayCollection.findSegmentByName(exit);
-                exitSegmentItems = exitSegment.items;
-            }
-
-            return this._generateFixList(entrySegmentItems, this._bodySegmentModel.items, exitSegmentItems);
-        }
 
         /**
          * Given an `originalCollectionName`, `collectionName` and a `segmentName`, return a normalized list of
@@ -45179,14 +38547,10 @@ var StandardRouteModel = function (_BaseModel) {
          * @method _findFixListInByCollectionAndSegmentName
          * @param originalCollectionName {string}  the name of the original collection from airport json,
          *                                         one of: [entryPoints, rwy, exitPoints]
-         * @param collectionName {string}  collectionName as defined here, one of:
-         *                                 [_runwayCollection, _entryCollection, _exitCollection]
+         * @param collectionName {string}  collectionName as defined here, one of: [_entryCollection, _exitCollection]
          * @segmentName {string}  name of the segment to search for
          * @return array {array<array>}
          */
-
-    }, {
-        key: '_findFixListInByCollectionAndSegmentName',
         value: function _findFixListInByCollectionAndSegmentName(originalCollectionName, collectionName, segmentName) {
             var originalCollection = (0, _get3.default)(this, originalCollectionName, null);
             var collection = (0, _get3.default)(this, collectionName, null);
@@ -45198,6 +38562,45 @@ var StandardRouteModel = function (_BaseModel) {
             }
 
             return collection.findWaypointsForSegmentName(segmentName);
+        }
+
+        /**
+         * Gather a list of `StandardWaypointModel` objects for a particular route.
+         *
+         * @for StandardRouteModel
+         * @method _findStandardWaypointModelsForRoute
+         * @param entry {string}
+         * @param exti {string}
+         * @return {array<StandardWaypointModel>}
+         */
+
+    }, {
+        key: '_findStandardWaypointModelsForRoute',
+        value: function _findStandardWaypointModelsForRoute(entry, exit) {
+            var entrySegmentItems = [];
+            var exitSegmentItems = [];
+
+            if (this._entryCollection) {
+                var entrySegment = this._entryCollection.findSegmentByName(entry);
+
+                if (typeof entrySegment === 'undefined') {
+                    throw new TypeError('Expected \'entry\' to exist in the RouteSegmentCollection, but \'' + this.icao + '\' ' + ('does not have an entry of \'' + entry + '\''));
+                }
+
+                entrySegmentItems = entrySegment.items;
+            }
+
+            if (this._exitCollection) {
+                var exitSegment = this._exitCollection.findSegmentByName(exit);
+
+                if (typeof exitSegment === 'undefined') {
+                    throw new TypeError('Expected \'exit\' to exist in the RouteSegmentCollection, but \'' + this.icao + '\' ' + ('does not have an exit of \'' + exit + '\''));
+                }
+
+                exitSegmentItems = exitSegment.items;
+            }
+
+            return this._generateFixList(entrySegmentItems, this._bodySegmentModel.items, exitSegmentItems);
         }
 
         /**
@@ -45252,7 +38655,7 @@ var StandardRouteModel = function (_BaseModel) {
 
 exports.default = StandardRouteModel;
 
-},{"../../base/BaseModel":559,"../../math/distance":575,"../../utilities/unitConverters":586,"./RouteSegmentCollection":553,"./RouteSegmentModel":554,"lodash/compact":453,"lodash/forEach":458,"lodash/get":459,"lodash/isArray":466,"lodash/isEmpty":469,"lodash/isObject":475}],557:[function(require,module,exports){
+},{"../../base/BaseModel":556,"../../math/distance":585,"../../utilities/unitConverters":595,"./RouteSegmentCollection":550,"./RouteSegmentModel":551,"lodash/compact":462,"lodash/forEach":468,"lodash/get":469,"lodash/has":470,"lodash/isArray":476,"lodash/isEmpty":480,"lodash/isNil":485,"lodash/isObject":487}],554:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -45261,6 +38664,10 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+var _isNil2 = require('lodash/isNil');
+
+var _isNil3 = _interopRequireDefault(_isNil2);
+
 var _BaseModel2 = require('../../base/BaseModel');
 
 var _BaseModel3 = _interopRequireDefault(_BaseModel2);
@@ -45268,6 +38675,10 @@ var _BaseModel3 = _interopRequireDefault(_BaseModel2);
 var _FixCollection = require('../Fix/FixCollection');
 
 var _FixCollection2 = _interopRequireDefault(_FixCollection);
+
+var _Waypoint = require('../../aircraft/FlightManagementSystem/Waypoint');
+
+var _Waypoint2 = _interopRequireDefault(_Waypoint);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -45290,6 +38701,27 @@ var NAME_INDEX = 0;
  * @final
  */
 var RESTRICTION_INDEX = 1;
+
+/**
+ * @property RESTRICTION_SEPARATOR
+ * @type {string}
+ * @final
+ */
+var RESTRICTION_SEPARATOR = '|';
+
+/**
+ * @property ALTITUDE_RESTRICTION_PREFIX
+ * @type {string}
+ * @final
+ */
+var ALTITUDE_RESTRICTION_PREFIX = 'A';
+
+/**
+ * @property SPEED_RESTRICTION_PREFIX
+ * @type {string}
+ * @final
+ */
+var SPEED_RESTRICTION_PREFIX = 'S';
 
 /**
  * A route waypoint describes a `fixName` and any altitude or speed restrictions for that fix.
@@ -45358,12 +38790,12 @@ var StandardRouteWaypointModel = function (_BaseModel) {
      *
      * Required altitude for a fix
      *
-     * @property _alititude (optional)
+     * @property _altitude (optional)
      * @type {number}
-     * @default -1000
+     * @default null
      * @private
      */
-    _this._alititude = -1000;
+    _this._altitude = null;
 
     // TODO: This will need to be implemented in the future as an emuneration. Something to the effect of: {BELOW|AT|ABOVE}
     /**
@@ -45371,24 +38803,24 @@ var StandardRouteWaypointModel = function (_BaseModel) {
      *
      * Altitude constraints, if any, for a fix.
      *
-     * @property _alititudeConstraint (options)
+     * @property _altitudeConstraint (options)
      * @type {string}
      * @default ''
      * @private
      */
-    _this._alititudeConstraint = '';
+    _this._altitudeConstraint = '';
 
     /**
      * NOT IN USE
      *
      * Speed constraint, if any, for a fix.
      *
-     * @property _speedConstraint (optional)
+     * @property _speed (optional)
      * @type {string}
-     * @default -1
+     * @default null
      * @private
      */
-    _this._speedConstraint = -1;
+    _this._speed = null;
 
     /**
      * Positon information for the current waypoint
@@ -45484,9 +38916,9 @@ var StandardRouteWaypointModel = function (_BaseModel) {
     value: function reset() {
       this.name = '';
       this._restrictions = null;
-      this._alititude = -1000;
-      this._alititudeConstraint = '';
-      this._speedConstraint = -1;
+      this._altitude = null;
+      this._altitudeConstraint = '';
+      this._speed = null;
 
       return this;
     }
@@ -45517,14 +38949,33 @@ var StandardRouteWaypointModel = function (_BaseModel) {
     }
 
     /**
-     * NOT IN USE
-     * // TODO: implement this method. altitude and speed should be parsed into real numbers so
-     *          they can be used elsewhere in the app.
+     * @for StandardRouteWaypointModel
+     * @method generateFmsWaypoint
+     * @param airport {AirportInstanceModel}
+     * @return {Waypoint}
+     */
+
+  }, {
+    key: 'generateFmsWaypoint',
+    value: function generateFmsWaypoint(airport) {
+      var fmsWaypoint = {
+        fix: this.name,
+        fixRestrictions: {
+          alt: this._altitude,
+          spd: this._speed
+        }
+      };
+
+      return new _Waypoint2.default(fmsWaypoint, airport);
+    }
+
+    /**
+     * Parse any waypoint restrictions
      *
      * Parse a single string into:
-     * - `this._alititude`            = expressed in feet
-     * - `this._alititudeConstraint`  = {BELOW|AT|ABOVE}
-     * - `this._speedConstraint`      = expressed in kts
+     * - `this._altitude`            = expressed in feet
+     * - `this._altitudeConstraint`  = {BELOW|AT|ABOVE}
+     * - `this._speed`      = expressed in kts
      *
      * Exapmles:
      * - "A80+|S210"
@@ -45541,7 +38992,62 @@ var StandardRouteWaypointModel = function (_BaseModel) {
   }, {
     key: '_parseWaypointRestrictions',
     value: function _parseWaypointRestrictions(waypointRestrictions) {
-      return this;
+      if ((0, _isNil3.default)(waypointRestrictions)) {
+        return;
+      }
+
+      var restrictionPieces = this._extractRestrictionPieces(waypointRestrictions);
+
+      for (var i = 0; i < restrictionPieces.length; i++) {
+        var restriction = restrictionPieces[i];
+
+        // looking at the first letter of a restrictionPiece here.
+        if (restriction[0] === ALTITUDE_RESTRICTION_PREFIX) {
+          this._setAltitudeRestriction(restriction);
+        } else if (restriction[0] === SPEED_RESTRICTION_PREFIX) {
+          this._setSpeedRestriction(restriction);
+        }
+      }
+    }
+
+    /**
+     * @for StandardRouteWaypointModel
+     * @method _setAltitudeRestriction
+     * @param altitudeRestriction {string}
+     * @private
+     */
+
+  }, {
+    key: '_setAltitudeRestriction',
+    value: function _setAltitudeRestriction(altitudeRestriction) {
+      this._altitude = altitudeRestriction.substr(1);
+    }
+
+    /**
+     * @for StandardRouteWaypointModel
+     * @method _setSpeedRestriction
+     * @param speedRestriction {string}
+     * @private
+     */
+
+  }, {
+    key: '_setSpeedRestriction',
+    value: function _setSpeedRestriction(speedRestriction) {
+      this._speed = speedRestriction.substr(1);
+    }
+
+    /**
+     * @for StandardRouteWaypointModel
+     * @method _extractRestrictionPieces
+     * @param waypointRestrictions {array<string>}
+     * @@return {string}
+     * @private
+     */
+
+  }, {
+    key: '_extractRestrictionPieces',
+    value: function _extractRestrictionPieces(waypointRestrictions) {
+      return waypointRestrictions.split(RESTRICTION_SEPARATOR);
     }
   }, {
     key: 'position',
@@ -45560,6 +39066,19 @@ var StandardRouteWaypointModel = function (_BaseModel) {
     key: 'gps',
     get: function get() {
       return this._waypointPosition.gps;
+    }
+
+    /**
+     * Return this waypoint's `gpsXY` position property
+     *
+     * @property gps
+     * @return {array}
+     */
+
+  }, {
+    key: 'gpsXY',
+    get: function get() {
+      return this._waypointPosition.gpsXY;
     }
 
     /**
@@ -45586,7 +39105,7 @@ var StandardRouteWaypointModel = function (_BaseModel) {
 
 exports.default = StandardRouteWaypointModel;
 
-},{"../../base/BaseModel":559,"../Fix/FixCollection":549}],558:[function(require,module,exports){
+},{"../../aircraft/FlightManagementSystem/Waypoint":530,"../../base/BaseModel":556,"../Fix/FixCollection":546,"lodash/isNil":485}],555:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -45689,7 +39208,7 @@ var BaseCollection = function () {
 
 exports.default = BaseCollection;
 
-},{"lodash/uniqueId":497}],559:[function(require,module,exports){
+},{"lodash/uniqueId":510}],556:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -45767,7 +39286,7 @@ var BaseModel = function () {
 
 exports.default = BaseModel;
 
-},{"lodash/uniqueId":497}],560:[function(require,module,exports){
+},{"lodash/uniqueId":510}],557:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -45776,11 +39295,394 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+var _has2 = require('lodash/has');
+
+var _has3 = _interopRequireDefault(_has2);
+
+var _ModelSourcePool = require('./ModelSourcePool');
+
+var _ModelSourcePool2 = _interopRequireDefault(_ModelSourcePool);
+
+var _modelSourceClassMap = require('./modelSourceClassMap');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+/**
+ * Provides a pulic gateway to the `modelSourcePool`.
+ *
+ * This class has only one concern, brokering changes to the `modelSourcePool`.
+ *
+ * @class ModelSourceFactory
+ */
+var ModelSourceFactory = function () {
+    function ModelSourceFactory() {
+        _classCallCheck(this, ModelSourceFactory);
+    }
+
+    _createClass(ModelSourceFactory, [{
+        key: 'getModelSourceForType',
+
+        /**
+         * Given a model type, retrieve a model from the `modelSourcePool`.
+         *
+         * @for ModelSourceFactory
+         * @method getModelSourceForType
+         * @param type {string}                 constructor name. must be incldued in `CLASS_MAP` dictonary
+         * @param args {*[]}                    parameters used for initializing a `modelSource` instance
+         * @return modelSource {constructor}    one of CLASS_MAP
+         */
+        value: function getModelSourceForType(type) {
+            if (!(0, _has3.default)(_modelSourceClassMap.CLASS_MAP, type)) {
+                throw new TypeError('Unsupported type passed to ModelSourceFactory: ' + type);
+            }
+
+            for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+                args[_key - 1] = arguments[_key];
+            }
+
+            var modelSource = _ModelSourcePool2.default.releaseReusable.apply(_ModelSourcePool2.default, [type].concat(args));
+
+            return modelSource;
+        }
+
+        /**
+         * Return a model back to the `modelSourcePool`.
+         *
+         * @for ModelSourceFactory
+         * @method returnModelToPool
+         * @param model {constructor}  one of CLASS_MAP
+         */
+
+    }, {
+        key: 'returnModelToPool',
+        value: function returnModelToPool(model) {
+            if (!(0, _has3.default)(_modelSourceClassMap.CLASS_MAP, model.constructor.name)) {
+                throw new TypeError('Unsupported type passed to ModelSourceFactory: ' + model.constructor.name);
+            }
+
+            _ModelSourcePool2.default.returnReusable(model);
+        }
+    }]);
+
+    return ModelSourceFactory;
+}();
+
+exports.default = new ModelSourceFactory();
+
+},{"./ModelSourcePool":558,"./modelSourceClassMap":559,"lodash/has":470}],558:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _find2 = require('lodash/find');
+
+var _find3 = _interopRequireDefault(_find2);
+
+var _forEach2 = require('lodash/forEach');
+
+var _forEach3 = _interopRequireDefault(_forEach2);
+
+var _has2 = require('lodash/has');
+
+var _has3 = _interopRequireDefault(_has2);
+
+var _isNil2 = require('lodash/isNil');
+
+var _isNil3 = _interopRequireDefault(_isNil2);
+
+var _without2 = require('lodash/without');
+
+var _without3 = _interopRequireDefault(_without2);
+
+var _BaseCollection2 = require('../BaseCollection');
+
+var _BaseCollection3 = _interopRequireDefault(_BaseCollection2);
+
+var _modelSourceClassMap = require('./modelSourceClassMap');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+/**
+ * @property MAX_POOL_SIZE_PER_MODEL
+ * @type {number}
+ * @final
+ */
+var MAX_POOL_SIZE_PER_MODEL = 300;
+
+/**
+ * @property MAX_POOL_SIZE
+ * @type {number}
+ * @final
+ */
+var MAX_POOL_SIZE = MAX_POOL_SIZE_PER_MODEL * _modelSourceClassMap.CLASS_MAP_LENGTH;
+
+/**
+ * A collection of model objects that are not in use.
+ *
+ * This provides:
+ * - a way to instantiate a `MAX_POOL_SIZE_PER_MODEL` number of model objects
+ * - a way to release a model for use within the app and remove it from the pool
+ * - a way to return a model after use and add it back into the pool
+ *
+ * This allows for decreased garbage collection because the model instances being used are already created. The
+ * app isn't always creating and destroying classes, instead it is creating, using and re-using the same models.
+ *
+ * see: (Object Pool)[https://sourcemaking.com/design_patterns/object_pool] on
+ * (sourcemaking.com)[https://sourcemaking.com] for more information.
+ *
+ * @class ModelSourcePool
+ * @extends BaseCollection
+ */
+
+var ModelSourcePool = function (_BaseCollection) {
+    _inherits(ModelSourcePool, _BaseCollection);
+
+    /**
+     * @constructor
+     * @for ModelSourcePool
+     */
+    function ModelSourcePool() {
+        var _ret;
+
+        _classCallCheck(this, ModelSourcePool);
+
+        // NOT IN USE
+        /**
+         * Maximum number of instances per model/reusable allowing in the pool
+         *
+         * This property is also used for pre-warming the pool on instantiation
+         *
+         * @property _maxPoolSizePerModel
+         * @type {number}
+         * @default MAX_POOL_SIZE
+         * @private
+         */
+        var _this = _possibleConstructorReturn(this, (ModelSourcePool.__proto__ || Object.getPrototypeOf(ModelSourcePool)).call(this));
+
+        _this._maxPoolSizePerModel = MAX_POOL_SIZE;
+
+        return _ret = _this._hydratePool(), _possibleConstructorReturn(_this, _ret);
+    }
+
+    /**
+     * Add a reusable to the pool
+     *
+     * @for ModelSourcePool
+     * @method returnReusable
+     * @param modelToAdd {constructor} one of CLASS_MAP
+     */
+
+
+    _createClass(ModelSourcePool, [{
+        key: 'returnReusable',
+        value: function returnReusable(modelToAdd) {
+            if (!(0, _has3.default)(_modelSourceClassMap.CLASS_MAP, modelToAdd.constructor.name)) {
+                throw new TypeError('Unsupported constructor passed to ModelSourcePool: ' + modelToAdd.constructor.name);
+            }
+
+            this._items.push(modelToAdd);
+        }
+
+        /**
+         * Remove a reusable from the collection and return it for use by the caller
+         *
+         * @for ModelSourcePool
+         * @method releaseReusable
+         * @param constructorName {string}  constructor name
+         * @param args {*[]}                parameters used for initializing a `modelSource` instance
+         * @return model {constructor}      one of CLASS_MAP
+         */
+
+    }, {
+        key: 'releaseReusable',
+        value: function releaseReusable(constructorName) {
+            var _model;
+
+            var model = this._findModelByConstructorName(constructorName);
+
+            for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+                args[_key - 1] = arguments[_key];
+            }
+
+            if (!model) {
+                model = new (Function.prototype.bind.apply(_modelSourceClassMap.CLASS_MAP[constructorName], [null].concat(args)))();
+            }
+
+            (_model = model).init.apply(_model, args);
+
+            return model;
+        }
+
+        /**
+         * On instantiation pre-warm the pool with reusables so they don't need to be created at run time.
+         *
+         * @for ModelSourcePool
+         * @method _hydratePool
+         * @private
+         */
+
+    }, {
+        key: '_hydratePool',
+        value: function _hydratePool() {
+            var _this2 = this;
+
+            (0, _forEach3.default)(_modelSourceClassMap.CLASS_MAP, function (ModelSource) {
+                for (var i = 0; i < MAX_POOL_SIZE_PER_MODEL; i++) {
+                    var model = new ModelSource();
+
+                    _this2._items.push(model);
+                }
+            });
+        }
+
+        /**
+         * @for ModelSourcePool
+         * @method _findModelByConstructorName
+         * @param constructorName {string}  the name of a constructor
+         * @return model {constructor}      one of CLASS_MAP
+         * @private
+         */
+
+    }, {
+        key: '_findModelByConstructorName',
+        value: function _findModelByConstructorName(constructorName) {
+            var model = (0, _find3.default)(this._items, function (model) {
+                return model.constructor.name === constructorName;
+            });
+
+            if ((0, _isNil3.default)(model)) {
+                return null;
+            }
+
+            this._removeItem(model);
+
+            return model;
+        }
+
+        /**
+         * Remove a specific instance from the pool
+         *
+         * When a reusable has been requested, it mush be removed from the pool
+         *
+         * @for ModelSourcePool
+         * @method _removeItem
+         * @param model {constructor} one of CLASS_MAP
+         * @private
+         */
+
+    }, {
+        key: '_removeItem',
+        value: function _removeItem(model) {
+            this._items = (0, _without3.default)(this._items, model);
+        }
+    }]);
+
+    return ModelSourcePool;
+}(_BaseCollection3.default);
+
+exports.default = new ModelSourcePool();
+
+},{"../BaseCollection":555,"./modelSourceClassMap":559,"lodash/find":466,"lodash/forEach":468,"lodash/has":470,"lodash/isNil":485,"lodash/without":513}],559:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.CLASS_MAP_LENGTH = exports.CLASS_MAP = undefined;
+
+var _keys2 = require('lodash/keys');
+
+var _keys3 = _interopRequireDefault(_keys2);
+
+var _FixModel = require('../../airport/Fix/FixModel');
+
+var _FixModel2 = _interopRequireDefault(_FixModel);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// import Waypoint from '../../aircraft/Waypoint';
+// import PositionModel from '../PositionModel';
+
+/**
+ * A map of Constructor names to constructor functions
+ *
+ * @property CLASS_MAP
+ * @type {object}
+ * @final
+ */
+var CLASS_MAP = exports.CLASS_MAP = {
+  /**
+   * @memberof CLASS_MAP
+   * @property FixModel
+   * @type {FixModel}
+   * @final
+   */
+  FixModel: _FixModel2.default
+
+  // TODO: Future additions to the pool each of these models need some work in orer to integrate
+  // into the pool structure
+  //
+  // /**
+  //  * @memberof CLASS_MAP
+  //  * @property Waypoint
+  //  * @type {Waypoint}
+  //  * @final
+  //  */
+  // Waypoint: Waypoint
+  // /**
+  //  * @memberof CLASS_MAP
+  //  * @property PositionModel
+  //  * @type {PositionModel}
+  //  * @final
+  //  */
+  // PositionModel: PositionModel
+};
+
+/**
+ * Provide a length number that can be accessed externally
+ *
+ * Since CLASS_MAP is an object, determining the length (number of keys) is a two-step process.
+ * We do that here so any class that needs to know the length can simply import this property.
+ *
+ * @property CLASS_MAP_LENGTH
+ * @type {number}
+ */
+var CLASS_MAP_LENGTH = exports.CLASS_MAP_LENGTH = (0, _keys3.default)(CLASS_MAP).length;
+
+},{"../../airport/Fix/FixModel":547,"lodash/keys":492}],560:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _isNumber2 = require('lodash/isNumber');
+
+var _isNumber3 = _interopRequireDefault(_isNumber2);
+
 var _uniqueId2 = require('lodash/uniqueId');
 
 var _uniqueId3 = _interopRequireDefault(_uniqueId2);
 
-var _core = require('../math/core');
+var _positionModelHelpers = require('./positionModelHelpers');
+
+var _circle = require('../math/circle');
 
 var _unitConverters = require('../utilities/unitConverters');
 
@@ -45789,15 +39691,25 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 /**
- * @property REGEX
- * @type {Object}
+ * @property LATITUDE_INDEX
+ * @type {number}
  * @final
  */
-var REGEX = {
-    COMPASS_DIRECTION: /^[NESW]/,
-    SW: /[SW]/,
-    LAT_LONG: /^([NESW])(\d+(\.\d+)?)([d °](\d+(\.\d+)?))?([m '](\d+(\.\d+)?))?$/
-};
+var LATITUDE_INDEX = 0;
+
+/**
+ * @property LONGITUDE_INDEX
+ * @type {number}
+ * @final
+ */
+var LONGITUDE_INDEX = 1;
+
+/**
+ * @property ELEVATION_INDEX
+ * @type {number}
+ * @final
+ */
+var ELEVATION_INDEX = 2;
 
 /**
  * A physical location on the Earth's surface
@@ -45814,7 +39726,7 @@ var REGEX = {
  * @class Position
  */
 
-var Position = function () {
+var PositionModel = function () {
     /**
      * coordinates may contain an optional elevation as a third element.
      * It must be suffixed by either 'ft' or 'm' to indicate the units.
@@ -45826,120 +39738,101 @@ var Position = function () {
      *
      * @for PositionModel
      * @constructor
-     * @param coordinates {array} Array containing offset pair or latitude/longitude pair
-     * @param reference {}        Position to use for calculating offsets when lat/long given
-     * @param magnetic_north
-     * @param mode {string}       optional. Set to 'GPS' to indicate you are inputting lat/lon
-     *                            that should be converted to positions
+     * @param coordinates {array}               Array containing offset pair or latitude/longitude pair
+     * @param reference {PositionModel|null}    Position to use for calculating offsets when lat/long given
+     * @param magnetic_north {number}           magnetic north direction
+     * @param mode {string}                     Set to 'GPS' to indicate you are inputting lat/long that should
+     *                                          be converted to positions
      */
-    function Position() {
+    function PositionModel() {
         var coordinates = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
         var reference = arguments[1];
         var magnetic_north = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
-        var mode = arguments[3];
 
-        _classCallCheck(this, Position);
+        _classCallCheck(this, PositionModel);
 
-        this._id = (0, _uniqueId3.default)();
-        // TODO: it might make more sense to abstract `coordinates` out to another Model object.
+        /**
+         * @property _id
+         * @type {string}
+         */
+        this._id = (0, _uniqueId3.default)('position-model-');
+
+        /**
+         * @property latitude
+         * @type {number}
+         * @default 0
+         */
         this.latitude = 0;
-        this.longitude = 0;
-        this.elevation = 0;
-        this.reference_position = reference;
-        this.magnetic_north = magnetic_north;
-        this.x = 0;
-        this.y = 0;
-        // TODO: make this a getter;
-        this.position = [this.x, this.y];
-        this.gps = [0, 0];
 
-        return this.parse(coordinates, mode);
+        /**
+         * @property longitude
+         * @type {number}
+         * @default 0
+         */
+        this.longitude = 0;
+
+        /**
+         * @property elevation
+         * @type {number}
+         * @default 0
+         */
+        this.elevation = 0;
+
+        /**
+         * @property reference_position
+         * @type {PositionModel|null}
+         */
+        this.reference_position = reference;
+
+        /**
+         * @property magnetic_north
+         * @type {number}
+         */
+        this.magnetic_north = magnetic_north;
+
+        /**
+         * @property x
+         * @type {number}
+         * @default 0
+         */
+        this.x = 0;
+
+        /**
+         * @property y
+         * @type {number}
+         * @default 0
+         */
+        this.y = 0;
+
+        return this.init(coordinates);
     }
 
     /**
-     * Magnetic north of the current instance expressed in radians
+     * Current x, y position
      *
-     * @property magneticNorthInRadians
-     * @return {number}
+     * @property position
+     * @return {array}
      */
 
 
-    _createClass(Position, [{
-        key: 'parse',
+    _createClass(PositionModel, [{
+        key: 'init',
 
 
         /**
          * @for PositionModel
-         * @method parse
+         * @method init
          */
-        value: function parse(coordinates, mode) {
-            if (!REGEX.COMPASS_DIRECTION.test(coordinates[0])) {
-                this.x = coordinates[0];
-                this.y = coordinates[1];
-                // TODO: remove once this property is a getter
-                this.position = [this.x, this.y];
-
-                if (mode === 'GPS') {
-                    this.parse4326();
-                }
-
-                return;
-            }
-
-            this.latitude = this.parseCoordinate(coordinates[0]);
-            this.longitude = this.parseCoordinate(coordinates[1]);
-            // GPS coordinates in [x,y] order
-            this.gps = [this.longitude, this.latitude];
+        value: function init(coordinates) {
+            this.latitude = (0, _unitConverters.parseCoordinate)(coordinates[LATITUDE_INDEX]);
+            this.longitude = (0, _unitConverters.parseCoordinate)(coordinates[LONGITUDE_INDEX]);
 
             // TODO: this is using coersion and shoudld be updated to be more explicit
-            if (coordinates[2] != null) {
-                this.elevation = (0, _unitConverters.parseElevation)(coordinates[2]);
+            if (coordinates[ELEVATION_INDEX] != null) {
+                this.elevation = (0, _unitConverters.parseElevation)(coordinates[ELEVATION_INDEX]);
             }
 
-            // this function (parse4326) is moved to be able to call it if point is
-            // EPSG:4326, numeric decimal, like those from GeoJSON
-            if (this.reference_position != null) {
-                this.x = this.longitude;
-                this.y = this.latitude;
-
-                this.parse4326();
-            }
-        }
-
-        /**
-         * @for PositionModel
-         * @method parse4326
-         */
-
-    }, {
-        key: 'parse4326',
-        value: function parse4326() {
-            // if coordinates were in WGS84 EPSG:4326 (signed decimal lat/lon -12.123,83.456)
-            // parse them
-            this.longitude = this.x;
-            this.latitude = this.y;
-            this.x = this.distanceToPoint(this.reference_position.latitude, this.reference_position.longitude, this.reference_position.latitude, this.longitude);
-
-            if (this.reference_position.longitude > this.longitude) {
-                this.x *= -1;
-            }
-
-            this.y = this.distanceToPoint(this.reference_position.latitude, this.reference_position.longitude, this.latitude, this.reference_position.longitude);
-
-            if (this.reference_position.latitude > this.latitude) {
-                this.y *= -1;
-            }
-
-            // Adjust to use magnetic north instead of true north
-            var t = Math.atan2(this.y, this.x);
-            var r = Math.sqrt(this.x * this.x + this.y * this.y);
-
-            t += this.magnetic_north;
-
-            this.x = r * (0, _core.cos)(t);
-            this.y = r * (0, _core.sin)(t);
-
-            this.position = [this.x, this.y];
+            this._calculateScreenPosition();
         }
 
         /**
@@ -45952,69 +39845,84 @@ var Position = function () {
     }, {
         key: 'distanceTo',
         value: function distanceTo(point) {
-            return this.distanceToPoint(this.latitude, this.longitude, point.latitude, point.longitude);
+            return (0, _circle.distanceToPoint)(this.latitude, this.longitude, point.latitude, point.longitude);
         }
 
         /**
-         * The distance in km between two locations
-         *
+         * Checks whether or not this `PositionModel` has a reference `PositionModel`
+         * Without the reference position, the rotation due to magnetic variation will not be applied
          * @for PositionModel
-         * @method distanceToPoint
-         * @param lat_a
-         * @param lng_a
-         * @param lat_b
-         * @param lng_b
-         * return {number}
+         * @method _hasReferencePosition
+         * @return {Boolean} whether this position is based on a reference position
          */
 
     }, {
-        key: 'distanceToPoint',
-        value: function distanceToPoint(lat_a, lng_a, lat_b, lng_b) {
-            var d_lat = (0, _unitConverters.degreesToRadians)(lat_a - lat_b);
-            var d_lng = (0, _unitConverters.degreesToRadians)(lng_a - lng_b);
-
-            // TODO: what do these vars mean? a & c?
-            // TODO: could the maths here be abstracted?
-            var a = Math.pow((0, _core.sin)(d_lat / 2), 2) + (0, _core.cos)((0, _unitConverters.degreesToRadians)(lat_a)) * (0, _core.cos)((0, _unitConverters.degreesToRadians)(lat_b)) * Math.pow((0, _core.sin)(d_lng / 2), 2);
-            var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-
-            // TODO: what does this number mean? enumerate the magic nubmer
-            return c * 6371.00;
+        key: '_hasReferencePosition',
+        value: function _hasReferencePosition() {
+            return this.reference_position !== null;
         }
 
         /**
+         * Determine the `x` and `y` values of the `PositionModel`, used for drawing on the canvas
          * @for PositionModel
-         * @method parseCoordinate
-         * @param coord
+         * @method _calculateScreenPosition
+         * @private
          */
 
     }, {
-        key: 'parseCoordinate',
-        value: function parseCoordinate(coord) {
-            var match = REGEX.LAT_LONG.exec(coord);
-
-            if (match == null) {
-                log('Unable to parse coordinate ' + coord);
-
+        key: '_calculateScreenPosition',
+        value: function _calculateScreenPosition() {
+            if (!this._hasReferencePosition()) {
                 return;
             }
 
-            var ret = parseFloat(match[2]);
+            var _PositionModel$calcul = PositionModel.calculatePosition(this.gps, this.reference_position, this.magnetic_north),
+                _PositionModel$calcul2 = _slicedToArray(_PositionModel$calcul, 2),
+                x = _PositionModel$calcul2[0],
+                y = _PositionModel$calcul2[1];
 
-            if (match[5] != null) {
-                ret += parseFloat(match[5]) / 60;
-
-                if (match[8] != null) {
-                    ret += parseFloat(match[8]) / 3600;
-                }
-            }
-
-            if (REGEX.SW.test(match[1])) {
-                ret *= -1;
-            }
-
-            return ret;
+            this.x = x;
+            this.y = y;
         }
+    }, {
+        key: 'position',
+        get: function get() {
+            return [this.x, this.y];
+        }
+
+        /**
+         * GPS coordinates in [latitude, longitude] order
+         * For reverse order, see `PositionModel.gpsXY`
+         * @property gps
+         * @return {array}
+         */
+
+    }, {
+        key: 'gps',
+        get: function get() {
+            return [this.latitude, this.longitude];
+        }
+
+        /**
+         * GPS coordinates in [x,y] order
+         * For reverse order, see `PositionModel.gps`
+         * @property gpsXY
+         * @return {array}
+         */
+
+    }, {
+        key: 'gpsXY',
+        get: function get() {
+            return [this.longitude, this.latitude];
+        }
+
+        /**
+         * Magnetic north of the current instance expressed in radians
+         *
+         * @property magneticNorthInRadians
+         * @return {number}
+         */
+
     }, {
         key: 'magneticNorthInRadians',
         get: function get() {
@@ -46022,12 +39930,123 @@ var Position = function () {
         }
     }]);
 
-    return Position;
+    return PositionModel;
 }();
 
-exports.default = Position;
+/**
+ * Calculate x/y position from latitude and longitude and a referencePostion
+ *
+ * Provides a static method to calculate position without instantiating a `PositionModel` class.
+ *
+ * @function getPosition
+ * @param coordinates {array<string>}
+ * @param referencePostion {PositionModel|null}
+ * @param magneticNorth {number}
+ * @return {array}
+ * @static
+ */
 
-},{"../math/core":574,"../utilities/unitConverters":586,"lodash/uniqueId":497}],561:[function(require,module,exports){
+
+exports.default = PositionModel;
+PositionModel.calculatePosition = function (coordinates, referencePostion, magneticNorth) {
+    if (!coordinates || !referencePostion || !(0, _isNumber3.default)(magneticNorth)) {
+        throw new TypeError('Invalid parameter. PositionModel.getPosition() requires coordinates, referencePostion ' + 'and magneticNorth as parameters');
+    }
+
+    var latitude = (0, _unitConverters.parseCoordinate)(coordinates[LATITUDE_INDEX]);
+    var longitude = (0, _unitConverters.parseCoordinate)(coordinates[LONGITUDE_INDEX]);
+
+    var canvasPositionX = (0, _positionModelHelpers.calculateDistanceToPointForX)(referencePostion, referencePostion.latitude, longitude);
+
+    var canvasPositionY = (0, _positionModelHelpers.calculateDistanceToPointForY)(referencePostion, latitude, referencePostion.longitude);
+
+    var _adjustForMagneticNor = (0, _positionModelHelpers.adjustForMagneticNorth)(canvasPositionX, canvasPositionY, magneticNorth),
+        x = _adjustForMagneticNor.x,
+        y = _adjustForMagneticNor.y;
+
+    return [x, y];
+};
+
+},{"../math/circle":583,"../utilities/unitConverters":595,"./positionModelHelpers":561,"lodash/isNumber":486,"lodash/uniqueId":510}],561:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.adjustForMagneticNorth = exports.calculateDistanceToPointForY = exports.calculateDistanceToPointForX = exports.hasCardinalDirectionInCoordinate = undefined;
+
+var _circle = require('../math/circle');
+
+var _globalConstants = require('../constants/globalConstants');
+
+/**
+ * @function hasCardinalDirectionInCoordinate
+ * @param coordinate {string}
+ * @return {boolean}
+ */
+var hasCardinalDirectionInCoordinate = exports.hasCardinalDirectionInCoordinate = function hasCardinalDirectionInCoordinate(coordinate) {
+    return _globalConstants.REGEX.COMPASS_DIRECTION.test(coordinate);
+};
+
+/**
+ * @function calculateDistanceToPointForX
+ * @param referencePostion {PositionModel}
+ * @param latitude {number}
+ * @param longitude {number}
+ * @return x {number}
+ */
+var calculateDistanceToPointForX = exports.calculateDistanceToPointForX = function calculateDistanceToPointForX(referencePostion, latitude, longitude) {
+    var x = (0, _circle.distanceToPoint)(referencePostion.latitude, referencePostion.longitude, latitude, longitude);
+
+    if (referencePostion.longitude > longitude) {
+        x *= -1;
+    }
+
+    return x;
+};
+
+/**
+ *
+ *
+ * @function calculateDistanceToPointForY
+ * @param referencePostion {PositionModel}
+ * @param latitude {number}
+ * @param longitude {number}
+ * @return y {number}
+ */
+var calculateDistanceToPointForY = exports.calculateDistanceToPointForY = function calculateDistanceToPointForY(referencePostion, latitude, longitude) {
+    var y = (0, _circle.distanceToPoint)(referencePostion.latitude, referencePostion.longitude, latitude, longitude);
+
+    if (referencePostion.latitude > latitude) {
+        y *= -1;
+    }
+
+    return y;
+};
+
+/**
+ * Adjust to use magnetic north instead of true north
+ *
+ * @function adjustForMagneticNorth
+ * @param originalX {string}
+ * @param originalY {string}
+ * @param magneticNorth {number}
+ * @return {object}
+ */
+var adjustForMagneticNorth = exports.adjustForMagneticNorth = function adjustForMagneticNorth(originalX, originalY, magneticNorth) {
+    var t = Math.atan2(originalY, originalX) + magneticNorth;
+    var r = Math.sqrt(originalX * originalX + originalY * originalY);
+
+    var x = r * Math.cos(t);
+    var y = r * Math.sin(t);
+
+    return {
+        x: x,
+        y: y
+    };
+};
+
+},{"../constants/globalConstants":573,"../math/circle":583}],562:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -46068,7 +40087,7 @@ var _selectors = require('../constants/selectors');
 
 var _logLevel = require('../constants/logLevel');
 
-var _AircraftInstanceModel = require('../aircraft/AircraftInstanceModel');
+var _aircraftConstants = require('../constants/aircraftConstants');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -46726,6 +40745,7 @@ var ConvasController = function () {
             });
         }
 
+        // TODO: break this method up into smaller chunks
         /**
          * @for CanvasController
          * @method canvas_draw_sids
@@ -46743,69 +40763,68 @@ var ConvasController = function () {
 
             // Store the count of sid text drawn for a specific transition
             var text_at_point = [];
+            var airport = window.airportController.airport_get();
 
             cc.strokeStyle = COLORS.DEPARTURE_COLOR;
             cc.fillStyle = COLORS.DEPARTURE_COLOR;
             cc.setLineDash([1, 10]);
             cc.font = 'italic 14px monoOne, monospace';
 
-            var airport = window.airportController.airport_get();
-
-            (0, _forEach3.default)(airport.sids, function (sid, s) {
+            (0, _forEach3.default)(airport.sidCollection.draw, function (sid) {
                 var write_sid_name = true;
-                var fx = null;
-                var fy = null;
+                var fixX = null;
+                var fixY = null;
 
-                // TODO: this if should be reversed to check for the opposite condition and return early.
-                if ((0, _has3.default)(sid, 'draw')) {
-                    (0, _forEach3.default)(sid.draw, function (fixList, i) {
-                        // const fixList = airport.sids[s].draw[i];
-                        var exit_name = null;
+                if (!(0, _has3.default)(sid, 'draw')) {
+                    return;
+                }
 
-                        for (var j = 0; j < fixList.length; j++) {
-                            // write exitPoint name
-                            if (fixList[j].indexOf('*') !== -1) {
-                                exit_name = fixList[j].replace('*', '');
-                                write_sid_name = false;
-                            }
+                (0, _forEach3.default)(sid.draw, function (fixList, i) {
+                    var exit_name = null;
 
-                            var fix = airport.getFixPosition(fixList[j].replace('*', ''));
-
-                            if (!fix) {
-                                log('Unable to draw line to \'' + fixList[j] + '\' because its position is not defined!', _logLevel.LOG.WARNING);
-                            }
-
-                            fx = window.uiController.km_to_px(fix[0]) + _this4.canvas.panX;
-                            fy = -window.uiController.km_to_px(fix[1]) + _this4.canvas.panY;
-
-                            if (j === 0) {
-                                cc.beginPath();
-                                cc.moveTo(fx, fy);
-                            } else {
-                                cc.lineTo(fx, fy);
-                            }
+                    for (var j = 0; j < fixList.length; j++) {
+                        // write exitPoint name
+                        if (fixList[j].indexOf('*') !== -1) {
+                            exit_name = fixList[j].replace('*', '');
+                            write_sid_name = false;
                         }
 
-                        cc.stroke();
+                        var fix = airport.getFixPosition(fixList[j].replace('*', ''));
 
-                        if (exit_name) {
-                            // Initialize count for this transition
-                            if (isNaN(text_at_point[exit_name])) {
-                                text_at_point[exit_name] = 0;
-                            }
-
-                            // Move the y point for drawing depending on how many sids we have drawn text for
-                            // at this point already
-                            var y_point = fy + 15 * text_at_point[exit_name];
-                            cc.fillText(s + '.' + exit_name, fx + 10, y_point);
-
-                            text_at_point[exit_name] += 1; // Increment the count for this transition
+                        if (!fix) {
+                            log('Unable to draw line to \'' + fixList[j] + '\' because its position is not defined!', _logLevel.LOG.WARNING);
                         }
-                    });
 
-                    if (write_sid_name) {
-                        cc.fillText(s, fx + 10, fy);
+                        fixX = window.uiController.km_to_px(fix[0]) + _this4.canvas.panX;
+                        fixY = -window.uiController.km_to_px(fix[1]) + _this4.canvas.panY;
+
+                        if (j === 0) {
+                            cc.beginPath();
+                            cc.moveTo(fixX, fixY);
+                        } else {
+                            cc.lineTo(fixX, fixY);
+                        }
                     }
+
+                    cc.stroke();
+
+                    if (exit_name) {
+                        // Initialize count for this transition
+                        if (isNaN(text_at_point[exit_name])) {
+                            text_at_point[exit_name] = 0;
+                        }
+
+                        // Move the y point for drawing depending on how many sids we have drawn text for
+                        // at this point already
+                        var y_point = fixY + 15 * text_at_point[exit_name];
+                        cc.fillText(sid.identifier + '.' + exit_name, fixX + 10, y_point);
+
+                        text_at_point[exit_name] += 1; // Increment the count for this transition
+                    }
+                });
+
+                if (write_sid_name) {
+                    cc.fillText(sid.identifier, fixX + 10, fixY);
                 }
             });
         }
@@ -46821,7 +40840,7 @@ var ConvasController = function () {
         key: 'canvas_draw_separation_indicator',
         value: function canvas_draw_separation_indicator(cc, aircraft) {
             // Draw a trailing indicator 2.5 NM (4.6km) behind landing aircraft to help with traffic spacing
-            var rwy = window.airportController.airport_get().getRunway(aircraft.fms.currentWaypoint().runway);
+            var rwy = window.airportController.airport_get().getRunway(aircraft.fms.currentWaypoint.runway);
 
             if (!rwy) {
                 return;
@@ -47101,7 +41120,7 @@ var ConvasController = function () {
             for (var i = 0; i < 60; i++) {
                 twin.update();
 
-                ils_locked = twin.isPrecisionGuided() && twin.category === _AircraftInstanceModel.FLIGHT_CATEGORY.ARRIVAL && twin.mode === _AircraftInstanceModel.FLIGHT_MODES.LANDING;
+                ils_locked = twin.isPrecisionGuided() && twin.category === _aircraftConstants.FLIGHT_CATEGORY.ARRIVAL && twin.mode === _aircraftConstants.FLIGHT_MODES.LANDING;
 
                 future_track.push([twin.position[0], twin.position[1], ils_locked]);
 
@@ -47113,7 +41132,7 @@ var ConvasController = function () {
             window.gameController.game.delta = save_delta;
             cc.save();
 
-            if (aircraft.category === _AircraftInstanceModel.FLIGHT_CATEGORY.DEPARTURE) {
+            if (aircraft.category === _aircraftConstants.FLIGHT_CATEGORY.DEPARTURE) {
                 cc.strokeStyle = COLORS.DEPARTURE_COLOR;
             } else {
                 cc.strokeStyle = COLORS.RED_06;
@@ -47212,7 +41231,7 @@ var ConvasController = function () {
                 // width of colored bar
                 var bar_width = width / 18;
                 var bar_width2 = bar_width / 2;
-                var ILS_enabled = aircraft.fms.currentWaypoint().runway && aircraft.category === _AircraftInstanceModel.FLIGHT_CATEGORY.ARRIVAL;
+                var ILS_enabled = aircraft.fms.currentWaypoint.runway && aircraft.category === _aircraftConstants.FLIGHT_CATEGORY.ARRIVAL;
                 var lock_size = height / 3;
                 var lock_offset = lock_size / 8;
                 var pi = Math.PI;
@@ -47283,7 +41302,7 @@ var ConvasController = function () {
                     cc.fillStyle = green;
                     // Draw box
                     cc.fillRect(-width2, -height2, width, height);
-                    cc.fillStyle = aircraft.category === _AircraftInstanceModel.FLIGHT_CATEGORY.DEPARTURE ? blue : red;
+                    cc.fillStyle = aircraft.category === _aircraftConstants.FLIGHT_CATEGORY.DEPARTURE ? blue : red;
                     // Draw colored bar
                     cc.fillRect(-width2 - bar_width, -height2, bar_width, height);
                 } else {
@@ -47319,7 +41338,7 @@ var ConvasController = function () {
                     cc.lineTo(0, height2);
                     cc.stroke(); // bottom arc end
 
-                    if (aircraft.mode === _AircraftInstanceModel.FLIGHT_MODES.LANDING) {
+                    if (aircraft.mode === _aircraftConstants.FLIGHT_MODES.LANDING) {
                         // Localizer Capture Indicator
                         cc.fillStyle = white;
                         cc.beginPath();
@@ -47924,7 +41943,1462 @@ var ConvasController = function () {
 
 exports.default = ConvasController;
 
-},{"../aircraft/AircraftInstanceModel":529,"../constants/logLevel":564,"../constants/selectors":565,"../math/circle":573,"../math/core":574,"../math/distance":575,"../math/vector":577,"../utilities/timeHelpers":585,"../utilities/unitConverters":586,"jquery":296,"lodash/cloneDeep":452,"lodash/forEach":458,"lodash/has":460}],562:[function(require,module,exports){
+},{"../constants/aircraftConstants":570,"../constants/logLevel":574,"../constants/selectors":575,"../math/circle":583,"../math/core":584,"../math/distance":585,"../math/vector":587,"../utilities/timeHelpers":594,"../utilities/unitConverters":595,"jquery":296,"lodash/cloneDeep":461,"lodash/forEach":468,"lodash/has":470}],563:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _commandDefinitions = require('./commandDefinitions');
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+/**
+ * A definition of a specific command and it's arguments.
+ *
+ * Conatins a command name, which maps 1:1 with a name defined in `commandMap.js` and `commandDefinitions.js`.
+ * Commands may have an alias or many, we care only about the root command. The command map will map any
+ * alias to a root command and this `CommandModel` is only concerned about those root commands. It has
+ * no way of knowing what the original alias was, if one was used.
+ *
+ * Each `CommandModel` will be expected to have, at a minimum, a `name` and a matching `COMMAND_DEFINITION`.
+ *
+ * @class CommandModel
+ */
+var CommandModel = function () {
+  /**
+   * @constructor
+   * @for CommandModel
+   */
+  function CommandModel() {
+    var name = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+
+    _classCallCheck(this, CommandModel);
+
+    /**
+     * command name, should match a command in the COMMANDS constant
+     *
+     * @property name
+     * @type {string}
+     */
+    this.name = name;
+
+    /**
+     * A reference to the COMMAND_DEFINITION for this particular command.
+     * this gives us access to both the `validate` and `parse` methods
+     * that belong to this command.
+     *
+     * Storing this as a class property allows us to do the lookup once
+     * and then make it available to the rest of the class so it can
+     * be referenced when needed.
+     *
+     * @property _commandDefinition
+     * @type {object}
+     * @private
+     */
+    this._commandDefinition = _commandDefinitions.COMMAND_DEFINITION[name];
+
+    /**
+     * list of command arguments
+     *
+     * - assumed to be the text command names
+     * - may be empty, depending on the command
+     * - should only ever be strings on initial set immediately after instantiation
+     * - will later be parsed via the `_commandDefinition.parse()` method to the
+     *   correct data types and shape
+     *
+     * @property args
+     * @type {array}
+     * @default []
+     */
+    this.args = [];
+
+    // TODO: may need to throw here if `_commandDefinition` is undefined
+  }
+
+  /**
+   * Return an array of [name, ...args]
+   *
+   * We use this shape solely to match the existing api.
+   *
+   * @property nameAndArgs
+   * @return {array}
+   */
+
+
+  _createClass(CommandModel, [{
+    key: 'validateArgs',
+
+
+    /**
+     * Send the initial args off to the validator
+     *
+     * @for CommandModel
+     * @method validateArgs
+     * @return {string|undefined}
+     */
+    value: function validateArgs() {
+      return this._commandDefinition.validate(this.args);
+    }
+
+    /**
+     * Send the initial args, set from the `CommandParser` right after instantiation, off to
+     * the parser for formatting.
+     *
+     * @for CommandModel
+     * @method parseArgs
+     */
+
+  }, {
+    key: 'parseArgs',
+    value: function parseArgs() {
+      // this completely overwrites current args. this is intended because all args are received as
+      // strings but consumed as strings, numbers or booleans. and when the args are initially set
+      // they may not all be available yet
+      this.args = this._commandDefinition.parse(this.args);
+    }
+  }, {
+    key: 'nameAndArgs',
+    get: function get() {
+      return [this.name].concat(_toConsumableArray(this.args));
+    }
+  }]);
+
+  return CommandModel;
+}();
+
+exports.default = CommandModel;
+
+},{"./commandDefinitions":567}],564:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _compact2 = require('lodash/compact');
+
+var _compact3 = _interopRequireDefault(_compact2);
+
+var _forEach2 = require('lodash/forEach');
+
+var _forEach3 = _interopRequireDefault(_forEach2);
+
+var _has2 = require('lodash/has');
+
+var _has3 = _interopRequireDefault(_has2);
+
+var _isString2 = require('lodash/isString');
+
+var _isString3 = _interopRequireDefault(_isString2);
+
+var _map2 = require('lodash/map');
+
+var _map3 = _interopRequireDefault(_map2);
+
+var _tail2 = require('lodash/tail');
+
+var _tail3 = _interopRequireDefault(_tail2);
+
+var _CommandModel = require('./CommandModel');
+
+var _CommandModel2 = _interopRequireDefault(_CommandModel);
+
+var _generalUtilities = require('../utilities/generalUtilities');
+
+var _commandMap = require('./commandMap');
+
+var _globalConstants = require('../constants/globalConstants');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+/**
+ * Symbol used to split the command string as it enters the class.
+ *
+ * @property COMMAND_ARGS_SEPARATOR
+ * @type {string}
+ * @final
+ */
+var COMMAND_ARGS_SEPARATOR = ' ';
+
+/**
+ * This class is responsible for taking the content of the `$commandInput` and parsing it
+ * out into commands and arguments.
+ *
+ * Everything this class needs comes in as a single string provided by `InputController.input_run()`.
+ * ex:
+ * - `timewarp 50`
+ * - `AA777 fh 0270 d 050 sp 200`
+ * - `AA777 hold dumba left 2min`
+ *
+ * **Differentiation of commands and arguments is determinied by splitting the string on an empty space. This
+ * is very important, so legacy commands did not have spaces between the command and argument. With this
+ * implementation _every_ command shall have a space between itself and it's arguments.**
+ *
+ * Commands are broken out into two categories: `System` and `Transmit`.
+ * - System commands are zero or single argument commands that are used for interacting with the app
+ *   itslef. Things like `timewarp` or `tutorial` are examples of system commands.
+ *
+ * - Transmit commands are instructions meant for a specific aircraft within the controlled airspace.
+ *   These commands can have zero to many arguments, depending on the command. Some examples of transmit
+ *   commands are `to`, `taxi`, `hold`.
+ *
+ * Commands go through a lifecycle as they move from raw to parsed:
+ * - user types command and presses enter
+ * - command string is captured via input value, then passed as an argument to this class
+ * - determine if command string is a `System Command` or `Transmit`
+ * - creation of `CommandModel` objects for each command/argment group found
+ * - validate command arguments (number of arguments and data type)
+ * - parse command arguments
+ *
+ * All available commands are defined in the `commandMap`. Two terms of note are alias and root command.
+ * We would call the `takeoff` command a root command and `to` and `cto` alises. The root command is the
+ * one that shares the same key as the command definition which gives us the correct validator and parser.
+ * The root command is also what the `AircraftInstanceModel` is expecting when it receives commands
+ * from the `InputController`.
+ *
+ * @class CommandParser
+ */
+
+var CommandParser = function () {
+    /**
+     * @constructor
+     * @for CommandParser
+     * @param rawCommandWithArgs {string}  string present in the `$commandInput` when the user pressed `enter`
+     */
+    function CommandParser() {
+        var rawCommandWithArgs = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+
+        _classCallCheck(this, CommandParser);
+
+        if (!(0, _isString3.default)(rawCommandWithArgs)) {
+            // istanbul ignore next
+            // eslint-disable-next-line max-len
+            throw new TypeError('Invalid parameter. CommandParser expects a string but received ' + (typeof rawCommandWithArgs === 'undefined' ? 'undefined' : _typeof(rawCommandWithArgs)));
+        }
+
+        /**
+         * Command name
+         *
+         * Could be either Transmit or a System command
+         *
+         * This is consumed by the `InputController` after parsing here and is used to
+         * determine what to do with the parsed command(s)
+         *
+         * @type {string}
+         * @default ''
+         */
+        this.command = '';
+
+        /**
+         * Aircraft callsign
+         *
+         * this is optional and not included with system commands
+         *
+         * @type {string}
+         * @default ''
+         */
+        this.callsign = '';
+
+        /**
+         * List of `CommandModel` objects.
+         *
+         * Each command is contained within a `CommandModel`, even System commands. This provides
+         * a consistent interface for obtaining commands and arguments (via getter) and also
+         * aloows for easy implementation of the legacy API structure.
+         *
+         * @type {array<CommandModel>}
+         */
+        this.commandList = [];
+
+        this._extractCommandsAndArgs(rawCommandWithArgs.toLowerCase());
+    }
+
+    /**
+     * Return an array of [commandName, ...args]
+     *
+     * We use this shape solely to match the existing api.
+     *
+     * When command is a System command:
+     * - commandList is assumed to have a length on 1
+     * - commandList[0].args[0] is assumed to have a single string value
+     *
+     * @property args
+     * @return {string|array<string>}
+     */
+
+
+    _createClass(CommandParser, [{
+        key: '_extractCommandsAndArgs',
+
+
+        /**
+         * Accept the entire string provided to the constructor and attempt to break it up into:
+         * - System command and its arguments
+         * - Transmit commands and thier arguments
+         *
+         * @for CommandParser
+         * @method _extractCommandsAndArgs
+         * @param rawCommandWithArgs {string}
+         * @private
+         */
+        value: function _extractCommandsAndArgs(rawCommandWithArgs) {
+            var commandOrCallsignIndex = 0;
+            var commandArgSegmentsWithCallsign = rawCommandWithArgs.split(COMMAND_ARGS_SEPARATOR);
+            var callsignOrSystemCommandName = commandArgSegmentsWithCallsign[commandOrCallsignIndex];
+            // effectively a slice of the array that returns everything but the first item
+            var commandArgSegments = (0, _tail3.default)(commandArgSegmentsWithCallsign);
+
+            if (this._isSystemCommand(callsignOrSystemCommandName)) {
+                this._buildSystemCommandModel(commandArgSegmentsWithCallsign);
+
+                return;
+            }
+
+            this._buildTransmitCommandModels(callsignOrSystemCommandName, commandArgSegments);
+        }
+
+        /**
+         * Build a `CommandModel` for a System command then add that model to the `commandList`
+         *
+         * @for CommandParser
+         * @method _buildSystemCommandModel
+         * @private
+         */
+
+    }, {
+        key: '_buildSystemCommandModel',
+        value: function _buildSystemCommandModel(commandArgSegments) {
+            var commandIndex = 0;
+            var argIndex = 1;
+            var commandName = commandArgSegments[commandIndex];
+            var commandModel = new _CommandModel2.default(commandName);
+            commandModel.args.push(commandArgSegments[argIndex]);
+
+            this.command = commandName;
+            this.commandList.push(commandModel);
+
+            this._validateAndParseCommandArguments();
+        }
+
+        /**
+         * Build `CommandModel` objects for each transmit commands then add them to the `commandList`
+         *
+         * @private
+         */
+
+    }, {
+        key: '_buildTransmitCommandModels',
+        value: function _buildTransmitCommandModels(callsignOrSystemCommandName, commandArgSegments) {
+            this.command = _commandMap.SYSTEM_COMMANDS.transmit;
+            this.callsign = callsignOrSystemCommandName;
+            this.commandList = this._buildCommandList(commandArgSegments);
+
+            this._validateAndParseCommandArguments();
+        }
+
+        /**
+         * Loop through the commandArgSegments array and either create a new `CommandModel` or add
+         * arguments to a `CommandModel`.
+         *
+         * commandArgSegments will contain both commands and arguments (very contrived example):
+         * - `[cmd, arg, arg, cmd, cmd, arg, arg, arg]`
+         *
+         * this method is expecting that
+         * the first item it receives, that is not a space, is a command. we then push each successive
+         * array item to the args array until we find another command. then we repeat the process.
+         *
+         * this allows us to create several `CommandModel` with arguments and only loop over them once.
+         *
+         * @for CommandParser
+         * @method _buildCommandList
+         * @param commandArgSegments {array<string>}
+         * @return {array<CommandModel>}
+         * @private
+         */
+
+    }, {
+        key: '_buildCommandList',
+        value: function _buildCommandList(commandArgSegments) {
+            var _this = this;
+
+            var commandModel = void 0;
+
+            // TODO: this still feels icky and could be simplified some more
+            var commandList = (0, _map3.default)(commandArgSegments, function (commandOrArg) {
+                if (commandOrArg === '') {
+                    return;
+                } else if (_globalConstants.REGEX.UNICODE.test(commandOrArg)) {
+                    var commandString = (0, _generalUtilities.unicodeToString)(commandOrArg);
+                    commandModel = new _CommandModel2.default(_commandMap.COMMAND_MAP[commandString]);
+
+                    return commandModel;
+                } else if ((0, _has3.default)(_commandMap.COMMAND_MAP, commandOrArg) && !_this._isAliasCommandAnArg(commandModel, commandOrArg)) {
+                    commandModel = new _CommandModel2.default(_commandMap.COMMAND_MAP[commandOrArg]);
+
+                    return commandModel;
+                } else if (typeof commandModel === 'undefined') {
+                    // if we've made it here and commandModel is still undefined, a command was not found
+                    return;
+                }
+
+                commandModel.args.push(commandOrArg);
+            });
+
+            return (0, _compact3.default)(commandList);
+        }
+
+        /**
+         * This method is used for addressing a very specific situation
+         *
+         * When the current command is `heading` and one of the arguments is `l`, the parser interprets
+         * the `l` as another command. `l` is an alias for the `land` command.
+         *
+         * This method expects that a commandString will look like:
+         * `AA321 t l 042`
+         *
+         * We look for the `heading` command and no existing arguments, as the `l` would become the
+         * first argument in this situation.
+         *
+         * @for CommandParser
+         * @method _isAliasCommandAnArg
+         * @param commandModel {CommandModel}
+         * @param commandOrArg {string}
+         * @return {boolean}
+         */
+
+    }, {
+        key: '_isAliasCommandAnArg',
+        value: function _isAliasCommandAnArg(commandModel, commandOrArg) {
+            if (!commandModel) {
+                return false;
+            }
+
+            return commandModel.name === 'heading' && commandModel.args.length === 0 && commandOrArg === 'l';
+        }
+
+        /**
+         * Fire off the `_validateCommandArguments` method and throws any errors returned
+         *
+         * @for CommandParser
+         * @method _validateAndParseCommandArguments
+         * @private
+         */
+
+    }, {
+        key: '_validateAndParseCommandArguments',
+        value: function _validateAndParseCommandArguments() {
+            var validationErrors = this._validateCommandArguments();
+
+            if (validationErrors.length > 0) {
+                (0, _forEach3.default)(validationErrors, function (error) {
+                    throw error;
+                });
+            }
+        }
+
+        /**
+         * For each `CommandModel` in the `commandList`, first validate it's arguments
+         * then parse those arguments into a consumable array.
+         *
+         * @for CommandParser
+         * @method _validateCommandArguments
+         * @private
+         */
+
+    }, {
+        key: '_validateCommandArguments',
+        value: function _validateCommandArguments() {
+            return (0, _compact3.default)((0, _map3.default)(this.commandList, function (command) {
+                var hasError = command.validateArgs();
+
+                if (hasError) {
+                    // we only return here so all the errors can be thrown at once
+                    // from within the calling method
+                    return hasError;
+                }
+
+                command.parseArgs();
+            }));
+        }
+
+        /**
+         * Encapsulation of boolean logic used to determine if the `callsignOrSystemCommandName`
+         * is in fact a system command.
+         *
+         *
+         * @for CommandParser
+         * @method _isSystemCommand
+         * @param callsignOrSystemCommandName {string}
+         * @return {boolean}
+         */
+
+    }, {
+        key: '_isSystemCommand',
+        value: function _isSystemCommand(callsignOrSystemCommandName) {
+            return (0, _has3.default)(_commandMap.SYSTEM_COMMANDS, callsignOrSystemCommandName) && callsignOrSystemCommandName !== _commandMap.SYSTEM_COMMANDS.transmit;
+        }
+    }, {
+        key: 'args',
+        get: function get() {
+            if (this.command !== _commandMap.SYSTEM_COMMANDS.transmit) {
+                return this.commandList[0].args;
+            }
+
+            return (0, _map3.default)(this.commandList, function (command) {
+                return command.nameAndArgs;
+            });
+        }
+    }]);
+
+    return CommandParser;
+}();
+
+exports.default = CommandParser;
+
+},{"../constants/globalConstants":573,"../utilities/generalUtilities":592,"./CommandModel":563,"./commandMap":568,"lodash/compact":462,"lodash/forEach":468,"lodash/has":470,"lodash/isString":489,"lodash/map":496,"lodash/tail":505}],565:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.holdParser = exports.findHoldCommandByType = exports.headingParser = exports.altitudeParser = undefined;
+
+var _argumentValidators = require('./argumentValidators');
+
+var _unitConverters = require('../utilities/unitConverters');
+
+/**
+ * Enumeration of possible the hold command argument names.
+ *
+ * Enumerated here base these nanes are shared accross several functions and this
+ * provides a single source of truth.
+ *
+ * @property HOLD_COMMAND_ARG_NAMES
+ * @type {Object}
+ * @final
+ */
+var HOLD_COMMAND_ARG_NAMES = {
+    TURN_DIRECTION: 'turnDirection',
+    LEG_LENGTH: 'legLength',
+    FIX_NAME: 'fixName'
+};
+
+/**
+ * Converts a flight level altitude to a number in thousands and converts second arg to a boolean
+ *
+ * @function altitudeParser
+ * @param args {array}
+ * @return {array<number, boolean>}
+ */
+var altitudeParser = exports.altitudeParser = function altitudeParser(args) {
+    var altitude = (0, _unitConverters.convertToThousands)(args[0]);
+    // the validator will have already caught an invalid value here. if one exists, it is assumed to be valid and
+    // thus we return true. otherwise its false
+    var shouldExpedite = typeof args[1] !== 'undefined';
+
+    return [altitude, shouldExpedite];
+};
+
+/**
+ * Accepts a direction string:
+ * - `left / l / right / r`
+ *
+ * and returns `left / right`
+ *
+ * @function directionNormalizer
+ * @param direction {string}
+ * @return normalizedDirection {string}
+ */
+var directionNormalizer = function directionNormalizer(direction) {
+    var normalizedDirection = direction;
+
+    if (direction === 'l') {
+        normalizedDirection = 'left';
+    } else if (direction === 'r') {
+        normalizedDirection = 'right';
+    }
+
+    return normalizedDirection;
+};
+
+/**
+ * Returns a consistent array with the same shape no matter the number of arguments received
+ *
+ * Converts a flight level altitude to a number in thousands and converts second arg to a boolean
+ *
+ * @function headingParser
+ * @param args {array}
+ * @return {array<string, number, boolean>}
+ */
+var headingParser = exports.headingParser = function headingParser(args) {
+    var direction = void 0;
+    var heading = void 0;
+    var isIncremental = false;
+
+    switch (args.length) {
+        case 1:
+            // existing api is expeting undefined values to be exactly null
+            direction = null;
+            heading = (0, _unitConverters.convertStringToNumber)(args[0]);
+
+            return [direction, heading, isIncremental];
+        case 2:
+            isIncremental = args[1].length === 2;
+            direction = directionNormalizer(args[0]);
+            heading = (0, _unitConverters.convertStringToNumber)(args[1]);
+
+            return [direction, heading, isIncremental];
+        default:
+            throw new Error('An error ocurred parsing the Heading arguments');
+    }
+};
+
+/**
+ * Abstracted boolean logic used to detmine if a string contains `min` or `nm`.
+ *
+ * This is useful specifically with the `findHoldCommandByType`.
+ *
+ * @function isLegLengthArg
+ * @param arg {string}
+ * @return {boolean}
+ */
+var isLegLengthArg = function isLegLengthArg(arg) {
+    return arg.indexOf('min') !== -1 || arg.indexOf('nm') !== -1;
+};
+
+/**
+ * Given a type and an argument list, find the first occurance of `type` from within the argument list.
+ *
+ * We are looking for one of three things here:
+ * - `turnDirection` - a variation of left or right
+ * - `legLength` - length of hold leg in either minutes (min) or nautical miles (nm)
+ * - `fixName` - assumed to be a string that isn't a `turnDirection` or `legLength`. The parser has no way of
+ *               knowing if a certain string is an actual `fixName`. We can only determine that it isn't a
+ *               `turnDirection` or `legLength`. This will error from within the `runHold` method if the
+ *               `fixName` is not valid.
+ *
+ * @function findHoldCommandByType
+ * @param type {HOLD_COMMAND_ARG_NAMES}
+ * @param args {array}
+ * @return {string|null}
+ */
+var findHoldCommandByType = exports.findHoldCommandByType = function findHoldCommandByType(type, args) {
+    for (var i = 0; i < args.length; i++) {
+        var arg = args[i];
+
+        switch (type) {
+            case HOLD_COMMAND_ARG_NAMES.TURN_DIRECTION:
+                if (!(0, _argumentValidators.isValidDirectionString)(arg)) {
+                    continue;
+                }
+
+                return directionNormalizer(arg);
+            case HOLD_COMMAND_ARG_NAMES.LEG_LENGTH:
+                if (!isLegLengthArg(arg)) {
+                    continue;
+                }
+
+                return arg;
+            case HOLD_COMMAND_ARG_NAMES.FIX_NAME:
+                if ((0, _argumentValidators.isValidDirectionString)(arg) || isLegLengthArg(arg)) {
+                    continue;
+                }
+
+                return arg;
+            default:
+                return null;
+        }
+    }
+
+    return null;
+};
+
+/**
+ * The `hold` command accepts arguments in any order thus, we use the `findHoldCommandByType` helper
+ * method to do that for us. This provides an easy way tp find the correct argument, no matter the order,
+ * and consistently return an array of the same shape.
+ *
+ * @function holdParser
+ * @param args {array}
+ * @return {array<string>}
+ */
+var holdParser = exports.holdParser = function holdParser(args) {
+    // existing api is expeting undefined values to be exactly null
+    var fixName = findHoldCommandByType(HOLD_COMMAND_ARG_NAMES.FIX_NAME, args);
+    var turnDirection = findHoldCommandByType(HOLD_COMMAND_ARG_NAMES.TURN_DIRECTION, args);
+    var legLength = findHoldCommandByType(HOLD_COMMAND_ARG_NAMES.LEG_LENGTH, args);
+
+    return [turnDirection, legLength, fixName];
+};
+
+},{"../utilities/unitConverters":595,"./argumentValidators":566}],566:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.holdValidator = exports.headingValidator = exports.isValidDirectionString = exports.fixValidator = exports.altitudeValidator = exports.oneOrThreeArgumentsValidator = exports.oneToThreeArgumentsValidator = exports.oneOrTwoArgumentValidator = exports.zeroOrOneArgumentValidator = exports.singleArgumentValidator = exports.zeroArgumentsValidator = undefined;
+
+var _isNaN2 = require('lodash/isNaN');
+
+var _isNaN3 = _interopRequireDefault(_isNaN2);
+
+var _isString2 = require('lodash/isString');
+
+var _isString3 = _interopRequireDefault(_isString2);
+
+var _forEach2 = require('lodash/forEach');
+
+var _forEach3 = _interopRequireDefault(_forEach2);
+
+var _unitConverters = require('../utilities/unitConverters');
+
+var _commandMap = require('./commandMap');
+
+var _commandParserMessages = require('./commandParserMessages');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * Check that `args` has exactly zero values
+ *
+ * @function zeroArgumentsValidator
+ * @param args {array}
+ * @return {string|undefined}
+ */
+var zeroArgumentsValidator = exports.zeroArgumentsValidator = function zeroArgumentsValidator() {
+    var args = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+
+    if (args.length !== 0) {
+        return _commandParserMessages.ERROR_MESSAGE.ZERO_ARG_LENGTH;
+    }
+};
+
+/**
+ * Checks that `args` has exactly one value
+ *
+ * @function singleArgumentValidator
+ * @param args {array}
+ * @return {string|undefined}
+ */
+var singleArgumentValidator = exports.singleArgumentValidator = function singleArgumentValidator() {
+    var args = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+
+    if (args.length !== 1) {
+        return _commandParserMessages.ERROR_MESSAGE.SINGLE_ARG_LENGTH;
+    }
+};
+
+/**
+ * Checks that `args` has exactly zero or one value
+ *
+ * @function zeroOrOneArgumentValidator
+ * @param args {array}
+ * @return {string|undefined}
+ */
+var zeroOrOneArgumentValidator = exports.zeroOrOneArgumentValidator = function zeroOrOneArgumentValidator() {
+    var args = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+
+    if (args.length > 1) {
+        return _commandParserMessages.ERROR_MESSAGE.ZERO_OR_ONE_ARG_LENGTH;
+    }
+};
+
+/**
+ * Checks that `args` has exactly one or two values
+ *
+ * @function oneOrTwoArgumentValidator
+ * @param args {array}
+ * @return {string|undefined}
+ */
+var oneOrTwoArgumentValidator = exports.oneOrTwoArgumentValidator = function oneOrTwoArgumentValidator() {
+    var args = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+
+    if (args.length < 1 || args.length > 2) {
+        return _commandParserMessages.ERROR_MESSAGE.ONE_OR_TWO_ARG_LENGTH;
+    }
+};
+
+/**
+ * Checks that `args` has exactly one, two or three values
+ *
+ * @function oneToThreeArgumentsValidator
+ * @param args {array}
+ * @return {string|undefined}
+ */
+var oneToThreeArgumentsValidator = exports.oneToThreeArgumentsValidator = function oneToThreeArgumentsValidator() {
+    var args = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+
+    if (args.length === 0 || args.length > 3) {
+        return _commandParserMessages.ERROR_MESSAGE.ONE_TO_THREE_ARG_LENGTH;
+    }
+};
+
+/**
+ * Checks that `args` has exactly one or three values
+ *
+ * @function oneOrThreeArgumentsValidator
+ * @param args {array}
+ * @return {string|undefined}
+ */
+var oneOrThreeArgumentsValidator = exports.oneOrThreeArgumentsValidator = function oneOrThreeArgumentsValidator() {
+    var args = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+
+    if (args.length !== 1 && args.length !== 3) {
+        return _commandParserMessages.ERROR_MESSAGE.ONE_OR_THREE_ARG_LENGTH;
+    }
+};
+
+/**
+ * Checks that args is the required length and the data is of the correct type
+ *
+ * ```
+ * Allowed argument shapes:
+ * - ['030']
+ * - ['030', 'expedite']
+ * - ['030', 'x']
+ * ```
+ *
+ * @function altitudeValidator
+ * @param args {array}
+ * @return {string|undefined}
+ */
+var altitudeValidator = exports.altitudeValidator = function altitudeValidator() {
+    var args = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+
+    var hasLengthError = oneOrTwoArgumentValidator(args);
+
+    if (hasLengthError) {
+        return hasLengthError;
+    }
+
+    if (args.length === 2 && _commandMap.EXPEDITE.indexOf(args[1]) === -1) {
+        return _commandParserMessages.ERROR_MESSAGE.ALTITUDE_EXPEDITE_ARG;
+    }
+};
+
+/**
+ * Verifies a list of fix names are all strings and that there is at least one
+ *
+ * @function fixValidator
+ * @param args {array}
+ * @return {array<string>}
+ */
+var fixValidator = exports.fixValidator = function fixValidator() {
+    var args = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+
+    var hasTypeError = void 0;
+
+    if (args.length < 1) {
+        return _commandParserMessages.ERROR_MESSAGE.ONE_OR_MORE_ARG_LENGTH;
+    }
+
+    (0, _forEach3.default)(args, function (arg) {
+        if (!(0, _isString3.default)(arg) && !hasTypeError) {
+            hasTypeError = _commandParserMessages.ERROR_MESSAGE.MUST_BE_STRING;
+        }
+    });
+
+    if (hasTypeError) {
+        return hasTypeError;
+    }
+};
+
+/**
+ * Returns true if value is one of `left / l / right / r`
+ *
+ * @function isValidDirectionString
+ * @param value {string}
+ * @return {boolean}
+ */
+var isValidDirectionString = exports.isValidDirectionString = function isValidDirectionString(value) {
+    return value === 'left' || value === 'l' || value === 'right' || value === 'r';
+};
+
+/**
+ * Checks that args is the required length and the data is of the correct type for the number of arguments
+ *
+ * ```
+ * Allowed arguments shapes:
+ * - ['180']
+ * - ['left', '180']
+ * - ['l', '180']
+ * - ['left', '80']
+ * - ['l', '80']
+ * ```
+ *
+ * @function headingValidator
+ * @param args {array}
+ * @return {string|undefined}
+ */
+var headingValidator = exports.headingValidator = function headingValidator() {
+    var args = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+
+    var length = args.length;
+    var hasLengthError = oneOrTwoArgumentValidator(args);
+    var numberFromString = void 0;
+
+    if (hasLengthError) {
+        return hasLengthError;
+    }
+
+    switch (length) {
+        case 1:
+            numberFromString = (0, _unitConverters.convertStringToNumber)(args[0]);
+
+            if ((0, _isNaN3.default)(numberFromString)) {
+                return _commandParserMessages.ERROR_MESSAGE.HEADING_MUST_BE_NUMBER;
+            }
+
+            break;
+        case 2:
+            numberFromString = (0, _unitConverters.convertStringToNumber)(args[1]);
+
+            if (!isValidDirectionString(args[0])) {
+                return _commandParserMessages.ERROR_MESSAGE.INVALID_DIRECTION_STRING;
+            }
+
+            if (isNaN(numberFromString)) {
+                return _commandParserMessages.ERROR_MESSAGE.HEADING_MUST_BE_NUMBER;
+            }
+
+            break;
+        // default case is included only for semtantics, this should not ever be reachable
+        // istanbul ignore next
+        default:
+            throw new Error('An error ocurred parsing the Heading arguments');
+    }
+};
+
+/**
+ * Checks that args is the required length and the data is of the correct type
+ *
+ * ```
+ * Allowed argument shapes:
+ * - ['dumba']
+ * - ['dumba', 'left', '2min']
+ * - ['dumba', 'left', '2nm']
+ * - ['dumba', 'right', '2min']
+ * - ['dumba', 'right', '2nm']
+ * ```
+ *
+ * @function holdValidator
+ * @param args {array}
+ * @return {array<string>}
+ */
+var holdValidator = exports.holdValidator = function holdValidator() {
+    var args = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+
+    if (args.length > 3) {
+        return _commandParserMessages.ERROR_MESSAGE.ZERO_TO_THREE_ARG_LENGTH;
+    }
+
+    for (var i = 0; i < args.length; i++) {
+        if (!(0, _isString3.default)(args[i])) {
+            return _commandParserMessages.ERROR_MESSAGE.MUST_BE_STRING;
+        }
+    }
+};
+
+},{"../utilities/unitConverters":595,"./commandMap":568,"./commandParserMessages":569,"lodash/forEach":468,"lodash/isNaN":484,"lodash/isString":489}],567:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.COMMAND_DEFINITION = undefined;
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; /**
+                                                                                                                                                                                                                                                                   * Root commands defined in the `commandMap` have a matching definition defined here. This definition
+                                                                                                                                                                                                                                                                   * give us access to vaildate and parse functions. Some commands don't require either function and simply
+                                                                                                                                                                                                                                                                   * pass the arguments through via `noop`. Other commands commands have very unique demands for how
+                                                                                                                                                                                                                                                                   * arguments are formatted, these functions let us validate and parse on a case by case basis.
+                                                                                                                                                                                                                                                                   *
+                                                                                                                                                                                                                                                                   * Keys are lowercased here so they can be accessed programatically using input string segments
+                                                                                                                                                                                                                                                                   * that are converted to lowercase for ease of comparison.
+                                                                                                                                                                                                                                                                   *
+                                                                                                                                                                                                                                                                   * @fileoverview
+                                                                                                                                                                                                                                                                   */
+
+
+var _unitConverters = require('../utilities/unitConverters');
+
+var _argumentValidators = require('./argumentValidators');
+
+var _argumentParsers = require('./argumentParsers');
+
+/**
+ * A no-op function used for command definitions that do not need a parser
+ *
+ * This function will immediately return any arguments passed to it and is
+ * used in place of an actual parser. this way `command.parse` can still
+ * be called even with commands that don't need to be parsed.
+ *
+ * @function noop
+ * @param args {*}
+ * @return {*}
+ */
+var noop = function noop(args) {
+    return args;
+};
+
+/**
+ * System and Aircraft command definitions that accept zero arguments
+ *
+ * @property ZERO_ARG_COMMANDS
+ * @type {Object}
+ * @final
+ */
+var ZERO_ARG_COMMANDS = {
+    // system commands
+    auto: {
+        validate: _argumentValidators.zeroArgumentsValidator,
+        parse: noop
+    },
+    clear: {
+        validate: _argumentValidators.zeroArgumentsValidator,
+        parse: noop
+    },
+    pause: {
+        validate: _argumentValidators.zeroArgumentsValidator,
+        parse: noop
+    },
+    tutorial: {
+        validate: _argumentValidators.zeroArgumentsValidator,
+        parse: noop
+    },
+    version: {
+        validate: _argumentValidators.zeroArgumentsValidator,
+        parse: noop
+    },
+
+    // Aircraft commands
+    abort: {
+        validate: _argumentValidators.zeroArgumentsValidator,
+        parse: noop
+    },
+    clearedAsFiled: {
+        validate: _argumentValidators.zeroArgumentsValidator,
+        parse: noop
+    },
+    climbViaSID: {
+        validate: _argumentValidators.zeroArgumentsValidator,
+        parse: noop
+    },
+    debug: {
+        validate: _argumentValidators.zeroArgumentsValidator,
+        parse: noop
+    },
+    delete: {
+        validate: _argumentValidators.zeroArgumentsValidator,
+        parse: noop
+    },
+    descendViaSTAR: {
+        validate: _argumentValidators.zeroArgumentsValidator,
+        parse: noop
+    },
+    flyPresentHeading: {
+        validate: _argumentValidators.zeroArgumentsValidator,
+        parse: noop
+    },
+    sayRoute: {
+        validate: _argumentValidators.zeroArgumentsValidator,
+        parse: noop
+    },
+    takeoff: {
+        validate: _argumentValidators.zeroArgumentsValidator,
+        parse: noop
+    }
+};
+
+/**
+ * System and Aircraft commands that accept a single argument
+ *
+ * these commands accept a single argument and may require further parsing, eg: (string -> number)
+ *
+ * @property SINGLE_ARG_COMMANDS
+ * @type {Object}
+ * @final
+ */
+var SINGLE_ARG_COMMANDS = {
+    '`': {
+        validate: _argumentValidators.singleArgumentValidator,
+        // calling method is expecting an array with values that will get spread later, thus we purposly
+        // return an array here
+        parse: function parse(args) {
+            return [(0, _unitConverters.convertStringToNumber)(args)];
+        }
+    },
+    airport: {
+        validate: _argumentValidators.singleArgumentValidator,
+        parse: noop
+    },
+    rate: {
+        validate: _argumentValidators.singleArgumentValidator,
+        // calling method is expecting an array with values that will get spread later, thus we purposly
+        // return an array here
+        parse: function parse(args) {
+            return [(0, _unitConverters.convertStringToNumber)(args)];
+        }
+    },
+    timewarp: {
+        validate: _argumentValidators.singleArgumentValidator,
+        // calling method is expecting an array with values that will get spread later, thus we purposly
+        // return an array here
+        parse: function parse(args) {
+            return [(0, _unitConverters.convertStringToNumber)(args)];
+        }
+    },
+
+    direct: {
+        validate: _argumentValidators.singleArgumentValidator,
+        parse: noop
+    },
+    land: {
+        validate: _argumentValidators.singleArgumentValidator,
+        // TODO: split this out to custom parser once the null value is defined
+        parse: function parse(args) {
+            return [null, args[0]];
+        }
+    },
+    moveDataBlock: {
+        validate: _argumentValidators.singleArgumentValidator,
+        parse: noop
+    },
+    route: {
+        validate: _argumentValidators.singleArgumentValidator,
+        parse: noop
+    },
+    reroute: {
+        validate: _argumentValidators.singleArgumentValidator,
+        parse: noop
+    },
+    sid: {
+        validate: _argumentValidators.singleArgumentValidator,
+        parse: noop
+    },
+    speed: {
+        validate: _argumentValidators.singleArgumentValidator,
+        // calling method is expecting an array with values that will get spread later, thus we purposly
+        // return an array here
+        parse: function parse(arg) {
+            return [(0, _unitConverters.convertStringToNumber)(arg)];
+        }
+    },
+    star: {
+        validate: _argumentValidators.singleArgumentValidator,
+        parse: noop
+    }
+};
+
+/**
+ * System and Aircraft commands that accept arguments specific to the command
+ *
+ * These definitions will likely reference functions for validate and parse that are specific only
+ * to one command
+ *
+ * @property CUSTOM_ARG_COMMANDS
+ * @type {Object}
+ * @final
+ */
+var CUSTOM_ARG_COMMANDS = {
+    taxi: {
+        validate: _argumentValidators.zeroOrOneArgumentValidator,
+        parse: noop
+    },
+
+    // these commands have specific argument requirements and may need to be parsed
+    // into the correct type (sting -> number)
+    altitude: {
+        validate: _argumentValidators.altitudeValidator,
+        parse: _argumentParsers.altitudeParser
+    },
+    fix: {
+        validate: _argumentValidators.fixValidator,
+        parse: noop
+    },
+    heading: {
+        validate: _argumentValidators.headingValidator,
+        parse: _argumentParsers.headingParser
+    },
+    hold: {
+        validate: _argumentValidators.holdValidator,
+        parse: _argumentParsers.holdParser
+    }
+};
+
+/**
+ * Single exported constant that combines all the definitions above
+ *
+ * @property COMMAND_DEFINITION
+ * @type {Object}
+ * @final
+ */
+var COMMAND_DEFINITION = exports.COMMAND_DEFINITION = _extends({}, ZERO_ARG_COMMANDS, SINGLE_ARG_COMMANDS, CUSTOM_ARG_COMMANDS);
+
+},{"../utilities/unitConverters":595,"./argumentParsers":565,"./argumentValidators":566}],568:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+/**
+ * List of System Commands
+ *
+ * When a command is parsed, the value here will be used for the `name` property
+ * of the `CommandParser`
+ *
+ * @property SYSTEM_COMMANDS
+ * @type {Object}
+ * @final
+ */
+var SYSTEM_COMMANDS = exports.SYSTEM_COMMANDS = {
+  auto: 'auto',
+  clear: 'clear',
+  pause: 'pause',
+  tutorial: 'tutorial',
+  version: 'version',
+
+  // single arg commands
+  '`': 'moveDataBlock',
+  airport: 'airport',
+  rate: 'rate',
+  timewarp: 'timewarp',
+  transmit: 'transmit'
+};
+
+/**
+ * Some commands are converted to unicode (to provide arrow characters) for specific shortkeys
+ *
+ * This maps those unicode values, converted to a string, to the correct root command
+ *
+ * @property UNICODE_COMMANDS
+ * @type {Object}
+ * @final
+ */
+var UNICODE_COMMANDS = {
+  '\\u2B61': 'altitude',
+  '\\u2B63': 'altitude',
+  '\\u2BA2': 'heading',
+  '\\u2BA3': 'heading',
+  '\\u2B50': 'land'
+};
+
+/**
+ * Complete map of commands
+ *
+ * This list includes both System and Unicode commands, as well as all the various aircraft
+ * commands.
+ *
+ * Aliased commands map to a single root command that is shared among all aliases. The values
+ * here then map to a `COMMAND_DEFINITION` which contains `validate` and `parse` functions for
+ * each root command. Some commands have very unique demands for how arguments are formatted,
+ * those functions let us do that on a case by case basis.
+ *
+ * Keys are lowercased here so they can be accessed programatically using input string segments
+ * that are converted to lowercase for ease of comparison.
+ *
+ * @propery COMMAND_MAP
+ * @type {Object}
+ * @final
+ */
+var COMMAND_MAP = exports.COMMAND_MAP = _extends({}, SYSTEM_COMMANDS, UNICODE_COMMANDS, {
+
+  taxi: 'taxi',
+  wait: 'taxi',
+  w: 'taxi',
+  sid: 'sid',
+  star: 'star',
+  clearedAsFiled: 'clearedAsFiled',
+  caf: 'clearedAsFiled',
+  climbViaSID: 'climbViaSID',
+  cvs: 'climbViaSID',
+  descendViaSTAR: 'descendViaSTAR',
+  dvs: 'descendViaSTAR',
+  climb: 'altitude',
+  c: 'altitude',
+  descend: 'altitude',
+  d: 'altitude',
+  altitude: 'altitude',
+  a: 'altitude',
+  takeoff: 'takeoff',
+  to: 'takeoff',
+  cto: 'takeoff',
+  fph: 'flyPresentHeading',
+  heading: 'heading',
+  fh: 'heading',
+  h: 'heading',
+  turn: 'heading',
+  t: 'heading',
+  speed: 'speed',
+  slow: 'speed',
+  sp: 'speed',
+  '+': 'speed',
+  '-': 'speed',
+  ils: 'land',
+  i: 'land',
+  land: 'land',
+  l: 'land',
+  '*': 'land',
+  reroute: 'reroute',
+  rr: 'reroute',
+  route: 'route',
+  sr: 'sayRoute',
+  f: 'fix',
+  fix: 'fix',
+  track: 'fix',
+  direct: 'direct',
+  pd: 'direct',
+  dct: 'direct',
+  abort: 'abort',
+  hold: 'hold',
+  delete: 'delete',
+  del: 'delete',
+  kill: 'delete'
+});
+
+/**
+ * @property EXPEDITE
+ * @type {array}
+ * @final
+ */
+var EXPEDITE = exports.EXPEDITE = ['expedite', 'x'];
+
+},{}],569:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+/* eslint-disable max-len */
+/**
+ * @property INVALID_ARG
+ * @type {string}
+ * @final
+ */
+var INVALID_ARG = 'Invalid argument';
+
+/**
+ * @property INVALID_ARG_LENGTH
+ * @type {string}
+ * @final
+ */
+var INVALID_ARG_LENGTH = INVALID_ARG + ' length';
+
+/**
+ * Encapsulation of error messaging used with `argumentValidators` functions
+ *
+ * @property ERROR_MESSAGE
+ * @type {Object}
+ * @final
+ */
+var ERROR_MESSAGE = exports.ERROR_MESSAGE = {
+  ZERO_ARG_LENGTH: INVALID_ARG_LENGTH + '. Expected exactly zero arguments',
+  SINGLE_ARG_LENGTH: INVALID_ARG_LENGTH + '. Expected exactly one argument',
+  ZERO_OR_ONE_ARG_LENGTH: INVALID_ARG_LENGTH + '. Expected zero or one argument',
+  ZERO_TO_THREE_ARG_LENGTH: INVALID_ARG_LENGTH + '. Expected zero to three arguments',
+  ONE_OR_MORE_ARG_LENGTH: INVALID_ARG_LENGTH + '. Expected one or more arguments',
+  ONE_OR_TWO_ARG_LENGTH: INVALID_ARG_LENGTH + '. Expected one or two arguments',
+  ONE_TO_THREE_ARG_LENGTH: INVALID_ARG_LENGTH + '. Expected one, two, or three arguments',
+  ONE_OR_THREE_ARG_LENGTH: INVALID_ARG_LENGTH + '. Expected one or three arguments',
+  ALTITUDE_EXPEDITE_ARG: INVALID_ARG + '. Altitude accepts only "expedite" or "x" as a second argument',
+  HEADING_MUST_BE_NUMBER: INVALID_ARG + '. Heading must be a number',
+  MUST_BE_STRING: INVALID_ARG + '. Must be a string',
+  INVALID_DIRECTION_STRING: INVALID_ARG + '. Expected one of \'left / l / right / r\' as the first argument when passed three arguments',
+  HEADING_ACCEPTS_BOOLEAN_AS_THIRD_ARG: INVALID_ARG + '. Heading accepts a boolean for the third argument when passed three arguments'
+};
+
+},{}],570:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+/**
+ * @property FLIGHT_MODES
+ * @type {Object}
+ * @final
+ */
+var FLIGHT_MODES = exports.FLIGHT_MODES = {
+    // - 'apron' is the initial status of a new departing plane. After
+    //   the plane is issued the 'taxi' command, the plane transitions to
+    //   'taxi' mode
+    // - 'taxi' describes the process of getting ready for takeoff. After
+    //   a delay, the plane becomes ready and transitions into 'waiting' mode
+    // - 'waiting': the plane is ready for takeoff and awaits clearence to
+    //   take off
+    // - 'takeoff' is assigned to planes in the process of taking off. These
+    //   planes are still on the ground or have not yet reached the minimum
+    //   altitude
+    // - 'cruse' describes, that a plane is currently in flight and
+    //   not following an ILS path. Planes of category 'arrival' entering the
+    //   playing field also have this state. If an ILS path is picked up, the
+    //   plane transitions to 'landing'
+    // - 'landing' the plane is following an ILS path or is on the runway in
+    //   the process of stopping. If an ILS approach or a landing is aborted,
+    //   the plane reenters 'cruise' mode
+    APRON: 'apron',
+    TAXI: 'taxi',
+    WAITING: 'waiting',
+    TAKEOFF: 'takeoff',
+    CRUISE: 'cruise',
+    LANDING: 'landing'
+};
+
+/**
+ * @property FLIGHT_CATEGORY
+ * @type {Object}
+ * @final
+ */
+var FLIGHT_CATEGORY = exports.FLIGHT_CATEGORY = {
+    ARRIVAL: 'arrival',
+    DEPARTURE: 'departure'
+};
+
+/**
+ * @property WAYPOINT_NAV_MODE
+ * @type {Object}
+ * @final
+ */
+var WAYPOINT_NAV_MODE = exports.WAYPOINT_NAV_MODE = {
+    FIX: 'fix',
+    HEADING: 'heading',
+    HOLD: 'hold',
+    RWY: 'rwy'
+};
+
+/**
+ * Enumeration of possible FLight Plan Leg types.
+ *
+ * @property FP_LEG_TYPE
+ * @type {Object}
+ * @final
+ */
+var FP_LEG_TYPE = exports.FP_LEG_TYPE = {
+    SID: 'sid',
+    STAR: 'star',
+    IAP: 'iap',
+    AWY: 'awy',
+    FIX: 'fix',
+    MANUAL: '[manual]'
+};
+
+},{}],571:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -47965,22 +43439,107 @@ var AIRPORT_CONSTANTS = exports.AIRPORT_CONSTANTS = {
   MIN_ENTRAIL_DISTANCE_NM: 5.5
 };
 
-},{}],563:[function(require,module,exports){
+},{}],572:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+/* eslint-disable max-len, import/prefer-default-export */
+/**
+ * Name enumeration of available game options
+ *
+ * @property GAME_OPTION_NAMES
+ * @type {Object}
+ * @final
+ */
+var GAME_OPTION_NAMES = exports.GAME_OPTION_NAMES = {
+    CONTROL_METHOD: 'controlMethod',
+    DRAW_PROJECTED_PATHS: 'drawProjectedPaths',
+    SIMPLIFY_SPEEDS: 'simplifySpeeds',
+    SOFT_CEILING: 'softCeiling'
+};
+
+/**
+ * User options
+ *
+ * These options are presented in a modal and are stored in localStorage
+ *
+ * @property GAME_OPTION_VALUES
+ * @type {array<object>}
+ * @final
+ */
+var GAME_OPTION_VALUES = exports.GAME_OPTION_VALUES = [{
+    name: GAME_OPTION_NAMES.CONTROL_METHOD,
+    defaultValue: 'classic',
+    description: 'Control Method',
+    type: 'select',
+    data: [['Classic', 'classic'], ['Arrow Keys', 'arrows']]
+}, {
+    name: GAME_OPTION_NAMES.DRAW_PROJECTED_PATHS,
+    defaultValue: 'selected',
+    description: 'Draw aircraft projected path',
+    type: 'select',
+    data: [['Always', 'always'], ['Selected', 'selected'], ['Never', 'never']]
+}, {
+    name: GAME_OPTION_NAMES.SIMPLIFY_SPEEDS,
+    defaultValue: 'yes',
+    description: 'Use simplified airspeeds',
+    help: 'Controls use of a simplified calculation which results in aircraft always moving across the ground at the speed assigned.  In reality aircraft will move faster as they increase altitude.',
+    type: 'select',
+    data: [['Yes', 'yes'], ['No', 'no']]
+}, {
+    name: GAME_OPTION_NAMES.SOFT_CEILING,
+    defaultValue: 'no',
+    description: 'Allow departures via climb',
+    help: 'Normally aircraft departs the airspace by flying beyond the horizontal bounds.  If set to yes, aircraft may also depart the airspace by climbing above it.',
+    type: 'select',
+    data: [['Yes', 'yes'], ['No', 'no']]
+}];
+
+},{}],573:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
+/**
+ * Commonly used time conversion rates
+ *
+ * @property TIME
+ * @type {Object}
+ * @final
+ */
 var TIME = exports.TIME = {
-  /**
-   * @property ONE_HOUR_IN_SECONDS
-   * @type {number}
-   * @final
-   */
-  ONE_HOUR_IN_SECONDS: 3600
+    ONE_HOUR_IN_SECONDS: 3600,
+    ONE_HOUR_IN_MINUTES: 60,
+    ONE_HOUR_IN_MILLISECONDS: 3600000,
+    ONE_MINUTE_IN_HOURS: 1 / 60,
+    ONE_MINUTE_IN_SECONDS: 60,
+    ONE_MINUTE_IN_MILLISECONDS: 60000,
+    ONE_SECOND_IN_HOURS: 1 / 3600,
+    ONE_SECOND_IN_MINUTES: 1 / 60,
+    ONE_SECOND_IN_MILLISECONDS: 1000,
+    ONE_MILLISECOND_IN_HOURS: 1 / 3600000,
+    ONE_MILLISECOND_IN_MINUTES: 1 / 60000,
+    ONE_MILLISECOND_IN_SECONDS: 1 / 1000
 };
 
-},{}],564:[function(require,module,exports){
+/**
+ * Regular expressions
+ *
+ * @property REGEX
+ * @type {Object}
+ * @final
+ */
+var REGEX = exports.REGEX = {
+    COMPASS_DIRECTION: /^[NESW]/,
+    SW: /[SW]/,
+    LAT_LONG: /^([NESW])(\d+(\.\d+)?)([d °](\d+(\.\d+)?))?([m '](\d+(\.\d+)?))?$/,
+    UNICODE: /[^\u0000-\u00ff]/
+};
+
+},{}],574:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -47999,7 +43558,7 @@ var LOG = exports.LOG = {
     FATAL: 4
 };
 
-},{}],565:[function(require,module,exports){
+},{}],575:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -48042,6 +43601,7 @@ var CLASSNAMES = exports.CLASSNAMES = {
     MESSAGE: 'message',
     NEGATIVE: 'negative',
     NEXT: 'next',
+    NOT_SELECTABLE: 'notSelectable',
     OPEN: 'open',
     PAUSED: 'paused',
     PAUSE_TOGGLE: 'pause-toggle',
@@ -48071,11 +43631,11 @@ var CLASSNAMES = exports.CLASSNAMES = {
  * @final
  */
 var IDS = exports.IDS = {
-    AIRPORT: 'airport',
     AIRPORT_LIST: 'airport-list',
     AIRPORT_LIST_NOTES: 'airport-list-notes',
     AIRPORT_SWITCH: 'airport-switch',
     CANVASES: 'canvases',
+    CLOCK: 'clock',
     COMMAND: 'command',
     LOADING: 'loading',
     LOADING_INDICATOR: 'loadingIndicator',
@@ -48139,7 +43699,7 @@ var SELECTORS = exports.SELECTORS = {
     DOM_SELECTORS: DOM_SELECTORS
 };
 
-},{"lodash/mapValues":485}],566:[function(require,module,exports){
+},{"lodash/mapValues":497}],576:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -48157,7 +43717,7 @@ var STORAGE_KEY = exports.STORAGE_KEY = {
   FIRST_RUN_TIME: 'first-run-time'
 };
 
-},{}],567:[function(require,module,exports){
+},{}],577:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -48308,7 +43868,7 @@ var ContentQueueClass = function () {
 
 exports.default = ContentQueueClass;
 
-},{"./LoadableContentModel":568,"jquery":296}],568:[function(require,module,exports){
+},{"./LoadableContentModel":578,"jquery":296}],578:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -48343,7 +43903,171 @@ var LoadableContentModel = function LoadableContentModel(options) {
 
 exports.default = LoadableContentModel;
 
-},{"jquery":296,"lodash/get":459}],569:[function(require,module,exports){
+},{"jquery":296,"lodash/get":469}],579:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _radioUtilities = require('../utilities/radioUtilities');
+
+var _selectors = require('../constants/selectors');
+
+var _globalConstants = require('../constants/globalConstants');
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+/**
+ * Manages a clock that stays in sync with the current game time
+ * @class GameClockView
+ */
+var GameClockView = function () {
+    /**
+     * @for GameClockView
+     * @constructor
+     */
+    function GameClockView($element) {
+        _classCallCheck(this, GameClockView);
+
+        this.$element = $element;
+        this.startTime = 0;
+        this.time = 0;
+
+        return this._init($element);
+    }
+
+    /**
+    * Get current time in the user's time zone
+    * @for GameClockView
+    * @property realWorldCurrentLocalTime
+    * @return {number} ms since 01/01/1970, 00:00:00 (user's time zone)
+    */
+
+
+    _createClass(GameClockView, [{
+        key: 'destroy',
+
+
+        /**
+        * @for GameClockView
+        * @method destroy
+        * @chainable
+        */
+        value: function destroy() {
+            this.$element = null;
+            this.startTime = 0;
+            this.time = 0;
+
+            return this;
+        }
+
+        /**
+        * Generates a string of the current game time in a human-readable format
+        * @for GameClockView
+        * @property timeString
+        * @return clockTime {string} current game time formatted like '03:44:17'
+        */
+
+    }, {
+        key: 'generateCurrentTimeString',
+        value: function generateCurrentTimeString() {
+            var gameTime = window.gameController.game.time;
+            var clockDate = new Date(this.startTime + gameTime * _globalConstants.TIME.ONE_SECOND_IN_MILLISECONDS);
+            var hours = (0, _radioUtilities.digits_integer)(clockDate.getHours(), 2);
+            var minutes = (0, _radioUtilities.digits_integer)(clockDate.getMinutes(), 2);
+            var seconds = (0, _radioUtilities.digits_integer)(clockDate.getSeconds(), 2);
+            var clockTime = hours + ':' + minutes + ':' + seconds;
+
+            return clockTime;
+        }
+
+        /**
+        * Updates the stored time and displayed time in webpage
+        * @for GameClockView
+        * @method update
+        */
+
+    }, {
+        key: 'update',
+        value: function update() {
+            this._tick();
+            this._render();
+        }
+
+        /**
+        * @for GameClockView
+        * @method _init
+        * @private
+        */
+
+    }, {
+        key: '_init',
+        value: function _init($element) {
+            this.$element = $element.find(_selectors.SELECTORS.DOM_SELECTORS.CLOCK);
+            this.$element.addClass(_selectors.SELECTORS.CLASSNAMES.NOT_SELECTABLE);
+            this.startTime = this.realWorldCurrentZuluTime;
+
+            return this;
+        }
+
+        /**
+        * Updates the DOM with the new game time
+        * @for GameClockView
+        * @method _render
+        * @private
+        */
+
+    }, {
+        key: '_render',
+        value: function _render() {
+            this.$element.text(this.generateCurrentTimeString());
+        }
+
+        /**
+        * Updates the time stored in the clock
+        * @for GameClockView
+        * @method _tick
+        * @private
+        */
+
+    }, {
+        key: '_tick',
+        value: function _tick() {
+            var elapsedTime = window.gameController.game.time * _globalConstants.TIME.ONE_SECOND_IN_MILLISECONDS;
+            this.time = this.startTime + elapsedTime;
+        }
+    }, {
+        key: 'realWorldCurrentLocalTime',
+        get: function get() {
+            return new Date().getTime();
+        }
+
+        /**
+        * Get current zulu time in milliseconds
+        * @for GameClockView
+        * @property realWorldCurrentZuluTime
+        * @return utc {number} ms since 01/01/1970, 00:00:00 UTC
+        */
+
+    }, {
+        key: 'realWorldCurrentZuluTime',
+        get: function get() {
+            var date = new Date();
+            var utc = date.getTime() + date.getTimezoneOffset() * _globalConstants.TIME.ONE_MINUTE_IN_MILLISECONDS;
+
+            return utc;
+        }
+    }]);
+
+    return GameClockView;
+}();
+
+exports.default = GameClockView;
+
+},{"../constants/globalConstants":573,"../constants/selectors":575,"../utilities/radioUtilities":593}],580:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -48441,6 +44165,7 @@ var GameController = function () {
         this.game.speedup = 1;
         this.game.frequency = 1;
         this.game.time = 0;
+        this.game.startTime = 0;
         this.game.delta = 0;
         this.game.events = {};
         this.game.timeouts = [];
@@ -48811,7 +44536,7 @@ var GameController = function () {
 
 exports.default = GameController;
 
-},{"../constants/globalConstants":563,"../constants/selectors":565,"../math/core":574,"./GameOptions":570,"jquery":296,"lodash/forEach":458,"lodash/has":460}],570:[function(require,module,exports){
+},{"../constants/globalConstants":573,"../constants/selectors":575,"../math/core":584,"./GameOptions":581,"jquery":296,"lodash/forEach":468,"lodash/has":470}],581:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -48825,7 +44550,7 @@ var _has2 = require('lodash/has');
 
 var _has3 = _interopRequireDefault(_has2);
 
-var _gameOptionValues = require('./gameOptionValues');
+var _gameOptionConstants = require('../constants/gameOptionConstants');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -48858,8 +44583,8 @@ var GameOptions = function () {
     _createClass(GameOptions, [{
         key: 'addGameOptions',
         value: function addGameOptions() {
-            for (var i = 0; i < _gameOptionValues.GAME_OPTION_VALUES.length; i++) {
-                var option = _gameOptionValues.GAME_OPTION_VALUES[i];
+            for (var i = 0; i < _gameOptionConstants.GAME_OPTION_VALUES.length; i++) {
+                var option = _gameOptionConstants.GAME_OPTION_VALUES[i];
 
                 this.addOption(option);
             }
@@ -48929,42 +44654,7 @@ var GameOptions = function () {
 
 exports.default = GameOptions;
 
-},{"./gameOptionValues":571,"lodash/has":460}],571:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-/* eslint-disable max-len, import/prefer-default-export */
-var GAME_OPTION_VALUES = exports.GAME_OPTION_VALUES = [{
-    name: 'controlMethod',
-    defaultValue: 'classic',
-    description: 'Control Method',
-    type: 'select',
-    data: [['Classic', 'classic'], ['Arrow Keys', 'arrows']]
-}, {
-    name: 'drawProjectedPaths',
-    defaultValue: 'selected',
-    description: 'Draw aircraft projected path',
-    type: 'select',
-    data: [['Always', 'always'], ['Selected', 'selected'], ['Never', 'never']]
-}, {
-    name: 'simplifySpeeds',
-    defaultValue: 'yes',
-    description: 'Use simplified airspeeds',
-    help: 'Controls use of a simplified calculation which results in aircraft always moving across the ground at the speed assigned.  In reality aircraft will move faster as they increase altitude.',
-    type: 'select',
-    data: [['Yes', 'yes'], ['No', 'no']]
-}, {
-    name: 'softCeiling',
-    defaultValue: 'no',
-    description: 'Allow departures via climb',
-    help: 'Normally aircraft departs the airspace by flying beyond the horizontal bounds.  If set to yes, aircraft may also depart the airspace by climbing above it.',
-    type: 'select',
-    data: [['Yes', 'yes'], ['No', 'no']]
-}];
-
-},{}],572:[function(require,module,exports){
+},{"../constants/gameOptionConstants":572,"lodash/has":470}],582:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -48997,13 +44687,13 @@ exports.default = function () {
   var app = new _App2.default($body, airportLoadList);
 }();
 
-},{"./App":522,"babel-polyfill":1,"jquery":296,"raf":520}],573:[function(require,module,exports){
+},{"./App":519,"babel-polyfill":1,"jquery":296,"raf":517}],583:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.radians_normalize = exports.degrees_normalize = exports.angle_offset = exports.tau = undefined;
+exports.distanceToPoint = exports.radians_normalize = exports.degrees_normalize = exports.angle_offset = exports.tau = undefined;
 
 var _core = require('./core');
 
@@ -49063,6 +44753,7 @@ var degrees_normalize = exports.degrees_normalize = function degrees_normalize(d
     if (degrees >= 0) {
         return degrees % 360;
     }
+
     return 360 + degrees % 360;
 };
 
@@ -49075,10 +44766,65 @@ var radians_normalize = exports.radians_normalize = function radians_normalize(r
     if (radians >= 0) {
         return radians % tau();
     }
+
     return tau() + radians % tau();
 };
 
-},{"../utilities/unitConverters":586,"./core":574}],574:[function(require,module,exports){
+/**
+ * Calculate the distance between two lat/long coordinates in km
+ *
+ * This is a javascript implementation of the Haversine Formula
+ *
+ * for more information on the math see:
+ * - http://www.movable-type.co.uk/scripts/latlong.html
+ * - http://stackoverflow.com/questions/27928/calculate-distance-between-two-latitude-longitude-points-haversine-formula
+ *
+ * @function distanceToPoint
+ * @param startLatitude {number}
+ * @param startLongitude {number}
+ * @param endLatitude {number}
+ * @param endLongitude {number}
+ * return {number}
+ */
+var distanceToPoint = exports.distanceToPoint = function distanceToPoint(startLatitude, startLongitude, endLatitude, endLongitude) {
+    // TODO: add to global constants
+    var EARTH_RADIUS_KM = 6371;
+    var startLatitudeRadians = (0, _unitConverters.degreesToRadians)(startLatitude);
+    var endLatitudeRadians = (0, _unitConverters.degreesToRadians)(endLatitude);
+    var distanceLatitude = (0, _unitConverters.degreesToRadians)(startLatitude - endLatitude);
+    var distanceLongitude = (0, _unitConverters.degreesToRadians)(startLongitude - endLongitude);
+
+    // the square of half the chord length between points
+    var a = Math.pow(Math.sin(distanceLatitude / 2), 2) + Math.cos(startLatitudeRadians) * Math.cos(endLatitudeRadians) * Math.pow(Math.sin(distanceLongitude / 2), 2);
+
+    var angularDistanceInRadians = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+    return angularDistanceInRadians * EARTH_RADIUS_KM;
+};
+
+// /**
+//  *
+//  * @function distEuclid
+//  * @param
+//  * @param
+//  * @return
+//  */
+// export const distEuclid = (lat1, lon1, lat2, lon2) => {
+//     // TODO: add to global constants
+//     const EARTH_RADIUS_KM = 6371;
+//     const lat1 = degreesToRadians(lat1);
+//     const lat2 = degreesToRadians(lat2);
+//     const dlat = degreesToRadians(lat2 - lat1);
+//     const dlon = degreesToRadians(lon2 - lon1);
+//
+//     const a = Math.sin(dlat / 2) * Math.sin(dlat / 2) + Math.cos(lat1) * Math.cos(lat2) * Math.sin(dlon / 2) * Math.sin(dlon / 2);
+//     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+//     const d = EARTH_RADIUS_KM * c;
+//
+//     return d; // distance, in kilometers
+// };
+
+},{"../utilities/unitConverters":595,"./core":584}],584:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -49283,11 +45029,11 @@ var extrapolate_range_clamp = exports.extrapolate_range_clamp = function extrapo
     return clamp(extrapolation_result, range2_min, range2_max);
 };
 
-},{"lodash/isNumber":474}],575:[function(require,module,exports){
+},{"lodash/isNumber":486}],585:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 /**
  * Calculate distance in a 2d plane between two points
@@ -49298,19 +45044,19 @@ Object.defineProperty(exports, "__esModule", {
  * return {number}
  */
 var distance2d = exports.distance2d = function distance2d(a, b) {
-    var x = a[0] - b[0];
-    var y = a[1] - b[1];
+  var x = a[0] - b[0];
+  var y = a[1] - b[1];
 
-    return Math.sqrt(x * x + y * y);
+  return Math.sqrt(x * x + y * y);
 };
 
-},{}],576:[function(require,module,exports){
+},{}],586:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.calculateHeadingFromTwoPositions = exports.calculateDistanceToBoundary = exports.isWithinAirspace = exports.fixRadialDist = exports.getOffset = exports.bearing = exports.calcTurnInitiationDistance = exports.calcTurnRadius = undefined;
+exports.calculateDistanceToBoundary = exports.isWithinAirspace = exports.fixRadialDist = exports.getOffset = exports.bearingToPoint = exports.calcTurnInitiationDistance = exports.calcTurnRadius = undefined;
 
 var _core = require('./core');
 
@@ -49366,11 +45112,12 @@ var calcTurnInitiationDistance = exports.calcTurnInitiationDistance = function c
 
 /**
  * Returns the bearing from `startPosition` to `endPosition`
- *
+ * @function bearingToPoint
  * @param startPosition {array}     positional array, start point
  * @param endPosition {array}       positional array, end point
+ * @return {number}
  */
-var bearing = exports.bearing = function bearing(startPosition, endPosition) {
+var bearingToPoint = exports.bearingToPoint = function bearingToPoint(startPosition, endPosition) {
     return (0, _vector.vradial)((0, _vector.vsub)(endPosition, startPosition));
 };
 
@@ -49411,7 +45158,7 @@ var getOffset = exports.getOffset = function getOffset(aircraft, target) {
  * @param {array} fix       positional array of start point, in decimal-degrees [lat,lon]
  * @param {number} radial   heading to project along, in radians
  * @param {number} dist     distance to project, in nm
- * @returns {array}         location of the projected fix
+ * @returns {array}         location of the projected fix, in decimal-degrees [lat,lon]
  */
 var fixRadialDist = exports.fixRadialDist = function fixRadialDist(fix, radial, dist) {
     // FIXME: if fix is a FixModel, there may already be a method for this. if there isnt there should be. `fix.positionInRadians`
@@ -49420,10 +45167,10 @@ var fixRadialDist = exports.fixRadialDist = function fixRadialDist(fix, radial, 
 
     var R = CONSTANTS.EARTH_RADIUS_NM;
     // TODO: abstract these two calculations to functions
-    var lat2 = Math.asin((0, _core.sin)(fix[1]) * (0, _core.cos)(dist / R) + (0, _core.cos)(fix[1]) * (0, _core.sin)(dist / R) * (0, _core.cos)(radial));
-    var lon2 = fix[0] + Math.atan2((0, _core.sin)(radial) * (0, _core.sin)(dist / R) * (0, _core.cos)(fix[1]), (0, _core.cos)(dist / R) - (0, _core.sin)(fix[1]) * (0, _core.sin)(lat2));
+    var lat2 = Math.asin((0, _core.sin)(fix[0]) * (0, _core.cos)(dist / R) + (0, _core.cos)(fix[0]) * (0, _core.sin)(dist / R) * (0, _core.cos)(radial));
+    var lon2 = fix[1] + Math.atan2((0, _core.sin)(radial) * (0, _core.sin)(dist / R) * (0, _core.cos)(fix[0]), (0, _core.cos)(dist / R) - (0, _core.sin)(fix[0]) * (0, _core.sin)(lat2));
 
-    return [(0, _unitConverters.radiansToDegrees)(lon2), (0, _unitConverters.radiansToDegrees)(lat2)];
+    return [(0, _unitConverters.radiansToDegrees)(lat2), (0, _unitConverters.radiansToDegrees)(lon2)];
 };
 
 /**
@@ -49462,20 +45209,7 @@ var calculateDistanceToBoundary = exports.calculateDistanceToBoundary = function
     return (0, _core.abs)((0, _distance.distance2d)(pos, airport.position.position) - airport.ctr_radius);
 };
 
-/**
- *
- *
- *
- * @function calculateHeadingFromTwoPositions
- * @param positionEnd {array}
- * @param positionStart {array}
- * @return {number}
- */
-var calculateHeadingFromTwoPositions = exports.calculateHeadingFromTwoPositions = function calculateHeadingFromTwoPositions(positionEnd, positionStart) {
-    return (0, _vector.vradial)((0, _vector.vsub)(positionEnd, positionStart));
-};
-
-},{"../utilities/unitConverters":586,"./core":574,"./distance":575,"./vector":577}],577:[function(require,module,exports){
+},{"../utilities/unitConverters":595,"./core":584,"./distance":585,"./vector":587}],587:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -50003,3076 +45737,7 @@ var positive_intersection_with_rect = exports.positive_intersection_with_rect = 
     return undefined;
 };
 
-},{"../utilities/unitConverters":586,"./core":574,"jquery":296,"lodash/forEach":458,"lodash/map":484}],578:[function(require,module,exports){
-"use strict";
-
-/* eslint-disable */
-zlsa.atc.Parser = function () {
-
-  /*
-   * Generated by PEG.js 0.9.0.
-   *
-   * http://pegjs.org/
-   */
-
-  function peg$subclass(child, parent) {
-    function ctor() {
-      this.constructor = child;
-    }
-    ctor.prototype = parent.prototype;
-    child.prototype = new ctor();
-  }
-
-  function peg$SyntaxError(message, expected, found, location) {
-    this.message = message;
-    this.expected = expected;
-    this.found = found;
-    this.location = location;
-    this.name = "SyntaxError";
-
-    if (typeof Error.captureStackTrace === "function") {
-      Error.captureStackTrace(this, peg$SyntaxError);
-    }
-  }
-
-  peg$subclass(peg$SyntaxError, Error);
-
-  function peg$parse(input) {
-    var options = arguments.length > 1 ? arguments[1] : {},
-        parser = this,
-        peg$FAILED = {},
-        peg$startRuleFunctions = { InputParseGrammar: peg$parseInputParseGrammar },
-        peg$startRuleFunction = peg$parseInputParseGrammar,
-        peg$c0 = "version",
-        peg$c1 = { type: "literal", value: "version", description: "\"version\"" },
-        peg$c2 = function peg$c2() {
-      return ['version', null];
-    },
-        peg$c3 = "tutorial",
-        peg$c4 = { type: "literal", value: "tutorial", description: "\"tutorial\"" },
-        peg$c5 = function peg$c5() {
-      return ['tutorial', null];
-    },
-        peg$c6 = "auto",
-        peg$c7 = { type: "literal", value: "auto", description: "\"auto\"" },
-        peg$c8 = function peg$c8() {
-      return ['auto', null];
-    },
-        peg$c9 = "pause",
-        peg$c10 = { type: "literal", value: "pause", description: "\"pause\"" },
-        peg$c11 = function peg$c11() {
-      return ['pause', null];
-    },
-        peg$c12 = "clear",
-        peg$c13 = { type: "literal", value: "clear", description: "\"clear\"" },
-        peg$c14 = function peg$c14() {
-      return ['clear', null];
-    },
-        peg$c15 = function peg$c15(cmd) {
-      return { command: cmd[0], args: cmd[1] };
-    },
-        peg$c16 = function peg$c16(cmd) {
-      return { command: 'transmit', callsign: cmd[0], args: cmd[1] };
-    },
-        peg$c17 = "timewarp",
-        peg$c18 = { type: "literal", value: "timewarp", description: "\"timewarp\"" },
-        peg$c19 = "speedup",
-        peg$c20 = { type: "literal", value: "speedup", description: "\"speedup\"" },
-        peg$c21 = "slowmo",
-        peg$c22 = { type: "literal", value: "slowmo", description: "\"slowmo\"" },
-        peg$c23 = "timescale",
-        peg$c24 = { type: "literal", value: "timescale", description: "\"timescale\"" },
-        peg$c25 = function peg$c25(command) {
-      return command;
-    },
-        peg$c26 = "airport",
-        peg$c27 = { type: "literal", value: "airport", description: "\"airport\"" },
-        peg$c28 = "rate",
-        peg$c29 = { type: "literal", value: "rate", description: "\"rate\"" },
-        peg$c30 = "abort",
-        peg$c31 = { type: "literal", value: "abort", description: "\"abort\"" },
-        peg$c32 = function peg$c32() {
-      return ["abort"];
-    },
-        peg$c33 = "\u2B61",
-        peg$c34 = { type: "literal", value: "\u2B61", description: "\"\\u2B61\"" },
-        peg$c35 = "\u2B63",
-        peg$c36 = { type: "literal", value: "\u2B63", description: "\"\\u2B63\"" },
-        peg$c37 = function peg$c37(arg) {
-      return ["altitude", arg * 100, null];
-    },
-        peg$c38 = "altitude",
-        peg$c39 = { type: "literal", value: "altitude", description: "\"altitude\"" },
-        peg$c40 = "climb",
-        peg$c41 = { type: "literal", value: "climb", description: "\"climb\"" },
-        peg$c42 = "descend",
-        peg$c43 = { type: "literal", value: "descend", description: "\"descend\"" },
-        peg$c44 = "a",
-        peg$c45 = { type: "literal", value: "a", description: "\"a\"" },
-        peg$c46 = "c",
-        peg$c47 = { type: "literal", value: "c", description: "\"c\"" },
-        peg$c48 = "d",
-        peg$c49 = { type: "literal", value: "d", description: "\"d\"" },
-        peg$c50 = function peg$c50(arg) {
-      return arg * 100;
-    },
-        peg$c51 = "expedite",
-        peg$c52 = { type: "literal", value: "expedite", description: "\"expedite\"" },
-        peg$c53 = "x",
-        peg$c54 = { type: "literal", value: "x", description: "\"x\"" },
-        peg$c55 = function peg$c55(altitude) {
-      return true;
-    },
-        peg$c56 = function peg$c56(altitude, expedite) {
-      return altitude == null && expedite == null;
-    },
-        peg$c57 = function peg$c57(altitude, expedite) {
-      return ["altitude", altitude, expedite];
-    },
-        peg$c58 = "clearedasfiled",
-        peg$c59 = { type: "literal", value: "clearedasfiled", description: "\"clearedasfiled\"" },
-        peg$c60 = "caf",
-        peg$c61 = { type: "literal", value: "caf", description: "\"caf\"" },
-        peg$c62 = function peg$c62() {
-      return ["clearedAsFiled"];
-    },
-        peg$c63 = "climbviasid",
-        peg$c64 = { type: "literal", value: "climbviasid", description: "\"climbviasid\"" },
-        peg$c65 = "cvs",
-        peg$c66 = { type: "literal", value: "cvs", description: "\"cvs\"" },
-        peg$c67 = function peg$c67() {
-      return ["climbViaSID"];
-    },
-        peg$c68 = "debug",
-        peg$c69 = { type: "literal", value: "debug", description: "\"debug\"" },
-        peg$c70 = "log",
-        peg$c71 = { type: "literal", value: "log", description: "\"log\"" },
-        peg$c72 = function peg$c72() {
-      return ["debug"];
-    },
-        peg$c73 = "delete",
-        peg$c74 = { type: "literal", value: "delete", description: "\"delete\"" },
-        peg$c75 = "del",
-        peg$c76 = { type: "literal", value: "del", description: "\"del\"" },
-        peg$c77 = "kill",
-        peg$c78 = { type: "literal", value: "kill", description: "\"kill\"" },
-        peg$c79 = function peg$c79() {
-      return ["delete"];
-    },
-        peg$c80 = "descendviastar",
-        peg$c81 = { type: "literal", value: "descendviastar", description: "\"descendviastar\"" },
-        peg$c82 = "dvs",
-        peg$c83 = { type: "literal", value: "dvs", description: "\"dvs\"" },
-        peg$c84 = function peg$c84() {
-      return ["descendViaSTAR"];
-    },
-        peg$c85 = "direct",
-        peg$c86 = { type: "literal", value: "direct", description: "\"direct\"" },
-        peg$c87 = "dct",
-        peg$c88 = { type: "literal", value: "dct", description: "\"dct\"" },
-        peg$c89 = "pd",
-        peg$c90 = { type: "literal", value: "pd", description: "\"pd\"" },
-        peg$c91 = function peg$c91() {
-      return "direct";
-    },
-        peg$c92 = "fix",
-        peg$c93 = { type: "literal", value: "fix", description: "\"fix\"" },
-        peg$c94 = "f",
-        peg$c95 = { type: "literal", value: "f", description: "\"f\"" },
-        peg$c96 = "track",
-        peg$c97 = { type: "literal", value: "track", description: "\"track\"" },
-        peg$c98 = function peg$c98() {
-      return "fix";
-    },
-        peg$c99 = "fph",
-        peg$c100 = { type: "literal", value: "fph", description: "\"fph\"" },
-        peg$c101 = function peg$c101() {
-      return ['flyPresentHeading'];
-    },
-        peg$c102 = function peg$c102(cmd) {
-      return [cmd[0], cmd[1], cmd[2][0], cmd[2][1]];
-    },
-        peg$c103 = "\u2BA2",
-        peg$c104 = { type: "literal", value: "\u2BA2", description: "\"\\u2BA2\"" },
-        peg$c105 = function peg$c105() {
-      return "left";
-    },
-        peg$c106 = "\u2BA3",
-        peg$c107 = { type: "literal", value: "\u2BA3", description: "\"\\u2BA3\"" },
-        peg$c108 = function peg$c108() {
-      return "right";
-    },
-        peg$c109 = "fh",
-        peg$c110 = { type: "literal", value: "fh", description: "\"fh\"" },
-        peg$c111 = function peg$c111() {
-      return null;
-    },
-        peg$c112 = function peg$c112(dir, arg) {
-      return ['heading', dir, arg];
-    },
-        peg$c113 = "heading",
-        peg$c114 = { type: "literal", value: "heading", description: "\"heading\"" },
-        peg$c115 = "turn",
-        peg$c116 = { type: "literal", value: "turn", description: "\"turn\"" },
-        peg$c117 = "t",
-        peg$c118 = { type: "literal", value: "t", description: "\"t\"" },
-        peg$c119 = "h",
-        peg$c120 = { type: "literal", value: "h", description: "\"h\"" },
-        peg$c121 = function peg$c121() {
-      return "heading";
-    },
-        peg$c122 = function peg$c122(arg) {
-      return arg;
-    },
-        peg$c123 = /^[0-9]/,
-        peg$c124 = { type: "class", value: "[0-9]", description: "[0-9]" },
-        peg$c125 = function peg$c125() {
-      return [parseInt(text()), false];
-    },
-        peg$c126 = function peg$c126() {
-      return [parseInt(text()), true];
-    },
-        peg$c127 = "hold",
-        peg$c128 = { type: "literal", value: "hold", description: "\"hold\"" },
-        peg$c129 = "min",
-        peg$c130 = { type: "literal", value: "min", description: "\"min\"" },
-        peg$c131 = "nm",
-        peg$c132 = { type: "literal", value: "nm", description: "\"nm\"" },
-        peg$c133 = function peg$c133(dir, length, fix) {
-      return ["hold", dir, length ? length[1] + length[2] : null, fix ? fix[2] : null];
-    },
-        peg$c134 = function peg$c134(cmd) {
-      return [cmd[0], cmd[1], cmd[2]];
-    },
-        peg$c135 = "land",
-        peg$c136 = { type: "literal", value: "land", description: "\"land\"" },
-        peg$c137 = "l",
-        peg$c138 = { type: "literal", value: "l", description: "\"l\"" },
-        peg$c139 = "ils",
-        peg$c140 = { type: "literal", value: "ils", description: "\"ils\"" },
-        peg$c141 = function peg$c141() {
-      return "land";
-    },
-        peg$c142 = /^[a-z]/i,
-        peg$c143 = { type: "class", value: "[a-z]i", description: "[a-z]i" },
-        peg$c144 = function peg$c144(cmd, variant, arg) {
-      return [variant, arg];
-    },
-        peg$c145 = function peg$c145(cmd, arg) {
-      return [cmd, arg[0], arg[1]];
-    },
-        peg$c146 = "\u2B50",
-        peg$c147 = { type: "literal", value: "\u2B50", description: "\"\\u2B50\"" },
-        peg$c148 = "movedatablock",
-        peg$c149 = { type: "literal", value: "movedatablock", description: "\"movedatablock\"" },
-        peg$c150 = "`",
-        peg$c151 = { type: "literal", value: "`", description: "\"`\"" },
-        peg$c152 = function peg$c152() {
-      return "moveDataBlock";
-    },
-        peg$c153 = /^[1-9]/,
-        peg$c154 = { type: "class", value: "[1-9]", description: "[1-9]" },
-        peg$c155 = "route",
-        peg$c156 = { type: "literal", value: "route", description: "\"route\"" },
-        peg$c157 = function peg$c157(arg) {
-      return ["route", arg];
-    },
-        peg$c158 = "reroute",
-        peg$c159 = { type: "literal", value: "reroute", description: "\"reroute\"" },
-        peg$c160 = "rr",
-        peg$c161 = { type: "literal", value: "rr", description: "\"rr\"" },
-        peg$c162 = function peg$c162(arg) {
-      return ["reroute", arg];
-    },
-        peg$c163 = "sayroute",
-        peg$c164 = { type: "literal", value: "sayroute", description: "\"sayroute\"" },
-        peg$c165 = "sr",
-        peg$c166 = { type: "literal", value: "sr", description: "\"sr\"" },
-        peg$c167 = function peg$c167() {
-      return ["sayRoute"];
-    },
-        peg$c168 = "sid",
-        peg$c169 = { type: "literal", value: "sid", description: "\"sid\"" },
-        peg$c170 = function peg$c170(arg) {
-      return ["sid", arg];
-    },
-        peg$c171 = "+",
-        peg$c172 = { type: "literal", value: "+", description: "\"+\"" },
-        peg$c173 = "-",
-        peg$c174 = { type: "literal", value: "-", description: "\"-\"" },
-        peg$c175 = "speed",
-        peg$c176 = { type: "literal", value: "speed", description: "\"speed\"" },
-        peg$c177 = "slow",
-        peg$c178 = { type: "literal", value: "slow", description: "\"slow\"" },
-        peg$c179 = "sp",
-        peg$c180 = { type: "literal", value: "sp", description: "\"sp\"" },
-        peg$c181 = function peg$c181() {
-      return "speed";
-    },
-        peg$c182 = "star",
-        peg$c183 = { type: "literal", value: "star", description: "\"star\"" },
-        peg$c184 = function peg$c184(arg) {
-      return ["star", arg];
-    },
-        peg$c185 = "takeoff",
-        peg$c186 = { type: "literal", value: "takeoff", description: "\"takeoff\"" },
-        peg$c187 = "to",
-        peg$c188 = { type: "literal", value: "to", description: "\"to\"" },
-        peg$c189 = "cto",
-        peg$c190 = { type: "literal", value: "cto", description: "\"cto\"" },
-        peg$c191 = function peg$c191() {
-      return ["takeoff"];
-    },
-        peg$c192 = "taxi",
-        peg$c193 = { type: "literal", value: "taxi", description: "\"taxi\"" },
-        peg$c194 = "wait",
-        peg$c195 = { type: "literal", value: "wait", description: "\"wait\"" },
-        peg$c196 = "w",
-        peg$c197 = { type: "literal", value: "w", description: "\"w\"" },
-        peg$c198 = function peg$c198(runway) {
-      return ["taxi", runway];
-    },
-        peg$c199 = "left",
-        peg$c200 = { type: "literal", value: "left", description: "\"left\"" },
-        peg$c201 = "right",
-        peg$c202 = { type: "literal", value: "right", description: "\"right\"" },
-        peg$c203 = "r",
-        peg$c204 = { type: "literal", value: "r", description: "\"r\"" },
-        peg$c205 = function peg$c205(dir) {
-      return dir;
-    },
-        peg$c206 = function peg$c206(fix) {
-      return fix[2];
-    },
-        peg$c207 = /^[ \t]/,
-        peg$c208 = { type: "class", value: "[ \\t]", description: "[ \\t]" },
-        peg$c209 = ".",
-        peg$c210 = { type: "literal", value: ".", description: "\".\"" },
-        peg$c211 = function peg$c211() {
-      return parseFloat(text());
-    },
-        peg$c212 = /^[a-zA-Z0-9.]/,
-        peg$c213 = { type: "class", value: "[a-zA-Z0-9.]", description: "[a-zA-Z0-9.]" },
-        peg$c214 = { type: "other", description: "whiteSpace" },
-        peg$c215 = function peg$c215(arg) {
-      return parseInt(arg);
-    },
-        peg$currPos = 0,
-        peg$savedPos = 0,
-        peg$posDetailsCache = [{ line: 1, column: 1, seenCR: false }],
-        peg$maxFailPos = 0,
-        peg$maxFailExpected = [],
-        peg$silentFails = 0,
-        peg$result;
-
-    if ("startRule" in options) {
-      if (!(options.startRule in peg$startRuleFunctions)) {
-        throw new Error("Can't start parsing from rule \"" + options.startRule + "\".");
-      }
-
-      peg$startRuleFunction = peg$startRuleFunctions[options.startRule];
-    }
-
-    function text() {
-      return input.substring(peg$savedPos, peg$currPos);
-    }
-
-    function location() {
-      return peg$computeLocation(peg$savedPos, peg$currPos);
-    }
-
-    function expected(description) {
-      throw peg$buildException(null, [{ type: "other", description: description }], input.substring(peg$savedPos, peg$currPos), peg$computeLocation(peg$savedPos, peg$currPos));
-    }
-
-    function error(message) {
-      throw peg$buildException(message, null, input.substring(peg$savedPos, peg$currPos), peg$computeLocation(peg$savedPos, peg$currPos));
-    }
-
-    function peg$computePosDetails(pos) {
-      var details = peg$posDetailsCache[pos],
-          p,
-          ch;
-
-      if (details) {
-        return details;
-      } else {
-        p = pos - 1;
-        while (!peg$posDetailsCache[p]) {
-          p--;
-        }
-
-        details = peg$posDetailsCache[p];
-        details = {
-          line: details.line,
-          column: details.column,
-          seenCR: details.seenCR
-        };
-
-        while (p < pos) {
-          ch = input.charAt(p);
-          if (ch === "\n") {
-            if (!details.seenCR) {
-              details.line++;
-            }
-            details.column = 1;
-            details.seenCR = false;
-          } else if (ch === "\r" || ch === "\u2028" || ch === "\u2029") {
-            details.line++;
-            details.column = 1;
-            details.seenCR = true;
-          } else {
-            details.column++;
-            details.seenCR = false;
-          }
-
-          p++;
-        }
-
-        peg$posDetailsCache[pos] = details;
-        return details;
-      }
-    }
-
-    function peg$computeLocation(startPos, endPos) {
-      var startPosDetails = peg$computePosDetails(startPos),
-          endPosDetails = peg$computePosDetails(endPos);
-
-      return {
-        start: {
-          offset: startPos,
-          line: startPosDetails.line,
-          column: startPosDetails.column
-        },
-        end: {
-          offset: endPos,
-          line: endPosDetails.line,
-          column: endPosDetails.column
-        }
-      };
-    }
-
-    function peg$fail(expected) {
-      if (peg$currPos < peg$maxFailPos) {
-        return;
-      }
-
-      if (peg$currPos > peg$maxFailPos) {
-        peg$maxFailPos = peg$currPos;
-        peg$maxFailExpected = [];
-      }
-
-      peg$maxFailExpected.push(expected);
-    }
-
-    function peg$buildException(message, expected, found, location) {
-      function cleanupExpected(expected) {
-        var i = 1;
-
-        expected.sort(function (a, b) {
-          if (a.description < b.description) {
-            return -1;
-          } else if (a.description > b.description) {
-            return 1;
-          } else {
-            return 0;
-          }
-        });
-
-        while (i < expected.length) {
-          if (expected[i - 1] === expected[i]) {
-            expected.splice(i, 1);
-          } else {
-            i++;
-          }
-        }
-      }
-
-      function buildMessage(expected, found) {
-        function stringEscape(s) {
-          function hex(ch) {
-            return ch.charCodeAt(0).toString(16).toUpperCase();
-          }
-
-          return s.replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/\x08/g, '\\b').replace(/\t/g, '\\t').replace(/\n/g, '\\n').replace(/\f/g, '\\f').replace(/\r/g, '\\r').replace(/[\x00-\x07\x0B\x0E\x0F]/g, function (ch) {
-            return '\\x0' + hex(ch);
-          }).replace(/[\x10-\x1F\x80-\xFF]/g, function (ch) {
-            return '\\x' + hex(ch);
-          }).replace(/[\u0100-\u0FFF]/g, function (ch) {
-            return "\\u0" + hex(ch);
-          }).replace(/[\u1000-\uFFFF]/g, function (ch) {
-            return "\\u" + hex(ch);
-          });
-        }
-
-        var expectedDescs = new Array(expected.length),
-            expectedDesc,
-            foundDesc,
-            i;
-
-        for (i = 0; i < expected.length; i++) {
-          expectedDescs[i] = expected[i].description;
-        }
-
-        expectedDesc = expected.length > 1 ? expectedDescs.slice(0, -1).join(", ") + " or " + expectedDescs[expected.length - 1] : expectedDescs[0];
-
-        foundDesc = found ? "\"" + stringEscape(found) + "\"" : "end of input";
-
-        return "Expected " + expectedDesc + " but " + foundDesc + " found.";
-      }
-
-      if (expected !== null) {
-        cleanupExpected(expected);
-      }
-
-      return new peg$SyntaxError(message !== null ? message : buildMessage(expected, found), expected, found, location);
-    }
-
-    function peg$parseInputParseGrammar() {
-      var s0;
-
-      s0 = peg$parsesystemCommand();
-      if (s0 === peg$FAILED) {
-        s0 = peg$parsetransmissionCommand();
-      }
-
-      return s0;
-    }
-
-    function peg$parsesystemCommand() {
-      var s0, s1, s2;
-
-      s0 = peg$currPos;
-      s1 = peg$currPos;
-      if (input.substr(peg$currPos, 7) === peg$c0) {
-        s2 = peg$c0;
-        peg$currPos += 7;
-      } else {
-        s2 = peg$FAILED;
-        if (peg$silentFails === 0) {
-          peg$fail(peg$c1);
-        }
-      }
-      if (s2 !== peg$FAILED) {
-        peg$savedPos = s1;
-        s2 = peg$c2();
-      }
-      s1 = s2;
-      if (s1 === peg$FAILED) {
-        s1 = peg$currPos;
-        if (input.substr(peg$currPos, 8) === peg$c3) {
-          s2 = peg$c3;
-          peg$currPos += 8;
-        } else {
-          s2 = peg$FAILED;
-          if (peg$silentFails === 0) {
-            peg$fail(peg$c4);
-          }
-        }
-        if (s2 !== peg$FAILED) {
-          peg$savedPos = s1;
-          s2 = peg$c5();
-        }
-        s1 = s2;
-        if (s1 === peg$FAILED) {
-          s1 = peg$currPos;
-          if (input.substr(peg$currPos, 4) === peg$c6) {
-            s2 = peg$c6;
-            peg$currPos += 4;
-          } else {
-            s2 = peg$FAILED;
-            if (peg$silentFails === 0) {
-              peg$fail(peg$c7);
-            }
-          }
-          if (s2 !== peg$FAILED) {
-            peg$savedPos = s1;
-            s2 = peg$c8();
-          }
-          s1 = s2;
-          if (s1 === peg$FAILED) {
-            s1 = peg$currPos;
-            if (input.substr(peg$currPos, 5) === peg$c9) {
-              s2 = peg$c9;
-              peg$currPos += 5;
-            } else {
-              s2 = peg$FAILED;
-              if (peg$silentFails === 0) {
-                peg$fail(peg$c10);
-              }
-            }
-            if (s2 !== peg$FAILED) {
-              peg$savedPos = s1;
-              s2 = peg$c11();
-            }
-            s1 = s2;
-            if (s1 === peg$FAILED) {
-              s1 = peg$currPos;
-              if (input.substr(peg$currPos, 5) === peg$c12) {
-                s2 = peg$c12;
-                peg$currPos += 5;
-              } else {
-                s2 = peg$FAILED;
-                if (peg$silentFails === 0) {
-                  peg$fail(peg$c13);
-                }
-              }
-              if (s2 !== peg$FAILED) {
-                peg$savedPos = s1;
-                s2 = peg$c14();
-              }
-              s1 = s2;
-              if (s1 === peg$FAILED) {
-                s1 = peg$parseairportCommand();
-                if (s1 === peg$FAILED) {
-                  s1 = peg$parserateCommand();
-                  if (s1 === peg$FAILED) {
-                    s1 = peg$parsetimewarpCommand();
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-      if (s1 !== peg$FAILED) {
-        peg$savedPos = s0;
-        s1 = peg$c15(s1);
-      }
-      s0 = s1;
-
-      return s0;
-    }
-
-    function peg$parsetransmissionCommand() {
-      var s0, s1;
-
-      s0 = peg$currPos;
-      s1 = peg$parseaircraftCommand();
-      if (s1 !== peg$FAILED) {
-        peg$savedPos = s0;
-        s1 = peg$c16(s1);
-      }
-      s0 = s1;
-
-      return s0;
-    }
-
-    function peg$parsetimewarpCommand() {
-      var s0, s1, s2, s3;
-
-      s0 = peg$currPos;
-      s1 = peg$currPos;
-      if (input.substr(peg$currPos, 8) === peg$c17) {
-        s2 = peg$c17;
-        peg$currPos += 8;
-      } else {
-        s2 = peg$FAILED;
-        if (peg$silentFails === 0) {
-          peg$fail(peg$c18);
-        }
-      }
-      if (s2 === peg$FAILED) {
-        if (input.substr(peg$currPos, 7) === peg$c19) {
-          s2 = peg$c19;
-          peg$currPos += 7;
-        } else {
-          s2 = peg$FAILED;
-          if (peg$silentFails === 0) {
-            peg$fail(peg$c20);
-          }
-        }
-        if (s2 === peg$FAILED) {
-          if (input.substr(peg$currPos, 6) === peg$c21) {
-            s2 = peg$c21;
-            peg$currPos += 6;
-          } else {
-            s2 = peg$FAILED;
-            if (peg$silentFails === 0) {
-              peg$fail(peg$c22);
-            }
-          }
-          if (s2 === peg$FAILED) {
-            if (input.substr(peg$currPos, 9) === peg$c23) {
-              s2 = peg$c23;
-              peg$currPos += 9;
-            } else {
-              s2 = peg$FAILED;
-              if (peg$silentFails === 0) {
-                peg$fail(peg$c24);
-              }
-            }
-          }
-        }
-      }
-      if (s2 !== peg$FAILED) {
-        s3 = peg$parsewhiteSpace();
-        if (s3 !== peg$FAILED) {
-          peg$savedPos = s1;
-          s2 = peg$c25(s2);
-          s1 = s2;
-        } else {
-          peg$currPos = s1;
-          s1 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s1;
-        s1 = peg$FAILED;
-      }
-      if (s1 !== peg$FAILED) {
-        s2 = peg$parseinteger();
-        if (s2 !== peg$FAILED) {
-          s1 = [s1, s2];
-          s0 = s1;
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-
-      return s0;
-    }
-
-    function peg$parseairportCommand() {
-      var s0, s1, s2, s3;
-
-      s0 = peg$currPos;
-      s1 = peg$currPos;
-      if (input.substr(peg$currPos, 7) === peg$c26) {
-        s2 = peg$c26;
-        peg$currPos += 7;
-      } else {
-        s2 = peg$FAILED;
-        if (peg$silentFails === 0) {
-          peg$fail(peg$c27);
-        }
-      }
-      if (s2 !== peg$FAILED) {
-        s3 = peg$parsewhiteSpace();
-        if (s3 !== peg$FAILED) {
-          peg$savedPos = s1;
-          s2 = peg$c25(s2);
-          s1 = s2;
-        } else {
-          peg$currPos = s1;
-          s1 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s1;
-        s1 = peg$FAILED;
-      }
-      if (s1 !== peg$FAILED) {
-        s2 = peg$parsestring();
-        if (s2 !== peg$FAILED) {
-          s1 = [s1, s2];
-          s0 = s1;
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-
-      return s0;
-    }
-
-    function peg$parserateCommand() {
-      var s0, s1, s2, s3;
-
-      s0 = peg$currPos;
-      s1 = peg$currPos;
-      if (input.substr(peg$currPos, 4) === peg$c28) {
-        s2 = peg$c28;
-        peg$currPos += 4;
-      } else {
-        s2 = peg$FAILED;
-        if (peg$silentFails === 0) {
-          peg$fail(peg$c29);
-        }
-      }
-      if (s2 !== peg$FAILED) {
-        s3 = peg$parsewhiteSpace();
-        if (s3 !== peg$FAILED) {
-          peg$savedPos = s1;
-          s2 = peg$c25(s2);
-          s1 = s2;
-        } else {
-          peg$currPos = s1;
-          s1 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s1;
-        s1 = peg$FAILED;
-      }
-      if (s1 !== peg$FAILED) {
-        s2 = peg$parsefloat();
-        if (s2 !== peg$FAILED) {
-          s1 = [s1, s2];
-          s0 = s1;
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-
-      return s0;
-    }
-
-    function peg$parseaircraftCommand() {
-      var s0, s1, s2;
-
-      s0 = peg$currPos;
-      s1 = peg$parsestring();
-      if (s1 !== peg$FAILED) {
-        s2 = peg$parseaircraftSubCommand();
-        if (s2 !== peg$FAILED) {
-          s1 = [s1, s2];
-          s0 = s1;
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-
-      return s0;
-    }
-
-    function peg$parseaircraftSubCommand() {
-      var s0, s1, s2, s3;
-
-      s0 = [];
-      s1 = peg$currPos;
-      s2 = peg$parsewhiteSpace();
-      if (s2 !== peg$FAILED) {
-        s3 = peg$parsecmdAbort();
-        if (s3 === peg$FAILED) {
-          s3 = peg$parsecmdDirect();
-          if (s3 === peg$FAILED) {
-            s3 = peg$parsecmdAltitude();
-            if (s3 === peg$FAILED) {
-              s3 = peg$parsecmdClearedAsFiled();
-              if (s3 === peg$FAILED) {
-                s3 = peg$parsecmdClimbViaSID();
-                if (s3 === peg$FAILED) {
-                  s3 = peg$parsecmdDebug();
-                  if (s3 === peg$FAILED) {
-                    s3 = peg$parsecmdDelete();
-                    if (s3 === peg$FAILED) {
-                      s3 = peg$parsecmdDescendViaSTAR();
-                      if (s3 === peg$FAILED) {
-                        s3 = peg$parsecmdFix();
-                        if (s3 === peg$FAILED) {
-                          s3 = peg$parsecmdFlyPresentHeading();
-                          if (s3 === peg$FAILED) {
-                            s3 = peg$parsecmdHeading();
-                            if (s3 === peg$FAILED) {
-                              s3 = peg$parsecmdHold();
-                              if (s3 === peg$FAILED) {
-                                s3 = peg$parsecmdLand();
-                                if (s3 === peg$FAILED) {
-                                  s3 = peg$parsecmdMoveDataBlock();
-                                  if (s3 === peg$FAILED) {
-                                    s3 = peg$parsecmdRoute();
-                                    if (s3 === peg$FAILED) {
-                                      s3 = peg$parsecmdReRoute();
-                                      if (s3 === peg$FAILED) {
-                                        s3 = peg$parsecmdSayRoute();
-                                        if (s3 === peg$FAILED) {
-                                          s3 = peg$parsecmdSID();
-                                          if (s3 === peg$FAILED) {
-                                            s3 = peg$parsecmdSpeed();
-                                            if (s3 === peg$FAILED) {
-                                              s3 = peg$parsecmdSTAR();
-                                              if (s3 === peg$FAILED) {
-                                                s3 = peg$parsecmdTakeoff();
-                                                if (s3 === peg$FAILED) {
-                                                  s3 = peg$parsecmdTaxi();
-                                                }
-                                              }
-                                            }
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-        if (s3 !== peg$FAILED) {
-          peg$savedPos = s1;
-          s2 = peg$c25(s3);
-          s1 = s2;
-        } else {
-          peg$currPos = s1;
-          s1 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s1;
-        s1 = peg$FAILED;
-      }
-      if (s1 !== peg$FAILED) {
-        while (s1 !== peg$FAILED) {
-          s0.push(s1);
-          s1 = peg$currPos;
-          s2 = peg$parsewhiteSpace();
-          if (s2 !== peg$FAILED) {
-            s3 = peg$parsecmdAbort();
-            if (s3 === peg$FAILED) {
-              s3 = peg$parsecmdDirect();
-              if (s3 === peg$FAILED) {
-                s3 = peg$parsecmdAltitude();
-                if (s3 === peg$FAILED) {
-                  s3 = peg$parsecmdClearedAsFiled();
-                  if (s3 === peg$FAILED) {
-                    s3 = peg$parsecmdClimbViaSID();
-                    if (s3 === peg$FAILED) {
-                      s3 = peg$parsecmdDebug();
-                      if (s3 === peg$FAILED) {
-                        s3 = peg$parsecmdDelete();
-                        if (s3 === peg$FAILED) {
-                          s3 = peg$parsecmdDescendViaSTAR();
-                          if (s3 === peg$FAILED) {
-                            s3 = peg$parsecmdFix();
-                            if (s3 === peg$FAILED) {
-                              s3 = peg$parsecmdFlyPresentHeading();
-                              if (s3 === peg$FAILED) {
-                                s3 = peg$parsecmdHeading();
-                                if (s3 === peg$FAILED) {
-                                  s3 = peg$parsecmdHold();
-                                  if (s3 === peg$FAILED) {
-                                    s3 = peg$parsecmdLand();
-                                    if (s3 === peg$FAILED) {
-                                      s3 = peg$parsecmdMoveDataBlock();
-                                      if (s3 === peg$FAILED) {
-                                        s3 = peg$parsecmdRoute();
-                                        if (s3 === peg$FAILED) {
-                                          s3 = peg$parsecmdReRoute();
-                                          if (s3 === peg$FAILED) {
-                                            s3 = peg$parsecmdSayRoute();
-                                            if (s3 === peg$FAILED) {
-                                              s3 = peg$parsecmdSID();
-                                              if (s3 === peg$FAILED) {
-                                                s3 = peg$parsecmdSpeed();
-                                                if (s3 === peg$FAILED) {
-                                                  s3 = peg$parsecmdSTAR();
-                                                  if (s3 === peg$FAILED) {
-                                                    s3 = peg$parsecmdTakeoff();
-                                                    if (s3 === peg$FAILED) {
-                                                      s3 = peg$parsecmdTaxi();
-                                                    }
-                                                  }
-                                                }
-                                              }
-                                            }
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-            if (s3 !== peg$FAILED) {
-              peg$savedPos = s1;
-              s2 = peg$c25(s3);
-              s1 = s2;
-            } else {
-              peg$currPos = s1;
-              s1 = peg$FAILED;
-            }
-          } else {
-            peg$currPos = s1;
-            s1 = peg$FAILED;
-          }
-        }
-      } else {
-        s0 = peg$FAILED;
-      }
-
-      return s0;
-    }
-
-    function peg$parsecmdAbort() {
-      var s0, s1;
-
-      s0 = peg$currPos;
-      if (input.substr(peg$currPos, 5) === peg$c30) {
-        s1 = peg$c30;
-        peg$currPos += 5;
-      } else {
-        s1 = peg$FAILED;
-        if (peg$silentFails === 0) {
-          peg$fail(peg$c31);
-        }
-      }
-      if (s1 !== peg$FAILED) {
-        peg$savedPos = s0;
-        s1 = peg$c32();
-      }
-      s0 = s1;
-
-      return s0;
-    }
-
-    function peg$parsecmdAltitude() {
-      var s0;
-
-      s0 = peg$parsecmdAltitudeShort();
-      if (s0 === peg$FAILED) {
-        s0 = peg$parsecmdAltitudeLong();
-      }
-
-      return s0;
-    }
-
-    function peg$parsecmdAltitudeShort() {
-      var s0, s1, s2;
-
-      s0 = peg$currPos;
-      if (input.charCodeAt(peg$currPos) === 11105) {
-        s1 = peg$c33;
-        peg$currPos++;
-      } else {
-        s1 = peg$FAILED;
-        if (peg$silentFails === 0) {
-          peg$fail(peg$c34);
-        }
-      }
-      if (s1 === peg$FAILED) {
-        if (input.charCodeAt(peg$currPos) === 11107) {
-          s1 = peg$c35;
-          peg$currPos++;
-        } else {
-          s1 = peg$FAILED;
-          if (peg$silentFails === 0) {
-            peg$fail(peg$c36);
-          }
-        }
-      }
-      if (s1 !== peg$FAILED) {
-        s2 = peg$parseinteger();
-        if (s2 !== peg$FAILED) {
-          peg$savedPos = s0;
-          s1 = peg$c37(s2);
-          s0 = s1;
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-
-      return s0;
-    }
-
-    function peg$parsecmdAltitudeLong() {
-      var s0, s1, s2, s3, s4, s5;
-
-      s0 = peg$currPos;
-      if (input.substr(peg$currPos, 8) === peg$c38) {
-        s1 = peg$c38;
-        peg$currPos += 8;
-      } else {
-        s1 = peg$FAILED;
-        if (peg$silentFails === 0) {
-          peg$fail(peg$c39);
-        }
-      }
-      if (s1 === peg$FAILED) {
-        if (input.substr(peg$currPos, 5) === peg$c40) {
-          s1 = peg$c40;
-          peg$currPos += 5;
-        } else {
-          s1 = peg$FAILED;
-          if (peg$silentFails === 0) {
-            peg$fail(peg$c41);
-          }
-        }
-        if (s1 === peg$FAILED) {
-          if (input.substr(peg$currPos, 7) === peg$c42) {
-            s1 = peg$c42;
-            peg$currPos += 7;
-          } else {
-            s1 = peg$FAILED;
-            if (peg$silentFails === 0) {
-              peg$fail(peg$c43);
-            }
-          }
-          if (s1 === peg$FAILED) {
-            if (input.charCodeAt(peg$currPos) === 97) {
-              s1 = peg$c44;
-              peg$currPos++;
-            } else {
-              s1 = peg$FAILED;
-              if (peg$silentFails === 0) {
-                peg$fail(peg$c45);
-              }
-            }
-            if (s1 === peg$FAILED) {
-              if (input.charCodeAt(peg$currPos) === 99) {
-                s1 = peg$c46;
-                peg$currPos++;
-              } else {
-                s1 = peg$FAILED;
-                if (peg$silentFails === 0) {
-                  peg$fail(peg$c47);
-                }
-              }
-              if (s1 === peg$FAILED) {
-                if (input.charCodeAt(peg$currPos) === 100) {
-                  s1 = peg$c48;
-                  peg$currPos++;
-                } else {
-                  s1 = peg$FAILED;
-                  if (peg$silentFails === 0) {
-                    peg$fail(peg$c49);
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-      if (s1 !== peg$FAILED) {
-        s2 = peg$currPos;
-        s3 = peg$parse_();
-        if (s3 !== peg$FAILED) {
-          s4 = peg$parseinteger();
-          if (s4 !== peg$FAILED) {
-            peg$savedPos = s2;
-            s3 = peg$c50(s4);
-            s2 = s3;
-          } else {
-            peg$currPos = s2;
-            s2 = peg$FAILED;
-          }
-        } else {
-          peg$currPos = s2;
-          s2 = peg$FAILED;
-        }
-        if (s2 === peg$FAILED) {
-          s2 = null;
-        }
-        if (s2 !== peg$FAILED) {
-          s3 = peg$currPos;
-          s4 = peg$parse_();
-          if (s4 !== peg$FAILED) {
-            if (input.substr(peg$currPos, 8) === peg$c51) {
-              s5 = peg$c51;
-              peg$currPos += 8;
-            } else {
-              s5 = peg$FAILED;
-              if (peg$silentFails === 0) {
-                peg$fail(peg$c52);
-              }
-            }
-            if (s5 === peg$FAILED) {
-              if (input.charCodeAt(peg$currPos) === 120) {
-                s5 = peg$c53;
-                peg$currPos++;
-              } else {
-                s5 = peg$FAILED;
-                if (peg$silentFails === 0) {
-                  peg$fail(peg$c54);
-                }
-              }
-            }
-            if (s5 !== peg$FAILED) {
-              peg$savedPos = s3;
-              s4 = peg$c55(s2);
-              s3 = s4;
-            } else {
-              peg$currPos = s3;
-              s3 = peg$FAILED;
-            }
-          } else {
-            peg$currPos = s3;
-            s3 = peg$FAILED;
-          }
-          if (s3 === peg$FAILED) {
-            s3 = null;
-          }
-          if (s3 !== peg$FAILED) {
-            peg$savedPos = peg$currPos;
-            s4 = peg$c56(s2, s3);
-            if (s4) {
-              s4 = peg$FAILED;
-            } else {
-              s4 = void 0;
-            }
-            if (s4 !== peg$FAILED) {
-              peg$savedPos = s0;
-              s1 = peg$c57(s2, s3);
-              s0 = s1;
-            } else {
-              peg$currPos = s0;
-              s0 = peg$FAILED;
-            }
-          } else {
-            peg$currPos = s0;
-            s0 = peg$FAILED;
-          }
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-
-      return s0;
-    }
-
-    function peg$parsecmdClearedAsFiled() {
-      var s0, s1;
-
-      s0 = peg$currPos;
-      if (input.substr(peg$currPos, 14) === peg$c58) {
-        s1 = peg$c58;
-        peg$currPos += 14;
-      } else {
-        s1 = peg$FAILED;
-        if (peg$silentFails === 0) {
-          peg$fail(peg$c59);
-        }
-      }
-      if (s1 === peg$FAILED) {
-        if (input.substr(peg$currPos, 3) === peg$c60) {
-          s1 = peg$c60;
-          peg$currPos += 3;
-        } else {
-          s1 = peg$FAILED;
-          if (peg$silentFails === 0) {
-            peg$fail(peg$c61);
-          }
-        }
-      }
-      if (s1 !== peg$FAILED) {
-        peg$savedPos = s0;
-        s1 = peg$c62();
-      }
-      s0 = s1;
-
-      return s0;
-    }
-
-    function peg$parsecmdClimbViaSID() {
-      var s0, s1;
-
-      s0 = peg$currPos;
-      if (input.substr(peg$currPos, 11) === peg$c63) {
-        s1 = peg$c63;
-        peg$currPos += 11;
-      } else {
-        s1 = peg$FAILED;
-        if (peg$silentFails === 0) {
-          peg$fail(peg$c64);
-        }
-      }
-      if (s1 === peg$FAILED) {
-        if (input.substr(peg$currPos, 3) === peg$c65) {
-          s1 = peg$c65;
-          peg$currPos += 3;
-        } else {
-          s1 = peg$FAILED;
-          if (peg$silentFails === 0) {
-            peg$fail(peg$c66);
-          }
-        }
-      }
-      if (s1 !== peg$FAILED) {
-        peg$savedPos = s0;
-        s1 = peg$c67();
-      }
-      s0 = s1;
-
-      return s0;
-    }
-
-    function peg$parsecmdDebug() {
-      var s0, s1, s2, s3;
-
-      s0 = peg$currPos;
-      if (input.substr(peg$currPos, 5) === peg$c68) {
-        s1 = peg$c68;
-        peg$currPos += 5;
-      } else {
-        s1 = peg$FAILED;
-        if (peg$silentFails === 0) {
-          peg$fail(peg$c69);
-        }
-      }
-      if (s1 !== peg$FAILED) {
-        s2 = peg$parse_();
-        if (s2 !== peg$FAILED) {
-          if (input.substr(peg$currPos, 3) === peg$c70) {
-            s3 = peg$c70;
-            peg$currPos += 3;
-          } else {
-            s3 = peg$FAILED;
-            if (peg$silentFails === 0) {
-              peg$fail(peg$c71);
-            }
-          }
-          if (s3 !== peg$FAILED) {
-            peg$savedPos = s0;
-            s1 = peg$c72();
-            s0 = s1;
-          } else {
-            peg$currPos = s0;
-            s0 = peg$FAILED;
-          }
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-
-      return s0;
-    }
-
-    function peg$parsecmdDelete() {
-      var s0, s1;
-
-      s0 = peg$currPos;
-      if (input.substr(peg$currPos, 6) === peg$c73) {
-        s1 = peg$c73;
-        peg$currPos += 6;
-      } else {
-        s1 = peg$FAILED;
-        if (peg$silentFails === 0) {
-          peg$fail(peg$c74);
-        }
-      }
-      if (s1 === peg$FAILED) {
-        if (input.substr(peg$currPos, 3) === peg$c75) {
-          s1 = peg$c75;
-          peg$currPos += 3;
-        } else {
-          s1 = peg$FAILED;
-          if (peg$silentFails === 0) {
-            peg$fail(peg$c76);
-          }
-        }
-        if (s1 === peg$FAILED) {
-          if (input.substr(peg$currPos, 4) === peg$c77) {
-            s1 = peg$c77;
-            peg$currPos += 4;
-          } else {
-            s1 = peg$FAILED;
-            if (peg$silentFails === 0) {
-              peg$fail(peg$c78);
-            }
-          }
-        }
-      }
-      if (s1 !== peg$FAILED) {
-        peg$savedPos = s0;
-        s1 = peg$c79();
-      }
-      s0 = s1;
-
-      return s0;
-    }
-
-    function peg$parsecmdDescendViaSTAR() {
-      var s0, s1;
-
-      s0 = peg$currPos;
-      if (input.substr(peg$currPos, 14) === peg$c80) {
-        s1 = peg$c80;
-        peg$currPos += 14;
-      } else {
-        s1 = peg$FAILED;
-        if (peg$silentFails === 0) {
-          peg$fail(peg$c81);
-        }
-      }
-      if (s1 === peg$FAILED) {
-        if (input.substr(peg$currPos, 3) === peg$c82) {
-          s1 = peg$c82;
-          peg$currPos += 3;
-        } else {
-          s1 = peg$FAILED;
-          if (peg$silentFails === 0) {
-            peg$fail(peg$c83);
-          }
-        }
-      }
-      if (s1 !== peg$FAILED) {
-        peg$savedPos = s0;
-        s1 = peg$c84();
-      }
-      s0 = s1;
-
-      return s0;
-    }
-
-    function peg$parsecmdDirect() {
-      var s0, s1, s2;
-
-      s0 = peg$currPos;
-      s1 = peg$currPos;
-      if (input.substr(peg$currPos, 6) === peg$c85) {
-        s2 = peg$c85;
-        peg$currPos += 6;
-      } else {
-        s2 = peg$FAILED;
-        if (peg$silentFails === 0) {
-          peg$fail(peg$c86);
-        }
-      }
-      if (s2 === peg$FAILED) {
-        if (input.substr(peg$currPos, 3) === peg$c87) {
-          s2 = peg$c87;
-          peg$currPos += 3;
-        } else {
-          s2 = peg$FAILED;
-          if (peg$silentFails === 0) {
-            peg$fail(peg$c88);
-          }
-        }
-        if (s2 === peg$FAILED) {
-          if (input.substr(peg$currPos, 2) === peg$c89) {
-            s2 = peg$c89;
-            peg$currPos += 2;
-          } else {
-            s2 = peg$FAILED;
-            if (peg$silentFails === 0) {
-              peg$fail(peg$c90);
-            }
-          }
-        }
-      }
-      if (s2 !== peg$FAILED) {
-        peg$savedPos = s1;
-        s2 = peg$c91();
-      }
-      s1 = s2;
-      if (s1 !== peg$FAILED) {
-        s2 = peg$parsefixToken();
-        if (s2 !== peg$FAILED) {
-          s1 = [s1, s2];
-          s0 = s1;
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-
-      return s0;
-    }
-
-    function peg$parsecmdFix() {
-      var s0, s1, s2, s3;
-
-      s0 = peg$currPos;
-      s1 = peg$currPos;
-      if (input.substr(peg$currPos, 3) === peg$c92) {
-        s2 = peg$c92;
-        peg$currPos += 3;
-      } else {
-        s2 = peg$FAILED;
-        if (peg$silentFails === 0) {
-          peg$fail(peg$c93);
-        }
-      }
-      if (s2 === peg$FAILED) {
-        if (input.charCodeAt(peg$currPos) === 102) {
-          s2 = peg$c94;
-          peg$currPos++;
-        } else {
-          s2 = peg$FAILED;
-          if (peg$silentFails === 0) {
-            peg$fail(peg$c95);
-          }
-        }
-        if (s2 === peg$FAILED) {
-          if (input.substr(peg$currPos, 5) === peg$c96) {
-            s2 = peg$c96;
-            peg$currPos += 5;
-          } else {
-            s2 = peg$FAILED;
-            if (peg$silentFails === 0) {
-              peg$fail(peg$c97);
-            }
-          }
-        }
-      }
-      if (s2 !== peg$FAILED) {
-        peg$savedPos = s1;
-        s2 = peg$c98();
-      }
-      s1 = s2;
-      if (s1 !== peg$FAILED) {
-        s2 = [];
-        s3 = peg$parsefixToken();
-        if (s3 !== peg$FAILED) {
-          while (s3 !== peg$FAILED) {
-            s2.push(s3);
-            s3 = peg$parsefixToken();
-          }
-        } else {
-          s2 = peg$FAILED;
-        }
-        if (s2 !== peg$FAILED) {
-          s1 = [s1, s2];
-          s0 = s1;
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-
-      return s0;
-    }
-
-    function peg$parsecmdFlyPresentHeading() {
-      var s0, s1;
-
-      s0 = peg$currPos;
-      if (input.substr(peg$currPos, 3) === peg$c99) {
-        s1 = peg$c99;
-        peg$currPos += 3;
-      } else {
-        s1 = peg$FAILED;
-        if (peg$silentFails === 0) {
-          peg$fail(peg$c100);
-        }
-      }
-      if (s1 !== peg$FAILED) {
-        peg$savedPos = s0;
-        s1 = peg$c101();
-      }
-      s0 = s1;
-
-      return s0;
-    }
-
-    function peg$parsecmdHeading() {
-      var s0, s1;
-
-      s0 = peg$currPos;
-      s1 = peg$parsecmdHeadingShort();
-      if (s1 === peg$FAILED) {
-        s1 = peg$parsecmdHeadingLong();
-      }
-      if (s1 !== peg$FAILED) {
-        peg$savedPos = s0;
-        s1 = peg$c102(s1);
-      }
-      s0 = s1;
-
-      return s0;
-    }
-
-    function peg$parsecmdHeadingShort() {
-      var s0, s1, s2;
-
-      s0 = peg$currPos;
-      s1 = peg$currPos;
-      if (input.charCodeAt(peg$currPos) === 11170) {
-        s2 = peg$c103;
-        peg$currPos++;
-      } else {
-        s2 = peg$FAILED;
-        if (peg$silentFails === 0) {
-          peg$fail(peg$c104);
-        }
-      }
-      if (s2 !== peg$FAILED) {
-        peg$savedPos = s1;
-        s2 = peg$c105();
-      }
-      s1 = s2;
-      if (s1 === peg$FAILED) {
-        s1 = peg$currPos;
-        if (input.charCodeAt(peg$currPos) === 11171) {
-          s2 = peg$c106;
-          peg$currPos++;
-        } else {
-          s2 = peg$FAILED;
-          if (peg$silentFails === 0) {
-            peg$fail(peg$c107);
-          }
-        }
-        if (s2 !== peg$FAILED) {
-          peg$savedPos = s1;
-          s2 = peg$c108();
-        }
-        s1 = s2;
-        if (s1 === peg$FAILED) {
-          s1 = peg$currPos;
-          if (input.substr(peg$currPos, 2) === peg$c109) {
-            s2 = peg$c109;
-            peg$currPos += 2;
-          } else {
-            s2 = peg$FAILED;
-            if (peg$silentFails === 0) {
-              peg$fail(peg$c110);
-            }
-          }
-          if (s2 !== peg$FAILED) {
-            peg$savedPos = s1;
-            s2 = peg$c111();
-          }
-          s1 = s2;
-        }
-      }
-      if (s1 !== peg$FAILED) {
-        s2 = peg$parseargHeading();
-        if (s2 !== peg$FAILED) {
-          peg$savedPos = s0;
-          s1 = peg$c112(s1, s2);
-          s0 = s1;
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-
-      return s0;
-    }
-
-    function peg$parsecmdHeadingLong() {
-      var s0, s1, s2, s3, s4, s5;
-
-      s0 = peg$currPos;
-      s1 = peg$currPos;
-      if (input.substr(peg$currPos, 7) === peg$c113) {
-        s2 = peg$c113;
-        peg$currPos += 7;
-      } else {
-        s2 = peg$FAILED;
-        if (peg$silentFails === 0) {
-          peg$fail(peg$c114);
-        }
-      }
-      if (s2 === peg$FAILED) {
-        if (input.substr(peg$currPos, 4) === peg$c115) {
-          s2 = peg$c115;
-          peg$currPos += 4;
-        } else {
-          s2 = peg$FAILED;
-          if (peg$silentFails === 0) {
-            peg$fail(peg$c116);
-          }
-        }
-        if (s2 === peg$FAILED) {
-          if (input.charCodeAt(peg$currPos) === 116) {
-            s2 = peg$c117;
-            peg$currPos++;
-          } else {
-            s2 = peg$FAILED;
-            if (peg$silentFails === 0) {
-              peg$fail(peg$c118);
-            }
-          }
-          if (s2 === peg$FAILED) {
-            if (input.charCodeAt(peg$currPos) === 104) {
-              s2 = peg$c119;
-              peg$currPos++;
-            } else {
-              s2 = peg$FAILED;
-              if (peg$silentFails === 0) {
-                peg$fail(peg$c120);
-              }
-            }
-          }
-        }
-      }
-      if (s2 !== peg$FAILED) {
-        peg$savedPos = s1;
-        s2 = peg$c121();
-      }
-      s1 = s2;
-      if (s1 !== peg$FAILED) {
-        s2 = peg$parsedirection();
-        if (s2 === peg$FAILED) {
-          s2 = null;
-        }
-        if (s2 !== peg$FAILED) {
-          s3 = peg$currPos;
-          s4 = peg$parse_();
-          if (s4 !== peg$FAILED) {
-            s5 = peg$parseargHeading();
-            if (s5 !== peg$FAILED) {
-              peg$savedPos = s3;
-              s4 = peg$c122(s5);
-              s3 = s4;
-            } else {
-              peg$currPos = s3;
-              s3 = peg$FAILED;
-            }
-          } else {
-            peg$currPos = s3;
-            s3 = peg$FAILED;
-          }
-          if (s3 !== peg$FAILED) {
-            s1 = [s1, s2, s3];
-            s0 = s1;
-          } else {
-            peg$currPos = s0;
-            s0 = peg$FAILED;
-          }
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-
-      return s0;
-    }
-
-    function peg$parseargHeading() {
-      var s0, s1, s2, s3;
-
-      s0 = peg$currPos;
-      if (peg$c123.test(input.charAt(peg$currPos))) {
-        s1 = input.charAt(peg$currPos);
-        peg$currPos++;
-      } else {
-        s1 = peg$FAILED;
-        if (peg$silentFails === 0) {
-          peg$fail(peg$c124);
-        }
-      }
-      if (s1 !== peg$FAILED) {
-        if (peg$c123.test(input.charAt(peg$currPos))) {
-          s2 = input.charAt(peg$currPos);
-          peg$currPos++;
-        } else {
-          s2 = peg$FAILED;
-          if (peg$silentFails === 0) {
-            peg$fail(peg$c124);
-          }
-        }
-        if (s2 !== peg$FAILED) {
-          if (peg$c123.test(input.charAt(peg$currPos))) {
-            s3 = input.charAt(peg$currPos);
-            peg$currPos++;
-          } else {
-            s3 = peg$FAILED;
-            if (peg$silentFails === 0) {
-              peg$fail(peg$c124);
-            }
-          }
-          if (s3 !== peg$FAILED) {
-            peg$savedPos = s0;
-            s1 = peg$c125();
-            s0 = s1;
-          } else {
-            peg$currPos = s0;
-            s0 = peg$FAILED;
-          }
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-      if (s0 === peg$FAILED) {
-        s0 = peg$currPos;
-        if (peg$c123.test(input.charAt(peg$currPos))) {
-          s1 = input.charAt(peg$currPos);
-          peg$currPos++;
-        } else {
-          s1 = peg$FAILED;
-          if (peg$silentFails === 0) {
-            peg$fail(peg$c124);
-          }
-        }
-        if (s1 !== peg$FAILED) {
-          if (peg$c123.test(input.charAt(peg$currPos))) {
-            s2 = input.charAt(peg$currPos);
-            peg$currPos++;
-          } else {
-            s2 = peg$FAILED;
-            if (peg$silentFails === 0) {
-              peg$fail(peg$c124);
-            }
-          }
-          if (s2 !== peg$FAILED) {
-            peg$savedPos = s0;
-            s1 = peg$c126();
-            s0 = s1;
-          } else {
-            peg$currPos = s0;
-            s0 = peg$FAILED;
-          }
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      }
-
-      return s0;
-    }
-
-    function peg$parsecmdHold() {
-      var s0, s1, s2, s3, s4, s5, s6, s7;
-
-      s0 = peg$currPos;
-      if (input.substr(peg$currPos, 4) === peg$c127) {
-        s1 = peg$c127;
-        peg$currPos += 4;
-      } else {
-        s1 = peg$FAILED;
-        if (peg$silentFails === 0) {
-          peg$fail(peg$c128);
-        }
-      }
-      if (s1 !== peg$FAILED) {
-        s2 = peg$parsedirection();
-        if (s2 === peg$FAILED) {
-          s2 = null;
-        }
-        if (s2 !== peg$FAILED) {
-          s3 = peg$currPos;
-          s4 = peg$parse_();
-          if (s4 !== peg$FAILED) {
-            s5 = peg$parseinteger();
-            if (s5 !== peg$FAILED) {
-              if (input.substr(peg$currPos, 3) === peg$c129) {
-                s6 = peg$c129;
-                peg$currPos += 3;
-              } else {
-                s6 = peg$FAILED;
-                if (peg$silentFails === 0) {
-                  peg$fail(peg$c130);
-                }
-              }
-              if (s6 === peg$FAILED) {
-                if (input.substr(peg$currPos, 2) === peg$c131) {
-                  s6 = peg$c131;
-                  peg$currPos += 2;
-                } else {
-                  s6 = peg$FAILED;
-                  if (peg$silentFails === 0) {
-                    peg$fail(peg$c132);
-                  }
-                }
-              }
-              if (s6 !== peg$FAILED) {
-                s4 = [s4, s5, s6];
-                s3 = s4;
-              } else {
-                peg$currPos = s3;
-                s3 = peg$FAILED;
-              }
-            } else {
-              peg$currPos = s3;
-              s3 = peg$FAILED;
-            }
-          } else {
-            peg$currPos = s3;
-            s3 = peg$FAILED;
-          }
-          if (s3 === peg$FAILED) {
-            s3 = null;
-          }
-          if (s3 !== peg$FAILED) {
-            s4 = peg$currPos;
-            s5 = peg$currPos;
-            peg$silentFails++;
-            s6 = peg$parseaircraftSubCommand();
-            peg$silentFails--;
-            if (s6 === peg$FAILED) {
-              s5 = void 0;
-            } else {
-              peg$currPos = s5;
-              s5 = peg$FAILED;
-            }
-            if (s5 !== peg$FAILED) {
-              s6 = peg$parse_();
-              if (s6 !== peg$FAILED) {
-                s7 = peg$parsestring();
-                if (s7 !== peg$FAILED) {
-                  s5 = [s5, s6, s7];
-                  s4 = s5;
-                } else {
-                  peg$currPos = s4;
-                  s4 = peg$FAILED;
-                }
-              } else {
-                peg$currPos = s4;
-                s4 = peg$FAILED;
-              }
-            } else {
-              peg$currPos = s4;
-              s4 = peg$FAILED;
-            }
-            if (s4 === peg$FAILED) {
-              s4 = null;
-            }
-            if (s4 !== peg$FAILED) {
-              peg$savedPos = s0;
-              s1 = peg$c133(s2, s3, s4);
-              s0 = s1;
-            } else {
-              peg$currPos = s0;
-              s0 = peg$FAILED;
-            }
-          } else {
-            peg$currPos = s0;
-            s0 = peg$FAILED;
-          }
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-
-      return s0;
-    }
-
-    function peg$parsecmdLand() {
-      var s0, s1;
-
-      s0 = peg$currPos;
-      s1 = peg$parsecmdLandShort();
-      if (s1 === peg$FAILED) {
-        s1 = peg$parsecmdLandLong();
-      }
-      if (s1 !== peg$FAILED) {
-        peg$savedPos = s0;
-        s1 = peg$c134(s1);
-      }
-      s0 = s1;
-
-      return s0;
-    }
-
-    function peg$parsecmdLandLong() {
-      var s0, s1, s2, s3, s4, s5;
-
-      s0 = peg$currPos;
-      s1 = peg$currPos;
-      if (input.substr(peg$currPos, 4) === peg$c135) {
-        s2 = peg$c135;
-        peg$currPos += 4;
-      } else {
-        s2 = peg$FAILED;
-        if (peg$silentFails === 0) {
-          peg$fail(peg$c136);
-        }
-      }
-      if (s2 === peg$FAILED) {
-        if (input.charCodeAt(peg$currPos) === 108) {
-          s2 = peg$c137;
-          peg$currPos++;
-        } else {
-          s2 = peg$FAILED;
-          if (peg$silentFails === 0) {
-            peg$fail(peg$c138);
-          }
-        }
-        if (s2 === peg$FAILED) {
-          if (input.substr(peg$currPos, 3) === peg$c139) {
-            s2 = peg$c139;
-            peg$currPos += 3;
-          } else {
-            s2 = peg$FAILED;
-            if (peg$silentFails === 0) {
-              peg$fail(peg$c140);
-            }
-          }
-        }
-      }
-      if (s2 !== peg$FAILED) {
-        peg$savedPos = s1;
-        s2 = peg$c141();
-      }
-      s1 = s2;
-      if (s1 !== peg$FAILED) {
-        s2 = peg$currPos;
-        s3 = peg$parsewhiteSpace();
-        if (s3 !== peg$FAILED) {
-          if (peg$c142.test(input.charAt(peg$currPos))) {
-            s4 = input.charAt(peg$currPos);
-            peg$currPos++;
-          } else {
-            s4 = peg$FAILED;
-            if (peg$silentFails === 0) {
-              peg$fail(peg$c143);
-            }
-          }
-          if (s4 === peg$FAILED) {
-            s4 = null;
-          }
-          if (s4 !== peg$FAILED) {
-            s5 = peg$parsestring();
-            if (s5 !== peg$FAILED) {
-              peg$savedPos = s2;
-              s3 = peg$c144(s1, s4, s5);
-              s2 = s3;
-            } else {
-              peg$currPos = s2;
-              s2 = peg$FAILED;
-            }
-          } else {
-            peg$currPos = s2;
-            s2 = peg$FAILED;
-          }
-        } else {
-          peg$currPos = s2;
-          s2 = peg$FAILED;
-        }
-        if (s2 !== peg$FAILED) {
-          peg$savedPos = s0;
-          s1 = peg$c145(s1, s2);
-          s0 = s1;
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-
-      return s0;
-    }
-
-    function peg$parsecmdLandShort() {
-      var s0, s1, s2, s3, s4;
-
-      s0 = peg$currPos;
-      s1 = peg$currPos;
-      if (input.charCodeAt(peg$currPos) === 11088) {
-        s2 = peg$c146;
-        peg$currPos++;
-      } else {
-        s2 = peg$FAILED;
-        if (peg$silentFails === 0) {
-          peg$fail(peg$c147);
-        }
-      }
-      if (s2 !== peg$FAILED) {
-        peg$savedPos = s1;
-        s2 = peg$c141();
-      }
-      s1 = s2;
-      if (s1 !== peg$FAILED) {
-        s2 = peg$currPos;
-        if (peg$c142.test(input.charAt(peg$currPos))) {
-          s3 = input.charAt(peg$currPos);
-          peg$currPos++;
-        } else {
-          s3 = peg$FAILED;
-          if (peg$silentFails === 0) {
-            peg$fail(peg$c143);
-          }
-        }
-        if (s3 === peg$FAILED) {
-          s3 = null;
-        }
-        if (s3 !== peg$FAILED) {
-          s4 = peg$parsestring();
-          if (s4 !== peg$FAILED) {
-            peg$savedPos = s2;
-            s3 = peg$c144(s1, s3, s4);
-            s2 = s3;
-          } else {
-            peg$currPos = s2;
-            s2 = peg$FAILED;
-          }
-        } else {
-          peg$currPos = s2;
-          s2 = peg$FAILED;
-        }
-        if (s2 !== peg$FAILED) {
-          peg$savedPos = s0;
-          s1 = peg$c145(s1, s2);
-          s0 = s1;
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-
-      return s0;
-    }
-
-    function peg$parsecmdMoveDataBlock() {
-      var s0, s1, s2, s3, s4;
-
-      s0 = peg$currPos;
-      s1 = peg$currPos;
-      s2 = peg$currPos;
-      if (input.substr(peg$currPos, 13) === peg$c148) {
-        s3 = peg$c148;
-        peg$currPos += 13;
-      } else {
-        s3 = peg$FAILED;
-        if (peg$silentFails === 0) {
-          peg$fail(peg$c149);
-        }
-      }
-      if (s3 !== peg$FAILED) {
-        s4 = peg$parsewhiteSpace();
-        if (s4 !== peg$FAILED) {
-          s3 = [s3, s4];
-          s2 = s3;
-        } else {
-          peg$currPos = s2;
-          s2 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s2;
-        s2 = peg$FAILED;
-      }
-      if (s2 === peg$FAILED) {
-        if (input.charCodeAt(peg$currPos) === 96) {
-          s2 = peg$c150;
-          peg$currPos++;
-        } else {
-          s2 = peg$FAILED;
-          if (peg$silentFails === 0) {
-            peg$fail(peg$c151);
-          }
-        }
-      }
-      if (s2 !== peg$FAILED) {
-        peg$savedPos = s1;
-        s2 = peg$c152();
-      }
-      s1 = s2;
-      if (s1 !== peg$FAILED) {
-        if (peg$c153.test(input.charAt(peg$currPos))) {
-          s2 = input.charAt(peg$currPos);
-          peg$currPos++;
-        } else {
-          s2 = peg$FAILED;
-          if (peg$silentFails === 0) {
-            peg$fail(peg$c154);
-          }
-        }
-        if (s2 !== peg$FAILED) {
-          s1 = [s1, s2];
-          s0 = s1;
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-
-      return s0;
-    }
-
-    function peg$parsecmdRoute() {
-      var s0, s1, s2, s3;
-
-      s0 = peg$currPos;
-      if (input.substr(peg$currPos, 5) === peg$c155) {
-        s1 = peg$c155;
-        peg$currPos += 5;
-      } else {
-        s1 = peg$FAILED;
-        if (peg$silentFails === 0) {
-          peg$fail(peg$c156);
-        }
-      }
-      if (s1 !== peg$FAILED) {
-        s2 = peg$parse_();
-        if (s2 !== peg$FAILED) {
-          s3 = peg$parsestring();
-          if (s3 !== peg$FAILED) {
-            peg$savedPos = s0;
-            s1 = peg$c157(s3);
-            s0 = s1;
-          } else {
-            peg$currPos = s0;
-            s0 = peg$FAILED;
-          }
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-
-      return s0;
-    }
-
-    function peg$parsecmdReRoute() {
-      var s0, s1, s2, s3;
-
-      s0 = peg$currPos;
-      if (input.substr(peg$currPos, 7) === peg$c158) {
-        s1 = peg$c158;
-        peg$currPos += 7;
-      } else {
-        s1 = peg$FAILED;
-        if (peg$silentFails === 0) {
-          peg$fail(peg$c159);
-        }
-      }
-      if (s1 === peg$FAILED) {
-        if (input.substr(peg$currPos, 2) === peg$c160) {
-          s1 = peg$c160;
-          peg$currPos += 2;
-        } else {
-          s1 = peg$FAILED;
-          if (peg$silentFails === 0) {
-            peg$fail(peg$c161);
-          }
-        }
-      }
-      if (s1 !== peg$FAILED) {
-        s2 = peg$parse_();
-        if (s2 !== peg$FAILED) {
-          s3 = peg$parsestring();
-          if (s3 !== peg$FAILED) {
-            peg$savedPos = s0;
-            s1 = peg$c162(s3);
-            s0 = s1;
-          } else {
-            peg$currPos = s0;
-            s0 = peg$FAILED;
-          }
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-
-      return s0;
-    }
-
-    function peg$parsecmdSayRoute() {
-      var s0, s1;
-
-      s0 = peg$currPos;
-      if (input.substr(peg$currPos, 8) === peg$c163) {
-        s1 = peg$c163;
-        peg$currPos += 8;
-      } else {
-        s1 = peg$FAILED;
-        if (peg$silentFails === 0) {
-          peg$fail(peg$c164);
-        }
-      }
-      if (s1 === peg$FAILED) {
-        if (input.substr(peg$currPos, 2) === peg$c165) {
-          s1 = peg$c165;
-          peg$currPos += 2;
-        } else {
-          s1 = peg$FAILED;
-          if (peg$silentFails === 0) {
-            peg$fail(peg$c166);
-          }
-        }
-      }
-      if (s1 !== peg$FAILED) {
-        peg$savedPos = s0;
-        s1 = peg$c167();
-      }
-      s0 = s1;
-
-      return s0;
-    }
-
-    function peg$parsecmdSID() {
-      var s0, s1, s2, s3;
-
-      s0 = peg$currPos;
-      if (input.substr(peg$currPos, 3) === peg$c168) {
-        s1 = peg$c168;
-        peg$currPos += 3;
-      } else {
-        s1 = peg$FAILED;
-        if (peg$silentFails === 0) {
-          peg$fail(peg$c169);
-        }
-      }
-      if (s1 !== peg$FAILED) {
-        s2 = peg$parse_();
-        if (s2 !== peg$FAILED) {
-          s3 = peg$parsestring();
-          if (s3 !== peg$FAILED) {
-            peg$savedPos = s0;
-            s1 = peg$c170(s3);
-            s0 = s1;
-          } else {
-            peg$currPos = s0;
-            s0 = peg$FAILED;
-          }
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-
-      return s0;
-    }
-
-    function peg$parsecmdSpeed() {
-      var s0, s1, s2, s3, s4;
-
-      s0 = peg$currPos;
-      s1 = peg$currPos;
-      if (input.charCodeAt(peg$currPos) === 43) {
-        s2 = peg$c171;
-        peg$currPos++;
-      } else {
-        s2 = peg$FAILED;
-        if (peg$silentFails === 0) {
-          peg$fail(peg$c172);
-        }
-      }
-      if (s2 === peg$FAILED) {
-        if (input.charCodeAt(peg$currPos) === 45) {
-          s2 = peg$c173;
-          peg$currPos++;
-        } else {
-          s2 = peg$FAILED;
-          if (peg$silentFails === 0) {
-            peg$fail(peg$c174);
-          }
-        }
-      }
-      if (s2 === peg$FAILED) {
-        s2 = peg$currPos;
-        if (input.substr(peg$currPos, 5) === peg$c175) {
-          s3 = peg$c175;
-          peg$currPos += 5;
-        } else {
-          s3 = peg$FAILED;
-          if (peg$silentFails === 0) {
-            peg$fail(peg$c176);
-          }
-        }
-        if (s3 === peg$FAILED) {
-          if (input.substr(peg$currPos, 4) === peg$c177) {
-            s3 = peg$c177;
-            peg$currPos += 4;
-          } else {
-            s3 = peg$FAILED;
-            if (peg$silentFails === 0) {
-              peg$fail(peg$c178);
-            }
-          }
-          if (s3 === peg$FAILED) {
-            if (input.substr(peg$currPos, 2) === peg$c179) {
-              s3 = peg$c179;
-              peg$currPos += 2;
-            } else {
-              s3 = peg$FAILED;
-              if (peg$silentFails === 0) {
-                peg$fail(peg$c180);
-              }
-            }
-          }
-        }
-        if (s3 !== peg$FAILED) {
-          s4 = peg$parse_();
-          if (s4 !== peg$FAILED) {
-            s3 = [s3, s4];
-            s2 = s3;
-          } else {
-            peg$currPos = s2;
-            s2 = peg$FAILED;
-          }
-        } else {
-          peg$currPos = s2;
-          s2 = peg$FAILED;
-        }
-      }
-      if (s2 !== peg$FAILED) {
-        peg$savedPos = s1;
-        s2 = peg$c181();
-      }
-      s1 = s2;
-      if (s1 !== peg$FAILED) {
-        s2 = peg$parseinteger();
-        if (s2 !== peg$FAILED) {
-          s1 = [s1, s2];
-          s0 = s1;
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-
-      return s0;
-    }
-
-    function peg$parsecmdSTAR() {
-      var s0, s1, s2, s3;
-
-      s0 = peg$currPos;
-      if (input.substr(peg$currPos, 4) === peg$c182) {
-        s1 = peg$c182;
-        peg$currPos += 4;
-      } else {
-        s1 = peg$FAILED;
-        if (peg$silentFails === 0) {
-          peg$fail(peg$c183);
-        }
-      }
-      if (s1 !== peg$FAILED) {
-        s2 = peg$parse_();
-        if (s2 !== peg$FAILED) {
-          s3 = peg$parsestring();
-          if (s3 !== peg$FAILED) {
-            peg$savedPos = s0;
-            s1 = peg$c184(s3);
-            s0 = s1;
-          } else {
-            peg$currPos = s0;
-            s0 = peg$FAILED;
-          }
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-
-      return s0;
-    }
-
-    function peg$parsecmdTakeoff() {
-      var s0, s1;
-
-      s0 = peg$currPos;
-      if (input.substr(peg$currPos, 7) === peg$c185) {
-        s1 = peg$c185;
-        peg$currPos += 7;
-      } else {
-        s1 = peg$FAILED;
-        if (peg$silentFails === 0) {
-          peg$fail(peg$c186);
-        }
-      }
-      if (s1 === peg$FAILED) {
-        if (input.substr(peg$currPos, 2) === peg$c187) {
-          s1 = peg$c187;
-          peg$currPos += 2;
-        } else {
-          s1 = peg$FAILED;
-          if (peg$silentFails === 0) {
-            peg$fail(peg$c188);
-          }
-        }
-        if (s1 === peg$FAILED) {
-          if (input.substr(peg$currPos, 3) === peg$c189) {
-            s1 = peg$c189;
-            peg$currPos += 3;
-          } else {
-            s1 = peg$FAILED;
-            if (peg$silentFails === 0) {
-              peg$fail(peg$c190);
-            }
-          }
-        }
-      }
-      if (s1 !== peg$FAILED) {
-        peg$savedPos = s0;
-        s1 = peg$c191();
-      }
-      s0 = s1;
-
-      return s0;
-    }
-
-    function peg$parsecmdTaxi() {
-      var s0, s1, s2, s3, s4;
-
-      s0 = peg$currPos;
-      if (input.substr(peg$currPos, 4) === peg$c192) {
-        s1 = peg$c192;
-        peg$currPos += 4;
-      } else {
-        s1 = peg$FAILED;
-        if (peg$silentFails === 0) {
-          peg$fail(peg$c193);
-        }
-      }
-      if (s1 === peg$FAILED) {
-        if (input.substr(peg$currPos, 4) === peg$c194) {
-          s1 = peg$c194;
-          peg$currPos += 4;
-        } else {
-          s1 = peg$FAILED;
-          if (peg$silentFails === 0) {
-            peg$fail(peg$c195);
-          }
-        }
-        if (s1 === peg$FAILED) {
-          if (input.charCodeAt(peg$currPos) === 119) {
-            s1 = peg$c196;
-            peg$currPos++;
-          } else {
-            s1 = peg$FAILED;
-            if (peg$silentFails === 0) {
-              peg$fail(peg$c197);
-            }
-          }
-        }
-      }
-      if (s1 !== peg$FAILED) {
-        s2 = peg$currPos;
-        s3 = peg$parse_();
-        if (s3 !== peg$FAILED) {
-          s4 = peg$parsestring();
-          if (s4 !== peg$FAILED) {
-            peg$savedPos = s2;
-            s3 = peg$c122(s4);
-            s2 = s3;
-          } else {
-            peg$currPos = s2;
-            s2 = peg$FAILED;
-          }
-        } else {
-          peg$currPos = s2;
-          s2 = peg$FAILED;
-        }
-        if (s2 === peg$FAILED) {
-          s2 = null;
-        }
-        if (s2 !== peg$FAILED) {
-          peg$savedPos = s0;
-          s1 = peg$c198(s2);
-          s0 = s1;
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-
-      return s0;
-    }
-
-    function peg$parsedirection() {
-      var s0, s1, s2, s3;
-
-      s0 = peg$currPos;
-      s1 = peg$parsewhiteSpace();
-      if (s1 !== peg$FAILED) {
-        s2 = peg$currPos;
-        if (input.substr(peg$currPos, 4) === peg$c199) {
-          s3 = peg$c199;
-          peg$currPos += 4;
-        } else {
-          s3 = peg$FAILED;
-          if (peg$silentFails === 0) {
-            peg$fail(peg$c200);
-          }
-        }
-        if (s3 === peg$FAILED) {
-          if (input.charCodeAt(peg$currPos) === 108) {
-            s3 = peg$c137;
-            peg$currPos++;
-          } else {
-            s3 = peg$FAILED;
-            if (peg$silentFails === 0) {
-              peg$fail(peg$c138);
-            }
-          }
-        }
-        if (s3 !== peg$FAILED) {
-          peg$savedPos = s2;
-          s3 = peg$c105();
-        }
-        s2 = s3;
-        if (s2 === peg$FAILED) {
-          s2 = peg$currPos;
-          if (input.substr(peg$currPos, 5) === peg$c201) {
-            s3 = peg$c201;
-            peg$currPos += 5;
-          } else {
-            s3 = peg$FAILED;
-            if (peg$silentFails === 0) {
-              peg$fail(peg$c202);
-            }
-          }
-          if (s3 === peg$FAILED) {
-            if (input.charCodeAt(peg$currPos) === 114) {
-              s3 = peg$c203;
-              peg$currPos++;
-            } else {
-              s3 = peg$FAILED;
-              if (peg$silentFails === 0) {
-                peg$fail(peg$c204);
-              }
-            }
-          }
-          if (s3 !== peg$FAILED) {
-            peg$savedPos = s2;
-            s3 = peg$c108();
-          }
-          s2 = s3;
-        }
-        if (s2 !== peg$FAILED) {
-          peg$savedPos = s0;
-          s1 = peg$c205(s2);
-          s0 = s1;
-        } else {
-          peg$currPos = s0;
-          s0 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s0;
-        s0 = peg$FAILED;
-      }
-
-      return s0;
-    }
-
-    function peg$parsefixToken() {
-      var s0, s1, s2, s3, s4;
-
-      s0 = peg$currPos;
-      s1 = peg$currPos;
-      s2 = peg$currPos;
-      peg$silentFails++;
-      s3 = peg$parseaircraftSubCommand();
-      peg$silentFails--;
-      if (s3 === peg$FAILED) {
-        s2 = void 0;
-      } else {
-        peg$currPos = s2;
-        s2 = peg$FAILED;
-      }
-      if (s2 !== peg$FAILED) {
-        s3 = peg$parse_();
-        if (s3 !== peg$FAILED) {
-          s4 = peg$parsestring();
-          if (s4 !== peg$FAILED) {
-            s2 = [s2, s3, s4];
-            s1 = s2;
-          } else {
-            peg$currPos = s1;
-            s1 = peg$FAILED;
-          }
-        } else {
-          peg$currPos = s1;
-          s1 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s1;
-        s1 = peg$FAILED;
-      }
-      if (s1 !== peg$FAILED) {
-        peg$savedPos = s0;
-        s1 = peg$c206(s1);
-      }
-      s0 = s1;
-
-      return s0;
-    }
-
-    function peg$parsewhiteSpace() {
-      var s0, s1, s2;
-
-      s0 = peg$currPos;
-      s1 = [];
-      if (peg$c207.test(input.charAt(peg$currPos))) {
-        s2 = input.charAt(peg$currPos);
-        peg$currPos++;
-      } else {
-        s2 = peg$FAILED;
-        if (peg$silentFails === 0) {
-          peg$fail(peg$c208);
-        }
-      }
-      if (s2 !== peg$FAILED) {
-        while (s2 !== peg$FAILED) {
-          s1.push(s2);
-          if (peg$c207.test(input.charAt(peg$currPos))) {
-            s2 = input.charAt(peg$currPos);
-            peg$currPos++;
-          } else {
-            s2 = peg$FAILED;
-            if (peg$silentFails === 0) {
-              peg$fail(peg$c208);
-            }
-          }
-        }
-      } else {
-        s1 = peg$FAILED;
-      }
-      if (s1 !== peg$FAILED) {
-        s0 = input.substring(s0, peg$currPos);
-      } else {
-        s0 = s1;
-      }
-
-      return s0;
-    }
-
-    function peg$parsefloat() {
-      var s0, s1, s2, s3, s4, s5, s6, s7, s8;
-
-      s0 = peg$currPos;
-      s1 = peg$currPos;
-      s2 = peg$currPos;
-      if (input.charCodeAt(peg$currPos) === 45) {
-        s3 = peg$c173;
-        peg$currPos++;
-      } else {
-        s3 = peg$FAILED;
-        if (peg$silentFails === 0) {
-          peg$fail(peg$c174);
-        }
-      }
-      if (s3 === peg$FAILED) {
-        s3 = null;
-      }
-      if (s3 !== peg$FAILED) {
-        s4 = [];
-        if (peg$c123.test(input.charAt(peg$currPos))) {
-          s5 = input.charAt(peg$currPos);
-          peg$currPos++;
-        } else {
-          s5 = peg$FAILED;
-          if (peg$silentFails === 0) {
-            peg$fail(peg$c124);
-          }
-        }
-        if (s5 !== peg$FAILED) {
-          while (s5 !== peg$FAILED) {
-            s4.push(s5);
-            if (peg$c123.test(input.charAt(peg$currPos))) {
-              s5 = input.charAt(peg$currPos);
-              peg$currPos++;
-            } else {
-              s5 = peg$FAILED;
-              if (peg$silentFails === 0) {
-                peg$fail(peg$c124);
-              }
-            }
-          }
-        } else {
-          s4 = peg$FAILED;
-        }
-        if (s4 !== peg$FAILED) {
-          s5 = peg$currPos;
-          if (input.charCodeAt(peg$currPos) === 46) {
-            s6 = peg$c209;
-            peg$currPos++;
-          } else {
-            s6 = peg$FAILED;
-            if (peg$silentFails === 0) {
-              peg$fail(peg$c210);
-            }
-          }
-          if (s6 !== peg$FAILED) {
-            s7 = [];
-            if (peg$c123.test(input.charAt(peg$currPos))) {
-              s8 = input.charAt(peg$currPos);
-              peg$currPos++;
-            } else {
-              s8 = peg$FAILED;
-              if (peg$silentFails === 0) {
-                peg$fail(peg$c124);
-              }
-            }
-            if (s8 !== peg$FAILED) {
-              while (s8 !== peg$FAILED) {
-                s7.push(s8);
-                if (peg$c123.test(input.charAt(peg$currPos))) {
-                  s8 = input.charAt(peg$currPos);
-                  peg$currPos++;
-                } else {
-                  s8 = peg$FAILED;
-                  if (peg$silentFails === 0) {
-                    peg$fail(peg$c124);
-                  }
-                }
-              }
-            } else {
-              s7 = peg$FAILED;
-            }
-            if (s7 !== peg$FAILED) {
-              s6 = [s6, s7];
-              s5 = s6;
-            } else {
-              peg$currPos = s5;
-              s5 = peg$FAILED;
-            }
-          } else {
-            peg$currPos = s5;
-            s5 = peg$FAILED;
-          }
-          if (s5 === peg$FAILED) {
-            s5 = null;
-          }
-          if (s5 !== peg$FAILED) {
-            s3 = [s3, s4, s5];
-            s2 = s3;
-          } else {
-            peg$currPos = s2;
-            s2 = peg$FAILED;
-          }
-        } else {
-          peg$currPos = s2;
-          s2 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s2;
-        s2 = peg$FAILED;
-      }
-      if (s2 !== peg$FAILED) {
-        s1 = input.substring(s1, peg$currPos);
-      } else {
-        s1 = s2;
-      }
-      if (s1 !== peg$FAILED) {
-        peg$savedPos = s0;
-        s1 = peg$c211();
-      }
-      s0 = s1;
-
-      return s0;
-    }
-
-    function peg$parsestring() {
-      var s0, s1, s2;
-
-      s0 = peg$currPos;
-      s1 = [];
-      if (peg$c212.test(input.charAt(peg$currPos))) {
-        s2 = input.charAt(peg$currPos);
-        peg$currPos++;
-      } else {
-        s2 = peg$FAILED;
-        if (peg$silentFails === 0) {
-          peg$fail(peg$c213);
-        }
-      }
-      if (s2 !== peg$FAILED) {
-        while (s2 !== peg$FAILED) {
-          s1.push(s2);
-          if (peg$c212.test(input.charAt(peg$currPos))) {
-            s2 = input.charAt(peg$currPos);
-            peg$currPos++;
-          } else {
-            s2 = peg$FAILED;
-            if (peg$silentFails === 0) {
-              peg$fail(peg$c213);
-            }
-          }
-        }
-      } else {
-        s1 = peg$FAILED;
-      }
-      if (s1 !== peg$FAILED) {
-        s0 = input.substring(s0, peg$currPos);
-      } else {
-        s0 = s1;
-      }
-
-      return s0;
-    }
-
-    function peg$parse_() {
-      var s0, s1;
-
-      peg$silentFails++;
-      s0 = [];
-      if (peg$c207.test(input.charAt(peg$currPos))) {
-        s1 = input.charAt(peg$currPos);
-        peg$currPos++;
-      } else {
-        s1 = peg$FAILED;
-        if (peg$silentFails === 0) {
-          peg$fail(peg$c208);
-        }
-      }
-      if (s1 !== peg$FAILED) {
-        while (s1 !== peg$FAILED) {
-          s0.push(s1);
-          if (peg$c207.test(input.charAt(peg$currPos))) {
-            s1 = input.charAt(peg$currPos);
-            peg$currPos++;
-          } else {
-            s1 = peg$FAILED;
-            if (peg$silentFails === 0) {
-              peg$fail(peg$c208);
-            }
-          }
-        }
-      } else {
-        s0 = peg$FAILED;
-      }
-      peg$silentFails--;
-      if (s0 === peg$FAILED) {
-        s1 = peg$FAILED;
-        if (peg$silentFails === 0) {
-          peg$fail(peg$c214);
-        }
-      }
-
-      return s0;
-    }
-
-    function peg$parseinteger() {
-      var s0, s1, s2, s3, s4, s5;
-
-      s0 = peg$currPos;
-      s1 = peg$currPos;
-      s2 = peg$currPos;
-      if (input.charCodeAt(peg$currPos) === 45) {
-        s3 = peg$c173;
-        peg$currPos++;
-      } else {
-        s3 = peg$FAILED;
-        if (peg$silentFails === 0) {
-          peg$fail(peg$c174);
-        }
-      }
-      if (s3 === peg$FAILED) {
-        s3 = null;
-      }
-      if (s3 !== peg$FAILED) {
-        s4 = [];
-        if (peg$c123.test(input.charAt(peg$currPos))) {
-          s5 = input.charAt(peg$currPos);
-          peg$currPos++;
-        } else {
-          s5 = peg$FAILED;
-          if (peg$silentFails === 0) {
-            peg$fail(peg$c124);
-          }
-        }
-        if (s5 !== peg$FAILED) {
-          while (s5 !== peg$FAILED) {
-            s4.push(s5);
-            if (peg$c123.test(input.charAt(peg$currPos))) {
-              s5 = input.charAt(peg$currPos);
-              peg$currPos++;
-            } else {
-              s5 = peg$FAILED;
-              if (peg$silentFails === 0) {
-                peg$fail(peg$c124);
-              }
-            }
-          }
-        } else {
-          s4 = peg$FAILED;
-        }
-        if (s4 !== peg$FAILED) {
-          s3 = [s3, s4];
-          s2 = s3;
-        } else {
-          peg$currPos = s2;
-          s2 = peg$FAILED;
-        }
-      } else {
-        peg$currPos = s2;
-        s2 = peg$FAILED;
-      }
-      if (s2 !== peg$FAILED) {
-        s1 = input.substring(s1, peg$currPos);
-      } else {
-        s1 = s2;
-      }
-      if (s1 !== peg$FAILED) {
-        peg$savedPos = s0;
-        s1 = peg$c215(s1);
-      }
-      s0 = s1;
-
-      return s0;
-    }
-
-    peg$result = peg$startRuleFunction();
-
-    if (peg$result !== peg$FAILED && peg$currPos === input.length) {
-      return peg$result;
-    } else {
-      if (peg$result !== peg$FAILED && peg$currPos < input.length) {
-        peg$fail({ type: "end", description: "end of input" });
-      }
-
-      throw peg$buildException(null, peg$maxFailExpected, peg$maxFailPos < input.length ? input.charAt(peg$maxFailPos) : null, peg$maxFailPos < input.length ? peg$computeLocation(peg$maxFailPos, peg$maxFailPos + 1) : peg$computeLocation(peg$maxFailPos, peg$maxFailPos));
-    }
-  }
-
-  return {
-    SyntaxError: peg$SyntaxError,
-    parse: peg$parse
-  };
-}();
-
-},{}],579:[function(require,module,exports){
+},{"../utilities/unitConverters":595,"./core":584,"jquery":296,"lodash/forEach":468,"lodash/map":496}],588:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -53177,7 +45842,7 @@ var speech_toggle = exports.speech_toggle = function speech_toggle() {
     localStorage[_storageKeys.STORAGE_KEY.ATC_SPEECH_ENABLED] = prop.speech.enabled;
 };
 
-},{"./constants/selectors":565,"./constants/storageKeys":566,"./utilities/radioUtilities":584,"jquery":296,"lodash/get":459,"lodash/has":460}],580:[function(require,module,exports){
+},{"./constants/selectors":575,"./constants/storageKeys":576,"./utilities/radioUtilities":593,"jquery":296,"lodash/get":469,"lodash/has":470}],589:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -53245,7 +45910,7 @@ var TutorialStep = function () {
 
 exports.default = TutorialStep;
 
-},{"lodash/get":459}],581:[function(require,module,exports){
+},{"lodash/get":469}],590:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -53508,7 +46173,7 @@ var TutorialView = function () {
                         return t;
                     }
 
-                    return t.replace('{RUNWAY}', prop.aircraft.list[0].fms.currentWaypoint().runway);
+                    return t.replace('{RUNWAY}', prop.aircraft.list[0].fms.currentWaypoint.runway);
                 },
                 side: 'left',
                 position: tutorial_position
@@ -53522,7 +46187,7 @@ var TutorialView = function () {
                         return t;
                     }
 
-                    return t.replace('{RUNWAY}', prop.aircraft.list[0].fms.currentWaypoint().runway);
+                    return t.replace('{RUNWAY}', prop.aircraft.list[0].fms.currentWaypoint.runway);
                 },
                 side: 'left',
                 position: tutorial_position
@@ -53536,7 +46201,7 @@ var TutorialView = function () {
                         return t;
                     }
 
-                    return t.replace('{RUNWAY}', prop.aircraft.list[0].fms.currentWaypoint().runway);
+                    return t.replace('{RUNWAY}', prop.aircraft.list[0].fms.currentWaypoint.runway);
                 },
                 side: 'left',
                 position: tutorial_position
@@ -53550,7 +46215,7 @@ var TutorialView = function () {
                         return t;
                     }
 
-                    return t.replace('{RUNWAY}', prop.aircraft.list[0].fms.currentWaypoint().runway);
+                    return t.replace('{RUNWAY}', prop.aircraft.list[0].fms.currentWaypoint.runway);
                 },
                 side: 'left',
                 position: tutorial_position
@@ -53930,7 +46595,7 @@ var TutorialView = function () {
 
 exports.default = TutorialView;
 
-},{"../constants/selectors":565,"../constants/storageKeys":566,"../math/core":574,"../utilities/timeHelpers":585,"../utilities/unitConverters":586,"./TutorialStep":580,"jquery":296,"lodash/has":460}],582:[function(require,module,exports){
+},{"../constants/selectors":575,"../constants/storageKeys":576,"../math/core":584,"../utilities/timeHelpers":594,"../utilities/unitConverters":595,"./TutorialStep":589,"jquery":296,"lodash/has":470}],591:[function(require,module,exports){
 'use strict';
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -54057,22 +46722,6 @@ radio_runway_names.l = 'left';
 radio_runway_names.c = 'center';
 radio_runway_names.r = 'right';
 
-// FIXME: unused
-// function distEuclid(gps1, gps2) {
-//     // FIXME: enumerate the magic number
-//     const R = 6371; // nm
-//     const lat1 = degreesToRadians(lat1);
-//     const lat2 = degreesToRadians(lat2);
-//     const dlat = degreesToRadians(lat2 - lat1);
-//     const dlon = degreesToRadians(lon2 - lon1);
-//     // TODO: this should probably be abstracted
-//     const a = sin(dlat / 2) * sin(dlat / 2) + cos(lat1) * cos(lat2) * sin(dlon / 2) * sin(dlon / 2);
-//     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-//     const d = R * c;
-//
-//     return d; // distance, in kilometers
-// }
-
 // TODO: rename leftPad
 /**
  * Prepends zeros to front of str/num to make it the desired width
@@ -54129,19 +46778,30 @@ window.lpad = lpad;
 window.array_clean = array_clean;
 window.array_sum = array_sum;
 
-},{"./constants/logLevel":564,"./utilities/radioUtilities":584,"lodash/has":460}],583:[function(require,module,exports){
+},{"./constants/logLevel":574,"./utilities/radioUtilities":593,"lodash/has":470}],592:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.choose_weight = exports.choose = undefined;
+exports.choose_weight = exports.choose = exports.unicodeToString = undefined;
 
 var _isArray2 = require('lodash/isArray');
 
 var _isArray3 = _interopRequireDefault(_isArray2);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * Helper method to translate a unicode character into a readable string value
+ *
+ * @method unicodeToString
+ * @param char {characterCode}
+ * @return {string}
+ */
+var unicodeToString = exports.unicodeToString = function unicodeToString(char) {
+    return '\\u' + char.charCodeAt(0).toString(16).toUpperCase();
+};
 
 /**
  *
@@ -54188,7 +46848,7 @@ var choose_weight = exports.choose_weight = function choose_weight(l) {
     return null;
 };
 
-},{"lodash/isArray":466}],584:[function(require,module,exports){
+},{"lodash/isArray":476}],593:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -54658,7 +47318,7 @@ var getCardinalDirection = exports.getCardinalDirection = function getCardinalDi
     return CARDINAL_DIRECTION[(0, _core.round)(angle / (0, _circle.tau)() * 8)];
 };
 
-},{"../math/circle":573,"../math/core":574,"lodash/clone":451,"lodash/compact":453,"lodash/map":484}],585:[function(require,module,exports){
+},{"../math/circle":583,"../math/core":584,"lodash/clone":460,"lodash/compact":462,"lodash/map":496}],594:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -54689,13 +47349,13 @@ var calculateDeltaTime = exports.calculateDeltaTime = function calculateDeltaTim
   return Math.min(time() - lastFrame, 1 / 20);
 };
 
-},{}],586:[function(require,module,exports){
+},{}],595:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.parseElevation = exports.heading_to_string = exports.convertMinutesToSeconds = exports.km_to_px = exports.px_to_km = exports.degreesToRadians = exports.radiansToDegrees = exports.kn_ms = exports.ft_km = exports.km_ft = exports.m_ft = exports.nm = exports.km = exports.NUMBER_CONSTANTS = exports.UNIT_CONVERSION_CONSTANTS = undefined;
+exports.parseElevation = exports.parseCoordinate = exports.heading_to_string = exports.convertStringToNumber = exports.convertToThousands = exports.convertMinutesToSeconds = exports.km_to_px = exports.px_to_km = exports.degreesToRadians = exports.radiansToDegrees = exports.kn_ms = exports.ft_km = exports.km_ft = exports.m_ft = exports.nm = exports.km = exports.NUMBER_CONSTANTS = exports.UNIT_CONVERSION_CONSTANTS = undefined;
 
 var _includes2 = require('lodash/includes');
 
@@ -54713,7 +47373,16 @@ var _circle = require('../math/circle');
 
 var _core = require('../math/core');
 
+var _globalConstants = require('../constants/globalConstants');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * @property DECIMAL_RADIX
+ * @type {number}
+ * @final
+ */
+var DECIMAL_RADIX = 10;
 
 // TODO: This should be moved to its own file once it has been filled in a little more
 /**
@@ -54752,7 +47421,15 @@ var UNIT_CONVERSION_CONSTANTS = exports.UNIT_CONVERSION_CONSTANTS = {
    * @type {number}
    * @final
    */
-  KN_MS: 0.51444444
+  KN_MS: 0.51444444,
+  /**
+   * Number used to obtain feet from a flight level number
+   *
+   * @property FL_TO_FT_MULTIPLIER
+   * @type {number}
+   * @final
+   */
+  FL_TO_FT_MULTIPLIER: 100
 };
 
 // TODO: This should be moved to its own file once it has been filled in a little more
@@ -54898,14 +47575,38 @@ var km_to_px = exports.km_to_px = function km_to_px(kilometers, scale) {
 };
 
 /**
- *
- *
  * @function convertMinutesToSeconds
  * @param minutes {number}
  * @return {number}
  */
 var convertMinutesToSeconds = exports.convertMinutesToSeconds = function convertMinutesToSeconds(minutes) {
   return minutes * 60;
+};
+
+/**
+ * Utility function to convert a number to thousands.
+ *
+ * Given a flightlevel FL180, this function outputs 18,000
+ *
+ * @function covertToThousands
+ * @param  {number} value
+ * @return {number}
+ */
+var convertToThousands = exports.convertToThousands = function convertToThousands(value) {
+  return parseInt(value, DECIMAL_RADIX) * UNIT_CONVERSION_CONSTANTS.FL_TO_FT_MULTIPLIER;
+};
+
+/**
+ * Attempt to convert a string to a number
+ *
+ * The implementor will have to handle the case where `parseInt` returns `NaN`
+ *
+ * @function convertStringToNumber
+ * @param  value {string|*}
+ * @return {number|NaN}
+ */
+var convertStringToNumber = exports.convertStringToNumber = function convertStringToNumber(value) {
+  return parseInt(value, DECIMAL_RADIX);
 };
 
 /**
@@ -54933,6 +47634,49 @@ var heading_to_string = exports.heading_to_string = function heading_to_string(h
 };
 
 /**
+ * Accept a lat/long coordinate and return a value in decimal notation
+ *
+ * Latitude and Longitude numbers may be one of the following forms:
+ *   Decimal degrees - 'N47.112388112'
+ *   Decimal minutes - 'N38d38.109808'
+ *   Decimal seconds - 'N58d27m12.138'
+ *
+ * @function parseCoordinate
+ * @param coordinate {string}
+ * @return transformedCoordinate {number}
+ */
+var parseCoordinate = exports.parseCoordinate = function parseCoordinate(coordinate) {
+  var match = _globalConstants.REGEX.LAT_LONG.exec(coordinate);
+
+  // If coordinate already in WGS84 ESPG:4326 form ('39.427618, -75.296011'), just return it as-is
+  if (match == null) {
+    return coordinate;
+  }
+
+  var degrees = parseFloat(match[2]);
+  var minutes = 0;
+  var seconds = 0;
+
+  // Gather minutes/seconds as decimal of a degree, if available
+  if (match[5] != null) {
+    minutes = parseFloat(match[5]) * _globalConstants.TIME.ONE_MINUTE_IN_HOURS;
+
+    if (match[8] != null) {
+      seconds = parseFloat(match[8]) * _globalConstants.TIME.ONE_SECOND_IN_HOURS;
+    }
+  }
+
+  var decimalDegrees = degrees + minutes + seconds;
+
+  // Apply negative to value if coordinate is "South" or "West"
+  if (_globalConstants.REGEX.SW.test(match[1])) {
+    decimalDegrees *= -1;
+  }
+
+  return decimalDegrees;
+};
+
+/**
  * Accept a string elevation and return a number representing elevation in ft.
  *
  * @function parseElevation
@@ -54947,7 +47691,9 @@ var parseElevation = exports.parseElevation = function parseElevation(elevation)
 
   // if its a number, we're done here.
   // This will catch whole numbers, floats, Infinity and -Infinity.
-  if ((0, _isNumber3.default)(elevation)) {
+  // This checks if strings are given will skip the regex and exit early
+  // Also stops the function from returning NaN
+  if ((0, _isNumber3.default)(elevation) || elevation === 'Infinity' || elevation === '-Infinity') {
     return parseFloat(elevation);
   }
 
@@ -54967,7 +47713,7 @@ var parseElevation = exports.parseElevation = function parseElevation(elevation)
   return parseFloat(parsedElevation);
 };
 
-},{"../math/circle":573,"../math/core":574,"lodash/includes":464,"lodash/isNumber":474,"lodash/startsWith":490}]},{},[572])
+},{"../constants/globalConstants":573,"../math/circle":583,"../math/core":584,"lodash/includes":474,"lodash/isNumber":486,"lodash/startsWith":502}]},{},[582])
 
 
 //# sourceMappingURL=bundle.js.map

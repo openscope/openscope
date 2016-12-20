@@ -6,6 +6,7 @@ import _has from 'lodash/has';
 import _head from 'lodash/head';
 import _map from 'lodash/map';
 import _isEmpty from 'lodash/isEmpty';
+import _isNil from 'lodash/isNil';
 import AirspaceModel from './AirspaceModel';
 import PositionModel from '../base/PositionModel';
 import RunwayModel from './RunwayModel';
@@ -63,11 +64,11 @@ export default class AirportModel {
         this.level = null;
         this.position = null;
         this.runways = [];
+        // TODO: rename to `runwayName`
         this.runway = null;
+        // this property is kept for each airport to allow for re-hydration of the `FixCollection` on airport change
         this.fixes = {};
-        this.sids = {};
         this.sidCollection = null;
-        this.stars = {};
         this.starCollection = null;
         this.maps = {};
         this.airways = {};
@@ -145,8 +146,6 @@ export default class AirportModel {
 
         this.radio = _get(data, 'radio', this.radio);
         this.has_terrain = _get(data, 'has_terrain', false);
-        this.sids = _get(data, 'sids', {});
-        this.stars = _get(data, 'stars', {});
         this.airways = _get(data, 'airways', {});
         this.ctr_radius = _get(data, 'ctr_radius', DEFAULT_CTR_RADIUS_NM);
         this.ctr_ceiling = _get(data, 'ctr_ceiling', DEFAULT_CTR_CEILING_FT);
@@ -155,7 +154,7 @@ export default class AirportModel {
         this.rr_center = _get(data, 'rr_center');
 
         this.fixes = _get(data, 'fixes', {});
-        FixCollection.init(this.fixes, this.position);
+        FixCollection.addItems(this.fixes, this.position);
 
         this.sidCollection = new StandardRouteCollection(data.sids);
         this.starCollection = new StandardRouteCollection(data.stars);
@@ -215,7 +214,7 @@ export default class AirportModel {
             this.perimeter.poly, (v) => vlen(
                 vsub(
                     v.position,
-                    new PositionModel(this.rr_center, this.position, this.magnetic_north).position
+                    PositionModel.calculatePosition(this.rr_center, this.position, this.magnetic_north)
                 )
             )
         ));
@@ -259,8 +258,8 @@ export default class AirportModel {
             const lines = map;
 
             _forEach(lines, (line) => {
-                const start = new PositionModel([line[0], line[1]], this.position, this.magnetic_north).position;
-                const end = new PositionModel([line[2], line[3]], this.position, this.magnetic_north).position;
+                const start = PositionModel.calculatePosition([line[0], line[1]], this.position, this.magnetic_north);
+                const end = PositionModel.calculatePosition([line[2], line[3]], this.position, this.magnetic_north);
 
                 this.maps[key].push([start[0], start[1], end[0], end[1]]);
             });
@@ -286,7 +285,7 @@ export default class AirportModel {
 
             obj.height = parseElevation(area.height);
             obj.coordinates = $.map(area.coordinates, (v) => {
-                return [(new PositionModel(v, this.position, this.magnetic_north)).position];
+                return [(PositionModel.calculatePosition(v, this.position, this.magnetic_north))];
             });
 
             // TODO: is this right? max and min are getting set to the same value?
@@ -400,14 +399,10 @@ export default class AirportModel {
         localStorage[STORAGE_KEY.ATC_LAST_AIRPORT] = this.icao;
         prop.airport.current = this;
 
-        $(SELECTORS.DOM_SELECTORS.AIRPORT)
-            .text(this.icao.toUpperCase())
-            .attr('title', this.name);
-
         prop.canvas.draw_labels = true;
         $(SELECTORS.DOM_SELECTORS.TOGGLE_LABELS).toggle(!_isEmpty(this.maps));
         $(SELECTORS.DOM_SELECTORS.TOGGLE_RESTRICTED_AREAS).toggle((this.restricted_areas || []).length > 0);
-        $(SELECTORS.DOM_SELECTORS.TOGGLE_SIDS).toggle(!_isEmpty(this.sids));
+        $(SELECTORS.DOM_SELECTORS.TOGGLE_SIDS).toggle(!_isNil(this.sidCollection));
 
         prop.canvas.dirty = true;
         $(SELECTORS.DOM_SELECTORS.TOGGLE_TERRAIN).toggle(!_isEmpty(this.terrain));
@@ -419,7 +414,7 @@ export default class AirportModel {
         // when the parse method is run, this method also runs. however, when an airport is being re-loaded,
         // only this method runs. this doesnt belong here but needs to be here so the fixes get populated correctly.
         // FIXME: make FixCollection a instance class ainstead of a static class
-        FixCollection.init(this.fixes, this.position);
+        FixCollection.addItems(this.fixes, this.position);
 
         this.updateRunway();
         this.addAircraft();
@@ -545,8 +540,8 @@ export default class AirportModel {
                 apt.terrain[ele].push($.map(poly, (line_string) => {
                     return [
                         $.map(line_string, (pt) => {
+                            pt.reverse();   // `PositionModel` requires [lat,lon] order
                             const pos = new PositionModel(pt, apt.position, apt.magnetic_north);
-                            pos.parse4326();
 
                             return [pos.position];
                         })
@@ -657,6 +652,7 @@ export default class AirportModel {
      * @return {array}
      */
     getFixPosition(fixName) {
+        // TODO: if possible, replace with FoxCollection.getFixPositionCoordinates
         const fixModel = FixCollection.findFixByName(fixName);
 
         return fixModel.position;
@@ -674,6 +670,20 @@ export default class AirportModel {
     }
 
     /**
+     *
+     * @for AirportModel
+     * @method findWaypointModelsForSid
+     * @param id {string}
+     * @param entry {string}
+     * @param runway {string}
+     * @param isPreSpawn {boolean} flag used to determine if distances between waypoints should be calculated
+     * @return {array<StandardWaypointModel>}
+     */
+    findWaypointModelsForSid(id, entry, runway, isPreSpawn = false) {
+        return this.sidCollection.findFixModelsForRouteByEntryAndExit(id, entry, runway, isPreSpawn);
+    }
+
+    /**
      * @for AirportModel
      * @method getSIDExitPoint
      * @param icao {string}  Name of SID
@@ -682,24 +692,6 @@ export default class AirportModel {
     getSIDExitPoint(icao) {
         return this.sidCollection.findRandomExitPointForSIDIcao(icao);
     }
-
-    // FIXME: possibly unused
-    // getSIDName(id, rwy) {
-    //     if (_has(this.sids[id], 'suffix')) {
-    //         return `${this.sids[id].name} ${this.sids[id].suffix[rwy]}`;
-    //     }
-    //
-    //     return this.sids[id].name;
-    // }
-
-    // FIXME: possibly unused
-    // getSIDid(id, rwy) {
-    //     if (_has(this.sids[id], 'suffix')) {
-    //         return this.sids[id].icao + this.sids[id].suffix[rwy];
-    //     }
-    //
-    //     return this.sids[id].icao;
-    // }
 
     /**
      * Return an array of [Waypoint, fixRestrictions] for a given STAR
@@ -723,6 +715,7 @@ export default class AirportModel {
     /**
      *
      * @for AirportModel
+     * @method findWaypointModelsForStar
      * @param id {string}
      * @param entry {string}
      * @param runway {string}
