@@ -11,7 +11,7 @@
 
 
 ### Minor
-- Changes `AircraftStripView` text outputs to be all uppercase
+- Changes `AircraftStripView` text outputs to be all uppercase [#193](https://github.com/n8rzz/atc/issues/193)
 
 
 
