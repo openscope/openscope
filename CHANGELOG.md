@@ -12,7 +12,8 @@
 
 
 ### Minor
-
+- Ensures proper removal of all `AircraftConflict` instances involving an aircraft that has been removed from the simulation [#133](https://github.com/n8rzz/atc/issues/133)
+    - Originally reported under [zlsa#734](https://github.com/zlsa/atc/issues/734)
 
 
 
