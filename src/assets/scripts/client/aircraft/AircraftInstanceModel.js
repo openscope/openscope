@@ -8,6 +8,7 @@ import _isNaN from 'lodash/isNaN';
 import _isNil from 'lodash/isNil';
 import _isString from 'lodash/isString';
 import _map from 'lodash/map';
+import _without from 'lodash/without';
 import AircraftFlightManagementSystem from './FlightManagementSystem/AircraftFlightManagementSystem';
 import AircraftStripView from './AircraftStripView';
 import Waypoint from './FlightManagementSystem/Waypoint';
@@ -2645,18 +2646,21 @@ export default class Aircraft {
     /**
      * @for AircraftInstanceModel
      * @method addConflict
+     * @param {AircraftConflict} conflict
+     * @param {Aircraft} conflictingAircraft
      */
-    addConflict(conflict, other) {
-        this.conflicts[other.getCallsign()] = conflict;
+    addConflict(conflict, conflictingAircraft) {
+        this.conflicts[conflictingAircraft.getCallsign()] = conflict;
     }
 
     /**
      * @for AircraftInstanceModel
      * @method checkConflict
+     * @param {Aircraft} conflictingAircraft
      */
-    checkConflict(other) {
-        if (this.conflicts[other.getCallsign()]) {
-            this.conflicts[other.getCallsign()].update();
+    checkConflict(conflictingAircraft) {
+        if (this.conflicts[conflictingAircraft.getCallsign()]) {
+            this.conflicts[conflictingAircraft.getCallsign()].update();
             return true;
         }
 
@@ -2682,9 +2686,10 @@ export default class Aircraft {
     /**
      * @for AircraftInstanceModel
      * @method removeConflict
-     * @param other
+     * @param {Aircraft} conflictingAircraft
      */
-    removeConflict(other) {
-        delete this.conflicts[other.getCallsign()];
+    removeConflict(conflictingAircraft) {
+        const conflictBeingRemoved = this.conflicts[conflictingAircraft.getCallsign()];
+        this.conflicts = _without(this.conflicts, conflictBeingRemoved);
     }
 }

@@ -6,7 +6,9 @@ module.exports = function(gulp, config) {
 
     var browserify = require('browserify');
     var babelify = require('babelify');
+    var babel = require('gulp-babel');
     var sourcemaps = require('gulp-sourcemaps');
+    var path = require('path');
     var source = require('vinyl-source-stream');
     var buffer = require('vinyl-buffer');
 
@@ -15,7 +17,7 @@ module.exports = function(gulp, config) {
     ////////////////////////////////////////////////////////////////////
     gulp.task('babel', function () {
         browserify({
-            entries: OPTIONS.FILE.JS_ENTRY,
+            entries: OPTIONS.FILE.JS_ENTRY_CLIENT,
             extensions: ['.js'],
             debug: true
         })
@@ -27,7 +29,15 @@ module.exports = function(gulp, config) {
         .pipe(buffer())
         .pipe(sourcemaps.init({ loadMaps: true }))
         .pipe(sourcemaps.write('./'))
-        .pipe(gulp.dest(OPTIONS.DIR.BUILD_SCRIPTS));
+        .pipe(gulp.dest(OPTIONS.DIR.BUILD_SCRIPTS_CLIENT));
+    });
+
+    gulp.task('babel-server', function () {
+        gulp.src([path.join(OPTIONS.DIR.SRC_SCRIPTS_SERVER, '**/*.js')])
+            .pipe(babel({
+                presets: ['es2015']
+            }))
+            .pipe(gulp.dest(OPTIONS.DIR.BUILD_SCRIPTS_SERVER))
     });
 
     ////////////////////////////////////////////////////////////////////
@@ -75,8 +85,9 @@ module.exports = function(gulp, config) {
     // TASKS
     ////////////////////////////////////////////////////////////////////
     gulp.task('build:scripts', ['clean:build:scripts', 'babel']);
+    gulp.task('build:server', ['clean:build:server', 'babel-server']);
 
     gulp.task('watch:scripts', function() {
-        gulp.watch(OPTIONS.GLOB.JS, ['babel']);
+        gulp.watch(OPTIONS.GLOB.JS, ['babel-server', 'babel']);
     });
 };
