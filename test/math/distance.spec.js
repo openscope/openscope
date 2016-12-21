@@ -1,6 +1,6 @@
 import ava from 'ava';
 
-import { distance2d } from '../../src/assets/scripts/math/distance';
+import { distance2d } from '../../src/assets/scripts/client/math/distance';
 
 const ORIGIN = [0, 0];
 const POINT = [58.974562189814314, -36.040010227108745];

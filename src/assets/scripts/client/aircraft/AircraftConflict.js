@@ -1,4 +1,6 @@
 /* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand, no-param-reassign, no-undef */
+import _includes from 'lodash/includes';
+import _some from 'lodash/some';
 import { abs } from '../math/core';
 import { angle_offset } from '../math/circle';
 import { vlen, vsub, vturn } from '../math/vector';
@@ -76,6 +78,11 @@ export default class AircraftConflict {
      * Update conflict and violation checks, potentially removing this conflict.
      */
     update() {
+        if (this.shouldBeRemoved()) {
+            window.aircraftController.removeConflict(this);
+            return;
+        }
+
         // Avoid triggering any more conflicts if the two aircraft have collided
         if (this.collided) {
             return;
@@ -85,12 +92,6 @@ export default class AircraftConflict {
         this.distance = vlen(vsub(this.aircraft[0].position, this.aircraft[1].position));
         this.distance_delta = this.distance - d;
         this.altitude = abs(this.aircraft[0].altitude - this.aircraft[1].altitude);
-
-        // Check if the separation is now beyond the bounding box check
-        if (this.distance > MAXIMUM_SEPARATION_KM) {
-            this.remove();
-            return;
-        }
 
         this.checkCollision();
         this.checkRunwayCollision();
@@ -113,25 +114,19 @@ export default class AircraftConflict {
     }
 
     /**
-     * Remove conflict for both aircraft
-     */
-    remove() {
-        this.aircraft[0].removeConflict(this.aircraft[1]);
-        this.aircraft[1].removeConflict(this.aircraft[0]);
-    }
-
-    /**
      * Check for collision
      */
     checkCollision() {
-        if (this.aircraft[0].wow() || this.aircraft[1].wow()) {
+        if (this.aircraft[0].isOnGround() || this.aircraft[1].isOnGround()) {
             return;  // TEMPORARY FIX FOR CRASHES BTWN ARRIVALS AND TAXIIED A/C
         }
 
         // TODO: enumerate the magic numbers.
         // Collide within 160 feet
+        const airport = window.airportController.airport_get();
+
         if (((this.distance < 0.05) && (this.altitude < 160)) &&
-            (this.aircraft[0].isVisible() && this.aircraft[1].isVisible())
+            (this.aircraft[0].isInsideAirspace(airport) && this.aircraft[1].isInsideAirspace(airport))
         ) {
             this.collided = true;
             const isWarning = true;
@@ -299,5 +294,43 @@ export default class AircraftConflict {
         } else {
             this.violations.proximityViolation = false;
         }
+    }
+
+    /**
+     * Checks if an `AircraftConflict` instance already exists in `AircraftController.conflicts`
+     * for the aircraft involved in `this`.
+     *
+     * @for AircraftConflict
+     * @method isDuplicate
+     * @return {Boolean}
+     */
+    isDuplicate() {
+        return _some(window.aircraftController.conflicts, (conflict) => {
+            return _includes(conflict.aircraft, this.aircraft[0]) && _includes(conflict.aircraft, this.aircraft[1]);
+        });
+    }
+
+    /**
+     * Checks various conditions to determine whether the conflict should be removed
+     *
+     * @for AircraftConflict
+     * @method shouldBeRemoved
+     * @return {Boolean}
+     */
+    shouldBeRemoved() {
+        return this._isOutsideBoundingBox() || this.isDuplicate();
+    }
+
+    /**
+     * Checks whether the distance between the aircraft is greater than the size of the bounding
+     * box within which we will examine the conflict closer
+     *
+     * @for AircraftConflict
+     * @method _isOutsideBoundingBox
+     * @private
+     * @return {Boolean}
+     */
+    _isOutsideBoundingBox() {
+        return this.distance > MAXIMUM_SEPARATION_KM;
     }
 }

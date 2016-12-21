@@ -7,7 +7,7 @@ import {
     headingParser,
     findHoldCommandByType,
     holdParser
-} from '../../src/assets/scripts/commandParser/argumentParsers';
+} from '../../src/assets/scripts/client/commandParser/argumentParsers';
 
 ava('.altitudeParser() converts a string flight level altitude to a number altitude in thousands', t => {
     const result = altitudeParser(['080']);

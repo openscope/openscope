@@ -1,3 +1,38 @@
+## 3.3.0 (January 20, 2017)
+---
+### Major
+- Restructures `src` files into `client` and `server` folders. [#220](https://github.com/n8rzz/atc/issues/220)
+
+
+
+
+
+
+
+
+
+### Minor
+- Ensures proper removal of all `AircraftConflict` instances involving an aircraft that has been removed from the simulation [#133](https://github.com/n8rzz/atc/issues/133)
+    - Originally reported under [zlsa#734](https://github.com/zlsa/atc/issues/734)
+
+
+
+
+
+
+
+
+### Bugfixes
+
+
+
+
+
+
+
+
+
+
 ## 3.2.0 (December 20, 2016)
 ---
 ### Major
@@ -9,8 +44,6 @@
 - Adds [Express](expressjs.com) server to serve static assets and add [travis](travis-ci.org) config file for travis continuous integration [#169](https://github.com/n8rzz/atc/issues/169)
 - Rewrites the CommandParser from the ground up [#114](https://github.com/n8rzz/atc/issues/114)
 - Removes `Pegjs` and references completing switch to new CommandParser [#216](https://github.com/n8rzz/atc/issues/216)
-
-
 
 ### Minor
 - Implements `modelSourceFactory` and `modelSourcePool` [#77](https://github.com/n8rzz/atc/issues/77)
@@ -28,28 +61,22 @@
     - Updates `PositionModel` to run all calculations through the static `.calculatePosition()` method and vastly simplifies internal logic.
 - Refactors the the function names in `FixCollection` to better fit their function. `init()` to `addItems()` and `destroy()` to `removeItems()` [#186] (https://github.com/n8rzz/atc/issues/186)
 - Adds gulp-cli and adds [tools readme](tools/README.md) link to gulp issues with Windows [#194](https://github.com/n8rzz/atc/issues/194)
-- Changes `routeString` to `routeCode` in `routeModel` [#188] (https://github.com/n8rzz/atc/issues/188)
-    -`.toUpperCase()` is now called on initialization and removed from the getter
+- Changes `routeString` to `routeCode` in `RouteModel` and moves `.toUpperCase()` from the getter to `.init()` [#188] (https://github.com/n8rzz/atc/issues/188)
+- Updates `StandardRouteModel` to throw when entry/exit point doesn't exist within a collection and updates `.setDepartureRunway()` to send the `routeCode` to `Leg` on instantiation [#175](https://github.com/n8rzz/atc/issues/175)
+- Prevents collision detection for aircraft that are outside of our airspace [#134](https://github.com/n8rzz/atc/issues/134)
+    - Originally reported under [#736](https://github.com/zlsa/atc/issues/736)
 - Escape clears commands but not callsign if commands are present [#211] (https://github.com/n8rzz/atc/issues/211)
     - Originally reported under [#763](https://github.com/zlsa/atc/issues/763)
-
-
-
-
-
-
-
-
 
 ### Bugfixes
 - Moves `_comment` blocks in airport json file to be within object the are describing [#145](https://github.com/n8rzz/atc/issues/145)
 - Streamlines flight number generation and adds new method to add new callsigns to the existing list [#151](https://github.com/n8rzz/atc/issues/151)
 - Adds `_isNumber` check instead of `!magneticNorth` inside `PositionModel.calculatePosition()` and the `AirspaceModel` constructor. [#182](https://github.com/n8rzz/atc/issues/182)
     - Originally reported under [#754](https://github.com/zlsa/atc/issues/754)
+- Adds additional handling to `StandardRouteModel._buildEntryAndExitCollections` to handle case where `entryPoints` and `exitPoints` don't exist in the `airport.sids` definition [#196](https://github.com/n8rzz/atc/issues/196)
+    - Originally reported under [#760](https://github.com/zlsa/atc/issues/760)
 - Ensures proper removal of aircraft from the runway queue(s) when that aircraft has been deleted. [#132](https://github.com/n8rzz/atc/issues/132)
     - Originally reported under [#706](https://github.com/zlsa/atc/issues/706)
-
-
 
 
 ## 3.1.0 (November 20, 2016)

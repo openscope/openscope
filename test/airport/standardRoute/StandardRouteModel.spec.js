@@ -6,12 +6,12 @@ import _isEqual from 'lodash/isEqual';
 import _keys from 'lodash/keys';
 import _map from 'lodash/map';
 
-import StandardRouteModel from '../../../src/assets/scripts/airport/StandardRoute/StandardRouteModel';
-import RouteSegmentCollection from '../../../src/assets/scripts/airport/StandardRoute/RouteSegmentCollection';
-import RouteSegmentModel from '../../../src/assets/scripts/airport/StandardRoute/RouteSegmentModel';
-import StandardRouteWaypointModel from '../../../src/assets/scripts/airport/StandardRoute/StandardRouteWaypointModel';
+import StandardRouteModel from '../../../src/assets/scripts/client/airport/StandardRoute/StandardRouteModel';
+import RouteSegmentCollection from '../../../src/assets/scripts/client/airport/StandardRoute/RouteSegmentCollection';
+import RouteSegmentModel from '../../../src/assets/scripts/client/airport/StandardRoute/RouteSegmentModel';
+import StandardRouteWaypointModel from '../../../src/assets/scripts/client/airport/StandardRoute/StandardRouteWaypointModel';
 
-import FixCollection from '../../../src/assets/scripts/airport/Fix/FixCollection';
+import FixCollection from '../../../src/assets/scripts/client/airport/Fix/FixCollection';
 import { airportPositionFixtureKSFO } from '../../fixtures/airportFixtures';
 import { FIX_LIST_MOCK } from '../fix/_mocks/fixMocks';
 
@@ -194,7 +194,7 @@ ava('.gatherExitPointNames() retuns a list of the exitPoint fix names', t => {
     t.true(_isEqual(result, expectedResult));
 });
 
-ava('.gatherExitPointNames() retuns an empty array if not exitPoints exist or the collection is undefined', t => {
+ava('.gatherExitPointNames() retuns an empty array if no exitPoints exist or the collection is undefined', t => {
     const model = new StandardRouteModel(SID_WITHOUT_EXIT_MOCK.TRALR6);
     const result = model.gatherExitPointNames();
 
@@ -244,6 +244,15 @@ ava('._buildEntryAndExitCollections() maps rwy fixes to _entryCollection when ex
     t.true(_isEqual(segmentModelNames, _keys(SID_MOCK.rwy)));
 });
 
+ava('._buildEntryAndExitCollections() maps rwy fixes to _entryCollection when exitPoints is not present and rwy is present', t => {
+    const model = new StandardRouteModel(SID_WITHOUT_EXIT_MOCK.TRALR6);
+    model._buildEntryAndExitCollections(SID_WITHOUT_EXIT_MOCK.TRALR6);
+
+    const segmentModelNames = _map(model._entryCollection._items, (segmentModel) => segmentModel.name);
+
+    t.true(_isEqual(segmentModelNames, _keys(SID_WITHOUT_EXIT_MOCK.TRALR6.rwy)));
+});
+
 ava('._findBodyFixList() returns an empty array when ._bodySegmentModel is undefined', t => {
     const model = new StandardRouteModel(SID_WITHOUT_BODY_MOCK);
 
@@ -253,6 +262,18 @@ ava('._findBodyFixList() returns an empty array when ._bodySegmentModel is undef
 
     t.true(_isArray(result));
     t.true(result.length === 0);
+});
+
+ava('._findStandardWaypointModelsForRoute() throws if entry does not exist within the collection', t => {
+    const model = new StandardRouteModel(STAR_MOCK);
+
+    t.throws(() => model._findStandardWaypointModelsForRoute('threeve', '25R'));
+});
+
+ava('._findStandardWaypointModelsForRoute() throws if exit does not exist within the collection', t => {
+    const model = new StandardRouteModel(STAR_MOCK);
+
+    t.throws(() => model._findStandardWaypointModelsForRoute('DRK', 'threeve'));
 });
 
 ava('._findStandardWaypointModelsForRoute() returns a list of StandardRouteWaypointModels when _entryCollection and _exitCollection exist', t => {

@@ -1,6 +1,6 @@
 {
   "name": "atc",
-  "version": "3.2.0",
+  "version": "3.3.0",
   "description": "An ATC simulator in HTML5",
   "engines": {
     "node": "7.0.0",
@@ -13,7 +13,8 @@
     "report": "nyc report --reporter=cobertura  --reporter=lcov",
     "coverage": "npm run test && npm run report",
     "lint": "eslint src/**; exit 0",
-    "start": "gulp server"
+    "start": "gulp server",
+    "server": "node ./assets/scripts/server/index.js"
   },
   "repository": {
     "type": "git",
@@ -38,7 +39,8 @@
     "indianbhaji (https://github.com/indianbhaji)",
     "Dmitri Lebedev <ryba4@ryba4.com> (http://one-giant-leap.info)",
     "tedrek (https://github.com/tedrek)",
-    "Nate Geslin <teamtomkins23@gmail.com> (https://github.com/n8rzz)"
+    "Nate Geslin <teamtomkins23@gmail.com> (https://github.com/n8rzz)",
+    "Abraham Anderson <abeis@msn.com> (https://github.com/Dabea)"
   ],
   "license": "MIT",
   "bugs": {
@@ -67,6 +69,7 @@
     ]
   },
   "dependencies": {
+    "chalk": "^1.1.3",
     "express": "^4.14.0",
     "jquery": "^3.1.0",
     "lodash": "^4.15.0",
@@ -92,6 +95,7 @@
     "eslint-plugin-react": "^6.2.0",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.1",
+    "gulp-babel": "^6.1.2",
     "gulp-cache": "^0.4.5",
     "gulp-clean": "^0.3.2",
     "gulp-cli": "^1.2.2",
