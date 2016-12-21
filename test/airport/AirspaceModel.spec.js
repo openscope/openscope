@@ -1,7 +1,7 @@
 import ava from 'ava';
 
-import AirspaceModel from '../../src/assets/scripts/airport/AirspaceModel';
-import PositionModel from '../../src/assets/scripts/base/PositionModel';
+import AirspaceModel from '../../src/assets/scripts/client/airport/AirspaceModel';
+import PositionModel from '../../src/assets/scripts/client/base/PositionModel';
 import { AIRSPACE_MOCK, AIRSPACE_MOCK_WITH_CLOSING_ENTRY } from './_mocks/airspaceModelMocks';
 
 const currentPosition = ['N36.080056', 'W115.15225', '2181ft'];

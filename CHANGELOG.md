@@ -1,6 +1,7 @@
 ## 3.3.0 (January 20, 2017)
+---
 ### Major
-
+- Restructures `src` files into `client` and `server` folders. [#220](https://github.com/n8rzz/atc/issues/220)
 
 
 
@@ -12,6 +13,9 @@
 
 ### Minor
 - Changes `AircraftStripView` text outputs to be all uppercase [#193](https://github.com/n8rzz/atc/issues/193)
+- Ensures proper removal of all `AircraftConflict` instances involving an aircraft that has been removed from the simulation [#133](https://github.com/n8rzz/atc/issues/133)
+    - Originally reported under [zlsa#734](https://github.com/zlsa/atc/issues/734)
+- Fixes the whitespace
 
 
 

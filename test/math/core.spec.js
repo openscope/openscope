@@ -1,6 +1,6 @@
 import ava from 'ava'
 
-import { calculateMiddle, clamp } from '../../src/assets/scripts/math/core';
+import { calculateMiddle, clamp } from '../../src/assets/scripts/client/math/core';
 
 ava('.calculateMiddle() returns a number the is the mid-point of a given number, rounded up', t => {
     t.throws(() => calculateMiddle('10'));
