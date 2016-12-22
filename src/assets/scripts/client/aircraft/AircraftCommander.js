@@ -708,7 +708,7 @@ export default class AircraftCommander {
      */
     runFlyPresentHeading(aircraft, data) {
         aircraft.cancelFix();
-        aircraft.runHeading([null, radiansToDegrees(aircraft.heading)]);
+        this.runHeading(aircraft, [null, radiansToDegrees(aircraft.heading)]);
 
         return ['ok', 'fly present heading'];
     }
