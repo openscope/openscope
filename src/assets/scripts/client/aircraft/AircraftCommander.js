@@ -62,12 +62,20 @@ const COMMANDS = {
     taxi: 'runTaxi'
 };
 
+/**
+ *
+ *
+ * @class AircraftCommander
+ */
 export default class AircraftCommander {
+    constructor(airportController, gameController, uiController) {
+        this._airportController = airportController;
+        this._gameController = gameController;
+        this._uiController = uiController;
+    }
 
-
-    // TODO: move aircraftCommands to a new class
     /**
-     * @for AircraftInstanceModel
+     * @for AircraftCommander
      * @method runCommands
      * @param aircraft {AircraftInstanceModel}
      * @param commands {CommandParser}
@@ -150,7 +158,7 @@ export default class AircraftCommander {
             const r_log = _map(response, (r) => r.log).join(', ');
             const r_say = _map(response, (r) => r.say).join(', ');
 
-            window.uiController.ui_log(`${aircraft.getCallsign()}, ${r_log} ${response_end}`);
+            this._uiController.ui_log(`${aircraft.getCallsign()}, ${r_log} ${response_end}`);
             speech_say([
                 { type: 'callsign', content: this },
                 { type: 'text', content: `${r_say} ${response_end}` }
@@ -163,10 +171,11 @@ export default class AircraftCommander {
     }
 
     /**
-     * @for AircraftInstanceModel
+     * @for AircraftCommander
      * @method run
-     * @param command
-     * @param data
+     * @param aircraft {AircraftInstanceModel}
+     * @param command {string}
+     * @param data {array}
      * @return {function}
      */
     run(aircraft, command, data) {
@@ -184,12 +193,12 @@ export default class AircraftCommander {
     }
 
     /**
-     * @for AircraftInstanceModel
+     * @for AircraftCommander
      * @method runHeading
      * @param data
      */
     runHeading(aircraft, data) {
-        const airport = window.airportController.airport_get();
+        const airport = this._airportController.airport_get();
         const direction = data[0];
         let heading = data[1];
         const incremental = data[2];
@@ -329,17 +338,19 @@ export default class AircraftCommander {
     }
 
     /**
-     * @for AircraftInstanceModel
+     * @for AircraftCommander
      * @method runAltitude
      * @param data
      */
     runAltitude(aircraft, data) {
         const altitude = data[0];
         const expedite = data[1];
-        const airport = window.airportController.airport_get();
+        const airport = this._airportController.airport_get();
         const radioTrendAltitude = radio_trend('altitude', aircraft.altitude, aircraft.fms.altitudeForCurrentWaypoint());
         const currentWaypointRadioAltitude = radio_altitude(aircraft.fms.altitudeForCurrentWaypoint());
 
+        // these two conditions should never happen here they will be caught in the `CommandParser`
+        // FIXME: remove this top level if block
         if ((altitude == null) || isNaN(altitude)) {
             // FIXME: move this to it's own command. if expedite can be passed as a sole command it should be its own command
             if (expedite) {
@@ -356,7 +367,7 @@ export default class AircraftCommander {
         }
 
         let ceiling = airport.ctr_ceiling;
-        if (window.gameController.game.option.get('softCeiling') === 'yes') {
+        if (this._gameController.game.option.get('softCeiling') === 'yes') {
             ceiling += 1000;
         }
 
@@ -380,16 +391,16 @@ export default class AircraftCommander {
     }
 
     /**
-     * @for AircraftInstanceModel
+     * @for AircraftCommander
      * @method runClearedAsFiled
      * @return {array}
      */
     runClearedAsFiled(aircraft) {
-        if (!aircraft.runSID([aircraft.destination])) {
+        if (!this.runSID(aircraft, [aircraft.destination])) {
             return [true, 'unable to clear as filed'];
         }
 
-        const airport = window.airportController.airport_get();
+        const airport = this._airportController.airport_get();
         const { name: procedureName } = airport.sidCollection.findRouteByIcao(aircraft.destination);
         const readback = {};
 
@@ -403,19 +414,19 @@ export default class AircraftCommander {
     }
 
     /**
-     * @for AircraftInstanceModel
+     * @for AircraftCommander
      * @method runClimbViaSID
      */
     runClimbViaSID(aircraft) {
         if (aircraft.fms.currentLeg.type !== FP_LEG_TYPE.SID || !aircraft.fms.climbViaSID()) {
             const isWarning = true;
 
-            window.uiController.ui_log(`${aircraft.getCallsign()} unable to climb via SID`, isWarning);
+            this._uiController.ui_log(`${aircraft.getCallsign()} unable to climb via SID`, isWarning);
 
             return;
         }
 
-        const airport = window.airportController.airport_get();
+        const airport = this._airportController.airport_get();
         const { name: procedureName } = airport.sidCollection.findRouteByIcao(aircraft.fms.currentLeg.route.procedure);
         const readback = {
             log: `climb via the ${aircraft.fms.currentLeg.route.procedure} departure`,
@@ -426,7 +437,7 @@ export default class AircraftCommander {
     }
 
     /**
-     * @for AircraftInstanceModel
+     * @for AircraftCommander
      * @method runDescendViaSTAR
      * @param data
      * @return {boolean|undefined}
@@ -434,12 +445,12 @@ export default class AircraftCommander {
     runDescendViaSTAR(aircraft) {
         if (!aircraft.fms.descendViaSTAR() || !aircraft.fms.following.star) {
             const isWarning = true;
-            window.uiController.ui_log(`${aircraft.getCallsign()}, unable to descend via STAR`, isWarning);
+            this._uiController.ui_log(`${aircraft.getCallsign()}, unable to descend via STAR`, isWarning);
 
             return;
         }
 
-        const airport = window.airportController.airport_get();
+        const airport = this._airportController.airport_get();
         const { name: procedureName } = airport.starCollection.findRouteByIcao(aircraft.fms.currentLeg.route.procedure);
         const readback = {
             log: `descend via the ${aircraft.fms.following.star} arrival`,
@@ -450,13 +461,15 @@ export default class AircraftCommander {
     }
 
     /**
-     * @for AircraftInstanceModel
+     * @for AircraftCommander
      * @method runSpeed
      * @param data
      */
     runSpeed(aircraft, data) {
         const speed = data[0];
 
+        // this condition should never happen here it will be caught in the `CommandParser`
+        // FIXME: remove this if block
         if (_isNaN(speed)) {
             return ['fail', 'speed not understood'];
         }
@@ -474,12 +487,12 @@ export default class AircraftCommander {
     }
 
     /**
-     * @for AircraftInstanceModel
+     * @for AircraftCommander
      * @method runHold
      * @param data
      */
     runHold(aircraft, data) {
-        const airport = window.airportController.airport_get();
+        const airport = this._airportController.airport_get();
         let dirTurns = data[0];
         let legLength = data[1];
         let holdFix = data[2];
@@ -514,10 +527,14 @@ export default class AircraftCommander {
 
         // Determine whether or not to enter the hold from present position
         if (holdFix) {
+            // FIXME: replace `vradial(vsub())` with `bearingToPoint()`
             // holding over a specific fix (currently only able to do so on inbound course)
             inboundHdg = vradial(vsub(aircraft.position, holdFixLocation));
 
             if (holdFix !== aircraft.fms.currentWaypoint.fix) {
+                // TODO: break up the inline creation of Waypoints by setting them to constants with meaningful
+                // names first, then use those consts to send to the fms method
+
                 // not yet headed to the hold fix
                 aircraft.fms.insertLegHere({
                     type: 'fix',
@@ -554,6 +571,7 @@ export default class AircraftCommander {
                 });
             } else {
                 // TODO: this should be a `Waypoint`
+
                 // already currently going to the hold fix
                 // Force the initial turn to outbound heading when entering the hold
                 aircraft.fms.appendWaypoint({
@@ -605,7 +623,7 @@ export default class AircraftCommander {
             });
         }
 
-        // TODO: abstract to method `.getInboundCardinalDirection()`
+        // TODO: abstract to helper function `.getInboundCardinalDirection(inboundHeading)`
         const inboundDir = radio_cardinalDir_names[getCardinalDirection(radians_normalize(inboundHdg + Math.PI)).toLowerCase()];
 
         if (holdFix) {
@@ -616,14 +634,15 @@ export default class AircraftCommander {
     }
 
     /**
-     * @for AircraftInstanceModel
+     * @for AircraftCommander
      * @method runDirect
      * @param data
      */
     runDirect(aircraft, data) {
+        // TODO: maybe handle with parser?
         const fixname = data[0].toUpperCase();
-        // TODO replace with FixCollection
-        const fix = window.airportController.airport_get().getFixPosition(fixname);
+        // TODO replace with FixCollection?
+        const fix = this._airportController.airport_get().getFixPosition(fixname);
 
         if (!fix) {
             return ['fail', `unable to find fix called ${fixname}`];
@@ -644,7 +663,7 @@ export default class AircraftCommander {
         let fail;
         const fixes = _map(data, (fixname) => {
             // TODO: this may beed to be the FixCollection
-            const fix = window.airportController.airport_get().getFixPosition(fixname);
+            const fix = this._airportController.airport_get().getFixPosition(fixname);
 
             if (!fix) {
                 fail = ['fail', `unable to find fix called ${fixname}`];
@@ -683,7 +702,7 @@ export default class AircraftCommander {
     }
 
     /**
-     * @for AircraftInstanceModel
+     * @for AircraftCommander
      * @method runFlyPresentHeading
      * @param data
      */
@@ -695,7 +714,7 @@ export default class AircraftCommander {
     }
 
     /**
-     * @for AircraftInstanceModel
+     * @for AircraftCommander
      * @method runSayRoute
      * @param data
      */
@@ -707,11 +726,11 @@ export default class AircraftCommander {
     }
 
     /**
-     * @for AircraftInstanceModel
+     * @for AircraftCommander
      * @method runSID
      */
     runSID(aircraft, data) {
-        const airport = window.airportController.airport_get();
+        const airport = this._airportController.airport_get();
         const { sidCollection } = airport;
         const sidId = data[0];
         const standardRouteModel = sidCollection.findRouteByIcao(sidId);
@@ -747,13 +766,13 @@ export default class AircraftCommander {
     }
 
     /**
-     * @for AircraftInstanceModel
+     * @for AircraftCommander
      * @method runSTAR
      * @param data {array<string>} a string representation of the STAR, ex: `QUINN.BDEGA2.KSFO`
      */
     runSTAR(aircraft, data) {
         const routeModel = new RouteModel(data[0]);
-        const airport = window.airportController.airport_get();
+        const airport = this._airportController.airport_get();
         const { name: starName } = airport.starCollection.findRouteByIcao(routeModel.procedure);
 
         if (aircraft.category !== FLIGHT_CATEGORY.ARRIVAL) {
@@ -778,7 +797,7 @@ export default class AircraftCommander {
     }
 
     /**
-     * @for AircraftInstanceModel
+     * @for AircraftCommander
      * @method runMoveDataBlock
      * @param data
      */
@@ -797,7 +816,7 @@ export default class AircraftCommander {
      * Adds a new Leg to fms with a user specified route
      * Note: See notes on 'runReroute' for how to format input for this command
      *
-     * @for AircraftInstanceModel
+     * @for AircraftCommander
      * @method runRoute
      * @param data
      */
@@ -841,7 +860,7 @@ export default class AircraftCommander {
       * all other points that will be simply a fix direct to another fix need
       * to be connected with double-dots (eg HLI..SQS..BERRA..JAN..KJAN)
       *
-      * @for AircraftInstanceModel
+      * @for AircraftCommander
       * @method runReroute
       * @param data
       */
@@ -880,7 +899,7 @@ export default class AircraftCommander {
     }
 
     /**
-     * @for AircraftInstanceModel
+     * @for AircraftCommander
      * @method runTaxi
      * @param data
      */
@@ -904,7 +923,7 @@ export default class AircraftCommander {
 
         // Set the runway to taxi to
         if (data[0]) {
-            if (window.airportController.airport_get().getRunway(data[0].toUpperCase())) {
+            if (this._airportController.airport_get().getRunway(data[0].toUpperCase())) {
                 aircraft.setDepartureRunway(data[0].toUpperCase());
             } else {
                 return ['fail', `no runway ${data[0].toUpperCase()}`];
@@ -912,8 +931,8 @@ export default class AircraftCommander {
         }
 
         // Start the taxi
-        aircraft.taxi_start = window.gameController.game_time();
-        const runway = window.airportController.airport_get().getRunway(aircraft.rwy_dep);
+        aircraft.taxi_start = this._gameController.game_time();
+        const runway = this._airportController.airport_get().getRunway(aircraft.rwy_dep);
 
         runway.addQueue(this);
         aircraft.mode = FLIGHT_MODES.TAXI;
@@ -927,7 +946,7 @@ export default class AircraftCommander {
     }
 
     /**
-     * @for AircraftInstanceModel
+     * @for AircraftCommander
      * @method runTakeoff
      * @param data
      */
@@ -955,18 +974,18 @@ export default class AircraftCommander {
             return ['fail', 'no altitude assigned'];
         }
 
-        const runway = window.airportController.airport_get().getRunway(aircraft.rwy_dep);
+        const runway = this._airportController.airport_get().getRunway(aircraft.rwy_dep);
 
         if (runway.removeQueue(this)) {
             aircraft.mode = FLIGHT_MODES.TAKEOFF;
             aircraft.scoreWind('taking off');
-            aircraft.takeoffTime = window.gameController.game_time();
+            aircraft.takeoffTime = this._gameController.game_time();
 
             if (aircraft.fms.currentWaypoint.speed == null) {
                 aircraft.fms.setCurrent({ speed: aircraft.model.speed.cruise });
             }
 
-            const wind = window.airportController.airport_get().getWind();
+            const wind = this._airportController.airport_get().getWind();
             const wind_dir = round(radiansToDegrees(wind.angle));
             const readback = {
                 // TODO: the wind_dir calculation should be abstracted
@@ -984,7 +1003,7 @@ export default class AircraftCommander {
 
     runLanding(aircraft, data) {
         const variant = data[0];
-        const runway = window.airportController.airport_get().getRunway(data[1]);
+        const runway = this._airportController.airport_get().getRunway(data[1]);
 
         if (!runway) {
             return ['fail', `there is no runway ${radio_runway(data[1])}`];
@@ -1003,7 +1022,7 @@ export default class AircraftCommander {
     }
 
     /**
-     * @for AircraftInstanceModel
+     * @for AircraftCommander
      * @method runAbort
      * @param data
      */
@@ -1016,7 +1035,7 @@ export default class AircraftCommander {
             console.log('aborted taxi to runway');
 
             const isWarning = true;
-            window.uiController.ui_log(`${aircraft.getCallsign()} aborted taxi to runway`, isWarning);
+            this._uiController.ui_log(`${aircraft.getCallsign()} aborted taxi to runway`, isWarning);
 
             return ['ok', 'taxiing back to terminal'];
         } else if (aircraft.mode === FLIGHT_MODES.WAITING) {
@@ -1055,17 +1074,17 @@ export default class AircraftCommander {
 
     // FIXME: is this in use?
     /**
-     * @for AircraftInstanceModel
+     * @for AircraftCommander
      * @method runDebug
      */
-    runDebug() {
-        window.aircraft = this;
+    runDebug(aircraft) {
+        window.aircraft = aircraft;
         return ['ok', { log: 'in the console, look at the variable &lsquo;aircraft&rsquo;', say: '' }];
     }
 
     // FIXME: is this in use?
     /**
-     * @for AircraftInstanceModel
+     * @for AircraftCommander
      * @method runDelete
      */
     runDelete() {
