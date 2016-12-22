@@ -2167,7 +2167,7 @@ export default class Aircraft {
             this.target.altitude = this.fms.altitudeForCurrentWaypoint();
             this.target.expedite = this.fms.currentWaypoint.expedite;
             this.target.altitude = Math.max(1000, this.target.altitude);
-            this.target.speed = this.fms.currentWaypoint.speed;
+            this.target.speed = _get(this, 'fms.currentWaypoint.speed', this.speed);
             this.target.speed = clamp(this.model.speed.min, this.target.speed, this.model.speed.max);
         }
 
