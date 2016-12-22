@@ -4,6 +4,7 @@ import LoadingView from './LoadingView';
 import AirportController from './airport/AirportController';
 import GameController from './game/GameController';
 import TutorialView from './tutorial/TutorialView';
+import AircraftCommander from './aircraft/AircraftCommander';
 import InputController from './InputController';
 import UiController from './UiController';
 import CanvasController from './canvas/CanvasController';
@@ -57,6 +58,7 @@ export default class App {
         this.contentQueue = null;
         this.airportController = null;
         this.tutorialView = null;
+        this.aircraftCommander = null;
         this.inputController = null;
         this.uiController = null;
         this.canvasController = null;
@@ -104,7 +106,8 @@ export default class App {
         this.airportController = new AirportController(airportLoadList, this.updateRun);
         this.gameController = new GameController(this.getDeltaTime);
         this.tutorialView = new TutorialView(this.$element);
-        this.inputController = new InputController(this.$element);
+        this.aircraftCommander = new AircraftCommander();
+        this.inputController = new InputController(this.$element, this.aircraftCommander);
         this.uiController = new UiController(this.$element);
         this.canvasController = new CanvasController(this.$element);
         this.gameClockView = new GameClockView(this.$element);
@@ -163,6 +166,7 @@ export default class App {
         this.airportController = null;
         this.gameController = null;
         this.tutorialView = null;
+        this.aircraftCommander = null;
         this.inputController = null;
         this.uiController = null;
         this.canvasController = null;
