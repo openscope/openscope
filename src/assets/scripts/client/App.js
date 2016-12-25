@@ -4,6 +4,7 @@ import LoadingView from './LoadingView';
 import AirlineCollection from './airline/AirlineCollection';
 import AircraftCollection from './aircraft/AircraftCollection';
 import AirportController from './airport/AirportController';
+import SpawnPatternCollection from './trafficGenerator/SpawnPatternCollection';
 import GameController from './game/GameController';
 import TutorialView from './tutorial/TutorialView';
 import InputController from './InputController';
@@ -131,9 +132,8 @@ export default class App {
         this.airportController = new AirportController(airportLoadList, this.updateRun);
         this.airlineCollection = new AirlineCollection(airlineList);
         this.aircraftCollection = new AircraftCollection(aircraftDefinitionList, this.airlineCollection);
-        // this.arrivalCollection = new ArrivalCollection(initialAirportData);
-        // this.departureCollection = new DepartureCollection(initialAirportData);
-        // this.spawnScheduler = new SpawnScheduler(this.arrivalCollection, this.departureCollection, this.aircraftCollection)
+        this.spawnPatternCollection = new SpawnPatternCollection(initialAirportData);
+        // this.spawnScheduler = new SpawnScheduler(this.spawnPatternCollection, this.departureCollection, this.aircraftCollection)
 
         this.canvasController = new CanvasController(this.$element);
         this.gameController = new GameController(this.getDeltaTime);
