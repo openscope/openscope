@@ -15,15 +15,15 @@ export default class AirlineCollection extends BaseCollection{
     constructor(airlineList) {
         super();
 
-        this.fromJson(airlineList);
+        this.init(airlineList);
     }
 
     /**
      * @for AirlineCollection
-     * @method fromJson
+     * @method init
      * @param json {object}
      */
-    fromJson(airlineList) {
+    init(airlineList) {
         _forEach(airlineList, (airlineDefinition) => this._buildAirlineModels(airlineDefinition));
     }
 
@@ -43,9 +43,8 @@ export default class AirlineCollection extends BaseCollection{
      * @return {AirlineModel|undefined}
      */
     findAirlineById(airlineId) {
-        return _find(this._items, { id: airlineId });
+        return _find(this._items, { icao: airlineId });
     }
-
 
     /**
      * @for airlineCollection

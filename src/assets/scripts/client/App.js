@@ -2,6 +2,7 @@ import $ from 'jquery';
 import ContentQueue from './contentQueue/ContentQueue';
 import LoadingView from './LoadingView';
 import AirlineCollection from './airline/AirlineCollection';
+import AircraftCollection from './aircraft/AircraftCollection';
 import AirportController from './airport/AirportController';
 import GameController from './game/GameController';
 import TutorialView from './tutorial/TutorialView';
@@ -129,7 +130,7 @@ export default class App {
 
         this.airportController = new AirportController(airportLoadList, this.updateRun);
         this.airlineCollection = new AirlineCollection(airlineList);
-        // this.aircraftCollection = new AircraftCollection();
+        this.aircraftCollection = new AircraftCollection(aircraftDefinitionList, this.airlineCollection);
         // this.arrivalCollection = new ArrivalCollection(initialAirportData);
         // this.departureCollection = new DepartureCollection(initialAirportData);
         // this.spawnScheduler = new SpawnScheduler(this.arrivalCollection, this.departureCollection, this.aircraftCollection)
