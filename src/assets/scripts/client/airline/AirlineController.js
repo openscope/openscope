@@ -1,5 +1,5 @@
 import _has from 'lodash/has';
-import Airline from './AirlineModel';
+import Airline from './AirlineModelComplex';
 
 // Temporary const declaration here to attach to the window AND use as internal property
 const airline = {};

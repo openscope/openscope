@@ -1,6 +1,7 @@
 import $ from 'jquery';
 import ContentQueue from './contentQueue/ContentQueue';
 import LoadingView from './LoadingView';
+import AirlineCollection from './airline/AirlineCollection';
 import AirportController from './airport/AirportController';
 import GameController from './game/GameController';
 import TutorialView from './tutorial/TutorialView';
@@ -44,7 +45,7 @@ export default class App {
      * @param $element {HTML Element|null}
      * @param airportLoadList {array<object>}  List of airports to load
      */
-    constructor(element, airportLoadList) {
+    constructor(element, airportLoadList, initialAirportToLoad) {
         /**
          * Root DOM element.
          *
@@ -55,6 +56,7 @@ export default class App {
         this.$element = $(element);
         this.loadingView = null;
         this.contentQueue = null;
+        this.airlineCollection = null;
         this.airportController = null;
         this.tutorialView = null;
         this.inputController = null;
@@ -85,8 +87,7 @@ export default class App {
             this.prop.log = LOG.WARNING;
         }
 
-        return this.setupChildren(airportLoadList)
-                    .enable();
+        return this.initiateDataLoad(airportLoadList, initialAirportToLoad);
     }
 
     /**
@@ -98,18 +99,49 @@ export default class App {
      * @method setupChildren
      * @param airportLoadList {array<object>}  List of airports to load
      */
-    setupChildren(airportLoadList) {
+    initiateDataLoad(airportLoadList, initialAirportToLoad) {
+        $.when(
+            $.ajax(`assets/airports/${initialAirportToLoad.toLowerCase()}.json`),
+            $.ajax('assets/airlines/airlines.json'),
+            $.ajax('assets/aircraft/aircraft.json')
+        )
+            .done((airportResponse, airlineResponse, aircraftResponse) => {
+                console.log('DONE', airportResponse[0], airlineResponse[0], aircraftResponse[0]);
+
+                this.setupChildren(
+                    airportLoadList,
+                    airportResponse[0],
+                    airlineResponse[0].airlines,
+                    aircraftResponse[0].aircraft
+                );
+                this.enable();
+            })
+            .fail((jqXHR, textStatus, errorThrown) => {
+                console.error(textStatus);
+            });
+
+        return this;
+    }
+
+    setupChildren(airportLoadList, initialAirportData, airlineList, aircraftDefinitionList) {
         this.loadingView = new LoadingView();
         this.contentQueue = new ContentQueue(this.loadingView);
+
         this.airportController = new AirportController(airportLoadList, this.updateRun);
+        this.airlineCollection = new AirlineCollection(airlineList);
+        // this.aircraftCollection = new AircraftCollection();
+        // this.arrivalCollection = new ArrivalCollection(initialAirportData);
+        // this.departureCollection = new DepartureCollection(initialAirportData);
+        // this.spawnScheduler = new SpawnScheduler(this.arrivalCollection, this.departureCollection, this.aircraftCollection)
+
+        this.canvasController = new CanvasController(this.$element);
         this.gameController = new GameController(this.getDeltaTime);
         this.tutorialView = new TutorialView(this.$element);
         this.inputController = new InputController(this.$element);
         this.uiController = new UiController(this.$element);
-        this.canvasController = new CanvasController(this.$element);
         this.gameClockView = new GameClockView(this.$element);
 
-        return this;
+
     }
 
     /**
@@ -160,6 +192,7 @@ export default class App {
         this.$element = null;
         this.contentQueue = null;
         this.loadingView = null;
+        this.airlineCollection = null;
         this.airportController = null;
         this.gameController = null;
         this.tutorialView = null;
