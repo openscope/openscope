@@ -1,7 +1,9 @@
 import _find from 'lodash/find';
 import _forEach from 'lodash/forEach';
+import _random from 'lodash/random';
 import BaseCollection from '../base/BaseCollection';
 import AircraftDefinitionModel from './AircraftDefinitionModel';
+import AircraftInstanceModel from './AircraftInstanceModel';
 
 /**
  *
@@ -35,13 +37,17 @@ export default class AircraftCollection extends BaseCollection {
      *
      *
      */
-    // createAircraftForArrival = (arrival) => {
-    //     const airlineId = arrival.getRandomWeightedAirlineForArrival();
-    //     const aircraftDefinition = this._getAircraftDefinitionForAirlineId(airlineId);
-    //     const aircraftModel = new AircraftModel(aircraftDefinition, arrival);
-    //
-    //     this.addItem(aircraftModel);
-    // };
+    createAircraftWithSpawnModel = (spawnModel) => {
+        // TODO: handle specified fleets. ex: `ual/long`
+        const airlineId = spawnModel.getRandomAirlineForSpawn();
+        const aircraftDefinition = this._getAircraftDefinitionForAirlineId(airlineId);
+        const initializationProps = this._assembleAircraftInitProps(airlineId, aircraftDefinition, spawnModel);
+
+        console.log('ARRIVAL::: ', initializationProps);
+        const aircraftModel = new AircraftInstanceModel(initializationProps);
+
+        this.addItem(aircraftModel);
+    };
 
     /**
      *
@@ -55,10 +61,18 @@ export default class AircraftCollection extends BaseCollection {
      *
      *
      */
+    findAircraftDefinitionModelByIcao(icao) {
+        return _find(this.definitionList, { icao: icao });
+    }
+
+    /**
+     *
+     *
+     */
     _buildAircraftDefinitionList(aircraftDefinitionList) {
         let definitionList = [];
 
-        _forEach(aircraftDefinitionList, (aircraftDefinition, key) => {
+        _forEach(aircraftDefinitionList, (aircraftDefinition) => {
             const aircraft = new AircraftDefinitionModel(aircraftDefinition);
 
             definitionList.push(aircraft);
@@ -74,14 +88,31 @@ export default class AircraftCollection extends BaseCollection {
     _getAircraftDefinitionForAirlineId(airlineId) {
         const airlineModel = this._airlineCollection.findAirlineById(airlineId);
         const aircraftType = airlineModel.getRandomAircraftTypeFromFleet();
-        const aircraftDefinition = _find(this.definitionList, { icao: aircraftType });
-
+        const aircraftDefinition = _find(this.definitionList, { icao: aircraftType.toUpperCase() });
 
         if (typeof aircraftDefinition === 'undefined') {
-            console.error(aircraftType, airlineModel, this.definitionList);
-            throw new Error('undefined definition');
+            throw new Error(`undefined aircraftDefinition for ${aircraftType}`);
         }
 
         return aircraftDefinition;
+    }
+
+    /**
+     *
+     *
+     */
+    _assembleAircraftInitProps(airlineId, aircraftDefinition, spawnModel) {
+        return {
+            airline: airlineId,
+            altitude: spawnModel.altitude,
+            callsign: `${_random(0, 999)}`,
+            category: 'arrival',
+            destination: "ksfo",
+            fleet: '',
+            icao: aircraftDefinition.icao,
+            model: aircraftDefinition,
+            route: spawnModel.route,
+            waypoints: []
+        }
     }
 }

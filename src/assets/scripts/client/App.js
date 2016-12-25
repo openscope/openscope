@@ -5,6 +5,7 @@ import AirlineCollection from './airline/AirlineCollection';
 import AircraftCollection from './aircraft/AircraftCollection';
 import AirportController from './airport/AirportController';
 import SpawnPatternCollection from './trafficGenerator/SpawnPatternCollection';
+import SpawnScheduler from './trafficGenerator/SpawnScheduler';
 import GameController from './game/GameController';
 import TutorialView from './tutorial/TutorialView';
 import InputController from './InputController';
@@ -102,14 +103,14 @@ export default class App {
      * @param airportLoadList {array<object>}  List of airports to load
      */
     initiateDataLoad(airportLoadList, initialAirportToLoad) {
+        // This is a complete hack and should be refactored. I need a way to get async data in
+        // before anything else runs and I need it from several sources.
         $.when(
             $.ajax(`assets/airports/${initialAirportToLoad.toLowerCase()}.json`),
             $.ajax('assets/airlines/airlines.json'),
             $.ajax('assets/aircraft/aircraft.json')
         )
             .done((airportResponse, airlineResponse, aircraftResponse) => {
-                console.log('DONE', airportResponse[0], airlineResponse[0], aircraftResponse[0]);
-
                 this.setupChildren(
                     airportLoadList,
                     airportResponse[0],
@@ -133,7 +134,7 @@ export default class App {
         this.airlineCollection = new AirlineCollection(airlineList);
         this.aircraftCollection = new AircraftCollection(aircraftDefinitionList, this.airlineCollection);
         this.spawnPatternCollection = new SpawnPatternCollection(initialAirportData);
-        // this.spawnScheduler = new SpawnScheduler(this.spawnPatternCollection, this.departureCollection, this.aircraftCollection)
+        this.spawnScheduler = new SpawnScheduler(this.spawnPatternCollection, this.aircraftCollection);
 
         this.canvasController = new CanvasController(this.$element);
         this.gameController = new GameController(this.getDeltaTime);

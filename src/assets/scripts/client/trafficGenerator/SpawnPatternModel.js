@@ -8,6 +8,10 @@ import BaseModel from '../base/BaseModel';
  * @extends BaseModel
  */
 export default class SpawnPatternModel extends BaseModel {
+    /**
+     *
+     *
+     */
     constructor(spwanPatternJson) {
         super();
 
@@ -16,10 +20,18 @@ export default class SpawnPatternModel extends BaseModel {
         this.init(spwanPatternJson);
     }
 
+    /**
+     *
+     *
+     */
     get airlineList() {
         return _map(this.airlines, (airline) => airline.name);
     }
 
+    /**
+     *
+     *
+     */
     init(json) {
         this.type = json.type;
         this.route = json.route;
@@ -30,13 +42,21 @@ export default class SpawnPatternModel extends BaseModel {
         this._weightedAirlineList = this._buildWeightedAirlineList();
     }
 
-    getRandomWeightedAirlineForSpawn() {
+    /**
+     *
+     *
+     */
+    getRandomAirlineForSpawn() {
         const index = _random(0, this.airlines.length);
         const airlineId = this._weightedAirlineList[index];
 
         return airlineId;
     }
 
+    /**
+     *
+     *
+     */
     _buildSpwanAirlineModels(arrivalAirlines) {
         const arrivalAirlineModels = _map(arrivalAirlines, (arrivalAirline) => ({
             name: arrivalAirline[0],
@@ -46,6 +66,10 @@ export default class SpawnPatternModel extends BaseModel {
         return arrivalAirlineModels;
     }
 
+    /**
+     *
+     *
+     */
     _buildWeightedAirlineList() {
         let weightedAirlineList = [];
 

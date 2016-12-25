@@ -39,10 +39,18 @@ export default class AirlineCollection extends BaseCollection{
     /**
      * @for AirlineCollection
      * @method findAirlineById
-     * @param airlineId {string}
+     * @param id {string}
      * @return {AirlineModel|undefined}
      */
-    findAirlineById(airlineId) {
+    findAirlineById(id) {
+        let airlineId = id;
+
+        // TODO: remove this if block
+        if (airlineId.indexOf('/') !== -1) {
+            console.warn(`Found a specific fleet with airline id ${id}`);
+            airlineId = id.split('/')[0];
+        }
+
         return _find(this._items, { icao: airlineId });
     }
 
