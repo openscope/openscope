@@ -1,6 +1,9 @@
 import _get from 'lodash/get';
 import _head from 'lodash/head';
 import _forEach from 'lodash/forEach';
+import _isArray from 'lodash/isArray';
+import _isEmpty from 'lodash/isEmpty';
+import _isObject from 'lodash/isObject';
 import _map from 'lodash/map';
 import _random from 'lodash/random';
 import _uniq from 'lodash/uniq';
@@ -20,8 +23,14 @@ export default class AirlineModel extends BaseModel {
      * @for AirlineModel
      * @param airlineDefinition {object}
      */
+    /* istanbul ignore next */
     constructor(airlineDefinition) {
         super(airlineDefinition);
+
+        if (!_isObject(airlineDefinition) || _isArray(airlineDefinition) || _isEmpty(airlineDefinition)) {
+            // eslint-disable-next-line max-len
+            throw new TypeError(`Invalid airlineDefinition received by AirlineModel. Expected an object but received ${typeof airlineDefinition}`);
+        }
 
         /**
          * ICAO airline designation
@@ -58,6 +67,7 @@ export default class AirlineModel extends BaseModel {
             /**
              * Length of callsign
              *
+             * @memberof flightNumberGeneration
              * @property length
              * @type {number}
              * @default 3
@@ -67,6 +77,7 @@ export default class AirlineModel extends BaseModel {
             /**
              * Whether to use alphabetical characters
              *
+             * @memberof flightNumberGeneration
              * @property alpha
              * @type {boolean}
              * @default false
@@ -93,7 +104,7 @@ export default class AirlineModel extends BaseModel {
     }
 
     /**
-     *
+     * A unique list of all aircraft in all fleets belonging to this airline
      *
      * @property aircraftList
      * @return {array<string>}
@@ -111,10 +122,9 @@ export default class AirlineModel extends BaseModel {
     }
 
     /**
-     * Initialize object from data
+     * Lifecycle method
      *
-     * This method will be called twice at minimum; once on instantiation and again once
-     * `onLoadSuccess`. Most of the properties below will only be available `onLoadSuccess`
+     * Should run only once on instantiation
      *
      * @for AirlineModel
      * @method init
@@ -127,15 +137,18 @@ export default class AirlineModel extends BaseModel {
         this.flightNumberGeneration.alpha = _get(airlineDefinition, 'callsign.alpha', false);
         this.fleets = _get(airlineDefinition, 'fleets');
 
-        if (airlineDefinition.aircraft) {
-            this.fleets.default = airlineDefinition.aircraft;
-        }
+        // This may not be needed
+        // if (airlineDefinition.aircraft) {
+        //     this.fleets.default = airlineDefinition.aircraft;
+        // }
 
         this._transformFleetNamesToLowerCase();
     }
 
     /**
+     * Returns a random aircraft type from any fleet that belongs to this airline
      *
+     * Used when a new aircraft spwans with a defined airline, but no defined aircraft type
      *
      * @for AirlineCollection
      * @method getRandomAircraftTypeFromFleet
