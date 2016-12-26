@@ -1,12 +1,11 @@
 import _find from 'lodash/find';
-import _forEach from 'lodash/forEach';
 import _get from 'lodash/get';
-import _isNil from 'lodash/isNil';
+import _map from 'lodash/map';
 import _random from 'lodash/random';
 import BaseCollection from '../base/BaseCollection';
 import AircraftDefinitionModel from './AircraftDefinitionModel';
 import AircraftInstanceModel from './AircraftInstanceModel';
-import { bearingToPoint } from '../math/flightMath';
+// import { bearingToPoint } from '../math/flightMath';
 
 /**
  *
@@ -42,15 +41,10 @@ export default class AircraftCollection extends BaseCollection {
      *
      */
     createAircraftWithSpawnModel = (spawnModel) => {
-        // TODO: handle specified fleets. ex: `ual/long`
-        const airlineId = spawnModel.getRandomAirlineForSpawn();
-        // TODO: use `airlineNameAndFleetHelper` for this
-        const [ id, fleet ] = airlineId.split('/');
-        const aircraftDefinition = this._getAircraftDefinitionForAirlineId(id);
-        const initializationProps = this._assembleAircraftInitProps(id, fleet, aircraftDefinition, spawnModel);
-
-        console.log('ARRIVAL::: ', initializationProps);
+        const initializationProps = this._buildAircraftProps(spawnModel);
         const aircraftModel = new AircraftInstanceModel(initializationProps);
+
+        console.log('SPAWN :::', spawnModel.category, initializationProps);
 
         this.addItem(aircraftModel);
     };
@@ -76,12 +70,8 @@ export default class AircraftCollection extends BaseCollection {
      *
      */
     _buildAircraftDefinitionList(aircraftDefinitionList) {
-        let definitionList = [];
-
-        _forEach(aircraftDefinitionList, (aircraftDefinition) => {
-            const aircraft = new AircraftDefinitionModel(aircraftDefinition);
-
-            definitionList.push(aircraft);
+        const definitionList = _map(aircraftDefinitionList, (aircraftDefinition) => {
+            return new AircraftDefinitionModel(aircraftDefinition);
         });
 
         return definitionList;
@@ -91,34 +81,82 @@ export default class AircraftCollection extends BaseCollection {
      *
      *
      */
-    _getAircraftDefinitionForAirlineId(airlineId) {
-        const airlineModel = this._airlineCollection.findAirlineById(airlineId);
-        const aircraftType = airlineModel.getRandomAircraftTypeFromFleet();
-        const aircraftDefinition = _find(this.definitionList, { icao: aircraftType.toUpperCase() });
-
-        if (typeof aircraftDefinition === 'undefined') {
-            throw new Error(`undefined aircraftDefinition for ${aircraftType}`);
+    _buildAircraftProps(spawnModel) {
+        if (spawnModel.category === 'departure') {
+            return this._buildAircraftPropsForDeparture(spawnModel);
         }
 
-        return aircraftDefinition;
+        return this._buildAircraftPropsForArrival(spawnModel);
     }
 
     /**
      *
      *
      */
-    _assembleAircraftInitProps(airlineId, fleet = 'Default', aircraftDefinition, spawnModel) {
+    _buildAircraftPropsForDeparture(spawnModel) {
+        const airlineId = spawnModel.getRandomAirlineForSpawn();
+        const destination = spawnModel.getRandomDestinationForDeparture();
+        // TODO: we should get the `AirlineModel` here, then get the icao (id) and fleet from there along with generating a callsign
+        // TODO: use `airlineNameAndFleetHelper` for this
+        const [id, fleet] = airlineId.split('/');
+        const aircraftDefinition = this._getAircraftDefinitionForAirlineId(id);
+        const callsign = `${_random(0, 999)}`;
+
+        return {
+            airline: airlineId,
+            callsign: callsign,
+            // TODO: this is a constant somewhere
+            category: spawnModel.category,
+            // TODO: this should come from logic and not inline
+            destination: destination,
+            fleet: fleet || 'Default',
+            icao: aircraftDefinition.icao,
+            model: aircraftDefinition
+        };
+    }
+
+    /**
+     *
+     *
+     */
+    _buildAircraftPropsForArrival(spawnModel) {
+        const airlineId = spawnModel.getRandomAirlineForSpawn();
+        // TODO: use `airlineNameAndFleetHelper` for this
+        const [id, fleet] = airlineId.split('/');
+        const aircraftDefinition = this._getAircraftDefinitionForAirlineId(id);
+        const callsign = `${_random(0, 999)}`;
+
         return {
             airline: airlineId,
             altitude: spawnModel.altitude,
-            callsign: `${_random(0, 999)}`,
-            category: 'arrival',
+            callsign: callsign,
+            // TODO: this is a constant somewhere
+            category: spawnModel.category,
+            // TODO: this should come from logic and not inline
             destination: 'ksfo',
-            fleet: fleet,
+            fleet: fleet || 'Default',
             icao: aircraftDefinition.icao,
             model: aircraftDefinition,
             route: spawnModel.route,
             waypoints: _get(spawnModel, 'fixes', [])
         };
+    }
+
+    /**
+     *
+     *
+     */
+    _getAircraftDefinitionForAirlineId(airlineId) {
+        const airlineModel = this._airlineCollection.findAirlineById(airlineId);
+        const aircraftType = airlineModel.getRandomAircraftTypeFromFleet();
+        const aircraftDefinition = _find(this.definitionList, { icao: aircraftType });
+
+        if (typeof aircraftDefinition === 'undefined') {
+            console.error(`undefined aircraftDefinition for ${aircraftType}`);
+
+            return this._getAircraftDefinitionForAirlineId(airlineId);
+        }
+
+        return aircraftDefinition;
     }
 }

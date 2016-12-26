@@ -21,7 +21,7 @@ export default class AircraftDefinitionModel extends BaseModel {
      */
     init(aircraftDefinition) {
         this.name = aircraftDefinition.name;
-        this.icao = aircraftDefinition.icao;
+        this.icao = aircraftDefinition.icao.toLowerCase();
         this.engines = aircraftDefinition.engines;
         this.weightclass = aircraftDefinition.weightclass;
         this.category = aircraftDefinition.category;

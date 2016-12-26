@@ -39,21 +39,17 @@ export default class SpawnPatternCollection extends BaseCollection {
      */
     init(airportJson) {
         const arrivals = _map(airportJson.arrivals, (arrival) => {
-            const arrivalToAdd = new SpawnPatternModel(arrival);
+            const arrivalToAdd = new SpawnPatternModel('arrival', arrival);
 
             return arrivalToAdd;
         });
 
-        const departures = [];
-        // _map(airportJson.departures, (arrival) => {
-        //     const arrivalToAdd = new SpawnPatternModel(arrival);
-        //
-        //     return arrivalToAdd;
-        // });
+        // this will likely have to change to the same format a arrivals once the airport data is normalized
+        const departureSpawnModel = new SpawnPatternModel('departure', airportJson.departures);
 
         this._items = [
-            ...arrivals,
-            ...departures
+            departureSpawnModel,
+            ...arrivals
         ];
     }
 }

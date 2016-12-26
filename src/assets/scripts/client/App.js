@@ -135,6 +135,7 @@ export default class App {
         this.fixCollection = new FixCollection(initialAirportData);
         this.airlineCollection = new AirlineCollection(airlineList);
         this.aircraftCollection = new AircraftCollection(aircraftDefinitionList, this.airlineCollection, this.fixCollection);
+        // provide updater method for timewarp  timescale change!== 0
         this.spawnPatternCollection = new SpawnPatternCollection(initialAirportData);
         this.spawnScheduler = new SpawnScheduler(this.spawnPatternCollection, this.aircraftCollection);
 

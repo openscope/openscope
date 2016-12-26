@@ -1,12 +1,10 @@
 import _get from 'lodash/get';
-import _has from 'lodash/has';
 import _head from 'lodash/head';
 import _forEach from 'lodash/forEach';
 import _map from 'lodash/map';
 import _random from 'lodash/random';
 import _uniq from 'lodash/uniq';
 import BaseModel from '../base/BaseModel';
-import { choose, choose_weight } from '../utilities/generalUtilities';
 
 /**
  * An aircrcraft operating agency
@@ -101,9 +99,9 @@ export default class AirlineModel extends BaseModel {
      * @return {array<string>}
      */
     get aircraftList() {
-        let aircraft = [];
+        const aircraft = [];
 
-        _forEach(this.fleets, (fleet, key) => {
+        _forEach(this.fleets, (fleet) => {
             const fleetAircraft = _map(fleet, (aircraft) => _head(aircraft));
 
             aircraft.push(...fleetAircraft);
@@ -150,7 +148,7 @@ export default class AirlineModel extends BaseModel {
     }
 
     /**
-     * loop through each aircraft in each fleet defined in the airline and make sure it is defined in lowercase
+     * Loop through each aircraft in each fleet defined in the airline and make sure it is defined in lowercase
      *
      * @for AirlineCollection
      * @method _transformFleetNamesToLowerCase
