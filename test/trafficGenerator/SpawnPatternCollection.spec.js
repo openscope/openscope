@@ -3,13 +3,8 @@ import ava from 'ava';
 import sinon from 'sinon';
 
 import SpawnPatternCollection from '../../src/assets/scripts/client/trafficGenerator/SpawnPatternCollection';
-import SpawnPatternModel from '../../src/assets/scripts/client/trafficGenerator/SpawnPatternModel';
-import {
-    ARRIVAL_PATTERN_MOCK,
-    AIRPORT_JSON_FOR_SPAWN_MOCK
-} from './_mocks/spawnPatternMocks';
-
-const spawnPatternModelFixture = new SpawnPatternModel('arrival', ARRIVAL_PATTERN_MOCK);
+import { spawnPatternModelFixture } from '../fixtures/trafficGeneratorFixtures';
+import { AIRPORT_JSON_FOR_SPAWN_MOCK } from './_mocks/spawnPatternMocks';
 
 ava('throws when called with invalid parameters', (t) => {
     t.throws(() => new SpawnPatternCollection());
