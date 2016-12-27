@@ -38,7 +38,8 @@ import { km, radiansToDegrees, degreesToRadians, heading_to_string } from '../ut
 import {
     FLIGHT_MODES,
     FLIGHT_CATEGORY,
-    WAYPOINT_NAV_MODE
+    WAYPOINT_NAV_MODE,
+    FP_LEG_TYPE
 } from '../constants/aircraftConstants';
 import { SELECTORS } from '../constants/selectors';
 import { GAME_EVENTS } from '../game/GameController';
@@ -302,7 +303,7 @@ export default class Aircraft {
 
         // TODO: this should return early
         // TODO: use existing enumeration for `sid`
-        if (leg.type === 'sid') {
+        if (leg.type === FP_LEG_TYPE.SID) {
             const a = _map(leg.waypoints, (v) => v.altitude);
             const cvs = !a.every((v) => v === window.airportController.airport_get().initial_alt);
             this.fms.followSID(leg.route.routeCode);
@@ -396,7 +397,7 @@ export default class Aircraft {
 
             // TODO: if we just need the last fix in the list, why loop through all the legs?
             _forEach(this.fms.legs, (leg) => {
-                if (leg.type === 'sid') {
+                if (leg.type === FP_LEG_TYPE.SID) {
                     // TODO: use lodash `_last()` here
                     exit = leg.waypoints[leg.waypoints.length - 1].fix;
                     return;
