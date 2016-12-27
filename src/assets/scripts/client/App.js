@@ -132,6 +132,7 @@ export default class App {
         this.contentQueue = new ContentQueue(this.loadingView);
 
         this.airportController = new AirportController(airportLoadList, this.updateRun);
+        // TODO: this should live within a `NavigationLibrary` class that should also inclue the `StandardRoute` classes
         this.fixCollection = new FixCollection(initialAirportData);
         this.airlineCollection = new AirlineCollection(airlineList);
         this.aircraftCollection = new AircraftCollection(aircraftDefinitionList, this.airlineCollection, this.fixCollection);
@@ -145,8 +146,6 @@ export default class App {
         this.inputController = new InputController(this.$element);
         this.uiController = new UiController(this.$element);
         this.gameClockView = new GameClockView(this.$element);
-
-
     }
 
     /**

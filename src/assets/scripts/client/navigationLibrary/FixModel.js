@@ -16,9 +16,9 @@ export default class FixModel extends BaseModel {
      * @constructor
      * @param fixName {string}
      * @param fixCoordinate {array}
-     * @param airportPosition {PositionModel}
+     * @param referencePosition {PositionModel}
      */
-    constructor(fixName, fixCoordinate, airportPosition) {
+    constructor(fixName, fixCoordinate, referencePosition) {
         super();
 
         /**
@@ -39,7 +39,7 @@ export default class FixModel extends BaseModel {
          */
         this._fixPosition = null;
 
-        this.init(fixName, fixCoordinate, airportPosition);
+        this.init(fixName, fixCoordinate, referencePosition);
     }
 
     /**
@@ -59,17 +59,17 @@ export default class FixModel extends BaseModel {
      * @method init
      * @param fixName {string}
      * @param fixCoordinate {array}
-     * @param airportPosition {PositionModel}
+     * @param referencePosition {PositionModel}
      * @chainable
      */
-    init(fixName, fixCoordinate, airportPosition) {
+    init(fixName, fixCoordinate, referencePosition) {
         // TODO: should this be a throwing instead of returning early?
-        if (!fixName || !fixCoordinate || !airportPosition) {
+        if (!fixName || !fixCoordinate || !referencePosition) {
             return;
         }
 
         this.name = fixName.toUpperCase();
-        this._fixPosition = new PositionModel(fixCoordinate, airportPosition, airportPosition.magneticNorthInRadians);
+        this._fixPosition = new PositionModel(fixCoordinate, referencePosition, referencePosition.magneticNorthInRadians);
 
         return this;
     }

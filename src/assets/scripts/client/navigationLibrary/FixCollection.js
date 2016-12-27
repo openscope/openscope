@@ -1,6 +1,8 @@
 import _compact from 'lodash/compact';
 import _find from 'lodash/find';
 import _forEach from 'lodash/forEach';
+import _isEmpty from 'lodash/isEmpty';
+import _isObject from 'lodash/isObject';
 import _map from 'lodash/map';
 // import modelSourceFactory from '../base/ModelSource/ModelSourceFactory';
 import BaseCollection from '../base/BaseCollection';
@@ -21,6 +23,10 @@ export default class FixCollection extends BaseCollection {
      */
     constructor(airportJson) {
         super();
+
+        if (!_isObject(airportJson) || _isEmpty(airportJson)) {
+            throw new TypeError('Invalid parameter passed to FixCollection');
+        }
 
         this.referencePosition = new PositionModel(airportJson.position, null, airportJson.magnetic_north);
 
