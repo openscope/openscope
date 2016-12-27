@@ -5,7 +5,6 @@ import _random from 'lodash/random';
 import BaseCollection from '../base/BaseCollection';
 import AircraftDefinitionModel from './AircraftDefinitionModel';
 import AircraftInstanceModel from './AircraftInstanceModel';
-// import { bearingToPoint } from '../math/flightMath';
 
 /**
  *

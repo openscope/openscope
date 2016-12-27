@@ -10,15 +10,15 @@ import PositionModel from '../base/PositionModel';
 /**
  * A collection of all the `FixModel`s defined in an airport json file.
  *
- * This is built as a static class, so there is only ever once instance.
- * We use a static class here because the methods contained herein are needed by several
- * different classes. This provides a single source of truth for all the `FixModel`s
- * belonging to an Airport.
- *
  * @class FixCollection
  * @extends BaseCollection
  */
 export default class FixCollection extends BaseCollection {
+    /**
+     * @constructor
+     * @for FixCollection
+     * @param airportJson {object}
+     */
     constructor(airportJson) {
         super();
 
@@ -35,19 +35,11 @@ export default class FixCollection extends BaseCollection {
      * @param fixList {object}
      */
     addItems(fixList) {
-        // if (this.length !== 0) {
-        //     // you made it here because an airport has changed.
-        //     // in `AirportModel.parse()` this method is called with the fix data for the new airport. We don't want
-        //     // or need to keep the fixes from a previous airport so if `_items` has a length, we need to reset that
-        //     // property before we begin to add fixes for the new airport.
-        //     this.removeItems();
-        // }
-
         this._buildFixModelsFromList(fixList);
     }
 
     /**
-     * Destroy the current instance
+     * Reset the current instance
      *
      * @for FixCollection
      * @method removeItems
