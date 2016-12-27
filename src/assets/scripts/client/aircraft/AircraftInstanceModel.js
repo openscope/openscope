@@ -1308,7 +1308,7 @@ export default class Aircraft {
         // TODO: casing may be an issue here.
         const readback = {
             log: `cleared to the ${airport.name}${flag} via the ${routeModel.procedure} arrival`,
-            say: `cleared to the ${airport.name} via the ${starName} arrival`
+            say: `cleared to the ${airport.name}${flag} via the ${starName} arrival`
         };
 
         return ['ok', readback];
