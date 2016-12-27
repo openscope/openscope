@@ -19,7 +19,7 @@
     "angle": 230,
     "speed": 6
   },
-  "fixes": { 
+  "fixes": {
     "EBBR":  ["N50d54m05.0", "E004d29m04.0"],
     "NORTH": ["N51.6204689", "E4.484444400"],
     "EAST":  ["N50.8958544", "E005.6215846"],
@@ -125,73 +125,118 @@
       "draw": [["EBBR","WEST"]]
     }
   },
-  "departures": {
-    "destinations": [
-      "NORTH", "EAST", "SOUTH", "WEST"
-    ],
-    "type": "random",
-    "frequency": 2,
-    "airlines": [
-      ["ual", 3],
-      ["baw", 5],
-      ["cessna", 4],
-      ["bel", 6]
-    ]
-  },
-  "arrivals":[
+  "spawnPatterns": [
     {
-      "radial": 250,
-      "heading": 80,
-      "altitude": [5000, 7000],
-      "speed": 250,
-      "type": "random",
-      "frequency": 7.5,
-      "airlines": [
-        ["ual", 2],
-        ["baw", 5],
-        ["fastga", 20],
-	["bel", 7]
-      ]
+        "airlines": [
+            ["ual", 3],
+            ["baw", 5],
+            ["cessna", 4],
+            ["bel", 6]
+        ],
+        "destination": "",
+        "origin": "EBBR",
+        "patternType": "departure",
+        "route": "EBBR.NORTH.NORTH",
+        "spawnAltitude": null,
+        "spawnMethod": "random",
+        "spawnRate": 2,
+        "spawnSpeed": null
     },
     {
-      "radial": 110,
-      "heading": 280,
-      "altitude": [5000, 8000],
-      "speed": 250,
-      "type": "random",
-      "frequency": 7.5,
-      "airlines":[
-        ["ual", 5],
-        ["baw", 1],
-        ["fastga", 3],
-	["bel", 4]
-      ]
+        "airlines": [
+            ["ual", 3],
+            ["baw", 5],
+            ["cessna", 4],
+            ["bel", 6]
+        ],
+        "destination": "",
+        "origin": "EBBR",
+        "patternType": "departure",
+        "route": "EBBR.EAST.EAST",
+        "spawnAltitude": null,
+        "spawnMethod": "random",
+        "spawnRate": 2,
+        "spawnSpeed": null
     },
     {
-      "radial": 210,
-      "heading": 30,
-      "altitude": [3000, 5000],
-      "speed": 120,
-      "type": "random",
-      "frequency": 15,
-      "airlines": [
-        ["lightga", 20],
-	["bel", 3]
-      ]
+        "airlines": [
+            ["ual", 3],
+            ["baw", 5],
+            ["cessna", 4],
+            ["bel", 6]
+        ],
+        "destination": "",
+        "origin": "EBBR",
+        "patternType": "departure",
+        "route": "EBBR.SOUTH.SOUTH",
+        "spawnAltitude": null,
+        "spawnMethod": "random",
+        "spawnRate": 2,
+        "spawnSpeed": null
     },
     {
-      "radial": 315,
-      "heading": 135,
-      "altitude": [6000, 7000],
-      "speed": 250,
-      "type": "random",
-      "frequency": 12.5,
-      "airlines": [
-        ["ual", 10],
-        ["baw", 10],
-        ["fastga", 1],
-	["bel", 12]
-      ]
+        "airlines": [
+            ["ual", 3],
+            ["baw", 5],
+            ["cessna", 4],
+            ["bel", 6]
+        ],
+        "destination": "",
+        "origin": "EBBR",
+        "patternType": "departure",
+        "route": "EBBR.WEST.WEST",
+        "spawnAltitude": null,
+        "spawnMethod": "random",
+        "spawnRate": 2,
+        "spawnSpeed": null
+    },
+    {
+        "airlines": [
+            ["ual", 2],
+            ["baw", 5],
+            ["fastga", 20],
+            ["bel", 7]
+        ],
+        "destination": "EBBR",
+        "origin": "",
+        "patternType": "arrival",
+        "route": "TULNI..AKOVI..EBBR",
+        "spawnAltitude": [5000, 7000],
+        "spawnMethod": "random",
+        "spawnRate": 10,
+        "spawnSpeed": 250
+    },
+    {
+        "airlines": [
+            ["ual", 2],
+            ["baw", 5],
+            ["fastga", 20],
+            ["bel", 7]
+        ],
+        "destination": "EBBR",
+        "origin": "",
+        "patternType": "arrival",
+        "route": "BATTY.BR205..FLO..EBBR",
+        "spawnAltitude": [5000, 8000],
+        "spawnMethod": "random",
+        "spawnRate": 10,
+        "spawnSpeed": 250
+    },
+    {
+        "airlines": [
+            ["ual", 10],
+            ["baw", 10],
+            ["fastga", 1],
+            ["bel", 12]
+        ],
+        "destination": "EBBR",
+        "origin": "",
+        "patternType": "arrival",
+        "route": "KOK.NIK..ANT..EBBR",
+        "spawnAltitude": [6000, 7000],
+        "spawnMethod": "random",
+        "spawnRate": 15,
+        "spawnSpeed": 250
     }
   ]
 }
