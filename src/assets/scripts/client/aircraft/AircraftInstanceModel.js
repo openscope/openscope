@@ -1292,7 +1292,7 @@ export default class Aircraft {
         const routeModel = new RouteModel(data[0]);
         const airport = window.airportController.airport_get();
         const { name: starName } = airport.starCollection.findRouteByIcao(routeModel.procedure);
-
+        let flag = airport.wip ? ' &#9983 ' : '';
         if (this.category !== FLIGHT_CATEGORY.ARRIVAL) {
             return ['fail', 'unable to fly STAR, we are a departure!'];
         }
@@ -1307,7 +1307,7 @@ export default class Aircraft {
 
         // TODO: casing may be an issue here.
         const readback = {
-            log: `cleared to the ${airport.name} via the ${routeModel.procedure} arrival`,
+            log: `cleared to the ${airport.name}${flag} via the ${routeModel.procedure} arrival`,
             say: `cleared to the ${airport.name} via the ${starName} arrival`
         };
 
