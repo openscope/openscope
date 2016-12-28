@@ -7,7 +7,7 @@ import PositionModel from '../../base/PositionModel';
 import {
     airlineNameAndFleetHelper,
     randomAirlineSelectionHelper
-} from '../../airline/randomAirlineSelectionHelper';
+} from '../../airline/airlineHelpers';
 import { nm, degreesToRadians } from '../../utilities/unitConverters';
 import { round, sin, cos } from '../../math/core';
 import {

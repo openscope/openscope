@@ -4,7 +4,7 @@ import RouteModel from '../Route/RouteModel';
 import {
     airlineNameAndFleetHelper,
     randomAirlineSelectionHelper
-} from '../../airline/randomAirlineSelectionHelper';
+} from '../../airline/airlineHelpers';
 import { choose } from '../../utilities/generalUtilities';
 import { FLIGHT_CATEGORY } from '../../constants/aircraftConstants';
 import { TIME } from '../../constants/globalConstants';

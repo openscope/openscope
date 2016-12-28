@@ -135,6 +135,9 @@ export default class SpawnPatternModel extends BaseModel {
          */
         this.speed = 0;
 
+        this.radial = -1;
+        this.heading = -1;
+
         /**
          * List of possible destinations
          *
@@ -150,7 +153,7 @@ export default class SpawnPatternModel extends BaseModel {
          * List of possible airlines a spawning aircraft can belong to.
          *
          * @property airlines
-         * @type {array}
+         * @type {array<string>}
          * @default []
          */
         this.airlines = [];
@@ -295,7 +298,7 @@ export default class SpawnPatternModel extends BaseModel {
      * @private
      */
     _findRandomIndexForList(list) {
-        return _random(0, list.length);
+        return _random(0, list.length - 1);
     }
 
     /**

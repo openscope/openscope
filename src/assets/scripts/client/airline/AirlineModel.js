@@ -100,6 +100,12 @@ export default class AirlineModel extends BaseModel {
             default: []
         };
 
+        /**
+         *
+         *
+         */
+        this.flightNumbersInUse = [];
+
         this.init(airlineDefinition);
     }
 
@@ -151,13 +157,29 @@ export default class AirlineModel extends BaseModel {
      * Used when a new aircraft spwans with a defined airline, but no defined aircraft type
      *
      * @for AirlineCollection
-     * @method getRandomAircraftTypeFromFleet
+     * @method getRandomAircraftTypeFromAllFleets
      * @return {AirlineModel}
      */
-    getRandomAircraftTypeFromFleet() {
+    getRandomAircraftTypeFromAllFleets() {
         const index = _random(0, this.aircraftList.length - 1);
 
         return this.aircraftList[index];
+    }
+
+    /**
+     *
+     *
+     */
+    generateFlightNumber() {
+
+    }
+
+    /**
+     *
+     *
+     */
+    _isFlightNumberInUse(flightNumber) {
+
     }
 
     /**

@@ -64,8 +64,15 @@ const _extractNameAndFleetFromCurrentAirline = (selectedAirline, airlineNameAndF
  * Accepts an airline, as defined in an airport json file from the `departures` and `arrivals` sections,
  * and returns a consistent object containing an airline name and fleet classification.
  *
+ * example input:
+ * ```
+ * - 'aal'
+ * - 'ual/long'
+ * - 'aal/90long'
+ * ```
+ *
  * @method airlineNameAndFleetHelper
- * @param airline {string}
+ * @param airline {array<string>}
  * @return airlineNameAndFleet {object}
  */
 export const airlineNameAndFleetHelper = (airline) => {

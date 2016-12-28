@@ -8,6 +8,7 @@ import _random from 'lodash/random';
 import BaseCollection from '../base/BaseCollection';
 import AircraftDefinitionModel from './AircraftDefinitionModel';
 import AircraftInstanceModel from './AircraftInstanceModel';
+import { airlineNameAndFleetHelper } from '../airline/airlineHelpers';
 
 /**
  * Collection of `AircraftInstanceModel` objects
@@ -35,7 +36,8 @@ export default class AircraftCollection extends BaseCollection {
 
         if (!_isArray(aircraftDefinitionList) || _isEmpty(aircraftDefinitionList)) {
             // eslint-disable-next-line max-len
-            throw new TypeError(`Invalid aircraftDefinitionList passed to AircraftCollection. Expected and array but reveived ${typeof aircraftDefinitionList}`);
+            throw new TypeError('Invalid aircraftDefinitionList passed to AircraftCollection. Expected and array but ' +
+                `received ${typeof aircraftDefinitionList}`);
         }
 
         // TODO: this may need to use instanceof instead, but that may be overly defensive
@@ -124,6 +126,31 @@ export default class AircraftCollection extends BaseCollection {
     }
 
     /**
+     * Given an `airlineId`, find a random aircraft type from the airline.
+     *
+     * @for AircraftCollection
+     * @method _getAircraftDefinitionForAirlineId
+     * @param airlineId {string}
+     * @return aircraftDefinition {AircraftDefinitionModel}
+     * @private
+     */
+    _getAircraftDefinitionForAirlineId(airlineModel) {
+        // TODO: this should be able to handle specific fleets from within an airline
+        // const airlineModel = this._airlineCollection.findAirlineById(airlineId);
+        const aircraftType = airlineModel.getRandomAircraftTypeFromAllFleets();
+        const aircraftDefinition = _find(this.definitionList, { icao: aircraftType });
+
+        if (typeof aircraftDefinition === 'undefined') {
+            console.error(`undefined aircraftDefinition for ${aircraftType}`);
+
+            // recurse through this method if an error is encountered
+            return this._getAircraftDefinitionForAirlineId(airlineId);
+        }
+
+        return aircraftDefinition;
+    }
+
+    /**
      * Fascade method that calls a builder method based on `spawnModel.category`
      *
      * Used to build up the appropriate data needed to instantiate an `AircraftInstanceModel`
@@ -154,20 +181,19 @@ export default class AircraftCollection extends BaseCollection {
      * @private
      */
     _buildAircraftPropsForDeparture(spawnModel) {
-        const airlineId = spawnModel.getRandomAirlineForSpawn();
         const destination = spawnModel.getRandomDestinationForDeparture();
-        // TODO: we should get the `AirlineModel` here, then get the icao (id) and fleet from there along with generating a callsign
-        // TODO: use `airlineNameAndFleetHelper` for this
-        const [id, fleet] = airlineId.split('/');
-        const aircraftDefinition = this._getAircraftDefinitionForAirlineId(airlineId);
+        const airlineId = spawnModel.getRandomAirlineForSpawn();
+        const airlineModel = this._airlineCollection.findAirlineById(airlineId);
+        const aircraftDefinition = this._getAircraftDefinitionForAirlineId(airlineModel);
+        const { fleet } = airlineNameAndFleetHelper([airlineId]);
+        // TODO: move this to `AirlineModel`
         const callsign = `${_random(0, 999)}`;
 
         return {
-            airline: id,
+            airline: airlineModel.icao,
             callsign: callsign,
             category: spawnModel.category,
             destination: destination,
-            fleet: fleet || 'Default',
             icao: aircraftDefinition.icao,
             model: aircraftDefinition
         };
@@ -186,49 +212,24 @@ export default class AircraftCollection extends BaseCollection {
      */
     _buildAircraftPropsForArrival(spawnModel) {
         const airlineId = spawnModel.getRandomAirlineForSpawn();
-        // TODO: use `airlineNameAndFleetHelper` for this
-        const [id, fleet] = airlineId.split('/');
-        const aircraftDefinition = this._getAircraftDefinitionForAirlineId(id);
-        // TODO: this should be supplied by the `AirlineModel`
+        const airlineModel = this._airlineCollection.findAirlineById(airlineId);
+        const aircraftDefinition = this._getAircraftDefinitionForAirlineId(airlineModel);
+        const { fleet } = airlineNameAndFleetHelper([airlineId]);
+        // TODO: move this to `AirlineModel`
         const callsign = `${_random(0, 999)}`;
 
         return {
-            airline: id,
+            airline: airlineModel.icao,
             altitude: spawnModel.altitude,
             callsign: callsign,
             category: spawnModel.category,
             // TODO: this should come from logic and not inline
             destination: 'ksfo',
-            fleet: fleet || 'Default',
+            fleet: fleet,
             icao: aircraftDefinition.icao,
             model: aircraftDefinition,
             route: spawnModel.route,
             waypoints: _get(spawnModel, 'fixes', [])
         };
-    }
-
-    /**
-     * Given an `airlineId`, find a random aircraft type from the airline.
-     *
-     * @for AircraftCollection
-     * @method _getAircraftDefinitionForAirlineId
-     * @param airlineId {string}
-     * @return aircraftDefinition {AircraftDefinitionModel}
-     * @private
-     */
-    _getAircraftDefinitionForAirlineId(airlineId) {
-        // TODO: this should be able to handle specific fleets from within an airline
-        const airlineModel = this._airlineCollection.findAirlineById(airlineId);
-        const aircraftType = airlineModel.getRandomAircraftTypeFromFleet();
-        const aircraftDefinition = _find(this.definitionList, { icao: aircraftType });
-
-        if (typeof aircraftDefinition === 'undefined') {
-            console.error(`undefined aircraftDefinition for ${aircraftType}`);
-
-            // recurse through this method if an error is encountered
-            return this._getAircraftDefinitionForAirlineId(airlineId);
-        }
-
-        return aircraftDefinition;
     }
 }
