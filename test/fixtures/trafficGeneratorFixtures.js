@@ -7,5 +7,5 @@ import {
 
 export const spawnPatternCollectionFixture = new SpawnPatternCollection(AIRPORT_JSON_FOR_SPAWN_MOCK);
 
-export const spawnPatternModelArrivalFixture = new SpawnPatternModel('arrival', SPAWN_PATTERN_MODEL_FOR_FIXTURE);
-export const spawnPatternModelDepartureFixture = new SpawnPatternModel('departure', SPAWN_PATTERN_MODEL_FOR_FIXTURE);
+export const spawnPatternModelArrivalFixture = new SpawnPatternModel(SPAWN_PATTERN_MODEL_FOR_FIXTURE);
+export const spawnPatternModelDepartureFixture = new SpawnPatternModel(SPAWN_PATTERN_MODEL_FOR_FIXTURE);

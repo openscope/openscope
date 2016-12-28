@@ -169,6 +169,7 @@ export default class AircraftCollection extends BaseCollection {
         return this._buildAircraftPropsForArrival(spawnModel);
     }
 
+    // TODO: combine this with _buildAircraftPropsForArrival and make a single method to handle airport.spawnPatterns
     /**
      * Build props for a departing aircraft.
      *
@@ -181,6 +182,7 @@ export default class AircraftCollection extends BaseCollection {
      * @private
      */
     _buildAircraftPropsForDeparture(spawnModel) {
+        // @DEPRECATED
         const destination = spawnModel.getRandomDestinationForDeparture();
         const airlineId = spawnModel.getRandomAirlineForSpawn();
         const airlineModel = this._airlineCollection.findAirlineById(airlineId);

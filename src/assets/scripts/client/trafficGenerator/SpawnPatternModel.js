@@ -21,14 +21,13 @@ export default class SpawnPatternModel extends BaseModel {
     /**
      * @constructor
      * @for SpawnPatternModel
-     * @param category {string}  one of either 'arrival' or 'departure'
      * @param spawnPatternJson {object}
      */
     /* istanbul ignore next */
-    constructor(category, spawnPatternJson) {
-        super(category, spawnPatternJson);
+    constructor(spawnPatternJson) {
+        super(spawnPatternJson);
 
-        if (!this._isValidCategory(category) || !_isObject(spawnPatternJson) || _isEmpty(spawnPatternJson)) {
+        if (!_isObject(spawnPatternJson) || _isEmpty(spawnPatternJson)) {
             throw new TypeError('Invalid parameter passed to SpawnPatternModel');
         }
 
@@ -52,9 +51,9 @@ export default class SpawnPatternModel extends BaseModel {
          *
          * @property category
          * @type {string}
-         * @default category
+         * @default ''
          */
-        this.category = category;
+        this.category = '';
 
         /**
          * Type of arrival or departure pattern
@@ -65,7 +64,7 @@ export default class SpawnPatternModel extends BaseModel {
          * @type {string}
          * @default ''
          */
-        this.type = '';
+        this.method = '';
 
         /**
          * String representation of a `StandardRoute`
@@ -77,16 +76,16 @@ export default class SpawnPatternModel extends BaseModel {
         this.route = '';
 
         /**
-         * Rate at which to spawn new aircaft
+         * Rate at which aircaft spawn, express in aircraft per hour
          *
-         * @property frequency
+         * @property rate
          * @type {number}
          * @default -1
          */
-        this.frequency = -1;
+        this.rate = -1;
 
         /**
-         * Calculated milisecond delay from `frequency`.
+         * Calculated milisecond delay from `rate`.
          *
          * Is used as the upper bound when getting a random delay value.
          *
@@ -135,19 +134,23 @@ export default class SpawnPatternModel extends BaseModel {
          */
         this.speed = 0;
 
+        /**
+         *
+         *
+         * @property radial
+         * @type {number}
+         * @default -1
+         */
         this.radial = -1;
-        this.heading = -1;
 
         /**
-         * List of possible destinations
          *
-         * Used only for departures
          *
-         * @property destinations
-         * @type {array}
-         * @default []
+         * @property heading
+         * @type {number}
+         * @default -1
          */
-        this.destinations = [];
+        this.heading = -1;
 
         /**
          * List of possible airlines a spawning aircraft can belong to.
@@ -201,14 +204,13 @@ export default class SpawnPatternModel extends BaseModel {
      * @param spawnPatternJson {object}
      */
     init(spawnPatternJson) {
-        this.type = _get(spawnPatternJson, 'type', this.type);
+        this.method = _get(spawnPatternJson, 'method', this.method);
         this.route = _get(spawnPatternJson, 'route', this.route);
-        this.frequency = _get(spawnPatternJson, 'frequency', this.frequency);
+        this.rate = _get(spawnPatternJson, 'rate', this.rate);
         this.altitude = _get(spawnPatternJson, 'altitude', this.altitude);
         this.speed = _get(spawnPatternJson, 'speed', this.speed);
-        this.destinations = _get(spawnPatternJson, 'destinations', this.destinations);
+        this._minimumDelay = TIME.ONE_SECOND_IN_MILLISECONDS * 3;
         this._maximumDelay = this._calculateMaximumMsDelayFromFrequency();
-        this._minimumDelay = TIME.ONE_SECOND_IN_MILLISECONDS * 3
         this.delay = this.getRandomDelayValue();
         this.airlines = this._assembleAirlineNamesAndFrequencyForSpawn(spawnPatternJson.airlines);
         this._weightedAirlineList = this._buildWeightedAirlineList();
@@ -240,10 +242,7 @@ export default class SpawnPatternModel extends BaseModel {
      * @return {string}
      */
     getRandomDestinationForDeparture() {
-        const index = this._findRandomIndexForList(this.destinations);
-        const destination = this.destinations[index];
-
-        return destination;
+        throw new Error('.getRandomDestinationForDeparture() is a deprecated method');
     }
 
     /**
@@ -285,7 +284,7 @@ export default class SpawnPatternModel extends BaseModel {
      * @private
      */
     _calculateMaximumMsDelayFromFrequency() {
-        return TIME.ONE_HOUR_IN_MILLISECONDS / this.frequency;
+        return TIME.ONE_HOUR_IN_MILLISECONDS / this.rate;
     }
 
     /**
@@ -318,7 +317,7 @@ export default class SpawnPatternModel extends BaseModel {
     _assembleAirlineNamesAndFrequencyForSpawn(spawnPatternAirlines) {
         const spawnPatternAirlineModels = _map(spawnPatternAirlines, (spawnPatternAirline) => ({
             name: spawnPatternAirline[0],
-            frequency: spawnPatternAirline[1]
+            rate: spawnPatternAirline[1]
         }));
 
         return spawnPatternAirlineModels;
@@ -339,7 +338,7 @@ export default class SpawnPatternModel extends BaseModel {
         const weightedAirlineList = [];
 
         _forEach(this.airlines, (airline) => {
-            for (let i = 0; i < airline.frequency; i++) {
+            for (let i = 0; i < airline.rate; i++) {
                 weightedAirlineList.push(airline.name);
             }
         });
