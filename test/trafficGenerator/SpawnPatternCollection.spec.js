@@ -15,6 +15,15 @@ ava('throws when called with invalid parameters', (t) => {
     t.throws(() => new SpawnPatternCollection(false));
 });
 
+ava('.init() calls _buildSpawnModels()', (t) => {
+    const collection = new SpawnPatternCollection(AIRPORT_JSON_FOR_SPAWN_MOCK);
+    const _buildSpawnModelsSpy = sinon.spy(collection, '_buildSpawnModels');
+
+    collection.init(AIRPORT_JSON_FOR_SPAWN_MOCK);
+
+    t.true(_buildSpawnModelsSpy.calledWithExactly(AIRPORT_JSON_FOR_SPAWN_MOCK.spawnPatterns));
+});
+
 ava('.addItems() does not call .addItem() if passed an invalid value', (t) => {
     const collection = new SpawnPatternCollection(AIRPORT_JSON_FOR_SPAWN_MOCK);
     const addItemSpy = sinon.spy(collection, 'addItem');

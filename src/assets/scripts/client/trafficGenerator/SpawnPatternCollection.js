@@ -1,11 +1,8 @@
-import _flatten from 'lodash/flatten';
 import _forEach from 'lodash/forEach';
 import _isEmpty from 'lodash/isEmpty';
 import _isObject from 'lodash/isObject';
-import _uniq from 'lodash/uniq';
 import BaseCollection from '../base/BaseCollection';
 import SpawnPatternModel from './SpawnPatternModel';
-import { FLIGHT_CATEGORY } from '../constants/aircraftConstants';
 
 /**
  * A collection of `SpawnPatternModel` objects
@@ -49,17 +46,7 @@ export default class SpawnPatternCollection extends BaseCollection {
      * @param airportJson {object}
      */
     init(airportJson) {
-        // this logic will likely move to a method once departures are normalized in airport json
-        _forEach(airportJson.arrivals, (arrival) => {
-            const arrivalToAdd = new SpawnPatternModel(FLIGHT_CATEGORY.ARRIVAL, arrival);
-
-            this.addItem(arrivalToAdd);
-        });
-
-        // this will likely have to change to the same format a arrivals once the airport data is normalized
-        const departureSpawnModel = new SpawnPatternModel(FLIGHT_CATEGORY.DEPARTURE, airportJson.departures);
-
-        this.addItem(departureSpawnModel);
+        this._buildSpawnModels(airportJson.spawnPatterns);
     }
 
     /**
@@ -90,5 +77,22 @@ export default class SpawnPatternCollection extends BaseCollection {
         }
 
         this._items.push(item);
+    }
+
+    /**
+     * Loop through spawnPatterns, as defined in airport json, and create
+     * a `SpawnPatternModel` for each. Then add it to the collection.
+     *
+     * @for SpawnPatternCollection
+     * @method _buildSpawnModels
+     * @parameter spawnPatterns
+     * @private
+     */
+    _buildSpawnModels(spawnPatterns) {
+        _forEach(spawnPatterns, (spawnPattern) => {
+            const spawnPatternModel = new SpawnPatternModel(spawnPattern);
+
+            this.addItem(spawnPatternModel);
+        });
     }
 }
