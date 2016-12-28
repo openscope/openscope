@@ -135,12 +135,12 @@
         ],
         "destination": "",
         "origin": "EBBR",
-        "patternType": "departure",
+        "category": "departure",
         "route": "EBBR.NORTH.NORTH",
-        "spawnAltitude": null,
-        "spawnMethod": "random",
-        "spawnRate": 2,
-        "spawnSpeed": null
+        "altitude": null,
+        "method": "random",
+        "rate": 2,
+        "speed": null
     },
     {
         "airlines": [
@@ -151,12 +151,12 @@
         ],
         "destination": "",
         "origin": "EBBR",
-        "patternType": "departure",
+        "category": "departure",
         "route": "EBBR.EAST.EAST",
-        "spawnAltitude": null,
-        "spawnMethod": "random",
-        "spawnRate": 2,
-        "spawnSpeed": null
+        "altitude": null,
+        "method": "random",
+        "rate": 2,
+        "speed": null
     },
     {
         "airlines": [
@@ -167,12 +167,12 @@
         ],
         "destination": "",
         "origin": "EBBR",
-        "patternType": "departure",
+        "category": "departure",
         "route": "EBBR.SOUTH.SOUTH",
-        "spawnAltitude": null,
-        "spawnMethod": "random",
-        "spawnRate": 2,
-        "spawnSpeed": null
+        "altitude": null,
+        "method": "random",
+        "rate": 2,
+        "speed": null
     },
     {
         "airlines": [
@@ -183,12 +183,12 @@
         ],
         "destination": "",
         "origin": "EBBR",
-        "patternType": "departure",
+        "category": "departure",
         "route": "EBBR.WEST.WEST",
-        "spawnAltitude": null,
-        "spawnMethod": "random",
-        "spawnRate": 2,
-        "spawnSpeed": null
+        "altitude": null,
+        "method": "random",
+        "rate": 2,
+        "speed": null
     },
     {
         "airlines": [
@@ -199,12 +199,12 @@
         ],
         "destination": "EBBR",
         "origin": "",
-        "patternType": "arrival",
+        "category": "arrival",
         "route": "TULNI..AKOVI..EBBR",
-        "spawnAltitude": [5000, 7000],
-        "spawnMethod": "random",
-        "spawnRate": 10,
-        "spawnSpeed": 250
+        "altitude": [5000, 7000],
+        "method": "random",
+        "rate": 10,
+        "speed": 250
     },
     {
         "airlines": [
@@ -215,12 +215,12 @@
         ],
         "destination": "EBBR",
         "origin": "",
-        "patternType": "arrival",
+        "category": "arrival",
         "route": "BATTY.BR205..FLO..EBBR",
-        "spawnAltitude": [5000, 8000],
-        "spawnMethod": "random",
-        "spawnRate": 10,
-        "spawnSpeed": 250
+        "altitude": [5000, 8000],
+        "method": "random",
+        "rate": 10,
+        "speed": 250
     },
     {
         "airlines": [
@@ -231,12 +231,12 @@
         ],
         "destination": "EBBR",
         "origin": "",
-        "patternType": "arrival",
-        "route": "KOK.NIK..ANT..EBBR",
-        "spawnAltitude": [6000, 7000],
-        "spawnMethod": "random",
-        "spawnRate": 15,
-        "spawnSpeed": 250
+        "category": "arrival",
+        "route": "KOK..NIK..ANT..EBBR",
+        "altitude": [6000, 7000],
+        "method": "random",
+        "rate": 15,
+        "speed": 250
     }
   ]
 }
