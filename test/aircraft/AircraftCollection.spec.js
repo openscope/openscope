@@ -1,9 +1,15 @@
 import ava from 'ava';
+import sinon from 'sinon';
+import _forEach from 'lodash/forEach';
 
 import AircraftCollection from '../../src/assets/scripts/client/aircraft/AircraftCollection';
+import AircraftDefinitionModel from '../../src/assets/scripts/client/aircraft/AircraftDefinitionModel';
 import { airlineCollectionFixture } from '../fixtures/airlineFixtures';
 import { fixCollectionFixture } from '../fixtures/navigationLibraryFixtures';
-import { spawnPatternModelFixture } from '../fixtures/trafficGeneratorFixtures';
+import {
+    spawnPatternModelArrivalFixture,
+    spawnPatternModelDepartureFixture
+} from '../fixtures/trafficGeneratorFixtures';
 
 import {
     AIRCRAFT_DEFINITION_LIST_MOCK,
@@ -39,3 +45,42 @@ ava('should throw when passed invalid parameters', (t) => {
 ava('does not throw when passed valid parameters', (t) => {
     t.notThrows(() => new AircraftCollection(AIRCRAFT_DEFINITION_LIST_MOCK, airlineCollectionFixture, fixCollectionFixture));
 });
+
+ava('.findAircraftDefinitionModelByIcao() returns an AircraftDefinitionModel when provided a valid aircraft icao', (t) => {
+    const expectedResult = 'b737';
+    const collection = new AircraftCollection(AIRCRAFT_DEFINITION_LIST_MOCK, airlineCollectionFixture, fixCollectionFixture);
+    const result = collection.findAircraftDefinitionModelByIcao('b737');
+
+    t.true(result instanceof AircraftDefinitionModel);
+    t.true(result.icao === expectedResult);
+});
+
+ava('._buildAircraftDefinitionList() returns a list of AircraftDefinitionModel objects', (t) => {
+    const collection = new AircraftCollection(AIRCRAFT_DEFINITION_LIST_MOCK, airlineCollectionFixture, fixCollectionFixture);
+    const results = collection._buildAircraftDefinitionList(AIRCRAFT_DEFINITION_LIST_MOCK);
+
+    _forEach(results, (result, i) => {
+        t.true(result instanceof AircraftDefinitionModel);
+        t.true(result.icao === AIRCRAFT_DEFINITION_LIST_MOCK[i].icao.toLowerCase());
+    });
+});
+
+ava('._buildAircraftProps() calls ._buildAircraftPropsForDeparture() is spawnModel.category === departure', (t) => {
+    const collection = new AircraftCollection(AIRCRAFT_DEFINITION_LIST_MOCK, airlineCollectionFixture, fixCollectionFixture);
+    const _buildAircraftPropsForDepartureSpy = sinon.spy(collection, '_buildAircraftPropsForDeparture');
+
+    collection._buildAircraftProps(spawnPatternModelDepartureFixture);
+
+    t.true(_buildAircraftPropsForDepartureSpy.calledWithExactly(spawnPatternModelDepartureFixture));
+});
+
+ava('._buildAircraftProps() calls ._buildAircraftPropsForArrival() is spawnModel.category === arrival', (t) => {
+    const collection = new AircraftCollection(AIRCRAFT_DEFINITION_LIST_MOCK, airlineCollectionFixture, fixCollectionFixture);
+    const _buildAircraftPropsForArrivalSpy = sinon.spy(collection, '_buildAircraftPropsForArrival');
+
+    collection._buildAircraftProps(spawnPatternModelArrivalFixture);
+
+    t.true(_buildAircraftPropsForArrivalSpy.calledWithExactly(spawnPatternModelArrivalFixture));
+});
+
+ava.skip('._getAircraftDefinitionForAirlineId()', (t) => {});

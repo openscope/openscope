@@ -21,6 +21,7 @@ import AircraftInstanceModel from './AircraftInstanceModel';
  * @class AircraftCollection
  * @extends BaseCollection
  */
+/* istanbul ignore next */
 export default class AircraftCollection extends BaseCollection {
     /**
      * @constructor
