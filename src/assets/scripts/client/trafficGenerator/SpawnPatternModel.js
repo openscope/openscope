@@ -6,6 +6,7 @@ import _isObject from 'lodash/isObject';
 import _random from 'lodash/random';
 import BaseModel from '../base/BaseModel';
 import { FLIGHT_CATEGORY } from '../constants/aircraftConstants';
+import { TIME } from '../constants/globalConstants';
 
 /**
  * Defines a spawn pattern for a specific route within the area
@@ -20,11 +21,12 @@ export default class SpawnPatternModel extends BaseModel {
     /**
      * @constructor
      * @for SpawnPatternModel
-     * @param category {string}  will we either 'arrival' or 'departure'
+     * @param category {string}  one of either 'arrival' or 'departure'
      * @param spawnPatternJson {object}
      */
+    /* istanbul ignore next */
     constructor(category, spawnPatternJson) {
-        super();
+        super(category, spawnPatternJson);
 
         if (!this._isValidCategory(category) || !_isObject(spawnPatternJson) || _isEmpty(spawnPatternJson)) {
             throw new TypeError('Invalid parameter passed to SpawnPatternModel');
@@ -83,7 +85,36 @@ export default class SpawnPatternModel extends BaseModel {
          */
         this.frequency = -1;
 
-        // TODO: this may need to accept a [min, max] altitude
+        /**
+         * Calculated milisecond delay from `frequency`.
+         *
+         * Is used as the upper bound when getting a random delay value.
+         *
+         * This value does not take game speed (timewarp) into effect, thus
+         * this value may need to be translated by the class or method using it.
+         *
+         * @property _maximumDelay
+         * @type {number}
+         * @default -1
+         * @private
+         */
+        this._maximumDelay = -1;
+
+        // TODO: this is currently an internal property but could be defined in
+        //       the `spawnPattern` section of airport.json
+        /**
+         * Minimum milisecond elay between spawn.
+         *
+         * Is used as the lower bound when getting a random delay value.
+         *
+         * @property _minimumDelay
+         * @type {number}
+         * @default -1
+         * @private
+         */
+        this._minimumDelay = -1;
+
+        // TODO: this will need to accept a [min, max] altitude
         /**
          * Altitude to spawn at
          *
@@ -96,7 +127,7 @@ export default class SpawnPatternModel extends BaseModel {
         this.altitude = 0;
 
         /**
-         * Speed of spawned aircraft
+         * Speed of spawning aircraft
          *
          * @property speed
          * @type {number}
@@ -116,7 +147,7 @@ export default class SpawnPatternModel extends BaseModel {
         this.destinations = [];
 
         /**
-         * List of possible airlines a spawned aircraft can belong to.
+         * List of possible airlines a spawning aircraft can belong to.
          *
          * @property airlines
          * @type {array}
@@ -173,6 +204,9 @@ export default class SpawnPatternModel extends BaseModel {
         this.altitude = _get(spawnPatternJson, 'altitude', this.altitude);
         this.speed = _get(spawnPatternJson, 'speed', this.speed);
         this.destinations = _get(spawnPatternJson, 'destinations', this.destinations);
+        this._maximumDelay = this._calculateMaximumMsDelayFromFrequency();
+        this._minimumDelay = TIME.ONE_SECOND_IN_MILLISECONDS * 3
+        this.delay = this.getRandomDelayValue();
         this.airlines = this._assembleAirlineNamesAndFrequencyForSpawn(spawnPatternJson.airlines);
         this._weightedAirlineList = this._buildWeightedAirlineList();
     }
@@ -210,6 +244,23 @@ export default class SpawnPatternModel extends BaseModel {
     }
 
     /**
+     * Returns a random whole number between the allowed min and max delay.
+     *
+     * This is the value that will be used by the `SpawnScheduler` when
+     * when creating a new spawn interval.
+     *
+     * @for SpawnPatternModel
+     * @method getRandomDelayValue
+     * @return randomDelayValue {number}
+     */
+    getRandomDelayValue() {
+        const randomDelayValue = _random(this._minimumDelay, this._maximumDelay);
+
+        // we round down because math may result in fractional numbers
+        return Math.floor(randomDelayValue);
+    }
+
+    /**
      * Abstracted boolean logic used to determine if a category is valid.
      *
      * @for SpawnPatternModel
@@ -220,6 +271,18 @@ export default class SpawnPatternModel extends BaseModel {
      */
     _isValidCategory(category) {
         return category === FLIGHT_CATEGORY.DEPARTURE || category === FLIGHT_CATEGORY.ARRIVAL;
+    }
+
+    /**
+     * Calculates the upper bound of the spawn delay value.
+     *
+     * @for SpawnPatternModel
+     * @method _calculateMaximumMsDelayFromFrequency
+     * @return {number}
+     * @private
+     */
+    _calculateMaximumMsDelayFromFrequency() {
+        return TIME.ONE_HOUR_IN_MILLISECONDS / this.frequency;
     }
 
     /**

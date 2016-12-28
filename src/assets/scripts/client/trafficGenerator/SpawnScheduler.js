@@ -1,17 +1,7 @@
 import _forEach from 'lodash/forEach';
-import _random from 'lodash/random';
 import _without from 'lodash/without';
 import SpawnPatternCollection from './SpawnPatternCollection';
 // import AircraftCollection from '../aircraft/AircraftCollection';
-
-// TODO: move this logic to the `SpawnPatternModel`
-/* istanbul ignore next */
-const calculateMsDelayFromAircraftPerHour = (frequency) => {
-    const ONE_HOUR = 3600000;
-    const FIVE_SECONDS = 5000;
-
-    return Math.floor(_random(FIVE_SECONDS, ONE_HOUR / frequency));
-};
 
 /**
  * Create a timer for every item in the `SpawnPatternCollection`
@@ -61,14 +51,14 @@ export default class SpawnScheduler {
      */
     createSchedulesFromList(spawnPatternCollection, aircraftCollection) {
         _forEach(spawnPatternCollection.spawnModels, (spawnPattern) => {
-            // TODO: this might need to live in the model as a class property but will need to
-            // be modified based on timewarp setting
-            const delay = calculateMsDelayFromAircraftPerHour(spawnPattern.frequency);
-            // console.log(delay, spawnPattern.route);
+            console.log(spawnPattern.delay, spawnPattern.route);
 
             spawnPattern.scheduleId = setInterval(
+                // callback method that will be called when this interval fires
                 aircraftCollection.createAircraftWithSpawnModel,
-                delay,
+                // milisecond lifespan of interval
+                spawnPattern.delay,
+                // spawnPattern send as an argument to callback used to build spawnning aircraft
                 spawnPattern
             );
 
