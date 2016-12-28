@@ -2,6 +2,7 @@
 ---
 ### Major
 - Restructures `src` files into `client` and `server` folders. [#220](https://github.com/n8rzz/atc/issues/220)
+- Updates Node to version 7.0.0 [#184](https://github.com/n8rzz/atc/issues/184)
 
 
 
@@ -14,7 +15,9 @@
 ### Minor
 - Ensures proper removal of all `AircraftConflict` instances involving an aircraft that has been removed from the simulation [#133](https://github.com/n8rzz/atc/issues/133)
     - Originally reported under [zlsa#734](https://github.com/zlsa/atc/issues/734)
-- Changes the names from haveing the flags in their name  by adding WIP variable to the `AIRPORT_LOAD_LIST` in `airportLoadList` [#205](https://github.com/n8rzz/atc/issues/205)
+- Changes the names from having the flags in their name by adding WIP variable to the `AIRPORT_LOAD_LIST` in `airportLoadList` [#205](https://github.com/n8rzz/atc/issues/205)
+- Adds cache to travis build [#233](https://github.com/n8rzz/atc/issues/233)
+
 
 
 
