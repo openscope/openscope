@@ -180,8 +180,7 @@ export default class Leg {
         // Remove the placeholder leg (if present)
         if (fms.my_aircraft.isOnGround() &&
             fms.legs.length > 0 &&
-            fms.legs[0].route === airport.icao &&
-            pairs.length > 0
+            fms.legs[0].route === airport.icao
         ) {
             // remove the placeholder leg, to be replaced below with SID Leg
             fms.legs.splice(0, 1);

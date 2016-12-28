@@ -90,16 +90,16 @@ export default class AircraftController {
         this.conflicts.push(conflict);
     }
 
-    /**
-     * @for AircraftController
-     * @method aircraft_new
-     * @param options {object}
-     */
-    aircraft_new(options) {
-        const airline = window.airlineController.airline_get(options.airline);
-
-        return airline.generateAircraft(options);
-    }
+    // /**
+    //  * @for AircraftController
+    //  * @method aircraft_new
+    //  * @param options {object}
+    //  */
+    // aircraft_new(options) {
+    //     const airline = window.airlineController.airline_get(options.airline);
+    //
+    //     return airline.generateAircraft(options);
+    // }
 
     /**
      * @for AircraftController

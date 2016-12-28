@@ -67,6 +67,24 @@ export default class SpawnPatternModel extends BaseModel {
         this.method = '';
 
         /**
+         *
+         *
+         * @property origin
+         * @type {string}
+         * @default ''
+         */
+        this.origin = '';
+
+        /**
+         *
+         *
+         * @property destination
+         * @type {string}
+         * @default ''
+         */
+        this.destination = '';
+
+        /**
          * String representation of a `StandardRoute`
          *
          * @property route
@@ -204,14 +222,20 @@ export default class SpawnPatternModel extends BaseModel {
      * @param spawnPatternJson {object}
      */
     init(spawnPatternJson) {
+        this.origin = spawnPatternJson.origin;
+        this.destination = spawnPatternJson.destination;
+        this.category = spawnPatternJson.category;
+        // TODO: some of these may not require `_get()`
         this.method = _get(spawnPatternJson, 'method', this.method);
-        this.route = _get(spawnPatternJson, 'route', this.route);
         this.rate = _get(spawnPatternJson, 'rate', this.rate);
-        this.altitude = _get(spawnPatternJson, 'altitude', this.altitude);
+        this.route = _get(spawnPatternJson, 'route', this.route);
         this.speed = _get(spawnPatternJson, 'speed', this.speed);
+
         this._minimumDelay = TIME.ONE_SECOND_IN_MILLISECONDS * 3;
         this._maximumDelay = this._calculateMaximumMsDelayFromFrequency();
         this.delay = this.getRandomDelayValue();
+        // TODO: this may need to be a method that randomizes altitude within a range
+        this.altitude = _get(spawnPatternJson, 'altitude', this.altitude);
         this.airlines = this._assembleAirlineNamesAndFrequencyForSpawn(spawnPatternJson.airlines);
         this._weightedAirlineList = this._buildWeightedAirlineList();
     }
@@ -230,19 +254,6 @@ export default class SpawnPatternModel extends BaseModel {
         const airlineId = this._weightedAirlineList[index];
 
         return airlineId;
-    }
-
-    /**
-     * Return a random destination from `destinations`
-     *
-     * Used for spawning departure aircraft that do not yet have an assigned destination
-     *
-     * @for SpawnPatternModel
-     * @method getRandomDestinationForDeparture
-     * @return {string}
-     */
-    getRandomDestinationForDeparture() {
-        throw new Error('.getRandomDestinationForDeparture() is a deprecated method');
     }
 
     /**

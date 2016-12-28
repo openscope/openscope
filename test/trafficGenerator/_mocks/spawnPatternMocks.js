@@ -72,12 +72,31 @@ export const AIRPORT_JSON_FOR_SPAWN_MOCK = {
 };
 
 // Data here needs to be congruent with data in `airlineCollectionFixture` used in `AircraftCollection.spec`
-export const SPAWN_PATTERN_MODEL_FOR_FIXTURE = {
-    type: 'random',
+export const SPAWN_PATTERN_MODEL_FOR_ARRIVAL_FIXTURE = {
+    destination: 'KLAS',
+    origin: '',
+    category: 'arrival',
     route: 'DAG.KEPEC3.KLAS',
-    frequency: 5,
     altitude: 28000,
-    speed: 350,
+    method: 'random',
+    rate: 5,
+    speed: 320,
+    airlines: [
+        ['aal', 5],
+        ['ual', 2]
+    ]
+};
+
+// Data here needs to be congruent with data in `airlineCollectionFixture` used in `AircraftCollection.spec`
+export const SPAWN_PATTERN_MODEL_FOR_DEPARTURE_FIXTURE = {
+    destination: '',
+    origin: 'KLAS',
+    category: 'departure',
+    route: 'KLAS.COWBY6.GUP',
+    altitude: null,
+    method: 'random',
+    rate: 5,
+    speed: null,
     airlines: [
         ['aal', 5],
         ['ual', 2]

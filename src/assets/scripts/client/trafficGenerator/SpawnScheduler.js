@@ -51,7 +51,7 @@ export default class SpawnScheduler {
      */
     createSchedulesFromList(spawnPatternCollection, aircraftCollection) {
         _forEach(spawnPatternCollection.spawnModels, (spawnPattern) => {
-            console.log(spawnPattern.delay, spawnPattern.destination ? spawnPattern.destination : spawnPattern.route);
+            console.log(spawnPattern.delay, spawnPattern.category, spawnPattern.route);
 
             spawnPattern.scheduleId = setInterval(
                 // callback method that will be called when this interval fires

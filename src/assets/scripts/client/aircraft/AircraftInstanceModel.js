@@ -296,7 +296,7 @@ export default class Aircraft {
         const speed = _get(data, 'speed', this.model.speed.cruise);
         this.fms.setCurrent({ speed: speed });
 
-        if (data.route) {
+        if (data.category === FLIGHT_CATEGORY.ARRIVAL && data.route) {
             const route = this.fms.formatRoute(data.route);
 
             this.fms.customRoute(route, true);

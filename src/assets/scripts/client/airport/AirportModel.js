@@ -2,7 +2,7 @@
 import $ from 'jquery';
 import _forEach from 'lodash/forEach';
 import _get from 'lodash/get';
-import _has from 'lodash/has';
+// import _has from 'lodash/has';
 import _head from 'lodash/head';
 import _map from 'lodash/map';
 import _isEmpty from 'lodash/isEmpty';
@@ -12,14 +12,14 @@ import PositionModel from '../base/PositionModel';
 import RunwayModel from './RunwayModel';
 import FixCollection from './Fix/FixCollection';
 import StandardRouteCollection from './StandardRoute/StandardRouteCollection';
-import { arrivalFactory } from './Arrival/arrivalFactory';
-import { departureFactory } from './Departure/departureFactory';
+// import { arrivalFactory } from './Arrival/arrivalFactory';
+// import { departureFactory } from './Departure/departureFactory';
 import { degreesToRadians, parseElevation } from '../utilities/unitConverters';
 import { round, abs, sin, extrapolate_range_clamp } from '../math/core';
 import { angle_offset } from '../math/circle';
 import { getOffset } from '../math/flightMath';
 import { vlen, vsub, vadd, vscale, raysIntersect } from '../math/vector';
-import { LOG } from '../constants/logLevel';
+// import { LOG } from '../constants/logLevel';
 import { SELECTORS } from '../constants/selectors';
 import { STORAGE_KEY } from '../constants/storageKeys';
 
@@ -39,7 +39,7 @@ const ra = (n) => {
 const DEFAULT_CTR_RADIUS_NM = 80;
 const DEFAULT_CTR_CEILING_FT = 10000;
 const DEFAULT_INITIAL_ALTITUDE_FT = 5000;
-const DEAFULT_RR_RADIUS_NM = 5;
+// const DEAFULT_RR_RADIUS_NM = 5;
 
 /**
  *
@@ -84,8 +84,8 @@ export default class AirportModel {
             runway: null,
             departure: null
         };
-        this.departures = [];
-        this.arrivals = [];
+        // this.departures = [];
+        // this.arrivals = [];
 
         this.wind  = {
             speed: 10,
@@ -165,8 +165,8 @@ export default class AirportModel {
         this.buildAirportMaps(data.maps);
         this.buildRestrictedAreas(data.restricted);
         this.updateCurrentWind(data.wind);
-        this.buildAirportDepartures(data.departures);
-        this.buildArrivals(data.arrivals);
+        // this.buildAirportDepartures(data.departures);
+        // this.buildArrivals(data.arrivals);
         this.buildRunwayMetaData();
     }
 
@@ -324,32 +324,32 @@ export default class AirportModel {
         this.wind.angle = degreesToRadians(currentWind.angle);
     }
 
-    buildAirportDepartures(departures) {
-        if (!departures) {
-            return;
-        }
+    // buildAirportDepartures(departures) {
+    //     if (!departures) {
+    //         return;
+    //     }
+    //
+    //     this.departures = departureFactory(this, departures);
+    // }
 
-        this.departures = departureFactory(this, departures);
-    }
-
-    /**
-     * @for AirportModel
-     * @method buildArrivals
-     * @param arrivals {array}
-     */
-    buildArrivals(arrivals) {
-        if (!arrivals) {
-            return;
-        }
-
-        for (let i = 0; i < arrivals.length; i++) {
-            if (!_has(arrivals[i], 'type')) {
-                log(`${this.icao} arrival stream #${i} not given type!`, LOG.WARNING);
-            } else {
-                this.arrivals.push(arrivalFactory(this, arrivals[i]));
-            }
-        }
-    }
+    // /**
+    //  * @for AirportModel
+    //  * @method buildArrivals
+    //  * @param arrivals {array}
+    //  */
+    // buildArrivals(arrivals) {
+    //     if (!arrivals) {
+    //         return;
+    //     }
+    //
+    //     for (let i = 0; i < arrivals.length; i++) {
+    //         if (!_has(arrivals[i], 'type')) {
+    //             log(`${this.icao} arrival stream #${i} not given type!`, LOG.WARNING);
+    //         } else {
+    //             this.arrivals.push(arrivalFactory(this, arrivals[i]));
+    //         }
+    //     }
+    // }
 
     /**
      * @for AirportModel
@@ -417,7 +417,7 @@ export default class AirportModel {
         FixCollection.addItems(this.fixes, this.position);
 
         this.updateRunway();
-        this.addAircraft();
+        // this.addAircraft();
         this.updateRun(true);
     }
 
@@ -426,32 +426,32 @@ export default class AirportModel {
      * @method unset
      */
     unset() {
-        for (let i = 0; i < this.arrivals.length; i++) {
-            this.arrivals[i].stop();
-        }
-
-        this.departures.stop();
+        // for (let i = 0; i < this.arrivals.length; i++) {
+        //     this.arrivals[i].stop();
+        // }
+        //
+        // this.departures.stop();
 
         if (this.timeout.runway) {
             window.gameController.game_clear_timeout(this.timeout.runway);
         }
     }
 
-    /**
-     * @for AirportModel
-     * @method addAircraft
-     */
-    addAircraft() {
-        if (this.departures) {
-            this.departures.start();
-        }
-
-        if (this.arrivals) {
-            for (let i = 0; i < this.arrivals.length; i++) {
-                this.arrivals[i].start();
-            }
-        }
-    }
+    // /**
+    //  * @for AirportModel
+    //  * @method addAircraft
+    //  */
+    // addAircraft() {
+    //     if (this.departures) {
+    //         this.departures.start();
+    //     }
+    //
+    //     if (this.arrivals) {
+    //         for (let i = 0; i < this.arrivals.length; i++) {
+    //             this.arrivals[i].start();
+    //         }
+    //     }
+    // }
 
     /**
      * @for AirportModel

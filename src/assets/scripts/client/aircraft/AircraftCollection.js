@@ -8,6 +8,7 @@ import _random from 'lodash/random';
 import BaseCollection from '../base/BaseCollection';
 import AircraftDefinitionModel from './AircraftDefinitionModel';
 import AircraftInstanceModel from './AircraftInstanceModel';
+import RouteModel from '../airport/Route/RouteModel';
 import { airlineNameAndFleetHelper } from '../airline/airlineHelpers';
 
 /**
@@ -94,6 +95,8 @@ export default class AircraftCollection extends BaseCollection {
     addItem(aircraftModel) {
         // TODO: add instanceof check here
         this._items.push(aircraftModel);
+        // FIXME: TOTAL HACK!!! REMOVE ME
+        prop.aircraft.list.push(aircraftModel);
     }
 
     /**
@@ -126,6 +129,41 @@ export default class AircraftCollection extends BaseCollection {
     }
 
     /**
+     * Fascade method that calls a builder method based on `spawnModel.category`
+     *
+     * Used to build up the appropriate data needed to instantiate an `AircraftInstanceModel`
+     *
+     * @for AircraftCollection
+     * @method _buildAircraftProps
+     * @param spawnModel {SpawnPatternModel}
+     * @return {object}
+     * @private
+     */
+    _buildAircraftProps(spawnModel) {
+        const airlineId = spawnModel.getRandomAirlineForSpawn();
+        const airlineModel = this._airlineCollection.findAirlineById(airlineId);
+        const aircraftDefinition = this._getAircraftDefinitionForAirlineId(airlineModel);
+        const destination = this._findDestinationFromRouteCode(spawnModel);
+        const { fleet } = airlineNameAndFleetHelper([airlineId]);
+        // TODO: move this to `AirlineModel`
+        const callsign = `${_random(0, 999)}`;
+
+        return {
+            callsign,
+            destination,
+            fleet,
+            airline: airlineModel.icao,
+            altitude: spawnModel.altitude,
+            speed: spawnModel.speed,
+            category: spawnModel.category,
+            icao: aircraftDefinition.icao,
+            model: aircraftDefinition,
+            route: spawnModel.route,
+            waypoints: _get(spawnModel, 'fixes', [])
+        };
+    }
+
+    /**
      * Given an `airlineId`, find a random aircraft type from the airline.
      *
      * @for AircraftCollection
@@ -144,114 +182,30 @@ export default class AircraftCollection extends BaseCollection {
             console.error(`undefined aircraftDefinition for ${aircraftType}`);
 
             // recurse through this method if an error is encountered
-            return this._getAircraftDefinitionForAirlineId(airlineId);
+            return this._getAircraftDefinitionForAirlineId(airlineModel);
         }
 
         return aircraftDefinition;
     }
 
     /**
-     * Fascade method that calls a builder method based on `spawnModel.category`
-     *
-     * Used to build up the appropriate data needed to instantiate an `AircraftInstanceModel`
+     * Determines if `destination` is defined and returns route procedure name if it is not
      *
      * @for AircraftCollection
-     * @method _buildAircraftProps
-     * @param spawnModel {SpawnPatternModel}
-     * @return {object}
+     * @method _findDestinationFromRouteCode
+     * @param destination {string}
+     * @param route {string}
+     * @return {string}
      * @private
      */
-    _buildAircraftProps(spawnModel) {
-        const airlineId = spawnModel.getRandomAirlineForSpawn();
-        const airlineModel = this._airlineCollection.findAirlineById(airlineId);
-        const aircraftDefinition = this._getAircraftDefinitionForAirlineId(airlineModel);
-        const { fleet } = airlineNameAndFleetHelper([airlineId]);
-        // TODO: move this to `AirlineModel`
-        const callsign = `${_random(0, 999)}`;
+    _findDestinationFromRouteCode({ destination, route }) {
+        let destinationOrProcedure = destination;
 
-        return {
-            airline: airlineModel.icao,
-            altitude: spawnModel.altitude,
-            callsign: callsign,
-            category: spawnModel.category,
-            destination: spawnModel.destination,
-            fleet: fleet,
-            icao: aircraftDefinition.icao,
-            model: aircraftDefinition,
-            route: spawnModel.route,
-            waypoints: _get(spawnModel, 'fixes', [])
-        };
+        if (!destination) {
+            const routeModel = new RouteModel(route);
+            destinationOrProcedure = routeModel.procedure;
+        }
 
-        // if (spawnModel.category === 'departure') {
-        //     return this._buildAircraftPropsForDeparture(spawnModel);
-        // }
-        //
-        // return this._buildAircraftPropsForArrival(spawnModel);
-    }
-
-    // TODO: combine this with _buildAircraftPropsForArrival and make a single method to handle airport.spawnPatterns
-    /**
-     * Build props for a departing aircraft.
-     *
-     * Return data is used to instantiate an `AircraftInstanceModel`
-     *
-     * @for AircraftCollection
-     * @method _buildAircraftPropsForDeparture
-     * @param spawnModel {SpawnPatternModel}
-     * @return {object}
-     * @private
-     */
-    _buildAircraftPropsForDeparture(spawnModel) {
-        // @DEPRECATED
-        const destination = spawnModel.getRandomDestinationForDeparture();
-        const airlineId = spawnModel.getRandomAirlineForSpawn();
-        const airlineModel = this._airlineCollection.findAirlineById(airlineId);
-        const aircraftDefinition = this._getAircraftDefinitionForAirlineId(airlineModel);
-        const { fleet } = airlineNameAndFleetHelper([airlineId]);
-        // TODO: move this to `AirlineModel`
-        const callsign = `${_random(0, 999)}`;
-
-        return {
-            airline: airlineModel.icao,
-            callsign: callsign,
-            category: spawnModel.category,
-            destination: destination,
-            icao: aircraftDefinition.icao,
-            model: aircraftDefinition
-        };
-    }
-
-    /**
-     * Build props for a arriving aircraft.
-     *
-     * Return data is used to instantiate an `AircraftInstanceModel
-     *
-     * @for AircraftCollection
-     * @method _buildAircraftPropsForArrival
-     * @param spawnModel {SpawnPatternModel}
-     * @return {object}
-     * @private
-     */
-    _buildAircraftPropsForArrival(spawnModel) {
-        const airlineId = spawnModel.getRandomAirlineForSpawn();
-        const airlineModel = this._airlineCollection.findAirlineById(airlineId);
-        const aircraftDefinition = this._getAircraftDefinitionForAirlineId(airlineModel);
-        const { fleet } = airlineNameAndFleetHelper([airlineId]);
-        // TODO: move this to `AirlineModel`
-        const callsign = `${_random(0, 999)}`;
-
-        return {
-            airline: airlineModel.icao,
-            altitude: spawnModel.altitude,
-            callsign: callsign,
-            category: spawnModel.category,
-            // TODO: this should come from logic and not inline
-            destination: 'ksfo',
-            fleet: fleet,
-            icao: aircraftDefinition.icao,
-            model: aircraftDefinition,
-            route: spawnModel.route,
-            waypoints: _get(spawnModel, 'fixes', [])
-        };
+        return destinationOrProcedure;
     }
 }

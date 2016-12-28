@@ -67,3 +67,19 @@ ava('._buildAircraftDefinitionList() returns a list of AircraftDefinitionModel o
 });
 
 ava.skip('._getAircraftDefinitionForAirlineId()', (t) => {});
+
+ava('._findDestinationFromRouteCode() returns the SID name as a destination for a departing aircraft', (t) => {
+    const expectedResult = 'COWBY6';
+    const collection = new AircraftCollection(AIRCRAFT_DEFINITION_LIST_MOCK, airlineCollectionFixture, fixCollectionFixture);
+    const result = collection._findDestinationFromRouteCode(spawnPatternModelDepartureFixture);
+
+    t.true(result === expectedResult);
+});
+
+ava('._findDestinationFromRouteCode() returns the destination name an arriving aircraft', (t) => {
+    const expectedResult = 'KLAS';
+    const collection = new AircraftCollection(AIRCRAFT_DEFINITION_LIST_MOCK, airlineCollectionFixture, fixCollectionFixture);
+    const result = collection._findDestinationFromRouteCode(spawnPatternModelArrivalFixture);
+
+    t.true(result === expectedResult);
+});
