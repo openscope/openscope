@@ -96,3 +96,35 @@ export const AIRLINE_DEFINITION_LIST_MOCK = [
         }
     }
 ];
+
+// Data here needs to be congruent with data in `AIRCRAFT_DEFINITION_LIST_MOCK` used in `AircraftCollection.spec`
+export const AIRLINE_DEFINITION_LIST_FOR_FIXTURE = [
+    {
+        name: 'American Airlines',
+        icao: 'aal',
+        callsign: {
+            name: 'American',
+            length: 3
+        },
+        fleets: {
+            default: [
+                ['A320', 125],
+                ['B737', 269]
+            ]
+        }
+    },
+    {
+        name: 'United Airlines',
+        icao: 'ual',
+        callsign: {
+            name: 'United',
+            length: 3
+        },
+        fleets: {
+            default: [
+                ['A320', 55],
+                ['B737', 233]
+            ]
+        }
+    }
+];

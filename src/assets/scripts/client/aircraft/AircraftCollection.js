@@ -66,6 +66,7 @@ export default class AircraftCollection extends BaseCollection {
      * Callback method fired by an interval defined in the `SpawnScheduler`.
      *
      * This is the entry method for creating new departing and arriving aircraft.
+     * This method should only be called as a callback from a `SpawnScheduler` timer.
      *
      * @for AircraftCollection
      * @method createAircraftWithSpawnModel
