@@ -162,11 +162,31 @@ export default class AircraftCollection extends BaseCollection {
      * @private
      */
     _buildAircraftProps(spawnModel) {
-        if (spawnModel.category === 'departure') {
-            return this._buildAircraftPropsForDeparture(spawnModel);
-        }
+        const airlineId = spawnModel.getRandomAirlineForSpawn();
+        const airlineModel = this._airlineCollection.findAirlineById(airlineId);
+        const aircraftDefinition = this._getAircraftDefinitionForAirlineId(airlineModel);
+        const { fleet } = airlineNameAndFleetHelper([airlineId]);
+        // TODO: move this to `AirlineModel`
+        const callsign = `${_random(0, 999)}`;
 
-        return this._buildAircraftPropsForArrival(spawnModel);
+        return {
+            airline: airlineModel.icao,
+            altitude: spawnModel.altitude,
+            callsign: callsign,
+            category: spawnModel.category,
+            destination: spawnModel.destination,
+            fleet: fleet,
+            icao: aircraftDefinition.icao,
+            model: aircraftDefinition,
+            route: spawnModel.route,
+            waypoints: _get(spawnModel, 'fixes', [])
+        };
+
+        // if (spawnModel.category === 'departure') {
+        //     return this._buildAircraftPropsForDeparture(spawnModel);
+        // }
+        //
+        // return this._buildAircraftPropsForArrival(spawnModel);
     }
 
     // TODO: combine this with _buildAircraftPropsForArrival and make a single method to handle airport.spawnPatterns

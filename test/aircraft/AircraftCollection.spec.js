@@ -1,3 +1,4 @@
+/* eslint-disable arrow-parens, max-len, import/no-extraneous-dependencies*/
 import ava from 'ava';
 import sinon from 'sinon';
 import _forEach from 'lodash/forEach';
@@ -63,24 +64,6 @@ ava('._buildAircraftDefinitionList() returns a list of AircraftDefinitionModel o
         t.true(result instanceof AircraftDefinitionModel);
         t.true(result.icao === AIRCRAFT_DEFINITION_LIST_MOCK[i].icao.toLowerCase());
     });
-});
-
-ava('._buildAircraftProps() calls ._buildAircraftPropsForDeparture() is spawnModel.category === departure', (t) => {
-    const collection = new AircraftCollection(AIRCRAFT_DEFINITION_LIST_MOCK, airlineCollectionFixture, fixCollectionFixture);
-    const _buildAircraftPropsForDepartureSpy = sinon.spy(collection, '_buildAircraftPropsForDeparture');
-
-    collection._buildAircraftProps(spawnPatternModelDepartureFixture);
-
-    t.true(_buildAircraftPropsForDepartureSpy.calledWithExactly(spawnPatternModelDepartureFixture));
-});
-
-ava('._buildAircraftProps() calls ._buildAircraftPropsForArrival() is spawnModel.category === arrival', (t) => {
-    const collection = new AircraftCollection(AIRCRAFT_DEFINITION_LIST_MOCK, airlineCollectionFixture, fixCollectionFixture);
-    const _buildAircraftPropsForArrivalSpy = sinon.spy(collection, '_buildAircraftPropsForArrival');
-
-    collection._buildAircraftProps(spawnPatternModelArrivalFixture);
-
-    t.true(_buildAircraftPropsForArrivalSpy.calledWithExactly(spawnPatternModelArrivalFixture));
 });
 
 ava.skip('._getAircraftDefinitionForAirlineId()', (t) => {});
