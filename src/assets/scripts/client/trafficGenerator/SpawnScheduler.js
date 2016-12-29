@@ -1,7 +1,6 @@
 import _forEach from 'lodash/forEach';
 import _without from 'lodash/without';
 import SpawnPatternCollection from './SpawnPatternCollection';
-// import AircraftCollection from '../aircraft/AircraftCollection';
 
 /**
  * Create a timer for every item in the `SpawnPatternCollection`
@@ -19,11 +18,6 @@ export default class SpawnScheduler {
         if (!(spawnPatternCollection instanceof SpawnPatternCollection)) {
             throw new TypeError('Invalid parameter. SpawnScheduler requires an instance of a SpawnPatternCollection.');
         }
-
-        // this may be needed but might also be too defensive
-        // if (!(aircraftCollection instanceof AircraftCollection)) {
-        //     throw new TypeError('Invalid parameter. SpawnScheduler requires an instance of a AircraftCollection.');
-        // }
 
         if (typeof aircraftCollection === 'undefined') {
             throw new TypeError('Invalid parameter. SpawnScheduler requires AircraftCollection to be defined.');

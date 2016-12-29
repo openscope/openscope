@@ -1,14 +1,14 @@
 /* eslint-disable import/no-extraneous-dependencies, arrow-parens */
 import ava from 'ava';
 
-import FixModel from '../../src/assets/scripts/client/navigationLibrary/FixModel';
-import PositionModel from '../../src/assets/scripts/client/base/PositionModel';
+import FixModel from '../../../src/assets/scripts/client/navigationLibrary/Fix/FixModel';
+import PositionModel from '../../../src/assets/scripts/client/base/PositionModel';
 
-import { airportPositionFixtureKSFO } from '../fixtures/airportFixtures';
+import { airportPositionFixtureKSFO } from '../../fixtures/airportFixtures';
 import {
     FIXNAME_MOCK,
     FIX_COORDINATE_MOCK
-} from './_mocks/fixMocks';
+} from '../_mocks/fixMocks';
 
 ava('does not throw when instantiated with invalid parameters', t => {
     t.notThrows(() => new FixModel());

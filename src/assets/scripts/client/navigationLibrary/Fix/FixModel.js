@@ -1,6 +1,6 @@
 import _cloneDeep from 'lodash/cloneDeep';
-import BaseModel from '../base/BaseModel';
-import PositionModel from '../base/PositionModel';
+import BaseModel from '../../base/BaseModel';
+import PositionModel from '../../base/PositionModel';
 
 /**
  * Defines a navigational `FixModel`

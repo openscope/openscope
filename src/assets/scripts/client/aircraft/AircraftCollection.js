@@ -31,10 +31,10 @@ export default class AircraftCollection extends BaseCollection {
      * @for AircraftCollection
      * @param aircraftDefinitionList {array<object>}
      * @param airlineCollection {AirlineCollection}
-     * @param fixCollection {FixCollection}
+     * @param navigationLibrary {NavigationLibrary}
      */
-    constructor(aircraftDefinitionList, airlineCollection, fixCollection) {
-        super(aircraftDefinitionList, airlineCollection, fixCollection);
+    constructor(aircraftDefinitionList, airlineCollection, navigationLibrary) {
+        super(aircraftDefinitionList, airlineCollection, navigationLibrary);
 
         if (!_isArray(aircraftDefinitionList) || _isEmpty(aircraftDefinitionList)) {
             // eslint-disable-next-line max-len
@@ -43,12 +43,12 @@ export default class AircraftCollection extends BaseCollection {
         }
 
         // TODO: this may need to use instanceof instead, but that may be overly defensive
-        if (!_isObject(airlineCollection) || !_isObject(fixCollection)) {
-            throw new TypeError('Invalid parameters. Expected airlineCollection and fixCollection to be defined');
+        if (!_isObject(airlineCollection) || !_isObject(navigationLibrary)) {
+            throw new TypeError('Invalid parameters. Expected airlineCollection and navigationLibrary to be defined');
         }
 
         this._airlineCollection = airlineCollection;
-        this._fixCollection = fixCollection;
+        this._navigationLibrary = navigationLibrary;
         this.definitionList = [];
 
         this.init(aircraftDefinitionList);
@@ -229,8 +229,8 @@ export default class AircraftCollection extends BaseCollection {
         };
 
         if (_get(spawnModel, 'fixes', []).length > 1) {
-            const initialPosition = this._fixCollection.getFixPositionCoordinates(spawnModel.fixes[0]);
-            const nextPosition = this._fixCollection.getFixPositionCoordinates(spawnModel.fixes[1]);
+            const initialPosition = this._navigationLibrary.getFixPositionCoordinates(spawnModel.fixes[0]);
+            const nextPosition = this._navigationLibrary.getFixPositionCoordinates(spawnModel.fixes[1]);
             const heading = bearingToPoint(initialPosition, nextPosition);
 
             positionAndHeading.position = initialPosition;

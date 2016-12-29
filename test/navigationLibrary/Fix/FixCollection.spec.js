@@ -3,14 +3,14 @@ import ava from 'ava';
 import sinon from 'sinon';
 import _isEqual from 'lodash/isEqual';
 
-import FixCollection from '../../src/assets/scripts/client/navigationLibrary/FixCollection';
-import FixModel from '../../src/assets/scripts/client/navigationLibrary/FixModel';
+import FixCollection from '../../../src/assets/scripts/client/navigationLibrary/Fix/FixCollection';
+import FixModel from '../../../src/assets/scripts/client/navigationLibrary/Fix/FixModel';
 
 import {
     AIRPORT_JSON_FIXES_MOCK,
     FIX_LIST_MOCK,
     SMALL_FIX_LIST_MOCK
-} from './_mocks/fixMocks';
+} from '../_mocks/fixMocks';
 
 ava('throws when an attempt to instantiate is made with invalid params', t => {
     t.throws(() => new FixCollection());

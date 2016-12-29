@@ -4,7 +4,7 @@ import LoadingView from './LoadingView';
 import AirlineCollection from './airline/AirlineCollection';
 import AircraftCollection from './aircraft/AircraftCollection';
 import AirportController from './airport/AirportController';
-import FixCollection from './navigationLibrary/FixCollection';
+import NavigationLibrary from './navigationLibrary/NavigationLibrary';
 import SpawnPatternCollection from './trafficGenerator/SpawnPatternCollection';
 import SpawnScheduler from './trafficGenerator/SpawnScheduler';
 import GameController from './game/GameController';
@@ -132,10 +132,10 @@ export default class App {
         this.contentQueue = new ContentQueue(this.loadingView);
 
         this.airportController = new AirportController(airportLoadList, this.updateRun);
-        // TODO: this should live within a `NavigationLibrary` class that should also inclue the `StandardRoute` classes
-        this.fixCollection = new FixCollection(initialAirportData);
+
+        this.navigationLibrary = new NavigationLibrary(initialAirportData);
         this.airlineCollection = new AirlineCollection(airlineList);
-        this.aircraftCollection = new AircraftCollection(aircraftDefinitionList, this.airlineCollection, this.fixCollection);
+        this.aircraftCollection = new AircraftCollection(aircraftDefinitionList, this.airlineCollection, this.navigationLibrary);
         // provide updater method for timewarp  timescale change!== 0
         this.spawnPatternCollection = new SpawnPatternCollection(initialAirportData);
         this.spawnScheduler = new SpawnScheduler(this.spawnPatternCollection, this.aircraftCollection);

@@ -5,9 +5,9 @@ import _isEmpty from 'lodash/isEmpty';
 import _isObject from 'lodash/isObject';
 import _map from 'lodash/map';
 // import modelSourceFactory from '../base/ModelSource/ModelSourceFactory';
-import BaseCollection from '../base/BaseCollection';
+import BaseCollection from '../../base/BaseCollection';
 import FixModel from './FixModel';
-import PositionModel from '../base/PositionModel';
+import PositionModel from '../../base/PositionModel';
 
 /**
  * A collection of all the `FixModel`s defined in an airport json file.
