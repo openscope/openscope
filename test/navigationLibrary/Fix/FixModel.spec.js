@@ -8,7 +8,7 @@ import { airportPositionFixtureKSFO } from '../../fixtures/airportFixtures';
 import {
     FIXNAME_MOCK,
     FIX_COORDINATE_MOCK
-} from '../_mocks/fixMocks';
+} from './_mocks/fixMocks';
 
 ava('does not throw when instantiated with invalid parameters', t => {
     t.notThrows(() => new FixModel());

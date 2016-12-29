@@ -6,14 +6,14 @@ import _isEqual from 'lodash/isEqual';
 import _keys from 'lodash/keys';
 import _map from 'lodash/map';
 
-import StandardRouteModel from '../../../src/assets/scripts/client/airport/StandardRoute/StandardRouteModel';
-import RouteSegmentCollection from '../../../src/assets/scripts/client/airport/StandardRoute/RouteSegmentCollection';
-import RouteSegmentModel from '../../../src/assets/scripts/client/airport/StandardRoute/RouteSegmentModel';
-import StandardRouteWaypointModel from '../../../src/assets/scripts/client/airport/StandardRoute/StandardRouteWaypointModel';
+import StandardRouteModel from '../../../src/assets/scripts/client/navigationLibrary/StandardRoute/StandardRouteModel';
+import RouteSegmentCollection from '../../../src/assets/scripts/client/navigationLibrary/StandardRoute/RouteSegmentCollection';
+import RouteSegmentModel from '../../../src/assets/scripts/client/navigationLibrary/StandardRoute/RouteSegmentModel';
+import StandardRouteWaypointModel from '../../../src/assets/scripts/client/navigationLibrary/StandardRoute/StandardRouteWaypointModel';
 
-import FixCollection from '../../../src/assets/scripts/client/airport/Fix/FixCollection';
+import FixCollection from '../../../src/assets/scripts/client/navigationLibrary/Fix/FixCollection';
 import { airportPositionFixtureKSFO } from '../../fixtures/airportFixtures';
-import { FIX_LIST_MOCK } from '../fix/_mocks/fixMocks';
+import { FIX_LIST_MOCK } from '../Fix/_mocks/fixMocks';
 
 import {
     STAR_LIST_MOCK,

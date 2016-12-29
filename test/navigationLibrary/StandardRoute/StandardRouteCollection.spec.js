@@ -1,11 +1,11 @@
 /* eslint-disable arrow-parens, import/no-extraneous-dependencies*/
 import ava from 'ava';
 
-import StandardRouteCollection from '../../../src/assets/scripts/client/airport/StandardRoute/StandardRouteCollection';
-import FixCollection from '../../../src/assets/scripts/client/airport/Fix/FixCollection';
+import StandardRouteCollection from '../../../src/assets/scripts/client/navigationLibrary/StandardRoute/StandardRouteCollection';
+import FixCollection from '../../../src/assets/scripts/client/navigationLibrary/Fix/FixCollection';
 
 import { airportPositionFixtureKSFO } from '../../fixtures/airportFixtures';
-import { FIX_LIST_MOCK } from '../fix/_mocks/fixMocks';
+import { FIX_LIST_MOCK } from '../Fix/_mocks/fixMocks';
 
 import {
     STAR_LIST_MOCK,

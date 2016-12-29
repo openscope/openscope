@@ -2,15 +2,15 @@
 import ava from 'ava';
 import sinon from 'sinon';
 
-import StandardRouteWaypointModel from '../../../src/assets/scripts/client/airport/StandardRoute/StandardRouteWaypointModel';
-import FixCollection from '../../../src/assets/scripts/client/airport/Fix/FixCollection';
+import StandardRouteWaypointModel from '../../../src/assets/scripts/client/navigationLibrary/StandardRoute/StandardRouteWaypointModel';
+import FixCollection from '../../../src/assets/scripts/client/navigationLibrary/Fix/FixCollection';
 import Waypoint from '../../../src/assets/scripts/client/aircraft/FlightManagementSystem/Waypoint';
 
 import {
     airportPositionFixtureKSFO,
     airportModelFixtureForWaypoint
 } from '../../fixtures/airportFixtures';
-import { FIX_LIST_MOCK } from '../fix/_mocks/fixMocks';
+import { FIX_LIST_MOCK } from '../Fix/_mocks/fixMocks';
 
 const NAME_MOCK = 'BIKKR';
 const RESTRICTIONS_MOCK = 'A80+|S250';

@@ -1,51 +1,45 @@
 import _compact from 'lodash/compact';
 import _find from 'lodash/find';
 import _forEach from 'lodash/forEach';
-import _isEmpty from 'lodash/isEmpty';
-import _isObject from 'lodash/isObject';
 import _map from 'lodash/map';
-// import modelSourceFactory from '../base/ModelSource/ModelSourceFactory';
+import modelSourceFactory from '../../base/ModelSource/ModelSourceFactory';
 import BaseCollection from '../../base/BaseCollection';
 import FixModel from './FixModel';
-import PositionModel from '../../base/PositionModel';
 
 /**
  * A collection of all the `FixModel`s defined in an airport json file.
  *
+ * This is built as a static class, so there is only ever once instance.
+ * We use a static class here because the methods contained herein are needed by several
+ * different classes. This provides a single source of truth for all the `FixModel`s
+ * belonging to an Airport.
+ *
  * @class FixCollection
  * @extends BaseCollection
  */
-export default class FixCollection extends BaseCollection {
-    /**
-     * @constructor
-     * @for FixCollection
-     * @param airportJson {object}
-     */
-    constructor(airportJson) {
-        super();
-
-        if (!_isObject(airportJson) || _isEmpty(airportJson)) {
-            throw new TypeError('Invalid parameter passed to FixCollection');
-        }
-
-        this.referencePosition = new PositionModel(airportJson.position, null, airportJson.magnetic_north);
-
-        this.addItems(airportJson.fixes);
-    }
-
+class FixCollection extends BaseCollection {
     /**
      * Lifecycle method. Should be run only once on instantiation.
      *
      * @for FixCollection
      * @method addItems
      * @param fixList {object}
+     * @param airportPosition {PositionModel}
      */
-    addItems(fixList) {
-        this._buildFixModelsFromList(fixList);
+    addItems(fixList, airportPosition) {
+        if (this.length !== 0) {
+            // you made it here because an airport has changed.
+            // in `AirportModel.parse()` this method is called with the fix data for the new airport. We don't want
+            // or need to keep the fixes from a previous airport so if `_items` has a length, we need to reset that
+            // property before we begin to add fixes for the new airport.
+            this.removeItems();
+        }
+
+        this._buildFixModelsFromList(fixList, airportPosition);
     }
 
     /**
-     * Reset the current instance
+     * Destroy the current instance
      *
      * @for FixCollection
      * @method removeItems
@@ -100,7 +94,7 @@ export default class FixCollection extends BaseCollection {
             return null;
         }
 
-        return fixModel.position;
+        return fixModel.position
     }
 
     /**
@@ -129,10 +123,9 @@ export default class FixCollection extends BaseCollection {
      * @param fixList {object}
      * @private
      */
-    _buildFixModelsFromList(fixList) {
+    _buildFixModelsFromList(fixList, airportPosition) {
         _forEach(fixList, (fixCoordinates, fixName) => {
-            // const fixModel = modelSourceFactory.getModelSourceForType('FixModel', fixName, fixCoordinates, airportPosition);
-            const fixModel = new FixModel(fixName, fixCoordinates, this.referencePosition);
+            const fixModel = modelSourceFactory.getModelSourceForType('FixModel', fixName, fixCoordinates, airportPosition);
 
             this.addFixToCollection(fixModel);
         });
@@ -146,7 +139,9 @@ export default class FixCollection extends BaseCollection {
     _resetFixModels() {
         _forEach(this._items, (fixModel) => {
             fixModel.reset();
-            // modelSourceFactory.returnModelToPool(fixModel);
+            modelSourceFactory.returnModelToPool(fixModel);
         });
     }
 }
+
+export default new FixCollection();

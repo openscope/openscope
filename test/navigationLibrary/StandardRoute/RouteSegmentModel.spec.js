@@ -2,11 +2,11 @@
 import ava from 'ava';
 import sinon from 'sinon';
 
-import RouteSegmentModel from '../../../src/assets/scripts/client/airport/StandardRoute/RouteSegmentModel';
-import FixCollection from '../../../src/assets/scripts/client/airport/Fix/FixCollection';
+import RouteSegmentModel from '../../../src/assets/scripts/client/navigationLibrary/StandardRoute/RouteSegmentModel';
+import FixCollection from '../../../src/assets/scripts/client/navigationLibrary/Fix/FixCollection';
 
 import { airportPositionFixtureKSFO } from '../../fixtures/airportFixtures';
-import { FIX_LIST_MOCK } from '../fix/_mocks/fixMocks';
+import { FIX_LIST_MOCK } from '../Fix/_mocks/fixMocks';
 
 const NAME_MOCK = '25R';
 const SEGMENT_WAYPOINTS_MOCK = ['RBELL', ['ROPPR', 'A70'], ['MDDOG', 'A90'], ['TARRK', 'A110']];

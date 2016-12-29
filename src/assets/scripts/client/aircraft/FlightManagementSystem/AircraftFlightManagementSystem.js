@@ -4,7 +4,7 @@ import _find from 'lodash/find';
 import _last from 'lodash/last';
 import _map from 'lodash/map';
 import _isNil from 'lodash/isNil';
-import FixCollection from '../../airport/Fix/FixCollection';
+import FixCollection from '../../navigationLibrary/Fix/FixCollection';
 import Waypoint from './Waypoint';
 import Leg from './Leg';
 import RouteModel from '../../airport/Route/RouteModel';

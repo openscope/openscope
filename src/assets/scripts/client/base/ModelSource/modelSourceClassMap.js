@@ -1,5 +1,5 @@
 import _keys from 'lodash/keys';
-import FixModel from '../../airport/Fix/FixModel';
+import FixModel from '../../navigationLibrary/Fix/FixModel';
 // import Waypoint from '../../aircraft/Waypoint';
 // import PositionModel from '../PositionModel';
 

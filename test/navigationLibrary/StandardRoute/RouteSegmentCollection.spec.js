@@ -2,12 +2,12 @@
 import ava from 'ava';
 import _isEqual from 'lodash/isEqual';
 
-import RouteSegmentCollection from '../../../src/assets/scripts/client/airport/StandardRoute/RouteSegmentCollection';
-import RouteSegmentModel from '../../../src/assets/scripts/client/airport/StandardRoute/RouteSegmentModel';
-import FixCollection from '../../../src/assets/scripts/client/airport/Fix/FixCollection';
+import RouteSegmentCollection from '../../../src/assets/scripts/client/navigationLibrary/StandardRoute/RouteSegmentCollection';
+import RouteSegmentModel from '../../../src/assets/scripts/client/navigationLibrary/StandardRoute/RouteSegmentModel';
+import FixCollection from '../../../src/assets/scripts/client/navigationLibrary/Fix/FixCollection';
 
 import { airportPositionFixtureKSFO } from '../../fixtures/airportFixtures';
-import { FIX_LIST_MOCK } from '../fix/_mocks/fixMocks';
+import { FIX_LIST_MOCK } from '../Fix/_mocks/fixMocks';
 import { ROUTE_SEGMENTS_MOCK } from './_mocks/standardRouteMocks';
 
 ava.before(() => FixCollection.addItems(FIX_LIST_MOCK, airportPositionFixtureKSFO));

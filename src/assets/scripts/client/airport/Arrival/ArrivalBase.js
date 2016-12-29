@@ -1,7 +1,7 @@
 import _get from 'lodash/get';
 import _map from 'lodash/map';
 import _random from 'lodash/random';
-import FixCollection from '../Fix/FixCollection';
+import FixCollection from '../../navigationLibrary/Fix/FixCollection';
 import RouteModel from '../Route/RouteModel';
 import PositionModel from '../../base/PositionModel';
 import {

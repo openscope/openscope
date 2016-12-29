@@ -4,12 +4,12 @@ import sinon from 'sinon';
 import _isEqual from 'lodash/isEqual';
 
 import modelSourcePool from '../../../src/assets/scripts/client/base/ModelSource/ModelSourcePool';
-import FixModel from '../../../src/assets/scripts/client/airport/Fix/FixModel';
+import FixModel from '../../../src/assets/scripts/client/navigationLibrary/Fix/FixModel';
 import { airportPositionFixtureKSFO } from '../../fixtures/airportFixtures';
 import {
     FIXNAME_MOCK,
     FIX_COORDINATE_MOCK
-} from '../../airport/fix/_mocks/fixMocks';
+} from '../../navigationLibrary/Fix/_mocks/fixMocks';
 
 const SOURCE_NAME_MOCK = 'FixModel';
 
