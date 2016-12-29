@@ -1,3 +1,4 @@
+import PositionModel from '../base/PositionModel';
 import FixCollection from './Fix/FixCollection';
 import StandardRouteCollection from './StandardRoute/StandardRouteCollection';
 
@@ -8,25 +9,67 @@ export default class NavigationLibrary {
     /**
      * @constructor
      * @for NavigationLibrary
-     * @param
+     * @param airportJson {object}
      */
     constructor(airportJson) {
-        this._fixCollection = null;
+        /**
+         *
+         *
+         * @property _referencePosition
+         * @type {PositionModel}
+         * @default null
+         */
+        this._referencePosition = null
+
+        /**
+         *
+         *
+         * @property _sidCollection
+         * @type {StandardRoute}
+         * @default null
+         */
         this._sidCollection = null;
-        this._starColelction = null;
+
+        /**
+         *
+         *
+         * @property _starCollection
+         * @type {StandardRoute}
+         * @default null
+         */
+        this._starCollection = null;
 
         this.init(airportJson);
     }
 
-    init({ fixes, sids, stars }) {
-        this._fixCollection = new FixCollection(fixes);
+    /**
+     * Lifecycle method, should be run only once on instantiation
+     *
+     * Set initial class properties
+     *
+     * @for NavigationLibrary
+     * @method init
+     */
+    init(airportJson) {
+        const { fixes, sids, stars } = airportJson;
+
+        this._referencePosition = new PositionModel(airportJson.position, null, airportJson.magnetic_north);
+
+        FixCollection.addItems(fixes, this._referencePosition);
         this._sidCollection = new StandardRouteCollection(sids);
-        this._starColelction = new StandardRouteCollection(stars);
+        this._starCollection = new StandardRouteCollection(stars);
     }
 
+    /**
+     * Tear down the instance
+     *
+     * @for NavigationLibrary
+     * @method destroy
+     */
     destroy() {
-        this._fixCollection = null;
+        FixCollection.removeItems();
+
         this._sidCollection = null;
-        this._starColelction = null;
+        this._starCollection = null;
     }
 }

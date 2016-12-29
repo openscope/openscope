@@ -154,7 +154,7 @@ export default class AirportModel {
         this.rr_center = _get(data, 'rr_center');
 
         this.fixes = _get(data, 'fixes', {});
-        FixCollection.addItems(this.fixes, this.position);
+        // FixCollection.addItems(this.fixes, this.position);
 
         this.sidCollection = new StandardRouteCollection(data.sids);
         this.starCollection = new StandardRouteCollection(data.stars);

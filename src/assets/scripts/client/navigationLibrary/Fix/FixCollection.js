@@ -24,9 +24,9 @@ class FixCollection extends BaseCollection {
      * @for FixCollection
      * @method addItems
      * @param fixList {object}
-     * @param airportPosition {PositionModel}
+     * @param referencePosition {PositionModel}
      */
-    addItems(fixList, airportPosition) {
+    addItems(fixList, referencePosition) {
         if (this.length !== 0) {
             // you made it here because an airport has changed.
             // in `AirportModel.parse()` this method is called with the fix data for the new airport. We don't want
@@ -35,7 +35,7 @@ class FixCollection extends BaseCollection {
             this.removeItems();
         }
 
-        this._buildFixModelsFromList(fixList, airportPosition);
+        this._buildFixModelsFromList(fixList, referencePosition);
     }
 
     /**
@@ -121,11 +121,12 @@ class FixCollection extends BaseCollection {
      * @for FixCollection
      * @method _buildFixModelsFromList
      * @param fixList {object}
+     * @param referencePosition {PositionModel}
      * @private
      */
-    _buildFixModelsFromList(fixList, airportPosition) {
+    _buildFixModelsFromList(fixList, referencePosition) {
         _forEach(fixList, (fixCoordinates, fixName) => {
-            const fixModel = modelSourceFactory.getModelSourceForType('FixModel', fixName, fixCoordinates, airportPosition);
+            const fixModel = modelSourceFactory.getModelSourceForType('FixModel', fixName, fixCoordinates, referencePosition);
 
             this.addFixToCollection(fixModel);
         });

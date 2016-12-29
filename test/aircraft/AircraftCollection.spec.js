@@ -1,6 +1,6 @@
 /* eslint-disable arrow-parens, max-len, import/no-extraneous-dependencies*/
 import ava from 'ava';
-import sinon from 'sinon';
+// import sinon from 'sinon';
 import _cloneDeep from 'lodash/cloneDeep';
 import _forEach from 'lodash/forEach';
 import _isEqual from 'lodash/isEqual';
@@ -16,7 +16,7 @@ import {
 
 import {
     AIRCRAFT_DEFINITION_LIST_MOCK,
-    AIRCRAFT_DEFINITION_MOCK,
+    // AIRCRAFT_DEFINITION_MOCK,
     AIRCRAFT_INITIALIZATION_PROPS_MOCK
 } from './_mocks/aircraftMocks';
 
