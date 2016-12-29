@@ -50,6 +50,13 @@ ava('.findFixesForSidByRunwayAndExit() returns early when not provided an icao p
     t.true(typeof result === 'undefined');
 });
 
+ava('.findEntryAndBodyFixesForRoute() returns a list of fixes for the entry and body segments of a route', (t) => {
+    const collection = new StandardRouteCollection(STAR_LIST_MOCK);
+    const result = collection.findEntryAndBodyFixesForRoute(STAR_ICAO_MOCK, ENTRY_FIXNAME_MOCK);
+
+    t.true(result.length === 8);
+});
+
 ava('.findFixesForStarByEntryAndRunway() returns a list of fixes that make up a StandardRoutes when given an icao, entry and runway paramater', t => {
     const collection = new StandardRouteCollection(STAR_LIST_MOCK);
     const result = collection.findFixesForStarByEntryAndRunway(STAR_ICAO_MOCK, ENTRY_FIXNAME_MOCK, RUNWAY_NAME_MOCK);

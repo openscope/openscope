@@ -72,4 +72,22 @@ export default class NavigationLibrary {
         this._sidCollection = null;
         this._starCollection = null;
     }
+
+    /**
+     * Fascade Method
+     *
+     *
+     */
+    getFixPositionCoordinates(fixName) {
+        return FixCollection.getFixPositionCoordinates(fixName);
+    }
+
+    /**
+     * Fascade Method
+     *
+     *
+     */
+    findEntryAndBodyFixesForRoute(routeName, entryFixName) {
+        return this._starCollection.findEntryAndBodyFixesForRoute(routeName, entryFixName);
+    }
 }

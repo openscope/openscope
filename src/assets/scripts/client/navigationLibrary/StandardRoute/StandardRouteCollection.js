@@ -100,6 +100,25 @@ export default class StandardRouteCollection extends BaseCollection {
         return sid.findFixesAndRestrictionsForRunwayAndExit(runwayName, exitFixName);
     }
 
+    /**
+     * Finds a list of fixes for the entry and body segments of a given route
+     *
+     * @for StandardRouteCollection
+     * @method findEntryAndBodyFixesForRoute
+     * @param icao {string}
+     * @param entryFixName {string}
+     * @return {array}
+     */
+    findEntryAndBodyFixesForRoute(icao, entryFixName) {
+        if (!icao) {
+            return;
+        }
+
+        const route = this.findRouteByIcao(icao);
+
+        return route.findFixesAndRestrictionsForEntryAndBody(entryFixName);
+    }
+
     // TODO: update implementations to accept the FixModel instead of an array
     /**
      * Find a list of fixes for a route, given an `icao`, `entryFixName` and `runwayName` parameter.
@@ -147,12 +166,15 @@ export default class StandardRouteCollection extends BaseCollection {
     /**
      * Find a random name of an `exitPoint` segment that exists within the collection.
      *
+     * @deprecated
      * @for StandardRouteCollection
      * @method findRandomExitPointForSIDIcao
      * @param icao {string}
      * @return {string}
      */
     findRandomExitPointForSIDIcao(icao) {
+        console.warn('StandardRouteCollection.findRandomExitPointForSIDIcao() will be deprecated in the next release');
+
         const sid = this.findRouteByIcao(icao);
 
         // if sid doesnt have any exit points it ends at fix for which the SID is named

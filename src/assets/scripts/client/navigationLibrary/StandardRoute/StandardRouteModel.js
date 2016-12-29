@@ -203,7 +203,7 @@ export default class StandardRouteModel extends BaseModel {
     /**
      * Gather the fixes from all the route segments.
      *
-     * Returns an 2d array in the shape of
+     * Returns a 2d array in the shape of
      * - [[FIXNAME, FIX_RESTRICTIONS], [FIXNAME, FIX_RESTRICTIONS]]
      *
      * @for StandardRouteModel
@@ -219,6 +219,9 @@ export default class StandardRouteModel extends BaseModel {
     /**
      * Gather the fixes from all the route segments.
      *
+     * Returns a 2d array in the shape of
+     * - [[FIXNAME, FIX_RESTRICTIONS], [FIXNAME, FIX_RESTRICTIONS]]
+     *
      * @for StandardRouteModel
      * @method findFixesAndRestrictionsForEntryAndRunway
      * @param entryFixName {string}
@@ -230,6 +233,21 @@ export default class StandardRouteModel extends BaseModel {
     }
 
     /**
+     * Gather the fixes from `entry` and `body` route segments.
+     *
+     * Returns a 2d array in the shape of
+     * - [[FIXNAME, FIX_RESTRICTIONS], [FIXNAME, FIX_RESTRICTIONS]]
+     *
+     * @for StandardRouteModel
+     * @method findFixesAndRestrictionsForEntryAndBody
+     * @param entryFixName {string}
+     * @return {array}
+     */
+    findFixesAndRestrictionsForEntryAndBody(entryFixName) {
+        return this._findFixListForEntryAndBody(entryFixName);
+    }
+
+    /**
      * Collect all the `StandardWaypointModel` objects for a given route.
      *
      * @for StandardRouteModel
@@ -237,10 +255,11 @@ export default class StandardRouteModel extends BaseModel {
      * @param entry {string}
      * @param exit {string}
      * @param isPreSpawn {boolean} flag used to determine if distances between waypoints should be calculated
+     * @param isPartial {boolean}
      * @return waypointList {array<StandardWaypointModel>}
      */
-    findStandardWaypointModelsForEntryAndExit(entry, exit, isPreSpawn) {
-        const waypointList = this._findStandardWaypointModelsForRoute(entry, exit);
+    findStandardWaypointModelsForEntryAndExit(entry, exit, isPreSpawn, isPartial = false) {
+        const waypointList = this._findStandardWaypointModelsForRoute(entry, exit, isPartial);
 
         if (isPreSpawn) {
             this._updateWaypointsWithPreviousWaypointData(waypointList);
@@ -412,9 +431,9 @@ export default class StandardRouteModel extends BaseModel {
      * @private
      */
     _findFixListForSidByRunwayAndExit = (runwayName, exitFixName) => this._generateFixList(
-        this._findFixListInByCollectionAndSegmentName('rwy', '_entryCollection', runwayName),
+        this._findFixListByCollectionAndSegmentName('rwy', '_entryCollection', runwayName),
         this._findBodyFixList(),
-        this._findFixListInByCollectionAndSegmentName('exitPoints', '_exitCollection', exitFixName)
+        this._findFixListByCollectionAndSegmentName('exitPoints', '_exitCollection', exitFixName)
     );
 
     /**
@@ -428,24 +447,41 @@ export default class StandardRouteModel extends BaseModel {
      * @return {array}
      */
     _findFixListForStarByEntryAndRunway = (entryFixName, runwayName) => this._generateFixList(
-        this._findFixListInByCollectionAndSegmentName('entryPoints', '_entryCollection', entryFixName),
+        this._findFixListByCollectionAndSegmentName('entryPoints', '_entryCollection', entryFixName),
         this._findBodyFixList(),
-        this._findFixListInByCollectionAndSegmentName('rwy', '_exitCollection', runwayName)
+        this._findFixListByCollectionAndSegmentName('rwy', '_exitCollection', runwayName)
     );
+
+    /**
+     * Given an `entryFixName`, find a list of fixes for the `entryPoints` and `body` segments.
+     *
+     * @for StandardRouteModel
+     * @method _findFixListForEntryAndBody
+     * @param entryFixName {string}
+     * @return {array}
+     */
+    _findFixListForEntryAndBody(entryFixName) {
+        const entrySegment = this._entryCollection.findSegmentByName(entryFixName);
+
+        return [
+            ...entrySegment.items,
+            ...this._bodySegmentModel.items
+        ];
+    }
 
     /**
      * Given an `originalCollectionName`, `collectionName` and a `segmentName`, return a normalized list of
      * fixes with restrictions.
      *
      * @for StandardRouteModel
-     * @method _findFixListInByCollectionAndSegmentName
+     * @method _findFixListByCollectionAndSegmentName
      * @param originalCollectionName {string}  the name of the original collection from airport json,
      *                                         one of: [entryPoints, rwy, exitPoints]
      * @param collectionName {string}  collectionName as defined here, one of: [_entryCollection, _exitCollection]
      * @segmentName {string}  name of the segment to search for
      * @return array {array<array>}
      */
-    _findFixListInByCollectionAndSegmentName(originalCollectionName, collectionName, segmentName) {
+    _findFixListByCollectionAndSegmentName(originalCollectionName, collectionName, segmentName) {
         const originalCollection = _get(this, originalCollectionName, null);
         const collection = _get(this, collectionName, null);
 
@@ -464,30 +500,32 @@ export default class StandardRouteModel extends BaseModel {
      * @for StandardRouteModel
      * @method _findStandardWaypointModelsForRoute
      * @param entry {string}
-     * @param exti {string}
+     * @param exit {string}
      * @return {array<StandardWaypointModel>}
      */
     _findStandardWaypointModelsForRoute(entry, exit) {
         let entrySegmentItems = [];
         let exitSegmentItems = [];
 
+        // FIXME: this if is overly defensive. every route should have an entry, body and exit
         if (this._entryCollection) {
             const entrySegment = this._entryCollection.findSegmentByName(entry);
 
             if (typeof entrySegment === 'undefined') {
-                throw new TypeError(`Expected 'entry' to exist in the RouteSegmentCollection, but '${this.icao}' ` +
-                `does not have an entry of '${entry}'`);
+                throw new TypeError(`Expected 'entry' to exist in the RouteSegmentCollection, but ${this.icao} ` +
+                `does not have an entry of ${entry}`);
             }
 
             entrySegmentItems = entrySegment.items;
         }
 
+        // FIXME: this if is overly defensive. every route should have an entry, body and exit
         if (this._exitCollection) {
             const exitSegment = this._exitCollection.findSegmentByName(exit);
 
             if (typeof exitSegment === 'undefined') {
-                throw new TypeError(`Expected 'exit' to exist in the RouteSegmentCollection, but '${this.icao}' ` +
-                `does not have an exit of '${exit}'`);
+                throw new TypeError(`Expected 'exit' to exist in the RouteSegmentCollection, but ${this.icao} ` +
+                `does not have an exit of ${exit}`);
             }
 
             exitSegmentItems = exitSegment.items;

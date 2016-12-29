@@ -11,6 +11,7 @@ import AircraftInstanceModel from './AircraftInstanceModel';
 import RouteModel from '../airport/Route/RouteModel';
 import { airlineNameAndFleetHelper } from '../airline/airlineHelpers';
 import { bearingToPoint } from '../math/flightMath';
+import { FLIGHT_CATEGORY } from '../constants/aircraftConstants';
 
 /**
  * Collection of `AircraftInstanceModel` objects
@@ -80,9 +81,9 @@ export default class AircraftCollection extends BaseCollection {
     createAircraftWithSpawnModel = (spawnModel) => {
         let initializationProps = this._buildAircraftProps(spawnModel);
 
-        // if (spawnModel.category === FLIGHT_CATEGORY.ARRIVAL) {
-        //     initializationProps = this._calculatePostiionAndHeadingForArrival(spawnModel, initializationProps);
-        // }
+        if (spawnModel.category === FLIGHT_CATEGORY.ARRIVAL) {
+            initializationProps = this._calculatePostiionAndHeadingForArrival(spawnModel, initializationProps);
+        }
 
         const aircraftModel = new AircraftInstanceModel(initializationProps);
 
@@ -237,7 +238,19 @@ export default class AircraftCollection extends BaseCollection {
             positionAndHeading.heading = heading;
         } else if (spawnModel.route) {
             const routeModel = new RouteModel(spawnModel.route);
-            console.log(spawnModel.route);
+            const isPreSpawn = false;
+            const waypointModelList = this._navigationLibrary.findEntryAndBodyFixesForRoute(
+                routeModel.procedure,
+                routeModel.entry
+            );
+
+            // grab position of first fix
+            const initialPosition = waypointModelList[0].position;
+            // calculate heading from first waypoint to second waypoint
+            const heading = bearingToPoint(initialPosition, waypointModelList[1].position);
+
+            positionAndHeading.position = initialPosition;
+            positionAndHeading.heading = heading;
         }
 
         return Object.assign({}, initializationProps, positionAndHeading);

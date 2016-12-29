@@ -87,7 +87,7 @@ ava('._findDestinationFromRouteCode() returns the destination name an arriving a
     t.true(result === expectedResult);
 });
 
-ava.skip('._calculatePositionAndHeadingForArrival() calculates aircraft heading and position when provided list a of fixes', (t) => {
+ava('._calculatePositionAndHeadingForArrival() calculates aircraft heading and position when provided list a of fixes', (t) => {
     const expedtedHeadingResult = 0.5812231343277809;
     const expectedPositionResult = [-99.76521626690608, -148.0266530993096];
     const collection = new AircraftCollection(AIRCRAFT_DEFINITION_LIST_MOCK, airlineCollectionFixture, navigationLibraryFixture);
@@ -101,15 +101,13 @@ ava.skip('._calculatePositionAndHeadingForArrival() calculates aircraft heading 
     t.true(_isEqual(result.position, expectedPositionResult));
 });
 
-ava.skip('._calculatePostiionAndHeadingForArrival() calculates aircraft heading and position when provided a route', (t) => {
+ava('._calculatePostiionAndHeadingForArrival() calculates aircraft heading and position when provided a route', (t) => {
     const expedtedHeadingResult = 0.5812231343277809;
     const expectedPositionResult = [-99.76521626690608, -148.0266530993096];
     const collection = new AircraftCollection(AIRCRAFT_DEFINITION_LIST_MOCK, airlineCollectionFixture, navigationLibraryFixture);
 
     const result = collection._calculatePostiionAndHeadingForArrival(spawnPatternModelArrivalFixture, AIRCRAFT_INITIALIZATION_PROPS_MOCK);
 
-    // console.log(result);
-
-    // t.true(result.heading === expedtedHeadingResult);
-    // t.true(_isEqual(result.position, expectedPositionResult))
+    t.true(result.heading === expedtedHeadingResult);
+    t.true(_isEqual(result.position, expectedPositionResult))
 });

@@ -144,7 +144,7 @@ ava('.findFixesAndRestrictionsForEntryAndRunway() returns fixes for a given arri
 });
 
 ava('.findStandardWaypointModelsForEntryAndExit() returns a list of `StandardRouteWaypointModel`s for a given STAR', t => {
-    const expectedArguments = ['MLF', '19R'];
+    const expectedArguments = ['MLF', '19R', false];
     const model = new StandardRouteModel(STAR_LIST_MOCK.GRNPA1);
     const spy = sinon.spy(model, '_findStandardWaypointModelsForRoute');
 
@@ -297,7 +297,7 @@ ava('._findStandardWaypointModelsForRoute() returns a list of StandardRouteWaypo
     t.true(result.length === 9);
 });
 
-ava('._findFixListInByCollectionAndSegmentName() returns an array of normalized fixes from the _entryCollection', t => {
+ava('._findFixListByCollectionAndSegmentName() returns an array of normalized fixes from the _entryCollection', t => {
     const expectedResult = [
         ['DRK', null],
         ['IGM', 'A240'],
@@ -305,14 +305,14 @@ ava('._findFixListInByCollectionAndSegmentName() returns an array of normalized 
     ];
     const model = new StandardRouteModel(STAR_MOCK);
 
-    t.notThrows(() => model._findFixListInByCollectionAndSegmentName('entryPoints', '_entryCollection', ENTRY_FIXNAME_MOCK));
+    t.notThrows(() => model._findFixListByCollectionAndSegmentName('entryPoints', '_entryCollection', ENTRY_FIXNAME_MOCK));
 
-    const result = model._findFixListInByCollectionAndSegmentName('entryPoints', '_entryCollection', ENTRY_FIXNAME_MOCK);
+    const result = model._findFixListByCollectionAndSegmentName('entryPoints', '_entryCollection', ENTRY_FIXNAME_MOCK);
 
     t.true(_isEqual(result, expectedResult));
 });
 
-ava('._findFixListInByCollectionAndSegmentName() returns an array of normalized fixes from the _exitCollection', t => {
+ava('._findFixListByCollectionAndSegmentName() returns an array of normalized fixes from the _exitCollection', t => {
     const expectedResult = [
         ['DBIGE', 'A210+'],
         ['BIKKR', 'A210+'],
@@ -320,9 +320,9 @@ ava('._findFixListInByCollectionAndSegmentName() returns an array of normalized 
     ];
     const model = new StandardRouteModel(SID_MOCK);
 
-    t.notThrows(() => model._findFixListInByCollectionAndSegmentName('rwy', '_exitCollection', EXIT_FIXNAME_MOCK));
+    t.notThrows(() => model._findFixListByCollectionAndSegmentName('rwy', '_exitCollection', EXIT_FIXNAME_MOCK));
 
-    const result = model._findFixListInByCollectionAndSegmentName('rwy', '_exitCollection', EXIT_FIXNAME_MOCK);
+    const result = model._findFixListByCollectionAndSegmentName('rwy', '_exitCollection', EXIT_FIXNAME_MOCK);
 
     t.true(_isEqual(result, expectedResult));
 });
