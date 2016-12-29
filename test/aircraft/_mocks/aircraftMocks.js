@@ -76,3 +76,17 @@ export const AIRCRAFT_DEFINITION_LIST_MOCK = [
         }
     }
 ];
+
+export const AIRCRAFT_INITIALIZATION_PROPS_MOCK = {
+    callsign: '432',
+    destination: 'KLAS',
+    fleet: '',
+    airline: 'aal',
+    altitude: 28000,
+    speed: 320,
+    category: 'arrival',
+    icao: 'b737',
+    model: null,
+    route: 'DAG.KEPEC3.KLAS',
+    waypoints: []
+};

@@ -225,11 +225,10 @@ export default class SpawnPatternModel extends BaseModel {
         this.origin = spawnPatternJson.origin;
         this.destination = spawnPatternJson.destination;
         this.category = spawnPatternJson.category;
-        // TODO: some of these may not require `_get()`
-        this.method = _get(spawnPatternJson, 'method', this.method);
-        this.rate = _get(spawnPatternJson, 'rate', this.rate);
-        this.route = _get(spawnPatternJson, 'route', this.route);
-        this.speed = _get(spawnPatternJson, 'speed', this.speed);
+        this.method = spawnPatternJson.method;
+        this.rate = spawnPatternJson.rate;
+        this.route = spawnPatternJson.route;
+        this.speed = parseInt(spawnPatternJson.speed, 10);
 
         this._minimumDelay = TIME.ONE_SECOND_IN_MILLISECONDS * 3;
         this._maximumDelay = this._calculateMaximumMsDelayFromFrequency();

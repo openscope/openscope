@@ -10,6 +10,7 @@ import AircraftDefinitionModel from './AircraftDefinitionModel';
 import AircraftInstanceModel from './AircraftInstanceModel';
 import RouteModel from '../airport/Route/RouteModel';
 import { airlineNameAndFleetHelper } from '../airline/airlineHelpers';
+import { bearingToPoint } from '../math/flightMath';
 
 /**
  * Collection of `AircraftInstanceModel` objects
@@ -77,7 +78,12 @@ export default class AircraftCollection extends BaseCollection {
      * @param spawnModel {SpawnPatternModel}
      */
     createAircraftWithSpawnModel = (spawnModel) => {
-        const initializationProps = this._buildAircraftProps(spawnModel);
+        let initializationProps = this._buildAircraftProps(spawnModel);
+
+        // if (spawnModel.category === FLIGHT_CATEGORY.ARRIVAL) {
+        //     initializationProps = this._calculatePostiionAndHeadingForArrival(spawnModel, initializationProps);
+        // }
+
         const aircraftModel = new AircraftInstanceModel(initializationProps);
 
         console.log('SPAWN :::', spawnModel.category, initializationProps);
@@ -129,8 +135,6 @@ export default class AircraftCollection extends BaseCollection {
     }
 
     /**
-     * Fascade method that calls a builder method based on `spawnModel.category`
-     *
      * Used to build up the appropriate data needed to instantiate an `AircraftInstanceModel`
      *
      * @for AircraftCollection
@@ -207,5 +211,35 @@ export default class AircraftCollection extends BaseCollection {
         }
 
         return destinationOrProcedure;
+    }
+
+    /**
+     *
+     *
+     * @for AircraftCollection
+     * @method _calculatePostiionAndHeadingForArrival
+     * @param spawnModel {SpawnPatternModel}
+     * @return positionAndHeading {object}
+     * @private
+     */
+    _calculatePostiionAndHeadingForArrival(spawnModel, initializationProps) {
+        const positionAndHeading = {
+            heading: -1,
+            position: null
+        };
+
+        if (_get(spawnModel, 'fixes', []).length > 1) {
+            const initialPosition = this._fixCollection.getFixPositionCoordinates(spawnModel.fixes[0]);
+            const nextPosition = this._fixCollection.getFixPositionCoordinates(spawnModel.fixes[1]);
+            const heading = bearingToPoint(initialPosition, nextPosition);
+
+            positionAndHeading.position = initialPosition;
+            positionAndHeading.heading = heading;
+        } else if (spawnModel.route) {
+            const routeModel = new RouteModel(spawnModel.route);
+            console.log(spawnModel.route);
+        }
+
+        return Object.assign({}, initializationProps, positionAndHeading);
     }
 }
