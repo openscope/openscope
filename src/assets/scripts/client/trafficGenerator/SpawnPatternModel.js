@@ -1,6 +1,6 @@
 import _forEach from 'lodash/forEach';
-import _get from 'lodash/get';
 import _map from 'lodash/map';
+import _isArray from 'lodash/isArray';
 import _isEmpty from 'lodash/isEmpty';
 import _isObject from 'lodash/isObject';
 import _random from 'lodash/random';
@@ -131,17 +131,25 @@ export default class SpawnPatternModel extends BaseModel {
          */
         this._minimumDelay = -1;
 
-        // TODO: this will need to accept a [min, max] altitude
         /**
-         * Altitude to spawn at
          *
-         * Only aplicable to arrivals
          *
-         * @property altitude
+         * @property _minimumAltitude
          * @type {number}
-         * @default 0
+         * @default -1
+         * @private
          */
-        this.altitude = 0;
+        this._minimumAltitude = -1;
+
+        /**
+         *
+         *
+         * @property _maximumAltitude
+         * @type {number}
+         * @default -1
+         * @private
+         */
+        this._maximumAltitude = -1;
 
         /**
          * Speed of spawning aircraft
@@ -213,6 +221,16 @@ export default class SpawnPatternModel extends BaseModel {
     }
 
     /**
+     *
+     *
+     * @property altitude
+     * @return {number}
+     */
+    get altitude() {
+        return _random(this._minimumAltitude, this._maximumAltitude);
+    }
+
+    /**
      * Lifecycle method. Should be run only once on instantiation.
      *
      * Set up the instance properties
@@ -233,8 +251,8 @@ export default class SpawnPatternModel extends BaseModel {
         this._minimumDelay = TIME.ONE_SECOND_IN_MILLISECONDS * 3;
         this._maximumDelay = this._calculateMaximumMsDelayFromFrequency();
         this.delay = this.getRandomDelayValue();
-        // TODO: this may need to be a method that randomizes altitude within a range
-        this.altitude = _get(spawnPatternJson, 'altitude', this.altitude);
+
+        this._setMinMaxAltitude(spawnPatternJson.altitude);
         this.airlines = this._assembleAirlineNamesAndFrequencyForSpawn(spawnPatternJson.airlines);
         this._weightedAirlineList = this._buildWeightedAirlineList();
     }
@@ -270,6 +288,20 @@ export default class SpawnPatternModel extends BaseModel {
 
         // we round down because math may result in fractional numbers
         return Math.floor(randomDelayValue);
+    }
+
+    _setMinMaxAltitude(altitude) {
+        if (_isArray(altitude)) {
+            const [min, max] = altitude;
+
+            this._minimumAltitude = min;
+            this._maximumAltitude = max;
+
+            return;
+        }
+
+        this._minimumAltitude = altitude;
+        this._maximumAltitude = altitude;
     }
 
     /**
