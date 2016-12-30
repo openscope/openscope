@@ -1,10 +1,13 @@
 import _forEach from 'lodash/forEach';
+import _get from 'lodash/get';
 import _map from 'lodash/map';
 import _isArray from 'lodash/isArray';
 import _isEmpty from 'lodash/isEmpty';
 import _isObject from 'lodash/isObject';
 import _random from 'lodash/random';
 import BaseModel from '../base/BaseModel';
+import RouteModel from '../airport/Route/RouteModel';
+import { bearingToPoint } from '../math/flightMath';
 import { FLIGHT_CATEGORY } from '../constants/aircraftConstants';
 import { TIME } from '../constants/globalConstants';
 
@@ -22,13 +25,18 @@ export default class SpawnPatternModel extends BaseModel {
      * @constructor
      * @for SpawnPatternModel
      * @param spawnPatternJson {object}
+     * @param navigationLibrary {NavigationLibrary}
      */
     /* istanbul ignore next */
-    constructor(spawnPatternJson) {
-        super(spawnPatternJson);
+    constructor(spawnPatternJson, navigationLibrary) {
+        super(spawnPatternJson, navigationLibrary);
 
         if (!_isObject(spawnPatternJson) || _isEmpty(spawnPatternJson)) {
             throw new TypeError('Invalid parameter passed to SpawnPatternModel');
+        }
+
+        if (!_isObject(navigationLibrary) || _isEmpty(navigationLibrary)) {
+            throw new TypeError('Invalid NavigationLibrary passed to SpawnPatternModel');
         }
 
         /**
@@ -132,7 +140,7 @@ export default class SpawnPatternModel extends BaseModel {
         this._minimumDelay = -1;
 
         /**
-         *
+         * Lowest altitude an aircraft can spawn at
          *
          * @property _minimumAltitude
          * @type {number}
@@ -142,7 +150,7 @@ export default class SpawnPatternModel extends BaseModel {
         this._minimumAltitude = -1;
 
         /**
-         *
+         * Highest altitude an aircraft can spawn at
          *
          * @property _maximumAltitude
          * @type {number}
@@ -163,20 +171,20 @@ export default class SpawnPatternModel extends BaseModel {
         /**
          *
          *
-         * @property radial
-         * @type {number}
-         * @default -1
-         */
-        this.radial = -1;
-
-        /**
-         *
-         *
          * @property heading
          * @type {number}
          * @default -1
          */
         this.heading = -1;
+
+        /**
+         *
+         *
+         * @property position
+         * @type {array}
+         * @default []
+         */
+        this.position = [];
 
         /**
          * List of possible airlines a spawning aircraft can belong to.
@@ -207,7 +215,7 @@ export default class SpawnPatternModel extends BaseModel {
          */
         this._weightedAirlineList = [];
 
-        this.init(spawnPatternJson);
+        this.init(spawnPatternJson, navigationLibrary);
     }
 
     /**
@@ -221,12 +229,13 @@ export default class SpawnPatternModel extends BaseModel {
     }
 
     /**
-     *
+     * A number representing the initial altitude of a spawning aircraft
      *
      * @property altitude
      * @return {number}
      */
     get altitude() {
+        // this might not need to be random within a range
         return _random(this._minimumAltitude, this._maximumAltitude);
     }
 
@@ -238,23 +247,25 @@ export default class SpawnPatternModel extends BaseModel {
      * @for SpawnPatternModel
      * @method init
      * @param spawnPatternJson {object}
+     * @param navigationLibrary {NavigationLibrary}
      */
-    init(spawnPatternJson) {
+    init(spawnPatternJson, navigationLibrary) {
         this.origin = spawnPatternJson.origin;
         this.destination = spawnPatternJson.destination;
         this.category = spawnPatternJson.category;
         this.method = spawnPatternJson.method;
         this.rate = spawnPatternJson.rate;
         this.route = spawnPatternJson.route;
-        this.speed = parseInt(spawnPatternJson.speed, 10);
-
+        // TODO: add a little logic here to handle `NaN`
+        this.speed = parseInt(_get(spawnPatternJson, 'speed', 0), 10);
         this._minimumDelay = TIME.ONE_SECOND_IN_MILLISECONDS * 3;
         this._maximumDelay = this._calculateMaximumMsDelayFromFrequency();
         this.delay = this.getRandomDelayValue();
-
-        this._setMinMaxAltitude(spawnPatternJson.altitude);
         this.airlines = this._assembleAirlineNamesAndFrequencyForSpawn(spawnPatternJson.airlines);
         this._weightedAirlineList = this._buildWeightedAirlineList();
+
+        this._calculatePostiionAndHeadingForArrival(spawnPatternJson, navigationLibrary);
+        this._setMinMaxAltitude(spawnPatternJson.altitude);
     }
 
     /**
@@ -386,5 +397,46 @@ export default class SpawnPatternModel extends BaseModel {
         });
 
         return weightedAirlineList;
+    }
+
+    /**
+     *
+     *
+     * @for SpawnPatternModel
+     * @method _calculatePostiionAndHeadingForArrival
+     * @param spawnPatternJson {SpawnPatternModel}
+     * @param navigationLibrary {NavigationLibrary}
+     * @private
+     */
+    _calculatePostiionAndHeadingForArrival(spawnPatternJson, navigationLibrary) {
+        if (spawnPatternJson.category === FLIGHT_CATEGORY.DEPARTURE) {
+            return;
+        }
+
+        // TODO: this if black may not be needed if we will be requiring a route string for every spawn pattern
+        // if (_get(spawnPatternJson, 'fixes', []).length > 1) {
+        //     const initialPosition = navigationLibrary.getFixPositionCoordinates(spawnPatternJson.fixes[0]);
+        //     const nextPosition = navigationLibrary.getFixPositionCoordinates(spawnPatternJson.fixes[1]);
+        //     const heading = bearingToPoint(initialPosition, nextPosition);
+        //
+        //     this.position = initialPosition;
+        //     this.heading = heading;
+        //
+        //     return;
+        // }
+
+        const routeModel = new RouteModel(spawnPatternJson.route);
+        const waypointModelList = navigationLibrary.findEntryAndBodyFixesForRoute(
+            routeModel.procedure,
+            routeModel.entry
+        );
+
+        // grab position of first fix
+        const initialPosition = waypointModelList[0].position;
+        // calculate heading from first waypoint to second waypoint
+        const heading = bearingToPoint(initialPosition, waypointModelList[1].position);
+
+        this.position = initialPosition;
+        this.heading = heading;
     }
 }

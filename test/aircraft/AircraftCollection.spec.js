@@ -1,9 +1,6 @@
 /* eslint-disable arrow-parens, max-len, import/no-extraneous-dependencies*/
 import ava from 'ava';
-// import sinon from 'sinon';
-import _cloneDeep from 'lodash/cloneDeep';
 import _forEach from 'lodash/forEach';
-import _isEqual from 'lodash/isEqual';
 
 import AircraftCollection from '../../src/assets/scripts/client/aircraft/AircraftCollection';
 import AircraftDefinitionModel from '../../src/assets/scripts/client/aircraft/AircraftDefinitionModel';
@@ -13,12 +10,7 @@ import {
     spawnPatternModelArrivalFixture,
     spawnPatternModelDepartureFixture
 } from '../fixtures/trafficGeneratorFixtures';
-
-import {
-    AIRCRAFT_DEFINITION_LIST_MOCK,
-    // AIRCRAFT_DEFINITION_MOCK,
-    AIRCRAFT_INITIALIZATION_PROPS_MOCK
-} from './_mocks/aircraftMocks';
+import { AIRCRAFT_DEFINITION_LIST_MOCK } from './_mocks/aircraftMocks';
 
 ava('should throw when passed invalid parameters', (t) => {
     t.throws(() => new AircraftCollection());
@@ -85,29 +77,4 @@ ava('._findDestinationFromRouteCode() returns the destination name an arriving a
     const result = collection._findDestinationFromRouteCode(spawnPatternModelArrivalFixture);
 
     t.true(result === expectedResult);
-});
-
-ava('._calculatePositionAndHeadingForArrival() calculates aircraft heading and position when provided list a of fixes', (t) => {
-    const expedtedHeadingResult = 0.5812231343277809;
-    const expectedPositionResult = [-99.76521626690608, -148.0266530993096];
-    const collection = new AircraftCollection(AIRCRAFT_DEFINITION_LIST_MOCK, airlineCollectionFixture, navigationLibraryFixture);
-    // using cloneDeep here so we can set fixes for the fixture without affecting the actual fixture
-    const spawnModelFixture = _cloneDeep(spawnPatternModelArrivalFixture);
-    spawnModelFixture.fixes = ['DAG', 'MISEN', 'CLARR'];
-
-    const result = collection._calculatePostiionAndHeadingForArrival(spawnModelFixture, AIRCRAFT_INITIALIZATION_PROPS_MOCK);
-
-    t.true(result.heading === expedtedHeadingResult);
-    t.true(_isEqual(result.position, expectedPositionResult));
-});
-
-ava('._calculatePostiionAndHeadingForArrival() calculates aircraft heading and position when provided a route', (t) => {
-    const expedtedHeadingResult = 0.5812231343277809;
-    const expectedPositionResult = [-99.76521626690608, -148.0266530993096];
-    const collection = new AircraftCollection(AIRCRAFT_DEFINITION_LIST_MOCK, airlineCollectionFixture, navigationLibraryFixture);
-
-    const result = collection._calculatePostiionAndHeadingForArrival(spawnPatternModelArrivalFixture, AIRCRAFT_INITIALIZATION_PROPS_MOCK);
-
-    t.true(result.heading === expedtedHeadingResult);
-    t.true(_isEqual(result.position, expectedPositionResult))
 });

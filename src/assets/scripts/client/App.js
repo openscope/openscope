@@ -137,7 +137,7 @@ export default class App {
         this.airlineCollection = new AirlineCollection(airlineList);
         this.aircraftCollection = new AircraftCollection(aircraftDefinitionList, this.airlineCollection, this.navigationLibrary);
         // provide updater method for timewarp  timescale change!== 0
-        this.spawnPatternCollection = new SpawnPatternCollection(initialAirportData);
+        this.spawnPatternCollection = new SpawnPatternCollection(initialAirportData, this.navigationLibrary);
         this.spawnScheduler = new SpawnScheduler(this.spawnPatternCollection, this.aircraftCollection);
 
         this.canvasController = new CanvasController(this.$element);

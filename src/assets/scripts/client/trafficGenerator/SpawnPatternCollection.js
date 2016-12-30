@@ -15,15 +15,20 @@ export default class SpawnPatternCollection extends BaseCollection {
      * @constructor
      * @for SpawnPatternCollection
      * @param airportJson {object}
+     * @param navigationLibrary {NavigationLibrary}
      */
-    constructor(airportJson) {
-        super();
+    constructor(airportJson, navigationLibrary) {
+        super(airportJson, navigationLibrary);
 
         if (!_isObject(airportJson) || _isEmpty(airportJson)) {
             throw new TypeError('Invalid parameter passed to SpawnPatternCollection');
         }
 
-        this.init(airportJson);
+        if (!_isObject(navigationLibrary) || _isEmpty(navigationLibrary)) {
+            throw new TypeError('Invalid NavigationLibrary passed to SpawnPatternCollection');
+        }
+
+        this.init(airportJson, navigationLibrary);
     }
 
     /**
@@ -44,9 +49,10 @@ export default class SpawnPatternCollection extends BaseCollection {
      * @for SpawnPatternCollection
      * @method init
      * @param airportJson {object}
+     * @param navigationLibrary {NavigationLibrary}
      */
-    init(airportJson) {
-        this._buildSpawnModels(airportJson.spawnPatterns);
+    init(airportJson, navigationLibrary) {
+        this._buildSpawnModels(airportJson.spawnPatterns, navigationLibrary);
     }
 
     /**
@@ -85,12 +91,13 @@ export default class SpawnPatternCollection extends BaseCollection {
      *
      * @for SpawnPatternCollection
      * @method _buildSpawnModels
-     * @parameter spawnPatterns
+     * @param spawnPatterns {array<object>}
+     * @param navigationLibrary {NavigationLibrary}
      * @private
      */
-    _buildSpawnModels(spawnPatterns) {
+    _buildSpawnModels(spawnPatterns, navigationLibrary) {
         _forEach(spawnPatterns, (spawnPattern) => {
-            const spawnPatternModel = new SpawnPatternModel(spawnPattern);
+            const spawnPatternModel = new SpawnPatternModel(spawnPattern, navigationLibrary);
 
             this.addItem(spawnPatternModel);
         });

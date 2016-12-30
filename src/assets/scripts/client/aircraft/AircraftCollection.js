@@ -79,12 +79,7 @@ export default class AircraftCollection extends BaseCollection {
      * @param spawnModel {SpawnPatternModel}
      */
     createAircraftWithSpawnModel = (spawnModel) => {
-        let initializationProps = this._buildAircraftProps(spawnModel);
-
-        if (spawnModel.category === FLIGHT_CATEGORY.ARRIVAL) {
-            initializationProps = this._calculatePostiionAndHeadingForArrival(spawnModel, initializationProps);
-        }
-
+        const initializationProps = this._buildAircraftProps(spawnModel);
         const aircraftModel = new AircraftInstanceModel(initializationProps);
 
         console.log('SPAWN :::', spawnModel.category, initializationProps);
@@ -157,10 +152,12 @@ export default class AircraftCollection extends BaseCollection {
             callsign,
             destination,
             fleet,
+            category: spawnModel.category,
             airline: airlineModel.icao,
             altitude: spawnModel.altitude,
             speed: spawnModel.speed,
-            category: spawnModel.category,
+            heading: spawnModel.heading,
+            position: spawnModel.position,
             icao: aircraftDefinition.icao,
             model: aircraftDefinition,
             route: spawnModel.route,
@@ -212,47 +209,5 @@ export default class AircraftCollection extends BaseCollection {
         }
 
         return destinationOrProcedure;
-    }
-
-    /**
-     *
-     *
-     * @for AircraftCollection
-     * @method _calculatePostiionAndHeadingForArrival
-     * @param spawnModel {SpawnPatternModel}
-     * @return positionAndHeading {object}
-     * @private
-     */
-    _calculatePostiionAndHeadingForArrival(spawnModel, initializationProps) {
-        const positionAndHeading = {
-            heading: -1,
-            position: null
-        };
-
-        if (_get(spawnModel, 'fixes', []).length > 1) {
-            const initialPosition = this._navigationLibrary.getFixPositionCoordinates(spawnModel.fixes[0]);
-            const nextPosition = this._navigationLibrary.getFixPositionCoordinates(spawnModel.fixes[1]);
-            const heading = bearingToPoint(initialPosition, nextPosition);
-
-            positionAndHeading.position = initialPosition;
-            positionAndHeading.heading = heading;
-        } else if (spawnModel.route) {
-            const routeModel = new RouteModel(spawnModel.route);
-            const isPreSpawn = false;
-            const waypointModelList = this._navigationLibrary.findEntryAndBodyFixesForRoute(
-                routeModel.procedure,
-                routeModel.entry
-            );
-
-            // grab position of first fix
-            const initialPosition = waypointModelList[0].position;
-            // calculate heading from first waypoint to second waypoint
-            const heading = bearingToPoint(initialPosition, waypointModelList[1].position);
-
-            positionAndHeading.position = initialPosition;
-            positionAndHeading.heading = heading;
-        }
-
-        return Object.assign({}, initializationProps, positionAndHeading);
     }
 }
