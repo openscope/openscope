@@ -1,13 +1,13 @@
 import ava from 'ava';
 import _isEqual from 'lodash/isEqual';
 
-import PositionModel from '../../src/assets/scripts/base/PositionModel';
+import PositionModel from '../../src/assets/scripts/client/base/PositionModel';
 import {
     calculateDistanceToPointForX,
     calculateDistanceToPointForY,
     adjustForMagneticNorth,
     hasCardinalDirectionInCoordinate
-} from '../../src/assets/scripts/base/positionModelHelpers';
+} from '../../src/assets/scripts/client/base/positionModelHelpers';
 
 // klas airport reference
 const AIRPORT_POSITION_FIXTURE = new PositionModel(["N36.080056", "W115.15225", "2181ft"], null, 11);

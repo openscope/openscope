@@ -5,7 +5,7 @@ import {
     vlen,
     vradial,
     vsub
-} from '../../src/assets/scripts/math/vector';
+} from '../../src/assets/scripts/client/math/vector';
 
 ava('.vlen() returns the distance of a vector', t => {
     const expectedResult = 3.470727267316085;
