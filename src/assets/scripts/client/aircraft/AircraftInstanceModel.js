@@ -535,11 +535,11 @@ export default class Aircraft {
         let heavy = '';
 
         if (this.model.weightclass === 'H') {
-            heavy = ' heavy';
+            heavy = 'heavy';
         }
 
         if (this.model.weightclass === 'U') {
-            heavy = ' super';
+            heavy = 'super';
         }
 
         let callsign = this.callsign;
@@ -905,12 +905,12 @@ export default class Aircraft {
 
         let isExpeditingString = '';
         if (expedite) {
-            isExpeditingString = 'and expedite';
+            isExpeditingString = ' and expedite';
         }
 
         const readback = {
-            log: `${radioTrendAltitude} ${this.fms.altitudeForCurrentWaypoint()} ${isExpeditingString}`,
-            say: `${radioTrendAltitude} ${currentWaypointRadioAltitude} ${isExpeditingString}`
+            log: `${radioTrendAltitude} ${this.fms.altitudeForCurrentWaypoint()}${isExpeditingString}`,
+            say: `${radioTrendAltitude} ${currentWaypointRadioAltitude}${isExpeditingString}`
         };
 
         return ['ok', readback];
@@ -931,7 +931,7 @@ export default class Aircraft {
         const readback = {};
 
         readback.log = `cleared to destination via the ${this.destination} departure, then as filed. Climb and ` +
-            `maintain ${airport.initial_alt}, expect ${this.fms.fp.altitude} 10 minutes after departure `;
+            `maintain ${airport.initial_alt}, expect ${this.fms.fp.altitude} 10 minutes after departure`;
         readback.say = `cleared to destination via the ${procedureName} ` +
             `departure, then as filed. Climb and maintain ${radio_altitude(airport.initial_alt)}, ` +
             `expect ${radio_altitude(this.fms.fp.altitude)}, ${radio_spellOut('10')} minutes after departure'`;
@@ -1507,7 +1507,7 @@ export default class Aircraft {
             const wind_dir = round(radiansToDegrees(wind.angle));
             const readback = {
                 // TODO: the wind_dir calculation should be abstracted
-                log: `wind ${round(wind_dir / 10) * 10} ${round(wind.speed)}, runway ${this.rwy_dep} , cleared for takeoff`,
+                log: `wind ${round(wind_dir / 10) * 10} ${round(wind.speed)}, runway ${this.rwy_dep}, cleared for takeoff`,
                 say: `wind ${radio_spellOut(round(wind_dir / 10) * 10)} at ${radio_spellOut(round(wind.speed))}, runway ${radio_runway(this.rwy_dep)}, cleared for takeoff`
             };
 
@@ -1885,8 +1885,8 @@ export default class Aircraft {
                     alt_log = `descending through ${alt} for ${this.target.altitude}`;
                     alt_say = `descending through ${radio_altitude(alt)} for ${radio_altitude(this.target.altitude)}`;
                 } else if (altdiff < 0) {
-                    alt_log = ` climbing through ${alt} for ${this.target.altitude}`;
-                    alt_say = ` climbing through ${radio_altitude(alt)} for ${radio_altitude(this.target.altitude)}`;
+                    alt_log = `climbing through ${alt} for ${this.target.altitude}`;
+                    alt_say = `climbing through ${radio_altitude(alt)} for ${radio_altitude(this.target.altitude)}`;
                 }
             } else {
                 alt_log = `at ${alt}`;

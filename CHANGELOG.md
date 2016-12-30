@@ -13,9 +13,12 @@
 
 
 ### Minor
+- Changes `AircraftStripView` text outputs to be all uppercase [#193](https://github.com/n8rzz/atc/issues/193)
 - Ensures proper removal of all `AircraftConflict` instances involving an aircraft that has been removed from the simulation [#133](https://github.com/n8rzz/atc/issues/133)
     - Originally reported under [zlsa#734](https://github.com/zlsa/atc/issues/734)
+- Fixes white space in that is displayed from the `AircraftInstanceModel` [#192](https://github.com/n8rzz/atc/issues/192)
 - Adds cache to travis build [#233](https://github.com/n8rzz/atc/issues/233)
+
 
 
 
