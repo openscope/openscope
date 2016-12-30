@@ -257,7 +257,7 @@ export default class SpawnPatternModel extends BaseModel {
         this.rate = spawnPatternJson.rate;
         this.route = spawnPatternJson.route;
         // TODO: add a little logic here to handle `NaN`
-        this.speed = parseInt(_get(spawnPatternJson, 'speed', 0), 10);
+        this.speed = this._extractSpeedFromJson(spawnPatternJson);
         this._minimumDelay = TIME.ONE_SECOND_IN_MILLISECONDS * 3;
         this._maximumDelay = this._calculateMaximumMsDelayFromFrequency();
         this.delay = this.getRandomDelayValue();
@@ -351,6 +351,24 @@ export default class SpawnPatternModel extends BaseModel {
      */
     _findRandomIndexForList(list) {
         return _random(0, list.length - 1);
+    }
+
+    /**
+     * When `speed` is null, return 0 otherwise the specified speed setting
+     *
+     * @for SpawnPatternModel
+     * @method _extractSpeedFromJson
+     * @param spawnPatternJson {object}
+     * @return {number}
+     */
+    _extractSpeedFromJson(spawnPatternJson) {
+        let speed = 0;
+
+        if (!spawnPatternJson.speed) {
+            return speed;
+        }
+
+        return spawnPatternJson.speed;
     }
 
     /**
