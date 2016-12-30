@@ -71,10 +71,10 @@ ava('._setMinMaxAltitude() sets #_minimumAltitude and #_maximumAltitude when a n
     t.true(model._maximumAltitude === altitudeMock);
 });
 
-ava('._calculateMaximumMsDelayFromFrequency() returns a number equal to 1hr in miliseconds / #frequency', (t) => {
-    const expectedResult = 360000;
+ava('._calculateMaximumDelayFromRate() returns a number equal to 1hr in miliseconds / #frequency', (t) => {
+    const expectedResult = 360;
     const model = new SpawnPatternModel(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture);
-    const result = model._calculateMaximumMsDelayFromFrequency();
+    const result = model._calculateMaximumDelayFromRate();
 
     t.true(result === expectedResult);
 });
@@ -88,27 +88,27 @@ ava.skip('._calculatePositionAndHeadingForArrival() calculates aircraft heading 
     const spawnModelFixture = _cloneDeep(spawnPatternModelArrivalFixture);
     spawnModelFixture.fixes = ['DAG', 'MISEN', 'CLARR'];
 
-    model._calculatePostiionAndHeadingForArrival(spawnModelFixture);
+    model._calculatePositionAndHeadingForArrival(spawnModelFixture);
 
     t.true(model.heading === expedtedHeadingResult);
     t.true(_isEqual(model.position, expectedPositionResult));
 });
 
-ava('._calculatePostiionAndHeadingForArrival() returns early when spawnPattern.category is departure', (t) => {
+ava('._calculatePositionAndHeadingForArrival() returns early when spawnPattern.category is departure', (t) => {
     const model = new SpawnPatternModel(DEPARTURE_PATTERN_MOCK, navigationLibraryFixture);
 
-    model._calculatePostiionAndHeadingForArrival(spawnPatternModelDepartureFixture, navigationLibraryFixture);
+    model._calculatePositionAndHeadingForArrival(spawnPatternModelDepartureFixture, navigationLibraryFixture);
 
     t.true(model.heading === -1);
     t.true(_isEmpty(model.position));
 });
 
-ava('._calculatePostiionAndHeadingForArrival() calculates aircraft heading and position when provided a route', (t) => {
+ava('._calculatePositionAndHeadingForArrival() calculates aircraft heading and position when provided a route', (t) => {
     const expedtedHeadingResult = 0.5812231343277809;
     const expectedPositionResult = [-99.76521626690608, -148.0266530993096];
     const model = new SpawnPatternModel(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture);
 
-    model._calculatePostiionAndHeadingForArrival(spawnPatternModelArrivalFixture, navigationLibraryFixture);
+    model._calculatePositionAndHeadingForArrival(spawnPatternModelArrivalFixture, navigationLibraryFixture);
 
     t.true(model.heading === expedtedHeadingResult);
     t.true(_isEqual(model.position, expectedPositionResult));

@@ -263,8 +263,9 @@ export default class GameController {
      * @param data
      * @return gameTimeout
      */
-    game_timeout(func, delay, that, data) {
-        const gameTimeout = [func, this.game_time() + delay, data, delay, false, that];
+    game_timeout(functionToCall, delay, that, data) {
+        const timerDelay = this.game_time() + delay;
+        const gameTimeout = [functionToCall, timerDelay, data, delay, false, that];
 
         this.game.timeouts.push(gameTimeout);
 
@@ -334,21 +335,34 @@ export default class GameController {
 
         this.game.time += this.game.delta;
 
+        this.updateTimers();
+    }
+
+    /**
+     * @for GameController
+     * @method updateTimers
+     */
+    updateTimers() {
         for (let i = this.game.timeouts.length - 1; i >= 0; i--) {
-            let remove = false;
+            let willRemoveTimerFromList = false;
             const timeout = this.game.timeouts[i];
+            const callback = timeout[0];
+            let delayFireTime = timeout[1];
+            const callbackArguments = timeout[2];
+            const delayInterval = timeout[3];
+            const shouldRepeat = timeout[4];
 
-            if (this.game_time() > timeout[1]) {
-                timeout[0].call(timeout[5], timeout[2]);
+            if (this.game_time() > delayFireTime) {
+                callback.call(timeout[5], callbackArguments);
+                willRemoveTimerFromList = true;
 
-                if (timeout[4]) {
-                    timeout[1] += timeout[3];
-                } else {
-                    remove = true;
+                if (shouldRepeat) {
+                    delayFireTime += delayInterval;
+                    willRemoveTimerFromList = false;
                 }
             }
 
-            if (remove) {
+            if (willRemoveTimerFromList) {
                 this.game.timeouts.splice(i, 1);
                 i -= 1;
             }

@@ -130,18 +130,16 @@ export default class App {
     setupChildren(airportLoadList, initialAirportData, airlineList, aircraftDefinitionList) {
         this.loadingView = new LoadingView();
         this.contentQueue = new ContentQueue(this.loadingView);
+        this.gameController = new GameController(this.getDeltaTime);
 
         this.airportController = new AirportController(airportLoadList, this.updateRun);
-
         this.navigationLibrary = new NavigationLibrary(initialAirportData);
         this.airlineCollection = new AirlineCollection(airlineList);
         this.aircraftCollection = new AircraftCollection(aircraftDefinitionList, this.airlineCollection, this.navigationLibrary);
-        // provide updater method for timewarp  timescale change!== 0
         this.spawnPatternCollection = new SpawnPatternCollection(initialAirportData, this.navigationLibrary);
-        this.spawnScheduler = new SpawnScheduler(this.spawnPatternCollection, this.aircraftCollection);
+        this.spawnScheduler = new SpawnScheduler(this.spawnPatternCollection, this.aircraftCollection, this.gameController);
 
         this.canvasController = new CanvasController(this.$element);
-        this.gameController = new GameController(this.getDeltaTime);
         this.tutorialView = new TutorialView(this.$element);
         this.inputController = new InputController(this.$element);
         this.uiController = new UiController(this.$element);

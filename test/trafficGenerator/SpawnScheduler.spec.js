@@ -6,9 +6,14 @@ import SpawnScheduler from '../../src/assets/scripts/client/trafficGenerator/Spa
 import { spawnPatternCollectionFixture } from '../fixtures/trafficGeneratorFixtures';
 
 let aircraftCollectionStub;
+let gameControllerStub;
 ava.before(() => {
     aircraftCollectionStub = {
         createAircraftWithSpawnModel: sinon.stub()
+    };
+
+    gameControllerStub = {
+        game_timeout: sinon.stub()
     };
 });
 
@@ -36,23 +41,5 @@ ava('throws when passed invalid parameters', (t) => {
 });
 
 ava('does not throw when passed valid parameters', (t) => {
-    t.notThrows(() => new SpawnScheduler(spawnPatternCollectionFixture, aircraftCollectionStub));
-});
-
-ava('adds a timer id to #schedules for each SpawnPatternModel', (t) => {
-    const controller = new SpawnScheduler(spawnPatternCollectionFixture, aircraftCollectionStub);
-
-    t.true(controller.schedules.length === spawnPatternCollectionFixture.length);
-});
-
-ava('.stopSchedule() throws if passed an invalid #scheduleId', (t) => {
-    const controller = new SpawnScheduler(spawnPatternCollectionFixture, aircraftCollectionStub);
-
-    t.throws(() => controller.stopSchedule(false));
-});
-
-ava('.stopSchedule() does not throw if passed a valid #scheduleId', (t) => {
-    const controller = new SpawnScheduler(spawnPatternCollectionFixture, aircraftCollectionStub);
-
-    t.notThrows(() => controller.stopSchedule(controller.schedules[0]));
+    t.notThrows(() => new SpawnScheduler(spawnPatternCollectionFixture, aircraftCollectionStub, gameControllerStub));
 });

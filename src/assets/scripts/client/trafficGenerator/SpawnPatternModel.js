@@ -1,5 +1,4 @@
 import _forEach from 'lodash/forEach';
-import _get from 'lodash/get';
 import _map from 'lodash/map';
 import _isArray from 'lodash/isArray';
 import _isEmpty from 'lodash/isEmpty';
@@ -8,6 +7,7 @@ import _random from 'lodash/random';
 import BaseModel from '../base/BaseModel';
 import RouteModel from '../airport/Route/RouteModel';
 import { bearingToPoint } from '../math/flightMath';
+import { AIRPORT_CONSTANTS } from '../constants/airportConstants';
 import { FLIGHT_CATEGORY } from '../constants/aircraftConstants';
 import { TIME } from '../constants/globalConstants';
 
@@ -169,7 +169,7 @@ export default class SpawnPatternModel extends BaseModel {
         this.speed = 0;
 
         /**
-         *
+         * Heading of a spawnning aircraft
          *
          * @property heading
          * @type {number}
@@ -256,15 +256,13 @@ export default class SpawnPatternModel extends BaseModel {
         this.method = spawnPatternJson.method;
         this.rate = spawnPatternJson.rate;
         this.route = spawnPatternJson.route;
-        // TODO: add a little logic here to handle `NaN`
         this.speed = this._extractSpeedFromJson(spawnPatternJson);
-        this._minimumDelay = TIME.ONE_SECOND_IN_MILLISECONDS * 3;
-        this._maximumDelay = this._calculateMaximumMsDelayFromFrequency();
-        this.delay = this.getRandomDelayValue();
+        this._minimumDelay = this._calculateMinimumDelayFromSpeed();
+        this._maximumDelay = this._calculateMaximumDelayFromRate();
         this.airlines = this._assembleAirlineNamesAndFrequencyForSpawn(spawnPatternJson.airlines);
         this._weightedAirlineList = this._buildWeightedAirlineList();
 
-        this._calculatePostiionAndHeadingForArrival(spawnPatternJson, navigationLibrary);
+        this._calculatePositionAndHeadingForArrival(spawnPatternJson, navigationLibrary);
         this._setMinMaxAltitude(spawnPatternJson.altitude);
     }
 
@@ -295,12 +293,29 @@ export default class SpawnPatternModel extends BaseModel {
      * @return randomDelayValue {number}
      */
     getRandomDelayValue() {
-        const randomDelayValue = _random(this._minimumDelay, this._maximumDelay);
+        // TODO: make this method a fascade by implementing a switch to handle #method variations with other class methods
+        let targetDelayPeriod = this._maximumDelay;
 
-        // we round down because math may result in fractional numbers
-        return Math.floor(randomDelayValue);
+        if (targetDelayPeriod < this._minimumDelay) {
+            targetDelayPeriod = this._minimumDelay;
+        }
+
+        const maxDelayPeriod = targetDelayPeriod + (targetDelayPeriod - this._minimumDelay);
+
+        return _random(this._minimumDelay, maxDelayPeriod);
     }
 
+    /**
+     * Sets #_minimumAltitude and #_maximumAltitude from a provided altitude.
+     *
+     * Altitude may be a single number or a range, expressed as: `[min, max]`.
+     * This method handles that variation and sets the class properties with
+     * the correct values.
+     *
+     * @for SpawnPatternModel
+     * @method _setMinMaxAltitude
+     * @param altitude {array|number}
+     */
     _setMinMaxAltitude(altitude) {
         if (_isArray(altitude)) {
             const [min, max] = altitude;
@@ -329,15 +344,29 @@ export default class SpawnPatternModel extends BaseModel {
     }
 
     /**
-     * Calculates the upper bound of the spawn delay value.
-     *
      * @for SpawnPatternModel
-     * @method _calculateMaximumMsDelayFromFrequency
+     * @method _calculateMinimumDelayFromSpeed
      * @return {number}
      * @private
      */
-    _calculateMaximumMsDelayFromFrequency() {
-        return TIME.ONE_HOUR_IN_MILLISECONDS / this.rate;
+    _calculateMinimumDelayFromSpeed() {
+        if (this.speed === 0) {
+            return 0;
+        }
+
+        return Math.floor(AIRPORT_CONSTANTS.MIN_ENTRAIL_DISTANCE_NM * (TIME.ONE_HOUR_IN_SECONDS / this.speed));
+    }
+
+    /**
+     * Calculates the upper bound of the spawn delay value.
+     *
+     * @for SpawnPatternModel
+     * @method _calculateMaximumDelayFromRate
+     * @return {number}
+     * @private
+     */
+    _calculateMaximumDelayFromRate() {
+        return Math.floor(TIME.ONE_HOUR_IN_SECONDS / this.rate);
     }
 
     /**
@@ -362,10 +391,8 @@ export default class SpawnPatternModel extends BaseModel {
      * @return {number}
      */
     _extractSpeedFromJson(spawnPatternJson) {
-        let speed = 0;
-
         if (!spawnPatternJson.speed) {
-            return speed;
+            return 0;
         }
 
         return spawnPatternJson.speed;
@@ -421,12 +448,12 @@ export default class SpawnPatternModel extends BaseModel {
      *
      *
      * @for SpawnPatternModel
-     * @method _calculatePostiionAndHeadingForArrival
+     * @method _calculatePositionAndHeadingForArrival
      * @param spawnPatternJson {SpawnPatternModel}
      * @param navigationLibrary {NavigationLibrary}
      * @private
      */
-    _calculatePostiionAndHeadingForArrival(spawnPatternJson, navigationLibrary) {
+    _calculatePositionAndHeadingForArrival(spawnPatternJson, navigationLibrary) {
         if (spawnPatternJson.category === FLIGHT_CATEGORY.DEPARTURE) {
             return;
         }

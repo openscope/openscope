@@ -13,30 +13,36 @@ export default class SpawnScheduler {
      * @for SpawnScheduler
      * @param spawnPatternCollection {SpawnPatternCollection}
      * @param aircraftCollection {AircraftCollection}
+     * @param gameController {GameController}
      */
-    constructor(spawnPatternCollection, aircraftCollection) {
+    constructor(spawnPatternCollection, aircraftCollection, gameController) {
         if (!(spawnPatternCollection instanceof SpawnPatternCollection)) {
             throw new TypeError('Invalid parameter. SpawnScheduler requires an instance of a SpawnPatternCollection.');
         }
 
         if (typeof aircraftCollection === 'undefined') {
-            throw new TypeError('Invalid parameter. SpawnScheduler requires AircraftCollection to be defined.');
+            throw new TypeError('Invalid parameter. SpawnScheduler requires aircraftCollection to be defined.');
+        }
+
+        if (typeof gameController === 'undefined') {
+            throw new TypeError('Invalid parameter. SpawnScheduler requires gameController to be defined.');
         }
 
         /**
-         * A list of the currently active timer ids
+         * Reference to `GameController`
          *
-         * @property schedules
-         * @type {array}
-         * @default []
+         * @property _gameController
+         * @type {GameController}
+         * @default gameController
+         * @private
          */
-        this.schedules = [];
+        this._gameController = gameController;
 
         this.createSchedulesFromList(spawnPatternCollection, aircraftCollection);
     }
 
     /**
-     * Loop through each `SpawnPatternModel` and calculate timer delay, then create a new timer
+     * Loop through each `SpawnPatternModel` and create a `game_timeout` for each
      *
      * @for SpawnScheduler
      * @method createSchedulesFromList
@@ -45,45 +51,54 @@ export default class SpawnScheduler {
      */
     createSchedulesFromList(spawnPatternCollection, aircraftCollection) {
         _forEach(spawnPatternCollection.spawnModels, (spawnPattern) => {
-            console.log(spawnPattern.delay, spawnPattern.category, spawnPattern.route);
-
-            spawnPattern.scheduleId = setInterval(
-                // callback method that will be called when this interval fires
-                aircraftCollection.createAircraftWithSpawnModel,
-                // milisecond lifespan of interval
-                spawnPattern.delay,
-                // spawnPattern send as an argument to callback used to build spawnning aircraft
-                spawnPattern
-            );
-
-            this.schedules.push(spawnPattern.scheduleId);
+            spawnPattern.scheduleId = this.createNextSchedule(spawnPattern, aircraftCollection);
         });
     }
 
     /**
-     * Accept an current timer id and stop it, then remove that id from `schedules`
+     * Registers a new timeout, its callback and callback arguments with the `_gameController`
      *
      * @for SpawnScheduler
-     * @method stopSchedule
-     * @param scheduleId {number}
+     * @method createNextSchedule
+     * @param spawnPattern {SpawnPatternModel}
+     * @param aircraftCollection {AircraftCollection}
+     * @return {function}
      */
-    stopSchedule(scheduleId) {
-        if (this.schedules.indexOf(scheduleId) === -1) {
-            throw new Error(`Invalid scheduleId supplied to .stopSchedule(): ${scheduleId}`);
-        }
+    createNextSchedule(spawnPattern, aircraftCollection) {
+        const delay = spawnPattern.getRandomDelayValue();
+        //TODO: remove this block before merge
+        console.warn(delay, spawnPattern.category, spawnPattern.route);
 
-        clearInterval(scheduleId);
-
-        this.schedules = _without(this.schedules, scheduleId);
+        return this._gameController.game_timeout(
+            this.createAircraftAndRegisterNextTimeout,
+            // lifespan of timeout
+            delay,
+            // passing null only to match existing api
+            null,
+            // arguments sent to callback as it's first parameter. using array so multiple arg can be sent
+            [spawnPattern, aircraftCollection]
+        );
     }
 
     /**
-     * Clear all timers
+     * Method sent to `game_timeout` as the callback
+     *
+     * When fired, this method will call `createAircraftWithSpawnModel` and then
+     * create a new time by calling `createNextSchedule`. Doing so will also result
+     * in calculating a new delay period.
+     *
+     * Accepts two arguments; `spawnPattern` and `aircraftCollection`.
      *
      * @for SpawnScheduler
-     * @method clearAllSchedules
+     * @method createAircraftAndRegisterNextTimeout
+     * @param args {*[]}
      */
-    clearAllSchedules() {
-        _forEach(this.schedules, (scheduleId) => this.stopSchedule(scheduleId));
-    }
+    createAircraftAndRegisterNextTimeout = (...args) => {
+        const spawnPattern = args[0][0];
+        const aircraftCollection = args[0][1];
+
+        aircraftCollection.createAircraftWithSpawnModel(spawnPattern);
+
+        this.createNextSchedule(spawnPattern, aircraftCollection);
+    };
 }
