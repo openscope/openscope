@@ -931,7 +931,7 @@ export default class Aircraft {
         const readback = {};
 
         readback.log = `cleared to destination via the ${this.destination} departure, then as filed. Climb and ` +
-            `maintain ${airport.initial_alt}, expect ${this.fms.fp.altitude} 10 minutes after departure `;
+            `maintain ${airport.initial_alt}, expect ${this.fms.fp.altitude} 10 minutes after departure`;
         readback.say = `cleared to destination via the ${procedureName} ` +
             `departure, then as filed. Climb and maintain ${radio_altitude(airport.initial_alt)}, ` +
             `expect ${radio_altitude(this.fms.fp.altitude)}, ${radio_spellOut('10')} minutes after departure'`;
