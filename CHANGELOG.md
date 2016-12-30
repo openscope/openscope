@@ -28,6 +28,10 @@
 
 
 ### Bugfixes
+- Resets current indicies when issuing a new star to an arriving aircraft [#104](https://github.com/n8rzz/atc/issues/104) & [#237](https://github.com/n8rzz/atc/issues/237)
+    - Originally reported under [zlsa#730](https://github.com/zlsa/atc/issues/730) & [zlsa#768](https://github.com/zlsa/atc/issues/768)
+
+
 
 
 
