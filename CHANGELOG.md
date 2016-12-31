@@ -1,3 +1,9 @@
+## 3.2.1 (January 2, 2017)
+---
+### Bugfixes
+- Fix erroneous voice readbacks for altitude command [#240](https://github.com/n8rzz/atc/issues/240)
+    - Originally reported in [zlsa#769](https://github.com/zlsa/atc/issues/769)
+
 ## 3.2.0 (December 20, 2016)
 ---
 ### Major
