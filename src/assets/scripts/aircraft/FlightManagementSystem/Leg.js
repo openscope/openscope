@@ -120,7 +120,7 @@ export default class Leg {
 
                 break;
             case FP_LEG_TYPE.MANUAL:
-                this._generateManualWaypoint(airport);
+                this._generateManualWaypoint(data, airport);
 
                 break;
             default:
@@ -305,8 +305,8 @@ export default class Leg {
      * @param airport {AirportInstanceModel}
      * @private
      */
-    _generateManualWaypoint(airport) {
-        const waypointToAdd = new Waypoint({ route: this.route }, airport);
+    _generateManualWaypoint(data, airport) {
+        const waypointToAdd = new Waypoint(data, airport);
 
         this.addWaypointToLeg(waypointToAdd);
     }
