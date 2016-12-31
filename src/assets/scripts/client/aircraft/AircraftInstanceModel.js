@@ -293,7 +293,12 @@ export default class Aircraft {
             this.fms.setCurrent({ altitude: data.altitude });
         }
 
-        const speed = _get(data, 'speed', this.model.speed.cruise);
+        // temporary ternary that should be refactored in the future. A departure will have a speed
+        // of 0, but should display the projected cruise speed before takeoff
+        const speed = data.speed !== 0
+            ? data.speed
+            : this.model.speed.cruise;
+
         this.fms.setCurrent({ speed: speed });
 
         if (data.category === FLIGHT_CATEGORY.ARRIVAL && data.route) {
