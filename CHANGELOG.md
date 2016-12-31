@@ -30,6 +30,12 @@
 
 
 
+## 3.2.1 (January 2, 2017)
+---
+### Bugfixes
+- Restores behavior of aircraft flying present heading after completing all legs in their flightplan [#206](https://github.com/n8rzz/atc/issues/206)
+    - Originally reported in [zlsa#767](https://github.com/zlsa/atc/issues/767)
+
 
 ## 3.2.0 (December 20, 2016)
 ---
