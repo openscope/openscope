@@ -23,9 +23,11 @@ export default class AirportController {
      * @constructor
      * @param airportLoadList {array<object>}  List of airports to load
      * @param updateRun {function}
+     * @param onAirportChange {function} callback to fire when an airport changes
      */
-    constructor(airportLoadList, updateRun) {
+    constructor(airportLoadList, updateRun, onAirportChange) {
         this.updateRun = updateRun;
+        this.onAirportChange = onAirportChange;
         this.airport = airport;
         this.airport.airports = {};
         this.airport.current = null;
@@ -119,7 +121,8 @@ export default class AirportController {
                 level,
                 name
             },
-            this.updateRun
+            this.updateRun,
+            this.onAirportChange
         );
 
         this.airport_add(airport);
@@ -158,6 +161,13 @@ export default class AirportController {
         }
 
         const nextAirportModel = this.airport.airports[icao];
+
+        // if lodaed is true, we wont need to load any data thus the call to `onAirportChange` within the
+        // success callback will never fire so we do that here.
+        if (nextAirportModel.loaded) {
+            this.onAirportChange(nextAirportModel.data);
+        }
+
         nextAirportModel.set();
     }
     /**

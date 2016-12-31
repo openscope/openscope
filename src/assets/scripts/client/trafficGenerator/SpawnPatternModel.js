@@ -267,6 +267,33 @@ export default class SpawnPatternModel extends BaseModel {
     }
 
     /**
+     * Destroy the current instance properties
+     *
+     * Useful when changing airports
+     *
+     * @for SpawnPatternModel
+     * @method destroy
+     */
+    destroy() {
+        this.scheduleId = -1;
+        this.category = '';
+        this.method = '';
+        this.origin = '';
+        this.destination = '';
+        this.route = '';
+        this.rate = -1;
+        this._maximumDelay = -1;
+        this._minimumDelay = -1;
+        this._minimumAltitude = -1;
+        this._maximumAltitude = -1;
+        this.speed = 0;
+        this.heading = -1;
+        this.position = [];
+        this.airlines = [];
+        this._weightedAirlineList = [];
+    }
+
+    /**
      * Return a random value from `_weightedAirlineList`
      *
      * Used for spawning arrival aircraft that do not yet have an assigned airline
@@ -445,7 +472,9 @@ export default class SpawnPatternModel extends BaseModel {
     }
 
     /**
+     * Calculate the initial heading and position for a spawning arrival.
      *
+     * Sets `position` and `heading` properties.
      *
      * @for SpawnPatternModel
      * @method _calculatePositionAndHeadingForArrival

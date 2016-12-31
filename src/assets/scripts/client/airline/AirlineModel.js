@@ -12,6 +12,9 @@ import BaseModel from '../base/BaseModel';
 /**
  * An aircrcraft operating agency
  *
+ * Defines aircraft and fleets used by an airline along with methods
+ * and rules for flightNumberGeneration.
+ *
  * @class AirlineModel
  * @extends BaseModel
  */
@@ -101,8 +104,11 @@ export default class AirlineModel extends BaseModel {
         };
 
         /**
+         * List of all flight numbers in use in the app
          *
-         *
+         * @property flightNumbersInUse
+         * @type {array}
+         * @default []
          */
         this.flightNumbersInUse = [];
 
@@ -149,6 +155,19 @@ export default class AirlineModel extends BaseModel {
         // }
 
         this._transformFleetNamesToLowerCase();
+    }
+
+    /**
+     * Resets the current list of `flightNumbersInUse`.
+     *
+     * This can be used when changing airports and all existing
+     * aircraft are removed.
+     *
+     * @for AirlineModel
+     * @method reset
+     */
+    reset() {
+        this.flightNumbersInUse = [];
     }
 
     /**

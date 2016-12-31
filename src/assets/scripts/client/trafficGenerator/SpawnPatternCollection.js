@@ -56,6 +56,22 @@ export default class SpawnPatternCollection extends BaseCollection {
     }
 
     /**
+     * Loop through each item in the collection andd call `.destroy()` on that model.
+     *
+     * Used when resetting the collection, like onAirportChange.
+     *
+     * @for SpawnPatternCollection
+     * @method reset
+     */
+    reset() {
+        _forEach(this._items, (spawnPatternModel) => {
+            spawnPatternModel.destroy();
+        });
+
+        this._items = [];
+    }
+
+    /**
      * @for SpawnPatternCollection
      * @method addItems
      * @param items {array}
@@ -97,6 +113,7 @@ export default class SpawnPatternCollection extends BaseCollection {
      */
     _buildSpawnModels(spawnPatterns, navigationLibrary) {
         _forEach(spawnPatterns, (spawnPattern) => {
+            // TODO: obtain from modelSourcePool
             const spawnPatternModel = new SpawnPatternModel(spawnPattern, navigationLibrary);
 
             this.addItem(spawnPatternModel);

@@ -2,7 +2,6 @@
 import $ from 'jquery';
 import _forEach from 'lodash/forEach';
 import _get from 'lodash/get';
-// import _has from 'lodash/has';
 import _head from 'lodash/head';
 import _map from 'lodash/map';
 import _isEmpty from 'lodash/isEmpty';
@@ -12,14 +11,11 @@ import PositionModel from '../base/PositionModel';
 import RunwayModel from './RunwayModel';
 import FixCollection from '../navigationLibrary/Fix/FixCollection';
 import StandardRouteCollection from '../navigationLibrary/StandardRoute/StandardRouteCollection';
-// import { arrivalFactory } from './Arrival/arrivalFactory';
-// import { departureFactory } from './Departure/departureFactory';
 import { degreesToRadians, parseElevation } from '../utilities/unitConverters';
 import { round, abs, sin, extrapolate_range_clamp } from '../math/core';
 import { angle_offset } from '../math/circle';
 import { getOffset } from '../math/flightMath';
 import { vlen, vsub, vadd, vscale, raysIntersect } from '../math/vector';
-// import { LOG } from '../constants/logLevel';
 import { SELECTORS } from '../constants/selectors';
 import { STORAGE_KEY } from '../constants/storageKeys';
 
@@ -39,7 +35,6 @@ const ra = (n) => {
 const DEFAULT_CTR_RADIUS_NM = 80;
 const DEFAULT_CTR_CEILING_FT = 10000;
 const DEFAULT_INITIAL_ALTITUDE_FT = 5000;
-// const DEAFULT_RR_RADIUS_NM = 5;
 
 /**
  *
@@ -51,9 +46,12 @@ export default class AirportModel {
      * @constructor
      * @param options {object}
      * @param updateRun {function}
+     * @param onAirportChange {function}  callback method to call onAirportChange
      */
-    constructor(options = {}, updateRun) {
+    constructor(options = {}, updateRun, onAirportChange) {
         this.updateRun = updateRun;
+        this.onAirportChange = onAirportChange;
+        this.data = {};
         // FIXME: All properties of this class should be instantiated here, even if they wont have values yet.
         // there is a lot of logic below that can be elimininated by simply instantiating values here.
         this.loaded = false;
@@ -414,7 +412,7 @@ export default class AirportModel {
         // when the parse method is run, this method also runs. however, when an airport is being re-loaded,
         // only this method runs. this doesnt belong here but needs to be here so the fixes get populated correctly.
         // FIXME: make FixCollection a instance class ainstead of a static class
-        FixCollection.addItems(this.fixes, this.position);
+        // FixCollection.addItems(this.fixes, this.position);
 
         this.updateRunway();
         // this.addAircraft();
@@ -611,6 +609,9 @@ export default class AirportModel {
      * @param response {object}
      */
     onLoadAirportSuccess = (response) => {
+        // cache of airport.json data to be used to hydrate other classes on airport change
+        this.data = response;
+        this.onAirportChange(this.data);
         this.parse(response);
 
         if (this.has_terrain) {

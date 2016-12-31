@@ -48,6 +48,7 @@ export default class App {
      * @constructor
      * @param $element {HTML Element|null}
      * @param airportLoadList {array<object>}  List of airports to load
+     * @param initialAirportToLoad {string}    ICAO id of the initial airport. may be the default or a stored airport
      */
     constructor(element, airportLoadList, initialAirportToLoad) {
         /**
@@ -97,15 +98,14 @@ export default class App {
     /**
      * Lifecycle method. Should be called only once on initialization.
      *
-     * Used to setup properties and initialize dependant classes.
+     * Used to load an initial data set from several sources.
      *
      * @for App
      * @method setupChildren
      * @param airportLoadList {array<object>}  List of airports to load
      */
     initiateDataLoad(airportLoadList, initialAirportToLoad) {
-        // This is a complete hack and should be refactored. I need a way to get async data in
-        // before anything else runs and I need it from several sources.
+        // This is provides a way to get async data from several sources in the app before anything else runs
         $.when(
             $.ajax(`assets/airports/${initialAirportToLoad.toLowerCase()}.json`),
             $.ajax('assets/airlines/airlines.json'),
@@ -127,16 +127,34 @@ export default class App {
         return this;
     }
 
+    /**
+     * Callback for a successful data load
+     *
+     * An first load of data occurs on startup where we load the initial airport, airline definitions and
+     * aircraft definitiions. this method is called onComplete of that data load and is used to
+     * instantiate various classes with the loaded data.
+     *
+     * This method should run only on initial load of the app.
+     *
+     * @for App
+     * @method setupChildren
+     * @param airportLoadList {array}         List of all airports
+     * @param initialAirportData {object}     Airport json for the initial airport, could be default or stored airport
+     * @param airlineList {array}             List of all Airline definitions
+     * @param aircraftDefinitionList {array}  List of all Aircraft definitions
+     */
     setupChildren(airportLoadList, initialAirportData, airlineList, aircraftDefinitionList) {
         this.loadingView = new LoadingView();
         this.contentQueue = new ContentQueue(this.loadingView);
         this.gameController = new GameController(this.getDeltaTime);
 
-        this.airportController = new AirportController(airportLoadList, this.updateRun);
+        this.airportController = new AirportController(airportLoadList, this.updateRun, this.onAirportChange);
         this.navigationLibrary = new NavigationLibrary(initialAirportData);
         this.airlineCollection = new AirlineCollection(airlineList);
+        // eslint-disable-next-line max-len
         this.aircraftCollection = new AircraftCollection(aircraftDefinitionList, this.airlineCollection, this.navigationLibrary);
         this.spawnPatternCollection = new SpawnPatternCollection(initialAirportData, this.navigationLibrary);
+        // eslint-disable-next-line max-len
         this.spawnScheduler = new SpawnScheduler(this.spawnPatternCollection, this.aircraftCollection, this.gameController);
 
         this.canvasController = new CanvasController(this.$element);
@@ -397,11 +415,40 @@ export default class App {
      * @param shouldUpdate {boolean}
      */
     updateRun = (shouldUpdate) => {
-        // console.warn('updateRun: ', shouldUpdate);
         if (!UPDATE && shouldUpdate) {
             requestAnimationFrame(() => this.update());
         }
 
         UPDATE = shouldUpdate;
+    };
+
+    /**
+     * onChange callback fired from within the `AirportModel` when an airport is changed.
+     *
+     * When an airport changes various classes need to clear and reset internal properties for
+     * the new airport. this callback provides a way to orchestrate all that and send the classes
+     * new data.
+     *
+     * This method will not run on initial load.
+     *
+     * @for App
+     * @method onAirportChange
+     * @param nextAirportJson {object}  response or cached object from airport json
+     */
+    onAirportChange = (nextAirportJson) => {
+        if (!this.airportController.airport.current) {
+            // if `current` is null, then this is the initial load and we dont need to reset andything
+            return;
+        }
+
+        this.navigationLibrary.reset();
+        this.airlineCollection.reset();
+        this.spawnPatternCollection.reset();
+        this.spawnScheduler = null;
+
+        this.navigationLibrary.init(nextAirportJson);
+        this.spawnPatternCollection.init(nextAirportJson, this.navigationLibrary);
+        // eslint-disable-next-line max-len
+        this.spawnScheduler = new SpawnScheduler(this.spawnPatternCollection, this.aircraftCollection, this.gameController);
     };
 }

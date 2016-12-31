@@ -3,6 +3,8 @@ import FixCollection from './Fix/FixCollection';
 import StandardRouteCollection from './StandardRoute/StandardRouteCollection';
 
 /**
+ *
+ *
  * @class NavigationLibrary
  */
 export default class NavigationLibrary {
@@ -19,7 +21,7 @@ export default class NavigationLibrary {
          * @type {PositionModel}
          * @default null
          */
-        this._referencePosition = null
+        this._referencePosition = null;
 
         /**
          *
@@ -43,9 +45,10 @@ export default class NavigationLibrary {
     }
 
     /**
-     * Lifecycle method, should be run only once on instantiation
-     *
      * Set initial class properties
+     *
+     * May be run multiple times on an instance. Subsequent calls to this method
+     * should happen only after a call to `.reset()`
      *
      * @for NavigationLibrary
      * @method init
@@ -64,11 +67,12 @@ export default class NavigationLibrary {
      * Tear down the instance
      *
      * @for NavigationLibrary
-     * @method destroy
+     * @method reset
      */
-    destroy() {
+    reset() {
         FixCollection.removeItems();
 
+        this._referencePosition = null;
         this._sidCollection = null;
         this._starCollection = null;
     }

@@ -5,7 +5,10 @@ import BaseCollection from '../base/BaseCollection';
 import AirlineModel from './AirlineModel';
 
 /**
- * A collection of `AirlineModel` objects
+ * Houses an `AirlineModel` for each possible airline in the app.
+ *
+ * The contents of `_items` shouldn't ever need to change when an airport changes,
+ * though this class does provide methods to reset each `AirlineModel`.
  *
  * @class AirlineCollection
  * @extends BaseCollection
@@ -29,9 +32,9 @@ export default class AirlineCollection extends BaseCollection {
     }
 
     /**
-     * Lifecycle method
+     * Lifecycle method. Should be run only once on instantiation
      *
-     * Should be run only once on instantiation
+     * Initialize class properties
      *
      * @for AirlineCollection
      * @method init
@@ -75,6 +78,20 @@ export default class AirlineCollection extends BaseCollection {
         }
 
         return _find(this._items, { icao: airlineId });
+    }
+
+    /**
+     * Reset each `AirlineModel` within the collection
+     *
+     * Used when an airport change has occurred.
+     *
+     * @for AirlineCollection
+     * @method rest
+     */
+    reset() {
+        _forEach(this._items, (airlineModel) => {
+            airlineModel.reset();
+        });
     }
 
     /**

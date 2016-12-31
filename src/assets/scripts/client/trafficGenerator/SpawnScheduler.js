@@ -1,9 +1,9 @@
 import _forEach from 'lodash/forEach';
-import _without from 'lodash/without';
 import SpawnPatternCollection from './SpawnPatternCollection';
 
 /**
- * Create a timer for every item in the `SpawnPatternCollection`
+ * Utility class used to create a game_timer for every item in the `SpawnPatternCollection` and provide
+ * methods for re-creating a timer on timer expiration.
  *
  * @class SpawnScheduler
  */
@@ -66,7 +66,7 @@ export default class SpawnScheduler {
      */
     createNextSchedule(spawnPattern, aircraftCollection) {
         const delay = spawnPattern.getRandomDelayValue();
-        //TODO: remove this block before merge
+        // TODO: remove this block before merge with develop
         console.warn(delay, spawnPattern.category, spawnPattern.route);
 
         return this._gameController.game_timeout(
