@@ -1,3 +1,10 @@
+## 3.2.1. (January 2, 2017)
+---
+### Bugfixes
+- Fix wrongful removal of departures from runway queues when arrivals land [#241](https://github.com/n8rzz/atc/issues/241)
+    - Originally reported in [zlsa#770](https://github.com/zlsa/atc/issues/770)
+
+
 ## 3.2.0 (December 20, 2016)
 ---
 ### Major
