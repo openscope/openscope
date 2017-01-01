@@ -2,6 +2,7 @@ import _forEach from 'lodash/forEach';
 import _isEmpty from 'lodash/isEmpty';
 import _isObject from 'lodash/isObject';
 import BaseCollection from '../base/BaseCollection';
+import modelSourceFactory from '../base/ModelSource/ModelSourceFactory';
 import SpawnPatternModel from './SpawnPatternModel';
 
 /**
@@ -66,6 +67,8 @@ export default class SpawnPatternCollection extends BaseCollection {
     reset() {
         _forEach(this._items, (spawnPatternModel) => {
             spawnPatternModel.destroy();
+
+            modelSourceFactory.returnModelToPool(spawnPatternModel);
         });
 
         this._items = [];
@@ -113,8 +116,11 @@ export default class SpawnPatternCollection extends BaseCollection {
      */
     _buildspawnPatternModels(spawnPatterns, navigationLibrary) {
         _forEach(spawnPatterns, (spawnPattern) => {
-            // TODO: obtain from modelSourcePool
-            const spawnPatternModel = new SpawnPatternModel(spawnPattern, navigationLibrary);
+            const spawnPatternModel = modelSourceFactory.getModelSourceForType(
+                'SpawnPatternModel',
+                spawnPattern,
+                navigationLibrary
+            );
 
             this.addItem(spawnPatternModel);
         });

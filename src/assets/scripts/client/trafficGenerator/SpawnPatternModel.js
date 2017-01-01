@@ -32,7 +32,8 @@ export default class SpawnPatternModel extends BaseModel {
         super(spawnPatternJson, navigationLibrary);
 
         if (!_isObject(spawnPatternJson) || _isEmpty(spawnPatternJson)) {
-            throw new TypeError('Invalid parameter passed to SpawnPatternModel');
+            // throw new TypeError('Invalid parameter passed to SpawnPatternModel');
+            return;
         }
 
         if (!_isObject(navigationLibrary) || _isEmpty(navigationLibrary)) {

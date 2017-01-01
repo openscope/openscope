@@ -53,7 +53,6 @@ ava('._getRandomAircraftTypeFromFleet() throws if it received an invalid fleetNa
 
 ava('._getRandomAircraftTypeFromFleet() returns a random aircraft types form a specific fleet', (t) => {
     const fleetNameMock = '90long';
-    console.log(AIRLINE_DEFINITION_MOCK.fleets['90long']);
     const expectedResult = _map(AIRLINE_DEFINITION_MOCK.fleets['90long'], (aircraft) => aircraft[0]);
     const model = new AirlineModel(AIRLINE_DEFINITION_MOCK);
     const result = model._getRandomAircraftTypeFromFleet(fleetNameMock);
