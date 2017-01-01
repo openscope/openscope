@@ -547,8 +547,13 @@ export default class AircraftFlightManagementSystem {
             }
         }
 
+        // this may not be the correct spot for this
+        this.current = [0, 0];
         // Add the new STAR Leg
-        this.appendLeg({ type: FP_LEG_TYPE.STAR, route: route });
+        this.appendLeg({
+            route,
+            type: FP_LEG_TYPE.STAR
+        });
     }
 
     // TODO: move this logic to the `RouteModel`
@@ -597,7 +602,7 @@ export default class AircraftFlightManagementSystem {
                 // TODO: this should be abstracted to another class method.
                 const pieces = data[i].split('.');
                 // FIXME: what does 'a' mean? better naming
-                a = [pieces[0] + '.' + pieces[1] + '.' + pieces[2]];
+                a = [`${pieces[0]}.${pieces[1]}.${pieces[2]}`];
 
                 // chop up the multilink
                 for (let j = 3; j < data[i].split('.').length; j + 2) {
