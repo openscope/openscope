@@ -1,7 +1,7 @@
-/* eslint-disable no-underscore-dangle, no-unused-vars, no-undef, global-require */
 import _each from 'lodash/each';
 import _includes from 'lodash/includes';
 import _without from 'lodash/without';
+import AircraftCollection from './AircraftCollection';
 import AircraftConflict from './AircraftConflict';
 import AircraftModel from './AircraftModel';
 import { speech_say } from '../speech';
@@ -23,8 +23,17 @@ const aircraft = {};
 export default class AircraftController {
     /**
      * @constructor
+     * @for AircraftController
+     * @param aircraftDefinitionList {array<object>}
+     * @param airlineCollection {AirlineCollection}
+     * @param navigationLibrary {NavigationLibrary}
      */
-    constructor() {
+    constructor(aircraftDefinitionList, airlineController, navigationLibrary) {
+        this.airlineController = airlineController;
+        this.navigationLibrary = navigationLibrary;
+        // eslint-disable-next-line max-len
+        this.aircraftCollection = new AircraftCollection(aircraftDefinitionList, this.airlineController.airlineCollection, this.navigationLibrary);
+
         this.aircraft = aircraft;
         this.aircraft.models = {};
         this.aircraft.callsigns = [];
@@ -50,6 +59,7 @@ export default class AircraftController {
      * return {boolean}
      */
     isCallsignInList(callsign) {
+        // TODO: use a getter in airlineCollection that looks at each `AirlineModel.flightNumbers`
         return this.aircraft.callsigns.indexOf(callsign) !== -1;
     }
 
@@ -336,11 +346,13 @@ export default class AircraftController {
     }
 
     /**
+     * @DEPRECATED
      * @for AircraftController
      * @method aircraft_get_eid_by_callsign
      * @param callsign {string}
      */
     aircraft_get_eid_by_callsign(callsign) {
+        console.error('.aircraft_get_eid_by_callsign() will be deprecated in the next release');
         for (let i = 0; i < this.aircraft.list.length; i++) {
             const aircraft = this.aircraft.list[i];
 

@@ -1,12 +1,10 @@
 import $ from 'jquery';
 import ContentQueue from './contentQueue/ContentQueue';
 import LoadingView from './LoadingView';
-import AirlineCollection from './airline/AirlineCollection';
-import AircraftCollection from './aircraft/AircraftCollection';
 import AirportController from './airport/AirportController';
+import NavigationLibrary from './navigationLibrary/NavigationLibrary';
 import AircraftController from './aircraft/AircraftController';
 import AirlineController from './airline/AirlineController';
-import NavigationLibrary from './navigationLibrary/NavigationLibrary';
 import SpawnPatternCollection from './trafficGenerator/SpawnPatternCollection';
 import SpawnScheduler from './trafficGenerator/SpawnScheduler';
 import GameController from './game/GameController';
@@ -153,12 +151,10 @@ export default class App {
         this.airportController = new AirportController(airportLoadList, this.updateRun, this.onAirportChange);
         this.navigationLibrary = new NavigationLibrary(initialAirportData);
         this.airlineController = new AirlineController(airlineList);
-        this.aircraftController = new AircraftController();
-        // eslint-disable-next-line max-len
-        this.aircraftCollection = new AircraftCollection(aircraftDefinitionList, this.airlineController.airlineCollection, this.navigationLibrary);
+        this.aircraftController = new AircraftController(aircraftDefinitionList, this.airlineController, this.navigationLibrary);
         this.spawnPatternCollection = new SpawnPatternCollection(initialAirportData, this.navigationLibrary);
         // eslint-disable-next-line max-len
-        this.spawnScheduler = new SpawnScheduler(this.spawnPatternCollection, this.aircraftCollection, this.gameController);
+        this.spawnScheduler = new SpawnScheduler(this.spawnPatternCollection, this.aircraftController.aircraftCollection, this.gameController);
 
         this.canvasController = new CanvasController(this.$element);
         this.tutorialView = new TutorialView(this.$element);

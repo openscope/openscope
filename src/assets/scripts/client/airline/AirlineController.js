@@ -19,7 +19,7 @@ export default class AirlineController {
 
         this.airline = airline;
         this.airline.airlines = {};
-        prop.airline = airline;
+        window.prop.airline = airline;
     }
 
     /**
