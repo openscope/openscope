@@ -261,9 +261,9 @@ export default class AircraftStripView {
      * @param currentSpeedText {string}
      */
     updateAircraftTelemetryText(headingText, altitudeText, destinationText, currentSpeedText) {
-        this.$heading.text(headingText);
+        this.$heading.text(headingText.toUpperCase());
         this.$altitude.text(altitudeText);
-        this.$destination.text(destinationText);
+        this.$destination.text(destinationText.toUpperCase());
         this.$speed.text(currentSpeedText);
     }
 
@@ -285,7 +285,7 @@ export default class AircraftStripView {
 
         if (isFollowingSID) {
             // TODO: this should be a class method on the FMS
-            this.$destination.text(destinationText);
+            this.$destination.text(destinationText.toUpperCase());
             this.$destination.addClass(SELECTORS.CLASSNAMES.RUNWAY);
         }
     }
@@ -310,7 +310,7 @@ export default class AircraftStripView {
 
         if (isFollowingSID) {
             // TODO: this should be a class method on the FMS
-            this.$destination.text(destinationText);
+            this.$destination.text(destinationText.toUpperCase());
             this.$destination.addClass(SELECTORS.CLASSNAMES.RUNWAY);
         }
         // TODO: abstract TO HERE
@@ -338,7 +338,7 @@ export default class AircraftStripView {
 
         if (isFollowingSID) {
             // TODO: this should be a class method on the FMS
-            this.$destination.text(destinationText);
+            this.$destination.text(destinationText.toUpperCase());
             this.$destination.addClass(SELECTORS.CLASSNAMES.RUNWAY);
         }
     }
@@ -352,7 +352,7 @@ export default class AircraftStripView {
         this.$heading.text(FLIGHT_MODES.TAKEOFF);
 
         if (isFollowingSID) {
-            this.$destination.text(destinationText);
+            this.$destination.text(destinationText.toUpperCase());
             this.$destination.addClass(SELECTORS.CLASSNAMES.LOOKING_GOOD);
         }
     }
@@ -367,12 +367,12 @@ export default class AircraftStripView {
         const ON_ILS = 'on ILS';
 
         this.$heading.addClass(SELECTORS.CLASSNAMES.ALL_SET);
-        this.$heading.text(ON_ILS);
+        this.$heading.text(ON_ILS.toUpperCase());
         this.$altitude.addClass(SELECTORS.CLASSNAMES.ALL_SET);
         this.$altitude.text(ON_GLIDESLOPE);
         this.$speed.addClass(SELECTORS.CLASSNAMES.ALL_SET);
         this.$destination.addClass(SELECTORS.CLASSNAMES.ALL_SET);
-        this.$destination.text(destinationText);
+        this.$destination.text(destinationText.toUpperCase());
     }
 
     /**
@@ -406,7 +406,7 @@ export default class AircraftStripView {
 
                 if (isFollowingSTAR) {
                     this.$heading.addClass(SELECTORS.CLASSNAMES.FOLLOWING_STAR);
-                    this.$destination.text(destinationText);
+                    this.$destination.text(destinationText.toUpperCase());
                     this.$destination.addClass(SELECTORS.CLASSNAMES.FOLLOWING_STAR);
 
                     if (fixRestrictions.altitude) {
@@ -420,17 +420,17 @@ export default class AircraftStripView {
 
                 break;
             case WAYPOINT_NAV_MODE.HOLD:
-                this.$heading.text(headingText);
+                this.$heading.text(headingText.toUpperCase());
                 this.$heading.addClass(SELECTORS.CLASSNAMES.HOLD);
                 break;
             case WAYPOINT_NAV_MODE.RWY:
                 // attempting ILS intercept
                 this.$heading.addClass(SELECTORS.CLASSNAMES.LOOKING_GOOD);
-                this.$heading.text(headingText);
+                this.$heading.text(headingText.toUpperCase());
                 this.$altitude.addClass(SELECTORS.CLASSNAMES.LOOKING_GOOD);
                 this.$speed.addClass(SELECTORS.CLASSNAMES.LOOKING_GOOD);
                 this.$destination.addClass(SELECTORS.CLASSNAMES.LOOKING_GOOD);
-                this.$destination.text(destinationText);
+                this.$destination.text(destinationText.toUpperCase());
                 break;
             default:
                 break;
