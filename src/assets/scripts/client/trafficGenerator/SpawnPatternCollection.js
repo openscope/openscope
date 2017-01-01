@@ -34,10 +34,10 @@ export default class SpawnPatternCollection extends BaseCollection {
     /**
      * Public property that gives access to the current value of `_items`
      *
-     * @property spawnModels
+     * @property spawnPatternModels
      * @type {array<SpawnPatternModel>}
      */
-    get spawnModels() {
+    get spawnPatternModels() {
         return this._items;
     }
 
@@ -52,7 +52,7 @@ export default class SpawnPatternCollection extends BaseCollection {
      * @param navigationLibrary {NavigationLibrary}
      */
     init(airportJson, navigationLibrary) {
-        this._buildSpawnModels(airportJson.spawnPatterns, navigationLibrary);
+        this._buildspawnPatternModels(airportJson.spawnPatterns, navigationLibrary);
     }
 
     /**
@@ -106,12 +106,12 @@ export default class SpawnPatternCollection extends BaseCollection {
      * a `SpawnPatternModel` for each. Then add it to the collection.
      *
      * @for SpawnPatternCollection
-     * @method _buildSpawnModels
+     * @method _buildspawnPatternModels
      * @param spawnPatterns {array<object>}
      * @param navigationLibrary {NavigationLibrary}
      * @private
      */
-    _buildSpawnModels(spawnPatterns, navigationLibrary) {
+    _buildspawnPatternModels(spawnPatterns, navigationLibrary) {
         _forEach(spawnPatterns, (spawnPattern) => {
             // TODO: obtain from modelSourcePool
             const spawnPatternModel = new SpawnPatternModel(spawnPattern, navigationLibrary);

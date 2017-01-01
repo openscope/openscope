@@ -63,18 +63,18 @@ ava('._buildAircraftDefinitionList() returns a list of AircraftDefinitionModel o
 
 ava.skip('._getAircraftDefinitionForAirlineId()', (t) => {});
 
-ava('._findDestinationFromRouteCode() returns the SID name as a destination for a departing aircraft', (t) => {
+ava('._setDestinationFromRouteOrProcedure() returns the SID name as a destination for a departing aircraft', (t) => {
     const expectedResult = 'COWBY6';
     const collection = new AircraftCollection(AIRCRAFT_DEFINITION_LIST_MOCK, airlineCollectionFixture, navigationLibraryFixture);
-    const result = collection._findDestinationFromRouteCode(spawnPatternModelDepartureFixture);
+    const result = collection._setDestinationFromRouteOrProcedure(spawnPatternModelDepartureFixture);
 
     t.true(result === expectedResult);
 });
 
-ava('._findDestinationFromRouteCode() returns the destination name an arriving aircraft', (t) => {
+ava('._setDestinationFromRouteOrProcedure() returns the destination name an arriving aircraft', (t) => {
     const expectedResult = 'KLAS';
     const collection = new AircraftCollection(AIRCRAFT_DEFINITION_LIST_MOCK, airlineCollectionFixture, navigationLibraryFixture);
-    const result = collection._findDestinationFromRouteCode(spawnPatternModelArrivalFixture);
+    const result = collection._setDestinationFromRouteOrProcedure(spawnPatternModelArrivalFixture);
 
     t.true(result === expectedResult);
 });

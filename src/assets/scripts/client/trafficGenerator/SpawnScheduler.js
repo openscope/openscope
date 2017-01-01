@@ -50,7 +50,7 @@ export default class SpawnScheduler {
      * @param aircraftCollection {AircraftCollection}
      */
     createSchedulesFromList(spawnPatternCollection, aircraftCollection) {
-        _forEach(spawnPatternCollection.spawnModels, (spawnPattern) => {
+        _forEach(spawnPatternCollection.spawnPatternModels, (spawnPattern) => {
             spawnPattern.scheduleId = this.createNextSchedule(spawnPattern, aircraftCollection);
         });
     }
