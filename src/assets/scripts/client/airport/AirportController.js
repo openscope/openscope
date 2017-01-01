@@ -1,7 +1,5 @@
 import _has from 'lodash/has';
 import _lowerCase from 'lodash/lowerCase';
-import AirlineController from '../airline/AirlineController';
-import AircraftController from '../aircraft/AircraftController';
 import Airport from './AirportModel';
 import { STORAGE_KEY } from '../constants/storageKeys';
 
@@ -28,28 +26,14 @@ export default class AirportController {
     constructor(airportLoadList, updateRun, onAirportChange) {
         this.updateRun = updateRun;
         this.onAirportChange = onAirportChange;
+
         this.airport = airport;
         this.airport.airports = {};
         this.airport.current = null;
         this.airlineController = null;
         this.aircraftController = null;
         this._airportListToLoad = airportLoadList;
-    }
-
-    /**
-     * Lifecycle method. Should run only once on App initialiazation
-     *
-     * @for AirportController
-     * @method init_pre
-     */
-    init_pre() {
         prop.airport = airport;
-
-        this.airlineController = new AirlineController();
-        this.aircraftController = new AircraftController();
-
-        window.airlineController = this.airlineController;
-        window.aircraftController = this.aircraftController;
     }
 
     /**
@@ -66,18 +50,6 @@ export default class AirportController {
 
             this.airport_load(airport);
         }
-    }
-
-    /**
-     * Lifecycle method called from `App`.
-     *
-     * This acts as a fascade for the `aircraftController.aircraft_update` method,
-     * where aircraft data is recalculated before re-rendering
-     *
-     * @method recalculate
-     */
-    recalculate() {
-        this.aircraftController.aircraft_update();
     }
 
     /**

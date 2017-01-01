@@ -1,4 +1,5 @@
 import _has from 'lodash/has';
+import AirlineCollection from './AirlineCollection';
 import Airline from './AirlineModelComplex';
 
 // Temporary const declaration here to attach to the window AND use as internal property
@@ -10,8 +11,12 @@ const airline = {};
 export default class AirlineController {
     /**
      * @constructor
+     * @for AirlineController
+     * @param airlineList {array}
      */
-    constructor() {
+    constructor(airlineList) {
+        this.airlineCollection = new AirlineCollection(airlineList);
+
         this.airline = airline;
         this.airline.airlines = {};
         prop.airline = airline;
@@ -39,6 +44,7 @@ export default class AirlineController {
      * @param icao {string}
      */
     addAirline(icao) {
+        console.error('.addAirline() is a deprecated method');
         const airlineToAdd = new Airline(
             icao,
             {

@@ -511,7 +511,7 @@ export default class Aircraft {
         return _isEqual(callsignToMatch.toUpperCase(), this.getCallsign());
     }
 
-    // TODO: this could be a getter
+    // TODO: This model should store this information as instance properties and not calculate it all the time
     /**
      * @for AircraftInstanceModel
      * @method getCallsign

@@ -4,6 +4,8 @@ import LoadingView from './LoadingView';
 import AirlineCollection from './airline/AirlineCollection';
 import AircraftCollection from './aircraft/AircraftCollection';
 import AirportController from './airport/AirportController';
+import AircraftController from './aircraft/AircraftController';
+import AirlineController from './airline/AirlineController';
 import NavigationLibrary from './navigationLibrary/NavigationLibrary';
 import SpawnPatternCollection from './trafficGenerator/SpawnPatternCollection';
 import SpawnScheduler from './trafficGenerator/SpawnScheduler';
@@ -150,9 +152,10 @@ export default class App {
 
         this.airportController = new AirportController(airportLoadList, this.updateRun, this.onAirportChange);
         this.navigationLibrary = new NavigationLibrary(initialAirportData);
-        this.airlineCollection = new AirlineCollection(airlineList);
+        this.airlineController = new AirlineController(airlineList);
+        this.aircraftController = new AircraftController();
         // eslint-disable-next-line max-len
-        this.aircraftCollection = new AircraftCollection(aircraftDefinitionList, this.airlineCollection, this.navigationLibrary);
+        this.aircraftCollection = new AircraftCollection(aircraftDefinitionList, this.airlineController.airlineCollection, this.navigationLibrary);
         this.spawnPatternCollection = new SpawnPatternCollection(initialAirportData, this.navigationLibrary);
         // eslint-disable-next-line max-len
         this.spawnScheduler = new SpawnScheduler(this.spawnPatternCollection, this.aircraftCollection, this.gameController);
@@ -179,6 +182,8 @@ export default class App {
         // this allows for any module file to call window.{module}.{method} and will make the transition to
         // explicit instance parameters easier.
         window.airportController = this.airportController;
+        window.airlineController = this.airlineController;
+        window.aircraftController = this.aircraftController;
         window.gameController = this.gameController;
         window.tutorialView = this.tutorialView;
         window.inputController = this.inputController;
@@ -251,7 +256,6 @@ export default class App {
         this.tutorialView.tutorial_init_pre();
         this.gameController.init_pre();
         this.inputController.input_init_pre();
-        this.airportController.init_pre();
         this.canvasController.canvas_init_pre();
         this.uiController.ui_init_pre();
 
@@ -371,7 +375,7 @@ export default class App {
         requestAnimationFrame(() => this.update());
 
         this.updatePre();
-        this.airportController.recalculate();
+        this.aircraftController.aircraft_update();
         this.updatePost();
         this.incrementFrame();
         this.gameClockView.update();
