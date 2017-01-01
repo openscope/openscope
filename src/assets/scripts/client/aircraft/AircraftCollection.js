@@ -4,13 +4,11 @@ import _isArray from 'lodash/isArray';
 import _isEmpty from 'lodash/isEmpty';
 import _isObject from 'lodash/isObject';
 import _map from 'lodash/map';
-import _random from 'lodash/random';
 import BaseCollection from '../base/BaseCollection';
 import AircraftDefinitionModel from './AircraftDefinitionModel';
 import AircraftInstanceModel from './AircraftInstanceModel';
 import RouteModel from '../airport/Route/RouteModel';
 import { airlineNameAndFleetHelper } from '../airline/airlineHelpers';
-import { bearingToPoint } from '../math/flightMath';
 import { FLIGHT_CATEGORY } from '../constants/aircraftConstants';
 
 /**
@@ -82,8 +80,6 @@ export default class AircraftCollection extends BaseCollection {
         const initializationProps = this._buildAircraftProps(spawnModel);
         const aircraftModel = new AircraftInstanceModel(initializationProps);
 
-        console.log('SPAWN :::', spawnModel.category, initializationProps);
-
         this.addItem(aircraftModel);
     };
 
@@ -141,12 +137,11 @@ export default class AircraftCollection extends BaseCollection {
      */
     _buildAircraftProps(spawnModel) {
         const airlineId = spawnModel.getRandomAirlineForSpawn();
-        const airlineModel = this._airlineCollection.findAirlineById(airlineId);
-        const aircraftDefinition = this._getAircraftDefinitionForAirlineId(airlineModel);
-        const destination = this._findDestinationFromRouteCode(spawnModel);
-        const { fleet } = airlineNameAndFleetHelper([airlineId]);
-        // TODO: move this to `AirlineModel`
-        const callsign = `${_random(0, 999)}`;
+        const { name, fleet } = airlineNameAndFleetHelper([airlineId]);
+        const airlineModel = this._airlineCollection.findAirlineById(name);
+        const aircraftDefinition = this._getAircraftDefinitionForAirlineId(airlineId, airlineModel);
+        const destination = this._setDestinationFromRouteOrProcedure(spawnModel);
+        const callsign = airlineModel.generateFlightNumber();
 
         return {
             callsign,
@@ -161,6 +156,7 @@ export default class AircraftCollection extends BaseCollection {
             icao: aircraftDefinition.icao,
             model: aircraftDefinition,
             route: spawnModel.route,
+            // TODO: this may not be needed anymore
             waypoints: _get(spawnModel, 'fixes', [])
         };
     }
@@ -171,20 +167,20 @@ export default class AircraftCollection extends BaseCollection {
      * @for AircraftCollection
      * @method _getAircraftDefinitionForAirlineId
      * @param airlineId {string}
+     * @param airlineModel {AirlineModel}
      * @return aircraftDefinition {AircraftDefinitionModel}
      * @private
      */
-    _getAircraftDefinitionForAirlineId(airlineModel) {
-        // TODO: this should be able to handle specific fleets from within an airline
-        // const airlineModel = this._airlineCollection.findAirlineById(airlineId);
-        const aircraftType = airlineModel.getRandomAircraftTypeFromAllFleets();
+    _getAircraftDefinitionForAirlineId(airlineId, airlineModel) {
+        const { airline, fleet } = airlineNameAndFleetHelper([airlineId]);
+        const aircraftType = airlineModel.getRandomAircraftType(fleet);
         const aircraftDefinition = _find(this.definitionList, { icao: aircraftType });
 
         if (typeof aircraftDefinition === 'undefined') {
-            console.error(`undefined aircraftDefinition for ${aircraftType}`);
+            console.error(`Undefined aircraftDefinition found for ${aircraftType.toUpperCase()}`);
 
             // recurse through this method if an error is encountered
-            return this._getAircraftDefinitionForAirlineId(airlineModel);
+            return this._getAircraftDefinitionForAirlineId(airlineId, airlineModel);
         }
 
         return aircraftDefinition;
@@ -194,13 +190,13 @@ export default class AircraftCollection extends BaseCollection {
      * Determines if `destination` is defined and returns route procedure name if it is not
      *
      * @for AircraftCollection
-     * @method _findDestinationFromRouteCode
+     * @method _setDestinationFromRouteOrProcedure
      * @param destination {string}
      * @param route {string}
      * @return {string}
      * @private
      */
-    _findDestinationFromRouteCode({ destination, route }) {
+    _setDestinationFromRouteOrProcedure({ destination, route }) {
         let destinationOrProcedure = destination;
 
         if (!destination) {

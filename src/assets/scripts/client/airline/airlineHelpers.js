@@ -60,6 +60,7 @@ const _extractNameAndFleetFromCurrentAirline = (selectedAirline, airlineNameAndF
     return airlineNameAndFleet;
 };
 
+// TODO: this method should be able to handle a string value as a parameter
 /**
  * Accepts an airline, as defined in an airport json file from the `departures` and `arrivals` sections,
  * and returns a consistent object containing an airline name and fleet classification.

@@ -1,4 +1,5 @@
 import _get from 'lodash/get';
+import _has from 'lodash/has';
 import _head from 'lodash/head';
 import _forEach from 'lodash/forEach';
 import _isArray from 'lodash/isArray';
@@ -8,6 +9,7 @@ import _map from 'lodash/map';
 import _random from 'lodash/random';
 import _uniq from 'lodash/uniq';
 import BaseModel from '../base/BaseModel';
+import { choose } from '../utilities/generalUtilities';
 
 /**
  * An aircrcraft operating agency
@@ -20,8 +22,6 @@ import BaseModel from '../base/BaseModel';
  */
 export default class AirlineModel extends BaseModel {
     /**
-     * Create new airline
-     *
      * @constructor
      * @for AirlineModel
      * @param airlineDefinition {object}
@@ -171,34 +171,121 @@ export default class AirlineModel extends BaseModel {
     }
 
     /**
+     * @method getRandomAircraftType
+     * @param fleet {string}
+     * @return {string}
+     */
+    getRandomAircraftType(fleet = '') {
+        if (fleet === '') {
+            return this._getRandomAircraftTypeFromAllFleets();
+        }
+
+        return this._getRandomAircraftTypeFromFleet(fleet);
+    }
+
+    // TODO: the logic here can be simplified.
+    /**
+     * Create a flight number/identifier
+     *
+     * @for AirlineModel
+     * @method generateFlightNumber
+     * @return flightNumber {string}
+     */
+    generateFlightNumber() {
+        let flightNumber = '';
+        let list = '0123456789';
+
+        // Start with a number other than zero
+        flightNumber += choose(list.substr(1));
+
+        if (this.flightNumberGeneration.alpha) {
+            // TODO: why `this.flightNumberGeneration.length - 3`?  enumerate the magic number.
+            for (let i = 0; i < this.flightNumberGeneration.length - 3; i++) {
+                flightNumber += choose(list);
+            }
+
+            list = 'abcdefghijklmnopqrstuvwxyz';
+
+            for (let i = 0; i < 2; i++) {
+                flightNumber += choose(list);
+            }
+        } else {
+            for (let i = 1; i < this.flightNumberGeneration.length; i++) {
+                flightNumber += choose(list);
+            }
+        }
+
+        // if this flightNumber already exists, repeat the process of generating a new flightNumber
+        if (this._isFlightNumberInUse(flightNumber)) {
+            return this.generateFlightNumber();
+        }
+
+        return flightNumber;
+    }
+
+    /**
      * Returns a random aircraft type from any fleet that belongs to this airline
      *
      * Used when a new aircraft spwans with a defined airline, but no defined aircraft type
      *
      * @for AirlineCollection
-     * @method getRandomAircraftTypeFromAllFleets
+     * @method _getRandomAircraftTypeFromAllFleets
      * @return {AirlineModel}
      */
-    getRandomAircraftTypeFromAllFleets() {
+    _getRandomAircraftTypeFromAllFleets() {
         const index = _random(0, this.aircraftList.length - 1);
 
         return this.aircraftList[index];
     }
 
+    // TODO: this returns a random, and not weighted, result
     /**
+     * Return a random aircraft type from within a specific fleet
      *
-     *
+     * @for AirlineModel
+     * @method _getRandomAircraftTypeFromFleet
+     * @param fleetName {string}
+     * @return {string}
      */
-    generateFlightNumber() {
+    _getRandomAircraftTypeFromFleet(fleetName) {
+        // if we want to be uber defensive here we would lowercase the `fleetName` param
+        if (!this._hasFleet(fleetName)) {
+            // eslint-disable-next-line max-len
+            throw new Error(`Invalid fleetName passed to AirlineModel. ${fleetName} is not a fleet defined in ${this.icao}`);
+        }
 
+        const fleet = this.fleets[fleetName];
+        const index = _random(0, fleet.length - 1);
+
+        // entries in `fleets[fleetName]` are of the shape `[TYPE, WEIGHT]` we only need the type here
+        return _head(fleet[index]);
     }
 
     /**
+     * Boolean abstraction used to determine if a fleetName is present within
+     * this instances `fleets` object.
      *
+     * @for AirlineModel
+     * @method _hasFleet
+     * @param fleetName {string}
+     * @return {boolean}
+     */
+    _hasFleet(fleetName) {
+        return _has(this.fleets, fleetName);
+    }
+
+    // TODO: this could be an internal check of the `flightNumbersInUse` array
+    /**
+     * Facade method for `isCallsignInList`
      *
+     * @for AirlineModel
+     * @method _isFlightNumberInUse
+     * @param flightNumber {number|string}
+     * @return {boolean}
      */
     _isFlightNumberInUse(flightNumber) {
-
+        // TODO: replace with a passed instance or move logic to this class
+        return window.aircraftController.isCallsignInList(flightNumber);
     }
 
     /**

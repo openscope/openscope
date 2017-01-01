@@ -62,7 +62,13 @@ export default class AirlineCollection extends BaseCollection {
      * - `aal`
      * - `aal/long`
      *
-     * Where a string following the '/' is assumed to be a specific fleet designation
+     * Where a string following the '/' is assumed to be a specific fleet designation.
+     * Though this method supports the `name/fleet` shape, the puropse of this method
+     * is to find and `AirlineModel` object and not a list of aircraft from a fleet.
+     * When a fleet name is encountered it is discarded.
+     *
+     * If you need to find a specific fleet from an airline, you can use the AirlineModel method:
+     * `airlineModel._getRandomAircraftTypeFromFleet(fleetName)`
      *
      * @for AirlineCollection
      * @method findAirlineById
@@ -70,10 +76,18 @@ export default class AirlineCollection extends BaseCollection {
      * @return {AirlineModel|undefined}
      */
     findAirlineById(id) {
+        const airlineNameAndFleetSeparator = '/';
         let airlineId = id;
 
-        if (airlineId.indexOf('/') !== -1) {
-            console.warn(`Found a specific fleet with airline id ${id}`);
+        if (airlineId.indexOf(airlineNameAndFleetSeparator) !== -1) {
+            // this should not get hit in most circumstances. The puropse of this method is to find
+            // and `AirlineModel` object and not a list of aircraft from a fleet
+            console.warn(
+                `Found a specific fleet with airline id ${id}. This method should be used to find an ` +
+                `AirlineModel instance and not a fleet within an AirlineModel. If you need to find a ` +
+                `specific fleet from an airline, you can use the AirlineModel method: ` +
+                `airlineModel._getRandomAircraftTypeFromFleet(fleetName)`
+            );
             airlineId = id.split('/')[0];
         }
 

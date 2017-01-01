@@ -4,6 +4,10 @@ import _forEach from 'lodash/forEach';
 import { choose, choose_weight } from '../utilities/generalUtilities';
 
 /**
+ * @DEPRECATED
+ */
+
+/**
  * An aircrcraft operating agency
  *
  * @class AirlineModel
