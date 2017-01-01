@@ -53,6 +53,15 @@ export default class AircraftController {
     }
 
     /**
+     *
+     * @method createAircraftWithSpawnModel
+     * @param spawnPatternModel {SpawnPatternModel}
+     */
+    createAircraftWithSpawnModel = (spawnPatternModel) => {
+        this.aircraftCollection.createAircraftWithSpawnModel(spawnPatternModel);
+    }
+
+    /**
      * @for AircraftController
      * @method isCallsignInList
      * @param callsign {string}

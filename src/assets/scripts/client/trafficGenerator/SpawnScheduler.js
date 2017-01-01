@@ -12,16 +12,16 @@ export default class SpawnScheduler {
      * @constructor
      * @for SpawnScheduler
      * @param spawnPatternCollection {SpawnPatternCollection}
-     * @param aircraftCollection {AircraftCollection}
+     * @param aircraftController {AircraftController}
      * @param gameController {GameController}
      */
-    constructor(spawnPatternCollection, aircraftCollection, gameController) {
+    constructor(spawnPatternCollection, aircraftController, gameController) {
         if (!(spawnPatternCollection instanceof SpawnPatternCollection)) {
             throw new TypeError('Invalid parameter. SpawnScheduler requires an instance of a SpawnPatternCollection.');
         }
 
-        if (typeof aircraftCollection === 'undefined') {
-            throw new TypeError('Invalid parameter. SpawnScheduler requires aircraftCollection to be defined.');
+        if (typeof aircraftController === 'undefined') {
+            throw new TypeError('Invalid parameter. SpawnScheduler requires aircraftController to be defined.');
         }
 
         if (typeof gameController === 'undefined') {
@@ -38,7 +38,7 @@ export default class SpawnScheduler {
          */
         this._gameController = gameController;
 
-        this.createSchedulesFromList(spawnPatternCollection, aircraftCollection);
+        this.createSchedulesFromList(spawnPatternCollection, aircraftController);
     }
 
     /**
@@ -47,11 +47,11 @@ export default class SpawnScheduler {
      * @for SpawnScheduler
      * @method createSchedulesFromList
      * @param spawnPatternCollection {SpawnPatternCollection}
-     * @param aircraftCollection {AircraftCollection}
+     * @param aircraftController {AircraftCollection}
      */
-    createSchedulesFromList(spawnPatternCollection, aircraftCollection) {
+    createSchedulesFromList(spawnPatternCollection, aircraftController) {
         _forEach(spawnPatternCollection.spawnPatternModels, (spawnPattern) => {
-            spawnPattern.scheduleId = this.createNextSchedule(spawnPattern, aircraftCollection);
+            spawnPattern.scheduleId = this.createNextSchedule(spawnPattern, aircraftController);
         });
     }
 
@@ -61,10 +61,10 @@ export default class SpawnScheduler {
      * @for SpawnScheduler
      * @method createNextSchedule
      * @param spawnPattern {SpawnPatternModel}
-     * @param aircraftCollection {AircraftCollection}
+     * @param aircraftController {AircraftCollection}
      * @return {function}
      */
-    createNextSchedule(spawnPattern, aircraftCollection) {
+    createNextSchedule(spawnPattern, aircraftController) {
         const delay = spawnPattern.getRandomDelayValue();
         // TODO: remove this block before merge with develop
         console.warn(delay, spawnPattern.category, spawnPattern.route);
@@ -76,7 +76,7 @@ export default class SpawnScheduler {
             // passing null only to match existing api
             null,
             // arguments sent to callback as it's first parameter. using array so multiple arg can be sent
-            [spawnPattern, aircraftCollection]
+            [spawnPattern, aircraftController]
         );
     }
 
@@ -87,7 +87,7 @@ export default class SpawnScheduler {
      * create a new time by calling `createNextSchedule`. Doing so will also result
      * in calculating a new delay period.
      *
-     * Accepts two arguments; `spawnPattern` and `aircraftCollection`.
+     * Accepts two arguments; `spawnPattern` and `aircraftController`.
      *
      * @for SpawnScheduler
      * @method createAircraftAndRegisterNextTimeout
@@ -95,10 +95,10 @@ export default class SpawnScheduler {
      */
     createAircraftAndRegisterNextTimeout = (...args) => {
         const spawnPattern = args[0][0];
-        const aircraftCollection = args[0][1];
+        const aircraftController = args[0][1];
 
-        aircraftCollection.createAircraftWithSpawnModel(spawnPattern);
+        aircraftController.createAircraftWithSpawnModel(spawnPattern);
 
-        this.createNextSchedule(spawnPattern, aircraftCollection);
+        this.createNextSchedule(spawnPattern, aircraftController);
     };
 }

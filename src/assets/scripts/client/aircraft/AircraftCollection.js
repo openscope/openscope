@@ -76,12 +76,12 @@ export default class AircraftCollection extends BaseCollection {
      * @method createAircraftWithSpawnModel
      * @param spawnModel {SpawnPatternModel}
      */
-    createAircraftWithSpawnModel = (spawnModel) => {
+    createAircraftWithSpawnModel(spawnModel) {
         const initializationProps = this._buildAircraftProps(spawnModel);
         const aircraftModel = new AircraftInstanceModel(initializationProps);
 
         this.addItem(aircraftModel);
-    };
+    }
 
     /**
      * Add an `AircraftInstanceModel` to the collection

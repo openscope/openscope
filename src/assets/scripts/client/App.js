@@ -154,7 +154,7 @@ export default class App {
         this.aircraftController = new AircraftController(aircraftDefinitionList, this.airlineController, this.navigationLibrary);
         this.spawnPatternCollection = new SpawnPatternCollection(initialAirportData, this.navigationLibrary);
         // eslint-disable-next-line max-len
-        this.spawnScheduler = new SpawnScheduler(this.spawnPatternCollection, this.aircraftController.aircraftCollection, this.gameController);
+        this.spawnScheduler = new SpawnScheduler(this.spawnPatternCollection, this.aircraftController, this.gameController);
 
         this.canvasController = new CanvasController(this.$element);
         this.tutorialView = new TutorialView(this.$element);
