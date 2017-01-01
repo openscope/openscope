@@ -1,9 +1,16 @@
 import _each from 'lodash/each';
+import _get from 'lodash/get';
 import _includes from 'lodash/includes';
+import _isArray from 'lodash/isArray';
+import _isEmpty from 'lodash/isEmpty';
+import _isObject from 'lodash/isObject';
 import _without from 'lodash/without';
 import AircraftCollection from './AircraftCollection';
+import AircraftInstanceModel from './AircraftInstanceModel';
 import AircraftConflict from './AircraftConflict';
 import AircraftModel from './AircraftModel';
+import RouteModel from '../airport/Route/RouteModel';
+import { airlineNameAndFleetHelper } from '../airline/airlineHelpers';
 import { speech_say } from '../speech';
 import { abs } from '../math/core';
 import { distance2d } from '../math/distance';
@@ -16,7 +23,6 @@ import { GAME_EVENTS } from '../game/GameController';
 // Temporary const declaration here to attach to the window AND use as internal property
 const aircraft = {};
 
-// TODO: this should be renamed to `AircraftCollection`
 /**
  * @class AircraftController
  */
@@ -25,19 +31,63 @@ export default class AircraftController {
      * @constructor
      * @for AircraftController
      * @param aircraftDefinitionList {array<object>}
-     * @param airlineCollection {AirlineCollection}
+     * @param airlineController {AirlineController}
      * @param navigationLibrary {NavigationLibrary}
      */
     constructor(aircraftDefinitionList, airlineController, navigationLibrary) {
+        if (!_isArray(aircraftDefinitionList) || _isEmpty(aircraftDefinitionList)) {
+            // eslint-disable-next-line max-len
+            throw new TypeError('Invalid aircraftDefinitionList passed to AircraftCollection. Expected and array but ' +
+                `received ${typeof aircraftDefinitionList}`);
+        }
+
+        // TODO: this may need to use instanceof instead, but that may be overly defensive
+        if (!_isObject(airlineController) || !_isObject(navigationLibrary)) {
+            throw new TypeError('Invalid parameters. Expected airlineCollection and navigationLibrary to be defined');
+        }
+
+        /**
+         * Reference to an `AirlineController` instance
+         *
+         * @property airlineController
+         * @type {AirlineController}
+         * @default airlineController
+         */
         this.airlineController = airlineController;
+
+        /**
+         * Reference to a `NavigationLibrary` instance
+         *
+         * @property navigationLibrary
+         * @type NavigationLibrary
+         * @default navigationLibrary
+         */
         this.navigationLibrary = navigationLibrary;
-        // eslint-disable-next-line max-len
-        this.aircraftCollection = new AircraftCollection(aircraftDefinitionList, this.airlineController.airlineCollection, this.navigationLibrary);
+
+        // TODO: rename to `AircraftTypeDefinitionCollection`
+        /**
+         * Reference to an `AircraftCollection` instance
+         *
+         * Provides definitions for all available aircraft types
+         *
+         * @property aircraftCollection
+         * @type {AircraftCollection}
+         */
+        this.aircraftCollection = new AircraftCollection(
+            aircraftDefinitionList,
+            this.airlineController.airlineCollection,
+            this.navigationLibrary
+        );
+
 
         this.aircraft = aircraft;
+        // TODO: replace with aircraftCollection
         this.aircraft.models = {};
+        // TODO: replace with facade to `airlineController`
         this.aircraft.callsigns = [];
+        // TODO: add methods for adding to and removing from this list
         this.aircraft.list = [];
+
         this.aircraft.current = null;
         this.aircraft.auto = { enabled: false };
         this.conflicts = [];
@@ -45,20 +95,38 @@ export default class AircraftController {
     }
 
     /**
+     * Adds an `AircraftInstanceModel` to the collection
+     *
      * @for AircraftController
-     * @method aircraft_auto_toggle
+     * @method addItem
+     * @param item {AircraftInstanceModel}
      */
-    aircraft_auto_toggle() {
-        prop.aircraft.auto.enabled = !this.aircraft.auto.enabled;
+    addItem(item) {
+        this.aircraft.list.push(item);
     }
 
     /**
+     * Callback method fired by an interval defined in the `SpawnScheduler`.
+     *
+     * This is the entry method for creating new departing and arriving aircraft.
+     * This method should only be called as a callback from a `SpawnScheduler` timer.
      *
      * @method createAircraftWithSpawnModel
      * @param spawnPatternModel {SpawnPatternModel}
      */
     createAircraftWithSpawnModel = (spawnPatternModel) => {
-        this.aircraftCollection.createAircraftWithSpawnModel(spawnPatternModel);
+        const initializationProps = this._buildAircraftProps(spawnPatternModel);
+        const aircraftModel = new AircraftInstanceModel(initializationProps);
+
+        this.addItem(aircraftModel);
+    }
+
+    /**
+     * @for AircraftController
+     * @method aircraft_auto_toggle
+     */
+    aircraft_auto_toggle() {
+        this.aircraft.auto.enabled = !this.aircraft.auto.enabled;
     }
 
     /**
@@ -108,17 +176,6 @@ export default class AircraftController {
 
         this.conflicts.push(conflict);
     }
-
-    // /**
-    //  * @for AircraftController
-    //  * @method aircraft_new
-    //  * @param options {object}
-    //  */
-    // aircraft_new(options) {
-    //     const airline = window.airlineController.airline_get(options.airline);
-    //
-    //     return airline.generateAircraft(options);
-    // }
 
     /**
      * @for AircraftController
@@ -455,5 +512,75 @@ export default class AircraftController {
             // update eid in aircraft's fms
             this.aircraft.list[i].fms.my_aircrafts_eid = i;
         }
+    }
+
+    /**
+     * Used to build up the appropriate data needed to instantiate an `AircraftInstanceModel`
+     *
+     * @for AircraftController
+     * @method _buildAircraftProps
+     * @param spawnModel {SpawnPatternModel}
+     * @return {object}
+     * @private
+     */
+    _buildAircraftProps(spawnModel) {
+        const airlineId = spawnModel.getRandomAirlineForSpawn();
+        const { name, fleet } = airlineNameAndFleetHelper([airlineId]);
+        const airlineModel = this.airlineController.findAirlineById(name);
+        const aircraftDefinition = this._getAircraftDefinitionForAirlineId(airlineId, airlineModel);
+        const destination = this._setDestinationFromRouteOrProcedure(spawnModel);
+        const callsign = airlineModel.generateFlightNumber();
+
+        return {
+            callsign,
+            destination,
+            fleet,
+            category: spawnModel.category,
+            airline: airlineModel.icao,
+            altitude: spawnModel.altitude,
+            speed: spawnModel.speed,
+            heading: spawnModel.heading,
+            position: spawnModel.position,
+            icao: aircraftDefinition.icao,
+            model: aircraftDefinition,
+            route: spawnModel.route,
+            // TODO: this may not be needed anymore
+            waypoints: _get(spawnModel, 'fixes', [])
+        };
+    }
+
+    /**
+     * Given an `airlineId`, find a random aircraft type from the airline.
+     *
+     * @for AircraftController
+     * @method _getAircraftDefinitionForAirlineId
+     * @param airlineId {string}
+     * @param airlineModel {AirlineModel}
+     * @return aircraftDefinition {AircraftDefinitionModel}
+     * @private
+     */
+    _getAircraftDefinitionForAirlineId(airlineId, airlineModel) {
+        return this.aircraftCollection.getAircraftDefinitionForAirlineId(airlineId, airlineModel);
+    }
+
+    /**
+     * Determines if `destination` is defined and returns route procedure name if it is not
+     *
+     * @for AircraftController
+     * @method _setDestinationFromRouteOrProcedure
+     * @param destination {string}
+     * @param route {string}
+     * @return {string}
+     * @private
+     */
+    _setDestinationFromRouteOrProcedure({ destination, route }) {
+        let destinationOrProcedure = destination;
+
+        if (!destination) {
+            const routeModel = new RouteModel(route);
+            destinationOrProcedure = routeModel.procedure;
+        }
+
+        return destinationOrProcedure;
     }
 }

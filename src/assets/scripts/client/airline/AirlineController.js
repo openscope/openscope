@@ -19,7 +19,17 @@ export default class AirlineController {
 
         this.airline = airline;
         this.airline.airlines = {};
-        window.prop.airline = airline;
+        // window.prop.airline = airline;
+    }
+
+    /**
+     * @for AirlineController
+     * @method findAirlineById
+     * @param airlineId {string}
+     * @return {AirlineModel}
+     */
+    findAirlineById(airlineId) {
+        return this.airlineCollection.findAirlineById(airlineId);
     }
 
     /**

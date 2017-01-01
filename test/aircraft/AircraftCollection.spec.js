@@ -6,10 +6,6 @@ import AircraftCollection from '../../src/assets/scripts/client/aircraft/Aircraf
 import AircraftDefinitionModel from '../../src/assets/scripts/client/aircraft/AircraftDefinitionModel';
 import { airlineCollectionFixture } from '../fixtures/airlineFixtures';
 import { navigationLibraryFixture } from '../fixtures/navigationLibraryFixtures';
-import {
-    spawnPatternModelArrivalFixture,
-    spawnPatternModelDepartureFixture
-} from '../fixtures/trafficGeneratorFixtures';
 import { AIRCRAFT_DEFINITION_LIST_MOCK } from './_mocks/aircraftMocks';
 
 ava('should throw when passed invalid parameters', (t) => {
@@ -61,20 +57,4 @@ ava('._buildAircraftDefinitionList() returns a list of AircraftDefinitionModel o
     });
 });
 
-ava.skip('._getAircraftDefinitionForAirlineId()', (t) => {});
-
-ava('._setDestinationFromRouteOrProcedure() returns the SID name as a destination for a departing aircraft', (t) => {
-    const expectedResult = 'COWBY6';
-    const collection = new AircraftCollection(AIRCRAFT_DEFINITION_LIST_MOCK, airlineCollectionFixture, navigationLibraryFixture);
-    const result = collection._setDestinationFromRouteOrProcedure(spawnPatternModelDepartureFixture);
-
-    t.true(result === expectedResult);
-});
-
-ava('._setDestinationFromRouteOrProcedure() returns the destination name an arriving aircraft', (t) => {
-    const expectedResult = 'KLAS';
-    const collection = new AircraftCollection(AIRCRAFT_DEFINITION_LIST_MOCK, airlineCollectionFixture, navigationLibraryFixture);
-    const result = collection._setDestinationFromRouteOrProcedure(spawnPatternModelArrivalFixture);
-
-    t.true(result === expectedResult);
-});
+ava.skip('.getAircraftDefinitionForAirlineId()', (t) => {});
