@@ -593,31 +593,30 @@ export default class Aircraft {
      */
     cancelLanding() {
         // TODO: this logic could be simplified. do an early return instead of wrapping the entire function in an if.
-        if (this.fms.currentWaypoint.navmode === WAYPOINT_NAV_MODE.RWY) {
-            const runway = window.airportController.airport_get().getRunway(this.rwy_arr);
-
-            if (this.mode === FLIGHT_MODES.LANDING) {
-                // TODO: enumerate the magic numbers
-                this.fms.setCurrent({
-                    altitude: Math.max(2000, round((this.altitude / 1000)) * 1000),
-                    heading: runway.angle
-                });
-            }
-
-            this.fms.setCurrent({
-                navmode: WAYPOINT_NAV_MODE.HEADING,
-                runway: null
-            });
-
-            this.mode = FLIGHT_MODES.CRUISE;
-            this.updateStrip();
-
-            return true;
+        if (this.fms.currentWaypoint.navmode !== WAYPOINT_NAV_MODE.RWY) {
+            this.fms.setCurrent({ runway: null });
+            return false;
         }
 
-        this.fms.setCurrent({ runway: null });
+        const runway = window.airportController.airport_get().getRunway(this.rwy_arr);
 
-        return false;
+        if (this.mode === FLIGHT_MODES.LANDING) {
+            // TODO: enumerate the magic numbers
+            this.fms.setCurrent({
+                altitude: Math.max(2000, round((this.altitude / 1000)) * 1000),
+                heading: runway.angle
+            });
+        }
+
+        this.fms.setCurrent({
+            navmode: WAYPOINT_NAV_MODE.HEADING,
+            runway: null
+        });
+
+        this.mode = FLIGHT_MODES.CRUISE;
+        this.updateStrip();
+
+        return true;
     }
 
     // FIXME: is this method still in use?
