@@ -47,9 +47,9 @@ ava('.findAircraftDefinitionModelByIcao() returns an AircraftDefinitionModel whe
     t.true(result.icao === expectedResult);
 });
 
-ava('._buildAircraftDefinitionList() returns a list of AircraftDefinitionModel objects', (t) => {
+ava('._buildAircraftDefinitionModelList() returns a list of AircraftDefinitionModel objects', (t) => {
     const collection = new AircraftCollection(AIRCRAFT_DEFINITION_LIST_MOCK, airlineCollectionFixture, navigationLibraryFixture);
-    const results = collection._buildAircraftDefinitionList(AIRCRAFT_DEFINITION_LIST_MOCK);
+    const results = collection._buildAircraftDefinitionModelList(AIRCRAFT_DEFINITION_LIST_MOCK);
 
     _forEach(results, (result, i) => {
         t.true(result instanceof AircraftDefinitionModel);

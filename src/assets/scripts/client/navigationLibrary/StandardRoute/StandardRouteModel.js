@@ -255,11 +255,10 @@ export default class StandardRouteModel extends BaseModel {
      * @param entry {string}
      * @param exit {string}
      * @param isPreSpawn {boolean} flag used to determine if distances between waypoints should be calculated
-     * @param isPartial {boolean}
      * @return waypointList {array<StandardWaypointModel>}
      */
-    findStandardWaypointModelsForEntryAndExit(entry, exit, isPreSpawn, isPartial = false) {
-        const waypointList = this._findStandardWaypointModelsForRoute(entry, exit, isPartial);
+    findStandardWaypointModelsForEntryAndExit(entry, exit, isPreSpawn) {
+        const waypointList = this._findStandardWaypointModelsForRoute(entry, exit);
 
         if (isPreSpawn) {
             this._updateWaypointsWithPreviousWaypointData(waypointList);

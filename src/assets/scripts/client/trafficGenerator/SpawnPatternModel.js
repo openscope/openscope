@@ -76,7 +76,7 @@ export default class SpawnPatternModel extends BaseModel {
         this.method = '';
 
         /**
-         *
+         * The airport this pattern begins at
          *
          * @property origin
          * @type {string}
@@ -85,7 +85,8 @@ export default class SpawnPatternModel extends BaseModel {
         this.origin = '';
 
         /**
-         *
+         * The airport icao id this pattern's aircraft will land at
+         * or the procedure name the aircraft is departing with
          *
          * @property destination
          * @type {string}
@@ -96,11 +97,11 @@ export default class SpawnPatternModel extends BaseModel {
         /**
          * String representation of a `StandardRoute`
          *
-         * @property route
+         * @property routeString
          * @type {string}
          * @default
          */
-        this.route = '';
+        this.routeString = '';
 
         /**
          * Rate at which aircaft spawn, express in aircraft per hour
@@ -256,7 +257,7 @@ export default class SpawnPatternModel extends BaseModel {
         this.category = spawnPatternJson.category;
         this.method = spawnPatternJson.method;
         this.rate = spawnPatternJson.rate;
-        this.route = spawnPatternJson.route;
+        this.routeString = spawnPatternJson.route;
         this.speed = this._extractSpeedFromJson(spawnPatternJson);
         this._minimumDelay = this._calculateMinimumDelayFromSpeed();
         this._maximumDelay = this._calculateMaximumDelayFromRate();
@@ -281,7 +282,7 @@ export default class SpawnPatternModel extends BaseModel {
         this.method = '';
         this.origin = '';
         this.destination = '';
-        this.route = '';
+        this.routeString = '';
         this.rate = -1;
         this._maximumDelay = -1;
         this._minimumDelay = -1;
@@ -394,7 +395,7 @@ export default class SpawnPatternModel extends BaseModel {
      * @private
      */
     _calculateMaximumDelayFromRate() {
-        return Math.floor(TIME.ONE_HOUR_IN_SECONDS / this.rate);
+        return TIME.ONE_HOUR_IN_SECONDS / this.rate;
     }
 
     /**
@@ -479,7 +480,7 @@ export default class SpawnPatternModel extends BaseModel {
      *
      * @for SpawnPatternModel
      * @method _calculatePositionAndHeadingForArrival
-     * @param spawnPatternJson {SpawnPatternModel}
+     * @param spawnPatternJson {object}
      * @param navigationLibrary {NavigationLibrary}
      * @private
      */

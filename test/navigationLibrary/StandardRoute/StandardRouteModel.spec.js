@@ -144,7 +144,7 @@ ava('.findFixesAndRestrictionsForEntryAndRunway() returns fixes for a given arri
 });
 
 ava('.findStandardWaypointModelsForEntryAndExit() returns a list of `StandardRouteWaypointModel`s for a given STAR', t => {
-    const expectedArguments = ['MLF', '19R', false];
+    const expectedArguments = ['MLF', '19R'];
     const model = new StandardRouteModel(STAR_LIST_MOCK.GRNPA1);
     const spy = sinon.spy(model, '_findStandardWaypointModelsForRoute');
 

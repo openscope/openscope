@@ -30,15 +30,15 @@ export default class AircraftController {
     /**
      * @constructor
      * @for AircraftController
-     * @param aircraftDefinitionList {array<object>}
+     * @param aircraftTypeDefinitionList {array<object>}
      * @param airlineController {AirlineController}
      * @param navigationLibrary {NavigationLibrary}
      */
-    constructor(aircraftDefinitionList, airlineController, navigationLibrary) {
-        if (!_isArray(aircraftDefinitionList) || _isEmpty(aircraftDefinitionList)) {
+    constructor(aircraftTypeDefinitionList, airlineController, navigationLibrary) {
+        if (!_isArray(aircraftTypeDefinitionList) || _isEmpty(aircraftTypeDefinitionList)) {
             // eslint-disable-next-line max-len
-            throw new TypeError('Invalid aircraftDefinitionList passed to AircraftCollection. Expected and array but ' +
-                `received ${typeof aircraftDefinitionList}`);
+            throw new TypeError('Invalid aircraftTypeDefinitionList passed to AircraftCollection. Expected and array but ' +
+                `received ${typeof aircraftTypeDefinitionList}`);
         }
 
         // TODO: this may need to use instanceof instead, but that may be overly defensive
@@ -74,7 +74,7 @@ export default class AircraftController {
          * @type {AircraftCollection}
          */
         this.aircraftCollection = new AircraftCollection(
-            aircraftDefinitionList,
+            aircraftTypeDefinitionList,
             this.airlineController.airlineCollection,
             this.navigationLibrary
         );
@@ -527,7 +527,7 @@ export default class AircraftController {
         const airlineId = spawnModel.getRandomAirlineForSpawn();
         const { name, fleet } = airlineNameAndFleetHelper([airlineId]);
         const airlineModel = this.airlineController.findAirlineById(name);
-        const aircraftDefinition = this._getAircraftDefinitionForAirlineId(airlineId, airlineModel);
+        const aircraftDefinition = this._getRandomAircraftTypeDefinitionForAirlineId(airlineId, airlineModel);
         const destination = this._setDestinationFromRouteOrProcedure(spawnModel);
         const callsign = airlineModel.generateFlightNumber();
 
@@ -543,7 +543,7 @@ export default class AircraftController {
             position: spawnModel.position,
             icao: aircraftDefinition.icao,
             model: aircraftDefinition,
-            route: spawnModel.route,
+            route: spawnModel.routeString,
             // TODO: this may not be needed anymore
             waypoints: _get(spawnModel, 'fixes', [])
         };
@@ -553,13 +553,13 @@ export default class AircraftController {
      * Given an `airlineId`, find a random aircraft type from the airline.
      *
      * @for AircraftController
-     * @method _getAircraftDefinitionForAirlineId
+     * @method _getRandomAircraftTypeDefinitionForAirlineId
      * @param airlineId {string}
      * @param airlineModel {AirlineModel}
      * @return aircraftDefinition {AircraftDefinitionModel}
      * @private
      */
-    _getAircraftDefinitionForAirlineId(airlineId, airlineModel) {
+    _getRandomAircraftTypeDefinitionForAirlineId(airlineId, airlineModel) {
         return this.aircraftCollection.getAircraftDefinitionForAirlineId(airlineId, airlineModel);
     }
 
@@ -573,11 +573,11 @@ export default class AircraftController {
      * @return {string}
      * @private
      */
-    _setDestinationFromRouteOrProcedure({ destination, route }) {
+    _setDestinationFromRouteOrProcedure({ destination, routeString }) {
         let destinationOrProcedure = destination;
 
         if (!destination) {
-            const routeModel = new RouteModel(route);
+            const routeModel = new RouteModel(routeString);
             destinationOrProcedure = routeModel.procedure;
         }
 

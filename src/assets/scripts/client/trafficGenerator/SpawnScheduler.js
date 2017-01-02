@@ -67,7 +67,7 @@ export default class SpawnScheduler {
     createNextSchedule(spawnPattern, aircraftController) {
         const delay = spawnPattern.getRandomDelayValue();
         // TODO: remove this block before merge with develop
-        console.warn(delay, spawnPattern.category, spawnPattern.route);
+        console.warn(delay, spawnPattern.category, spawnPattern.routeString);
 
         return this._gameController.game_timeout(
             this.createAircraftAndRegisterNextTimeout,

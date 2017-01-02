@@ -141,9 +141,9 @@ export default class App {
      * @param airportLoadList {array}         List of all airports
      * @param initialAirportData {object}     Airport json for the initial airport, could be default or stored airport
      * @param airlineList {array}             List of all Airline definitions
-     * @param aircraftDefinitionList {array}  List of all Aircraft definitions
+     * @param aircraftTypeDefinitionList {array}  List of all Aircraft definitions
      */
-    setupChildren(airportLoadList, initialAirportData, airlineList, aircraftDefinitionList) {
+    setupChildren(airportLoadList, initialAirportData, airlineList, aircraftTypeDefinitionList) {
         this.loadingView = new LoadingView();
         this.contentQueue = new ContentQueue(this.loadingView);
         this.gameController = new GameController(this.getDeltaTime);
@@ -151,7 +151,7 @@ export default class App {
         this.airportController = new AirportController(airportLoadList, this.updateRun, this.onAirportChange);
         this.navigationLibrary = new NavigationLibrary(initialAirportData);
         this.airlineController = new AirlineController(airlineList);
-        this.aircraftController = new AircraftController(aircraftDefinitionList, this.airlineController, this.navigationLibrary);
+        this.aircraftController = new AircraftController(aircraftTypeDefinitionList, this.airlineController, this.navigationLibrary);
         this.spawnPatternCollection = new SpawnPatternCollection(initialAirportData, this.navigationLibrary);
         // eslint-disable-next-line max-len
         this.spawnScheduler = new SpawnScheduler(this.spawnPatternCollection, this.aircraftController, this.gameController);

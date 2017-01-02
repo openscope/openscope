@@ -89,18 +89,18 @@ ava.skip('._calculatePositionAndHeadingForArrival() calculates aircraft heading 
 ava('._calculatePositionAndHeadingForArrival() returns early when spawnPattern.category is departure', (t) => {
     const model = new SpawnPatternModel(DEPARTURE_PATTERN_MOCK, navigationLibraryFixture);
 
-    model._calculatePositionAndHeadingForArrival(spawnPatternModelDepartureFixture, navigationLibraryFixture);
+    model._calculatePositionAndHeadingForArrival(DEPARTURE_PATTERN_MOCK, navigationLibraryFixture);
 
     t.true(model.heading === -1);
     t.true(_isEmpty(model.position));
 });
 
 ava('._calculatePositionAndHeadingForArrival() calculates aircraft heading and position when provided a route', (t) => {
-    const expedtedHeadingResult = 0.5812231343277809;
-    const expectedPositionResult = [-99.76521626690608, -148.0266530993096];
+    const expedtedHeadingResult = -1.8520506712692788;
+    const expectedPositionResult = [220.0165474765974,137.76227044819646];
     const model = new SpawnPatternModel(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture);
 
-    model._calculatePositionAndHeadingForArrival(spawnPatternModelArrivalFixture, navigationLibraryFixture);
+    model._calculatePositionAndHeadingForArrival(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture);
 
     t.true(model.heading === expedtedHeadingResult);
     t.true(_isEqual(model.position, expectedPositionResult));

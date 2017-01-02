@@ -24,17 +24,17 @@ export default class AircraftCollection extends BaseCollection {
     /**
      * @constructor
      * @for AircraftCollection
-     * @param aircraftDefinitionList {array<object>}
+     * @param aircraftTypeDefinitionList {array<object>}
      * @param airlineCollection {AirlineCollection}
      * @param navigationLibrary {NavigationLibrary}
      */
-    constructor(aircraftDefinitionList, airlineCollection, navigationLibrary) {
-        super(aircraftDefinitionList, airlineCollection, navigationLibrary);
+    constructor(aircraftTypeDefinitionList, airlineCollection, navigationLibrary) {
+        super(aircraftTypeDefinitionList, airlineCollection, navigationLibrary);
 
-        if (!_isArray(aircraftDefinitionList) || _isEmpty(aircraftDefinitionList)) {
+        if (!_isArray(aircraftTypeDefinitionList) || _isEmpty(aircraftTypeDefinitionList)) {
             // eslint-disable-next-line max-len
-            throw new TypeError('Invalid aircraftDefinitionList passed to AircraftCollection. Expected and array but ' +
-                `received ${typeof aircraftDefinitionList}`);
+            throw new TypeError('Invalid aircraftTypeDefinitionList passed to AircraftCollection. Expected and array but ' +
+                `received ${typeof aircraftTypeDefinitionList}`);
         }
 
         // TODO: this may need to use instanceof instead, but that may be overly defensive
@@ -46,7 +46,7 @@ export default class AircraftCollection extends BaseCollection {
         this._navigationLibrary = navigationLibrary;
         this.definitionList = [];
 
-        this.init(aircraftDefinitionList);
+        this.init(aircraftTypeDefinitionList);
     }
 
     /**
@@ -56,10 +56,10 @@ export default class AircraftCollection extends BaseCollection {
      *
      * @for AircraftCollection
      * @method init
-     * @param aircraftDefinitionList {array<object>}
+     * @param aircraftTypeDefinitionList {array<object>}
      */
-    init(aircraftDefinitionList) {
-        this.definitionList = this._buildAircraftDefinitionList(aircraftDefinitionList);
+    init(aircraftTypeDefinitionList) {
+        this.definitionList = this._buildAircraftDefinitionModelList(aircraftTypeDefinitionList);
     }
 
     /**
@@ -102,13 +102,13 @@ export default class AircraftCollection extends BaseCollection {
      * `AircraftDefinitionModel` for each.
      *
      * @for AircraftCollection
-     * @method _buildAircraftDefinitionList
-     * @param aircraftDefinitionList {array}
+     * @method _buildAircraftDefinitionModelList
+     * @param aircraftTypeDefinitionList {array}
      * @return definitionList {array<AircraftDefinitionModel>}
      * @private
      */
-    _buildAircraftDefinitionList(aircraftDefinitionList) {
-        const definitionList = _map(aircraftDefinitionList, (aircraftDefinition) => {
+    _buildAircraftDefinitionModelList(aircraftTypeDefinitionList) {
+        const definitionList = _map(aircraftTypeDefinitionList, (aircraftDefinition) => {
             // this is not using a direct return simply for readability
             return new AircraftDefinitionModel(aircraftDefinition);
         });
