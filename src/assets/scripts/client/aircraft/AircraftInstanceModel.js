@@ -1282,28 +1282,7 @@ export default class Aircraft {
         }
 
         // SPEED
-        let difference = null;
-
-        if (this.target.speed < this.speed - 0.01) {
-            difference = -this.model.rate.decelerate * window.gameController.game_delta() / 2;
-
-            if (this.isOnGround()) {
-                difference *= 3.5;
-            }
-        } else if (this.target.speed > this.speed + 0.01) {
-            difference  = this.model.rate.accelerate * window.gameController.game_delta() / 2;
-            difference *= extrapolate_range_clamp(0, this.speed, this.model.speed.min, 2, 1);
-        }
-
-        if (difference) {
-            const offset = this.speed - this.target.speed;
-
-            if (abs(offset) < abs(difference)) {
-                this.speed = this.target.speed;
-            } else {
-                this.speed += difference;
-            }
-        }
+        this.updateSpeedPhysics();
 
         if (!this.position) {
             return;
@@ -1378,6 +1357,37 @@ export default class Aircraft {
 
         if (isInsideAirspace !== this.inside_ctr) {
             this.crossBoundary(isInsideAirspace);
+        }
+    }
+
+    /**
+     * @for updateSpeedPhysics
+     * @method updateWarning
+     * This updates the speed for the instance of the aircraft by checking the difference between current speed and requested speed
+     */
+    updateSpeedPhysics() {
+        let difference = null;
+
+        if (this.target.speed < this.speed - 0.01) {
+            difference = -this.model.rate.decelerate * window.gameController.game_delta() / 2;
+
+            if (this.isOnGround()) {
+                // What is 3.5 is this restiance/breaking power?
+                difference *= 3.5;
+            }
+        } else if (this.target.speed > this.speed + 0.01) {
+            difference  = this.model.rate.accelerate * window.gameController.game_delta() / 2;
+            difference *= extrapolate_range_clamp(0, this.speed, this.model.speed.min, 2, 1);
+        }
+
+        if (difference) {
+            const offset = this.speed - this.target.speed;
+
+            if (abs(offset) < abs(difference)) {
+                this.speed = this.target.speed;
+            } else {
+                this.speed += difference;
+            }
         }
     }
 
