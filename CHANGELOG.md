@@ -1,6 +1,8 @@
-## 3.2.1. (January 2, 2017)
+## 3.2.1 (January 2, 2017)
 ---
 ### Bugfixes
+- Restores behavior of aircraft flying present heading after completing all legs in their flightplan [#206](https://github.com/n8rzz/atc/issues/206)
+    - Originally reported in [zlsa#767](https://github.com/zlsa/atc/issues/767)
 - Fix wrongful removal of departures from runway queues when arrivals land [#241](https://github.com/n8rzz/atc/issues/241)
     - Originally reported in [zlsa#770](https://github.com/zlsa/atc/issues/770)
 
