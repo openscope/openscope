@@ -901,18 +901,20 @@ export default class Aircraft {
             expedite: expedite
         });
 
-        let isExpeditingString = '';
-        if (expedite) {
-            isExpeditingString = ' and expedite';
-        }
-
         const newAltitude = this.fms.altitudeForCurrentWaypoint();
-        const radioTrendAltitude = radio_trend('altitude', this.altitude, newAltitude);
-        const currentWaypointRadioAltitude = radio_altitude(newAltitude);
+        const instruction = radio_trend('altitude', this.altitude, newAltitude);
+        const readback_text = `${instruction} ${newAltitude}`;
+        const readback_verbal = `${instruction} ${radio_altitude(newAltitude)}`;
+
         const readback = {
-            log: `${radioTrendAltitude} ${newAltitude}${isExpeditingString}`,
-            say: `${radioTrendAltitude} ${currentWaypointRadioAltitude}${isExpeditingString}`
+            log: readback_text,
+            say: readback_verbal
         };
+
+        if (expedite) {
+            readback.log = `${readback_text} and expedite`;
+            readback.say = `${readback_verbal} and expedite`;
+        }
 
         return ['ok', readback];
     }
