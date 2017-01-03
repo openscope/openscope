@@ -1,3 +1,5 @@
+import _includes from 'lodash/includes';
+import _without from 'lodash/without';
 import BaseModel from '../base/BaseModel';
 import PositionModel from '../base/PositionModel';
 import { abs, tan } from '../math/core';
@@ -127,13 +129,9 @@ export default class RunwayModel extends BaseModel {
      * @for RunwayModel
      * @method
      */
-    removeQueue(aircraft, force) {
-        if (this.queue[0] === aircraft || force) {
-            this.queue.shift(aircraft);
-
-            if (this.queue.length >= 1) {
-                this.queue[0].moveForward();
-            }
+    removeQueue(aircraft) {
+        if (_includes(this.queue, aircraft)) {
+            this.queue = _without(this.queue, aircraft);
 
             return true;
         }
