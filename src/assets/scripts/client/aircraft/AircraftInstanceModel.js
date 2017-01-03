@@ -535,11 +535,11 @@ export default class Aircraft {
         let heavy = '';
 
         if (this.model.weightclass === 'H') {
-            heavy = ' heavy';
+            heavy = 'heavy';
         }
 
         if (this.model.weightclass === 'U') {
-            heavy = ' super';
+            heavy = 'super';
         }
 
         let callsign = this.callsign;
@@ -874,13 +874,12 @@ export default class Aircraft {
         const altitude = data[0];
         let expedite = data[1];
         const airport = window.airportController.airport_get();
-        const radioTrendAltitude = radio_trend('altitude', this.altitude, this.fms.altitudeForCurrentWaypoint());
-        const currentWaypointRadioAltitude = radio_altitude(this.fms.altitudeForCurrentWaypoint());
 
         if ((altitude == null) || isNaN(altitude)) {
             // FIXME: move this to it's own command. if expedite can be passed as a sole command it should be its own command
             if (expedite) {
                 this.fms.setCurrent({ expedite: true });
+                const radioTrendAltitude = radio_trend('altitude', this.altitude, this.fms.altitudeForCurrentWaypoint());
 
                 return ['ok', `${radioTrendAltitude} ${this.fms.altitudeForCurrentWaypoint()} expedite`];
             }
@@ -903,15 +902,20 @@ export default class Aircraft {
             expedite: expedite
         });
 
-        let isExpeditingString = '';
-        if (expedite) {
-            isExpeditingString = 'and expedite';
-        }
+        const newAltitude = this.fms.altitudeForCurrentWaypoint();
+        const instruction = radio_trend('altitude', this.altitude, newAltitude);
+        const readback_text = `${instruction} ${newAltitude}`;
+        const readback_verbal = `${instruction} ${radio_altitude(newAltitude)}`;
 
         const readback = {
-            log: `${radioTrendAltitude} ${this.fms.altitudeForCurrentWaypoint()} ${isExpeditingString}`,
-            say: `${radioTrendAltitude} ${currentWaypointRadioAltitude} ${isExpeditingString}`
+            log: readback_text,
+            say: readback_verbal
         };
+
+        if (expedite) {
+            readback.log = `${readback_text} and expedite`;
+            readback.say = `${readback_verbal} and expedite`;
+        }
 
         return ['ok', readback];
     }
@@ -931,7 +935,7 @@ export default class Aircraft {
         const readback = {};
 
         readback.log = `cleared to destination via the ${this.destination} departure, then as filed. Climb and ` +
-            `maintain ${airport.initial_alt}, expect ${this.fms.fp.altitude} 10 minutes after departure `;
+            `maintain ${airport.initial_alt}, expect ${this.fms.fp.altitude} 10 minutes after departure`;
         readback.say = `cleared to destination via the ${procedureName} ` +
             `departure, then as filed. Climb and maintain ${radio_altitude(airport.initial_alt)}, ` +
             `expect ${radio_altitude(this.fms.fp.altitude)}, ${radio_spellOut('10')} minutes after departure'`;
@@ -1506,7 +1510,7 @@ export default class Aircraft {
             const wind_dir = round(radiansToDegrees(wind.angle));
             const readback = {
                 // TODO: the wind_dir calculation should be abstracted
-                log: `wind ${round(wind_dir / 10) * 10} ${round(wind.speed)}, runway ${this.rwy_dep} , cleared for takeoff`,
+                log: `wind ${round(wind_dir / 10) * 10} ${round(wind.speed)}, runway ${this.rwy_dep}, cleared for takeoff`,
                 say: `wind ${radio_spellOut(round(wind_dir / 10) * 10)} at ${radio_spellOut(round(wind.speed))}, runway ${radio_runway(this.rwy_dep)}, cleared for takeoff`
             };
 
@@ -1884,8 +1888,8 @@ export default class Aircraft {
                     alt_log = `descending through ${alt} for ${this.target.altitude}`;
                     alt_say = `descending through ${radio_altitude(alt)} for ${radio_altitude(this.target.altitude)}`;
                 } else if (altdiff < 0) {
-                    alt_log = ` climbing through ${alt} for ${this.target.altitude}`;
-                    alt_say = ` climbing through ${radio_altitude(alt)} for ${radio_altitude(this.target.altitude)}`;
+                    alt_log = `climbing through ${alt} for ${this.target.altitude}`;
+                    alt_say = `climbing through ${radio_altitude(alt)} for ${radio_altitude(this.target.altitude)}`;
                 }
             } else {
                 alt_log = `at ${alt}`;
@@ -2166,7 +2170,7 @@ export default class Aircraft {
             this.target.altitude = this.fms.altitudeForCurrentWaypoint();
             this.target.expedite = this.fms.currentWaypoint.expedite;
             this.target.altitude = Math.max(1000, this.target.altitude);
-            this.target.speed = this.fms.currentWaypoint.speed;
+            this.target.speed = _get(this, 'fms.currentWaypoint.speed', this.speed);
             this.target.speed = clamp(this.model.speed.min, this.target.speed, this.model.speed.max);
         }
 
