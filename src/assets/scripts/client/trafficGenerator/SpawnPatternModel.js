@@ -48,10 +48,6 @@ export default class SpawnPatternModel extends BaseModel {
     constructor(spawnPatternJson, navigationLibrary) {
         super(spawnPatternJson, navigationLibrary);
 
-        if (!_isObject(navigationLibrary) || _isEmpty(navigationLibrary)) {
-            throw new TypeError('Invalid NavigationLibrary passed to SpawnPatternModel');
-        }
-
         /**
          * Interval id
          *
@@ -308,6 +304,10 @@ export default class SpawnPatternModel extends BaseModel {
             return;
         }
 
+        if (!_isObject(navigationLibrary) || _isEmpty(navigationLibrary)) {
+            throw new TypeError('Invalid NavigationLibrary passed to SpawnPatternModel');
+        }
+
         this.origin = spawnPatternJson.origin;
         this.destination = spawnPatternJson.destination;
         this.category = spawnPatternJson.category;
@@ -420,74 +420,6 @@ export default class SpawnPatternModel extends BaseModel {
     }
 
     /**
-     * @for SpawnPatternModel
-     * @method _calculateMinimumDelayFromSpeed
-     * @return {number}
-     * @private
-     */
-    _calculateMinimumDelayFromSpeed() {
-        if (this.speed === 0) {
-            return 0;
-        }
-
-        return Math.floor(AIRPORT_CONSTANTS.MIN_ENTRAIL_DISTANCE_NM * (TIME.ONE_HOUR_IN_SECONDS / this.speed));
-    }
-
-    /**
-     *
-     *
-     */
-    _calculateNextCyclicDelayPeriod(gameTime) {
-        const totalTime = gameTime - this.cycleStartTime;
-        // progress in current quarter-period
-        const done = totalTime / (this.period / 4);
-
-        if (done >= 4) {
-            this.cycleStartTime += this.period;
-
-            return TIME.ONE_HOUR_IN_SECONDS / (this.rate + (done - 4) * this.variation);
-        } else if (done <= 1) {
-            return TIME.ONE_HOUR_IN_SECONDS / (this.rate + done * this.variation);
-        } else if (done <= 2) {
-            return TIME.ONE_HOUR_IN_SECONDS / (this.rate + (2 * (this.period - 2 * totalTime) / this.period) * this.variation);
-        } else if (done <= 3) {
-            return TIME.ONE_HOUR_IN_SECONDS / (this.rate - (done - 2) * this.variation);
-        } else if (done < 4) {
-            return TIME.ONE_HOUR_IN_SECONDS / (this.rate - (4 * (this.period - totalTime) / this.period) * this.variation);
-        }
-    }
-
-    /**
-     *
-     *
-     */
-    _calculateNextSurgeDelayPeriod(gameTime) {
-        console.log('_calculateNextSurgeDelayPeriod');
-
-        // temporary, please remove once math is in place
-        return this._calculateRandomDelayPeriod();
-    }
-
-    /**
-     *
-     *
-     */
-    _calculateNextWaveDelayPeriod(gameTime) {
-        console.log('_calculateNextWaveDelayPeriod');
-
-        const t = gameTime - this.cycleStartTime;
-        const done = t / this.period; // progress in period
-
-        if (done >= 1) {
-            this.cycleStartTime += this.period;
-        }
-
-        const rate = this.rate + this.variation * Math.sin(done * tau());
-
-        return TIME.ONE_HOUR_IN_SECONDS / rate;
-    }
-
-    /**
      * Calculates the upper bound of the spawn delay value.
      *
      * @for SpawnPatternModel
@@ -497,22 +429,6 @@ export default class SpawnPatternModel extends BaseModel {
      */
     _calculateMaximumDelayFromRate() {
         return TIME.ONE_HOUR_IN_SECONDS / this.rate;
-    }
-
-    /**
-     *
-     *
-     */
-    _calculateRandomDelayPeriod() {
-        let targetDelayPeriod = this._maximumDelay;
-
-        if (targetDelayPeriod < this._minimumDelay) {
-            targetDelayPeriod = this._minimumDelay;
-        }
-
-        const maxDelayPeriod = targetDelayPeriod + (targetDelayPeriod - this._minimumDelay);
-
-        return _random(this._minimumDelay, maxDelayPeriod);
     }
 
     /**
@@ -553,6 +469,102 @@ export default class SpawnPatternModel extends BaseModel {
 
         this._minimumAltitude = altitude;
         this._maximumAltitude = altitude;
+    }
+
+    /**
+     *
+     *
+     */
+    _calculateRandomDelayPeriod() {
+        let targetDelayPeriod = this._maximumDelay;
+
+        if (targetDelayPeriod < this._minimumDelay) {
+            targetDelayPeriod = this._minimumDelay;
+        }
+
+        const maxDelayPeriod = targetDelayPeriod + (targetDelayPeriod - this._minimumDelay);
+
+        return _random(this._minimumDelay, maxDelayPeriod);
+    }
+
+    /**
+     * @for SpawnPatternModel
+     * @method _calculateMinimumDelayFromSpeed
+     * @return {number}
+     * @private
+     */
+    _calculateMinimumDelayFromSpeed() {
+        if (this.speed === 0) {
+            return 0;
+        }
+
+        return Math.floor(AIRPORT_CONSTANTS.MIN_ENTRAIL_DISTANCE_NM * (TIME.ONE_HOUR_IN_SECONDS / this.speed));
+    }
+
+    /**
+     *
+     *
+     * @for SpawnPatternModel
+     * @method _calculateNextCyclicDelayPeriod
+     * @param gameTime {number} current gameTime
+     * @return {number}         number to use as a delay period for the next delay
+     * @private
+     */
+    _calculateNextCyclicDelayPeriod(gameTime) {
+        const totalTime = gameTime - this.cycleStartTime;
+        const progressInPeriod = totalTime / (this.period / 4);
+
+        if (progressInPeriod >= 4) {
+            this.cycleStartTime += this.period;
+
+            return TIME.ONE_HOUR_IN_SECONDS / (this.rate + (progressInPeriod - 4) * this.variation);
+        } else if (progressInPeriod <= 1) {
+            return TIME.ONE_HOUR_IN_SECONDS / (this.rate + progressInPeriod * this.variation);
+        } else if (progressInPeriod <= 2) {
+            return TIME.ONE_HOUR_IN_SECONDS / (this.rate + (2 * (this.period - 2 * totalTime) / this.period) * this.variation);
+        } else if (progressInPeriod <= 3) {
+            return TIME.ONE_HOUR_IN_SECONDS / (this.rate - (progressInPeriod - 2) * this.variation);
+        } else if (progressInPeriod < 4) {
+            return TIME.ONE_HOUR_IN_SECONDS / (this.rate - (4 * (this.period - totalTime) / this.period) * this.variation);
+        }
+    }
+
+    /**
+     *
+     *
+     * @for SpawnPatternModel
+     * @method _calculateNextSurgeDelayPeriod
+     * @param gameTime {number} current gameTime
+     * @return {number}         number to use as a delay period for the next delay
+     * @private
+     */
+    _calculateNextSurgeDelayPeriod(gameTime) {
+        console.log('_calculateNextSurgeDelayPeriod');
+
+        // temporary, please remove once math is in place
+        return this._calculateRandomDelayPeriod();
+    }
+
+    /**
+     *
+     *
+     * @for SpawnPatternModel
+     * @method _calculateNextWaveDelayPeriod
+     * @param gameTime {number} current gameTime
+     * @return {number}         number to use as a delay period for the next delay
+     * @private
+     */
+    _calculateNextWaveDelayPeriod(gameTime) {
+        const t = gameTime - this.cycleStartTime;
+        const progressInPeriod = t / this.period;
+
+        if (progressInPeriod >= 1) {
+            this.cycleStartTime += this.period;
+        }
+
+        const rate = this.rate + this.variation * Math.sin(progressInPeriod * tau());
+
+        return TIME.ONE_HOUR_IN_SECONDS / rate;
     }
 
     /**

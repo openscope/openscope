@@ -13,7 +13,8 @@ import {
 import {
     DEPARTURE_PATTERN_MOCK,
     ARRIVAL_PATTERN_MOCK,
-    ARRIVAL_PATTERN_CYCLIC_MOCK
+    ARRIVAL_PATTERN_CYCLIC_MOCK,
+    ARRIVAL_PATTERN_WAVE_MOCK
 } from './_mocks/spawnPatternMocks';
 
 ava('does not throw when called with invalid parameters', (t) => {
@@ -46,6 +47,16 @@ ava('._calculateNextCyclicDelayPeriod() returns 360 when gameTime is 0', (t) => 
     const result = model._calculateNextCyclicDelayPeriod(gameTimeMock);
 
     t.true(result === 360);
+});
+
+ava.skip('._calculateNextWaveDelayPeriod() returns ', (t) => {
+    const gameTimeMock = 3320;
+    const model = new SpawnPatternModel(ARRIVAL_PATTERN_WAVE_MOCK, navigationLibraryFixture);
+    const result = model._calculateNextWaveDelayPeriod(gameTimeMock);
+
+    console.log(result);
+
+    // t.true(result === 360);
 });
 
 ava('._setMinMaxAltitude() sets #_minimumAltitude and #_maximumAltitude when an array is passed ', (t) => {

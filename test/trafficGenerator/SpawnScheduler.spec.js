@@ -13,7 +13,10 @@ ava.before(() => {
     };
 
     gameControllerStub = {
-        game_timeout: sinon.stub()
+        game_timeout: sinon.stub(),
+        game: {
+            time: 0
+        }
     };
 });
 

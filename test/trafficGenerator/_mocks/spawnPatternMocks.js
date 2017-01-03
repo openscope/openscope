@@ -70,6 +70,14 @@ export const ARRIVAL_PATTERN_CYCLIC_MOCK = Object.assign(
     }
 );
 
+export const ARRIVAL_PATTERN_WAVE_MOCK = Object.assign(
+    {},
+    ARRIVAL_PATTERN_MOCK,
+    {
+        method: 'wave'
+    }
+);
+
 export const SPAWN_PATTERN_LIST = [
     DEPARTURE_PATTERN_MOCK,
     ARRIVAL_PATTERN_MOCK
