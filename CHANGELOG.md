@@ -47,6 +47,11 @@
 ### Bugfixes
 - Restores behavior of aircraft flying present heading after completing all legs in their flightplan [#206](https://github.com/n8rzz/atc/issues/206)
     - Originally reported in [zlsa#767](https://github.com/zlsa/atc/issues/767)
+- Fix wrongful removal of departures from runway queues when arrivals land [#241](https://github.com/n8rzz/atc/issues/241)
+    - Originally reported in [zlsa#770](https://github.com/zlsa/atc/issues/770)
+- Fix erroneous voice readbacks for altitude command [#240](https://github.com/n8rzz/atc/issues/240)
+    - Originally reported in [zlsa#769](https://github.com/zlsa/atc/issues/769)    
+
 
 
 ## 3.2.0 (December 20, 2016)
