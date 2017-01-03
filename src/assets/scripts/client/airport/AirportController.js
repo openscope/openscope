@@ -101,10 +101,13 @@ export default class AirportController {
      * @param icao {string}
      * @param level {string}
      * @param name {string}
+     * @param wip {boolean}
      * @return airport {AirtportInstance}
      */
-    airport_load({ icao, level, name }) {
+    airport_load({ icao, level, name, wip }) {
         icao = icao.toLowerCase();
+        console.log('wip from AirportController');
+        console.log(wip);
 
         if (this.hasAirport()) {
             console.log(`${icao}: already loaded`);
@@ -117,11 +120,13 @@ export default class AirportController {
             {
                 icao,
                 level,
-                name
+                name,
+                wip
             },
             this.updateRun
         );
-
+        console.log('wip from AirportController from new airport const');
+        console.log(airport);
         this.airport_add(airport);
 
         return airport;
