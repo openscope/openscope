@@ -101,9 +101,10 @@ export default class AirportController {
      * @param icao {string}
      * @param level {string}
      * @param name {string}
+     * @param wip {boolean}
      * @return airport {AirtportInstance}
      */
-    airport_load({ icao, level, name }) {
+    airport_load({ icao, level, name, wip }) {
         icao = icao.toLowerCase();
 
         if (this.hasAirport()) {
@@ -117,7 +118,8 @@ export default class AirportController {
             {
                 icao,
                 level,
-                name
+                name,
+                wip
             },
             this.updateRun
         );
@@ -200,8 +202,8 @@ export default class AirportController {
         const runwaySecondaryEndIndex = 1;
         const runways = this.airport_get().runways;
         for (let runwayPair = 0; runwayPair < runways.length; runwayPair++) {
-            runways[runwayPair][runwayPrimaryEndIndex].removeQueue(aircraft);
-            runways[runwayPair][runwaySecondaryEndIndex].removeQueue(aircraft);
+            runways[runwayPair][runwayPrimaryEndIndex].removeQueue(aircraft, true);
+            runways[runwayPair][runwaySecondaryEndIndex].removeQueue(aircraft, true);
         }
     }
 
