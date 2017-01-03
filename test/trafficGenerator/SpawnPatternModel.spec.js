@@ -12,7 +12,8 @@ import {
 } from '../fixtures/trafficGeneratorFixtures';
 import {
     DEPARTURE_PATTERN_MOCK,
-    ARRIVAL_PATTERN_MOCK
+    ARRIVAL_PATTERN_MOCK,
+    ARRIVAL_PATTERN_CYCLIC_MOCK
 } from './_mocks/spawnPatternMocks';
 
 ava('does not throw when called with invalid parameters', (t) => {
@@ -29,14 +30,22 @@ ava('does not throw when called with valid parameters', (t) => {
     t.notThrows(() => new SpawnPatternModel(DEPARTURE_PATTERN_MOCK, navigationLibraryFixture));
 });
 
-ava('.getRandomDelayValue() returns a random number between #minimumDelay and #maximumDelay', (t) => {
+ava('.getNextDelayValue() returns a random number between #minimumDelay and #maximumDelay', (t) => {
     const model = new SpawnPatternModel(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture);
     model._minimumDelay = 0;
     model._maximumDelay = 3;
 
-    const result = model.getRandomDelayValue();
+    const result = model.getNextDelayValue();
 
     t.true(typeof result === 'number');
+});
+
+ava('._calculateNextCyclicDelayPeriod() returns 360 when gameTime is 0', (t) => {
+    const gameTimeMock = 0;
+    const model = new SpawnPatternModel(ARRIVAL_PATTERN_CYCLIC_MOCK, navigationLibraryFixture);
+    const result = model._calculateNextCyclicDelayPeriod(gameTimeMock);
+
+    t.true(result === 360);
 });
 
 ava('._setMinMaxAltitude() sets #_minimumAltitude and #_maximumAltitude when an array is passed ', (t) => {

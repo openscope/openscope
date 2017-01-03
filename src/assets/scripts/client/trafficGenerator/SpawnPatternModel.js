@@ -1,4 +1,5 @@
 import _forEach from 'lodash/forEach';
+import _get from 'lodash/get';
 import _map from 'lodash/map';
 import _isArray from 'lodash/isArray';
 import _isEmpty from 'lodash/isEmpty';
@@ -7,9 +8,25 @@ import _random from 'lodash/random';
 import BaseModel from '../base/BaseModel';
 import RouteModel from '../airport/Route/RouteModel';
 import { bearingToPoint } from '../math/flightMath';
+// import {
+//     calculateRandomDelayPeriod,
+//     calculateNextCyclicDelayPeriod,
+//     calculateNextSurgeDelayPeriod,
+//     calculateNextWaveDelayPeriod
+// } from './spawnPatternDelayCalculationHelper';
+import { tau } from '../math/circle';
+import { convertMinutesToSeconds } from '../utilities/unitConverters';
 import { AIRPORT_CONSTANTS } from '../constants/airportConstants';
 import { FLIGHT_CATEGORY } from '../constants/aircraftConstants';
 import { TIME } from '../constants/globalConstants';
+
+// TODO: this may need to live somewhere else
+const SPAWN_METHOD = {
+    RANDOM: 'random',
+    CYCLIC: 'cyclic',
+    SURGE: 'surge',
+    WAVE: 'wave'
+};
 
 /**
  * Defines a spawn pattern for a specific route within the area
@@ -31,11 +48,6 @@ export default class SpawnPatternModel extends BaseModel {
     constructor(spawnPatternJson, navigationLibrary) {
         super(spawnPatternJson, navigationLibrary);
 
-        if (!_isObject(spawnPatternJson) || _isEmpty(spawnPatternJson)) {
-            // throw new TypeError('Invalid parameter passed to SpawnPatternModel');
-            return;
-        }
-
         if (!_isObject(navigationLibrary) || _isEmpty(navigationLibrary)) {
             throw new TypeError('Invalid NavigationLibrary passed to SpawnPatternModel');
         }
@@ -49,6 +61,7 @@ export default class SpawnPatternModel extends BaseModel {
          *
          * Provides easy access to a specif interval id
          *
+         * @DEPRECATED
          * @property scheduleId
          * @type {number}
          * @default -1
@@ -111,6 +124,44 @@ export default class SpawnPatternModel extends BaseModel {
          * @default -1
          */
         this.rate = -1;
+
+        /**
+         * GameTime when a specific spawn pattern started
+         *
+         * Used only for cycle, surge and wave patterns
+         *
+         * @property cycleStartTime
+         * @type {number}
+         * @default -1
+         */
+        this.cycleStartTime = -1;
+
+        /**
+         * Used only with cycle, surge or wave spawnPatters
+         *
+         * @property offset
+         * @type {number}
+         * @default -1
+         */
+        this.offset = -1;
+
+        /**
+         * Used only with cycle, surge or wave spawnPatters
+         *
+         * @property period
+         * @type {number}
+         * @default -1
+         */
+        this.period = -1;
+
+        /**
+         * Used only with cycle, surge or wave spawnPatters
+         *
+         * @property variation
+         * @type {number}
+         * @default -1
+         */
+        this.variation = -1;
 
         /**
          * Calculated milisecond delay from `rate`.
@@ -252,18 +303,26 @@ export default class SpawnPatternModel extends BaseModel {
      * @param navigationLibrary {NavigationLibrary}
      */
     init(spawnPatternJson, navigationLibrary) {
+        // This is a pooled object, so we still want internal properties to initialize first before returning.
+        if (!_isObject(spawnPatternJson) || _isEmpty(spawnPatternJson)) {
+            return;
+        }
+
         this.origin = spawnPatternJson.origin;
         this.destination = spawnPatternJson.destination;
         this.category = spawnPatternJson.category;
         this.method = spawnPatternJson.method;
         this.rate = spawnPatternJson.rate;
         this.routeString = spawnPatternJson.route;
+        this.cycleStartTime = 0;
+        this.period = TIME.ONE_HOUR_IN_SECONDS / 2;
         this.speed = this._extractSpeedFromJson(spawnPatternJson);
         this._minimumDelay = this._calculateMinimumDelayFromSpeed();
         this._maximumDelay = this._calculateMaximumDelayFromRate();
         this.airlines = this._assembleAirlineNamesAndFrequencyForSpawn(spawnPatternJson.airlines);
         this._weightedAirlineList = this._buildWeightedAirlineList();
 
+        this._setCyclePeriodAndOffset(spawnPatternJson);
         this._calculatePositionAndHeadingForArrival(spawnPatternJson, navigationLibrary);
         this._setMinMaxAltitude(spawnPatternJson.altitude);
     }
@@ -283,7 +342,11 @@ export default class SpawnPatternModel extends BaseModel {
         this.origin = '';
         this.destination = '';
         this.routeString = '';
+        this.cycleStartTime = -1;
         this.rate = -1;
+        this.offset = -1;
+        this.period = -1;
+        this.variation = -1;
         this._maximumDelay = -1;
         this._minimumDelay = -1;
         this._minimumAltitude = -1;
@@ -293,6 +356,24 @@ export default class SpawnPatternModel extends BaseModel {
         this.position = [];
         this.airlines = [];
         this._weightedAirlineList = [];
+    }
+
+    /**
+     * Sets the `cycleStart` property with the value of the gameClock when the first
+     * timer for this pattern is run by the `SpawnScheduler`
+     *
+     * Used to calculate cycle, wave and surge spawn patterns
+     *
+     * @for SpawnPatternModel
+     * @method cycleStart
+     * @param startTime {number}
+     */
+    cycleStart(startTime) {
+        if (this.cycleStartTime !== -1) {
+            return;
+        }
+
+        this.cycleStartTime = startTime - this.offset;
     }
 
     /**
@@ -312,17 +393,117 @@ export default class SpawnPatternModel extends BaseModel {
     }
 
     /**
-     * Returns a random whole number between the allowed min and max delay.
+     * Return a number to use for the next delay period calculated based
+     * on spawnning method.
      *
      * This is the value that will be used by the `SpawnScheduler` when
      * when creating a new spawn interval.
      *
      * @for SpawnPatternModel
-     * @method getRandomDelayValue
-     * @return randomDelayValue {number}
+     * @method getNextDelayValue
+     * @param gameTime {number}
+     * @return {number}             Next delay period based on spawn method
      */
-    getRandomDelayValue() {
-        // TODO: make this method a fascade by implementing a switch to handle #method variations with other class methods
+    getNextDelayValue(gameTime = 0) {
+        switch (this.method) {
+            case SPAWN_METHOD.RANDOM:
+                return this._calculateRandomDelayPeriod();
+            case SPAWN_METHOD.CYCLIC:
+                return this._calculateNextCyclicDelayPeriod(gameTime);
+            case SPAWN_METHOD.SURGE:
+                return this._calculateNextSurgeDelayPeriod(gameTime);
+            case SPAWN_METHOD.WAVE:
+                return this._calculateNextWaveDelayPeriod(gameTime);
+            default:
+                break;
+        }
+    }
+
+    /**
+     * @for SpawnPatternModel
+     * @method _calculateMinimumDelayFromSpeed
+     * @return {number}
+     * @private
+     */
+    _calculateMinimumDelayFromSpeed() {
+        if (this.speed === 0) {
+            return 0;
+        }
+
+        return Math.floor(AIRPORT_CONSTANTS.MIN_ENTRAIL_DISTANCE_NM * (TIME.ONE_HOUR_IN_SECONDS / this.speed));
+    }
+
+    /**
+     *
+     *
+     */
+    _calculateNextCyclicDelayPeriod(gameTime) {
+        const totalTime = gameTime - this.cycleStartTime;
+        // progress in current quarter-period
+        const done = totalTime / (this.period / 4);
+
+        if (done >= 4) {
+            this.cycleStartTime += this.period;
+
+            return TIME.ONE_HOUR_IN_SECONDS / (this.rate + (done - 4) * this.variation);
+        } else if (done <= 1) {
+            return TIME.ONE_HOUR_IN_SECONDS / (this.rate + done * this.variation);
+        } else if (done <= 2) {
+            return TIME.ONE_HOUR_IN_SECONDS / (this.rate + (2 * (this.period - 2 * totalTime) / this.period) * this.variation);
+        } else if (done <= 3) {
+            return TIME.ONE_HOUR_IN_SECONDS / (this.rate - (done - 2) * this.variation);
+        } else if (done < 4) {
+            return TIME.ONE_HOUR_IN_SECONDS / (this.rate - (4 * (this.period - totalTime) / this.period) * this.variation);
+        }
+    }
+
+    /**
+     *
+     *
+     */
+    _calculateNextSurgeDelayPeriod(gameTime) {
+        console.log('_calculateNextSurgeDelayPeriod');
+
+        // temporary, please remove once math is in place
+        return this._calculateRandomDelayPeriod();
+    }
+
+    /**
+     *
+     *
+     */
+    _calculateNextWaveDelayPeriod(gameTime) {
+        console.log('_calculateNextWaveDelayPeriod');
+
+        const t = gameTime - this.cycleStartTime;
+        const done = t / this.period; // progress in period
+
+        if (done >= 1) {
+            this.cycleStartTime += this.period;
+        }
+
+        const rate = this.rate + this.variation * Math.sin(done * tau());
+
+        return TIME.ONE_HOUR_IN_SECONDS / rate;
+    }
+
+    /**
+     * Calculates the upper bound of the spawn delay value.
+     *
+     * @for SpawnPatternModel
+     * @method _calculateMaximumDelayFromRate
+     * @return {number}
+     * @private
+     */
+    _calculateMaximumDelayFromRate() {
+        return TIME.ONE_HOUR_IN_SECONDS / this.rate;
+    }
+
+    /**
+     *
+     *
+     */
+    _calculateRandomDelayPeriod() {
         let targetDelayPeriod = this._maximumDelay;
 
         if (targetDelayPeriod < this._minimumDelay) {
@@ -332,6 +513,21 @@ export default class SpawnPatternModel extends BaseModel {
         const maxDelayPeriod = targetDelayPeriod + (targetDelayPeriod - this._minimumDelay);
 
         return _random(this._minimumDelay, maxDelayPeriod);
+    }
+
+    /**
+     *
+     *
+     */
+    _setCyclePeriodAndOffset(spawnPatternJson) {
+        const offset = _get(spawnPatternJson, 'offset', 0);
+        const period = _get(spawnPatternJson, 'period', null);
+
+        this.offset = convertMinutesToSeconds(offset);
+        this.period = period
+            ? convertMinutesToSeconds(period)
+            : this.period;
+        this.variation = _get(spawnPatternJson, 'variation', 0);
     }
 
     /**
@@ -370,32 +566,6 @@ export default class SpawnPatternModel extends BaseModel {
      */
     _isValidCategory(category) {
         return category === FLIGHT_CATEGORY.DEPARTURE || category === FLIGHT_CATEGORY.ARRIVAL;
-    }
-
-    /**
-     * @for SpawnPatternModel
-     * @method _calculateMinimumDelayFromSpeed
-     * @return {number}
-     * @private
-     */
-    _calculateMinimumDelayFromSpeed() {
-        if (this.speed === 0) {
-            return 0;
-        }
-
-        return Math.floor(AIRPORT_CONSTANTS.MIN_ENTRAIL_DISTANCE_NM * (TIME.ONE_HOUR_IN_SECONDS / this.speed));
-    }
-
-    /**
-     * Calculates the upper bound of the spawn delay value.
-     *
-     * @for SpawnPatternModel
-     * @method _calculateMaximumDelayFromRate
-     * @return {number}
-     * @private
-     */
-    _calculateMaximumDelayFromRate() {
-        return TIME.ONE_HOUR_IN_SECONDS / this.rate;
     }
 
     /**

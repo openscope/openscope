@@ -62,6 +62,14 @@ export const ARRIVAL_PATTERN_MOCK = {
     speed: 320
 };
 
+export const ARRIVAL_PATTERN_CYCLIC_MOCK = Object.assign(
+    {},
+    ARRIVAL_PATTERN_MOCK,
+    {
+        method: 'cyclic'
+    }
+);
+
 export const SPAWN_PATTERN_LIST = [
     DEPARTURE_PATTERN_MOCK,
     ARRIVAL_PATTERN_MOCK

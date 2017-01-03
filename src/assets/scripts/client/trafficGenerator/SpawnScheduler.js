@@ -51,6 +51,7 @@ export default class SpawnScheduler {
      */
     createSchedulesFromList(spawnPatternCollection, aircraftController) {
         _forEach(spawnPatternCollection.spawnPatternModels, (spawnPattern) => {
+            spawnPattern.cycleStart(this._gameController.game.time);
             spawnPattern.scheduleId = this.createNextSchedule(spawnPattern, aircraftController);
         });
     }
@@ -65,9 +66,9 @@ export default class SpawnScheduler {
      * @return {function}
      */
     createNextSchedule(spawnPattern, aircraftController) {
-        const delay = spawnPattern.getRandomDelayValue();
+        const delay = spawnPattern.getNextDelayValue(this._gameController.game.time);
         // TODO: remove this block before merge with develop
-        console.warn(delay, spawnPattern.category, spawnPattern.routeString);
+        console.warn(delay, spawnPattern.method, spawnPattern.category, spawnPattern.routeString);
 
         return this._gameController.game_timeout(
             this.createAircraftAndRegisterNextTimeout,
