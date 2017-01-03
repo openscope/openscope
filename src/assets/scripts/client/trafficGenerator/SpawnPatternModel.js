@@ -85,6 +85,37 @@ export default class SpawnPatternModel extends BaseModel {
         this.method = '';
 
         /**
+         * List of possible airlines a spawning aircraft can belong to.
+         *
+         * @property airlines
+         * @type {array<string>}
+         * @default []
+         */
+        this.airlines = [];
+
+        /**
+         * List of airlines enumerated by weight
+         *
+         * In english, if the value of `this.airlines` was:
+         * ```
+         * [
+         *     ['aal', 5],
+         *     ['ual', 2]
+         * ]
+         * ```
+         * This property would have a length of 7, with 5 entires of `aal` and two entries of `ual`.
+         * The reason for this is to provide an easy way to find a weighted value. Now all we need is
+         * a random index and the value located at that index.
+         *
+         * @property _weightedAirlineList
+         * @type {array}
+         * @default []
+         */
+        this._weightedAirlineList = [];
+
+        // SPAWNNING AIRCRAFT PROPERTIES
+
+        /**
          * The airport this pattern begins at
          *
          * @property origin
@@ -111,6 +142,55 @@ export default class SpawnPatternModel extends BaseModel {
          * @default
          */
         this.routeString = '';
+
+        /**
+         * Lowest altitude an aircraft can spawn at
+         *
+         * @property _minimumAltitude
+         * @type {number}
+         * @default -1
+         * @private
+         */
+        this._minimumAltitude = -1;
+
+        /**
+         * Highest altitude an aircraft can spawn at
+         *
+         * @property _maximumAltitude
+         * @type {number}
+         * @default -1
+         * @private
+         */
+        this._maximumAltitude = -1;
+
+        /**
+         * Speed of spawning aircraft
+         *
+         * @property speed
+         * @type {number}
+         * @default 0
+         */
+        this.speed = 0;
+
+        /**
+         * Heading of a spawnning aircraft
+         *
+         * @property heading
+         * @type {number}
+         * @default -1
+         */
+        this.heading = -1;
+
+        /**
+         *
+         *
+         * @property position
+         * @type {array}
+         * @default []
+         */
+        this.position = [];
+
+        // SPAWN PATTERN PROPERTIES
 
         /**
          * Rate at which aircaft spawn, express in aircraft per hour
@@ -189,80 +269,43 @@ export default class SpawnPatternModel extends BaseModel {
         this._minimumDelay = -1;
 
         /**
-         * Lowest altitude an aircraft can spawn at
+         * miles entrail during the surge [fast,slow]
          *
-         * @property _minimumAltitude
+         * @property entrail
+         * @type {number}
+         * @default
+         */
+        this.entrail = [5.5, 10];
+
+        /**
+         * calculated arrival rate when "in the surge"
+         *
+         * @property _aircraftPerHourUp
          * @type {number}
          * @default -1
          * @private
          */
-        this._minimumAltitude = -1;
+        this._aircraftPerHourUp = -1;
 
         /**
-         * Highest altitude an aircraft can spawn at
+         * calculated arrival rate when not "in the surge"
          *
-         * @property _maximumAltitude
+         * @property _aircraftPerHourDown
          * @type {number}
          * @default -1
          * @private
          */
-        this._maximumAltitude = -1;
+        this._aircraftPerHourDown = -1;
 
         /**
-         * Speed of spawning aircraft
+         * Calculated time length of surge, in minutes
          *
-         * @property speed
-         * @type {number}
-         * @default 0
-         */
-        this.speed = 0;
-
-        /**
-         * Heading of a spawnning aircraft
-         *
-         * @property heading
+         * @property +uptime
          * @type {number}
          * @default -1
+         * @private
          */
-        this.heading = -1;
-
-        /**
-         *
-         *
-         * @property position
-         * @type {array}
-         * @default []
-         */
-        this.position = [];
-
-        /**
-         * List of possible airlines a spawning aircraft can belong to.
-         *
-         * @property airlines
-         * @type {array<string>}
-         * @default []
-         */
-        this.airlines = [];
-
-        /**
-         * List of airlines enumerated by weight
-         *
-         * In english, if the value of `this.airlines` was:
-         * ```
-         * [
-         *     ['aal', 5],
-         *     ['ual', 2]
-         * ]
-         * ```
-         * This property would have a length of 7, with 5 entires of `aal` and two entries of `ual`.
-         * The reason for this is to provide an easy way to find a weighted value. Now all we need is
-         * a random index and the value located at that index.
-         *
-         * @property _weightedAirlineList
-         * @type {array}
-         * @default []
-         */
-        this._weightedAirlineList = [];
+        this._uptime = -1;
 
         this.init(spawnPatternJson, navigationLibrary);
     }
@@ -322,6 +365,7 @@ export default class SpawnPatternModel extends BaseModel {
         this.airlines = this._assembleAirlineNamesAndFrequencyForSpawn(spawnPatternJson.airlines);
         this._weightedAirlineList = this._buildWeightedAirlineList();
 
+        this._calculateSurgePatternInitialDelayValues(spawnPatternJson);
         this._setCyclePeriodAndOffset(spawnPatternJson);
         this._calculatePositionAndHeadingForArrival(spawnPatternJson, navigationLibrary);
         this._setMinMaxAltitude(spawnPatternJson.altitude);
@@ -342,6 +386,12 @@ export default class SpawnPatternModel extends BaseModel {
         this.origin = '';
         this.destination = '';
         this.routeString = '';
+        this._minimumAltitude = -1;
+        this._maximumAltitude = -1;
+        this.speed = 0;
+        this.heading = -1;
+        this.position = [];
+
         this.cycleStartTime = -1;
         this.rate = -1;
         this.offset = -1;
@@ -349,11 +399,7 @@ export default class SpawnPatternModel extends BaseModel {
         this.variation = -1;
         this._maximumDelay = -1;
         this._minimumDelay = -1;
-        this._minimumAltitude = -1;
-        this._maximumAltitude = -1;
-        this.speed = 0;
-        this.heading = -1;
-        this.position = [];
+
         this.airlines = [];
         this._weightedAirlineList = [];
     }
@@ -434,6 +480,55 @@ export default class SpawnPatternModel extends BaseModel {
     /**
      *
      *
+     * @for SpawnPatternModel
+     * @method _calculateSurgePatternInitialDelayValues
+     * @param spawnPatternJson {object}
+     * @private
+     */
+    _calculateSurgePatternInitialDelayValues(spawnPatternJson) {
+        if (spawnPatternJson.method !== SPAWN_METHOD.SURGE) {
+            return;
+        }
+
+        // TODO: accept `entrail` param from json
+        this._aircraftPerHourUp = this.speed / this.entrail[0];
+        this._aircraftPerHourDown = this.speed / this.entrail[1];  // to help the uptime calculation
+
+        this.uptime = (this.period * this.rate - this.period * this._aircraftPerHourDown) / (this._aircraftPerHourUp - this._aircraftPerHourDown);
+        this.uptime -= this.uptime % (TIME.ONE_HOUR_IN_SECONDS / this._aircraftPerHourUp);
+        // FIXME: This would better belong in a helper method and should be simplified
+        // adjust to maintain correct acph rate
+        this._aircraftPerHourDown = Math.floor(
+            this.rate * this.period / TIME.ONE_HOUR_IN_SECONDS -
+            Math.round(this._aircraftPerHourUp * this.uptime / TIME.ONE_HOUR_IN_SECONDS)) *
+            TIME.ONE_HOUR_IN_SECONDS / (this.period - this.uptime);
+
+        // TODO: abstract this if/else block
+        // Verify we can comply with the requested arrival rate based on entrail spacing
+        if (this.rate > this._aircraftPerHourUp) {
+            console.warn(`${this.airport.icao}: TOO MANY ARRIVALS IN SURGE! Requested: ` +
+                `${this.rate} acph | Acceptable Range for requested entrail distance: ` +
+                `${Math.ceil(this._aircraftPerHourDown)} acph - ${Math.floor(this._aircraftPerHourUp)} acph`);
+
+            this.rate = this._aircraftPerHourUp;
+            this._aircraftPerHourDown = this._aircraftPerHourUp;
+        } else if (this.rate < this._aircraftPerHourDown) {
+            console.warn(`${this.airport.icao}: TOO FEW ARRIVALS IN SURGE! Requested: ` +
+                `${this.rate} acph | Acceptable Range for requested entrail distance: ` +
+                `${Math.ceil(this._aircraftPerHourDown)} acph - ${Math.floor(this._aircraftPerHourUp)} acph`);
+
+            this.rate = this._aircraftPerHourDown;
+            this._aircraftPerHourUp = this._aircraftPerHourDown;
+        }
+    }
+
+    /**
+     *
+     *
+     * @for SpawnPatternModel
+     * @method _setCyclePeriodAndOffset
+     * @param spawnPatternJson {object}
+     * @private
      */
     _setCyclePeriodAndOffset(spawnPatternJson) {
         const offset = _get(spawnPatternJson, 'offset', 0);
@@ -456,6 +551,7 @@ export default class SpawnPatternModel extends BaseModel {
      * @for SpawnPatternModel
      * @method _setMinMaxAltitude
      * @param altitude {array|number}
+     * @private
      */
     _setMinMaxAltitude(altitude) {
         if (_isArray(altitude)) {
@@ -474,6 +570,10 @@ export default class SpawnPatternModel extends BaseModel {
     /**
      *
      *
+     * @for SpawnPatternModel
+     * @method _calculateRandomDelayPeriod
+     * @return {number}
+     * @private
      */
     _calculateRandomDelayPeriod() {
         let targetDelayPeriod = this._maximumDelay;
@@ -488,9 +588,11 @@ export default class SpawnPatternModel extends BaseModel {
     }
 
     /**
+     *
+     *
      * @for SpawnPatternModel
      * @method _calculateMinimumDelayFromSpeed
-     * @return {number}
+     * @return {number}  number to use as a delay period for the next delay
      * @private
      */
     _calculateMinimumDelayFromSpeed() {
@@ -541,8 +643,36 @@ export default class SpawnPatternModel extends BaseModel {
     _calculateNextSurgeDelayPeriod(gameTime) {
         console.log('_calculateNextSurgeDelayPeriod');
 
-        // temporary, please remove once math is in place
-        return this._calculateRandomDelayPeriod();
+        const totalTime = gameTime - this.cycleStartTime;
+        const progressInPeriod = totalTime / this.period; // progress in period
+        const intervalUp = TIME.ONE_HOUR_IN_SECONDS / this._aircraftPerHourUp;
+        const intervalDown = TIME.ONE_HOUR_IN_SECONDS / this._aircraftPerHourDown;
+        // reduced spawn rate
+        const timeRemaining = this.period - t;
+
+        if (progressInPeriod >= 1) {
+            this.cycleStartTime += this.period;
+
+            return intervalUp;
+        }
+
+        // elevated spawn rate
+        if (t <= this.uptime) {
+            return intervalUp;
+        }
+
+        if (timeRemaining > intervalDown + intervalUp) {
+            // plenty of time until new period
+            return intervalDown;
+        } else if (timeRemaining > intervalDown) {
+            // next plane will delay the first arrival of the next period
+            return intervalDown - (totalTime + intervalDown + intervalUp - this.period);
+        }
+
+        // next plane is first of elevated spawn rate
+        this.cycleStartTime += this.period;
+
+        return intervalUp;
     }
 
     /**
@@ -594,7 +724,7 @@ export default class SpawnPatternModel extends BaseModel {
     }
 
     /**
-     * When `speed` is null, return 0 otherwise the specified speed setting
+     * When `speed` is null, return 0 otherwise the specified speed value
      *
      * @for SpawnPatternModel
      * @method _extractSpeedFromJson
