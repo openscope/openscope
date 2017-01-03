@@ -1,4 +1,4 @@
-import _has from 'lodash/has';
+import _includes from 'lodash/includes';
 import _without from 'lodash/without';
 import BaseModel from '../base/BaseModel';
 import PositionModel from '../base/PositionModel';
@@ -130,7 +130,7 @@ export default class RunwayModel extends BaseModel {
      * @method
      */
     removeQueue(aircraft) {
-        if (_has(this.queue, aircraft)) {
+        if (_includes(this.queue, aircraft)) {
             this.queue = _without(this.queue, aircraft);
 
             return true;
