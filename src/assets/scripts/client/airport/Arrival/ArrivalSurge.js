@@ -32,7 +32,7 @@ export default class ArrivalSurge extends ArrivalBase {
      */
     constructor(airport, options) {
         super(airport, options);
-
+        console.error('ArrivalSurge is a deprecated class');
         /**
          * miles entrail during the surge [fast,slow]
          *

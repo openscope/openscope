@@ -36,7 +36,7 @@ export default class ArrivalWave extends ArrivalBase {
      */
     constructor(airport, options) {
         super(airport, options);
-
+        console.error('ArrivalWave is a deprecated class');
         /**
          * amount to deviate from the prescribed frequency
          *

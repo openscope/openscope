@@ -28,7 +28,7 @@ export default class ArrivalCyclic extends ArrivalBase {
      */
     constructor(airport, options) {
         super(airport, options);
-
+        console.error('ArrivalCyclic is a deprecated class');
         /**
          * amount to deviate from the prescribed frequency
          *

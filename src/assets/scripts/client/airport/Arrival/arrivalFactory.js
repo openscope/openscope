@@ -13,6 +13,7 @@ import { LOG } from '../../constants/logLevel';
  * @return {constructor}
  */
 export const arrivalFactory = (airport, options) => {
+    console.error('arrivalFactory is a deprecated function');
     if (options.type === '') {
         log(`${airport.icao} arrival stream not given type!`, LOG.WARNING);
         return null;

@@ -506,14 +506,14 @@ export default class SpawnPatternModel extends BaseModel {
         // TODO: abstract this if/else block
         // Verify we can comply with the requested arrival rate based on entrail spacing
         if (this.rate > this._aircraftPerHourUp) {
-            console.warn(`${this.airport.icao}: TOO MANY ARRIVALS IN SURGE! Requested: ` +
+            console.warn(`TOO MANY ARRIVALS IN SURGE! Requested: ` +
                 `${this.rate} acph | Acceptable Range for requested entrail distance: ` +
                 `${Math.ceil(this._aircraftPerHourDown)} acph - ${Math.floor(this._aircraftPerHourUp)} acph`);
 
             this.rate = this._aircraftPerHourUp;
             this._aircraftPerHourDown = this._aircraftPerHourUp;
         } else if (this.rate < this._aircraftPerHourDown) {
-            console.warn(`${this.airport.icao}: TOO FEW ARRIVALS IN SURGE! Requested: ` +
+            console.warn(`TOO FEW ARRIVALS IN SURGE! Requested: ` +
                 `${this.rate} acph | Acceptable Range for requested entrail distance: ` +
                 `${Math.ceil(this._aircraftPerHourDown)} acph - ${Math.floor(this._aircraftPerHourUp)} acph`);
 
@@ -648,7 +648,7 @@ export default class SpawnPatternModel extends BaseModel {
         const intervalUp = TIME.ONE_HOUR_IN_SECONDS / this._aircraftPerHourUp;
         const intervalDown = TIME.ONE_HOUR_IN_SECONDS / this._aircraftPerHourDown;
         // reduced spawn rate
-        const timeRemaining = this.period - t;
+        const timeRemaining = this.period - totalTime;
 
         if (progressInPeriod >= 1) {
             this.cycleStartTime += this.period;
@@ -657,7 +657,7 @@ export default class SpawnPatternModel extends BaseModel {
         }
 
         // elevated spawn rate
-        if (t <= this.uptime) {
+        if (totalTime <= this.uptime) {
             return intervalUp;
         }
 

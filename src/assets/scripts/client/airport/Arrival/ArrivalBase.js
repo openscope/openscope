@@ -59,6 +59,7 @@ export default class ArrivalBase {
      * @param options {object}
      */
     constructor(airport, options) {
+        console.error('ArrivalBase is a deprecated Class');
         // FIXME: this creates a circular reference and should be refactored
         /**
          * Airport that arrivals belong to

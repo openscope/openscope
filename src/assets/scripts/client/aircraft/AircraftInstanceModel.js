@@ -518,18 +518,20 @@ export default class Aircraft {
      * @return {string}
      */
     getCallsign() {
-        return (this.getAirline().icao + this.callsign).toUpperCase();
+        // TODO: this should be an instance property. however, it seems callsign is used in places where it should be
+        // flightnumber and visa versa. this needs to be ironed out first before making a class property.
+        return `${this.airline.toUpperCase()}${this.callsign}`;
     }
 
-    // TODO: this could be a getter
-    /**
-     * @for AircraftInstanceModel
-     * @method getAirline
-     * @return {string}
-     */
-    getAirline() {
-        return window.airlineController.airline_get(this.airline);
-    }
+    // /**
+    //  * @for AircraftInstanceModel
+    //  * @method getAirline
+    //  * @return {string}
+    //  */
+    // getAirline() {
+    //     console.warn('.getAirline() will be a deprecated method');
+    //     return window.airlineController.airline_get(this.airline);
+    // }
 
     /**
      * @for AircraftInstanceModel
@@ -553,7 +555,7 @@ export default class Aircraft {
             callsign = callsign.substr(callsign.length - length);
         }
 
-        let cs = window.airlineController.airline_get(this.airline).callsign;
+        let cs = this.getCallsign();
 
         if (cs === 'November') {
             cs += ` ${radio_spellOut(callsign)} ${heavy}`;
