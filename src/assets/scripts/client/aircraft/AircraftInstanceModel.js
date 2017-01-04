@@ -1220,45 +1220,9 @@ export default class Aircraft {
             return;
         }
 
-        this.aircraftTurnPsyics();
+        this.aircraftTurnPhysics();
 
-        // ALTITUDE
-        let distance = null;
-        const expedite_factor = 1.5;
-        this.trend = 0;
-
-        if (this.target.altitude < this.altitude - 0.02) {
-            distance = -this.model.rate.descent / 60 * window.gameController.game_delta();
-
-            if (this.mode === FLIGHT_MODES.LANDING) {
-                distance *= 3;
-            }
-
-            this.trend -= 1;
-        } else if (this.target.altitude > this.altitude + 0.02) {
-            const climbrate = this.getClimbRate();
-            distance = climbrate / 60 * window.gameController.game_delta();
-
-            if (this.mode === FLIGHT_MODES.LANDING) {
-                distance *= 1.5;
-            }
-
-            this.trend = 1;
-        }
-
-        if (distance) {
-            if (this.target.expedite) {
-                distance *= expedite_factor;
-            }
-
-            const offset = this.altitude - this.target.altitude;
-
-            if (abs(offset) < abs(distance)) {
-                this.altitude = this.target.altitude;
-            } else {
-                this.altitude += distance;
-            }
-        }
+        this.updateAltitudePhysics();
 
         if (this.isOnGround()) {
             this.trend = 0;
@@ -1344,7 +1308,80 @@ export default class Aircraft {
     }
 
     /**
-     * @for updateSpeedPhysics
+     * @for AircraftInstanceModel
+     * @method aircraftTurnPhysics
+     * This turns the aircraft if it is not on the ground and has not arived at its destenation
+     */
+    aircraftTurnPhysics() {
+        // Exits eary if the airplane is on the ground or at its destenation
+        if (this.isOnGround() && this.heading === this.target.heading) {
+            return;
+        }
+        // TURNING
+        // this.target.heading = radians_normalize(this.target.heading);
+        // Perform standard turns 3 deg/s or 25 deg bank, whichever
+        // requires less bank angle.
+        // Formula based on http://aviation.stackexchange.com/a/8013
+        const turn_rate = clamp(0, 1 / (this.speed / 8.883031), 0.0523598776);
+        const turn_amount = turn_rate * window.gameController.game_delta();
+        const offset = angle_offset(this.target.heading, this.heading);
+
+        if (abs(offset) < turn_amount) {
+            this.heading = this.target.heading;
+        } else if ((offset < 0 && this.target.turn === null) || this.target.turn === 'left') {
+            this.heading -= turn_amount;
+        } else if ((offset > 0 && this.target.turn === null) || this.target.turn === 'right') {
+            this.heading += turn_amount;
+        }
+    }
+
+    /**
+     * @for AircraftInstanceModel
+     * @method updateAltitudePhysics
+     * This updates the Altitude for the instance of the aircraft by checking the difference between current Altitude and requested Altitude
+     */
+    updateAltitudePhysics() {
+        // ALTITUDE
+        let distance = null;
+        const expedite_factor = 1.5;
+        this.trend = 0;
+
+        if (this.target.altitude < this.altitude - 0.02) {
+            distance = -this.model.rate.descent / 60 * window.gameController.game_delta();
+
+            if (this.mode === FLIGHT_MODES.LANDING) {
+                distance *= 3;
+            }
+
+            this.trend -= 1;
+        } else if (this.target.altitude > this.altitude + 0.02) {
+            const climbrate = this.getClimbRate();
+            distance = climbrate / 60 * window.gameController.game_delta();
+
+            if (this.mode === FLIGHT_MODES.LANDING) {
+                distance *= 1.5;
+            }
+
+            this.trend = 1;
+        }
+
+        if (distance) {
+            if (this.target.expedite) {
+                distance *= expedite_factor;
+            }
+
+            const offset = this.altitude - this.target.altitude;
+
+            if (abs(offset) < abs(distance)) {
+                this.altitude = this.target.altitude;
+            } else {
+                this.altitude += distance;
+            }
+        }
+    }
+
+    /**
+     * @for AircraftInstanceModel
      * @method updateWarning
      * This updates the speed for the instance of the aircraft by checking the difference between current speed and requested speed
      */
@@ -1371,34 +1408,6 @@ export default class Aircraft {
             } else {
                 this.speed += difference;
             }
-        }
-    }
-
-    /**
-     * @for AircraftInstanceModel
-     * @method aircraftTurnPsyics
-     * This turns the aircraft if it is not on the ground and has not arived at its destenation
-     */
-    aircraftTurnPsyics() {
-        // Exits eary if the airplane is on the ground or at its destenation
-        if (this.isOnGround() && this.heading === this.target.heading) {
-            return;
-        }
-        // TURNING
-        // this.target.heading = radians_normalize(this.target.heading);
-        // Perform standard turns 3 deg/s or 25 deg bank, whichever
-        // requires less bank angle.
-        // Formula based on http://aviation.stackexchange.com/a/8013
-        const turn_rate = clamp(0, 1 / (this.speed / 8.883031), 0.0523598776);
-        const turn_amount = turn_rate * window.gameController.game_delta();
-        const offset = angle_offset(this.target.heading, this.heading);
-
-        if (abs(offset) < turn_amount) {
-            this.heading = this.target.heading;
-        } else if ((offset < 0 && this.target.turn === null) || this.target.turn === 'left') {
-            this.heading -= turn_amount;
-        } else if ((offset > 0 && this.target.turn === null) || this.target.turn === 'right') {
-            this.heading += turn_amount;
         }
     }
 
