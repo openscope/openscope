@@ -1220,24 +1220,7 @@ export default class Aircraft {
             return;
         }
 
-        // TURNING
-        // this.target.heading = radians_normalize(this.target.heading);
-        if (!this.isOnGround() && this.heading !== this.target.heading) {
-            // Perform standard turns 3 deg/s or 25 deg bank, whichever
-            // requires less bank angle.
-            // Formula based on http://aviation.stackexchange.com/a/8013
-            const turn_rate = clamp(0, 1 / (this.speed / 8.883031), 0.0523598776);
-            const turn_amount = turn_rate * window.gameController.game_delta();
-            const offset = angle_offset(this.target.heading, this.heading);
-
-            if (abs(offset) < turn_amount) {
-                this.heading = this.target.heading;
-            } else if ((offset < 0 && this.target.turn === null) || this.target.turn === 'left') {
-                this.heading -= turn_amount;
-            } else if ((offset > 0 && this.target.turn === null) || this.target.turn === 'right') {
-                this.heading += turn_amount;
-            }
-        }
+        this.aircraftTurnPsyics();
 
         // ALTITUDE
         let distance = null;
@@ -1388,6 +1371,34 @@ export default class Aircraft {
             } else {
                 this.speed += difference;
             }
+        }
+    }
+
+    /**
+     * @for AircraftInstanceModel
+     * @method aircraftTurnPsyics
+     * This turns the aircraft if it is not on the ground and has not arived at its destenation
+     */
+    aircraftTurnPsyics() {
+        // Exits eary if the airplane is on the ground or at its destenation
+        if (this.isOnGround() && this.heading === this.target.heading) {
+            return;
+        }
+        // TURNING
+        // this.target.heading = radians_normalize(this.target.heading);
+        // Perform standard turns 3 deg/s or 25 deg bank, whichever
+        // requires less bank angle.
+        // Formula based on http://aviation.stackexchange.com/a/8013
+        const turn_rate = clamp(0, 1 / (this.speed / 8.883031), 0.0523598776);
+        const turn_amount = turn_rate * window.gameController.game_delta();
+        const offset = angle_offset(this.target.heading, this.heading);
+
+        if (abs(offset) < turn_amount) {
+            this.heading = this.target.heading;
+        } else if ((offset < 0 && this.target.turn === null) || this.target.turn === 'left') {
+            this.heading -= turn_amount;
+        } else if ((offset > 0 && this.target.turn === null) || this.target.turn === 'right') {
+            this.heading += turn_amount;
         }
     }
 
