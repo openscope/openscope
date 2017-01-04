@@ -387,15 +387,15 @@ export default class AirportModel {
      * @for AirportModel
      * @method set
      */
-    set() {
+    set(airportJson) {
         if (!this.loaded) {
-            this.load();
+            this.load(airportJson);
 
             return;
         }
 
         localStorage[STORAGE_KEY.ATC_LAST_AIRPORT] = this.icao;
-        prop.airport.current = this;
+        // prop.airport.current = this;
 
         prop.canvas.draw_labels = true;
         $(SELECTORS.DOM_SELECTORS.TOGGLE_LABELS).toggle(!_isEmpty(this.maps));
@@ -588,13 +588,19 @@ export default class AirportModel {
      * @for AirportModel
      * @method load
      */
-    load() {
+    load(airportJson) {
         if (this.loaded) {
             return;
         }
 
         this.updateRun(false);
         this.loading = true;
+
+        if (airportJson) {
+            this.onLoadIntialAirportFromJson(airportJson);
+
+            return;
+        }
 
         zlsa.atc.loadAsset({
             url: `assets/airports/${this.icao.toLowerCase()}.json`,
@@ -633,6 +639,25 @@ export default class AirportModel {
 
         this.loading = false;
         this.airport.current.set();
+    }
+
+    /**
+     *
+     *
+     */
+    onLoadIntialAirportFromJson(response) {
+        // cache of airport.json data to be used to hydrate other classes on airport change
+        this.data = response;
+        // this.onAirportChange(this.data);
+        this.parse(response);
+
+        if (this.has_terrain) {
+            return;
+        }
+
+        this.loading = false;
+        this.loaded = true;
+        this.set();
     }
 
     /**

@@ -144,19 +144,24 @@ export default class App {
      * @param aircraftTypeDefinitionList {array}  List of all Aircraft definitions
      */
     setupChildren(airportLoadList, initialAirportData, airlineList, aircraftTypeDefinitionList) {
+        zlsa.atc.loadAsset = (options) => this.contentQueue.add(options);
+
         this.loadingView = new LoadingView();
         this.contentQueue = new ContentQueue(this.loadingView);
         this.gameController = new GameController(this.getDeltaTime);
 
-        this.airportController = new AirportController(airportLoadList, this.updateRun, this.onAirportChange);
+        // eslint-disable-next-line max-len
+        this.airportController = new AirportController(initialAirportData, airportLoadList, this.updateRun, this.onAirportChange);
         this.navigationLibrary = new NavigationLibrary(initialAirportData);
         this.airlineController = new AirlineController(airlineList);
+        // eslint-disable-next-line max-len
         this.aircraftController = new AircraftController(aircraftTypeDefinitionList, this.airlineController, this.navigationLibrary);
-        this.spawnPatternCollection = new SpawnPatternCollection(initialAirportData, this.navigationLibrary);
+        // eslint-disable-next-line max-len
+        this.spawnPatternCollection = new SpawnPatternCollection(initialAirportData, this.airportController, this.navigationLibrary);
         // eslint-disable-next-line max-len
         this.spawnScheduler = new SpawnScheduler(this.spawnPatternCollection, this.aircraftController, this.gameController);
 
-        this.canvasController = new CanvasController(this.$element);
+        this.canvasController = new CanvasController(this.$element, this.navigationLibrary);
         this.tutorialView = new TutorialView(this.$element);
         this.inputController = new InputController(this.$element);
         this.uiController = new UiController(this.$element);
@@ -172,7 +177,6 @@ export default class App {
      * @method enable
      */
     enable() {
-        zlsa.atc.loadAsset = (options) => this.contentQueue.add(options);
         // TEMPORARY!
         // these instances are attached to the window here as an intermediate step away from global functions.
         // this allows for any module file to call window.{module}.{method} and will make the transition to
@@ -265,7 +269,6 @@ export default class App {
     init() {
         speech_init();
 
-        this.airportController.init();
         this.canvasController.canvas_init();
         this.uiController.ui_init();
 
@@ -305,8 +308,6 @@ export default class App {
      * @method ready
      */
     ready() {
-        this.airportController.ready();
-
         return this;
     }
 

@@ -44,6 +44,10 @@ export default class NavigationLibrary {
         this.init(airportJson);
     }
 
+    get drawSids() {
+        return this._sidCollection.draw;
+    }
+
     /**
      * Set initial class properties
      *
@@ -75,6 +79,22 @@ export default class NavigationLibrary {
         this._referencePosition = null;
         this._sidCollection = null;
         this._starCollection = null;
+    }
+
+    hasStarRoute(routeName) {
+        return this._starCollection.hasRoute(routeName);
+    }
+
+    hasSidRoute(routeName) {
+        return this._sidCollection.hasRoute(routeName);
+    }
+
+    findStarRouteByIcao(icao) {
+        this._starCollection.findRouteByIcao(icao);
+    }
+
+    findSidRouteByIcao(icao) {
+        this._sidCollection.findRouteByIcao(icao);
     }
 
     /**
