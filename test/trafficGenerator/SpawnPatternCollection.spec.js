@@ -3,6 +3,7 @@ import ava from 'ava';
 import sinon from 'sinon';
 
 import SpawnPatternCollection from '../../src/assets/scripts/client/trafficGenerator/SpawnPatternCollection';
+import { airportControllerFixture } from '../fixtures/airportFixtures';
 import { navigationLibraryFixture } from '../fixtures/navigationLibraryFixtures';
 import { spawnPatternModelArrivalFixture } from '../fixtures/trafficGeneratorFixtures';
 import { AIRPORT_JSON_FOR_SPAWN_MOCK } from './_mocks/spawnPatternMocks';

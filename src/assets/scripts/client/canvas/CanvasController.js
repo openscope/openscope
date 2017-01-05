@@ -72,9 +72,10 @@ export default class ConvasController {
     /**
      * @constructor
      */
-    constructor($element) {
+    constructor($element, navigationLibrary) {
         this.$window = $(window);
         this.$element = $element;
+        this._navigationLibrary = navigationLibrary;
         this.canvas = canvas;
         this.canvas.contexts = {};
         this.canvas.panY = 0;
@@ -655,7 +656,7 @@ export default class ConvasController {
         cc.setLineDash([1, 10]);
         cc.font = 'italic 14px monoOne, monospace';
 
-        _forEach(airport.sidCollection.draw, (sid) => {
+        _forEach(this._navigationLibrary.sidCollection.draw, (sid) => {
             let write_sid_name = true;
             let fixX = null;
             let fixY = null;

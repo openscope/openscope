@@ -44,8 +44,31 @@ export default class NavigationLibrary {
         this.init(airportJson);
     }
 
+    /**
+     *
+     * @property drawSids
+     * @return
+     */
     get drawSids() {
         return this._sidCollection.draw;
+    }
+
+    /**
+     *
+     * @property sidCollection
+     * @return
+     */
+    get sidCollection() {
+        return this._sidCollection;
+    }
+
+    /**
+     *
+     * @property starCollection
+     * @return
+     */
+    get starCollection() {
+        return this._starCollection;
     }
 
     /**

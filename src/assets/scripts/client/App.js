@@ -150,14 +150,14 @@ export default class App {
         this.contentQueue = new ContentQueue(this.loadingView);
         this.gameController = new GameController(this.getDeltaTime);
 
-        // eslint-disable-next-line max-len
-        this.airportController = new AirportController(initialAirportData, airportLoadList, this.updateRun, this.onAirportChange);
         this.navigationLibrary = new NavigationLibrary(initialAirportData);
+        // eslint-disable-next-line max-len
+        this.airportController = new AirportController(initialAirportData, airportLoadList, this.updateRun, this.onAirportChange, this.navigationLibrary);
         this.airlineController = new AirlineController(airlineList);
         // eslint-disable-next-line max-len
         this.aircraftController = new AircraftController(aircraftTypeDefinitionList, this.airlineController, this.navigationLibrary);
         // eslint-disable-next-line max-len
-        this.spawnPatternCollection = new SpawnPatternCollection(initialAirportData, this.airportController, this.navigationLibrary);
+        this.spawnPatternCollection = new SpawnPatternCollection(initialAirportData, /*this.airportController, */ this.navigationLibrary);
         // eslint-disable-next-line max-len
         this.spawnScheduler = new SpawnScheduler(this.spawnPatternCollection, this.aircraftController, this.gameController);
 
@@ -444,6 +444,7 @@ export default class App {
 
         this.navigationLibrary.reset();
         this.airlineCollection.reset();
+        this.aircraftController.aircraft_remove_all();
         this.spawnPatternCollection.reset();
         this.spawnScheduler = null;
 

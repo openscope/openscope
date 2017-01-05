@@ -1,5 +1,22 @@
+import sinon from 'sinon';
+
+import AirportController from '../../src/assets/scripts/client/airport/AirportController';
 import AirportModel from '../../src/assets/scripts/client/airport/AirportModel';
 import PositionModel from '../../src/assets/scripts/client/base/PositionModel';
+import { navigationLibraryFixture } from '../fixtures/navigationLibraryFixtures';
+import { AIRPORT_JSON_KLAS_MOCK } from '../airport/_mocks/airportJsonMock';
+import { AIRPORT_LOAD_LIST_MOCK } from '../airport/_mocks/airportLoadListMocks';
+
+const updateRunStub = sinon.stub();
+const onAirportChangeStub = sinon.stub();
+
+export const airportControllerFixture = new AirportController(
+    AIRPORT_JSON_KLAS_MOCK,
+    AIRPORT_LOAD_LIST_MOCK,
+    updateRunStub,
+    onAirportChangeStub,
+    navigationLibraryFixture
+);
 
 // airport position for KSFO
 export const airportPositionFixtureKSFO = new PositionModel(['N37.6195', 'W122.3738333', '13ft'], null, 13.7);

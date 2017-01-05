@@ -10,7 +10,7 @@ import AirspaceModel from './AirspaceModel';
 import PositionModel from '../base/PositionModel';
 import RunwayModel from './RunwayModel';
 import FixCollection from '../navigationLibrary/Fix/FixCollection';
-import StandardRouteCollection from '../navigationLibrary/StandardRoute/StandardRouteCollection';
+// import StandardRouteCollection from '../navigationLibrary/StandardRoute/StandardRouteCollection';
 import { degreesToRadians, parseElevation } from '../utilities/unitConverters';
 import { round, abs, sin, extrapolate_range_clamp } from '../math/core';
 import { angle_offset } from '../math/circle';
@@ -48,10 +48,20 @@ export default class AirportModel {
      * @param updateRun {function}
      * @param onAirportChange {function}  callback method to call onAirportChange
      */
-    constructor(options = {}, updateRun, onAirportChange) {
+    constructor(options = {}, updateRun, onAirportChange, navigationLibrary) {
+        if (!updateRun || !onAirportChange || !navigationLibrary) {
+            console.log('::: ERROR');
+            return;
+        }
+
         this.updateRun = updateRun;
         this.onAirportChange = onAirportChange;
+        // The navigation library doesnt belong here. this is a temp fix so api doesn't
+        // change too drastically too quickly
+        // TODO: move calling of sidCollection and starCollection methods elsewhere
+        this._navigationLibrary = navigationLibrary;
         this.data = {};
+
         // FIXME: All properties of this class should be instantiated here, even if they wont have values yet.
         // there is a lot of logic below that can be elimininated by simply instantiating values here.
         this.loaded = false;
@@ -154,8 +164,8 @@ export default class AirportModel {
         this.fixes = _get(data, 'fixes', {});
         // FixCollection.addItems(this.fixes, this.position);
 
-        this.sidCollection = new StandardRouteCollection(data.sids);
-        this.starCollection = new StandardRouteCollection(data.stars);
+        this.sidCollection = this._navigationLibrary.sidCollection; // new StandardRouteCollection(data.sids);
+        this.starCollection = this._navigationLibrary.starCollection; // new StandardRouteCollection(data.stars);
 
         this.loadTerrain();
         this.buildAirportAirspace(data.airspace);

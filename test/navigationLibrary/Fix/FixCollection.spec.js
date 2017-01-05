@@ -10,6 +10,13 @@ import {
     SMALL_FIX_LIST_MOCK
 } from '../Fix/_mocks/fixMocks';
 
+ava.before(() => {
+    FixCollection.removeItems();
+});
+
+ava.after(() => {
+    FixCollection.removeItems();
+});
 
 ava.serial('FixCollection throws when an attempt to instantiate is made with invalid params', t => {
     t.throws(() => new FixCollection());

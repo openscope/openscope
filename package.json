@@ -53,11 +53,14 @@
     ],
     "source": [
       "!**/_mocks/**",
-      "!**/fixtures/**"
+      "!**/fixtures/**",
+      "!**/testHelpers/**"
     ],
     "verbose": true,
     "require": [
-      "babel-core/register"
+      "babel-core/register",
+      "./test/testHelpers/globalProps.js",
+      "./test/testHelpers/localStorage.js"
     ]
   },
   "nyc": {
@@ -65,7 +68,8 @@
     "include": [
       "src/assets/scripts/**/*.js",
       "!**/_mocks/**",
-      "!**/fixtures/**"
+      "!**/fixtures/**",
+      "!**/testHelpers/**"
     ]
   },
   "dependencies": {

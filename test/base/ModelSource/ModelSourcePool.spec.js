@@ -18,7 +18,8 @@ ava.serial('throws when attempting to instantiate', t => {
 });
 
 ava.serial('pre-populates pool with the specified number models', t => {
-    t.true(modelSourcePool.length === modelSourcePool._maxPoolSizePerModel);
+    t.true(modelSourcePool.length !== 0);
+    t.true(modelSourcePool.length <= modelSourcePool._maxPoolSizePerModel);
 });
 
 ava.serial('.returnReusable() throws if the modelToAdd is the incorrect type', t => {
