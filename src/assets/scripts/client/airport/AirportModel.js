@@ -176,6 +176,8 @@ export default class AirportModel {
         // this.buildAirportDepartures(data.departures);
         // this.buildArrivals(data.arrivals);
         this.buildRunwayMetaData();
+        this.updateRunway();
+        this.setRunwayTimeout();
     }
 
     /**
@@ -424,7 +426,6 @@ export default class AirportModel {
         // FIXME: make FixCollection a instance class ainstead of a static class
         // FixCollection.addItems(this.fixes, this.position);
 
-        this.updateRunway();
         // this.addAircraft();
         this.updateRun(true);
     }
@@ -467,8 +468,11 @@ export default class AirportModel {
      * @return wind {number}
      */
     getWind() {
+        return this.wind;
+
+        // TODO: what does this method do and why do we need it?
         // TODO: there are a lot of magic numbers here. What are they for and what do they mean? These should be enumerated.
-        const wind = clone(this.wind);
+        const wind = Object.assign({}, this.wind);
         let s = 1;
         const angle_factor = sin((s + window.gameController.game_time()) * 0.5) + sin((s + window.gameController.game_time()) * 2);
         // TODO: why is this var getting reassigned to a magic number?
@@ -505,6 +509,15 @@ export default class AirportModel {
         }
 
         this.runway = best_runway;
+    }
+
+    // TODO: what does this function do and why do we need it
+    /**
+     *
+     * @for AirportModel
+     * @method setRunwayTimeout
+     */
+    setRunwayTimeout() {
         this.timeout.runway = window.gameController.game_timeout(this.updateRunway, Math.random() * 30, this);
     }
 

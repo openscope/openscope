@@ -32,4 +32,12 @@ export default class AirlineController {
     findAirlineById(airlineId) {
         return this.airlineCollection.findAirlineById(airlineId);
     }
+
+    /**
+     *
+     *
+     */
+    reset() {
+        this.airlineCollection.reset();
+    }
 }

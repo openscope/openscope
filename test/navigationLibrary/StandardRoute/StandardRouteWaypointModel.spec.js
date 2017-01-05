@@ -8,7 +8,7 @@ import Waypoint from '../../../src/assets/scripts/client/aircraft/FlightManageme
 
 import {
     airportPositionFixtureKSFO,
-    airportModelFixtureForWaypoint
+    airportModelFixture
 } from '../../fixtures/airportFixtures';
 import { FIX_LIST_MOCK } from '../Fix/_mocks/fixMocks';
 
@@ -63,7 +63,7 @@ ava('calls ._parseWaypointRestrictions() when provided and array', t => {
 
 ava('.generateFmsWaypoint() returns a new instance of an FMS Waypoint object', t => {
     const model = new StandardRouteWaypointModel(ROUTE_WAYPOINT_MOCK);
-    const result = model.generateFmsWaypoint(airportModelFixtureForWaypoint);
+    const result = model.generateFmsWaypoint(airportModelFixture);
 
     t.true(result instanceof Waypoint);
     t.true(model.name === result.fix);

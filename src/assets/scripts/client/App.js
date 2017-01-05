@@ -149,6 +149,7 @@ export default class App {
         this.loadingView = new LoadingView();
         this.contentQueue = new ContentQueue(this.loadingView);
         this.gameController = new GameController(this.getDeltaTime);
+        window.gameController = this.gameController;
 
         this.navigationLibrary = new NavigationLibrary(initialAirportData);
         // eslint-disable-next-line max-len
@@ -184,7 +185,7 @@ export default class App {
         window.airportController = this.airportController;
         window.airlineController = this.airlineController;
         window.aircraftController = this.aircraftController;
-        window.gameController = this.gameController;
+        // window.gameController = this.gameController;
         window.tutorialView = this.tutorialView;
         window.inputController = this.inputController;
         window.uiController = this.uiController;
@@ -443,14 +444,14 @@ export default class App {
         }
 
         this.navigationLibrary.reset();
-        this.airlineCollection.reset();
+        this.airlineController.reset();
         this.aircraftController.aircraft_remove_all();
         this.spawnPatternCollection.reset();
         this.spawnScheduler = null;
 
         this.navigationLibrary.init(nextAirportJson);
-        this.spawnPatternCollection.init(nextAirportJson, this.navigationLibrary);
+        this.spawnPatternCollection.init(nextAirportJson, this.navigationLibrary, this.airportController);
         // eslint-disable-next-line max-len
-        this.spawnScheduler = new SpawnScheduler(this.spawnPatternCollection, this.aircraftCollection, this.gameController);
+        this.spawnScheduler = new SpawnScheduler(this.spawnPatternCollection, this.aircraftController, this.gameController);
     };
 }
