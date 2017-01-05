@@ -236,9 +236,11 @@ export default class AircraftController {
      */
     aircraft_remove(aircraft) {
         window.airportController.removeAircraftFromAllRunwayQueues(aircraft);
+
         this.removeCallsignFromList(aircraft.callsign);
         this.removeAircraftInstanceModelFromList(aircraft);
         this.removeAllAircraftConflictsForAircraft(aircraft);
+
         aircraft.cleanup();
     }
 

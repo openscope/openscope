@@ -43,26 +43,19 @@ export default class SpawnPatternModel extends BaseModel {
      * @for SpawnPatternModel
      * @param spawnPatternJson {object}
      * @param navigationLibrary {NavigationLibrary}
+     * @param airportController {AirportController}
      */
-    /* istanbul ignore next */
-    constructor(spawnPatternJson, navigationLibrary) {
-        super(spawnPatternJson, navigationLibrary);
+    // istanbul ignore next
+    constructor(spawnPatternJson, navigationLibrary, airportController) {
+        super(spawnPatternJson, navigationLibrary, airportController);
 
         /**
-         * Interval id
          *
-         * Stored here so a specific interval can be associated with a
-         * specfic `SpawnPatternModel` instance. An Interval may be reset
-         * or changed during the life of the app.
-         *
-         * Provides easy access to a specif interval id
-         *
-         * @DEPRECATED
-         * @property scheduleId
-         * @type {number}
-         * @default -1
+         * @property _airportController
+         * @type {AirportController}
+         * @private
          */
-        this.scheduleId = -1;
+        this._airportController = null;
 
         /**
          * One of `FLIGHT_CATEGORY`
@@ -307,7 +300,7 @@ export default class SpawnPatternModel extends BaseModel {
          */
         this._uptime = -1;
 
-        this.init(spawnPatternJson, navigationLibrary);
+        this.init(spawnPatternJson, navigationLibrary, airportController);
     }
 
     /**
@@ -340,8 +333,9 @@ export default class SpawnPatternModel extends BaseModel {
      * @method init
      * @param spawnPatternJson {object}
      * @param navigationLibrary {NavigationLibrary}
+     * @param airportController {AirportController}
      */
-    init(spawnPatternJson, navigationLibrary) {
+    init(spawnPatternJson, navigationLibrary, airportController) {
         // This is a pooled object, so we still want internal properties to initialize first before returning.
         if (!_isObject(spawnPatternJson) || _isEmpty(spawnPatternJson)) {
             return;
@@ -350,6 +344,12 @@ export default class SpawnPatternModel extends BaseModel {
         if (!_isObject(navigationLibrary) || _isEmpty(navigationLibrary)) {
             throw new TypeError('Invalid NavigationLibrary passed to SpawnPatternModel');
         }
+
+        if (!_isObject(airportController) || _isEmpty(airportController)) {
+            throw new TypeError('Invalid AirportController passed to SpawnPatternModel');
+        }
+
+        this._airportController = airportController;
 
         this.origin = spawnPatternJson.origin;
         this.destination = spawnPatternJson.destination;

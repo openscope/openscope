@@ -17,8 +17,9 @@ export default class SpawnPatternCollection extends BaseCollection {
      * @for SpawnPatternCollection
      * @param airportJson {object}
      * @param navigationLibrary {NavigationLibrary}
+     * @param airportController {AirportController}
      */
-    constructor(airportJson, navigationLibrary) {
+    constructor(airportJson, navigationLibrary, airportController) {
         super(airportJson, navigationLibrary);
 
         if (!_isObject(airportJson) || _isEmpty(airportJson)) {
@@ -29,7 +30,11 @@ export default class SpawnPatternCollection extends BaseCollection {
             throw new TypeError('Invalid NavigationLibrary passed to SpawnPatternCollection');
         }
 
-        this.init(airportJson, navigationLibrary);
+        if (!_isObject(airportController) || _isEmpty(airportController)) {
+            throw new TypeError('Invalid AirportController passed to SpawnPatternCollection');
+        }
+
+        this.init(airportJson, navigationLibrary, airportController);
     }
 
     /**
@@ -51,9 +56,10 @@ export default class SpawnPatternCollection extends BaseCollection {
      * @method init
      * @param airportJson {object}
      * @param navigationLibrary {NavigationLibrary}
+     * @param airportController {AirportController}
      */
-    init(airportJson, navigationLibrary) {
-        this._buildspawnPatternModels(airportJson.spawnPatterns, navigationLibrary);
+    init(airportJson, navigationLibrary, airportController) {
+        this._buildspawnPatternModels(airportJson.spawnPatterns, navigationLibrary, airportController);
     }
 
     /**
@@ -112,14 +118,16 @@ export default class SpawnPatternCollection extends BaseCollection {
      * @method _buildspawnPatternModels
      * @param spawnPatterns {array<object>}
      * @param navigationLibrary {NavigationLibrary}
+     * @param airportController {AirportController}
      * @private
      */
-    _buildspawnPatternModels(spawnPatterns, navigationLibrary) {
+    _buildspawnPatternModels(spawnPatterns, navigationLibrary, airportController) {
         _forEach(spawnPatterns, (spawnPattern) => {
             const spawnPatternModel = modelSourceFactory.getModelSourceForType(
                 'SpawnPatternModel',
                 spawnPattern,
-                navigationLibrary
+                navigationLibrary,
+                airportController
             );
 
             this.addItem(spawnPatternModel);

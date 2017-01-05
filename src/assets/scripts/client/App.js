@@ -157,7 +157,7 @@ export default class App {
         // eslint-disable-next-line max-len
         this.aircraftController = new AircraftController(aircraftTypeDefinitionList, this.airlineController, this.navigationLibrary);
         // eslint-disable-next-line max-len
-        this.spawnPatternCollection = new SpawnPatternCollection(initialAirportData, /*this.airportController, */ this.navigationLibrary);
+        this.spawnPatternCollection = new SpawnPatternCollection(initialAirportData, this.navigationLibrary, this.airportController,);
         // eslint-disable-next-line max-len
         this.spawnScheduler = new SpawnScheduler(this.spawnPatternCollection, this.aircraftController, this.gameController);
 

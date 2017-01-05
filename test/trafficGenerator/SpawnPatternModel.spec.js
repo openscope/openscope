@@ -1,10 +1,13 @@
 /* eslint-disable arrow-parens, max-len, import/no-extraneous-dependencies*/
 import ava from 'ava';
+import sinon from 'sinon';
 import _cloneDeep from 'lodash/cloneDeep';
 import _isEmpty from 'lodash/isEmpty';
 import _isEqual from 'lodash/isEqual';
 
 import SpawnPatternModel from '../../src/assets/scripts/client/trafficGenerator/SpawnPatternModel';
+import AirportController from '../../src/assets/scripts/client/airport/AirportController';
+import { airportControllerFixture } from '../fixtures/airportFixtures';
 import { navigationLibraryFixture } from '../fixtures/navigationLibraryFixtures';
 import {
     spawnPatternModelArrivalFixture,
@@ -24,15 +27,29 @@ ava('does not throw when called with invalid parameters', (t) => {
     t.notThrows(() => new SpawnPatternModel(42));
     t.notThrows(() => new SpawnPatternModel('threeve'));
     t.notThrows(() => new SpawnPatternModel(false));
+
+    // t.notThrows(() => new SpawnPatternModel(ARRIVAL_PATTERN_MOCK));
+    // t.notThrows(() => new SpawnPatternModel(ARRIVAL_PATTERN_MOCK, []));
+    // t.notThrows(() => new SpawnPatternModel(ARRIVAL_PATTERN_MOCK, {}));
+    // t.notThrows(() => new SpawnPatternModel(ARRIVAL_PATTERN_MOCK, 42));
+    // t.notThrows(() => new SpawnPatternModel(ARRIVAL_PATTERN_MOCK, 'threeve'));
+    // t.notThrows(() => new SpawnPatternModel(ARRIVAL_PATTERN_MOCK, false));
+    //
+    // t.notThrows(() => new SpawnPatternModel(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture));
+    // t.notThrows(() => new SpawnPatternModel(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture, []));
+    // t.notThrows(() => new SpawnPatternModel(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture, {}));
+    // t.notThrows(() => new SpawnPatternModel(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture, 42));
+    // t.notThrows(() => new SpawnPatternModel(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture, 'threeve'));
+    // t.notThrows(() => new SpawnPatternModel(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture, false));
 });
 
 ava('does not throw when called with valid parameters', (t) => {
-    t.notThrows(() => new SpawnPatternModel(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture));
-    t.notThrows(() => new SpawnPatternModel(DEPARTURE_PATTERN_MOCK, navigationLibraryFixture));
+    t.notThrows(() => new SpawnPatternModel(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture, airportControllerFixture));
+    t.notThrows(() => new SpawnPatternModel(DEPARTURE_PATTERN_MOCK, navigationLibraryFixture, airportControllerFixture));
 });
 
 ava('.getNextDelayValue() returns a random number between #minimumDelay and #maximumDelay', (t) => {
-    const model = new SpawnPatternModel(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture);
+    const model = new SpawnPatternModel(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture, airportControllerFixture);
     model._minimumDelay = 0;
     model._maximumDelay = 3;
 
@@ -43,7 +60,7 @@ ava('.getNextDelayValue() returns a random number between #minimumDelay and #max
 
 ava('._calculateNextCyclicDelayPeriod() returns 360 when gameTime is 0', (t) => {
     const gameTimeMock = 0;
-    const model = new SpawnPatternModel(ARRIVAL_PATTERN_CYCLIC_MOCK, navigationLibraryFixture);
+    const model = new SpawnPatternModel(ARRIVAL_PATTERN_CYCLIC_MOCK, navigationLibraryFixture, airportControllerFixture);
     const result = model._calculateNextCyclicDelayPeriod(gameTimeMock);
 
     t.true(result === 360);
@@ -51,7 +68,7 @@ ava('._calculateNextCyclicDelayPeriod() returns 360 when gameTime is 0', (t) => 
 
 ava.skip('._calculateNextWaveDelayPeriod() returns ', (t) => {
     const gameTimeMock = 3320;
-    const model = new SpawnPatternModel(ARRIVAL_PATTERN_WAVE_MOCK, navigationLibraryFixture);
+    const model = new SpawnPatternModel(ARRIVAL_PATTERN_WAVE_MOCK, navigationLibraryFixture, airportControllerFixture);
     const result = model._calculateNextWaveDelayPeriod(gameTimeMock);
 
     console.log(result);
@@ -63,7 +80,7 @@ ava('._setMinMaxAltitude() sets #_minimumAltitude and #_maximumAltitude when an 
     // creating new mock here so as not to overwrite and affect original
     const arrivalMock = Object.assign({}, ARRIVAL_PATTERN_MOCK, { altitude: 0 });
     const altitudeMock = [10000, 20000];
-    const model = new SpawnPatternModel(arrivalMock, navigationLibraryFixture);
+    const model = new SpawnPatternModel(arrivalMock, navigationLibraryFixture, airportControllerFixture);
 
     model._setMinMaxAltitude(altitudeMock);
 
@@ -75,7 +92,7 @@ ava('._setMinMaxAltitude() sets #_minimumAltitude and #_maximumAltitude when a n
     // creating new mock here so as not to overwrite and affect original
     const arrivalMock = Object.assign({}, ARRIVAL_PATTERN_MOCK, { altitude: 0 });
     const altitudeMock = 23000;
-    const model = new SpawnPatternModel(arrivalMock, navigationLibraryFixture);
+    const model = new SpawnPatternModel(arrivalMock, navigationLibraryFixture, airportControllerFixture);
 
     model._setMinMaxAltitude(altitudeMock);
 
@@ -85,7 +102,7 @@ ava('._setMinMaxAltitude() sets #_minimumAltitude and #_maximumAltitude when a n
 
 ava('._calculateMaximumDelayFromRate() returns a number equal to 1hr in miliseconds / #frequency', (t) => {
     const expectedResult = 360;
-    const model = new SpawnPatternModel(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture);
+    const model = new SpawnPatternModel(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture, airportControllerFixture);
     const result = model._calculateMaximumDelayFromRate();
 
     t.true(result === expectedResult);
@@ -95,7 +112,7 @@ ava('._calculateMaximumDelayFromRate() returns a number equal to 1hr in miliseco
 ava.skip('._calculatePositionAndHeadingForArrival() calculates aircraft heading and position when provided list a of fixes', (t) => {
     const expedtedHeadingResult = 0.5812231343277809;
     const expectedPositionResult = [-99.76521626690608, -148.0266530993096];
-    const model = new SpawnPatternModel(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture);
+    const model = new SpawnPatternModel(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture, airportControllerFixture);
     // using cloneDeep here so we can set fixes for the fixture without affecting the actual fixture
     const spawnModelFixture = _cloneDeep(spawnPatternModelArrivalFixture);
     spawnModelFixture.fixes = ['DAG', 'MISEN', 'CLARR'];
@@ -107,7 +124,7 @@ ava.skip('._calculatePositionAndHeadingForArrival() calculates aircraft heading 
 });
 
 ava('._calculatePositionAndHeadingForArrival() returns early when spawnPattern.category is departure', (t) => {
-    const model = new SpawnPatternModel(DEPARTURE_PATTERN_MOCK, navigationLibraryFixture);
+    const model = new SpawnPatternModel(DEPARTURE_PATTERN_MOCK, navigationLibraryFixture, airportControllerFixture);
 
     model._calculatePositionAndHeadingForArrival(DEPARTURE_PATTERN_MOCK, navigationLibraryFixture);
 
@@ -118,7 +135,7 @@ ava('._calculatePositionAndHeadingForArrival() returns early when spawnPattern.c
 ava('._calculatePositionAndHeadingForArrival() calculates aircraft heading and position when provided a route', (t) => {
     const expedtedHeadingResult = -1.8520506712692788;
     const expectedPositionResult = [220.0165474765974,137.76227044819646];
-    const model = new SpawnPatternModel(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture);
+    const model = new SpawnPatternModel(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture, airportControllerFixture);
 
     model._calculatePositionAndHeadingForArrival(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture);
 

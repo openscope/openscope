@@ -50,7 +50,7 @@ export default class AirportModel {
      */
     constructor(options = {}, updateRun, onAirportChange, navigationLibrary) {
         if (!updateRun || !onAirportChange || !navigationLibrary) {
-            console.log('::: ERROR');
+            console.log('::: ERROR', !updateRun, !onAirportChange, !navigationLibrary);
             return;
         }
 
