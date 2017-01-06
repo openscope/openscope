@@ -12,7 +12,8 @@ import {
 import { nm } from '../utilities/unitConverters';
 
 /**
- *
+ * Loop through `waypointModelList` and determine where along the route an
+ * aircraft should spawn
  *
  * @function _calculateSpawnPositions
  * @param waypointModelList {array<StandardWaypointModel>}
@@ -30,12 +31,7 @@ export const _calculateSpawnPositions = (waypointModelList, spawnOffsets, airpor
         for (let j = 1; j < waypointModelList.length; j++) {
             const waypoint = waypointModelList[j];
 
-            if (spawnOffset > waypoint.distanceFromPreviousWaypoint) {
-                // if point beyond next fix subtract distance from spawnOffset and continue
-                spawnOffset -= waypoint.distanceFromPreviousWaypoint;
-
-                continue;
-            } else {
+            if (waypoint.distanceFromPreviousWaypoint > spawnOffset) {
                 // if point before next fix
                 const nextFix = waypoint;
                 const previousFix = waypointModelList[j - 1];
@@ -53,6 +49,9 @@ export const _calculateSpawnPositions = (waypointModelList, spawnOffsets, airpor
 
                 break;
             }
+
+            // if point beyond next fix subtract distance from spawnOffset and continue
+            spawnOffset -= waypoint.distanceFromPreviousWaypoint;
         }
     }
 
@@ -60,12 +59,12 @@ export const _calculateSpawnPositions = (waypointModelList, spawnOffsets, airpor
 };
 
 /**
- *
+ * Calculate distrance(s) from center where an aircraft should exist onload or airport change
  *
  * @function _assembleSpawnOffsets
  * @param entrailDistance {number}
  * @param totalDistance {number}
- * @return spawnOffsets {array}
+ * @return spawnOffsets {array<number>}
  */
 export const _assembleSpawnOffsets = (entrailDistance, totalDistance) => {
     const spawnOffsets = [];
@@ -79,19 +78,22 @@ export const _assembleSpawnOffsets = (entrailDistance, totalDistance) => {
 };
 
 /**
- *
+ * Calculate heading, nextFix and position data to be used when creating an
+ * `AircraftInstanceModel` along a route.
  *
  * @function _preSpawn
  * @param spawnPatternJson
  * @param navigationLibrary
  * @param airport
- * @return
+ * @return {array<object>}
  */
 export const _preSpawn = (spawnPatternJson, navigationLibrary, airport) => {
     // find last fix along STAR that is outside of airspace, ie: next fix is within airspace
     // distance between closest fix outside airspace and airspace border in nm
     let extra = 0;
     let totalDistance = 0;
+    // distance between each arriving aircraft, in nm
+    const entrailDistance = spawnPatternJson.speed / spawnPatternJson.rate;
     const activeRouteModel = new RouteModel(spawnPatternJson.route);
     const isPreSpawn = true;
     const waypointModelList = airport.findWaypointModelsForStar(
@@ -121,15 +123,11 @@ export const _preSpawn = (spawnPatternJson, navigationLibrary, airport) => {
         totalDistance += waypoint.distanceFromPreviousWaypoint;
     }
 
-    // FIXME: incluing this causes aircraft to spawn within airspace. something goofy is going on here.
-    // totalDistance += extra;
-
-    // distance between each arriving aircraft, in nm
-    const entrailDistance = spawnPatternJson.speed / spawnPatternJson.rate;
+    // calculate nubmer of offsets
     const spawnOffsets = _assembleSpawnOffsets(entrailDistance, totalDistance);
+    // calculate heading, nextFix and position data to be used when creating an `AircraftInstanceModel` along a route
     const spawnPositions = _calculateSpawnPositions(waypointModelList, spawnOffsets, airport);
 
-    // _createAircraftAtSpawnPositions(spawnPositions);
     return spawnPositions;
 };
 
@@ -148,7 +146,7 @@ export const _preSpawn = (spawnPatternJson, navigationLibrary, airport) => {
  * @param spawnPatternJson
  * @param navigationLibrary
  * @param currentAirport
- * @return {array<>}
+ * @return {array<object>}
  */
 export const buildPreSpawnAircraft = (spawnPatternJson, navigationLibrary, currentAirport) => {
     if (!_isObject(spawnPatternJson) || _isEmpty(spawnPatternJson)) {
@@ -157,7 +155,6 @@ export const buildPreSpawnAircraft = (spawnPatternJson, navigationLibrary, curre
     }
 
     if (_isNil(navigationLibrary) || _isNil(currentAirport)) {
-        console.log(typeof spawnPatternJson, typeof navigationLibrary, typeof currentAirport);
         // eslint-disable-next-line max-len
         throw new TypeError('Invalid parameter passed to buildPreSpawnAircraft. Expected navigationLibrary and currentAirport to be defined');
     }

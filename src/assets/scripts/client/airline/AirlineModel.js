@@ -8,11 +8,12 @@ import _isObject from 'lodash/isObject';
 import _map from 'lodash/map';
 import _random from 'lodash/random';
 import _uniq from 'lodash/uniq';
+import _without from 'lodash/without';
 import BaseModel from '../base/BaseModel';
 import { choose } from '../utilities/generalUtilities';
 
 /**
- * An aircrcraft operating agency
+ * An aircraft operating agency
  *
  * Defines aircraft and fleets used by an airline along with methods
  * and rules for flightNumberGeneration.
@@ -103,6 +104,7 @@ export default class AirlineModel extends BaseModel {
             default: []
         };
 
+        // TODO: need better name
         /**
          * List of all flight numbers in use in the app
          *
@@ -220,6 +222,8 @@ export default class AirlineModel extends BaseModel {
             return this.generateFlightNumber();
         }
 
+        this._addFlightNumberToInUse(flightNumber);
+
         return flightNumber;
     }
 
@@ -259,6 +263,25 @@ export default class AirlineModel extends BaseModel {
 
         // entries in `fleets[fleetName]` are of the shape `[TYPE, WEIGHT]` we only need the type here
         return _head(fleet[index]);
+    }
+
+    // TODO: need better name
+    /**
+     *
+     *
+     */
+    _addFlightNumberToInUse(flightNumber) {
+        this.flightNumbersInUse.push(flightNumber);
+    }
+
+    // TODO: need better name
+    /**
+     *
+     *
+     */
+    _removeFlightNumberFromUse(flightNumber) {
+        // TODO: check that the number is there first
+        this.flightNumbersInUse = _without(this.flightNumbersInUse, flightNumber);
     }
 
     /**

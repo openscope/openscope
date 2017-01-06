@@ -113,6 +113,7 @@ export default class AircraftController {
      *
      * @method createAircraftWithSpawnPatternModel
      * @param spawnPatternModel {SpawnPatternModel}
+     * @private
      */
     createAircraftWithSpawnPatternModel = (spawnPatternModel) => {
         const initializationProps = this._buildAircraftProps(spawnPatternModel);
@@ -121,10 +122,20 @@ export default class AircraftController {
     }
 
     /**
+     * Build aircraft props for `spawnPatternModel` and add
+     * preSpawn data to `baseAircraftProps`.
      *
+     * Used when creating aircraft already along an arrival route on load
+     * or on airport change.
+     *
+     * This method should be called direectly and not via a timer callback
+     *
+     * This hooks into the same method used to build spawnning aircraft
+     * and simply adds another layer on top of that to build a preSpawn aircraft.
      *
      * @method createPreSpawnAircraftWithSpawnPatternModel
      * @param  spawnPatternModel {SpawnPatternModel}
+     * @private
      */
     createPreSpawnAircraftWithSpawnPatternModel = (spawnPatternModel) => {
         for (let i = 0; i < spawnPatternModel.preSpawnAircraftList.length; i++) {
@@ -137,8 +148,15 @@ export default class AircraftController {
     };
 
     /**
+     * Accept a pre-built object that can be used to create an `AircraftInstanceModel`
+     * and then add it to the collection.
      *
+     * This could be a spawnning aircraft or one that already exists along a route.
      *
+     * @for AircraftController
+     * @method _createAircraftWithInitializationProps
+     * @param initializationProps {object}
+     * @private
      */
     _createAircraftWithInitializationProps(initializationProps) {
         const aircraftModel = new AircraftInstanceModel(initializationProps);

@@ -151,14 +151,17 @@ export default class App {
         this.loadingView = new LoadingView();
         this.contentQueue = new ContentQueue(this.loadingView);
         this.gameController = new GameController(this.getDeltaTime);
+        // FIXME: Temporary
         window.gameController = this.gameController;
 
         this.navigationLibrary = new NavigationLibrary(initialAirportData);
         this.airportController = new AirportController(initialAirportData, airportLoadList, this.updateRun, this.onAirportChange, this.navigationLibrary);
+        // FIXME: Temporary
         window.airportController = this.airportController;
 
         this.airlineController = new AirlineController(airlineList);
         this.aircraftController = new AircraftController(aircraftTypeDefinitionList, this.airlineController, this.navigationLibrary);
+        // FIXME: Temporary
         window.aircraftController = this.aircraftController;
 
         this.spawnPatternCollection = new SpawnPatternCollection(initialAirportData, this.navigationLibrary, this.airportController);

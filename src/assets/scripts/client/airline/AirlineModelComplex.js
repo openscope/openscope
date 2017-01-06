@@ -8,7 +8,7 @@ import { choose, choose_weight } from '../utilities/generalUtilities';
  */
 
 /**
- * An aircrcraft operating agency
+ * An aircraft operating agency
  *
  * @class AirlineModel
  */
