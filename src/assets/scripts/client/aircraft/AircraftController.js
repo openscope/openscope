@@ -172,35 +172,36 @@ export default class AircraftController {
         this.aircraft.auto.enabled = !this.aircraft.auto.enabled;
     }
 
-    /**
-     * @for AircraftController
-     * @method isCallsignInList
-     * @param callsign {string}
-     * return {boolean}
-     */
-    isCallsignInList(callsign) {
-        // TODO: use a getter in airlineCollection that looks at each `AirlineModel.flightNumbers`
-        return this.aircraft.callsigns.indexOf(callsign) !== -1;
-    }
-
-    /**
-     * Add a new callsign to `aircraft.callsigns`
-     *
-     * @for AircraftController
-     * @method addCallsignToList
-     * @param callsign {string}
-     */
-    addCallsignToList(callsign) {
-        if (this.isCallsignInList(callsign)) {
-            // if you've made it here something has gone very wrong. generation of a callsign/flightNumber should
-            // also include verification that the callsign/flightNumber is unique
-            console.warn(`${callsign} already exists within the callsigns list!`);
-
-            return;
-        }
-
-        this.aircraft.callsigns.push(callsign);
-    }
+    // TODO: replace with `AirlineModel` flightNumber methods
+    // /**
+    //  * @for AircraftController
+    //  * @method isCallsignInList
+    //  * @param callsign {string}
+    //  * return {boolean}
+    //  */
+    // isCallsignInList(callsign) {
+    //     // TODO: use a getter in airlineCollection that looks at each `AirlineModel.flightNumbers`
+    //     return this.aircraft.callsigns.indexOf(callsign) !== -1;
+    // }
+    //
+    // /**
+    //  * Add a new callsign to `aircraft.callsigns`
+    //  *
+    //  * @for AircraftController
+    //  * @method addCallsignToList
+    //  * @param callsign {string}
+    //  */
+    // addCallsignToList(callsign) {
+    //     if (this.isCallsignInList(callsign)) {
+    //         // if you've made it here something has gone very wrong. generation of a callsign/flightNumber should
+    //         // also include verification that the callsign/flightNumber is unique
+    //         console.warn(`${callsign} already exists within the callsigns list!`);
+    //
+    //         return;
+    //     }
+    //
+    //     this.aircraft.callsigns.push(callsign);
+    // }
 
     /**
      * Add a new `AircraftConflict` instance to the list of existing conflicts
@@ -576,6 +577,7 @@ export default class AircraftController {
         const airlineModel = this.airlineController.findAirlineById(name);
         const aircraftDefinition = this._getRandomAircraftTypeDefinitionForAirlineId(airlineId, airlineModel);
         const destination = this._setDestinationFromRouteOrProcedure(spawnModel);
+        // TODO: re-route to use `airlineController`
         const callsign = airlineModel.generateFlightNumber();
 
         return {

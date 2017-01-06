@@ -20,27 +20,31 @@ import {
     ARRIVAL_PATTERN_WAVE_MOCK
 } from './_mocks/spawnPatternMocks';
 
-ava('does not throw when called with invalid parameters', (t) => {
+ava('does not throw when called without parameters', (t) => {
     t.notThrows(() => new SpawnPatternModel());
     t.notThrows(() => new SpawnPatternModel([]));
     t.notThrows(() => new SpawnPatternModel({}));
     t.notThrows(() => new SpawnPatternModel(42));
     t.notThrows(() => new SpawnPatternModel('threeve'));
     t.notThrows(() => new SpawnPatternModel(false));
+});
 
-    // t.notThrows(() => new SpawnPatternModel(ARRIVAL_PATTERN_MOCK));
-    // t.notThrows(() => new SpawnPatternModel(ARRIVAL_PATTERN_MOCK, []));
-    // t.notThrows(() => new SpawnPatternModel(ARRIVAL_PATTERN_MOCK, {}));
-    // t.notThrows(() => new SpawnPatternModel(ARRIVAL_PATTERN_MOCK, 42));
-    // t.notThrows(() => new SpawnPatternModel(ARRIVAL_PATTERN_MOCK, 'threeve'));
-    // t.notThrows(() => new SpawnPatternModel(ARRIVAL_PATTERN_MOCK, false));
-    //
-    // t.notThrows(() => new SpawnPatternModel(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture));
-    // t.notThrows(() => new SpawnPatternModel(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture, []));
-    // t.notThrows(() => new SpawnPatternModel(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture, {}));
-    // t.notThrows(() => new SpawnPatternModel(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture, 42));
-    // t.notThrows(() => new SpawnPatternModel(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture, 'threeve'));
-    // t.notThrows(() => new SpawnPatternModel(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture, false));
+ava('.init() throws when called with invalid parameters', (t) => {
+    const model = new SpawnPatternModel();
+
+    t.throws(() => model.init(ARRIVAL_PATTERN_MOCK));
+    t.throws(() => model.init(ARRIVAL_PATTERN_MOCK, []));
+    t.throws(() => model.init(ARRIVAL_PATTERN_MOCK, {}));
+    t.throws(() => model.init(ARRIVAL_PATTERN_MOCK, 42));
+    t.throws(() => model.init(ARRIVAL_PATTERN_MOCK, 'threeve'));
+    t.throws(() => model.init(ARRIVAL_PATTERN_MOCK, false));
+
+    t.throws(() => model.init(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture));
+    t.throws(() => model.init(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture, []));
+    t.throws(() => model.init(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture, {}));
+    t.throws(() => model.init(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture, 42));
+    t.throws(() => model.init(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture, 'threeve'));
+    t.throws(() => model.init(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture, false));
 });
 
 ava('does not throw when called with valid parameters', (t) => {
