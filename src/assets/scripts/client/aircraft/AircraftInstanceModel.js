@@ -881,13 +881,12 @@ export default class Aircraft {
         const altitude = data[0];
         let expedite = data[1];
         const airport = window.airportController.airport_get();
-        const radioTrendAltitude = radio_trend('altitude', this.altitude, this.fms.altitudeForCurrentWaypoint());
-        const currentWaypointRadioAltitude = radio_altitude(this.fms.altitudeForCurrentWaypoint());
 
         if ((altitude == null) || isNaN(altitude)) {
             // FIXME: move this to it's own command. if expedite can be passed as a sole command it should be its own command
             if (expedite) {
                 this.fms.setCurrent({ expedite: true });
+                const radioTrendAltitude = radio_trend('altitude', this.altitude, this.fms.altitudeForCurrentWaypoint());
 
                 return ['ok', `${radioTrendAltitude} ${this.fms.altitudeForCurrentWaypoint()} expedite`];
             }
@@ -910,15 +909,20 @@ export default class Aircraft {
             expedite: expedite
         });
 
-        let isExpeditingString = '';
-        if (expedite) {
-            isExpeditingString = ' and expedite';
-        }
+        const newAltitude = this.fms.altitudeForCurrentWaypoint();
+        const instruction = radio_trend('altitude', this.altitude, newAltitude);
+        const readback_text = `${instruction} ${newAltitude}`;
+        const readback_verbal = `${instruction} ${radio_altitude(newAltitude)}`;
 
         const readback = {
-            log: `${radioTrendAltitude} ${this.fms.altitudeForCurrentWaypoint()}${isExpeditingString}`,
-            say: `${radioTrendAltitude} ${currentWaypointRadioAltitude}${isExpeditingString}`
+            log: readback_text,
+            say: readback_verbal
         };
+
+        if (expedite) {
+            readback.log = `${readback_text} and expedite`;
+            readback.say = `${readback_verbal} and expedite`;
+        }
 
         return ['ok', readback];
     }
@@ -1299,7 +1303,6 @@ export default class Aircraft {
         const routeModel = new RouteModel(data[0]);
         const airport = window.airportController.airport_get();
         const { name: starName } = airport.starCollection.findRouteByIcao(routeModel.procedure);
-
         if (this.category !== FLIGHT_CATEGORY.ARRIVAL) {
             return ['fail', 'unable to fly STAR, we are a departure!'];
         }
