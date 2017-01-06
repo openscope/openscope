@@ -285,7 +285,8 @@ export default class AirlineModel extends BaseModel {
      */
     _isFlightNumberInUse(flightNumber) {
         // TODO: replace with a passed instance or move logic to this class
-        return window.aircraftController.isCallsignInList(flightNumber);
+        // return window.aircraftController.isCallsignInList(flightNumber);
+        return false;
     }
 
     /**

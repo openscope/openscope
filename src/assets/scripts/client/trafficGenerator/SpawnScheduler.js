@@ -50,9 +50,14 @@ export default class SpawnScheduler {
      * @param aircraftController {AircraftCollection}
      */
     createSchedulesFromList(spawnPatternCollection, aircraftController) {
-        _forEach(spawnPatternCollection.spawnPatternModels, (spawnPattern) => {
-            spawnPattern.cycleStart(this._gameController.game.time);
-            spawnPattern.scheduleId = this.createNextSchedule(spawnPattern, aircraftController);
+        _forEach(spawnPatternCollection.spawnPatternModels, (spawnPatternModel) => {
+            // set the #cycleStartTime for this `spawnPatternModel` with current game time
+            spawnPatternModel.cycleStart(this._gameController.game.time);
+            spawnPatternModel.scheduleId = this.createNextSchedule(spawnPatternModel, aircraftController);
+
+            if (spawnPatternModel.preSpawnAircraftList.length > 0) {
+                aircraftController.createPreSpawnAircraftWithSpawnPatternModel(spawnPatternModel);
+            }
         });
     }
 
@@ -61,14 +66,14 @@ export default class SpawnScheduler {
      *
      * @for SpawnScheduler
      * @method createNextSchedule
-     * @param spawnPattern {SpawnPatternModel}
+     * @param spawnPatternModel {SpawnPatternModel}
      * @param aircraftController {AircraftCollection}
      * @return {function}
      */
-    createNextSchedule(spawnPattern, aircraftController) {
-        const delay = spawnPattern.getNextDelayValue(this._gameController.game.time);
+    createNextSchedule(spawnPatternModel, aircraftController) {
+        const delay = spawnPatternModel.getNextDelayValue(this._gameController.game.time);
         // TODO: remove this block before merge with develop
-        console.warn(delay, spawnPattern.method, spawnPattern.category, spawnPattern.routeString);
+        console.warn(delay, spawnPatternModel.method, spawnPatternModel.category, spawnPatternModel.routeString);
 
         return this._gameController.game_timeout(
             this.createAircraftAndRegisterNextTimeout,
@@ -77,14 +82,14 @@ export default class SpawnScheduler {
             // passing null only to match existing api
             null,
             // arguments sent to callback as it's first parameter. using array so multiple arg can be sent
-            [spawnPattern, aircraftController]
+            [spawnPatternModel, aircraftController]
         );
     }
 
     /**
      * Method sent to `game_timeout` as the callback
      *
-     * When fired, this method will call `createAircraftWithSpawnModel` and then
+     * When fired, this method will call `createAircraftWithSpawnPatternModel` and then
      * create a new time by calling `createNextSchedule`. Doing so will also result
      * in calculating a new delay period.
      *
@@ -95,11 +100,11 @@ export default class SpawnScheduler {
      * @param args {*[]}
      */
     createAircraftAndRegisterNextTimeout = (...args) => {
-        const spawnPattern = args[0][0];
+        const spawnPatternModel = args[0][0];
         const aircraftController = args[0][1];
 
-        aircraftController.createAircraftWithSpawnModel(spawnPattern);
+        aircraftController.createAircraftWithSpawnPatternModel(spawnPatternModel);
 
-        this.createNextSchedule(spawnPattern, aircraftController);
+        this.createNextSchedule(spawnPatternModel, aircraftController);
     };
 }

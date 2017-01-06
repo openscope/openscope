@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import $ from 'jquery';
 import ContentQueue from './contentQueue/ContentQueue';
 import LoadingView from './LoadingView';
@@ -106,6 +107,7 @@ export default class App {
      */
     initiateDataLoad(airportLoadList, initialAirportToLoad) {
         // This is provides a way to get async data from several sources in the app before anything else runs
+        // FIXME: this is wrong. move this and make it less bad!
         $.when(
             $.ajax(`assets/airports/${initialAirportToLoad.toLowerCase()}.json`),
             $.ajax('assets/airlines/airlines.json'),
@@ -152,14 +154,14 @@ export default class App {
         window.gameController = this.gameController;
 
         this.navigationLibrary = new NavigationLibrary(initialAirportData);
-        // eslint-disable-next-line max-len
         this.airportController = new AirportController(initialAirportData, airportLoadList, this.updateRun, this.onAirportChange, this.navigationLibrary);
+        window.airportController = this.airportController;
+
         this.airlineController = new AirlineController(airlineList);
-        // eslint-disable-next-line max-len
         this.aircraftController = new AircraftController(aircraftTypeDefinitionList, this.airlineController, this.navigationLibrary);
-        // eslint-disable-next-line max-len
-        this.spawnPatternCollection = new SpawnPatternCollection(initialAirportData, this.navigationLibrary, this.airportController,);
-        // eslint-disable-next-line max-len
+        window.aircraftController = this.aircraftController;
+
+        this.spawnPatternCollection = new SpawnPatternCollection(initialAirportData, this.navigationLibrary, this.airportController);
         this.spawnScheduler = new SpawnScheduler(this.spawnPatternCollection, this.aircraftController, this.gameController);
 
         this.canvasController = new CanvasController(this.$element, this.navigationLibrary);
@@ -182,9 +184,9 @@ export default class App {
         // these instances are attached to the window here as an intermediate step away from global functions.
         // this allows for any module file to call window.{module}.{method} and will make the transition to
         // explicit instance parameters easier.
-        window.airportController = this.airportController;
+        // window.airportController = this.airportController;
         window.airlineController = this.airlineController;
-        window.aircraftController = this.aircraftController;
+        // window.aircraftController = this.aircraftController;
         // window.gameController = this.gameController;
         window.tutorialView = this.tutorialView;
         window.inputController = this.inputController;
@@ -451,7 +453,6 @@ export default class App {
 
         this.navigationLibrary.init(nextAirportJson);
         this.spawnPatternCollection.init(nextAirportJson, this.navigationLibrary, this.airportController);
-        // eslint-disable-next-line max-len
         this.spawnScheduler = new SpawnScheduler(this.spawnPatternCollection, this.aircraftController, this.gameController);
     };
 }

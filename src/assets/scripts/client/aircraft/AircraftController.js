@@ -111,11 +111,36 @@ export default class AircraftController {
      * This is the entry method for creating new departing and arriving aircraft.
      * This method should only be called as a callback from a `SpawnScheduler` timer.
      *
-     * @method createAircraftWithSpawnModel
+     * @method createAircraftWithSpawnPatternModel
      * @param spawnPatternModel {SpawnPatternModel}
      */
-    createAircraftWithSpawnModel = (spawnPatternModel) => {
+    createAircraftWithSpawnPatternModel = (spawnPatternModel) => {
         const initializationProps = this._buildAircraftProps(spawnPatternModel);
+
+        this._createAircraftWithInitializationProps(initializationProps);
+    }
+
+    /**
+     *
+     *
+     * @method createPreSpawnAircraftWithSpawnPatternModel
+     * @param  spawnPatternModel {SpawnPatternModel}
+     */
+    createPreSpawnAircraftWithSpawnPatternModel = (spawnPatternModel) => {
+        for (let i = 0; i < spawnPatternModel.preSpawnAircraftList.length; i++) {
+            const preSpawnHeadingAndPosition = spawnPatternModel.preSpawnAircraftList[i];
+            const baseAircraftProps = this._buildAircraftProps(spawnPatternModel);
+            const initializationProps = Object.assign({}, baseAircraftProps, preSpawnHeadingAndPosition);
+
+            this._createAircraftWithInitializationProps(initializationProps);
+        }
+    };
+
+    /**
+     *
+     *
+     */
+    _createAircraftWithInitializationProps(initializationProps) {
         const aircraftModel = new AircraftInstanceModel(initializationProps);
 
         this.addItem(aircraftModel);
@@ -567,6 +592,8 @@ export default class AircraftController {
 
     /**
      * Determines if `destination` is defined and returns route procedure name if it is not
+     *
+     *
      *
      * @for AircraftController
      * @method _setDestinationFromRouteOrProcedure

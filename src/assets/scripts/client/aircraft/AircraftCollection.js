@@ -11,7 +11,7 @@ import { airlineNameAndFleetHelper } from '../airline/airlineHelpers';
  * Collection of `AircraftInstanceModel` objects
  *
  * Responsible for creating new `AircraftInstanceModel` objects when a spawnInterval
- * fires its `createAircraftWithSpawnModel` callback.
+ * fires its `createAircraftWithSpawnPatternModel` callback.
  *
  * This collection also keeps a list of `AircraftDefinitionModel` objects, which define each
  * aircraft type.

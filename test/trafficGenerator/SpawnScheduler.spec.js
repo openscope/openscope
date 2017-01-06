@@ -9,7 +9,8 @@ let aircraftCollectionStub;
 let gameControllerStub;
 ava.before(() => {
     aircraftCollectionStub = {
-        createAircraftWithSpawnModel: sinon.stub()
+        createAircraftWithSpawnPatternModel: sinon.stub(),
+        createPreSpawnAircraftWithSpawnPatternModel: sinon.stub()
     };
 
     gameControllerStub = {

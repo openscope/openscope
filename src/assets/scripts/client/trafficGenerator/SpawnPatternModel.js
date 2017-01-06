@@ -7,6 +7,7 @@ import _isObject from 'lodash/isObject';
 import _random from 'lodash/random';
 import BaseModel from '../base/BaseModel';
 import RouteModel from '../airport/Route/RouteModel';
+import { buildPreSpawnAircraft } from './buildPreSpawnAircraft';
 import { bearingToPoint } from '../math/flightMath';
 // import {
 //     calculateRandomDelayPeriod,
@@ -48,6 +49,25 @@ export default class SpawnPatternModel extends BaseModel {
     // istanbul ignore next
     constructor(spawnPatternJson, navigationLibrary, airportController) {
         super(spawnPatternJson, navigationLibrary, airportController);
+
+        /**
+         * Schedule reference id
+         *
+         * Stored here so a specific interval can be associated with a
+         * specfic `SpawnPatternModel` instance. An Interval may be reset
+         * or changed during the life of the app.
+         *
+         * Provides easy access to a specific scheduleId
+         *
+         * @DEPRECATED
+         * @property scheduleId
+         * @type {number}
+         * @default -1
+         * @property _airportController
+         * @type {AirportController}
+         * @private
+         */
+        this.scheduleId = -1;
 
         /**
          *
@@ -105,6 +125,18 @@ export default class SpawnPatternModel extends BaseModel {
          * @default []
          */
         this._weightedAirlineList = [];
+
+        /**
+         * Aircraft to spawn on airport load
+         *
+         * This list is evaluated by the `SpawnScheduler` when setting up
+         * schedules for each `SpawnPatternModel`.
+         *
+         * @property preSpawnAircraftList
+         * @type {array<object>}
+         * @default []
+         */
+        this.preSpawnAircraftList = [];
 
         // SPAWNNING AIRCRAFT PROPERTIES
 
@@ -369,6 +401,7 @@ export default class SpawnPatternModel extends BaseModel {
         this._setCyclePeriodAndOffset(spawnPatternJson);
         this._calculatePositionAndHeadingForArrival(spawnPatternJson, navigationLibrary);
         this._setMinMaxAltitude(spawnPatternJson.altitude);
+        this._buildPreSpawnAircraft(spawnPatternJson, navigationLibrary, airportController);
     }
 
     /**
@@ -402,6 +435,7 @@ export default class SpawnPatternModel extends BaseModel {
 
         this.airlines = [];
         this._weightedAirlineList = [];
+        this.preSpawnAircraftList = [];
     }
 
     /**
@@ -786,6 +820,22 @@ export default class SpawnPatternModel extends BaseModel {
     }
 
     /**
+     *
+     *
+     */
+    _buildPreSpawnAircraft(spawnPatternJson, navigationLibrary, airportController) {
+        if (this._isDeparture()) {
+            return;
+        }
+
+        this.preSpawnAircraftList = buildPreSpawnAircraft(
+            spawnPatternJson,
+            navigationLibrary,
+            airportController.airport.current
+        );
+    }
+
+    /**
      * Calculate the initial heading and position for a spawning arrival.
      *
      * Sets `position` and `heading` properties.
@@ -826,5 +876,21 @@ export default class SpawnPatternModel extends BaseModel {
 
         this.position = initialPosition;
         this.heading = heading;
+    }
+
+    /**
+     *
+     *
+     */
+    _isDeparture() {
+        return this.category === FLIGHT_CATEGORY.DEPARTURE;
+    }
+
+    /**
+     *
+     *
+     */
+    _isArrival() {
+        return this.category === FLIGHT_CATEGORY.ARRIVAL;
     }
 }
