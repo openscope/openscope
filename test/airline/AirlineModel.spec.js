@@ -1,4 +1,3 @@
-/* eslint-disable arrow-parens, max-len, import/no-extraneous-dependencies*/
 import ava from 'ava';
 import sinon from 'sinon';
 import _isArray from 'lodash/isArray';
@@ -44,6 +43,28 @@ ava('.getRandomAircraftType() calls _getRandomAircraftTypeFromFleet when a fleet
     t.true(_getRandomAircraftTypeFromFleetSpy.calledWithExactly(fleetNameMock));
 });
 
+ava('.removeFlightNumber() calls _removeFlightNumberFromUse', (t) => {
+    const flightNumberMock = '123';
+    const model = new AirlineModel(AIRLINE_DEFINITION_MOCK);
+    const _removeFlightNumberFromUseSpy = sinon.spy(model, '_removeFlightNumberFromUse');
+    model.flightNumbersInUse.push(flightNumberMock);
+
+    model.removeFlightNumber(flightNumberMock);
+
+    t.true(_removeFlightNumberFromUseSpy.calledWithExactly(flightNumberMock));
+});
+
+ava('.removeFlightNumber() removes a provided flightNumber from #flightNumbersInUse', (t) => {
+    const flightNumberMock = '123';
+    const model = new AirlineModel(AIRLINE_DEFINITION_MOCK);
+    model.flightNumbersInUse.push(flightNumberMock);
+
+    model.removeFlightNumber(flightNumberMock);
+
+    t.true(model.flightNumbersInUse.indexOf(flightNumberMock) === -1);
+    t.true(model.flightNumbersInUse.length === 0);
+});
+
 ava('._getRandomAircraftTypeFromFleet() throws if it received an invalid fleetName', (t) => {
     const fleetNameMock = 'threeve';
     const model = new AirlineModel(AIRLINE_DEFINITION_MOCK);
@@ -64,4 +85,18 @@ ava('._transformFleetNamesToLowerCase() transforms each type in fleet to lowerca
     const model = new AirlineModel(AIRLINE_DEFINITION_SIMPLE_FLEET_MOCK);
 
     t.true(model.fleets.default[0][[0]] === 'a319');
+});
+
+ava('._hasFlightNumber() returns false if a given flightNumber is not present in #flightNumbersInUse', (t) => {
+    const model = new AirlineModel(AIRLINE_DEFINITION_SIMPLE_FLEET_MOCK);
+
+    t.false(model._hasFlightNumber('threeve'));
+});
+
+ava('._hasFlightNumber() returns true if a given flightNumber is present in #flightNumbersInUse', (t) => {
+    const flightNumberMock = '123';
+    const model = new AirlineModel(AIRLINE_DEFINITION_SIMPLE_FLEET_MOCK);
+    model.flightNumbersInUse.push(flightNumberMock);
+
+    t.true(model._hasFlightNumber(flightNumberMock));
 });

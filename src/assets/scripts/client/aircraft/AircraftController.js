@@ -280,7 +280,7 @@ export default class AircraftController {
     aircraft_remove(aircraft) {
         window.airportController.removeAircraftFromAllRunwayQueues(aircraft);
 
-        this.removeCallsignFromList(aircraft.callsign);
+        this.removeFlightNumberFromList(aircraft);
         this.removeAircraftInstanceModelFromList(aircraft);
         this.removeAllAircraftConflictsForAircraft(aircraft);
 
@@ -522,10 +522,12 @@ export default class AircraftController {
     /**
      * Remove a flight number from the list stored in `AircraftController.aircraft.callsigns`
      * @for AircraftController
-     * @method removeCallsignFromList
-     * @param  {string} callsign the flight number to remove
+     * @method removeFlightNumberFromList
+     * @param aircraft {AircraftInstanceModel}
      */
-    removeCallsignFromList(callsign) {
+    removeFlightNumberFromList({ airline, callsign }) {
+        this.airlineController.removeFlightNumberFromList(airline, callsign);
+        // DEPRECATED
         this.aircraft.callsigns = _without(this.aircraft.callsigns, callsign);
     }
 

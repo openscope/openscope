@@ -160,6 +160,17 @@ export default class AirlineModel extends BaseModel {
     }
 
     /**
+     * Remove a given flight number from the `flightNumbersInUse` list
+     *
+     * @for AirlineModel
+     * @method removeFlightNumber
+     * @param flightNumber {string}
+     */
+    removeFlightNumber(flightNumber) {
+        this._removeFlightNumberFromUse(flightNumber);
+    }
+
+    /**
      * Resets the current list of `flightNumbersInUse`.
      *
      * This can be used when changing airports and all existing
@@ -218,7 +229,7 @@ export default class AirlineModel extends BaseModel {
         }
 
         // if this flightNumber already exists, repeat the process of generating a new flightNumber
-        if (this._isFlightNumberInUse(flightNumber)) {
+        if (this._hasFlightNumber(flightNumber)) {
             return this.generateFlightNumber();
         }
 
@@ -280,7 +291,12 @@ export default class AirlineModel extends BaseModel {
      *
      */
     _removeFlightNumberFromUse(flightNumber) {
-        // TODO: check that the number is there first
+        if (!this._hasFlightNumber(flightNumber)) {
+            // TODO: check that the number is there first
+            // throw or console.error?
+            return;
+        }
+
         this.flightNumbersInUse = _without(this.flightNumbersInUse, flightNumber);
     }
 
@@ -297,19 +313,18 @@ export default class AirlineModel extends BaseModel {
         return _has(this.fleets, fleetName);
     }
 
-    // TODO: this could be an internal check of the `flightNumbersInUse` array
     /**
      * Facade method for `isCallsignInList`
      *
      * @for AirlineModel
-     * @method _isFlightNumberInUse
+     * @method _hasFlightNumber
      * @param flightNumber {number|string}
      * @return {boolean}
      */
-    _isFlightNumberInUse(flightNumber) {
-        // TODO: replace with a passed instance or move logic to this class
-        // return window.aircraftController.isCallsignInList(flightNumber);
-        return false;
+    _hasFlightNumber(flightNumber) {
+        const invalidIndex = -1;
+
+        return this.flightNumbersInUse.indexOf(flightNumber) !== invalidIndex;
     }
 
     /**
