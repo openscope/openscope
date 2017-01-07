@@ -617,7 +617,9 @@ export default class AircraftController {
     /**
      * Determines if `destination` is defined and returns route procedure name if it is not
      *
-     *
+     * The reason we set destination to a procedure names is because the `AircraftStripView`
+     * uses this destination property for display. So for departures, who have no true
+     * destination, the procedure name is used instead
      *
      * @for AircraftController
      * @method _setDestinationFromRouteOrProcedure

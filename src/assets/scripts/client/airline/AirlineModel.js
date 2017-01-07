@@ -82,11 +82,11 @@ export default class AirlineModel extends BaseModel {
              * Whether to use alphabetical characters
              *
              * @memberof flightNumberGeneration
-             * @property alpha
+             * @property alphaNumeric
              * @type {boolean}
              * @default false
              */
-            alpha: false
+            alphaNumeric: false
         };
 
         /**
@@ -136,9 +136,9 @@ export default class AirlineModel extends BaseModel {
     }
 
     /**
-     * List of all `flightNumbersInUse`
+     * List of all `flightNumbersInUse` by this airline
      *
-     * Used when generating new flightNumbers to verify a new
+     * Used when generating new `flightNumbers` to verify a new
      * number isn't already in use
      *
      * @property flightNumbers
@@ -161,13 +161,8 @@ export default class AirlineModel extends BaseModel {
         this.icao = _get(airlineDefinition, 'icao', this.icao);
         this.callsign = _get(airlineDefinition, 'callsign.name', this.callsign);
         this.flightNumberGeneration.length = _get(airlineDefinition, 'callsign.length');
-        this.flightNumberGeneration.alpha = _get(airlineDefinition, 'callsign.alpha', false);
+        this.flightNumberGeneration.alphaNumeric = _get(airlineDefinition, 'callsign.alpha', false);
         this.fleets = _get(airlineDefinition, 'fleets');
-
-        // This may not be needed
-        // if (airlineDefinition.aircraft) {
-        //     this.fleets.default = airlineDefinition.aircraft;
-        // }
 
         this._transformFleetNamesToLowerCase();
     }
@@ -227,7 +222,7 @@ export default class AirlineModel extends BaseModel {
         // Start with a number other than zero
         flightNumber += choose(list.substr(1));
 
-        if (this.flightNumberGeneration.alpha) {
+        if (this.flightNumberGeneration.alphaNumeric) {
             // TODO: why `this.flightNumberGeneration.length - 3`?  enumerate the magic number.
             for (let i = 0; i < this.flightNumberGeneration.length - 3; i++) {
                 flightNumber += choose(list);
