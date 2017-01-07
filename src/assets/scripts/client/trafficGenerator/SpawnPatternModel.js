@@ -5,6 +5,7 @@ import _isArray from 'lodash/isArray';
 import _isEmpty from 'lodash/isEmpty';
 import _isObject from 'lodash/isObject';
 import _random from 'lodash/random';
+import _round from 'lodash/round';
 import BaseModel from '../base/BaseModel';
 import RouteModel from '../airport/Route/RouteModel';
 import { buildPreSpawnAircraft } from './buildPreSpawnAircraft';
@@ -348,12 +349,15 @@ export default class SpawnPatternModel extends BaseModel {
     /**
      * A number representing the initial altitude of a spawning aircraft
      *
+     * Returned number is rounded to the nearest thousandth foot
+     *
      * @property altitude
      * @return {number}
      */
     get altitude() {
-        // this might not need to be random within a range
-        return _random(this._minimumAltitude, this._maximumAltitude);
+        const altitude = _random(this._minimumAltitude, this._maximumAltitude);
+
+        return _round(altitude, -3);
     }
 
     /**

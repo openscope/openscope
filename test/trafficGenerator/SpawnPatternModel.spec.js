@@ -4,6 +4,7 @@ import sinon from 'sinon';
 import _cloneDeep from 'lodash/cloneDeep';
 import _isEmpty from 'lodash/isEmpty';
 import _isEqual from 'lodash/isEqual';
+import _round from 'lodash/round';
 
 import SpawnPatternModel from '../../src/assets/scripts/client/trafficGenerator/SpawnPatternModel';
 import AirportController from '../../src/assets/scripts/client/airport/AirportController';
@@ -52,6 +53,14 @@ ava('does not throw when called with valid parameters', (t) => {
     t.notThrows(() => new SpawnPatternModel(DEPARTURE_PATTERN_MOCK, navigationLibraryFixture, airportControllerFixture));
 });
 
+ava('#altitude returns a random altitude rounded to the nearest 1,000ft', (t) => {
+    const model = new SpawnPatternModel(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture, airportControllerFixture);
+    const result = model.altitude;
+    const expectedResult = _round(result, -3);
+
+    t.true(_isEqual(result, expectedResult));
+});
+
 ava('.getNextDelayValue() returns a random number between #minimumDelay and #maximumDelay', (t) => {
     const model = new SpawnPatternModel(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture, airportControllerFixture);
     model._minimumDelay = 0;
@@ -70,7 +79,7 @@ ava('._calculateNextCyclicDelayPeriod() returns 360 when gameTime is 0', (t) => 
     t.true(result === 360);
 });
 
-ava.skip('._calculateNextWaveDelayPeriod() returns ', (t) => {
+ava.skip('._calculateNextWaveDelayPeriod()', (t) => {
     const gameTimeMock = 3320;
     const model = new SpawnPatternModel(ARRIVAL_PATTERN_WAVE_MOCK, navigationLibraryFixture, airportControllerFixture);
     const result = model._calculateNextWaveDelayPeriod(gameTimeMock);
