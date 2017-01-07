@@ -130,9 +130,9 @@ export default class AircraftController {
      * Used when creating aircraft already along an arrival route on load
      * or on airport change.
      *
-     * This method should be called direectly and not via a timer callback
+     * This method should be called directly and not via a timer callback
      *
-     * This hooks into the same method used to build spawnning aircraft
+     * This hooks into the same method used to build spawning aircraft
      * and simply adds another layer on top of that to build a preSpawn aircraft.
      *
      * @method createPreSpawnAircraftWithSpawnPatternModel
