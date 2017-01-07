@@ -24,6 +24,8 @@ import { GAME_EVENTS } from '../game/GameController';
 const aircraft = {};
 
 /**
+ *
+ *
  * @class AircraftController
  */
 export default class AircraftController {
@@ -81,16 +83,16 @@ export default class AircraftController {
             this._navigationLibrary
         );
 
-
         this.aircraft = aircraft;
         // TODO: replace with aircraftCollection
         this.aircraft.models = {};
         // TODO: update refs to use aircraftCollection
         this.aircraft.list = [];
 
-        this.aircraft.current = null;
         this.aircraft.auto = { enabled: false };
+
         this.conflicts = [];
+
         prop.aircraft = aircraft;
     }
 
@@ -453,6 +455,8 @@ export default class AircraftController {
      * @param icao {string}
      */
     aircraft_model_get(icao) {
+        console.error('DEPRECATED');
+
         if (!(this.aircraft.models[icao])) {
             const model = new AircraftModel({
                 icao,

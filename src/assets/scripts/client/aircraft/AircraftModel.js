@@ -2,7 +2,8 @@ import _forEach from 'lodash/forEach';
 import _get from 'lodash/get';
 import AircraftInstanceModel from './AircraftInstanceModel';
 
-// TODO: this class could use a better name. What differentiates this class from `AircraftInstanceModel`?
+// DEPRECATED
+
 /**
  * Definitions for characteristics of a particular aircraft type
  *
@@ -15,6 +16,8 @@ export default class AircraftModel {
      * @param options {object}
      */
     constructor(options = {}) {
+        console.error('DEPRECATED');
+
         this.loading = true;
         this.loaded = false;
         this.priorityLoad = false;
