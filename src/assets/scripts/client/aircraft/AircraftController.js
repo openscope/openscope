@@ -153,7 +153,7 @@ export default class AircraftController {
      * Accept a pre-built object that can be used to create an `AircraftInstanceModel`
      * and then add it to the collection.
      *
-     * This could be a spawnning aircraft or one that already exists along a route.
+     * This could be a spawning aircraft or one that already exists along a route.
      *
      * @for AircraftController
      * @method _createAircraftWithInitializationProps

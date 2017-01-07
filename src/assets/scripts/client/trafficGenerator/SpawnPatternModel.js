@@ -139,7 +139,7 @@ export default class SpawnPatternModel extends BaseModel {
          */
         this.preSpawnAircraftList = [];
 
-        // SPAWNNING AIRCRAFT PROPERTIES
+        // SPAWNING AIRCRAFT PROPERTIES
 
         /**
          * The airport this pattern begins at
@@ -199,7 +199,7 @@ export default class SpawnPatternModel extends BaseModel {
         this.speed = 0;
 
         /**
-         * Heading of a spawnning aircraft
+         * Heading of a spawning aircraft
          *
          * @property heading
          * @type {number}
@@ -478,7 +478,7 @@ export default class SpawnPatternModel extends BaseModel {
 
     /**
      * Return a number to use for the next delay period calculated based
-     * on spawnning method.
+     * on spawning method.
      *
      * This is the value that will be used by the `SpawnScheduler` when
      * when creating a new spawn interval.

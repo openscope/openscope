@@ -46,10 +46,10 @@ export default class NavigationLibrary {
 
     /**
      *
-     * @property drawSids
+     * @property sidLines
      * @return
      */
-    get drawSids() {
+    get sidLines() {
         return this._sidCollection.draw;
     }
 

@@ -91,8 +91,7 @@ export default class AirlineController {
         const airlineModel = this.findAirlineById(airline);
 
         if (_isNil(airlineModel)) {
-            // TODO: should we throw here or console.error?
-            return;
+            throw new TypeError('Invalid airline passed to removeFlightNumberFromList, no AirlineModel found');
         }
 
         airlineModel.removeFlightNumber(callsign);

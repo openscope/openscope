@@ -656,7 +656,7 @@ export default class ConvasController {
         cc.setLineDash([1, 10]);
         cc.font = 'italic 14px monoOne, monospace';
 
-        _forEach(this._navigationLibrary.sidCollection.draw, (sid) => {
+        _forEach(this._navigationLibrary.sidLines, (sid) => {
             let write_sid_name = true;
             let fixX = null;
             let fixY = null;
