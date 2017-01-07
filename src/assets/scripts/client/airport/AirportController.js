@@ -155,7 +155,7 @@ export default class AirportController {
         const nextAirportModel = this.airport.airports[icao];
         this.airport.current = nextAirportModel;
 
-        // if lodaed is true, we wont need to load any data thus the call to `onAirportChange` within the
+        // if loaded is true, we wont need to load any data thus the call to `onAirportChange` within the
         // success callback will never fire so we do that here.
         if (nextAirportModel.loaded) {
             this.onAirportChange(nextAirportModel.data);

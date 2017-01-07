@@ -49,20 +49,22 @@ export default class AircraftController {
         /**
          * Reference to an `AirlineController` instance
          *
-         * @property airlineController
+         * @property _airlineController
          * @type {AirlineController}
          * @default airlineController
+         * @private
          */
-        this.airlineController = airlineController;
+        this._airlineController = airlineController;
 
         /**
          * Reference to a `NavigationLibrary` instance
          *
-         * @property navigationLibrary
+         * @property _navigationLibrary
          * @type NavigationLibrary
          * @default navigationLibrary
+         * @private
          */
-        this.navigationLibrary = navigationLibrary;
+        this._navigationLibrary = navigationLibrary;
 
         // TODO: rename to `AircraftTypeDefinitionCollection`
         /**
@@ -75,17 +77,15 @@ export default class AircraftController {
          */
         this.aircraftCollection = new AircraftCollection(
             aircraftTypeDefinitionList,
-            this.airlineController.airlineCollection,
-            this.navigationLibrary
+            this._airlineController.airlineCollection,
+            this._navigationLibrary
         );
 
 
         this.aircraft = aircraft;
         // TODO: replace with aircraftCollection
         this.aircraft.models = {};
-        // TODO: replace with facade to `airlineController`
-        this.aircraft.callsigns = [];
-        // TODO: add methods for adding to and removing from this list
+        // TODO: update refs to use aircraftCollection
         this.aircraft.list = [];
 
         this.aircraft.current = null;
@@ -172,37 +172,6 @@ export default class AircraftController {
         this.aircraft.auto.enabled = !this.aircraft.auto.enabled;
     }
 
-    // TODO: replace with `AirlineModel` flightNumber methods
-    // /**
-    //  * @for AircraftController
-    //  * @method isCallsignInList
-    //  * @param callsign {string}
-    //  * return {boolean}
-    //  */
-    // isCallsignInList(callsign) {
-    //     // TODO: use a getter in airlineCollection that looks at each `AirlineModel.flightNumbers`
-    //     return this.aircraft.callsigns.indexOf(callsign) !== -1;
-    // }
-    //
-    // /**
-    //  * Add a new callsign to `aircraft.callsigns`
-    //  *
-    //  * @for AircraftController
-    //  * @method addCallsignToList
-    //  * @param callsign {string}
-    //  */
-    // addCallsignToList(callsign) {
-    //     if (this.isCallsignInList(callsign)) {
-    //         // if you've made it here something has gone very wrong. generation of a callsign/flightNumber should
-    //         // also include verification that the callsign/flightNumber is unique
-    //         console.warn(`${callsign} already exists within the callsigns list!`);
-    //
-    //         return;
-    //     }
-    //
-    //     this.aircraft.callsigns.push(callsign);
-    // }
-
     /**
      * Add a new `AircraftConflict` instance to the list of existing conflicts
      *
@@ -243,14 +212,15 @@ export default class AircraftController {
         return [this.aircraft.list[nearest], distance];
     }
 
-    /**
-     * @for AircraftController
-     * @method aircraft_add
-     * @param model {AircraftModel|object}
-     */
-    aircraft_add(model) {
-        this.aircraft.models[model.icao.toLowerCase()] = model;
-    }
+    // DEPRECATED
+    // /**
+    //  * @for AircraftController
+    //  * @method aircraft_add
+    //  * @param model {AircraftModel|object}
+    //  */
+    // aircraft_add(model) {
+    //     this.aircraft.models[model.icao.toLowerCase()] = model;
+    // }
 
     /**
      * @for AircraftController
@@ -476,6 +446,7 @@ export default class AircraftController {
         return null;
     }
 
+
     /**
      * @for AircraftController
      * @method aircraft_model_get
@@ -527,9 +498,9 @@ export default class AircraftController {
      * @param aircraft {AircraftInstanceModel}
      */
     removeFlightNumberFromList({ airline, callsign }) {
-        this.airlineController.removeFlightNumberFromList(airline, callsign);
+        this._airlineController.removeFlightNumberFromList(airline, callsign);
         // DEPRECATED
-        this.aircraft.callsigns = _without(this.aircraft.callsigns, callsign);
+        // this.aircraft.callsigns = _without(this.aircraft.callsigns, callsign);
     }
 
     /**
@@ -574,11 +545,11 @@ export default class AircraftController {
     _buildAircraftProps(spawnModel) {
         const airlineId = spawnModel.getRandomAirlineForSpawn();
         const { name, fleet } = airlineNameAndFleetHelper([airlineId]);
-        const airlineModel = this.airlineController.findAirlineById(name);
+        const airlineModel = this._airlineController.findAirlineById(name);
         // TODO: impove the `airlineModel` logic here
         // this seems inefficient to find the model here and then passit back to the controller but
         // since we already have it, it makes little sense to look for it again in the controller
-        const flightNumber = this.airlineController.generateFlightNumberWithAirlineModel(airlineModel);
+        const flightNumber = this._airlineController.generateFlightNumberWithAirlineModel(airlineModel);
         const aircraftTypeDefinition = this._getRandomAircraftTypeDefinitionForAirlineId(airlineId, airlineModel);
         const destination = this._setDestinationFromRouteOrProcedure(spawnModel);
 

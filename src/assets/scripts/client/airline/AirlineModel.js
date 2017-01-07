@@ -230,6 +230,7 @@ export default class AirlineModel extends BaseModel {
 
             list = 'abcdefghijklmnopqrstuvwxyz';
 
+            // the end of an `N` style registration: `N322WT`
             for (let i = 0; i < 2; i++) {
                 flightNumber += choose(list);
             }

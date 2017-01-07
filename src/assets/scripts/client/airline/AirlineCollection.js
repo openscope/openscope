@@ -117,7 +117,7 @@ export default class AirlineCollection extends BaseCollection {
      * Used when an airport change has occurred.
      *
      * @for AirlineCollection
-     * @method rest
+     * @method reset
      */
     reset() {
         _forEach(this._items, (airlineModel) => {

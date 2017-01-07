@@ -74,7 +74,7 @@ Defines the method used to calculate delay between aircraft spawns.
 * Should always be one of: `cyclic, random, surge, wave`
 
 #### rate*
-Rate at which aircraft spawn expressed in ACP (aircraft per hour).
+Rate at which aircraft spawn expressed in ACPH (aircraft per hour).
 
 #### speed (* _for arrivals_)
 speed an aircraft spawns at expressed in knots
