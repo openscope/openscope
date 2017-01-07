@@ -1,4 +1,5 @@
 import ava from 'ava';
+import _isEqual from 'lodash/isEqual';
 
 import AirlineCollection from '../../src/assets/scripts/client/airline/AirlineCollection';
 import AirlineModel from '../../src/assets/scripts/client/airline/AirlineModel';
@@ -14,6 +15,15 @@ ava('throws when called with invalid data', (t) => {
 
 ava('does not throw when called with valid data', (t) => {
     t.notThrows(() => new AirlineCollection(AIRLINE_DEFINITION_LIST_MOCK));
+});
+
+ava('#flightNumbers returns a list of flightNumbers from all AirlineModels in the collection', (t) => {
+    const expectedResult = ['123', '321', '234', '432'];
+    const collection = new AirlineCollection(AIRLINE_DEFINITION_LIST_MOCK);
+    collection._items[0].flightNumbersInUse = ['123', '321'];
+    collection._items[1].flightNumbersInUse = ['234', '432'];
+
+    t.true(_isEqual(collection.flightNumbers, expectedResult));
 });
 
 ava('.findAirlineById() returns an AirlineModel when supplied an airlineId without fleet', (t) => {

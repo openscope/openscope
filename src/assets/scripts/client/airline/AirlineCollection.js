@@ -1,6 +1,8 @@
 import _find from 'lodash/find';
+import _flatten from 'lodash/flatten';
 import _forEach from 'lodash/forEach';
 import _isArray from 'lodash/isArray';
+import _map from 'lodash/map';
 import BaseCollection from '../base/BaseCollection';
 import AirlineModel from './AirlineModel';
 
@@ -29,6 +31,21 @@ export default class AirlineCollection extends BaseCollection {
         }
 
         this.init(airlineList);
+    }
+
+    /**
+     * List of all `flightNumbersInUse`
+     *
+     * Used when generating new flightNumbers to verify a new
+     * number isn't already in use
+     *
+     * @property flightNumbers
+     * @return {array<string>}
+     */
+    get flightNumbers() {
+        const flightNumberList = _map(this._items, (airline) => airline.flightNumbers);
+
+        return _flatten(flightNumberList);
     }
 
     /**

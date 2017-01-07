@@ -575,23 +575,25 @@ export default class AircraftController {
         const airlineId = spawnModel.getRandomAirlineForSpawn();
         const { name, fleet } = airlineNameAndFleetHelper([airlineId]);
         const airlineModel = this.airlineController.findAirlineById(name);
-        const aircraftDefinition = this._getRandomAircraftTypeDefinitionForAirlineId(airlineId, airlineModel);
+        // TODO: impove the `airlineModel` logic here
+        // this seems inefficient to find the model here and then passit back to the controller but
+        // since we already have it, it makes little sense to look for it again in the controller
+        const flightNumber = this.airlineController.generateFlightNumberWithAirlineModel(airlineModel);
+        const aircraftTypeDefinition = this._getRandomAircraftTypeDefinitionForAirlineId(airlineId, airlineModel);
         const destination = this._setDestinationFromRouteOrProcedure(spawnModel);
-        // TODO: re-route to use `airlineController`
-        const callsign = airlineModel.generateFlightNumber();
 
         return {
-            callsign,
             destination,
             fleet,
+            callsign: flightNumber,
             category: spawnModel.category,
             airline: airlineModel.icao,
             altitude: spawnModel.altitude,
             speed: spawnModel.speed,
             heading: spawnModel.heading,
             position: spawnModel.position,
-            icao: aircraftDefinition.icao,
-            model: aircraftDefinition,
+            icao: aircraftTypeDefinition.icao,
+            model: aircraftTypeDefinition,
             route: spawnModel.routeString,
             // TODO: this may not be needed anymore
             waypoints: _get(spawnModel, 'fixes', [])

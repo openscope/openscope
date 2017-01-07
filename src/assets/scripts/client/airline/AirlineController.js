@@ -1,8 +1,9 @@
 import _isNil from 'lodash/isNil';
 import AirlineCollection from './AirlineCollection';
+import AirlineModel from './AirlineModel';
 
 /**
- * Controller for all things Airline.
+ * Controller for all things Airline
  *
  * @class AirlineController
  */
@@ -23,6 +24,19 @@ export default class AirlineController {
     }
 
     /**
+     * Convenience property that exposes a list of all `flightNumbers` currently in use
+     *
+     * Useful for determining if a freshly generated `flightNumber` is currently in use.
+     *
+     * @for AirlineController
+     * @method flightNumbers
+     * @return {array<string>}
+     */
+    get flightNumbers() {
+        return this.airlineCollection.flightNumbers;
+    }
+
+    /**
      * Given an `airlineId` find and return an `AirlineModel`
      *
      * @for AirlineController
@@ -32,6 +46,34 @@ export default class AirlineController {
      */
     findAirlineById(airlineId) {
         return this.airlineCollection.findAirlineById(airlineId);
+    }
+
+    /**
+     * Generates a new `flightNumber` using the `flightNumberGeneration` rules of a given `AirlineModel`.
+     *
+     * This method provides a higher-level view of all the `flightNumbers` in use, and gurantees unique
+     * `flightNumbers` across all airlines. Though not as realistic, having unique `flightNumbers` allows
+     * for faster processing of aircraft commands by using only a `flightNumber` for a command.
+     *
+     * @for AirlineController
+     * @method generateFlightNumberWithAirlineModel
+     * @param airlineModel {AirlineModel}
+     * @return flightNumber {string}
+     */
+    generateFlightNumberWithAirlineModel(airlineModel) {
+        if (!(airlineModel instanceof AirlineModel)) {
+            throw new TypeError('Invalid parameter. Expected airlineModel to be an instance of AirlineModel');
+        }
+
+        const flightNumber = airlineModel.generateFlightNumber();
+
+        if (this._hasFlightNumber(flightNumber)) {
+            this.generateFlightNumberWithAirlineModel(airlineModel);
+        }
+
+        airlineModel.addFlightNumberToInUse(flightNumber);
+
+        return flightNumber;
     }
 
     /**
@@ -49,6 +91,7 @@ export default class AirlineController {
         const airlineModel = this.findAirlineById(airline);
 
         if (_isNil(airlineModel)) {
+            // TODO: should we throw here or console.error?
             return;
         }
 
@@ -67,5 +110,19 @@ export default class AirlineController {
      */
     reset() {
         this.airlineCollection.reset();
+    }
+
+    /**
+     * Used to determine if a provided `flightNumber` is already in use
+     *
+     * @for AirlineController
+     * @method _hasFlightNumber
+     * @param flightNumber {string}
+     * @returns {boolean}
+     */
+    _hasFlightNumber(flightNumber) {
+        const invalidIndex = -1;
+
+        return this.flightNumbers.indexOf(flightNumber) !== invalidIndex;
     }
 }

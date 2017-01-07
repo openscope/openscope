@@ -136,6 +136,19 @@ export default class AirlineModel extends BaseModel {
     }
 
     /**
+     * List of all `flightNumbersInUse`
+     *
+     * Used when generating new flightNumbers to verify a new
+     * number isn't already in use
+     *
+     * @property flightNumbers
+     * @return {array<string>}
+     */
+    get flightNumbers() {
+        return this.flightNumbersInUse;
+    }
+
+    /**
      * Lifecycle method
      *
      * Should run only once on instantiation
@@ -200,6 +213,9 @@ export default class AirlineModel extends BaseModel {
     /**
      * Create a flight number/identifier
      *
+     * This method should only be called from the `AircraftController` so the controller
+     * can gurantee unique `flightNumbers` across all `AirlineModels`.
+     *
      * @for AirlineModel
      * @method generateFlightNumber
      * @return flightNumber {string}
@@ -227,13 +243,6 @@ export default class AirlineModel extends BaseModel {
                 flightNumber += choose(list);
             }
         }
-
-        // if this flightNumber already exists, repeat the process of generating a new flightNumber
-        if (this._hasFlightNumber(flightNumber)) {
-            return this.generateFlightNumber();
-        }
-
-        this._addFlightNumberToInUse(flightNumber);
 
         return flightNumber;
     }
@@ -281,7 +290,7 @@ export default class AirlineModel extends BaseModel {
      *
      *
      */
-    _addFlightNumberToInUse(flightNumber) {
+    addFlightNumberToInUse(flightNumber) {
         this.flightNumbersInUse.push(flightNumber);
     }
 
@@ -314,7 +323,7 @@ export default class AirlineModel extends BaseModel {
     }
 
     /**
-     * Facade method for `isCallsignInList`
+     *
      *
      * @for AirlineModel
      * @method _hasFlightNumber

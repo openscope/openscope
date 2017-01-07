@@ -1,6 +1,7 @@
 import ava from 'ava';
 import sinon from 'sinon';
 import _isArray from 'lodash/isArray';
+import _isEqual from 'lodash/isEqual';
 import _map from 'lodash/map';
 
 import AirlineModel from '../../src/assets/scripts/client/airline/AirlineModel';
@@ -18,10 +19,17 @@ ava('throws when called with invalid data', (t) => {
     t.throws(() => new AirlineModel(false));
 });
 
-ava('#aircraftList returns a list of all aircraft from all fleets for an airline', (t) => {
+ava('#aircraftList returns a list of all aircraft from all fleets', (t) => {
     const model = new AirlineModel(AIRLINE_DEFINITION_MOCK);
 
     t.true(_isArray(model.aircraftList));
+});
+
+ava('#flightNumbers returns a list of all flightNumbersInUse', (t) => {
+    const model = new AirlineModel(AIRLINE_DEFINITION_MOCK);
+    model.flightNumbersInUse = ['1', '2', '3'];
+
+    t.true(_isEqual(model.flightNumbers, ['1', '2', '3']));
 });
 
 ava('.getRandomAircraftType() calls _getRandomAircraftTypeFromAllFleets when no parameter is passed', (t) => {
