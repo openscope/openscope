@@ -1341,20 +1341,29 @@ export default class Aircraft {
      * This updates the Altitude for the instance of the aircraft by checking the difference between current Altitude and requested Altitude
      */
     updateAltitudePhysics() {
-        // ALTITUDE
-        let distance = null;
-        const expedite_factor = 1.5;
         this.trend = 0;
 
         if (this.target.altitude < this.altitude - 0.02) {
-
             this.decreaseAircraftAltitude();
-
         } else if (this.target.altitude > this.altitude + 0.02) {
-
-             this.increaseAircraftAltitude();
-
+            this.increaseAircraftAltitude();
         }
+    }
+
+    /**
+    * @for AircraftInstanceModel
+    * @method decreaseAircraftAltitude
+    * Eecreases the aircrafts altitude
+    */
+    decreaseAircraftAltitude() {
+        let distance = -this.model.rate.descent / 60 * window.gameController.game_delta();
+        const expedite_factor = 1.5;
+
+        if (this.mode === FLIGHT_MODES.LANDING) {
+            distance *= 3;
+        }
+
+        this.trend -= 1;
 
         if (distance) {
             if (this.target.expedite) {
@@ -1372,34 +1381,35 @@ export default class Aircraft {
     }
 
     /**
- * @for AircraftInstanceModel
- * @method decreaseAircraftAltitude
- * Eecreases the aircrafts altitude
- */
-decreaseAircraftAltitude() {
-    distance = -this.model.rate.descent / 60 * window.gameController.game_delta();
+    * @for AircraftInstanceModel
+    * @method increaseAircraftAltitude
+    * Increases the aircrafts altitude
+    */
+    increaseAircraftAltitude() {
+        const climbrate = this.getClimbRate();
+        const expedite_factor = 1.5;
+        let distance = climbrate / 60 * window.gameController.game_delta();
 
-    if (this.mode === FLIGHT_MODES.LANDING) {
-        distance *= 3;
+        if (this.mode === FLIGHT_MODES.LANDING) {
+            distance *= 1.5;
+        }
+
+        this.trend = 1;
+
+        if (distance) {
+            if (this.target.expedite) {
+                distance *= expedite_factor;
+            }
+
+            const offset = this.altitude - this.target.altitude;
+
+            if (abs(offset) < abs(distance)) {
+                this.altitude = this.target.altitude;
+            } else {
+                this.altitude += distance;
+            }
+        }
     }
-
-    this.trend -= 1;
-}
-/**
- * @for AircraftInstanceModel
- * @method increaseAircraftAltitude
- * Increases the aircrafts altitude
- */
-increaseAircraftAltitude() {
-    const climbrate = this.getClimbRate();
-    distance = climbrate / 60 * window.gameController.game_delta();
-
-    if (this.mode === FLIGHT_MODES.LANDING) {
-        distance *= 1.5;
-    }
-
-    this.trend = 1;
-}
 
     /**
      * @for AircraftInstanceModel
