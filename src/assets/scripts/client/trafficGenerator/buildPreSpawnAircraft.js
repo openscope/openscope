@@ -96,7 +96,7 @@ export const _preSpawn = (spawnPatternJson, navigationLibrary, airport) => {
     const entrailDistance = spawnPatternJson.speed / spawnPatternJson.rate;
     const activeRouteModel = new RouteModel(spawnPatternJson.route);
     const isPreSpawn = true;
-    const waypointModelList = airport.findWaypointModelsForStar(
+    const waypointModelList = navigationLibrary.findWaypointModelsForStar(
         activeRouteModel.procedure,
         activeRouteModel.entry,
         airport.runway,

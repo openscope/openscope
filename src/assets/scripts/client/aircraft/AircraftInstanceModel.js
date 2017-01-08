@@ -106,9 +106,11 @@ export default class Aircraft {
      * @for AircraftInstanceModel
      * @constructor
      * @param options {object}
+     * @param navigationLibrary {NavigationLibrary}
      */
-    constructor(options = {}) {
+    constructor(options = {}, navigationLibrary) {
         /* eslint-disable no-multi-spaces*/
+        this._navigationLibrary = navigationLibrary;
         this.eid          = prop.aircraft.list.length;  // entity ID
         this.position     = [0, 0];     // Aircraft Position, in km, relative to airport position
         this.model        = null;       // Aircraft type
@@ -171,7 +173,8 @@ export default class Aircraft {
         // Initialize the FMS
         this.fms = new AircraftFlightManagementSystem({
             aircraft: this,
-            model: options.model
+            model: options.model,
+            navigationLibrary: this._navigationLibrary
         });
 
         // target represents what the pilot makes of the tower's commands. It is
@@ -1276,7 +1279,7 @@ export default class Aircraft {
         }
 
         if (!this.rwy_dep) {
-            this.setDepartureRunway(airportController.airport_get().runway);
+            this.setDepartureRunway(window.airportController.airport_get().runway);
         }
 
         if (!standardRouteModel.hasFixName(this.rwy_dep)) {

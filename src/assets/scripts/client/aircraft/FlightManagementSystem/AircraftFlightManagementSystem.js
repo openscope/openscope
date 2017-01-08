@@ -70,6 +70,9 @@ export default class AircraftFlightManagementSystem {
      * @param options {object}
      */
     constructor(options) {
+
+        this._navigationLibrary = options.navigationLibrary;
+
         /**
          * @property may_aircrafts_eid
          * @type {number}
@@ -139,6 +142,14 @@ export default class AircraftFlightManagementSystem {
         }
 
         this.update_fp_route();
+    }
+
+    /**
+     *
+     *
+     */
+    findWaypointModelsForStar(procedure, entry, rwy) {
+        return this._navigationLibrary.findWaypointModelsForStar(procedure, entry, rwy);
     }
 
     /** ***************** FMS FLIGHTPLAN CONTROL FUNCTIONS *******************/
@@ -610,7 +621,7 @@ export default class AircraftFlightManagementSystem {
                         return;  // invalid join/exit points
                     }
 
-                    if (!airport.sidCollection.hasRoute(pieces[1]) ||
+                    if (!this._navigationLibrary.sidCollection.hasRoute(pieces[1]) ||
                         !Object.keys(airport.airways).indexOf(pieces[1])) {
                         // invalid procedure
                         return;
@@ -654,17 +665,17 @@ export default class AircraftFlightManagementSystem {
                 const routeModel = new RouteModel(route[i]);
                 const currentAirport = window.airportController.airport_get();
 
-                if (!_isNil(currentAirport.sidCollection.findRouteByIcao(routeModel.procedure))) {
+                if (!_isNil(this._navigationLibrary.sidCollection.findRouteByIcao(routeModel.procedure))) {
                     // it's a SID!
                     const legToAdd = new Leg({ type: FP_LEG_TYPE.SID, route: routeModel.routeCode }, this);
 
                     legs.push(legToAdd);
-                } else if (!_isNil(currentAirport.starCollection.findRouteByIcao(routeModel.procedure))) {
+                } else if (!_isNil(this._navigationLibrary.starCollection.findRouteByIcao(routeModel.procedure))) {
                     // it's a STAR!
                     const legToAdd = new Leg({ type: FP_LEG_TYPE.STAR, route: routeModel.routeCode }, this);
 
                     legs.push(legToAdd);
-                } else if (Object.keys(window.airportController.airport_get().airways).indexOf(routeModel.procedure) > -1) {
+                } else if (Object.keys(currentAirport.airways).indexOf(routeModel.procedure) > -1) {
                     // it's an airway!
                     const legToAdd = new Leg({ type: FP_LEG_TYPE.AWY, route: routeModel.routeCode }, this);
 

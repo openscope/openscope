@@ -174,7 +174,11 @@ export default class Leg {
         }
 
         const airport = window.airportController.airport_get(this.route.entry);
-        const waypointsForSid = airport.findWaypointModelsForSid(this.route.procedure, rwy, this.route.exit);
+        const waypointsForSid = this._navigationLibrary.sidCollection.findFixModelsForRouteByEntryAndExit(
+            this.route.procedure,
+            rwy,
+            this.route.exit
+        );
 
         // TODO: refactor/abstract this boolean logic
         // Remove the placeholder leg (if present)
@@ -215,7 +219,7 @@ export default class Leg {
 
         const rwy = fms.my_aircraft.rwy_arr;
         const airport = window.airportController.airport_get(this.route.exit);
-        const waypointsForStar = airport.findWaypointModelsForStar(this.route.procedure, this.route.entry, rwy);
+        const waypointsForStar = fms.findWaypointModelsForStar(this.route.procedure, this.route.entry, rwy);
 
         for (let i = 0; i < waypointsForStar.length; i++) {
             const waypointToAdd = waypointsForStar[i].generateFmsWaypoint(airport);

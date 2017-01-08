@@ -155,13 +155,16 @@ export default class AircraftController {
      *
      * This could be a spawning aircraft or one that already exists along a route.
      *
+     * This method is the *_single place_* to create a new `AircraftInstanceModel`.
+     * Any method that needs to create a new aircraft should be routed through here.
+     *
      * @for AircraftController
      * @method _createAircraftWithInitializationProps
      * @param initializationProps {object}
      * @private
      */
     _createAircraftWithInitializationProps(initializationProps) {
-        const aircraftModel = new AircraftInstanceModel(initializationProps);
+        const aircraftModel = new AircraftInstanceModel(initializationProps, this._navigationLibrary);
 
         this.addItem(aircraftModel);
     }

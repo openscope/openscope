@@ -723,20 +723,20 @@ export default class AirportModel {
         return this._navigationLibrary.sidCollection.findFixesForSidByRunwayAndExit(id, exit, runway);
     }
 
-    /**
-     *
-     * @for AirportModel
-     * @method findWaypointModelsForSid
-     * @param id {string}
-     * @param entry {string}
-     * @param runway {string}
-     * @param isPreSpawn {boolean} flag used to determine if distances between waypoints should be calculated
-     * @return {array<StandardWaypointModel>}
-     */
-    findWaypointModelsForSid(id, entry, runway, isPreSpawn = false) {
-        console.warn('findWaypointModelsForSid method should be moved from the AirportModel to the NavigationLibrary');
-        return this._navigationLibrary.sidCollection.findFixModelsForRouteByEntryAndExit(id, entry, runway, isPreSpawn);
-    }
+    // /**
+    //  *
+    //  * @for AirportModel
+    //  * @method findWaypointModelsForSid
+    //  * @param id {string}
+    //  * @param entry {string}
+    //  * @param runway {string}
+    //  * @param isPreSpawn {boolean} flag used to determine if distances between waypoints should be calculated
+    //  * @return {array<StandardWaypointModel>}
+    //  */
+    // findWaypointModelsForSid(id, entry, runway, isPreSpawn = false) {
+    //     console.warn('findWaypointModelsForSid method should be moved from the AirportModel to the NavigationLibrary');
+    //     return this._navigationLibrary.sidCollection.findFixModelsForRouteByEntryAndExit(id, entry, runway, isPreSpawn);
+    // }
 
     /**
      * @for AirportModel
@@ -769,20 +769,20 @@ export default class AirportModel {
         return this._navigationLibrary.starCollection.findFixesForStarByEntryAndRunway(id, entry, rwy);
     }
 
-    /**
-     *
-     * @for AirportModel
-     * @method findWaypointModelsForStar
-     * @param id {string}
-     * @param entry {string}
-     * @param runway {string}
-     * @param isPreSpawn {boolean} flag used to determine if distances between waypoints should be calculated
-     * @return {array<StandardWaypointModel>}
-     */
-    findWaypointModelsForStar(id, entry, runway, isPreSpawn = false) {
-        console.warn('findWaypointModelsForStar() method should be moved from the AirportModel to the NavigationLibrary');
-        return this._navigationLibrary.starCollection.findFixModelsForRouteByEntryAndExit(id, entry, runway, isPreSpawn);
-    }
+    // /**
+    //  *
+    //  * @for AirportModel
+    //  * @method findWaypointModelsForStar
+    //  * @param id {string}
+    //  * @param entry {string}
+    //  * @param runway {string}
+    //  * @param isPreSpawn {boolean} flag used to determine if distances between waypoints should be calculated
+    //  * @return {array<StandardWaypointModel>}
+    //  */
+    // findWaypointModelsForStar(id, entry, runway, isPreSpawn = false) {
+    //     console.warn('findWaypointModelsForStar() method should be moved from the AirportModel to the NavigationLibrary');
+    //     return this._navigationLibrary.starCollection.findFixModelsForRouteByEntryAndExit(id, entry, runway, isPreSpawn);
+    // }
 
     /**
      *

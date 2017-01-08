@@ -121,6 +121,20 @@ export default class NavigationLibrary {
     }
 
     /**
+     *
+     * @for NavigationLibrary
+     * @method findWaypointModelsForStar
+     * @param id {string}
+     * @param entry {string}
+     * @param runway {string}
+     * @param isPreSpawn {boolean} flag used to determine if distances between waypoints should be calculated
+     * @return {array<StandardWaypointModel>}
+     */
+    findWaypointModelsForStar(id, entry, runway, isPreSpawn = false) {
+        return this._starCollection.findFixModelsForRouteByEntryAndExit(id, entry, runway, isPreSpawn);
+    }
+
+    /**
      * Fascade Method
      *
      *
