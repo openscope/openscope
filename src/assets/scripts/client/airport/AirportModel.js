@@ -1,4 +1,4 @@
-/* eslint-disable no-multi-spaces, func-names, camelcase, no-undef, max-len, object-shorthand */
+/* eslint-disable no-multi-spaces, func-names, camelcase, max-len, object-shorthand */
 import $ from 'jquery';
 import _forEach from 'lodash/forEach';
 import _get from 'lodash/get';
@@ -642,8 +642,10 @@ export default class AirportModel {
     onLoadAirportSuccess = (response) => {
         // cache of airport.json data to be used to hydrate other classes on airport change
         this.data = response;
-        this.onAirportChange(this.data);
+
         this.parse(response);
+        this.onAirportChange(this.data);
+
 
         if (this.has_terrain) {
             return;
@@ -717,7 +719,8 @@ export default class AirportModel {
      * @return {array}
      */
     getSID(id, exit, runway) {
-        return this.sidCollection.findFixesForSidByRunwayAndExit(id, exit, runway);
+        console.warn('getSID method should be moved from the AirportModel to the NavigationLibrary');
+        return this._navigationLibrary.sidCollection.findFixesForSidByRunwayAndExit(id, exit, runway);
     }
 
     /**
@@ -731,7 +734,8 @@ export default class AirportModel {
      * @return {array<StandardWaypointModel>}
      */
     findWaypointModelsForSid(id, entry, runway, isPreSpawn = false) {
-        return this.sidCollection.findFixModelsForRouteByEntryAndExit(id, entry, runway, isPreSpawn);
+        console.warn('findWaypointModelsForSid method should be moved from the AirportModel to the NavigationLibrary');
+        return this._navigationLibrary.sidCollection.findFixModelsForRouteByEntryAndExit(id, entry, runway, isPreSpawn);
     }
 
     /**
@@ -741,7 +745,8 @@ export default class AirportModel {
      * @return {string}  Name of Exit fix in SID
      */
     getSIDExitPoint(icao) {
-        return this.sidCollection.findRandomExitPointForSIDIcao(icao);
+        console.warn('getSIDExitPoint method should be moved from the AirportModel to the NavigationLibrary');
+        return this._navigationLibrary.sidCollection.findRandomExitPointForSIDIcao(icao);
     }
 
     /**
@@ -760,7 +765,8 @@ export default class AirportModel {
      * @return {array<string>}
      */
     getSTAR(id, entry, rwy) {
-        return this.starCollection.findFixesForStarByEntryAndRunway(id, entry, rwy);
+        console.warn('getSTAR() method should be moved from the AirportModel to the NavigationLibrary');
+        return this._navigationLibrary.starCollection.findFixesForStarByEntryAndRunway(id, entry, rwy);
     }
 
     /**
@@ -774,7 +780,8 @@ export default class AirportModel {
      * @return {array<StandardWaypointModel>}
      */
     findWaypointModelsForStar(id, entry, runway, isPreSpawn = false) {
-        return this.starCollection.findFixModelsForRouteByEntryAndExit(id, entry, runway, isPreSpawn);
+        console.warn('findWaypointModelsForStar() method should be moved from the AirportModel to the NavigationLibrary');
+        return this._navigationLibrary.starCollection.findFixModelsForRouteByEntryAndExit(id, entry, runway, isPreSpawn);
     }
 
     /**

@@ -1,5 +1,3 @@
-/* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand,
-no-undef, class-methods-use-this */
 import $ from 'jquery';
 import _forEach from 'lodash/forEach';
 import _has from 'lodash/has';
@@ -79,17 +77,17 @@ export default class GameController {
      * @method init_pre
      */
     init_pre() {
-        this.game_initializeBlurFunctions();
-        this.events_initializeEventCount();
+        this.setupHandlers();
+        this.initializeEventCount();
     }
 
     /**
     * Initialize `GameController.events` to contain appropriate properties with values of 0
+    *
     * @for GameController
-    * @method events_initializeEventCount
-    * @return
+    * @method initializeEventCount
     */
-    events_initializeEventCount() {
+    initializeEventCount() {
         _forEach(GAME_EVENTS, (gameEvent, key) => {
             this.game.events[key] = 0;
         });
@@ -113,10 +111,10 @@ export default class GameController {
     /**
     * Initialize blur functions used during game pausing
     * @for GameController
-    * @method game_initializeBlurFunctions
+    * @method setupHandlers
     * @return
     */
-    game_initializeBlurFunctions() {
+    setupHandlers() {
         // Set blurring function
         $(window).blur(() => {
             this.game.focused = false;
@@ -296,6 +294,19 @@ export default class GameController {
      */
     game_clear_timeout(gameTimeout) {
         this.game.timeouts.splice(this.game.timeouts.indexOf(gameTimeout), 1);
+    }
+
+    /**
+     * Destroy all current timers
+     *
+     * Used when changing airports. any timer is only valid
+     * for a specific airport.
+     *
+     * @for GameController
+     * @method destroyTimers
+     */
+    destroyTimers() {
+        this.game.timeouts = [];
     }
 
     /**

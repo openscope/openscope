@@ -452,6 +452,7 @@ export default class App {
         this.airlineController.reset();
         this.aircraftController.aircraft_remove_all();
         this.spawnPatternCollection.reset();
+        this.gameController.destroyTimers();
         this.spawnScheduler = null;
 
         this.navigationLibrary.init(nextAirportJson);

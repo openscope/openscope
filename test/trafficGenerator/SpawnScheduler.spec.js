@@ -47,3 +47,15 @@ ava('throws when passed invalid parameters', (t) => {
 ava('does not throw when passed valid parameters', (t) => {
     t.notThrows(() => new SpawnScheduler(spawnPatternCollectionFixture, aircraftCollectionStub, gameControllerStub));
 });
+
+ava.skip('.createSchedulesFromList()', (t) => {
+
+});
+
+ava.skip('.createNextSchedule()', (t) => {
+
+});
+
+ava.skip('.createAircraftAndRegisterNextTimeout()', (t) => {
+
+});
