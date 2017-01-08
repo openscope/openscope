@@ -1308,9 +1308,9 @@ export default class Aircraft {
     }
 
     /**
+     * This turns the aircraft if it is not on the ground and has not arived at its destenation
      * @for AircraftInstanceModel
      * @method aircraftTurnPhysics
-     * This turns the aircraft if it is not on the ground and has not arived at its destenation
      */
     aircraftTurnPhysics() {
         // Exits eary if the airplane is on the ground or at its destenation
@@ -1336,9 +1336,9 @@ export default class Aircraft {
     }
 
     /**
+     * This updates the Altitude for the instance of the aircraft by checking the difference between current Altitude and requested Altitude
      * @for AircraftInstanceModel
      * @method updateAltitudePhysics
-     * This updates the Altitude for the instance of the aircraft by checking the difference between current Altitude and requested Altitude
      */
     updateAltitudePhysics() {
         this.trend = 0;
@@ -1351,9 +1351,9 @@ export default class Aircraft {
     }
 
     /**
+    * Decreases the aircrafts altitude
     * @for AircraftInstanceModel
     * @method decreaseAircraftAltitude
-    * Eecreases the aircrafts altitude
     */
     decreaseAircraftAltitude() {
         let distance = -this.model.rate.descent / 60 * window.gameController.game_delta();
@@ -1381,9 +1381,9 @@ export default class Aircraft {
     }
 
     /**
+    * Increases the aircrafts altitude
     * @for AircraftInstanceModel
     * @method increaseAircraftAltitude
-    * Increases the aircrafts altitude
     */
     increaseAircraftAltitude() {
         const climbrate = this.getClimbRate();
@@ -1412,9 +1412,9 @@ export default class Aircraft {
     }
 
     /**
+     * This updates the speed for the instance of the aircraft by checking the difference between current speed and requested speed
      * @for AircraftInstanceModel
      * @method updateWarning
-     * This updates the speed for the instance of the aircraft by checking the difference between current speed and requested speed
      */
     updateSpeedPhysics() {
         let difference = null;
