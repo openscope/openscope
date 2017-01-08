@@ -1364,7 +1364,7 @@ export default class Aircraft {
         }
 
         this.trend -= 1;
-
+        //TODO: This might be able to become its own function since it is repeated again in the increaseAircraftAltitude()
         if (distance) {
             if (this.target.expedite) {
                 distance *= expedite_factor;
@@ -1395,7 +1395,7 @@ export default class Aircraft {
         }
 
         this.trend = 1;
-
+        //TODO: This might be able to become its own function since it is repeated  in the decreaseAircraftAltitude() Also I think the  outer If() might not be needed
         if (distance) {
             if (this.target.expedite) {
                 distance *= expedite_factor;
