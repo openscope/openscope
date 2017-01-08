@@ -1220,7 +1220,7 @@ export default class Aircraft {
             return;
         }
 
-        this.aircraftTurnPhysics();
+        this.updateAircraftTurnPhysics();
 
         this.updateAltitudePhysics();
 
@@ -1310,9 +1310,9 @@ export default class Aircraft {
     /**
      * This turns the aircraft if it is not on the ground and has not arived at its destenation
      * @for AircraftInstanceModel
-     * @method aircraftTurnPhysics
+     * @method updateAircraftTurnPhysics
      */
-    aircraftTurnPhysics() {
+    updateAircraftTurnPhysics() {
         // Exits eary if the airplane is on the ground or at its destenation
         if (this.isOnGround() && this.heading === this.target.heading) {
             return;
