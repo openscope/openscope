@@ -7,15 +7,9 @@ import _isObject from 'lodash/isObject';
 import _random from 'lodash/random';
 import _round from 'lodash/round';
 import BaseModel from '../base/BaseModel';
-import RouteModel from '../airport/Route/RouteModel';
+import RouteModel from '../navigationLibrary/Route/RouteModel';
 import { buildPreSpawnAircraft } from './buildPreSpawnAircraft';
 import { bearingToPoint } from '../math/flightMath';
-// import {
-//     calculateRandomDelayPeriod,
-//     calculateNextCyclicDelayPeriod,
-//     calculateNextSurgeDelayPeriod,
-//     calculateNextWaveDelayPeriod
-// } from './spawnPatternDelayCalculationHelper';
 import { tau } from '../math/circle';
 import { convertMinutesToSeconds } from '../utilities/unitConverters';
 import { AIRPORT_CONSTANTS } from '../constants/airportConstants';

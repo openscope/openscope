@@ -62,6 +62,14 @@ export const ARRIVAL_PATTERN_MOCK = {
     speed: 320
 };
 
+export const ARRIVAL_PATTERN_ROUTE_STRING_MOCK = Object.assign(
+    {},
+    ARRIVAL_PATTERN_MOCK,
+    {
+        route: 'BETHL..GRNPA..25R'
+    }
+);
+
 export const ARRIVAL_PATTERN_CYCLIC_MOCK = Object.assign(
     {},
     ARRIVAL_PATTERN_MOCK,

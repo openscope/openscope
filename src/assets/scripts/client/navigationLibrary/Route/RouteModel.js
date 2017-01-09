@@ -42,8 +42,6 @@ export default class RouteModel extends BaseModel {
     constructor(routeCode) {
         super();
 
-        console.error('This RouteModel is a deprecated Class. Please update references to the /navigationLibrary/Route/RouteModel class');
-
         if (typeof routeCode === 'undefined' || typeof routeCode !== 'string') {
             console.error(`Invalid data type passed to RouteModel. Expected a string but received ${routeCode}`);
 

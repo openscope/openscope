@@ -7,7 +7,7 @@ import _isNil from 'lodash/isNil';
 import FixCollection from '../../navigationLibrary/Fix/FixCollection';
 import Waypoint from './Waypoint';
 import Leg from './Leg';
-import RouteModel from '../../airport/Route/RouteModel';
+import RouteModel from '../../navigationLibrary/Route/RouteModel';
 import { clamp } from '../../math/core';
 import {
     FP_LEG_TYPE,
@@ -621,8 +621,10 @@ export default class AircraftFlightManagementSystem {
                         return;  // invalid join/exit points
                     }
 
-                    if (!this._navigationLibrary.sidCollection.hasRoute(pieces[1]) ||
-                        !Object.keys(airport.airways).indexOf(pieces[1])) {
+                    if (
+                        !this._navigationLibrary.sidCollection.hasRoute(pieces[1]) ||
+                        !Object.keys(airport.airways).indexOf(pieces[1])
+                    ) {
                         // invalid procedure
                         return;
                     }

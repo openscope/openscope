@@ -12,7 +12,7 @@ import _without from 'lodash/without';
 import AircraftFlightManagementSystem from './FlightManagementSystem/AircraftFlightManagementSystem';
 import AircraftStripView from './AircraftStripView';
 import Waypoint from './FlightManagementSystem/Waypoint';
-import RouteModel from '../airport/Route/RouteModel';
+import RouteModel from '../navigationLibrary/Route/RouteModel';
 import { speech_say } from '../speech';
 import { tau, radians_normalize, angle_offset } from '../math/circle';
 import { round, abs, sin, cos, extrapolate_range_clamp, clamp } from '../math/core';

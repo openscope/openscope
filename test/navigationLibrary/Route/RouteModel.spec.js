@@ -1,8 +1,7 @@
-/* eslint-disable import/no-extraneous-dependencies, arrow-parens */
 import ava from 'ava';
 import _isEqual from 'lodash/isEqual';
 
-import RouteModel from '../../../src/assets/scripts/client/airport/Route/RouteModel';
+import RouteModel from '../../../src/assets/scripts/client/navigationLibrary/Route/RouteModel';
 
 const ROUTE_MOCK = 'BETHL.GRNPA1.KLAS';
 

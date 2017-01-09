@@ -2,7 +2,7 @@ import _isEmpty from 'lodash/isEmpty';
 import _isNil from 'lodash/isNil';
 import _isObject from 'lodash/isObject';
 import PositionModel from '../base/PositionModel';
-import RouteModel from '../airport/Route/RouteModel';
+import RouteModel from '../navigationLibrary/Route/RouteModel';
 import {
     fixRadialDist,
     isWithinAirspace,

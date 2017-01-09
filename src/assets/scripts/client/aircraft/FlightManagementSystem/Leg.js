@@ -3,7 +3,7 @@ import _get from 'lodash/get';
 import _has from 'lodash/has';
 import _map from 'lodash/map';
 import Waypoint from './Waypoint';
-import RouteModel from '../../airport/Route/RouteModel';
+import RouteModel from '../../navigationLibrary/Route/RouteModel';
 import { FP_LEG_TYPE } from '../../constants/aircraftConstants';
 import { LOG } from '../../constants/logLevel';
 

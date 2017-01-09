@@ -9,7 +9,7 @@ import AircraftCollection from './AircraftCollection';
 import AircraftInstanceModel from './AircraftInstanceModel';
 import AircraftConflict from './AircraftConflict';
 import AircraftModel from './AircraftModel';
-import RouteModel from '../airport/Route/RouteModel';
+import RouteModel from '../navigationLibrary/Route/RouteModel';
 import { airlineNameAndFleetHelper } from '../airline/airlineHelpers';
 import { speech_say } from '../speech';
 import { abs } from '../math/core';
