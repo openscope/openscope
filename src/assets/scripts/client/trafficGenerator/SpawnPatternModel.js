@@ -849,6 +849,8 @@ export default class SpawnPatternModel extends BaseModel {
             return;
         }
 
+        const waypointModelList = this._generateWaypointListForRoute(spawnPatternJson.route, navigationLibrary);
+
         // TODO: this if black may not be needed if we will be requiring a route string for every spawn pattern
         // if (_get(spawnPatternJson, 'fixes', []).length > 1) {
         //     const initialPosition = navigationLibrary.getFixPositionCoordinates(spawnPatternJson.fixes[0]);
@@ -860,12 +862,6 @@ export default class SpawnPatternModel extends BaseModel {
         //
         //     return;
         // }
-
-        const routeModel = new RouteModel(spawnPatternJson.route);
-        const waypointModelList = navigationLibrary.findEntryAndBodyFixesForRoute(
-            routeModel.procedure,
-            routeModel.entry
-        );
 
         // grab position of first fix
         const initialPosition = waypointModelList[0].position;
@@ -882,6 +878,29 @@ export default class SpawnPatternModel extends BaseModel {
      */
     _isDeparture() {
         return this.category === FLIGHT_CATEGORY.DEPARTURE;
+    }
+
+    /**
+     *
+     *
+     */
+    _generateWaypointListForRoute(route, navigationLibrary) {
+        let waypointModelList;
+
+        if (!RouteModel.isProcedureRouteString(route)) {
+            console.log(route);
+            waypointModelList = [];
+
+            return waypointModelList;
+        }
+
+        const routeModel = new RouteModel(route);
+        waypointModelList = navigationLibrary.findEntryAndBodyFixesForRoute(
+            routeModel.procedure,
+            routeModel.entry
+        );
+
+        return waypointModelList;
     }
 
     /**

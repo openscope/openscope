@@ -135,15 +135,28 @@ export default class RouteModel extends BaseModel {
     }
 
     /**
-     * Verify that a routeCode has exactly 3 segments
+     * Verify that a routeString has exactly 3 segments
      *
      * @for RouteModel
      * @method _isValidRouteCode
-     * @param routeCode {string}
+     * @param routeString {string}
      * @return {boolean}
      * @private
      */
-    _isValidRouteCode(routeCode) {
-        return routeCode.split(SEGMENT_SEPARATION_SYMBOL).length === MAXIMUM_ROUTE_SEGMENT_LENGTH;
+    _isValidRouteCode(routeString) {
+        return RouteModel.isProcedureRouteString(routeString);
     }
 }
+
+/**
+ *
+ *
+ * @for RouteModel
+ * @method isProcedureRouteString
+ * @param routeString {string}
+ * @return {boolean}
+ * @static
+ */
+RouteModel.isProcedureRouteString = (routeString) => {
+    return routeString.split(SEGMENT_SEPARATION_SYMBOL).length === MAXIMUM_ROUTE_SEGMENT_LENGTH;
+};

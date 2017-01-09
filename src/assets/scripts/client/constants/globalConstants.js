@@ -31,5 +31,6 @@ export const REGEX = {
     COMPASS_DIRECTION: /^[NESW]/,
     SW: /[SW]/,
     LAT_LONG: /^([NESW])(\d+(\.\d+)?)([d °](\d+(\.\d+)?))?([m '](\d+(\.\d+)?))?$/,
-    UNICODE: /[^\u0000-\u00ff]/
+    UNICODE: /[^\u0000-\u00ff]/,
+    WHITESPACE: /\s/g
 };
