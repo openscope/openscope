@@ -1246,50 +1246,13 @@ export default class Aircraft {
             this.position_history.push([this.position[0], this.position[1], window.gameController.game_time() / window.gameController.game_speedup()]);
         }
 
-        const angle = this.heading;
         // FIXME: is this ratio correct? is it 0.000514444 or 0.514444?
         let scaleSpeed = this.speed * 0.000514444 * window.gameController.game_delta(); // knots to m/s
 
         if (window.gameController.game.option.get('simplifySpeeds') === 'no') {
-            // TODO: this should be abstracted to a helper function
-            // Calculate the true air speed as indicated airspeed * 1.6% per 1000'
-            scaleSpeed *= 1 + (this.altitude * 0.000016);
-
-            // Calculate movement including wind assuming wind speed
-            // increases 2% per 1000'
-            const wind = window.airportController.airport_get().wind;
-            let vector;
-
-            if (this.isOnGround()) {
-                vector = vscale([sin(angle), cos(angle)], scaleSpeed);
-            } else {
-                let crab_angle = 0;
-
-                // Compensate for crosswind while tracking a fix or on ILS
-                if (this.fms.currentWaypoint.navmode === WAYPOINT_NAV_MODE.FIX || this.mode === FLIGHT_MODES.LANDING) {
-                    // TODO: this should be abstracted to a helper function
-                    const offset = angle_offset(this.heading, wind.angle + Math.PI);
-                    crab_angle = Math.asin((wind.speed * sin(offset)) / this.speed);
-                }
-
-                // TODO: this should be abstracted to a helper function
-                vector = vadd(vscale(
-                    vturn(wind.angle + Math.PI),
-                    wind.speed * 0.000514444 * window.gameController.game_delta()),
-                    vscale(vturn(angle + crab_angle), scaleSpeed)
-                );
-            }
-
-            this.ds = vlen(vector);
-            // TODO: this should be abstracted to a helper function
-            this.groundSpeed = this.ds / 0.000514444 / window.gameController.game_delta();
-            this.groundTrack = vradial(vector);
-            this.position = vadd(this.position, vector);
+            this.updatecGroundSpeedPhysics(scaleSpeed);
         } else {
-            this.ds = scaleSpeed;
-            this.groundSpeed = this.speed;
-            this.groundTrack = this.heading;
-            this.position = vadd(this.position, vscale([sin(angle), cos(angle)], scaleSpeed));
+            this.updatecSimpleGroundSpeedPhysics(scaleSpeed);
         }
 
         this.distance = vlen(this.position);
@@ -1440,6 +1403,65 @@ export default class Aircraft {
                 this.speed += difference;
             }
         }
+    }
+
+    /**
+     * This calculates the ground speed
+     * @for AircraftInstanceModel
+     * @method updateVectorPhysics
+     * @param scaleSpeed
+     */
+    updatecGroundSpeedPhysics(scaleSpeed) {
+        // TODO: this should be abstracted to a helper function
+        // Calculate the true air speed as indicated airspeed * 1.6% per 1000'
+        const trueAirSpeed = scaleSpeed * (1 + this.altitude * 0.000016);
+
+        // Calculate movement including wind assuming wind speed
+        // increases 2% per 1000'
+        const wind = window.airportController.airport_get().wind;
+        const angle = this.heading;
+        let vector;
+
+        if (this.isOnGround()) {
+            vector = vscale([sin(angle), cos(angle)], trueAirSpeed);
+        } else {
+            let crab_angle = 0;
+
+            // Compensate for crosswind while tracking a fix or on ILS
+            if (this.fms.currentWaypoint.navmode === WAYPOINT_NAV_MODE.FIX || this.mode === FLIGHT_MODES.LANDING) {
+                // TODO: this should be abstracted to a helper function
+                const offset = angle_offset(this.heading, wind.angle + Math.PI);
+                crab_angle = Math.asin((wind.speed * sin(offset)) / this.speed);
+            }
+
+            // TODO: this should be abstracted to a helper function
+            vector = vadd(vscale(
+                vturn(wind.angle + Math.PI),
+                wind.speed * 0.000514444 * window.gameController.game_delta()),
+                vscale(vturn(angle + crab_angle), trueAirSpeed)
+            );
+        }
+
+        this.ds = vlen(vector);
+        // TODO: this should be abstracted to a helper function
+        this.groundSpeed = this.ds / 0.000514444 / window.gameController.game_delta();
+        this.groundTrack = vradial(vector);
+        this.position = vadd(this.position, vector);
+    }
+
+    /**
+     * This calculates the simplify ground speed
+     * @for AircraftInstanceModel
+     * @method updatecSimpleGroundSpeedPhysics
+     * @param scaleSpeed
+     */
+    updatecSimpleGroundSpeedPhysics(scaleSpeed) {
+        const angle = this.heading;
+
+        this.ds = scaleSpeed;
+        this.groundSpeed = this.speed;
+        this.groundTrack = this.heading;
+        this.position = vadd(this.position, vscale([sin(angle), cos(angle)], scaleSpeed));
     }
 
     // TODO: this method needs a lot of love. its much too long with waaay too many nested if/else ifs.
