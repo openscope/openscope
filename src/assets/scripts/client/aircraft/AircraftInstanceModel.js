@@ -1247,7 +1247,7 @@ export default class Aircraft {
         }
 
         // FIXME: is this ratio correct? is it 0.000514444 or 0.514444?
-        let scaleSpeed = this.speed * 0.000514444 * window.gameController.game_delta(); // knots to m/s
+        const scaleSpeed = this.speed * 0.000514444 * window.gameController.game_delta(); // knots to m/s
 
         if (window.gameController.game.option.get('simplifySpeeds') === 'no') {
             this.updatecGroundSpeedPhysics(scaleSpeed);
