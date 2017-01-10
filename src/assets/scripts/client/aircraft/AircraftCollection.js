@@ -1,7 +1,6 @@
 import _find from 'lodash/find';
 import _isArray from 'lodash/isArray';
 import _isEmpty from 'lodash/isEmpty';
-import _isObject from 'lodash/isObject';
 import _map from 'lodash/map';
 import BaseCollection from '../base/BaseCollection';
 import AircraftTypeDefinitionModel from './AircraftTypeDefinitionModel';
@@ -25,11 +24,9 @@ export default class AircraftCollection extends BaseCollection {
      * @constructor
      * @for AircraftCollection
      * @param aircraftTypeDefinitionList {array<object>}
-     * @param airlineCollection {AirlineCollection}
-     * @param navigationLibrary {NavigationLibrary}
      */
-    constructor(aircraftTypeDefinitionList, airlineCollection, navigationLibrary) {
-        super(aircraftTypeDefinitionList, airlineCollection, navigationLibrary);
+    constructor(aircraftTypeDefinitionList) {
+        super();
 
         if (!_isArray(aircraftTypeDefinitionList) || _isEmpty(aircraftTypeDefinitionList)) {
             // eslint-disable-next-line max-len
@@ -37,13 +34,13 @@ export default class AircraftCollection extends BaseCollection {
                 `received ${typeof aircraftTypeDefinitionList}`);
         }
 
-        // TODO: this may need to use instanceof instead, but that may be overly defensive
-        if (!_isObject(airlineCollection) || !_isObject(navigationLibrary)) {
-            throw new TypeError('Invalid parameters. Expected airlineCollection and navigationLibrary to be defined');
-        }
-
-        this._airlineCollection = airlineCollection;
-        this._navigationLibrary = navigationLibrary;
+        /**
+         *
+         *
+         * @property
+         * @type {array}
+         * @default []
+         */
         this.definitionList = [];
 
         this.init(aircraftTypeDefinitionList);
@@ -82,7 +79,7 @@ export default class AircraftCollection extends BaseCollection {
      * @return aircraftDefinition {AircraftTypeDefinitionModel}
      */
     getAircraftDefinitionForAirlineId(airlineId, airlineModel) {
-        const { airline, fleet } = airlineNameAndFleetHelper([airlineId]);
+        const { fleet } = airlineNameAndFleetHelper([airlineId]);
         const aircraftType = airlineModel.getRandomAircraftType(fleet);
         const aircraftDefinition = _find(this.definitionList, { icao: aircraftType });
 
@@ -95,7 +92,6 @@ export default class AircraftCollection extends BaseCollection {
 
         return aircraftDefinition;
     }
-
 
     /**
      * Loop through aircraft defined in the `definitionList` and create an

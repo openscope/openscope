@@ -1,5 +1,5 @@
-/* eslint-disable arrow-parens, max-len, import/no-extraneous-dependencies */
 import ava from 'ava';
+import sinon from 'sinon';
 
 import AircraftController from '../../src/assets/scripts/client/aircraft/AircraftController';
 import { AIRCRAFT_DEFINITION_LIST_MOCK } from './_mocks/aircraftMocks';
@@ -27,10 +27,10 @@ ava('throws when called with invalid parameters', (t) => {
     t.throws(() => new AircraftController(AIRCRAFT_DEFINITION_LIST_MOCK, 'threeve'));
     t.throws(() => new AircraftController(AIRCRAFT_DEFINITION_LIST_MOCK, false));
 
-    t.throws(() => new AircraftController(AIRCRAFT_DEFINITION_LIST_MOCK, airlineCollectionFixture));
-    t.throws(() => new AircraftController(AIRCRAFT_DEFINITION_LIST_MOCK, airlineCollectionFixture, 42));
-    t.throws(() => new AircraftController(AIRCRAFT_DEFINITION_LIST_MOCK, airlineCollectionFixture, 'threeve'));
-    t.throws(() => new AircraftController(AIRCRAFT_DEFINITION_LIST_MOCK, airlineCollectionFixture, false));
+    t.throws(() => new AircraftController(AIRCRAFT_DEFINITION_LIST_MOCK, airlineControllerFixture));
+    t.throws(() => new AircraftController(AIRCRAFT_DEFINITION_LIST_MOCK, airlineControllerFixture, 42));
+    t.throws(() => new AircraftController(AIRCRAFT_DEFINITION_LIST_MOCK, airlineControllerFixture, 'threeve'));
+    t.throws(() => new AircraftController(AIRCRAFT_DEFINITION_LIST_MOCK, airlineControllerFixture, false));
 
     t.throws(() => new AircraftController(AIRCRAFT_DEFINITION_LIST_MOCK, navigationLibraryFixture));
     t.throws(() => new AircraftController(AIRCRAFT_DEFINITION_LIST_MOCK, 42, navigationLibraryFixture));
@@ -40,6 +40,18 @@ ava('throws when called with invalid parameters', (t) => {
 
 ava('does not throw when passed valid parameters', (t) => {
     t.notThrows(() => new AircraftController(AIRCRAFT_DEFINITION_LIST_MOCK, airlineControllerFixture, navigationLibraryFixture));
+});
+
+ava('.createAircraftWithSpawnPatternModel() calls ._buildAircraftProps()', (t) => {
+    const controller = new AircraftController(AIRCRAFT_DEFINITION_LIST_MOCK, airlineControllerFixture, navigationLibraryFixture);
+    const _buildAircraftPropsSpy = sinon.spy(controller, '_buildAircraftProps');
+    const _createAircraftWithInitializationPropsStub = sinon.stub(controller, '_createAircraftWithInitializationProps');
+
+    controller.createAircraftWithSpawnPatternModel(spawnPatternModelArrivalFixture);
+
+    t.true(_buildAircraftPropsSpy.calledWithExactly(spawnPatternModelArrivalFixture));
+
+    _createAircraftWithInitializationPropsStub.restore();
 });
 
 ava('._setDestinationFromRouteOrProcedure() returns the SID name as a destination for a departing aircraft', (t) => {

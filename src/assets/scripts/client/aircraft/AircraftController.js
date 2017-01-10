@@ -77,11 +77,7 @@ export default class AircraftController {
          * @property aircraftCollection
          * @type {AircraftCollection}
          */
-        this.aircraftCollection = new AircraftCollection(
-            aircraftTypeDefinitionList,
-            this._airlineController.airlineCollection,
-            this._navigationLibrary
-        );
+        this.aircraftCollection = new AircraftCollection(aircraftTypeDefinitionList);
 
         this.aircraft = aircraft;
         // TODO: replace with aircraftCollection
@@ -216,16 +212,6 @@ export default class AircraftController {
 
         return [this.aircraft.list[nearest], distance];
     }
-
-    // DEPRECATED
-    // /**
-    //  * @for AircraftController
-    //  * @method aircraft_add
-    //  * @param model {AircraftModel|object}
-    //  */
-    // aircraft_add(model) {
-    //     this.aircraft.models[model.icao.toLowerCase()] = model;
-    // }
 
     /**
      * @for AircraftController
@@ -432,45 +418,45 @@ export default class AircraftController {
         return null;
     }
 
-    /**
-     * @DEPRECATED
-     * @for AircraftController
-     * @method aircraft_get_eid_by_callsign
-     * @param callsign {string}
-     */
-    aircraft_get_eid_by_callsign(callsign) {
-        console.error('.aircraft_get_eid_by_callsign() will be deprecated in the next release');
-        for (let i = 0; i < this.aircraft.list.length; i++) {
-            const aircraft = this.aircraft.list[i];
+    // /**
+    //  * @DEPRECATED
+    //  * @for AircraftController
+    //  * @method aircraft_get_eid_by_callsign
+    //  * @param callsign {string}
+    //  */
+    // aircraft_get_eid_by_callsign(callsign) {
+    //     console.error('.aircraft_get_eid_by_callsign() will be deprecated in the next release');
+    //     for (let i = 0; i < this.aircraft.list.length; i++) {
+    //         const aircraft = this.aircraft.list[i];
+    //
+    //         if (aircraft.callsign === callsign.toLowerCase()) {
+    //             return aircraft.eid;
+    //         }
+    //     }
+    //
+    //     return null;
+    // }
 
-            if (aircraft.callsign === callsign.toLowerCase()) {
-                return aircraft.eid;
-            }
-        }
 
-        return null;
-    }
-
-
-    /**
-     * @for AircraftController
-     * @method aircraft_model_get
-     * @param icao {string}
-     */
-    aircraft_model_get(icao) {
-        console.error('DEPRECATED');
-
-        if (!(this.aircraft.models[icao])) {
-            const model = new AircraftModel({
-                icao,
-                url: `assets/aircraft/${icao}.json`
-            });
-
-            this.aircraft.models[icao] = model;
-        }
-
-        return this.aircraft.models[icao];
-    }
+    // /**
+    //  * @for AircraftController
+    //  * @method aircraft_model_get
+    //  * @param icao {string}
+    //  */
+    // aircraft_model_get(icao) {
+    //     console.error('DEPRECATED');
+    //
+    //     if (!(this.aircraft.models[icao])) {
+    //         const model = new AircraftModel({
+    //             icao,
+    //             url: `assets/aircraft/${icao}.json`
+    //         });
+    //
+    //         this.aircraft.models[icao] = model;
+    //     }
+    //
+    //     return this.aircraft.models[icao];
+    // }
 
     /**
      * Remove the specified aircraft from `AircraftController.aircraft`
@@ -506,8 +492,6 @@ export default class AircraftController {
      */
     removeFlightNumberFromList({ airline, callsign }) {
         this._airlineController.removeFlightNumberFromList(airline, callsign);
-        // DEPRECATED
-        // this.aircraft.callsigns = _without(this.aircraft.callsigns, callsign);
     }
 
     /**
