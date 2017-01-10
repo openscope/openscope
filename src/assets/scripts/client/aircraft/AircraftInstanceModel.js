@@ -567,8 +567,10 @@ export default class Aircraft {
      * @method cancelFix
      */
     cancelFix() {
-        // TODO: this logic could be simplified. do an early return instead of wrapping the entire function in an if.
-        if (this.fms.currentWaypoint.navmode === WAYPOINT_NAV_MODE.FIX) {
+        if (this.fms.currentWaypoint.navmode !== WAYPOINT_NAV_MODE.FIX) {
+            return false;
+        }
+
             const curr = this.fms.currentWaypoint;
 
             this.fms.appendLeg({
@@ -582,9 +584,6 @@ export default class Aircraft {
             this.updateStrip();
 
             return true;
-        }
-
-        return false;
     }
 
     /**
