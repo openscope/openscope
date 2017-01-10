@@ -1,4 +1,3 @@
-import _has from 'lodash/has';
 import _without from 'lodash/without';
 import BaseModel from '../base/BaseModel';
 import PositionModel from '../base/PositionModel';
@@ -114,57 +113,23 @@ export default class RunwayModel extends BaseModel {
     }
 
     /**
-     *
+     * Adds the specified aircraft to the runway queue
      *
      * @for RunwayModel
-     * @method
+     * @method addAircraftToQueue
+     * @param {Aircraft}
      */
-    addQueue(aircraft) {
+    addAircraftToQueue(aircraft) {
         this.queue.push(aircraft);
     }
 
     /**
-     *
-     *
-     * @for RunwayModel
-     * @method
-     */
-    removeQueue(aircraft) {
-        if (_has(this.queue, aircraft)) {
-            this.queue = _without(this.queue, aircraft);
-
-            return true;
-        }
-
-        return false;
-    }
-
-    /**
-     *
+     * Calculate the height of the glideslope for a runway's ILS at a given distance on final
      *
      * @for RunwayModel
-     * @method
-     */
-    inQueue(aircraft) {
-        return this.queue.indexOf(aircraft);
-    }
-
-    /**
-     *
-     *
-     * @for RunwayModel
-     * @method
-     */
-    taxiDelay() {
-        // TODO: what does 3 mean? enumerate the magic numbers.
-        return (this.delay + Math.random()) * 3;
-    }
-
-    /**
-     *
-     *
-     * @for RunwayModel
-     * @method
+     * @method getGlideslopeAltitude
+     * @param {Number} distance - the distance from the runway threshold, in (units???)
+     * @param {Number} gs_gradient - the gradient of the glideslope, in degrees (typically 3.0)
      */
     getGlideslopeAltitude(distance, /* optional */ gs_gradient) {
         if (!gs_gradient) {
@@ -177,5 +142,51 @@ export default class RunwayModel extends BaseModel {
         // TODO: this logic could be abstracted to a helper.
         // TODO: what does 3280 mean? enumerate the magic number
         return this.elevation + (rise * distance * 3280);
+    }
+
+    /**
+     *
+     *
+     * @for RunwayModel
+     * @method isAircraftInQueue
+     * @param {Aircraft}
+     */
+    isAircraftInQueue(aircraft) {
+        return this.positionOfAircraftInQueue(aircraft) !== -1;
+    }
+
+    /**
+     * Returns whether the specified aircraft is the first still waiting for takeoff clearance
+     *
+     * @for RunwayModel
+     * @method isAircraftNextInQueue
+     * @param  {Aircraft}
+     * @return {Boolean}
+     */
+    isAircraftNextInQueue(aircraft) {
+        return this.positionOfAircraftInQueue(aircraft) === 0;
+    }
+
+    /**
+     * Remove the specified aircraft from the runway queue
+     *
+     * @for RunwayModel
+     * @method removeAircraftFromQueue
+     * @param {Aircraft}
+     */
+    removeAircraftFromQueue(aircraft) {
+        this.queue = _without(this.queue, aircraft);
+    }
+
+    /**
+     * Returns the position of a specified aircraft in the runway's queue
+     *
+     * @for RunwayModel
+     * @method positionOfAircraftInQueue
+     * @param  {Aircraft}
+     * @return {Number}
+     */
+    positionOfAircraftInQueue(aircraft) {
+        return this.queue.indexOf(aircraft);
     }
 }
