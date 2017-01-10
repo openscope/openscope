@@ -571,19 +571,19 @@ export default class Aircraft {
             return false;
         }
 
-            const curr = this.fms.currentWaypoint;
+        const curr = this.fms.currentWaypoint;
 
-            this.fms.appendLeg({
-                altitude: curr.altitude,
-                navmode: WAYPOINT_NAV_MODE.HEADING,
-                heading: this.heading,
-                speed: curr.speed
-            });
+        this.fms.appendLeg({
+            altitude: curr.altitude,
+            navmode: WAYPOINT_NAV_MODE.HEADING,
+            heading: this.heading,
+            speed: curr.speed
+        });
 
-            this.fms.nextLeg();
-            this.updateStrip();
+        this.fms.nextLeg();
+        this.updateStrip();
 
-            return true;
+        return true;
     }
 
     /**
