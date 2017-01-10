@@ -7,11 +7,11 @@ import { REGEX } from '../../constants/globalConstants';
 /**
  * Symbol that divides each route segment
  *
- * @property SEGMENT_SEPARATION_SYMBOL
+ * @property PROCEDURE_SEGMENT_SEPARATION_SYMBOL
  * @type {string}
  * @final
  */
-const SEGMENT_SEPARATION_SYMBOL = '.';
+const PROCEDURE_SEGMENT_SEPARATION_SYMBOL = '.';
 
 /**
  * Symbol that divides each direct segment
@@ -23,13 +23,13 @@ const SEGMENT_SEPARATION_SYMBOL = '.';
 const DIRECT_SEPARATION_SYMBOL = '..';
 
 /**
- * A route is assumed to have, at most, three parts.
+ * A procedure segment has exactly three parts (ex: `BETHL.GRNPA1.KLAS`)
  *
- * @property MAXIMUM_ROUTE_SEGMENT_LENGTH
+ * @property MAXIMUM_PROCEDUURE_SEGMENT_LENGTH
  * @type {number}
  * @final
  */
-const MAXIMUM_ROUTE_SEGMENT_LENGTH = 3;
+const MAXIMUM_PROCEDUURE_SEGMENT_LENGTH = 3;
 
 /**
  *
@@ -56,8 +56,7 @@ const _explodeDirectRouteSegments = (str) => str.split(DIRECT_SEPARATION_SYMBOL)
  * @param str {string}
  * @return {array<string>}
  */
-const _explodeProcedureRouteSegments = (str) => str.split(SEGMENT_SEPARATION_SYMBOL);
-
+const _explodeProcedureRouteSegments = (str) => str.split(PROCEDURE_SEGMENT_SEPARATION_SYMBOL);
 
 /**
  * Takes a single-string route and converts it to an array of procedure/fixname strings
@@ -70,23 +69,23 @@ const _explodeProcedureRouteSegments = (str) => str.split(SEGMENT_SEPARATION_SYM
  * directRouteSegments - defined as the string segments between `..` portions of a route string
  * procedureRouteSegments - defined as the string segments between `.` portions of a route string
  *
- * @function routeFormatHelper
+ * @function routeStringFormatHelper
  * @param routeString {string}
  * @return {array<string>}
  */
-export const routeFormatHelper = (routeString) => {
+export const routeStringFormatHelper = (routeString) => {
     if (!_isString(routeString)) {
         // eslint-disable-next-line max-len
-        throw new TypeError(`Invalid parameter passed to routeFormatHelper. Expected a string but received ${typeof routeString}`);
+        throw new TypeError(`Invalid parameter passed to routeStringFormatHelper. Expected a string but received ${typeof routeString}`);
     }
 
     if (_hasSpaces(routeString)) {
-        // eslint-disable-next-line max-len
-        console.error(`routeFormatHelper received a string with spaces. A routeString cannot contain spaces. Please remove any spaces from: ${routeString}`);
+        console.error('routeStringFormatHelper received a string with spaces. A routeString cannot contain spaces. ' +
+            `Please remove any spaces from: ${routeString}`);
         return;
     }
 
-    const route = [];
+    const formattedRoute = [];
     const directRouteSegments = _explodeDirectRouteSegments(routeString);
 
     // deal with multilinks (eg 'KSFO.OFFSH9.SXC.V458.IPL')
@@ -96,13 +95,13 @@ export const routeFormatHelper = (routeString) => {
 
         if (procedureRouteSegments.length === 1) {
             // a fix/navaid
-            route.push(directRouteSegments[i]);
+            formattedRoute.push(directRouteSegments[i]);
 
             // eslint-disable-next-line no-continue
             continue;
         }
 
-        const initialProcedureRouteSegment = procedureRouteSegments.slice(0, MAXIMUM_ROUTE_SEGMENT_LENGTH);
+        const initialProcedureRouteSegment = procedureRouteSegments.slice(0, MAXIMUM_PROCEDUURE_SEGMENT_LENGTH);
 
         // is a procedure, eg SID, STAR, IAP, airway, etc.
         if (procedureRouteSegments.length < 3) {
@@ -111,23 +110,26 @@ export const routeFormatHelper = (routeString) => {
             return;
         }
 
-        routeStringSection = initialProcedureRouteSegment.join(SEGMENT_SEPARATION_SYMBOL);
-        route.push(routeStringSection);
+        routeStringSection = initialProcedureRouteSegment.join(PROCEDURE_SEGMENT_SEPARATION_SYMBOL);
+
+        formattedRoute.push(routeStringSection);
 
         // chop up the multilink
-        const posteriorProcedureRouteSegments = _chunk(_drop(procedureRouteSegments, MAXIMUM_ROUTE_SEGMENT_LENGTH), 2);
+        const subsequentRouteSegmentsLength = 2;
+        const posteriorProcedureRouteSegments = _chunk(
+            _drop(procedureRouteSegments, MAXIMUM_PROCEDUURE_SEGMENT_LENGTH), subsequentRouteSegmentsLength
+        );
         let nextProcedureRouteSegment = _last(initialProcedureRouteSegment);
 
         for (let j = 0; j < posteriorProcedureRouteSegments.length; j++) {
-            // eslint-disable-next-line max-len
-            routeStringSection = `${nextProcedureRouteSegment}.${posteriorProcedureRouteSegments[j].join(SEGMENT_SEPARATION_SYMBOL)}`;
+            // use the last fixname from the previous procedure and combine it with the posteriorProcedureRouteSegments
+            routeStringSection = `${nextProcedureRouteSegment}.` +
+                `${posteriorProcedureRouteSegments[j].join(PROCEDURE_SEGMENT_SEPARATION_SYMBOL)}`;
             nextProcedureRouteSegment = _last(posteriorProcedureRouteSegments[j]);
 
-            route.push(routeStringSection);
+            formattedRoute.push(routeStringSection);
         }
     }
 
-    // console.log('::: in -', routeString);
-    // console.log('### out -', route);
-    return route;
+    return formattedRoute;
 };

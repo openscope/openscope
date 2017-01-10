@@ -575,8 +575,9 @@ export default class AircraftFlightManagementSystem {
      *       Return Data Format: ["KSFO.OFFSH9.SXC", "SXC.V458.IPL", "IPL.J2.JCT", "LLO", "ACT", "KACT"]
      */
     formatRoute(data) {
-        // const routeModel = new RouteModel(data);
+        // TODO: replace with `routeStringFormatHelper`
 
+        // @DEPRECTAED
         // Format the user's input
         let route = [];
         const airport = window.airportController.airport_get();

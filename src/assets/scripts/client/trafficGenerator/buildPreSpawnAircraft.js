@@ -3,6 +3,7 @@ import _isNil from 'lodash/isNil';
 import _isObject from 'lodash/isObject';
 import PositionModel from '../base/PositionModel';
 import RouteModel from '../navigationLibrary/Route/RouteModel';
+import { routeStringFormatHelper } from '../navigationLibrary/Route/routeStringFormatHelper';
 import {
     fixRadialDist,
     isWithinAirspace,
@@ -66,7 +67,7 @@ export const _calculateSpawnPositions = (waypointModelList, spawnOffsets, airpor
  * @param totalDistance {number}
  * @return spawnOffsets {array<number>}
  */
-export const _assembleSpawnOffsets = (entrailDistance, totalDistance) => {
+export const _assembleSpawnOffsets = (entrailDistance, totalDistance = 0) => {
     const spawnOffsets = [];
 
     // distance between successive arrivals in nm
@@ -75,6 +76,35 @@ export const _assembleSpawnOffsets = (entrailDistance, totalDistance) => {
     }
 
     return spawnOffsets;
+};
+
+/**
+ *
+ *
+ * @function _buildWaypointModelListFromRoute
+ * @return {array}
+ * @private
+ */
+export const _buildWaypointModelListFromRoute = (spawnPatternJson, navigationLibrary, airport) => {
+    const formattedRoute = routeStringFormatHelper(spawnPatternJson.route);
+
+    if (!RouteModel.isProcedureRouteString(formattedRoute[0])) {
+        const initialWaypoint = navigationLibrary.findFixByName(formattedRoute[0]);
+        const nextWaypoint = navigationLibrary.findFixByName(formattedRoute[1]);
+
+        return [initialWaypoint, nextWaypoint];
+    }
+
+    const activeRouteModel = new RouteModel(spawnPatternJson.route);
+    const isPreSpawn = true;
+    const waypointModelList = navigationLibrary.findWaypointModelsForStar(
+        activeRouteModel.procedure,
+        activeRouteModel.entry,
+        airport.runway,
+        isPreSpawn
+    );
+
+    return waypointModelList;
 };
 
 /**
@@ -94,14 +124,8 @@ export const _preSpawn = (spawnPatternJson, navigationLibrary, airport) => {
     let totalDistance = 0;
     // distance between each arriving aircraft, in nm
     const entrailDistance = spawnPatternJson.speed / spawnPatternJson.rate;
-    const activeRouteModel = new RouteModel(spawnPatternJson.route);
-    const isPreSpawn = true;
-    const waypointModelList = navigationLibrary.findWaypointModelsForStar(
-        activeRouteModel.procedure,
-        activeRouteModel.entry,
-        airport.runway,
-        isPreSpawn
-    );
+    const waypointModelList = _buildWaypointModelListFromRoute(spawnPatternJson, navigationLibrary, airport);
+
 
     for (let i = 0; i < waypointModelList.length; i++) {
         const waypoint = waypointModelList[i];
@@ -120,6 +144,8 @@ export const _preSpawn = (spawnPatternJson, navigationLibrary, airport) => {
             continue;
         }
 
+        // this will only work for `StandardRouteWaypointModel` objects. _buildWaypointModelListFromRoute may also return
+        // `FixModels`, in which case this line will return `NaN`
         totalDistance += waypoint.distanceFromPreviousWaypoint;
     }
 

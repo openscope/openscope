@@ -139,6 +139,15 @@ export default class NavigationLibrary {
      *
      *
      */
+    findFixByName(fixName) {
+        return FixCollection.findFixByName(fixName);
+    }
+
+    /**
+     * Fascade Method
+     *
+     *
+     */
     getFixPositionCoordinates(fixName) {
         return FixCollection.getFixPositionCoordinates(fixName);
     }

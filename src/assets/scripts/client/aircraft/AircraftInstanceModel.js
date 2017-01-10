@@ -304,7 +304,7 @@ export default class Aircraft {
 
         this.fms.setCurrent({ speed: speed });
 
-        if (data.category === FLIGHT_CATEGORY.ARRIVAL && data.route) {
+        if (data.category === FLIGHT_CATEGORY.ARRIVAL && RouteModel.isProcedureRouteString(data.route)) {
             const route = this.fms.formatRoute(data.route);
 
             this.fms.customRoute(route, true);
@@ -321,7 +321,7 @@ export default class Aircraft {
         for (let i = 0; i < waypoints.length; i++) {
             this.fms.appendLeg({
                 type: 'fix',
-                route: waypoints[i].fix
+                route: waypoints[i]
             });
         }
 

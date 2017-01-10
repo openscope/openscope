@@ -51,7 +51,7 @@ ava('.init() throws when called with invalid parameters', (t) => {
 
 ava('does not throw when called with valid parameters', (t) => {
     t.notThrows(() => new SpawnPatternModel(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture, airportControllerFixture));
-    // t.notThrows(() => new SpawnPatternModel(ARRIVAL_PATTERN_ROUTE_STRING_MOCK, navigationLibraryFixture, airportControllerFixture));
+    t.notThrows(() => new SpawnPatternModel(ARRIVAL_PATTERN_ROUTE_STRING_MOCK, navigationLibraryFixture, airportControllerFixture));
     t.notThrows(() => new SpawnPatternModel(DEPARTURE_PATTERN_MOCK, navigationLibraryFixture, airportControllerFixture));
 });
 
@@ -123,21 +123,6 @@ ava('._calculateMaximumDelayFromRate() returns a number equal to 1hr in miliseco
     t.true(result === expectedResult);
 });
 
-// this method of calculating heading and position may not be needed. see notes in actual method
-ava.skip('._calculatePositionAndHeadingForArrival() calculates aircraft heading and position when provided list a of fixes', (t) => {
-    const expedtedHeadingResult = 0.5812231343277809;
-    const expectedPositionResult = [-99.76521626690608, -148.0266530993096];
-    const model = new SpawnPatternModel(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture, airportControllerFixture);
-    // using cloneDeep here so we can set fixes for the fixture without affecting the actual fixture
-    const spawnModelFixture = _cloneDeep(spawnPatternModelArrivalFixture);
-    spawnModelFixture.fixes = ['DAG', 'MISEN', 'CLARR'];
-
-    model._calculatePositionAndHeadingForArrival(spawnModelFixture);
-
-    t.true(model.heading === expedtedHeadingResult);
-    t.true(_isEqual(model.position, expectedPositionResult));
-});
-
 ava('._calculatePositionAndHeadingForArrival() returns early when spawnPattern.category is departure', (t) => {
     const model = new SpawnPatternModel(DEPARTURE_PATTERN_MOCK, navigationLibraryFixture, airportControllerFixture);
 
@@ -149,7 +134,7 @@ ava('._calculatePositionAndHeadingForArrival() returns early when spawnPattern.c
 
 ava('._calculatePositionAndHeadingForArrival() calculates aircraft heading and position when provided a route', (t) => {
     const expedtedHeadingResult = -1.8520506712692788;
-    const expectedPositionResult = [220.0165474765974,137.76227044819646];
+    const expectedPositionResult = [220.0165474765974, 137.76227044819646];
     const model = new SpawnPatternModel(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture, airportControllerFixture);
 
     model._calculatePositionAndHeadingForArrival(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture);

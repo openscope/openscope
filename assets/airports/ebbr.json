@@ -216,7 +216,7 @@
         "destination": "EBBR",
         "origin": "",
         "category": "arrival",
-        "route": "BATTY.BR205..FLO..EBBR",
+        "route": "BATTY..BR205..FLO..EBBR",
         "altitude": [5000, 8000],
         "method": "random",
         "rate": 10,

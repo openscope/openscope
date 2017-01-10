@@ -545,12 +545,12 @@ export default class AircraftController {
      *
      * @for AircraftController
      * @method _buildAircraftProps
-     * @param spawnModel {SpawnPatternModel}
+     * @param spawnPatternModel {SpawnPatternModel}
      * @return {object}
      * @private
      */
-    _buildAircraftProps(spawnModel) {
-        const airlineId = spawnModel.getRandomAirlineForSpawn();
+    _buildAircraftProps(spawnPatternModel) {
+        const airlineId = spawnPatternModel.getRandomAirlineForSpawn();
         const { name, fleet } = airlineNameAndFleetHelper([airlineId]);
         const airlineModel = this._airlineController.findAirlineById(name);
         // TODO: impove the `airlineModel` logic here
@@ -558,23 +558,23 @@ export default class AircraftController {
         // since we already have it, it makes little sense to look for it again in the controller
         const flightNumber = this._airlineController.generateFlightNumberWithAirlineModel(airlineModel);
         const aircraftTypeDefinition = this._getRandomAircraftTypeDefinitionForAirlineId(airlineId, airlineModel);
-        const destination = this._setDestinationFromRouteOrProcedure(spawnModel);
+        const destination = this._setDestinationFromRouteOrProcedure(spawnPatternModel);
 
         return {
             destination,
             fleet,
             callsign: flightNumber,
-            category: spawnModel.category,
+            category: spawnPatternModel.category,
             airline: airlineModel.icao,
-            altitude: spawnModel.altitude,
-            speed: spawnModel.speed,
-            heading: spawnModel.heading,
-            position: spawnModel.position,
+            altitude: spawnPatternModel.altitude,
+            speed: spawnPatternModel.speed,
+            heading: spawnPatternModel.heading,
+            position: spawnPatternModel.position,
             icao: aircraftTypeDefinition.icao,
             model: aircraftTypeDefinition,
-            route: spawnModel.routeString,
+            route: spawnPatternModel.routeString,
             // TODO: this may not be needed anymore
-            waypoints: _get(spawnModel, 'fixes', [])
+            waypoints: _get(spawnPatternModel, 'waypoints', [])
         };
     }
 

@@ -66,7 +66,7 @@ export const ARRIVAL_PATTERN_ROUTE_STRING_MOCK = Object.assign(
     {},
     ARRIVAL_PATTERN_MOCK,
     {
-        route: 'BETHL..GRNPA..25R'
+        route: 'COWBY..TRALR..GRNPA..PRINO..25R'
     }
 );
 
