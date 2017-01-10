@@ -3,7 +3,7 @@ import ava from 'ava';
 import _forEach from 'lodash/forEach';
 
 import AircraftCollection from '../../src/assets/scripts/client/aircraft/AircraftCollection';
-import AircraftDefinitionModel from '../../src/assets/scripts/client/aircraft/AircraftDefinitionModel';
+import AircraftTypeDefinitionModel from '../../src/assets/scripts/client/aircraft/AircraftTypeDefinitionModel';
 import { airlineCollectionFixture } from '../fixtures/airlineFixtures';
 import { navigationLibraryFixture } from '../fixtures/navigationLibraryFixtures';
 import { AIRCRAFT_DEFINITION_LIST_MOCK } from './_mocks/aircraftMocks';
@@ -38,21 +38,21 @@ ava('does not throw when passed valid parameters', (t) => {
     t.notThrows(() => new AircraftCollection(AIRCRAFT_DEFINITION_LIST_MOCK, airlineCollectionFixture, navigationLibraryFixture));
 });
 
-ava('.findAircraftDefinitionModelByIcao() returns an AircraftDefinitionModel when provided a valid aircraft icao', (t) => {
+ava('.findAircraftTypeDefinitionModelByIcao() returns an AircraftTypeDefinitionModel when provided a valid aircraft icao', (t) => {
     const expectedResult = 'b737';
     const collection = new AircraftCollection(AIRCRAFT_DEFINITION_LIST_MOCK, airlineCollectionFixture, navigationLibraryFixture);
-    const result = collection.findAircraftDefinitionModelByIcao('b737');
+    const result = collection.findAircraftTypeDefinitionModelByIcao('b737');
 
-    t.true(result instanceof AircraftDefinitionModel);
+    t.true(result instanceof AircraftTypeDefinitionModel);
     t.true(result.icao === expectedResult);
 });
 
-ava('._buildAircraftDefinitionModelList() returns a list of AircraftDefinitionModel objects', (t) => {
+ava('._buildAircraftTypeDefinitionModelList() returns a list of AircraftTypeDefinitionModel objects', (t) => {
     const collection = new AircraftCollection(AIRCRAFT_DEFINITION_LIST_MOCK, airlineCollectionFixture, navigationLibraryFixture);
-    const results = collection._buildAircraftDefinitionModelList(AIRCRAFT_DEFINITION_LIST_MOCK);
+    const results = collection._buildAircraftTypeDefinitionModelList(AIRCRAFT_DEFINITION_LIST_MOCK);
 
     _forEach(results, (result, i) => {
-        t.true(result instanceof AircraftDefinitionModel);
+        t.true(result instanceof AircraftTypeDefinitionModel);
         t.true(result.icao === AIRCRAFT_DEFINITION_LIST_MOCK[i].icao.toLowerCase());
     });
 });

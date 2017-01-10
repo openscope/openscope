@@ -585,7 +585,7 @@ export default class AircraftController {
      * @method _getRandomAircraftTypeDefinitionForAirlineId
      * @param airlineId {string}
      * @param airlineModel {AirlineModel}
-     * @return aircraftDefinition {AircraftDefinitionModel}
+     * @return aircraftDefinition {AircraftTypeDefinitionModel}
      * @private
      */
     _getRandomAircraftTypeDefinitionForAirlineId(airlineId, airlineModel) {

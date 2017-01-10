@@ -4,7 +4,7 @@ import _isEmpty from 'lodash/isEmpty';
 import _isObject from 'lodash/isObject';
 import _map from 'lodash/map';
 import BaseCollection from '../base/BaseCollection';
-import AircraftDefinitionModel from './AircraftDefinitionModel';
+import AircraftTypeDefinitionModel from './AircraftTypeDefinitionModel';
 import { airlineNameAndFleetHelper } from '../airline/airlineHelpers';
 
 /**
@@ -13,7 +13,7 @@ import { airlineNameAndFleetHelper } from '../airline/airlineHelpers';
  * Responsible for creating new `AircraftInstanceModel` objects when a spawnInterval
  * fires its `createAircraftWithSpawnPatternModel` callback.
  *
- * This collection also keeps a list of `AircraftDefinitionModel` objects, which define each
+ * This collection also keeps a list of `AircraftTypeDefinitionModel` objects, which define each
  * aircraft type.
  *
  * @class AircraftCollection
@@ -59,16 +59,16 @@ export default class AircraftCollection extends BaseCollection {
      * @param aircraftTypeDefinitionList {array<object>}
      */
     init(aircraftTypeDefinitionList) {
-        this.definitionList = this._buildAircraftDefinitionModelList(aircraftTypeDefinitionList);
+        this.definitionList = this._buildAircraftTypeDefinitionModelList(aircraftTypeDefinitionList);
     }
 
     /**
      * @for AircraftCollection
-     * @method findAircraftDefinitionModelByIcao
+     * @method findAircraftTypeDefinitionModelByIcao
      * @param icao {string}
-     * @return {AircraftDefinitionModel}
+     * @return {AircraftTypeDefinitionModel}
      */
-    findAircraftDefinitionModelByIcao(icao) {
+    findAircraftTypeDefinitionModelByIcao(icao) {
         return _find(this.definitionList, { icao: icao });
     }
 
@@ -79,7 +79,7 @@ export default class AircraftCollection extends BaseCollection {
      * @method getAircraftDefinitionForAirlineId
      * @param airlineId {string}
      * @param airlineModel {AirlineModel}
-     * @return aircraftDefinition {AircraftDefinitionModel}
+     * @return aircraftDefinition {AircraftTypeDefinitionModel}
      */
     getAircraftDefinitionForAirlineId(airlineId, airlineModel) {
         const { airline, fleet } = airlineNameAndFleetHelper([airlineId]);
@@ -99,18 +99,18 @@ export default class AircraftCollection extends BaseCollection {
 
     /**
      * Loop through aircraft defined in the `definitionList` and create an
-     * `AircraftDefinitionModel` for each.
+     * `AircraftTypeDefinitionModel` for each.
      *
      * @for AircraftCollection
-     * @method _buildAircraftDefinitionModelList
+     * @method _buildAircraftTypeDefinitionModelList
      * @param aircraftTypeDefinitionList {array}
-     * @return definitionList {array<AircraftDefinitionModel>}
+     * @return definitionList {array<AircraftTypeDefinitionModel>}
      * @private
      */
-    _buildAircraftDefinitionModelList(aircraftTypeDefinitionList) {
+    _buildAircraftTypeDefinitionModelList(aircraftTypeDefinitionList) {
         const definitionList = _map(aircraftTypeDefinitionList, (aircraftDefinition) => {
             // this is not using a direct return simply for readability
-            return new AircraftDefinitionModel(aircraftDefinition);
+            return new AircraftTypeDefinitionModel(aircraftDefinition);
         });
 
         return definitionList;
