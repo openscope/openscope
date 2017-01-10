@@ -1300,6 +1300,7 @@ export default class Aircraft {
             this.radial += tau();
         }
 
+        //TODO: I am not sure what this has to do with aircraft Physics
         const isInsideAirspace = this.isInsideAirspace(window.airportController.airport_get());
 
         if (isInsideAirspace !== this.inside_ctr) {
