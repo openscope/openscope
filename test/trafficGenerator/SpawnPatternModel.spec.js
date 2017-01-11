@@ -1,19 +1,16 @@
-/* eslint-disable arrow-parens, max-len, import/no-extraneous-dependencies*/
 import ava from 'ava';
 import sinon from 'sinon';
-import _cloneDeep from 'lodash/cloneDeep';
 import _isEmpty from 'lodash/isEmpty';
 import _isEqual from 'lodash/isEqual';
 import _round from 'lodash/round';
 
 import SpawnPatternModel from '../../src/assets/scripts/client/trafficGenerator/SpawnPatternModel';
-import AirportController from '../../src/assets/scripts/client/airport/AirportController';
 import { airportControllerFixture } from '../fixtures/airportFixtures';
 import { navigationLibraryFixture } from '../fixtures/navigationLibraryFixtures';
-import {
-    spawnPatternModelArrivalFixture,
-    spawnPatternModelDepartureFixture
-} from '../fixtures/trafficGeneratorFixtures';
+// import {
+//     spawnPatternModelArrivalFixture,
+//     spawnPatternModelDepartureFixture
+// } from '../fixtures/trafficGeneratorFixtures';
 import {
     DEPARTURE_PATTERN_MOCK,
     ARRIVAL_PATTERN_MOCK,
@@ -55,7 +52,7 @@ ava('does not throw when called with valid parameters', (t) => {
     t.notThrows(() => new SpawnPatternModel(DEPARTURE_PATTERN_MOCK, navigationLibraryFixture, airportControllerFixture));
 });
 
-ava('#altitude returns a random altitude rounded to the nearest 1,000ft', (t) => {
+ava('altitude returns a random altitude rounded to the nearest 1,000ft', (t) => {
     const model = new SpawnPatternModel(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture, airportControllerFixture);
     const result = model.altitude;
     const expectedResult = _round(result, -3);
@@ -63,7 +60,28 @@ ava('#altitude returns a random altitude rounded to the nearest 1,000ft', (t) =>
     t.true(_isEqual(result, expectedResult));
 });
 
-ava('.getNextDelayValue() returns a random number between #minimumDelay and #maximumDelay', (t) => {
+ava('.cycleStart() returns early if cycleStartTime does not equal -1', (t) => {
+    const cycleStartTimeMock = 42;
+    const model = new SpawnPatternModel(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture, airportControllerFixture);
+    model.cycleStartTime = cycleStartTimeMock;
+
+    model.cycleStart(33);
+
+    t.true(model.cycleStartTime === cycleStartTimeMock);
+});
+
+ava('.cycleStart() sets cycleStartTime with a startTime + offset', (t) => {
+    const cycleStartTimeMock = 42;
+    const model = new SpawnPatternModel(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture, airportControllerFixture);
+    model.offset = 0;
+    model.cycleStartTime = -1;
+
+    model.cycleStart(cycleStartTimeMock);
+
+    t.true(model.cycleStartTime === cycleStartTimeMock);
+});
+
+ava('.getNextDelayValue() returns a random number between minimumDelay and maximumDelay', (t) => {
     const model = new SpawnPatternModel(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture, airportControllerFixture);
     model._minimumDelay = 0;
     model._maximumDelay = 3;
@@ -71,6 +89,47 @@ ava('.getNextDelayValue() returns a random number between #minimumDelay and #max
     const result = model.getNextDelayValue();
 
     t.true(typeof result === 'number');
+});
+
+ava('.getNextDelayValue() calls ._calculateRandomDelayPeriod() if SPAWN_METHOD.RANDOM', (t) => {
+    const model = new SpawnPatternModel(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture, airportControllerFixture);
+    const _calculateRandomDelayPeriodSpy = sinon.spy(model, '_calculateRandomDelayPeriod');
+    model.method = 'random';
+
+    model.getNextDelayValue();
+
+    t.true(_calculateRandomDelayPeriodSpy.calledOnce);
+});
+
+ava('.getNextDelayValue() calls ._calculateNextCyclicDelayPeriod() if SPAWN_METHOD.CYCLIC', (t) => {
+    const gameTimeMock = 42;
+    const model = new SpawnPatternModel(ARRIVAL_PATTERN_CYCLIC_MOCK, navigationLibraryFixture, airportControllerFixture);
+    const _calculateNextCyclicDelayPeriodSpy = sinon.spy(model, '_calculateNextCyclicDelayPeriod');
+
+    model.getNextDelayValue(gameTimeMock);
+
+    t.true(_calculateNextCyclicDelayPeriodSpy.calledWithExactly(gameTimeMock));
+});
+
+ava('.getNextDelayValue() calls ._calculateNextSurgeDelayPeriod() if SPAWN_METHOD.SURGE', (t) => {
+    const gameTimeMock = 42;
+    const model = new SpawnPatternModel(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture, airportControllerFixture);
+    const _calculateNextSurgeDelayPeriodSpy = sinon.spy(model, '_calculateNextSurgeDelayPeriod');
+    model.method = 'surge';
+
+    model.getNextDelayValue(gameTimeMock);
+
+    t.true(_calculateNextSurgeDelayPeriodSpy.calledWithExactly(gameTimeMock));
+});
+
+ava('.getNextDelayValue() calls ._calculateNextWaveDelayPeriod() if SPAWN_METHOD.WAVE', (t) => {
+    const gameTimeMock = 42;
+    const model = new SpawnPatternModel(ARRIVAL_PATTERN_WAVE_MOCK, navigationLibraryFixture, airportControllerFixture);
+    const _calculateNextWaveDelayPeriodSpy = sinon.spy(model, '_calculateNextWaveDelayPeriod');
+
+    model.getNextDelayValue(gameTimeMock);
+
+    t.true(_calculateNextWaveDelayPeriodSpy.calledWithExactly(gameTimeMock));
 });
 
 ava('._calculateNextCyclicDelayPeriod() returns 360 when gameTime is 0', (t) => {
@@ -91,7 +150,7 @@ ava.skip('._calculateNextWaveDelayPeriod()', (t) => {
     // t.true(result === 360);
 });
 
-ava('._setMinMaxAltitude() sets #_minimumAltitude and #_maximumAltitude when an array is passed ', (t) => {
+ava('._setMinMaxAltitude() sets _minimumAltitude and _maximumAltitude when an array is passed ', (t) => {
     // creating new mock here so as not to overwrite and affect original
     const arrivalMock = Object.assign({}, ARRIVAL_PATTERN_MOCK, { altitude: 0 });
     const altitudeMock = [10000, 20000];
@@ -103,7 +162,7 @@ ava('._setMinMaxAltitude() sets #_minimumAltitude and #_maximumAltitude when an 
     t.true(model._maximumAltitude === altitudeMock[1]);
 });
 
-ava('._setMinMaxAltitude() sets #_minimumAltitude and #_maximumAltitude when a number is passed ', (t) => {
+ava('._setMinMaxAltitude() sets _minimumAltitude and _maximumAltitude when a number is passed ', (t) => {
     // creating new mock here so as not to overwrite and affect original
     const arrivalMock = Object.assign({}, ARRIVAL_PATTERN_MOCK, { altitude: 0 });
     const altitudeMock = 23000;
@@ -115,7 +174,7 @@ ava('._setMinMaxAltitude() sets #_minimumAltitude and #_maximumAltitude when a n
     t.true(model._maximumAltitude === altitudeMock);
 });
 
-ava('._calculateMaximumDelayFromRate() returns a number equal to 1hr in miliseconds / #frequency', (t) => {
+ava('._calculateMaximumDelayFromRate() returns a number equal to 1hr in miliseconds / frequency', (t) => {
     const expectedResult = 360;
     const model = new SpawnPatternModel(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture, airportControllerFixture);
     const result = model._calculateMaximumDelayFromRate();

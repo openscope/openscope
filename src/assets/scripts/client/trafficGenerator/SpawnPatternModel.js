@@ -18,6 +18,11 @@ import { FLIGHT_CATEGORY } from '../constants/aircraftConstants';
 import { TIME } from '../constants/globalConstants';
 
 // TODO: this may need to live somewhere else
+/**
+ * @property SPAWN_METHOD
+ * @type {Object}
+ * @final
+ */
 const SPAWN_METHOD = {
     RANDOM: 'random',
     CYCLIC: 'cyclic',
@@ -164,7 +169,17 @@ export default class SpawnPatternModel extends BaseModel {
          */
         this.routeString = '';
 
-
+        /**
+         * List of fixes to follow on spawn.
+         *
+         * This property will be set to an array of strings representing
+         * fixnames. this is only used when a DirectRouteString has been
+         * passed for the route parameter.
+         *
+         * @property waypoints
+         * @type {array<string>}
+         * @default []
+         */
         this.waypoints = [];
 
         /**
@@ -293,7 +308,10 @@ export default class SpawnPatternModel extends BaseModel {
         this._minimumDelay = -1;
 
         /**
-         * miles entrail during the surge [fast,slow]
+         * Miles entrail during the surge [fast, slow]
+         *
+         * Used only for `surge` spawn patterns. set as a class
+         * property to allow maintainence of state between spawns
          *
          * @property entrail
          * @type {number}
@@ -303,6 +321,9 @@ export default class SpawnPatternModel extends BaseModel {
 
         /**
          * calculated arrival rate when "in the surge"
+         *
+         * Used only for `surge` spawn patterns. set as a class
+         * property to allow maintainence of state between spawns
          *
          * @property _aircraftPerHourUp
          * @type {number}
@@ -314,6 +335,9 @@ export default class SpawnPatternModel extends BaseModel {
         /**
          * calculated arrival rate when not "in the surge"
          *
+         * Used only for `surge` spawn patterns. set as a class
+         * property to allow maintainence of state between spawns
+         *
          * @property _aircraftPerHourDown
          * @type {number}
          * @default -1
@@ -324,7 +348,10 @@ export default class SpawnPatternModel extends BaseModel {
         /**
          * Calculated time length of surge, in minutes
          *
-         * @property +uptime
+         * Used only for `surge` spawn patterns. set as a class
+         * property to allow maintainence of state between spawns
+         *
+         * @property _uptime
          * @type {number}
          * @default -1
          * @private
@@ -345,9 +372,9 @@ export default class SpawnPatternModel extends BaseModel {
     }
 
     /**
-     * A number representing the initial altitude of a spawning aircraft
+     * Initial altitude of a spawning aircraft
      *
-     * Returned number is rounded to the nearest thousandth foot
+     * value rounded to the nearest thousandth foot
      *
      * @property altitude
      * @return {number}
@@ -363,6 +390,9 @@ export default class SpawnPatternModel extends BaseModel {
      *
      * Set up the instance properties
      *
+     * This is a pooled object so we verify essential parameters
+     * here instead of the constructor
+     *
      * @for SpawnPatternModel
      * @method init
      * @param spawnPatternJson {object}
@@ -370,7 +400,6 @@ export default class SpawnPatternModel extends BaseModel {
      * @param airportController {AirportController}
      */
     init(spawnPatternJson, navigationLibrary, airportController) {
-        // This is a pooled object, so we still want internal properties to initialize first before returning.
         if (!_isObject(spawnPatternJson) || _isEmpty(spawnPatternJson)) {
             return;
         }
