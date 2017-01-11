@@ -1250,9 +1250,9 @@ export default class Aircraft {
         const scaleSpeed = this.speed * 0.000514444 * window.gameController.game_delta(); // knots to m/s
 
         if (window.gameController.game.option.get('simplifySpeeds') === 'no') {
-            this.updatecGroundSpeedPhysics(scaleSpeed);
+            this.updateGroundSpeedPhysics(scaleSpeed);
         } else {
-            this.updatecSimpleGroundSpeedPhysics(scaleSpeed);
+            this.updateSimpleGroundSpeedPhysics(scaleSpeed);
         }
 
         this.distance = vlen(this.position);
@@ -1411,7 +1411,7 @@ export default class Aircraft {
      * @method updateVectorPhysics
      * @param scaleSpeed
      */
-    updatecGroundSpeedPhysics(scaleSpeed) {
+    updateGroundSpeedPhysics(scaleSpeed) {
         // TODO: this should be abstracted to a helper function
         // Calculate the true air speed as indicated airspeed * 1.6% per 1000'
         const trueAirSpeed = scaleSpeed * (1 + this.altitude * 0.000016);
@@ -1452,10 +1452,10 @@ export default class Aircraft {
     /**
      * This calculates the simplify ground speed
      * @for AircraftInstanceModel
-     * @method updatecSimpleGroundSpeedPhysics
+     * @method updateSimpleGroundSpeedPhysics
      * @param scaleSpeed
      */
-    updatecSimpleGroundSpeedPhysics(scaleSpeed) {
+    updateSimpleGroundSpeedPhysics(scaleSpeed) {
         const angle = this.heading;
 
         this.ds = scaleSpeed;
