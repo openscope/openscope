@@ -108,11 +108,11 @@ export default class AirlineModel extends BaseModel {
         /**
          * List of all flight numbers in use in the app
          *
-         * @property flightNumbersInUse
+         * @property activeFlightNumbers
          * @type {array}
          * @default []
          */
-        this.flightNumbersInUse = [];
+        this.activeFlightNumbers = [];
 
         this.init(airlineDefinition);
     }
@@ -136,7 +136,7 @@ export default class AirlineModel extends BaseModel {
     }
 
     /**
-     * List of all `flightNumbersInUse` by this airline
+     * List of all `activeFlightNumbers` by this airline
      *
      * Used when generating new `flightNumbers` to verify a new
      * number isn't already in use
@@ -145,7 +145,7 @@ export default class AirlineModel extends BaseModel {
      * @return {array<string>}
      */
     get flightNumbers() {
-        return this.flightNumbersInUse;
+        return this.activeFlightNumbers;
     }
 
     /**
@@ -168,7 +168,7 @@ export default class AirlineModel extends BaseModel {
     }
 
     /**
-     * Remove a given flight number from the `flightNumbersInUse` list
+     * Remove a given flight number from the `activeFlightNumbers` list
      *
      * @for AirlineModel
      * @method removeFlightNumber
@@ -179,7 +179,7 @@ export default class AirlineModel extends BaseModel {
     }
 
     /**
-     * Resets the current list of `flightNumbersInUse`.
+     * Resets the current list of `activeFlightNumbers`.
      *
      * This can be used when changing airports and all existing
      * aircraft are removed.
@@ -188,7 +188,7 @@ export default class AirlineModel extends BaseModel {
      * @method reset
      */
     reset() {
-        this.flightNumbersInUse = [];
+        this.activeFlightNumbers = [];
     }
 
     /**
@@ -243,6 +243,18 @@ export default class AirlineModel extends BaseModel {
         return flightNumber;
     }
 
+    // TODO: need better name
+    /**
+     * Add a given `flightNumber` to the `activeFlightNumbers` list.
+     *
+     * @for AirlineModel
+     * @method addFlightNumberToInUse
+     * @param flightNumber {string}
+     */
+    addFlightNumberToInUse(flightNumber) {
+        this.activeFlightNumbers.push(flightNumber);
+    }
+
     /**
      * Returns a random aircraft type from any fleet that belongs to this airline
      *
@@ -286,15 +298,6 @@ export default class AirlineModel extends BaseModel {
      *
      *
      */
-    addFlightNumberToInUse(flightNumber) {
-        this.flightNumbersInUse.push(flightNumber);
-    }
-
-    // TODO: need better name
-    /**
-     *
-     *
-     */
     _removeFlightNumberFromUse(flightNumber) {
         if (!this._hasFlightNumber(flightNumber)) {
             // TODO: check that the number is there first
@@ -302,7 +305,7 @@ export default class AirlineModel extends BaseModel {
             return;
         }
 
-        this.flightNumbersInUse = _without(this.flightNumbersInUse, flightNumber);
+        this.activeFlightNumbers = _without(this.activeFlightNumbers, flightNumber);
     }
 
     /**
@@ -329,11 +332,12 @@ export default class AirlineModel extends BaseModel {
     _hasFlightNumber(flightNumber) {
         const invalidIndex = -1;
 
-        return this.flightNumbersInUse.indexOf(flightNumber) !== invalidIndex;
+        return this.activeFlightNumbers.indexOf(flightNumber) !== invalidIndex;
     }
 
     /**
-     * Loop through each aircraft in each fleet defined in the airline and make sure it is defined in lowercase
+     * Loop through each aircraft in each fleet defined in the airline and make sure it
+     * is defined in lowercase to ease string matching
      *
      * @for AirlineCollection
      * @method _transformFleetNamesToLowerCase

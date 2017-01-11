@@ -20,8 +20,8 @@ ava('does not throw when called with valid data', (t) => {
 ava('#flightNumbers returns a list of flightNumbers from all AirlineModels in the collection', (t) => {
     const expectedResult = ['123', '321', '234', '432'];
     const collection = new AirlineCollection(AIRLINE_DEFINITION_LIST_MOCK);
-    collection._items[0].flightNumbersInUse = ['123', '321'];
-    collection._items[1].flightNumbersInUse = ['234', '432'];
+    collection._items[0].activeFlightNumbers = ['123', '321'];
+    collection._items[1].activeFlightNumbers = ['234', '432'];
 
     t.true(_isEqual(collection.flightNumbers, expectedResult));
 });

@@ -34,7 +34,7 @@ export default class AirlineCollection extends BaseCollection {
     }
 
     /**
-     * List of all `flightNumbersInUse`
+     * List of all `activeFlightNumbers`
      *
      * Used when generating new flightNumbers to verify a new
      * number isn't already in use

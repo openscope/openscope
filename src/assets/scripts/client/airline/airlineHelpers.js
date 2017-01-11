@@ -95,6 +95,8 @@ export const airlineNameAndFleetHelper = (airline) => {
     return _extractNameAndFleetFromCurrentAirline(airline[FIRST_INDEX], airlineNameAndFleet);
 };
 
+
+// @DEPRECATED
 /**
  * Accepts a list of airlines, as defined in an airport json file from the `departures` and `arrivals` sections,
  * and returns a consistent object containing an airline name and fleet classification.
