@@ -1198,13 +1198,47 @@ export default class Aircraft {
 
     /**
      * This will display a waring and record an illegal approach event
-     * @for warnInterceptAngle
-     * @method updatePhysics
+     * @for AircraftInstanceModel
+     * @method warnInterceptAngle
      */
     warnInterceptAngle() {
         const isWarning = true;
         window.uiController.ui_log(`${this.getCallsign()} approach course intercept angle was greater than 30 degrees`, isWarning);
         window.gameController.events_recordNew(GAME_EVENTS.ILLEGAL_APPROACH_CLEARANCE);
+    }
+
+    /**
+     * This will display update the fix for the aircraft
+     * @for AircraftInstanceModel
+     * @method updateFixTarget
+     */
+    updateFixTarget() {
+        const fix = this.fms.currentWaypoint.location;
+        if (!fix) {
+            console.error(`${this.getCallsign()} using "fix" navmode, but no fix location!`);
+            console.log(this.fms);
+            console.log(this.fms.currentWaypoint);
+        }
+
+        const vector_to_fix = vsub(this.position, fix);
+        const distance_to_fix = distance2d(this.position, fix);
+
+        if ((distance_to_fix < 1) ||
+            ((distance_to_fix < 10) &&
+            (distance_to_fix < window.aircraftController.aircraft_turn_initiation_distance(this, fix)))
+        ) {
+            // if there are more waypoints available
+            if (!this.fms.atLastWaypoint()) {
+                this.fms.nextWaypoint();
+            } else {
+                this.cancelFix();
+            }
+
+            this.updateStrip();
+        } else {
+            this.target.heading = vradial(vector_to_fix) - Math.PI;
+            this.target.turn = null;
+        }
     }
 
     // TODO: this method needs a lot of love. its much too long with waaay too many nested if/else ifs.
