@@ -427,12 +427,12 @@ export default class SpawnPatternModel extends BaseModel {
         this._maximumDelay = this._calculateMaximumDelayFromRate();
         this.airlines = this._assembleAirlineNamesAndFrequencyForSpawn(spawnPatternJson.airlines);
         this._weightedAirlineList = this._buildWeightedAirlineList();
+        this.preSpawnAircraftList = this._buildPreSpawnAircraft(spawnPatternJson, navigationLibrary, airportController);
 
         this._calculateSurgePatternInitialDelayValues(spawnPatternJson);
         this._setCyclePeriodAndOffset(spawnPatternJson);
         this._calculatePositionAndHeadingForArrival(spawnPatternJson, navigationLibrary);
         this._setMinMaxAltitude(spawnPatternJson.altitude);
-        this._buildPreSpawnAircraft(spawnPatternJson, navigationLibrary, airportController);
     }
 
     /**
@@ -810,7 +810,7 @@ export default class SpawnPatternModel extends BaseModel {
      *
      * The result is used internally to build the `weightedAirlineList`.
      *
-     * In the future the assebmled object could, itself, be a defined model object
+     * In the future the assembled object could, itself, be a defined model object
      *
      * @for SpawnPatternModel
      * @method _assembleAirlineNamesAndFrequencyForSpawn
@@ -862,14 +862,21 @@ export default class SpawnPatternModel extends BaseModel {
      */
     _buildPreSpawnAircraft(spawnPatternJson, navigationLibrary, airportController) {
         if (this._isDeparture()) {
-            return;
+            // FIXME: this may be dead, please remove if it is
+            const preSpawnDepartureAircraft = [{
+                type: 'departure'
+            }];
+
+            return preSpawnDepartureAircraft;
         }
 
-        this.preSpawnAircraftList = buildPreSpawnAircraft(
+        const preSpawnArrivalAircraftList = buildPreSpawnAircraft(
             spawnPatternJson,
             navigationLibrary,
             airportController.airport.current
         );
+
+        return preSpawnArrivalAircraftList;
     }
 
     /**

@@ -164,9 +164,9 @@ export const _preSpawn = (spawnPatternJson, navigationLibrary, airport) => {
  *
  * Aircraft spawn at the first point defined in the `arrivals` entry of the airport json file.
  * When that spawn point is very far from the airspace boundary, it obviously takes quite a
- * while for them to reach the airspace. This function spawns (all at once) arrivals along
- * the route, between the spawn point and the airspace boundary, in order to
- * ensure the player is not kept waiting for their first arrival aircraft.
+ * while for them to reach the airspace. This function spawns arrivals along the route, between
+ * the spawn point and the airspace boundary, in order to ensure the player is not kept waiting
+ * for their first arrival aircraft.
  *
  * @function preSpawn
  * @param spawnPatternJson

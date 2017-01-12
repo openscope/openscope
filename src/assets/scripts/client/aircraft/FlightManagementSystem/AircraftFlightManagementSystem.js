@@ -147,9 +147,29 @@ export default class AircraftFlightManagementSystem {
     /**
      *
      *
+     * @for AircraftFlightManagementSystem
+     * @method findWaypointModelsForSid
+     * @param id {string}
+     * @param runway {string}
+     * @param exit {string}
+     * @return {array<StandardRouteWaypointModel>}
      */
-    findWaypointModelsForStar(procedure, entry, rwy) {
-        return this._navigationLibrary.findWaypointModelsForStar(procedure, entry, rwy);
+    findWaypointModelsForSid(id, runway, exit) {
+        return this._navigationLibrary.findWaypointModelsForSid(id, runway, exit);
+    }
+
+    /**
+     *
+     *
+     * @for AircraftFlightManagementSystem
+     * @method findWaypointModelsForSid
+     * @param procedure {string}
+     * * @param entry {string}
+     * @param runway {string}
+     * @return {array<StandardRouteWaypointModel>}
+     */
+    findWaypointModelsForStar(procedure, entry, runway) {
+        return this._navigationLibrary.findWaypointModelsForStar(procedure, entry, runway);
     }
 
     /** ***************** FMS FLIGHTPLAN CONTROL FUNCTIONS *******************/

@@ -174,7 +174,7 @@ export default class Leg {
         }
 
         const airport = window.airportController.airport_get(this.route.entry);
-        const waypointsForSid = this._navigationLibrary.sidCollection.findFixModelsForRouteByEntryAndExit(
+        const waypointsForSid = fms.findWaypointModelsForSid(
             this.route.procedure,
             rwy,
             this.route.exit

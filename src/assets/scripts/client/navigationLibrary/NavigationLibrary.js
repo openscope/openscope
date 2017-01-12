@@ -104,23 +104,46 @@ export default class NavigationLibrary {
         this._starCollection = null;
     }
 
-    hasStarRoute(routeName) {
-        return this._starCollection.hasRoute(routeName);
-    }
-
-    hasSidRoute(routeName) {
-        return this._sidCollection.hasRoute(routeName);
-    }
-
-    findStarRouteByIcao(icao) {
-        this._starCollection.findRouteByIcao(icao);
-    }
-
-    findSidRouteByIcao(icao) {
-        this._sidCollection.findRouteByIcao(icao);
+    /**
+     * Fascade Method
+     *
+     * @for NavigationLibrary
+     * @method findFixByName
+     * @param fixName {string}
+     * @return {FixModel|undefined}
+     */
+    findFixByName(fixName) {
+        return FixCollection.findFixByName(fixName);
     }
 
     /**
+     * Fascade Method
+     *
+     * @for NavigationLibrary
+     * @Method getFixPositionCoordinates
+     * @param fixName {string}
+     * @return {array<number>}
+     */
+    getFixPositionCoordinates(fixName) {
+        return FixCollection.getFixPositionCoordinates(fixName);
+    }
+
+    /**
+     *
+     *
+     * @for NavigationLibrary
+     * @method findWaypointModelsForSid
+     * @param id {string}
+     * @param runway {string}
+     * @param exit {string}
+     * @return {array<StandardWaypointModel>}
+     */
+    findWaypointModelsForSid(id, runway, exit) {
+        return this._sidCollection.findFixModelsForRouteByEntryAndExit(id, runway, exit);
+    }
+
+    /**
+     *
      *
      * @for NavigationLibrary
      * @method findWaypointModelsForStar
@@ -137,25 +160,11 @@ export default class NavigationLibrary {
     /**
      * Fascade Method
      *
-     *
-     */
-    findFixByName(fixName) {
-        return FixCollection.findFixByName(fixName);
-    }
-
-    /**
-     * Fascade Method
-     *
-     *
-     */
-    getFixPositionCoordinates(fixName) {
-        return FixCollection.getFixPositionCoordinates(fixName);
-    }
-
-    /**
-     * Fascade Method
-     *
-     *
+     * @for NavigationLibrary
+     * @method findEntryAndBodyFixesForRoute
+     * @param routeName {string}
+     * @param entryFixName {string}
+     * @return {array<StandardRouteWaypointModel>}
      */
     findEntryAndBodyFixesForRoute(routeName, entryFixName) {
         return this._starCollection.findEntryAndBodyFixesForRoute(routeName, entryFixName);
