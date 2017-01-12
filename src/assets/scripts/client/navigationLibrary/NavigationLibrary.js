@@ -46,6 +46,15 @@ export default class NavigationLibrary {
 
     /**
      *
+     * @property realFixes
+     * @return {array<FixModel>}
+     */
+    get realFixes() {
+        return FixCollection.findRealFixes();
+    }
+
+    /**
+     *
      * @property sidLines
      * @return
      */

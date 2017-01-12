@@ -10,7 +10,6 @@ import AirspaceModel from './AirspaceModel';
 import PositionModel from '../base/PositionModel';
 import RunwayModel from './RunwayModel';
 import FixCollection from '../navigationLibrary/Fix/FixCollection';
-// import StandardRouteCollection from '../navigationLibrary/StandardRoute/StandardRouteCollection';
 import { degreesToRadians, parseElevation } from '../utilities/unitConverters';
 import { round, abs, sin, extrapolate_range_clamp } from '../math/core';
 import { angle_offset } from '../math/circle';
@@ -115,7 +114,7 @@ export default class AirportModel {
      * @return {array<FixModel>}
      */
     get real_fixes() {
-        return FixCollection.findRealFixes();
+        return this._navigationLibrary.realFixes;
     }
 
     /**
@@ -164,7 +163,6 @@ export default class AirportModel {
         this.rr_center = _get(data, 'rr_center');
 
         this.fixes = _get(data, 'fixes', {});
-        // FixCollection.addItems(this.fixes, this.position);
 
         this.sidCollection = this._navigationLibrary.sidCollection; // new StandardRouteCollection(data.sids);
         this.starCollection = this._navigationLibrary.starCollection; // new StandardRouteCollection(data.stars);
@@ -422,11 +420,6 @@ export default class AirportModel {
         window.gameController.game_reset_score_and_events();
 
         this.start = window.gameController.game_time();
-
-        // when the parse method is run, this method also runs. however, when an airport is being re-loaded,
-        // only this method runs. this doesnt belong here but needs to be here so the fixes get populated correctly.
-        // FIXME: make FixCollection a instance class ainstead of a static class
-        // FixCollection.addItems(this.fixes, this.position);
 
         // this.addAircraft();
         this.updateRun(true);
@@ -696,6 +689,7 @@ export default class AirportModel {
         return _get(this, 'restricted_areas', null);
     }
 
+    // @DEPRECATED
     /**
      * Get the position of a FixModel
      *
@@ -705,6 +699,7 @@ export default class AirportModel {
      * @return {array}
      */
     getFixPosition(fixName) {
+        console.error('DEPRECATED');
         // TODO: if possible, replace with FoxCollection.getFixPositionCoordinates
         const fixModel = FixCollection.findFixByName(fixName);
 

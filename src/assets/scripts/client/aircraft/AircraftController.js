@@ -8,7 +8,6 @@ import _without from 'lodash/without';
 import AircraftCollection from './AircraftCollection';
 import AircraftInstanceModel from './AircraftInstanceModel';
 import AircraftConflict from './AircraftConflict';
-import AircraftModel from './AircraftModel';
 import RouteModel from '../navigationLibrary/Route/RouteModel';
 import { airlineNameAndFleetHelper } from '../airline/airlineHelpers';
 import { speech_say } from '../speech';
@@ -417,46 +416,6 @@ export default class AircraftController {
 
         return null;
     }
-
-    // /**
-    //  * @DEPRECATED
-    //  * @for AircraftController
-    //  * @method aircraft_get_eid_by_callsign
-    //  * @param callsign {string}
-    //  */
-    // aircraft_get_eid_by_callsign(callsign) {
-    //     console.error('.aircraft_get_eid_by_callsign() will be deprecated in the next release');
-    //     for (let i = 0; i < this.aircraft.list.length; i++) {
-    //         const aircraft = this.aircraft.list[i];
-    //
-    //         if (aircraft.callsign === callsign.toLowerCase()) {
-    //             return aircraft.eid;
-    //         }
-    //     }
-    //
-    //     return null;
-    // }
-
-
-    // /**
-    //  * @for AircraftController
-    //  * @method aircraft_model_get
-    //  * @param icao {string}
-    //  */
-    // aircraft_model_get(icao) {
-    //     console.error('DEPRECATED');
-    //
-    //     if (!(this.aircraft.models[icao])) {
-    //         const model = new AircraftModel({
-    //             icao,
-    //             url: `assets/aircraft/${icao}.json`
-    //         });
-    //
-    //         this.aircraft.models[icao] = model;
-    //     }
-    //
-    //     return this.aircraft.models[icao];
-    // }
 
     /**
      * Remove the specified aircraft from `AircraftController.aircraft`
