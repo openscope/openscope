@@ -2,8 +2,11 @@ import _forEach from 'lodash/forEach';
 import SpawnPatternCollection from './SpawnPatternCollection';
 
 /**
- * Utility class used to create a game_timer for every item in the `SpawnPatternCollection` and provide
- * methods for re-creating a timer on timer expiration.
+ * Used to create a game_timer for a `SpawnPatternModel` and provide
+ * methods for re-creating a new timer on timer expiration.
+ *
+ * This is designed to be a stateless class. We store a referernce to the
+ * `gameController` only so we have easy access to the timer functions.
  *
  * @class SpawnScheduler
  */
