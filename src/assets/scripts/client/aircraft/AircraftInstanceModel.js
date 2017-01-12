@@ -1011,13 +1011,9 @@ export default class Aircraft {
                         // TODO: Abstraction on the below, to remove duplicate code
                         // Intercept Angle
                         if (!assignedHdg && courseDifference > maxInterceptAngle) { // intercept via fixes
-                            const isWarning = true;
-                            window.uiController.ui_log(`${this.getCallsign()} approach course intercept angle was greater than 30 degrees`, isWarning);
-                            window.gameController.events_recordNew(GAME_EVENTS.ILLEGAL_APPROACH_CLEARANCE);
+                            this.warnInterceptAngle();
                         } else if (interceptAngle > maxInterceptAngle) {    // intercept via vectors
-                            const isWarning = true;
-                            window.uiController.ui_log(`${this.getCallsign()} approach course intercept angle was greater than 30 degrees`, isWarning);
-                            window.gameController.events_recordNew(GAME_EVENTS.ILLEGAL_APPROACH_CLEARANCE);
+                            this.warnInterceptAngle();
                         }
 
                         // Glideslope intercept
@@ -1199,6 +1195,17 @@ export default class Aircraft {
                 this.target.speed = Math.min(this.fms.currentWaypoint.speed, 250);
             }
         }
+    }
+
+    /**
+     * This will display a waring and record an illegal approach event
+     * @for warnInterceptAngle
+     * @method updatePhysics
+     */
+    warnInterceptAngle() {
+        const isWarning = true;
+        window.uiController.ui_log(`${this.getCallsign()} approach course intercept angle was greater than 30 degrees`, isWarning);
+        window.gameController.events_recordNew(GAME_EVENTS.ILLEGAL_APPROACH_CLEARANCE);
     }
 
     // TODO: this method needs a lot of love. its much too long with waaay too many nested if/else ifs.
