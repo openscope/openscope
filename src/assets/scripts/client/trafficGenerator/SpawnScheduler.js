@@ -1,5 +1,6 @@
 import _forEach from 'lodash/forEach';
 import SpawnPatternCollection from './SpawnPatternCollection';
+import { FLIGHT_CATEGORY } from '../constants/aircraftConstants';
 
 /**
  * Used to create a game_timer for a `SpawnPatternModel` and provide
@@ -41,7 +42,11 @@ export default class SpawnScheduler {
          */
         this._gameController = gameController;
 
+        // TODO: rename to createSchedulesWithTimer
         this.createSchedulesFromList(spawnPatternCollection, aircraftController);
+        // TODO: create getter on collection to get all preSpawn including departures
+        // TODO: create method `createPreSpawnDeparturesAndArrivals`
+        this.createPreSpawnDepartures(spawnPatternCollection, aircraftController);
     }
 
     /**
@@ -58,10 +63,37 @@ export default class SpawnScheduler {
             spawnPatternModel.cycleStart(this._gameController.game.time);
             spawnPatternModel.scheduleId = this.createNextSchedule(spawnPatternModel, aircraftController);
 
-            if (spawnPatternModel.preSpawnAircraftList.length > 0) {
+            if (
+                spawnPatternModel.category === FLIGHT_CATEGORY.ARRIVAL &&
+                spawnPatternModel.preSpawnAircraftList.length > 0
+            ) {
                 aircraftController.createPreSpawnAircraftWithSpawnPatternModel(spawnPatternModel);
             }
         });
+    }
+
+    /**
+     * Send `SpawnPatternModel` objects off the the `AircraftController` to create
+     * new aircraft onLoad or onAirportChange.
+     *
+     * When starting a session there should always be at least one departure waiting
+     * to taxi. The logic for determining _which_ patterns to use, and how many,
+     * is handled within the `SpawnPatternCollection`. Here we simply get the
+     * result and loop through each `SpawnPatternModel`.
+     *
+     * @for SpawnScheduler
+     * @method createPreSpawnDepartures
+     * @param spawnPatternCollection {SpawnPatternCollection}
+     * @param aircraftController {AircraftController}
+     */
+    createPreSpawnDepartures(spawnPatternCollection, aircraftController) {
+        const departureModelsToPreSpawn = spawnPatternCollection.getDepartureModelsForPreSpawn();
+
+        for (let i = 0; i < departureModelsToPreSpawn.length; i++) {
+            const spawnPatternModel = departureModelsToPreSpawn[i];
+
+            aircraftController.createAircraftWithSpawnPatternModel(spawnPatternModel);
+        }
     }
 
     /**
@@ -75,8 +107,6 @@ export default class SpawnScheduler {
      */
     createNextSchedule(spawnPatternModel, aircraftController) {
         const delay = spawnPatternModel.getNextDelayValue(this._gameController.game.time);
-        // TODO: remove this block before merge with develop
-        console.warn(delay, spawnPatternModel.method, spawnPatternModel.category, spawnPatternModel.routeString);
 
         return this._gameController.game_timeout(
             this.createAircraftAndRegisterNextTimeout,

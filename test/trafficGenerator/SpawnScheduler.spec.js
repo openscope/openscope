@@ -4,15 +4,6 @@ import sinon from 'sinon';
 import SpawnScheduler from '../../src/assets/scripts/client/trafficGenerator/SpawnScheduler';
 import { spawnPatternCollectionFixture } from '../fixtures/trafficGeneratorFixtures';
 
-const preSpawnAircraftListMock = [{
-    heading: -1.9988098888423487,
-    position: [
-        64.11147290170071,
-        60.13730512536465
-    ],
-    nextFix: 'LUXOR'
-}];
-
 let aircraftControllerStub;
 let gameControllerStub;
 ava.before(() => {
@@ -72,7 +63,6 @@ ava('.createSchedulesFromList() calls .createNextSchedule() for each SpawnPatter
 
 ava('.createSchedulesFromList() calls aircraftController.createPreSpawnAircraftWithSpawnPatternModel() if preSpawnAircraftList has items', (t) => {
     const scheduler = new SpawnScheduler(spawnPatternCollectionFixture, aircraftControllerStub, gameControllerStub);
-    const createNextScheduleSpy = sinon.spy(scheduler, 'createNextSchedule');
 
     scheduler.createSchedulesFromList(spawnPatternCollectionFixture, aircraftControllerStub);
 
