@@ -1008,7 +1008,6 @@ export default class Aircraft {
                     this.target.heading = angle;
                     // Check legality of localizer interception
                     if (!this.projected) {  // do not give penalty during a future projection
-                        // TODO: Abstraction on the below, to remove duplicate code
                         // Intercept Angle
                         if (!assignedHdg && courseDifference > maxInterceptAngle) { // intercept via fixes
                             this.warnInterceptAngle();
