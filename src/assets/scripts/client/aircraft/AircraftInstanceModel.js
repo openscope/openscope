@@ -1261,9 +1261,8 @@ export default class Aircraft {
      */
     runSID(data) {
         const airport = window.airportController.airport_get();
-        const { sidCollection } = airport;
         const sidId = data[0];
-        const standardRouteModel = sidCollection.findRouteByIcao(sidId);
+        const standardRouteModel = this._navigationLibrary.sidCollection.findRouteByIcao(sidId);
         const exit = airport.getSIDExitPoint(sidId);
         // TODO: perhaps this should use the `RouteModel`?
         const route = `${airport.icao}.${sidId}.${exit}`;
@@ -1277,7 +1276,7 @@ export default class Aircraft {
         }
 
         if (!this.rwy_dep) {
-            this.setDepartureRunway(window.airportController.airport_get().runway);
+            this.setDepartureRunway(airport.runway);
         }
 
         if (!standardRouteModel.hasFixName(this.rwy_dep)) {
