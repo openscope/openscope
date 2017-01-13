@@ -9,7 +9,6 @@ import _isNil from 'lodash/isNil';
 import AirspaceModel from './AirspaceModel';
 import PositionModel from '../base/PositionModel';
 import RunwayModel from './RunwayModel';
-import FixCollection from '../navigationLibrary/Fix/FixCollection';
 import { degreesToRadians, parseElevation } from '../utilities/unitConverters';
 import { round, abs, sin, extrapolate_range_clamp } from '../math/core';
 import { angle_offset } from '../math/circle';
@@ -55,9 +54,6 @@ export default class AirportModel {
 
         this.updateRun = updateRun;
         this.onAirportChange = onAirportChange;
-        // The navigation library doesnt belong here. this is a temp fix so api doesn't
-        // change too drastically too quickly
-        // TODO: move calling of sidCollection and starCollection methods elsewhere
         this._navigationLibrary = navigationLibrary;
         this.data = {};
 
@@ -76,8 +72,6 @@ export default class AirportModel {
         this.runway = null;
         // this property is kept for each airport to allow for re-hydration of the `FixCollection` on airport change
         this.fixes = {};
-        this.sidCollection = null;
-        this.starCollection = null;
         this.maps = {};
         this.airways = {};
         this.restricted_areas = [];
@@ -152,7 +146,6 @@ export default class AirportModel {
 
         this.setCurrentPosition(data.position, data.magnetic_north);
 
-
         this.radio = _get(data, 'radio', this.radio);
         this.has_terrain = _get(data, 'has_terrain', false);
         this.airways = _get(data, 'airways', {});
@@ -161,11 +154,7 @@ export default class AirportModel {
         this.initial_alt = _get(data, 'initial_alt', DEFAULT_INITIAL_ALTITUDE_FT);
         this.rr_radius_nm = _get(data, 'rr_radius_nm');
         this.rr_center = _get(data, 'rr_center');
-
         this.fixes = _get(data, 'fixes', {});
-
-        this.sidCollection = this._navigationLibrary.sidCollection; // new StandardRouteCollection(data.sids);
-        this.starCollection = this._navigationLibrary.starCollection; // new StandardRouteCollection(data.stars);
 
         this.loadTerrain();
         this.buildAirportAirspace(data.airspace);
@@ -412,7 +401,7 @@ export default class AirportModel {
         prop.canvas.draw_labels = true;
         $(SELECTORS.DOM_SELECTORS.TOGGLE_LABELS).toggle(!_isEmpty(this.maps));
         $(SELECTORS.DOM_SELECTORS.TOGGLE_RESTRICTED_AREAS).toggle((this.restricted_areas || []).length > 0);
-        $(SELECTORS.DOM_SELECTORS.TOGGLE_SIDS).toggle(!_isNil(this.sidCollection));
+        $(SELECTORS.DOM_SELECTORS.TOGGLE_SIDS).toggle(!_isNil(this._navigationLibrary.sidCollection));
 
         prop.canvas.dirty = true;
         $(SELECTORS.DOM_SELECTORS.TOGGLE_TERRAIN).toggle(!_isEmpty(this.terrain));
@@ -430,32 +419,12 @@ export default class AirportModel {
      * @method unset
      */
     unset() {
-        // for (let i = 0; i < this.arrivals.length; i++) {
-        //     this.arrivals[i].stop();
-        // }
-        //
-        // this.departures.stop();
-
-        if (this.timeout.runway) {
-            window.gameController.game_clear_timeout(this.timeout.runway);
+        if (!this.timeout.runway) {
+            return;
         }
-    }
 
-    // /**
-    //  * @for AirportModel
-    //  * @method addAircraft
-    //  */
-    // addAircraft() {
-    //     if (this.departures) {
-    //         this.departures.start();
-    //     }
-    //
-    //     if (this.arrivals) {
-    //         for (let i = 0; i < this.arrivals.length; i++) {
-    //             this.arrivals[i].start();
-    //         }
-    //     }
-    // }
+        window.gameController.game_clear_timeout(this.timeout.runway);
+    }
 
     /**
      * @for AirportModel
@@ -603,10 +572,13 @@ export default class AirportModel {
     }
 
     /**
+     * Stop the game loop and Load airport json asyncronously
+     *
      * @for AirportModel
      * @method load
+     * @param airportJson {object}
      */
-    load(airportJson) {
+    load(airportJson = null) {
         if (this.loaded) {
             return;
         }
@@ -662,8 +634,15 @@ export default class AirportModel {
     }
 
     /**
+     * Provides a way to get data into the instance with passed in
+     * data and without running `.load()`
      *
+     * Data received here is identical to data that would be received
+     * when changing airports.
      *
+     * @for AirportModel
+     * @method onLoadIntialAirportFromJson
+     * @param response {object}
      */
     onLoadIntialAirportFromJson(response) {
         // cache of airport.json data to be used to hydrate other classes on airport change
@@ -689,23 +668,6 @@ export default class AirportModel {
         return _get(this, 'restricted_areas', null);
     }
 
-    // @DEPRECATED
-    /**
-     * Get the position of a FixModel
-     *
-     * @for AirportModel
-     * @method getFixPosition
-     * @param fixName {string}
-     * @return {array}
-     */
-    getFixPosition(fixName) {
-        console.error('DEPRECATED');
-        // TODO: if possible, replace with FoxCollection.getFixPositionCoordinates
-        const fixModel = FixCollection.findFixByName(fixName);
-
-        return fixModel.position;
-    }
-
     /**
      * @for AirportModel
      * @param id {string}
@@ -717,21 +679,6 @@ export default class AirportModel {
         console.warn('getSID method should be moved from the AirportModel to the NavigationLibrary');
         return this._navigationLibrary.sidCollection.findFixesForSidByRunwayAndExit(id, exit, runway);
     }
-
-    // /**
-    //  *
-    //  * @for AirportModel
-    //  * @method findWaypointModelsForSid
-    //  * @param id {string}
-    //  * @param entry {string}
-    //  * @param runway {string}
-    //  * @param isPreSpawn {boolean} flag used to determine if distances between waypoints should be calculated
-    //  * @return {array<StandardWaypointModel>}
-    //  */
-    // findWaypointModelsForSid(id, entry, runway, isPreSpawn = false) {
-    //     console.warn('findWaypointModelsForSid method should be moved from the AirportModel to the NavigationLibrary');
-    //     return this._navigationLibrary.sidCollection.findFixModelsForRouteByEntryAndExit(id, entry, runway, isPreSpawn);
-    // }
 
     /**
      * @for AirportModel
@@ -763,21 +710,6 @@ export default class AirportModel {
         console.warn('getSTAR() method should be moved from the AirportModel to the NavigationLibrary');
         return this._navigationLibrary.starCollection.findFixesForStarByEntryAndRunway(id, entry, rwy);
     }
-
-    // /**
-    //  *
-    //  * @for AirportModel
-    //  * @method findWaypointModelsForStar
-    //  * @param id {string}
-    //  * @param entry {string}
-    //  * @param runway {string}
-    //  * @param isPreSpawn {boolean} flag used to determine if distances between waypoints should be calculated
-    //  * @return {array<StandardWaypointModel>}
-    //  */
-    // findWaypointModelsForStar(id, entry, runway, isPreSpawn = false) {
-    //     console.warn('findWaypointModelsForStar() method should be moved from the AirportModel to the NavigationLibrary');
-    //     return this._navigationLibrary.starCollection.findFixModelsForRouteByEntryAndExit(id, entry, runway, isPreSpawn);
-    // }
 
     /**
      *

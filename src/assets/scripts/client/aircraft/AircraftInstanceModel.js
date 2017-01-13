@@ -941,7 +941,7 @@ export default class Aircraft {
         }
 
         const airport = window.airportController.airport_get();
-        const { name: procedureName } = airport.sidCollection.findRouteByIcao(this.destination);
+        const { name: procedureName } = this._navigationLibrary.sidCollection.findRouteByIcao(this.destination);
         const readback = {};
 
         readback.log = `cleared to destination via the ${this.destination} departure, then as filed. Climb and ` +
@@ -966,8 +966,7 @@ export default class Aircraft {
             return;
         }
 
-        const airport = window.airportController.airport_get();
-        const { name: procedureName } = airport.sidCollection.findRouteByIcao(this.fms.currentLeg.route.procedure);
+        const { name: procedureName } = this._navigationLibrary.sidCollection.findRouteByIcao(this.fms.currentLeg.route.procedure);
         const readback = {
             log: `climb via the ${this.fms.currentLeg.route.procedure} departure`,
             say: `climb via the ${procedureName} departure`
@@ -990,8 +989,7 @@ export default class Aircraft {
             return;
         }
 
-        const airport = window.airportController.airport_get();
-        const { name: procedureName } = airport.starCollection.findRouteByIcao(this.fms.currentLeg.route.procedure);
+        const { name: procedureName } = this._navigationLibrary.starCollection.findRouteByIcao(this.fms.currentLeg.route.procedure);
         const readback = {
             log: `descend via the ${this.fms.following.star} arrival`,
             say: `descend via the ${procedureName} arrival`
@@ -1305,14 +1303,14 @@ export default class Aircraft {
     runSTAR(data) {
         const routeModel = new RouteModel(data[0]);
         const airport = window.airportController.airport_get();
-        const { name: starName } = airport.starCollection.findRouteByIcao(routeModel.procedure);
+        const { name: starName } = this._navigationLibrary.starCollection.findRouteByIcao(routeModel.procedure);
         if (this.category !== FLIGHT_CATEGORY.ARRIVAL) {
             return ['fail', 'unable to fly STAR, we are a departure!'];
         }
 
         // TODO: the data[0].length check might not be needed. this is covered via the CommandParser when
         // this method runs as the result of a command.
-        if (data[0].length === 0 || !airport.starCollection.hasRoute(routeModel.procedure)) {
+        if (data[0].length === 0 || !this._navigationLibrary.starCollectionstarCollection.hasRoute(routeModel.procedure)) {
             return ['fail', 'STAR name not understood'];
         }
 

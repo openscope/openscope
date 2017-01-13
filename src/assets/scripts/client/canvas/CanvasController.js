@@ -649,7 +649,6 @@ export default class ConvasController {
 
         // Store the count of sid text drawn for a specific transition
         const text_at_point = [];
-        const airport = window.airportController.airport_get();
 
         cc.strokeStyle = COLORS.DEPARTURE_COLOR;
         cc.fillStyle = COLORS.DEPARTURE_COLOR;
@@ -675,7 +674,9 @@ export default class ConvasController {
                         write_sid_name = false;
                     }
 
-                    let fix = airport.getFixPosition(fixList[j].replace('*', ''));
+                    // FIXME: this is duplicated in the if block above. need to consolidate
+                    const fixName = fixList[j].replace('*', '');
+                    let fix = this._navigationLibrary.getFixPositionCoordinates(fixName);
 
                     if (!fix) {
                         log(`Unable to draw line to '${fixList[j]}' because its position is not defined!`, LOG.WARNING);
