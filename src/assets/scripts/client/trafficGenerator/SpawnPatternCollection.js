@@ -88,7 +88,7 @@ export default class SpawnPatternCollection extends BaseCollection {
      */
     reset() {
         _forEach(this._items, (spawnPatternModel) => {
-            spawnPatternModel.destroy();
+            spawnPatternModel.reset();
 
             modelSourceFactory.returnModelToPool(spawnPatternModel);
         });

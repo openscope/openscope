@@ -77,12 +77,12 @@ ava('.removeFlightNumberFromList() calls .removeFlightNumber() on the found Airl
     t.true(removeFlightNumberSpy.calledWithExactly(callsignMock));
 });
 
-ava('._hasFlightNumber() returns true if a given flightNumber exists within any AirlineModel.activeFlightNumbers list', (t) => {
+ava('._isActiveFlightNumber() returns true if a given flightNumber exists within any AirlineModel.activeFlightNumbers list', (t) => {
     const invalidFlightNumberMock = 'threeve';
     const validFlightNumberMock = '42';
     const controller = new AirlineController(AIRLINE_DEFINITION_LIST_FOR_FIXTURE);
     controller.airlineCollection._items[0].activeFlightNumbers = [validFlightNumberMock];
 
-    t.false(controller._hasFlightNumber(invalidFlightNumberMock));
-    t.true(controller._hasFlightNumber(validFlightNumberMock));
+    t.false(controller._isActiveFlightNumber(invalidFlightNumberMock));
+    t.true(controller._isActiveFlightNumber(validFlightNumberMock));
 });

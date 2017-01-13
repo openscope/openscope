@@ -55,7 +55,7 @@ export default class SpawnScheduler {
      * @for SpawnScheduler
      * @method createSchedulesFromList
      * @param spawnPatternCollection {SpawnPatternCollection}
-     * @param aircraftController {AircraftCollection}
+     * @param aircraftController {AircraftTypeDefinitionCollection}
      */
     createSchedulesFromList(spawnPatternCollection, aircraftController) {
         _forEach(spawnPatternCollection.spawnPatternModels, (spawnPatternModel) => {
@@ -102,7 +102,7 @@ export default class SpawnScheduler {
      * @for SpawnScheduler
      * @method createNextSchedule
      * @param spawnPatternModel {SpawnPatternModel}
-     * @param aircraftController {AircraftCollection}
+     * @param aircraftController {AircraftTypeDefinitionCollection}
      * @return {function}
      */
     createNextSchedule(spawnPatternModel, aircraftController) {

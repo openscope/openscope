@@ -97,7 +97,7 @@ export const AIRLINE_DEFINITION_LIST_MOCK = [
     }
 ];
 
-// Data here needs to be congruent with data in `AIRCRAFT_DEFINITION_LIST_MOCK` used in `AircraftCollection.spec`
+// Data here needs to be congruent with data in `AIRCRAFT_DEFINITION_LIST_MOCK` used in `AircraftTypeDefinitionCollection.spec`
 export const AIRLINE_DEFINITION_LIST_FOR_FIXTURE = [
     {
         name: 'American Airlines',

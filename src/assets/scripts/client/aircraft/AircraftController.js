@@ -5,7 +5,7 @@ import _isArray from 'lodash/isArray';
 import _isEmpty from 'lodash/isEmpty';
 import _isObject from 'lodash/isObject';
 import _without from 'lodash/without';
-import AircraftCollection from './AircraftCollection';
+import AircraftTypeDefinitionCollection from './AircraftTypeDefinitionCollection';
 import AircraftInstanceModel from './AircraftInstanceModel';
 import AircraftConflict from './AircraftConflict';
 import RouteModel from '../navigationLibrary/Route/RouteModel';
@@ -38,7 +38,7 @@ export default class AircraftController {
     constructor(aircraftTypeDefinitionList, airlineController, navigationLibrary) {
         if (!_isArray(aircraftTypeDefinitionList) || _isEmpty(aircraftTypeDefinitionList)) {
             // eslint-disable-next-line max-len
-            throw new TypeError('Invalid aircraftTypeDefinitionList passed to AircraftCollection. Expected and array but ' +
+            throw new TypeError('Invalid aircraftTypeDefinitionList passed to AircraftTypeDefinitionCollection. Expected and array but ' +
                 `received ${typeof aircraftTypeDefinitionList}`);
         }
 
@@ -69,19 +69,19 @@ export default class AircraftController {
 
         // TODO: rename to `AircraftTypeDefinitionCollection`
         /**
-         * Reference to an `AircraftCollection` instance
+         * Reference to an `AircraftTypeDefinitionCollection` instance
          *
          * Provides definitions for all available aircraft types
          *
-         * @property aircraftCollection
-         * @type {AircraftCollection}
+         * @property AircraftTypeDefinitionCollection
+         * @type {AircraftTypeDefinitionCollection}
          */
-        this.aircraftCollection = new AircraftCollection(aircraftTypeDefinitionList);
+        this.aircraftTypeDefinitionCollection = new AircraftTypeDefinitionCollection(aircraftTypeDefinitionList);
 
         this.aircraft = aircraft;
-        // TODO: replace with aircraftCollection
+        // TODO: replace with AircraftTypeDefinitionCollection
         this.aircraft.models = {};
-        // TODO: update refs to use aircraftCollection
+        // TODO: update refs to use AircraftTypeDefinitionCollection
         this.aircraft.list = [];
 
         this.aircraft.auto = { enabled: false };
@@ -532,7 +532,7 @@ export default class AircraftController {
      * @private
      */
     _getRandomAircraftTypeDefinitionForAirlineId(airlineId, airlineModel) {
-        return this.aircraftCollection.getAircraftDefinitionForAirlineId(airlineId, airlineModel);
+        return this.aircraftTypeDefinitionCollection.getAircraftDefinitionForAirlineId(airlineId, airlineModel);
     }
 
     /**

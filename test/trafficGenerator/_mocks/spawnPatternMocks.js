@@ -95,7 +95,7 @@ export const AIRPORT_JSON_FOR_SPAWN_MOCK = {
     spawnPatterns: SPAWN_PATTERN_LIST
 };
 
-// Data here needs to be congruent with data in `airlineCollectionFixture` used in `AircraftCollection.spec`
+// Data here needs to be congruent with data in `airlineCollectionFixture` used in `AircraftTypeDefinitionCollection.spec`
 export const SPAWN_PATTERN_MODEL_FOR_ARRIVAL_FIXTURE = {
     destination: 'KLAS',
     origin: '',
@@ -111,7 +111,7 @@ export const SPAWN_PATTERN_MODEL_FOR_ARRIVAL_FIXTURE = {
     ]
 };
 
-// Data here needs to be congruent with data in `airlineCollectionFixture` used in `AircraftCollection.spec`
+// Data here needs to be congruent with data in `airlineCollectionFixture` used in `AircraftTypeDefinitionCollection.spec`
 export const SPAWN_PATTERN_MODEL_FOR_DEPARTURE_FIXTURE = {
     destination: '',
     origin: 'KLAS',

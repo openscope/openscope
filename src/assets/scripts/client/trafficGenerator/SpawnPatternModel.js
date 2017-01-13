@@ -441,9 +441,9 @@ export default class SpawnPatternModel extends BaseModel {
      * Useful when changing airports
      *
      * @for SpawnPatternModel
-     * @method destroy
+     * @method reset
      */
-    destroy() {
+    reset() {
         this.scheduleId = -1;
         this.category = '';
         this.method = '';

@@ -67,7 +67,7 @@ export default class AirlineController {
 
         const flightNumber = airlineModel.generateFlightNumber();
 
-        if (this._hasFlightNumber(flightNumber)) {
+        if (this._isActiveFlightNumber(flightNumber)) {
             this.generateFlightNumberWithAirlineModel(airlineModel);
         }
 
@@ -115,11 +115,11 @@ export default class AirlineController {
      * Used to determine if a provided `flightNumber` is already in use
      *
      * @for AirlineController
-     * @method _hasFlightNumber
+     * @method _isActiveFlightNumber
      * @param flightNumber {string}
      * @returns {boolean}
      */
-    _hasFlightNumber(flightNumber) {
+    _isActiveFlightNumber(flightNumber) {
         const invalidIndex = -1;
 
         return this.flightNumbers.indexOf(flightNumber) !== invalidIndex;

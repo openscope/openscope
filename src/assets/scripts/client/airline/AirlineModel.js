@@ -104,7 +104,6 @@ export default class AirlineModel extends BaseModel {
             default: []
         };
 
-        // TODO: need better name
         /**
          * List of all flight numbers in use in the app
          *
@@ -175,7 +174,7 @@ export default class AirlineModel extends BaseModel {
      * @param flightNumber {string}
      */
     removeFlightNumber(flightNumber) {
-        this._removeFlightNumberFromUse(flightNumber);
+        this._deactivateFlightNumber(flightNumber);
     }
 
     /**
@@ -293,13 +292,16 @@ export default class AirlineModel extends BaseModel {
         return _head(fleet[index]);
     }
 
-    // TODO: need better name
     /**
+     * Remove flight number from `activeFlightNumbers` list allowing
+     * it to be reused by another aircraft some time in the future
      *
-     *
+     * @for AirlineModel
+     * @method _deactivateFlightNumber
+     * @param flightNumber {string}
      */
-    _removeFlightNumberFromUse(flightNumber) {
-        if (!this._hasFlightNumber(flightNumber)) {
+    _deactivateFlightNumber(flightNumber) {
+        if (!this._isActiveFlightNumber(flightNumber)) {
             // TODO: check that the number is there first
             // throw or console.error?
             return;
@@ -325,11 +327,11 @@ export default class AirlineModel extends BaseModel {
      *
      *
      * @for AirlineModel
-     * @method _hasFlightNumber
-     * @param flightNumber {number|string}
+     * @method _isActiveFlightNumber
+     * @param flightNumber {string}
      * @return {boolean}
      */
-    _hasFlightNumber(flightNumber) {
+    _isActiveFlightNumber(flightNumber) {
         const invalidIndex = -1;
 
         return this.activeFlightNumbers.indexOf(flightNumber) !== invalidIndex;

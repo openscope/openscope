@@ -51,15 +51,15 @@ ava('.getRandomAircraftType() calls _getRandomAircraftTypeFromFleet when a fleet
     t.true(_getRandomAircraftTypeFromFleetSpy.calledWithExactly(fleetNameMock));
 });
 
-ava('.removeFlightNumber() calls _removeFlightNumberFromUse', (t) => {
+ava('.removeFlightNumber() calls _deactivateFlightNumber', (t) => {
     const flightNumberMock = '123';
     const model = new AirlineModel(AIRLINE_DEFINITION_MOCK);
-    const _removeFlightNumberFromUseSpy = sinon.spy(model, '_removeFlightNumberFromUse');
+    const _deactivateFlightNumberSpy = sinon.spy(model, '_deactivateFlightNumber');
     model.activeFlightNumbers.push(flightNumberMock);
 
     model.removeFlightNumber(flightNumberMock);
 
-    t.true(_removeFlightNumberFromUseSpy.calledWithExactly(flightNumberMock));
+    t.true(_deactivateFlightNumberSpy.calledWithExactly(flightNumberMock));
 });
 
 ava('.removeFlightNumber() removes a provided flightNumber from activeFlightNumbers', (t) => {
@@ -135,16 +135,16 @@ ava('._transformFleetNamesToLowerCase() transforms each type in fleet to lowerca
     t.true(model.fleets.default[0][[0]] === 'a319');
 });
 
-ava('._hasFlightNumber() returns false if a given flightNumber is not present in activeFlightNumbers', (t) => {
+ava('._isActiveFlightNumber() returns false if a given flightNumber is not present in activeFlightNumbers', (t) => {
     const model = new AirlineModel(AIRLINE_DEFINITION_SIMPLE_FLEET_MOCK);
 
-    t.false(model._hasFlightNumber('threeve'));
+    t.false(model._isActiveFlightNumber('threeve'));
 });
 
-ava('._hasFlightNumber() returns true if a given flightNumber is present in activeFlightNumbers', (t) => {
+ava('._isActiveFlightNumber() returns true if a given flightNumber is present in activeFlightNumbers', (t) => {
     const flightNumberMock = '123';
     const model = new AirlineModel(AIRLINE_DEFINITION_SIMPLE_FLEET_MOCK);
     model.activeFlightNumbers.push(flightNumberMock);
 
-    t.true(model._hasFlightNumber(flightNumberMock));
+    t.true(model._isActiveFlightNumber(flightNumberMock));
 });

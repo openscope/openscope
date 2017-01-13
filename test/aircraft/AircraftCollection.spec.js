@@ -2,26 +2,26 @@
 import ava from 'ava';
 import _forEach from 'lodash/forEach';
 
-import AircraftCollection from '../../src/assets/scripts/client/aircraft/AircraftCollection';
+import AircraftTypeDefinitionCollection from '../../src/assets/scripts/client/aircraft/AircraftTypeDefinitionCollection';
 import AircraftTypeDefinitionModel from '../../src/assets/scripts/client/aircraft/AircraftTypeDefinitionModel';
 import { AIRCRAFT_DEFINITION_LIST_MOCK } from './_mocks/aircraftMocks';
 
 ava('should throw when passed invalid parameters', (t) => {
-    t.throws(() => new AircraftCollection());
-    t.throws(() => new AircraftCollection({}));
-    t.throws(() => new AircraftCollection([]));
-    t.throws(() => new AircraftCollection(42));
-    t.throws(() => new AircraftCollection('threeve'));
-    t.throws(() => new AircraftCollection(false));
+    t.throws(() => new AircraftTypeDefinitionCollection());
+    t.throws(() => new AircraftTypeDefinitionCollection({}));
+    t.throws(() => new AircraftTypeDefinitionCollection([]));
+    t.throws(() => new AircraftTypeDefinitionCollection(42));
+    t.throws(() => new AircraftTypeDefinitionCollection('threeve'));
+    t.throws(() => new AircraftTypeDefinitionCollection(false));
 });
 
 ava('does not throw when passed valid parameters', (t) => {
-    t.notThrows(() => new AircraftCollection(AIRCRAFT_DEFINITION_LIST_MOCK));
+    t.notThrows(() => new AircraftTypeDefinitionCollection(AIRCRAFT_DEFINITION_LIST_MOCK));
 });
 
 ava('.findAircraftTypeDefinitionModelByIcao() returns an AircraftTypeDefinitionModel when provided a valid aircraft icao', (t) => {
     const expectedResult = 'b737';
-    const collection = new AircraftCollection(AIRCRAFT_DEFINITION_LIST_MOCK);
+    const collection = new AircraftTypeDefinitionCollection(AIRCRAFT_DEFINITION_LIST_MOCK);
     const result = collection.findAircraftTypeDefinitionModelByIcao('b737');
 
     t.true(result instanceof AircraftTypeDefinitionModel);
@@ -29,7 +29,7 @@ ava('.findAircraftTypeDefinitionModelByIcao() returns an AircraftTypeDefinitionM
 });
 
 ava('._buildAircraftTypeDefinitionModelList() returns a list of AircraftTypeDefinitionModel objects', (t) => {
-    const collection = new AircraftCollection(AIRCRAFT_DEFINITION_LIST_MOCK);
+    const collection = new AircraftTypeDefinitionCollection(AIRCRAFT_DEFINITION_LIST_MOCK);
     const results = collection._buildAircraftTypeDefinitionModelList(AIRCRAFT_DEFINITION_LIST_MOCK);
 
     _forEach(results, (result, i) => {

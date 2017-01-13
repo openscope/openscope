@@ -15,14 +15,14 @@ import { airlineNameAndFleetHelper } from '../airline/airlineHelpers';
  * This collection also keeps a list of `AircraftTypeDefinitionModel` objects, which define each
  * aircraft type.
  *
- * @class AircraftCollection
+ * @class AircraftTypeDefinitionCollection
  * @extends BaseCollection
  */
 /* istanbul ignore next */
-export default class AircraftCollection extends BaseCollection {
+export default class AircraftTypeDefinitionCollection extends BaseCollection {
     /**
      * @constructor
-     * @for AircraftCollection
+     * @for AircraftTypeDefinitionCollection
      * @param aircraftTypeDefinitionList {array<object>}
      */
     constructor(aircraftTypeDefinitionList) {
@@ -30,7 +30,7 @@ export default class AircraftCollection extends BaseCollection {
 
         if (!_isArray(aircraftTypeDefinitionList) || _isEmpty(aircraftTypeDefinitionList)) {
             // eslint-disable-next-line max-len
-            throw new TypeError('Invalid aircraftTypeDefinitionList passed to AircraftCollection. Expected and array but ' +
+            throw new TypeError('Invalid aircraftTypeDefinitionList passed to AircraftTypeDefinitionCollection. Expected and array but ' +
                 `received ${typeof aircraftTypeDefinitionList}`);
         }
 
@@ -51,7 +51,7 @@ export default class AircraftCollection extends BaseCollection {
      *
      * Initializes class properties.
      *
-     * @for AircraftCollection
+     * @for AircraftTypeDefinitionCollection
      * @method init
      * @param aircraftTypeDefinitionList {array<object>}
      */
@@ -60,7 +60,7 @@ export default class AircraftCollection extends BaseCollection {
     }
 
     /**
-     * @for AircraftCollection
+     * @for AircraftTypeDefinitionCollection
      * @method findAircraftTypeDefinitionModelByIcao
      * @param icao {string}
      * @return {AircraftTypeDefinitionModel}
@@ -72,7 +72,7 @@ export default class AircraftCollection extends BaseCollection {
     /**
      * Given an `airlineId`, find a random aircraft type from the airline.
      *
-     * @for AircraftCollection
+     * @for AircraftTypeDefinitionCollection
      * @method getAircraftDefinitionForAirlineId
      * @param airlineId {string}
      * @param airlineModel {AirlineModel}
@@ -97,7 +97,7 @@ export default class AircraftCollection extends BaseCollection {
      * Loop through aircraft defined in the `definitionList` and create an
      * `AircraftTypeDefinitionModel` for each.
      *
-     * @for AircraftCollection
+     * @for AircraftTypeDefinitionCollection
      * @method _buildAircraftTypeDefinitionModelList
      * @param aircraftTypeDefinitionList {array}
      * @return definitionList {array<AircraftTypeDefinitionModel>}
