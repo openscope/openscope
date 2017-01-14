@@ -31,7 +31,15 @@ ava('.airlineNameAndFleetHelper() returns an object with two keys: name and flee
 
     t.true(typeof result === 'object');
     t.true(result.name === '');
-    t.true(result.fleet === '');
+    t.true(result.fleet === 'default');
+});
+
+ava('.airlineNameAndFleetHelper() returns default as the fleet when fleet is not present in original string', t => {
+    const result = airlineNameAndFleetHelper(AIRLINE_LIST_WITHOUT_SEPERATOR_MOCK[0]);
+
+    t.true(typeof result === 'object');
+    t.true(result.name === 'aay');
+    t.true(result.fleet === 'default');
 });
 
 ava('.airlineNameAndFleetHelper() returns an object with two keys: name and fleet when a string is passed', t => {

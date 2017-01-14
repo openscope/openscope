@@ -85,13 +85,15 @@ export const airlineNameAndFleetHelper = (airline) => {
     // and update its key values as needed.
     const airlineNameAndFleet = {
         name: '',
-        fleet: ''
+        fleet: 'default'
     };
 
     if (airline.length === 0) {
         return airlineNameAndFleet;
     }
 
+    // we're being sneaky here. the `airlineNameAndFleet` object is created within this function. It then
+    // gets sent off to the next function to be modified.
     return _extractNameAndFleetFromCurrentAirline(airline[FIRST_INDEX], airlineNameAndFleet);
 };
 
