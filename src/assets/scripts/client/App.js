@@ -326,11 +326,9 @@ export default class App {
      * @for App
      * @method resize
      */
-    resize() {
+    resize = () => {
         this.canvasController.canvas_resize();
-
-        return this;
-    }
+    };
 
     /**
      * @for App

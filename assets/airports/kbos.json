@@ -596,6 +596,56 @@
         ]
       },
       {
+        "category": "departure",
+        "origin": "kbos",
+        "destination": null,
+        "method": "random",
+        "route": "KBOS.CELTK4.CELTK",
+        "rate": 5,
+        "altitude": [32000, 40000],
+        "speed": null,
+        "method": "random",
+        "airlines": [
+            ["jal/long", 2],
+            ["jbu", 35],
+            ["dlh/long", 4],
+            ["nax", 4]
+        ]
+      },
+      {
+        "category": "departure",
+        "origin": "kbos",
+        "destination": null,
+        "method": "random",
+        "route": "KBOS.SSOXS4.SSOXS",
+        "rate": 5,
+        "altitude": [32000, 40000],
+        "speed": null,
+        "method": "random",
+        "airlines": [
+            ["swa", 13],
+            ["nks", 6],
+            ["scx", 2],
+            ["swr/long", 2]
+        ]
+      },
+      {
+        "category": "departure",
+        "origin": "kbos",
+        "destination": null,
+        "method": "random",
+        "route": "KBOS.PATSS4.PATSS",
+        "rate": 5,
+        "altitude": [32000, 40000],
+        "speed": null,
+        "method": "random",
+        "airlines": [
+            ["ual", 11],
+            ["vrd", 4],
+            ["vir", 2]
+        ]
+      },
+      {
         "category": "arrival",
         "origin": null,
         "destination": "kbos",
@@ -664,27 +714,5 @@
           ["vrd", 4]
         ]
       }
-  ],
-  "departures": {
-    "airlines": [
-      ["jal/long", 2],
-      ["jbu", 35],
-      ["dlh/long", 4],
-      ["nax", 4],
-
-      ["swa", 13],
-      ["nks", 6],
-      ["scx", 2],
-      ["swr/long", 2],
-
-      ["ual", 11],
-      ["vrd", 4],
-      ["vir", 2]
-    ],
-    "destinations": [
-      "CELTK4", "HYLND4", "LBSTA4", "LOGAN9", "PATSS4", "REVSS3", "SSOXS4"
-    ],
-    "type": "random",
-    "frequency": 25
-  }
+  ]
 }
