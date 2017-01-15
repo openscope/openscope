@@ -7,10 +7,6 @@ import _round from 'lodash/round';
 import SpawnPatternModel from '../../src/assets/scripts/client/trafficGenerator/SpawnPatternModel';
 import { airportControllerFixture } from '../fixtures/airportFixtures';
 import { navigationLibraryFixture } from '../fixtures/navigationLibraryFixtures';
-// import {
-//     spawnPatternModelArrivalFixture,
-//     spawnPatternModelDepartureFixture
-// } from '../fixtures/trafficGeneratorFixtures';
 import {
     DEPARTURE_PATTERN_MOCK,
     ARRIVAL_PATTERN_MOCK,
