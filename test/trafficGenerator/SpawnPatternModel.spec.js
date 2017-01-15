@@ -170,10 +170,10 @@ ava('._setMinMaxAltitude() sets _minimumAltitude and _maximumAltitude when a num
     t.true(model._maximumAltitude === altitudeMock);
 });
 
-ava('._calculateMaximumDelayFromRate() returns a number equal to 1hr in miliseconds / frequency', (t) => {
+ava('._calculateMaximumDelayFromSpawnRate() returns a number equal to 1hr in miliseconds / frequency', (t) => {
     const expectedResult = 360;
     const model = new SpawnPatternModel(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture, airportControllerFixture);
-    const result = model._calculateMaximumDelayFromRate();
+    const result = model._calculateMaximumDelayFromSpawnRate();
 
     t.true(result === expectedResult);
 });

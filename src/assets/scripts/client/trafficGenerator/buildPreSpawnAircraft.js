@@ -21,7 +21,7 @@ import { nm } from '../utilities/unitConverters';
  * @param spawnOffsets {array}
  * @return spawnPositions {array}
  */
-export const _calculateSpawnPositions = (waypointModelList, spawnOffsets, airport) => {
+const _calculateSpawnPositions = (waypointModelList, spawnOffsets, airport) => {
     const spawnPositions = [];
 
     // for each new aircraft
@@ -60,14 +60,14 @@ export const _calculateSpawnPositions = (waypointModelList, spawnOffsets, airpor
 };
 
 /**
- * Calculate distrance(s) from center where an aircraft should exist onload or airport change
+ * Calculate distance(s) from center where an aircraft should exist onload or airport change
  *
  * @function _assembleSpawnOffsets
  * @param entrailDistance {number}
  * @param totalDistance {number}
  * @return spawnOffsets {array<number>}
  */
-export const _assembleSpawnOffsets = (entrailDistance, totalDistance = 0) => {
+const _assembleSpawnOffsets = (entrailDistance, totalDistance = 0) => {
     const spawnOffsets = [];
 
     // distance between successive arrivals in nm
@@ -81,11 +81,53 @@ export const _assembleSpawnOffsets = (entrailDistance, totalDistance = 0) => {
 /**
  *
  *
+ * @function _calculateDistancesAlongRoute
+ * @param waypointModelList {array<StandardRouteWaypointModel>}
+ * @param airport {AirportModel}
+ * @return {object}
+ */
+const _calculateDistancesAlongRoute = (waypointModelList, airport) => {
+    // find last fix along STAR that is outside of airspace, ie: next fix is within airspace
+    // distance between closest fix outside airspace and airspace border in nm
+    let distanceFromClosestFixToAirspaceBoundary = 0;
+    let totalDistance = 0;
+
+    for (let i = 0; i < waypointModelList.length; i++) {
+        const waypoint = waypointModelList[i];
+        const waypointPosition = waypoint.position;
+        let previousWaypoint = waypoint;
+        let previousPosition = waypoint.position;
+
+        if (i > 0) {
+            previousWaypoint = waypointModelList[i - 1];
+            previousPosition = previousWaypoint.position;
+        }
+
+        if (isWithinAirspace(airport, waypointPosition) && i > 0) {
+            distanceFromClosestFixToAirspaceBoundary = nm(calculateDistanceToBoundary(airport, previousPosition));
+
+            continue;
+        }
+
+        // this will only work for `StandardRouteWaypointModel` objects. _buildWaypointModelListFromRoute may also return
+        // `FixModels`, in which case this line will return `NaN`
+        totalDistance += waypoint.distanceFromPreviousWaypoint;
+    }
+
+    return {
+        totalDistance,
+        distanceFromClosestFixToAirspaceBoundary
+    };
+};
+
+/**
+ *
+ *
  * @function _buildWaypointModelListFromRoute
  * @return {array}
  * @private
  */
-export const _buildWaypointModelListFromRoute = (spawnPatternJson, navigationLibrary, airport) => {
+const _buildWaypointModelListFromRoute = (spawnPatternJson, navigationLibrary, airport) => {
     const formattedRoute = routeStringFormatHelper(spawnPatternJson.route);
 
     if (!RouteModel.isProcedureRouteString(formattedRoute[0])) {
@@ -117,38 +159,11 @@ export const _buildWaypointModelListFromRoute = (spawnPatternJson, navigationLib
  * @param airport
  * @return {array<object>}
  */
-export const _preSpawn = (spawnPatternJson, navigationLibrary, airport) => {
-    // find last fix along STAR that is outside of airspace, ie: next fix is within airspace
-    // distance between closest fix outside airspace and airspace border in nm
-    let extra = 0;
-    let totalDistance = 0;
+const _preSpawn = (spawnPatternJson, navigationLibrary, airport) => {
     // distance between each arriving aircraft, in nm
     const entrailDistance = spawnPatternJson.speed / spawnPatternJson.rate;
     const waypointModelList = _buildWaypointModelListFromRoute(spawnPatternJson, navigationLibrary, airport);
-
-
-    for (let i = 0; i < waypointModelList.length; i++) {
-        const waypoint = waypointModelList[i];
-        const waypointPosition = waypoint.position;
-        let previousWaypoint = waypoint;
-        let previousPosition = waypoint.position;
-
-        if (i > 0) {
-            previousWaypoint = waypointModelList[i - 1];
-            previousPosition = previousWaypoint.position;
-        }
-
-        if (isWithinAirspace(airport, waypointPosition) && i > 0) {
-            extra = nm(calculateDistanceToBoundary(airport, previousPosition));
-
-            continue;
-        }
-
-        // this will only work for `StandardRouteWaypointModel` objects. _buildWaypointModelListFromRoute may also return
-        // `FixModels`, in which case this line will return `NaN`
-        totalDistance += waypoint.distanceFromPreviousWaypoint;
-    }
-
+    const { totalDistance, distanceFromClosestFixToAirspaceBoundary } = _calculateDistancesAlongRoute(waypointModelList, airport);
     // calculate nubmer of offsets
     const spawnOffsets = _assembleSpawnOffsets(entrailDistance, totalDistance);
     // calculate heading, nextFix and position data to be used when creating an `AircraftInstanceModel` along a route

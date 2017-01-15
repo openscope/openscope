@@ -424,7 +424,7 @@ export default class SpawnPatternModel extends BaseModel {
         this.period = TIME.ONE_HOUR_IN_SECONDS / 2;
         this.speed = this._extractSpeedFromJson(spawnPatternJson);
         this._minimumDelay = this._calculateMinimumDelayFromSpeed();
-        this._maximumDelay = this._calculateMaximumDelayFromRate();
+        this._maximumDelay = this._calculateMaximumDelayFromSpawnRate();
         this.airlines = this._assembleAirlineNamesAndFrequencyForSpawn(spawnPatternJson.airlines);
         this._weightedAirlineList = this._buildWeightedAirlineList();
         this.preSpawnAircraftList = this._buildPreSpawnAircraft(spawnPatternJson, navigationLibrary, airportController);
@@ -534,11 +534,11 @@ export default class SpawnPatternModel extends BaseModel {
      * Calculates the upper bound of the spawn delay value.
      *
      * @for SpawnPatternModel
-     * @method _calculateMaximumDelayFromRate
+     * @method _calculateMaximumDelayFromSpawnRate
      * @return {number}
      * @private
      */
-    _calculateMaximumDelayFromRate() {
+    _calculateMaximumDelayFromSpawnRate() {
         return TIME.ONE_HOUR_IN_SECONDS / this.rate;
     }
 
@@ -561,12 +561,17 @@ export default class SpawnPatternModel extends BaseModel {
 
         this.uptime = (this.period * this.rate - this.period * this._aircraftPerHourDown) / (this._aircraftPerHourUp - this._aircraftPerHourDown);
         this.uptime -= this.uptime % (TIME.ONE_HOUR_IN_SECONDS / this._aircraftPerHourUp);
-        // FIXME: This would better belong in a helper method and should be simplified
+
+        // TODO: abstract to helpe
         // adjust to maintain correct acph rate
-        this._aircraftPerHourDown = Math.floor(
-            this.rate * this.period / TIME.ONE_HOUR_IN_SECONDS -
-            Math.round(this._aircraftPerHourUp * this.uptime / TIME.ONE_HOUR_IN_SECONDS)) *
-            TIME.ONE_HOUR_IN_SECONDS / (this.period - this.uptime);
+        const averageSpawnRate = this.rate * this.period * TIME.ONE_SECOND_IN_HOURS;
+        const elevatedSpawnRate = this._aircraftPerHourUp * this.uptime * TIME.ONE_SECOND_IN_HOURS;
+        const downTime = this.period - this.uptime;
+        const hoursSpentAtReducedSpawnRate = downTime * TIME.ONE_SECOND_IN_HOURS;
+        const reducedSpawnRate = (averageSpawnRate - elevatedSpawnRate) * hoursSpentAtReducedSpawnRate;
+
+        this._aircraftPerHourDown = reducedSpawnRate;
+
 
         // TODO: abstract this if/else block
         // Verify we can comply with the requested arrival rate based on entrail spacing
