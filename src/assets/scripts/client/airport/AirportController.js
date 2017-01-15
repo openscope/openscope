@@ -36,10 +36,24 @@ export default class AirportController {
         this.airport.airports = {};
         this.airport.current = null;
         this._airportListToLoad = airportLoadList;
+        // eslint-disable-next-line no-undef
         prop.airport = airport;
 
         return this.init()
                    .ready(initialAirportData);
+    }
+
+    /**
+     * Provides access to the current airport, if set.
+     *
+     * This should only ever return null on initial load,
+     * before the current airport has been set.
+     *
+     * @property current
+     * @return {AirportModel|null}
+     */
+    get current() {
+        return this.airport.current;
     }
 
     /**
@@ -206,5 +220,4 @@ export default class AirportController {
             runways[runwayPair][runwaySecondaryEndIndex].removeQueue(aircraft, true);
         }
     }
-
 }

@@ -1,5 +1,7 @@
 /* eslint-disable max-len */
 import $ from 'jquery';
+import _isEmpty from 'lodash/isEmpty';
+import _isNil from 'lodash/isNil';
 import ContentQueue from './contentQueue/ContentQueue';
 import LoadingView from './LoadingView';
 import AirportController from './airport/AirportController';
@@ -16,6 +18,7 @@ import CanvasController from './canvas/CanvasController';
 import GameClockView from './game/GameClockView';
 import { speech_init } from './speech';
 import { time, calculateDeltaTime } from './utilities/timeHelpers';
+import { SELECTORS } from './constants/selectors';
 import { LOG } from './constants/logLevel';
 
 window.zlsa = {};
@@ -146,6 +149,9 @@ export default class App {
      * @param aircraftTypeDefinitionList {array}  List of all Aircraft definitions
      */
     setupChildren(airportLoadList, initialAirportData, airlineList, aircraftTypeDefinitionList) {
+        // FIXME: this entire method needs to be re-written. this is a temporary implemenation used to
+        // get things working in a more cohesive manner. soon, all this instantiation should happen
+        // in a different class and the window methods should disappear.
         zlsa.atc.loadAsset = (options) => this.contentQueue.add(options);
 
         this.loadingView = new LoadingView();
@@ -172,6 +178,8 @@ export default class App {
         this.inputController = new InputController(this.$element);
         this.uiController = new UiController(this.$element);
         this.gameClockView = new GameClockView(this.$element);
+
+        this.updateViewControls();
     }
 
     /**
@@ -187,14 +195,11 @@ export default class App {
         // these instances are attached to the window here as an intermediate step away from global functions.
         // this allows for any module file to call window.{module}.{method} and will make the transition to
         // explicit instance parameters easier.
-        // window.airportController = this.airportController;
-        window.airlineController = this.airlineController;
-        // window.aircraftController = this.aircraftController;
-        // window.gameController = this.gameController;
+        // window.airlineController = this.airlineController;
         window.tutorialView = this.tutorialView;
         window.inputController = this.inputController;
         window.uiController = this.uiController;
-        window.canvasController = this.canvasController;
+        // window.canvasController = this.canvasController;
 
         log(`Version ${this.prop.version_string}`);
 
@@ -458,5 +463,30 @@ export default class App {
         this.navigationLibrary.init(nextAirportJson);
         this.spawnPatternCollection.init(nextAirportJson, this.navigationLibrary, this.airportController);
         this.spawnScheduler = new SpawnScheduler(this.spawnPatternCollection, this.aircraftController, this.gameController);
+
+        this.updateViewControls();
     };
+
+    // FIXME: this should live in a view class somewhere. temporary inclusion here to prevent tests from failing
+    // due to jQuery and because this does not belong in the `AirportModel`
+    /**
+     * Update visibility of icons at the bottom of the view that allow toggling of
+     * certain view elements.
+     *
+     * Abstrcated from `AirportModel`
+     *
+     * @for App
+     * @method updateViewControls
+     */
+    updateViewControls() {
+        const { current: airport } = this.airportController;
+
+        this.canvasController.canvas.draw_labels = true;
+        this.canvasController.canvas.dirty = true;
+
+        $(SELECTORS.DOM_SELECTORS.TOGGLE_LABELS).toggle(!_isEmpty(airport.maps));
+        $(SELECTORS.DOM_SELECTORS.TOGGLE_RESTRICTED_AREAS).toggle((airport.restricted_areas || []).length > 0);
+        $(SELECTORS.DOM_SELECTORS.TOGGLE_SIDS).toggle(!_isNil(this.navigationLibrary.sidCollection));
+        $(SELECTORS.DOM_SELECTORS.TOGGLE_TERRAIN).toggle(!_isEmpty(airport.terrain));
+    }
 }

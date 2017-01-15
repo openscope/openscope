@@ -4,8 +4,6 @@ import _forEach from 'lodash/forEach';
 import _get from 'lodash/get';
 import _head from 'lodash/head';
 import _map from 'lodash/map';
-import _isEmpty from 'lodash/isEmpty';
-import _isNil from 'lodash/isNil';
 import AirspaceModel from './AirspaceModel';
 import PositionModel from '../base/PositionModel';
 import RunwayModel from './RunwayModel';
@@ -14,7 +12,6 @@ import { round, abs, sin, extrapolate_range_clamp } from '../math/core';
 import { angle_offset } from '../math/circle';
 import { getOffset } from '../math/flightMath';
 import { vlen, vsub, vadd, vscale, raysIntersect } from '../math/vector';
-import { SELECTORS } from '../constants/selectors';
 import { STORAGE_KEY } from '../constants/storageKeys';
 
 // TODO: This function should really live in a different file and have tests.
@@ -71,7 +68,7 @@ export default class AirportModel {
         // TODO: rename to `runwayName`
         this.runway = null;
         // this property is kept for each airport to allow for re-hydration of the `FixCollection` on airport change
-        this.fixes = {};
+        // this.fixes = {};
         this.maps = {};
         this.airways = {};
         this.restricted_areas = [];
@@ -154,7 +151,7 @@ export default class AirportModel {
         this.initial_alt = _get(data, 'initial_alt', DEFAULT_INITIAL_ALTITUDE_FT);
         this.rr_radius_nm = _get(data, 'rr_radius_nm');
         this.rr_center = _get(data, 'rr_center');
-        this.fixes = _get(data, 'fixes', {});
+        // this.fixes = _get(data, 'fixes', {});
 
         this.loadTerrain();
         this.buildAirportAirspace(data.airspace);
@@ -162,8 +159,6 @@ export default class AirportModel {
         this.buildAirportMaps(data.maps);
         this.buildRestrictedAreas(data.restricted);
         this.updateCurrentWind(data.wind);
-        // this.buildAirportDepartures(data.departures);
-        // this.buildArrivals(data.arrivals);
         this.buildRunwayMetaData();
         this.updateRunway();
         this.setRunwayTimeout();
@@ -323,33 +318,6 @@ export default class AirportModel {
         this.wind.angle = degreesToRadians(currentWind.angle);
     }
 
-    // buildAirportDepartures(departures) {
-    //     if (!departures) {
-    //         return;
-    //     }
-    //
-    //     this.departures = departureFactory(this, departures);
-    // }
-
-    // /**
-    //  * @for AirportModel
-    //  * @method buildArrivals
-    //  * @param arrivals {array}
-    //  */
-    // buildArrivals(arrivals) {
-    //     if (!arrivals) {
-    //         return;
-    //     }
-    //
-    //     for (let i = 0; i < arrivals.length; i++) {
-    //         if (!_has(arrivals[i], 'type')) {
-    //             log(`${this.icao} arrival stream #${i} not given type!`, LOG.WARNING);
-    //         } else {
-    //             this.arrivals.push(arrivalFactory(this, arrivals[i]));
-    //         }
-    //     }
-    // }
-
     /**
      * @for AirportModel
      * @method buildRunwayMetaData
@@ -396,21 +364,12 @@ export default class AirportModel {
         }
 
         localStorage[STORAGE_KEY.ATC_LAST_AIRPORT] = this.icao;
-        // prop.airport.current = this;
 
-        prop.canvas.draw_labels = true;
-        $(SELECTORS.DOM_SELECTORS.TOGGLE_LABELS).toggle(!_isEmpty(this.maps));
-        $(SELECTORS.DOM_SELECTORS.TOGGLE_RESTRICTED_AREAS).toggle((this.restricted_areas || []).length > 0);
-        $(SELECTORS.DOM_SELECTORS.TOGGLE_SIDS).toggle(!_isNil(this._navigationLibrary.sidCollection));
-
-        prop.canvas.dirty = true;
-        $(SELECTORS.DOM_SELECTORS.TOGGLE_TERRAIN).toggle(!_isEmpty(this.terrain));
-
+        // TODO: this should live elsewhere and be called by a higher level controller
         window.gameController.game_reset_score_and_events();
 
         this.start = window.gameController.game_time();
 
-        // this.addAircraft();
         this.updateRun(true);
     }
 
@@ -546,6 +505,7 @@ export default class AirportModel {
         }
 
         // TODO: there is a lot of binding here, use => functions and this probably wont be an issue.
+        // eslint-disable-next-line no-undef
         zlsa.atc.loadAsset({
             url: `assets/airports/terrain/${this.icao.toLowerCase()}.geojson`,
             immediate: true
@@ -553,15 +513,12 @@ export default class AirportModel {
         // TODO: change to onSuccess and onError handler abstractions
         .done((data) => {
             try {
+                // eslint-disable-next-line no-undef
                 log('Parsing terrain');
                 this.parseTerrain(data);
             } catch (e) {
-                log(e.message);
+                throw new Error(e.message);
             }
-
-            this.loading = false;
-            this.loaded = true;
-            this.set();
         })
         .fail((jqXHR, textStatus, errorThrown) => {
             console.error(`Unable to load airport/terrain/${this.icao}: ${textStatus}`);
@@ -592,6 +549,7 @@ export default class AirportModel {
             return;
         }
 
+        // eslint-disable-next-line no-undef
         zlsa.atc.loadAsset({
             url: `assets/airports/${this.icao.toLowerCase()}.json`,
             immediate: true
@@ -607,17 +565,11 @@ export default class AirportModel {
     onLoadAirportSuccess = (response) => {
         // cache of airport.json data to be used to hydrate other classes on airport change
         this.data = response;
+        this.loading = false;
+        this.loaded = true;
 
         this.parse(response);
         this.onAirportChange(this.data);
-
-
-        if (this.has_terrain) {
-            return;
-        }
-
-        this.loading = false;
-        this.loaded = true;
         this.set();
     };
 
@@ -645,17 +597,12 @@ export default class AirportModel {
      * @param response {object}
      */
     onLoadIntialAirportFromJson(response) {
+        // TODO: this is extremely similar to `onLoadAirportSuccess()`, consolidate these two methods
         // cache of airport.json data to be used to hydrate other classes on airport change
         this.data = response;
-        // this.onAirportChange(this.data);
-        this.parse(response);
-
-        if (this.has_terrain) {
-            return;
-        }
-
         this.loading = false;
         this.loaded = true;
+        this.parse(response);
         this.set();
     }
 

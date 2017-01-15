@@ -4,7 +4,9 @@ import _noop from 'lodash/noop';
 
 global.window = {
     gameController: {
-        game_timeout: sinon.stub()
+        game_timeout: sinon.stub(),
+        game_reset_score_and_events: sinon.stub(),
+        game_time: sinon.stub()
     }
 };
 
@@ -20,4 +22,9 @@ global.zlsa = {
     }
 };
 
-global.prop = {};
+global.prop = {
+    canvas: {
+        draw_labels: true,
+        dirty: true
+    }
+};
