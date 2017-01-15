@@ -306,11 +306,12 @@ export default class UiView {
      * @param name {string}
      * @return {DOM element|string}
      */
-    buildAirportListItemTemplate(icao, difficulty, name) {
+    buildAirportListItemTemplate(icao, difficulty, name, flagIcon) {
         return `<li class="airport icao-${icao.toLowerCase()}">` +
                     `<span style="font-size: 7pt" class="difficulty">${difficulty}</span>` +
                     `<span class="icao">${icao.toUpperCase()}</span>` +
                     `<span class="name">${name}</span>` +
+                    `<span class="symbol">${flagIcon}</span>` +
                 '</li>';
     }
 
@@ -349,8 +350,9 @@ export default class UiView {
             }
 
             // TODO: move to a template const
-            const { name, icao } = airport;
-            const $airportListItem = $(this.buildAirportListItemTemplate(icao, difficulty, name));
+            const { name, icao, wip } = airport;
+            const flagIcon = (wip === true) ? '&#9983' : '';
+            const $airportListItem = $(this.buildAirportListItemTemplate(icao, difficulty, name, flagIcon));
 
             // TODO: replace with an onClick() handler
             $airportListItem.click(airport.icao.toLowerCase(), (event) => {

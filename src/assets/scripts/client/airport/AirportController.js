@@ -101,9 +101,10 @@ export default class AirportController {
      * @param icao {string}
      * @param level {string}
      * @param name {string}
+     * @param wip {boolean}
      * @return airport {AirtportInstance}
      */
-    airport_load({ icao, level, name }) {
+    airport_load({ icao, level, name, wip }) {
         icao = icao.toLowerCase();
 
         if (this.hasAirport()) {
@@ -117,7 +118,8 @@ export default class AirportController {
             {
                 icao,
                 level,
-                name
+                name,
+                wip
             },
             this.updateRun
         );

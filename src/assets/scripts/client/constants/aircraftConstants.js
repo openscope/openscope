@@ -21,12 +21,12 @@ export const FLIGHT_MODES = {
     // - 'landing' the plane is following an ILS path or is on the runway in
     //   the process of stopping. If an ILS approach or a landing is aborted,
     //   the plane reenters 'cruise' mode
-    APRON: 'apron',
-    TAXI: 'taxi',
-    WAITING: 'waiting',
-    TAKEOFF: 'takeoff',
-    CRUISE: 'cruise',
-    LANDING: 'landing'
+    APRON: 'APRON',
+    TAXI: 'TAXI',
+    WAITING: 'WAITING',
+    TAKEOFF: 'TAKEOFF',
+    CRUISE: 'CRUISE',
+    LANDING: 'LANDING'
 };
 
 /**
