@@ -489,7 +489,7 @@
         ["BOS", "GLYDE*"],
         ["BOS", "HANAA*"]
       ]
-    } 
+    }
   },
   "stars": {
     "JFUND1": {
@@ -547,7 +547,7 @@
       "body": [["RUIZE", "A230"], ["AWLIN", "A200"], ["BANKI", "A170"], ["ROBUC", "A130"], ["PROVI", "A110"], "JOODY"],
       "rwy": {
         "4R":  [["SOFEE", "A90|S220"], ["ERNEI", "A70"], ["GOSHI", "A60|S210"]],
-        "4L":  [["SOFEE", "A90|S220"], ["ERNEI", "A70"], ["GOSHI", "A60|S210"]], 
+        "4L":  [["SOFEE", "A90|S220"], ["ERNEI", "A70"], ["GOSHI", "A60|S210"]],
         "15R": [["JAYNA", "A110|S250"], ["BOXRS", "A80|S250"], ["CHERS", "A60|S220"], ["RDHOK", "A60|S210"], ["TKMAN", "A60|S210"]],
         "22R": [["KRANN", "A110|S250"], ["CRADL", "A90"], ["KLEBB", "A80|S250"], ["ETHYN", "A50|S250"], ["PTRIK", "A50|S220"], ["TAALE", "A50|S210"]],
         "22L": [["KRANN", "A110|S250"], ["CRADL", "A90"], ["KLEBB", "A80|S250"], ["ETHYN", "A50|S250"], ["PTRIK", "A50|S220"], ["TAALE", "A50|S210"]],
@@ -557,97 +557,134 @@
       }
     }
   },
+  "spawnPatterns": [
+      {
+        "category": "departure",
+        "origin": "kbos",
+        "destination": null,
+        "method": "random",
+        "route": "KBOS.BLZZR3.BLIZZR",
+        "rate": 5,
+        "altitude": [32000, 40000],
+        "speed": null,
+        "method": "random",
+        "airlines": [
+            ["ein/long", 2],
+            ["amx/long", 2],
+            ["ber/long", 1],
+            ["aca", 5],
+            ["afr/long", 2]
+        ]
+      },
+      {
+        "category": "departure",
+        "origin": "kbos",
+        "destination": null,
+        "method": "random",
+        "route": "KBOS.BRUWN4.BRUWN",
+        "rate": 5,
+        "altitude": [32000, 40000],
+        "speed": null,
+        "method": "random",
+        "airlines": [
+            ["asa", 3],
+            ["aza/long", 2],
+            ["aal", 16],
+            ["baw/long", 2],
+            ["cpa", 2],
+            ["ibe/long", 2]
+        ]
+      },
+      {
+        "category": "arrival",
+        "origin": null,
+        "destination": "kbos",
+        "method": "random",
+        "route": "PONCT.JFUND1.KBOS",
+        "rate": 10,
+        "altitude": [32000, 40000],
+        "speed": 450,
+        "airlines": [
+          ["aca", 5],
+          ["asa", 3],
+          ["aal", 16],
+          ["cpa", 2],
+          ["jal/long", 2],
+          ["jbu", 35],
+          ["swa", 13],
+          ["nks", 6],
+          ["scx", 2],
+          ["ual", 11],
+          ["vrd", 4]
+        ]
+      },
+      {
+        "category": "arrival",
+        "origin": null,
+        "destination": "kbos",
+        "method": "random",
+        "route": "AJJAY.OOSHN4.KBOS",
+        "rate": 15,
+        "offset": 30,
+        "period": 90,
+        "altitude": [24000, 30000],
+        "speed": 450,
+        "airlines":  [
+          ["ein/long", 2],
+          ["ber/long", 1],
+          ["aca", 5],
+          ["afr/long", 2],
+          ["aza/long", 2],
+          ["aal/long", 16],
+          ["baw/long", 2],
+          ["ibe/long", 2],
+          ["dlh/long", 4],
+          ["nax", 4],
+          ["ual/long", 11],
+          ["vir", 2]
+        ]
+      },
+      {
+        "category": "arrival",
+        "origin": null,
+        "destination": "kbos",
+        "method": "random",
+        "route": "MERIT.ROBUC2.KBOS",
+        "rate": 10,
+        "altitude": [37000, 41000],
+        "speed":  450,
+        "airlines": [
+          ["amx/long", 2],
+          ["aal", 16],
+          ["jbu", 35],
+          ["swa", 13],
+          ["nks", 6],
+          ["scx", 2],
+          ["ual", 11],
+          ["vrd", 4]
+        ]
+      }
+  ],
   "departures": {
     "airlines": [
-      ["ein/long", 2],
-      ["amx/long", 2],
-      ["ber/long", 1],
-      ["aca", 5],
-      ["afr/long", 2],
-      ["asa", 3],
-      ["aza/long", 2],
-      ["aal", 16],
-      ["baw/long", 2],
-      ["cpa", 2],
-      ["ibe/long", 2],
       ["jal/long", 2],
       ["jbu", 35],
       ["dlh/long", 4],
       ["nax", 4],
+
       ["swa", 13],
       ["nks", 6],
       ["scx", 2],
       ["swr/long", 2],
+
       ["ual", 11],
       ["vrd", 4],
       ["vir", 2]
     ],
     "destinations": [
-      "BLZZR3", "BRUWN4", "CELTK4", "HYLND4", "LBSTA4", "LOGAN9", "PATSS4", "REVSS3", "SSOXS4"
+      "CELTK4", "HYLND4", "LBSTA4", "LOGAN9", "PATSS4", "REVSS3", "SSOXS4"
     ],
     "type": "random",
     "frequency": 25
-  },
-  "arrivals": [
-    {
-      "type": "random",
-      "route":   "PONCT.JFUND1.KBOS",
-      "frequency": 10,
-      "altitude":  [32000, 40000],
-      "speed":    450,
-      "airlines":  [
-        ["aca", 5],
-        ["asa", 3],
-        ["aal", 16],
-        ["cpa", 2],
-        ["jal/long", 2],
-        ["jbu", 35],
-        ["swa", 13],
-        ["nks", 6],
-        ["scx", 2],
-        ["ual", 11],
-        ["vrd", 4]
-      ]
-    },
-    {
-      "type": "random",
-      "route":   "AJJAY.OOSHN4.KBOS",
-      "frequency": 15,
-      "offset": 30,
-      "period": 90,
-      "altitude":  [24000, 30000],
-      "speed":    450,
-      "airlines":  [
-        ["ein/long", 2],
-        ["ber/long", 1],
-        ["aca", 5],
-        ["afr/long", 2],
-        ["aza/long", 2],
-        ["aal/long", 16],
-        ["baw/long", 2],
-        ["ibe/long", 2],
-        ["dlh/long", 4],
-        ["nax", 4],
-        ["ual/long", 11],
-        ["vir", 2]
-      ]
-    },
-    {
-      "type": "random",
-      "route":   "MERIT.ROBUC2.KBOS",
-      "frequency": 10,
-      "altitude":  [37000, 41000],
-      "speed":    450,
-      "airlines":  [
-        ["amx/long", 2],
-        ["aal", 16],
-        ["jbu", 35],
-        ["swa", 13],
-        ["nks", 6],
-        ["scx", 2],
-        ["ual", 11],
-        ["vrd", 4]
-      ]
-    }
-  ]
+  }
 }
