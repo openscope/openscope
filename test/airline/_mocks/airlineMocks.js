@@ -81,7 +81,6 @@ export const AIRLINE_DEFINITION_LIST_MOCK = [
                 ['B752', 96],
                 ['B753', 21],
                 ['B763', 35],
-                ['B764', 16],
                 ['B772', 22],
                 ['b77l', 55],
                 ['B788', 11]
