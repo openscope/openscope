@@ -901,47 +901,81 @@
       }
     }
   },
-  "departures": {
-    "airlines": [
-      ["aal",     25],
-      ["aal/long", 8],
-      ["aca",      4],
-      ["amx",      2],
-      ["asa",      3],
-      ["asq",     10],
-      ["baw/long", 5],
-      ["cpz",     10],
-      ["dal",      8],
-      ["dlh/long", 5],
-      ["eny",     10],
-      ["etd/long", 4],
-      ["fft",      8],
-      ["flg",     10],
-      ["jal/long", 3],
-      ["jbu",      3],
-      ["nks",     15],
-      ["qfa/long", 5],
-      ["qtr/long", 4],
-      ["rpa",     10],
-      ["scx",     10],
-      ["skw",     10],
-      ["tcf",     10],
-      ["uae",      5],
-      ["ual",     15],
-      ["wja",      2]
-    ],
-    "destinations": [
-      "AKUNA6", "ALIAN2", "ARDIA6", "BLECO7", "DARTZ6", "FORCK2", "GRABE7", "HRPER3", "HUDAD2", "JASPA5", "KATZZ2", "LOWGN7", "MRSSH2", "NELYN5", "TRYTN2", "WSTEX2", "ZACHH2"
-    ],
-    "type": "random",
-    "frequency": 35
-  },
-  "arrivals": [
+  "spawnPatterns": [
+      {
+        "origin": "kdfw",
+        "destination": "",
+        "category": "departure",
+        "route": "KDFW.AKUNA6.MLC",
+        "method": "random",
+        "rate": 8.75,
+        "airlines": [
+          ["aal",     25],
+          ["aal/long", 8],
+          ["aca",      4],
+          ["amx",      2],
+          ["asa",      3],
+          ["asq",     10]
+        ]
+      },
+      {
+        "origin": "kdfw",
+        "destination": "",
+        "category": "departure",
+        "route": "KDFW.BLECO7.ZEMMA",
+        "method": "random",
+        "rate": 8.75,
+        "airlines": [
+            ["baw/long", 5],
+            ["cpz",     10],
+            ["dal",      8],
+            ["dlh/long", 5],
+            ["eny",     10],
+            ["etd/long", 4],
+            ["fft",      8],
+            ["flg",     10],
+            ["jal/long", 3]
+        ]
+      },
+      {
+        "origin": "kdfw",
+        "destination": "",
+        "category": "departure",
+        "route": "KDFW.JASPA5.WINDU",
+        "method": "random",
+        "rate": 8.75,
+        "airlines": [
+            ["jbu",      3],
+            ["nks",     15],
+            ["qfa/long", 5],
+            ["qtr/long", 4],
+            ["rpa",     10],
+            ["scx",     10]
+        ]
+      },
+      {
+        "origin": "kdfw",
+        "destination": "",
+        "category": "departure",
+        "route": "KDFW.ZACHH2.BSKAT",
+        "method": "random",
+        "rate": 8.75,
+        "airlines": [
+            ["skw",     10],
+            ["tcf",     10],
+            ["uae",      5],
+            ["ual",     15],
+            ["wja",      2]
+        ]
+      },
     {
-      "type": "random",
+      "origin": "",
+      "destination": "kdfw",
+      "category": "arrival",
+      "method": "random",
       "route":   "CRIED.BEREE1.KDFW",
-      "frequency": 19,
-      "altitude":  [30000, 40000],
+      "rate": 19,
+      "altitude":  [18000, 28000],
       "speed":    350,
       "airlines":  [
         ["aal",     25],
@@ -963,10 +997,13 @@
       ]
     },
     {
-      "type": "random",
+      "origin": "",
+      "destination": "kdfw",
+      "category": "arrival",
+      "method": "random",
       "route":   "GUTZZ.BOOVE4.KDFW",
-      "frequency": 12,
-      "altitude":  [31000, 39000],
+      "rate": 12,
+      "altitude":  [19000, 29000],
       "speed":    350,
       "airlines":  [
         ["aal",     25],
@@ -988,10 +1025,13 @@
       ]
     },
     {
-      "type": "random",
+      "origin": "",
+      "destination": "kdfw",
+      "category": "arrival",
+      "method": "random",
       "route":   "FEWWW.SEEVR3.KDFW",
-      "frequency": 17,
-      "altitude":  [32000, 38000],
+      "rate": 17,
+      "altitude":  [22000, 28000],
       "speed":    350,
       "airlines":  [
         ["aal",     25],
@@ -1018,10 +1058,13 @@
       ]
     },
     {
-      "type": "random",
+      "origin": "",
+      "destination": "kdfw",
+      "category": "arrival",
+      "method": "random",
       "route":   "TURKI.VKTRY2.KDFW",
-      "frequency": 23,
-      "altitude":  [33000, 37000],
+      "rate": 23,
+      "altitude":  [23000, 27000],
       "speed":    350,
       "airlines":  [
         ["aal",     25],
