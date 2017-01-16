@@ -127,116 +127,116 @@
   },
   "spawnPatterns": [
     {
-        "airlines": [
-            ["ual", 3],
-            ["baw", 5],
-            ["cessna", 4],
-            ["bel", 6]
-        ],
-        "destination": "",
         "origin": "EBBR",
+        "destination": "",
         "category": "departure",
         "route": "EBBR.NORTH.NORTH",
         "altitude": null,
+        "speed": null,
         "method": "random",
         "rate": 2,
-        "speed": null
-    },
-    {
         "airlines": [
             ["ual", 3],
             ["baw", 5],
             ["cessna", 4],
             ["bel", 6]
-        ],
-        "destination": "",
+        ]
+    },
+    {
         "origin": "EBBR",
+        "destination": "",
         "category": "departure",
         "route": "EBBR.EAST.EAST",
         "altitude": null,
+        "speed": null,
         "method": "random",
         "rate": 2,
-        "speed": null
-    },
-    {
         "airlines": [
             ["ual", 3],
             ["baw", 5],
             ["cessna", 4],
             ["bel", 6]
-        ],
-        "destination": "",
+        ]
+    },
+    {
         "origin": "EBBR",
+        "destination": "",
         "category": "departure",
         "route": "EBBR.SOUTH.SOUTH",
         "altitude": null,
+        "speed": null,
         "method": "random",
         "rate": 2,
-        "speed": null
-    },
-    {
         "airlines": [
             ["ual", 3],
             ["baw", 5],
             ["cessna", 4],
             ["bel", 6]
-        ],
-        "destination": "",
+        ]
+    },
+    {
         "origin": "EBBR",
+        "destination": "",
         "category": "departure",
         "route": "EBBR.WEST.WEST",
         "altitude": null,
+        "speed": null,
         "method": "random",
         "rate": 2,
-        "speed": null
+        "airlines": [
+            ["ual", 3],
+            ["baw", 5],
+            ["cessna", 4],
+            ["bel", 6]
+        ]
     },
     {
-        "airlines": [
-            ["ual", 2],
-            ["baw", 5],
-            ["fastga", 20],
-            ["bel", 7]
-        ],
-        "destination": "EBBR",
         "origin": "",
+        "destination": "EBBR",
         "category": "arrival",
         "route": "TULNI..AKOVI..EBBR",
         "altitude": [5000, 7000],
+        "speed": 250,
         "method": "random",
         "rate": 10,
-        "speed": 250
-    },
-    {
         "airlines": [
             ["ual", 2],
             ["baw", 5],
             ["fastga", 20],
             ["bel", 7]
-        ],
-        "destination": "EBBR",
+        ]
+    },
+    {
         "origin": "",
+        "destination": "EBBR",
         "category": "arrival",
         "route": "BATTY..BR205..FLO..EBBR",
         "altitude": [5000, 8000],
+        "speed": 250,
         "method": "random",
         "rate": 10,
-        "speed": 250
+        "airlines": [
+            ["ual", 2],
+            ["baw", 5],
+            ["fastga", 20],
+            ["bel", 7]
+        ]
     },
     {
+        "origin": "",
+        "destination": "EBBR",
+        "category": "arrival",
+        "route": "KOK..NIK..ANT..EBBR",
+        "altitude": [6000, 7000],
+        "speed": 250,
+        "method": "random",
+        "rate": 15,
         "airlines": [
             ["ual", 10],
             ["baw", 10],
             ["fastga", 1],
             ["bel", 12]
-        ],
-        "destination": "EBBR",
-        "origin": "",
-        "category": "arrival",
-        "route": "KOK..NIK..ANT..EBBR",
-        "altitude": [6000, 7000],
-        "method": "random",
-        "rate": 15,
-        "speed": 250
+        ]
     }
   ]
 }

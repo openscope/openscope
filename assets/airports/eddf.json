@@ -486,6 +486,14 @@
   },
   "spawnPatterns": [
       {
+          "origin": "",
+          "destination": "EDDF",
+          "category": "arrival",
+          "route": "NIVNU.UNOKO25S.EDDF",
+          "altitude": 32000,
+          "speed": 350,
+          "method": "random",
+          "rate": 13,
           "airlines": [
               ["cfg", 40],
               ["dlh", 50],
@@ -495,17 +503,17 @@
               ["klc", 3],
               ["tui", 25],
               ["sxd", 30]
-          ],
-          "destination": "EDDF",
-          "origin": "",
-          "category": "arrival",
-          "route": "NIVNU.UNOKO25S.EDDF",
-          "altitude": 32000,
-          "method": "random",
-          "rate": 13,
-          "speed": 350
+          ]
       },
       {
+          "origin": "",
+          "destination": "EDDF",
+          "category": "arrival",
+          "route": "LIPMI.ROLIS25N.EDDF",
+          "altitude": 31000,
+          "speed": 350,
+          "method": "random",
+          "rate": 13,
           "airlines": [
               ["cfg", 40],
               ["dlh", 50],
@@ -517,17 +525,17 @@
               ["ual/long", 12],
               ["aal/long", 12],
               ["aca/long", 12]
-          ],
-          "destination": "EDDF",
-          "origin": "",
-          "category": "arrival",
-          "route": "LIPMI.ROLIS25N.EDDF",
-          "altitude": 31000,
-          "method": "random",
-          "rate": 13,
-          "speed": 350
+          ]
       },
       {
+          "origin": "",
+          "destination": "EDDF",
+          "category": "arrival",
+          "route": "GAPLA.KERAX25N.EDDF",
+          "altitude": 21000,
+          "speed": 350,
+          "method": "random",
+          "rate": 13,
           "airlines": [
               ["cfg", 40],
               ["dlh", 50],
@@ -544,17 +552,17 @@
               ["sxd", 30],
               ["etd/long", 3],
               ["cca/long", 4]
-          ],
-          "destination": "EDDF",
-          "origin": "",
-          "category": "arrival",
-          "route": "GAPLA.KERAX25N.EDDF",
-          "altitude": 21000,
-          "method": "random",
-          "rate": 13,
-          "speed": 350
+          ]
       },
       {
+          "origin": "",
+          "destination": "EDDF",
+          "category": "arrival",
+          "route": "KOVAN.PSA25S.EDDF",
+          "altitude": 32000,
+          "speed": 350,
+          "method": "random",
+          "rate": 13,
           "airlines": [
               ["aua", 4],
               ["cfg", 40],
@@ -569,59 +577,17 @@
               ["tui", 25],
               ["sxd", 30],
               ["lan/long", 3]
-          ],
-          "destination": "EDDF",
-          "origin": "",
-          "category": "arrival",
-          "route": "KOVAN.PSA25S.EDDF",
-          "altitude": 32000,
-          "method": "random",
-          "rate": 13,
-          "speed": 350
+          ]
       },
       {
-          "airlines": [
-              ["aua", 4],
-              ["cfg", 40],
-              ["dlh", 50],
-              ["afl", 1],
-              ["afr", 3],
-              ["aza", 3],
-              ["baw", 5],
-              ["ber", 10],
-              ["ces", 2],
-              ["cpa", 2],
-              ["csn", 3],
-              ["dal", 8],
-              ["ein", 3],
-              ["ibe", 3],
-              ["jal", 2],
-              ["kal", 2],
-              ["klc", 3],
-              ["sas", 8],
-              ["thy", 3],
-              ["tam", 2],
-              ["swr", 3],
-              ["uae", 5],
-              ["tui", 25],
-              ["sxd", 30],
-              ["ual/long", 12],
-              ["aal/long", 12],
-              ["aca/long", 12],
-              ["lan/long", 3],
-              ["etd/long", 3],
-              ["cca/long", 4]
-          ],
-          "destination": "",
           "origin": "EDDF",
+          "destination": "",
           "category": "departure",
           "route": "EDDF.BIBTI.BIBTI",
           "altitude": null,
+          "speed": null,
           "method": "random",
           "rate": 3,
-          "speed": null
-      },
-      {
           "airlines": [
               ["aua", 4],
               ["cfg", 40],
@@ -653,17 +619,17 @@
               ["lan/long", 3],
               ["etd/long", 3],
               ["cca/long", 4]
-          ],
-          "destination": "",
+          ]
+      },
+      {
           "origin": "EDDF",
+          "destination": "",
           "category": "departure",
           "route": "EDDF.MARUN.MARUN",
           "altitude": null,
+          "speed": null,
           "method": "random",
           "rate": 3,
-          "speed": null
-      },
-      {
           "airlines": [
               ["aua", 4],
               ["cfg", 40],
@@ -695,17 +661,17 @@
               ["lan/long", 3],
               ["etd/long", 3],
               ["cca/long", 4]
-          ],
-          "destination": "",
+          ]
+      },
+      {
           "origin": "EDDF",
+          "destination": "",
           "category": "departure",
           "route": "EDDF.TOBAK.TOBAK",
           "altitude": null,
+          "speed": null,
           "method": "random",
           "rate": 3,
-          "speed": null
-      },
-      {
           "airlines": [
               ["aua", 4],
               ["cfg", 40],
@@ -737,17 +703,17 @@
               ["lan/long", 3],
               ["etd/long", 3],
               ["cca/long", 4]
-          ],
-          "destination": "",
+          ]
+      },
+      {
           "origin": "EDDF",
+          "destination": "",
           "category": "departure",
           "route": "EDDF.SOBRA.SOBRA",
           "altitude": null,
+          "speed": null,
           "method": "random",
           "rate": 3,
-          "speed": null
-      },
-      {
           "airlines": [
               ["aua", 4],
               ["cfg", 40],
@@ -779,17 +745,17 @@
               ["lan/long", 3],
               ["etd/long", 3],
               ["cca/long", 4]
-          ],
-          "destination": "",
+          ]
+      },
+      {
           "origin": "EDDF",
+          "destination": "",
           "category": "departure",
           "route": "EDDF.ANEKI.ANEKI",
           "altitude": null,
+          "speed": null,
           "method": "random",
           "rate": 3,
-          "speed": null
-      },
-      {
           "airlines": [
               ["aua", 4],
               ["cfg", 40],
@@ -821,17 +787,17 @@
               ["lan/long", 3],
               ["etd/long", 3],
               ["cca/long", 4]
-          ],
-          "destination": "",
+          ]
+      },
+      {
           "origin": "EDDF",
+          "destination": "",
           "category": "departure",
           "route": "EDDF.DKB.DKB",
           "altitude": null,
+          "speed": null,
           "method": "random",
           "rate": 3,
-          "speed": null
-      },
-      {
           "airlines": [
               ["aua", 4],
               ["cfg", 40],
@@ -863,17 +829,17 @@
               ["lan/long", 3],
               ["etd/long", 3],
               ["cca/long", 4]
-          ],
-          "destination": "",
+          ]
+      },
+      {
           "origin": "EDDF",
+          "destination": "",
           "category": "departure",
           "route": "EDDF.NOMBO.NOMBO",
           "altitude": null,
+          "speed": null,
           "method": "random",
           "rate": 3,
-          "speed": null
-      },
-      {
           "airlines": [
               ["aua", 4],
               ["cfg", 40],
@@ -905,15 +871,49 @@
               ["lan/long", 3],
               ["etd/long", 3],
               ["cca/long", 4]
-          ],
-          "destination": "",
+          ]
+      },
+      {
           "origin": "EDDF",
+          "destination": "",
           "category": "departure",
           "route": "EDDF.SULUS.SULUS",
           "altitude": null,
+          "speed": null,
           "method": "random",
           "rate": 3,
-          "speed": null
+          "airlines": [
+              ["aua", 4],
+              ["cfg", 40],
+              ["dlh", 50],
+              ["afl", 1],
+              ["afr", 3],
+              ["aza", 3],
+              ["baw", 5],
+              ["ber", 10],
+              ["ces", 2],
+              ["cpa", 2],
+              ["csn", 3],
+              ["dal", 8],
+              ["ein", 3],
+              ["ibe", 3],
+              ["jal", 2],
+              ["kal", 2],
+              ["klc", 3],
+              ["sas", 8],
+              ["thy", 3],
+              ["tam", 2],
+              ["swr", 3],
+              ["uae", 5],
+              ["tui", 25],
+              ["sxd", 30],
+              ["ual/long", 12],
+              ["aal/long", 12],
+              ["aca/long", 12],
+              ["lan/long", 3],
+              ["etd/long", 3],
+              ["cca/long", 4]
+          ]
       }
   ]
 }
