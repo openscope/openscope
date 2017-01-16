@@ -24,26 +24,31 @@ require 'json'
 # parse it into a hash
 # add them to the root key (@out_filename) in the hash
 def combine_json_files
-  # collect all the json files in the current directory
-  # take the list of json files found in the dir and combine them all
-  @json_output[@out_filename] << Dir.glob('**/*.json').select{ |name| name != "#{@out_filename}.json" }.map { |f|
-      JSON.parse File.read(f)
-  }.flatten
+  # collect all the json files in the current directory and add them all to the hash
+  Dir.glob('**/*.json').select{ |name| name != "#{@out_filename}.json" }.map { |f|
+    item = JSON.parse File.read(f)
+
+    add_item_to_json_out_filename(item)
+  }
 end
 
 # existing airline files do not contain an airline identifier (icao), we add that in programatically here
 def add_icao_to_airline_and_combine_json
   # collect all the json files in the current directory and add them all to the hash
-  @json_output[@out_filename] << Dir.glob('**/*.json').select{ |name| name != "#{@out_filename}.json" }.map { |f|
+  Dir.glob('**/*.json').select{ |name| name != "#{@out_filename}.json" }.map { |f|
     airline = JSON.parse File.read(f)
     # grab the airline icao from the file name
     airline_icao = "#{f.split('.')[0]}"
     # create a new key in the hash and set it to the airline_icao
     airline['icao'] = airline_icao
 
-    # return the original file contents, plus our new `icao` key value pair
-    airline
-  }.flatten
+    # add the original file contents, plus our new `icao` key value pair to the out_filename array
+    add_item_to_json_out_filename(airline)
+  }
+end
+
+def add_item_to_json_out_filename(item)
+  @json_output[@out_filename] << item
 end
 
 def write_combined_json_to_file()
