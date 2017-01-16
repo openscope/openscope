@@ -658,8 +658,6 @@ export default class SpawnPatternModel extends BaseModel {
     }
 
     /**
-     *
-     *
      * @for SpawnPatternModel
      * @method _calculateMinimumDelayFromSpeed
      * @return {number}  number to use as a delay period for the next delay
@@ -674,6 +672,16 @@ export default class SpawnPatternModel extends BaseModel {
     }
 
     /**
+     * Calculates the correct delay period to create arrivals in a cyclic pattern.
+     *
+     * Rate at which the arrival rate increases or decreases remains constant throughout the cycle.
+     *
+     * |---o---------------o---------------o---------------o-----------| < - - - - - - max arrival rate
+     * | o   o           o   o           o   o           o   o         |   +variation
+     * o-------o-------o-------o-------o-------o-------o-------o-------o < - - - - - - avg arrival rate
+     * |         o   o |         o   o           o   o           o   o |   -variation
+     * |-----------o---|-----------o---------------o---------------o---| < - - - - - - min arrival rate
+     * |<---period---->|           |<---period---->|
      *
      *
      * @for SpawnPatternModel
@@ -702,7 +710,17 @@ export default class SpawnPatternModel extends BaseModel {
     }
 
     /**
+     * Calculate a delay period that goes from very low and steeply increases to a
+     * sustained arrival surge of densely packed aircraft.
      *
+     * Example airport: `EDDT - Berlin Tegel Airport`
+     *
+     * o o o o o o o o o o - - - - - - - - - - - o o o o o o o o o o-----+ < - - - max arrival rate ( *this.factor)
+     * o                 o                       o                 o     |
+     * o                 o                       o                 o     |   x(this.factor)
+     * o                 o                       o                 o     |
+     * o - - - - - - - - o o o o o o o o o o o o o - - - - - - - - o o o-+ < - - - min arrival rate (n)
+     * |<--- up time --->|<----- down time ----->|<--- up time --->|
      *
      * @for SpawnPatternModel
      * @method _calculateNextSurgeDelayPeriod
@@ -746,6 +764,19 @@ export default class SpawnPatternModel extends BaseModel {
     }
 
     /**
+     * Calculate a delay period that will increase and decrease faster when changing between the lower/higher rates.
+     *
+     * ------------o-o-o---------------------------------------+-----------o-o < - - - - - max arrival rate
+     *        o             o                                  |      o      |       ^
+     *    o                     o                              |  o          |  +variation
+     *  o                         o                            |o            |       v
+     * o-------------------------- o---------------------------o-------------+ < - - - - - avg arrival rate
+     * |                            o                         o|             |       ^
+     * |                              o                     o  |             |  -variation
+     * |                                  o             o      |             |       v
+     * +---------------------------------------o-o-o-----------+-------------+ < - - - - - min arrival rate
+     * |                                                       |
+     * |<  -  -  -  -  -  -  -  - period -  -  -  -  -  -  -  >|
      *
      *
      * @for SpawnPatternModel
