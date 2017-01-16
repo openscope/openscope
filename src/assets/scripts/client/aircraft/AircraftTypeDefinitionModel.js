@@ -13,7 +13,6 @@ import BaseModel from '../base/BaseModel';
  */
 export default class AircraftTypeDefinitionModel extends BaseModel {
     /**
-     *
      * @constructor
      * @for AircraftTypeDefinitionModel
      * @param aircraftTypeDefinition {object}
@@ -26,6 +25,8 @@ export default class AircraftTypeDefinitionModel extends BaseModel {
         }
 
         /**
+         * Name of the aircratType
+         *
          * @property name
          * @type {string}
          * @default ''
@@ -33,6 +34,8 @@ export default class AircraftTypeDefinitionModel extends BaseModel {
         this.name = '';
 
         /**
+         * ICAO identifier of the aircraftType
+         *
          * @property icao
          * @type {string}
          * @default ''
@@ -40,6 +43,8 @@ export default class AircraftTypeDefinitionModel extends BaseModel {
         this.icao = '';
 
         /**
+         * Describes the number and type of engines
+         *
          * @property engines
          * @type {object}
          * @default null
@@ -61,6 +66,8 @@ export default class AircraftTypeDefinitionModel extends BaseModel {
         this.category = null;
 
         /**
+         * Maximum safe altitude
+         *
          * @property ceiling
          * @type {number}
          * @default -1
@@ -68,6 +75,12 @@ export default class AircraftTypeDefinitionModel extends BaseModel {
         this.ceiling = -1;
 
         /**
+         * Decsribes rate of:
+         * - climb
+         * - descent
+         * - acceleration
+         * - deceleratation
+         *
          * @property rate
          * @type {object}
          * @default null
@@ -75,6 +88,8 @@ export default class AircraftTypeDefinitionModel extends BaseModel {
         this.rate = null;
 
         /**
+         * Takeoff distances needed for landing and Takeoff
+         *
          * @property runway
          * @type {object}
          * @default null
@@ -82,6 +97,12 @@ export default class AircraftTypeDefinitionModel extends BaseModel {
         this.runway = null;
 
         /**
+         * Operating speeds
+         * - minimum
+         * - landing
+         * - cruise
+         * - maximum
+         *
          * @property speed
          * @type {object}
          * @default null
@@ -89,6 +110,10 @@ export default class AircraftTypeDefinitionModel extends BaseModel {
         this.speed = null;
 
         /**
+         * Boolean values for:
+         * - ils
+         * - fix
+         *
          * @property capability
          * @type {object}
          * @default
@@ -101,7 +126,7 @@ export default class AircraftTypeDefinitionModel extends BaseModel {
     /**
      * Lifecycle method, should be run only once on instantiation.
      *
-     * Initializes class properties
+     * Initialize class properties
      *
      * @for AircraftDefinitionModel
      * @method init

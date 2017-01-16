@@ -58,7 +58,8 @@ List of airlines, and their spawn weight. A higher weight will increase the freq
 
 #### route*
 * Should be in the shape of a routeString.
-  - For SID/STAR procedures: `ENTRY.PROCEDURE_ID.EXIT`
+  - For direct routes: `FIXXA..FIXXB..FIXXC..FIXXD`
+  - For complex routes: `FIXXA..FIXXB..ENTRY.PROCEDURE_ID.EXIT`
 
 #### altitude (* _for arrivals_)
 Altitude an aircraft spawns at. If a min/max is provided an aircraft will spawn at a random altitude within the range, rounded to the nearest 1,000ft

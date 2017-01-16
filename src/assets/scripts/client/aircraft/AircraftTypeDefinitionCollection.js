@@ -35,9 +35,12 @@ export default class AircraftTypeDefinitionCollection extends BaseCollection {
         }
 
         /**
+         * A collection of `AircraftTypeDefinitionModel` objects
          *
+         * Not using the inherited `_items` property here for readability
+         * and the fact that we need this property to be public.
          *
-         * @property
+         * @property definitionList
          * @type {array}
          * @default []
          */

@@ -79,9 +79,8 @@ export default class AircraftController {
         this.aircraftTypeDefinitionCollection = new AircraftTypeDefinitionCollection(aircraftTypeDefinitionList);
 
         this.aircraft = aircraft;
-        // TODO: replace with AircraftTypeDefinitionCollection
-        this.aircraft.models = {};
-        // TODO: update refs to use AircraftTypeDefinitionCollection
+
+        // TODO: this should its own colelction class
         this.aircraft.list = [];
 
         this.aircraft.auto = { enabled: false };
@@ -108,6 +107,7 @@ export default class AircraftController {
      * This is the entry method for creating new departing and arriving aircraft.
      * This method should only be called as a callback from a `SpawnScheduler` timer.
      *
+     * @for AircraftController
      * @method createAircraftWithSpawnPatternModel
      * @param spawnPatternModel {SpawnPatternModel}
      * @private
@@ -130,6 +130,7 @@ export default class AircraftController {
      * This hooks into the same method used to build spawning aircraft
      * and simply adds another layer on top of that to build a preSpawn aircraft.
      *
+     * @for AircraftController
      * @method createPreSpawnAircraftWithSpawnPatternModel
      * @param  spawnPatternModel {SpawnPatternModel}
      * @private
@@ -253,7 +254,6 @@ export default class AircraftController {
      * @method aircraft_update
      */
     aircraft_update() {
-        // TODO: change to _forEach()
         for (let i = 0; i < this.aircraft.list.length; i++) {
             this.aircraft.list[i].update();
             this.aircraft.list[i].updateWarning();
@@ -406,6 +406,7 @@ export default class AircraftController {
      * @param callsign {string}
      */
     aircraft_get_by_callsign(callsign) {
+        // TODO: what is the purpose is here?
         callsign = String(callsign);
 
         for (let i = 0; i < this.aircraft.list.length; i++) {
@@ -445,6 +446,7 @@ export default class AircraftController {
 
     /**
      * Remove a flight number from the list stored in `AircraftController.aircraft.callsigns`
+     *
      * @for AircraftController
      * @method removeFlightNumberFromList
      * @param aircraft {AircraftInstanceModel}
@@ -494,6 +496,7 @@ export default class AircraftController {
      */
     _buildAircraftProps(spawnPatternModel) {
         const airlineId = spawnPatternModel.getRandomAirlineForSpawn();
+        // TODO: update `airlineNameAndFleetHelper` to accept a string
         const { name, fleet } = airlineNameAndFleetHelper([airlineId]);
         const airlineModel = this._airlineController.findAirlineById(name);
         // TODO: impove the `airlineModel` logic here
