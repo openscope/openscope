@@ -1,8 +1,34 @@
 // istanbul ignore
+import _difference from 'lodash/difference';
 import _has from 'lodash/has';
+import _keys from 'lodash/keys';
+
+const ACCEPTED_KEYS = [
+    'destination',
+    'origin',
+    'category',
+    'route',
+    'altitude',
+    'method',
+    'rate',
+    'speed',
+    'airlines'
+];
+
+const ACCEPTED_OPTIONAL_KEYS = [
+    'offset',
+    'period'
+];
+
+const ALL_KEYS = [
+    ...ACCEPTED_KEYS,
+    ...ACCEPTED_OPTIONAL_KEYS
+];
 
 /**
- * Validates the presence of `SpawnPatternModel` keys
+ * Validates the presence of correct `SpawnPatternModel` keys.
+ *
+ * Expects a shape of one the following:
  *
  * ```javascript
  * // Departures
@@ -29,8 +55,10 @@ import _has from 'lodash/has';
  *      "category": "arrival",
  *      "route": "BETHL.GRNPA1.KLAS",
  *      "altitude": [30000, 40000],
- *      "method": "random",
- *      "rate": 10,
+ *      "method": "cyclic",
+ *      "rate": 17.5,
+ *      "period": 75,
+ *      "offset": 25,
  *      "speed": 320
  *      "airlines": [
  *          ["aal", 10],
@@ -42,54 +70,36 @@ import _has from 'lodash/has';
  *
  * @function spawnPatternModelJsonValidator
  * @param json {object}
- * @return {boolean}
+ * @return isValid {boolean}
  */
 // istanbul ignore next
 export const spawnPatternModelJsonValidator = (json) => {
     let isValid = true;
 
-    if (!_has(json, 'destination')) {
-        console.warn('spawnPatternModel is missing a required key: destination');
-        isValid = false;
+    for (let i = 0; i < ACCEPTED_KEYS.length; i++) {
+        const key = ACCEPTED_KEYS[i];
+
+        if ((key === 'altitude' || key === 'speed') && json.category === 'departure') {
+            continue;
+        }
+
+        if (key === 'origin' && json.category === 'arrival') {
+            continue;
+        }
+
+        if (!_has(json, key) && !_has(ACCEPTED_OPTIONAL_KEYS, key)) {
+            console.log(`spawnPattern is missing a required key: ${key}`);
+
+            isValid = false;
+        }
     }
 
-    if (!_has(json, 'origin')) {
-        console.warn('spawnPatternModel is missing a required key: origin');
-        isValid = false;
-    }
+    const jsonKeys = _keys(json);
+    const unsupportedKeys = _difference(jsonKeys, ALL_KEYS);
 
-    if (!_has(json, 'category')) {
-        console.warn('spawnPatternModel is missing a required key: category');
-        isValid = false;
-    }
+    if (unsupportedKeys.length > 0) {
+        console.warn(`Unsupported key(s) found in spawnPattern: ${unsupportedKeys.join(', ')}`);
 
-    if (!_has(json, 'route')) {
-        console.warn('spawnPatternModel is missing a required key: route');
-        isValid = false;
-    }
-
-    if (!_has(json, 'altitude') && json.category !== 'departure') {
-        console.warn('spawnPatternModel is missing a required key: altitude');
-        isValid = false;
-    }
-
-    if (!_has(json, 'method')) {
-        console.warn('spawnPatternModel is missing a required key: method');
-        isValid = false;
-    }
-
-    if (!_has(json, 'rate')) {
-        console.warn('spawnPatternModel is missing a required key: rate');
-        isValid = false;
-    }
-
-    if (!_has(json, 'speed') && json.category !== 'departure') {
-        console.warn('spawnPatternModel is missing a required key: speed');
-        isValid = false;
-    }
-
-    if (!_has(json, 'airlines')) {
-        console.warn('spawnPatternModel is missing a required key: airlines');
         isValid = false;
     }
 
