@@ -5,28 +5,23 @@ Lets look at some examples before we continue:
 ```javascript
 // Departures
 {
-    "airlines": [
-        ["aal", 10],
-        ["ual", 10],
-        ["ual/long", 3]
-    ],
     "destination": "",
     "origin": "KLAS",
     "category": "departure",
     "route": "KLAS.BOACH6.HEC",
-    "altitude": null,
+    "altitude": "",
     "method": "random",
     "rate": 5,
-    "speed": null
-}
-
-// Arrivals
-{
+    "speed": ""
     "airlines": [
         ["aal", 10],
         ["ual", 10],
         ["ual/long", 3]
-    ],
+    ]
+}
+
+// Arrivals
+{
     "destination": "KLAS",
     "origin": "",
     "category": "arrival",
@@ -35,10 +30,16 @@ Lets look at some examples before we continue:
     "method": "random",
     "rate": 10,
     "speed": 320
+    "airlines": [
+        ["aal", 10],
+        ["ual", 10],
+        ["ual/long", 3]
+    ]
 }
 ```
 ## Key descriptions
-_(*) denotes a required field_
+* _(*) denotes a required field_
+* All keys are required to be present and can be left as an empty string when not used by a particular pattern. ex `"destination": ""` for an arrival pattern.
 
 #### airlines*
 List of airlines, and their spawn weight. A higher weight will increase the frequency that a particular airline is chosen. Airline selections are random based on weight.

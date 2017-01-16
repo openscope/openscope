@@ -8,6 +8,7 @@ import _random from 'lodash/random';
 import _round from 'lodash/round';
 import BaseModel from '../base/BaseModel';
 import RouteModel from '../navigationLibrary/Route/RouteModel';
+import { spawnPatternModelJsonValidator } from './spawnPatternModelJsonValidator';
 import { buildPreSpawnAircraft } from './buildPreSpawnAircraft';
 import { routeStringFormatHelper } from '../navigationLibrary/Route/routeStringFormatHelper';
 import { bearingToPoint } from '../math/flightMath';
@@ -412,8 +413,12 @@ export default class SpawnPatternModel extends BaseModel {
             throw new TypeError('Invalid AirportController passed to SpawnPatternModel');
         }
 
-        this._airportController = airportController;
+        // TODO: this is a temporary development check. this should be removed before merging in to develop
+        if (!spawnPatternModelJsonValidator(spawnPatternJson)) {
+            console.error('### Invalid spawnPatternJson received', spawnPatternJson);
+        }
 
+        this._airportController = airportController;
         this.origin = spawnPatternJson.origin;
         this.destination = spawnPatternJson.destination;
         this.category = spawnPatternJson.category;
