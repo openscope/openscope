@@ -559,15 +559,14 @@
   },
   "spawnPatterns": [
       {
-        "category": "departure",
         "origin": "kbos",
         "destination": "",
-        "method": "random",
+        "category": "departure",
         "route": "KBOS.BLZZR3.BLIZZR",
-        "rate": 5,
         "altitude": [32000, 40000],
         "speed": "",
         "method": "random",
+        "rate": 5,
         "airlines": [
             ["ein/long", 2],
             ["amx/long", 2],
@@ -577,15 +576,14 @@
         ]
       },
       {
-        "category": "departure",
         "origin": "kbos",
         "destination": "",
-        "method": "random",
+        "category": "departure",
         "route": "KBOS.BRUWN4.BRUWN",
-        "rate": 5,
         "altitude": [32000, 40000],
         "speed": "",
         "method": "random",
+        "rate": 5,
         "airlines": [
             ["asa", 3],
             ["aza/long", 2],
@@ -596,15 +594,14 @@
         ]
       },
       {
-        "category": "departure",
         "origin": "kbos",
         "destination": "",
-        "method": "random",
+        "category": "departure",
         "route": "KBOS.CELTK4.CELTK",
-        "rate": 5,
         "altitude": [32000, 40000],
         "speed": "",
         "method": "random",
+        "rate": 5,
         "airlines": [
             ["jal/long", 2],
             ["jbu", 35],
@@ -613,15 +610,14 @@
         ]
       },
       {
-        "category": "departure",
         "origin": "kbos",
         "destination": "",
-        "method": "random",
+        "category": "departure",
         "route": "KBOS.SSOXS4.SSOXS",
-        "rate": 5,
         "altitude": [32000, 40000],
         "speed": "",
         "method": "random",
+        "rate": 5,
         "airlines": [
             ["swa", 13],
             ["nks", 6],
@@ -630,15 +626,14 @@
         ]
       },
       {
-        "category": "departure",
         "origin": "kbos",
         "destination": "",
-        "method": "random",
+        "category": "departure",
         "route": "KBOS.PATSS4.PATSS",
-        "rate": 5,
         "altitude": [32000, 40000],
         "speed": "",
         "method": "random",
+        "rate": 5,
         "airlines": [
             ["ual", 11],
             ["vrd", 4],
@@ -646,14 +641,14 @@
         ]
       },
       {
-        "category": "arrival",
         "origin": "",
         "destination": "kbos",
-        "method": "random",
+        "category": "arrival",
         "route": "PONCT.JFUND1.KBOS",
-        "rate": 10,
         "altitude": [32000, 40000],
-        "speed": 450,
+        "speed": 320,
+        "method": "random",
+        "rate": 10,
         "airlines": [
           ["aca", 5],
           ["asa", 3],
@@ -669,16 +664,16 @@
         ]
       },
       {
-        "category": "arrival",
         "origin": "",
         "destination": "kbos",
-        "method": "random",
+        "category": "arrival",
         "route": "AJJAY.OOSHN4.KBOS",
+        "altitude": [24000, 30000],
+        "speed": 320,
+        "method": "random",
         "rate": 15,
         "offset": 30,
         "period": 90,
-        "altitude": [24000, 30000],
-        "speed": 450,
         "airlines":  [
           ["ein/long", 2],
           ["ber/long", 1],
@@ -695,14 +690,14 @@
         ]
       },
       {
-        "category": "arrival",
         "origin": "",
         "destination": "kbos",
-        "method": "random",
+        "category": "arrival",
         "route": "MERIT.ROBUC2.KBOS",
-        "rate": 10,
         "altitude": [37000, 41000],
-        "speed":  450,
+        "speed":  320,
+        "method": "random",
+        "rate": 10,
         "airlines": [
           ["amx/long", 2],
           ["aal", 16],

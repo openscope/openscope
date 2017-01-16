@@ -573,14 +573,15 @@
   },
   "spawnPatterns": [
       {
-          "category": "departure",
           "origin": "kdca",
           "destination": "",
-          "speed": "",
+          "category": "departure",
+          "route": "KDCA.REBLL3.OTTTO",
           "altitude": "",
+          "speed": "",
           "method": "random",
-          "offset": 0,
           "rate": 18.75,
+          "offset": 0,
           "airlines": [
             ["awi", 12],
             ["eny", 10],
@@ -588,18 +589,18 @@
             ["flg", 9],
             ["rpa", 8],
             ["asq", 8]
-          ],
-        "route": "KDCA.REBLL3.OTTO"
+          ]
     },
     {
-        "category": "departure",
         "origin": "kdca",
         "destination": "",
-        "speed": "",
+        "category": "departure",
+        "route": "KDCA.HORTO2.BUFFR",
         "altitude": "",
+        "speed": "",
         "method": "random",
-        "offset": 0,
         "rate": 18.75,
+        "offset": 0,
         "airlines": [
           ["awi", 12],
           ["eny", 10],
@@ -614,21 +615,20 @@
           ["swa", 3],
           ["fft", 2],
           ["vrd", 2]
-        ],
-        "route": "KDCA.HORTO2.BUFFR"
+        ]
       },
       {
         "_name": "CAPSS TWO SOUTH",
         "origin": "",
         "destination": "kdca",
         "category": "arrival",
+        "route": "BULII..CAPSS..FLIPZ..MOEJO..JILES..SMOOT..BAAAM..PACKE",
         "altitude": 16000,
+        "speed": 280,
         "method": "cyclic",
         "rate": 17.5,
         "period": 75,
         "offset": 25,
-        "speed": 280,
-        "route": "BULII..CAPSS..FLIPZ..MOEJO..JILES..SMOOT..BAAAM..PACKE",
         "airlines": [
             ["awi", 9],
             ["eny", 7],
@@ -647,16 +647,16 @@
       },
       {
         "_name": "CAPSS TWO NORTH",
-        "altitude": 13000,
         "origin": "",
         "destination": "kdca",
         "category": "arrival",
+        "route": "BULII..CAPSS..HOYAS..HALLL..KATRN",
+        "altitude": 13000,
+        "speed": 280,
         "method": "cyclic",
         "rate": 17.5,
         "period": 75,
         "offset": 10,
-        "speed": 280,
-        "route": "BULII..CAPSS..HOYAS..HALLL..KATRN",
         "airlines": [
             ["awi", 9],
             ["eny", 7],

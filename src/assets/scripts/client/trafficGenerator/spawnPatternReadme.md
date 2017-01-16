@@ -5,31 +5,33 @@ Lets look at some examples before we continue:
 ```javascript
 // Departures
 {
-    "destination": "",
-    "origin": "KLAS",
-    "category": "departure",
-    "route": "KLAS.BOACH6.HEC",
-    "altitude": "",
-    "method": "random",
-    "rate": 5,
-    "speed": ""
-    "airlines": [
-        ["aal", 10],
-        ["ual", 10],
-        ["ual/long", 3]
-    ]
-}
+     "origin": "KLAS",
+     "destination": "",
+     "category": "departure",
+     "route": "KLAS.BOACH6.HEC",
+     "altitude": "",
+     "speed": ""
+     "method": "random",
+     "rate": 5,
+     "airlines": [
+         ["aal", 10],
+         ["ual", 10],
+         ["ual/long", 3]
+     ]
+ }
 
 // Arrivals
 {
-    "destination": "KLAS",
     "origin": "",
+    "destination": "KLAS",
     "category": "arrival",
     "route": "BETHL.GRNPA1.KLAS",
     "altitude": [30000, 40000],
-    "method": "random",
-    "rate": 10,
-    "speed": 320
+    "speed": 320,
+    "method": "cyclic",
+    "rate": 17.5,
+    "period": 75,
+    "offset": 25,
     "airlines": [
         ["aal", 10],
         ["ual", 10],

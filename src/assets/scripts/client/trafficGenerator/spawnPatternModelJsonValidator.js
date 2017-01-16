@@ -33,14 +33,14 @@ const ALL_KEYS = [
  * ```javascript
  * // Departures
  * {
- *      "destination": "",
  *      "origin": "KLAS",
+ *      "destination": "",
  *      "category": "departure",
  *      "route": "KLAS.BOACH6.HEC",
  *      "altitude": "",
+ *      "speed": ""
  *      "method": "random",
  *      "rate": 5,
- *      "speed": ""
  *      "airlines": [
  *          ["aal", 10],
  *          ["ual", 10],
@@ -50,16 +50,16 @@ const ALL_KEYS = [
  *
  *  // Arrivals
  *  {
- *      "destination": "KLAS",
  *      "origin": "",
+ *      "destination": "KLAS",
  *      "category": "arrival",
  *      "route": "BETHL.GRNPA1.KLAS",
  *      "altitude": [30000, 40000],
+ *      "speed": 320,
  *      "method": "cyclic",
  *      "rate": 17.5,
  *      "period": 75,
  *      "offset": 25,
- *      "speed": 320
  *      "airlines": [
  *          ["aal", 10],
  *          ["ual", 10],
@@ -99,8 +99,6 @@ export const spawnPatternModelJsonValidator = (json) => {
 
     if (unsupportedKeys.length > 0) {
         console.warn(`Unsupported key(s) found in spawnPattern: ${unsupportedKeys.join(', ')}`);
-
-        isValid = false;
     }
 
     return isValid;
