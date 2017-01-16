@@ -561,12 +561,12 @@
       {
         "category": "departure",
         "origin": "kbos",
-        "destination": null,
+        "destination": "",
         "method": "random",
         "route": "KBOS.BLZZR3.BLIZZR",
         "rate": 5,
         "altitude": [32000, 40000],
-        "speed": null,
+        "speed": "",
         "method": "random",
         "airlines": [
             ["ein/long", 2],
@@ -579,12 +579,12 @@
       {
         "category": "departure",
         "origin": "kbos",
-        "destination": null,
+        "destination": "",
         "method": "random",
         "route": "KBOS.BRUWN4.BRUWN",
         "rate": 5,
         "altitude": [32000, 40000],
-        "speed": null,
+        "speed": "",
         "method": "random",
         "airlines": [
             ["asa", 3],
@@ -598,12 +598,12 @@
       {
         "category": "departure",
         "origin": "kbos",
-        "destination": null,
+        "destination": "",
         "method": "random",
         "route": "KBOS.CELTK4.CELTK",
         "rate": 5,
         "altitude": [32000, 40000],
-        "speed": null,
+        "speed": "",
         "method": "random",
         "airlines": [
             ["jal/long", 2],
@@ -615,12 +615,12 @@
       {
         "category": "departure",
         "origin": "kbos",
-        "destination": null,
+        "destination": "",
         "method": "random",
         "route": "KBOS.SSOXS4.SSOXS",
         "rate": 5,
         "altitude": [32000, 40000],
-        "speed": null,
+        "speed": "",
         "method": "random",
         "airlines": [
             ["swa", 13],
@@ -632,12 +632,12 @@
       {
         "category": "departure",
         "origin": "kbos",
-        "destination": null,
+        "destination": "",
         "method": "random",
         "route": "KBOS.PATSS4.PATSS",
         "rate": 5,
         "altitude": [32000, 40000],
-        "speed": null,
+        "speed": "",
         "method": "random",
         "airlines": [
             ["ual", 11],
@@ -647,7 +647,7 @@
       },
       {
         "category": "arrival",
-        "origin": null,
+        "origin": "",
         "destination": "kbos",
         "method": "random",
         "route": "PONCT.JFUND1.KBOS",
@@ -670,7 +670,7 @@
       },
       {
         "category": "arrival",
-        "origin": null,
+        "origin": "",
         "destination": "kbos",
         "method": "random",
         "route": "AJJAY.OOSHN4.KBOS",
@@ -696,7 +696,7 @@
       },
       {
         "category": "arrival",
-        "origin": null,
+        "origin": "",
         "destination": "kbos",
         "method": "random",
         "route": "MERIT.ROBUC2.KBOS",

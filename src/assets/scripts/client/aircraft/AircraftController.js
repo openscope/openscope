@@ -80,7 +80,7 @@ export default class AircraftController {
 
         this.aircraft = aircraft;
 
-        // TODO: this should its own colelction class
+        // TODO: this should its own collection class
         this.aircraft.list = [];
 
         this.aircraft.auto = { enabled: false };
@@ -395,24 +395,6 @@ export default class AircraftController {
         // prevent out-of-range error
         if (this.aircraft.list.length > eid && eid >= 0) {
             return this.aircraft.list[eid];
-        }
-
-        return null;
-    }
-
-    /**
-     * @for AircraftController
-     * @method aircraft_get_by_callsign
-     * @param callsign {string}
-     */
-    aircraft_get_by_callsign(callsign) {
-        // TODO: what is the purpose is here?
-        callsign = String(callsign);
-
-        for (let i = 0; i < this.aircraft.list.length; i++) {
-            if (this.aircraft.list[i].callsign === callsign.toLowerCase()) {
-                return this.aircraft.list[i];
-            }
         }
 
         return null;

@@ -2,12 +2,13 @@ import _filter from 'lodash/filter';
 import _forEach from 'lodash/forEach';
 import _isEmpty from 'lodash/isEmpty';
 import _isObject from 'lodash/isObject';
+import _reduce from 'lodash/reduce';
 import _random from 'lodash/random';
 import BaseCollection from '../base/BaseCollection';
 import modelSourceFactory from '../base/ModelSource/ModelSourceFactory';
 import SpawnPatternModel from './SpawnPatternModel';
-import { clamp } from '../math/core';
 import { FLIGHT_CATEGORY } from '../constants/aircraftConstants';
+import { TIME } from '../constants/globalConstants';
 
 /**
  * A collection of `SpawnPatternModel` objects
@@ -52,7 +53,7 @@ export default class SpawnPatternCollection extends BaseCollection {
     }
 
     /**
-     * All `SpawnPatternModel` objects categrized as `departure`
+     * All `SpawnPatternModel` objects categorized as `departure`
      *
      * Used for assembling preSpawn departures
      *
@@ -128,7 +129,7 @@ export default class SpawnPatternCollection extends BaseCollection {
 
     /**
      * Gather a randomized list of departure `SpawnPatternModel` objects
-     * that will be created during the prSpawn.
+     * that will be created during the preSpawn.
      *
      * Clamps max at 5 patterns.
      * Randomly selects departure patterns from a filtered list containing only departure patterns.
@@ -142,14 +143,14 @@ export default class SpawnPatternCollection extends BaseCollection {
      */
     getDepartureModelsForPreSpawn() {
         const departureModelsForPreSpawn = [];
-        const minimumDeparturesToPreSpawn = 1;
-        const maximumDeparturesToPreSpawn = 5;
-        const totalDepartures = this.departureModels.length;
-        const preSpawnMax = clamp(minimumDeparturesToPreSpawn, totalDepartures, maximumDeparturesToPreSpawn);
-        const numberOfDeparturesToPreSpawn = _random(minimumDeparturesToPreSpawn, preSpawnMax);
+        const departureModelsLength = this.departureModels.length;
+        const minutesOfDeparturesToPreSpawn = 10;
+        const hoursOfDeparturesToPreSpawn = minutesOfDeparturesToPreSpawn * TIME.ONE_MINUTE_IN_HOURS;
+        const departuresPerHour = _reduce(this.departureModels, (sum, spawnPattern) => sum + spawnPattern.rate, 0);
+        const departuresToPreSpawn = departuresPerHour * hoursOfDeparturesToPreSpawn;
 
-        for (let i = 0; i < numberOfDeparturesToPreSpawn; i++) {
-            const index = _random(0, (totalDepartures - 1));
+        for (let i = 0; i < departuresToPreSpawn; i++) {
+            const index = _random(0, (departureModelsLength - 1));
             const spawnPatternModel = this.departureModels[index];
 
             departureModelsForPreSpawn.push(spawnPatternModel);
