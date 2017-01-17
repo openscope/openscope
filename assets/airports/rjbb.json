@@ -1,0 +1,1039 @@
+{
+    "radio": {
+        "twr": "Kansai Tower",
+        "app": "Kansai Approach",
+        "dep": "Kansai Radar"
+    },
+    "icao": "RJBB",
+    "iata": "KIX",
+    "magnetic_north": -7,
+    "ctr_radius": 80,
+    "ctr_ceiling": 7000,
+    "initial_alt": 3000,
+    "position": ["N34d26m03.00", "N135d13m58.00"],
+    "rr_radius_nm": 5.0,
+    "rr_center": ["N34d26m03.00", "N135d13m58.00"],
+    "has_terrain": false,
+    "wind": {
+		"angle": 204,
+        "speed": 9
+    },
+    "airspace": [{
+        "floor": 0,
+        "ceiling": 20000,
+        "airspace_class": "C",
+        "poly": [
+			["N33d35m04.00", "E134d59m50.00"],
+			["N33d35m56.00", "E134d40m54.00"],
+			["N34d17m01.00", "E133d57m30.00"],
+			["N34d47m42.00", "E135d00m09.00"],
+			["N34d56m49.00", "E135d48m57.00"],
+			["N34d58m51.00", "E135d57m45.00"],
+			["N34d39m14.00", "E136d05m25.00"],
+			["N34d39m14.00", "E136d05m25.00"],
+			["N34d16m09.00", "E136d09m43.00"],
+			["N33d35m04.00", "E134d59m50.00"]
+        ]
+    }],
+    "fixes": {
+		"AKASI": ["N34d35m00.30",	"E134d45m00.30"],
+		"ALISA": ["N34d30m42.60",	"E134d08m04.10"],
+		"ALLAN": ["N34d14m04.10",	"E134d57m28.30"],
+		"ASAMI": ["N34d07m57.90",	"E134d48m41.80"],
+		"AWAJI": ["N34d16m13.10",	"E134d42m46.60"],
+		"B4L10": ["N34d21m36.90",	"E135d07m34.50"],
+		"B4L30": ["N34d20m13.00",	"E135d05m04.10"],
+		"B4R20": ["N34d24m54.40",	"E135d06m06.20"],
+		"B6L20": ["N34d30m42.20",	"E135d08m13.40"],
+		"B6R10": ["N34d27m59.60",	"E135d17m46.00"],
+		"B6R11": ["N34d31m40.80",	"E135d18m45.10"],
+		"B6R12": ["N34d34m17.00",	"E135d08m53.10"],
+		"B6R13": ["N34d34m05.70",	"E135d09m36.00"],
+		"B6R14": ["N34d33m20.10",	"E135d12m29.10"],
+		"BAGLE": ["N34d07m57.90",	"E134d48m41.80"],
+		"BB430": ["N34d24m36.60",	"E135d03m09.30"],
+		"BB440": ["N34d24m32.60",	"E135d02m30.10"],
+		"BECKY": ["N33d55m09.00",	"E134d30m30.60"],
+		"BERRY": ["N34d15m02.00",	"E134d56m31.60"],
+		"BERTH": ["N34d09m11.40",	"E134d19m00.00"],
+		"CANDY": ["N33d52m29.80",	"E134d55m41.80"],
+		"CHIZU": ["N35d01m46.20",	"E134d30m25.40"],
+		"DAISY": ["N34d30m02.30",	"E135d03m10.60"],
+		"DANDE": ["N34d13m09.40",	"E135d24m33.90"],
+		"DATIS": ["N33d58m52.00",	"E134d56m13.10"],
+		"EVERT": ["N33d39m25.00",	"E135d07m59.00"],
+		"EVIAN": ["N33d59m42.20",	"E134d36m57.30"],
+		"GATES": ["N34d08m21.40",	"E134d49m02.60"],
+		"GLORY": ["N34d27m36.00",	"E134d44m00.60"],
+		"GOBOH": ["N33d54m36.40",	"E135d06m22.20"],
+		"GUJYO": ["N35d21m50.50",	"E136d34m38.50"],
+		"HABAR": ["N34d19m09.70",	"E133d35m19.60"],
+		"HELEN": ["N34d34m48.90",	"E135d06m51.80"],
+		"HIBIS": ["N34d14m54.80",	"E134d07m30.00"],
+		"JOLLY": ["N34d09m00.60",	"E135d02m25.60"],
+		"JULIA": ["N34d30m08.10",	"E134d58m16.30"],
+		"KAWAT": ["N34d34m19.40",	"E134d33m32.30"],
+		"KEC"  : ["N33d26m51.90",	"E135d47m40.20"],
+		"KRE":   ["N33d32m30.40",	"E133d40m48.60"],
+		"LILAC": ["N34d27m10.70",	"E134d58m42.00"],
+		"MAIKO": ["N34d36m39.70",	"E134d59m49.10"],
+		"MAYAH": ["N34d36m23.70",	"E135d12m11.00"],
+		"NALTO": ["N34d09m00.60",	"E134d43m13.30"],
+		"NARAH": ["N34d29m58.80",	"E135d41m02.90"],
+		"ODORI": ["N34d00m13.20",	"E134d30m11.80"],
+		"SHION": ["N34d25m42.10",	"E134d16m57.40"],
+		"SHTLE": ["N34d49m51.00",	"E136d56m53.80"],
+		"SOUJA": ["N34d37m38.60",	"E133d44m22.50"],
+		"TANTA": ["N34d16m04.90",	"E134d27m29.20"],
+		"TOMOH": ["N34d16m49.60",	"E135d00m20.30"],
+		"TONDA": ["N33d43m43.80",	"E135d22m39.30"],
+		"UENOH": ["N34d50m08.70",	"E136d13m33.70"],
+		"WASYU": ["N34d28m17.50",	"E133d23m01.10"],
+		"WENDY": ["N34d32m09.50",	"E134d50m30.80"],
+		"YAGYU": ["N34d32m39.30",	"E135d57m38.10"],
+		"YME"  : ["N35d28m50.50",	"E135d08m13.30"],
+		"YOSAK": ["N33d47m04.70",	"E134d06m38.40"],
+		"HAMAR": ["N34d24m34.70",	"E135d03m04.10"],
+		"KCC"  : ["N35d15m55.00",	"E136d54m53.70"],
+		"KCE"  : ["N34d37m52.00",	"E135d13m42.00"],
+		"KNE"  : ["N34d25m48.00",	"E135d15m06.00"],
+		"KTE"  : ["N34d12m45.00",	"E134d01m21.00"],
+		"KYOTO": ["N34d49m49.70",	"E135d44m48.80"],
+		"LINDA": ["N34d30m15.80",	"E134d51m40.10"],
+		"NANKO": ["N34d36m38.70",	"E135d21m21.00"],
+		"OGURA": ["N34d47m58.70",	"E135d34m24.90"],
+		"OYE"  : ["N34d45m01.00",	"E133d50m06.00"],
+		"SIGAK": ["N34d53m07.70",	"E136d02m52.70"],
+		"TSC"  : ["N34d07m47.00",	"E134d36m31.00"],
+		"UMAJI": ["N33d45m00.50",	"E134d09m00.60"],
+		"BRAVE": ["N33d25m50.00",	"E133d33m30.00"],
+		"FUE":   ["N32d40m07.00",	"E128d49m36.00"],
+		"KARIN": ["N33d40m40.00",	"E134d11m50.00"],
+		"KISEI": ["N33d28m04.00",	"E135d19m44.00"],
+		"OOITA": ["N33d13m13.00",	"E131d42m12.00"],
+		"RANDY": ["N34d06m35.00",	"E133d53m51.00"],
+		"SALTY": ["N33d51m10.00",	"E132d55m31.00"],
+		"STORK": ["N32d56m48.00",	"E133d14m35.00"],
+		"SUC":   ["N32d45m21.00",	"E132d59m48.00"],
+		"TAPOP": ["N32d40m01.00",	"E136d07m57.00"]
+	},
+    "runways": [{
+        "name": ["06L", "24R"],
+        "name_offset": [
+            [0, 0], [0, 0]
+        ],
+        "end": [
+            ["N34d25m42.86", "E135d12m22.33", "122.5ft"],
+            ["N34d27m04.58", "E135d14m24.08", "122.6ft"]
+        ],
+        "length": 4.000,
+        "ils": [true, true]
+    }, {
+        "name": ["06R", "24L"],
+        "name_offset": [
+            [0, 0], [0, 0]
+        ],
+        "end": [
+            ["N34d25m02.56", "E135d13m45.40", "122.8ft"],
+            ["N34d26m14.04", "E135d15m31.92", "123.0ft"]
+        ],
+        "length": 3.500,
+        "ils": [true, true]
+    }],
+    "sids": {
+        "MAIKO6": {
+            "icao": "MAIKO6",
+            "name": "Maiko Six",
+            "rwy": {
+                "06L": ["KNE", ["MAIKO", "A50+"]],
+                "06R": ["KNE", ["KCE", "A25+"], ["MAIKO", "A50+"]],
+                "24L": [["MAIKO", "A50+"]],
+                "24R": [["MAIKO", "A50+"]]
+            },
+            "draw": [
+                ["KNE", "KCE", "MAIKO"],
+                ["KNE", "MAIKO"]
+            ]
+        },
+        "FERRY5": {
+            "icao": "FERRY5",
+            "name": "Ferry Five",
+            "exitPoints": {
+                "MIYAZU": [
+                    ["KAWAT", "A80+"], "CHIZU", "YME"
+                ],
+                "KIBI": [
+                    ["KAWAT", "A80+"], "OYE"
+                ],
+                "KAGAWA": [
+                    ["KAWAT", "A80+"], "KTE"
+                ]
+            },
+            "rwy": {
+                "24L": ["MAIKO"],
+                "24R": ["MAIKO"]
+            },
+            "draw": [
+                ["MAIKO", "KAWAT"],
+                ["KAWAT", "CHIZU", "YME*"],
+                ["KAWAT", "OYE*"],
+                ["KAWAT", "KTE*"]
+            ]
+        },
+        "TOMOH1": {
+            "icao": "TOMOH1",
+            "name": "Tomoh One",
+            "exitPoints": {
+                "KOCHI_S": [
+					"UMAJI", "KRE"
+				],
+                "KUSHIMOTO": [
+					["GOBOH", "A60+"], "KEC"
+				]
+            },
+            "rwy": {
+                "06L": [["TOMOH", "A40+"]],
+                "06R": [["TOMOH", "A40+"]],
+                "24L": [["TOMOH", "A40+"]],
+                "24R": [["TOMOH", "A40+"]]
+            },
+            "draw": [
+                ["TOMOH", "UMAJI", "KRE*"],
+                ["TOMOH", "GOBOH", "KEC*"]
+            ]
+        },
+        "KITAN1": {
+            "icao": "KITAN1",
+            "name": "Kitan One",
+            "exitPoints": {
+                "TONDA": [
+                    ["GOBOH", "A60+"], "TONDA"
+                ],
+                "YOSAK": [
+                    ["ODORI", "A130+"], ["YOSAK", "A160+"]
+                ]
+            },
+            "rwy": {
+                "24L": ["BB440", "TOMOH"],
+                "24R": ["BB440", "TOMOH"]
+            },
+            "draw": [
+                ["BB440", "TOMOH"],
+                ["GOBOH", "TONDA*"],
+                ["TOMOH", "ODORI", "YOSAK*"]
+            ]
+        },
+        "SUSAN1": {
+            "icao": "SUSAN1",
+            "name": "Susan One",
+            "exitPoints": {
+                "TONDA": [
+                    ["GOBOH", "A60+"], "TONDA"
+                ],
+                "YOSAK": [
+                    ["ODORI", "A130+"], ["YOSAK", "A160+"]
+                ]
+            },
+            "rwy": {
+                "06L": ["BB430", "TOMOH"],
+                "06R": ["B6R10", ["B6R11", "A25+"], "B6R14", "BB430", "TOMOH"],
+                "24L": ["B4L30", "TOMOH"],
+                "24R": ["BB430", "TOMOH"]
+            },
+            "draw": [
+                ["BB430", "TOMOH"],
+                ["B6R10", "B6R11", "B6R14", "BB430"],
+                ["B4L30", "TOMOH"],
+                ["TONDA*"],
+                ["YOSAK*"]
+            ]
+        },
+        "KNE1": {
+            "icao": "KNE1",
+            "name": "Kansai One",
+            "exitPoints": {
+                "BAMBI": [
+					"NARAH"
+				],
+                "SHTLE": [
+					"NARAH", "YAGYU", "SHTLE"
+				],
+                "UENOH": [
+					"NARAH", "UENOH", "GUJYO"
+				]
+            },
+            "rwy": {
+                "06L": ["B6L20", ["KNE", "A80+"]],
+                "06R": ["B6R10", ["B6R11", "A25+"], "B6R13", ["KNE", "A80+"]],
+                "24L": ["B4L10", ["KNE", "A80+"]],
+                "24R": ["B4R20", ["KNE", "A80+"]]
+            },
+            "draw": [
+                ["B6L20", "KNE"],
+                ["B6R11", "B6R13", "KNE"],
+                ["B4L10", "KNE"],
+                ["B4R20", "KNE"],
+                ["KNE", "NARAH*", "YAGYU", "SHTLE*"],
+                ["NARAH", "UENOH", "GUJYO*"]
+            ]
+        },
+        "NANKO1": {
+            "icao": "NANKO1",
+            "name": "Nanko One",
+            "exitPoints": {
+                "SIGAK": [
+					"NANKO", "OGURA", "KYOTO", "SIGAK"
+				],
+                "NAGOYA": [
+					"NANKO", "OGURA", "KYOTO", "SIGAK", "KCC"
+				]
+            },
+            "rwy": {
+                "06L": ["B6L20", ["NANKO", "A80+"]],
+                "06R": ["B6R10", ["B6R11", "A25+"], "B6R13", ["NANKO", "A80+"]],
+                "24L": ["B4L10", ["NANKO", "A80+"]],
+                "24R": ["B4R20", ["NANKO", "A80+"]]
+            },
+            "draw": [
+                ["B6L20", "NANKO"],
+                ["B6R13", "NANKO"],
+                ["B4L10", "NANKO"],
+                ["B4R20", "NANKO"],
+                ["NANKO", "OGURA", "KYOTO", "SIGAK*"],
+                ["SIGAK", "KCC*"]
+            ]
+        },
+        "HELEN1": {
+            "icao": "HELEN1",
+            "name": "Helen One",
+            "exitPoints": {
+                "SHION": [
+					"WENDY", "SHION"
+				],
+                "SOUJA": [
+					"WENDY", "SHION", "SOUJA"
+				],
+                "WASYU": [
+					"WENDY", "SHION", "WASYU"
+				],
+                "HABAR": [
+					"WENDY", "SHION", "HABAR"
+				],
+                "CHIZU": [
+					"KAWAT", "CHIZU"
+				]
+            },
+            "rwy": {
+                "06L": ["HELEN", "MAIKO"],
+                "06R": ["B6R10", ["B6R11", "A25+"], "HELEN", "MAIKO"],
+                "24L": ["B4L10", ["BB430", "S210"],["HELEN", "A80+"], "MAIKO"],
+                "24R": [["BB430", "S210"], ["HELEN", "A80+"], "MAIKO"]
+            },
+            "draw": [
+                ["HELEN", "MAIKO"],
+                ["B6R11", "HELEN"],
+                ["BB430", "HELEN"],
+                ["MAIKO", "WENDY", "SHION*"],
+                ["SHION", "SOUJA*"],
+                ["SHION", "WASYU*"],
+                ["SHION", "HABAR*"],
+                ["CHIZU*"]
+            ]
+        },
+        "IWAYA1": {
+            "icao": "IWAYA1",
+            "name": "Iwaya One",
+            "exitPoints": {
+                "SHION": [
+					"WENDY", "SHION"
+				],
+                "SOUJA": [
+					"WENDY", "SHION", "SOUJA"
+				],
+                "WASYU": [
+					"WENDY", "SHION", "WASYU"
+				],
+                "HABAR": [
+					"WENDY", "SHION", "HABAR"
+				],
+                "CHIZU": [
+					"KAWAT", "CHIZU"
+				]
+            },
+            "rwy": {
+                "24L": ["BB430", ["HELEN", "A80+"], "MAIKO"],
+                "24R": ["BB430", ["HELEN", "A80+"], "MAIKO"]
+            },
+            "draw": [
+                ["HELEN"],
+                ["SHION*"],
+                ["SOUJA*"],
+                ["WASYU*"],
+                ["HABAR*"],
+                ["CHIZU*"]
+            ]
+        },
+        "DAISY1": {
+            "icao": "DAISY1",
+            "name": "Daisy One",
+            "exitPoints": {
+                "HIBIS": [
+					"HIBIS"
+				]
+            },
+            "rwy": {
+                "06L": ["DAISY", ["JULIA", "A80+"], "LINDA", "GLORY"],
+                "06R": ["B6R10", ["B6R11", "A25+"], "B6R12", "DAISY", ["JULIA", "A80+"], "LINDA", "GLORY"],
+                "24L": ["B4L10", ["BB430", "S210"], ["DAISY", "A60"], ["JULIA", "A80+"], "LINDA", "GLORY"],
+                "24R": [["DAISY", "A60+"], ["JULIA", "A80+"], "LINDA", "GLORY"]
+            },
+            "draw": [
+                ["DAISY", "JULIA", "LINDA", "GLORY"],
+                ["B6R11", "B6R12", "DAISY"],
+                ["BB430", "DAISY"],
+                ["GLORY", "HIBIS*"]
+            ]
+        }
+    },
+    "departures": {
+        "airlines": [
+            ["xax", 1],
+            ["aca", 1],
+            ["cca", 7],
+            ["afr", 1],
+            ["aic", 3],
+            ["ana", 28],
+            ["aar", 4],
+            ["cpa", 5],
+            ["cal", 6],
+            ["ckk", 3],
+            ["ces", 9],
+            ["csn", 13],
+            ["dal", 2],
+            ["esr", 2],
+            ["uae", 1],
+            ["eva", 3],
+            ["fdx", 11],
+            ["gia", 4],
+            ["hal", 1],
+            ["jal", 12],
+            ["jja", 3],
+            ["jsa", 3],
+            ["jjp", 9],
+            ["jna", 2],
+            ["dkh", 2],
+            ["klm", 1],
+            ["kal", 6],
+            ["dlh", 1],
+            ["mas", 1],
+            ["nca", 8],
+            ["apj", 16],
+            ["pac", 2],
+            ["sco", 3],
+            ["csh", 1],
+            ["sia", 1],
+            ["sqc", 3],
+            ["cqh", 11],
+            ["sfj", 1],
+            ["thy", 1],
+            ["ual", 2],
+            ["ups", 3]
+        ],
+        "destinations": [
+            "MAIKO6",
+            "FERRY5",
+            "TOMOH1",
+            "KITAN1",
+            "SUSAN1",
+            "KNE1",
+            "NANKO1",
+            "HELEN1",
+            "IWAYA1",
+            "DAISY1"
+        ],
+        "type": "cyclic",
+        "offset": 0,
+        "frequency": 9.5
+    },
+    "stars": {
+        "AKASI": {
+            "icao": "AKASI",
+            "name": "Akasi",
+            "entryPoints": {
+                "TOKUSHIMA": [
+					"TSC"
+				]
+            },
+            "body": ["AKASI", "MAIKO", ["MAYAH", "A40"]],
+            "draw": [
+                ["TSC*", "AKASI", "MAIKO", "MAYAH"]
+            ]
+        },
+        "GATES": {
+            "icao": "GATES",
+            "name": "Gates",
+            "entryPoints": {
+                "TOKUSHIMA": [
+					"TSC"
+				]
+            },
+            "body": [
+                ["GATES", "A40"]
+            ],
+            "draw": [
+                ["TSC*", "GATES"]
+            ]
+        },
+        "DANDE_A": {
+            "icao": "DANDE A",
+            "name": "Dande Alfa",
+            "entryPoints": {
+                "DANDE": [
+					"DANDE"
+				]
+            },
+            "body": [
+                ["JOLLY", "A60"],
+                ["ALLAN", "A40"]
+            ],
+            "draw": [
+                ["DANDE*", "JOLLY", "ALLAN"]
+            ]
+        },
+        "DANDE_B": {
+            "icao": "DANDE B",
+            "name": "Dande Bravo",
+            "entryPoints": {
+                "DANDE": [
+					"DANDE"
+				]
+            },
+            "body": [
+                ["JOLLY", "A60"],
+                ["BERRY", "A40"]
+            ],
+            "draw": [
+                ["DANDE*", "JOLLY", "BERRY"]
+            ]
+        },
+        "DANDE_C": {
+            "icao": "DANDE C",
+            "name": "Dande Charlie",
+            "entryPoints": {
+                "DANDE": [
+					"DANDE"
+				]
+            },
+            "body": [
+                ["JOLLY", "A60"], "GATES", ["AWAJI", "A70"], "LILAC", ["MAYAH", "A40"]
+            ],
+            "draw": [
+                ["DANDE*", "JOLLY", "GATES", "AWAJI", "LILAC", "MAYAH"]
+            ]
+        },
+        "ALISA_A": {
+            "icao": "ALISA A",
+            "name": "Alisa Alfa",
+            "entryPoints": {
+                "ALISA": [
+					"ALISA"
+				]
+            },
+            "body": [
+                ["TANTA", "A60"], "NALTO", "ASAMI", "BAGLE", ["ALLAN", "A40"]
+            ],
+            "draw": [
+                ["ALISA*", "TANTA", "NALTO", "ASAMI", "BAGLE", "ALLAN"]
+            ]
+        },
+        "ALISA_B": {
+            "icao": "ALISA B",
+            "name": "Alisa Bravo",
+            "entryPoints": {
+                "ALISA": [
+					"ALISA"
+				]
+            },
+            "body": [
+                ["TANTA", "A60"], "NALTO", "ASAMI", "BAGLE", ["BERRY", "A40"]
+            ],
+            "draw": [
+                ["ALISA*", "TANTA", "NALTO", "ASAMI", "BAGLE", "BERRY"]
+            ]
+        },
+        "ALISA_C": {
+            "icao": "ALISA C",
+            "name": "Alisa Charlie",
+            "entryPoints": {
+                "ALISA": [
+					"ALISA"
+				]
+            },
+            "body": ["TANTA", ["AWAJI", "A70"], "LILAC", ["MAYAH", "A40"]],
+            "draw": [
+                ["ALISA*", "TANTA", "AWAJI", "LILAC", "MAYAH"]
+            ]
+        },
+        "ALISA_D": {
+            "icao": "ALISA D",
+            "name": "Alisa Delta",
+            "entryPoints": {
+                "ALISA": [
+					"ALISA"
+				]
+            },
+            "body": ["TANTA", ["NALTO", "A60"], "ASAMI", "BAGLE", "TOMOH", "HAMAR", ["MAYAH", "A40"]],
+            "draw": [
+                ["ALISA*", "TANTA", "NALTO", "ASAMI", "BAGLE", "TOMOH", "HAMAR", "MAYAH"]
+            ]
+        },
+        "ALISA_E": {
+            "icao": "ALISA E",
+            "name": "Alisa Echo",
+            "entryPoints": {
+                "ALISA": [
+					"ALISA"
+				]
+            },
+            "body": [
+                ["TANTA", "A70"], "AKASI", "MAIKO", ["MAYAH", "A40"]
+            ],
+            "draw": [
+                ["ALISA*", "TANTA", "AKASI", "MAIKO", "MAYAH"]
+            ]
+        },
+        "BECKY_A": {
+            "icao": "BECKY A",
+            "name": "Becky Alfa",
+            "entryPoints": {
+                "SHIMIZU": [
+					"SUC", "STORK", "BRAVE", ["KARIN", "A160"]
+				]
+            },
+            "body": [
+                ["BECKY", "A100"], ["EVIAN", "A60"], "ASAMI", "BAGLE", ["ALLAN", "A40"]
+            ],
+            "draw": [
+                ["SUC", "STORK", "BRAVE", "KARIN", "BECKY", "EVIAN", "ASAMI", "BAGLE", "ALLAN"]
+            ]
+        },
+        "BECKY_B": {
+            "icao": "BECKY B",
+            "name": "Becky Bravo",
+            "entryPoints": {
+                "SHIMIZU": [
+					"SUC", "STORK", "BRAVE", ["KARIN", "A160"]
+				]
+            },
+            "body": [
+                ["BECKY", "A100"], ["EVIAN", "A60"], "ASAMI", "BAGLE", ["BERRY", "A40"]
+            ],
+            "draw": [
+                ["SUC", "STORK", "BRAVE", "KARIN", "BECKY", "EVIAN", "ASAMI", "BAGLE", "BERRY"]
+            ]
+        },
+        "BECKY_C": {
+            "icao": "BECKY C",
+            "name": "BECKY Charlie",
+            "entryPoints": {
+                "SHIMIZU": [
+					"SUC", "STORK", "BRAVE", ["KARIN", "A160"]
+				]
+            },
+            "body": [
+                ["BECKY", "A100"] , "NALTO", ["AWAJI", "A70"], "LILAC", ["MAYAH", "A40"]
+            ],
+            "draw": [
+                ["SUC", "STORK", "BRAVE", "KARIN", "BECKY", "NALTO", "AWAJI", "LILAC", "MAYAH"]
+            ]
+        },
+        "BECKY_D": {
+            "icao": "BECKY D",
+            "name": "BECKY Delta",
+            "entryPoints": {
+                "SHIMIZU": [
+					"SUC", "STORK", "BRAVE", ["KARIN", "A160"]
+				]
+            },
+            "body": [
+                ["BECKY", "A100"], ["EVIAN", "A60"], "ASAMI", "BAGLE", "TOMOH", "HAMAR", ["MAYAH", "A40"]
+            ],
+            "draw": [
+                ["SUC", "STORK", "BRAVE", "KARIN", "BECKY", "ASAMI", "BAGLE", "TOMOH", "HAMAR", "MAYAH"]
+            ]
+        },
+        "BECKY_E": {
+            "icao": "BECKY E",
+            "name": "BECKY Echo",
+            "entryPoints": {
+                "SHIMIZU": [
+					"SUC", "STORK", "BRAVE", ["KARIN", "A160"]
+				]
+            },
+            "body": [
+                ["BECKY", "A100"], ["TANTA", "A70"], "AKASI", "MAIKO", ["MAYAH", "A40"]
+            ],
+            "draw": [
+                ["SUC", "STORK", "BRAVE", "KARIN", "BECKY", "TANTA", "AKASI", "MAIKO", "MAYAH"]
+            ]
+        },
+        "CANDY_A": {
+            "icao": "CANDY A",
+            "name": "Candy Alfa",
+            "entryPoints": {
+                "KUSHIMOTO": [
+                    "KEC", "KISEI", ["EVERT", "A160"]
+				],
+                "TAPOP": [
+                    "TAPOP", "KISEI", ["EVERT", "A160"]
+                ]
+			},
+            "body": [
+                ["CANDY", "A100"], ["DATIS", "A60"], ["ALLAN", "A40"]
+            ],
+            "draw": [
+                ["TAPOP", "KISEI", "EVERT"],
+                ["KEC", "KISEI", "EVERT", "CANDY", "DATIS", "ALLAN"]
+            ]
+        },
+        "CANDY_B": {
+            "icao": "CANDY B",
+            "name": "Candy Bravo",
+            "entryPoints": {
+                "KUSHIMOTO": [
+                    "KEC", "KISEI", ["EVERT", "A160"]
+				],
+                "TAPOP": [
+                    "TAPOP", "KISEI", ["EVERT", "A160"]  
+                ]
+            },
+            "body": [
+                ["CANDY", "A100"], ["DATIS", "A60"], ["BERRY", "A40"]
+            ],
+            "draw": [
+                ["TAPOP", "KISEI", "EVERT"],
+                ["KEC", "KISEI", "EVERT", "CANDY", "DATIS", "BERRY"]
+            ]
+        },
+        "CANDY_C": {
+            "icao": "CANDY C",
+            "name": "CANDY Charlie",
+            "entryPoints": {
+                "KUSHIMOTO": [
+                    "KEC", "KISEI", ["EVERT", "A160"]
+				],
+                "TAPOP": [
+                    "TAPOP", "KISEI", ["EVERT", "A160"]  
+                ]
+            },
+            "body": [
+                ["CANDY", "A100"], "NALTO", ["AWAJI", "A70"], "LILAC", ["MAYAH", "A40"]
+            ],
+            "draw": [
+                ["TAPOP", "KISEI", "EVERT"],
+                ["KEC", "KISEI", "EVERT", "CANDY", "NALTO", "AWAJI", "LILAC", "MAYAH"]
+            ]
+        },
+        "CANDY_D": {
+            "icao": "CANDY D",
+            "name": "CANDY Delta",
+            "entryPoints": {
+                "KUSHIMOTO": [
+                    "KEC", "KISEI", ["EVERT", "A160"]
+				],
+                "TAPOP": [
+                    "TAPOP", "KISEI", ["EVERT", "A160"]
+                ]
+            },
+            "body": [
+                ["CANDY", "A100"], ["DATIS", "A60"], "TOMOH", "HAMAR", ["MAYAH", "A40"]
+            ],
+            "draw": [
+                ["TAPOP", "KISEI", "EVERT"],
+                ["KEC", "KISEI", "EVERT", "CANDY", "DATIS", "TOMOH", "HAMAR", "MAYAH"]
+            ]
+        },
+        "CANDY_E": {
+            "icao": "CANDY E",
+            "name": "CANDY Echo",
+            "entryPoints": {
+                "KUSHIMOTO": [
+                    "KEC", "KISEI", ["EVERT", "A160"]
+				],
+                "TAPOP": [
+                    "TAPOP", "KISEI", ["EVERT", "A160"]
+                ]
+            },
+            "body": [
+                ["CANDY", "A100"], ["TANTA", "A70"], "AKASI", "MAIKO", ["MAYAH", "A40"]
+            ],
+            "draw": [
+                ["TAPOP", "KISEI", "EVERT"],
+                ["KEC", "KISEI", "EVERT", "CANDY", "TANTA", "AKASI", "MAIKO", "MAYAH"]
+            ]
+        },
+        "BERTH_A": {
+            "icao": "BERTH A",
+            "name": "BERTH Alfa",
+            "entryPoints": {
+                "FUKUE": [
+					["FUE", "SALTY", ["RANDY", "A160"], ["BERTH", "A100"]]
+				],
+                "OOITA": [
+                    ["OOITA", "SALTY", ["RANDY", "A160"], ["BERTH", "A100"]]
+                ]
+            },
+            "body": ["NALTO", ["ASAMI", "A60"], "BAGLE", ["ALLAN", "A40"]],
+            "draw": [
+                ["OOITA*", "SALTY"],
+                ["FUE*", "SALTY", "RANDY", "BERTH", "NALTO", "ASAMI", "BAGLE", "ALLAN"]
+            ]
+        },
+        "BERTH_B": {
+            "icao": "BERTH B",
+            "name": "BERTH Bravo",
+            "entryPoints": {
+                "FUKUE": [
+					["FUE", "SALTY", ["RANDY", "A160"], ["BERTH", "A100"]]
+				],
+                "OOITA": [
+                    ["OOITA", "SALTY", ["RANDY", "A160"], ["BERTH", "A100"]]
+                ]
+            },
+            "body": ["NALTO", ["ASAMI", "A60"], "BAGLE", ["BERRY", "A40"]],
+            "draw": [
+                ["OOITA*", "SALTY"],
+                ["FUE*", "SALTY", "RANDY", "BERTH", "NALTO", "ASAMI", "BAGLE", "BERRY"]
+            ]
+        },
+        "BERTH_C": {
+            "icao": "BERTH C",
+            "name": "BERTH Charlie",
+            "entryPoints": {
+                "FUKUE": [
+					["FUE", "SALTY", ["RANDY", "A160"], ["BERTH", "A100"]]
+				],
+                "OOITA": [
+                    ["OOITA", "SALTY", ["RANDY", "A160"], ["BERTH", "A100"]]
+                ]
+            },
+            "body": ["NALTO", ["AWAJI", "A70"], "LILAC", ["MAYAH", "A40"]],
+            "draw": [
+                ["OOITA*", "SALTY"],
+                ["FUE*", "SALTY", "RANDY", "BERTH", "NALTO", "AWAJI", "LILAC", "MAYAH"]
+            ]
+        },
+        "BERTH_D": {
+            "icao": "BERTH D",
+            "name": "BERTH Delta",
+            "entryPoints": {
+                "FUKUE": [
+					["FUE", "SALTY", ["RANDY", "A160"], ["BERTH", "A100"]]
+				],
+                "OOITA": [
+                    ["OOITA", "SALTY", ["RANDY", "A160"], ["BERTH", "A100"]]
+                ]
+            },
+            "body": ["TANTA", ["NALTO", "A60"], "ASAMI", "BAGLE", "TOMOH", "HAMAR", ["MAYAH", "A40"]],
+            "draw": [
+                ["OOITA*", "SALTY"],
+                ["FUE*", "SALTY", "RANDY", "BERTH", "TANTA", "NALTO", "ASAMI", "BAGLE", "TOMOH", "HAMAR", "MAYAH"]
+            ]
+        },
+        "BERTH_E": {
+            "icao": "BERTH E",
+            "name": "BERTH Echo",
+            "entryPoints": {
+                "FUKUE": [
+					["FUE", "SALTY", ["RANDY", "A160"], ["BERTH", "A100"]]
+				],
+                "OOITA": [
+                    ["OOITA", "SALTY", ["RANDY", "A160"], ["BERTH", "A100"]]
+                ]
+            },
+            "body": [
+                ["TANTA", "A70"], "AKASI", "MAIKO", ["MAYAH", "A40"]
+            ],
+            "draw": [
+                ["OOITA*", "SALTY"],
+                ["FUE*", "SALTY", "RANDY", "BERTH", "TANTA", "AKASI", "MAIKO", "MAYAH"]
+            ]
+        },
+        "DATIS_A": {
+            "icao": "DATIS A",
+            "name": "DATIS Alfa",
+            "entryPoints": {
+                "DATIS": [
+                    ["DATIS", "A60"]
+                ]
+            },
+            "body": [
+                ["ALLAN", "A40"]
+            ],
+            "draw": [
+                ["DATIS*", "ALLAN"]
+            ]
+        },
+        "DATIS_B": {
+            "icao": "DATIS B",
+            "name": "DATIS Bravo",
+            "entryPoints": {
+                "DATIS":[
+                    ["DATIS", "A60"]
+                ]
+            },
+            "body": [
+                ["BERRY", "A40"]
+            ],
+            "draw": [
+                ["DATIS*", "BERRY"]
+            ]
+        },
+        "DATIS_C": {
+            "icao": "DATIS C",
+            "name": "DATIS Charlie",
+            "entryPoints": {
+                "DATIS":[
+                    ["DATIS", "A60"]
+                ]
+            },
+            "body": ["NALTO", ["AWAJI", "A70"], "LILAC", ["MAYAH", "A40"]],
+            "draw": [
+                ["DATIS*", "NALTO", "AWAJI", "LILAC", "MAYAH"]
+            ]
+        }
+    },
+	"arrivals": [{
+		"type":		 "cyclic",
+		"route":	 "SHIMIZU.BECKY_D.RJBB",
+		"frequency": 2,
+		"altitude":	 20000,
+		"speed":	 430,
+		"offset":	 2,
+		"airlines":[
+			["xax", 1],
+			["cca",	7],
+			["aic",	3],
+			["ana",	28],
+			["cpa",	5],
+			["cal",	6],
+			["ckk",	3],
+			["ces",	9],
+			["csn",	13],
+			["uae",	1],
+			["eva",	3],
+			["fdx",	11],
+			["gia",	4],
+			["jal",	12],
+			["jsa",	3],
+			["jjp",	9],
+			["mas",	1],
+			["nca",	8],
+			["sco",	3],
+			["csh",	1],
+			["sia",	1],
+			["sqc",	3],
+			["cqh",	11],
+			["sfj",	1]
+		]
+    },
+	{
+		"type":		 "cyclic",
+		"route":	 "KUSHIMOTO.CANDY_D.RJBB",
+		"frequency": 1.5,
+		"altitude":	 20000,
+		"speed":	 430,
+		"offset":	 2,
+		"airlines":[
+			["ana",	28],
+			["nca",	8],
+            ["dal", 2],
+            ["fdx", 11],
+            ["ual", 2],
+            ["ups", 3]
+		]
+	},
+    {
+		"type":		 "cyclic",
+		"route":	 "TAPOP.CANDY_D.RJBB",
+		"frequency": 2,
+		"altitude":	 20000,
+		"speed":	 430,
+		"offset":	 2,
+		"airlines":[
+			["xax", 1],
+			["ana",	28],
+			["gia",	4],
+			["jal",	12],
+			["jsa",	3],
+			["jjp",	9],
+			["mas",	1],
+			["nca",	8],
+			["sco",	3],
+			["sia",	1],
+			["sqc",	3],
+			["cqh",	11],
+			["sfj",	1],
+            ["dal", 2],
+            ["fdx", 11],
+            ["ual", 2],
+            ["ups", 3]
+		]
+	},
+	{
+		"type":		 "cyclic",
+		"route":	 "FUKUE.BERTH_D.RJBB",
+		"frequency": 2,
+		"altitude":	 24000,
+		"speed":	 430,
+		"offset":	 2,
+		"airlines":[
+			["cca", 7],
+			["afr",	1],
+			["aic",	3],
+			["ana",	28],
+			["cpa",	5],
+			["cal",	6],
+			["ckk",	3],
+			["ces",	9],
+			["csn",	13],
+			["uae",	1],
+			["fdx",	11],
+			["jal",	12],
+			["jsa",	3],
+			["jjp",	9],
+			["dkh",	2],
+			["klm",	1],
+			["dlh",	1],
+			["nca",	8],
+			["csh",	1],
+			["cqh",	11],
+			["sfj",	1],
+			["thy",	1],
+            ["kal", 6]
+		]
+	},
+	{
+		"type":		 "cyclic",
+		"route":	 "OOITA.BERTH_D.RJBB",
+		"frequency": 2,
+		"altitude":	 20000,
+		"speed":	 430,
+		"offset":	 2,
+		"airlines":[
+			["xax", 1],
+			["ana",	28],
+			["gia",	4],
+			["jal",	12],
+			["jsa",	3],
+			["jjp",	9],
+			["mas",	1],
+			["nca",	8],
+			["sco",	3],
+			["sia",	1],
+			["sqc",	3],
+			["cqh",	11],
+			["sfj",	1]
+		]
+	}
+]}
