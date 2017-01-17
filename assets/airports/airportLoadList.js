@@ -247,6 +247,11 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             name: 'Doha Hamad International Airport'
         },
         {
+            icao: 'rjaa',
+            level: 'hard',
+            name: 'Tokyo Narita International Airport'
+        },
+        {
             icao: 'rjtt',
             level: 'hard',
             name: 'Tokyo Haneda International Airport'
