@@ -42,6 +42,11 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
      */
     return [
         {
+            icao: 'cyhz',
+            level: 'easy',
+            name: 'Halifax Stanfield International Airport'
+        },
+        {
             icao: 'ebbr',
             level: 'easy',
             name: 'Brussels-National &#9983'
