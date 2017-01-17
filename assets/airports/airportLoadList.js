@@ -197,6 +197,11 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             name: 'Phoenix Sky Harbor International Airport'
         },
         {
+            icao: 'kpvd',
+            level: 'beginner',
+            name: 'Theodore Francis State Memorial Airport'
+        },
+        {
             icao: 'ksan',
             level: 'easy',
             name: 'San Diego International Airport'
