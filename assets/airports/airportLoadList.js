@@ -42,6 +42,11 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
      */
     return [
         {
+            icao: 'cyow',
+            level: 'easy',
+            name: 'Ottawa Macdonald-Cartier International Airport'
+        },
+        {
             icao: 'ebbr',
             level: 'easy',
             name: 'Brussels-National &#9983'
