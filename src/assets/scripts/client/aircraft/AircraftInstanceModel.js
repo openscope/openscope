@@ -1217,10 +1217,9 @@ export default class Aircraft {
      */
     updateFixTarget() {
         const fix = this.fms.currentWaypoint.location;
+
         if (!fix) {
             console.error(`${this.getCallsign()} using "fix" navmode, but no fix location!`);
-            console.log(this.fms);
-            console.log(this.fms.currentWaypoint);
         }
 
         const vector_to_fix = vsub(this.position, fix);
