@@ -1010,8 +1010,4 @@ export default class AircraftFlightManagementSystem {
     altitudeForCurrentWaypoint() {
         return this.currentWaypoint.altitude;
     }
-
-
-
-
 }

@@ -594,6 +594,7 @@ export default class Aircraft {
         // TODO: this logic could be simplified. do an early return instead of wrapping the entire function in an if.
         if (this.fms.currentWaypoint.navmode !== WAYPOINT_NAV_MODE.RWY) {
             this.fms.setCurrent({ runway: null });
+
             return false;
         }
 
@@ -677,6 +678,7 @@ export default class Aircraft {
 
     /**
      * Aircraft has "weight-on-wheels" (on the ground)
+     *
      * @for AircraftInstanceModel
      * @method isOnGround
      */
@@ -1208,7 +1210,8 @@ export default class Aircraft {
     }
 
     /**
-     * This will display update the fix for the aircraft
+     * This will display update the FIX for the aircraft and will change the aircrafts heading
+     *
      * @for AircraftInstanceModel
      * @method updateFixTarget
      */
@@ -1260,7 +1263,6 @@ export default class Aircraft {
         }
 
         this.updateAircraftTurnPhysics();
-
         this.updateAltitudePhysics();
 
         if (this.isOnGround()) {
@@ -1274,6 +1276,7 @@ export default class Aircraft {
             return;
         }
 
+        //TODO: abstract to AircraftPositionHistory class
         // Trailling
         if (this.position_history.length === 0) {
             this.position_history.push([
@@ -1312,6 +1315,7 @@ export default class Aircraft {
 
     /**
      * This turns the aircraft if it is not on the ground and has not arived at its destenation
+     *
      * @for AircraftInstanceModel
      * @method updateAircraftTurnPhysics
      */
@@ -1340,6 +1344,7 @@ export default class Aircraft {
 
     /**
      * This updates the Altitude for the instance of the aircraft by checking the difference between current Altitude and requested Altitude
+     *
      * @for AircraftInstanceModel
      * @method updateAltitudePhysics
      */
@@ -1355,6 +1360,7 @@ export default class Aircraft {
 
     /**
     * Decreases the aircrafts altitude
+    *
     * @for AircraftInstanceModel
     * @method decreaseAircraftAltitude
     */
@@ -1385,6 +1391,7 @@ export default class Aircraft {
 
     /**
     * Increases the aircrafts altitude
+    *
     * @for AircraftInstanceModel
     * @method increaseAircraftAltitude
     */
@@ -1416,6 +1423,7 @@ export default class Aircraft {
 
     /**
      * This updates the speed for the instance of the aircraft by checking the difference between current speed and requested speed
+     *
      * @for AircraftInstanceModel
      * @method updateWarning
      */
@@ -1447,6 +1455,7 @@ export default class Aircraft {
 
     /**
      * This calculates the ground speed
+     *
      * @for AircraftInstanceModel
      * @method updateVectorPhysics
      * @param scaleSpeed
@@ -1490,7 +1499,8 @@ export default class Aircraft {
     }
 
     /**
-     * This calculates the simplify ground speed
+     * This uses the current speed infomation to update the ground speed and position
+     *
      * @for AircraftInstanceModel
      * @method updateSimpleGroundSpeedPhysics
      * @param scaleSpeed
