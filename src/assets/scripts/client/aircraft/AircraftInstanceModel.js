@@ -1499,7 +1499,7 @@ export default class Aircraft {
     }
 
     /**
-     * This uses the current speed infomation to update the ground speed and position
+     * This uses the current speed information to update the ground speed and position
      *
      * @for AircraftInstanceModel
      * @method updateSimpleGroundSpeedPhysics
