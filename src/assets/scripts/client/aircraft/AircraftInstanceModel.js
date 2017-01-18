@@ -1210,7 +1210,7 @@ export default class Aircraft {
     }
 
     /**
-     * This will display update the FIX for the aircraft and will change the aircrafts heading
+     * This will update the FIX for the aircraft and will change the aircraft's heading
      *
      * @for AircraftInstanceModel
      * @method updateFixTarget
