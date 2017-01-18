@@ -1346,9 +1346,9 @@ export default class Aircraft {
     updateAltitudePhysics() {
         this.trend = 0;
 
-        if (this.target.altitude < this.altitude - 0.02) {
+        if (this.target.altitude < this.altitude) {
             this.decreaseAircraftAltitude();
-        } else if (this.target.altitude > this.altitude + 0.02) {
+        } else if (this.target.altitude > this.altitude) {
             this.increaseAircraftAltitude();
         }
     }
