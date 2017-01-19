@@ -77,12 +77,12 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             name: 'Manchester Airport',
             wip: false
         },
-        {
-            icao: 'eggw',
-            level: 'medium',
-            name: 'London Luton Airport',
-            wip: false
-        },
+        // {
+        //     icao: 'eggw',
+        //     level: 'medium',
+        //     name: 'London Luton Airport',
+        //     wip: false
+        // },
         {
             icao: 'egkk',
             level: 'easy',
