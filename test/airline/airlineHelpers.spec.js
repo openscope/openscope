@@ -8,7 +8,7 @@ import {
 
 const AIRLINE_LIST_WITH_SEPERATOR_MOCK = [
     ['aca/long', 4],
-    ['aca/long', 4]
+    ['AAL/long', 4]
 ];
 
 const AIRLINE_LIST_WITHOUT_SEPERATOR_MOCK = [
@@ -47,6 +47,14 @@ ava('.airlineNameAndFleetHelper() returns an object with two keys: name and flee
 
     t.true(typeof result === 'object');
     t.true(result.name === 'aca');
+    t.true(result.fleet === 'long');
+});
+
+ava('.airlineNameAndFleetHelper() returns name lowercase when it receives uppercase', t => {
+    const result = airlineNameAndFleetHelper(AIRLINE_LIST_WITH_SEPERATOR_MOCK[1]);
+
+    t.true(typeof result === 'object');
+    t.true(result.name === 'aal');
     t.true(result.fleet === 'long');
 });
 

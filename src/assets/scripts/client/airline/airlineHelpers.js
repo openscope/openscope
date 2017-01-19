@@ -1,4 +1,5 @@
 import _isArray from 'lodash/isArray';
+import _lowerCase from 'lodash/lowerCase';
 import { choose_weight } from '../utilities/generalUtilities';
 
 // TODO: this file needs to be renamed to something more generalized.
@@ -48,12 +49,12 @@ const SECOND_INDEX = 1;
  * @return airlineNameAndFleet {object}
  */
 const _extractNameAndFleetFromCurrentAirline = (selectedAirline, airlineNameAndFleet) => {
-    airlineNameAndFleet.name = selectedAirline;
+    airlineNameAndFleet.name = _lowerCase(selectedAirline);
 
     if (selectedAirline.indexOf(NAME_FLEET_SEPERATOR) > INVALID_INDEX) {
         const nameAndFleet = selectedAirline.split(NAME_FLEET_SEPERATOR);
 
-        airlineNameAndFleet.name = nameAndFleet[FIRST_INDEX];
+        airlineNameAndFleet.name = _lowerCase(nameAndFleet[FIRST_INDEX]);
         airlineNameAndFleet.fleet = nameAndFleet[SECOND_INDEX];
     }
 
