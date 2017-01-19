@@ -19,6 +19,11 @@
     "speed": 0
   },
   "fixes": {
+        "_EGNM165050": ["N53.43199862756", "W001.46564026324"],
+        "_EGNM300050": ["N54.08842200093", "W002.32289085237"],
+        "_EGNM325050": ["N54.23291311084", "W002.10125502998"],
+        "_EGNM360050": ["N54.31523430050", "W001.66076939999"],
+        "EGNM": ["N53d51m57.69",  "W001d39m38.77"],
     "D082N":  ["N53d47m02.00",  "W001d42m94.00"],
     "D082J":  ["N53d46m34.00",  "W001d49m59.00"],
     "POL":    ["N53d44m38.00",  "W002d06m12.00"],
@@ -106,77 +111,153 @@
         ]
     }
   },
-
-  "departures": {
-    "airlines": [
-      ["ein",  2],
-      ["baw",  1],
-      ["ezy",  1],
-      ["bee",  3],
-      ["exs", 51],
-      ["klc",  1],
-      ["mon", 13],
-      ["ryr", 22],
-      ["tom",  9]
-    ],
-    "destinations": [
-      "POL", "NELSA", "DOPEK", "LAMIX"
-    ],
-    "type": "cyclic",
-    "offset": 0,
-    "frequency": 9
-  },
-  "arrivals": [
-    {
-      "type": "cyclic",
-      "radial": 325,
-      "frequency": 2,
-      "altitude": 8500,
-      "speed": 250,
-      "airlines": [
-        ["ein",  2],
-        ["exs", 51],
-        ["ryr", 22],
-        ["bee",  3]
-      ]
-    },
-    {
-      "type": "cyclic",
-      "radial": 165,
-      "frequency": 1,
-      "altitude": 7000,
-      "speed": 250,
-      "airlines": [
-        ["bee",  3]
-      ]
-    },
-    {
-      "type": "cyclic",
-      "radial": 300,
-      "frequency": 3,
-      "altitude": 7500,
-      "speed": 250,
-      "airlines": [
-        ["ezy",  1],
-        ["exs", 51],
-        ["klc",  1],
-        ["ryr", 22]
-      ]
-    },
-    {
-      "type": "cyclic",
-      "radial": 0,
-      "frequency": 5,
-      "altitude": 6500,
-      "speed": 250,
-      "airlines": [
-        ["baw",  1],
-        ["bee",  3],
-        ["exs", 51],
-        ["mon", 13],
-        ["ryr", 22],
-        ["tom",  9]
-      ]
-    }
-  ]
+    "spawnPatterns": [
+        {
+            "origin": "EGNM",
+            "destination": "",
+            "category": "departure",
+            "route": "EGNM.POL.POL",
+            "altitude": null,
+            "speed": null,
+            "method": "random",
+            "rate": 2,
+            "airlines": [
+                ["ein",  2],
+                ["baw",  1],
+                ["ezy",  1],
+                ["bee",  3],
+                ["exs", 51],
+                ["klc",  1],
+                ["mon", 13],
+                ["ryr", 22],
+                ["tom",  9]
+            ]
+        },
+        {
+            "origin": "EGNM",
+            "destination": "",
+            "category": "departure",
+            "route": "EGNM.NELSA.NELSA",
+            "altitude": null,
+            "speed": null,
+            "method": "random",
+            "rate": 2,
+            "airlines": [
+                ["ein",  2],
+                ["baw",  1],
+                ["ezy",  1],
+                ["bee",  3],
+                ["exs", 51],
+                ["klc",  1],
+                ["mon", 13],
+                ["ryr", 22],
+                ["tom",  9]
+            ]
+        },
+        {
+            "origin": "EGNM",
+            "destination": "",
+            "category": "departure",
+            "route": "EGNM.DOPEK.DOPEK",
+            "altitude": null,
+            "speed": null,
+            "method": "random",
+            "rate": 2,
+            "airlines": [
+                ["ein",  2],
+                ["baw",  1],
+                ["ezy",  1],
+                ["bee",  3],
+                ["exs", 51],
+                ["klc",  1],
+                ["mon", 13],
+                ["ryr", 22],
+                ["tom",  9]
+            ]
+        },
+        {
+            "origin": "EGNM",
+            "destination": "",
+            "category": "departure",
+            "route": "EGNM.LAMIX.LAMIX",
+            "altitude": null,
+            "speed": null,
+            "method": "random",
+            "rate": 2,
+            "airlines": [
+                ["ein",  2],
+                ["baw",  1],
+                ["ezy",  1],
+                ["bee",  3],
+                ["exs", 51],
+                ["klc",  1],
+                ["mon", 13],
+                ["ryr", 22],
+                ["tom",  9]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EGNM",
+            "category": "arrival",
+            "route": "_EGNM325050..EGNM",
+            "altitude": 7000,
+            "speed": 250,
+            "method": "random",
+            "rate": 4,
+            "airlines": [
+                ["ein",  2],
+                ["exs", 51],
+                ["ryr", 22],
+                ["bee",  3]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EGNM",
+            "category": "arrival",
+            "route": "_EGNM165050..EGNM",
+            "altitude": 7000,
+            "speed": 250,
+            "method": "random",
+            "rate": 4,
+            "airlines": [
+                ["bee",  3]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EGNM",
+            "category": "arrival",
+            "route": "_EGNM300050..EGNM",
+            "altitude": 7000,
+            "speed": 250,
+            "method": "random",
+            "rate": 4,
+            "airlines": [
+                ["ezy",  1],
+                ["exs", 51],
+                ["klc",  1],
+                ["ryr", 22]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EGNM",
+            "category": "arrival",
+            "route": "_EGNM360050..EGNM",
+            "altitude": 8000,
+            "speed": 250,
+            "method": "random",
+            "rate": 4,
+            "airlines": [
+                ["baw",  1],
+                ["bee",  3],
+                ["exs", 51],
+                ["mon", 13],
+                ["ryr", 22],
+                ["tom",  9]
+            ]
+        }
+    ]
 }
