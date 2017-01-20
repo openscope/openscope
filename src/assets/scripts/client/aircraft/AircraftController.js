@@ -1,5 +1,6 @@
 /* eslint-disable no-underscore-dangle, no-unused-vars, no-undef, global-require */
 import _each from 'lodash/each';
+import _has from 'lodash/has';
 import _includes from 'lodash/includes';
 import _without from 'lodash/without';
 import AircraftConflict from './AircraftConflict';
@@ -83,11 +84,14 @@ export default class AircraftController {
     addConflict(aircraft, otherAircraft) {
         const conflict = new AircraftConflict(aircraft, otherAircraft);
 
-        if (conflict.isDuplicate() || conflict.shouldBeRemoved()) {
+        if (conflict.shouldBeRemoved()) {
+            conflict.destroy();
             return;
         }
 
         this.conflicts.push(conflict);
+        aircraft.addConflict(conflict, otherAircraft);
+        otherAircraft.addConflict(conflict, aircraft);
     }
 
     /**
@@ -389,11 +393,17 @@ export default class AircraftController {
      * @param  {Aircraft} aircraft - the aircraft to remove
      */
     removeAllAircraftConflictsForAircraft(aircraft) {
-        _each(this.conflicts, (conflict) => {
-            if (_includes(conflict.aircraft, aircraft)) {
-                this.removeConflict(conflict);
-            }
-        });
+        // _each(this.conflicts, (conflict) => {
+        //     if (_includes(conflict.aircraft, aircraft)) {
+        //         this.removeConflict(conflict);
+        //     }
+        // });
+
+        // _each(aircraft.conflicts, (conflict) => conflict.destroy());
+
+        for (const otherAircraftCallsign in aircraft.conflicts) {
+            aircraft.conflicts[otherAircraftCallsign].destroy();
+        }
     }
 
     /**

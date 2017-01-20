@@ -2683,13 +2683,13 @@ export default class Aircraft {
         return a;
     }
 
+    // FIXME: Presumably the use of the 'delete' operator here is a bit of a no-no...
     /**
      * @for AircraftInstanceModel
      * @method removeConflict
      * @param {Aircraft} conflictingAircraft
      */
     removeConflict(conflictingAircraft) {
-        const conflictBeingRemoved = this.conflicts[conflictingAircraft.getCallsign()];
-        this.conflicts = _without(this.conflicts, conflictBeingRemoved);
+        delete this.conflicts[conflictingAircraft.getCallsign()];
     }
 }
