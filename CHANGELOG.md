@@ -1,3 +1,18 @@
+## 3.3.0 (January 20, 2017)
+---
+### Major
+- Restructures `src` files into `client` and `server` folders. [#220](https://github.com/n8rzz/atc/issues/220)
+- Updates Node to version 7.0.0 [#184](https://github.com/n8rzz/atc/issues/184)
+
+### Minor
+- Ensures proper removal of all `AircraftConflict` instances involving an aircraft that has been removed from the simulation [#133](https://github.com/n8rzz/atc/issues/133)
+    - Originally reported under [zlsa#734](https://github.com/zlsa/atc/issues/734)
+
+### Bugfixes
+- Resets current indicies when issuing a new star to an arriving aircraft [#104](https://github.com/n8rzz/atc/issues/104) & [#237](https://github.com/n8rzz/atc/issues/237)
+    - Originally reported under [zlsa#730](https://github.com/zlsa/atc/issues/730) & [zlsa#768](https://github.com/zlsa/atc/issues/768)
+
+
 ## 3.2.1 (January 2, 2017)
 ---
 ### Bugfixes

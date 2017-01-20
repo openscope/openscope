@@ -6,7 +6,7 @@ import {
     calcTurnInitiationDistance,
     bearingToPoint,
     fixRadialDist
-} from '../../src/assets/scripts/math/flightMath';
+} from '../../src/assets/scripts/client/math/flightMath';
 
 ava('.calcTurnRadius() returns a turn radius based on speed and bank angle', t => {
     const speed = 144.0444432;
