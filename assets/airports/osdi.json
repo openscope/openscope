@@ -53,7 +53,7 @@
       "length": 3.600,
       "ils": [true, false]
     }
-  ],  
+  ],
   "sids": {
     "ABS1": {
         "icao": "ABS1",
@@ -248,19 +248,6 @@
         ]
     }
   },
-  "departures": {
-    "airlines": [
-      ["saw", 12],
-      ["fdk",  5],
-      ["syr", 14]
-    ],
-    "destinations": [
-      "ABS1", "ABS2", "ABS21", "ABS22", "BUS1", "BUS2", "LEB1", "LEB2", "SLF1", "SLF2", "SLF21", "SLF22", "TAN1", "TAN2", "TAN21", "TAN22"
-    ],
-    "type": "cyclic",
-    "offset": 0,
-    "frequency": 10
-  },
   "stars": {
     "BRAVO1C": {
       "icao": "BRAVO1C",
@@ -337,69 +324,103 @@
       ]
     }
   },
-  "arrivals": [
+  "spawnPatterns": [
     {
-      "type": 		"cyclic",
-      "route":      "BUSRA.BRAVO1C.OSDI",
-      "frequency":  4,
-      "altitude":   16000,
-      "speed":		430,
-      "offset":		2,
-      "airlines": [
-        ["saw", 12],
-        ["fdk",  5],
-        ["syr", 14]
-     ]
+        "origin": "osdi",
+        "destination": "",
+        "category": "departure",
+        "route": "OSDI.ABS22.ABBAS",
+        "altitude": "",
+        "speed": "",
+        "method": "cyclic",
+        "offset": 0,
+        "rate": 10,
+        "airlines": [
+            ["saw", 12],
+            ["fdk",  5],
+            ["syr", 14]
+        ]
     },
     {
-      "type": 		"cyclic",
-      "route":      "KARIATAIN.KILO1C.OSDI",
-      "frequency":  3,
-      "altitude":   26000,
-      "speed":		430,
-      "offset":		2,
-      "airlines": [
-        ["saw", 12],
-        ["syr", 14]
-     ]
+        "origin": "",
+        "destination": "osdi",
+        "category": "departure",
+        "origin": "",
+        "destination": "osdi",
+        "category": "departure",
+        "method": 		"cyclic",
+        "route":      "BUSRA.BRAVO1C.OSDI",
+        "rate":  4,
+        "altitude":   16000,
+        "speed":		320,
+        "offset":		2,
+        "airlines": [
+            ["saw", 12],
+            ["fdk",  5],
+            ["syr", 14]
+        ]
     },
     {
-      "type": 		"cyclic",
-      "route":      "LEBOR.LIMA1C.OSDI",
-      "frequency":  2,
-      "altitude":   24000,
-      "speed":		430,
-      "offset":		2,
-      "airlines": [
-        ["saw", 12],
-        ["syr", 14]
-     ]
+        "origin": "",
+        "destination": "osdi",
+        "category": "departure",
+        "method": 		"cyclic",
+        "route":      "KARIATAIN.KILO1C.OSDI",
+        "rate":  3,
+        "altitude":   26000,
+        "speed":		320,
+        "offset":		2,
+        "airlines": [
+            ["saw", 12],
+            ["syr", 14]
+        ]
     },
     {
-      "type": 		"cyclic",
-      "route":      "SOKAN.SIERA1C.OSDI",
-      "frequency":  2,
-      "altitude":   21000,
-      "speed":		430,
-      "offset":		2,
-      "airlines": [
-        ["saw", 12],
-        ["fdk",  5],
-        ["syr", 14]
-     ]
+        "origin": "",
+        "destination": "osdi",
+        "category": "departure",
+        "method": 		"cyclic",
+        "route":      "LEBOR.LIMA1C.OSDI",
+        "rate":  2,
+        "altitude":   24000,
+        "speed":		320,
+        "offset":		2,
+        "airlines": [
+            ["saw", 12],
+            ["syr", 14]
+        ]
     },
     {
-      "type": 		"cyclic",
-      "route":      "TANF.TANGO1C.OSDI",
-      "frequency":  5,
-      "altitude":   27000,
-      "speed":		430,
-      "offset":		2,
-      "airlines": [
-        ["saw", 12],
-        ["fdk",  5],
-        ["syr", 14]
-     ]
-    }
-  ]
+        "origin": "",
+        "destination": "osdi",
+        "category": "departure",
+        "method": 		"cyclic",
+        "route":      "SOKAN.SIERA1C.OSDI",
+        "rate":  2,
+        "altitude":   21000,
+        "speed":		320,
+        "offset":		2,
+        "airlines": [
+            ["saw", 12],
+            ["fdk",  5],
+            ["syr", 14]
+        ]
+    },
+    {
+        "origin": "",
+        "destination": "osdi",
+        "category": "departure",
+        "method": 		"cyclic",
+        "route":      "TANF.TANGO1C.OSDI",
+        "rate":  5,
+        "altitude":   27000,
+        "speed":		320,
+        "offset":		2,
+        "airlines": [
+            ["saw", 12],
+            ["fdk",  5],
+            ["syr", 14]
+        ]
+      }
+    ]
 }
