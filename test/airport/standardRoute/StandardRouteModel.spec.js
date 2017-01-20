@@ -6,12 +6,12 @@ import _isEqual from 'lodash/isEqual';
 import _keys from 'lodash/keys';
 import _map from 'lodash/map';
 
-import StandardRouteModel from '../../../src/assets/scripts/airport/StandardRoute/StandardRouteModel';
-import RouteSegmentCollection from '../../../src/assets/scripts/airport/StandardRoute/RouteSegmentCollection';
-import RouteSegmentModel from '../../../src/assets/scripts/airport/StandardRoute/RouteSegmentModel';
-import StandardRouteWaypointModel from '../../../src/assets/scripts/airport/StandardRoute/StandardRouteWaypointModel';
+import StandardRouteModel from '../../../src/assets/scripts/client/airport/StandardRoute/StandardRouteModel';
+import RouteSegmentCollection from '../../../src/assets/scripts/client/airport/StandardRoute/RouteSegmentCollection';
+import RouteSegmentModel from '../../../src/assets/scripts/client/airport/StandardRoute/RouteSegmentModel';
+import StandardRouteWaypointModel from '../../../src/assets/scripts/client/airport/StandardRoute/StandardRouteWaypointModel';
 
-import FixCollection from '../../../src/assets/scripts/airport/Fix/FixCollection';
+import FixCollection from '../../../src/assets/scripts/client/airport/Fix/FixCollection';
 import { airportPositionFixtureKSFO } from '../../fixtures/airportFixtures';
 import { FIX_LIST_MOCK } from '../fix/_mocks/fixMocks';
 
@@ -178,7 +178,7 @@ ava('.findStandardWaypointModelsForEntryAndExit() does not call ._updateWaypoint
 });
 
 ava('.calculateDistanceBetweenWaypoints() calculates the distance between two `StandardRouteWaypointModel` positions', t => {
-    const expectedResult = 118.63498218153836;
+    const expectedResult = 118.63498218153832;
     const model = new StandardRouteModel(STAR_LIST_MOCK.GRNPA1);
     const waypointList = model.findStandardWaypointModelsForEntryAndExit('MLF', '19R');
     const result = model.calculateDistanceBetweenWaypoints(waypointList[0].position, waypointList[1].position);

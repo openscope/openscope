@@ -8,6 +8,7 @@ import _isNaN from 'lodash/isNaN';
 import _isNil from 'lodash/isNil';
 import _isString from 'lodash/isString';
 import _map from 'lodash/map';
+import _without from 'lodash/without';
 import AircraftFlightManagementSystem from './FlightManagementSystem/AircraftFlightManagementSystem';
 import AircraftStripView from './AircraftStripView';
 import Waypoint from './FlightManagementSystem/Waypoint';
@@ -1455,7 +1456,7 @@ export default class Aircraft {
         this.taxi_start = window.gameController.game_time();
         const runway = window.airportController.airport_get().getRunway(this.rwy_dep);
 
-        runway.addQueue(this);
+        runway.addAircraftToQueue(this);
         this.mode = FLIGHT_MODES.TAXI;
 
         const readback = {
@@ -1497,29 +1498,34 @@ export default class Aircraft {
 
         const runway = window.airportController.airport_get().getRunway(this.rwy_dep);
 
-        if (runway.removeQueue(this)) {
-            this.mode = FLIGHT_MODES.TAKEOFF;
-            this.scoreWind('taking off');
-            this.takeoffTime = window.gameController.game_time();
+        if (runway.isAircraftInQueue(this)) {
+            if (runway.positionOfAircraftInQueue(this) === 0) {
+                runway.removeAircraftFromQueue(this);
+                this.mode = FLIGHT_MODES.TAKEOFF;
+                this.scoreWind('taking off');
+                this.takeoffTime = window.gameController.game_time();
 
-            if (this.fms.currentWaypoint.speed == null) {
-                this.fms.setCurrent({ speed: this.model.speed.cruise });
+                if (this.fms.currentWaypoint.speed == null) {
+                    this.fms.setCurrent({ speed: this.model.speed.cruise });
+                }
+
+                const wind = window.airportController.airport_get().getWind();
+                const wind_dir = round(radiansToDegrees(wind.angle));
+                const readback = {
+                    // TODO: the wind_dir calculation should be abstracted
+                    log: `wind ${round(wind_dir / 10) * 10} ${round(wind.speed)}, runway ${this.rwy_dep}, cleared for takeoff`,
+                    say: `wind ${radio_spellOut(round(wind_dir / 10) * 10)} at ${radio_spellOut(round(wind.speed))}, runway ${radio_runway(this.rwy_dep)}, cleared for takeoff`
+                };
+
+                return ['ok', readback];
             }
 
-            const wind = window.airportController.airport_get().getWind();
-            const wind_dir = round(radiansToDegrees(wind.angle));
-            const readback = {
-                // TODO: the wind_dir calculation should be abstracted
-                log: `wind ${round(wind_dir / 10) * 10} ${round(wind.speed)}, runway ${this.rwy_dep} , cleared for takeoff`,
-                say: `wind ${radio_spellOut(round(wind_dir / 10) * 10)} at ${radio_spellOut(round(wind.speed))}, runway ${radio_runway(this.rwy_dep)}, cleared for takeoff`
-            };
+            const numberInRunwayQueue = runway.positionOfAircraftInQueue(this) + 1;
 
-            return ['ok', readback];
+            return ['fail', `we are actually number ${numberInRunwayQueue} for runway ${runway.name}`];
         }
 
-        const waiting = runway.inQueue(this);
-
-        return ['fail', `number ${waiting} behind ${runway.queue[waiting - 1].getRadioCallsign()}`, ''];
+        return ['fail', `we are not waiting at runway ${runway.name}`];
     }
 
     runLanding(data) {
@@ -1800,9 +1806,9 @@ export default class Aircraft {
         if (this.isTaxiing()) {
             // show only the first aircraft in the takeoff queue
             const runway = window.airportController.airport_get().getRunway(this.rwy_dep);
-            const waiting = runway.inQueue(this);
+            const nextInRunwayQueue = runway.isAircraftNextInQueue(this);
 
-            return this.mode === FLIGHT_MODES.WAITING && waiting === 0;
+            return this.mode === FLIGHT_MODES.WAITING && nextInRunwayQueue;
         }
 
         return true;
@@ -2170,7 +2176,7 @@ export default class Aircraft {
             this.target.altitude = this.fms.altitudeForCurrentWaypoint();
             this.target.expedite = this.fms.currentWaypoint.expedite;
             this.target.altitude = Math.max(1000, this.target.altitude);
-            this.target.speed = this.fms.currentWaypoint.speed;
+            this.target.speed = _get(this, 'fms.currentWaypoint.speed', this.speed);
             this.target.speed = clamp(this.model.speed.min, this.target.speed, this.model.speed.max);
         }
 
@@ -2201,7 +2207,7 @@ export default class Aircraft {
             this.altitude = runway.elevation;
 
             if (!this.projected &&
-                runway.inQueue(this) === 0 &&
+                runway.isAircraftNextInQueue(this) &&
                 was_taxi === true
             ) {
                 window.uiController.ui_log(`${this.getCallsign()}, holding short of runway ${this.rwy_dep}`);
@@ -2649,18 +2655,21 @@ export default class Aircraft {
     /**
      * @for AircraftInstanceModel
      * @method addConflict
+     * @param {AircraftConflict} conflict
+     * @param {Aircraft} conflictingAircraft
      */
-    addConflict(conflict, other) {
-        this.conflicts[other.getCallsign()] = conflict;
+    addConflict(conflict, conflictingAircraft) {
+        this.conflicts[conflictingAircraft.getCallsign()] = conflict;
     }
 
     /**
      * @for AircraftInstanceModel
      * @method checkConflict
+     * @param {Aircraft} conflictingAircraft
      */
-    checkConflict(other) {
-        if (this.conflicts[other.getCallsign()]) {
-            this.conflicts[other.getCallsign()].update();
+    checkConflict(conflictingAircraft) {
+        if (this.conflicts[conflictingAircraft.getCallsign()]) {
+            this.conflicts[conflictingAircraft.getCallsign()].update();
             return true;
         }
 
@@ -2683,12 +2692,13 @@ export default class Aircraft {
         return a;
     }
 
+    // FIXME: Presumably the use of the 'delete' operator here is a bit of a no-no...
     /**
      * @for AircraftInstanceModel
      * @method removeConflict
-     * @param other
+     * @param {Aircraft} conflictingAircraft
      */
-    removeConflict(other) {
-        delete this.conflicts[other.getCallsign()];
+    removeConflict(conflictingAircraft) {
+        delete this.conflicts[conflictingAircraft.getCallsign()];
     }
 }

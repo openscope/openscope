@@ -1,8 +1,8 @@
 /* eslint-disable import/no-extraneous-dependencies, arrow-parens */
 import ava from 'ava';
 
-import FixModel from '../../../src/assets/scripts/airport/Fix/FixModel';
-import PositionModel from '../../../src/assets/scripts/base/PositionModel';
+import FixModel from '../../../src/assets/scripts/client/airport/Fix/FixModel';
+import PositionModel from '../../../src/assets/scripts/client/base/PositionModel';
 
 import { airportPositionFixtureKSFO } from '../../fixtures/airportFixtures';
 import {

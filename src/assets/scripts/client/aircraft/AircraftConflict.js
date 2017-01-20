@@ -1,4 +1,6 @@
 /* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand, no-param-reassign, no-undef */
+import _includes from 'lodash/includes';
+import _filter from 'lodash/filter';
 import { abs } from '../math/core';
 import { angle_offset } from '../math/circle';
 import { vlen, vsub, vturn } from '../math/vector';
@@ -30,10 +32,23 @@ export default class AircraftConflict {
         this.conflicts = {};
         this.violations = {};
 
-        this.aircraft[0].addConflict(this, second);
-        this.aircraft[1].addConflict(this, first);
+        if (this.isAlreadyKnown()) {
+            console.warn(`Duplicate conflict between ${this.aircraft[0].getCallsign()} `
+                + `and ${this.aircraft[1].getCallsign()}! Scoring may be inaccurate!`);
+            return;
+        }
 
         this.update();
+    }
+
+    /**
+     * Remove this conflict instance
+     *
+     * @for AircraftConflict
+     * @method destroy
+     */
+    destroy() {
+        window.aircraftController.removeConflict(this);
     }
 
     /**
@@ -73,25 +88,33 @@ export default class AircraftConflict {
     }
 
     /**
+     * Recalculates and updates values for `this.distance`, `this.distance_delta`, and `this.altitude`
+     *
+     * @for AircraftConflict
+     * @method _recalculateLateralAndVerticalDistances
+     */
+    _recalculateLateralAndVerticalDistances() {
+        const distanceAtLastUpdate = this.distance;
+        this.distance = vlen(vsub(this.aircraft[0].position, this.aircraft[1].position));
+        this.distance_delta = this.distance - distanceAtLastUpdate;
+        this.altitude = abs(this.aircraft[0].altitude - this.aircraft[1].altitude);
+    }
+
+    /**
      * Update conflict and violation checks, potentially removing this conflict.
      */
     update() {
+        if (this.shouldBeRemoved()) {
+            this.destroy();
+            return;
+        }
+
         // Avoid triggering any more conflicts if the two aircraft have collided
         if (this.collided) {
             return;
         }
 
-        const d = this.distance;
-        this.distance = vlen(vsub(this.aircraft[0].position, this.aircraft[1].position));
-        this.distance_delta = this.distance - d;
-        this.altitude = abs(this.aircraft[0].altitude - this.aircraft[1].altitude);
-
-        // Check if the separation is now beyond the bounding box check
-        if (this.distance > MAXIMUM_SEPARATION_KM) {
-            this.remove();
-            return;
-        }
-
+        this._recalculateLateralAndVerticalDistances();
         this.checkCollision();
         this.checkRunwayCollision();
 
@@ -110,14 +133,6 @@ export default class AircraftConflict {
         }
 
         this.checkProximity();
-    }
-
-    /**
-     * Remove conflict for both aircraft
-     */
-    remove() {
-        this.aircraft[0].removeConflict(this.aircraft[1]);
-        this.aircraft[1].removeConflict(this.aircraft[0]);
     }
 
     /**
@@ -301,5 +316,68 @@ export default class AircraftConflict {
         } else {
             this.violations.proximityViolation = false;
         }
+    }
+
+    /**
+     * Checks if multiple `AircraftConflict` instances have been recorded for the same conflict
+     * between the aircraft involved in `this`.
+     *
+     * @for AircraftConflict
+     * @method isDuplicate
+     * @return {Boolean}
+     */
+    isDuplicate() {
+        return this._findInstancesOfThisConflictInAircraftController().length > 1;
+    }
+
+    /**
+     * Checks if an `AircraftConflict` instance already exists in `AircraftController.conflicts`
+     * for the aircraft involved in `this`.
+     *
+     * @for AircraftConflict
+     * @method isAlreadyKnown
+     * @return {Boolean}
+     */
+    isAlreadyKnown() {
+        return this._findInstancesOfThisConflictInAircraftController().length > 0;
+    }
+
+    /**
+     * Checks various conditions to determine whether the conflict should be removed
+     *
+     * @for AircraftConflict
+     * @method shouldBeRemoved
+     * @return {Boolean}
+     */
+    shouldBeRemoved() {
+        return this._isOutsideBoundingBox() || this.isDuplicate();
+    }
+
+    /**
+     * Checks whether the distance between the aircraft is greater than the size of the bounding
+     * box within which we will examine the conflict closer
+     *
+     * @for AircraftConflict
+     * @method _isOutsideBoundingBox
+     * @private
+     * @return {Boolean}
+     */
+    _isOutsideBoundingBox() {
+        this._recalculateLateralAndVerticalDistances();
+        return this.distance > MAXIMUM_SEPARATION_KM;
+    }
+
+    /**
+     * Finds all instances (whether none, one, or multiple) of `AircraftConflict`s involving
+     * the same aircraft included in `this.aircraft`.
+     *
+     * @for AircraftConflict
+     * @method _findInstancesOfThisConflictInAircraftController
+     * @return {Boolean}
+     */
+    _findInstancesOfThisConflictInAircraftController() {
+        return _filter(window.aircraftController.conflicts, (conflict) => {
+            return _includes(conflict.aircraft, this.aircraft[0]) && _includes(conflict.aircraft, this.aircraft[1]);
+        });
     }
 }
