@@ -21,7 +21,9 @@
 - Fix wrongful removal of departures from runway queues when arrivals land [#241](https://github.com/n8rzz/atc/issues/241)
     - Originally reported in [zlsa#770](https://github.com/zlsa/atc/issues/770)
 - Fix erroneous voice readbacks for altitude command [#240](https://github.com/n8rzz/atc/issues/240)
-    - Originally reported in [zlsa#769](https://github.com/zlsa/atc/issues/769)    
+    - Originally reported in [zlsa#769](https://github.com/zlsa/atc/issues/769)
+- Fixes behavior of AircraftConflict in various ways, particularly with removal after deletion of aircraft [#133](https://github.com/n8rzz/atc/issues/133)
+    - Originally reported in [zlsa#734](https://github.com/zlsa/atc/issues/734)
 
 
 ## 3.2.0 (December 20, 2016)
