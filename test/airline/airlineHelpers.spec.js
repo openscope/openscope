@@ -7,8 +7,7 @@ import {
 } from '../../src/assets/scripts/client/airline/airlineHelpers';
 
 const AIRLINE_LIST_WITH_SEPERATOR_MOCK = [
-    ['aca/long', 4],
-    ['AAL/long', 4]
+    ['aca/long', 4]
 ];
 
 const AIRLINE_LIST_WITHOUT_SEPERATOR_MOCK = [
@@ -51,11 +50,12 @@ ava('.airlineNameAndFleetHelper() returns an object with two keys: name and flee
 });
 
 ava('.airlineNameAndFleetHelper() returns name lowercase when it receives uppercase', t => {
-    const result = airlineNameAndFleetHelper(AIRLINE_LIST_WITH_SEPERATOR_MOCK[1]);
+    const airlineListMock = ['AAL', 14];
+    const result = airlineNameAndFleetHelper(airlineListMock);
 
     t.true(typeof result === 'object');
     t.true(result.name === 'aal');
-    t.true(result.fleet === 'long');
+    t.true(result.fleet === 'default');
 });
 
 ava('.randomAirlineSelectionHelper() throws when called with an invalid parameter', t => {
