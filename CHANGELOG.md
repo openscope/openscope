@@ -3,6 +3,14 @@
 ### Major
 - Restructures `src` files into `client` and `server` folders. [#220](https://github.com/n8rzz/atc/issues/220)
 - Updates Node to version 7.0.0 [#184](https://github.com/n8rzz/atc/issues/184)
+- Adds `spawnPatterns` to airport json and vastly simplifies aircraft creation. Work on this issue ended up resolving many other smaller issues listed below. [#243](https://github.com/n8rzz/atc/issues/243)
+  - Restructure `Airport.departures` to utilize routes [#229](https://github.com/n8rzz/atc/issues/229)
+  - Abstract inline fix object out of ArrivalBase [#56](https://github.com/n8rzz/atc/issues/56)
+  - Simplify creation of arrival aircraft [#27](https://github.com/n8rzz/atc/issues/27)
+  - Include airline id in airline json [#242](https://github.com/n8rzz/atc/issues/242)
+  - Create SpawnCollection, SpawnModel and SpawnScheduler classes [#235](https://github.com/n8rzz/atc/issues/235)
+  - Circular reference in airportModel.departures.airport [#28](https://github.com/n8rzz/atc/issues/28)
+  - Circular reference in airportModel.departures.airport [#28](https://github.com/n8rzz/atc/issues/28)
 
 ### Minor
 - Changes `AircraftStripView` text outputs to be all uppercase [#193](https://github.com/n8rzz/atc/issues/193)
