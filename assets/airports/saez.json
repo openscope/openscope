@@ -913,7 +913,7 @@
       "draw": [["_EZE10DME58", "_EZE10DME62", "GBE"]]
     }
   },
-  "arrivals": [
+  "spawnPatterns": [
     {
         "origin": "saez",
         "destination": "",
