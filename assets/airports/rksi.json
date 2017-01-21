@@ -511,95 +511,12 @@
                 "33R": [["SI761", "S250-"], ["SI762", "A30+"], ["SONJA", "A80+"], ["NOPIK", "A130+"]]
             },
             "draw": [
-                ["SI761", "SI762", "SONJA"], 
+                ["SI761", "SI762", "SONJA"],
                 ["NOPIK"]
             ]
         }
     },
 
-    "departures": {
-        "airlines": [
-            ["afl",   2],
-            ["xax",   1],
-            ["aca",   2],
-            ["afr",   2],
-            ["aic",   3],
-            ["asv",  10],
-            ["aza",   1],
-            ["aal",   1],
-            ["ups",   7],
-            ["fdx",   6],
-            ["cwc",   1],
-            ["aar", 103],
-            ["baw",   1],
-            ["cpa",   4],
-            ["ces",  14],
-            ["yzr",   3],
-            ["ups",   7],
-            ["pac",   9],
-            ["ckk",   1],
-            ["csn",  17],
-            ["dal",   2],
-            ["uae",   3],
-            ["etd",   2],
-            ["eva",   3],
-            ["gia",   2],
-            ["hal",   1],
-            ["jal",   1],
-            ["nca",   3],
-            ["klm",   1],
-            ["kal", 178],
-            ["csa",   1],
-            ["jja",  22],
-            ["jna",  24],
-            ["esr",  11],
-            ["dlh",   2],
-            ["mas",   2],
-            ["qtr",   2],
-            ["sco",   2],
-            ["sia",   3],
-            ["sqc",   1],
-            ["qfa",   2],
-            ["apj",   3],
-            ["sbi",   2],
-            ["thy",   4],
-            ["ual",   2],
-            ["cqh",   2],
-            ["iah",   5],
-            ["ana",   3]
-        ],
-        "destinations": [
-            "BINIL1K",
-            "BOPTA1K",
-            "OSPOT1K",
-            "EGOBA1K",
-            "SEL1S",
-            "SOT1S",
-            "BINIL1S",
-            "BOPTA1S",
-            "OSPOT1S",
-            "EGOBA1S",
-            "NOPIK1L",
-            "BOPTA1L",
-            "NOPIK9Z",
-            "BOPTA9Z",
-            "OSPOT1L",
-            "EGOBA1L",
-            "OSPOT1G",
-            "EGOBA1G",
-            "OSPOT9Z",
-            "EGOBA9Z",
-            "SEL2A",
-            "SOT1A",
-            "NOPIK1Y",
-            "BOPTA1Y",
-            "OSPOT1Y",
-            "EGOBA1Y"
-        ],
-        "type": "cyclic",
-        "offset": 0,
-        "frequency": 17
-    },
     "stars": {
         "SEL1T": {
             "icao": "SEL1T",
@@ -778,13 +695,77 @@
             ]
         }
     },
-    "arrivals": [
+    "spawnPatterns": [
         {
-            "type": 		"cyclic",
+            "origin": "rksi",
+            "destination": "",
+            "category": "departure",
+            "route": "RKSI.BOPTA1K.BOPTA",
+            "altitude": "",
+            "speed": "",
+            "method": "cyclic",
+            "offset": 0,
+            "rate": 17,
+            "airlines": [
+                ["afl",   2],
+                ["xax",   1],
+                ["aca",   2],
+                ["afr",   2],
+                ["aic",   3],
+                ["asv",  10],
+                ["aza",   1],
+                ["aal",   1],
+                ["ups",   7],
+                ["fdx",   6],
+                ["cwc",   1],
+                ["aar", 103],
+                ["baw",   1],
+                ["cpa",   4],
+                ["ces",  14],
+                ["yzr",   3],
+                ["ups",   7],
+                ["pac",   9],
+                ["ckk",   1],
+                ["csn",  17],
+                ["dal",   2],
+                ["uae",   3],
+                ["etd",   2],
+                ["eva",   3],
+                ["gia",   2],
+                ["hal",   1],
+                ["jal",   1],
+                ["nca",   3],
+                ["klm",   1],
+                ["kal", 178],
+                ["csa",   1],
+                ["jja",  22],
+                ["jna",  24],
+                ["esr",  11],
+                ["dlh",   2],
+                ["mas",   2],
+                ["qtr",   2],
+                ["sco",   2],
+                ["sia",   3],
+                ["sqc",   1],
+                ["qfa",   2],
+                ["apj",   3],
+                ["sbi",   2],
+                ["thy",   4],
+                ["ual",   2],
+                ["cqh",   2],
+                ["iah",   5],
+                ["ana",   3]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "rksi",
+            "category": "arrival",
             "route":        "ANYANG.SEL1T.RKSI",
-            "frequency":    1,
             "altitude":     15000,
             "speed":		250,
+            "method": 		"cyclic",
+            "rate":    1,
             "offset":		2,
             "airlines": [
                 ["asv",  10],
@@ -810,11 +791,14 @@
             ]
         },
         {
-            "type": 		"cyclic",
+            "origin": "",
+            "destination": "rksi",
+            "category": "arrival",
             "route":        "GUKDO.GUKDO1A.RKSI",
-            "frequency":    1,
             "altitude":     20000,
             "speed":		300,
+            "method": 		"cyclic",
+            "rate":    1,
             "offset":		2,
             "airlines": [
                 ["asv",  10],
@@ -840,11 +824,14 @@
             ]
         },
         {
-            "type": 		"cyclic",
+            "origin": "",
+            "destination": "rksi",
+            "category": "arrival",
             "route":        "G597.KARBU1A.RKSI",
-            "frequency":    1,
             "altitude":     18000,
             "speed":		280,
+            "method": 		"cyclic",
+            "rate":    1,
             "offset":		2,
             "airlines": [
                 ["asv",  10],
@@ -870,11 +857,14 @@
             ]
         },
         {
-            "type": 		"cyclic",
+            "origin": "",
+            "destination": "rksi",
+            "category": "arrival",
             "route":        "OLMEN.OLMEN1N.RKSI",
-            "frequency":    1,
             "altitude":     21000,
             "speed":		330,
+            "method": 		"cyclic",
+            "rate":    1,
             "offset":		2,
             "airlines": [
                 ["xax",   1],
@@ -904,11 +894,14 @@
             ]
         },
         {
-            "type": 		"cyclic",
+            "origin": "",
+            "destination": "rksi",
+            "category": "arrival",
             "route":        "GUKDO.GUKDO1N.RKSI",
-            "frequency":    1,
             "altitude":     20000,
             "speed":		300,
+            "method": 		"cyclic",
+            "rate":    1,
             "offset":		2,
             "airlines": [
                 ["asv",  10],
@@ -934,11 +927,14 @@
             ]
         },
         {
-            "type": 		"cyclic",
+            "origin": "",
+            "destination": "rksi",
+            "category": "arrival",
             "route":        "G597.KARBU1N.RKSI",
-            "frequency":    1,
             "altitude":     18000,
             "speed":		280,
+            "method": 		"cyclic",
+            "rate":    1,
             "offset":		2,
             "airlines": [
                 ["asv",  10],
@@ -964,11 +960,14 @@
             ]
         },
         {
-            "type": 		"cyclic",
+            "origin": "",
+            "destination": "rksi",
+            "category": "arrival",
             "route":        "REBIT.REBIT1N.RKSI",
-            "frequency":    1,
             "altitude":     16000,
             "speed":		250,
+            "method": 		"cyclic",
+            "rate":    1,
             "offset":		2,
             "airlines": [
                 ["afr",   2],
@@ -1000,11 +999,14 @@
             ]
         },
         {
-            "type": 		"cyclic",
+            "origin": "",
+            "destination": "rksi",
+            "category": "arrival",
             "route":        "BIKSI.BIKSI1M.RKSI",
-            "frequency":    1,
             "altitude":     21000,
             "speed":		330,
+            "method": 		"cyclic",
+            "rate":    1,
             "offset":		2,
             "airlines": [
                 ["asv",  10],
@@ -1030,11 +1032,14 @@
             ]
         },
         {
-            "type": 		"cyclic",
+            "origin": "",
+            "destination": "rksi",
+            "category": "arrival",
             "route":        "YECHON.CUN1M.RKSI",
-            "frequency":    1,
             "altitude":     24000,
             "speed":		330,
+            "method": 		"cyclic",
+            "rate":    1,
             "offset":		2,
             "airlines": [
                 ["asv",  10],
@@ -1060,11 +1065,14 @@
             ]
         },
         {
-            "type": 		"cyclic",
+            "origin": "",
+            "destination": "rksi",
+            "category": "arrival",
             "route":        "MAKSA.MAKSA1M.RKSI",
-            "frequency":    1,
             "altitude":     24000,
             "speed":		330,
+            "method": 		"cyclic",
+            "rate":    1,
             "offset":		2,
             "airlines": [
                 ["xax",   1],
@@ -1094,11 +1102,14 @@
             ]
         },
         {
-            "type": 		"cyclic",
+            "origin": "",
+            "destination": "rksi",
+            "category": "arrival",
             "route":        "GONAV.GONAV2M.RKSI",
-            "frequency":    2,
             "altitude":     21000,
             "speed":	   280,
+            "method": 		"cyclic",
+            "rate":    2,
             "offset":		2,
             "airlines": [
                 ["afl",   2],
@@ -1132,11 +1143,14 @@
             ]
         },
         {
-            "type": 		"cyclic",
+            "origin": "",
+            "destination": "rksi",
+            "category": "arrival",
             "route":        "GUKDO.GUKDO1P.RKSI",
-            "frequency":    1,
             "altitude":     16000,
             "speed":		250,
+            "method": 		"cyclic",
+            "rate":    1,
             "offset":		2,
             "airlines": [
                 ["asv",  10],
@@ -1162,11 +1176,14 @@
             ]
         },
         {
-            "type": 		"cyclic",
+            "origin": "",
+            "destination": "rksi",
+            "category": "arrival",
             "route":        "G597.KARBU1P.RKSI",
-            "frequency":    1,
             "altitude":     18000,
             "speed":		275,
+            "method": 		"cyclic",
+            "rate":    1,
             "offset":		2,
             "airlines": [
                 ["asv",  10],
@@ -1192,11 +1209,14 @@
             ]
         },
         {
-            "type": 		"cyclic",
+            "origin": "",
+            "destination": "rksi",
+            "category": "arrival",
             "route":        "COWAY.COWAY1A.RKSI",
-            "frequency":    1,
             "altitude":     15000,
             "speed":		250,
+            "method": 		"cyclic",
+            "rate":    1,
             "offset":		2,
             "airlines": [
                 ["afr",   2],
@@ -1225,11 +1245,14 @@
             ]
         },
         {
-            "type": 		"cyclic",
+            "origin": "",
+            "destination": "rksi",
+            "category": "arrival",
             "route":        "COWAY.COWAY1P.RKSI",
-            "frequency":    1,
             "altitude":     15000,
             "speed":		250,
+            "method": 		"cyclic",
+            "rate":    1,
             "offset":		2,
             "airlines": [
                 ["afr",   2],
@@ -1258,11 +1281,14 @@
             ]
         },
         {
-            "type": 		"cyclic",
+            "origin": "",
+            "destination": "rksi",
+            "category": "arrival",
             "route":        "OLMEN.OLMEN1P.RKSI",
-            "frequency":    1,
             "altitude":     12000,
             "speed":		220,
+            "method": 		"cyclic",
+            "rate":    1,
             "offset":		2,
             "airlines": [
                 ["xax",   1],
