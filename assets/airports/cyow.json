@@ -233,7 +233,7 @@
             ]
         }
     },
-	"_arrivals": [{
+	"arrivals": [{
 		"type":		 "cyclic",
 		"route":	 "MIVOK.CAPITAL4.CYOW",
 		"frequency": 2,
@@ -241,7 +241,11 @@
 		"speed":	 400,
 		"offset":	 2,
 		"airlines": [
-
+            ["aca", 7],
+            ["dal", 2],
+            ["poe", 5],
+            ["ual", 3],
+            ["wja", 5]
 		]
     }, {
 		"type":		 "cyclic",
@@ -251,7 +255,11 @@
 		"speed":	 400,
 		"offset":	 2,
 		"airlines": [
-
+            ["aca", 7],
+            ["dal", 2],
+            ["poe", 5],
+            ["ual", 3],
+            ["wja", 5]
 		]
     }, {
 		"type":		 "cyclic",
@@ -261,7 +269,9 @@
 		"speed":	 350,
 		"offset":	 2,
 		"airlines": [
-
+            ["aca/long", 12],
+            ["aal", 1],
+            ["ual", 3]
 		]
     }, {
 		"type":		 "cyclic",
@@ -271,17 +281,7 @@
 		"speed":	 320,
 		"offset":	 2,
 		"airlines": [
-
-		]
-    }, {
-		"type":		 "cyclic",
-		"route":	 "BEMOG.LEAMY3.CYOW",
-		"frequency": 1,
-		"altitude":	 21000,
-		"speed":	 400,
-		"offset":	 1,
-		"airlines": [
-
+            ["aca/long", 12]
 		]
     }, {
 		"type":		 "cyclic",
@@ -291,17 +291,8 @@
 		"speed":	 425,
 		"offset":	 2,
 		"airlines": [
-
-		]
-    }, {
-		"type":		 "cyclic",
-		"route":	 "VILRO.RIVER1.CYOW",
-		"frequency": 1,
-		"altitude":	 [32000, 27000],
-		"speed":	 450,
-		"offset":	 2,
-		"airlines": [
-
+            ["aca", 7],
+            ["poe", 5]
 		]
     }, {
 		"type":		 "cyclic",
@@ -311,7 +302,7 @@
 		"speed":	 450,
 		"offset":	 2,
 		"airlines": [
-
+            ["aca/long", 12]
 		]
     }
 ]}
