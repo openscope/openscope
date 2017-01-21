@@ -1,24 +1,24 @@
 {
     "radio": {
-        "twr": "xx xx",
-        "app": "xx xx",
-        "dep": "xx xx"
+        "twr": "Ottawa Tower",
+        "app": "Ottawa Terminal",
+        "dep": "Ottawa Terminal"
     },
     "icao": "CYOW",
     "iata": "YOW",
-    "magnetic_north": -90000,
+    "magnetic_north": -14,
     "ctr_radius": 80,
     "ctr_ceiling": 7000,
     "initial_alt": 3000,
-    "position": ["xx"],
+    "position": ["N45d19m35.00", "W075d40m04.00"],
     "rr_radius_nm": 5.0,
-    "rr_center": ["xx"],
+    "rr_center": ["80"],
     "has_terrain": false,
     "wind": {
 		"angle": 204,
         "speed": 9
     },
-    "airspace": [{
+    "_airspace": [{
         "floor": 0,
         "ceiling": 20000,
         "airspace_class": "C",
@@ -27,40 +27,67 @@
         ]
     }],
     "fixes": {
-
+        "_CYOW":        ["N45d19m35.00", "W075d40m04.00"],
+        "_YOWD23H072":  ["N45d38m28.00", "W075d26m40.00"],
+        "_YOWD28H096":  ["N45d30m28.00", "W075d14m55.00"],
+        "_YOWD33H141":  ["N45d06m36.00", "W075d16m34.00"],
+        "_YOWD26H193":  ["N45d00m25.00", "W075d53m03.00"],
+        "_YOWD20H218":  ["N45d08m14.00", "W076d05m34.00"],
+        "_YOWD09H320":  ["N45d31m38.00", "W076d03m42.00"]
 	},
     "runways": [{
-        "name": ["xx", "xx"],
+        "name": ["14", "32"],
         "name_offset": [
             [0, 0], [0, 0]
         ],
         "end": [
-            ["xx", "xx", "ft"],
-            ["xx", "xx", "ft"]
+            ["N45d19m37.30", "W075d41m10.40", "140ft"],
+            ["N45d18m38.80", "W075d39m17.70", "367ft"]
         ],
-        "length": 4.000,
+        "length": 3.050,
+        "ils": [false, true]
+    }, {
+        "name": ["07", "25"],
+        "name_offset": [
+            [0, 0], [0, 0]
+        ],
+        "end": [
+            ["N45d18m47.80", "W075d40m16.80", "369ft"],
+            ["N45d19m30.20", "W075d38m42.40", "362ft"]
+        ],
+        "length": 2.438,
         "ils": [true, true]
     }, {
-        "name": ["xx", "xx"],
+        "name": ["04", "22"],
         "name_offset": [
             [0, 0], [0, 0]
         ],
         "end": [
-            ["xx", "xx", "ft"],
-            ["xx", "xx", "ft"]
+            ["N45d19m36.00", "W075d41m20.50", "347ft"],
+            ["N45d20m03.10", "W075d41m02.30", "335ft"]
         ],
-        "length": 3.500,
+        "length": 1.006,
         "ils": [true, true]
     }],
     "sids": {
-        "xx": {
-            "icao": "xx",
-            "name": "xx x",
+        "OTTAWA4": {
+            "icao": "CYOW4",
+            "name": "Ottawa Four",
             "rwy": {
-
+                "04": ["_YOWD23H072"],
+                "07": ["_YOWD28H096"],
+                "14": ["_YOWD33H141"],
+                "22": ["_YOWD26H193"],
+                "25": ["_YOWD20H218"],
+                "32": ["_YOWD09H320"]
             },
             "draw": [
-
+                ["_CYOW", "_YOWD23H072*"],
+                ["_CYOW", "_YOWD28H096*"],
+                ["_CYOW", "_YOWD33H141*"],
+                ["_CYOW", "_YOWD26H193*"],
+                ["_CYOW", "_YOWD20H218*"],
+                ["_CYOW", "_YOWD09H320*"]
             ]
         }
     },
@@ -75,24 +102,132 @@
         "offset": 0,
         "frequency": 9.5
     },
-    "stars": {
-        "xx": {
-            "icao": "xx",
-            "name": "xx",
+    "_stars": {
+        "CAPITAL4": {
+            "icao": "CAPITAL4",
+            "name": "Capital Four",
             "entryPoints": {
-                "xx": [
-					"xx"
-				]
+                "MIVOK": [
+                    "MIVOK"
+				],
+                "ELSUB": [
+                    "ELSUB"
+                ]
+            },
+            "rwy": {
+                "07": [["LANRK", "A100"], ["VISOL", "A30"]],
+                "14": [["LANRK", "A160"], ["VISOL", "A50"], ["SEBEG", "A50"], ["MEGNO", "A35"], "OMTUN"],
+                "25": [["LANRK", "A160"], ["VISOL", "A50"], "ULAGU", ["BOREG", "A50|S230"], ["ADVOS", "A30"], "KAREB"],
+                "32": [["LANRK", "A160"], ["VISOL", "A50"], "ULAGU", ["DEMKO", "A50|S210"], ["VOLAG", "A30"], "DUKTI"]
             },
             "body": [
-
+                ["KANIK", "A230"]
             ],
             "draw": [
-
+                ["MIVOK*", "KANIK"],
+                ["ELSUB*", "KANIK", "LANRK", "VISOL"],
+                ["VISOL", "ULAGU", "BOREG", "ADVOS", "KAREB"],
+                ["ULAGU", "DEMKO", "VOLAG", "DUKTI"],
+                ["VISOL", "SEBEG", "MEGNO", "OMTUN"]
+            ]
+        },
+        "DEANS8": {
+            "icao": "DEANS8",
+            "name": "Deans Eight",
+            "entryPoints": {
+                "WATERTOWN": [
+                    "ART"
+				],
+                "BUGSY": [
+                    "BUGSY", "SAVAL", ["TAPVO", "A160"]
+                ]
+            },
+            "rwy": {
+                "07": [["CYRIL", "A120"], ["CAVUR", "A75|S230"], ["AMAGI", "A50|S210"], ["NOVUX", "A50"], ["TILOG", "A30"], "EBNAP"],
+                "14": [["CYRIL", "A120"], "CAVUR", "LITRI", ["APMUP", "A50|S210"], "MERKO", ["ILOGI", "A35"], "PETLU"],
+                "25": [["CYRIL", "A120"], ["TEXEN", "A50|S230"], "ADVOS", "KAREB"],
+                "32": [["CYRIL", "A80"], ["TEXEN", "A30"]]
+            },
+            "draw": [
+                ["ART*", "CYRIL"],
+                ["BUGSY*", "SAVAL", "TAPVO", "CYRIL"],
+                ["CYRIL", "TEXEN", "ADVOS"],
+                ["CYRIL", "CAVUR", "LITRI", "APMUP", "MERKO", "ILOGI", "PETLU"],
+                ["CAVUR", "AMAGI", "NOVUX", "TILOG", "EBNAP"]
+            ]
+        },
+        "LEAMY3": {
+            "icao": "LEAMY3",
+            "name": "Leamy Three",
+            "entryPoints": {
+                "BEMOG": [
+                    ["BEMOG", "A210"]
+				]
+            },
+            "rwy": {
+                "07": [["ALIDO", "A160"], ["DUNUM", "A130"], "GABEV", ["KEMLU", "A50"], "SENNZ", ["MODON", "A30"], "VINRA"],
+                "14": [["ALIDO", "A100"], "DUNUM", ["RAFNO", "A30"]],
+                "25": [["ALIDO", "A160"], ["DUNUM", "A130"], "MERKO", ["REVAL", "A50|S210"], ["XOLTI", "A30"], "IGTAD"],
+                "32": [["ALIDO", "A160"], ["DUNUM", "A130"], "MERKO", ["ILUBO", "A50|S210"], ["WATTO", "A30"], "TIDUL"]
+            },
+            "draw": [
+                ["BEMOG", "ALIDO", "DUNUM", "RAFNO"],
+                ["DUNUM", "GABEV", "KEMLU", "SENNZ", "MODON", "VINRA"],
+                ["DUNUM", "MERKO", "REVAL", "XOLTI", "IGTAD"],
+                ["MERKO", "ILUBO", "WATTO", "TIDUL"]
+            ]
+        },
+        "MEECH1": {
+            "icao": "MEECH1",
+            "name": "Meech One",
+            "entryPoints": {
+                "SMARE": [
+                    "SMARE", ["TOXIP", "A210"]
+				]
+            },
+            "rwy": {
+                "07": [["ONDOB", "A200"], "GABEV", "KEMLU", "SENNZ", "MODON", "VINRA"],
+                "14": [["ONDOB", "A100"], ["RAFNO", "A30"]],
+                "25": [["ONDOB", "A200"], ["GABEV", "A130"], "MERKO", ["REVAL", "A50|S210"], ["XOLTI", "A30"], "IGTAD"],
+                "32": [["ONDOB", "A200"], ["GABEV", "A130"], "MERKO", ["ILUBO", "A50|S210"], ["WATTO", "A30"], "TIDUL"]
+            },
+            "draw": [
+                ["SMARE", "TOXIP", "ONDOB", "RAFNO"],
+                ["ONDOB", "GABEV"],
+                ["GABEV", "MERKO"]
+            ]
+        },
+        "RIVER1": {
+            "icao": "RIVER1",
+            "name": "River One",
+            "entryPoints": {
+                "VILRO": [
+                    "VILRO"
+				],
+                "CATOG": [
+                    "CATOG", "OBTAX"
+                ]
+            },
+            "rwy": {
+                "07": [["THURO", "A160"], "URLAG", ["ADVOS", "A130"], ["WATTO", "A30|S210"], "TIDUL"],
+                "14": [["THURO", "A160"], ["XOLTI", "A50|S230"], ["ONBAB", "A50"], ["ILOGI", "A35"], "PETLU"],
+                "25": [["THURO", "A100"], ["TELFY", "A30"]],
+                "32": [["THURO", "A120"], ["URLAG", "A50|S230"], "ADVOS", "AMAGI", ["NOVUX", "A50|S210"], ["TILOG", "A30"], "EBNAP"]
+            },
+            "body": [
+                ["YUL", "A280"], "ALSET"
+            ],
+            "draw": [
+                ["VILRO*", "YUL", "ALSET"],
+                ["CATOG*", "OBTAX", "YUL", "ALSET", "THURO"],
+                ["THURO", "URLAG", "ADVOS", "WATTO"],
+                ["THURO", "XOLTI", "ONBAB", "ILOGI"],
+                ["THURO", "TELFY"],
+                ["ADVOS", "AMAGI"]
             ]
         }
     },
-	"arrivals": [{
+	"_arrivals": [{
 		"type":		 "cyclic",
 		"route":	 "xx.xx.xxxx",
 		"frequency": 2,
