@@ -1,0 +1,12 @@
+{
+  "name": "Porter Airlines",
+  "callsign": {
+    "name": "Porter",
+    "length": 3
+  },
+  "fleets": {
+    "default": [
+      ["dh8d", 28]
+    ]
+  }
+}
