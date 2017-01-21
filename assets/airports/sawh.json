@@ -18,7 +18,7 @@
     "angle": 230,
     "speed": 19
   },
-  "fixes": { 
+  "fixes": {
     "_RWY07": ["S54.84202", "W68.26044"],
     "_RWY25": ["S54d50m39.12", "W68d19m3.09"],
     "_RWY25R070": ["S54.91588", "W68.31108"],
@@ -114,36 +114,42 @@
       }
     }
   },
-  "departures": {
-    "destinations": [
-      "USU2B", "PWL3"
-    ],
-    "type": "random",
-    "frequency": 15,
-    "airlines": [
-      ["arg", 5],
-      ["glo", 1],
-      ["lan", 2],
-      ["dsm", 3],
-      ["tam", 1],
-      ["fastga", 3]
-    ]
-  },
-  "arrivals":[
-        {
-      "speed": 300,
-      "route": "GRA.DABLI2.SAWH",
-      "airlines": [
-        ["arg", 5],
-        ["glo", 1],
-        ["lan", 2],
-        ["dsm", 3],
-        ["tam", 1],
-        ["fastga", 3]
-      ],
-      "type": "random",
-      "frequency": 15,
-      "altitude": 25000
+  "spawnPatterns":[
+    {
+        "origin": "sawh",
+        "destination": "",
+        "category": "departure",
+        "route": "SAWH.USU2A.GRA",
+        "altitude": "",
+        "speed": "",
+        "method": "random",
+        "rate": 15,
+        "airlines": [
+            ["arg", 5],
+            ["glo", 1],
+            ["lan", 2],
+            ["dsm", 3],
+            ["tam", 1],
+            ["fastga", 3]
+        ]
+    },
+    {
+        "origin": "",
+        "destination": "sawh",
+        "category": "arrival",
+        "route": "GRA.DABLI2.SAWH",
+        "altitude": 25000,
+        "speed": 300,
+        "method": "random",
+        "rate": 15,
+        "airlines": [
+            ["arg", 5],
+            ["glo", 1],
+            ["lan", 2],
+            ["dsm", 3],
+            ["tam", 1],
+            ["fastga", 3]
+        ]
     }
   ]
 }
