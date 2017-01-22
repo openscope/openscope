@@ -173,12 +173,12 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             name: 'Washington-Dulles International Airport',
             wip: false
         },
-        {
-            icao: 'kjfk',
-            level: 'hard',
-            name: 'John F Kennedy International Airport',
-            wip: true
-        },
+        // {
+        //     icao: 'kjfk',
+        //     level: 'hard',
+        //     name: 'John F Kennedy International Airport',
+        //     wip: true
+        // },
         {
             icao: 'klas',
             level: 'medium',
@@ -203,12 +203,12 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             name: 'Miami International Airport',
             wip: true
         },
-        {
-            icao: 'kmsp',
-            level: 'hard',
-            name: 'Minneapolis/St. Paul International Airport',
-            wip: true
-        },
+        // {
+        //     icao: 'kmsp',
+        //     level: 'hard',
+        //     name: 'Minneapolis/St. Paul International Airport',
+        //     wip: true
+        // },
         {
             icao: 'kord',
             level: 'hard',
@@ -227,12 +227,12 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             name: 'Phoenix Sky Harbor International Airport',
             wip: false
         },
-        {
-            icao: 'ksan',
-            level: 'easy',
-            name: 'San Diego International Airport',
-            wip: false
-        },
+        // {
+        //     icao: 'ksan',
+        //     level: 'easy',
+        //     name: 'San Diego International Airport',
+        //     wip: false
+        // },
         {
             icao: 'ksea',
             level: 'medium',
@@ -257,18 +257,18 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             name: 'Vienna International Airport',
             wip: false
         },
-        {
-            icao: 'ltba',
-            level: 'hard',
-            name: 'Atatürk International Airport',
-            wip: true
-        },
-        {
-            icao: 'omaa',
-            level: 'medium',
-            name: 'Abu Dhabi International Airport',
-            wip: false
-        },
+        // {
+        //     icao: 'ltba',
+        //     level: 'hard',
+        //     name: 'Atatürk International Airport',
+        //     wip: true
+        // },
+        // {
+        //     icao: 'omaa',
+        //     level: 'medium',
+        //     name: 'Abu Dhabi International Airport',
+        //     wip: false
+        // },
         {
             icao: 'omdb',
             level: 'hard',
@@ -359,12 +359,12 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             name: 'Kolkata Netaji Subhas Chandra Bose Int\'l',
             wip: false
         },
-        {
-            icao: 'vobl',
-            level: 'medium',
-            name: 'Kempegowda International Airport Bengaluru',
-            wip: false
-        },
+        // {
+        //     icao: 'vobl',
+        //     level: 'medium',
+        //     name: 'Kempegowda International Airport Bengaluru',
+        //     wip: false
+        // },
         {
             icao: 'vhhh',
             level: 'medium',
@@ -377,12 +377,12 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             name: 'Indira Gandhi International Airport',
             wip: false
         },
-        {
-            icao: 'wiii',
-            level: 'medium',
-            name: 'Soekarno-Hatta International Airport',
-            wip: false
-        },
+        // {
+        //     icao: 'wiii',
+        //     level: 'medium',
+        //     name: 'Soekarno-Hatta International Airport',
+        //     wip: false
+        // },
         {
             icao: 'wimm',
             level: 'easy',
