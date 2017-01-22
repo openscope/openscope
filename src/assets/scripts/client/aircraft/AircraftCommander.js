@@ -934,7 +934,7 @@ export default class AircraftCommander {
         aircraft.taxi_start = this._gameController.game_time();
         const runway = this._airportController.airport_get().getRunway(aircraft.rwy_dep);
 
-        runway.addQueue(this);
+        runway.addQueue(aircraft);
         aircraft.mode = FLIGHT_MODES.TAXI;
 
         const readback = {
@@ -976,7 +976,7 @@ export default class AircraftCommander {
 
         const runway = this._airportController.airport_get().getRunway(aircraft.rwy_dep);
 
-        if (runway.removeQueue(this)) {
+        if (runway.removeQueue(aircraft)) {
             aircraft.mode = FLIGHT_MODES.TAKEOFF;
             aircraft.scoreWind('taking off');
             aircraft.takeoffTime = this._gameController.game_time();
@@ -996,7 +996,7 @@ export default class AircraftCommander {
             return ['ok', readback];
         }
 
-        const waiting = runway.inQueue(this);
+        const waiting = runway.inQueue(aircraft);
 
         return ['fail', `number ${waiting} behind ${runway.queue[waiting - 1].getRadioCallsign()}`, ''];
     }
