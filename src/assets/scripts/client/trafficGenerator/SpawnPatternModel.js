@@ -255,6 +255,8 @@ export default class SpawnPatternModel extends BaseModel {
         /**
          * Used only with cycle, surge or wave spawnPatters
          *
+         * Shifts the pattern to a different part of the cycle
+         *
          * @property offset
          * @type {number}
          * @default -1
@@ -263,6 +265,8 @@ export default class SpawnPatternModel extends BaseModel {
 
         /**
          * Used only with cycle, surge or wave spawnPatters
+         *
+         * Length of a pattern cycle
          *
          * @property period
          * @type {number}
@@ -581,14 +585,14 @@ export default class SpawnPatternModel extends BaseModel {
         // TODO: abstract this if/else block
         // Verify we can comply with the requested arrival rate based on entrail spacing
         if (this.rate > this._aircraftPerHourUp) {
-            console.warn(`TOO MANY ARRIVALS IN SURGE! Requested: ` +
+            console.warn('TOO MANY ARRIVALS IN SURGE! Requested: ' +
                 `${this.rate} acph | Acceptable Range for requested entrail distance: ` +
                 `${Math.ceil(this._aircraftPerHourDown)} acph - ${Math.floor(this._aircraftPerHourUp)} acph`);
 
             this.rate = this._aircraftPerHourUp;
             this._aircraftPerHourDown = this._aircraftPerHourUp;
         } else if (this.rate < this._aircraftPerHourDown) {
-            console.warn(`TOO FEW ARRIVALS IN SURGE! Requested: ` +
+            console.warn('TOO FEW ARRIVALS IN SURGE! Requested: ' +
                 `${this.rate} acph | Acceptable Range for requested entrail distance: ` +
                 `${Math.ceil(this._aircraftPerHourDown)} acph - ${Math.floor(this._aircraftPerHourUp)} acph`);
 
