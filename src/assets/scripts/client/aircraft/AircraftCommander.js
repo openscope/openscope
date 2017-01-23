@@ -934,7 +934,7 @@ export default class AircraftCommander {
         aircraft.taxi_start = this._gameController.game_time();
         const runway = this._airportController.airport_get().getRunway(aircraft.rwy_dep);
 
-        runway.addQueue(aircraft);
+        runway.addAircraftToQueue(aircraft);
         aircraft.mode = FLIGHT_MODES.TAXI;
 
         const readback = {
@@ -1024,6 +1024,7 @@ export default class AircraftCommander {
     /**
      * @for AircraftCommander
      * @method runAbort
+     * @param aircraft {AircraftInstanceModel}
      * @param data
      */
     runAbort(aircraft, data) {
@@ -1076,6 +1077,7 @@ export default class AircraftCommander {
     /**
      * @for AircraftCommander
      * @method runDebug
+     * * @param aircraft {AircraftInstanceModel}
      */
     runDebug(aircraft) {
         window.aircraft = aircraft;
@@ -1086,8 +1088,9 @@ export default class AircraftCommander {
     /**
      * @for AircraftCommander
      * @method runDelete
+     * @param aircraft {AircraftInstanceModel}
      */
-    runDelete() {
-        window.aircraftController.aircraft_remove(this);
+    runDelete(aircraft) {
+        window.aircraftController.aircraft_remove(aircraft);
     }
 }
