@@ -12,6 +12,7 @@ import SpawnPatternCollection from './trafficGenerator/SpawnPatternCollection';
 import SpawnScheduler from './trafficGenerator/SpawnScheduler';
 import GameController from './game/GameController';
 import TutorialView from './tutorial/TutorialView';
+import AircraftCommander from './aircraft/AircraftCommander';
 import InputController from './InputController';
 import UiController from './UiController';
 import CanvasController from './canvas/CanvasController';
@@ -68,6 +69,7 @@ export default class App {
         this.airlineCollection = null;
         this.airportController = null;
         this.tutorialView = null;
+        this.aircraftCommander = null;
         this.inputController = null;
         this.uiController = null;
         this.canvasController = null;
@@ -175,8 +177,9 @@ export default class App {
 
         this.canvasController = new CanvasController(this.$element, this.navigationLibrary);
         this.tutorialView = new TutorialView(this.$element);
-        this.inputController = new InputController(this.$element);
         this.uiController = new UiController(this.$element);
+        this.aircraftCommander = new AircraftCommander(this.airportController, this.navigationLibrary, this.gameController, this.uiController);
+        this.inputController = new InputController(this.$element, this.aircraftCommander);
         this.gameClockView = new GameClockView(this.$element);
 
         this.updateViewControls();
@@ -232,6 +235,7 @@ export default class App {
         this.airportController = null;
         this.gameController = null;
         this.tutorialView = null;
+        this.aircraftCommander = null;
         this.inputController = null;
         this.uiController = null;
         this.canvasController = null;
