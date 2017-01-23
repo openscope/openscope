@@ -1251,6 +1251,7 @@ export default class Aircraft {
         const airport = window.airportController.airport_get();
         const { sidCollection } = airport;
         const sidId = data[0];
+        const sidIdOutput = sidId.toUpperCase();
         const standardRouteModel = sidCollection.findRouteByIcao(sidId);
         const exit = airport.getSIDExitPoint(sidId);
         // TODO: perhaps this should use the `RouteModel`?
@@ -1276,7 +1277,7 @@ export default class Aircraft {
         this.fms.followSID(route.toUpperCase());
 
         const readback = {
-            log: `cleared to destination via the ${sidId} departure, then as filed`,
+            log: `cleared to destination via the ${sidIdOutput} departure, then as filed`,
             say: `cleared to destination via the ${standardRouteModel.name} departure, then as filed`
         };
 
