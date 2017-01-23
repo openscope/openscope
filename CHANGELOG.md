@@ -3,6 +3,7 @@
 ### Major
 - Restructures `src` files into `client` and `server` folders. [#220](https://github.com/n8rzz/atc/issues/220)
 - Updates Node to version 7.0.0 [#184](https://github.com/n8rzz/atc/issues/184)
+- Moves aircraft command logic from `AircraftInstanceModel` to new `AircraftCommander` class [#181](https://github.com/n8rzz/atc/issues/181)
 
 ### Minor
 - Changes `AircraftStripView` text outputs to be all uppercase [#193](https://github.com/n8rzz/atc/issues/193)

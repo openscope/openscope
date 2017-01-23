@@ -4,15 +4,12 @@ import _forEach from 'lodash/forEach';
 import _get from 'lodash/get';
 import _has from 'lodash/has';
 import _isEqual from 'lodash/isEqual';
-import _isNaN from 'lodash/isNaN';
 import _isNil from 'lodash/isNil';
 import _isString from 'lodash/isString';
 import _map from 'lodash/map';
 import _without from 'lodash/without';
 import AircraftFlightManagementSystem from './FlightManagementSystem/AircraftFlightManagementSystem';
 import AircraftStripView from './AircraftStripView';
-import Waypoint from './FlightManagementSystem/Waypoint';
-import RouteModel from '../airport/Route/RouteModel';
 import { speech_say } from '../speech';
 import { tau, radians_normalize, angle_offset } from '../math/circle';
 import { round, abs, sin, cos, extrapolate_range_clamp, clamp } from '../math/core';
@@ -31,15 +28,11 @@ import {
     point_in_area
 } from '../math/vector';
 import {
-    radio_cardinalDir_names,
     digits_decimal,
     groupNumbers,
     radio_runway,
-    radio_heading,
     radio_spellOut,
-    radio_altitude,
-    radio_trend,
-    getCardinalDirection
+    radio_altitude
 } from '../utilities/radioUtilities';
 import { km, radiansToDegrees, degreesToRadians, heading_to_string } from '../utilities/unitConverters';
 import {
@@ -50,41 +43,6 @@ import {
 } from '../constants/aircraftConstants';
 import { SELECTORS } from '../constants/selectors';
 import { GAME_EVENTS } from '../game/GameController';
-
-/**
- * Enum of commands and thier corresponding function.
- *
- * Used to build a call to the correct function when a UI command, or commands,
- * for an aircraft have been issued.
- *
- * @property COMMANDS
- * @type {Object}
- * @final
- */
-const COMMANDS = {
-    abort: 'runAbort',
-    altitude: 'runAltitude',
-    clearedAsFiled: 'runClearedAsFiled',
-    climbViaSID: 'runClimbViaSID',
-    debug: 'runDebug',
-    delete: 'runDelete',
-    descendViaSTAR: 'runDescendViaSTAR',
-    direct: 'runDirect',
-    fix: 'runFix',
-    flyPresentHeading: 'runFlyPresentHeading',
-    heading: 'runHeading',
-    hold: 'runHold',
-    land: 'runLanding',
-    moveDataBlock: 'runMoveDataBlock',
-    route: 'runRoute',
-    reroute: 'runReroute',
-    sayRoute: 'runSayRoute',
-    sid: 'runSID',
-    speed: 'runSpeed',
-    star: 'runSTAR',
-    takeoff: 'runTakeoff',
-    taxi: 'runTaxi'
-};
 
 /**
  * @property FLIGHT_RULES
@@ -345,7 +303,7 @@ export default class Aircraft {
 
         // TODO: this should return early
         // TODO: use existing enumeration for `sid`
-        if (leg.type === 'sid') {
+        if (leg.type === FP_LEG_TYPE.SID) {
             const a = _map(leg.waypoints, (v) => v.altitude);
             const cvs = !a.every((v) => v === window.airportController.airport_get().initial_alt);
             this.fms.followSID(leg.route.routeCode);
@@ -439,7 +397,7 @@ export default class Aircraft {
 
             // TODO: if we just need the last fix in the list, why loop through all the legs?
             _forEach(this.fms.legs, (leg) => {
-                if (leg.type === 'sid') {
+                if (leg.type === FP_LEG_TYPE.SID) {
                     // TODO: use lodash `_last()` here
                     exit = leg.waypoints[leg.waypoints.length - 1].fix;
                     return;
@@ -535,11 +493,11 @@ export default class Aircraft {
         let heavy = '';
 
         if (this.model.weightclass === 'H') {
-            heavy = 'heavy';
+            heavy = ' heavy';
         }
 
         if (this.model.weightclass === 'U') {
-            heavy = 'super';
+            heavy = ' super';
         }
 
         let callsign = this.callsign;
@@ -548,6 +506,7 @@ export default class Aircraft {
             callsign = callsign.substr(callsign.length - length);
         }
 
+        // TODO: this may not be needed any longer
         let cs = window.airlineController.airline_get(this.airline).callsign;
 
         if (cs === 'November') {
@@ -603,1044 +562,29 @@ export default class Aircraft {
         this.$html.hide(600);
     }
 
-
-    // TODO: move aircraftCommands to a new class
-    /**
-     * @for AircraftInstanceModel
-     * @method runCommands
-     * @param commands
-     */
-    runCommands(commands) {
-        if (!this.inside_ctr) {
-            return true;
-        }
-
-        let response = [];
-        let response_end = '';
-        const deferred = [];
-
-        for (let i = 0; i < commands.length; i++) {
-            const command = commands[i][0];
-            const args = commands[i].splice(1);
-
-            if (command === FLIGHT_MODES.TAKEOFF) {
-                deferred.push([command, args]);
-                continue;
-            }
-
-            let retval = this.run(command, args);
-
-            if (retval) {
-                if (!_has(retval[1], 'log') || !_has(retval[1], 'say')) {
-                    // TODO: reassigning a value using itself is dangerous. this should be re-wroked
-                    retval = [
-                        retval[0],
-                        {
-                            log: retval[1],
-                            say: retval[1]
-                        }
-                    ];
-                }
-
-                response.push(retval[1]);
-
-                if (retval[2]) {
-                    response_end = retval[2];
-                }
-            }
-        }
-
-        for (let i = 0; i < deferred.length; i += 1) {
-            const command = deferred[i][0];
-            const args = deferred[i][1];
-            const retval  = this.run(command, args);
-
-            if (retval) {
-                // TODO: fix the logic here this very purposly using `!=`. length is not an object and thus,
-                // never null but by using coercion it evaluates to falsey if its not an array
-                // true if array, and not log/say object
-                if (retval[1].length != null) {
-                    // make into log/say object
-                    retval[1] = {
-                        say: retval[1],
-                        log: retval[1]
-                    };
-                }
-
-                response.push(retval[1]);
-            }
-        }
-
-        if (commands.length === 0) {
-            response = [{
-                say: 'not understood',
-                log: 'not understood'
-            }];
-            response_end = 'say again';
-        }
-
-        if (response.length >= 1) {
-            if (response_end) {
-                response_end = `, ${response_end}`;
-            }
-
-            const r_log = _map(response, (r) => r.log).join(', ');
-            const r_say = _map(response, (r) => r.say).join(', ');
-
-            window.uiController.ui_log(`${this.getCallsign()}, ${r_log} ${response_end}`);
-            speech_say([
-                { type: 'callsign', content: this },
-                { type: 'text', content: `${r_say} ${response_end}` }
-            ]);
-        }
-
-        this.updateStrip();
-
-        return true;
-    }
-
-    /**
-     * @for AircraftInstanceModel
-     * @method run
-     * @param command
-     * @param data
-     * @return {function}
-     */
-    run(command, data) {
-        let call_func;
-
-        if (COMMANDS[command]) {
-            call_func = COMMANDS[command];
-        }
-
-        if (!call_func) {
-            return ['fail', 'not understood'];
-        }
-
-        return this[call_func](data);
-    }
-
-    /**
-     * @for AircraftInstanceModel
-     * @method runHeading
-     * @param data
-     */
-    runHeading(data) {
-        const airport = window.airportController.airport_get();
-        const direction = data[0];
-        let heading = data[1];
-        const incremental = data[2];
-        let amount = 0;
-        let instruction;
-
-        if (_isNaN(heading)) {
-            return ['fail', 'heading not understood'];
-        }
-
-        if (incremental) {
-            amount = heading;
-
-            if (direction === 'left') {
-                heading = radiansToDegrees(this.heading) - amount;
-            } else if (direction === 'right') {
-                heading = radiansToDegrees(this.heading) + amount;
-            }
-        }
-
-        // TODO: this probably shouldn't be the AircraftInstanceModel's job. this logic should belong somewhere else.
-        // Update the FMS
-        let wp = this.fms.currentWaypoint;
-        const leg = this.fms.currentLeg;
-        const f = this.fms.following;
-
-        if (wp.navmode === WAYPOINT_NAV_MODE.RWY) {
-            this.cancelLanding();
-        }
-
-        // already being vectored or holding. Will now just change the assigned heading.
-        if (wp.navmode === WAYPOINT_NAV_MODE.HEADING) {
-            this.fms.setCurrent({
-                altitude: wp.altitude,
-                navmode: WAYPOINT_NAV_MODE.HEADING,
-                heading: degreesToRadians(heading),
-                speed: wp.speed,
-                turn: direction,
-                hold: false
-            });
-        } else if (wp.navmode === WAYPOINT_NAV_MODE.HOLD) {
-            // in hold. Should leave the hold, and add leg for vectors
-            const index = this.fms.current[0] + 1;
-            const waypointToAdd = new Waypoint(
-                {
-                    altitude: wp.altitude,
-                    navmode: WAYPOINT_NAV_MODE.HEADING,
-                    heading: degreesToRadians(heading),
-                    speed: wp.speed,
-                    turn: direction,
-                    hold: false
-                },
-                airport
-            );
-
-            // add new Leg after hold leg
-            this.fms.insertLeg({
-                firstIndex: index,
-                waypoints: [waypointToAdd]
-            });
-
-            // move from hold leg to vector leg.
-            this.fms.nextWaypoint();
-        } else if (f.sid || f.star || f.awy) {
-            const waypointToAdd = new Waypoint(
-                {
-                    altitude: wp.altitude,
-                    navmode: WAYPOINT_NAV_MODE.HEADING,
-                    heading: degreesToRadians(heading),
-                    speed: wp.speed,
-                    turn: direction,
-                    hold: false
-                },
-                airport
-            );
-
-            // TODO: this should be an FMS class method that accepts a new `waypointToAdd`
-            // insert wp with heading at current position within the already active leg
-            leg.waypoints.splice(this.fms.current[1], 0, waypointToAdd);
-        } else if (leg.route !== '[radar vectors]') {
-            // needs new leg added
-            if (this.fms.atLastWaypoint()) {
-                const waypointToAdd = new Waypoint(
-                    {
-                        altitude: wp.altitude,
-                        navmode: WAYPOINT_NAV_MODE.HEADING,
-                        heading: degreesToRadians(heading),
-                        speed: wp.speed,
-                        turn: direction,
-                        hold: false
-                    },
-                    airport
-                );
-
-                this.fms.appendLeg({
-                    waypoints: [waypointToAdd]
-                });
-
-                this.fms.nextLeg();
-            } else {
-                const waypointToAdd = new Waypoint(
-                    {
-                        altitude: wp.altitude,
-                        navmode: WAYPOINT_NAV_MODE.HEADING,
-                        heading: degreesToRadians(heading),
-                        speed: wp.speed,
-                        turn: direction,
-                        hold: false
-                    },
-                    airport
-                );
-
-                this.fms.insertLegHere({
-                    waypoints: [waypointToAdd]
-                });
-            }
-        }
-
-        wp = this.fms.currentWaypoint;  // update 'wp'
-
-        // Construct the readback
-        instruction = 'fly heading';
-        if (direction) {
-            instruction = `turn ${direction} heading`;
-        }
-
-        const readback = {};
-        readback.log = `${instruction} ${heading_to_string(wp.heading)}`;
-        readback.say = `${instruction} ${radio_heading(heading_to_string(wp.heading))}`;
-
-        if (incremental) {
-            readback.log = `turn ${amount} degrees ${direction}`;
-            readback.say = `turn ${groupNumbers(amount)} degrees ${direction}`;
-        }
-
-        return ['ok', readback];
-    }
-
-    /**
-     * @for AircraftInstanceModel
-     * @method runAltitude
-     * @param data
-     */
-    runAltitude(data) {
-        const altitude = data[0];
-        let expedite = data[1];
-        const airport = window.airportController.airport_get();
-
-        if ((altitude == null) || isNaN(altitude)) {
-            // FIXME: move this to it's own command. if expedite can be passed as a sole command it should be its own command
-            if (expedite) {
-                this.fms.setCurrent({ expedite: true });
-                const radioTrendAltitude = radio_trend('altitude', this.altitude, this.fms.altitudeForCurrentWaypoint());
-
-                return ['ok', `${radioTrendAltitude} ${this.fms.altitudeForCurrentWaypoint()} expedite`];
-            }
-
-            return ['fail', 'altitude not understood'];
-        }
-
-        if (this.mode === FLIGHT_MODES.LANDING) {
-            this.cancelLanding();
-        }
-
-        let ceiling = airport.ctr_ceiling;
-        if (window.gameController.game.option.get('softCeiling') === 'yes') {
-            ceiling += 1000;
-        }
-
-        this.fms.setAll({
-            // TODO: enumerate the magic numbers
-            altitude: clamp(round(airport.elevation / 100) * 100 + 1000, altitude, ceiling),
-            expedite: expedite
-        });
-
-        const newAltitude = this.fms.altitudeForCurrentWaypoint();
-        const instruction = radio_trend('altitude', this.altitude, newAltitude);
-        const readback_text = `${instruction} ${newAltitude}`;
-        const readback_verbal = `${instruction} ${radio_altitude(newAltitude)}`;
-
-        const readback = {
-            log: readback_text,
-            say: readback_verbal
-        };
-
-        if (expedite) {
-            readback.log = `${readback_text} and expedite`;
-            readback.say = `${readback_verbal} and expedite`;
-        }
-
-        return ['ok', readback];
-    }
-
-    /**
-     * @for AircraftInstanceModel
-     * @method runClearedAsFiled
-     * @return {array}
-     */
-    runClearedAsFiled() {
-        if (!this.runSID([this.destination])) {
-            return [true, 'unable to clear as filed'];
-        }
-
-        const airport = window.airportController.airport_get();
-        const { name: procedureName } = airport.sidCollection.findRouteByIcao(this.destination);
-        const readback = {};
-
-        readback.log = `cleared to destination via the ${this.destination} departure, then as filed. Climb and ` +
-            `maintain ${airport.initial_alt}, expect ${this.fms.fp.altitude} 10 minutes after departure`;
-        readback.say = `cleared to destination via the ${procedureName} ` +
-            `departure, then as filed. Climb and maintain ${radio_altitude(airport.initial_alt)}, ` +
-            `expect ${radio_altitude(this.fms.fp.altitude)}, ${radio_spellOut('10')} minutes after departure'`;
-
-        return ['ok', readback];
-    }
-
-    /**
-     * @for AircraftInstanceModel
-     * @method runClimbViaSID
-     */
-    runClimbViaSID() {
-        if (this.fms.currentLeg.type !== FP_LEG_TYPE.SID || !this.fms.climbViaSID()) {
-            const isWarning = true;
-
-            window.uiController.ui_log(`${this.getCallsign()} unable to climb via SID`, isWarning);
-
-            return;
-        }
-
-        const airport = window.airportController.airport_get();
-        const { name: procedureName } = airport.sidCollection.findRouteByIcao(this.fms.currentLeg.route.procedure);
-        const readback = {
-            log: `climb via the ${this.fms.currentLeg.route.procedure} departure`,
-            say: `climb via the ${procedureName} departure`
-        };
-
-        return ['ok', readback];
-    }
-
-    /**
-     * @for AircraftInstanceModel
-     * @method runDescendViaSTAR
-     * @param data
-     * @return {boolean|undefined}
-     */
-    runDescendViaSTAR() {
-        if (!this.fms.descendViaSTAR() || !this.fms.following.star) {
-            const isWarning = true;
-            window.uiController.ui_log(`${this.getCallsign()}, unable to descend via STAR`, isWarning);
-
-            return;
-        }
-
-        const airport = window.airportController.airport_get();
-        const { name: procedureName } = airport.starCollection.findRouteByIcao(this.fms.currentLeg.route.procedure);
-        const readback = {
-            log: `descend via the ${this.fms.following.star} arrival`,
-            say: `descend via the ${procedureName} arrival`
-        };
-
-        return ['ok', readback];
-    }
-
-    /**
-     * @for AircraftInstanceModel
-     * @method runSpeed
-     * @param data
-     */
-    runSpeed(data) {
-        const speed = data[0];
-
-        if (_isNaN(speed)) {
-            return ['fail', 'speed not understood'];
-        }
-
-        const clampedSpeed = clamp(this.model.speed.min, speed, this.model.speed.max);
-        this.fms.setAll({ speed: clampedSpeed });
-
-        const radioTrendSpeed = radio_trend('speed', this.speed, this.fms.currentWaypoint.speed);
-        const readback = {
-            log: `${radioTrendSpeed} ${this.fms.currentWaypoint.speed}`,
-            say: `${radioTrendSpeed} ${radio_spellOut(this.fms.currentWaypoint.speed)}`
-        };
-
-        return ['ok', readback];
-    }
-
-    /**
-     * @for AircraftInstanceModel
-     * @method runHold
-     * @param data
-     */
-    runHold(data) {
-        const airport = window.airportController.airport_get();
-        let dirTurns = data[0];
-        let legLength = data[1];
-        let holdFix = data[2];
-        let holdFixLocation = null;
-        let inboundHdg;
-        // let inboundDir;
-
-        // TODO: this might be better handled from within the parser
-        if (dirTurns == null) {
-            // standard for holding patterns is right-turns
-            dirTurns = 'right';
-        }
-
-        // TODO: this might be better handled from within the parser
-        if (legLength == null) {
-            legLength = '1min';
-        }
-
-        // TODO: simplify this nested if.
-        if (holdFix !== null) {
-            holdFix = holdFix.toUpperCase();
-            holdFixLocation = airport.getFixPosition(holdFix);
-
-            if (!holdFixLocation) {
-                return ['fail', `unable to find fix ${holdFix}`];
-            }
-        }
-
-        if (this.isTakeoff() && !holdFix) {
-            return ['fail', 'where do you want us to hold?'];
-        }
-
-        // Determine whether or not to enter the hold from present position
-        if (holdFix) {
-            // holding over a specific fix (currently only able to do so on inbound course)
-            inboundHdg = vradial(vsub(this.position, holdFixLocation));
-
-            if (holdFix !== this.fms.currentWaypoint.fix) {
-                // not yet headed to the hold fix
-                this.fms.insertLegHere({
-                    type: 'fix',
-                    route: '[GPS/RNAV]',
-                    waypoints: [
-                        // proceed direct to holding fix
-                        new Waypoint(
-                            {
-                                fix: holdFix,
-                                altitude: this.fms.altitudeForCurrentWaypoint(),
-                                speed: this.fms.currentWaypoint.speed
-                            },
-                            airport
-                        ),
-                        // then enter the hold
-                        new Waypoint(
-                            {
-                                navmode: WAYPOINT_NAV_MODE.HOLD,
-                                speed: this.fms.currentWaypoint.speed,
-                                altitude: this.fms.altitudeForCurrentWaypoint(),
-                                fix: null,
-                                hold: {
-                                    fixName: holdFix,
-                                    fixPos: holdFixLocation,
-                                    dirTurns: dirTurns,
-                                    legLength: legLength,
-                                    inboundHdg: inboundHdg,
-                                    timer: null
-                                }
-                            },
-                            airport
-                        )
-                    ]
-                });
-            } else {
-                // TODO: this should be a `Waypoint`
-                // already currently going to the hold fix
-                // Force the initial turn to outbound heading when entering the hold
-                this.fms.appendWaypoint({
-                    navmode: WAYPOINT_NAV_MODE.HOLD,
-                    speed: this.fms.currentWaypoint.speed,
-                    altitude: this.fms.altitudeForCurrentWaypoint(),
-                    fix: null,
-                    hold: {
-                        fixName: holdFix,
-                        fixPos: holdFixLocation,
-                        dirTurns: dirTurns,
-                        legLength: legLength,
-                        inboundHdg: inboundHdg,
-                        timer: null
-                    }
-                });
-            }
-        } else {
-            // holding over present position (currently only able to do so on present course)
-            holdFixLocation = this.position; // make a/c hold over their present position
-            inboundHdg = this.heading;
-
-            // TODO: these aren't `Waypoints` and they should be
-            this.fms.insertLegHere({
-                type: 'fix',
-                waypoints: [
-                    { // document the present position as the 'fix' we're holding over
-                        navmode: WAYPOINT_NAV_MODE.FIX,
-                        fix: '[custom]',
-                        location: holdFixLocation,
-                        altitude: this.fms.altitudeForCurrentWaypoint(),
-                        speed: this.fms.currentWaypoint.speed
-                    },
-                    { // Force the initial turn to outbound heading when entering the hold
-                        navmode: WAYPOINT_NAV_MODE.HOLD,
-                        speed: this.fms.currentWaypoint.speed,
-                        altitude: this.fms.altitudeForCurrentWaypoint(),
-                        fix: null,
-                        hold: {
-                            fixName: holdFix,
-                            fixPos: holdFixLocation,
-                            dirTurns: dirTurns,
-                            legLength: legLength,
-                            inboundHdg: inboundHdg,
-                            timer: null
-                        }
-                    }
-                ]
-            });
-        }
-
-        // TODO: abstract to method `.getInboundCardinalDirection()`
-        const inboundDir = radio_cardinalDir_names[getCardinalDirection(radians_normalize(inboundHdg + Math.PI)).toLowerCase()];
-
-        if (holdFix) {
-            return ['ok', `proceed direct ${holdFix} and hold inbound, ${dirTurns} turns, ${legLength} legs`];
-        }
-
-        return ['ok', `hold ${inboundDir} of present position, ${dirTurns} turns, ${legLength} legs`];
-    }
-
-    /**
-     * @for AircraftInstanceModel
-     * @method runDirect
-     * @param data
-     */
-    runDirect(data) {
-        const fixname = data[0].toUpperCase();
-        // TODO replace with FixCollection
-        const fix = window.airportController.airport_get().getFixPosition(fixname);
-
-        if (!fix) {
-            return ['fail', `unable to find fix called ${fixname}`];
-        }
-
-        // remove intermediate fixes
-        if (this.mode === FLIGHT_MODES.TAKEOFF) {
-            this.fms.skipToFix(fixname);
-        } else if (!this.fms.skipToFix(fixname)) {
-            return ['fail', `${fixname} is not in our flightplan`];
-        }
-
-        return ['ok', `proceed direct ${fixname}`];
-    }
-
-    runFix(data) {
-        let last_fix;
-        let fail;
-        const fixes = _map(data, (fixname) => {
-            // TODO: this may beed to be the FixCollection
-            const fix = window.airportController.airport_get().getFixPosition(fixname);
-
-            if (!fix) {
-                fail = ['fail', `unable to find fix called ${fixname}`];
-
-                return;
-            }
-
-            // to avoid repetition, compare name with the previous fix
-            if (fixname === last_fix) {
-                return;
-            }
-
-            last_fix = fixname;
-
-            return fixname;
-        });
-
-        if (fail) {
-            return fail;
-        }
-
-        for (let i = 0; i < fixes.length; i++) {
-            // FIXME: use enumerated constant for type
-            this.fms.insertLegHere({ type: 'fix', route: fixes[i] });
-        }
-
-        if (this.mode !== FLIGHT_MODES.WAITING &&
-            this.mode !== FLIGHT_MODES.TAKEOFF &&
-            this.mode !== FLIGHT_MODES.APRON &&
-            this.mode !== FLIGHT_MODES.TAXI
-        ) {
-            this.cancelLanding();
-        }
-
-        return ['ok', `proceed direct ${fixes.join(', ')}`];
-    }
-
-    /**
-     * @for AircraftInstanceModel
-     * @method runFlyPresentHeading
-     * @param data
-     */
-    runFlyPresentHeading(data) {
-        this.cancelFix();
-        this.runHeading([null, radiansToDegrees(this.heading)]);
-
-        return ['ok', 'fly present heading'];
-    }
-
-    /**
-     * @for AircraftInstanceModel
-     * @method runSayRoute
-     * @param data
-     */
-    runSayRoute(data) {
-        return ['ok', {
-            log: `route: ${this.fms.fp.route.join(' ')}`,
-            say: 'here\'s our route'
-        }];
-    }
-
-    /**
-     * @for AircraftInstanceModel
-     * @method runSID
-     */
-    runSID(data) {
-        const airport = window.airportController.airport_get();
-        const { sidCollection } = airport;
-        const sidId = data[0];
-        const standardRouteModel = sidCollection.findRouteByIcao(sidId);
-        const exit = airport.getSIDExitPoint(sidId);
-        // TODO: perhaps this should use the `RouteModel`?
-        const route = `${airport.icao}.${sidId}.${exit}`;
-
-        if (_isNil(standardRouteModel)) {
-            return ['fail', 'SID name not understood'];
-        }
-
-        if (this.category !== FLIGHT_CATEGORY.DEPARTURE) {
-            return ['fail', 'unable to fly SID, we are an inbound'];
-        }
-
-        if (!this.rwy_dep) {
-            this.setDepartureRunway(airportController.airport_get().runway);
-        }
-
-        if (!standardRouteModel.hasFixName(this.rwy_dep)) {
-            return ['fail', `unable, the ${standardRouteModel.name} departure not valid from Runway ${this.rwy_dep}`];
-        }
-
-        // TODO: this is the wrong place for this `.toUpperCase()`
-        this.fms.followSID(route.toUpperCase());
-
-        const readback = {
-            log: `cleared to destination via the ${sidId} departure, then as filed`,
-            say: `cleared to destination via the ${standardRouteModel.name} departure, then as filed`
-        };
-
-        return ['ok', readback];
-    }
-
-    /**
-     * @for AircraftInstanceModel
-     * @method runSTAR
-     * @param data {array<string>} a string representation of the STAR, ex: `QUINN.BDEGA2.KSFO`
-     */
-    runSTAR(data) {
-        const routeModel = new RouteModel(data[0]);
-        const airport = window.airportController.airport_get();
-        const { name: starName } = airport.starCollection.findRouteByIcao(routeModel.procedure);
-        if (this.category !== FLIGHT_CATEGORY.ARRIVAL) {
-            return ['fail', 'unable to fly STAR, we are a departure!'];
-        }
-
-        // TODO: the data[0].length check might not be needed. this is covered via the CommandParser when
-        // this method runs as the result of a command.
-        if (data[0].length === 0 || !airport.starCollection.hasRoute(routeModel.procedure)) {
-            return ['fail', 'STAR name not understood'];
-        }
-
-        this.fms.followSTAR(routeModel.routeCode);
-
-        // TODO: casing may be an issue here.
-        const readback = {
-            log: `cleared to the ${airport.name} via the ${routeModel.procedure} arrival`,
-            say: `cleared to the ${airport.name} via the ${starName} arrival`
-        };
-
-        return ['ok', readback];
-    }
-
-    /**
-     * @for AircraftInstanceModel
-     * @method runMoveDataBlock
-     * @param data
-     */
-    runMoveDataBlock(dir) {
-        // TODO: what do all these numbers mean?
-        const positions = { 8: 360, 9: 45, 6: 90, 3: 135, 2: 180, 1: 225, 4: 270, 7: 315, 5: 'ctr' };
-
-        if (!_has(positions, dir[0])) {
-            return;
-        }
-
-        this.datablockDir = positions[dir[0]];
-    }
-
-    /**
-     * Adds a new Leg to fms with a user specified route
-     * Note: See notes on 'runReroute' for how to format input for this command
-     *
-     * @for AircraftInstanceModel
-     * @method runRoute
-     * @param data
-     */
-    runRoute(data) {
-         // capitalize everything
-        data = data[0].toUpperCase();
-        let worked = true;
-        const route = this.fms.formatRoute(data);
-
-        if (worked && route) {
-            // Add to fms
-            worked = this.fms.customRoute(route, false);
-        }
-
-        if (!route || !data || data.indexOf(' ') > -1) {
-            worked = false;
-        }
-
-        // Build the response
-        if (worked) {
-            const readback = {
-                log: `rerouting to :${this.fms.fp.route.join(' ')}`,
-                say: 'rerouting as requested'
-            };
-
-            return ['ok', readback];
-        }
-
-        const readback = {
-            log: `your route "${data}" is invalid!`,
-            say: 'that route is invalid!'
-        };
-
-        return ['fail', readback];
-    }
-
-    /**
-      * Removes all legs, and replaces them with the specified route
-      * Note: Input data needs to be provided with single dots connecting all
-      * procedurally-linked points (eg KSFO.OFFSH9.SXC or SGD.V87.MOVER), and
-      * all other points that will be simply a fix direct to another fix need
-      * to be connected with double-dots (eg HLI..SQS..BERRA..JAN..KJAN)
-      *
-      * @for AircraftInstanceModel
-      * @method runReroute
-      * @param data
-      */
-    runReroute(data) {
-        // TODO: capitalize everything?
-        data = data[0].toUpperCase();
-        let worked = true;
-        const route = this.fms.formatRoute(data);
-
-        if (worked && route) {
-            // Reset fms
-            worked = this.fms.customRoute(route, true);
-        }
-
-        // TODO: what exactly are we checking here?
-        if (!route || !data || data.indexOf(' ') > -1) {
-            worked = false;
-        }
-
-        // Build the response
-        if (worked) {
-            const readback = {
-                log: `rerouting to: ${this.fms.fp.route.join(' ')}`,
-                say: 'rerouting as requested'
-            };
-
-            return ['ok', readback];
-        }
-
-        const readback = {
-            log: `your route "${data}" is invalid!`,
-            say: 'that route is invalid!'
-        };
-
-        return ['fail', readback];
-    }
-
-    /**
-     * @for AircraftInstanceModel
-     * @method runTaxi
-     * @param data
-     */
-    runTaxi(data) {
-        // TODO: all this if logic should be simplified or abstracted
-        if (this.category !== FLIGHT_CATEGORY.DEPARTURE) {
-            return ['fail', 'inbound'];
-        }
-
-        if (this.mode === FLIGHT_MODES.TAXI) {
-            return ['fail', `already taxiing to ${radio_runway(this.rwy_dep)}`];
-        }
-
-        if (this.mode === FLIGHT_MODES.WAITING) {
-            return ['fail', 'already waiting'];
-        }
-
-        if (this.mode !== FLIGHT_MODES.APRON) {
-            return ['fail', 'wrong mode'];
-        }
-
-        // Set the runway to taxi to
-        if (data[0]) {
-            if (window.airportController.airport_get().getRunway(data[0].toUpperCase())) {
-                this.setDepartureRunway(data[0].toUpperCase());
-            } else {
-                return ['fail', `no runway ${data[0].toUpperCase()}`];
-            }
-        }
-
-        // Start the taxi
-        this.taxi_start = window.gameController.game_time();
-        const runway = window.airportController.airport_get().getRunway(this.rwy_dep);
-
-        runway.addAircraftToQueue(this);
-        this.mode = FLIGHT_MODES.TAXI;
-
-        const readback = {
-            log: `taxi to runway ${runway.name}`,
-            say: `taxi to runway ${radio_runway(runway.name)}`
-        };
-
-        return ['ok', readback];
-    }
-
-    /**
-     * @for AircraftInstanceModel
-     * @method runTakeoff
-     * @param data
-     */
-    runTakeoff(data) {
-        // TODO: all this if logic should be simplified or abstracted
-        if (this.category !== 'departure') {
-            return ['fail', 'inbound'];
-        }
-
-        if (!this.isOnGround()) {
-            return ['fail', 'already airborne'];
-        }
-        if (this.mode === FLIGHT_MODES.APRON) {
-            return ['fail', 'unable, we\'re still in the parking area'];
-        }
-        if (this.mode === FLIGHT_MODES.TAXI) {
-            return ['fail', `taxi to runway ${radio_runway(this.rwy_dep)} not yet complete`];
-        }
-        if (this.mode === FLIGHT_MODES.TAKEOFF) {
-            // FIXME: this is showing immediately after a to clearance.
-            return ['fail', 'already taking off'];
-        }
-
-        if (this.fms.altitudeForCurrentWaypoint() <= 0) {
-            return ['fail', 'no altitude assigned'];
-        }
-
-        const runway = window.airportController.airport_get().getRunway(this.rwy_dep);
-
-        if (runway.isAircraftInQueue(this)) {
-            if (runway.positionOfAircraftInQueue(this) === 0) {
-                runway.removeAircraftFromQueue(this);
-                this.mode = FLIGHT_MODES.TAKEOFF;
-                this.scoreWind('taking off');
-                this.takeoffTime = window.gameController.game_time();
-
-                if (this.fms.currentWaypoint.speed == null) {
-                    this.fms.setCurrent({ speed: this.model.speed.cruise });
-                }
-
-                const wind = window.airportController.airport_get().getWind();
-                const wind_dir = round(radiansToDegrees(wind.angle));
-                const readback = {
-                    // TODO: the wind_dir calculation should be abstracted
-                    log: `wind ${round(wind_dir / 10) * 10} ${round(wind.speed)}, runway ${this.rwy_dep}, cleared for takeoff`,
-                    say: `wind ${radio_spellOut(round(wind_dir / 10) * 10)} at ${radio_spellOut(round(wind.speed))}, runway ${radio_runway(this.rwy_dep)}, cleared for takeoff`
-                };
-
-                return ['ok', readback];
-            }
-
-            const numberInRunwayQueue = runway.positionOfAircraftInQueue(this) + 1;
-
-            return ['fail', `we are actually number ${numberInRunwayQueue} for runway ${runway.name}`];
-        }
-
-        return ['fail', `we are not waiting at runway ${runway.name}`];
-    }
-
-    runLanding(data) {
-        const variant = data[0];
-        const runway = window.airportController.airport_get().getRunway(data[1]);
-
-        if (!runway) {
-            return ['fail', `there is no runway ${radio_runway(data[1])}`];
-        }
-
-        this.setArrivalRunway(data[1].toUpperCase());
-        // tell fms to follow ILS approach
-        this.fms.followApproach('ils', this.rwy_arr, variant);
-
-        const readback = {
-            log: `cleared ILS runway ${this.rwy_arr} approach`,
-            say: `cleared ILS runway ${radio_runway(this.rwy_arr)} approach`
-        };
-
-        return ['ok', readback];
-    }
-
-    /**
-     * @for AircraftInstanceModel
-     * @method runAbort
-     * @param data
-     */
-    runAbort(data) {
-        // TODO: these ifs on `mode` should be converted to a switch
-        if (this.mode === FLIGHT_MODES.TAXI) {
-            this.mode = FLIGHT_MODES.APRON;
-            this.taxi_start = 0;
-
-            console.log('aborted taxi to runway');
-
-            const isWarning = true;
-            window.uiController.ui_log(`${this.getCallsign()} aborted taxi to runway`, isWarning);
-
-            return ['ok', 'taxiing back to terminal'];
-        } else if (this.mode === FLIGHT_MODES.WAITING) {
-            return ['fail', 'unable to return to the terminal'];
-        } else if (this.mode === FLIGHT_MODES.LANDING) {
-            this.cancelLanding();
-
-            const readback = {
-                log: `go around, fly present heading, maintain ${this.fms.altitudeForCurrentWaypoint()}`,
-                say: `go around, fly present heading, maintain ${radio_altitude(this.fms.altitudeForCurrentWaypoint())}`
-            };
-
-            return ['ok', readback];
-        } else if (this.mode === FLIGHT_MODES.CRUISE && this.fms.currentWaypoint.navmode === WAYPOINT_NAV_MODE.RWY) {
-            this.cancelLanding();
-
-            const readback = {
-                log: `cancel approach clearance, fly present heading, maintain ${this.fms.altitudeForCurrentWaypoint()}`,
-                say: `cancel approach clearance, fly present heading, maintain ${radio_altitude(this.fms.altitudeForCurrentWaypoint())}`
-            };
-
-            return ['ok', readback];
-        } else if (this.mode === FLIGHT_MODES.CRUISE && this.fms.currentWaypoint.navmode === WAYPOINT_NAV_MODE.FIX) {
-            this.cancelFix();
-
-            if (this.category === FLIGHT_CATEGORY.ARRIVAL) {
-                return ['ok', 'fly present heading, vector to final approach course'];
-            } else if (this.category === 'departure') {
-                return ['ok', 'fly present heading, vector for entrail spacing'];
-            }
-        }
-
-        // modes 'apron', 'takeoff', ('cruise' for some navmodes)
-        return ['fail', 'unable to abort'];
-    }
-
-    // FIXME: is this in use?
-    /**
-     * @for AircraftInstanceModel
-     * @method runDebug
-     */
-    runDebug() {
-        window.aircraft = this;
-        return ['ok', { log: 'in the console, look at the variable &lsquo;aircraft&rsquo;', say: '' }];
-    }
-
-    // FIXME: is this in use?
-    /**
-     * @for AircraftInstanceModel
-     * @method runDelete
-     */
-    runDelete() {
-        window.aircraftController.aircraft_remove(this);
-    }
-
     // TODO: move to `fms.cancelFix()`
     /**
      * @for AircraftInstanceModel
      * @method cancelFix
      */
     cancelFix() {
-        // TODO: this logic could be simplified. do an early return instead of wrapping the entire function in an if.
-        if (this.fms.currentWaypoint.navmode === WAYPOINT_NAV_MODE.FIX) {
-            const curr = this.fms.currentWaypoint;
-
-            this.fms.appendLeg({
-                altitude: curr.altitude,
-                navmode: WAYPOINT_NAV_MODE.HEADING,
-                heading: this.heading,
-                speed: curr.speed
-            });
-
-            this.fms.nextLeg();
-            this.updateStrip();
-
-            return true;
+        if (this.fms.currentWaypoint.navmode !== WAYPOINT_NAV_MODE.FIX) {
+            return false;
         }
 
-        return false;
+        const curr = this.fms.currentWaypoint;
+
+        this.fms.appendLeg({
+            altitude: curr.altitude,
+            navmode: WAYPOINT_NAV_MODE.HEADING,
+            heading: this.heading,
+            speed: curr.speed
+        });
+
+        this.fms.nextLeg();
+        this.updateStrip();
+
+        return true;
     }
 
     /**
@@ -1649,31 +593,31 @@ export default class Aircraft {
      */
     cancelLanding() {
         // TODO: this logic could be simplified. do an early return instead of wrapping the entire function in an if.
-        if (this.fms.currentWaypoint.navmode === WAYPOINT_NAV_MODE.RWY) {
-            const runway = window.airportController.airport_get().getRunway(this.rwy_arr);
+        if (this.fms.currentWaypoint.navmode !== WAYPOINT_NAV_MODE.RWY) {
+            this.fms.setCurrent({ runway: null });
 
-            if (this.mode === FLIGHT_MODES.LANDING) {
-                // TODO: enumerate the magic numbers
-                this.fms.setCurrent({
-                    altitude: Math.max(2000, round((this.altitude / 1000)) * 1000),
-                    heading: runway.angle
-                });
-            }
-
-            this.fms.setCurrent({
-                navmode: WAYPOINT_NAV_MODE.HEADING,
-                runway: null
-            });
-
-            this.mode = FLIGHT_MODES.CRUISE;
-            this.updateStrip();
-
-            return true;
+            return false;
         }
 
-        this.fms.setCurrent({ runway: null });
+        const runway = window.airportController.airport_get().getRunway(this.rwy_arr);
 
-        return false;
+        if (this.mode === FLIGHT_MODES.LANDING) {
+            // TODO: enumerate the magic numbers
+            this.fms.setCurrent({
+                altitude: Math.max(2000, round((this.altitude / 1000)) * 1000),
+                heading: runway.angle
+            });
+        }
+
+        this.fms.setCurrent({
+            navmode: WAYPOINT_NAV_MODE.HEADING,
+            runway: null
+        });
+
+        this.mode = FLIGHT_MODES.CRUISE;
+        this.updateStrip();
+
+        return true;
     }
 
     // FIXME: is this method still in use?
@@ -1735,6 +679,7 @@ export default class Aircraft {
 
     /**
      * Aircraft has "weight-on-wheels" (on the ground)
+     *
      * @for AircraftInstanceModel
      * @method isOnGround
      */
@@ -2066,16 +1011,11 @@ export default class Aircraft {
                     this.target.heading = angle;
                     // Check legality of localizer interception
                     if (!this.projected) {  // do not give penalty during a future projection
-                        // TODO: Abstraction on the below, to remove duplicate code
                         // Intercept Angle
                         if (!assignedHdg && courseDifference > maxInterceptAngle) { // intercept via fixes
-                            const isWarning = true;
-                            window.uiController.ui_log(`${this.getCallsign()} approach course intercept angle was greater than 30 degrees`, isWarning);
-                            window.gameController.events_recordNew(GAME_EVENTS.ILLEGAL_APPROACH_CLEARANCE);
+                            this.warnInterceptAngle();
                         } else if (interceptAngle > maxInterceptAngle) {    // intercept via vectors
-                            const isWarning = true;
-                            window.uiController.ui_log(`${this.getCallsign()} approach course intercept angle was greater than 30 degrees`, isWarning);
-                            window.gameController.events_recordNew(GAME_EVENTS.ILLEGAL_APPROACH_CLEARANCE);
+                            this.warnInterceptAngle();
                         }
 
                         // Glideslope intercept
@@ -2097,7 +1037,7 @@ export default class Aircraft {
                 const turning_radius = km(this.speed) / 3600 * turning_time; // dist covered in the turn, km
                 const dist_to_localizer = offset[0] / sin(angle_diff); // dist from the localizer intercept point, km
                 const turn_early_km = 1;    // start turn 1km early, to avoid overshoots from tailwind
-                const should_attempt_intercept = (0 < dist_to_localizer && dist_to_localizer <= turning_radius + turn_early_km);
+                const should_attempt_intercept = (dist_to_localizer > 0 && dist_to_localizer <= turning_radius + turn_early_km);
                 const in_the_window = abs(offset_angle) < degreesToRadians(1.5);  // if true, aircraft will move to localizer, regardless of assigned heading
 
                 if (should_attempt_intercept || in_the_window) {  // time to begin turn
@@ -2259,6 +1199,51 @@ export default class Aircraft {
         }
     }
 
+    /**
+     * This will display a waring and record an illegal approach event
+     * @for AircraftInstanceModel
+     * @method warnInterceptAngle
+     */
+    warnInterceptAngle() {
+        const isWarning = true;
+        window.uiController.ui_log(`${this.getCallsign()} approach course intercept angle was greater than 30 degrees`, isWarning);
+        window.gameController.events_recordNew(GAME_EVENTS.ILLEGAL_APPROACH_CLEARANCE);
+    }
+
+    /**
+     * This will update the FIX for the aircraft and will change the aircraft's heading
+     *
+     * @for AircraftInstanceModel
+     * @method updateFixTarget
+     */
+    updateFixTarget() {
+        const fix = this.fms.currentWaypoint.location;
+
+        if (!fix) {
+            console.error(`${this.getCallsign()} using "fix" navmode, but no fix location!`);
+        }
+
+        const vector_to_fix = vsub(this.position, fix);
+        const distance_to_fix = distance2d(this.position, fix);
+
+        if ((distance_to_fix < 1) ||
+            ((distance_to_fix < 10) &&
+            (distance_to_fix < window.aircraftController.aircraft_turn_initiation_distance(this, fix)))
+        ) {
+            // if there are more waypoints available
+            if (!this.fms.atLastWaypoint()) {
+                this.fms.nextWaypoint();
+            } else {
+                this.cancelFix();
+            }
+
+            this.updateStrip();
+        } else {
+            this.target.heading = vradial(vector_to_fix) - Math.PI;
+            this.target.turn = null;
+        }
+    }
+
     // TODO: this method needs a lot of love. its much too long with waaay too many nested if/else ifs.
     /**
      * @for AircraftInstanceModel
@@ -2277,49 +1262,118 @@ export default class Aircraft {
             return;
         }
 
+        this.updateAircraftTurnPhysics();
+        this.updateAltitudePhysics();
+
+        if (this.isOnGround()) {
+            this.trend = 0;
+        }
+
+        // SPEED
+        this.updateSpeedPhysics();
+
+        if (!this.position) {
+            return;
+        }
+
+        //TODO: abstract to AircraftPositionHistory class
+        // Trailling
+        if (this.position_history.length === 0) {
+            this.position_history.push([
+                this.position[0],
+                this.position[1],
+                window.gameController.game_time() / window.gameController.game_speedup()
+            ]);
+            // TODO: this can be abstracted
+        } else if (abs((window.gameController.game_time() / window.gameController.game_speedup()) - this.position_history[this.position_history.length - 1][2]) > 4 / window.gameController.game_speedup()) {
+            this.position_history.push([this.position[0], this.position[1], window.gameController.game_time() / window.gameController.game_speedup()]);
+        }
+
+        // FIXME: is this ratio correct? is it 0.000514444 or 0.514444?
+        const scaleSpeed = this.speed * 0.000514444 * window.gameController.game_delta(); // knots to m/s
+
+        if (window.gameController.game.option.get('simplifySpeeds') === 'no') {
+            this.updateGroundSpeedPhysics(scaleSpeed);
+        } else {
+            this.updateSimpleGroundSpeedPhysics(scaleSpeed);
+        }
+
+        this.distance = vlen(this.position);
+        this.radial = vradial(this.position);
+
+        if (this.radial < 0) {
+            this.radial += tau();
+        }
+
+        //TODO: I am not sure what this has to do with aircraft Physics
+        const isInsideAirspace = this.isInsideAirspace(window.airportController.airport_get());
+
+        if (isInsideAirspace !== this.inside_ctr) {
+            this.crossBoundary(isInsideAirspace);
+        }
+    }
+
+    /**
+     * This turns the aircraft if it is not on the ground and has not arived at its destenation
+     *
+     * @for AircraftInstanceModel
+     * @method updateAircraftTurnPhysics
+     */
+    updateAircraftTurnPhysics() {
+        // Exits eary if the airplane is on the ground or at its destenation
+        if (this.isOnGround() && this.heading === this.target.heading) {
+            return;
+        }
         // TURNING
         // this.target.heading = radians_normalize(this.target.heading);
-        if (!this.isOnGround() && this.heading !== this.target.heading) {
-            // Perform standard turns 3 deg/s or 25 deg bank, whichever
-            // requires less bank angle.
-            // Formula based on http://aviation.stackexchange.com/a/8013
-            const turn_rate = clamp(0, 1 / (this.speed / 8.883031), 0.0523598776);
-            const turn_amount = turn_rate * window.gameController.game_delta();
-            const offset = angle_offset(this.target.heading, this.heading);
+        // Perform standard turns 3 deg/s or 25 deg bank, whichever
+        // requires less bank angle.
+        // Formula based on http://aviation.stackexchange.com/a/8013
+        const turn_rate = clamp(0, 1 / (this.speed / 8.883031), 0.0523598776);
+        const turn_amount = turn_rate * window.gameController.game_delta();
+        const offset = angle_offset(this.target.heading, this.heading);
 
-            if (abs(offset) < turn_amount) {
-                this.heading = this.target.heading;
-            } else if ((offset < 0 && this.target.turn === null) || this.target.turn === 'left') {
-                this.heading -= turn_amount;
-            } else if ((offset > 0 && this.target.turn === null) || this.target.turn === 'right') {
-                this.heading += turn_amount;
-            }
+        if (abs(offset) < turn_amount) {
+            this.heading = this.target.heading;
+        } else if ((offset < 0 && this.target.turn === null) || this.target.turn === 'left') {
+            this.heading -= turn_amount;
+        } else if ((offset > 0 && this.target.turn === null) || this.target.turn === 'right') {
+            this.heading += turn_amount;
         }
+    }
 
-        // ALTITUDE
-        let distance = null;
-        const expedite_factor = 1.5;
+    /**
+     * This updates the Altitude for the instance of the aircraft by checking the difference between current Altitude and requested Altitude
+     *
+     * @for AircraftInstanceModel
+     * @method updateAltitudePhysics
+     */
+    updateAltitudePhysics() {
         this.trend = 0;
 
-        if (this.target.altitude < this.altitude - 0.02) {
-            distance = -this.model.rate.descent / 60 * window.gameController.game_delta();
+        if (this.target.altitude < this.altitude) {
+            this.decreaseAircraftAltitude();
+        } else if (this.target.altitude > this.altitude) {
+            this.increaseAircraftAltitude();
+        }
+    }
 
-            if (this.mode === FLIGHT_MODES.LANDING) {
-                distance *= 3;
-            }
+    /**
+    * Decreases the aircrafts altitude
+    *
+    * @for AircraftInstanceModel
+    * @method decreaseAircraftAltitude
+    */
+    decreaseAircraftAltitude() {
+        let distance = -this.model.rate.descent / 60 * window.gameController.game_delta();
+        const expedite_factor = 1.5;
 
-            this.trend -= 1;
-        } else if (this.target.altitude > this.altitude + 0.02) {
-            const climbrate = this.getClimbRate();
-            distance = climbrate / 60 * window.gameController.game_delta();
-
-            if (this.mode === FLIGHT_MODES.LANDING) {
-                distance *= 1.5;
-            }
-
-            this.trend = 1;
+        if (this.mode === FLIGHT_MODES.LANDING) {
+            distance *= 3;
         }
 
+        this.trend -= 1;
+        //TODO: This might be able to become its own function since it is repeated again in the increaseAircraftAltitude()
         if (distance) {
             if (this.target.expedite) {
                 distance *= expedite_factor;
@@ -2333,18 +1387,54 @@ export default class Aircraft {
                 this.altitude += distance;
             }
         }
+    }
 
-        if (this.isOnGround()) {
-            this.trend = 0;
+    /**
+    * Increases the aircrafts altitude
+    *
+    * @for AircraftInstanceModel
+    * @method increaseAircraftAltitude
+    */
+    increaseAircraftAltitude() {
+        const climbrate = this.getClimbRate();
+        const expedite_factor = 1.5;
+        let distance = climbrate / 60 * window.gameController.game_delta();
+
+        if (this.mode === FLIGHT_MODES.LANDING) {
+            distance *= 1.5;
         }
 
-        // SPEED
+        this.trend = 1;
+        //TODO: This might be able to become its own function since it is repeated  in the decreaseAircraftAltitude() Also I think the  outer If() might not be needed
+        if (distance) {
+            if (this.target.expedite) {
+                distance *= expedite_factor;
+            }
+
+            const offset = this.altitude - this.target.altitude;
+
+            if (abs(offset) < abs(distance)) {
+                this.altitude = this.target.altitude;
+            } else {
+                this.altitude += distance;
+            }
+        }
+    }
+
+    /**
+     * This updates the speed for the instance of the aircraft by checking the difference between current speed and requested speed
+     *
+     * @for AircraftInstanceModel
+     * @method updateWarning
+     */
+    updateSpeedPhysics() {
         let difference = null;
 
         if (this.target.speed < this.speed - 0.01) {
             difference = -this.model.rate.decelerate * window.gameController.game_delta() / 2;
 
             if (this.isOnGround()) {
+                // What is 3.5 is this restiance/breaking power?
                 difference *= 3.5;
             }
         } else if (this.target.speed > this.speed + 0.01) {
@@ -2361,81 +1451,67 @@ export default class Aircraft {
                 this.speed += difference;
             }
         }
+    }
 
-        if (!this.position) {
-            return;
-        }
+    /**
+     * This calculates the ground speed
+     *
+     * @for AircraftInstanceModel
+     * @method updateVectorPhysics
+     * @param scaleSpeed
+     */
+    updateGroundSpeedPhysics(scaleSpeed) {
+        // TODO: this should be abstracted to a helper function
+        // Calculate the true air speed as indicated airspeed * 1.6% per 1000'
+        const trueAirSpeed = scaleSpeed * (1 + this.altitude * 0.000016);
 
-        // Trailling
-        if (this.position_history.length === 0) {
-            this.position_history.push([
-                this.position[0],
-                this.position[1],
-                window.gameController.game_time() / window.gameController.game_speedup()
-            ]);
-            // TODO: this can be abstracted
-        } else if (abs((window.gameController.game_time() / window.gameController.game_speedup()) - this.position_history[this.position_history.length - 1][2]) > 4 / window.gameController.game_speedup()) {
-            this.position_history.push([this.position[0], this.position[1], window.gameController.game_time() / window.gameController.game_speedup()]);
-        }
-
+        // Calculate movement including wind assuming wind speed
+        // increases 2% per 1000'
+        const wind = window.airportController.airport_get().wind;
         const angle = this.heading;
-        // FIXME: is this ratio correct? is it 0.000514444 or 0.514444?
-        let scaleSpeed = this.speed * 0.000514444 * window.gameController.game_delta(); // knots to m/s
+        let vector;
 
-        if (window.gameController.game.option.get('simplifySpeeds') === 'no') {
-            // TODO: this should be abstracted to a helper function
-            // Calculate the true air speed as indicated airspeed * 1.6% per 1000'
-            scaleSpeed *= 1 + (this.altitude * 0.000016);
+        if (this.isOnGround()) {
+            vector = vscale([sin(angle), cos(angle)], trueAirSpeed);
+        } else {
+            let crab_angle = 0;
 
-            // Calculate movement including wind assuming wind speed
-            // increases 2% per 1000'
-            const wind = window.airportController.airport_get().wind;
-            let vector;
-
-            if (this.isOnGround()) {
-                vector = vscale([sin(angle), cos(angle)], scaleSpeed);
-            } else {
-                let crab_angle = 0;
-
-                // Compensate for crosswind while tracking a fix or on ILS
-                if (this.fms.currentWaypoint.navmode === WAYPOINT_NAV_MODE.FIX || this.mode === FLIGHT_MODES.LANDING) {
-                    // TODO: this should be abstracted to a helper function
-                    const offset = angle_offset(this.heading, wind.angle + Math.PI);
-                    crab_angle = Math.asin((wind.speed * sin(offset)) / this.speed);
-                }
-
+            // Compensate for crosswind while tracking a fix or on ILS
+            if (this.fms.currentWaypoint.navmode === WAYPOINT_NAV_MODE.FIX || this.mode === FLIGHT_MODES.LANDING) {
                 // TODO: this should be abstracted to a helper function
-                vector = vadd(vscale(
-                    vturn(wind.angle + Math.PI),
-                    wind.speed * 0.000514444 * window.gameController.game_delta()),
-                    vscale(vturn(angle + crab_angle), scaleSpeed)
-                );
+                const offset = angle_offset(this.heading, wind.angle + Math.PI);
+                crab_angle = Math.asin((wind.speed * sin(offset)) / this.speed);
             }
 
-            this.ds = vlen(vector);
             // TODO: this should be abstracted to a helper function
-            this.groundSpeed = this.ds / 0.000514444 / window.gameController.game_delta();
-            this.groundTrack = vradial(vector);
-            this.position = vadd(this.position, vector);
-        } else {
-            this.ds = scaleSpeed;
-            this.groundSpeed = this.speed;
-            this.groundTrack = this.heading;
-            this.position = vadd(this.position, vscale([sin(angle), cos(angle)], scaleSpeed));
+            vector = vadd(vscale(
+                vturn(wind.angle + Math.PI),
+                wind.speed * 0.000514444 * window.gameController.game_delta()),
+                vscale(vturn(angle + crab_angle), trueAirSpeed)
+            );
         }
 
-        this.distance = vlen(this.position);
-        this.radial = vradial(this.position);
+        this.ds = vlen(vector);
+        // TODO: this should be abstracted to a helper function
+        this.groundSpeed = this.ds / 0.000514444 / window.gameController.game_delta();
+        this.groundTrack = vradial(vector);
+        this.position = vadd(this.position, vector);
+    }
 
-        if (this.radial < 0) {
-            this.radial += tau();
-        }
+    /**
+     * This uses the current speed information to update the ground speed and position
+     *
+     * @for AircraftInstanceModel
+     * @method updateSimpleGroundSpeedPhysics
+     * @param scaleSpeed
+     */
+    updateSimpleGroundSpeedPhysics(scaleSpeed) {
+        const angle = this.heading;
 
-        const isInsideAirspace = this.isInsideAirspace(window.airportController.airport_get());
-
-        if (isInsideAirspace !== this.inside_ctr) {
-            this.crossBoundary(isInsideAirspace);
-        }
+        this.ds = scaleSpeed;
+        this.groundSpeed = this.speed;
+        this.groundTrack = this.heading;
+        this.position = vadd(this.position, vscale([sin(angle), cos(angle)], scaleSpeed));
     }
 
     // TODO: this method needs a lot of love. its much too long with waaay too many nested if/else ifs.

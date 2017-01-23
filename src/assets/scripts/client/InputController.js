@@ -85,12 +85,14 @@ export default class InputController {
     /**
      * @constructor
      */
-    constructor($element) {
+    constructor($element, aircraftCommander) {
         this.$element = $element;
         this.$window = null;
         this.$commandInput = null;
         this.$canvases = null;
         this.$sidebar = null;
+
+        this._aircraftCommander = aircraftCommander;
 
         this.input = input;
         this.input.command = '';
@@ -880,6 +882,6 @@ export default class InputController {
 
         const aircraft = prop.aircraft.list[match];
 
-        return aircraft.runCommands(commandParser.args);
+        return this._aircraftCommander.runCommands(aircraft, commandParser.args);
     }
 }
