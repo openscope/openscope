@@ -3,43 +3,32 @@
 ### Major
 - Restructures `src` files into `client` and `server` folders. [#220](https://github.com/n8rzz/atc/issues/220)
 - Updates Node to version 7.0.0 [#184](https://github.com/n8rzz/atc/issues/184)
-
-
-
-
-
-
-
-
+- Moves aircraft command logic from `AircraftInstanceModel` to new `AircraftCommander` class [#181](https://github.com/n8rzz/atc/issues/181)
 
 ### Minor
 - Changes `AircraftStripView` text outputs to be all uppercase [#193](https://github.com/n8rzz/atc/issues/193)
 - Ensures proper removal of all `AircraftConflict` instances involving an aircraft that has been removed from the simulation [#133](https://github.com/n8rzz/atc/issues/133)
     - Originally reported under [zlsa#734](https://github.com/zlsa/atc/issues/734)
+- Changes the names from having the flags in their name by adding WIP variable to the `AIRPORT_LOAD_LIST` in `airportLoadList` [#205](https://github.com/n8rzz/atc/issues/205)
 - Fixes white space in that is displayed from the `AircraftInstanceModel` [#192](https://github.com/n8rzz/atc/issues/192)
 - Adds cache to travis build [#233](https://github.com/n8rzz/atc/issues/233)
-
-
-
-
-
-
-
-
 
 ### Bugfixes
 - Resets current indicies when issuing a new star to an arriving aircraft [#104](https://github.com/n8rzz/atc/issues/104) & [#237](https://github.com/n8rzz/atc/issues/237)
     - Originally reported under [zlsa#730](https://github.com/zlsa/atc/issues/730) & [zlsa#768](https://github.com/zlsa/atc/issues/768)
 
 
-
-
-
-
-
-
-
-
+## 3.2.1 (January 2, 2017)
+---
+### Bugfixes
+- Restores behavior of aircraft flying present heading after completing all legs in their flightplan [#206](https://github.com/n8rzz/atc/issues/206)
+    - Originally reported in [zlsa#767](https://github.com/zlsa/atc/issues/767)
+- Fix wrongful removal of departures from runway queues when arrivals land [#241](https://github.com/n8rzz/atc/issues/241)
+    - Originally reported in [zlsa#770](https://github.com/zlsa/atc/issues/770)
+- Fix erroneous voice readbacks for altitude command [#240](https://github.com/n8rzz/atc/issues/240)
+    - Originally reported in [zlsa#769](https://github.com/zlsa/atc/issues/769)
+- Fixes behavior of AircraftConflict in various ways, particularly with removal after deletion of aircraft [#133](https://github.com/n8rzz/atc/issues/133)
+    - Originally reported in [zlsa#734](https://github.com/zlsa/atc/issues/734)
 
 
 ## 3.2.0 (December 20, 2016)
