@@ -202,8 +202,8 @@ export default class AirportController {
         const runwaySecondaryEndIndex = 1;
         const runways = this.airport_get().runways;
         for (let runwayPair = 0; runwayPair < runways.length; runwayPair++) {
-            runways[runwayPair][runwayPrimaryEndIndex].removeQueue(aircraft, true);
-            runways[runwayPair][runwaySecondaryEndIndex].removeQueue(aircraft, true);
+            runways[runwayPair][runwayPrimaryEndIndex].removeAircraftFromQueue(aircraft);
+            runways[runwayPair][runwaySecondaryEndIndex].removeAircraftFromQueue(aircraft);
         }
     }
 

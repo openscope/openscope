@@ -506,6 +506,7 @@ export default class Aircraft {
             callsign = callsign.substr(callsign.length - length);
         }
 
+        // TODO: this may not be needed any longer
         let cs = window.airlineController.airline_get(this.airline).callsign;
 
         if (cs === 'November') {
@@ -749,9 +750,9 @@ export default class Aircraft {
         if (this.isTaxiing()) {
             // show only the first aircraft in the takeoff queue
             const runway = window.airportController.airport_get().getRunway(this.rwy_dep);
-            const waiting = runway.inQueue(this);
+            const nextInRunwayQueue = runway.isAircraftNextInQueue(this);
 
-            return this.mode === FLIGHT_MODES.WAITING && waiting === 0;
+            return this.mode === FLIGHT_MODES.WAITING && nextInRunwayQueue;
         }
 
         return true;
@@ -1145,7 +1146,7 @@ export default class Aircraft {
             this.altitude = runway.elevation;
 
             if (!this.projected &&
-                runway.inQueue(this) === 0 &&
+                runway.isAircraftNextInQueue(this) &&
                 was_taxi === true
             ) {
                 window.uiController.ui_log(`${this.getCallsign()}, holding short of runway ${this.rwy_dep}`);
@@ -1766,13 +1767,13 @@ export default class Aircraft {
         return a;
     }
 
+    // FIXME: Presumably the use of the 'delete' operator here is a bit of a no-no...
     /**
      * @for AircraftInstanceModel
      * @method removeConflict
      * @param {Aircraft} conflictingAircraft
      */
     removeConflict(conflictingAircraft) {
-        const conflictBeingRemoved = this.conflicts[conflictingAircraft.getCallsign()];
-        this.conflicts = _without(this.conflicts, conflictBeingRemoved);
+        delete this.conflicts[conflictingAircraft.getCallsign()];
     }
 }
