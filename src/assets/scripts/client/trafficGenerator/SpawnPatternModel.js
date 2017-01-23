@@ -738,8 +738,6 @@ export default class SpawnPatternModel extends BaseModel {
      * @private
      */
     _calculateNextSurgeDelayPeriod(gameTime) {
-        console.log('_calculateNextSurgeDelayPeriod');
-
         const totalTime = gameTime - this.cycleStartTime;
         const progressInPeriod = totalTime / this.period; // progress in period
         const intervalUp = TIME.ONE_HOUR_IN_SECONDS / this._aircraftPerHourUp;
