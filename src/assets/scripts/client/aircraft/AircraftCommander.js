@@ -3,7 +3,7 @@ import _isNaN from 'lodash/isNaN';
 import _isNil from 'lodash/isNil';
 import _map from 'lodash/map';
 import Waypoint from './FlightManagementSystem/Waypoint';
-import RouteModel from '../airport/Route/RouteModel';
+import RouteModel from '../navigationLibrary/Route/RouteModel';
 import { speech_say } from '../speech';
 import { radians_normalize } from '../math/circle';
 import { round, clamp } from '../math/core';
@@ -68,8 +68,9 @@ const COMMANDS = {
  * @class AircraftCommander
  */
 export default class AircraftCommander {
-    constructor(airportController, gameController, uiController) {
+    constructor(airportController, navigationLibrary, gameController, uiController) {
         this._airportController = airportController;
+        this._navigationLibrary = navigationLibrary;
         this._gameController = gameController;
         this._uiController = uiController;
     }
@@ -401,7 +402,7 @@ export default class AircraftCommander {
         }
 
         const airport = this._airportController.airport_get();
-        const { name: procedureName } = airport.sidCollection.findRouteByIcao(aircraft.destination);
+        const { name: procedureName } = this._navigationLibrary.sidCollection.findRouteByIcao(aircraft.destination);
         const readback = {};
 
         readback.log = `cleared to destination via the ${aircraft.destination} departure, then as filed. Climb and ` +
@@ -427,7 +428,7 @@ export default class AircraftCommander {
         }
 
         const airport = this._airportController.airport_get();
-        const { name: procedureName } = airport.sidCollection.findRouteByIcao(aircraft.fms.currentLeg.route.procedure);
+        const { name: procedureName } = this._navigationLibrary.sidCollection.findRouteByIcao(aircraft.fms.currentLeg.route.procedure);
         const readback = {
             log: `climb via the ${aircraft.fms.currentLeg.route.procedure} departure`,
             say: `climb via the ${procedureName} departure`
@@ -451,7 +452,7 @@ export default class AircraftCommander {
         }
 
         const airport = this._airportController.airport_get();
-        const { name: procedureName } = airport.starCollection.findRouteByIcao(aircraft.fms.currentLeg.route.procedure);
+        const { name: procedureName } = this._navigationLibrary.starCollection.findRouteByIcao(aircraft.fms.currentLeg.route.procedure);
         const readback = {
             log: `descend via the ${aircraft.fms.following.star} arrival`,
             say: `descend via the ${procedureName} arrival`
@@ -514,7 +515,7 @@ export default class AircraftCommander {
         // TODO: simplify this nested if.
         if (holdFix !== null) {
             holdFix = holdFix.toUpperCase();
-            holdFixLocation = airport.getFixPosition(holdFix);
+            holdFixLocation = this._navigationLibrary.getFixPositionCoordinates(holdFix);
 
             if (!holdFixLocation) {
                 return ['fail', `unable to find fix ${holdFix}`];
@@ -641,10 +642,8 @@ export default class AircraftCommander {
     runDirect(aircraft, data) {
         // TODO: maybe handle with parser?
         const fixname = data[0].toUpperCase();
-        // TODO replace with FixCollection?
-        const fix = this._airportController.airport_get().getFixPosition(fixname);
 
-        if (!fix) {
+        if (_isNil(this._navigationLibrary.findFixByName(fixname))) {
             return ['fail', `unable to find fix called ${fixname}`];
         }
 
@@ -662,10 +661,7 @@ export default class AircraftCommander {
         let last_fix;
         let fail;
         const fixes = _map(data, (fixname) => {
-            // TODO: this may beed to be the FixCollection
-            const fix = this._airportController.airport_get().getFixPosition(fixname);
-
-            if (!fix) {
+            if (_isNil(this._navigationLibrary.findFixByName(fixname))) {
                 fail = ['fail', `unable to find fix called ${fixname}`];
 
                 return;
@@ -731,9 +727,8 @@ export default class AircraftCommander {
      */
     runSID(aircraft, data) {
         const airport = this._airportController.airport_get();
-        const { sidCollection } = airport;
         const sidId = data[0];
-        const standardRouteModel = sidCollection.findRouteByIcao(sidId);
+        const standardRouteModel = this._navigationLibrary.sidCollection.findRouteByIcao(sidId);
         const exit = airport.getSIDExitPoint(sidId);
         // TODO: perhaps this should use the `RouteModel`?
         const route = `${airport.icao}.${sidId}.${exit}`;
@@ -773,7 +768,7 @@ export default class AircraftCommander {
     runSTAR(aircraft, data) {
         const routeModel = new RouteModel(data[0]);
         const airport = this._airportController.airport_get();
-        const { name: starName } = airport.starCollection.findRouteByIcao(routeModel.procedure);
+        const { name: starName } = this._navigationLibrary.starCollection.findRouteByIcao(routeModel.procedure);
 
         if (aircraft.category !== FLIGHT_CATEGORY.ARRIVAL) {
             return ['fail', 'unable to fly STAR, we are a departure!'];
@@ -781,7 +776,7 @@ export default class AircraftCommander {
 
         // TODO: the data[0].length check might not be needed. this is covered via the CommandParser when
         // this method runs as the result of a command.
-        if (data[0].length === 0 || !airport.starCollection.hasRoute(routeModel.procedure)) {
+        if (data[0].length === 0 || !this._navigationLibrary.starCollection.hasRoute(routeModel.procedure)) {
             return ['fail', 'STAR name not understood'];
         }
 

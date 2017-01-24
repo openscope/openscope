@@ -2,7 +2,7 @@ import _defaultTo from 'lodash/defaultTo';
 import _get from 'lodash/get';
 import _head from 'lodash/head';
 import _isNil from 'lodash/isNil';
-import FixCollection from '../../airport/Fix/FixCollection';
+import FixCollection from '../../navigationLibrary/Fix/FixCollection';
 import { WAYPOINT_NAV_MODE } from '../../constants/aircraftConstants';
 
 /**

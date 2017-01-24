@@ -209,43 +209,74 @@
         "draw": [["_315I243SKORR", "SKORR"], ["_315I238SKORR", "SKORR"], ["SKORR", "METSS", "RNGRR*"], ["SKORR", "CESID", "YNKEE*"]]
     }
   },
-  "departures": {
-    "airlines": [
-      ["dal", 16],
-      ["jbu", 15],
-      ["aal", 7],
-      ["vrd", 8],
-      ["ual", 6],
-      ["aca", 4],
-      ["fdx", 4],
-      ["baw/long", 3],
-      ["dlh/long", 2],
-      ["ein/long", 1],
-      ["klm/long", 1],
-      ["tam", 1],
-      ["cpa", 1],
-      ["eva/long", 1],
-      ["ber/long", 1],
-      ["etd/long", 1],
-      ["afl/long", 1],
-      ["arg", 1]
-    ],
-    "destinations": [
-      "SKORR3", "DEEZZ4", "JFK3"
-    ],
-    "type": "cyclic",
-    "offset": 0,
-    "frequency": 40
+  "spawnPatterns": [
+      {
+        "origin": "kjfk",
+        "destination": "",
+        "category": "departure",
+        "route": "KJFK.JFK3.SAX",
+        "altitude": "",
+        "speed": "",
+        "method": "cyclic",
+        "rate": 15,
+        "offset": 0,
+        "airlines": [
+            ["dal", 16],
+            ["vrd", 8],
+            ["ual", 6],
+            ["ein/long", 1],
+            ["klm/long", 1],
+            ["tam", 1],
+            ["cpa", 1]
+        ]
+    },
+    {
+      "origin": "kjfk",
+      "destination": "",
+      "category": "departure",
+      "route": "KJFK.DEEZZ4.CANDR",
+      "altitude": "",
+      "speed": "",
+      "method": "cyclic",
+      "rate": 15,
+      "offset": 0,
+      "airlines": [
+          ["dal", 16],
+          ["baw/long", 3],
+          ["dlh/long", 2],
+          ["etd/long", 1],
+          ["afl/long", 1],
+          ["arg", 1]
+      ]
   },
-  "arrivals": [
+  {
+    "origin": "kjfk",
+    "destination": "",
+    "category": "departure",
+    "route": "KJFK.SKORR3.YNKEE",
+    "altitude": "",
+    "speed": "",
+    "method": "cyclic",
+    "rate": 15,
+    "offset": 0,
+    "airlines": [
+        ["aal", 7],
+        ["aca", 4],
+        ["fdx", 4],
+        ["eva/long", 1],
+        ["ber/long", 1]
+    ]
+},
     {
       "_name": "CAMRN FOUR",
-      "altitude": 11000,
-      "fixes": ["HOGGS", "PANZE", "KARRS", "CAMRN"],
+      "origin": "",
+      "destination": "kjfk",
+      "category": "departure",
+      "route": "HOGGS..PANZE..KARRS..CAMRN",
       "altitude": 11000,
       "speed": 250,
-      "type": "random",
-      "frequency": 8,
+      "method": "random",
+      "rate": 8,
       "airlines": [
         ["flg", 8],
         ["dal", 8],
@@ -263,11 +294,14 @@
     },
     {
       "_name": "KINGSTON ONE",
-      "fixes": ["IGN", "LOLLY", "DOORE", "LENDY", "LGA"],
-      "type": "random",
+      "origin": "",
+      "destination": "kjfk",
+      "category": "departure",
+      "route": "IGN..LOLLY..DOORE..LENDY..LGA",
       "altitude": 15000,
       "speed": 250,
-      "frequency": 8,
+      "method": "random",
+      "rate": 8,
       "airlines": [
         ["dal", 12],
         ["aal", 8],
@@ -283,12 +317,15 @@
     },
     {
       "_name": "LENDY SIX",
-      "fixes": ["HARTY", "STW", "LENDY", "LGA"],
+      "origin": "",
+      "destination": "kjfk",
+      "category": "departure",
+      "route": "HARTY..STW..LENDY..LGA",
       "altitude": 17000,
       "speed": 250,
-      "type": "cyclic",
+      "method": "cyclic",
+      "rate": 20,
       "offset": 25,
-      "frequency": 20,
       "airlines": [
         ["dal", 14],
         ["aal", 10],
@@ -296,16 +333,20 @@
         ["vrd", 6],
         ["eva/long", 1]
       ]
-    },
+    }
+],
+"arrivals": [
     {
       "_name": "PAWLING TWO",
-      "fixes": ["PWL", "LOVES", "BDR", "BELTT", "DPK"],
-      "heading": 169,
+      "origin": "",
+      "destination": "kjfk",
+      "category": "departure",
+      "route": "PWL..LOVES..BDR..BELTT..DPK",
       "altitude": 9000,
       "speed": 250,
-      "type": "cyclic",
+      "method": "cyclic",
+      "rate": 8,
       "offset": 45,
-      "frequency": 8,
       "airlines": [
         ["dal", 8],
         ["aal", 8],
@@ -318,9 +359,9 @@
       "radial": 81,
       "speed": 250,
       "altitude": 11000,
-      "type": "cyclic",
+      "method": "cyclic",
       "offset": 35,
-      "frequency": 6,
+      "rate": 6,
       "airlines": [
         ["aal", 15],
         ["dal", 12],
@@ -340,9 +381,9 @@
       "radial": 81,
       "altitude": 6000,
       "speed": 250,
-      "type": "cyclic",
+      "method": "cyclic",
       "offset": 55,
-      "frequency": 6,
+      "rate": 6,
       "airlines": [
         ["dal", 12],
         ["aal", 7],
@@ -350,5 +391,5 @@
         ["ual", 1]
       ]
     }
-  ]
+]
 }

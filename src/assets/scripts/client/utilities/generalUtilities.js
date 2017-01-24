@@ -11,15 +11,19 @@ export const unicodeToString = (char) => `\\u${char.charCodeAt(0).toString(16).t
 
 /**
  *
+ *
  * @function choose
+ * @param list
+ * @return
  */
-export const choose = (l) => {
-    const randomIndexFromLength = Math.floor(Math.random() * l.length);
+export const choose = (list) => {
+    const randomIndexFromLength = Math.floor(Math.random() * list.length);
 
-    return l[randomIndexFromLength];
+    return list[randomIndexFromLength];
 };
 
 /**
+ *
  *
  * @function choose_weight
  */

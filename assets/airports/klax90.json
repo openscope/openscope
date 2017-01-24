@@ -204,110 +204,133 @@
       "draw": [["SLI","SEBBY"]]
     }
   },
-  "departures": {
-    "airlines": [
-	  ["ual/90long", 1],
-	  ["ual/90default", 1],
-	  
-	  ["aal/90long", 10],	
-      ["aal/90default", 10],
- 
-	  ["aca/90long", 1],
-      ["aca/90default", 3],
-
-	  ["dal/90default", 10],
-      ["dal/90long", 10],
-
-	  ["paa/90default", 10],
-      ["paa/90long", 10],
-
-	  ["twa/90default", 10],
-      ["twa/90long", 10],
-	  
-	  ["baw/90long", 1]
-    ],
-    "destinations": [
-      "LOOP", "PERCH", "LAXX", "SANDIEGO", "SEBBY"
-    ],
-    "type": "random",
-    "offset": 0,
-    "frequency": 34
-  },
-  "arrivals": [
+  "spawnPatterns": [
+    {
+        "origin": "klax",
+        "destination": "",
+        "category": "departure",
+        "route": "KLAX.PERCH.PERCH",
+        "altitude": "",
+        "speed": "",
+        "method": "random",
+        "rate": 17,
+        "offset": 0,
+        "airlines": [
+            ["ual/90long", 1],
+            ["aal/90long", 10],
+            ["aca/90long", 1],
+            ["dal/90default", 10],
+            ["paa/90default", 10],
+            ["twa/90default", 10],
+            ["baw/90long", 1]
+        ]
+    },
+    {
+        "origin": "klax",
+        "destination": "",
+        "category": "departure",
+        "route": "KLAX.SANDIEGO.CARDI",
+        "altitude": "",
+        "speed": "",
+        "method": "random",
+        "rate": 17,
+        "offset": 0,
+        "airlines": [
+            ["ual/90default", 1],
+            ["aal/90default", 10],
+            ["aca/90default", 3],
+            ["dal/90long", 10],
+            ["paa/90long", 10],
+            ["twa/90long", 10]
+        ]
+    },
     {
       "_name":  "Kimmo 3",
-      "heading":  170,
+      "origin": "",
+      "destination": "klax",
+      "category": "arrival",
+      "route":   "_KLAX347060..KIMMO..DARTS",
+      "altitude":  10000,
       "speed":    250,
-      "fixes":   ["_KLAX347060", "KIMMO", "DARTS"],
+      "method": "cyclic",
+      "rate": 8,
+      "offset": 0,
       "airlines":  [
         ["aal/90default", 10],
         ["aal/90long", 10],
-		["dal/90default", 10],
+    ["dal/90default", 10],
         ["dal/90long", 10]
-      ],
-      "type": "cyclic",
-      "offset": 0,
-      "frequency": 8,
-      "altitude":  10000
+      ]
     },
     {
       "_name":  "Leena 5",
+      "origin": "",
+      "destination": "klax",
+      "category": "arrival",
+      "route": "_KLAX169060..SXC..CWARD..SLI",
+      "altitude":  10000,
       "speed":    250,
-      "fixes":    ["_KLAX169060", "SXC", "CWARD", "SLI"],
+      "method": "random",
+      "rate": 6,
       "airlines":  [
-	  ["baw/90long", 1],
+        ["baw/90long", 1],
         ["aal/90default", 10],
         ["aal/90long", 10]
-      ],
-      "type": "random",
-      "frequency": 6,
-      "altitude":  10000
+      ]
     },
     {
       "_name":  "Riivr 2",
+      "origin": "",
+      "destination": "klax",
+      "category": "arrival",
+      "route": "RUSTT..HABSO..RIIVR..BCOVE",
+      "altitude":  10000,
       "speed":    250,
-      "fixes":    ["RUSTT", "HABSO", "RIIVR", "BCOVE"],
+      "method": "random",
+      "rate": 8,
       "airlines":  [
-	    ["baw/90long", 1],
+        ["baw/90long", 1],
         ["aal/90default", 10],
         ["aal/90long", 10]
-      ],
-      "type": "random",
-      "frequency": 8,
-      "altitude":  10000
+      ]
     },
     {
       "_name":  "Sadde 6",
+      "origin": "",
+      "destination": "klax",
+      "category": "arrival",
+      "route": "_KLAX305060..FIM..SADDE..SMO",
+      "altitude":  10000,
       "speed":    250,
-      "fixes":    ["_KLAX305060", "FIM", "SADDE", "SMO"],
+      "method": "random",
+      "rate": 6,
       "airlines":  [
-	  ["paa/90default", 10],
-      ["paa/90long", 10],
-
-	  ["twa/90default", 10],
-      ["twa/90long", 10]
-      ],
-      "type": "random",
-      "frequency": 6,
-      "altitude":  10000
+          ["paa/90default", 10],
+          ["paa/90long", 10],
+          ["twa/90default", 10],
+          ["twa/90long", 10]
+      ]
     },
     {
       "_name":  "Vista 2",
+      "origin": "",
+      "destination": "klax",
+      "category": "arrival",
+      "route": "VISTA..OCN..SHIVE..CWARD..MADOW..SLI",
+      "altitude":  10000,
       "speed":    250,
-      "fixes":    ["VISTA", "OCN", "SHIVE", "CWARD", "MADOW", "SLI"],
+      "method": "random",
+      "rate": 8,
       "airlines":  [
-		["paa/90default", 10],
-		["paa/90long", 10],
-		["twa/90default", 10],
-		["twa/90long", 10],
-	    ["aal/90default", 10],
+        ["paa/90default", 10],
+        ["paa/90long", 10],
+        ["twa/90default", 10],
+        ["twa/90long", 10],
+        ["aal/90default", 10],
         ["aal/90long", 10],
-		["dal/90default", 10],
+        ["dal/90default", 10],
         ["dal/90long", 10]
-      ],
-      "type": "random",
-      "frequency": 8,
-      "altitude":  10000
+      ]
     }
   ]
 }

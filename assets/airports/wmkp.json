@@ -144,33 +144,6 @@
   		]
   	}
   },
-
-  "departures": {
-    "airlines": [
-        ["axm", 9],
-        ["csn", 1],
-        ["cpa", 5],
-        ["hda", 1],
-        ["eva", 3],
-        ["fdx", 1],
-        ["ffm", 8],
-        ["awq", 3],
-        ["jsa", 1],
-        ["kal", 3],
-        ["lni", 1],
-        ["mas", 6],
-        ["slk", 1],
-        ["sjy", 1],
-        ["tgw", 1]
-    ],
-    "destinations": [
-      "BIDMO", "IKILO", "ISMAS", "LUNTU", "PAPDA", "MADUM", "VPG"
-    ],
-    "type": "cyclic",
-    "offset": 0,
-    "frequency": 37
-  },
-
   "stars": {
     "PAPDA_STAR": {
       "icao": "PAPDA",
@@ -267,101 +240,301 @@
       ]
     }
   },
-
-  "arrivals": [
-    {
-      "type": 		"cyclic",
-      "route":    "BIDMO.BIDMO_STAR.WMKP",
-      "frequency": 	5,
-      "altitude":		14000,
-      "speed":		  330,
-      "offset":	  	2,
-      "airlines": [
-        ["axm", 9],
-        ["csn", 1],
-        ["cpa", 5],
-        ["hda", 1],
-        ["eva", 3],
-        ["fdx", 1],
-        ["ffm", 8],
-        ["kal", 3]
-      ]
-    },
-  	{
-  		"type": 		"cyclic",
-  		"route":    "ISMAS.ISMAS_STAR.WMKP",
-  		"frequency": 	3,
-  		"altitude":		5500,
-  		"speed":		  250,
-  		"offset":	  	2,
-  		"airlines": [
-        ["sjy", 1]
-  		]
-  	},
-    {
-      "type": 		"cyclic",
-      "route":    "MADUM.MADUM_STAR.WMKP",
-      "frequency": 	3,
-      "altitude":		9000,
-      "speed":		  250,
-      "offset":		  2,
-      "airlines": [
-        ["axm", 9],
-        ["sjy", 1]
-      ]
-    },
-    {
-      "type": 		"cyclic",
-      "route":    "NURLA.NURLA.WMKP",
-      "frequency": 	9,
-      "altitude":		7000,
-      "speed":		  250,
-      "offset":	    2,
-      "airlines": [
-        ["axm", 9],
-        ["awq", 3],
-        ["jsa", 1],
-        ["lni", 1],
-        ["mas", 6],
-        ["slk", 1],
-        ["tgw", 1]
-      ]
-    },
-    {
-      "type": 		"cyclic",
-      "route":    "PAPDA.PAPDA_STAR.WMKP",
-      "frequency": 	7,
-      "altitude":		9000,
-      "speed":		  250,
-      "offset":		  2,
-      "airlines": [
-        ["axm", 9],
-        ["csn", 1],
-        ["cpa", 5],
-        ["hda", 1],
-        ["eva", 3],
-        ["fdx", 1],
-        ["ffm", 8],
-        ["kal", 3]
-      ]
-    },
-    {
-      "type": 		"cyclic",
-      "route":    "LUNTU.LUNTU_STAR.WMKP",
-      "frequency": 	3,
-      "altitude":		5500,
-      "speed":		  250,
-      "offset":		  2,
-      "airlines": [
-        ["axm", 9],
-        ["csn", 1],
-        ["cpa", 5],
-        ["hda", 1],
-        ["eva", 3],
-        ["fdx", 1],
-        ["ffm", 8],
-        ["kal", 3]
-      ]
-    }
-  ]
+    "spawnPatterns": [
+        {
+            "origin": "WMKP",
+            "destination": "",
+            "category": "departure",
+            "route": "WMKP.BIDMO.BIDMO",
+            "altitude": null,
+            "speed": null,
+            "method": "random",
+            "rate": 5,
+            "airlines": [
+                ["axm", 9],
+                ["csn", 1],
+                ["cpa", 5],
+                ["hda", 1],
+                ["eva", 3],
+                ["fdx", 1],
+                ["ffm", 8],
+                ["awq", 3],
+                ["jsa", 1],
+                ["kal", 3],
+                ["lni", 1],
+                ["mas", 6],
+                ["slk", 1],
+                ["sjy", 1],
+                ["tgw", 1]
+            ]
+        },
+        {
+            "origin": "WMKP",
+            "destination": "",
+            "category": "departure",
+            "route": "WMKP.IKILO.IKILO",
+            "altitude": null,
+            "speed": null,
+            "method": "random",
+            "rate": 5,
+            "airlines": [
+                ["axm", 9],
+                ["csn", 1],
+                ["cpa", 5],
+                ["hda", 1],
+                ["eva", 3],
+                ["fdx", 1],
+                ["ffm", 8],
+                ["awq", 3],
+                ["jsa", 1],
+                ["kal", 3],
+                ["lni", 1],
+                ["mas", 6],
+                ["slk", 1],
+                ["sjy", 1],
+                ["tgw", 1]
+            ]
+        },
+        {
+            "origin": "WMKP",
+            "destination": "",
+            "category": "departure",
+            "route": "WMKP.ISMAS.ISMAS",
+            "altitude": null,
+            "speed": null,
+            "method": "random",
+            "rate": 5,
+            "airlines": [
+                ["axm", 9],
+                ["csn", 1],
+                ["cpa", 5],
+                ["hda", 1],
+                ["eva", 3],
+                ["fdx", 1],
+                ["ffm", 8],
+                ["awq", 3],
+                ["jsa", 1],
+                ["kal", 3],
+                ["lni", 1],
+                ["mas", 6],
+                ["slk", 1],
+                ["sjy", 1],
+                ["tgw", 1]
+            ]
+        },
+        {
+            "origin": "WMKP",
+            "destination": "",
+            "category": "departure",
+            "route": "WMKP.LUNTU.LUNTU",
+            "altitude": null,
+            "speed": null,
+            "method": "random",
+            "rate": 5,
+            "airlines": [
+                ["axm", 9],
+                ["csn", 1],
+                ["cpa", 5],
+                ["hda", 1],
+                ["eva", 3],
+                ["fdx", 1],
+                ["ffm", 8],
+                ["awq", 3],
+                ["jsa", 1],
+                ["kal", 3],
+                ["lni", 1],
+                ["mas", 6],
+                ["slk", 1],
+                ["sjy", 1],
+                ["tgw", 1]
+            ]
+        },
+        {
+            "origin": "WMKP",
+            "destination": "",
+            "category": "departure",
+            "route": "WMKP.PAPDA.PAPDA",
+            "altitude": null,
+            "speed": null,
+            "method": "random",
+            "rate": 5,
+            "airlines": [
+                ["axm", 9],
+                ["csn", 1],
+                ["cpa", 5],
+                ["hda", 1],
+                ["eva", 3],
+                ["fdx", 1],
+                ["ffm", 8],
+                ["awq", 3],
+                ["jsa", 1],
+                ["kal", 3],
+                ["lni", 1],
+                ["mas", 6],
+                ["slk", 1],
+                ["sjy", 1],
+                ["tgw", 1]
+            ]
+        },
+        {
+            "origin": "WMKP",
+            "destination": "",
+            "category": "departure",
+            "route": "WMKP.MADUM.MADUM",
+            "altitude": null,
+            "speed": null,
+            "method": "random",
+            "rate": 5,
+            "airlines": [
+                ["axm", 9],
+                ["csn", 1],
+                ["cpa", 5],
+                ["hda", 1],
+                ["eva", 3],
+                ["fdx", 1],
+                ["ffm", 8],
+                ["awq", 3],
+                ["jsa", 1],
+                ["kal", 3],
+                ["lni", 1],
+                ["mas", 6],
+                ["slk", 1],
+                ["sjy", 1],
+                ["tgw", 1]
+            ]
+        },
+        {
+            "origin": "WMKP",
+            "destination": "",
+            "category": "departure",
+            "route": "WMKP.VPG.VPG",
+            "altitude": null,
+            "speed": null,
+            "method": "random",
+            "rate": 5,
+            "airlines": [
+                ["axm", 9],
+                ["csn", 1],
+                ["cpa", 5],
+                ["hda", 1],
+                ["eva", 3],
+                ["fdx", 1],
+                ["ffm", 8],
+                ["awq", 3],
+                ["jsa", 1],
+                ["kal", 3],
+                ["lni", 1],
+                ["mas", 6],
+                ["slk", 1],
+                ["sjy", 1],
+                ["tgw", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "WMKP",
+            "category": "arrival",
+            "route": "BIDMO.BIDMO_STAR.WMKP",
+            "altitude": 14000,
+            "speed": 320,
+            "method": "random",
+            "rate": 5,
+            "airlines": [
+                ["axm", 9],
+                ["csn", 1],
+                ["cpa", 5],
+                ["hda", 1],
+                ["eva", 3],
+                ["fdx", 1],
+                ["ffm", 8],
+                ["kal", 3]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "WMKP",
+            "category": "arrival",
+            "route": "ISMAS.ISMAS_STAR.WMKP",
+            "altitude": 5500,
+            "speed": 250,
+            "method": "random",
+            "rate": 3,
+            "airlines": [
+                ["sjy", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "WMKP",
+            "category": "arrival",
+            "route": "MADUM.MADUM_STAR.WMKP",
+            "altitude": 9000,
+            "speed": 250,
+            "method": "random",
+            "rate": 3,
+            "airlines": [
+                ["axm", 9],
+                ["sjy", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "WMKP",
+            "category": "arrival",
+            "route": "NURLA.NURLA.WMKP",
+            "altitude": 7000,
+            "speed": 250,
+            "method": "random",
+            "rate": 9,
+            "airlines": [
+                ["axm", 9],
+                ["awq", 3],
+                ["jsa", 1],
+                ["lni", 1],
+                ["mas", 6],
+                ["slk", 1],
+                ["tgw", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "WMKP",
+            "category": "arrival",
+            "route": "PAPDA.PAPDA_STAR.WMKP",
+            "altitude": 9000,
+            "speed": 250,
+            "method": "random",
+            "rate": 7,
+            "airlines": [
+                ["axm", 9],
+                ["csn", 1],
+                ["cpa", 5],
+                ["hda", 1],
+                ["eva", 3],
+                ["fdx", 1],
+                ["ffm", 8],
+                ["kal", 3]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "WMKP",
+            "category": "arrival",
+            "route": "LUNTU.LUNTU_STAR.WMKP",
+            "altitude": 5500,
+            "speed": 250,
+            "method": "random",
+            "rate": 3,
+            "airlines": [
+                ["axm", 9],
+                ["csn", 1],
+                ["cpa", 5],
+                ["hda", 1],
+                ["eva", 3],
+                ["fdx", 1],
+                ["ffm", 8],
+                ["kal", 3]
+            ]
+        }
+    ]
 }

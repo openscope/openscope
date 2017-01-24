@@ -384,90 +384,114 @@
       }
     }
   },
-  "departures": {
-    "airlines": [
-      ["aal", 10],
-      ["aca", 3],
-      ["asa", 7],
-      ["cfg", 1],
-      ["dal", 10],
-      ["fdx", 3],
-      ["fft", 5],
-      ["hal", 2],
-      ["jbu", 5],
-      ["qxe", 10],
-      ["scx", 3],
-      ["skw", 5],
-      ["swa", 10],
-      ["ual", 10],
-      ["ups", 3],
-      ["vrd", 5]
-    ],
-    "destinations": [
-      "CASCD2", "HRMNS5", "LAVAA6", "MINNE5", "WHAMY4", "PTLD1"
-    ],
-    "type": "random",
-    "frequency": 30
+  "spawnPatterns": [
+      {
+        "origin": "kpdx",
+        "destination": "",
+        "category": "departure",
+        "route": "KPDX.CASCD2.PAWLI",
+        "altitude": "",
+        "speed": "",
+        "method": "random",
+        "rate": 15,
+        "airlines": [
+            ["aal", 10],
+            ["aca", 3],
+            ["asa", 7],
+            ["cfg", 1],
+            ["dal", 10],
+            ["fdx", 3],
+            ["fft", 5],
+            ["hal", 2]
+        ]
+    },
+    {
+      "origin": "kpdx",
+      "destination": "",
+      "category": "departure",
+      "route": "KPDX.WHAMY4.IMB",
+      "altitude": "",
+      "speed": "",
+      "method": "random",
+      "rate": 15,
+      "airlines": [
+          ["jbu", 5],
+          ["qxe", 10],
+          ["scx", 3],
+          ["skw", 5],
+          ["swa", 10],
+          ["ual", 10],
+          ["ups", 3],
+          ["vrd", 5]
+      ]
   },
-  "arrivals": [
     {
-      "type": "random",
-      "route":   "JOTBA.HHOOD3.KPDX",
-      "frequency": 10,
-      "altitude":  28000,
-      "speed":    350,
-      "airlines":  [
-        ["aal", 10],
-        ["aca", 3],
-        ["asa", 5],
-        ["dal", 10],
-        ["fdx", 3],
-        ["fft", 5],
-        ["jbu", 5],
-        ["scx", 3],
-        ["skw", 5],
-        ["swa", 15],
-        ["ual", 10],
-        ["ups", 3]
-      ]
+        "origin": "",
+        "destination": "kpdx",
+        "category": "arrival",
+        "route":   "JOTBA.HHOOD3.KPDX",
+        "altitude":  28000,
+        "speed":    350,
+        "method": "random",
+        "rate": 10,
+        "airlines":  [
+            ["aal", 10],
+            ["aca", 3],
+            ["asa", 5],
+            ["dal", 10],
+            ["fdx", 3],
+            ["fft", 5],
+            ["jbu", 5],
+            ["scx", 3],
+            ["skw", 5],
+            ["swa", 15],
+            ["ual", 10],
+            ["ups", 3]
+        ]
     },
     {
-      "type": "random",
-      "route":   "BUWZO.KRATR2.KPDX",
-      "frequency": 5,
-      "altitude":  26000,
-      "speed":    350,
-      "airlines":  [
-        ["aal", 10],
-        ["aca", 3],
-        ["asa", 5],
-        ["cfg", 1],
-        ["dal", 10],
-        ["fdx", 3],
-        ["hal", 2],
-        ["jbu", 5],
-        ["skw", 5],
-        ["swa", 15],
-        ["ups", 3]
-      ]
+        "origin": "",
+        "destination": "kpdx",
+        "category": "arrival",
+        "route":   "BUWZO.KRATR2.KPDX",
+        "altitude":  26000,
+        "speed":    350,
+        "method": "random",
+        "rate": 5,
+        "airlines":  [
+            ["aal", 10],
+            ["aca", 3],
+            ["asa", 5],
+            ["cfg", 1],
+            ["dal", 10],
+            ["fdx", 3],
+            ["hal", 2],
+            ["jbu", 5],
+            ["skw", 5],
+            ["swa", 15],
+            ["ups", 3]
+        ]
     },
     {
-      "type": "random",
-      "route":   "MACHU.TMBRS2.KPDX",
-      "frequency": 10,
-      "altitude":  [30000, 40000],
-      "speed":    350,
-      "airlines":  [
-        ["aal", 10],
-        ["asa", 5],
-        ["dal", 10],
-        ["fdx", 3],
-        ["skw", 5],
-        ["swa", 15],
-        ["ual", 10],
-        ["ups", 3],
-        ["vrd", 3]
-      ]
+        "origin": "",
+        "destination": "kpdx",
+        "category": "arrival",
+        "route":   "MACHU.TMBRS2.KPDX",
+        "altitude":  [30000, 40000],
+        "speed":    350,
+        "method": "random",
+        "rate": 10,
+        "airlines":  [
+            ["aal", 10],
+            ["asa", 5],
+            ["dal", 10],
+            ["fdx", 3],
+            ["skw", 5],
+            ["swa", 15],
+            ["ual", 10],
+            ["ups", 3],
+            ["vrd", 3]
+        ]
     }
   ],
   "maps": {

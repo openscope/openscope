@@ -233,69 +233,96 @@
       "draw": [["SLI","SEBBY","DAG*"]]
     }
   },
-  "departures": {
-    "airlines": [
-      ["ual", 5],
-      ["aal", 5],
-      ["dal", 5],
-      ["ual/long", 5],
-      ["aal/long", 5],
-      ["dal/long", 5],
-      ["swa", 5],
-      ["asa", 3],
-      ["aca", 2],
-      ["cpa", 2],
-      ["baw/long", 2],
-      ["ups", 2],
-      ["fdx", 2],
-      ["klm/long", 2],
-      ["afr/long", 2],
-      ["kal/long", 2],
-      ["amx/long", 2],
-      ["lan/long", 4],
-      ["uae", 2],
-      ["vir", 2]
-    ],
-    "destinations": [
-      "LOOP8", "PRCH1", "LAXX8","SEBBY9", "VTU6"
-    ],
-    "type": "random",
-    "offset": 0,
-    "frequency": 34
-  },
-  "arrivals": [
+  "spawnPatterns": [
+    {
+        "origin": "klax",
+        "destination": "",
+        "category": "departure",
+        "route": "KLAX.LOOP8.DAG",
+        "altitude": "",
+        "speed": "",
+        "method": "random",
+        "rate": 17,
+        "offset": 0,
+        "airlines": [
+            ["aal", 5],
+            ["ual/long", 5],
+            ["dal/long", 5],
+            ["asa", 3],
+            ["cpa", 2],
+            ["ups", 2],
+            ["klm/long", 2],
+            ["kal/long", 2],
+            ["lan/long", 4],
+            ["vir", 2]
+        ]
+    },
+    {
+        "origin": "klax",
+        "destination": "",
+        "category": "departure",
+        "route": "KLAX.LAXX8.MZB",
+        "altitude": "",
+        "speed": "",
+        "method": "random",
+        "rate": 17,
+        "offset": 0,
+        "airlines": [
+            ["ual", 5],
+            ["dal", 5],
+            ["aal/long", 5],
+            ["swa", 5],
+            ["aca", 2],
+            ["baw/long", 2],
+            ["fdx", 2],
+            ["afr/long", 2],
+            ["amx/long", 2],
+            ["uae", 2]
+        ]
+    },
     {
       "_name":  "Kimmo 3",
-      "heading":  170,
+      "origin": "",
+      "destination": "klax",
+      "category": "arrival",
+      "route": "_KLAX347060..KIMMO..DARTS",
+      "altitude":  10000,
       "speed":    250,
-      "fixes":   ["_KLAX347060", "KIMMO", "DARTS"],
+      "method": "cyclic",
+      "rate": 2,
+      "offset": 0,
       "airlines":  [
         ["swa", 1],
         ["fastga", 1]
-      ],
-      "type": "cyclic",
-      "offset": 0,
-      "frequency": 2,
-      "altitude":  10000
+      ]
     },
     {
       "_name":  "Leena 5",
+      "origin": "",
+      "destination": "klax",
+      "category": "arrival",
+      "route": "_KLAX169060..SXC..CWARD..SLI",
+      "altitude":  10000,
       "speed":    250,
-      "fixes":    ["_KLAX169060", "SXC", "CWARD", "SLI"],
+      "method": "random",
+      "rate": 3,
       "airlines":  [
         ["ual/long", 1],
         ["dal/long", 1],
 		["asa", 1],
         ["aal/long", 1]
-      ],
-      "type": "random",
-      "frequency": 3,
-      "altitude":  10000
+      ]
     },
     {
       "_name":  "Riivr 2",
+      "origin": "",
+      "destination": "klax",
+      "category": "arrival",
+      "route": "RUSTT..HABSO..RIIVR..BCOVE",
+      "altitude":  10000,
       "speed":    250,
-      "fixes":    ["RUSTT", "HABSO", "RIIVR", "BCOVE"],
+      "method": "random",
+      "rate": 8,
       "airlines":  [
         ["ual", 5],
         ["aal", 5],
@@ -317,15 +344,18 @@
         ["lan/long", 4],
         ["uae", 2],
         ["vir", 2]
-      ],
-      "type": "random",
-      "frequency": 8,
-      "altitude":  10000
+      ]
     },
     {
       "_name":  "Sadde 6 - FIM",
+      "origin": "",
+      "destination": "klax",
+      "category": "arrival",
+      "route": "_KLAX305060..FIM..SADDE..SMO..JAVSI",
+      "altitude":  10000,
       "speed":    250,
-      "fixes":    ["_KLAX305060", "FIM", "SADDE", "SMO", "JAVSI"],
+      "method": "random",
+      "rate": 6,
       "airlines":  [
         ["ual", 2],
         ["aal", 2],
@@ -333,37 +363,40 @@
         ["swa", 5],
         ["asa", 5],
         ["fastga", 1]
-      ],
-      "type": "random",
-      "frequency": 6,
-      "altitude":  10000
+      ]
     },
 	{
       "_name":  "Sadde 6 - VTU",
+      "origin": "",
+      "destination": "klax",
+      "category": "arrival",
+      "route": "RZS..VTU..SADDE..SMO..JAVSI",
+      "altitude":  10000,
       "speed":    250,
-      "fixes":    ["RZS", "VTU", "SADDE", "SMO", "JAVSI"],
+      "method": "random",
+      "rate": 6,
       "airlines":  [
         ["ual/long", 1],
         ["dal/long", 1],
 		    ["asa", 1],
         ["aal/long", 1]
-      ],
-      "type": "random",
-      "frequency": 6,
-      "altitude":  10000
+      ]
     },
     {
       "_name":  "Vista 2",
+      "origin": "",
+      "destination": "klax",
+      "category": "arrival",
+      "route": "VISTA..OCN..SHIVE..CWARD..MADOW..SLI",
+      "altitude":  10000,
       "speed":    250,
-      "fixes":    ["VISTA", "OCN", "SHIVE", "CWARD", "MADOW", "SLI"],
+      "method": "random",
+      "rate": 8,
       "airlines":  [
         ["ual", 1],
         ["swa", 1],
         ["aal", 1]
-      ],
-      "type": "random",
-      "frequency": 8,
-      "altitude":  10000
+      ]
     }
   ]
 }

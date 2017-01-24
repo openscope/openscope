@@ -1,26 +1,17 @@
-/* eslint-disable no-multi-spaces, func-names, camelcase, no-undef, max-len, object-shorthand */
+/* eslint-disable no-multi-spaces, func-names, camelcase, max-len, object-shorthand */
 import $ from 'jquery';
 import _forEach from 'lodash/forEach';
 import _get from 'lodash/get';
-import _has from 'lodash/has';
 import _head from 'lodash/head';
 import _map from 'lodash/map';
-import _isEmpty from 'lodash/isEmpty';
-import _isNil from 'lodash/isNil';
 import AirspaceModel from './AirspaceModel';
 import PositionModel from '../base/PositionModel';
 import RunwayModel from './RunwayModel';
-import FixCollection from './Fix/FixCollection';
-import StandardRouteCollection from './StandardRoute/StandardRouteCollection';
-import { arrivalFactory } from './Arrival/arrivalFactory';
-import { departureFactory } from './Departure/departureFactory';
 import { degreesToRadians, parseElevation } from '../utilities/unitConverters';
 import { round, abs, sin, extrapolate_range_clamp } from '../math/core';
 import { angle_offset } from '../math/circle';
 import { getOffset } from '../math/flightMath';
 import { vlen, vsub, vadd, vscale, raysIntersect } from '../math/vector';
-import { LOG } from '../constants/logLevel';
-import { SELECTORS } from '../constants/selectors';
 import { STORAGE_KEY } from '../constants/storageKeys';
 
 // TODO: This function should really live in a different file and have tests.
@@ -39,7 +30,6 @@ const ra = (n) => {
 const DEFAULT_CTR_RADIUS_NM = 80;
 const DEFAULT_CTR_CEILING_FT = 10000;
 const DEFAULT_INITIAL_ALTITUDE_FT = 5000;
-const DEAFULT_RR_RADIUS_NM = 5;
 
 /**
  *
@@ -51,9 +41,19 @@ export default class AirportModel {
      * @constructor
      * @param options {object}
      * @param updateRun {function}
+     * @param onAirportChange {function}  callback method to call onAirportChange
      */
-    constructor(options = {}, updateRun) {
+    constructor(options = {}, updateRun, onAirportChange, navigationLibrary) {
+        if (!updateRun || !onAirportChange || !navigationLibrary) {
+            console.log('::: ERROR', !updateRun, !onAirportChange, !navigationLibrary);
+            return;
+        }
+
         this.updateRun = updateRun;
+        this.onAirportChange = onAirportChange;
+        this._navigationLibrary = navigationLibrary;
+        this.data = {};
+
         // FIXME: All properties of this class should be instantiated here, even if they wont have values yet.
         // there is a lot of logic below that can be elimininated by simply instantiating values here.
         this.loaded = false;
@@ -68,9 +68,7 @@ export default class AirportModel {
         // TODO: rename to `runwayName`
         this.runway = null;
         // this property is kept for each airport to allow for re-hydration of the `FixCollection` on airport change
-        this.fixes = {};
-        this.sidCollection = null;
-        this.starCollection = null;
+        // this.fixes = {};
         this.maps = {};
         this.airways = {};
         this.restricted_areas = [];
@@ -85,8 +83,8 @@ export default class AirportModel {
             runway: null,
             departure: null
         };
-        this.departures = [];
-        this.arrivals = [];
+        // this.departures = [];
+        // this.arrivals = [];
 
         this.wind  = {
             speed: 10,
@@ -107,7 +105,7 @@ export default class AirportModel {
      * @return {array<FixModel>}
      */
     get real_fixes() {
-        return FixCollection.findRealFixes();
+        return this._navigationLibrary.realFixes;
     }
 
     /**
@@ -145,7 +143,6 @@ export default class AirportModel {
 
         this.setCurrentPosition(data.position, data.magnetic_north);
 
-
         this.radio = _get(data, 'radio', this.radio);
         this.has_terrain = _get(data, 'has_terrain', false);
         this.airways = _get(data, 'airways', {});
@@ -154,12 +151,7 @@ export default class AirportModel {
         this.initial_alt = _get(data, 'initial_alt', DEFAULT_INITIAL_ALTITUDE_FT);
         this.rr_radius_nm = _get(data, 'rr_radius_nm');
         this.rr_center = _get(data, 'rr_center');
-
-        this.fixes = _get(data, 'fixes', {});
-        FixCollection.addItems(this.fixes, this.position);
-
-        this.sidCollection = new StandardRouteCollection(data.sids);
-        this.starCollection = new StandardRouteCollection(data.stars);
+        // this.fixes = _get(data, 'fixes', {});
 
         this.loadTerrain();
         this.buildAirportAirspace(data.airspace);
@@ -167,9 +159,9 @@ export default class AirportModel {
         this.buildAirportMaps(data.maps);
         this.buildRestrictedAreas(data.restricted);
         this.updateCurrentWind(data.wind);
-        this.buildAirportDepartures(data.departures);
-        this.buildArrivals(data.arrivals);
         this.buildRunwayMetaData();
+        this.updateRunway();
+        this.setRunwayTimeout();
     }
 
     /**
@@ -326,33 +318,6 @@ export default class AirportModel {
         this.wind.angle = degreesToRadians(currentWind.angle);
     }
 
-    buildAirportDepartures(departures) {
-        if (!departures) {
-            return;
-        }
-
-        this.departures = departureFactory(this, departures);
-    }
-
-    /**
-     * @for AirportModel
-     * @method buildArrivals
-     * @param arrivals {array}
-     */
-    buildArrivals(arrivals) {
-        if (!arrivals) {
-            return;
-        }
-
-        for (let i = 0; i < arrivals.length; i++) {
-            if (!_has(arrivals[i], 'type')) {
-                log(`${this.icao} arrival stream #${i} not given type!`, LOG.WARNING);
-            } else {
-                this.arrivals.push(arrivalFactory(this, arrivals[i]));
-            }
-        }
-    }
-
     /**
      * @for AirportModel
      * @method buildRunwayMetaData
@@ -391,35 +356,20 @@ export default class AirportModel {
      * @for AirportModel
      * @method set
      */
-    set() {
+    set(airportJson) {
         if (!this.loaded) {
-            this.load();
+            this.load(airportJson);
 
             return;
         }
 
         localStorage[STORAGE_KEY.ATC_LAST_AIRPORT] = this.icao;
-        prop.airport.current = this;
 
-        prop.canvas.draw_labels = true;
-        $(SELECTORS.DOM_SELECTORS.TOGGLE_LABELS).toggle(!_isEmpty(this.maps));
-        $(SELECTORS.DOM_SELECTORS.TOGGLE_RESTRICTED_AREAS).toggle((this.restricted_areas || []).length > 0);
-        $(SELECTORS.DOM_SELECTORS.TOGGLE_SIDS).toggle(!_isNil(this.sidCollection));
-
-        prop.canvas.dirty = true;
-        $(SELECTORS.DOM_SELECTORS.TOGGLE_TERRAIN).toggle(!_isEmpty(this.terrain));
-
+        // TODO: this should live elsewhere and be called by a higher level controller
         window.gameController.game_reset_score_and_events();
 
         this.start = window.gameController.game_time();
 
-        // when the parse method is run, this method also runs. however, when an airport is being re-loaded,
-        // only this method runs. this doesnt belong here but needs to be here so the fixes get populated correctly.
-        // FIXME: make FixCollection a instance class ainstead of a static class
-        FixCollection.addItems(this.fixes, this.position);
-
-        this.updateRunway();
-        this.addAircraft();
         this.updateRun(true);
     }
 
@@ -428,31 +378,11 @@ export default class AirportModel {
      * @method unset
      */
     unset() {
-        for (let i = 0; i < this.arrivals.length; i++) {
-            this.arrivals[i].stop();
+        if (!this.timeout.runway) {
+            return;
         }
 
-        this.departures.stop();
-
-        if (this.timeout.runway) {
-            window.gameController.game_clear_timeout(this.timeout.runway);
-        }
-    }
-
-    /**
-     * @for AirportModel
-     * @method addAircraft
-     */
-    addAircraft() {
-        if (this.departures) {
-            this.departures.start();
-        }
-
-        if (this.arrivals) {
-            for (let i = 0; i < this.arrivals.length; i++) {
-                this.arrivals[i].start();
-            }
-        }
+        window.gameController.game_clear_timeout(this.timeout.runway);
     }
 
     /**
@@ -461,8 +391,11 @@ export default class AirportModel {
      * @return wind {number}
      */
     getWind() {
+        return this.wind;
+
+        // TODO: what does this method do and why do we need it?
         // TODO: there are a lot of magic numbers here. What are they for and what do they mean? These should be enumerated.
-        const wind = clone(this.wind);
+        const wind = Object.assign({}, this.wind);
         let s = 1;
         const angle_factor = sin((s + window.gameController.game_time()) * 0.5) + sin((s + window.gameController.game_time()) * 2);
         // TODO: why is this var getting reassigned to a magic number?
@@ -499,6 +432,15 @@ export default class AirportModel {
         }
 
         this.runway = best_runway;
+    }
+
+    // TODO: what does this function do and why do we need it
+    /**
+     *
+     * @for AirportModel
+     * @method setRunwayTimeout
+     */
+    setRunwayTimeout() {
         this.timeout.runway = window.gameController.game_timeout(this.updateRunway, Math.random() * 30, this);
     }
 
@@ -563,6 +505,7 @@ export default class AirportModel {
         }
 
         // TODO: there is a lot of binding here, use => functions and this probably wont be an issue.
+        // eslint-disable-next-line no-undef
         zlsa.atc.loadAsset({
             url: `assets/airports/terrain/${this.icao.toLowerCase()}.geojson`,
             immediate: true
@@ -570,15 +513,12 @@ export default class AirportModel {
         // TODO: change to onSuccess and onError handler abstractions
         .done((data) => {
             try {
+                // eslint-disable-next-line no-undef
                 log('Parsing terrain');
                 this.parseTerrain(data);
             } catch (e) {
-                log(e.message);
+                throw new Error(e.message);
             }
-
-            this.loading = false;
-            this.loaded = true;
-            this.set();
         })
         .fail((jqXHR, textStatus, errorThrown) => {
             console.error(`Unable to load airport/terrain/${this.icao}: ${textStatus}`);
@@ -589,10 +529,13 @@ export default class AirportModel {
     }
 
     /**
+     * Stop the game loop and Load airport json asyncronously
+     *
      * @for AirportModel
      * @method load
+     * @param airportJson {object}
      */
-    load() {
+    load(airportJson = null) {
         if (this.loaded) {
             return;
         }
@@ -600,6 +543,13 @@ export default class AirportModel {
         this.updateRun(false);
         this.loading = true;
 
+        if (airportJson) {
+            this.onLoadIntialAirportFromJson(airportJson);
+
+            return;
+        }
+
+        // eslint-disable-next-line no-undef
         zlsa.atc.loadAsset({
             url: `assets/airports/${this.icao.toLowerCase()}.json`,
             immediate: true
@@ -613,14 +563,13 @@ export default class AirportModel {
      * @param response {object}
      */
     onLoadAirportSuccess = (response) => {
-        this.parse(response);
-
-        if (this.has_terrain) {
-            return;
-        }
-
+        // cache of airport.json data to be used to hydrate other classes on airport change
+        this.data = response;
         this.loading = false;
         this.loaded = true;
+
+        this.parse(response);
+        this.onAirportChange(this.data);
         this.set();
     };
 
@@ -637,27 +586,33 @@ export default class AirportModel {
     }
 
     /**
+     * Provides a way to get data into the instance with passed in
+     * data and without running `.load()`
+     *
+     * Data received here is identical to data that would be received
+     * when changing airports.
+     *
+     * @for AirportModel
+     * @method onLoadIntialAirportFromJson
+     * @param response {object}
+     */
+    onLoadIntialAirportFromJson(response) {
+        // TODO: this is extremely similar to `onLoadAirportSuccess()`, consolidate these two methods
+        // cache of airport.json data to be used to hydrate other classes on airport change
+        this.data = response;
+        this.loading = false;
+        this.loaded = true;
+        this.parse(response);
+        this.set();
+    }
+
+    /**
      * @for AirportModel
      * @method getRestrictedAreas
      * @return {array|null}
      */
     getRestrictedAreas() {
         return _get(this, 'restricted_areas', null);
-    }
-
-    /**
-     * Get the position of a FixModel
-     *
-     * @for AirportModel
-     * @method getFixPosition
-     * @param fixName {string}
-     * @return {array}
-     */
-    getFixPosition(fixName) {
-        // TODO: if possible, replace with FoxCollection.getFixPositionCoordinates
-        const fixModel = FixCollection.findFixByName(fixName);
-
-        return fixModel.position;
     }
 
     /**
@@ -668,21 +623,8 @@ export default class AirportModel {
      * @return {array}
      */
     getSID(id, exit, runway) {
-        return this.sidCollection.findFixesForSidByRunwayAndExit(id, exit, runway);
-    }
-
-    /**
-     *
-     * @for AirportModel
-     * @method findWaypointModelsForSid
-     * @param id {string}
-     * @param entry {string}
-     * @param runway {string}
-     * @param isPreSpawn {boolean} flag used to determine if distances between waypoints should be calculated
-     * @return {array<StandardWaypointModel>}
-     */
-    findWaypointModelsForSid(id, entry, runway, isPreSpawn = false) {
-        return this.sidCollection.findFixModelsForRouteByEntryAndExit(id, entry, runway, isPreSpawn);
+        console.warn('getSID method should be moved from the AirportModel to the NavigationLibrary');
+        return this._navigationLibrary.sidCollection.findFixesForSidByRunwayAndExit(id, exit, runway);
     }
 
     /**
@@ -692,7 +634,8 @@ export default class AirportModel {
      * @return {string}  Name of Exit fix in SID
      */
     getSIDExitPoint(icao) {
-        return this.sidCollection.findRandomExitPointForSIDIcao(icao);
+        console.warn('getSIDExitPoint method should be moved from the AirportModel to the NavigationLibrary');
+        return this._navigationLibrary.sidCollection.findRandomExitPointForSIDIcao(icao);
     }
 
     /**
@@ -711,21 +654,8 @@ export default class AirportModel {
      * @return {array<string>}
      */
     getSTAR(id, entry, rwy) {
-        return this.starCollection.findFixesForStarByEntryAndRunway(id, entry, rwy);
-    }
-
-    /**
-     *
-     * @for AirportModel
-     * @method findWaypointModelsForStar
-     * @param id {string}
-     * @param entry {string}
-     * @param runway {string}
-     * @param isPreSpawn {boolean} flag used to determine if distances between waypoints should be calculated
-     * @return {array<StandardWaypointModel>}
-     */
-    findWaypointModelsForStar(id, entry, runway, isPreSpawn = false) {
-        return this.starCollection.findFixModelsForRouteByEntryAndExit(id, entry, runway, isPreSpawn);
+        console.warn('getSTAR() method should be moved from the AirportModel to the NavigationLibrary');
+        return this._navigationLibrary.starCollection.findFixesForStarByEntryAndRunway(id, entry, rwy);
     }
 
     /**

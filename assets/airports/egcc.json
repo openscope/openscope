@@ -218,361 +218,684 @@
       },
       "draw": [["_05R", "MCT07", "MCT08", "XUMAT", "WAL33", "SONEX"]]
     }
-},
-
-  "departures": {
-    "airlines": [
-		["aal", 3],
-		["aca", 5],
-		["afr", 5],
-		["aua", 5],
-		["baw", 40],
-		["bee", 80],
-		["bel", 5],
-		["cpa", 3],
-		["dal", 3],
-		["dlh", 10],
-		["etd", 3],
-		["exs", 60],
-		["ezy", 20],
-		["ibe", 5],
-		["klc", 5],
-		["mon", 60],
-		["nax", 8],
-		["ryr", 25],
-		["sas", 8],
-		["swr", 10],
-		["tcx", 35],
-		["thy", 5],
-		["tom", 30],
-		["uae", 3],
-		["ual", 3],
-		["vir", 45]
-    ],
-
-    "destinations": [
-      "ASMIM", "DESIG", "EKLAD", "KUXEM", "LISTO", "MONTY", "POL", "SANBA", "SONEX"
-    ],
-    "type": "random",
-    "frequency": 35
-  },
-
-  "arrivals":[
-		{
-		  "_name":	["DALEY 1F"],
-		  "fixes":  ["OTBED", "GOLES", "POL", "ARTHA", "DALEY"],
-		  "altitude": [10000, 12000],
-		  "speed": 250,
-		  "type": "wave",
-		  "frequency": 5,
-		  "airlines": [
-			["cpa", 1],
-			["thy", 1],
-			["baw", 4],
-			["klc", 5],
-			["klm", 5],
-			["ual", 1],
-			["dlh", 5],
-			["swr", 3]
-		  ]
-		},
-
-		{
-		  "_name":	["DALEY 1G"],
-		  "fixes":  ["LIBSO", "GOLES", "POL", "ARTHA", "DALEY"],
-		  "altitude": [10000, 12000],
-		  "speed": 250,
-		  "type": "wave",
-		  "frequency": 5,
-		  "airlines": [
-		   ["cpa", 1],
-			["thy", 1],
-			["baw", 4],
-			["klc", 5],
-			["klm", 5],
-			["ual", 1],
-			["dlh", 5],
-			["swr", 3],
-			["bel", 6]
-		  ]
-		},
-
-		{
-		  "_name":	["DALEY 2A"],
-		  "fixes":  ["LAKEY", "DALEY"],
-		  "altitude": [10000, 12000],
-		  "speed": 250,
-		  "type": "wave",
-		  "frequency": 5,
-		  "airlines": [
-			["bee", 15],
-			["baw", 3],
-			["vir", 2],
-			["baw", 2]
-		  ]
-		},
-
-		{
-		  "_name":	["DALEY 2B"],
-		  "fixes":  ["SETEL", "DALEY"],
-		  "altitude": [10000, 12000],
-		  "speed": 250,
-		  "type": "wave",
-		  "frequency": 5,
-		  "airlines": [
-			["bee", 5]
-		  ]
-		},
-
-		{
-		  "_name":	["DALEY 2E"],
-		  "fixes":  ["GOLES", "UPTON", "DESIG", "POL", "ARTHA", "DALEY"],
-		  "altitude": [7000, 8000],
-		  "speed": 250,
-		  "type": "wave",
-		  "frequency": 5,
-		  "airlines": [
-			["cpa", 1],
-			["thy", 1],
-			["baw", 4],
-			["klc", 5],
-			["klm", 5],
-			["ual", 1],
-			["dlh", 5],
-			["swr", 3]
-		  ]
-		},
-
-		{
-		  "_name":	["DALEY 4D"],
-		  "fixes":  ["TILNI", "GASKO", "BEGAM", "SETEL", "DALEY"],
-		  "altitude": [10000, 12000],
-		  "speed": 250,
-		  "type": "wave",
-		  "frequency": 5,
-		  "airlines": [
-			["bee", 15],
-			["baw", 3],
-			["vir", 5],
-			["baw", 2],
-			["cpa", 2],
-			["ryr", 4]
-		  ]
-		},
-
-		{
-		  "_name":	["DAYNE 1B"],
-		  "fixes":  ["LESTA", "TNT", "DAYNE"],
-		  "altitude": [7500, 8000],
-		  "speed": 250,
-		  "type": "wave",
-		  "frequency": 5,
-		  "airlines": [
-			["ezy", 1],
-			["baw", 1],
-			["klc", 5],
-			["klm", 5],
-			["ual", 1],
-			["vir", 3],
-			["swr", 6],
-			["tom", 4],
-			["tcx", 5],
-			["ezy", 4],
-			["mon", 4]
-		  ]
-		},
-
-		{
-		  "_name":	["DAYNE 2A"],
-		  "fixes":  ["TNT", "DAYNE"],
-		  "altitude": [10000, 12000],
-		  "speed": 250,
-		  "type": "wave",
-		  "frequency": 5,
-		  "airlines": [
-			["ezy", 1],
-			["baw", 1],
-			["klc", 5],
-			["klm", 5],
-			["ual", 1],
-			["vir", 3],
-			["swr", 6],
-			["tom", 4],
-			["tcx", 5],
-			["ezy", 4],
-			["mon", 4]
-		  ]
-		},
-
-		{
-		  "_name": ["MIRSI 1A"],
-		  "fixes": ["OKTEM", "MONTY", "REXAM", "WAL", "MIRSI"],
-		  "altitude": [10000, 12000],
-		  "speed": 250,
-		  "type": "wave",
-		  "frequency": 20,
-		  "airlines": [
-			["baw", 5],
-			["bee", 15],
-			["baw", 1],
-			["klc", 5],
-			["exs", 5],
-			["mon", 5],
-			["tom", 3],
-			["tcx", 3],
-			["afr", 3],
-			["vir", 10],
-			["ryr", 4]
-		  ]
-		},
-
-		{
-		  "_name":	["MIRSI 1B"],
-		  "fixes":  ["LYNAS", "MALUD", "WAL", "MIRSI"],
-		  "altitude": [6000, 8000],
-		  "speed": 250,
-		  "type": "wave",
-		  "frequency": 10,
-		  "airlines": [
-			["ual", 1],
-			["aal", 1],
-			["vir", 1],
-			["dal", 5]
-		  ]
-		},
-
-		{
-		  "_name":	["MIRSI 1C"],
-		  "fixes":  ["IOM", "KELLY", "PENIL", "WAL", "MIRSI"],
-		  "altitude": [10000, 12000],
-		  "speed": 250,
-		  "type": "wave",
-		  "frequency": 15,
-		  "airlines": [
-			["ual", 2],
-			["aal", 2],
-			["dal", 2],
-			["baw", 4],
-			["aca", 2],
-			["ryr", 5],
-			["ein", 3]
-		  ]
-		},
-
-		{
-		  "_name":	["MIRSI 1D"],
-		  "fixes":  ["MAKUX", "SOSIM", "GIGTO", "IBRAR", "WAL", "MIRSI"],
-		  "altitude": [10000, 12000],
-		  "speed": 250,
-		  "type": "wave",
-		  "frequency": 5,
-		  "airlines": [
-			["ual", 4],
-			["aal", 4],
-			["baw", 7],
-			["dal", 5]
-		  ]
-		},
-
-		{
-		  "_name":	["ROSUN 1F"],
-		  "fixes":  ["OTBED", "GOLES", "POL", "BURNI", "ROSUN"],
-		  "altitude": [10000, 12000],
-		  "speed": 250,
-		  "type": "wave",
-		  "frequency": 5,
-		  "airlines": [
-			["cpa", 1],
-			["thy", 1],
-			["baw", 4],
-			["klc", 5],
-			["klm", 5],
-			["ual", 1],
-			["dlh", 5],
-			["swr", 3]
-		  ]
-		},
-
-		{
-		  "_name":	["ROSUN 1G"],
-		  "fixes":  ["LIBSO", "GOLES", "POL", "BURNI", "ROSUN"],
-		  "altitude": [10000, 12000],
-		  "speed": 250,
-		  "type": "wave",
-		  "frequency": 5,
-		  "airlines": [
-			["cpa", 1],
-			["thy", 1],
-			["baw", 4],
-			["klc", 5],
-			["klm", 5],
-			["ual", 1],
-			["dlh", 5],
-			["swr", 3]
-		  ]
-		},
-
-		{
-		  "_name":	["ROSUN 2A"],
-		  "fixes":  ["LAKEY", "ROSUN"],
-		  "altitude": [10000, 12000],
-		  "speed": 250,
-		  "type": "wave",
-		  "frequency": 5,
-		  "airlines": [
-			["bee", 15],
-			["baw", 3],
-			["vir", 2],
-			["baw", 2],
-			["nax", 4]
-		  ]
-		},
-
-		{
-		  "_name":	["ROSUN 2B"],
-		  "fixes":  ["SETEL", "ROSUN"],
-		  "altitude": [10000, 12000],
-		  "speed": 250,
-		  "type": "wave",
-		  "frequency": 5,
-		  "airlines": [
-			["bee", 5]
-		  ]
-		},
-
-		{
-		  "_name":	["ROSUN 2E"],
-		  "fixes":  ["GOLES", "UPTON", "DESIG", "POL", "BURNI", "ROSUN"],
-		  "altitude": [10000, 12000],
-		  "speed": 250,
-		  "type": "wave",
-		  "frequency": 5,
-		  "airlines": [
-			["cpa", 1],
-			["thy", 1],
-			["baw", 4],
-			["klc", 5],
-			["klm", 5],
-			["ual", 1],
-			["dlh", 5],
-			["swr", 3]
-		  ]
-		},
-
-		{
-		 "_name":  ["ROSUN 4D"],
-		 "fixes":  ["TILNI", "GASKO", "BEGAM", "SETEL", "ROSUN"],
-		 "altitude": [10000, 12000],
-		 "speed": 250,
-		 "type": "wave",
-		 "frequency": 5,
-		 "airlines": [
-			["bee", 15],
-			["baw", 3],
-			["vir", 5],
-			["baw", 2],
-			["cpa", 2]
-		 ]
-	}
-  ]
+ },
+    "spawnPatterns": [
+        {
+            "origin": "EGCC",
+            "destination": "",
+            "category": "departure",
+            "route": "EGCC.ASMIM.ASMIM",
+            "altitude": null,
+            "speed": null,
+            "method": "random",
+            "rate": 4,
+            "airlines": [
+                ["aal", 3],
+                ["aca", 5],
+                ["afr", 5],
+                ["aua", 5],
+                ["baw", 40],
+                ["bee", 80],
+                ["bel", 5],
+                ["cpa", 3],
+                ["dal", 3],
+                ["dlh", 10],
+                ["etd", 3],
+                ["exs", 60],
+                ["ezy", 20],
+                ["ibe", 5],
+                ["klc", 5],
+                ["mon", 60],
+                ["nax", 8],
+                ["ryr", 25],
+                ["sas", 8],
+                ["swr", 10],
+                ["tcx", 35],
+                ["thy", 5],
+                ["tom", 30],
+                ["uae", 3],
+                ["ual", 3],
+                ["vir", 45]
+            ]
+        },
+        {
+            "origin": "EGCC",
+            "destination": "",
+            "category": "departure",
+            "route": "EGCC.DESIG.DESIG",
+            "altitude": null,
+            "speed": null,
+            "method": "random",
+            "rate": 4,
+            "airlines": [
+                ["aal", 3],
+                ["aca", 5],
+                ["afr", 5],
+                ["aua", 5],
+                ["baw", 40],
+                ["bee", 80],
+                ["bel", 5],
+                ["cpa", 3],
+                ["dal", 3],
+                ["dlh", 10],
+                ["etd", 3],
+                ["exs", 60],
+                ["ezy", 20],
+                ["ibe", 5],
+                ["klc", 5],
+                ["mon", 60],
+                ["nax", 8],
+                ["ryr", 25],
+                ["sas", 8],
+                ["swr", 10],
+                ["tcx", 35],
+                ["thy", 5],
+                ["tom", 30],
+                ["uae", 3],
+                ["ual", 3],
+                ["vir", 45]
+            ]
+        },
+        {
+            "origin": "EGCC",
+            "destination": "",
+            "category": "departure",
+            "route": "EGCC.EKLAD.EKLAD",
+            "altitude": null,
+            "speed": null,
+            "method": "random",
+            "rate": 4,
+            "airlines": [
+                ["aal", 3],
+                ["aca", 5],
+                ["afr", 5],
+                ["aua", 5],
+                ["baw", 40],
+                ["bee", 80],
+                ["bel", 5],
+                ["cpa", 3],
+                ["dal", 3],
+                ["dlh", 10],
+                ["etd", 3],
+                ["exs", 60],
+                ["ezy", 20],
+                ["ibe", 5],
+                ["klc", 5],
+                ["mon", 60],
+                ["nax", 8],
+                ["ryr", 25],
+                ["sas", 8],
+                ["swr", 10],
+                ["tcx", 35],
+                ["thy", 5],
+                ["tom", 30],
+                ["uae", 3],
+                ["ual", 3],
+                ["vir", 45]
+            ]
+        },
+        {
+            "origin": "EGCC",
+            "destination": "",
+            "category": "departure",
+            "route": "EGCC.KUXEM.KUXEM",
+            "altitude": null,
+            "speed": null,
+            "method": "random",
+            "rate": 4,
+            "airlines": [
+                ["aal", 3],
+                ["aca", 5],
+                ["afr", 5],
+                ["aua", 5],
+                ["baw", 40],
+                ["bee", 80],
+                ["bel", 5],
+                ["cpa", 3],
+                ["dal", 3],
+                ["dlh", 10],
+                ["etd", 3],
+                ["exs", 60],
+                ["ezy", 20],
+                ["ibe", 5],
+                ["klc", 5],
+                ["mon", 60],
+                ["nax", 8],
+                ["ryr", 25],
+                ["sas", 8],
+                ["swr", 10],
+                ["tcx", 35],
+                ["thy", 5],
+                ["tom", 30],
+                ["uae", 3],
+                ["ual", 3],
+                ["vir", 45]
+            ]
+        },
+        {
+            "origin": "EGCC",
+            "destination": "",
+            "category": "departure",
+            "route": "EGCC.LISTO.LISTO",
+            "altitude": null,
+            "speed": null,
+            "method": "random",
+            "rate": 4,
+            "airlines": [
+                ["aal", 3],
+                ["aca", 5],
+                ["afr", 5],
+                ["aua", 5],
+                ["baw", 40],
+                ["bee", 80],
+                ["bel", 5],
+                ["cpa", 3],
+                ["dal", 3],
+                ["dlh", 10],
+                ["etd", 3],
+                ["exs", 60],
+                ["ezy", 20],
+                ["ibe", 5],
+                ["klc", 5],
+                ["mon", 60],
+                ["nax", 8],
+                ["ryr", 25],
+                ["sas", 8],
+                ["swr", 10],
+                ["tcx", 35],
+                ["thy", 5],
+                ["tom", 30],
+                ["uae", 3],
+                ["ual", 3],
+                ["vir", 45]
+            ]
+        },
+        {
+            "origin": "EGCC",
+            "destination": "",
+            "category": "departure",
+            "route": "EGCC.MONTY.MONTY",
+            "altitude": null,
+            "speed": null,
+            "method": "random",
+            "rate": 4,
+            "airlines": [
+                ["aal", 3],
+                ["aca", 5],
+                ["afr", 5],
+                ["aua", 5],
+                ["baw", 40],
+                ["bee", 80],
+                ["bel", 5],
+                ["cpa", 3],
+                ["dal", 3],
+                ["dlh", 10],
+                ["etd", 3],
+                ["exs", 60],
+                ["ezy", 20],
+                ["ibe", 5],
+                ["klc", 5],
+                ["mon", 60],
+                ["nax", 8],
+                ["ryr", 25],
+                ["sas", 8],
+                ["swr", 10],
+                ["tcx", 35],
+                ["thy", 5],
+                ["tom", 30],
+                ["uae", 3],
+                ["ual", 3],
+                ["vir", 45]
+            ]
+        },
+        {
+            "origin": "EGCC",
+            "destination": "",
+            "category": "departure",
+            "route": "EGCC.POL.POL",
+            "altitude": null,
+            "speed": null,
+            "method": "random",
+            "rate": 4,
+            "airlines": [
+                ["aal", 3],
+                ["aca", 5],
+                ["afr", 5],
+                ["aua", 5],
+                ["baw", 40],
+                ["bee", 80],
+                ["bel", 5],
+                ["cpa", 3],
+                ["dal", 3],
+                ["dlh", 10],
+                ["etd", 3],
+                ["exs", 60],
+                ["ezy", 20],
+                ["ibe", 5],
+                ["klc", 5],
+                ["mon", 60],
+                ["nax", 8],
+                ["ryr", 25],
+                ["sas", 8],
+                ["swr", 10],
+                ["tcx", 35],
+                ["thy", 5],
+                ["tom", 30],
+                ["uae", 3],
+                ["ual", 3],
+                ["vir", 45]
+            ]
+        },
+        {
+            "origin": "EGCC",
+            "destination": "",
+            "category": "departure",
+            "route": "EGCC.SANBA.SANBA",
+            "altitude": null,
+            "speed": null,
+            "method": "random",
+            "rate": 4,
+            "airlines": [
+                ["aal", 3],
+                ["aca", 5],
+                ["afr", 5],
+                ["aua", 5],
+                ["baw", 40],
+                ["bee", 80],
+                ["bel", 5],
+                ["cpa", 3],
+                ["dal", 3],
+                ["dlh", 10],
+                ["etd", 3],
+                ["exs", 60],
+                ["ezy", 20],
+                ["ibe", 5],
+                ["klc", 5],
+                ["mon", 60],
+                ["nax", 8],
+                ["ryr", 25],
+                ["sas", 8],
+                ["swr", 10],
+                ["tcx", 35],
+                ["thy", 5],
+                ["tom", 30],
+                ["uae", 3],
+                ["ual", 3],
+                ["vir", 45]
+            ]
+        },
+        {
+            "origin": "EGCC",
+            "destination": "",
+            "category": "departure",
+            "route": "EGCC.SONEX.SONEX",
+            "altitude": null,
+            "speed": null,
+            "method": "random",
+            "rate": 4,
+            "airlines": [
+                ["aal", 3],
+                ["aca", 5],
+                ["afr", 5],
+                ["aua", 5],
+                ["baw", 40],
+                ["bee", 80],
+                ["bel", 5],
+                ["cpa", 3],
+                ["dal", 3],
+                ["dlh", 10],
+                ["etd", 3],
+                ["exs", 60],
+                ["ezy", 20],
+                ["ibe", 5],
+                ["klc", 5],
+                ["mon", 60],
+                ["nax", 8],
+                ["ryr", 25],
+                ["sas", 8],
+                ["swr", 10],
+                ["tcx", 35],
+                ["thy", 5],
+                ["tom", 30],
+                ["uae", 3],
+                ["ual", 3],
+                ["vir", 45]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EGCC",
+            "category": "arrival",
+            "route": "OTBED..GOLES..POL..ARTHA..DALEY",
+            "altitude": [10000, 12000],
+            "speed": 250,
+            "method": "wave",
+            "rate": 2.5,
+            "airlines": [
+                ["cpa", 1],
+                ["thy", 1],
+                ["baw", 4],
+                ["klc", 5],
+                ["klm", 5],
+                ["ual", 1],
+                ["dlh", 5],
+                ["swr", 3]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EGCC",
+            "category": "arrival",
+            "route": "LIBSO..GOLES..POL..ARTHA..DALEY",
+            "altitude": [10000, 12000],
+            "speed": 250,
+            "method": "wave",
+            "rate": 2.5,
+            "airlines": [
+                ["cpa", 1],
+                ["thy", 1],
+                ["baw", 4],
+                ["klc", 5],
+                ["klm", 5],
+                ["ual", 1],
+                ["dlh", 5],
+                ["swr", 3],
+                ["bel", 6]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EGCC",
+            "category": "arrival",
+            "route": "LAKEY..DALEY",
+            "altitude": [10000, 12000],
+            "speed": 250,
+            "method": "wave",
+            "rate": 2.5,
+            "airlines": [
+                ["bee", 15],
+                ["baw", 3],
+                ["vir", 2],
+                ["baw", 2]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EGCC",
+            "category": "arrival",
+            "route": "SETEL..DALEY",
+            "altitude": [10000, 12000],
+            "speed": 250,
+            "method": "wave",
+            "rate": 2.5,
+            "airlines": [
+                ["bee", 5]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EGCC",
+            "category": "arrival",
+            "route": "GOLES..UPTON..DESIG..POL..ARTHA..DALEY",
+            "altitude": [7000, 8000],
+            "speed": 250,
+            "method": "wave",
+            "rate": 2.5,
+            "airlines": [
+                ["cpa", 1],
+                ["thy", 1],
+                ["baw", 4],
+                ["klc", 5],
+                ["klm", 5],
+                ["ual", 1],
+                ["dlh", 5],
+                ["swr", 3]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EGCC",
+            "category": "arrival",
+            "route": "TILNI..GASKO..BEGAM..SETEL..DALEY",
+            "altitude": [10000, 12000],
+            "speed": 250,
+            "method": "wave",
+            "rate": 2.5,
+            "airlines": [
+                ["bee", 15],
+                ["baw", 3],
+                ["vir", 5],
+                ["baw", 2],
+                ["cpa", 2],
+                ["ryr", 4]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EGCC",
+            "category": "arrival",
+            "route": "LESTA..TNT..DAYNE",
+            "altitude": 8000,
+            "speed": 250,
+            "method": "wave",
+            "rate": 2.5,
+            "airlines": [
+                ["ezy", 1],
+                ["baw", 1],
+                ["klc", 5],
+                ["klm", 5],
+                ["ual", 1],
+                ["vir", 3],
+                ["swr", 6],
+                ["tom", 4],
+                ["tcx", 5],
+                ["ezy", 4],
+                ["mon", 4]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EGCC",
+            "category": "arrival",
+            "route": "TNT..DAYNE",
+            "altitude": [10000, 12000],
+            "speed": 250,
+            "method": "wave",
+            "rate": 2.5,
+            "airlines": [
+                ["ezy", 1],
+                ["baw", 1],
+                ["klc", 5],
+                ["klm", 5],
+                ["ual", 1],
+                ["vir", 3],
+                ["swr", 6],
+                ["tom", 4],
+                ["tcx", 5],
+                ["ezy", 4],
+                ["mon", 4]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EGCC",
+            "category": "arrival",
+            "route": "OKTEM..MONTY..REXAM..WAL..MIRSI",
+            "altitude": [10000, 12000],
+            "speed": 250,
+            "method": "wave",
+            "rate": 2.5,
+            "airlines": [
+                ["baw", 5],
+                ["bee", 15],
+                ["baw", 1],
+                ["klc", 5],
+                ["exs", 5],
+                ["mon", 5],
+                ["tom", 3],
+                ["tcx", 3],
+                ["afr", 3],
+                ["vir", 10],
+                ["ryr", 4]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EGCC",
+            "category": "arrival",
+            "route": "LYNAS..MALUD..WAL..MIRSI",
+            "altitude": [6000, 8000],
+            "speed": 250,
+            "method": "wave",
+            "rate": 2.5,
+            "airlines": [
+                ["ual", 1],
+                ["aal", 1],
+                ["vir", 1],
+                ["dal", 5]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EGCC",
+            "category": "arrival",
+            "route": "IOM..KELLY..PENIL..WAL..MIRSI",
+            "altitude": [10000, 12000],
+            "speed": 250,
+            "method": "wave",
+            "rate": 2.5,
+            "airlines": [
+                ["ual", 2],
+                ["aal", 2],
+                ["dal", 2],
+                ["baw", 4],
+                ["aca", 2],
+                ["ryr", 5],
+                ["ein", 3]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EGCC",
+            "category": "arrival",
+            "route": "MAKUX..SOSIM..GIGTO..IBRAR..WAL..MIRSI",
+            "altitude": [10000, 12000],
+            "speed": 250,
+            "method": "wave",
+            "rate": 2.5,
+            "airlines": [
+                ["ual", 4],
+                ["aal", 4],
+                ["baw", 7],
+                ["dal", 5]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EGCC",
+            "category": "arrival",
+            "route": "OTBED..GOLES..POL..BURNI..ROSUN",
+            "altitude": [10000, 12000],
+            "speed": 250,
+            "method": "wave",
+            "rate": 2.5,
+            "airlines": [
+                ["cpa", 1],
+                ["thy", 1],
+                ["baw", 4],
+                ["klc", 5],
+                ["klm", 5],
+                ["ual", 1],
+                ["dlh", 5],
+                ["swr", 3]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EGCC",
+            "category": "arrival",
+            "route": "LIBSO..GOLES..POL..BURNI..ROSUN",
+            "altitude": [10000, 12000],
+            "speed": 250,
+            "method": "wave",
+            "rate": 2.5,
+            "airlines": [
+                ["cpa", 1],
+                ["thy", 1],
+                ["baw", 4],
+                ["klc", 5],
+                ["klm", 5],
+                ["ual", 1],
+                ["dlh", 5],
+                ["swr", 3]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EGCC",
+            "category": "arrival",
+            "route": "LAKEY..ROSUN",
+            "altitude": [10000, 12000],
+            "speed": 250,
+            "method": "wave",
+            "rate": 2.5,
+            "airlines": [
+                ["bee", 15],
+                ["baw", 3],
+                ["vir", 2],
+                ["baw", 2],
+                ["nax", 4]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EGCC",
+            "category": "arrival",
+            "route": "SETEL..ROSUN",
+            "altitude": [10000, 12000],
+            "speed": 250,
+            "method": "wave",
+            "rate": 2.5,
+            "airlines": [
+                ["bee", 5]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EGCC",
+            "category": "arrival",
+            "route": "GOLES..UPTON..DESIG..POL..BURNI..ROSUN",
+            "altitude": [10000, 12000],
+            "speed": 250,
+            "method": "wave",
+            "rate": 2.5,
+            "airlines": [
+                ["cpa", 1],
+                ["thy", 1],
+                ["baw", 4],
+                ["klc", 5],
+                ["klm", 5],
+                ["ual", 1],
+                ["dlh", 5],
+                ["swr", 3]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "EGCC",
+            "category": "arrival",
+            "route": "TILNI..GASKO..BEGAM..SETEL..ROSUN",
+            "altitude": [10000, 12000],
+            "speed": 250,
+            "method": "wave",
+            "rate": 2.5,
+            "airlines": [
+                ["bee", 15],
+                ["baw", 3],
+                ["vir", 5],
+                ["baw", 2],
+                ["cpa", 2]
+            ]
+        }
+    ]
 }
