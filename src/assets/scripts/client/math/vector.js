@@ -433,11 +433,13 @@ export const point_to_mpoly = (point, mpoly) => {
 
 /**
  * Converts an 'area' to a 'poly'
+ *
+ * @param area {array<array>}  The #perimeter property of an `AirspaceModel`
  */
 export const area_to_poly = (area) => {
     // TODO: this should be _map()
     // What is the significance of returning `[v.position]`? isnt position already an array?
-    return $.map(area.poly, (v) => [v.position]);
+    return _map(area.poly, (v) => v.position);
 };
 
 /**

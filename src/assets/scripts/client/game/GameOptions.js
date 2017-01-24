@@ -1,4 +1,3 @@
-/* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand */
 import _has from 'lodash/has';
 import { GAME_OPTION_VALUES } from '../constants/gameOptionConstants';
 

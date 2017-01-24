@@ -1,7 +1,5 @@
 import _has from 'lodash/has';
 import _lowerCase from 'lodash/lowerCase';
-import AirlineController from '../airline/AirlineController';
-import AircraftController from '../aircraft/AircraftController';
 import Airport from './AirportModel';
 import { STORAGE_KEY } from '../constants/storageKeys';
 
@@ -21,33 +19,41 @@ const DEFAULT_AIRPORT_ICAO = 'ksfo';
 export default class AirportController {
     /**
      * @constructor
+     * @param initialAirportData {object}
      * @param airportLoadList {array<object>}  List of airports to load
      * @param updateRun {function}
+     * @param onAirportChange {function} callback to fire when an airport changes
      */
-    constructor(airportLoadList, updateRun) {
+    constructor(initialAirportData, airportLoadList, updateRun, onAirportChange, navigationLibrary) {
         this.updateRun = updateRun;
+        this.onAirportChange = onAirportChange;
+        // The navigation library doesnt belong here. this is a temp fix so api doesn't
+        // change too drastically too quickly
+        // TODO: move calling of sidCollection and starCollection methods elsewhere
+        this._navigationLibrary = navigationLibrary;
+
         this.airport = airport;
         this.airport.airports = {};
         this.airport.current = null;
-        this.airlineController = null;
-        this.aircraftController = null;
         this._airportListToLoad = airportLoadList;
+        // eslint-disable-next-line no-undef
+        prop.airport = airport;
+
+        return this.init()
+                   .ready(initialAirportData);
     }
 
     /**
-     * Lifecycle method. Should run only once on App initialiazation
+     * Provides access to the current airport, if set.
      *
-     * @for AirportController
-     * @method init_pre
+     * This should only ever return null on initial load,
+     * before the current airport has been set.
+     *
+     * @property current
+     * @return {AirportModel|null}
      */
-    init_pre() {
-        prop.airport = airport;
-
-        this.airlineController = new AirlineController();
-        this.aircraftController = new AircraftController();
-
-        window.airlineController = this.airlineController;
-        window.aircraftController = this.aircraftController;
+    get current() {
+        return this.airport.current;
     }
 
     /**
@@ -57,6 +63,7 @@ export default class AirportController {
      *
      * @for AirportController
      * @method init
+     * @chainable
      */
     init() {
         for (let i = 0; i < this._airportListToLoad.length; i++) {
@@ -64,18 +71,8 @@ export default class AirportController {
 
             this.airport_load(airport);
         }
-    }
 
-    /**
-     * Lifecycle method called from `App`.
-     *
-     * This acts as a fascade for the `aircraftController.aircraft_update` method,
-     * where aircraft data is recalculated before re-rendering
-     *
-     * @method recalculate
-     */
-    recalculate() {
-        this.aircraftController.aircraft_update();
+        return this;
     }
 
     /**
@@ -83,8 +80,9 @@ export default class AirportController {
      *
      * @for AirportController
      * @method ready
+     * @chainable
      */
-    ready() {
+    ready(initialAirportData) {
         let airportName = DEFAULT_AIRPORT_ICAO;
 
         if (_has(localStorage, STORAGE_KEY.ATC_LAST_AIRPORT) ||
@@ -93,7 +91,13 @@ export default class AirportController {
             airportName = _lowerCase(localStorage[STORAGE_KEY.ATC_LAST_AIRPORT]);
         }
 
-        this.airport_set(airportName);
+        if (airportName !== initialAirportData.icao.toLowerCase()) {
+            this.airport_set(airportName);
+        }
+
+        this.airport_set(airportName, initialAirportData);
+
+        return this;
     }
 
     /**
@@ -121,7 +125,9 @@ export default class AirportController {
                 name,
                 wip
             },
-            this.updateRun
+            this.updateRun,
+            this.onAirportChange,
+            this._navigationLibrary
         );
 
         this.airport_add(airport);
@@ -141,7 +147,7 @@ export default class AirportController {
      * @for AirportController
      * @method airport_set
      */
-    airport_set(icao) {
+    airport_set(icao, airportJson = null) {
         if (this.hasStoredIcao(icao)) {
             icao = localStorage[STORAGE_KEY.ATC_LAST_AIRPORT];
         }
@@ -156,11 +162,18 @@ export default class AirportController {
 
         if (this.airport.current) {
             this.airport.current.unset();
-            this.aircraftController.aircraft_remove_all();
         }
 
         const nextAirportModel = this.airport.airports[icao];
-        nextAirportModel.set();
+        this.airport.current = nextAirportModel;
+
+        // if loaded is true, we wont need to load any data thus the call to `onAirportChange` within the
+        // success callback will never fire so we do that here.
+        if (nextAirportModel.loaded) {
+            this.onAirportChange(nextAirportModel.data);
+        }
+
+        nextAirportModel.set(airportJson);
     }
     /**
      * @function airport_get
@@ -201,10 +214,10 @@ export default class AirportController {
         const runwayPrimaryEndIndex = 0;
         const runwaySecondaryEndIndex = 1;
         const runways = this.airport_get().runways;
+
         for (let runwayPair = 0; runwayPair < runways.length; runwayPair++) {
             runways[runwayPair][runwayPrimaryEndIndex].removeAircraftFromQueue(aircraft);
             runways[runwayPair][runwaySecondaryEndIndex].removeAircraftFromQueue(aircraft);
         }
     }
-
 }

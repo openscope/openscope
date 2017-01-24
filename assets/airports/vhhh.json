@@ -357,85 +357,97 @@
       "draw": [["ROVER","RAMEN"], ["PORPA","RAMEN","BREAM","TITAN"], ["PRAWN","RUMSY","TUNNA","TITAN","PECAN"]]
     }
   },
-  "departures": {
-    "airlines": [
-      ["cpa", 30],
-      ["ces", 15],
-      ["csn", 15],
-      ["hda", 10],
-      ["aca/long", 5],
-      ["afr/long", 4],
-      ["baw/long", 5],
-      ["cca", 10],
-      ["dlh/long", 5],
-      ["kal/long", 3],
-      ["ual/long", 1],
-      ["uae", 1]
-    ],
-    "destinations": [
-      "BEKOL", "LAKES", "OCEAN", "PECAN"
-    ],
-    "type": "random",
-    "offset": 0,
-    "frequency": 30
-  },
-  "arrivals": [
+  "spawnPatterns": [
     {
-      "_name":  "ABBEY",
-      "speed":    250,
-      "fixes":    ["ABBEY", "MUSEL", "TAMAR", "TD"],
-      "airlines":  [
-        ["cpa", 30],
-        ["ces", 10],
-        ["csn", 10],
-        ["hda", 10],
-        ["aca/long", 5],
-        ["cca", 10],
-        ["ual/long", 3],
-        ["kal/long", 3]
-      ],
-      "type": "surge",
-      "entrail": [10, 22],
-      "frequency": 15,
-      "altitude":  10000
+        "origin": "vhhh",
+        "destination": "",
+        "category": "departure",
+        "route": "VHHH.LAKES.LAKES",
+        "altitude": "",
+        "speed": "",
+        "method": "random",
+        "rate": 30,
+        "offset": 0,
+        "airlines": [
+            ["cpa", 30],
+            ["ces", 15],
+            ["csn", 15],
+            ["hda", 10],
+            ["aca/long", 5],
+            ["afr/long", 4],
+            ["baw/long", 5],
+            ["cca", 10],
+            ["dlh/long", 5],
+            ["kal/long", 3],
+            ["ual/long", 1],
+            ["uae", 1]
+        ]
     },
     {
-      "_name":  "BETTY",
-      "speed":    250,
-      "fixes":   ["BETTY", "MANGO"],
-      "airlines":  [
-        ["cpa", 30],
-        ["ces", 10],
-        ["csn", 10],
-        ["hda", 10],
-        ["aca/long", 5],
-        ["cca", 10],
-        ["ual/long", 3],
-        ["kal/long", 3]
-      ],
-      "type": "random",
-      "frequency": 5,
-      "altitude":  10000
+        "_name":  "ABBEY",
+        "origin": "",
+        "destination": "vhhh",
+        "category": "arrival",
+        "route":    "ABBEY..MUSEL..TAMAR..TD",
+        "altitude":  10000,
+        "speed":    250,
+        "method": "surge",
+        "entrail": [10, 22],
+        "rate": 15,
+        "airlines":  [
+            ["cpa", 30],
+            ["ces", 10],
+            ["csn", 10],
+            ["hda", 10],
+            ["aca/long", 5],
+            ["cca", 10],
+            ["ual/long", 3],
+            ["kal/long", 3]
+        ]
     },
     {
-      "_name":  "CANTO",
-      "speed":    250,
-      "fixes":    ["COMBI", "ROCCA", "CANTO", "MURRY"],
-      "airlines":  [
-        ["cpa", 30],
-        ["ces", 15],
-        ["csn", 15],
-        ["hda", 10],
-        ["afr/long", 4],
-        ["baw/long", 5],
-        ["cca", 10],
-        ["dlh/long", 5],
-        ["uae", 1]
-      ],
-      "type": "surge",
-      "entrail": [15, 30],
-      "frequency": 12,
-      "altitude":  10000
+        "_name":  "BETTY",
+        "origin": "",
+        "destination": "vhhh",
+        "category": "arrival",
+        "route":   "BETTY..MANGO",
+        "altitude":  10000,
+        "speed":    250,
+        "method": "random",
+        "rate": 5,
+        "airlines":  [
+            ["cpa", 30],
+            ["ces", 10],
+            ["csn", 10],
+            ["hda", 10],
+            ["aca/long", 5],
+            ["cca", 10],
+            ["ual/long", 3],
+            ["kal/long", 3]
+        ]
+    },
+    {
+        "_name":  "CANTO",
+        "origin": "",
+        "destination": "vhhh",
+        "category": "arrival",
+        "route":    "COMBI..ROCCA..CANTO..MURRY",
+        "altitude":  10000,
+        "speed":    250,
+        "method": "surge",
+        "rate": 12,
+        "entrail": [15, 30],
+        "airlines":  [
+            ["cpa", 30],
+            ["ces", 15],
+            ["csn", 15],
+            ["hda", 10],
+            ["afr/long", 4],
+            ["baw/long", 5],
+            ["cca", 10],
+            ["dlh/long", 5],
+            ["uae", 1]
+        ]
     }
   ]
 }

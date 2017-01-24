@@ -1,5 +1,6 @@
 import _keys from 'lodash/keys';
-import FixModel from '../../airport/Fix/FixModel';
+import FixModel from '../../navigationLibrary/Fix/FixModel';
+import SpawnPatternModel from '../../trafficGenerator/SpawnPatternModel';
 // import Waypoint from '../../aircraft/Waypoint';
 // import PositionModel from '../PositionModel';
 
@@ -17,7 +18,15 @@ export const CLASS_MAP = {
      * @type {FixModel}
      * @final
      */
-    FixModel: FixModel
+    FixModel: FixModel,
+
+    /**
+     * @memberof CLASS_MAP
+     * @property SpawnPatternModel
+     * @type {SpawnPatternModel}
+     * @final
+     */
+    SpawnPatternModel: SpawnPatternModel
 
     // TODO: Future additions to the pool each of these models need some work in orer to integrate
     // into the pool structure

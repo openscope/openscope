@@ -698,219 +698,261 @@
       ]
     }
   },
-  "departures": {
-    "airlines": [
-    ["xax",      115],
-    ["llr",      130],
-    ["aic",      335],
-    ["axb",      125],
-    ["sej",      150],
-    ["igo",      150],
-    ["jai",      125],
-    ["vti",      150],
-    ["iad",      100],
-    ["baw/long",  15],
-    ["vir",      15],
-    ["etd",       15],
-    ["aca",       15],
-    ["swr",       30],
-    ["dlh",       20],
-    ["thy",       20],
-    ["afl",       15],
-    ["cpa",       10],
-    ["cca",       10],
-    ["afr",       20],
-    ["ual",       20]
-    ],
-    "destinations": [
-    "MATEX", "DONAT", "PABGU", "TOPAL", "OBDAG", "UXABA", "ALIJA", "BIPAN", "HINDA", "NIXAK", "BANIT", "MAXOT", "LAPOT", "VEMEV"
-    ],
-    "type": "random",
-    "offset": 0,
-    "frequency": 40
-  },
-  "arrivals": [
-  {
-    "type":     "cyclic",
-    "fixes":    ["DIPAS", "AKBAN"],
-    "frequency":   8,
-    "altitude":    12000,
-    "speed":    330,
-    "offset":    2,
-    "airlines": [
-      ["baw/long", 5],
-      ["vir", 5],
-      ["dlh", 5],
-      ["klm", 5],
-      ["etd", 5],
-      ["thy", 5],
-      ["afr", 5],
-      ["ual", 3],
-      ["aca", 3],
-      ["swr", 3],
-      ["aic", 15]
-
-    ]
-  },
-  {
-    "type":     "cyclic",
-    "fixes":    ["BADAT", "AKBAN"],
-    "frequency":   8,
-    "altitude":    14000,
-    "speed":    330,
-    "offset":    2,
-    "airlines": [
-      ["baw/long", 5],
-      ["vir", 5],
-      ["dlh", 5],
-      ["klm", 5],
-      ["etd", 5],
-      ["thy", 5],
-      ["afr", 5],
-      ["ual", 3],
-      ["aca", 3],
-      ["swr", 3],
-      ["aic", 15],
-      ["axb", 15]
-    ]
-  },
-  {
-    "type":     "cyclic",
-    "fixes":    ["LKA", "AKBAN"],
-    "frequency":   8,
-    "altitude":    16000,
-    "speed":    330,
-    "offset":    2,
-    "airlines": [
-      ["baw/long", 5],
-      ["vir", 5],
-      ["dlh", 5],
-      ["klm", 5],
-      ["etd", 5],
-      ["thy", 5],
-      ["afr", 5],
-      ["ual", 3],
-      ["aca", 3],
-      ["swr", 5],
-      ["axb", 20],
-      ["aic", 15],
-      ["klm", 8]
-    ]
-  },
-  {
-    "type":     "cyclic",
-    "fixes":    ["UXIDA", "IGINO", "SAM"],
-    "frequency":   12,
-    "altitude":    10000,
-    "speed":    330,
-    "offset":    2,
-    "airlines": [
-      ["baw/long", 5],
-      ["vir", 5],
-      ["dlh", 5],
-      ["klm", 5],
-      ["etd", 5],
-      ["thy", 5],
-      ["afr", 5],
-      ["ual", 3],
-      ["aca", 3],
-      ["afl", 3],
-      ["swr", 5],
-      ["aic", 15]
-    ]
-  },
-  {
-    "type":     "cyclic",
-    "fixes":    ["SP", "SAM"],
-    "frequency":   8,
-    "altitude":    9500,
-    "speed":    250,
-    "offset":    2,
-    "airlines": [
-      ["baw/long", 5],
-      ["vir", 5],
-      ["dlh", 5],
-      ["klm", 5],
-      ["etd", 5],
-      ["thy", 5],
-      ["afr", 5],
-      ["ual", 3],
-      ["aca", 3],
-      ["afl", 3],
-      ["cpa", 5],
-      ["cca", 5],
-      ["jal", 5],
-      ["aic", 20]
-    ]
-  },
-  {
-    "type":     "cyclic",
-    "fixes":    ["D186N", "SAPLO"],
-    "frequency":   12,
-    "altitude":    14000,
-    "speed":    330,
-    "offset":    2,
-    "airlines": [
-      ["aic", 35],
-      ["llr", 20],
-      ["iad", 20],
-      ["xax", 20],
-      ["sej", 20],
-      ["igo", 23],
-      ["jai", 12],
-      ["vti", 10],
-      ["axb", 20]
-    ]
-  },
-  {
-    "type":     "cyclic",
-    "fixes":    ["JAL", "SIBAD"],
-    "frequency":   8,
-    "altitude":    12000,
-    "speed":    330,
-    "offset":    2,
-    "airlines": [
-      ["cpa", 5],
-      ["cca", 5],
-      ["jal", 5],
-      ["aic", 15]
-    ]
-  },
-  {
-    "type":     "cyclic",
-    "fixes":    ["PUMOT", "SIBAD"],
-    "frequency":   8,
-    "altitude":    12000,
-    "speed":    330,
-    "offset":    2,
-    "airlines": [
-      ["aic", 25],
-      ["llr", 20],
-      ["iad", 20],
-      ["xax", 20],
-      ["sej", 20],
-      ["igo", 23],
-      ["jai", 12],
-      ["vti", 10]
-    ]
-  },
-  {
-    "type":     "cyclic",
-    "fixes":    ["HW", "SIBAD"],
-    "frequency":   8,
-    "altitude":    12000,
-    "speed":    330,
-    "offset":    2,
-    "airlines": [
-      ["aic", 25],
-      ["llr", 20],
-      ["iad", 20],
-      ["xax", 20],
-      ["sej", 20],
-      ["igo", 23],
-      ["jai", 12],
-      ["vti", 10]
-    ]
-  }
+  "spawnPatterns": [
+    {
+        "origin": "vidp",
+        "destination": "",
+        "category": "departure",
+        "route": "VIDP.HINDA.ALI",
+        "altitude": "",
+        "speed": "",
+        "method": "random",
+        "offset": 0,
+        "rate": 20,
+        "airlines": [
+            ["xax",      115],
+            ["llr",      130],
+            ["aic",      335],
+            ["jai",      125],
+            ["vti",      150],
+            ["iad",      100],
+            ["baw/long",  15],
+            ["vir",      15],
+            ["etd",       15],
+            ["aca",       15],
+            ["swr",       30]
+        ]
+    },
+    {
+        "origin": "vidp",
+        "destination": "",
+        "category": "departure",
+        "route": "VIDP.BIPAN.BUTOP",
+        "altitude": "",
+        "speed": "",
+        "method": "random",
+        "rate": 20,
+        "offset": 0,
+        "airlines": [
+            ["axb",      125],
+            ["sej",      150],
+            ["igo",      150],
+            ["dlh",       20],
+            ["thy",       20],
+            ["afl",       15],
+            ["cpa",       10],
+            ["cca",       10],
+            ["afr",       20],
+            ["ual",       20]
+        ]
+    },
+    {
+        "origin": "",
+        "destination": "vidp",
+        "category": "arrival",
+        "route":    "DIPAS..AKBAN",
+        "rate":   8,
+        "altitude":    12000,
+        "speed":    320,
+        "method":     "cyclic",
+        "offset":    2,
+        "airlines": [
+            ["baw/long", 5],
+            ["vir", 5],
+            ["dlh", 5],
+            ["klm", 5],
+            ["etd", 5],
+            ["thy", 5],
+            ["afr", 5],
+            ["ual", 3],
+            ["aca", 3],
+            ["swr", 3],
+            ["aic", 15]
+        ]
+    },
+    {
+        "origin": "",
+        "destination": "vidp",
+        "category": "arrival",
+        "route":    "BADAT..AKBAN",
+        "altitude":    14000,
+        "speed":    320,
+        "method":     "cyclic",
+        "rate":   8,
+        "offset":    2,
+        "airlines": [
+            ["baw/long", 5],
+            ["vir", 5],
+            ["dlh", 5],
+            ["klm", 5],
+            ["etd", 5],
+            ["thy", 5],
+            ["afr", 5],
+            ["ual", 3],
+            ["aca", 3],
+            ["swr", 3],
+            ["aic", 15],
+            ["axb", 15]
+        ]
+    },
+    {
+        "origin": "",
+        "destination": "vidp",
+        "category": "arrival",
+        "route":    "LKA..AKBAN",
+        "altitude":    16000,
+        "speed":    320,
+        "method":     "cyclic",
+        "rate":   8,
+        "offset":    2,
+        "airlines": [
+            ["baw/long", 5],
+            ["vir", 5],
+            ["dlh", 5],
+            ["klm", 5],
+            ["etd", 5],
+            ["thy", 5],
+            ["afr", 5],
+            ["ual", 3],
+            ["aca", 3],
+            ["swr", 5],
+            ["axb", 20],
+            ["aic", 15],
+            ["klm", 8]
+        ]
+    },
+    {
+        "origin": "",
+        "destination": "vidp",
+        "category": "arrival",
+        "route":    "UXIDA..IGINO..SAM",
+        "altitude":    10000,
+        "speed":    320,
+        "method":     "cyclic",
+        "rate":   12,
+        "offset":    2,
+        "airlines": [
+            ["baw/long", 5],
+            ["vir", 5],
+            ["dlh", 5],
+            ["klm", 5],
+            ["etd", 5],
+            ["thy", 5],
+            ["afr", 5],
+            ["ual", 3],
+            ["aca", 3],
+            ["afl", 3],
+            ["swr", 5],
+            ["aic", 15]
+        ]
+    },
+    {
+        "origin": "",
+        "destination": "vidp",
+        "category": "arrival",
+        "route":    "SP..SAM",
+        "rate":   8,
+        "altitude":    9500,
+        "speed":    250,
+        "method":     "cyclic",
+        "offset":    2,
+        "airlines": [
+            ["baw/long", 5],
+            ["vir", 5],
+            ["dlh", 5],
+            ["klm", 5],
+            ["etd", 5],
+            ["thy", 5],
+            ["afr", 5],
+            ["ual", 3],
+            ["aca", 3],
+            ["afl", 3],
+            ["cpa", 5],
+            ["cca", 5],
+            ["jal", 5],
+            ["aic", 20]
+        ]
+    },
+    {
+        "origin": "",
+        "destination": "vidp",
+        "category": "arrival",
+        "route":    "D186N..SAPLO",
+        "altitude":    14000,
+        "speed":    320,
+        "method":     "cyclic",
+        "rate":   12,
+        "offset":    2,
+        "airlines": [
+            ["aic", 35],
+            ["llr", 20],
+            ["iad", 20],
+            ["xax", 20],
+            ["sej", 20],
+            ["igo", 23],
+            ["jai", 12],
+            ["vti", 10],
+            ["axb", 20]
+        ]
+    },
+    {
+        "origin": "",
+        "destination": "vidp",
+        "category": "arrival",
+        "route":    "JAL..SIBAD",
+        "altitude":    12000,
+        "speed":    320,
+        "method":     "cyclic",
+        "rate":   8,
+        "offset":    2,
+        "airlines": [
+            ["cpa", 5],
+            ["cca", 5],
+            ["jal", 5],
+            ["aic", 15]
+        ]
+    },
+    {
+        "origin": "",
+        "destination": "vidp",
+        "category": "arrival",
+        "route":    "PUMOT..SIBAD",
+        "altitude":    12000,
+        "speed":    320,
+        "method":     "cyclic",
+        "rate":   8,
+        "offset":    2,
+        "airlines": [
+            ["aic", 25],
+            ["llr", 20],
+            ["iad", 20],
+            ["xax", 20],
+            ["sej", 20],
+            ["igo", 23],
+            ["jai", 12],
+            ["vti", 10]
+        ]
+    },
+    {
+        "origin": "",
+        "destination": "vidp",
+        "category": "arrival",
+        "route":    "HW..SIBAD",
+        "altitude":    12000,
+        "speed":    320,
+        "method":     "cyclic",
+        "rate":   8,
+        "offset":    2,
+        "airlines": [
+            ["aic", 25],
+            ["llr", 20],
+            ["iad", 20],
+            ["xax", 20],
+            ["sej", 20],
+            ["igo", 23],
+            ["jai", 12],
+            ["vti", 10]
+        ]
+    }
   ]
 }

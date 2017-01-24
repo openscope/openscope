@@ -72,9 +72,10 @@ export default class ConvasController {
     /**
      * @constructor
      */
-    constructor($element) {
+    constructor($element, navigationLibrary) {
         this.$window = $(window);
         this.$element = $element;
+        this._navigationLibrary = navigationLibrary;
         this.canvas = canvas;
         this.canvas.contexts = {};
         this.canvas.panY = 0;
@@ -648,14 +649,13 @@ export default class ConvasController {
 
         // Store the count of sid text drawn for a specific transition
         const text_at_point = [];
-        const airport = window.airportController.airport_get();
 
         cc.strokeStyle = COLORS.DEPARTURE_COLOR;
         cc.fillStyle = COLORS.DEPARTURE_COLOR;
         cc.setLineDash([1, 10]);
         cc.font = 'italic 14px monoOne, monospace';
 
-        _forEach(airport.sidCollection.draw, (sid) => {
+        _forEach(this._navigationLibrary.sidLines, (sid) => {
             let write_sid_name = true;
             let fixX = null;
             let fixY = null;
@@ -674,7 +674,9 @@ export default class ConvasController {
                         write_sid_name = false;
                     }
 
-                    let fix = airport.getFixPosition(fixList[j].replace('*', ''));
+                    // FIXME: this is duplicated in the if block above. need to consolidate
+                    const fixName = fixList[j].replace('*', '');
+                    let fix = this._navigationLibrary.getFixPositionCoordinates(fixName);
 
                     if (!fix) {
                         log(`Unable to draw line to '${fixList[j]}' because its position is not defined!`, LOG.WARNING);

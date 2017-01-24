@@ -6,10 +6,9 @@ import _last from 'lodash/last';
 import _map from 'lodash/map';
 import _isNil from 'lodash/isNil';
 import _isObject from 'lodash/isObject';
-import FixCollection from '../../airport/Fix/FixCollection';
 import Waypoint from './Waypoint';
 import Leg from './Leg';
-import RouteModel from '../../airport/Route/RouteModel';
+import RouteModel from '../../navigationLibrary/Route/RouteModel';
 import { clamp } from '../../math/core';
 import {
     FP_LEG_TYPE,
@@ -72,6 +71,9 @@ export default class AircraftFlightManagementSystem {
      * @param options {object}
      */
     constructor(options) {
+
+        this._navigationLibrary = options.navigationLibrary;
+
         /**
          * @property may_aircrafts_eid
          * @type {number}
@@ -141,6 +143,34 @@ export default class AircraftFlightManagementSystem {
         }
 
         this.update_fp_route();
+    }
+
+    /**
+     *
+     *
+     * @for AircraftFlightManagementSystem
+     * @method findWaypointModelsForSid
+     * @param id {string}
+     * @param runway {string}
+     * @param exit {string}
+     * @return {array<StandardRouteWaypointModel>}
+     */
+    findWaypointModelsForSid(id, runway, exit) {
+        return this._navigationLibrary.findWaypointModelsForSid(id, runway, exit);
+    }
+
+    /**
+     *
+     *
+     * @for AircraftFlightManagementSystem
+     * @method findWaypointModelsForSid
+     * @param procedure {string}
+     * * @param entry {string}
+     * @param runway {string}
+     * @return {array<StandardRouteWaypointModel>}
+     */
+    findWaypointModelsForStar(procedure, entry, runway) {
+        return this._navigationLibrary.findWaypointModelsForStar(procedure, entry, runway);
     }
 
     /** ***************** FMS FLIGHTPLAN CONTROL FUNCTIONS *******************/
@@ -586,12 +616,14 @@ export default class AircraftFlightManagementSystem {
      *       Return Data Format: ["KSFO.OFFSH9.SXC", "SXC.V458.IPL", "IPL.J2.JCT", "LLO", "ACT", "KACT"]
      */
     formatRoute(data) {
-        // const routeModel = new RouteModel(data);
+        // TODO: replace with `routeStringFormatHelper`
 
+        // @DEPRECTAED
         // Format the user's input
         let route = [];
         const airport = window.airportController.airport_get();
-        const fixOK = (fixName) => FixCollection.findFixByName(fixName) !== null;
+        // TODO: this needs to be refactored. inline function like this is not ok
+        const fixOK = (fixName) => this._navigationLibrary.findFixByName(fixName) !== null;
 
         if (data.indexOf(' ') !== -1) {
             return; // input can't contain spaces
@@ -632,8 +664,10 @@ export default class AircraftFlightManagementSystem {
                         return;  // invalid join/exit points
                     }
 
-                    if (!airport.sidCollection.hasRoute(pieces[1]) ||
-                        !Object.keys(airport.airways).indexOf(pieces[1])) {
+                    if (
+                        !this._navigationLibrary.sidCollection.hasRoute(pieces[1]) ||
+                        !Object.keys(airport.airways).indexOf(pieces[1])
+                    ) {
                         // invalid procedure
                         return;
                     }
@@ -676,17 +710,17 @@ export default class AircraftFlightManagementSystem {
                 const routeModel = new RouteModel(route[i]);
                 const currentAirport = window.airportController.airport_get();
 
-                if (!_isNil(currentAirport.sidCollection.findRouteByIcao(routeModel.procedure))) {
+                if (!_isNil(this._navigationLibrary.sidCollection.findRouteByIcao(routeModel.procedure))) {
                     // it's a SID!
                     const legToAdd = new Leg({ type: FP_LEG_TYPE.SID, route: routeModel.routeCode }, this);
 
                     legs.push(legToAdd);
-                } else if (!_isNil(currentAirport.starCollection.findRouteByIcao(routeModel.procedure))) {
+                } else if (!_isNil(this._navigationLibrary.starCollection.findRouteByIcao(routeModel.procedure))) {
                     // it's a STAR!
                     const legToAdd = new Leg({ type: FP_LEG_TYPE.STAR, route: routeModel.routeCode }, this);
 
                     legs.push(legToAdd);
-                } else if (Object.keys(window.airportController.airport_get().airways).indexOf(routeModel.procedure) > -1) {
+                } else if (Object.keys(currentAirport.airways).indexOf(routeModel.procedure) > -1) {
                     // it's an airway!
                     const legToAdd = new Leg({ type: FP_LEG_TYPE.AWY, route: routeModel.routeCode }, this);
 

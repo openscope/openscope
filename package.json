@@ -10,7 +10,7 @@
     "postinstall": "gulp build",
     "test": "nyc --require babel-core/register ava --serial --concurrency=5",
     "build": "gulp dist && npm run test",
-    "report": "nyc report --reporter=cobertura  --reporter=lcov",
+    "report": "nyc report --reporter=cobertura --reporter=lcov",
     "coverage": "npm run test && npm run report",
     "lint": "eslint src/**; exit 0",
     "start": "gulp server",
@@ -53,11 +53,14 @@
     ],
     "source": [
       "!**/_mocks/**",
-      "!**/fixtures/**"
+      "!**/fixtures/**",
+      "!**/testHelpers/**"
     ],
     "verbose": true,
     "require": [
-      "babel-core/register"
+      "babel-core/register",
+      "./test/testHelpers/globalProps.js",
+      "./test/testHelpers/localStorage.js"
     ]
   },
   "nyc": {
@@ -65,7 +68,8 @@
     "include": [
       "src/assets/scripts/**/*.js",
       "!**/_mocks/**",
-      "!**/fixtures/**"
+      "!**/fixtures/**",
+      "!**/testHelpers/**"
     ]
   },
   "dependencies": {

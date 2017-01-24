@@ -7,9 +7,9 @@ import _isEqual from 'lodash/isEqual';
 import _isNil from 'lodash/isNil';
 import _isString from 'lodash/isString';
 import _map from 'lodash/map';
-import _without from 'lodash/without';
 import AircraftFlightManagementSystem from './FlightManagementSystem/AircraftFlightManagementSystem';
 import AircraftStripView from './AircraftStripView';
+import RouteModel from '../navigationLibrary/Route/RouteModel';
 import { speech_say } from '../speech';
 import { tau, radians_normalize, angle_offset } from '../math/circle';
 import { round, abs, sin, cos, extrapolate_range_clamp, clamp } from '../math/core';
@@ -64,9 +64,11 @@ export default class Aircraft {
      * @for AircraftInstanceModel
      * @constructor
      * @param options {object}
+     * @param navigationLibrary {NavigationLibrary}
      */
-    constructor(options = {}) {
+    constructor(options = {}, navigationLibrary) {
         /* eslint-disable no-multi-spaces*/
+        this._navigationLibrary = navigationLibrary;
         this.eid          = prop.aircraft.list.length;  // entity ID
         this.position     = [0, 0];     // Aircraft Position, in km, relative to airport position
         this.model        = null;       // Aircraft type
@@ -129,7 +131,8 @@ export default class Aircraft {
         // Initialize the FMS
         this.fms = new AircraftFlightManagementSystem({
             aircraft: this,
-            model: options.model
+            model: options.model,
+            navigationLibrary: this._navigationLibrary
         });
 
         // target represents what the pilot makes of the tower's commands. It is
@@ -251,10 +254,15 @@ export default class Aircraft {
             this.fms.setCurrent({ altitude: data.altitude });
         }
 
-        const speed = _get(data, 'speed', this.model.speed.cruise);
+        // temporary ternary that should be refactored in the future. A departure will have a speed
+        // of 0, but should display the projected cruise speed before takeoff
+        const speed = data.speed !== 0
+            ? data.speed
+            : this.model.speed.cruise;
+
         this.fms.setCurrent({ speed: speed });
 
-        if (data.route) {
+        if (data.category === FLIGHT_CATEGORY.ARRIVAL && RouteModel.isProcedureRouteString(data.route)) {
             const route = this.fms.formatRoute(data.route);
 
             this.fms.customRoute(route, true);
@@ -271,7 +279,7 @@ export default class Aircraft {
         for (let i = 0; i < waypoints.length; i++) {
             this.fms.appendLeg({
                 type: 'fix',
-                route: waypoints[i].fix
+                route: waypoints[i]
             });
         }
 
@@ -464,24 +472,16 @@ export default class Aircraft {
         return _isEqual(callsignToMatch.toUpperCase(), this.getCallsign());
     }
 
-    // TODO: this could be a getter
+    // TODO: This model should store this information as instance properties and not calculate it all the time
     /**
      * @for AircraftInstanceModel
      * @method getCallsign
      * @return {string}
      */
     getCallsign() {
-        return (this.getAirline().icao + this.callsign).toUpperCase();
-    }
-
-    // TODO: this could be a getter
-    /**
-     * @for AircraftInstanceModel
-     * @method getAirline
-     * @return {string}
-     */
-    getAirline() {
-        return window.airlineController.airline_get(this.airline);
+        // TODO: this should be an instance property. however, it seems callsign is used in places where it should be
+        // flightnumber and visa versa. this needs to be ironed out first before making a class property.
+        return `${this.airline.toUpperCase()}${this.callsign}`;
     }
 
     /**
@@ -1276,7 +1276,7 @@ export default class Aircraft {
             return;
         }
 
-        //TODO: abstract to AircraftPositionHistory class
+        // TODO: abstract to AircraftPositionHistory class
         // Trailling
         if (this.position_history.length === 0) {
             this.position_history.push([
@@ -1305,7 +1305,7 @@ export default class Aircraft {
             this.radial += tau();
         }
 
-        //TODO: I am not sure what this has to do with aircraft Physics
+        // TODO: I am not sure what this has to do with aircraft Physics
         const isInsideAirspace = this.isInsideAirspace(window.airportController.airport_get());
 
         if (isInsideAirspace !== this.inside_ctr) {
@@ -1373,7 +1373,7 @@ export default class Aircraft {
         }
 
         this.trend -= 1;
-        //TODO: This might be able to become its own function since it is repeated again in the increaseAircraftAltitude()
+        // TODO: This might be able to become its own function since it is repeated again in the increaseAircraftAltitude()
         if (distance) {
             if (this.target.expedite) {
                 distance *= expedite_factor;
@@ -1405,7 +1405,7 @@ export default class Aircraft {
         }
 
         this.trend = 1;
-        //TODO: This might be able to become its own function since it is repeated  in the decreaseAircraftAltitude() Also I think the  outer If() might not be needed
+        // TODO: This might be able to become its own function since it is repeated  in the decreaseAircraftAltitude() Also I think the  outer If() might not be needed
         if (distance) {
             if (this.target.expedite) {
                 distance *= expedite_factor;

@@ -2,7 +2,7 @@
 import ava from 'ava';
 
 import modelSourceFactory from '../../../src/assets/scripts/client/base/ModelSource/ModelSourceFactory';
-import FixModel from '../../../src/assets/scripts/client/airport/Fix/FixModel';
+import FixModel from '../../../src/assets/scripts/client/navigationLibrary/Fix/FixModel';
 
 const SOURCE_NAME_MOCK = 'FixModel';
 

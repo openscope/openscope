@@ -275,124 +275,231 @@
       "draw": [["YOSEM*","SNORA","FRIGG","SOOIE","FAITH"]]
     }
   },
-  "departures": {
-    "airlines": [
-      ["ual", 10],
-      ["aal", 8],
-      ["dal", 6],
-      ["ual/long", 5],
-      ["aal/long", 2],
-      ["dal/long", 2],
-      ["swa", 5],
-      ["asa", 3],
-      ["aca", 2],
-      ["cpa", 2],
-      ["baw/long", 2],
-      ["ups", 1],
-      ["fdx", 1],
-      ["klm/long", 2],
-      ["afr/long", 2],
-      ["uae", 4],
-      ["kal/long", 2],
-      ["vir", 2]
-    ],
-    "destinations": [
-      "MOLEN7", "OFFSH9", "PORTE7", "QUIET7"
-    ],
-    "type": "random",
-    "offset": 0,
-    "frequency": 38
-  },
-  "arrivals": [
-    {
-      "type": "random",
-      "route":   "QUINN.BDEGA2.KSFO",
-      "frequency": 10,
-      "altitude":  24000,
-      "speed":    280,
-      "airlines":  [
-        ["ual", 5],
-        ["ual/long", 2],
-        ["swa", 1],
-        ["dal", 5],
-        ["dal/long", 2],
-        ["aal", 5],
-        ["aal/long", 2],
-        ["asa", 1],
-        ["fdx", 1]
-      ]
-    },
-    {
-      "type": "random",
-      "route":   "BSR.BSR2.KSFO",
-      "frequency": 10,
-      "altitude":  18000,
-      "speed":    280,
-      "airlines":  [
-        ["ual", 5],
-        ["ual/long", 2],
-        ["swa", 1],
-        ["dal", 5],
-        ["dal/long", 2],
-        ["aal", 5],
-        ["aal/long", 2],
-        ["asa", 1],
-        ["fdx", 1]
-      ]
-    },
-    {
-      "type": "random",
-      "route":   "DYAMD.DYAMD2.KSFO",
-      "frequency": 10,
-      "altitude":  27000,
-      "speed":    280,
-      "airlines":  [
-        ["ual", 5],
-        ["ual/long", 2],
-        ["swa", 1],
-        ["dal", 5],
-        ["dal/long", 2],
-        ["aal", 5],
-        ["aal/long", 2],
-        ["asa", 1],
-        ["fdx", 1]
-      ]
-    },
-    {
-      "type": "random",
-      "route":   "MXW.PYE1.KSFO",
-      "frequency": 10,
-      "altitude":  34000,
-      "speed":    320,
-      "airlines":  [
-        ["ual", 5],
-        ["ual/long", 2],
-        ["swa", 1],
-        ["dal", 5],
-        ["dal/long", 2],
-        ["aal", 5],
-        ["aal/long", 2],
-        ["asa", 1],
-        ["fdx", 1]
-      ]
-    },
-    {
-      "type": "random",
-      "route":   "YOSEM.YOSEM3.KSFO",
-      "frequency": 10,
-      "altitude":  34000,
-      "speed":    280,
-      "airlines":  [
-        ["ual", 5],
-        ["ual/long", 2],
-        ["swa", 1],
-        ["dal", 5],
-        ["dal/long", 2],
-        ["aal", 5],
-        ["aal/long", 2],
-        ["asa", 1],
-        ["fdx", 1]
-      ]
-    }
+  "spawnPatterns": [
+      {
+          "airlines": [
+              ["ual", 10],
+              ["aal", 8],
+              ["dal", 6],
+              ["ual/long", 5],
+              ["aal/long", 2],
+              ["dal/long", 2],
+              ["swa", 5],
+              ["asa", 3],
+              ["aca", 2],
+              ["cpa", 2],
+              ["baw/long", 2],
+              ["ups", 1],
+              ["fdx", 1],
+              ["klm/long", 2],
+              ["afr/long", 2],
+              ["uae", 4],
+              ["kal/long", 2],
+              ["vir", 2]
+          ],
+          "destination": "",
+          "origin": "KSFO",
+          "category": "departure",
+          "route": "KSFO.MOLEN7.ENI",
+          "altitude": null,
+          "method": "random",
+          "rate": 9,
+          "speed": null
+      },
+      {
+          "airlines": [
+              ["ual", 10],
+              ["aal", 8],
+              ["dal", 6],
+              ["ual/long", 5],
+              ["aal/long", 2],
+              ["dal/long", 2],
+              ["swa", 5],
+              ["asa", 3],
+              ["aca", 2],
+              ["cpa", 2],
+              ["baw/long", 2],
+              ["ups", 1],
+              ["fdx", 1],
+              ["klm/long", 2],
+              ["afr/long", 2],
+              ["uae", 4],
+              ["kal/long", 2],
+              ["vir", 2]
+          ],
+          "destination": "",
+          "origin": "KSFO",
+          "category": "departure",
+          "route": "KSFO.OFFSH9.SXC",
+          "altitude": null,
+          "method": "random",
+          "rate": 9,
+          "speed": null
+      },
+      {
+          "airlines": [
+              ["ual", 10],
+              ["aal", 8],
+              ["dal", 6],
+              ["ual/long", 5],
+              ["aal/long", 2],
+              ["dal/long", 2],
+              ["swa", 5],
+              ["asa", 3],
+              ["aca", 2],
+              ["cpa", 2],
+              ["baw/long", 2],
+              ["ups", 1],
+              ["fdx", 1],
+              ["klm/long", 2],
+              ["afr/long", 2],
+              ["uae", 4],
+              ["kal/long", 2],
+              ["vir", 2]
+          ],
+          "destination": "",
+          "origin": "KSFO",
+          "category": "departure",
+          "route": "KSFO.PORTE7.CZQ",
+          "altitude": null,
+          "method": "random",
+          "rate": 9,
+          "speed": null
+      },
+      {
+          "airlines": [
+              ["ual", 10],
+              ["aal", 8],
+              ["dal", 6],
+              ["ual/long", 5],
+              ["aal/long", 2],
+              ["dal/long", 2],
+              ["swa", 5],
+              ["asa", 3],
+              ["aca", 2],
+              ["cpa", 2],
+              ["baw/long", 2],
+              ["ups", 1],
+              ["fdx", 1],
+              ["klm/long", 2],
+              ["afr/long", 2],
+              ["uae", 4],
+              ["kal/long", 2],
+              ["vir", 2]
+          ],
+          "destination": "",
+          "origin": "KSFO",
+          "category": "departure",
+          "route": "KSFO.QUIET7.RBL",
+          "altitude": null,
+          "method": "random",
+          "rate": 9,
+          "speed": null
+      },
+      {
+          "airlines": [
+              ["ual", 5],
+              ["ual/long", 2],
+              ["swa", 1],
+              ["dal", 5],
+              ["dal/long", 2],
+              ["aal", 5],
+              ["aal/long", 2],
+              ["asa", 1],
+              ["fdx", 1]
+          ],
+          "destination": "KSFO",
+          "origin": "",
+          "category": "arrival",
+          "route": "QUINN.BDEGA2.KSFO",
+          "altitude": 24000,
+          "method": "random",
+          "rate": 10,
+          "speed": 280
+      },
+      {
+          "airlines": [
+              ["ual", 5],
+              ["ual/long", 2],
+              ["swa", 1],
+              ["dal", 5],
+              ["dal/long", 2],
+              ["aal", 5],
+              ["aal/long", 2],
+              ["asa", 1],
+              ["fdx", 1]
+          ],
+          "destination": "KSFO",
+          "origin": "",
+          "category": "arrival",
+          "route": "BSR.BSR2.KSFO",
+          "altitude": 18000,
+          "method": "random",
+          "rate": 10,
+          "speed": 280
+      },
+      {
+          "airlines": [
+              ["ual", 5],
+              ["ual/long", 2],
+              ["swa", 1],
+              ["dal", 5],
+              ["dal/long", 2],
+              ["aal", 5],
+              ["aal/long", 2],
+              ["asa", 1],
+              ["fdx", 1]
+          ],
+          "destination": "KSFO",
+          "origin": "",
+          "category": "arrival",
+          "route": "DYAMD.DYAMD2.KSFO",
+          "altitude": 27000,
+          "method": "random",
+          "rate": 10,
+          "speed": 280
+      },
+      {
+          "airlines": [
+              ["ual", 5],
+              ["ual/long", 2],
+              ["swa", 1],
+              ["dal", 5],
+              ["dal/long", 2],
+              ["aal", 5],
+              ["aal/long", 2],
+              ["asa", 1],
+              ["fdx", 1]
+          ],
+          "destination": "KSFO",
+          "origin": "",
+          "category": "arrival",
+          "route": "MXW.PYE1.KSFO",
+          "altitude": 34000,
+          "method": "random",
+          "rate": 10,
+          "speed": 320
+      },
+      {
+          "airlines": [
+              ["ual", 5],
+              ["ual/long", 2],
+              ["swa", 1],
+              ["dal", 5],
+              ["dal/long", 2],
+              ["aal", 5],
+              ["aal/long", 2],
+              ["asa", 1],
+              ["fdx", 1]
+          ],
+          "destination": "KSFO",
+          "origin": "",
+          "category": "arrival",
+          "route": "YOSEM.YOSEM3.KSFO",
+          "altitude": 34000,
+          "method": "random",
+          "rate": 10,
+          "speed": 280
+      }
   ]
 }

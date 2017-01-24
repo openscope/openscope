@@ -1,5 +1,3 @@
-/* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand,
-no-undef, class-methods-use-this */
 import $ from 'jquery';
 import _forEach from 'lodash/forEach';
 import _has from 'lodash/has';
@@ -79,17 +77,17 @@ export default class GameController {
      * @method init_pre
      */
     init_pre() {
-        this.game_initializeBlurFunctions();
-        this.events_initializeEventCount();
+        this.setupHandlers();
+        this.initializeEventCount();
     }
 
     /**
     * Initialize `GameController.events` to contain appropriate properties with values of 0
+    *
     * @for GameController
-    * @method events_initializeEventCount
-    * @return
+    * @method initializeEventCount
     */
-    events_initializeEventCount() {
+    initializeEventCount() {
         _forEach(GAME_EVENTS, (gameEvent, key) => {
             this.game.events[key] = 0;
         });
@@ -113,10 +111,10 @@ export default class GameController {
     /**
     * Initialize blur functions used during game pausing
     * @for GameController
-    * @method game_initializeBlurFunctions
+    * @method setupHandlers
     * @return
     */
-    game_initializeBlurFunctions() {
+    setupHandlers() {
         // Set blurring function
         $(window).blur(() => {
             this.game.focused = false;
@@ -263,8 +261,9 @@ export default class GameController {
      * @param data
      * @return gameTimeout
      */
-    game_timeout(func, delay, that, data) {
-        const gameTimeout = [func, this.game_time() + delay, data, delay, false, that];
+    game_timeout(functionToCall, delay, that, data) {
+        const timerDelay = this.game_time() + delay;
+        const gameTimeout = [functionToCall, timerDelay, data, delay, false, that];
 
         this.game.timeouts.push(gameTimeout);
 
@@ -295,6 +294,19 @@ export default class GameController {
      */
     game_clear_timeout(gameTimeout) {
         this.game.timeouts.splice(this.game.timeouts.indexOf(gameTimeout), 1);
+    }
+
+    /**
+     * Destroy all current timers
+     *
+     * Used when changing airports. any timer is only valid
+     * for a specific airport.
+     *
+     * @for GameController
+     * @method destroyTimers
+     */
+    destroyTimers() {
+        this.game.timeouts = [];
     }
 
     /**
@@ -334,21 +346,34 @@ export default class GameController {
 
         this.game.time += this.game.delta;
 
+        this.updateTimers();
+    }
+
+    /**
+     * @for GameController
+     * @method updateTimers
+     */
+    updateTimers() {
         for (let i = this.game.timeouts.length - 1; i >= 0; i--) {
-            let remove = false;
+            let willRemoveTimerFromList = false;
             const timeout = this.game.timeouts[i];
+            const callback = timeout[0];
+            let delayFireTime = timeout[1];
+            const callbackArguments = timeout[2];
+            const delayInterval = timeout[3];
+            const shouldRepeat = timeout[4];
 
-            if (this.game_time() > timeout[1]) {
-                timeout[0].call(timeout[5], timeout[2]);
+            if (this.game_time() > delayFireTime) {
+                callback.call(timeout[5], callbackArguments);
+                willRemoveTimerFromList = true;
 
-                if (timeout[4]) {
-                    timeout[1] += timeout[3];
-                } else {
-                    remove = true;
+                if (shouldRepeat) {
+                    delayFireTime += delayInterval;
+                    willRemoveTimerFromList = false;
                 }
             }
 
-            if (remove) {
+            if (willRemoveTimerFromList) {
                 this.game.timeouts.splice(i, 1);
                 i -= 1;
             }

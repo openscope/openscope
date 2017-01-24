@@ -184,7 +184,7 @@
     "DT552": ["N52d31m22.79", "E12d55m05.84"],
     "LIGBA": ["N52d32m01.85", "E13d01m33.82"],
     "DT590": ["N52d32m41.08", "E13d08m06.55"],
- 
+
     "_5":   ["N52.661665500", "E13.506218100"],
     "_10":  ["N52.658022000", "E13.523081900"],
     "_15":  ["N52.651849800", "E13.537797700"],
@@ -302,101 +302,210 @@
       "draw": [["DT263", "DT264", "NASAT", "TERDA"]]
     }
   },
-  "departures": {
-    "airlines": [
-      ["fastga", 5],
-      ["ber", 20],
-      ["gwi", 15],
-      ["dlh", 10],
-      ["baw", 5],
-      ["ein", 5],
-      ["sas", 5],
-      ["ual", 1],
-      ["aua", 5],
-      ["thy", 5],
-      ["sbi", 3],
-      ["klm", 3]
-    ],
-    "destinations": [
-      "BKD", "BRANE", "GERGA", "RAKIT", "TERDA"
-    ],
-    "type": "random",
-    "frequency": 35
-  },
-  "arrivals":[
-    {
-      "speed": 250,
-      "fixes": ["BATEL", "GIRIT", "NASAT"],
-      "airlines": [
-        ["ber", 20],
-        ["gwi", 15],
-        ["dlh", 10],
-        ["baw", 5],
-        ["ein", 5],
-        ["klm", 3]
-      ],
-      "type": "random",
-      "frequency": [5, 15],
-      "period": 90,
-      "altitude": 8000
-    },
-    {
-      "speed": 250,
-      "fixes": ["_EDDT016060", "GOLBO", "NASAT"],
-      "airlines": [
-        ["ber", 20],
-        ["gwi", 15],
-        ["dlh", 10],
-        ["sas", 5]
-      ],
-      "type": "random",
-      "frequency": [5, 15],
-      "period": 90,
-      "offset": 5,
-      "altitude": 7000
-    },
-    {
-      "speed": 250,
-      "fixes": ["RUDAK", "KLF", "IRMAS"],
-      "airlines": [
-        ["ber", 20],
-        ["gwi", 15],
-        ["dlh", 10]
-      ],
-      "type": "surge",
-      "entrail": [10, 35],
-      "frequency": 10,
-      "altitude": 12000
-    },
-    {
-      "speed": 250,
-      "fixes": ["AKUDI", "ATGUP", "NATAV"],
-      "airlines": [
-        ["ber", 20],
-        ["gwi", 15],
-        ["dlh", 10]
-      ],
-      "type": "surge",
-      "entrail": [10, 35],
-      "frequency": 10,
-      "offset": 30,
-      "altitude": 14000
-    },
-    {
-      "speed": 250,
-      "fixes": ["NUKRO", "FWE"],
-      "airlines": [
-        ["ber", 20],
-        ["gwi", 15],
-        ["dlh", 10],
-        ["aua", 5],
-        ["thy", 5]
-      ],
-      "type": "surge",
-      "entrail": [10, 35],
-      "frequency": 10,
-      "offset": 60,
-      "altitude": 9000
-    }
+  "spawnPatterns": [
+      {
+          "origin": "EDDT",
+          "destination": "",
+          "category": "departure",
+          "route": "EDDT.BKD.BKD",
+          "altitude": null,
+          "speed": null,
+          "method": "random",
+          "rate": 7,
+          "airlines": [
+              ["fastga", 5],
+              ["ber", 20],
+              ["gwi", 15],
+              ["dlh", 10],
+              ["baw", 5],
+              ["ein", 5],
+              ["sas", 5],
+              ["ual", 1],
+              ["aua", 5],
+              ["thy", 5],
+              ["sbi", 3],
+              ["klm", 3]
+          ]
+      },
+      {
+          "origin": "EDDT",
+          "destination": "",
+          "category": "departure",
+          "route": "EDDT.BRANE.BRANE",
+          "altitude": null,
+          "speed": null,
+          "method": "random",
+          "rate": 7,
+          "airlines": [
+              ["fastga", 5],
+              ["ber", 20],
+              ["gwi", 15],
+              ["dlh", 10],
+              ["baw", 5],
+              ["ein", 5],
+              ["sas", 5],
+              ["ual", 1],
+              ["aua", 5],
+              ["thy", 5],
+              ["sbi", 3],
+              ["klm", 3]
+          ]
+      },
+      {
+          "origin": "EDDT",
+          "destination": "",
+          "category": "departure",
+          "route": "EDDT.GERGA.GERGA",
+          "altitude": null,
+          "speed": null,
+          "method": "random",
+          "rate": 7,
+          "airlines": [
+              ["fastga", 5],
+              ["ber", 20],
+              ["gwi", 15],
+              ["dlh", 10],
+              ["baw", 5],
+              ["ein", 5],
+              ["sas", 5],
+              ["ual", 1],
+              ["aua", 5],
+              ["thy", 5],
+              ["sbi", 3],
+              ["klm", 3]
+          ]
+      },
+      {
+          "origin": "EDDT",
+          "destination": "",
+          "category": "departure",
+          "route": "EDDT.RAKIT.RAKIT",
+          "altitude": null,
+          "speed": null,
+          "method": "random",
+          "rate": 7,
+          "airlines": [
+              ["fastga", 5],
+              ["ber", 20],
+              ["gwi", 15],
+              ["dlh", 10],
+              ["baw", 5],
+              ["ein", 5],
+              ["sas", 5],
+              ["ual", 1],
+              ["aua", 5],
+              ["thy", 5],
+              ["sbi", 3],
+              ["klm", 3]
+          ]
+      },
+      {
+          "origin": "EDDT",
+          "destination": "",
+          "category": "departure",
+          "route": "EDDT.TERDA.TERDA",
+          "altitude": null,
+          "speed": null,
+          "method": "random",
+          "rate": 7,
+          "airlines": [
+              ["fastga", 5],
+              ["ber", 20],
+              ["gwi", 15],
+              ["dlh", 10],
+              ["baw", 5],
+              ["ein", 5],
+              ["sas", 5],
+              ["ual", 1],
+              ["aua", 5],
+              ["thy", 5],
+              ["sbi", 3],
+              ["klm", 3]
+          ]
+      },
+      {
+          "origin": "",
+          "destination": "EDDT",
+          "category": "arrival",
+          "route": "BATEL..GIRIT..NASAT",
+          "altitude": 8000,
+          "speed": 250,
+          "method": "random",
+          "rate": 5,
+          "airlines": [
+              ["ber", 20],
+              ["gwi", 15],
+              ["dlh", 10],
+              ["baw", 5],
+              ["ein", 5],
+              ["klm", 3]
+          ]
+      },
+      {
+          "origin": "",
+          "destination": "EDDT",
+          "category": "arrival",
+          "route": "_EDDT016060..GOLBO..NASAT",
+          "altitude": 7000,
+          "speed": 250,
+          "method": "random",
+          "rate": 5,
+          "airlines": [
+              ["ber", 20],
+              ["gwi", 15],
+              ["dlh", 10],
+              ["sas", 5]
+          ]
+      },
+      {
+          "origin": "",
+          "destination": "EDDT",
+          "category": "arrival",
+          "route": "RUDAK..KLF..IRMAS",
+          "altitude": 12000,
+          "speed": 250,
+          "method": "surge",
+          "rate": 10,
+          "entrail": [10, 35],
+          "airlines": [
+              ["ber", 20],
+              ["gwi", 15],
+              ["dlh", 10]
+          ]
+      },
+      {
+          "origin": "",
+          "destination": "EDDT",
+          "category": "arrival",
+          "route": "AKUDI..ATGUP..NATAV",
+          "altitude": 14000,
+          "speed": 250,
+          "method": "surge",
+          "rate": 10,
+          "entrail": [10, 35],
+          "airlines": [
+              ["ber", 20],
+              ["gwi", 15],
+              ["dlh", 10]
+          ]
+      },
+      {
+          "origin": "",
+          "destination": "EDDT",
+          "category": "arrival",
+          "route": "NUKRO..FWE",
+          "altitude": 9000,
+          "speed": 250,
+          "method": "surge",
+          "rate": 10,
+          "entrail": [10, 35],
+          "airlines": [
+              ["ber", 20],
+              ["gwi", 15],
+              ["dlh", 10],
+              ["aua", 5],
+              ["thy", 5]
+          ]
+      }
   ]
 }

@@ -372,231 +372,263 @@
       ]
     }
   },
-
-  "departures": {
-    "airlines": [
-    ["xax",  10],
-    ["aic", 190],
-    ["llr",  30],
-    ["uae",  10],
-    ["etd",  10],
-    ["gow",  40],
-    ["igo", 290],
-    ["jai", 160],
-    ["sej", 120],
-    ["ual",  20],
-    ["vti",  10],
-    ["ces",  10],
-    ["hda",  10],
-    ["slk",  10],
-    ["cpa",  20]
-    ],
-    "destinations": [
-    "GUMAS", "KAPOL", "KESAR", "RIKLA", "SEGOL", "BAMUR", "BASAT", "LOPEM", "NIBLU", "PITAM"
-    ],
-    "type": "random",
-    "offset": 0,
-    "frequency": 20
-  },
-  "arrivals": [
-  {
-    "type":     "cyclic",
-    "fixes":    ["CC112", "AVPOP", "CC210", "CC304"],
-    "frequency":   4,
-    "altitude":    12000,
-    "speed":    330,
-    "offset":    2,
-    "airlines": [
-      ["cpa", 2],
-      ["xax", 3],
-      ["aic", 15],
-      ["llr", 5],
-      ["ual", 3],
-      ["gow", 3],
-      ["igo", 20],
-      ["jai", 10],
-      ["sej", 8],
-      ["ces", 3],
-      ["hda", 3],
-      ["slk", 3],
-      ["cpa", 5]
-    ]
-  },
-  {
-    "type":     "cyclic",
-    "fixes":    ["CC102", "BAMUR", "CC321", "CC303", "CC316"],
-    "frequency":   4,
-    "altitude":    12000,
-    "speed":    330,
-    "offset":    2,
-    "airlines": [
-      ["aic", 15],
-      ["llr", 5],
-      ["ual", 5],
-      ["gow", 3],
-      ["igo", 20],
-      ["jai", 10],
-      ["sej", 8],
-      ["uae", 5],
-      ["etd", 5]
-    ]
-  },
-  {
-    "type":     "cyclic",
-    "fixes":    ["BEMAK", "DIXON", "CC330", "DINAP", "CC329"],
-    "frequency":   4,
-    "altitude":    12000,
-    "speed":    330,
-    "offset":    2,
-    "airlines": [
-      ["cpa", 2],
-      ["xax", 3],
-      ["aic", 15],
-      ["llr", 5],
-      ["ual", 3],
-      ["gow", 3],
-      ["igo", 20],
-      ["jai", 10],
-      ["sej", 8],
-      ["ces", 3],
-      ["hda", 3],
-      ["slk", 3],
-      ["cpa", 5]
-    ]
-  },
-  {
-    "type":     "cyclic",
-    "fixes":    ["NOKAT", "DIKAK", "CC302", "TONOP"],
-    "frequency":   4,
-    "altitude":    12000,
-    "speed":    330,
-    "offset":    2,
-    "airlines": [
-      ["cpa", 2],
-      ["xax", 3],
-      ["aic", 15],
-      ["llr", 5],
-      ["ual", 3],
-      ["gow", 3],
-      ["igo", 20],
-      ["jai", 10],
-      ["sej", 8],
-      ["ces", 3],
-      ["hda", 3],
-      ["slk", 3],
-      ["cpa", 5]
-    ]
-  },
-  {
-    "type":     "cyclic",
-    "fixes":    ["CC101", "JATEN", "CC319", "CC306", "CC335"],
-    "frequency":   4,
-    "altitude":    12000,
-    "speed":    330,
-    "offset":    2,
-    "airlines": [
-      ["aic", 15],
-      ["llr", 5],
-      ["ual", 5],
-      ["gow", 3],
-      ["igo", 20],
-      ["jai", 10],
-      ["sej", 8],
-      ["uae", 5],
-      ["etd", 5]
-    ]
-  },
-  {
-    "type":     "cyclic",
-    "fixes":    ["BOKEV", "KEBAM", "CC304"],
-    "frequency":   3,
-    "altitude":    12000,
-    "speed":    330,
-    "offset":    2,
-    "airlines": [
-      ["aic", 15],
-      ["llr", 5],
-      ["gow", 3],
-      ["igo", 20],
-      ["jai", 10],
-      ["sej", 8]
-    ]
-  },
-  {
-    "type":     "cyclic",
-    "fixes":    ["CC108", "KUMAD", "CC318", "CC302", "TONOP"],
-    "frequency":   3,
-    "altitude":    12000,
-    "speed":    330,
-    "offset":    2,
-    "airlines": [
-      ["aic", 15],
-      ["llr", 5],
-      ["gow", 3],
-      ["igo", 20],
-      ["jai", 10],
-      ["sej", 8]
-    ]
-  },
-  {
-    "type":     "cyclic",
-    "fixes":    ["PITAM", "LATEP", "CC301"],
-    "frequency":   3,
-    "altitude":    12000,
-    "speed":    330,
-    "offset":    2,
-    "airlines": [
-      ["aic", 15],
-      ["llr", 5],
-      ["ual", 5],
-      ["gow", 3],
-      ["igo", 20],
-      ["jai", 10],
-      ["sej", 8],
-      ["uae", 5],
-      ["etd", 5],
-      ["hda", 3],
-      ["cpa", 5],
-      ["ces", 5]
-    ]
-  },
-  {
-    "type":     "cyclic",
-    "fixes":    ["CC106", "NOSIM", "CC321", "CC334", "CC319", "CC306", "CC335"],
-    "frequency":   3,
-    "altitude":    12000,
-    "speed":    330,
-    "offset":    2,
-    "airlines": [
-      ["aic", 15],
-      ["llr", 5],
-      ["ual", 5],
-      ["gow", 3],
-      ["igo", 20],
-      ["jai", 10],
-      ["sej", 8],
-      ["uae", 5],
-      ["etd", 5],
-      ["hda", 3],
-      ["cpa", 5],
-      ["ces", 5]
-    ]
-  },
-  {
-    "type":     "cyclic",
-    "fixes":    ["DOPID", "SEGOL", "DINAP", "CC329"],
-    "frequency":   3,
-    "altitude":    12000,
-    "speed":    330,
-    "offset":    2,
-    "airlines": [
-      ["aic", 15],
-      ["llr", 5],
-      ["gow", 3],
-      ["igo", 20],
-      ["jai", 10],
-      ["sej", 8]
-    ]
-  }
+  "spawnPatterns": [
+    {
+        "origin": "vecc",
+        "destination": "",
+        "category": "departure",
+        "route": "VECC.BAMUR.JJS",
+        "altitude": "",
+        "speed": "",
+        "method": "random",
+        "rate": 20,
+        "offset": 0,
+        "airlines": [
+            ["xax",  10],
+            ["aic", 190],
+            ["llr",  30],
+            ["uae",  10],
+            ["etd",  10],
+            ["gow",  40],
+            ["igo", 290],
+            ["jai", 160],
+            ["sej", 120],
+            ["ual",  20],
+            ["vti",  10],
+            ["ces",  10],
+            ["hda",  10],
+            ["slk",  10],
+            ["cpa",  20]
+        ]
+    },
+    {
+        "origin": "",
+        "destination": "vecc",
+        "category": "arrival",
+        "route":    "CC112..AVPOP..CC210..CC304",
+        "altitude":    12000,
+        "speed":    320,
+        "method":     "cyclic",
+        "rate":   4,
+        "offset":    2,
+        "airlines": [
+            ["cpa", 2],
+            ["xax", 3],
+            ["aic", 15],
+            ["llr", 5],
+            ["ual", 3],
+            ["gow", 3],
+            ["igo", 20],
+            ["jai", 10],
+            ["sej", 8],
+            ["ces", 3],
+            ["hda", 3],
+            ["slk", 3],
+            ["cpa", 5]
+        ]
+    },
+    {
+        "origin": "",
+        "destination": "vecc",
+        "category": "arrival",
+        "route":    "CC102..BAMUR..CC321..CC303..CC316",
+        "altitude":    12000,
+        "speed":    320,
+        "method":     "cyclic",
+        "rate":   4,
+        "offset":    2,
+        "airlines": [
+            ["aic", 15],
+            ["llr", 5],
+            ["ual", 5],
+            ["gow", 3],
+            ["igo", 20],
+            ["jai", 10],
+            ["sej", 8],
+            ["uae", 5],
+            ["etd", 5]
+        ]
+    },
+    {
+        "origin": "",
+        "destination": "vecc",
+        "category": "arrival",
+        "route":    "BEMAK..DIXON..CC330..DINAP..CC329",
+        "altitude":    12000,
+        "speed":    320,
+        "method":     "cyclic",
+        "rate":   4,
+        "offset":    2,
+        "airlines": [
+            ["cpa", 2],
+            ["xax", 3],
+            ["aic", 15],
+            ["llr", 5],
+            ["ual", 3],
+            ["gow", 3],
+            ["igo", 20],
+            ["jai", 10],
+            ["sej", 8],
+            ["ces", 3],
+            ["hda", 3],
+            ["slk", 3],
+            ["cpa", 5]
+        ]
+    },
+    {
+        "origin": "",
+        "destination": "vecc",
+        "category": "arrival",
+        "route":    "NOKAT..DIKAK..CC302..TONOP",
+        "altitude":    12000,
+        "speed":    320,
+        "method":     "cyclic",
+        "rate":   4,
+        "offset":    2,
+        "airlines": [
+            ["cpa", 2],
+            ["xax", 3],
+            ["aic", 15],
+            ["llr", 5],
+            ["ual", 3],
+            ["gow", 3],
+            ["igo", 20],
+            ["jai", 10],
+            ["sej", 8],
+            ["ces", 3],
+            ["hda", 3],
+            ["slk", 3],
+            ["cpa", 5]
+        ]
+    },
+    {
+        "origin": "",
+        "destination": "vecc",
+        "category": "arrival",
+        "route":    "CC101..JATEN..CC319..CC306..CC335",
+        "altitude":    12000,
+        "speed":    320,
+        "method":     "cyclic",
+        "rate":   4,
+        "offset":    2,
+        "airlines": [
+            ["aic", 15],
+            ["llr", 5],
+            ["ual", 5],
+            ["gow", 3],
+            ["igo", 20],
+            ["jai", 10],
+            ["sej", 8],
+            ["uae", 5],
+            ["etd", 5]
+        ]
+    },
+    {
+        "origin": "",
+        "destination": "vecc",
+        "category": "arrival",
+        "route":    "BOKEV..KEBAM..CC304",
+        "altitude":    12000,
+        "speed":    320,
+        "method":     "cyclic",
+        "rate":   3,
+        "offset":    2,
+        "airlines": [
+            ["aic", 15],
+            ["llr", 5],
+            ["gow", 3],
+            ["igo", 20],
+            ["jai", 10],
+            ["sej", 8]
+        ]
+    },
+    {
+        "origin": "",
+        "destination": "vecc",
+        "category": "arrival",
+        "route":    "CC108..KUMAD..CC318..CC302..TONOP",
+        "altitude":    12000,
+        "speed":    320,
+        "method":     "cyclic",
+        "rate":   3,
+        "offset":    2,
+        "airlines": [
+            ["aic", 15],
+            ["llr", 5],
+            ["gow", 3],
+            ["igo", 20],
+            ["jai", 10],
+            ["sej", 8]
+        ]
+    },
+    {
+        "origin": "",
+        "destination": "vecc",
+        "category": "arrival",
+        "route":    "PITAM..LATEP..CC301",
+        "altitude":    12000,
+        "speed":    320,
+        "method":     "cyclic",
+        "rate":   3,
+        "offset":    2,
+        "airlines": [
+            ["aic", 15],
+            ["llr", 5],
+            ["ual", 5],
+            ["gow", 3],
+            ["igo", 20],
+            ["jai", 10],
+            ["sej", 8],
+            ["uae", 5],
+            ["etd", 5],
+            ["hda", 3],
+            ["cpa", 5],
+            ["ces", 5]
+        ]
+    },
+    {
+        "origin": "",
+        "destination": "vecc",
+        "category": "arrival",
+        "route":    "CC106..NOSIM..CC321..CC334..CC319..CC306..CC335",
+        "altitude":    12000,
+        "speed":    320,
+        "method":     "cyclic",
+        "rate":   3,
+        "offset":    2,
+        "airlines": [
+            ["aic", 15],
+            ["llr", 5],
+            ["ual", 5],
+            ["gow", 3],
+            ["igo", 20],
+            ["jai", 10],
+            ["sej", 8],
+            ["uae", 5],
+            ["etd", 5],
+            ["hda", 3],
+            ["cpa", 5],
+            ["ces", 5]
+        ]
+    },
+    {
+        "origin": "",
+        "destination": "vecc",
+        "category": "arrival",
+        "route":    "DOPID..SEGOL..DINAP..CC329",
+        "altitude":    12000,
+        "speed":    320,
+        "method":     "cyclic",
+        "rate":   3,
+        "offset":    2,
+        "airlines": [
+            ["aic", 15],
+            ["llr", 5],
+            ["gow", 3],
+            ["igo", 20],
+            ["jai", 10],
+            ["sej", 8]
+        ]
+    }
   ]
 }
