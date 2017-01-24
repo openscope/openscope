@@ -506,8 +506,7 @@ export default class Aircraft {
             callsign = callsign.substr(callsign.length - length);
         }
 
-        // TODO: this may not be needed any longer
-        let cs = window.airlineController.airline_get(this.airline).callsign;
+        let cs = this.getCallsign();
 
         if (cs === 'November') {
             cs += ` ${radio_spellOut(callsign)} ${heavy}`;
