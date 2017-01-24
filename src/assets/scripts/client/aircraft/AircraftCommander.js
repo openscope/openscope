@@ -515,7 +515,7 @@ export default class AircraftCommander {
         // TODO: simplify this nested if.
         if (holdFix !== null) {
             holdFix = holdFix.toUpperCase();
-            holdFixLocation = airport.getFixPosition(holdFix);
+            holdFixLocation = this._navigationLibrary.getFixPositionCoordinates(holdFix);
 
             if (!holdFixLocation) {
                 return ['fail', `unable to find fix ${holdFix}`];
@@ -661,9 +661,6 @@ export default class AircraftCommander {
         let last_fix;
         let fail;
         const fixes = _map(data, (fixname) => {
-            // TODO: this may beed to be the FixCollection
-            // const fix = this._airportController.airport_get().getFixPosition(fixname);
-
             if (_isNil(this._navigationLibrary.findFixByName(fixname))) {
                 fail = ['fail', `unable to find fix called ${fixname}`];
 
