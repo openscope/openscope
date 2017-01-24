@@ -642,10 +642,8 @@ export default class AircraftCommander {
     runDirect(aircraft, data) {
         // TODO: maybe handle with parser?
         const fixname = data[0].toUpperCase();
-        // TODO replace with FixCollection?
-        const fix = this._airportController.airport_get().getFixPosition(fixname);
 
-        if (!fix) {
+        if (_isNil(this._navigationLibrary.findFixByName(fixname))) {
             return ['fail', `unable to find fix called ${fixname}`];
         }
 
@@ -664,9 +662,9 @@ export default class AircraftCommander {
         let fail;
         const fixes = _map(data, (fixname) => {
             // TODO: this may beed to be the FixCollection
-            const fix = this._airportController.airport_get().getFixPosition(fixname);
+            // const fix = this._airportController.airport_get().getFixPosition(fixname);
 
-            if (!fix) {
+            if (_isNil(this._navigationLibrary.findFixByName(fixname))) {
                 fail = ['fail', `unable to find fix called ${fixname}`];
 
                 return;

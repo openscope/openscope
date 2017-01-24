@@ -622,7 +622,8 @@ export default class AircraftFlightManagementSystem {
         // Format the user's input
         let route = [];
         const airport = window.airportController.airport_get();
-        const fixOK = (fixName) => FixCollection.findFixByName(fixName) !== null;
+        // TODO: this needs to be refactored. inline function like this is not ok
+        const fixOK = (fixName) => this._navigationLibrary.findFixByName(fixName) !== null;
 
         if (data.indexOf(' ') !== -1) {
             return; // input can't contain spaces
