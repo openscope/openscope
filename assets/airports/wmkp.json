@@ -146,7 +146,7 @@
   },
   "stars": {
     "PAPDA_STAR": {
-      "icao": "PAPDA",
+      "icao": "PAPDA_STAR",
       "name": "Papda",
       "suffix": {"22":"1B"},
       "entryPoints": {
@@ -161,7 +161,7 @@
       ]
     },
     "ISMAS_STAR": {
-      "icao": "ISMAS",
+      "icao": "ISMAS_STAR",
       "name": "Ismas",
       "suffix": {"04":"1A", "22":"1B"},
       "entryPoints": {
@@ -177,7 +177,7 @@
       ]
     },
     "MADUM_STAR": {
-      "icao": "MADUM",
+      "icao": "MADUM_STAR",
       "name": "Madum",
       "suffix": {"04":"1A"},
       "entryPoints": {
@@ -192,7 +192,7 @@
       ]
     },
     "BIDMO_STAR": {
-      "icao": "BIDMO",
+      "icao": "BIDMO_STAR",
       "name": "Bidmo",
       "suffix": {"04":"1A", "22":"1B"},
       "entryPoints": {
@@ -208,7 +208,7 @@
       ]
     },
     "LUNTU_STAR": {
-      "icao": "LUNTU",
+      "icao": "LUNTU_STAR",
       "name": "Luntu",
       "suffix": {"04":"1A", "22":"1B"},
       "entryPoints": {
