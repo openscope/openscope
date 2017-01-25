@@ -1,9 +1,13 @@
-/* eslint-disable no-underscore-dangle, no-unused-vars, no-undef, global-require */
-import _each from 'lodash/each';
-import _includes from 'lodash/includes';
+import _get from 'lodash/get';
+import _isArray from 'lodash/isArray';
+import _isEmpty from 'lodash/isEmpty';
+import _isObject from 'lodash/isObject';
 import _without from 'lodash/without';
+import AircraftTypeDefinitionCollection from './AircraftTypeDefinitionCollection';
+import AircraftInstanceModel from './AircraftInstanceModel';
 import AircraftConflict from './AircraftConflict';
-import AircraftModel from './AircraftModel';
+import RouteModel from '../navigationLibrary/Route/RouteModel';
+import { airlineNameAndFleetHelper } from '../airline/airlineHelpers';
 import { speech_say } from '../speech';
 import { abs } from '../math/core';
 import { distance2d } from '../math/distance';
@@ -16,23 +20,147 @@ import { GAME_EVENTS } from '../game/GameController';
 // Temporary const declaration here to attach to the window AND use as internal property
 const aircraft = {};
 
-// TODO: this should be renamed to `AircraftCollection`
 /**
+ *
+ *
  * @class AircraftController
  */
 export default class AircraftController {
     /**
      * @constructor
+     * @for AircraftController
+     * @param aircraftTypeDefinitionList {array<object>}
+     * @param airlineController {AirlineController}
+     * @param navigationLibrary {NavigationLibrary}
      */
-    constructor() {
+    constructor(aircraftTypeDefinitionList, airlineController, navigationLibrary) {
+        if (!_isArray(aircraftTypeDefinitionList) || _isEmpty(aircraftTypeDefinitionList)) {
+            // eslint-disable-next-line max-len
+            throw new TypeError('Invalid aircraftTypeDefinitionList passed to AircraftTypeDefinitionCollection. Expected and array but ' +
+                `received ${typeof aircraftTypeDefinitionList}`);
+        }
+
+        // TODO: this may need to use instanceof instead, but that may be overly defensive
+        if (!_isObject(airlineController) || !_isObject(navigationLibrary)) {
+            throw new TypeError('Invalid parameters. Expected airlineCollection and navigationLibrary to be defined');
+        }
+
+        /**
+         * Reference to an `AirlineController` instance
+         *
+         * @property _airlineController
+         * @type {AirlineController}
+         * @default airlineController
+         * @private
+         */
+        this._airlineController = airlineController;
+
+        /**
+         * Reference to a `NavigationLibrary` instance
+         *
+         * @property _navigationLibrary
+         * @type NavigationLibrary
+         * @default navigationLibrary
+         * @private
+         */
+        this._navigationLibrary = navigationLibrary;
+
+        // TODO: rename to `AircraftTypeDefinitionCollection`
+        /**
+         * Reference to an `AircraftTypeDefinitionCollection` instance
+         *
+         * Provides definitions for all available aircraft types
+         *
+         * @property AircraftTypeDefinitionCollection
+         * @type {AircraftTypeDefinitionCollection}
+         */
+        this.aircraftTypeDefinitionCollection = new AircraftTypeDefinitionCollection(aircraftTypeDefinitionList);
+
         this.aircraft = aircraft;
-        this.aircraft.models = {};
-        this.aircraft.callsigns = [];
+
+        // TODO: this should its own collection class
         this.aircraft.list = [];
-        this.aircraft.current = null;
+
         this.aircraft.auto = { enabled: false };
+
         this.conflicts = [];
+
         prop.aircraft = aircraft;
+    }
+
+    /**
+     * Adds an `AircraftInstanceModel` to the collection
+     *
+     * @for AircraftController
+     * @method addItem
+     * @param item {AircraftInstanceModel}
+     */
+    addItem(item) {
+        this.aircraft.list.push(item);
+    }
+
+    /**
+     * Callback method fired by an interval defined in the `SpawnScheduler`.
+     *
+     * This is the entry method for creating new departing and arriving aircraft.
+     * This method should only be called as a callback from a `SpawnScheduler` timer.
+     *
+     * @for AircraftController
+     * @method createAircraftWithSpawnPatternModel
+     * @param spawnPatternModel {SpawnPatternModel}
+     * @private
+     */
+    createAircraftWithSpawnPatternModel = (spawnPatternModel) => {
+        const initializationProps = this._buildAircraftProps(spawnPatternModel);
+
+        this._createAircraftWithInitializationProps(initializationProps);
+    }
+
+    /**
+     * Build aircraft props for `spawnPatternModel` and add
+     * preSpawn data to `baseAircraftProps`.
+     *
+     * Used when creating aircraft already along an arrival route on load
+     * or on airport change.
+     *
+     * This method should be called directly and not via a timer callback
+     *
+     * This hooks into the same method used to build spawning aircraft
+     * and simply adds another layer on top of that to build a preSpawn aircraft.
+     *
+     * @for AircraftController
+     * @method createPreSpawnAircraftWithSpawnPatternModel
+     * @param  spawnPatternModel {SpawnPatternModel}
+     * @private
+     */
+    createPreSpawnAircraftWithSpawnPatternModel = (spawnPatternModel) => {
+        for (let i = 0; i < spawnPatternModel.preSpawnAircraftList.length; i++) {
+            const preSpawnHeadingAndPosition = spawnPatternModel.preSpawnAircraftList[i];
+            const baseAircraftProps = this._buildAircraftProps(spawnPatternModel);
+            const initializationProps = Object.assign({}, baseAircraftProps, preSpawnHeadingAndPosition);
+
+            this._createAircraftWithInitializationProps(initializationProps);
+        }
+    };
+
+    /**
+     * Accept a pre-built object that can be used to create an `AircraftInstanceModel`
+     * and then add it to the collection.
+     *
+     * This could be a spawning aircraft or one that already exists along a route.
+     *
+     * This method is the *_single place_* to create a new `AircraftInstanceModel`.
+     * Any method that needs to create a new aircraft should be routed through here.
+     *
+     * @for AircraftController
+     * @method _createAircraftWithInitializationProps
+     * @param initializationProps {object}
+     * @private
+     */
+    _createAircraftWithInitializationProps(initializationProps) {
+        const aircraftModel = new AircraftInstanceModel(initializationProps, this._navigationLibrary);
+
+        this.addItem(aircraftModel);
     }
 
     /**
@@ -40,36 +168,7 @@ export default class AircraftController {
      * @method aircraft_auto_toggle
      */
     aircraft_auto_toggle() {
-        prop.aircraft.auto.enabled = !this.aircraft.auto.enabled;
-    }
-
-    /**
-     * @for AircraftController
-     * @method isCallsignInList
-     * @param callsign {string}
-     * return {boolean}
-     */
-    isCallsignInList(callsign) {
-        return this.aircraft.callsigns.indexOf(callsign) !== -1;
-    }
-
-    /**
-     * Add a new callsign to `aircraft.callsigns`
-     *
-     * @for AircraftController
-     * @method addCallsignToList
-     * @param callsign {string}
-     */
-    addCallsignToList(callsign) {
-        if (this.isCallsignInList(callsign)) {
-            // if you've made it here something has gone very wrong. generation of a callsign/flightNumber should
-            // also include verification that the callsign/flightNumber is unique
-            console.warn(`${callsign} already exists within the callsigns list!`);
-
-            return;
-        }
-
-        this.aircraft.callsigns.push(callsign);
+        this.aircraft.auto.enabled = !this.aircraft.auto.enabled;
     }
 
     /**
@@ -83,22 +182,14 @@ export default class AircraftController {
     addConflict(aircraft, otherAircraft) {
         const conflict = new AircraftConflict(aircraft, otherAircraft);
 
-        if (conflict.isDuplicate() || conflict.shouldBeRemoved()) {
+        if (conflict.shouldBeRemoved()) {
+            conflict.destroy();
             return;
         }
 
         this.conflicts.push(conflict);
-    }
-
-    /**
-     * @for AircraftController
-     * @method aircraft_new
-     * @param options {object}
-     */
-    aircraft_new(options) {
-        const airline = window.airlineController.airline_get(options.airline);
-
-        return airline.generateAircraft(options);
+        aircraft.addConflict(conflict, otherAircraft);
+        otherAircraft.addConflict(conflict, aircraft);
     }
 
     /**
@@ -121,15 +212,6 @@ export default class AircraftController {
         }
 
         return [this.aircraft.list[nearest], distance];
-    }
-
-    /**
-     * @for AircraftController
-     * @method aircraft_add
-     * @param model {AircraftModel|object}
-     */
-    aircraft_add(model) {
-        this.aircraft.models[model.icao.toLowerCase()] = model;
     }
 
     /**
@@ -160,9 +242,11 @@ export default class AircraftController {
      */
     aircraft_remove(aircraft) {
         window.airportController.removeAircraftFromAllRunwayQueues(aircraft);
-        this.removeCallsignFromList(aircraft.callsign);
+
+        this.removeFlightNumberFromList(aircraft);
         this.removeAircraftInstanceModelFromList(aircraft);
         this.removeAllAircraftConflictsForAircraft(aircraft);
+
         aircraft.cleanup();
     }
 
@@ -171,7 +255,6 @@ export default class AircraftController {
      * @method aircraft_update
      */
     aircraft_update() {
-        // TODO: change to _forEach()
         for (let i = 0; i < this.aircraft.list.length; i++) {
             this.aircraft.list[i].update();
             this.aircraft.list[i].updateWarning();
@@ -319,58 +402,6 @@ export default class AircraftController {
     }
 
     /**
-     * @for AircraftController
-     * @method aircraft_get_by_callsign
-     * @param callsign {string}
-     */
-    aircraft_get_by_callsign(callsign) {
-        callsign = String(callsign);
-
-        for (let i = 0; i < this.aircraft.list.length; i++) {
-            if (this.aircraft.list[i].callsign === callsign.toLowerCase()) {
-                return this.aircraft.list[i];
-            }
-        }
-
-        return null;
-    }
-
-    /**
-     * @for AircraftController
-     * @method aircraft_get_eid_by_callsign
-     * @param callsign {string}
-     */
-    aircraft_get_eid_by_callsign(callsign) {
-        for (let i = 0; i < this.aircraft.list.length; i++) {
-            const aircraft = this.aircraft.list[i];
-
-            if (aircraft.callsign === callsign.toLowerCase()) {
-                return aircraft.eid;
-            }
-        }
-
-        return null;
-    }
-
-    /**
-     * @for AircraftController
-     * @method aircraft_model_get
-     * @param icao {string}
-     */
-    aircraft_model_get(icao) {
-        if (!(this.aircraft.models[icao])) {
-            const model = new AircraftModel({
-                icao,
-                url: `assets/aircraft/${icao}.json`
-            });
-
-            this.aircraft.models[icao] = model;
-        }
-
-        return this.aircraft.models[icao];
-    }
-
-    /**
      * Remove the specified aircraft from `AircraftController.aircraft`
      *
      * @for AircraftController
@@ -389,21 +420,28 @@ export default class AircraftController {
      * @param  {Aircraft} aircraft - the aircraft to remove
      */
     removeAllAircraftConflictsForAircraft(aircraft) {
-        _each(this.conflicts, (conflict) => {
-            if (_includes(conflict.aircraft, aircraft)) {
-                this.removeConflict(conflict);
-            }
-        });
+        // _each(this.conflicts, (conflict) => {
+        //     if (_includes(conflict.aircraft, aircraft)) {
+        //         this.removeConflict(conflict);
+        //     }
+        // });
+
+        // _each(aircraft.conflicts, (conflict) => conflict.destroy());
+
+        for (const otherAircraftCallsign in aircraft.conflicts) {
+            aircraft.conflicts[otherAircraftCallsign].destroy();
+        }
     }
 
     /**
      * Remove a flight number from the list stored in `AircraftController.aircraft.callsigns`
+     *
      * @for AircraftController
-     * @method removeCallsignFromList
-     * @param  {string} callsign the flight number to remove
+     * @method removeFlightNumberFromList
+     * @param aircraft {AircraftInstanceModel}
      */
-    removeCallsignFromList(callsign) {
-        this.aircraft.callsigns = _without(this.aircraft.callsigns, callsign);
+    removeFlightNumberFromList({ airline, callsign }) {
+        this._airlineController.removeFlightNumberFromList(airline, callsign);
     }
 
     /**
@@ -434,5 +472,83 @@ export default class AircraftController {
             // update eid in aircraft's fms
             this.aircraft.list[i].fms.my_aircrafts_eid = i;
         }
+    }
+
+    /**
+     * Used to build up the appropriate data needed to instantiate an `AircraftInstanceModel`
+     *
+     * @for AircraftController
+     * @method _buildAircraftProps
+     * @param spawnPatternModel {SpawnPatternModel}
+     * @return {object}
+     * @private
+     */
+    _buildAircraftProps(spawnPatternModel) {
+        const airlineId = spawnPatternModel.getRandomAirlineForSpawn();
+        // TODO: update `airlineNameAndFleetHelper` to accept a string
+        const { name, fleet } = airlineNameAndFleetHelper([airlineId]);
+        const airlineModel = this._airlineController.findAirlineById(name);
+        // TODO: impove the `airlineModel` logic here
+        // this seems inefficient to find the model here and then passit back to the controller but
+        // since we already have it, it makes little sense to look for it again in the controller
+        const flightNumber = this._airlineController.generateFlightNumberWithAirlineModel(airlineModel);
+        const aircraftTypeDefinition = this._getRandomAircraftTypeDefinitionForAirlineId(airlineId, airlineModel);
+        const destination = this._setDestinationFromRouteOrProcedure(spawnPatternModel);
+
+        return {
+            destination,
+            fleet,
+            callsign: flightNumber,
+            category: spawnPatternModel.category,
+            airline: airlineModel.icao,
+            altitude: spawnPatternModel.altitude,
+            speed: spawnPatternModel.speed,
+            heading: spawnPatternModel.heading,
+            position: spawnPatternModel.position,
+            icao: aircraftTypeDefinition.icao,
+            model: aircraftTypeDefinition,
+            route: spawnPatternModel.routeString,
+            // TODO: this may not be needed anymore
+            waypoints: _get(spawnPatternModel, 'waypoints', [])
+        };
+    }
+
+    /**
+     * Given an `airlineId`, find a random aircraft type from the airline.
+     *
+     * @for AircraftController
+     * @method _getRandomAircraftTypeDefinitionForAirlineId
+     * @param airlineId {string}
+     * @param airlineModel {AirlineModel}
+     * @return aircraftDefinition {AircraftTypeDefinitionModel}
+     * @private
+     */
+    _getRandomAircraftTypeDefinitionForAirlineId(airlineId, airlineModel) {
+        return this.aircraftTypeDefinitionCollection.getAircraftDefinitionForAirlineId(airlineId, airlineModel);
+    }
+
+    /**
+     * Determines if `destination` is defined and returns route procedure name if it is not
+     *
+     * The reason we set destination to a procedure names is because the `AircraftStripView`
+     * uses this destination property for display. So for departures, who have no true
+     * destination, the procedure name is used instead
+     *
+     * @for AircraftController
+     * @method _setDestinationFromRouteOrProcedure
+     * @param destination {string}
+     * @param route {string}
+     * @return {string}
+     * @private
+     */
+    _setDestinationFromRouteOrProcedure({ destination, routeString }) {
+        let destinationOrProcedure = destination;
+
+        if (!destination) {
+            const routeModel = new RouteModel(routeString);
+            destinationOrProcedure = routeModel.procedure;
+        }
+
+        return destinationOrProcedure;
     }
 }

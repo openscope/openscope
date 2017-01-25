@@ -375,68 +375,93 @@
       ]
     }
   },
-  "departures": {
-    "airlines": [
-      ["axb",   4],
-      ["baw",   2],
-      ["dlh",   3],
-      ["etd",   3],
-      ["fdb",   2],
-      ["jai",   5],
-      ["klm",   2],
-      ["qtr", 201],
-      ["thy",   2]
-    ],
-    "destinations": [
-      "BATHA", "BUNDU", "ALSEM", "ALVEN", "NAMLA", "PATOM", "SALWA"
-    ],
-    "type": "random",
-    "offset": 0,
-    "frequency": 50
-  },
-  "arrivals": [
-    {
-      "type": 		"cyclic",
-      "route":    "AFNAN.AFNAN.OTHH",
-      "frequency": 13,
-      "altitude": 16000,
-      "speed":		330,
-      "offset":		2,
-      "airlines": [
-        ["axb",   4],
-        ["etd",   3],
-        ["fdb",   2],
-        ["jai",   5],
-        ["qtr",  67]
-        ]
-    },
-    {
-      "type": 		"cyclic",
-      "route":    "BAYAN.BAYAN.OTHH",
-      "frequency": 8,
-      "altitude": 14000,
-      "speed":		330,
-      "offset":		2,
-      "airlines": [
-        ["etd",   3],
-        ["fdb",   2],
-        ["qtr",  67]
-        ]
-    },
-    {
-      "type": 		"cyclic",
-      "route":    "GINTO.GINTO.OTHH",
-      "frequency": 12,
-      "altitude": 18000,
-      "speed":		330,
-      "offset":		2,
-      "airlines": [
-        ["baw",   2],
-        ["dlh",   3],
-        ["klm",   2],
-        ["qtr",  67],
-        ["thy",   2]
-        ]
-    }
-  ]
+    "spawnPatterns": [
+        {
+            "origin": "othh",
+            "destination": "",
+            "category": "departure",
+            "route": "OTHH.BATHA.BATHA",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "offset": 0,
+            "rate": 25,
+            "airlines": [
+                ["qtr", 201],
+                ["thy",   2]
+            ]
+        },
+        {
+            "origin": "othh",
+            "destination": "",
+            "category": "departure",
+            "route": "OTHH.NAMLA.NAMLA",
+            "altitude": "",
+            "speed": "",
+            "method": "random",
+            "offset": 0,
+            "rate": 25,
+            "airlines": [
+                ["axb",   4],
+                ["baw",   2],
+                ["dlh",   3],
+                ["etd",   3],
+                ["fdb",   2],
+                ["jai",   5],
+                ["klm",   2]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "othh",
+            "category": "arrival",
+            "method": 		"cyclic",
+            "route":    "AFNAN.AFNAN.OTHH",
+            "rate": 13,
+            "altitude": 16000,
+            "speed":		330,
+            "offset":		2,
+            "airlines": [
+                ["axb",   4],
+                ["etd",   3],
+                ["fdb",   2],
+                ["jai",   5],
+                ["qtr",  67]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "othh",
+            "category": "arrival",
+            "method": 		"cyclic",
+            "route":    "BAYAN.BAYAN.OTHH",
+            "rate": 8,
+            "altitude": 14000,
+            "speed":		330,
+            "offset":		2,
+            "airlines": [
+                ["etd",   3],
+                ["fdb",   2],
+                ["qtr",  67]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "othh",
+            "category": "arrival",
+            "method": 		"cyclic",
+            "route":    "GINTO.GINTO.OTHH",
+            "rate": 12,
+            "altitude": 18000,
+            "speed":		330,
+            "offset":		2,
+            "airlines": [
+                ["baw",   2],
+                ["dlh",   3],
+                ["klm",   2],
+                ["qtr",  67],
+                ["thy",   2]
+            ]
+        }
+    ]
 }

@@ -23,7 +23,7 @@
   "_comment": "2 block fix > LOCK 15 ARRIVAL TUBO>COTA>MADU>LOCK",
   "_comment": "3 block fix > MARICA ARRIVAL MAC>MIRA>MRC>LIME",
   "_comment": "4 block fix > VELA10A ARRIVAL JOBIM>PAI>GATI>VELA>IT",
-    
+
   "fixes": {
     "_BITAK194017": ["S23d37.81m0", "W043d38.28m0"],
     "_TUBO279015" : ["S22d57.19m0", "W044d35.87m0"],
@@ -165,119 +165,137 @@
       "draw": [["YLA","PCX","ALCIR"]]
     }
   },
-  "departures": {
-    "destinations": [
-      "BOTOM", "AGUA", "PAIOL", "ABSAL", "POKA", "MAC"
-    ],
-    "type": "random",
-    "frequency": 2.75,
-    "airlines": [
-      ["TAM", 60],
-      ["GLO", 60],
-      ["AZU", 30],
-      ["EMBRAER", 3],
-      ["UPS", 1],
-      ["FDX", 1],
-      ["aca/long", 2],
-      ["aal/long", 5],
-      ["aea/long", 2],
-      ["afr/long", 5],
-      ["amx/long", 2],
-      ["ava/long", 2],
-      ["aza/long", 4],
-      ["baw/long", 5],
-      ["cca/long", 2],
-      ["dlh/long", 5],
-      ["ibe/long", 5],
-      ["kal/long", 1],
-      ["klm/long", 3],
-      ["lan", 7],
-      ["uae", 3],
-      ["ual/long", 5],
-      ["FAB", 1]
-    ]
-  },
-  "arrivals": [
+  "spawnPatterns": [
     {
-      "fixes": ["_ZANA070010", "ZANA", "AROB", "PCX", "FICO"],
-      "altitude": [8000, 10000],
-      "speed": 250,
-      "type": "random",
-      "frequency": 27,
-      "airlines": [
-        ["aea/long", 2],
-        ["afr/long", 5],
-        ["aza/long", 4],
-        ["dlh/long", 5],
-        ["ibe/long", 5],      
-        ["baw/long", 5],      
-        ["cca/long", 2],
-        ["uae", 3],
-        ["kal/long", 1],
-        ["klm/long", 3],      
-        ["TAM", 60],
-        ["GLO", 60],
-        ["AZU", 30],
-        ["ONE", 30],
-        ["EMBRAER", 3]
-      ]
+        "origin": "sbgl",
+        "destination": "",
+        "category": "departure",
+        "route": "SBGL.BOTOM.BOTOM",
+        "altitude": "",
+        "speed": "",
+        "method": "random",
+        "rate": 5,
+        "airlines": [
+            ["TAM", 60],
+            ["GLO", 60],
+            ["AZU", 30],
+            ["EMBRAER", 3],
+            ["UPS", 1],
+            ["FDX", 1],
+            ["aca/long", 2],
+            ["aal/long", 5],
+            ["aea/long", 2],
+            ["afr/long", 5],
+            ["amx/long", 2],
+            ["ava/long", 2],
+            ["aza/long", 4],
+            ["baw/long", 5],
+            ["cca/long", 2],
+            ["dlh/long", 5],
+            ["ibe/long", 5],
+            ["kal/long", 1],
+            ["klm/long", 3],
+            ["lan", 7],
+            ["uae", 3],
+            ["ual/long", 5],
+            ["FAB", 1]
+        ]
     },
     {
-      "fixes": ["TOKIM", "LUNAT", "PAI", "GATI"],
-      "altitude": [8000, 10000],
-      "speed": 250,
-      "type": "random",
-      "frequency": 16,
-      "airlines": [
-        ["TAM", 60],
-        ["GLO", 60],
-        ["AZU", 30],
-        ["ONE", 30]
-      ]
+        "origin": "",
+        "destination": "sbgl",
+        "category": "arrival",
+        "route": "_ZANA070010..ZANA..AROB..PCX..FICO",
+        "altitude": [8000, 10000],
+        "speed": 250,
+        "method": "random",
+        "rate": 27,
+        "airlines": [
+            ["aea/long", 2],
+            ["afr/long", 5],
+            ["aza/long", 4],
+            ["dlh/long", 5],
+            ["ibe/long", 5],
+            ["baw/long", 5],
+            ["cca/long", 2],
+            ["uae", 3],
+            ["kal/long", 1],
+            ["klm/long", 3],
+            ["TAM", 60],
+            ["GLO", 60],
+            ["AZU", 30],
+            ["ONE", 30],
+            ["EMBRAER", 3]
+        ]
     },
     {
-      "fixes": ["_BITAK194017", "BITAK", "BOTE", "BUPI", "SCR"],
-      "altitude": [9000, 10000],
-      "speed": 250,
-      "type": "random",
-      "frequency": 4,
-      "airlines":[
-        ["TAM", 60],
-        ["GLO", 60],
-        ["AZU", 30],
-        ["UPS", 1],
-        ["FDX", 1],
-        ["ACA/long", 2],
-        ["AAL/long", 5],
-        ["amx/long", 2],
-        ["ava/long", 2],
-        ["lan", 7],
-        ["ual/long", 5],
-        ["FAB", 1]
-      ]
+        "origin": "",
+        "destination": "sbgl",
+        "category": "arrival",
+        "route": "TOKIM..LUNAT..PAI..GATI",
+        "altitude": [8000, 10000],
+        "speed": 250,
+        "method": "random",
+        "rate": 16,
+        "airlines": [
+            ["TAM", 60],
+            ["GLO", 60],
+            ["AZU", 30],
+            ["ONE", 30]
+        ]
     },
     {
-      "fixes": ["_TUBO279015", "TUBO", "COTA", "GATI"],
-      "altitude": [8000, 9000],
-      "speed": 250,
-      "type": "random",
-      "frequency": 9,
-      "airlines": [
-        ["TAM", 60],
-        ["GLO", 60],
-        ["AZU", 30],
-        ["ONE", 30]
-      ]
+        "origin": "",
+        "destination": "sbgl",
+        "category": "arrival",
+        "route": "_BITAK194017..BITAK..BOTE..BUPI..SCR",
+        "altitude": [9000, 10000],
+        "speed": 250,
+        "method": "random",
+        "rate": 4,
+        "airlines":[
+            ["TAM", 60],
+            ["GLO", 60],
+            ["AZU", 30],
+            ["UPS", 1],
+            ["FDX", 1],
+            ["ACA/long", 2],
+            ["AAL/long", 5],
+            ["amx/long", 2],
+            ["ava/long", 2],
+            ["lan", 7],
+            ["ual/long", 5],
+            ["FAB", 1]
+        ]
     },
     {
-      "fixes": ["TUBO", "COTA", "GATI"],
-      "altitude": [6000, 7000],
-      "speed": 120,
-      "type": "random",
-      "frequency": 12,
-      "airlines": [
-        ["lightga", 1]
-      ]
+        "origin": "",
+        "destination": "sbgl",
+        "category": "arrival",
+        "route": "_TUBO279015..TUBO..COTA..GATI",
+        "altitude": [8000, 9000],
+        "speed": 250,
+        "method": "random",
+        "rate": 9,
+        "airlines": [
+            ["TAM", 60],
+            ["GLO", 60],
+            ["AZU", 30],
+            ["ONE", 30]
+        ]
+    },
+    {
+        "origin": "",
+        "destination": "sbgl",
+        "category": "arrival",
+        "route": "TUBO..COTA..GATI",
+        "altitude": [6000, 7000],
+        "speed": 120,
+        "method": "random",
+        "rate": 12,
+        "airlines": [
+            ["lightga", 1]
+        ]
     }
   ]
 }

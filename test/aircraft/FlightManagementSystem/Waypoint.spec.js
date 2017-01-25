@@ -2,7 +2,7 @@
 import ava from 'ava';
 import _isEqual from 'lodash/isEqual';
 import Waypoint from '../../../src/assets/scripts/client/aircraft/FlightManagementSystem/Waypoint';
-import { airportModelFixtureForWaypoint } from '../../fixtures/airportFixtures';
+import { airportModelFixture } from '../../fixtures/airportFixtures';
 import {
     MINIMAL_WAYPOINT_MOCK,
     BASIC_WAYPOINT_MOCK,
@@ -11,15 +11,15 @@ import {
 } from '../_mocks/waypointMocks';
 
 ava('should not throw if instantiated with a string as an arguemnt', t => {
-    t.notThrows(() => new Waypoint(BASIC_WAYPOINT_MOCK, airportModelFixtureForWaypoint));
+    t.notThrows(() => new Waypoint(BASIC_WAYPOINT_MOCK, airportModelFixture));
 
-    const result = new Waypoint(MINIMAL_WAYPOINT_MOCK, airportModelFixtureForWaypoint);
+    const result = new Waypoint(MINIMAL_WAYPOINT_MOCK, airportModelFixture);
 
     t.true(result instanceof Waypoint);
 });
 
 ava('accepts and object as a parameter and sets its internal properties', t => {
-    const result = new Waypoint(BASIC_WAYPOINT_MOCK, airportModelFixtureForWaypoint);
+    const result = new Waypoint(BASIC_WAYPOINT_MOCK, airportModelFixture);
 
     t.true(result.fix === BASIC_WAYPOINT_MOCK.fix);
     t.true(result.fixRestrictions.alt === BASIC_WAYPOINT_MOCK.fixRestrictions.alt);
@@ -27,7 +27,7 @@ ava('accepts and object as a parameter and sets its internal properties', t => {
 });
 
 ava('accepts and object as a parameter and sets its internal properties', t => {
-    const result = new Waypoint(EXPANDED_WAYPOINT_MOCK, airportModelFixtureForWaypoint);
+    const result = new Waypoint(EXPANDED_WAYPOINT_MOCK, airportModelFixture);
 
     t.true(result.fix === EXPANDED_WAYPOINT_MOCK.fix);
     t.true(result.navmode === EXPANDED_WAYPOINT_MOCK.navmode);
@@ -38,14 +38,14 @@ ava('accepts and object as a parameter and sets its internal properties', t => {
 });
 
 ava('.extractFixRestrictions() does not set fixRestrictions if none are provided', t => {
-    const model = new Waypoint(MINIMAL_WAYPOINT_MOCK, airportModelFixtureForWaypoint);
+    const model = new Waypoint(MINIMAL_WAYPOINT_MOCK, airportModelFixture);
 
     t.true(model.fixRestrictions.alt === null);
     t.true(model.fixRestrictions.spd === null);
 });
 
 ava('.extractFixRestrictions() sets fixRestrictions if any are provided', t => {
-    const model = new Waypoint(MINIMAL_WAYPOINT_MOCK, airportModelFixtureForWaypoint);
+    const model = new Waypoint(MINIMAL_WAYPOINT_MOCK, airportModelFixture);
     model.extractFixRestrictions(BASIC_WAYPOINT_MOCK);
 
     t.true(model.fixRestrictions.alt === BASIC_WAYPOINT_MOCK.fixRestrictions.alt);
@@ -53,26 +53,26 @@ ava('.extractFixRestrictions() sets fixRestrictions if any are provided', t => {
 });
 
 ava('.setInitialNavMode() sets navmode to heading if a fix name is not provided', t => {
-    const result = new Waypoint(MINIMAL_WAYPOINT_MOCK, airportModelFixtureForWaypoint);
+    const result = new Waypoint(MINIMAL_WAYPOINT_MOCK, airportModelFixture);
 
     t.true(result.navmode === 'heading');
 });
 
 ava('.setInitialNavMode() sets navmode to fix if a fix name is provided', t => {
-    const result = new Waypoint(BASIC_WAYPOINT_MOCK, airportModelFixtureForWaypoint);
+    const result = new Waypoint(BASIC_WAYPOINT_MOCK, airportModelFixture);
 
     t.true(result.navmode === 'fix');
 });
 
 ava('.setAltitude() sets the altitude if no restrictions exist and no centerCeiling is supplied', t => {
-    const model = new Waypoint(MINIMAL_WAYPOINT_MOCK, airportModelFixtureForWaypoint);
+    const model = new Waypoint(MINIMAL_WAYPOINT_MOCK, airportModelFixture);
     model.setAltitude(null, 23000);
 
     t.true(model.altitude === 23000);
 });
 
 ava('.setAltitude() if fix restrictions do not exist, sets the altitude by the min of centerCeiling and cruiseAltitude', t => {
-    const model = new Waypoint(MINIMAL_WAYPOINT_MOCK, airportModelFixtureForWaypoint);
+    const model = new Waypoint(MINIMAL_WAYPOINT_MOCK, airportModelFixture);
     model.setAltitude(10000, 23000);
 
     t.true(model.altitude === 10000);
@@ -82,7 +82,7 @@ ava('.setAltitude() sets the altitude from existing fixRestrictions and cruiseAl
     const centerCeilingMock = 10000;
     const cruiseAltitudeMock = 23000;
     const expectedResult = 27000;
-    const model = new Waypoint(BASIC_WAYPOINT_MOCK, airportModelFixtureForWaypoint);
+    const model = new Waypoint(BASIC_WAYPOINT_MOCK, airportModelFixture);
     model.setAltitude(centerCeilingMock, cruiseAltitudeMock);
 
     t.true(model.altitude === expectedResult);
@@ -92,7 +92,7 @@ ava('.setAltitude() sets the altitude from existing fixRestrictions and cruiseAl
     const centerCeilingMock = 10000;
     const cruiseAltitudeMock = 23000;
     const expectedResult = 23000;
-    const model = new Waypoint(BASIC_WAYPOINT_MOCK, airportModelFixtureForWaypoint);
+    const model = new Waypoint(BASIC_WAYPOINT_MOCK, airportModelFixture);
     model.fixRestrictions.alt = '270-';
     model.setAltitude(centerCeilingMock, cruiseAltitudeMock);
 
@@ -103,7 +103,7 @@ ava('.setAltitude() sets the altitude from existing fixRestrictions and cruiseAl
     const centerCeilingMock = 10000;
     const cruiseAltitudeMock = 23000;
     const expectedResult = 21000;
-    const model = new Waypoint(BASIC_WAYPOINT_MOCK, airportModelFixtureForWaypoint);
+    const model = new Waypoint(BASIC_WAYPOINT_MOCK, airportModelFixture);
     model.fixRestrictions.alt = '210';
     model.setAltitude(centerCeilingMock, cruiseAltitudeMock);
 
@@ -113,7 +113,7 @@ ava('.setAltitude() sets the altitude from existing fixRestrictions and cruiseAl
 ava('.setSpeed() sets the speed from existing fixRestrictions and cruiseSpeed when restriction is at or above', t => {
     const cruiseSpeedMock = 300;
     const expectedResult = 300;
-    const model = new Waypoint(BASIC_WAYPOINT_MOCK, airportModelFixtureForWaypoint);
+    const model = new Waypoint(BASIC_WAYPOINT_MOCK, airportModelFixture);
     model.fixRestrictions.spd = '200+';
     model.setSpeed(cruiseSpeedMock);
 
@@ -123,7 +123,7 @@ ava('.setSpeed() sets the speed from existing fixRestrictions and cruiseSpeed wh
 ava('.setSpeed() sets the speed from existing fixRestrictions and cruiseSpeed  when restriction is at or below', t => {
     const cruiseSpeedMock = 300;
     const expectedResult = 270;
-    const model = new Waypoint(BASIC_WAYPOINT_MOCK, airportModelFixtureForWaypoint);
+    const model = new Waypoint(BASIC_WAYPOINT_MOCK, airportModelFixture);
     model.fixRestrictions.spd = '270-';
     model.setSpeed(cruiseSpeedMock);
 
@@ -133,7 +133,7 @@ ava('.setSpeed() sets the speed from existing fixRestrictions and cruiseSpeed  w
 ava('.setSpeed() sets the speed from existing fixRestrictions and cruiseSpeed', t => {
     const cruiseSpeedMock = 300;
     const expectedResult = 270;
-    const model = new Waypoint(BASIC_WAYPOINT_MOCK, airportModelFixtureForWaypoint);
+    const model = new Waypoint(BASIC_WAYPOINT_MOCK, airportModelFixture);
     model.setSpeed(cruiseSpeedMock);
 
     t.true(model.speed === expectedResult);

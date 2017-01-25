@@ -34,7 +34,7 @@ export default class LoadingView {
          * @property $loadingIndicator
          * @type {jquery|null}
          */
-        this.$loadingIdicator = null;
+        this.$loadingIndicator = null;
 
         /**
          * @property $loadingMessage
@@ -80,7 +80,7 @@ export default class LoadingView {
      */
     _setupChildren() {
         this.$element = $(SELECTORS.DOM_SELECTORS.LOADING);
-        this.$loadingIdicator = $(SELECTORS.DOM_SELECTORS.LOADING_INDICATOR);
+        this.$loadingIndicator = $(SELECTORS.DOM_SELECTORS.LOADING_INDICATOR);
         this.$loadingMessage = this.$element.find(SELECTORS.DOM_SELECTORS.MESSAGE);
 
         return this;
@@ -155,7 +155,7 @@ export default class LoadingView {
      */
     startLoad(url) {
         if (!this.loading) {
-            $(SELECTORS.DOM_SELECTORS.LOADING_INDICATOR).show();
+            this.$loadingIndicator.show();
             this.loadingState.startTime = time();
         }
 
@@ -173,7 +173,7 @@ export default class LoadingView {
         const timeNow = time();
 
         if (this._didExceedMinimumWaitTime()) {
-            this.$loadingIdicator.hide();
+            this.$loadingIndicator.hide();
 
             this._disable();
         } else {
@@ -183,7 +183,7 @@ export default class LoadingView {
 
             const delayTime = (MIN_DISPLAY_SECONDS - (timeNow - this.start)) * 1000;
             this.callback = setTimeout(() => {
-                $(SELECTORS.DOM_SELECTORS.LOADING_INDICATOR).hide();
+                this.$loadingIndicator.hide();
 
                 this._disable();
             }, delayTime);
@@ -195,6 +195,7 @@ export default class LoadingView {
      * @method complete
      */
     complete() {
+        this.$loadingIndicator.hide();
         this.$element.fadeOut(1000);
         this.$element.css('pointerEvents', 'none');
     }

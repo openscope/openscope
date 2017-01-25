@@ -850,36 +850,82 @@
       "draw": [[]]
     }
   },
-  "departures": {
-    "airlines": [
-      ["awi", 12],
-      ["eny", 10],
-      ["aal", 9],
-      ["flg", 9],
-      ["rpa", 8],
-      ["asq", 8],
-      ["jbu", 6],
-      ["vrd", 4],
-      ["jia", 4],
-      ["ual", 3],
-      ["swa", 3],
-      ["fft", 2],
-      ["vrd", 2]
-    ],
-    "destinations": [
-      "BUNZZ3", "CLTCH1", "JCOBY3", "JDUBB1", "JERES2", "MCRAY2", "RNLDI4", "SCRAM3", "WOOLY1"
-    ],
-    "type": "random",
-    "offset": 0,
-    "frequency": 38
-  },
-  "arrivals": [
+    "spawnPatterns": [
     {
-      "type": "random",
+        "origin": "kiad",
+        "destination": "",
+        "category": "departure",
+        "route": "KIAD.BUNZZ3.RAMAY",
+        "altitude": "",
+        "speed": "",
+        "method": "random",
+        "rate": 9.5,
+        "offset": 0,
+        "airlines": [
+            ["awi", 12],
+            ["rpa", 8],
+            ["vrd", 4]
+        ]
+    },
+    {
+        "origin": "kiad",
+        "destination": "",
+        "category": "departure",
+        "route": "KIAD.JERES2.JERES",
+        "altitude": "",
+        "speed": "",
+        "method": "random",
+        "rate": 9.5,
+        "offset": 0,
+        "airlines": [
+            ["asq", 8],
+            ["jbu", 6],
+            ["jia", 4]
+        ]
+    },
+    {
+        "origin": "kiad",
+        "destination": "",
+        "category": "departure",
+        "route": "KIAD.SCRAM3.LYH",
+        "altitude": "",
+        "speed": "",
+        "method": "random",
+        "rate": 9.5,
+        "offset": 0,
+        "airlines": [
+            ["ual", 3],
+            ["swa", 3],
+            ["fft", 2],
+            ["vrd", 2]
+        ]
+    },
+    {
+        "origin": "kiad",
+        "destination": "",
+        "category": "departure",
+        "route": "KIAD.WOOLY1.SWANN",
+        "altitude": "",
+        "speed": "",
+        "method": "random",
+        "rate": 9.5,
+        "offset": 0,
+        "airlines": [
+            ["eny", 10],
+            ["aal", 9],
+            ["flg", 9],
+            ["vrd", 4]
+        ]
+    },
+    {
+      "origin": "",
+      "destination": "kiad",
+      "category": "arrival",
       "route":   "THHMP.CAVLR3.KIAD",
-      "frequency": 12,
       "altitude":  18000,
       "speed":    280,
+      "method": "random",
+      "rate": 12,
       "airlines":  [
         ["ual", 5],
         ["ual/long", 2],
@@ -893,11 +939,14 @@
       ]
     },
     {
-      "type": "random",
+      "origin": "",
+      "destination": "kiad",
+      "category": "arrival",
       "route":   "HVQ.GIBBZ2.KIAD",
-      "frequency": 12,
       "altitude":  25000,
       "speed":    280,
+      "method": "random",
+      "rate": 12,
       "airlines":  [
         ["ual", 5],
         ["ual/long", 2],
@@ -911,11 +960,14 @@
       ]
     },
     {
-      "type": "random",
+      "origin": "",
+      "destination": "kiad",
+      "category": "arrival",
       "route":   "PARKE.HYPER6.KIAD",
-      "frequency": 12,
       "altitude":  20000,
       "speed":    280,
+      "method": "random",
+      "rate": 12,
       "airlines":  [
         ["ual", 5],
         ["ual/long", 2],
@@ -929,11 +981,14 @@
       ]
     },
     {
-      "type": "random",
+      "origin": "",
+      "destination": "kiad",
+      "category": "arrival",
       "route":   "PSB.MAPEL1.KIAD",
-      "frequency": 12,
       "altitude":  17000,
       "speed":    280,
+      "method": "random",
+      "rate": 12,
       "airlines":  [
         ["ual", 5],
         ["ual/long", 2],

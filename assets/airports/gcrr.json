@@ -43,7 +43,7 @@
           ["N28.9533333", "W13.8266833"],
 		  ["N28.9667000", "W13.8266833"],
 		  ["N28.9667000", "W13.7933167"],
-		  ["N28.9533333", "W13.7933167"]		  
+		  ["N28.9533333", "W13.7933167"]
         ]
       },
       {
@@ -53,7 +53,7 @@
           ["N28.3472500", "W14.1555667"],
 		  ["N28.2555833", "W14.1555667"],
 		  ["N28.2389000", "W14.2166833"],
-		  ["N28.3472500", "W14.2166833"]		  
+		  ["N28.3472500", "W14.2166833"]
         ]
       },
       {
@@ -64,7 +64,7 @@
 		  ["N28.9861167", "W13.8400167"],
 		  ["N29.0400167", "W13.8189667"],
 		  ["N29.0650000", "W13.7775333"],
-		  ["N29.0011333", "W13.7064167"]		  
+		  ["N29.0011333", "W13.7064167"]
         ]
       }
   ],
@@ -129,7 +129,7 @@
 	"GINAS": ["N29d30m24.0", "W13d07m60.0"],
 	"NIRPO": ["N29d14m12.0", "W13d13m42.0"],
 	"PEPOM": ["N29d53m54.0", "W12d58m54.0"],
-	"RASEP": ["N28d41m42.0", "W14d26m48.0"],	
+	"RASEP": ["N28d41m42.0", "W14d26m48.0"],
 	"GDV71": ["N28d45m52.4", "W14d19m58.2"]
 	},
   "runways": [
@@ -152,7 +152,7 @@
       },
       "draw": [["RODIM", "MAPOV", "PERER", "ARVEM", "PEPES", "SAMAR"], ["RIPIX", "RR450", "PEPES", "SAMAR"]]
     },
-    "VASTO": {    
+    "VASTO": {
       "icao": "VASTO",
       "name": "Vasto",
       "suffix": {"21":"5N", "03":"6M"},
@@ -228,102 +228,297 @@
       "body": ["RASEP", ["GDV71", "S220"], ["MAPED", "A100|S200"], ["LTE15", "A70|S200"], ["254LT", "A60|S180"], ["242LT", "A45|S180"], ["230LT", "A35|S180"], ["233LT", "A31|S180"], ["221LT", "A23|S180"], "GOLFY", "LTE01"],
       "draw": [["RASEP", "GDV71", "MAPED", "LTE15", "254LT", "242LT", "230LT", "233LT", "221LT", "GOLFY", "LTE01"]]
     }
-  },  
-  "departures": {
-    "airlines": [
-	  ["ibb", 6],
-	  ["ryr", 7],
-	  ["cnf", 4],
-	  ["vlg", 3],
-	  ["gmi", 3],
-	  ["exs", 3],
-	  ["tcx", 3],
-	  ["tom", 3],
-	  ["cfg", 3],
-	  ["tui", 3],
-	  ["mon", 3],
-	  ["ezy", 3],
-	  ["sxd", 3],
-	  ["tra", 2],
-	  ["aea", 2],
-	  ["ber", 2],
-	  ["ein", 2],
-	  ["ibs", 2],
-	  ["nax", 2],
-	  ["ent", 2],
-	  ["sas", 2],
-	  ["tvs", 1],
-	  ["baw", 1],
-	  ["lightga", 1]
-    ],
-    "destinations": [
-      "SAMAR", "VASTO", "KORAL", "SOTAD", "LORPO", "LARYS"
-    ],
-    "type": "random",
-    "frequency": 26
   },
-  "arrivals":[
-   	{
-      "type": "random",
-      "route":   "DEVLA.DEVL3P.GCRR",
-      "frequency": 7,
-      "altitude":  12000,
-      "speed":    220,
-      "airlines":  [
-		["ryr", 3],
-		["gmi", 3],
-		["cfg", 3],
-		["tui", 3],
-		["sxd", 3],
-		["aea", 1],
-		["tvs", 1],
-		["ber", 2],
-		["ent", 2],
-		["nax", 2],
-		["sas", 2]
-      ]
-    },
-    {
-      "type": "random",
-      "route":   "TERTO.TERT6P.GCRR",
-      "frequency": 10,
-      "altitude":  15000,
-      "speed":    280,
-      "airlines":  [
-		["ryr", 4],
-		["vlg", 3],
-		["tcx", 3],
-		["exs", 3],
-		["tom", 3],
-		["mon", 3],
-		["ezy", 3],
-		["ein", 2],
-		["ibs", 2],
-		["aea", 1],
-		["baw", 1]
-      ]
-    },
-    {
-      "type": "random",
-      "route":   "LARYS.LARY2P.GCRR",
-      "frequency": 2,
-      "altitude":  12000,
-      "speed":    275,
-      "airlines":  [
-        ["ibb", 3],
-		["lightga", 1]
-      ]
-    },
-    {
-      "type": "random",
-      "route":   "RASEP.RASE2P.GCRR",
-      "frequency": 2,
-      "altitude":  12000,
-      "speed":    275,
-      "airlines":  [
-        ["cnf", 4],
-        ["ibb", 3]
-      ]
-    }
-  ]
+    "spawnPatterns": [
+        {
+            "origin": "GCRR",
+            "destination": "",
+            "category": "departure",
+            "route": "GCRR.SAMAR.SAMAR",
+            "altitude": null,
+            "speed": null,
+            "method": "random",
+            "rate": 4,
+            "airlines": [
+                ["ibb", 6],
+                ["ryr", 7],
+                ["cnf", 4],
+                ["vlg", 3],
+                ["gmi", 3],
+                ["exs", 3],
+                ["tcx", 3],
+                ["tom", 3],
+                ["cfg", 3],
+                ["tui", 3],
+                ["mon", 3],
+                ["ezy", 3],
+                ["sxd", 3],
+                ["tra", 2],
+                ["aea", 2],
+                ["ber", 2],
+                ["ein", 2],
+                ["ibs", 2],
+                ["nax", 2],
+                ["ent", 2],
+                ["sas", 2],
+                ["tvs", 1],
+                ["baw", 1],
+                ["lightga", 1]
+            ]
+        },
+        {
+            "origin": "GCRR",
+            "destination": "",
+            "category": "departure",
+            "route": "GCRR.VASTO.VASTO",
+            "altitude": null,
+            "speed": null,
+            "method": "random",
+            "rate": 4,
+            "airlines": [
+                ["ibb", 6],
+                ["ryr", 7],
+                ["cnf", 4],
+                ["vlg", 3],
+                ["gmi", 3],
+                ["exs", 3],
+                ["tcx", 3],
+                ["tom", 3],
+                ["cfg", 3],
+                ["tui", 3],
+                ["mon", 3],
+                ["ezy", 3],
+                ["sxd", 3],
+                ["tra", 2],
+                ["aea", 2],
+                ["ber", 2],
+                ["ein", 2],
+                ["ibs", 2],
+                ["nax", 2],
+                ["ent", 2],
+                ["sas", 2],
+                ["tvs", 1],
+                ["baw", 1],
+                ["lightga", 1]
+            ]
+        },
+        {
+            "origin": "GCRR",
+            "destination": "",
+            "category": "departure",
+            "route": "GCRR.KORAL.KORAL",
+            "altitude": null,
+            "speed": null,
+            "method": "random",
+            "rate": 4,
+            "airlines": [
+                ["ibb", 6],
+                ["ryr", 7],
+                ["cnf", 4],
+                ["vlg", 3],
+                ["gmi", 3],
+                ["exs", 3],
+                ["tcx", 3],
+                ["tom", 3],
+                ["cfg", 3],
+                ["tui", 3],
+                ["mon", 3],
+                ["ezy", 3],
+                ["sxd", 3],
+                ["tra", 2],
+                ["aea", 2],
+                ["ber", 2],
+                ["ein", 2],
+                ["ibs", 2],
+                ["nax", 2],
+                ["ent", 2],
+                ["sas", 2],
+                ["tvs", 1],
+                ["baw", 1],
+                ["lightga", 1]
+            ]
+        },
+        {
+            "origin": "GCRR",
+            "destination": "",
+            "category": "departure",
+            "route": "GCRR.SOTAD.SOTAD",
+            "altitude": null,
+            "speed": null,
+            "method": "random",
+            "rate": 4,
+            "airlines": [
+                ["ibb", 6],
+                ["ryr", 7],
+                ["cnf", 4],
+                ["vlg", 3],
+                ["gmi", 3],
+                ["exs", 3],
+                ["tcx", 3],
+                ["tom", 3],
+                ["cfg", 3],
+                ["tui", 3],
+                ["mon", 3],
+                ["ezy", 3],
+                ["sxd", 3],
+                ["tra", 2],
+                ["aea", 2],
+                ["ber", 2],
+                ["ein", 2],
+                ["ibs", 2],
+                ["nax", 2],
+                ["ent", 2],
+                ["sas", 2],
+                ["tvs", 1],
+                ["baw", 1],
+                ["lightga", 1]
+            ]
+        },
+        {
+            "origin": "GCRR",
+            "destination": "",
+            "category": "departure",
+            "route": "GCRR.LORPO.LORPO",
+            "altitude": null,
+            "speed": null,
+            "method": "random",
+            "rate": 4,
+            "airlines": [
+                ["ibb", 6],
+                ["ryr", 7],
+                ["cnf", 4],
+                ["vlg", 3],
+                ["gmi", 3],
+                ["exs", 3],
+                ["tcx", 3],
+                ["tom", 3],
+                ["cfg", 3],
+                ["tui", 3],
+                ["mon", 3],
+                ["ezy", 3],
+                ["sxd", 3],
+                ["tra", 2],
+                ["aea", 2],
+                ["ber", 2],
+                ["ein", 2],
+                ["ibs", 2],
+                ["nax", 2],
+                ["ent", 2],
+                ["sas", 2],
+                ["tvs", 1],
+                ["baw", 1],
+                ["lightga", 1]
+            ]
+        },
+        {
+            "origin": "GCRR",
+            "destination": "",
+            "category": "departure",
+            "route": "GCRR.LARYS.LARYS",
+            "altitude": null,
+            "speed": null,
+            "method": "random",
+            "rate": 4,
+            "airlines": [
+                ["ibb", 6],
+                ["ryr", 7],
+                ["cnf", 4],
+                ["vlg", 3],
+                ["gmi", 3],
+                ["exs", 3],
+                ["tcx", 3],
+                ["tom", 3],
+                ["cfg", 3],
+                ["tui", 3],
+                ["mon", 3],
+                ["ezy", 3],
+                ["sxd", 3],
+                ["tra", 2],
+                ["aea", 2],
+                ["ber", 2],
+                ["ein", 2],
+                ["ibs", 2],
+                ["nax", 2],
+                ["ent", 2],
+                ["sas", 2],
+                ["tvs", 1],
+                ["baw", 1],
+                ["lightga", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "GCRR",
+            "category": "arrival",
+            "route": "DEVLA.DEVL3P.GCRR",
+            "altitude": 12000,
+            "speed": 220,
+            "method": "random",
+            "rate": 7,
+            "airlines": [
+                ["ryr", 3],
+                ["gmi", 3],
+                ["cfg", 3],
+                ["tui", 3],
+                ["sxd", 3],
+                ["aea", 1],
+                ["tvs", 1],
+                ["ber", 2],
+                ["ent", 2],
+                ["nax", 2],
+                ["sas", 2]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "GCRR",
+            "category": "arrival",
+            "route": "TERTO.TERT6P.GCRR",
+            "altitude": 15000,
+            "speed": 280,
+            "method": "random",
+            "rate": 10,
+            "airlines": [
+                ["ryr", 4],
+        		["vlg", 3],
+        		["tcx", 3],
+        		["exs", 3],
+        		["tom", 3],
+        		["mon", 3],
+        		["ezy", 3],
+        		["ein", 2],
+        		["ibs", 2],
+        		["aea", 1],
+        		["baw", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "GCRR",
+            "category": "arrival",
+            "route": "LARYS.LARY2P.GCRR",
+            "altitude": 12000,
+            "speed": 280,
+            "method": "random",
+            "rate": 2,
+            "airlines": [
+                ["ibb", 3],
+                ["lightga", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "GCRR",
+            "category": "arrival",
+            "route": "RASEP.RASE2P.GCRR",
+            "altitude": 12000,
+            "speed": 280,
+            "method": "random",
+            "rate": 0,
+            "airlines": [
+                ["cnf", 4],
+                ["ibb", 3]
+            ]
+        }
+    ]
 }

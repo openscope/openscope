@@ -3,7 +3,7 @@ import _get from 'lodash/get';
 import _has from 'lodash/has';
 import _map from 'lodash/map';
 import Waypoint from './Waypoint';
-import RouteModel from '../../airport/Route/RouteModel';
+import RouteModel from '../../navigationLibrary/Route/RouteModel';
 import { FP_LEG_TYPE } from '../../constants/aircraftConstants';
 import { LOG } from '../../constants/logLevel';
 
@@ -120,7 +120,7 @@ export default class Leg {
 
                 break;
             case FP_LEG_TYPE.MANUAL:
-                this._generateManualWaypoint(airport);
+                this._generateManualWaypoint(data, airport);
 
                 break;
             default:
@@ -174,14 +174,17 @@ export default class Leg {
         }
 
         const airport = window.airportController.airport_get(this.route.entry);
-        const waypointsForSid = airport.findWaypointModelsForSid(this.route.procedure, rwy, this.route.exit);
+        const waypointsForSid = fms.findWaypointModelsForSid(
+            this.route.procedure,
+            rwy,
+            this.route.exit
+        );
 
         // TODO: refactor/abstract this boolean logic
         // Remove the placeholder leg (if present)
         if (fms.my_aircraft.isOnGround() &&
             fms.legs.length > 0 &&
-            fms.legs[0].route === airport.icao &&
-            pairs.length > 0
+            fms.legs[0].route === airport.icao
         ) {
             // remove the placeholder leg, to be replaced below with SID Leg
             fms.legs.splice(0, 1);
@@ -216,7 +219,7 @@ export default class Leg {
 
         const rwy = fms.my_aircraft.rwy_arr;
         const airport = window.airportController.airport_get(this.route.exit);
-        const waypointsForStar = airport.findWaypointModelsForStar(this.route.procedure, this.route.entry, rwy);
+        const waypointsForStar = fms.findWaypointModelsForStar(this.route.procedure, this.route.entry, rwy);
 
         for (let i = 0; i < waypointsForStar.length; i++) {
             const waypointToAdd = waypointsForStar[i].generateFmsWaypoint(airport);
@@ -305,8 +308,8 @@ export default class Leg {
      * @param airport {AirportInstanceModel}
      * @private
      */
-    _generateManualWaypoint(airport) {
-        const waypointToAdd = new Waypoint({ route: this.route }, airport);
+    _generateManualWaypoint(data, airport) {
+        const waypointToAdd = new Waypoint(data, airport);
 
         this.addWaypointToLeg(waypointToAdd);
     }

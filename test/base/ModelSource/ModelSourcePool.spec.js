@@ -4,12 +4,12 @@ import sinon from 'sinon';
 import _isEqual from 'lodash/isEqual';
 
 import modelSourcePool from '../../../src/assets/scripts/client/base/ModelSource/ModelSourcePool';
-import FixModel from '../../../src/assets/scripts/client/airport/Fix/FixModel';
+import FixModel from '../../../src/assets/scripts/client/navigationLibrary/Fix/FixModel';
 import { airportPositionFixtureKSFO } from '../../fixtures/airportFixtures';
 import {
     FIXNAME_MOCK,
     FIX_COORDINATE_MOCK
-} from '../../airport/fix/_mocks/fixMocks';
+} from '../../navigationLibrary/Fix/_mocks/fixMocks';
 
 const SOURCE_NAME_MOCK = 'FixModel';
 
@@ -18,7 +18,8 @@ ava.serial('throws when attempting to instantiate', t => {
 });
 
 ava.serial('pre-populates pool with the specified number models', t => {
-    t.true(modelSourcePool.length === modelSourcePool._maxPoolSizePerModel);
+    t.true(modelSourcePool.length !== 0);
+    t.true(modelSourcePool.length <= modelSourcePool._maxPoolSizePerModel);
 });
 
 ava.serial('.returnReusable() throws if the modelToAdd is the incorrect type', t => {
