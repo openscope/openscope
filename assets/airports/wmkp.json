@@ -198,9 +198,10 @@
       "entryPoints": {
         "BIDMO": [["BIDMO", "A140"]]
       },
+      "body": [["PUKAR", "A80"]],
       "rwy": {
-        "04": [["PUKAR", "A80"], ["ENDOR", "A35"], ["MEKAT", "A31"], ["KENDI", "A25"]],
-        "22": [["PUKAR", "A80"], ["GOBAR", "A31"], ["UPTOP", "A25"]]
+        "04": [["ENDOR", "A35"], ["MEKAT", "A31"], ["KENDI", "A25"]],
+        "22": [["GOBAR", "A31"], ["UPTOP", "A25"]]
       },
       "draw": [
           ["BIDMO", "PUKAR", "GOBAR", "UPTOP"],
@@ -494,26 +495,6 @@
                 ["mas", 6],
                 ["slk", 1],
                 ["tgw", 1]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "WMKP",
-            "category": "arrival",
-            "route": "PAPDA.PAPDA_STAR.WMKP",
-            "altitude": 9000,
-            "speed": 250,
-            "method": "random",
-            "rate": 7,
-            "airlines": [
-                ["axm", 9],
-                ["csn", 1],
-                ["cpa", 5],
-                ["hda", 1],
-                ["eva", 3],
-                ["fdx", 1],
-                ["ffm", 8],
-                ["kal", 3]
             ]
         },
         {
