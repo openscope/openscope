@@ -114,7 +114,7 @@ ava('.generateFlightNumber() creates a flightNumber made up of numbers and lette
     t.true(alphaNumericRegex.test(result));
 });
 
-ava('.generateFlightNumber() creates a flightNumber with a prefix', (t) => {
+ava.skip('.generateFlightNumber() creates a flightNumber with a prefix', (t) => {
     const expectedResult = 'N';
     const model = new AirlineModel(NOVEMBER_AIRLINE_MOCK);
     const result = model.generateFlightNumber();

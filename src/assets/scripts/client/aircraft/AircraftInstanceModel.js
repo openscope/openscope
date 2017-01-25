@@ -481,7 +481,7 @@ export default class Aircraft {
     getCallsign() {
         // TODO: this should be an instance property. however, it seems callsign is used in places where it should be
         // flightnumber and visa versa. this needs to be ironed out first before making a class property.
-        return `${this.airline.toUpperCase()}${this.callsign}`;
+        return `${this.airline.toUpperCase()}${this.callsign.toUpperCase()}`;
     }
 
     /**
