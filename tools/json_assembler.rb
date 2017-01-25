@@ -39,8 +39,11 @@ def add_icao_to_airline_and_combine_json
     airline = JSON.parse File.read(f)
     # grab the airline icao from the file name
     airline_icao = "#{f.split('.')[0]}"
-    # create a new key in the hash and set it to the airline_icao
-    airline['icao'] = airline_icao
+    # some airline files may already specify an `icao`, we dont want to overwrite that
+    unless airline['icao']
+      # otherwise create a new key in the hash and set it to the airline_icao
+      airline['icao'] = airline_icao
+    end
 
     # add the original file contents, plus our new `icao` key value pair to the out_filename array
     add_item_to_json_out_filename(airline)

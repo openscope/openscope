@@ -293,11 +293,12 @@
       "entryPoints": {
         "ARAMA": [["_ARAMA", "S250"]]
       },
+      "body": [["BOBAG", "A100|S220"]],
       "rwy": {
-        "02L": [["BOBAG", "A100|S220"], ["BOKIP", "A60"], ["SAMKO", "A40|S190-"]],
-        "02C": [["BOBAG", "A100|S220"], ["BOKIP", "A60"], ["SAMKO", "A40|S190-"]],
-        "20R": [["BOBAG", "A100|S220"], "SAMKO", ["BTM", "A70|S220"], ["DOVAN", "A40"], ["BIPOP", "A30|S190"]],
-        "20C": [["BOBAG", "A100|S220"], "SAMKO", ["BTM", "A70|S220"], ["DOVAN", "A40"], ["BIPOP", "A30|S190"]]
+        "02L": [["BOKIP", "A60"], ["SAMKO", "A40|S190-"]],
+        "02C": [["BOKIP", "A60"], ["SAMKO", "A40|S190-"]],
+        "20R": ["SAMKO", ["BTM", "A70|S220"], ["DOVAN", "A40"], ["BIPOP", "A30|S190"]],
+        "20C": ["SAMKO", ["BTM", "A70|S220"], ["DOVAN", "A40"], ["BIPOP", "A30|S190"]]
       },
       "draw": [
         ["ARAMA", "BOBAG", "BOKIP", "SAMKO"],
@@ -311,11 +312,12 @@
       "entryPoints": {
         "ASUNA": [["_ASUNA", "S250"]]
       },
+      "body": [["BOBAG", "A100|S220"]],
       "rwy": {
-        "02L": [["BOBAG", "A100|S220"], ["BOKIP", "A60"], ["SAMKO", "A40|S190"]],
-        "02C": [["BOBAG", "A100|S220"], ["BOKIP", "A60"], ["SAMKO", "A40|S190"]],
-        "20R": [["BOBAG", "A100|S220"], "SAMKO", ["BTM", "A70|S220"], ["DOVAN", "A40"], ["BIPOP", "A30|S190"]],
-        "20C": [["BOBAG", "A100|S220"], "SAMKO", ["BTM", "A70|S220"], ["DOVAN", "A40"], ["BIPOP", "A30|S190"]]
+        "02L": [["BOKIP", "A60"], ["SAMKO", "A40|S190"]],
+        "02C": [["BOKIP", "A60"], ["SAMKO", "A40|S190"]],
+        "20R": ["SAMKO", ["BTM", "A70|S220"], ["DOVAN", "A40"], ["BIPOP", "A30|S190"]],
+        "20C": ["SAMKO", ["BTM", "A70|S220"], ["DOVAN", "A40"], ["BIPOP", "A30|S190"]]
       },
       "draw": [
         ["BOBAG", "BOKIP", "SAMKO"],
@@ -329,11 +331,12 @@
       "entryPoints": {
         "KARTO": ["TOMAN"]
       },
+      "body": ["KARTO"],
       "rwy": {
-        "02L": ["KARTO", ["KEXAS", "A160-|S250"], ["LAVAX", "S220"], ["IGNON", "A70"], ["SANAT", "A40|S190"]],
-        "02C": ["KARTO", ["KEXAS", "A160-|S250"], ["LAVAX", "S220"], ["IGNON", "A70"], ["SANAT", "A40|S190"]],
-        "20R": ["KARTO", ["KEXAS", "A160-|S250"], ["LAVAX", "S220"], ["RUVIK", "A80"], ["DOVAN", "A40"], ["BIPOP", "A30|S190"]],
-        "20C": ["KARTO", ["KEXAS", "A160-|S250"], ["LAVAX", "S220"], ["RUVIK", "A80"], ["DOVAN", "A40"], ["BIPOP", "A30|S190"]]
+        "02L": [["KEXAS", "A160-|S250"], ["LAVAX", "S220"], ["IGNON", "A70"], ["SANAT", "A40|S190"]],
+        "02C": [["KEXAS", "A160-|S250"], ["LAVAX", "S220"], ["IGNON", "A70"], ["SANAT", "A40|S190"]],
+        "20R": [["KEXAS", "A160-|S250"], ["LAVAX", "S220"], ["RUVIK", "A80"], ["DOVAN", "A40"], ["BIPOP", "A30|S190"]],
+        "20C": [["KEXAS", "A160-|S250"], ["LAVAX", "S220"], ["RUVIK", "A80"], ["DOVAN", "A40"], ["BIPOP", "A30|S190"]]
       },
       "draw": [
         ["ASUNA", "TOMAN", "KARTO", "KEXAS", "LAVAX", "IGNON", "SANAT"],
@@ -347,11 +350,12 @@
       "entryPoints": {
         "OBDOS": ["OBDOS"]
       },
+      "body": ["IKAGO", "IKIMA", ["IBULA", "A180-|S250"], ["LAVAX", "S220"]],
       "rwy": {
-        "02L": ["IKAGO", "IKIMA", ["IBULA", "A180-|S250"], ["LAVAX", "S220"], ["IGNON", "A70"], ["SANAT", "A40|S190"]],
-        "02C": ["IKAGO", "IKIMA", ["IBULA", "A180-|S250"], ["LAVAX", "S220"], ["IGNON", "A70"], ["SANAT", "A40|S190"]],
-        "20R": ["IKAGO", "IKIMA", ["IBULA", "A180-|S250"], ["LAVAX", "S220"], ["RUVIK", "A80"], ["DOVAN", "A40"], ["BIPOP", "A30|S190"]],
-        "20C": ["IKAGO", "IKIMA", ["IBULA", "A180-|S250"], ["LAVAX", "S220"], ["RUVIK", "A80"], ["DOVAN", "A40"], ["BIPOP", "A30|S190"]]
+        "02L": [["IGNON", "A70"], ["SANAT", "A40|S190"]],
+        "02C": [["IGNON", "A70"], ["SANAT", "A40|S190"]],
+        "20R": [["RUVIK", "A80"], ["DOVAN", "A40"], ["BIPOP", "A30|S190"]],
+        "20C": [["RUVIK", "A80"], ["DOVAN", "A40"], ["BIPOP", "A30|S190"]]
       },
       "draw": [
         ["OBDOS", "IKAGO", "IKIMA", "IBULA", "LAVAX", "IGNON", "SANAT"],
@@ -410,14 +414,15 @@
       ]
     },
     "LEBAR2A": {
-      "icao": "LEBAR 2A",
+      "icao": "LEBAR2A",
       "name": "Lebar Two Alpha",
       "suffix": {"02L":"2A"},
       "entryPoints": {
         "PASPU": [["_PASPU", "A220"]]
       },
+      "body": [["PU", "A70"], "SJ"],
       "rwy": {
-        "02L": [["PU", "A70"], "SJ", ["PALGA", "S220"], "PAMSI", ["SAMKO", "A40|S190"]]
+        "02L": [["PALGA", "S220"], "PAMSI", ["SAMKO", "A40|S190"]]
       },
       "draw": [
         ["PASPU", "PU", "SJ", "PALGA", "PAMSI", "SAMKO"]
@@ -445,11 +450,12 @@
       "entryPoints": {
         "REPOV": [["REPOV", "A210-|S250"]]
       },
+      "body": [["REMES", "A60|S220"]],
       "rwy": {
-        "02L": [["REMES", "A60|S220"], ["SAMKO", "A40|A190"]],
-        "02C": [["REMES", "A60|S220"], ["SAMKO", "A40|A190"]],
-        "20R": [["REMES", "S220"], ["BTM", "A70|S220"], ["DOVAN", "A40"], ["BIPOP", "A30|S190"]],
-        "20C": [["REMES", "S220"], ["BTM", "A70|S220"], ["DOVAN", "A40"], ["BIPOP", "A30|S190"]]
+        "02L": [["SAMKO", "A40|A190"]],
+        "02C": [["SAMKO", "A40|A190"]],
+        "20R": [["BTM", "A70|S220"], ["DOVAN", "A40"], ["BIPOP", "A30|S190"]],
+        "20C": [["BTM", "A70|S220"], ["DOVAN", "A40"], ["BIPOP", "A30|S190"]]
       },
       "draw": [
         ["REPOV", "REMES", "SAMKO"],
@@ -463,11 +469,12 @@
       "entryPoints": {
         "SURGA": ["SURGA"]
       },
+      "body": ["IKAGO", "IKIMA", ["IBULA", "A180-|S250"], ["LAVAX", "S220"]],
       "rwy": {
-        "02L": ["IKAGO", "IKIMA", ["IBULA", "A180-|S250"], ["LAVAX", "S220"], ["IGNON", "A70"], ["SANAT", "A40|S190"]],
-        "02C": ["IKAGO", "IKIMA", ["IBULA", "A180-|S250"], ["LAVAX", "S220"], ["IGNON", "A70"], ["SANAT", "A40|S190"]],
-        "20R": ["IKAGO", "IKIMA", ["IBULA", "A180-|S250"], ["LAVAX", "S220"], ["RUVIK", "A80"], ["DOVAN", "A40"], ["BIPOP", "A30|S190"]],
-        "20C": ["IKAGO", "IKIMA", ["IBULA", "A180-|S250"], ["LAVAX", "S220"], ["RUVIK", "A80"], ["DOVAN", "A40"], ["BIPOP", "A30|S190"]]
+        "02L": [["IGNON", "A70"], ["SANAT", "A40|S190"]],
+        "02C": [["IGNON", "A70"], ["SANAT", "A40|S190"]],
+        "20R": [["RUVIK", "A80"], ["DOVAN", "A40"], ["BIPOP", "A30|S190"]],
+        "20C": [["RUVIK", "A80"], ["DOVAN", "A40"], ["BIPOP", "A30|S190"]]
       },
       "draw": [
         ["SURGA", "IKAGO", "IKIMA", "IBULA", "LAVAX", "IGNON", "SANAT"],
@@ -481,11 +488,12 @@
       "entryPoints": {
         "VEPLI": ["VEPLI"]
       },
+      "body": ["VINIL", ["PIBAP", "A210-|S250"]],
       "rwy": {
-        "02L": ["VINIL", ["PIBAP", "A210-|S250"], ["PASPU", "S220"], "NYLON", ["POSUB", "A60|S220"], ["SANAT", "A40|S190"]],
-        "02C": ["VINIL", ["PIBAP", "A210-|S250"], ["PASPU", "S220"], "NYLON", ["POSUB", "A60|S220"], ["SANAT", "A40|S190"]],
-        "20R": ["VINIL", ["PIBAP", "A210-|S250"], ["PASPU", "A60|S220"], ["NYLON", "A30|S190"]],
-        "20C": ["VINIL", ["PIBAP", "A210-|S250"], ["PASPU", "A60|S220"], ["NYLON", "A30|S190"]]
+        "02L": [["PASPU", "S220"], "NYLON", ["POSUB", "A60|S220"], ["SANAT", "A40|S190"]],
+        "02C": [["PASPU", "S220"], "NYLON", ["POSUB", "A60|S220"], ["SANAT", "A40|S190"]],
+        "20R": [["PASPU", "A60|S220"], ["NYLON", "A30|S190"]],
+        "20C": [["PASPU", "A60|S220"], ["NYLON", "A30|S190"]]
       },
       "draw": [
         ["VEPLI", "VINIL", "PIBAP", "PASPU", "NYLON", "POSUB", "SANAT"],

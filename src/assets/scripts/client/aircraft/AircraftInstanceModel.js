@@ -481,7 +481,7 @@ export default class Aircraft {
     getCallsign() {
         // TODO: this should be an instance property. however, it seems callsign is used in places where it should be
         // flightnumber and visa versa. this needs to be ironed out first before making a class property.
-        return `${this.airline.toUpperCase()}${this.callsign}`;
+        return `${this.airline.toUpperCase()}${this.callsign.toUpperCase()}`;
     }
 
     /**
@@ -506,8 +506,7 @@ export default class Aircraft {
             callsign = callsign.substr(callsign.length - length);
         }
 
-        // TODO: this may not be needed any longer
-        let cs = window.airlineController.airline_get(this.airline).callsign;
+        let cs = this.getCallsign();
 
         if (cs === 'November') {
             cs += ` ${radio_spellOut(callsign)} ${heavy}`;
