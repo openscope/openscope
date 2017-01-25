@@ -55,6 +55,29 @@ export const AIRLINE_DEFINITION_SIMPLE_FLEET_MOCK = {
     }
 };
 
+export const NOVEMBER_AIRLINE_MOCK = {
+    name: 'FastGA',
+    icao: 'fastga',
+    callsign: {
+        name: 'November',
+        length: 5,
+        alpha: true,
+        prefix: 'N'
+    },
+    fleets: {
+        default: [
+            ['E50P', 1],
+            ['E55P', 1],
+            ['E545', 1],
+            ['E135', 1],
+            ['C510', 1],
+            ['C550', 2],
+            ['C750', 1]
+        ]
+    }
+};
+
+
 export const AIRLINE_DEFINITION_LIST_MOCK = [
     AIRLINE_DEFINITION_MOCK,
     {

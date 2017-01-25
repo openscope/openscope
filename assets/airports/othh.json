@@ -321,7 +321,7 @@
       "name": "Afnan",
       "suffix": {"16L":"1M", "16R":"1C", "34L":"1W", "34R":"1E"},
       "entryPoints": {
-        "AFNAN": [["KUPSA"], ["AFNAN", "A120-"]]
+        "AFNAN": ["KUPSA", ["AFNAN", "A120-"]]
       },
       "rwy": {
         "16L": ["SIDMU", ["EGNUG", "A80"], ["IVANI", "A50|S220-"], ["TOVAN", "S180-"]],
