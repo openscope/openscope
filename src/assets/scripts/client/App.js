@@ -33,7 +33,7 @@ const prop = {};
 require('./util');
 
 // saved as this.prop.version and this.prop.version_string
-const VERSION = [3, 2, 0];
+const VERSION = [4, 0, 0];
 
 // are you using a main loop? (you must call update() afterward disable/re-enable)
 let UPDATE = true;
