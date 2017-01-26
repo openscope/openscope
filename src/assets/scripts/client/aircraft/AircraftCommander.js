@@ -347,7 +347,7 @@ export default class AircraftCommander {
         const altitude = data[0];
         const shouldExpedite = data[1];
         const airport = this._airportController.airport_get();
-        const radioTrendAltitude = radio_trend('altitude', aircraft.altitude, aircraft.fms.altitudeForCurrentWaypoint());
+        const radioTrendAltitude = radio_trend('altitude', aircraft.altitude, altitude);
         const currentWaypointRadioAltitude = radio_altitude(aircraft.fms.altitudeForCurrentWaypoint());
         let shouldExpediteReadback = shouldExpedite
             ? 'and expedite'
