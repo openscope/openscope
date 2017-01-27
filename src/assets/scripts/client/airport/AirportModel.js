@@ -623,7 +623,7 @@ export default class AirportModel {
      * @return {array}
      */
     getSID(id, exit, runway) {
-        console.warn('getSID method should be moved from the AirportModel to the NavigationLibrary');
+        // console.warn('getSID method should be moved from the AirportModel to the NavigationLibrary');
         return this._navigationLibrary.sidCollection.findFixesForSidByRunwayAndExit(id, exit, runway);
     }
 
@@ -634,7 +634,7 @@ export default class AirportModel {
      * @return {string}  Name of Exit fix in SID
      */
     getSIDExitPoint(icao) {
-        console.warn('getSIDExitPoint method should be moved from the AirportModel to the NavigationLibrary');
+        // console.warn('getSIDExitPoint method should be moved from the AirportModel to the NavigationLibrary');
         return this._navigationLibrary.sidCollection.findRandomExitPointForSIDIcao(icao);
     }
 
@@ -654,7 +654,7 @@ export default class AirportModel {
      * @return {array<string>}
      */
     getSTAR(id, entry, rwy) {
-        console.warn('getSTAR() method should be moved from the AirportModel to the NavigationLibrary');
+        // console.warn('getSTAR() method should be moved from the AirportModel to the NavigationLibrary');
         return this._navigationLibrary.starCollection.findFixesForStarByEntryAndRunway(id, entry, rwy);
     }
 

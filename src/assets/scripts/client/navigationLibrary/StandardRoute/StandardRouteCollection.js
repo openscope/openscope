@@ -173,7 +173,7 @@ export default class StandardRouteCollection extends BaseCollection {
      * @return {string}
      */
     findRandomExitPointForSIDIcao(icao) {
-        console.warn('StandardRouteCollection.findRandomExitPointForSIDIcao() will be deprecated in the next release');
+        // console.warn('StandardRouteCollection.findRandomExitPointForSIDIcao() will be deprecated in the next release');
 
         const sid = this.findRouteByIcao(icao);
 

@@ -54,6 +54,15 @@ ava('.createAircraftWithSpawnPatternModel() calls ._buildAircraftProps()', (t) =
     _createAircraftWithInitializationPropsStub.restore();
 });
 
+ava('.removeFlightNumberFromList() calls _airlineController.removeFlightNumberFromList() with an airlineId and a flightNumber', (t) => {
+    const controller = new AircraftController(AIRCRAFT_DEFINITION_LIST_MOCK, airlineControllerFixture, navigationLibraryFixture);
+    const removeFlightNumberFromListSpy = sinon.spy(controller._airlineController, 'removeFlightNumberFromList');
+
+    controller.removeFlightNumberFromList({ airlineId: 'aal', callsign: '123' });
+
+    t.true(removeFlightNumberFromListSpy.calledOnce);
+});
+
 ava('._setDestinationFromRouteOrProcedure() returns the SID name as a destination for a departing aircraft', (t) => {
     const expectedResult = 'COWBY6';
     const controller = new AircraftController(AIRCRAFT_DEFINITION_LIST_MOCK, airlineControllerFixture, navigationLibraryFixture);
