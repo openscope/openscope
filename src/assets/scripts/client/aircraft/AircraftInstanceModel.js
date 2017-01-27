@@ -72,7 +72,9 @@ export default class Aircraft {
         this.eid          = prop.aircraft.list.length;  // entity ID
         this.position     = [0, 0];     // Aircraft Position, in km, relative to airport position
         this.model        = null;       // Aircraft type
-        this.airline      = '';         // Airline Identifier (eg. 'AAL')
+        this.airlineId      = '';         // Airline Identifier (eg. 'AAL')
+        this.airlineCallsign = '';
+        // FIXME: change this to`flightNumber`
         this.callsign     = '';         // Flight Number ONLY (eg. '551')
         this.heading      = 0;          // Magnetic Heading
         this.altitude     = 0;          // Altitude, ft MSL
@@ -220,7 +222,8 @@ export default class Aircraft {
     parse(data) {
         this.position = _get(data, 'position', this.position);
         this.model = _get(data, 'model', this.model);
-        this.airline = _get(data, 'airline', this.airline);
+        this.airlineId = _get(data, 'airline', this.airlineId);
+        this.airlineCallsign = _get(data, 'airlineCallsign', this.airlineCallsign);
         this.callsign = _get(data, 'callsign', this.callsign);
         this.category = _get(data, 'category', this.category);
         this.heading = _get(data, 'heading', this.heading);
@@ -472,7 +475,6 @@ export default class Aircraft {
         return _isEqual(callsignToMatch.toUpperCase(), this.getCallsign());
     }
 
-    // TODO: This model should store this information as instance properties and not calculate it all the time
     /**
      * @for AircraftInstanceModel
      * @method getCallsign
@@ -481,7 +483,7 @@ export default class Aircraft {
     getCallsign() {
         // TODO: this should be an instance property. however, it seems callsign is used in places where it should be
         // flightnumber and visa versa. this needs to be ironed out first before making a class property.
-        return `${this.airline.toUpperCase()}${this.callsign.toUpperCase()}`;
+        return `${this.airlineId.toUpperCase()}${this.callsign.toUpperCase()}`;
     }
 
     /**
@@ -500,18 +502,18 @@ export default class Aircraft {
             heavy = ' super';
         }
 
-        let callsign = this.callsign;
+        let flightNumber = this.callsign;
         if (condensed) {
             const length = 2;
-            callsign = callsign.substr(callsign.length - length);
+            flightNumber = flightNumber.substr(flightNumber.length - length);
         }
 
-        let cs = this.getCallsign();
+        let cs = this.airlineCallsign;
 
         if (cs === 'November') {
-            cs += ` ${radio_spellOut(callsign)} ${heavy}`;
+            cs += ` ${radio_spellOut(flightNumber)} ${heavy}`;
         } else {
-            cs += ` ${groupNumbers(callsign, this.airline)} ${heavy}`;
+            cs += ` ${groupNumbers(flightNumber, this.airlineId)} ${heavy}`;
         }
 
         return cs;

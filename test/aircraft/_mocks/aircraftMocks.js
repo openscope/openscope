@@ -82,6 +82,7 @@ export const AIRCRAFT_INITIALIZATION_PROPS_MOCK = {
     destination: 'KLAS',
     fleet: '',
     airline: 'aal',
+    airlineCallsign: 'speedbird',
     altitude: 28000,
     speed: 320,
     category: 'arrival',
