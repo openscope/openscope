@@ -235,44 +235,62 @@
       "draw": [["CUSBU", "WUREL"], ["NESOE", "WUREL"], ["DODVE", "WUREL"], ["WUREL", "ATOME", "CENEX", "KTSAP", "TOU*"]]
     }
   },
-  "departures": {
-    "type": "random",
-    "frequency": 35,
-    "destinations": [
-      "SUMMA8", "BANGR8", "ELMAA2", "HAROB5"
-    ],
-    "airlines": [
-      ["aal", 4.05],
-      ["aca", 0.95],
-      ["asa", 30.86],
-      ["baw/long", 0.28],
-      ["cfs", 0.57],
-      ["cpz", 5.05],
-      ["dal", 9.80],
-      ["dlh/long", 0.17],
-      ["eva", 0.21],
-      ["fdx", 1.18],
-      ["fft", 0.39],
-      ["hal", 0.43],
-      ["jbu", 0.96],
-      ["kal/long", 0.28],
-      ["nks", 0.03],
-      ["qxe", 21.17],
-      ["skw", 10.24],
-      ["swa", 5.93],
-      ["uae", 0.41],
-      ["ual", 4.34],
-      ["vrd", 1.23]
-    ]
+  "spawnPatterns": [
+      {
+        "origin": "ksea",
+        "destination": "",
+        "category": "departure",
+        "route": "KSEA.BANGR8.ARRIE",
+        "altitude": "",
+        "speed": "",
+        "method": "random",
+        "rate": 17.5,
+        "airlines": [
+            ["aal", 4.05],
+            ["aca", 0.95],
+            ["asa", 30.86],
+            ["baw/long", 0.28],
+            ["kal/long", 0.28],
+            ["nks", 0.03],
+            ["skw", 10.24],
+            ["swa", 5.93],
+            ["uae", 0.41],
+            ["ual", 4.34],
+            ["vrd", 1.23]
+        ]
+    },
+    {
+      "origin": "ksea",
+      "destination": "",
+      "category": "departure",
+      "route": "KSEA.KMORE4.BLUIT",
+      "altitude": "",
+      "speed": "",
+      "method": "random",
+      "rate": 17.5,
+      "airlines": [
+          ["cfs", 0.57],
+          ["cpz", 5.05],
+          ["dal", 9.80],
+          ["dlh/long", 0.17],
+          ["eva", 0.21],
+          ["fdx", 1.18],
+          ["fft", 0.39],
+          ["hal", 0.43],
+          ["jbu", 0.96],
+          ["qxe", 21.17]
+      ]
   },
-  "arrivals": [
     {
       "_name": "OLM1",
-      "fixes": ["_OLM161026", "OLM", "LACEE", "ARVAD", "FOURT"],
+      "origin": "",
+      "destination": "ksea",
+      "category": "arrival",
+      "route": "_OLM161026..OLM..LACEE..ARVAD..FOURT",
       "altitude": 13000,
       "speed": 250,
-      "type": "random",
-      "frequency": 7,
+      "method": "random",
+      "rate": 7,
       "airlines":  [
         ["aal", 4.05],
         ["aca", 0.95],
@@ -299,11 +317,14 @@
     },
     {
       "_name": "CHINS1",
-      "fixes": ["CHINS", "RADDY", "HUMPP", "AUBRN"],
+      "origin": "",
+      "destination": "ksea",
+      "category": "arrival",
+      "route": "CHINS..RADDY..HUMPP..AUBRN",
       "altitude": 12000,
       "speed": 250,
-      "type": "random",
-      "frequency": 7,
+      "method": "random",
+      "rate": 7,
       "airlines":  [
         ["aal", 4.05],
         ["aca", 0.95],
@@ -330,11 +351,14 @@
     },
     {
       "_name": "HAWKZ4 - LDG SOUTH",
-      "fixes": ["KRIEG", "HAWKZ", "LIINE", "PIKEZ", "COFAY", "BREVE", "NETTZ", "KWEST", "VASHN", "RAYUU"],
+      "origin": "",
+      "destination": "ksea",
+      "category": "arrival",
+      "route": "KRIEG..HAWKZ..LIINE..PIKEZ..COFAY..BREVE..NETTZ..KWEST..VASHN..RAYUU",
       "altitude": 13000,
       "speed": 250,
-      "type": "random",
-      "frequency": 7,
+      "method": "random",
+      "rate": 7,
       "airlines":  [
         ["aal", 4.05],
         ["aca", 0.95],
@@ -361,11 +385,14 @@
     },
     {
       "_name": "MARNR5 - LDG SOUTH",
-      "fixes": ["ORCUS", "MARNR", "BOANE", "NEHOS", "GRIFY"],
+      "origin": "",
+      "destination": "ksea",
+      "category": "arrival",
+      "route": "ORCUS..MARNR..BOANE..NEHOS..GRIFY",
       "altitude": 12000,
       "speed": 250,
-      "type": "random",
-      "frequency": 7,
+      "method": "random",
+      "rate": 7,
       "airlines":  [
         ["aal", 4.05],
         ["aca", 0.95],
@@ -392,11 +419,14 @@
     },
     {
       "_name": "GLASR9",
-      "fixes": ["GLASR", "JAKSN", "WOODI", "HETHR"],
+      "origin": "",
+      "destination": "ksea",
+      "category": "arrival",
+      "route": "GLASR..JAKSN..WOODI..HETHR",
       "altitude": 10000,
       "speed": 250,
-      "type": "random",
-      "frequency": 7,
+      "method": "random",
+      "rate": 7,
       "airlines":  [
         ["aal", 4.05],
         ["aca", 0.95],

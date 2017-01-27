@@ -1,8 +1,8 @@
 /* eslint-disable arrow-parens, import/no-extraneous-dependencies, new-cap */
 import ava from 'ava';
 
-import modelSourceFactory from '../../../src/assets/scripts/base/ModelSource/ModelSourceFactory';
-import FixModel from '../../../src/assets/scripts/airport/Fix/FixModel';
+import modelSourceFactory from '../../../src/assets/scripts/client/base/ModelSource/ModelSourceFactory';
+import FixModel from '../../../src/assets/scripts/client/navigationLibrary/Fix/FixModel';
 
 const SOURCE_NAME_MOCK = 'FixModel';
 

@@ -38,8 +38,8 @@
     "EXOLU":    ["N20d12m83.00",  "E071d34m17.00"],
     "GUNDI":    ["N17d21m61.00",  "E071d29m61.00"],
     "IGMAR":    ["N15d43m30.00",  "E075d59m94.00"],
-    "KAKPO":    ["N19d45m60.00",  "E074d00m95.00"], 
-    "LAPOM":    ["N18d55m01.00",  "E072d34m27.00"], 
+    "KAKPO":    ["N19d45m60.00",  "E074d00m95.00"],
+    "LAPOM":    ["N18d55m01.00",  "E072d34m27.00"],
     "MABTA":    ["N17d08m48.00",  "E073d21m76.00"],
     "MB053":    ["N19d01m24.00",  "E072d56m55.00"],
     "MB361":    ["N20d05m01.00",  "E072d51m59.00"],
@@ -47,7 +47,7 @@
     "MB364":    ["N19d05m22.00",  "E072d45m07.00"],
     "MB365":    ["N19d33m66.00",  "E073d21m71.00"],
     "MB366":    ["N20d00m25.00",  "E074d41m92.00"],
-    "MB370":    ["N18d53m49.00",  "E071d49m91.00"], 
+    "MB370":    ["N18d53m49.00",  "E071d49m91.00"],
     "MB371":    ["N18d59m05.00",  "E072d58m86.00"],
     "MB373":    ["N19d29m92.00",  "E073d03m98.00"],
     "MB377":    ["N18d46m43.00",  "E072d25m22.00"],
@@ -58,10 +58,10 @@
     "MB388":    ["N19d00m73.00",  "E072d23m18.00"],
     "MB390":    ["N18d40m75.00",  "E072d59m37.00"],
     "MB397":    ["N19d05m38.00",  "E072d56m29.00"],
-    "MB398":    ["N19d27m20.00",  "E073d27m76.00"], 
+    "MB398":    ["N19d27m20.00",  "E073d27m76.00"],
     "MB399":    ["N19d29m62.00",  "E072d39m94.00"],
-    "MB402":    ["N19d20m68.00",  "E073d01m76.00"], 
-    "ONAGI":    ["N18d53m22.00",  "E072d59m34.00"], 
+    "MB402":    ["N19d20m68.00",  "E073d01m76.00"],
+    "ONAGI":    ["N18d53m22.00",  "E072d59m34.00"],
     "ONAPA":    ["N18d27m95.00",  "E072d37m03.00"],
     "OSATA":    ["N18d25m19.00",  "E072d51m38.00"],
     "POSIN":    ["N20d16m72.00",  "E075d27m46.00"],
@@ -69,8 +69,8 @@
     "RAXET":    ["N19d09m40.00",  "E072d05m85.00"],
     "REVKA":    ["N18d40m51.00",  "E072d57m66.00"],
     "SABKA":    ["N18d46m93.00",  "E072d57m42.00"],
-    "SAKUN":    ["N19d36m45.00",  "E071d11m81.00"], 
-    "SEKVI":    ["N19d35m57.00",  "E073d41m05.00"], 
+    "SAKUN":    ["N19d36m45.00",  "E071d11m81.00"],
+    "SEKVI":    ["N19d35m57.00",  "E073d41m05.00"],
     "VEVAK":    ["N18d46m63.00",  "E072d44m57.00"],
     "VIDAG":    ["N19d07m08.00",  "E073d05m24.00"],
     "XOPAL":    ["N19d27m75.00",  "E072d53m39.00"],
@@ -137,14 +137,14 @@
         "icao": "ALBAP",
         "name": "Albap One Bravo",
         "suffix": {"09":"1B"},
+        "rwy": {
+          "09": [["MB397", "A10"], ["ALBAP", "A70"]]
+        },
         "exitPoints": {
           "AURANGABAD": ["SEKVI", "KAKPO", "MB366", "AAU"],
           "BETKU":      ["XOPAL", "MB381", "BETKU"],
           "DOTIP":      ["XOPAL", "MB361", "DOTIP"],
           "EXOLU":      ["XOPAL", "MB381", "EXOLU"]
-        },
-        "rwy": {
-          "09": [["MB397", "A10"], ["ALBAP", "A70"]]
         },
         "draw": [
           ["MB397", "ALBAP"],
@@ -180,7 +180,7 @@
           "14": [["MB053", "A21"]]
         },
         "draw": [
-          ["MB053", "DOGAP"], 
+          ["MB053", "DOGAP"],
           ["PUN*"]
       ]
     },
@@ -243,7 +243,7 @@
           "27": [["MB364", "A26"], ["RAXET", "A70"]]
         },
         "draw": [
-          ["MB364", "RAXET"], 
+          ["MB364", "RAXET"],
           ["BISET*"],
           ["DARMI*"],
           ["SAKUN*"]
@@ -262,7 +262,7 @@
           "14": [["MB053", "A21"], ["ONAGI", "A70"]]
         },
         "draw": [
-          ["MB053", "ONAGI", "VEVAK", "LAPOM", "MB388", "RAXET"], 
+          ["MB053", "ONAGI", "VEVAK", "LAPOM", "MB388", "RAXET"],
           ["BISET*"],
           ["RAXET", "DARMI*"],
           ["SAKUN*"]
@@ -328,7 +328,7 @@
         "draw": [
           ["SABKA", "MB362"],
           ["BBM*"],
-          ["MB362", "BEKUT"], 
+          ["MB362", "BEKUT"],
           ["MABTA*"],
           ["EPKOS*"],
           ["MB362", "BIXOR", "IGMAR*"],
@@ -351,10 +351,10 @@
           "14": [["MB053", "A21"], ["VIDAG", "A70"]]
         },
         "draw": [
-          ["MB053", "VIDAG", "MB398", "SEKVI"], 
+          ["MB053", "VIDAG", "MB398", "SEKVI"],
           ["MB366", "AAU*"],
           ["VIDAG", "XOPAL", "MB381", "BETKU*"],
-          ["XOPAL", "MB361"], 
+          ["XOPAL", "MB361"],
           ["DOTIP*"],
           ["MB381", "EXOLU*"],
           ["KAKPO*"]
@@ -377,7 +377,7 @@
           ["MB364", "ANOLI", "XOPAL", "MB373", "MB365"],
           ["AAU*"],
           ["BETKU*"],
-          ["ANOLI", "MB361"], 
+          ["ANOLI", "MB361"],
           ["DOTIP*"],
           ["MB381", "EXOLU*"]
       ]
@@ -395,9 +395,9 @@
           "32": [["MB380", "A26"]]
         },
         "draw": [
-          ["MB380", "MB399", "MB381"], 
+          ["MB380", "MB399", "MB381"],
           ["BETKU*"],
-          ["MB380", "MB361"], 
+          ["MB380", "MB361"],
           ["DOTIP*"],
           ["EXOLU*"]
       ]
@@ -457,13 +457,13 @@
           "32": [["MB380", "A26"], ["ANOLI", "A70"]]
         },
         "draw": [
-          ["MB380"], 
+          ["MB380"],
           ["KAKPO*"],
           ["AAU*"],
           ["MB366", "POSIN*"],
           ["XOPAL", "MB402", "MB382", "MB383", "DOGAP", "PUN*"]
       ]
-    }        
+    }
   },
 
   "stars": {
@@ -567,159 +567,189 @@
       ]
     }
   },
-
-  "departures": {
-    "airlines": [
-        ["cca",  1],
-        ["afr",  1],
-        ["aic", 41],
-        ["axb",  3],
-        ["llr",  7],
-        ["baw",  1],
-        ["cpa",  1],
-        ["uae",  1],
-        ["etd",  1],
-        ["fdb",  1],
-        ["gow", 18],
-        ["igo", 31],
-        ["jai", 47],
-        ["kal",  1],
-        ["dlh",  2],
-        ["mas",  1],
-        ["qtr",  1],
-        ["sia",  1],
-        ["sej", 20],
-        ["swr",  1],
-        ["thy",  1],
-        ["ual",  1],
-        ["vti",  5]
-    ],
-    "destinations": [
-      "ALBAP1B", "DOGAP1B", "ONAGI1B", "BBB1C", "DOGAP1C", "RAXET1C", "RAXET1C", "REVKA1C", "SABKA1C", "VIDAG1C", "ANOLI1A", "RAXET1A", "VEVAK1A", "ANOLI1D", "RAXET1D", "VEVAK1D", "XOPAL1D"
-    ],
-    "type": "cyclic",
-    "offset": 0,
-    "frequency": 69
-  },  
-  "arrivals": [
+  "spawnPatterns": [
     {
-      "type": 		  "cyclic",
-      "route":      "OPAKA.EMRAK.VABB",
-      "frequency":  10,
-      "altitude":   21000,
-      "speed":		  400,
-      "offset":		  3,
-      "airlines": [
-        ["cca",  1],
-        ["aic", 41],
-        ["llr",  7],
-        ["cpa",  1],
-        ["gow", 18],
-        ["igo", 31],
-        ["jai", 47],
-        ["kal",  1],
-        ["mas",  1],
-        ["sia",  1],
-        ["sej", 20],
-        ["ual",  1],
-        ["vti",  5]
-      ]
-    },
-    {
-      "type": 		  "cyclic",
-      "route":      "IGBAN.IGBAN.VABB",
-      "frequency":  12,
-      "altitude":   21000,
-      "speed":		  425,
-      "offset":		  3,
-      "airlines": [
-          ["cca",  1],
-          ["aic", 41],
-          ["llr",  7],
-          ["baw",  1],
-          ["cpa",  1],
-          ["gow", 18],
-          ["igo", 31],
-          ["jai", 47],
-          ["dlh",  2],
-          ["sej", 20],
-          ["swr",  1],
-          ["thy",  1],
-          ["ual",  1],
-          ["vti",  5]
+        "origin": "vabb",
+        "destination": "",
+        "category": "departure",
+        "route": "VABB.ALBAP1B.EXOLU",
+        "altitude": "",
+        "speed": "",
+        "method": "cyclic",
+        "rate": 34,
+        "offset": 0,
+        "airlines": [
+            ["cca",  1],
+            ["afr",  1],
+            ["aic", 41],
+            ["axb",  3],
+            ["llr",  7],
+            ["baw",  1],
+            ["cpa",  1],
+            ["uae",  1],
+            ["etd",  1],
+            ["fdb",  1],
+            ["gow", 18],
+            ["vti",  5]
         ]
     },
     {
-      "type": 		  "cyclic",
-      "route":      "KETOR.KETOR.VABB",
-      "frequency":  6,
-      "altitude":   21000,
-      "speed":		  410,
-      "offset":		  3,
-      "airlines": [
-          ["aic", 41],
-          ["axb",  3],
-          ["baw",  1],
-          ["uae",  1],
-          ["etd",  1],
-          ["fdb",  1],
-          ["gow", 18],
-          ["igo", 31],
-          ["jai", 47],
-          ["dlh",  2],
-          ["qtr",  1],
-          ["sej", 20],
-          ["swr",  1],
-          ["thy",  1],
-          ["ual",  1],
-          ["vti",  5]
+        "origin": "vabb",
+        "destination": "",
+        "category": "departure",
+        "route": "VABB.DOGAP1B.PUNE",
+        "altitude": "",
+        "speed": "",
+        "method": "cyclic",
+        "rate": 35,
+        "offset": 0,
+        "airlines": [
+            ["igo", 31],
+            ["jai", 47],
+            ["kal",  1],
+            ["dlh",  2],
+            ["mas",  1],
+            ["qtr",  1],
+            ["sia",  1],
+            ["sej", 20],
+            ["swr",  1],
+            ["thy",  1],
+            ["ual",  1]
         ]
     },
     {
-      "type": 		  "cyclic",
-      "route":      "MOLGO.MOLGO.VABB",
-      "frequency":  7,
-      "altitude":   12000,
-      "speed":		  250,
-      "offset":		  3,
-      "airlines": [
-          ["aic", 41],
-          ["llr",  7],
-          ["gow", 18],
-          ["igo", 31],
-          ["jai", 47],
-          ["kal",  1],
-          ["mas",  1],
-          ["sia",  1],
-          ["sej", 20],
-          ["ual",  1],
-          ["vti",  5]
+        "origin": "",
+        "destination": "vabb",
+        "category": "arrival",
+        "route":      "OPAKA.EMRAK.VABB",
+        "altitude":   21000,
+        "speed":		  320,
+        "method": 		  "cyclic",
+        "rate":  10,
+        "offset":		  3,
+        "airlines": [
+            ["cca",  1],
+            ["aic", 41],
+            ["llr",  7],
+            ["cpa",  1],
+            ["gow", 18],
+            ["igo", 31],
+            ["jai", 47],
+            ["kal",  1],
+            ["mas",  1],
+            ["sia",  1],
+            ["sej", 20],
+            ["ual",  1],
+            ["vti",  5]
         ]
     },
     {
-      "type": 		  "cyclic",
-      "route":      "EXOLU.POKON.VABB",
-      "frequency":  12,
-      "altitude":   21000,
-      "speed":		  450,
-      "offset":		  3,
-      "airlines": [
-          ["afr",  1],
-          ["aic", 41],
-          ["axb",  3],
-          ["baw",  1],
-          ["uae",  1],
-          ["etd",  1],
-          ["fdb",  1],
-          ["gow", 18],
-          ["igo", 31],
-          ["jai", 47],
-          ["dlh",  2],
-          ["qtr",  1],
-          ["sej", 20],
-          ["swr",  1],
-          ["thy",  1],
-          ["vti",  5]
+        "origin": "",
+        "destination": "vabb",
+        "category": "arrival",
+        "route":      "IGBAN.IGBAN.VABB",
+        "altitude":   21000,
+        "speed": 320,
+        "method": "cyclic",
+        "rate":  12,
+        "offset": 3,
+        "airlines": [
+            ["cca",  1],
+            ["aic", 41],
+            ["llr",  7],
+            ["baw",  1],
+            ["cpa",  1],
+            ["gow", 18],
+            ["igo", 31],
+            ["jai", 47],
+            ["dlh",  2],
+            ["sej", 20],
+            ["swr",  1],
+            ["thy",  1],
+            ["ual",  1],
+            ["vti",  5]
+        ]
+    },
+    {
+        "origin": "",
+        "destination": "vabb",
+        "category": "arrival",
+        "route":      "KETOR.KETOR.VABB",
+        "altitude":   21000,
+        "speed":		  320,
+        "method": 		  "cyclic",
+        "rate":  6,
+        "offset":		  3,
+        "airlines": [
+            ["aic", 41],
+            ["axb",  3],
+            ["baw",  1],
+            ["uae",  1],
+            ["etd",  1],
+            ["fdb",  1],
+            ["gow", 18],
+            ["igo", 31],
+            ["jai", 47],
+            ["dlh",  2],
+            ["qtr",  1],
+            ["sej", 20],
+            ["swr",  1],
+            ["thy",  1],
+            ["ual",  1],
+            ["vti",  5]
+        ]
+    },
+    {
+        "origin": "",
+        "destination": "vabb",
+        "category": "arrival",
+        "route":      "MOLGO.MOLGO.VABB",
+        "altitude":   12000,
+        "speed":		  250,
+        "method": 		  "cyclic",
+        "rate":  7,
+        "offset":		  3,
+        "airlines": [
+            ["aic", 41],
+            ["llr",  7],
+            ["gow", 18],
+            ["igo", 31],
+            ["jai", 47],
+            ["kal",  1],
+            ["mas",  1],
+            ["sia",  1],
+            ["sej", 20],
+            ["ual",  1],
+            ["vti",  5]
+        ]
+    },
+    {
+        "origin": "",
+        "destination": "vabb",
+        "category": "arrival",
+        "route":      "EXOLU.POKON.VABB",
+        "altitude":   21000,
+        "speed":		  320,
+        "method": 		  "cyclic",
+        "rate":  12,
+        "offset":		  3,
+        "airlines": [
+            ["afr",  1],
+            ["aic", 41],
+            ["axb",  3],
+            ["baw",  1],
+            ["uae",  1],
+            ["etd",  1],
+            ["fdb",  1],
+            ["gow", 18],
+            ["igo", 31],
+            ["jai", 47],
+            ["dlh",  2],
+            ["qtr",  1],
+            ["sej", 20],
+            ["swr",  1],
+            ["thy",  1],
+            ["vti",  5]
         ]
     }
   ]

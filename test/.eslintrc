@@ -1,0 +1,7 @@
+{
+    "rules": {
+        "arrow-parens": 0,
+        "max-len": 0,
+        "import/no-extraneous-dependencies": 0
+    }
+}

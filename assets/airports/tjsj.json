@@ -312,100 +312,115 @@
       }
     }
   },
-  "departures": {
-    "airlines": [
-      ["aal",      5],
-      ["aay",      2],
-      ["aca",      3],
-      ["aea/long", 5],
-      ["ava",      5],
-      ["cfg/long", 3],
-      ["dal",      5],
-      ["fdx",      5],
-      ["ibe/long", 5],
-      ["inc",      1],
-      ["jbu",      7],
-      ["nax/long", 4],
-      ["nks",      2],
-      ["scx",      3],
-      ["swa",      3],
-      ["ual",      4],
-      ["ups",      2],
-      ["wja",      2]
-    ],
-    "destinations": [
-      "ACONY2", "GANBO1", "GLADA3", "JETSS1"
-    ],
-    "type": "random",
-    "frequency": 15
-  },
-  "arrivals": [
+  "spawnPatterns": [
     {
-      "type": "random",
-      "route":   "HARDE.BEANO3.TJSJ",
-      "frequency": 10,
-      "altitude":  [29000, 37000],
-      "speed":    350,
-      "airlines":  [
-        ["aal", 5],
-        ["aay", 2],
-        ["aca", 3],
-        ["dal", 5],
-        ["fdx", 5],
-        ["jbu", 7],
-        ["nks", 2],
-        ["scx", 3],
-        ["swa", 3],
-        ["ual", 4],
-        ["ups", 2],
-        ["wja", 2]
-      ]
+        "origin": "tjsj",
+        "destination": "",
+        "category": "departure",
+        "route": "TJSJ.JETSS1.JUICE",
+        "altitude": "",
+        "speed": "",
+        "method": "random",
+        "rate": 15,
+        "airlines": [
+            ["aal",      5],
+            ["aay",      2],
+            ["aca",      3],
+            ["aea/long", 5],
+            ["ava",      5],
+            ["cfg/long", 3],
+            ["dal",      5],
+            ["fdx",      5],
+            ["ibe/long", 5],
+            ["inc",      1],
+            ["jbu",      7],
+            ["nax/long", 4],
+            ["nks",      2],
+            ["scx",      3],
+            ["swa",      3],
+            ["ual",      4],
+            ["ups",      2],
+            ["wja",      2]
+        ]
     },
     {
-      "type": "random",
-      "route":   "KIKER.JOSHE3.TJSJ",
-      "frequency": 5,
-      "altitude":  [30000, 40000],
-      "speed":    350,
-      "airlines":  [
-        ["ava", 5],
-        ["fdx", 2],
-        ["inc", 4],
-        ["ups", 1]
-      ]
+        "origin": "",
+        "destination": "tjsj",
+        "category": "arrival",
+        "method": "random",
+        "route":   "HARDE.BEANO3.TJSJ",
+        "rate": 10,
+        "altitude":  [29000, 37000],
+        "speed":    320,
+        "airlines":  [
+            ["aal", 5],
+            ["aay", 2],
+            ["aca", 3],
+            ["dal", 5],
+            ["fdx", 5],
+            ["jbu", 7],
+            ["nks", 2],
+            ["scx", 3],
+            ["swa", 3],
+            ["ual", 4],
+            ["ups", 2],
+            ["wja", 2]
+        ]
     },
     {
-      "type": "random",
-      "route":   "LENNT.SAALR2.TJSJ",
-      "frequency": 5,
-      "altitude":  [31000, 41000],
-      "speed":    350,
-      "airlines":  [
-        ["aal",      5],
-        ["aca",      3],
-        ["aea/long", 5],
-        ["cfg/long", 3],
-        ["dal",      5],
-        ["fdx",      5],
-        ["ibe/long", 5],
-        ["jbu",      7],
-        ["nax/long", 4],
-        ["nks",      2],
-        ["ups",      2]
-      ]
+        "origin": "",
+        "destination": "tjsj",
+        "category": "arrival",
+        "method": "random",
+        "route":   "KIKER.JOSHE3.TJSJ",
+        "rate": 5,
+        "altitude":  [30000, 40000],
+        "speed":    320,
+        "airlines":  [
+            ["ava", 5],
+            ["fdx", 2],
+            ["inc", 4],
+            ["ups", 1]
+        ]
     },
     {
-      "type": "random",
-      "route":   "GABAR.TROCO3.TJSJ",
-      "frequency": 5,
-      "altitude":  [28000, 36000],
-      "speed":    350,
-      "airlines":  [
-        ["ava", 5],
-        ["fdx", 2],
-        ["inc", 4],
-        ["ups", 1]
-      ]
+        "origin": "",
+        "destination": "tjsj",
+        "category": "arrival",
+        "method": "random",
+        "route":   "LENNT.SAALR2.TJSJ",
+        "rate": 5,
+        "altitude":  [31000, 41000],
+        "speed":    320,
+        "airlines":  [
+            ["aal",      5],
+            ["aca",      3],
+            ["aea/long", 5],
+            ["cfg/long", 3],
+            ["dal",      5],
+            ["fdx",      5],
+            ["ibe/long", 5],
+            ["jbu",      7],
+            ["nax/long", 4],
+            ["nks",      2],
+            ["ups",      2]
+        ]
+    },
+    {
+        "origin": "",
+        "destination": "tjsj",
+        "category": "arrival",
+        "method": "random",
+        "route": "GABAR.TROCO3.TJSJ",
+        "rate": 5,
+        "altitude":  [28000, 36000],
+        "speed":    320,
+        "airlines":  [
+            ["ava", 5],
+            ["fdx", 2],
+            ["inc", 4],
+            ["ups", 1]
+        ]
     }
   ]
 }

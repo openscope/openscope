@@ -18,21 +18,20 @@ require('./tools/tasks/utilityTasks')(gulp, OPTIONS);
 ////////////////////////////////////////////////////////////////////
 // UNIFIED GULP TASKS
 ////////////////////////////////////////////////////////////////////
-// gulp.task('copy:data', ['clean:data:json', 'json']);
 gulp.task('lint', ['lint:scripts']);
-gulp.task('build', [
-    'clean:build:scripts',
-    'clean:build:styles',
-    'build:scripts',
-    'build:styles'
-]);
-gulp.task('dist', function() {
+
+gulp.task('build', () => {
+    runSequence(
+        'build:server',
+        'build:scripts',
+        'build:styles'
+    );
+});
+
+gulp.task('dist', () => {
     runSequence(
         'clean:dist',
         ['build:scripts', 'build:styles']
-        // 'copy:data',
-        // 'fonts',
-        // 'minify-images',
         // 'lint:scripts'
     );
 });

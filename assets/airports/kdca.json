@@ -571,80 +571,108 @@
           "draw": [["ADAXE", "BEBLE", "COVTO", "FERGI", "MELOE", "HORTO"], ["CAPVC", "GAITE", "LBOLT", "RLLLL", "HORTO"], ["HORTO", "BUFFR*"], ["HORTO", "JERES*"]]
       }
   },
-  "departures": {
-    "airlines": [
-        ["awi", 12],
-        ["eny", 10],
-        ["aal", 9],
-        ["flg", 9],
-        ["rpa", 8],
-        ["asq", 8],
-        ["jbu", 6],
-        ["vrd", 4],
-        ["jia", 4],
-        ["ual", 3],
-        ["swa", 3],
-        ["fft", 2],
-        ["vrd", 2]
-    ],
-    "destinations": [
-        "REBLL3", "HORTO2"
-    ],
-    "type": "random",
-    "offset": 0,
-    "frequency": 37.5
-  },
-  "arrivals": [
-    {
-      "_name": "CAPSS TWO SOUTH",
-      "altitude": 16000,
-      "type": "cyclic",
-      "frequency": 17.5,
-      "period": 75,
-      "offset": 25,
-      "speed": 280,
-      "fixes": ["BULII", "CAPSS", "FLIPZ", "MOEJO", "JILES", "SMOOT", "BAAAM", "PACKE"],
-      "airlines": [
-          ["awi", 9],
-          ["eny", 7],
-          ["flg", 6],
-          ["rpa", 6],
-          ["asq", 4],
-          ["aal", 4],
-          ["jbu", 3],
-          ["swa", 3],
-          ["vrd", 3],
-          ["jia", 3],
-          ["ual", 2],
-          ["fft", 2],
-          ["vrd", 2]
-      ]
+  "spawnPatterns": [
+      {
+          "origin": "kdca",
+          "destination": "",
+          "category": "departure",
+          "route": "KDCA.REBLL3.OTTTO",
+          "altitude": "",
+          "speed": "",
+          "method": "random",
+          "rate": 18.75,
+          "offset": 0,
+          "airlines": [
+            ["awi", 12],
+            ["eny", 10],
+            ["aal", 9],
+            ["flg", 9],
+            ["rpa", 8],
+            ["asq", 8]
+          ]
     },
     {
-      "_name": "CAPSS TWO NORTH",
-      "altitude": 13000,
-      "type": "cyclic",
-      "frequency": 17.5,
-      "period": 75,
-      "offset": 10,
-      "speed": 280,
-      "fixes": ["BULII", "CAPSS", "HOYAS", "HALLL", "KATRN"],
-      "airlines": [
-          ["awi", 9],
-          ["eny", 7],
-          ["flg", 6],
-          ["rpa", 6],
-          ["asq", 4],
-          ["aal", 4],
-          ["jbu", 3],
+        "origin": "kdca",
+        "destination": "",
+        "category": "departure",
+        "route": "KDCA.HORTO2.BUFFR",
+        "altitude": "",
+        "speed": "",
+        "method": "random",
+        "rate": 18.75,
+        "offset": 0,
+        "airlines": [
+          ["awi", 12],
+          ["eny", 10],
+          ["aal", 9],
+          ["flg", 9],
+          ["rpa", 8],
+          ["asq", 8],
+          ["jbu", 6],
+          ["vrd", 4],
+          ["jia", 4],
+          ["ual", 3],
           ["swa", 3],
-          ["vrd", 3],
-          ["jia", 3],
-          ["ual", 2],
           ["fft", 2],
           ["vrd", 2]
-      ]
-    }
+        ]
+      },
+      {
+        "_name": "CAPSS TWO SOUTH",
+        "origin": "",
+        "destination": "kdca",
+        "category": "arrival",
+        "route": "BULII..CAPSS..FLIPZ..MOEJO..JILES..SMOOT..BAAAM..PACKE",
+        "altitude": 16000,
+        "speed": 280,
+        "method": "cyclic",
+        "rate": 17.5,
+        "period": 75,
+        "offset": 25,
+        "airlines": [
+            ["awi", 9],
+            ["eny", 7],
+            ["flg", 6],
+            ["rpa", 6],
+            ["asq", 4],
+            ["aal", 4],
+            ["jbu", 3],
+            ["swa", 3],
+            ["vrd", 3],
+            ["jia", 3],
+            ["ual", 2],
+            ["fft", 2],
+            ["vrd", 2]
+        ]
+      },
+      {
+        "_name": "CAPSS TWO NORTH",
+        "origin": "",
+        "destination": "kdca",
+        "category": "arrival",
+        "route": "BULII..CAPSS..HOYAS..HALLL..KATRN",
+        "altitude": 13000,
+        "speed": 280,
+        "method": "cyclic",
+        "rate": 17.5,
+        "period": 75,
+        "offset": 10,
+        "airlines": [
+            ["awi", 9],
+            ["eny", 7],
+            ["flg", 6],
+            ["rpa", 6],
+            ["asq", 4],
+            ["aal", 4],
+            ["jbu", 3],
+            ["swa", 3],
+            ["vrd", 3],
+            ["jia", 3],
+            ["ual", 2],
+            ["fft", 2],
+            ["vrd", 2]
+        ]
+      }
   ],
   "maps": {
     "base": [
