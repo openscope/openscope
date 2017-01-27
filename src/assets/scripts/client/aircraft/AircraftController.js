@@ -434,14 +434,16 @@ export default class AircraftController {
     }
 
     /**
-     * Remove a flight number from the list stored in `AircraftController.aircraft.callsigns`
+     * Pass the call onto the `airlineController` to remove flightNumber
+     * from the list of active flightNumbers
      *
      * @for AircraftController
      * @method removeFlightNumberFromList
-     * @param aircraft {AircraftInstanceModel}
+     * @param airlineId {string}
+     * @param callsign {string}
      */
-    removeFlightNumberFromList({ airline, callsign }) {
-        this._airlineController.removeFlightNumberFromList(airline, callsign);
+    removeFlightNumberFromList({ airlineId, callsign }) {
+        this._airlineController.removeFlightNumberFromList(airlineId, callsign);
     }
 
     /**

@@ -85,17 +85,17 @@ export default class AirlineController {
      *
      * @for AirlineCollection
      * @method removeFlightNumberFromList
-     * @param airline {string}
-     * @param callsign {string}
+     * @param airlineId {string}
+     * @param flightNumber {string}
      */
-    removeFlightNumberFromList(airline, callsign) {
-        const airlineModel = this.findAirlineById(airline);
+    removeFlightNumberFromList(airlineId, flightNumber) {
+        const airlineModel = this.findAirlineById(airlineId);
 
         if (_isNil(airlineModel)) {
             throw new TypeError('Invalid airline passed to removeFlightNumberFromList, no AirlineModel found');
         }
 
-        airlineModel.removeFlightNumber(callsign);
+        airlineModel.removeFlightNumber(flightNumber);
     }
 
     /**

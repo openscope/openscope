@@ -238,10 +238,6 @@ export default class AircraftStripView {
      *
      * @for AircraftStripView
      * @method resetStripStyles
-     * @param headingText {string}
-     * @param altitudeText {string}
-     * @param destinationText {string}
-     * @param currentSpeedText {string}
      */
     resetStripStyles() {
         const classnamesToRemove = 'runway hold waiting taxi lookingGood allSet';
@@ -261,10 +257,12 @@ export default class AircraftStripView {
      * @param currentSpeedText {string}
      */
     updateAircraftTelemetryText(headingText, altitudeText, destinationText, currentSpeedText) {
+        // FIXME: the `Math.ceil` calls here are temporary and should be removed. this is
+        // masking a larger problem but is being used as a quick fix
         this.$heading.text(headingText.toUpperCase());
-        this.$altitude.text(altitudeText);
+        this.$altitude.text(Math.ceil(altitudeText));
         this.$destination.text(destinationText.toUpperCase());
-        this.$speed.text(currentSpeedText);
+        this.$speed.text(Math.ceil(currentSpeedText));
     }
 
     /**
