@@ -161,7 +161,7 @@ export default class AircraftCommander {
 
             this._uiController.ui_log(`${aircraft.getCallsign()}, ${r_log} ${response_end}`);
             speech_say([
-                { type: 'callsign', content: this },
+                { type: 'callsign', content: aircraft },
                 { type: 'text', content: `${r_say} ${response_end}` }
             ]);
         }
