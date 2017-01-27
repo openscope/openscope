@@ -321,7 +321,7 @@
       "name": "Afnan",
       "suffix": {"16L":"1M", "16R":"1C", "34L":"1W", "34R":"1E"},
       "entryPoints": {
-        "AFNAN": [["AFNAN", "A120-"]]
+        "AFNAN": ["KUPSA", ["AFNAN", "A120-"]]
       },
       "rwy": {
         "16L": ["SIDMU", ["EGNUG", "A80"], ["IVANI", "A50|S220-"], ["TOVAN", "S180-"]],
@@ -360,13 +360,13 @@
       "name": "Ginto",
       "suffix": {"16L":"1M", "16R":"1C", "34L":"1W", "34R":"1E"},
       "entryPoints": {
-        "GINTO": [["GINTO", "A120-"]]
+        "GINTO": [["GINTO", "A120-"], ["LAGNO"]]
       },
       "rwy": {
-        "16L": ["LAGNO", ["DATMO", "A80"], "PUTAN", ["IVANI", "A50|S220-"], ["TOVAN", "S180-"]],
-        "16R": ["LAGNO", ["DATMO", "A80"], ["TANDO", "A50|S220-"], ["GOLSI", "S180-"]],
-        "34L": ["LAGNO", "MUSAN", ["OTIDA", "A80"], ["DANIK", "A50|S220-"], ["IMKAT", "S180-"]],
-        "34R": ["LAGNO", ["SIDMU", "A80"], ["MUXED", "A50|S220-"], ["LAGMA", "S180"]]
+        "16L": [["DATMO", "A80"], "PUTAN", ["IVANI", "A50|S220-"], ["TOVAN", "S180-"]],
+        "16R": [["DATMO", "A80"], ["TANDO", "A50|S220-"], ["GOLSI", "S180-"]],
+        "34L": ["MUSAN", ["OTIDA", "A80"], ["DANIK", "A50|S220-"], ["IMKAT", "S180-"]],
+        "34R": [["SIDMU", "A80"], ["MUXED", "A50|S220-"], ["LAGMA", "S180"]]
       },
       "draw": [
         ["GINTO", "LAGNO", "DATMO", "PUTAN", "IVANI"],
