@@ -21,6 +21,7 @@
 
 
 ### Bugfixes
+- Fixes arrival pattern that was using an array of fix names instead of a routeString. [#174](https://github.com/openscope/openscope/issues/174)
 
 
 
