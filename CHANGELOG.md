@@ -21,6 +21,7 @@
 
 
 ### Bugfixes
+- Adds `entryPoints` to `gcrr` star route definitions [#175](https://github.com/openscope/openscope/issues/175)
 
 
 
