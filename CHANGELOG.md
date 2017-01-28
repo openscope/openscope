@@ -21,6 +21,7 @@
 
 
 ### Bugfixes
+- Updates `wmkk` StandardRoute definition to include at least one fixname [#173](https://github.com/openscope/openscope/issues/173)
 
 
 
