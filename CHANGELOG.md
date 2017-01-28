@@ -21,6 +21,7 @@
 
 
 ### Bugfixes
+- Adds Openscope favicom [#170](https://github.com/openscope/openscope/issues/170)
 
 
 
