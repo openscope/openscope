@@ -21,6 +21,8 @@
 
 
 ### Bugfixes
+- Removes `ALM` and `SVD` arrival patterns because there aren't enough fixes to support them [176](https://github.com/openscope/openscope/issues/176)
+
 
 
 

@@ -1061,47 +1061,6 @@
             "origin": "",
             "destination": "EKCH",
             "category": "arrival",
-            "route": "SVD.SVD.EKCH",
-            "altitude": 11000,
-            "speed": 250,
-            "method": "random",
-            "rate": 5,
-            "airlines": [
-                ["dtr", 10],
-                ["jtg", 25],
-                ["nax", 33],
-                ["sas", 40],
-                ["vkg", 21]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "EKCH",
-            "category": "arrival",
-            "route": "ALM.ALM.EKCH",
-            "altitude": 11000,
-            "speed": 280,
-            "method": "random",
-            "rate": 5,
-            "airlines": [
-                ["afl", 2],
-                ["ber", 5],
-                ["dlh", 4],
-                ["dtr", 10],
-                ["ezy", 12],
-                ["jtg", 25],
-                ["nax", 33],
-                ["ryr", 15],
-                ["sas", 40],
-                ["thy", 4],
-                ["uae", 4],
-                ["vkg", 21]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "EKCH",
-            "category": "arrival",
             "route": "MONAK.MONAK.EKCH",
             "altitude": [14000, 17000],
             "speed": 320,
