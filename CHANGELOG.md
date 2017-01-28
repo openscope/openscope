@@ -21,7 +21,7 @@
 
 
 ### Bugfixes
-
+- Updates `entryPoint` and `exitPoint` to be pluralized as is the airport json standard [#177](https://github.com/openscope/openscope/issues/177)
 
 
 

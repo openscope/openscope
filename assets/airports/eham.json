@@ -403,7 +403,7 @@
       "icao": "LUNIX",
       "name": "Lunix",
       "suffix": {"04":"1F", "22":"1G", "24":"1S", "09":"1N", "27":"1P", "18L":"1E", "36L":"1V"},
-      "exitPoint": {
+      "exitPoints": {
           "EDUPO": ["RENDI", "EDUPO"]
       },
       "rwy": {
@@ -443,7 +443,7 @@
       "icao": "SPY",
       "name": "Spijkerboor",
       "suffix": {"24":"2K", "27":"1P", "36L":"2V"},
-       "exitPoint": {
+       "exitPoints": {
         "ANDIK": ["ANDIK"]
       },
       "rwy": {
@@ -511,7 +511,7 @@
     "LUNIX1Z": {
       "icao": "LUNIX1Z",
       "name": "Lunix One Zulu",
-      "exitPoint": {
+      "exitPoints": {
         "EDUPO": ["RENDI", "EDUPO"]
       },
       "rwy": {
@@ -556,7 +556,7 @@
     "DENAG3X": {
       "icao": "DENAG3X",
       "name": "Denag Three Xray",
-      "exitPoint": {
+      "exitPoints": {
         "VALKO": ["VALKO"]
       },
       "rwy": {
@@ -581,7 +581,7 @@
     "ELPAT2X": {
       "icao": "ELPAT2X",
       "name": "Elpat Two Xray",
-      "exitPoint": {
+      "exitPoints": {
         "ARNEM": ["ARNEM"]
       },
       "rwy": {
@@ -604,7 +604,7 @@
     "ROVEN2X": {
       "icao": "ROVEN2X",
       "name": "Roven Two Xray",
-      "exitPoint": {
+      "exitPoints": {
         "LOPIK": ["LOPIK"]
       },
       "rwy": {
@@ -617,7 +617,7 @@
     "TORGA1X": {
       "icao": "TORGA1X",
       "name": "Torga One Xray",
-      "exitPoint": {
+      "exitPoints": {
         "ANDIK": ["ANDIK"]
       },
       "rwy": {
@@ -630,7 +630,7 @@
     "WISPA1X": {
       "icao": "WISPA1X",
       "name": "Wispa One Xray",
-      "exitPoint": {
+      "exitPoints": {
         "BERGI": ["BERGI"]
       },
       "rwy": {
@@ -643,7 +643,7 @@
     "IVLUT2W": {
       "icao": "IVLUT2W",
       "name": "Ivlut Two Whiskey",
-      "exitPoint": {
+      "exitPoints": {
         "EDUPO": ["RENDI", "EDUPO"]
       },
       "rwy": {
@@ -658,7 +658,7 @@
     "NOPSU1W": {
       "icao": "NOPSU1W",
       "name": "Nopsu One Whiskey",
-      "exitPoint": {
+      "exitPoints": {
         "ANDIK": ["ANDIK"]
       },
       "rwy": {
@@ -671,7 +671,7 @@
     "NYKER3W": {
       "icao": "NYKER3W",
       "name": "Nyker Three Whiskey",
-      "exitPoint": {
+      "exitPoints": {
         "ARNEM": ["ARNEM"]
       },
       "rwy": {
@@ -685,7 +685,7 @@
     "OGINA2W": {
       "icao": "OGINA2W",
       "name": "Ogina Two Whiskey",
-      "exitPoint": {
+      "exitPoints": {
         "LOPIK": ["LOPIK"]
       },
       "rwy": {
@@ -719,7 +719,7 @@
     "LUNIX1T": {
       "icao": "LUNIX1T",
       "name": "Lunix One Tango",
-      "exitPoint": {
+      "exitPoints": {
         "EDUPO": ["RENDI", "EDUPO"]
       },
       "rwy": {
@@ -734,7 +734,7 @@
     "REDFA1A": {
       "icao": "REDFA1A",
       "name": "Redfa One Alfa",
-      "entryPoint": {
+      "entryPoints": {
         "REDFA": ["REDFA"]
       },
       "body": ["SULUT", "SUGOL"],
@@ -745,7 +745,7 @@
     "LAMSO1A": {
       "icao": "LAMSO1A",
       "name": "Lamso One Alfa",
-      "entryPoint": {
+      "entryPoints": {
         "LAMSO": ["LAMSO"]
       },
       "body": ["PEPEL", "SUGOL"],
@@ -756,7 +756,7 @@
     "MOLIX2A": {
       "icao": "MOLIX2A",
       "name": "Molix Two Alfa",
-      "entryPoint": {
+      "entryPoints": {
         "MOLIX": ["MOLIX"]
       },
       "body": ["LUTEX", "SUGOL"],
@@ -767,7 +767,7 @@
     "TOPPA2A": {
       "icao": "TOPPA2A",
       "name": "Toppa Two Alfa",
-      "entryPoint": {
+      "entryPoints": {
         "TOPPA": ["TOPPA"]
       },
       "body": ["MONIL", "ROBVI", "SUGOL"],
@@ -778,10 +778,10 @@
     "EEL1A": {
       "icao": "EEL1A",
       "name": "Eelde One Alfa",
-      "entryPoint": {
+      "entryPoints": {
         "EEL": ["EEL"]
       },
-      "body": ["EEL", "NOVEN", "ARTIP"],
+      "body": ["NOVEN", "ARTIP"],
       "draw": [
         ["DOBAK*", "EEL"],
         ["LUGUM*", "EEL"],
@@ -795,7 +795,7 @@
     "EEL1B": {
       "icao": "EEL1B",
       "name": "Eelde One Bravo",
-      "entryPoint": {
+      "entryPoints": {
         "EEL": ["EEL"]
       },
       "body": ["NARSO", "ARTIP"],
@@ -812,7 +812,7 @@
     "RKN2A": {
       "icao": "RKN2A",
       "name": "Rekken Two Alfa",
-      "entryPoint": {
+      "entryPoints": {
         "REKKEN": ["RKN"]
       },
       "body": ["OSKUR", "ARTIP"],
@@ -823,7 +823,7 @@
     "RKN2B": {
       "icao": "RKN2B",
       "name": "Rekken Two Bravo",
-      "entryPoint": {
+      "entryPoints": {
         "REKKEN": ["RKN"]
       },
       "body": ["SONSA", "NARSO", "ARTIP"],
@@ -834,7 +834,7 @@
     "NORKU2A": {
       "icao": "NORKU2A",
       "name": "Norku Two Alfa",
-      "entryPoint": {
+      "entryPoints": {
         "NORKU": ["NORKU"]
       },
       "body": ["SONSA", "ROBIS", "OSKUR", "ARTIP"],
@@ -845,7 +845,7 @@
     "NORKU2B": {
       "icao": "NORKU2B",
       "name": "Norku Two Bravo",
-      "entryPoint": {
+      "entryPoints": {
         "NORKU": ["NORKU"]
       },
       "body": ["SONSA", "NARSO", "ARTIP"],
@@ -856,7 +856,7 @@
     "DENUT1A": {
       "icao": "DENUT1A",
       "name": "Denut One Alfa",
-      "entryPoint": {
+      "entryPoints": {
         "DENUT": ["DENUT"]
       },
       "body": ["HSD", "RIVER"],
@@ -867,7 +867,7 @@
     "HELEN1A": {
       "icao": "HELEN1A",
       "name": "Helen One Alfa",
-      "entryPoint": {
+      "entryPoints": {
         "HELEN": ["HELEN"]
       },
       "body": ["HSD", "RIVER"],
@@ -878,7 +878,7 @@
     "PUTTY1A": {
       "icao": "PUTTY1A",
       "name": "Putty One Alfa",
-      "entryPoint": {
+      "entryPoints": {
         "PUTTY": ["PUTTY"]
       },
       "body": ["HSD", "RIVER"],
@@ -889,7 +889,7 @@
     "PESER2A": {
       "icao": "PESER2A",
       "name": "Peser Two Alfa",
-      "entryPoint": {
+      "entryPoints": {
         "PESER": ["PESER"]
       },
       "body": ["STD", "RIVER"],
@@ -901,7 +901,7 @@
       "_comment": "ARTIP1X is a day transition for 36R",
       "icao": "ARTIP1X",
       "name": "Artip One Xray",
-      "entryPoint": {
+      "entryPoints": {
         "ARTIP": [["ARTIP", "A100|S250"]]
       },
       "body": ["INBAM", ["EH665", "S220"], "EH667", ["EH668", "S180"], ["EH669", "A20"], ["EH636", "A20"]],
@@ -913,7 +913,7 @@
       "_comment_": "Beyond this point are the instrument approach procedures/transitions for night usage",
       "icao": "ARTIP2A",
       "name": "Artip Two Alfa",
-      "entryPoint": {
+      "entryPoints": {
         "ARTIP": [["ARTIP", "A100|S250"]]
       },
       "body": ["PAM", ["EH611", "A70"], "EH612", ["SOKSI", "A40|S220"], "EH613", ["EH614", "A29"], ["EH609", "A20"], "EH616"],
@@ -924,7 +924,7 @@
     "SOKSI1A": {
       "icao": "SOKSI1A",
       "name": "Soksi One Alfa",
-      "entryPoint": {
+      "entryPoints": {
         "SOKSI": [["SOKSI", "A40|S220"]]
       },
       "body": ["EH613", ["EH614", "A29"], ["EH609", "A20"], "EH616"],
@@ -935,7 +935,7 @@
     "RIVER2A": {
       "icao": "RIVER2A",
       "name": "River Two Alfa",
-      "entryPoint": {
+      "entryPoints": {
         "RIVER": [["RIVER", "A100|S250"]]
       },
       "body": ["EH605", "EH610", ["SOKSI", "A40|S220"], "EH613", ["EH614", "A29"], ["EH609", "A20"]],
@@ -946,7 +946,7 @@
     "SUGOL2A": {
       "icao": "SUGOL2A",
       "name": "Sugol Two Alfa",
-      "entryPoint": {
+      "entryPoints": {
         "SUGOL": [["SUGOL", "A100|S250"]]
       },
       "body": ["EH606", ["SOKSI", "A40|S220"], "EH613", ["EH614", "A29"], ["EH609", "A20"]],
@@ -957,7 +957,7 @@
     "ARTIP3B": {
       "icao": "ARTIP3B",
       "name": "Artip Three Bravo",
-      "entryPoint": {
+      "entryPoints": {
         "ARTIP": [["ARTIP", "A100|S250"]]
       },
       "body": [["EH601", "A70"], ["EH602", "A70"], "EH603", ["NIRSI", "A55|S220"], "EH607", ["EH608", "A34"], ["EH621", "A20"]],
@@ -968,7 +968,7 @@
     "NIRSI1B": {
       "icao": "NIRSI1B",
       "name": "Nirsi One Bravo",
-      "entryPoint": {
+      "entryPoints": {
         "NIRSI": [["NIRSI", "A55|S220"]]
       },
       "body": ["EH607", ["EH608", "A34"], ["EH621", "A20"]],
@@ -979,7 +979,7 @@
     "ARTIP2C": {
       "icao": "ARTIP2C",
       "name": "Artip Two Charlie",
-      "entryPoint": {
+      "entryPoints": {
         "ARTIP": [["ARTIP", "A100|S250"]]
       },
       "body": [["EH600", "A70"], ["NARIX", "A60|S250"], ["EH604", "A40|S220"], ["EH608", "A34"], ["EH621", "A20"]],
@@ -990,7 +990,7 @@
     "NARIX1C": {
       "icao": "NARIX1C",
       "name": "Narix One Charlie",
-      "entryPoint": {
+      "entryPoints": {
         "ARTIP": [["NARIX", "A60|S250"]]
       },
       "body": [["EH604", "A40|S220"], ["EH608", "A34"], ["EH621", "A20"]],
@@ -1001,7 +1001,7 @@
     "RIVER3B": {
       "icao": "RIVER3B",
       "name": "River Three Bravo",
-      "entryPoint": {
+      "entryPoints": {
         "RIVER": [["RIVER", "A100|S250"]]
       },
       "body": ["EH605", ["NIRSI", "A55|S220"], "EH607", ["EH608", "A34"], ["EH621", "A20"]],
@@ -1012,7 +1012,7 @@
     "SUGOL3B": {
       "icao": "SUGOL3B",
       "name": "Sugol Three Bravo",
-      "entryPoint": {
+      "entryPoints": {
         "SUGOL": [["SUGOL", "A100|S250"]]
       },
       "body": ["EH606", ["NIRSI", "A55|S220"], "EH607", ["EH608", "A34"], ["EH621", "A20"]],
@@ -1884,7 +1884,7 @@
             "origin": "",
             "destination": "EHAM",
             "category": "arrival",
-            "route": "ELDEE.EEL1A.EHAM",
+            "route": "EEL.EEL1A.EHAM",
             "altitude": 9500,
             "speed": 250,
             "method": "random",
