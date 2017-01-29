@@ -847,7 +847,7 @@
         "origin": "RJBB",
         "destination": "",
         "category": "departure",
-        "route": "RJBB.MAIKO6.MAIKO6",
+        "route": "RJBB.MAIKO6.MAIKO",
         "altitude": null,
         "speed": null,
         "method": "random",
