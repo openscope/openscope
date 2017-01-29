@@ -995,7 +995,7 @@
         "origin": "",
         "destination": "saez",
         "category": "arrival",
-        "route": ["_ASADA270015", "ASADA", "EZE50", "ARSOT"],
+        "route": "_ASADA270015..ASADA..EZE50..ARSOT",
         "altitude": 10000,
         "speed": 250,
         "method": "cyclic",
