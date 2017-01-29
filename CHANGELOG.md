@@ -21,9 +21,12 @@
 
 
 ### Bugfixes
+- Updates `entryPoint` and `exitPoint` to be pluralized as is the airport json standard [#177](https://github.com/openscope/openscope/issues/177)
 - Adds `entryPoints` to `gcrr` star route definitions [#175](https://github.com/openscope/openscope/issues/175)
 - Fixes arrival pattern that was using an array of fix names instead of a routeString. [#174](https://github.com/openscope/openscope/issues/174)
 - Updates `wmkk` StandardRoute definition to include at least one fixname [#173](https://github.com/openscope/openscope/issues/173)
+
+
 
 
 
