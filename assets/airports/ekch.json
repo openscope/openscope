@@ -587,38 +587,6 @@
         "30":  []
       }
     },
-    "SVD": {
-      "icao": "SVD",
-      "name": "Sveda",
-      "entryPoints": {
-        "SVD": [["SVD", "A110|S250"]]
-      },
-      "body": [],
-      "rwy": {
-        "4L": ["_SVD210"],
-        "4R": ["_SVD210"],
-        "22L": ["_SVD210"],
-        "22R": ["_SVD210"],
-        "12":  ["_SVD170"],
-        "30":  ["_SVD170"]
-      }
-    },
-    "ALM": {
-      "icao": "ALM",
-      "name": "Alma",
-      "entryPoints": {
-        "ALM": ["ALM"]
-      },
-      "body": [],
-      "rwy": {
-        "4L": [["VENOM", "A50|S250"]],
-        "4R": [["VENOM", "A50|S250"]],
-        "22L": [["VENOM", "A50|S250"]],
-        "22R": [["VENOM", "A50|S250"]],
-        "12":  [["DESAS", "A50|S250"]],
-        "30":  [["VEGUD", "A50|S250"]]
-      }
-    },
     "MONAK": {
       "icao": "MONAK",
       "name": "Monak",
