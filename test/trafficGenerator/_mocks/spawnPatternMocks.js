@@ -1,4 +1,12 @@
 export const DEPARTURE_PATTERN_MOCK = {
+    origin: 'KLAS',
+    destination: '',
+    category: 'departure',
+    route: 'KLAS.BOACH6.HEC',
+    altitude: null,
+    speed: null,
+    method: 'random',
+    rate: 5,
     airlines: [
         ['amx', 2],
         ['aca/long', 4],
@@ -21,18 +29,18 @@ export const DEPARTURE_PATTERN_MOCK = {
         ['vrd', 7],
         ['vir', 4],
         ['wja', 7]
-    ],
-    destination: '',
-    origin: 'KLAS',
-    category: 'departure',
-    route: 'KLAS.BOACH6.HEC',
-    altitude: null,
-    method: 'random',
-    rate: 5,
-    speed: null
+    ]
 };
 
 export const ARRIVAL_PATTERN_MOCK = {
+    origin: '',
+    destination: 'KLAS',
+    category: 'arrival',
+    route: 'BETHL.GRNPA1.KLAS',
+    altitude: [30000, 40000],
+    speed: 320,
+    method: 'random',
+    rate: 10,
     airlines: [
         ['aca/long', 4],
         ['aay', 15],
@@ -51,15 +59,7 @@ export const ARRIVAL_PATTERN_MOCK = {
         ['vrd', 7],
         ['vir', 4],
         ['wja', 7]
-    ],
-    destination: 'KLAS',
-    origin: '',
-    category: 'arrival',
-    route: 'BETHL.GRNPA1.KLAS',
-    altitude: [30000, 40000],
-    method: 'random',
-    rate: 10,
-    speed: 320
+    ]
 };
 
 export const ARRIVAL_PATTERN_ROUTE_STRING_MOCK = Object.assign(
@@ -97,14 +97,14 @@ export const AIRPORT_JSON_FOR_SPAWN_MOCK = {
 
 // Data here needs to be congruent with data in `airlineCollectionFixture` used in `AircraftTypeDefinitionCollection.spec`
 export const SPAWN_PATTERN_MODEL_FOR_ARRIVAL_FIXTURE = {
-    destination: 'KLAS',
     origin: '',
+    destination: 'KLAS',
     category: 'arrival',
     route: 'DAG.KEPEC3.KLAS',
     altitude: 28000,
+    speed: 320,
     method: 'random',
     rate: 5,
-    speed: 320,
     airlines: [
         ['aal', 5],
         ['ual', 2]
@@ -113,14 +113,14 @@ export const SPAWN_PATTERN_MODEL_FOR_ARRIVAL_FIXTURE = {
 
 // Data here needs to be congruent with data in `airlineCollectionFixture` used in `AircraftTypeDefinitionCollection.spec`
 export const SPAWN_PATTERN_MODEL_FOR_DEPARTURE_FIXTURE = {
-    destination: '',
     origin: 'KLAS',
+    destination: '',
     category: 'departure',
     route: 'KLAS.COWBY6.GUP',
     altitude: null,
+    speed: null,
     method: 'random',
     rate: 5,
-    speed: null,
     airlines: [
         ['aal', 5],
         ['ual', 2]

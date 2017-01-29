@@ -161,7 +161,7 @@ export default class AircraftCommander {
 
             this._uiController.ui_log(`${aircraft.getCallsign()}, ${r_log} ${response_end}`);
             speech_say([
-                { type: 'callsign', content: this },
+                { type: 'callsign', content: aircraft },
                 { type: 'text', content: `${r_say} ${response_end}` }
             ]);
         }
@@ -345,23 +345,13 @@ export default class AircraftCommander {
      */
     runAltitude(aircraft, data) {
         const altitude = data[0];
-        const expedite = data[1];
+        const shouldExpedite = data[1];
         const airport = this._airportController.airport_get();
-        const radioTrendAltitude = radio_trend('altitude', aircraft.altitude, aircraft.fms.altitudeForCurrentWaypoint());
+        const radioTrendAltitude = radio_trend('altitude', aircraft.altitude, altitude);
         const currentWaypointRadioAltitude = radio_altitude(aircraft.fms.altitudeForCurrentWaypoint());
-
-        // these two conditions should never happen here they will be caught in the `CommandParser`
-        // FIXME: remove this top level if block
-        if ((altitude == null) || isNaN(altitude)) {
-            // FIXME: move this to it's own command. if expedite can be passed as a sole command it should be its own command
-            if (expedite) {
-                aircraft.fms.setCurrent({ expedite: true });
-
-                return ['ok', `${radioTrendAltitude} ${aircraft.fms.altitudeForCurrentWaypoint()} expedite`];
-            }
-
-            return ['fail', 'altitude not understood'];
-        }
+        let shouldExpediteReadback = shouldExpedite
+            ? 'and expedite'
+            : '';
 
         if (aircraft.mode === FLIGHT_MODES.LANDING) {
             aircraft.cancelLanding();
@@ -372,20 +362,16 @@ export default class AircraftCommander {
             ceiling += 1000;
         }
 
+        aircraft.fms.setCurrent({ expedite: shouldExpedite });
         aircraft.fms.setAll({
             // TODO: enumerate the magic numbers
             altitude: clamp(round(airport.elevation / 100) * 100 + 1000, altitude, ceiling),
-            expedite: expedite
+            expedite: shouldExpedite
         });
 
-        let isExpeditingString = '';
-        if (expedite) {
-            isExpeditingString = 'and expedite';
-        }
-
         const readback = {
-            log: `${radioTrendAltitude} ${aircraft.fms.altitudeForCurrentWaypoint()} ${isExpeditingString}`,
-            say: `${radioTrendAltitude} ${currentWaypointRadioAltitude} ${isExpeditingString}`
+            log: `${radioTrendAltitude} ${aircraft.fms.altitudeForCurrentWaypoint()} ${shouldExpediteReadback}`,
+            say: `${radioTrendAltitude} ${currentWaypointRadioAltitude} ${shouldExpediteReadback}`
         };
 
         return ['ok', readback];

@@ -196,6 +196,8 @@ export default class AircraftFlightManagementSystem {
             if (prev && !curr.speed) {
                 curr.speed = prev.speed;
             }
+
+            curr.ensureValidContentsForAircraft(this.my_aircraft);
         }
     }
 
@@ -221,6 +223,8 @@ export default class AircraftFlightManagementSystem {
         if (prev && !curr.speed) {
             curr.speed = prev.speed;
         }
+
+        curr.ensureValidContentsForAircraft(this.my_aircraft);
     }
 
     /**
@@ -256,6 +260,8 @@ export default class AircraftFlightManagementSystem {
             if (prev && !curr.speed) {
                 curr.speed = prev.speed;
             }
+
+            curr.ensureValidContentsForAircraft(this.my_aircraft);
         }
     }
 
@@ -339,6 +345,8 @@ export default class AircraftFlightManagementSystem {
         if (!curr.heading && curr.navmode === WAYPOINT_NAV_MODE.HEADING) {
             curr.heading = prev.heading;
         }
+
+        curr.ensureValidContentsForAircraft(this.my_aircraft);
     }
 
     /**
@@ -363,6 +371,8 @@ export default class AircraftFlightManagementSystem {
         if (!curr.heading && curr.navmode === WAYPOINT_NAV_MODE.HEADING) {
             curr.heading = prev.heading;
         }
+
+        curr.ensureValidContentsForAircraft(this.my_aircraft);
     }
 
     /**
@@ -388,6 +398,8 @@ export default class AircraftFlightManagementSystem {
                     if (prev && !curr.speed) {
                         curr.speed = prev.speed;
                     }
+
+                    curr.ensureValidContentsForAircraft(this.my_aircraft);
 
                     return true;
                 }
@@ -926,8 +938,8 @@ export default class AircraftFlightManagementSystem {
             return null;
         }
 
-        const currentWaypoint = this.currentLeg.waypoints[this.current[WAYPOINT_WITHIN_LEG]]
-            .ensureValidContentsForAircraft(this.my_aircraft);
+        const currentWaypoint = this.currentLeg.waypoints[this.current[WAYPOINT_WITHIN_LEG]];
+            // .ensureValidContentsForAircraft(this.my_aircraft);
 
         return currentWaypoint;
     }

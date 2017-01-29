@@ -146,7 +146,7 @@
   },
   "stars": {
     "PAPDA_STAR": {
-      "icao": "PAPDA",
+      "icao": "PAPDA_STAR",
       "name": "Papda",
       "suffix": {"22":"1B"},
       "entryPoints": {
@@ -161,7 +161,7 @@
       ]
     },
     "ISMAS_STAR": {
-      "icao": "ISMAS",
+      "icao": "ISMAS_STAR",
       "name": "Ismas",
       "suffix": {"04":"1A", "22":"1B"},
       "entryPoints": {
@@ -177,7 +177,7 @@
       ]
     },
     "MADUM_STAR": {
-      "icao": "MADUM",
+      "icao": "MADUM_STAR",
       "name": "Madum",
       "suffix": {"04":"1A"},
       "entryPoints": {
@@ -192,15 +192,16 @@
       ]
     },
     "BIDMO_STAR": {
-      "icao": "BIDMO",
+      "icao": "BIDMO_STAR",
       "name": "Bidmo",
       "suffix": {"04":"1A", "22":"1B"},
       "entryPoints": {
         "BIDMO": [["BIDMO", "A140"]]
       },
+      "body": [["PUKAR", "A80"]],
       "rwy": {
-        "04": [["PUKAR", "A80"], ["ENDOR", "A35"], ["MEKAT", "A31"], ["KENDI", "A25"]],
-        "22": [["PUKAR", "A80"], ["GOBAR", "A31"], ["UPTOP", "A25"]]
+        "04": [["ENDOR", "A35"], ["MEKAT", "A31"], ["KENDI", "A25"]],
+        "22": [["GOBAR", "A31"], ["UPTOP", "A25"]]
       },
       "draw": [
           ["BIDMO", "PUKAR", "GOBAR", "UPTOP"],
@@ -208,7 +209,7 @@
       ]
     },
     "LUNTU_STAR": {
-      "icao": "LUNTU",
+      "icao": "LUNTU_STAR",
       "name": "Luntu",
       "suffix": {"04":"1A", "22":"1B"},
       "entryPoints": {
@@ -494,26 +495,6 @@
                 ["mas", 6],
                 ["slk", 1],
                 ["tgw", 1]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "WMKP",
-            "category": "arrival",
-            "route": "PAPDA.PAPDA_STAR.WMKP",
-            "altitude": 9000,
-            "speed": 250,
-            "method": "random",
-            "rate": 7,
-            "airlines": [
-                ["axm", 9],
-                ["csn", 1],
-                ["cpa", 5],
-                ["hda", 1],
-                ["eva", 3],
-                ["fdx", 1],
-                ["ffm", 8],
-                ["kal", 3]
             ]
         },
         {

@@ -506,7 +506,7 @@ export default class SpawnPatternModel extends BaseModel {
      * @return {string}
      */
     getRandomAirlineForSpawn() {
-        const index = this._findRandomIndexForList(this.airlines);
+        const index = this._findRandomIndexForList(this._weightedAirlineList);
         const airlineId = this._weightedAirlineList[index];
 
         return airlineId;

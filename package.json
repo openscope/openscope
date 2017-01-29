@@ -1,6 +1,6 @@
 {
-  "name": "atc",
-  "version": "3.3.0",
+  "name": "openscope",
+  "version": "4.1.0",
   "description": "An ATC simulator in HTML5",
   "engines": {
     "node": "7.0.0",
@@ -18,7 +18,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zlsa/atc.git"
+    "url": "git+https://github.com/openscope/openscope.git"
   },
   "keywords": [
     "atc",
@@ -44,9 +44,9 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/zlsa/atc/issues"
+    "url": "https://github.com/openscope/openscope/issues"
   },
-  "homepage": "https://github.com/zlsa/atc#readme",
+  "homepage": "https://github.com/openscope/openscope",
   "ava": {
     "files": [
       "test/**/*.spec.js"
