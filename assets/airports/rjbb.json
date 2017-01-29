@@ -144,11 +144,16 @@
         "MAIKO6": {
             "icao": "MAIKO6",
             "name": "Maiko Six",
+            "exitPoints": {
+                "MAIKO": [
+                    ["MAIKO", "A50+"]
+                ]
+            },
             "rwy": {
                 "06L": ["KNE", ["MAIKO", "A50+"]],
                 "06R": ["KNE", ["KCE", "A25+"], ["MAIKO", "A50+"]],
-                "24L": [["MAIKO", "A50+"]],
-                "24R": [["MAIKO", "A50+"]]
+                "24L": [],
+                "24R": []
             },
             "draw": [
                 ["KNE", "KCE", "MAIKO"],
@@ -425,7 +430,7 @@
             ]
         },
         "DANDE_A": {
-            "icao": "DANDE A",
+            "icao": "DANDE_A",
             "name": "Dande Alfa",
             "entryPoints": {
                 "DANDE": [
@@ -441,7 +446,7 @@
             ]
         },
         "DANDE_B": {
-            "icao": "DANDE B",
+            "icao": "DANDE_B",
             "name": "Dande Bravo",
             "entryPoints": {
                 "DANDE": [
@@ -457,7 +462,7 @@
             ]
         },
         "DANDE_C": {
-            "icao": "DANDE C",
+            "icao": "DANDE_C",
             "name": "Dande Charlie",
             "entryPoints": {
                 "DANDE": [
@@ -472,7 +477,7 @@
             ]
         },
         "ALISA_A": {
-            "icao": "ALISA A",
+            "icao": "ALISA_A",
             "name": "Alisa Alfa",
             "entryPoints": {
                 "ALISA": [
@@ -487,7 +492,7 @@
             ]
         },
         "ALISA_B": {
-            "icao": "ALISA B",
+            "icao": "ALISA_B",
             "name": "Alisa Bravo",
             "entryPoints": {
                 "ALISA": [
@@ -502,7 +507,7 @@
             ]
         },
         "ALISA_C": {
-            "icao": "ALISA C",
+            "icao": "ALISA_C",
             "name": "Alisa Charlie",
             "entryPoints": {
                 "ALISA": [
@@ -515,7 +520,7 @@
             ]
         },
         "ALISA_D": {
-            "icao": "ALISA D",
+            "icao": "ALISA_D",
             "name": "Alisa Delta",
             "entryPoints": {
                 "ALISA": [
@@ -528,7 +533,7 @@
             ]
         },
         "ALISA_E": {
-            "icao": "ALISA E",
+            "icao": "ALISA_E",
             "name": "Alisa Echo",
             "entryPoints": {
                 "ALISA": [
@@ -543,7 +548,7 @@
             ]
         },
         "BECKY_A": {
-            "icao": "BECKY A",
+            "icao": "BECKY_A",
             "name": "Becky Alfa",
             "entryPoints": {
                 "SHIMIZU": [
@@ -558,7 +563,7 @@
             ]
         },
         "BECKY_B": {
-            "icao": "BECKY B",
+            "icao": "BECKY_B",
             "name": "Becky Bravo",
             "entryPoints": {
                 "SHIMIZU": [
@@ -573,7 +578,7 @@
             ]
         },
         "BECKY_C": {
-            "icao": "BECKY C",
+            "icao": "BECKY_C",
             "name": "BECKY Charlie",
             "entryPoints": {
                 "SHIMIZU": [
@@ -588,7 +593,7 @@
             ]
         },
         "BECKY_D": {
-            "icao": "BECKY D",
+            "icao": "BECKY_D",
             "name": "BECKY Delta",
             "entryPoints": {
                 "SHIMIZU": [
@@ -603,7 +608,7 @@
             ]
         },
         "BECKY_E": {
-            "icao": "BECKY E",
+            "icao": "BECKY_E",
             "name": "BECKY Echo",
             "entryPoints": {
                 "SHIMIZU": [
@@ -618,7 +623,7 @@
             ]
         },
         "CANDY_A": {
-            "icao": "CANDY A",
+            "icao": "CANDY_A",
             "name": "Candy Alfa",
             "entryPoints": {
                 "KUSHIMOTO": [
@@ -637,7 +642,7 @@
             ]
         },
         "CANDY_B": {
-            "icao": "CANDY B",
+            "icao": "CANDY_B",
             "name": "Candy Bravo",
             "entryPoints": {
                 "KUSHIMOTO": [
@@ -656,7 +661,7 @@
             ]
         },
         "CANDY_C": {
-            "icao": "CANDY C",
+            "icao": "CANDY_C",
             "name": "CANDY Charlie",
             "entryPoints": {
                 "KUSHIMOTO": [
@@ -675,7 +680,7 @@
             ]
         },
         "CANDY_D": {
-            "icao": "CANDY D",
+            "icao": "CANDY_D",
             "name": "CANDY Delta",
             "entryPoints": {
                 "KUSHIMOTO": [
@@ -694,7 +699,7 @@
             ]
         },
         "CANDY_E": {
-            "icao": "CANDY E",
+            "icao": "CANDY_E",
             "name": "CANDY Echo",
             "entryPoints": {
                 "KUSHIMOTO": [
@@ -713,7 +718,7 @@
             ]
         },
         "BERTH_A": {
-            "icao": "BERTH A",
+            "icao": "BERTH_A",
             "name": "BERTH Alfa",
             "entryPoints": {
                 "FUKUE": [
@@ -730,7 +735,7 @@
             ]
         },
         "BERTH_B": {
-            "icao": "BERTH B",
+            "icao": "BERTH_B",
             "name": "BERTH Bravo",
             "entryPoints": {
                 "FUKUE": [
@@ -747,7 +752,7 @@
             ]
         },
         "BERTH_C": {
-            "icao": "BERTH C",
+            "icao": "BERTH_C",
             "name": "BERTH Charlie",
             "entryPoints": {
                 "FUKUE": [
@@ -764,7 +769,7 @@
             ]
         },
         "BERTH_D": {
-            "icao": "BERTH D",
+            "icao": "BERTH_D",
             "name": "BERTH Delta",
             "entryPoints": {
                 "FUKUE": [
@@ -781,7 +786,7 @@
             ]
         },
         "BERTH_E": {
-            "icao": "BERTH E",
+            "icao": "BERTH_E",
             "name": "BERTH Echo",
             "entryPoints": {
                 "FUKUE": [
@@ -800,7 +805,7 @@
             ]
         },
         "DATIS_A": {
-            "icao": "DATIS A",
+            "icao": "DATIS_A",
             "name": "DATIS Alfa",
             "entryPoints": {
                 "DATIS": [
@@ -815,7 +820,7 @@
             ]
         },
         "DATIS_B": {
-            "icao": "DATIS B",
+            "icao": "DATIS_B",
             "name": "DATIS Bravo",
             "entryPoints": {
                 "DATIS":[
@@ -830,7 +835,7 @@
             ]
         },
         "DATIS_C": {
-            "icao": "DATIS C",
+            "icao": "DATIS_C",
             "name": "DATIS Charlie",
             "entryPoints": {
                 "DATIS":[
