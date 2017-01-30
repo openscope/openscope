@@ -499,7 +499,6 @@ export default class Aircraft {
         }
 
         if (this.model.weightclass === 'U') {
-
             heavy = ' super';
         }
 
