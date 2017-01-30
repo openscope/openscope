@@ -954,12 +954,7 @@ export default class Aircraft {
 
             // Established on ILS
             if (this.mode === FLIGHT_MODES.LANDING) {
-                // Final Approach Heading Control
-                const severity_of_correction = 25;  // controls steepness of heading adjustments during localizer tracking
-                const tgtHdg = angle + (offset_angle * -severity_of_correction);
-                const minHdg = angle - degreesToRadians(30);
-                const maxHdg = angle + degreesToRadians(30);
-                this.target.heading = clamp(tgtHdg, minHdg, maxHdg);
+                this.updatelandingFinalApproachHeading(angle);
 
                 // Final Approach Altitude Control
                 this.target.altitude = Math.min(this.fms.currentWaypoint.altitude, glideslope_altitude);
@@ -1197,6 +1192,20 @@ export default class Aircraft {
                 this.target.speed = Math.min(this.fms.currentWaypoint.speed, 250);
             }
         }
+    }
+
+    /**
+     * Updates the angel of of heading for the aircraft when it is landing
+     * @for AircraftInstanceModel
+     * @method updatelandingFinalApproachHeading
+     */
+    updatelandingFinalApproachHeading(angle) {
+        // Final Approach Heading Control
+        const severity_of_correction = 25;  // controls steepness of heading adjustments during localizer tracking
+        const tgtHdg = angle + (this.offset_angle * -severity_of_correction);
+        const minHdg = angle - degreesToRadians(30);
+        const maxHdg = angle + degreesToRadians(30);
+        this.target.heading = clamp(tgtHdg, minHdg, maxHdg);
     }
 
     /**
