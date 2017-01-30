@@ -8,6 +8,7 @@ import _isNil from 'lodash/isNil';
 import _isString from 'lodash/isString';
 import _map from 'lodash/map';
 import AircraftFlightManagementSystem from './FlightManagementSystem/AircraftFlightManagementSystem';
+import Fms from './FlightManagementSystem/Fms';
 import AircraftStripView from './AircraftStripView';
 import RouteModel from '../navigationLibrary/Route/RouteModel';
 import { speech_say } from '../speech';
@@ -164,6 +165,18 @@ export default class Aircraft {
     }
 
     /**
+     * The name of the currently assigned runway
+     *
+     * @property initialRunwayAssignment
+     * @return {string}
+     */
+    get initialRunwayAssignment() {
+        return this.rwy_dep
+            ? this.rwy_dep
+            : this.rwy_arr;
+    }
+
+    /**
      * @for AircraftInstanceModel
      * @method buildCurrentTerrainRanges
      */
@@ -229,6 +242,9 @@ export default class Aircraft {
         this.heading = _get(data, 'heading', this.heading);
         this.altitude = _get(data, 'altitude', this.altitude);
         this.speed = _get(data, 'speed', this.speed);
+
+        this._f = new Fms(data, this.initialRunwayAssignment, this._navigationLibrary);
+        console.log('::: FMS', this._f);
     }
 
     updateFmsAfterInitialLoad(data) {

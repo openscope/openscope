@@ -114,6 +114,23 @@ export default class NavigationLibrary {
     }
 
     /**
+     *
+     *
+     */
+    getRouteTypeForProcedureName(procedureName) {
+        // TODO: the returning of string is not ok and will change as we iterate
+        if (!this._sidCollection.hasRoute(procedureName) && !this._starCollection.hasRoute(procedureName)) {
+            throw new Error(`Invalid procedureName. ${procedureName} was not found in the SidCollection or the StarCollection`);
+        }
+
+        if (this._sidCollection.hasRoute(procedureName)) {
+            return '_sidCollection';
+        }
+
+        return '_starCollection';
+    }
+
+    /**
      * Fascade Method
      *
      * @for NavigationLibrary

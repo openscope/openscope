@@ -80,14 +80,14 @@ export const AIRCRAFT_DEFINITION_LIST_MOCK = [
 export const AIRCRAFT_INITIALIZATION_PROPS_MOCK = {
     callsign: '432',
     destination: 'KLAS',
-    fleet: '',
+    fleet: 'default',
     airline: 'aal',
     airlineCallsign: 'speedbird',
     altitude: 28000,
     speed: 320,
     category: 'arrival',
     icao: 'b737',
-    model: null,
+    model: AIRCRAFT_DEFINITION_MOCK,
     route: 'DAG.KEPEC3.KLAS',
     waypoints: []
 };

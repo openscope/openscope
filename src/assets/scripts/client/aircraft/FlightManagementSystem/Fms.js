@@ -1,6 +1,8 @@
 import _isEmpty from 'lodash/isEmpty';
 import _isObject from 'lodash/isObject';
-// import { routeStringFormatHelper } from '../../navigationLibrary/Route/routeStringFormatHelper';
+import _map from 'lodash/map';
+import LegModel from './LegModel';
+import { routeStringFormatHelper } from '../../navigationLibrary/Route/routeStringFormatHelper';
 // import {
 //     FLIGHT_MODES,
 //     FLIGHT_CATEGORY,
@@ -16,30 +18,54 @@ import _isObject from 'lodash/isObject';
  * @class Fms
  */
 export default class Fms {
-    construtor(spawnPattern, airport, navigationLibrary) {
-        if (!_isObject(spawnPattern) || !_isEmpty(spawnPattern)) {
-            throw new TypeError('Invalid spawnPattern passed to Fms');
+    /**
+     *
+     *
+     */
+    constructor(aircraftInitProps, initialRunwayAssignment, navigationLibrary) {
+        if (!_isObject(aircraftInitProps) || _isEmpty(aircraftInitProps)) {
+            throw new TypeError('Invalid aircraftInitProps passed to Fms');
         }
 
         this._navigationLibrary = navigationLibrary;
-        this._airportModel = airport;
+        this._runway = initialRunwayAssignment;
 
-        this.legsCollection = [];
+        this.legCollection = [];
 
         // oneOf FLIGHT_CATEGORY
         this.category = '';
-        this.mode = '';
 
-
-
-        this.init(spawnPattern);
+        this.init(aircraftInitProps);
     }
 
-    init() {
-        this.category = spawnPattern.category;
+    /**
+     *
+     *
+     */
+    init(aircraftInitProps) {
+        this.category = aircraftInitProps.category;
 
-        // extract direct and procedure route strings from spawnPattern
+        this.legCollection = this._buildInitialLegsCollection(aircraftInitProps);
     }
 
-    destroy() {}
+    /**
+     *
+     *
+     */
+    destroy() {
+        this._navigationLibrary = null;
+        this.legCollection = [];
+        this.category = '';
+    }
+
+    /**
+     *
+     *
+     */
+    _buildInitialLegsCollection(aircraftInitProps) {
+        const routeStringSegments = routeStringFormatHelper(aircraftInitProps.route);
+        const legsForRoute = _map(routeStringSegments, (routeSegment) => new LegModel(routeSegment, this._runway, this._navigationLibrary));
+
+        return legsForRoute;
+    }
 }
