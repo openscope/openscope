@@ -1,4 +1,4 @@
-## 4.1.0 (January 20, 2017)
+## 4.1.0 (February 20, 2017)
 ---
 ### Major
 
@@ -20,12 +20,37 @@
 
 
 
+### Features
+
+
+
+
+
+
+
+
+
 ### Bugfixes
 
 
 
 
 
+
+
+
+
+## 4.0.1 (January 29, 2017)
+---
+### Features
+- Adds Openscope favicon [#170](https://github.com/openscope/openscope/issues/170)
+
+### Bugfixes
+- Removes `ALM` and `SVD` arrival patterns from 'EKCH' because there aren't enough fixes to support them [176](https://github.com/openscope/openscope/issues/176)
+- Updates `entryPoint` and `exitPoint` to be pluralized as is the airport json standard [#177](https://github.com/openscope/openscope/issues/177)
+- Adds `entryPoints` to `gcrr` star route definitions [#175](https://github.com/openscope/openscope/issues/175)
+- Fixes arrival pattern that was using an array of fix names instead of a routeString. [#174](https://github.com/openscope/openscope/issues/174)
+- Updates `wmkk` StandardRoute definition to include at least one fixname [#173](https://github.com/openscope/openscope/issues/173)
 
 
 ## 4.0.0 (January 26, 2017)

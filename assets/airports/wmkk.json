@@ -350,7 +350,7 @@
         "33":   ["KK612", "KK613", "RUMID", "MITOS"]
       },
       "draw": [
-        []
+        ["KK612", "KK613", "RUMID", "MITOS"]
       ]
     },
     "RUMID": {
@@ -387,10 +387,10 @@
       "name": "Rumid One Xray",
       "suffix": {"33":"1X"},
       "rwy": {
-        "33":   ["KK612", "KK613", "RUMID"]
+        "33":  ["KK612", "KK613", "RUMID"]
       },
       "draw": [
-        []
+        ["KK612", "KK613", "RUMID"]
       ]
     },
     "SUBANG1W": {
