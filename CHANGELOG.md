@@ -11,7 +11,7 @@
 
 
 ### Minor
-
+- Makes sure the output for sid and start commands are always uppercase. [#109](https://github.com/openscope/openscope/pull/157)
 
 
 
