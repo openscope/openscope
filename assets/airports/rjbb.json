@@ -156,13 +156,13 @@
             "icao": "FERRY5",
             "name": "Ferry Five",
             "exitPoints": {
-                "MIYAZU": [
+                "YME": [
                     ["KAWAT", "A80+"], "CHIZU", "YME"
                 ],
-                "KIBI": [
+                "OYE": [
                     ["KAWAT", "A80+"], "OYE"
                 ],
-                "KAGAWA": [
+                "KTE": [
                     ["KAWAT", "A80+"], "KTE"
                 ]
             },
@@ -181,10 +181,10 @@
             "icao": "TOMOH1",
             "name": "Tomoh One",
             "exitPoints": {
-                "KOCHI_S": [
+                "KRE": [
 					"UMAJI", "KRE"
 				],
-                "KUSHIMOTO": [
+                "KEC": [
 					["GOBOH", "A60+"], "KEC"
 				]
             },
@@ -249,13 +249,13 @@
             "icao": "KNE1",
             "name": "Kansai One",
             "exitPoints": {
-                "BAMBI": [
+                "NARAH": [
 					"NARAH"
 				],
                 "SHTLE": [
 					"NARAH", "YAGYU", "SHTLE"
 				],
-                "UENOH": [
+                "GUJYO": [
 					"NARAH", "UENOH", "GUJYO"
 				]
             },
@@ -281,7 +281,7 @@
                 "SIGAK": [
 					"NANKO", "OGURA", "KYOTO", "SIGAK"
 				],
-                "NAGOYA": [
+                "KCC": [
 					"NANKO", "OGURA", "KYOTO", "SIGAK", "KCC"
 				]
             },
@@ -397,7 +397,7 @@
             "icao": "AKASI",
             "name": "Akasi",
             "entryPoints": {
-                "TOKUSHIMA": [
+                "TSC": [
 					"TSC"
 				]
             },
@@ -543,7 +543,7 @@
             "icao": "BECKY_A",
             "name": "Becky Alfa",
             "entryPoints": {
-                "SHIMIZU": [
+                "SUC": [
 					"SUC", "STORK", "BRAVE", ["KARIN", "A160"]
 				]
             },
@@ -558,7 +558,7 @@
             "icao": "BECKY_B",
             "name": "Becky Bravo",
             "entryPoints": {
-                "SHIMIZU": [
+                "SUC": [
 					"SUC", "STORK", "BRAVE", ["KARIN", "A160"]
 				]
             },
@@ -573,7 +573,7 @@
             "icao": "BECKY_C",
             "name": "BECKY Charlie",
             "entryPoints": {
-                "SHIMIZU": [
+                "SUC": [
 					"SUC", "STORK", "BRAVE", ["KARIN", "A160"]
 				]
             },
@@ -588,7 +588,7 @@
             "icao": "BECKY_D",
             "name": "BECKY Delta",
             "entryPoints": {
-                "SHIMIZU": [
+                "SUC": [
 					"SUC", "STORK", "BRAVE", ["KARIN", "A160"]
 				]
             },
@@ -603,7 +603,7 @@
             "icao": "BECKY_E",
             "name": "BECKY Echo",
             "entryPoints": {
-                "SHIMIZU": [
+                "SUC": [
 					"SUC", "STORK", "BRAVE", ["KARIN", "A160"]
 				]
             },
@@ -618,7 +618,7 @@
             "icao": "CANDY_A",
             "name": "Candy Alfa",
             "entryPoints": {
-                "KUSHIMOTO": [
+                "KEC": [
                     "KEC", "KISEI", ["EVERT", "A160"]
 				],
                 "TAPOP": [
@@ -637,7 +637,7 @@
             "icao": "CANDY_B",
             "name": "Candy Bravo",
             "entryPoints": {
-                "KUSHIMOTO": [
+                "KEC": [
                     "KEC", "KISEI", ["EVERT", "A160"]
 				],
                 "TAPOP": [
@@ -656,7 +656,7 @@
             "icao": "CANDY_C",
             "name": "CANDY Charlie",
             "entryPoints": {
-                "KUSHIMOTO": [
+                "KEC": [
                     "KEC", "KISEI", ["EVERT", "A160"]
 				],
                 "TAPOP": [
@@ -675,7 +675,7 @@
             "icao": "CANDY_D",
             "name": "CANDY Delta",
             "entryPoints": {
-                "KUSHIMOTO": [
+                "KEC": [
                     "KEC", "KISEI", ["EVERT", "A160"]
 				],
                 "TAPOP": [
@@ -694,7 +694,7 @@
             "icao": "CANDY_E",
             "name": "CANDY Echo",
             "entryPoints": {
-                "KUSHIMOTO": [
+                "KEC": [
                     "KEC", "KISEI", ["EVERT", "A160"]
 				],
                 "TAPOP": [
@@ -713,7 +713,7 @@
             "icao": "BERTH_A",
             "name": "BERTH Alfa",
             "entryPoints": {
-                "FUKUE": [
+                "FUE": [
 					["FUE", "SALTY", ["RANDY", "A160"], ["BERTH", "A100"]]
 				],
                 "OOITA": [
@@ -730,7 +730,7 @@
             "icao": "BERTH_B",
             "name": "BERTH Bravo",
             "entryPoints": {
-                "FUKUE": [
+                "FUE": [
 					["FUE", "SALTY", ["RANDY", "A160"], ["BERTH", "A100"]]
 				],
                 "OOITA": [
@@ -747,7 +747,7 @@
             "icao": "BERTH_C",
             "name": "BERTH Charlie",
             "entryPoints": {
-                "FUKUE": [
+                "FUE": [
 					["FUE", "SALTY", ["RANDY", "A160"], ["BERTH", "A100"]]
 				],
                 "OOITA": [
@@ -764,7 +764,7 @@
             "icao": "BERTH_D",
             "name": "BERTH Delta",
             "entryPoints": {
-                "FUKUE": [
+                "FUE": [
 					["FUE", "SALTY", ["RANDY", "A160"], ["BERTH", "A100"]]
 				],
                 "OOITA": [
@@ -781,7 +781,7 @@
             "icao": "BERTH_E",
             "name": "BERTH Echo",
             "entryPoints": {
-                "FUKUE": [
+                "FUE": [
 					["FUE", "SALTY", ["RANDY", "A160"], ["BERTH", "A100"]]
 				],
                 "OOITA": [
@@ -911,7 +911,7 @@
         "origin": "RJBB",
         "destination": "",
         "category": "departure",
-        "route": "RJBB.FERRY5.MIYAZU",
+        "route": "RJBB.FERRY5.YME",
         "altitude": null,
         "speed": null,
         "method": "random",
@@ -978,7 +978,7 @@
         "origin": "RJBB",
         "destination": "",
         "category": "departure",
-        "route": "RJBB.FERRY5.KIBI",
+        "route": "RJBB.FERRY5.OYE",
         "altitude": null,
         "speed": null,
         "method": "random",
@@ -1045,7 +1045,7 @@
         "origin": "RJBB",
         "destination": "",
         "category": "departure",
-        "route": "RJBB.FERRY5.KAGAWA",
+        "route": "RJBB.FERRY5.KTE",
         "altitude": null,
         "speed": null,
         "method": "random",
@@ -1112,7 +1112,7 @@
         "origin": "RJBB",
         "destination": "",
         "category": "departure",
-        "route": "RJBB.TOMOH1.KOCHI_S",
+        "route": "RJBB.TOMOH1.KRE",
         "altitude": null,
         "speed": null,
         "method": "random",
@@ -1179,7 +1179,7 @@
         "origin": "RJBB",
         "destination": "",
         "category": "departure",
-        "route": "RJBB.TOMOH1.KUSHIMOTO",
+        "route": "RJBB.TOMOH1.KEC",
         "altitude": null,
         "speed": null,
         "method": "random",
@@ -1514,7 +1514,7 @@
         "origin": "RJBB",
         "destination": "",
         "category": "departure",
-        "route": "RJBB.KNE1.BAMBI",
+        "route": "RJBB.KNE1.NARAH",
         "altitude": null,
         "speed": null,
         "method": "random",
@@ -1648,7 +1648,7 @@
         "origin": "RJBB",
         "destination": "",
         "category": "departure",
-        "route": "RJBB.KNE1.UENOH",
+        "route": "RJBB.KNE1.GUJYO",
         "altitude": null,
         "speed": null,
         "method": "random",
@@ -1782,7 +1782,7 @@
         "origin": "RJBB",
         "destination": "",
         "category": "departure",
-        "route": "RJBB.NANKO1.NAGOYA",
+        "route": "RJBB.NANKO1.KCC",
         "altitude": null,
         "speed": null,
         "method": "random",
@@ -2586,7 +2586,7 @@
         "origin": "",
         "destination": "RJBB",
         "category": "arrival",
-        "route": "SHIMIZU.BECKY_D.RJBB",
+        "route": "SUC.BECKY_D.RJBB",
         "altitude": 20000,
         "speed": 430,
         "method": "random",
@@ -2621,7 +2621,7 @@
         "origin": "",
         "destination": "RJBB",
         "category": "arrival",
-        "route": "KUSHIMOTO.CANDY_D.RJBB",
+        "route": "KEC.CANDY_D.RJBB",
         "altitude": 20000,
         "speed": 430,
         "method": "random",
@@ -2666,7 +2666,7 @@
         "origin": "",
         "destination": "RJBB",
         "category": "arrival",
-        "route": "FUKUE.BERTH_D.RJBB",
+        "route": "FUE.BERTH_D.RJBB",
         "altitude": 24000,
         "speed": 430,
         "method": "random",
