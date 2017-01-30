@@ -715,7 +715,7 @@ export default class AircraftCommander {
         const airport = this._airportController.airport_get();
         const sidId = data[0];
         const standardRouteModel = this._navigationLibrary.sidCollection.findRouteByIcao(sidId);
-        const exit = airport.getSIDExitPoint(sidId);
+        const exit = this._navigationLibrary.sidCollection.findRandomExitPointForSIDIcao(sidId);
         // TODO: perhaps this should use the `RouteModel`?
         const route = `${airport.icao}.${sidId}.${exit}`;
 

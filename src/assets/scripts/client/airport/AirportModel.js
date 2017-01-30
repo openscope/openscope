@@ -43,15 +43,14 @@ export default class AirportModel {
      * @param updateRun {function}
      * @param onAirportChange {function}  callback method to call onAirportChange
      */
-    constructor(options = {}, updateRun, onAirportChange, navigationLibrary) {
-        if (!updateRun || !onAirportChange || !navigationLibrary) {
-            console.log('::: ERROR', !updateRun, !onAirportChange, !navigationLibrary);
+    constructor(options = {}, updateRun, onAirportChange) {
+        if (!updateRun || !onAirportChange) {
+            console.log('::: ERROR', !updateRun, !onAirportChange);
             return;
         }
 
         this.updateRun = updateRun;
         this.onAirportChange = onAirportChange;
-        this._navigationLibrary = navigationLibrary;
         this.data = {};
 
         // FIXME: All properties of this class should be instantiated here, even if they wont have values yet.
@@ -67,8 +66,6 @@ export default class AirportModel {
         this.runways = [];
         // TODO: rename to `runwayName`
         this.runway = null;
-        // this property is kept for each airport to allow for re-hydration of the `FixCollection` on airport change
-        // this.fixes = {};
         this.maps = {};
         this.airways = {};
         this.restricted_areas = [];
@@ -83,8 +80,6 @@ export default class AirportModel {
             runway: null,
             departure: null
         };
-        // this.departures = [];
-        // this.arrivals = [];
 
         this.wind  = {
             speed: 10,
@@ -98,14 +93,6 @@ export default class AirportModel {
         this.rr_center = 0;
 
         this.parse(options);
-    }
-
-    /**
-     * @property real_fixes
-     * @return {array<FixModel>}
-     */
-    get real_fixes() {
-        return this._navigationLibrary.realFixes;
     }
 
     /**
@@ -134,7 +121,7 @@ export default class AirportModel {
         this.icao = _get(data, 'icao', this.icao).toLowerCase();
         this.level = _get(data, 'level', this.level);
         this.wip = _get(data, 'wip', this.wip);
-        // exit early if `position` doesnt exist in data. on app initialiazation, we loop through every airport
+        // exit early if `position` doesn't exist in data. on app initialiazation, we loop through every airport
         // in the `airportLoadList` and instantiate a model for each but wont have the full data set until the
         // airport json file is loaded.
         if (!data.position) {
@@ -151,7 +138,6 @@ export default class AirportModel {
         this.initial_alt = _get(data, 'initial_alt', DEFAULT_INITIAL_ALTITUDE_FT);
         this.rr_radius_nm = _get(data, 'rr_radius_nm');
         this.rr_center = _get(data, 'rr_center');
-        // this.fixes = _get(data, 'fixes', {});
 
         this.loadTerrain();
         this.buildAirportAirspace(data.airspace);
@@ -613,49 +599,6 @@ export default class AirportModel {
      */
     getRestrictedAreas() {
         return _get(this, 'restricted_areas', null);
-    }
-
-    /**
-     * @for AirportModel
-     * @param id {string}
-     * @param exit {string}
-     * @param runway {string}
-     * @return {array}
-     */
-    getSID(id, exit, runway) {
-        // console.warn('getSID method should be moved from the AirportModel to the NavigationLibrary');
-        return this._navigationLibrary.sidCollection.findFixesForSidByRunwayAndExit(id, exit, runway);
-    }
-
-    /**
-     * @for AirportModel
-     * @method getSIDExitPoint
-     * @param icao {string}  Name of SID
-     * @return {string}  Name of Exit fix in SID
-     */
-    getSIDExitPoint(icao) {
-        // console.warn('getSIDExitPoint method should be moved from the AirportModel to the NavigationLibrary');
-        return this._navigationLibrary.sidCollection.findRandomExitPointForSIDIcao(icao);
-    }
-
-    /**
-     * Return an array of [Waypoint, fixRestrictions] for a given STAR
-     *
-     * Note: Passing a value for 'rwy' will help the fms distinguish between
-     *       different branches of a STAR, when it splits into different paths
-     *       for landing on different runways (eg 'HAWKZ4, landing south' vs
-     *       'HAWKZ4, landing north'). Not strictly required, but not passing
-     *       it will cause an incomplete route in many cases (depends on the
-     *       design of the actual STAR in the airport's json file).
-     *
-     * @param {string} id - the identifier for the STAR (eg 'LENDY6')
-     * @param {string} entry - the entryPoint from which to join the STAR
-     * @param {string} rwy - (optional) the planned arrival runway
-     * @return {array<string>}
-     */
-    getSTAR(id, entry, rwy) {
-        // console.warn('getSTAR() method should be moved from the AirportModel to the NavigationLibrary');
-        return this._navigationLibrary.starCollection.findFixesForStarByEntryAndRunway(id, entry, rwy);
     }
 
     /**

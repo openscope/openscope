@@ -608,9 +608,7 @@ export default class ConvasController {
         cc.lineJoin = 'round';
         cc.font = BASE_CANVAS_FONT;
 
-        const airport = window.airportController.airport_get();
-        // TODO: perhaps this could be a model method?
-        _forEach(airport.real_fixes, (fix, i) => {
+        _forEach(this._navigationLibrary.realFixes, (fix, i) => {
             cc.save();
             cc.translate(
                 round(window.uiController.km_to_px(fix.position[0])) + this.canvas.panX,

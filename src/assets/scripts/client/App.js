@@ -156,17 +156,22 @@ export default class App {
         // in a different class and the window methods should disappear.
         zlsa.atc.loadAsset = (options) => this.contentQueue.add(options);
 
+        // IMPORTANT:
+        // The order in which the following classes are instantiated is extremely important. Changing
+        // this order could break a lot of things. This interdependency is something we should
+        // work on reducing in the future.
+
         this.loadingView = new LoadingView();
         this.contentQueue = new ContentQueue(this.loadingView);
         this.gameController = new GameController(this.getDeltaTime);
         // FIXME: Temporary
         window.gameController = this.gameController;
 
-        this.navigationLibrary = new NavigationLibrary(initialAirportData);
-        this.airportController = new AirportController(initialAirportData, airportLoadList, this.updateRun, this.onAirportChange, this.navigationLibrary);
+        this.airportController = new AirportController(initialAirportData, airportLoadList, this.updateRun, this.onAirportChange);
         // FIXME: Temporary
         window.airportController = this.airportController;
 
+        this.navigationLibrary = new NavigationLibrary(initialAirportData);
         this.airlineController = new AirlineController(airlineList);
         this.aircraftController = new AircraftController(aircraftTypeDefinitionList, this.airlineController, this.navigationLibrary);
         // FIXME: Temporary
