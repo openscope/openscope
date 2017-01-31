@@ -248,7 +248,7 @@
                 "34L": ["HKE", "NRE"],
                 "34R": ["HKE", "NRE"]
             },
-            "transitions": {
+            "exitPoints": {
                 "GOTEN": [["HME", "A200+"], ["GOTEN", "A240+"]],
                 "SZE": [["HME", "A200+"], "SZE"]
             },
