@@ -1,6 +1,6 @@
 {
   "name": "FastGA",
-  "icao": "N",
+  "icao": "n",
   "callsign": {
     "name": "November",
     "length": 5,

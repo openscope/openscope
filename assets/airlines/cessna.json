@@ -1,6 +1,6 @@
 {
   "name": "Cessna",
-  "icao": "N",
+  "icao": "n",
   "callsign": {
     "name": "Cessna",
     "length": 5,
