@@ -23,3 +23,11 @@ ava('.init() calls ._buildInitialLegsCollection()', (t) => {
 
     t.true(_buildInitialLegsCollectionSpy.calledWithExactly(AIRCRAFT_INITIALIZATION_PROPS_MOCK));
 });
+
+ava('._buildInitialLegsCollection() returns an array of LegModels', (t) => {
+    const complexRouteString = 'COWBY..BIKKR..DAG.KEPEC3.KLAS';
+    const aircraftPropsMock = Object.assign({}, AIRCRAFT_INITIALIZATION_PROPS_MOCK, { route: complexRouteString });
+    const fms = new Fms(aircraftPropsMock, initialRunwayAssignmentMock, navigationLibraryFixture);
+
+    t.true(fms.legCollection.length === 3);
+});

@@ -13,7 +13,7 @@ import { routeStringFormatHelper } from '../../navigationLibrary/Route/routeStri
 /**
  *
  * This class should always be instantiated from an `AircraftInstanceModel` and
- * always isntantiated with some form of a `spawnPatternModel`.
+ * always instantiated with some form of a `spawnPatternModel`.
  *
  * @class Fms
  */
@@ -32,7 +32,6 @@ export default class Fms {
 
         this.legCollection = [];
 
-        // oneOf FLIGHT_CATEGORY
         this.category = '';
 
         this.init(aircraftInitProps);

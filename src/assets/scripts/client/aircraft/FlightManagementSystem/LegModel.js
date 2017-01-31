@@ -8,6 +8,7 @@ export default class LegModel {
     constructor(routeSegment, runway, navigationLibrary) {
         this._navigationLibrary = navigationLibrary;
         this._runway = runway;
+        this._isProcedureRoute = RouteModel.isProcedureRouteString(routeSegment);
         this.waypointCollection = [];
 
 
@@ -28,6 +29,8 @@ export default class LegModel {
      */
     destroy() {
         this._navigationLibrary = null;
+        this._runway = '';
+        this._isProcedureRoute = false;
         this.waypointCollection = [];
     }
 
@@ -36,7 +39,7 @@ export default class LegModel {
      *
      */
     _buildWaypointCollection(routeSegment) {
-        if (!RouteModel.isProcedureRouteString(routeSegment)) {
+        if (!this._isProcedureRoute) {
             return this._buildWaypointForDirectRoute(routeSegment);
         }
 
@@ -48,11 +51,9 @@ export default class LegModel {
      *
      */
     _buildWaypointForDirectRoute(directRouteSegment) {
-        console.log('isWaypoint', directRouteSegment);
         const fixModel = this._navigationLibrary.findFixByName(directRouteSegment);
 
-        // create waypoint from FixModel with FixModel. something like:
-        // return fixModel.generateFmsWaypoint();
+        return fixModel;
     }
 
     /**
@@ -60,29 +61,27 @@ export default class LegModel {
      *
      */
     _buildWaypointCollectionForProcedureRoute(procedureRouteSegment) {
-        console.log('ProcedureRoute', procedureRouteSegment);
         // TODO: this logic should really live in the _navigationLibrary. send it the procedureRouteSegment
         // and the runway and accept a list of FixModels or StandardRouteWaypointModels in return.
         const routeModel = new RouteModel(procedureRouteSegment);
         const sidOrStarCollectionName = this._navigationLibrary.getRouteTypeForProcedureName(routeModel.procedure);
         const procedureRouteCollection = this._navigationLibrary[sidOrStarCollectionName];
 
-        let fixModelsForProcedure;
+        let standardRouteWaypointModelList;
         if (sidOrStarCollectionName === '_sidCollection') {
-            fixModelsForProcedure = procedureRouteCollection.findFixModelsForRouteByEntryAndExit(
+            standardRouteWaypointModelList = procedureRouteCollection.findFixModelsForRouteByEntryAndExit(
                 routeModel.procedure,
                 this._runway,
                 routeModel.exit
             );
         } else {
-            fixModelsForProcedure = procedureRouteCollection.findFixModelsForRouteByEntryAndExit(
+            standardRouteWaypointModelList = procedureRouteCollection.findFixModelsForRouteByEntryAndExit(
                 routeModel.procedure,
                 routeModel.entry,
                 this._runway
             );
         }
 
-
-        // console.log(fixModelsForProcedure);
+        return standardRouteWaypointModelList;
     }
 }
