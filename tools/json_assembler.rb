@@ -63,12 +63,7 @@ end
 
 puts '::: ---  ---- ---- --- :::'
 
-if @out_filename == 'airlines'
-  add_icao_to_airline_and_combine_json
-else
-  combine_json_files
-end
-
+combine_json_files
 write_combined_json_to_file
 
 puts '::: ---  COMPLETE  --- :::'
