@@ -3,7 +3,7 @@ require 'json'
 # This tool will find all the json files in a directory and combine
 # them into a single json file.
 #
-# USING THIS TOOL MAY BE DSTRUCTIVE!!
+# USING THIS TOOL IS DESTRUCTIVE!!
 # Any time this tool is used *it will overwrite any existing content in
 # the taget out_file*.  Use with caution
 #
@@ -29,24 +29,6 @@ def combine_json_files
     item = JSON.parse File.read(f)
 
     add_item_to_json_out_filename(item)
-  }
-end
-
-# existing airline files do not contain an airline identifier (icao), we add that in programatically here
-def add_icao_to_airline_and_combine_json
-  # collect all the json files in the current directory and add them all to the hash
-  Dir.glob('**/*.json').select{ |name| name != "#{@out_filename}.json" }.map { |f|
-    airline = JSON.parse File.read(f)
-    # grab the airline icao from the file name
-    airline_icao = "#{f.split('.')[0]}"
-    # some airline files may already specify an `icao`, we dont want to overwrite that
-    unless airline['icao']
-      # otherwise create a new key in the hash and set it to the airline_icao
-      airline['icao'] = airline_icao
-    end
-
-    # add the original file contents, plus our new `icao` key value pair to the out_filename array
-    add_item_to_json_out_filename(airline)
   }
 end
 

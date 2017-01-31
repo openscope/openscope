@@ -94,7 +94,7 @@ export default class AirlineCollection extends BaseCollection {
      */
     findAirlineById(id) {
         const airlineNameAndFleetSeparator = '/';
-        let airlineId = id;
+        let airlineId = id.toLowerCase();
 
         if (airlineId.indexOf(airlineNameAndFleetSeparator) !== -1) {
             // this should not get hit in most circumstances. The puropse of this method is to find
