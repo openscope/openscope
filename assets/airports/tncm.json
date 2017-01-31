@@ -296,8 +296,8 @@
             ["afr/long", 2],
             ["aal", 4],
             ["bwa", 4],
-            ["g", 6],
-            ["g", 6],
+            ["n/lightGA", 6],
+            ["n/fastGA", 6],
             ["dal", 4],
             ["jbu", 3],
             ["klm/long", 2],
@@ -319,7 +319,7 @@
         "airlines": [
             ["aal", 4],
             ["bwa", 4],
-            ["g", 6],
+            ["n/fastGA", 6],
             ["dal", 4],
             ["jbu", 3],
             ["ual", 3]
@@ -339,7 +339,7 @@
         "airlines": [
             ["aal", 4],
             ["bwa", 4],
-            ["g", 6],
+            ["n/fastGA", 6],
             ["dal", 4],
             ["jbu", 3],
             ["ual", 3]
@@ -373,7 +373,7 @@
         "rate": 5,
         "airlines": [
             ["bwa", 4],
-            ["g", 6],
+            ["n/fastGA", 6],
             ["fwi", 4],
             ["inc", 3]
         ]
@@ -391,7 +391,7 @@
         "rate": 10,
         "airlines": [
             ["bwa/short", 4],
-            ["g", 6],
+            ["n/lightGA", 6],
             ["fwi/short", 4],
             ["wia", 5]
         ]
@@ -407,7 +407,7 @@
         "rate": 10,
         "airlines": [
             ["bwa", 4],
-            ["g", 6],
+            ["n/fastGA", 6],
             ["fwi", 4],
             ["inc", 3]
         ]
@@ -424,7 +424,7 @@
         "airlines": [
             ["aal", 4],
             ["bwa", 4],
-            ["g", 6],
+            ["n/fastGA", 6],
             ["fwi", 4],
             ["inc", 3]
         ]

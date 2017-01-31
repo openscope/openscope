@@ -109,7 +109,7 @@
       ["asa", 8],
       ["dal", 8],
       ["airtaxi", 12],
-      ["g", 5]
+      ["n/lightGA", 5]
     ],
     "destinations": [
       "BRDR7", "LNSAY5", "PEBLE6", "POGGI5"

@@ -294,7 +294,7 @@
         "method": "random",
         "rate": 12,
         "airlines": [
-            ["g", 1]
+            ["n/lightGA", 1]
         ]
     }
   ]
