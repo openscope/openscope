@@ -21,7 +21,7 @@
 
 
 ### Bugfixes
-
+- Updates airline json files to include `icao` key. Updates `AirlineCollection` and `AirlineModel` to handle variable casing of `icao`  [#195](https://github.com/openscope/openscope/issues/195)
 
 
 
