@@ -959,24 +959,7 @@ export default class Aircraft {
                 // Final Approach Altitude Control
                 this.target.altitude = Math.min(this.fms.currentWaypoint.altitude, glideslope_altitude);
 
-                // Final Approach Speed Control
-                if (this.fms.currentWaypoint.speed > 0) {
-                    this.fms.setCurrent({ start_speed: this.fms.currentWaypoint.speed });
-                }
-
-                if (this.isOnGround()) {
-                    this.target.altitude = runway.elevation;
-                    this.target.speed = 0;
-                } else {
-                    const dist_final_app_spd = 3.5; // 3.5km ~= 2nm
-                    const dist_assigned_spd = 9.5;  // 9.5km ~= 5nm
-                    this.target.speed = extrapolate_range_clamp(
-                        dist_final_app_spd, offset[1],
-                        dist_assigned_spd,
-                        this.model.speed.landing,
-                        this.fms.currentWaypoint.start_speed
-                    );
-                }
+                this.updateLandingFinalSpeedControll();
 
                 // Failed Approach
                 if (abs(offset[0]) > 0.100) {
@@ -1196,6 +1179,58 @@ export default class Aircraft {
 
     /**
      * Updates the heading for a landing aircraft
+     *
+     * @for AircraftInstanceModel
+     * @method updateLandingFinalSpeedControll
+     */
+    updateLandingFinalSpeedControll(){
+        // Final Approach Speed Control
+        if (this.fms.currentWaypoint.speed > 0)  {
+            this.fms.setCurrent({ start_speed: this.fms.currentWaypoint.speed });
+        }
+
+        if (this.isOnGround()) {
+            this.target.altitude = runway.elevation;
+            this.target.speed = 0;
+        } else {
+            const dist_final_app_spd = 3.5; // 3.5km ~= 2nm
+            const dist_assigned_spd = 9.5;  // 9.5km ~= 5nm
+            this.target.speed = extrapolate_range_clamp(
+                dist_final_app_spd, offset[1],
+                dist_assigned_spd,
+                this.model.speed.landing,
+                this.fms.currentWaypoint.start_speed
+            );
+        }
+    }
+
+    /**
+     * Cancles the landing and disaply message
+     *
+     * @for AircraftInstanceModel
+     * @method updateLandingFailedLanding
+     */
+    updateLandingFailedLanding() {
+        // Failed Approach
+        if (abs(offset[0]) > 0.100) {
+            if (!this.projected) {
+                this.updateStrip();
+                this.cancelLanding();
+                const isWarning = true;
+                //TODO: Should be moved to where the output is handled
+                window.uiController.ui_log(`${this.getRadioCallsign()} aborting landing, lost ILS`, isWarning);
+                speech_say([
+                    { type: 'callsign', content: this },
+                    { type: 'text', content: ' going around' }
+                ]);
+                window.gameController.events_recordNew(GAME_EVENTS.GO_AROUND);
+            }
+        }
+    }
+
+    /**
+     * Updates the heading for a landing aircraft
+     *
      * @for AircraftInstanceModel
      * @method updateLandingFinalApproachHeading
      */
