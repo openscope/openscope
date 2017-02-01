@@ -261,21 +261,22 @@
             "icao": "NANKO1",
             "name": "Nanko One",
             "rwy": {
-                "06L": ["B6L20", ["NANKO", "A80+"]],
-                "06R": ["B6R10", ["B6R11", "A25+"], "B6R13", ["NANKO", "A80+"]],
-                "24L": ["B4L10", ["NANKO", "A80+"]],
-                "24R": ["B4R20", ["NANKO", "A80+"]]
+                "06L": ["B6L20"],
+                "06R": ["B6R10", ["B6R11", "A25+"], "B6R13"],
+                "24L": ["B4L10"],
+                "24R": ["B4R20"]
             },
+            "body": [["NANKO", "A80+"], "OGURA", "KYOTO"],
             "exitPoints": {
-                "SIGAK": ["NANKO", "OGURA", "KYOTO", "SIGAK"],
-                "KCC": ["NANKO", "OGURA", "KYOTO", "SIGAK", "KCC"]
+                "SIGAK": ["SIGAK"],
+                "KCC": ["SIGAK", "KCC"]
             },
             "draw": [
                 ["B6L20", "NANKO"],
                 ["B6R13", "NANKO"],
                 ["B4L10", "NANKO"],
                 ["B4R20", "NANKO"],
-                ["NANKO", "OGURA", "KYOTO", "SIGAK*"],
+                ["SIGAK*"],
                 ["SIGAK", "KCC*"]
             ]
         },
@@ -382,7 +383,7 @@
                 "DANDE": ["DANDE"]
             },
             "body": [
-                ["JOLLY", "A80-|A60+"]
+                ["JOLLY", "A80"]
             ],
             "rwy": {
                 "06L": [["ALLAN", "A40"]],
@@ -1817,7 +1818,7 @@
             "category": "arrival",
             "route": "SUC.BECKY.RJBB",
             "altitude": 20000,
-            "speed": 430,
+            "speed": 320,
             "method": "random",
             "rate": 2,
             "airlines": [
