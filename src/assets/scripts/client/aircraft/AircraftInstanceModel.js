@@ -1195,11 +1195,11 @@ export default class Aircraft {
     }
 
     /**
-     * Updates the angel of of heading for the aircraft when it is landing
+     * Updates the heading for a landing aircraft
      * @for AircraftInstanceModel
-     * @method updatelandingFinalApproachHeading
+     * @method updateLandingFinalApproachHeading
      */
-    updatelandingFinalApproachHeading(angle) {
+    updateLandingFinalApproachHeading(angle) {
         // Final Approach Heading Control
         const severity_of_correction = 25;  // controls steepness of heading adjustments during localizer tracking
         const tgtHdg = angle + (this.offset_angle * -severity_of_correction);
