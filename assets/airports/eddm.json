@@ -348,22 +348,22 @@
             "rwy": {
                 "08L": ["MNW", ["DM071", "A40|S230"], ["RATGI", "S250"], "MEBEK"],
                 "08R": ["MSW", ["DM080", "A40|S230"], ["RATGI", "S250"], "MEBEK"],
-                "26L": [],
-                "26R": []
+                "26L": ["DM049", ["DM050", "S210"], "MUN", ["MEBEK", "S250"]],
+                "26R": [["DM067", "S210"], "DM050", "MUN", ["MEBEK", "S250"]]
             },
-            "body": ["KPT"],
+            "body": ["KIRDI"],
             "draw": [
-                ["MNW", "DM071", "DM094", "LAKOL", "OBAXA", "MERSI"],
-                ["MSW", "DM081", "ALONU", "LAKOL"],
-                ["MSE", "DM053", "AMPEG", "MERSI"],
-                ["MNE", "DM061", "AMPEG"],
-                ["MERSI", "KPT"]
+                ["MNW", "DM071", "RATGI", "MEBEK"],
+                ["MSW", "DM080", "RATGI"],
+                ["DM049", "DM050", "MUN", "MEBEK"],
+                ["DM067", "DM050"],
+                ["MEBEK", "KIRDI"]
             ]
         }
     },
     "departures": {
         "destinations": [
-        "ALG", "ANKER", "BIBAG", "GIVMI", "INPUD", "KIRDI", "OLASO", "RIDAR", "ROTAX", "TULSI", "TURBU", "VAVOR"
+            "ALG", "ANKER", "BIBAG", "GIVMI", "INPUD", "KIRDI", "OLASO", "RIDAR", "ROTAX", "TULSI", "TURBU", "VAVOR"
         ],
         "type": "random",
         "frequency": 3,
