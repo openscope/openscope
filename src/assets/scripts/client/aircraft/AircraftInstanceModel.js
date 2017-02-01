@@ -507,15 +507,15 @@ export default class Aircraft {
         }
 
         // TODO: this may not be needed any longer
-        let cs = window.airlineController.airline_get(this.airline).callsign;
+        //let cs = window.airlineController.airline_get(this.airline).callsign;
 
-        if (cs === 'November') {
-            cs += ` ${radio_spellOut(callsign)} ${heavy}`;
-        } else {
-            cs += ` ${groupNumbers(callsign, this.airline)} ${heavy}`;
-        }
+        //if (cs === 'November') {
+        //    cs += ` ${radio_spellOut(callsign)} ${heavy}`;
+    //    } else {
+        //    cs += ` ${groupNumbers(callsign, this.airline)} ${heavy}`;
+        //}
 
-        return cs;
+        //return cs;
     }
 
     /**
@@ -954,27 +954,10 @@ export default class Aircraft {
 
             // Established on ILS
             if (this.mode === FLIGHT_MODES.LANDING) {
-                this.updatelandingFinalApproachHeading(angle);
-
-                // Final Approach Altitude Control
+                this.updateLandingFinalApproachHeading(angle);
                 this.target.altitude = Math.min(this.fms.currentWaypoint.altitude, glideslope_altitude);
-
-                this.updateLandingFinalSpeedControll();
-
-                // Failed Approach
-                if (abs(offset[0]) > 0.100) {
-                    if (!this.projected) {
-                        this.updateStrip();
-                        this.cancelLanding();
-                        const isWarning = true;
-                        window.uiController.ui_log(`${this.getRadioCallsign()} aborting landing, lost ILS`, isWarning);
-                        speech_say([
-                            { type: 'callsign', content: this },
-                            { type: 'text', content: ' going around' }
-                        ]);
-                        window.gameController.events_recordNew(GAME_EVENTS.GO_AROUND);
-                    }
-                }
+                this.updateLandingFinalSpeedControll(runway, this.approachDistance);
+                this.updateLandingFailedLanding();
             } else if (offset[1] < localizerRange) {  // Joining the ILS
                 // Check if aircraft has just become established on the localizer
                 const alignedWithRunway = abs(offset[0]) < 0.050;  // within 50m
@@ -1183,7 +1166,7 @@ export default class Aircraft {
      * @for AircraftInstanceModel
      * @method updateLandingFinalSpeedControll
      */
-    updateLandingFinalSpeedControll(){
+    updateLandingFinalSpeedControll(runway, offset) {
         // Final Approach Speed Control
         if (this.fms.currentWaypoint.speed > 0)  {
             this.fms.setCurrent({ start_speed: this.fms.currentWaypoint.speed });
@@ -1196,7 +1179,7 @@ export default class Aircraft {
             const dist_final_app_spd = 3.5; // 3.5km ~= 2nm
             const dist_assigned_spd = 9.5;  // 9.5km ~= 5nm
             this.target.speed = extrapolate_range_clamp(
-                dist_final_app_spd, offset[1],
+                dist_final_app_spd, offset,
                 dist_assigned_spd,
                 this.model.speed.landing,
                 this.fms.currentWaypoint.start_speed
@@ -1212,20 +1195,19 @@ export default class Aircraft {
      */
     updateLandingFailedLanding() {
         // Failed Approach
-        if (abs(offset[0]) > 0.100) {
-            if (!this.projected) {
-                this.updateStrip();
-                this.cancelLanding();
-                const isWarning = true;
-                //TODO: Should be moved to where the output is handled
-                window.uiController.ui_log(`${this.getRadioCallsign()} aborting landing, lost ILS`, isWarning);
-                speech_say([
-                    { type: 'callsign', content: this },
-                    { type: 'text', content: ' going around' }
-                ]);
-                window.gameController.events_recordNew(GAME_EVENTS.GO_AROUND);
-            }
+        if ((this.approachDistance > 0.100) && (!this.projected)) {
+            this.updateStrip();
+            this.cancelLanding();
+            const isWarning = true;
+            //TODO: Should be moved to where the output is handled
+            window.uiController.ui_log(`${this.getRadioCallsign()} aborting landing, lost ILS`, isWarning);
+            speech_say([
+                { type: 'callsign', content: this },
+                { type: 'text', content: ' going around' }
+            ]);
+            window.gameController.events_recordNew(GAME_EVENTS.GO_AROUND);
         }
+
     }
 
     /**
