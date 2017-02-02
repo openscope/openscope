@@ -648,5 +648,464 @@
                 ["MSE", "DM058", "DM059", "MUN", "LAKOL", "VAVOR"]
             ]
         }
+    },
+    "stars": {
+        "ABGAS3A": {
+            "icao": "ABGAS3A",
+            "name": "Abgas Three Alpha",
+            "entryPoints": {
+                "ABGAS": ["ABGAS"]
+            },
+            "body": [["LURER", "A140|S280"], "LELTA", "ROKIL"],
+            "rwy": {
+                "08L": ["DM411", "DM412", "DM427", "DM426", "DM425", "DM424", ["DM423", "A80"], "DM422", "DM421", "DM420"],
+                "08R": ["DM411", "DM412", "DM427", "DM426", "DM425", "DM424", ["DM423", "A80"], "DM422", "DM421", "DM420"],
+                "26L": ["DM421", "DM422", "DM423", "DM424", ["DM425", "A80"], "DM426", "DM427", "DM428", "DM429"],
+                "26R": ["DM421", "DM422", "DM423", "DM424", ["DM425", "A80"], "DM426", "DM427", "DM428", "DM429"]
+            },
+            "draw": [
+                ["ABGAS", "LURER", "LELTA", "ROKIL"],
+                ["ROKIL", "DM411", "DM412", "DM427", "DM426", "DM425", "DM424", "DM423", "DM422", "DM421", "DM420"],
+                ["ROKIL", "DM421", "DM422", "DM423", "DM424", "DM425", "DM426", "DM427", "DM428", "DM429"]
+            ]
+        },
+        "AKANU3A": {
+            "icao": "AKANU3A",
+            "name": "Akanu Three Alpha",
+            "entryPoints": {
+                "AKANU": [["AKANU", "A250"]]
+            },
+            "body": ["LUPOX", ["RENLO", "A130|S280"], "ROKIL"],
+            "rwy": {
+                "08L": ["DM411", "DM412", "DM427", "DM426", "DM425", "DM424", ["DM423", "A80"], "DM422", "DM421", "DM420"],
+                "08R": ["DM411", "DM412", "DM427", "DM426", "DM425", "DM424", ["DM423", "A80"], "DM422", "DM421", "DM420"],
+                "26L": ["DM421", "DM422", "DM423", "DM424", ["DM425", "A80"], "DM426", "DM427", "DM428", "DM429"],
+                "26R": ["DM421", "DM422", "DM423", "DM424", ["DM425", "A80"], "DM426", "DM427", "DM428", "DM429"]
+            },
+            "draw": [
+                ["AKANU", "LUPOX", "RENLO", "ROKIL"],
+                ["ROKIL", "DM411", "DM412", "DM427", "DM426", "DM425", "DM424", "DM423", "DM422", "DM421", "DM420"],
+                ["ROKIL", "DM421", "DM422", "DM423", "DM424", "DM425", "DM426", "DM427", "DM428", "DM429"]
+            ]
+        },
+        "ANORA3A": {
+            "icao": "ANORA3A",
+            "name": "Anora Three Alpha",
+            "entryPoints": {
+                "ANORA": [["ANORA", "A250"]]
+            },
+            "body": ["XERUM", ["BURAM", "A130|S280"], "WLD", "ROKIL"],
+            "rwy": {
+                "08L": ["DM411", "DM412", "DM427", "DM426", "DM425", "DM424", ["DM423", "A80"], "DM422", "DM421", "DM420"],
+                "08R": ["DM411", "DM412", "DM427", "DM426", "DM425", "DM424", ["DM423", "A80"], "DM422", "DM421", "DM420"],
+                "26L": ["DM421", "DM422", "DM423", "DM424", ["DM425", "A80"], "DM426", "DM427", "DM428", "DM429"],
+                "26R": ["DM421", "DM422", "DM423", "DM424", ["DM425", "A80"], "DM426", "DM427", "DM428", "DM429"]
+            },
+            "draw": [
+                ["ANORA", "XERUM", "BURAM", "WLD", "ROKIL"],
+                ["ROKIL", "DM411", "DM412", "DM427", "DM426", "DM425", "DM424", "DM423", "DM422", "DM421", "DM420"],
+                ["ROKIL", "DM421", "DM422", "DM423", "DM424", "DM425", "DM426", "DM427", "DM428", "DM429"]
+            ]
+        },
+        "GESLU1A": {
+            "icao": "GESLU1A",
+            "name": "Geslu One Alpha",
+            "entryPoints": {
+                "GESLU": [["GESLU", "A250"]]
+            },
+            "body": [["LURER", "A140|S280"], "LELTA", "ROKIL"],
+            "rwy": {
+                "08L": ["DM411", "DM412", "DM427", "DM426", "DM425", "DM424", ["DM423", "A80"], "DM422", "DM421", "DM420"],
+                "08R": ["DM411", "DM412", "DM427", "DM426", "DM425", "DM424", ["DM423", "A80"], "DM422", "DM421", "DM420"],
+                "26L": ["DM421", "DM422", "DM423", "DM424", ["DM425", "A80"], "DM426", "DM427", "DM428", "DM429"],
+                "26R": ["DM421", "DM422", "DM423", "DM424", ["DM425", "A80"], "DM426", "DM427", "DM428", "DM429"]
+            },
+            "draw": [
+                ["GESLU", "LURER", "LELTA", "ROKIL"],
+                ["ROKIL", "DM411", "DM412", "DM427", "DM426", "DM425", "DM424", "DM423", "DM422", "DM421", "DM420"],
+                ["ROKIL", "DM421", "DM422", "DM423", "DM424", "DM425", "DM426", "DM427", "DM428", "DM429"]
+            ]
+        },
+        "KUNOD3A": {
+            "icao": "KUNOD3A",
+            "name": "Kunod Three Alpha",
+            "entryPoints": {
+                "KUNOD": [["KUNOD", "A250"]]
+            },
+            "body": [["LURER", "A140|S280"], "LELTA", "ROKIL"],
+            "rwy": {
+                "08L": ["DM411", "DM412", "DM427", "DM426", "DM425", "DM424", ["DM423", "A80"], "DM422", "DM421", "DM420"],
+                "08R": ["DM411", "DM412", "DM427", "DM426", "DM425", "DM424", ["DM423", "A80"], "DM422", "DM421", "DM420"],
+                "26L": ["DM421", "DM422", "DM423", "DM424", ["DM425", "A80"], "DM426", "DM427", "DM428", "DM429"],
+                "26R": ["DM421", "DM422", "DM423", "DM424", ["DM425", "A80"], "DM426", "DM427", "DM428", "DM429"]
+            },
+            "draw": [
+                ["KUNOD", "LURER", "LELTA", "ROKIL"],
+                ["ROKIL", "DM411", "DM412", "DM427", "DM426", "DM425", "DM424", "DM423", "DM422", "DM421", "DM420"],
+                ["ROKIL", "DM421", "DM422", "DM423", "DM424", "DM425", "DM426", "DM427", "DM428", "DM429"]
+            ]
+        },
+        "PELOG3A": {
+            "icao": "PELOG3A",
+            "name": "Pelog Three Alpha",
+            "entryPoints": {
+                "PELOG": [["PELOG", "A250"]]
+            },
+            "body": [["LURER", "A140|S280"], "LELTA", "ROKIL"],
+            "rwy": {
+                "08L": ["DM411", "DM412", "DM427", "DM426", "DM425", "DM424", ["DM423", "A80"], "DM422", "DM421", "DM420"],
+                "08R": ["DM411", "DM412", "DM427", "DM426", "DM425", "DM424", ["DM423", "A80"], "DM422", "DM421", "DM420"],
+                "26L": ["DM421", "DM422", "DM423", "DM424", ["DM425", "A80"], "DM426", "DM427", "DM428", "DM429"],
+                "26R": ["DM421", "DM422", "DM423", "DM424", ["DM425", "A80"], "DM426", "DM427", "DM428", "DM429"]
+            },
+            "draw": [
+                ["PELOG", "LURER", "LELTA", "ROKIL"],
+                ["ROKIL", "DM411", "DM412", "DM427", "DM426", "DM425", "DM424", "DM423", "DM422", "DM421", "DM420"],
+                ["ROKIL", "DM421", "DM422", "DM423", "DM424", "DM425", "DM426", "DM427", "DM428", "DM429"]
+            ]
+        },
+        "RIXED3A": {
+            "icao": "RIXED3A",
+            "name": "Rixed Three Alpha",
+            "entryPoints": {
+                "RIXED": [["RIXED", "A250"]]
+            },
+            "body": ["DODIL", "REDVO", ["RIDAR", "A130|S280"], "LELTA", "ROKIL"],
+            "rwy": {
+                "08L": ["DM411", "DM412", "DM427", "DM426", "DM425", "DM424", ["DM423", "A80"], "DM422", "DM421", "DM420"],
+                "08R": ["DM411", "DM412", "DM427", "DM426", "DM425", "DM424", ["DM423", "A80"], "DM422", "DM421", "DM420"],
+                "26L": ["DM421", "DM422", "DM423", "DM424", ["DM425", "A80"], "DM426", "DM427", "DM428", "DM429"],
+                "26R": ["DM421", "DM422", "DM423", "DM424", ["DM425", "A80"], "DM426", "DM427", "DM428", "DM429"]
+            },
+            "draw": [
+                ["RIXED", "DODIL", "REDVO", "RIDAR", "LELTA", "ROKIL"],
+                ["ROKIL", "DM411", "DM412", "DM427", "DM426", "DM425", "DM424", "DM423", "DM422", "DM421", "DM420"],
+                ["ROKIL", "DM421", "DM422", "DM423", "DM424", "DM425", "DM426", "DM427", "DM428", "DM429"]
+            ]
+        },
+        "ARBAX3A": {
+            "icao": "ARBAX3A",
+            "name": "Arbax Three Alpha",
+            "entryPoints": {
+                "ARBAX": ["ARBAX"]
+            },
+            "body": ["USEMI", "LITLI", ["OSTES", "A110|S280"], "BINGU", "TUSTO", "LANDU"],
+            "rwy": {
+                "08L": ["DM428", "DM427", "DM426", "DM425", "DM424", ["DM423", "A80"], "DM422", "DM421", "DM420"],
+                "08R": ["DM428", "DM427", "DM426", "DM425", "DM424", ["DM423", "A80"], "DM422", "DM421", "DM420"],
+                "26L": ["DM412", "DM411", "DM422", "DM423", "DM424", ["DM425", "A80"], "DM426", "DM427", "DM428", "DM429"],
+                "26R": ["DM412", "DM411", "DM422", "DM423", "DM424", ["DM425", "A80"], "DM426", "DM427", "DM428", "DM429"]
+            },
+            "draw": [
+                ["ARBAX", "USEMI", "LITLI", "OSTES", "BINGU", "TUSTO", "LANDU"],
+                ["LANDU", "DM428", "DM427", "DM426", "DM425", "DM424", "DM423", "DM422", "DM421", "DM420"],
+                ["LANDU", "DM412", "DM411", "DM422", "DM423", "DM424", "DM426", "DM427", "DM428", "DM429"]
+            ]
+        },
+        "BAGMI4A": {
+            "icao": "BAGMI4A",
+            "name": "Bagmi Four Alpha",
+            "entryPoints": {
+                "BAGMI": ["BAGMI"]
+            },
+            "body": ["ODUDA", "NETES", "UNKOM", ["MITNU", "A110|S280"], "TUSTO", "LANDU"],
+            "rwy": {
+                "08L": ["DM428", "DM427", "DM426", "DM425", "DM424", ["DM423", "A80"], "DM422", "DM421", "DM420"],
+                "08R": ["DM428", "DM427", "DM426", "DM425", "DM424", ["DM423", "A80"], "DM422", "DM421", "DM420"],
+                "26L": ["DM412", "DM411", "DM422", "DM423", "DM424", ["DM425", "A80"], "DM426", "DM427", "DM428", "DM429"],
+                "26R": ["DM412", "DM411", "DM422", "DM423", "DM424", ["DM425", "A80"], "DM426", "DM427", "DM428", "DM429"]
+            },
+            "draw": [
+                ["BAGMI", "ODUDA", "NETES", "UNKOM", "MITNU", "TUSTO", "LANDU"],
+                ["LANDU", "DM428", "DM427", "DM426", "DM425", "DM424", "DM423", "DM422", "DM421", "DM420"],
+                ["LANDU", "DM412", "DM411", "DM422", "DM423", "DM424", "DM426", "DM427", "DM428", "DM429"]
+            ]
+        },
+        "BAMTA3A": {
+            "icao": "BAMTA3A",
+            "name": "Bamta Three Alpha",
+            "entryPoints": {
+                "BAMTA": ["BAMTA"]
+            },
+            "body": [["ROSAB", "A110|S280"], "BINGU", "TUSTO", "LANDU"],
+            "rwy": {
+                "08L": ["DM428", "DM427", "DM426", "DM425", "DM424", ["DM423", "A80"], "DM422", "DM421", "DM420"],
+                "08R": ["DM428", "DM427", "DM426", "DM425", "DM424", ["DM423", "A80"], "DM422", "DM421", "DM420"],
+                "26L": ["DM412", "DM411", "DM422", "DM423", "DM424", ["DM425", "A80"], "DM426", "DM427", "DM428", "DM429"],
+                "26R": ["DM412", "DM411", "DM422", "DM423", "DM424", ["DM425", "A80"], "DM426", "DM427", "DM428", "DM429"]
+            },
+            "draw": [
+                ["BAMTA", "ROSAB", "BINGU", "TUSTO", "LANDU"],
+                ["LANDU", "DM428", "DM427", "DM426", "DM425", "DM424", "DM423", "DM422", "DM421", "DM420"],
+                ["LANDU", "DM412", "DM411", "DM422", "DM423", "DM424", "DM426", "DM427", "DM428", "DM429"]
+            ]
+        },
+        "EXUSI3A": {
+            "icao": "EXUSI3A",
+            "name": "Exusi Three Alpha",
+            "entryPoints": {
+                "EXUSI": ["EXUSI"]
+            },
+            "body": ["RDG", "GOMAX", ["VESIX", "A110|S280"], "LANDU"],
+            "rwy": {
+                "08L": ["DM428", "DM427", "DM426", "DM425", "DM424", ["DM423", "A80"], "DM422", "DM421", "DM420"],
+                "08R": ["DM428", "DM427", "DM426", "DM425", "DM424", ["DM423", "A80"], "DM422", "DM421", "DM420"],
+                "26L": ["DM412", "DM411", "DM422", "DM423", "DM424", ["DM425", "A80"], "DM426", "DM427", "DM428", "DM429"],
+                "26R": ["DM412", "DM411", "DM422", "DM423", "DM424", ["DM425", "A80"], "DM426", "DM427", "DM428", "DM429"]
+            },
+            "draw": [
+                ["EXUSI", "RDG", "GOMAX", "VESIX", "LANDU"],
+                ["LANDU", "DM428", "DM427", "DM426", "DM425", "DM424", "DM423", "DM422", "DM421", "DM420"],
+                ["LANDU", "DM412", "DM411", "DM422", "DM423", "DM424", "DM426", "DM427", "DM428", "DM429"]
+            ]
+        },
+        "IRBIR4A": {
+            "icao": "IRBIR4A",
+            "name": "Irbir Four Alpha",
+            "entryPoints": {
+                "IRBIR": ["IRBIR"]
+            },
+            "body": ["NINUR", ["ANDEC", "A130|S280"], "BETOS"],
+            "rwy": {
+                "08L": ["DM472", "DM473", "DM474", "DM475", "DM476", "DM457", "DM456", "DM455", "DM454", ["DM453", "A80"], "DM452", "DM451", "DM450"],
+                "08R": ["DM472", "DM473", "DM474", "DM475", "DM476", "DM457", "DM456", "DM455", "DM454", ["DM453", "A80"], "DM452", "DM451", "DM450"],
+                "26L": ["DM452", "DM453", "DM454", ["DM455", "A80"], "DM456", "DM457", "DM458", "DM459"],
+                "26R": ["DM452", "DM453", "DM454", ["DM455", "A80"], "DM456", "DM457", "DM458", "DM459"]
+            },
+            "draw": [
+                ["IRBIR", "NINUR", "ANDEC", "BETOS"],
+                ["BETOS", "DM472", "DM473", "DM474", "DM475", "DM476", "DM457", "DM456", "DM455", "DM454", "DM453", "DM452", "DM451", "DM450"],
+                ["BETOS", "DM452", "DM453", "DM454", "DM455", "DM456", "DM457", "DM458", "DM459"]
+            ]
+        },
+        "KOGOL3A": {
+            "icao": "KOGOL3A",
+            "name": "Kogol Three Alpha",
+            "entryPoints": {
+                "KOGOL": ["KOGOL"]
+            },
+            "body": [["ANDEC", "A130|S280"], "BETOS"],
+            "rwy": {
+                "08L": ["DM472", "DM473", "DM474", "DM475", "DM476", "DM457", "DM456", "DM455", "DM454", ["DM453", "A80"], "DM452", "DM451", "DM450"],
+                "08R": ["DM472", "DM473", "DM474", "DM475", "DM476", "DM457", "DM456", "DM455", "DM454", ["DM453", "A80"], "DM452", "DM451", "DM450"],
+                "26L": ["DM452", "DM453", "DM454", ["DM455", "A80"], "DM456", "DM457", "DM458", "DM459"],
+                "26R": ["DM452", "DM453", "DM454", ["DM455", "A80"], "DM456", "DM457", "DM458", "DM459"]
+            },
+            "draw": [
+                ["KOGOL", "ANDEC", "BETOS"],
+                ["BETOS", "DM472", "DM473", "DM474", "DM475", "DM476", "DM457", "DM456", "DM455", "DM454", "DM453", "DM452", "DM451", "DM450"],
+                ["BETOS", "DM452", "DM453", "DM454", "DM455", "DM456", "DM457", "DM458", "DM459"]
+            ]
+        },
+        "MERSI3A": {
+            "icao": "MERSI3A",
+            "name": "Mersi Three Alpha",
+            "entryPoints": {
+                "MERSI": ["MERSI"]
+            },
+            "body": ["BETOS"],
+            "rwy": {
+                "08L": ["DM472", "DM473", "DM474", "DM475", "DM476", "DM457", "DM456", "DM455", "DM454", ["DM453", "A80"], "DM452", "DM451", "DM450"],
+                "08R": ["DM472", "DM473", "DM474", "DM475", "DM476", "DM457", "DM456", "DM455", "DM454", ["DM453", "A80"], "DM452", "DM451", "DM450"],
+                "26L": ["DM452", "DM453", "DM454", ["DM455", "A80"], "DM456", "DM457", "DM458", "DM459"],
+                "26R": ["DM452", "DM453", "DM454", ["DM455", "A80"], "DM456", "DM457", "DM458", "DM459"]
+            },
+            "draw": [
+                ["MERSI", "BETOS"],
+                ["BETOS", "DM472", "DM473", "DM474", "DM475", "DM476", "DM457", "DM456", "DM455", "DM454", "DM453", "DM452", "DM451", "DM450"],
+                ["BETOS", "DM452", "DM453", "DM454", "DM455", "DM456", "DM457", "DM458", "DM459"]
+            ]
+        },
+        "NAPSA2A": {
+            "icao": "NAPSA2A",
+            "name": "Napsa Two Alpha",
+            "entryPoints": {
+                "REDBU": ["REDBU"],
+                "AMADI": ["AMADI"]
+            },
+            "body": [["NAPSA", "A110"]],
+            "rwy": {
+                "08L": ["DM458", "DM457", "DM456", "DM455", "DM454", ["DM453", "A80"], "DM452", "DM451", "DM450"],
+                "08R": ["DM458", "DM457", "DM456", "DM455", "DM454", ["DM453", "A80"], "DM452", "DM451", "DM450"],
+                "26L": ["DM467", "DM466", "DM465", "DM464", "DM463", "DM452", "DM453", "DM454", ["DM455", "A80"], "DM456", "DM457", "DM458", "DM459"],
+                "26R": ["DM467", "DM466", "DM465", "DM464", "DM463", "DM452", "DM453", "DM454", ["DM455", "A80"], "DM456", "DM457", "DM458", "DM459"]
+            },
+            "draw": [
+                ["REDBU*", "NAPSA"],
+                ["AMADI*", "NAPSA"],
+                ["NAPSA", "DM458", "DM457", "DM456", "DM455", "DM454", "DM453", "DM452", "DM451", "DM450"],
+                ["NAPSA", "DM467", "DM466", "DM465", "DM464", "DM463", "DM452", "DM453", "DM454", "DM455", "DM456", "DM457", "DM458", "DM459"]
+            ]
+        },
+        "OBAGA4A": {
+            "icao": "OBAGA4A",
+            "name": "Obaga Four Alpha",
+            "entryPoints": {
+                "OBAGA": ["OBAGA"]
+            },
+            "body": ["NINUR", ["ANDEC", "A130|S280"], "BETOS"],
+            "rwy": {
+                "08L": ["DM472", "DM473", "DM474", "DM475", "DM476", "DM457", "DM456", "DM455", "DM454", ["DM453", "A80"], "DM452", "DM451", "DM450"],
+                "08R": ["DM472", "DM473", "DM474", "DM475", "DM476", "DM457", "DM456", "DM455", "DM454", ["DM453", "A80"], "DM452", "DM451", "DM450"],
+                "26L": ["DM452", "DM453", "DM454", ["DM455", "A80"], "DM456", "DM457", "DM458", "DM459"],
+                "26R": ["DM452", "DM453", "DM454", ["DM455", "A80"], "DM456", "DM457", "DM458", "DM459"]
+            },
+            "draw": [
+                ["OBAGA", "NINUR", "ANDEC", "BETOS"],
+                ["BETOS", "DM472", "DM473", "DM474", "DM475", "DM476", "DM457", "DM456", "DM455", "DM454", "DM453", "DM452", "DM451", "DM450"],
+                ["BETOS", "DM452", "DM453", "DM454", "DM455", "DM456", "DM457", "DM458", "DM459"]
+            ]
+        },
+        "OSDER3A": {
+            "icao": "OSDER3A",
+            "name": "Osder Three Alpha",
+            "entryPoints": {
+                "OSDER": ["OSDER"]
+            },
+            "body": [["DISUN", "A120|S280"], "BETOS"],
+            "rwy": {
+                "08L": ["DM472", "DM473", "DM474", "DM475", "DM476", "DM457", "DM456", "DM455", "DM454", ["DM453", "A80"], "DM452", "DM451", "DM450"],
+                "08R": ["DM472", "DM473", "DM474", "DM475", "DM476", "DM457", "DM456", "DM455", "DM454", ["DM453", "A80"], "DM452", "DM451", "DM450"],
+                "26L": ["DM452", "DM453", "DM454", ["DM455", "A80"], "DM456", "DM457", "DM458", "DM459"],
+                "26R": ["DM452", "DM453", "DM454", ["DM455", "A80"], "DM456", "DM457", "DM458", "DM459"]
+            },
+            "draw": [
+                ["OSDER", "DISUN", "BETOS"],
+                ["BETOS", "DM472", "DM473", "DM474", "DM475", "DM476", "DM457", "DM456", "DM455", "DM454", "DM453", "DM452", "DM451", "DM450"],
+                ["BETOS", "DM452", "DM453", "DM454", "DM455", "DM456", "DM457", "DM458", "DM459"]
+            ]
+        },
+        "ROKIL08": {
+            "icao": "ROKIL08",
+            "name": "Rokil Zero Eight",
+            "entryPoints": {
+                "ROKIL": ["ROKIL"]
+            },
+            "body": ["DM411", "DM412", "DM427", "DM426", "DM425", "DM424", ["DM423", "A80"], "DM422", "DM421", "DM420"],
+            "draw": [
+                ["ROKIL", "DM411", "DM412", "DM427", "DM426", "DM425", "DM424", "DM423", "DM422", "DM421", "DM420"]
+            ]
+        },
+        "ROKIL26": {
+            "icao": "ROKIL26",
+            "name": "Rokil Two Six",
+            "entryPoints": {
+                "ROKIL": ["ROKIL"]
+            },
+            "body": ["DM421", "DM422", "DM423", "DM424", ["DM425", "A80"], "DM426", "DM427", "DM428", "DM429"],
+            "draw": [
+                ["ROKIL", "DM421", "DM422", "DM423", "DM424", "DM425", "DM426", "DM427", "DM428", "DM429"]
+            ]
+        },
+        "LANDU08": {
+            "icao": "LANDU08",
+            "name": "Landu Zero Eight",
+            "entryPoints": {
+                "LANDU": ["LANDU"]
+            },
+            "body": ["DM428", "DM427", "DM426", "DM425", "DM424", ["DM423", "A80"], "DM422", "DM421", "DM420"],
+            "draw": [
+                ["LANDU", "DM428", "DM427", "DM426", "DM425", "DM424", "DM423", "DM422", "DM421", "DM420"]
+            ]
+        },
+        "LANDU26": {
+            "icao": "LANDU26",
+            "name": "Landu Two Six",
+            "entryPoints": {
+                "LANDU": ["LANDU"]
+            },
+            "body": ["DM412", "DM411", "DM422", "DM423", "DM424", ["DM425", "A80"], "DM426", "DM427", "DM428", "DM429"],
+            "draw": [
+                ["LANDU", "DM412", "DM411", "DM422", "DM423", "DM424", "DM426", "DM427", "DM428", "DM429"]
+            ]
+        },
+        "NAPSA08": {
+            "icao": "NAPSA08",
+            "name": "Napsa Zero Eight",
+            "entryPoints": {
+                "NAPSA": ["NAPSA"]
+            },
+            "body": ["DM458", "DM457", "DM456", "DM455", "DM454", ["DM453", "A80"], "DM452", "DM451", "DM450"],
+            "draw": [
+                ["NAPSA", "DM458", "DM457", "DM456", "DM455", "DM454", "DM453", "DM452", "DM451", "DM450"]
+            ]
+        },
+        "NAPSA26": {
+            "icao": "NAPSA26",
+            "name": "Napsa Two Six",
+            "entryPoints": {
+                "NAPSA": ["NAPSA"]
+            },
+            "body": ["DM467", "DM466", "DM465", "DM464", "DM463", "DM452", "DM453", "DM454", ["DM455", "A80"], "DM456", "DM457", "DM458", "DM459"],
+            "draw": [
+                ["NAPSA", "DM467", "DM466", "DM465", "DM464", "DM463", "DM452", "DM453", "DM454", "DM455", "DM456", "DM457", "DM458", "DM459"]
+            ]
+        },
+        "BETOS08": {
+            "icao": "BETOS08",
+            "name": "Betos Zero Eight",
+            "entryPoints": {
+                "BETOS": ["BETOS"]
+            },
+            "body": ["DM472", "DM473", "DM474", "DM475", "DM476", "DM457", "DM456", "DM455", "DM454", ["DM453", "A80"], "DM452", "DM451", "DM450"],
+            "draw": [
+                ["BETOS", "DM472", "DM473", "DM474", "DM475", "DM476", "DM457", "DM456", "DM455", "DM454", "DM453", "DM452", "DM451", "DM450"]
+            ]
+        },
+        "BETOS26": {
+            "icao": "BETOS26",
+            "name": "Betos Two Six",
+            "entryPoints": {
+                "BETOS": ["BETOS"]
+            },
+            "body": ["DM452", "DM453", "DM454", ["DM455", "A80"], "DM456", "DM457", "DM458", "DM459"],
+            "draw": [
+                ["BETOS", "DM452", "DM453", "DM454", "DM455", "DM456", "DM457", "DM458", "DM459"]
+            ]
+        },
+        "LULAR1C": {
+            "icao": "LULAR1C",
+            "name": "Lular One Charlie",
+            "entryPoints": {
+                "LULAR": [["LULAR", "A250"]]
+            },
+            "body": ["EXUSI", "RDG", "GOMAX", ["VESIX", "A175"], "LANDU", ["DM428", "A170|S250"], "DM427", ["DM426", "A110|S230"], "DM425", ["DM424", "A90|S220"], "DM423", "DM422", "DM421", "DM420"],
+            "draw": [
+                ["LULAR", "EXUSI", "RDG", "GOMAX", "VESIX", "LANDU", "DM428", "DM427", "DM426", "DM425", "DM424", "DM423", "DM422", "DM421", "DM420"]
+            ]
+        },
+        "VESUB1C": {
+            "icao": "VESUB1C",
+            "name": "Vesub One Charlie",
+            "entryPoints": {
+                "VESUB": [["VESUB", "A270"]]
+            },
+            "body": ["BAGMI", "ODUDA", "NETES", "UNKOM", ["MITNU", "A175"], "TUSTO", ["DM428", "A170|S250"], "DM427", ["DM426", "A110|S230"], "DM425", ["DM424", "A90|S220"], "DM423", "DM422", "DM421", "DM420"],
+            "draw": [
+                ["BAGMI", "ODUNA", "NETES", "UNKOM", "MITNU", "TUSTO", "DM428", "DM427", "DM426", "DM425", "DM424", "DM423", "DM422", "DM421", "DM420"]
+            ]
+        },
+        "NIRGO1C": {
+            "icao": "NIRGO1C",
+            "name": "Nirgo One Charlie",
+            "entryPoints": {
+                "NIRGO": [["NIRGO", "A270"]]
+            },
+            "body": ["ARBAX", "USEMI", "LITLI", "OSTES", ["BIGNU", "A175"], ["DM428", "A170|S250"], "DM427", ["DM426", "A110|S230"], "DM425", ["DM424", "A90|S220"], "DM423", "DM422", "DM421", "DM420"],
+            "draw": [
+                ["ARBAX", "USEMI", "LITLI", "OSTES", "BIGNU", "DM428", "DM427", "DM426", "DM425", "DM424", "DM423", "DM422", "DM421", "DM420"]
+            ]
+        },
+        "ELMOX1C": {
+            "icao": "ELMOX1C",
+            "name": "Elmox One Charlie",
+            "entryPoints": {
+                "ELMOX": [["ELMOX", "A345"]]
+            },
+            "body": [["PIGAB", "A290"], "DKB", ["LEVBU", "A260"], ["ANORA", "A240"], "XERUM", ["BURAM", "A175|S280"], "ROKIL", ["DM421", "A170|S240"], "DM422", ["DM423", "A110|S230"], "DM424", ["DM425", "A90|S220"], "DM426", "DM427", "DM428", "DM429"],
+            "draw": [
+                ["ELMOX", "PIGAB", "DKB", "LEVBU", "ANORA", "XERUM", "BURAM", "ROKIL", "DM421", "DM422", "DM423", "DM424", "DM425", "DM426", "DM427", "DM428", "DM429"]
+            ]
+        }
     }
 }
