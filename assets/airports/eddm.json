@@ -218,77 +218,90 @@
         "ALG": {
             "icao": "ALG",
             "name": "Allgäu",
-            "suffix": {"08L":"1Q", "08R":"1E", "26L":"1S", "26R":"1N"},
+            "suffix": {"08L":"2Q", "08R":"2E", "26L":"2S", "26R":"2N"},
             "rwy": {
-                "08L":  ["MNW", ["DM071", "A40"], ["DM094", "S230"], "LAKOL", "OBAXA", ["MERSI", "S250"]],
-                "08R":  ["MSW", ["DM081", "A40"], ["ALONU", "S230"], "LAKOL", "OBAXA", ["MERSI", "S250"]],
+                "08L":  ["DM071", ["DM094", "S230"], "LAKOL", "OBAXA", ["MERSI", "S250"]],
+                "08R":  ["DM081", ["ALONU", "S230"], "LAKOL", "OBAXA", ["MERSI", "S250"]],
                 "26L":  [["MSE", "S220"], ["DM053", "A70|S250"], "AMEXO"],
                 "26R":  [["MNE", "S220"], ["DM061", "A70|S250"], "AMEXO"]
             },
             "body": ["ALG"],
             "draw": [
-                ["DM094", "ALONU"],
+                ["DM071", "DM094", "LAKOL"],
                 ["DM081", "ALONU", "LAKOL", "OBAXA", "MERSI", "ALG"],
-                ["MNE", "DM061", "AMEXO"],
-                ["MSE", "DM053", "AMEXO", "ALG"]
+                ["MNE", "DM053", "AMEXO"],
+                ["MSE", "DM061", "AMEXO", "ALG"]
             ]
         },
         "ANKER": {
             "icao": "ANKER",
             "name": "Anker",
-            "suffix": {"08L":"7Q", "08R":"8E", "26L":"6S", "26R":"8N"},
+            "suffix": {"08L":"8Q", "08R":"9E", "26L":"7S", "26R":"9N"},
             "rwy": {
-                "08L": ["DM070", "DM072", "DM077", "DM079"],
-                "08R": ["MSW", "DM083", "ANKER"],
+                "08L": ["DM070", "DM077", "DM079"],
+                "08R": [["DM083", "S230"]],
                 "26L": [["DM051", "S220"], ["DM056", "S250"], "DM057"],
                 "26R": [["DM066", "S220"], ["DM064", "S250"], "DM057"]
             },
             "body": [["ANKER", "S250"]],
             "draw": [
-                ["DM070", "DM072", "DM077", "DM079"],
-                ["MSW", "DM083", "DM079", "ANKER"],
-                ["DM066", "DM064"],
-                ["DM056", "DM057", "ANKER", "AKINI"]
+                ["DM070", "DM077", "DM079", "ANKER"],
+                ["DM083", "ANKER"],
+                ["DM051", "DM056", "DM057"],
+                ["DM066", "DM064", "DM057", "ANKER"]
             ]
         },
         "BIBAG": {
             "icao": "BIBAG",
             "name": "Bibag",
-            "suffix": {"08L":"1Q", "08R":"1E", "26L":"1S", "26R":"1N"},
+            "suffix": {"08L":"2Q", "08R":"2E", "26L":"2S", "26R":"2N"},
             "rwy": {
-                "08L": ["MNW", ["DM071", "A40|S230"], ["RATGI", "S250"]],
-                "08R": ["MSW", ["DM080", "A40|S230"], ["RATGI", "S250"]],
-                "26L": ["DM049", ["DM050", "S210"], "MUN", ["MEBEK", "S250"]],
-                "26R": [["DM067", "S210"], "DM050", "MUN", ["MEBEK", "S250"]]
+                "08L": [["DM071", "S230"], ["RATGI", "S250"]],
+                "08R": [["DM080", "S230"], ["RATGI", "S250"]],
+                "26L": [["DM049", "S210"], ["DM050", "S210"], "MUN", ["MEBEK", "S250"]],
+                "26R": [["DM067", "S210"], "DM050", ["MUN", "S250"], ["MEBEK", "S250"]]
             },
             "body": ["BIBAG"],
             "draw": [
-                ["MNW", "DM071", "RATGI"],
+                ["DM071", "RATGI"],
                 ["DM080", "RATGI", "BIBAG"],
+                ["DM049", "DM050"],
                 ["DM067", "DM050", "MUN", "MEBEK", "BIBAG"]
+            ]
+        },
+        "BIBAG2W": {
+            "icao": "BIBAG2W",
+            "name": "Bibag Two Whiskey",
+            "rwy": {
+                "26L": []
+            },
+            "body": [["MSE", "S220"], "DM058", ["DM059", "S250"], "MUN", "MEBEK", "BIBAG"],
+            "draw": [
+                ["MSE", "DM058", "DM059", "MUN", "MEBEK", "BIBAG"]
             ]
         },
         "EVIVA": {
             "icao": "EVIVA",
             "name": "Eviva",
-            "suffix": {"08L":"2Q", "08R":"2E", "26L":"2S", "26R":"3N"},
+            "suffix": {"08L":"3Q", "08R":"3E", "26L":"3S", "26R":"4N"},
             "rwy": {
-                "08L":  ["DM070", "DM090", "DM091", ["DM089", "S250"]],
-                "08R":  ["DM084", "DM087", "DM088", ["DM089", "S250"]],
+                "08L":  ["DM070", "DM091", ["DM089", "S250"]],
+                "08R":  ["DM084", "DM088", ["DM089", "S250"]],
                 "26L":  [["DM051", "S220"], "DM056", ["LASMI", "S250"]],
                 "26R":  [["DM066", "S220"], "DM064", ["LASMI", "S250"]]
             },
             "body": ["EVIVA"],
             "draw": [
-                ["DM070", "DM090", "DM091", "DM089", "EVIVA"],
-                ["DM084", "DM087", "DM088"],
-                ["DM056", "LASMI", "EVIVA"]
+                ["DM070", "DM091", "DM089"],
+                ["DM084", "DM088", "DM089", "EVIVA"],
+                ["DM051", "DM056", "LASMI"],
+                ["DM066", "DM064", "LASMI", "EVIVA"]
             ]
         },
         "GIVMI": {
             "icao": "GIVMI",
             "name": "Givmi",
-            "suffix": {"08L":"4Q", "08R":"4E", "26L":"5S", "26R":"5W"},
+            "suffix": {"08L":"5Q", "08R":"5E", "26L":"6S", "26R":"1N"},
             "rwy": {
                 "08L":  ["DM070", "DM073", ["MIQ", "S250"]],
                 "08R":  ["DM084", "DM085", ["MIQ", "S250"]],
@@ -297,195 +310,285 @@
             },
             "body": ["GIVMI"],
             "draw": [
-                ["DM084", "DM085", "MIQ"],
                 ["DM070", "DM073", "MIQ", "GIVMI"],
-                ["DM060", "DM063"],
-                ["DM052", "DM055", "GIVMI"]
+                ["DM084", "DM085", "MIQ", "GIVMI"],
+                ["DM052", "DM055", "MIQ", "GIVMI"],
+                ["DM060", "DM063", "MIQ", "GIVMI"]
             ]
         },
         "INPUD": {
             "icao": "INPUD",
             "name": "Inpud",
-            "suffix": {"08L":"1Q", "08R":"1E", "26L":"1S", "26R":"1N"},
+            "suffix": {"08L":"2Q", "08R":"2E", "26L":"2S", "26R":"2N"},
+            "rwy": {
+                "08L": ["DM070", "DM073"],
+                "08R": ["DM084", "DM076"],
+                "26L": [["DM051", "S220"], "DM056"],
+                "26R": [["DM066", "S220"], "DM064"]
+            },
+            "body": [["DM065", "S250"], "INPUD"],
+            "draw": [
+                ["DM070", "DM073", "DM065"],
+                ["DM084", "DM076", "DM065"],
+                ["DM051", "DM056", "DM065"],
+                ["DM066", "DM064", "DM065", "INPUD"]
+            ]
+        },
+        "KIRDI": {
+            "icao": "KIRDI",
+            "name": "Kirdi",
+            "suffix": {"08L":"2Q", "08R":"2E", "26L":"2S", "26R":"2N"},
+            "rwy": {
+                "08L": [["DM071", "S230"], ["RATGI", "S250"], "MEBEK"],
+                "08R": [["DM080", "S230"], ["RATGI", "S250"], "MEBEK"],
+                "26L": [["DM049", "S210"], ["DM050", "S210"], "MUN", ["MEBEK", "S250"]],
+                "26R": [["DM067", "S210"], "DM050", "MUN", ["MEBEK", "S250"]]
+            },
+            "body": ["KIRDI"],
+            "draw": [
+                ["DM071", "RATGI", "MEBEK"],
+                ["DM080", "RATGI"],
+                ["DM049", "DM050"],
+                ["DM067", "DM050", "MUN", "MEBEK", "KIRDI"]
+            ]
+        },
+        "KIRDI2W": {
+            "icao": "KIRDI2W",
+            "name": "Kirdi Two Whiskey",
+            "rwy": {
+                "26L": []
+            },
+            "body": [["MSE", "S220"], "DM058", ["DM059", "S250"], "MUN", "MEBEK", "KIRDI"],
+            "draw": [
+                ["MSE", "DM058", "DM059", "MUN", "MEBEK", "KIRDI"]
+            ]
+        },
+        "MERSI": {
+            "icao": "MERSI",
+            "name": "Mersi",
+            "suffix": {"08L":"4Q", "08R":"4E", "26L":"5S", "26R":"5N"},
+            "rwy": {
+                "08L": ["DM071", ["DM094", "S230"], "LAKOL", "OBAXA", ["MERSI", "S250"]],
+                "08R": ["DM081", ["ALONU", "S230"], "LAKOL", "OBAXA", ["MERSI", "S250"]],
+                "26L": [["MSE", "S220"], ["DM053", "A70|S250"], "AMPEG", "MERSI"],
+                "26R": [["MNE", "S220"], ["DM061", "A70|S250"], "AMPEG", "MERSI"]
+            },
+            "draw": [
+                ["DM094", "LAKOL", "OBAXA", "MERSI"],
+                ["DM081", "ALONU", "LAKOL"],
+                ["MSE", "DM053", "AMPEG", "MERSI"],
+                ["MNE", "DM061", "AMPEG"]
+            ]
+        },
+        "MERSI1T": {
+            "icao": "MERSI1T",
+            "name": "Mersi One Tango",
+            "rwy": {
+                "08L": []
+            },
+            "body": ["DM071", ["DM074", "S230"], ["DM078", "A70"], "MUN", "OBAXA", ["MERSI", "S250"]],
+            "draw": [
+                ["DM071", "DM074", "DM078", "MUN", "OBAXA", "MERSI"]
+            ]
+        },
+        "MERSI1P": {
+            "icao": "MERSI1P",
+            "name": "Mersi One Papa",
+            "rwy": {
+                "08R": []
+            },
+            "body": ["DM081", ["DM082", "S230"], ["DM086", "A70"],  "MUN", "OBAXA", ["MERSI", "S250"]],
+            "draw": [
+                ["DM081", "DM082", "DM086", "DM078", "MUN", "OBAXA", "MERSI"]
+            ]
+        },
+        "MIQ": {
+            "icao": "MIQ",
+            "name": "Mike",
+            "suffix": {"08L":"8Q", "08R":"8E", "26L":"8S", "26R":"9N"},
             "rwy": {
                 "08L": ["DM070", "DM073"],
                 "08R": ["DM084", "DM085"],
                 "26L": [["DM051", "S220"]],
                 "26R": [["DM066", "S220"]]
             },
-            "body": [["DM065", "S250"], "INPUD"],
+            "body": [["MIQ", "S250"]],
             "draw": [
-                ["DM070", "DM073", "DM065"],
-                ["DM084", "DM085", "DM065"],
-                ["DM051", "DM065"],
-                ["DM066", "DM065"],
-                ["DM065", "INPUD"]
+                ["DM070", "DM073", "MIQ"],
+                ["DM084", "DM085", "MIQ"],
+                ["DM051", "MIQ"],
+                ["DM066", "MIQ"]
             ]
         },
-        "KPT": {
-            "icao": "KPT",
-            "name": "Kempten",
+        "OBAXA": {
+            "icao": "OBAXA",
+            "name": "Obaxa",
+            "suffix": {"08L":"1T", "08R":"1P", "26L":"5S", "26R":"4N"},
+            "rwy": {
+                "08L": ["DM071", ["DM074", "S230"], ["DM078", "A70"], "MUN"],
+                "08R": ["DM081", ["DM082", "S230"], ["DM086", "A70"], "MUN"],
+                "26L": [["DM049", "S210"], "DM068", "DM069"],
+                "26R": [["DM067", "S210"], "DM068", "DM069"]
+            },
+            "body": [["OBAXA", "S250"]],
+            "draw": [
+                ["DM071", "DM074", "DM078", "MUN", "OBAXA"],
+                ["DM081", "DM082", "DM086", "MUN"],
+                ["DM049", "DM068", "DM069", "OBAXA"],
+                ["DM067", "DM068"]
+            ]
+        },
+        "OLASO": {
+            "icao": "OLASO",
+            "name": "Olaso",
+            "suffix": {"08L":"2Q", "08R":"2E", "26L":"2S", "26R":"2N"},
+            "rwy": {
+                "08L": ["DM071", ["DM094", "S230"], "LAKOL", "OBAXA", ["MERSI", "S250"]],
+                "08R": ["DM081", ["ALONU", "S230"], "LAKOL", "OBAXA", ["MERSI", "S250"]],
+                "26L": [["MSE", "S220"], ["DM053", "A70|S250"]],
+                "26R": [["MNE", "S220"], ["DM061", "A70|S250"]]
+            },
+            "body": ["OLASO"],
+            "draw": [
+                ["DM071", "DM094", "LAKOL", "OBAXA", "MERSI", "OLASO"],
+                ["DM081", "ALONU", "LAKOL"],
+                ["MSE", "DM053", "OLASO"],
+                ["MNE", "DM061", "OLASO"]
+            ]
+        },
+        "RIDAR": {
+            "icao": "RIDAR",
+            "name": "Ridar",
+            "suffix": {"08L":"6Q", "08R":"6E", "26L":"6S", "26R":"6N"},
+            "rwy": {
+                "08L": ["DM070", "DM073", ["MIQ", "S250"], "WLD"],
+                "08R": ["DM084", "DM085", ["MIQ", "S250"], "WLD"],
+                "26L": [["DM052", "S220"], ["DM053", "A70"], ["DM054", "S250"]],
+                "26R": [["MNE", "S220"], ["DM061", "A70"], ["DM062", "S250"]]
+            },
+            "body": ["RIDAR"],
+            "draw": [
+                ["DM070", "DM073", "MIQ", "WLD", "RIDAR"],
+                ["DM084", "DM085", "MIQ"],
+                ["DM052", "DM053", "DM054", "RIDAR"],
+                ["MNE", "DM061", "DM062", "RIDAR"]
+            ]
+        },
+        "ROTAX": {
+            "icao": "ROTAX",
+            "name": "Rotax",
             "suffix": {"08L":"3Q", "08R":"3E", "26L":"2S", "26R":"2N"},
             "rwy": {
-                "08L": ["MNW", ["DM071", "A40"], ["DM094", "S230"], "LAKOL", "OBAXA", ["MERSI", "S250"]],
-                "08R": ["MSW", ["DM081", "A40"], ["ALONU", "S230"], "LAKOL", "OBAXA", ["MERSI", "S250"]],
-                "26L": [["MSE", "S220"], ["DM053", "A70|S250"], "AMPEG", "MERSI"],
-                "26R": [["MNE", "S220"], ["DM061", "A70|S250"], "AMPEG", "MERSI"]
+                "08L": [["DM071", "S230"], ["DM093", "S250"], "DM467"],
+                "08R": [["DM080", "S230"], ["DM092", "S250"], "DM467"],
+                "26L": [["DM049", "S210"], ["DM050", "S210"], ["MUN", "S250"], "LAKOL"],
+                "26R": [["DM067", "S210"], "DM050", ["MUN", "S250"], "LAKOL"]
             },
-            "body": ["KPT"],
+            "body": ["ROTAX"],
             "draw": [
-                ["MNW", "DM071", "DM094", "LAKOL", "OBAXA", "MERSI"],
-                ["MSW", "DM081", "ALONU", "LAKOL"],
-                ["MSE", "DM053", "AMPEG", "MERSI"],
-                ["MNE", "DM061", "AMPEG"],
-                ["MERSI", "KPT"]
+                ["DM071", "DM093", "DM467"],
+                ["DM080", "DM092", "DM467", "ROTAX"],
+                ["DM049", "DM050", "MUN", "LAKOL"],
+                ["DM067", "DM050", "MUN", "LAKOL", "ROTAX"]
             ]
         },
-        "KIRDI": {
-            "icao": "KIRDI",
-            "name": "Kirdi",
-            "suffix": {"08L":"1Q", "08R":"1E", "26L":"1S", "26R":"1N"},
+        "ROTAX2W": {
+            "icao": "ROTAX2W",
+            "name": "Rotax Two Whiskey",
             "rwy": {
-                "08L": ["MNW", ["DM071", "A40|S230"], ["RATGI", "S250"], "MEBEK"],
-                "08R": ["MSW", ["DM080", "A40|S230"], ["RATGI", "S250"], "MEBEK"],
-                "26L": ["DM049", ["DM050", "S210"], "MUN", ["MEBEK", "S250"]],
-                "26R": [["DM067", "S210"], "DM050", "MUN", ["MEBEK", "S250"]]
+                "26L": []
             },
-            "body": ["KIRDI"],
+            "body": [["DM049", "S210"], ["DM050", "S210"], ["MUN", "S250"], "LAKOL", "ROTAX"],
             "draw": [
-                ["MNW", "DM071", "RATGI", "MEBEK"],
-                ["MSW", "DM080", "RATGI"],
-                ["DM049", "DM050", "MUN", "MEBEK"],
-                ["DM067", "DM050"],
-                ["MEBEK", "KIRDI"]
+                ["DM049", "DM050", "MUN", "LAKOL", "ROTAX"]
+            ]
+        },
+        "TULSI": {
+            "icao": "TULSI",
+            "name": "Tulsi",
+            "suffix": {"08L":"1Q", "08R":"2E", "26L":"5S", "26R":"1N"},
+            "rwy": {
+                "08L": ["DM071", ["DM094", "S230"], ["LAKOL", "S250"], "MANAL"],
+                "08R": ["DM081", ["ALONU", "S230"], ["LAKOL", "S250"], "MANAL"],
+                "26L": [["DM049", "S210"], ["DM050", "S210"], ["MUN", "S250"], "MANAL"],
+                "26R": [["DM067", "S210"], "DM050", ["MUN", "S250"], "MANAL"]
+            },
+            "body": ["TULSI"],
+            "draw": [
+                ["DM071", "DM094", "LAKOL"],
+                ["DM081", "ALONU", "LAKOL", "MANAL", "TULSI"],
+                ["DM049", "DM050"],
+                ["DM067", "DM050", "MUN", "MANAL", "TULSI"]
+            ]
+        },
+        "TULSI2W": {
+            "icao": "TULSI2W",
+            "name": "Tulsi Two Whiskey",
+            "rwy": {
+                "26L": []
+            },
+            "body": [["MSE", "S220"], "DM058", ["DM059", "S250"], "MUN", "MANAL", "TULSI"],
+            "draw": [
+                ["MSE", "DM058", "DM059", "MUN", "MAMAL", "TULSI"]
+            ]
+        },
+        "TURBU": {
+            "icao": "TURBU",
+            "name": "Turbu",
+            "suffix": {"08L":"7Q", "08R":"6E", "26L":"6S", "26R":"5N"},
+            "rwy": {
+                "08L": ["DM071", ["DM094", "S230"], ["LAKOL", "S250"]],
+                "08R": ["DM081", ["ALONU", "S230"], ["LAKOL", "S250"]],
+                "26L": ["DM049", ["DM050", "S210"], ["MUN", "S250"]],
+                "26R": [["DM067", "S210"], "DM050", ["MUN", "S250"]]
+            },
+            "body": ["TURBU"],
+            "draw": [
+                ["DM071", "DM094", "LAKOL"],
+                ["DM081", "ALONU", "LAKOL", "TURBU"],
+                ["DM049", "DM050"],
+                ["DM067", "DM050", "MUN", "TURBU"]
+            ]
+        },
+        "TURBU6W": {
+            "icao": "TURBU6W",
+            "name": "Turbu Six Whiskey",
+            "rwy": {
+                "26L": []
+            },
+            "body": [["MSE", "S220"], "DM058", ["DM059", "S250"], "MUN", "TURBU"],
+            "draw": [
+                ["MSE", "DM058", "DM059", "MUN", "TURBU"]
+            ]
+        },
+        "VAVOR": {
+            "icao": "VAVOR",
+            "name": "Vavor",
+            "suffix": {"08L":"3Q", "08R":"3E", "26L":"2S", "26R":"2N"},
+            "rwy": {
+                "08L": ["DM071", ["DM094", "S230"], "EBEVO"],
+                "08R": [["DM081", "A40"], ["ALONU", "S230"], "EBEVO"],
+                "26L": [["DM049", "S210"], ["DM050", "S210"], ["MUN", "S250"], "LAKOL"],
+                "26R": [["DM067", "S210"], "DM050", ["MUN", "S250"], "LAKOL"]
+            },
+            "body": [["VAVOR", "S250"]],
+            "draw": [
+                ["DM071", "DM094", "EBEVO"],
+                ["DM081", "ALONU", "EBEVO", "VAVOR"],
+                ["DM049", "DM050"],
+                ["DM067", "DM050", "MUN", "LAKOL", "VAVOR"]
+            ]
+        },
+        "VAVOR2W": {
+            "icao": "VAVOR2W",
+            "name": "Vavor Two Whiskey",
+            "rwy": {
+                "26L": []
+            },
+            "body": [["MSE", "S220"], "DM058", ["DM059", "S250"], "MUN", "LAKOL", "VAVOR"],
+            "draw": [
+                ["MSE", "DM058", "DM059", "MUN", "LAKOL", "VAVOR"]
             ]
         }
-    },
-    "departures": {
-        "destinations": [
-            "ALG", "ANKER", "BIBAG", "GIVMI", "INPUD", "KIRDI", "OLASO", "RIDAR", "ROTAX", "TULSI", "TURBU", "VAVOR"
-        ],
-        "type": "random",
-        "frequency": 3,
-        "airlines": [
-        ["dlh", 50],
-        ["thy", 10],
-        ["baw", 9],
-        ["klc", 8],
-        ["klm", 7],
-        ["sas", 6],
-        ["afr", 5],
-        ["aza", 5],
-        ["nax", 5],
-        ["ibe", 5],
-        ["uae", 4],
-        ["aal/long", 4],
-        ["ual/long", 4],
-        ["aca", 3],
-        ["afl", 3],
-        ["dal", 3],
-        ["fdx", 3],
-        ["ups", 2],
-        ["tso", 2],
-        ["svr", 1],
-        ["sbi", 1]
-        ]
-    },
-    "arrivals": [
-            {
-        "_comment": "north-west",
-        "type": "cyclic",
-        "radial": 305,
-                "heading": 135,
-        "speed": 250,
-        "offset": 1,
-        "frequency": 4,
-        "altitude":  [9000, 10000],
-        "fixes": ["ABGAS", "LURER", "LELTA", "ROKIL", "MIQ"],
-        "airlines":  [
-                    ["dlh", 50],
-                    ["baw", 10],
-                    ["klc", 9],
-                    ["klm", 9],
-                    ["sas", 8],
-                    ["afr", 8],
-                    ["nax", 4],
-                    ["aal", 4],
-                    ["ual", 4],
-                    ["aca", 2],
-                    ["dal", 2],
-                    ["fdx", 1],
-                    ["ups", 1]
-                ]
-        },
-            {
-        "_comment": "north-east",
-        "type": "cyclic",
-        "radial": 60,
-        "heading": 225,
-        "speed": 250,
-        "offset": 1,
-        "frequency": 4.5,
-        "altitude":  [9000, 10000],
-        "fixes": ["ROSAB", "BINGU", "TUSTO", "LANDU", "MIQ"],
-        "airlines":  [
-                ["dlh", 50],
-                ["afl", 9],
-                ["baw", 9],
-                ["svr", 8],
-                ["sbi", 8],
-                ["sas", 8],
-                ["tso", 6],
-                ["nax", 5],
-                ["dal", 2],
-                ["fdx", 2],
-                ["ups", 1]
-                ]
-        },
-        {
-        "_comment": "south-west",
-        "type": "cyclic",
-        "radial": 230,
-        "heading": 30,
-        "speed": 250,
-        "offset": 1,
-        "frequency": 4.5,
-        "altitude":  [9000, 10000],
-        "fixes": ["OSDER", "MERSI", "BETOS", "MUN"],
-        "airlines":  [
-                ["dlh", 50],
-                ["ibe", 15],
-                ["afr", 7],
-                ["aza", 9],
-                ["uae", 8],
-                ["tso", 5],
-                ["fdx", 1],
-                ["ups", 1]
-                ]
-        },
-            {
-        "_comment": "south-east",
-        "type": "cyclic",
-        "radial": 120,
-                "heading": 290,
-        "speed": 250,
-        "offset": 1,
-        "frequency": 6.5,
-        "altitude":  [9000, 10000],
-        "fixes": ["SBG", "NAPSA", "MUN"],
-        "airlines":  [
-                ["dlh", 50],
-                ["thy", 20],
-                ["uae", 15],
-                ["aza", 12],
-                ["ibe", 8],
-                ["afl", 3],
-                ["fdx", 1],
-                ["ups", 1],
-                ["tso", 2],
-                ["svr", 4],
-                ["sbi", 2]
-            ]
-        }
-    ]
+    }
 }
