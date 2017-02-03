@@ -71,7 +71,9 @@ export default class LegModel {
     _buildWaypointForDirectRoute(directRouteSegment) {
         const fixModel = this._navigationLibrary.findFixByName(directRouteSegment);
 
-        return fixModel;
+        return [
+            fixModel.toWaypointModel()
+        ];
     }
 
     /**

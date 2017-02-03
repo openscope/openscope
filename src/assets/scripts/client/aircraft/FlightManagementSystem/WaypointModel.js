@@ -1,3 +1,5 @@
+import _get from 'lodash/get';
+
 /**
  *
  * @class WaypointModel
@@ -6,9 +8,10 @@ export default class WaypointModel {
     /**
      *
      * @constructor
+     * @param waypointProps {object}
      */
-    constructor() {
-        this.fix = null;
+    constructor(waypointProps) {
+        this.name = '';
         this.position = null;
         this.speedRestriction = -1;
         this.altitudeRestriction = -1;
@@ -21,14 +24,19 @@ export default class WaypointModel {
         //     legLength: null,
         //     timer: 0
         // };
+
+        this.init(waypointProps);
     }
 
-    init() {
-
+    init(waypointProps) {
+        this.name = waypointProps.name;
+        this.position = waypointProps.position;
+        this.speedRestriction = _get(waypointProps, 'speedRestriction', this.speedRestriction);
+        this.altitudeRestriction = _get(waypointProps, 'altitudeRestriction', this.altitudeRestriction);
     }
 
     destroy() {
-        this.fix = null;
+        this.fixName = '';
         this.position = null;
         this.speedRestriction = -1;
         this.altitudeRestriction = -1;

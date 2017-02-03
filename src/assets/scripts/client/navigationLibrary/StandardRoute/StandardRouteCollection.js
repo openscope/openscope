@@ -83,6 +83,8 @@ export default class StandardRouteCollection extends BaseCollection {
     /**
      * Find a list of fixes for a route, given an `icao`, `exitFixName` and `runwayName` parameter.
      *
+     * @deprecated
+     *
      * @for StandardRouteCollection
      * @method getSID
      * @param icao {string}
@@ -124,6 +126,8 @@ export default class StandardRouteCollection extends BaseCollection {
      * Find a list of fixes for a route, given an `icao`, `entryFixName` and `runwayName` parameter.
      *
      * Used to gather all the fixes for a give STAR route.
+     *
+     * @deprecated
      *
      * @for StandardRouteCollection
      * @method getSID
@@ -173,8 +177,6 @@ export default class StandardRouteCollection extends BaseCollection {
      * @return {string}
      */
     findRandomExitPointForSIDIcao(icao) {
-        // console.warn('StandardRouteCollection.findRandomExitPointForSIDIcao() will be deprecated in the next release');
-
         const sid = this.findRouteByIcao(icao);
 
         // if sid doesnt have any exit points it ends at fix for which the SID is named
@@ -224,7 +226,7 @@ export default class StandardRouteCollection extends BaseCollection {
         _forEach(routeList, (route) => {
             const routeModel = new StandardRouteModel(route);
 
-            this._addSidToCollection(routeModel);
+            this._addRouteModelToCollection(routeModel);
         });
 
         return this;
@@ -234,11 +236,11 @@ export default class StandardRouteCollection extends BaseCollection {
      * Add a `StandardRouteModel` to the collection and update length.
      *
      * @for StandardRouteCollection
-     * @method _addSidToCollection
+     * @method _addRouteModelToCollection
      * @param routeModel {StandardRouteModel}
      * @private
      */
-    _addSidToCollection(routeModel) {
+    _addRouteModelToCollection(routeModel) {
         if (!(routeModel instanceof StandardRouteModel)) {
             // eslint-disable-next-line max-len
             throw new TypeError(`Expected routeModel to be an instance of StandardRouteModel, instead received ${routeModel}`);

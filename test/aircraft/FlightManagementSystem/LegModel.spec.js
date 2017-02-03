@@ -1,9 +1,10 @@
 import ava from 'ava';
 import sinon from 'sinon';
+import _isArray from 'lodash/isArray';
 import _isEqual from 'lodash/isEqual';
 
 import LegModel from '../../../src/assets/scripts/client/aircraft/FlightManagementSystem/LegModel';
-import FixModel from '../../../src/assets/scripts/client/navigationLibrary/Fix/FixModel';
+import WaypointModel from '../../../src/assets/scripts/client/aircraft/FlightManagementSystem/WaypointModel';
 import StandardRouteWaypointModel from '../../../src/assets/scripts/client/navigationLibrary/StandardRoute/StandardRouteWaypointModel';
 import { navigationLibraryFixture } from '../../fixtures/navigationLibraryFixtures';
 
@@ -34,12 +35,15 @@ ava('.init() calls ._buildWaypointCollection()', (t) => {
     t.true(_buildWaypointCollectionSpy.calledWithExactly(procedureRouteSegmentMock));
 });
 
-ava('._buildWaypointForDirectRoute() returns an instance of a FixModel', (t) => {
+ava('._buildWaypointForDirectRoute() returns an instance of a WaypointModel', (t) => {
     const model = new LegModel(directRouteSegmentMock, runwayMock, navigationLibraryFixture);
     const result = model._buildWaypointForDirectRoute(directRouteSegmentMock);
 
-    t.true(result instanceof FixModel);
-    t.true(result.name === 'COWBY');
+    console.log(result);
+
+    t.true(_isArray(result));
+    t.true(result[0] instanceof WaypointModel);
+    t.true(result[0].name === 'COWBY');
 });
 
 ava('._buildWaypointCollectionForProcedureRoute() returns a list of StandardRouteWaypointModels', (t) => {

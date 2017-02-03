@@ -111,8 +111,8 @@ ava('.hasRoute() returns a boolean if a route exists within the collection', t =
     t.false(collection.hasRoute(''));
 });
 
-ava('._addSidToCollection() throws if it doesnt receive a SidModel', t => {
+ava('._addRouteModelToCollection() throws if it doesnt receive a SidModel', t => {
     const collection = new StandardRouteCollection(SID_WITHOUT_EXIT_MOCK);
 
-    t.throws(() => collection._addSidToCollection({}));
+    t.throws(() => collection._addRouteModelToCollection({}));
 });

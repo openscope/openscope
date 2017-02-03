@@ -1,6 +1,7 @@
 import _cloneDeep from 'lodash/cloneDeep';
 import BaseModel from '../../base/BaseModel';
 import PositionModel from '../../base/PositionModel';
+import WaypointModel from '../../aircraft/FlightManagementSystem/WaypointModel';
 
 /**
  * Defines a navigational `FixModel`
@@ -103,5 +104,28 @@ export default class FixModel extends BaseModel {
      */
     clonePosition() {
         return _cloneDeep(this._fixPosition);
+    }
+
+    /**
+     * Build a new `WaypointModel` from the current instance.
+     *
+     * This method provides a way to create a `WaypointModel` with the current
+     * properties of a `FixModel` instance.
+     *
+     * This is used by `LegModel` when building a flight plan from `routeStrings`. A directRouteString
+     * will result in finding a `FixModel` (if one exists). From that `FixModel` we need to be able to
+     * create a `WaypointModel` that the Fms can consume.
+     *
+     * @for FixModel
+     * @method toWaypointModel
+     * @return {WaypointModel}
+     */
+    toWaypointModel() {
+        const waypointProps = {
+            name: this.name,
+            position: this.clonePosition()
+        };
+
+        return new WaypointModel(waypointProps);
     }
 }

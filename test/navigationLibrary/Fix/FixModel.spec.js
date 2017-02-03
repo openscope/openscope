@@ -3,6 +3,7 @@ import ava from 'ava';
 
 import FixModel from '../../../src/assets/scripts/client/navigationLibrary/Fix/FixModel';
 import PositionModel from '../../../src/assets/scripts/client/base/PositionModel';
+import WaypointModel from '../../../src/assets/scripts/client/aircraft/FlightManagementSystem/WaypointModel';
 
 import { airportPositionFixtureKSFO } from '../../fixtures/airportFixtures';
 import {
@@ -49,7 +50,7 @@ ava('accepts a `fixName`, an array `fixCoordinate` and an `airportPosition` as i
     t.true(model._fixPosition instanceof PositionModel);
 });
 
-ava('._init() sets name in upperCase', t => {
+ava('.init() sets name in upperCase', t => {
     let model = new FixModel('uppercase', FIX_COORDINATE_MOCK, airportPositionFixtureKSFO);
     t.true(model.name === 'UPPERCASE');
 
@@ -64,4 +65,15 @@ ava('.clonePosition() returns a PositionModel with the position information of t
     t.true(result instanceof PositionModel);
     t.true(result.latitude === result.latitude);
     t.true(result.longitude === result.longitude);
+});
+
+ava('.toWaypointModel() returns a new WaypointModel instance', (t) => {
+    const model = new FixModel(FIXNAME_MOCK, FIX_COORDINATE_MOCK, airportPositionFixtureKSFO);
+    const result = model.toWaypointModel();
+
+    t.true(result instanceof WaypointModel);
+    t.true(result.name === FIXNAME_MOCK);
+    t.true(result.position instanceof PositionModel);
+    t.true(result.altitudeRestriction === -1);
+    t.true(result.speedRestriction === -1);
 });
