@@ -449,7 +449,7 @@
             "altitude": null,
             "speed": null,
             "method": "random",
-            "rate": 6,
+            "rate": 7,
             "airlines": [
                ["ROT", 5],
                ["RYR", 4],
@@ -467,7 +467,7 @@
             "altitude": null,
             "speed": null,
             "method": "random",
-            "rate": 6,
+            "rate": 7,
             "airlines": [
                ["ROT", 5],
                ["RYR", 4],
@@ -485,7 +485,7 @@
             "altitude": null,
             "speed": null,
             "method": "random",
-            "rate": 2,
+            "rate": 4,
             "airlines": [
                ["ROT", 5],
                ["EWG", 1],
@@ -533,7 +533,7 @@
             "altitude": null,
             "speed": null,
             "method": "random",
-            "rate": 2,
+            "rate": 5,
             "airlines": [
                ["ROT", 3],
                 ["RYR", 2],
@@ -545,10 +545,10 @@
             "destination": "LROP",
             "category": "arrival",
             "route": "TOSVI.TOSVI2U.LROP",
-            "altitude": [11000, 17000],
+            "altitude": [11000, 14000],
             "speed": 250,
             "method": "wave",
-            "rate": 10,
+            "rate": 15,
             "airlines": [
                 ["ROT", 5],
 				["RYR", 4],
@@ -570,7 +570,7 @@
             "altitude": [14000, 17000],
             "speed": 250,
             "method": "random",
-            "rate": 3,
+            "rate": 5,
             "airlines": [
                 ["ROT", 3],
                 ["THY", 2],
@@ -586,7 +586,7 @@
             "altitude":  [15000, 17000],
             "speed": 350,
             "method": "random",
-            "rate": 3,
+            "rate": 5,
             "airlines": [
                 ["ROT", 3],
                 ["THY", 2],
@@ -602,7 +602,7 @@
             "altitude":  [15000, 17000],
             "speed": 350,
             "method": "random",
-            "rate": 3,
+            "rate": 5,
             "airlines": [
                 ["ROT", 5],
 				["RYR", 4],
@@ -646,7 +646,7 @@
             "altitude":  [15000, 17000],
             "speed": 350,
             "method": "random",
-            "rate": 3,
+            "rate": 5,
             "airlines": [
                 ["ROT", 5],
 				["RYR", 4],
@@ -662,7 +662,7 @@
             "altitude": [14000, 17000],
             "speed": 350,
             "method": "random",
-            "rate": 3,
+            "rate": 5,
             "airlines": [
                 ["ROT", 3],
                 ["RYR", 2],
@@ -672,4 +672,3 @@
     ]
     
 }
-	
