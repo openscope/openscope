@@ -3,6 +3,7 @@ import RouteModel from '../../navigationLibrary/Route/RouteModel';
 /**
  *
  *
+ * @class LegModel
  */
 export default class LegModel {
     constructor(routeSegment, runway, navigationLibrary) {
@@ -15,9 +16,16 @@ export default class LegModel {
         this.init(routeSegment);
     }
 
+    get currentWaypoint() {
+        return this.waypointCollection[0];
+    }
+
     /**
      *
      *
+     * @for LegModel
+     * @method init
+     * @param routeSegment
      */
     init(routeSegment) {
         this.waypointCollection = this._buildWaypointCollection(routeSegment);
@@ -26,6 +34,8 @@ export default class LegModel {
     /**
      *
      *
+     * @for LegModel
+     * @method destroy
      */
     destroy() {
         this._navigationLibrary = null;
@@ -37,6 +47,10 @@ export default class LegModel {
     /**
      *
      *
+     * @for LegModel
+     * @method _buildWaypointCollection
+     * @param routeSegment {string}
+     * @private
      */
     _buildWaypointCollection(routeSegment) {
         if (!this._isProcedureRoute) {
@@ -49,6 +63,10 @@ export default class LegModel {
     /**
      *
      *
+     * @for LegModel
+     * @method _buildWaypointForDirectRoute
+     * @param directRouteSegment {string}
+     * @private
      */
     _buildWaypointForDirectRoute(directRouteSegment) {
         const fixModel = this._navigationLibrary.findFixByName(directRouteSegment);
@@ -59,6 +77,10 @@ export default class LegModel {
     /**
      *
      *
+     * @for LegModel
+     * @method _buildWaypointCollectionForProcedureRoute
+     * @param procedureRouteSegment {string}
+     * @private
      */
     _buildWaypointCollectionForProcedureRoute(procedureRouteSegment) {
         // TODO: this logic should really live in the _navigationLibrary. send it the procedureRouteSegment

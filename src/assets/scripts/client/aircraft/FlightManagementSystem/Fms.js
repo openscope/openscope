@@ -20,18 +20,50 @@ import { routeStringFormatHelper } from '../../navigationLibrary/Route/routeStri
 export default class Fms {
     /**
      *
-     *
+     * @constructor
+     * @param aircraftInitProps {object}
+     * @param initialRunwayAssignment {string}
+     * @param navigationLibrary {NavigationLibrary}
      */
     constructor(aircraftInitProps, initialRunwayAssignment, navigationLibrary) {
         if (!_isObject(aircraftInitProps) || _isEmpty(aircraftInitProps)) {
             throw new TypeError('Invalid aircraftInitProps passed to Fms');
         }
 
+        /**
+         *
+         *
+         * @property _navigationLibrary
+         * @type {NavigationLibrary}
+         * @private
+         */
         this._navigationLibrary = navigationLibrary;
+
+        /**
+         *
+         *
+         * @property _runway
+         * @type {string}
+         * @private
+         */
         this._runway = initialRunwayAssignment;
 
+        /**
+         *
+         *
+         * @property legCollection
+         * @type {array}
+         * @default []
+         */
         this.legCollection = [];
 
+        /**
+         *
+         *
+         * @property category
+         * @type {string}
+         * @default ''
+         */
         this.category = '';
 
         this.init(aircraftInitProps);
@@ -40,16 +72,31 @@ export default class Fms {
     /**
      *
      *
+     * @property currentWaypoint
+     * @return {FixModel|StandardRouteWaypointModel|undefined}
      */
-    init(aircraftInitProps) {
-        this.category = aircraftInitProps.category;
-
-        this.legCollection = this._buildInitialLegsCollection(aircraftInitProps);
+    get currentWaypoint() {
+        return this.legCollection[0].currentWaypoint;
     }
 
     /**
      *
      *
+     * @for Fms
+     * @method init
+     * @param aircraftInitProps {object}
+     */
+    init(aircraftInitProps) {
+        this.category = aircraftInitProps.category;
+
+        this.legCollection = this._buildInitialLegCollection(aircraftInitProps);
+    }
+
+    /**
+     *
+     *
+     * @for LegModel
+     * @method destroy
      */
     destroy() {
         this._navigationLibrary = null;
@@ -60,10 +107,16 @@ export default class Fms {
     /**
      *
      *
+     * @for LegModel
+     * @method _buildInitialLegCollection
+     * @param aircraftInitProps {object}
+     * @private
      */
-    _buildInitialLegsCollection(aircraftInitProps) {
+    _buildInitialLegCollection(aircraftInitProps) {
         const routeStringSegments = routeStringFormatHelper(aircraftInitProps.route);
-        const legsForRoute = _map(routeStringSegments, (routeSegment) => new LegModel(routeSegment, this._runway, this._navigationLibrary));
+        const legsForRoute = _map(routeStringSegments, (routeSegment) => {
+            return new LegModel(routeSegment, this._runway, this._navigationLibrary);
+        });
 
         return legsForRoute;
     }

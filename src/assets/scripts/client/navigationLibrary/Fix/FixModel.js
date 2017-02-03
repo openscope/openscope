@@ -91,7 +91,7 @@ export default class FixModel extends BaseModel {
     /**
      * Returns a clone of an instance's `_fixPosition` property.
      *
-     * It is important to note that this is a _clone_ and not a copy. Once any changes made to this instance will
+     * It is important to note that this is a _clone_ and not a copy. Any changes made to this instance will
      * not be reflected in the clone. This creates an entirely new instance of the `_fixPosition` property,
      * and after creation is completely independant of this instance.
      *

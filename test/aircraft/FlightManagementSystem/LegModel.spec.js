@@ -1,5 +1,6 @@
 import ava from 'ava';
 import sinon from 'sinon';
+import _isEqual from 'lodash/isEqual';
 
 import LegModel from '../../../src/assets/scripts/client/aircraft/FlightManagementSystem/LegModel';
 import FixModel from '../../../src/assets/scripts/client/navigationLibrary/Fix/FixModel';
@@ -16,6 +17,12 @@ ava('throws when passed invalid parameters', (t) => {
 
 ava('does not throw when passed valid parameters', (t) => {
     t.notThrows(() => new LegModel(procedureRouteSegmentMock, runwayMock, navigationLibraryFixture));
+});
+
+ava('#currentWaypoint returns the first item in #waypointCollection', (t) => {
+    const model = new LegModel(procedureRouteSegmentMock, runwayMock, navigationLibraryFixture);
+
+    t.true(_isEqual(model.waypointCollection[0], model.currentWaypoint));
 });
 
 ava('.init() calls ._buildWaypointCollection()', (t) => {

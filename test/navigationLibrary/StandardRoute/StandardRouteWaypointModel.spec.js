@@ -32,9 +32,9 @@ ava('sets only `name` when provided a string', t => {
 
     t.true(typeof model._id === 'string');
     t.true(model.name === NAME_MOCK);
-    t.true(model._altitude === null);
+    t.true(model._altitude === -1);
     t.true(model._altitudeConstraint === '');
-    t.true(model._speed === null);
+    t.true(model._speed === -1);
 });
 
 ava('.clonePoisitonFromFix() does not throw when no fix exists', t => {
@@ -88,7 +88,7 @@ ava('._parseWaypointRestrictions() extracts an alititude restriction from a wayp
 
     t.true(spy.callCount === 1);
     t.true(model._altitude === '80+');
-    t.true(model._speed === null);
+    t.true(model._speed === -1);
 });
 
 ava('._parseWaypointRestrictions() extracts a speed restriction from a waypointRestrictions string by calling ._setSpeedRestriction()', t => {
@@ -98,7 +98,7 @@ ava('._parseWaypointRestrictions() extracts a speed restriction from a waypointR
     model._parseWaypointRestrictions('XYZ|S280');
 
     t.true(spy.callCount === 1);
-    t.true(model._altitude === null);
+    t.true(model._altitude === -1);
     t.true(model._speed === '280');
 });
 
@@ -107,6 +107,6 @@ ava('._parseWaypointRestrictions() returns early if no paramater is received', t
 
     model._parseWaypointRestrictions();
 
-    t.true(model._altitude === null);
-    t.true(model._speed === null);
+    t.true(model._altitude === -1);
+    t.true(model._speed === -1);
 });

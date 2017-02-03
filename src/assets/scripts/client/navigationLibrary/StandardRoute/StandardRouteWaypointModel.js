@@ -101,7 +101,7 @@ export default class StandardRouteWaypointModel extends BaseModel {
          * @default null
          * @private
          */
-        this._altitude = null;
+        this._altitude = -1;
 
         // TODO: This will need to be implemented in the future as an emuneration. Something to the effect of: {BELOW|AT|ABOVE}
         /**
@@ -126,7 +126,7 @@ export default class StandardRouteWaypointModel extends BaseModel {
          * @default null
          * @private
          */
-        this._speed = null;
+        this._speed = -1;
 
         /**
          * Positon information for the current waypoint
