@@ -340,7 +340,8 @@
             "name": "Ostal One Uniform",
             "suffix": {"08R":"", "08L":""},
             "entryPoints": {
-                "OSTAL": ["ARGES", "OSTAL"]
+                "ARGES": ["ARGES", "OSTAL"],
+                "OSTAL": ["OSTAL"]
             },
             "body": [
                  "TOBAG",
@@ -395,7 +396,8 @@
             "name": "Sordu One Uniform",
             "suffix": {"08R":"", "08L":""},
             "entryPoints": {
-                "SORDU": ["SOMOV", "SORDU"]
+                "SOMOV": ["SOMOV" ],
+                "SORDU": ["SORDU"]
             },
             "body": [
                  "TUTIX", 
@@ -418,7 +420,8 @@
             "name": "Obuga One Uniform",
             "suffix": {"08R":"", "08L":""},
             "entryPoints": {
-                "OBUGA": ["KOMAN", "OBUGA"]
+                "OBUGA": ["OBUGA"],
+                "KOMAN": ["KOMAN"]
             },
             "body": [
                 ["TEVRO", "A70+|S240-"], 
@@ -436,41 +439,118 @@
             ]
         }
     },
-    "departures": {
-        "airlines": [
-            ["ROT", 5],
-            ["RYR", 4],
-            ["THY", 2],
-            ["PGT", 1],
-            ["KLM", 1],
-            ["DLH", 1],
-            ["ASL", 1],
-            ["AFR", 1],
-            ["BAW", 1],
-            ["EWG", 1],
-            ["LOT", 1],
-            ["QTR", 1],
-            ["SWR", 1]
-        ],
-        "destinations": [
-            "SOKRU1K", "DENAK1K", "BUKEL1K", "POLUN1K", "IDARU1K", "NETUL1K"
-        ],
-        "type": "random",
-        "offset": 0,
-        "frequency": 30
-    },
-    "arrivals": [
-        { 
-            "type": "wave",
-            "route":   "TOSVI.TOSVI2U.LROP",
-            "offset": 0,              
-            "period": 20,              
-            "variation": 0,
-            "frequency": 15,
-            "altitude":  [11000, 17000],
-            "speed":    300,             
+    
+    "spawnPatterns": [
+    	{
+    		"origin": "LROP",
+            "destination": "",
+            "category": "departure",
+            "route": "LROP.SOKRU1K.SOKRU",
+            "altitude": null,
+            "speed": null,
+            "method": "random",
+            "rate": 6,
             "airlines": [
-				["ROT", 5],
+               ["ROT", 5],
+               ["RYR", 4],
+               ["BAW", 1],
+               ["AFR", 1],
+               ["KLM", 1],
+               ["DLH", 1]
+            ]
+    	},
+    	{
+    		"origin": "LROP",
+            "destination": "",
+            "category": "departure",
+            "route": "LROP.BUKEL1K.BUKEL",
+            "altitude": null,
+            "speed": null,
+            "method": "random",
+            "rate": 6,
+            "airlines": [
+               ["ROT", 5],
+               ["RYR", 4],
+               ["BAW", 1],
+               ["AFR", 1],
+               ["KLM", 1],
+               ["DLH", 1]
+            ]
+    	},
+    	{
+    		"origin": "LROP",
+            "destination": "",
+            "category": "departure",
+            "route": "LROP.DENAK1K.KODRU",
+            "altitude": null,
+            "speed": null,
+            "method": "random",
+            "rate": 2,
+            "airlines": [
+               ["ROT", 5],
+               ["EWG", 1],
+				["LOT", 1],
+               ["SWR", 1]
+            ]
+    	},
+    	{
+    		"origin": "LROP",
+            "destination": "",
+            "category": "departure",
+            "route": "LROP.NETUL1K.NETUL",
+            "altitude": null,
+            "speed": null,
+            "method": "random",
+            "rate": 2,
+            "airlines": [
+               ["ROT", 3],
+                ["THY", 2],
+				["PGT", 1],
+				["QTR", 1]
+            ]
+    	},
+    	{
+    		"origin": "LROP",
+            "destination": "",
+            "category": "departure",
+            "route": "LROP.IDARU1K.IDARU",
+            "altitude": null,
+            "speed": null,
+            "method": "random",
+            "rate": 2,
+            "airlines": [
+               ["ROT", 3],
+                ["THY", 2],
+				["PGT", 1],
+				["QTR", 1]
+            ]
+    	},
+    	{
+    		"origin": "LROP",
+            "destination": "",
+            "category": "departure",
+            "route": "LROP.POLUN1K.POLUN",
+            "altitude": null,
+            "speed": null,
+            "method": "random",
+            "rate": 2,
+            "airlines": [
+               ["ROT", 3],
+                ["RYR", 2],
+				["ASL", 1]
+            ]
+    	},
+    	{
+            "origin": "",
+            "destination": "LROP",
+            "category": "arrival",
+            "route": "TOSVI.TOSVI2U.LROP",
+            "altitude": [11000, 17000],
+            "speed": 250,
+            "method": "wave",
+            "rate": 10,
+            "airlines": [
+                ["ROT", 5],
 				["RYR", 4],
 				["DLH", 3],
 				["KLM", 2],
@@ -480,55 +560,116 @@
 				["EWG", 1],
 				["LOT", 1],
 				["SWR", 1]
-             ]      
+            ]
         },
         {
-            "speed": 350,
-            "route": "SORDU.SORDU1U.LROP", 
-            "altitude":  [13000, 17000],
+            "origin": "",
+            "destination": "LROP",
+            "category": "arrival",
+            "route": "KOMAN.OBUGA1U.LROP",
+            "altitude": [14000, 17000],
+            "speed": 250,
+            "method": "random",
+            "rate": 3,
             "airlines": [
-                ["RYR", 4],
-                ["ASL", 1]
-            ],
-            "type": "random",
-            "frequency": 2
+                ["ROT", 3],
+                ["THY", 2],
+				["PGT", 1],
+				["QTR", 1]
+            ]
         },
         {
-            "speed": 350,
-            "route": "DENAK.DENAK1U.LROP", 
-            "altitude":  [14000, 17000],
-            "airlines": [
-				["ROT", 5],
-				["RYR", 4],
-				["CSA", 2],
-				["LOT", 1]
-            ],
-            "type": "random",
-            "frequency": 5
-        },
-        {
-            "speed": 350,
-            "route": "OSTAL.OSTAL1U.LROP", 
+            "origin": "",
+            "destination": "LROP",
+            "category": "arrival",
+            "route": "ARGES.OSTAL1U.LROP",
             "altitude":  [15000, 17000],
+            "speed": 350,
+            "method": "random",
+            "rate": 3,
             "airlines": [
- 				["THY", 2],
+                ["ROT", 3],
+                ["THY", 2],
 				["PGT", 1],
 				["QTR", 1]
-            ],
-            "type": "random",
-            "frequency": 3
+            ]
         },
         {
-        	"speed": 350,
-        	"route": "OBUGA.OBUGA1U.LROP", 
-        	"altitude":  [14000, 17000],
-        	"airlines": [
-				["THY", 2],
-				["PGT", 1],
-				["QTR", 1]
-             ],
-             "type": "random",
-             "frequency": 3
+            "origin": "",
+            "destination": "LROP",
+            "category": "arrival",
+            "route": "DENAK.DENAK1U.LROP",
+            "altitude":  [15000, 17000],
+            "speed": 350,
+            "method": "random",
+            "rate": 3,
+            "airlines": [
+                ["ROT", 5],
+				["RYR", 4],
+				["CSA", 1],
+				["LOT", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "LROP",
+            "category": "arrival",
+            "route": "NETUL.NETUL2U.LROP",
+            "altitude":  [17000, 20000],
+            "speed": 350,
+            "method": "random",
+            "rate": 1,
+            "airlines": [
+                ["ROT", 1]
+				
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "LROP",
+            "category": "arrival",
+            "route": "IDARU.IDARU2U.LROP",
+            "altitude":  [17000, 20000],
+            "speed": 350,
+            "method": "random",
+            "rate": 1,
+            "airlines": [
+                ["ROT", 1]
+				
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "LROP",
+            "category": "arrival",
+            "route": "DENAK.DENAK1U.LROP",
+            "altitude":  [15000, 17000],
+            "speed": 350,
+            "method": "random",
+            "rate": 3,
+            "airlines": [
+                ["ROT", 5],
+				["RYR", 4],
+				["CSA", 1],
+				["LOT", 1]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "LROP",
+            "category": "arrival",
+            "route": "SOMOV.SORDU1U.LROP",
+            "altitude": [14000, 17000],
+            "speed": 350,
+            "method": "random",
+            "rate": 3,
+            "airlines": [
+                ["ROT", 3],
+                ["RYR", 2],
+				["ASL", 1]
+            ]
         }
     ]
+    
 }
+	
