@@ -150,21 +150,37 @@ export default class StandardRouteCollection extends BaseCollection {
      * Find a list of `StandardWaypointModel`s for a specific route
      *
      * @for StandardRouteCollection
-     * @method findFixModelsForRouteByEntryAndExit
+     * @method findRouteWaypointsForRouteByEntryAndExit
      * @param icao {string}
      * @param entry {string}
      * @param exit {string}
      * @param isPreSpawn {boolean} flag used to determine if distances between waypoints should be calculated
-     * @return {StandardRouteModel}
+     * @return {array<StandardRouteWaypointModel>}
      */
-    findFixModelsForRouteByEntryAndExit(icao, entry, exit, isPreSpawn) {
+    findRouteWaypointsForRouteByEntryAndExit(icao, entry, exit, isPreSpawn) {
         if (!icao) {
             return;
         }
 
         const route = this.findRouteByIcao(icao);
 
-        return route.findStandardWaypointModelsForEntryAndExit(entry, exit, isPreSpawn);
+        return route.findStandardRouteWaypointModelsForEntryAndExit(entry, exit, isPreSpawn);
+    }
+
+    /**
+     * Find a list of `StandardWaypointModel`s for a specific route
+     *
+     * @for StandardRouteCollection
+     * @method findRouteWaypointsForRouteByEntryAndExit
+     * @param icao {string}
+     * @param entry {string}
+     * @param exit {string}
+     * @return {array<WaypointModel>}
+     */
+    generateFmsWaypointModelsForRoute(icao, entry, exit) {
+        const standardRouteWaypointModels = this.findRouteWaypointsForRouteByEntryAndExit(icao, entry, exit, false);
+
+        return _map(standardRouteWaypointModels, (model) => model.toWaypointModel());
     }
 
     /**

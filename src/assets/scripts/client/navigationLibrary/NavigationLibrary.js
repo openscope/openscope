@@ -165,7 +165,7 @@ export default class NavigationLibrary {
      * @return {array<StandardWaypointModel>}
      */
     findWaypointModelsForSid(id, runway, exit) {
-        return this._sidCollection.findFixModelsForRouteByEntryAndExit(id, runway, exit);
+        return this._sidCollection.findRouteWaypointsForRouteByEntryAndExit(id, runway, exit);
     }
 
     /**
@@ -180,7 +180,7 @@ export default class NavigationLibrary {
      * @return {array<StandardWaypointModel>}
      */
     findWaypointModelsForStar(id, entry, runway, isPreSpawn = false) {
-        return this._starCollection.findFixModelsForRouteByEntryAndExit(id, entry, runway, isPreSpawn);
+        return this._starCollection.findRouteWaypointsForRouteByEntryAndExit(id, entry, runway, isPreSpawn);
     }
 
     /**

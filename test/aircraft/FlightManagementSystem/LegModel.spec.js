@@ -39,19 +39,17 @@ ava('._buildWaypointForDirectRoute() returns an instance of a WaypointModel', (t
     const model = new LegModel(directRouteSegmentMock, runwayMock, navigationLibraryFixture);
     const result = model._buildWaypointForDirectRoute(directRouteSegmentMock);
 
-    console.log(result);
-
     t.true(_isArray(result));
     t.true(result[0] instanceof WaypointModel);
     t.true(result[0].name === 'COWBY');
 });
 
-ava('._buildWaypointCollectionForProcedureRoute() returns a list of StandardRouteWaypointModels', (t) => {
+ava('._buildWaypointCollectionForProcedureRoute() returns a list of WaypointModels', (t) => {
     const model = new LegModel(procedureRouteSegmentMock, runwayMock, navigationLibraryFixture);
     const result = model._buildWaypointCollectionForProcedureRoute(procedureRouteSegmentMock);
 
     t.plan(result.length);
     for (let i = 0; i < result.length; i++) {
-        t.true(result[i] instanceof StandardRouteWaypointModel);
+        t.true(result[i] instanceof WaypointModel);
     }
 });

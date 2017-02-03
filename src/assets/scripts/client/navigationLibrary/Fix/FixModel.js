@@ -112,9 +112,12 @@ export default class FixModel extends BaseModel {
      * This method provides a way to create a `WaypointModel` with the current
      * properties of a `FixModel` instance.
      *
-     * This is used by `LegModel` when building a flight plan from `routeStrings`. A directRouteString
-     * will result in finding a `FixModel` (if one exists). From that `FixModel` we need to be able to
-     * create a `WaypointModel` that the Fms can consume.
+     * This is used by `LegModel` when building a flight plan from `routeString`. A `directRouteString`
+     * will result in finding a `FixModel`. From that `FixModel` we need to be able to create a
+     * `WaypointModel` that the Fms can consume.
+     *
+     * There is a method of the same name in the `StandardRouteWaypointModel` that does this same thing
+     * but will be used only for `procedureRouteStrings`.
      *
      * @for FixModel
      * @method toWaypointModel

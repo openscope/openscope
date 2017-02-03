@@ -2,6 +2,7 @@ import _isNil from 'lodash/isNil';
 import BaseModel from '../../base/BaseModel';
 import FixCollection from '../Fix/FixCollection';
 import Waypoint from '../../aircraft/FlightManagementSystem/Waypoint';
+import WaypointModel from '../../aircraft/FlightManagementSystem/WaypointModel';
 
 /**
  * @property NAME_INDEX
@@ -298,6 +299,34 @@ export default class StandardRouteWaypointModel extends BaseModel {
         };
 
         return new Waypoint(fmsWaypoint, airport);
+    }
+
+    /**
+     * Build a new `WaypointModel` from the current instance.
+     *
+     * This method provides a way to create a `WaypointModel` with the current
+     * properties of a `StandardRouteWaypointModel` instance.
+     *
+     * This is used by `LegModel` when building a flight plan from a `routeString`. A `procedureRouteString`
+     * will result in finding a list of `StandardRouteWaypointModel`s. From those `StandardRouteWaypointModel`
+     * we need to be able to create `WaypointModel`s that the Fms can consume.
+     *
+     * There is a method of the same name in the `FixModel` that does this same thing
+     * but will be used only for `directRouteStrings`.
+     *
+     * @for StandardRouteWaypointModel
+     * @method toWaypointModel
+     * @return {WaypointModel}
+     */
+    toWaypointModel() {
+        const waypointProps = {
+            name: this.name,
+            position: this._waypointPosition,
+            altitudeRestriction: this._altitude,
+            speedRestriction: this._speed
+        };
+
+        return new WaypointModel(waypointProps);
     }
 
     /**

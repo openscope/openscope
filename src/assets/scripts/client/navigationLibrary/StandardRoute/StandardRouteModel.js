@@ -251,13 +251,14 @@ export default class StandardRouteModel extends BaseModel {
      * Collect all the `StandardWaypointModel` objects for a given route.
      *
      * @for StandardRouteModel
-     * @method findStandardWaypointModelsForEntryAndExit
+     * @method findStandardRouteWaypointModelsForEntryAndExit
      * @param entry {string}
      * @param exit {string}
-     * @param isPreSpawn {boolean} flag used to determine if distances between waypoints should be calculated
+     * @param isPreSpawn {boolean} flag used to determine if distances between waypoints need to be calculated. this
+     *                             will only be true during preSpawn so that initial aircraft position can be calculated
      * @return waypointList {array<StandardWaypointModel>}
      */
-    findStandardWaypointModelsForEntryAndExit(entry, exit, isPreSpawn) {
+    findStandardRouteWaypointModelsForEntryAndExit(entry, exit, isPreSpawn) {
         const waypointList = this._findStandardWaypointModelsForRoute(entry, exit);
 
         if (isPreSpawn) {
@@ -383,8 +384,8 @@ export default class StandardRouteModel extends BaseModel {
             this._exitCollection = this._buildSegmentCollection(standardRoute.exitPoints);
         } else if (_has(standardRoute, 'rwy')) {
             console.error(`The '${this.icao}' procedure does not contain exitPoints or entryPoints. ` +
-                `If this is a SID, at least one exitPoint must be defined. If this is a STAR, at least ` +
-                `one entryPoint must be defined.`);
+                'If this is a SID, at least one exitPoint must be defined. If this is a STAR, at least ' +
+                'one entryPoint must be defined.');
 
             this._entryCollection = this._buildSegmentCollection(standardRoute.rwy);
         }
@@ -554,8 +555,8 @@ export default class StandardRouteModel extends BaseModel {
     }
 
     /**
-     * Update each `StandardRouteWaypointModel` in the list the with disance from the previous waypoint, and
-     * that waypoint's name.
+     * Update each `StandardRouteWaypointModel` in the list the with distance from the previous waypoint (as
+     * calculated from furthest to closest to destination), and add a reference to that waypoint's name.
      *
      * @for StandardRouteModel
      * @method _updateWaypointsWithPreviousWaypointData

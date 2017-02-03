@@ -143,12 +143,12 @@ ava('.findFixesAndRestrictionsForEntryAndRunway() returns fixes for a given arri
     t.true(_isEqual(actualArguments, expectedArguments));
 });
 
-ava('.findStandardWaypointModelsForEntryAndExit() returns a list of `StandardRouteWaypointModel`s for a given STAR', t => {
+ava('.findStandardRouteWaypointModelsForEntryAndExit() returns a list of `StandardRouteWaypointModel`s for a given STAR', t => {
     const expectedArguments = ['MLF', '19R'];
     const model = new StandardRouteModel(STAR_LIST_MOCK.GRNPA1);
     const spy = sinon.spy(model, '_findStandardWaypointModelsForRoute');
 
-    const result = model.findStandardWaypointModelsForEntryAndExit('MLF', '19R');
+    const result = model.findStandardRouteWaypointModelsForEntryAndExit('MLF', '19R');
     const actualArguments = spy.getCall(0).args;
 
     t.true(_isEqual(actualArguments, expectedArguments));
@@ -157,22 +157,22 @@ ava('.findStandardWaypointModelsForEntryAndExit() returns a list of `StandardRou
     t.true(result[0].position !== null);
 });
 
-ava('.findStandardWaypointModelsForEntryAndExit() does call ._updateWaypointsWithPreviousWaypointData() if isPreSpawn is true', t => {
+ava('.findStandardRouteWaypointModelsForEntryAndExit() does call ._updateWaypointsWithPreviousWaypointData() if isPreSpawn is true', t => {
     const model = new StandardRouteModel(STAR_LIST_MOCK.GRNPA1);
     const spy = sinon.spy(model, '_updateWaypointsWithPreviousWaypointData');
     const isPreSpawn = true;
 
-    model.findStandardWaypointModelsForEntryAndExit('MLF', '19R', isPreSpawn);
+    model.findStandardRouteWaypointModelsForEntryAndExit('MLF', '19R', isPreSpawn);
 
     t.true(spy.callCount === 1);
 });
 
-ava('.findStandardWaypointModelsForEntryAndExit() does not call ._updateWaypointsWithPreviousWaypointData() if isPreSpawn is false', t => {
+ava('.findStandardRouteWaypointModelsForEntryAndExit() does not call ._updateWaypointsWithPreviousWaypointData() if isPreSpawn is false', t => {
     const model = new StandardRouteModel(STAR_LIST_MOCK.GRNPA1);
     const spy = sinon.spy(model, '_updateWaypointsWithPreviousWaypointData');
     const isPreSpawn = false;
 
-    model.findStandardWaypointModelsForEntryAndExit('MLF', '19R', isPreSpawn);
+    model.findStandardRouteWaypointModelsForEntryAndExit('MLF', '19R', isPreSpawn);
 
     t.true(spy.callCount === 0);
 });
@@ -180,7 +180,7 @@ ava('.findStandardWaypointModelsForEntryAndExit() does not call ._updateWaypoint
 ava('.calculateDistanceBetweenWaypoints() calculates the distance between two `StandardRouteWaypointModel` positions', t => {
     const expectedResult = 118.63498218153832;
     const model = new StandardRouteModel(STAR_LIST_MOCK.GRNPA1);
-    const waypointList = model.findStandardWaypointModelsForEntryAndExit('MLF', '19R');
+    const waypointList = model.findStandardRouteWaypointModelsForEntryAndExit('MLF', '19R');
     const result = model.calculateDistanceBetweenWaypoints(waypointList[0].position, waypointList[1].position);
 
     t.true(result === expectedResult);

@@ -1,3 +1,4 @@
+import _map from 'lodash/map';
 import RouteModel from '../../navigationLibrary/Route/RouteModel';
 
 /**
@@ -85,21 +86,22 @@ export default class LegModel {
      * @private
      */
     _buildWaypointCollectionForProcedureRoute(procedureRouteSegment) {
-        // TODO: this logic should really live in the _navigationLibrary. send it the procedureRouteSegment
+        // TODO: this logic should live in the _navigationLibrary. send it the procedureRouteSegment
         // and the runway and accept a list of FixModels or StandardRouteWaypointModels in return.
         const routeModel = new RouteModel(procedureRouteSegment);
+        // TODO: use spawnPattern.category for this
         const sidOrStarCollectionName = this._navigationLibrary.getRouteTypeForProcedureName(routeModel.procedure);
         const procedureRouteCollection = this._navigationLibrary[sidOrStarCollectionName];
 
         let standardRouteWaypointModelList;
         if (sidOrStarCollectionName === '_sidCollection') {
-            standardRouteWaypointModelList = procedureRouteCollection.findFixModelsForRouteByEntryAndExit(
+            standardRouteWaypointModelList = procedureRouteCollection.generateFmsWaypointModelsForRoute(
                 routeModel.procedure,
                 this._runway,
                 routeModel.exit
             );
         } else {
-            standardRouteWaypointModelList = procedureRouteCollection.findFixModelsForRouteByEntryAndExit(
+            standardRouteWaypointModelList = procedureRouteCollection.generateFmsWaypointModelsForRoute(
                 routeModel.procedure,
                 routeModel.entry,
                 this._runway

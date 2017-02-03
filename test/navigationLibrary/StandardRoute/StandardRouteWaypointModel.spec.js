@@ -4,7 +4,9 @@ import sinon from 'sinon';
 
 import StandardRouteWaypointModel from '../../../src/assets/scripts/client/navigationLibrary/StandardRoute/StandardRouteWaypointModel';
 import FixCollection from '../../../src/assets/scripts/client/navigationLibrary/Fix/FixCollection';
+import PositionModel from '../../../src/assets/scripts/client/base/PositionModel';
 import Waypoint from '../../../src/assets/scripts/client/aircraft/FlightManagementSystem/Waypoint';
+import WaypointModel from '../../../src/assets/scripts/client/aircraft/FlightManagementSystem/WaypointModel';
 
 import {
     airportPositionFixtureKSFO,
@@ -69,6 +71,17 @@ ava('.generateFmsWaypoint() returns a new instance of an FMS Waypoint object', t
     t.true(model.name === result.fix);
     t.true(model._altitude === result.fixRestrictions.alt);
     t.true(model._speed === result.fixRestrictions.spd);
+});
+
+ava('.toWaypointModel() returns a new instance of a WaypointModel', t => {
+    const model = new StandardRouteWaypointModel(ROUTE_WAYPOINT_MOCK);
+    const result = model.toWaypointModel();
+
+    t.true(result instanceof WaypointModel);
+    t.true(result.name === model.name);
+    t.true(result.position instanceof PositionModel);
+    t.true(result.altitudeRestriction === model._altitude);
+    t.true(result.speedRestriction === model._speed);
 });
 
 ava('._parseWaypointRestrictions() extracts alititude and speed restrictions from a waypointRestrictions string', t => {

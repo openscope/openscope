@@ -89,16 +89,16 @@ ava('.findRandomExitPointForSIDIcao() returns the name of this StandardRoute if 
     t.true(result === ICAO);
 });
 
-ava('.findFixModelsForRouteByEntryAndExit() returns a list of `StandardRouteWaypointModel`s for a given STAR', t => {
+ava('.findRouteWaypointsForRouteByEntryAndExit() returns a list of `StandardRouteWaypointModel`s for a given STAR', t => {
     const collection = new StandardRouteCollection(STAR_LIST_MOCK);
-    const result = collection.findFixModelsForRouteByEntryAndExit(STAR_ICAO_MOCK, ENTRY_FIXNAME_MOCK, RUNWAY_NAME_MOCK);
+    const result = collection.findRouteWaypointsForRouteByEntryAndExit(STAR_ICAO_MOCK, ENTRY_FIXNAME_MOCK, RUNWAY_NAME_MOCK);
 
     t.true(result.length === 8);
 });
 
-ava('.findFixModelsForRouteByEntryAndExit() returns early if not provided an `icao`', t => {
+ava('.findRouteWaypointsForRouteByEntryAndExit() returns early if not provided an `icao`', t => {
     const collection = new StandardRouteCollection(STAR_LIST_MOCK);
-    const result = collection.findFixModelsForRouteByEntryAndExit(null, ENTRY_FIXNAME_MOCK, RUNWAY_NAME_MOCK);
+    const result = collection.findRouteWaypointsForRouteByEntryAndExit(null, ENTRY_FIXNAME_MOCK, RUNWAY_NAME_MOCK);
 
     t.true(typeof result === 'undefined');
 });
