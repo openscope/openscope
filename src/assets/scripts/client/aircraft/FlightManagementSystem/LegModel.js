@@ -1,4 +1,3 @@
-import _map from 'lodash/map';
 import RouteModel from '../../navigationLibrary/Route/RouteModel';
 
 /**
@@ -7,16 +6,21 @@ import RouteModel from '../../navigationLibrary/Route/RouteModel';
  * @class LegModel
  */
 export default class LegModel {
-    constructor(routeSegment, runway, navigationLibrary) {
+    constructor(routeSegment, runway, category, navigationLibrary) {
         this._navigationLibrary = navigationLibrary;
-        this._runway = runway;
-        this._isProcedureRoute = RouteModel.isProcedureRouteString(routeSegment);
+        this._isProcedure = RouteModel.isProcedureRouteString(routeSegment);
         this.waypointCollection = [];
 
 
-        this.init(routeSegment);
+        this.init(routeSegment, runway, category);
     }
 
+    /**
+     *
+     *
+     * @property currentWaypoint
+     * @return {WaypointModel}
+     */
     get currentWaypoint() {
         return this.waypointCollection[0];
     }
@@ -27,9 +31,10 @@ export default class LegModel {
      * @for LegModel
      * @method init
      * @param routeSegment
+     * @param runway
      */
-    init(routeSegment) {
-        this.waypointCollection = this._buildWaypointCollection(routeSegment);
+    init(routeSegment, runway, category) {
+        this.waypointCollection = this._buildWaypointCollection(routeSegment, runway, category);
     }
 
     /**
@@ -40,8 +45,7 @@ export default class LegModel {
      */
     destroy() {
         this._navigationLibrary = null;
-        this._runway = '';
-        this._isProcedureRoute = false;
+        this._isProcedure = false;
         this.waypointCollection = [];
     }
 
@@ -51,14 +55,15 @@ export default class LegModel {
      * @for LegModel
      * @method _buildWaypointCollection
      * @param routeSegment {string}
+     * @param runway {string}
      * @private
      */
-    _buildWaypointCollection(routeSegment) {
-        if (!this._isProcedureRoute) {
+    _buildWaypointCollection(routeSegment, runway, category) {
+        if (!this._isProcedure) {
             return this._buildWaypointForDirectRoute(routeSegment);
         }
 
-        return this._buildWaypointCollectionForProcedureRoute(routeSegment);
+        return this._buildWaypointCollectionForProcedureRoute(routeSegment, runway, category);
     }
 
     /**
@@ -85,29 +90,7 @@ export default class LegModel {
      * @param procedureRouteSegment {string}
      * @private
      */
-    _buildWaypointCollectionForProcedureRoute(procedureRouteSegment) {
-        // TODO: this logic should live in the _navigationLibrary. send it the procedureRouteSegment
-        // and the runway and accept a list of FixModels or StandardRouteWaypointModels in return.
-        const routeModel = new RouteModel(procedureRouteSegment);
-        // TODO: use spawnPattern.category for this
-        const sidOrStarCollectionName = this._navigationLibrary.getRouteTypeForProcedureName(routeModel.procedure);
-        const procedureRouteCollection = this._navigationLibrary[sidOrStarCollectionName];
-
-        let standardRouteWaypointModelList;
-        if (sidOrStarCollectionName === '_sidCollection') {
-            standardRouteWaypointModelList = procedureRouteCollection.generateFmsWaypointModelsForRoute(
-                routeModel.procedure,
-                this._runway,
-                routeModel.exit
-            );
-        } else {
-            standardRouteWaypointModelList = procedureRouteCollection.generateFmsWaypointModelsForRoute(
-                routeModel.procedure,
-                routeModel.entry,
-                this._runway
-            );
-        }
-
-        return standardRouteWaypointModelList;
+    _buildWaypointCollectionForProcedureRoute(procedureRouteSegment, runway, category) {
+        return this._navigationLibrary.buildWaypointModelsForProcedure(procedureRouteSegment, runway, category);
     }
 }

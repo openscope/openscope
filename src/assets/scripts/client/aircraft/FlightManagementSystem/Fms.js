@@ -113,9 +113,10 @@ export default class Fms {
      * @private
      */
     _buildInitialLegCollection(aircraftInitProps) {
-        const routeStringSegments = routeStringFormatHelper(aircraftInitProps.route);
+        const { category, route } = aircraftInitProps;
+        const routeStringSegments = routeStringFormatHelper(route);
         const legsForRoute = _map(routeStringSegments, (routeSegment) => {
-            return new LegModel(routeSegment, this._runway, this._navigationLibrary);
+            return new LegModel(routeSegment, this._runway, category, this._navigationLibrary);
         });
 
         return legsForRoute;

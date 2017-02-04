@@ -254,9 +254,9 @@ export default class StandardRouteWaypointModel extends BaseModel {
     reset() {
         this.name = '';
         this._restrictions = null;
-        this._altitude = null;
+        this._altitude = -1;
         this._altitudeConstraint = '';
-        this._speed = null;
+        this._speed = -1;
 
         return this;
     }

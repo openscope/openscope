@@ -36,19 +36,19 @@ ava('adds a list of StandardRoutes to the collection and updates the .length pro
     t.true(collection._items.length === collection.length);
 });
 
-ava('.findFixesForSidByRunwayAndExit() returns a list of fixes that make up a StandardRoutes when given an id, exit and runway paramater', t => {
-    const collection = new StandardRouteCollection(SID_LIST_MOCK);
-    const result = collection.findFixesForSidByRunwayAndExit(SID_ICAO_MOCK, EXIT_FIXNAME_MOCK, RUNWAY_NAME_MOCK);
-
-    t.true(result.length === 8);
-});
-
-ava('.findFixesForSidByRunwayAndExit() returns early when not provided an icao parameter', t => {
-    const collection = new StandardRouteCollection(SID_LIST_MOCK);
-    const result = collection.findFixesForSidByRunwayAndExit(null, EXIT_FIXNAME_MOCK, RUNWAY_NAME_MOCK);
-
-    t.true(typeof result === 'undefined');
-});
+// ava('.findFixesForSidByRunwayAndExit() returns a list of fixes that make up a StandardRoutes when given an id, exit and runway paramater', t => {
+//     const collection = new StandardRouteCollection(SID_LIST_MOCK);
+//     const result = collection.findFixesForSidByRunwayAndExit(SID_ICAO_MOCK, EXIT_FIXNAME_MOCK, RUNWAY_NAME_MOCK);
+//
+//     t.true(result.length === 8);
+// });
+//
+// ava('.findFixesForSidByRunwayAndExit() returns early when not provided an icao parameter', t => {
+//     const collection = new StandardRouteCollection(SID_LIST_MOCK);
+//     const result = collection.findFixesForSidByRunwayAndExit(null, EXIT_FIXNAME_MOCK, RUNWAY_NAME_MOCK);
+//
+//     t.true(typeof result === 'undefined');
+// });
 
 ava('.findEntryAndBodyFixesForRoute() returns a list of fixes for the entry and body segments of a route', (t) => {
     const collection = new StandardRouteCollection(STAR_LIST_MOCK);
@@ -57,19 +57,19 @@ ava('.findEntryAndBodyFixesForRoute() returns a list of fixes for the entry and 
     t.true(result.length === 8);
 });
 
-ava('.findFixesForStarByEntryAndRunway() returns a list of fixes that make up a StandardRoutes when given an icao, entry and runway paramater', t => {
-    const collection = new StandardRouteCollection(STAR_LIST_MOCK);
-    const result = collection.findFixesForStarByEntryAndRunway(STAR_ICAO_MOCK, ENTRY_FIXNAME_MOCK, RUNWAY_NAME_MOCK);
-
-    t.true(result.length === 8);
-});
-
-ava('.findFixesForStarByEntryAndRunway() returns early when not provided an icao parameter', t => {
-    const collection = new StandardRouteCollection(STAR_LIST_MOCK);
-    const result = collection.findFixesForStarByEntryAndRunway(null, ENTRY_FIXNAME_MOCK, RUNWAY_NAME_MOCK);
-
-    t.true(typeof result === 'undefined');
-});
+// ava('.findFixesForStarByEntryAndRunway() returns a list of fixes that make up a StandardRoutes when given an icao, entry and runway paramater', t => {
+//     const collection = new StandardRouteCollection(STAR_LIST_MOCK);
+//     const result = collection.findFixesForStarByEntryAndRunway(STAR_ICAO_MOCK, ENTRY_FIXNAME_MOCK, RUNWAY_NAME_MOCK);
+//
+//     t.true(result.length === 8);
+// });
+//
+// ava('.findFixesForStarByEntryAndRunway() returns early when not provided an icao parameter', t => {
+//     const collection = new StandardRouteCollection(STAR_LIST_MOCK);
+//     const result = collection.findFixesForStarByEntryAndRunway(null, ENTRY_FIXNAME_MOCK, RUNWAY_NAME_MOCK);
+//
+//     t.true(typeof result === 'undefined');
+// });
 
 // This test is inconsistent and may need to be refactored. It passes sometimes and fails other.
 ava('.findRandomExitPointForSIDIcao() returns the name of a random exitPoint from within a SID route', t => {

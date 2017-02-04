@@ -79,28 +79,28 @@ export default class StandardRouteCollection extends BaseCollection {
         return this;
     }
 
-    // TODO: update implementations to accept the FixModel instead of an array
-    /**
-     * Find a list of fixes for a route, given an `icao`, `exitFixName` and `runwayName` parameter.
-     *
-     * @deprecated
-     *
-     * @for StandardRouteCollection
-     * @method getSID
-     * @param icao {string}
-     * @param exitFixName {string}
-     * @param runwayName {string}
-     * @return {array}
-     */
-    findFixesForSidByRunwayAndExit(icao, exitFixName, runwayName) {
-        if (!icao) {
-            return;
-        }
-
-        const sid = this.findRouteByIcao(icao);
-
-        return sid.findFixesAndRestrictionsForRunwayAndExit(runwayName, exitFixName);
-    }
+    // // TODO: update implementations to accept the FixModel instead of an array
+    // /**
+    //  * Find a list of fixes for a route, given an `icao`, `exitFixName` and `runwayName` parameter.
+    //  *
+    //  * @deprecated
+    //  *
+    //  * @for StandardRouteCollection
+    //  * @method getSID
+    //  * @param icao {string}
+    //  * @param exitFixName {string}
+    //  * @param runwayName {string}
+    //  * @return {array}
+    //  */
+    // findFixesForSidByRunwayAndExit(icao, exitFixName, runwayName) {
+    //     if (!icao) {
+    //         return;
+    //     }
+    //
+    //     const sid = this.findRouteByIcao(icao);
+    //
+    //     return sid.findFixesAndRestrictionsForRunwayAndExit(runwayName, exitFixName);
+    // }
 
     /**
      * Finds a list of fixes for the entry and body segments of a given route
@@ -121,30 +121,30 @@ export default class StandardRouteCollection extends BaseCollection {
         return route.findFixesAndRestrictionsForEntryAndBody(entryFixName);
     }
 
-    // TODO: update implementations to accept the FixModel instead of an array
-    /**
-     * Find a list of fixes for a route, given an `icao`, `entryFixName` and `runwayName` parameter.
-     *
-     * Used to gather all the fixes for a give STAR route.
-     *
-     * @deprecated
-     *
-     * @for StandardRouteCollection
-     * @method getSID
-     * @param icao {string}
-     * @param entryFixName {string}
-     * @param runwayName {string} (optional)
-     * @return {array}
-     */
-    findFixesForStarByEntryAndRunway(icao, entryFixName, runwayName) {
-        if (!icao) {
-            return;
-        }
-
-        const star = this.findRouteByIcao(icao);
-
-        return star.findFixesAndRestrictionsForEntryAndRunway(entryFixName, runwayName);
-    }
+    // // TODO: update implementations to accept the FixModel instead of an array
+    // /**
+    //  * Find a list of fixes for a route, given an `icao`, `entryFixName` and `runwayName` parameter.
+    //  *
+    //  * Used to gather all the fixes for a give STAR route.
+    //  *
+    //  * @deprecated
+    //  *
+    //  * @for StandardRouteCollection
+    //  * @method getSID
+    //  * @param icao {string}
+    //  * @param entryFixName {string}
+    //  * @param runwayName {string} (optional)
+    //  * @return {array}
+    //  */
+    // findFixesForStarByEntryAndRunway(icao, entryFixName, runwayName) {
+    //     if (!icao) {
+    //         return;
+    //     }
+    //
+    //     const star = this.findRouteByIcao(icao);
+    //
+    //     return star.findFixesAndRestrictionsForEntryAndRunway(entryFixName, runwayName);
+    // }
 
     /**
      * Find a list of `StandardWaypointModel`s for a specific route

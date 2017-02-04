@@ -182,7 +182,7 @@ export default class Waypoint {
     setAltitude(centerCeiling = null, cruiseAltitude) {
         const { alt: altitudeRestriction } = this.fixRestrictions;
 
-        if (!altitudeRestriction) {
+        if (altitudeRestriction === -1 || !altitudeRestriction) {
             this.altitude = !_isNil(centerCeiling)
                 ? Math.min(centerCeiling, cruiseAltitude)
                 : cruiseAltitude;
@@ -220,7 +220,7 @@ export default class Waypoint {
     setSpeed(cruiseSpeed) {
         const { spd: speedRestriction } = this.fixRestrictions;
 
-        if (!speedRestriction) {
+        if (speedRestriction === -1 || !speedRestriction) {
             this.speed = cruiseSpeed;
 
             return;

@@ -1,4 +1,5 @@
 import PositionModel from '../base/PositionModel';
+import RouteModel from './Route/RouteModel';
 import FixCollection from './Fix/FixCollection';
 import StandardRouteCollection from './StandardRoute/StandardRouteCollection';
 
@@ -114,23 +115,6 @@ export default class NavigationLibrary {
     }
 
     /**
-     *
-     *
-     */
-    getRouteTypeForProcedureName(procedureName) {
-        // TODO: the returning of string is not ok and will change as we iterate
-        if (!this._sidCollection.hasRoute(procedureName) && !this._starCollection.hasRoute(procedureName)) {
-            throw new Error(`Invalid procedureName. ${procedureName} was not found in the SidCollection or the StarCollection`);
-        }
-
-        if (this._sidCollection.hasRoute(procedureName)) {
-            return '_sidCollection';
-        }
-
-        return '_starCollection';
-    }
-
-    /**
      * Fascade Method
      *
      * @for NavigationLibrary
@@ -194,5 +178,36 @@ export default class NavigationLibrary {
      */
     findEntryAndBodyFixesForRoute(routeName, entryFixName) {
         return this._starCollection.findEntryAndBodyFixesForRoute(routeName, entryFixName);
+    }
+
+    /**
+     *
+     *
+     * @for NavigationLibrary
+     * @method buildWaypointModelsForProcedure
+     * @param procedureRouteSegment {string}
+     * @param runway {string}
+     * @param category {string}
+     * @return {array<WaypointModel>}
+     */
+    buildWaypointModelsForProcedure(procedureRouteSegment, runway, category) {
+        const routeModel = new RouteModel(procedureRouteSegment);
+        let standardRouteWaypointModelList;
+
+        if (category === 'departure') {
+            standardRouteWaypointModelList = this._sidCollection.generateFmsWaypointModelsForRoute(
+                routeModel.procedure,
+                runway,
+                routeModel.exit
+            );
+        } else {
+            standardRouteWaypointModelList = this._starCollection.generateFmsWaypointModelsForRoute(
+                routeModel.procedure,
+                routeModel.entry,
+                runway
+            );
+        }
+
+        return standardRouteWaypointModelList;
     }
 }
