@@ -8,7 +8,7 @@
     "iata": "YHZ",
     "magnetic_north": -18,
     "ctr_radius": 80,
-    "ctr_ceiling": 7000,
+    "ctr_ceiling": 12000,
     "initial_alt": 5000,
     "position": ["N44d52m52.73", "W063d30m33.62", "477.0ft"],
     "rr_radius_nm": 5.0,
@@ -21,7 +21,7 @@
     "airspace": [
         {
             "floor": 0,
-            "ceiling": 12500,
+            "ceiling": 12000,
             "airspace_class": "E",
             "poly": [
                 ["N45d07m51.00", "W063d30m31.00"],
@@ -186,105 +186,110 @@
         }
     ],
     "fixes": {
-        "AMUNA": ["N44d57m74.00", "W063d07m54.00"],
-        "ARDEE": ["N45d07m40.00", "W064d23m20.00"],
-        "BIBEP": ["N44d42m81.00", "W063d32m06.00"],
-        "CETTY": ["N44d55m58.00", "W064d05m48.00"],
-        "DUTIR": ["N45d04m41.00", "W063d27m90.00"],
-        "EBLUV": ["N44d47m45.00", "W063d30m91.00"],
-        "EMBAX": ["N44d43m06.00", "W063d22m17.00"],
-        "GABAP": ["N44d51m24.00", "W063d14m09.00"],
-        "GOLKE": ["N44d47m02.00", "W063d25m30.00"],
-        "HIDIG": ["N44d40m75.00", "W064d01m22.00"],
-        "HOROW": ["N44d46m76.00", "W063d45m30.00"],
-        "IGTAS": ["N45d04m80.00", "W062d59m60.00"],
-        "IGVOP": ["N45d03m51.00", "W063d38m64.00"],
-        "JIGGS": ["N47d25m22.00", "W059d48m10.00"],
-        "LEROS": ["N45d01m54.00", "W063d22m13.00"],
-        "LOGPO": ["N44d58m59.00", "W063d33m68.00"],
-        "MIXIV": ["N45d02m10.00", "W063d35m80.00"],
-        "MODIR": ["N44d55m32.00", "W063d46m73.00"],
-        "OBNOM": ["N44d41m02.00", "W063d33m82.00"],
-        "ODKAS": ["N44d43m89.00", "W063d39m55.00"],
-        "PUTUX": ["N44d59m62.00", "W063d55m43.00"],
-        "RONPO": ["N44d40m34.00", "W063d51m58.00"],
-        "TETAR": ["N44d59m42.00", "W063d42m69.00"],
-        "TIDON": ["N44d59m78.00", "W063d31m13.00"],
-        "UDNIM": ["N44d47m75.00", "W063d07m17.00"],
-        "VOKIL": ["N44d47m15.00", "W063d18m13.00"],
-        "YHZ":   ["N44d55m40.00", "W063d24m10.00"],
-        "XOVMU": ["N44d55m97.00", "W063d35m76.00"],
-        "RW14":  ["N44d53m37.02", "W063d31m04.81"],
-        "TAKIM": ["N44d52m47.00", "W063d28m74.00"],
-        "DUXIK": ["N44d49m02.00", "W063d21m85.00"],
-        "PENLU": ["N44d50m61.00", "W063d25m02.00"],
-        "RW32":  ["N44d52m53.97", "W063d29m38.67"],
-        "XUGID": ["N44d54m04.00", "W063d31m89.00"],
-        "VITAV": ["N44d57m49.00", "W063d38m81.00"],
-        "XOMRO": ["N44d42m93.00", "W063d40m38.00"],
-        "RW05":  ["N44d52m08.44", "W063d31m28.58"],
-        "URMIN": ["N45d00m13.00", "W063d47m11.00"],
-        "XUBKO": ["N45d03m84.00", "W063d19m77.00"],
-        "PUTUD": ["N44d59m74.00", "W063d13m02.00"],
-        "NUBUK": ["N44d57m85.00", "W063d36m30.00"],
-        "RW23":  ["N44d53m18.04", "W063d30m19.91"],
-        "PAULO": ["N45d15m20.00", "W063d20m10.00"],
-        "NOTOP": ["N45d27m16.00", "W062d00m72.00"],
-        "NUTBY": ["N45d41m25.00", "W063d14m80.00"],
-        "CAAPE": ["N45d18m00.00", "W065d17m77.00"],
-        "YZX":   ["N44d55m63.00", "W065d05m12.00"],
-        "YQI":   ["N43d49m51.00", "W066d04m95.00"],
-        "YQM":   ["N46d11m34.00", "W064d34m25.00"]
+        "AMUNA":    ["N44d57m74.00", "W063d07m54.00"],
+        "ARDEE":    ["N45d07m40.00", "W064d23m20.00"],
+        "BIBEP":    ["N44d42m81.00", "W063d32m06.00"],
+        "CETTY":    ["N44d55m58.00", "W064d05m48.00"],
+        "DUTIR":    ["N45d04m41.00", "W063d27m90.00"],
+        "EBLUV":    ["N44d47m45.00", "W063d30m91.00"],
+        "EMBAX":    ["N44d43m06.00", "W063d22m17.00"],
+        "GABAP":    ["N44d51m24.00", "W063d14m09.00"],
+        "GOLKE":    ["N44d47m02.00", "W063d25m30.00"],
+        "HIDIG":    ["N44d40m75.00", "W064d01m22.00"],
+        "HOROW":    ["N44d46m76.00", "W063d45m30.00"],
+        "IGTAS":    ["N45d04m80.00", "W062d59m60.00"],
+        "IGVOP":    ["N45d03m51.00", "W063d38m64.00"],
+        "JIGGS":    ["N47d25m22.00", "W059d48m10.00"],
+        "LEROS":    ["N45d01m54.00", "W063d22m13.00"],
+        "LOGPO":    ["N44d58m59.00", "W063d33m68.00"],
+        "MIXIV":    ["N45d02m10.00", "W063d35m80.00"],
+        "MODIR":    ["N44d55m32.00", "W063d46m73.00"],
+        "OBNOM":    ["N44d41m02.00", "W063d33m82.00"],
+        "ODKAS":    ["N44d43m89.00", "W063d39m55.00"],
+        "PUTUX":    ["N44d59m62.00", "W063d55m43.00"],
+        "RONPO":    ["N44d40m34.00", "W063d51m58.00"],
+        "TETAR":    ["N44d59m42.00", "W063d42m69.00"],
+        "TIDON":    ["N44d59m78.00", "W063d31m13.00"],
+        "UDNIM":    ["N44d47m75.00", "W063d07m17.00"],
+        "VOKIL":    ["N44d47m15.00", "W063d18m13.00"],
+        "YHZ":      ["N44d55m40.00", "W063d24m10.00"],
+        "XOVMU":    ["N44d55m97.00", "W063d35m76.00"],
+        "RW14":     ["N44d53m37.02", "W063d31m04.81"],
+        "TAKIM":    ["N44d52m47.00", "W063d28m74.00"],
+        "DUXIK":    ["N44d49m02.00", "W063d21m85.00"],
+        "PENLU":    ["N44d50m61.00", "W063d25m02.00"],
+        "RW32":     ["N44d52m53.97", "W063d29m38.67"],
+        "XUGID":    ["N44d54m04.00", "W063d31m89.00"],
+        "VITAV":    ["N44d57m49.00", "W063d38m81.00"],
+        "XOMRO":    ["N44d42m93.00", "W063d40m38.00"],
+        "RW05":     ["N44d52m08.44", "W063d31m28.58"],
+        "URMIN":    ["N45d00m13.00", "W063d47m11.00"],
+        "XUBKO":    ["N45d03m84.00", "W063d19m77.00"],
+        "PUTUD":    ["N44d59m74.00", "W063d13m02.00"],
+        "NUBUK":    ["N44d57m85.00", "W063d36m30.00"],
+        "RW23":     ["N44d53m18.04", "W063d30m19.91"],
+        "PAULO":    ["N45d15m20.00", "W063d20m10.00"],
+        "NOTOP":    ["N45d27m16.00", "W062d00m72.00"],
+        "NUTBY":    ["N45d41m25.00", "W063d14m80.00"],
+        "CAAPE":    ["N45d18m00.00", "W065d17m77.00"],
+        "YZX":      ["N44d55m63.00", "W065d05m12.00"],
+        "YQI":      ["N43d49m51.00", "W066d04m95.00"],
+        "YQM":      ["N46d11m34.00", "W064d34m25.00"],
+
+        "BOSUB":    ["N45d11m83.00", "W062d55m52.00"],
+        "CAYLY":    ["N45d37m27.00", "W062d14m50.00"],
+        "KEBOT":    ["N44d59m18.00", "W063d22m63.00"],
+        "VIMLA":    ["N44d58m76.00", "W063d29m09.00"],
+        "MENVO":    ["N44d53m86.00", "W063d11m68.00"],
+        "KIXIT":    ["N44d48m33.00", "W063d08m31.00"],
+        "MUVOX":    ["N44d51m85.00", "W064d12m20.00"],
+        "EBONY":    ["N44d54m14.00", "W067d09m39.00"],
+        "EBKID":    ["N44d53m42.00", "W065d30m08.00"],
+        "ALLEX":    ["N44d25m00.00", "W067d00m00.00"],
+        "LIRLA":    ["N45d01m25.00", "W062d50m13.00"],
+        "BAFDY":    ["N44d46m66.00", "W064d46m95.00"],
+        "AGMIR":    ["N45d13m70.00", "W061d57m33.00"],
+        "ETGAR":    ["N44d25m16.00", "W064d09m78.00"],
+        "ILOTA":    ["N43d33m90.00", "W067d00m00.00"],
+        "TUSKY":    ["N44d52m52.00", "W063d48m90.00"],
+        "DUNUB":    ["N44d58m18.00", "W063d52m51.00"],
+        "RUDBU":    ["N44d51m87.00", "W063d23m11.00"],
+        "NOTUB":    ["N44d40m87.00", "W063d28m03.00"],
+        "EBLIT":    ["N44d40m17.00", "W063d16m42.00"],
+        "PEPTA":    ["N44d47m60.00", "W063d27m32.00"],
+        "OVTUV":    ["N44d59m31.00", "W063d15m70.00"]
     },
     "runways": [{
         "name": ["05", "23"],
-        "name_offset": [
-            [0, 0], [0, 0]
-        ],
         "end": [
             ["N44d52m08.44", "W063d31m28.58", "449ft"],
             ["N44d53m18.04", "W063d30m19.91", "443ft"]
         ],
-        "length": 4.000,
         "ils": [false, true]
     }, {
         "name": ["14", "32"],
-        "name_offset": [
-            [0, 0], [0, 0]
-        ],
         "end": [
             ["N44d53m37.02", "W063d31m04.81", "435ft"],
             ["N44d52m53.97", "W063d29m38.67", "476ft"]
         ],
-        "length": 2.346,
         "ils": [true, false]
     }],
     "sids": {
         "YHZ3": {
             "icao": "YHZ3",
             "name": "Halifax 3",
-            "exitPoints": {
-                "CAAPE": [
-                    "ARDEE", "CAAPE"
-                ],
-                "VQI": [
-                    "HIDIG", "YQI"
-                ],
-                "NOTOP": [
-                    "IGTAS", "NOTOP"
-                ],
-                "NUTBY": [
-                    "PAULO", "NUTBY"
-                ],
-                "YZX": [
-                    "YZX"
-                ]
-            },
             "rwy": {
                 "14": ["YHZ"],
                 "32": [],
                 "05": ["YHZ"],
                 "23": []
+            },
+            "exitPoints": {
+                "CAAPE":    ["ARDEE", "CAAPE"],
+                "VQI":      ["HIDIG", "YQI"],
+                "NOTOP":    ["IGTAS", "NOTOP"],
+                "NUTBY":    ["PAULO", "NUTBY"],
+                "YZX":      ["YZX"]
             },
             "draw": [
                 ["YHZ", "ARDEE*", "CAAPE"],
@@ -296,66 +301,89 @@
         }
     },
     "stars": {
-        "FUNDY9": {
-            "icao": "FUNDY9",
-            "name": "Fundy Niner",
+        "CABOT1": {
+            "icao": "CABOT1",
+            "name": "Cabot One",
             "entryPoints": {
-                "CETTY": [
-                    "CETTY"
-                ]
+                "CAYLY": ["CAYLY"]
             },
+            "body": ["BOSUB"],
             "rwy": {
-                "14": [["TETAR", "A32"]],
-                "32": ["MODIR", "EBLUV", ["EMBAX", "A44|S200"], ["VOKIL", "A34"]],
-                "05": [["HOROW", "A44|S200"], "RONPO", ["ODKAS", "A25"]],
-                "23": ["MODIR", ["LOGPO", "S220"], ["DUTIR", "A41|S200"], ["LEROS", "A31"]]
+                "14": ["KEBOT", ["VIMLA", "A50|S210"], ["IGVOP", "A40"]],
+                "32": [["MENVO", "A50|S230"], ["GABAP", "A40|S210"], "KIXIT"],
+                "05": ["OVTUV", ["PEPTA", "A50"], ["OBNOM", "A40"]],
+                "23": [["LEROS", "A30|S200"]]
             },
             "draw": [
-                ["CETTY", "TETAR"],
-                ["CETTY", "MODIR", "EBLUV", "EMBAX", "VOKIL"],
-                ["MODIR", "LOGPO", "DUTIR", "LEROS"],
-                ["CETTY", "HOROW", "RONPO", "ODKAS"]
+                ["CAYLY*", "BOSUB", "KEBOT", "VIMLA", "IGVOP"],
+                ["BOSUB", "MENVO", "GABAP", "KIXIT"],
+                ["BOSUB", "OVTUV", "PEPTA", "OBNOM"],
+                ["BOSUB", "LEROS"]
             ]
         },
-        "LISCM9": {
-            "icao": "LISCM9",
-            "name": "Liscom Niner",
+        "FUNDY1": {
+            "icao": "FUNDY1",
+            "name": "Fundy One",
             "entryPoints": {
-                "IGTAS": [
-                    "IGTAS"
+                "EBONY": ["EBONY", "EBKID"],
+                "ALLEX": ["ALLEX", "BAFDY"]
+            },
+            "body": ["MUVOX"],
+            "rwy": {
+                "14": [["TETAR", "A30|S200"]],
+                "32": [["EBLUV", "A50|S210"], ["EMBAX", "A40"]],
+                "05": [["ODKAS", "A30|S200"]],
+                "23": [["LOGPO", "A50|S210"], ["DUTIR", "A40"], ["LEROS", "A30"]]
+            },
+            "draw": [
+                ["EBONY*", "EBKID", "MUVOX", "TETAR"],
+                ["ALLEX*", "BAFDY", "MUVOX", "EBLUV", "EMBAX"],
+                ["MUVOX", "ODKAS"],
+                ["MUVOX", "LOGPO", "DUTIR", "LEROS"]
+            ]
+        },
+        "LIRLA1": {
+            "icao": "LIRLA1",
+            "name": "Lirla One",
+            "entryPoints": {
+                "AGMIR": [
+                    "AGMIR"
                 ]
             },
+            "body": ["LIRLA"],
             "rwy": {
-                "14": [["TIDON", "S220"], "MIXIV", ["IGVOP", "A42|S200"], ["TETAR", "A32"]],
-                "32": ["AMUNA", ["GABAP", "A44|S200"], "UDNIM", ["VOKIL", "A18"]],
-                "05": ["GOLKE", "BIBEP", ["OBNOM", "A44|S200"], ["ODKAS", "A34"]],
+                "14": [["VIMLA", "A50|S210"], ["IGVOP", "A40"]],
+                "32": [["VOKIL", "A30"]],
+                "05": [["PEPTA", "A50|S210"], ["OBNOM", "A40"]],
                 "23": [["LEROS", "A31|S200"]]
             },
             "draw": [
-                ["IGTAS", "LEROS", "TIDON", "MIXIV", "IGVOP", "TETAR"],
-                ["IGTAS", "AMUNA", "GABAP", "UDNIM", "VOKIL"],
-                ["IGTAS", "GOLKE", "BIBEP", "OBNOM", "ODKAS"]
+                ["AGMIR", "LIRLA", "VIMLA", "IGVOP"],
+                ["LIRLA", "VOKIL"],
+                ["LIRLA", "PEPTA", "OBNOM"],
+                ["LIRLA", "LEROS"]
             ]
         },
-        "MAHNE8": {
-            "icao": "MAHNE8",
-            "name": "Mahone Eight",
+        "PEGGY1": {
+            "icao": "PEGGY1",
+            "name": "Peggy One",
             "entryPoints": {
-                "HIDIG": [
-                    "HIDIG"
+                "TUSKY": [
+                    "TUSKY"
                 ]
             },
+            "body": ["ETGAR"],
             "rwy": {
-                "14": [["MODIR", "A42|S210"], ["TETAR", "A23"]],
-                "32": ["HOROW", "EBLUV", ["EMBAX", "A44|S200"], ["VOKIL", "A18"]],
-                "05": [["ODKAS", "A34|S200"]],
-                "23": ["HOROW", "LOGPO", ["DUTIR", "A41|S200"], ["LEROS", "A26"]]
+                "14": [["ILOTA", "A50|S210"], ["MODIR", "A40"], "DUNUB"],
+                "32": [["NOTUB", "A50|S230"], ["EMBAX", "A40|S210"], "EBLIT"],
+                "05": [["ODKAS", "A30|S200"]],
+                "23": ["OBNOM", ["RUDBU", "A50|S210"], ["OVTUV", "A40"]]
             },
             "draw": [
-                ["HIDIG", "MODIR", "TETAR"],
-                ["HIDIG", "HOROW", "EBLUV", "EMBAX", "VOKIL"],
-                ["HIDIG", "ODKAS"],
-                ["HOROW", "LOGPO", "DUTIR", "LEROS"]
+                ["TUSKY", "ETGAR", "ILOTA", "MODIR", "DUNUB"],
+                ["ETGAR", "NOTUB", "EMBAX", "EBLIT"],
+                ["ETGAR", "ODKAS"],
+                ["ETGAR", "OBNOM", "RUDBU", "OVTUV"]
             ]
         }
     },
@@ -509,11 +537,11 @@
             "origin": "",
             "destination": "CYHZ",
             "category": "arrival",
-            "route": "CETTY.FUNDY9.CYHZ",
-            "altitude": 6000,
-            "speed": 250,
+            "route": "CAYLY.CABOT1.CYHZ",
+            "altitude": 12000,
+            "speed": 280,
             "method": "random",
-            "rate": 1.5,
+            "rate": 1,
             "airlines": [
                 ["aca", 29],
                 ["aal", 1],
@@ -534,9 +562,59 @@
             "origin": "",
             "destination": "CYHZ",
             "category": "arrival",
-            "route": "IGTAS.LISCM9.CYHZ",
-            "altitude": 6000,
-            "speed": 250,
+            "route": "EBONY.FUNDY1.CYHZ",
+            "altitude": [27000, 24000],
+            "speed": 320,
+            "method": "random",
+            "rate": 1,
+            "airlines": [
+                ["aca", 29],
+                ["aal", 1],
+                ["dal", 1],
+                ["fle", 2],
+                ["poe", 5],
+                ["pvl", 1],
+                ["ual", 1],
+                ["wja", 15],
+                ["wen", 5],
+                ["fdx", 1],
+                ["airtaxi", 7],
+                ["cessna", 8],
+                ["embraer", 3]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "CYHZ",
+            "category": "arrival",
+            "route": "ALLEX.FUNDY1.CYHZ",
+            "altitude": [27000, 24000],
+            "speed": 320,
+            "method": "random",
+            "rate": 1,
+            "airlines": [
+                ["aca", 29],
+                ["aal", 1],
+                ["dal", 1],
+                ["fle", 2],
+                ["poe", 5],
+                ["pvl", 1],
+                ["ual", 1],
+                ["wja", 15],
+                ["wen", 5],
+                ["fdx", 1],
+                ["airtaxi", 7],
+                ["cessna", 8],
+                ["embraer", 3]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "CYHZ",
+            "category": "arrival",
+            "route": "AGMIR.LIRLA1.CYHZ",
+            "altitude": 12000,
+            "speed": 280,
             "method": "random",
             "rate": 2,
             "airlines": [
@@ -553,11 +631,11 @@
             "origin": "",
             "destination": "CYHZ",
             "category": "arrival",
-            "route": "HIDIG.MAHNE8.CYHZ",
-            "altitude": 6000,
-            "speed": 250,
+            "route": "TUSKY.PEGGY1.CYHZ",
+            "altitude": [24000, 21000],
+            "speed": 320,
             "method": "random",
-            "rate": 1.75,
+            "rate": 1,
             "airlines": [
                 ["aca", 29],
                 ["aal", 1],
