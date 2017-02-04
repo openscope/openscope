@@ -233,6 +233,7 @@
 - Adds squawk/sq command [#372](https://github.com/openscope/openscope/issues/372)
 - Adds the ability to call an airplane by its callsign [#40](https://github.com/openscope/openscope/issues/40)
 - Adds `EventBus` and `EventModel` [#457](https://github.com/openscope/openscope/issues/457)
+<<<<<<< HEAD
 - Adds `RunwayCollection` and `RunwayRelationshipModel` and moves some runway logic to live in these new classes [#93](https://github.com/openscope/openscope/issues/93)
     - Abstracts headwind/crosswind calculations to RunwayModel [#312](https://github.com/openscope/openscope/issues/312)
     - Removes circular reference in AirportModel.runway.airportModel [#58](https://github.com/openscope/openscope/issues/58)
@@ -265,6 +266,7 @@
 - Prevent NaNs being passed on if invalid altitude is given [#424](https://github.com/openscope/openscope/issues/424)
 - Removes fix command from tutorial and replaces it with infomation on 'route', 'Say Route', and 'Proceed Direct' [#356](https://github.com/openscope/openscope/issues/356)
 - Fixes coordinate letter issues at RJBB, OSDI, OTHH [#325](https://github.com/openscope/openscope/issues/325)
+<<<<<<< HEAD
 - Removes KBOS fixes from EKCH [#448](https://github.com/openscope/openscope/issues/448)
 - Runway, wind and spawnPattern changes to allow EGNM to operate [#492](https://github.com/openscope/openscope/issues/492)
 - Prevent attempts to access positions of vector waypoints [#467](https://github.com/openscope/openscope/issues/467)
@@ -274,6 +276,8 @@
 - Adds local reference to `EventBus` inside `AircraftCommander` [#539](https://github.com/openscope/openscope/issues/539)
 - Cancel approach clearances whenever an altitude or heading instruction is given [#344](https://github.com/openscope/openscope/issues/344)
 - Make flight strips show appropriate altitude values [#546](https://github.com/openscope/openscope/issues/546)
+=======
+>>>>>>> feature/106 - Update CHANGELOG.md
 
 
 ## 5.1.1 (May 12, 2017)
