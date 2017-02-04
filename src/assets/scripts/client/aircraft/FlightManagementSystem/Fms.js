@@ -3,12 +3,6 @@ import _isObject from 'lodash/isObject';
 import _map from 'lodash/map';
 import LegModel from './LegModel';
 import { routeStringFormatHelper } from '../../navigationLibrary/Route/routeStringFormatHelper';
-// import {
-//     FLIGHT_MODES,
-//     FLIGHT_CATEGORY,
-//     WAYPOINT_NAV_MODE,
-//     FP_LEG_TYPE,
-// } from '../../constants/aircraftConstants';
 
 /**
  *
@@ -19,7 +13,6 @@ import { routeStringFormatHelper } from '../../navigationLibrary/Route/routeStri
  */
 export default class Fms {
     /**
-     *
      * @constructor
      * @param aircraftInitProps {object}
      * @param initialRunwayAssignment {string}
@@ -82,6 +75,16 @@ export default class Fms {
     /**
      *
      *
+     * @property currentLeg
+     * @return {LegModel}
+     */
+    get currentLeg() {
+        return this.legCollection[0];
+    }
+
+    /**
+     *
+     *
      * @for Fms
      * @method init
      * @param aircraftInitProps {object}
@@ -108,17 +111,53 @@ export default class Fms {
      *
      *
      * @for LegModel
+     * @method nextWaypoint
+     */
+    nextWaypoint() {
+        if (!this.currentLeg.hasNextWaypoint()) {
+            this._moveToNextLeg();
+        }
+
+        this._moveToNextWaypointInLeg();
+    }
+
+    /**
+     *
+     *
+     * @for LegModel
      * @method _buildInitialLegCollection
      * @param aircraftInitProps {object}
      * @private
      */
     _buildInitialLegCollection(aircraftInitProps) {
-        const { category, route } = aircraftInitProps;
+        const { route } = aircraftInitProps;
         const routeStringSegments = routeStringFormatHelper(route);
         const legsForRoute = _map(routeStringSegments, (routeSegment) => {
-            return new LegModel(routeSegment, this._runway, category, this._navigationLibrary);
+            return new LegModel(routeSegment, this._runway, this.category, this._navigationLibrary);
         });
 
         return legsForRoute;
+    }
+
+    /**
+     *
+     *
+     * @for Fms
+     * @method _moveToNextWaypointInLeg
+     * @private
+     */
+    _moveToNextWaypointInLeg() {
+        this.currentLeg.moveToNextWaypoint();
+    }
+
+    /**
+     *
+     * @for Fms
+     * @method _moveToNextLeg
+     */
+    _moveToNextLeg() {
+        this.currentLeg.destroy();
+        // this is mutable
+        this.legCollection.shift();
     }
 }

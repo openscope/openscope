@@ -8,7 +8,8 @@ import RouteModel from '../../navigationLibrary/Route/RouteModel';
 export default class LegModel {
     constructor(routeSegment, runway, category, navigationLibrary) {
         this._navigationLibrary = navigationLibrary;
-        this._isProcedure = RouteModel.isProcedureRouteString(routeSegment);
+        this._isProcedure = false;
+        this.routeString = '';
         this.waypointCollection = [];
 
 
@@ -34,6 +35,8 @@ export default class LegModel {
      * @param runway
      */
     init(routeSegment, runway, category) {
+        this._isProcedure = RouteModel.isProcedureRouteString(routeSegment);
+        this.routeString = routeSegment.toLowerCase();
         this.waypointCollection = this._buildWaypointCollection(routeSegment, runway, category);
     }
 
@@ -46,7 +49,38 @@ export default class LegModel {
     destroy() {
         this._navigationLibrary = null;
         this._isProcedure = false;
+        this.routeString = '';
         this.waypointCollection = [];
+    }
+
+    /**
+     * Destroy the current `WaypointModel` and remove it from the
+     * `waypointCollection`.
+     *
+     * This puts the item that previously occupied the `1` index now
+     * at `0` making it the `currentWaypoint`.
+     *
+     * @for LegModel
+     * @method moveToNextWaypoint
+     */
+    moveToNextWaypoint() {
+        this.currentWaypoint.destroy();
+        // this is mutable
+        this.waypointCollection.shift();
+    }
+
+    /**
+     * Encapsulation of boolean logic used to determine if it is possible
+     * to move to a next waypoint.
+     *
+     * This is used when preparing to move to the next waypoint in the flight plan
+     *
+     * @for LegModel
+     * @method hasNextWaypoint
+     * @return {boolean}
+     */
+    hasNextWaypoint() {
+        return this.waypointCollection.length > 1;
     }
 
     /**

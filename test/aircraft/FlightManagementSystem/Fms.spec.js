@@ -4,12 +4,22 @@ import _isEqual from 'lodash/isEqual';
 
 import Fms from '../../../src/assets/scripts/client/aircraft/FlightManagementSystem/Fms';
 import { navigationLibraryFixture } from '../../fixtures/navigationLibraryFixtures';
-import { AIRCRAFT_INITIALIZATION_PROPS_MOCK } from '../_mocks/aircraftMocks';
+import {
+    ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK,
+    DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK
+} from '../_mocks/aircraftMocks';
 
 const initialRunwayAssignmentMock = '19L';
 
-function buildFmsMock() {
-    return new Fms(AIRCRAFT_INITIALIZATION_PROPS_MOCK, initialRunwayAssignmentMock, navigationLibraryFixture);
+function buildFmsMock(shouldUseComplexRoute = false) {
+    if (shouldUseComplexRoute) {
+        const complexRouteString = 'COWBY..BIKKR..DAG.KEPEC3.KLAS';
+        const aircraftPropsMock = Object.assign({}, ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, { route: complexRouteString });
+
+        return new Fms(aircraftPropsMock, initialRunwayAssignmentMock, navigationLibraryFixture);
+    }
+
+    return new Fms(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, initialRunwayAssignmentMock, navigationLibraryFixture);
 }
 
 ava('throws when called without parameters', (t) => {
@@ -17,7 +27,7 @@ ava('throws when called without parameters', (t) => {
 });
 
 ava('does not throw when called with valid parameters', (t) => {
-    t.notThrows(() => new Fms(AIRCRAFT_INITIALIZATION_PROPS_MOCK, initialRunwayAssignmentMock, navigationLibraryFixture));
+    t.notThrows(() => new Fms(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, initialRunwayAssignmentMock, navigationLibraryFixture));
 });
 
 ava('#currentWaypoint returns the first waypoint of the first leg in the #legCollection', (t) => {
@@ -27,18 +37,45 @@ ava('#currentWaypoint returns the first waypoint of the first leg in the #legCol
 });
 
 ava('.init() calls ._buildInitialLegCollection()', (t) => {
-    const fms = new Fms(AIRCRAFT_INITIALIZATION_PROPS_MOCK, initialRunwayAssignmentMock, navigationLibraryFixture);
+    const fms = buildFmsMock();
     const _buildInitialLegCollectionSpy = sinon.spy(fms, '_buildInitialLegCollection');
 
-    fms.init(AIRCRAFT_INITIALIZATION_PROPS_MOCK);
+    fms.init(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
 
-    t.true(_buildInitialLegCollectionSpy.calledWithExactly(AIRCRAFT_INITIALIZATION_PROPS_MOCK));
+    t.true(_buildInitialLegCollectionSpy.calledWithExactly(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK));
+});
+
+ava('.nextWaypoint() calls ._moveToNextLeg() if the current waypointCollection.length === 0', (t) => {
+    const fms = buildFmsMock(true);
+    const _moveToNextLegSpy = sinon.spy(fms, '_moveToNextLeg');
+    fms.legCollection[0].waypointCollection = [];
+
+    fms.nextWaypoint();
+
+    t.true(_moveToNextLegSpy.calledOnce);
+});
+
+ava('.nextWaypoint() calls ._moveToNextWaypointInLeg() if the current waypointCollection.length > 1', (t) => {
+    const fms = buildFmsMock(true);
+    const _moveToNextWaypointInLegSpy = sinon.spy(fms, '_moveToNextWaypointInLeg');
+
+    fms.nextWaypoint();
+
+    t.true(_moveToNextWaypointInLegSpy.calledOnce);
+});
+
+ava('.nextWaypoint() removes the first LegModel from legCollection when the first Leg has no waypoints', (t) => {
+    const fms = buildFmsMock(true);
+    const length = fms.legCollection.length;
+    fms.legCollection[0].waypointCollection = [];
+
+    fms.nextWaypoint();
+
+    t.true(fms.legCollection.length === length - 1);
 });
 
 ava('._buildInitialLegCollection() returns an array of LegModels', (t) => {
-    const complexRouteString = 'COWBY..BIKKR..DAG.KEPEC3.KLAS';
-    const aircraftPropsMock = Object.assign({}, AIRCRAFT_INITIALIZATION_PROPS_MOCK, { route: complexRouteString });
-    const fms = new Fms(aircraftPropsMock, initialRunwayAssignmentMock, navigationLibraryFixture);
+    const fms = buildFmsMock(true);
 
     t.true(fms.legCollection.length === 3);
 });

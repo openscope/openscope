@@ -77,7 +77,22 @@ export const AIRCRAFT_DEFINITION_LIST_MOCK = [
     }
 ];
 
-export const AIRCRAFT_INITIALIZATION_PROPS_MOCK = {
+export const DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK = {
+    callsign: '432',
+    destination: 'KLAS',
+    fleet: 'default',
+    airline: 'aal',
+    airlineCallsign: 'speedbird',
+    altitude: 28000,
+    speed: 320,
+    category: 'departure',
+    icao: 'b737',
+    model: AIRCRAFT_DEFINITION_MOCK,
+    route: 'KLAS.COWBY6.GUP',
+    waypoints: []
+};
+
+export const ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK = {
     callsign: '432',
     destination: 'KLAS',
     fleet: 'default',
