@@ -45,6 +45,24 @@ ava('.init() calls ._buildInitialLegCollection()', (t) => {
     t.true(_buildInitialLegCollectionSpy.calledWithExactly(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK));
 });
 
+ava('.addLegToBeginning() adds a leg to the beginning of the #legCollection when passed a directRouteString', (t) => {
+    const fms = buildFmsMock();
+
+    fms.addLegToBeginning('BIKKR');
+
+    t.true(fms.currentLeg.routeString === 'bikkr');
+});
+
+ava('.addLegToBeginning() adds a leg to the beginning of the #legCollection when passed a procedureRouteString', (t) => {
+    const fms = buildFmsMock();
+    fms.legCollection = [];
+
+    fms.addLegToBeginning('DAG.KEPEC3.KLAS');
+
+    t.true(fms.legCollection.length === 1);
+    t.true(fms.legCollection[0].waypointCollection.length === 12);
+});
+
 ava('.nextWaypoint() calls ._moveToNextLeg() if the current waypointCollection.length === 0', (t) => {
     const fms = buildFmsMock(true);
     const _moveToNextLegSpy = sinon.spy(fms, '_moveToNextLeg');

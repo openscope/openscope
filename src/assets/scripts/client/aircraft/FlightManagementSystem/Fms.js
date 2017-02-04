@@ -103,12 +103,29 @@ export default class Fms {
      */
     destroy() {
         this._navigationLibrary = null;
+        this._runway = '';
         this.legCollection = [];
         this.category = '';
     }
 
     /**
+     * Add a new `LegModel` to the left side of the `legCollection`
      *
+     * @for Fms
+     * @method addLegToBeginning
+     * @param routeString
+     */
+    addLegToBeginning(routeString) {
+        const legModel = new LegModel(routeString, this._runway, this.category, this._navigationLibrary);
+
+        this.legCollection.unshift(legModel);
+    }
+
+    /**
+     * Move to the next possible waypoint
+     *
+     * This could be the next waypoint in the current leg,
+     * or the first waypoint in the next leg.
      *
      * @for LegModel
      * @method nextWaypoint
