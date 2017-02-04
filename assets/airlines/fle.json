@@ -1,0 +1,15 @@
+{
+    "icao": "fle",
+    "name": "Flair Airlines",
+    "callsign": {
+        "name": "Flair",
+        "length": 3
+    },
+    "fleets": {
+        "default": [
+            ["B734", 5],
+            ["D328", 1],
+            ["C340", 1]
+        ]
+    }
+}
