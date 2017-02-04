@@ -21,6 +21,7 @@
 
 
 ### Bugfixes
+- Adds a default position value to `SpawnPatternModel` so aircraft have, at least, a `[0, 0]` starting position [#207](https://github.com/openscope/openscope/issues/207)
 
 
 
