@@ -21,7 +21,6 @@
 
 
 ### Bugfixes
-- Adds a default center position when calculating `panX` and `panY` after double click on an aircraft strip [#207](https://github.com/openscope/openscope/issues/207)
 
 
 
