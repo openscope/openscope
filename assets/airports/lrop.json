@@ -21,7 +21,7 @@
     "airspace": [{
         "floor": 0,
         "ceiling": 175,
-        "airspace_class": "C",
+        "airspace_class": "A",
         "poly": [
             ["N045d04m34.000", "E025d11m30.000"],
             ["N045d04m34.000", "E026d27m15.000"],
@@ -126,8 +126,6 @@
     "runways": [
         {
             "name":        ["08R", "26L"],
-            "name_offset": [[0, 0], [0, 0]],
-            "length": 3.5,
             "end": [
                            ["N44.564661", "E26.076747", "314ft"],
                            ["N44.56797", "E26.120428", "314ft"]
@@ -138,8 +136,6 @@
         },
         {
             "name":        ["08L", "26R"],
-            "name_offset": [[0, 0], [0, 0]],
-            "length": 3.5,
             "end":         [                
                            ["N44.576622", "E26.0841", "313ft"],
                            ["N44.579925", "E26.127764", "313ft"]
@@ -187,7 +183,7 @@
             "suffix": {"08R":"", "08L":""},
             "rwy": {  
                 "08R" : ["OP888"],
-                "08L" : [ "OP887"]
+                "08L" : ["OP887"]
             },
             "body": [], 
             "exitPoints": { 
@@ -396,7 +392,7 @@
             "name": "Sordu One Uniform",
             "suffix": {"08R":"", "08L":""},
             "entryPoints": {
-                "SOMOV": ["SOMOV" ],
+                "SOMOV": ["SOMOV"],
                 "SORDU": ["SORDU"]
             },
             "body": [
@@ -481,7 +477,7 @@
     		"origin": "LROP",
             "destination": "",
             "category": "departure",
-            "route": "LROP.DENAK1K.KODRU",
+            "route": "LROP.DENAK1K.DENAK",
             "altitude": null,
             "speed": null,
             "method": "random",
@@ -584,7 +580,7 @@
             "category": "arrival",
             "route": "ARGES.OSTAL1U.LROP",
             "altitude":  [15000, 17000],
-            "speed": 350,
+            "speed": 320,
             "method": "random",
             "rate": 5,
             "airlines": [
@@ -600,7 +596,7 @@
             "category": "arrival",
             "route": "DENAK.DENAK1U.LROP",
             "altitude":  [15000, 17000],
-            "speed": 350,
+            "speed": 320,
             "method": "random",
             "rate": 5,
             "airlines": [
@@ -616,7 +612,7 @@
             "category": "arrival",
             "route": "NETUL.NETUL2U.LROP",
             "altitude":  [17000, 20000],
-            "speed": 350,
+            "speed": 320,
             "method": "random",
             "rate": 1,
             "airlines": [
@@ -630,7 +626,7 @@
             "category": "arrival",
             "route": "IDARU.IDARU2U.LROP",
             "altitude":  [17000, 20000],
-            "speed": 350,
+            "speed": 320,
             "method": "random",
             "rate": 1,
             "airlines": [
@@ -644,7 +640,7 @@
             "category": "arrival",
             "route": "DENAK.DENAK1U.LROP",
             "altitude":  [15000, 17000],
-            "speed": 350,
+            "speed": 320,
             "method": "random",
             "rate": 5,
             "airlines": [
@@ -660,7 +656,7 @@
             "category": "arrival",
             "route": "SOMOV.SORDU1U.LROP",
             "altitude": [14000, 17000],
-            "speed": 350,
+            "speed": 320,
             "method": "random",
             "rate": 5,
             "airlines": [
