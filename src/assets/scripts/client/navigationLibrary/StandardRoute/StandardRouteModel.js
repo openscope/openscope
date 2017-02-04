@@ -201,38 +201,6 @@ export default class StandardRouteModel extends BaseModel {
     }
 
     /**
-     * Gather the fixes from all the route segments.
-     *
-     * Returns a 2d array in the shape of
-     * - [[FIXNAME, FIX_RESTRICTIONS], [FIXNAME, FIX_RESTRICTIONS]]
-     *
-     * @for StandardRouteModel
-     * @method findFixesAndRestrictionsForRunwayAndExit
-     * @param runwayName {string}
-     * @param exitFixName {string}
-     * @return {array}
-     */
-    findFixesAndRestrictionsForRunwayAndExit(runwayName, exitFixName) {
-        return this._findFixListForSidByRunwayAndExit(runwayName, exitFixName);
-    }
-
-    /**
-     * Gather the fixes from all the route segments.
-     *
-     * Returns a 2d array in the shape of
-     * - [[FIXNAME, FIX_RESTRICTIONS], [FIXNAME, FIX_RESTRICTIONS]]
-     *
-     * @for StandardRouteModel
-     * @method findFixesAndRestrictionsForEntryAndRunway
-     * @param entryFixName {string}
-     * @param runwayName {string}
-     * @return {array}
-     */
-    findFixesAndRestrictionsForEntryAndRunway(entryFixName, runwayName) {
-        return this._findFixListForStarByEntryAndRunway(entryFixName, runwayName);
-    }
-
-    /**
      * Gather the fixes from `entry` and `body` route segments.
      *
      * Returns a 2d array in the shape of
@@ -421,38 +389,6 @@ export default class StandardRouteModel extends BaseModel {
     };
 
     /**
-     * Given a `runwayName` and `exitFixName`, find a list of fixes for the `rwy`, `body` and `exitPoints` segments.
-     *
-     * @for StandardRouteModel
-     * @method _findFixListForSidByRunwayAndExit
-     * @param runwayName {string}
-     * @param exitFixName {string}
-     * @return fixList {array}
-     * @private
-     */
-    _findFixListForSidByRunwayAndExit = (runwayName, exitFixName) => this._generateFixList(
-        this._findFixListByCollectionAndSegmentName('rwy', '_entryCollection', runwayName),
-        this._findBodyFixList(),
-        this._findFixListByCollectionAndSegmentName('exitPoints', '_exitCollection', exitFixName)
-    );
-
-    /**
-     * Given an `entryFixName` and/or a `runwayName`, find a list of fixes for the `entryPoints`,
-     * `body` and `rwy` segments.
-     *
-     * @for StandardRouteModel
-     * @method _findFixListForStarByEntryAndRunway
-     * @param entryFixName {string}
-     * @param runwayName {string} (optional)
-     * @return {array}
-     */
-    _findFixListForStarByEntryAndRunway = (entryFixName, runwayName) => this._generateFixList(
-        this._findFixListByCollectionAndSegmentName('entryPoints', '_entryCollection', entryFixName),
-        this._findBodyFixList(),
-        this._findFixListByCollectionAndSegmentName('rwy', '_exitCollection', runwayName)
-    );
-
-    /**
      * Given an `entryFixName`, find a list of fixes for the `entryPoints` and `body` segments.
      *
      * @for StandardRouteModel
@@ -467,31 +403,6 @@ export default class StandardRouteModel extends BaseModel {
             ...entrySegment.items,
             ...this._bodySegmentModel.items
         ];
-    }
-
-    /**
-     * Given an `originalCollectionName`, `collectionName` and a `segmentName`, return a normalized list of
-     * fixes with restrictions.
-     *
-     * @for StandardRouteModel
-     * @method _findFixListByCollectionAndSegmentName
-     * @param originalCollectionName {string}  the name of the original collection from airport json,
-     *                                         one of: [entryPoints, rwy, exitPoints]
-     * @param collectionName {string}  collectionName as defined here, one of: [_entryCollection, _exitCollection]
-     * @segmentName {string}  name of the segment to search for
-     * @return array {array<array>}
-     */
-    _findFixListByCollectionAndSegmentName(originalCollectionName, collectionName, segmentName) {
-        const originalCollection = _get(this, originalCollectionName, null);
-        const collection = _get(this, collectionName, null);
-
-        // specifically checking for an empty string here because this param gets a default of '' when
-        // it is received in to the public method
-        if (!originalCollection || !collection || segmentName === '') {
-            return [];
-        }
-
-        return collection.findWaypointsForSegmentName(segmentName);
     }
 
     /**
@@ -536,22 +447,6 @@ export default class StandardRouteModel extends BaseModel {
             this._bodySegmentModel.items,
             exitSegmentItems
         );
-    }
-
-    /**
-     * Find list of waypoints for the `body` segment
-     *
-     * @for StandardRouteModel
-     * @method _findBodyFixList
-     * @return {array}
-     * @private
-     */
-    _findBodyFixList() {
-        if (typeof this.body === 'undefined' || this.body.length === 0) {
-            return [];
-        }
-
-        return this._bodySegmentModel.findWaypointsForSegment();
     }
 
     /**
