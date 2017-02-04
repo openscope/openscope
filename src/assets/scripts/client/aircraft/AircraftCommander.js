@@ -393,7 +393,7 @@ export default class AircraftCommander {
 
         readback.log = `cleared to destination via the ${aircraft.destination} departure, then as filed. Climb and ` +
             `maintain ${airport.initial_alt}, expect ${aircraft.fms.fp.altitude} 10 minutes after departure `;
-        readback.say = `cleared to destination via the ${procedureName} ` +
+        readback.say = `cleared to destination via the ${procedureName.toUpperCase()} ` +
             `departure, then as filed. Climb and maintain ${radio_altitude(airport.initial_alt)}, ` +
             `expect ${radio_altitude(aircraft.fms.fp.altitude)}, ${radio_spellOut('10')} minutes after departure'`;
 
@@ -417,7 +417,7 @@ export default class AircraftCommander {
         const { name: procedureName } = this._navigationLibrary.sidCollection.findRouteByIcao(aircraft.fms.currentLeg.route.procedure);
         const readback = {
             log: `climb via the ${aircraft.fms.currentLeg.route.procedure} departure`,
-            say: `climb via the ${procedureName} departure`
+            say: `climb via the ${procedureName.toUpperCase()} departure`
         };
 
         return ['ok', readback];
@@ -441,7 +441,7 @@ export default class AircraftCommander {
         const { name: procedureName } = this._navigationLibrary.starCollection.findRouteByIcao(aircraft.fms.currentLeg.route.procedure);
         const readback = {
             log: `descend via the ${aircraft.fms.following.star} arrival`,
-            say: `descend via the ${procedureName} arrival`
+            say: `descend via the ${procedureName.toUpperCase()} arrival`
         };
 
         return ['ok', readback];
@@ -732,7 +732,7 @@ export default class AircraftCommander {
         }
 
         if (!standardRouteModel.hasFixName(aircraft.rwy_dep)) {
-            return ['fail', `unable, the ${standardRouteModel.name} departure not valid from Runway ${aircraft.rwy_dep}`];
+            return ['fail', `unable, the ${standardRouteModel.name.toUpperCase()} departure not valid from Runway ${aircraft.rwy_dep}`];
         }
 
         // TODO: this is the wrong place for this `.toUpperCase()`
@@ -771,7 +771,7 @@ export default class AircraftCommander {
         // TODO: casing may be an issue here.
         const readback = {
             log: `cleared to the ${airport.name} via the ${routeModel.procedure} arrival`,
-            say: `cleared to the ${airport.name} via the ${starName} arrival`
+            say: `cleared to the ${airport.name} via the ${starName.toUpperCase()} arrival`
         };
 
         return ['ok', readback];

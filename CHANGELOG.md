@@ -10,6 +10,16 @@
 
 
 
+### Minor
+- Makes sure the output for sid and star commands are always uppercase. [#109](https://github.com/openscope/openscope/issues/109)
+
+
+
+
+
+
+
+
 ### Features
 
 
