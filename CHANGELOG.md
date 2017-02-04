@@ -21,7 +21,7 @@
 
 
 ### Features
-
+- Overhauls Munich - updates Munich to AIRAC 1702, adds STARs, and adds a realistic traffic flow. [#104](https://github.com/openscope/openscope/issues/104)
 
 
 
