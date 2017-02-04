@@ -587,38 +587,6 @@
         "30":  []
       }
     },
-    "SVD": {
-      "icao": "SVD",
-      "name": "Sveda",
-      "entryPoints": {
-        "SVD": [["SVD", "A110|S250"]]
-      },
-      "body": [],
-      "rwy": {
-        "4L": ["_SVD210"],
-        "4R": ["_SVD210"],
-        "22L": ["_SVD210"],
-        "22R": ["_SVD210"],
-        "12":  ["_SVD170"],
-        "30":  ["_SVD170"]
-      }
-    },
-    "ALM": {
-      "icao": "ALM",
-      "name": "Alma",
-      "entryPoints": {
-        "ALM": ["ALM"]
-      },
-      "body": [],
-      "rwy": {
-        "4L": [["VENOM", "A50|S250"]],
-        "4R": [["VENOM", "A50|S250"]],
-        "22L": [["VENOM", "A50|S250"]],
-        "22R": [["VENOM", "A50|S250"]],
-        "12":  [["DESAS", "A50|S250"]],
-        "30":  [["VEGUD", "A50|S250"]]
-      }
-    },
     "MONAK": {
       "icao": "MONAK",
       "name": "Monak",
@@ -1054,47 +1022,6 @@
                 ["jtg", 25],
                 ["nax", 33],
                 ["sas", 40],
-                ["vkg", 21]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "EKCH",
-            "category": "arrival",
-            "route": "SVD.SVD.EKCH",
-            "altitude": 11000,
-            "speed": 250,
-            "method": "random",
-            "rate": 5,
-            "airlines": [
-                ["dtr", 10],
-                ["jtg", 25],
-                ["nax", 33],
-                ["sas", 40],
-                ["vkg", 21]
-            ]
-        },
-        {
-            "origin": "",
-            "destination": "EKCH",
-            "category": "arrival",
-            "route": "ALM.ALM.EKCH",
-            "altitude": 11000,
-            "speed": 280,
-            "method": "random",
-            "rate": 5,
-            "airlines": [
-                ["afl", 2],
-                ["ber", 5],
-                ["dlh", 4],
-                ["dtr", 10],
-                ["ezy", 12],
-                ["jtg", 25],
-                ["nax", 33],
-                ["ryr", 15],
-                ["sas", 40],
-                ["thy", 4],
-                ["uae", 4],
                 ["vkg", 21]
             ]
         },
