@@ -262,19 +262,19 @@
             "icao": "YHZ3",
             "name": "Halifax 3",
             "exitPoints": {
-                "V310_W": [
+                "CAAPE": [
                     "ARDEE", "CAAPE"
                 ],
-                "V312_W": [
+                "VQI": [
                     "HIDIG", "YQI"
                 ],
-                "V312_E": [
+                "NOTOP": [
                     "IGTAS", "NOTOP"
                 ],
-                "V310_E": [
+                "NUTBY": [
                     "PAULO", "NUTBY"
                 ],
-                "V314": [
+                "YZX": [
                     "YZX"
                 ]
             },
@@ -292,33 +292,6 @@
                 ["YHZ", "YZX*"]
             ]
         }
-    },
-    "departures": {
-        "airlines": [
-            ["aca", 29],
-            ["aal", 1],
-            ["fpo", 2],
-            ["cfg", 2],
-            ["dal", 1],
-            ["fle", 2],
-            ["poe", 5],
-            ["pvl", 1],
-            ["ual", 1],
-            ["wja", 15],
-            ["wen", 5],
-            ["fdx", 1],
-            ["kal", 2],
-            ["qtr", 2],
-            ["airtaxi", 7],
-            ["cessna", 8],
-            ["embraer", 3]
-        ],
-        "destinations": [
-            "YHZ3"
-        ],
-        "type": "cyclic",
-        "offset": 0,
-        "frequency": 4.75
     },
     "stars": {
         "FUNDY9": {
@@ -384,67 +357,220 @@
             ]
         }
     },
-	"arrivals": [{
-		"type":		 "cyclic",
-		"route":	 "CETTY.FUNDY9.CYHZ",
-		"frequency": 1.5,
-		"altitude":	 6000,
-		"speed":	 250,
-		"offset":	 2,
-		"airlines": [
-            ["aca", 29],
-            ["aal", 1],
-            ["dal", 1],
-            ["fle", 2],
-            ["poe", 5],
-            ["pvl", 1],
-            ["ual", 1],
-            ["wja", 15],
-            ["wen", 5],
-            ["fdx", 1],
-            ["airtaxi", 7],
-            ["cessna", 8],
-            ["embraer", 3]
-		]
-    },
-    {
-		"type":		 "cyclic",
-		"route":	 "IGTAS.LISCM9.CYHZ",
-		"frequency": 2,
-		"altitude":	 6000,
-		"speed":	 250,
-		"offset":	 2,
-		"airlines": [
-            ["aca", 29],
-            ["fpo", 2],
-            ["cfg", 2],
-            ["wja", 15],
-            ["fdx", 1],
-            ["kal", 2],
-            ["qtr", 2]
-		]
-    },
-    {
-		"type":		 "cyclic",
-		"route":	 "HIDIG.MAHNE8.CYHZ",
-		"frequency": 1.75,
-		"altitude":	 6000,
-		"speed":	 250,
-		"offset":	 2,
-		"airlines": [
-            ["aca", 29],
-            ["aal", 1],
-            ["dal", 1],
-            ["fle", 2],
-            ["poe", 5],
-            ["pvl", 1],
-            ["ual", 1],
-            ["wja", 15],
-            ["wen", 5],
-            ["fdx", 1],
-            ["airtaxi", 7],
-            ["cessna", 8],
-            ["embraer", 3]
-		]
-    }
-]}
+    "spawnPatterns": [
+        {
+            "origin": "CYHZ",
+            "destination": "",
+            "category": "departure",
+            "route": "CYHZ.YHZ3.CAAPE",
+            "altitude": null,
+            "speed": null,
+            "method": "random",
+            "rate": 0.792,
+            "airlines": [
+                ["aca", 29],
+                ["aal", 1],
+                ["fpo", 2],
+                ["cfg", 2],
+                ["dal", 1],
+                ["fle", 2],
+                ["poe", 5],
+                ["pvl", 1],
+                ["ual", 1],
+                ["wja", 15],
+                ["wen", 5],
+                ["fdx", 1],
+                ["kal", 2],
+                ["qtr", 2],
+                ["airtaxi", 7],
+                ["cessna", 8],
+                ["embraer", 3]
+            ]
+        },
+        {
+            "origin": "CYHZ",
+            "destination": "",
+            "category": "departure",
+            "route": "CYHZ.YHZ3.VQI",
+            "altitude": null,
+            "speed": null,
+            "method": "random",
+            "rate": 0.792,
+            "airlines": [
+                ["aca", 29],
+                ["aal", 1],
+                ["fpo", 2],
+                ["cfg", 2],
+                ["dal", 1],
+                ["fle", 2],
+                ["poe", 5],
+                ["pvl", 1],
+                ["ual", 1],
+                ["wja", 15],
+                ["wen", 5],
+                ["fdx", 1],
+                ["kal", 2],
+                ["qtr", 2],
+                ["airtaxi", 7],
+                ["cessna", 8],
+                ["embraer", 3]
+            ]
+        },
+        {
+            "origin": "CYHZ",
+            "destination": "",
+            "category": "departure",
+            "route": "CYHZ.YHZ3.NOTOP",
+            "altitude": null,
+            "speed": null,
+            "method": "random",
+            "rate": 0.792,
+            "airlines": [
+                ["aca", 29],
+                ["aal", 1],
+                ["fpo", 2],
+                ["cfg", 2],
+                ["dal", 1],
+                ["fle", 2],
+                ["poe", 5],
+                ["pvl", 1],
+                ["ual", 1],
+                ["wja", 15],
+                ["wen", 5],
+                ["fdx", 1],
+                ["kal", 2],
+                ["qtr", 2],
+                ["airtaxi", 7],
+                ["cessna", 8],
+                ["embraer", 3]
+            ]
+        },
+        {
+            "origin": "CYHZ",
+            "destination": "",
+            "category": "departure",
+            "route": "CYHZ.YHZ3.NUTBY",
+            "altitude": null,
+            "speed": null,
+            "method": "random",
+            "rate": 0.792,
+            "airlines": [
+                ["aca", 29],
+                ["aal", 1],
+                ["fpo", 2],
+                ["cfg", 2],
+                ["dal", 1],
+                ["fle", 2],
+                ["poe", 5],
+                ["pvl", 1],
+                ["ual", 1],
+                ["wja", 15],
+                ["wen", 5],
+                ["fdx", 1],
+                ["kal", 2],
+                ["qtr", 2],
+                ["airtaxi", 7],
+                ["cessna", 8],
+                ["embraer", 3]
+            ]
+        },
+        {
+            "origin": "CYHZ",
+            "destination": "",
+            "category": "departure",
+            "route": "CYHZ.YHZ3.YZX",
+            "altitude": null,
+            "speed": null,
+            "method": "random",
+            "rate": 0.792,
+            "airlines": [
+                ["aca", 29],
+                ["aal", 1],
+                ["fpo", 2],
+                ["cfg", 2],
+                ["dal", 1],
+                ["fle", 2],
+                ["poe", 5],
+                ["pvl", 1],
+                ["ual", 1],
+                ["wja", 15],
+                ["wen", 5],
+                ["fdx", 1],
+                ["kal", 2],
+                ["qtr", 2],
+                ["airtaxi", 7],
+                ["cessna", 8],
+                ["embraer", 3]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "CYHZ",
+            "category": "arrival",
+            "route": "CETTY.FUNDY9.CYHZ",
+            "altitude": 6000,
+            "speed": 250,
+            "method": "random",
+            "rate": 1.5,
+            "airlines": [
+                ["aca", 29],
+                ["aal", 1],
+                ["dal", 1],
+                ["fle", 2],
+                ["poe", 5],
+                ["pvl", 1],
+                ["ual", 1],
+                ["wja", 15],
+                ["wen", 5],
+                ["fdx", 1],
+                ["airtaxi", 7],
+                ["cessna", 8],
+                ["embraer", 3]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "CYHZ",
+            "category": "arrival",
+            "route": "IGTAS.LISCM9.CYHZ",
+            "altitude": 6000,
+            "speed": 250,
+            "method": "random",
+            "rate": 2,
+            "airlines": [
+                ["aca", 29],
+                ["fpo", 2],
+                ["cfg", 2],
+                ["wja", 15],
+                ["fdx", 1],
+                ["kal", 2],
+                ["qtr", 2]
+            ]
+        },
+        {
+            "origin": "",
+            "destination": "CYHZ",
+            "category": "arrival",
+            "route": "HIDIG.MAHNE8.CYHZ",
+            "altitude": 6000,
+            "speed": 250,
+            "method": "random",
+            "rate": 1.75,
+            "airlines": [
+                ["aca", 29],
+                ["aal", 1],
+                ["dal", 1],
+                ["fle", 2],
+                ["poe", 5],
+                ["pvl", 1],
+                ["ual", 1],
+                ["wja", 15],
+                ["wen", 5],
+                ["fdx", 1],
+                ["airtaxi", 7],
+                ["cessna", 8],
+                ["embraer", 3]
+            ]
+        }
+    ]
+}
