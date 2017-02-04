@@ -454,8 +454,20 @@ export default class AircraftStripView {
      * @param  event {jquery event}
      */
     onDoubleClickHandler = (event) => {
-        prop.canvas.panX = 0 - round(window.uiController.km_to_px(event.data.position[0]));
-        prop.canvas.panY = round(window.uiController.km_to_px(event.data.position[1]));
+        // this provides a way to default the position to the airport center in some cases, an aircraft
+        // may not have a position set which causes the calculations below to fail.
+        // this is only an issue for departing aircraft that have not yet taxied.
+        let aircraftPositionOnCanvas = [0, 0];
+
+        if (event.data.position.length === 2) {
+            aircraftPositionOnCanvas = [
+                event.data.position[0],
+                event.data.position[1]
+            ];
+        }
+
+        prop.canvas.panX = 0 - round(window.uiController.km_to_px(aircraftPositionOnCanvas[0]));
+        prop.canvas.panY = round(window.uiController.km_to_px(aircraftPositionOnCanvas[1]));
         prop.canvas.dirty = true;
     };
 }
