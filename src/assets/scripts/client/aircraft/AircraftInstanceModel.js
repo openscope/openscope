@@ -937,33 +937,7 @@ export default class Aircraft {
         }
 
         if (this.fms.currentWaypoint.navmode === WAYPOINT_NAV_MODE.RWY) {
-            runway  = airport.getRunway(this.rwy_arr);
-            offset = getOffset(this, runway.position, runway.angle);
-            offset_angle = vradial(offset);
-            angle = radians_normalize(runway.angle);
-            glideslope_altitude = clamp(runway.elevation, runway.getGlideslopeAltitude(offset[1]), this.altitude);
-            const assignedHdg = this.fms.currentWaypoint.heading;
-            const localizerRange = runway.ils.enabled ? runway.ils.loc_maxDist : 40;
-            this.offset_angle = offset_angle;
-            this.approachOffset = abs(offset[0]);
-            this.approachDistance = offset[1];
-            this.target.heading = assignedHdg;
-            this.target.turn = this.fms.currentWaypoint.turn;
-            this.target.altitude = this.fms.currentWaypoint.altitude;
-            this.target.speed = this.fms.currentWaypoint.speed;
-
-            // Established on ILS
-            if (this.mode === FLIGHT_MODES.LANDING) {
-                this.updateLandingFinalApproachHeading(angle);
-                this.target.altitude = Math.min(this.fms.currentWaypoint.altitude, glideslope_altitude);
-                this.updateLandingFinalSpeedControll(runway, offset);
-                if (abs(offset[0]) > 0.100) {
-                    this.updateLandingFailedLanding();
-                }
-            } else if (offset[1] < localizerRange) {
-                this.updateInterceptLocalizer(angle, offset, glideslope_altitude);
-                this.updateTargetHeadingForLanding(angle, offset);
-            }
+            this.updateTargetPrepareAircraftForLanding();
         } else if (this.fms.currentWaypoint.navmode === WAYPOINT_NAV_MODE.FIX) {
             const fix = this.fms.currentWaypoint.location;
             if (!fix) {
