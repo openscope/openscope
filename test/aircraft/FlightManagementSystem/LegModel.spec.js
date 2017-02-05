@@ -35,13 +35,22 @@ ava('.init() calls ._buildWaypointCollection()', (t) => {
     t.true(_buildWaypointCollectionSpy.calledWithExactly(procedureRouteSegmentMock, runwayMock, categoryMock));
 });
 
+ava('.skipToWaypointAtIndex() drops n number of WaypointModels from  the left of #waypointCollection', (t) => {
+    const model = new LegModel(procedureRouteSegmentMock, runwayMock, categoryMock, navigationLibraryFixture);
+
+    model.skipToWaypointAtIndex(3);
+
+    t.true(model.waypointCollection.length === 9);
+    t.true(model.currentWaypoint.name === 'skebr');
+});
+
 ava('._buildWaypointForDirectRoute() returns an instance of a WaypointModel', (t) => {
     const model = new LegModel(directRouteSegmentMock, runwayMock, categoryMock, navigationLibraryFixture);
     const result = model._buildWaypointForDirectRoute(directRouteSegmentMock);
 
     t.true(_isArray(result));
     t.true(result[0] instanceof WaypointModel);
-    t.true(result[0].name === 'COWBY');
+    t.true(result[0].name === 'cowby');
 });
 
 ava('._buildWaypointCollectionForProcedureRoute() returns a list of WaypointModels', (t) => {

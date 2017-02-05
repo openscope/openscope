@@ -72,7 +72,7 @@ ava('.toWaypointModel() returns a new WaypointModel instance', (t) => {
     const result = model.toWaypointModel();
 
     t.true(result instanceof WaypointModel);
-    t.true(result.name === FIXNAME_MOCK);
+    t.true(result.name === FIXNAME_MOCK.toLowerCase());
     t.true(result.position instanceof PositionModel);
     t.true(result.altitudeRestriction === -1);
     t.true(result.speedRestriction === -1);

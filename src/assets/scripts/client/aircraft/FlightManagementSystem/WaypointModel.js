@@ -29,10 +29,10 @@ export default class WaypointModel {
     }
 
     init(waypointProps) {
-        this.name = waypointProps.name;
+        this.name = waypointProps.name.toLowerCase();
         this.position = waypointProps.position;
-        this.speedRestriction = _get(waypointProps, 'speedRestriction', this.speedRestriction);
-        this.altitudeRestriction = _get(waypointProps, 'altitudeRestriction', this.altitudeRestriction);
+        this.speedRestriction = parseInt(waypointProps.speedRestriction, 10);
+        this.altitudeRestriction = parseInt(waypointProps.altitudeRestriction, 10);
     }
 
     destroy() {

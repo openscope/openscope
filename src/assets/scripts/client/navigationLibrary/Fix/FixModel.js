@@ -126,7 +126,9 @@ export default class FixModel extends BaseModel {
     toWaypointModel() {
         const waypointProps = {
             name: this.name,
-            position: this.clonePosition()
+            position: this.clonePosition(),
+            altitudeRestriction: -1,
+            speedRestriction: -1
         };
 
         return new WaypointModel(waypointProps);

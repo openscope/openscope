@@ -1,3 +1,4 @@
+import _drop from 'lodash/drop';
 import RouteModel from '../../navigationLibrary/Route/RouteModel';
 
 /**
@@ -51,6 +52,17 @@ export default class LegModel {
         this._isProcedure = false;
         this.routeString = '';
         this.waypointCollection = [];
+    }
+
+    /**
+     *
+     *
+     * @for LegModel
+     * @method skipToWaypointAtIndex
+     * @param waypointIndex {number}
+     */
+    skipToWaypointAtIndex(waypointIndex) {
+        this.waypointCollection = _drop(this.waypointCollection, waypointIndex);
     }
 
     /**

@@ -78,10 +78,10 @@ ava('.toWaypointModel() returns a new instance of a WaypointModel', t => {
     const result = model.toWaypointModel();
 
     t.true(result instanceof WaypointModel);
-    t.true(result.name === model.name);
+    t.true(result.name === model.name.toLowerCase());
     t.true(result.position instanceof PositionModel);
-    t.true(result.altitudeRestriction === model._altitude);
-    t.true(result.speedRestriction === model._speed);
+    t.true(result.altitudeRestriction === 80);
+    t.true(result.speedRestriction === 250);
 });
 
 ava('._parseWaypointRestrictions() extracts alititude and speed restrictions from a waypointRestrictions string', t => {

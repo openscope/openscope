@@ -92,8 +92,27 @@ ava('.nextWaypoint() removes the first LegModel from legCollection when the firs
     t.true(fms.legCollection.length === length - 1);
 });
 
+ava('.skipToWaypoint() removes all the legs and waypoints in front of the waypoint to skip to', (t) => {
+    const fms = buildFmsMock(true);
+
+    fms.skipToWaypoint('DAG');
+
+    t.true(fms.currentLeg.routeString === 'dag.kepec3.klas');
+});
+
 ava('._buildInitialLegCollection() returns an array of LegModels', (t) => {
     const fms = buildFmsMock(true);
 
     t.true(fms.legCollection.length === 3);
+});
+
+ava('._findLegAndWaypointIndexForWaypointName() returns an object with keys legIndex and waypointIndex', (t) => {
+    const expectedResult = {
+        legIndex: 2,
+        waypointIndex: 0
+    };
+    const fms = buildFmsMock(true);
+    const result = fms._findLegAndWaypointIndexForWaypointName('dag');
+
+    t.true(_isEqual(result, expectedResult));
 });

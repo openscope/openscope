@@ -1,3 +1,5 @@
+import _drop from 'lodash/drop';
+import _findIndex from 'lodash/findIndex';
 import _isEmpty from 'lodash/isEmpty';
 import _isObject from 'lodash/isObject';
 import _map from 'lodash/map';
@@ -66,7 +68,7 @@ export default class Fms {
      *
      *
      * @property currentWaypoint
-     * @return {FixModel|StandardRouteWaypointModel|undefined}
+     * @return {WaypointModel}
      */
     get currentWaypoint() {
         return this.legCollection[0].currentWaypoint;
@@ -138,6 +140,24 @@ export default class Fms {
         this._moveToNextWaypointInLeg();
     }
 
+
+    /**
+     * Given a `waypointName`, find where that waypoint exists within
+     * the `#legsColelction` then make that Leg active and `waypointName`
+     * the active waypoint for that Leg.
+     *
+     * @for Fms
+     * @method skipToWaypoint
+     * @param waypointName {string}
+     */
+    skipToWaypoint(waypointName) {
+        const { legIndex, waypointIndex } = this._findLegAndWaypointIndexForWaypointName(waypointName);
+
+        this.legCollection = _drop(this.legCollection, legIndex);
+
+        this.currentLeg.skipToWaypointAtIndex(waypointIndex);
+    }
+
     /**
      *
      *
@@ -176,5 +196,38 @@ export default class Fms {
         this.currentLeg.destroy();
         // this is mutable
         this.legCollection.shift();
+    }
+
+    /**
+     * Loop through the `LegModel`s in the `#legCollection` untill
+     * the `waypointName` is found, then return the location indicies
+     * for the Leg and Waypoint.
+     *
+     * Used to adjust `currentLeg` and `currentWaypoint` values by
+     * dropping items to the left of these indicies.
+     *
+     * @for Fms
+     * @method _findLegAndWaypointIndexForWaypointName
+     * @param waypointName {string}
+     * @return {object}
+     * @private
+     */
+    _findLegAndWaypointIndexForWaypointName(waypointName) {
+        let legIndex;
+        let waypointIndex = -1;
+
+        for (legIndex = 0; legIndex < this.legCollection.length; legIndex++) {
+            const legModel = this.legCollection[legIndex];
+            waypointIndex = _findIndex(legModel.waypointCollection, { name: waypointName.toLowerCase() });
+
+            if (waypointIndex !== -1) {
+                break;
+            }
+        }
+
+        return {
+            legIndex,
+            waypointIndex
+        };
     }
 }
