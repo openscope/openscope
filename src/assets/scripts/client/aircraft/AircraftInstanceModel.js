@@ -960,38 +960,8 @@ export default class Aircraft {
                 if (abs(offset[0]) > 0.100) {
                     this.updateLandingFailedLanding();
                 }
-            } else if (offset[1] < localizerRange) {  // Joining the ILS
-                // Check if aircraft has just become established on the localizer
-                const alignedWithRunway = abs(offset[0]) < 0.050;  // within 50m
-                const onRunwayHeading = abs(this.heading - angle) < degreesToRadians(5);
-                const runwayNominalHeading = degreesToRadians(parseInt(this.rwy_arr.substr(0, 2), 10) * 10, 10);
-                const maxInterceptAngle = degreesToRadians(30);
-                const maxAboveGlideslope = 250;
-                const interceptAngle = abs(angle_offset(assignedHdg, runwayNominalHeading));
-                const courseDifference = abs(angle_offset(this.heading, runwayNominalHeading));
-                if (alignedWithRunway && onRunwayHeading && this.mode !== FLIGHT_MODES.LANDING) {
-                    this.mode = FLIGHT_MODES.LANDING;
-                    this.target.heading = angle;
-                    // Check legality of localizer interception
-                    if (!this.projected) {  // do not give penalty during a future projection
-                        // Intercept Angle
-                        if (!assignedHdg && courseDifference > maxInterceptAngle) { // intercept via fixes
-                            this.warnInterceptAngle();
-                        } else if (interceptAngle > maxInterceptAngle) {    // intercept via vectors
-                            this.warnInterceptAngle();
-                        }
-
-                        // Glideslope intercept
-                        if (this.altitude > glideslope_altitude + maxAboveGlideslope) {
-                            const isWarning = true;
-                            window.uiController.ui_log(`${this.getRadioCallsign()} joined localizer above glideslope altitude`, isWarning);
-                            window.gameController.events_recordNew(GAME_EVENTS.ILLEGAL_APPROACH_CLEARANCE);
-                        }
-                    }
-
-                    this.updateStrip();
-                    this.target.turn = null;
-                }
+            } else if (offset[1] < localizerRange) {
+                this.updateInterceptLocalizer(offset, angle, glideslope_altitude);
 
                 // TODO: this math section should be absctracted to a helper function
                 // Guide aircraft onto the localizer
@@ -1235,6 +1205,51 @@ export default class Aircraft {
         const isWarning = true;
         window.uiController.ui_log(`${this.getCallsign()} approach course intercept angle was greater than 30 degrees`, isWarning);
         window.gameController.events_recordNew(GAME_EVENTS.ILLEGAL_APPROACH_CLEARANCE);
+    }
+
+    //TODO: More Simplification of this function should be done, abstract warings to their own functions
+    /**
+     * Updates the aircraft status to landing and wil also send out a waring if the change in angele is greater than 30 degrees.
+     *
+     * @for AircraftInstanceModel
+     * @method updateFixTarget
+     * @param offset
+     * @param angle
+     * @param glideslope_altitude
+     */
+    updateInterceptLocalizer(offset, angle, glideslope_altitude) {
+        // Joining the ILS
+        // Check if aircraft has just become established on the localizer
+        const alignedWithRunway = abs(offset[0]) < 0.050;  // within 50m
+        const onRunwayHeading = abs(this.heading - angle) < degreesToRadians(5);
+        const runwayNominalHeading = degreesToRadians(parseInt(this.rwy_arr.substr(0, 2), 10) * 10, 10);
+        const maxInterceptAngle = degreesToRadians(30);
+        const maxAboveGlideslope = 250;
+        const interceptAngle = abs(angle_offset(this.target.heading, runwayNominalHeading));
+        const courseDifference = abs(angle_offset(this.heading, runwayNominalHeading));
+        if (alignedWithRunway && onRunwayHeading && this.mode !== FLIGHT_MODES.LANDING) {
+            this.mode = FLIGHT_MODES.LANDING;
+            this.target.heading = angle;
+            // Check legality of localizer interception
+            if (!this.projected) {  // do not give penalty during a future projection
+                // Intercept Angle
+                if (!this.target.heading && courseDifference > maxInterceptAngle) { // intercept via fixes
+                    this.warnInterceptAngle();
+                } else if (interceptAngle > maxInterceptAngle) {    // intercept via vectors
+                    this.warnInterceptAngle();
+                }
+
+                // Glideslope intercept
+                if (this.altitude > glideslope_altitude + maxAboveGlideslope) {
+                    const isWarning = true;
+                    window.uiController.ui_log(`${this.getRadioCallsign()} joined localizer above glideslope altitude`, isWarning);
+                    window.gameController.events_recordNew(GAME_EVENTS.ILLEGAL_APPROACH_CLEARANCE);
+                }
+            }
+
+            this.updateStrip();
+            this.target.turn = null;
+        }
     }
 
     /**
