@@ -12,7 +12,7 @@
 
 ### Minor
 - Makes sure the output for sid and star commands are always uppercase. [#109](https://github.com/openscope/openscope/issues/109)
-
+- Marks all airports as works in progress [#179](https://github.com/openscope/openscope/issues/179)
 
 
 
