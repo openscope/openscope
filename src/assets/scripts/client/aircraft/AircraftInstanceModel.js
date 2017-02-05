@@ -956,8 +956,10 @@ export default class Aircraft {
             if (this.mode === FLIGHT_MODES.LANDING) {
                 this.updateLandingFinalApproachHeading(angle);
                 this.target.altitude = Math.min(this.fms.currentWaypoint.altitude, glideslope_altitude);
-                this.updateLandingFinalSpeedControll(runway, this.approachDistance);
-                this.updateLandingFailedLanding();
+                this.updateLandingFinalSpeedControll(runway, offset);
+                if (abs(offset[0]) > 0.100) {
+                    this.updateLandingFailedLanding();
+                }
             } else if (offset[1] < localizerRange) {  // Joining the ILS
                 // Check if aircraft has just become established on the localizer
                 const alignedWithRunway = abs(offset[0]) < 0.050;  // within 50m
@@ -1179,7 +1181,7 @@ export default class Aircraft {
             const dist_final_app_spd = 3.5; // 3.5km ~= 2nm
             const dist_assigned_spd = 9.5;  // 9.5km ~= 5nm
             this.target.speed = extrapolate_range_clamp(
-                dist_final_app_spd, offset,
+                dist_final_app_spd, offset[1],
                 dist_assigned_spd,
                 this.model.speed.landing,
                 this.fms.currentWaypoint.start_speed
@@ -1207,7 +1209,6 @@ export default class Aircraft {
             ]);
             window.gameController.events_recordNew(GAME_EVENTS.GO_AROUND);
         }
-
     }
 
     /**
