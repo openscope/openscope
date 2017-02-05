@@ -961,25 +961,8 @@ export default class Aircraft {
                     this.updateLandingFailedLanding();
                 }
             } else if (offset[1] < localizerRange) {
-                this.updateInterceptLocalizer(offset, angle, glideslope_altitude);
-
-                // TODO: this math section should be absctracted to a helper function
-                // Guide aircraft onto the localizer
-                const angle_diff = angle_offset(angle, this.heading);
-                const turning_time = Math.abs(radiansToDegrees(angle_diff)) / 3; // time to turn angle_diff degrees at 3 deg/s
-                const turning_radius = km(this.speed) / 3600 * turning_time; // dist covered in the turn, km
-                const dist_to_localizer = offset[0] / sin(angle_diff); // dist from the localizer intercept point, km
-                const turn_early_km = 1;    // start turn 1km early, to avoid overshoots from tailwind
-                const should_attempt_intercept = (dist_to_localizer > 0 && dist_to_localizer <= turning_radius + turn_early_km);
-                const in_the_window = abs(offset_angle) < degreesToRadians(1.5);  // if true, aircraft will move to localizer, regardless of assigned heading
-
-                if (should_attempt_intercept || in_the_window) {  // time to begin turn
-                    const severity_of_correction = 50;  // controls steepness of heading adjustments during localizer tracking
-                    const tgtHdg = angle + (offset_angle * -severity_of_correction);
-                    const minHdg = angle - degreesToRadians(30);
-                    const maxHdg = angle + degreesToRadians(30);
-                    this.target.heading = clamp(tgtHdg, minHdg, maxHdg);
-                }
+                this.updateInterceptLocalizer(angle, offset, glideslope_altitude);
+                this.updateTargetHeadingForLanding(angle, offset);
             }
         } else if (this.fms.currentWaypoint.navmode === WAYPOINT_NAV_MODE.FIX) {
             const fix = this.fms.currentWaypoint.location;
@@ -1209,7 +1192,7 @@ export default class Aircraft {
 
     //TODO: More Simplification of this function should be done, abstract warings to their own functions
     /**
-     * Updates the aircraft status to landing and wil also send out a waring if the change in angele is greater than 30 degrees.
+     * Updates the aircraft status to landing and wil also send out a waring if the change in angle is greater than 30 degrees.
      *
      * @for AircraftInstanceModel
      * @method updateFixTarget
@@ -1217,7 +1200,7 @@ export default class Aircraft {
      * @param angle
      * @param glideslope_altitude
      */
-    updateInterceptLocalizer(offset, angle, glideslope_altitude) {
+    updateInterceptLocalizer(angle, offset, glideslope_altitude) {
         // Joining the ILS
         // Check if aircraft has just become established on the localizer
         const alignedWithRunway = abs(offset[0]) < 0.050;  // within 50m
@@ -1249,6 +1232,26 @@ export default class Aircraft {
 
             this.updateStrip();
             this.target.turn = null;
+        }
+    }
+
+    updateTargetHeadingForLanding(angle, offset) {
+        // TODO: this math section should be absctracted to a helper function
+        // Guide aircraft onto the localizer
+        const angle_diff = angle_offset(angle, this.heading);
+        const turning_time = Math.abs(radiansToDegrees(angle_diff)) / 3; // time to turn angle_diff degrees at 3 deg/s
+        const turning_radius = km(this.speed) / 3600 * turning_time; // dist covered in the turn, km
+        const dist_to_localizer = offset[0] / sin(angle_diff); // dist from the localizer intercept point, km
+        const turn_early_km = 1;    // start turn 1km early, to avoid overshoots from tailwind
+        const should_attempt_intercept = (dist_to_localizer > 0 && dist_to_localizer <= turning_radius + turn_early_km);
+        const in_the_window = abs(this.offset_angle) < degreesToRadians(1.5);  // if true, aircraft will move to localizer, regardless of assigned heading
+
+        if (should_attempt_intercept || in_the_window) {  // time to begin turn
+            const severity_of_correction = 50;  // controls steepness of heading adjustments during localizer tracking
+            const tgtHdg = angle + (this.offset_angle * -severity_of_correction);
+            const minHdg = angle - degreesToRadians(30);
+            const maxHdg = angle + degreesToRadians(30);
+            this.target.heading = clamp(tgtHdg, minHdg, maxHdg);
         }
     }
 
