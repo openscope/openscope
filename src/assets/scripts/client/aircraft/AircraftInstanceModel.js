@@ -1119,6 +1119,43 @@ export default class Aircraft {
      * Updates the heading for a landing aircraft
      *
      * @for AircraftInstanceModel
+     * @method updateTargetPrepareAircraftForLanding
+     */
+    updateTargetPrepareAircraftForLanding() {
+        const airport = window.airportController.airport_get();
+        const runway  = airport.getRunway(this.rwy_arr);
+        const offset = getOffset(this, runway.position, runway.angle);
+        const offset_angle = vradial(offset);
+        const angle = radians_normalize(runway.angle);
+        const glideslope_altitude = clamp(runway.elevation, runway.getGlideslopeAltitude(offset[1]), this.altitude);
+        const assignedHdg = this.fms.currentWaypoint.heading;
+        const localizerRange = runway.ils.enabled ? runway.ils.loc_maxDist : 40;
+        this.offset_angle = offset_angle;
+        this.approachOffset = abs(offset[0]);
+        this.approachDistance = offset[1];
+        this.target.heading = assignedHdg;
+        this.target.turn = this.fms.currentWaypoint.turn;
+        this.target.altitude = this.fms.currentWaypoint.altitude;
+        this.target.speed = this.fms.currentWaypoint.speed;
+
+        // Established on ILS
+        if (this.mode === FLIGHT_MODES.LANDING) {
+            this.updateLandingFinalApproachHeading(angle);
+            this.target.altitude = Math.min(this.fms.currentWaypoint.altitude, glideslope_altitude);
+            this.updateLandingFinalSpeedControll(runway, offset);
+            if (abs(offset[0]) > 0.100) {
+                this.updateLandingFailedLanding();
+            }
+        } else if (offset[1] < localizerRange) {
+            this.updateInterceptLocalizer(angle, offset, glideslope_altitude);
+            this.updateTargetHeadingForLanding(angle, offset);
+        }
+    }
+
+    /**
+     * Updates the heading for a landing aircraft
+     *
+     * @for AircraftInstanceModel
      * @method updateLandingFinalSpeedControll
      */
     updateLandingFinalSpeedControll(runway, offset) {
@@ -1235,6 +1272,14 @@ export default class Aircraft {
         }
     }
 
+    /**
+     * Updates the heading to the runway for the aircraft to land if the change in flight is less than 30 degrees
+     *
+     * @for AircraftInstanceModel
+     * @method updateTargetHeadingForLanding
+     * @param  angle
+     * @param  offset
+     */
     updateTargetHeadingForLanding(angle, offset) {
         // TODO: this math section should be absctracted to a helper function
         // Guide aircraft onto the localizer
