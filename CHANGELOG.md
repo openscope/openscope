@@ -10,8 +10,18 @@
 
 
 
-### Features
+### Minor
+- Makes sure the output for sid and star commands are always uppercase. [#109](https://github.com/openscope/openscope/issues/109)
+- Marks all airports as works in progress [#179](https://github.com/openscope/openscope/issues/179)
 
+
+
+
+
+
+
+### Features
+- Fixes an instance of two runways called "34R" in Shanghai Pudong [#149](https://github.com/openscope/openscope/issues/149)
 
 
 
@@ -23,7 +33,7 @@
 ### Bugfixes
 - Updates airline json files to include `icao` key. Updates `AirlineCollection` and `AirlineModel` to handle variable casing of `icao`  [#195](https://github.com/openscope/openscope/issues/195)
 - Adds a default position value to `SpawnPatternModel` so aircraft have, at least, a `[0, 0]` starting position [#207](https://github.com/openscope/openscope/issues/207)
-
+- Ensures data block colored bars are all the same width (3px), regardless of callsign length [#210](https://github.com/openscope/openscope/issues/210)
 
 
 

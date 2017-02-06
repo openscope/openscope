@@ -1119,7 +1119,7 @@ export default class ConvasController {
             const height = 31;
             const height2 = height / 2;
             // width of colored bar
-            const bar_width = width / 18;
+            const bar_width = 3;
             const bar_width2 = bar_width / 2;
             const ILS_enabled = aircraft.fms.currentWaypoint.runway && aircraft.category === FLIGHT_CATEGORY.ARRIVAL;
             const lock_size = height / 3;
