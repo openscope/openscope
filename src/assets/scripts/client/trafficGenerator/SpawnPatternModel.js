@@ -224,11 +224,17 @@ export default class SpawnPatternModel extends BaseModel {
         /**
          * Initial position of a spawning aircraft
          *
+         * Defaults to [0, 0] which equates the the airport midfield and should
+         * only apply to departing aircraft.
+         *
+         * An arriving aircraft should be assigned a position along an arrival
+         * route, in which case this default will not be used.
+         *
          * @property position
          * @type {array}
-         * @default []
+         * @default [0, 0]
          */
-        this.position = [];
+        this.position = [0, 0];
 
         // SPAWN PATTERN PROPERTIES
 
@@ -463,7 +469,7 @@ export default class SpawnPatternModel extends BaseModel {
         this._maximumAltitude = -1;
         this.speed = 0;
         this.heading = -1;
-        this.position = [];
+        this.position = [0, 0];
 
         this.cycleStartTime = -1;
         this.rate = -1;

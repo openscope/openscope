@@ -48,7 +48,13 @@ ava('does not throw when called with valid parameters', (t) => {
     t.notThrows(() => new SpawnPatternModel(DEPARTURE_PATTERN_MOCK, navigationLibraryFixture, airportControllerFixture));
 });
 
-ava('altitude returns a random altitude rounded to the nearest 1,000ft', (t) => {
+ava('#position defaults to [0, 0]', (t) => {
+    const model = new SpawnPatternModel(DEPARTURE_PATTERN_MOCK, navigationLibraryFixture, airportControllerFixture);
+
+    t.true(_isEqual(model.position, [0, 0]));
+});
+
+ava('#altitude returns a random altitude rounded to the nearest 1,000ft', (t) => {
     const model = new SpawnPatternModel(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture, airportControllerFixture);
     const result = model.altitude;
     const expectedResult = _round(result, -3);
@@ -184,7 +190,7 @@ ava('._calculatePositionAndHeadingForArrival() returns early when spawnPattern.c
     model._calculatePositionAndHeadingForArrival(DEPARTURE_PATTERN_MOCK, navigationLibraryFixture);
 
     t.true(model.heading === -1);
-    t.true(_isEmpty(model.position));
+    t.true(_isEqual(model.position, [0, 0]));
 });
 
 ava('._calculatePositionAndHeadingForArrival() calculates aircraft heading and position when provided a route', (t) => {
