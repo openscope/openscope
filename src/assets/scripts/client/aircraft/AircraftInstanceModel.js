@@ -939,32 +939,7 @@ export default class Aircraft {
         if (this.fms.currentWaypoint.navmode === WAYPOINT_NAV_MODE.RWY) {
             this.updateTargetPrepareAircraftForLanding();
         } else if (this.fms.currentWaypoint.navmode === WAYPOINT_NAV_MODE.FIX) {
-            const fix = this.fms.currentWaypoint.location;
-            if (!fix) {
-                console.error(`${this.getCallsign()} using "fix" navmode, but no fix location!`);
-                console.log(this.fms);
-                console.log(this.fms.currentWaypoint);
-            }
-
-            const vector_to_fix = vsub(this.position, fix);
-            const distance_to_fix = distance2d(this.position, fix);
-
-            if ((distance_to_fix < 1) ||
-                ((distance_to_fix < 10) &&
-                (distance_to_fix < window.aircraftController.aircraft_turn_initiation_distance(this, fix)))
-            ) {
-                // if there are more waypoints available
-                if (!this.fms.atLastWaypoint()) {
-                    this.fms.nextWaypoint();
-                } else {
-                    this.cancelFix();
-                }
-
-                this.updateStrip();
-            } else {
-                this.target.heading = vradial(vector_to_fix) - Math.PI;
-                this.target.turn = null;
-            }
+            this.updateTargetTowardsNextFix();
         } else if (this.fms.currentWaypoint.navmode === WAYPOINT_NAV_MODE.HOLD) {
             const hold = this.fms.currentWaypoint.hold;
             const angle_off_of_leg_hdg = abs(angle_offset(this.heading, this.target.heading));
@@ -1280,7 +1255,7 @@ export default class Aircraft {
      * @for AircraftInstanceModel
      * @method updateFixTarget
      */
-    updateFixTarget() {
+    updateTargetTowardsNextFix() {
         const fix = this.fms.currentWaypoint.location;
 
         if (!fix) {
