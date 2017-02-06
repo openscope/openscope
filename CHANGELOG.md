@@ -10,8 +10,18 @@
 
 
 
-### Features
+### Minor
+- Makes sure the output for sid and star commands are always uppercase. [#109](https://github.com/openscope/openscope/issues/109)
 
+
+
+
+
+
+
+
+### Features
+- Fixes an instance of two runways called "34R" in Shanghai Pudong [#149](https://github.com/openscope/openscope/issues/149)
 
 
 
