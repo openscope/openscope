@@ -36,6 +36,20 @@ ava('#currentWaypoint returns the first waypoint of the first leg in the #legCol
     t.true(_isEqual(fms.legCollection[0].waypointCollection[0], fms.currentWaypoint));
 });
 
+ava('#currentRoute returns a routeString for a procedure route', (t) => {
+    const expectedResult = 'dag.kepec3.klas';
+    const fms = buildFmsMock();
+
+    t.true(_isEqual(fms.currentRoute, expectedResult));
+});
+
+ava('#currentRoute returns a routeString for a complex route', (t) => {
+    const expectedResult = 'cowby..bikkr..dag.kepec3.klas';
+    const fms = buildFmsMock(true);
+
+    t.true(_isEqual(fms.currentRoute, expectedResult));
+});
+
 ava('.init() calls ._buildInitialLegCollection()', (t) => {
     const fms = buildFmsMock();
     const _buildInitialLegCollectionSpy = sinon.spy(fms, '_buildInitialLegCollection');

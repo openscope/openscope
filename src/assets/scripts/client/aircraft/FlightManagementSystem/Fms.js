@@ -86,6 +86,17 @@ export default class Fms {
 
     /**
      *
+     * @property currentRoute
+     * @return {string}
+     */
+    get currentRoute() {
+        const routeSegments = _map(this.legCollection, (legModel) => legModel.routeString);
+
+        return routeSegments.join('..');
+    }
+
+    /**
+     *
      *
      * @for Fms
      * @method init
