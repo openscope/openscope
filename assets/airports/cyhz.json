@@ -1,8 +1,8 @@
 {
     "radio": {
         "twr": "Halifax Tower",
-        "app": "Halifax Departure",
-        "dep": "Halifax Arrival"
+        "app": "Halifax Arrival",
+        "dep": "Halifax Departure"
     },
     "icao": "CYHZ",
     "iata": "YHZ",
