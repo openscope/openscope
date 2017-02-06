@@ -8,6 +8,7 @@ import _isNil from 'lodash/isNil';
 import _isString from 'lodash/isString';
 import _map from 'lodash/map';
 import AircraftFlightManagementSystem from './FlightManagementSystem/AircraftFlightManagementSystem';
+import ModeController from './ModeControl/ModeController';
 import Fms from './FlightManagementSystem/Fms';
 import AircraftStripView from './AircraftStripView';
 import RouteModel from '../navigationLibrary/Route/RouteModel';
@@ -243,6 +244,8 @@ export default class Aircraft {
         this.altitude = _get(data, 'altitude', this.altitude);
         this.speed = _get(data, 'speed', this.speed);
 
+        this.modeController = new ModeController();
+        console.log('::: MCP', this.modeController);
         this._f = new Fms(data, this.initialRunwayAssignment, this._navigationLibrary);
         console.log('::: FMS', this._f);
     }
@@ -339,6 +342,24 @@ export default class Aircraft {
                 this.fms.climbViaSID();
             }
         }
+    }
+
+    /**
+     *
+     *
+     */
+    setMcpMode(modeSelector, mode) {
+        console.log('setMcpMode:', modeSelector, mode);
+        this.modeController[modeSelector] = mode;
+    }
+
+    /**
+     *
+     *
+     */
+    setMcpModeValue(fieldName, value) {
+        console.log('setMcpModeValue:', fieldName, value);
+        this.modeController[fieldName] = value;
     }
 
     cleanup() {

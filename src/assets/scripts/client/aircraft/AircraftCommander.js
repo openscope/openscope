@@ -25,6 +25,11 @@ import {
     WAYPOINT_NAV_MODE,
     FP_LEG_TYPE
 } from '../constants/aircraftConstants';
+import {
+    MCP_MODES,
+    MCP_MODE_NAME,
+    MCP_PROPERTY_MAP
+} from './ModeControl/modeControlConstants';
 
 
 /**
@@ -206,6 +211,7 @@ export default class AircraftCommander {
         let amount = 0;
         let instruction;
 
+        // TODO: this should be handled in the commandParser
         if (_isNaN(heading)) {
             return ['fail', 'heading not understood'];
         }
@@ -219,6 +225,9 @@ export default class AircraftCommander {
                 heading = radiansToDegrees(aircraft.heading) + amount;
             }
         }
+
+        aircraft.setMcpModeValue(MCP_PROPERTY_MAP.HEADING, heading);
+        aircraft.setMcpMode(MCP_MODE_NAME.HEADING, MCP_MODES.HEADING.HOLD);
 
         // TODO: this probably shouldn't be the AircraftInstanceModel's job. this logic should belong somewhere else.
         // Update the FMS
@@ -362,6 +371,9 @@ export default class AircraftCommander {
             ceiling += 1000;
         }
 
+        aircraft.setMcpModeValue(MCP_PROPERTY_MAP.ALTITUDE, altitude);
+        aircraft.setMcpMode(MCP_MODE_NAME.ALTITUDE, MCP_MODES.ALTITUDE.HOLD);
+
         aircraft.fms.setCurrent({ expedite: shouldExpedite });
         aircraft.fms.setAll({
             // TODO: enumerate the magic numbers
@@ -405,6 +417,9 @@ export default class AircraftCommander {
      * @method runClimbViaSID
      */
     runClimbViaSID(aircraft) {
+        // aircraft.setMcpModeValue(MCP_PROPERTY_MAP.ALTITUDE, altitude);
+        aircraft.setMcpMode(MCP_MODE_NAME.ALTITUDE, MCP_MODES.ALTITUDE.VNAV);
+
         if (aircraft.fms.currentLeg.type !== FP_LEG_TYPE.SID || !aircraft.fms.climbViaSID()) {
             const isWarning = true;
 
@@ -430,6 +445,9 @@ export default class AircraftCommander {
      * @return {boolean|undefined}
      */
     runDescendViaSTAR(aircraft) {
+        // this.setMcpModeValue(MCP_PROPERTY_MAP.ALTITUDE, altitude);
+        this.setMcpMode(MCP_MODE_NAME.ALTITUDE, MCP_MODES.ALTITUDE.VNAV);
+
         if (!aircraft.fms.descendViaSTAR() || !aircraft.fms.following.star) {
             const isWarning = true;
             this._uiController.ui_log(`${aircraft.getCallsign()}, unable to descend via STAR`, isWarning);
@@ -460,6 +478,9 @@ export default class AircraftCommander {
         if (_isNaN(speed)) {
             return ['fail', 'speed not understood'];
         }
+
+        aircraft.setMcpModeValue(MCP_PROPERTY_MAP.SPEED, speed);
+        aircraft.setMcpMode(MCP_MODE_NAME.SPEED, MCP_MODES.SPEED.HOLD);
 
         const clampedSpeed = clamp(aircraft.model.speed.min, speed, aircraft.model.speed.max);
         aircraft.fms.setAll({ speed: clampedSpeed });
@@ -632,6 +653,9 @@ export default class AircraftCommander {
         if (_isNil(this._navigationLibrary.findFixByName(fixname))) {
             return ['fail', `unable to find fix called ${fixname}`];
         }
+
+        aircraft._f.skipToWaypoint(fixName);
+        aircraft.setMcpMode(MCP_MODE_NAME.LNAV, MCP_MODES.HEADING.LNAV);
 
         // remove intermediate fixes
         if (aircraft.mode === FLIGHT_MODES.TAKEOFF) {
