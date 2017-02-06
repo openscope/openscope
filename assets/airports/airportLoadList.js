@@ -288,6 +288,12 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             wip: false
         },
         {
+            icao: 'rjbb',
+            level: 'hard',
+            name: 'Osaka Kansai International Airport',
+            wip: true
+        },
+        {
             icao: 'rjtt',
             level: 'hard',
             name: 'Tokyo Haneda International Airport',
