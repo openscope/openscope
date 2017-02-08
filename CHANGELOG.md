@@ -31,7 +31,7 @@
 
 
 ### Bugfixes
-- Adds the required space between 'fh' and its argument in the tutorial [#201]
+- Adds the required space between 'fh' and its argument in the tutorial [#201](https://github.com/openscope/openscope/issues/201)
 - Adds a default position value to `SpawnPatternModel` so aircraft have, at least, a `[0, 0]` starting position [#207](https://github.com/openscope/openscope/issues/207)
 - Ensures data block colored bars are all the same width (3px), regardless of callsign length [#210](https://github.com/openscope/openscope/issues/210)
 
