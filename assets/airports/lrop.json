@@ -14,7 +14,7 @@
     "rr_radius_nm": 5,          
     "rr_center": ["N44d34m16.00", "E26d05m06.00"],
     "has_terrain": false,        
-    "wind": {     
+    "wind": {
         "angle": 0,  
         "speed": 0  
     },
@@ -31,8 +31,7 @@
             ["N044d04m47.000", "E025d15m11.000"],
             ["N044d37m37.000", "E025d08m58.000"]
         ]
-    }
-    ],
+    }],
     "restricted": [{
         "name": "LRR3",
         "height": "10500ft",
@@ -400,6 +399,23 @@
                 ["TOSVI", "UVALU", "OP267", "INDOR", "OP265", "OP264", "BOGVI", "OP262", "OP261", "RARIT"]
             ]
         },
+        "TOSVI1R" : {
+            "icao": "TOSVI1R",
+            "name": "Tosvi One Romeo Arrival",
+            "suffix": {"26R": "", "26L": ""},
+            "entryPoints": {
+                "TOSVI": ["TOSVI"]
+            },
+            "body": [], 
+            "rwy": {
+                "26R": ["OP269", ["OP268", "A70+|S230-"], ["ESUXU", "S230-"], "ITVUK", ["IVDEK", "S220-"], "OP262", "OP261", ["RARIT", "A25+|S210-"]],
+                "26L": ["OP269", ["OP268", "A70+|S230-"], ["ESUXU", "S230-"], "ITVUK", ["IVDEK", "S220-"], "OP262", "OP261", ["LEVTA", "A25+|S210-"]]
+            },
+            "draw": [
+                ["TOSVI", "OP269", "OP268", "ESUXU", "ITVUK", "IVDEK", "OP262", "OP261", "LEVTA"],
+                ["TOSVI", "OP269", "OP268", "ESUXU", "ITVUK", "IVDEK", "OP262", "OP261", "RARIT"]
+            ]
+        },
         "SORDU" : {
             "icao": "SORDU",
             "name": "Sordu Arrival",
@@ -613,7 +629,7 @@
                 ["LOT", 1]
             ]
         },
-        {
+        {   
             "origin": "",
             "destination": "LROP",
             "category": "arrival",
