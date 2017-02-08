@@ -941,36 +941,7 @@ export default class Aircraft {
         } else if (this.fms.currentWaypoint.navmode === WAYPOINT_NAV_MODE.FIX) {
             this.updateTargetTowardsNextFix();
         } else if (this.fms.currentWaypoint.navmode === WAYPOINT_NAV_MODE.HOLD) {
-            const hold = this.fms.currentWaypoint.hold;
-            const angle_off_of_leg_hdg = abs(angle_offset(this.heading, this.target.heading));
-
-            // within ~2° of upwd/dnwd
-            if (angle_off_of_leg_hdg < 0.035) {
-                offset = getOffset(this, hold.fixPos);
-
-                // entering hold, just passed the fix
-                if (hold.timer === null && offset[1] < 0 && offset[2] < 2) {
-                    // Force aircraft to enter the hold immediately
-                    hold.timer = -999;
-                }
-
-                // Holding Logic
-                // time-based hold legs
-                if (hold.timer && hold.legLength.includes('min')) {
-                    if (hold.timer === -1) {
-                        // save the time
-                        hold.timer = window.gameController.game.time;
-                    } else if (window.gameController.game.time >= hold.timer + parseInt(hold.legLength.replace('min', ''), 10) * 60) {
-                        // time to turn
-                        this.target.heading += Math.PI;   // turn to other leg
-                        this.target.turn = hold.dirTurns;
-                        hold.timer = -1; // reset the timer
-                    } else if (hold.legLength.includes('nm')) {
-                        // distance-based hold legs
-                        // not yet implemented
-                    }
-                }
-            }
+            this.updateTargetPrepareAircraftForHold();
         } else {
             this.target.heading = this.fms.currentWaypoint.heading;
             this.target.turn = this.fms.currentWaypoint.turn;
@@ -1280,6 +1251,45 @@ export default class Aircraft {
         } else {
             this.target.heading = vradial(vector_to_fix) - Math.PI;
             this.target.turn = null;
+        }
+    }
+
+    /**
+     * This will sets up and prepares the aircraft to hold
+     *
+     * @for AircraftInstanceModel
+     * @method updateTargetPrepareAircraftForHold
+     */
+    updateTargetPrepareAircraftForHold() {
+        const hold = this.fms.currentWaypoint.hold;
+        const angle_off_of_leg_hdg = abs(angle_offset(this.heading, this.target.heading));
+
+        // within ~2° of upwd/dnwd
+        if (angle_off_of_leg_hdg < 0.035) {
+            const offset = getOffset(this, hold.fixPos);
+
+            // entering hold, just passed the fix
+            if (hold.timer === null && offset[1] < 0 && offset[2] < 2) {
+                // Force aircraft to enter the hold immediately
+                hold.timer = -999;
+            }
+
+            // Holding Logic
+            // time-based hold legs
+            if (hold.timer && hold.legLength.includes('min')) {
+                if (hold.timer === -1) {
+                    // save the time
+                    hold.timer = window.gameController.game.time;
+                } else if (window.gameController.game.time >= hold.timer + parseInt(hold.legLength.replace('min', ''), 10) * 60) {
+                    // time to turn
+                    this.target.heading += Math.PI;   // turn to other leg
+                    this.target.turn = hold.dirTurns;
+                    hold.timer = -1; // reset the timer
+                } else if (hold.legLength.includes('nm')) {
+                    // distance-based hold legs
+                    // not yet implemented
+                }
+            }
         }
     }
 

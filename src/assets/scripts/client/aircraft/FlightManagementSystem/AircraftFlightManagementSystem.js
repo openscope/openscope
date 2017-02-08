@@ -926,8 +926,8 @@ export default class AircraftFlightManagementSystem {
             return null;
         }
 
-        const currentWaypoint = this.currentLeg.waypoints[this.current[WAYPOINT_WITHIN_LEG]]
-            .ensureValidContentsForAircraft(this.my_aircraft);
+        const currentWaypoint = this.currentLeg.waypoints[this.current[WAYPOINT_WITHIN_LEG]];
+        currentWaypoint.ensureValidContentsForAircraft(this.my_aircraft);
 
         return currentWaypoint;
     }
