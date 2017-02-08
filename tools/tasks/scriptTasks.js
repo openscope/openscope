@@ -1,20 +1,24 @@
 /* eslint-disable */
-'use strict';
 
 module.exports = function(gulp, config) {
-    var OPTIONS = config;
+    const OPTIONS = config;
 
-    var browserify = require('browserify');
-    var babelify = require('babelify');
-    var babel = require('gulp-babel');
-    var sourcemaps = require('gulp-sourcemaps');
-    var path = require('path');
-    var source = require('vinyl-source-stream');
-    var buffer = require('vinyl-buffer');
+    const browserify = require('browserify');
+    const babelify = require('babelify');
+    const babel = require('gulp-babel');
+    const uglify = require('gulp-uglify');
+    const gulpif = require('gulp-if');
+    const sourcemaps = require('gulp-sourcemaps');
+    const path = require('path');
+    const source = require('vinyl-source-stream');
+    const buffer = require('vinyl-buffer');
+
+    const cli = require('../cli');
 
     ////////////////////////////////////////////////////////////////////
     // BABEL
     ////////////////////////////////////////////////////////////////////
+    console.log(cli.argv);
     gulp.task('babel', function () {
         browserify({
             entries: OPTIONS.FILE.JS_ENTRY_CLIENT,
@@ -28,6 +32,7 @@ module.exports = function(gulp, config) {
         .pipe(source('bundle.js'))
         .pipe(buffer())
         .pipe(sourcemaps.init({ loadMaps: true }))
+        .pipe(gulpif(cli.argv.isProd, uglify()))
         .pipe(sourcemaps.write('./'))
         .pipe(gulp.dest(OPTIONS.DIR.BUILD_SCRIPTS_CLIENT));
     });
@@ -43,10 +48,10 @@ module.exports = function(gulp, config) {
     ////////////////////////////////////////////////////////////////////
     // ESLINT
     ////////////////////////////////////////////////////////////////////
-    var gutil = require('gulp-util');
-    var eslint = require('gulp-eslint');
-    var Table = require('cli-table');
-    var t = new Table({
+    const gutil = require('gulp-util');
+    const eslint = require('gulp-eslint');
+    const Table = require('cli-table');
+    const t = new Table({
         head: ['Filename', 'Errors', 'Wranings']
     });
 

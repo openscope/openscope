@@ -7,7 +7,7 @@
     "npm": "3.10.8"
   },
   "scripts": {
-    "postinstall": "gulp build",
+    "postinstall": "gulp build --prod",
     "test": "nyc --require babel-core/register ava --serial --concurrency=5",
     "build": "gulp dist && npm run test",
     "report": "nyc report --reporter=cobertura --reporter=lcov",
@@ -106,10 +106,12 @@
     "gulp-concat": "^2.6.0",
     "gulp-connect": "^5.0.0",
     "gulp-eslint": "^3.0.1",
+    "gulp-if": "^2.0.2",
     "gulp-imagemin": "^3.0.3",
     "gulp-minify-css": "^1.2.4",
     "gulp-rename": "^1.2.2",
     "gulp-sourcemaps": "^1.6.0",
+    "gulp-uglify": "^2.0.1",
     "gulp-util": "^3.0.7",
     "nyc": "^6.2.0",
     "path": "^0.12.7",
@@ -117,6 +119,7 @@
     "run-sequence": "^1.2.2",
     "sinon": "^1.17.6",
     "vinyl-buffer": "^1.0.0",
-    "vinyl-source-stream": "^1.1.0"
+    "vinyl-source-stream": "^1.1.0",
+    "yargs": "^6.6.0"
   }
 }
