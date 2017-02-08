@@ -34,6 +34,14 @@ ava('.findAirlineById() returns an AirlineModel when supplied an airlineId witho
     t.true(result.icao === 'aal');
 });
 
+ava('.findAirlineById() returns an AirlineModel when supplied an airlineId in uppercase', (t) => {
+    const collection = new AirlineCollection(AIRLINE_DEFINITION_LIST_MOCK);
+    const result = collection.findAirlineById('AAL');
+
+    t.true(result instanceof AirlineModel);
+    t.true(result.icao === 'aal');
+});
+
 ava('.findAirlineById() returns an AirlineModel when supplied an airlineId with fleet', (t) => {
     const collection = new AirlineCollection(AIRLINE_DEFINITION_LIST_MOCK);
     const result = collection.findAirlineById('ual/long');
