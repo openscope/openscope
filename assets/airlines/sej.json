@@ -1,7 +1,8 @@
 {
+  "icao": "sej",
   "name": "SpiceJet",
   "callsign": {
-    "name": "SPICEJET",
+    "name": "Spicejet",
     "length": 3
   },
   "fleets": {

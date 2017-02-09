@@ -1,4 +1,5 @@
 {
+  "icao": "dal",
   "name": "Delta Air Lines",
   "callsign": {
     "name": "Delta",
@@ -23,6 +24,7 @@
       ["B752", 22 ],
       ["B753", 16 ],
       ["B763", 71 ],
+      ["B764", 21 ],
       ["b77l", 18 ]
     ],
     "default": [
