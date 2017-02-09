@@ -317,9 +317,9 @@
             "method": "random",
             "rate": 2.5,
             "airlines": [
-                ["cessna", 20],
-                ["fastga", 20],
-                ["lightga", 20],
+                ["n/cessna", 20],
+                ["n/fastGA", 20],
+                ["n/lightGA", 20],
                 ["baw", 1],
                 ["ryr", 20],
                 ["ein", 10],
@@ -339,9 +339,9 @@
             "method": "random",
             "rate": 2.5,
             "airlines": [
-                ["cessna", 20],
-                ["fastga", 20],
-                ["lightga", 20],
+                ["n/cessna", 20],
+                ["n/fastGA", 20],
+                ["n/lightGA", 20],
                 ["baw", 1],
                 ["ryr", 20],
                 ["ein", 10],
@@ -361,9 +361,9 @@
             "method": "random",
             "rate": 2.5,
             "airlines": [
-                ["cessna", 20],
-                ["fastga", 20],
-                ["lightga", 20],
+                ["n/cessna", 20],
+                ["n/fastGA", 20],
+                ["n/lightGA", 20],
                 ["baw", 1],
                 ["ryr", 20],
                 ["ein", 10],
@@ -383,9 +383,9 @@
             "method": "random",
             "rate": 2.5,
             "airlines": [
-                ["cessna", 20],
-                ["fastga", 20],
-                ["lightga", 20],
+                ["n/cessna", 20],
+                ["n/fastGA", 20],
+                ["n/lightGA", 20],
                 ["baw", 1],
                 ["ryr", 20],
                 ["ein", 10],
@@ -405,9 +405,9 @@
             "method": "random",
             "rate": 2.5,
             "airlines": [
-                ["cessna", 20],
-                ["fastga", 20],
-                ["lightga", 20],
+                ["n/cessna", 20],
+                ["n/fastGA", 20],
+                ["n/lightGA", 20],
                 ["baw", 1],
                 ["ryr", 20],
                 ["ein", 10],
@@ -427,9 +427,9 @@
             "method": "random",
             "rate": 2.5,
             "airlines": [
-                ["cessna", 20],
-                ["fastga", 20],
-                ["lightga", 20],
+                ["n/cessna", 20],
+                ["n/fastGA", 20],
+                ["n/lightGA", 20],
                 ["baw", 1],
                 ["ryr", 20],
                 ["ein", 10],
@@ -449,9 +449,9 @@
             "method": "random",
             "rate": 2.5,
             "airlines": [
-                ["cessna", 20],
-                ["fastga", 20],
-                ["lightga", 20],
+                ["n/cessna", 20],
+                ["n/fastGA", 20],
+                ["n/lightGA", 20],
                 ["baw", 1],
                 ["ryr", 20],
                 ["ein", 10],
@@ -471,9 +471,9 @@
             "method": "random",
             "rate": 2.5,
             "airlines": [
-                ["cessna", 20],
-                ["fastga", 20],
-                ["lightga", 20],
+                ["n/cessna", 20],
+                ["n/fastGA", 20],
+                ["n/lightGA", 20],
                 ["baw", 1],
                 ["ryr", 20],
                 ["ein", 10],
@@ -493,9 +493,9 @@
             "method": "random",
             "rate": 2.5,
             "airlines": [
-                ["cessna", 20],
-                ["fastga", 20],
-                ["lightga", 20],
+                ["n/cessna", 20],
+                ["n/fastGA", 20],
+                ["n/lightGA", 20],
                 ["baw", 1],
                 ["ryr", 20],
                 ["ein", 10],
@@ -515,9 +515,9 @@
             "method": "random",
             "rate": 2.5,
             "airlines": [
-                ["cessna", 20],
-                ["fastga", 20],
-                ["lightga", 20],
+                ["n/cessna", 20],
+                ["n/fastGA", 20],
+                ["n/lightGA", 20],
                 ["baw", 1],
                 ["ryr", 20],
                 ["ein", 10],
@@ -537,9 +537,9 @@
             "method": "random",
             "rate": 2.5,
             "airlines": [
-                ["cessna", 20],
-                ["fastga", 20],
-                ["lightga", 20],
+                ["n/cessna", 20],
+                ["n/fastGA", 20],
+                ["n/lightGA", 20],
                 ["baw", 1],
                 ["ryr", 20],
                 ["ein", 10],
@@ -562,7 +562,7 @@
                 ["aca", 3],
                 ["aal", 3],
                 ["baw", 1],
-                ["fastga", 3],
+                ["n/fastGA", 3],
                 ["ual", 3],
                 ["dal", 3],
                 ["ein", 5]
@@ -578,7 +578,7 @@
             "method": "random",
             "rate": 3,
             "airlines": [
-                ["fastga", 5],
+                ["n/fastGA", 5],
                 ["ryr", 10],
                 ["ein", 5]
             ]
@@ -593,7 +593,7 @@
             "method": "random",
             "rate": 3,
             "airlines": [
-                ["fastga", 5],
+                ["n/fastGA", 5],
                 ["baw", 1]
             ]
         },
@@ -607,7 +607,7 @@
             "method": "random",
             "rate": 3,
             "airlines": [
-                ["fastga", 5],
+                ["n/fastGA", 5],
                 ["ryr", 10],
                 ["ein", 3]
             ]
