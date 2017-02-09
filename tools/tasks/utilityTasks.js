@@ -4,6 +4,7 @@
 module.exports = (gulp, config) => {
     const OPTIONS = config;
     const rimraf = require('rimraf');
+    const runSequence = require('run-sequence');
 
     ////////////////////////////////////////////////////////////////////
     // SPAWN A CONNECT SERVER
@@ -20,37 +21,35 @@ module.exports = (gulp, config) => {
     });
 
     ////////////////////////////////////////////////////////////////////
-    // CLEAN DESTINATION SCRIPT FILES
+    // CLEAN DESTINATION SCRIPT FILES CLIENT
     ////////////////////////////////////////////////////////////////////
-    gulp.task('clean:build:scripts', (cb) => {
+    gulp.task('clean:scripts', (cb) => {
         rimraf(OPTIONS.DIR.BUILD_SCRIPTS_CLIENT, cb);
     });
 
     ////////////////////////////////////////////////////////////////////
-    // CLEAN DESTINATION SCRIPT FILES
+    // CLEAN DESTINATION SCRIPT FILES SERVER
     ////////////////////////////////////////////////////////////////////
-    gulp.task('clean:build:server', (cb) => {
+    gulp.task('clean:server', (cb) => {
         rimraf(OPTIONS.DIR.BUILD_SCRIPTS_SERVER, cb);
     });
 
     ////////////////////////////////////////////////////////////////////
     // CLEAN DESTINATION STYLE FILES
     ////////////////////////////////////////////////////////////////////
-    gulp.task('clean:build:styles', (cb) => {
+    gulp.task('clean:styles', (cb) => {
         rimraf(OPTIONS.DIR.BUILD_STYLE, cb);
+    });
+
+    ////////////////////////////////////////////////////////////////////
+    // CLEAN DIST DIRECTORY
+    ////////////////////////////////////////////////////////////////////
+    gulp.task('clean:dist', (cb) => {
+        rimraf(OPTIONS.DIR.DIST_ASSETS, cb);
     });
 
     ////////////////////////////////////////////////////////////////////
     // TASKS
     ////////////////////////////////////////////////////////////////////
-    gulp.task('clean:build', [
-        'clean:build:scripts',
-        'clean:build:styles'
-    ]);
-
-    gulp.task('clean:dist', [
-        'clean:build'
-    ]);
-
-    gulp.task('clean', ['clean:build']);
+    gulp.task('clean', ['clean:scripts', 'clean:server', 'clean:styles']);
 }

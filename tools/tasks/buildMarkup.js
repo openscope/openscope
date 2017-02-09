@@ -16,19 +16,22 @@ function buildMarkup() {
         `!${paths.DIR.SRC}/templates/**`
     ];
 
+    const versionStr = cli.argv.isProd
+        ? pkg.version
+        : new Date().getTime();
+
     return gulp.src(src)
         .pipe(hb()
             .partials(`${paths.DIR.SRC}/templates/**/*.hbs`)
             .helpers(handlebarsHelpers)
             .helpers(handlebarsLayouts)
             .data({
-                version: pkg.version,
-                date: new Date().toISOString(),
-                env: process.env.NODE_ENV,
+                version: versionStr,
+                date: new Date().toISOString()
             })
         )
         .pipe(rename(path => { path.extname = '.html'; }))
-        .pipe(gulp.dest('./public'));
+        .pipe(gulp.dest(paths.DIR.DIST));
 }
 
 module.exports = buildMarkup;

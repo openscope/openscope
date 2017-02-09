@@ -49,7 +49,8 @@ options.DIR = {
     BUILD_STYLE: buildStylesDir,
     BUILD_IMAGES: buildImagesDir,
 
-    DIST: dist
+    DIST: dist,
+    DIST_ASSETS: path.join(dist, 'assets')
 };
 
 // for specific files
@@ -61,6 +62,7 @@ options.FILE = {
 };
 
 options.GLOB = {
+    STATIC_ASSETS: path.join(options.DIR.BUILD_ASSETS, '**/*'),
     SRC: path.join(options.DIR.SRC, '**/*'),
     BUILD: path.join(options.DIR.BUILD, '**/*'),
     JS: path.join(options.DIR.SRC_SCRIPTS, '**/*.js'),

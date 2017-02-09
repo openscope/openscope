@@ -7,9 +7,9 @@
     "npm": "3.10.8"
   },
   "scripts": {
-    "postinstall": "gulp build --prod",
+    "postinstall": "gulp build --prod; gulp copy:dist",
     "test": "nyc --require babel-core/register ava --serial --concurrency=5",
-    "build": "gulp dist && npm run test",
+    "build": "gulp build && npm run test",
     "report": "nyc report --reporter=cobertura --reporter=lcov",
     "coverage": "npm run test && npm run report",
     "lint": "eslint src/**; exit 0",

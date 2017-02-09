@@ -26,18 +26,14 @@ gulp.task('lint', ['lint:scripts']);
 
 gulp.task('build', () => {
     runSequence(
-        'build:server',
+        'clean',
+        'clean:dist',
         'build:scripts',
-        'build:styles'
-    );
+        'build:server',
+        'build:styles',
+        'markup'
+    )
 });
 
-gulp.task('dist', () => {
-    runSequence(
-        'clean:dist',
-        ['build:scripts', 'build:styles']
-        // 'lint:scripts'
-    );
-});
 gulp.task('watch', ['watch:scripts', 'watch:styles']);
 gulp.task('default', ['build']);

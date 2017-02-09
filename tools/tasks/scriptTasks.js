@@ -88,8 +88,8 @@ module.exports = function(gulp, config) {
     ////////////////////////////////////////////////////////////////////
     // TASKS
     ////////////////////////////////////////////////////////////////////
-    gulp.task('build:scripts', ['clean:build:scripts', 'babel']);
-    gulp.task('build:server', ['clean:build:server', 'babel-server']);
+    gulp.task('build:scripts', ['babel']);
+    gulp.task('build:server', ['babel-server']);
 
     gulp.task('watch:scripts', function() {
         gulp.watch(OPTIONS.GLOB.JS, ['babel-server', 'babel']);
