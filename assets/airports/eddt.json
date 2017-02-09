@@ -313,7 +313,7 @@
           "method": "random",
           "rate": 7,
           "airlines": [
-              ["fastga", 5],
+              ["n/fastga", 5],
               ["ber", 20],
               ["gwi", 15],
               ["dlh", 10],
@@ -337,7 +337,7 @@
           "method": "random",
           "rate": 7,
           "airlines": [
-              ["fastga", 5],
+              ["n/fastga", 5],
               ["ber", 20],
               ["gwi", 15],
               ["dlh", 10],
@@ -361,7 +361,7 @@
           "method": "random",
           "rate": 7,
           "airlines": [
-              ["fastga", 5],
+              ["n/fastga", 5],
               ["ber", 20],
               ["gwi", 15],
               ["dlh", 10],
@@ -385,7 +385,7 @@
           "method": "random",
           "rate": 7,
           "airlines": [
-              ["fastga", 5],
+              ["n/fastga", 5],
               ["ber", 20],
               ["gwi", 15],
               ["dlh", 10],
@@ -409,7 +409,7 @@
           "method": "random",
           "rate": 7,
           "airlines": [
-              ["fastga", 5],
+              ["n/fastga", 5],
               ["ber", 20],
               ["gwi", 15],
               ["dlh", 10],
