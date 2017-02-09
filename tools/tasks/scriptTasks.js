@@ -18,7 +18,6 @@ module.exports = function(gulp, config) {
     ////////////////////////////////////////////////////////////////////
     // BABEL
     ////////////////////////////////////////////////////////////////////
-    console.log(cli.argv);
     gulp.task('babel', function () {
         browserify({
             entries: OPTIONS.FILE.JS_ENTRY_CLIENT,

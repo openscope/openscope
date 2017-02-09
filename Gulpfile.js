@@ -1,9 +1,11 @@
 /* eslint-disable */
 'use strict';
 
-var gulp = require('gulp');
-var runSequence = require('run-sequence');
-var OPTIONS = require('./tools/paths');
+const gulp = require('gulp');
+const runSequence = require('run-sequence');
+const OPTIONS = require('./tools/paths');
+
+const buildMarkup = require('./tools/tasks/buildMarkup');
 
 ////////////////////////////////////////////////////////////////////
 // EXTERNAL TASKS
@@ -18,6 +20,8 @@ require('./tools/tasks/utilityTasks')(gulp, OPTIONS);
 ////////////////////////////////////////////////////////////////////
 // UNIFIED GULP TASKS
 ////////////////////////////////////////////////////////////////////
+gulp.task('markup', () => buildMarkup());
+
 gulp.task('lint', ['lint:scripts']);
 
 gulp.task('build', () => {
