@@ -1,6 +1,6 @@
 {
   "name": "Avianca Brasil",
-  "ICAO": "ONE",
+  "icao": "one",
   "callsign": {
     "name": "Avianca",
     "length": 3

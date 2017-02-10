@@ -1,4 +1,5 @@
 {
+  "icao": "cfg",
   "name": "Condor Flugdienst",
   "callsign": {
     "name": "Condor",

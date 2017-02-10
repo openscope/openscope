@@ -1,9 +1,12 @@
 /* eslint-disable */
 'use strict';
 
-var gulp = require('gulp');
-var runSequence = require('run-sequence');
-var OPTIONS = require('./tools/paths');
+const gulp = require('gulp');
+const runSequence = require('run-sequence');
+const OPTIONS = require('./tools/paths');
+
+const buildMarkup = require('./tools/tasks/buildMarkup');
+const jsonAssembler = require('./tools/tasks/jsonAssembler');
 
 ////////////////////////////////////////////////////////////////////
 // EXTERNAL TASKS
@@ -18,22 +21,22 @@ require('./tools/tasks/utilityTasks')(gulp, OPTIONS);
 ////////////////////////////////////////////////////////////////////
 // UNIFIED GULP TASKS
 ////////////////////////////////////////////////////////////////////
+gulp.task('markup', () => buildMarkup());
+gulp.task('jsonAssembler', () => jsonAssembler());
+
 gulp.task('lint', ['lint:scripts']);
 
 gulp.task('build', () => {
     runSequence(
-        'build:server',
+        'clean',
+        'clean:dist',
         'build:scripts',
-        'build:styles'
-    );
+        'build:server',
+        'build:styles',
+        'jsonAssembler',
+        'markup'
+    )
 });
 
-gulp.task('dist', () => {
-    runSequence(
-        'clean:dist',
-        ['build:scripts', 'build:styles']
-        // 'lint:scripts'
-    );
-});
 gulp.task('watch', ['watch:scripts', 'watch:styles']);
 gulp.task('default', ['build']);

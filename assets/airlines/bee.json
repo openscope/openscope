@@ -1,4 +1,5 @@
-           {
+{
+  "icao": "bee",
   "name": "FlyBe",
   "callsign": {
     "name": "Jersey",

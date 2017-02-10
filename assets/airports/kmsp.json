@@ -225,8 +225,8 @@
     "airlines": [
       ["ual", 3],
       ["baw", 5],
-      ["fastga", 2],
-      ["lightga", 2]
+      ["n/fastGA", 2],
+      ["n/fastGA", 2]
     ]
   },
   "arrivals": [
@@ -240,7 +240,7 @@
       "airlines":  [
         ["ual", 2],
         ["baw", 5],
-        ["fastga", 1]
+        ["n/fastGA", 1]
       ]
     },
     {
@@ -253,7 +253,7 @@
       "airlines":  [
         ["ual", 3],
         ["baw", 1],
-        ["fastga", 2]
+        ["n/fastGA", 2]
       ]
     },
     {
@@ -266,7 +266,7 @@
       "airlines":  [
         ["ual", 2],
         ["baw", 5],
-        ["fastga", 20]
+        ["n/fastGA", 20]
       ]
     },
     {
@@ -279,7 +279,7 @@
       "airlines":  [
         ["ual", 5],
         ["baw", 1],
-        ["fastga", 3]
+        ["n/fastGA", 3]
       ]
     },
     {
@@ -290,7 +290,7 @@
       "type": "random",
       "frequency": 15,
       "airlines":  [
-        ["lightga", 20]
+        ["n/lightGA", 20]
       ]
     },
     {
@@ -303,7 +303,7 @@
       "airlines":  [
         ["ual", 10],
         ["baw", 1],
-        ["fastga", 20]
+        ["n/fastGA", 20]
       ]
     },
     {
@@ -316,7 +316,7 @@
       "airlines":  [
         ["ual", 10],
         ["baw", 10],
-        ["fastga", 1]
+        ["n/fastGA", 1]
       ]
     }
   ],
