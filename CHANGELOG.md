@@ -1,7 +1,7 @@
 ## 4.1.0 (February 20, 2017)
 ---
 ### Major
-- Changes over production server from GitHub pages to an [Express])(http://expressjs.com/) app hosted on [Heroku](http://heroku.com/). [#154](https://github.com/openscope/openscope/issues/154)
+- Removes GitHub Pages specific files and moves hosting out of GitHub Pages. [#154](https://github.com/openscope/openscope/issues/154)
 
 
 
