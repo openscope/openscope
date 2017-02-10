@@ -1,6 +1,3 @@
-/* eslint-disable */
-'use strict';
-
 const path = require('path');
 
 const ROOT = path.join(__dirname, '../');
@@ -17,6 +14,8 @@ const srcImagesDir = path.join(srcAssetsDir, 'images');
 
 const build = ROOT;
 const buildAssetsDir = path.join(ROOT, 'assets');
+const buildAssetsAircraft = path.join(buildAssetsDir, 'aircraft');
+const buildAssetsAirlines = path.join(buildAssetsDir, 'airlines');
 const buildFontsDir = path.join(buildAssetsDir, 'fonts');
 const buildScriptsDir = path.join(buildAssetsDir, 'scripts');
 const buildScriptsServerDir = path.join(buildScriptsDir, 'server');
@@ -42,6 +41,8 @@ options.DIR = {
 
     BUILD: build,
     BUILD_ASSETS: buildAssetsDir,
+    BUILD_ASSETS_AIRCRAFT: buildAssetsAircraft,
+    BUILD_ASSETS_AIRLINES: buildAssetsAirlines,
     BUILD_FONTS: buildFontsDir,
     BUILD_SCRIPTS: buildScriptsDir,
     BUILD_SCRIPTS_SERVER: buildScriptsServerDir,
@@ -63,6 +64,7 @@ options.FILE = {
 
 options.GLOB = {
     STATIC_ASSETS: path.join(options.DIR.BUILD_ASSETS, '**/*'),
+    STATIC_JSON: path.join(options.DIR.BUILD_ASSETS, '**/*.json'),
     SRC: path.join(options.DIR.SRC, '**/*'),
     BUILD: path.join(options.DIR.BUILD, '**/*'),
     JS: path.join(options.DIR.SRC_SCRIPTS, '**/*.js'),

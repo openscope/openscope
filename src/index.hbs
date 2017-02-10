@@ -1,61 +1,15 @@
 {{#extend "layout"}}
     {{#content "body" mode="append" }}
         <div id="clock"></div>
-        <div id="canvases">
-        </div>
-        <div id="log">
-        </div>
+        <div id="canvases"></div>
+        <div id="log"></div>
         <input id="command" placeholder="enter command" autofocus="true" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" />
-        <div id="sidebar">
-          <ul id="strips" class='nice-scrollbar'>
-          </ul>
-        </div>
-        <div id="score" title="Score">-</div>
-        <div id="controls">
-          <span class="toggle-labels control active" title="Toggle fix and runway labels">
-            <img src="assets/images/icons/labels.png" />
-          </span>
-          <span class="toggle-sids control active" title="Toggle SID display">
-            <img src="assets/images/icons/sids.png" />
-          </span>
-          <span class="toggle-restricted-areas control active" title="Toggle restricted areas">
-            <img src="assets/images/icons/restricted.png" />
-          </span>
-          <span class="toggle-terrain control active" title="Toggle terrain">
-            <img src="assets/images/icons/terrain.png" />
-            <!-- icon by http://www.flaticon.com/authors/ocha -->
-          </span>
-          <span class="fast-forwards control" title="Set time warp to 2">
-            <img src="assets/images/icons/fast-forwards.png" />
-          </span>
-          <span class="pause-toggle control" title="Pause simulation">
-            <img src="assets/images/icons/pause.png" />
-          </span>
-          <span class="speech-toggle control" title="Enable speech synthesis (experimental)">
-            <img src="assets/images/icons/speech.png" />
-          </span>
-          <span class="switch-airport control" title="Switch airport">
-            <img src="assets/images/icons/airport.png" />
-          </span>
-          <span class="toggle-tutorial control" title="Open tutorial">
-            <img src="assets/images/icons/tutorial.png" />
-          </span>
-          <span id="toggle-options" class="control" title="Open options">
-            <img src="assets/images/icons/cog.png" />
-          </span>
-        </div>
-        <div id="airport-switch">
-          <p class="title">Select Airport</p>
-          <div id="airport-list" class="nice-scrollbar"></div>
-          <p id="airport-list-notes"></p>
-        </div>
-        <div id="paused">
-          <img src="assets/images/paused-overlay.png" title="Resume simulation" />
-        </div>
-        <div id="loading">
-          <img src="assets/images/splash-screen.gif" title="Jon Ross' ATC" />
-          <br><h3>Preparing your shift....</h3>
-        </div>
+        {{> _sidebar}}
+        {{> _score}}
+        {{> _controls}}
+        {{> _airportSwitch}}
+        {{> _paused}}
+        {{> _loadingOverlay}}
         {{> _loadingIndicator}}
     {{/content}}
 {{/extend}}

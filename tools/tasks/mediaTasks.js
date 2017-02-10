@@ -2,13 +2,13 @@
 'use strict';
 
 module.exports = function(gulp, config) {
-    var OPTIONS = config;
+    const OPTIONS = config;
 
     ////////////////////////////////////////////////////////////////////
     // OPTIMIZE AND COPY IMAGES
     ////////////////////////////////////////////////////////////////////
-    var imagemin = require('gulp-imagemin');
-    var cache = require('gulp-cache');
+    const imagemin = require('gulp-imagemin');
+    const cache = require('gulp-cache');
 
     gulp.task('minify-images', function(){
         return gulp.src(OPTIONS.GLOB.IMAGES)

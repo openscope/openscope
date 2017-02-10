@@ -6,6 +6,7 @@ const runSequence = require('run-sequence');
 const OPTIONS = require('./tools/paths');
 
 const buildMarkup = require('./tools/tasks/buildMarkup');
+const jsonAssembler = require('./tools/tasks/jsonAssembler');
 
 ////////////////////////////////////////////////////////////////////
 // EXTERNAL TASKS
@@ -21,6 +22,7 @@ require('./tools/tasks/utilityTasks')(gulp, OPTIONS);
 // UNIFIED GULP TASKS
 ////////////////////////////////////////////////////////////////////
 gulp.task('markup', () => buildMarkup());
+gulp.task('jsonAssembler', () => jsonAssembler());
 
 gulp.task('lint', ['lint:scripts']);
 
@@ -31,6 +33,7 @@ gulp.task('build', () => {
         'build:scripts',
         'build:server',
         'build:styles',
+        'jsonAssembler',
         'markup'
     )
 });
