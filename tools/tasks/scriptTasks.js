@@ -31,7 +31,7 @@ module.exports = function(gulp, config) {
         .pipe(source('bundle.js'))
         .pipe(buffer())
         .pipe(sourcemaps.init({ loadMaps: true }))
-        .pipe(gulpif(cli.argv.isProd, uglify()))
+        // .pipe(gulpif(cli.argv.isProd, uglify()))
         .pipe(sourcemaps.write('./'))
         .pipe(gulp.dest(OPTIONS.DIR.BUILD_SCRIPTS_CLIENT));
     });
