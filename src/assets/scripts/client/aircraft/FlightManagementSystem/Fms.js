@@ -3,10 +3,12 @@ import _findIndex from 'lodash/findIndex';
 import _isEmpty from 'lodash/isEmpty';
 import _isObject from 'lodash/isObject';
 import _map from 'lodash/map';
+import ModeController from '../ModeControl/ModeController';
 import LegModel from './LegModel';
 import { routeStringFormatHelper } from '../../navigationLibrary/Route/routeStringFormatHelper';
 
 /**
+ *
  *
  * This class should always be instantiated from an `AircraftInstanceModel` and
  * always instantiated with some form of a `spawnPatternModel`.
@@ -20,7 +22,7 @@ export default class Fms {
      * @param initialRunwayAssignment {string}
      * @param navigationLibrary {NavigationLibrary}
      */
-    constructor(aircraftInitProps, initialRunwayAssignment, navigationLibrary) {
+    constructor(aircraftInitProps, initialRunwayAssignment, typeDefinitionModel, navigationLibrary) {
         if (!_isObject(aircraftInitProps) || _isEmpty(aircraftInitProps)) {
             throw new TypeError('Invalid aircraftInitProps passed to Fms');
         }
@@ -33,6 +35,13 @@ export default class Fms {
          * @private
          */
         this._navigationLibrary = navigationLibrary;
+
+        /**
+         *
+         * @property _modeController
+         * @type {ModeController}
+         */
+        this._modeController = new ModeController(typeDefinitionModel);
 
         /**
          *
@@ -119,6 +128,31 @@ export default class Fms {
         this._runway = '';
         this.legCollection = [];
         this.category = '';
+    }
+
+    /**
+     *
+     *
+     */
+    setModeControllerMode(modeSelector, mode) {
+        this._modeController[modeSelector] = mode;
+    }
+
+    /**
+     *
+     *
+     */
+    setModeControllerValue(fieldName, value) {
+        this._modeController[fieldName] = value;
+    }
+
+    updateModesForArrival() {
+        this._modeController.setForArrival();
+    }
+
+
+    updateModesForDeparture() {
+        this._modeController.setForDeparture();
     }
 
     /**

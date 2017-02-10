@@ -3,6 +3,7 @@ import BaseModel from '../../base/BaseModel';
 import FixCollection from '../Fix/FixCollection';
 import Waypoint from '../../aircraft/FlightManagementSystem/Waypoint';
 import WaypointModel from '../../aircraft/FlightManagementSystem/WaypointModel';
+import { REGEX } from '../../constants/globalConstants';
 
 /**
  * @property NAME_INDEX
@@ -38,6 +39,51 @@ const ALTITUDE_RESTRICTION_PREFIX = 'A';
  * @final
  */
 const SPEED_RESTRICTION_PREFIX = 'S';
+
+/**
+ * Symbol denoting a greater than restriction
+ *
+ * @property ABOVE_SYMBOL
+ * @type {string}
+ * @final
+ */
+const ABOVE_SYMBOL = '+';
+
+/**
+ * Symbol denoting a less than restriction
+ *
+ * @property ABOVE_SYMBOL
+ * @type {string}
+ * @final
+ */
+const BELOW_SYMBOL = '-';
+
+/**
+ * Number to used to cnovert a FL altitude to an altitude in thousands
+ *
+ * @property ABOVE_SYMBOL
+ * @type {string}
+ * @final
+ */
+const FL_TO_THOUSANDS_MULTIPLIER = 100;
+
+/**
+ * Enemuration for an invalid index number.
+ *
+ * @property INVALID_INDEX
+ * @type {number}
+ * @final
+ */
+const INVALID_INDEX = -1;
+
+/**
+ * Enumeration for the radix value of `parseInt`
+ *
+ * @proeprty DECIMAL_RADIX
+ * @type {number}
+ * @final
+ */
+const DECIMAL_RADIX = 10;
 
 /**
  * A route waypoint describes a `fixName` and any altitude or speed restrictions for that fix.
@@ -93,9 +139,7 @@ export default class StandardRouteWaypointModel extends BaseModel {
         this._restrictions = null;
 
         /**
-         * NOT IN USE
-         *
-         * Required altitude for a fix
+         * Required altitude for a waypoint
          *
          * @property _altitude (optional)
          * @type {number}
@@ -104,11 +148,21 @@ export default class StandardRouteWaypointModel extends BaseModel {
          */
         this._altitude = -1;
 
+        /**
+         * Required speed for a waypoint
+         *
+         * @property _speed (optional)
+         * @type {string}
+         * @default null
+         * @private
+         */
+        this._speed = -1;
+
         // TODO: This will need to be implemented in the future as an emuneration. Something to the effect of: {BELOW|AT|ABOVE}
         /**
          * NOT IN USE
          *
-         * Altitude constraints, if any, for a fix.
+         * Altitude constraint, if any, for a waypoint.
          *
          * @property _altitudeConstraint (options)
          * @type {string}
@@ -120,14 +174,14 @@ export default class StandardRouteWaypointModel extends BaseModel {
         /**
          * NOT IN USE
          *
-         * Speed constraint, if any, for a fix.
+         * Speed constraint, if any, for a waypoint.
          *
-         * @property _speed (optional)
+         * @property _speedConstraint (optional)
          * @type {string}
          * @default null
          * @private
          */
-        this._speed = -1;
+        this._speedConstraint = '';
 
         /**
          * Positon information for the current waypoint
@@ -257,6 +311,7 @@ export default class StandardRouteWaypointModel extends BaseModel {
         this._altitude = -1;
         this._altitudeConstraint = '';
         this._speed = -1;
+        this._speedConstraint = '';
 
         return this;
     }
@@ -283,6 +338,7 @@ export default class StandardRouteWaypointModel extends BaseModel {
         return this;
     }
 
+    // TODO: this should be removed at the conclusion of feature/139
     /**
      * @for StandardRouteWaypointModel
      * @method generateFmsWaypoint
@@ -290,11 +346,15 @@ export default class StandardRouteWaypointModel extends BaseModel {
      * @return {Waypoint}
      */
     generateFmsWaypoint(airport) {
+        // the two shames below are because these values are now numbers and not strings,
+        // using .toString() here to keep this in line with the previous api.
         const fmsWaypoint = {
             fix: this.name,
             fixRestrictions: {
-                alt: this._altitude,
-                spd: this._speed
+                // shame
+                alt: this._altitude.toString(),
+                // shame
+                spd: this._speed.toString()
             }
         };
 
@@ -373,8 +433,10 @@ export default class StandardRouteWaypointModel extends BaseModel {
      * @param altitudeRestriction {string}
      * @private
      */
-    _setAltitudeRestriction(altitudeRestriction) {
-        this._altitude = altitudeRestriction.substr(1);
+    _setAltitudeRestriction(rawAltitudeStr) {
+        const altitudeRestriction = rawAltitudeStr.replace(REGEX.ALT_SPEED_RESTRICTION, '');
+
+        this._altitude = parseInt(altitudeRestriction, DECIMAL_RADIX) * FL_TO_THOUSANDS_MULTIPLIER;
     }
 
     /**
@@ -383,8 +445,10 @@ export default class StandardRouteWaypointModel extends BaseModel {
      * @param speedRestriction {string}
      * @private
      */
-    _setSpeedRestriction(speedRestriction) {
-        this._speed = speedRestriction.substr(1);
+    _setSpeedRestriction(rawSpeedRestrictionStr) {
+        const speedRestriction = rawSpeedRestrictionStr.replace(REGEX.ALT_SPEED_RESTRICTION, '');
+
+        this._speed = parseInt(speedRestriction, DECIMAL_RADIX);
     }
 
     /**

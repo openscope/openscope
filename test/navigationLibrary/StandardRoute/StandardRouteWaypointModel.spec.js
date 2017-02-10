@@ -69,8 +69,8 @@ ava('.generateFmsWaypoint() returns a new instance of an FMS Waypoint object', t
 
     t.true(result instanceof Waypoint);
     t.true(model.name === result.fix);
-    t.true(model._altitude === result.fixRestrictions.alt);
-    t.true(model._speed === result.fixRestrictions.spd);
+    t.true(model._altitude.toString() === result.fixRestrictions.alt);
+    t.true(model._speed.toString() === result.fixRestrictions.spd);
 });
 
 ava('.toWaypointModel() returns a new instance of a WaypointModel', t => {
@@ -80,7 +80,7 @@ ava('.toWaypointModel() returns a new instance of a WaypointModel', t => {
     t.true(result instanceof WaypointModel);
     t.true(result.name === model.name.toLowerCase());
     t.true(result.position instanceof PositionModel);
-    t.true(result.altitudeRestriction === 80);
+    t.true(result.altitudeRestriction === 8000);
     t.true(result.speedRestriction === 250);
 });
 
@@ -89,18 +89,18 @@ ava('._parseWaypointRestrictions() extracts alititude and speed restrictions fro
 
     model._parseWaypointRestrictions(RESTRICTIONS_MOCK);
 
-    t.true(model._altitude === '80+');
-    t.true(model._speed === '250');
+    t.true(model._altitude === 8000);
+    t.true(model._speed === 250);
 });
 
 ava('._parseWaypointRestrictions() extracts an alititude restriction from a waypointRestrictions string by calling ._setAltitudeRestriction()', t => {
     const model = new StandardRouteWaypointModel(['BAKRR', 'A80+']);
     const spy = sinon.spy(model, '_setAltitudeRestriction');
 
-    model._parseWaypointRestrictions('A80+');
+    model._parseWaypointRestrictions('A180+');
 
     t.true(spy.callCount === 1);
-    t.true(model._altitude === '80+');
+    t.true(model._altitude === 18000);
     t.true(model._speed === -1);
 });
 
@@ -112,7 +112,7 @@ ava('._parseWaypointRestrictions() extracts a speed restriction from a waypointR
 
     t.true(spy.callCount === 1);
     t.true(model._altitude === -1);
-    t.true(model._speed === '280');
+    t.true(model._speed === 280);
 });
 
 ava('._parseWaypointRestrictions() returns early if no paramater is received', t => {

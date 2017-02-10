@@ -1,5 +1,3 @@
-import _get from 'lodash/get';
-
 /**
  *
  * @class WaypointModel

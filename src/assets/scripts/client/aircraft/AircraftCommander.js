@@ -226,8 +226,7 @@ export default class AircraftCommander {
             }
         }
 
-        aircraft.setMcpModeValue(MCP_PROPERTY_MAP.HEADING, heading);
-        aircraft.setMcpMode(MCP_MODE_NAME.HEADING, MCP_MODES.HEADING.HOLD);
+        aircraft.setModeControllerModeAndValue(MCP_MODE_NAME.HEADING, MCP_MODES.HEADING.HOLD, MCP_PROPERTY_MAP.HEADING, heading);
 
         // TODO: this probably shouldn't be the AircraftInstanceModel's job. this logic should belong somewhere else.
         // Update the FMS
@@ -371,8 +370,7 @@ export default class AircraftCommander {
             ceiling += 1000;
         }
 
-        aircraft.setMcpModeValue(MCP_PROPERTY_MAP.ALTITUDE, altitude);
-        aircraft.setMcpMode(MCP_MODE_NAME.ALTITUDE, MCP_MODES.ALTITUDE.HOLD);
+        aircraft.setModeControllerModeAndValue(MCP_MODE_NAME.ALTITUDE, MCP_MODES.ALTITUDE.HOLD, MCP_PROPERTY_MAP.ALTITUDE, altitude);
 
         aircraft.fms.setCurrent({ expedite: shouldExpedite });
         aircraft.fms.setAll({
@@ -399,6 +397,19 @@ export default class AircraftCommander {
             return [true, 'unable to clear as filed'];
         }
 
+        aircraft.setModeControllerModeAndValue(
+            MCP_MODE_NAME.ALTITUDE,
+            MCP_MODES.ALTITUDE.VNAV,
+            MCP_PROPERTY_MAP.ALTITUDE,
+            aircraft._f.currentWaypoint.altitudeRestriction
+        );
+        aircraft.setModeControllerModeAndValue(
+            MCP_MODE_NAME.HEADING,
+            MCP_MODES.HEADING.LNAV,
+            MCP_PROPERTY_MAP.HEADING,
+            aircraft.heading
+        );
+
         const airport = this._airportController.airport_get();
         const { name: procedureName } = this._navigationLibrary.sidCollection.findRouteByIcao(aircraft.destination);
         const readback = {};
@@ -417,9 +428,6 @@ export default class AircraftCommander {
      * @method runClimbViaSID
      */
     runClimbViaSID(aircraft) {
-        // aircraft.setMcpModeValue(MCP_PROPERTY_MAP.ALTITUDE, altitude);
-        aircraft.setMcpMode(MCP_MODE_NAME.ALTITUDE, MCP_MODES.ALTITUDE.VNAV);
-
         if (aircraft.fms.currentLeg.type !== FP_LEG_TYPE.SID || !aircraft.fms.climbViaSID()) {
             const isWarning = true;
 
@@ -445,8 +453,12 @@ export default class AircraftCommander {
      * @return {boolean|undefined}
      */
     runDescendViaSTAR(aircraft) {
-        // this.setMcpModeValue(MCP_PROPERTY_MAP.ALTITUDE, altitude);
-        this.setMcpMode(MCP_MODE_NAME.ALTITUDE, MCP_MODES.ALTITUDE.VNAV);
+        aircraft.setModeControllerModeAndValue(
+            MCP_MODE_NAME.ALTITUDE,
+            MCP_MODES.ALTITUDE.VNAV,
+            MCP_PROPERTY_MAP.ALTITUDE,
+            aircraft._f.currentWaypoint.altitudeRestriction
+        );
 
         if (!aircraft.fms.descendViaSTAR() || !aircraft.fms.following.star) {
             const isWarning = true;
@@ -479,8 +491,7 @@ export default class AircraftCommander {
             return ['fail', 'speed not understood'];
         }
 
-        aircraft.setMcpModeValue(MCP_PROPERTY_MAP.SPEED, speed);
-        aircraft.setMcpMode(MCP_MODE_NAME.SPEED, MCP_MODES.SPEED.HOLD);
+        aircraft.setModeControllerModeAndValue(MCP_MODE_NAME.SPEED, MCP_MODES.SPEED.HOLD, MCP_PROPERTY_MAP.SPEED, speed);
 
         const clampedSpeed = clamp(aircraft.model.speed.min, speed, aircraft.model.speed.max);
         aircraft.fms.setAll({ speed: clampedSpeed });
@@ -714,6 +725,9 @@ export default class AircraftCommander {
      */
     runFlyPresentHeading(aircraft, data) {
         aircraft.cancelFix();
+
+        aircraft.setModeControllerModeAndValue(MCP_MODE_NAME.HEADING, MCP_MODES.HEADING.HOLD, MCP_PROPERTY_MAP.HEADING, aircraft.heading);
+
         this.runHeading(aircraft, [null, radiansToDegrees(aircraft.heading)]);
 
         return ['ok', 'fly present heading'];
@@ -725,6 +739,8 @@ export default class AircraftCommander {
      * @param data
      */
     runSayRoute(aircraft, data) {
+        console.log(aircraft._f.currentRoute);
+
         return ['ok', {
             log: `route: ${aircraft.fms.fp.route.join(' ')}`,
             say: 'here\'s our route'
@@ -740,7 +756,6 @@ export default class AircraftCommander {
         const sidId = data[0];
         const standardRouteModel = this._navigationLibrary.sidCollection.findRouteByIcao(sidId);
         const exit = this._navigationLibrary.sidCollection.findRandomExitPointForSIDIcao(sidId);
-        // TODO: perhaps this should use the `RouteModel`?
         const route = `${airport.icao}.${sidId}.${exit}`;
 
         if (_isNil(standardRouteModel)) {

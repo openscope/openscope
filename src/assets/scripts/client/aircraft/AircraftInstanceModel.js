@@ -8,7 +8,6 @@ import _isNil from 'lodash/isNil';
 import _isString from 'lodash/isString';
 import _map from 'lodash/map';
 import AircraftFlightManagementSystem from './FlightManagementSystem/AircraftFlightManagementSystem';
-import ModeController from './ModeControl/ModeController';
 import Fms from './FlightManagementSystem/Fms';
 import AircraftStripView from './AircraftStripView';
 import RouteModel from '../navigationLibrary/Route/RouteModel';
@@ -71,7 +70,7 @@ export default class Aircraft {
     constructor(options = {}, navigationLibrary) {
         /* eslint-disable no-multi-spaces*/
         this._navigationLibrary = navigationLibrary;
-        this.eid          = prop.aircraft.list.length;  // entity ID
+        this.eid          = global.prop.aircraft.list.length;  // entity ID
         this.position     = [0, 0];     // Aircraft Position, in km, relative to airport position
         this.model        = null;       // Aircraft type
         this.airlineId      = '';         // Airline Identifier (eg. 'AAL')
@@ -166,6 +165,20 @@ export default class Aircraft {
     }
 
     /**
+     *
+     *
+     * @property telemetry
+     * @return {object}
+     */
+    get telemetry() {
+        return {
+            altitude: this.altitude,
+            heading: this.heading,
+            speed: this.speed
+        };
+    }
+
+    /**
      * The name of the currently assigned runway
      *
      * @property initialRunwayAssignment
@@ -244,14 +257,13 @@ export default class Aircraft {
         this.altitude = _get(data, 'altitude', this.altitude);
         this.speed = _get(data, 'speed', this.speed);
 
-        this.modeController = new ModeController();
-        console.log('::: MCP', this.modeController);
-        this._f = new Fms(data, this.initialRunwayAssignment, this._navigationLibrary);
+        this._f = new Fms(data, this.initialRunwayAssignment, this.model, this._navigationLibrary);
         console.log('::: FMS', this._f);
     }
 
     updateFmsAfterInitialLoad(data) {
         if (this.category === FLIGHT_CATEGORY.ARRIVAL) {
+            this._f.updateModesForArrival();
             if (data.waypoints.length > 0) {
                 this.setArrivalWaypoints(data.waypoints);
             }
@@ -259,6 +271,7 @@ export default class Aircraft {
             this.destination = data.destination;
             this.setArrivalRunway(window.airportController.airport_get(this.destination).runway);
         } else if (this.category === FLIGHT_CATEGORY.DEPARTURE) {
+            this._f.updateModesForDeparture();
             const airport = window.airportController.airport_get();
             this.mode = FLIGHT_MODES.APRON;
             this.destination = data.destination;
@@ -350,7 +363,7 @@ export default class Aircraft {
      */
     setMcpMode(modeSelector, mode) {
         console.log('setMcpMode:', modeSelector, mode);
-        this.modeController[modeSelector] = mode;
+        this._f.setModeControllerMode(modeSelector, mode);
     }
 
     /**
@@ -359,7 +372,16 @@ export default class Aircraft {
      */
     setMcpModeValue(fieldName, value) {
         console.log('setMcpModeValue:', fieldName, value);
-        this.modeController[fieldName] = value;
+        this._f.setModeControllerValue(fieldName, value);
+    }
+
+    /**
+     *
+     *
+     */
+    setModeControllerModeAndValue(modeSelector, mode, fieldName, value) {
+        this.setMcpMode(modeSelector, mode);
+        this.setMcpModeValue(fieldName, value);
     }
 
     cleanup() {
