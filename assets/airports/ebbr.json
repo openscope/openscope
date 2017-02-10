@@ -21,51 +21,263 @@
     "arrivalRunway": "25R",
     "departureRunway": "25R",
     "fixes": {
-
+        "AFI17":    ["N50d56m24.00", "E004d36m12.00"],
+        "AFI22":    ["N50d57m43.00", "E004d43m53.00"],
+        "HUL03":    ["N50d56m41.00", "E004d36m21.00"],
+        "HUL06":    ["N50d50m94.00", "E004d37m72.00"],
+        "R045":     ["N50d47m64.00", "E004d42m76.00"]
     },
     "runways": [
         {
-            "name": ["xx", "xx"],
-            "name_offset": [
-                [0, 0], [0, 0]
-            ],
+            "name": ["01", "19"],
             "end": [
-                ["xx", "xx", "ft"],
-                ["xx", "xx", "ft"]
+                ["N50d53m14.39", "E004d29m29.68", "141ft"],
+                ["N50d54m39.64", "E004d30m04.46", "141ft"]
             ],
-            "length": 4.000,
             "ils": [true, true]
         },
         {
-            "name": ["xx", "xx"],
-            "name_offset": [
-                [0, 0], [0, 0]
-            ],
+            "name": ["07L", "25R"],
             "end": [
-                ["xx", "xx", "ft"],
-                ["xx", "xx", "ft"]
+                ["N50d54m00.12", "E004d27m34.43", "141ft"],
+                ["N50d54m41.55", "E004d29m57.79", "141ft"]
             ],
-            "length": 4.000,
-            "ils": [true, true]
+            "ils": [false, true]
+        },
+        {
+            "name": ["07R", "25L"],
+            "end": [
+                ["N50d53m21.89", "E004d28m55.40", "141ft"],
+                ["N50d53m56.19", "E004d31m23.88", "141ft"]
+            ],
+            "ils": [false, true]
         }
     ],
     "sids": {
-        "xx": {
-            "icao": "xx",
-            "name": "xx x",
+        "LNO": {
+            "icao": "LNO",
+            "name": "Olno",
+            "suffix": {"01":"6F", "07L":"", "07R":"", "19":"", "25L":"", "25R":""},
             "rwy": {
-
+                "01": ["HUL06", ["R045", "A60"]]
             },
-            "body": [
-
-            ],
             "exitPoints": {
-                "xx": [
-                    "xx"
+                "LNO": [
+                    "LNO"
+                ]
+            },
+            "draw": [
+                ["HUL06", "LNO"]
+            ]
+        },
+        "SPI": {
+            "icao": "SPI",
+            "name": "Sprimont",
+            "suffix": {"01":"6F", "07L":"", "07R":"", "19":"", "25L":"", "25R":""},
+            "rwy": {
+                "01": ["HUL06", ["R045", "A60"]]
+            },
+            "exitPoints": {
+                "SPI": [
+                    "SPI"
                 ]
             },
             "draw": [
 
+            ]
+        },
+        "SOPOK": {
+            "icao": "SOPOK",
+            "name": "Sopok",
+            "suffix": {"01":"6F", "07L":"", "07R":"", "19":"", "25L":"", "25R":""},
+            "rwy": {
+                "01": ["HUL"]
+            },
+            "body": [
+                "REMBA", ["BULUX", "A170"]
+            ],
+            "exitPoints": {
+                "SOPOK": [
+                    "SOPOK"
+                ],
+                "ETENO": [
+                    "SOPOK", ["ETENO", "A250"]
+                ],
+                "LIRSU": [
+                    "SOPOK", ["ETENO", "A250", "LIRSU"]
+                ]
+            },
+            "draw": [
+                ["HUL", "REMBA", "BULUX", "SOPOK"],
+                ["SOPOK", "ETENO*"],
+                ["SOPOK", "LIRSU*"]
+            ]
+        },
+        "PITES": {
+            "icao": "PITES",
+            "name": "Pites",
+            "suffix": {"01":"6F", "07L":"", "07R":"", "19":"", "25L":"", "25R":""},
+            "rwy": {
+                "01": ["HUL"]
+            },
+            "body": [
+                ["REMBA", "A100"], ["RITAX", "A250"], "DIK"
+            ],
+            "exitPoints": {
+                "PITES": [
+                    "PITES"
+                ]
+            },
+            "draw": [
+                ["HUL", "REMBA", "RITAX", "DIK", "PITES"]
+            ]
+        },
+        "ROUSY": {
+            "icao": "ROUSY",
+            "name": "Rousy",
+            "suffix": {"01":"6F", "07L":"", "07R":"", "19":"", "25L":"", "25R":""},
+            "rwy": {
+                "01": ["HUL"]
+            },
+            "body": [
+                ["REMBA", "A100"], ["RITAX", "A250"]
+            ],
+            "exitPoints": {
+                "ROUSY": [
+                    "ROUSY"
+                ]
+            },
+            "draw": [
+                ["HUL", "REMBA", "RITAX", "ROUSY"]
+            ]
+        },
+        "CIV": {
+            "icao": "CIV",
+            "name": "Chievres",
+            "suffix": {"01":"9F", "07L":"", "07R":"", "19":"", "25L":"", "25R":""},
+            "rwy": {
+                "01": ["HUL03"]
+            },
+            "body":[
+                "CIV"
+            ],
+            "exitPoints": {
+                "MEDIL": [
+                    ["MEDIL", "A210"]
+                ],
+                "ROBAL": [
+                    ["ROBAL", "A170"]
+                ],
+                "IDOKO": [
+                    ["IDOKO", "A190"]
+                ]
+            },
+            "draw": [
+                ["HUL03", "CIV", "MEDIL*"],
+                ["CIV", "MEDIL*"],
+                ["CIV", "ROVAL*"],
+                ["CIV", "IDOKO*"]
+            ]
+        },
+        "KOK2F": {
+            "icao": "KOK",
+            "name": "Koksy",
+            "suffix": {"01":"2F", "07L":"", "07R":"", "19":"", "25L":"", "25R":""},
+            "rwy": {
+                "01": []
+            },
+            "body": [
+                ["KOK"]
+            ],
+            "exitPoints": {
+                "KONAN": [
+                    "KONAN"
+                ]
+            },
+            "draw": [
+                ["KOK", "KONAN*"]
+            ]
+        },
+        "DENUT": {
+            "icao": "DENUT",
+            "name": "Denut",
+            "suffix": {"01":"8F", "07L":"", "07R":"", "19":"", "25L":"", "25R":""},
+            "rwy": {
+                "01": []
+            },
+            "exitPoints": {
+                "DENUT": [
+                    "DENUT"
+                ],
+                "LUMEN": [
+                    "LUMEN"
+                ]
+            },
+            "draw": [
+                ["DENUT*"],
+                ["DENUT", "LUMEN*"]
+            ]
+        },
+        "HELEN": {
+            "icao": "HELEN",
+            "name": "Helen",
+            "suffix": {"01":"8F", "07L":"", "07R":"", "19":"", "25L":"", "25R":""},
+            "rwy": {
+                "01": []
+            },
+            "exitPoints": {
+                "HELEN": [
+                    "HELEN"
+                ],
+                "TOLEN": [
+                    "TOLEN"
+                ],
+                "COA": [
+                    "COA"
+                ]
+            },
+            "draw": [
+                ["HELEN*"],
+                ["HELEN", "TOLEN*"],
+                ["HELEN", "COA*"]
+            ]
+        },
+        "NIK": {
+            "icao": "NIK",
+            "name": "Nicky",
+            "suffix": {"01":"5F", "07L":"", "07R":"", "19":"", "25L":"", "25R":""},
+            "rwy": {
+                "01": []
+            },
+            "body": [
+                ["NIK"]
+            ],
+            "exitPoints": {
+                "TOLEN": [
+                    "TOLEN"
+                ]
+            },
+            "draw": [
+                ["NIK", "TOLEN*"]
+            ]
+        },
+        "ELSIK": {
+            "icao": "ELSIK",
+            "name": "Elsik",
+            "suffix": {"01":"2F", "07L":"", "07R":"", "19":"", "25L":"", "25R":""},
+            "rwy": {
+                "01": []
+            },
+            "body": [
+                ["BUN", "ELSIK"]
+            ],
+            "exitPoints": {
+                "SORAT": [
+                    "SORAT"
+                ]
+            },
+            "draw": [
+                ["BUN", "ELSIK", "SORAT"]
             ]
         }
     },
