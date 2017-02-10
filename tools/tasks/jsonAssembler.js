@@ -13,7 +13,6 @@ function jsonAssembler(source, outputFilename, destination) {
     const result = [];
     const rootKey = outputFilename.split('.')[0];
     const outFilenameWithPath = path.join(destination, outputFilename);
-    const shortOutputPath = outFilenameWithPath.split('openscope')[1];
 
     gutil.log(gutil.colors.cyan(`::: Preparing ${outputFilename}`));
 
@@ -44,7 +43,7 @@ function jsonAssembler(source, outputFilename, destination) {
             throw error;
         }
 
-        gutil.log(gutil.colors.green(`::: ${result.length} items written sucessfully to ${shortOutputPath}`));
+        gutil.log(gutil.colors.green(`::: ${result.length} items written sucessfully to ${outFilenameWithPath}`));
     });
 }
 
