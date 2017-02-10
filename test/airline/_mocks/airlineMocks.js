@@ -1,6 +1,6 @@
 export const AIRLINE_DEFINITION_MOCK = {
     name: 'American Airlines',
-    icao: 'aal',
+    icao: 'AAL',
     callsign: {
         name: 'American',
         length: 3

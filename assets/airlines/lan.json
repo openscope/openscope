@@ -1,6 +1,6 @@
 {
   "name": "LATAM Airlines Chile",
-  "icao": "LAN",
+  "icao": "lan",
   "callsign": {
     "name": "LAN",
     "length": 3

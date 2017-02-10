@@ -1,13 +1,13 @@
 {
-    "name": "Peach",
-    "icao": "apj",
+    "icao": "sfj",
+    "name": "StarFlyer",
     "callsign": {
-        "name": "Air Peach",
+        "name": "Starflyer",
         "length": 3
     },
     "fleets": {
         "default": [
-            ["A320", 17]
+            ["A320", 9]
         ]
     }
 }
