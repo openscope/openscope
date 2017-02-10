@@ -13,9 +13,11 @@
 ### Minor
 - Makes sure the output for sid and star commands are always uppercase. [#109](https://github.com/openscope/openscope/issues/109)
 - Marks all airports as works in progress [#179](https://github.com/openscope/openscope/issues/179)
+- Changes deployment server from Express to Nginx [#166](https://github.com/openscope/openscope/issues/166)
 - Adds javascript minification to build process [#163](https://github.com/openscope/openscope/issues/163)
     - adds copy task to public directory
     - translates `json_assembler.rb` to `jsonAssembler.js` and adds it to the build process.
+
 
 
 
