@@ -1,7 +1,7 @@
 ## 4.1.0 (February 20, 2017)
 ---
 ### Major
-
+- Removes GitHub Pages specific files and moves hosting out of GitHub Pages. [#154](https://github.com/openscope/openscope/issues/154)
 
 
 
