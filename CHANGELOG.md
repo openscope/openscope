@@ -37,6 +37,7 @@
 - Updates airline json files to include `icao` key. Updates `AirlineCollection` and `AirlineModel` to handle variable casing of `icao`  [#195](https://github.com/openscope/openscope/issues/195)
 - Adds a default position value to `SpawnPatternModel` so aircraft have, at least, a `[0, 0]` starting position [#207](https://github.com/openscope/openscope/issues/207)
 - Ensures data block colored bars are all the same width (3px), regardless of callsign length [#210](https://github.com/openscope/openscope/issues/210)
+- Updates boolean logic in `App.updateViewControls()` which was evaluating an asynchronous property that, typically, had not finished loading. [#203](https://github.com/openscope/openscope/issues/203)
 
 
 
