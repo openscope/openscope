@@ -95,6 +95,7 @@ export default class Fms {
 
     /**
      *
+     *
      * @property currentRoute
      * @return {string}
      */
@@ -113,7 +114,6 @@ export default class Fms {
      */
     init(aircraftInitProps) {
         this.category = aircraftInitProps.category;
-
         this.legCollection = this._buildInitialLegCollection(aircraftInitProps);
     }
 

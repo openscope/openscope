@@ -370,17 +370,19 @@ export default class AircraftCommander {
             ceiling += 1000;
         }
 
-        aircraft.setModeControllerModeAndValue(MCP_MODE_NAME.ALTITUDE, MCP_MODES.ALTITUDE.HOLD, MCP_PROPERTY_MAP.ALTITUDE, altitude);
+        const altitudeAdjustedForElevation = clamp(round(airport.elevation / 100) * 100 + 1000, altitude, ceiling);
+
+        aircraft.setModeControllerModeAndValue(MCP_MODE_NAME.ALTITUDE, MCP_MODES.ALTITUDE.HOLD, MCP_PROPERTY_MAP.ALTITUDE, altitudeAdjustedForElevation);
 
         aircraft.fms.setCurrent({ expedite: shouldExpedite });
         aircraft.fms.setAll({
             // TODO: enumerate the magic numbers
-            altitude: clamp(round(airport.elevation / 100) * 100 + 1000, altitude, ceiling),
+            altitude: altitudeAdjustedForElevation,
             expedite: shouldExpedite
         });
 
         const readback = {
-            log: `${radioTrendAltitude} ${aircraft.fms.altitudeForCurrentWaypoint()} ${shouldExpediteReadback}`,
+            log: `${radioTrendAltitude} ${altitudeAdjustedForElevation} ${shouldExpediteReadback}`,
             say: `${radioTrendAltitude} ${currentWaypointRadioAltitude} ${shouldExpediteReadback}`
         };
 
@@ -1009,7 +1011,7 @@ export default class AircraftCommander {
             const wind_dir = round(radiansToDegrees(wind.angle));
             const readback = {
                 // TODO: the wind_dir calculation should be abstracted
-                log: `wind ${round(wind_dir / 10) * 10} ${round(wind.speed)}, runway ${aircraft.rwy_dep} , cleared for takeoff`,
+                log: `wind ${round(wind_dir / 10) * 10} ${round(wind.speed)}, runway ${aircraft.rwy_dep}, cleared for takeoff`,
                 say: `wind ${radio_spellOut(round(wind_dir / 10) * 10)} at ${radio_spellOut(round(wind.speed))}, runway ${radio_runway(aircraft.rwy_dep)}, cleared for takeoff`
             };
 

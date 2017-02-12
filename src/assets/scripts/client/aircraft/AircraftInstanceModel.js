@@ -263,12 +263,10 @@ export default class Aircraft {
 
     updateFmsAfterInitialLoad(data) {
         if (this.category === FLIGHT_CATEGORY.ARRIVAL) {
-            this._f.updateModesForArrival();
-            if (data.waypoints.length > 0) {
-                this.setArrivalWaypoints(data.waypoints);
-            }
-
             this.destination = data.destination;
+
+            this._f.updateModesForArrival();
+            this.setArrivalWaypoints(data.waypoints);
             this.setArrivalRunway(window.airportController.airport_get(this.destination).runway);
         } else if (this.category === FLIGHT_CATEGORY.DEPARTURE) {
             this._f.updateModesForDeparture();
@@ -310,6 +308,10 @@ export default class Aircraft {
     }
 
     setArrivalWaypoints(waypoints) {
+        if (!waypoints || waypoints.length === 0) {
+            return;
+        }
+
         // add arrival fixes to fms
         for (let i = 0; i < waypoints.length; i++) {
             this.fms.appendLeg({
@@ -1112,8 +1114,6 @@ export default class Aircraft {
             const fix = this.fms.currentWaypoint.location;
             if (!fix) {
                 console.error(`${this.getCallsign()} using "fix" navmode, but no fix location!`);
-                console.log(this.fms);
-                console.log(this.fms.currentWaypoint);
             }
 
             const vector_to_fix = vsub(this.position, fix);
