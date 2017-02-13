@@ -399,18 +399,8 @@ export default class AircraftCommander {
             return [true, 'unable to clear as filed'];
         }
 
-        aircraft.setModeControllerModeAndValue(
-            MCP_MODE_NAME.ALTITUDE,
-            MCP_MODES.ALTITUDE.VNAV,
-            MCP_PROPERTY_MAP.ALTITUDE,
-            aircraft._f.currentWaypoint.altitudeRestriction
-        );
-        aircraft.setModeControllerModeAndValue(
-            MCP_MODE_NAME.HEADING,
-            MCP_MODES.HEADING.LNAV,
-            MCP_PROPERTY_MAP.HEADING,
-            aircraft.heading
-        );
+        aircraft._f.setAltitudeVnav();
+        aircraft._f.setHeadingLnav(aircraft.heading);
 
         const airport = this._airportController.airport_get();
         const { name: procedureName } = this._navigationLibrary.sidCollection.findRouteByIcao(aircraft.destination);

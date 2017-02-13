@@ -6,7 +6,11 @@ import _map from 'lodash/map';
 import ModeController from '../ModeControl/ModeController';
 import LegModel from './LegModel';
 import { routeStringFormatHelper } from '../../navigationLibrary/Route/routeStringFormatHelper';
-import { MCP_MODES } from '../ModeControl/modeControlConstants';
+import {
+    MCP_MODES,
+    MCP_MODE_NAME,
+    MCP_PROPERTY_MAP
+} from '../ModeControl/modeControlConstants';
 
 /**
  *
@@ -111,14 +115,29 @@ export default class Fms {
 
 
     getAltitude() {
-        let altitude = this._aircraftTypeDefinition.altitude.ceiling;
+        let altitude = this._aircraftTypeDefinition.ceiling;
+
+        if (this.currentWaypoint.altitudeRestriction !== -1) {
+            altitude = this.currentWaypoint.altitudeRestriction;
+        }
+
+        if (this._modeController.altitudeMode === MCP_MODES.ALTITUDE.HOLD) {
+            altitude = this._modeController.altitude;
+        }
 
         return altitude;
     }
 
-    // getHeading() {
-    //
-    // }
+
+    getHeading() {
+        let heading = -999;
+
+        if (this._modeController.headingMode === MCP_MODES.HEADING.HOLD) {
+            heading = this._modeController.heading;
+        }
+
+        return heading;
+    }
 
     /**
      *
@@ -180,6 +199,29 @@ export default class Fms {
      */
     setModeControllerValue(fieldName, value) {
         this._modeController[fieldName] = value;
+    }
+
+    /**
+     *
+     *
+     */
+    setAltitudeVnav() {
+        this.setModeControllerMode(MCP_MODE_NAME.ALTITUDE, MCP_MODES.ALTITUDE.VNAV);
+        this.setModeControllerValue(MCP_PROPERTY_MAP.ALTITUDE, this.currentWaypoint.altitudeRestriction);
+    }
+
+    setHeadingLnav(heading) {
+        this.setModeControllerMode(MCP_MODE_NAME.HEADING, MCP_MODES.HEADING.LNAV);
+        this.setModeControllerValue(MCP_PROPERTY_MAP.HEADING, heading);
+    }
+
+    /**
+     *
+     *
+     */
+    setHeadingHold(heading) {
+        this.setModeControllerMode(MCP_MODES.HEADING, MCP_MODES.HEADING.HOLD);
+        this.setModeControllerValue(MCP_PROPERTY_MAP.HEADING, heading);
     }
 
     updateModesForArrival() {
