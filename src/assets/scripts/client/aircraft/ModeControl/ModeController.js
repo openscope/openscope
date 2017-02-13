@@ -9,11 +9,8 @@ export default class ModeController {
     /**
      * @constructor
      * @for ModeController
-     * @param typeDefinitionModel {AircraftTypeDefinitionModel}
      */
-    constructor(typeDefinitionModel) {
-        this._model = typeDefinitionModel;
-
+    constructor() {
         this.altitudeMode = MCP_MODES.ALTITUDE.OFF;
         this.autopilotMode = MCP_MODES.AUTOPILOT.OFF;
         this.headingMode = MCP_MODES.HEADING.OFF;

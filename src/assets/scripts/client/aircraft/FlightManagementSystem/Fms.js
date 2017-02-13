@@ -6,6 +6,7 @@ import _map from 'lodash/map';
 import ModeController from '../ModeControl/ModeController';
 import LegModel from './LegModel';
 import { routeStringFormatHelper } from '../../navigationLibrary/Route/routeStringFormatHelper';
+import { MCP_MODES } from '../ModeControl/modeControlConstants';
 
 /**
  *
@@ -42,6 +43,9 @@ export default class Fms {
          * @type {ModeController}
          */
         this._modeController = new ModeController(typeDefinitionModel);
+
+
+        this._aircraftTypeDefinition = typeDefinitionModel;
 
         /**
          *
@@ -103,6 +107,38 @@ export default class Fms {
         const routeSegments = _map(this.legCollection, (legModel) => legModel.routeString);
 
         return routeSegments.join('..');
+    }
+
+
+    getAltitude() {
+        let altitude = this._aircraftTypeDefinition.altitude.ceiling;
+
+        return altitude;
+    }
+
+    // getHeading() {
+    //
+    // }
+
+    /**
+     *
+     *
+     * @for Fms
+     * @method getSpeed
+     * @return speed {number}
+     */
+    getSpeed() {
+        let speed = this._aircraftTypeDefinition.speed.cruise;
+
+        if (this.currentWaypoint.speedRestriction !== -1) {
+            speed = this.currentWaypoint.speedRestriction;
+        }
+
+        if (this._modeController.speedMode === MCP_MODES.SPEED.HOLD) {
+            speed = this._modeController.speed;
+        }
+
+        return speed;
     }
 
     /**
