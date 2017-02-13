@@ -18,6 +18,7 @@
     - adds copy task to public directory
     - translates `json_assembler.rb` to `jsonAssembler.js` and adds it to the build process.
 - Corrects `icao` of the Boeing 767-400 and also updates the information to Eurocontrol data [#222](https://github.com/openscope/openscope/issues/222)
+- Updates `app.json` to use correct buildpacks [#224](https://github.com/openscope/openscope/issues/224)
 
 
 
