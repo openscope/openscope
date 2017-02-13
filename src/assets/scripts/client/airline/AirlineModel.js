@@ -81,6 +81,8 @@ export default class AirlineModel extends BaseModel {
             /**
              * Whether to use alphabetical characters
              *
+             * Used to generate a North American style registration number, minus the `N`
+             *
              * @memberof flightNumberGeneration
              * @property alphaNumeric
              * @type {boolean}
@@ -157,7 +159,8 @@ export default class AirlineModel extends BaseModel {
      * @param airlineDefinition {object}
      */
     init(airlineDefinition) {
-        this.icao = _get(airlineDefinition, 'icao', this.icao);
+        // TODO: these _get() lines are likely redundant and could be removed only after proper testing
+        this.icao = _get(airlineDefinition, 'icao', this.icao).toLowerCase();
         this.callsign = _get(airlineDefinition, 'callsign.name', this.callsign);
         this.flightNumberGeneration.length = _get(airlineDefinition, 'callsign.length');
         this.flightNumberGeneration.alphaNumeric = _get(airlineDefinition, 'callsign.alpha', false);
@@ -221,22 +224,24 @@ export default class AirlineModel extends BaseModel {
         // Start with a number other than zero
         flightNumber += choose(list.substr(1));
 
-        if (this.flightNumberGeneration.alphaNumeric) {
-            // TODO: why `this.flightNumberGeneration.length - 3`?  enumerate the magic number.
-            for (let i = 0; i < this.flightNumberGeneration.length - 3; i++) {
-                flightNumber += choose(list);
-            }
-
-            list = 'abcdefghijklmnopqrstuvwxyz';
-
-            // the end of an `N` style registration: `N322WT`
-            for (let i = 0; i < 2; i++) {
-                flightNumber += choose(list);
-            }
-        } else {
+        if (!this.flightNumberGeneration.alphaNumeric) {
             for (let i = 1; i < this.flightNumberGeneration.length; i++) {
                 flightNumber += choose(list);
             }
+
+            return flightNumber;
+        }
+
+        // TODO: why `this.flightNumberGeneration.length - 3`?  enumerate the magic number.
+        for (let i = 0; i < this.flightNumberGeneration.length - 3; i++) {
+            flightNumber += choose(list);
+        }
+
+        list = 'abcdefghijklmnopqrstuvwxyz';
+
+        // the end of an `N` style registration: `N322WT`
+        for (let i = 0; i < 2; i++) {
+            flightNumber += choose(list);
         }
 
         return flightNumber;

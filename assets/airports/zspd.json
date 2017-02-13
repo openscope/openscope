@@ -162,7 +162,7 @@
             "ils": [true, true]
         },
         {
-            "name": ["16R", "34R"],
+            "name": ["16R", "34L"],
             "name_offset": [[0, 0], [0, 0]],
             "end": [["N31d09m31.50", "E121d48m42.60"], ["N31d07m35.40", "E121d49m26.40"]],
             "length": 3.800,
@@ -1634,15 +1634,16 @@
             "entryPoints": {
                 "ANDONG": ["AND"]
             },
+            "body": ["IDNIK", ["IGLIT", "A148"]],
             "rwy": {
-                "16L": ["IDNIK", ["IGLIT", "A148"], ["D166M", "A39"]],
-                "16R": ["IDNIK", ["IGLIT", "A148"], ["D166M", "A39"]],
-                "17L": ["IDNIK", ["IGLIT", "A148"], ["D166M", "A39"]],
-                "17R": ["IDNIK", ["IGLIT", "A148"], ["D166M", "A39"]],
-                "34L": ["IDNIK", ["IGLIT", "A148"], ["D166M", "A39"]],
-                "34R": ["IDNIK", ["IGLIT", "A148"], ["D166M", "A39"]],
-                "35L": ["IDNIK", ["IGLIT", "A148"], ["D166M", "A39"]],
-                "35R": ["IDNIK", ["IGLIT", "A148"], ["D166M", "A39"]]
+                "16L": [["D166M", "A39"]],
+                "16R": [["D166M", "A39"]],
+                "17L": [["D166M", "A39"]],
+                "17R": [["D166M", "A39"]],
+                "34L": [["D166M", "A39"]],
+                "34R": [["D166M", "A39"]],
+                "35L": [["D166M", "A39"]],
+                "35R": [["D166M", "A39"]]
             },
             "draw": [
                 ["AND", "IDNIK", "IGLIT", "D166M"]
@@ -1654,15 +1655,16 @@
             "entryPoints": {
                 "ANDONG": ["AND"]
             },
+            "body": ["IDNIK", ["IGLIT", "A148"], "D197L", "DOKUN"],
             "rwy": {
-                "16L": ["IDNIK", ["IGLIT", "A148"], "D197L", "DOKUN", ["PDL", "A89"]],
-                "16R": ["IDNIK", ["IGLIT", "A148"], "D197L", "DOKUN", ["PDL", "A89"]],
-                "17L": ["IDNIK", ["IGLIT", "A148"], "D197L", "DOKUN", ["PDL", "A89"]],
-                "17R": ["IDNIK", ["IGLIT", "A148"], "D197L", "DOKUN", ["PDL", "A89"]],
-                "34L": ["IDNIK", ["IGLIT", "A148"], "D197L", "DOKUN", ["PDL", "A89"]],
-                "34R": ["IDNIK", ["IGLIT", "A148"], "D197L", "DOKUN", ["PDL", "A89"]],
-                "35L": ["IDNIK", ["IGLIT", "A148"], "D197L", "DOKUN", ["PDL", "A89"]],
-                "35R": ["IDNIK", ["IGLIT", "A148"], "D197L", "DOKUN", ["PDL", "A89"]]
+                "16L": [["PDL", "A89"]],
+                "16R": [["PDL", "A89"]],
+                "17L": [["PDL", "A89"]],
+                "17R": [["PDL", "A89"]],
+                "34L": [["PDL", "A89"]],
+                "34R": [["PDL", "A89"]],
+                "35L": [["PDL", "A89"]],
+                "35R": [["PDL", "A89"]]
             },
             "draw": [
                 ["AND", "IDNIK", "IGLIT", "D197L", "DOKUN", "PDL"]
@@ -1674,15 +1676,16 @@
             "entryPoints": {
                 "ANDONG": ["AND"]
             },
+            "body": [["DADAT", "A115"], "BELOP"],
             "rwy": {
-                "16L": [["DADAT", "A115"], "BELOP", ["D233V", "A79"]],
-                "16R": [["DADAT", "A115"], "BELOP", ["D233V", "A79"]],
-                "17L": [["DADAT", "A115"], "BELOP", ["D233V", "A79"]],
-                "17R": [["DADAT", "A115"], "BELOP", ["D233V", "A79"]],
-                "34L": [["DADAT", "A115"], "BELOP", ["D233V", "A79"]],
-                "34R": [["DADAT", "A115"], "BELOP", ["D233V", "A79"]],
-                "35L": [["DADAT", "A115"], "BELOP", ["D233V", "A79"]],
-                "35R": [["DADAT", "A115"], "BELOP", ["D233V", "A79"]]
+                "16L": [["D233V", "A79"]],
+                "16R": [["D233V", "A79"]],
+                "17L": [["D233V", "A79"]],
+                "17R": [["D233V", "A79"]],
+                "34L": [["D233V", "A79"]],
+                "34R": [["D233V", "A79"]],
+                "35L": [["D233V", "A79"]],
+                "35R": [["D233V", "A79"]]
             },
             "draw": [
                 ["AND", "DADAT", "BELOP", "D233V"]
@@ -1694,15 +1697,16 @@
             "entryPoints": {
                 "ANDONG": ["AND"]
             },
+            "body": [["DADAT", "A115"], "BELOP"],
             "rwy": {
-                "16L": [["DADAT", "A115"], "BELOP", "DOKUN", ["PDL", "A89"]],
-                "16R": [["DADAT", "A115"], "BELOP", "DOKUN", ["PDL", "A89"]],
-                "17L": [["DADAT", "A115"], "BELOP", "DOKUN", ["PDL", "A89"]],
-                "17R": [["DADAT", "A115"], "BELOP", "DOKUN", ["PDL", "A89"]],
-                "34L": [["DADAT", "A115"], "BELOP", "DOKUN", ["PDL", "A89"]],
-                "34R": [["DADAT", "A115"], "BELOP", "DOKUN", ["PDL", "A89"]],
-                "35L": [["DADAT", "A115"], "BELOP", "DOKUN", ["PDL", "A89"]],
-                "35R": [["DADAT", "A115"], "BELOP", "DOKUN", ["PDL", "A89"]]
+                "16L": ["DOKUN", ["PDL", "A89"]],
+                "16R": ["DOKUN", ["PDL", "A89"]],
+                "17L": ["DOKUN", ["PDL", "A89"]],
+                "17R": ["DOKUN", ["PDL", "A89"]],
+                "34L": ["DOKUN", ["PDL", "A89"]],
+                "34R": ["DOKUN", ["PDL", "A89"]],
+                "35L": ["DOKUN", ["PDL", "A89"]],
+                "35R": ["DOKUN", ["PDL", "A89"]]
             },
             "draw": [
                 ["AND", "DADAT", "BELOP", "DOKUN", "PDL"]
@@ -1714,15 +1718,16 @@
             "entryPoints": {
                 "ANDONG": ["AND"]
             },
+            "body": ["IDNIK"],
             "rwy": {
-                "16L": ["IDNIK", ["IGLIT", "A148"], "XSY"],
-                "16R": ["IDNIK", ["IGLIT", "A148"], "XSY"],
-                "17L": ["IDNIK", ["IGLIT", "A148"], "XSY"],
-                "17R": ["IDNIK", ["IGLIT", "A148"], "XSY"],
-                "34L": ["IDNIK", ["IGLIT", "A148"], "XSY"],
-                "34R": ["IDNIK", ["IGLIT", "A148"], "XSY"],
-                "35L": ["IDNIK", ["IGLIT", "A148"], "XSY"],
-                "35R": ["IDNIK", ["IGLIT", "A148"], "XSY"]
+                "16L": [["IGLIT", "A148"], "XSY"],
+                "16R": [["IGLIT", "A148"], "XSY"],
+                "17L": [["IGLIT", "A148"], "XSY"],
+                "17R": [["IGLIT", "A148"], "XSY"],
+                "34L": [["IGLIT", "A148"], "XSY"],
+                "34R": [["IGLIT", "A148"], "XSY"],
+                "35L": [["IGLIT", "A148"], "XSY"],
+                "35R": [["IGLIT", "A148"], "XSY"]
             },
             "draw": [
                 ["AND", "IDNIK", "IGLIT", "XSY"]
@@ -1734,15 +1739,16 @@
             "entryPoints": {
                 "LISHE": ["BK"]
             },
+            "body": [["BAVIK", "A148"]],
             "rwy": {
-                "16L": [["BAVIK", "A148"], ["IGLIT", "A148"], ["D166M", "A39"]],
-                "16R": [["BAVIK", "A148"], ["IGLIT", "A148"], ["D166M", "A39"]],
-                "17L": [["BAVIK", "A148"], ["IGLIT", "A148"], ["D166M", "A39"]],
-                "17R": [["BAVIK", "A148"], ["IGLIT", "A148"], ["D166M", "A39"]],
-                "34L": [["BAVIK", "A148"], ["IGLIT", "A148"], ["D166M", "A39"]],
-                "34R": [["BAVIK", "A148"], ["IGLIT", "A148"], ["D166M", "A39"]],
-                "35L": [["BAVIK", "A148"], ["IGLIT", "A148"], ["D166M", "A39"]],
-                "35R": [["BAVIK", "A148"], ["IGLIT", "A148"], ["D166M", "A39"]]
+                "16L": [["IGLIT", "A148"], ["D166M", "A39"]],
+                "16R": [["IGLIT", "A148"], ["D166M", "A39"]],
+                "17L": [["IGLIT", "A148"], ["D166M", "A39"]],
+                "17R": [["IGLIT", "A148"], ["D166M", "A39"]],
+                "34L": [["IGLIT", "A148"], ["D166M", "A39"]],
+                "34R": [["IGLIT", "A148"], ["D166M", "A39"]],
+                "35L": [["IGLIT", "A148"], ["D166M", "A39"]],
+                "35R": [["IGLIT", "A148"], ["D166M", "A39"]]
             },
             "draw": [
                 ["BK", "BAVIK", "IGLIT", "D166M"]
@@ -1754,15 +1760,16 @@
             "entryPoints": {
                 "LISHE": ["BK"]
             },
+            "body": [["BAVIK", "A148"], ["IGLIT", "A148"]],
             "rwy": {
-                "16L": [["BAVIK", "A148"], ["IGLIT", "A148"], "D197L", "DOKUN", ["PDL", "A89"]],
-                "16R": [["BAVIK", "A148"], ["IGLIT", "A148"], "D197L", "DOKUN", ["PDL", "A89"]],
-                "17L": [["BAVIK", "A148"], ["IGLIT", "A148"], "D197L", "DOKUN", ["PDL", "A89"]],
-                "17R": [["BAVIK", "A148"], ["IGLIT", "A148"], "D197L", "DOKUN", ["PDL", "A89"]],
-                "34L": [["BAVIK", "A148"], ["IGLIT", "A148"], "D197L", "DOKUN", ["PDL", "A89"]],
-                "34R": [["BAVIK", "A148"], ["IGLIT", "A148"], "D197L", "DOKUN", ["PDL", "A89"]],
-                "35L": [["BAVIK", "A148"], ["IGLIT", "A148"], "D197L", "DOKUN", ["PDL", "A89"]],
-                "35R": [["BAVIK", "A148"], ["IGLIT", "A148"], "D197L", "DOKUN", ["PDL", "A89"]]
+                "16L": ["D197L", "DOKUN", ["PDL", "A89"]],
+                "16R": ["D197L", "DOKUN", ["PDL", "A89"]],
+                "17L": ["D197L", "DOKUN", ["PDL", "A89"]],
+                "17R": ["D197L", "DOKUN", ["PDL", "A89"]],
+                "34L": ["D197L", "DOKUN", ["PDL", "A89"]],
+                "34R": ["D197L", "DOKUN", ["PDL", "A89"]],
+                "35L": ["D197L", "DOKUN", ["PDL", "A89"]],
+                "35R": ["D197L", "DOKUN", ["PDL", "A89"]]
             },
             "draw": [
                 ["BK", "BAVIK", "IGLIT", "D197L", "DOKUN", "PDL"]
@@ -1774,15 +1781,16 @@
             "entryPoints": {
                 "LISHE": ["BK"]
             },
+            "body": [["BAVIK", "A148"]],
             "rwy": {
-                "16L": [["BAVIK", "A148"], ["IGLIT", "A148"], "XSY"],
-                "16R": [["BAVIK", "A148"], ["IGLIT", "A148"], "XSY"],
-                "17L": [["BAVIK", "A148"], ["IGLIT", "A148"], "XSY"],
-                "17R": [["BAVIK", "A148"], ["IGLIT", "A148"], "XSY"],
-                "34L": [["BAVIK", "A148"], ["IGLIT", "A148"], "XSY"],
-                "34R": [["BAVIK", "A148"], ["IGLIT", "A148"], "XSY"],
-                "35L": [["BAVIK", "A148"], ["IGLIT", "A148"], "XSY"],
-                "35R": [["BAVIK", "A148"], ["IGLIT", "A148"], "XSY"]
+                "16L": [["IGLIT", "A148"], "XSY"],
+                "16R": [["IGLIT", "A148"], "XSY"],
+                "17L": [["IGLIT", "A148"], "XSY"],
+                "17R": [["IGLIT", "A148"], "XSY"],
+                "34L": [["IGLIT", "A148"], "XSY"],
+                "34R": [["IGLIT", "A148"], "XSY"],
+                "35L": [["IGLIT", "A148"], "XSY"],
+                "35R": [["IGLIT", "A148"], "XSY"]
             },
             "draw": [
                 ["BK", "BAVIK", "IGLIT", "XSY"]
@@ -1794,15 +1802,16 @@
             "entryPoints": {
                 "DUMET": ["DUMET"]
             },
+            "body": ["R049"],
             "rwy": {
-                "16L": ["R049", ["D049O", "A49"]],
-                "16R": ["R049", ["D049O", "A49"]],
-                "17L": ["R049", ["D049O", "A49"]],
-                "17R": ["R049", ["D049O", "A49"]],
-                "34L": ["R049", ["D049O", "A49"]],
-                "34R": ["R049", ["D049O", "A49"]],
-                "35L": ["R049", ["D049O", "A49"]],
-                "35R": ["R049", ["D049O", "A49"]]
+                "16L": [["D049O", "A49"]],
+                "16R": [["D049O", "A49"]],
+                "17L": [["D049O", "A49"]],
+                "17R": [["D049O", "A49"]],
+                "34L": [["D049O", "A49"]],
+                "34R": [["D049O", "A49"]],
+                "35L": [["D049O", "A49"]],
+                "35R": [["D049O", "A49"]]
             },
             "draw": [
                 ["DUMET", "R049", "D049O"]
@@ -1814,15 +1823,16 @@
             "entryPoints": {
                 "MATNU": ["MATNU"]
             },
+            "body": ["R069", "PINOT"],
             "rwy": {
-                "16L": ["R069", "PINOT", "R049", ["D049O", "A49"]],
-                "16R": ["R069", "PINOT", "R049", ["D049O", "A49"]],
-                "17L": ["R069", "PINOT", "R049", ["D049O", "A49"]],
-                "17R": ["R069", "PINOT", "R049", ["D049O", "A49"]],
-                "34L": ["R069", "PINOT", "R049", ["D049O", "A49"]],
-                "34R": ["R069", "PINOT", "R049", ["D049O", "A49"]],
-                "35L": ["R069", "PINOT", "R049", ["D049O", "A49"]],
-                "35R": ["R069", "PINOT", "R049", ["D049O", "A49"]]
+                "16L": ["R049", ["D049O", "A49"]],
+                "16R": ["R049", ["D049O", "A49"]],
+                "17L": ["R049", ["D049O", "A49"]],
+                "17R": ["R049", ["D049O", "A49"]],
+                "34L": ["R049", ["D049O", "A49"]],
+                "34R": ["R049", ["D049O", "A49"]],
+                "35L": ["R049", ["D049O", "A49"]],
+                "35R": ["R049", ["D049O", "A49"]]
             },
             "draw": [
                 ["DUMET", "R069", "PINOT", "R049", "D049O"]
@@ -1834,15 +1844,16 @@
             "entryPoints": {
                 "SASAN": ["SASAN"]
             },
+            "body": ["EKIMU", "JTN"],
             "rwy": {
-                "16L": ["EKIMU", "JTN", ["D131R", "A59"]],
-                "16R": ["EKIMU", "JTN", ["D131R", "A59"]],
-                "17L": ["EKIMU", "JTN", ["D131R", "A59"]],
-                "17R": ["EKIMU", "JTN", ["D131R", "A59"]],
-                "34L": ["EKIMU", "JTN", ["D131R", "A59"]],
-                "34R": ["EKIMU", "JTN", ["D131R", "A59"]],
-                "35L": ["EKIMU", "JTN", ["D131R", "A59"]],
-                "35R": ["EKIMU", "JTN", ["D131R", "A59"]]
+                "16L": [["D131R", "A59"]],
+                "16R": [["D131R", "A59"]],
+                "17L": [["D131R", "A59"]],
+                "17R": [["D131R", "A59"]],
+                "34L": [["D131R", "A59"]],
+                "34R": [["D131R", "A59"]],
+                "35L": [["D131R", "A59"]],
+                "35R": [["D131R", "A59"]]
             },
             "draw": [
                 ["SASAN", "EKIMU", "JTN", "D131R"]
@@ -1854,15 +1865,16 @@
             "entryPoints": {
                 "SASAN": ["SASAN"]
             },
+            "body": ["EKIMU", ["PK", "A79"]],
             "rwy": {
-                "16L": ["EKIMU", ["PK", "A79"], ["TOSAS", "A59"]],
-                "16R": ["EKIMU", ["PK", "A79"], ["TOSAS", "A59"]],
-                "17L": ["EKIMU", ["PK", "A79"], ["TOSAS", "A59"]],
-                "17R": ["EKIMU", ["PK", "A79"], ["TOSAS", "A59"]],
-                "34L": ["EKIMU", ["PK", "A79"], ["TOSAS", "A59"]],
-                "34R": ["EKIMU", ["PK", "A79"], ["TOSAS", "A59"]],
-                "35L": ["EKIMU", ["PK", "A79"], ["TOSAS", "A59"]],
-                "35R": ["EKIMU", ["PK", "A79"], ["TOSAS", "A59"]]
+                "16L": [["TOSAS", "A59"]],
+                "16R": [["TOSAS", "A59"]],
+                "17L": [["TOSAS", "A59"]],
+                "17R": [["TOSAS", "A59"]],
+                "34L": [["TOSAS", "A59"]],
+                "34R": [["TOSAS", "A59"]],
+                "35L": [["TOSAS", "A59"]],
+                "35R": [["TOSAS", "A59"]]
             },
             "draw": [
                 ["SASAN", "EKIMU", "PK", "TOSAS"]
@@ -1874,15 +1886,16 @@
             "entryPoints": {
                 "SASAN": ["SASAN"]
             },
+            "body": ["EKIMU", "JTN"],
             "rwy": {
-                "16L": ["EKIMU", "JTN", ["PDL", "A78"]],
-                "16R": ["EKIMU", "JTN", ["PDL", "A78"]],
-                "17L": ["EKIMU", "JTN", ["PDL", "A78"]],
-                "17R": ["EKIMU", "JTN", ["PDL", "A78"]],
-                "34L": ["EKIMU", "JTN", ["PDL", "A78"]],
-                "34R": ["EKIMU", "JTN", ["PDL", "A78"]],
-                "35L": ["EKIMU", "JTN", ["PDL", "A78"]],
-                "35R": ["EKIMU", "JTN", ["PDL", "A78"]]
+                "16L": [["PDL", "A78"]],
+                "16R": [["PDL", "A78"]],
+                "17L": [["PDL", "A78"]],
+                "17R": [["PDL", "A78"]],
+                "34L": [["PDL", "A78"]],
+                "34R": [["PDL", "A78"]],
+                "35L": [["PDL", "A78"]],
+                "35R": [["PDL", "A78"]]
             },
             "draw": [
                 ["SASAN", "EKIMU", "JTN", "PDL"]
@@ -1894,15 +1907,16 @@
             "entryPoints": {
                 "SASAN": ["SASAN"]
             },
+            "body": ["EKIMU", ["PK", "A79"]],
             "rwy": {
-                "16L": ["EKIMU", ["PK", "A79"], ["D316S", "A49"]],
-                "16R": ["EKIMU", ["PK", "A79"], ["D316S", "A49"]],
-                "17L": ["EKIMU", ["PK", "A79"], ["D316S", "A49"]],
-                "17R": ["EKIMU", ["PK", "A79"], ["D316S", "A49"]],
-                "34L": ["EKIMU", ["PK", "A79"], ["D316S", "A49"]],
-                "34R": ["EKIMU", ["PK", "A79"], ["D316S", "A49"]],
-                "35L": ["EKIMU", ["PK", "A79"], ["D316S", "A49"]],
-                "35R": ["EKIMU", ["PK", "A79"], ["D316S", "A49"]]
+                "16L": [["D316S", "A49"]],
+                "16R": [["D316S", "A49"]],
+                "17L": [["D316S", "A49"]],
+                "17R": [["D316S", "A49"]],
+                "34L": [["D316S", "A49"]],
+                "34R": [["D316S", "A49"]],
+                "35L": [["D316S", "A49"]],
+                "35R": [["D316S", "A49"]]
             },
             "draw": [
                 ["SASAN", "EKIMU", "PK", "D316S"]
@@ -1914,15 +1928,16 @@
             "entryPoints": {
                 "SHUOFANG": ["SUF"]
             },
+            "body": ["JTN"],
             "rwy": {
-                "16L": ["JTN", ["PDL", "A89"]],
-                "16R": ["JTN", ["PDL", "A89"]],
-                "17L": ["JTN", ["PDL", "A89"]],
-                "17R": ["JTN", ["PDL", "A89"]],
-                "34L": ["JTN", ["PDL", "A89"]],
-                "34R": ["JTN", ["PDL", "A89"]],
-                "35L": ["JTN", ["PDL", "A89"]],
-                "35R": ["JTN", ["PDL", "A89"]]
+                "16L": [["PDL", "A89"]],
+                "16R": [["PDL", "A89"]],
+                "17L": [["PDL", "A89"]],
+                "17R": [["PDL", "A89"]],
+                "34L": [["PDL", "A89"]],
+                "34R": [["PDL", "A89"]],
+                "35L": [["PDL", "A89"]],
+                "35R": [["PDL", "A89"]]
             },
             "draw": [
                 ["SUF", "JTN", "PDL"]
@@ -1934,15 +1949,16 @@
             "entryPoints": {
                 "SHUOFANG": ["SUF"]
             },
+            "body": ["JTN"],
             "rwy": {
-                "16L": ["JTN", ["D131R", "A59"]],
-                "16R": ["JTN", ["D131R", "A59"]],
-                "17L": ["JTN", ["D131R", "A59"]],
-                "17R": ["JTN", ["D131R", "A59"]],
-                "34L": ["JTN", ["D131R", "A59"]],
-                "34R": ["JTN", ["D131R", "A59"]],
-                "35L": ["JTN", ["D131R", "A59"]],
-                "35R": ["JTN", ["D131R", "A59"]]
+                "16L": [["D131R", "A59"]],
+                "16R": [["D131R", "A59"]],
+                "17L": [["D131R", "A59"]],
+                "17R": [["D131R", "A59"]],
+                "34L": [["D131R", "A59"]],
+                "34R": [["D131R", "A59"]],
+                "35L": [["D131R", "A59"]],
+                "35R": [["D131R", "A59"]]
             },
             "draw": [
                 ["SUF", "JTN", "PDL"]
@@ -1954,15 +1970,16 @@
             "entryPoints": {
                 "SHUOFANG": ["SUF"]
             },
+            "body": ["JTN"],
             "rwy": {
-                "16L": ["JTN", ["PDL", "A79"]],
-                "16R": ["JTN", ["PDL", "A79"]],
-                "17L": ["JTN", ["PDL", "A79"]],
-                "17R": ["JTN", ["PDL", "A79"]],
-                "34L": ["JTN", ["PDL", "A79"]],
-                "34R": ["JTN", ["PDL", "A79"]],
-                "35L": ["JTN", ["PDL", "A79"]],
-                "35R": ["JTN", ["PDL", "A79"]]
+                "16L": [["PDL", "A79"]],
+                "16R": [["PDL", "A79"]],
+                "17L": [["PDL", "A79"]],
+                "17R": [["PDL", "A79"]],
+                "34L": [["PDL", "A79"]],
+                "34R": [["PDL", "A79"]],
+                "35L": [["PDL", "A79"]],
+                "35R": [["PDL", "A79"]]
             },
             "draw": [
                 ["SUF", "JTN", "PDL"]

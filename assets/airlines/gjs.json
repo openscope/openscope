@@ -1,4 +1,5 @@
 {
+  "icao": "gjs",
   "name": "GoJet Airlines",
   "callsign": {
     "name": "Lindbergh",

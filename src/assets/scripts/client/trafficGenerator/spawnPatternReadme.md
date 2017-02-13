@@ -50,11 +50,11 @@ List of airlines, and their spawn weight. A higher weight will increase the freq
   - `[AIRLINE_ID, FREQUENCY_WEIGHT]`
   - `[AIRLINE_ID/AIRLINE_FLEET, FREQUENCY_WEIGHT]`
 
+#### origin (* _for departures_)
+  * origin airport `icao`
+
 #### destination (* _for arrivals_)
 * destination airport `icao`
-
-#### origin (* _for departures_)
-* origin airport `icao`
 
 #### category*
 * Should be one of `arrival` or `departure`
@@ -72,6 +72,9 @@ Altitude an aircraft spawns at. If a min/max is provided an aircraft will spawn 
   - a single number
   - an array of `[MIN_ALTITUDE, MAX_ALTITUDE]`
 
+#### speed (* _for arrivals_)
+speed an aircraft spawns at expressed in knots
+
 #### method*
 Defines the method used to calculate delay between aircraft spawns.
 
@@ -79,6 +82,3 @@ Defines the method used to calculate delay between aircraft spawns.
 
 #### rate*
 Rate at which aircraft spawn expressed in ACPH (aircraft per hour).
-
-#### speed (* _for arrivals_)
-speed an aircraft spawns at expressed in knots

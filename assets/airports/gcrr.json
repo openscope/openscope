@@ -207,25 +207,37 @@
     "DEVL3P": {
       "icao": "DEVL3P",
       "name": "Devla Three Papa",
-      "body": [["DEVLA", "A120-|S220"], ["ASTAM", "A100-|S220"], ["ALEDU", "A80-|S220"], ["RR401", "A70|S220"], ["RR402", "A60|S220"], ["BAPAL", "A50|S220"], ["GARGO", "A23|S210"], "LOBSO", "GOLFY", "LTE01"],
+      "entryPoints": {
+          "DEVLA": [["DEVLA", "A120-|S220"], ["ASTAM", "A100-|S220"]]
+      },
+      "body": [["ALEDU", "A80-|S220"], ["RR401", "A70|S220"], ["RR402", "A60|S220"], ["BAPAL", "A50|S220"], ["GARGO", "A23|S210"], "LOBSO", "GOLFY", "LTE01"],
       "draw": [["DEVLA", "ASTAM","ALEDU","RR401","RR402","BAPAL","GARGO","LOBSO","GOLFY"]]
     },
     "TERT6P": {
       "icao": "TERT6P",
       "name": "Terto six Papa",
-      "body": [["TERTO", "A150"], "PEPOM", "GINAS", "POKAB", ["NIRPO", "A130+|S250"], "ASTAM", ["ALEDU", "A80|S220"], ["RR401", "A70|S220"], ["RR402", "A60|S220"], ["BAPAL", "A50|S220"], ["GARGO", "A23|S210"], "LOBSO", "GOLFY", "LTE01"],
+      "entryPoints": {
+          "TERTO": [["TERTO", "A150"], "PEPOM"]
+      },
+      "body": ["GINAS", "POKAB", ["NIRPO", "A130+|S250"], "ASTAM", ["ALEDU", "A80|S220"], ["RR401", "A70|S220"], ["RR402", "A60|S220"], ["BAPAL", "A50|S220"], ["GARGO", "A23|S210"], "LOBSO", "GOLFY", "LTE01"],
       "draw": [["TERTO", "PEPOM","GINAS","POKAB","NIRPO","ASTAM","ALEDU","RR401","RR402","BAPAL","GARGO","LOBSO","GOLFY"]]
     },
     "LARY2P": {
       "icao": "LARY2P",
       "name": "Larys Two Papa",
-      "body": ["LARYS",["LTE41", "S220"], ["MAPED", "A100|S200"], ["LTE15", "A70|S200"], ["254LT", "A60|S180"], ["242LT", "A45|S180"], ["230LT", "A35|S180"], ["233LT", "A31|S180"], ["221LT", "A23|S180"], "GOLFY", "LTE01"],
+      "entryPoints": {
+        "LARYS": ["LARYS",["LTE41", "S220"]]
+      },
+      "body": [["MAPED", "A100|S200"], ["LTE15", "A70|S200"], ["254LT", "A60|S180"], ["242LT", "A45|S180"], ["230LT", "A35|S180"], ["233LT", "A31|S180"], ["221LT", "A23|S180"], "GOLFY", "LTE01"],
       "draw": [["LARYS", "LTE41","MAPED","LTE15","254LT","242LT","230LT","233LT","221LT","GOLFY","LTE01"]]
     },
     "RASE2P": {
       "icao": "RASE2P",
       "name": "Rasep Two Papa",
-      "body": ["RASEP", ["GDV71", "S220"], ["MAPED", "A100|S200"], ["LTE15", "A70|S200"], ["254LT", "A60|S180"], ["242LT", "A45|S180"], ["230LT", "A35|S180"], ["233LT", "A31|S180"], ["221LT", "A23|S180"], "GOLFY", "LTE01"],
+      "entryPoints": {
+          "RASEP": ["RASEP", ["GDV71", "S220"]]
+      },
+      "body": [["MAPED", "A100|S200"], ["LTE15", "A70|S200"], ["254LT", "A60|S180"], ["242LT", "A45|S180"], ["230LT", "A35|S180"], ["233LT", "A31|S180"], ["221LT", "A23|S180"], "GOLFY", "LTE01"],
       "draw": [["RASEP", "GDV71", "MAPED", "LTE15", "254LT", "242LT", "230LT", "233LT", "221LT", "GOLFY", "LTE01"]]
     }
   },
@@ -263,7 +275,7 @@
                 ["sas", 2],
                 ["tvs", 1],
                 ["baw", 1],
-                ["lightga", 1]
+                ["n/lightGA", 1]
             ]
         },
         {
@@ -299,7 +311,7 @@
                 ["sas", 2],
                 ["tvs", 1],
                 ["baw", 1],
-                ["lightga", 1]
+                ["n/lightGA", 1]
             ]
         },
         {
@@ -335,7 +347,7 @@
                 ["sas", 2],
                 ["tvs", 1],
                 ["baw", 1],
-                ["lightga", 1]
+                ["n/lightGA", 1]
             ]
         },
         {
@@ -371,7 +383,7 @@
                 ["sas", 2],
                 ["tvs", 1],
                 ["baw", 1],
-                ["lightga", 1]
+                ["n/lightGA", 1]
             ]
         },
         {
@@ -407,7 +419,7 @@
                 ["sas", 2],
                 ["tvs", 1],
                 ["baw", 1],
-                ["lightga", 1]
+                ["n/lightGA", 1]
             ]
         },
         {
@@ -443,7 +455,7 @@
                 ["sas", 2],
                 ["tvs", 1],
                 ["baw", 1],
-                ["lightga", 1]
+                ["n/lightGA", 1]
             ]
         },
         {
@@ -503,7 +515,7 @@
             "rate": 2,
             "airlines": [
                 ["ibb", 3],
-                ["lightga", 1]
+                ["n/lightGA", 1]
             ]
         },
         {

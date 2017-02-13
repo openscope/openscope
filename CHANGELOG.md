@@ -1,4 +1,71 @@
-## 3.3.0 (January 20, 2017)
+## 4.1.0 (February 20, 2017)
+---
+### Major
+- Removes GitHub Pages specific files and moves hosting out of GitHub Pages. [#154](https://github.com/openscope/openscope/issues/154)
+
+
+
+
+
+
+
+
+### Minor
+- Makes sure the output for sid and star commands are always uppercase. [#109](https://github.com/openscope/openscope/issues/109)
+- Marks all airports as works in progress [#179](https://github.com/openscope/openscope/issues/179)
+- Changes deployment server from Express to Nginx [#166](https://github.com/openscope/openscope/issues/166)
+- Adds javascript minification to build process [#163](https://github.com/openscope/openscope/issues/163)
+    - adds copy task to public directory
+    - translates `json_assembler.rb` to `jsonAssembler.js` and adds it to the build process.
+- Corrects `icao` of the Boeing 767-400 and also updates the information to Eurocontrol data [#222](https://github.com/openscope/openscope/issues/222)
+- Updates `app.json` to use correct buildpacks [#224](https://github.com/openscope/openscope/issues/224)
+
+
+
+
+
+
+### Features
+- Fixes an instance of two runways called "34R" in Shanghai Pudong [#149](https://github.com/openscope/openscope/issues/149)
+
+
+
+
+
+
+
+
+
+
+### Bugfixes
+- Adds the required space between 'fh' and its argument in the tutorial [#201](https://github.com/openscope/openscope/issues/201)
+- Updates airline json files to include `icao` key. Updates `AirlineCollection` and `AirlineModel` to handle variable casing of `icao`  [#195](https://github.com/openscope/openscope/issues/195)
+- Adds a default position value to `SpawnPatternModel` so aircraft have, at least, a `[0, 0]` starting position [#207](https://github.com/openscope/openscope/issues/207)
+- Ensures data block colored bars are all the same width (3px), regardless of callsign length [#210](https://github.com/openscope/openscope/issues/210)
+
+
+
+
+
+
+
+
+
+
+## 4.0.1 (January 29, 2017)
+---
+### Features
+- Adds Openscope favicon [#170](https://github.com/openscope/openscope/issues/170)
+
+### Bugfixes
+- Removes `ALM` and `SVD` arrival patterns from 'EKCH' because there aren't enough fixes to support them [176](https://github.com/openscope/openscope/issues/176)
+- Updates `entryPoint` and `exitPoint` to be pluralized as is the airport json standard [#177](https://github.com/openscope/openscope/issues/177)
+- Adds `entryPoints` to `gcrr` star route definitions [#175](https://github.com/openscope/openscope/issues/175)
+- Fixes arrival pattern that was using an array of fix names instead of a routeString. [#174](https://github.com/openscope/openscope/issues/174)
+- Updates `wmkk` StandardRoute definition to include at least one fixname [#173](https://github.com/openscope/openscope/issues/173)
+
+
+## 4.0.0 (January 26, 2017)
 ---
 ### Major
 - Restructures `src` files into `client` and `server` folders. [#220](https://github.com/n8rzz/atc/issues/220)
