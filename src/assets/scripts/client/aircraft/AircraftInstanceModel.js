@@ -280,10 +280,12 @@ export default class Aircraft {
 
         // TODO: combine these two to asingle constant
         if (data.heading) {
+            this._f.setHeadingHold(data.heading);
             this.fms.setCurrent({ heading: data.heading });
         }
 
         if (data.altitude) {
+            this._f.setAltitudeHold(data.altitude);
             this.fms.setCurrent({ altitude: data.altitude });
         }
 
@@ -293,6 +295,7 @@ export default class Aircraft {
             ? data.speed
             : this.model.speed.cruise;
 
+            this._f.setSpeedHold(speed);
         this.fms.setCurrent({ speed: speed });
 
         if (data.category === FLIGHT_CATEGORY.ARRIVAL && RouteModel.isProcedureRouteString(data.route)) {

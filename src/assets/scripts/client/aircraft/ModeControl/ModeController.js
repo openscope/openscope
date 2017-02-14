@@ -26,17 +26,17 @@ export default class ModeController {
      *
      *
      */
-    setForArrival() {
-        this.altitudeMode = MCP_MODES.ALTITUDE.OFF;
-        this.headingMode = MCP_MODES.HEADING.OFF;
-        this.speedMode = MCP_MODES.SPEED.VNAV;
+    setModesForArrival() {
+        this.altitudeMode = MCP_MODES.ALTITUDE.HOLD;
+        this.headingMode = MCP_MODES.HEADING.HOLD;
+        this.speedMode = MCP_MODES.SPEED.HOLD;
     }
 
     /**
      *
      *
      */
-    setForDeparture() {
+    setModesForDeparture() {
         this.altitudeMode = MCP_MODES.ALTITUDE.VNAV;
         this.headingMode = MCP_MODES.HEADING.LNAV;
         this.speedMode = MCP_MODES.SPEED.VNAV;

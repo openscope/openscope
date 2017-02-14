@@ -251,8 +251,17 @@ export default class Fms {
      *
      *
      */
+    setSpeedHold(speed) {
+        this.setModeControllerMode(MCP_MODES.SPEED, MCP_MODES.SPEED.HOLD);
+        this.setModeControllerValue(MCP_PROPERTY_MAP.SPEED, speed);
+    }
+
+    /**
+     *
+     *
+     */
     updateModesForArrival() {
-        this._modeController.setForArrival();
+        this._modeController.setModesForArrival();
     }
 
     /**
@@ -260,7 +269,7 @@ export default class Fms {
      *
      */
     updateModesForDeparture() {
-        this._modeController.setForDeparture();
+        this._modeController.setModesForDeparture();
     }
 
     /**
