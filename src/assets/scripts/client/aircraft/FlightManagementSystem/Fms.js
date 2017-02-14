@@ -113,7 +113,12 @@ export default class Fms {
         return routeSegments.join('..');
     }
 
-
+    /**
+     *
+     * @for Fms
+     * @method getAltitude
+     * @return altitude {number}
+     */
     getAltitude() {
         let altitude = this._aircraftTypeDefinition.ceiling;
 
@@ -128,7 +133,12 @@ export default class Fms {
         return altitude;
     }
 
-
+    /**
+     *
+     * @for Fms
+     * @method getAltitude
+     * @return heading {number}
+     */
     getHeading() {
         let heading = -999;
 
@@ -210,6 +220,19 @@ export default class Fms {
         this.setModeControllerValue(MCP_PROPERTY_MAP.ALTITUDE, this.currentWaypoint.altitudeRestriction);
     }
 
+    /**
+     *
+     *
+     */
+    setAltitudeHold(altitude) {
+        this.setModeControllerMode(MCP_MODE_NAME.ALTITUDE, MCP_MODES.ALTITUDE.HOLD);
+        this.setModeControllerValue(MCP_PROPERTY_MAP.ALTITUDE, altitude);
+    }
+
+    /**
+     *
+     *
+     */
     setHeadingLnav(heading) {
         this.setModeControllerMode(MCP_MODE_NAME.HEADING, MCP_MODES.HEADING.LNAV);
         this.setModeControllerValue(MCP_PROPERTY_MAP.HEADING, heading);
@@ -224,11 +247,18 @@ export default class Fms {
         this.setModeControllerValue(MCP_PROPERTY_MAP.HEADING, heading);
     }
 
+    /**
+     *
+     *
+     */
     updateModesForArrival() {
         this._modeController.setForArrival();
     }
 
-
+    /**
+     *
+     *
+     */
     updateModesForDeparture() {
         this._modeController.setForDeparture();
     }

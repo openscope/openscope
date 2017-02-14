@@ -226,7 +226,7 @@ export default class AircraftCommander {
             }
         }
 
-        aircraft.setModeControllerModeAndValue(MCP_MODE_NAME.HEADING, MCP_MODES.HEADING.HOLD, MCP_PROPERTY_MAP.HEADING, heading);
+        aircraft._f.setHeadingHold(heading);
 
         // TODO: this probably shouldn't be the AircraftInstanceModel's job. this logic should belong somewhere else.
         // Update the FMS
@@ -372,7 +372,7 @@ export default class AircraftCommander {
 
         const altitudeAdjustedForElevation = clamp(round(airport.elevation / 100) * 100 + 1000, altitude, ceiling);
 
-        aircraft.setModeControllerModeAndValue(MCP_MODE_NAME.ALTITUDE, MCP_MODES.ALTITUDE.HOLD, MCP_PROPERTY_MAP.ALTITUDE, altitudeAdjustedForElevation);
+        aircraft._f.setAltitudeHold(altitudeAdjustedForElevation);
 
         aircraft.fms.setCurrent({ expedite: shouldExpedite });
         aircraft.fms.setAll({
@@ -445,12 +445,7 @@ export default class AircraftCommander {
      * @return {boolean|undefined}
      */
     runDescendViaSTAR(aircraft) {
-        aircraft.setModeControllerModeAndValue(
-            MCP_MODE_NAME.ALTITUDE,
-            MCP_MODES.ALTITUDE.VNAV,
-            MCP_PROPERTY_MAP.ALTITUDE,
-            aircraft._f.currentWaypoint.altitudeRestriction
-        );
+        aircraft._f.setAltitudeVnav();
 
         if (!aircraft.fms.descendViaSTAR() || !aircraft.fms.following.star) {
             const isWarning = true;
@@ -651,10 +646,10 @@ export default class AircraftCommander {
      */
     runDirect(aircraft, data) {
         // TODO: maybe handle with parser?
-        const fixname = data[0].toUpperCase();
+        const fixName = data[0].toUpperCase();
 
-        if (_isNil(this._navigationLibrary.findFixByName(fixname))) {
-            return ['fail', `unable to find fix called ${fixname}`];
+        if (_isNil(this._navigationLibrary.findFixByName(fixName))) {
+            return ['fail', `unable to find fix called ${fixName}`];
         }
 
         aircraft._f.skipToWaypoint(fixName);
@@ -662,12 +657,12 @@ export default class AircraftCommander {
 
         // remove intermediate fixes
         if (aircraft.mode === FLIGHT_MODES.TAKEOFF) {
-            aircraft.fms.skipToFix(fixname);
-        } else if (!aircraft.fms.skipToFix(fixname)) {
-            return ['fail', `${fixname} is not in our flightplan`];
+            aircraft.fms.skipToFix(fixName);
+        } else if (!aircraft.fms.skipToFix(fixName)) {
+            return ['fail', `${fixName} is not in our flightplan`];
         }
 
-        return ['ok', `proceed direct ${fixname}`];
+        return ['ok', `proceed direct ${fixName}`];
     }
 
     runFix(aircraft, data) {
@@ -716,11 +711,12 @@ export default class AircraftCommander {
      * @param data
      */
     runFlyPresentHeading(aircraft, data) {
+        const headingInRadians = radiansToDegrees(aircraft.heading);
+
         aircraft.cancelFix();
+        aircraft._f.setHeadingHold(aircraft.heading);
 
-        aircraft.setModeControllerModeAndValue(MCP_MODE_NAME.HEADING, MCP_MODES.HEADING.HOLD, MCP_PROPERTY_MAP.HEADING, aircraft.heading);
-
-        this.runHeading(aircraft, [null, radiansToDegrees(aircraft.heading)]);
+        this.runHeading(aircraft, [null, headingInRadians]);
 
         return ['ok', 'fly present heading'];
     }
