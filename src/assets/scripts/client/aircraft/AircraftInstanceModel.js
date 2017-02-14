@@ -159,7 +159,7 @@ export default class Aircraft {
         this.buildRestrictedAreaLinks();
         this.assignInitialRunway(options);
         this.parse(options);
-        this.updateFmsAfterInitialLoad(options);
+        this.initFms(options);
         this.createStrip();
         this.updateStrip();
     }
@@ -239,10 +239,12 @@ export default class Aircraft {
      * @param options {object}
      */
     assignInitialRunway(options) {
+        const runway = window.airportController.airport_get().runway;
+
         if (options.category === FLIGHT_CATEGORY.ARRIVAL) {
-            this.setArrivalRunway(window.airportController.airport_get().runway);
+            this.setArrivalRunway(runway);
         } else if (options.category === FLIGHT_CATEGORY.DEPARTURE) {
-            this.setDepartureRunway(window.airportController.airport_get().runway);
+            this.setDepartureRunway(runway);
         }
     }
 
@@ -256,24 +258,25 @@ export default class Aircraft {
         this.heading = _get(data, 'heading', this.heading);
         this.altitude = _get(data, 'altitude', this.altitude);
         this.speed = _get(data, 'speed', this.speed);
-
-        this.fms = new Fms(data, this.initialRunwayAssignment, this.model, this._navigationLibrary);
-        console.log('::: FMS', this.fms);
     }
 
-    updateFmsAfterInitialLoad(data) {
+    initFms(data) {
+        this.fms = new Fms(data, this.initialRunwayAssignment, this.model, this._navigationLibrary);
+        console.log('::: FMS', this.fms);
+
         if (this.category === FLIGHT_CATEGORY.ARRIVAL) {
             this.destination = data.destination;
 
             this.fms.updateModesForArrival();
             this.setArrivalWaypoints(data.waypoints);
-            this.setArrivalRunway(window.airportController.airport_get(this.destination).runway);
+            // this.setArrivalRunway(window.airportController.airport_get(this.destination).runway);
         } else if (this.category === FLIGHT_CATEGORY.DEPARTURE) {
-            this.fms.updateModesForDeparture();
             const airport = window.airportController.airport_get();
+
+            this.fms.updateModesForDeparture();
             this.mode = FLIGHT_MODES.APRON;
             this.destination = data.destination;
-            this.setDepartureRunway(airport.runway);
+            // this.setDepartureRunway(airport.runway);
             this.altitude = airport.position.elevation;
             this.speed = 0;
         }
@@ -286,7 +289,7 @@ export default class Aircraft {
 
         if (data.altitude) {
             this.fms.setAltitudeHold(data.altitude);
-            this.__fms__.setCurrent({ altitude: data.altitude });
+            // this.__fms__.setCurrent({ altitude: data.altitude });
         }
 
         // temporary ternary that should be refactored in the future. A departure will have a speed
@@ -295,18 +298,18 @@ export default class Aircraft {
             ? data.speed
             : this.model.speed.cruise;
 
-            this.fms.setSpeedHold(speed);
-        this.__fms__.setCurrent({ speed: speed });
+        this.fms.setSpeedHold(speed);
+        // this.__fms__.setCurrent({ speed: speed });
 
-        if (data.category === FLIGHT_CATEGORY.ARRIVAL && RouteModel.isProcedureRouteString(data.route)) {
-            const route = this.__fms__.formatRoute(data.route);
-
-            this.__fms__.customRoute(route, true);
-            this.__fms__.descendViaSTAR();
-        }
+        // if (data.category === FLIGHT_CATEGORY.ARRIVAL && RouteModel.isProcedureRouteString(data.route)) {
+        //     const route = this.__fms__.formatRoute(data.route);
+        //
+        //     this.__fms__.customRoute(route, true);
+        //     this.__fms__.descendViaSTAR();
+        // }
 
         if (data.nextFix) {
-            this.__fms__.skipToFix(data.nextFix);
+            this.fms.skipToWaypoint(data.nextFix);
         }
     }
 
@@ -314,6 +317,8 @@ export default class Aircraft {
         if (!waypoints || waypoints.length === 0) {
             return;
         }
+
+        debugger;
 
         // add arrival fixes to fms
         for (let i = 0; i < waypoints.length; i++) {
@@ -346,47 +351,19 @@ export default class Aircraft {
     setDepartureRunway(rwy) {
         this.rwy_dep = rwy;
 
-        // Update the assigned SID to use the portion for the new runway
-        const leg = this.__fms__.currentLeg;
-
-        // TODO: this should return early
-        // TODO: use existing enumeration for `sid`
-        if (leg.type === FP_LEG_TYPE.SID) {
-            const a = _map(leg.waypoints, (v) => v.altitude);
-            const cvs = !a.every((v) => v === window.airportController.airport_get().initial_alt);
-            this.__fms__.followSID(leg.route.routeCode);
-
-            if (cvs) {
-                this.__fms__.climbViaSID();
-            }
-        }
-    }
-
-    /**
-     *
-     *
-     */
-    setMcpMode(modeSelector, mode) {
-        console.log('setMcpMode:', modeSelector, mode);
-        this.fms.setModeControllerMode(modeSelector, mode);
-    }
-
-    /**
-     *
-     *
-     */
-    setMcpModeValue(fieldName, value) {
-        console.log('setMcpModeValue:', fieldName, value);
-        this.fms.setModeControllerValue(fieldName, value);
-    }
-
-    /**
-     *
-     *
-     */
-    setModeControllerModeAndValue(modeSelector, mode, fieldName, value) {
-        this.setMcpMode(modeSelector, mode);
-        this.setMcpModeValue(fieldName, value);
+        // // Update the assigned SID to use the portion for the new runway
+        // const leg = this.fms.currentLeg;
+        //
+        // // TODO: this should return early
+        // if (leg.type === FP_LEG_TYPE.SID) {
+        //     const a = _map(leg.waypoints, (v) => v.altitude);
+        //     const cvs = !a.every((v) => v === window.airportController.airport_get().initial_alt);
+        //     this.__fms__.followSID(leg.route.routeCode);
+        //
+        //     if (cvs) {
+        //         this.__fms__.climbViaSID();
+        //     }
+        // }
     }
 
     cleanup() {
@@ -420,7 +397,7 @@ export default class Aircraft {
         }
     }
 
-    // Called when the aircraft crosses the center boundary (ie, leaving our airspace)
+    // Called when the aircraft crosses the airspace boundary (ie, leaving our airspace)
     /**
      * @for AircraftInstanceModel
      * @method crossBoundary
@@ -437,10 +414,12 @@ export default class Aircraft {
         if (inbound) {
             this.showStrip();
             this.callUp();
-        } else {
-            // leaving airspace
-            this.onAirspaceExit();
+
+            return;
         }
+
+        // leaving airspace
+        this.onAirspaceExit();
     }
 
     /**
@@ -590,12 +569,12 @@ export default class Aircraft {
      * @return {number}
      */
     getClimbRate() {
-        const altitude = this.altitude;
-        const rate = this.model.rate.climb;
-        const ceiling = this.model.ceiling;
         let serviceCeilingClimbRate;
         let cr_uncorr;
         let cr_current;
+        const altitude = this.altitude;
+        const rate = this.model.rate.climb;
+        const ceiling = this.model.ceiling;
 
         if (this.model.engines.type === 'J') {
             serviceCeilingClimbRate = 500;
@@ -1016,23 +995,11 @@ export default class Aircraft {
 
                 break;
             default:
-                this.target.heading = this.__fms__.currentWaypoint.heading;
+                this.target.heading = this.fms.getHeading();
                 this.target.turn = this.__fms__.currentWaypoint.turn;
 
                 break;
         }
-
-        // if (this.__fms__.currentWaypoint.navmode === WAYPOINT_NAV_MODE.RWY) {
-        //     this.updateTargetPrepareAircraftForLanding();
-        // } else if (this.__fms__.currentWaypoint.navmode === WAYPOINT_NAV_MODE.FIX) {
-        //     this.updateTargetTowardsNextFix();
-        // } else if (this.__fms__.currentWaypoint.navmode === WAYPOINT_NAV_MODE.HOLD) {
-        //     this.updateTargetPrepareAircraftForHold();
-        // } else {
-        //     this.target.heading = this.__fms__.currentWaypoint.heading;
-        //     this.target.turn = this.__fms__.currentWaypoint.turn;
-        // }
-
 
         if (this.mode !== FLIGHT_MODES.LANDING) {
             // this.target.altitude = this.fms.getAltitude();
@@ -1219,10 +1186,10 @@ export default class Aircraft {
     updateLandingFinalApproachHeading(angle) {
         // Final Approach Heading Control
         const severity_of_correction = 25;  // controls steepness of heading adjustments during localizer tracking
-        const tgtHdg = angle + (this.offset_angle * -severity_of_correction);
-        const minHdg = angle - degreesToRadians(30);
-        const maxHdg = angle + degreesToRadians(30);
-        this.target.heading = clamp(tgtHdg, minHdg, maxHdg);
+        const targetHeadinh = angle + (this.offset_angle * -severity_of_correction);
+        const minHeading = angle - degreesToRadians(30);
+        const maxHeading = angle + degreesToRadians(30);
+        this.target.heading = clamp(targetHeadinh, minHeading, maxHeading);
     }
 
     /**
@@ -1256,9 +1223,11 @@ export default class Aircraft {
         const maxAboveGlideslope = 250;
         const interceptAngle = abs(angle_offset(this.target.heading, runwayNominalHeading));
         const courseDifference = abs(angle_offset(this.heading, runwayNominalHeading));
+
         if (alignedWithRunway && onRunwayHeading && this.mode !== FLIGHT_MODES.LANDING) {
             this.mode = FLIGHT_MODES.LANDING;
             this.target.heading = angle;
+
             // Check legality of localizer interception
             if (!this.projected) {  // do not give penalty during a future projection
                 // Intercept Angle
@@ -1305,6 +1274,7 @@ export default class Aircraft {
             const tgtHdg = angle + (this.offset_angle * -severity_of_correction);
             const minHdg = angle - degreesToRadians(30);
             const maxHdg = angle + degreesToRadians(30);
+
             this.target.heading = clamp(tgtHdg, minHdg, maxHdg);
         }
     }
@@ -1316,31 +1286,34 @@ export default class Aircraft {
      * @method updateFixTarget
      */
     updateTargetTowardsNextFix() {
-        const fix = this.__fms__.currentWaypoint.location;
+        const fix = this.fms.currentWaypoint.position;
+        const vectorToFix = vsub(this.position, fix);
+        const distanceToFix = distance2d(this.position, fix);
+        const isFixLessThanTurnInitiation = distanceToFix < window.aircraftController.aircraft_turn_initiation_distance(this, fix);
 
-        if (!fix) {
-            console.error(`${this.getCallsign()} using "fix" navmode, but no fix location!`);
-        }
+        // if (!fix) {
+        //     console.error(`${this.getCallsign()} using "fix" navmode, but no fix location!`);
+        // }
 
-        const vector_to_fix = vsub(this.position, fix);
-        const distance_to_fix = distance2d(this.position, fix);
-
-        if ((distance_to_fix < 1) ||
-            ((distance_to_fix < 10) &&
-            (distance_to_fix < window.aircraftController.aircraft_turn_initiation_distance(this, fix)))
+        if (
+            distanceToFix < 1 ||
+            (distanceToFix < 10 && isFixLessThanTurnInitiation)
         ) {
-            // if there are more waypoints available
-            if (!this.__fms__.atLastWaypoint()) {
-                this.__fms__.nextWaypoint();
-            } else {
-                this.cancelFix();
-            }
+            // // if there are more waypoints available
+            // if (!this.__fms__.atLastWaypoint()) {
+            //     this.__fms__.nextWaypoint();
+            // } else {
+            //     this.cancelFix();
+            // }
 
+            this.fms.nextWaypoint();
             this.updateStrip();
-        } else {
-            this.target.heading = vradial(vector_to_fix) - Math.PI;
-            this.target.turn = null;
+
+            return;
         }
+
+        this.target.heading = vradial(vectorToFix) - Math.PI;
+        this.target.turn = null;
     }
 
     /**
@@ -1430,11 +1403,13 @@ export default class Aircraft {
         // FIXME: is this ratio correct? is it 0.000514444 or 0.514444?
         const scaleSpeed = this.speed * 0.000514444 * window.gameController.game_delta(); // knots to m/s
 
-        if (window.gameController.game.option.get('simplifySpeeds') === 'no') {
-            this.updateGroundSpeedPhysics(scaleSpeed);
-        } else {
-            this.updateSimpleGroundSpeedPhysics(scaleSpeed);
-        }
+        this.updateGroundSpeedPhysics(scaleSpeed);
+
+        // if (window.gameController.game.option.get('simplifySpeeds') === 'no') {
+        //     this.updateGroundSpeedPhysics(scaleSpeed);
+        // } else {
+        //     this.updateSimpleGroundSpeedPhysics(scaleSpeed);
+        // }
 
         this.distance = vlen(this.position);
         this.radial = vradial(this.position);
@@ -1599,6 +1574,10 @@ export default class Aircraft {
      * @param scaleSpeed
      */
     updateGroundSpeedPhysics(scaleSpeed) {
+        if (window.gameController.game.option.get('simplifySpeeds') === 'yes') {
+            return this.updateSimpleGroundSpeedPhysics(scaleSpeed);
+        }
+
         // TODO: this should be abstracted to a helper function
         // Calculate the true air speed as indicated airspeed * 1.6% per 1000'
         const trueAirSpeed = scaleSpeed * (1 + this.altitude * 0.000016);

@@ -243,7 +243,7 @@ export default class Fms {
      *
      */
     setHeadingHold(heading) {
-        this.setModeControllerMode(MCP_MODES.HEADING, MCP_MODES.HEADING.HOLD);
+        this.setModeControllerMode(MCP_MODE_NAME.HEADING, MCP_MODES.HEADING.HOLD);
         this.setModeControllerValue(MCP_PROPERTY_MAP.HEADING, heading);
     }
 
@@ -252,7 +252,7 @@ export default class Fms {
      *
      */
     setSpeedHold(speed) {
-        this.setModeControllerMode(MCP_MODES.SPEED, MCP_MODES.SPEED.HOLD);
+        this.setModeControllerMode(MCP_MODE_NAME.SPEED, MCP_MODES.SPEED.HOLD);
         this.setModeControllerValue(MCP_PROPERTY_MAP.SPEED, speed);
     }
 
@@ -300,6 +300,8 @@ export default class Fms {
         }
 
         this._moveToNextWaypointInLeg();
+
+        // TODO: last else should be cancelFix()
     }
 
 

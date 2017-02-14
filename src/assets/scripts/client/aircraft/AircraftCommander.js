@@ -478,7 +478,7 @@ export default class AircraftCommander {
             return ['fail', 'speed not understood'];
         }
 
-        aircraft.setModeControllerModeAndValue(MCP_MODE_NAME.SPEED, MCP_MODES.SPEED.HOLD, MCP_PROPERTY_MAP.SPEED, speed);
+        aircraft.fms.setSpeedHold(speed);
 
         const clampedSpeed = clamp(aircraft.model.speed.min, speed, aircraft.model.speed.max);
         aircraft.__fms__.setAll({ speed: clampedSpeed });
@@ -832,6 +832,7 @@ export default class AircraftCommander {
          // capitalize everything
         data = data[0].toUpperCase();
         let worked = true;
+        // TODO: replace with routeStringFormatHelper
         const route = aircraft.__fms__.formatRoute(data);
 
         if (worked && route) {
