@@ -314,7 +314,7 @@ export default class AircraftController {
             // Clean up the screen from aircraft that are too far
             if (
                 (!this.aircraft_visible(aircraft, 2) && !aircraft.inside_ctr) &&
-                aircraft.fms.currentWaypoint.navmode === 'heading'
+                aircraft.__fms__.currentWaypoint.navmode === 'heading'
             ) {
                 if (aircraft.category === 'arrival' || aircraft.category === 'departure') {
                     remove = true;
@@ -342,8 +342,8 @@ export default class AircraftController {
      */
     aircraft_turn_initiation_distance(aircraft, fix) {
         // TODO: this function is ripe for refactor. there is a lot of inline logic that can be abstracted and/or pulled out
-        const index = aircraft.fms.indexOfCurrentWaypoint().wp;
-        if (index >= aircraft.fms.waypoints().length - 1) {
+        const index = aircraft.__fms__.indexOfCurrentWaypoint().wp;
+        if (index >= aircraft.__fms__.waypoints().length - 1) {
             // if there are no subsequent fixes, fly over 'fix'
             return 0;
         }
@@ -354,7 +354,7 @@ export default class AircraftController {
         const bank_angle = degreesToRadians(25);
 
         // TODO: is there a getNextWaypoint() function?
-        const nextfix = aircraft.fms.waypoint(aircraft.fms.indexOfCurrentWaypoint().wp + 1).location;
+        const nextfix = aircraft.__fms__.waypoint(aircraft.__fms__.indexOfCurrentWaypoint().wp + 1).location;
         if (!nextfix) {
             return 0;
         }
@@ -472,7 +472,7 @@ export default class AircraftController {
             // update eid in aircraft
             this.aircraft.list[i].eid = i;
             // update eid in aircraft's fms
-            this.aircraft.list[i].fms.my_aircrafts_eid = i;
+            this.aircraft.list[i].__fms__.my_aircrafts_eid = i;
         }
     }
 

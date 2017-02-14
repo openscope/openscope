@@ -722,7 +722,7 @@ export default class ConvasController {
      */
     canvas_draw_separation_indicator(cc, aircraft) {
         // Draw a trailing indicator 2.5 NM (4.6km) behind landing aircraft to help with traffic spacing
-        const rwy = window.airportController.airport_get().getRunway(aircraft.fms.currentWaypoint.runway);
+        const rwy = window.airportController.airport_get().getRunway(aircraft.__fms__.currentWaypoint.runway);
 
         if (!rwy) {
             return;
@@ -960,7 +960,7 @@ export default class ConvasController {
      * @param future_track
      */
     canvas_draw_future_track_fixes(cc, aircraft, future_track) {
-        if (aircraft.fms.waypoints.length < 1) {
+        if (aircraft.__fms__.waypoints.length < 1) {
             return;
         }
 
@@ -972,12 +972,12 @@ export default class ConvasController {
         cc.moveTo(x, y);
         cc.setLineDash([3, 10]);
 
-        for (let i = 0; i < aircraft.fms.waypoints.length; i++) {
-            if (!aircraft.fms.waypoints[i].location) {
+        for (let i = 0; i < aircraft.__fms__.waypoints.length; i++) {
+            if (!aircraft.__fms__.waypoints[i].location) {
                 break;
             }
 
-            const fix = aircraft.fms.waypoints[i].location;
+            const fix = aircraft.__fms__.waypoints[i].location;
             const fx = window.uiController.km_to_px(fix[0]) + this.canvas.panX;
             const fy = -window.uiController.km_to_px(fix[1]) + this.canvas.panY;
 
@@ -1005,7 +1005,7 @@ export default class ConvasController {
         const twin = _cloneDeep(aircraft);
 
         twin.fms = fms_twin;
-        twin.fms.aircraft = twin;
+        twin.__fms__.aircraft = twin;
         twin.projected = true;
         window.gameController.game.delta = 5;
 
@@ -1119,7 +1119,7 @@ export default class ConvasController {
             // width of colored bar
             const bar_width = 3;
             const bar_width2 = bar_width / 2;
-            const ILS_enabled = aircraft.fms.currentWaypoint.runway && aircraft.category === FLIGHT_CATEGORY.ARRIVAL;
+            const ILS_enabled = aircraft.__fms__.currentWaypoint.runway && aircraft.category === FLIGHT_CATEGORY.ARRIVAL;
             const lock_size = height / 3;
             const lock_offset = lock_size / 8;
             const pi = Math.PI;

@@ -63,7 +63,7 @@ export default class AircraftStripView {
         this.destination = aircraftInstanceModel.destination;
         this.weightclass = aircraftInstanceModel.model.weightclass;
         this.category = aircraftInstanceModel.category;
-        this.flightPlan = aircraftInstanceModel.fms.fp.route.join(' ');
+        this.flightPlan = aircraftInstanceModel.__fms__.fp.route.join(' ');
 
         return this._init()
                     .setupHandlers(aircraftInstanceModel)

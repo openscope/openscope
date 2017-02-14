@@ -220,7 +220,7 @@ export default class TutorialView {
                     return t;
                 }
 
-                return t.replace('{RUNWAY}', prop.aircraft.list[0].fms.currentWaypoint.runway);
+                return t.replace('{RUNWAY}', prop.aircraft.list[0].__fms__.currentWaypoint.runway);
             },
             side: 'left',
             position: tutorial_position
@@ -237,7 +237,7 @@ export default class TutorialView {
                     return t;
                 }
 
-                return t.replace('{RUNWAY}', prop.aircraft.list[0].fms.currentWaypoint.runway);
+                return t.replace('{RUNWAY}', prop.aircraft.list[0].__fms__.currentWaypoint.runway);
             },
             side: 'left',
             position: tutorial_position
@@ -255,7 +255,7 @@ export default class TutorialView {
                     return t;
                 }
 
-                return t.replace('{RUNWAY}', prop.aircraft.list[0].fms.currentWaypoint.runway);
+                return t.replace('{RUNWAY}', prop.aircraft.list[0].__fms__.currentWaypoint.runway);
             },
             side: 'left',
             position: tutorial_position
@@ -272,7 +272,7 @@ export default class TutorialView {
                     return t;
                 }
 
-                return t.replace('{RUNWAY}', prop.aircraft.list[0].fms.currentWaypoint.runway);
+                return t.replace('{RUNWAY}', prop.aircraft.list[0].__fms__.currentWaypoint.runway);
             },
             side: 'left',
             position: tutorial_position
