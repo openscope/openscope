@@ -1,4 +1,4 @@
-## 5.2.0 (June 1, 2017)
+## 5.2.0 (July 1, 2017)
 ---
 ### Features
 - Add capability for vectors in route strings [#310](https://github.com/openscope/openscope/issues/310)
@@ -20,6 +20,7 @@
     - Completely reworks CSS for `StripViewList`
 - Updates `AircraftModel.onAirspaceExit()` to look only at the `mcp.headingMode` value [#477](https://github.com/openscope/openscope/issues/477)
 - Adds user setting option to change length of PTL [#423](https://github.com/openscope/openscope/issues/423)
+- Updates Dublin (EIDW) - Improved procedures, add terrain, modified airspace, realistic traffic [#208](https://github.com/openscope/openscope/issues/208)
 
 
 
