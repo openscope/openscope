@@ -15,7 +15,7 @@ import { speech_say } from '../speech';
 import { tau, radians_normalize, angle_offset } from '../math/circle';
 import { round, abs, sin, cos, extrapolate_range_clamp, clamp } from '../math/core';
 import { distance2d } from '../math/distance';
-import { getOffset } from '../math/flightMath';
+import { getOffset, calculateTurnInitiaionDistance } from '../math/flightMath';
 import {
     vlen,
     vradial,
@@ -1769,10 +1769,10 @@ export default class Aircraft {
 
         const wp = this.__fms__.currentWaypoint;
         // Populate strip fields with default values
-        const defaultHeadingText = heading_to_string(wp.heading);
-        const defaultAltitudeText = _get(wp, 'altitude', '-');
+        const defaultHeadingText = heading_to_string(this.fms.getHeading());
+        const defaultAltitudeText = this.fms.getAltitude();
         const defaultDestinationText = _get(this, 'destination', window.airportController.airport_get().icao);
-        const currentSpeedText = wp.speed;
+        const currentSpeedText = this.fms.getSpeed();
 
         let headingText;
         const altitudeText = this.taxi_next ? 'ready' : null;
@@ -1786,17 +1786,17 @@ export default class Aircraft {
 
         switch (this.mode) {
             case FLIGHT_MODES.APRON:
-                this.aircraftStripView.updateViewForApron(destinationText, hasAltitude, isFollowingSID);
+                this.aircraftStripView.updateViewForApron(destinationText, hasAltitude);
                 break;
             case FLIGHT_MODES.TAXI:
-                this.aircraftStripView.updateViewForTaxi(destinationText, hasAltitude, isFollowingSID, altitudeText);
+                this.aircraftStripView.updateViewForTaxi(destinationText, hasAltitude, altitudeText);
                 break;
             case FLIGHT_MODES.WAITING:
-                this.aircraftStripView.updateViewForWaiting(destinationText, hasAltitude, isFollowingSID);
+                this.aircraftStripView.updateViewForWaiting(destinationText, hasAltitude);
                 break;
             case FLIGHT_MODES.TAKEOFF:
                 // When taking off...
-                this.aircraftStripView.updateViewForTakeoff(destinationText, isFollowingSID);
+                this.aircraftStripView.updateViewForTakeoff(destinationText);
 
                 break;
             case FLIGHT_MODES.CRUISE:
@@ -1814,11 +1814,13 @@ export default class Aircraft {
                 }
 
                 this.aircraftStripView.updateViewForCruise(wp.navmode, headingText, destinationText, isFollowingSID, isFollowingSTAR, fixRestrictions);
+
                 break;
             case FLIGHT_MODES.LANDING:
                 destinationText = this.__fms__.getDesinationIcaoWithRunway();
 
                 this.aircraftStripView.updateViewForLanding(destinationText);
+
                 break;
             default:
                 throw new TypeError(`Invalid FLIGHT_MODE ${this.mode} passed to .updateStrip()`);

@@ -1,5 +1,5 @@
-/* eslint-disable import/no-extraneous-dependencies, arrow-parens */
 import ava from 'ava';
+import _isArray from 'lodash/isArray';
 
 import FixModel from '../../../src/assets/scripts/client/navigationLibrary/Fix/FixModel';
 import PositionModel from '../../../src/assets/scripts/client/base/PositionModel';
@@ -73,7 +73,7 @@ ava('.toWaypointModel() returns a new WaypointModel instance', (t) => {
 
     t.true(result instanceof WaypointModel);
     t.true(result.name === FIXNAME_MOCK.toLowerCase());
-    t.true(result.position instanceof PositionModel);
+    t.true(_isArray(result.position));
     t.true(result.altitudeRestriction === -1);
     t.true(result.speedRestriction === -1);
 });

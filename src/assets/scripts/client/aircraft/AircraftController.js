@@ -329,61 +329,6 @@ export default class AircraftController {
     }
 
     /**
-     * Calculate the turn initiation distance for an aircraft to navigate between two fixes.
-     *
-     * References:
-     * - http://www.ohio.edu/people/uijtdeha/ee6900_fms_00_overview.pdf, Fly-by waypoint
-     * - The Avionics Handbook, ch 15
-     *
-     * @for AircraftController
-     * @method aircraft_turn_initiation_distance
-     * @param aircraft {AircraftInstanceModel}
-     * @param fix
-     */
-    aircraft_turn_initiation_distance(aircraft, fix) {
-        // TODO: this function is ripe for refactor. there is a lot of inline logic that can be abstracted and/or pulled out
-        const index = aircraft.__fms__.indexOfCurrentWaypoint().wp;
-        if (index >= aircraft.__fms__.waypoints().length - 1) {
-            // if there are no subsequent fixes, fly over 'fix'
-            return 0;
-        }
-
-        // convert knots to m/s
-        const speed = kn_ms(aircraft.speed);
-        // assume nominal bank angle of 25 degrees for all aircraft
-        const bank_angle = degreesToRadians(25);
-
-        // TODO: is there a getNextWaypoint() function?
-        const nextfix = aircraft.__fms__.waypoint(aircraft.__fms__.indexOfCurrentWaypoint().wp + 1).location;
-        if (!nextfix) {
-            return 0;
-        }
-
-        let nominal_new_course = vradial(vsub(nextfix, fix));
-        if (nominal_new_course < 0) {
-            // TODO: what is this doing? this should go in a new method.
-            nominal_new_course += tau();
-        }
-
-        let current_heading = aircraft.heading;
-        if (current_heading < 0) {
-            current_heading += tau();
-        }
-
-        // TODO: move to function
-        let course_change = abs(radiansToDegrees(current_heading) - radiansToDegrees(nominal_new_course));
-        if (course_change > 180) {
-            course_change = 360 - course_change;
-        }
-
-        course_change = degreesToRadians(course_change);
-        // meters, bank establishment in 1s
-        const turn_initiation_distance = calcTurnInitiationDistance(speed, bank_angle, course_change);
-
-        return turn_initiation_distance / 1000; // convert m to km
-    }
-
-    /**
      * @for AircraftController
      * @method aircraft_get
      * @param eid

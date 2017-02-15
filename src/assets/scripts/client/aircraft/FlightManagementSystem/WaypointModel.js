@@ -10,7 +10,7 @@ export default class WaypointModel {
      */
     constructor(waypointProps) {
         this.name = '';
-        this.position = null;
+        this._position = null;
         this.speedRestriction = -1;
         this.altitudeRestriction = -1;
 
@@ -26,16 +26,33 @@ export default class WaypointModel {
         this.init(waypointProps);
     }
 
+    /**
+     *
+     * @property position
+     * @return {array}
+     */
+    get position() {
+        return this._position.position;
+    }
+
+    /**
+     *
+     *
+     */
     init(waypointProps) {
         this.name = waypointProps.name.toLowerCase();
-        this.position = waypointProps.position;
+        this._position = waypointProps.position;
         this.speedRestriction = parseInt(waypointProps.speedRestriction, 10);
         this.altitudeRestriction = parseInt(waypointProps.altitudeRestriction, 10);
     }
 
+    /**
+     *
+     *
+     */
     destroy() {
-        this.fixName = '';
-        this.position = null;
+        this.name = '';
+        this._position = null;
         this.speedRestriction = -1;
         this.altitudeRestriction = -1;
     }

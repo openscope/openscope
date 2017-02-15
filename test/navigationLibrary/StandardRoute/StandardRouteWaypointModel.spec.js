@@ -1,10 +1,9 @@
-/* eslint-disable arrow-parens, import/no-extraneous-dependencies*/
 import ava from 'ava';
 import sinon from 'sinon';
+import _isArray from 'lodash/isArray';
 
 import StandardRouteWaypointModel from '../../../src/assets/scripts/client/navigationLibrary/StandardRoute/StandardRouteWaypointModel';
 import FixCollection from '../../../src/assets/scripts/client/navigationLibrary/Fix/FixCollection';
-import PositionModel from '../../../src/assets/scripts/client/base/PositionModel';
 import Waypoint from '../../../src/assets/scripts/client/aircraft/FlightManagementSystem/Waypoint';
 import WaypointModel from '../../../src/assets/scripts/client/aircraft/FlightManagementSystem/WaypointModel';
 
@@ -79,7 +78,7 @@ ava('.toWaypointModel() returns a new instance of a WaypointModel', t => {
 
     t.true(result instanceof WaypointModel);
     t.true(result.name === model.name.toLowerCase());
-    t.true(result.position instanceof PositionModel);
+    t.true(_isArray(result.position));
     t.true(result.altitudeRestriction === 8000);
     t.true(result.speedRestriction === 250);
 });

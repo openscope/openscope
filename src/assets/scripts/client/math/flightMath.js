@@ -1,4 +1,5 @@
 import { sin, cos, tan, abs } from './core';
+import { tau } from './circle';
 import { distance2d } from './distance';
 import {
     vradial,
@@ -8,7 +9,11 @@ import {
     distance_to_poly,
     area_to_poly
 } from './vector';
-import { degreesToRadians, radiansToDegrees } from '../utilities/unitConverters';
+import {
+    kn_ms,
+    degreesToRadians,
+    radiansToDegrees
+} from '../utilities/unitConverters';
 
 /**
  * @property CONSTANTS
@@ -156,4 +161,62 @@ export const calculateDistanceToBoundary = (airport, pos) => {
 
     // TODO: hmm, `position.position`? that seems fishy
     return abs(distance2d(pos, airport.position.position) - airport.ctr_radius);
+};
+
+/**
+ * Calculate the turn initiation distance for an aircraft to navigate between two fixes.
+ *
+ * References:
+ * - http://www.ohio.edu/people/uijtdeha/ee6900_fms_00_overview.pdf, Fly-by waypoint
+ * - The Avionics Handbook, ch 15
+ *
+ * @function aircraft_turn_initiation_distance
+ * @param aircraft {AircraftInstanceModel}
+ * @param fix
+ */
+export const calculateTurnInitiaionDistance = (aircraft, fix) => {
+    let nominalNewCourse;
+    let currentHeading;
+    let courseChange;
+    // convert knots to m/s
+    const speed = kn_ms(aircraft.speed);
+    // assume nominal bank angle of 25 degrees for all aircraft
+    const bankAngle = degreesToRadians(25);
+
+
+    const index = aircraft.__fms__.indexOfCurrentWaypoint().wp;
+    if (index >= aircraft.__fms__.waypoints().length - 1) {
+        // if there are no subsequent fixes, fly over 'fix'
+        return 0;
+    }
+
+    // TODO: is there a getNextWaypoint() function?
+    const nextfix = aircraft.__fms__.waypoint(aircraft.__fms__.indexOfCurrentWaypoint().wp + 1).location;
+    if (!nextfix) {
+        return 0;
+    }
+
+    nominalNewCourse = vradial(vsub(nextfix, fix));
+    if (nominalNewCourse < 0) {
+        // TODO: what is this doing? this should go in a new method.
+        nominalNewCourse += tau();
+    }
+
+    currentHeading = aircraft.heading;
+    if (currentHeading < 0) {
+        currentHeading += tau();
+    }
+
+    courseChange = abs(radiansToDegrees(currentHeading) - radiansToDegrees(nominalNewCourse));
+    if (courseChange > 180) {
+        courseChange = 360 - courseChange;
+    }
+
+    courseChange = degreesToRadians(courseChange);
+
+    // meters, bank establishment in 1s
+    const turnInitiationDistance = calcTurnInitiationDistance(speed, bankAngle, courseChange);
+
+    // convert m to km
+    return turnInitiationDistance / 1000;
 };
