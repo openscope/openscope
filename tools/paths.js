@@ -16,6 +16,7 @@ const build = ROOT;
 const buildAssetsDir = path.join(ROOT, 'assets');
 const buildAssetsAircraft = path.join(buildAssetsDir, 'aircraft');
 const buildAssetsAirlines = path.join(buildAssetsDir, 'airlines');
+const buildAssetsAirports = path.join(buildAssetsDir, 'airports');
 const buildFontsDir = path.join(buildAssetsDir, 'fonts');
 const buildScriptsDir = path.join(buildAssetsDir, 'scripts');
 const buildScriptsServerDir = path.join(buildScriptsDir, 'server');
@@ -44,6 +45,7 @@ options.DIR = {
     BUILD_ASSETS: buildAssetsDir,
     BUILD_ASSETS_AIRCRAFT: buildAssetsAircraft,
     BUILD_ASSETS_AIRLINES: buildAssetsAirlines,
+    BUILD_ASSETS_AIRPORTS: buildAssetsAirports,
     BUILD_FONTS: buildFontsDir,
     BUILD_SCRIPTS: buildScriptsDir,
     BUILD_SCRIPTS_SERVER: buildScriptsServerDir,
@@ -55,6 +57,7 @@ options.DIR = {
     DIST_ASSETS: distAssets,
     DIST_AIRCRAFT: path.join(distAssets, 'aircraft'),
     DIST_AIRLINES: path.join(distAssets, 'airlines'),
+    DIST_AIRPORTS: path.join(distAssets, 'airports'),
     DIST_FONT: path.join(distAssets, 'fonts'),
     DIST_IMAGES: path.join(distAssets, 'images'),
     DIST_SCRIPTS: path.join(distAssets, 'scripts/client')
@@ -73,12 +76,13 @@ options.FILE = {
 options.GLOB = {
     STATIC_ASSETS: path.join(options.DIR.BUILD_ASSETS, '**/*'),
     STATIC_JSON: path.join(options.DIR.BUILD_ASSETS, '**/*.json'),
+    STATIC_AIRPORTS: path.join(options.DIR.BUILD_ASSETS, 'airports/**/*'),
     SRC: path.join(options.DIR.SRC, '**/*'),
     BUILD: path.join(options.DIR.BUILD, '**/*'),
     JS: path.join(options.DIR.SRC_SCRIPTS, '**/*.js'),
     CSS: path.join(options.DIR.SRC_STYLE, '**/*.css'),
     FONTS: path.join(options.DIR.BUILD_ASSETS, 'fonts/**/*'),
-    IMAGES: path.join(options.DIR.SRC_IMAGES, '**/*'),
+    IMAGES: path.join(options.DIR.BUILD_ASSETS, 'images/**/*'),
     MARKUP: path.join(options.DIR.SRC_MARKUP, '**/*.hbs')
 };
 

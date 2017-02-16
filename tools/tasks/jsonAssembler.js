@@ -5,7 +5,7 @@ const mkdirp = require('mkdirp');
 
 const paths = require('../paths');
 
-const MERGE_CONFIG = [
+const BUILD_CONFIG = [
     [paths.DIR.BUILD_ASSETS_AIRCRAFT, 'aircraft.json', paths.DIR.BUILD_ASSETS_AIRCRAFT],
     [paths.DIR.BUILD_ASSETS_AIRLINES, 'airlines.json', paths.DIR.BUILD_ASSETS_AIRLINES],
     [paths.DIR.BUILD_ASSETS_AIRCRAFT, 'aircraft.json', paths.DIR.DIST_AIRCRAFT],
@@ -95,8 +95,8 @@ function _jsonAssembler(source, outputFilename, destination) {
  * @public
  */
 function jsonAssembler() {
-    for (let i = 0; i < MERGE_CONFIG.length; i++) {
-        _jsonAssembler(...MERGE_CONFIG[i]);
+    for (let i = 0; i < BUILD_CONFIG.length; i++) {
+        _jsonAssembler(...BUILD_CONFIG[i]);
     }
 }
 

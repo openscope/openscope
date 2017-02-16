@@ -7,7 +7,7 @@
     "npm": "3.10.8"
   },
   "scripts": {
-    "postinstall": "gulp build --prod; gulp copy:dist",
+    "postinstall": "gulp build --prod; gulp copy:prod",
     "test": "nyc --require babel-core/register ava --serial --concurrency=5",
     "build": "gulp build && npm run test",
     "report": "nyc report --reporter=cobertura --reporter=lcov",
@@ -119,6 +119,8 @@
     "gulp-util": "^3.0.7",
     "handlebars-helpers": "^0.8.0",
     "handlebars-layouts": "^3.1.4",
+    "merge-stream": "^1.0.1",
+    "mkdirp": "^0.5.1",
     "nyc": "^6.2.0",
     "path": "^0.12.7",
     "rimraf": "^2.5.4",
