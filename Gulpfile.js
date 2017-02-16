@@ -12,8 +12,6 @@ const jsonAssembler = require('./tools/tasks/jsonAssembler');
 // EXTERNAL TASKS
 ////////////////////////////////////////////////////////////////////
 require('./tools/tasks/scriptTasks')(gulp, OPTIONS);
-// require('./tools/tasks/docTasks')(gulp, OPTIONS);
-// require('./tools/tasks/testTasks')(gulp, OPTIONS);
 require('./tools/tasks/styleTasks')(gulp, OPTIONS);
 require('./tools/tasks/mediaTasks')(gulp, OPTIONS);
 require('./tools/tasks/utilityTasks')(gulp, OPTIONS);

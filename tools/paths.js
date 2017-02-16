@@ -24,6 +24,7 @@ const buildStylesDir = path.join(buildAssetsDir, 'style');
 const buildImagesDir = path.join(buildAssetsDir, 'images');
 
 const dist = path.join(ROOT, 'public');
+const distAssets = path.join(dist, 'assets');
 
 // configuration object that wraps all path/file/glob
 const options = {};
@@ -51,7 +52,12 @@ options.DIR = {
     BUILD_IMAGES: buildImagesDir,
 
     DIST: dist,
-    DIST_ASSETS: path.join(dist, 'assets')
+    DIST_ASSETS: distAssets,
+    DIST_AIRCRAFT: path.join(distAssets, 'aircraft'),
+    DIST_AIRLINES: path.join(distAssets, 'airlines'),
+    DIST_FONT: path.join(distAssets, 'fonts'),
+    DIST_IMAGES: path.join(distAssets, 'images'),
+    DIST_SCRIPTS: path.join(distAssets, 'scripts/client')
 };
 
 // for specific files
@@ -59,7 +65,9 @@ options.FILE = {
     JS_ENTRY_CLIENT: path.join(options.DIR.SRC_SCRIPTS_CLIENT, 'index.js'),
     JS_ENTRY_SERVER: path.join(options.DIR.SRC_SCRIPTS_SERVER, 'index.js'),
     CSS_MAIN: path.join(options.DIR.SRC_STYLE, 'main.css'),
-    PKG_JSON: path.join(options.ROOT, 'package.json')
+    PKG_JSON: path.join(options.ROOT, 'package.json'),
+    AIRCRAFT_JSON: path.join(options.DIR.BUILD_ASSETS_AIRCRAFT, 'aircraft.json'),
+    AIRLINES_JSON: path.join(options.DIR.BUILD_ASSETS_AIRLINES, 'airlines.json')
 };
 
 options.GLOB = {
@@ -69,8 +77,8 @@ options.GLOB = {
     BUILD: path.join(options.DIR.BUILD, '**/*'),
     JS: path.join(options.DIR.SRC_SCRIPTS, '**/*.js'),
     CSS: path.join(options.DIR.SRC_STYLE, '**/*.css'),
-    FONTS: path.join(options.DIR.SRC_ASSETS, 'fonts/**/*'),
-    IMAGES: path.join(options.DIR.SRC_IMAGES, '**/*.+(png|jpg|gif|svg)'),
+    FONTS: path.join(options.DIR.BUILD_ASSETS, 'fonts/**/*'),
+    IMAGES: path.join(options.DIR.SRC_IMAGES, '**/*'),
     MARKUP: path.join(options.DIR.SRC_MARKUP, '**/*.hbs')
 };
 
