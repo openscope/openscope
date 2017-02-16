@@ -4,8 +4,20 @@
 module.exports = function(gulp, config) {
     const OPTIONS = config;
 
+    gulp.task('minifyAirports', () => {
+        const jsonmin = require('gulp-jsonmin');
+        const path = require('path');
+
+        return gulp.src([
+                path.join(OPTIONS.DIR.DIST_AIRPORTS, '**/*.json'),
+                path.join(OPTIONS.DIR.DIST_AIRPORTS, '**/*.geojson')
+            ])
+            .pipe(jsonmin())
+            .pipe(gulp.dest(OPTIONS.DIR.DIST_AIRPORTS));
+    });
+
     gulp.task('copy:airports', () => {
-        gulp.src(OPTIONS.GLOB.STATIC_AIRPORTS)
+        return gulp.src(OPTIONS.GLOB.STATIC_AIRPORTS)
             .pipe(gulp.dest(OPTIONS.DIR.DIST_AIRPORTS));
     });
 
@@ -24,14 +36,23 @@ module.exports = function(gulp, config) {
             ))
             .pipe(gulp.dest(OPTIONS.DIR.DIST_IMAGES));
 
-        merge(fonts, images);
+        return merge(fonts, images);
     });
 
-    gulp.task('copy:prod', ['copy:static', 'copy:airports']);
 
     ////////////////////////////////////////////////////////////////////
     // TASKS
     ////////////////////////////////////////////////////////////////////
 
-    // gulp.task('media', ['clean:build:styles']);
+    // gulp.task('copy:dist', ['copy:static', 'copy:airports', 'minifyAirports']);
+
+    const runSequence = require('run-sequence');
+
+    gulp.task('copy:dist', () => {
+        runSequence(
+            'copy:static',
+            'copy:airports',
+            'minifyAirports'
+        )
+    });
 }

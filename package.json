@@ -7,7 +7,7 @@
     "npm": "3.10.8"
   },
   "scripts": {
-    "postinstall": "gulp build --prod; gulp copy:prod",
+    "postinstall": "gulp build --prod; gulp copy:dist",
     "test": "nyc --require babel-core/register ava --serial --concurrency=5",
     "build": "gulp build && npm run test",
     "report": "nyc report --reporter=cobertura --reporter=lcov",
@@ -112,6 +112,7 @@
     "gulp-hb": "^6.0.2",
     "gulp-if": "^2.0.2",
     "gulp-imagemin": "^3.0.3",
+    "gulp-jsonmin": "^1.1.0",
     "gulp-minify-css": "^1.2.4",
     "gulp-rename": "^1.2.2",
     "gulp-sourcemaps": "^1.6.0",
