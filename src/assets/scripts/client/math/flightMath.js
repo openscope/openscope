@@ -163,6 +163,40 @@ export const calculateDistanceToBoundary = (airport, pos) => {
     return abs(distance2d(pos, airport.position.position) - airport.ctr_radius);
 };
 
+
+/**
+ * @function _calculateNominalNewCourse
+ * @param nextWaypointPosition {array}
+ * @param currentWaypointPosition {array}
+ * @return nominalNewCourse {number}
+ * */
+const _calculateNominalNewCourse = (nextWaypointPosition, currentWaypointPosition) => {
+    let nominalNewCourse = vradial(vsub(nextWaypointPosition, currentWaypointPosition));
+
+    if (nominalNewCourse < 0) {
+        // TODO: what is this doing? this should go in a new method.
+        nominalNewCourse += tau();
+    }
+
+    return nominalNewCourse;
+};
+
+/**
+ * @function _calculateCourseChangeInRadians
+ * @param currentHeading {number}
+ * @param nominalNewCourse {number}
+ * @return {number}
+ */
+const _calculateCourseChangeInRadians = (currentHeading, nominalNewCourse) => {
+    let courseChange = abs(radiansToDegrees(currentHeading) - radiansToDegrees(nominalNewCourse));
+
+    if (courseChange > 180) {
+        courseChange = 360 - courseChange;
+    }
+
+    return degreesToRadians(courseChange);
+};
+
 /**
  * Calculate the turn initiation distance for an aircraft to navigate between two fixes.
  *
@@ -174,46 +208,25 @@ export const calculateDistanceToBoundary = (airport, pos) => {
  * @param aircraft {AircraftInstanceModel}
  * @param fix
  */
-export const calculateTurnInitiaionDistance = (aircraft, fix) => {
-    let nominalNewCourse;
-    let currentHeading;
-    let courseChange;
-    // convert knots to m/s
+export const calculateTurnInitiaionDistance = (aircraft, currentWaypointPosition) => {
+    let currentHeading = aircraft.heading;
+    const nominalBankAngleDegrees = 25;
     const speed = kn_ms(aircraft.speed);
-    // assume nominal bank angle of 25 degrees for all aircraft
-    const bankAngle = degreesToRadians(25);
+    const bankAngle = degreesToRadians(nominalBankAngleDegrees);
 
-
-    const index = aircraft.__fms__.indexOfCurrentWaypoint().wp;
-    if (index >= aircraft.__fms__.waypoints().length - 1) {
-        // if there are no subsequent fixes, fly over 'fix'
+    if (!aircraft.fms.hasNextWaypoint()) {
         return 0;
     }
 
-    // TODO: is there a getNextWaypoint() function?
-    const nextfix = aircraft.__fms__.waypoint(aircraft.__fms__.indexOfCurrentWaypoint().wp + 1).location;
-    if (!nextfix) {
-        return 0;
-    }
-
-    nominalNewCourse = vradial(vsub(nextfix, fix));
-    if (nominalNewCourse < 0) {
-        // TODO: what is this doing? this should go in a new method.
-        nominalNewCourse += tau();
-    }
-
-    currentHeading = aircraft.heading;
     if (currentHeading < 0) {
         currentHeading += tau();
     }
 
-    courseChange = abs(radiansToDegrees(currentHeading) - radiansToDegrees(nominalNewCourse));
-    if (courseChange > 180) {
-        courseChange = 360 - courseChange;
-    }
-
-    courseChange = degreesToRadians(courseChange);
-
+    const nominalNewCourse = _calculateNominalNewCourse(
+        aircraft.fms.getNextWaypointPosition(),
+        currentWaypointPosition
+    );
+    const courseChange = _calculateCourseChangeInRadians(currentHeading, nominalNewCourse);
     // meters, bank establishment in 1s
     const turnInitiationDistance = calcTurnInitiationDistance(speed, bankAngle, courseChange);
 

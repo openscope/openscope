@@ -173,6 +173,26 @@ ava('.addLegToBeginning() adds a leg to the beginning of the #legCollection when
     t.true(fms.legCollection[0].waypointCollection.length === 12);
 });
 
+ava('.hasNextWaypoint() returns true if there is a next waypoint', (t) => {
+    const fms = buildFmsMock();
+
+    t.true(fms.hasNextWaypoint());
+});
+
+ava('.hasNextWaypoint() returns true when the nextWaypoint is part of the nextLeg', (t) => {
+    const fms = buildFmsMock(isComplexRoute);
+
+    t.true(fms.hasNextWaypoint());
+});
+
+ava('.hasNextWaypoint() returns false when no nextWaypoint exists', (t) => {
+    const fms = buildFmsMock();
+    fms.skipToWaypoint('prino');
+
+    t.false(fms.hasNextWaypoint());
+});
+
+
 ava('.nextWaypoint() calls ._moveToNextLeg() if the current waypointCollection.length === 0', (t) => {
     const fms = buildFmsMock(isComplexRoute);
     const _moveToNextLegSpy = sinon.spy(fms, '_moveToNextLeg');
@@ -208,6 +228,14 @@ ava('.skipToWaypoint() removes all the legs and waypoints in front of the waypoi
     fms.skipToWaypoint('DAG');
 
     t.true(fms.currentLeg.routeString === 'dag.kepec3.klas');
+});
+
+ava('.getNextWaypointPosition() returns the position array for the next Waypoint in the collection', (t) => {
+    const expectedResult = [-87.64380662924125, -129.57471627889475];
+    const fms = buildFmsMock();
+    const result = fms.getNextWaypointPosition();
+
+    t.true(_isEqual(result, expectedResult));
 });
 
 ava('._buildInitialLegCollection() returns an array of LegModels', (t) => {

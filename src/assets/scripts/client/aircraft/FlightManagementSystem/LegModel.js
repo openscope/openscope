@@ -13,7 +13,6 @@ export default class LegModel {
         this.routeString = '';
         this.waypointCollection = [];
 
-
         this.init(routeSegment, runway, category);
     }
 
@@ -25,6 +24,16 @@ export default class LegModel {
      */
     get currentWaypoint() {
         return this.waypointCollection[0];
+    }
+
+    /**
+     *
+     *
+     * @property nextWaypoint
+     * @return {WaypointModel}
+     */
+    get nextWaypoint() {
+        return this.waypointCollection[1];
     }
 
     /**

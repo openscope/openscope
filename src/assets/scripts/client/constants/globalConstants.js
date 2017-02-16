@@ -28,7 +28,7 @@ export const TIME = {
  * @final
  */
 export const REGEX = {
-    ALT_SPEED_RESTRICTION: /[a,s,\-,\+]/gi,
+    ALT_SPEED_RESTRICTION: /[a,s,\-,+]/gi,
     COMPASS_DIRECTION: /^[NESW]/,
     LAT_LONG: /^([NESW])(\d+(\.\d+)?)([d °](\d+(\.\d+)?))?([m '](\d+(\.\d+)?))?$/,
     SW: /[SW]/,

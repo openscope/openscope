@@ -1,6 +1,8 @@
 import _drop from 'lodash/drop';
 import _findIndex from 'lodash/findIndex';
+import _get from 'lodash/get';
 import _isEmpty from 'lodash/isEmpty';
+import _isNil from 'lodash/isNil';
 import _isObject from 'lodash/isObject';
 import _map from 'lodash/map';
 import ModeController from '../ModeControl/ModeController';
@@ -199,6 +201,22 @@ export default class Fms {
      *
      *
      */
+    updateModesForArrival() {
+        this._modeController.setModesForArrival();
+    }
+
+    /**
+     *
+     *
+     */
+    updateModesForDeparture() {
+        this._modeController.setModesForDeparture();
+    }
+
+    /**
+     *
+     *
+     */
     setModeControllerMode(modeSelector, mode) {
         this._modeController[modeSelector] = mode;
     }
@@ -257,22 +275,6 @@ export default class Fms {
     }
 
     /**
-     *
-     *
-     */
-    updateModesForArrival() {
-        this._modeController.setModesForArrival();
-    }
-
-    /**
-     *
-     *
-     */
-    updateModesForDeparture() {
-        this._modeController.setModesForDeparture();
-    }
-
-    /**
      * Add a new `LegModel` to the left side of the `legCollection`
      *
      * @for Fms
@@ -283,6 +285,14 @@ export default class Fms {
         const legModel = new LegModel(routeString, this._runway, this.category, this._navigationLibrary);
 
         this.legCollection.unshift(legModel);
+    }
+
+    /**
+     *
+     *
+     */
+    hasNextWaypoint() {
+        return this.currentLeg.hasNextWaypoint() || !_isNil(this.legCollection[1])
     }
 
     /**
@@ -320,6 +330,26 @@ export default class Fms {
         this.legCollection = _drop(this.legCollection, legIndex);
 
         this.currentLeg.skipToWaypointAtIndex(waypointIndex);
+    }
+
+    /**
+     *
+     *
+     */
+    getNextWaypointPosition() {
+        let waypointPosition;
+
+        if (!this.hasNextWaypoint()) {
+            return null;
+        }
+
+        waypointPosition = this.currentLeg.nextWaypoint.position;
+
+        if (!this.currentLeg.hasNextWaypoint()) {
+            waypointPosition = this.legCollection[1].currentWaypoint.position;
+        }
+
+        return waypointPosition;
     }
 
     /**

@@ -284,7 +284,7 @@ export default class Aircraft {
         // TODO: combine these two to asingle constant
         if (data.heading) {
             this.fms.setHeadingHold(data.heading);
-            this.__fms__.setCurrent({ heading: data.heading });
+            // this.__fms__.setCurrent({ heading: data.heading });
         }
 
         if (data.altitude) {
@@ -317,8 +317,6 @@ export default class Aircraft {
         if (!waypoints || waypoints.length === 0) {
             return;
         }
-
-        debugger;
 
         // add arrival fixes to fms
         for (let i = 0; i < waypoints.length; i++) {
@@ -968,18 +966,9 @@ export default class Aircraft {
         let offset_angle = null;
         let glideslope_altitude = null;
         let angle = null;
-        // let runway_elevation = 0;
         let position;
 
-        // if (this.rwy_arr !== null) {
-        //     runway_elevation = airport.getRunway(this.rwy_arr).elevation;
-        // }
-
-        // if (this.__fms__.altitudeForCurrentWaypoint() > 0) {
-        //     this.__fms__.setCurrent({
-        //         altitude: Math.max(1000, this.__fms__.altitudeForCurrentWaypoint())
-        //     });
-        // }
+        this.updateTargetTowardsNextFix();
 
         switch (this.__fms__.currentWaypoint.navmode) {
             case WAYPOINT_NAV_MODE.RWY:
@@ -1017,76 +1006,90 @@ export default class Aircraft {
         // finally, taxi overrides everything
         let was_taxi = false;
 
-        if (this.mode === FLIGHT_MODES.TAXI) {
-            const elapsed = window.gameController.game_time() - this.taxi_start;
+        switch (this.mode) {
+            case FLIGHT_MODES.TAXI:
+                const elapsed = window.gameController.game_time() - this.taxi_start;
 
-            if (elapsed > this.taxi_time) {
-                this.mode = FLIGHT_MODES.WAITING;
-                was_taxi = true;
+                if (elapsed > this.taxi_time) {
+                    this.mode = FLIGHT_MODES.WAITING;
+                    was_taxi = true;
 
-                this.updateStrip();
-            }
-        } else if (this.mode === FLIGHT_MODES.WAITING) {
-            runway = window.airportController.airport_get().getRunway(this.rwy_dep);
-
-            position = runway.position;
-            this.position[0] = position[0];
-            this.position[1] = position[1];
-            this.heading = runway.angle;
-            this.altitude = runway.elevation;
-
-            if (!this.projected && runway.isAircraftNextInQueue(this) && was_taxi) {
-                window.uiController.ui_log(`${this.getCallsign()}, holding short of runway ${this.rwy_dep}`);
-                speech_say([
-                    { type: 'callsign', content: this },
-                    { type: 'text', content: `holding short of runway ${radio_runway(this.rwy_dep)}` }
-                ]);
-
-                this.updateStrip();
-            }
-        } else if (this.mode === FLIGHT_MODES.TAKEOFF) {
-            runway = window.airportController.airport_get().getRunway(this.rwy_dep);
-
-            // Altitude Control
-            this.target.altitude = this.fms.getAltitude();
-
-            if (this.speed < this.model.speed.min) {
-                this.target.altitude = runway.elevation;
-            }
-
-            // Heading Control
-            const runwayHeading = runway.angle;
-
-            if ((this.altitude - runway.elevation) < 400) {
-                this.target.heading = runwayHeading;
-            } else {
-                // if (!this.__fms__.followCheck().sid && this.__fms__.currentWaypoint.heading === null) {
-                if (this.fms.getHeading() === -999) {
-                    // if no directional instructions available after takeoff
-                    // fly runway heading
-                    this.fms.setHeadingHold(runwayHeading);
-                    // this.__fms__.setCurrent({ heading: runwayHeading });
+                    this.updateStrip();
                 }
 
-                this.mode = FLIGHT_MODES.CRUISE;
-                this.updateStrip();
-            }
+                break;
+            case FLIGHT_MODES.WAITING:
+                runway = airport.getRunway(this.rwy_dep);
+                position = runway.position;
 
-            // Speed Control
-            // go fast!
-            this.target.speed = this.model.speed.cruise;
+                this.position[0] = position[0];
+                this.position[1] = position[1];
+                this.heading = runway.angle;
+                this.altitude = runway.elevation;
+
+                if (!this.projected && runway.isAircraftNextInQueue(this) && was_taxi) {
+                    window.uiController.ui_log(`${this.getCallsign()}, holding short of runway ${this.rwy_dep}`);
+
+                    speech_say([
+                        { type: 'callsign', content: this },
+                        { type: 'text', content: `holding short of runway ${radio_runway(this.rwy_dep)}` }
+                    ]);
+
+                    this.updateStrip();
+                }
+
+                break;
+            case FLIGHT_MODES.TAKEOFF:
+                runway = airport.getRunway(this.rwy_dep);
+
+                // Altitude Control
+                this.target.altitude = this.fms.getAltitude();
+
+                if (this.speed < this.model.speed.min) {
+                    this.target.altitude = runway.elevation;
+                }
+
+                // Heading Control
+                const runwayHeading = runway.angle;
+
+                if ((this.altitude - runway.elevation) < 400) {
+                    this.target.heading = runwayHeading;
+                } else {
+                    // if (!this.__fms__.followCheck().sid && this.__fms__.currentWaypoint.heading === null) {
+                    if (this.fms.getHeading() === -999) {
+                        // if no directional instructions available after takeoff
+                        // fly runway heading
+                        this.fms.setHeadingHold(runwayHeading);
+                        // this.__fms__.setCurrent({ heading: runwayHeading });
+                    }
+
+                    this.mode = FLIGHT_MODES.CRUISE;
+                    this.updateStrip();
+                }
+
+                // Speed Control
+                // go fast!
+                this.target.speed = this.model.speed.cruise;
+
+                break;
+            default:
+                break;
+
         }
 
         // Limit speed to 250 knots while under 10,000 feet MSL (it's the law!)
-        if (this.altitude < 10000) {
-            if (this.isPrecisionGuided()) {
-                // btwn 0 and 250
-                this.target.speed = Math.min(this.target.speed, 250);
-            } else {
-                // btwn scheduled speed and 250
-                this.target.speed = Math.min(this.fms.getSpeed(), 250);
-            }
+        if (this.altitude > 10000) {
+            return;
         }
+
+        let nextSpeed = Math.min(this.fms.getSpeed(), 250);
+
+        if (this.isPrecisionGuided()) {
+            // btwn 0 and 250
+            nextSpeed = Math.min(this.target.speed, 250);
+        }
+
+        this.target.speed = nextSpeed;
     }
 
     /**
@@ -1119,6 +1122,7 @@ export default class Aircraft {
             this.updateLandingFinalApproachHeading(angle);
             this.target.altitude = Math.min(this.__fms__.currentWaypoint.altitude, glideslope_altitude);
             this.updateLandingFinalSpeedControll(runway, offset);
+
             if (abs(offset[0]) > 0.100) {
                 this.updateLandingFailedLanding();
             }
@@ -1143,16 +1147,18 @@ export default class Aircraft {
         if (this.isOnGround()) {
             this.target.altitude = runway.elevation;
             this.target.speed = 0;
-        } else {
-            const dist_final_app_spd = 3.5; // 3.5km ~= 2nm
-            const dist_assigned_spd = 9.5;  // 9.5km ~= 5nm
-            this.target.speed = extrapolate_range_clamp(
-                dist_final_app_spd, offset[1],
-                dist_assigned_spd,
-                this.model.speed.landing,
-                this.__fms__.currentWaypoint.start_speed
-            );
+
+            return;
         }
+
+        const dist_final_app_spd = 3.5; // 3.5km ~= 2nm
+        const dist_assigned_spd = 9.5;  // 9.5km ~= 5nm
+        this.target.speed = extrapolate_range_clamp(
+            dist_final_app_spd, offset[1],
+            dist_assigned_spd,
+            this.model.speed.landing,
+            this.__fms__.currentWaypoint.start_speed
+        );
     }
 
     /**
@@ -1166,6 +1172,7 @@ export default class Aircraft {
         if ((this.approachDistance > 0.100) && (!this.projected)) {
             this.updateStrip();
             this.cancelLanding();
+
             const isWarning = true;
             //TODO: Should be moved to where the output is handled
             window.uiController.ui_log(`${this.getRadioCallsign()} aborting landing, lost ILS`, isWarning);
@@ -1286,14 +1293,14 @@ export default class Aircraft {
      * @method updateFixTarget
      */
     updateTargetTowardsNextFix() {
-        const fix = this.fms.currentWaypoint.position;
-        const vectorToFix = vsub(this.position, fix);
-        const distanceToFix = distance2d(this.position, fix);
-        const isFixLessThanTurnInitiation = distanceToFix < window.aircraftController.aircraft_turn_initiation_distance(this, fix);
+        if (!this.fms.currentWaypoint) {
+            return;
+        }
 
-        // if (!fix) {
-        //     console.error(`${this.getCallsign()} using "fix" navmode, but no fix location!`);
-        // }
+        const currentWaypointPosition = this.fms.currentWaypoint.position;
+        const vectorToFix = vsub(this.position, currentWaypointPosition);
+        const distanceToFix = distance2d(this.position, currentWaypointPosition);
+        const isFixLessThanTurnInitiation = distanceToFix < calculateTurnInitiaionDistance(this, currentWaypointPosition);
 
         if (
             distanceToFix < 1 ||
