@@ -70,7 +70,8 @@
       "src/assets/scripts/**/*.js",
       "!**/_mocks/**",
       "!**/fixtures/**",
-      "!**/testHelpers/**"
+      "!**/testHelpers/**",
+      "!**/public/**"
     ]
   },
   "dependencies": {

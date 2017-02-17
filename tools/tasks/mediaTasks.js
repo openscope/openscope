@@ -4,7 +4,7 @@
 module.exports = function(gulp, config) {
     const OPTIONS = config;
 
-    gulp.task('minifyAirports', () => {
+    gulp.task('json:minify', () => {
         const jsonmin = require('gulp-jsonmin');
         const path = require('path');
 
@@ -49,7 +49,7 @@ module.exports = function(gulp, config) {
         runSequence(
             'copy:static',
             'copy:airports',
-            'minifyAirports'
+            'json:minify'
         )
     });
 }

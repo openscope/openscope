@@ -20,18 +20,20 @@ require('./tools/tasks/utilityTasks')(gulp, OPTIONS);
 // UNIFIED GULP TASKS
 ////////////////////////////////////////////////////////////////////
 gulp.task('markup', () => buildMarkup());
-gulp.task('jsonAssembler', () => jsonAssembler());
+gulp.task('json:assemble', () => jsonAssembler());
 
 gulp.task('lint', ['lint:scripts']);
 
 gulp.task('build', () => {
     runSequence(
         'clean',
-        'build:scripts',
-        'build:server',
-        'build:styles',
-        'jsonAssembler',
-        'markup',
+        [
+            'build:scripts',
+            'build:server',
+            'build:styles',
+            'markup'
+        ],
+        'json:assemble',
         'copy:dist'
     )
 });
