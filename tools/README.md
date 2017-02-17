@@ -1,7 +1,7 @@
 # Tools
 
 #### Node
-You will need to have [Node.js](https://nodejs.org/) installed to run any of the commands below.
+You will need to have [NodeJS](https://nodejs.org/) installed to run this project locally.
 
 _If you are a Windows user and are having issues running `gulp` commands, please see here: [http://stackoverflow.com/questions/24027551/gulp-command-not-found-error-after-installing-gulp](http://stackoverflow.com/questions/24027551/gulp-command-not-found-error-after-installing-gulp)_
 
@@ -14,6 +14,7 @@ Folders are organized with the following main folders:
 ```
 - assets
 - documentation
+- public
 - src
 - test
 - tools
@@ -23,7 +24,11 @@ Gulpfile.js
 
 * `assets/`
 
-This is where the code that runs the application lives. This folder also contains two folders that are generated as a result of build commands: `style` and `scripts`.  _Any changes made to files in these two folders will be overwritten the next time a build command is run.  If you need to edit CSS or Javascript files, please edit the files in the `src` folder_.  If you are a content creator, one who is adding Airports, Airlines or Aircraft, your `.json`/`.geojson` files should be added here just as they always have been.
+Contains JSON files for airports, airlines, and aircraft.  Individual files are named with the ICAO identifier that describes them.  So an airport with an ICAO of `KSFO` will have an airport JSON file named `ksfo.json`, and so on.  If you are a content creator, one who is adding Airports, Airlines or Aircraft, your `.json`/`.geojson` files should be added here.  When running a build, the aircraft and airline json files will be combined and minified into `aircraft.json` and `airlines.json` and output to the `public` directory.  Additionally, each airport and airport.geojson file runs through minification before getting output to the `public` directory.
+
+* `public/`
+
+This is where the code that runs the application lives and when this application is deployed, it is these files that are used. This folder contains generated files as a result of build commands and thus is not in source control. _Any changes made to files in this folder will be overwritten the next time a build command is run.  If you need to edit CSS or Javascript files, please edit the files in the `src` folder_.  
 
 * `src/`
 
@@ -44,22 +49,23 @@ This is the entry point for all `gulp` tasks.  There should never be a process d
 ---
 
 #### NPM Commands
+
 Available `npm` commands:
-* `npm run start` Will spool up a small web server using the `http-server` package.  Once the server successfully starts, you can view the app at localhost:3003 in your web browser.
+* `npm run start` Will spool up a small web server using the `gulp-connect` package.  Once the server successfully starts, you can view the app at localhost:3003 in your web browser.
 
-* `npm run build` _alias for_ `gulp dist && npm run test`.
+* `npm run build` _alias for_ `gulp build && npm run test`.
 
-* `npm run test` Will run the `ava` test suite and output a coverage report in the terminal window.
+* `npm run test` Will run the `ava` test suite and output a coverage report to the terminal window.
 
 * `npm run report` Will generate a coverage report from the last test run.  If only a specific subset of files was tested, the coverage report will reflect that.  ex: `npm run test -- test/math/` will run all the tests in the `test/math/` directory and generate coverage for only the files tested.  Any other file that is not related to the files being tested will be ignored in the coverage report.
 
 * `npm run coverage` Runs the entire test suite _and_ generates a coverage report.
 
 #### Gulp commands
+
 All the `gulp` commands defined in the Gulpfile are combined tasks, meaning they actually call other tasks defined in the `tools/tasks` folder.  The main `gulp` commands defined in this file are:
 
 * `gulp build` Concat, minify autoprefix CSS to `assets/styles/main.min.css` with sourcemaps, transpile and browserify javascript to `assets/scripts/bundle.js` with sourcemaps
-
 
 * `gulp dist` Everything `gulp build` does plus run `eslint` and output a per-file report of errors and warnings.
 

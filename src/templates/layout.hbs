@@ -3,13 +3,12 @@
     Build information
     Version: {{version}}
     Date: {{date}}
-    Environment: {{env}}
 -->
 <html>
     <head>
         <meta charset="utf-8"/>
         <meta content="assets/images/thumb.png" property="og:image"/>
-        <meta content="Air Traffic Control simulator" property="og:title"/>
+        <meta content="Openscope - Air Traffic Control Simulator" property="og:title"/>
         <meta content="Play as an air traffic controller and make sure all planes depart and arrive safely." property="og:description"/>
         <meta name="msapplication-TileColor" content="#ffffff">
         <meta name="msapplication-TileImage" content="/assets/images/favicon/ms-icon-144x144.png">
@@ -29,10 +28,10 @@
         <link rel="icon" type="image/png" sizes="96x96" href="/assets/images/favicon/favicon-96x96.png">
         <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon/favicon-16x16.png">
 
-        <title>Air Traffic Control</title>
+        <title>Openscope - Air Traffic Control Simulator</title>
 
         {{#block "styles"}}
-            <link rel="stylesheet" href="assets/style/main.min.css" />
+        <link rel="stylesheet" href="assets/style/main.min.css" />
         {{/block}}
     </head>
     <body>
@@ -41,13 +40,13 @@
 
         <script>
             window.GLOBAL = {
-                VERSION: '{{version}}',
+                VERSION: '{{version}}'
             };
         </script>
 
         {{#block "scriptsBody"}}
         <script src="assets/airports/airportLoadList.js"></script>
-        <script src="assets/scripts/client/bundle.js?v={{version}}"></script>
+        <script src="assets/scripts/client/bundle.min.js?v={{version}}"></script>
         {{/block}}
 
         <script>
