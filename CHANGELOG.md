@@ -2,7 +2,13 @@
 ---
 ### Major
 - Removes GitHub Pages specific files and moves hosting out of GitHub Pages. [#154](https://github.com/openscope/openscope/issues/154)
-
+- Updates build process to: [#230](https://github.com/openscope/openscope/issues/230)
+    - minify css and javascript and output to `public` directory
+    - minify airport json/geojson files and output to `public` directory
+    - combine aircraft and airline json files into `aircraft.json` and `airline.json` and output them to the `public` directory
+    - copy static assets (fonts and images) to `public` directory
+    - introduce [Handlebars](https://www.npmjs.com/package/handlebars-layouts) templates and create `buildMarkup` build process
+    - point the local server to the `public` directory`
 
 
 
