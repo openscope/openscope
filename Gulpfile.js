@@ -27,12 +27,12 @@ gulp.task('lint', ['lint:scripts']);
 gulp.task('build', () => {
     runSequence(
         'clean',
-        'clean:dist',
         'build:scripts',
         'build:server',
         'build:styles',
         'jsonAssembler',
-        'markup'
+        'markup',
+        'copy:dist'
     )
 });
 

@@ -6,10 +6,8 @@ const mkdirp = require('mkdirp');
 const paths = require('../paths');
 
 const BUILD_CONFIG = [
-    [paths.DIR.BUILD_ASSETS_AIRCRAFT, 'aircraft.json', paths.DIR.BUILD_ASSETS_AIRCRAFT],
-    [paths.DIR.BUILD_ASSETS_AIRLINES, 'airlines.json', paths.DIR.BUILD_ASSETS_AIRLINES],
-    [paths.DIR.BUILD_ASSETS_AIRCRAFT, 'aircraft.json', paths.DIR.DIST_AIRCRAFT],
-    [paths.DIR.BUILD_ASSETS_AIRLINES, 'airlines.json', paths.DIR.DIST_AIRLINES]
+    [paths.DIR.ASSETS_AIRCRAFT, 'aircraft.json', paths.DIR.DIST_AIRCRAFT],
+    [paths.DIR.ASSETS_AIRLINES, 'airlines.json', paths.DIR.DIST_AIRLINES]
 ];
 
 /**

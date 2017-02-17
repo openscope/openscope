@@ -43,9 +43,6 @@ module.exports = function(gulp, config) {
     ////////////////////////////////////////////////////////////////////
     // TASKS
     ////////////////////////////////////////////////////////////////////
-
-    // gulp.task('copy:dist', ['copy:static', 'copy:airports', 'minifyAirports']);
-
     const runSequence = require('run-sequence');
 
     gulp.task('copy:dist', () => {

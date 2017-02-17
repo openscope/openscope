@@ -3,7 +3,6 @@
     Build information
     Version: {{version}}
     Date: {{date}}
-    Environment: {{env}}
 -->
 <html>
     <head>
@@ -41,13 +40,13 @@
 
         <script>
             window.GLOBAL = {
-                VERSION: '{{version}}',
+                VERSION: '{{version}}'
             };
         </script>
 
         {{#block "scriptsBody"}}
         <script src="assets/airports/airportLoadList.js"></script>
-        <script src="assets/scripts/client/bundle.js?v={{version}}"></script>
+        <script src="assets/scripts/client/bundle.min.js?v={{version}}"></script>
         {{/block}}
 
         <script>

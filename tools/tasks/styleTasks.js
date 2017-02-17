@@ -7,8 +7,8 @@ module.exports = function(gulp, config) {
     ////////////////////////////////////////////////////////////////////
     // CONCAT MINIFY
     //
-    // concat all css files imported into main.css, then output minified
-    // css file to assets/style dir
+    // concat all css files imported into main.css, then output
+    // minified css file
     ////////////////////////////////////////////////////////////////////
     function buildStyles() {
         const sourcemaps = require('gulp-sourcemaps');
@@ -16,7 +16,7 @@ module.exports = function(gulp, config) {
         const concat = require('gulp-concat');
         const autoprefixer = require('gulp-autoprefixer');
 
-        gulp.src(OPTIONS.FILE.CSS_MAIN)
+        return gulp.src(OPTIONS.FILE.CSS_MAIN)
             .pipe(sourcemaps.init())
             .pipe(minifyCss())
             .pipe(autoprefixer(
@@ -27,7 +27,7 @@ module.exports = function(gulp, config) {
             ))
             .pipe(concat('main.min.css'))
             .pipe(sourcemaps.write('.'))
-            .pipe(gulp.dest(OPTIONS.DIR.BUILD_STYLE));
+            .pipe(gulp.dest(OPTIONS.DIR.DIST_STYLE));
     }
 
     gulp.task('minify-css', () => buildStyles());
