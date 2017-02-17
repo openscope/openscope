@@ -11,7 +11,7 @@
 
 
 ### Features
-
+- Adds Tokyo Narita International Airport as per AIRAC 1702 [#103](https://github.com/openscope/openscope/pull/202)
 
 
 
