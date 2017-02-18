@@ -6,7 +6,7 @@
     },
     "icao": "RJAA",
     "iata": "NRT",
-    "magnetic_north": 0,
+    "magnetic_north": -7.3,
     "ctr_radius": 80,
     "ctr_ceiling": 27000,
     "initial_alt": 3000,
@@ -21,7 +21,7 @@
     "airspace": [
         {
             "floor": 			0,
-            "ceiling": 		    27000,
+            "ceiling": 		    160,
             "airspace_class":	"E",
             "poly":
             [
