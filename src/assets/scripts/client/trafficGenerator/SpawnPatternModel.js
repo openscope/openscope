@@ -217,9 +217,9 @@ export default class SpawnPatternModel extends BaseModel {
          *
          * @property heading
          * @type {number}
-         * @default -1
+         * @default -999
          */
-        this.heading = -1;
+        this.heading = -999;
 
         /**
          * Initial position of a spawning aircraft

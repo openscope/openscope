@@ -10,7 +10,6 @@ import _map from 'lodash/map';
 import AircraftFlightManagementSystem from './FlightManagementSystem/AircraftFlightManagementSystem';
 import Fms from './FlightManagementSystem/Fms';
 import AircraftStripView from './AircraftStripView';
-import RouteModel from '../navigationLibrary/Route/RouteModel';
 import { speech_say } from '../speech';
 import { tau, radians_normalize, angle_offset } from '../math/circle';
 import { round, abs, sin, cos, extrapolate_range_clamp, clamp } from '../math/core';
@@ -142,10 +141,10 @@ export default class Aircraft {
         // most important when the plane is in a 'guided' situation, that is it is
         // not given a heading directly, but has a fix or is following an ILS path
         this.target = {
-            heading: null,
-            turn: null,
             altitude: 0,
             expedite: false,
+            heading: null,
+            turn: null,
             speed: 0
         };
 
@@ -162,20 +161,6 @@ export default class Aircraft {
         this.initFms(options);
         this.createStrip();
         this.updateStrip();
-    }
-
-    /**
-     *
-     *
-     * @property telemetry
-     * @return {object}
-     */
-    get telemetry() {
-        return {
-            altitude: this.altitude,
-            heading: this.heading,
-            speed: this.speed
-        };
     }
 
     /**
@@ -241,14 +226,22 @@ export default class Aircraft {
     assignInitialRunway(options) {
         const runway = window.airportController.airport_get().runway;
 
-        if (options.category === FLIGHT_CATEGORY.ARRIVAL) {
-            this.setArrivalRunway(runway);
-        } else if (options.category === FLIGHT_CATEGORY.DEPARTURE) {
-            this.setDepartureRunway(runway);
+        switch (options.category) {
+            case FLIGHT_CATEGORY.ARRIVAL:
+                this.rwy_arr = runway;
+
+                break;
+            case FLIGHT_CATEGORY.DEPARTURE:
+                this.rwy_dep = runway;
+
+                break;
+            default:
+                break;
         }
     }
 
     parse(data) {
+        // FIXME: these _gets can likely be removed
         this.position = _get(data, 'position', this.position);
         this.model = _get(data, 'model', this.model);
         this.airlineId = _get(data, 'airline', this.airlineId);
@@ -258,140 +251,34 @@ export default class Aircraft {
         this.heading = _get(data, 'heading', this.heading);
         this.altitude = _get(data, 'altitude', this.altitude);
         this.speed = _get(data, 'speed', this.speed);
+        this.destination = _get(data, 'destination', this.destination);
     }
 
     initFms(data) {
         this.fms = new Fms(data, this.initialRunwayAssignment, this.model, this._navigationLibrary);
         console.log('::: FMS', this.fms);
 
-        if (this.category === FLIGHT_CATEGORY.ARRIVAL) {
-            this.destination = data.destination;
-
-            this.fms.updateModesForArrival();
-            this.setArrivalWaypoints(data.waypoints);
-            // this.setArrivalRunway(window.airportController.airport_get(this.destination).runway);
-        } else if (this.category === FLIGHT_CATEGORY.DEPARTURE) {
+        if (this.category === FLIGHT_CATEGORY.DEPARTURE) {
             const airport = window.airportController.airport_get();
 
-            this.fms.updateModesForDeparture();
             this.mode = FLIGHT_MODES.APRON;
-            this.destination = data.destination;
-            // this.setDepartureRunway(airport.runway);
             this.altitude = airport.position.elevation;
             this.speed = 0;
+
+            this.fms.updateModesForDeparture();
+
+            return;
+        } else if (this.category !== FLIGHT_CATEGORY.ARRIVAL) {
+            throw new Error('Invalid #category found in AircraftInstanceModel');
         }
 
-        // TODO: combine these two to asingle constant
-        if (data.heading) {
-            this.fms.setHeadingHold(data.heading);
-            // this.__fms__.setCurrent({ heading: data.heading });
-        }
-
-        if (data.altitude) {
-            this.fms.setAltitudeHold(data.altitude);
-            // this.__fms__.setCurrent({ altitude: data.altitude });
-        }
-
-        // temporary ternary that should be refactored in the future. A departure will have a speed
-        // of 0, but should display the projected cruise speed before takeoff
-        const speed = data.speed !== 0
-            ? data.speed
-            : this.model.speed.cruise;
-
-        this.fms.setSpeedHold(speed);
-        // this.__fms__.setCurrent({ speed: speed });
-
-        // if (data.category === FLIGHT_CATEGORY.ARRIVAL && RouteModel.isProcedureRouteString(data.route)) {
-        //     const route = this.__fms__.formatRoute(data.route);
-        //
-        //     this.__fms__.customRoute(route, true);
-        //     this.__fms__.descendViaSTAR();
-        // }
+        this.fms.updateModesForArrival();
+        this.fms.setHeadingHold(data.heading);
+        this.fms.setAltitudeHold(data.altitude);
+        this.fms.setSpeedHold(data.speed);
 
         if (data.nextFix) {
             this.fms.skipToWaypoint(data.nextFix);
-        }
-    }
-
-    setArrivalWaypoints(waypoints) {
-        if (!waypoints || waypoints.length === 0) {
-            return;
-        }
-
-        // add arrival fixes to fms
-        for (let i = 0; i < waypoints.length; i++) {
-            this.__fms__.appendLeg({
-                type: 'fix',
-                route: waypoints[i]
-            });
-        }
-
-        // TODO: this could be another class method for FMS
-        if (this.__fms__.currentWaypoint.navmode === WAYPOINT_NAV_MODE.HEADING) {
-            // aim aircraft at airport
-            this.__fms__.setCurrent({
-                heading: vradial(this.position) + Math.PI
-            });
-        }
-
-        if (this.__fms__.legs.length > 0) {
-            // go to the first fix!
-            this.__fms__.nextWaypoint();
-        }
-    }
-
-    setArrivalRunway(rwy) {
-        this.rwy_arr = rwy;
-
-        // Update the assigned STAR to use the fixes for the specified runway, if they exist
-    }
-
-    setDepartureRunway(rwy) {
-        this.rwy_dep = rwy;
-
-        // // Update the assigned SID to use the portion for the new runway
-        // const leg = this.fms.currentLeg;
-        //
-        // // TODO: this should return early
-        // if (leg.type === FP_LEG_TYPE.SID) {
-        //     const a = _map(leg.waypoints, (v) => v.altitude);
-        //     const cvs = !a.every((v) => v === window.airportController.airport_get().initial_alt);
-        //     this.__fms__.followSID(leg.route.routeCode);
-        //
-        //     if (cvs) {
-        //         this.__fms__.climbViaSID();
-        //     }
-        // }
-    }
-
-    cleanup() {
-        this.$html.remove();
-    }
-
-    /**
-     * Create the aircraft's flight strip and add to strip bay
-     */
-    createStrip() {
-        this.aircraftStripView = new AircraftStripView(
-            this.getCallsign(),
-            this
-        );
-
-        this.$html = this.aircraftStripView.$element;
-        // Add the strip to the html
-        const scrollPos = this.$strips.scrollTop();
-        this.$strips.prepend(this.aircraftStripView.$element);
-        // shift scroll down one strip's height
-        this.$strips.scrollTop(scrollPos + this.aircraftStripView.height);
-
-        // Determine whether or not to show the strip in our bay
-        if (this.category === FLIGHT_CATEGORY.ARRIVAL) {
-            this.aircraftStripView.hide();
-        }
-
-        if (this.category === FLIGHT_CATEGORY.DEPARTURE) {
-            // TODO: does this have anything to do with the aircraft strip? if not this should live somewhere else.
-            this.inside_ctr = true;
         }
     }
 
@@ -936,22 +823,6 @@ export default class Aircraft {
         }
 
         return score;
-    }
-
-    /**
-     * @for AircraftInstanceModel
-     * @method showStrip
-     */
-    showStrip() {
-        this.$html.detach();
-
-        const scrollPos = this.$strips.scrollTop();
-
-        this.$strips.prepend(this.$html);
-        this.$html.show();
-        // TODO enumerate the magic number
-        // shift scroll down one strip's height
-        this.$strips.scrollTop(scrollPos + 45);
     }
 
     // TODO: this method needs a lot of love. its much too long with waaay too many nested if/else ifs.
@@ -1901,5 +1772,53 @@ export default class Aircraft {
      */
     removeConflict(conflictingAircraft) {
         delete this.conflicts[conflictingAircraft.getCallsign()];
+    }
+
+
+    /**
+     * Create the aircraft's flight strip and add to strip bay
+     */
+    createStrip() {
+        this.aircraftStripView = new AircraftStripView(
+            this.getCallsign(),
+            this
+        );
+
+        this.$html = this.aircraftStripView.$element;
+        // Add the strip to the html
+        const scrollPos = this.$strips.scrollTop();
+        this.$strips.prepend(this.aircraftStripView.$element);
+        // shift scroll down one strip's height
+        this.$strips.scrollTop(scrollPos + this.aircraftStripView.height);
+
+        // Determine whether or not to show the strip in our bay
+        if (this.category === FLIGHT_CATEGORY.ARRIVAL) {
+            this.aircraftStripView.hide();
+        }
+
+        if (this.category === FLIGHT_CATEGORY.DEPARTURE) {
+            // TODO: does this have anything to do with the aircraft strip? if not this should live somewhere else.
+            this.inside_ctr = true;
+        }
+    }
+
+    /**
+     * @for AircraftInstanceModel
+     * @method showStrip
+     */
+    showStrip() {
+        this.$html.detach();
+
+        const scrollPos = this.$strips.scrollTop();
+
+        this.$strips.prepend(this.$html);
+        this.$html.show();
+        // TODO enumerate the magic number
+        // shift scroll down one strip's height
+        this.$strips.scrollTop(scrollPos + 45);
+    }
+
+    cleanup() {
+        this.$html.remove();
     }
 }

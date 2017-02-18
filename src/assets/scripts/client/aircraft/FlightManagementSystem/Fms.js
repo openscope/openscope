@@ -292,7 +292,7 @@ export default class Fms {
      *
      */
     hasNextWaypoint() {
-        return this.currentLeg.hasNextWaypoint() || !_isNil(this.legCollection[1])
+        return this.currentLeg.hasNextWaypoint() || !_isNil(this.legCollection[1]);
     }
 
     /**

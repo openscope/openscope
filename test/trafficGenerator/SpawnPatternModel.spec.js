@@ -189,7 +189,7 @@ ava('._calculatePositionAndHeadingForArrival() returns early when spawnPattern.c
 
     model._calculatePositionAndHeadingForArrival(DEPARTURE_PATTERN_MOCK, navigationLibraryFixture);
 
-    t.true(model.heading === -1);
+    t.true(model.heading === -999);
     t.true(_isEqual(model.position, [0, 0]));
 });
 
