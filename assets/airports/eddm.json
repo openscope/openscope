@@ -1011,7 +1011,7 @@
             "altitude": null,
             "speed": null,
             "method": "random",
-            "ra te": 1.3125,
+            "rate": 1.3125,
             "airlines": [
                 ["dla", 7],
                 ["adr", 4],
