@@ -1,10 +1,10 @@
 {
+  "icao": "ual",
   "name": "United Airlines",
   "callsign": {
     "name": "United",
     "length": 3
   },
-
      "fleets": {
       "90long": [
       ["B762", 15 ],
@@ -22,6 +22,7 @@
     ["B752", 96 ],
     ["B753", 21 ],
     ["B763", 35 ],
+    ["B764", 16 ],
     ["B772", 22 ],
     ["b77l", 55 ],
     ["B788", 11 ]

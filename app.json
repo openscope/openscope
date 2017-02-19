@@ -1,5 +1,5 @@
 {
-  "name": "atc",
+  "name": "openscope",
   "scripts": {},
   "env": {
     "LANG": "en_US.UTF-8",
@@ -17,6 +17,9 @@
   "buildpacks": [
     {
       "url": "heroku/nodejs"
+    },
+    {
+      "url": "https://github.com/heroku/heroku-buildpack-static.git"
     }
   ]
 }

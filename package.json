@@ -7,14 +7,15 @@
     "npm": "3.10.8"
   },
   "scripts": {
-    "postinstall": "gulp build",
+    "postinstall": "gulp build --prod",
     "test": "nyc --require babel-core/register ava --serial --concurrency=5",
-    "build": "gulp dist && npm run test",
+    "build": "gulp build && npm run test",
     "report": "nyc report --reporter=cobertura --reporter=lcov",
     "coverage": "npm run test && npm run report",
+    "coveralls": "nyc report -r text-lcov | coveralls",
     "lint": "eslint src/**; exit 0",
     "start": "gulp server",
-    "server": "node ./assets/scripts/server/index.js"
+    "server": "node ./public/assets/scripts/server/index.js"
   },
   "repository": {
     "type": "git",
@@ -69,14 +70,18 @@
       "src/assets/scripts/**/*.js",
       "!**/_mocks/**",
       "!**/fixtures/**",
-      "!**/testHelpers/**"
+      "!**/testHelpers/**",
+      "!**/public/**"
     ]
   },
   "dependencies": {
     "chalk": "^1.1.3",
+    "coveralls": "^2.11.16",
     "express": "^4.14.0",
+    "gulp-util": "^3.0.7",
     "jquery": "^3.1.0",
     "lodash": "^4.15.0",
+    "mkdirp": "^0.5.1",
     "raf": "^3.3.0"
   },
   "devDependencies": {
@@ -97,6 +102,7 @@
     "eslint-plugin-import": "^1.14.0",
     "eslint-plugin-jsx-a11y": "^2.2.1",
     "eslint-plugin-react": "^6.2.0",
+    "glob-fs": "^0.1.6",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.1",
     "gulp-babel": "^6.1.2",
@@ -106,17 +112,24 @@
     "gulp-concat": "^2.6.0",
     "gulp-connect": "^5.0.0",
     "gulp-eslint": "^3.0.1",
+    "gulp-hb": "^6.0.2",
+    "gulp-if": "^2.0.2",
     "gulp-imagemin": "^3.0.3",
+    "gulp-jsonmin": "^1.1.0",
     "gulp-minify-css": "^1.2.4",
     "gulp-rename": "^1.2.2",
     "gulp-sourcemaps": "^1.6.0",
-    "gulp-util": "^3.0.7",
+    "gulp-uglify": "^2.0.1",
+    "handlebars-helpers": "^0.8.0",
+    "handlebars-layouts": "^3.1.4",
+    "merge-stream": "^1.0.1",
     "nyc": "^6.2.0",
     "path": "^0.12.7",
     "rimraf": "^2.5.4",
     "run-sequence": "^1.2.2",
     "sinon": "^1.17.6",
     "vinyl-buffer": "^1.0.0",
-    "vinyl-source-stream": "^1.1.0"
+    "vinyl-source-stream": "^1.1.0",
+    "yargs": "^6.6.0"
   }
 }

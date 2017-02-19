@@ -1,6 +1,6 @@
 {
   "name": "Singapore Airlines Cargo",
-  "icao": "SQC",
+  "icao": "sqc",
   "callsign": {
     "name": "Singcargo",
     "length": 3

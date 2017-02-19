@@ -1,0 +1,13 @@
+{
+    "name": "Vanilla Air",
+    "icao": "vnl",
+    "callsign": {
+        "name": "Vanilla",
+        "length": 3
+    },
+    "fleets": {
+        "default": [
+            ["A320", 9]
+        ]
+    }
+}

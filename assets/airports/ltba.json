@@ -138,8 +138,8 @@
       ["fdx", 7],
       ["klm", 5],
       ["ups", 8],
-      ["fastga", 10],
-      ["lightga", 11]
+      ["n/fastGA", 10],
+      ["n/lightGA", 11]
     ]
   },
   "arrivals": [
@@ -151,9 +151,9 @@
       "type": "random",
       "frequency": 8.5,
       "airlines":  [
-        ["lightga", 11],
+        ["n/lightGA", 11],
         ["afl", 6],
-        ["fastga", 10]
+        ["n/fastGA", 10]
       ]
     },
     {
@@ -166,7 +166,7 @@
       "airlines":  [
         ["thy", 2],
         ["fdx", 7],
-        ["lightga", 11]
+        ["n/lightGA", 11]
       ]
     },
     {
@@ -183,7 +183,7 @@
         ["dal", 4],
         ["fdx", 7],
         ["klm", 5],
-        ["fastga", 10]
+        ["n/fastGA", 10]
       ]
     },
     {
@@ -201,7 +201,7 @@
         ["fdx", 7],
         ["klm", 5],
         ["ups", 8],
-        ["fastga", 10]
+        ["n/fastGA", 10]
       ]
     },
     {
@@ -211,9 +211,8 @@
       "speed": 250,
       "type": "random",
       "frequency": 15,
-      "speed":     120,
       "airlines":  [
-        ["lightga", 20]
+        ["n/lightGA", 20]
       ]
     },
     {
@@ -226,7 +225,7 @@
       "airlines":  [
         ["ups", 8],
         ["thy", 2],
-        ["fastga", 20]
+        ["n/fastGA", 20]
       ]
     },
     {
@@ -244,9 +243,9 @@
         ["fdx", 7],
         ["klm", 5],
         ["ups", 8],
-        ["fastga", 10],
+        ["n/fastGA", 10],
         ["aca", 4],
-        ["lightga", 11]
+        ["n/lightGA", 11]
       ]
     }
   ]
