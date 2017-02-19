@@ -32,10 +32,9 @@
 
 
 ### Features
+- Overhauls Munich - updates Munich to AIRAC 1702, adds STARs, and adds a realistic traffic flow. [#104](https://github.com/openscope/openscope/issues/104)
 - Adds Tokyo Narita International Airport as per AIRAC 1702 [#103](https://github.com/openscope/openscope/pull/202)
 - Fixes an instance of two runways called "34R" in Shanghai Pudong [#149](https://github.com/openscope/openscope/issues/149)
-
-
 
 
 
