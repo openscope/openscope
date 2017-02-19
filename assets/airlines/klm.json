@@ -1,11 +1,10 @@
 {
-  "icao": "klm",
-  "name": "KLM",
-  "callsign": {
+    "icao": "klm",
     "name": "KLM",
-    "length": 3
-  },
-  
+    "callsign": {
+        "name": "KLM",
+        "length": 3
+    },
     "fleets": {
         "long": [
             ["A332", 8 ],

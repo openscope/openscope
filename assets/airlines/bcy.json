@@ -1,13 +1,13 @@
 {
-  "icao": "bcy",
-  "name": "CityJet",
-  "callsign": {
-    "name": "City-Ireland",
-    "length": 3
-  },
-  "fleets": {
-    "default": [
-      ["RJ85", 18]
-    ]
-  }
+    "icao": "bcy",
+    "name": "CityJet",
+    "callsign": {
+        "name": "City-Ireland",
+        "length": 3
+    },
+    "fleets": {
+        "default": [
+            ["RJ85", 18]
+        ]
+    }
 }

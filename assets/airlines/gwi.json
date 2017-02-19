@@ -1,15 +1,15 @@
 {
-  "icao": "gwi",
-  "name": "Germanwings",
-  "callsign": {
-    "name": "German Wings",
-    "length": 3,
-    "alpha": true
-  },
-  "fleets": {
-    "default": [
-      ["A319", 43],
-      ["A320", 18]
-    ]
-  }
+    "icao": "gwi",
+    "name": "Germanwings",
+    "callsign": {
+        "name": "German Wings",
+        "length": 3,
+        "alpha": true
+    },
+    "fleets": {
+        "default": [
+            ["A319", 43],
+            ["A320", 18]
+        ]
+    }
 }

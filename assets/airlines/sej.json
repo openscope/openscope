@@ -1,16 +1,16 @@
 {
-  "icao": "sej",
-  "name": "SpiceJet",
-  "callsign": {
-    "name": "Spicejet",
-    "length": 3
-  },
-  "fleets": {
-    "default": [
-      ["B737", 2  ],
-	  ["B738", 16 ],
-	  ["B739", 4  ],
-	  ["DH8D", 16 ]
-    ]
-  }
+    "icao": "sej",
+    "name": "SpiceJet",
+    "callsign": {
+        "name": "Spicejet",
+        "length": 3
+    },
+    "fleets": {
+        "default": [
+            ["B737", 2  ],
+            ["B738", 16 ],
+            ["B739", 4  ],
+            ["DH8D", 16 ]
+        ]
+    }
 }

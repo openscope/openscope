@@ -1,15 +1,15 @@
 {
-  "icao": "ado",
-  "name": "Air Do",
-  "callsign": {
+    "icao": "ado",
     "name": "Air Do",
-    "length": 3
-  },
-  "fleets": {
-    "default": [
-      ["B735", 1],
-      ["B737", 9],
-      ["B763", 4]
-    ]
-  }
+    "callsign": {
+        "name": "Air Do",
+        "length": 3
+    },
+    "fleets": {
+        "default": [
+            ["B735", 1],
+            ["B737", 9],
+            ["B763", 4]
+        ]
+    }
 }
