@@ -294,6 +294,12 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             wip: true
         },
         {
+            icao: 'rjaa',
+            level: 'hard',
+            name: 'Tokyo Narita International Airport',
+            wip: true
+        },
+        {
             icao: 'rjtt',
             level: 'hard',
             name: 'Tokyo Haneda International Airport',

@@ -1,8 +1,14 @@
 ## 4.1.0 (February 20, 2017)
 ---
 ### Major
-
-
+- Removes GitHub Pages specific files and moves hosting out of GitHub Pages. [#154](https://github.com/openscope/openscope/issues/154)
+- Updates build process to: [#230](https://github.com/openscope/openscope/issues/230)
+    - minify css and javascript and output to `public` directory
+    - minify airport json/geojson files and output to `public` directory
+    - combine aircraft and airline json files into `aircraft.json` and `airline.json` and output them to the `public` directory
+    - copy static assets (fonts and images) to `public` directory
+    - introduce [Handlebars](https://www.npmjs.com/package/handlebars-layouts) templates and create `buildMarkup` build process
+    - point the local server to the `public` directory`
 
 
 
@@ -13,7 +19,12 @@
 ### Minor
 - Makes sure the output for sid and star commands are always uppercase. [#109](https://github.com/openscope/openscope/issues/109)
 - Marks all airports as works in progress [#179](https://github.com/openscope/openscope/issues/179)
-
+- Changes deployment server from Express to Nginx [#166](https://github.com/openscope/openscope/issues/166)
+- Adds javascript minification to build process [#163](https://github.com/openscope/openscope/issues/163)
+    - adds copy task to public directory
+    - translates `json_assembler.rb` to `jsonAssembler.js` and adds it to the build process.
+- Corrects `icao` of the Boeing 767-400 and also updates the information to Eurocontrol data [#222](https://github.com/openscope/openscope/issues/222)
+- Updates `app.json` to use correct buildpacks [#224](https://github.com/openscope/openscope/issues/224)
 
 
 
@@ -21,6 +32,7 @@
 
 
 ### Features
+- Adds Tokyo Narita International Airport as per AIRAC 1702 [#103](https://github.com/openscope/openscope/pull/202)
 - Fixes an instance of two runways called "34R" in Shanghai Pudong [#149](https://github.com/openscope/openscope/issues/149)
 
 
@@ -39,7 +51,7 @@
 - Ensures data block colored bars are all the same width (3px), regardless of callsign length [#210](https://github.com/openscope/openscope/issues/210)
 - Adds missing `return` in `.generateFlightNumberWithAirlineModel()` that was needed to properly recurse back through the method in the case of a duplicate flight number. [#210](https://github.com/openscope/openscope/issues/210)
 - Updates boolean logic in `App.updateViewControls()` which was evaluating an asynchronous property that, typically, had not finished loading. [#203](https://github.com/openscope/openscope/issues/203)
-
+- Fixes internal fms error that was breaking the game when issuing holds over present position [#148](https://github.com/openscope/openscope/issues/148)
 
 
 
