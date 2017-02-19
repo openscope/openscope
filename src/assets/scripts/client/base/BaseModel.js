@@ -8,7 +8,7 @@ import _uniqueId from 'lodash/uniqueId';
  * @class BaseModel
  */
 export default class BaseModel {
-    constructor() {
+    constructor(modelName = 'BaseModel') {
         /**
          * Unigue string id that can be used to differentiate this model instance from another.
          *
@@ -16,7 +16,8 @@ export default class BaseModel {
          * @type {string}
          * @private
          */
-        this._id = _uniqueId();
+        this._id = this.veriftyModelName(modelName) + _uniqueId();
+        console.log(this._id);
     }
 
     /**
@@ -45,4 +46,24 @@ export default class BaseModel {
     reset() {
         throw new TypeError('BaseModel#reset method must be implemented by the class extending BaseModel');
     }
+
+    /**
+     * This will verify if the given argument is a string and will return a modified pre-value for the _id
+     *
+     * @for BaseModel
+     * @method veriftyModelName
+     * @param {string / Object}
+     */
+    veriftyModelName(modelName) {
+        if (typeof modelName === 'string') {
+            return `${modelName}-`;
+        }
+
+        if (modelName.name === undefined) {
+            modelName.name = '';
+        }
+
+        return `BaseModel-${modelName.name}-`;
+    }
+
 }
