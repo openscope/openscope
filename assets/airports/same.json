@@ -779,7 +779,7 @@
             ["dsm", 3],
             ["glo", 3],
             ["lan", 5],
-            ["fastga", 2]
+            ["n/fastGA", 2]
         ]
     },
     {
@@ -795,7 +795,7 @@
             ["arg", 4],
             ["arg/austral", 7],
             ["dsm", 3],
-            ["fastga", 2]
+            ["n/fastGA", 2]
         ]
     },
     {
@@ -811,7 +811,7 @@
             ["arg", 4],
             ["arg/austral", 7],
             ["glo", 3],
-            ["fastga", 2]
+            ["n/fastGA", 2]
         ]
     },
     {
@@ -827,7 +827,7 @@
             ["arg", 4],
             ["arg/austral", 7],
             ["dsm", 3],
-            ["fastga", 2]
+            ["n/fastGA", 2]
         ]
     },
     {
@@ -842,7 +842,7 @@
         "airlines": [
             ["arg", 4],
             ["lan", 5],
-            ["fastga", 2]
+            ["n/fastGA", 2]
         ]
     }
   ]

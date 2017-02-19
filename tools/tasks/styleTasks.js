@@ -2,28 +2,35 @@
 'use strict';
 
 module.exports = function(gulp, config) {
-    var OPTIONS = config;
+    const OPTIONS = config;
 
     ////////////////////////////////////////////////////////////////////
     // CONCAT MINIFY
     //
-    // concat all css files imported into main.css, then output minified
-    // css file to assets/style dir
+    // concat all css files imported into main.css, then output
+    // minified css file
     ////////////////////////////////////////////////////////////////////
-    var sourcemaps = require('gulp-sourcemaps');
-    var minifyCss = require('gulp-minify-css');
-    var concat = require('gulp-concat');
-    var autoprefixer = require('gulp-autoprefixer');
+    function buildStyles() {
+        const sourcemaps = require('gulp-sourcemaps');
+        const minifyCss = require('gulp-minify-css');
+        const concat = require('gulp-concat');
+        const autoprefixer = require('gulp-autoprefixer');
 
-    gulp.task('minify-css', function() {
         return gulp.src(OPTIONS.FILE.CSS_MAIN)
             .pipe(sourcemaps.init())
             .pipe(minifyCss())
-            .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9'))
+            .pipe(autoprefixer(
+                'last 2 version',
+                'safari 5',
+                'ie 8',
+                'ie 9'
+            ))
             .pipe(concat('main.min.css'))
             .pipe(sourcemaps.write('.'))
-            .pipe(gulp.dest(OPTIONS.DIR.BUILD_STYLE));
-    });
+            .pipe(gulp.dest(OPTIONS.DIR.DIST_STYLE));
+    }
+
+    gulp.task('minify-css', () => buildStyles());
 
 
     ////////////////////////////////////////////////////////////////////

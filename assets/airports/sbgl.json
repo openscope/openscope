@@ -179,7 +179,7 @@
             ["TAM", 60],
             ["GLO", 60],
             ["AZU", 30],
-            ["EMBRAER", 3],
+            ["emb", 3],
             ["UPS", 1],
             ["FDX", 1],
             ["aca/long", 2],
@@ -225,7 +225,7 @@
             ["GLO", 60],
             ["AZU", 30],
             ["ONE", 30],
-            ["EMBRAER", 3]
+            ["emb", 3]
         ]
     },
     {
@@ -294,7 +294,7 @@
         "method": "random",
         "rate": 12,
         "airlines": [
-            ["lightga", 1]
+            ["n/lightGA", 1]
         ]
     }
   ]
