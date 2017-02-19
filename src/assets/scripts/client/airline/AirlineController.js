@@ -69,7 +69,7 @@ export default class AirlineController {
 
         if (this._isActiveFlightNumber(flightNumber)) {
             // `flightNumber` already exists, recurse back through this method and generate a new flight number
-            this.generateFlightNumberWithAirlineModel(airlineModel);
+            return this.generateFlightNumberWithAirlineModel(airlineModel);
         }
 
         airlineModel.addFlightNumberToInUse(flightNumber);

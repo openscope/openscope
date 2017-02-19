@@ -2,8 +2,10 @@
 'use strict';
 
 module.exports = (gulp, config) => {
-    const OPTIONS = config;
     const rimraf = require('rimraf');
+    const runSequence = require('run-sequence');
+
+    const OPTIONS = config;
 
     ////////////////////////////////////////////////////////////////////
     // SPAWN A CONNECT SERVER
@@ -13,44 +15,24 @@ module.exports = (gulp, config) => {
         const path = require('path');
 
         connect.server({
-            root: OPTIONS.DIR.BUILD,
+            root: OPTIONS.DIR.DIST,
             port: 3003,
-            fallback: path.join(OPTIONS.DIR.BUILD, 'index.html')
+            fallback: path.join(OPTIONS.DIR.DIST, 'index.html')
         });
-    });
-
-    ////////////////////////////////////////////////////////////////////
-    // CLEAN DESTINATION SCRIPT FILES
-    ////////////////////////////////////////////////////////////////////
-    gulp.task('clean:build:scripts', (cb) => {
-        rimraf(OPTIONS.DIR.BUILD_SCRIPTS_CLIENT, cb);
-    });
-
-    ////////////////////////////////////////////////////////////////////
-    // CLEAN DESTINATION SCRIPT FILES
-    ////////////////////////////////////////////////////////////////////
-    gulp.task('clean:build:server', (cb) => {
-        rimraf(OPTIONS.DIR.BUILD_SCRIPTS_SERVER, cb);
-    });
-
-    ////////////////////////////////////////////////////////////////////
-    // CLEAN DESTINATION STYLE FILES
-    ////////////////////////////////////////////////////////////////////
-    gulp.task('clean:build:styles', (cb) => {
-        rimraf(OPTIONS.DIR.BUILD_STYLE, cb);
     });
 
     ////////////////////////////////////////////////////////////////////
     // TASKS
     ////////////////////////////////////////////////////////////////////
-    gulp.task('clean:build', [
-        'clean:build:scripts',
-        'clean:build:styles'
-    ]);
+    gulp.task('clean', (cb) => {
+        const dirsToClean = [
+            OPTIONS.DIR.DIST_SCRIPTS_CLIENT,
+            OPTIONS.DIR.DIST_SCRIPTS_SERVER,
+            OPTIONS.DIR.DIST_STYLE,
+            OPTIONS.DIR.DIST_ASSETS,
+        ];
+        const glob = `{${dirsToClean.join(',')}}`;
 
-    gulp.task('clean:dist', [
-        'clean:build'
-    ]);
-
-    gulp.task('clean', ['clean:build']);
+        return rimraf(glob, cb);
+    });
 }
