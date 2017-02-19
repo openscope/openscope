@@ -1,6 +1,6 @@
 {
   "root": "public",
-  "https_only": true,
+  "https_only": false,
   "routes": {
     "/assets/*": "/assets/",
     "/**": "index.html"
