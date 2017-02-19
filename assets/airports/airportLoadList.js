@@ -61,7 +61,7 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         },
         {
             icao: 'eddm',
-            level: 'beginner',
+            level: 'hard',
             name: 'Franz Josef Strauß International Airport',
             wip: true
         },
