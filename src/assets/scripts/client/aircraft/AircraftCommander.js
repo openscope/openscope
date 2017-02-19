@@ -581,32 +581,24 @@ export default class AircraftCommander {
             holdFixLocation = aircraft.position; // make a/c hold over their present position
             inboundHdg = aircraft.heading;
 
-            // TODO: these aren't `Waypoints` and they should be
+            const holdingWaypointModel = new Waypoint({
+                navmode: WAYPOINT_NAV_MODE.HOLD,
+                speed: aircraft.fms.currentWaypoint.speed,
+                altitude: aircraft.fms.altitudeForCurrentWaypoint(),
+                fix: null,
+                hold: {
+                    fixName: '[custom]',
+                    fixPos: holdFixLocation,
+                    dirTurns: dirTurns,
+                    legLength: legLength,
+                    inboundHdg: inboundHdg,
+                    timer: null
+                }
+            });
+
             aircraft.fms.insertLegHere({
                 type: 'fix',
-                waypoints: [
-                    { // document the present position as the 'fix' we're holding over
-                        navmode: WAYPOINT_NAV_MODE.FIX,
-                        fix: '[custom]',
-                        location: holdFixLocation,
-                        altitude: aircraft.fms.altitudeForCurrentWaypoint(),
-                        speed: aircraft.fms.currentWaypoint.speed
-                    },
-                    { // Force the initial turn to outbound heading when entering the hold
-                        navmode: WAYPOINT_NAV_MODE.HOLD,
-                        speed: aircraft.fms.currentWaypoint.speed,
-                        altitude: aircraft.fms.altitudeForCurrentWaypoint(),
-                        fix: null,
-                        hold: {
-                            fixName: holdFix,
-                            fixPos: holdFixLocation,
-                            dirTurns: dirTurns,
-                            legLength: legLength,
-                            inboundHdg: inboundHdg,
-                            timer: null
-                        }
-                    }
-                ]
+                waypoints: [holdingWaypointModel]
             });
         }
 
