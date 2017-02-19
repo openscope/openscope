@@ -1,7 +1,8 @@
 {
+  "icao": "xax",
   "name": "AirAsia X",
   "callsign": {
-    "name": "XANADU",
+    "name": "Xanadu",
     "length": 3
   },
   "fleets": {
