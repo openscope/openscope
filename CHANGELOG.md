@@ -1,8 +1,13 @@
+## 4.1.2 (February 20, 2017)
+---
+### Hotfix
+- Updates `static.json` to not use ssl [#252](https://github.com/openscope/openscope/issues/252)
+
+
 ## 4.1.1 (February 20, 2017)
 ---
 ### Hotfix
 - Restores spawning of GA aircraft at EDDT [#249](https://github.com/openscope/openscope/issues/249)
-- Updates `static.json` to not use ssl [#252](https://github.com/openscope/openscope/issues/252)
 
 
 ## 4.1.0 (February 20, 2017)
