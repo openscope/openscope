@@ -120,7 +120,7 @@ export default class Aircraft {
         this.category = options.category; // 'arrival' or 'departure'
         this.mode = FLIGHT_MODES.CRUISE;
 
-        /*
+        /**
          * the following diagram illustrates all allowed mode transitions:
          *
          * apron -> taxi -> waiting -> takeoff -> cruise <-> landing
@@ -838,8 +838,6 @@ export default class Aircraft {
         let glideslope_altitude = null;
         let angle = null;
         let position;
-
-        this.updateTargetTowardsNextFix();
 
         switch (this.__fms__.currentWaypoint.navmode) {
             case WAYPOINT_NAV_MODE.RWY:

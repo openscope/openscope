@@ -27,7 +27,7 @@ export const MCP_AUTOPILOT_MODES = {
     OFF: 'OFF'
 };
 
-export const MCP_MODES = {
+export const MCP_MODE = {
     ALTITUDE: MCP_ALTITUDE_MODES,
     AUTOPILOT: MCP_AUTOPILOT_MODES,
     HEADING: MCP_HEADING_MODES,
@@ -42,8 +42,8 @@ export const MCP_MODE_NAME = {
 };
 
 export const MCP_PROPERTY_MAP = {
-    ALTITUDE: 'altitude',
-    AUTOPILOT: 'autopilot',
-    HEADING: 'heading',
-    SPEED: 'speed'
+    altitudeMode: 'altitude',
+    autopilotMode: 'autopilot',
+    headingMode: 'heading',
+    speedMode: 'speed'
 };

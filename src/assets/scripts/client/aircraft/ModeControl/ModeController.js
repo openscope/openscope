@@ -1,4 +1,4 @@
-import { MCP_MODES } from './modeControlConstants';
+import { MCP_MODE, MCP_PROPERTY_MAP } from './modeControlConstants';
 
 /**
  *
@@ -11,10 +11,10 @@ export default class ModeController {
      * @for ModeController
      */
     constructor() {
-        this.altitudeMode = MCP_MODES.ALTITUDE.OFF;
-        this.autopilotMode = MCP_MODES.AUTOPILOT.OFF;
-        this.headingMode = MCP_MODES.HEADING.OFF;
-        this.speedMode = MCP_MODES.SPEED.OFF;
+        this.altitudeMode = MCP_MODE.ALTITUDE.OFF;
+        this.autopilotMode = MCP_MODE.AUTOPILOT.OFF;
+        this.headingMode = MCP_MODE.HEADING.OFF;
+        this.speedMode = MCP_MODE.SPEED.OFF;
 
         this.altitude = -1;
         this.course = -1;
@@ -27,9 +27,9 @@ export default class ModeController {
      *
      */
     setModesForArrival() {
-        this.altitudeMode = MCP_MODES.ALTITUDE.HOLD;
-        this.headingMode = MCP_MODES.HEADING.HOLD;
-        this.speedMode = MCP_MODES.SPEED.HOLD;
+        this.altitudeMode = MCP_MODE.ALTITUDE.VNAV;
+        this.headingMode = MCP_MODE.HEADING.LNAV;
+        this.speedMode = MCP_MODE.SPEED.VNAV;
     }
 
     /**
@@ -37,8 +37,33 @@ export default class ModeController {
      *
      */
     setModesForDeparture() {
-        this.altitudeMode = MCP_MODES.ALTITUDE.VNAV;
-        this.headingMode = MCP_MODES.HEADING.LNAV;
-        this.speedMode = MCP_MODES.SPEED.VNAV;
+        this.altitudeMode = MCP_MODE.ALTITUDE.VNAV;
+        this.headingMode = MCP_MODE.HEADING.LNAV;
+        this.speedMode = MCP_MODE.SPEED.VNAV;
+    }
+
+    /**
+     *
+     *
+     */
+    setModeAndValue(modeSelector, mode, fieldValue) {
+        this._setModeControllerMode(modeSelector, mode);
+        this._setModeControllerValue(MCP_PROPERTY_MAP[modeSelector], fieldValue);
+    }
+
+    /**
+     *
+     *
+     */
+    _setModeControllerMode(modeSelector, mode) {
+        this[modeSelector] = mode;
+    }
+
+    /**
+     *
+     *
+     */
+    _setModeControllerValue(fieldName, value) {
+        this[fieldName] = value;
     }
 }

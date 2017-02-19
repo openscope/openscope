@@ -26,7 +26,7 @@ import {
     FP_LEG_TYPE
 } from '../constants/aircraftConstants';
 import {
-    MCP_MODES,
+    MCP_MODE,
     MCP_MODE_NAME,
     MCP_PROPERTY_MAP
 } from './ModeControl/modeControlConstants';
@@ -653,7 +653,7 @@ export default class AircraftCommander {
         }
 
         aircraft.fms.skipToWaypoint(fixName);
-        aircraft.setMcpMode(MCP_MODE_NAME.LNAV, MCP_MODES.HEADING.LNAV);
+        aircraft.setMcpMode(MCP_MODE_NAME.HEADING, MCP_MODE.HEADING.LNAV);
 
         // remove intermediate fixes
         if (aircraft.mode === FLIGHT_MODES.TAKEOFF) {

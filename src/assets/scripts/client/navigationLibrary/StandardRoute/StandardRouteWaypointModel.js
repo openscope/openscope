@@ -59,7 +59,7 @@ const ABOVE_SYMBOL = '+';
 const BELOW_SYMBOL = '-';
 
 /**
- * Number to used to cnovert a FL altitude to an altitude in thousands
+ * Number to used to convert a FL altitude to an altitude in thousands
  *
  * @property ABOVE_SYMBOL
  * @type {string}
@@ -68,7 +68,7 @@ const BELOW_SYMBOL = '-';
 const FL_TO_THOUSANDS_MULTIPLIER = 100;
 
 /**
- * Enemuration for an invalid index number.
+ * Enumeration for an invalid index number.
  *
  * @property INVALID_INDEX
  * @type {number}
@@ -395,7 +395,7 @@ export default class StandardRouteWaypointModel extends BaseModel {
      * Parse a single string into:
      * - `this._altitude`            = expressed in feet
      * - `this._altitudeConstraint`  = {BELOW|AT|ABOVE}
-     * - `this._speed`      = expressed in kts
+     * - `this._speed`               = expressed in kts
      *
      * Exapmles:
      * - "A80+|S210"
