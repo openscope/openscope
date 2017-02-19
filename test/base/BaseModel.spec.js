@@ -5,9 +5,39 @@ import BaseModel from '../../src/assets/scripts/client/base/BaseModel';
 import ExtendedBaseModelFixture from './_fixtures/ExtendedBaseModelFixture';
 
 ava('instantiates with an _id property', t => {
-    const result = new BaseModel();
+    const resultEmpty = new BaseModel();
 
-    t.true(_isString(result._id));
+    t.true(_isString(resultEmpty._id));
+});
+
+ava('instantiates with an _id with string property', t => {
+    const resultString = new BaseModel('string');
+
+    t.true(_isString(resultString._id));
+});
+
+ava('instantiates with an _id with an Object', t => {
+    const resultObj = new BaseModel({});
+
+    t.true(_isString(resultObj._id));
+});
+
+ava('instantiates with an _id with an array', t => {
+    const resultArray = new BaseModel([]);
+
+    t.true(_isString(resultArray._id));
+});
+
+ava('instantiates with an _id with an boolean', t => {
+    const resultBol = new BaseModel(false);
+
+    t.true(_isString(resultBol._id));
+});
+
+ava('instantiates with an _id with an int', t => {
+    const resultInt = new BaseModel(42);
+
+    t.true(_isString(resultInt._id));
 });
 
 ava('._init() throws when called from BaseModel', t => {

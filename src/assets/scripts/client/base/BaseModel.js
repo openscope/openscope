@@ -16,8 +16,7 @@ export default class BaseModel {
          * @type {string}
          * @private
          */
-        this._id = this.veriftyModelName(modelName) + _uniqueId();
-        console.log(this._id);
+        this._id = this.verifyModelName(modelName) + _uniqueId();
     }
 
     /**
@@ -54,16 +53,19 @@ export default class BaseModel {
      * @method veriftyModelName
      * @param {string / Object}
      */
-    veriftyModelName(modelName) {
+    verifyModelName(modelName) {
         if (typeof modelName === 'string') {
             return `${modelName}-`;
         }
 
-        if (modelName.name === undefined) {
+        // This will give more infomation on airpot names and runways to help identify if there is an issue.
+        if (modelName.name === undefined && typeof modelName === 'object') {
             modelName.name = '';
+            return `BaseModel-${modelName.name}-`;
         }
 
-        return `BaseModel-${modelName.name}-`;
+        // Default option since it is an optional parameter
+        return 'BaseModel-';
     }
 
 }
