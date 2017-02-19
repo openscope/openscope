@@ -31,11 +31,29 @@ ava('.generateFlightNumberWithAirlineModel() calls airlineModel.generateFlightNu
 
     const generateFlightNumberStub = sinon.stub(airlineModel, 'generateFlightNumber');
     generateFlightNumberStub.onFirstCall().returns('42');
-    generateFlightNumberStub.onSecondCall().returns('3')
+    generateFlightNumberStub.onSecondCall().returns('3');
 
     controller.generateFlightNumberWithAirlineModel(airlineModel);
 
     t.true(generateFlightNumberStub.calledTwice);
+
+    generateFlightNumberStub.restore();
+});
+
+ava('.generateFlightNumberWithAirlineModel() does not set a duplicate flightNumber to the list', (t) => {
+    const controller = new AirlineController(AIRLINE_DEFINITION_LIST_FOR_FIXTURE);
+    const airlineModel = controller.airlineCollection._items[0];
+    airlineModel.activeFlightNumbers = ['42'];
+
+    const generateFlightNumberStub = sinon.stub(airlineModel, 'generateFlightNumber');
+    generateFlightNumberStub.onFirstCall().returns('42');
+    generateFlightNumberStub.onSecondCall().returns('3');
+
+    controller.generateFlightNumberWithAirlineModel(airlineModel);
+
+    t.true(controller.flightNumbers.length === 2);
+    t.true(controller.flightNumbers.indexOf('42') !== -1);
+    t.true(controller.flightNumbers.indexOf('3') !== -1);
 
     generateFlightNumberStub.restore();
 });
