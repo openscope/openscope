@@ -345,20 +345,6 @@
                 ["DM067", "DM050", "MUN", "MEBEK", "BIBAG"]
             ]
         },
-        "BIBAG2W": {
-            "icao": "BIBAG2W",
-            "name": "Bibag Two Whiskey",
-            "rwy": {
-                "26L": []
-            },
-            "body": [["MSE", "S220"], "DM058", ["DM059", "S250"], "MUN", "MEBEK"],
-            "exitPoints": {
-                "BIBAG": ["BIBAG"]
-            },
-            "draw": [
-                ["MSE", "DM058", "DM059", "MUN", "MEBEK", "BIBAG"]
-            ]
-        },
         "EVIVA": {
             "icao": "EVIVA",
             "name": "Eviva",
@@ -440,20 +426,6 @@
                 ["DM067", "DM050", "MUN", "MEBEK", "KIRDI"]
             ]
         },
-        "KIRDI2W": {
-            "icao": "KIRDI2W",
-            "name": "Kirdi Two Whiskey",
-            "rwy": {
-                "26L": []
-            },
-            "body": [["MSE", "S220"], "DM058", ["DM059", "S250"], "MUN", "MEBEK"],
-            "exitPoints": {
-                "KIRDI": ["KIRDI"]
-            },
-            "draw": [
-                ["MSE", "DM058", "DM059", "MUN", "MEBEK", "KIRDI"]
-            ]
-        },
         "MERSI": {
             "icao": "MERSI",
             "name": "Mersi",
@@ -472,34 +444,6 @@
                 ["DM081", "ALONU", "LAKOL"],
                 ["MSE", "DM053", "AMPEG", "MERSI"],
                 ["MNE", "DM061", "AMPEG"]
-            ]
-        },
-        "MERSI1T": {
-            "icao": "MERSI1T",
-            "name": "Mersi One Tango",
-            "rwy": {
-                "08L": []
-            },
-            "body": ["DM071", ["DM074", "S230"], ["DM078", "A70"], "MUN", "OBAXA"],
-            "exitPoints": {
-                "MERSI": [["MERSI", "S250"]]
-            },
-            "draw": [
-                ["DM071", "DM074", "DM078", "MUN", "OBAXA", "MERSI"]
-            ]
-        },
-        "MERSI1P": {
-            "icao": "MERSI1P",
-            "name": "Mersi One Papa",
-            "rwy": {
-                "08R": []
-            },
-            "body": ["DM081", ["DM082", "S230"], ["DM086", "A70"],  "MUN", "OBAXA"],
-            "exitPoints": {
-                "MERSI": [["MERSI", "S250"]]
-            },
-            "draw": [
-                ["DM081", "DM082", "DM086", "DM078", "MUN", "OBAXA", "MERSI"]
             ]
         },
         "MIQ": {
@@ -602,20 +546,6 @@
                 ["DM067", "DM050", "MUN", "LAKOL", "ROTAX"]
             ]
         },
-        "ROTAX2W": {
-            "icao": "ROTAX2W",
-            "name": "Rotax Two Whiskey",
-            "rwy": {
-                "26L": []
-            },
-            "body": [["DM049", "S210"], ["DM050", "S210"], ["MUN", "S250"], "LAKOL"],
-            "exitPoints": {
-                "ROTAX": ["ROTAX"]
-            },
-            "draw": [
-                ["DM049", "DM050", "MUN", "LAKOL", "ROTAX"]
-            ]
-        },
         "TULSI": {
             "icao": "TULSI",
             "name": "Tulsi",
@@ -634,20 +564,6 @@
                 ["DM081", "ALONU", "LAKOL", "MANAL", "TULSI"],
                 ["DM049", "DM050"],
                 ["DM067", "DM050", "MUN", "MANAL", "TULSI"]
-            ]
-        },
-        "TULSI2W": {
-            "icao": "TULSI2W",
-            "name": "Tulsi Two Whiskey",
-            "rwy": {
-                "26L": []
-            },
-            "body": [["MSE", "S220"], "DM058", ["DM059", "S250"], "MUN", "MANAL"],
-            "exitPoints": {
-                "TULSI": ["TULSI"]
-            },
-            "draw": [
-                ["MSE", "DM058", "DM059", "MUN", "MANAL", "TULSI"]
             ]
         },
         "TURBU": {
@@ -670,20 +586,6 @@
                 ["DM067", "DM050", "MUN", "TURBU"]
             ]
         },
-        "TURBU6W": {
-            "icao": "TURBU6W",
-            "name": "Turbu Six Whiskey",
-            "rwy": {
-                "26L": []
-            },
-            "body": [["MSE", "S220"], "DM058", ["DM059", "S250"], "MUN"],
-            "exitPoints": {
-                "TURBU": ["TURBU"]
-            },
-            "draw": [
-                ["MSE", "DM058", "DM059", "MUN", "TURBU"]
-            ]
-        },
         "VAVOR": {
             "icao": "VAVOR",
             "name": "Vavor",
@@ -702,20 +604,6 @@
                 ["DM081", "ALONU", "EBEVO", "VAVOR"],
                 ["DM049", "DM050"],
                 ["DM067", "DM050", "MUN", "LAKOL", "VAVOR"]
-            ]
-        },
-        "VAVOR2W": {
-            "icao": "VAVOR2W",
-            "name": "Vavor Two Whiskey",
-            "rwy": {
-                "26L": []
-            },
-            "body": [["MSE", "S220"], "DM058", ["DM059", "S250"], "MUN", "LAKOL"],
-            "exitPoints": {
-                "VAVOR": ["VAVOR"]
-            },
-            "draw": [
-                ["MSE", "DM058", "DM059", "MUN", "LAKOL", "VAVOR"]
             ]
         }
     },
@@ -1123,7 +1011,7 @@
             "altitude": null,
             "speed": null,
             "method": "random",
-            "rate": 1.3125,
+            "ra te": 1.3125,
             "airlines": [
                 ["dla", 7],
                 ["adr", 4],
