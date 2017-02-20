@@ -39,7 +39,7 @@
 
 ### Features
 - Enumerate magic number in RunwayModel [#269](https://github.com/openscope/openscope/issues/269)
-
+- Adds the ability to call an airplane by its callsign [#40](https://github.com/openscope/openscope/issues/40)
 
 
 
