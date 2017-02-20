@@ -371,6 +371,8 @@ export default class AircraftInstanceModel {
     }
 
     /**
+     * Returns a true value if there is a match from the callsignToMatch
+     *
      * @for AircraftInstanceModel
      * @method matchCallsign
      * @param callsign {string}
@@ -380,7 +382,13 @@ export default class AircraftInstanceModel {
             return true;
         }
 
-        return _isEqual(callsignToMatch.toUpperCase(), this.callsign);
+        // checks to see if the given call sign matches the airline Id + callsign format
+        if (_isEqual(callsignToMatch.toUpperCase(), this.callsign)) {
+            return true;
+        }
+
+        // Checks to see if the given callsign matches only the callsign since callsign numbers should be unique
+        return _isEqual(callsignToMatch.toUpperCase(), this.flightNumber);
     }
 
     /**
