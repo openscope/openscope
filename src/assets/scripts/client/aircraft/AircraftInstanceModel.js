@@ -463,17 +463,24 @@ export default class Aircraft {
     }
 
     /**
+     * Returns a true value if there is a match from the callsignToMatch
+     *
      * @for AircraftInstanceModel
      * @method matchCallsign
      * @param callsign {string}
      */
-    matchCallsign(callsignToMatch) {
-        if (callsignToMatch === '*') {
-            return true;
-        }
+     matchCallsign(callsignToMatch) {
+         if (callsignToMatch === '*') {
+             return true;
+         }
+         // checks to see if the given call sign matches the airline Id + callsign format
+         if (_isEqual(callsignToMatch.toUpperCase(), this.getCallsign())){
+             return true;
+         }
 
-        return _isEqual(callsignToMatch.toUpperCase(), this.getCallsign());
-    }
+        // Checks to see if the given callsign matches only the callsign since callsign numbers should be unique
+         return _isEqual(callsignToMatch.toUpperCase(), this.getCallsignNumber());
+     }
 
     /**
      * @for AircraftInstanceModel
@@ -484,6 +491,20 @@ export default class Aircraft {
         // TODO: this should be an instance property. however, it seems callsign is used in places where it should be
         // flightnumber and visa versa. this needs to be ironed out first before making a class property.
         return `${this.airlineId.toUpperCase()}${this.callsign.toUpperCase()}`;
+    }
+
+    /**
+     * This method returns the real callSign with out the airlineId but since there is several places where the old
+     *    getCallsign is used thats why there is both of them
+     *
+     * @for AircraftInstanceModel
+     * @method getCallsignNumber
+     * @return {string}
+     */
+    getCallsignNumber() {
+        // TODO: this should be an instance property. however, it seems callsign is used in places where it should be
+        // flightnumber and visa versa. this needs to be ironed out first before making a class property.
+        return `${this.callsign.toUpperCase()}`;
     }
 
     /**
