@@ -405,13 +405,30 @@
         }
     },
     "stars": {
+        "UNOKO7S": {
+            "icao": "UNOKO7S",
+            "name": "Unoko Seven South",
+            "entryPoints": {
+                "UNOKO": [["UNOKO", "A230-"], ["IBVIL", "A210-"], ["MANUV", "A180-"], ["RAMOB", "A130|S250"]],
+                "RAMOB": [["RAMOB", "A130|S250"]],
+                "NIVNU": ["NIVNU", ["RASVO", "A260-"], ["PIPEP", "A230-"], ["UNOKO", "A230-"], ["IBVIL", "A210-"], ["MANUV", "A180-"], ["RAMOB", "A130|S250"]]
+            },
+            "body": ["DF431", "DF631", "DF632", "FFM", "DF621", "DF622", "DF623", "DF613", "DF612", "DF611", "DF635", ["DF636", "A80"], "DF640", ["DF641", "A50"], "DF642", "DF643", "DF644", "DF654", "DF653", "DF652", "DF651"],
+            "rwy": {
+                "07L": [["ROBSA", "A40"]],
+                "07C": [["LOMPO", "A40"]],
+                "07R": []
+            }
+        },
         "UNOKO7N": {
             "icao": "UNOKO7N",
             "name": "Unoko Seven North",
             "entryPoints": {
-                "NIVNU": ["NIVNU", ["RASVO", "A260-"], ["PIPEP", "A230-"]]
+                "UNOKO": [["UNOKO", "A230-"], ["IBVIL", "A210-"], ["MANUV", "A180-"], ["RAMOB", "A130|S250"]],
+                "RAMOB": [["RAMOB", "A130|S250"]],
+                "NIVNU": ["NIVNU", ["RASVO", "A260-"], ["PIPEP", "A230-"], ["UNOKO", "A230-"], ["IBVIL", "A210-"], ["MANUV", "A180-"], ["RAMOB", "A130|S250"]]
             },
-            "body": [["UNOKO", "A210-"], ["IBVIL", "A190-"], ["MANUV", "A160-"], ["RAMOB", "A110|S250"], "DF431", "DF432", "DF439", "DF441", "DF442", "DF443", "DF444", "DF454", "DF453", "DF452"],
+            "body": ["DF431", "DF432", ["DF439", "A80"], ["DF441", "A50"], "DF442", "DF443", "DF444", "DF454", "DF453", "DF452"],
             "rwy": {
                 "07L": [],
                 "07C": [],
@@ -423,9 +440,26 @@
             "icao": "UNOKO25S",
             "name": "Unoko Two Five South",
             "entryPoints": {
-                "NIVNU": ["NIVNU", ["RASVO", "A280-"], ["PIPEP", "A250-"]]
+                "UNOKO": [["UNOKO", "A230-"], ["IBVIL", "A210-"], ["MANUV", "A180-"], ["RAMOB", "A130|S250"]],
+                "RAMOB": [["RAMOB", "A130|S250"]],
+                "NIVNU": ["NIVNU", ["RASVO", "A260-"], ["PIPEP", "A230-"], ["UNOKO", "A230-"], ["IBVIL", "A210-"], ["MANUV", "A180-"], ["RAMOB", "A130|S250"]]
             },
-            "body": [["UNOKO", "A230-"], ["IBVIL", "A210-"], ["MANUV", "A180-"], ["RAMOB", "A130|S250"], "DF601", "DF609", "DF610", "DF611", "DF612", "DF613", "DF614", "DF615", "DF616", "DF626", "DF625", "DF624", "DF623", "DF622", "DF621", "LEDKI"],
+            "body": ["DF601", ["DF609", "A80"], "DF610", ["DF611", "A40"], "DF612", "DF613", "DF614", "DF615", "DF616", "DF626", "DF625", "DF624", "DF623", "DF622", "DF621"],
+            "rwy": {
+                "25L": [["LEDKI", "A40"]],
+                "25C": [["REDGO", "A40"]],
+                "25R": []
+            }
+        },
+        "UNOKO25N": {
+            "icao": "UNOKO25N",
+            "name": "Unoko Two Five North",
+            "entryPoints": {
+                "UNOKO": [["UNOKO", "A230-"], ["IBVIL", "A210-"], ["MANUV", "A180-"], ["RAMOB", "A130|S250"]],
+                "RAMOB": [["RAMOB", "A130|S250"]],
+                "NIVNU": ["NIVNU", ["RASVO", "A260-"], ["PIPEP", "A230-"], ["UNOKO", "A230-"], ["IBVIL", "A210-"], ["MANUV", "A180-"], ["RAMOB", "A130|S250"]]
+            },
+            "body": ["DF401", "DF403", ["DF409", "A80"], "DF410", ["DF411", "A50"], "DF412", "DF413", "DF414", "DF415", "DF416", "DF426", "DF425", "DF424", "DF423", "DF422", "DF421"],
             "rwy": {
                 "25L": [],
                 "25C": [],
@@ -433,13 +467,30 @@
             },
             "draw": [[]]
         },
+        "ROLIS7S": {
+            "icao": "ROLIS7S",
+            "name": "Rolis Seven South",
+            "entryPoints": {
+                "ROLIS": [["ROLIS", "A150-"], ["ETARU", "A100|S250"]],
+                "ETARU": [["ETARU", "A100|S250"]],
+                "LIPMI": ["LIPMI", ["COL", "A230-"], ["ROLIS", "A150-"], ["ETARU", "A100|S250"]]
+            },
+            "body": [["ROLIS", "A150-"], ["OSPUL", "A120"], "DF632", "FFM", "DF621", "DF622", "DF623", "DF613", "DF612", "DF611", "DF635", ["DF636", "A80"], "DF640", ["DF641", "A50"], "DF642", "DF643", "DF644", "DF654", "DF653", "DF652", "DF651"],
+            "rwy": {
+                "07L": [["ROBSA", "A40"]],
+                "07C": [["LOMPO", "A40"]],
+                "07R": []
+            }
+        },
         "ROLIS7N": {
             "icao": "ROLIS7N",
             "name": "Rolis Seven North",
             "entryPoints": {
-                "LIPMI": ["LIPMI", ["COL", "A230-"]]
+                "ROLIS": [["ROLIS", "A150-"], ["ETARU", "A100|S250"]],
+                "ETARU": [["ETARU", "A100|S250"]],
+                "LIPMI": ["LIPMI", ["COL", "A230-"], ["ROLIS", "A150-"], ["ETARU", "A100|S250"]]
             },
-            "body": [["ROLIS", "A150-"], ["ETARU", "A100|S250"], "DF432", "DF439", "DF441", "DF442", "DF443", "DF444", "DF454", "DF453", "DF452"],
+            "body": ["DF432", ["DF439", "A80"], ["DF441", "A50"], "DF442", "DF443", "DF444", "DF454", "DF453", "DF452"],
             "rwy": {
                 "07L": [],
                 "07C": [],
@@ -448,13 +499,30 @@
             "draw": [[]],
             "draw": [[]]
         },
+        "ROLIS25S": {
+            "icao": "ROLIS25S",
+            "name": "Rolis Two Five South",
+            "entryPoints": {
+                "ROLIS": [["ROLIS", "A150-"], ["ETARU", "A100|S250"]],
+                "ETARU": [["ETARU", "A100|S250"]],
+                "LIPMI": ["LIPMI", ["COL", "A230-"], ["ROLIS", "A150-"], ["ETARU", "A100|S250"]]
+            },
+            "body": [["OSPUL", "A120|S250"], "DF402", "DF601", ["DF609", "A80"], "DF610", ["DF611", "A40"], "DF612", "DF613", "DF614", "DF615", "DF616", "DF626", "DF625", "DF624", "DF623", "DF622", "DF621"],
+            "rwy": {
+                "25L": [["LEDKI", "A40"]],
+                "25C": [["REDGO", "A40"]],
+                "25R": []
+            }
+        },
         "ROLIS25N": {
             "icao": "ROLIS25N",
             "name": "Rolis Two Five North",
             "entryPoints": {
-                "LIPMI": ["LIPMI", ["COL", "A230-"]]
+                "ROLIS": [["ROLIS", "A150-"], ["ETARU", "A100|S250"]],
+                "ETARU": [["ETARU", "A100|S250"]],
+                "LIPMI": ["LIPMI", ["COL", "A230-"], ["ROLIS", "A150-"], ["ETARU", "A100|S250"]]
             },
-            "body": [["ROLIS", "A150-"], ["ETARU", "A100|S250"], "DF403", "DF409", "DF410", "DF411", "DF412", "DF413", "DF414", "DF415", "DF416", "DF426", "DF425", "DF424", "DF423", "DF422", "DF421"],
+            "body": ["DF403", "DF409", "DF410", ["DF411", "A50"], "DF412", "DF413", "DF414", "DF415", "DF416", "DF426", "DF425", "DF424", "DF423", "DF422", "DF421"],
             "rwy": {
                 "25L": [],
                 "25C": [],
@@ -466,23 +534,53 @@
             "icao": "KERAX7S",
             "name": "Kerax Seven South",
             "entryPoints": {
-                "GAPLA": ["GAPLA", ["DEMAB", "A190-"], ["SOLVU", "A160-"]]
+                "KERAX": [["KERAX", "A110|S250"]],
+                "GAPLA": ["GAPLA", ["DEMAB", "A160-"], ["SOLVU", "A130-"], ["KERAX", "A110|S250"]]
             },
-            "body": [["KERAX", "A140-"], ["EBIPA", "A120|S250"], "INBOS", "PSA", "CHA", "DF635", "DF636", "DF640", "DF641", "DF642", "DF643", "DF644", "DF654", "DF653", "DF652", "DF651", "ROBSA"],
+            "body": [["EBIPA", "A120|S250"], "INBOS", "PSA", "CHA", "DF635", ["DF636", "A80"], "DF640", ["DF641", "A50"], "DF642", "DF643", "DF644", "DF654", "DF653", "DF652", "DF651"],
             "rwy": {
-                "07L": [],
-                "07C": [],
+                "07L": [["ROBSA", "A40"]],
+                "07C": [["LOMPO", "A40"]],
                 "07R": []
             },
             "draw": [[]]
+        },
+        "KERAX7N": {
+            "icao": "KERAX7N",
+            "name": "Kerax Seven North",
+            "entryPoints": {
+                "KERAX": [["KERAX", "A110|S250"]],
+                "GAPLA": ["GAPLA", ["DEMAB", "A160-"], ["SOLVU", "A130-"], ["KERAX", "A110|S250"]]
+            },
+            "body": [["GED", "A110"], "DF437", ["DF439", "A80"], ["DF441", "A50"], "DF442", "DF443", "DF444", "DF454", "DF453", "DF452"],
+            "rwy": {
+                "25L": [],
+                "25C": [],
+                "25R": []
+            }
+        },
+        "KERAX25S": {
+            "icao": "KERAX25S",
+            "name": "Kerax Two Five South",
+            "entryPoints": {
+                "KERAX": [["KERAX", "A110|S250"]],
+                "GAPLA": ["GAPLA", ["DEMAB", "A160-"], ["SOLVU", "A130-"], ["KERAX", "A110|S250"]]
+            },
+            "body": [["EBIPA", "A120"] "INBOS", ["PSA", "A110|S250"], "CHA", ["DF606", "A80"], "DF610", ["DF611", "A40"], "DF612", "DF613", "DF614", "DF615", "DF616", "DF626", "DF625", "DF624", "DF623", "DF622", "DF621"],
+            "rwy": {
+                "25L": [["LEDKI", "A40"]],
+                "25C": [["REDGO", "A40"]],
+                "25R": []
+            }
         },
         "KERAX25N": {
             "icao": "KERAX25N",
             "name": "Kerax Two Five North",
             "entryPoints": {
-                "GAPLA": ["GAPLA", ["DEMAB", "A160-"], ["SOLVU", "A130-"]]
+                "KERAX": [["KERAX", "A110|S250"]],
+                "GAPLA": ["GAPLA", ["DEMAB", "A160-"], ["SOLVU", "A130-"], ["KERAX", "A110|S250"]]
             },
-            "body": [["KERAX", "A110|S250"], "GED", "DF407", "DF408", "DF411", "DF412", "DF413", "DF414", "DF415", "DF416", "DF426", "DF425", "DF424", "DF423", "DF422", "DF421"],
+            "body": ["GED", "DF407", "DF408", ["DF411", "A50"], "DF412", "DF413", "DF414", "DF415", "DF416", "DF426", "DF425", "DF424", "DF423", "DF422", "DF421"],
             "rwy": {
                 "25L": [],
                 "25C": [],
@@ -494,23 +592,53 @@
             "icao": "PSA7S",
             "name": "Spessart Seven South",
             "entryPoints": {
-                "KOVAN": ["KOVAN", ["ETASA", "A260-"], ["XINLA", "A240-"], ["SUKON", "A160-"], ["SUPIX", "A140-"]]
+                "PSA": [["PSA", "A110|S250"]],
+                "KOVAN": ["KOVAN", ["ETASA", "A260-"], ["XINLA", "A240-"], ["SUKON", "A160-"], ["SUPIX", "A140-"], ["PSA", "A110|S250"]]
             },
-            "body": [["PSA", "A110|S250"], "CHA", "DF635", "DF636", "DF640", "DF641", "DF642", "DF643", "DF644", "DF654", "DF653", "DF652", "DF651", "ROBSA"],
+            "body": ["CHA", "DF635", ["DF636", "A80"], "DF640", ["DF641", "A50"], "DF642", "DF643", "DF644", "DF654", "DF653", "DF652", "DF651"],
             "rwy": {
-                "07L": [],
-                "07C": [],
+                "07L": [["ROBSA", "A40"]],
+                "07C": [["LOMPO", "A40"]],
                 "07R": []
             },
             "draw": [[]]
+        },
+        "PSA7N": {
+            "icao": "PSA7N",
+            "name": "Spessart Seven North",
+            "entryPoints": {
+                "PSA": [["PSA", "A110|S250"]],
+                "KOVAN": ["KOVAN", ["ETASA", "A260-"], ["XINLA", "A240-"], ["SUKON", "A160-"], ["SUPIX", "A140-"], ["PSA", "A110|S250"]]
+            },
+            "body": ["RIPKU", ["DF436", "A110"], "DF437", ["DF439", "A80"], ["DF441", "A50"], "DF442", "DF443", "DF444", "DF454", "DF453", "DF452"],
+            "rwy": {
+                "25L": [],
+                "25C": [],
+                "25R": []
+            }
         },
         "PSA25S": {
             "icao": "PSA25S",
             "name": "Spessart Two Five South",
             "entryPoints": {
-                "KOVAN": ["KOVAN", ["ETASA", "A260-"], ["XINLA", "A240-"], ["SUKON", "A160-"], ["SUPIX", "A140-"]]
+                "PSA": [["PSA", "A110|S250"]],
+                "KOVAN": ["KOVAN", ["ETASA", "A260-"], ["XINLA", "A240-"], ["SUKON", "A160-"], ["SUPIX", "A140-"], ["PSA", "A110|S250"]]
             },
-            "body": [["PSA", "A110|S250"], "CHA", "DF606", "DF610", "DF611", "DF612", "DF613", "DF614", "DF615", "DF616", "DF626", "DF625", "DF624", "DF623", "DF622", "DF621", "LEDKI"],
+            "body": ["CHA", ["DF606", "A80"], "DF610", ["DF611", "A40"], "DF612", "DF613", "DF614", "DF615", "DF616", "DF626", "DF625", "DF624", "DF623", "DF622", "DF621"],
+            "rwy": {
+                "25L": [["LEDKI", "A40"]],
+                "25C": [["REDGO", "A40"]],
+                "25R": []
+            }
+        },
+        "PSA25N": {
+            "icao": "PSA25N",
+            "name": "Spessart Two Five North",
+            "entryPoints": {
+                "PSA": [["PSA", "A110|S250"]],
+                "KOVAN": ["KOVAN", ["ETASA", "A260-"], ["XINLA", "A240-"], ["SUKON", "A160-"], ["SUPIX", "A140-"], ["PSA", "A110|S250"]]
+            },
+            "body": [["A110|S250"], "RIPKU", "DF406", "DF407", "DF408", ["DF411", "A50"], "DF412", "DF413", "DF414", "DF415", "DF416", "DF426", "DF425", "DF424", "DF423", "DF422", "DF421"],
             "rwy": {
                 "25L": [],
                 "25C": [],
