@@ -39,10 +39,7 @@
 
 ### Features
 - Enumerate magic number in RunwayModel [#269](https://github.com/openscope/openscope/issues/269)
-
-
-
-
+- Adds more contex to the Model classes by adding an optional input paramater [#138](https://github.com/openscope/openscope/issues/138)
 
 
 
