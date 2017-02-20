@@ -5,7 +5,7 @@ import BaseModel from '../../src/assets/scripts/client/base/BaseModel';
 import ExtendedBaseModelFixture from './_fixtures/ExtendedBaseModelFixture';
 
 ava('makes sure the model in instantiates with any data type', t => {
-    t.notThrows(() => new BaseModel();
+    t.notThrows(() => new BaseModel());
     t.notThrows(() => new BaseModel([]));
     t.notThrows(() => new BaseModel({}));
     t.notThrows(() => new BaseModel(42));
@@ -16,7 +16,7 @@ ava('makes sure the model in instantiates with any data type', t => {
 ava('instantiates with an _id property', t => {
     const resultEmpty = new BaseModel();
 
-    t.true(_isString(resultString._id));
+    t.true(_isString(resultEmpty._id));
 });
 
 ava('instantiates with an _id with string property', t => {
