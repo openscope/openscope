@@ -4,10 +4,19 @@ import _isString from 'lodash/isString';
 import BaseModel from '../../src/assets/scripts/client/base/BaseModel';
 import ExtendedBaseModelFixture from './_fixtures/ExtendedBaseModelFixture';
 
+ava('makes sure the model in instantiates with any data type', t => {
+    t.notThrows(() => new BaseModel();
+    t.notThrows(() => new BaseModel([]));
+    t.notThrows(() => new BaseModel({}));
+    t.notThrows(() => new BaseModel(42));
+    t.notThrows(() => new BaseModel('string'));
+    t.notThrows(() => new BaseModel(false));
+});
+
 ava('instantiates with an _id property', t => {
     const resultEmpty = new BaseModel();
 
-    t.true(_isString(resultEmpty._id));
+    t.true(_isString(resultString._id));
 });
 
 ava('instantiates with an _id with string property', t => {
