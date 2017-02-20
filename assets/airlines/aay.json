@@ -1,19 +1,19 @@
 {
-  "icao": "aay",
-  "name": "Allegiant Air",
-  "callsign": {
-    "name": "Allegiant",
-    "length": 3
-  },
-  "fleets": {
-    "long": [
-      ["B752", 5]
-    ],
-    "default": [
-      ["A319", 15],
-      ["A320", 16],
-      ["MD83", 43],
-      ["MD88", 6 ]
-    ]
-  }
+    "icao": "aay",
+    "name": "Allegiant Air",
+    "callsign": {
+        "name": "Allegiant",
+        "length": 3
+    },
+    "fleets": {
+        "long": [
+            ["B752", 5]
+        ],
+        "default": [
+            ["A319", 15],
+            ["A320", 16],
+            ["MD83", 43],
+            ["MD88", 6 ]
+        ]
+    }
 }

@@ -1,13 +1,13 @@
 {
-  "icao": "vti",
-  "name": "Vistara",
-  "callsign": {
-    "name": "VISTARA",
-    "length": 3
-  },
-  "fleets": {
-    "default": [
-      ["A320", 10]
-    ]
-  }
+    "icao": "vti",
+    "name": "Vistara",
+    "callsign": {
+        "name": "VISTARA",
+        "length": 3
+    },
+    "fleets": {
+        "default": [
+            ["A320", 10]
+        ]
+    }
 }

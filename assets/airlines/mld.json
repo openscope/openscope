@@ -1,11 +1,10 @@
 {
-  "icao": "mld",
-  "name": "Air Moldova",
-  "callsign": {
+    "icao": "mld",
     "name": "Air Moldova",
-    "length": 3
-  },
-  
+    "callsign": {
+        "name": "Air Moldova",
+        "length": 3
+    },
     "fleets": {
         "default": [
             ["A319", 1 ],

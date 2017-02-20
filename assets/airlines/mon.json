@@ -1,14 +1,14 @@
 {
-  "icao": "mon",
-  "name": "Monarch",
-  "callsign": {
+    "icao": "mon",
     "name": "Monarch",
-    "length": 3
-  },
-  "fleets": {
-    "default": [
-      ["A320", 9],
-	  ["A321", 25]
-    ]
-  }
+    "callsign": {
+        "name": "Monarch",
+        "length": 3
+    },
+    "fleets": {
+        "default": [
+            ["A320", 9],
+            ["A321", 25]
+        ]
+    }
 }

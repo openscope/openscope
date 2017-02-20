@@ -1,16 +1,16 @@
 {
-  "icao": "skw",
-  "name": "SkyWest",
-  "callsign": {
+    "icao": "skw",
     "name": "SkyWest",
-    "length": 4
-  },
-  "fleets": {
-    "default": [
-      ["CRJ2", 169],
-      ["CRJ7", 98 ],
-      ["CRJ9", 36 ],
-      ["E170", 50 ]
-    ]
-  }
+    "callsign": {
+        "name": "SkyWest",
+        "length": 4
+    },
+    "fleets": {
+        "default": [
+            ["CRJ2", 169],
+            ["CRJ7", 98 ],
+            ["CRJ9", 36 ],
+            ["E170", 50 ]
+        ]
+    }
 }

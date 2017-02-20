@@ -25,7 +25,7 @@
 
 
 ### Bugfixes
-
+- Standardized indentation in all json files [#256](https://github.com/openscope/openscope/issues/256)
 
 
 

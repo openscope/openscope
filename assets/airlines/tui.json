@@ -1,15 +1,15 @@
 {
-  "icao": "tui",
-  "name": "TUIfly",
-  "callsign": {
-    "name": "Tui Jet",
-    "length": 4,
-    "alpha": true
-  },
-  "fleets": {
-    "default": [
-      ["B737", 4 ],
-      ["B738", 27]
-    ]
-  }
+    "icao": "tui",
+    "name": "TUIfly",
+    "callsign": {
+        "name": "Tui Jet",
+        "length": 4,
+        "alpha": true
+    },
+    "fleets": {
+        "default": [
+            ["B737", 4 ],
+            ["B738", 27]
+        ]
+    }
 }

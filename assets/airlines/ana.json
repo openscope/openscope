@@ -1,21 +1,21 @@
 {
-  "icao": "ana",
-  "name": "All Nippon Airways",
-  "callsign": {
-    "name": "All Nippon",
-    "length": 3
-  },
-  "fleets": {
-    "default": [
-      ["A320", 10],
-      ["B737",  9],
-      ["B738", 35],
-      ["B763", 50],
-      ["B772", 27],
-      ["B773",  7],
-      ["B77W", 22],
-      ["B788", 36],
-      ["B789", 12]
-    ]
-  }
+    "icao": "ana",
+    "name": "All Nippon Airways",
+    "callsign": {
+        "name": "All Nippon",
+        "length": 3
+    },
+    "fleets": {
+        "default": [
+            ["A320", 10],
+            ["B737",  9],
+            ["B738", 35],
+            ["B763", 50],
+            ["B772", 27],
+            ["B773",  7],
+            ["B77W", 22],
+            ["B788", 36],
+            ["B789", 12]
+        ]
+    }
 }

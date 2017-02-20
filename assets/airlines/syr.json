@@ -1,16 +1,16 @@
 {
-  "icao": "syr",
-  "name": "SyrianAir",
-  "callsign": {
-    "name": "Syrianair",
-    "length": 3
-  },
-  "fleets": {
-    "default": [
-      ["A320",  6],
-      ["AT72",  2],
-      ["IL76",  4],
-      ["T134",  2]
-    ]
-  }
+    "icao": "syr",
+    "name": "SyrianAir",
+    "callsign": {
+        "name": "Syrianair",
+        "length": 3
+    },
+    "fleets": {
+        "default": [
+            ["A320",  6],
+            ["AT72",  2],
+            ["IL76",  4],
+            ["T134",  2]
+        ]
+    }
 }

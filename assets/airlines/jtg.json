@@ -1,15 +1,15 @@
 {
-  "icao": "jtg",
-  "name": "Jet Time",
-  "callsign": {
-    "name": "Jettime",
-    "length": 4
-  },
-  "fleets": {
-    "default": [
-      ["AT72", 13],
-      ["B733", 6],
-      ["B737", 3]
-    ]
-  }
+    "icao": "jtg",
+    "name": "Jet Time",
+    "callsign": {
+        "name": "Jettime",
+        "length": 4
+    },
+    "fleets": {
+        "default": [
+            ["AT72", 13],
+            ["B733", 6],
+            ["B737", 3]
+        ]
+    }
 }

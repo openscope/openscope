@@ -1,19 +1,19 @@
 {
-  "icao": "jai",
-  "name": "Jet Airways",
-  "callsign": {
-    "name": "JET AIRWAYS",
-    "length": 3
-  },
-  "fleets": {
-    "default": [
-      ["A332", 4 ],
-	  ["A333", 4 ],
-	  ["AT72", 13],
-	  ["B737", 2 ],
-	  ["B738", 61],
-	  ["B739", 4 ],
-	  ["B77W", 9 ]
-    ]
-  }
+    "icao": "jai",
+    "name": "Jet Airways",
+    "callsign": {
+        "name": "JET AIRWAYS",
+        "length": 3
+    },
+    "fleets": {
+        "default": [
+            ["A332", 4 ],
+            ["A333", 4 ],
+            ["AT72", 13],
+            ["B737", 2 ],
+            ["B738", 61],
+            ["B739", 4 ],
+            ["B77W", 9 ]
+        ]
+    }
 }
