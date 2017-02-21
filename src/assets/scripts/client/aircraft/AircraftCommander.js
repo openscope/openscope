@@ -208,16 +208,15 @@ export default class AircraftCommander {
         const direction = data[0];
         let heading = data[1];
         const incremental = data[2];
-        let amount = 0;
         let instruction;
 
         // TODO: this should be handled in the commandParser
-        if (_isNaN(heading)) {
-            return ['fail', 'heading not understood'];
-        }
+        // if (_isNaN(heading)) {
+        //     return ['fail', 'heading not understood'];
+        // }
 
         if (incremental) {
-            amount = heading;
+            let amount = heading;
 
             if (direction === 'left') {
                 heading = radiansToDegrees(aircraft.heading) - amount;
@@ -334,9 +333,10 @@ export default class AircraftCommander {
             instruction = `turn ${direction} heading`;
         }
 
+        const aircraftHeadingStr = heading_to_string(aircraft.fms.getHeading());
         const readback = {};
-        readback.log = `${instruction} ${heading_to_string(wp.heading)}`;
-        readback.say = `${instruction} ${radio_heading(heading_to_string(wp.heading))}`;
+        readback.log = `${instruction} ${aircraftHeadingStr}`;
+        readback.say = `${instruction} ${radio_heading(aircraftHeadingStr)}`;
 
         if (incremental) {
             readback.log = `turn ${amount} degrees ${direction}`;
@@ -370,16 +370,17 @@ export default class AircraftCommander {
             ceiling += 1000;
         }
 
+        // TODO: this function could be abstracted
         const altitudeAdjustedForElevation = clamp(round(airport.elevation / 100) * 100 + 1000, altitude, ceiling);
 
         aircraft.fms.setAltitudeHold(altitudeAdjustedForElevation);
 
-        aircraft.__fms__.setCurrent({ expedite: shouldExpedite });
-        aircraft.__fms__.setAll({
-            // TODO: enumerate the magic numbers
-            altitude: altitudeAdjustedForElevation,
-            expedite: shouldExpedite
-        });
+        // aircraft.__fms__.setCurrent({ expedite: shouldExpedite });
+        // aircraft.__fms__.setAll({
+        //     // TODO: enumerate the magic numbers
+        //     altitude: altitudeAdjustedForElevation,
+        //     expedite: shouldExpedite
+        // });
 
         const readback = {
             log: `${radioTrendAltitude} ${altitudeAdjustedForElevation} ${shouldExpediteReadback}`,
@@ -722,7 +723,8 @@ export default class AircraftCommander {
         console.log(aircraft.fms.currentRoute);
 
         return ['ok', {
-            log: `route: ${aircraft.__fms__.fp.route.join(' ')}`,
+            // log: `route: ${aircraft.__fms__.fp.route.join(' ')}`,
+            log: `route: ${aircraft.fms.currentRoute}`,
             say: 'here\'s our route'
         }];
     }

@@ -616,6 +616,7 @@ export default class Aircraft {
     isOnGround() {
         const error_allowance_ft = 5;
         const airport = window.airportController.airport_get();
+        // TODO: update to use #initialRunwayAssignment
         const runway = airport.getRunway(this.rwy_dep || this.rwy_arr);
         const nearRunwayAltitude = abs(this.altitude - runway.elevation) < error_allowance_ft;
         const nearAirportAltitude = abs(this.altitude - airport.position.elevation) < error_allowance_ft;
@@ -698,16 +699,18 @@ export default class Aircraft {
             head: 0
         };
 
-        if (this.rwy_dep) {
-            const airport = window.airportController.airport_get();
-            const wind = airport.wind;
-            const runway = airport.getRunway(this.rwy_dep);
-            const angle =  abs(angle_offset(runway.angle, wind.angle));
-
-            // TODO: these two bits of math should be abstracted to a helper function
-            windForRunway.cross = sin(angle) * wind.speed;
-            windForRunway.head = cos(angle) * wind.speed;
+        if (!this.rwy_dep) {
+            return;
         }
+
+        const airport = window.airportController.airport_get();
+        const wind = airport.wind;
+        const runway = airport.getRunway(this.rwy_dep);
+        const angle =  abs(angle_offset(runway.angle, wind.angle));
+
+        // TODO: these two bits of math should be abstracted to a helper function
+        windForRunway.cross = sin(angle) * wind.speed;
+        windForRunway.head = cos(angle) * wind.speed;
 
         return windForRunway;
     }
