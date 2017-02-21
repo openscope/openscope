@@ -13,6 +13,7 @@
     "position": ["N41d43m44.00",  "W071d25m69.00", "54ft"],
     "rr_radius_nm": 5.0,
     "rr_center": ["N41d43m44.00",  "W071d25m69.00"],
+    "has_terrain": true,
     "wind": {
         "angle": 310,
         "speed": 9
