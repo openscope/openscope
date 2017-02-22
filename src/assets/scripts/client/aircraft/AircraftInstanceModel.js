@@ -361,6 +361,9 @@ export default class Aircraft {
             }
         }
 
+        // this.fms.setAltitudeHold(this.fms.getAltitude());
+        // this.fms.setSpeedHold(this.model.speed.cruise);
+
         this.__fms__.setCurrent({
             altitude: this.__fms__.fp.altitude,
             speed: this.model.speed.cruise
@@ -486,35 +489,28 @@ export default class Aircraft {
 
     /**
      * @for AircraftInstanceModel
-     * @method hideStrip
-     */
-    hideStrip() {
-        this.$html.hide(600);
-    }
-
-    // TODO: move to `fms.cancelFix()`
-    /**
-     * @for AircraftInstanceModel
      * @method cancelFix
      */
     cancelFix() {
-        if (this.__fms__.currentWaypoint.navmode !== WAYPOINT_NAV_MODE.FIX) {
-            return false;
-        }
+        this.fms.cancelFix();
 
-        const curr = this.__fms__.currentWaypoint;
-
-        this.__fms__.appendLeg({
-            altitude: curr.altitude,
-            navmode: WAYPOINT_NAV_MODE.HEADING,
-            heading: this.heading,
-            speed: curr.speed
-        });
-
-        this.__fms__.nextLeg();
+        // if (this.__fms__.currentWaypoint.navmode !== WAYPOINT_NAV_MODE.FIX) {
+        //     return false;
+        // }
+        //
+        // const curr = this.__fms__.currentWaypoint;
+        //
+        // this.__fms__.appendLeg({
+        //     altitude: curr.altitude,
+        //     navmode: WAYPOINT_NAV_MODE.HEADING,
+        //     heading: this.heading,
+        //     speed: curr.speed
+        // });
+        //
+        // this.__fms__.nextLeg();
         this.updateStrip();
 
-        return true;
+        // return true;
     }
 
     /**
@@ -1654,8 +1650,8 @@ export default class Aircraft {
         const currentSpeedText = this.fms.getSpeed();
 
         let headingText;
-        const altitudeText = this.taxi_next ? 'ready' : null;
         let destinationText = this.__fms__.getFollowingSIDText();
+        const altitudeText = this.taxi_next ? 'ready' : null;
         const hasAltitude = _has(wp, 'altitude');
         const isFollowingSID = _isString(destinationText);
         const isFollowingSTAR = _isString(this.__fms__.following.star);
@@ -1765,7 +1761,6 @@ export default class Aircraft {
         return a;
     }
 
-    // FIXME: Presumably the use of the 'delete' operator here is a bit of a no-no...
     /**
      * @for AircraftInstanceModel
      * @method removeConflict
@@ -1817,6 +1812,14 @@ export default class Aircraft {
         // TODO enumerate the magic number
         // shift scroll down one strip's height
         this.$strips.scrollTop(scrollPos + 45);
+    }
+
+    /**
+     * @for AircraftInstanceModel
+     * @method hideStrip
+     */
+    hideStrip() {
+        this.$html.hide(600);
     }
 
     cleanup() {

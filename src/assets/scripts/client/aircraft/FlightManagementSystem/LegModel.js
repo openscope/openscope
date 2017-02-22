@@ -51,12 +51,14 @@ export default class LegModel {
     }
 
     /**
-     *
+     * Reset the model's instance properties
      *
      * @for LegModel
      * @method destroy
      */
     destroy() {
+        this._destroyWaypointCollection();
+
         this._navigationLibrary = null;
         this._isProcedure = false;
         this.routeString = '';
@@ -102,6 +104,26 @@ export default class LegModel {
      */
     hasNextWaypoint() {
         return this.waypointCollection.length > 1;
+    }
+
+    /**
+     * Loop through each `WaypointModel` and call `.destroy()`
+     *
+     * This clears destroys each `WaypointModel` contained in the collection.
+     *
+     * TODO: implement object pooling with `WaypointModel`, this is the method
+     *       where the `WaypointModel` is returned to the pool
+     *
+     * @for Fms
+     * @method _destroyWaypointCollection
+     * @private
+     */
+    _destroyWaypointCollection() {
+        for (let i = 0; i < this.waypointCollection.length; i++) {
+            const waypointModel = this.waypointCollection[i];
+
+            waypointModel.destroy();
+        }
     }
 
     /**

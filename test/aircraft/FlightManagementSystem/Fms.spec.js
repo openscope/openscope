@@ -10,12 +10,13 @@ import {
     AIRCRAFT_DEFINITION_MOCK
 } from '../_mocks/aircraftMocks';
 
+const complexRouteString = 'COWBY..BIKKR..DAG.KEPEC3.KLAS';
+const simpleRouteString = ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK.route;
 const initialRunwayAssignmentMock = '19L';
 const isComplexRoute = true;
 
 function buildFmsMock(shouldUseComplexRoute = false) {
     if (shouldUseComplexRoute) {
-        const complexRouteString = 'COWBY..BIKKR..DAG.KEPEC3.KLAS';
         const aircraftPropsMock = Object.assign({}, ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, { route: complexRouteString });
 
         return new Fms(aircraftPropsMock, initialRunwayAssignmentMock, AIRCRAFT_DEFINITION_MOCK, navigationLibraryFixture);
@@ -60,13 +61,13 @@ ava('#currentRoute returns a routeString for a complex route', (t) => {
     t.true(_isEqual(fms.currentRoute, expectedResult));
 });
 
-ava('.init() calls ._buildInitialLegCollection()', (t) => {
+ava('.init() calls ._buildLegCollection()', (t) => {
     const fms = buildFmsMock();
-    const _buildInitialLegCollectionSpy = sinon.spy(fms, '_buildInitialLegCollection');
+    const _buildLegCollectionSpy = sinon.spy(fms, '_buildLegCollection');
 
     fms.init(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
 
-    t.true(_buildInitialLegCollectionSpy.calledWithExactly(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK));
+    t.true(_buildLegCollectionSpy.calledWithExactly(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK.route));
 });
 
 ava('.getAltitude() returns the cruise altitude for an aircraft type when no altitudeRestriction or modeController altitude is present', (t) => {
@@ -155,19 +156,19 @@ ava('.getSpeed() returns the modeController.speed when _modeController.speedMode
     t.true(result === mcpSpeedRestrictionMock);
 });
 
-ava('.addLegToBeginning() adds a leg to the beginning of the #legCollection when passed a directRouteString', (t) => {
+ava('.prependLeg() adds a leg to the beginning of the #legCollection when passed a directRouteString', (t) => {
     const fms = buildFmsMock();
 
-    fms.addLegToBeginning('BIKKR');
+    fms.prependLeg('BIKKR');
 
     t.true(fms.currentLeg.routeString === 'bikkr');
 });
 
-ava('.addLegToBeginning() adds a leg to the beginning of the #legCollection when passed a procedureRouteString', (t) => {
+ava('.prependLeg() adds a leg to the beginning of the #legCollection when passed a procedureRouteString', (t) => {
     const fms = buildFmsMock();
     fms.legCollection = [];
 
-    fms.addLegToBeginning('DAG.KEPEC3.KLAS');
+    fms.prependLeg('DAG.KEPEC3.KLAS');
 
     t.true(fms.legCollection.length === 1);
     t.true(fms.legCollection[0].waypointCollection.length === 12);
@@ -222,6 +223,56 @@ ava('.nextWaypoint() removes the first LegModel from legCollection when the firs
     t.true(fms.legCollection.length === length - 1);
 });
 
+ava('.cancelWaypoint() changes all modes to hold with current getProperty values', (t) => {
+    const expectedResult = {
+        altitude: 'HOLD',
+        autopilot: 'OFF',
+        heading: 'HOLD',
+        speed: 'HOLD'
+    };
+    const fms = buildFmsMock(isComplexRoute);
+
+    fms.cancelWaypoint();
+
+    t.true(_isEqual(fms.currentMode, expectedResult));
+});
+
+ava('.replaceCurrentFlightPlan() calls ._destroyLegCollection()', (t) => {
+    const fms = buildFmsMock(isComplexRoute);
+    const _destroyLegCollectionSpy = sinon.spy(fms, '_destroyLegCollection');
+
+    fms.replaceCurrentFlightPlan(simpleRouteString);
+
+    t.true(_destroyLegCollectionSpy.calledOnce);
+});
+
+ava('._destroyLegCollection() clears the #legCollection', (t) => {
+    const fms = buildFmsMock(isComplexRoute);
+
+    fms._destroyLegCollection();
+
+    t.true(fms.legCollection.length === 0);
+});
+
+ava('.replaceCurrentFlightPlan() calls ._buildLegCollection()', (t) => {
+    const fms = buildFmsMock(isComplexRoute);
+    const _buildLegCollectionSpy = sinon.spy(fms, '_buildLegCollection');
+
+    fms.replaceCurrentFlightPlan(simpleRouteString);
+
+    t.true(_buildLegCollectionSpy.calledWithExactly(simpleRouteString));
+});
+
+ava('.replaceCurrentFlightPlan() creates new LegModels from a routeString and adds them to the #legCollection', (t) => {
+    const fms = buildFmsMock(isComplexRoute);
+
+    fms.replaceCurrentFlightPlan(simpleRouteString);
+
+    t.true(fms.currentLeg._isProcedure);
+    t.true(fms.legCollection.length === 1);
+    t.true(fms.legCollection[0].waypointCollection.length === 12);
+});
+
 ava('.skipToWaypoint() removes all the legs and waypoints in front of the waypoint to skip to', (t) => {
     const fms = buildFmsMock(isComplexRoute);
 
@@ -238,7 +289,7 @@ ava('.getNextWaypointPosition() returns the position array for the next Waypoint
     t.true(_isEqual(result, expectedResult));
 });
 
-ava('._buildInitialLegCollection() returns an array of LegModels', (t) => {
+ava('._buildLegCollection() returns an array of LegModels', (t) => {
     const fms = buildFmsMock(isComplexRoute);
 
     t.true(fms.legCollection.length === 3);

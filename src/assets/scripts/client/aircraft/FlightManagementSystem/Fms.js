@@ -18,7 +18,7 @@ import {
  *
  *
  * This class should always be instantiated from an `AircraftInstanceModel` and
- * always instantiated with some form of a `spawnPatternModel`.
+ * always instantiated from some form of `spawnPatternModel`.
  *
  * @class Fms
  */
@@ -27,6 +27,7 @@ export default class Fms {
      * @constructor
      * @param aircraftInitProps {object}
      * @param initialRunwayAssignment {string}
+     * @param typeDefinitionModel {AircraftTypeDefinitionModel}
      * @param navigationLibrary {NavigationLibrary}
      */
     constructor(aircraftInitProps, initialRunwayAssignment, typeDefinitionModel, navigationLibrary) {
@@ -146,6 +147,46 @@ export default class Fms {
     }
 
     /**
+     *
+     *
+     * @method currentMode
+     * @return {object}
+     */
+    get currentMode() {
+        return {
+            altitude: this._modeController.altitudeMode,
+            autopilot: this._modeController.autopilotMode,
+            heading: this._modeController.headingMode,
+            speed: this._modeController.speedMode
+        };
+    }
+
+    /**
+     * Initialize the instance and setup initial properties
+     *
+     * @for Fms
+     * @method init
+     * @param aircraftInitProps {object}
+     */
+    init({ category, route }) {
+        this.currentPhase = category;
+        this.legCollection = this._buildLegCollection(route);
+    }
+
+    /**
+     * Destroy the instance and reset properties
+     *
+     * @for LegModel
+     * @method destroy
+     */
+    destroy() {
+        this._navigationLibrary = null;
+        this._runwayName = '';
+        this.legCollection = [];
+        this.currentPhase = '';
+    }
+
+    /**
      * Based on reasons, return the current altitude the aircraft should be at.
      *
      * This might not be the altitude it is at currently.
@@ -211,31 +252,6 @@ export default class Fms {
     }
 
     /**
-     * Initialize the instance and setup initial properties
-     *
-     * @for Fms
-     * @method init
-     * @param aircraftInitProps {object}
-     */
-    init(aircraftInitProps) {
-        this.currentPhase = aircraftInitProps.category;
-        this.legCollection = this._buildInitialLegCollection(aircraftInitProps);
-    }
-
-    /**
-     * Destroy the instance and reset properties
-     *
-     * @for LegModel
-     * @method destroy
-     */
-    destroy() {
-        this._navigationLibrary = null;
-        this._runwayName = '';
-        this.legCollection = [];
-        this.currentPhase = '';
-    }
-
-    /**
      * Wrapper method that sets the `_modeController` modes
      * for an arriving aircraft
      *
@@ -258,7 +274,7 @@ export default class Fms {
     }
 
     /**
-     * Set `_modeController` altitudeMode to `VNAV`
+     * Set `_modeController.altitudeMode` to `VNAV`
      *
      * @for Fms
      * @method setAltitudeVnav
@@ -272,7 +288,7 @@ export default class Fms {
     }
 
     /**
-     * Set `_modeController` altitudeMode to `HOLD` with the altitude to hold
+     * Set `_modeController.altitudeMode` to `HOLD` with the altitude to hold
      *
      * @for Fms
      * @method setAltitudeHold
@@ -283,7 +299,7 @@ export default class Fms {
     }
 
     /**
-     * Set `_modeController` headingMode to `LNAV` with a heading to the next waypoint
+     * Set `_modeController.headingMode` to `LNAV` with a heading to the next waypoint
      *
      * @for Fms
      * @method setHeadingLnav
@@ -294,7 +310,7 @@ export default class Fms {
     }
 
     /**
-     * Set `_modeController` headingMode to `HOLD` with the heading to hold
+     * Set `_modeController.headingMode` to `HOLD` with the heading to hold
      *
      * @for Fms
      * @method setHeadingHold
@@ -305,7 +321,7 @@ export default class Fms {
     }
 
     /**
-     * Set `_modeController` speedMode to `HOLD` with the speed to hold
+     * Set `_modeController.speedMode` to `HOLD` with the speed to hold
      *
      * @for Fms
      * @method setSpeedHold
@@ -319,10 +335,10 @@ export default class Fms {
      * Add a new `LegModel` to the left side of the `legCollection`
      *
      * @for Fms
-     * @method addLegToBeginning
+     * @method prependLeg
      * @param routeString
      */
-    addLegToBeginning(routeString) {
+    prependLeg(routeString) {
         const legModel = new LegModel(routeString, this._runwayName, this.currentPhase, this._navigationLibrary);
 
         this.legCollection.unshift(legModel);
@@ -357,6 +373,32 @@ export default class Fms {
         this._moveToNextWaypointInLeg();
 
         // TODO: last else should be cancelFix()
+    }
+
+    /**
+     * Updates `_modeController` modes to `HOLD` for altitude, heading and speed
+     *
+     * @for Fms
+     * @method cancelWaypoint
+     */
+    cancelWaypoint() {
+        this.setAltitudeHold(this.getAltitude());
+        this.setHeadingHold(this.getHeading());
+        this.setSpeedHold(this.getSpeed());
+    }
+
+    /**
+     *
+     *
+     * @for Fms
+     * @method replaceCurrentFlightPlan
+     * @param routeString {string}
+     */
+    replaceCurrentFlightPlan(routeString) {
+        this._destroyLegCollection();
+        // _resetModeControllerForNewFlightPlan
+
+        this.legCollection = this._buildLegCollection(routeString);
     }
 
     /**
@@ -408,14 +450,13 @@ export default class Fms {
      * Used on instantiation to build the initial `legCollection`.
      *
      * @for LegModel
-     * @method _buildInitialLegCollection
-     * @param aircraftInitProps {object}
+     * @method _buildLegCollection
+     * @param routeString {string}
      * @return {array<LegModel>}
      * @private
      */
-    _buildInitialLegCollection(aircraftInitProps) {
-        const { route } = aircraftInitProps;
-        const routeStringSegments = routeStringFormatHelper(route);
+    _buildLegCollection(routeString) {
+        const routeStringSegments = routeStringFormatHelper(routeString);
         const legsForRoute = _map(routeStringSegments, (routeSegment) => {
             return new LegModel(routeSegment, this._runwayName, this.currentPhase, this._navigationLibrary);
         });
@@ -477,5 +518,28 @@ export default class Fms {
             legIndex,
             waypointIndex
         };
+    }
+
+    /**
+     * Loop through each `LegModel` and call `.destroy()`
+     *
+     * This clears destroys each `WaypointModel` contained within each
+     * `LegModel` in the collection.
+     *
+     * TODO: implement object pooling with `LegModel` and `WaypointModel`,
+     *       this is the method where the `LegModel` is be returned to the pool
+     *
+     * @for Fms
+     * @method _destroyLegCollection
+     * @private
+     */
+    _destroyLegCollection() {
+        for (let i = 0; i < this.legCollection.length; i++) {
+            const legModel = this.legCollection[i];
+
+            legModel.destroy();
+        }
+
+        this.legCollection = [];
     }
 }
