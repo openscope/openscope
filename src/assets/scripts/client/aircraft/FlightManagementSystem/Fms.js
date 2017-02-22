@@ -87,12 +87,6 @@ export default class Fms {
         /**
          * Collection of `LegModel` objects
          *
-         * A `LegModel` represents a section of a flight plan:
-         * - single `WaypointModel` without restrictions (not part of a standard procedure)
-         * - single `WaypointModel` assigned to hold at
-         * - standard procedure (sid/star), which may contain may `WaypointModel` objects,
-         *   each which may contain restrictions
-         *
          * @property legCollection
          * @type {array}
          * @default []
@@ -111,7 +105,9 @@ export default class Fms {
         this.currentPhase = '';
 
         /**
+         * routeSegments of legs that have been completed
          *
+         * Used to generate #flightPlan
          *
          * @property _previousRouteSegments
          * @type {array}
@@ -165,7 +161,10 @@ export default class Fms {
     }
 
     /**
+     * Return an entire flightPlan route string.
      *
+     * This string is a combination of past routeSegments and
+     * current routeSegments and represents an entire flightPlan.
      *
      * @method flightPlan
      * @return {string}
@@ -425,7 +424,9 @@ export default class Fms {
     }
 
     /**
+     * Replace the current flightPlan with an entire new one
      *
+     * Used when an aircraft has been re-routed
      *
      * @for Fms
      * @method replaceCurrentFlightPlan

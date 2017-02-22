@@ -2,22 +2,83 @@ import _drop from 'lodash/drop';
 import RouteModel from '../../navigationLibrary/Route/RouteModel';
 
 /**
+ * A section of a flight plan containing one to many `WaypointModel` objects.
  *
+ * Instantiated from a `routeString`
+ *
+ * A `LegModel` represents each section of a flight plan:
+ * - single `WaypointModel` not included in a standard procedure and without restrictions
+ * - single `WaypointModel` assigned to hold at, which can be a navaid or a position array
+ * - standard procedure (sid/star/airway), which may contain many `WaypointModel` objects,
+ *   each of which may specify altitude and/or speed restrictions.
  *
  * @class LegModel
  */
 export default class LegModel {
+    /**
+     * @constructor
+     * @for LegModel
+     * @param routeSegment {string}
+     * @param runway {string}
+     * @param category {string}
+     * @param navigationLibrary {NavigationLibrary}
+     */
     constructor(routeSegment, runway, category, navigationLibrary) {
+        /**
+         * NavigationLibrary instance
+         *
+         * @property _navigationLibrary
+         * @type {NavigationLibrary}
+         * @default navigationLibrary
+         * @private
+         */
         this._navigationLibrary = navigationLibrary;
+
+        /**
+         *
+         *
+         * @property _isProcedure
+         * @type {boolean}
+         * @private
+         */
         this._isProcedure = false;
+
+        /**
+         * String representation of the current routeSegment.
+         *
+         * A directRoute contains a single WaypointModel and is separated
+         * by `..` in the routeString. In this example there are two directRoute
+         * segments, thus this routeString will result in two LegModels:
+         * - `FIXA..COWBY`
+         *
+         * A procedureRoute contains many `WaypointModel` objects and describes
+         * a standardRoute (sid/star/airway). procedureRoutes are separated by
+         * a single '.':
+         * - `DAG.KEPEC3.KLAS`
+         *
+         * @for LegModel
+         * @property routeString
+         * @type {string}
+         */
         this.routeString = '';
+
+        /**
+         * List of `WaypointModel` objects defined within a `LegModel`.
+         *
+         * @propert waypointCollection
+         * @type {array}
+         * @default []
+         */
         this.waypointCollection = [];
 
         this.init(routeSegment, runway, category);
     }
 
     /**
+     * The active `WaypointModel`.
      *
+     * Assumed to always be the first item in
+     * the `#waypointCollection`
      *
      * @property currentWaypoint
      * @return {WaypointModel}
@@ -27,7 +88,10 @@ export default class LegModel {
     }
 
     /**
+     * The `WaypointModel` immediately following the `#currentWaypoint`
+     * in the flightPlan
      *
+     * Used when calculating headings to the next waypoint.
      *
      * @property nextWaypoint
      * @return {WaypointModel}
@@ -37,7 +101,7 @@ export default class LegModel {
     }
 
     /**
-     *
+     * Instantiate the class properties
      *
      * @for LegModel
      * @method init
@@ -66,7 +130,10 @@ export default class LegModel {
     }
 
     /**
+     * Given an index, drop the `WaypointModel`s before that index and make `waypointIndex`
+     * the next `0` index of the array.
      *
+     * This is useful for skipping to a specific waypoint in the flightPlan.
      *
      * @for LegModel
      * @method skipToWaypointAtIndex
@@ -127,7 +194,9 @@ export default class LegModel {
     }
 
     /**
+     * Create the intial `#waypointCollection` from a `routeSegment`
      *
+     * Should run only on instantiation
      *
      * @for LegModel
      * @method _buildWaypointCollection
@@ -144,11 +213,17 @@ export default class LegModel {
     }
 
     /**
+     * Given a directRouteSegment, generate a `WaypointModel`.
      *
+     * Returns an array eventhough there will only ever by one WaypointModel
+     * for a directRouteSegment. This is because the `#waypointCollection` is
+     * always assumed to be an array and the result of this method is used to
+     * set `#waypointCollection`.
      *
      * @for LegModel
      * @method _buildWaypointForDirectRoute
      * @param directRouteSegment {string}
+     * @return {array<WaypointModel>}
      * @private
      */
     _buildWaypointForDirectRoute(directRouteSegment) {
@@ -160,11 +235,13 @@ export default class LegModel {
     }
 
     /**
-     *
+     * Given a procedureRouteSegment, find the `StandardRouteWaypointModels` for the
+     * route and generate `WaypointModel`s that can be consumed by the Fms.
      *
      * @for LegModel
      * @method _buildWaypointCollectionForProcedureRoute
      * @param procedureRouteSegment {string}
+     * @return {array<WaypointModel>}
      * @private
      */
     _buildWaypointCollectionForProcedureRoute(procedureRouteSegment, runway, category) {
