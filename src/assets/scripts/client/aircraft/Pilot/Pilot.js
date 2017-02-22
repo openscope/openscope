@@ -1,4 +1,15 @@
+import _ceil from 'lodash/ceil';
+import _floor from 'lodash/floor';
 import _isNil from 'lodash/isNil';
+import { clamp } from '../../math/core';
+import { groupNumbers,
+    radio_altitude,
+    radio_heading,
+    radio_spellOut,
+    radio_trend
+} from '../../utilities/radioUtilities';
+import { degreesToRadians, heading_to_string } from '../../utilities/unitConverters';
+import { radians_normalize } from '../../math/circle';
 import { MCP_MODE, MCP_MODE_NAME, MCP_FIELD_NAME } from '../ModeControl/modeControlConstants';
 
 /**
@@ -18,48 +29,156 @@ export default class Pilot {
     }
 
     /**
+     * Configure the aircraft to fly in accordance with the requested flightplan
+     *
+     * @for Pilot
+     * @method clearedAsFiled
+     * @return {Array} [success of operation, readback]
+     */
+    clearedAsFiled(initial_altitude, runway_heading, cruise_speed) {
+        if (!this._fms.replaceCurrentFlightPlan(this._fms.flightPlan.route)) {
+            return [false, 'unable to clear as filed'];
+        }
+
+        this._mcp._setAltitudeFieldValue(initial_altitude);
+        this._mcp._setAltitudeHold();
+        this._mcp._setHeadingFieldValue(runway_heading);
+        this._mcp._setHeadingLnav();
+        this._mcp._setSpeedFieldValue(cruise_speed);
+        this._mcp._setSpeedN1();
+
+        const readback = {};
+        readback.log = `cleared to destination as filed. Climb and maintain ${initial_altitude}, expect ` +
+                `${this._fms.flightPlan.altitude} 10 minutes after departure`;
+        readback.say = `cleared to destination as filed. Climb and maintain ${radio_altitude(initial_altitude)}, ` +
+                `expect ${radio_altitude(this._fms.flightPlan.altitude)}, ${radio_spellOut('10')} minutes ` +
+                'after departure';
+
+        return ['ok', readback];
+    }
+
+    /**
+     * Expedite the climb or descent to the assigned altitude, to use maximum possible rate
+     *
+     * @for Pilot
+     * @method expediteAltitudeChange
+     */
+    expediteAltitudeChange() {
+        this._mcp.expediteAltitudeChange = true;
+    }
+
+    /**
      * Maintain a given altitude
      *
-     @for Pilot
-     @method maintainAltitude
+     * @for Pilot
+     * @method maintainAltitude
      */
-    maintainAltitude(altitude) {
+    maintainAltitude(altitude, expedite) {
         if (_isNil(altitude)) {
             return;
         }
 
+        const airport = this._airportController.airport_get();
+        const minimumAssignableAltitude = _ceil(airport.elevation + 1000, -2);
+        const maximumAssignableAltitude = airport.ctr_ceiling;
+        altitude = clamp(minimumAssignableAltitude, altitude, maximumAssignableAltitude);
+        const softCeiling = this._gameController.game.option.get('softCeiling') === 'yes';
+
+        if (softCeiling && altitude === maximumAssignableAltitude) {
+            altitude += 1;  // causes aircraft to 'leave' airspace, and continue climb through ceiling
+        }
+
         this._setAltitudeFieldValue(altitude);
         this._setAltitudeHold();
+
+        // Build readback
+        altitude = _floor(altitude, -2);
+        const aircraft = { altitude: 0 };   // FIXME: How can the Pilot get the aircraft's current altitude?
+        const altitudeInstruction = radio_trend('altitude', aircraft.altitude, altitude);
+        const altitude_verbal = radio_altitude(altitude);
+        let expediteReadback = '';
+
+        if (expedite) {
+            expediteReadback = ' and expedite';
+            this.expediteAltitudeChange();
+        }
+
+        const readback = {};
+        readback.log = `${altitudeInstruction} ${altitude}${expediteReadback}`;
+        readback.say = `${altitudeInstruction} ${altitude_verbal}${expediteReadback}`;
+
+        return ['ok', readback];
     }
 
     /**
      * Maintain a given heading
      *
-     @for Pilot
-     @method maintainHeading
+     * @for Pilot
+     * @method maintainHeading
+     @
      */
-    maintainHeading(heading) {
+    maintainHeading(heading, direction, incremental) {
         if (_isNil(heading)) {
             return;
         }
 
+        let degrees;
+
+        if (incremental) {
+            degrees = heading;
+            const aircraft = { heading: 0 };    // FIXME: How can the Pilot access the current heading?
+
+            if (direction === 'left') {
+                heading = radians_normalize(aircraft.heading - degreesToRadians(degrees));
+            } else if (direction === 'right') {
+                heading = radians_normalize(aircraft.heading + degreesToRadians(degrees));
+            }
+        }
+
         this._setHeadingFieldValue(heading);
         this._setHeadingHold();
+
+        // Build readback
+        const heading_string = heading_to_string(heading);
+        const readback = {};
+
+        if (incremental) {
+            readback.log = `turn ${degrees} degrees ${direction}`;
+            readback.say = `turn ${groupNumbers(degrees)} degrees ${direction}`;
+        } else if (direction) {
+            readback.log = `turn ${direction} heading ${heading_string}`;
+            readback.say = `turn ${direction} heading ${radio_heading(heading_string)}`;
+        } else {
+            readback.log = `fly heading ${heading_string}`;
+            readback.say = `fly heading ${radio_heading(heading_string)}`;
+        }
+
+        return [true, readback];
     }
 
     /**
      * Maintain a given speed
      *
-     @for Pilot
-     @method maintainSpeed
+     * @for Pilot
+     * @method maintainSpeed
      */
     maintainSpeed(speed) {
         if (_isNil(speed)) {
             return;
         }
 
+        const aircraft = { speed: 0 };  // FIXME: How can the pilot access the aircraft's current speed?
+        const instruction = radio_trend('speed', aircraft.speed, speed);
+
         this._setSpeedFieldValue(speed);
         this._setSpeedHold();
+
+        // Build the readback
+        const readback = {};
+        readback.log = `${instruction} ${speed}`;
+        readback.say = `${instruction} ${radio_spellOut(speed)}`;
+
+        return [true, readback];
     }
 
     /**
