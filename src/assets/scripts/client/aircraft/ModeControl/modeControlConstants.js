@@ -88,15 +88,15 @@ export const MCP_MODE_NAME = {
 };
 
 /**
+ * Representation of the numerical values of the various dials on the MCP
  *
- *
- * @property MCP_PROPERTY_MAP
+ * @property MCP_FIELDS
  * @type {Object}
  * @final
  */
-export const MCP_PROPERTY_MAP = {
-    altitudeMode: 'altitude',
-    autopilotMode: 'autopilot',
-    headingMode: 'heading',
-    speedMode: 'speed'
+export const MCP_FIELDS = {
+    ALTITUDE: 'altitude',
+    COURSE: 'course',
+    HEADING: 'heading',
+    SPEED: 'speed'
 };

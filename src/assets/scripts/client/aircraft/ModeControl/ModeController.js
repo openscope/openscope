@@ -1,7 +1,7 @@
-import { MCP_MODE, MCP_PROPERTY_MAP } from './modeControlConstants';
+import { MCP_MODE, MCP_MODE_NAME } from './modeControlConstants';
 
 /**
- *
+ * Part of the autopilot system that determines the source from which to derive the aircraft's targeted telemetry
  *
  * @class ModeController
  */
@@ -10,7 +10,7 @@ export default class ModeController {
      * @constructor
      * @for ModeController
      */
-    constructor() {
+    constructor(isAircraftAirborne) {
         this.altitudeMode = MCP_MODE.ALTITUDE.OFF;
         this.autopilotMode = MCP_MODE.AUTOPILOT.OFF;
         this.headingMode = MCP_MODE.HEADING.OFF;
@@ -20,50 +20,55 @@ export default class ModeController {
         this.course = -1;
         this.heading = -1;
         this.speed = -1;
+
+        this.expediteAltitudeChange = false;
+
+        this._init(isAircraftAirborne);
     }
 
     /**
+     * Initialization tasks
      *
-     *
+     * @for ModeController
+     * @method _init
+     * @private
      */
-    setModesForArrival() {
-        this.altitudeMode = MCP_MODE.ALTITUDE.VNAV;
-        this.headingMode = MCP_MODE.HEADING.LNAV;
-        this.speedMode = MCP_MODE.SPEED.VNAV;
+    _init(isAircraftAirborne) {
+        if (isAircraftAirborne) {
+            this._initializeSelfForAirborneFlight();
+        }
     }
 
     /**
+     * Set the appropriate values in the MCP when spawning an aircraft that's already in flight
      *
-     *
+     * @for ModeController
+     * @method _initializeSelfForAirborneFlight
+     * @private
      */
-    setModesForDeparture() {
-        this.altitudeMode = MCP_MODE.ALTITUDE.VNAV;
-        this.headingMode = MCP_MODE.HEADING.LNAV;
-        this.speedMode = MCP_MODE.SPEED.VNAV;
+    _initializeSelfForAirborneFlight() {
+        this.setModeSelectorMode(MCP_MODE_NAME.ALTITUDE, MCP_MODE.ALTITUDE.VNAV);
+        this.setModeSelectorMode(MCP_MODE_NAME.HEADING, MCP_MODE.HEADING.LNAV);
+        this.setModeSelectorMode(MCP_MODE_NAME.SPEED, MCP_MODE.SPEED.VNAV);
     }
 
     /**
+     * Set the mode of a given modeSelector
      *
-     *
+     * @for ModeController
+     * @method setMode
      */
-    setModeAndValue(modeSelector, mode, fieldValue) {
-        this._setModeControllerMode(modeSelector, mode);
-        this._setModeControllerValue(MCP_PROPERTY_MAP[modeSelector], fieldValue);
-    }
-
-    /**
-     *
-     *
-     */
-    _setModeControllerMode(modeSelector, mode) {
+    setModeSelectorMode(modeSelector, mode) {
         this[modeSelector] = mode;
     }
 
     /**
+     * Set the value of a given fieldName
      *
-     *
+     * @for ModeController
+     * @method setFieldValue
      */
-    _setModeControllerValue(fieldName, value) {
+    setFieldValue(fieldName, value) {
         this[fieldName] = value;
     }
 }
