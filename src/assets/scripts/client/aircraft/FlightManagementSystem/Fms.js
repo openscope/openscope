@@ -171,6 +171,10 @@ export default class Fms {
      * @return {string}
      */
     get flightPlan() {
+        if (this._previousRouteSegments.length === 0) {
+            return this.currentRoute;
+        }
+
         const previousSegments = this._previousRouteSegments.join(DIRECT_ROUTE_SEGMENT_SEPARATOR);
 
         return `${previousSegments}${DIRECT_ROUTE_SEGMENT_SEPARATOR}${this.currentRoute}`;
@@ -211,6 +215,7 @@ export default class Fms {
      */
     destroy() {
         this._navigationLibrary = null;
+        this._previousRouteSegments = [];
         this._runwayName = '';
         this.legCollection = [];
         this.currentPhase = '';
@@ -396,6 +401,8 @@ export default class Fms {
      * @method nextWaypoint
      */
     nextWaypoint() {
+        this._previousRouteSegments.push(this.currentLeg.routeString);
+
         if (!this.currentLeg.hasNextWaypoint()) {
             this._moveToNextLeg();
         }
@@ -443,8 +450,9 @@ export default class Fms {
     skipToWaypoint(waypointName) {
         const { legIndex, waypointIndex } = this._findLegAndWaypointIndexForWaypointName(waypointName);
 
-        this.legCollection = _drop(this.legCollection, legIndex);
+        this._collectRouteStringsForLegsToBeDropped(legIndex);
 
+        this.legCollection = _drop(this.legCollection, legIndex);
         this.currentLeg.skipToWaypointAtIndex(waypointIndex);
     }
 
@@ -548,6 +556,23 @@ export default class Fms {
             legIndex,
             waypointIndex
         };
+    }
+
+    /**
+     * Loop through the `#legCollection` up to the `legIndex` and add each
+     * `routeString` to `#_previousRouteSegments`.
+     *
+     * Called from `.skipToWaypoint()` before the `currentLeg` is updated to the
+     * `LegModel` at `legIndex`.
+     *
+     * @for Fms
+     * @method _collectRouteStringsForLegsToBeDropped
+     * @param legIndex {number}  index number of the next currentLeg
+     */
+    _collectRouteStringsForLegsToBeDropped(legIndex) {
+        for (let i = 0; i < legIndex; i++) {
+            this._previousRouteSegments.push(this.legCollection[i].routeString);
+        }
     }
 
     /**

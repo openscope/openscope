@@ -61,6 +61,40 @@ ava('#currentRoute returns a routeString for a complex route', (t) => {
     t.true(_isEqual(fms.currentRoute, expectedResult));
 });
 
+ava('#flightPlan returns an empty string when no #_previousRouteSegments exist', (t) => {
+    const expectedResult = 'cowby..bikkr..dag.kepec3.klas';
+    const fms = buildFmsMock(isComplexRoute);
+
+    t.true(_isEqual(fms.flightPlan, expectedResult));
+});
+
+ava('#flightPlan returns a routeString after .nextWaypoint() has been used to move through waypoints', (t) => {
+    const expectedResult = 'cowby..bikkr..dag.kepec3.klas';
+    const fms = buildFmsMock(isComplexRoute);
+
+    fms.nextWaypoint();
+    fms.nextWaypoint();
+
+    t.true(_isEqual(fms.flightPlan, expectedResult));
+});
+
+ava('#flightPlan returns a routeString after .skipToWaypoint() has been used to move through waypoints', (t) => {
+    const expectedResult = 'cowby..bikkr..dag.kepec3.klas';
+    const fms = buildFmsMock(isComplexRoute);
+
+    fms.skipToWaypoint('dag');
+
+    t.true(_isEqual(fms.flightPlan, expectedResult));
+});
+
+ava('#flightPlan returns an empty string when no legs or waypoints exist', (t) => {
+    const expectedResult = '';
+    const fms = buildFmsMock(isComplexRoute);
+    fms._destroyLegCollection();
+
+    t.true(_isEqual(fms.flightPlan, expectedResult));
+});
+
 ava('.init() calls ._buildLegCollection()', (t) => {
     const fms = buildFmsMock();
     const _buildLegCollectionSpy = sinon.spy(fms, '_buildLegCollection');
@@ -193,6 +227,13 @@ ava('.hasNextWaypoint() returns false when no nextWaypoint exists', (t) => {
     t.false(fms.hasNextWaypoint());
 });
 
+ava('.nextWaypoint() adds current LegModel#routeString to _previousRouteSegments before moving to next waypoint', (t) => {
+    const fms = buildFmsMock(isComplexRoute);
+
+    fms.nextWaypoint();
+
+    t.true(fms._previousRouteSegments[0] === 'cowby');
+});
 
 ava('.nextWaypoint() calls ._moveToNextLeg() if the current waypointCollection.length === 0', (t) => {
     const fms = buildFmsMock(isComplexRoute);
@@ -246,14 +287,6 @@ ava('.replaceCurrentFlightPlan() calls ._destroyLegCollection()', (t) => {
     t.true(_destroyLegCollectionSpy.calledOnce);
 });
 
-ava('._destroyLegCollection() clears the #legCollection', (t) => {
-    const fms = buildFmsMock(isComplexRoute);
-
-    fms._destroyLegCollection();
-
-    t.true(fms.legCollection.length === 0);
-});
-
 ava('.replaceCurrentFlightPlan() calls ._buildLegCollection()', (t) => {
     const fms = buildFmsMock(isComplexRoute);
     const _buildLegCollectionSpy = sinon.spy(fms, '_buildLegCollection');
@@ -273,12 +306,30 @@ ava('.replaceCurrentFlightPlan() creates new LegModels from a routeString and ad
     t.true(fms.legCollection[0].waypointCollection.length === 12);
 });
 
+ava('.skipToWaypoint() calls ._collectRouteStringsForLegsToBeDropped()', (t) => {
+    const fms = buildFmsMock(isComplexRoute);
+    const _collectRouteStringsForLegsToBeDroppedSpy = sinon.spy(fms, '_collectRouteStringsForLegsToBeDropped');
+
+    fms.skipToWaypoint('DAG');
+
+    t.true(_collectRouteStringsForLegsToBeDroppedSpy.calledOnce);
+});
+
 ava('.skipToWaypoint() removes all the legs and waypoints in front of the waypoint to skip to', (t) => {
     const fms = buildFmsMock(isComplexRoute);
 
     fms.skipToWaypoint('DAG');
 
     t.true(fms.currentLeg.routeString === 'dag.kepec3.klas');
+});
+
+ava('.skipToWaypoint() does nothing is the waypoint to skip to is the #currentWaypoint', (t) => {
+    const waypointNameMock = 'cowby';
+    const fms = buildFmsMock(isComplexRoute);
+
+    fms.skipToWaypoint(waypointNameMock);
+
+    t.true(fms.currentLeg.routeString === waypointNameMock);
 });
 
 ava('.getNextWaypointPosition() returns the position array for the next Waypoint in the collection', (t) => {
@@ -304,4 +355,12 @@ ava('._findLegAndWaypointIndexForWaypointName() returns an object with keys legI
     const result = fms._findLegAndWaypointIndexForWaypointName('dag');
 
     t.true(_isEqual(result, expectedResult));
+});
+
+ava('._destroyLegCollection() clears the #legCollection', (t) => {
+    const fms = buildFmsMock(isComplexRoute);
+
+    fms._destroyLegCollection();
+
+    t.true(fms.legCollection.length === 0);
 });
