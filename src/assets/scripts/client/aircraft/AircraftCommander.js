@@ -247,22 +247,7 @@ export default class AircraftCommander {
      * @method runClimbViaSID
      */
     runClimbViaSID(aircraft) {
-        if (aircraft.__fms__.currentLeg.type !== FP_LEG_TYPE.SID || !aircraft.__fms__.climbViaSID()) {
-            const isWarning = true;
-
-            this._uiController.ui_log(`${aircraft.getCallsign()} unable to climb via SID`, isWarning);
-
-            return;
-        }
-
-        const airport = this._airportController.airport_get();
-        const { name: procedureName } = this._navigationLibrary.sidCollection.findRouteByIcao(aircraft.__fms__.currentLeg.route.procedure);
-        const readback = {
-            log: `climb via the ${aircraft.__fms__.currentLeg.route.procedure} departure`,
-            say: `climb via the ${procedureName.toUpperCase()} departure`
-        };
-
-        return ['ok', readback];
+        return aircraft.pilot.climbViaSid();
     }
 
     /**
