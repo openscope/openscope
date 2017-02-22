@@ -25,30 +25,6 @@ ava('instantiates with an _id with string property', t => {
     t.true(_isString(resultString._id));
 });
 
-ava('instantiates with an _id with an Object', t => {
-    const resultObj = new BaseModel({});
-
-    t.true(_isString(resultObj._id));
-});
-
-ava('instantiates with an _id with an array', t => {
-    const resultArray = new BaseModel([]);
-
-    t.true(_isString(resultArray._id));
-});
-
-ava('instantiates with an _id with an boolean', t => {
-    const resultBol = new BaseModel(false);
-
-    t.true(_isString(resultBol._id));
-});
-
-ava('instantiates with an _id with an int', t => {
-    const resultInt = new BaseModel(42);
-
-    t.true(_isString(resultInt._id));
-});
-
 ava('._init() throws when called from BaseModel', t => {
     const model = new BaseModel();
 

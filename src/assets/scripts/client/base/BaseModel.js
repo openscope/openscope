@@ -17,8 +17,8 @@ export default class BaseModel {
          * @type {string}
          * @private
          */
-        const OptionalModelPrefix = this.buildModelPrefix(modelName);
-        this._id = _uniqueId(OptionalModelPrefix);
+        const optionalModelPrefix = this.buildModelPrefix(modelName);
+        this._id = _uniqueId(optionalModelPrefix);
     }
 
     /**
