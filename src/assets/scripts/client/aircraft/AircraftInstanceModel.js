@@ -11,12 +11,13 @@ import AircraftFlightManagementSystem from './FlightManagementSystem/AircraftFli
 import AircraftStripView from './AircraftStripView';
 import Fms from './FlightManagementSystem/Fms';
 import ModeController from './ModeControl/ModeController';
+import Pilot from './Pilot/Pilot.js'
 import { speech_say } from '../speech';
 import { tau, radians_normalize, angle_offset } from '../math/circle';
 import { round, abs, sin, cos, extrapolate_range_clamp, clamp } from '../math/core';
 import { distance2d } from '../math/distance';
 import { getOffset, calculateTurnInitiaionDistance } from '../math/flightMath';
-import { MCP_MODE, MCP_MODE_NAME, MCP_PROPERTY_MAP } from './ModeControl/modeControlConstants';
+import { MCP_MODE, MCP_MODE_NAME } from './ModeControl/modeControlConstants';
 import {
     vlen,
     vradial,
@@ -107,7 +108,6 @@ export default class Aircraft {
         // FIXME: change name, and update refs in `InputController`. perhaps change to be a ref to the AircraftStripView class instead of directly accessing the html?
         this.aircraftStripView = null;
         this.$html = null;
-        this.mcp = new ModeController();
         this.$strips = $(SELECTORS.DOM_SELECTORS.STRIPS);
         /* eslint-enable multi-spaces*/
 
@@ -158,6 +158,10 @@ export default class Aircraft {
         this.assignInitialRunway(options);
         this.parse(options);
         this.initFms(options);
+
+        this.mcp = new ModeController();
+        this.pilot = new Pilot(this.mcp, this.fms);
+
         this.createStrip();
         this.updateStrip();
     }
@@ -172,6 +176,21 @@ export default class Aircraft {
         return this.rwy_dep
             ? this.rwy_dep
             : this.rwy_arr;
+    }
+
+    /**
+     *
+     *
+     * @method currentMode
+     * @return {object}
+     */
+    get currentMode() {
+        return {
+            altitude: this.mcp.altitudeMode,
+            autopilot: this.mcp.autopilotMode,
+            heading: this.mcp.headingMode,
+            speed: this.mcp.speedMode
+        };
     }
 
     /**
@@ -264,14 +283,11 @@ export default class Aircraft {
             this.altitude = airport.position.elevation;
             this.speed = 0;
 
-            this.fms.updateModesForDeparture();
-
             return;
         } else if (this.category !== FLIGHT_CATEGORY.ARRIVAL) {
             throw new Error('Invalid #category found in AircraftInstanceModel');
         }
 
-        this.fms.updateModesForArrival();
         this.fms.setHeadingHold(data.heading);
         this.fms.setAltitudeHold(data.altitude);
         this.fms.setSpeedHold(data.speed);
@@ -359,9 +375,6 @@ export default class Aircraft {
                 window.gameController.events_recordNew(GAME_EVENTS.NOT_CLEARED_ON_ROUTE);
             }
         }
-
-        // this.fms.setAltitudeHold(this.fms.getAltitude());
-        // this.fms.setSpeedHold(this.model.speed.cruise);
 
         this.__fms__.setCurrent({
             altitude: this.__fms__.fp.altitude,
@@ -758,7 +771,7 @@ export default class Aircraft {
         let alt_say;
 
         if (this.category === FLIGHT_CATEGORY.ARRIVAL) {
-            const altdiff = this.altitude - this.fms.getAltitude();
+            const altdiff = this.altitude - this.pilot.sayTargetedAltitude();
             const alt = digits_decimal(this.altitude, -2);
 
             if (Math.abs(altdiff) > 200) {
@@ -845,16 +858,16 @@ export default class Aircraft {
      * @private
      */
     _calculateTargetedHeading() {
-        if (this.mcp[MCP_MODE_NAME.AUTOPILOT] === MCP_MODE.AUTOPILOT.OFF) {
+        if (this.mcp.autopilotMode === MCP_MODE.AUTOPILOT.OFF) {
             return;
         }
 
-        switch (this.mcp[MCP_MODE_NAME.HEADING]) {
+        switch (this.mcp.headingMode) {
             case MCP_MODE.HEADING.OFF:
                 return this.heading;
 
             case MCP_MODE.HEADING.HOLD:
-                return this.mcp[MCP_PROPERTY_MAP.HEADING];
+                return this.mcp.heading;
 
             case MCP_MODE.HEADING.LNAV:
                 return this.fms.currentWaypoint.heading;
@@ -865,7 +878,7 @@ export default class Aircraft {
 
             default:
                 console.warn('Expected MCP heading mode of "OFF", "HOLD", "LNAV", or "VOR", ' +
-                    `but received "${this.mcp[MCP_MODE_NAME.SPEED]}"`);
+                    `but received "${this.mcp[MCP_MODE_NAME.HEADING]}"`);
                 return this.heading;
         }
     }
@@ -878,16 +891,16 @@ export default class Aircraft {
      * @private
      */
     _calculateTargetedSpeed() {
-        if (this.mcp[MCP_MODE_NAME.AUTOPILOT] === MCP_MODE.AUTOPILOT.OFF) {
+        if (this.mcp.autopilotMode === MCP_MODE.AUTOPILOT.OFF) {
             return;
         }
 
-        switch (this.mcp[MCP_MODE_NAME.SPEED]) {
+        switch (this.mcp.speedMode) {
             case MCP_MODE.SPEED.OFF:
                 return this.speed;
 
             case MCP_MODE.SPEED.HOLD:
-                return this.mcp[MCP_PROPERTY_MAP.SPEED];
+                return this.mcp.speed;
 
             // future functionality
             // case MCP_MODE.SPEED.LEVEL_CHANGE:
@@ -914,16 +927,16 @@ export default class Aircraft {
      * @private
      */
     _calculateTargetedAltitude() {
-        if (this.mcp[MCP_MODE_NAME.AUTOPILOT] === MCP_MODE.AUTOPILOT.OFF) {
+        if (this.mcp.autopilotMode === MCP_MODE.AUTOPILOT.OFF) {
             return;
         }
 
-        switch (this.mcp[MCP_MODE_NAME.ALTITUDE]) {
+        switch (this.mcp.altitudeMode) {
             case MCP_MODE.ALTITUDE.OFF:
                 return this.altitude;
 
             case MCP_MODE.ALTITUDE.HOLD:
-                return this.mcp[MCP_PROPERTY_MAP.ALTITUDE];
+                return this.mcp.altitude;
 
             case MCP_MODE.ALTITUDE.APPROACH:
                 return this._calculateTargetedAltitudeToInterceptGlidepath();
@@ -941,7 +954,7 @@ export default class Aircraft {
 
             default:
                 console.warn('Expected MCP altitude mode of "OFF", "HOLD", "APPROACH", "LEVEL_CHANGE", ' +
-                    `"VERTICAL_SPEED", or "VNAV", but received "${this.mcp[MCP_MODE_NAME.SPEED]}"`);
+                    `"VERTICAL_SPEED", or "VNAV", but received "${this.mcp[MCP_MODE_NAME.ALTITUDE]}"`);
                 return;
         }
     }
@@ -1028,18 +1041,18 @@ export default class Aircraft {
 
                 break;
             default:
-                this.target.heading = this.fms.getHeading();
+                this.target.heading = this.mcp.heading;
                 this.target.turn = this.__fms__.currentWaypoint.turn;
 
                 break;
         }
 
         if (this.mode !== FLIGHT_MODES.LANDING) {
-            // this.target.altitude = this.fms.getAltitude();
+            // FIXME: this is wrong
             this.target.expedite = this.__fms__.currentWaypoint.expedite;
-            this.target.altitude = Math.max(1000, this.fms.getAltitude());
+            this.target.altitude = Math.max(1000, this.pilot.sayTargetedAltitude());
             // this.target.speed = _get(this, 'fms.currentWaypoint.speed', this.speed);
-            this.target.speed = clamp(this.model.speed.min, this.fms.getSpeed(), this.model.speed.max);
+            this.target.speed = clamp(this.model.speed.min, this.pilot.sayTargetedSpeed(), this.model.speed.max);
         }
 
         // If stalling, make like a meteorite and fall to the earth!
@@ -1087,7 +1100,7 @@ export default class Aircraft {
                 runway = airport.getRunway(this.rwy_dep);
 
                 // Altitude Control
-                this.target.altitude = this.fms.getAltitude();
+                this.target.altitude = this.pilot.sayTargetedAltitude();
 
                 if (this.speed < this.model.speed.min) {
                     this.target.altitude = runway.elevation;
@@ -1100,7 +1113,7 @@ export default class Aircraft {
                     this.target.heading = runwayHeading;
                 } else {
                     // if (!this.__fms__.followCheck().sid && this.__fms__.currentWaypoint.heading === null) {
-                    if (this.fms.getHeading() === -999) {
+                    if (this.mcp.heading === -999) {
                         // if no directional instructions available after takeoff
                         // fly runway heading
                         this.fms.setHeadingHold(runwayHeading);
@@ -1126,7 +1139,7 @@ export default class Aircraft {
             return;
         }
 
-        let nextSpeed = Math.min(this.fms.getSpeed(), 250);
+        let nextSpeed = Math.min(this.mcp.speed, 250);
 
         if (this.isPrecisionGuided()) {
             // btwn 0 and 250
@@ -1150,7 +1163,7 @@ export default class Aircraft {
         this.offset_angle = offset_angle;
         this.approachOffset = abs(offset[0]);
         this.approachDistance = offset[1];
-        this.target.heading = this.fms.getHeading();
+        this.target.heading = this.mcp.heading;
         this.target.turn = this.__fms__.currentWaypoint.turn;
         this.target.altitude = this.__fms__.currentWaypoint.altitude;
         this.target.speed = this.__fms__.currentWaypoint.speed;
@@ -1817,10 +1830,10 @@ export default class Aircraft {
 
         const wp = this.__fms__.currentWaypoint;
         // Populate strip fields with default values
-        const defaultHeadingText = heading_to_string(this.fms.getHeading());
-        const defaultAltitudeText = this.fms.getAltitude();
+        const defaultHeadingText = heading_to_string(this.mcp.heading);
+        const defaultAltitudeText = this.mcp.altitude;
         const defaultDestinationText = _get(this, 'destination', window.airportController.airport_get().icao);
-        const currentSpeedText = this.fms.getSpeed();
+        const currentSpeedText = this.pilot.sayTargetedSpeed();
 
         let headingText;
         let destinationText = this.__fms__.getFollowingSIDText();
