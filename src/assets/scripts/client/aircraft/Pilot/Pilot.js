@@ -1,3 +1,4 @@
+import _isNil from 'lodash/isNil';
 import { MCP_MODE, MCP_MODE_NAME, MCP_FIELD_NAME } from '../ModeControl/modeControlConstants';
 
 /**
@@ -17,6 +18,51 @@ export default class Pilot {
     }
 
     /**
+     * Maintain a given altitude
+     *
+     @for Pilot
+     @method maintainAltitude
+     */
+    maintainAltitude(altitude) {
+        if (_isNil(altitude)) {
+            return;
+        }
+
+        this._setAltitudeFieldValue(altitude);
+        this._setAltitudeHold();
+    }
+
+    /**
+     * Maintain a given heading
+     *
+     @for Pilot
+     @method maintainHeading
+     */
+    maintainHeading(heading) {
+        if (_isNil(heading)) {
+            return;
+        }
+
+        this._setHeadingFieldValue(heading);
+        this._setHeadingHold();
+    }
+
+    /**
+     * Maintain a given speed
+     *
+     @for Pilot
+     @method maintainSpeed
+     */
+    maintainSpeed(speed) {
+        if (_isNil(speed)) {
+            return;
+        }
+
+        this._setSpeedFieldValue(speed);
+        this._setSpeedHold();
+    }
+
+    /**
      * Return the altitude the aircraft is currently assigned. May be moving toward this altitude,
      * or already established at that altitude.
      *
@@ -25,6 +71,29 @@ export default class Pilot {
      */
     sayTargetedAltitude() {
         return this._mcp.getFieldValue(MCP_FIELD_NAME.ALTITUDE);
+    }
+
+    /**
+     * Return the heading the aircraft is currently targeting. May be moving toward this heading,
+     * or already established at that heading.
+     *
+     * @for Pilot
+     * @method sayTargetedHeading
+     */
+    sayTargetedHeading() {
+        switch (this._mcp.headingMode) {
+            case MCP_MODE.HEADING.HOLD:
+                return this._mcp.getFieldValue(MCP_FIELD_NAME.HEADING);
+
+            case MCP_MODE.HEADING.VOR_LOC:
+                return this._mcp.getFieldValue(MCP_FIELD_NAME.COURSE);
+
+            case MCP_MODE.HEADING.LNAV:
+                return this._fms.currentWaypoint.heading;
+
+            default:
+                return;
+        }
     }
 
     /**
@@ -49,8 +118,8 @@ export default class Pilot {
      * @method _setAltitudeHold
      * @private
      */
-    _setAltitudeHold(altitude) {
-        this._mcp.setMode(MCP_MODE_NAME.ALTITUDE, MCP_MODE.ALTITUDE.HOLD, altitude);
+    _setAltitudeHold() {
+        this._mcp.setMode(MCP_MODE_NAME.ALTITUDE, MCP_MODE.ALTITUDE.HOLD);
     }
 
     /**
