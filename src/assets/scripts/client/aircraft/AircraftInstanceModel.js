@@ -8,8 +8,9 @@ import _isEqual from 'lodash/isEqual';
 import _isNil from 'lodash/isNil';
 import _isString from 'lodash/isString';
 import AircraftFlightManagementSystem from './FlightManagementSystem/AircraftFlightManagementSystem';
-import Fms from './FlightManagementSystem/Fms';
 import AircraftStripView from './AircraftStripView';
+import Fms from './FlightManagementSystem/Fms';
+import ModeController from './ModeControl/ModeController';
 import { speech_say } from '../speech';
 import { tau, radians_normalize, angle_offset } from '../math/circle';
 import { round, abs, sin, cos, extrapolate_range_clamp, clamp } from '../math/core';
@@ -30,9 +31,7 @@ import {
 } from '../math/vector';
 import {
     digits_decimal,
-    groupNumbers,
     radio_runway,
-    radio_spellOut,
     radio_altitude
 } from '../utilities/radioUtilities';
 import { km, radiansToDegrees, degreesToRadians, heading_to_string } from '../utilities/unitConverters';
@@ -108,7 +107,7 @@ export default class Aircraft {
         // FIXME: change name, and update refs in `InputController`. perhaps change to be a ref to the AircraftStripView class instead of directly accessing the html?
         this.aircraftStripView = null;
         this.$html = null;
-
+        this.mcp = new ModeController();
         this.$strips = $(SELECTORS.DOM_SELECTORS.STRIPS);
         /* eslint-enable multi-spaces*/
 
@@ -149,7 +148,6 @@ export default class Aircraft {
             speed: 0
         };
 
-        this.emergency = {};
         this.takeoffTime = options.category === FLIGHT_CATEGORY.ARRIVAL
             ? window.gameController.game_time()
             : null;
@@ -847,7 +845,7 @@ export default class Aircraft {
      * @private
      */
     _calculateTargetedHeading() {
-        if (this.mcp[MCP_MODE.AUTOPILOT.OFF]) {
+        if (this.mcp[MCP_MODE_NAME.AUTOPILOT] === MCP_MODE.AUTOPILOT.OFF) {
             return;
         }
 
@@ -880,7 +878,7 @@ export default class Aircraft {
      * @private
      */
     _calculateTargetedSpeed() {
-        if (this.mcp[MCP_MODE.AUTOPILOT.OFF]) {
+        if (this.mcp[MCP_MODE_NAME.AUTOPILOT] === MCP_MODE.AUTOPILOT.OFF) {
             return;
         }
 
@@ -916,7 +914,7 @@ export default class Aircraft {
      * @private
      */
     _calculateTargetedAltitude() {
-        if (this.mcp[MCP_MODE.AUTOPILOT.OFF]) {
+        if (this.mcp[MCP_MODE_NAME.AUTOPILOT] === MCP_MODE.AUTOPILOT.OFF) {
             return;
         }
 

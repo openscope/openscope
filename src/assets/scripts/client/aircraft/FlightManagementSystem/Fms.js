@@ -1,17 +1,14 @@
 import _drop from 'lodash/drop';
 import _findIndex from 'lodash/findIndex';
-import _get from 'lodash/get';
 import _isEmpty from 'lodash/isEmpty';
 import _isNil from 'lodash/isNil';
 import _isObject from 'lodash/isObject';
 import _map from 'lodash/map';
-import ModeController from '../ModeControl/ModeController';
 import LegModel from './LegModel';
 import { routeStringFormatHelper } from '../../navigationLibrary/Route/routeStringFormatHelper';
 import {
     MCP_MODE,
-    MCP_MODE_NAME,
-    MCP_PROPERTY_MAP
+    MCP_MODE_NAME
 } from '../ModeControl/modeControlConstants';
 
 /**
@@ -55,14 +52,6 @@ export default class Fms {
          * @private
          */
         this._navigationLibrary = navigationLibrary;
-
-        /**
-         * Keeps track of current Altitude, Heading and Speed modes and values.
-         *
-         * @property _modeController
-         * @type {ModeController}
-         */
-        this._modeController = new ModeController(typeDefinitionModel);
 
         /**
          *
