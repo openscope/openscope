@@ -23,17 +23,17 @@ export default class ModeController {
 
         this.expediteAltitudeChange = false;
 
-        this._init(isAircraftAirborne);
+        this.init(isAircraftAirborne);
     }
 
     /**
      * Initialization tasks
      *
      * @for ModeController
-     * @method _init
+     * @method init
      * @private
      */
-    _init(isAircraftAirborne) {
+    init(isAircraftAirborne) {
         if (!isAircraftAirborne) {
             return;
         }
@@ -93,6 +93,4 @@ export default class ModeController {
     setFieldValue(fieldName, value) {
         this[fieldName] = value;
     }
-
-
 }

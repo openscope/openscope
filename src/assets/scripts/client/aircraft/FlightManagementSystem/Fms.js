@@ -6,10 +6,6 @@ import _isObject from 'lodash/isObject';
 import _map from 'lodash/map';
 import LegModel from './LegModel';
 import { routeStringFormatHelper } from '../../navigationLibrary/Route/routeStringFormatHelper';
-import {
-    MCP_MODE,
-    MCP_MODE_NAME
-} from '../ModeControl/modeControlConstants';
 
 /**
  *
@@ -87,15 +83,22 @@ export default class Fms {
         this.currentPhase = '';
 
         /**
-         * Route and altitude expected for this flight. Will change as ATC amends it.
+         * Route expected for this flight. Will change as ATC amends it.
          *
-         * @property flightPlan
-         * @type {Object}
+         * @property flightPlanRoute
+         * @type {string}
+         * @default ''
          */
-        this.flightPlan = {
-            route: aircraftInitProps.route,
-            altitude: aircraftInitProps.model.ceiling
-        };
+        this.flightPlanRoute = '';
+
+        /**
+         * Altitude expected for this flight. Will change as ATC amends it.
+         *
+         * @property flightPlanAltitude
+         * @type {Object}
+         * @default ''
+         */
+        this.flightPlanAltitude = '';
 
         /**
          * Collection of `LegModel` objects
@@ -152,23 +155,17 @@ export default class Fms {
     }
 
     /**
-     * Return an entire flightPlan route string.
-     *
-     * This string is a combination of past routeSegments and
-     * current routeSegments and represents an entire flightPlan.
+     * Flight plan as filed
      *
      * @method flightPlan
-     * @return {string}
+     * @return {object}
      */
-    get flightPlan() {
-        if (this._previousRouteSegments.length === 0) {
-            return this.currentRoute;
-        }
-
-        const previousSegments = this._previousRouteSegments.join(DIRECT_ROUTE_SEGMENT_SEPARATOR);
-
-        return `${previousSegments}${DIRECT_ROUTE_SEGMENT_SEPARATOR}${this.currentRoute}`;
-    }
+get flightPlan() {
+    return {
+        altitude: this.flightPlanAltitude,
+        route: this.flightPlanRoute
+    };
+}
 
     /**
      * Initialize the instance and setup initial properties
@@ -177,7 +174,9 @@ export default class Fms {
      * @method init
      * @param aircraftInitProps {object}
      */
-    init({ category, route }) {
+    init({ category, model, route }) {
+        this.flightPlanRoute = route.toLowerCase();
+        this.flightPlanAltitude = model.ceiling;
         this.currentPhase = category;
         // TODO: For aircraft not yet in flight, this should not happen until we are cleared on
         // this (or an amended) route by ATC.
@@ -194,6 +193,8 @@ export default class Fms {
         this._navigationLibrary = null;
         this._previousRouteSegments = [];
         this._runwayName = '';
+        this.flightPlanRoute = '';
+        this.flightPlanAltitude = '';
         this.legCollection = [];
         this.currentPhase = '';
     }
@@ -245,19 +246,6 @@ export default class Fms {
     }
 
     /**
-     * Updates MCP modes to `HOLD` for altitude, heading and speed
-     *
-     * @for Fms
-     * @method cancelWaypoint
-     */
-    cancelWaypoint() {
-        // FIXME: These should be setting to the AIRCRAFT's current values, not those of the cancelled waypoint
-        this.setAltitudeHold(this.altitude);
-        this.setHeadingHold(this.heading);
-        this.setSpeedHold(this.speed);
-    }
-
-    /**
      * Replace the current flightPlan with an entire new one
      *
      * Used when an aircraft has been re-routed
@@ -267,7 +255,7 @@ export default class Fms {
      * @param routeString {string}
      */
     replaceCurrentFlightPlan(routeString) {
-        this.flightPlan.route = routeString;
+        this.flightPlanRoute = routeString;
         this._destroyLegCollection();
         // _resetModeControllerForNewFlightPlan
 

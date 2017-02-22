@@ -62,35 +62,11 @@ ava('#currentRoute returns a routeString for a complex route', (t) => {
 });
 
 ava('#flightPlan returns an empty string when no #_previousRouteSegments exist', (t) => {
-    const expectedResult = 'cowby..bikkr..dag.kepec3.klas';
+    const expectedResult = {
+        altitude: 41000,
+        route: 'cowby..bikkr..dag.kepec3.klas'
+    };
     const fms = buildFmsMock(isComplexRoute);
-
-    t.true(_isEqual(fms.flightPlan, expectedResult));
-});
-
-ava('#flightPlan returns a routeString after .nextWaypoint() has been used to move through waypoints', (t) => {
-    const expectedResult = 'cowby..bikkr..dag.kepec3.klas';
-    const fms = buildFmsMock(isComplexRoute);
-
-    fms.nextWaypoint();
-    fms.nextWaypoint();
-
-    t.true(_isEqual(fms.flightPlan, expectedResult));
-});
-
-ava('#flightPlan returns a routeString after .skipToWaypoint() has been used to move through waypoints', (t) => {
-    const expectedResult = 'cowby..bikkr..dag.kepec3.klas';
-    const fms = buildFmsMock(isComplexRoute);
-
-    fms.skipToWaypoint('dag');
-
-    t.true(_isEqual(fms.flightPlan, expectedResult));
-});
-
-ava('#flightPlan returns an empty string when no legs or waypoints exist', (t) => {
-    const expectedResult = '';
-    const fms = buildFmsMock(isComplexRoute);
-    fms._destroyLegCollection();
 
     t.true(_isEqual(fms.flightPlan, expectedResult));
 });
@@ -102,92 +78,6 @@ ava('.init() calls ._buildLegCollection()', (t) => {
     fms.init(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK);
 
     t.true(_buildLegCollectionSpy.calledWithExactly(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK.route));
-});
-
-ava('.getAltitude() returns the cruise altitude for an aircraft type when no altitudeRestriction or modeController altitude is present', (t) => {
-    const expectedResult = 41000;
-    const fms = buildFmsMockForDeparture();
-    const result = fms.getAltitude();
-
-    t.true(result === expectedResult);
-});
-
-ava('.getAltitude() returns the waypoint altitudeRestriction when it doesnt equal -1', (t) => {
-    const altitudeRestrictionMock = 10000;
-    const fms = buildFmsMockForDeparture();
-    fms.currentWaypoint.altitudeRestriction = altitudeRestrictionMock;
-
-    const result = fms.getAltitude();
-
-    t.true(result === altitudeRestrictionMock);
-});
-
-ava('.getAltitude() returns the modeController.altitude when _modeController.altitudeMode === hold', (t) => {
-    const waypointSpeedRestrictionMock = 10000;
-    const mcpAltitudeRestrictionMock = 13000;
-    const fms = buildFmsMockForDeparture();
-    fms.currentWaypoint.altitudeRestriction = waypointSpeedRestrictionMock;
-    fms._modeController.altitudeMode = 'HOLD';
-    fms._modeController.altitude = mcpAltitudeRestrictionMock;
-
-    const result = fms.getAltitude();
-
-    t.false(result === waypointSpeedRestrictionMock);
-    t.true(result === mcpAltitudeRestrictionMock);
-});
-
-ava('.getHeading() returns the waypoint headingRestriction when it doesnt equal -999', (t) => {
-    const invalidHeadingMock = -999;
-    const fms = buildFmsMockForDeparture();
-
-    const result = fms.getHeading();
-
-    t.true(result === invalidHeadingMock);
-});
-
-ava('.getHeading() returns the modeController.altitude when _modeController.altitudeMode === hold', (t) => {
-    const headingRestrictionMock = 4.23;
-    const mcpHeadingRestrictionMock = 3.42;
-    const fms = buildFmsMockForDeparture();
-    fms._modeController.headingMode = 'HOLD';
-    fms._modeController.heading = mcpHeadingRestrictionMock;
-
-    const result = fms.getHeading();
-
-    t.false(result === headingRestrictionMock);
-    t.true(result === mcpHeadingRestrictionMock);
-});
-
-ava('.getSpeed() returns the cruise speed for an aircraft type when no speedRestriction or modeController speed is present', (t) => {
-    const expectedResult = 460;
-    const fms = buildFmsMockForDeparture();
-    const result = fms.getSpeed();
-
-    t.true(result === expectedResult);
-});
-
-ava('.getSpeed() returns the waypoint speedRestriction when it doesnt equal -1', (t) => {
-    const speedRestrictionMock = 230;
-    const fms = buildFmsMockForDeparture();
-    fms.currentWaypoint.speedRestriction = speedRestrictionMock;
-
-    const result = fms.getSpeed();
-
-    t.true(result === speedRestrictionMock);
-});
-
-ava('.getSpeed() returns the modeController.speed when _modeController.speedMode === hold', (t) => {
-    const waypointSpeedRestrictionMock = 230;
-    const mcpSpeedRestrictionMock = 200;
-    const fms = buildFmsMockForDeparture();
-    fms.currentWaypoint.speedRestriction = waypointSpeedRestrictionMock;
-    fms._modeController.speedMode = 'HOLD';
-    fms._modeController.speed = mcpSpeedRestrictionMock;
-
-    const result = fms.getSpeed();
-
-    t.false(result === waypointSpeedRestrictionMock);
-    t.true(result === mcpSpeedRestrictionMock);
 });
 
 ava('.prependLeg() adds a leg to the beginning of the #legCollection when passed a directRouteString', (t) => {
@@ -262,20 +152,6 @@ ava('.nextWaypoint() removes the first LegModel from legCollection when the firs
     fms.nextWaypoint();
 
     t.true(fms.legCollection.length === length - 1);
-});
-
-ava('.cancelWaypoint() changes all modes to hold with current getProperty values', (t) => {
-    const expectedResult = {
-        altitude: 'HOLD',
-        autopilot: 'OFF',
-        heading: 'HOLD',
-        speed: 'HOLD'
-    };
-    const fms = buildFmsMock(isComplexRoute);
-
-    fms.cancelWaypoint();
-
-    t.true(_isEqual(fms.currentMode, expectedResult));
 });
 
 ava('.replaceCurrentFlightPlan() calls ._destroyLegCollection()', (t) => {

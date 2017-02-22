@@ -8,9 +8,8 @@ import { groupNumbers,
     radio_spellOut,
     radio_trend
 } from '../../utilities/radioUtilities';
-import { FP_LEG_TYPE } from '../../constants/aircraftConstants';
-import { radians_normalize } from '../../math/circle';
 import { degreesToRadians, heading_to_string } from '../../utilities/unitConverters';
+import { radians_normalize } from '../../math/circle';
 import { MCP_MODE, MCP_MODE_NAME, MCP_FIELD_NAME } from '../ModeControl/modeControlConstants';
 
 /**
@@ -34,9 +33,6 @@ export default class Pilot {
      *
      * @for Pilot
      * @method clearedAsFiled
-     * @param {Number} initialAltitude - the altitude aircraft can automatically climb to at this airport
-     * @param {Number} runwayHeading - the magnetic heading of the runway, in radians
-     * @param {Number} cruiseSpeed - the cruise speed of the aircraft, in knots
      * @return {Array} [success of operation, readback]
      */
     clearedAsFiled(initialAltitude, runwayHeading, cruiseSpeed) {
@@ -62,40 +58,13 @@ export default class Pilot {
     }
 
     /**
-     * Climb in accordance with the altitude restrictions
-     *
-     * @for Pilot
-     * @method climbViaSid
-     * @param {Number} altitude - altitude at which the climb will end (regardless of fix restrictions)
-     * @return {Array} [success of operation, readback]
-     */
-    climbViaSid(altitude) {
-        if (_isNil(altitude)) {
-            altitude = this._fms.flightPlan.altitude;
-        }
-
-        this._setAltitudeFieldValue(altitude);
-        this._setAltitudeVnav();
-
-        const readback = {
-            log: 'climb via SID',
-            say: 'climb via SID'
-        };
-
-        return [true, readback];
-    }
-
-    /**
      * Expedite the climb or descent to the assigned altitude, to use maximum possible rate
      *
      * @for Pilot
      * @method expediteAltitudeChange
-     * @return {Array} [success of operation, readback]
      */
     expediteAltitudeChange() {
         this._mcp.expediteAltitudeChange = true;
-
-        return [true, 'expediting to assigned altitude'];
     }
 
     /**
@@ -103,11 +72,8 @@ export default class Pilot {
      *
      * @for Pilot
      * @method maintainAltitude
-     * @param {Number} altitude - the altitude to maintain, in feet
-     * @param {Boolean} expedite - whether to use maximum possible climb/descent rate
-     * @return {Array} [success of operation, readback]
      */
-    maintainAltitude(altitude, /* optional */ expedite) {
+    maintainAltitude(altitude, expedite) {
         if (_isNil(altitude)) {
             return;
         }
@@ -149,12 +115,9 @@ export default class Pilot {
      *
      * @for Pilot
      * @method maintainHeading
-     * @param {Number} heading - the heading to maintain, in radians_normalize
-     * @param {String} direction - (optional) the direction of turn; either 'left' or 'right'
-     * @param {Boolean} incremental - (optional) whether the value is a numeric heading, or a number of degrees to turn
-     * @return {Array} [success of operation, readback]
+     @
      */
-    maintainHeading(heading, /* optional */ direction, incremental) {
+    maintainHeading(heading, direction, incremental) {
         if (_isNil(heading)) {
             return;
         }
@@ -197,8 +160,6 @@ export default class Pilot {
      *
      * @for Pilot
      * @method maintainSpeed
-     * @param {Number} speed - the speed to maintain, in knots
-     * @return {Array} [success of operation, readback]
      */
     maintainSpeed(speed) {
         const aircraft = { speed: 0 };  // FIXME: How can the pilot access the aircraft's current speed?
