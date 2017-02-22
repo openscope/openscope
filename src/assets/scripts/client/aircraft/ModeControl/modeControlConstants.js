@@ -94,7 +94,7 @@ export const MCP_MODE_NAME = {
  * @type {Object}
  * @final
  */
-export const MCP_FIELDS = {
+export const MCP_FIELD_NAME = {
     ALTITUDE: 'altitude',
     COURSE: 'course',
     HEADING: 'heading',

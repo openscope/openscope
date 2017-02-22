@@ -53,6 +53,26 @@ export default class ModeController {
     }
 
     /**
+     * Return the current mode of a given mode selector
+     *
+     * @for ModeController
+     * @method getModeSelectorMode
+     */
+    getModeSelectorMode(modeSelector) {
+        return this[modeSelector];
+    }
+
+    /**
+     * Return the current value of a given field
+     *
+     * @for ModeController
+     * @method getFieldValue
+     */
+    getFieldValue(fieldName) {
+        return this[fieldName];
+    }
+
+    /**
      * Set the mode of a given modeSelector
      *
      * @for ModeController
