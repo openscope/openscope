@@ -35,22 +35,22 @@ export default class Pilot {
      * @method clearedAsFiled
      * @return {Array} [success of operation, readback]
      */
-    clearedAsFiled(initial_altitude, runway_heading, cruise_speed) {
+    clearedAsFiled(initialAltitude, runwayHeading, cruiseSpeed) {
         if (!this._fms.replaceCurrentFlightPlan(this._fms.flightPlan.route)) {
             return [false, 'unable to clear as filed'];
         }
 
-        this._mcp._setAltitudeFieldValue(initial_altitude);
-        this._mcp._setAltitudeHold();
-        this._mcp._setHeadingFieldValue(runway_heading);
-        this._mcp._setHeadingLnav();
-        this._mcp._setSpeedFieldValue(cruise_speed);
-        this._mcp._setSpeedN1();
+        this._setAltitudeFieldValue(initialAltitude);
+        this._setAltitudeHold();
+        this._setHeadingFieldValue(runwayHeading);
+        this._setHeadingLnav();
+        this._setSpeedFieldValue(cruiseSpeed);
+        this._setSpeedN1();
 
         const readback = {};
-        readback.log = `cleared to destination as filed. Climb and maintain ${initial_altitude}, expect ` +
+        readback.log = `cleared to destination as filed. Climb and maintain ${initialAltitude}, expect ` +
                 `${this._fms.flightPlan.altitude} 10 minutes after departure`;
-        readback.say = `cleared to destination as filed. Climb and maintain ${radio_altitude(initial_altitude)}, ` +
+        readback.say = `cleared to destination as filed. Climb and maintain ${radio_altitude(initialAltitude)}, ` +
                 `expect ${radio_altitude(this._fms.flightPlan.altitude)}, ${radio_spellOut('10')} minutes ` +
                 'after departure';
 
@@ -141,6 +141,8 @@ export default class Pilot {
         // Build readback
         const heading_string = heading_to_string(heading);
         const readback = {};
+        readback.log = `fly heading ${heading_string}`;
+        readback.say = `fly heading ${radio_heading(heading_string)}`;
 
         if (incremental) {
             readback.log = `turn ${degrees} degrees ${direction}`;
@@ -148,9 +150,6 @@ export default class Pilot {
         } else if (direction) {
             readback.log = `turn ${direction} heading ${heading_string}`;
             readback.say = `turn ${direction} heading ${radio_heading(heading_string)}`;
-        } else {
-            readback.log = `fly heading ${heading_string}`;
-            readback.say = `fly heading ${radio_heading(heading_string)}`;
         }
 
         return [true, readback];
@@ -163,10 +162,6 @@ export default class Pilot {
      * @method maintainSpeed
      */
     maintainSpeed(speed) {
-        if (_isNil(speed)) {
-            return;
-        }
-
         const aircraft = { speed: 0 };  // FIXME: How can the pilot access the aircraft's current speed?
         const instruction = radio_trend('speed', aircraft.speed, speed);
 
@@ -189,7 +184,7 @@ export default class Pilot {
      * @method sayTargetedAltitude
      */
     sayTargetedAltitude() {
-        return this._mcp.getFieldValue(MCP_FIELD_NAME.ALTITUDE);
+        return this._mcp.altitude;
     }
 
     /**
@@ -202,10 +197,10 @@ export default class Pilot {
     sayTargetedHeading() {
         switch (this._mcp.headingMode) {
             case MCP_MODE.HEADING.HOLD:
-                return this._mcp.getFieldValue(MCP_FIELD_NAME.HEADING);
+                return this._mcp.heading;
 
             case MCP_MODE.HEADING.VOR_LOC:
-                return this._mcp.getFieldValue(MCP_FIELD_NAME.COURSE);
+                return this._mcp.course;
 
             case MCP_MODE.HEADING.LNAV:
                 return this._fms.currentWaypoint.heading;
@@ -223,11 +218,11 @@ export default class Pilot {
      * @method sayTargetedSpeed
      */
     sayTargetedSpeed() {
-        if (this._mcp.getModeSelectorMode(MCP_MODE_NAME.SPEED) === MCP_MODE.SPEED.VNAV) {
+        if (this._mcp.speed === MCP_MODE.SPEED.VNAV) {
             return this._fms.currentWaypoint.speed;
         }
 
-        return this._mcp.getFieldValue(MCP_FIELD_NAME.SPEED);
+        return this._mcp.speed;
     }
 
     /**

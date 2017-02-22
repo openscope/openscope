@@ -54,15 +54,6 @@ export default class Fms {
         this._navigationLibrary = navigationLibrary;
 
         /**
-         *
-         *
-         * @property _aircraftTypeDefinition
-         * @type {AircraftTypeDefinitionModel}
-         * @private
-         */
-        this._aircraftTypeDefinition = typeDefinitionModel;
-
-        /**
         * routeSegments of legs that have been completed
         *
         * Used to generate #flightPlan

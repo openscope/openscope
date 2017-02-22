@@ -34,19 +34,21 @@ export default class ModeController {
      * @private
      */
     _init(isAircraftAirborne) {
-        if (isAircraftAirborne) {
-            this._initializeSelfForAirborneFlight();
+        if (!isAircraftAirborne) {
+            return;
         }
+
+        this._initializeForAirborneFlight();
     }
 
     /**
      * Set the appropriate values in the MCP when spawning an aircraft that's already in flight
      *
      * @for ModeController
-     * @method _initializeSelfForAirborneFlight
+     * @method _initializeForAirborneFlight
      * @private
      */
-    _initializeSelfForAirborneFlight() {
+    _initializeForAirborneFlight() {
         this.setModeSelectorMode(MCP_MODE_NAME.ALTITUDE, MCP_MODE.ALTITUDE.VNAV);
         this.setModeSelectorMode(MCP_MODE_NAME.HEADING, MCP_MODE.HEADING.LNAV);
         this.setModeSelectorMode(MCP_MODE_NAME.SPEED, MCP_MODE.SPEED.VNAV);
@@ -91,4 +93,6 @@ export default class ModeController {
     setFieldValue(fieldName, value) {
         this[fieldName] = value;
     }
+
+
 }

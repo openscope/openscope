@@ -11,7 +11,7 @@ import AircraftFlightManagementSystem from './FlightManagementSystem/AircraftFli
 import AircraftStripView from './AircraftStripView';
 import Fms from './FlightManagementSystem/Fms';
 import ModeController from './ModeControl/ModeController';
-import Pilot from './Pilot/Pilot.js'
+import Pilot from './Pilot/Pilot';
 import { speech_say } from '../speech';
 import { tau, radians_normalize, angle_offset } from '../math/circle';
 import { round, abs, sin, cos, extrapolate_range_clamp, clamp } from '../math/core';

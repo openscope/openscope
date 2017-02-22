@@ -205,11 +205,6 @@ export default class AircraftCommander {
      * @param data
      */
     runHeading(aircraft, data) {
-        // TODO: this should be handled in the commandParser
-        // if (_isNaN(heading)) {
-        //     return ['fail', 'heading not understood'];
-        // }
-
         const direction = data[0];
         const heading = data[1];
         const incremental = data[2];
@@ -303,12 +298,6 @@ export default class AircraftCommander {
      */
     runSpeed(aircraft, data) {
         const speed = data[0];
-
-        // this condition should never happen here it will be caught in the `CommandParser`
-        // FIXME: remove this if block
-        if (_isNaN(speed)) {
-            return ['fail', 'speed not understood'];
-        }
 
         return aircraft.pilot.maintainSpeed(speed);
     }
