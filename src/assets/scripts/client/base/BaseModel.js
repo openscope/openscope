@@ -1,4 +1,5 @@
 import _uniqueId from 'lodash/uniqueId';
+import _isString from 'lodash/isString';
 
 /**
  * Base class for all Model objects to inherit from.
@@ -8,7 +9,7 @@ import _uniqueId from 'lodash/uniqueId';
  * @class BaseModel
  */
 export default class BaseModel {
-    constructor(modelName = 'BaseModel') {
+    constructor(modelName  = 'BaseModel') {
         /**
          * Unigue string id that can be used to differentiate this model instance from another.
          *
@@ -16,7 +17,8 @@ export default class BaseModel {
          * @type {string}
          * @private
          */
-        this._id = this.verifyModelName(modelName) + _uniqueId();
+        const OptionalModelPrefix = this.buildModelPrefix(modelName );
+        this._id = _uniqueId(OptionalModelPrefix);
     }
 
     /**
@@ -47,21 +49,15 @@ export default class BaseModel {
     }
 
     /**
-     * This will verify if the given argument is a string and will return a modified pre-value for the _id
+     * This will verify if the given argument is a string otherwise it will return 'Base Model'
      *
      * @for BaseModel
      * @method veriftyModelName
      * @param {string / Object}
      */
-    verifyModelName(modelName) {
-        if (typeof modelName === 'string') {
+    buildModelPrefix(modelName) {
+        if (_isString(modelName)) {
             return `${modelName}-`;
-        }
-
-        // This will give more infomation on airpot names and runways to help identify if there is an issue.
-        if (modelName.name === undefined && typeof modelName === 'object') {
-            modelName.name = '';
-            return `BaseModel-${modelName.name}-`;
         }
 
         // Default option since it is an optional parameter
