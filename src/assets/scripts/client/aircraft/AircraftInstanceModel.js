@@ -1,12 +1,12 @@
 /* eslint-disable max-len */
 import $ from 'jquery';
+import _defaultTo from 'lodash/defaultTo';
 import _forEach from 'lodash/forEach';
 import _get from 'lodash/get';
 import _has from 'lodash/has';
 import _isEqual from 'lodash/isEqual';
 import _isNil from 'lodash/isNil';
 import _isString from 'lodash/isString';
-import _map from 'lodash/map';
 import AircraftFlightManagementSystem from './FlightManagementSystem/AircraftFlightManagementSystem';
 import Fms from './FlightManagementSystem/Fms';
 import AircraftStripView from './AircraftStripView';
@@ -15,6 +15,7 @@ import { tau, radians_normalize, angle_offset } from '../math/circle';
 import { round, abs, sin, cos, extrapolate_range_clamp, clamp } from '../math/core';
 import { distance2d } from '../math/distance';
 import { getOffset, calculateTurnInitiaionDistance } from '../math/flightMath';
+import { MCP_MODE, MCP_MODE_NAME, MCP_PROPERTY_MAP } from './ModeControl/modeControlConstants';
 import {
     vlen,
     vradial,
@@ -824,12 +825,189 @@ export default class Aircraft {
         return score;
     }
 
+    /* vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv THESE SHOULD STAY vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv */
+    /**
+     * Update the aircraft's targeted telemetry (altitude, heading, and speed)
+     *
+     * @for AircraftInstanceModel
+     * @method updateTarget
+     */
+    updateTarget() {
+        this.target.expedite = _defaultTo(this.fms.currentWaypoint.expedite, false);
+        this.target.altitude = _defaultTo(this._calculateTargetedAltitude(), this.target.altitude);
+        this.target.heading = _defaultTo(this._calculateTargetedHeading(), this.target.heading);
+        this.target.speed = _defaultTo(this._calculateTargetedSpeed(), this.target.speed);
+    }
+
+    /**
+     * Calculate the aircraft's targeted heading
+     *
+     * @for AircraftInstanceModel
+     * @method _calculateTargetedHeading
+     * @private
+     */
+    _calculateTargetedHeading() {
+        if (this.mcp[MCP_MODE.AUTOPILOT.OFF]) {
+            return;
+        }
+
+        switch (this.mcp[MCP_MODE_NAME.HEADING]) {
+            case MCP_MODE.HEADING.OFF:
+                return this.heading;
+
+            case MCP_MODE.HEADING.HOLD:
+                return this.mcp[MCP_PROPERTY_MAP.HEADING];
+
+            case MCP_MODE.HEADING.LNAV:
+                return this.fms.currentWaypoint.heading;
+
+            case MCP_MODE.HEADING.VOR_LOC:
+                // TODO: fill out this function
+                return this._calculateTargetedHeadingToInterceptCourse();
+
+            default:
+                console.warn('Expected MCP heading mode of "OFF", "HOLD", "LNAV", or "VOR", ' +
+                    `but received "${this.mcp[MCP_MODE_NAME.SPEED]}"`);
+                return this.heading;
+        }
+    }
+
+    /**
+     * Calculate the aircraft's targeted speed
+     *
+     * @for AircraftInstanceModel
+     * @method _calculateTargetedSpeed
+     * @private
+     */
+    _calculateTargetedSpeed() {
+        if (this.mcp[MCP_MODE.AUTOPILOT.OFF]) {
+            return;
+        }
+
+        switch (this.mcp[MCP_MODE_NAME.SPEED]) {
+            case MCP_MODE.SPEED.OFF:
+                return this.speed;
+
+            case MCP_MODE.SPEED.HOLD:
+                return this.mcp[MCP_PROPERTY_MAP.SPEED];
+
+            // future functionality
+            // case MCP_MODE.SPEED.LEVEL_CHANGE:
+            //     return;
+
+            case MCP_MODE.SPEED.N1:
+                return this.model.speed.max;
+
+            case MCP_MODE.SPEED.VNAV:
+                return this.fms.currentWaypoint.speed;
+
+            default:
+                console.warn('Expected MCP speed mode of "OFF", "HOLD", "LEVEL_CHANGE", "N1", or "VNAV", but ' +
+                    `received "${this.mcp[MCP_MODE_NAME.SPEED]}"`);
+                return this.speed;
+        }
+    }
+
+    /**
+     * Calculate the aircraft's targeted altitude
+     *
+     * @for AircraftInstanceModel
+     * @method _calculateTargetedAltitude
+     * @private
+     */
+    _calculateTargetedAltitude() {
+        if (this.mcp[MCP_MODE.AUTOPILOT.OFF]) {
+            return;
+        }
+
+        switch (this.mcp[MCP_MODE_NAME.ALTITUDE]) {
+            case MCP_MODE.ALTITUDE.OFF:
+                return this.altitude;
+
+            case MCP_MODE.ALTITUDE.HOLD:
+                return this.mcp[MCP_PROPERTY_MAP.ALTITUDE];
+
+            case MCP_MODE.ALTITUDE.APPROACH:
+                return this._calculateTargetedAltitudeToInterceptGlidepath();
+
+            // future functionality
+            // case MCP_MODE.ALTITUDE.LEVEL_CHANGE:
+            //     return;
+
+            // future functionality
+            // case MCP_MODE.ALTITUDE.VERTICAL_SPEED:
+            //     return;
+
+            case MCP_MODE.ALTITUDE.VNAV:
+                return this.fms.currentWaypoint.altitude;
+
+            default:
+                console.warn('Expected MCP altitude mode of "OFF", "HOLD", "APPROACH", "LEVEL_CHANGE", ' +
+                    `"VERTICAL_SPEED", or "VNAV", but received "${this.mcp[MCP_MODE_NAME.SPEED]}"`);
+                return;
+        }
+    }
+
+    /**
+     * Calculate the altitude to target while intercepting a vertically aligned course
+     *
+     * @for AircraftInstanceModel
+     * @method _calculateTargetedAltitudeToInterceptGlidepath
+     * @private
+     */
+    _calculateTargetedAltitudeToInterceptGlidepath() {
+        const runway = window.airportController.airport_get().getRunway(this.rwy_arr);
+        const distanceFromThreshold_km = getOffset(this, runway.position, runway.angle)[1];
+        const glideslopeAltitude = runway.getGlideslopeAltitude(distanceFromThreshold_km);
+        const targetAltitude = clamp(runway.elevation, glideslopeAltitude, this.altitude);
+
+        return targetAltitude;
+    }
+
+    /**
+     * Calculate the heading to target while intercepting a horizontally aligned course
+     *
+     * @for AircraftInstanceModel
+     * @method _calculateTargetedHeadingToInterceptCourse
+     * @private
+     */
+    _calculateTargetedHeadingToInterceptCourse() {
+        // TODO: abstract this to be not specific to ILS interception, but interception of a 'course' to a 'datum'
+
+        // Guide aircraft onto the localizer
+        const runway = window.airportController.airport_get().getRunway(this.rwy_arr);
+        const runwayHeading = radians_normalize(runway.angle);
+        const lateralDistanceFromCourse_km = getOffset(this, runway.position, runwayHeading)[0];
+        const angle_diff = angle_offset(runwayHeading, this.heading);
+        const turning_time = Math.abs(radiansToDegrees(angle_diff)) / 3; // time to turn angle_diff degrees at 3 deg/s
+        const turning_radius = km(this.speed) / 3600 * turning_time; // dist covered in the turn, km
+        const dist_to_localizer = lateralDistanceFromCourse_km / sin(angle_diff); // dist from the localizer intercept point, km
+        const turn_early_km = 1;    // start turn 1km early, to avoid overshoots from tailwind
+        const should_attempt_intercept = (dist_to_localizer > 0 && dist_to_localizer <= turning_radius + turn_early_km);
+        const in_the_window = abs(this.offset_angle) < degreesToRadians(1.5);  // if true, aircraft will move to localizer, regardless of assigned heading
+
+        if (should_attempt_intercept || in_the_window) {  // time to begin turn
+            const severity_of_correction = 50;  // controls steepness of heading adjustments during localizer tracking
+            const tgtHdg = runwayHeading + (this.offset_angle * -severity_of_correction);
+            const minHdg = runwayHeading - degreesToRadians(30);
+            const maxHdg = runwayHeading + degreesToRadians(30);
+            const targetHeading = clamp(tgtHdg, minHdg, maxHdg);
+
+            return targetHeading;
+        }
+    }
+    /* ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ THESE SHOULD STAY ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ */
+
+    /* vvvvvvvvvvv THESE SHOULD BE EXAMINED AND EITHER REMOVED OR MOVED ELSEWHERE vvvvvvvvvvv */
+    // TODO: In these methods are various housekeeping items (like updating the strip views) that
+    //       are not truly a part of the target calculations and updates, and thus they should be
+    //       moved elsewhere.
     // TODO: this method needs a lot of love. its much too long with waaay too many nested if/else ifs.
     /**
      * @for AircraftInstanceModel
      * @method updateTarget
      */
-    updateTarget() {
+    updateTarget_old() {
         let airport = window.airportController.airport_get();
         let runway = null;
         let offset = null;
@@ -960,12 +1138,6 @@ export default class Aircraft {
         this.target.speed = nextSpeed;
     }
 
-    /**
-     * Updates the heading for a landing aircraft
-     *
-     * @for AircraftInstanceModel
-     * @method updateTargetPrepareAircraftForLanding
-     */
     updateTargetPrepareAircraftForLanding() {
         const airport = window.airportController.airport_get();
         const runway  = airport.getRunway(this.rwy_arr);
@@ -1001,35 +1173,6 @@ export default class Aircraft {
     }
 
     /**
-     * Updates the heading for a landing aircraft
-     *
-     * @for AircraftInstanceModel
-     * @method updateLandingFinalSpeedControll
-     */
-    updateLandingFinalSpeedControll(runway, offset) {
-        // Final Approach Speed Control
-        if (this.__fms__.currentWaypoint.speed > 0)  {
-            this.__fms__.setCurrent({ start_speed: this.__fms__.currentWaypoint.speed });
-        }
-
-        if (this.isOnGround()) {
-            this.target.altitude = runway.elevation;
-            this.target.speed = 0;
-
-            return;
-        }
-
-        const dist_final_app_spd = 3.5; // 3.5km ~= 2nm
-        const dist_assigned_spd = 9.5;  // 9.5km ~= 5nm
-        this.target.speed = extrapolate_range_clamp(
-            dist_final_app_spd, offset[1],
-            dist_assigned_spd,
-            this.model.speed.landing,
-            this.__fms__.currentWaypoint.start_speed
-        );
-    }
-
-    /**
      * Cancles the landing and disaply message
      *
      * @for AircraftInstanceModel
@@ -1053,6 +1196,17 @@ export default class Aircraft {
     }
 
     /**
+     * This will display a waring and record an illegal approach event
+     * @for AircraftInstanceModel
+     * @method warnInterceptAngle
+     */
+    warnInterceptAngle() {
+        const isWarning = true;
+        window.uiController.ui_log(`${this.getCallsign()} approach course intercept angle was greater than 30 degrees`, isWarning);
+        window.gameController.events_recordNew(GAME_EVENTS.ILLEGAL_APPROACH_CLEARANCE);
+    }
+
+    /**
      * Updates the heading for a landing aircraft
      *
      * @for AircraftInstanceModel
@@ -1065,17 +1219,6 @@ export default class Aircraft {
         const minHeading = angle - degreesToRadians(30);
         const maxHeading = angle + degreesToRadians(30);
         this.target.heading = clamp(targetHeadinh, minHeading, maxHeading);
-    }
-
-    /**
-     * This will display a waring and record an illegal approach event
-     * @for AircraftInstanceModel
-     * @method warnInterceptAngle
-     */
-    warnInterceptAngle() {
-        const isWarning = true;
-        window.uiController.ui_log(`${this.getCallsign()} approach course intercept angle was greater than 30 degrees`, isWarning);
-        window.gameController.events_recordNew(GAME_EVENTS.ILLEGAL_APPROACH_CLEARANCE);
     }
 
     //TODO: More Simplification of this function should be done, abstract warings to their own functions
@@ -1229,6 +1372,38 @@ export default class Aircraft {
             }
         }
     }
+    /* ^^^^^^^^^^^ THESE SHOULD BE EXAMINED AND EITHER REMOVED OR MOVED ELSEWHERE ^^^^^^^^^^^ */
+
+    /* vvvvvvv THESE HAVE ELEMENTS THAT SHOULD BE MOVED INTO THE PHYSICS CALCULATIONS vvvvvvv */
+    /**
+     * Updates the heading for a landing aircraft
+     *
+     * @for AircraftInstanceModel
+     * @method updateLandingFinalSpeedControll
+     */
+    updateLandingFinalSpeedControll(runway, offset) {
+        // Final Approach Speed Control
+        if (this.__fms__.currentWaypoint.speed > 0)  {
+            this.__fms__.setCurrent({ start_speed: this.__fms__.currentWaypoint.speed });
+        }
+
+        if (this.isOnGround()) {
+            this.target.altitude = runway.elevation;
+            this.target.speed = 0;
+
+            return;
+        }
+
+        const dist_final_app_spd = 3.5; // 3.5km ~= 2nm
+        const dist_assigned_spd = 9.5;  // 9.5km ~= 5nm
+        this.target.speed = extrapolate_range_clamp(
+            dist_final_app_spd, offset[1],
+            dist_assigned_spd,
+            this.model.speed.landing,
+            this.__fms__.currentWaypoint.start_speed
+        );
+    }
+    /* ^^^^^^^ THESE HAVE ELEMENTS THAT SHOULD BE MOVED INTO THE PHYSICS CALCULATIONS ^^^^^^^ */
 
     // TODO: this method needs a lot of love. its much too long with waaay too many nested if/else ifs.
     /**
