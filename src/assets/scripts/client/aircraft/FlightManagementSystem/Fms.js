@@ -17,6 +17,15 @@ import {
 /**
  *
  *
+ * @property DIRECT_ROUTE_SEGMENT_SEPARATOR
+ * @type {string}
+ * @default '..'
+ */
+const DIRECT_ROUTE_SEGMENT_SEPARATOR = '..';
+
+/**
+ *
+ *
  * This class should always be instantiated from an `AircraftInstanceModel` and
  * always instantiated from some form of `spawnPatternModel`.
  *
@@ -101,6 +110,15 @@ export default class Fms {
          */
         this.currentPhase = '';
 
+        /**
+         *
+         *
+         * @property _previousRouteSegments
+         * @type {array}
+         * @default []
+         */
+        this._previousRouteSegments = [];
+
         this.init(aircraftInitProps);
     }
 
@@ -143,7 +161,19 @@ export default class Fms {
     get currentRoute() {
         const routeSegments = _map(this.legCollection, (legModel) => legModel.routeString);
 
-        return routeSegments.join('..');
+        return routeSegments.join(DIRECT_ROUTE_SEGMENT_SEPARATOR);
+    }
+
+    /**
+     *
+     *
+     * @method flightPlan
+     * @return {string}
+     */
+    get flightPlan() {
+        const previousSegments = this._previousRouteSegments.join(DIRECT_ROUTE_SEGMENT_SEPARATOR);
+
+        return `${previousSegments}${DIRECT_ROUTE_SEGMENT_SEPARATOR}${this.currentRoute}`;
     }
 
     /**
