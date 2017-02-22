@@ -63,6 +63,17 @@ export default class Fms {
         this._aircraftTypeDefinition = typeDefinitionModel;
 
         /**
+        * routeSegments of legs that have been completed
+        *
+        * Used to generate #flightPlan
+        *
+        * @property _previousRouteSegments
+        * @type {array}
+        * @default []
+        */
+        this._previousRouteSegments = [];
+
+        /**
          * Name of the initial runway assigned for takeoff/landing.
          *
          * This value is likely to change as an aircraft moves through the airspace.
@@ -74,6 +85,28 @@ export default class Fms {
         this._runwayName = initialRunwayAssignment;
 
         /**
+        * Current flight phase of an aircraft
+        *
+        * Currently only supports `arrival` and `departure`
+        *
+        * @property currentPhase
+        * @type {string}
+        * @default ''
+        */
+        this.currentPhase = '';
+
+        /**
+         * Route and altitude expected for this flight. Will change as ATC amends it.
+         *
+         * @property flightPlan
+         * @type {Object}
+         */
+        this.flightPlan = {
+            route: aircraftInitProps.route,
+            altitude: aircraftInitProps.model.ceiling
+        };
+
+        /**
          * Collection of `LegModel` objects
          *
          * @property legCollection
@@ -81,28 +114,6 @@ export default class Fms {
          * @default []
          */
         this.legCollection = [];
-
-        /**
-         * Current flight phase of an aircraft
-         *
-         * Currently only supports `arrival` and `departure`
-         *
-         * @property currentPhase
-         * @type {string}
-         * @default ''
-         */
-        this.currentPhase = '';
-
-        /**
-         * routeSegments of legs that have been completed
-         *
-         * Used to generate #flightPlan
-         *
-         * @property _previousRouteSegments
-         * @type {array}
-         * @default []
-         */
-        this._previousRouteSegments = [];
 
         this.init(aircraftInitProps);
     }
@@ -177,6 +188,8 @@ export default class Fms {
      */
     init({ category, route }) {
         this.currentPhase = category;
+        // TODO: For aircraft not yet in flight, this should not happen until we are cleared on
+        // this (or an amended) route by ATC.
         this.legCollection = this._buildLegCollection(route);
     }
 
@@ -263,6 +276,7 @@ export default class Fms {
      * @param routeString {string}
      */
     replaceCurrentFlightPlan(routeString) {
+        this.flightPlan.route = routeString;
         this._destroyLegCollection();
         // _resetModeControllerForNewFlightPlan
 
