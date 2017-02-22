@@ -9,7 +9,7 @@ import _isString from 'lodash/isString';
  * @class BaseModel
  */
 export default class BaseModel {
-    constructor(modelName  = 'BaseModel') {
+    constructor(modelName = 'BaseModel') {
         /**
          * Unigue string id that can be used to differentiate this model instance from another.
          *
@@ -17,7 +17,7 @@ export default class BaseModel {
          * @type {string}
          * @private
          */
-        const OptionalModelPrefix = this.buildModelPrefix(modelName );
+        const OptionalModelPrefix = this.buildModelPrefix(modelName);
         this._id = _uniqueId(OptionalModelPrefix);
     }
 
