@@ -169,21 +169,6 @@ export default class Fms {
     }
 
     /**
-     *
-     *
-     * @method currentMode
-     * @return {object}
-     */
-    get currentMode() {
-        return {
-            altitude: this._modeController.altitudeMode,
-            autopilot: this._modeController.autopilotMode,
-            heading: this._modeController.headingMode,
-            speed: this._modeController.speedMode
-        };
-    }
-
-    /**
      * Initialize the instance and setup initial properties
      *
      * @for Fms
@@ -207,151 +192,6 @@ export default class Fms {
         this._runwayName = '';
         this.legCollection = [];
         this.currentPhase = '';
-    }
-
-    /**
-     * Based on reasons, return the current altitude the aircraft should be at.
-     *
-     * This might not be the altitude it is at currently.
-     *
-     * @for Fms
-     * @method getAltitude
-     * @return altitude {number}
-     */
-    getAltitude() {
-        let altitude = this._aircraftTypeDefinition.ceiling;
-
-        if (this.currentWaypoint.altitudeRestriction !== -1) {
-            altitude = this.currentWaypoint.altitudeRestriction;
-        }
-
-        if (this._modeController.altitudeMode === MCP_MODE.ALTITUDE.HOLD) {
-            altitude = this._modeController.altitude;
-        }
-
-        return altitude;
-    }
-
-    /**
-     * Based on reasons, return the current heading the aircraft should be at.
-     *
-     * This might not be the heading it is at currently.
-     *
-     * @for Fms
-     * @method getAltitude
-     * @return heading {number}
-     */
-    getHeading() {
-        let heading = -999;
-
-        if (this._modeController.headingMode === MCP_MODE.HEADING.HOLD) {
-            heading = this._modeController.heading;
-        }
-
-        return heading;
-    }
-
-    /**
-     * Based on reasons, return the current speed the aircraft should be at.
-     *
-     * This might not be the speed it is at currently.
-     *
-     * @for Fms
-     * @method getSpeed
-     * @return speed {number}
-     */
-    getSpeed() {
-        let speed = this._aircraftTypeDefinition.speed.cruise;
-
-        if (this.currentWaypoint.speedRestriction !== -1) {
-            speed = this.currentWaypoint.speedRestriction;
-        }
-
-        if (this._modeController.speedMode === MCP_MODE.SPEED.HOLD) {
-            speed = this._modeController.speed;
-        }
-
-        return speed;
-    }
-
-    /**
-     * Wrapper method that sets the `_modeController` modes
-     * for an arriving aircraft
-     *
-     * @for Fms
-     * @method updateModesForArrival
-     */
-    updateModesForArrival() {
-        this._modeController.setModesForArrival();
-    }
-
-    /**
-     * Wrapper method that sets the `_modeController` modes
-     * for a departing aircraft
-     *
-     * @for Fms
-     * @method updateModesForDeparture
-     */
-    updateModesForDeparture() {
-        this._modeController.setModesForDeparture();
-    }
-
-    /**
-     * Set `_modeController.altitudeMode` to `VNAV`
-     *
-     * @for Fms
-     * @method setAltitudeVnav
-     */
-    setAltitudeVnav() {
-        this._modeController.setModeAndValue(
-            MCP_MODE_NAME.ALTITUDE,
-            MCP_MODE.ALTITUDE.VNAV,
-            this.currentWaypoint.altitudeRestriction
-        );
-    }
-
-    /**
-     * Set `_modeController.altitudeMode` to `HOLD` with the altitude to hold
-     *
-     * @for Fms
-     * @method setAltitudeHold
-     * @param altitude {number}
-     */
-    setAltitudeHold(altitude) {
-        this._modeController.setModeAndValue(MCP_MODE_NAME.ALTITUDE, MCP_MODE.ALTITUDE.HOLD, altitude);
-    }
-
-    /**
-     * Set `_modeController.headingMode` to `LNAV` with a heading to the next waypoint
-     *
-     * @for Fms
-     * @method setHeadingLnav
-     * @param heading {number}
-     */
-    setHeadingLnav(heading) {
-        this._modeController.setModeAndValue(MCP_MODE_NAME.HEADING, MCP_MODE.HEADING.LNAV, heading);
-    }
-
-    /**
-     * Set `_modeController.headingMode` to `HOLD` with the heading to hold
-     *
-     * @for Fms
-     * @method setHeadingHold
-     * @param heading {number}
-     */
-    setHeadingHold(heading) {
-        this._modeController.setModeAndValue(MCP_MODE_NAME.HEADING, MCP_MODE.HEADING.HOLD, heading);
-    }
-
-    /**
-     * Set `_modeController.speedMode` to `HOLD` with the speed to hold
-     *
-     * @for Fms
-     * @method setSpeedHold
-     * @param speed {number}
-     */
-    setSpeedHold(speed) {
-        this._modeController.setModeAndValue(MCP_MODE_NAME.SPEED, MCP_MODE.SPEED.HOLD, speed);
     }
 
     /**
@@ -401,15 +241,16 @@ export default class Fms {
     }
 
     /**
-     * Updates `_modeController` modes to `HOLD` for altitude, heading and speed
+     * Updates MCP modes to `HOLD` for altitude, heading and speed
      *
      * @for Fms
      * @method cancelWaypoint
      */
     cancelWaypoint() {
-        this.setAltitudeHold(this.getAltitude());
-        this.setHeadingHold(this.getHeading());
-        this.setSpeedHold(this.getSpeed());
+        // FIXME: These should be setting to the AIRCRAFT's current values, not those of the cancelled waypoint
+        this.setAltitudeHold(this.altitude);
+        this.setHeadingHold(this.heading);
+        this.setSpeedHold(this.speed);
     }
 
     /**
