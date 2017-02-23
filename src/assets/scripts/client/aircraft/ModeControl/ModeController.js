@@ -21,7 +21,7 @@ export default class ModeController {
         this.heading = -1;
         this.speed = -1;
 
-        this.expediteAltitudeChange = false;
+        this.shouldExpediteAltitudeChange = false;
 
         this.init(isAircraftAirborne);
     }
@@ -78,7 +78,7 @@ export default class ModeController {
      * Set the mode of a given modeSelector
      *
      * @for ModeController
-     * @method setMode
+     * @method setModeSelectorMode
      */
     setModeSelectorMode(modeSelector, mode) {
         this[modeSelector] = mode;

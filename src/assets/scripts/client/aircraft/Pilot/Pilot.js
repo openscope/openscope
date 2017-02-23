@@ -84,10 +84,10 @@ export default class Pilot {
      * Expedite the climb or descent to the assigned altitude, to use maximum possible rate
      *
      * @for Pilot
-     * @method expediteAltitudeChange
+     * @method shouldExpediteAltitudeChange
      */
-    expediteAltitudeChange() {
-        this._mcp.expediteAltitudeChange = true;
+    shouldExpediteAltitudeChange() {
+        this._mcp.shouldExpediteAltitudeChange = true;
     }
 
     /**
@@ -96,11 +96,10 @@ export default class Pilot {
      * @for Pilot
      * @method maintainAltitude
      */
-    maintainAltitude(altitude, expedite, minimumAssignableAltitude, maximumAssignableAltitude) {
+    maintainAltitude(currentAltitude, altitude, expedite, minimumAssignableAltitude, maximumAssignableAltitude, shouldUseSoftCeiling) {
         altitude = clamp(minimumAssignableAltitude, altitude, maximumAssignableAltitude);
-        const softCeiling = this._gameController.game.option.get('softCeiling') === 'yes';
 
-        if (softCeiling && altitude === maximumAssignableAltitude) {
+        if (shouldUseSoftCeiling && altitude === maximumAssignableAltitude) {
             altitude += 1;  // causes aircraft to 'leave' airspace, and continue climb through ceiling
         }
 
@@ -109,19 +108,20 @@ export default class Pilot {
 
         // Build readback
         altitude = _floor(altitude, -2);
-        const aircraft = { altitude: 0 };   // FIXME: How can the Pilot get the aircraft's current altitude?
-        const altitudeInstruction = radio_trend('altitude', aircraft.altitude, altitude);
-        const altitude_verbal = radio_altitude(altitude);
+        const altitudeInstruction = radio_trend('altitude', currentAltitude, altitude);
+        const altitudeVerbal = radio_altitude(altitude);
         let expediteReadback = '';
 
         if (expedite) {
+            // including space here so when expedite is false there isnt an extra space after altitude
             expediteReadback = ' and expedite';
-            this.expediteAltitudeChange();
+
+            this.shouldExpediteAltitudeChange();
         }
 
         const readback = {};
         readback.log = `${altitudeInstruction} ${altitude}${expediteReadback}`;
-        readback.say = `${altitudeInstruction} ${altitude_verbal}${expediteReadback}`;
+        readback.say = `${altitudeInstruction} ${altitudeVerbal}${expediteReadback}`;
 
         return ['ok', readback];
     }
@@ -245,7 +245,7 @@ export default class Pilot {
      * @private
      */
     _setAltitudeHold() {
-        this._mcp.setMode(MCP_MODE_NAME.ALTITUDE, MCP_MODE.ALTITUDE.HOLD);
+        this._mcp.setModeSelectorMode(MCP_MODE_NAME.ALTITUDE, MCP_MODE.ALTITUDE.HOLD);
     }
 
     /**
@@ -256,7 +256,7 @@ export default class Pilot {
      * @private
      */
     _setAltitudeApproach() {
-        this._mcp.setMode(MCP_MODE_NAME.ALTITUDE, MCP_MODE.ALTITUDE.APPROACH);
+        this._mcp.setModeSelectorMode(MCP_MODE_NAME.ALTITUDE, MCP_MODE.ALTITUDE.APPROACH);
     }
 
     /**
@@ -267,7 +267,7 @@ export default class Pilot {
      * @private
      */
     _setAltitudeVnav() {
-        this._mcp.setMode(MCP_MODE_NAME.ALTITUDE, MCP_MODE.ALTITUDE.VNAV);
+        this._mcp.setModeSelectorMode(MCP_MODE_NAME.ALTITUDE, MCP_MODE.ALTITUDE.VNAV);
     }
 
     /**
@@ -278,7 +278,7 @@ export default class Pilot {
      * @private
      */
     _setAltitudeFieldValue(altitude) {
-        this._mcp.setValue(MCP_MODE_NAME.ALTITUDE, altitude);
+        this._mcp.setFieldValue(MCP_MODE_NAME.ALTITUDE, altitude);
     }
 
     /**
@@ -289,7 +289,7 @@ export default class Pilot {
      * @private
      */
     _setHeadingHold() {
-        this._mcp.setMode(MCP_MODE_NAME.HEADING, MCP_MODE.HEADING.HOLD);
+        this._mcp.setModeSelectorMode(MCP_MODE_NAME.HEADING, MCP_MODE.HEADING.HOLD);
     }
 
     /**
@@ -300,7 +300,7 @@ export default class Pilot {
      * @private
      */
     _setHeadingLnav() {
-        this._mcp.setMode(MCP_MODE_NAME.HEADING, MCP_MODE.HEADING.LNAV);
+        this._mcp.setModeSelectorMode(MCP_MODE_NAME.HEADING, MCP_MODE.HEADING.LNAV);
     }
 
     /**
@@ -311,7 +311,7 @@ export default class Pilot {
      * @private
      */
     _setHeadingVorLoc() {
-        this._mcp.setMode(MCP_MODE_NAME.HEADING, MCP_MODE.HEADING.VOR_LOC);
+        this._mcp.setModeSelectorMode(MCP_MODE_NAME.HEADING, MCP_MODE.HEADING.VOR_LOC);
     }
 
     /**
@@ -322,7 +322,7 @@ export default class Pilot {
      * @private
      */
     _setHeadingFieldValue(heading) {
-        this._mcp.setValue(MCP_FIELD_NAME.HEADING, heading);
+        this._mcp.setFieldValue(MCP_FIELD_NAME.HEADING, heading);
     }
 
     /**
@@ -333,7 +333,7 @@ export default class Pilot {
      * @private
      */
     _setSpeedHold() {
-        this._mcp.setMode(MCP_MODE_NAME.SPEED, MCP_MODE.SPEED.HOLD);
+        this._mcp.setModeSelectorMode(MCP_MODE_NAME.SPEED, MCP_MODE.SPEED.HOLD);
     }
 
     /**
@@ -344,7 +344,7 @@ export default class Pilot {
      * @private
      */
     _setSpeedVnav() {
-        this._mcp.setMode(MCP_MODE_NAME.SPEED, MCP_MODE.SPEED.VNAV);
+        this._mcp.setModeSelectorMode(MCP_MODE_NAME.SPEED, MCP_MODE.SPEED.VNAV);
     }
 
     /**
@@ -355,7 +355,7 @@ export default class Pilot {
      * @private
      */
     _setSpeedN1() {
-        this._mcp.setMode(MCP_MODE_NAME.SPEED, MCP_MODE.SPEED.N1);
+        this._mcp.setModeSelectorMode(MCP_MODE_NAME.SPEED, MCP_MODE.SPEED.N1);
     }
 
     /**
@@ -365,6 +365,6 @@ export default class Pilot {
      * @method _setSpeedFieldValue
      */
     _setSpeedFieldValue(speed) {
-        this._mcp.setValue(MCP_FIELD_NAME.SPEED, speed);
+        this._mcp.setFieldValue(MCP_FIELD_NAME.SPEED, speed);
     }
 }

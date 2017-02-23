@@ -222,6 +222,7 @@ export default class AircraftCommander {
     runAltitude(aircraft, data) {
         const altitudeRequested = data[0];
         const expediteRequested = data[1];
+        const shouldUseSoftCeiling = this._gameController.game.option.get('softCeiling') === 'yes';
 
         const airport = this._airportController.airport_get();
         // TODO: these next two should be getters on the AirportModel
@@ -229,10 +230,13 @@ export default class AircraftCommander {
         const maximumAssignableAltitude = airport.ctr_ceiling;
 
         return aircraft.pilot.maintainAltitude(
+            aircraft.currentAltitude,
             altitudeRequested,
             expediteRequested,
+            // TODO: this will bcome just airport once these are made getters
             minimumAssignableAltitude,
-            maximumAssignableAltitude
+            maximumAssignableAltitude,
+            shouldUseSoftCeiling
         );
     }
 
