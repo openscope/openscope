@@ -50,6 +50,47 @@ export default class Pilot {
         this._fms = fms;
     }
 
+    // Finish me!
+    /**
+     * Apply the specified departure procedure by adding it to the fms route
+     * Note: SHOULD NOT change the heading mode
+     *
+     * @for Pilot
+     * @method applyDepartureProcedure
+     * @param {String} procedureId - the identifier for the procedure
+     * @param {String} departureRunway - the identifier for the runway to use for departure
+     * @return {Array} [success of operation, readback]
+     */
+    applyDepartureProcedure(procedureId, departureRunway) {
+        const airport = this._airportController.airport_get();
+        const standardRouteModel = this._navigationLibrary.sidCollection.findRouteByIcao(procedureId);
+        const exit = this._navigationLibrary.sidCollection.findRandomExitPointForSIDIcao(procedureId);
+        const route = `${airport.icao}.${procedureId}.${exit}`;
+
+        if (_isNil(standardRouteModel)) {
+            return [false, 'SID name not understood'];
+        }
+
+        // TODO: Make this ensure there is a runway
+        if (!departureRunway) {
+            return [false, 'unsure if we can accept that procedure; we don\'t have a runway assignment'];
+        }
+
+        // TODO: is this really the right method to use here? The name doesn't seem like it would be?
+        if (!standardRouteModel.hasFixName(departureRunway)) {
+            return [false, `unable, the ${standardRouteModel.name.toUpperCase()} departure not valid from Runway ${departureRunway}`];
+        }
+
+        // TODO: this is the wrong place for this `.toUpperCase()`
+        this._fms.followSID(route.toUpperCase());
+
+        const readback = {};
+        readback.log = `cleared to destination via the ${procedureId} departure, then as filed`;
+        readback.say = `cleared to destination via the ${standardRouteModel.name} departure, then as filed`;
+
+        return [true, readback];
+    }
+
     /**
      * Configure the aircraft to fly in accordance with the requested flightplan
      *
@@ -99,6 +140,32 @@ export default class Pilot {
             log: 'climb via SID',
             say: 'climb via SID'
         };
+
+        return [true, readback];
+    }
+
+    /**
+     * Descend in accordance with the altitude restrictions
+     *
+     * @for Pilot
+     * @method descendViaSTAR
+     * @param {Number} altitude - (optional) altitude at which the descent will end (regardless of fix restrictions)
+     * @return {Array} [success of operation, readback]
+     */
+    descendViaSTAR(/* optional */ altitude) {
+        if (_isNil(altitude)) {
+            // TODO: This should be the altitude of the lowest fix restriction on the STAR
+            altitude = 0;
+        }
+
+        this._setAltitudeFieldValue(altitude);
+        this._setAltitudeVnav();
+        this._setSpeedVnav();
+
+        // Build readback
+        const readback = {};
+        readback.log = 'descend via the arrival';
+        readback.say = 'descend via the arrival';
 
         return [true, readback];
     }
@@ -202,6 +269,25 @@ export default class Pilot {
     }
 
     /**
+     * Maintain the aircraft's present magnetic heading
+     *
+     * @for Pilot
+     * @method maintainPresentHeading
+     * @param {Number} heading - the heading the aircraft is facing at the time the command is given
+     * @return {Array} [success of operation, readback]
+     */
+    maintainPresentHeading(heading) {
+        this._setHeadingFieldValue(heading);
+        this._setHeadingHold();
+
+        const readback = {};
+        readback.log = 'fly present heading';
+        readback.say = 'fly present heading';
+
+        return [true, readback];
+    }
+
+    /**
      * Maintain a given speed
      *
      * @for Pilot
@@ -220,6 +306,37 @@ export default class Pilot {
         const readback = {};
         readback.log = `${instruction} ${speed}`;
         readback.say = `${instruction} ${radio_spellOut(speed)}`;
+
+        return [true, readback];
+    }
+
+    /**
+     * Skip ahead in the FMS to the waypoint for the specified fixName, and activate LNAV to fly to it
+     *
+     * @for Pilot
+     * @method proceedDirect
+     * @param {String} fixName - name of the fix we are flying direct to
+     * @return {Array} [success of operation, readback]
+     */
+    proceedDirect(fixName) {
+        // TODO: Update #skipToWaypoint so it tells us whether it found and skipped anything or not
+        this._fms.skipToWaypoint(fixName);
+        this._setHeadingLnav();
+
+        return [true, `proceed direct ${fixName}`];
+    }
+
+    /**
+     * Return the route of the aircraft
+     *
+     * @for AircraftCommander
+     * @method sayRoute
+     * @return {Array} [success of operation, readback]
+     */
+    sayRoute() {
+        const readback = {};
+        readback.log = `route: ${this._fms.currentRoute}`;
+        readback.say = 'here\'s our route';
 
         return [true, readback];
     }

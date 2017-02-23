@@ -268,24 +268,8 @@ export default class AircraftCommander {
      * @param data
      * @return {boolean|undefined}
      */
-    runDescendViaSTAR(aircraft) {
-        aircraft.mcp.setModeAndValue(MCP_MODE_NAME.ALTITUDE, MCP_MODE.ALTITUDE.VNAV, 0);
-
-        if (!aircraft.__fms__.descendViaSTAR() || !aircraft.__fms__.following.star) {
-            const isWarning = true;
-            this._uiController.ui_log(`${aircraft.getCallsign()}, unable to descend via STAR`, isWarning);
-
-            return;
-        }
-
-        const airport = this._airportController.airport_get();
-        const { name: procedureName } = this._navigationLibrary.starCollection.findRouteByIcao(aircraft.__fms__.currentLeg.route.procedure);
-        const readback = {
-            log: `descend via the ${aircraft.__fms__.following.star} arrival`,
-            say: `descend via the ${procedureName.toUpperCase()} arrival`
-        };
-
-        return ['ok', readback];
+    runDescendViaSTAR(aircraft, /* optional */ altitude) {
+        return aircraft.pilot.descendViaSTAR(altitude);
     }
 
     /**
@@ -439,6 +423,8 @@ export default class AircraftCommander {
     }
 
     /**
+     * Skip forward to a particular fix that already exists further along the aircraft's route
+     *
      * @for AircraftCommander
      * @method runDirect
      * @param data
@@ -447,77 +433,15 @@ export default class AircraftCommander {
         // TODO: maybe handle with parser?
         const fixName = data[0].toUpperCase();
 
-        if (_isNil(this._navigationLibrary.findFixByName(fixName))) {
-            return ['fail', `unable to find fix called ${fixName}`];
-        }
-
-        aircraft.fms.skipToWaypoint(fixName);
-        aircraft.setMcpMode(MCP_MODE_NAME.HEADING, MCP_MODE.HEADING.LNAV);
-
-        // remove intermediate fixes
-        if (aircraft.mode === FLIGHT_MODES.TAKEOFF) {
-            aircraft.__fms__.skipToFix(fixName);
-        } else if (!aircraft.__fms__.skipToFix(fixName)) {
-            return ['fail', `${fixName} is not in our flightplan`];
-        }
-
-        return ['ok', `proceed direct ${fixName}`];
-    }
-
-    runFix(aircraft, data) {
-        let last_fix;
-        let fail;
-        const fixes = _map(data, (fixname) => {
-            if (_isNil(this._navigationLibrary.findFixByName(fixname))) {
-                fail = ['fail', `unable to find fix called ${fixname}`];
-
-                return;
-            }
-
-            // to avoid repetition, compare name with the previous fix
-            if (fixname === last_fix) {
-                return;
-            }
-
-            last_fix = fixname;
-
-            return fixname;
-        });
-
-        if (fail) {
-            return fail;
-        }
-
-        for (let i = 0; i < fixes.length; i++) {
-            // FIXME: use enumerated constant for type
-            aircraft.__fms__.insertLegHere({ type: 'fix', route: fixes[i] });
-        }
-
-        if (aircraft.mode !== FLIGHT_MODES.WAITING &&
-            aircraft.mode !== FLIGHT_MODES.TAKEOFF &&
-            aircraft.mode !== FLIGHT_MODES.APRON &&
-            aircraft.mode !== FLIGHT_MODES.TAXI
-        ) {
-            aircraft.cancelLanding();
-        }
-
-        return ['ok', `proceed direct ${fixes.join(', ')}`];
+        return aircraft.pilot.proceedDirect(fixName);
     }
 
     /**
      * @for AircraftCommander
      * @method runFlyPresentHeading
-     * @param data
      */
-    runFlyPresentHeading(aircraft, data) {
-        const headingInRadians = radiansToDegrees(aircraft.heading);
-
-        aircraft.cancelFix();
-        aircraft.fms.setHeadingHold(aircraft.heading);
-
-        this.runHeading(aircraft, [null, headingInRadians]);
-
-        return ['ok', 'fly present heading'];
+    runFlyPresentHeading(aircraft) {
+        return aircraft.pilot.maintainPresentHeading(aircraft.heading);
     }
 
     /**
@@ -526,11 +450,8 @@ export default class AircraftCommander {
      * @param aircraft {AircraftInstanceModel}
      * @return {array}   [success of operation, readback]
      */
-    runSayRoute(aircraft, data) {
-        return ['ok', {
-            log: `route: ${aircraft.fms.currentRoute}`,
-            say: 'here\'s our route'
-        }];
+    runSayRoute(aircraft) {
+        return aircraft.pilot.sayRoute();
     }
 
     /**
@@ -538,37 +459,10 @@ export default class AircraftCommander {
      * @method runSID
      */
     runSID(aircraft, data) {
-        const airport = this._airportController.airport_get();
         const sidId = data[0];
-        const standardRouteModel = this._navigationLibrary.sidCollection.findRouteByIcao(sidId);
-        const exit = this._navigationLibrary.sidCollection.findRandomExitPointForSIDIcao(sidId);
-        const route = `${airport.icao}.${sidId}.${exit}`;
+        const departureRunway = aircraft.rwy_dep;
 
-        if (_isNil(standardRouteModel)) {
-            return ['fail', 'SID name not understood'];
-        }
-
-        if (aircraft.category !== FLIGHT_CATEGORY.DEPARTURE) {
-            return ['fail', 'unable to fly SID, we are an inbound'];
-        }
-
-        if (!aircraft.rwy_dep) {
-            aircraft.setDepartureRunway(airport.runway);
-        }
-
-        if (!standardRouteModel.hasFixName(aircraft.rwy_dep)) {
-            return ['fail', `unable, the ${standardRouteModel.name.toUpperCase()} departure not valid from Runway ${aircraft.rwy_dep}`];
-        }
-
-        // TODO: this is the wrong place for this `.toUpperCase()`
-        aircraft.__fms__.followSID(route.toUpperCase());
-
-        const readback = {
-            log: `cleared to destination via the ${sidId} departure, then as filed`,
-            say: `cleared to destination via the ${standardRouteModel.name} departure, then as filed`
-        };
-
-        return ['ok', readback];
+        return aircraft.pilot.applyDepartureProcedure(sidId, departureRunway);
     }
 
     /**
