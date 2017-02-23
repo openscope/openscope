@@ -288,9 +288,10 @@ export default class Aircraft {
             throw new Error('Invalid #category found in AircraftInstanceModel');
         }
 
-        this.fms.setHeadingHold(data.heading);
-        this.fms.setAltitudeHold(data.altitude);
-        this.fms.setSpeedHold(data.speed);
+        // FIXME: this should probably move
+        // this.fms.setHeadingHold(data.heading);
+        // this.fms.setAltitudeHold(data.altitude);
+        // this.fms.setSpeedHold(data.speed);
 
         if (data.nextFix) {
             this.fms.skipToWaypoint(data.nextFix);

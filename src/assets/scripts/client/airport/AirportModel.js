@@ -112,6 +112,26 @@ export default class AirportModel {
     }
 
     /**
+     * Minimum altitude an aircraft can be assigned to.
+     *
+     * @property minAssignableAltitude
+     * @return {number}
+     */
+    get minAssignableAltitude() {
+        return Math.ceil(this.elevation + 1000, -2);
+    }
+
+    /**
+     * Maximum altitude an aircraft can be assigned to.
+     *
+     * @property maxAssignableAltitude
+     * @return {number}
+     */
+    get maxAssignableAltitude() {
+        return this.ctr_ceiling;
+    }
+
+    /**
      * @for AirportModel
      * @method parse
      * @param data {object}
