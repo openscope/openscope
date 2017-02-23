@@ -223,7 +223,17 @@ export default class AircraftCommander {
         const altitudeRequested = data[0];
         const expediteRequested = data[1];
 
-        return aircraft.pilot.maintainAltitude(altitudeRequested, expediteRequested);
+        const airport = this._airportController.airport_get();
+        // TODO: these next two should be getters on the AirportModel
+        const minimumAssignableAltitude = _ceil(airport.elevation + 1000, -2);
+        const maximumAssignableAltitude = airport.ctr_ceiling;
+
+        return aircraft.pilot.maintainAltitude(
+            altitudeRequested,
+            expediteRequested,
+            minimumAssignableAltitude,
+            maximumAssignableAltitude
+        );
     }
 
     /**

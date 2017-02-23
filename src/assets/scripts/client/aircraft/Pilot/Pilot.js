@@ -1,6 +1,8 @@
 import _ceil from 'lodash/ceil';
 import _floor from 'lodash/floor';
-import _isNil from 'lodash/isNil';
+// import _isNil from 'lodash/isNil';
+import _isObject from 'lodash/isObject';
+import _isEmpty from 'lodash/isEmpty';
 import { clamp } from '../../math/core';
 import { groupNumbers,
     radio_altitude,
@@ -23,8 +25,29 @@ export default class Pilot {
      * @constructor
      * @for Pilot
      */
-    constructor(mcp, fms) {
-        this._mcp = mcp;
+    constructor(modeController, fms) {
+        if (!_isObject(modeController) || _isEmpty(modeController)) {
+            throw new TypeError('Invalid parameter. expected modeController to an instance of ModeController');
+        }
+
+        if (!_isObject(fms) || _isEmpty(fms)) {
+            throw new TypeError('Invalid parameter. expected fms to an instance of Fms');
+        }
+
+        /**
+         * @property _mcp
+         * @type {ModeController}
+         * @default modeController
+         * @private
+         */
+        this._mcp = modeController;
+
+        /**
+         * @property _fms
+         * @type {Fms}
+         * @default fms
+         * @private
+         */
         this._fms = fms;
     }
 
@@ -73,14 +96,7 @@ export default class Pilot {
      * @for Pilot
      * @method maintainAltitude
      */
-    maintainAltitude(altitude, expedite) {
-        if (_isNil(altitude)) {
-            return;
-        }
-
-        const airport = this._airportController.airport_get();
-        const minimumAssignableAltitude = _ceil(airport.elevation + 1000, -2);
-        const maximumAssignableAltitude = airport.ctr_ceiling;
+    maintainAltitude(altitude, expedite, minimumAssignableAltitude, maximumAssignableAltitude) {
         altitude = clamp(minimumAssignableAltitude, altitude, maximumAssignableAltitude);
         const softCeiling = this._gameController.game.option.get('softCeiling') === 'yes';
 
@@ -118,10 +134,6 @@ export default class Pilot {
      @
      */
     maintainHeading(heading, direction, incremental) {
-        if (_isNil(heading)) {
-            return;
-        }
-
         let degrees;
 
         if (incremental) {
