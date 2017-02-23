@@ -160,12 +160,12 @@ export default class Fms {
      * @method flightPlan
      * @return {object}
      */
-get flightPlan() {
-    return {
-        altitude: this.flightPlanAltitude,
-        route: this.flightPlanRoute
-    };
-}
+    get flightPlan() {
+        return {
+            altitude: this.flightPlanAltitude,
+            route: this.flightPlanRoute
+        };
+    }
 
     /**
      * Initialize the instance and setup initial properties

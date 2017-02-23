@@ -1,4 +1,8 @@
-import { MCP_MODE, MCP_MODE_NAME } from './modeControlConstants';
+import {
+    MCP_MODE,
+    MCP_MODE_NAME,
+    MCP_MODE_TO_FIELD_MAP
+} from './modeControlConstants';
 
 /**
  * Part of the autopilot system that determines the source from which to derive the aircraft's targeted telemetry
@@ -55,26 +59,6 @@ export default class ModeController {
     }
 
     /**
-     * Return the current mode of a given mode selector
-     *
-     * @for ModeController
-     * @method getModeSelectorMode
-     */
-    getModeSelectorMode(modeSelector) {
-        return this[modeSelector];
-    }
-
-    /**
-     * Return the current value of a given field
-     *
-     * @for ModeController
-     * @method getFieldValue
-     */
-    getFieldValue(fieldName) {
-        return this[fieldName];
-    }
-
-    /**
      * Set the mode of a given modeSelector
      *
      * @for ModeController
@@ -92,5 +76,23 @@ export default class ModeController {
      */
     setFieldValue(fieldName, value) {
         this[fieldName] = value;
+    }
+
+    /**
+     * Convenience method that provides a way to set a mode
+     * and its value at the same time.
+     *
+     * This method does not support `COURSE` and should be
+     * used primarily for `#altitude`, `#heading` and `#speed`.
+     *
+     * @for ModeController
+     * @method setModeSelectorModeAndFieldValue
+     * @param modeSelector {string}
+     * @param mode {string}
+     * @param value {string}
+     */
+    setModeSelectorModeAndFieldValue(modeSelector, mode, value) {
+        this.setModeSelectorMode(modeSelector, mode);
+        this.setFieldValue(MCP_MODE_TO_FIELD_MAP[modeSelector], value);
     }
 }

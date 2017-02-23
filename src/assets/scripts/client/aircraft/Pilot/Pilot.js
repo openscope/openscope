@@ -1,6 +1,5 @@
-import _ceil from 'lodash/ceil';
 import _floor from 'lodash/floor';
-// import _isNil from 'lodash/isNil';
+import _isNil from 'lodash/isNil';
 import _isObject from 'lodash/isObject';
 import _isEmpty from 'lodash/isEmpty';
 import { clamp } from '../../math/core';
@@ -56,19 +55,20 @@ export default class Pilot {
      *
      * @for Pilot
      * @method clearedAsFiled
-     * @return {Array} [success of operation, readback]
+     * @param {Number} initialAltitude  the altitude aircraft can automatically climb to at this airport
+     * @param {Number} runwayHeading    the magnetic heading of the runway, in radians
+     * @param {Number} cruiseSpeed      the cruise speed of the aircraft, in knots
+     * @return {Array}                  [success of operation, readback]
      */
     clearedAsFiled(initialAltitude, runwayHeading, cruiseSpeed) {
-        if (!this._fms.replaceCurrentFlightPlan(this._fms.flightPlan.route)) {
-            return [false, 'unable to clear as filed'];
-        }
+        // FIXME: this needs to be handled differently
+        // if (!this._fms.replaceCurrentFlightPlan(this._fms.flightPlan.route)) {
+        //     return [false, 'unable to clear as filed'];
+        // }
 
-        this._setAltitudeFieldValue(initialAltitude);
-        this._setAltitudeHold();
-        this._setHeadingFieldValue(runwayHeading);
-        this._setHeadingLnav();
-        this._setSpeedFieldValue(cruiseSpeed);
-        this._setSpeedN1();
+        this._setAltitudeHoldWithValue(initialAltitude);
+        this._setHeadingLnavWithValue(runwayHeading);
+        this._setSpeedN1WithValue(cruiseSpeed);
 
         const readback = {};
         readback.log = `cleared to destination as filed. Climb and maintain ${initialAltitude}, expect ` +
@@ -81,6 +81,29 @@ export default class Pilot {
     }
 
     /**
+     * Climb in accordance with the altitude restrictions
+     *
+     * @for Pilot
+     * @method climbViaSid
+     * @param {Number} altitude  altitude at which the climb will end (regardless of fix restrictions)
+     * @return {Array}           [success of operation, readback]
+     */
+    climbViaSid(altitude) {
+        if (_isNil(altitude)) {
+            altitude = this._fms.flightPlan.altitude;
+        }
+
+        this._setAltitudeVnavWithValue(altitude);
+
+        const readback = {
+            log: 'climb via SID',
+            say: 'climb via SID'
+        };
+
+        return [true, readback];
+    }
+
+    /**
      * Expedite the climb or descent to the assigned altitude, to use maximum possible rate
      *
      * @for Pilot
@@ -88,6 +111,8 @@ export default class Pilot {
      */
     shouldExpediteAltitudeChange() {
         this._mcp.shouldExpediteAltitudeChange = true;
+
+        return [true, 'expediting to assigned altitude'];
     }
 
     /**
@@ -95,17 +120,23 @@ export default class Pilot {
      *
      * @for Pilot
      * @method maintainAltitude
+     * @param {Number} altitude   the altitude to maintain, in feet
+     * @param {Boolean} expedite  whether to use maximum possible climb/descent rate
+     * @return {Array}            [success of operation, readback]
      */
-    maintainAltitude(currentAltitude, altitude, expedite, minimumAssignableAltitude, maximumAssignableAltitude, shouldUseSoftCeiling) {
-        altitude = clamp(minimumAssignableAltitude, altitude, maximumAssignableAltitude);
+    maintainAltitude(currentAltitude, altitude, expedite, shouldUseSoftCeiling, airportModel) {
+        const { minAssignableAltitude, maxAssignableAltitude } = airportModel;
+        // TODO: this could probably be done in the AirportModel
+        // FIXME: we should set a new var here instead of reassigning to the param
+        altitude = clamp(minAssignableAltitude, altitude, maxAssignableAltitude);
 
-        if (shouldUseSoftCeiling && altitude === maximumAssignableAltitude) {
+        if (shouldUseSoftCeiling && altitude === maxAssignableAltitude) {
             altitude += 1;  // causes aircraft to 'leave' airspace, and continue climb through ceiling
         }
 
-        this._setAltitudeFieldValue(altitude);
-        this._setAltitudeHold();
+        this._setAltitudeHoldWithValue(altitude);
 
+        // TODO: this could be split to another method
         // Build readback
         altitude = _floor(altitude, -2);
         const altitudeInstruction = radio_trend('altitude', currentAltitude, altitude);
@@ -131,7 +162,10 @@ export default class Pilot {
      *
      * @for Pilot
      * @method maintainHeading
-     @
+     * @param {Number} heading - the heading to maintain, in radians_normalize
+     * @param {String} direction - (optional) the direction of turn; either 'left' or 'right'
+     * @param {Boolean} incremental - (optional) whether the value is a numeric heading, or a number of degrees to turn
+     * @return {Array} [success of operation, readback]
      */
     maintainHeading(heading, direction, incremental) {
         let degrees;
@@ -172,6 +206,8 @@ export default class Pilot {
      *
      * @for Pilot
      * @method maintainSpeed
+     * @param {Number} speed - the speed to maintain, in knots
+     * @return {Array} [success of operation, readback]
      */
     maintainSpeed(speed) {
         const aircraft = { speed: 0 };  // FIXME: How can the pilot access the aircraft's current speed?
@@ -241,11 +277,12 @@ export default class Pilot {
      * Set the MCP altitude mode to "HOLD"
      *
      * @for Pilot
-     * @method _setAltitudeHold
+     * @method _setAltitudeHoldWithValue
+     * @param altitude {number}
      * @private
      */
-    _setAltitudeHold() {
-        this._mcp.setModeSelectorMode(MCP_MODE_NAME.ALTITUDE, MCP_MODE.ALTITUDE.HOLD);
+    _setAltitudeHoldWithValue(altitude) {
+        this._mcp.setModeSelectorModeAndFieldValue(MCP_MODE_NAME.ALTITUDE, MCP_MODE.ALTITUDE.HOLD, altitude);
     }
 
     /**
@@ -263,11 +300,12 @@ export default class Pilot {
      * Set the MCP altitude mode to "VNAV"
      *
      * @for Pilot
-     * @method _setAltitudeVnav
+     * @method _setAltitudeVnavWithValue
+     * @param altitude {number}
      * @private
      */
-    _setAltitudeVnav() {
-        this._mcp.setModeSelectorMode(MCP_MODE_NAME.ALTITUDE, MCP_MODE.ALTITUDE.VNAV);
+    _setAltitudeVnavWithValue(altitude) {
+        this._mcp.setModeSelectorModeAndFieldValue(MCP_MODE_NAME.ALTITUDE, MCP_MODE.ALTITUDE.VNAV, altitude);
     }
 
     /**
@@ -278,7 +316,7 @@ export default class Pilot {
      * @private
      */
     _setAltitudeFieldValue(altitude) {
-        this._mcp.setFieldValue(MCP_MODE_NAME.ALTITUDE, altitude);
+        this._mcp.setFieldValue(MCP_FIELD_NAME.ALTITUDE, altitude);
     }
 
     /**
@@ -296,11 +334,12 @@ export default class Pilot {
      * Set the MCP heading mode to "LNAV"
      *
      * @for Pilot
-     * @method _setHeadingLnav
+     * @method _setHeadingLnavWithValue
+     * @param runwayHeading {number}
      * @private
      */
-    _setHeadingLnav() {
-        this._mcp.setModeSelectorMode(MCP_MODE_NAME.HEADING, MCP_MODE.HEADING.LNAV);
+    _setHeadingLnavWithValue(runwayHeading) {
+        this._mcp.setModeSelectorModeAndFieldValue(MCP_MODE_NAME.HEADING, MCP_MODE.HEADING.LNAV, runwayHeading);
     }
 
     /**
@@ -351,11 +390,12 @@ export default class Pilot {
      * Set the MCP speed mode to "N1"
      *
      * @for Pilot
-     * @method _setSpeedN1
+     * @method _setSpeedN1WithValue
+     * @param speed {number}
      * @private
      */
-    _setSpeedN1() {
-        this._mcp.setModeSelectorMode(MCP_MODE_NAME.SPEED, MCP_MODE.SPEED.N1);
+    _setSpeedN1WithValue(speed) {
+        this._mcp.setModeSelectorModeAndFieldValue(MCP_MODE_NAME.SPEED, MCP_MODE.SPEED.N1, speed);
     }
 
     /**

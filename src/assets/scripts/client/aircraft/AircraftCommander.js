@@ -242,20 +242,21 @@ export default class AircraftCommander {
      *
      * @for AircraftCommander
      * @method runClearedAsFiled
+     * @param aircraft {AircraftInstanceModel}
      * @return {array} [success of operation, readback]
      */
     runClearedAsFiled(aircraft) {
         const airport = window.airportController.airport_get();
-        const initial_altitude = airport.initial_alt;
-        const runway_heading = airport.getRunway(aircraft.rwy_dep).angle;
-        const cruise_speed = aircraft.model.speed.cruise;
+        const { angle: runwayHeading } = airport.getRunway(aircraft.rwy_dep);
 
-        return aircraft.pilot.clearedAsFiled(initial_altitude, runway_heading, cruise_speed);
+        return aircraft.pilot.clearedAsFiled(airport.initial_alt, runwayHeading, aircraft.model.speed.cruise);
     }
 
     /**
      * @for AircraftCommander
      * @method runClimbViaSID
+     * @param aircraft {AircraftInstanceModel}
+     * @return {array} [success of operation, readback]
      */
     runClimbViaSID(aircraft) {
         return aircraft.pilot.climbViaSid();
@@ -522,13 +523,11 @@ export default class AircraftCommander {
     /**
      * @for AircraftCommander
      * @method runSayRoute
-     * @param data
+     * @param aircraft {AircraftInstanceModel}
+     * @return {array}   [success of operation, readback]
      */
     runSayRoute(aircraft, data) {
-        console.log(aircraft.fms.currentRoute);
-
         return ['ok', {
-            // log: `route: ${aircraft.__fms__.fp.route.join(' ')}`,
             log: `route: ${aircraft.fms.currentRoute}`,
             say: 'here\'s our route'
         }];
