@@ -21,8 +21,10 @@ import { MCP_MODE, MCP_MODE_NAME, MCP_FIELD_NAME } from '../ModeControl/modeCont
  */
 export default class Pilot {
     /**
-     * @constructor
      * @for Pilot
+     * @constructor
+     * @param modeController {ModeController}
+     * @param fms {Fms}
      */
     constructor(modeController, fms) {
         if (!_isObject(modeController) || _isEmpty(modeController)) {
@@ -50,22 +52,21 @@ export default class Pilot {
         this._fms = fms;
     }
 
-    // Finish me!
     /**
      * Apply the specified departure procedure by adding it to the fms route
      * Note: SHOULD NOT change the heading mode
      *
      * @for Pilot
      * @method applyDepartureProcedure
-     * @param {String} procedureId - the identifier for the procedure
-     * @param {String} departureRunway - the identifier for the runway to use for departure
-     * @return {Array} [success of operation, readback]
+     * @param procedureId {String}      the identifier for the procedure
+     * @param departureRunway {String}  the identifier for the runway to use for departure
+     * @param airportIcao {string}      airport icao identifier
+     * @return {array}                  [success of operation, readback]
      */
-    applyDepartureProcedure(procedureId, departureRunway) {
-        const airport = this._airportController.airport_get();
-        const standardRouteModel = this._navigationLibrary.sidCollection.findRouteByIcao(procedureId);
-        const exit = this._navigationLibrary.sidCollection.findRandomExitPointForSIDIcao(procedureId);
-        const route = `${airport.icao}.${procedureId}.${exit}`;
+    applyDepartureProcedure(procedureId, departureRunway, airportIcao) {
+        const standardRouteModel = this._fms.findSidByProcedureId(procedureId);
+        const exit = this._fms.findRandomExitPointForSidProcedureId(procedureId);
+        const routeStr = `${airportIcao}.${procedureId}.${exit}`;
 
         if (_isNil(standardRouteModel)) {
             return [false, 'SID name not understood'];
@@ -81,8 +82,10 @@ export default class Pilot {
             return [false, `unable, the ${standardRouteModel.name.toUpperCase()} departure not valid from Runway ${departureRunway}`];
         }
 
-        // TODO: this is the wrong place for this `.toUpperCase()`
-        this._fms.followSID(route.toUpperCase());
+        // mcp modes here
+
+        // by this point we should already know the sid is valid next we need to replace the existing sid (if any)
+        // this._fms.followSID(routeStr.toUpperCase());
 
         const readback = {};
         readback.log = `cleared to destination via the ${procedureId} departure, then as filed`;

@@ -213,18 +213,6 @@ export default class Fms {
     }
 
     /**
-     * Encapsulation of boolean logic used to determine if there is a
-     * WaypointModel available after the current one has been flown over.
-     *
-     * @for fms
-     * @method hasNextWaypoint
-     * @return {boolean}
-     */
-    hasNextWaypoint() {
-        return this.currentLeg.hasNextWaypoint() || !_isNil(this.legCollection[1]);
-    }
-
-    /**
      * Move to the next possible waypoint
      *
      * This could be the next waypoint in the current leg,
@@ -306,6 +294,56 @@ export default class Fms {
     }
 
     /**
+     * Fascade method for `sidCollection.findRouteByIcao`
+     *
+     * Allows classes that have access to the `Aircraft`, but not the
+     * navigation library, to do standardRoute building and logic.
+     *
+     * @for Fms
+     * @method findSidByProcedureId
+     * @param procedureId {string}
+     * @return {}
+     */
+    findSidByProcedureId(procedureId) {
+        return this._navigationLibrary.sidCollection.findRouteByIcao(procedureId);
+    }
+
+    /**
+     * Fascade method for `sidCollection.findRandomExitPointForSIDIcao`
+     *
+     * Allows classes that have access to the `Aircraft`, but not the
+     * navigation library, to do standardRoute building and logic.
+     *
+     * @Fms
+     * @method findRandomExitPointForSidProcedureId
+     * @param procedureId {string}
+     * @return
+     */
+    findRandomExitPointForSidProcedureId(procedureId) {
+        return this._navigationLibrary.sidCollection.findRandomExitPointForSIDIcao(procedureId);
+    }
+
+    // /**
+    //  *
+    //  *
+    //  */
+    // hasProcedureLegWithRoute(routeStr) {
+    //     const existingProcedureLeg = _findIndex(this.legCollection, { routeString: routeStr });
+    // }
+
+    /**
+     * Encapsulation of boolean logic used to determine if there is a
+     * WaypointModel available after the current one has been flown over.
+     *
+     * @for fms
+     * @method hasNextWaypoint
+     * @return {boolean}
+     */
+    hasNextWaypoint() {
+        return this.currentLeg.hasNextWaypoint() || !_isNil(this.legCollection[1]);
+    }
+
+    /**
      * From a routeString, find each routeString segment and create
      * new `LegModels` for each segment then retun that list.
      *
@@ -319,11 +357,20 @@ export default class Fms {
      */
     _buildLegCollection(routeString) {
         const routeStringSegments = routeStringFormatHelper(routeString);
-        const legsForRoute = _map(routeStringSegments, (routeSegment) => {
-            return new LegModel(routeSegment, this._runwayName, this.currentPhase, this._navigationLibrary);
-        });
+        const legsForRoute = _map(routeStringSegments, (routeSegment) => this._buildLegModelFromRouteSegment(routeSegment));
 
         return legsForRoute;
+    }
+
+    /**
+     *
+     *
+     * @for Fms
+     * @method _buildLegModelFromRouteSegment
+     * @param routeSegment {string}  a segment of a `routeString`
+     */
+    _buildLegModelFromRouteSegment(routeSegment) {
+        return new LegModel(routeSegment, this._runwayName, this.currentPhase, this._navigationLibrary);
     }
 
     /**

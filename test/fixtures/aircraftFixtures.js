@@ -3,8 +3,10 @@ import ModeController from '../../src/assets/scripts/client/aircraft/ModeControl
 import { navigationLibraryFixture } from './navigationLibraryFixtures';
 import {
     ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK,
+    DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK,
     AIRCRAFT_DEFINITION_MOCK
 } from '../aircraft/_mocks/aircraftMocks';
 
-export const fmsFixture = new Fms(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, '19L', AIRCRAFT_DEFINITION_MOCK, navigationLibraryFixture);
+export const fmsArrivalFixture = new Fms(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, '19L', AIRCRAFT_DEFINITION_MOCK, navigationLibraryFixture);
+export const fmsDepartureFixture = new Fms(DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK, '19L', AIRCRAFT_DEFINITION_MOCK, navigationLibraryFixture);
 export const modeControllerFixture = new ModeController();

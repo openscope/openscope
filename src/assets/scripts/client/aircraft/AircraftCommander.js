@@ -457,12 +457,16 @@ export default class AircraftCommander {
     /**
      * @for AircraftCommander
      * @method runSID
+     * @param aircraft {AircraftInstanceModel}
+     * @param data {array}
+     * @return {array}   [success of operation, readback]
      */
     runSID(aircraft, data) {
         const sidId = data[0];
         const departureRunway = aircraft.rwy_dep;
+        const { icao: airportIcao } = this._airportController.airport_get();
 
-        return aircraft.pilot.applyDepartureProcedure(sidId, departureRunway);
+        return aircraft.pilot.applyDepartureProcedure(sidId, departureRunway, airportIcao);
     }
 
     /**

@@ -1,5 +1,18 @@
 import _drop from 'lodash/drop';
 import RouteModel from '../../navigationLibrary/Route/RouteModel';
+import { FLIGHT_CATEGORY } from '../../constants/aircraftConstants';
+
+/**
+ *
+ *
+ * @property PROCEDURE_TYPE
+ * @type {Object}
+ * @final
+ */
+const PROCEDURE_TYPE = {
+    SID: 'SID',
+    STAR: 'STAR'
+};
 
 /**
  * A section of a flight plan containing one to many `WaypointModel` objects.
@@ -20,10 +33,10 @@ export default class LegModel {
      * @for LegModel
      * @param routeSegment {string}
      * @param runway {string}
-     * @param category {string}
+     * @param flightPhase {string}
      * @param navigationLibrary {NavigationLibrary}
      */
-    constructor(routeSegment, runway, category, navigationLibrary) {
+    constructor(routeSegment, runway, flightPhase, navigationLibrary) {
         /**
          * NavigationLibrary instance
          *
@@ -42,6 +55,14 @@ export default class LegModel {
          * @private
          */
         this._isProcedure = false;
+
+        /**
+         *
+         *
+         * @type {string}
+         * @default ''
+         */
+        this.procedureType = '';
 
         /**
          * String representation of the current routeSegment.
@@ -71,7 +92,7 @@ export default class LegModel {
          */
         this.waypointCollection = [];
 
-        this.init(routeSegment, runway, category);
+        this.init(routeSegment, runway, flightPhase);
     }
 
     /**
@@ -108,10 +129,11 @@ export default class LegModel {
      * @param routeSegment
      * @param runway
      */
-    init(routeSegment, runway, category) {
+    init(routeSegment, runway, flightPhase) {
         this._isProcedure = RouteModel.isProcedureRouteString(routeSegment);
         this.routeString = routeSegment.toLowerCase();
-        this.waypointCollection = this._buildWaypointCollection(routeSegment, runway, category);
+        this.procedureType = this._buildProcedureType(flightPhase);
+        this.waypointCollection = this._buildWaypointCollection(routeSegment, runway, flightPhase);
     }
 
     /**
@@ -125,6 +147,7 @@ export default class LegModel {
 
         this._navigationLibrary = null;
         this._isProcedure = false;
+        this.procedureType = '';
         this.routeString = '';
         this.waypointCollection = [];
     }
@@ -204,12 +227,12 @@ export default class LegModel {
      * @param runway {string}
      * @private
      */
-    _buildWaypointCollection(routeSegment, runway, category) {
+    _buildWaypointCollection(routeSegment, runway, flightPhase) {
         if (!this._isProcedure) {
             return this._buildWaypointForDirectRoute(routeSegment);
         }
 
-        return this._buildWaypointCollectionForProcedureRoute(routeSegment, runway, category);
+        return this._buildWaypointCollectionForProcedureRoute(routeSegment, runway, flightPhase);
     }
 
     /**
@@ -244,7 +267,29 @@ export default class LegModel {
      * @return {array<WaypointModel>}
      * @private
      */
-    _buildWaypointCollectionForProcedureRoute(procedureRouteSegment, runway, category) {
-        return this._navigationLibrary.buildWaypointModelsForProcedure(procedureRouteSegment, runway, category);
+    _buildWaypointCollectionForProcedureRoute(procedureRouteSegment, runway, flightPhase) {
+        return this._navigationLibrary.buildWaypointModelsForProcedure(procedureRouteSegment, runway, flightPhase);
+    }
+
+    /**
+     * Returns a string representing a `procedureType` associated with
+     * this `LegModel`, if the Leg is in fact a procedure.
+     *
+     * @for LegModel
+     * @param flightPhase {string}
+     * @return {string}
+     */
+    _buildProcedureType(flightPhase) {
+        if (!this._isProcedure) {
+            return '';
+        }
+
+        let procedureType = PROCEDURE_TYPE.SID;
+
+        if (flightPhase === FLIGHT_CATEGORY.ARRIVAL) {
+            procedureType = PROCEDURE_TYPE.STAR;
+        }
+
+        return procedureType;
     }
 }

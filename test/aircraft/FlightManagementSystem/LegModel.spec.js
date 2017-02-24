@@ -8,35 +8,37 @@ import WaypointModel from '../../../src/assets/scripts/client/aircraft/FlightMan
 import { navigationLibraryFixture } from '../../fixtures/navigationLibraryFixtures';
 
 const directRouteSegmentMock = 'COWBY';
-const procedureRouteSegmentMock = 'DAG.KEPEC3.KLAS';
+const arrivalProcedureRouteSegmentMock = 'DAG.KEPEC3.KLAS';
+const departureProcedureRouteSegmentMock = 'KLAS.COWBY6.DRK';
 const runwayMock = '19L';
-const categoryMock = 'arrival';
+const arrivalFlightPhaseMock = 'arrival';
+const departureFlightPhaseMock = 'departure';
 
 ava('throws when passed invalid parameters', (t) => {
     t.throws(() => new LegModel());
 });
 
 ava('does not throw when passed valid parameters', (t) => {
-    t.notThrows(() => new LegModel(procedureRouteSegmentMock, runwayMock, categoryMock, navigationLibraryFixture));
+    t.notThrows(() => new LegModel(arrivalProcedureRouteSegmentMock, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture));
 });
 
 ava('#currentWaypoint returns the first item in #waypointCollection', (t) => {
-    const model = new LegModel(procedureRouteSegmentMock, runwayMock, categoryMock, navigationLibraryFixture);
+    const model = new LegModel(arrivalProcedureRouteSegmentMock, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture);
 
     t.true(_isEqual(model.waypointCollection[0], model.currentWaypoint));
 });
 
 ava('.init() calls ._buildWaypointCollection()', (t) => {
-    const model = new LegModel(procedureRouteSegmentMock, runwayMock, categoryMock, navigationLibraryFixture);
+    const model = new LegModel(arrivalProcedureRouteSegmentMock, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture);
     const _buildWaypointCollectionSpy = sinon.spy(model, '_buildWaypointCollection');
 
-    model.init(procedureRouteSegmentMock, runwayMock, categoryMock);
+    model.init(arrivalProcedureRouteSegmentMock, runwayMock, arrivalFlightPhaseMock);
 
-    t.true(_buildWaypointCollectionSpy.calledWithExactly(procedureRouteSegmentMock, runwayMock, categoryMock));
+    t.true(_buildWaypointCollectionSpy.calledWithExactly(arrivalProcedureRouteSegmentMock, runwayMock, arrivalFlightPhaseMock));
 });
 
 ava('.skipToWaypointAtIndex() drops n number of WaypointModels from  the left of #waypointCollection', (t) => {
-    const model = new LegModel(procedureRouteSegmentMock, runwayMock, categoryMock, navigationLibraryFixture);
+    const model = new LegModel(arrivalProcedureRouteSegmentMock, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture);
 
     model.skipToWaypointAtIndex(3);
 
@@ -45,7 +47,7 @@ ava('.skipToWaypointAtIndex() drops n number of WaypointModels from  the left of
 });
 
 ava('._buildWaypointForDirectRoute() returns an instance of a WaypointModel', (t) => {
-    const model = new LegModel(directRouteSegmentMock, runwayMock, categoryMock, navigationLibraryFixture);
+    const model = new LegModel(directRouteSegmentMock, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture);
     const result = model._buildWaypointForDirectRoute(directRouteSegmentMock);
 
     t.true(_isArray(result));
@@ -54,11 +56,29 @@ ava('._buildWaypointForDirectRoute() returns an instance of a WaypointModel', (t
 });
 
 ava('._buildWaypointCollectionForProcedureRoute() returns a list of WaypointModels', (t) => {
-    const model = new LegModel(procedureRouteSegmentMock, runwayMock, categoryMock, navigationLibraryFixture);
-    const result = model._buildWaypointCollectionForProcedureRoute(procedureRouteSegmentMock, runwayMock);
+    const model = new LegModel(arrivalProcedureRouteSegmentMock, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture);
+    const result = model._buildWaypointCollectionForProcedureRoute(arrivalProcedureRouteSegmentMock, runwayMock);
 
     t.plan(result.length);
     for (let i = 0; i < result.length; i++) {
         t.true(result[i] instanceof WaypointModel);
     }
+});
+
+ava('._buildProcedureType() returns early when #routeString is a directRouteSegment', (t) => {
+    const model = new LegModel(directRouteSegmentMock, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture);
+
+    t.true(model.procedureType === '');
+});
+
+ava('._buildProcedureType() sets #procedureType as `SID` the #routeString is a procedureType and #flightPhase is departure', (t) => {
+    const model = new LegModel(departureProcedureRouteSegmentMock, runwayMock, departureFlightPhaseMock, navigationLibraryFixture);
+
+    t.true(model.procedureType === 'SID');
+});
+
+ava('._buildProcedureType() sets #procedureType as `STAR` the #routeString is a procedureType and #flightPhase is arrival', (t) => {
+    const model = new LegModel(arrivalProcedureRouteSegmentMock, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture);
+
+    t.true(model.procedureType === 'STAR');
 });
