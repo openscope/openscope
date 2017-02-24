@@ -2,13 +2,16 @@ import _floor from 'lodash/floor';
 import _isNil from 'lodash/isNil';
 import _isObject from 'lodash/isObject';
 import _isEmpty from 'lodash/isEmpty';
+import RouteModel from '../../navigationLibrary/Route/RouteModel';
 import { clamp } from '../../math/core';
 import { groupNumbers,
     radio_altitude,
     radio_heading,
+    radio_runway,
     radio_spellOut,
     radio_trend
 } from '../../utilities/radioUtilities';
+import { FLIGHT_MODES } from '../../constants/aircraftConstants';
 import { degreesToRadians, heading_to_string } from '../../utilities/unitConverters';
 import { radians_normalize } from '../../math/circle';
 import { MCP_MODE, MCP_MODE_NAME, MCP_FIELD_NAME } from '../ModeControl/modeControlConstants';
@@ -53,6 +56,36 @@ export default class Pilot {
     }
 
     /**
+     * Apply the specified arrival procedure by adding it to the fms route
+     * Note: SHOULD NOT change the heading mode
+     *
+     * @for Pilot
+     * @method applyArrivalProcedure
+     * @param {String} routeString - route string in the form of `entry.procedure.airport`
+     * @return {Array} [success of operation, readback]
+     */
+    applyArrivalProcedure(routeString) {
+        const routeModel = new RouteModel(routeString);
+        const airport = this._airportController.airport_get();
+        const starName = this._navigationLibrary.starCollection.findRouteByIcao(routeModel.procedure).name;
+
+        // TODO: This length check might not be needed. this is covered via the CommandParser when
+        // this method runs as the result of a command.
+        if (routeString.length === 0 || !this._navigationLibrary.starCollection.hasRoute(routeModel.procedure)) {
+            return [false, 'STAR name not understood'];
+        }
+
+        this._fms.followSTAR(routeModel.routeCode);
+
+        // Build readback
+        const readback = {};
+        readback.log = `cleared to the ${airport.name} via the ${routeModel.procedure} arrival`;
+        readback.say = `cleared to the ${airport.name} via the ${starName.toUpperCase()} arrival`;
+
+        return [true, readback];
+    }
+
+    /**
      * Apply the specified departure procedure by adding it to the fms route
      * Note: SHOULD NOT change the heading mode
      *
@@ -90,6 +123,72 @@ export default class Pilot {
         const readback = {};
         readback.log = `cleared to destination via the ${procedureId} departure, then as filed`;
         readback.say = `cleared to destination via the ${standardRouteModel.name} departure, then as filed`;
+
+        return [true, readback];
+    }
+
+    /**
+     * Replace the entire route stored in the FMS with legs freshly generated based on the provided route string
+     *
+     * @for Pilot
+     * @method applyNewRoute
+     * @param {String} routeString - route string
+     * @return {Array} [success of operation, readback]
+     */
+    applyNewRoute(routeString) {
+        const route = this._fms.formatRoute(routeString);
+
+        if (!this._fms.customRoute(route, true)) {
+            const readback = {};
+            readback.log = `requested route of "${route}" is invalid`;
+            readback.say = 'that route is invalid';
+
+            return [false, readback];
+        }
+
+        // TODO: what exactly are we checking here?
+        // if (!route || !routeString || routeString.indexOf(' ') > -1) {
+        //     return [false, 'unknown issues'];
+        // }
+
+
+        // Build readback
+        const readback = {};
+        readback.log = `rerouting to: ${this._fms.fp.route.join(' ')}`;
+        readback.say = 'rerouting as requested';
+
+        return [true, readback];
+    }
+
+    /**
+     * Apply the specified route, and as applicable, merge it with the current route
+     *
+     * @for Pilot
+     * @method applyPartialRouteAmendment
+     * @param {String} routeString - route string in the form of `entry.procedure.airport`
+     * @return {Array} [success of operation, readback]
+     */
+    applyPartialRouteAmendment(routeString) {
+        // TODO: replace with routeStringFormatHelper
+        const route = this._fms.formatRoute(routeString);
+
+        if (_isNil(route)) {
+            return [false, 'unable to amend route because no route was specified'];
+        }
+
+        if (!this._fms.customRoute(route, false)) {
+            return [false, `requested route of "${route}" is invalid`];
+        }
+
+        // TODO: What is the purpose of this?
+        // if (!route || !data || data.indexOf(' ') > -1) {
+            // return [false, 'unknown issue'];
+        // }
+
+        // Build readback
+        const readback = {};
+        readback.log = `rerouting to :${this._fms.fp.route.join(' ')}`;
+        readback.say = 'rerouting as requested';
 
         return [true, readback];
     }
@@ -391,6 +490,62 @@ export default class Pilot {
         }
 
         return this._mcp.speed;
+    }
+
+    /**
+     * Taxi the aircraft
+     *
+     * @for Pilot
+     * @method taxi
+     * @param {String} taxiDestination - currently expected to be a runway
+     * @param {Boolean} isDeparture - whether the aircraft's flightPhase is "DEPARTURE"
+     * @param {Boolean} isOnGround - whether the aircraft is on the ground
+     * @param {String} flightPhase - the flight phase of the aircraft
+     * @return {Array} [success of operation, readback]
+     */
+    taxi(taxiDestination, isDeparture, isOnGround, flightPhase) {
+        // TODO: all this if logic should be simplified or abstracted
+        // TODO: isDeparture and flightPhase can be combined
+        if (!isDeparture) {
+            return [false, 'unable to taxi, we are an arrival'];
+        }
+
+        if (flightPhase === FLIGHT_MODES.TAXI) {
+            return [false, 'already taxiing'];
+        }
+
+        if (flightPhase === FLIGHT_MODES.WAITING) {
+            return [false, 'already taxiied, and waiting in runway queue'];
+        }
+
+        if (flightPhase !== FLIGHT_MODES.APRON) {
+            return [false, 'unable to taxi'];
+        }
+
+        // Set the runway to taxi to
+        if (!taxiDestination) {
+            // TODO: This method may not yet exist
+            taxiDestination = window.airportController.airport_get().runway;
+        }
+
+        if (!this._airportController.airport_get().getRunway(taxiDestination)) {
+            return [false, `no runway ${taxiDestination.toUpperCase()}`];
+        }
+
+        this._fms.setDepartureRunway(taxiDestination);
+
+        // TODO: Figure out what to do with this
+        // // Start the taxi
+        // aircraft.taxi_start = this._gameController.game_time();
+        const runway = this._airportController.airport_get().getRunway(taxiDestination);
+        // runway.addAircraftToQueue(aircraft);
+        // aircraft.mode = FLIGHT_MODES.TAXI;
+
+        const readback = {};
+        readback.log = `taxi to runway ${runway.name}`;
+        readback.say = `taxi to runway ${radio_runway(runway.name)}`;
+
+        return [true, readback];
     }
 
     /**

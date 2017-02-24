@@ -475,29 +475,9 @@ export default class AircraftCommander {
      * @param data {array<string>} a string representation of the STAR, ex: `QUINN.BDEGA2.KSFO`
      */
     runSTAR(aircraft, data) {
-        const routeModel = new RouteModel(data[0]);
-        const airport = this._airportController.airport_get();
-        const { name: starName } = this._navigationLibrary.starCollection.findRouteByIcao(routeModel.procedure);
+        const routeString = data[0];
 
-        if (aircraft.category !== FLIGHT_CATEGORY.ARRIVAL) {
-            return ['fail', 'unable to fly STAR, we are a departure!'];
-        }
-
-        // TODO: the data[0].length check might not be needed. this is covered via the CommandParser when
-        // this method runs as the result of a command.
-        if (data[0].length === 0 || !this._navigationLibrary.starCollection.hasRoute(routeModel.procedure)) {
-            return ['fail', 'STAR name not understood'];
-        }
-
-        aircraft.__fms__.followSTAR(routeModel.routeCode);
-
-        // TODO: casing may be an issue here.
-        const readback = {
-            log: `cleared to the ${airport.name} via the ${routeModel.procedure} arrival`,
-            say: `cleared to the ${airport.name} via the ${starName.toUpperCase()} arrival`
-        };
-
-        return ['ok', readback];
+        aircraft.pilot.applyArrivalProcedure(routeString);
     }
 
     /**
@@ -525,37 +505,10 @@ export default class AircraftCommander {
      * @param data
      */
     runRoute(aircraft, data) {
-         // capitalize everything
-        data = data[0].toUpperCase();
-        let worked = true;
-        // TODO: replace with routeStringFormatHelper
-        const route = aircraft.__fms__.formatRoute(data);
+        // TODO: is this .toUpperCase() necessary??
+        const routeString = data[0].toUpperCase();
 
-        if (worked && route) {
-            // Add to fms
-            worked = aircraft.__fms__.customRoute(route, false);
-        }
-
-        if (!route || !data || data.indexOf(' ') > -1) {
-            worked = false;
-        }
-
-        // Build the response
-        if (worked) {
-            const readback = {
-                log: `rerouting to :${aircraft.__fms__.fp.route.join(' ')}`,
-                say: 'rerouting as requested'
-            };
-
-            return ['ok', readback];
-        }
-
-        const readback = {
-            log: `your route "${data}" is invalid!`,
-            say: 'that route is invalid!'
-        };
-
-        return ['fail', readback];
+        aircraft.pilot.applyPartialRouteAmendment(routeString);
     }
 
     /**
@@ -570,37 +523,10 @@ export default class AircraftCommander {
       * @param data
       */
     runReroute(aircraft, data) {
-        // TODO: capitalize everything?
-        data = data[0].toUpperCase();
-        let worked = true;
-        const route = aircraft.__fms__.formatRoute(data);
+        // TODO: is this .toUpperCase() necessary??
+        const routeString = data[0].toUpperCase();
 
-        if (worked && route) {
-            // Reset fms
-            worked = aircraft.__fms__.customRoute(route, true);
-        }
-
-        // TODO: what exactly are we checking here?
-        if (!route || !data || data.indexOf(' ') > -1) {
-            worked = false;
-        }
-
-        // Build the response
-        if (worked) {
-            const readback = {
-                log: `rerouting to: ${aircraft.__fms__.fp.route.join(' ')}`,
-                say: 'rerouting as requested'
-            };
-
-            return ['ok', readback];
-        }
-
-        const readback = {
-            log: `your route "${data}" is invalid!`,
-            say: 'that route is invalid!'
-        };
-
-        return ['fail', readback];
+        aircraft.pilot.applyNewRoute(routeString);
     }
 
     /**
@@ -609,45 +535,13 @@ export default class AircraftCommander {
      * @param data
      */
     runTaxi(aircraft, data) {
-        // TODO: all this if logic should be simplified or abstracted
-        if (aircraft.category !== FLIGHT_CATEGORY.DEPARTURE) {
-            return ['fail', 'inbound'];
-        }
+        // TODO: is this .toUpperCase() necessary??
+        const taxiDestination = data[0].toUpperCase();
+        const isDeparture = aircraft.category === FLIGHT_CATEGORY.DEPARTURE;
+        const isOnGround = aircraft.isOnGround();
+        const flightPhase = aircraft.mode;
 
-        if (aircraft.mode === FLIGHT_MODES.TAXI) {
-            return ['fail', `already taxiing to ${radio_runway(aircraft.rwy_dep)}`];
-        }
-
-        if (aircraft.mode === FLIGHT_MODES.WAITING) {
-            return ['fail', 'already waiting'];
-        }
-
-        if (aircraft.mode !== FLIGHT_MODES.APRON) {
-            return ['fail', 'wrong mode'];
-        }
-
-        // Set the runway to taxi to
-        if (data[0]) {
-            if (this._airportController.airport_get().getRunway(data[0].toUpperCase())) {
-                aircraft.setDepartureRunway(data[0].toUpperCase());
-            } else {
-                return ['fail', `no runway ${data[0].toUpperCase()}`];
-            }
-        }
-
-        // Start the taxi
-        aircraft.taxi_start = this._gameController.game_time();
-        const runway = this._airportController.airport_get().getRunway(aircraft.rwy_dep);
-
-        runway.addAircraftToQueue(aircraft);
-        aircraft.mode = FLIGHT_MODES.TAXI;
-
-        const readback = {
-            log: `taxi to runway ${runway.name}`,
-            say: `taxi to runway ${radio_runway(runway.name)}`
-        };
-
-        return ['ok', readback];
+        aircraft.pilot.taxi(taxiDestination, isDeparture, isOnGround, flightPhase);
     }
 
     /**
