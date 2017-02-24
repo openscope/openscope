@@ -1,36 +1,22 @@
-import _ceil from 'lodash/ceil';
-import _floor from 'lodash/floor';
 import _has from 'lodash/has';
-import _isNaN from 'lodash/isNaN';
-import _isNil from 'lodash/isNil';
 import _map from 'lodash/map';
 import Waypoint from './FlightManagementSystem/Waypoint';
-import RouteModel from '../navigationLibrary/Route/RouteModel';
 import { speech_say } from '../speech';
 import { radians_normalize } from '../math/circle';
-import { round, clamp } from '../math/core';
+import { round } from '../math/core';
 import { vradial, vsub } from '../math/vector';
 import {
     radio_cardinalDir_names,
-    groupNumbers,
     radio_runway,
-    radio_heading,
     radio_spellOut,
     radio_altitude,
-    radio_trend,
     getCardinalDirection
 } from '../utilities/radioUtilities';
-import { radiansToDegrees, degreesToRadians, heading_to_string } from '../utilities/unitConverters';
 import {
     FLIGHT_MODES,
     FLIGHT_CATEGORY,
-    WAYPOINT_NAV_MODE,
-    FP_LEG_TYPE
+    WAYPOINT_NAV_MODE
 } from '../constants/aircraftConstants';
-import {
-    MCP_MODE,
-    MCP_MODE_NAME,
-} from './ModeControl/modeControlConstants';
 
 
 /**
