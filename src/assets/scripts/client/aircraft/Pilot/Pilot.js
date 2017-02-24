@@ -65,27 +65,25 @@ export default class Pilot {
      */
     applyDepartureProcedure(procedureId, departureRunway, airportIcao) {
         const standardRouteModel = this._fms.findSidByProcedureId(procedureId);
-        const exit = this._fms.findRandomExitPointForSidProcedureId(procedureId);
-        const routeStr = `${airportIcao}.${procedureId}.${exit}`;
 
         if (_isNil(standardRouteModel)) {
             return [false, 'SID name not understood'];
         }
 
-        // TODO: Make this ensure there is a runway
+        const exit = this._fms.findRandomExitPointForSidProcedureId(procedureId);
+        const routeStr = `${airportIcao}.${procedureId}.${exit}`;
+
         if (!departureRunway) {
             return [false, 'unsure if we can accept that procedure; we don\'t have a runway assignment'];
         }
 
-        // TODO: is this really the right method to use here? The name doesn't seem like it would be?
         if (!standardRouteModel.hasFixName(departureRunway)) {
             return [false, `unable, the ${standardRouteModel.name.toUpperCase()} departure not valid from Runway ${departureRunway}`];
         }
 
         // mcp modes here
 
-        // by this point we should already know the sid is valid next we need to replace the existing sid (if any)
-        // this._fms.followSID(routeStr.toUpperCase());
+        this._fms.replaceDepartureProcedure(routeStr, departureRunway);
 
         const readback = {};
         readback.log = `cleared to destination via the ${procedureId} departure, then as filed`;

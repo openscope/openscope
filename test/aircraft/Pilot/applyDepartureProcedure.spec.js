@@ -1,6 +1,7 @@
 /* eslint-disable max-len */
 import ava from 'ava';
 // import _isArray from 'lodash/isArray';
+import _isEqual from 'lodash/isEqual'
 // import _isObject from 'lodash/isObject';
 
 import Pilot from '../../../src/assets/scripts/client/aircraft/Pilot/Pilot';
@@ -13,29 +14,33 @@ const runwayMock = '19L';
 const sidIdMock = 'COWBY6';
 const airportIcaoMock = 'KLAS';
 
+ava('.clearedAsFiled() returns an error when passed an invalid sidId', (t) => {
+    const expectedResult = [false, 'SID name not understood'];
+    const pilot = new Pilot(modeControllerFixture, fmsDepartureFixture);
+    const result = pilot.applyDepartureProcedure('~!@#$%', runwayMock, airportIcaoMock);
+
+    t.true(_isEqual(result, expectedResult));
+});
+
+ava('.clearedAsFiled() returns an error when passed an invalid runway', (t) => {
+    const expectedResult = [false, 'unsure if we can accept that procedure; we don\'t have a runway assignment'];
+    const pilot = new Pilot(modeControllerFixture, fmsDepartureFixture);
+    const result = pilot.applyDepartureProcedure(sidIdMock, null, airportIcaoMock);
+
+    t.true(_isEqual(result, expectedResult));
+});
+
+ava('.clearedAsFiled() returns an error when passed a runway incompatable for the route', (t) => {
+    const expectedResult = [false, 'unable, the COWBOY SIX departure not valid from Runway ~!@#$%'];
+    const pilot = new Pilot(modeControllerFixture, fmsDepartureFixture);
+    const result = pilot.applyDepartureProcedure(sidIdMock, '~!@#$%', airportIcaoMock);
+
+    t.true(_isEqual(result, expectedResult));
+});
+
 ava('.clearedAsFiled() should set mcp altitude, heading and speed modes with values', (t) => {
-    // const expectedResult = {
-    //     altitudeMode: 'HOLD',
-    //     autopilotMode: 'OFF',
-    //     headingMode: 'LNAV',
-    //     speedMode: 'N1',
-    //     altitude: 19000,
-    //     course: -1,
-    //     heading: 3.3674436372440057,
-    //     speed: 460,
-    //     shouldExpediteAltitudeChange: false
-    // };
     const pilot = new Pilot(modeControllerFixture, fmsDepartureFixture);
     const result = pilot.applyDepartureProcedure(sidIdMock, runwayMock, airportIcaoMock);
 
-    console.log(pilot);
-    console.log(result);
-
-    // t.true(pilot._mcp.altitudeMode === expectedResult.altitudeMode);
-    // t.true(pilot._mcp.headingMode === expectedResult.headingMode);
-    // t.true(pilot._mcp.speedMode === expectedResult.speedMode);
-    // t.true(pilot._mcp.altitude === expectedResult.altitude);
-    // t.true(pilot._mcp.course === expectedResult.course);
-    // t.true(pilot._mcp.heading === expectedResult.heading);
-    // t.true(pilot._mcp.speed === expectedResult.speed);
+    // console.log(result);
 });

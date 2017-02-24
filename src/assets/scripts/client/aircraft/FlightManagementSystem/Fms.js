@@ -1,4 +1,5 @@
 import _drop from 'lodash/drop';
+import _find from 'lodash/find';
 import _findIndex from 'lodash/findIndex';
 import _isEmpty from 'lodash/isEmpty';
 import _isNil from 'lodash/isNil';
@@ -323,13 +324,37 @@ export default class Fms {
         return this._navigationLibrary.sidCollection.findRandomExitPointForSIDIcao(procedureId);
     }
 
-    // /**
-    //  *
-    //  *
-    //  */
-    // hasProcedureLegWithRoute(routeStr) {
-    //     const existingProcedureLeg = _findIndex(this.legCollection, { routeString: routeStr });
-    // }
+    /**
+     *
+     *
+     * @for Fms
+     * @method replaceDepartureProcedure
+     * @param routeString {string}
+     * @param departureRunway {string}
+     * @return {}
+     */
+    replaceDepartureProcedure(routeString, departureRunway) {
+        const previousProcedureLeg = this._findLegByRouteString(routeString);
+
+        // this is the same procedure that is already set, no need to continue
+        if (previousProcedureLeg) {
+            return;
+        }
+
+        const procedureLegIndex = _findIndex(this.legCollection, { _isProcedure: true, procedureType: 'SID' });
+
+        // a sid procedure does not exist in the flight plan, so we must create a new one
+        if (procedureLegIndex === -1) {
+            this.prependLeg(routeString);
+
+            return;
+        }
+
+        const legModel = this.legCollection[procedureLegIndex];
+
+        legModel.destroy();
+        legModel.init(routeString, this._runwayName, this.currentPhase);
+    }
 
     /**
      * Encapsulation of boolean logic used to determine if there is a
@@ -467,5 +492,17 @@ export default class Fms {
         }
 
         this.legCollection = [];
+    }
+
+    /**
+     * Find a LegModel within the collection by its route string
+     *
+     * @for Fms
+     * @method _findLegByRouteString
+     * @param routeString {string}
+     * @return {LegModel|undefined}
+     */
+    _findLegByRouteString(routeString) {
+        return _find(this.legCollection, { routeString: routeString.toLowerCase() });
     }
 }
