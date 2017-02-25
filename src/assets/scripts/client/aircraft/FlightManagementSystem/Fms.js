@@ -331,7 +331,6 @@ export default class Fms {
      * @method replaceDepartureProcedure
      * @param routeString {string}
      * @param departureRunway {string}
-     * @return {}
      */
     replaceDepartureProcedure(routeString, departureRunway) {
         const previousProcedureLeg = this._findLegByRouteString(routeString);
@@ -382,7 +381,8 @@ export default class Fms {
      */
     _buildLegCollection(routeString) {
         const routeStringSegments = routeStringFormatHelper(routeString);
-        const legsForRoute = _map(routeStringSegments, (routeSegment) => this._buildLegModelFromRouteSegment(routeSegment));
+        const legsForRoute = _map(routeStringSegments,
+            (routeSegment) => this._buildLegModelFromRouteSegment(routeSegment));
 
         return legsForRoute;
     }

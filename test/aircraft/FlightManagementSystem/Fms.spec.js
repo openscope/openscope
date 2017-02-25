@@ -16,23 +16,20 @@ const runwayAssignmentMock = '19L';
 const isComplexRoute = true;
 const isDeparture = true;
 
-function buildFmsMock(shouldUseComplexRoute = false, isDeparture = false) {
+function buildFmsMock(shouldUseComplexRoute = false) {
     let fms = new Fms(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, runwayAssignmentMock, AIRCRAFT_DEFINITION_MOCK, navigationLibraryFixture);
 
     if (shouldUseComplexRoute) {
         const aircraftPropsMock = Object.assign({}, ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, { route: complexRouteString });
 
         fms = new Fms(aircraftPropsMock, runwayAssignmentMock, AIRCRAFT_DEFINITION_MOCK, navigationLibraryFixture);
-    } else if (isDeparture) {
-        fms = new Fms(DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK, runwayAssignmentMock, AIRCRAFT_DEFINITION_MOCK, navigationLibraryFixture);
     }
 
-    return fms
+    return fms;
 }
 
 function buildFmsMockForDeparture() {
-    const fms = buildFmsMock();
-    fms.updateModesForDeparture();
+    const fms = new Fms(DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK, runwayAssignmentMock, AIRCRAFT_DEFINITION_MOCK, navigationLibraryFixture);
 
     return fms;
 }
@@ -221,17 +218,17 @@ ava('.getNextWaypointPosition() returns the position array for the next Waypoint
     t.true(_isEqual(result, expectedResult));
 });
 
-ava.skip('.replaceDepartureProcedure() returns early if the nextRouteString matches the current route', (t) => {
+ava('.replaceDepartureProcedure() returns early if the nextRouteString matches the current route', (t) => {
     const nextRouteStringMock = 'KLAS.TRALR6.MLF';
     const routeStringMock = DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK.route;
-    const fms = buildFmsMock(false, isDeparture);
+    const fms = buildFmsMockForDeparture();
 
     fms.replaceDepartureProcedure(routeStringMock, runwayAssignmentMock);
 });
 
 ava('.replaceDepartureProcedure() calls prepend leg when no departure procedure exists', (t) => {
     const nextRouteStringMock = 'KLAS.TRALR6.MLF';
-    const fms = buildFmsMock(false, isDeparture);
+    const fms = buildFmsMockForDeparture();
     const prependLegSpy = sinon.spy(fms, 'prependLeg');
 
     fms._destroyLegCollection();
@@ -242,7 +239,7 @@ ava('.replaceDepartureProcedure() calls prepend leg when no departure procedure 
 
 ava('.replaceDepartureProcedure() calls legModel.destroy() when an existing sid procedure leg is found', (t) => {
     const nextRouteStringMock = 'KLAS.TRALR6.MLF';
-    const fms = buildFmsMock(false, isDeparture);
+    const fms = buildFmsMockForDeparture();
     const legModelDestroySpy = sinon.spy(fms.legCollection[0], 'destroy');
 
     fms.replaceDepartureProcedure(nextRouteStringMock, runwayAssignmentMock);
@@ -252,22 +249,32 @@ ava('.replaceDepartureProcedure() calls legModel.destroy() when an existing sid 
 
 ava('.replaceDepartureProcedure() calls legModel.init() with the new routeString', (t) => {
     const nextRouteStringMock = 'KLAS.TRALR6.MLF';
-    const fms = buildFmsMock(false, isDeparture);
+    const fms = buildFmsMockForDeparture();
     const legModelInitSpy = sinon.stub(fms.legCollection[0], 'init');
+    fms.replaceDepartureProcedure(nextRouteStringMock, runwayAssignmentMock);
 
-    const result = fms.replaceDepartureProcedure(nextRouteStringMock, runwayAssignmentMock);
-    console.log(result);
     t.true(legModelInitSpy.calledWith(nextRouteStringMock));
+
+    legModelInitSpy.restore();
 });
 
-ava.skip('.replaceDepartureProcedure() returns a success message after success', (t) => {
-    const expectedResult = [];
+ava('.replaceDepartureProcedure() returns undefined after success', (t) => {
     const nextRouteStringMock = 'KLAS.TRALR6.MLF';
-    const fms = buildFmsMock(false, isDeparture);
-
+    const fms = buildFmsMockForDeparture();
     const result = fms.replaceDepartureProcedure(nextRouteStringMock, runwayAssignmentMock);
 
-    t.true(_isEqual(result, expectedResult));
+    t.true(typeof result === 'undefined');
+});
+
+ava('.replaceDepartureProcedure() replaces the currentLeg with the new route', (t) => {
+    const nextRouteStringMock = 'KLAS.TRALR6.MLF';
+    const fms = buildFmsMockForDeparture();
+
+    t.false(fms.currentLeg.routeString === nextRouteStringMock.toLowerCase());
+
+    fms.replaceDepartureProcedure(nextRouteStringMock, runwayAssignmentMock);
+
+    t.true(fms.currentLeg.routeString === nextRouteStringMock.toLowerCase());
 });
 
 ava('._buildLegCollection() returns an array of LegModels', (t) => {

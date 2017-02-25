@@ -106,6 +106,8 @@ export default class Pilot {
         const exit = this._fms.findRandomExitPointForSidProcedureId(procedureId);
         const routeStr = `${airportIcao}.${procedureId}.${exit}`;
 
+        // verify route here
+
         if (!departureRunway) {
             return [false, 'unsure if we can accept that procedure; we don\'t have a runway assignment'];
         }
@@ -114,8 +116,8 @@ export default class Pilot {
             return [false, `unable, the ${standardRouteModel.name.toUpperCase()} departure not valid from Runway ${departureRunway}`];
         }
 
-        // mcp modes here
-
+        this._setAltitudeVnav();
+        this._setSpeedVnav();
         this._fms.replaceDepartureProcedure(routeStr, departureRunway);
 
         const readback = {};
@@ -544,6 +546,17 @@ export default class Pilot {
         readback.say = `taxi to runway ${radio_runway(runway.name)}`;
 
         return [true, readback];
+    }
+
+    /**
+     * Set the MCP altitude mode to "VNAV"
+     *
+     * @for Pilot
+     * @method _setAltitudeVnav
+     * @private
+     */
+    _setAltitudeVnav() {
+        this._mcp.setModeSelectorMode(MCP_MODE_NAME.ALTITUDE, MCP_MODE.ALTITUDE.VNAV);
     }
 
     /**

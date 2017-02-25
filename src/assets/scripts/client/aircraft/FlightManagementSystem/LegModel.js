@@ -145,7 +145,6 @@ export default class LegModel {
     destroy() {
         this._destroyWaypointCollection();
 
-        this._navigationLibrary = null;
         this._isProcedure = false;
         this.procedureType = '';
         this.routeString = '';
