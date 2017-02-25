@@ -247,6 +247,52 @@ export default class Pilot {
     }
 
     /**
+     * Conduct the specified instrument approachType
+     * Note: Currently only supports ILS approaches
+     * Note: Approach variants cannot yet be specified (eg RNAV-Y)
+     *
+     * @for pilot
+     * @method conductInstrumentApproach
+     * @param {String} approachType - the type of instrument approach (eg 'ILS', 'RNAV', 'VOR', etc)
+     * @param {Runway} runway - the runway the approach ends at
+     * @param {Number} interceptAltitude - the altitude to maintain until established on the localizer
+     * @return {Array} [success of operation, readback]
+     */
+    conductInstrumentApproach(approachType, runway, interceptAltitude) {
+        if (_isNil(runway)) {
+            return [false, 'the specified runway does not exist'];
+        }
+
+        // TODO: #flyPresentHeading requires a value we can't get, unless we pass it, which seems sloppy
+        if (this._mcp.headingMode !== MCP_MODE.HEADING.HOLD) {
+            this.flyPresentHeading();
+        }
+
+        const datum = runway.position;
+        const course = runway.angle;
+        const descentAngle = runway.ils.gs_gradient;
+
+        // TODO: This method may not exist yet
+        this._fms.setArrivalRunway(runway.name);
+        const lateralGuidance = this.interceptCourse(datum, course)[0];
+        const verticalGuidance = this.interceptGlidepath(datum, course, descentAngle, interceptAltitude)[0];
+
+        if (!lateralGuidance) {
+            return lateralGuidance;
+        }
+
+        if (!verticalGuidance) {
+            return verticalGuidance;
+        }
+
+        const readback = {};
+        readback.log = `cleared ${approachType.toUpperCase()} runway ${runway.name} approach`;
+        readback.say = `cleared ${approachType.toUpperCase()} runway ${radio_runway(runway.name)} approach`;
+
+        return [true, readback];
+    }
+
+    /**
      * Descend in accordance with the altitude restrictions
      *
      * @for Pilot
@@ -268,6 +314,64 @@ export default class Pilot {
         const readback = {};
         readback.log = 'descend via the arrival';
         readback.say = 'descend via the arrival';
+
+        return [true, readback];
+    }
+
+    /**
+     * Intercept a radial course or localizer (horizontal guidance)
+     *
+     * @for Pilot
+     * @method interceptCourse
+     * @param {Position} datum - the position the course is based upon
+     * @param {Number} course - the heading inbound to the datum
+     * @return {Array} [success of operation, readback]
+     */
+    interceptCourse(datum, course) {
+        this._setNav1Datum(datum);
+        this._setCourseFieldValue(course);
+        this._setHeadingVorLoc();
+
+        const readback = {};
+        readback.log = 'intercept localizer';
+        readback.say = 'intercept localizer';
+
+        return [true, readback];
+    }
+
+    /**
+     * Intercept a glidepath or glideslop (vertical guidance)
+     *
+     * @for Pilot
+     * @method interceptGlidepath
+     * @param {Position} datum - the position the glidepath is projected from
+     * @param {Number} course - the heading inbound to the datum
+     * @param {Number} descentAngle - the angle of descent along the glidepath
+     * @param {Number} interceptAltitude - the altitude to which the aircraft can descend without yet
+     *                                     being established on the glidepath
+     * @return {Array} [success of operation, readback]
+     */
+    interceptGlidepath(datum, course, descentAngle, interceptAltitude) {
+        // TODO: I feel like our description of lateral/vertical guidance should be done with its
+        // own class rather than like this by storing all sorts of irrelevant stuff in the pilot/MCP.
+        if (this._mcp.nav1Datum !== datum) {
+            return [false, 'cannot follow glidepath because we are using lateral navigation from a ' +
+                'different origin'];
+        }
+
+        if (this._mcp.course !== course) {
+            return [false, 'cannot follow glidepath because its course differs from that specified ' +
+                'for lateral guidance'];
+        }
+
+        // TODO: the descentAngle is a part of the ILS system itself, and should not be owned by the MCP
+        this._mcp.descentAngle = descentAngle;
+        this._setAltitudeFieldValue(interceptAltitude);
+        this._setAltitudeApproach();
+
+        const readback = {};
+        readback.log = 'intercept glidepath';
+        readback.log = 'intercept glidepath';
 
         return [true, readback];
     }
@@ -603,6 +707,18 @@ export default class Pilot {
      */
     _setAltitudeFieldValue(altitude) {
         this._mcp.setFieldValue(MCP_FIELD_NAME.ALTITUDE, altitude);
+    }
+
+    /**
+     * Set the value of the MCP's course "field" to a given value
+     *
+     * @for Pilot
+     * @method _setCourseFieldValue
+     * @param {Number} course - magnetic course to set value to
+     * @private
+     */
+    _setCourseFieldValue(course) {
+        this._mcp.setFieldValue(MCP_FIELD_NAME.COURSE, course);
     }
 
     /**

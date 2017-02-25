@@ -586,24 +586,18 @@ export default class AircraftCommander {
         return ['fail', `number ${waiting} behind ${runway.queue[waiting - 1].getRadioCallsign()}`, ''];
     }
 
+    /**
+     * @for AircraftCommander
+     * @method runLanding
+     * @param data
+     */
     runLanding(aircraft, data) {
-        const variant = data[0];
-        const runway = this._airportController.airport_get().getRunway(data[1]);
+        const approachType = 'ils';
+        // TODO: Is this .toUpperCase() really necessary??
+        const runwayName = data[1].toUpperCase();
+        const runway = this._airportController.airport_get().getRunway(runwayName);
 
-        if (!runway) {
-            return ['fail', `there is no runway ${radio_runway(data[1])}`];
-        }
-
-        aircraft.setArrivalRunway(data[1].toUpperCase());
-        // tell fms to follow ILS approach
-        aircraft.__fms__.followApproach('ils', aircraft.rwy_arr, variant);
-
-        const readback = {
-            log: `cleared ILS runway ${aircraft.rwy_arr} approach`,
-            say: `cleared ILS runway ${radio_runway(aircraft.rwy_arr)} approach`
-        };
-
-        return ['ok', readback];
+        return aircraft.pilot.conductInstrumentApproach(approachType, runway);
     }
 
     /**

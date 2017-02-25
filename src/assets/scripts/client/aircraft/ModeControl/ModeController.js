@@ -15,17 +15,22 @@ export default class ModeController {
      * @for ModeController
      */
     constructor(isAircraftAirborne) {
+        // Mode Selectors
         this.altitudeMode = MCP_MODE.ALTITUDE.OFF;
         this.autopilotMode = MCP_MODE.AUTOPILOT.OFF;
         this.headingMode = MCP_MODE.HEADING.OFF;
         this.speedMode = MCP_MODE.SPEED.OFF;
 
+        // Fields
         this.altitude = -1;
         this.course = -1;
         this.heading = -1;
         this.speed = -1;
 
+        // Other
         this.shouldExpediteAltitudeChange = false;
+        this.nav1Datum = null;
+        this.descentAngle = 0;
 
         this.init(isAircraftAirborne);
     }
