@@ -28,6 +28,18 @@ export default class StandardRouteCollection extends BaseCollection {
             return;
         }
 
+        /**
+         * Current cache of found routes, organized by `ICAO.ENTRY.EXIT` strings
+         *
+         * By leveraging this cache, we are able to pre-find routes for verification,
+         * but also store them so subsequent finds return from the cache.
+         *
+         * @property _cache
+         * @type {Object}
+         * @default {}
+         */
+        this._cache = {};
+
         return this._init(standardRouteEnum);
     }
 
@@ -101,6 +113,8 @@ export default class StandardRouteCollection extends BaseCollection {
     /**
      * Find a list of `StandardWaypointModel`s for a specific route
      *
+     * Acts as a fascade for `_findOrAddRouteToCache`.
+     *
      * @for StandardRouteCollection
      * @method findRouteWaypointsForRouteByEntryAndExit
      * @param icao {string}
@@ -114,9 +128,7 @@ export default class StandardRouteCollection extends BaseCollection {
             return;
         }
 
-        const route = this.findRouteByIcao(icao);
-
-        return route.findStandardRouteWaypointModelsForEntryAndExit(entry, exit, isPreSpawn);
+        return this._findOrAddRouteToCache(icao, entry, exit, isPreSpawn);
     }
 
     /**
@@ -130,7 +142,8 @@ export default class StandardRouteCollection extends BaseCollection {
      * @return {array<WaypointModel>}
      */
     generateFmsWaypointModelsForRoute(icao, entry, exit) {
-        const standardRouteWaypointModels = this.findRouteWaypointsForRouteByEntryAndExit(icao, entry, exit, false);
+        const isPreSpawn = false;
+        const standardRouteWaypointModels = this.findRouteWaypointsForRouteByEntryAndExit(icao, entry, exit, isPreSpawn);
 
         return _map(standardRouteWaypointModels, (model) => model.toWaypointModel());
     }
@@ -217,5 +230,33 @@ export default class StandardRouteCollection extends BaseCollection {
         this._items.push(routeModel);
 
         return this;
+    }
+
+    /**
+     * Find the requested route in `_cache` or find the route and add it t the cache
+     *
+     * Allows a route to be validated by first finding them and then adding it to the _cache.
+     * Imprpves performance by not having to search for routes that have already been found.
+     *
+     * @for StandardRouteCollection
+     * @method findRouteWaypointsForRouteByEntryAndExit
+     * @param icao {string}
+     * @param entry {string}
+     * @param exit {string}
+     * @param isPreSpawn {boolean} flag used to determine if distances between waypoints should be calculated
+     * @return {array<StandardRouteWaypointModel>}
+     */
+    _findOrAddRouteToCache(icao, entry, exit, isPreSpawn) {
+        const cacheKey = `${icao}.${entry}.${exit}`;
+
+        if (!_isNil(this._cache[cacheKey]) && !isPreSpawn) {
+            return this._cache[cacheKey];
+        }
+
+        const routeModel = this.findRouteByIcao(icao);
+        const routeWaypoints = routeModel.findStandardRouteWaypointModelsForEntryAndExit(entry, exit, isPreSpawn);
+        this._cache[cacheKey] = routeWaypoints;
+
+        return routeWaypoints;
     }
 }
