@@ -6,6 +6,7 @@ import _isNil from 'lodash/isNil';
 import _isObject from 'lodash/isObject';
 import _map from 'lodash/map';
 import LegModel from './LegModel';
+import RouteModel from '../../navigationLibrary/Route/RouteModel';
 import { routeStringFormatHelper } from '../../navigationLibrary/Route/routeStringFormatHelper';
 import {
     FLIGHT_CATEGORY,
@@ -209,7 +210,7 @@ export default class Fms {
     }
 
     /**
-     * Add a new `LegModel` to the left side of the `legCollection`
+     * Add a new `LegModel` to the left side of the `#legCollection`
      *
      * @for Fms
      * @method prependLeg
@@ -219,6 +220,19 @@ export default class Fms {
         const legModel = new LegModel(routeString, this._runwayName, this.currentPhase, this._navigationLibrary);
 
         this.legCollection.unshift(legModel);
+    }
+
+    /**
+     * Add a new `LegModel` to the right side of the `#legCollection`
+     *
+     * @for Fms
+     * @method appendLeg
+     * @param routeString
+     */
+    appendLeg(routeString) {
+        const legModel = new LegModel(routeString, this._runwayName, this.currentPhase, this._navigationLibrary);
+
+        this.legCollection.push(legModel);
     }
 
     /**
@@ -306,7 +320,7 @@ export default class Fms {
      * This method does not remove any `LegModel`s. It instead finds and updates a
      * `LegModel` with a new routeString. If a `LegModel` without a departure
      * procedure cannot be found, then we create a new `LegModel` and place it
-     * first in the `#legCollection`
+     * at the beginning of the `#legCollection`.
      *
      * @for Fms
      * @method replaceDepartureProcedure
@@ -321,11 +335,24 @@ export default class Fms {
 
         const procedureLegIndex = this._findLegIndexForProcedureType(PROCEDURE_TYPE.SID);
 
+        // a procedure does not exist in the flight plan, so we must create a new one
+        if (procedureLegIndex === -1) {
+            this.prependLeg(routeString);
+
+            return;
+        }
+
         this._replaceLegAtIndexWithRouteString(procedureLegIndex, routeString);
     }
 
     /**
+     * Find the arrival procedure (if it exists) within the `#legCollection` and
+     * reset it with a new arrival procedure.
      *
+     * This method does not remove any `LegModel`s. It instead finds and updates a
+     * `LegModel` with a new routeString. If a `LegModel` without a arrival
+     * procedure cannot be found, then we create a new `LegModel` and place it
+     * at the end of the `#legCollection`.
      *
      * @for Fms
      * @method replaceArrivalProcedure
@@ -340,35 +367,62 @@ export default class Fms {
 
         const procedureLegIndex = this._findLegIndexForProcedureType(PROCEDURE_TYPE.STAR);
 
+        // a procedure does not exist in the flight plan, so we must create a new one
+        if (procedureLegIndex === -1) {
+            this.appendLeg(routeString);
+
+            return;
+        }
+
         this._replaceLegAtIndexWithRouteString(procedureLegIndex, routeString);
     }
 
     /**
+     * Determinines if the passed `routeString` is a valid procedure route.
      *
+     * This can be either a SID or a STAR.
+     * A valid `procedureRouteString` is expected to be in the shape of:
+     * `ENTRY.PROCEDURE_NAME.EXIT`
      *
+     * @for Fms
+     * @method isValidProcedureRoute
+     * @param routeString {string}
+     * @param runway {string}
+     * @param flightPhase {string}
+     * @return {boolean}
      */
-    isValidProcedureRoute(routeModel, runway, flightPhase) {
-        if (this.hasLegWithRouteString(routeModel.routeCode)) {
+    isValidProcedureRoute(routeString, runway, flightPhase) {
+        let routeStringModel;
+
+        // RouteModel will throw when presented with an invalid procedureRouteString,
+        // we only want to capture that here and continue on our way.
+        try {
+            routeStringModel = new RouteModel(routeString);
+        } catch (error) {
+            console.error(error);
+
+            return false;
+        }
+
+        // a `LegModel` already exists with this routeString
+        if (this.hasLegWithRouteString(routeStringModel.routeCode)) {
             return true;
         }
 
-        if (flightPhase === FLIGHT_CATEGORY.ARRIVAL) {
-            const routeWaypoints = this._navigationLibrary.starCollection.findRouteWaypointsForRouteByEntryAndExit(
-                routeModel.procedure,
-                routeModel.entry,
-                runway
-            );
+        // find the prcedure model from the correct collection based on flightPhase
+        const procedureModel = flightPhase === FLIGHT_CATEGORY.ARRIVAL
+            ? this.findStarByProcedureId(routeStringModel.procedure)
+            : this.findSidByProcedureId(routeStringModel.procedure);
 
-            return typeof routeWaypoints !== 'undefined';
+        if (!procedureModel) {
+            return false;
         }
 
-        const routeWaypoints = this._navigationLibrary.sidCollection.findRouteWaypointsForRouteByEntryAndExit(
-            routeModel.procedure,
-            runway,
-            routeModel.exit
-        );
+        if (flightPhase === FLIGHT_CATEGORY.ARRIVAL) {
+            return procedureModel.hasFixName(routeStringModel.entry) && procedureModel.hasFixName(runway);
+        }
 
-        return typeof routeWaypoints !== 'undefined';
+        return procedureModel.hasFixName(routeStringModel.exit) && procedureModel.hasFixName(runway);
     }
 
     /**
@@ -384,8 +438,16 @@ export default class Fms {
     }
 
     /**
+     * Determiens is any `LegModel` with the `#legCollection` contains
+     * a specific `routeString`.
      *
+     * It is assumed that if a leg matches the `routeString` provided,
+     * the route is the same.
      *
+     * @for Fms
+     * @method hasLegWithRouteString
+     * @param routeString {string}
+     * @return {boolean}
      */
     hasLegWithRouteString(routeString) {
         const previousProcedureLeg = this._findLegByRouteString(routeString);
@@ -402,7 +464,7 @@ export default class Fms {
      * @for Fms
      * @method findSidByProcedureId
      * @param procedureId {string}
-     * @return {}
+     * @return {array<StandardRouteWaypointModel>}
      */
     findSidByProcedureId(procedureId) {
         return this._navigationLibrary.sidCollection.findRouteByIcao(procedureId);
@@ -417,7 +479,7 @@ export default class Fms {
      * @for Fms
      * @method findStarByProcedureId
      * @param procedureId {string}
-     * @return {}
+     * @return {array<StandardRouteWaypointModel>}
      */
     findStarByProcedureId(procedureId) {
         return this._navigationLibrary.starCollection.findRouteByIcao(procedureId);
@@ -432,7 +494,7 @@ export default class Fms {
      * @Fms
      * @method findRandomExitPointForSidProcedureId
      * @param procedureId {string}
-     * @return
+     * @return {array<StandardRouteWaypointModel>}
      */
     findRandomExitPointForSidProcedureId(procedureId) {
         return this._navigationLibrary.sidCollection.findRandomExitPointForSIDIcao(procedureId);
@@ -464,6 +526,7 @@ export default class Fms {
      * @for Fms
      * @method _buildLegModelFromRouteSegment
      * @param routeSegment {string}  a segment of a `routeString`
+     * @private
      */
     _buildLegModelFromRouteSegment(routeSegment) {
         return new LegModel(routeSegment, this._runwayName, this.currentPhase, this._navigationLibrary);
@@ -485,6 +548,7 @@ export default class Fms {
      *
      * @for Fms
      * @method _moveToNextLeg
+     * @private
      */
     _moveToNextLeg() {
         this.currentLeg.destroy();
@@ -526,8 +590,14 @@ export default class Fms {
     }
 
     /**
+     * Given a `procedureType` this locates the array index of a leg with that `#procedureType`.
      *
-     *
+     * @for Fms
+     * @method _findLegIndexForProcedureType
+     * @param procedureType {PROCEDURE_TYPE|string}  either `SID` or `STAR`, but can be extended to anything in the
+     *                                               `PROCEDURE_TYPE` enum
+     * @return {number}                              this array index of a `procedureType` from the `#legCollection`
+     * @private
      */
     _findLegIndexForProcedureType(procedureType) {
         return _findIndex(this.legCollection, { _isProcedure: true, procedureType: procedureType });
@@ -543,6 +613,7 @@ export default class Fms {
      * @for Fms
      * @method _collectRouteStringsForLegsToBeDropped
      * @param legIndex {number}  index number of the next currentLeg
+     * @private
      */
     _collectRouteStringsForLegsToBeDropped(legIndex) {
         for (let i = 0; i < legIndex; i++) {
@@ -580,23 +651,27 @@ export default class Fms {
      * @method _findLegByRouteString
      * @param routeString {string}
      * @return {LegModel|undefined}
+     * @private
      */
     _findLegByRouteString(routeString) {
         return _find(this.legCollection, { routeString: routeString.toLowerCase() });
     }
 
     /**
+     * This method will find an leg at `legIndex` in the `#legCollection` and
+     * replace it with a new `routeString`.
      *
+     * It is important to note that this doesn't create a new `LegModel` instance.
+     * Instead, this locates the leg at `legIndex`, destroys it's properties, then
+     * runs `init()` with the new `routeString`.
      *
+     * @for Fms
+     * @method _replaceLegAtIndexWithRouteString
+     * @param legIndex {number}     array index of the leg to replace
+     * @param routeString {string}  routeString to use for the replacement leg
+     * @private
      */
     _replaceLegAtIndexWithRouteString(legIndex, routeString) {
-        // a procedure does not exist in the flight plan, so we must create a new one
-        if (legIndex === -1) {
-            this.prependLeg(routeString);
-
-            return;
-        }
-
         const legModel = this.legCollection[legIndex];
 
         legModel.destroy();

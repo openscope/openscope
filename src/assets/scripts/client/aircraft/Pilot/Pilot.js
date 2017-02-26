@@ -69,20 +69,16 @@ export default class Pilot {
      * @return {Array}              [success of operation, readback]
      */
     applyArrivalProcedure(routeString, arrivalRunway, airportName) {
-        const routeStringModel = new RouteModel(routeString);
-        const starModel = this._fms.findStarByProcedureId(routeStringModel.procedure);
-        console.log(routeString, routeStringModel);
-        console.log(starModel);
-
-        if (!routeStringModel || !starModel) {
+        if (!this._fms.isValidProcedureRoute(routeString, arrivalRunway, FLIGHT_CATEGORY.ARRIVAL)) {
+            // TODO: may need a better message here
             return [false, 'STAR name not understood'];
         }
 
-        if (!this._fms.isValidProcedureRoute(routeStringModel, arrivalRunway, FLIGHT_CATEGORY.ARRIVAL)) {
-            return [false, ''];
-        }
+        const routeStringModel = new RouteModel(routeString);
+        const starModel = this._fms.findStarByProcedureId(routeStringModel.procedure);
 
-        this._fms.applyArrivalProcedure(routeStringModel.routeCode, arrivalRunway);
+        // TODO: set mcp modes here
+        this._fms.replaceArrivalProcedure(routeStringModel.routeCode, arrivalRunway);
 
         // Build readback
         const readback = {};
@@ -159,7 +155,7 @@ export default class Pilot {
 
         // Build readback
         const readback = {};
-        readback.log = `rerouting to: ${this._fms.fp.route.join(' ')}`;
+        readback.log = `rerouting to: ${this._fms.sayRoute}`;
         readback.say = 'rerouting as requested';
 
         return [true, readback];
@@ -360,13 +356,14 @@ export default class Pilot {
         // TODO: I feel like our description of lateral/vertical guidance should be done with its
         // own class rather than like this by storing all sorts of irrelevant stuff in the pilot/MCP.
         if (this._mcp.nav1Datum !== datum) {
-            return [false, 'cannot follow glidepath because we are using lateral navigation from a ' +
-                'different origin'];
+            return [false, 'cannot follow glidepath because we are using lateral navigation from a different origin'];
         }
 
         if (this._mcp.course !== course) {
-            return [false, 'cannot follow glidepath because its course differs from that specified ' +
-                'for lateral guidance'];
+            return [
+                false,
+                'cannot follow glidepath because its course differs from that specified for lateral guidance'
+            ];
         }
 
         // TODO: the descentAngle is a part of the ILS system itself, and should not be owned by the MCP
@@ -448,8 +445,10 @@ export default class Pilot {
     maintainHeading(heading, direction, incremental) {
         let degrees;
 
+        // TODO: this math should be an external helper function
         if (incremental) {
             degrees = heading;
+            // FIXME: pass in the current heading when calling this method from the AircraftCommander
             const aircraft = { heading: 0 };    // FIXME: How can the Pilot access the current heading?
 
             if (direction === 'left') {

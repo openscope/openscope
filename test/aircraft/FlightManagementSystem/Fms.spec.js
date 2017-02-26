@@ -3,11 +3,7 @@ import sinon from 'sinon';
 import _isEqual from 'lodash/isEqual';
 
 import Fms from '../../../src/assets/scripts/client/aircraft/FlightManagementSystem/Fms';
-import {
-    navigationLibraryFixture,
-    arrivalRouteModelFixture,
-    departureRouteModelFixture
-} from '../../fixtures/navigationLibraryFixtures';
+import { navigationLibraryFixture } from '../../fixtures/navigationLibraryFixtures';
 import {
     ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK,
     DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK,
@@ -16,16 +12,11 @@ import {
 
 const complexRouteString = 'COWBY..BIKKR..DAG.KEPEC3.KLAS';
 const simpleRouteString = ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK.route;
-const arrivalProcedureRouteString = 'MLF.GRNPA1.KLAS';
+const arrivalProcedureRouteStringMock = 'MLF.GRNPA1.KLAS';
+const departureProcedureRouteStringMock = 'KLAS.COWBY6.DRK';
 const runwayAssignmentMock = '19L';
 const isComplexRoute = true;
 const isDeparture = true;
-const invalidRouteModel = {
-    routeCode: 'a.b.c',
-    entry: 'a',
-    procedure: 'b',
-    exit: 'c'
-};
 
 function buildFmsMock(shouldUseComplexRoute = false) {
     let fms = new Fms(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, runwayAssignmentMock, AIRCRAFT_DEFINITION_MOCK, navigationLibraryFixture);
@@ -229,12 +220,14 @@ ava('.getNextWaypointPosition() returns the position array for the next Waypoint
     t.true(_isEqual(result, expectedResult));
 });
 
-ava.skip('.replaceDepartureProcedure() returns early if the nextRouteString matches the current route', (t) => {
-    const nextRouteStringMock = 'KLAS.TRALR6.MLF';
+ava('.replaceDepartureProcedure() returns early if the nextRouteString matches the current route', (t) => {
     const routeStringMock = DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK.route;
     const fms = buildFmsMockForDeparture();
+    const _findLegIndexForProcedureTypeSpy = sinon.spy(fms, '_findLegIndexForProcedureType');
 
     fms.replaceDepartureProcedure(routeStringMock, runwayAssignmentMock);
+
+    t.false(_findLegIndexForProcedureTypeSpy.called);
 });
 
 ava('.replaceDepartureProcedure() calls prepend leg when no departure procedure exists', (t) => {
@@ -267,26 +260,29 @@ ava('.replaceDepartureProcedure() replaces the currentLeg with the new route', (
     t.true(fms.currentLeg.routeString === nextRouteStringMock.toLowerCase());
 });
 
-ava.skip('.replaceArrivalProcedure() returns early if the nextRouteString matches the current route', (t) => {
+ava('.replaceArrivalProcedure() returns early if the nextRouteString matches the current route', (t) => {
     const routeStringMock = ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK.route;
     const fms = buildFmsMock();
+    const _findLegIndexForProcedureTypeSpy = sinon.spy(fms, '_findLegIndexForProcedureType');
 
     fms.replaceArrivalProcedure(routeStringMock, runwayAssignmentMock);
+
+    t.false(_findLegIndexForProcedureTypeSpy.called);
 });
 
-ava('.replaceArrivalProcedure() calls prepend leg when no departure procedure exists', (t) => {
+ava('.replaceArrivalProcedure() calls .appendLeg() when no departure procedure exists', (t) => {
     const fms = buildFmsMock();
-    const prependLegSpy = sinon.spy(fms, 'prependLeg');
+    const appendLegSpy = sinon.spy(fms, 'appendLeg');
 
     fms._destroyLegCollection();
-    fms.replaceArrivalProcedure(arrivalProcedureRouteString, runwayAssignmentMock);
+    fms.replaceArrivalProcedure(arrivalProcedureRouteStringMock, runwayAssignmentMock);
 
-    t.true(prependLegSpy.calledOnce);
+    t.true(appendLegSpy.calledOnce);
 });
 
 ava('.replaceArrivalProcedure() returns undefined after success', (t) => {
     const fms = buildFmsMock();
-    const result = fms.replaceArrivalProcedure(arrivalProcedureRouteString, runwayAssignmentMock);
+    const result = fms.replaceArrivalProcedure(arrivalProcedureRouteStringMock, runwayAssignmentMock);
 
     t.true(typeof result === 'undefined');
 });
@@ -294,22 +290,40 @@ ava('.replaceArrivalProcedure() returns undefined after success', (t) => {
 ava('.replaceArrivalProcedure() replaces the currentLeg with the new route', (t) => {
     const fms = buildFmsMock();
 
-    t.false(fms.currentLeg.routeString === arrivalProcedureRouteString.toLowerCase());
+    t.false(fms.currentLeg.routeString === arrivalProcedureRouteStringMock.toLowerCase());
 
-    fms.replaceArrivalProcedure(arrivalProcedureRouteString, runwayAssignmentMock);
+    fms.replaceArrivalProcedure(arrivalProcedureRouteStringMock, runwayAssignmentMock);
 
-    t.true(fms.currentLeg.routeString === arrivalProcedureRouteString.toLowerCase());
+    t.true(fms.currentLeg.routeString === arrivalProcedureRouteStringMock.toLowerCase());
 });
 
 ava('.isValidProcedureRoute() returns false when passed an invalid route', (t) => {
+    const invalidRouteString = 'a.b.c';
     const fms = buildFmsMock();
 
-    t.false(fms.isValidProcedureRoute(invalidRouteModel, runwayAssignmentMock, 'arrival'));
-    t.false(fms.isValidProcedureRoute(invalidRouteModel, runwayAssignmentMock, 'departure'));
+    t.false(fms.isValidProcedureRoute(invalidRouteString, runwayAssignmentMock, 'arrival'));
+    t.false(fms.isValidProcedureRoute(invalidRouteString, runwayAssignmentMock, 'departure'));
+});
+
+ava.before(() => {
+    sinon.stub(global.console, 'error', () => {});
+});
+
+ava.after(() => {
+    global.console.error.restore();
+});
+
+ava('.isValidProcedureRoute() returns early if passed a malformed RouteString', (t) => {
+    const invalidRouteStringMock = 'a.b';
+    const fms = buildFmsMock();
+    const hasLegWithRouteStringSpy = sinon.spy(fms, 'hasLegWithRouteString');
+
+    t.false(hasLegWithRouteStringSpy.called);
+    t.false(fms.isValidProcedureRoute(invalidRouteStringMock));
 });
 
 ava('.isValidProcedureRoute() returns true if the passed route already exists within the #legCollection', (t) => {
-    const procedureRouteStringMock = { routeCode: 'dag.kepec3.klas' };
+    const procedureRouteStringMock = 'dag.kepec3.klas';
     const fms = buildFmsMock();
     const result = fms.isValidProcedureRoute(procedureRouteStringMock, runwayAssignmentMock, 'arrival');
 
@@ -318,14 +332,14 @@ ava('.isValidProcedureRoute() returns true if the passed route already exists wi
 
 ava('.isValidProcedureRoute() returns true if the passed route is a valid arrival route', (t) => {
     const fms = buildFmsMock();
-    const result = fms.isValidProcedureRoute(arrivalRouteModelFixture, runwayAssignmentMock, 'arrival');
+    const result = fms.isValidProcedureRoute(arrivalProcedureRouteStringMock, runwayAssignmentMock, 'arrival');
 
     t.true(result);
 });
 
 ava('.isValidProcedureRoute() returns true if the passed route is a valid departure route', (t) => {
     const fms = buildFmsMock();
-    const result = fms.isValidProcedureRoute(departureRouteModelFixture, runwayAssignmentMock, 'departure');
+    const result = fms.isValidProcedureRoute(departureProcedureRouteStringMock, runwayAssignmentMock, 'departure');
 
     t.true(result);
 });
