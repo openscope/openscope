@@ -7,6 +7,7 @@ import _isObject from 'lodash/isObject';
 import _map from 'lodash/map';
 import LegModel from './LegModel';
 import { routeStringFormatHelper } from '../../navigationLibrary/Route/routeStringFormatHelper';
+import { PROCEDURE_TYPE } from '../../constants/aircraftConstants';
 
 /**
  *
@@ -19,6 +20,10 @@ const DIRECT_ROUTE_SEGMENT_SEPARATOR = '..';
 
 /**
  *
+ *
+ * Is only be concerned about maintaining the flightPlan, which is
+ * really just the collection of `LegModels` and their respective
+ * `WaypointModel` objects.
  *
  * This class should always be instantiated from an `AircraftInstanceModel` and
  * always instantiated from some form of `spawnPatternModel`.
@@ -230,8 +235,6 @@ export default class Fms {
         }
 
         this._moveToNextWaypointInLeg();
-
-        // TODO: last else should be cancelFix()
     }
 
     /**
@@ -244,10 +247,9 @@ export default class Fms {
      * @param routeString {string}
      */
     replaceCurrentFlightPlan(routeString) {
-        this.flightPlanRoute = routeString;
         this._destroyLegCollection();
-        // _resetModeControllerForNewFlightPlan
 
+        this.flightPlanRoute = routeString;
         this.legCollection = this._buildLegCollection(routeString);
     }
 
@@ -295,6 +297,84 @@ export default class Fms {
     }
 
     /**
+     * Find the departure procedure (if it exists) within the `#legCollection` and
+     * reset it with a new departure procedure.
+     *
+     * This method does not remove any `LegModel`s. It instead finds and updates a
+     * `LegModel` with a new routeString. If a `LegModel` without a departure
+     * procedure cannot be found, then we create a new `LegModel` and place it
+     * first in the `#legCollection`
+     *
+     * @for Fms
+     * @method replaceDepartureProcedure
+     * @param routeString {string}
+     * @param departureRunway {string}
+     */
+    replaceDepartureProcedure(routeString, departureRunway) {
+        // this is the same procedure that is already set, no need to continue
+        if (this.hasLegWithRouteString(routeString)) {
+            return;
+        }
+
+        const procedureLegIndex = this._findLegIndexForProcedureType(PROCEDURE_TYPE.SID);
+
+        this._replaceLegAtIndexWithRouteString(procedureLegIndex, routeString);
+    }
+
+    /**
+     *
+     *
+     * @for Fms
+     * @method replaceArrivalProcedure
+     * @param routeString {string}
+     * @param arrivalRunway {string}
+     */
+    replaceArrivalProcedure(routeString, arrivalRunway) {
+        // this is the same procedure that is already set, no need to continue
+        if (this.hasLegWithRouteString(routeString)) {
+            return;
+        }
+
+        const procedureLegIndex = this._findLegIndexForProcedureType(PROCEDURE_TYPE.STAR);
+
+        this._replaceLegAtIndexWithRouteString(procedureLegIndex, routeString);
+    }
+
+    /**
+     *
+     *
+     */
+    validateProcedureRoute(routeStringModel, flightPhase) {
+        // hasLegWithRouteString(routeStringModel.routeCode)
+        //
+        //if (flightPhase === FLIGHT_CATEGORY.ARRIVAL) {
+        //    this._navigationLibrary.findRouteWaypointsForRouteByEntryAndExit()
+        //}
+    }
+
+    /**
+     * Encapsulation of boolean logic used to determine if there is a
+     * WaypointModel available after the current one has been flown over.
+     *
+     * @for fms
+     * @method hasNextWaypoint
+     * @return {boolean}
+     */
+    hasNextWaypoint() {
+        return this.currentLeg.hasNextWaypoint() || !_isNil(this.legCollection[1]);
+    }
+
+    /**
+     *
+     *
+     */
+    hasLegWithRouteString(routeString) {
+        const previousProcedureLeg = this._findLegByRouteString(routeString);
+
+        return typeof previousProcedureLeg !== 'undefined';
+    }
+
+    /**
      * Fascade method for `sidCollection.findRouteByIcao`
      *
      * Allows classes that have access to the `Aircraft`, but not the
@@ -310,6 +390,21 @@ export default class Fms {
     }
 
     /**
+     * Fascade method for `starCollection.findRouteByIcao`
+     *
+     * Allows classes that have access to the `Aircraft`, but not the
+     * navigation library, to do standardRoute building and logic.
+     *
+     * @for Fms
+     * @method findStarByProcedureId
+     * @param procedureId {string}
+     * @return {}
+     */
+    findStarByProcedureId(procedureId) {
+        return this._navigationLibrary.starCollection.findRouteByIcao(procedureId);
+    }
+
+    /**
      * Fascade method for `sidCollection.findRandomExitPointForSIDIcao`
      *
      * Allows classes that have access to the `Aircraft`, but not the
@@ -322,49 +417,6 @@ export default class Fms {
      */
     findRandomExitPointForSidProcedureId(procedureId) {
         return this._navigationLibrary.sidCollection.findRandomExitPointForSIDIcao(procedureId);
-    }
-
-    /**
-     *
-     *
-     * @for Fms
-     * @method replaceDepartureProcedure
-     * @param routeString {string}
-     * @param departureRunway {string}
-     */
-    replaceDepartureProcedure(routeString, departureRunway) {
-        const previousProcedureLeg = this._findLegByRouteString(routeString);
-
-        // this is the same procedure that is already set, no need to continue
-        if (previousProcedureLeg) {
-            return;
-        }
-
-        const procedureLegIndex = _findIndex(this.legCollection, { _isProcedure: true, procedureType: 'SID' });
-
-        // a sid procedure does not exist in the flight plan, so we must create a new one
-        if (procedureLegIndex === -1) {
-            this.prependLeg(routeString);
-
-            return;
-        }
-
-        const legModel = this.legCollection[procedureLegIndex];
-
-        legModel.destroy();
-        legModel.init(routeString, this._runwayName, this.currentPhase);
-    }
-
-    /**
-     * Encapsulation of boolean logic used to determine if there is a
-     * WaypointModel available after the current one has been flown over.
-     *
-     * @for fms
-     * @method hasNextWaypoint
-     * @return {boolean}
-     */
-    hasNextWaypoint() {
-        return this.currentLeg.hasNextWaypoint() || !_isNil(this.legCollection[1]);
     }
 
     /**
@@ -455,6 +507,14 @@ export default class Fms {
     }
 
     /**
+     *
+     *
+     */
+    _findLegIndexForProcedureType(procedureType) {
+        return _findIndex(this.legCollection, { _isProcedure: true, procedureType: procedureType });
+    }
+
+    /**
      * Loop through the `#legCollection` up to the `legIndex` and add each
      * `routeString` to `#_previousRouteSegments`.
      *
@@ -504,5 +564,23 @@ export default class Fms {
      */
     _findLegByRouteString(routeString) {
         return _find(this.legCollection, { routeString: routeString.toLowerCase() });
+    }
+
+    /**
+     *
+     *
+     */
+    _replaceLegAtIndexWithRouteString(legIndex, routeString) {
+        // a procedure does not exist in the flight plan, so we must create a new one
+        if (legIndex === -1) {
+            this.prependLeg(routeString);
+
+            return;
+        }
+
+        const legModel = this.legCollection[legIndex];
+
+        legModel.destroy();
+        legModel.init(routeString, this._runwayName, this.currentPhase);
     }
 }

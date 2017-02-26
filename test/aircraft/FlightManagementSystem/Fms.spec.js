@@ -237,27 +237,6 @@ ava('.replaceDepartureProcedure() calls prepend leg when no departure procedure 
     t.true(prependLegSpy.calledOnce);
 });
 
-ava('.replaceDepartureProcedure() calls legModel.destroy() when an existing sid procedure leg is found', (t) => {
-    const nextRouteStringMock = 'KLAS.TRALR6.MLF';
-    const fms = buildFmsMockForDeparture();
-    const legModelDestroySpy = sinon.spy(fms.legCollection[0], 'destroy');
-
-    fms.replaceDepartureProcedure(nextRouteStringMock, runwayAssignmentMock);
-
-    t.true(legModelDestroySpy.calledOnce);
-});
-
-ava('.replaceDepartureProcedure() calls legModel.init() with the new routeString', (t) => {
-    const nextRouteStringMock = 'KLAS.TRALR6.MLF';
-    const fms = buildFmsMockForDeparture();
-    const legModelInitSpy = sinon.stub(fms.legCollection[0], 'init');
-    fms.replaceDepartureProcedure(nextRouteStringMock, runwayAssignmentMock);
-
-    t.true(legModelInitSpy.calledWith(nextRouteStringMock));
-
-    legModelInitSpy.restore();
-});
-
 ava('.replaceDepartureProcedure() returns undefined after success', (t) => {
     const nextRouteStringMock = 'KLAS.TRALR6.MLF';
     const fms = buildFmsMockForDeparture();
@@ -277,6 +256,12 @@ ava('.replaceDepartureProcedure() replaces the currentLeg with the new route', (
     t.true(fms.currentLeg.routeString === nextRouteStringMock.toLowerCase());
 });
 
+
+ava.todo('.replaceArrivalProcedure()');
+ava.todo('.validateProcedureRoute()');
+ava.todo('.hasNextWaypoint()');
+ava.todo('.hasLegWithRouteString()');
+
 ava('._buildLegCollection() returns an array of LegModels', (t) => {
     const fms = buildFmsMock(isComplexRoute);
 
@@ -294,6 +279,8 @@ ava('._findLegAndWaypointIndexForWaypointName() returns an object with keys legI
     t.true(_isEqual(result, expectedResult));
 });
 
+ava.todo('._findLegIndexForProcedureType()');
+
 ava('._destroyLegCollection() clears the #legCollection', (t) => {
     const fms = buildFmsMock(isComplexRoute);
 
@@ -301,3 +288,5 @@ ava('._destroyLegCollection() clears the #legCollection', (t) => {
 
     t.true(fms.legCollection.length === 0);
 });
+
+ava.todo('._replaceLegAtIndexWithRouteString()');

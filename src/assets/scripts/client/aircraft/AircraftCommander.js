@@ -462,8 +462,10 @@ export default class AircraftCommander {
      */
     runSTAR(aircraft, data) {
         const routeString = data[0];
+        const arrivalRunway = aircraft.rwy_arr;
+        const { name: airportName } = this._airportController.airport_get();
 
-        aircraft.pilot.applyArrivalProcedure(routeString);
+        return aircraft.pilot.applyArrivalProcedure(routeString, arrivalRunway, airportName);
     }
 
     /**

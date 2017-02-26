@@ -66,3 +66,8 @@ export const FP_LEG_TYPE = {
     FIX: 'fix',
     MANUAL: '[manual]'
 };
+
+export const PROCEDURE_TYPE = {
+    SID: 'SID',
+    STAR: 'STAR'
+};

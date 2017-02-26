@@ -11,10 +11,14 @@ import { groupNumbers,
     radio_spellOut,
     radio_trend
 } from '../../utilities/radioUtilities';
-import { FLIGHT_MODES } from '../../constants/aircraftConstants';
+import { FLIGHT_CATEGORY, FLIGHT_MODES } from '../../constants/aircraftConstants';
 import { degreesToRadians, heading_to_string } from '../../utilities/unitConverters';
 import { radians_normalize } from '../../math/circle';
-import { MCP_MODE, MCP_MODE_NAME, MCP_FIELD_NAME } from '../ModeControl/modeControlConstants';
+import {
+    MCP_MODE,
+    MCP_MODE_NAME,
+    MCP_FIELD_NAME
+} from '../ModeControl/modeControlConstants';
 
 /**
  * Executes control actions upon the aircraft by manipulating the MCP and FMS, and provides
@@ -61,26 +65,27 @@ export default class Pilot {
      *
      * @for Pilot
      * @method applyArrivalProcedure
-     * @param {String} routeString - route string in the form of `entry.procedure.airport`
-     * @return {Array} [success of operation, readback]
+     * @param routeString {String}  route string in the form of `entry.procedure.airport`
+     * @return {Array}              [success of operation, readback]
      */
-    applyArrivalProcedure(routeString) {
-        const routeModel = new RouteModel(routeString);
-        const airport = this._airportController.airport_get();
-        const starName = this._navigationLibrary.starCollection.findRouteByIcao(routeModel.procedure).name;
+    applyArrivalProcedure(routeString, arrivalRunway, airportName) {
+        const routeStringModel = new RouteModel(routeString);
+        const starModel = this._fms.findStarByProcedureId(routeStringModel.procedure);
+        console.log(routeString, routeStringModel);
+        console.log(starModel);
 
-        // TODO: This length check might not be needed. this is covered via the CommandParser when
-        // this method runs as the result of a command.
-        if (routeString.length === 0 || !this._navigationLibrary.starCollection.hasRoute(routeModel.procedure)) {
+        if (!routeStringModel || !starModel) {
             return [false, 'STAR name not understood'];
         }
 
-        this._fms.followSTAR(routeModel.routeCode);
+        this._fms.validateProcedureRoute(routeStringModel, FLIGHT_CATEGORY.ARRIVAL);
+
+        this._fms.applyArrivalProcedure(routeStringModel.routeCode, arrivalRunway);
 
         // Build readback
         const readback = {};
-        readback.log = `cleared to the ${airport.name} via the ${routeModel.procedure} arrival`;
-        readback.say = `cleared to the ${airport.name} via the ${starName.toUpperCase()} arrival`;
+        readback.log = `cleared to ${airportName} via the ${routeStringModel.procedure} arrival`;
+        readback.say = `cleared to ${airportName} via the ${starModel.name.toUpperCase()} arrival`;
 
         return [true, readback];
     }
@@ -105,8 +110,6 @@ export default class Pilot {
 
         const exit = this._fms.findRandomExitPointForSidProcedureId(procedureId);
         const routeStr = `${airportIcao}.${procedureId}.${exit}`;
-
-        // verify route here
 
         if (!departureRunway) {
             return [false, 'unsure if we can accept that procedure; we don\'t have a runway assignment'];

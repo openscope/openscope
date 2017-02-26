@@ -149,7 +149,10 @@ export default class RouteModel extends BaseModel {
 }
 
 /**
+ * Used to determine if a string is in the shape of a procedureRouteString.
  *
+ * Example:
+ * - 'ENTRY.PROCEDURE_NAME.EXIT'
  *
  * @for RouteModel
  * @method isProcedureRouteString
