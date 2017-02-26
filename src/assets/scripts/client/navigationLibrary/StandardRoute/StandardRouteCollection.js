@@ -254,6 +254,12 @@ export default class StandardRouteCollection extends BaseCollection {
         }
 
         const routeModel = this.findRouteByIcao(icao);
+
+        if (typeof routeModel === 'undefined') {
+            // TODO: there will need to be some feedback here but should still fail quietly
+            return;
+        }
+
         const routeWaypoints = routeModel.findStandardRouteWaypointModelsForEntryAndExit(entry, exit, isPreSpawn);
         this._cache[cacheKey] = routeWaypoints;
 

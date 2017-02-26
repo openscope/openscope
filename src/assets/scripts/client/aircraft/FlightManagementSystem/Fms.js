@@ -7,7 +7,10 @@ import _isObject from 'lodash/isObject';
 import _map from 'lodash/map';
 import LegModel from './LegModel';
 import { routeStringFormatHelper } from '../../navigationLibrary/Route/routeStringFormatHelper';
-import { PROCEDURE_TYPE } from '../../constants/aircraftConstants';
+import {
+    FLIGHT_CATEGORY,
+    PROCEDURE_TYPE
+} from '../../constants/aircraftConstants';
 
 /**
  *
@@ -344,12 +347,28 @@ export default class Fms {
      *
      *
      */
-    validateProcedureRoute(routeStringModel, flightPhase) {
-        // hasLegWithRouteString(routeStringModel.routeCode)
-        //
-        //if (flightPhase === FLIGHT_CATEGORY.ARRIVAL) {
-        //    this._navigationLibrary.findRouteWaypointsForRouteByEntryAndExit()
-        //}
+    isValidProcedureRoute(routeModel, runway, flightPhase) {
+        if (this.hasLegWithRouteString(routeModel.routeCode)) {
+            return true;
+        }
+
+        if (flightPhase === FLIGHT_CATEGORY.ARRIVAL) {
+            const routeWaypoints = this._navigationLibrary.starCollection.findRouteWaypointsForRouteByEntryAndExit(
+                routeModel.procedure,
+                routeModel.entry,
+                runway
+            );
+
+            return typeof routeWaypoints !== 'undefined';
+        }
+
+        const routeWaypoints = this._navigationLibrary.sidCollection.findRouteWaypointsForRouteByEntryAndExit(
+            routeModel.procedure,
+            runway,
+            routeModel.exit
+        );
+
+        return typeof routeWaypoints !== 'undefined';
     }
 
     /**

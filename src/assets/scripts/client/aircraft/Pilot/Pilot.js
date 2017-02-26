@@ -78,7 +78,9 @@ export default class Pilot {
             return [false, 'STAR name not understood'];
         }
 
-        this._fms.validateProcedureRoute(routeStringModel, FLIGHT_CATEGORY.ARRIVAL);
+        if (!this._fms.isValidProcedureRoute(routeStringModel, arrivalRunway, FLIGHT_CATEGORY.ARRIVAL)) {
+            return [false, ''];
+        }
 
         this._fms.applyArrivalProcedure(routeStringModel.routeCode, arrivalRunway);
 
