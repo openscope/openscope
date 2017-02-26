@@ -10,7 +10,7 @@ import _isString from 'lodash/isString';
  */
 export default class BaseModel {
     constructor(modelName = 'BaseModel') {
-        const optionalIdPrefix = this.buildModelPrefix(modelName);
+        const optionalIdPrefix = this.buildIdPrefix(modelName);
         /**
          * Unigue string id that can be used to differentiate this model instance from another.
          *
@@ -57,7 +57,7 @@ export default class BaseModel {
      * @method veriftyModelName
      * @param {string / Object}
      */
-    buildModelPrefix(modelName) {
+    buildIdPrefix(modelName) {
         if (!_isString(modelName)) {
             console.error('BaseModel#constructor expects a string for its first paramert but a string was not given');
             return 'BaseModel-';
