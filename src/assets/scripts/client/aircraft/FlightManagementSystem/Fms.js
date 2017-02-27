@@ -378,6 +378,41 @@ export default class Fms {
     }
 
     /**
+     * Validate and entire route.
+     *
+     * This can be:
+     * - a directRouteString,
+     * - a procedureRouteString,
+     * - or combination of both directRouteStrings and procedureRouteString
+     *
+     * @for fms
+     * @method isValidRoute
+     * @param routeString {string}
+     * @param runway {string}
+     * @return {boolean}
+     */
+    isValidRoute(routeString, runway) {
+        const routeSegments = routeStringFormatHelper(routeString);
+
+        for (let i = 0; i < routeSegments.length; i++) {
+            let isValid = false;
+            const segment = routeSegments[i];
+
+            if (RouteModel.isProcedureRouteString(segment)) {
+                isValid = this.isValidProcedureRoute(segment, runway);
+            } else {
+                isValid = this._navigationLibrary.hasFix(segment);
+            }
+
+            if (!isValid) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    /**
      * Determinines if the passed `routeString` is a valid procedure route.
      *
      * This can be either a SID or a STAR.
@@ -391,7 +426,7 @@ export default class Fms {
      * @param flightPhase {string}
      * @return {boolean}
      */
-    isValidProcedureRoute(routeString, runway, flightPhase) {
+    isValidProcedureRoute(routeString, runway, flightPhase = '') {
         let routeStringModel;
 
         // RouteModel will throw when presented with an invalid procedureRouteString,
@@ -402,6 +437,11 @@ export default class Fms {
             console.error(error);
 
             return false;
+        }
+
+        // flightPhase is unknown or unavailable so it must be extrapolated based on the `procedureId`.
+        if (flightPhase === '') {
+            flightPhase = this._translateProcedureNameToFlightPhase(routeStringModel.procedure);
         }
 
         // a `LegModel` already exists with this routeString
@@ -676,5 +716,25 @@ export default class Fms {
 
         legModel.destroy();
         legModel.init(routeString, this._runwayName, this.currentPhase);
+    }
+
+    /**
+     * Given a `procedureId` find the `#collectionName` that
+     * procedure belongs to, then translate that `#collectionName`
+     * to a `flightPhase`.
+     *
+     * @for Fms
+     * @method _translateProcedureNameToFlightPhase
+     * @param procedureId {string}
+     * @return {string}
+     */
+    _translateProcedureNameToFlightPhase(procedureId) {
+        const collectionToFlightPhaseDictionary = {
+            sidCollection: FLIGHT_CATEGORY.DEPARTURE,
+            starCollection: FLIGHT_CATEGORY.ARRIVAL
+        };
+        const collectionName = this._navigationLibrary.findCollectionNameForProcedureId(procedureId);
+
+        return collectionToFlightPhaseDictionary[collectionName];
     }
 }

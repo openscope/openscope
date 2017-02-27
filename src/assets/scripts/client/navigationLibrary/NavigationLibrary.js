@@ -1,3 +1,4 @@
+import _isNil from 'lodash/isNil';
 import PositionModel from '../base/PositionModel';
 import RouteModel from './Route/RouteModel';
 import FixCollection from './Fix/FixCollection';
@@ -115,6 +116,21 @@ export default class NavigationLibrary {
     }
 
     /**
+     * Provides a way to check the `FixCollection` for the existence
+     * of a specific `fixName`.
+     *
+     * @for NavigationLibrary
+     * @method hasFix
+     * @param fixName {string}
+     * @return {boolean}
+     */
+    hasFix(fixName) {
+        const fixOrNull = this.findFixByName(fixName);
+
+        return !_isNil(fixOrNull);
+    }
+
+    /**
      * Fascade Method
      *
      * @for NavigationLibrary
@@ -139,7 +155,7 @@ export default class NavigationLibrary {
     }
 
     /**
-     *
+     * Find the `StandardRouteWaypointModel` objects for a given route.
      *
      * @for NavigationLibrary
      * @method findWaypointModelsForSid
@@ -153,7 +169,7 @@ export default class NavigationLibrary {
     }
 
     /**
-     *
+     * Find the `StandardRouteWaypointModel` objects for a given route.
      *
      * @for NavigationLibrary
      * @method findWaypointModelsForStar
@@ -181,13 +197,39 @@ export default class NavigationLibrary {
     }
 
     /**
+     * Finds the collectionName a given `procedureId` belongs to.
      *
+     * This is useful when trying to find a particular route without
+     * knowing, first, what collection it may be a part of. Like when
+     * validating a user entered route.
+     *
+     * @for NavigationLibrary
+     * @method findCollectionNameForProcedureId
+     * @param procedureId {string}
+     * @return collectionName {string}
+     */
+    findCollectionNameForProcedureId(procedureId) {
+        let collectionName = '';
+
+        if (this._sidCollection.hasRoute(procedureId)) {
+            collectionName = 'sidCollection';
+        } else if (this._starCollection.hasRoute(procedureId)) {
+            collectionName = 'starCollection';
+        }
+
+        return collectionName;
+    }
+
+    /**
+     * Given a `procedureRouteSegment`, find and assemble a list
+     * of `WaypointModel` objects to be used with a `LegModel`
+     * in the Fms.
      *
      * @for NavigationLibrary
      * @method buildWaypointModelsForProcedure
-     * @param procedureRouteSegment {string}
-     * @param runway {string}
-     * @param category {string}
+     * @param procedureRouteSegment {string}  of the shape `ENTRY.PROCEDURE_NAME.EXIT`
+     * @param runway {string}                 assigned runway
+     * @param category {string}               arrival or departure
      * @return {array<WaypointModel>}
      */
     buildWaypointModelsForProcedure(procedureRouteSegment, runway, category) {

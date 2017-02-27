@@ -1,7 +1,6 @@
 import ava from 'ava';
 import _isArray from 'lodash/isArray';
-import _isEqual from 'lodash/isEqual'
-// import _isObject from 'lodash/isObject';
+import _isEqual from 'lodash/isEqual';
 
 import Pilot from '../../../src/assets/scripts/client/aircraft/Pilot/Pilot';
 import {

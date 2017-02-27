@@ -4,16 +4,24 @@ import _isObject from 'lodash/isObject';
 import _isEmpty from 'lodash/isEmpty';
 import RouteModel from '../../navigationLibrary/Route/RouteModel';
 import { clamp } from '../../math/core';
-import { groupNumbers,
+import {
+    groupNumbers,
     radio_altitude,
     radio_heading,
     radio_runway,
     radio_spellOut,
     radio_trend
 } from '../../utilities/radioUtilities';
-import { FLIGHT_CATEGORY, FLIGHT_MODES } from '../../constants/aircraftConstants';
-import { degreesToRadians, heading_to_string } from '../../utilities/unitConverters';
+import {
+    degreesToRadians,
+    heading_to_string
+} from '../../utilities/unitConverters';
+import { routeStringFormatHelper } from '../../navigationLibrary/Route/routeStringFormatHelper';
 import { radians_normalize } from '../../math/circle';
+import {
+    FLIGHT_CATEGORY,
+    FLIGHT_MODES
+} from '../../constants/aircraftConstants';
 import {
     MCP_MODE,
     MCP_MODE_NAME,

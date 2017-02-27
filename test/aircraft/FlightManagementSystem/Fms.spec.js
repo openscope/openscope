@@ -297,6 +297,24 @@ ava('.replaceArrivalProcedure() replaces the currentLeg with the new route', (t)
     t.true(fms.currentLeg.routeString === arrivalProcedureRouteStringMock.toLowerCase());
 });
 
+ava('.isValidRoute() returns true when passed a valid complexRouteString', (t) => {
+    const fms = buildFmsMock();
+
+    t.true(fms.isValidRoute(complexRouteString, runwayAssignmentMock));
+});
+
+ava('.isValidRoute() returns true when passed a valid arrival procedureRouteString', (t) => {
+    const fms = buildFmsMock();
+
+    t.true(fms.isValidRoute(arrivalProcedureRouteStringMock, runwayAssignmentMock));
+});
+
+ava('.isValidRoute() returns true when passed a valid departure procedureRouteString', (t) => {
+    const fms = buildFmsMock();
+
+    t.true(fms.isValidRoute(departureProcedureRouteStringMock, runwayAssignmentMock));
+});
+
 ava('.isValidProcedureRoute() returns false when passed an invalid route', (t) => {
     const invalidRouteString = 'a.b.c';
     const fms = buildFmsMock();
@@ -318,8 +336,17 @@ ava('.isValidProcedureRoute() returns early if passed a malformed RouteString', 
     const fms = buildFmsMock();
     const hasLegWithRouteStringSpy = sinon.spy(fms, 'hasLegWithRouteString');
 
+    t.false(fms.isValidProcedureRoute(invalidRouteStringMock, runwayAssignmentMock, 'arrival'));
     t.false(hasLegWithRouteStringSpy.called);
-    t.false(fms.isValidProcedureRoute(invalidRouteStringMock));
+});
+
+ava('.isValidProcedureRoute() calls ._translateProcedureNameToFlightPhase() when no flightPhase is passed', (t) => {
+    const procedureRouteStringMock = 'dag.kepec3.klas';
+    const fms = buildFmsMock();
+    const _translateProcedureNameToFlightPhaseSpy = sinon.spy(fms, '_translateProcedureNameToFlightPhase');
+
+    t.true(fms.isValidProcedureRoute(procedureRouteStringMock, runwayAssignmentMock));
+    t.true(_translateProcedureNameToFlightPhaseSpy.called);
 });
 
 ava('.isValidProcedureRoute() returns true if the passed route already exists within the #legCollection', (t) => {
