@@ -1,15 +1,15 @@
 {
-  "icao": "exs",
-  "name": "Jet2.com",
-  "callsign": {
-    "name": "Channex",
-    "length": 3
-  },
-  "fleets": {
-    "default": [
-	    ["B733", 29],
-	    ["B738", 21],
-	    ["B752", 11]
-    ]
-  }
+    "icao": "exs",
+    "name": "Jet2.com",
+    "callsign": {
+        "name": "Channex",
+        "length": 3
+    },
+    "fleets": {
+        "default": [
+            ["B733", 29],
+            ["B738", 21],
+            ["B752", 11]
+        ]
+    }
 }

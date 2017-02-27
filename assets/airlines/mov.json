@@ -1,14 +1,14 @@
 {
-  "icao": "mov",
-  "name": "VIM Avia",
-  "callsign": {
+    "icao": "mov",
     "name": "VIM Avia",
-    "length": 3
-  },
-  "fleets": {
-    "default": [
-      ["A319", 4],
-      ["B752", 6]
-    ]
-  }
+    "callsign": {
+        "name": "VIM Avia",
+        "length": 3
+    },
+    "fleets": {
+        "default": [
+            ["A319", 4],
+            ["B752", 6]
+        ]
+    }
 }

@@ -1,15 +1,15 @@
 {
-  "icao": "nly",
-  "name": "Niki",
-  "callsign": {
+    "icao": "nly",
     "name": "Niki",
-    "length": 4
-  },
-  "fleets": {
-    "default": [
-      ["A319", 5],
-      ["A320", 11],
-      ["A321", 3]
-    ]
-  }
+    "callsign": {
+        "name": "Niki",
+        "length": 4
+    },
+    "fleets": {
+        "default": [
+            ["A319", 5],
+            ["A320", 11],
+            ["A321", 3]
+        ]
+    }
 }

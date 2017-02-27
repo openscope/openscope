@@ -1,15 +1,15 @@
 {
-  "name": "Insel Air",
-  "icao": "inc",
-  "callsign": {
-    "name": "Inselair",
-    "length": 3
-   },
-  "fleets": {
-    "default": [
-      ["f50", 6],
-      ["md82", 2],
-      ["md83", 1]  
-    ]
-  }
+    "icao": "inc",
+    "name": "Insel Air",
+    "callsign": {
+        "name": "Inselair",
+        "length": 3
+    },
+    "fleets": {
+        "default": [
+            ["f50", 6],
+            ["md82", 2],
+            ["md83", 1]
+        ]
+    }
 }

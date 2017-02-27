@@ -1,14 +1,14 @@
- {
-  "icao": "stk",
-  "name": "Stobart Air",
-  "callsign": {
-    "name": "Stobart",
-    "length": 3
-  },
-  "fleets": {
-    "default": [
-    ["AT72", 6],
-	  ["AT43", 4]
-    ]
-  }
+{
+    "icao": "stk",
+    "name": "Stobart Air",
+    "callsign": {
+        "name": "Stobart",
+        "length": 3
+    },
+    "fleets": {
+        "default": [
+            ["AT72", 6],
+            ["AT43", 4]
+        ]
+    }
 }

@@ -19,19 +19,19 @@
         "speed": 2
     },
     "airspace": [
-    {
-        "floor": 			0,
-        "ceiling": 		    32000,
-        "airspace_class":	"D",
-        "poly":
-        [
-            ["N36d06m23.00", "E140d18m45.00"],
-            ["N35d51m30.00", "E140d17m05.00"],
-            ["N35d00m03.00", "E140d32m03.00"],
-            ["N35d21m28.00", "E138d55m26.00"],
-            ["N35d52m00.00", "E139d05m22.00"]
-        ]
-    }
+        {
+            "floor":             0,
+            "ceiling":             32000,
+            "airspace_class":    "D",
+            "poly":
+            [
+                ["N36d06m23.00", "E140d18m45.00"],
+                ["N35d51m30.00", "E140d17m05.00"],
+                ["N35d00m03.00", "E140d32m03.00"],
+                ["N35d21m28.00", "E138d55m26.00"],
+                ["N35d52m00.00", "E139d05m22.00"]
+            ]
+        }
     ],
     "fixes": {
         "ADDUM":    ["N34d53m29.50",    "E140d14m20.70"],
@@ -632,18 +632,18 @@
             "category": "arrival",
             "route":    "STONE.DOYLE.RJTT",
             "altitude": 11000,
-            "speed":	250,
+            "speed":    250,
             "method":     "cyclic",
             "rate": 4,
-            "offset":	2,
+            "offset":    2,
             "airlines":
-                [
-                    ["aca",  1],
-                    ["cca",  1],
-                    ["ado",  6],
-                    ["ana", 64],
-                    ["jal", 55]
-                ]
+            [
+                ["aca",  1],
+                ["cca",  1],
+                ["ado",  6],
+                ["ana", 64],
+                ["jal", 55]
+            ]
         },
         {
             "origin": "",
@@ -651,18 +651,18 @@
             "category": "arrival",
             "route":    "STONE.SINGO.RJTT",
             "altitude": 11000,
-            "speed":	250,
+            "speed":    250,
             "method":     "cyclic",
             "rate": 4,
-            "offset":	2,
+            "offset":    2,
             "airlines":
-                [
-                    ["aca",  1],
-                    ["cca",  1],
-                    ["ado",  6],
-                    ["ana", 64],
-                    ["jal", 55]
-                ]
+            [
+                ["aca",  1],
+                ["cca",  1],
+                ["ado",  6],
+                ["ana", 64],
+                ["jal", 55]
+            ]
         },
         {
             "origin": "",
@@ -670,18 +670,18 @@
             "category": "arrival",
             "route":    "STONE.STEAM.RJTT",
             "altitude": 11000,
-            "speed":	250,
+            "speed":    250,
             "method":     "cyclic",
             "rate": 4,
-            "offset":	2,
+            "offset":    2,
             "airlines":
-                [
-                    ["aca",  1],
-                    ["cca",  1],
-                    ["ado",  6],
-                    ["ana", 64],
-                    ["jal", 55]
-                ]
+            [
+                ["aca",  1],
+                ["cca",  1],
+                ["ado",  6],
+                ["ana", 64],
+                ["jal", 55]
+            ]
         },
         {
             "origin": "",
@@ -689,18 +689,18 @@
             "category": "arrival",
             "route":    "STONE.DATUM.RJTT",
             "altitude": 11000,
-            "speed":	250,
+            "speed":    250,
             "method":     "cyclic",
             "rate": 4,
-            "offset":	2,
+            "offset":    2,
             "airlines":
-                [
-                    ["aca",  1],
-                    ["cca",  1],
-                    ["ado",  6],
-                    ["ana", 64],
-                    ["jal", 55]
-                ]
+            [
+                ["aca",  1],
+                ["cca",  1],
+                ["ado",  6],
+                ["ana", 64],
+                ["jal", 55]
+            ]
         },
         {
             "origin": "",
@@ -708,18 +708,18 @@
             "category": "arrival",
             "route":    "STONE.CREAM.RJTT",
             "altitude": 11000,
-            "speed":	250,
+            "speed":    250,
             "method":     "cyclic",
             "rate": 4,
-            "offset":	2,
+            "offset":    2,
             "airlines":
-                [
-                    ["aca",  1],
-                    ["cca",  1],
-                    ["ado",  6],
-                    ["ana", 64],
-                    ["jal", 55]
-                ]
+            [
+                ["aca",  1],
+                ["cca",  1],
+                ["ado",  6],
+                ["ana", 64],
+                ["jal", 55]
+            ]
         },
         {
             "origin": "",
@@ -727,18 +727,18 @@
             "category": "arrival",
             "route":    "STONE.CAPE_NORTH.RJTT",
             "altitude": 11000,
-            "speed":	250,
+            "speed":    250,
             "method":     "cyclic",
             "rate": 4,
-            "offset":	2,
+            "offset":    2,
             "airlines":
-                [
-                    ["aca",  1],
-                    ["cca",  1],
-                    ["ado",  6],
-                    ["ana", 64],
-                    ["jal", 55]
-                ]
+            [
+                ["aca",  1],
+                ["cca",  1],
+                ["ado",  6],
+                ["ana", 64],
+                ["jal", 55]
+            ]
         },
         {
             "origin": "",
@@ -746,18 +746,18 @@
             "category": "arrival",
             "route":    "STONE.CACAO.RJTT",
             "altitude": 11000,
-            "speed":	250,
+            "speed":    250,
             "method":     "cyclic",
             "rate": 4,
-            "offset":	2,
+            "offset":    2,
             "airlines":
-                [
-                    ["aca",  1],
-                    ["cca",  1],
-                    ["ado",  6],
-                    ["ana", 64],
-                    ["jal", 55]
-                ]
+            [
+                ["aca",  1],
+                ["cca",  1],
+                ["ado",  6],
+                ["ana", 64],
+                ["jal", 55]
+            ]
         },
         {
             "origin": "",
@@ -765,36 +765,36 @@
             "category": "arrival",
             "route":    "ADDUM.KAIHO.RJTT",
             "altitude": 10000,
-            "speed":	230,
+            "speed":    230,
             "method":     "cyclic",
             "rate": 5,
-            "offset":	2,
+            "offset":    2,
             "airlines":
-                [
-                    ["xax",  1],
-                    ["cca",  1],
-                    ["ado",  6],
-                    ["afr",  1],
-                    ["ana", 64],
-                    ["aal",  1],
-                    ["baw",  1],
-                    ["cpa",  1],
-                    ["ces",  2],
-                    ["csn",  1],
-                    ["dal",  1],
-                    ["hda",  1],
-                    ["uae",  1],
-                    ["eva",  2],
-                    ["gia",  1],
-                    ["hal",  2],
-                    ["jal", 55],
-                    ["kal",  2],
-                    ["dlh",  2],
-                    ["qfa",  1],
-                    ["qtr",  1],
-                    ["sia",  1],
-                    ["ual",  1]
-                ]
+            [
+                ["xax",  1],
+                ["cca",  1],
+                ["ado",  6],
+                ["afr",  1],
+                ["ana", 64],
+                ["aal",  1],
+                ["baw",  1],
+                ["cpa",  1],
+                ["ces",  2],
+                ["csn",  1],
+                ["dal",  1],
+                ["hda",  1],
+                ["uae",  1],
+                ["eva",  2],
+                ["gia",  1],
+                ["hal",  2],
+                ["jal", 55],
+                ["kal",  2],
+                ["dlh",  2],
+                ["qfa",  1],
+                ["qtr",  1],
+                ["sia",  1],
+                ["ual",  1]
+            ]
         },
         {
             "origin": "",
@@ -802,36 +802,36 @@
             "category": "arrival",
             "route":    "ADDUM.NYLON.RJTT",
             "altitude": 10000,
-            "speed":	230,
+            "speed":    230,
             "method":     "cyclic",
             "rate": 5,
-            "offset":	2,
+            "offset":    2,
             "airlines":
-                [
-                    ["xax",  1],
-                    ["cca",  1],
-                    ["ado",  6],
-                    ["afr",  1],
-                    ["ana", 64],
-                    ["aal",  1],
-                    ["baw",  1],
-                    ["cpa",  1],
-                    ["ces",  2],
-                    ["csn",  1],
-                    ["dal",  1],
-                    ["hda",  1],
-                    ["uae",  1],
-                    ["eva",  2],
-                    ["gia",  1],
-                    ["hal",  2],
-                    ["jal", 55],
-                    ["kal",  2],
-                    ["dlh",  2],
-                    ["qfa",  1],
-                    ["qtr",  1],
-                    ["sia",  1],
-                    ["ual",  1]
-                ]
+            [
+                ["xax",  1],
+                ["cca",  1],
+                ["ado",  6],
+                ["afr",  1],
+                ["ana", 64],
+                ["aal",  1],
+                ["baw",  1],
+                ["cpa",  1],
+                ["ces",  2],
+                ["csn",  1],
+                ["dal",  1],
+                ["hda",  1],
+                ["uae",  1],
+                ["eva",  2],
+                ["gia",  1],
+                ["hal",  2],
+                ["jal", 55],
+                ["kal",  2],
+                ["dlh",  2],
+                ["qfa",  1],
+                ["qtr",  1],
+                ["sia",  1],
+                ["ual",  1]
+            ]
         },
         {
             "origin": "",
@@ -839,36 +839,36 @@
             "category": "arrival",
             "route":    "ADDUM.ADDUM.RJTT",
             "altitude": 10000,
-            "speed":	230,
+            "speed":    230,
             "method":     "cyclic",
             "rate": 5,
-            "offset":	2,
+            "offset":    2,
             "airlines":
-                [
-                    ["xax",  1],
-                    ["cca",  1],
-                    ["ado",  6],
-                    ["afr",  1],
-                    ["ana", 64],
-                    ["aal",  1],
-                    ["baw",  1],
-                    ["cpa",  1],
-                    ["ces",  2],
-                    ["csn",  1],
-                    ["dal",  1],
-                    ["hda",  1],
-                    ["uae",  1],
-                    ["eva",  2],
-                    ["gia",  1],
-                    ["hal",  2],
-                    ["jal", 55],
-                    ["kal",  2],
-                    ["dlh",  2],
-                    ["qfa",  1],
-                    ["qtr",  1],
-                    ["sia",  1],
-                    ["ual",  1]
-                ]
+            [
+                ["xax",  1],
+                ["cca",  1],
+                ["ado",  6],
+                ["afr",  1],
+                ["ana", 64],
+                ["aal",  1],
+                ["baw",  1],
+                ["cpa",  1],
+                ["ces",  2],
+                ["csn",  1],
+                ["dal",  1],
+                ["hda",  1],
+                ["uae",  1],
+                ["eva",  2],
+                ["gia",  1],
+                ["hal",  2],
+                ["jal", 55],
+                ["kal",  2],
+                ["dlh",  2],
+                ["qfa",  1],
+                ["qtr",  1],
+                ["sia",  1],
+                ["ual",  1]
+            ]
         },
         {
             "origin": "",
@@ -876,36 +876,36 @@
             "category": "arrival",
             "route":    "ADDUM.BACON.RJTT",
             "altitude": 10000,
-            "speed":	230,
+            "speed":    230,
             "method":     "cyclic",
             "rate": 5,
-            "offset":	2,
+            "offset":    2,
             "airlines":
-                [
-                    ["xax",  1],
-                    ["cca",  1],
-                    ["ado",  6],
-                    ["afr",  1],
-                    ["ana", 64],
-                    ["aal",  1],
-                    ["baw",  1],
-                    ["cpa",  1],
-                    ["ces",  2],
-                    ["csn",  1],
-                    ["dal",  1],
-                    ["hda",  1],
-                    ["uae",  1],
-                    ["eva",  2],
-                    ["gia",  1],
-                    ["hal",  2],
-                    ["jal", 55],
-                    ["kal",  2],
-                    ["dlh",  2],
-                    ["qfa",  1],
-                    ["qtr",  1],
-                    ["sia",  1],
-                    ["ual",  1]
-                ]
+            [
+                ["xax",  1],
+                ["cca",  1],
+                ["ado",  6],
+                ["afr",  1],
+                ["ana", 64],
+                ["aal",  1],
+                ["baw",  1],
+                ["cpa",  1],
+                ["ces",  2],
+                ["csn",  1],
+                ["dal",  1],
+                ["hda",  1],
+                ["uae",  1],
+                ["eva",  2],
+                ["gia",  1],
+                ["hal",  2],
+                ["jal", 55],
+                ["kal",  2],
+                ["dlh",  2],
+                ["qfa",  1],
+                ["qtr",  1],
+                ["sia",  1],
+                ["ual",  1]
+            ]
         },
         {
             "origin": "",
@@ -913,36 +913,36 @@
             "category": "arrival",
             "route":    "ADDUM.ARLON.RJTT",
             "altitude": 10000,
-            "speed":	230,
+            "speed":    230,
             "method":     "cyclic",
             "rate": 5,
-            "offset":	2,
+            "offset":    2,
             "airlines":
-                [
-                    ["xax",  1],
-                    ["cca",  1],
-                    ["ado",  6],
-                    ["afr",  1],
-                    ["ana", 64],
-                    ["aal",  1],
-                    ["baw",  1],
-                    ["cpa",  1],
-                    ["ces",  2],
-                    ["csn",  1],
-                    ["dal",  1],
-                    ["hda",  1],
-                    ["uae",  1],
-                    ["eva",  2],
-                    ["gia",  1],
-                    ["hal",  2],
-                    ["jal", 55],
-                    ["kal",  2],
-                    ["dlh",  2],
-                    ["qfa",  1],
-                    ["qtr",  1],
-                    ["sia",  1],
-                    ["ual",  1]
-                ]
+            [
+                ["xax",  1],
+                ["cca",  1],
+                ["ado",  6],
+                ["afr",  1],
+                ["ana", 64],
+                ["aal",  1],
+                ["baw",  1],
+                ["cpa",  1],
+                ["ces",  2],
+                ["csn",  1],
+                ["dal",  1],
+                ["hda",  1],
+                ["uae",  1],
+                ["eva",  2],
+                ["gia",  1],
+                ["hal",  2],
+                ["jal", 55],
+                ["kal",  2],
+                ["dlh",  2],
+                ["qfa",  1],
+                ["qtr",  1],
+                ["sia",  1],
+                ["ual",  1]
+            ]
         },
         {
             "origin": "",
@@ -950,20 +950,20 @@
             "category": "arrival",
             "route":    "MERCY.CACHE.RJTT",
             "altitude": 8000,
-            "speed":	250,
+            "speed":    250,
             "method":     "cyclic",
             "rate": 5,
-            "offset":	2,
+            "offset":    2,
             "airlines":
-                [
-                    ["aca",  1],
-                    ["ana", 64],
-                    ["aal",  1],
-                    ["dal",  1],
-                    ["hal",  2],
-                    ["jal", 55],
-                    ["ual",  1]
-                ]
+            [
+                ["aca",  1],
+                ["ana", 64],
+                ["aal",  1],
+                ["dal",  1],
+                ["hal",  2],
+                ["jal", 55],
+                ["ual",  1]
+            ]
         },
         {
             "origin": "",
@@ -971,20 +971,20 @@
             "category": "arrival",
             "route":    "MERCY.CAPE_SOUTH.RJTT",
             "altitude": 8000,
-            "speed":	320,
+            "speed":    320,
             "method":     "cyclic",
             "rate": 6,
-            "offset":	2,
+            "offset":    2,
             "airlines":
-                [
-                    ["aca",  1],
-                    ["ana", 64],
-                    ["aal",  1],
-                    ["dal",  1],
-                    ["hal",  2],
-                    ["jal", 55],
-                    ["ual",  1]
-                ]
+            [
+                ["aca",  1],
+                ["ana", 64],
+                ["aal",  1],
+                ["dal",  1],
+                ["hal",  2],
+                ["jal", 55],
+                ["ual",  1]
+            ]
         },
         {
             "origin": "",
@@ -992,20 +992,20 @@
             "category": "arrival",
             "route":    "MERCY.MACRO.RJTT",
             "altitude": 8000,
-            "speed":	320,
+            "speed":    320,
             "method":     "cyclic",
             "rate": 4,
-            "offset":	2,
+            "offset":    2,
             "airlines":
-                [
-                    ["aca",  1],
-                    ["ana", 64],
-                    ["aal",  1],
-                    ["dal",  1],
-                    ["hal",  2],
-                    ["jal", 55],
-                    ["ual",  1]
-                ]
+            [
+                ["aca",  1],
+                ["ana", 64],
+                ["aal",  1],
+                ["dal",  1],
+                ["hal",  2],
+                ["jal", 55],
+                ["ual",  1]
+            ]
         },
         {
             "origin": "",
@@ -1013,20 +1013,20 @@
             "category": "arrival",
             "route":    "MERCY.BLOOM_INDIA.RJTT",
             "altitude": 8000,
-            "speed":	320,
+            "speed":    320,
             "method":     "cyclic",
             "rate": 8,
-            "offset":	2,
+            "offset":    2,
             "airlines":
-                [
-                    ["aca",  1],
-                    ["ana", 64],
-                    ["aal",  1],
-                    ["dal",  1],
-                    ["hal",  2],
-                    ["jal", 55],
-                    ["ual",  1]
-                ]
+            [
+                ["aca",  1],
+                ["ana", 64],
+                ["aal",  1],
+                ["dal",  1],
+                ["hal",  2],
+                ["jal", 55],
+                ["ual",  1]
+            ]
         }
     ]
 }

@@ -1,17 +1,17 @@
 {
-  "name": "Embraer",
-  "icao": "emb",
-  "callsign": {
+    "icao": "emb",
     "name": "Embraer",
-    "length": 5,
-    "alpha": true
-  },
-  "fleets": {
-    "default": [
-      ["E50P", 5],
-      ["E55P", 5],
-      ["E545", 5],
-      ["E135", 5]
-    ]
-  }
+    "callsign": {
+        "name": "Embraer",
+        "length": 5,
+        "alpha": true
+    },
+    "fleets": {
+        "default": [
+            ["E50P", 5],
+            ["E55P", 5],
+            ["E545", 5],
+            ["E135", 5]
+        ]
+    }
 }

@@ -20,9 +20,9 @@
     },
     "airspace": [
         {
-            "floor": 			0,
-            "ceiling": 		    160,
-            "airspace_class":	"E",
+            "floor":             0,
+            "ceiling":             160,
+            "airspace_class":    "E",
             "poly":
             [
                 ["N35d51m58.00", "E139d49m52.00"],
@@ -106,7 +106,7 @@
         "TOADS":    ["N36d02m49.30", "E140d10m13.50"],
         "TWINS":    ["N35d49m55.80", "E140d37m34.00"],
         "TYLER":    ["N35d26m50.50", "E140d38m07.80"],
-        "WEBBS":    ["N35d48m33.00", "E140d47m52.00"] 
+        "WEBBS":    ["N35d48m33.00", "E140d47m52.00"]
     },
 
     "runways": [
@@ -825,7 +825,7 @@
             "speed": null,
             "method": "random",
             "rate": 1.44,
-            "airlines": [    
+            "airlines": [
                 ["afl",  1],
                 ["amx",  1],
                 ["aca",  3],

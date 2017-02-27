@@ -1,15 +1,15 @@
 {
-  "icao": "svr",
-  "name": "Ural Airlines",
-  "callsign": {
-    "name": "Ural",
-    "length": 3
-  },
-  "fleets": {
-    "default": [
-      ["A319", 6 ],
-      ["A320", 18],
-      ["A321", 10]
-    ]
-  }
+    "icao": "svr",
+    "name": "Ural Airlines",
+    "callsign": {
+        "name": "Ural",
+        "length": 3
+    },
+    "fleets": {
+        "default": [
+            ["A319", 6 ],
+            ["A320", 18],
+            ["A321", 10]
+        ]
+    }
 }

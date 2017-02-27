@@ -1,13 +1,13 @@
 {
-  "icao": "awi",
-  "name": "Air Wisconsin",
-  "callsign": {
-    "name": "Wisconsin",
-    "length": 4
-  },
-  "fleets": {
-    "default": [
-      ["CRJ2", 71]
-    ]
-  }
+    "icao": "awi",
+    "name": "Air Wisconsin",
+    "callsign": {
+        "name": "Wisconsin",
+        "length": 4
+    },
+    "fleets": {
+        "default": [
+            ["CRJ2", 71]
+        ]
+    }
 }

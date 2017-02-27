@@ -1,37 +1,37 @@
 {
-  "name": "Antonov An-148",
-  "icao": "A148",
-  "engines": {
-    "number": 2,
-    "type": "J"
-  },
-  "weightclass": "L",
-  "category": {
-    "srs": null,
-    "lahso": null,
-    "recat": "D"
-  },
-  "ceiling": 47000,
-  "rate": {
-    "climb":      3000,
-    "descent":    3000,
-    "accelerate": 4,
-    "decelerate": 2
-  },
-  "runway": {
-    "takeoff": 1.800,
-    "landing": 2.100
-  },
-  "speed":{
-    "min":     90,
-    "landing": 111,
-    "cruise":  440,
-    "cruiseM": null,
-    "max":     470,
-    "maxM":    null
-  },
-  "capability": {
-    "ils": true,
-    "fix": true
-  }
+    "name": "Antonov An-148",
+    "icao": "A148",
+    "engines": {
+        "number": 2,
+        "type": "J"
+    },
+    "weightclass": "L",
+    "category": {
+        "srs": null,
+        "lahso": null,
+        "recat": "D"
+    },
+    "ceiling": 47000,
+    "rate": {
+        "climb":      3000,
+        "descent":    3000,
+        "accelerate": 4,
+        "decelerate": 2
+    },
+    "runway": {
+        "takeoff": 1.800,
+        "landing": 2.100
+    },
+    "speed":{
+        "min":     90,
+        "landing": 111,
+        "cruise":  440,
+        "cruiseM": null,
+        "max":     470,
+        "maxM":    null
+    },
+    "capability": {
+        "ils": true,
+        "fix": true
+    }
 }

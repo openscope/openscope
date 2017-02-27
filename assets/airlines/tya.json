@@ -1,15 +1,15 @@
 {
-  "icao": "tya",
-  "name": "NordStar",
-  "callsign": {
-    "name": "Taimyr",
-    "length": 3
-  },
-  "fleets": {
-    "default": [
-      ["at43", 5 ],
-      ["B735", 1 ],
-      ["B738", 9 ]
-    ]
-  }
+    "icao": "tya",
+    "name": "NordStar",
+    "callsign": {
+        "name": "Taimyr",
+        "length": 3
+    },
+    "fleets": {
+        "default": [
+            ["at43", 5 ],
+            ["B735", 1 ],
+            ["B738", 9 ]
+        ]
+    }
 }

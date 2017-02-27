@@ -1,252 +1,252 @@
 {
-  "radio": {
-    "twr": "Istanbul Tower",
-    "app": "Istanbul Approach",
-    "dep": "Istanbul Departure"
-  },
-  "icao": "LTBA",
-  "iata": "IST",
-  "magnetic_north": 5.25,
-  "ctr_radius": 80,
-  "ctr_ceiling": 10000,
-  "initial_alt": 5000,
-  "position": ["N40.976898", "E28.814600", "163ft"],
-  "rr_radius_nm": 5.0,
-  "rr_center": ["N40.976898", "E28.814600"],
-  "has_terrain": false,
-  "wind": {
-    "angle": 25,
-    "speed": 6
-  },
-  "fixes": {
-    "LTBA": ["N40.976898", "E28.814600"],
-    "NORTH": ["N41.697227", "E28.814600"],
-    "EAST" : ["N40.972989", "E29.765082"],
-    "SOUTH": ["N40.256479", "E28.814600"],
-    "WEST" : ["N40.972989", "E27.864118"],
-    "IST": ["N41.057201", "E28.806400"],
-    "CEK": ["N41.005798", "E28.528099"],
-    "BKZ": ["N41.126900", "E29.142799"],
-    "SBH": ["N40.899700", "E29.320400"],
-    "YAA": ["N40.474998", "E29.207500"],
-    "UNSAV": ["N41.479166", "E28.788666"],
-    "ERTAS": ["N41.461666", "E29.145666"],
-    "YASEN": ["N41.199000", "E29.515166"],
-    "GAYEM": ["N41.046000", "E29.629500"],
-    "ELGOV": ["N40.595166", "E28.016666"],
-    "CRL": ["N41.150833", "E27.935000"],
-    "IMREN": ["N40.765000", "E28.383333"],
-    "SADIK": ["N40.678333", "E28.818333"],
-    "ERMAN": ["N40.795000", "E28.815000"],
-    "FATIH": ["N41.228666", "E28.799333"],
-    "KOFUN": ["N41.060000", "E28.988333"],
-    "ATCOS": ["N40.895000", "E28.633333"]
-  },
-  "runways": [
-    {
-      "_reference":  "https://www.ourairports.com/airports/LTBA/pilot-info.html",
-      "name":         ["35R", "17L"],
-      "name_offset":  [[1, 0], [0, 0.4]],
-      "end":    [ ["N40.971388", "E28.815833", "100ft"], ["N40.996333", "E28.808500", "157ft"] ],
-      "angle":        354,
-      "length":       3,
-      "ils":          [true, true]
+    "radio": {
+        "twr": "Istanbul Tower",
+        "app": "Istanbul Approach",
+        "dep": "Istanbul Departure"
     },
-    {
-      "name":         ["35L", "17R"],
-      "name_offset":  [[0, -0.2], [0, 0.4]],
-      "end":    [ ["N40.969333", "E28.807000", "102ft"], ["N40.996333", "E28.806000", "163ft"] ],
-      "angle":        354,
-      "length":       3,
-      "ils":          [true, true]
+    "icao": "LTBA",
+    "iata": "IST",
+    "magnetic_north": 5.25,
+    "ctr_radius": 80,
+    "ctr_ceiling": 10000,
+    "initial_alt": 5000,
+    "position": ["N40.976898", "E28.814600", "163ft"],
+    "rr_radius_nm": 5.0,
+    "rr_center": ["N40.976898", "E28.814600"],
+    "has_terrain": false,
+    "wind": {
+        "angle": 25,
+        "speed": 6
     },
-    {
-      "name":         ["23", "5"],
-      "name_offset":  [[0, 0], [0, 0]],
-      "end":    [ ["N40.977833", "E28.836167", "90ft"], ["N40.966333", "E28.811333", "93ft"]],
-      "angle":        235,
-      "length":       2.3,
-      "ils":          [true, true]
-    }
-  ],
-  "sids": {
-    "NORTH": {
-      "icao": "NORTH",
-      "name": "NORTH",
-      "rwy": {
-        "35L": ["NORTH"],
-        "35R": ["NORTH"],
-        "17L": ["NORTH"],
-        "17R": ["NORTH"],
-        "5" : ["NORTH"],
-        "23" : ["NORTH"]
-      },
-      "draw": [["LTBA","NORTH"]]
+    "fixes": {
+        "LTBA": ["N40.976898", "E28.814600"],
+        "NORTH": ["N41.697227", "E28.814600"],
+        "EAST" : ["N40.972989", "E29.765082"],
+        "SOUTH": ["N40.256479", "E28.814600"],
+        "WEST" : ["N40.972989", "E27.864118"],
+        "IST": ["N41.057201", "E28.806400"],
+        "CEK": ["N41.005798", "E28.528099"],
+        "BKZ": ["N41.126900", "E29.142799"],
+        "SBH": ["N40.899700", "E29.320400"],
+        "YAA": ["N40.474998", "E29.207500"],
+        "UNSAV": ["N41.479166", "E28.788666"],
+        "ERTAS": ["N41.461666", "E29.145666"],
+        "YASEN": ["N41.199000", "E29.515166"],
+        "GAYEM": ["N41.046000", "E29.629500"],
+        "ELGOV": ["N40.595166", "E28.016666"],
+        "CRL": ["N41.150833", "E27.935000"],
+        "IMREN": ["N40.765000", "E28.383333"],
+        "SADIK": ["N40.678333", "E28.818333"],
+        "ERMAN": ["N40.795000", "E28.815000"],
+        "FATIH": ["N41.228666", "E28.799333"],
+        "KOFUN": ["N41.060000", "E28.988333"],
+        "ATCOS": ["N40.895000", "E28.633333"]
     },
-    "EAST": {
-      "icao" : "EAST",
-      "name" : "EAST",
-      "rwy": {
-        "35L": ["EAST"],
-        "35R": ["EAST"],
-        "17L": ["EAST"],
-        "17R": ["EAST"],
-        "5" : ["EAST"],
-        "23" : ["EAST"]
-      },
-      "draw": [["LTBA","EAST"]]
-    },
-    "SOUTH": {
-      "icao": "SOUTH",
-      "name": "SOUTH",
-      "rwy": {
-        "35L": ["SOUTH"],
-        "35R": ["SOUTH"],
-        "17L": ["SOUTH"],
-        "17R": ["SOUTH"],
-        "5" : ["SOUTH"],
-        "23" : ["SOUTH"]
-      },
-      "draw": [["LTBA","SOUTH"]]
-    },
-    "WEST": {
-      "icao": "WEST",
-      "name": "WEST",
-      "rwy": {
-        "35L": ["WEST"],
-        "35R": ["WEST"],
-        "17L": ["WEST"],
-        "17R": ["WEST"],
-        "5" : ["WEST"],
-        "23" : ["WEST"]
-      },
-      "draw": [["LTBA","WEST"]]
-    }
-  },
-  "departures": {
-    "destinations": [
-       "NORTH", "EAST", "SOUTH", "WEST"
+    "runways": [
+        {
+            "_reference":  "https://www.ourairports.com/airports/LTBA/pilot-info.html",
+            "name":         ["35R", "17L"],
+            "name_offset":  [[1, 0], [0, 0.4]],
+            "end":    [ ["N40.971388", "E28.815833", "100ft"], ["N40.996333", "E28.808500", "157ft"] ],
+            "angle":        354,
+            "length":       3,
+            "ils":          [true, true]
+        },
+        {
+            "name":         ["35L", "17R"],
+            "name_offset":  [[0, -0.2], [0, 0.4]],
+            "end":    [ ["N40.969333", "E28.807000", "102ft"], ["N40.996333", "E28.806000", "163ft"] ],
+            "angle":        354,
+            "length":       3,
+            "ils":          [true, true]
+        },
+        {
+            "name":         ["23", "5"],
+            "name_offset":  [[0, 0], [0, 0]],
+            "end":    [ ["N40.977833", "E28.836167", "90ft"], ["N40.966333", "E28.811333", "93ft"]],
+            "angle":        235,
+            "length":       2.3,
+            "ils":          [true, true]
+        }
     ],
-    "type": "random",
-    "frequency": 3.5,
-    "airlines": [
-      ["aca", 4],
-      ["afl", 6],
-      ["baw", 4],
-      ["thy", 2],
-      ["dal", 4],
-      ["fdx", 7],
-      ["klm", 5],
-      ["ups", 8],
-      ["n/fastGA", 10],
-      ["n/lightGA", 11]
+    "sids": {
+        "NORTH": {
+            "icao": "NORTH",
+            "name": "NORTH",
+            "rwy": {
+                "35L": ["NORTH"],
+                "35R": ["NORTH"],
+                "17L": ["NORTH"],
+                "17R": ["NORTH"],
+                "5" : ["NORTH"],
+                "23" : ["NORTH"]
+            },
+            "draw": [["LTBA","NORTH"]]
+        },
+        "EAST": {
+            "icao" : "EAST",
+            "name" : "EAST",
+            "rwy": {
+                "35L": ["EAST"],
+                "35R": ["EAST"],
+                "17L": ["EAST"],
+                "17R": ["EAST"],
+                "5" : ["EAST"],
+                "23" : ["EAST"]
+            },
+            "draw": [["LTBA","EAST"]]
+        },
+        "SOUTH": {
+            "icao": "SOUTH",
+            "name": "SOUTH",
+            "rwy": {
+                "35L": ["SOUTH"],
+                "35R": ["SOUTH"],
+                "17L": ["SOUTH"],
+                "17R": ["SOUTH"],
+                "5" : ["SOUTH"],
+                "23" : ["SOUTH"]
+            },
+            "draw": [["LTBA","SOUTH"]]
+        },
+        "WEST": {
+            "icao": "WEST",
+            "name": "WEST",
+            "rwy": {
+                "35L": ["WEST"],
+                "35R": ["WEST"],
+                "17L": ["WEST"],
+                "17R": ["WEST"],
+                "5" : ["WEST"],
+                "23" : ["WEST"]
+            },
+            "draw": [["LTBA","WEST"]]
+        }
+    },
+    "departures": {
+        "destinations": [
+            "NORTH", "EAST", "SOUTH", "WEST"
+        ],
+        "type": "random",
+        "frequency": 3.5,
+        "airlines": [
+            ["aca", 4],
+            ["afl", 6],
+            ["baw", 4],
+            ["thy", 2],
+            ["dal", 4],
+            ["fdx", 7],
+            ["klm", 5],
+            ["ups", 8],
+            ["n/fastGA", 10],
+            ["n/lightGA", 11]
+        ]
+    },
+    "arrivals": [
+        {
+            "radial":    90,
+            "heading":   270,
+            "altitude":  [6000, 9000],
+            "speed": 250,
+            "type": "random",
+            "frequency": 8.5,
+            "airlines":  [
+                ["n/lightGA", 11],
+                ["afl", 6],
+                ["n/fastGA", 10]
+            ]
+        },
+        {
+            "radial":    180,
+            "heading":   360,
+            "altitude":  [5000, 7000],
+            "speed": 250,
+            "type": "random",
+            "frequency": 9,
+            "airlines":  [
+                ["thy", 2],
+                ["fdx", 7],
+                ["n/lightGA", 11]
+            ]
+        },
+        {
+            "radial":    270,
+            "heading":   90,
+            "altitude":  [7000, 9000],
+            "speed": 250,
+            "type": "random",
+            "frequency": 7,
+            "airlines":  [
+                ["aca", 4],
+                ["baw", 4],
+                ["thy", 2],
+                ["dal", 4],
+                ["fdx", 7],
+                ["klm", 5],
+                ["n/fastGA", 10]
+            ]
+        },
+        {
+            "radial":    360,
+            "heading":   180,
+            "altitude":  [5000, 8000],
+            "speed": 250,
+            "type": "random",
+            "frequency": 12.5,
+            "airlines":  [
+                ["afl", 6],
+                ["baw", 4],
+                ["thy", 2],
+                ["dal", 4],
+                ["fdx", 7],
+                ["klm", 5],
+                ["ups", 8],
+                ["n/fastGA", 10]
+            ]
+        },
+        {
+            "radial":    180,
+            "heading":   360,
+            "altitude":  [3000, 5000],
+            "speed": 250,
+            "type": "random",
+            "frequency": 15,
+            "airlines":  [
+                ["n/lightGA", 20]
+            ]
+        },
+        {
+            "radial":    45,
+            "heading":   225,
+            "altitude":  [7000, 9000],
+            "speed": 250,
+            "type": "random",
+            "frequency": 12.5,
+            "airlines":  [
+                ["ups", 8],
+                ["thy", 2],
+                ["n/fastGA", 20]
+            ]
+        },
+        {
+            "radial":    315,
+            "heading":   135,
+            "altitude":  [6000, 8000],
+            "speed": 250,
+            "type": "random",
+            "frequency": 4,
+            "airlines":  [
+                ["afl", 6],
+                ["baw", 4],
+                ["thy", 2],
+                ["dal", 4],
+                ["fdx", 7],
+                ["klm", 5],
+                ["ups", 8],
+                ["n/fastGA", 10],
+                ["aca", 4],
+                ["n/lightGA", 11]
+            ]
+        }
     ]
-  },
-  "arrivals": [
-    {
-      "radial":    90,
-      "heading":   270,
-      "altitude":  [6000, 9000],
-      "speed": 250,
-      "type": "random",
-      "frequency": 8.5,
-      "airlines":  [
-        ["n/lightGA", 11],
-        ["afl", 6],
-        ["n/fastGA", 10]
-      ]
-    },
-    {
-      "radial":    180,
-      "heading":   360,
-      "altitude":  [5000, 7000],
-      "speed": 250,
-      "type": "random",
-      "frequency": 9,
-      "airlines":  [
-        ["thy", 2],
-        ["fdx", 7],
-        ["n/lightGA", 11]
-      ]
-    },
-    {
-      "radial":    270,
-      "heading":   90,
-      "altitude":  [7000, 9000],
-      "speed": 250,
-      "type": "random",
-      "frequency": 7,
-      "airlines":  [
-        ["aca", 4],
-        ["baw", 4],
-        ["thy", 2],
-        ["dal", 4],
-        ["fdx", 7],
-        ["klm", 5],
-        ["n/fastGA", 10]
-      ]
-    },
-    {
-      "radial":    360,
-      "heading":   180,
-      "altitude":  [5000, 8000],
-      "speed": 250,
-      "type": "random",
-      "frequency": 12.5,
-      "airlines":  [
-        ["afl", 6],
-        ["baw", 4],
-        ["thy", 2],
-        ["dal", 4],
-        ["fdx", 7],
-        ["klm", 5],
-        ["ups", 8],
-        ["n/fastGA", 10]
-      ]
-    },
-    {
-      "radial":    180,
-      "heading":   360,
-      "altitude":  [3000, 5000],
-      "speed": 250,
-      "type": "random",
-      "frequency": 15,
-      "airlines":  [
-        ["n/lightGA", 20]
-      ]
-    },
-    {
-      "radial":    45,
-      "heading":   225,
-      "altitude":  [7000, 9000],
-      "speed": 250,
-      "type": "random",
-      "frequency": 12.5,
-      "airlines":  [
-        ["ups", 8],
-        ["thy", 2],
-        ["n/fastGA", 20]
-      ]
-    },
-    {
-      "radial":    315,
-      "heading":   135,
-      "altitude":  [6000, 8000],
-      "speed": 250,
-      "type": "random",
-      "frequency": 4,
-      "airlines":  [
-        ["afl", 6],
-        ["baw", 4],
-        ["thy", 2],
-        ["dal", 4],
-        ["fdx", 7],
-        ["klm", 5],
-        ["ups", 8],
-        ["n/fastGA", 10],
-        ["aca", 4],
-        ["n/lightGA", 11]
-      ]
-    }
-  ]
 }
