@@ -378,6 +378,24 @@ export default class Fms {
     }
 
     /**
+     * Removes an existing flightPlan and replaces it with a
+     * brand new route.
+     *
+     * This is a destructive operation.
+     *
+     * @for Fms
+     * @method replaceFlightPlanWithNewRoute
+     * @param routeString {string}
+     * @param runway {string}
+     */
+    replaceFlightPlanWithNewRoute(routeString, runway) {
+        this._destroyLegCollection();
+
+        this.flightPlanRoute = routeString;
+        this.legCollection = this._buildLegCollection(routeString);
+    }
+
+    /**
      * Validate and entire route.
      *
      * This can be:

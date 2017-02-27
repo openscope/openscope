@@ -137,33 +137,30 @@ export default class Pilot {
     }
 
     /**
-     * Replace the entire route stored in the FMS with legs freshly generated based on the provided route string
+     * Replace the entire route stored in the FMS with legs freshly generated
+     * based on the provided route string
      *
      * @for Pilot
      * @method applyNewRoute
-     * @param {String} routeString - route string
-     * @return {Array} [success of operation, readback]
+     * @param routeString {string}  routeString defining the new route to use
+     * @return {array}              [success of operation, readback]
      */
-    applyNewRoute(routeString) {
-        const route = this._fms.formatRoute(routeString);
+    applyNewRoute(routeString, runway) {
+        const isValid = this._fms.isValidRoute(routeString, runway);
 
-        if (!this._fms.customRoute(route, true)) {
+        if (!isValid) {
             const readback = {};
-            readback.log = `requested route of "${route}" is invalid`;
+            readback.log = `requested route of "${routeString}" is invalid`;
             readback.say = 'that route is invalid';
 
             return [false, readback];
         }
 
-        // TODO: what exactly are we checking here?
-        // if (!route || !routeString || routeString.indexOf(' ') > -1) {
-        //     return [false, 'unknown issues'];
-        // }
-
+        this._fms.replaceFlightPlanWithNewRoute(routeString, runway);
 
         // Build readback
         const readback = {};
-        readback.log = `rerouting to: ${this._fms.sayRoute}`;
+        readback.log = `rerouting to: ${this._fms.currentRoute}`;
         readback.say = 'rerouting as requested';
 
         return [true, readback];
@@ -196,7 +193,7 @@ export default class Pilot {
 
         // Build readback
         const readback = {};
-        readback.log = `rerouting to :${this._fms.fp.route.join(' ')}`;
+        readback.log = `rerouting to :${this._fms.flightPlanRoute}`;
         readback.say = 'rerouting as requested';
 
         return [true, readback];
