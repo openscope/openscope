@@ -171,29 +171,26 @@ export default class Pilot {
      *
      * @for Pilot
      * @method applyPartialRouteAmendment
-     * @param {String} routeString - route string in the form of `entry.procedure.airport`
-     * @return {Array} [success of operation, readback]
+     * @param routeString {tring}  route string in the form of `entry.procedure.airport`
+     * @return {array}             [success of operation, readback]
      */
     applyPartialRouteAmendment(routeString) {
-        // TODO: replace with routeStringFormatHelper
-        const route = this._fms.formatRoute(routeString);
+        const isValid = this._fms.isValidRoute(routeString);
 
-        if (_isNil(route)) {
-            return [false, 'unable to amend route because no route was specified'];
+        if (!isValid) {
+            return [false, `requested route of "${routeString}" is invalid`];
         }
 
-        if (!this._fms.customRoute(route, false)) {
-            return [false, `requested route of "${route}" is invalid`];
+        if (!this._fms.isValidRouteAmendment(routeString)) {
+            // FIXME: this is not a good message
+            return [false, `requested route of "${routeString}" is invalid, it must contain a Waypoint in the current route`];
         }
 
-        // TODO: What is the purpose of this?
-        // if (!route || !data || data.indexOf(' ') > -1) {
-            // return [false, 'unknown issue'];
-        // }
+        this._fms.replaceRouteUpToSharedRouteSegment(routeString);
 
         // Build readback
         const readback = {};
-        readback.log = `rerouting to :${this._fms.flightPlanRoute}`;
+        readback.log = `rerouting to: ${this._fms.currentRoute}`;
         readback.say = 'rerouting as requested';
 
         return [true, readback];
@@ -221,9 +218,9 @@ export default class Pilot {
 
         const readback = {};
         readback.log = `cleared to destination as filed. Climb and maintain ${initialAltitude}, expect ` +
-                `${this._fms.flightPlan.altitude} 10 minutes after departure`;
+                `${this._fms.flightPlanAltitude} 10 minutes after departure`;
         readback.say = `cleared to destination as filed. Climb and maintain ${radio_altitude(initialAltitude)}, ` +
-                `expect ${radio_altitude(this._fms.flightPlan.altitude)}, ${radio_spellOut('10')} minutes ` +
+                `expect ${radio_altitude(this._fms.flightPlanAltitude)}, ${radio_spellOut('10')} minutes ` +
                 'after departure';
 
         return ['ok', readback];
@@ -303,15 +300,11 @@ export default class Pilot {
      *
      * @for Pilot
      * @method descendViaSTAR
-     * @param {Number} altitude - (optional) altitude at which the descent will end (regardless of fix restrictions)
-     * @return {Array} [success of operation, readback]
+     * @param altitude {number}  (optional) altitude at which the descent will end (regardless of fix restrictions)
+     *                                      this should be the altitude of the lowest fix restriction on the STAR
+     * @return {array}           [success of operation, readback]
      */
-    descendViaSTAR(/* optional */ altitude) {
-        if (_isNil(altitude)) {
-            // TODO: This should be the altitude of the lowest fix restriction on the STAR
-            altitude = 0;
-        }
-
+    descendViaSTAR(altitude = 0) {
         this._setAltitudeFieldValue(altitude);
         this._setAltitudeVnav();
         this._setSpeedVnav();

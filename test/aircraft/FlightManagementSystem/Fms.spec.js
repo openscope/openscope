@@ -297,6 +297,45 @@ ava('.replaceArrivalProcedure() replaces the currentLeg with the new route', (t)
     t.true(fms.currentLeg.routeString === arrivalProcedureRouteStringMock.toLowerCase());
 });
 
+ava('.replaceRouteUpToSharedRouteSegment() calls ._trimLegCollectionAtIndex() with an index of the matching LegModel', (t) => {
+    const routeAmmendment = 'HITME..HOLDM..BIKKR..DAG';
+    const fms = buildFmsMock(isComplexRoute);
+    const _trimLegCollectionAtIndexSpy = sinon.spy(fms, '_trimLegCollectionAtIndex');
+    // custom route addition here to give us a little wiggle room for the test
+    fms.replaceFlightPlanWithNewRoute('COWBY..SUNST..BIKKR..DAG.KEPEC3.KLAS');
+
+    fms.replaceRouteUpToSharedRouteSegment(routeAmmendment);
+
+    t.true(_trimLegCollectionAtIndexSpy.calledWithExactly(2));
+});
+
+ava('.replaceRouteUpToSharedRouteSegment() calls ._prependLegCollectionWithRouteAmendment() with an array of routeSegments', (t) => {
+    const expectedResult = ['hitme', 'holdm'];
+    const routeAmmendment = 'HITME..HOLDM..BIKKR..DAG';
+    const fms = buildFmsMock(isComplexRoute);
+    const _prependLegCollectionWithRouteAmendmentSpy = sinon.spy(fms, '_prependLegCollectionWithRouteAmendment');
+    // custom route addition here to give us a little wiggle room for the test
+    fms.replaceFlightPlanWithNewRoute('COWBY..SUNST..BIKKR..DAG.KEPEC3.KLAS');
+
+    fms.replaceRouteUpToSharedRouteSegment(routeAmmendment);
+
+    t.true(_prependLegCollectionWithRouteAmendmentSpy.calledWithExactly(expectedResult));
+});
+
+ava('.replaceRouteUpToSharedRouteSegment() adds a new LegModel for each new routeSegment up to a shared LegModel.routeString', (t) => {
+    const expectedResult = ['hitme', 'holdm', 'bikkr'];
+    const routeAmmendment = 'HITME..HOLDM..BIKKR..DAG';
+    const fms = buildFmsMock(isComplexRoute);
+    // custom route addition here to give us a little wiggle room for the test
+    fms.replaceFlightPlanWithNewRoute('COWBY..SUNST..BIKKR..DAG.KEPEC3.KLAS');
+
+    fms.replaceRouteUpToSharedRouteSegment(routeAmmendment);
+
+    t.true(fms.legCollection[0].routeString === expectedResult[0]);
+    t.true(fms.legCollection[1].routeString === expectedResult[1]);
+    t.true(fms.legCollection[2].routeString === expectedResult[2]);
+});
+
 ava('.isValidRoute() returns true when passed a valid complexRouteString', (t) => {
     const fms = buildFmsMock();
 
@@ -371,6 +410,20 @@ ava('.isValidProcedureRoute() returns true if the passed route is a valid depart
     t.true(result);
 });
 
+ava('.isValidRouteAmendment() returns true when a routeAmmendment contains a routeSegment that exists in the flightPlan', (t) => {
+    const routeAmmendmentMock = 'HITME..HOLDM..BIKKR';
+    const fms = buildFmsMock(isComplexRoute);
+
+    t.true(fms.isValidRouteAmendment(routeAmmendmentMock));
+});
+
+ava('.isValidRouteAmendment() returns false when a routeAmmendment does not contain a routeSegment that exists in the flightPlan', (t) => {
+    const routeAmmendmentMock = 'HITME..HOLDM';
+    const fms = buildFmsMock(isComplexRoute);
+
+    t.false(fms.isValidRouteAmendment(routeAmmendmentMock));
+});
+
 ava.todo('.hasNextWaypoint()');
 ava.todo('.hasLegWithRouteString()');
 
@@ -401,4 +454,22 @@ ava('._destroyLegCollection() clears the #legCollection', (t) => {
     t.true(fms.legCollection.length === 0);
 });
 
-ava.todo('._replaceLegAtIndexWithRouteString()');
+ava('._prependLegCollectionWithRouteAmendment() adds LegModels for each directRouteString in an array', (t) => {
+    const routeAmmendmentMock = ['hitme', 'holdm'];
+    const fms = buildFmsMock(isComplexRoute);
+
+    fms._prependLegCollectionWithRouteAmendment(routeAmmendmentMock);
+
+    t.true(fms.legCollection[0].routeString === routeAmmendmentMock[0]);
+    t.true(fms.legCollection[1].routeString === routeAmmendmentMock[1]);
+});
+
+ava('._prependLegCollectionWithRouteAmendment() adds LegModels for each routeString in an array', (t) => {
+    const routeAmmendmentMock = ['hitme', 'dag.kepec3.klas'];
+    const fms = buildFmsMock(isComplexRoute);
+
+    fms._prependLegCollectionWithRouteAmendment(routeAmmendmentMock);
+
+    t.true(fms.legCollection[0].routeString === routeAmmendmentMock[0]);
+    t.true(fms.legCollection[1].routeString === routeAmmendmentMock[1]);
+});

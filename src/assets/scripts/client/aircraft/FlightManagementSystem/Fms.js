@@ -396,6 +396,41 @@ export default class Fms {
     }
 
     /**
+     * Replace a portion of the existing flightPlan with a new route,
+     * up to a shared routeSegment.
+     *
+     * It is assumed that any `routeString` passed to this method has
+     * already been verified to contain a shared segment with the existing
+     * route. This method is not designed to handle errors for cases where
+     * there are not shared routeSegments.
+     *
+     * @for Fms
+     * @metho replaceRouteUpToSharedRouteSegment
+     * @param routeString {routeString}
+     */
+    replaceRouteUpToSharedRouteSegment(routeString) {
+        let legIndex = -1;
+        let amendmentRouteString = '';
+        const routeSegments = routeStringFormatHelper(routeString.toLowerCase());
+
+        for (let i = 0; i < routeSegments.length; i++) {
+            const segment = routeSegments[i];
+
+            // with the current routeSegment, find if this same routeSegment exists already within the #legCollection
+            if (this.hasLegWithRouteString(segment)) {
+                legIndex = this._findLegIndexByRouteString(segment);
+                // build a new routeString with only the pieces we need to create new `LegModels` for
+                amendmentRouteString = routeSegments.slice(0, i);
+
+                break;
+            }
+        }
+
+        this._trimLegCollectionAtIndex(legIndex);
+        this._prependLegCollectionWithRouteAmendment(amendmentRouteString);
+    }
+
+    /**
      * Validate and entire route.
      *
      * This can be:
@@ -409,7 +444,7 @@ export default class Fms {
      * @param runway {string}
      * @return {boolean}
      */
-    isValidRoute(routeString, runway) {
+    isValidRoute(routeString, runway = '') {
         const routeSegments = routeStringFormatHelper(routeString);
 
         for (let i = 0; i < routeSegments.length; i++) {
@@ -481,6 +516,37 @@ export default class Fms {
         }
 
         return procedureModel.hasFixName(routeStringModel.exit) && procedureModel.hasFixName(runway);
+    }
+
+    /**
+     * Given a `routeString`, find if any `routeSegments` match an existing
+     * `LegModel#routeString`.
+     *
+     * This method will return true on only the first match.
+     *
+     * This method should be used before using `applyPartialRouteAmendment()`
+     * to verify a `routeAmmendment` has some shared `routeSegment`.
+     *
+     * @for Fms
+     * @method isValidRouteAmendment
+     * @param routeString {string}      any `routeString` representing a future routeAmmendment
+     * @return isValid {boolean}
+     */
+    isValidRouteAmendment(routeString) {
+        let isValid = false;
+        const routeSegments = routeStringFormatHelper(routeString);
+
+        for (let i = 0; i < routeSegments.length; i++) {
+            const segment = routeSegments[i];
+
+            if (this.hasLegWithRouteString(segment)) {
+                isValid = true;
+
+                break;
+            }
+        }
+
+        return isValid;
     }
 
     /**
@@ -579,7 +645,10 @@ export default class Fms {
     }
 
     /**
+     * Build a `LegModel` instance
      *
+     * This is abstracted to centralize the creation of `LegModels` so the same,
+     * consistent operation can be performed from within a loop or one at a time.
      *
      * @for Fms
      * @method _buildLegModelFromRouteSegment
@@ -654,11 +723,23 @@ export default class Fms {
      * @method _findLegIndexForProcedureType
      * @param procedureType {PROCEDURE_TYPE|string}  either `SID` or `STAR`, but can be extended to anything in the
      *                                               `PROCEDURE_TYPE` enum
-     * @return {number}                              this array index of a `procedureType` from the `#legCollection`
+     * @return {number}                              array index of a `procedureType` from the `#legCollection`
      * @private
      */
     _findLegIndexForProcedureType(procedureType) {
         return _findIndex(this.legCollection, { _isProcedure: true, procedureType: procedureType });
+    }
+
+    /**
+     * Locate a `LegModel` in the collection by it's `#routeString` property
+     *
+     * @for Fms
+     * @method _findLegIndexByRouteString
+     * @param routeString {string}
+     * @return {number|undefined}           array index of the found `LegModel` or undefined
+     */
+    _findLegIndexByRouteString(routeString) {
+        return _findIndex(this.legCollection, { routeString: routeString });
     }
 
     /**
@@ -745,6 +826,7 @@ export default class Fms {
      * @method _translateProcedureNameToFlightPhase
      * @param procedureId {string}
      * @return {string}
+     * @private
      */
     _translateProcedureNameToFlightPhase(procedureId) {
         const collectionToFlightPhaseDictionary = {
@@ -754,5 +836,41 @@ export default class Fms {
         const collectionName = this._navigationLibrary.findCollectionNameForProcedureId(procedureId);
 
         return collectionToFlightPhaseDictionary[collectionName];
+    }
+
+    /**
+     * Removes `LegModel`s from index `0` to `#legIndex`.
+     *
+     * This method is useful for removing a specific number of `LegModel`s
+     * from the left of the collection.
+     *
+     * @for Fms
+     * @method _trimLegCollectionAtIndex
+     * @param legIndex {number}
+     * @private
+     */
+    _trimLegCollectionAtIndex(legIndex) {
+        this.legCollection = this.legCollection.slice(legIndex);
+    }
+
+    /**
+     * Given an array of `routeSegments`, prepend each to the left of the `#legCollection`
+     *
+     * @for Fms
+     * @method _prependLegCollectionWithRouteAmendment
+     * @param routeSegments {array<string>}             direct or procedure routeStrings
+     * @private
+     */
+    _prependLegCollectionWithRouteAmendment(routeSegments) {
+        // reversing order here because we're leveraging `.prependLeg()`, which adds a single
+        // leg to the left of the `#legCollection`. by reversing the array, we can ensure the
+        // correct order of legs.
+        const reversedLegModelList = routeSegments.slice().reverse();
+
+        for (let i = 0; i < reversedLegModelList.length; i++) {
+            const legModel = reversedLegModelList[i];
+
+            this.prependLeg(legModel);
+        }
     }
 }
