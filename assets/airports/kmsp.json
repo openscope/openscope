@@ -221,7 +221,7 @@
             "NORTH", "EAST", "SOUTH", "WEST"
         ],
         "type": "random",
-        "frequency": 23.5,
+        "frequency": 2,
         "airlines": [
             ["ual", 3],
             ["baw", 5],
