@@ -16,7 +16,6 @@ import {
     degreesToRadians,
     heading_to_string
 } from '../../utilities/unitConverters';
-import { routeStringFormatHelper } from '../../navigationLibrary/Route/routeStringFormatHelper';
 import { radians_normalize } from '../../math/circle';
 import {
     FLIGHT_CATEGORY,
@@ -65,6 +64,136 @@ export default class Pilot {
          * @private
          */
         this._fms = fms;
+    }
+
+    /**
+     * Maintain a given altitude
+     *
+     * @for Pilot
+     * @method maintainAltitude
+     * @param {Number} altitude   the altitude to maintain, in feet
+     * @param {Boolean} expedite  whether to use maximum possible climb/descent rate
+     * @return {Array}            [success of operation, readback]
+     */
+    maintainAltitude(currentAltitude, altitude, expedite, shouldUseSoftCeiling, airportModel) {
+        const { minAssignableAltitude, maxAssignableAltitude } = airportModel;
+        // TODO: this could probably be done in the AirportModel
+        // FIXME: we should set a new var here instead of reassigning to the param
+        altitude = clamp(minAssignableAltitude, altitude, maxAssignableAltitude);
+
+        if (shouldUseSoftCeiling && altitude === maxAssignableAltitude) {
+            altitude += 1;  // causes aircraft to 'leave' airspace, and continue climb through ceiling
+        }
+
+        this._setAltitudeHoldWithValue(altitude);
+
+        // TODO: this could be split to another method
+        // Build readback
+        altitude = _floor(altitude, -2);
+        const altitudeInstruction = radio_trend('altitude', currentAltitude, altitude);
+        const altitudeVerbal = radio_altitude(altitude);
+        let expediteReadback = '';
+
+        if (expedite) {
+            // including space here so when expedite is false there isnt an extra space after altitude
+            expediteReadback = ' and expedite';
+
+            this.shouldExpediteAltitudeChange();
+        }
+
+        const readback = {};
+        readback.log = `${altitudeInstruction} ${altitude}${expediteReadback}`;
+        readback.say = `${altitudeInstruction} ${altitudeVerbal}${expediteReadback}`;
+
+        return ['ok', readback];
+    }
+
+    /**
+     * Maintain a given heading
+     *
+     * @for Pilot
+     * @method maintainHeading
+     * @param {Number} heading - the heading to maintain, in radians_normalize
+     * @param {String} direction - (optional) the direction of turn; either 'left' or 'right'
+     * @param {Boolean} incremental - (optional) whether the value is a numeric heading, or a number of degrees to turn
+     * @return {Array} [success of operation, readback]
+     */
+    maintainHeading(heading, direction, incremental) {
+        let degrees;
+
+        // TODO: this math should be an external helper function
+        if (incremental) {
+            degrees = heading;
+            // FIXME: pass in the current heading when calling this method from the AircraftCommander
+            const aircraft = { heading: 0 };    // FIXME: How can the Pilot access the current heading?
+
+            if (direction === 'left') {
+                heading = radians_normalize(aircraft.heading - degreesToRadians(degrees));
+            } else if (direction === 'right') {
+                heading = radians_normalize(aircraft.heading + degreesToRadians(degrees));
+            }
+        }
+
+        this._setHeadingFieldValue(heading);
+        this._setHeadingHold();
+
+        // Build readback
+        const heading_string = heading_to_string(heading);
+        const readback = {};
+        readback.log = `fly heading ${heading_string}`;
+        readback.say = `fly heading ${radio_heading(heading_string)}`;
+
+        if (incremental) {
+            readback.log = `turn ${degrees} degrees ${direction}`;
+            readback.say = `turn ${groupNumbers(degrees)} degrees ${direction}`;
+        } else if (direction) {
+            readback.log = `turn ${direction} heading ${heading_string}`;
+            readback.say = `turn ${direction} heading ${radio_heading(heading_string)}`;
+        }
+
+        return [true, readback];
+    }
+
+    /**
+     * Maintain the aircraft's present magnetic heading
+     *
+     * @for Pilot
+     * @method maintainPresentHeading
+     * @param {Number} heading - the heading the aircraft is facing at the time the command is given
+     * @return {Array} [success of operation, readback]
+     */
+    maintainPresentHeading(heading) {
+        this._setHeadingFieldValue(heading);
+        this._setHeadingHold();
+
+        const readback = {};
+        readback.log = 'fly present heading';
+        readback.say = 'fly present heading';
+
+        return [true, readback];
+    }
+
+    /**
+     * Maintain a given speed
+     *
+     * @for Pilot
+     * @method maintainSpeed
+     * @param {Number} speed - the speed to maintain, in knots
+     * @return {Array} [success of operation, readback]
+     */
+    maintainSpeed(speed) {
+        const aircraft = { speed: 0 };  // FIXME: How can the pilot access the aircraft's current speed?
+        const instruction = radio_trend('speed', aircraft.speed, speed);
+
+        this._setSpeedFieldValue(speed);
+        this._setSpeedHold();
+
+        // Build the readback
+        const readback = {};
+        readback.log = `${instruction} ${speed}`;
+        readback.say = `${instruction} ${radio_spellOut(speed)}`;
+
+        return [true, readback];
     }
 
     /**
@@ -207,11 +336,6 @@ export default class Pilot {
      * @return {Array}                  [success of operation, readback]
      */
     clearedAsFiled(initialAltitude, runwayHeading, cruiseSpeed) {
-        // FIXME: this needs to be handled differently
-        // if (!this._fms.replaceCurrentFlightPlan(this._fms.flightPlan.route)) {
-        //     return [false, 'unable to clear as filed'];
-        // }
-
         this._setAltitudeHoldWithValue(initialAltitude);
         this._setHeadingLnavWithValue(runwayHeading);
         this._setSpeedN1WithValue(cruiseSpeed);
@@ -227,70 +351,27 @@ export default class Pilot {
     }
 
     /**
-     * Climb in accordance with the altitude restrictions
+     * Climb in accordance with the altitude restrictions, and sets
+     * altitude at which the climb will end regardless of fix restrictions.
      *
      * @for Pilot
      * @method climbViaSid
-     * @param {Number} altitude  altitude at which the climb will end (regardless of fix restrictions)
-     * @return {Array}           [success of operation, readback]
+     * @return {array}           [success of operation, readback]
      */
-    climbViaSid(altitude) {
-        if (_isNil(altitude)) {
-            altitude = this._fms.flightPlan.altitude;
+    climbViaSid() {
+        if (this._fms.flightPlanAltitude === -1) {
+            const readback = {};
+            readback.log = 'unable to climb via SID, no altitude assigned';
+            readback.say = 'unable to climb via SID, no altitude assigned';
+
+            return [false, readback];
         }
 
-        this._setAltitudeVnavWithValue(altitude);
-
-        const readback = {
-            log: 'climb via SID',
-            say: 'climb via SID'
-        };
-
-        return [true, readback];
-    }
-
-    /**
-     * Conduct the specified instrument approachType
-     * Note: Currently only supports ILS approaches
-     * Note: Approach variants cannot yet be specified (eg RNAV-Y)
-     *
-     * @for pilot
-     * @method conductInstrumentApproach
-     * @param {String} approachType - the type of instrument approach (eg 'ILS', 'RNAV', 'VOR', etc)
-     * @param {Runway} runway - the runway the approach ends at
-     * @param {Number} interceptAltitude - the altitude to maintain until established on the localizer
-     * @return {Array} [success of operation, readback]
-     */
-    conductInstrumentApproach(approachType, runway, interceptAltitude) {
-        if (_isNil(runway)) {
-            return [false, 'the specified runway does not exist'];
-        }
-
-        // TODO: #flyPresentHeading requires a value we can't get, unless we pass it, which seems sloppy
-        if (this._mcp.headingMode !== MCP_MODE.HEADING.HOLD) {
-            this.flyPresentHeading();
-        }
-
-        const datum = runway.position;
-        const course = runway.angle;
-        const descentAngle = runway.ils.gs_gradient;
-
-        // TODO: This method may not exist yet
-        this._fms.setArrivalRunway(runway.name);
-        const lateralGuidance = this.interceptCourse(datum, course)[0];
-        const verticalGuidance = this.interceptGlidepath(datum, course, descentAngle, interceptAltitude)[0];
-
-        if (!lateralGuidance) {
-            return lateralGuidance;
-        }
-
-        if (!verticalGuidance) {
-            return verticalGuidance;
-        }
+        this._setAltitudeVnavWithValue(this._fms.flightPlanAltitude);
 
         const readback = {};
-        readback.log = `cleared ${approachType.toUpperCase()} runway ${runway.name} approach`;
-        readback.say = `cleared ${approachType.toUpperCase()} runway ${radio_runway(runway.name)} approach`;
+        readback.log = 'climb via SID';
+        readback.say = 'climb via SID';
 
         return [true, readback];
     }
@@ -377,6 +458,53 @@ export default class Pilot {
     }
 
     /**
+     * Conduct the specified instrument approachType
+     * Note: Currently only supports ILS approaches
+     * Note: Approach variants cannot yet be specified (eg RNAV-Y)
+     *
+     * @for pilot
+     * @method conductInstrumentApproach
+     * @param {String} approachType - the type of instrument approach (eg 'ILS', 'RNAV', 'VOR', etc)
+     * @param {Runway} runway - the runway the approach ends at
+     * @param {Number} interceptAltitude - the altitude to maintain until established on the localizer
+     * @return {Array} [success of operation, readback]
+     */
+    conductInstrumentApproach(approachType, runway, interceptAltitude) {
+        if (_isNil(runway)) {
+            return [false, 'the specified runway does not exist'];
+        }
+
+        // TODO: #flyPresentHeading requires a value we can't get, unless we pass it, which seems sloppy
+        if (this._mcp.headingMode !== MCP_MODE.HEADING.HOLD) {
+            this.flyPresentHeading();
+        }
+
+        const datum = runway.position;
+        const course = runway.angle;
+        const descentAngle = runway.ils.gs_gradient;
+
+        // TODO: This method may not exist yet
+        this._fms.setArrivalRunway(runway.name);
+
+        const lateralGuidance = this.interceptCourse(datum, course)[0];
+        const verticalGuidance = this.interceptGlidepath(datum, course, descentAngle, interceptAltitude)[0];
+
+        if (!lateralGuidance) {
+            return lateralGuidance;
+        }
+
+        if (!verticalGuidance) {
+            return verticalGuidance;
+        }
+
+        const readback = {};
+        readback.log = `cleared ${approachType.toUpperCase()} runway ${runway.name} approach`;
+        readback.say = `cleared ${approachType.toUpperCase()} runway ${radio_runway(runway.name)} approach`;
+
+        return [true, readback];
+    }
+
+    /**
      * Expedite the climb or descent to the assigned altitude, to use maximum possible rate
      *
      * @for Pilot
@@ -386,136 +514,6 @@ export default class Pilot {
         this._mcp.shouldExpediteAltitudeChange = true;
 
         return [true, 'expediting to assigned altitude'];
-    }
-
-    /**
-     * Maintain a given altitude
-     *
-     * @for Pilot
-     * @method maintainAltitude
-     * @param {Number} altitude   the altitude to maintain, in feet
-     * @param {Boolean} expedite  whether to use maximum possible climb/descent rate
-     * @return {Array}            [success of operation, readback]
-     */
-    maintainAltitude(currentAltitude, altitude, expedite, shouldUseSoftCeiling, airportModel) {
-        const { minAssignableAltitude, maxAssignableAltitude } = airportModel;
-        // TODO: this could probably be done in the AirportModel
-        // FIXME: we should set a new var here instead of reassigning to the param
-        altitude = clamp(minAssignableAltitude, altitude, maxAssignableAltitude);
-
-        if (shouldUseSoftCeiling && altitude === maxAssignableAltitude) {
-            altitude += 1;  // causes aircraft to 'leave' airspace, and continue climb through ceiling
-        }
-
-        this._setAltitudeHoldWithValue(altitude);
-
-        // TODO: this could be split to another method
-        // Build readback
-        altitude = _floor(altitude, -2);
-        const altitudeInstruction = radio_trend('altitude', currentAltitude, altitude);
-        const altitudeVerbal = radio_altitude(altitude);
-        let expediteReadback = '';
-
-        if (expedite) {
-            // including space here so when expedite is false there isnt an extra space after altitude
-            expediteReadback = ' and expedite';
-
-            this.shouldExpediteAltitudeChange();
-        }
-
-        const readback = {};
-        readback.log = `${altitudeInstruction} ${altitude}${expediteReadback}`;
-        readback.say = `${altitudeInstruction} ${altitudeVerbal}${expediteReadback}`;
-
-        return ['ok', readback];
-    }
-
-    /**
-     * Maintain a given heading
-     *
-     * @for Pilot
-     * @method maintainHeading
-     * @param {Number} heading - the heading to maintain, in radians_normalize
-     * @param {String} direction - (optional) the direction of turn; either 'left' or 'right'
-     * @param {Boolean} incremental - (optional) whether the value is a numeric heading, or a number of degrees to turn
-     * @return {Array} [success of operation, readback]
-     */
-    maintainHeading(heading, direction, incremental) {
-        let degrees;
-
-        // TODO: this math should be an external helper function
-        if (incremental) {
-            degrees = heading;
-            // FIXME: pass in the current heading when calling this method from the AircraftCommander
-            const aircraft = { heading: 0 };    // FIXME: How can the Pilot access the current heading?
-
-            if (direction === 'left') {
-                heading = radians_normalize(aircraft.heading - degreesToRadians(degrees));
-            } else if (direction === 'right') {
-                heading = radians_normalize(aircraft.heading + degreesToRadians(degrees));
-            }
-        }
-
-        this._setHeadingFieldValue(heading);
-        this._setHeadingHold();
-
-        // Build readback
-        const heading_string = heading_to_string(heading);
-        const readback = {};
-        readback.log = `fly heading ${heading_string}`;
-        readback.say = `fly heading ${radio_heading(heading_string)}`;
-
-        if (incremental) {
-            readback.log = `turn ${degrees} degrees ${direction}`;
-            readback.say = `turn ${groupNumbers(degrees)} degrees ${direction}`;
-        } else if (direction) {
-            readback.log = `turn ${direction} heading ${heading_string}`;
-            readback.say = `turn ${direction} heading ${radio_heading(heading_string)}`;
-        }
-
-        return [true, readback];
-    }
-
-    /**
-     * Maintain the aircraft's present magnetic heading
-     *
-     * @for Pilot
-     * @method maintainPresentHeading
-     * @param {Number} heading - the heading the aircraft is facing at the time the command is given
-     * @return {Array} [success of operation, readback]
-     */
-    maintainPresentHeading(heading) {
-        this._setHeadingFieldValue(heading);
-        this._setHeadingHold();
-
-        const readback = {};
-        readback.log = 'fly present heading';
-        readback.say = 'fly present heading';
-
-        return [true, readback];
-    }
-
-    /**
-     * Maintain a given speed
-     *
-     * @for Pilot
-     * @method maintainSpeed
-     * @param {Number} speed - the speed to maintain, in knots
-     * @return {Array} [success of operation, readback]
-     */
-    maintainSpeed(speed) {
-        const aircraft = { speed: 0 };  // FIXME: How can the pilot access the aircraft's current speed?
-        const instruction = radio_trend('speed', aircraft.speed, speed);
-
-        this._setSpeedFieldValue(speed);
-        this._setSpeedHold();
-
-        // Build the readback
-        const readback = {};
-        readback.log = `${instruction} ${speed}`;
-        readback.say = `${instruction} ${radio_spellOut(speed)}`;
-
-        return [true, readback];
     }
 
     /**

@@ -108,7 +108,7 @@ export default class Fms {
          * @type {Object}
          * @default ''
          */
-        this.flightPlanAltitude = '';
+        this.flightPlanAltitude = -1;
 
         /**
          * Collection of `LegModel` objects
@@ -204,7 +204,7 @@ export default class Fms {
         this._previousRouteSegments = [];
         this._runwayName = '';
         this.flightPlanRoute = '';
-        this.flightPlanAltitude = '';
+        this.flightPlanAltitude = -1;
         this.legCollection = [];
         this.currentPhase = '';
     }
