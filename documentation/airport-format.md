@@ -20,9 +20,9 @@ See the comments for information on the correct structure to use.
 ```
 {
   "radio": {
-    "twr": "tower callsign",                // The callsign of the airport control tower.
-    "app": "approach control callsign",     // The callsign of the airport approach.
-    "dep": "departure control callsign"     // The callsign of the airport departure.
+    "twr": "callsign of the facility providing tower services",                // The callsign of the airport control tower.
+    "app": "callsign of the facility providing approach control services",     // The callsign of the airport approach.
+    "dep": "callsign of the facility providing departure control services"     // The callsign of the airport departure.
   },
   "icao": "KSFO",                           // Uppercase ICAO airport code.
   "iata": "SFO",                            // Uppercase IATA airport code.
@@ -34,11 +34,11 @@ See the comments for information on the correct structure to use.
   "rr_radius_nm": 5,                        // Radius of the ring sections. (in nautical miles)
   "rr_center": ["lat", "lon"],              // The center position of the rings. (in nautical miles)
   "has_terrain": true,                      // Whether or not the airport has an associated GeoJSON terrain file in "assets/airports/terrain". (true or false)
-  "wind": {                                 // Wind is used for score. // It can affect an aircraft's ground tracks if enabled in settings.
-    "angle": 0,                             // Wind direction. (in degrees)
-    "speed": 3                              // Wind speed. (in knots)
+  "wind": {                                 // (optional) Wind is used for score. // It can affect an aircraft's ground tracks if enabled in settings.
+    "angle": 0,                             // (optional) Wind direction. (in degrees)
+    "speed": 3                              // (optional) Wind speed. (in knots)
   },
-  "fixes": {                                // Locations on the map that aircraft use to travel in and out of the map.
+  "fixes": {                                // Locations on the map that aircraft use to travel in and out of the map. These should be sorted alphabetically for readability.
     "FIXNAME", ["lat", "lon"],              // The name and position of the fix. (in latitude and longitude)
     "FIXNAME2", ["lat", "lon"]              // You can add as many as you like.
   },
@@ -53,7 +53,7 @@ See the comments for information on the correct structure to use.
       "ils": [true, true]                   // Whether or not each end of the runway has ILS.
     }
   ],
-  "sids": {                                 // Paths that aircraft follow from the runways to their transitions.
+  "sids": {                                 // (optional) Paths that aircraft follow from the runways to their transitions.
     "OFFSH9": {                             // Must match ICAO identifier.
       "icao": "OFFSH9",                     // ICAO identifier for SID. (NOT the full name - always 2-6 characters)
       "name": "Offshore Nine",              // Full name of SID as it would be said aloud. (this is used by speech synthesis)
@@ -81,7 +81,7 @@ See the comments for information on the correct structure to use.
             // United Kingdom, etc., be sure to flag all the transition fixes.
     }
   },
-  "stars": {                                // STARs are STandard ARrival paths for aircraft to follow.
+  "stars": {                                // (optional) STARs are STandard ARrival paths for aircraft to follow.
     "PYE1" : {
       "icao": "PYE1",                       // ICAO identifier of the STAR. (NOT the full name, always 2-6 characters)
       "name": "Point Reyes One",            // Name of STAR as it would be said aloud. (used by speech synthesis)
@@ -112,15 +112,39 @@ See the comments for information on the correct structure to use.
   "spawnPatterns": [
   {
       "origin": "KSFO",                     // Four-letter ICAO identifier of the origin point/fix. (can be left empty if "destination" is filled)
-      "destination": "vhhh",                // Four-letter ICAO identifier of the destination point/fix. (can be left empty if "origin" is filled)
-      "category": "arrival",                // Category of the flights. (arrival or departure, usually)
-      "route": "ABBEY..MUSEL..TAMAR..TD",   // Route of the flights. (can use fixes OR SIDs / STARs in this format: *origin*.*SID/STAR ICAO*.*destination*)
+      "destination": "",                    // Four-letter ICAO identifier of the destination point/fix. (can be left empty if "origin" is filled)
+      "category": "departure",              // Category of the flights. (arrival or departure)
+      "route": "ABBEY..MUSEL..TAMAR..TD",   // Route of the flights. (can use fixes OR SIDs / STARs in this format: origin.SID/STAR_ICAO.destination)
+                                            // (ex: "FIX1..FIX2..FIX3" or "KSFO.OFFSH9.SNS")
       "altitude": 10000,                    // Altitude of the flights. (in feet)
       "speed": 250,                         // Speed of the flights. (in knots)
-      "method": "surge",                    // Method of spawn. See spawnPatterns Build Process in the comments.
-      "entrail": [10, 22],
-      "rate": 15,
-      "airlines":  [
+      "method": "random",                   // Method of spawn. See "spawnPatterns Build Process" section in the comments.
+      "entrail": [10, 22],                  // (optional) Only used when "method" is "surge".
+                                            // Range of distances between successively spawned aircraft throughout the cycle. [minimum, maximum]
+      "rate": 15,                           // Number of flight per hour at normal speed.
+      "airlines":  [                        // Airlines of the flights spawned.
+          ["cpa", 30],
+          ["ces", 10],
+          ["csn", 10],
+          ["hda", 10],
+          ["aca/long", 5],
+          ["cca", 10],
+          ["ual/long", 3],
+          ["kal/long", 3]
+      ]
+  },
+  {
+      "origin": "",                         // Four-letter ICAO identifier of the origin point/fix. (can be left empty if "destination" is filled)
+      "destination": "KSFO",                // Four-letter ICAO identifier of the destination point/fix. (can be left empty if "origin" is filled)
+      "category": "arrival",                // Category of the flights. (arrival or departure)
+      "route": "TD..TAMAR..MUSEL..ABBEY",   // Route of the flights. (can use fixes OR SIDs / STARs in this format: ("FIX1..FIX2..FIX3" or "SNS.OFFSH9.KSFO"))
+      "altitude": 10000,                    // Altitude of the flights. (in feet)
+      "speed": 250,                         // Speed of the flights. (in knots)
+      "method": "random",                   // Method of spawn. See "spawnPatterns Build Process" section in the comments.
+      "entrail": [10, 22],                  // (optional) Only used when "method" is "surge".
+                                            // Range of distances between successively spawned aircraft throughout the cycle. [minimum, maximum]
+      "rate": 15,                           // Number of flight per hour at normal speed.
+      "airlines":  [                        // Airlines of the flights spawned.
           ["cpa", 30],
           ["ces", 10],
           ["csn", 10],
