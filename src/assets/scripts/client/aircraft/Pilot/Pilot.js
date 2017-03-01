@@ -85,7 +85,7 @@ export default class Pilot {
             altitude += 1;  // causes aircraft to 'leave' airspace, and continue climb through ceiling
         }
 
-        this._setAltitudeHoldWithValue(altitude);
+        this._mcp.setAltitudeHoldWithValue(altitude);
 
         // TODO: this could be split to another method
         // Build readback
@@ -134,8 +134,8 @@ export default class Pilot {
             }
         }
 
-        this._setHeadingFieldValue(heading);
-        this._setHeadingHold();
+        this._mcp.setHeadingVorLoc(heading);
+        this._mcp.setHeadingHold();
 
         // Build readback
         const heading_string = heading_to_string(heading);
@@ -163,8 +163,8 @@ export default class Pilot {
      * @return {Array} [success of operation, readback]
      */
     maintainPresentHeading(heading) {
-        this._setHeadingFieldValue(heading);
-        this._setHeadingHold();
+        this._mcp.setHeadingVorLoc(heading);
+        this._mcp.setHeadingHold();
 
         const readback = {};
         readback.log = 'fly present heading';
@@ -185,8 +185,8 @@ export default class Pilot {
         const aircraft = { speed: 0 };  // FIXME: How can the pilot access the aircraft's current speed?
         const instruction = radio_trend('speed', aircraft.speed, speed);
 
-        this._setSpeedFieldValue(speed);
-        this._setSpeedHold();
+        this._mcp.setSpeedFieldValue(speed);
+        this._mcp.setSpeedHold();
 
         // Build the readback
         const readback = {};
@@ -254,8 +254,8 @@ export default class Pilot {
             return [false, `unable, the ${standardRouteModel.name.toUpperCase()} departure not valid from Runway ${departureRunway}`];
         }
 
-        this._setAltitudeVnav();
-        this._setSpeedVnav();
+        this._mcp.setAltitudeVnav();
+        this._mcp.setSpeedVnav();
         this._fms.replaceDepartureProcedure(routeStr, departureRunway);
 
         const readback = {};
@@ -336,9 +336,9 @@ export default class Pilot {
      * @return {Array}                  [success of operation, readback]
      */
     clearedAsFiled(initialAltitude, runwayHeading, cruiseSpeed) {
-        this._setAltitudeHoldWithValue(initialAltitude);
-        this._setHeadingLnavWithValue(runwayHeading);
-        this._setSpeedN1WithValue(cruiseSpeed);
+        this._mcp.setAltitudeHoldWithValue(initialAltitude);
+        this._mcp.setHeadingLnavWithValue(runwayHeading);
+        this._mcp.setSpeedN1WithValue(cruiseSpeed);
 
         const readback = {};
         readback.log = `cleared to destination as filed. Climb and maintain ${initialAltitude}, expect ` +
@@ -367,7 +367,7 @@ export default class Pilot {
             return [false, readback];
         }
 
-        this._setAltitudeVnavWithValue(this._fms.flightPlanAltitude);
+        this._mcp.setAltitudeVnavWithValue(this._fms.flightPlanAltitude);
 
         const readback = {};
         readback.log = 'climb via SID';
@@ -386,9 +386,9 @@ export default class Pilot {
      * @return {array}           [success of operation, readback]
      */
     descendViaSTAR(altitude = 0) {
-        this._setAltitudeFieldValue(altitude);
-        this._setAltitudeVnav();
-        this._setSpeedVnav();
+        this._mcp.setAltitudeFieldValue(altitude);
+        this._mcp.setAltitudeVnav();
+        this._mcp.setSpeedVnav();
 
         // Build readback
         const readback = {};
@@ -409,8 +409,8 @@ export default class Pilot {
      */
     interceptCourse(datum, course) {
         this._setNav1Datum(datum);
-        this._setCourseFieldValue(course);
-        this._setHeadingVorLoc();
+        this._mcp.setCourseFieldValue(course);
+        this._mcp.setHeadingVorLoc();
 
         const readback = {};
         readback.log = 'intercept localizer';
@@ -447,8 +447,8 @@ export default class Pilot {
 
         // TODO: the descentAngle is a part of the ILS system itself, and should not be owned by the MCP
         this._mcp.descentAngle = descentAngle;
-        this._setAltitudeFieldValue(interceptAltitude);
-        this._setAltitudeApproach();
+        this._mcp.setAltitudeFieldValue(interceptAltitude);
+        this._mcp.setAltitudeApproach();
 
         const readback = {};
         readback.log = 'intercept glidepath';
@@ -650,163 +650,5 @@ export default class Pilot {
         readback.say = `taxi to runway ${radio_runway(runway.name)}`;
 
         return [true, readback];
-    }
-
-    /**
-     * Set the MCP altitude mode to "VNAV"
-     *
-     * @for Pilot
-     * @method _setAltitudeVnav
-     * @private
-     */
-    _setAltitudeVnav() {
-        this._mcp.setModeSelectorMode(MCP_MODE_NAME.ALTITUDE, MCP_MODE.ALTITUDE.VNAV);
-    }
-
-    /**
-     * Set the MCP altitude mode to "HOLD"
-     *
-     * @for Pilot
-     * @method _setAltitudeHoldWithValue
-     * @param altitude {number}
-     * @private
-     */
-    _setAltitudeHoldWithValue(altitude) {
-        this._mcp.setModeSelectorModeAndFieldValue(MCP_MODE_NAME.ALTITUDE, MCP_MODE.ALTITUDE.HOLD, altitude);
-    }
-
-    /**
-     * Set the MCP altitude mode to "APCH"
-     *
-     * @for Pilot
-     * @method _setAltitudeApproach
-     * @private
-     */
-    _setAltitudeApproach() {
-        this._mcp.setModeSelectorMode(MCP_MODE_NAME.ALTITUDE, MCP_MODE.ALTITUDE.APPROACH);
-    }
-
-    /**
-     * Set the MCP altitude mode to "VNAV"
-     *
-     * @for Pilot
-     * @method _setAltitudeVnavWithValue
-     * @param altitude {number}
-     * @private
-     */
-    _setAltitudeVnavWithValue(altitude) {
-        this._mcp.setModeSelectorModeAndFieldValue(MCP_MODE_NAME.ALTITUDE, MCP_MODE.ALTITUDE.VNAV, altitude);
-    }
-
-    /**
-     * Set the value of the MCP's altitude "field" to a given value
-     *
-     * @for Pilot
-     * @method _setAltitudeFieldValue
-     * @private
-     */
-    _setAltitudeFieldValue(altitude) {
-        this._mcp.setFieldValue(MCP_FIELD_NAME.ALTITUDE, altitude);
-    }
-
-    /**
-     * Set the value of the MCP's course "field" to a given value
-     *
-     * @for Pilot
-     * @method _setCourseFieldValue
-     * @param {Number} course - magnetic course to set value to
-     * @private
-     */
-    _setCourseFieldValue(course) {
-        this._mcp.setFieldValue(MCP_FIELD_NAME.COURSE, course);
-    }
-
-    /**
-     * Set the MCP heading mode to "HOLD"
-     *
-     * @for Pilot
-     * @method _setHeadingHold
-     * @private
-     */
-    _setHeadingHold() {
-        this._mcp.setModeSelectorMode(MCP_MODE_NAME.HEADING, MCP_MODE.HEADING.HOLD);
-    }
-
-    /**
-     * Set the MCP heading mode to "LNAV"
-     *
-     * @for Pilot
-     * @method _setHeadingLnavWithValue
-     * @param runwayHeading {number}
-     * @private
-     */
-    _setHeadingLnavWithValue(runwayHeading) {
-        this._mcp.setModeSelectorModeAndFieldValue(MCP_MODE_NAME.HEADING, MCP_MODE.HEADING.LNAV, runwayHeading);
-    }
-
-    /**
-     * Set the MCP heading mode to "VOR_LOC"
-     *
-     * @for Pilot
-     * @method _setHeadingVorLoc
-     * @private
-     */
-    _setHeadingVorLoc() {
-        this._mcp.setModeSelectorMode(MCP_MODE_NAME.HEADING, MCP_MODE.HEADING.VOR_LOC);
-    }
-
-    /**
-     * Set the value of the MCP's heading "field" to a given value
-     *
-     * @for Pilot
-     * @method _setHeadingFieldValue
-     * @private
-     */
-    _setHeadingFieldValue(heading) {
-        this._mcp.setFieldValue(MCP_FIELD_NAME.HEADING, heading);
-    }
-
-    /**
-     * Set the MCP speed mode to "HOLD"
-     *
-     * @for Pilot
-     * @method _setSpeedHold
-     * @private
-     */
-    _setSpeedHold() {
-        this._mcp.setModeSelectorMode(MCP_MODE_NAME.SPEED, MCP_MODE.SPEED.HOLD);
-    }
-
-    /**
-     * Set the MCP speed mode to "VNAV"
-     *
-     * @for Pilot
-     * @method _setSpeedVnav
-     * @private
-     */
-    _setSpeedVnav() {
-        this._mcp.setModeSelectorMode(MCP_MODE_NAME.SPEED, MCP_MODE.SPEED.VNAV);
-    }
-
-    /**
-     * Set the MCP speed mode to "N1"
-     *
-     * @for Pilot
-     * @method _setSpeedN1WithValue
-     * @param speed {number}
-     * @private
-     */
-    _setSpeedN1WithValue(speed) {
-        this._mcp.setModeSelectorModeAndFieldValue(MCP_MODE_NAME.SPEED, MCP_MODE.SPEED.N1, speed);
-    }
-
-    /**
-     * Set the value of the MCP's speed "field" to a given value
-     *
-     * @for Pilot
-     * @method _setSpeedFieldValue
-     */
-    _setSpeedFieldValue(speed) {
-        this._mcp.setFieldValue(MCP_FIELD_NAME.SPEED, speed);
     }
 }
