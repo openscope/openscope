@@ -51,26 +51,11 @@
         }
     ],
     "fixes": {
-        "_15R": ["N42.34267058224", "W70.97600868835"],
-        "_22L": ["N42.33552454364", "W71.01994630118"],
-        "_22R": ["N42.34225233814", "W71.02249160551"],
-        "_27":  ["N42.35233868916", "W71.03492600845"],
-        "_33L": ["N42.38627445008", "W71.03354932872"],
-        "_LOGAN04L":  ["N42.42409", "W70.98058"],
-        "_LOGAN04R":  ["N42.42323", "W70.97491"],
-        "_LOGAN09":   ["N42.37730732453", "W70.87770422052"],
-        "_LOGAN14":   ["N42.34112", "W70.99401"],
-        "_LOGAN15R":  ["N42.34352", "W70.97709"],
-        "_LOGAN22L":  ["N42.30321881627", "W70.91983919769"],
-        "_LOGAN22R":  ["N42.30994664062", "W70.92237384752"],
-        "_LOGAN27":   ["N42.35182", "W71.03833"],
-        "_LOGAN33L":  ["N42.37889", "W71.02394"],
-        "_LOGAN1-1":  ["N42.32617336596", "W70.89029730551"],
-        "_LOGAN1-2":  ["N42.33256591613", "W71.06025996325"],
-        "_LOGAN1-3":  ["N42.40464167947", "W71.08178558128"],
-        "_LOGAN1-4":  ["N42.42750031521", "W70.95315673987"],
-        "_LOGAN1-5":  ["N42.42836031475", "W70.95882644261"],
-        "_LOGAN1-6":  ["N42.32377334760", "W70.90722060934"],
+        "_RWY15R": ["N42.34267058224", "W70.97600868835"],
+        "_RWY22L": ["N42.33552454364", "W71.01994630118"],
+        "_RWY22R": ["N42.34225233814", "W71.02249160551"],
+        "_RWY27":  ["N42.35233868916", "W71.03492600845"],
+        "_RWY33L": ["N42.38627445008", "W71.03354932872"],
         "AADMS": ["N42.58538821010796", "W71.31873543593576"],
         "ACK":   ["N41.28187732980469", "W70.02665167307336"],
         "ADDDA": ["N42.60562740189099", "W70.78206245602155"],
@@ -298,11 +283,11 @@
             "rwy": {
                 "4R":  ["NHANT", ["HURBE", "A40+"], "ORRRR", "CHWDH", "STEEM", "DEDHM"],
                 "9":   [["CLAWW", "A40+"], "FENWY", "GLLET", "WYMTH", "DEDHM"],
-                "15R": ["_15R", "FOXXX", ["BRRRO", "S250-"], "JAITE", ["HEWMO", "S290-"], "KENWI"],
-                "22L": ["_22L", "TJAYY", ["BRRRO", "S250-"], "JAITE", ["HEWMO", "S290-"], "KENWI"],
-                "22R": ["_22R", "TJAYY", ["BRRRO", "S250-"], "JAITE", ["HEWMO", "S290-"], "KENWI"],
-                "27":  ["_27", "KIRAA"],
-                "33L": ["_33L", "TEKKK", "EXXXX"]
+                "15R": ["_RWY15R", "FOXXX", ["BRRRO", "S250-"], "JAITE", ["HEWMO", "S290-"], "KENWI"],
+                "22L": ["_RWY22L", "TJAYY", ["BRRRO", "S250-"], "JAITE", ["HEWMO", "S290-"], "KENWI"],
+                "22R": ["_RWY22R", "TJAYY", ["BRRRO", "S250-"], "JAITE", ["HEWMO", "S290-"], "KENWI"],
+                "27":  ["_RWY27", "KIRAA"],
+                "33L": ["_RWY33L", "TEKKK", "EXXXX"]
             },
             "body": [],
             "exitPoints": {
@@ -311,9 +296,9 @@
             "draw": [
                 ["NHANT", "HURBE", "ORRRR", "CHWDH"],
                 ["CLAWW", "FENWY", "GLLET", "WYMTH", "DEDHM", "BLZZR"],
-                ["_15R", "FOXXX"],
+                ["_RWY15R", "FOXXX"],
                 ["JAITE", "HEWMO", "KENWI", "BLZZR"],
-                ["_27", "KIRAA", "BLZZR"],
+                ["_RWY27", "KIRAA", "BLZZR"],
                 ["TEKKK", "EXXXX", "BLZZR"]
             ]
         },
@@ -323,11 +308,11 @@
             "rwy": {
                 "4R":  ["NHANT", ["HURBE", "A40+"], "ORRRR", "FENWY", "BUCYK"],
                 "9":   [["CLAWW", "A40+"], "FENWY", "BUCYK"],
-                "15R": ["_15R", "FOXXX", ["BRRRO", "S250-"], "BUCYK"],
-                "22L": ["_22L", "TJAYY", ["BRRRO", "S250-"], "BUCYK"],
-                "22R": ["_22R", "TJAYY", ["BRRRO", "S250-"], "BUCYK"],
-                "27":  ["_27", "KIRAA", "COLYN", "BEREI"],
-                "33L": ["_33L", "TEKKK", ["COUSY", "A50+"], "CBEAR", "COLYN", "BEREI"]
+                "15R": ["_RWY15R", "FOXXX", ["BRRRO", "S250-"], "BUCYK"],
+                "22L": ["_RWY22L", "TJAYY", ["BRRRO", "S250-"], "BUCYK"],
+                "22R": ["_RWY22R", "TJAYY", ["BRRRO", "S250-"], "BUCYK"],
+                "27":  ["_RWY27", "KIRAA", "COLYN", "BEREI"],
+                "33L": ["_RWY33L", "TEKKK", ["COUSY", "A50+"], "CBEAR", "COLYN", "BEREI"]
             },
             "body": [],
             "exitPoints": {
@@ -346,11 +331,11 @@
             "rwy": {
                 "4R":  ["NHANT", ["HURBE", "A40+"], "ORRRR", "TONNI"],
                 "9":   [["CLAWW", "A40+"], "FENWY", "SCOAR"],
-                "15R": ["_15R", "FOXXX", ["BRRRO", "S250-"], "SCOAR"],
-                "22L": ["_22L", "TJAYY", ["BRRRO", "S250-"], "SCOAR"],
-                "22R": ["_22R", "TJAYY", ["BRRRO", "S250-"], "SCOAR"],
-                "27":  ["_27", "KIRAA", "COLYN"],
-                "33L": ["_33L", "TEKKK", ["COUSY", "A50+"], "CBEAR", "COLYN"]
+                "15R": ["_RWY15R", "FOXXX", ["BRRRO", "S250-"], "SCOAR"],
+                "22L": ["_RWY22L", "TJAYY", ["BRRRO", "S250-"], "SCOAR"],
+                "22R": ["_RWY22R", "TJAYY", ["BRRRO", "S250-"], "SCOAR"],
+                "27":  ["_RWY27", "KIRAA", "COLYN"],
+                "33L": ["_RWY33L", "TEKKK", ["COUSY", "A50+"], "CBEAR", "COLYN"]
             },
             "body": [],
             "exitPoints": {
@@ -369,11 +354,11 @@
             "rwy": {
                 "4R":  ["NHANT", ["HURBE", "A40+"], "STAYC", "SHAAN"],
                 "9":   [["CLAWW", "A40+"], "CORRT", "STAYC"],
-                "15R": ["_15R", "FOXXX", ["BOATT", "S250-"], "HEARR", "MARBB"],
-                "22L": ["_22L", "TJAYY", ["BOATT", "S250-"], "HEARR", "MARBB"],
-                "22R": ["_22R", "TJAYY", ["BOATT", "S250-"], "HEARR", "MARBB"],
-                "27":  ["_27", "KIRAA", "GLOWB", "HRALD"],
-                "33L": ["_33L", "TEKKK", ["CAMWI", "A40+"]]
+                "15R": ["_RWY15R", "FOXXX", ["BOATT", "S250-"], "HEARR", "MARBB"],
+                "22L": ["_RWY22L", "TJAYY", ["BOATT", "S250-"], "HEARR", "MARBB"],
+                "22R": ["_RWY22R", "TJAYY", ["BOATT", "S250-"], "HEARR", "MARBB"],
+                "27":  ["_RWY27", "KIRAA", "GLOWB", "HRALD"],
+                "33L": ["_RWY33L", "TEKKK", ["CAMWI", "A40+"]]
             },
             "body": [],
             "exitPoints": {
@@ -382,8 +367,8 @@
             "draw": [
                 ["HURBE", "STAYC", "SHAAN", "HYLND"],
                 ["CORRT", "STAYC", "HYLND"],
-                ["_22R", "TJAYY"],
-                ["_22L", "TJAYY", "BOATT", "HEARR", "MARBB", "HYLND"],
+                ["_RWY22R", "TJAYY"],
+                ["_RWY22L", "TJAYY", "BOATT", "HEARR", "MARBB", "HYLND"],
                 ["KIRAA", "GLOWB", "HRALD", "HYLND"],
                 ["TEKKK", "CAMWI", "HYLND"]
             ]
@@ -394,11 +379,11 @@
             "rwy": {
                 "4R":  ["NHANT", ["HURBE", "A40+"], "STAYC", "SHAUN"],
                 "9":   [["CLAWW", "A40+"], "CLMPP", "SHAUN"],
-                "15R": ["_15R", "FOXXX", ["BOATT", "S250-"], "HEARR", "SHAUN"],
-                "22L": ["_22L", "TJAYY", ["BOATT", "S250-"], "HEARR", "SHAUN"],
-                "22R": ["_22R", "TJAYY", ["BOATT", "S250-"], "HEARR", "SHAUN"],
-                "27":  ["_27", "KIRAA", "GLOWB", "HRALD", "CAMWI"],
-                "33L": ["_33L", "TEKKK", ["CAMWI", "A40+"]]
+                "15R": ["_RWY15R", "FOXXX", ["BOATT", "S250-"], "HEARR", "SHAUN"],
+                "22L": ["_RWY22L", "TJAYY", ["BOATT", "S250-"], "HEARR", "SHAUN"],
+                "22R": ["_RWY22R", "TJAYY", ["BOATT", "S250-"], "HEARR", "SHAUN"],
+                "27":  ["_RWY27", "KIRAA", "GLOWB", "HRALD", "CAMWI"],
+                "33L": ["_RWY33L", "TEKKK", ["CAMWI", "A40+"]]
             },
             "body": [],
             "exitPoints": {
@@ -418,11 +403,11 @@
             "rwy": {
                 "4R":  ["NHANT", ["HURBE", "A40+"], "ORRRR", "CHWDH", "STEEM", "DEDHM"],
                 "9":   [["CLAWW", "A40+"], "FENWY", "GLLET", "WYMTH", "DEDHM"],
-                "15R": ["_15R", "FOXXX", ["BRRRO", "S250-"], "JAITE", ["HEWMO", "S290-"], "KENWI"],
-                "22L": ["_22L", "TJAYY", ["BRRRO", "S250-"], "JAITE", ["HEWMO", "S290-"], "KENWI"],
-                "22R": ["_22R", "TJAYY", ["BRRRO", "S250-"], "JAITE", ["HEWMO", "S290-"], "KENWI"],
-                "27":  ["_27", "KIRAA"],
-                "33L": ["_33L", "TEKKK", ["COUSY", "A50+"]]
+                "15R": ["_RWY15R", "FOXXX", ["BRRRO", "S250-"], "JAITE", ["HEWMO", "S290-"], "KENWI"],
+                "22L": ["_RWY22L", "TJAYY", ["BRRRO", "S250-"], "JAITE", ["HEWMO", "S290-"], "KENWI"],
+                "22R": ["_RWY22R", "TJAYY", ["BRRRO", "S250-"], "JAITE", ["HEWMO", "S290-"], "KENWI"],
+                "27":  ["_RWY27", "KIRAA"],
+                "33L": ["_RWY33L", "TEKKK", ["COUSY", "A50+"]]
             },
             "body": [],
             "exitPoints": {
@@ -441,11 +426,11 @@
             "rwy": {
                 "4R":  ["NHANT", ["HURBE", "A40+"], "ORRRR", "CHWDH", "STEEM", "DEDHM"],
                 "9":   [["CLAWW", "A40+"], "FENWY", "GLLET", "WYMTH", "DEDHM"],
-                "15R": ["_15R", "FOXXX", ["BRRRO", "S250-"], "JAITE", ["HEWMO", "S290-"], "KENWI"],
-                "22L": ["_22L", "TJAYY", ["BRRRO", "S250-"], "JAITE", ["HEWMO", "S290-"], "KENWI"],
-                "22R": ["_22R", "TJAYY", ["BRRRO", "S250-"], "JAITE", ["HEWMO", "S290-"], "KENWI"],
-                "27":  ["_27", "KIRAA", "GLOWB"],
-                "33L": ["_33L", "TEKKK", "DUBYU"]
+                "15R": ["_RWY15R", "FOXXX", ["BRRRO", "S250-"], "JAITE", ["HEWMO", "S290-"], "KENWI"],
+                "22L": ["_RWY22L", "TJAYY", ["BRRRO", "S250-"], "JAITE", ["HEWMO", "S290-"], "KENWI"],
+                "22R": ["_RWY22R", "TJAYY", ["BRRRO", "S250-"], "JAITE", ["HEWMO", "S290-"], "KENWI"],
+                "27":  ["_RWY27", "KIRAA", "GLOWB"],
+                "33L": ["_RWY33L", "TEKKK", "DUBYU"]
             },
             "body": [],
             "exitPoints": {
@@ -455,7 +440,7 @@
                 ["DEDHM", "REVSS"],
                 ["KENWI", "REVSS"],
                 ["GLOWB", "REVSS"],
-                ["_33L", "TEKKK", "DUBYU", "REVSS"]
+                ["_RWY33L", "TEKKK", "DUBYU", "REVSS"]
             ]
         },
         "SSOXS4": {
@@ -464,11 +449,11 @@
             "rwy": {
                 "4R":  ["NHANT", ["HURBE", "A40+"], "ORRRR", "FENWY", "BUCYK", "JSTER"],
                 "9":   [["CLAWW", "A40+"], "FENWY", "BUCYK", "JSTER"],
-                "15R": ["_15R", "FOXXX", ["BRRRO", "S250-"], "BUCYK", "JSTER"],
-                "22L": ["_22L", "TJAYY", ["BRRRO", "S250-"], "BUCYK", "JSTER"],
-                "22R": ["_22R", "TJAYY", ["BRRRO", "S250-"], "BUCYK", "JSTER"],
-                "27":  ["_27", "KIRAA", "COLYN"],
-                "33L": ["_33L", "TEKKK", ["COUSY", "A50+"], "CBEAR", "COLYN"]
+                "15R": ["_RWY15R", "FOXXX", ["BRRRO", "S250-"], "BUCYK", "JSTER"],
+                "22L": ["_RWY22L", "TJAYY", ["BRRRO", "S250-"], "BUCYK", "JSTER"],
+                "22R": ["_RWY22R", "TJAYY", ["BRRRO", "S250-"], "BUCYK", "JSTER"],
+                "27":  ["_RWY27", "KIRAA", "COLYN"],
+                "33L": ["_RWY33L", "TEKKK", ["COUSY", "A50+"], "CBEAR", "COLYN"]
             },
             "body": [],
             "exitPoints": {
@@ -732,7 +717,7 @@
             "category": "arrival",
             "route": "PONCT.JFUND1.KBOS",
             "altitude": [33000, 41000],
-            "speed": 350,
+            "speed": 280,
             "method": "random",
             "rate": 14,
             "airlines": [
@@ -760,7 +745,7 @@
             "category": "arrival",
             "route": "AJJAY.OOSHN4.KBOS",
             "altitude": [30000, 36000],
-            "speed": 450,
+            "speed": 280,
             "method": "cyclic",
             "rate": 7,
             "period": 60,
@@ -793,7 +778,7 @@
             "category": "arrival",
             "route": "FERNZ.OOSHN4.KBOS",
             "altitude": [28000, 32000],
-            "speed": 450,
+            "speed": 280,
             "method": "random",
             "rate": 3,
             "airlines":  [
@@ -813,7 +798,7 @@
             "category": "arrival",
             "route": "JFK.ROBUC2.KBOS",
             "altitude": [37000, 41000],
-            "speed":  450,
+            "speed":  280,
             "method": "random",
             "rate": 12,
             "airlines": [
