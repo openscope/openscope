@@ -45,17 +45,6 @@ export const GAME_OPTION_VALUES = [
         ]
     },
     {
-        name: GAME_OPTION_NAMES.SIMPLIFY_SPEEDS,
-        defaultValue: 'yes',
-        description: 'Use simplified airspeeds',
-        help: 'Controls use of a simplified calculation which results in aircraft always moving across the ground at the speed assigned.  In reality aircraft will move faster as they increase altitude.',
-        type: 'select',
-        data: [
-            ['Yes', 'yes'],
-            ['No', 'no']
-        ]
-    },
-    {
         name: GAME_OPTION_NAMES.SOFT_CEILING,
         defaultValue: 'no',
         description: 'Allow departures via climb',

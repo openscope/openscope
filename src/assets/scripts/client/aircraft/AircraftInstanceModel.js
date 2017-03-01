@@ -4,6 +4,7 @@ import _forEach from 'lodash/forEach';
 import _get from 'lodash/get';
 import _has from 'lodash/has';
 import _isEqual from 'lodash/isEqual';
+import _isNumber from 'lodash/isNumber';
 import _isNil from 'lodash/isNil';
 import _isString from 'lodash/isString';
 import _map from 'lodash/map';
@@ -1290,14 +1291,7 @@ export default class Aircraft {
             this.position_history.push([this.position[0], this.position[1], window.gameController.game_time() / window.gameController.game_speedup()]);
         }
 
-        // FIXME: is this ratio correct? is it 0.000514444 or 0.514444?
-        const scaleSpeed = this.speed * 0.000514444 * window.gameController.game_delta(); // knots to m/s
-
-        if (window.gameController.game.option.get('simplifySpeeds') === 'no') {
-            this.updateGroundSpeedPhysics(scaleSpeed);
-        } else {
-            this.updateSimpleGroundSpeedPhysics(scaleSpeed);
-        }
+        this.updateGroundSpeedPhysics();
 
         this.distance = vlen(this.position);
         this.radial = vradial(this.position);
@@ -1455,58 +1449,15 @@ export default class Aircraft {
     }
 
     /**
-     * This calculates the ground speed
-     *
-     * @for AircraftInstanceModel
-     * @method updateVectorPhysics
-     * @param scaleSpeed
-     */
-    updateGroundSpeedPhysics(scaleSpeed) {
-        // TODO: this should be abstracted to a helper function
-        // Calculate the true air speed as indicated airspeed * 1.6% per 1000'
-        const trueAirSpeed = scaleSpeed * (1 + this.altitude * 0.000016);
-
-        // Calculate movement including wind assuming wind speed
-        // increases 2% per 1000'
-        const wind = window.airportController.airport_get().wind;
-        const angle = this.heading;
-        let vector;
-
-        if (this.isOnGround()) {
-            vector = vscale([sin(angle), cos(angle)], trueAirSpeed);
-        } else {
-            let crab_angle = 0;
-
-            // Compensate for crosswind while tracking a fix or on ILS
-            if (this.fms.currentWaypoint.navmode === WAYPOINT_NAV_MODE.FIX || this.mode === FLIGHT_MODES.LANDING) {
-                // TODO: this should be abstracted to a helper function
-                const offset = angle_offset(this.heading, wind.angle + Math.PI);
-                crab_angle = Math.asin((wind.speed * sin(offset)) / this.speed);
-            }
-
-            // TODO: this should be abstracted to a helper function
-            vector = vadd(vscale(
-                vturn(wind.angle + Math.PI),
-                wind.speed * 0.000514444 * window.gameController.game_delta()),
-                vscale(vturn(angle + crab_angle), trueAirSpeed)
-            );
-        }
-
-        this.ds = vlen(vector);
-        // TODO: this should be abstracted to a helper function
-        this.groundSpeed = this.ds / 0.000514444 / window.gameController.game_delta();
-        this.groundTrack = vradial(vector);
-        this.position = vadd(this.position, vector);
-    }
-
-    /**
      * This uses the current speed information to update the ground speed and position
      *
      * @for AircraftInstanceModel
-     * @method updateSimpleGroundSpeedPhysics
+     * @method updateGroundSpeedPhysics
      * @param scaleSpeed
      */
-    updateSimpleGroundSpeedPhysics(scaleSpeed) {
+    updateGroundSpeedPhysics() {
+        // FIXME: is this ratio correct? is it 0.000514444 or 0.514444?
+        const scaleSpeed = this.speed * 0.000514444 * window.gameController.game_delta(); // knots to m/s
         const angle = this.heading;
 
         this.ds = scaleSpeed;
