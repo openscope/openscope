@@ -13,7 +13,7 @@
 
 
 ### Features
-
+- feature/44 - KMSP departure traffic changed to reflect real-world traffic
 
 
 
