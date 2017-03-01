@@ -508,15 +508,16 @@ export default class Aircraft {
             flightNumber = flightNumber.substr(flightNumber.length - length);
         }
 
-        let cs = this.airlineCallsign;
-
-        if (cs === 'November') {
-            cs += ` ${radio_spellOut(flightNumber)} ${heavy}`;
-        } else {
-            cs += ` ${groupNumbers(flightNumber, this.airlineId)} ${heavy}`;
-        }
-
-        return cs;
+        // TODO: this may not be needed any longer
+        // let cs = window.airlineController.airline_get(this.airline).callsign;
+        //
+        // if (cs === 'November') {
+        //    cs += ` ${radio_spellOut(callsign)} ${heavy}`;
+        // } else {
+        //    cs += ` ${groupNumbers(callsign, this.airline)} ${heavy}`;
+        // }
+        //
+        // return cs;
     }
 
     /**
@@ -938,175 +939,11 @@ export default class Aircraft {
         }
 
         if (this.fms.currentWaypoint.navmode === WAYPOINT_NAV_MODE.RWY) {
-            runway  = airport.getRunway(this.rwy_arr);
-            offset = getOffset(this, runway.position, runway.angle);
-            offset_angle = vradial(offset);
-            angle = radians_normalize(runway.angle);
-            glideslope_altitude = clamp(runway.elevation, runway.getGlideslopeAltitude(offset[1]), this.altitude);
-            const assignedHdg = this.fms.currentWaypoint.heading;
-            const localizerRange = runway.ils.enabled ? runway.ils.loc_maxDist : 40;
-            this.offset_angle = offset_angle;
-            this.approachOffset = abs(offset[0]);
-            this.approachDistance = offset[1];
-            this.target.heading = assignedHdg;
-            this.target.turn = this.fms.currentWaypoint.turn;
-            this.target.altitude = this.fms.currentWaypoint.altitude;
-            this.target.speed = this.fms.currentWaypoint.speed;
-
-            // Established on ILS
-            if (this.mode === FLIGHT_MODES.LANDING) {
-                // Final Approach Heading Control
-                const severity_of_correction = 25;  // controls steepness of heading adjustments during localizer tracking
-                const tgtHdg = angle + (offset_angle * -severity_of_correction);
-                const minHdg = angle - degreesToRadians(30);
-                const maxHdg = angle + degreesToRadians(30);
-                this.target.heading = clamp(tgtHdg, minHdg, maxHdg);
-
-                // Final Approach Altitude Control
-                this.target.altitude = Math.min(this.fms.currentWaypoint.altitude, glideslope_altitude);
-
-                // Final Approach Speed Control
-                if (this.fms.currentWaypoint.speed > 0) {
-                    this.fms.setCurrent({ start_speed: this.fms.currentWaypoint.speed });
-                }
-
-                if (this.isOnGround()) {
-                    this.target.altitude = runway.elevation;
-                    this.target.speed = 0;
-                } else {
-                    const dist_final_app_spd = 3.5; // 3.5km ~= 2nm
-                    const dist_assigned_spd = 9.5;  // 9.5km ~= 5nm
-                    this.target.speed = extrapolate_range_clamp(
-                        dist_final_app_spd, offset[1],
-                        dist_assigned_spd,
-                        this.model.speed.landing,
-                        this.fms.currentWaypoint.start_speed
-                    );
-                }
-
-                // Failed Approach
-                if (abs(offset[0]) > 0.100) {
-                    if (!this.projected) {
-                        this.updateStrip();
-                        this.cancelLanding();
-                        const isWarning = true;
-                        window.uiController.ui_log(`${this.getRadioCallsign()} aborting landing, lost ILS`, isWarning);
-                        speech_say([
-                            { type: 'callsign', content: this },
-                            { type: 'text', content: ' going around' }
-                        ]);
-                        window.gameController.events_recordNew(GAME_EVENTS.GO_AROUND);
-                    }
-                }
-            } else if (offset[1] < localizerRange) {  // Joining the ILS
-                // Check if aircraft has just become established on the localizer
-                const alignedWithRunway = abs(offset[0]) < 0.050;  // within 50m
-                const onRunwayHeading = abs(this.heading - angle) < degreesToRadians(5);
-                const runwayNominalHeading = degreesToRadians(parseInt(this.rwy_arr.substr(0, 2), 10) * 10, 10);
-                const maxInterceptAngle = degreesToRadians(30);
-                const maxAboveGlideslope = 250;
-                const interceptAngle = abs(angle_offset(assignedHdg, runwayNominalHeading));
-                const courseDifference = abs(angle_offset(this.heading, runwayNominalHeading));
-                if (alignedWithRunway && onRunwayHeading && this.mode !== FLIGHT_MODES.LANDING) {
-                    this.mode = FLIGHT_MODES.LANDING;
-                    this.target.heading = angle;
-                    // Check legality of localizer interception
-                    if (!this.projected) {  // do not give penalty during a future projection
-                        // Intercept Angle
-                        if (!assignedHdg && courseDifference > maxInterceptAngle) { // intercept via fixes
-                            this.warnInterceptAngle();
-                        } else if (interceptAngle > maxInterceptAngle) {    // intercept via vectors
-                            this.warnInterceptAngle();
-                        }
-
-                        // Glideslope intercept
-                        if (this.altitude > glideslope_altitude + maxAboveGlideslope) {
-                            const isWarning = true;
-                            window.uiController.ui_log(`${this.getRadioCallsign()} joined localizer above glideslope altitude`, isWarning);
-                            window.gameController.events_recordNew(GAME_EVENTS.ILLEGAL_APPROACH_CLEARANCE);
-                        }
-                    }
-
-                    this.updateStrip();
-                    this.target.turn = null;
-                }
-
-                // TODO: this math section should be absctracted to a helper function
-                // Guide aircraft onto the localizer
-                const angle_diff = angle_offset(angle, this.heading);
-                const turning_time = Math.abs(radiansToDegrees(angle_diff)) / 3; // time to turn angle_diff degrees at 3 deg/s
-                const turning_radius = km(this.speed) / 3600 * turning_time; // dist covered in the turn, km
-                const dist_to_localizer = offset[0] / sin(angle_diff); // dist from the localizer intercept point, km
-                const turn_early_km = 1;    // start turn 1km early, to avoid overshoots from tailwind
-                const should_attempt_intercept = (dist_to_localizer > 0 && dist_to_localizer <= turning_radius + turn_early_km);
-                const in_the_window = abs(offset_angle) < degreesToRadians(1.5);  // if true, aircraft will move to localizer, regardless of assigned heading
-
-                if (should_attempt_intercept || in_the_window) {  // time to begin turn
-                    const severity_of_correction = 50;  // controls steepness of heading adjustments during localizer tracking
-                    const tgtHdg = angle + (offset_angle * -severity_of_correction);
-                    const minHdg = angle - degreesToRadians(30);
-                    const maxHdg = angle + degreesToRadians(30);
-                    this.target.heading = clamp(tgtHdg, minHdg, maxHdg);
-                }
-            }
+            this.updateTargetPrepareAircraftForLanding();
         } else if (this.fms.currentWaypoint.navmode === WAYPOINT_NAV_MODE.FIX) {
-            const fix = this.fms.currentWaypoint.location;
-            if (!fix) {
-                console.error(`${this.getCallsign()} using "fix" navmode, but no fix location!`);
-                console.log(this.fms);
-                console.log(this.fms.currentWaypoint);
-            }
-
-            const vector_to_fix = vsub(this.position, fix);
-            const distance_to_fix = distance2d(this.position, fix);
-
-            if ((distance_to_fix < 1) ||
-                ((distance_to_fix < 10) &&
-                (distance_to_fix < window.aircraftController.aircraft_turn_initiation_distance(this, fix)))
-            ) {
-                // if there are more waypoints available
-                if (!this.fms.atLastWaypoint()) {
-                    this.fms.nextWaypoint();
-                } else {
-                    this.cancelFix();
-                }
-
-                this.updateStrip();
-            } else {
-                this.target.heading = vradial(vector_to_fix) - Math.PI;
-                this.target.turn = null;
-            }
+            this.updateTargetTowardsNextFix();
         } else if (this.fms.currentWaypoint.navmode === WAYPOINT_NAV_MODE.HOLD) {
-            const hold = this.fms.currentWaypoint.hold;
-            const angle_off_of_leg_hdg = abs(angle_offset(this.heading, this.target.heading));
-
-            // within ~2° of upwd/dnwd
-            if (angle_off_of_leg_hdg < 0.035) {
-                offset = getOffset(this, hold.fixPos);
-
-                // entering hold, just passed the fix
-                if (hold.timer === null && offset[1] < 0 && offset[2] < 2) {
-                    // Force aircraft to enter the hold immediately
-                    hold.timer = -999;
-                }
-
-                // Holding Logic
-                // time-based hold legs
-                if (hold.timer && hold.legLength.includes('min')) {
-                    if (hold.timer === -1) {
-                        // save the time
-                        hold.timer = window.gameController.game.time;
-                    } else if (window.gameController.game.time >= hold.timer + parseInt(hold.legLength.replace('min', ''), 10) * 60) {
-                        // time to turn
-                        this.target.heading += Math.PI;   // turn to other leg
-                        this.target.turn = hold.dirTurns;
-                        hold.timer = -1; // reset the timer
-                    } else if (hold.legLength.includes('nm')) {
-                        // distance-based hold legs
-                        // not yet implemented
-                    }
-                }
-            }
+            this.updateTargetPrepareAircraftForHold();
         } else {
             this.target.heading = this.fms.currentWaypoint.heading;
             this.target.turn = this.fms.currentWaypoint.turn;
@@ -1201,6 +1038,107 @@ export default class Aircraft {
     }
 
     /**
+     * Updates the heading for a landing aircraft
+     *
+     * @for AircraftInstanceModel
+     * @method updateTargetPrepareAircraftForLanding
+     */
+    updateTargetPrepareAircraftForLanding() {
+        const airport = window.airportController.airport_get();
+        const runway  = airport.getRunway(this.rwy_arr);
+        const offset = getOffset(this, runway.position, runway.angle);
+        const offset_angle = vradial(offset);
+        const angle = radians_normalize(runway.angle);
+        const glideslope_altitude = clamp(runway.elevation, runway.getGlideslopeAltitude(offset[1]), this.altitude);
+        const assignedHdg = this.fms.currentWaypoint.heading;
+        const localizerRange = runway.ils.enabled ? runway.ils.loc_maxDist : 40;
+        this.offset_angle = offset_angle;
+        this.approachOffset = abs(offset[0]);
+        this.approachDistance = offset[1];
+        this.target.heading = assignedHdg;
+        this.target.turn = this.fms.currentWaypoint.turn;
+        this.target.altitude = this.fms.currentWaypoint.altitude;
+        this.target.speed = this.fms.currentWaypoint.speed;
+
+        // Established on ILS
+        if (this.mode === FLIGHT_MODES.LANDING) {
+            this.updateLandingFinalApproachHeading(angle);
+            this.target.altitude = Math.min(this.fms.currentWaypoint.altitude, glideslope_altitude);
+            this.updateLandingFinalSpeedControll(runway, offset);
+            if (abs(offset[0]) > 0.100) {
+                this.updateLandingFailedLanding();
+            }
+        } else if (offset[1] < localizerRange) {
+            this.updateInterceptLocalizer(angle, offset, glideslope_altitude);
+            this.updateTargetHeadingForLanding(angle, offset);
+        }
+    }
+
+    /**
+     * Updates the heading for a landing aircraft
+     *
+     * @for AircraftInstanceModel
+     * @method updateLandingFinalSpeedControll
+     */
+    updateLandingFinalSpeedControll(runway, offset) {
+        // Final Approach Speed Control
+        if (this.fms.currentWaypoint.speed > 0)  {
+            this.fms.setCurrent({ start_speed: this.fms.currentWaypoint.speed });
+        }
+
+        if (this.isOnGround()) {
+            this.target.altitude = runway.elevation;
+            this.target.speed = 0;
+        } else {
+            const dist_final_app_spd = 3.5; // 3.5km ~= 2nm
+            const dist_assigned_spd = 9.5;  // 9.5km ~= 5nm
+            this.target.speed = extrapolate_range_clamp(
+                dist_final_app_spd, offset[1],
+                dist_assigned_spd,
+                this.model.speed.landing,
+                this.fms.currentWaypoint.start_speed
+            );
+        }
+    }
+
+    /**
+     * Cancles the landing and disaply message
+     *
+     * @for AircraftInstanceModel
+     * @method updateLandingFailedLanding
+     */
+    updateLandingFailedLanding() {
+        // Failed Approach
+        if ((this.approachDistance > 0.100) && (!this.projected)) {
+            this.updateStrip();
+            this.cancelLanding();
+            const isWarning = true;
+            //TODO: Should be moved to where the output is handled
+            window.uiController.ui_log(`${this.getRadioCallsign()} aborting landing, lost ILS`, isWarning);
+            speech_say([
+                { type: 'callsign', content: this },
+                { type: 'text', content: ' going around' }
+            ]);
+            window.gameController.events_recordNew(GAME_EVENTS.GO_AROUND);
+        }
+    }
+
+    /**
+     * Updates the heading for a landing aircraft
+     *
+     * @for AircraftInstanceModel
+     * @method updateLandingFinalApproachHeading
+     */
+    updateLandingFinalApproachHeading(angle) {
+        // Final Approach Heading Control
+        const severity_of_correction = 25;  // controls steepness of heading adjustments during localizer tracking
+        const tgtHdg = angle + (this.offset_angle * -severity_of_correction);
+        const minHdg = angle - degreesToRadians(30);
+        const maxHdg = angle + degreesToRadians(30);
+        this.target.heading = clamp(tgtHdg, minHdg, maxHdg);
+    }
+
+    /**
      * This will display a waring and record an illegal approach event
      * @for AircraftInstanceModel
      * @method warnInterceptAngle
@@ -1211,13 +1149,86 @@ export default class Aircraft {
         window.gameController.events_recordNew(GAME_EVENTS.ILLEGAL_APPROACH_CLEARANCE);
     }
 
+    //TODO: More Simplification of this function should be done, abstract warings to their own functions
+    /**
+     * Updates the aircraft status to landing and wil also send out a waring if the change in angle is greater than 30 degrees.
+     *
+     * @for AircraftInstanceModel
+     * @method updateFixTarget
+     * @param offset
+     * @param angle
+     * @param glideslope_altitude
+     */
+    updateInterceptLocalizer(angle, offset, glideslope_altitude) {
+        // Joining the ILS
+        // Check if aircraft has just become established on the localizer
+        const alignedWithRunway = abs(offset[0]) < 0.050;  // within 50m
+        const onRunwayHeading = abs(this.heading - angle) < degreesToRadians(5);
+        const runwayNominalHeading = degreesToRadians(parseInt(this.rwy_arr.substr(0, 2), 10) * 10, 10);
+        const maxInterceptAngle = degreesToRadians(30);
+        const maxAboveGlideslope = 250;
+        const interceptAngle = abs(angle_offset(this.target.heading, runwayNominalHeading));
+        const courseDifference = abs(angle_offset(this.heading, runwayNominalHeading));
+        if (alignedWithRunway && onRunwayHeading && this.mode !== FLIGHT_MODES.LANDING) {
+            this.mode = FLIGHT_MODES.LANDING;
+            this.target.heading = angle;
+            // Check legality of localizer interception
+            if (!this.projected) {  // do not give penalty during a future projection
+                // Intercept Angle
+                if (!this.target.heading && courseDifference > maxInterceptAngle) { // intercept via fixes
+                    this.warnInterceptAngle();
+                } else if (interceptAngle > maxInterceptAngle) {    // intercept via vectors
+                    this.warnInterceptAngle();
+                }
+
+                // Glideslope intercept
+                if (this.altitude > glideslope_altitude + maxAboveGlideslope) {
+                    const isWarning = true;
+                    window.uiController.ui_log(`${this.getRadioCallsign()} joined localizer above glideslope altitude`, isWarning);
+                    window.gameController.events_recordNew(GAME_EVENTS.ILLEGAL_APPROACH_CLEARANCE);
+                }
+            }
+
+            this.updateStrip();
+            this.target.turn = null;
+        }
+    }
+
+    /**
+     * Updates the heading to the runway for the aircraft to land if the change in flight is less than 30 degrees
+     *
+     * @for AircraftInstanceModel
+     * @method updateTargetHeadingForLanding
+     * @param  angle
+     * @param  offset
+     */
+    updateTargetHeadingForLanding(angle, offset) {
+        // TODO: this math section should be absctracted to a helper function
+        // Guide aircraft onto the localizer
+        const angle_diff = angle_offset(angle, this.heading);
+        const turning_time = Math.abs(radiansToDegrees(angle_diff)) / 3; // time to turn angle_diff degrees at 3 deg/s
+        const turning_radius = km(this.speed) / 3600 * turning_time; // dist covered in the turn, km
+        const dist_to_localizer = offset[0] / sin(angle_diff); // dist from the localizer intercept point, km
+        const turn_early_km = 1;    // start turn 1km early, to avoid overshoots from tailwind
+        const should_attempt_intercept = (dist_to_localizer > 0 && dist_to_localizer <= turning_radius + turn_early_km);
+        const in_the_window = abs(this.offset_angle) < degreesToRadians(1.5);  // if true, aircraft will move to localizer, regardless of assigned heading
+
+        if (should_attempt_intercept || in_the_window) {  // time to begin turn
+            const severity_of_correction = 50;  // controls steepness of heading adjustments during localizer tracking
+            const tgtHdg = angle + (this.offset_angle * -severity_of_correction);
+            const minHdg = angle - degreesToRadians(30);
+            const maxHdg = angle + degreesToRadians(30);
+            this.target.heading = clamp(tgtHdg, minHdg, maxHdg);
+        }
+    }
+
     /**
      * This will update the FIX for the aircraft and will change the aircraft's heading
      *
      * @for AircraftInstanceModel
      * @method updateFixTarget
      */
-    updateFixTarget() {
+    updateTargetTowardsNextFix() {
         const fix = this.fms.currentWaypoint.location;
 
         if (!fix) {
@@ -1242,6 +1253,45 @@ export default class Aircraft {
         } else {
             this.target.heading = vradial(vector_to_fix) - Math.PI;
             this.target.turn = null;
+        }
+    }
+
+    /**
+     * This will sets up and prepares the aircraft to hold
+     *
+     * @for AircraftInstanceModel
+     * @method updateTargetPrepareAircraftForHold
+     */
+    updateTargetPrepareAircraftForHold() {
+        const hold = this.fms.currentWaypoint.hold;
+        const angle_off_of_leg_hdg = abs(angle_offset(this.heading, this.target.heading));
+
+        // within ~2° of upwd/dnwd
+        if (angle_off_of_leg_hdg < 0.035) {
+            const offset = getOffset(this, hold.fixPos);
+
+            // entering hold, just passed the fix
+            if (hold.timer === null && offset[1] < 0 && offset[2] < 2) {
+                // Force aircraft to enter the hold immediately
+                hold.timer = -999;
+            }
+
+            // Holding Logic
+            // time-based hold legs
+            if (hold.timer && hold.legLength.includes('min')) {
+                if (hold.timer === -1) {
+                    // save the time
+                    hold.timer = window.gameController.game.time;
+                } else if (window.gameController.game.time >= hold.timer + parseInt(hold.legLength.replace('min', ''), 10) * 60) {
+                    // time to turn
+                    this.target.heading += Math.PI;   // turn to other leg
+                    this.target.turn = hold.dirTurns;
+                    hold.timer = -1; // reset the timer
+                } else if (hold.legLength.includes('nm')) {
+                    // distance-based hold legs
+                    // not yet implemented
+                }
+            }
         }
     }
 

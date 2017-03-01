@@ -939,7 +939,7 @@ export default class AircraftFlightManagementSystem {
         }
 
         const currentWaypoint = this.currentLeg.waypoints[this.current[WAYPOINT_WITHIN_LEG]];
-            // .ensureValidContentsForAircraft(this.my_aircraft);
+        // currentWaypoint.ensureValidContentsForAircraft(this.my_aircraft);
 
         return currentWaypoint;
     }
