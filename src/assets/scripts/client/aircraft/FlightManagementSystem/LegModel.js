@@ -86,6 +86,9 @@ export default class LegModel {
         /**
          * List of `WaypointModel` objects defined within a `LegModel`.
          *
+         * If this leg represents a `directRoute`, there will only be one
+         * `WaypointModel` contained in `#waypointCollection`.
+         *
          * @propert waypointCollection
          * @type {array}
          * @default []

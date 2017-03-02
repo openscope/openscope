@@ -1,5 +1,10 @@
 /**
+ * A representation of navigation point within a flight plan.
  *
+ * // TODO: needs more info here
+ * This navigation point can originate from one of several sources:
+ * - `FixModel`, when flying to a specific fix or holding at a specific fix
+ * - `StandardRouteWaypointModel`, when flying a standardRoute (SID/STAR)
  *
  * @class WaypointModel
  */
@@ -12,7 +17,9 @@ export default class WaypointModel {
      */
     constructor(waypointProps) {
         /**
+         * Name of the waypoint
          *
+         * Should be an ICAO identifier
          *
          * @property name
          * @type {string}
@@ -21,7 +28,7 @@ export default class WaypointModel {
         this.name = '';
 
         /**
-         *
+         * Lat/Long position of the waypoint
          *
          * @property _position
          * @type {string}
