@@ -23,6 +23,16 @@ const PROCEDURE_SEGMENT_SEPARATION_SYMBOL = '.';
 const DIRECT_SEPARATION_SYMBOL = '..';
 
 /**
+ *
+ *
+ * @property HOLD_SEGMENT_SYMBOL
+ * @type {string}
+ * @final
+ */
+const HOLD_SEGMENT_SYMBOL = '@';
+
+
+/**
  * A procedure segment has exactly three parts (ex: `BETHL.GRNPA1.KLAS`)
  *
  * @property MAXIMUM_PROCEDUURE_SEGMENT_LENGTH
@@ -135,3 +145,12 @@ export const routeStringFormatHelper = (routeString) => {
 
     return formattedRoute;
 };
+
+/**
+ *
+ *
+ * @function extractFixnameFromHoldSegment
+ * @param  {[type]}                      holdSegment [description]
+ * @return {[type]}                                  [description]
+ */
+export const extractFixnameFromHoldSegment = (holdSegment) => holdSegment.split(HOLD_SEGMENT_SYMBOL)[1];
