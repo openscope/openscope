@@ -1,6 +1,16 @@
 import BaseModel from '../../base/BaseModel';
 
 /**
+ * Symbol that prepends a fixname indicating the aircraft should enter
+ * a holding pattern once it arrives at the fix.
+ *
+ * @property
+ * @type {string}
+ * @final
+ */
+const HOLD_SEGMENT_SYMBOL = '@';
+
+/**
  * Symbol that divides each route segment
  *
  * @property SEGMENT_SEPARATION_SYMBOL
@@ -149,7 +159,7 @@ export default class RouteModel extends BaseModel {
 }
 
 /**
- * Used to determine if a string is in the shape of a procedureRouteString.
+ * Used to determine if a string is in the shape of a `procedureRouteString`.
  *
  * Example:
  * - 'ENTRY.PROCEDURE_NAME.EXIT'
@@ -167,3 +177,17 @@ RouteModel.isProcedureRouteString = (routeString) => {
 
     return hasRightNumberOfElements && !isDirectRouteSegment;
 };
+
+/**
+ * Used to determine if a string is in the shape of a `holdRouteString`
+ *
+ * Example:
+ * - `@COWBY`
+ *
+ * @for RouteModel
+ * @method isHoldRouteString
+ * @param routeString {string}
+ * @return {boolean}
+ * @static
+ */
+RouteModel.isHoldRouteString = (routeString) => routeString.indexOf(HOLD_SEGMENT_SYMBOL) !== -1;
