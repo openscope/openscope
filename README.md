@@ -1,18 +1,9 @@
-<p align="center"> <a href="https://gitter.im/zlsa/atc?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge"><img src="https://badges.gitter.im/Join%20Chat.svg"/></a> <a href="https://github.com/openscope/openscope/tree/master"><img src="https://img.shields.io/travis/openscope/openscope/master.svg"/></a> <a href="https://github.com/openscope/openscope/releases"><img src="https://img.shields.io/github/release/openscope/openscope.svg"/></a> <img src="https://img.shields.io/badge/license-MIT-blue.svg"/> </p>
-
-
 <p align="center">
     <a href="https://gitter.im/zlsa/atc?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge"><img src="https://badges.gitter.im/Join%20Chat.svg"/></a>
     <a href="https://github.com/openscope/openscope/tree/master"><img src="https://img.shields.io/travis/openscope/openscope/master.svg"/></a>
     <a href="https://github.com/openscope/openscope/releases"><img src="https://img.shields.io/github/release/openscope/openscope.svg"/></a>
     <img src="https://img.shields.io/badge/license-MIT-blue.svg"/>
 </p>
-
-
-[![Join the chat at https://gitter.im/zlsa/atc](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/zlsa/atc?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![Travis branch](https://img.shields.io/travis/rust-lang/rust/master.svg)](https://github.com/openscope/openscope/tree/master)
-[![GitHub release](https://img.shields.io/github/release/openscope/openscope.svg)](https://github.com/openscope/openscope)
-[![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/openscope/openscope)
 
 ## Air Traffic Control
 
