@@ -163,4 +163,17 @@ export default class WaypointModel {
         this._legLength = '';
         this.timer = -1;
     }
+
+    /**
+     * Add hold-specific properties to an existing `WaypointModel`
+     *
+     * @for WaypointModel
+     * @method createHoldAtWaypoint
+     * @param turnDirection {string}
+     * @param legLength {string}
+     */
+    createHoldAtWaypoint(turnDirection, legLength) {
+        this._turnDirection = turnDirection;
+        this._legLength = legLength;
+    }
 }
