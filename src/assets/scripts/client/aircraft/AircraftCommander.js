@@ -283,16 +283,16 @@ export default class AircraftCommander {
         let inboundHdg;
         // let inboundDir;
 
-        // TODO: this might be better handled from within the parser
-        if (dirTurns == null) {
-            // standard for holding patterns is right-turns
-            dirTurns = 'right';
-        }
-
-        // TODO: this might be better handled from within the parser
-        if (legLength == null) {
-            legLength = '1min';
-        }
+        // // TODO: this might be better handled from within the parser
+        // if (dirTurns == null) {
+        //     // standard for holding patterns is right-turns
+        //     dirTurns = 'right';
+        // }
+        //
+        // // TODO: this might be better handled from within the parser
+        // if (legLength == null) {
+        //     legLength = '1min';
+        // }
 
         // TODO: simplify this nested if.
         if (holdFix !== null) {

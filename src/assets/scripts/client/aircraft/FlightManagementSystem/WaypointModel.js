@@ -1,3 +1,4 @@
+import _get from 'lodash/get';
 /**
  * A representation of navigation point within a flight plan.
  *
@@ -140,9 +141,11 @@ export default class WaypointModel {
         this._position = waypointProps.position;
         this.speedRestriction = parseInt(waypointProps.speedRestriction, 10);
         this.altitudeRestriction = parseInt(waypointProps.altitudeRestriction, 10);
-        this._turnDirection = waypointProps.turnDirection;
-        this._legLength = waypointProps.legLength;
-        this.timer = waypointProps.timer;
+
+        // these properties will only be available for holding pattern waypoints
+        this._turnDirection = _get(waypointProps, 'turnDirection', this._turnDirection);
+        this._legLength = _get(waypointProps, 'legLength', this._legLength);
+        this.timer = _get(waypointProps, 'timer', this.timer);
     }
 
     /**
