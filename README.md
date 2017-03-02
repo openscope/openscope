@@ -16,7 +16,7 @@ Page hits are tracked with Google Analytics, so feel free to use an adblocker. T
 
 ## Contributing
 
-Just create a pull request and we'll get to it. Thanks for helping!
+We use an [efficient branching method](http://nvie.com/posts/a-successful-git-branching-model) when adding features. If you would like to contribute, please [contact us](https://openscopeatc.slack.com/) and we'll help as soon as we can! Thank you!
 
 ## License
 
@@ -24,7 +24,7 @@ MIT.
 
 **Note:** The license was formerly CC0. It was set before I was familiar with licensing options.
 
-## Exceptions
+### Exceptions
 
 The following files are NOT MIT licensed:
 
