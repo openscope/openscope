@@ -59,14 +59,39 @@ export default class WaypointModel {
          */
         this.altitudeRestriction = -1;
 
-        // this.hold = {
-        //     dirTurns: null,
-        //     fixName: null,
-        //     fixPos: null,
-        //     inboundHd: null,
-        //     legLength: null,
-        //     timer: 0
-        // };
+        /**
+         * Direction to turn for a holding pattern
+         *
+         * Used only when waypoint is a holding pattern
+         *
+         * @property _turnDirection
+         * @type {string}
+         * @private
+         */
+        this._turnDirection = '';
+
+        /**
+         * Length of each leg in holding pattern.
+         *
+         * Measured in either minutes or nautical miles
+         * Used only when waypoint is a holding pattern
+         *
+         * @property _legLength
+         * @type {string}
+         * @private
+         */
+        this._legLength = '';
+
+        /**
+         * Timer id for holding pattern
+         *
+         * Used only when waypoint is a holding pattern
+         *
+         * @property timer
+         * @type {number}
+         * @private
+         */
+        this.timer = -1;
 
         this.init(waypointProps);
     }
@@ -79,6 +104,26 @@ export default class WaypointModel {
      */
     get position() {
         return this._position.position;
+    }
+
+    /**
+     * Provides properties needed for an aircraft to execute a
+     * holding pattern.
+     *
+     * This is currently setup to match an existing API
+     *
+     * @propert hold
+     * @return {object}
+     */
+    get hold() {
+        return {
+            dirTurns: this._turnDirection,
+            fixName: this.name,
+            fixPos: this.position,
+            inboundHd: null,
+            legLength: this._legLength,
+            timer: this.timer
+        };
     }
 
     /**
@@ -95,6 +140,9 @@ export default class WaypointModel {
         this._position = waypointProps.position;
         this.speedRestriction = parseInt(waypointProps.speedRestriction, 10);
         this.altitudeRestriction = parseInt(waypointProps.altitudeRestriction, 10);
+        this._turnDirection = waypointProps.turnDirection;
+        this._legLength = waypointProps.legLength;
+        this.timer = waypointProps.timer;
     }
 
     /**
@@ -108,5 +156,8 @@ export default class WaypointModel {
         this._position = null;
         this.speedRestriction = -1;
         this.altitudeRestriction = -1;
+        this._turnDirection = '';
+        this._legLength = '';
+        this.timer = -1;
     }
 }

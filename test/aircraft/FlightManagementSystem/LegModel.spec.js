@@ -7,6 +7,7 @@ import LegModel from '../../../src/assets/scripts/client/aircraft/FlightManageme
 import WaypointModel from '../../../src/assets/scripts/client/aircraft/FlightManagementSystem/WaypointModel';
 import { navigationLibraryFixture } from '../../fixtures/navigationLibraryFixtures';
 
+const holdRouteSegmentMock = '@COWBY';
 const directRouteSegmentMock = 'COWBY';
 const arrivalProcedureRouteSegmentMock = 'DAG.KEPEC3.KLAS';
 const departureProcedureRouteSegmentMock = 'KLAS.COWBY6.DRK';
@@ -20,6 +21,8 @@ ava('throws when passed invalid parameters', (t) => {
 
 ava('does not throw when passed valid parameters', (t) => {
     t.notThrows(() => new LegModel(arrivalProcedureRouteSegmentMock, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture));
+    t.notThrows(() => new LegModel(directRouteSegmentMock, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture));
+    // t.notThrows(() => new LegModel(holdRouteSegmentMock, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture));
 });
 
 ava('#currentWaypoint returns the first item in #waypointCollection', (t) => {
@@ -46,13 +49,27 @@ ava('.skipToWaypointAtIndex() drops n number of WaypointModels from  the left of
     t.true(model.currentWaypoint.name === 'skebr');
 });
 
-ava('._buildWaypointForDirectRoute() returns an instance of a WaypointModel', (t) => {
+ava('._buildWaypointForDirectRoute() returns an array with a single instance of a WaypointModel', (t) => {
     const model = new LegModel(directRouteSegmentMock, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture);
     const result = model._buildWaypointForDirectRoute(directRouteSegmentMock);
 
     t.true(_isArray(result));
     t.true(result[0] instanceof WaypointModel);
     t.true(result[0].name === 'cowby');
+});
+
+ava('._buildWaypointForHoldingPattern() returns an array with a single instance of a WaypointModel and hold properties', (t) => {
+    const model = new LegModel(directRouteSegmentMock, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture);
+    const result = model._buildWaypointForHoldingPattern(holdRouteSegmentMock);
+
+    t.true(_isArray(result));
+    t.true(result[0] instanceof WaypointModel);
+    t.true(result[0].name === 'cowby');
+    t.true(result[0].altitudeRestriction === -1);
+    t.true(result[0].speedRestriction === -1);
+    t.true(result[0]._turnDirection === 'right');
+    t.true(result[0]._legLength === '1min');
+    t.true(result[0].timer === -1);
 });
 
 ava('._buildWaypointCollectionForProcedureRoute() returns a list of WaypointModels', (t) => {

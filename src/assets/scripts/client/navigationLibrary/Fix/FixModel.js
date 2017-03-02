@@ -123,13 +123,19 @@ export default class FixModel extends BaseModel {
      * @method toWaypointModel
      * @return {WaypointModel}
      */
-    toWaypointModel() {
-        const waypointProps = {
+    toWaypointModel(isHold = false) {
+        let waypointProps = {
             name: this.name,
             position: this.clonePosition(),
             altitudeRestriction: -1,
             speedRestriction: -1
         };
+
+        if (isHold) {
+            waypointProps.turnDirection = 'right';
+            waypointProps.legLength = '1min';
+            waypointProps.timer = -1;
+        }
 
         return new WaypointModel(waypointProps);
     }

@@ -16,7 +16,6 @@ const arrivalProcedureRouteStringMock = 'MLF.GRNPA1.KLAS';
 const departureProcedureRouteStringMock = 'KLAS.COWBY6.DRK';
 const runwayAssignmentMock = '19L';
 const isComplexRoute = true;
-const isDeparture = true;
 
 function buildFmsMock(shouldUseComplexRoute = false) {
     let fms = new Fms(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, runwayAssignmentMock, AIRCRAFT_DEFINITION_MOCK, navigationLibraryFixture);

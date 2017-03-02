@@ -77,3 +77,17 @@ ava('.toWaypointModel() returns a new WaypointModel instance', (t) => {
     t.true(result.altitudeRestriction === -1);
     t.true(result.speedRestriction === -1);
 });
+
+ava('.toWaypointModel() returns a new WaypointModel instance with hold properties', (t) => {
+    const model = new FixModel(FIXNAME_MOCK, FIX_COORDINATE_MOCK, airportPositionFixtureKSFO);
+    const result = model.toWaypointModel(true);
+
+    t.true(result instanceof WaypointModel);
+    t.true(result.name === FIXNAME_MOCK.toLowerCase());
+    t.true(_isArray(result.position));
+    t.true(result.altitudeRestriction === -1);
+    t.true(result.speedRestriction === -1);
+    t.true(result._turnDirection === 'right');
+    t.true(result._legLength === '1min');
+    t.true(result.timer === -1);
+});

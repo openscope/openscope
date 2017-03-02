@@ -1,9 +1,10 @@
 import _drop from 'lodash/drop';
 import RouteModel from '../../navigationLibrary/Route/RouteModel';
+import { extractFixnameFromHoldSegment } from '../../navigationLibrary/Route/routeStringFormatHelper';
 import { FLIGHT_CATEGORY } from '../../constants/aircraftConstants';
 
 /**
- *
+ * Enum of possible procedure types
  *
  * @property PROCEDURE_TYPE
  * @type {Object}
@@ -48,13 +49,22 @@ export default class LegModel {
         this._navigationLibrary = navigationLibrary;
 
         /**
-         *
+         * Indicates the leg is for a standardRoute procedure
          *
          * @property _isProcedure
          * @type {boolean}
          * @private
          */
         this._isProcedure = false;
+
+        /**
+         * Indicates the leg is for a holding pattern
+         *
+         * @property _isHold
+         * @type {boolean}
+         * @private
+         */
+        this._isHold = false;
 
         /**
          *
@@ -134,6 +144,8 @@ export default class LegModel {
      */
     init(routeSegment, runway, flightPhase) {
         this._isProcedure = RouteModel.isProcedureRouteString(routeSegment);
+        this._isHold = RouteModel.isHoldRouteString(routeSegment);
+
         this.routeString = routeSegment.toLowerCase();
         this.procedureType = this._buildProcedureType(flightPhase);
         this.waypointCollection = this._buildWaypointCollection(routeSegment, runway, flightPhase);
@@ -149,6 +161,7 @@ export default class LegModel {
         this._destroyWaypointCollection();
 
         this._isProcedure = false;
+        this._isHold = false;
         this.procedureType = '';
         this.routeString = '';
         this.waypointCollection = [];
@@ -230,15 +243,17 @@ export default class LegModel {
      * @private
      */
     _buildWaypointCollection(routeSegment, runway, flightPhase) {
-        if (!this._isProcedure) {
-            return this._buildWaypointForDirectRoute(routeSegment);
+        if (this._isProcedure) {
+            return this._buildWaypointCollectionForProcedureRoute(routeSegment, runway, flightPhase);
+        } else if (this._isHold) {
+            return this._buildWaypointForHoldingPattern(routeSegment);
         }
 
-        return this._buildWaypointCollectionForProcedureRoute(routeSegment, runway, flightPhase);
+        return this._buildWaypointForDirectRoute(routeSegment);
     }
 
     /**
-     * Given a directRouteSegment, generate a `WaypointModel`.
+     * Given a `directRouteSegment`, generate a `WaypointModel`.
      *
      * Returns an array eventhough there will only ever by one WaypointModel
      * for a directRouteSegment. This is because the `#waypointCollection` is
@@ -256,6 +271,30 @@ export default class LegModel {
 
         return [
             fixModel.toWaypointModel()
+        ];
+    }
+
+    /**
+     * Given an `holdRouteSegment`, generate a `WaypointModel`.
+     *
+     * Returns an array eventhough there will only ever by one WaypointModel
+     * for a directRouteSegment. This is because the `#waypointCollection` is
+     * always assumed to be an array and the result of this method is used to
+     * set `#waypointCollection`.
+     *
+     * @for LegModel
+     * @method _buildWaypointForHoldingPattern
+     * @param routeString {string}
+     * @return {array<WaypointModel>}
+     * @private
+     */
+    _buildWaypointForHoldingPattern(routeString) {
+        const isHold = true;
+        const holdRouteSegment = extractFixnameFromHoldSegment(routeString);
+        const fixModel = this._navigationLibrary.findFixByName(holdRouteSegment);
+
+        return [
+            fixModel.toWaypointModel(isHold)
         ];
     }
 
