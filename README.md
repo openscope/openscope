@@ -1,24 +1,28 @@
 [![Join the chat at https://gitter.im/zlsa/atc](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/zlsa/atc?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
+[![Travis](https://img.shields.io/travis/rust-lang/rust.svg)](https://github.com/openscope/openscope/) [![Travis branch](https://img.shields.io/travis/rust-lang/rust/master.svg)](https://github.com/openscope/openscope/tree/master) [![GitHub release](https://img.shields.io/github/release/qubyte/rubidium.svg)](https://github.com/openscope/openscope) [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/openscope/openscope) https://img.shields.io/badge/next%20update-March%2019%2C%202017-blue.svg
+
 ## Air Traffic Control
 
 An ATC simulator in HTML5.
 
 ## Running Locally
-It is possible to run this application locally.  You will need to have node and npm install in order for this to work.  For more information, view the [Tools Documentation](tools/README.md)
+It is possible to run this application locally. You will need to have `node` and `npm` installed in order for this to work. For more information, view the [Tools Documentation](tools/README.md).
 
 ## Privacy
 
-Page hits are tracked with Google Analytics; feel free to use an
+Page hits are tracked with Google Analytics, so feel free to use an
 adblocker. The tracking is used only to get the number of page hits.
 
 ## Contributing
 
-Just create a pull request and I'll get to it. Thanks for helping!
+Just create a pull request and we'll get to it. Thanks for helping!
+
 ## License
 
 MIT.
 
-Note: the license was formerly CC0; it was set before I was familiar with licensing options.
+**Note:** The license was formerly CC0. It was set before I was familiar with licensing options.
 
 ## Exceptions
 
