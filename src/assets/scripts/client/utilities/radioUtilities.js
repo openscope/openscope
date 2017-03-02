@@ -2,7 +2,7 @@ import _clone from 'lodash/clone';
 import _compact from 'lodash/compact';
 import _map from 'lodash/map';
 import { round } from '../math/core';
-import { tau } from '../math/circle';
+import { tau, radians_normalize } from '../math/circle';
 
 /**
  * @property CARDINAL_DIRECTION
@@ -454,4 +454,17 @@ export const radio_trend = (category, measured, target) => {
  */
 export const getCardinalDirection = (angle) => {
     return CARDINAL_DIRECTION[round(angle / tau() * 8)];
+};
+
+/**
+ * Return a cardinalDirection when provided a heading
+ *
+ * @function getRadioCardinalDirectionNameForHeading
+ * @param  heading {number}
+ * @return {string}
+ */
+export const getRadioCardinalDirectionNameForHeading = (heading) => {
+    const cardinalDirection = getCardinalDirection(radians_normalize(heading + Math.PI)).toLowerCase();
+
+    return radio_cardinalDir_names[cardinalDirection];
 };
