@@ -17,9 +17,9 @@ ava('throws when instantiated without parameters', (t) => {
     t.throws(() => new WaypointModel());
 });
 
-ava('.createHoldAtWaypoint() sets parameters as hold-specific properties', (t) => {
+ava('.updateWaypointWithHoldProps() sets parameters as hold-specific properties', (t) => {
     const model = new WaypointModel(WaypointMock);
-    model.createHoldAtWaypoint('left', '2min');
+    model.updateWaypointWithHoldProps('left', '2min');
 
     t.true(model._turnDirection === 'left');
     t.true(model._legLength === '2min');

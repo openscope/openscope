@@ -29,10 +29,28 @@ export default class WaypointModel {
         this.name = '';
 
         /**
-         * Lat/Long position of the waypoint
+         * `PositionModel` of the waypoint.
+         *
+         * Should almost always be an instance of a `PositionModel`.
+         *
+         * The only case where it won't be is if an instance is created for the purposes of a
+         * holding pattern at a specific position, where no `Fix` currently exists.
+         *
+         * In that case, the data will be received in the shape of:
+         * ```
+         * {
+         *      position: {
+         *          position: [
+         *              aircaft.position.x,
+         *              aircaft.position.y
+         *          ]
+         *      },
+         *      ...waypointProps
+         * }
+         * ```
          *
          * @property _position
-         * @type {string}
+         * @type {PositionModel|object}
          * @default null
          * @private
          */
@@ -98,7 +116,7 @@ export default class WaypointModel {
     }
 
     /**
-     * Return the position array from `#_position` object.
+     * Return the x/y position array from `#_position` property.
      *
      * @property position
      * @return {array<number>}
@@ -111,7 +129,7 @@ export default class WaypointModel {
      * Provides properties needed for an aircraft to execute a
      * holding pattern.
      *
-     * This is currently setup to match an existing API
+     * This is used to match an existing API
      *
      * @propert hold
      * @return {object}
@@ -165,14 +183,14 @@ export default class WaypointModel {
     }
 
     /**
-     * Add hold-specific properties to an existing `WaypointModel`
+     * Add hold-specific properties to an existing `WaypointModel` instance
      *
      * @for WaypointModel
-     * @method createHoldAtWaypoint
+     * @method updateWaypointWithHoldProps
      * @param turnDirection {string}
      * @param legLength {string}
      */
-    createHoldAtWaypoint(turnDirection, legLength) {
+    updateWaypointWithHoldProps(turnDirection, legLength) {
         this._turnDirection = turnDirection;
         this._legLength = legLength;
     }

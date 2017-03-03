@@ -1,5 +1,6 @@
 import _drop from 'lodash/drop';
 import RouteModel from '../../navigationLibrary/Route/RouteModel';
+import WaypointModel from './WaypointModel';
 import { extractFixnameFromHoldSegment } from '../../navigationLibrary/Route/routeStringFormatHelper';
 import { FLIGHT_CATEGORY } from '../../constants/aircraftConstants';
 
@@ -18,13 +19,19 @@ const PROCEDURE_TYPE = {
 /**
  * A section of a flight plan containing one to many `WaypointModel` objects.
  *
- * Instantiated from a `routeString`
+ * Instantiated from a `routeSegment`
  *
  * A `LegModel` represents each section of a flight plan:
- * - single `WaypointModel` not included in a standard procedure and without restrictions
+ * - single `WaypointModel` will be built from a `routeSegment` not included in a standard
+ *                          procedure and without restrictions
  * - single `WaypointModel` assigned to hold at, which can be a navaid or a position array
  * - standard procedure (sid/star/airway), which may contain many `WaypointModel` objects,
  *   each of which may specify altitude and/or speed restrictions.
+ *
+ * RouteSegment Examples:
+ *  - directRouteSegment: 'COWBY'
+ *  - holdRouteSegment: '@COWBY'
+ *  - procedureRouteSegment: 'KLAS.COWBY6.DRK'
  *
  * @class LegModel
  */
@@ -36,8 +43,9 @@ export default class LegModel {
      * @param runway {string}
      * @param flightPhase {string}
      * @param navigationLibrary {NavigationLibrary}
+     * @param holdWaypointProps {object}
      */
-    constructor(routeSegment, runway, flightPhase, navigationLibrary) {
+    constructor(routeSegment, runway, flightPhase, navigationLibrary, holdWaypointProps = {}) {
         /**
          * NavigationLibrary instance
          *
@@ -105,7 +113,7 @@ export default class LegModel {
          */
         this.waypointCollection = [];
 
-        this.init(routeSegment, runway, flightPhase);
+        this.init(routeSegment, runway, flightPhase, holdWaypointProps);
     }
 
     /**
@@ -139,16 +147,18 @@ export default class LegModel {
      *
      * @for LegModel
      * @method init
-     * @param routeSegment
-     * @param runway
+     * @param routeSegment {string}
+     * @param runway {string}
+     * @param holdWaypointProps {object}
      */
-    init(routeSegment, runway, flightPhase) {
+    init(routeSegment, runway, flightPhase, holdWaypointProps) {
         this._isProcedure = RouteModel.isProcedureRouteString(routeSegment);
-        this._isHold = RouteModel.isHoldRouteString(routeSegment);
+        // TODO: replace with constant
+        this._isHold = RouteModel.isHoldRouteString(routeSegment) || routeSegment === 'GPS';
 
         this.routeString = routeSegment.toLowerCase();
         this.procedureType = this._buildProcedureType(flightPhase);
-        this.waypointCollection = this._buildWaypointCollection(routeSegment, runway, flightPhase);
+        this.waypointCollection = this._buildWaypointCollection(routeSegment, runway, flightPhase, holdWaypointProps);
     }
 
     /**
@@ -240,13 +250,15 @@ export default class LegModel {
      * @method _buildWaypointCollection
      * @param routeSegment {string}
      * @param runway {string}
+     * @param flightPhase {string}
+     * @param holdWaypointProps {object}
      * @private
      */
-    _buildWaypointCollection(routeSegment, runway, flightPhase) {
+    _buildWaypointCollection(routeSegment, runway, flightPhase, holdWaypointProps) {
         if (this._isProcedure) {
             return this._buildWaypointCollectionForProcedureRoute(routeSegment, runway, flightPhase);
         } else if (this._isHold) {
-            return this._buildWaypointForHoldingPattern(routeSegment);
+            return this._buildWaypointForHoldingPattern(routeSegment, holdWaypointProps);
         }
 
         return this._buildWaypointForDirectRoute(routeSegment);
@@ -288,13 +300,36 @@ export default class LegModel {
      * @return {array<WaypointModel>}
      * @private
      */
-    _buildWaypointForHoldingPattern(routeString) {
+    _buildWaypointForHoldingPattern(routeString, holdWaypointProps) {
+        // TODO: replace with constant
+        if (routeString === 'GPS') {
+            return this._buildWaypointForHoldingPatternAtPosition(routeString, holdWaypointProps);
+        }
+
         const isHold = true;
         const holdRouteSegment = extractFixnameFromHoldSegment(routeString);
         const fixModel = this._navigationLibrary.findFixByName(holdRouteSegment);
 
         return [
             fixModel.toWaypointModel(isHold)
+        ];
+    }
+
+    /**
+     * Create a new `WaypointModel` for a holding pattern at a specific x/y position.
+     *
+     * @for LegModel
+     * @method _buildWaypointForHoldingPatternAtPosition
+     * @param routeString {string}
+     * @param holdWaypointProps {object}
+     * @return {array<WaypointModel>}
+     */
+    _buildWaypointForHoldingPatternAtPosition(routeString, holdWaypointProps) {
+        const holdWaypointPropsWithPositionModel = this._buildHoldAtPositionWaypointProps(holdWaypointProps);
+        const waypointModel = new WaypointModel(holdWaypointPropsWithPositionModel);
+
+        return [
+            waypointModel
         ];
     }
 
@@ -332,5 +367,34 @@ export default class LegModel {
         }
 
         return procedureType;
+    }
+
+    // FIXME: refactor something somewhere so we don't have to do this! This is naughty!!
+    /**
+     * Create an object that can be sent to the `WaypointModel`.
+     *
+     * When setting up a hold at a position, we will not have access to `.toWaypointModel()`
+     * from either a `FixModel` or `StandardRouteWaypointModel`. This is becuase we are creating,
+     * in essence, a temporary fix for the purposes of a hold.
+     *
+     * The `WaypointModel` expects a `#position` property that is an instance of a,
+     * `PositionModel` though it doesn't actually use the `PositionModel`. We cheat
+     * a little bit here so the `WaypointModel` will instantiate correctly.
+     *
+     * @for LegModel
+     * @method _buildHoldAtPositionWaypointProps
+     * @return {object}
+     * @private
+     */
+    _buildHoldAtPositionWaypointProps(waypointProps) {
+        return Object.assign(
+            {},
+            waypointProps,
+            {
+                position: {
+                    position: waypointProps.position
+                }
+            }
+        );
     }
 }

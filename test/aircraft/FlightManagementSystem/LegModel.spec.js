@@ -7,6 +7,8 @@ import LegModel from '../../../src/assets/scripts/client/aircraft/FlightManageme
 import WaypointModel from '../../../src/assets/scripts/client/aircraft/FlightManagementSystem/WaypointModel';
 import { navigationLibraryFixture } from '../../fixtures/navigationLibraryFixtures';
 
+import { HOLD_POSITION_MOCK } from '../_mocks/aircraftMocks';
+
 const holdRouteSegmentMock = '@COWBY';
 const directRouteSegmentMock = 'COWBY';
 const arrivalProcedureRouteSegmentMock = 'DAG.KEPEC3.KLAS';
@@ -22,7 +24,8 @@ ava('throws when passed invalid parameters', (t) => {
 ava('does not throw when passed valid parameters', (t) => {
     t.notThrows(() => new LegModel(arrivalProcedureRouteSegmentMock, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture));
     t.notThrows(() => new LegModel(directRouteSegmentMock, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture));
-    // t.notThrows(() => new LegModel(holdRouteSegmentMock, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture));
+    t.notThrows(() => new LegModel(holdRouteSegmentMock, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture));
+    t.notThrows(() => new LegModel(HOLD_POSITION_MOCK.name, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture, HOLD_POSITION_MOCK));
 });
 
 ava('#currentWaypoint returns the first item in #waypointCollection', (t) => {
@@ -37,7 +40,7 @@ ava('.init() calls ._buildWaypointCollection()', (t) => {
 
     model.init(arrivalProcedureRouteSegmentMock, runwayMock, arrivalFlightPhaseMock);
 
-    t.true(_buildWaypointCollectionSpy.calledWithExactly(arrivalProcedureRouteSegmentMock, runwayMock, arrivalFlightPhaseMock));
+    t.true(_buildWaypointCollectionSpy.calledWithExactly(arrivalProcedureRouteSegmentMock, runwayMock, arrivalFlightPhaseMock, undefined));
 });
 
 ava('.skipToWaypointAtIndex() drops n number of WaypointModels from  the left of #waypointCollection', (t) => {
@@ -58,7 +61,7 @@ ava('._buildWaypointForDirectRoute() returns an array with a single instance of 
     t.true(result[0].name === 'cowby');
 });
 
-ava('._buildWaypointForHoldingPattern() returns an array with a single instance of a WaypointModel and hold properties', (t) => {
+ava('._buildWaypointForHoldingPattern() returns an array with a single instance of a WaypointModel with hold properties for a Fix', (t) => {
     const model = new LegModel(directRouteSegmentMock, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture);
     const result = model._buildWaypointForHoldingPattern(holdRouteSegmentMock);
 
@@ -70,6 +73,28 @@ ava('._buildWaypointForHoldingPattern() returns an array with a single instance 
     t.true(result[0]._turnDirection === 'right');
     t.true(result[0]._legLength === '1min');
     t.true(result[0].timer === -1);
+});
+
+ava('._buildWaypointForHoldingPatternAtPosition() returns an array with a single instance of a WaypointModel with hold properties for GPS', (t) => {
+    const model = new LegModel(HOLD_POSITION_MOCK.name, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture, HOLD_POSITION_MOCK);
+    const result = model._buildWaypointForHoldingPatternAtPosition(HOLD_POSITION_MOCK.name, HOLD_POSITION_MOCK);
+
+    t.true(_isArray(result));
+    t.true(result[0] instanceof WaypointModel);
+    t.true(result[0].name === 'gps');
+    t.true(result[0].altitudeRestriction === -1);
+    t.true(result[0].speedRestriction === -1);
+    t.true(result[0]._turnDirection === 'left');
+    t.true(result[0]._legLength === '3min');
+    t.true(result[0].timer === -1);
+});
+
+ava('the position is the same for hold Waypoints at a fix or a position', (t) => {
+    const model = new LegModel(HOLD_POSITION_MOCK.name, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture, HOLD_POSITION_MOCK);
+    const fixResult = model._buildWaypointForHoldingPattern(holdRouteSegmentMock);
+    const positionResult = model._buildWaypointForHoldingPatternAtPosition(HOLD_POSITION_MOCK.name, HOLD_POSITION_MOCK);
+
+    t.true(_isEqual(fixResult[0].position, positionResult[0].position));
 });
 
 ava('._buildWaypointCollectionForProcedureRoute() returns a list of WaypointModels', (t) => {
