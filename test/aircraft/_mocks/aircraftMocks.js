@@ -106,3 +106,21 @@ export const ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK = {
     route: 'DAG.KEPEC3.KLAS',
     waypoints: []
 };
+
+export const HOLD_WAYPOINT_MOCK = {
+    turnDirection: 'left',
+    legLength: '3min',
+    name: '@COWBY',
+    position: [113.4636606631233, 6.12969620221002],
+    altitudeRestriction: -1,
+    speedRestriction: -1
+};
+
+export const HOLD_POSITION_MOCK = {
+    turnDirection: 'left',
+    legLength: '3min',
+    name: 'GPS',
+    position: [113.4636606631233, 6.12969620221002],
+    altitudeRestriction: -1,
+    speedRestriction: -1
+};

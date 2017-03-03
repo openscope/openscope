@@ -252,4 +252,22 @@ export default class NavigationLibrary {
 
         return standardRouteWaypointModelList;
     }
+
+    /**
+     * Create a `PositionModel` from a provided lat/long
+     *
+     * This allows classes that have access to the `NavigationLibrary` to
+     * create a `PositionModel` without needing to know about a
+     * `#referencePosition` or `#magnetic_north`.
+     *
+     * @for NavigationLibrary
+     * @method generatePositionModelForLatLong
+     * @param latLong {array<number>}
+     * @return positionModel {PositionModel}
+     */
+    generatePositionModelForLatLong(latLong) {
+        const positionModel = new PositionModel(latLong, this._referencePosition, this._referencePosition.magnetic_north);
+
+        return positionModel;
+    }
 }
