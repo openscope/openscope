@@ -1,17 +1,15 @@
 import _ceil from 'lodash/ceil';
 import _has from 'lodash/has';
 import _map from 'lodash/map';
-import Waypoint from './FlightManagementSystem/Waypoint';
 import { speech_say } from '../speech';
-import { radians_normalize } from '../math/circle';
+import { radiansToDegrees } from '../math/circle';
 import { round } from '../math/core';
-import { vradial, vsub } from '../math/vector';
+import { bearingToPoint } from '../math/flightMath';
 import {
-    radio_cardinalDir_names,
     radio_runway,
     radio_spellOut,
     radio_altitude,
-    getCardinalDirection
+    getRadioCardinalDirectionNameForHeading
 } from '../utilities/radioUtilities';
 import {
     FLIGHT_MODES,
@@ -271,142 +269,32 @@ export default class AircraftCommander {
     }
 
     /**
+     * Setup the Fms to enter a holding pattern,
+     *
+     * Can be used to hold at:
+     * - A Waypoint in the current flight plan: which will be made the currentWaypoint via `fms.skipToWaypoint()`
+     * - A Fix not in the flight plan: a new `LegModel` will be created and prepended thus making it the currentWaypoint
+     * - The current position: a new `LegModel` will be created and prepended thus making it the currentWaypoint
+     *
      * @for AircraftCommander
      * @method runHold
-     * @param data
+     * @param aircraft {AircraftInstanceModel}
+     * @param data {array}
+     * @return {array} [success of operation, readback]
      */
     runHold(aircraft, data) {
-        const airport = this._airportController.airport_get();
-        let dirTurns = data[0];
-        let legLength = data[1];
-        let holdFix = data[2];
-        let holdFixLocation = null;
-        let inboundHdg;
-        // let inboundDir;
+        const turnDirection = data[0];
+        const legLength = data[1];
+        const holdFix = data[2];
+        let holdFixLocation = aircraft.position;
+        let inboundHdg = aircraft.heading;
 
-        // // TODO: this might be better handled from within the parser
-        // if (dirTurns == null) {
-        //     // standard for holding patterns is right-turns
-        //     dirTurns = 'right';
-        // }
-        //
-        // // TODO: this might be better handled from within the parser
-        // if (legLength == null) {
-        //     legLength = '1min';
-        // }
-
-        // TODO: simplify this nested if.
-        if (holdFix !== null) {
-            holdFix = holdFix.toUpperCase();
+        if (holdFix) {
             holdFixLocation = this._navigationLibrary.getFixPositionCoordinates(holdFix);
-
-            if (!holdFixLocation) {
-                return ['fail', `unable to find fix ${holdFix}`];
-            }
+            inboundHdg = bearingToPoint(aircraft.position, holdFixLocation);
         }
 
-        if (aircraft.isTakeoff() && !holdFix) {
-            return ['fail', 'where do you want us to hold?'];
-        }
-
-        // Determine whether or not to enter the hold from present position
-        if (holdFix) {
-            // FIXME: replace `vradial(vsub())` with `bearingToPoint()`
-            // holding over a specific fix (currently only able to do so on inbound course)
-            inboundHdg = vradial(vsub(aircraft.position, holdFixLocation));
-
-            if (holdFix !== aircraft.__fms__.currentWaypoint.fix) {
-                // TODO: break up the inline creation of Waypoints by setting them to constants with meaningful
-                // names first, then use those consts to send to the fms method
-
-                // not yet headed to the hold fix
-                aircraft.__fms__.insertLegHere({
-                    type: 'fix',
-                    route: '[GPS/RNAV]',
-                    waypoints: [
-                        // proceed direct to holding fix
-                        new Waypoint(
-                            {
-                                fix: holdFix,
-                                altitude: aircraft.__fms__.altitudeForCurrentWaypoint(),
-                                speed: aircraft.__fms__.currentWaypoint.speed
-                            },
-                            airport
-                        ),
-                        // then enter the hold
-                        new Waypoint(
-                            {
-                                navmode: WAYPOINT_NAV_MODE.HOLD,
-                                speed: aircraft.__fms__.currentWaypoint.speed,
-                                altitude: aircraft.__fms__.altitudeForCurrentWaypoint(),
-                                fix: null,
-                                hold: {
-                                    fixName: holdFix,
-                                    fixPos: holdFixLocation,
-                                    dirTurns: dirTurns,
-                                    legLength: legLength,
-                                    inboundHdg: inboundHdg,
-                                    timer: null
-                                }
-                            },
-                            airport
-                        )
-                    ]
-                });
-            } else {
-                // TODO: this should be a `Waypoint`
-
-                // already currently going to the hold fix
-                // Force the initial turn to outbound heading when entering the hold
-                aircraft.__fms__.appendWaypoint({
-                    navmode: WAYPOINT_NAV_MODE.HOLD,
-                    speed: aircraft.__fms__.currentWaypoint.speed,
-                    altitude: aircraft.__fms__.altitudeForCurrentWaypoint(),
-                    fix: null,
-                    hold: {
-                        fixName: holdFix,
-                        fixPos: holdFixLocation,
-                        dirTurns: dirTurns,
-                        legLength: legLength,
-                        inboundHdg: inboundHdg,
-                        timer: null
-                    }
-                });
-            }
-        } else {
-            // holding over present position (currently only able to do so on present course)
-            holdFixLocation = aircraft.position; // make a/c hold over their present position
-            inboundHdg = aircraft.heading;
-
-            const holdingWaypointModel = new Waypoint({
-                navmode: WAYPOINT_NAV_MODE.HOLD,
-                speed: aircraft.fms.currentWaypoint.speed,
-                altitude: aircraft.fms.altitudeForCurrentWaypoint(),
-                fix: null,
-                hold: {
-                    fixName: '[custom]',
-                    fixPos: holdFixLocation,
-                    dirTurns: dirTurns,
-                    legLength: legLength,
-                    inboundHdg: inboundHdg,
-                    timer: null
-                }
-            });
-
-            aircraft.fms.insertLegHere({
-                type: 'fix',
-                waypoints: [holdingWaypointModel]
-            });
-        }
-
-        // TODO: abstract to helper function `.getInboundCardinalDirection(inboundHeading)`
-        const inboundDir = radio_cardinalDir_names[getCardinalDirection(radians_normalize(inboundHdg + Math.PI)).toLowerCase()];
-
-        if (holdFix) {
-            return ['ok', `proceed direct ${holdFix} and hold inbound, ${dirTurns} turns, ${legLength} legs`];
-        }
-
-        return ['ok', `hold ${inboundDir} of present position, ${dirTurns} turns, ${legLength} legs`];
+        return aircraft.pilot.initiateHoldingPattern(inboundHdg, turnDirection, legLength, holdFix, holdFixLocation);
     }
 
     /**

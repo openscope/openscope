@@ -11,7 +11,8 @@ import {
     radio_heading,
     radio_runway,
     radio_spellOut,
-    radio_trend
+    radio_trend,
+    getRadioCardinalDirectionNameForHeading
 } from '../../utilities/radioUtilities';
 import {
     degreesToRadians,
@@ -554,6 +555,47 @@ export default class Pilot {
         readback.say = `cleared ${approachType.toUpperCase()} runway ${radio_runway(runway.name)} approach`;
 
         return [true, readback];
+    }
+
+    /**
+     *
+     *
+     * @for Fms
+     * @method initiateHoldingPattern
+     * @param inboundHeading {number}
+     * @param turnDirection {string}                     direction to turn once established in a holding pattern
+     * @param legLength {string}                         in either `min` or `nm` length of each side of the
+     *                                                   holding pattern.
+     * @param fixName {string|null}                      name of the fix to hold at, only `null` if holding at
+     *                                                   current position
+     * @param holdFixLocation {PositionModel|null}       fixLocation as a PositionModel or in x/y
+     * @return {Array} [success of operation, readback]
+     */
+    initiateHoldingPattern(
+        inboundHeading,
+        turnDirection,
+        legLength,
+        fixName = null,
+        holdFixLocation = null
+    ) {
+        let holdRouteSegment = `@${fixName}`;
+        const inboundDirection = getRadioCardinalDirectionNameForHeading(inboundHeading);
+        let successMessage = `proceed direct ${fixName} and hold inbound, ${turnDirection} turns, ${legLength} legs`;
+
+        if (!holdFixLocation) {
+            return ['fail', `unable to find fix ${fixName}`];
+        }
+
+        if (!fixName) {
+            holdRouteSegment = 'GPS';
+            successMessage = `hold ${inboundDirection} of present position, ${turnDirection} turns, ${legLength} legs`;
+        }
+
+        // TODO: there is probably some `_mcp` updates that should happen here too.
+
+        this._fms.createLegWithHoldingPattern(inboundHeading, turnDirection, legLength, holdRouteSegment, holdFixLocation);
+
+        return ['ok', successMessage];
     }
 
     /**
