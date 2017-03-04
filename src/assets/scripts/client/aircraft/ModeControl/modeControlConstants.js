@@ -2,11 +2,11 @@
  * Available values for `ModeController#altitudeMode`
  *
  * @memberof MCP_MODE
- * @property MCP_ALTITUDE_MODES
+ * @property MCP_ALTITUDE_MODE
  * @type {Object}
  * @final
  */
-export const MCP_ALTITUDE_MODES = {
+export const MCP_ALTITUDE_MODE = {
     HOLD: 'HOLD',
     APPROACH: 'APPROACH',
     LEVEL_CHANGE: 'LEVEL_CHANGE',
@@ -19,11 +19,11 @@ export const MCP_ALTITUDE_MODES = {
  * Available values for `ModeController#autopilotMode`
  *
  * @memberof MCP_MODE
- * @property MCP_AUTOPILOT_MODES
+ * @property MCP_AUTOPILOT_MODE
  * @type {Object}
  * @final
  */
-export const MCP_AUTOPILOT_MODES = {
+export const MCP_AUTOPILOT_MODE = {
     ON: 'ON',
     OFF: 'OFF'
 };
@@ -32,11 +32,11 @@ export const MCP_AUTOPILOT_MODES = {
  * Available values for `ModeController#headingMode`
  *
  * @memberof MCP_MODE
- * @property MCP_HEADING_MODES
+ * @property MCP_HEADING_MODE
  * @type {Object}
  * @final
  */
-export const MCP_HEADING_MODES = {
+export const MCP_HEADING_MODE = {
     HOLD: 'HOLD',
     LNAV: 'LNAV',
     OFF: 'OFF',
@@ -47,11 +47,11 @@ export const MCP_HEADING_MODES = {
  * Available values for `ModeController#speedMode`
  *
  * @memberof MCP_MODE
- * @property MCP_SPEED_MODES
+ * @property MCP_SPEED_MODE
  * @type {Object}
  * @final
  */
-export const MCP_SPEED_MODES = {
+export const MCP_SPEED_MODE = {
     LEVEL_CHANGE: 'LEVEL_CHANGE',
     N1: 'N1',
     OFF: 'OFF',
@@ -67,10 +67,10 @@ export const MCP_SPEED_MODES = {
  * @final
  */
 export const MCP_MODE = {
-    ALTITUDE: MCP_ALTITUDE_MODES,
-    AUTOPILOT: MCP_AUTOPILOT_MODES,
-    HEADING: MCP_HEADING_MODES,
-    SPEED: MCP_SPEED_MODES
+    ALTITUDE: MCP_ALTITUDE_MODE,
+    AUTOPILOT: MCP_AUTOPILOT_MODE,
+    HEADING: MCP_HEADING_MODE,
+    SPEED: MCP_SPEED_MODE
 };
 
 /**
