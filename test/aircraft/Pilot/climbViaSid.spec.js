@@ -35,13 +35,15 @@ ava('.climbViaSID() returns error response if #flightPlanAltitude has not been s
     pilot._fms.flightPlanAltitude = previousFlightPlanAltitude;
 });
 
-ava('.climbViaSID() calls ._mcp.setAltitudeVnavWithValue()', (t) => {
+ava('.climbViaSID() calls ._mcp.setAltitudeFieldValue() and ._mcp.setAltitudeVnav()', (t) => {
     const pilot = new Pilot(modeControllerFixture, fmsDepartureFixture);
-    const setAltitudeVnavWithValueSpy = sinon.spy(pilot._mcp, 'setAltitudeVnavWithValue');
+    const setAltitudeFieldValueSpy = sinon.spy(pilot._mcp, 'setAltitudeFieldValue');
+    const setAltitudeVnavSpy = sinon.spy(pilot._mcp, 'setAltitudeVnav');
 
     pilot.climbViaSid();
 
-    t.true(setAltitudeVnavWithValueSpy.calledWithExactly(pilot._fms.flightPlanAltitude));
+    t.true(setAltitudeFieldValueSpy.calledWithExactly(pilot._fms.flightPlanAltitude));
+    t.true(setAltitudeVnavSpy.calledWithExactly(pilot._fms.flightPlanAltitude));
 });
 
 ava('.climbViaSID() returns success response when successful', (t) => {

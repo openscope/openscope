@@ -83,7 +83,8 @@ export default class Pilot {
             altitude += 1;  // causes aircraft to 'leave' airspace, and continue climb through ceiling
         }
 
-        this._mcp.setAltitudeHoldWithValue(altitude);
+        this._mcp.setAltitudeFieldValue(altitude);
+        this._mcp.setAltitudeHold();
 
         // TODO: this could be split to another method
         // Build readback
@@ -362,9 +363,12 @@ export default class Pilot {
      * @return {Array}                  [success of operation, readback]
      */
     clearedAsFiled(initialAltitude, runwayHeading, cruiseSpeed) {
-        this._mcp.setAltitudeHoldWithValue(initialAltitude);
-        this._mcp.setHeadingLnavWithValue(runwayHeading);
-        this._mcp.setSpeedN1WithValue(cruiseSpeed);
+        this._mcp.setAltitudeFieldValue(initialAltitude);
+        this._mcp.setAltitudeHold();
+        this._mcp.setHeadingFieldValue(runwayHeading);
+        this._mcp.setHeadingLnav();
+        this._mcp.setSpeedFieldValue(cruiseSpeed);
+        this._mcp.setSpeedN1();
 
         const readback = {};
         readback.log = `cleared to destination as filed. Climb and maintain ${initialAltitude}, expect ` +
@@ -393,7 +397,8 @@ export default class Pilot {
             return [false, readback];
         }
 
-        this._mcp.setAltitudeVnavWithValue(this._fms.flightPlanAltitude);
+        this._mcp.setAltitudeFieldValue(this._fms.flightPlanAltitude);
+        this._mcp.setAltitudeVnav();
 
         const readback = {};
         readback.log = 'climb via SID';
