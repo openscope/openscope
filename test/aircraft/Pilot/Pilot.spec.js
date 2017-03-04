@@ -13,6 +13,10 @@ ava('throws when instantiated without parameters', (t) => {
     t.throws(() => new Pilot('threeve'));
     t.throws(() => new Pilot(42));
     t.throws(() => new Pilot(false));
+
+    t.throws(() => new Pilot(modeControllerFixture, null));
+    t.throws(() => new Pilot(modeControllerFixture, ''));
+    t.throws(() => new Pilot(modeControllerFixture, {}));
 });
 
 ava('does not throw when passed valid parameters', (t) => {

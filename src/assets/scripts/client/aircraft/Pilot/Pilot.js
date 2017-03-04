@@ -77,20 +77,16 @@ export default class Pilot {
         const { minAssignableAltitude, maxAssignableAltitude } = airportModel;
         // TODO: this could probably be done in the AirportModel
         // FIXME: we should set a new var here instead of reassigning to the param
-        altitude = clamp(minAssignableAltitude, altitude, maxAssignableAltitude);
+        let clampedAltitude = clamp(minAssignableAltitude, altitude, maxAssignableAltitude);
 
-        if (shouldUseSoftCeiling && altitude === maxAssignableAltitude) {
-            altitude += 1;  // causes aircraft to 'leave' airspace, and continue climb through ceiling
-        }
-
-        this._mcp.setAltitudeFieldValue(altitude);
+        this._mcp.setAltitudeFieldValue(clampedAltitude);
         this._mcp.setAltitudeHold();
 
         // TODO: this could be split to another method
         // Build readback
-        altitude = _floor(altitude, -2);
+        const readbackAltitude = _floor(clampedAltitude, -2);
         const altitudeInstruction = radio_trend('altitude', currentAltitude, altitude);
-        const altitudeVerbal = radio_altitude(altitude);
+        const altitudeVerbal = radio_altitude(readbackAltitude);
         let expediteReadback = '';
 
         if (expedite) {
@@ -101,7 +97,7 @@ export default class Pilot {
         }
 
         const readback = {};
-        readback.log = `${altitudeInstruction} ${altitude}${expediteReadback}`;
+        readback.log = `${altitudeInstruction} ${readbackAltitude}${expediteReadback}`;
         readback.say = `${altitudeInstruction} ${altitudeVerbal}${expediteReadback}`;
 
         return [true, readback];

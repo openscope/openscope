@@ -11,6 +11,25 @@ import {
 } from '../../fixtures/aircraftFixtures';
 import { airportModelFixture } from '../../fixtures/airportFixtures';
 
+ava('.maintainAltitude() should set mcp.altitude to the correct value when greater than maxAssignableAltitude', (t) => {
+    const currentAltitudeMock = 5000;
+    const nextAltitudeMock = 100000;
+    const shouldExpediteMock = false;
+    const shouldUseSoftCeilingMock = true;
+    const pilot = new Pilot(modeControllerFixture, fmsArrivalFixture);
+
+    pilot.maintainAltitude(
+        currentAltitudeMock,
+        nextAltitudeMock,
+        shouldExpediteMock,
+        shouldUseSoftCeilingMock,
+        airportModelFixture
+    );
+
+    t.true(pilot._mcp.altitudeMode === 'HOLD');
+    t.true(pilot._mcp.altitude === 19001);
+});
+
 ava('.maintainAltitude() should set mcp.altitudeMode to `HOLD` and set mcp.altitude to the correct value', (t) => {
     const currentAltitudeMock = 5000;
     const nextAltitudeMock = 13000;
