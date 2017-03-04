@@ -1,3 +1,4 @@
+import _ceil from 'lodash/ceil';
 import _has from 'lodash/has';
 import _map from 'lodash/map';
 import Waypoint from './FlightManagementSystem/Waypoint';
@@ -606,52 +607,22 @@ export default class AircraftCommander {
      * @for AircraftCommander
      * @method runAbort
      * @param aircraft {AircraftInstanceModel}
-     * @param data
      */
-    runAbort(aircraft, data) {
-        // TODO: these ifs on `mode` should be converted to a switch
-        if (aircraft.mode === FLIGHT_MODES.TAXI) {
-            aircraft.mode = FLIGHT_MODES.APRON;
-            aircraft.taxi_start = 0;
+    runAbort(aircraft) {
+        const airport = this._airportController.airport_get();
 
-            console.log('aborted taxi to runway');
-
-            const isWarning = true;
-            this._uiController.ui_log(`${aircraft.getCallsign()} aborted taxi to runway`, isWarning);
-
-            return ['ok', 'taxiing back to terminal'];
-        } else if (aircraft.mode === FLIGHT_MODES.WAITING) {
-            return ['fail', 'unable to return to the terminal'];
-        } else if (aircraft.mode === FLIGHT_MODES.LANDING) {
-            aircraft.cancelLanding();
-
-            const readback = {
-                log: `go around, fly present heading, maintain ${aircraft.__fms__.altitudeForCurrentWaypoint()}`,
-                say: `go around, fly present heading, maintain ${radio_altitude(aircraft.__fms__.altitudeForCurrentWaypoint())}`
-            };
-
-            return ['ok', readback];
-        } else if (aircraft.mode === FLIGHT_MODES.CRUISE && aircraft.__fms__.currentWaypoint.navmode === WAYPOINT_NAV_MODE.RWY) {
-            aircraft.cancelLanding();
-
-            const readback = {
-                log: `cancel approach clearance, fly present heading, maintain ${aircraft.__fms__.altitudeForCurrentWaypoint()}`,
-                say: `cancel approach clearance, fly present heading, maintain ${radio_altitude(aircraft.__fms__.altitudeForCurrentWaypoint())}`
-            };
-
-            return ['ok', readback];
-        } else if (aircraft.mode === FLIGHT_MODES.CRUISE && aircraft.__fms__.currentWaypoint.navmode === WAYPOINT_NAV_MODE.FIX) {
-            aircraft.cancelFix();
-
-            if (aircraft.category === FLIGHT_CATEGORY.ARRIVAL) {
-                return ['ok', 'fly present heading, vector to final approach course'];
-            } else if (aircraft.category === 'departure') {
-                return ['ok', 'fly present heading, vector for entrail spacing'];
-            }
+        switch (aircraft.mode) {
+            case FLIGHT_MODES.TAXI:
+                return aircraft.pilot.stopOutboundTaxiAndReturnToGate();
+            case FLIGHT_MODES.WAITING:
+                return aircraft.pilot.stopWaitingInRunwayQueueAndReturnToGate();
+            case FLIGHT_MODES.LANDING:
+                return aircraft.pilot.goAround(aircraft.heading, airport.elevation, aircraft.speed);
+            case FLIGHT_MODES.CRUISE:
+                return aircraft.pilot.cancelApproachClearance(aircraft.heading, airport.elevation, aircraft.speed);
+            default:
+                return [false, 'we aren\'t doing anything that can be aborted'];
         }
-
-        // modes 'apron', 'takeoff', ('cruise' for some navmodes)
-        return ['fail', 'unable to abort'];
     }
 
     // FIXME: is this in use?

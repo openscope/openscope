@@ -1,3 +1,4 @@
+import _ceil from 'lodash/ceil';
 import _floor from 'lodash/floor';
 import _isNil from 'lodash/isNil';
 import _isObject from 'lodash/isObject';
@@ -21,11 +22,7 @@ import {
     FLIGHT_CATEGORY,
     FLIGHT_MODES
 } from '../../constants/aircraftConstants';
-import {
-    MCP_MODE,
-    MCP_MODE_NAME,
-    MCP_FIELD_NAME
-} from '../ModeControl/modeControlConstants';
+import { MCP_MODE } from '../ModeControl/modeControlConstants';
 
 /**
  * Executes control actions upon the aircraft by manipulating the MCP and FMS, and provides
@@ -326,6 +323,34 @@ export default class Pilot {
     }
 
     /**
+     * Stop conducting the instrument approach; maintain present speed/heading, and climb
+     * to a reasonable altitude
+     *
+     * @for Pilot
+     * @method cancelApproachClearance
+     * @param heading {Number} the aircraft's current heading
+     * @param airportElevation {Number} the elevation of the airport, in feet MSL
+     * @param speed {Number} the aircraft's current speed
+     * @return {Array} [success of operation, readback]
+     */
+    cancelApproachClearance(heading, airportElevation, speed) {
+        const altitudeToMaintain = _ceil(airportElevation, -2) + 1000;
+
+        this._mcp.setHeadingFieldValue(heading);
+        this._mcp.setHeadingHold();
+        this._mcp.setAltitudeFieldValue(altitudeToMaintain);
+        this._mcp.setAltitudeHold();
+        this._mcp.setSpeedFieldValue(speed);
+        this._mcp.setSpeedHold();
+
+        const readback = {};
+        readback.log = `cancel approach clearance, fly present heading, maintain ${altitudeToMaintain}`;
+        readback.say = `cancel approach clearance, fly present heading, maintain ${radio_altitude(altitudeToMaintain)}`;
+
+        return [true, readback];
+    }
+
+    /**
      * Configure the aircraft to fly in accordance with the requested flightplan
      *
      * @for Pilot
@@ -394,6 +419,33 @@ export default class Pilot {
         const readback = {};
         readback.log = 'descend via the arrival';
         readback.say = 'descend via the arrival';
+
+        return [true, readback];
+    }
+
+    /**
+     * Abort the landing attempt; maintain present heading/speed, and climb to a reasonable alttiude
+     *
+     * @for Pilot
+     * @method goAround
+     * @param heading {Number} the aircraft's current heading
+     * @param airportElevation {Number} the elevation of the airport, in feet MSL
+     * @param speed {Number} the aircraft's current speed
+     * @return {Array} [success of operation, readback]
+     */
+    goAround(heading, airportElevation, speed) {
+        const altitudeToMaintain = _ceil(airportElevation, -2) + 1000;
+
+        this._mcp.setHeadingFieldValue(heading);
+        this._mcp.setHeadingHold();
+        this._mcp.setAltitudeFieldValue(altitudeToMaintain);
+        this._mcp.setAltitudeHold();
+        this._mcp.setSpeedFieldValue(speed);
+        this._mcp.setSpeedHold();
+
+        const readback = {};
+        readback.log = `go around, fly present heading, maintain ${altitudeToMaintain}`;
+        readback.say = `go around, fly present heading, maintain ${radio_altitude(altitudeToMaintain)}`;
 
         return [true, readback];
     }
@@ -594,6 +646,35 @@ export default class Pilot {
         }
 
         return this._mcp.speed;
+    }
+
+    /**
+     * Stop taxiing to the runway and return to the gate
+     *
+     * @for Pilot
+     * @method stopOutboundTaxiAndReturnToGate
+     * @return {Array} [success of operation, readback]
+     */
+    stopOutboundTaxiAndReturnToGate() {
+        this._fms.flightPhase = FLIGHT_MODES.APRON;
+        // TODO: What to do with this little number....?
+        // aircraft.taxi_start = 0;
+
+        return [true, 'taxiing back to the gate'];
+    }
+
+    /**
+     * Leave the departure line and return to the gate
+     *
+     * @for Pilot
+     * @method stopWaitingInRunwayQueueAndReturnToGate
+     * @return {Array} [success of operation, readback]
+     */
+    stopWaitingInRunwayQueueAndReturnToGate() {
+        this._fms.flightPhase = FLIGHT_MODES.APRON;
+        // TODO: remove aircraft from the runway queue (`Runway.removeQueue()`)
+
+        return [true, 'taxiing back to the gate'];
     }
 
     /**
