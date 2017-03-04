@@ -25,8 +25,8 @@ const PROCEDURE_TYPE = {
  * - single `WaypointModel` will be built from a `routeSegment` not included in a standard
  *                          procedure and without restrictions
  * - single `WaypointModel` assigned to hold at, which can be a navaid or a position array
- * - standard procedure (sid/star/airway), which may contain many `WaypointModel` objects,
- *   each of which may specify altitude and/or speed restrictions.
+ * - standard procedure     (sid/star/airway), which may contain many `WaypointModel` objects,
+ *                          each of which may specify altitude and/or speed restrictions.
  *
  * RouteSegment Examples:
  *  - directRouteSegment: 'COWBY'
@@ -311,7 +311,7 @@ export default class LegModel {
         const fixModel = this._navigationLibrary.findFixByName(holdRouteSegment);
 
         return [
-            fixModel.toWaypointModel(isHold)
+            fixModel.toWaypointModel(isHold, holdWaypointProps)
         ];
     }
 

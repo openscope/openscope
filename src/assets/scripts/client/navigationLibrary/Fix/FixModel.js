@@ -1,4 +1,5 @@
 import _cloneDeep from 'lodash/cloneDeep';
+import _get from 'lodash/get';
 import BaseModel from '../../base/BaseModel';
 import PositionModel from '../../base/PositionModel';
 import WaypointModel from '../../aircraft/FlightManagementSystem/WaypointModel';
@@ -121,9 +122,11 @@ export default class FixModel extends BaseModel {
      *
      * @for FixModel
      * @method toWaypointModel
+     * @param isHold {boolean}
+     * @param holdProps {object}
      * @return {WaypointModel}
      */
-    toWaypointModel(isHold = false) {
+    toWaypointModel(isHold = false, holdProps = {}) {
         let waypointProps = {
             name: this.name,
             position: this.clonePosition(),
@@ -132,8 +135,8 @@ export default class FixModel extends BaseModel {
         };
 
         if (isHold) {
-            waypointProps.turnDirection = 'right';
-            waypointProps.legLength = '1min';
+            waypointProps.turnDirection = _get(holdProps, 'turnDirection', 'right');
+            waypointProps.legLength = _get(holdProps, 'legLength', '1min');
             waypointProps.timer = -1;
         }
 

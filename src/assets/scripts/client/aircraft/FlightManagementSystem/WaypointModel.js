@@ -48,6 +48,7 @@ export default class WaypointModel {
          *      ...waypointProps
          * }
          * ```
+         * See `LegModel._buildHoldAtPositionWaypointProps()` for additional inforamtion
          *
          * @property _position
          * @type {PositionModel|object}
@@ -193,5 +194,6 @@ export default class WaypointModel {
     updateWaypointWithHoldProps(turnDirection, legLength) {
         this._turnDirection = turnDirection;
         this._legLength = legLength;
+        this._isHold = true;
     }
 }

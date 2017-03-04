@@ -171,6 +171,10 @@ export default class RouteModel extends BaseModel {
  * @static
  */
 RouteModel.isProcedureRouteString = (routeString) => {
+    if (routeString.indexOf(HOLD_SEGMENT_SYMBOL) !== -1) {
+        return false;
+    }
+
     const elements = routeString.split(SEGMENT_SEPARATION_SYMBOL);
     const hasRightNumberOfElements = elements.length === MAXIMUM_ROUTE_SEGMENT_LENGTH;
     const isDirectRouteSegment = elements[1] === '';

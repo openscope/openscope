@@ -7,11 +7,23 @@ import _isObject from 'lodash/isObject';
 import _map from 'lodash/map';
 import LegModel from './LegModel';
 import RouteModel from '../../navigationLibrary/Route/RouteModel';
-import { routeStringFormatHelper } from '../../navigationLibrary/Route/routeStringFormatHelper';
+import {
+    routeStringFormatHelper,
+    extractFixnameFromHoldSegment
+} from '../../navigationLibrary/Route/routeStringFormatHelper';
 import {
     FLIGHT_CATEGORY,
     PROCEDURE_TYPE
 } from '../../constants/aircraftConstants';
+
+/**
+ * Enumeration of an invalid number value
+ *
+ * @proeprty INVALID_VALUE
+ * @type {number}
+ * @final
+ */
+const INVALID_VALUE = -1;
 
 /**
  *
@@ -214,11 +226,9 @@ export default class Fms {
      *
      * @for Fms
      * @method prependLeg
-     * @param routeString
+     * @param legModel {LegModel}
      */
-    prependLeg(routeString) {
-        const legModel = new LegModel(routeString, this._runwayName, this.currentPhase, this._navigationLibrary);
-
+    prependLeg(legModel) {
         this.legCollection.unshift(legModel);
     }
 
@@ -227,12 +237,59 @@ export default class Fms {
      *
      * @for Fms
      * @method appendLeg
-     * @param routeString
+     * @param legModel {LegModel}
      */
-    appendLeg(routeString) {
-        const legModel = new LegModel(routeString, this._runwayName, this.currentPhase, this._navigationLibrary);
-
+    appendLeg(legModel) {
         this.legCollection.push(legModel);
+    }
+
+    // TODO: this method should be simplified
+    /**
+     * Create a new `LegModel` for a holding pattern at a Fix or a position
+     *
+     * @for Fms
+     * @method createLegWithHoldingPattern
+     * @param inboundHeading {number}
+     * @param turnDirection {string}
+     * @legLength {number}
+     * @holdRouteSegment {string}
+     * @holdFixLocation {array<number>}
+     */
+    createLegWithHoldingPattern(inboundHeading, turnDirection, legLength, holdRouteSegment, holdFixLocation) {
+        // FIXME: replace with constant
+        const isPositionHold = holdRouteSegment === 'GPS';
+        const waypointProps = {
+            turnDirection,
+            legLength,
+            name: holdRouteSegment,
+            position: holdFixLocation,
+            altitudeRestriction: INVALID_VALUE,
+            speedRestriction: INVALID_VALUE
+        };
+
+        if (isPositionHold) {
+            const legModel = this._createLegWithHoldWaypoint(waypointProps);
+
+            this.prependLeg(legModel);
+
+            return;
+        }
+
+        const waypointNameToFind = extractFixnameFromHoldSegment(holdRouteSegment);
+        const { waypointIndex } = this._findLegAndWaypointIndexForWaypointName(waypointNameToFind);
+
+        if (waypointIndex !== INVALID_VALUE) {
+            this.skipToWaypoint(waypointNameToFind);
+            this.currentWaypoint.updateWaypointWithHoldProps(turnDirection, legLength);
+
+            return;
+        }
+
+        const legModel = this._createLegWithHoldWaypoint(waypointProps);
+
+        this.prependLeg(legModel);
+
+        return;
     }
 
     /**
@@ -282,6 +339,7 @@ export default class Fms {
     skipToWaypoint(waypointName) {
         const { legIndex, waypointIndex } = this._findLegAndWaypointIndexForWaypointName(waypointName);
 
+        // TODO: this may be deprectaed
         this._collectRouteStringsForLegsToBeDropped(legIndex);
 
         this.legCollection = _drop(this.legCollection, legIndex);
@@ -336,8 +394,10 @@ export default class Fms {
         const procedureLegIndex = this._findLegIndexForProcedureType(PROCEDURE_TYPE.SID);
 
         // a procedure does not exist in the flight plan, so we must create a new one
-        if (procedureLegIndex === -1) {
-            this.prependLeg(routeString);
+        if (procedureLegIndex === INVALID_VALUE) {
+            const legModel = this._buildLegModelFromRouteSegment(routeString);
+
+            this.prependLeg(legModel);
 
             return;
         }
@@ -368,8 +428,10 @@ export default class Fms {
         const procedureLegIndex = this._findLegIndexForProcedureType(PROCEDURE_TYPE.STAR);
 
         // a procedure does not exist in the flight plan, so we must create a new one
-        if (procedureLegIndex === -1) {
-            this.appendLeg(routeString);
+        if (procedureLegIndex === INVALID_VALUE) {
+            const legModel = this._buildLegModelFromRouteSegment(routeString);
+
+            this.appendLeg(legModel);
 
             return;
         }
@@ -409,7 +471,7 @@ export default class Fms {
      * @param routeString {routeString}
      */
     replaceRouteUpToSharedRouteSegment(routeString) {
-        let legIndex = -1;
+        let legIndex = INVALID_VALUE;
         let amendmentRouteString = '';
         const routeSegments = routeStringFormatHelper(routeString.toLowerCase());
 
@@ -660,6 +722,26 @@ export default class Fms {
     }
 
     /**
+     * Build a `LegModel` instance that contains a `WaypointModel` with hold properties
+     *
+     * @for Fms
+     * @method _createLegWithHoldWaypoint
+     * @param waypointProps {object}
+     * @return legModel {LegModel}
+     */
+    _createLegWithHoldWaypoint(waypointProps) {
+        const legModel = new LegModel(
+            waypointProps.name,
+            this._runwayName,
+            this.currentPhase,
+            this._navigationLibrary,
+            waypointProps
+        );
+
+        return legModel;
+    }
+
+    /**
      * Make the next `WaypointModel` in the currentLeg the currentWaypoint
      *
      * @for Fms
@@ -699,16 +781,19 @@ export default class Fms {
      */
     _findLegAndWaypointIndexForWaypointName(waypointName) {
         let legIndex;
-        let waypointIndex = -1;
+        let waypointIndex = INVALID_VALUE;
 
         for (legIndex = 0; legIndex < this.legCollection.length; legIndex++) {
             const legModel = this.legCollection[legIndex];
+            // TODO: this should be made into a class method for the WaypointModel
             waypointIndex = _findIndex(legModel.waypointCollection, { name: waypointName.toLowerCase() });
 
-            if (waypointIndex !== -1) {
+            if (waypointIndex !== INVALID_VALUE) {
                 break;
             }
         }
+
+        // TODO: what happens here if a waypoint isn't found within the collection?
 
         return {
             legIndex,
@@ -853,6 +938,7 @@ export default class Fms {
         this.legCollection = this.legCollection.slice(legIndex);
     }
 
+    // FIXME: simplify this and abstract it away from `.prependLeg()`
     /**
      * Given an array of `routeSegments`, prepend each to the left of the `#legCollection`
      *
@@ -865,10 +951,11 @@ export default class Fms {
         // reversing order here because we're leveraging `.prependLeg()`, which adds a single
         // leg to the left of the `#legCollection`. by reversing the array, we can ensure the
         // correct order of legs.
-        const reversedLegModelList = routeSegments.slice().reverse();
+        const routeSegmentList = routeSegments.slice().reverse();
 
-        for (let i = 0; i < reversedLegModelList.length; i++) {
-            const legModel = reversedLegModelList[i];
+        for (let i = 0; i < routeSegmentList.length; i++) {
+            const routeSegment = routeSegmentList[i];
+            const legModel = this._buildLegModelFromRouteSegment(routeSegment);
 
             this.prependLeg(legModel);
         }
