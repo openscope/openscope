@@ -7,8 +7,6 @@ import {
     MCP_FIELD_NAME
 } from '../../../src/assets/scripts/client/aircraft/ModeControl/modeControlConstants';
 
-const mcp = new ModeController();
-
 ava('does not throw when instantiated without parameters', (t) => {
     t.notThrows(() => new ModeController());
 });
@@ -21,6 +19,7 @@ ava('does not throw when instantiated with parameters', (t) => {
 });
 
 ava('._setModeSelectorMode() sets modeSelector to the specified mode', (t) => {
+    const mcp = new ModeController();
     const speedModeMock = MCP_MODE.SPEED.VNAV;
 
     mcp._setModeSelectorMode(MCP_MODE_NAME.SPEED, speedModeMock);
@@ -29,6 +28,7 @@ ava('._setModeSelectorMode() sets modeSelector to the specified mode', (t) => {
 });
 
 ava('._setFieldValue() sets field to the specified value', (t) => {
+    const mcp = new ModeController();
     const speedMock = 325;
 
     mcp._setFieldValue(MCP_FIELD_NAME.SPEED, speedMock);
@@ -37,24 +37,31 @@ ava('._setFieldValue() sets field to the specified value', (t) => {
 });
 
 ava('.setAltitudeApproach() sets altitude mode to approach', (t) => {
+    const mcp = new ModeController();
+
     mcp.setAltitudeApproach();
 
     t.true(mcp.altitudeMode === MCP_MODE.ALTITUDE.APPROACH);
 });
 
 ava('.setAltitudeHold() sets altitude mode to hold', (t) => {
+    const mcp = new ModeController();
+
     mcp.setAltitudeHold();
 
     t.true(mcp.altitudeMode === MCP_MODE.ALTITUDE.HOLD);
 });
 
 ava('.setAltitudeVnav() sets altitude mode to VNAV', (t) => {
+    const mcp = new ModeController();
+
     mcp.setAltitudeVnav();
 
     t.true(mcp.altitudeMode === MCP_MODE.ALTITUDE.VNAV);
 });
 
 ava('.setAltitudeFieldValue() sets the value of the altitude field', (t) => {
+    const mcp = new ModeController();
     const altitudeMock = 5500;
 
     mcp.setAltitudeFieldValue(altitudeMock);
@@ -63,6 +70,7 @@ ava('.setAltitudeFieldValue() sets the value of the altitude field', (t) => {
 });
 
 ava('.setCourseFieldValue() sets the value of the course field', (t) => {
+    const mcp = new ModeController();
     const courseMock = 125;
 
     mcp.setCourseFieldValue(courseMock);
@@ -71,24 +79,31 @@ ava('.setCourseFieldValue() sets the value of the course field', (t) => {
 });
 
 ava('.setHeadingHold() sets the heading mode to hold', (t) => {
+    const mcp = new ModeController();
+
     mcp.setHeadingHold();
 
     t.true(mcp.headingMode === MCP_MODE.HEADING.HOLD);
 });
 
 ava('.setHeadingLnav() sets the heading mode to LNAV', (t) => {
+    const mcp = new ModeController();
+
     mcp.setHeadingLnav();
 
     t.true(mcp.headingMode === MCP_MODE.HEADING.LNAV);
 });
 
 ava('.setHeadingVorLoc() sets the heading mode to VOR_LOC', (t) => {
+    const mcp = new ModeController();
+
     mcp.setHeadingVorLoc();
 
     t.true(mcp.headingMode === MCP_MODE.HEADING.VOR_LOC);
 });
 
 ava('.setHeadingFieldValue() sets the value of the heading field', (t) => {
+    const mcp = new ModeController();
     const headingMock = 310;
 
     mcp.setHeadingFieldValue(headingMock);
@@ -97,18 +112,24 @@ ava('.setHeadingFieldValue() sets the value of the heading field', (t) => {
 });
 
 ava('.setSpeedHold() sets the heading mode to hold', (t) => {
+    const mcp = new ModeController();
+
     mcp.setSpeedHold();
 
     t.true(mcp.speedMode === MCP_MODE.SPEED.HOLD);
 });
 
 ava('.setSpeedN1() sets the heading mode to N1', (t) => {
+    const mcp = new ModeController();
+
     mcp.setSpeedN1();
 
     t.true(mcp.speedMode === MCP_MODE.SPEED.N1);
 });
 
 ava('.setSpeedVnav() sets the heading mode to VNAV', (t) => {
+    const mcp = new ModeController();
+
     mcp.setSpeedVnav();
 
     t.true(mcp.speedMode === MCP_MODE.SPEED.VNAV);
