@@ -104,7 +104,7 @@ export default class Pilot {
         readback.log = `${altitudeInstruction} ${altitude}${expediteReadback}`;
         readback.say = `${altitudeInstruction} ${altitudeVerbal}${expediteReadback}`;
 
-        return ['ok', readback];
+        return [true, readback];
     }
 
     /**
@@ -588,7 +588,7 @@ export default class Pilot {
         let successMessage = `proceed direct ${fixName} and hold inbound, ${turnDirection} turns, ${legLength} legs`;
 
         if (!holdFixLocation) {
-            return ['fail', `unable to find fix ${fixName}`];
+            return [false, `unable to find fix ${fixName}`];
         }
 
         if (!fixName) {
@@ -600,7 +600,7 @@ export default class Pilot {
 
         this._fms.createLegWithHoldingPattern(inboundHeading, turnDirection, legLength, holdRouteSegment, holdFixLocation);
 
-        return ['ok', successMessage];
+        return [true, successMessage];
     }
 
     /**
@@ -652,9 +652,14 @@ export default class Pilot {
      *
      * @for Pilot
      * @method sayTargetedAltitude
+     * @return {Array} [success of operation, readback]
      */
     sayTargetedAltitude() {
-        return this._mcp.altitude;
+        const readback = {};
+        readback.log = `we're assigned ${this._mcp.altitude}`;
+        readback.say = `we're assigned ${radio_altitude(this._mcp.altitude)}`;
+
+        return [true, readback];
     }
 
     /**
@@ -665,15 +670,30 @@ export default class Pilot {
      * @method sayTargetedHeading
      */
     sayTargetedHeading() {
+        const readback = {};
+
         switch (this._mcp.headingMode) {
             case MCP_MODE.HEADING.HOLD:
-                return this._mcp.heading;
+                readback.log = `we're assigned heading ${this._mcp.heading}`;
+                readback.say = `we're assigned heading ${radio_heading(this._mcp.heading)}`;
+
+                return [true, readback];
 
             case MCP_MODE.HEADING.VOR_LOC:
-                return this._mcp.course;
+                readback.log = `we're joining a course of ${this._mcp.course}`;
+                readback.say = `we're joining a course of ${radio_heading(this._mcp.course)}`;
 
-            case MCP_MODE.HEADING.LNAV:
-                return this._fms.currentWaypoint.heading;
+                return [true, readback];
+
+            case MCP_MODE.HEADING.LNAV: {
+                const heading = this._fms.currentWaypoint.heading;
+                const fixName = this._fms.currentWaypoint.name;
+
+                readback.log = `we're heading ${heading} toward ${fixName}`;
+                readback.say = `we're heading ${radio_heading(heading)} toward ${fixName}`;
+
+                return [true, readback];
+            }
 
             default:
                 return;
@@ -689,10 +709,10 @@ export default class Pilot {
      */
     sayTargetedSpeed() {
         if (this._mcp.speed === MCP_MODE.SPEED.VNAV) {
-            return this._fms.currentWaypoint.speed;
+            return [true, this._fms.currentWaypoint.speed];
         }
 
-        return this._mcp.speed;
+        return [true, this._mcp.speed];
     }
 
     /**
