@@ -512,18 +512,6 @@ export default class AircraftCommander {
         }
     }
 
-    // FIXME: is this in use?
-    /**
-     * @for AircraftCommander
-     * @method runDebug
-     * * @param aircraft {AircraftInstanceModel}
-     */
-    runDebug(aircraft) {
-        window.aircraft = aircraft;
-        return [true, { log: 'in the console, look at the variable &lsquo;aircraft&rsquo;', say: '' }];
-    }
-
-    // FIXME: is this in use?
     /**
      * @for AircraftCommander
      * @method runDelete
