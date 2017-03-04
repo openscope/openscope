@@ -100,19 +100,3 @@ export const MCP_FIELD_NAME = {
     HEADING: 'heading',
     SPEED: 'speed'
 };
-
-/**
- * Provides a map from MCP_MODE_NAME to MCP_FIELD_NAME
- *
- * does not support `COURSE` and should be used only with
- * altitude, heading and speed (excluding `COURSE`)
- *
- * @property MCP_MODE_TO_FIELD_MAP
- * @type {Object}
- * @final
- */
-export const MCP_MODE_TO_FIELD_MAP = {
-    altitudeMode: 'altitude',
-    headingMode: 'heading',
-    speedMode: 'speed'
-};
