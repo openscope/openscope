@@ -13,6 +13,7 @@ import {
 } from '../_mocks/aircraftMocks';
 
 const complexRouteString = 'COWBY..BIKKR..DAG.KEPEC3.KLAS';
+const complexRouteStringWithHold = 'COWBY..@BIKKR..DAG.KEPEC3.KLAS';
 const simpleRouteString = ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK.route;
 const arrivalProcedureRouteStringMock = 'MLF.GRNPA1.KLAS';
 const departureProcedureRouteStringMock = 'KLAS.COWBY6.DRK';
@@ -155,10 +156,10 @@ ava('.createLegWithHoldingPattern() prepends LegCollection with hold Waypoint wh
 
 ava('.createLegWithHoldingPattern() calls ._findLegAndWaypointIndexForWaypointName() when holdRouteSegment is a FixName', (t) => {
     const inboundHeadingMock = -1.62476729292438;
-    const turnDirection = 'left'
-    const legLength = '2min'
-    const holdRouteSegment = '@BIKKR'
-    const holdFixLocation = [113.4636606631233, 6.12969620221002]
+    const turnDirection = 'left';
+    const legLength = '2min';
+    const holdRouteSegment = '@BIKKR';
+    const holdFixLocation = [113.4636606631233, 6.12969620221002];
     const fms = buildFmsMock(isComplexRoute);
     const _findLegAndWaypointIndexForWaypointNameSpy = sinon.spy(fms, '_findLegAndWaypointIndexForWaypointName');
 
@@ -169,10 +170,10 @@ ava('.createLegWithHoldingPattern() calls ._findLegAndWaypointIndexForWaypointNa
 
 ava('.createLegWithHoldingPattern() skips to a Waypoint and adds hold props to existing Waypoint', (t) => {
     const inboundHeadingMock = -1.62476729292438;
-    const turnDirectionMock = 'left'
-    const legLengthMock = '2min'
-    const holdRouteSegmentMock = '@BIKKR'
-    const holdFixLocationMock = [113.4636606631233, 6.12969620221002]
+    const turnDirectionMock = 'left';
+    const legLengthMock = '2min';
+    const holdRouteSegmentMock = '@BIKKR';
+    const holdFixLocationMock = [113.4636606631233, 6.12969620221002];
     const fms = buildFmsMock(isComplexRoute);
 
     fms.createLegWithHoldingPattern(inboundHeadingMock, turnDirectionMock, legLengthMock, holdRouteSegmentMock, holdFixLocationMock);
@@ -182,10 +183,10 @@ ava('.createLegWithHoldingPattern() skips to a Waypoint and adds hold props to e
 
 ava('.createLegWithHoldingPattern() prepends a LegModel Waypoint when a fixName is supplied that is not already in the flightPlan', (t) => {
     const inboundHeadingMock = -1.62476729292438;
-    const turnDirectionMock = 'left'
-    const legLengthMock = '3min'
-    const holdRouteSegmentMock = '@CEASR'
-    const holdFixLocationMock = [113.4636606631233, 6.12969620221002]
+    const turnDirectionMock = 'left';
+    const legLengthMock = '3min';
+    const holdRouteSegmentMock = '@CEASR';
+    const holdFixLocationMock = [113.4636606631233, 6.12969620221002];
     const fms = buildFmsMock(isComplexRoute);
 
     fms.createLegWithHoldingPattern(inboundHeadingMock, turnDirectionMock, legLengthMock, holdRouteSegmentMock, holdFixLocationMock);
@@ -414,6 +415,12 @@ ava('.isValidRoute() returns true when passed a valid complexRouteString', (t) =
     const fms = buildFmsMock();
 
     t.true(fms.isValidRoute(complexRouteString, runwayAssignmentMock));
+});
+
+ava('.isValidRoute() returns true when passed a valid complexRouteString that includes a hold', (t) => {
+    const fms = buildFmsMock();
+
+    t.true(fms.isValidRoute(complexRouteStringWithHold, runwayAssignmentMock));
 });
 
 ava('.isValidRoute() returns true when passed a valid arrival procedureRouteString', (t) => {

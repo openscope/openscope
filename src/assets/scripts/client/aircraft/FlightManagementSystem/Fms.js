@@ -515,6 +515,11 @@ export default class Fms {
 
             if (RouteModel.isProcedureRouteString(segment)) {
                 isValid = this.isValidProcedureRoute(segment, runway);
+            } else if (RouteModel.isHoldRouteString(segment)) {
+                const fixName = extractFixnameFromHoldSegment(segment);
+
+                isValid = this._navigationLibrary.hasFix(fixName);
+
             } else {
                 isValid = this._navigationLibrary.hasFix(segment);
             }
