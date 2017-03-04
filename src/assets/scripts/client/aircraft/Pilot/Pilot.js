@@ -69,15 +69,18 @@ export default class Pilot {
      *
      * @for Pilot
      * @method maintainAltitude
-     * @param {Number} altitude   the altitude to maintain, in feet
-     * @param {Boolean} expedite  whether to use maximum possible climb/descent rate
-     * @return {Array}            [success of operation, readback]
+     * @param altitude {number}   the altitude to maintain, in feet
+     * @param expedite {boolean}  whether to use maximum possible climb/descent rate
+     * @return {array}            [success of operation, readback]
      */
     maintainAltitude(currentAltitude, altitude, expedite, shouldUseSoftCeiling, airportModel) {
         const { minAssignableAltitude, maxAssignableAltitude } = airportModel;
-        // TODO: this could probably be done in the AirportModel
-        // FIXME: we should set a new var here instead of reassigning to the param
         let clampedAltitude = clamp(minAssignableAltitude, altitude, maxAssignableAltitude);
+
+        if (shouldUseSoftCeiling && clampedAltitude === maxAssignableAltitude) {
+            // causes aircraft to 'leave' airspace, and continue climb through ceiling
+            clampedAltitude += 1;
+        }
 
         this._mcp.setAltitudeFieldValue(clampedAltitude);
         this._mcp.setAltitudeHold();
@@ -108,32 +111,32 @@ export default class Pilot {
      *
      * @for Pilot
      * @method maintainHeading
-     * @param {Number} heading - the heading to maintain, in radians_normalize
-     * @param {String} direction - (optional) the direction of turn; either 'left' or 'right'
-     * @param {Boolean} incremental - (optional) whether the value is a numeric heading, or a number of degrees to turn
-     * @return {Array} [success of operation, readback]
+     * @param currentHeading {number}
+     * @param heading        {number}               the heading to maintain, in radians_normalize
+     * @param direction      {string}   (optional)  the direction of turn; either 'left' or 'right'
+     * @param incremental    {boolean}  (optional)  whether the value is a numeric heading, or a number of degrees to turn
+     * @return {array}                              [success of operation, readback]
      */
-    maintainHeading(heading, direction, incremental) {
+    maintainHeading(currentHeading, heading, direction, incremental) {
         let degrees;
+        let correctedHeading = heading;
 
         // TODO: this math should be an external helper function
         if (incremental) {
             degrees = heading;
-            // FIXME: pass in the current heading when calling this method from the AircraftCommander
-            const aircraft = { heading: 0 };    // FIXME: How can the Pilot access the current heading?
 
             if (direction === 'left') {
-                heading = radians_normalize(aircraft.heading - degreesToRadians(degrees));
+                correctedHeading = radians_normalize(currentHeading - degreesToRadians(degrees));
             } else if (direction === 'right') {
-                heading = radians_normalize(aircraft.heading + degreesToRadians(degrees));
+                correctedHeading = radians_normalize(currentHeading + degreesToRadians(degrees));
             }
         }
 
-        this._mcp.setHeadingVorLoc(heading);
+        this._mcp.setHeadingVorLoc(correctedHeading);
         this._mcp.setHeadingHold();
 
         // Build readback
-        const heading_string = heading_to_string(heading);
+        const heading_string = heading_to_string(correctedHeading);
         const readback = {};
         readback.log = `fly heading ${heading_string}`;
         readback.say = `fly heading ${radio_heading(heading_string)}`;

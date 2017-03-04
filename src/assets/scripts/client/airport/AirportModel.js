@@ -124,16 +124,11 @@ export default class AirportModel {
     /**
      * Maximum altitude an aircraft can be assigned to.
      *
-     * We add 1 here so when we use this property
-     * to calculate max altitude, the actual maximum will
-     * be greater than the airspace max. This allows for an
-     * aircraft to acutally leave the airpsace correctly.
-     *
      * @property maxAssignableAltitude
      * @return {number}
      */
     get maxAssignableAltitude() {
-        return this.ctr_ceiling + 1;
+        return this.ctr_ceiling;
     }
 
     /**

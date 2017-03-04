@@ -13,7 +13,6 @@ import {
     fmsArrivalFixture,
     modeControllerFixture
 } from '../../fixtures/aircraftFixtures';
-import { airportModelFixture } from '../../fixtures/airportFixtures';
 
 const runwayMock = '19L';
 const cruiseSpeedMock = 460;

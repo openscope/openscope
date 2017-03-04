@@ -185,19 +185,6 @@ export default class AircraftCommander {
     }
 
     /**
-     * @for AircraftCommander
-     * @method runHeading
-     * @param data
-     */
-    runHeading(aircraft, data) {
-        const direction = data[0];
-        const heading = data[1];
-        const incremental = data[2];
-
-        return aircraft.pilot.maintainHeading(heading, direction, incremental);
-    }
-
-    /**
      * Set the aircraft to maintain an assigned altitude, and provide a readback
      *
      * @for AircraftCommander
@@ -219,6 +206,19 @@ export default class AircraftCommander {
             shouldUseSoftCeiling,
             airport
         );
+    }
+
+    /**
+     * @for AircraftCommander
+     * @method runHeading
+     * @param data
+     */
+    runHeading(aircraft, data) {
+        const direction = data[0];
+        const heading = data[1];
+        const incremental = data[2];
+
+        return aircraft.pilot.maintainHeading(aircraft.heading, heading, direction, incremental);
     }
 
     /**
