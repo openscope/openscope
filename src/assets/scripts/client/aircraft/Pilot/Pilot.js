@@ -377,7 +377,7 @@ export default class Pilot {
                 `expect ${radio_altitude(this._fms.flightPlanAltitude)}, ${radio_spellOut('10')} minutes ` +
                 'after departure';
 
-        return ['ok', readback];
+        return [true, readback];
     }
 
     /**

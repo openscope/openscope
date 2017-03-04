@@ -65,7 +65,7 @@ ava('.maintainAltitude() returns the correct response strings when shouldExpedit
     );
 
     t.true(_isArray(result));
-    t.true(result[0] === 'ok');
+    t.true(result[0] === true);
     t.true(_isObject(result[1]));
     t.true(result[1].log === 'climb and maintain 13000');
     t.true(result[1].say === 'climb and maintain one three thousand');

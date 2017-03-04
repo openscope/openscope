@@ -178,7 +178,7 @@ export default class AircraftCommander {
         }
 
         if (!call_func) {
-            return ['fail', 'not understood'];
+            return [false, 'say again?'];
         }
 
         return this[call_func](aircraft, data);
@@ -424,30 +424,24 @@ export default class AircraftCommander {
     /**
      * @for AircraftCommander
      * @method runTakeoff
-     * @param data
      */
-    runTakeoff(aircraft, data) {
-        // TODO: all this if logic should be simplified or abstracted
-        if (aircraft.category !== 'departure') {
-            return ['fail', 'inbound'];
-        }
-
+    runTakeoff(aircraft) {
         if (!aircraft.isOnGround()) {
-            return ['fail', 'already airborne'];
+            return [false, 'unable to take off, we\'re already airborne'];
         }
         if (aircraft.mode === FLIGHT_MODES.APRON) {
-            return ['fail', 'unable, we\'re still in the parking area'];
+            return [false, 'unable to take off, we\'re still at the gate'];
         }
         if (aircraft.mode === FLIGHT_MODES.TAXI) {
-            return ['fail', `taxi to runway ${radio_runway(aircraft.rwy_dep)} not yet complete`];
+            const readback = {};
+            readback.log = `unable to take off, we're still taxiing to runway ${aircraft.rwy_dep}`;
+            readback.say = `unable to take off, we're still taxiing to runway ${radio_runway(aircraft.rwy_dep)}`;
+
+            return [false, readback];
         }
         if (aircraft.mode === FLIGHT_MODES.TAKEOFF) {
             // FIXME: this is showing immediately after a to clearance.
-            return ['fail', 'already taking off'];
-        }
-
-        if (aircraft.__fms__.altitudeForCurrentWaypoint() <= 0) {
-            return ['fail', 'no altitude assigned'];
+            return [false, 'already taking off'];
         }
 
         const runway = this._airportController.airport_get().getRunway(aircraft.rwy_dep);
@@ -463,18 +457,23 @@ export default class AircraftCommander {
 
             const wind = this._airportController.airport_get().getWind();
             const wind_dir = round(radiansToDegrees(wind.angle));
+            // TODO: Yikes, dats a lot of stuff goin' on...
             const readback = {
                 // TODO: the wind_dir calculation should be abstracted
                 log: `wind ${round(wind_dir / 10) * 10} ${round(wind.speed)}, runway ${aircraft.rwy_dep}, cleared for takeoff`,
                 say: `wind ${radio_spellOut(round(wind_dir / 10) * 10)} at ${radio_spellOut(round(wind.speed))}, runway ${radio_runway(aircraft.rwy_dep)}, cleared for takeoff`
             };
 
-            return ['ok', readback];
+            return [true, readback];
         }
 
-        const waiting = runway.inQueue(aircraft);
+        const spotInQueue = runway.inQueue(aircraft);
+        const aircraftAhead = runway.queue[spotInQueue - 1];
+        const readback = {};
+        readback.log = `number ${spotInQueue} behind ${aircraftAhead.getCallsign()}`;
+        readback.say = `number ${spotInQueue} behind ${aircraftAhead.getRadioCallsign()}`;
 
-        return ['fail', `number ${waiting} behind ${runway.queue[waiting - 1].getRadioCallsign()}`, ''];
+        return [false, readback];
     }
 
     /**
@@ -521,7 +520,7 @@ export default class AircraftCommander {
      */
     runDebug(aircraft) {
         window.aircraft = aircraft;
-        return ['ok', { log: 'in the console, look at the variable &lsquo;aircraft&rsquo;', say: '' }];
+        return [true, { log: 'in the console, look at the variable &lsquo;aircraft&rsquo;', say: '' }];
     }
 
     // FIXME: is this in use?

@@ -19,7 +19,7 @@ const fixnameMock = 'COWBY';
 const holdFixLocation = [113.4636606631233, 6.12969620221002];
 
 ava('.initiateHoldingPattern() returns error response when #holdFixLocation is undefined', (t) => {
-    const expectedResult = ['fail', 'unable to find fix COWBY'];
+    const expectedResult = [false, 'unable to find fix COWBY'];
     const pilot = new Pilot(modeControllerFixture, fmsArrivalFixture);
     const result = pilot.initiateHoldingPattern(
         inboundHeadingMock,
@@ -56,7 +56,7 @@ ava('.initiateHoldingPattern() when fixname is null calls .createLegWithHoldingP
 });
 
 ava('.initiateHoldingPattern() returns a success message when passed a fixName', (t) => {
-    const expectedResult = ['ok', 'proceed direct COWBY and hold inbound, right turns, 1min legs'];
+    const expectedResult = [true, 'proceed direct COWBY and hold inbound, right turns, 1min legs'];
     const pilot = new Pilot(modeControllerFixture, fmsArrivalFixture);
     const result = pilot.initiateHoldingPattern(
         inboundHeadingMock,
@@ -70,7 +70,7 @@ ava('.initiateHoldingPattern() returns a success message when passed a fixName',
 });
 
 ava('.initiateHoldingPattern() returns a success message when passed a null fixName', (t) => {
-    const expectedResult = ['ok', 'hold east of present position, right turns, 1min legs'];
+    const expectedResult = [true, 'hold east of present position, right turns, 1min legs'];
     const pilot = new Pilot(modeControllerFixture, fmsArrivalFixture);
     const result = pilot.initiateHoldingPattern(
         inboundHeadingMock,

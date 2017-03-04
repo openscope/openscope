@@ -47,7 +47,7 @@ ava('.clearedAsFiled() should returns the correct response strings', (t) => {
     const result = pilot.clearedAsFiled(initialAltitudeMock, runwayHeadingMock, cruiseSpeedMock);
 
     t.true(_isArray(result));
-    t.true(result[0] === 'ok');
+    t.true(result[0] === true);
     t.true(_isObject(result[1]));
     t.true(result[1].log === 'cleared to destination as filed. Climb and maintain 19000, expect 41000 10 minutes after departure');
     t.true(result[1].say === 'cleared to destination as filed. Climb and maintain flight level one niner zero, expect flight level four one zero, one zero minutes after departure');
