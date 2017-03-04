@@ -500,6 +500,10 @@ ava('.isValidRouteAmendment() returns false when a routeAmmendment does not cont
 
 ava.todo('.hasNextWaypoint()');
 ava.todo('.hasLegWithRouteString()');
+ava.todo('.getTopAltitude');            // highest altitude of all fix restrictions
+ava.todo('.getProcedureTopAltitude');   // highest altitude of all fix restrictions within a given procedure's Leg
+ava.todo('.getBottomAltitude');         // lowest altitude of all fix restrictions
+ava.todo('.getProcedureBottomAltitude');// lowest altitude of all fix restrictions within a given procedure's Leg
 
 ava('._buildLegCollection() returns an array of LegModels', (t) => {
     const fms = buildFmsMock(isComplexRoute);
