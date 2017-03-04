@@ -43,7 +43,7 @@ ava('.climbViaSID() calls ._mcp.setAltitudeFieldValue() and ._mcp.setAltitudeVna
     pilot.climbViaSid();
 
     t.true(setAltitudeFieldValueSpy.calledWithExactly(pilot._fms.flightPlanAltitude));
-    t.true(setAltitudeVnavSpy.calledWithExactly(pilot._fms.flightPlanAltitude));
+    t.true(setAltitudeVnavSpy.calledOnce);
 });
 
 ava('.climbViaSID() returns success response when successful', (t) => {

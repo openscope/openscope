@@ -10,12 +10,11 @@ ava('does not throw when instantiated without parameters', (t) => {
     t.notThrows(() => new ModeController());
 });
 
-ava('._setModeSelectorModeAndFieldValue() sets modeSelector and a fieldValue', (t) => {
-    const speedMock = 230;
-    const controller = new ModeController();
+ava('._setModeSelectorMode() sets modeSelector to the specified value', (t) => {
+    const speedModeMock = MCP_MODE.SPEED.VNAV;
+    const mcp = new ModeController();
 
-    controller._setModeSelectorModeAndFieldValue(MCP_MODE_NAME.SPEED, MCP_MODE.SPEED.VNAV, speedMock);
+    mcp._setModeSelectorMode(MCP_MODE_NAME.SPEED, speedModeMock);
 
-    t.true(controller.speedMode === MCP_MODE.SPEED.VNAV);
-    t.true(controller.speed === speedMock);
+    t.true(mcp.speedMode === MCP_MODE.SPEED.VNAV);
 });
