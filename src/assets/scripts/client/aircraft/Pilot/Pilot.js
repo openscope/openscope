@@ -112,41 +112,45 @@ export default class Pilot {
      * @for Pilot
      * @method maintainHeading
      * @param currentHeading {number}
-     * @param heading        {number}               the heading to maintain, in radians_normalize
-     * @param direction      {string}   (optional)  the direction of turn; either 'left' or 'right'
-     * @param incremental    {boolean}  (optional)  whether the value is a numeric heading, or a number of degrees to turn
-     * @return {array}                              [success of operation, readback]
+     * @param heading        {number}                   the heading to maintain, in radians_normalize
+     * @param direction      {string|null}  (optional)  the direction of turn; either 'left' or 'right'
+     * @param incremental    {boolean}      (optional)  whether the value is a numeric heading, or a number of degrees to turn
+     * @return {array}                                  [success of operation, readback]
      */
     maintainHeading(currentHeading, heading, direction, incremental) {
         let degrees;
         let correctedHeading = heading;
+        let headingReadback = correctedHeading;
 
-        // TODO: this math should be an external helper function
+        // TODO: is this correct? if a heading with a direction is supplid, it will only be honored if it is also incremental
         if (incremental) {
             degrees = heading;
 
+            // TODO: abstract this logic
             if (direction === 'left') {
+                // the `degreesToRadians` part can be pulled out so it is done only once
                 correctedHeading = radians_normalize(currentHeading - degreesToRadians(degrees));
+                headingReadback = heading_to_string(correctedHeading);
             } else if (direction === 'right') {
                 correctedHeading = radians_normalize(currentHeading + degreesToRadians(degrees));
+                headingReadback = heading_to_string(correctedHeading);
             }
         }
 
-        this._mcp.setHeadingVorLoc(correctedHeading);
         this._mcp.setHeadingHold();
+        this._mcp.setHeadingFieldValue(correctedHeading);
 
-        // Build readback
-        const heading_string = heading_to_string(correctedHeading);
         const readback = {};
-        readback.log = `fly heading ${heading_string}`;
-        readback.say = `fly heading ${radio_heading(heading_string)}`;
+        readback.log = `fly heading ${headingReadback}`;
+        readback.say = `fly heading ${radio_heading(headingReadback)}`;
 
         if (incremental) {
             readback.log = `turn ${degrees} degrees ${direction}`;
             readback.say = `turn ${groupNumbers(degrees)} degrees ${direction}`;
-        } else if (direction) {
-            readback.log = `turn ${direction} heading ${heading_string}`;
-            readback.say = `turn ${direction} heading ${radio_heading(heading_string)}`;
+        // FIXME: Im not sure this block is needed
+        // } else if (direction) {
+        //     readback.log = `turn ${direction} heading ${headingReadback}`;
+        //     readback.say = `turn ${direction} heading ${radio_heading(headingReadback)}`;
         }
 
         return [true, readback];

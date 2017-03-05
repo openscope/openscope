@@ -209,9 +209,13 @@ export default class AircraftCommander {
     }
 
     /**
+     * Direct an aircraft to fly and maintain a specific heading
+     *
      * @for AircraftCommander
      * @method runHeading
-     * @param data
+     * @param aircraft {AircraftInstanceModel}
+     * @param data {array}
+     * @return {array} [success of operation, readback]
      */
     runHeading(aircraft, data) {
         const direction = data[0];
