@@ -16,6 +16,7 @@ import {
 } from '../../utilities/radioUtilities';
 import {
     degreesToRadians,
+    radiansToDegrees,
     heading_to_string
 } from '../../utilities/unitConverters';
 import { radians_normalize } from '../../math/circle';
@@ -161,12 +162,13 @@ export default class Pilot {
      *
      * @for Pilot
      * @method maintainPresentHeading
-     * @param {Number} heading - the heading the aircraft is facing at the time the command is given
-     * @return {Array} [success of operation, readback]
+     * @param heading {number}  the heading the aircraft is facing at the time the command is given
+     * @return {array}          [success of operation, readback]
      */
     maintainPresentHeading(heading) {
-        this._mcp.setHeadingVorLoc(heading);
         this._mcp.setHeadingHold();
+        // TODO: are we storing this in degrees or radians?
+        this._mcp.setHeadingFieldValue(heading);
 
         const readback = {};
         readback.log = 'fly present heading';

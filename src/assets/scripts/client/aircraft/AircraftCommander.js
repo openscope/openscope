@@ -317,6 +317,7 @@ export default class AircraftCommander {
     /**
      * @for AircraftCommander
      * @method runFlyPresentHeading
+     * @param aircraft {AircraftInstanceModel}
      */
     runFlyPresentHeading(aircraft) {
         return aircraft.pilot.maintainPresentHeading(aircraft.heading);
