@@ -6,9 +6,10 @@ import {
     adjustForMagneticNorth,
     hasCardinalDirectionInCoordinate
 } from './positionModelHelpers';
-import { distanceToPoint } from '../math/circle';
+import { distanceToPoint, radians_normalize } from '../math/circle';
 import {
     degreesToRadians,
+    radiansToDegrees,
     parseCoordinate,
     parseElevation
 } from '../utilities/unitConverters';
@@ -190,17 +191,54 @@ export default class PositionModel {
     }
 
     /**
+     * Calculate the initial magnetic bearing from a given position to the position of `this`
+     *
+     * @for PositionModel
+     * @method bearingFrom
+     * @param position {PositionModel} position we're comparing against
+     * @return {Number} bearing from `position` to `this`, in radians
+     */
+    bearingFrom(position) {
+        return radians_normalize(this.bearingTo(position) + Math.PI);
+    }
+
+    /**
+     * Calculate the initial magnetic bearing to a given position from the position of `this`
+     * Note: This method uses great circle math to determine the bearing. It is very accurate, but
+     * also a very expensive operation. If the precision is not needed, a vradial(vsub()) of the
+     * x/y positions is a more "quick and dirty" option.
+     *
+     * @for PositionModel
+     * @method bearingTo
+     * @param position {PositionModel} position we're comparing against
+     * @return {Number} bearing from `this` to `position`, in radians
+     */
+    bearingTo(position) {
+        const φ1 = degreesToRadians(this.latitude);
+        const φ2 = degreesToRadians(position.latitude);
+        const Δλ = degreesToRadians(position.longitude - this.longitude);
+
+        const y = Math.sin(Δλ) * Math.cos(φ2);
+        const x = Math.cos(φ1) * Math.sin(φ2) - Math.sin(φ1) * Math.cos(φ2) * Math.cos(Δλ);
+        const θ = Math.atan2(y, x);
+
+        return θ - this.magnetic_north;
+    }
+    /**
+     * Get the distance from `this` to a given position
+     * Note: This method is not accurate for long distances, due its simpleton 2D vector math
+     *
      * @for PositionModel
      * @method distanceTo
-     * @param point
-     * @return {number}
+     * @param position {PositionModel} position we're comparing against
+     * @return {Number} distance to `position`, in (units???)
      */
-    distanceTo(point) {
+    distanceTo(position) {
         return distanceToPoint(
             this.latitude,
             this.longitude,
-            point.latitude,
-            point.longitude
+            position.latitude,
+            position.longitude
         );
     }
 

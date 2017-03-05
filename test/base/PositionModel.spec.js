@@ -5,6 +5,7 @@ import PositionModel from '../../src/assets/scripts/client/base/PositionModel';
 import { airportPositionFixtureKLAS } from '../fixtures/airportFixtures';
 
 const LAT_LONG_MOCK = ['N36d38m01.199', 'W114d36m17.219'];
+const LAT_LONG_MOCK_2 = ['N35d51.34m0', 'W114d54.60m0'];
 const MAGNETIC_NORTH_MOCK = 0.2076941809873252;
 
 ava('throws when called to instantiate without parameters', t => {
@@ -37,6 +38,24 @@ ava('.getPostiion() returns an array with a calculated x, y value that is the sa
     const result = PositionModel.calculatePosition(LAT_LONG_MOCK, airportPositionFixtureKLAS, MAGNETIC_NORTH_MOCK);
 
     t.true(_isEqual(result, expectedResult.position));
+});
+
+ava('.bearingTo() returns the correct bearing between two PositionModel instances', t => {
+    const position1 = new PositionModel(LAT_LONG_MOCK, airportPositionFixtureKLAS, MAGNETIC_NORTH_MOCK);
+    const position2 = new PositionModel(LAT_LONG_MOCK_2, airportPositionFixtureKLAS, MAGNETIC_NORTH_MOCK);
+    const expectedResult = -3.0412772537856627;
+    const result = position1.bearingTo(position2);
+
+    t.true(result === expectedResult);
+});
+
+ava('.bearingFrom() returns the correct bearing between two PositionModel instances', t => {
+    const position1 = new PositionModel(LAT_LONG_MOCK, airportPositionFixtureKLAS, MAGNETIC_NORTH_MOCK);
+    const position2 = new PositionModel(LAT_LONG_MOCK_2, airportPositionFixtureKLAS, MAGNETIC_NORTH_MOCK);
+    const expectedResult = 0.1003153998041304;
+    const result = position1.bearingFrom(position2);
+
+    t.true(result === expectedResult);
 });
 
 // user bug test cases
