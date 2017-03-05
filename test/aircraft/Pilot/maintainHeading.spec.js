@@ -15,7 +15,7 @@ ava('.maintainHeading() sets the #mco with the correct modes and values', (t) =>
     pilot.maintainHeading(currentHeadingMock, nextHeadingMock, null, false);
 
     t.true(pilot._mcp.headingMode === 'HOLD');
-    t.true(pilot._mcp.heading === 180);
+    t.true(pilot._mcp.heading === 3.141592653589793);
 });
 
 ava('.maintainHeading() returns a success message when incremental is false and no direction is provided', (t) => {

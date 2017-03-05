@@ -120,27 +120,26 @@ export default class Pilot {
      */
     maintainHeading(currentHeading, heading, direction, incremental) {
         let degrees;
-        let correctedHeading = heading;
-        let headingReadback = correctedHeading;
+        let nextHeadingInRadians = degreesToRadians(heading);
+        let correctedHeading = nextHeadingInRadians;
 
-        // TODO: is this correct? if a heading with a direction is supplid, it will only be honored if it is also incremental
+        // TODO: is this correct? if a heading with a direction is supplied, it will only be honored if it is also incremental
         if (incremental) {
             degrees = heading;
 
             // TODO: abstract this logic
             if (direction === 'left') {
                 // the `degreesToRadians` part can be pulled out so it is done only once
-                correctedHeading = radians_normalize(currentHeading - degreesToRadians(degrees));
-                headingReadback = heading_to_string(correctedHeading);
+                correctedHeading = radians_normalize(currentHeading - nextHeadingInRadians);
             } else if (direction === 'right') {
-                correctedHeading = radians_normalize(currentHeading + degreesToRadians(degrees));
-                headingReadback = heading_to_string(correctedHeading);
+                correctedHeading = radians_normalize(currentHeading + nextHeadingInRadians);
             }
         }
 
         this._mcp.setHeadingHold();
         this._mcp.setHeadingFieldValue(correctedHeading);
 
+        const headingReadback = heading_to_string(correctedHeading);
         const readback = {};
         readback.log = `fly heading ${headingReadback}`;
         readback.say = `fly heading ${radio_heading(headingReadback)}`;
@@ -148,7 +147,7 @@ export default class Pilot {
         if (incremental) {
             readback.log = `turn ${degrees} degrees ${direction}`;
             readback.say = `turn ${groupNumbers(degrees)} degrees ${direction}`;
-        // FIXME: Im not sure this block is needed
+        // FIXME: Im not sure this block is needed or even used
         // } else if (direction) {
         //     readback.log = `turn ${direction} heading ${headingReadback}`;
         //     readback.say = `turn ${direction} heading ${radio_heading(headingReadback)}`;
@@ -167,7 +166,6 @@ export default class Pilot {
      */
     maintainPresentHeading(heading) {
         this._mcp.setHeadingHold();
-        // TODO: are we storing this in degrees or radians?
         this._mcp.setHeadingFieldValue(heading);
 
         const readback = {};
@@ -185,9 +183,8 @@ export default class Pilot {
      * @param {Number} speed - the speed to maintain, in knots
      * @return {Array} [success of operation, readback]
      */
-    maintainSpeed(speed) {
-        const aircraft = { speed: 0 };  // FIXME: How can the pilot access the aircraft's current speed?
-        const instruction = radio_trend('speed', aircraft.speed, speed);
+    maintainSpeed(currentSpeed, speed) {
+        const instruction = radio_trend('speed', currentSpeed, speed);
 
         this._mcp.setSpeedFieldValue(speed);
         this._mcp.setSpeedHold();

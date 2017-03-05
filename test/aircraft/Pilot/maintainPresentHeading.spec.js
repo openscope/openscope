@@ -14,7 +14,7 @@ ava('.maintainPresentHeading() sets the #mcp with the correct modes and values',
     pilot.maintainPresentHeading(currentHeadingMock);
 
     t.true(pilot._mcp.headingMode === 'HOLD');
-    t.true(pilot._mcp.heading === 267);
+    t.true(pilot._mcp.heading === -1.6302807335875378);
 });
 
 ava('.maintainPresentHeading() returns a success message when finished', (t) => {
