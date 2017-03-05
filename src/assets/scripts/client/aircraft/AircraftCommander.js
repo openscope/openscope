@@ -35,7 +35,7 @@ const COMMANDS = {
     climbViaSID: 'runClimbViaSID',
     debug: 'runDebug',
     delete: 'runDelete',
-    descendViaSTAR: 'runDescendViaSTAR',
+    descendViaStar: 'runDescendViaStar',
     direct: 'runDirect',
     fix: 'runFix',
     flyPresentHeading: 'runFlyPresentHeading',
@@ -252,12 +252,16 @@ export default class AircraftCommander {
 
     /**
      * @for AircraftCommander
-     * @method runDescendViaSTAR
-     * @param data
-     * @return {boolean|undefined}
+     * @method runDescendViaStar
+     * @param aircraft {AircraftInstanceModel}
+     * @param data {array}
+     * @return {array} [success of operation, readback]
      */
-    runDescendViaSTAR(aircraft, /* optional */ altitude) {
-        return aircraft.pilot.descendViaSTAR(altitude);
+    runDescendViaStar(aircraft, data = []) {
+        // TODO: add altitude param to descendViaStar command
+        const altitude = data[0];// NOT IN USE
+
+        return aircraft.pilot.descendViaStar(altitude);
     }
 
     /**

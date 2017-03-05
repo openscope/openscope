@@ -413,12 +413,12 @@ export default class Pilot {
      * Descend in accordance with the altitude restrictions
      *
      * @for Pilot
-     * @method descendViaSTAR
+     * @method descendViaStar
      * @param altitude {number}  (optional) altitude at which the descent will end (regardless of fix restrictions)
      *                                      this should be the altitude of the lowest fix restriction on the STAR
      * @return {array}           [success of operation, readback]
      */
-    descendViaSTAR(altitude = 0) {
+    descendViaStar(altitude = 0) {
         this._mcp.setAltitudeFieldValue(altitude);
         this._mcp.setAltitudeVnav();
         this._mcp.setSpeedVnav();

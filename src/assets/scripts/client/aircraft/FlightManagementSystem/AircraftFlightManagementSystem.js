@@ -835,7 +835,7 @@ export default class AircraftFlightManagementSystem {
      * Descends aircraft in compliance with the STAR they're following
      * Adds altitudes and speeds to each waypoint in accordance with the STAR
      */
-    descendViaSTAR() {
+    descendViaStar() {
         const waypointList = this.getStarLegWaypoints();
 
         // TODO: would a star leg ever not have waypoints?
