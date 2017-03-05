@@ -220,9 +220,10 @@ export const convertToThousands = (value) => parseInt(value, DECIMAL_RADIX) * UN
 export const convertStringToNumber = (value) => parseInt(value, DECIMAL_RADIX);
 
 /**
+ * Convert a heading in radians to a 360 degree string
  *
  * @function heading_to_string
- * @param heading {string}
+ * @param heading {string}  heading in radians
  * @return {string}
  */
 export const heading_to_string = (heading) => {
@@ -322,4 +323,3 @@ export const parseElevation = (elevation) => {
 
     return parseFloat(parsedElevation);
 };
-

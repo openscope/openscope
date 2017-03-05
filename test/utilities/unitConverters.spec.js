@@ -9,6 +9,7 @@ import {
     km_ft,
     ft_km,
     kn_ms,
+    heading_to_string,
     radiansToDegrees,
     degreesToRadians,
     convertMinutesToSeconds,
@@ -83,6 +84,14 @@ ava('.kn_ms() converts knots to m/s', t => {
     const speed = 190;
     const expectedResult = speed * UNIT_CONVERSION_CONSTANTS.KN_MS;
     const result = kn_ms(speed);
+
+    t.true(result === expectedResult);
+});
+
+ava('.heading_to_string() converts a heading in radians to a degree heading', (t) => {
+    const headingMock = -1.6302807335875378;
+    const expectedResult = '267';
+    const result = heading_to_string(headingMock);
 
     t.true(result === expectedResult);
 });
