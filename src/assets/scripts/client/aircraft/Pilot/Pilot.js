@@ -186,8 +186,8 @@ export default class Pilot {
     maintainSpeed(currentSpeed, speed) {
         const instruction = radio_trend('speed', currentSpeed, speed);
 
-        this._mcp.setSpeedFieldValue(speed);
         this._mcp.setSpeedHold();
+        this._mcp.setSpeedFieldValue(speed);
 
         // Build the readback
         const readback = {};
@@ -332,10 +332,10 @@ export default class Pilot {
      *
      * @for Pilot
      * @method cancelApproachClearance
-     * @param heading {Number} the aircraft's current heading
-     * @param airportElevation {Number} the elevation of the airport, in feet MSL
-     * @param speed {Number} the aircraft's current speed
-     * @return {Array} [success of operation, readback]
+     * @param heading {Number}           the aircraft's current heading
+     * @param airportElevation {Number}  the elevation of the airport, in feet MSL
+     * @param speed {Number}             the aircraft's current speed
+     * @return {Array}                   [success of operation, readback]
      */
     cancelApproachClearance(heading, airportElevation, speed) {
         const altitudeToMaintain = _ceil(airportElevation, -2) + 1000;

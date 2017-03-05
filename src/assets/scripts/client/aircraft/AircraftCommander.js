@@ -263,12 +263,13 @@ export default class AircraftCommander {
     /**
      * @for AircraftCommander
      * @method runSpeed
-     * @param data
+     * @param aircraft {AircraftInstanceModel}
+     * @param data {array}
      */
     runSpeed(aircraft, data) {
         const speed = data[0];
 
-        return aircraft.pilot.maintainSpeed(speed);
+        return aircraft.pilot.maintainSpeed(aircraft.speed, speed);
     }
 
     /**
