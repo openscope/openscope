@@ -511,7 +511,7 @@ export default class AircraftCommander {
             case FLIGHT_MODES.LANDING:
                 return aircraft.pilot.goAround(aircraft.heading, airport.elevation, aircraft.speed);
             case FLIGHT_MODES.CRUISE:
-                return aircraft.pilot.cancelApproachClearance(aircraft.heading, airport.elevation, aircraft.speed);
+                return aircraft.pilot.cancelApproachClearance(aircraft.heading, aircraft.speed, airport.elevation);
             default:
                 return [false, 'we aren\'t doing anything that can be aborted'];
         }

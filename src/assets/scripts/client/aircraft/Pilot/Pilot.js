@@ -332,24 +332,24 @@ export default class Pilot {
      *
      * @for Pilot
      * @method cancelApproachClearance
-     * @param heading {Number}           the aircraft's current heading
-     * @param airportElevation {Number}  the elevation of the airport, in feet MSL
-     * @param speed {Number}             the aircraft's current speed
-     * @return {Array}                   [success of operation, readback]
+     * @param heading {number}           the aircraft's current heading
+     * @param speed {number}             the aircraft's current speed
+     * @param airportElevation {number}  the elevation of the airport, in feet MSL
+     * @return {array}                   [success of operation, readback]
      */
-    cancelApproachClearance(heading, airportElevation, speed) {
-        const altitudeToMaintain = _ceil(airportElevation, -2) + 1000;
+    cancelApproachClearance(heading, speed, airportElevation) {
+        const initialMissedApproachAltitude = _ceil(airportElevation, -2) + 1000;
 
-        this._mcp.setHeadingFieldValue(heading);
         this._mcp.setHeadingHold();
-        this._mcp.setAltitudeFieldValue(altitudeToMaintain);
+        this._mcp.setHeadingFieldValue(heading);
         this._mcp.setAltitudeHold();
-        this._mcp.setSpeedFieldValue(speed);
+        this._mcp.setAltitudeFieldValue(initialMissedApproachAltitude);
         this._mcp.setSpeedHold();
+        this._mcp.setSpeedFieldValue(speed);
 
         const readback = {};
-        readback.log = `cancel approach clearance, fly present heading, maintain ${altitudeToMaintain}`;
-        readback.say = `cancel approach clearance, fly present heading, maintain ${radio_altitude(altitudeToMaintain)}`;
+        readback.log = `cancel approach clearance, fly present heading, maintain ${initialMissedApproachAltitude}`;
+        readback.say = `cancel approach clearance, fly present heading, maintain ${radio_altitude(initialMissedApproachAltitude)}`;
 
         return [true, readback];
     }

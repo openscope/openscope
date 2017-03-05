@@ -7,12 +7,12 @@ import {
 } from '../../fixtures/aircraftFixtures';
 
 const currentHeadingMock = -1.6302807335875378;
-const nextHeadingMock = 180;
+const nextHeadingDegreesMock = 180;
 
 ava('.maintainHeading() sets the #mco with the correct modes and values', (t) => {
     const pilot = new Pilot(modeControllerFixture, fmsArrivalFixture);
 
-    pilot.maintainHeading(currentHeadingMock, nextHeadingMock, null, false);
+    pilot.maintainHeading(currentHeadingMock, nextHeadingDegreesMock, null, false);
 
     t.true(pilot._mcp.headingMode === 'HOLD');
     t.true(pilot._mcp.heading === 3.141592653589793);
@@ -27,7 +27,7 @@ ava('.maintainHeading() returns a success message when incremental is false and 
         }
     ];
     const pilot = new Pilot(modeControllerFixture, fmsArrivalFixture);
-    const result = pilot.maintainHeading(currentHeadingMock, nextHeadingMock, null, false);
+    const result = pilot.maintainHeading(currentHeadingMock, nextHeadingDegreesMock, null, false);
 
     t.deepEqual(result, expectedResult);
 });
