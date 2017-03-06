@@ -2,8 +2,8 @@ import ava from 'ava';
 import _isEqual from 'lodash/isEqual';
 import StaticPositionModel from '../../src/assets/scripts/client/base/StaticPositionModel';
 import { airportPositionFixtureKLAS } from '../fixtures/airportFixtures';
+import { DEFAULT_SCREEN_POSITION } from '../../src/assets/scripts/client/constants/positionConstants';
 
-const DEFAULT_SCREEN_POSITION = [0, 0];
 const LAT_LONG_MOCK = ['N36d38m01.199', 'W114d36m17.219'];
 const LAT_LONG_MOCK_DECIMAL = [36.63366638888889, -114.60478305555554];
 const MAGNETIC_NORTH_MOCK = 0.2076941809873252;

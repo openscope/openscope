@@ -4,48 +4,20 @@ import _uniqueId from 'lodash/uniqueId';
 import {
     calculateDistanceToPointForX,
     calculateDistanceToPointForY,
-    adjustForMagneticNorth,
-    hasCardinalDirectionInCoordinate
+    adjustForMagneticNorth
 } from './positionModelHelpers';
+import {
+    LATITUDE_INDEX,
+    LONGITUDE_INDEX,
+    ELEVATION_INDEX,
+    DEFAULT_SCREEN_POSITION
+} from '../constants/positionConstants';
 import { distanceToPoint, radians_normalize } from '../math/circle';
 import {
     degreesToRadians,
-    radiansToDegrees,
     parseCoordinate,
     parseElevation
 } from '../utilities/unitConverters';
-
-// TODO: Move these enumerations out to a separate file
-/**
- * @property LATITUDE_INDEX
- * @type {number}
- * @final
- */
-const LATITUDE_INDEX = 0;
-
-/**
- * @property LONGITUDE_INDEX
- * @type {number}
- * @final
- */
-const LONGITUDE_INDEX = 1;
-
-/**
- * @property ELEVATION_INDEX
- * @type {number}
- * @final
- */
-const ELEVATION_INDEX = 2;
-
-/**
- * Screen position to default to if the actual position cannot be calculated, in shape of [x,y]
- *
- * @property DEFAULT_SCREEN_POSITION
- * @type {Array}
- * @final
- */
-const DEFAULT_SCREEN_POSITION = [0, 0];
-
 
 /**
  * A physical location on the Earth's surface

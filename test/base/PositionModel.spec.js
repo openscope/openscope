@@ -3,8 +3,8 @@ import _isEqual from 'lodash/isEqual';
 
 import PositionModel from '../../src/assets/scripts/client/base/PositionModel';
 import { airportPositionFixtureKLAS } from '../fixtures/airportFixtures';
+import { DEFAULT_SCREEN_POSITION } from '../../src/assets/scripts/client/constants/positionConstants';
 
-const DEFAULT_SCREEN_POSITION = [0, 0];
 const LAT_LONG_MOCK = ['N36d38m01.199', 'W114d36m17.219'];
 const LAT_LONG_MOCK_DECIMAL = [36.63366638888889, -114.60478305555554];
 const LAT_LONG_MOCK_2 = ['N35d51.34m0', 'W114d54.60m0'];

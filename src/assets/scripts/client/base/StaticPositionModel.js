@@ -1,13 +1,5 @@
 import PositionModel from './PositionModel';
-
-/**
- * Screen position to default to if the actual position cannot be calculated, in shape of [x,y]
- *
- * @property DEFAULT_SCREEN_POSITION
- * @type {Array}
- * @final
- */
-const DEFAULT_SCREEN_POSITION = [0, 0];
+import { DEFAULT_SCREEN_POSITION } from '../constants/positionConstants';
 
 /**
  * Calculates and permanently stores the screen position (x, y) as a property
