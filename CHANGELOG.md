@@ -63,6 +63,7 @@
 
 ### Features
 - Enumerate magic number in RunwayModel [#269](https://github.com/openscope/openscope/issues/269)
+- Replaced old `terrain.svg` file with own work [#281](https://github.com/openscope/openscope/issues/281)
 
 ### Bugfixes
 - Standardized indentation in all json files [#256](https://github.com/openscope/openscope/issues/256)
