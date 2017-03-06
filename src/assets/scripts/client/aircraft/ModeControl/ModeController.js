@@ -14,30 +14,134 @@ export default class ModeController {
     /**
      * @constructor
      * @for ModeController
+     * @param isAircraftAirborne {boolean}
      */
     constructor(isAircraftAirborne) {
         // Mode Selectors
+        /**
+         * The current altitudeMode
+         *
+         * This mode informs what value to use for `aircraft.target.altitude`
+         *
+         * @property
+         * @type
+         * @default
+         */
         this.altitudeMode = MCP_MODE.ALTITUDE.OFF;
+
+        /**
+         *
+         *
+         * @property autopilotMode
+         * @type
+         * @default MCP_MODE.AUTOPILOT.OFF
+         */
         this.autopilotMode = MCP_MODE.AUTOPILOT.OFF;
+
+        /**
+         * The current headingeMode
+         *
+         * This mode informs what value to use for `aircraft.target.headinge`
+         *
+         *
+         * @property headingMode
+         * @type
+         * @default MCP_MODE.HEADING.OFF
+         */
         this.headingMode = MCP_MODE.HEADING.OFF;
+
+        /**
+         * The current speedMode
+         *
+         * This mode informs what value to use for `aircraft.target.speed`
+         *
+         * @property speedMode
+         * @type
+         * @default MCP_MODE.SPEED.OFF
+         */
         this.speedMode = MCP_MODE.SPEED.OFF;
 
         // Fields
+
+        /**
+         * Altitude value
+         *
+         * Used when `altitudeMode` is 'HOLD'
+         *
+         * @property altitude
+         * @type {number}
+         * @default -1
+         */
         this.altitude = -1;
+
+        /**
+         *
+         *
+         * @property course
+         * @type {number}
+         * @default -1
+         */
         this.course = -1;
+
+        /**
+         * Heading value in radians
+         *
+         * Used when `headingMode` is `HOLD`
+         *
+         * Use `#headingInDegrees` when this value needs to
+         * be shown to the user, like in the `AircraftStripView`
+         *
+         * @property heading
+         * @type {number}
+         * @default -1
+         */
         this.heading = -1;
+
+        /**
+         * Speed value in knots
+         *
+         * Used when `speedMode` is `HOLD`
+         *
+         * @property speed
+         * @type {number}
+         * @default -1
+         */
         this.speed = -1;
 
         // Other
+
+        /**
+         *
+         *
+         * @property shouldExpediteAltitudeChange
+         * @type {boolean}
+         * @default false
+         */
         this.shouldExpediteAltitudeChange = false;
+
+        /**
+         *
+         *
+         * @property nav1Datum
+         * @type
+         * @default null
+         */
         this.nav1Datum = null;
+
+        /**
+         *
+         *
+         * @property descentAngle
+         * @type {number}
+         * @default 0
+         */
         this.descentAngle = 0;
 
         this.init(isAircraftAirborne);
     }
 
     /**
-     *
+     * Current heading value expressed in degrees (0 - 359)
      *
      * @property headingInDegrees
      * @return {number}
@@ -62,7 +166,7 @@ export default class ModeController {
     }
 
     /**
-     * Set the MCP altitude mode to "APCH"
+     * Set the MCP altitude mode to `APCH`
      *
      * @for ModeController
      * @method setAltitudeApproach
@@ -72,7 +176,7 @@ export default class ModeController {
     }
 
     /**
-     * Set the value of the MCP's altitude "field" to a given value
+     * Set the value of the MCP's altitude field to a given value
      *
      * @for ModeController
      * @method setAltitudeFieldValue
@@ -83,7 +187,7 @@ export default class ModeController {
     }
 
     /**
-     * Set the MCP altitude mode to "HOLD"
+     * Set the MCP altitude mode to `HOLD`
      *
      * @for ModeController
      * @method setAltitudeHold
@@ -93,7 +197,7 @@ export default class ModeController {
     }
 
     /**
-     * Set the MCP altitude mode to "VNAV"
+     * Set the MCP altitude mode to `VNAV`
      *
      * @for ModeController
      * @method setAltitudeVnav
@@ -103,29 +207,31 @@ export default class ModeController {
     }
 
     /**
-     * Set the value of the MCP's course "field" to a given value
+     * Set the value of the MCP's course field to a given value
      *
      * @for ModeController
      * @method setCourseFieldValue
      * @param course {Number} magnetic course to set value to
      */
     setCourseFieldValue(course) {
+        console.warn('.setCourseFieldValue(): Is this value in raidans?', course);
         this._setFieldValue(MCP_FIELD_NAME.COURSE, course);
     }
 
     /**
-     * Set the value of the MCP's heading "field" to a given value
+     * Set the value of the MCP's heading field to a given value
      *
      * @for ModeController
      * @method setHeadingFieldValue
-     * @param heading {Number} magnetic heading to set value to
+     * @param heading {sumber}  magnetic heading (in radians) to set value to
      */
     setHeadingFieldValue(heading) {
+        console.warn('.setHeadingFieldValue(): Is this value in raidans?', heading);
         this._setFieldValue(MCP_FIELD_NAME.HEADING, heading);
     }
 
     /**
-     * Set the MCP heading mode to "HOLD"
+     * Set the MCP heading mode to `HOLD`
      *
      * @for ModeController
      * @method setHeadingHold
@@ -135,7 +241,7 @@ export default class ModeController {
     }
 
     /**
-     * Set the MCP heading mode to "LNAV"
+     * Set the MCP heading mode to `LNAV`
      *
      * @for ModeController
      * @method setHeadingLnav
@@ -145,7 +251,7 @@ export default class ModeController {
     }
 
     /**
-     * Set the MCP heading mode to "VOR_LOC"
+     * Set the MCP heading mode to `VOR_LOC`
      *
      * @for ModeController
      * @method setHeadingVorLoc
@@ -155,18 +261,18 @@ export default class ModeController {
     }
 
     /**
-     * Set the value of the MCP's speed "field" to a given value
+     * Set the value of the MCP's speed field to a given value
      *
      * @for ModeController
      * @method setSpeedFieldValue
-     * @param speed {Number} speed to set value to
+     * @param speed {Number}  speed to set value to
      */
     setSpeedFieldValue(speed) {
         this._setFieldValue(MCP_FIELD_NAME.SPEED, speed);
     }
 
     /**
-     * Set the MCP speed mode to "HOLD"
+     * Set the MCP speed mode to `HOLD`
      *
      * @for ModeController
      * @method setSpeedHold
@@ -176,7 +282,7 @@ export default class ModeController {
     }
 
     /**
-     * Set the MCP speed mode to "N1"
+     * Set the MCP speed mode to `N1`
      *
      * @for ModeController
      * @method setSpeedN1
@@ -186,7 +292,7 @@ export default class ModeController {
     }
 
     /**
-     * Set the MCP speed mode to "VNAV"
+     * Set the MCP speed mode to `VNAV`
      *
      * @for ModeController
      * @method setSpeedVnav
@@ -215,6 +321,8 @@ export default class ModeController {
     *
     * @for ModeController
     * @method _setFieldValue
+    * @param fieldName {MCP_FIELD_NAME}
+    * @param value {number}
     */
     _setFieldValue(fieldName, value) {
         this[fieldName] = value;
@@ -225,6 +333,8 @@ export default class ModeController {
      *
      * @for ModeController
      * @method _setModeSelectorMode
+     * @param modeSelector {MCP_MODE_NAME}
+     * @param mode {MCP_MODE}
      */
     _setModeSelectorMode(modeSelector, mode) {
         this[modeSelector] = mode;

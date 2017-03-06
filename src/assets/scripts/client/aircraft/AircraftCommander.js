@@ -453,9 +453,11 @@ export default class AircraftCommander {
         if (!aircraft.isOnGround()) {
             return [false, 'unable to take off, we\'re already airborne'];
         }
+
         if (aircraft.mode === FLIGHT_MODES.APRON) {
             return [false, 'unable to take off, we\'re still at the gate'];
         }
+
         if (aircraft.mode === FLIGHT_MODES.TAXI) {
             const readback = {};
             readback.log = `unable to take off, we're still taxiing to runway ${aircraft.rwy_dep}`;
