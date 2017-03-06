@@ -1,3 +1,4 @@
+import { radiansToDegrees } from '../../utilities/unitConverters';
 import {
     MCP_MODE,
     MCP_MODE_NAME,
@@ -33,6 +34,16 @@ export default class ModeController {
         this.descentAngle = 0;
 
         this.init(isAircraftAirborne);
+    }
+
+    /**
+     *
+     *
+     * @property headingInDegrees
+     * @return {number}
+     */
+    get headingInDegrees() {
+        return radiansToDegrees(this.heading);
     }
 
     /**

@@ -673,15 +673,15 @@ export default class Pilot {
      * or already established at that heading.
      *
      * @for Pilot
-     * @method sayTargetedHeading
+     * @method sayTargetHeading
      */
-    sayTargetedHeading() {
+    sayTargetHeading() {
         const readback = {};
 
         switch (this._mcp.headingMode) {
             case MCP_MODE.HEADING.HOLD:
-                readback.log = `we're assigned heading ${this._mcp.heading}`;
-                readback.say = `we're assigned heading ${radio_heading(this._mcp.heading)}`;
+                readback.log = `we're assigned heading ${this._mcp.headingInDegrees}`;
+                readback.say = `we're assigned heading ${radio_heading(this._mcp.headingInDegrees)}`;
 
                 return [true, readback];
 
@@ -692,6 +692,9 @@ export default class Pilot {
                 return [true, readback];
 
             case MCP_MODE.HEADING.LNAV: {
+                // the currentWaypoint does not contain any heading information, that can only be calculated
+                // from two waypoints.
+                // TODO: this block needs some work.
                 const heading = this._fms.currentWaypoint.heading;
                 const fixName = this._fms.currentWaypoint.name;
 
@@ -702,7 +705,10 @@ export default class Pilot {
             }
 
             default:
-                return;
+                readback.log = 'we haven\'t been assigned a heading';
+                readback.say = 'we haven\'t been assigned a heading';
+
+                return [true, readback];
         }
     }
 

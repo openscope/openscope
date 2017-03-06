@@ -6,6 +6,9 @@ import {
     modeControllerFixture
 } from '../../fixtures/aircraftFixtures';
 
+// This file is used for general `Pilot` tests. each command method has its own file with an isolated
+// set of tests. We do this is to keep each test file small.
+
 ava('throws when instantiated without parameters', (t) => {
     t.throws(() => new Pilot());
     t.throws(() => new Pilot({}));
