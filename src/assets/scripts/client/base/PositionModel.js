@@ -1,3 +1,4 @@
+import _isEmpty from 'lodash/isEmpty';
 import _isNumber from 'lodash/isNumber';
 import _uniqueId from 'lodash/uniqueId';
 import {
@@ -14,6 +15,7 @@ import {
     parseElevation
 } from '../utilities/unitConverters';
 
+// TODO: Move these enumerations out to a separate file
 /**
  * @property LATITUDE_INDEX
  * @type {number}
@@ -34,6 +36,15 @@ const LONGITUDE_INDEX = 1;
  * @final
  */
 const ELEVATION_INDEX = 2;
+
+/**
+ * Screen position to default to if the actual position cannot be calculated, in shape of [x,y]
+ *
+ * @property DEFAULT_SCREEN_POSITION
+ * @type {Array}
+ * @final
+ */
+const DEFAULT_SCREEN_POSITION = [0, 0];
 
 
 /**
@@ -69,6 +80,10 @@ export default class PositionModel {
      *                                          be converted to positions
      */
     constructor(coordinates = [], reference, magnetic_north = 0) {
+        if (_isEmpty(coordinates)) {
+            throw new TypeError('Invalid coordinates passed to PositionModel. Expected shape of ' +
+                `"[latitude, longitude]" but received "${coordinates}"`);
+        }
         /**
          * @property _id
          * @type {string}
@@ -108,23 +123,10 @@ export default class PositionModel {
          */
         this.magnetic_north = magnetic_north;
 
-        /**
-         * @property x
-         * @type {number}
-         * @default 0
-         */
-        this.x = 0;
-
-        /**
-         * @property y
-         * @type {number}
-         * @default 0
-         */
-        this.y = 0;
-
         return this.init(coordinates);
     }
 
+    // TODO: This name should be changed to `get screenPosition()` to better represent its purpose
     /**
      * Current x, y position
      *
@@ -132,10 +134,7 @@ export default class PositionModel {
      * @return {array}
      */
     get position() {
-        return [
-            this.x,
-            this.y
-        ];
+        return this._calculateScreenPosition();
     }
 
     /**
@@ -164,6 +163,7 @@ export default class PositionModel {
         ];
     }
 
+    // TODO: magnetic_north is already in radians? This should be changed or removed
     /**
      * Magnetic north of the current instance expressed in radians
      *
@@ -186,10 +186,9 @@ export default class PositionModel {
         if (coordinates[ELEVATION_INDEX] != null) {
             this.elevation = parseElevation(coordinates[ELEVATION_INDEX]);
         }
-
-        this._calculateScreenPosition();
     }
 
+    // TODO: Rename this to imply that it accepts a `PositionModel`
     /**
      * Calculate the initial magnetic bearing from a given position to the position of `this`
      *
@@ -202,6 +201,7 @@ export default class PositionModel {
         return radians_normalize(this.bearingTo(position) + Math.PI);
     }
 
+    // TODO: Rename this to imply that it accepts a `PositionModel`
     /**
      * Calculate the initial magnetic bearing to a given position from the position of `this`
      * Note: This method uses great circle math to determine the bearing. It is very accurate, but
@@ -224,6 +224,8 @@ export default class PositionModel {
 
         return θ - this.magnetic_north;
     }
+
+    // TODO: Rename this to imply that it accepts a `PositionModel`
     /**
      * Get the distance from `this` to a given position
      * Note: This method is not accurate for long distances, due its simpleton 2D vector math
@@ -261,13 +263,10 @@ export default class PositionModel {
      */
     _calculateScreenPosition() {
         if (!this._hasReferencePosition()) {
-            return;
+            return DEFAULT_SCREEN_POSITION;
         }
 
-        const [x, y] = PositionModel.calculatePosition(this.gps, this.reference_position, this.magnetic_north);
-
-        this.x = x;
-        this.y = y;
+        return PositionModel.calculatePosition(this.gps, this.reference_position, this.magnetic_north);
     }
 }
 
