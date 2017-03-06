@@ -512,7 +512,19 @@ ava('.isValidRouteAmendment() returns false when a routeAmmendment does not cont
     t.false(fms.isValidRouteAmendment(routeAmmendmentMock));
 });
 
-ava.todo('.hasNextWaypoint()');
+ava('.hasWaypoint() returns false if a waypoint does not exist within the current flightPlan', (t) => {
+    const fms = buildFmsMock(isComplexRoute);
+
+    t.false(fms.hasWaypoint('ABC'));
+});
+
+ava('.hasWaypoint() returns true if a waypoint does exist within the current flightPlan', (t) => {
+    const fms = buildFmsMock(isComplexRoute);
+
+    // waypoint from within the KEPEC3 arrival
+    t.true(fms.hasWaypoint('SUNST'));
+});
+
 ava.todo('.hasLegWithRouteString()');
 ava.todo('.getTopAltitude');            // highest altitude of all fix restrictions
 ava.todo('.getProcedureTopAltitude');   // highest altitude of all fix restrictions within a given procedure's Leg

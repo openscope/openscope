@@ -208,6 +208,28 @@ export default class LegModel {
     }
 
     /**
+     * Find if a Waypoint exists within `#waypointCollection`
+     *
+     * @for LegModel
+     * @method hasWaypoint
+     * @param waypointName {string}
+     * @return {boolean}
+     */
+    hasWaypoint(waypointName) {
+        // using a for loop here instead of `_find()` because this operation could happen a lot. a for
+        // loop is going to be faster than `_find()` in most cases.
+        for (let i = 0; i < this.waypointCollection.length; i++) {
+            const waypoint = this.waypointCollection[i];
+
+            if (waypointName.toLowerCase() === waypoint.name) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
      * Encapsulation of boolean logic used to determine if it is possible
      * to move to a next waypoint.
      *

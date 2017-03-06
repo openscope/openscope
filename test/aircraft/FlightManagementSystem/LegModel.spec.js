@@ -52,6 +52,20 @@ ava('.skipToWaypointAtIndex() drops n number of WaypointModels from  the left of
     t.true(model.currentWaypoint.name === 'skebr');
 });
 
+ava('.hasWaypoint() returns false when a waypointName is not found within the #waypointCollection', (t) => {
+    const model = new LegModel(arrivalProcedureRouteSegmentMock, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture);
+
+    t.false(model.hasWaypoint('ABC'));
+});
+
+ava('.hasWaypoint() returns true when a waypointName is found within the #waypointCollection', (t) => {
+    const model = new LegModel(arrivalProcedureRouteSegmentMock, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture);
+
+    t.true(model.hasWaypoint('SUNST'));
+});
+
+ava.todo('._destroyWaypointCollection()');
+
 ava('._buildWaypointForDirectRoute() returns an array with a single instance of a WaypointModel', (t) => {
     const model = new LegModel(directRouteSegmentMock, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture);
     const result = model._buildWaypointForDirectRoute(directRouteSegmentMock);
@@ -89,7 +103,11 @@ ava('._buildWaypointForHoldingPatternAtPosition() returns an array with a single
     t.true(result[0].timer === -1);
 });
 
-ava('the position is the same for hold Waypoints at a fix or a position', (t) => {
+// this test is here because a hold at position will not be able to use a `PositionModel` and the API is,
+// essentially, faked in order to instantiate the `WaypointModel` correctly. This test verifies that the
+// position from a `FixModel` (which will have a `PositionModel`) matches the position from a hold at
+// position waypoint.
+ava('._buildWaypointForHoldingPatternAtPosition() returns the same position for a hold Waypoint at a fix vs position', (t) => {
     const model = new LegModel(HOLD_POSITION_MOCK.name, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture, HOLD_POSITION_MOCK);
     const fixResult = model._buildWaypointForHoldingPattern(holdRouteSegmentMock);
     const positionResult = model._buildWaypointForHoldingPatternAtPosition(HOLD_POSITION_MOCK.name, HOLD_POSITION_MOCK);

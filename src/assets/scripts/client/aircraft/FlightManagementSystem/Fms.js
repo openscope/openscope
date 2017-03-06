@@ -617,6 +617,30 @@ export default class Fms {
     }
 
     /**
+     * Find if a Waypoint exists within `#legCollection`
+     *
+     * This will call a `.hasWaypoint` method on each `LegModel`
+     *
+     * @for Fms
+     * @method hasWaypoint
+     * @param waypointName {string}
+     * @return {boolean}
+     */
+    hasWaypoint(waypointName) {
+        // using a for loop here instead of `_find()` because this operation could happen a lot. a for
+        // loop is going to be faster than `_find()` in most cases.
+        for (let i = 0; i < this.legCollection.length; i++) {
+            const leg = this.legCollection[i];
+
+            if (leg.hasWaypoint(waypointName)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
      * Encapsulation of boolean logic used to determine if there is a
      * WaypointModel available after the current one has been flown over.
      *
