@@ -12,6 +12,7 @@ import {
     HOLD_WAYPOINT_MOCK
 } from '../_mocks/aircraftMocks';
 
+const directRouteString = 'COWBY';
 const complexRouteString = 'COWBY..BIKKR..DAG.KEPEC3.KLAS';
 const complexRouteStringWithHold = 'COWBY..@BIKKR..DAG.KEPEC3.KLAS';
 const simpleRouteString = ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK.route;
@@ -409,6 +410,12 @@ ava('.replaceRouteUpToSharedRouteSegment() adds a new LegModel for each new rout
     t.true(fms.legCollection[0].routeString === expectedResult[0]);
     t.true(fms.legCollection[1].routeString === expectedResult[1]);
     t.true(fms.legCollection[2].routeString === expectedResult[2]);
+});
+
+ava('.isValidRoute() returns true when passed a valid directRouteString', (t) => {
+    const fms = buildFmsMock();
+
+    t.true(fms.isValidRoute(directRouteString, runwayAssignmentMock));
 });
 
 ava('.isValidRoute() returns true when passed a valid complexRouteString', (t) => {

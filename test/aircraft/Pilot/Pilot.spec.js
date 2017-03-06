@@ -22,3 +22,12 @@ ava('throws when instantiated without parameters', (t) => {
 ava('does not throw when passed valid parameters', (t) => {
     t.notThrows(() => new Pilot(modeControllerFixture, fmsArrivalFixture));
 });
+
+ava('.shouldExpediteAltitudeChange() sets #shouldExpediteAltitudeChange to true and responds with a success message', (t) => {
+    const expectedResult = [true, 'expediting to assigned altitude'];
+    const pilot = new Pilot(modeControllerFixture, fmsArrivalFixture);
+    const result = pilot.shouldExpediteAltitudeChange();
+
+    t.true(pilot._mcp.shouldExpediteAltitudeChange);
+    t.deepEqual(result, expectedResult);
+});

@@ -565,7 +565,7 @@ export default class Pilot {
     }
 
     /**
-     *
+     * Conduct a holding pattern at a specific Fix/Waypoint/Position
      *
      * @for Fms
      * @method initiateHoldingPattern
@@ -598,7 +598,7 @@ export default class Pilot {
             successMessage = `hold ${inboundDirection} of present position, ${turnDirection} turns, ${legLength} legs`;
         }
 
-        // TODO: there is probably some `_mcp` updates that should happen here too.
+        // TODO: there are probably some `_mcp` updates that should happen here too.
 
         this._fms.createLegWithHoldingPattern(inboundHeading, turnDirection, legLength, holdRouteSegment, holdFixLocation);
 
@@ -610,6 +610,7 @@ export default class Pilot {
      *
      * @for Pilot
      * @method shouldExpediteAltitudeChange
+     * @return {Array} [success of operation, readback]
      */
     shouldExpediteAltitudeChange() {
         this._mcp.shouldExpediteAltitudeChange = true;
