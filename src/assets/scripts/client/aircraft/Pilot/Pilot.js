@@ -619,19 +619,22 @@ export default class Pilot {
     }
 
     /**
-     * Skip ahead in the FMS to the waypoint for the specified fixName, and activate LNAV to fly to it
+     * Skip ahead in the FMS to the waypoint for the specified waypointName, and activate LNAV to fly to it
      *
      * @for Pilot
      * @method proceedDirect
-     * @param {String} fixName - name of the fix we are flying direct to
-     * @return {Array} [success of operation, readback]
+     * @param waypointName {string}  name of the fix we are flying direct to
+     * @return {array}               [success of operation, readback]
      */
-    proceedDirect(fixName) {
-        // TODO: Update #skipToWaypoint so it tells us whether it found and skipped anything or not
-        this._fms.skipToWaypoint(fixName);
-        this._setHeadingLnav();
+    proceedDirect(waypointName) {
+        if (!this._fms.hasWaypoint(waypointName)) {
+            return [false, `cannot proceed direct to ${waypointName}, it does not exist in our flight plan`];
+        }
 
-        return [true, `proceed direct ${fixName}`];
+        this._fms.skipToWaypoint(waypointName);
+        this._mcp.setHeadingLnav();
+
+        return [true, `proceed direct ${waypointName}`];
     }
 
     /**
@@ -741,8 +744,9 @@ export default class Pilot {
      * @return {Array} [success of operation, readback]
      */
     stopWaitingInRunwayQueueAndReturnToGate() {
-        this._fms.flightPhase = FLIGHT_MODES.APRON;
+        // FIXME: this will likely need to be called from somewhere other than the `AircraftCommander`
         // TODO: remove aircraft from the runway queue (`Runway.removeQueue()`)
+        this._fms.flightPhase = FLIGHT_MODES.APRON;
 
         return [true, 'taxiing back to the gate'];
     }
