@@ -674,6 +674,7 @@ export default class Pilot {
      *
      * @for Pilot
      * @method sayTargetHeading
+     * @return {array} [success of operation, readback]
      */
     sayTargetHeading() {
         const readback = {};
@@ -721,6 +722,7 @@ export default class Pilot {
      */
     sayTargetedSpeed() {
         if (this._mcp.speed === MCP_MODE.SPEED.VNAV) {
+            // TODO: how do we handle the cases where there isn't a speedRestriction for a waypoint?
             return [true, this._fms.currentWaypoint.speed];
         }
 
@@ -761,54 +763,31 @@ export default class Pilot {
      * Taxi the aircraft
      *
      * @for Pilot
-     * @method taxi
-     * @param {String} taxiDestination - currently expected to be a runway
-     * @param {Boolean} isDeparture - whether the aircraft's flightPhase is "DEPARTURE"
-     * @param {Boolean} isOnGround - whether the aircraft is on the ground
-     * @param {String} flightPhase - the flight phase of the aircraft
-     * @return {Array} [success of operation, readback]
+     * @method taxiToRunway
+     * @param taxiDestination {string}  runway.name, runway has already been verified by the
+     *                                  time it is sent to this method
+     * @param isDeparture {boolean}     whether the aircraft's flightPhase is DEPARTURE
+     * @param flightPhase {string}      the flight phase of the aircraft
+     * @return {array}                  [success of operation, readback]
      */
-    taxi(taxiDestination, isDeparture, isOnGround, flightPhase) {
-        // TODO: all this if logic should be simplified or abstracted
-        // TODO: isDeparture and flightPhase can be combined
-        if (!isDeparture) {
-            return [false, 'unable to taxi, we are an arrival'];
-        }
-
+    taxiToRunway(taxiDestination, isDeparture, flightPhase) {
         if (flightPhase === FLIGHT_MODES.TAXI) {
             return [false, 'already taxiing'];
         }
 
         if (flightPhase === FLIGHT_MODES.WAITING) {
-            return [false, 'already taxiied, and waiting in runway queue'];
+            return [false, 'already taxiied and waiting in runway queue'];
         }
 
-        if (flightPhase !== FLIGHT_MODES.APRON) {
+        if (!isDeparture || flightPhase !== FLIGHT_MODES.APRON) {
             return [false, 'unable to taxi'];
         }
 
-        // Set the runway to taxi to
-        if (!taxiDestination) {
-            // TODO: This method may not yet exist
-            taxiDestination = window.airportController.airport_get().runway;
-        }
-
-        if (!this._airportController.airport_get().getRunway(taxiDestination)) {
-            return [false, `no runway ${taxiDestination.toUpperCase()}`];
-        }
-
-        this._fms.setDepartureRunway(taxiDestination);
-
-        // TODO: Figure out what to do with this
-        // // Start the taxi
-        // aircraft.taxi_start = this._gameController.game_time();
-        const runway = this._airportController.airport_get().getRunway(taxiDestination);
-        // runway.addAircraftToQueue(aircraft);
-        // aircraft.mode = FLIGHT_MODES.TAXI;
+        // this._fms.setDepartureRunway(taxiDestination);
 
         const readback = {};
-        readback.log = `taxi to runway ${runway.name}`;
-        readback.say = `taxi to runway ${radio_runway(runway.name)}`;
+        readback.log = `taxi to runway ${taxiDestination}`;
+        readback.say = `taxi to runway ${radio_runway(taxiDestination)}`;
 
         return [true, readback];
     }

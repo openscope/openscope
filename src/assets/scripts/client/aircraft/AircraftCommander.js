@@ -421,13 +421,28 @@ export default class AircraftCommander {
      * @param data
      */
     runTaxi(aircraft, data) {
-        // TODO: is this .toUpperCase() necessary??
-        const taxiDestination = data[0].toUpperCase();
+        let taxiDestination = data[0];
         const isDeparture = aircraft.category === FLIGHT_CATEGORY.DEPARTURE;
-        const isOnGround = aircraft.isOnGround();
         const flightPhase = aircraft.mode;
 
-        aircraft.pilot.taxi(taxiDestination, isDeparture, isOnGround, flightPhase);
+        // Set the runway to taxi to
+        if (!taxiDestination) {
+            taxiDestination = this._airportController.airport_get().runway;
+        }
+
+        const runway = this._airportController.airport_get().getRunway(taxiDestination.toUpperCase());
+
+        if (!runway) {
+            return [false, `no runway ${taxiDestination.toUpperCase()}`];
+        }
+
+        const readback = aircraft.pilot.taxiToRunway(runway.name, isDeparture, flightPhase);
+
+        aircraft.taxi_start = this._gameController.game_time();
+        runway.addAircraftToQueue(aircraft);
+        aircraft.mode = FLIGHT_MODES.TAXI;
+
+        return readback;
     }
 
     /**
