@@ -10,10 +10,10 @@ const headingMock = 3.141592653589793;
 const speedMock = 190;
 const airportElevationMock = 11;
 
-ava('.cancelApproachClearance() sets the correct modes and values in the Mcp', (t) => {
+ava('.goAround() sets the correct Mcp modes and values', (t) => {
     const pilot = new Pilot(modeControllerFixture, fmsArrivalFixture);
 
-    pilot.cancelApproachClearance(headingMock, speedMock, airportElevationMock);
+    pilot.goAround(headingMock, speedMock, airportElevationMock);
 
     t.true(pilot._mcp.altitudeMode === 'HOLD');
     t.true(pilot._mcp.altitude === 1100);
@@ -23,16 +23,16 @@ ava('.cancelApproachClearance() sets the correct modes and values in the Mcp', (
     t.true(pilot._mcp.speed === 190);
 });
 
-ava('.cancelApproachClearance() returns a success message when finished', (t) => {
+ava('.goAround() returns a success message', (t) => {
     const expectedResult = [
         true,
         {
-            log: 'cancel approach clearance, fly present heading, maintain 1100',
-            say: 'cancel approach clearance, fly present heading, maintain one thousand one hundred'
+            log: 'go around, fly present heading, maintain 1100',
+            say: 'go around, fly present heading, maintain one thousand one hundred'
         }
     ];
     const pilot = new Pilot(modeControllerFixture, fmsArrivalFixture);
-    const result = pilot.cancelApproachClearance(headingMock, speedMock, airportElevationMock);
+    const result = pilot.goAround(headingMock, speedMock, airportElevationMock);
 
     t.deepEqual(result, expectedResult);
 });

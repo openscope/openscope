@@ -436,12 +436,12 @@ export default class Pilot {
      *
      * @for Pilot
      * @method goAround
-     * @param heading {Number} the aircraft's current heading
-     * @param airportElevation {Number} the elevation of the airport, in feet MSL
-     * @param speed {Number} the aircraft's current speed
-     * @return {Array} [success of operation, readback]
+     * @param heading {number}           the aircraft's current heading
+     * @param speed {number}             the aircraft's current speed
+     * @param airportElevation {number}  the elevation of the airport, in feet MSL
+     * @return {array}                   [success of operation, readback]
      */
-    goAround(heading, airportElevation, speed) {
+    goAround(heading, speed, airportElevation) {
         const altitudeToMaintain = _ceil(airportElevation, -2) + 1000;
 
         this._mcp.setHeadingFieldValue(heading);

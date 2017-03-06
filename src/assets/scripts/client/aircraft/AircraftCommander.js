@@ -513,7 +513,7 @@ export default class AircraftCommander {
             case FLIGHT_MODES.WAITING:
                 return aircraft.pilot.stopWaitingInRunwayQueueAndReturnToGate();
             case FLIGHT_MODES.LANDING:
-                return aircraft.pilot.goAround(aircraft.heading, airport.elevation, aircraft.speed);
+                return aircraft.pilot.goAround(aircraft.heading, aircraft.speed, airport.elevation);
             case FLIGHT_MODES.CRUISE:
                 return aircraft.pilot.cancelApproachClearance(aircraft.heading, aircraft.speed, airport.elevation);
             default:
