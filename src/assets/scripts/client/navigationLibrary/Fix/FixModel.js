@@ -1,7 +1,7 @@
 import _cloneDeep from 'lodash/cloneDeep';
 import _get from 'lodash/get';
 import BaseModel from '../../base/BaseModel';
-import PositionModel from '../../base/PositionModel';
+import StaticPositionModel from '../../base/StaticPositionModel';
 import WaypointModel from '../../aircraft/FlightManagementSystem/WaypointModel';
 
 /**
@@ -18,7 +18,7 @@ export default class FixModel extends BaseModel {
      * @constructor
      * @param fixName {string}
      * @param fixCoordinate {array}
-     * @param referencePosition {PositionModel}
+     * @param referencePosition {StaticPositionModel}
      */
     constructor(fixName, fixCoordinate, referencePosition) {
         super();
@@ -36,7 +36,7 @@ export default class FixModel extends BaseModel {
          * Coordinates of the fix
          *
          * @property _fixPosition
-         * @type {PositionModel}
+         * @type {StaticPositionModel}
          * @default null
          */
         this._fixPosition = null;
@@ -61,7 +61,7 @@ export default class FixModel extends BaseModel {
      * @method init
      * @param fixName {string}
      * @param fixCoordinate {array}
-     * @param referencePosition {PositionModel}
+     * @param referencePosition {StaticPositionModel}
      * @chainable
      */
     init(fixName, fixCoordinate, referencePosition) {
@@ -71,7 +71,7 @@ export default class FixModel extends BaseModel {
         }
 
         this.name = fixName.toUpperCase();
-        this._fixPosition = new PositionModel(fixCoordinate, referencePosition, referencePosition.magneticNorthInRadians);
+        this._fixPosition = new StaticPositionModel(fixCoordinate, referencePosition, referencePosition.magneticNorthInRadians);
 
         return this;
     }
@@ -98,10 +98,10 @@ export default class FixModel extends BaseModel {
      * and after creation is completely independant of this instance.
      *
      * This is used with `StandardRouteWaypointModel` objects to obtain the position of a fix. This method
-     * provides easy access to the `PositionModel` that already exists here.
+     * provides easy access to the `StaticPositionModel` that already exists here.
      *
      * @for FixModel
-     * @return {PositionModel}  a clone of the current `_fixPosition` property
+     * @return {StaticPositionModel}  a clone of the current `_fixPosition` property
      */
     clonePosition() {
         return _cloneDeep(this._fixPosition);

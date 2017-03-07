@@ -2,7 +2,7 @@ import _isEqual from 'lodash/isEqual';
 import _isNumber from 'lodash/isNumber';
 import _map from 'lodash/map';
 import BaseModel from '../base/BaseModel';
-import PositionModel from '../base/PositionModel';
+import StaticPositionModel from '../base/StaticPositionModel';
 import { convertToThousands } from '../utilities/unitConverters';
 
 /**
@@ -15,7 +15,7 @@ export default class AirspaceModel extends BaseModel {
      * @for AirspaceModel
      * @constructor
      * @param airspace {object}
-     * @param airportPosition {PositionModel}
+     * @param airportPosition {StaticPositionModel}
      * @param magneticNorth {number}
      */
     constructor(airspace, airportPosition, magneticNorth) {
@@ -69,7 +69,7 @@ export default class AirspaceModel extends BaseModel {
      * @for AirspaceModel
      * @method _init
      * @param airspace {array}
-     * @param airportPosition {PositionModel}
+     * @param airportPosition {StaticPositionModel}
      * @param magneticNorth {number}
      * @private
      */
@@ -94,21 +94,21 @@ export default class AirspaceModel extends BaseModel {
     }
 
     /**
-     * Create a PositionModel for each poly listed in `airspace.poly`.
+     * Create a StaticPositionModel for each poly listed in `airspace.poly`.
      *
      * If the last entry is the same as the first, remove it because the path will be closed automatically.
      *
      * @for AirspaceModel
      * @method _buildPolyPositionModels
      * @param polyList {array}
-     * @param airportPosition {PositionModel}
+     * @param airportPosition {StaticPositionModel}
      * @param magneticNorth {number}
      * @return polyPositionModels {array}
      * @private
      */
     _buildPolyPositionModels(polyList, airportPosition, magneticNorth) {
         const polyPositionModels = _map(polyList, (poly) => {
-            return new PositionModel(poly, airportPosition, magneticNorth);
+            return new StaticPositionModel(poly, airportPosition, magneticNorth);
         });
 
         const firstIndex = 0;

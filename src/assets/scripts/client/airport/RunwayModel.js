@@ -1,7 +1,7 @@
 import _includes from 'lodash/includes';
 import _without from 'lodash/without';
 import BaseModel from '../base/BaseModel';
-import PositionModel from '../base/PositionModel';
+import StaticPositionModel from '../base/StaticPositionModel';
 import { abs, tan } from '../math/core';
 import { radians_normalize } from '../math/circle';
 import { km, km_ft, degreesToRadians } from '../utilities/unitConverters';
@@ -59,11 +59,11 @@ export default class RunwayModel extends BaseModel {
         }
 
         if (data.end) {
-            const thisSide = new PositionModel(data.end[end], data.reference_position, data.magnetic_north);
+            const thisSide = new StaticPositionModel(data.end[end], data.reference_position, data.magnetic_north);
             // FIXME: ressignment of an argument with an inline ternary? this line needs some work.
-            const farSide = new PositionModel(data.end[(end === 0) ? 1 : 0], data.reference_position, data.magnetic_north);
+            const farSide = new StaticPositionModel(data.end[(end === 0) ? 1 : 0], data.reference_position, data.magnetic_north);
 
-            // TODO: `gps` and `elevation` are available from the `PositionModel` and should be pulled from there
+            // TODO: `gps` and `elevation` are available from the `StaticPositionModel` and should be pulled from there
             // instead of setting direct properties. If direct properties are needed, use getters isntead.
             // GPS latitude and longitude position
             this.gps = [thisSide.latitude, thisSide.longitude];

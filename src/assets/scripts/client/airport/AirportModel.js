@@ -7,6 +7,7 @@ import _map from 'lodash/map';
 import AirspaceModel from './AirspaceModel';
 import PositionModel from '../base/PositionModel';
 import RunwayModel from './RunwayModel';
+import StaticPositionModel from '../base/StaticPositionModel';
 import { degreesToRadians, parseElevation } from '../utilities/unitConverters';
 import { round, abs, sin, extrapolate_range_clamp } from '../math/core';
 import { angle_offset } from '../math/circle';
@@ -180,7 +181,7 @@ export default class AirportModel {
             return;
         }
 
-        this.position = new PositionModel(currentPosition, null, magneticNorth);
+        this.position = new StaticPositionModel(currentPosition, null, magneticNorth);
     }
 
     /**
@@ -206,9 +207,6 @@ export default class AirportModel {
 
         // airspace perimeter (assumed to be first entry in data.airspace)
         this.perimeter = _head(this.airspace);
-
-        // change ctr_radius to point along perimeter that's farthest from rr_center
-        // const pos = new PositionModel(this.perimeter.poly[0].position, this.position, this.magnetic_north);
 
         this.ctr_radius = Math.max(..._map(
             this.perimeter.poly, (v) => vlen(
@@ -490,8 +488,8 @@ export default class AirportModel {
                 apt.terrain[ele].push($.map(poly, (line_string) => {
                     return [
                         $.map(line_string, (pt) => {
-                            pt.reverse();   // `PositionModel` requires [lat,lon] order
-                            const pos = new PositionModel(pt, apt.position, apt.magnetic_north);
+                            pt.reverse();   // `StaticPositionModel` requires [lat,lon] order
+                            const pos = new StaticPositionModel(pt, apt.position, apt.magnetic_north);
 
                             return [pos.position];
                         })

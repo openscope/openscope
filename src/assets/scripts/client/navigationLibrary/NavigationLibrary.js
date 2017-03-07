@@ -1,5 +1,5 @@
 import _isNil from 'lodash/isNil';
-import PositionModel from '../base/PositionModel';
+import StaticPositionModel from '../base/StaticPositionModel';
 import RouteModel from './Route/RouteModel';
 import FixCollection from './Fix/FixCollection';
 import StandardRouteCollection from './StandardRoute/StandardRouteCollection';
@@ -20,7 +20,7 @@ export default class NavigationLibrary {
          *
          *
          * @property _referencePosition
-         * @type {PositionModel}
+         * @type {StaticPositionModel}
          * @default null
          */
         this._referencePosition = null;
@@ -94,7 +94,7 @@ export default class NavigationLibrary {
     init(airportJson) {
         const { fixes, sids, stars } = airportJson;
 
-        this._referencePosition = new PositionModel(airportJson.position, null, airportJson.magnetic_north);
+        this._referencePosition = new StaticPositionModel(airportJson.position, null, airportJson.magnetic_north);
 
         FixCollection.addItems(fixes, this._referencePosition);
         this._sidCollection = new StandardRouteCollection(sids);
@@ -254,19 +254,19 @@ export default class NavigationLibrary {
     }
 
     /**
-     * Create a `PositionModel` from a provided lat/long
+     * Create a `StaticPositionModel` from a provided lat/long
      *
      * This allows classes that have access to the `NavigationLibrary` to
-     * create a `PositionModel` without needing to know about a
+     * create a `StaticPositionModel` without needing to know about a
      * `#referencePosition` or `#magnetic_north`.
      *
      * @for NavigationLibrary
      * @method generatePositionModelForLatLong
      * @param latLong {array<number>}
-     * @return positionModel {PositionModel}
+     * @return positionModel {StaticPositionModel}
      */
     generatePositionModelForLatLong(latLong) {
-        const positionModel = new PositionModel(latLong, this._referencePosition, this._referencePosition.magnetic_north);
+        const positionModel = new StaticPositionModel(latLong, this._referencePosition, this._referencePosition.magnetic_north);
 
         return positionModel;
     }
