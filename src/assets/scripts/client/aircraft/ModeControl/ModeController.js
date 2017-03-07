@@ -16,6 +16,17 @@ export default class ModeController {
      * @for ModeController
      */
     constructor() {
+
+        /**
+         * Flag used to determine if the controller is enabled
+         *
+         * @property _isEnabled
+         * @type {boolean}
+         * @default flase
+         * @private
+         */
+        this._isEnabled = false;
+
         // Mode Selectors
         /**
          * The current altitudeMode
@@ -165,6 +176,34 @@ export default class ModeController {
     }
 
     /**
+     * Sets `#_isEnabled` flag to `true`
+     *
+     * @for ModeController
+     * @method enable
+     */
+    enable() {
+        if (this._isEnabled) {
+            return;
+        }
+
+        this._isEnabled = true;
+    }
+
+    /**
+     * Sets `#_isEnabled` flag to `false`
+     *
+     * @for ModeController
+     * @method disable
+     */
+    disable() {
+        if (!this._isEnabled) {
+            return;
+        }
+
+        this._isEnabled = false;
+    }
+
+    /**
      * Set the MCP altitude mode to `APCH`
      *
      * @for ModeController
@@ -210,9 +249,10 @@ export default class ModeController {
      *
      * @for ModeController
      * @method setCourseFieldValue
-     * @param course {Number} magnetic course to set value to
+     * @param course {number}  magnetic course (in radians)
      */
     setCourseFieldValue(course) {
+        // TODO: remove this before merging in to develop
         console.warn('.setCourseFieldValue(): Is this value in raidans?', course);
         this._setFieldValue(MCP_FIELD_NAME.COURSE, course);
     }
@@ -222,9 +262,10 @@ export default class ModeController {
      *
      * @for ModeController
      * @method setHeadingFieldValue
-     * @param heading {sumber}  magnetic heading (in radians) to set value to
+     * @param heading {number}  magnetic heading (in radians)
      */
     setHeadingFieldValue(heading) {
+        // TODO: remove this before merging in to develop
         console.warn('.setHeadingFieldValue(): Is this value in raidans?', heading);
         this._setFieldValue(MCP_FIELD_NAME.HEADING, heading);
     }
