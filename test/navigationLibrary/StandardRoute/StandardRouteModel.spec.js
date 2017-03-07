@@ -90,7 +90,7 @@ ava('.calculateDistanceBetweenWaypoints() calculates the distance between two `S
     const expectedResult = 118.63498218153832;
     const model = new StandardRouteModel(STAR_LIST_MOCK.GRNPA1);
     const waypointList = model.findStandardRouteWaypointModelsForEntryAndExit('MLF', '19R');
-    const result = model.calculateDistanceBetweenWaypoints(waypointList[0].position, waypointList[1].position);
+    const result = model.calculateDistanceBetweenWaypoints(waypointList[0].position.position, waypointList[1].position.position);
 
     t.true(result === expectedResult);
 });

@@ -8,7 +8,7 @@ import {
     fixRadialDist
 } from '../../src/assets/scripts/client/math/flightMath';
 
-ava('.calcTurnRadius() returns a turn radius based on speed and bank angle', t => {
+ava('calcTurnRadius() returns a turn radius based on speed and bank angle', t => {
     const speed = 144.0444432;
     const bankAngle = 0.4363323129985824;
     const expectedResult = 4535.774583027857;
@@ -17,7 +17,7 @@ ava('.calcTurnRadius() returns a turn radius based on speed and bank angle', t =
     t.true(result === expectedResult);
 });
 
-ava('.calcTurnRadius() returns a turn radius based on speed and bank angle', t => {
+ava('calcTurnRadius() returns a turn radius based on speed and bank angle', t => {
     const speed = 144.0444432;
     const bankAngle = 0.4363323129985824;
     const courseChange = 0.26420086153126987;
@@ -27,7 +27,7 @@ ava('.calcTurnRadius() returns a turn radius based on speed and bank angle', t =
     t.true(result === expectedResult);
 });
 
-ava('.bearingToPoint() returns the bearing from one point to another', t => {
+ava('bearingToPoint() returns the bearing from one point to another', t => {
     const positionStart = [-99.76521626690608, -148.0266530993096];
     const positionEnd = [-87.64380662924125, -129.57471627889475];
     const expectedResult = 0.5812231343277809;
@@ -36,7 +36,7 @@ ava('.bearingToPoint() returns the bearing from one point to another', t => {
     t.true(result === expectedResult);
 });
 
-ava('.fixRadialDist() returns a point defined by a direction and distance away from another point', t => {
+ava('fixRadialDist() returns a point defined by a direction and distance away from another point', t => {
     const positionStart = [36.455167, -121.879667];
     const radial = 6.02139;
     const distance_nm = 8.5;

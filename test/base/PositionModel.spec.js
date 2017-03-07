@@ -40,20 +40,20 @@ ava('.calculatePosition() static method throws when it receives the wrong argume
     t.throws(() => PositionModel.calculatePosition());
 });
 
-ava('.bearingFrom() returns the correct bearing between two PositionModel instances', t => {
+ava('.bearingFromPosition() returns the correct bearing between two PositionModel instances', t => {
     const position1 = new PositionModel(LAT_LONG_MOCK, airportPositionFixtureKLAS, MAGNETIC_NORTH_MOCK);
     const position2 = new PositionModel(LAT_LONG_MOCK_2, airportPositionFixtureKLAS, MAGNETIC_NORTH_MOCK);
     const expectedResult = 0.1003153998041304;
-    const result = position1.bearingFrom(position2);
+    const result = position1.bearingFromPosition(position2);
 
     t.true(result === expectedResult);
 });
 
-ava('.bearingTo() returns the correct bearing between two PositionModel instances', t => {
+ava('.bearingToPosition() returns the correct bearing between two PositionModel instances', t => {
     const position1 = new PositionModel(LAT_LONG_MOCK, airportPositionFixtureKLAS, MAGNETIC_NORTH_MOCK);
     const position2 = new PositionModel(LAT_LONG_MOCK_2, airportPositionFixtureKLAS, MAGNETIC_NORTH_MOCK);
     const expectedResult = -3.0412772537856627;
-    const result = position1.bearingTo(position2);
+    const result = position1.bearingToPosition(position2);
 
     t.true(result === expectedResult);
 });

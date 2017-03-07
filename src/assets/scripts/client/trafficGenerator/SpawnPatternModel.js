@@ -943,7 +943,7 @@ export default class SpawnPatternModel extends BaseModel {
         // grab position of first fix/waypoint
         const initialPosition = waypointModelList[0].position;
         // calculate heading from first fix/waypoint to second fix/waypoint
-        const heading = initialPosition.bearingTo(waypointModelList[1].position);
+        const heading = initialPosition.bearingToPosition(waypointModelList[1].position);
 
         this.position = initialPosition;
         this.heading = heading;

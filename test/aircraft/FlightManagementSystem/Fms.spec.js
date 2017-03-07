@@ -152,7 +152,7 @@ ava('.createLegWithHoldingPattern() prepends LegCollection with hold Waypoint wh
     t.true(fms.currentWaypoint._turnDirection === 'left');
     t.true(fms.currentWaypoint._legLength === '2min');
     t.true(fms.currentWaypoint.name === 'gps');
-    t.true(_isEqual(fms.currentWaypoint.position, holdFixLocationMock));
+    t.true(_isEqual(fms.currentWaypoint.position.position, holdFixLocationMock));
 });
 
 ava('.createLegWithHoldingPattern() calls ._findLegAndWaypointIndexForWaypointName() when holdRouteSegment is a FixName', (t) => {
@@ -291,7 +291,7 @@ ava('.skipToWaypoint() does nothing is the waypoint to skip to is the #currentWa
 ava('.getNextWaypointPosition() returns the position array for the next Waypoint in the collection', (t) => {
     const expectedResult = [-87.64380662924125, -129.57471627889475];
     const fms = buildFmsMock();
-    const result = fms.getNextWaypointPosition();
+    const result = fms.getNextWaypointPosition().position;
 
     t.true(_isEqual(result, expectedResult));
 });

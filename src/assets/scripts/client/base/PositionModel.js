@@ -166,12 +166,12 @@ export default class PositionModel {
      * Calculate the initial magnetic bearing from a given position to the position of `this`
      *
      * @for PositionModel
-     * @method bearingFrom
+     * @method bearingFromPosition
      * @param position {PositionModel} position we're comparing against
      * @return {Number} bearing from `position` to `this`, in radians
      */
-    bearingFrom(position) {
-        return radians_normalize(this.bearingTo(position) + Math.PI);
+    bearingFromPosition(position) {
+        return radians_normalize(this.bearingToPosition(position) + Math.PI);
     }
 
     // TODO: Rename this to imply that it accepts a `PositionModel`
@@ -182,11 +182,11 @@ export default class PositionModel {
      * x/y positions is a more "quick and dirty" option.
      *
      * @for PositionModel
-     * @method bearingTo
+     * @method bearingToPosition
      * @param position {PositionModel} position we're comparing against
      * @return {Number} bearing from `this` to `position`, in radians
      */
-    bearingTo(position) {
+    bearingToPosition(position) {
         const φ1 = degreesToRadians(this.latitude);
         const φ2 = degreesToRadians(position.latitude);
         const Δλ = degreesToRadians(position.longitude - this.longitude);

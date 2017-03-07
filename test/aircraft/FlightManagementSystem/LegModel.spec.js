@@ -164,8 +164,9 @@ ava('._buildWaypointForHoldingPatternAtPosition() returns the same position for 
     const model = new LegModel(HOLD_POSITION_MOCK.name, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture, HOLD_POSITION_MOCK);
     const fixResult = model._buildWaypointForHoldingPattern(holdRouteSegmentMock);
     const positionResult = model._buildWaypointForHoldingPatternAtPosition(HOLD_POSITION_MOCK.name, HOLD_POSITION_MOCK);
-
-    t.true(_isEqual(fixResult[0].position, positionResult[0].position));
+    console.log(`fixResult: ${fixResult}
+        positionResult: ${positionResult}`);
+    t.true(_isEqual(fixResult[0].position.position, positionResult[0].position.position));
 });
 
 ava('._buildWaypointCollectionForProcedureRoute() returns a list of WaypointModels', (t) => {
