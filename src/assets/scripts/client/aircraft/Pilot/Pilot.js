@@ -606,6 +606,16 @@ export default class Pilot {
     }
 
     /**
+     * Set Mcp speed mode for takeoff
+     *
+     * @for Pilot
+     * @method initiateTakeoff
+     */
+    initiateTakeoff() {
+        this._mcp.setSpeedN1();
+    }
+
+    /**
      * Expedite the climb or descent to the assigned altitude, to use maximum possible rate
      *
      * @for Pilot

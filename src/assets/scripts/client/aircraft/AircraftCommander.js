@@ -2,7 +2,7 @@ import _ceil from 'lodash/ceil';
 import _has from 'lodash/has';
 import _map from 'lodash/map';
 import { speech_say } from '../speech';
-import { radiansToDegrees } from '../math/circle';
+import { radiansToDegrees } from '../utilities/unitConverters';
 import { round } from '../math/core';
 import { bearingToPoint } from '../math/flightMath';
 import {
@@ -419,6 +419,7 @@ export default class AircraftCommander {
      * @for AircraftCommander
      * @method runTaxi
      * @param data
+     * @return {array}   [success of operation, readback]
      */
     runTaxi(aircraft, data) {
         let taxiDestination = data[0];
@@ -448,8 +449,20 @@ export default class AircraftCommander {
     /**
      * @for AircraftCommander
      * @method runTakeoff
+     * @param aircraft {AircraftInstanceModel}
+     * @return {array}   [success of operation, readback]
      */
     runTakeoff(aircraft) {
+        const airport = this._airportController.airport_get();
+        const runway = airport.getRunway(aircraft.rwy_dep);
+        // TODO: this should be a method on the Runway. `findAircraftPositionInQueue(aircraft)`
+        const spotInQueue = runway.positionOfAircraftInQueue(aircraft);
+        const aircraftAhead = runway.queue[spotInQueue - 1];
+        const wind = airport.getWind();
+        const roundedWindAngleInDegrees = round(radiansToDegrees(wind.angle) / 10) * 10;
+        const roundedWindSpeed = round(wind.speed);
+        const readback = {};
+
         if (!aircraft.isOnGround()) {
             return [false, 'unable to take off, we\'re already airborne'];
         }
@@ -459,43 +472,33 @@ export default class AircraftCommander {
         }
 
         if (aircraft.mode === FLIGHT_MODES.TAXI) {
-            const readback = {};
             readback.log = `unable to take off, we're still taxiing to runway ${aircraft.rwy_dep}`;
             readback.say = `unable to take off, we're still taxiing to runway ${radio_runway(aircraft.rwy_dep)}`;
 
             return [false, readback];
         }
+
         if (aircraft.mode === FLIGHT_MODES.TAKEOFF) {
             // FIXME: this is showing immediately after a to clearance.
             return [false, 'already taking off'];
         }
 
-        const runway = this._airportController.airport_get().getRunway(aircraft.rwy_dep);
-
+        // TODO: the logic here should be reversed to handle falsey inside the if block
         if (runway.removeQueue(aircraft)) {
             aircraft.mode = FLIGHT_MODES.TAKEOFF;
-            aircraft.scoreWind('taking off');
             aircraft.takeoffTime = this._gameController.game_time();
 
-            if (aircraft.__fms__.currentWaypoint.speed == null) {
-                aircraft.__fms__.setCurrent({ speed: aircraft.model.speed.cruise });
-            }
+            aircraft.scoreWind('taking off');
+            aircraft.pilot.initiateTakeoff();
 
-            const wind = this._airportController.airport_get().getWind();
-            const wind_dir = round(radiansToDegrees(wind.angle));
-            // TODO: Yikes, dats a lot of stuff goin' on...
-            const readback = {
-                // TODO: the wind_dir calculation should be abstracted
-                log: `wind ${round(wind_dir / 10) * 10} ${round(wind.speed)}, runway ${aircraft.rwy_dep}, cleared for takeoff`,
-                say: `wind ${radio_spellOut(round(wind_dir / 10) * 10)} at ${radio_spellOut(round(wind.speed))}, runway ${radio_runway(aircraft.rwy_dep)}, cleared for takeoff`
-            };
+            readback.log = `wind ${roundedWindAngleInDegrees} at ${roundedWindSpeed}, runway ${aircraft.rwy_dep}, ` +
+                'cleared for takeoff';
+            readback.say = `wind ${radio_spellOut(roundedWindAngleInDegrees)} at ` +
+                `${radio_spellOut(roundedWindSpeed)}, runway ${radio_runway(aircraft.rwy_dep)}, cleared for takeoff`;
 
             return [true, readback];
         }
 
-        const spotInQueue = runway.inQueue(aircraft);
-        const aircraftAhead = runway.queue[spotInQueue - 1];
-        const readback = {};
         readback.log = `number ${spotInQueue} behind ${aircraftAhead.getCallsign()}`;
         readback.say = `number ${spotInQueue} behind ${aircraftAhead.getRadioCallsign()}`;
 
