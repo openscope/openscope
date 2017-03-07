@@ -221,7 +221,7 @@ export default class AircraftController {
      * @param factor
      */
     aircraft_visible(aircraft, factor = 1) {
-        return vlen(aircraft.position) < window.airportController.airport_get().ctr_radius * factor;
+        return vlen(aircraft.position.position) < window.airportController.airport_get().ctr_radius * factor;
     }
 
     /**
@@ -317,7 +317,8 @@ export default class AircraftController {
                 aircraft.__fms__.currentWaypoint.navmode === 'heading'
             ) {
                 if (aircraft.category === 'arrival' || aircraft.category === 'departure') {
-                    remove = true;
+                    // FIXME: This needs to be reenabled without removing ALL arrivals
+                    // remove = true;
                 }
             }
 
@@ -452,7 +453,7 @@ export default class AircraftController {
             altitude: spawnPatternModel.altitude,
             speed: spawnPatternModel.speed,
             heading: spawnPatternModel.heading,
-            position: spawnPatternModel.position,
+            position: spawnPatternModel.position.toPositionModel(),
             icao: aircraftTypeDefinition.icao,
             model: aircraftTypeDefinition,
             route: spawnPatternModel.routeString,

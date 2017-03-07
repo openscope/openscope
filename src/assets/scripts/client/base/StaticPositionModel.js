@@ -32,6 +32,17 @@ export default class StaticPositionModel extends PositionModel {
     }
 
     /**
+     * Return a copy of this `StaticPositionModel` as a `PositionModel`
+     *
+     * @for StaticPositionModel
+     * @method toPositionModel
+     * @return {PositionModel}
+     */
+    toPositionModel() {
+        return new PositionModel(this.gps, this.reference_position, this.magnetic_north);
+    }
+
+    /**
      * @for PositionModel
      * @method _initializeScreenPosition
      */

@@ -1,4 +1,5 @@
 import _isEmpty from 'lodash/isEmpty';
+import _isNil from 'lodash/isNil';
 import _isNumber from 'lodash/isNumber';
 import _uniqueId from 'lodash/uniqueId';
 import {
@@ -197,6 +198,19 @@ export default class PositionModel {
         return θ - this.magnetic_north;
     }
 
+    /**
+     * Returns a new `StaticPositionModel` a given bearing/distance from `this`
+     *
+     * @for PositionModel
+     * @method createStaticPositionFromBearingAndDistance
+     * @param bearing {number} magnetic bearing, in radians
+     * @param distance {number} distance, in nautical miles
+     * @return {StaticPositionModel}
+     */
+    calculateCoordinatesWithBearingAndDistance(bearing, distance) {
+        // TODO: me
+    }
+
     // TODO: Rename this to imply that it accepts a `PositionModel`
     /**
      * Get the distance from `this` to a given position
@@ -214,6 +228,25 @@ export default class PositionModel {
             position.latitude,
             position.longitude
         );
+    }
+
+    /**
+     * Change the lat/lon coordinates of `this`
+     *
+     * @for PositionModel
+     * @method setCoordinates
+     * @param newCoordinates {Array<number>} [latitude, longitude]
+     */
+    setCoordinates(newCoordinates) {
+        if (_isNil(newCoordinates) || newCoordinates.length !== 2 ||
+            typeof newCoordinates[0] !== 'number' || typeof newCoordinates[1] !== 'number'
+        ) {
+            return new TypeError('Expected valid GPS coordinates to be passed to Position.setCoordinates, ' +
+                `but received ${newCoordinates}`);
+        }
+
+        this.latitude = newCoordinates[0];
+        this.longitude = newCoordinates[1];
     }
 
     /**

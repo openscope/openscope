@@ -733,8 +733,8 @@ export default class ConvasController {
         cc.strokeStyle = COLORS.RED_08;
         cc.lineWidth = 3;
         cc.translate(
-            window.uiController.km_to_px(aircraft.position[0]) + this.canvas.panX,
-            -window.uiController.km_to_px(aircraft.position[1]) + this.canvas.panY
+            window.uiController.km_to_px(aircraft.position.position[0]) + this.canvas.panX,
+            -window.uiController.km_to_px(aircraft.position.position[1]) + this.canvas.panY
         );
         cc.rotate(angle);
         cc.beginPath();
@@ -906,8 +906,8 @@ export default class ConvasController {
             const h = this.canvas.size.height / 2;
 
             cc.translate(
-                clamp(-w, window.uiController.km_to_px(aircraft.position[0]) + this.canvas.panX, w),
-                clamp(-h, -window.uiController.km_to_px(aircraft.position[1]) + this.canvas.panY, h)
+                clamp(-w, window.uiController.km_to_px(aircraft.position.position[0]) + this.canvas.panX, w),
+                clamp(-h, -window.uiController.km_to_px(aircraft.position.position[1]) + this.canvas.panY, h)
             );
 
             cc.beginPath();
@@ -918,8 +918,8 @@ export default class ConvasController {
         }
 
         cc.translate(
-            window.uiController.km_to_px(aircraft.position[0]) + this.canvas.panX,
-            -window.uiController.km_to_px(aircraft.position[1]) + this.canvas.panY
+            window.uiController.km_to_px(aircraft.position.position[0]) + this.canvas.panX,
+            -window.uiController.km_to_px(aircraft.position.position[1]) + this.canvas.panY
         );
 
         if (!aircraft.hit) {
@@ -1159,13 +1159,13 @@ export default class ConvasController {
 
             // Move to center of where the data block is to be drawn
             const ac_pos = [
-                round(window.uiController.km_to_px(aircraft.position[0])) + this.canvas.panX,
-                -round(window.uiController.km_to_px(aircraft.position[1])) + this.canvas.panY
+                round(window.uiController.km_to_px(aircraft.position.position[0])) + this.canvas.panX,
+                -round(window.uiController.km_to_px(aircraft.position.position[1])) + this.canvas.panY
             ];
 
             // game will move FDB to the appropriate position
             if (aircraft.datablockDir === -1) {
-                if (-window.uiController.km_to_px(aircraft.position[1]) + this.canvas.size.height / 2 < height * 1.5) {
+                if (-window.uiController.km_to_px(aircraft.position.position[1]) + this.canvas.size.height / 2 < height * 1.5) {
                     cc.translate(ac_pos[0], ac_pos[1] + height2 + 12);
                 } else {
                     cc.translate(ac_pos[0], ac_pos[1] - height2 - 12);
@@ -1765,7 +1765,7 @@ export default class ConvasController {
             return;
         }
 
-        const pos = this.to_canvas_pos(aircraft.position);
+        const pos = this.to_canvas_pos(aircraft.position.position);
         const rectPos = [0, 0];
         const rectSize = [this.canvas.size.width, this.canvas.size.height];
 

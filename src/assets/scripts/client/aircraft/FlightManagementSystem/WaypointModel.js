@@ -1,4 +1,5 @@
 import _get from 'lodash/get';
+import StaticPositionModel from '../../base/StaticPositionModel';
 /**
  * A representation of navigation point within a flight plan.
  *
@@ -50,12 +51,12 @@ export default class WaypointModel {
          * ```
          * See `LegModel._buildHoldAtPositionWaypointProps()` for additional inforamtion
          *
-         * @property _position
+         * @property position
          * @type {PositionModel|object}
          * @default null
          * @private
          */
-        this._position = null;
+        this.position = null;
 
         /**
          * Speed restriction for the waypoint.
@@ -117,16 +118,6 @@ export default class WaypointModel {
     }
 
     /**
-     * Return the x/y position array from `#_position` property.
-     *
-     * @property position
-     * @return {array<number>}
-     */
-    get position() {
-        return this._position.position;
-    }
-
-    /**
      * Provides properties needed for an aircraft to execute a
      * holding pattern.
      *
@@ -157,7 +148,7 @@ export default class WaypointModel {
      */
     init(waypointProps) {
         this.name = waypointProps.name.toLowerCase();
-        this._position = waypointProps.position;
+        this.position = waypointProps.position;
         this.speedRestriction = parseInt(waypointProps.speedRestriction, 10);
         this.altitudeRestriction = parseInt(waypointProps.altitudeRestriction, 10);
 
@@ -175,7 +166,7 @@ export default class WaypointModel {
      */
     destroy() {
         this.name = '';
-        this._position = null;
+        this.position = null;
         this.speedRestriction = -1;
         this.altitudeRestriction = -1;
         this._turnDirection = '';

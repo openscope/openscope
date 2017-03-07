@@ -224,17 +224,11 @@ export default class SpawnPatternModel extends BaseModel {
         /**
          * Initial position of a spawning aircraft
          *
-         * Defaults to [0, 0] which equates the the airport midfield and should
-         * only apply to departing aircraft.
-         *
-         * An arriving aircraft should be assigned a position along an arrival
-         * route, in which case this default will not be used.
-         *
          * @property position
          * @type {array}
-         * @default [0, 0]
+         * @default {null}
          */
-        this.position = [0, 0];
+        this.position = null;
 
         // SPAWN PATTERN PROPERTIES
 
@@ -437,6 +431,7 @@ export default class SpawnPatternModel extends BaseModel {
         this.routeString = spawnPatternJson.route;
         this.cycleStartTime = 0;
         this.period = TIME.ONE_HOUR_IN_SECONDS / 2;
+        this.position = this._airportController.airport_get().position;
         this.speed = this._extractSpeedFromJson(spawnPatternJson);
         this._minimumDelay = this._calculateMinimumDelayFromSpeed();
         this._maximumDelay = this._calculateMaximumDelayFromSpawnRate();
@@ -469,7 +464,7 @@ export default class SpawnPatternModel extends BaseModel {
         this._maximumAltitude = -1;
         this.speed = 0;
         this.heading = -1;
-        this.position = [0, 0];
+        this.position = null;
 
         this.cycleStartTime = -1;
         this.rate = -1;
@@ -948,7 +943,7 @@ export default class SpawnPatternModel extends BaseModel {
         // grab position of first fix/waypoint
         const initialPosition = waypointModelList[0].position;
         // calculate heading from first fix/waypoint to second fix/waypoint
-        const heading = bearingToPoint(initialPosition, waypointModelList[1].position);
+        const heading = initialPosition.bearingTo(waypointModelList[1].position);
 
         this.position = initialPosition;
         this.heading = heading;

@@ -71,7 +71,7 @@ export default class Aircraft {
         /* eslint-disable no-multi-spaces*/
         this._navigationLibrary = navigationLibrary;
         this.eid          = global.prop.aircraft.list.length;  // entity ID
-        this.position     = [0, 0];     // Aircraft Position, in km, relative to airport position
+        this.position     = null;       // Aircraft Position
         this.model        = null;       // Aircraft type
         this.airlineId      = '';         // Airline Identifier (eg. 'AAL')
         this.airlineCallsign = '';
@@ -1675,6 +1675,7 @@ export default class Aircraft {
         // TODO: this should be abstracted to a helper function
         this.groundSpeed = this.ds / 0.000514444 / window.gameController.game_delta();
         this.groundTrack = vradial(vector);
+        // FIXME: This should use new calculations using actual PositionModel
         this.position = vadd(this.position, vector);
     }
 
@@ -1691,7 +1692,8 @@ export default class Aircraft {
         this.ds = scaleSpeed;
         this.groundSpeed = this.speed;
         this.groundTrack = this.heading;
-        this.position = vadd(this.position, vscale([sin(angle), cos(angle)], scaleSpeed));
+        // FIXME: This should be turned back on, with new calculations with actual PositionModel
+        // this.position = vadd(this.position, vscale([sin(angle), cos(angle)], scaleSpeed));
     }
 
     // TODO: this method needs a lot of love. its much too long with waaay too many nested if/else ifs.

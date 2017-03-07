@@ -190,7 +190,7 @@ export default class StandardRouteWaypointModel extends BaseModel {
          * This property should never be modified by an exteral method.
          *
          * @property _waypointPosition
-         * @type {PositionModel}
+         * @type {StaticPositionModel}
          * @default null
          * @private
          */
@@ -235,7 +235,7 @@ export default class StandardRouteWaypointModel extends BaseModel {
      * @return {array}
      */
     get position() {
-        return this._waypointPosition.position;
+        return this._waypointPosition;
     }
 
     /**
@@ -317,7 +317,7 @@ export default class StandardRouteWaypointModel extends BaseModel {
     }
 
     /**
-     * Find the matching fix from the `FixCollection` and clone its `PositionModel` this `_waypointPosition`
+     * Find the matching fix from the `FixCollection` and clone its `StaticPositionModel` this `_waypointPosition`
      *
      * @for StandardRouteWaypointModel
      * @method _clonePoisitonFromFix
