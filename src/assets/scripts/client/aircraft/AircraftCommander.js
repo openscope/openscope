@@ -1,4 +1,3 @@
-import _ceil from 'lodash/ceil';
 import _has from 'lodash/has';
 import _map from 'lodash/map';
 import { speech_say } from '../speech';
@@ -7,14 +6,11 @@ import { round } from '../math/core';
 import { bearingToPoint } from '../math/flightMath';
 import {
     radio_runway,
-    radio_spellOut,
-    radio_altitude,
-    getRadioCardinalDirectionNameForHeading
+    radio_spellOut
 } from '../utilities/radioUtilities';
 import {
     FLIGHT_MODES,
-    FLIGHT_CATEGORY,
-    WAYPOINT_NAV_MODE
+    FLIGHT_CATEGORY
 } from '../constants/aircraftConstants';
 
 
