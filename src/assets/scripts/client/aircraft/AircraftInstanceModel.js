@@ -453,17 +453,18 @@ export default class Aircraft {
         }
 
         // TODO: this may not be needed any longer
-        // let cs = window.airlineController.airline_get(this.airline).callsign;
-        //
-        // if (cs === 'November') {
-        //    cs += ` ${radio_spellOut(callsign)} ${heavy}`;
-        // } else {
-        //    cs += ` ${groupNumbers(callsign, this.airline)} ${heavy}`;
-        // }
-        //
-        // return cs;
+        let cs = window.airlineController.airline_get(this.airline).callsign;
+
+        if (cs === 'November') {
+           cs += ` ${radio_spellOut(callsign)} ${heavy}`;
+        } else {
+           cs += ` ${groupNumbers(callsign, this.airline)} ${heavy}`;
+        }
+
+        return cs;
     }
 
+    // TODO: this method should move to the `AircraftTypeDefinitionModel`
     /**
      * @for AircraftInstanceModel
      * @method getClimbRate
@@ -623,12 +624,11 @@ export default class Aircraft {
      * @method isOnGround
      */
     isOnGround() {
-        const error_allowance_ft = 5;
+        const errorAllowanceInFeet = 5;
         const airport = window.airportController.airport_get();
-        // TODO: update to use #initialRunwayAssignment
-        const runway = airport.getRunway(this.rwy_dep || this.rwy_arr);
-        const nearRunwayAltitude = abs(this.altitude - runway.elevation) < error_allowance_ft;
-        const nearAirportAltitude = abs(this.altitude - airport.position.elevation) < error_allowance_ft;
+        const runway = airport.getRunway(this.initialRunwayAssignment);
+        const nearRunwayAltitude = abs(this.altitude - runway.elevation) < errorAllowanceInFeet;
+        const nearAirportAltitude = abs(this.altitude - airport.position.elevation) < errorAllowanceInFeet;
 
         return nearRunwayAltitude || nearAirportAltitude;
     }
@@ -698,6 +698,7 @@ export default class Aircraft {
         return true;
     }
 
+    // TODO: this should be a method in the `AirportModel`
     /**
      * @for AircraftInstanceModel
      * @method getWind
@@ -717,7 +718,7 @@ export default class Aircraft {
         const runway = airport.getRunway(this.rwy_dep);
         const angle =  abs(angle_offset(runway.angle, wind.angle));
 
-        // TODO: these two bits of math should be abstracted to a helper function
+        // TODO: these two bits of math should be abstracted to helper functions
         windForRunway.cross = sin(angle) * wind.speed;
         windForRunway.head = cos(angle) * wind.speed;
 
@@ -859,7 +860,7 @@ export default class Aircraft {
      * @private
      */
     _calculateTargetedHeading() {
-        if (this.mcp.autopilotMode === MCP_MODE.AUTOPILOT.OFF) {
+        if (this.mcp.autopilotMode !== MCP_MODE.AUTOPILOT.OFF) {
             return;
         }
 
@@ -879,7 +880,7 @@ export default class Aircraft {
 
             default:
                 console.warn('Expected MCP heading mode of "OFF", "HOLD", "LNAV", or "VOR", ' +
-                    `but received "${this.mcp[MCP_MODE_NAME.HEADING]}"`);
+                    `but received "${this.mcp.headingMode}"`);
                 return this.heading;
         }
     }
@@ -892,7 +893,7 @@ export default class Aircraft {
      * @private
      */
     _calculateTargetedSpeed() {
-        if (this.mcp.autopilotMode === MCP_MODE.AUTOPILOT.OFF) {
+        if (this.mcp.autopilotMode !== MCP_MODE.AUTOPILOT.OFF) {
             return;
         }
 
@@ -928,7 +929,7 @@ export default class Aircraft {
      * @private
      */
     _calculateTargetedAltitude() {
-        if (this.mcp.autopilotMode === MCP_MODE.AUTOPILOT.OFF) {
+        if (this.mcp.autopilotMode !== MCP_MODE.AUTOPILOT.OFF) {
             return;
         }
 
@@ -998,6 +999,7 @@ export default class Aircraft {
         const should_attempt_intercept = (dist_to_localizer > 0 && dist_to_localizer <= turning_radius + turn_early_km);
         const in_the_window = abs(this.offset_angle) < degreesToRadians(1.5);  // if true, aircraft will move to localizer, regardless of assigned heading
 
+        // TODO: the logic here should be reversed to return early
         if (should_attempt_intercept || in_the_window) {  // time to begin turn
             const severity_of_correction = 50;  // controls steepness of heading adjustments during localizer tracking
             const tgtHdg = runwayHeading + (this.offset_angle * -severity_of_correction);
@@ -1014,7 +1016,6 @@ export default class Aircraft {
     // TODO: In these methods are various housekeeping items (like updating the strip views) that
     //       are not truly a part of the target calculations and updates, and thus they should be
     //       moved elsewhere.
-    // TODO: this method needs a lot of love. its much too long with waaay too many nested if/else ifs.
     /**
      * @for AircraftInstanceModel
      * @method updateTarget
@@ -1827,7 +1828,7 @@ export default class Aircraft {
         }
 
         // Update fms.following
-        this.__fms__.followCheck();
+        // this.__fms__.followCheck();
 
         const wp = this.__fms__.currentWaypoint;
         // Populate strip fields with default values

@@ -14,9 +14,8 @@ export default class ModeController {
     /**
      * @constructor
      * @for ModeController
-     * @param isAircraftAirborne {boolean}
      */
-    constructor(isAircraftAirborne) {
+    constructor() {
         // Mode Selectors
         /**
          * The current altitudeMode
@@ -137,7 +136,7 @@ export default class ModeController {
          */
         this.descentAngle = 0;
 
-        this.init(isAircraftAirborne);
+        this.init();
     }
 
     /**
@@ -157,12 +156,12 @@ export default class ModeController {
      * @method init
      * @private
      */
-    init(isAircraftAirborne) {
-        if (!isAircraftAirborne) {
-            return;
-        }
+    init() {
+        // if (!isAircraftAirborne) {
+        //     return;
+        // }
 
-        this._initializeForAirborneFlight();
+        // this._initializeForAirborneFlight();
     }
 
     /**
