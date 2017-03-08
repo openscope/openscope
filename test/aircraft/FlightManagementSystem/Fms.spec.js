@@ -526,8 +526,14 @@ ava('.hasWaypoint() returns true if a waypoint does exist within the current fli
 });
 
 ava.todo('.hasLegWithRouteString()');
-ava.todo('.getTopAltitude');            // highest altitude of all fix restrictions
-ava.todo('.getProcedureTopAltitude');   // highest altitude of all fix restrictions within a given procedure's Leg
+
+ava('.getTopAltitude() returns the top altitudeRestriction from all the waypoints', (t) => {
+    const fms = buildFmsMock(isComplexRoute);
+    const result = fms.getTopAltitude();
+
+    t.true(result === 24000);
+});
+
 ava.todo('.getBottomAltitude');         // lowest altitude of all fix restrictions
 ava.todo('.getProcedureBottomAltitude');// lowest altitude of all fix restrictions within a given procedure's Leg
 

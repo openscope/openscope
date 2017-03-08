@@ -43,6 +43,15 @@ ava('.init() calls ._buildWaypointCollection()', (t) => {
     t.true(_buildWaypointCollectionSpy.calledWithExactly(arrivalProcedureRouteSegmentMock, runwayMock, arrivalFlightPhaseMock, undefined));
 });
 
+ava('.destroy() calls ._destroyWaypointCollection()', (t) => {
+    const model = new LegModel(arrivalProcedureRouteSegmentMock, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture);
+    const _destroyWaypointCollectionSpy = sinon.spy(model, '_destroyWaypointCollection');
+
+    model.destroy();
+
+    t.true(_destroyWaypointCollectionSpy.calledOnce);
+});
+
 ava('.skipToWaypointAtIndex() drops n number of WaypointModels from  the left of #waypointCollection', (t) => {
     const model = new LegModel(arrivalProcedureRouteSegmentMock, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture);
 
@@ -50,6 +59,20 @@ ava('.skipToWaypointAtIndex() drops n number of WaypointModels from  the left of
 
     t.true(model.waypointCollection.length === 9);
     t.true(model.currentWaypoint.name === 'skebr');
+});
+
+ava('.getProcedureTopAltitude() returns -1 if a leg when #_isProcedure is false', (t) => {
+    const model = new LegModel(directRouteSegmentMock, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture);
+    const result = model.getProcedureTopAltitude();
+
+    t.true(result === -1);
+});
+
+ava('.getProcedureTopAltitude() returns the largest altitudeRestriction value in the #waypointCollection when #_isProcedure is true', (t) => {
+    const model = new LegModel(arrivalProcedureRouteSegmentMock, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture);
+    const result = model.getProcedureTopAltitude();
+
+    t.true(result === 24000);
 });
 
 ava('.hasWaypoint() returns false when a waypointName is not found within the #waypointCollection', (t) => {
@@ -63,8 +86,6 @@ ava('.hasWaypoint() returns true when a waypointName is found within the #waypoi
 
     t.true(model.hasWaypoint('SUNST'));
 });
-
-ava.todo('._destroyWaypointCollection()');
 
 ava('._buildWaypointForDirectRoute() returns an array with a single instance of a WaypointModel', (t) => {
     const model = new LegModel(directRouteSegmentMock, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture);

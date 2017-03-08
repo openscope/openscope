@@ -1,4 +1,5 @@
 import _drop from 'lodash/drop';
+import _map from 'lodash/map';
 import RouteModel from '../../navigationLibrary/Route/RouteModel';
 import WaypointModel from './WaypointModel';
 import { extractFixnameFromHoldSegment } from '../../navigationLibrary/Route/routeStringFormatHelper';
@@ -227,6 +228,24 @@ export default class LegModel {
         }
 
         return false;
+    }
+
+    /**
+     * Collects the `#altitudeRestriction` value from each waypoint
+     * in the `#waypointCollection`, then finds the highest value
+     *
+     * @for LegModel
+     * @method getProcedureTopAltitude
+     * @return {number}
+     */
+    getProcedureTopAltitude() {
+        if (!this._isProcedure) {
+            return -1;
+        }
+
+        const altitudeRestrictionList = _map(this.waypointCollection, (waypoint) => waypoint.altitudeRestriction);
+
+        return Math.max(...altitudeRestrictionList);
     }
 
     /**

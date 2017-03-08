@@ -222,6 +222,20 @@ export default class Fms {
     }
 
     /**
+     * Collects the `.getProcedureTopAltitude()` value from each `LegModel`
+     * in the `#legCollection`, then finds and returns the highest value
+     *
+     * @for LegModel
+     * @method getTopAltitude
+     * @return {number}
+     */
+    getTopAltitude() {
+        const maxAltitudeFromLegs = _map(this.legCollection, (leg) => leg.getProcedureTopAltitude());
+
+        return Math.max(...maxAltitudeFromLegs);
+    }
+
+    /**
      * Add a new `LegModel` to the left side of the `#legCollection`
      *
      * @for Fms
