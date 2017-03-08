@@ -88,6 +88,14 @@ ava('.kn_ms() converts knots to m/s', t => {
     t.true(result === expectedResult);
 });
 
+ava('.heading_to_string() converts a heading in radians to a degree heading that has a leading zero', (t) => {
+    const headingMock = 0.698132;
+    const expectedResult = '040';
+    const result = heading_to_string(headingMock);
+
+    t.true(result === expectedResult);
+});
+
 ava('.heading_to_string() converts a heading in radians to a degree heading', (t) => {
     const headingMock = -1.6302807335875378;
     const expectedResult = '267';
