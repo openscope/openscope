@@ -285,18 +285,18 @@ export default class Fms {
      * @method createLegWithHoldingPattern
      * @param inboundHeading {number}
      * @param turnDirection {string}
-     * @legLength {number}
-     * @holdRouteSegment {string}
-     * @holdFixLocation {array<number>}
+     * @param legLength {number}
+     * @param holdRouteSegment {string}
+     * @param holdPosition {StaticPositionModel}
      */
-    createLegWithHoldingPattern(inboundHeading, turnDirection, legLength, holdRouteSegment, holdFixLocation) {
+    createLegWithHoldingPattern(inboundHeading, turnDirection, legLength, holdRouteSegment, holdPosition) {
         // FIXME: replace with constant
         const isPositionHold = holdRouteSegment === 'GPS';
         const waypointProps = {
             turnDirection,
             legLength,
             name: holdRouteSegment,
-            position: holdFixLocation,
+            position: holdPosition,
             altitudeRestriction: INVALID_VALUE,
             speedRestriction: INVALID_VALUE
         };

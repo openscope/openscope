@@ -566,7 +566,7 @@ export default class Aircraft {
      * @method pushHistory
      */
     pushHistory() {
-        this.history.push([this.position[0], this.position[1]]);
+        this.history.push([this.position.relativePosition[0], this.position.relativePosition[1]]);
 
         if (this.history.length > 10) {
             this.history.splice(0, this.history.length - 10);
@@ -611,7 +611,7 @@ export default class Aircraft {
         const withinAirspaceAltitudeRange = this.altitude <= airport.ctr_ceiling;
 
         if (!_isNil(airport.perimeter)) {    // polygonal airspace boundary
-            withinAirspaceLateralBoundaries = point_in_area(this.position, airport.perimeter);
+            withinAirspaceLateralBoundaries = point_in_area(this.position.relativePosition, airport.perimeter);
         }
 
         return withinAirspaceAltitudeRange && withinAirspaceLateralBoundaries;
@@ -970,7 +970,7 @@ export default class Aircraft {
      */
     _calculateTargetedAltitudeToInterceptGlidepath() {
         const runway = window.airportController.airport_get().getRunway(this.rwy_arr);
-        const distanceFromThreshold_km = getOffset(this, runway.position, runway.angle)[1];
+        const distanceFromThreshold_km = getOffset(this.position.relativePosition, runway.position.relativePosition, runway.angle)[1];
         const glideslopeAltitude = runway.getGlideslopeAltitude(distanceFromThreshold_km);
         const targetAltitude = clamp(runway.elevation, glideslopeAltitude, this.altitude);
 
@@ -990,7 +990,7 @@ export default class Aircraft {
         // Guide aircraft onto the localizer
         const runway = window.airportController.airport_get().getRunway(this.rwy_arr);
         const runwayHeading = radians_normalize(runway.angle);
-        const lateralDistanceFromCourse_km = getOffset(this, runway.position, runwayHeading)[0];
+        const lateralDistanceFromCourse_km = getOffset(this, runway.position.relativePosition, runwayHeading)[0];
         const angle_diff = angle_offset(runwayHeading, this.heading);
         const turning_time = Math.abs(radiansToDegrees(angle_diff)) / 3; // time to turn angle_diff degrees at 3 deg/s
         const turning_radius = km(this.speed) / 3600 * turning_time; // dist covered in the turn, km
@@ -1079,10 +1079,10 @@ export default class Aircraft {
                 break;
             case FLIGHT_MODES.WAITING:
                 runway = airport.getRunway(this.rwy_dep);
-                position = runway.position;
+                position = runway.position.relativePosition;
 
-                this.position[0] = position[0];
-                this.position[1] = position[1];
+                this.position.relativePosition[0] = position[0];
+                this.position.relativePosition[1] = position[1];
                 this.heading = runway.angle;
                 this.altitude = runway.elevation;
 
@@ -1154,7 +1154,7 @@ export default class Aircraft {
     updateTargetPrepareAircraftForLanding() {
         const airport = window.airportController.airport_get();
         const runway  = airport.getRunway(this.rwy_arr);
-        const offset = getOffset(this, runway.position, runway.angle);
+        const offset = getOffset(this, runway.position.relativePosition, runway.angle);
         const offset_angle = vradial(offset);
         const angle = radians_normalize(runway.angle);
         const glideslope_altitude = clamp(runway.elevation, runway.getGlideslopeAltitude(offset[1]), this.altitude);
@@ -1321,9 +1321,9 @@ export default class Aircraft {
             return;
         }
 
-        const currentWaypointPosition = this.fms.currentWaypoint.position;
-        const vectorToFix = vsub(this.position, currentWaypointPosition);
-        const distanceToFix = distance2d(this.position, currentWaypointPosition);
+        const currentWaypointPosition = this.fms.currentWaypoint.position.relativePosition;
+        const vectorToFix = vsub(this.position.relativePosition, currentWaypointPosition);
+        const distanceToFix = distance2d(this.position.relativePosition, currentWaypointPosition);
         const isFixLessThanTurnInitiation = distanceToFix < calculateTurnInitiaionDistance(this, currentWaypointPosition);
 
         if (
@@ -1454,13 +1454,13 @@ export default class Aircraft {
         // Trailling
         if (this.position_history.length === 0) {
             this.position_history.push([
-                this.position[0],
-                this.position[1],
+                this.position.relativePosition[0],
+                this.position.relativePosition[1],
                 window.gameController.game_time() / window.gameController.game_speedup()
             ]);
             // TODO: this can be abstracted
         } else if (abs((window.gameController.game_time() / window.gameController.game_speedup()) - this.position_history[this.position_history.length - 1][2]) > 4 / window.gameController.game_speedup()) {
-            this.position_history.push([this.position[0], this.position[1], window.gameController.game_time() / window.gameController.game_speedup()]);
+            this.position_history.push([this.position.relativePosition[0], this.position.relativePosition[1], window.gameController.game_time() / window.gameController.game_speedup()]);
         }
 
         // FIXME: is this ratio correct? is it 0.000514444 or 0.514444?
@@ -1474,8 +1474,8 @@ export default class Aircraft {
         //     this.updateSimpleGroundSpeedPhysics(scaleSpeed);
         // }
 
-        this.distance = vlen(this.position);
-        this.radial = vradial(this.position);
+        this.distance = vlen(this.position.relativePosition);
+        this.radial = vradial(this.position.relativePosition);
 
         if (this.radial < 0) {
             this.radial += tau();
@@ -1676,7 +1676,7 @@ export default class Aircraft {
         this.groundSpeed = this.ds / 0.000514444 / window.gameController.game_delta();
         this.groundTrack = vradial(vector);
         // FIXME: This should use new calculations using actual PositionModel
-        this.position = vadd(this.position, vector);
+        // this.position = vadd(this.position, vector);
     }
 
     /**
@@ -1746,7 +1746,7 @@ export default class Aircraft {
 
                 // recalculate for new areas or those that should be checked
                 if (!area.range || area.range <= 0) {
-                    new_inside = point_in_poly(this.position, area.data.coordinates);
+                    new_inside = point_in_poly(this.position.relativePosition, area.data.coordinates);
 
                     // ac has just entered the area: .inside is still false, but st is true
                     if (new_inside && !area.inside) {
@@ -1758,7 +1758,7 @@ export default class Aircraft {
                         // don't calculate more often than every 10 seconds
                         area.range = Math.max(
                         this.speed * 1.85 / 36 / 1000 * 10,
-                        distance_to_poly(this.position, area.data.coordinates));
+                        distance_to_poly(this.position.relativePosition, area.data.coordinates));
                     }
 
                     area.inside = new_inside;
@@ -1791,7 +1791,7 @@ export default class Aircraft {
 
                 if (curr_ranges[id] < 0 || curr_ranges[id] === Infinity) {
                     area = terrain[ele][id];
-                    status = point_to_mpoly(this.position, area, id);
+                    status = point_to_mpoly(this.position.relativePosition, area, id);
 
                     if (status.inside) {
                         this.altitude = 0;

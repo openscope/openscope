@@ -36,7 +36,6 @@ export default class RunwayModel extends BaseModel {
         };
         this.labelPos = [];
         this.length = null;
-        this.midfield = [];
         this.name = '';
         this.position = [];
         this.queue = [];
@@ -59,9 +58,9 @@ export default class RunwayModel extends BaseModel {
         }
 
         if (data.end) {
-            const thisSide = new StaticPositionModel(data.end[end], data.reference_position, data.magnetic_north);
+            const thisSide = new StaticPositionModel(data.end[end], this.airport.position, this.airport.position.magnetic_north);
             // FIXME: ressignment of an argument with an inline ternary? this line needs some work.
-            const farSide = new StaticPositionModel(data.end[(end === 0) ? 1 : 0], data.reference_position, data.magnetic_north);
+            const farSide = new StaticPositionModel(data.end[(end === 0) ? 1 : 0], this.airport.position, this.airport.position.magnetic_north);
 
             // TODO: `gps` and `elevation` are available from the `StaticPositionModel` and should be pulled from there
             // instead of setting direct properties. If direct properties are needed, use getters isntead.
@@ -77,11 +76,9 @@ export default class RunwayModel extends BaseModel {
             }
 
             // relative position, based on center of map
-            this.position = thisSide.position;
-            this.length = vlen(vsub(farSide.position, thisSide.position));
-            // TODO: what is the 0.5 for? enumerate the magic number
-            this.midfield = vscale(vadd(thisSide.position, farSide.position), 0.5);
-            this.angle = radians_normalize(vradial(vsub(farSide.position, thisSide.position)));
+            this.position = thisSide;
+            this.length = vlen(vsub(farSide.relativePosition, thisSide.relativePosition));
+            this.angle = radians_normalize(vradial(vsub(farSide.relativePosition, thisSide.relativePosition)));
         }
 
         if (data.ils) {

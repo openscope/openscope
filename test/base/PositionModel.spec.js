@@ -9,7 +9,7 @@ const LAT_LONG_MOCK = ['N36d38m01.199', 'W114d36m17.219'];
 const LAT_LONG_MOCK_DECIMAL = [36.63366638888889, -114.60478305555554];
 const LAT_LONG_MOCK_2 = ['N35d51.34m0', 'W114d54.60m0'];
 const MAGNETIC_NORTH_MOCK = 0.2076941809873252;
-const expectedScreenPosition = [35.448246791634254, 70.38079821863909];
+const expectedrelativePosition = [35.448246791634254, 70.38079821863909];
 
 ava('throws when called to instantiate without parameters', t => {
     t.throws(() => new PositionModel());
@@ -21,7 +21,7 @@ ava('sets internal properties when provided valid parameters', t => {
     t.true(result.latitude === LAT_LONG_MOCK_DECIMAL[0]);
     t.true(result.longitude === LAT_LONG_MOCK_DECIMAL[1]);
     t.true(result.elevation === 0);
-    t.true(_isEqual(result.position, expectedScreenPosition));
+    t.true(_isEqual(result.position.relativePosition, expectedrelativePosition));
     t.true(_isEqual(result.reference_position, airportPositionFixtureKLAS));
     t.true(result.magnetic_north === 0.2076941809873252);
     t.true(_isEqual(result.gps, LAT_LONG_MOCK_DECIMAL));
@@ -29,15 +29,15 @@ ava('sets internal properties when provided valid parameters', t => {
     t.true(result.gpsXY[1] === LAT_LONG_MOCK_DECIMAL[0]);
 });
 
-ava('get screenPosition() returns [0, 0] if no reference position is provided', t => {
+ava('get relativePosition() returns [0, 0] if no reference position is provided', t => {
     const result = new PositionModel(LAT_LONG_MOCK, null, MAGNETIC_NORTH_MOCK);
     const expectedResult = DEFAULT_SCREEN_POSITION;
 
-    t.true(_isEqual(result.position, expectedResult));
+    t.true(_isEqual(result.position.relativePosition, expectedResult));
 });
 
 ava('.calculatePosition() static method throws when it receives the wrong arguments', t => {
-    t.throws(() => PositionModel.calculatePosition());
+    t.throws(() => PositionModel.calculateRelativePosition());
 });
 
 ava('.bearingFromPosition() returns the correct bearing between two PositionModel instances', t => {
@@ -70,5 +70,5 @@ ava('.distanceTo() returns the correct distance between two PositionModel instan
 // user bug test cases
 ava('.calculatePosition() does not throw when it receives 0 for magnetic_north', t => {
     t.notThrows(() => new PositionModel(LAT_LONG_MOCK, airportPositionFixtureKLAS, 0));
-    t.notThrows(() => PositionModel.calculatePosition(LAT_LONG_MOCK, airportPositionFixtureKLAS, 0));
+    t.notThrows(() => PositionModel.calculateRelativePosition(LAT_LONG_MOCK, airportPositionFixtureKLAS, 0));
 });

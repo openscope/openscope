@@ -15,13 +15,13 @@ import { AIRPORT_JSON_KLAS_MOCK } from './_mocks/airportJsonMock';
 //   // ...
 // ]
 
-const airportMock = {
-    elevation: 2181
-}
+// const airportMock = {
+//     elevation: 2181
+// }
 
 const runway07L25R = AIRPORT_JSON_KLAS_MOCK.runways[0];
-runway07L25R.reference_position = airportPositionFixtureKLAS.position;
-runway07L25R.magnetic_north = airportPositionFixtureKLAS.magneticNorthInRadians;
+// runway07L25R.reference_position = airportPositionFixtureKLAS.position;
+// runway07L25R.magnetic_north = airportPositionFixtureKLAS.magneticNorthInRadians;
 
 ava('does not throw when instantiated with vaild parameters', (t) => {
     t.notThrows(() => new RunwayModel(runway07L25R, 0, airportModelFixture));

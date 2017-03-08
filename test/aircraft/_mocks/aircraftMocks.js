@@ -1,3 +1,5 @@
+import { STATIC_POSITION_MODEL_MOCK } from '../../base/_mocks/positionMocks';
+
 export const AIRCRAFT_DEFINITION_MOCK = {
     name: 'Boeing 737-700',
     icao: 'B737',
@@ -27,7 +29,7 @@ export const AIRCRAFT_DEFINITION_MOCK = {
         landing: 125,
         cruise: 460,
         cruiseM: null,
-        max:  525,
+        max: 525,
         maxM: null
     },
     capability: {
@@ -62,7 +64,7 @@ export const AIRCRAFT_DEFINITION_LIST_MOCK = [
             takeoff: 1.900,
             landing: 1.400
         },
-        speed:{
+        speed: {
             min: 115,
             landing: 130,
             cruise: 454,
@@ -111,16 +113,16 @@ export const HOLD_WAYPOINT_MOCK = {
     turnDirection: 'left',
     legLength: '3min',
     name: '@COWBY',
-    position: [113.4636606631233, 6.12969620221002],
+    position: STATIC_POSITION_MODEL_MOCK,
     altitudeRestriction: -1,
     speedRestriction: -1
 };
 
-export const HOLD_POSITION_MOCK = {
+export const HOLD_AT_PRESENT_LOCATION = {
     turnDirection: 'left',
     legLength: '3min',
     name: 'GPS',
-    position: [113.4636606631233, 6.12969620221002],
+    position: STATIC_POSITION_MODEL_MOCK,
     altitudeRestriction: -1,
     speedRestriction: -1
 };

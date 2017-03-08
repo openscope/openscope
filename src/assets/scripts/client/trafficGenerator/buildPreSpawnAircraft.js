@@ -21,24 +21,24 @@ import { nm } from '../utilities/unitConverters';
  * @param spawnOffsets {array}
  * @return spawnPositions {array}
  */
-const _calculateSpawnPositions = (waypointModelList, spawnOffsets, airport) => {
+const _calculateSpawnPositions = (waypointModelList, spawnOffsets) => {
     const spawnPositions = [];
 
     // for each new aircraft
     for (let i = 0; i < spawnOffsets.length; i++) {
+        // TODO: Are these spawn offsets in nm or km? If not nm, the position generated below
+        // will be wrong because it expects nautical miles.
         let spawnOffset = spawnOffsets[i];
 
         // for each fix ahead
         for (let j = 1; j < waypointModelList.length; j++) {
-            const waypoint = waypointModelList[j];
+            const nextFix = waypointModelList[j];
 
-            if (waypoint.distanceFromPreviousWaypoint > spawnOffset) {
-                // if point before next fix
-                const nextFix = waypoint;
-                const previousFix = waypointModelList[j - 1];
-                const heading = bearingToPoint(previousFix.gpsXY, nextFix.gpsXY);
-                const spawnPoint = fixRadialDist(previousFix.gps, heading, spawnOffset);
-                const position = PositionModel.calculatePosition(spawnPoint, airport.position, airport.magnetic_north);
+            if (nextFix.distanceFromPreviousWaypoint > spawnOffset) {   // if point before next fix
+                const previousFixPosition = waypointModelList[j - 1].position;
+                const heading = previousFixPosition.bearingToPosition(nextFix.position);
+                const position = previousFixPosition.generatePositionFromBearingAndDistance(heading, spawnOffset);
+
                 // TODO: this looks like it should be a model object
                 const preSpawnHeadingAndPosition = {
                     heading,
@@ -52,7 +52,7 @@ const _calculateSpawnPositions = (waypointModelList, spawnOffsets, airport) => {
             }
 
             // if point beyond next fix subtract distance from spawnOffset and continue
-            spawnOffset -= waypoint.distanceFromPreviousWaypoint;
+            spawnOffset -= nextFix.distanceFromPreviousWaypoint;
         }
     }
 
@@ -94,13 +94,13 @@ const _calculateDistancesAlongRoute = (waypointModelList, airport) => {
 
     for (let i = 0; i < waypointModelList.length; i++) {
         const waypoint = waypointModelList[i];
-        const waypointPosition = waypoint.position;
+        const waypointPosition = waypoint.position.relativePosition;
         let previousWaypoint = waypoint;
-        let previousPosition = waypoint.position;
+        let previousPosition = waypoint.position.relativePosition;
 
         if (i > 0) {
             previousWaypoint = waypointModelList[i - 1];
-            previousPosition = previousWaypoint.position;
+            previousPosition = previousWaypoint.position.relativePosition;
         }
 
         if (isWithinAirspace(airport, waypointPosition) && i > 0) {

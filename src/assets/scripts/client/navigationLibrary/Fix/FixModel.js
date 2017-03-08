@@ -51,7 +51,7 @@ export default class FixModel extends BaseModel {
      * @return {array}
      */
     get position() {
-        return this._fixPosition.position;
+        return this._fixPosition;
     }
 
     /**

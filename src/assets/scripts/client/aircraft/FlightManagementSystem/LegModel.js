@@ -363,7 +363,7 @@ export default class LegModel {
     _buildWaypointForHoldingPattern(routeString, holdWaypointProps) {
         // TODO: replace with constant
         if (routeString === 'GPS') {
-            return this._buildWaypointForHoldingPatternAtPosition(routeString, holdWaypointProps);
+            return this._buildWaypointForHoldingPatternAtPosition(holdWaypointProps);
         }
 
         const isHold = true;
@@ -380,17 +380,13 @@ export default class LegModel {
      *
      * @for LegModel
      * @method _buildWaypointForHoldingPatternAtPosition
-     * @param routeString {string}
      * @param holdWaypointProps {object}
      * @return {array<WaypointModel>}
      */
-    _buildWaypointForHoldingPatternAtPosition(routeString, holdWaypointProps) {
-        const holdWaypointPropsWithPositionModel = this._buildHoldAtPositionWaypointProps(holdWaypointProps);
-        const waypointModel = new WaypointModel(holdWaypointPropsWithPositionModel);
+    _buildWaypointForHoldingPatternAtPosition(holdWaypointProps) {
+        const waypointModel = new WaypointModel(holdWaypointProps);
 
-        return [
-            waypointModel
-        ];
+        return [waypointModel];
     }
 
     /**

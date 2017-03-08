@@ -24,10 +24,16 @@ export default class StaticPositionModel extends PositionModel {
          */
         this.y = 0;
 
-        this._initializeScreenPosition();
+        this._initializeRelativePosition();
     }
 
-    get position() {
+    /**
+     * Relative position, in km offset from the airport
+     *
+     * @property relativePosition
+     * @return {array}
+     */
+    get relativePosition() {
         return [this.x, this.y];
     }
 
@@ -44,14 +50,14 @@ export default class StaticPositionModel extends PositionModel {
 
     /**
      * @for PositionModel
-     * @method _initializeScreenPosition
+     * @method _initializeRelativePosition
      */
-    _initializeScreenPosition() {
+    _initializeRelativePosition() {
         if (!this._hasReferencePosition()) {
             return DEFAULT_SCREEN_POSITION;
         }
 
-        const [x, y] = PositionModel.calculatePosition(this.gps, this.reference_position, this.magnetic_north);
+        const [x, y] = PositionModel.calculateRelativePosition(this.gps, this.reference_position, this.magnetic_north);
 
         this.x = x;
         this.y = y;

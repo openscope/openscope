@@ -209,10 +209,10 @@ export default class AirportModel {
         this.perimeter = _head(this.airspace);
 
         this.ctr_radius = Math.max(..._map(
-            this.perimeter.poly, (v) => vlen(
+            this.perimeter.poly, (vertexPosition) => vlen(
                 vsub(
-                    v.position,
-                    PositionModel.calculatePosition(this.rr_center, this.position, this.magnetic_north)
+                    vertexPosition.relativePosition,
+                    PositionModel.calculateRelativePosition(this.rr_center, this.position, this.magnetic_north)
                 )
             )
         ));
@@ -256,8 +256,8 @@ export default class AirportModel {
             const lines = map;
 
             _forEach(lines, (line) => {
-                const start = PositionModel.calculatePosition([line[0], line[1]], this.position, this.magnetic_north);
-                const end = PositionModel.calculatePosition([line[2], line[3]], this.position, this.magnetic_north);
+                const start = PositionModel.calculateRelativePosition([line[0], line[1]], this.position.relativePosition, this.magnetic_north);
+                const end = PositionModel.calculateRelativePosition([line[2], line[3]], this.position.relativePosition, this.magnetic_north);
 
                 this.maps[key].push([start[0], start[1], end[0], end[1]]);
             });
@@ -283,7 +283,7 @@ export default class AirportModel {
 
             obj.height = parseElevation(area.height);
             obj.coordinates = $.map(area.coordinates, (v) => {
-                return [(PositionModel.calculatePosition(v, this.position, this.magnetic_north))];
+                return [(PositionModel.calculateRelativePosition(v, this.position, this.magnetic_north))];
             });
 
             // TODO: is this right? max and min are getting set to the same value?
@@ -342,13 +342,13 @@ export default class AirportModel {
                         // setup secondary runway subobject
                         const r1 = this.runways[rwy1][rwy1end];
                         const r2 = this.runways[rwy2][rwy2end];
-                        const offset = getOffset(r1, r2.position, r1.angle);
+                        const offset = getOffset(r1, r2.position.relativePosition, r1.angle);
                         this.metadata.rwy[r1.name][r2.name] = {};
 
                         // generate this runway pair's relationship data
                         this.metadata.rwy[r1.name][r2.name].lateral_dist = abs(offset[0]);
                         this.metadata.rwy[r1.name][r2.name].straight_dist = abs(offset[2]);
-                        this.metadata.rwy[r1.name][r2.name].converging = raysIntersect(r1.position, r1.angle, r2.position, r2.angle);
+                        this.metadata.rwy[r1.name][r2.name].converging = raysIntersect(r1.position.relativePosition, r1.angle, r2.position.relativePosition, r2.angle);
                         this.metadata.rwy[r1.name][r2.name].parallel = (abs(angle_offset(r1.angle, r2.angle)) < degreesToRadians(10));
                     }
                 }
@@ -491,7 +491,7 @@ export default class AirportModel {
                             pt.reverse();   // `StaticPositionModel` requires [lat,lon] order
                             const pos = new StaticPositionModel(pt, apt.position, apt.magnetic_north);
 
-                            return [pos.position];
+                            return [pos.relativePosition];
                         })
                     ];
                 }));

@@ -26,11 +26,11 @@ export const airportModelFixture = new AirportModel(
     navigationLibraryFixture
 );
 
-export const airspaceModelFixture = new AirspaceModel(
-    AIRPORT_JSON_KLAS_MOCK.airspace[0],
-    airportModelFixture.position,
-    airportModelFixture.magnetic_north
-);
+// export const airspaceModelFixture = new AirspaceModel(
+//     AIRPORT_JSON_KLAS_MOCK.airspace[0],
+//     airportModelFixture.position.relativePosition,
+//     airportModelFixture.magnetic_north
+// );
 
 // airport position for KSFO
 export const airportPositionFixtureKSFO = new StaticPositionModel(['N37.6195', 'W122.3738333', '13ft'], null, 13.7);

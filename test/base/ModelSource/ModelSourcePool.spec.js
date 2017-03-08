@@ -71,7 +71,7 @@ ava.serial('.releaseModelFromPool() returns a model if one exists within the poo
 
     t.true(result instanceof FixModel);
     t.true(result.name === FIXNAME_MOCK);
-    t.true(_isEqual(result.position, expectedPosition));
+    t.true(_isEqual(result.position.relativePosition, expectedPosition));
 });
 
 ava.serial('.releasModelFromPool() returns a model if none exist within the pool', t => {
@@ -81,5 +81,5 @@ ava.serial('.releasModelFromPool() returns a model if none exist within the pool
 
     t.true(result instanceof FixModel);
     t.true(result.name === FIXNAME_MOCK);
-    t.true(_isEqual(result.position, expectedPosition));
+    t.true(_isEqual(result.position.relativePosition, expectedPosition));
 });

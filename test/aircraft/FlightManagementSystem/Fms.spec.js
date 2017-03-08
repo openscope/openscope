@@ -3,14 +3,14 @@ import sinon from 'sinon';
 import _isEqual from 'lodash/isEqual';
 
 import Fms from '../../../src/assets/scripts/client/aircraft/FlightManagementSystem/Fms';
-import LegModel from '../../../src/assets/scripts/client/aircraft/FlightManagementSystem/LegModel';
+import StaticPositionModel from '../../../src/assets/scripts/client/base/StaticPositionModel';
 import { navigationLibraryFixture } from '../../fixtures/navigationLibraryFixtures';
 import {
     ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK,
     DEPARTURE_AIRCRAFT_INIT_PROPS_MOCK,
-    AIRCRAFT_DEFINITION_MOCK,
-    HOLD_WAYPOINT_MOCK
+    AIRCRAFT_DEFINITION_MOCK
 } from '../_mocks/aircraftMocks';
+import { SNORA_STATIC_POSITION_MODEL } from '../../base/_mocks/positionMocks';
 
 const directRouteString = 'COWBY';
 const complexRouteString = 'COWBY..BIKKR..DAG.KEPEC3.KLAS';
@@ -130,11 +130,11 @@ ava('.createLegWithHoldingPattern() calls _createLegWithHoldWaypoint() when hold
     const turnDirectionMock = 'left';
     const legLengthMock = '2min';
     const holdRouteSegmentMock = 'GPS';
-    const holdFixLocationMock = [113.4636606631233, 6.12969620221002];
+    const holdPositionMock = SNORA_STATIC_POSITION_MODEL;
     const fms = buildFmsMock(isComplexRoute);
     const _createLegWithHoldWaypointSpy = sinon.spy(fms, '_createLegWithHoldWaypoint');
 
-    fms.createLegWithHoldingPattern(inboundHeadingMock, turnDirectionMock, legLengthMock, holdRouteSegmentMock, holdFixLocationMock);
+    fms.createLegWithHoldingPattern(inboundHeadingMock, turnDirectionMock, legLengthMock, holdRouteSegmentMock, holdPositionMock);
 
     t.true(_createLegWithHoldWaypointSpy.calledOnce);
 });
@@ -144,15 +144,15 @@ ava('.createLegWithHoldingPattern() prepends LegCollection with hold Waypoint wh
     const turnDirectionMock = 'left';
     const legLengthMock = '2min';
     const holdRouteSegmentMock = 'GPS';
-    const holdFixLocationMock = [113.4636606631233, 6.12969620221002];
+    const holdPositionMock = SNORA_STATIC_POSITION_MODEL;
     const fms = buildFmsMock(isComplexRoute);
 
-    fms.createLegWithHoldingPattern(inboundHeadingMock, turnDirectionMock, legLengthMock, holdRouteSegmentMock, holdFixLocationMock);
+    fms.createLegWithHoldingPattern(inboundHeadingMock, turnDirectionMock, legLengthMock, holdRouteSegmentMock, holdPositionMock);
 
     t.true(fms.currentWaypoint._turnDirection === 'left');
     t.true(fms.currentWaypoint._legLength === '2min');
     t.true(fms.currentWaypoint.name === 'gps');
-    t.true(_isEqual(fms.currentWaypoint.position.position, holdFixLocationMock));
+    t.true(_isEqual(fms.currentWaypoint.position.relativePosition, holdPositionMock.relativePosition));
 });
 
 ava('.createLegWithHoldingPattern() calls ._findLegAndWaypointIndexForWaypointName() when holdRouteSegment is a FixName', (t) => {
@@ -288,11 +288,13 @@ ava('.skipToWaypoint() does nothing is the waypoint to skip to is the #currentWa
     t.true(fms.currentLeg.routeString === waypointNameMock);
 });
 
-ava('.getNextWaypointPosition() returns the position array for the next Waypoint in the collection', (t) => {
+ava('.getNextWaypointPosition() returns the `StaticPositionModel` for the next Waypoint in the collection', (t) => {
     const expectedResult = [-87.64380662924125, -129.57471627889475];
     const fms = buildFmsMock();
-    const result = fms.getNextWaypointPosition().position;
+    const waypointPosition = fms.getNextWaypointPosition();
+    const result = waypointPosition.relativePosition;
 
+    t.true(waypointPosition instanceof StaticPositionModel);
     t.true(_isEqual(result, expectedResult));
 });
 

@@ -575,7 +575,7 @@ export default class Pilot {
      *                                                   holding pattern.
      * @param fixName {string|null}                      name of the fix to hold at, only `null` if holding at
      *                                                   current position
-     * @param holdFixLocation {PositionModel|null}       fixLocation as a PositionModel or in x/y
+     * @param holdPosition {PositionModel}               StaticPositionModel of the position to hold over
      * @return {Array} [success of operation, readback]
      */
     initiateHoldingPattern(
@@ -583,13 +583,13 @@ export default class Pilot {
         turnDirection,
         legLength,
         fixName = null,
-        holdFixLocation = null
+        holdPosition = null
     ) {
         let holdRouteSegment = `@${fixName}`;
         const inboundDirection = getRadioCardinalDirectionNameForHeading(inboundHeading);
         let successMessage = `proceed direct ${fixName} and hold inbound, ${turnDirection} turns, ${legLength} legs`;
 
-        if (!holdFixLocation) {
+        if (!holdPosition) {
             return [false, `unable to find fix ${fixName}`];
         }
 
@@ -600,7 +600,7 @@ export default class Pilot {
 
         // TODO: there are probably some `_mcp` updates that should happen here too.
 
-        this._fms.createLegWithHoldingPattern(inboundHeading, turnDirection, legLength, holdRouteSegment, holdFixLocation);
+        this._fms.createLegWithHoldingPattern(inboundHeading, turnDirection, legLength, holdRouteSegment, holdPosition);
 
         return [true, successMessage];
     }

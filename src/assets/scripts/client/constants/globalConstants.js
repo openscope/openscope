@@ -35,3 +35,24 @@ export const REGEX = {
     UNICODE: /[^\u0000-\u00ff]/,
     WHITESPACE: /\s/g
 };
+
+/**
+ * @property PHYSICS_CONSTANTS
+ * @type {Object}
+ * @final
+ */
+export const PHYSICS_CONSTANTS = {
+    /**
+     * @property
+     * @type {number}
+     * @final
+     */
+    GRAVITATIONAL_MAGNITUDE: 9.81,
+
+    /**
+     * @property EARTH_RADIUS_NM
+     * @type {number}
+     * @final
+     */
+    EARTH_RADIUS_NM: 3440
+};

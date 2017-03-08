@@ -114,7 +114,7 @@ export default class AirspaceModel extends BaseModel {
         const firstIndex = 0;
         const lastIndex = polyPositionModels.length - 1;
 
-        if (_isEqual(polyPositionModels[firstIndex].position, polyPositionModels[lastIndex].position)) {
+        if (_isEqual(polyPositionModels[firstIndex].relativePosition, polyPositionModels[lastIndex].relativePosition)) {
             // shape shouldn't fully close; will draw with 'cc.closepath()' so we remove the last item
             polyPositionModels.pop();
         }

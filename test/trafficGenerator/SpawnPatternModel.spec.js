@@ -48,7 +48,7 @@ ava('does not throw when called with valid parameters', (t) => {
 ava('#position defaults to [0, 0]', (t) => {
     const model = new SpawnPatternModel(DEPARTURE_PATTERN_MOCK, navigationLibraryFixture, airportControllerFixture);
 
-    t.true(_isEqual(model.position.position, [0, 0]));
+    t.true(_isEqual(model.position.relativePosition, [0, 0]));
 });
 
 ava('#altitude returns a random altitude rounded to the nearest 1,000ft', (t) => {
@@ -144,8 +144,6 @@ ava.skip('._calculateNextWaveDelayPeriod()', (t) => {
     const model = new SpawnPatternModel(ARRIVAL_PATTERN_WAVE_MOCK, navigationLibraryFixture, airportControllerFixture);
     const result = model._calculateNextWaveDelayPeriod(gameTimeMock);
 
-    console.log(result);
-
     // t.true(result === 360);
 });
 
@@ -187,7 +185,7 @@ ava('._calculatePositionAndHeadingForArrival() returns early when spawnPattern.c
     model._calculatePositionAndHeadingForArrival(DEPARTURE_PATTERN_MOCK, navigationLibraryFixture);
 
     t.true(model.heading === -999);
-    t.true(_isEqual(model.position.position, [0, 0]));
+    t.true(_isEqual(model.position.relativePosition, [0, 0]));
 });
 
 ava('._calculatePositionAndHeadingForArrival() calculates aircraft heading and position when provided a route', (t) => {
@@ -198,5 +196,5 @@ ava('._calculatePositionAndHeadingForArrival() calculates aircraft heading and p
     model._calculatePositionAndHeadingForArrival(ARRIVAL_PATTERN_MOCK, navigationLibraryFixture);
 
     t.true(model.heading === expedtedHeadingResult);
-    t.true(_isEqual(model.position.position, expectedPositionResult));
+    t.true(_isEqual(model.position.relativePosition, expectedPositionResult));
 });

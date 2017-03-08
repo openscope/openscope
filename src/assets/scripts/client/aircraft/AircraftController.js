@@ -203,7 +203,7 @@ export default class AircraftController {
 
         for (let i = 0; i < this.aircraft.list.length; i++) {
             const aircraft = this.aircraft.list[i];
-            const d = distance2d(aircraft.position, position);
+            const d = distance2d(aircraft.position.relativePosition, position);
 
             if (d < distance && aircraft.isVisible() && !aircraft.hit) {
                 distance = d;
@@ -221,7 +221,7 @@ export default class AircraftController {
      * @param factor
      */
     aircraft_visible(aircraft, factor = 1) {
-        return vlen(aircraft.position.position) < window.airportController.airport_get().ctr_radius * factor;
+        return vlen(aircraft.position.relativePosition) < window.airportController.airport_get().ctr_radius * factor;
     }
 
     /**
@@ -273,8 +273,8 @@ export default class AircraftController {
                 // no violation can occur in this case.
                 // Variation of:
                 // http://gamedev.stackexchange.com/questions/586/what-is-the-fastest-way-to-work-out-2d-bounding-box-intersection
-                const dx = abs(aircraft.position[0] - otherAircraft.position[0]);
-                const dy = abs(aircraft.position[1] - otherAircraft.position[1]);
+                const dx = abs(aircraft.position.relativePosition[0] - otherAircraft.position.relativePosition[0]);
+                const dy = abs(aircraft.position.relativePosition[1] - otherAircraft.position.relativePosition[1]);
                 const boundingBoxLength = km(8);
 
                 if (dx < boundingBoxLength && dy < boundingBoxLength) {

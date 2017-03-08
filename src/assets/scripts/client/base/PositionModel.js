@@ -2,11 +2,13 @@ import _isEmpty from 'lodash/isEmpty';
 import _isNil from 'lodash/isNil';
 import _isNumber from 'lodash/isNumber';
 import _uniqueId from 'lodash/uniqueId';
+import StaticPositionModel from './StaticPositionModel';
 import {
     calculateDistanceToPointForX,
     calculateDistanceToPointForY,
     adjustForMagneticNorth
 } from './positionModelHelpers';
+import { PHYSICS_CONSTANTS } from '../constants/globalConstants';
 import {
     LATITUDE_INDEX,
     LONGITUDE_INDEX,
@@ -17,7 +19,8 @@ import { distanceToPoint, radians_normalize } from '../math/circle';
 import {
     degreesToRadians,
     parseCoordinate,
-    parseElevation
+    parseElevation,
+    radiansToDegrees
 } from '../utilities/unitConverters';
 
 /**
@@ -99,17 +102,6 @@ export default class PositionModel {
         return this.init(coordinates);
     }
 
-    // TODO: This name should be changed to `get screenPosition()` to better represent its purpose
-    /**
-     * Current x, y position
-     *
-     * @property position
-     * @return {array}
-     */
-    get position() {
-        return this._calculateScreenPosition();
-    }
-
     /**
      * GPS coordinates in [latitude, longitude] order
      * For reverse order, see `PositionModel.gpsXY`
@@ -145,6 +137,16 @@ export default class PositionModel {
      */
     get magneticNorthInRadians() {
         return degreesToRadians(this.magnetic_north);
+    }
+
+    /**
+     * Relative position, in km offset from the airport
+     *
+     * @property relativePosition
+     * @return {array}
+     */
+    get relativePosition() {
+        return this._calculaterelativePosition();
     }
 
     /**
@@ -202,13 +204,36 @@ export default class PositionModel {
      * Returns a new `StaticPositionModel` a given bearing/distance from `this`
      *
      * @for PositionModel
-     * @method createStaticPositionFromBearingAndDistance
+     * @method generatePositionFromBearingAndDistance
      * @param bearing {number} magnetic bearing, in radians
      * @param distance {number} distance, in nautical miles
+     * @param isStatic {boolean} whether the returned position should be a `StaticPositionModel`
      * @return {StaticPositionModel}
      */
-    calculateCoordinatesWithBearingAndDistance(bearing, distance) {
-        // TODO: me
+    generatePositionFromBearingAndDistance(bearing, distance, /* optional */ isStatic) {
+        // FIXME: There may already be a method for this. if there isnt there should be. `position.gpsInRadians`
+        // convert GPS coordinates to radians
+        const fix = [
+            degreesToRadians(this.latitude),
+            degreesToRadians(this.longitude)
+        ];
+
+        const R = PHYSICS_CONSTANTS.EARTH_RADIUS_NM;
+        // TODO: abstract these two calculations to functions
+        const lat2 = radiansToDegrees(Math.asin(
+            Math.sin(fix[0]) * Math.cos(distance / R) + Math.cos(fix[0])
+            * Math.sin(distance / R) * Math.cos(bearing)
+        ));
+        const lon2 = radiansToDegrees(fix[1] + Math.atan2(
+            Math.sin(bearing) * Math.sin(distance / R) * Math.cos(fix[0]),
+            Math.cos(distance / R) - Math.sin(fix[0]) * Math.sin(lat2)
+        ));
+
+        if (isStatic) {
+            return new StaticPositionModel([lat2, lon2], this.reference_position, this.magnetic_north);
+        }
+
+        return new PositionModel([lat2, lon2], this.reference_position, this.magnetic_north);
     }
 
     // TODO: Rename this to imply that it accepts a `PositionModel`
@@ -263,15 +288,15 @@ export default class PositionModel {
     /**
      * Determine the `x` and `y` values of the `PositionModel`, used for drawing on the canvas
      * @for PositionModel
-     * @method _calculateScreenPosition
+     * @method _calculaterelativePosition
      * @private
      */
-    _calculateScreenPosition() {
+    _calculaterelativePosition() {
         if (!this._hasReferencePosition()) {
             return DEFAULT_SCREEN_POSITION;
         }
 
-        return PositionModel.calculatePosition(this.gps, this.reference_position, this.magnetic_north);
+        return PositionModel.calculateRelativePosition(this.gps, this.reference_position, this.magnetic_north);
     }
 }
 
@@ -287,7 +312,7 @@ export default class PositionModel {
  * @return {array}
  * @static
  */
-PositionModel.calculatePosition = (coordinates, referencePostion, magneticNorth) => {
+PositionModel.calculateRelativePosition = (coordinates, referencePostion, magneticNorth) => {
     if (!coordinates || !referencePostion || !_isNumber(magneticNorth)) {
         throw new TypeError('Invalid parameter. PositionModel.getPosition() requires coordinates, referencePostion ' +
             'and magneticNorth as parameters');
