@@ -1,5 +1,6 @@
 import _drop from 'lodash/drop';
 import _map from 'lodash/map';
+import _without from 'lodash/without';
 import RouteModel from '../../navigationLibrary/Route/RouteModel';
 import WaypointModel from './WaypointModel';
 import { extractFixnameFromHoldSegment } from '../../navigationLibrary/Route/routeStringFormatHelper';
@@ -239,13 +240,31 @@ export default class LegModel {
      * @return {number}
      */
     getProcedureTopAltitude() {
+        const isMaximum = true;
+
         if (!this._isProcedure) {
             return -1;
         }
 
-        const altitudeRestrictionList = _map(this.waypointCollection, (waypoint) => waypoint.altitudeRestriction);
+        return this._findMinOrMaxAltitudeInProcedure(isMaximum);
+    }
 
-        return Math.max(...altitudeRestrictionList);
+    /**
+     * Collects the `#altitudeRestriction` value from each waypoint
+     * in the `#waypointCollection`, then finds the lowest value
+     *
+     * @for LegModel
+     * @method getProcedureBottomAltitude
+     * @return {number}
+     */
+    getProcedureBottomAltitude() {
+        const isMaximum = false;
+
+        if (!this._isProcedure) {
+            return -1;
+        }
+
+        return this._findMinOrMaxAltitudeInProcedure(isMaximum);
     }
 
     /**
@@ -408,6 +427,28 @@ export default class LegModel {
         }
 
         return procedureType;
+    }
+
+    /**
+     * Finds the minimum or maximum value for `#altitudeRestriction` in the `#waypointCollection`
+     *
+     * @for LegModel
+     * @method _findMinOrMaxAltitudeInProcedure
+     * @param isMaximum {boolean}
+     * @return {number}
+     * @private
+     */
+    _findMinOrMaxAltitudeInProcedure(isMaximum = false) {
+        const altitudeRestrictionList = _map(this.waypointCollection, (waypoint) => waypoint.altitudeRestriction);
+
+        if (isMaximum) {
+            return Math.max(...altitudeRestrictionList);
+        }
+
+        // setting this value here so we run `_without`, which might not be performant, only when we need it
+        const positiveValueRestrictionList = _without(altitudeRestrictionList, -1);
+
+        return Math.min(...positiveValueRestrictionList);
     }
 
     // FIXME: refactor something somewhere so we don't have to do this! This is naughty!!

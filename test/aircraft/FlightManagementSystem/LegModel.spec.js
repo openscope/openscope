@@ -68,11 +68,43 @@ ava('.getProcedureTopAltitude() returns -1 if a leg when #_isProcedure is false'
     t.true(result === -1);
 });
 
+ava('.getProcedureTopAltitude() calls `._findMinOrMaxAltitudeInProcedure()`', (t) => {
+    const model = new LegModel(arrivalProcedureRouteSegmentMock, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture);
+    const _findMinOrMaxAltitudeInProcedureSpy = sinon.spy(model, '_findMinOrMaxAltitudeInProcedure');
+
+    model.getProcedureTopAltitude();
+
+    t.true(_findMinOrMaxAltitudeInProcedureSpy.calledWithExactly(true));
+});
+
 ava('.getProcedureTopAltitude() returns the largest altitudeRestriction value in the #waypointCollection when #_isProcedure is true', (t) => {
     const model = new LegModel(arrivalProcedureRouteSegmentMock, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture);
     const result = model.getProcedureTopAltitude();
 
     t.true(result === 24000);
+});
+
+ava('.getProcedureBottomAltitude() returns -1 if a leg when #_isProcedure is false', (t) => {
+    const model = new LegModel(directRouteSegmentMock, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture);
+    const result = model.getProcedureBottomAltitude();
+
+    t.true(result === -1);
+});
+
+ava('.getProcedureBottomAltitude() calls `._findMinOrMaxAltitudeInProcedure()`', (t) => {
+    const model = new LegModel(arrivalProcedureRouteSegmentMock, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture);
+    const _findMinOrMaxAltitudeInProcedureSpy = sinon.spy(model, '_findMinOrMaxAltitudeInProcedure');
+
+    model.getProcedureBottomAltitude();
+
+    t.true(_findMinOrMaxAltitudeInProcedureSpy.calledWithExactly(false));
+});
+
+ava('.getProcedureBottomAltitude() returns the largest altitudeRestriction value in the #waypointCollection when #_isProcedure is true', (t) => {
+    const model = new LegModel(arrivalProcedureRouteSegmentMock, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture);
+    const result = model.getProcedureBottomAltitude();
+
+    t.true(result === 8000);
 });
 
 ava('.hasWaypoint() returns false when a waypointName is not found within the #waypointCollection', (t) => {

@@ -26,14 +26,15 @@ import {
 const INVALID_VALUE = -1;
 
 /**
- *
+ * Symbol used to separate `directRouteSegments`
  *
  * @property DIRECT_ROUTE_SEGMENT_SEPARATOR
  * @type {string}
- * @default '..'
+ * @final
  */
 const DIRECT_ROUTE_SEGMENT_SEPARATOR = '..';
 
+// TODO: there should be much more here
 /**
  *
  *
