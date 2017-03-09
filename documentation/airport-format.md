@@ -6,8 +6,6 @@
     * [Property Descriptions](### Property Descriptions)
         * [Latitude, Longitude, Elevation](#### Latitude, Longitude, Elevation)
         * [ICAO and IATA identifiers](#### ICAO and IATA identifiers)
-        * [`spawnPatterns` Build Process](#### `spawnPatterns` Build Process)
-
 
 ## NOTICE
 
@@ -205,15 +203,15 @@ See the comments for information on the correct structure to use.
 * **runways** ― The runways usable by aircraft.
 * **sids** ― "Standard Instument Departure" procedures.
 * **stars** ― "Standard Terminal Arrival Route" procedures.
-* **spawnPatterns** ― Contains the parameters used to determine how and where aircraft are spawned into the simulation. (*see [`spawnPatterns` Build Process](#### `spawnPatterns` Build Process) for formatting*)
+* **spawnPatterns** ― Contains the parameters used to determine how and where aircraft are spawned into the simulation. (*see [spawnPatternReadme.md](documentation/spawnPatternReadme.md) for formatting*)
 * **maps** ― Markings on the scope that depict various characteristics of the airspace. When available, this will be an actual Radar Video Map used by the real-world facility.
 
 #### Latitude, Longitude, Elevation
 
 For `lat, lon, elev` values, these formats are acceptable:
-* [40.94684722, -76.61727778, "866ft"],
-* ["N40.94684722", "W76.61727778", "866ft"],
-* ["N40d56.811", "W076d37.037", "866ft"],
+* [40.94684722, -76.61727778, "866ft"]
+* ["N40.94684722", "W76.61727778", "866ft"]
+* ["N40d56.811", "W076d37.037", "866ft"]
 * ["N40d56m48.65", "W076d37m02.20", "866ft"]
 
 *Note: For `lat, lon` values, just omit the elevation.*
@@ -223,7 +221,3 @@ For `lat, lon, elev` values, these formats are acceptable:
 ICAO (the International Civil Aviation Organization) is an international aviation authority that sets safety and consistency standards that make worldwide travel more standardized. ICAO maintains many lists of things they assign their own identifiers (such as aircraft type designators, airport identifiers, etc). Wherever we have those identifiers stored, they will have the label "icao".
 
 IATA is another international aviation organization (like ICAO) which maintains their own set of identifiers. We include the IATA identifiers for airports in all airport `.json` files, though they are not currently used for anything.
-
-#### `spawnPatterns` Build Process
-
-See [spawnPatternReadme.md](src\assets\scripts\client\trafficGenerator\spawnPatternReadme.md).
