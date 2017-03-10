@@ -525,7 +525,17 @@ ava('.hasWaypoint() returns true if a waypoint does exist within the current fli
     t.true(fms.hasWaypoint('SUNST'));
 });
 
-ava.todo('.hasLegWithRouteString()');
+ava('.hasLegWithRouteString() returns false if a LegModel can not be found that matches a provided routeString', (t) => {
+    const fms = buildFmsMock(isComplexRoute);
+
+    t.false(fms.hasLegWithRouteString('abc'));
+});
+
+ava('.hasLegWithRouteString() returns true if a LegModel can be found that matches a provided routeString in any case', (t) => {
+    const fms = buildFmsMock(isComplexRoute);
+
+    t.true(fms.hasLegWithRouteString('coWbY'));
+});
 
 ava('.getTopAltitude() returns the top altitudeRestriction from all the waypoints', (t) => {
     const fms = buildFmsMock(isComplexRoute);
@@ -558,7 +568,20 @@ ava('._findLegAndWaypointIndexForWaypointName() returns an object with keys legI
     t.true(_isEqual(result, expectedResult));
 });
 
-ava.todo('._findLegIndexForProcedureType()');
+ava('._findLegIndexForProcedureType() returns -1 when a procedure type cannot be found', (t) => {
+    const fms = buildFmsMock(isComplexRoute);
+    const result = fms._findLegIndexForProcedureType('SID');
+
+    t.true(result === -1);
+});
+
+
+ava('._findLegIndexForProcedureType() returns an array index for a specific procedure type', (t) => {
+    const fms = buildFmsMock(isComplexRoute);
+    const result = fms._findLegIndexForProcedureType('STAR');
+
+    t.true(result === 2);
+});
 
 ava('._destroyLegCollection() clears the #legCollection', (t) => {
     const fms = buildFmsMock(isComplexRoute);
