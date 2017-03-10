@@ -39,6 +39,7 @@
 
 ### Features
 - Enumerate magic number in RunwayModel [#269](https://github.com/openscope/openscope/issues/269)
+- Updated the airport-format.md file [#184](https://github.com/openscope/openscope/issues/184)
 
 
 
