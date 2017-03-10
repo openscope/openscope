@@ -63,7 +63,7 @@ export default class RunwayModel extends BaseModel {
             const farSide = new StaticPositionModel(data.end[(end === 0) ? 1 : 0], this.airport.position, this.airport.position.magnetic_north);
 
             // TODO: `gps` and `elevation` are available from the `StaticPositionModel` and should be pulled from there
-            // instead of setting direct properties. If direct properties are needed, use getters isntead.
+            // instead of setting direct properties. If direct properties are needed, use getters instead.
             // GPS latitude and longitude position
             this.gps = [thisSide.latitude, thisSide.longitude];
 

@@ -1,21 +1,18 @@
-import _isEmpty from 'lodash/isEmpty';
-import _isNil from 'lodash/isNil';
 import _isNumber from 'lodash/isNumber';
 import _uniqueId from 'lodash/uniqueId';
-import StaticPositionModel from './StaticPositionModel';
 import {
+    adjustForMagneticNorth,
     calculateDistanceToPointForX,
     calculateDistanceToPointForY,
-    adjustForMagneticNorth
+    isValidGpsCoordinatePair
 } from './positionModelHelpers';
 import { PHYSICS_CONSTANTS } from '../constants/globalConstants';
 import {
-    LATITUDE_INDEX,
-    LONGITUDE_INDEX,
-    ELEVATION_INDEX,
-    DEFAULT_SCREEN_POSITION
+    DEFAULT_SCREEN_POSITION,
+    GPS_COORDINATE_INDEX,
+    RELATIVE_POSITION_OFFSET_INDEX
 } from '../constants/positionConstants';
-import { distanceToPoint, radians_normalize } from '../math/circle';
+import { distanceToPoint } from '../math/circle';
 import {
     degreesToRadians,
     parseCoordinate,
@@ -24,42 +21,31 @@ import {
 } from '../utilities/unitConverters';
 
 /**
- * A physical location on the Earth's surface
- *
- * properties:
- *   latitude - Latitude in decimal degrees
- *   longitude - Longitude in decimal degrees
- *   elevation - Elevation in feet
- *   reference_position - Position to use when calculating offsets
- *   x - Offset from reference position in km
- *   y - Offset from reference position in km
- *   position - Array containing the x,y pair
- *
  * @class Position
  */
 export default class PositionModel {
     /**
-     * coordinates may contain an optional elevation as a third element.
+     * Coordinates may contain an optional elevation as a third element.
      * It must be suffixed by either 'ft' or 'm' to indicate the units.
      *
      * Latitude and Longitude numbers may be one of the following forms:
-     *   Decimal degrees - 'N47.112388112'
-     *   Decimal minutes - 'N38d38.109808'
-     *   Decimal seconds - 'N58d27m12.138'
+     *   Decimal degrees - `47.112388112`
+     *   Decimal degrees - `'N47.112388112'`
+     *   Decimal minutes - `'N38d38.109808'`
+     *   Decimal seconds - `'N58d27m12.138'`
      *
      * @for PositionModel
      * @constructor
-     * @param coordinates {array}               Array containing offset pair or latitude/longitude pair
-     * @param reference {PositionModel|null}    Position to use for calculating offsets when lat/long given
-     * @param magnetic_north {number}           magnetic north direction
-     * @param mode {string}                     Set to 'GPS' to indicate you are inputting lat/long that should
-     *                                          be converted to positions
+     * @param coordinates {array<string|number>}    array in shape of [latitude, longitude]
+     * @param reference {StaticPositionModel}       position to use for calculating relative position
+     * @param magnetic_north {number}               magnetic declination (variation), in radians east
      */
-    constructor(coordinates = [], reference, magnetic_north = 0) {
-        if (_isEmpty(coordinates)) {
+    constructor(coordinates = [], reference = null, magnetic_north = 0) {
+        if (!isValidGpsCoordinatePair(coordinates)) {
             throw new TypeError('Invalid coordinates passed to PositionModel. Expected shape of ' +
                 `"[latitude, longitude]" but received "${coordinates}"`);
         }
+
         /**
          * @property _id
          * @type {string}
@@ -146,7 +132,29 @@ export default class PositionModel {
      * @return {array}
      */
     get relativePosition() {
-        return this._calculaterelativePosition();
+        return this._calculateRelativePosition();
+    }
+
+    /**
+     * Kilometers east (magnetic) of the reference position
+     *
+     * @for PositionModel
+     * @property x
+     * @type {number}
+     */
+    get x() {
+        return this.relativePosition[RELATIVE_POSITION_OFFSET_INDEX.LONGITUDINAL];
+    }
+
+    /**
+     * Kilometers north (magnetic) of the reference position
+     *
+     * @for PositionModel
+     * @property y
+     * @type {number}
+     */
+    get y() {
+        return this.relativePosition[RELATIVE_POSITION_OFFSET_INDEX.LATITUDINAL];
     }
 
     /**
@@ -154,29 +162,27 @@ export default class PositionModel {
      * @method init
      */
     init(coordinates) {
-        this.latitude = parseCoordinate(coordinates[LATITUDE_INDEX]);
-        this.longitude = parseCoordinate(coordinates[LONGITUDE_INDEX]);
+        this.latitude = parseCoordinate(coordinates[GPS_COORDINATE_INDEX.LATITUDE]);
+        this.longitude = parseCoordinate(coordinates[GPS_COORDINATE_INDEX.LONGITUDE]);
 
         // TODO: this is using coersion and shoudld be updated to be more explicit
-        if (coordinates[ELEVATION_INDEX] != null) {
-            this.elevation = parseElevation(coordinates[ELEVATION_INDEX]);
+        if (coordinates[GPS_COORDINATE_INDEX.ELEVATION] != null) {
+            this.elevation = parseElevation(coordinates[GPS_COORDINATE_INDEX.ELEVATION]);
         }
     }
 
-    // TODO: Rename this to imply that it accepts a `PositionModel`
     /**
      * Calculate the initial magnetic bearing from a given position to the position of `this`
      *
      * @for PositionModel
      * @method bearingFromPosition
-     * @param position {PositionModel} position we're comparing against
-     * @return {Number} bearing from `position` to `this`, in radians
+     * @param position {PositionModel|StaticPositionModel} position we're comparing against
+     * @return {Number} magnetic bearing from `position` to `this`, in radians
      */
     bearingFromPosition(position) {
-        return radians_normalize(this.bearingToPosition(position) + Math.PI);
+        return position.bearingToPosition(this);
     }
 
-    // TODO: Rename this to imply that it accepts a `PositionModel`
     /**
      * Calculate the initial magnetic bearing to a given position from the position of `this`
      * Note: This method uses great circle math to determine the bearing. It is very accurate, but
@@ -185,8 +191,8 @@ export default class PositionModel {
      *
      * @for PositionModel
      * @method bearingToPosition
-     * @param position {PositionModel} position we're comparing against
-     * @return {Number} bearing from `this` to `position`, in radians
+     * @param position {PositionModel|StaticPositionModel} position we're comparing against
+     * @return {Number} magnetic bearing from `this` to `position`, in radians
      */
     bearingToPosition(position) {
         const φ1 = degreesToRadians(this.latitude);
@@ -230,23 +236,22 @@ export default class PositionModel {
         ));
 
         if (isStatic) {
-            return new StaticPositionModel([lat2, lon2], this.reference_position, this.magnetic_north);
+            // return new StaticPositionModel([lat2, lon2], this.reference_position, this.magnetic_north);
         }
 
         return new PositionModel([lat2, lon2], this.reference_position, this.magnetic_north);
     }
 
-    // TODO: Rename this to imply that it accepts a `PositionModel`
     /**
      * Get the distance from `this` to a given position
      * Note: This method is not accurate for long distances, due its simpleton 2D vector math
      *
      * @for PositionModel
      * @method distanceTo
-     * @param position {PositionModel} position we're comparing against
+     * @param position {PositionModel|StaticPositionModel} position we're comparing against
      * @return {Number} distance to `position`, in (units???)
      */
-    distanceTo(position) {
+    distanceToPosition(position) {
         return distanceToPoint(
             this.latitude,
             this.longitude,
@@ -260,43 +265,45 @@ export default class PositionModel {
      *
      * @for PositionModel
      * @method setCoordinates
-     * @param newCoordinates {Array<number>} [latitude, longitude]
+     * @param gpsCoordinates {Array<number>} [latitude, longitude]
      */
-    setCoordinates(newCoordinates) {
-        if (_isNil(newCoordinates) || newCoordinates.length !== 2 ||
-            typeof newCoordinates[0] !== 'number' || typeof newCoordinates[1] !== 'number'
-        ) {
+    setCoordinates(gpsCoordinates) {
+        if (!isValidGpsCoordinatePair(gpsCoordinates)) {
             return new TypeError('Expected valid GPS coordinates to be passed to Position.setCoordinates, ' +
-                `but received ${newCoordinates}`);
+                `but received ${gpsCoordinates}`);
         }
 
-        this.latitude = newCoordinates[0];
-        this.longitude = newCoordinates[1];
-    }
-
-    /**
-     * Checks whether or not this `PositionModel` has a reference `PositionModel`
-     * Without the reference position, the rotation due to magnetic variation will not be applied
-     * @for PositionModel
-     * @method _hasReferencePosition
-     * @return {Boolean} whether this position is based on a reference position
-     */
-    _hasReferencePosition() {
-        return this.reference_position !== null;
+        this.latitude = gpsCoordinates[GPS_COORDINATE_INDEX.LATITUDE];
+        this.longitude = gpsCoordinates[GPS_COORDINATE_INDEX.LONGITUDE];
     }
 
     /**
      * Determine the `x` and `y` values of the `PositionModel`, used for drawing on the canvas
+     *
      * @for PositionModel
-     * @method _calculaterelativePosition
+     * @method _calculateRelativePosition
+     * @return {array<number>}
      * @private
      */
-    _calculaterelativePosition() {
+    _calculateRelativePosition() {
         if (!this._hasReferencePosition()) {
             return DEFAULT_SCREEN_POSITION;
         }
 
         return PositionModel.calculateRelativePosition(this.gps, this.reference_position, this.magnetic_north);
+    }
+
+    /**
+     * Checks whether or not this `PositionModel` has a reference `PositionModel`
+     * Without the reference position, the rotation due to magnetic variation will not be applied
+     *
+     * @for PositionModel
+     * @method _hasReferencePosition
+     * @return {Boolean} whether this position is based on a reference position
+     * @private
+     */
+    _hasReferencePosition() {
+        return this.reference_position !== null;
     }
 }
 
@@ -307,7 +314,7 @@ export default class PositionModel {
  *
  * @function getPosition
  * @param coordinates {array<string>}
- * @param referencePostion {PositionModel|null}
+ * @param referencePostion {PositionModel|StaticPositionModel|null}
  * @param magneticNorth {number}
  * @return {array}
  * @static
@@ -318,8 +325,8 @@ PositionModel.calculateRelativePosition = (coordinates, referencePostion, magnet
             'and magneticNorth as parameters');
     }
 
-    const latitude = parseCoordinate(coordinates[LATITUDE_INDEX]);
-    const longitude = parseCoordinate(coordinates[LONGITUDE_INDEX]);
+    const latitude = parseCoordinate(coordinates[GPS_COORDINATE_INDEX.LATITUDE]);
+    const longitude = parseCoordinate(coordinates[GPS_COORDINATE_INDEX.LONGITUDE]);
 
     const canvasPositionX = calculateDistanceToPointForX(
         referencePostion,

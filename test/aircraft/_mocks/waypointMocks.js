@@ -1,6 +1,5 @@
 import { SNORA_STATIC_POSITION_MODEL } from '../../base/_mocks/positionMocks';
 
-
 export const MINIMAL_WAYPOINT_MOCK = 'klas';
 
 export const BASIC_WAYPOINT_MOCK = {

@@ -674,7 +674,7 @@ export default class ConvasController {
 
                     // FIXME: this is duplicated in the if block above. need to consolidate
                     const fixName = fixList[j].replace('*', '');
-                    let fix = this._navigationLibrary.getFixPositionCoordinates(fixName);
+                    let fix = this._navigationLibrary.getFixRelativePosition(fixName);
 
                     if (!fix) {
                         log(`Unable to draw line to '${fixList[j]}' because its position is not defined!`, LOG.WARNING);

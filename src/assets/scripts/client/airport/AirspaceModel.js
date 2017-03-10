@@ -111,11 +111,13 @@ export default class AirspaceModel extends BaseModel {
             return new StaticPositionModel(poly, airportPosition, magneticNorth);
         });
 
+        // TODO: Though its reusability is not real likely, this might as well be made into an external helper
+        // shape shouldn't fully close; will draw with 'cc.closepath()' so we remove the last item
         const firstIndex = 0;
         const lastIndex = polyPositionModels.length - 1;
-
-        if (_isEqual(polyPositionModels[firstIndex].relativePosition, polyPositionModels[lastIndex].relativePosition)) {
-            // shape shouldn't fully close; will draw with 'cc.closepath()' so we remove the last item
+        const firstIndexRelativePosition = polyPositionModels[firstIndex].relativePosition;
+        const lastIndexRelativePosition = polyPositionModels[lastIndex].relativePosition;
+        if (_isEqual(firstIndexRelativePosition, lastIndexRelativePosition)) {
             polyPositionModels.pop();
         }
 

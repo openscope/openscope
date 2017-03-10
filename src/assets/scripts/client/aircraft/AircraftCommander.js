@@ -294,7 +294,7 @@ export default class AircraftCommander {
         let inboundHdg = aircraft.heading;
 
         if (holdFix) {
-            holdPosition = this._navigationLibrary.findFixByName(holdFix).position;
+            holdPosition = this._navigationLibrary.getFixRelativePosition(holdFix);
             inboundHdg = aircraft.position.bearingToPosition(holdPosition);
         }
 

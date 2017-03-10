@@ -82,11 +82,11 @@ class FixCollection extends BaseCollection {
 
     /**
      * @for FixCollection
-     * @method getFixPositionCoordinates
+     * @method getFixRelativePosition
      * @param fixName {string}
      * @return {array<number>}
      */
-    getFixPositionCoordinates(fixName) {
+    getFixRelativePosition(fixName) {
         const fixModel = this.findFixByName(fixName);
 
         if (!fixModel) {

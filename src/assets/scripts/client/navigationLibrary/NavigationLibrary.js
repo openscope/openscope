@@ -146,12 +146,12 @@ export default class NavigationLibrary {
      * Fascade Method
      *
      * @for NavigationLibrary
-     * @Method getFixPositionCoordinates
+     * @method getFixRelativePosition
      * @param fixName {string}
      * @return {array<number>}
      */
-    getFixPositionCoordinates(fixName) {
-        return FixCollection.getFixPositionCoordinates(fixName);
+    getFixRelativePosition(fixName) {
+        return FixCollection.getFixRelativePosition(fixName);
     }
 
     /**

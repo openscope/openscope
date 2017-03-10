@@ -118,7 +118,7 @@ export const HOLD_WAYPOINT_MOCK = {
     speedRestriction: -1
 };
 
-export const HOLD_AT_PRESENT_LOCATION = {
+export const HOLD_AT_PRESENT_LOCATION_MOCK = {
     turnDirection: 'left',
     legLength: '3min',
     name: 'GPS',

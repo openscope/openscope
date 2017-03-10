@@ -37,19 +37,25 @@ export const REGEX = {
 };
 
 /**
+ * A collection of constant values used in physics calculations
+ *
  * @property PHYSICS_CONSTANTS
  * @type {Object}
  * @final
  */
 export const PHYSICS_CONSTANTS = {
     /**
-     * @property
+     * Acceleration due to force of gravity, in m/s
+     *
+     * @property GRAVITATIONAL_MAGNITUDE
      * @type {number}
      * @final
      */
     GRAVITATIONAL_MAGNITUDE: 9.81,
 
     /**
+     * Average radius of simplified earth spheroid, in nautical miles
+     *
      * @property EARTH_RADIUS_NM
      * @type {number}
      * @final

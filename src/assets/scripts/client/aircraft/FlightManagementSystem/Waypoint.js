@@ -121,7 +121,7 @@ export default class Waypoint {
         if (data.fix) {
             this.navmode = WAYPOINT_NAV_MODE.FIX;
             this.fix = data.fix;
-            this.location = FixCollection.getFixPositionCoordinates(data.fix);
+            this.location = FixCollection.getFixRelativePosition(data.fix);
         }
 
         this.extractFixRestrictions(data);

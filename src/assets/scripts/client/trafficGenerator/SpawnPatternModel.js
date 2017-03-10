@@ -225,8 +225,8 @@ export default class SpawnPatternModel extends BaseModel {
          * Initial position of a spawning aircraft
          *
          * @property position
-         * @type {array}
-         * @default {null}
+         * @type {StaticPositionModel}
+         * @default null
          */
         this.position = null;
 

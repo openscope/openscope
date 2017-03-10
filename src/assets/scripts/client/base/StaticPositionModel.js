@@ -1,28 +1,47 @@
 import PositionModel from './PositionModel';
-import { DEFAULT_SCREEN_POSITION } from '../constants/positionConstants';
+import {
+    DEFAULT_SCREEN_POSITION,
+    RELATIVE_POSITION_OFFSET_INDEX
+} from '../constants/positionConstants';
 
 /**
- * Calculates and permanently stores the screen position (x, y) as a property
+ * Like a PositionModel, but calculates once and PERMANANTLY stores the relative position [x, y] as a property
  *
  * @class StaticPositionModel
  * @extends PositionModel
  */
 export default class StaticPositionModel extends PositionModel {
-    constructor(coordinates = [], reference, magnetic_north = 0) {
+    /**
+     * Coordinates may contain an optional elevation as a third element.
+     * It must be suffixed by either 'ft' or 'm' to indicate the units.
+     *
+     * Latitude and Longitude numbers may be one of the following forms:
+     *   Decimal degrees - `47.112388112`
+     *   Decimal degrees - `'N47.112388112'`
+     *   Decimal minutes - `'N38d38.109808'`
+     *   Decimal seconds - `'N58d27m12.138'`
+     *
+     * @for StaticPositionModel
+     * @constructor
+     * @param coordinates {array<string|number>}    array in shape of [latitude, longitude]
+     * @param reference {StaticPositionModel}       position to use for calculating relative position
+     * @param magnetic_north {number}               magnetic declination (variation), in radians east
+     */
+    constructor(coordinates = [], reference = null, magnetic_north = 0) {
         super(coordinates, reference, magnetic_north);
-        /**
-         * @property x
-         * @type {number}
-         * @default 0
-         */
-        this.x = 0;
 
         /**
-         * @property y
-         * @type {number}
-         * @default 0
+         * Description of a location, expressed in 'kilometers' north and east of a given
+         * reference position on the screen (which is almost always the airport). Note that
+         * this location is offset from the reference position not in alignment with TRUE
+         * north, but rather MAGNETIC north (which is the alignment of the scope).
+         *
+         * @for StaticPositionModel
+         * @property _relativePosition
+         * @type {array<number>} [kilometersNorth, kilometersEast]
+         * @private
          */
-        this.y = 0;
+        this._relativePosition = DEFAULT_SCREEN_POSITION;
 
         this._initializeRelativePosition();
     }
@@ -30,25 +49,39 @@ export default class StaticPositionModel extends PositionModel {
     /**
      * Relative position, in km offset from the airport
      *
+     * @for StaticPositionModel
      * @property relativePosition
-     * @return {array}
+     * @return {array<number>} [kilometersNorth, kilometersEast]
      */
     get relativePosition() {
-        return [this.x, this.y];
+        return this._relativePosition;
     }
 
     /**
-     * Return a copy of this `StaticPositionModel` as a `PositionModel`
+     * Kilometers east (magnetic) of the reference position
      *
      * @for StaticPositionModel
-     * @method toPositionModel
-     * @return {PositionModel}
+     * @property x
+     * @type {number}
      */
-    toPositionModel() {
-        return new PositionModel(this.gps, this.reference_position, this.magnetic_north);
+    get x() {
+        return this._relativePosition[RELATIVE_POSITION_OFFSET_INDEX.LONGITUDINAL];
     }
 
     /**
+     * Kilometers north (magnetic) of the reference position
+     *
+     * @for StaticPositionModel
+     * @property y
+     * @type {number}
+     */
+    get y() {
+        return this._relativePosition[RELATIVE_POSITION_OFFSET_INDEX.LATITUDINAL];
+    }
+
+    /**
+     * Calculate the relative position and store it in the property
+     *
      * @for PositionModel
      * @method _initializeRelativePosition
      */
@@ -57,9 +90,7 @@ export default class StaticPositionModel extends PositionModel {
             return DEFAULT_SCREEN_POSITION;
         }
 
-        const [x, y] = PositionModel.calculateRelativePosition(this.gps, this.reference_position, this.magnetic_north);
-
-        this.x = x;
-        this.y = y;
+        this._relativePosition = PositionModel.calculateRelativePosition(
+            this.gps, this.reference_position, this.magnetic_north);
     }
 }

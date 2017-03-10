@@ -7,7 +7,7 @@ import LegModel from '../../../src/assets/scripts/client/aircraft/FlightManageme
 import WaypointModel from '../../../src/assets/scripts/client/aircraft/FlightManagementSystem/WaypointModel';
 import { navigationLibraryFixture } from '../../fixtures/navigationLibraryFixtures';
 
-import { HOLD_AT_PRESENT_LOCATION } from '../_mocks/aircraftMocks';
+import { HOLD_AT_PRESENT_LOCATION_MOCK } from '../_mocks/aircraftMocks';
 
 const holdRouteSegmentMock = '@COWBY';
 const directRouteSegmentMock = 'COWBY';
@@ -26,7 +26,7 @@ ava('does not throw when passed valid parameters', (t) => {
     t.notThrows(() => new LegModel(arrivalProcedureRouteSegmentMock, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture));
     t.notThrows(() => new LegModel(directRouteSegmentMock, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture));
     t.notThrows(() => new LegModel(holdRouteSegmentMock, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture));
-    t.notThrows(() => new LegModel(HOLD_AT_PRESENT_LOCATION.name, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture, HOLD_AT_PRESENT_LOCATION));
+    t.notThrows(() => new LegModel(HOLD_AT_PRESENT_LOCATION_MOCK.name, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture, HOLD_AT_PRESENT_LOCATION_MOCK));
 });
 
 ava('#currentWaypoint returns the first item in #waypointCollection', (t) => {
@@ -144,8 +144,8 @@ ava('._buildWaypointForHoldingPattern() returns an array with a single instance 
 });
 
 ava('._buildWaypointForHoldingPatternAtPosition() returns an array with a single instance of a WaypointModel with hold properties for GPS', (t) => {
-    const model = new LegModel(HOLD_AT_PRESENT_LOCATION.name, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture, HOLD_AT_PRESENT_LOCATION);
-    const result = model._buildWaypointForHoldingPatternAtPosition(HOLD_AT_PRESENT_LOCATION);
+    const model = new LegModel(HOLD_AT_PRESENT_LOCATION_MOCK.name, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture, HOLD_AT_PRESENT_LOCATION_MOCK);
+    const result = model._buildWaypointForHoldingPatternAtPosition(HOLD_AT_PRESENT_LOCATION_MOCK);
 
     t.true(_isArray(result));
     t.true(result[0] instanceof WaypointModel);
@@ -158,9 +158,9 @@ ava('._buildWaypointForHoldingPatternAtPosition() returns an array with a single
 });
 
 ava('._buildWaypointForHoldingPatternAtPosition() returns the same position for a hold Waypoint at a fix vs position', (t) => {
-    const model = new LegModel(HOLD_AT_PRESENT_LOCATION.name, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture, HOLD_AT_PRESENT_LOCATION);
+    const model = new LegModel(HOLD_AT_PRESENT_LOCATION_MOCK.name, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture, HOLD_AT_PRESENT_LOCATION_MOCK);
     const fixResult = model._buildWaypointForHoldingPattern(holdRouteSegmentMock);
-    const positionalHoldingProps = Object.assign(HOLD_AT_PRESENT_LOCATION, { position: cowbyFixFixture.position });
+    const positionalHoldingProps = Object.assign(HOLD_AT_PRESENT_LOCATION_MOCK, { position: cowbyFixFixture.position });
     const positionResult = model._buildWaypointForHoldingPatternAtPosition(positionalHoldingProps);
 
     t.true(_isEqual(fixResult[0].position.relativePosition, positionResult[0].position.relativePosition));

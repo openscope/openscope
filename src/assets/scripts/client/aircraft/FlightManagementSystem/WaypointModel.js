@@ -120,7 +120,7 @@ export default class WaypointModel {
      * Return the waypoint's `StaticPositionModel`
      *
      * @property position
-     * @return {array<number>}
+     * @return {StaticPositionModel}
      */
     get position() {
         return this._position;

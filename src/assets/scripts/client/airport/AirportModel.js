@@ -256,10 +256,14 @@ export default class AirportModel {
             const lines = map;
 
             _forEach(lines, (line) => {
-                const start = PositionModel.calculateRelativePosition([line[0], line[1]], this.position.relativePosition, this.magnetic_north);
-                const end = PositionModel.calculateRelativePosition([line[2], line[3]], this.position.relativePosition, this.magnetic_north);
+                const airportPositionAndDeclination = [this.relativePosition, this.magnetic_north];
+                const lineStartCoordinates = [line[0], line[1]];
+                const lineEndCoordinates = [line[2], line[3]];
+                const startPosition = PositionModel.calculateRelativePosition(lineStartCoordinates, ...airportPositionAndDeclination);
+                const endPosition = PositionModel.calculateRelativePosition(lineEndCoordinates, ...airportPositionAndDeclination);
+                const lineVerticesRelativePositions = [...startPosition, ...endPosition];
 
-                this.maps[key].push([start[0], start[1], end[0], end[1]]);
+                this.maps[key].push(...lineVerticesRelativePositions);
             });
         });
     }
@@ -282,6 +286,7 @@ export default class AirportModel {
             }
 
             obj.height = parseElevation(area.height);
+            // TODO: Remove _map, move relativePosition value to const, then return that const
             obj.coordinates = $.map(area.coordinates, (v) => {
                 return [(PositionModel.calculateRelativePosition(v, this.position, this.magnetic_north))];
             });
