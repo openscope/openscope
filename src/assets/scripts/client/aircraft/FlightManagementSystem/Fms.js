@@ -5,6 +5,7 @@ import _isEmpty from 'lodash/isEmpty';
 import _isNil from 'lodash/isNil';
 import _isObject from 'lodash/isObject';
 import _map from 'lodash/map';
+import _without from 'lodash/without';
 import LegModel from './LegModel';
 import RouteModel from '../../navigationLibrary/Route/RouteModel';
 import {
@@ -234,6 +235,24 @@ export default class Fms {
         const maxAltitudeFromLegs = _map(this.legCollection, (leg) => leg.getProcedureTopAltitude());
 
         return Math.max(...maxAltitudeFromLegs);
+    }
+
+    /**
+     * Collects the `.getProcedureBottomAltitude()` value from each `LegModel`
+     * in the `#legCollection`, then finds and returns the lowest value
+     *
+     * @for LegModel
+     * @method getBottomAltitude
+     * @return {number}
+     */
+    getBottomAltitude() {
+        const valueToExclude = -1;
+        const minAltitudeFromLegs = _without(
+            _map(this.legCollection, (leg) => leg.getProcedureTopAltitude()),
+            valueToExclude
+        );
+
+        return Math.min(...minAltitudeFromLegs);
     }
 
     /**

@@ -534,8 +534,12 @@ ava('.getTopAltitude() returns the top altitudeRestriction from all the waypoint
     t.true(result === 24000);
 });
 
-ava.todo('.getBottomAltitude');         // lowest altitude of all fix restrictions
-ava.todo('.getProcedureBottomAltitude');// lowest altitude of all fix restrictions within a given procedure's Leg
+ava('.getBottomAltitude() returns the bottom altitudeRestriction from all the waypoints', (t) => {
+    const fms = buildFmsMock(isComplexRoute);
+    const result = fms.getBottomAltitude();
+
+    t.true(result === 24000);
+});
 
 ava('._buildLegCollection() returns an array of LegModels', (t) => {
     const fms = buildFmsMock(isComplexRoute);
