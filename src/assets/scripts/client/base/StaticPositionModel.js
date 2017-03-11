@@ -1,16 +1,16 @@
-import PositionModel from './PositionModel';
+import DynamicPositionModel from './DynamicPositionModel';
 import {
     DEFAULT_SCREEN_POSITION,
     RELATIVE_POSITION_OFFSET_INDEX
 } from '../constants/positionConstants';
 
 /**
- * Like a PositionModel, but calculates once and PERMANANTLY stores the relative position [x, y] as a property
+ * Like a DynamicPositionModel, but calculates once and PERMANANTLY stores the relative position [x, y] as a property
  *
  * @class StaticPositionModel
- * @extends PositionModel
+ * @extends DynamicPositionModel
  */
-export default class StaticPositionModel extends PositionModel {
+export default class StaticPositionModel extends DynamicPositionModel {
     /**
      * Coordinates may contain an optional elevation as a third element.
      * It must be suffixed by either 'ft' or 'm' to indicate the units.
@@ -82,7 +82,7 @@ export default class StaticPositionModel extends PositionModel {
     /**
      * Calculate the relative position and store it in the property
      *
-     * @for PositionModel
+     * @for DynamicPositionModel
      * @method _initializeRelativePosition
      */
     _initializeRelativePosition() {
@@ -90,7 +90,7 @@ export default class StaticPositionModel extends PositionModel {
             return DEFAULT_SCREEN_POSITION;
         }
 
-        this._relativePosition = PositionModel.calculateRelativePosition(
+        this._relativePosition = DynamicPositionModel.calculateRelativePosition(
             this.gps, this.reference_position, this.magnetic_north);
     }
 }

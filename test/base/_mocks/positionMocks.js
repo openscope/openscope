@@ -1,4 +1,4 @@
-import PositionModel from '../../../src/assets/scripts/client/base/PositionModel';
+import DynamicPositionModel from '../../../src/assets/scripts/client/base/DynamicPositionModel';
 import StaticPositionModel from '../../../src/assets/scripts/client/base/StaticPositionModel';
 import { airportModelFixture } from '../../fixtures/airportFixtures';
 
@@ -6,7 +6,7 @@ export const GPS_COORDINATES_MOCK = [35.404050, -97.619943];
 
 export const MAGNETIC_NORTH_MOCK = -8.2;
 
-export const POSITION_MODEL_MOCK = new PositionModel(GPS_COORDINATES_MOCK, airportModelFixture.position, MAGNETIC_NORTH_MOCK);
+export const POSITION_MODEL_MOCK = new DynamicPositionModel(GPS_COORDINATES_MOCK, airportModelFixture.position, MAGNETIC_NORTH_MOCK);
 
 export const STATIC_POSITION_MODEL_MOCK = new StaticPositionModel(GPS_COORDINATES_MOCK, airportModelFixture.position, MAGNETIC_NORTH_MOCK);
 

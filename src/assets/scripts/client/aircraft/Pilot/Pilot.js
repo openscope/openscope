@@ -575,7 +575,7 @@ export default class Pilot {
      *                                                   holding pattern.
      * @param fixName {string|null}                      name of the fix to hold at, only `null` if holding at
      *                                                   current position
-     * @param holdPosition {PositionModel}               StaticPositionModel of the position to hold over
+     * @param holdPosition {StaticPositionModel}         StaticPositionModel of the position to hold over
      * @return {Array} [success of operation, readback]
      */
     initiateHoldingPattern(

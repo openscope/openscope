@@ -24,7 +24,7 @@ class FixCollection extends BaseCollection {
      * @for FixCollection
      * @method addItems
      * @param fixList {object}
-     * @param referencePosition {PositionModel}
+     * @param referencePosition {StaticPositionModel}
      */
     addItems(fixList, referencePosition) {
         if (this.length !== 0) {
@@ -121,7 +121,7 @@ class FixCollection extends BaseCollection {
      * @for FixCollection
      * @method _buildFixModelsFromList
      * @param fixList {object}
-     * @param referencePosition {PositionModel}
+     * @param referencePosition {StaticPositionModel}
      * @private
      */
     _buildFixModelsFromList(fixList, referencePosition) {

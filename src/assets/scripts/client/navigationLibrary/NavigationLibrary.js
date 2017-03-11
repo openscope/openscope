@@ -261,13 +261,15 @@ export default class NavigationLibrary {
      * `#referencePosition` or `#magnetic_north`.
      *
      * @for NavigationLibrary
-     * @method generatePositionModelForLatLong
+     * @method generateDynamicPositionModelForLatLong
      * @param latLong {array<number>}
-     * @return positionModel {StaticPositionModel}
+     * @return staticPositionModel {StaticPositionModel}
      */
-    generatePositionModelForLatLong(latLong) {
-        const positionModel = new StaticPositionModel(latLong, this._referencePosition, this._referencePosition.magnetic_north);
+    generateStaticPositionModelForLatLong(latLong) {
+        const staticPositionModel = new StaticPositionModel(latLong,
+            this._referencePosition, this._referencePosition.magnetic_north
+        );
 
-        return positionModel;
+        return staticPositionModel;
     }
 }

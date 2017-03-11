@@ -1,7 +1,7 @@
 import _isNil from 'lodash/isNil';
 import { distanceToPoint } from '../math/circle';
 import { REGEX } from '../constants/globalConstants';
-import PositionModel from './PositionModel';
+import DynamicPositionModel from './DynamicPositionModel';
 import StaticPositionModel from './StaticPositionModel';
 
 /**
@@ -14,7 +14,7 @@ export const hasCardinalDirectionInCoordinate = (coordinate) => REGEX.COMPASS_DI
 // TODO: Are these two functions really needed to be separate?
 /**
  * @function calculateDistanceToPointForX
- * @param referencePostion {PositionModel}
+ * @param referencePostion {StaticPositionModel}
  * @param latitude {number}
  * @param longitude {number}
  * @return x {number}
@@ -39,7 +39,7 @@ export const calculateDistanceToPointForX = (referencePostion, latitude, longitu
  *
  *
  * @function calculateDistanceToPointForY
- * @param referencePostion {PositionModel}
+ * @param referencePostion {StaticPositionModel}
  * @param latitude {number}
  * @param longitude {number}
  * @return y {number}
@@ -83,25 +83,25 @@ export const adjustForMagneticNorth = (originalX, originalY, magneticNorth) => {
 };
 
 /**
- * Accepts a `StaticPositionModel` and returns a `PositionModel` with the same location
+ * Accepts a `StaticPositionModel` and returns a `DynamicPositionModel` with the same location
  *
  * @function convertStaticPositionToDynamic
- * @param staticPositionModel {staticPositionModel}
- * @return {PositionModel}
+ * @param StaticPositionModel {StaticPositionModel}
+ * @return {DynamicPositionModel}
  */
-export const convertStaticPositionToDynamic = (staticPositionModel) => {
-    const dyanmicPositionModel = new PositionModel(staticPositionModel.gps,
-        staticPositionModel.referencePostion, staticPositionModel.magnetic_north
+export const convertStaticPositionToDynamic = (StaticPositionModel) => {
+    const dynamicPositionModel = new DynamicPositionModel(StaticPositionModel.gps,
+        StaticPositionModel.referencePostion, StaticPositionModel.magnetic_north
     );
 
-    return dyanmicPositionModel;
+    return dynamicPositionModel;
 };
 
 /**
- * Accepts a `PositionModel` and returns a `StaticPositionModel` with the same location
+ * Accepts a `DynamicPositionModel` and returns a `StaticPositionModel` with the same location
  *
  * @function convertDynamicPositionToStatic
- * @param dynamicPositionModel {PositionModel}
+ * @param dynamicPositionModel {DynamicPositionModel}
  * @return {StaticPositionModel}
  */
 export const convertDynamicPositionToStatic = (dynamicPositionModel) => {

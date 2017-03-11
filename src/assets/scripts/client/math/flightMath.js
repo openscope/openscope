@@ -78,7 +78,7 @@ export const getOffset = (aircraft, target, headingThruTarget = null) => {
     return offset;
 };
 
-// TODO: This has been replaced by `PositionModel.generatePositionFromBearingAndDistance()`.
+// TODO: This has been replaced by `DynamicPositionModel.generatePositionFromBearingAndDistance()`.
 // Please replace all usages of this function with that, and then delete this helper function.
 /**
  * Get new position by fix-radial-distance method

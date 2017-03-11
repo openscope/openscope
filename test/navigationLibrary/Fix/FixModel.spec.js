@@ -2,7 +2,7 @@ import ava from 'ava';
 import _isArray from 'lodash/isArray';
 
 import FixModel from '../../../src/assets/scripts/client/navigationLibrary/Fix/FixModel';
-import PositionModel from '../../../src/assets/scripts/client/base/PositionModel';
+import DynamicPositionModel from '../../../src/assets/scripts/client/base/DynamicPositionModel';
 import WaypointModel from '../../../src/assets/scripts/client/aircraft/FlightManagementSystem/WaypointModel';
 
 import { airportPositionFixtureKSFO } from '../../fixtures/airportFixtures';
@@ -47,7 +47,7 @@ ava('accepts a `fixName`, an array `fixCoordinate` and an `airportPosition` as i
     const model = new FixModel(FIXNAME_MOCK, FIX_COORDINATE_MOCK, airportPositionFixtureKSFO);
 
     t.true(model.name === FIXNAME_MOCK);
-    t.true(model._fixPosition instanceof PositionModel);
+    t.true(model._fixPosition instanceof DynamicPositionModel);
 });
 
 ava('.init() sets name in upperCase', t => {
@@ -58,11 +58,11 @@ ava('.init() sets name in upperCase', t => {
     t.true(model.name === 'U443RCAS3');
 });
 
-ava('.clonePosition() returns a PositionModel with the position information of the FixModel', t => {
+ava('.clonePosition() returns a DynamicPositionModel with the position information of the FixModel', t => {
     const model = new FixModel(FIXNAME_MOCK, FIX_COORDINATE_MOCK, airportPositionFixtureKSFO);
     const result = model.clonePosition();
 
-    t.true(result instanceof PositionModel);
+    t.true(result instanceof DynamicPositionModel);
     t.true(result.latitude === result.latitude);
     t.true(result.longitude === result.longitude);
 });

@@ -23,7 +23,7 @@ import {
 /**
  * @class Position
  */
-export default class PositionModel {
+export default class DynamicPositionModel {
     /**
      * Coordinates may contain an optional elevation as a third element.
      * It must be suffixed by either 'ft' or 'm' to indicate the units.
@@ -34,7 +34,7 @@ export default class PositionModel {
      *   Decimal minutes - `'N38d38.109808'`
      *   Decimal seconds - `'N58d27m12.138'`
      *
-     * @for PositionModel
+     * @for DynamicPositionModel
      * @constructor
      * @param coordinates {array<string|number>}    array in shape of [latitude, longitude]
      * @param reference {StaticPositionModel}       position to use for calculating relative position
@@ -42,7 +42,7 @@ export default class PositionModel {
      */
     constructor(coordinates = [], reference = null, magnetic_north = 0) {
         if (!isValidGpsCoordinatePair(coordinates)) {
-            throw new TypeError('Invalid coordinates passed to PositionModel. Expected shape of ' +
+            throw new TypeError('Invalid coordinates passed to DynamicPositionModel. Expected shape of ' +
                 `"[latitude, longitude]" but received "${coordinates}"`);
         }
 
@@ -75,7 +75,7 @@ export default class PositionModel {
 
         /**
          * @property reference_position
-         * @type {PositionModel|null}
+         * @type {DynamicPositionModel|null}
          */
         this.reference_position = reference;
 
@@ -85,12 +85,12 @@ export default class PositionModel {
          */
         this.magnetic_north = magnetic_north;
 
-        return this.init(coordinates);
+        this.init(coordinates);
     }
 
     /**
      * GPS coordinates in [latitude, longitude] order
-     * For reverse order, see `PositionModel.gpsXY`
+     * For reverse order, see `DynamicPositionModel.gpsXY`
      * @property gps
      * @return {array}
      */
@@ -103,7 +103,7 @@ export default class PositionModel {
 
     /**
      * GPS coordinates in [x,y] order
-     * For reverse order, see `PositionModel.gps`
+     * For reverse order, see `DynamicPositionModel.gps`
      * @property gpsXY
      * @return {array}
      */
@@ -138,7 +138,7 @@ export default class PositionModel {
     /**
      * Kilometers east (magnetic) of the reference position
      *
-     * @for PositionModel
+     * @for DynamicPositionModel
      * @property x
      * @type {number}
      */
@@ -149,7 +149,7 @@ export default class PositionModel {
     /**
      * Kilometers north (magnetic) of the reference position
      *
-     * @for PositionModel
+     * @for DynamicPositionModel
      * @property y
      * @type {number}
      */
@@ -158,7 +158,7 @@ export default class PositionModel {
     }
 
     /**
-     * @for PositionModel
+     * @for DynamicPositionModel
      * @method init
      */
     init(coordinates) {
@@ -174,9 +174,9 @@ export default class PositionModel {
     /**
      * Calculate the initial magnetic bearing from a given position to the position of `this`
      *
-     * @for PositionModel
+     * @for DynamicPositionModel
      * @method bearingFromPosition
-     * @param position {PositionModel|StaticPositionModel} position we're comparing against
+     * @param position {DynamicPositionModel|StaticPositionModel} position we're comparing against
      * @return {Number} magnetic bearing from `position` to `this`, in radians
      */
     bearingFromPosition(position) {
@@ -189,9 +189,9 @@ export default class PositionModel {
      * also a very expensive operation. If the precision is not needed, a vradial(vsub()) of the
      * x/y positions is a more "quick and dirty" option.
      *
-     * @for PositionModel
+     * @for DynamicPositionModel
      * @method bearingToPosition
-     * @param position {PositionModel|StaticPositionModel} position we're comparing against
+     * @param position {DynamicPositionModel|StaticPositionModel} position we're comparing against
      * @return {Number} magnetic bearing from `this` to `position`, in radians
      */
     bearingToPosition(position) {
@@ -209,7 +209,7 @@ export default class PositionModel {
     /**
      * Returns a new `StaticPositionModel` a given bearing/distance from `this`
      *
-     * @for PositionModel
+     * @for DynamicPositionModel
      * @method generatePositionFromBearingAndDistance
      * @param bearing {number} magnetic bearing, in radians
      * @param distance {number} distance, in nautical miles
@@ -239,16 +239,16 @@ export default class PositionModel {
             // return new StaticPositionModel([lat2, lon2], this.reference_position, this.magnetic_north);
         }
 
-        return new PositionModel([lat2, lon2], this.reference_position, this.magnetic_north);
+        return new DynamicPositionModel([lat2, lon2], this.reference_position, this.magnetic_north);
     }
 
     /**
      * Get the distance from `this` to a given position
      * Note: This method is not accurate for long distances, due its simpleton 2D vector math
      *
-     * @for PositionModel
+     * @for DynamicPositionModel
      * @method distanceTo
-     * @param position {PositionModel|StaticPositionModel} position we're comparing against
+     * @param position {DynamicPositionModel|StaticPositionModel} position we're comparing against
      * @return {Number} distance to `position`, in (units???)
      */
     distanceToPosition(position) {
@@ -263,7 +263,7 @@ export default class PositionModel {
     /**
      * Change the lat/lon coordinates of `this`
      *
-     * @for PositionModel
+     * @for DynamicPositionModel
      * @method setCoordinates
      * @param gpsCoordinates {Array<number>} [latitude, longitude]
      */
@@ -278,9 +278,9 @@ export default class PositionModel {
     }
 
     /**
-     * Determine the `x` and `y` values of the `PositionModel`, used for drawing on the canvas
+     * Determine the `x` and `y` values of the `DynamicPositionModel`, used for drawing on the canvas
      *
-     * @for PositionModel
+     * @for DynamicPositionModel
      * @method _calculateRelativePosition
      * @return {array<number>}
      * @private
@@ -290,14 +290,14 @@ export default class PositionModel {
             return DEFAULT_SCREEN_POSITION;
         }
 
-        return PositionModel.calculateRelativePosition(this.gps, this.reference_position, this.magnetic_north);
+        return DynamicPositionModel.calculateRelativePosition(this.gps, this.reference_position, this.magnetic_north);
     }
 
     /**
-     * Checks whether or not this `PositionModel` has a reference `PositionModel`
+     * Checks whether or not this `DynamicPositionModel` has a reference `DynamicPositionModel`
      * Without the reference position, the rotation due to magnetic variation will not be applied
      *
-     * @for PositionModel
+     * @for DynamicPositionModel
      * @method _hasReferencePosition
      * @return {Boolean} whether this position is based on a reference position
      * @private
@@ -310,18 +310,18 @@ export default class PositionModel {
 /**
  * Calculate x/y position from latitude and longitude and a referencePostion
  *
- * Provides a static method to calculate position without instantiating a `PositionModel` class.
+ * Provides a static method to calculate position without instantiating a `DynamicPositionModel` class.
  *
  * @function getPosition
  * @param coordinates {array<string>}
- * @param referencePostion {PositionModel|StaticPositionModel|null}
+ * @param referencePostion {DynamicPositionModel|StaticPositionModel|null}
  * @param magneticNorth {number}
  * @return {array}
  * @static
  */
-PositionModel.calculateRelativePosition = (coordinates, referencePostion, magneticNorth) => {
+DynamicPositionModel.calculateRelativePosition = (coordinates, referencePostion, magneticNorth) => {
     if (!coordinates || !referencePostion || !_isNumber(magneticNorth)) {
-        throw new TypeError('Invalid parameter. PositionModel.getPosition() requires coordinates, referencePostion ' +
+        throw new TypeError('Invalid parameter. DynamicPositionModel.getPosition() requires coordinates, referencePostion ' +
             'and magneticNorth as parameters');
     }
 

@@ -5,7 +5,7 @@ import _get from 'lodash/get';
 import _head from 'lodash/head';
 import _map from 'lodash/map';
 import AirspaceModel from './AirspaceModel';
-import PositionModel from '../base/PositionModel';
+import DynamicPositionModel from '../base/DynamicPositionModel';
 import RunwayModel from './RunwayModel';
 import StaticPositionModel from '../base/StaticPositionModel';
 import { degreesToRadians, parseElevation } from '../utilities/unitConverters';
@@ -234,7 +234,7 @@ export default class AirportModel {
             this.perimeter.poly, (vertexPosition) => vlen(
                 vsub(
                     vertexPosition.relativePosition,
-                    PositionModel.calculateRelativePosition(this.rr_center, this._position, this.magnetic_north)
+                    DynamicPositionModel.calculateRelativePosition(this.rr_center, this._position, this.magnetic_north)
                 )
             )
         ));
@@ -281,8 +281,8 @@ export default class AirportModel {
                 const airportPositionAndDeclination = [this.relativePosition, this.magnetic_north];
                 const lineStartCoordinates = [line[0], line[1]];
                 const lineEndCoordinates = [line[2], line[3]];
-                const startPosition = PositionModel.calculateRelativePosition(lineStartCoordinates, ...airportPositionAndDeclination);
-                const endPosition = PositionModel.calculateRelativePosition(lineEndCoordinates, ...airportPositionAndDeclination);
+                const startPosition = DynamicPositionModel.calculateRelativePosition(lineStartCoordinates, ...airportPositionAndDeclination);
+                const endPosition = DynamicPositionModel.calculateRelativePosition(lineEndCoordinates, ...airportPositionAndDeclination);
                 const lineVerticesRelativePositions = [...startPosition, ...endPosition];
 
                 this.maps[key].push(...lineVerticesRelativePositions);
@@ -310,7 +310,7 @@ export default class AirportModel {
             obj.height = parseElevation(area.height);
             // TODO: Remove _map, move relativePosition value to const, then return that const
             obj.coordinates = $.map(area.coordinates, (v) => {
-                return [(PositionModel.calculateRelativePosition(v, this._position, this.magnetic_north))];
+                return [(DynamicPositionModel.calculateRelativePosition(v, this._position, this.magnetic_north))];
             });
 
             // TODO: is this right? max and min are getting set to the same value?

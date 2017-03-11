@@ -1,7 +1,6 @@
 import _isEmpty from 'lodash/isEmpty';
 import _isNil from 'lodash/isNil';
 import _isObject from 'lodash/isObject';
-import PositionModel from '../base/PositionModel';
 import RouteModel from '../navigationLibrary/Route/RouteModel';
 import { routeStringFormatHelper } from '../navigationLibrary/Route/routeStringFormatHelper';
 import {

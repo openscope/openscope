@@ -29,26 +29,7 @@ export default class WaypointModel {
         this.name = '';
 
         /**
-         * `PositionModel` of the waypoint.
-         *
-         * Should almost always be an instance of a `PositionModel`.
-         *
-         * The only case where it won't be is if an instance is created for the purposes of a
-         * holding pattern at a specific position, where no `Fix` currently exists.
-         *
-         * In that case, the data will be received in the shape of:
-         * ```
-         * {
-         *      position: {
-         *          position: [
-         *              aircaft.position.x,
-         *              aircaft.position.y
-         *          ]
-         *      },
-         *      ...waypointProps
-         * }
-         * ```
-         * See `LegModel._buildHoldAtPositionWaypointProps()` for additional inforamtion
+         * `StaticPositionModel` of the waypoint.
          *
          * @property _position
          * @type {StaticPositionModel}
