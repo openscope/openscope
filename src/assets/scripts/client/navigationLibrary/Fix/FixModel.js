@@ -55,6 +55,16 @@ export default class FixModel extends BaseModel {
     }
 
     /**
+     * Fascade to access relative position
+     *
+     * @for FixModel
+     * @return {array<number>} [kilometersNorth, kilometersEast]
+     */
+    get relativePosition() {
+        return this._fixPosition.relativePosition;
+    }
+
+    /**
      * Lifecycle method. Should be run only once on instantiation.
      *
      * @for FixModel

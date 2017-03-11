@@ -37,11 +37,33 @@ export default class RunwayModel extends BaseModel {
         this.labelPos = [];
         this.length = null;
         this.name = '';
-        this.position = [];
+        this._position = null;
         this.queue = [];
         this.sepFromAdjacent = km(3);
 
         this.parse(options, end);
+    }
+
+    /**
+     * Fascade to access relative position
+     *
+     * @for RunwayModel
+     * @property relativePosition
+     * @type {array<number>} [kilometersNorth, kilometersEast]
+     */
+    get relativePosition() {
+        return this._position.relativePosition;
+    }
+
+    /**
+     * Provide read-only public access to this._position
+     *
+     * @for SpawnPatternModel
+     * @property position
+     * @type {StaticPositionModel}
+     */
+    get position() {
+        return this._position;
     }
 
     /**
@@ -76,7 +98,7 @@ export default class RunwayModel extends BaseModel {
             }
 
             // relative position, based on center of map
-            this.position = thisSide;
+            this._position = thisSide;
             this.length = vlen(vsub(farSide.relativePosition, thisSide.relativePosition));
             this.angle = radians_normalize(vradial(vsub(farSide.relativePosition, thisSide.relativePosition)));
         }

@@ -117,16 +117,6 @@ export default class WaypointModel {
     }
 
     /**
-     * Return the waypoint's `StaticPositionModel`
-     *
-     * @property position
-     * @return {StaticPositionModel}
-     */
-    get position() {
-        return this._position;
-    }
-
-    /**
      * Provides properties needed for an aircraft to execute a
      * holding pattern.
      *
@@ -139,11 +129,32 @@ export default class WaypointModel {
         return {
             dirTurns: this._turnDirection,
             fixName: this.name,
-            fixPos: this.position,
+            fixPos: this._position,
             inboundHd: null,
             legLength: this._legLength,
             timer: this.timer
         };
+    }
+
+    /**
+     * Provide read-only public access to this._position
+     *
+     * @for SpawnPatternModel
+     * @property position
+     * @type {StaticPositionModel}
+     */
+    get position() {
+        return this._position;
+    }
+
+    /**
+     * Fascade to access relative position
+     *
+     * @for WaypointModel
+     * @return {array<number>} [kilometersNorth, kilometersEast]
+     */
+    get relativePosition() {
+        return this._position.relativePosition;
     }
 
     /**

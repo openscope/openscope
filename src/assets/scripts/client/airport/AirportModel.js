@@ -63,7 +63,7 @@ export default class AirportModel {
         this.wip = null;
         this.radio = null;
         this.level = null;
-        this.position = null;
+        this._position = null;
         this.runways = [];
         // TODO: rename to `runwayName`
         this.runway = null;
@@ -101,7 +101,29 @@ export default class AirportModel {
      * @return {number}
      */
     get elevation() {
-        return this.position.elevation;
+        return this._position.elevation;
+    }
+
+    /**
+     * Provide read-only public access to this._position
+     *
+     * @for SpawnPatternModel
+     * @property position
+     * @type {StaticPositionModel}
+     */
+    get position() {
+        return this._position;
+    }
+
+    /**
+     * Fascade to access relative position
+     *
+     * @for AirportModel
+     * @property relativePosition
+     * @type {array<number>} [kilometersNorth, kilometersEast]
+     */
+    get relativePosition() {
+        return this._position.relativePosition;
     }
 
     /**
@@ -109,7 +131,7 @@ export default class AirportModel {
      * @return {number}
      */
     get magnetic_north() {
-        return this.position.magneticNorthInRadians;
+        return this._position.magneticNorthInRadians;
     }
 
     /**
@@ -181,7 +203,7 @@ export default class AirportModel {
             return;
         }
 
-        this.position = new StaticPositionModel(currentPosition, null, magneticNorth);
+        this._position = new StaticPositionModel(currentPosition, null, magneticNorth);
     }
 
     /**
@@ -200,7 +222,7 @@ export default class AirportModel {
         this.airspace = _map(airspace, (airspaceSection) => {
             return new AirspaceModel(
                 airspaceSection,
-                this.position,
+                this._position,
                 this.magnetic_north
             );
         });
@@ -212,7 +234,7 @@ export default class AirportModel {
             this.perimeter.poly, (vertexPosition) => vlen(
                 vsub(
                     vertexPosition.relativePosition,
-                    PositionModel.calculateRelativePosition(this.rr_center, this.position, this.magnetic_north)
+                    PositionModel.calculateRelativePosition(this.rr_center, this._position, this.magnetic_north)
                 )
             )
         ));
@@ -229,7 +251,7 @@ export default class AirportModel {
         }
 
         _forEach(runways, (runway) => {
-            runway.reference_position = this.position;
+            runway.reference_position = this._position;
             runway.magnetic_north = this.magnetic_north;
 
             // TODO: what do the 0 and 1 mean? magic numbers should be enumerated
@@ -288,7 +310,7 @@ export default class AirportModel {
             obj.height = parseElevation(area.height);
             // TODO: Remove _map, move relativePosition value to const, then return that const
             obj.coordinates = $.map(area.coordinates, (v) => {
-                return [(PositionModel.calculateRelativePosition(v, this.position, this.magnetic_north))];
+                return [(PositionModel.calculateRelativePosition(v, this._position, this.magnetic_north))];
             });
 
             // TODO: is this right? max and min are getting set to the same value?

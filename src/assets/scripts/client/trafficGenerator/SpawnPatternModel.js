@@ -224,11 +224,11 @@ export default class SpawnPatternModel extends BaseModel {
         /**
          * Initial position of a spawning aircraft
          *
-         * @property position
+         * @property _position
          * @type {StaticPositionModel}
          * @default null
          */
-        this.position = null;
+        this._position = null;
 
         // SPAWN PATTERN PROPERTIES
 
@@ -391,6 +391,28 @@ export default class SpawnPatternModel extends BaseModel {
     }
 
     /**
+     * Provide read-only public access to this._position
+     *
+     * @for SpawnPatternModel
+     * @property position
+     * @type {StaticPositionModel}
+     */
+    get position() {
+        return this._position;
+    }
+
+    /**
+     * Fascade to access relative position
+     *
+     * @for SpawnPatternModel
+     * @property relativePosition
+     * @type {array<number>} [kilometersNorth, kilometersEast]
+     */
+    get relativePosition() {
+        return this._position.relativePosition;
+    }
+
+    /**
      * Lifecycle method. Should be run only once on instantiation.
      *
      * Set up the instance properties
@@ -431,7 +453,7 @@ export default class SpawnPatternModel extends BaseModel {
         this.routeString = spawnPatternJson.route;
         this.cycleStartTime = 0;
         this.period = TIME.ONE_HOUR_IN_SECONDS / 2;
-        this.position = this._airportController.airport_get().position;
+        this._position = this._airportController.airport_get().position;
         this.speed = this._extractSpeedFromJson(spawnPatternJson);
         this._minimumDelay = this._calculateMinimumDelayFromSpeed();
         this._maximumDelay = this._calculateMaximumDelayFromSpawnRate();
@@ -464,7 +486,7 @@ export default class SpawnPatternModel extends BaseModel {
         this._maximumAltitude = -1;
         this.speed = 0;
         this.heading = -1;
-        this.position = null;
+        this._position = null;
 
         this.cycleStartTime = -1;
         this.rate = -1;
@@ -945,7 +967,7 @@ export default class SpawnPatternModel extends BaseModel {
         // calculate heading from first fix/waypoint to second fix/waypoint
         const heading = initialPosition.bearingToPosition(waypointModelList[1].position);
 
-        this.position = initialPosition;
+        this._position = initialPosition;
         this.heading = heading;
     }
 

@@ -194,6 +194,17 @@ export default class Aircraft {
     }
 
     /**
+     * Fascade to access relative position
+     *
+     * @for AircraftInstanceModel
+     * @property relativePosition
+     * @type {array<number>} [kilometersNorth, kilometersEast]
+     */
+    get relativePosition() {
+        return this.position.relativePosition;
+    }
+
+    /**
      * @for AircraftInstanceModel
      * @method buildCurrentTerrainRanges
      */
