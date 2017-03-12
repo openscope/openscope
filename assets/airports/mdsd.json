@@ -1,8 +1,8 @@
 {
     "radio": {
-        "twr": "Las Vegas Tower",
-        "app": "Las Vegas Approach",
-        "dep": "Las Vegas Departure"
+        "twr": "Las Americas Tower",
+        "app": "Las Americas Approach",
+        "dep": "Santo Domingo Radar"
     },
     "icao": "KLAS",
     "iata": "LAS",
