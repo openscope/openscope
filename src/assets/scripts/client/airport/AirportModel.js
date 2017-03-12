@@ -8,6 +8,7 @@ import AirspaceModel from './AirspaceModel';
 import DynamicPositionModel from '../base/DynamicPositionModel';
 import RunwayModel from './RunwayModel';
 import StaticPositionModel from '../base/StaticPositionModel';
+import { isValidGpsCoordinatePair } from '../base/positionModelHelpers';
 import { degreesToRadians, parseElevation } from '../utilities/unitConverters';
 import { round, abs, sin, extrapolate_range_clamp } from '../math/core';
 import { angle_offset } from '../math/circle';
@@ -111,7 +112,7 @@ export default class AirportModel {
      * @property position
      * @type {StaticPositionModel}
      */
-    get position() {
+    get positionModel() {
         return this._positionModel;
     }
 
@@ -127,11 +128,14 @@ export default class AirportModel {
     }
 
     /**
-     * @property magnetic_north
+     * Fascade to access the airport's position's magnetic declination value
+     *
+     * @for AirportModel
+     * @property magneticNorth
      * @return {number}
      */
-    get magnetic_north() {
-        return this._positionModel.magnetic_north;
+    get magneticNorth() {
+        return this._positionModel.magneticNorth;
     }
 
     /**
@@ -196,14 +200,14 @@ export default class AirportModel {
     /**
      * @for AirportModel
      * @method setCurrentPosition
-     * @param currentPosition {array}
+     * @param gpsCoordinates {array<number>} [latitude, longitude]
+     * @param magneticNorth {number} magnetic declination (variation), in radians
      */
-    setCurrentPosition(currentPosition, magneticNorth) {
-        if (!currentPosition) {
+    setCurrentPosition(gpsCoordinates, magneticNorth) {
+        if (!isValidGpsCoordinatePair(gpsCoordinates)) {
             return;
         }
-
-        this._positionModel = new StaticPositionModel(currentPosition, null, magneticNorth);
+        this._positionModel = new StaticPositionModel(gpsCoordinates, null, magneticNorth);
     }
 
     /**
@@ -223,7 +227,7 @@ export default class AirportModel {
             return new AirspaceModel(
                 airspaceSection,
                 this._positionModel,
-                this.magnetic_north
+                this._positionModel.magneticNorth
             );
         });
 
@@ -234,7 +238,7 @@ export default class AirportModel {
             this.perimeter.poly, (vertexPosition) => vlen(
                 vsub(
                     vertexPosition.relativePosition,
-                    DynamicPositionModel.calculateRelativePosition(this.rr_center, this._positionModel, this.magnetic_north)
+                    DynamicPositionModel.calculateRelativePosition(this.rr_center, this._positionModel, this.magneticNorth)
                 )
             )
         ));
@@ -252,7 +256,7 @@ export default class AirportModel {
 
         _forEach(runways, (runway) => {
             runway.relative_position = this._positionModel;
-            runway.magnetic_north = this.magnetic_north;
+            runway._magneticNorth = this._magneticNorth;
 
             // TODO: what do the 0 and 1 mean? magic numbers should be enumerated
 
@@ -278,13 +282,12 @@ export default class AirportModel {
             const lines = map;
 
             _forEach(lines, (line) => {
-                const airportPositionAndDeclination = [this.relativePosition, this.magnetic_north];
+                const airportPositionAndDeclination = [this.positionModel, this.magneticNorth];
                 const lineStartCoordinates = [line[0], line[1]];
                 const lineEndCoordinates = [line[2], line[3]];
                 const startPosition = DynamicPositionModel.calculateRelativePosition(lineStartCoordinates, ...airportPositionAndDeclination);
                 const endPosition = DynamicPositionModel.calculateRelativePosition(lineEndCoordinates, ...airportPositionAndDeclination);
                 const lineVerticesRelativePositions = [...startPosition, ...endPosition];
-
                 this.maps[key].push(...lineVerticesRelativePositions);
             });
         });
@@ -310,7 +313,7 @@ export default class AirportModel {
             obj.height = parseElevation(area.height);
             // TODO: Remove _map, move relativePosition value to const, then return that const
             obj.coordinates = $.map(area.coordinates, (v) => {
-                return [(DynamicPositionModel.calculateRelativePosition(v, this._positionModel, this.magnetic_north))];
+                return [(DynamicPositionModel.calculateRelativePosition(v, this._positionModel, this._magneticNorth))];
             });
 
             // TODO: is this right? max and min are getting set to the same value?
@@ -516,7 +519,7 @@ export default class AirportModel {
                     return [
                         $.map(line_string, (pt) => {
                             pt.reverse();   // `StaticPositionModel` requires [lat,lon] order
-                            const pos = new StaticPositionModel(pt, apt.position, apt.magnetic_north);
+                            const pos = new StaticPositionModel(pt, apt.position, apt._magneticNorth);
 
                             return [pos.relativePosition];
                         })

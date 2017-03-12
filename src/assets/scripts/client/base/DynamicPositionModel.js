@@ -19,8 +19,7 @@ import {
 import {
     degreesToRadians,
     parseCoordinate,
-    parseElevation,
-    radiansToDegrees
+    parseElevation
 } from '../utilities/unitConverters';
 
 /**
@@ -83,10 +82,10 @@ export default class DynamicPositionModel {
         this._referencePosition = reference;
 
         /**
-         * @property magnetic_north
+         * @property _magneticNorth
          * @type {number}
          */
-        this.magnetic_north = magnetic_north;
+        this._magneticNorth = magnetic_north;
 
         this.init(coordinates);
     }
@@ -115,6 +114,17 @@ export default class DynamicPositionModel {
             this.longitude,
             this.latitude
         ];
+    }
+
+    /**
+     * Magnetic declination, in radians east
+     *
+     * @for DynamicPositionModel
+     * @property magneticNorth
+     * @return {number}
+     */
+    get magneticNorth() {
+        return this._magneticNorth;
     }
 
     /**
@@ -198,7 +208,7 @@ export default class DynamicPositionModel {
         const x = Math.cos(φ1) * Math.sin(φ2) - Math.sin(φ1) * Math.cos(φ2) * Math.cos(Δλ);
         const θ = Math.atan2(y, x);
 
-        return radians_normalize(θ - this.magnetic_north);
+        return radians_normalize(θ - this._magneticNorth);
     }
 
     /**
@@ -225,7 +235,7 @@ export default class DynamicPositionModel {
             Math.cos(φ1) * Math.sin(δ) * Math.cos(θ));
         const λ2 = λ1 + Math.atan2(Math.sin(θ) * Math.sin(δ) * Math.cos(φ1),
             Math.cos(δ) - Math.sin(φ1) * Math.sin(φ2));
-        const dynamicPositionModel = new DynamicPositionModel([φ2, λ2], this._referencePosition, this.magnetic_north);
+        const dynamicPositionModel = new DynamicPositionModel([φ2, λ2], this._referencePosition, this._magneticNorth);
 
         return dynamicPositionModel;
     }
@@ -278,7 +288,7 @@ export default class DynamicPositionModel {
             return DEFAULT_SCREEN_POSITION;
         }
 
-        return DynamicPositionModel.calculateRelativePosition(this.gps, this._referencePosition, this.magnetic_north);
+        return DynamicPositionModel.calculateRelativePosition(this.gps, this._referencePosition, this._magneticNorth);
     }
 
     /**
@@ -309,29 +319,23 @@ export default class DynamicPositionModel {
  */
 DynamicPositionModel.calculateRelativePosition = (coordinates, referencePostion, magneticNorth) => {
     if (!coordinates || !referencePostion || !_isNumber(magneticNorth)) {
-        throw new TypeError('Invalid parameter. DynamicPositionModel.getPosition() requires coordinates, referencePostion ' +
-            'and magneticNorth as parameters');
+        throw new TypeError('Invalid parameter. DynamicPositionModel.calculateRelativePosition() requires ' +
+        'coordinates, referencePostion and magneticNorth as parameters');
     }
 
     const latitude = parseCoordinate(coordinates[GPS_COORDINATE_INDEX.LATITUDE]);
     const longitude = parseCoordinate(coordinates[GPS_COORDINATE_INDEX.LONGITUDE]);
-
     const canvasPositionX = calculateDistanceToPointForX(
         referencePostion,
         referencePostion.latitude,
         longitude
     );
-
     const canvasPositionY = calculateDistanceToPointForY(
         referencePostion,
         latitude,
         referencePostion.longitude
     );
-
     const { x, y } = adjustForMagneticNorth(canvasPositionX, canvasPositionY, magneticNorth);
 
-    return [
-        x,
-        y
-    ];
+    return [x, y];
 };

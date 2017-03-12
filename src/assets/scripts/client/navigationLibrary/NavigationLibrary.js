@@ -259,7 +259,7 @@ export default class NavigationLibrary {
      *
      * This allows classes that have access to the `NavigationLibrary` to
      * create a `StaticPositionModel` without needing to know about a
-     * `#referencePosition` or `#magnetic_north`.
+     * `#referencePosition` or `#magneticNorth`.
      *
      * @for NavigationLibrary
      * @method generateStaticPositionModelForLatLong
@@ -267,9 +267,8 @@ export default class NavigationLibrary {
      * @return staticPositionModel {StaticPositionModel}
      */
     generateStaticPositionModelForLatLong(latLong) {
-        console.log(`generateStaticPositionModelForLatLong: ${this._referencePosition.magnetic_north}`);
         const staticPositionModel = new StaticPositionModel(latLong,
-            this._referencePosition, this._referencePosition.magnetic_north
+            this._referencePosition, this._referencePosition.magneticNorth
         );
 
         return staticPositionModel;

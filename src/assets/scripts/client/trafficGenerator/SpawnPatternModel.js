@@ -452,7 +452,7 @@ export default class SpawnPatternModel extends BaseModel {
         this.routeString = spawnPatternJson.route;
         this.cycleStartTime = 0;
         this.period = TIME.ONE_HOUR_IN_SECONDS / 2;
-        this._positionModel = this._airportController.airport_get().position;
+        this._positionModel = this._airportController.airport_get().positionModel;
         this.speed = this._extractSpeedFromJson(spawnPatternJson);
         this._minimumDelay = this._calculateMinimumDelayFromSpeed();
         this._maximumDelay = this._calculateMaximumDelayFromSpawnRate();

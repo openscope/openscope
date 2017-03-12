@@ -33,7 +33,7 @@ ava('.findCollectionNameForProcedureId() returns starCollection when passed STAR
 ava('.generateStaticPositionModelForLatLong() returns a DynamicPositionModel from a set of latitude and longitude coordinates', (t) => {
     const latLongMock = [113.4636606631233, 6.12969620221002];
     const navigationLibrary = new NavigationLibrary(AIRPORT_JSON_KLAS_MOCK);
-    const result = navigationLibrary.generateStaticPositionModelForLatLong(latLongMock, airportPositionFixtureKLAS, airportPositionFixtureKLAS.magnetic_north);
+    const result = navigationLibrary.generateStaticPositionModelForLatLong(latLongMock, airportPositionFixtureKLAS, airportPositionFixtureKLAS.magneticNorth);
 
     t.true(result instanceof DynamicPositionModel);
 });

@@ -81,7 +81,7 @@ export default class FixModel extends BaseModel {
         }
 
         this.name = fixName.toUpperCase();
-        this._positionModel = new StaticPositionModel(fixCoordinate, referencePosition, referencePosition.magnetic_north);
+        this._positionModel = new StaticPositionModel(fixCoordinate, referencePosition, referencePosition.magneticNorth);
 
         return this;
     }

@@ -4,12 +4,12 @@ import DynamicPositionModel from './DynamicPositionModel';
  * Accepts a `StaticPositionModel` and returns a `DynamicPositionModel` with the same location
  *
  * @function convertStaticPositionToDynamic
- * @param StaticPositionModel {StaticPositionModel}
+ * @param staticPositionModel {StaticPositionModel}
  * @return {DynamicPositionModel}
  */
-export const convertStaticPositionToDynamic = (StaticPositionModel) => {
-    const dynamicPositionModel = new DynamicPositionModel(StaticPositionModel.gps,
-        StaticPositionModel.referencePostion, StaticPositionModel.magnetic_north
+export const convertStaticPositionToDynamic = (staticPositionModel) => {
+    const dynamicPositionModel = new DynamicPositionModel(staticPositionModel.gps,
+        staticPositionModel.referencePostion, staticPositionModel.magneticNorth
     );
 
     return dynamicPositionModel;

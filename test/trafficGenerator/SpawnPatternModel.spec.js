@@ -2,7 +2,6 @@ import ava from 'ava';
 import sinon from 'sinon';
 import _isEqual from 'lodash/isEqual';
 import _round from 'lodash/round';
-
 import SpawnPatternModel from '../../src/assets/scripts/client/trafficGenerator/SpawnPatternModel';
 import { airportControllerFixture } from '../fixtures/airportFixtures';
 import { navigationLibraryFixture } from '../fixtures/navigationLibraryFixtures';
@@ -12,6 +11,7 @@ import {
     ARRIVAL_PATTERN_CYCLIC_MOCK,
     ARRIVAL_PATTERN_WAVE_MOCK
 } from './_mocks/spawnPatternMocks';
+import { DEFAULT_SCREEN_POSITION } from '../../src/assets/scripts/client/constants/positionConstants';
 
 ava('does not throw when called without parameters', (t) => {
     t.notThrows(() => new SpawnPatternModel());
@@ -45,10 +45,10 @@ ava('does not throw when called with valid parameters', (t) => {
     t.notThrows(() => new SpawnPatternModel(DEPARTURE_PATTERN_MOCK, navigationLibraryFixture, airportControllerFixture));
 });
 
-ava('#position defaults to [0, 0]', (t) => {
+ava('#position defaults to DEFAULT_SCREEN_POSITION', (t) => {
     const model = new SpawnPatternModel(DEPARTURE_PATTERN_MOCK, navigationLibraryFixture, airportControllerFixture);
 
-    t.true(_isEqual(model.relativePosition, [0, 0]));
+    t.true(_isEqual(model.relativePosition, DEFAULT_SCREEN_POSITION));
 });
 
 ava('#altitude returns a random altitude rounded to the nearest 1,000ft', (t) => {
@@ -185,7 +185,7 @@ ava('._calculatePositionAndHeadingForArrival() returns early when spawnPattern.c
     model._calculatePositionAndHeadingForArrival(DEPARTURE_PATTERN_MOCK, navigationLibraryFixture);
 
     t.true(model.heading === -999);
-    t.true(_isEqual(model.relativePosition, [0, 0]));
+    t.true(_isEqual(model.relativePosition, DEFAULT_SCREEN_POSITION));
 });
 
 ava('._calculatePositionAndHeadingForArrival() calculates aircraft heading and position when provided a route', (t) => {
