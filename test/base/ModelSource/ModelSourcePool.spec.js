@@ -66,7 +66,7 @@ ava.serial('.releaseModelFromPool() calls _findModelByConstructorName() with the
 });
 
 ava.serial('.releaseModelFromPool() returns a model if one exists within the pool', t => {
-    const expectedPosition = [110.09968269139134, -7.686691271034183];
+    const expectedPosition = [74.90562387226687, 81.0566028386814];
     const result = modelSourcePool.releaseReusable(SOURCE_NAME_MOCK, FIXNAME_MOCK, FIX_COORDINATE_MOCK, airportPositionFixtureKSFO);
 
     t.true(result instanceof FixModel);
@@ -76,7 +76,7 @@ ava.serial('.releaseModelFromPool() returns a model if one exists within the poo
 
 ava.serial('.releasModelFromPool() returns a model if none exist within the pool', t => {
     modelSourcePool._items = [];
-    const expectedPosition = [110.09968269139134, -7.686691271034183];
+    const expectedPosition = [74.90562387226687, 81.0566028386814];
     const result = modelSourcePool.releaseReusable(SOURCE_NAME_MOCK, FIXNAME_MOCK, FIX_COORDINATE_MOCK, airportPositionFixtureKSFO);
 
     t.true(result instanceof FixModel);

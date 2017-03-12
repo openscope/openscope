@@ -3,6 +3,7 @@ import StaticPositionModel from '../base/StaticPositionModel';
 import RouteModel from './Route/RouteModel';
 import FixCollection from './Fix/FixCollection';
 import StandardRouteCollection from './StandardRoute/StandardRouteCollection';
+import { degreesToRadians } from '../utilities/unitConverters';
 
 /**
  *
@@ -94,7 +95,7 @@ export default class NavigationLibrary {
     init(airportJson) {
         const { fixes, sids, stars } = airportJson;
 
-        this._referencePosition = new StaticPositionModel(airportJson.position, null, airportJson.magnetic_north);
+        this._referencePosition = new StaticPositionModel(airportJson.position, null, degreesToRadians(airportJson.magnetic_north));
 
         FixCollection.addItems(fixes, this._referencePosition);
         this._sidCollection = new StandardRouteCollection(sids);
@@ -261,11 +262,12 @@ export default class NavigationLibrary {
      * `#referencePosition` or `#magnetic_north`.
      *
      * @for NavigationLibrary
-     * @method generateDynamicPositionModelForLatLong
+     * @method generateStaticPositionModelForLatLong
      * @param latLong {array<number>}
      * @return staticPositionModel {StaticPositionModel}
      */
     generateStaticPositionModelForLatLong(latLong) {
+        console.log(`generateStaticPositionModelForLatLong: ${this._referencePosition.magnetic_north}`);
         const staticPositionModel = new StaticPositionModel(latLong,
             this._referencePosition, this._referencePosition.magnetic_north
         );

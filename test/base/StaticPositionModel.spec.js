@@ -19,8 +19,6 @@ ava('sets internal properties when provided valid parameters', t => {
     t.true(result.latitude === LAT_LONG_DECIMAL_MOCK[0]);
     t.true(result.longitude === LAT_LONG_DECIMAL_MOCK[1]);
     t.true(result.elevation === 0);
-    t.true(result.x === expectedrelativePosition[0]);
-    t.true(result.y === expectedrelativePosition[1]);
     t.true(_isEqual(result.relativePosition, expectedrelativePosition));
     t.true(_isEqual(result.reference_position, airportPositionFixtureKLAS));
     t.true(result.magnetic_north === 0.2076941809873252);

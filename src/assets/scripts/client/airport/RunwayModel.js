@@ -99,8 +99,8 @@ export default class RunwayModel extends BaseModel {
 
             // relative position, based on center of map
             this._position = thisSide;
-            this.length = vlen(vsub(farSide.relativePosition, thisSide.relativePosition));
-            this.angle = radians_normalize(vradial(vsub(farSide.relativePosition, thisSide.relativePosition)));
+            this.length = thisSide.distanceToPosition(farSide);
+            this.angle = thisSide.bearingToPosition(farSide);
         }
 
         if (data.ils) {

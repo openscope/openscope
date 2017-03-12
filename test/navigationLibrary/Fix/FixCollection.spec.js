@@ -65,7 +65,7 @@ ava.serial('.findFixByName() returns null if a FixModel does not exist within th
 
 ava.serial('.getFixRelativePosition() returns the position of a FixModel', t => {
     const result = FixCollection.getFixRelativePosition('BAKRR');
-    const expectedResult = [675.477318026648, -12.012221291734532];
+    const expectedResult = [432.14550155204154, 519.2919854158829];
 
     t.true(_isEqual(result, expectedResult));
 });

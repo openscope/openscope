@@ -12,7 +12,10 @@ import {
     GPS_COORDINATE_INDEX,
     RELATIVE_POSITION_OFFSET_INDEX
 } from '../constants/positionConstants';
-import { distanceToPoint } from '../math/circle';
+import {
+    distanceToPoint,
+    radians_normalize
+} from '../math/circle';
 import {
     degreesToRadians,
     parseCoordinate,
@@ -192,7 +195,7 @@ export default class DynamicPositionModel {
         const x = Math.cos(φ1) * Math.sin(φ2) - Math.sin(φ1) * Math.cos(φ2) * Math.cos(Δλ);
         const θ = Math.atan2(y, x);
 
-        return θ - this.magnetic_north;
+        return radians_normalize(θ - this.magnetic_north);
     }
 
     /**
@@ -227,7 +230,6 @@ export default class DynamicPositionModel {
         if (isStatic) {
             // return new StaticPositionModel([lat2, lon2], this.reference_position, this.magnetic_north);
         }
-
         return new DynamicPositionModel([lat2, lon2], this.reference_position, this.magnetic_north);
     }
 

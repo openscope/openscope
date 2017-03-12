@@ -11,7 +11,6 @@ import RouteModel from '../navigationLibrary/Route/RouteModel';
 import { spawnPatternModelJsonValidator } from './spawnPatternModelJsonValidator';
 import { buildPreSpawnAircraft } from './buildPreSpawnAircraft';
 import { routeStringFormatHelper } from '../navigationLibrary/Route/routeStringFormatHelper';
-import { bearingToPoint } from '../math/flightMath';
 import { tau } from '../math/circle';
 import { convertMinutesToSeconds } from '../utilities/unitConverters';
 import { AIRPORT_CONSTANTS } from '../constants/airportConstants';

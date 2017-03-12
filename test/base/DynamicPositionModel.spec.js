@@ -21,7 +21,7 @@ ava('sets internal properties when provided valid parameters', t => {
     t.true(result.latitude === LAT_LONG_DECIMAL_MOCK[0]);
     t.true(result.longitude === LAT_LONG_DECIMAL_MOCK[1]);
     t.true(result.elevation === 0);
-    t.true(_isEqual(result.position.relativePosition, expectedrelativePosition));
+    t.true(_isEqual(result.relativePosition, expectedrelativePosition));
     t.true(_isEqual(result.reference_position, airportPositionFixtureKLAS));
     t.true(result.magnetic_north === 0.2076941809873252);
     t.true(_isEqual(result.gps, LAT_LONG_DECIMAL_MOCK));
@@ -33,7 +33,7 @@ ava('get relativePosition() returns [0, 0] if no reference position is provided'
     const result = new DynamicPositionModel(LAT_LONG_MOCK, null, MAGNETIC_NORTH_MOCK);
     const expectedResult = DEFAULT_SCREEN_POSITION;
 
-    t.true(_isEqual(result.position.relativePosition, expectedResult));
+    t.true(_isEqual(result.relativePosition, expectedResult));
 });
 
 ava('.calculatePosition() static method throws when it receives the wrong arguments', t => {
@@ -43,7 +43,7 @@ ava('.calculatePosition() static method throws when it receives the wrong argume
 ava('.bearingFromPosition() returns the correct bearing between two DynamicPositionModel instances', t => {
     const position1 = new DynamicPositionModel(LAT_LONG_MOCK, airportPositionFixtureKLAS, MAGNETIC_NORTH_MOCK);
     const position2 = new DynamicPositionModel(LAT_LONG_MOCK_2, airportPositionFixtureKLAS, MAGNETIC_NORTH_MOCK);
-    const expectedResult = 0.1003153998041304;
+    const expectedResult = 0.09716579176803017;
     const result = position1.bearingFromPosition(position2);
 
     t.true(result === expectedResult);
@@ -52,7 +52,7 @@ ava('.bearingFromPosition() returns the correct bearing between two DynamicPosit
 ava('.bearingToPosition() returns the correct bearing between two DynamicPositionModel instances', t => {
     const position1 = new DynamicPositionModel(LAT_LONG_MOCK, airportPositionFixtureKLAS, MAGNETIC_NORTH_MOCK);
     const position2 = new DynamicPositionModel(LAT_LONG_MOCK_2, airportPositionFixtureKLAS, MAGNETIC_NORTH_MOCK);
-    const expectedResult = -3.0412772537856627;
+    const expectedResult = 3.2419080533939235;
     const result = position1.bearingToPosition(position2);
 
     t.true(result === expectedResult);
