@@ -369,13 +369,13 @@ export default class AirportModel {
                         // setup secondary runway subobject
                         const r1 = this.runways[rwy1][rwy1end];
                         const r2 = this.runways[rwy2][rwy2end];
-                        const offset = getOffset(r1, r2.position.relativePosition, r1.angle);
+                        const offset = getOffset(r1, r2.relativePosition, r1.angle);
                         this.metadata.rwy[r1.name][r2.name] = {};
 
                         // generate this runway pair's relationship data
                         this.metadata.rwy[r1.name][r2.name].lateral_dist = abs(offset[0]);
                         this.metadata.rwy[r1.name][r2.name].straight_dist = abs(offset[2]);
-                        this.metadata.rwy[r1.name][r2.name].converging = raysIntersect(r1.position.relativePosition, r1.angle, r2.position.relativePosition, r2.angle);
+                        this.metadata.rwy[r1.name][r2.name].converging = raysIntersect(r1.relativePosition, r1.angle, r2.relativePosition, r2.angle);
                         this.metadata.rwy[r1.name][r2.name].parallel = (abs(angle_offset(r1.angle, r2.angle)) < degreesToRadians(10));
                     }
                 }

@@ -68,7 +68,7 @@ export const getOffset = (aircraft, target, headingThruTarget = null) => {
     }
 
     const offset = [0, 0, 0];
-    const vector = vsub(target, aircraft.position.relativePosition); // vector from aircraft pointing to target
+    const vector = vsub(target, aircraft.relativePosition); // vector from aircraft pointing to target
     const bearingToTarget = vradial(vector);
 
     offset[2] = vlen(vector);
@@ -124,7 +124,7 @@ export const isWithinAirspace = (airport, pos) => {
         return point_in_area(pos, perim);
     }
 
-    return distance2d(pos, airport.position.relativePosition) <= airport.ctr_radius;
+    return distance2d(pos, airport.relativePosition) <= airport.ctr_radius;
 };
 
 /**
@@ -142,7 +142,7 @@ export const calculateDistanceToBoundary = (airport, pos) => {
         return distance_to_poly(pos, area_to_poly(perim));
     }
 
-    return abs(distance2d(pos, airport.position.relativePosition) - airport.ctr_radius);
+    return abs(distance2d(pos, airport.relativePosition) - airport.ctr_radius);
 };
 
 

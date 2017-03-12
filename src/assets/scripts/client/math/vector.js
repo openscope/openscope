@@ -278,9 +278,9 @@ export const raysIntersect = (pos1, dir1, pos2, dir2, deg_allowance) => {
 //     const airport = window.airportController.airport_get();
 //
 //     return raysIntersect(
-//         airport.getRunway(rwy1_name).position.relativePosition,
+//         airport.getRunway(rwy1_name).relativePosition,
 //         airport.getRunway(rwy1_name).angle,
-//         airport.getRunway(rwy2_name).position.relativePosition,
+//         airport.getRunway(rwy2_name).relativePosition,
 //         airport.getRunway(rwy2_name).angle,
 //         9.9 // consider "parallel" if rwy hdgs differ by maximum of 9.9 degrees
 //     );

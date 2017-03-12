@@ -152,7 +152,7 @@ ava('.createLegWithHoldingPattern() prepends LegCollection with hold Waypoint wh
     t.true(fms.currentWaypoint._turnDirection === 'left');
     t.true(fms.currentWaypoint._legLength === '2min');
     t.true(fms.currentWaypoint.name === 'gps');
-    t.true(_isEqual(fms.currentWaypoint.position.relativePosition, holdPositionMock.relativePosition));
+    t.true(_isEqual(fms.currentWaypoint.relativePosition, holdPositionMock.relativePosition));
 });
 
 ava('.createLegWithHoldingPattern() calls ._findLegAndWaypointIndexForWaypointName() when holdRouteSegment is a FixName', (t) => {

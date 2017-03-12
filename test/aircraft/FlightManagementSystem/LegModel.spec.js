@@ -163,7 +163,7 @@ ava('._buildWaypointForHoldingPatternAtPosition() returns the same position for 
     const positionalHoldingProps = Object.assign(HOLD_AT_PRESENT_LOCATION_MOCK, { position: cowbyFixFixture.position });
     const positionResult = model._buildWaypointForHoldingPatternAtPosition(positionalHoldingProps);
 
-    t.true(_isEqual(fixResult[0].position.relativePosition, positionResult[0].position.relativePosition));
+    t.true(_isEqual(fixResult[0].relativePosition, positionResult[0].relativePosition));
 });
 
 ava('._buildWaypointCollectionForProcedureRoute() returns a list of WaypointModels', (t) => {

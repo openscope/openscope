@@ -94,7 +94,7 @@ class FixCollection extends BaseCollection {
             return null;
         }
 
-        return fixModel.position.relativePosition;
+        return fixModel.relativePosition;
     }
 
     /**

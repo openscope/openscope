@@ -93,13 +93,13 @@ const _calculateDistancesAlongRoute = (waypointModelList, airport) => {
 
     for (let i = 0; i < waypointModelList.length; i++) {
         const waypoint = waypointModelList[i];
-        const waypointPosition = waypoint.position.relativePosition;
+        const waypointPosition = waypoint.relativePosition;
         let previousWaypoint = waypoint;
-        let previousPosition = waypoint.position.relativePosition;
+        let previousPosition = waypoint.relativePosition;
 
         if (i > 0) {
             previousWaypoint = waypointModelList[i - 1];
-            previousPosition = previousWaypoint.position.relativePosition;
+            previousPosition = previousWaypoint.relativePosition;
         }
 
         if (isWithinAirspace(airport, waypointPosition) && i > 0) {

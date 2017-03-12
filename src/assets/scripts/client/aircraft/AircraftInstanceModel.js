@@ -981,7 +981,7 @@ export default class Aircraft {
      */
     _calculateTargetedAltitudeToInterceptGlidepath() {
         const runway = window.airportController.airport_get().getRunway(this.rwy_arr);
-        const distanceFromThreshold_km = getOffset(this.positionModel.relativePosition, runway.position.relativePosition, runway.angle)[1];
+        const distanceFromThreshold_km = getOffset(this.positionModel.relativePosition, runway.relativePosition, runway.angle)[1];
         const glideslopeAltitude = runway.getGlideslopeAltitude(distanceFromThreshold_km);
         const targetAltitude = clamp(runway.elevation, glideslopeAltitude, this.altitude);
 
@@ -1001,7 +1001,7 @@ export default class Aircraft {
         // Guide aircraft onto the localizer
         const runway = window.airportController.airport_get().getRunway(this.rwy_arr);
         const runwayHeading = radians_normalize(runway.angle);
-        const lateralDistanceFromCourse_km = getOffset(this, runway.position.relativePosition, runwayHeading)[0];
+        const lateralDistanceFromCourse_km = getOffset(this, runway.relativePosition, runwayHeading)[0];
         const angle_diff = angle_offset(runwayHeading, this.heading);
         const turning_time = Math.abs(radiansToDegrees(angle_diff)) / 3; // time to turn angle_diff degrees at 3 deg/s
         const turning_radius = km(this.speed) / 3600 * turning_time; // dist covered in the turn, km
@@ -1090,7 +1090,7 @@ export default class Aircraft {
                 break;
             case FLIGHT_MODES.WAITING:
                 runway = airport.getRunway(this.rwy_dep);
-                position = runway.position.relativePosition;
+                position = runway.relativePosition;
 
                 this.positionModel.relativePosition[0] = position[0];
                 this.positionModel.relativePosition[1] = position[1];
@@ -1165,7 +1165,7 @@ export default class Aircraft {
     updateTargetPrepareAircraftForLanding() {
         const airport = window.airportController.airport_get();
         const runway  = airport.getRunway(this.rwy_arr);
-        const offset = getOffset(this, runway.position.relativePosition, runway.angle);
+        const offset = getOffset(this, runway.relativePosition, runway.angle);
         const offset_angle = vradial(offset);
         const angle = radians_normalize(runway.angle);
         const glideslope_altitude = clamp(runway.elevation, runway.getGlideslopeAltitude(offset[1]), this.altitude);
@@ -1332,7 +1332,7 @@ export default class Aircraft {
             return;
         }
 
-        const currentWaypointPosition = this.fms.currentWaypoint.position.relativePosition;
+        const currentWaypointPosition = this.fms.currentWaypoint.relativePosition;
         const vectorToFix = vsub(this.positionModel.relativePosition, currentWaypointPosition);
         const distanceToFix = distance2d(this.positionModel.relativePosition, currentWaypointPosition);
         const isFixLessThanTurnInitiation = distanceToFix < calculateTurnInitiaionDistance(this, currentWaypointPosition);

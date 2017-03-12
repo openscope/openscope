@@ -78,7 +78,7 @@ ava('.toWaypointModel() returns a new instance of a WaypointModel', t => {
 
     t.true(result instanceof WaypointModel);
     t.true(result.name === model.name.toLowerCase());
-    t.true(_isArray(result.position.relativePosition));
+    t.true(_isArray(result.relativePosition));
     t.true(result.altitudeRestriction === 8000);
     t.true(result.speedRestriction === 250);
 });
