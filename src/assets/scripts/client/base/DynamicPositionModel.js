@@ -114,17 +114,6 @@ export default class DynamicPositionModel {
         ];
     }
 
-    // TODO: magnetic_north is already in radians? This should be changed or removed
-    /**
-     * Magnetic north of the current instance expressed in radians
-     *
-     * @property magneticNorthInRadians
-     * @return {number}
-     */
-    get magneticNorthInRadians() {
-        return degreesToRadians(this.magnetic_north);
-    }
-
     /**
      * Relative position, in km offset from the airport
      *

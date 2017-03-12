@@ -131,7 +131,7 @@ export default class AirportModel {
      * @return {number}
      */
     get magnetic_north() {
-        return this._position.magneticNorthInRadians;
+        return this._position.magnetic_north;
     }
 
     /**
@@ -171,7 +171,7 @@ export default class AirportModel {
             return;
         }
 
-        this.setCurrentPosition(data.position, data.magnetic_north);
+        this.setCurrentPosition(data.position, degreesToRadians(data.magnetic_north));
 
         this.radio = _get(data, 'radio', this.radio);
         this.has_terrain = _get(data, 'has_terrain', false);
