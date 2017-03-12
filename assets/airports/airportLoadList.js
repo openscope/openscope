@@ -257,12 +257,19 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             name: 'Vienna International Airport',
             wip: true
         },
+        
         // {
         //     icao: 'ltba',
         //     level: 'hard',
         //     name: 'Atatürk International Airport',
         //     wip: true
         // },
+        {
+            icao: 'mdsd',
+            level: 'beginner',
+            name: 'Aeropuerto Internacional Las Américas',
+            wip: true
+        },
         // {
         //     icao: 'omaa',
         //     level: 'medium',
