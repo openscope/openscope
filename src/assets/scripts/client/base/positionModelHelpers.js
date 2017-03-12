@@ -1,8 +1,6 @@
 import _isNil from 'lodash/isNil';
 import { distanceToPoint } from '../math/circle';
 import { REGEX } from '../constants/globalConstants';
-import DynamicPositionModel from './DynamicPositionModel';
-import StaticPositionModel from './StaticPositionModel';
 
 /**
  * @function hasCardinalDirectionInCoordinate
@@ -80,36 +78,6 @@ export const adjustForMagneticNorth = (originalX, originalY, magneticNorth) => {
         x,
         y
     };
-};
-
-/**
- * Accepts a `StaticPositionModel` and returns a `DynamicPositionModel` with the same location
- *
- * @function convertStaticPositionToDynamic
- * @param StaticPositionModel {StaticPositionModel}
- * @return {DynamicPositionModel}
- */
-export const convertStaticPositionToDynamic = (StaticPositionModel) => {
-    const dynamicPositionModel = new DynamicPositionModel(StaticPositionModel.gps,
-        StaticPositionModel.referencePostion, StaticPositionModel.magnetic_north
-    );
-
-    return dynamicPositionModel;
-};
-
-/**
- * Accepts a `DynamicPositionModel` and returns a `StaticPositionModel` with the same location
- *
- * @function convertDynamicPositionToStatic
- * @param dynamicPositionModel {DynamicPositionModel}
- * @return {StaticPositionModel}
- */
-export const convertDynamicPositionToStatic = (dynamicPositionModel) => {
-    const staticPositionModel = new StaticPositionModel(dynamicPositionModel.gps,
-        dynamicPositionModel.referencePostion, dynamicPositionModel.magnetic_north
-    );
-
-    return staticPositionModel;
 };
 
 /**
