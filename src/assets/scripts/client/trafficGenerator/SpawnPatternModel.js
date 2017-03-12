@@ -393,10 +393,10 @@ export default class SpawnPatternModel extends BaseModel {
      * Provide read-only public access to this._positionModel
      *
      * @for SpawnPatternModel
-     * @property position
+     * @property positionModel
      * @type {StaticPositionModel}
      */
-    get position() {
+    get positionModel() {
         return this._positionModel;
     }
 
@@ -962,9 +962,9 @@ export default class SpawnPatternModel extends BaseModel {
 
         const waypointModelList = this._generateWaypointListForRoute(spawnPatternJson.route, navigationLibrary);
         // grab position of first fix/waypoint
-        const initialPosition = waypointModelList[0].position;
+        const initialPosition = waypointModelList[0].positionModel;
         // calculate heading from first fix/waypoint to second fix/waypoint
-        const heading = initialPosition.bearingToPosition(waypointModelList[1].position);
+        const heading = initialPosition.bearingToPosition(waypointModelList[1].positionModel);
 
         this._positionModel = initialPosition;
         this.heading = heading;

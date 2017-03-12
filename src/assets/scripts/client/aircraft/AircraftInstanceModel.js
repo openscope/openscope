@@ -291,7 +291,7 @@ export default class Aircraft {
             const airport = window.airportController.airport_get();
 
             this.mode = FLIGHT_MODES.APRON;
-            this.altitude = airport.position.elevation;
+            this.altitude = airport.positionModel.elevation;
             this.speed = 0;
 
             return;
@@ -639,7 +639,7 @@ export default class Aircraft {
         const airport = window.airportController.airport_get();
         const runway = airport.getRunway(this.initialRunwayAssignment);
         const nearRunwayAltitude = abs(this.altitude - runway.elevation) < errorAllowanceInFeet;
-        const nearAirportAltitude = abs(this.altitude - airport.position.elevation) < errorAllowanceInFeet;
+        const nearAirportAltitude = abs(this.altitude - airport.positionModel.elevation) < errorAllowanceInFeet;
 
         return nearRunwayAltitude || nearAirportAltitude;
     }

@@ -267,10 +267,10 @@ export default class StandardRouteWaypointModel extends BaseModel {
      * Provide read-only public access to this._positionModel
      *
      * @for SpawnPatternModel
-     * @property position
+     * @property positionModel
      * @type {StaticPositionModel}
      */
-    get position() {
+    get positionModel() {
         return this._positionModel;
     }
 
@@ -393,7 +393,7 @@ export default class StandardRouteWaypointModel extends BaseModel {
     toWaypointModel() {
         const waypointProps = {
             name: this.name,
-            position: this.position,
+            positionModel: this.positionModel,
             altitudeRestriction: this._altitude,
             speedRestriction: this._speed
         };

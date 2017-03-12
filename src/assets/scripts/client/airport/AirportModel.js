@@ -519,7 +519,7 @@ export default class AirportModel {
                     return [
                         $.map(line_string, (pt) => {
                             pt.reverse();   // `StaticPositionModel` requires [lat,lon] order
-                            const pos = new StaticPositionModel(pt, apt.position, apt._magneticNorth);
+                            const pos = new StaticPositionModel(pt, apt.positionModel, apt._magneticNorth);
 
                             return [pos.relativePosition];
                         })

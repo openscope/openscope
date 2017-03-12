@@ -47,10 +47,10 @@ export default class FixModel extends BaseModel {
     /**
      * Provides access to the position data of the instance
      *
-     * @property position
+     * @property positionModel
      * @return {array}
      */
-    get position() {
+    get positionModel() {
         return this._positionModel;
     }
 
@@ -139,7 +139,7 @@ export default class FixModel extends BaseModel {
     toWaypointModel(isHold = false, holdProps = {}) {
         let waypointProps = {
             name: this.name,
-            position: this.clonePosition(),
+            positionModel: this.clonePosition(),
             altitudeRestriction: -1,
             speedRestriction: -1
         };

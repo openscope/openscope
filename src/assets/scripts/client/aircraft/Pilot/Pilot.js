@@ -539,7 +539,7 @@ export default class Pilot {
             this.flyPresentHeading();
         }
 
-        const datum = runway.position;
+        const datum = runway.positionModel;
         const course = runway.angle;
         const descentAngle = runway.ils.gs_gradient;
 

@@ -121,10 +121,10 @@ export default class WaypointModel {
      * Provide read-only public access to this._positionModel
      *
      * @for SpawnPatternModel
-     * @property position
+     * @property positionModel
      * @type {StaticPositionModel}
      */
-    get position() {
+    get positionModel() {
         return this._positionModel;
     }
 
@@ -149,7 +149,7 @@ export default class WaypointModel {
      */
     init(waypointProps) {
         this.name = waypointProps.name.toLowerCase();
-        this._positionModel = waypointProps.position;
+        this._positionModel = waypointProps.positionModel;
         this.speedRestriction = parseInt(waypointProps.speedRestriction, 10);
         this.altitudeRestriction = parseInt(waypointProps.altitudeRestriction, 10);
 

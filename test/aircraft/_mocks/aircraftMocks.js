@@ -113,7 +113,7 @@ export const HOLD_WAYPOINT_MOCK = {
     turnDirection: 'left',
     legLength: '3min',
     name: '@COWBY',
-    position: STATIC_POSITION_MODEL_MOCK,
+    positionModel: STATIC_POSITION_MODEL_MOCK,
     altitudeRestriction: -1,
     speedRestriction: -1
 };
@@ -122,7 +122,7 @@ export const HOLD_AT_PRESENT_LOCATION_MOCK = {
     turnDirection: 'left',
     legLength: '3min',
     name: 'GPS',
-    position: STATIC_POSITION_MODEL_MOCK,
+    positionModel: STATIC_POSITION_MODEL_MOCK,
     altitudeRestriction: -1,
     speedRestriction: -1
 };

@@ -8,7 +8,7 @@ const WaypointMock = {
     turnDirection: '',
     legLength: '',
     name: fixnameMock,
-    position: holdFixLocationMock,
+    positionModel: holdFixLocationMock,
     altitudeRestriction: -1,
     speedRestriction: -1
 };

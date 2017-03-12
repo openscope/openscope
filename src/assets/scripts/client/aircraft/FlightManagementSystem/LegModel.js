@@ -469,9 +469,7 @@ export default class LegModel {
             {},
             waypointProps,
             {
-                position: {
-                    position: waypointProps.position
-                }
+                positionModel: waypointProps.positionModel
             }
         );
     }

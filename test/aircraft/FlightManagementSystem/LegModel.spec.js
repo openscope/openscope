@@ -160,7 +160,7 @@ ava('._buildWaypointForHoldingPatternAtPosition() returns an array with a single
 ava('._buildWaypointForHoldingPatternAtPosition() returns the same position for a hold Waypoint at a fix vs position', (t) => {
     const model = new LegModel(HOLD_AT_PRESENT_LOCATION_MOCK.name, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture, HOLD_AT_PRESENT_LOCATION_MOCK);
     const fixResult = model._buildWaypointForHoldingPattern(holdRouteSegmentMock);
-    const positionalHoldingProps = Object.assign(HOLD_AT_PRESENT_LOCATION_MOCK, { position: cowbyFixFixture.position });
+    const positionalHoldingProps = Object.assign(HOLD_AT_PRESENT_LOCATION_MOCK, { positionModel: cowbyFixFixture.positionModel });
     const positionResult = model._buildWaypointForHoldingPatternAtPosition(positionalHoldingProps);
 
     t.true(_isEqual(fixResult[0].relativePosition, positionResult[0].relativePosition));

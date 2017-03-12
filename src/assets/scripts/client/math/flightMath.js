@@ -205,7 +205,7 @@ export const calculateTurnInitiaionDistance = (aircraft, currentWaypointPosition
     }
 
     const nominalNewCourse = _calculateNominalNewCourse(
-        aircraft.fms.getNextWaypointPosition(),
+        aircraft.fms.getNextWaypointPositionModel(),
         currentWaypointPosition
     );
     const courseChange = _calculateCourseChangeInRadians(currentHeading, nominalNewCourse);

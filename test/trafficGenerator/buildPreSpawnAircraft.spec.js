@@ -28,6 +28,6 @@ ava('returns an array of objects with correct keys', (t) => {
     _map(results, (result) => {
         t.true(typeof result.heading === 'number');
         t.true(typeof result.nextFix === 'string');
-        t.true(_isArray(result.position.relativePosition));
+        t.true(_isArray(result.positionModel.relativePosition));
     });
 });

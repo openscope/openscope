@@ -59,10 +59,10 @@ export default class RunwayModel extends BaseModel {
      * Provide read-only public access to this._positionModel
      *
      * @for SpawnPatternModel
-     * @property position
+     * @property positionModel
      * @type {StaticPositionModel}
      */
-    get position() {
+    get positionModel() {
         return this._positionModel;
     }
 
@@ -80,9 +80,9 @@ export default class RunwayModel extends BaseModel {
         }
 
         if (data.end) {
-            const thisSide = new StaticPositionModel(data.end[end], this.airport.position, this.airport.magneticNorth);
+            const thisSide = new StaticPositionModel(data.end[end], this.airport.positionModel, this.airport.magneticNorth);
             // FIXME: ressignment of an argument with an inline ternary? this line needs some work.
-            const farSide = new StaticPositionModel(data.end[(end === 0) ? 1 : 0], this.airport.position, this.airport.magneticNorth);
+            const farSide = new StaticPositionModel(data.end[(end === 0) ? 1 : 0], this.airport.positionModel, this.airport.magneticNorth);
 
             // TODO: `gps` and `elevation` are available from the `StaticPositionModel` and should be pulled from there
             // instead of setting direct properties. If direct properties are needed, use getters instead.

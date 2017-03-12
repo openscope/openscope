@@ -145,7 +145,7 @@ ava('.createLegWithHoldingPattern() prepends LegCollection with hold Waypoint wh
     const legLengthMock = '2min';
     const holdRouteSegmentMock = 'GPS';
     const holdPositionMock = SNORA_STATIC_POSITION_MODEL;
-    const fms = buildFmsMock(isComplexRoute);
+    const fms = buildFmsMock();
 
     fms.createLegWithHoldingPattern(inboundHeadingMock, turnDirectionMock, legLengthMock, holdRouteSegmentMock, holdPositionMock);
 
@@ -288,10 +288,10 @@ ava('.skipToWaypoint() does nothing is the waypoint to skip to is the #currentWa
     t.true(fms.currentLeg.routeString === waypointNameMock);
 });
 
-ava('.getNextWaypointPosition() returns the `StaticPositionModel` for the next Waypoint in the collection', (t) => {
+ava('.getNextWaypointPositionModel() returns the `StaticPositionModel` for the next Waypoint in the collection', (t) => {
     const expectedResult = [-87.64380662924125, -129.57471627889475];
     const fms = buildFmsMock();
-    const waypointPosition = fms.getNextWaypointPosition();
+    const waypointPosition = fms.getNextWaypointPositionModel();
     const result = waypointPosition.relativePosition;
 
     t.true(waypointPosition instanceof StaticPositionModel);

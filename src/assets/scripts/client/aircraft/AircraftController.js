@@ -443,7 +443,7 @@ export default class AircraftController {
         const flightNumber = this._airlineController.generateFlightNumberWithAirlineModel(airlineModel);
         const aircraftTypeDefinition = this._getRandomAircraftTypeDefinitionForAirlineId(airlineId, airlineModel);
         const destination = this._setDestinationFromRouteOrProcedure(spawnPatternModel);
-        const dynamicPositionModel = convertStaticPositionToDynamic(spawnPatternModel.position);
+        const dynamicPositionModel = convertStaticPositionToDynamic(spawnPatternModel.positionModel);
 
         return {
             destination,
@@ -455,7 +455,7 @@ export default class AircraftController {
             altitude: spawnPatternModel.altitude,
             speed: spawnPatternModel.speed,
             heading: spawnPatternModel.heading,
-            position: dynamicPositionModel,
+            positionModel: dynamicPositionModel,
             icao: aircraftTypeDefinition.icao,
             model: aircraftTypeDefinition,
             route: spawnPatternModel.routeString,
