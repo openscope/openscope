@@ -120,8 +120,25 @@ export const convertDynamicPositionToStatic = (dynamicPositionModel) => {
  * @return {Boolean}
  */
 export const isValidGpsCoordinatePair = (gpsCoordinates) => {
-    const isValid = _isNil(gpsCoordinates) || gpsCoordinates.length !== 2
-        || typeof gpsCoordinates[0] !== 'number' || typeof gpsCoordinates[1] !== 'number';
+    const hasContent = !_isNil(gpsCoordinates);
+    const hasTwoOrThreeElements = gpsCoordinates.length === 2 || gpsCoordinates.length === 3;
+    const firstTwoElementsHaveSameType = typeof gpsCoordinates[0] === typeof gpsCoordinates[1];
 
-    return isValid;
+    if (!hasContent || !hasTwoOrThreeElements || !firstTwoElementsHaveSameType) {
+        return false;
+    }
+
+    const latitude = gpsCoordinates[0];
+    const longitude = gpsCoordinates[1];
+
+    if (typeof latitude === 'number') {
+        return true;
+    } else if (typeof latitude === 'string') {
+        const latFirstCharIsNorthOrSouth = ['N', 'S'].indexOf(latitude[0].toUpperCase()) !== -1;
+        const lonFirstCharIsEastOrWest = ['E', 'W'].indexOf(longitude[0].toUpperCase()) !== -1;
+
+        return latFirstCharIsNorthOrSouth && lonFirstCharIsEastOrWest;
+    }
+
+    return false;
 };
