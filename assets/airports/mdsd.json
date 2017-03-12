@@ -281,7 +281,7 @@
             },
             "body": ["MIROX"],
             "exitPoints": {
-                "MELLA": ["DARSI", "POBEP", "MELLA"],
+                "MELLA": ["DARSI", "POBEP", "MELLA"]
 
             },
             "draw": [
