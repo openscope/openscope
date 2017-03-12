@@ -189,12 +189,12 @@ export default class StandardRouteWaypointModel extends BaseModel {
          * Specific bits of this property are exposed via public getters.
          * This property should never be modified by an exteral method.
          *
-         * @property _position
+         * @property _positionModel
          * @type {StaticPositionModel}
          * @default null
          * @private
          */
-        this._position = null;
+        this._positionModel = null;
 
         /**
          * Distance in nm from the previous waypoint.
@@ -235,7 +235,7 @@ export default class StandardRouteWaypointModel extends BaseModel {
      * @return {array}
      */
     get gps() {
-        return this._position.gps;
+        return this._positionModel.gps;
     }
 
     /**
@@ -245,7 +245,7 @@ export default class StandardRouteWaypointModel extends BaseModel {
      * @return {array}
      */
     get gpsXY() {
-        return this._position.gpsXY;
+        return this._positionModel.gpsXY;
     }
 
     /**
@@ -264,14 +264,14 @@ export default class StandardRouteWaypointModel extends BaseModel {
     }
 
     /**
-     * Provide read-only public access to this._position
+     * Provide read-only public access to this._positionModel
      *
      * @for SpawnPatternModel
      * @property position
      * @type {StaticPositionModel}
      */
     get position() {
-        return this._position;
+        return this._positionModel;
     }
 
     /**
@@ -282,7 +282,7 @@ export default class StandardRouteWaypointModel extends BaseModel {
      * @type {array<number>} [kilometersNorth, kilometersEast]
      */
     get relativePosition() {
-        return this._position.relativePosition;
+        return this._positionModel.relativePosition;
     }
 
     /**
@@ -329,7 +329,7 @@ export default class StandardRouteWaypointModel extends BaseModel {
     }
 
     /**
-     * Find the matching fix from the `FixCollection` and clone its `StaticPositionModel` this `_position`
+     * Find the matching fix from the `FixCollection` and clone its `StaticPositionModel` this `_positionModel`
      *
      * @for StandardRouteWaypointModel
      * @method _clonePoisitonFromFix
@@ -345,7 +345,7 @@ export default class StandardRouteWaypointModel extends BaseModel {
             return this;
         }
 
-        this._position = fixModel.clonePosition();
+        this._positionModel = fixModel.clonePosition();
 
         return this;
     }

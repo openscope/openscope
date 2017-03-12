@@ -31,12 +31,12 @@ export default class WaypointModel {
         /**
          * `StaticPositionModel` of the waypoint.
          *
-         * @property _position
+         * @property _positionModel
          * @type {StaticPositionModel}
          * @default null
          * @private
          */
-        this._position = null;
+        this._positionModel = null;
 
         /**
          * Speed restriction for the waypoint.
@@ -110,7 +110,7 @@ export default class WaypointModel {
         return {
             dirTurns: this._turnDirection,
             fixName: this.name,
-            fixPos: this._position,
+            fixPos: this._positionModel,
             inboundHd: null,
             legLength: this._legLength,
             timer: this.timer
@@ -118,14 +118,14 @@ export default class WaypointModel {
     }
 
     /**
-     * Provide read-only public access to this._position
+     * Provide read-only public access to this._positionModel
      *
      * @for SpawnPatternModel
      * @property position
      * @type {StaticPositionModel}
      */
     get position() {
-        return this._position;
+        return this._positionModel;
     }
 
     /**
@@ -135,7 +135,7 @@ export default class WaypointModel {
      * @return {array<number>} [kilometersNorth, kilometersEast]
      */
     get relativePosition() {
-        return this._position.relativePosition;
+        return this._positionModel.relativePosition;
     }
 
     /**
@@ -149,7 +149,7 @@ export default class WaypointModel {
      */
     init(waypointProps) {
         this.name = waypointProps.name.toLowerCase();
-        this._position = waypointProps.position;
+        this._positionModel = waypointProps.position;
         this.speedRestriction = parseInt(waypointProps.speedRestriction, 10);
         this.altitudeRestriction = parseInt(waypointProps.altitudeRestriction, 10);
 
@@ -167,7 +167,7 @@ export default class WaypointModel {
      */
     destroy() {
         this.name = '';
-        this._position = null;
+        this._positionModel = null;
         this.speedRestriction = -1;
         this.altitudeRestriction = -1;
         this._turnDirection = '';

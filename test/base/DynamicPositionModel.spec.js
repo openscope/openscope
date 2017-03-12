@@ -22,7 +22,7 @@ ava('sets internal properties when provided valid parameters', t => {
     t.true(result.longitude === LAT_LONG_DECIMAL_MOCK[1]);
     t.true(result.elevation === 0);
     t.true(_isEqual(result.relativePosition, expectedrelativePosition));
-    t.true(_isEqual(result.reference_position, airportPositionFixtureKLAS));
+    t.true(_isEqual(result.relative_position, airportPositionFixtureKLAS));
     t.true(result.magnetic_north === 0.2076941809873252);
     t.true(_isEqual(result.gps, LAT_LONG_DECIMAL_MOCK));
     t.true(result.gpsXY[0] === LAT_LONG_DECIMAL_MOCK[1]);

@@ -91,6 +91,6 @@ export default class StaticPositionModel extends DynamicPositionModel {
         }
 
         this._relativePosition = DynamicPositionModel.calculateRelativePosition(
-            this.gps, this.reference_position, this.magnetic_north);
+            this.gps, this.relative_position, this.magnetic_north);
     }
 }

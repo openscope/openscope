@@ -35,11 +35,11 @@ export default class FixModel extends BaseModel {
         /**
          * Coordinates of the fix
          *
-         * @property _fixPosition
+         * @property _positionModel
          * @type {StaticPositionModel}
          * @default null
          */
-        this._fixPosition = null;
+        this._positionModel = null;
 
         this.init(fixName, fixCoordinate, referencePosition);
     }
@@ -51,7 +51,7 @@ export default class FixModel extends BaseModel {
      * @return {array}
      */
     get position() {
-        return this._fixPosition;
+        return this._positionModel;
     }
 
     /**
@@ -61,7 +61,7 @@ export default class FixModel extends BaseModel {
      * @return {array<number>} [kilometersNorth, kilometersEast]
      */
     get relativePosition() {
-        return this._fixPosition.relativePosition;
+        return this._positionModel.relativePosition;
     }
 
     /**
@@ -81,7 +81,7 @@ export default class FixModel extends BaseModel {
         }
 
         this.name = fixName.toUpperCase();
-        this._fixPosition = new StaticPositionModel(fixCoordinate, referencePosition, referencePosition.magnetic_north);
+        this._positionModel = new StaticPositionModel(fixCoordinate, referencePosition, referencePosition.magnetic_north);
 
         return this;
     }
@@ -95,26 +95,26 @@ export default class FixModel extends BaseModel {
      */
     reset() {
         this.name = '';
-        this._fixPosition = null;
+        this._positionModel = null;
 
         return this;
     }
 
     /**
-     * Returns a clone of an instance's `_fixPosition` property.
+     * Returns a clone of an instance's `_positionModel` property.
      *
      * It is important to note that this is a _clone_ and not a copy. Any changes made to this instance will
-     * not be reflected in the clone. This creates an entirely new instance of the `_fixPosition` property,
+     * not be reflected in the clone. This creates an entirely new instance of the `_positionModel` property,
      * and after creation is completely independant of this instance.
      *
      * This is used with `StandardRouteWaypointModel` objects to obtain the position of a fix. This method
      * provides easy access to the `StaticPositionModel` that already exists here.
      *
      * @for FixModel
-     * @return {StaticPositionModel}  a clone of the current `_fixPosition` property
+     * @return {StaticPositionModel}  a clone of the current `_positionModel` property
      */
     clonePosition() {
-        return _cloneDeep(this._fixPosition);
+        return _cloneDeep(this._positionModel);
     }
 
     /**

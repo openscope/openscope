@@ -71,7 +71,7 @@ export default class Aircraft {
         /* eslint-disable no-multi-spaces*/
         this._navigationLibrary = navigationLibrary;
         this.eid          = global.prop.aircraft.list.length;  // entity ID
-        this.position     = null;       // Aircraft Position
+        this.positionModel= null;       // Aircraft Position
         this.model        = null;       // Aircraft type
         this.airlineId      = '';         // Airline Identifier (eg. 'AAL')
         this.airlineCallsign = '';
@@ -115,7 +115,7 @@ export default class Aircraft {
         // Should be checked before updating global state such as score
         // or HTML.
         this.projected = false;
-        this.position_history = [];
+        this.relativePositionHistory = [];
 
         this.category = options.category; // 'arrival' or 'departure'
         this.mode = FLIGHT_MODES.CRUISE;
@@ -201,7 +201,7 @@ export default class Aircraft {
      * @type {array<number>} [kilometersNorth, kilometersEast]
      */
     get relativePosition() {
-        return this.position.relativePosition;
+        return this.positionModel.relativePosition;
     }
 
     /**
@@ -271,7 +271,7 @@ export default class Aircraft {
 
     parse(data) {
         // FIXME: these _gets can likely be removed
-        this.position = _get(data, 'position', this.position);
+        this.positionModel = _get(data, 'position', this.positionModel);
         this.model = _get(data, 'model', this.model);
         this.airlineId = _get(data, 'airline', this.airlineId);
         this.airlineCallsign = _get(data, 'airlineCallsign', this.airlineCallsign);
@@ -577,7 +577,7 @@ export default class Aircraft {
      * @method pushHistory
      */
     pushHistory() {
-        this.history.push([this.position.relativePosition[0], this.position.relativePosition[1]]);
+        this.history.push([this.positionModel.relativePosition[0], this.positionModel.relativePosition[1]]);
 
         if (this.history.length > 10) {
             this.history.splice(0, this.history.length - 10);
@@ -622,7 +622,7 @@ export default class Aircraft {
         const withinAirspaceAltitudeRange = this.altitude <= airport.ctr_ceiling;
 
         if (!_isNil(airport.perimeter)) {    // polygonal airspace boundary
-            withinAirspaceLateralBoundaries = point_in_area(this.position.relativePosition, airport.perimeter);
+            withinAirspaceLateralBoundaries = point_in_area(this.positionModel.relativePosition, airport.perimeter);
         }
 
         return withinAirspaceAltitudeRange && withinAirspaceLateralBoundaries;
@@ -981,7 +981,7 @@ export default class Aircraft {
      */
     _calculateTargetedAltitudeToInterceptGlidepath() {
         const runway = window.airportController.airport_get().getRunway(this.rwy_arr);
-        const distanceFromThreshold_km = getOffset(this.position.relativePosition, runway.position.relativePosition, runway.angle)[1];
+        const distanceFromThreshold_km = getOffset(this.positionModel.relativePosition, runway.position.relativePosition, runway.angle)[1];
         const glideslopeAltitude = runway.getGlideslopeAltitude(distanceFromThreshold_km);
         const targetAltitude = clamp(runway.elevation, glideslopeAltitude, this.altitude);
 
@@ -1092,8 +1092,8 @@ export default class Aircraft {
                 runway = airport.getRunway(this.rwy_dep);
                 position = runway.position.relativePosition;
 
-                this.position.relativePosition[0] = position[0];
-                this.position.relativePosition[1] = position[1];
+                this.positionModel.relativePosition[0] = position[0];
+                this.positionModel.relativePosition[1] = position[1];
                 this.heading = runway.angle;
                 this.altitude = runway.elevation;
 
@@ -1333,8 +1333,8 @@ export default class Aircraft {
         }
 
         const currentWaypointPosition = this.fms.currentWaypoint.position.relativePosition;
-        const vectorToFix = vsub(this.position.relativePosition, currentWaypointPosition);
-        const distanceToFix = distance2d(this.position.relativePosition, currentWaypointPosition);
+        const vectorToFix = vsub(this.positionModel.relativePosition, currentWaypointPosition);
+        const distanceToFix = distance2d(this.positionModel.relativePosition, currentWaypointPosition);
         const isFixLessThanTurnInitiation = distanceToFix < calculateTurnInitiaionDistance(this, currentWaypointPosition);
 
         if (
@@ -1457,21 +1457,21 @@ export default class Aircraft {
         // SPEED
         this.updateSpeedPhysics();
 
-        if (!this.position) {
+        if (!this.positionModel) {
             return;
         }
 
         // TODO: abstract to AircraftPositionHistory class
         // Trailling
-        if (this.position_history.length === 0) {
-            this.position_history.push([
-                this.position.relativePosition[0],
-                this.position.relativePosition[1],
+        if (this.relativePositionHistory.length === 0) {
+            this.relativePositionHistory.push([
+                this.positionModel.relativePosition[0],
+                this.positionModel.relativePosition[1],
                 window.gameController.game_time() / window.gameController.game_speedup()
             ]);
             // TODO: this can be abstracted
-        } else if (abs((window.gameController.game_time() / window.gameController.game_speedup()) - this.position_history[this.position_history.length - 1][2]) > 4 / window.gameController.game_speedup()) {
-            this.position_history.push([this.position.relativePosition[0], this.position.relativePosition[1], window.gameController.game_time() / window.gameController.game_speedup()]);
+        } else if (abs((window.gameController.game_time() / window.gameController.game_speedup()) - this.relativePositionHistory[this.relativePositionHistory.length - 1][2]) > 4 / window.gameController.game_speedup()) {
+            this.relativePositionHistory.push([this.positionModel.relativePosition[0], this.positionModel.relativePosition[1], window.gameController.game_time() / window.gameController.game_speedup()]);
         }
 
         // FIXME: is this ratio correct? is it 0.000514444 or 0.514444?
@@ -1485,8 +1485,8 @@ export default class Aircraft {
         //     this.updateSimpleGroundSpeedPhysics(scaleSpeed);
         // }
 
-        this.distance = vlen(this.position.relativePosition);
-        this.radial = vradial(this.position.relativePosition);
+        this.distance = vlen(this.positionModel.relativePosition);
+        this.radial = vradial(this.positionModel.relativePosition);
 
         if (this.radial < 0) {
             this.radial += tau();
@@ -1687,7 +1687,7 @@ export default class Aircraft {
         this.groundSpeed = this.ds / 0.000514444 / window.gameController.game_delta();
         this.groundTrack = vradial(vector);
         // FIXME: This should use new calculations using actual PositionModel
-        // this.position = vadd(this.position, vector);
+        // this.positionModel = vadd(this.positionModel, vector);
     }
 
     /**
@@ -1704,7 +1704,7 @@ export default class Aircraft {
         this.groundSpeed = this.speed;
         this.groundTrack = this.heading;
         // FIXME: This should be turned back on, with new calculations with actual PositionModel
-        // this.position = vadd(this.position, vscale([sin(angle), cos(angle)], scaleSpeed));
+        // this.positionModel = vadd(this.positionModel, vscale([sin(angle), cos(angle)], scaleSpeed));
     }
 
     // TODO: this method needs a lot of love. its much too long with waaay too many nested if/else ifs.
@@ -1727,7 +1727,7 @@ export default class Aircraft {
 
         // restricted areas
         // players are penalized for each area entry
-        if (this.position) {
+        if (this.positionModel) {
             for (let i = 0; i < this.restricted.list.length; i++) {
                 // TODO: this should be abstracted to a helper function
                 //   Polygon matching procedure:
@@ -1757,7 +1757,7 @@ export default class Aircraft {
 
                 // recalculate for new areas or those that should be checked
                 if (!area.range || area.range <= 0) {
-                    new_inside = point_in_poly(this.position.relativePosition, area.data.coordinates);
+                    new_inside = point_in_poly(this.positionModel.relativePosition, area.data.coordinates);
 
                     // ac has just entered the area: .inside is still false, but st is true
                     if (new_inside && !area.inside) {
@@ -1769,7 +1769,7 @@ export default class Aircraft {
                         // don't calculate more often than every 10 seconds
                         area.range = Math.max(
                         this.speed * 1.85 / 36 / 1000 * 10,
-                        distance_to_poly(this.position.relativePosition, area.data.coordinates));
+                        distance_to_poly(this.positionModel.relativePosition, area.data.coordinates));
                     }
 
                     area.inside = new_inside;
@@ -1802,7 +1802,7 @@ export default class Aircraft {
 
                 if (curr_ranges[id] < 0 || curr_ranges[id] === Infinity) {
                     area = terrain[ele][id];
-                    status = point_to_mpoly(this.position.relativePosition, area, id);
+                    status = point_to_mpoly(this.positionModel.relativePosition, area, id);
 
                     if (status.inside) {
                         this.altitude = 0;

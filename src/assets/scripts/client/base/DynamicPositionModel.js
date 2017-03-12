@@ -77,10 +77,10 @@ export default class DynamicPositionModel {
         this.elevation = 0;
 
         /**
-         * @property reference_position
+         * @property relative_position
          * @type {DynamicPositionModel|null}
          */
-        this.reference_position = reference;
+        this.relative_position = reference;
 
         /**
          * @property magnetic_north
@@ -225,7 +225,7 @@ export default class DynamicPositionModel {
             Math.cos(φ1) * Math.sin(δ) * Math.cos(θ));
         const λ2 = λ1 + Math.atan2(Math.sin(θ) * Math.sin(δ) * Math.cos(φ1),
             Math.cos(δ) - Math.sin(φ1) * Math.sin(φ2));
-        const dynamicPositionModel = new DynamicPositionModel([φ2, λ2], this.reference_position, this.magnetic_north);
+        const dynamicPositionModel = new DynamicPositionModel([φ2, λ2], this.relative_position, this.magnetic_north);
 
         return dynamicPositionModel;
     }
@@ -278,7 +278,7 @@ export default class DynamicPositionModel {
             return DEFAULT_SCREEN_POSITION;
         }
 
-        return DynamicPositionModel.calculateRelativePosition(this.gps, this.reference_position, this.magnetic_north);
+        return DynamicPositionModel.calculateRelativePosition(this.gps, this.relative_position, this.magnetic_north);
     }
 
     /**
@@ -291,7 +291,7 @@ export default class DynamicPositionModel {
      * @private
      */
     _hasReferencePosition() {
-        return this.reference_position !== null;
+        return this.relative_position !== null;
     }
 }
 

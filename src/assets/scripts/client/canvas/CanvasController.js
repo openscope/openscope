@@ -838,15 +838,15 @@ export default class ConvasController {
             cc.fillStyle = COLORS.WHITE;
         }
 
-        const length = aircraft.position_history.length;
+        const length = aircraft.relativePositionHistory.length;
         for (let i = 0; i < length; i++) {
             if (!aircraft.inside_ctr) {
                 cc.globalAlpha = 0.3 / (length - i);
             } else {
                 cc.globalAlpha = 1 / (length - i);
                 cc.fillRect(
-                    window.uiController.km_to_px(aircraft.position_history[i][0]) + this.canvas.panX - 1,
-                    -window.uiController.km_to_px(aircraft.position_history[i][1]) + this.canvas.panY - 1,
+                    window.uiController.km_to_px(aircraft.relativePositionHistory[i][0]) + this.canvas.panX - 1,
+                    -window.uiController.km_to_px(aircraft.relativePositionHistory[i][1]) + this.canvas.panY - 1,
                     2,
                     2
                 );
@@ -855,8 +855,8 @@ export default class ConvasController {
 
         cc.restore();
 
-        if (aircraft.position_history.length > trailling_length) {
-            aircraft.position_history = aircraft.position_history.slice(aircraft.position_history.length - trailling_length, aircraft.position_history.length);
+        if (aircraft.relativePositionHistory.length > trailling_length) {
+            aircraft.relativePositionHistory = aircraft.relativePositionHistory.slice(aircraft.relativePositionHistory.length - trailling_length, aircraft.relativePositionHistory.length);
         }
 
         if (aircraft.isPrecisionGuided()) {

@@ -20,7 +20,7 @@ import { AIRPORT_JSON_KLAS_MOCK } from './_mocks/airportJsonMock';
 // }
 
 const runway07L25R = AIRPORT_JSON_KLAS_MOCK.runways[0];
-// runway07L25R.reference_position = airportPositionFixtureKLAS.position;
+// runway07L25R.relative_position = airportPositionFixtureKLAS.position;
 // runway07L25R.magnetic_north = airportPositionFixtureKLAS.magnetic_north;
 
 ava('does not throw when instantiated with vaild parameters', (t) => {

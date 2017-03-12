@@ -24,30 +24,30 @@ ava('returns early when instantiated with incorrect parameters', t => {
 
     model = new FixModel(FIXNAME_MOCK);
     t.true(model.name === '');
-    t.true(model._fixPosition === null);
+    t.true(model._positionModel === null);
 
     model = new FixModel(FIXNAME_MOCK, FIX_COORDINATE_MOCK);
     t.true(model.name === '');
-    t.true(model._fixPosition === null);
+    t.true(model._positionModel === null);
 
     model = new FixModel(null, FIX_COORDINATE_MOCK, airportPositionFixtureKSFO);
     t.true(model.name === '');
-    t.true(model._fixPosition === null);
+    t.true(model._positionModel === null);
 
     model = new FixModel(FIXNAME_MOCK, null, airportPositionFixtureKSFO);
     t.true(model.name === '');
-    t.true(model._fixPosition === null);
+    t.true(model._positionModel === null);
 
     model = new FixModel(null, null, airportPositionFixtureKSFO);
     t.true(model.name === '');
-    t.true(model._fixPosition === null);
+    t.true(model._positionModel === null);
 });
 
 ava('accepts a `fixName`, an array `fixCoordinate` and an `airportPosition` as its parameters', t => {
     const model = new FixModel(FIXNAME_MOCK, FIX_COORDINATE_MOCK, airportPositionFixtureKSFO);
 
     t.true(model.name === FIXNAME_MOCK);
-    t.true(model._fixPosition instanceof DynamicPositionModel);
+    t.true(model._positionModel instanceof DynamicPositionModel);
 });
 
 ava('.init() sets name in upperCase', t => {
