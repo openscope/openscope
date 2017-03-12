@@ -61,7 +61,7 @@ ava('.bearingToPosition() returns the correct bearing between two DynamicPositio
 ava('.distanceToPosition() returns the correct distance between two DynamicPositionModel instances', t => {
     const position1 = new DynamicPositionModel(LAT_LONG_MOCK, airportPositionFixtureKLAS, MAGNETIC_NORTH_MOCK);
     const position2 = new DynamicPositionModel(LAT_LONG_MOCK_2, airportPositionFixtureKLAS, MAGNETIC_NORTH_MOCK);
-    const expectedResult = 90.73632265929942;
+    const expectedResult = 48.99277192716842;
     const result = position1.distanceToPosition(position2);
 
     t.true(result === expectedResult);

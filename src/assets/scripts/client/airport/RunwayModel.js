@@ -99,7 +99,7 @@ export default class RunwayModel extends BaseModel {
 
             // relative position, based on center of map
             this._positionModel = thisSide;
-            this.length = thisSide.distanceToPosition(farSide);
+            this.length = km(thisSide.distanceToPosition(farSide));
             this.angle = thisSide.bearingToPosition(farSide);
         }
 

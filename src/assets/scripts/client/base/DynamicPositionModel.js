@@ -212,6 +212,29 @@ export default class DynamicPositionModel {
     }
 
     /**
+     * Get the distance from `this` to a given position
+     *
+     * @for DynamicPositionModel
+     * @method distanceToPosition
+     * @param position {DynamicPositionModel|StaticPositionModel} position we're comparing against
+     * @return {number} distance to `position`, in nautical miles
+     */
+    distanceToPosition(position) {
+        const R = PHYSICS_CONSTANTS.EARTH_RADIUS_NM;
+        const φ1 = degreesToRadians(this.latitude);
+        const φ2 = degreesToRadians(position.latitude);
+        const Δφ = degreesToRadians(position.latitude - this.latitude);
+        const Δλ = degreesToRadians(position.longitude - this.longitude);
+        const a = Math.sin(Δφ / 2) * Math.sin(Δφ / 2) +
+                Math.cos(φ1) * Math.cos(φ2) *
+                Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
+        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        const d = R * c;
+
+        return d;
+    }
+
+    /**
      * Returns a new `DynamicPositionModel` a given bearing/distance from `this`
      *
      * Source: Chris Veness, Movable Type Scripts
@@ -238,24 +261,6 @@ export default class DynamicPositionModel {
         const dynamicPositionModel = new DynamicPositionModel([φ2, λ2], this._referencePosition, this._magneticNorth);
 
         return dynamicPositionModel;
-    }
-
-    /**
-     * Get the distance from `this` to a given position
-     * Note: This method is not accurate for long distances, due its simpleton 2D vector math
-     *
-     * @for DynamicPositionModel
-     * @method distanceTo
-     * @param position {DynamicPositionModel|StaticPositionModel} position we're comparing against
-     * @return {Number} distance to `position`, in (units???)
-     */
-    distanceToPosition(position) {
-        return distanceToPoint(
-            this.latitude,
-            this.longitude,
-            position.latitude,
-            position.longitude
-        );
     }
 
     /**
