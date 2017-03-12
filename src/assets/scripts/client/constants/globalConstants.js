@@ -45,13 +45,14 @@ export const REGEX = {
  */
 export const PHYSICS_CONSTANTS = {
     /**
-     * Acceleration due to force of gravity, in m/s
+     * Average radius of simplified earth spheroid, in nautical miles
+     * Note: Calculated from conversion of 3440nm to km
      *
-     * @property GRAVITATIONAL_MAGNITUDE
+     * @property EARTH_RADIUS_NM
      * @type {number}
      * @final
      */
-    GRAVITATIONAL_MAGNITUDE: 9.81,
+    EARTH_RADIUS_KM: 6370.88,
 
     /**
      * Average radius of simplified earth spheroid, in nautical miles
@@ -60,5 +61,14 @@ export const PHYSICS_CONSTANTS = {
      * @type {number}
      * @final
      */
-    EARTH_RADIUS_NM: 3440
+    EARTH_RADIUS_NM: 3440,
+
+    /**
+     * Acceleration due to force of gravity, in m/s
+     *
+     * @property GRAVITATIONAL_MAGNITUDE
+     * @type {number}
+     * @final
+     */
+    GRAVITATIONAL_MAGNITUDE: 9.81
 };

@@ -181,6 +181,10 @@ export default class DynamicPositionModel {
      * also a very expensive operation. If the precision is not needed, a vradial(vsub()) of the
      * x/y positions is a more "quick and dirty" option.
      *
+     * Source: Chris Veness, Movable Type Scripts
+     * Subject: "Bearing"
+     * Link: http://www.movable-type.co.uk/scripts/latlong.html
+     *
      * @for DynamicPositionModel
      * @method bearingToPosition
      * @param position {DynamicPositionModel|StaticPositionModel} position we're comparing against
@@ -190,7 +194,6 @@ export default class DynamicPositionModel {
         const φ1 = degreesToRadians(this.latitude);
         const φ2 = degreesToRadians(position.latitude);
         const Δλ = degreesToRadians(position.longitude - this.longitude);
-
         const y = Math.sin(Δλ) * Math.cos(φ2);
         const x = Math.cos(φ1) * Math.sin(φ2) - Math.sin(φ1) * Math.cos(φ2) * Math.cos(Δλ);
         const θ = Math.atan2(y, x);
@@ -199,38 +202,32 @@ export default class DynamicPositionModel {
     }
 
     /**
-     * Returns a new `StaticPositionModel` a given bearing/distance from `this`
+     * Returns a new `DynamicPositionModel` a given bearing/distance from `this`
+     *
+     * Source: Chris Veness, Movable Type Scripts
+     * Subject: "Destination point given distance and bearing from start point"
+     * Link: http://www.movable-type.co.uk/scripts/latlong.html
      *
      * @for DynamicPositionModel
-     * @method generatePositionFromBearingAndDistance
-     * @param bearing {number} magnetic bearing, in radians
-     * @param distance {number} distance, in nautical miles
-     * @param isStatic {boolean} whether the returned position should be a `StaticPositionModel`
-     * @return {StaticPositionModel}
+     * @method generateDynamicPositionFromBearingAndDistance
+     * @param bearing {number} magnetic bearing (θ), in radians
+     * @param distance {number} distance (d), in nautical miles
+     * @return {DynamicPositionModel}
      */
-    generatePositionFromBearingAndDistance(bearing, distance, /* optional */ isStatic) {
-        // FIXME: There may already be a method for this. if there isnt there should be. `position.gpsInRadians`
-        // convert GPS coordinates to radians
-        const fix = [
-            degreesToRadians(this.latitude),
-            degreesToRadians(this.longitude)
-        ];
-
+    generateDynamicPositionFromBearingAndDistance(bearing, distance) {
         const R = PHYSICS_CONSTANTS.EARTH_RADIUS_NM;
-        // TODO: abstract these two calculations to functions
-        const lat2 = radiansToDegrees(Math.asin(
-            Math.sin(fix[0]) * Math.cos(distance / R) + Math.cos(fix[0])
-            * Math.sin(distance / R) * Math.cos(bearing)
-        ));
-        const lon2 = radiansToDegrees(fix[1] + Math.atan2(
-            Math.sin(bearing) * Math.sin(distance / R) * Math.cos(fix[0]),
-            Math.cos(distance / R) - Math.sin(fix[0]) * Math.sin(lat2)
-        ));
+        const θ = bearing;
+        const d = distance;
+        const δ = d / R;    // angular distance, in earth laps
+        const φ1 = degreesToRadians(this.latitude);
+        const λ1 = degreesToRadians(this.longitude);
+        const φ2 = Math.asin(Math.sin(φ1) * Math.cos(δ) +
+            Math.cos(φ1) * Math.sin(δ) * Math.cos(θ));
+        const λ2 = λ1 + Math.atan2(Math.sin(θ) * Math.sin(δ) * Math.cos(φ1),
+            Math.cos(δ) - Math.sin(φ1) * Math.sin(φ2));
+        const dynamicPositionModel = new DynamicPositionModel([φ2, λ2], this.reference_position, this.magnetic_north);
 
-        if (isStatic) {
-            // return new StaticPositionModel([lat2, lon2], this.reference_position, this.magnetic_north);
-        }
-        return new DynamicPositionModel([lat2, lon2], this.reference_position, this.magnetic_north);
+        return dynamicPositionModel;
     }
 
     /**

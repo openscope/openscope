@@ -36,7 +36,7 @@ const _calculateSpawnPositions = (waypointModelList, spawnOffsets) => {
             if (nextWaypoint.distanceFromPreviousWaypoint > spawnOffset) {   // if point before next fix
                 const previousFixPosition = waypointModelList[j - 1].position;
                 const heading = previousFixPosition.bearingToPosition(nextWaypoint.position);
-                const position = previousFixPosition.generatePositionFromBearingAndDistance(heading, spawnOffset);
+                const position = previousFixPosition.generateDynamicPositionFromBearingAndDistance(heading, spawnOffset);
 
                 // TODO: this looks like it should be a model object
                 const preSpawnHeadingAndPosition = {
