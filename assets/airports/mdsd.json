@@ -2,21 +2,21 @@
     "radio": {
         "twr": "Las Americas Tower",
         "app": "Las Americas Approach",
-        "dep": "Santo Domingo Radar"
+        "dep": "Santo Domingo Control"
     },
-    "icao": "KLAS",
-    "iata": "LAS",
-    "magnetic_north": 11.9,
+    "icao": "MDSD",
+    "iata": "SDQ",
+    "magnetic_north": -12,
     "ctr_radius": 80,
-    "ctr_ceiling": 19000,
-    "initial_alt": 19000,
-    "position": ["N36.080056", "W115.15225", "2181ft"],
+    "ctr_ceiling": 15500,
+    "initial_alt": 4000,
+    "position": ["N18.432908807306845", "W69.66732787399317", "58ft"],
     "rr_radius_nm": 5.0,
-    "rr_center": ["N36.080056", "W115.15225"],
-    "has_terrain": true,
+    "rr_center": ["N18.432908807306845", "W69.66732787399317"],
+    "has_terrain": false,
     "wind": {
-        "angle": 220,
-        "speed": 6
+        "angle": 160,
+        "speed": 8
     },
     "airspace": [
         {
