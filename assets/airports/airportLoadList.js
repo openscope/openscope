@@ -257,7 +257,6 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
             name: 'Vienna International Airport',
             wip: true
         },
-        
         // {
         //     icao: 'ltba',
         //     level: 'hard',
