@@ -271,7 +271,7 @@ export default class Aircraft {
 
     parse(data) {
         // FIXME: these _gets can likely be removed
-        this.positionModel = _get(data, 'position', this.positionModel);
+        this.positionModel = _get(data, 'positionModel', this.positionModel);
         this.model = _get(data, 'model', this.model);
         this.airlineId = _get(data, 'airline', this.airlineId);
         this.airlineCallsign = _get(data, 'airlineCallsign', this.airlineCallsign);
