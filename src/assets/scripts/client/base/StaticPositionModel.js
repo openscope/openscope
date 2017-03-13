@@ -80,6 +80,17 @@ export default class StaticPositionModel extends DynamicPositionModel {
     }
 
     /**
+     * Dummy method to overwrite that of `DynamicPositionModel` in order to disallow the making of
+     * any modifications to the `StaticPositionModel`.
+     *
+     * @for StaticPositionModel
+     * @method setCoordinates
+     */
+    setCoordinates() {
+        return; // do nothing, because `StaticPositionModel`s cannot be changed
+    }
+
+    /**
      * Calculate the relative position and store it in the property
      *
      * @for DynamicPositionModel
