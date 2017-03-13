@@ -135,6 +135,23 @@ export default class LegModel {
     }
 
     /**
+     * Return the name of the procedure exit (airport) if this is a procedure leg
+     *
+     * This is used only for arrival routes and only within the `AircraftStripView`
+     *
+     * @property exitName
+     * @type {string}
+     * @return {string}
+     */
+    get exitName() {
+        if (!this.isProcedure) {
+            return null;
+        }
+
+        return this._procedureRouteModel.exit;
+    }
+
+    /**
      * Return the name and exit of the procedure if this is a procedure leg
      *
      * Will return a string in an abbreviated procedureRouteString format.

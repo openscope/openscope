@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import _isString from 'lodash/isString';
+import _uniqueId from 'lodash/uniqueId';
 import { round } from '../math/core';
 import {
     FLIGHT_CATEGORY,
@@ -7,14 +8,6 @@ import {
     WAYPOINT_NAV_MODE
 } from '../constants/aircraftConstants';
 import { SELECTORS } from '../constants/selectors';
-
-/**
- * unique id for each AircraftStripView instance
- *
- * @property ID
- * @type {number}
- */
-let ID = 0;
 
 /**
  * Root html element
@@ -46,9 +39,9 @@ export default class AircraftStripView {
      *                           from the `AircraftInstanceModel`
      * @param aircraftInstanceModel {AircraftInstanceModel}
      */
-    constructor(callsign = '', aircraftInstanceModel) {
+    constructor(aircraftInstanceModel) {
         // TODO: change to use lodash _uniqueId
-        this._id = ID++;
+        this._id = _uniqueId('aircraftStripView-');
 
         this.$element = null;
         this.$callsign = null;
@@ -59,17 +52,17 @@ export default class AircraftStripView {
         this.$speed = null;
 
         this.height = AIRCRAFT_STRIP_HEIGHT;
-        this.callsign = callsign;
+        this.callsign = aircraftInstanceModel.getCallsign();
         this.icao = aircraftInstanceModel.model.icao;
         this.destination = aircraftInstanceModel.destination;
         this.weightclass = aircraftInstanceModel.model.weightclass;
         this.category = aircraftInstanceModel.category;
-        this.flightPlan = aircraftInstanceModel.__fms__.fp.route.join(' ');
+        this.flightPlan = aircraftInstanceModel.fms.flightPlanRoute;
 
         return this._init()
                     .setupHandlers(aircraftInstanceModel)
                     .layout()
-                    .redraw()
+                    .redraw();
     }
 
     /**
@@ -104,7 +97,6 @@ export default class AircraftStripView {
      * @method layout
      */
     layout() {
-        // TODO: some of the static HTML here could be moved to template constants
         this.$element.append(this.$callsign);
         this.$element.append(this.$heading);
         this.$element.append(this.$altitude);
@@ -190,7 +182,6 @@ export default class AircraftStripView {
      * @return aircraftIcao {string}
      */
     buildIcaoWithWeightClass() {
-        // ['H', 'U']
         const HEAVY_LETTER = 'H';
         const SUPER_LETTER = 'U';
 
@@ -289,7 +280,24 @@ export default class AircraftStripView {
         this.$heading.addClass(SELECTORS.CLASSNAMES.RUNWAY);
         this.$heading.text(FLIGHT_MODES.APRON);
 
-        if (_isString(destinationText)) {
+        if (hasAltitude) {
+            this.$altitude.addClass(SELECTORS.CLASSNAMES.RUNWAY);
+        }
+    }
+
+    /**
+     * @for AircraftStripView
+     * @method updateViewForWaiting
+     * @param destinationText {string}
+     * @param hasClearance {boolean}
+     * @param hasAltitude {boolean}
+     */
+    updateViewForWaiting(destinationText, hasClearance, hasAltitude) {
+        this.$heading.addClass(SELECTORS.CLASSNAMES.RUNWAY);
+        this.$heading.text(FLIGHT_MODES.WAITING);
+        this.$speed.addClass(SELECTORS.CLASSNAMES.RUNWAY);
+
+        if (hasClearance) {
             this.$destination.text(destinationText.toUpperCase());
             this.$destination.addClass(SELECTORS.CLASSNAMES.RUNWAY);
         }
@@ -317,27 +325,6 @@ export default class AircraftStripView {
 
         if (altitudeText) {
             this.$altitude.text(altitudeText);
-        }
-
-        if (_isString(destinationText)) {
-            this.$destination.text(destinationText.toUpperCase());
-            this.$destination.addClass(SELECTORS.CLASSNAMES.RUNWAY);
-        }
-    }
-
-    /**
-     * @for AircraftStripView
-     * @method updateViewForWaiting
-     * @param destinationText {string}
-     * @param hasAltitude {boolean}
-     */
-    updateViewForWaiting(destinationText, hasAltitude) {
-        this.$heading.addClass(SELECTORS.CLASSNAMES.RUNWAY);
-        this.$heading.text(FLIGHT_MODES.WAITING);
-        this.$speed.addClass(SELECTORS.CLASSNAMES.RUNWAY);
-
-        if (hasAltitude) {
-            this.$altitude.addClass(SELECTORS.CLASSNAMES.RUNWAY);
         }
 
         if (_isString(destinationText)) {
@@ -459,8 +446,10 @@ export default class AircraftStripView {
      * @param  event {jquery event}
      */
     onDoubleClickHandler = (event) => {
-        prop.canvas.panX = 0 - round(window.uiController.km_to_px(event.data.position[0]));
-        prop.canvas.panY = round(window.uiController.km_to_px(event.data.position[1]));
+        const { positionModel } = event.data;
+
+        prop.canvas.panX = 0 - round(window.uiController.km_to_px(positionModel.relativePosition[0]));
+        prop.canvas.panY = round(window.uiController.km_to_px(positionModel.relativePosition[1]));
         prop.canvas.dirty = true;
     };
 }

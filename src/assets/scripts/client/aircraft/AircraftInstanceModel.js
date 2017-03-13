@@ -1905,10 +1905,7 @@ export default class Aircraft {
      * Create the aircraft's flight strip and add to strip bay
      */
     createStrip() {
-        this.aircraftStripView = new AircraftStripView(
-            this.getCallsign(),
-            this
-        );
+        this.aircraftStripView = new AircraftStripView(this);
 
         this.$html = this.aircraftStripView.$element;
         // Add the strip to the html
@@ -1932,17 +1929,15 @@ export default class Aircraft {
             return;
         }
 
-        // Update fms.following
-        // this.__fms__.followCheck();
-
         // Populate strip fields with default values
         const heading = heading_to_string(this.mcp.heading);
         const altitude = this.mcp.altitude;
         const speed = this.mcp.speed;
-        // const defaultDestination = _get(this, 'destination', window.airportController.airport_get().icao);
 
         let headingText;
-        let destinationText = this.__fms__.getFollowingSIDText();
+        let destinationText = !this.mcp.isEnabled
+            ? this.destination
+            : this.fms.getProcedureAndExitName();
         const altitudeText = this.taxi_next ? 'ready' : null;
         const hasAltitude = this.mcp.altitude !== -1; // _has(wp, 'altitude');
 
@@ -1952,11 +1947,11 @@ export default class Aircraft {
             case FLIGHT_MODES.APRON:
                 this.aircraftStripView.updateViewForApron(destinationText, hasAltitude);
                 break;
+            case FLIGHT_MODES.WAITING:
+                this.aircraftStripView.updateViewForWaiting(destinationText, this.mcp.isEnabled, hasAltitude);
+                break;
             case FLIGHT_MODES.TAXI:
                 this.aircraftStripView.updateViewForTaxi(destinationText, hasAltitude, altitudeText);
-                break;
-            case FLIGHT_MODES.WAITING:
-                this.aircraftStripView.updateViewForWaiting(destinationText, hasAltitude);
                 break;
             case FLIGHT_MODES.TAKEOFF:
                 // When taking off...
@@ -1965,10 +1960,13 @@ export default class Aircraft {
                 break;
             case FLIGHT_MODES.CRUISE:
                 const wp = this.__fms__.currentWaypoint;
-                const isFollowingSID = this.category === FLIGHT_CATEGORY.DEPARTURE;
-                const isFollowingSTAR = this.category === FLIGHT_CATEGORY.ARRIVAL;
+                const isFollowingSid = this.fms.isFollowingSid();
+                const isFollowingStar = this.fms.isFollowingStar();
                 // const { fixRestrictions } = this.__fms__.currentWaypoint;
-                const fixRestrictions = {};
+                const fixRestrictions = {
+                    altitude: this.fms.currentWaypoint.altitude !== -1,
+                    speed: this.fms.currentWaypoint.speed !== -1
+                };
 
                 // When in normal flight...
                 // if (wp.navmode === WAYPOINT_NAV_MODE.FIX) {
@@ -1979,11 +1977,11 @@ export default class Aircraft {
                 // } else if (wp.navmode === WAYPOINT_NAV_MODE.HOLD) {
                 //     headingText = 'holding';
                 // } else if (wp.navmode === WAYPOINT_NAV_MODE.RWY) {
-                //     headingText = 'intercept';
-                //     destinationText = this.__fms__.getDesinationIcaoWithRunway();
+                    headingText = 'intercept';
+                    destinationText = this.fms.getDestinationAndRunwayName();
                 // }
 
-                this.aircraftStripView.updateViewForCruise(wp.navmode, headingText, destinationText, isFollowingSID, isFollowingSTAR, fixRestrictions);
+                this.aircraftStripView.updateViewForCruise(wp.navmode, headingText, destinationText, isFollowingSid, isFollowingStar, fixRestrictions);
 
                 break;
             case FLIGHT_MODES.LANDING:

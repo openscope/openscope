@@ -16,16 +16,15 @@ export default class ModeController {
      * @for ModeController
      */
     constructor() {
-
         /**
          * Flag used to determine if the controller is enabled
          *
-         * @property _isEnabled
+         * @property isEnabled
          * @type {boolean}
          * @default flase
          * @private
          */
-        this._isEnabled = false;
+        this.isEnabled = false;
 
         // Mode Selectors
         /**
@@ -176,31 +175,31 @@ export default class ModeController {
     }
 
     /**
-     * Sets `#_isEnabled` flag to `true`
+     * Sets `#isEnabled` flag to `true`
      *
      * @for ModeController
      * @method enable
      */
     enable() {
-        if (this._isEnabled) {
+        if (this.isEnabled) {
             return;
         }
 
-        this._isEnabled = true;
+        this.isEnabled = true;
     }
 
     /**
-     * Sets `#_isEnabled` flag to `false`
+     * Sets `#isEnabled` flag to `false`
      *
      * @for ModeController
      * @method disable
      */
     disable() {
-        if (!this._isEnabled) {
+        if (!this.isEnabled) {
             return;
         }
 
-        this._isEnabled = false;
+        this.isEnabled = false;
     }
 
     /**

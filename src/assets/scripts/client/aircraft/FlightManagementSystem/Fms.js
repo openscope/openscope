@@ -683,6 +683,21 @@ export default class Fms {
     }
 
     /**
+     * Return the name of the airport and the assigned runway, if following an arrival procedure
+     *
+     * @for Fms
+     * @method getDestinationAndRunwayName
+     * @return {string}
+     */
+    getDestinationAndRunwayName() {
+        if (!this.isFollowingStar()) {
+            return null;
+        }
+
+        return `${this.currentLeg.exitName} ${this._runwayName}`;
+    }
+
+    /**
      * Find if a Waypoint exists within `#legCollection`
      *
      * This will call a `.hasWaypoint` method on each `LegModel`

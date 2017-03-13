@@ -609,6 +609,27 @@ ava('.getProcedureAndExitName() returns the name of the current departure proced
     t.true(result === 'COWBY6.GUP');
 });
 
+ava('.getDestinationAndRunwayName() returns null when not on a procedureLeg', (t) => {
+    const fms = buildFmsMock(isComplexRoute);
+    const result = fms.getDestinationAndRunwayName();
+
+    t.true(result === null);
+});
+
+ava('.getDestinationAndRunwayName() returns null when on a departure procedureLeg', (t) => {
+    const fms = buildFmsMockForDeparture();
+    const result = fms.getDestinationAndRunwayName();
+
+    t.true(result === null);
+});
+
+ava('.getDestinationAndRunwayName() returns the name of the current arrival icao and runway when on a procedureLeg', (t) => {
+    const fms = buildFmsMock();
+    const result = fms.getDestinationAndRunwayName();
+
+    t.true(result === 'KLAS 19L');
+});
+
 ava('._buildLegCollection() returns an array of LegModels', (t) => {
     const fms = buildFmsMock(isComplexRoute);
 

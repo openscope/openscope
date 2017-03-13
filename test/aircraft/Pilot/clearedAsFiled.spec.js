@@ -31,6 +31,7 @@ ava('.clearedAsFiled() should set mcp altitude, heading and speed modes with val
 
     pilot.clearedAsFiled(initialAltitudeMock, runwayHeadingMock, cruiseSpeedMock);
 
+    t.true(pilot._mcp.isEnabled);
     t.true(pilot._mcp.altitudeMode === expectedResult.altitudeMode);
     t.true(pilot._mcp.headingMode === expectedResult.headingMode);
     t.true(pilot._mcp.speedMode === expectedResult.speedMode);

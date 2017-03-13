@@ -18,44 +18,44 @@ ava('does not throw when instantiated with parameters', (t) => {
     t.notThrows(() => new ModeController());
 });
 
-ava('#_isEnabled is false on instantiation', (t) => {
+ava('#isEnabled is false on instantiation', (t) => {
     const mcp = new ModeController();
 
-    t.false(mcp._isEnabled);
+    t.false(mcp.isEnabled);
 });
 
-ava('.enable() sets #_isEnabled to true', (t) => {
+ava('.enable() sets #isEnabled to true', (t) => {
     const mcp = new ModeController();
 
     mcp.enable();
 
-    t.true(mcp._isEnabled);
+    t.true(mcp.isEnabled);
 });
 
-ava('.enable() does not change #_isEnabled when #_isEnabled is true', (t) => {
+ava('.enable() does not change #isEnabled when #isEnabled is true', (t) => {
     const mcp = new ModeController();
 
-    mcp._isEnabled = true;
+    mcp.isEnabled = true;
     mcp.enable();
 
-    t.true(mcp._isEnabled);
+    t.true(mcp.isEnabled);
 });
 
-ava('.disable() sets #_isEnabled to false', (t) => {
+ava('.disable() sets #isEnabled to false', (t) => {
     const mcp = new ModeController();
 
     mcp.disable();
 
-    t.false(mcp._isEnabled);
+    t.false(mcp.isEnabled);
 });
 
-ava('.disable() does not change #_isEnabled when #_isEnabled is false', (t) => {
+ava('.disable() does not change #isEnabled when #isEnabled is false', (t) => {
     const mcp = new ModeController();
 
-    mcp._isEnabled = false;
+    mcp.isEnabled = false;
     mcp.disable();
 
-    t.false(mcp._isEnabled);
+    t.false(mcp.isEnabled);
 });
 
 ava('._setModeSelectorMode() sets modeSelector to the specified mode', (t) => {

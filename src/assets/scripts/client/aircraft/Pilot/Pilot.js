@@ -365,6 +365,7 @@ export default class Pilot {
      * @return {Array}                  [success of operation, readback]
      */
     clearedAsFiled(initialAltitude, runwayHeading, cruiseSpeed) {
+        this._mcp.enable();
         this._mcp.setAltitudeFieldValue(initialAltitude);
         this._mcp.setAltitudeHold();
         this._mcp.setHeadingFieldValue(runwayHeading);
