@@ -35,16 +35,42 @@ const INVALID_VALUE = -1;
  */
 const DIRECT_ROUTE_SEGMENT_SEPARATOR = '..';
 
-// TODO: there should be much more here
 /**
+ * Provides methods to create, update or replace a flightPlan and the legs
+ * and waypoints that make up that flightPlan.
  *
- *
- * Is only be concerned about maintaining the flightPlan, which is
+ * This class is concerned only about maintaining the flightPlan, which is
  * really just the collection of `LegModels` and their respective
  * `WaypointModel` objects.
  *
  * This class should always be instantiated from an `AircraftInstanceModel` and
- * always instantiated from some form of `spawnPatternModel`.
+ * always instantiated from some form of `spawnPatternModel` using some kind of
+ * routeString.
+ *
+ * This class is always instantiated with a routeString and any changes to the
+ * flightPlan must happen with a routeString. For every fix/waypoint called out
+ * in a routeString, there must exist a fix in the airport.json file.
+ *
+ *
+ * RouteString examples and the terms used to describe them:
+ * - directRouteString: `COWBY`
+ *   A directRouteString will equate to a `LegModel` with a single `WaypointModel`.
+ *
+ * - holdRouteString: `@COWBY`
+ *   A holdRouteString will equate to a `LegModel` with a single `WaypointModel` that has holding specifications defined
+ *
+ * - procedureRouteString: `KLAS.COWBY6.DRK`
+ *   A procedureRouteString will equate to a single `LegModel` and possibly many waypoints for the individual waypoints
+ *   that make up a procedureRoute (sid/star).
+ *
+ *
+ * - simpleRouteString: `COWBY..DRK`
+ * - complexRouteString: `COWBY..@BIKKR..DAG.KEPEC3.KLAS`
+ *
+ * When working with a complexRouteString, you will also see terms like `directRouteSegment`, `procedureRouteSegment`
+ * or `holdRouteSegment`. When the word segment is involved, that means that particular segment is part of a
+ * larger, likely complex, routeString.
+ *
  *
  * @class Fms
  */
