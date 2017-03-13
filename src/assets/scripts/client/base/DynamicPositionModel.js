@@ -13,13 +13,13 @@ import {
     RELATIVE_POSITION_OFFSET_INDEX
 } from '../constants/positionConstants';
 import {
-    distanceToPoint,
     radians_normalize
 } from '../math/circle';
 import {
     degreesToRadians,
     parseCoordinate,
-    parseElevation
+    parseElevation,
+    radiansToDegrees
 } from '../utilities/unitConverters';
 
 /**
@@ -243,22 +243,22 @@ export default class DynamicPositionModel {
      *
      * @for DynamicPositionModel
      * @method generateDynamicPositionFromBearingAndDistance
-     * @param bearing {number} magnetic bearing (θ), in radians
-     * @param distance {number} distance (d), in nautical miles
+     * @param bearing {number} magnetic bearing, in radians
+     * @param distance {number} distance, in nautical miles
      * @return {DynamicPositionModel}
      */
     generateDynamicPositionFromBearingAndDistance(bearing, distance) {
         const R = PHYSICS_CONSTANTS.EARTH_RADIUS_NM;
-        const θ = bearing;
+        const θ = bearing + this._magneticNorth;    // true bearing, in radians
         const d = distance;
         const δ = d / R;    // angular distance, in earth laps
         const φ1 = degreesToRadians(this.latitude);
         const λ1 = degreesToRadians(this.longitude);
-        const φ2 = Math.asin(Math.sin(φ1) * Math.cos(δ) +
-            Math.cos(φ1) * Math.sin(δ) * Math.cos(θ));
-        const λ2 = λ1 + Math.atan2(Math.sin(θ) * Math.sin(δ) * Math.cos(φ1),
-            Math.cos(δ) - Math.sin(φ1) * Math.sin(φ2));
-        const dynamicPositionModel = new DynamicPositionModel([φ2, λ2], this._referencePosition, this._magneticNorth);
+        const φ2 = Math.asin(Math.sin(φ1) * Math.cos(δ) + Math.cos(φ1) * Math.sin(δ) * Math.cos(θ));
+        const λ2 = λ1 + Math.atan2(Math.sin(θ) * Math.sin(δ) * Math.cos(φ1), Math.cos(δ) - Math.sin(φ1) * Math.sin(φ2));
+        const lat = radiansToDegrees(φ2);
+        const lon = radiansToDegrees(λ2);
+        const dynamicPositionModel = new DynamicPositionModel([lat, lon], this._referencePosition, this._magneticNorth);
 
         return dynamicPositionModel;
     }

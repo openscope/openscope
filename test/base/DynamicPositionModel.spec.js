@@ -5,9 +5,13 @@ import DynamicPositionModel from '../../src/assets/scripts/client/base/DynamicPo
 import { airportPositionFixtureKLAS } from '../fixtures/airportFixtures';
 import { DEFAULT_SCREEN_POSITION } from '../../src/assets/scripts/client/constants/positionConstants';
 
+const BEARING_RADIANS_MOCK = 0.610865;
+const DISTANCE_NM_MOCK = 50;
+const INVALID_COORDINATES_MOCK = ['NN36d38m01.199', -114.5];
 const LAT_LONG_MOCK = ['N36d38m01.199', 'W114d36m17.219'];
 const LAT_LONG_DECIMAL_MOCK = [36.63366638888889, -114.60478305555554];
 const LAT_LONG_MOCK_2 = ['N35d51.34m0', 'W114d54.60m0'];
+const LAT_LONG_DECIMAL_MOCK_2 = [35.855666666666664, -114.91];
 const MAGNETIC_NORTH_MOCK = 0.2076941809873252;
 const expectedrelativePosition = [35.448246791634254, 70.38079821863909];
 
@@ -65,6 +69,37 @@ ava('.distanceToPosition() returns the correct distance between two DynamicPosit
     const result = position1.distanceToPosition(position2);
 
     t.true(result === expectedResult);
+});
+
+ava('.generateDynamicPositionFromBearingAndDistance() returns an accurate new DynamicPositionModel instance', (t) => {
+    const position1 = new DynamicPositionModel(LAT_LONG_MOCK, airportPositionFixtureKLAS, MAGNETIC_NORTH_MOCK);
+    const position2 = position1.generateDynamicPositionFromBearingAndDistance(BEARING_RADIANS_MOCK, DISTANCE_NM_MOCK);
+    const result = position2.gps;
+    const expectedResult = [37.200260478622035, -113.84138604883545];
+
+    t.true(position2 instanceof DynamicPositionModel);
+    t.true(_isEqual(result, expectedResult));
+});
+
+ava('.setCoordinates() returns early with error and makes no changes if invalid coordinates are passed', (t) => {
+    const position1 = new DynamicPositionModel(LAT_LONG_MOCK, airportPositionFixtureKLAS, MAGNETIC_NORTH_MOCK);
+    const originalCoordinates = position1.gps;
+    const retval = position1.setCoordinates(INVALID_COORDINATES_MOCK);
+    const endingCoordinates = position1.gps;
+
+    t.true(retval instanceof TypeError);
+    t.true(_isEqual(originalCoordinates, endingCoordinates));
+});
+
+ava('.setCoordinates() sets the latitude and longitude when provided valid data', (t) => {
+    const position1 = new DynamicPositionModel(LAT_LONG_MOCK, airportPositionFixtureKLAS, MAGNETIC_NORTH_MOCK);
+
+    position1.setCoordinates(LAT_LONG_DECIMAL_MOCK_2);
+
+    const result = position1.gps;
+    const expectedResult = LAT_LONG_DECIMAL_MOCK_2;
+
+    t.true(_isEqual(result, expectedResult));
 });
 
 // user bug test cases
