@@ -186,6 +186,5 @@ export default class WaypointModel {
     updateWaypointWithHoldProps(turnDirection, legLength) {
         this._turnDirection = turnDirection;
         this._legLength = legLength;
-        this._isHold = true;
     }
 }

@@ -257,7 +257,7 @@ ava('.replaceCurrentFlightPlan() creates new LegModels from a routeString and ad
 
     fms.replaceCurrentFlightPlan(simpleRouteString);
 
-    t.true(fms.currentLeg._isProcedure);
+    t.true(fms.currentLeg.isProcedure);
     t.true(fms.legCollection.length === 1);
     t.true(fms.legCollection[0].waypointCollection.length === 12);
 });
@@ -553,8 +553,20 @@ ava('.getBottomAltitude() returns the bottom altitudeRestriction from all the wa
     t.true(result === 24000);
 });
 
-ava.todo('.isFollowingSid() ');
-ava.todo('.isFollowingStar() ');
+ava('.isFollowingSid() retruns true when the current Leg is a SID', (t) => {
+    const fms = buildFmsMockForDeparture();
+
+    t.true(fms.isFollowingSid());
+    t.false(fms.isFollowingStar());
+});
+
+ava('.isFollowingSid() retruns true when the current Leg is a SID', (t) => {
+    const fms = buildFmsMock();
+
+    t.true(fms.isFollowingStar());
+    t.false(fms.isFollowingSid());
+});
+
 ava.todo('.getProcedureName() ');
 ava.todo('.getProcedureAndExitName() ');
 

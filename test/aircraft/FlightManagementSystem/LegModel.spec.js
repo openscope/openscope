@@ -62,7 +62,7 @@ ava('.skipToWaypointAtIndex() drops n number of WaypointModels from  the left of
     t.true(model.currentWaypoint.name === 'skebr');
 });
 
-ava('.getProcedureTopAltitude() returns -1 if a leg when #_isProcedure is false', (t) => {
+ava('.getProcedureTopAltitude() returns -1 if a leg when #isProcedure is false', (t) => {
     const model = new LegModel(directRouteSegmentMock, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture);
     const result = model.getProcedureTopAltitude();
 
@@ -78,14 +78,14 @@ ava('.getProcedureTopAltitude() calls `._findMinOrMaxAltitudeInProcedure()`', (t
     t.true(_findMinOrMaxAltitudeInProcedureSpy.calledWithExactly(true));
 });
 
-ava('.getProcedureTopAltitude() returns the largest altitudeRestriction value in the #waypointCollection when #_isProcedure is true', (t) => {
+ava('.getProcedureTopAltitude() returns the largest altitudeRestriction value in the #waypointCollection when #isProcedure is true', (t) => {
     const model = new LegModel(arrivalProcedureRouteSegmentMock, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture);
     const result = model.getProcedureTopAltitude();
 
     t.true(result === 24000);
 });
 
-ava('.getProcedureBottomAltitude() returns -1 if a leg when #_isProcedure is false', (t) => {
+ava('.getProcedureBottomAltitude() returns -1 if a leg when #isProcedure is false', (t) => {
     const model = new LegModel(directRouteSegmentMock, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture);
     const result = model.getProcedureBottomAltitude();
 
@@ -101,7 +101,7 @@ ava('.getProcedureBottomAltitude() calls `._findMinOrMaxAltitudeInProcedure()`',
     t.true(_findMinOrMaxAltitudeInProcedureSpy.calledWithExactly(false));
 });
 
-ava('.getProcedureBottomAltitude() returns the largest altitudeRestriction value in the #waypointCollection when #_isProcedure is true', (t) => {
+ava('.getProcedureBottomAltitude() returns the largest altitudeRestriction value in the #waypointCollection when #isProcedure is true', (t) => {
     const model = new LegModel(arrivalProcedureRouteSegmentMock, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture);
     const result = model.getProcedureBottomAltitude();
 

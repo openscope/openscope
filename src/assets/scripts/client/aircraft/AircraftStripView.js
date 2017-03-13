@@ -288,7 +288,6 @@ export default class AircraftStripView {
     updateViewForApron(destinationText, hasAltitude) {
         this.$heading.addClass(SELECTORS.CLASSNAMES.RUNWAY);
         this.$heading.text(FLIGHT_MODES.APRON);
-        this.$speed.addClass(SELECTORS.CLASSNAMES.RUNWAY);
 
         if (_isString(destinationText)) {
             this.$destination.text(destinationText.toUpperCase());

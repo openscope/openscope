@@ -4,19 +4,10 @@ import _without from 'lodash/without';
 import RouteModel from '../../navigationLibrary/Route/RouteModel';
 import WaypointModel from './WaypointModel';
 import { extractFixnameFromHoldSegment } from '../../navigationLibrary/Route/routeStringFormatHelper';
-import { FLIGHT_CATEGORY } from '../../constants/aircraftConstants';
-
-/**
- * Enum of possible procedure types
- *
- * @property PROCEDURE_TYPE
- * @type {Object}
- * @final
- */
-const PROCEDURE_TYPE = {
-    SID: 'SID',
-    STAR: 'STAR'
-};
+import {
+    FLIGHT_CATEGORY,
+    PROCEDURE_TYPE
+} from '../../constants/aircraftConstants';
 
 /**
  * A section of a flight plan containing one to many `WaypointModel` objects.
@@ -61,20 +52,20 @@ export default class LegModel {
         /**
          * Indicates the leg is for a standardRoute procedure
          *
-         * @property _isProcedure
+         * @property isProcedure
          * @type {boolean}
          * @private
          */
-        this._isProcedure = false;
+        this.isProcedure = false;
 
         /**
          * Indicates the leg is for a holding pattern
          *
-         * @property _isHold
+         * @property isHold
          * @type {boolean}
          * @private
          */
-        this._isHold = false;
+        this.isHold = false;
 
         /**
          *
@@ -154,9 +145,9 @@ export default class LegModel {
      * @param holdWaypointProps {object}
      */
     init(routeSegment, runway, flightPhase, holdWaypointProps) {
-        this._isProcedure = RouteModel.isProcedureRouteString(routeSegment);
+        this.isProcedure = RouteModel.isProcedureRouteString(routeSegment);
         // TODO: replace with constant
-        this._isHold = RouteModel.isHoldRouteString(routeSegment) || routeSegment === 'GPS';
+        this.isHold = RouteModel.isHoldRouteString(routeSegment) || routeSegment === 'GPS';
 
         this.routeString = routeSegment.toLowerCase();
         this.procedureType = this._buildProcedureType(flightPhase);
@@ -172,8 +163,8 @@ export default class LegModel {
     destroy() {
         this._destroyWaypointCollection();
 
-        this._isProcedure = false;
-        this._isHold = false;
+        this.isProcedure = false;
+        this.isHold = false;
         this.procedureType = '';
         this.routeString = '';
         this.waypointCollection = [];
@@ -242,7 +233,7 @@ export default class LegModel {
     getProcedureTopAltitude() {
         const isMaximum = true;
 
-        if (!this._isProcedure) {
+        if (!this.isProcedure) {
             return -1;
         }
 
@@ -260,7 +251,7 @@ export default class LegModel {
     getProcedureBottomAltitude() {
         const isMaximum = false;
 
-        if (!this._isProcedure) {
+        if (!this.isProcedure) {
             return -1;
         }
 
@@ -315,9 +306,9 @@ export default class LegModel {
      * @private
      */
     _buildWaypointCollection(routeSegment, runway, flightPhase, holdWaypointProps) {
-        if (this._isProcedure) {
+        if (this.isProcedure) {
             return this._buildWaypointCollectionForProcedureRoute(routeSegment, runway, flightPhase);
-        } else if (this._isHold) {
+        } else if (this.isHold) {
             return this._buildWaypointForHoldingPattern(routeSegment, holdWaypointProps);
         }
 
@@ -412,7 +403,7 @@ export default class LegModel {
      * @return {string}
      */
     _buildProcedureType(flightPhase) {
-        if (!this._isProcedure) {
+        if (!this.isProcedure) {
             return '';
         }
 

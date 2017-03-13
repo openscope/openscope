@@ -394,17 +394,14 @@ export default class Fms {
 
         if (!this.hasNextWaypoint()) {
             console.log('has no next waypoint');
+
             return null;
         }
 
         waypointPosition = this.currentLeg.nextWaypoint.positionModel;
-        console.log(this.currentLeg.nextWaypoint);
 
         if (!this.currentLeg.hasNextWaypoint()) {
-            // TODO: Is this safe? What if we're on the last waypoint of the last leg?
-            // Wouldn't that mean we could get an out-of-range error?
             waypointPosition = this.legCollection[1].currentWaypoint.positionModel;
-            // console.log(`amendedPos: ${waypointPosition}`);
         }
 
         return waypointPosition;
@@ -709,8 +706,38 @@ export default class Fms {
         return typeof previousProcedureLeg !== 'undefined';
     }
 
-    isFollowingSid() {}
-    isFollowingStar() {}
+    /**
+     * Returns true if the `#currentLeg` is a procedure (sid/star)
+     *
+     * @for Fms
+     * @method isFollowingProcedure
+     * @return {boolean}
+     */
+    isFollowingProcedure() {
+        return this.currentLeg.isProcedure;
+    }
+
+    /**
+     * Returns true if the `#currentLeg` is a SID procedure
+     *
+     * @for Fms
+     * @method
+     * @return {boolean}
+     */
+    isFollowingSid() {
+        return this.isFollowingProcedure() && this.currentLeg.procedureType === PROCEDURE_TYPE.SID;
+    }
+
+    /**
+     * Returns true if the `#currentLeg` is a STAR procedure
+     *
+     * @for Fms
+     * @method
+     * @return {boolean}
+     */
+    isFollowingStar() {
+        return this.isFollowingProcedure() && this.currentLeg.procedureType === PROCEDURE_TYPE.STAR;
+    }
 
     /**
      * Fascade method for `sidCollection.findRouteByIcao`
@@ -883,7 +910,7 @@ export default class Fms {
      * @private
      */
     _findLegIndexForProcedureType(procedureType) {
-        return _findIndex(this.legCollection, { _isProcedure: true, procedureType: procedureType });
+        return _findIndex(this.legCollection, { isProcedure: true, procedureType: procedureType });
     }
 
     /**
