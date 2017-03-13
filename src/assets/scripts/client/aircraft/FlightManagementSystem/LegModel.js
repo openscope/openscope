@@ -50,6 +50,16 @@ export default class LegModel {
         this._navigationLibrary = navigationLibrary;
 
         /**
+         * Provide easy access to the parts of a procedureRouteString,
+         * when a leg is a procedure
+         *
+         * @property _procedureRouteModel
+         * @type {RouteModel|null}
+         * @default null
+         */
+        this._procedureRouteModel = null;
+
+        /**
          * Indicates the leg is for a standardRoute procedure
          *
          * @property isProcedure
@@ -68,9 +78,9 @@ export default class LegModel {
         this.isHold = false;
 
         /**
+         * When a leg is a procedure, this property describes what type of procedure
          *
-         *
-         * @type {string}
+         * @type {PROCEDURE_TYPE}
          * @default ''
          */
         this.procedureType = '';
@@ -107,6 +117,41 @@ export default class LegModel {
         this.waypointCollection = [];
 
         this.init(routeSegment, runway, flightPhase, holdWaypointProps);
+    }
+
+    /**
+     * Return the name of the procedure if this is a procedure leg
+     *
+     * @property procedureName
+     * @type {string}
+     * @return {string}
+     */
+    get procedureName() {
+        if (!this.isProcedure) {
+            return null;
+        }
+
+        return this._procedureRouteModel.procedure;
+    }
+
+    /**
+     * Return the name and exit of the procedure if this is a procedure leg
+     *
+     * Will return a string in an abbreviated procedureRouteString format.
+     *
+     * This should only be used for the view, like the `AircraftStripView`, because
+     * the output will not be valid for anything that works with a routeString
+     *
+     * @property procedureAndExitName
+     * @type {string}
+     * @return {string}
+     */
+    get procedureAndExitName() {
+        if (!this.isProcedure) {
+            return null;
+        }
+
+        return `${this._procedureRouteModel.procedure}.${this._procedureRouteModel.exit}`;
     }
 
     /**
@@ -150,6 +195,7 @@ export default class LegModel {
         this.isHold = RouteModel.isHoldRouteString(routeSegment) || routeSegment === 'GPS';
 
         this.routeString = routeSegment.toLowerCase();
+        this._procedureRouteModel = this._buildProcedureRouteModel(routeSegment);
         this.procedureType = this._buildProcedureType(flightPhase);
         this.waypointCollection = this._buildWaypointCollection(routeSegment, runway, flightPhase, holdWaypointProps);
     }
@@ -392,6 +438,27 @@ export default class LegModel {
      */
     _buildWaypointCollectionForProcedureRoute(procedureRouteSegment, runway, flightPhase) {
         return this._navigationLibrary.buildWaypointModelsForProcedure(procedureRouteSegment, runway, flightPhase);
+    }
+
+    /**
+     * Create a `RouteModel` for a procedureRouteString.
+     *
+     * This allows for easy access to the various parts of a procedureRouteString.
+     * Currently these parts are accessed via getters and are used for view logic,
+     * namely the `AircraftStripView`.
+     *
+     * @for Fms
+     * @method _buildProcedureRouteModel
+     * @param routeSegment {string}  current leg in routeString format
+     * @return {RouteModel|null}
+     * @private
+     */
+    _buildProcedureRouteModel(routeSegment) {
+        if (!this.isProcedure) {
+            return null;
+        }
+
+        return new RouteModel(routeSegment);
     }
 
     /**

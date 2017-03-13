@@ -567,8 +567,47 @@ ava('.isFollowingSid() retruns true when the current Leg is a SID', (t) => {
     t.false(fms.isFollowingSid());
 });
 
-ava.todo('.getProcedureName() ');
-ava.todo('.getProcedureAndExitName() ');
+ava('.getProcedureName() returns null when not on a procedureLeg', (t) => {
+    const fms = buildFmsMock(isComplexRoute);
+    const result = fms.getProcedureName();
+
+    t.true(result === null);
+});
+
+ava('.getProcedureName() returns the name of the current arrival procedure when on a procedureLeg', (t) => {
+    const fms = buildFmsMock();
+    const result = fms.getProcedureName();
+
+    t.true(result === 'KEPEC3');
+});
+
+ava('.getProcedureName() returns the name of the current departure procedure when on a procedureLeg', (t) => {
+    const fms = buildFmsMockForDeparture();
+    const result = fms.getProcedureName();
+
+    t.true(result === 'COWBY6');
+});
+
+ava('.getProcedureAndExitName() returns null when not on a procedureLeg', (t) => {
+    const fms = buildFmsMock(isComplexRoute);
+    const result = fms.getProcedureAndExitName();
+
+    t.true(result === null);
+});
+
+ava('.getProcedureAndExitName() returns the name of the current arrival procedure when on a procedureLeg', (t) => {
+    const fms = buildFmsMock();
+    const result = fms.getProcedureAndExitName();
+
+    t.true(result === 'KEPEC3.KLAS');
+});
+
+ava('.getProcedureAndExitName() returns the name of the current departure procedure when on a procedureLeg', (t) => {
+    const fms = buildFmsMockForDeparture();
+    const result = fms.getProcedureAndExitName();
+
+    t.true(result === 'COWBY6.GUP');
+});
 
 ava('._buildLegCollection() returns an array of LegModels', (t) => {
     const fms = buildFmsMock(isComplexRoute);

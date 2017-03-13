@@ -653,6 +653,36 @@ export default class Fms {
     }
 
     /**
+     * Return the name of the current procedure, if following a procedure
+     *
+     * @for fms
+     * @method getProcedureName
+     * @return {string}
+     */
+    getProcedureName() {
+        if (!this.isFollowingProcedure()) {
+            return null;
+        }
+
+        return this.currentLeg.procedureName;
+    }
+
+    /**
+     * Return the name and exit point of the current procedure, if following a procedure
+     *
+     * @for fms
+     * @method getProcedureAndExitName
+     * @return {string}
+     */
+    getProcedureAndExitName() {
+        if (!this.isFollowingProcedure()) {
+            return null;
+        }
+
+        return this.currentLeg.procedureAndExitName;
+    }
+
+    /**
      * Find if a Waypoint exists within `#legCollection`
      *
      * This will call a `.hasWaypoint` method on each `LegModel`
@@ -663,8 +693,8 @@ export default class Fms {
      * @return {boolean}
      */
     hasWaypoint(waypointName) {
-        // using a for loop here instead of `_find()` because this operation could happen a lot. a for
-        // loop is going to be faster than `_find()` in most cases.
+        // using a for loop here instead of `_find()` because this operation could happen a lot and
+        // a for loop is going to be faster than `_find()` in most cases.
         for (let i = 0; i < this.legCollection.length; i++) {
             const leg = this.legCollection[i];
 

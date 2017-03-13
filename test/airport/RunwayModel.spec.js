@@ -25,4 +25,4 @@ ava('does not throw when instantiated with vaild parameters', (t) => {
     t.notThrows(() => new RunwayModel(runway07L25R, 0, airportModelFixture));
 });
 
-ava.todo('Eso no es suficiente... Future Erik: add more tests here, por favor');
+ava.todo('Eso no es suficiente... Future Erik: add more tests here, por favor. Will be addressed as part of feature/93');
