@@ -709,6 +709,9 @@ export default class Fms {
         return typeof previousProcedureLeg !== 'undefined';
     }
 
+    isFollowingSid() {}
+    isFollowingStar() {}
+
     /**
      * Fascade method for `sidCollection.findRouteByIcao`
      *

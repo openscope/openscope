@@ -281,6 +281,7 @@ export default class Aircraft {
         this.altitude = _get(data, 'altitude', this.altitude);
         this.speed = _get(data, 'speed', this.speed);
         this.destination = _get(data, 'destination', this.destination);
+        this.inside_ctr = data.category === FLIGHT_CATEGORY.DEPARTURE;
     }
 
     initFms(data) {
@@ -1833,78 +1834,6 @@ export default class Aircraft {
 
     /**
      * @for AircraftInstanceModel
-     * @method updateStrip
-     */
-    updateStrip() {
-        if (this.projected) {
-            return;
-        }
-
-        // Update fms.following
-        // this.__fms__.followCheck();
-
-        const wp = this.__fms__.currentWaypoint;
-        // Populate strip fields with default values
-        const defaultHeadingText = heading_to_string(this.mcp.heading);
-        const defaultAltitudeText = this.mcp.altitude;
-        const defaultDestinationText = _get(this, 'destination', window.airportController.airport_get().icao);
-        const currentSpeedText = this.pilot.sayTargetedSpeed();
-
-        let headingText;
-        let destinationText = this.__fms__.getFollowingSIDText();
-        const altitudeText = this.taxi_next ? 'ready' : null;
-        const hasAltitude = _has(wp, 'altitude');
-        const isFollowingSID = _isString(destinationText);
-        const isFollowingSTAR = _isString(this.__fms__.following.star);
-        const { fixRestrictions } = this.__fms__.currentWaypoint;
-
-        this.aircraftStripView.update(defaultHeadingText, defaultAltitudeText, defaultDestinationText, currentSpeedText);
-
-        switch (this.mode) {
-            case FLIGHT_MODES.APRON:
-                this.aircraftStripView.updateViewForApron(destinationText, hasAltitude);
-                break;
-            case FLIGHT_MODES.TAXI:
-                this.aircraftStripView.updateViewForTaxi(destinationText, hasAltitude, altitudeText);
-                break;
-            case FLIGHT_MODES.WAITING:
-                this.aircraftStripView.updateViewForWaiting(destinationText, hasAltitude);
-                break;
-            case FLIGHT_MODES.TAKEOFF:
-                // When taking off...
-                this.aircraftStripView.updateViewForTakeoff(destinationText);
-
-                break;
-            case FLIGHT_MODES.CRUISE:
-                // When in normal flight...
-                if (wp.navmode === WAYPOINT_NAV_MODE.FIX) {
-                    headingText = wp.fix[0] === '_'
-                        ? '[RNAV]'
-                        : wp.fix;
-                    destinationText = this.__fms__.getFollowingSTARText();
-                } else if (wp.navmode === WAYPOINT_NAV_MODE.HOLD) {
-                    headingText = 'holding';
-                } else if (wp.navmode === WAYPOINT_NAV_MODE.RWY) {
-                    headingText = 'intercept';
-                    destinationText = this.__fms__.getDesinationIcaoWithRunway();
-                }
-
-                this.aircraftStripView.updateViewForCruise(wp.navmode, headingText, destinationText, isFollowingSID, isFollowingSTAR, fixRestrictions);
-
-                break;
-            case FLIGHT_MODES.LANDING:
-                destinationText = this.__fms__.getDesinationIcaoWithRunway();
-
-                this.aircraftStripView.updateViewForLanding(destinationText);
-
-                break;
-            default:
-                throw new TypeError(`Invalid FLIGHT_MODE ${this.mode} passed to .updateStrip()`);
-        }
-    }
-
-    /**
-     * @for AircraftInstanceModel
      * @method updateAuto
      */
     updateAuto() {}
@@ -1992,10 +1921,79 @@ export default class Aircraft {
         if (this.category === FLIGHT_CATEGORY.ARRIVAL) {
             this.aircraftStripView.hide();
         }
+    }
 
-        if (this.category === FLIGHT_CATEGORY.DEPARTURE) {
-            // TODO: does this have anything to do with the aircraft strip? if not this should live somewhere else.
-            this.inside_ctr = true;
+    /**
+     * @for AircraftInstanceModel
+     * @method updateStrip
+     */
+    updateStrip() {
+        if (this.projected) {
+            return;
+        }
+
+        // Update fms.following
+        // this.__fms__.followCheck();
+
+        // Populate strip fields with default values
+        const heading = heading_to_string(this.mcp.heading);
+        const altitude = this.mcp.altitude;
+        const speed = this.mcp.speed;
+        // const defaultDestination = _get(this, 'destination', window.airportController.airport_get().icao);
+
+        let headingText;
+        let destinationText = this.__fms__.getFollowingSIDText();
+        const altitudeText = this.taxi_next ? 'ready' : null;
+        const hasAltitude = this.mcp.altitude !== -1; // _has(wp, 'altitude');
+
+        this.aircraftStripView.update(heading, altitude, this.destination, speed);
+
+        switch (this.mode) {
+            case FLIGHT_MODES.APRON:
+                this.aircraftStripView.updateViewForApron(destinationText, hasAltitude);
+                break;
+            case FLIGHT_MODES.TAXI:
+                this.aircraftStripView.updateViewForTaxi(destinationText, hasAltitude, altitudeText);
+                break;
+            case FLIGHT_MODES.WAITING:
+                this.aircraftStripView.updateViewForWaiting(destinationText, hasAltitude);
+                break;
+            case FLIGHT_MODES.TAKEOFF:
+                // When taking off...
+                this.aircraftStripView.updateViewForTakeoff(destinationText);
+
+                break;
+            case FLIGHT_MODES.CRUISE:
+                const wp = this.__fms__.currentWaypoint;
+                const isFollowingSID = this.category === FLIGHT_CATEGORY.DEPARTURE;
+                const isFollowingSTAR = this.category === FLIGHT_CATEGORY.ARRIVAL;
+                // const { fixRestrictions } = this.__fms__.currentWaypoint;
+                const fixRestrictions = {};
+
+                // When in normal flight...
+                // if (wp.navmode === WAYPOINT_NAV_MODE.FIX) {
+                //     headingText = wp.fix[0] === '_'
+                //         ? '[RNAV]'
+                //         : wp.fix;
+                //     destinationText = this.__fms__.getFollowingSTARText();
+                // } else if (wp.navmode === WAYPOINT_NAV_MODE.HOLD) {
+                //     headingText = 'holding';
+                // } else if (wp.navmode === WAYPOINT_NAV_MODE.RWY) {
+                //     headingText = 'intercept';
+                //     destinationText = this.__fms__.getDesinationIcaoWithRunway();
+                // }
+
+                this.aircraftStripView.updateViewForCruise(wp.navmode, headingText, destinationText, isFollowingSID, isFollowingSTAR, fixRestrictions);
+
+                break;
+            case FLIGHT_MODES.LANDING:
+                destinationText = this.__fms__.getDesinationIcaoWithRunway();
+
+                this.aircraftStripView.updateViewForLanding(destinationText);
+
+                break;
+            default:
+                throw new TypeError(`Invalid FLIGHT_MODE ${this.mode} passed to .updateStrip()`);
         }
     }
 

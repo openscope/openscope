@@ -553,6 +553,11 @@ ava('.getBottomAltitude() returns the bottom altitudeRestriction from all the wa
     t.true(result === 24000);
 });
 
+ava.todo('.isFollowingSid() ');
+ava.todo('.isFollowingStar() ');
+ava.todo('.getProcedureName() ');
+ava.todo('.getProcedureAndExitName() ');
+
 ava('._buildLegCollection() returns an array of LegModels', (t) => {
     const fms = buildFmsMock(isComplexRoute);
 

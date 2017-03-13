@@ -257,18 +257,26 @@ export default class AircraftStripView {
     /**
      * @for AircraftStripView
      * @method updateAircraftTelemetryText
-     * @param headingText {string}
-     * @param altitudeText {string}
-     * @param destinationText {string}
-     * @param currentSpeedText {string}
+     * @param heading {string}
+     * @param altitude {string}
+     * @param destination {string}
+     * @param speed {string}
      */
-    updateAircraftTelemetryText(headingText, altitudeText, destinationText, currentSpeedText) {
+    updateAircraftTelemetryText(heading, altitude, destination, speed) {
+        const altitudeDisplay = altitude !== -1
+            ? Math.ceil(altitude)
+            : '-';
+
+        const speedDisplay = speed !== -1
+            ? Math.ceil(speed)
+            : '-';
+
         // FIXME: the `Math.ceil` calls here are temporary and should be removed. this is
         // masking a larger problem but is being used as a quick fix
-        this.$altitude.text(Math.ceil(altitudeText));
-        this.$destination.text(destinationText.toUpperCase());
-        this.$heading.text(headingText.toUpperCase());
-        this.$speed.text(Math.ceil(currentSpeedText));
+        this.$altitude.text(altitudeDisplay);
+        this.$destination.text(destination.toUpperCase());
+        this.$heading.text(heading.toUpperCase());
+        this.$speed.text(speedDisplay);
     }
 
     /**
