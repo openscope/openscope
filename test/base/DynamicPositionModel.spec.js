@@ -40,6 +40,14 @@ ava('get relativePosition() returns [0, 0] if no reference position is provided'
     t.true(_isEqual(result.relativePosition, expectedResult));
 });
 
+ava('get magneticNorth() returns the value of #_magneticNorth', (t) => {
+    const positionModel = new DynamicPositionModel(LAT_LONG_MOCK, null, MAGNETIC_NORTH_MOCK);
+    const result = positionModel.magneticNorth;
+    const expectedResult = MAGNETIC_NORTH_MOCK;
+
+    t.true(_isEqual(result, expectedResult));
+});
+
 ava('.calculatePosition() static method throws when it receives the wrong arguments', t => {
     t.throws(() => DynamicPositionModel.calculateRelativePosition());
 });
