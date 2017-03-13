@@ -8,6 +8,7 @@ import AircraftInstanceModel from './AircraftInstanceModel';
 import AircraftConflict from './AircraftConflict';
 import RouteModel from '../navigationLibrary/Route/RouteModel';
 import { airlineNameAndFleetHelper } from '../airline/airlineHelpers';
+import { convertStaticPositionToDynamic } from '../base/staticPositionToDynamicPositionHelper';
 import { speech_say } from '../speech';
 import { abs } from '../math/core';
 import { distance2d } from '../math/distance';
@@ -203,7 +204,7 @@ export default class AircraftController {
 
         for (let i = 0; i < this.aircraft.list.length; i++) {
             const aircraft = this.aircraft.list[i];
-            const d = distance2d(aircraft.position, position);
+            const d = distance2d(aircraft.relativePosition, position);
 
             if (d < distance && aircraft.isVisible() && !aircraft.hit) {
                 distance = d;
@@ -221,7 +222,7 @@ export default class AircraftController {
      * @param factor
      */
     aircraft_visible(aircraft, factor = 1) {
-        return vlen(aircraft.position) < window.airportController.airport_get().ctr_radius * factor;
+        return vlen(aircraft.relativePosition) < window.airportController.airport_get().ctr_radius * factor;
     }
 
     /**
@@ -273,8 +274,8 @@ export default class AircraftController {
                 // no violation can occur in this case.
                 // Variation of:
                 // http://gamedev.stackexchange.com/questions/586/what-is-the-fastest-way-to-work-out-2d-bounding-box-intersection
-                const dx = abs(aircraft.position[0] - otherAircraft.position[0]);
-                const dy = abs(aircraft.position[1] - otherAircraft.position[1]);
+                const dx = abs(aircraft.relativePosition[0] - otherAircraft.relativePosition[0]);
+                const dy = abs(aircraft.relativePosition[1] - otherAircraft.relativePosition[1]);
                 const boundingBoxLength = km(8);
 
                 if (dx < boundingBoxLength && dy < boundingBoxLength) {
@@ -317,7 +318,8 @@ export default class AircraftController {
                 aircraft.__fms__.currentWaypoint.navmode === 'heading'
             ) {
                 if (aircraft.category === 'arrival' || aircraft.category === 'departure') {
-                    remove = true;
+                    // FIXME: This needs to be reenabled without removing ALL arrivals
+                    // remove = true;
                 }
             }
 
@@ -441,6 +443,7 @@ export default class AircraftController {
         const flightNumber = this._airlineController.generateFlightNumberWithAirlineModel(airlineModel);
         const aircraftTypeDefinition = this._getRandomAircraftTypeDefinitionForAirlineId(airlineId, airlineModel);
         const destination = this._setDestinationFromRouteOrProcedure(spawnPatternModel);
+        const dynamicPositionModel = convertStaticPositionToDynamic(spawnPatternModel.positionModel);
 
         return {
             destination,
@@ -452,7 +455,7 @@ export default class AircraftController {
             altitude: spawnPatternModel.altitude,
             speed: spawnPatternModel.speed,
             heading: spawnPatternModel.heading,
-            position: spawnPatternModel.position,
+            positionModel: dynamicPositionModel,
             icao: aircraftTypeDefinition.icao,
             model: aircraftTypeDefinition,
             route: spawnPatternModel.routeString,

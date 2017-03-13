@@ -87,10 +87,10 @@ ava('.findStandardRouteWaypointModelsForEntryAndExit() does not call ._updateWay
 });
 
 ava('.calculateDistanceBetweenWaypoints() calculates the distance between two `StandardRouteWaypointModel` positions', t => {
-    const expectedResult = 118.63498218153832;
+    const expectedResult = 118.63498218153818;
     const model = new StandardRouteModel(STAR_LIST_MOCK.GRNPA1);
     const waypointList = model.findStandardRouteWaypointModelsForEntryAndExit('MLF', '19R');
-    const result = model.calculateDistanceBetweenWaypoints(waypointList[0].position, waypointList[1].position);
+    const result = model.calculateDistanceBetweenWaypoints(waypointList[0].relativePosition, waypointList[1].relativePosition);
 
     t.true(result === expectedResult);
 });

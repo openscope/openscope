@@ -189,12 +189,12 @@ export default class StandardRouteWaypointModel extends BaseModel {
          * Specific bits of this property are exposed via public getters.
          * This property should never be modified by an exteral method.
          *
-         * @property _waypointPosition
-         * @type {PositionModel}
+         * @property _positionModel
+         * @type {StaticPositionModel}
          * @default null
          * @private
          */
-        this._waypointPosition = null;
+        this._positionModel = null;
 
         /**
          * Distance in nm from the previous waypoint.
@@ -229,23 +229,13 @@ export default class StandardRouteWaypointModel extends BaseModel {
     }
 
     /**
-     * Return this waypoint's `position` propery
-     *
-     * @property position
-     * @return {array}
-     */
-    get position() {
-        return this._waypointPosition.position;
-    }
-
-    /**
      * Return this waypoint's `gps` position property
      *
      * @property gps
      * @return {array}
      */
     get gps() {
-        return this._waypointPosition.gps;
+        return this._positionModel.gps;
     }
 
     /**
@@ -255,7 +245,7 @@ export default class StandardRouteWaypointModel extends BaseModel {
      * @return {array}
      */
     get gpsXY() {
-        return this._waypointPosition.gpsXY;
+        return this._positionModel.gpsXY;
     }
 
     /**
@@ -271,6 +261,28 @@ export default class StandardRouteWaypointModel extends BaseModel {
      */
     get fix() {
         return [this.name, this._restrictions];
+    }
+
+    /**
+     * Provide read-only public access to this._positionModel
+     *
+     * @for SpawnPatternModel
+     * @property positionModel
+     * @type {StaticPositionModel}
+     */
+    get positionModel() {
+        return this._positionModel;
+    }
+
+    /**
+     * Fascade to access relative position
+     *
+     * @for StandardRouteWaypointModel
+     * @property relativePosition
+     * @type {array<number>} [kilometersNorth, kilometersEast]
+     */
+    get relativePosition() {
+        return this._positionModel.relativePosition;
     }
 
     /**
@@ -317,7 +329,7 @@ export default class StandardRouteWaypointModel extends BaseModel {
     }
 
     /**
-     * Find the matching fix from the `FixCollection` and clone its `PositionModel` this `_waypointPosition`
+     * Find the matching fix from the `FixCollection` and clone its `StaticPositionModel` this `_positionModel`
      *
      * @for StandardRouteWaypointModel
      * @method _clonePoisitonFromFix
@@ -333,7 +345,7 @@ export default class StandardRouteWaypointModel extends BaseModel {
             return this;
         }
 
-        this._waypointPosition = fixModel.clonePosition();
+        this._positionModel = fixModel.clonePosition();
 
         return this;
     }
@@ -381,7 +393,7 @@ export default class StandardRouteWaypointModel extends BaseModel {
     toWaypointModel() {
         const waypointProps = {
             name: this.name,
-            position: this._waypointPosition,
+            positionModel: this.positionModel,
             altitudeRestriction: this._altitude,
             speedRestriction: this._speed
         };

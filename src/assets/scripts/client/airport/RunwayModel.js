@@ -1,7 +1,7 @@
 import _includes from 'lodash/includes';
 import _without from 'lodash/without';
 import BaseModel from '../base/BaseModel';
-import PositionModel from '../base/PositionModel';
+import StaticPositionModel from '../base/StaticPositionModel';
 import { abs, tan } from '../math/core';
 import { radians_normalize } from '../math/circle';
 import { km, km_ft, degreesToRadians } from '../utilities/unitConverters';
@@ -36,13 +36,34 @@ export default class RunwayModel extends BaseModel {
         };
         this.labelPos = [];
         this.length = null;
-        this.midfield = [];
         this.name = '';
-        this.position = [];
+        this._positionModel = null;
         this.queue = [];
         this.sepFromAdjacent = km(3);
 
         this.parse(options, end);
+    }
+
+    /**
+     * Fascade to access relative position
+     *
+     * @for RunwayModel
+     * @property relativePosition
+     * @type {array<number>} [kilometersNorth, kilometersEast]
+     */
+    get relativePosition() {
+        return this._positionModel.relativePosition;
+    }
+
+    /**
+     * Provide read-only public access to this._positionModel
+     *
+     * @for SpawnPatternModel
+     * @property positionModel
+     * @type {StaticPositionModel}
+     */
+    get positionModel() {
+        return this._positionModel;
     }
 
     /**
@@ -59,12 +80,12 @@ export default class RunwayModel extends BaseModel {
         }
 
         if (data.end) {
-            const thisSide = new PositionModel(data.end[end], data.reference_position, data.magnetic_north);
+            const thisSide = new StaticPositionModel(data.end[end], this.airport.positionModel, this.airport.magneticNorth);
             // FIXME: ressignment of an argument with an inline ternary? this line needs some work.
-            const farSide = new PositionModel(data.end[(end === 0) ? 1 : 0], data.reference_position, data.magnetic_north);
+            const farSide = new StaticPositionModel(data.end[(end === 0) ? 1 : 0], this.airport.positionModel, this.airport.magneticNorth);
 
-            // TODO: `gps` and `elevation` are available from the `PositionModel` and should be pulled from there
-            // instead of setting direct properties. If direct properties are needed, use getters isntead.
+            // TODO: `gps` and `elevation` are available from the `StaticPositionModel` and should be pulled from there
+            // instead of setting direct properties. If direct properties are needed, use getters instead.
             // GPS latitude and longitude position
             this.gps = [thisSide.latitude, thisSide.longitude];
 
@@ -77,11 +98,9 @@ export default class RunwayModel extends BaseModel {
             }
 
             // relative position, based on center of map
-            this.position = thisSide.position;
-            this.length = vlen(vsub(farSide.position, thisSide.position));
-            // TODO: what is the 0.5 for? enumerate the magic number
-            this.midfield = vscale(vadd(thisSide.position, farSide.position), 0.5);
-            this.angle = radians_normalize(vradial(vsub(farSide.position, thisSide.position)));
+            this._positionModel = thisSide;
+            this.length = km(thisSide.distanceToPosition(farSide));
+            this.angle = thisSide.bearingToPosition(farSide);
         }
 
         if (data.ils) {

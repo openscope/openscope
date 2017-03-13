@@ -2,7 +2,7 @@ import _keys from 'lodash/keys';
 import FixModel from '../../navigationLibrary/Fix/FixModel';
 import SpawnPatternModel from '../../trafficGenerator/SpawnPatternModel';
 // import Waypoint from '../../aircraft/Waypoint';
-// import PositionModel from '../PositionModel';
+// import DynamicPositionModel from '../DynamicPositionModel';
 
 /**
  * A map of Constructor names to constructor functions
@@ -40,11 +40,11 @@ export const CLASS_MAP = {
     // Waypoint: Waypoint
     // /**
     //  * @memberof CLASS_MAP
-    //  * @property PositionModel
-    //  * @type {PositionModel}
+    //  * @property DynamicPositionModel
+    //  * @type {DynamicPositionModel}
     //  * @final
     //  */
-    // PositionModel: PositionModel
+    // DynamicPositionModel: DynamicPositionModel
 };
 
 /**

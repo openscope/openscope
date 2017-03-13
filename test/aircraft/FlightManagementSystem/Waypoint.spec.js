@@ -10,7 +10,7 @@ import {
     EXPANDED_WAYPOINT_MOCK
 } from '../_mocks/waypointMocks';
 
-ava('should not throw if instantiated with a string as an arguemnt', t => {
+ava('should not throw if instantiated with no speed/altiude arguments', t => {
     t.notThrows(() => new Waypoint(BASIC_WAYPOINT_MOCK, airportModelFixture));
 
     const result = new Waypoint(MINIMAL_WAYPOINT_MOCK, airportModelFixture);

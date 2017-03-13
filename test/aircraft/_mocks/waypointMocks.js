@@ -1,7 +1,10 @@
+import { SNORA_STATIC_POSITION_MODEL } from '../../base/_mocks/positionMocks';
+
 export const MINIMAL_WAYPOINT_MOCK = 'klas';
 
 export const BASIC_WAYPOINT_MOCK = {
     fix: 'SNORA',
+    positionModel: SNORA_STATIC_POSITION_MODEL,
     fixRestrictions: {
         alt: '270+',
         spd: '280'
@@ -10,6 +13,7 @@ export const BASIC_WAYPOINT_MOCK = {
 
 export const ENROUTE_TO_HOLD_WAYPOINT_MOCK = {
     fix: 'SNORA',
+    positionModel: SNORA_STATIC_POSITION_MODEL,
     altitude: 7000,
     speed: 230
 };

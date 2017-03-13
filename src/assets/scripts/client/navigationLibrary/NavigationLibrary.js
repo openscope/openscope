@@ -1,8 +1,9 @@
 import _isNil from 'lodash/isNil';
-import PositionModel from '../base/PositionModel';
+import StaticPositionModel from '../base/StaticPositionModel';
 import RouteModel from './Route/RouteModel';
 import FixCollection from './Fix/FixCollection';
 import StandardRouteCollection from './StandardRoute/StandardRouteCollection';
+import { degreesToRadians } from '../utilities/unitConverters';
 
 /**
  *
@@ -20,7 +21,7 @@ export default class NavigationLibrary {
          *
          *
          * @property _referencePosition
-         * @type {PositionModel}
+         * @type {StaticPositionModel}
          * @default null
          */
         this._referencePosition = null;
@@ -94,7 +95,7 @@ export default class NavigationLibrary {
     init(airportJson) {
         const { fixes, sids, stars } = airportJson;
 
-        this._referencePosition = new PositionModel(airportJson.position, null, airportJson.magnetic_north);
+        this._referencePosition = new StaticPositionModel(airportJson.position, null, degreesToRadians(airportJson.magnetic_north));
 
         FixCollection.addItems(fixes, this._referencePosition);
         this._sidCollection = new StandardRouteCollection(sids);
@@ -146,12 +147,12 @@ export default class NavigationLibrary {
      * Fascade Method
      *
      * @for NavigationLibrary
-     * @Method getFixPositionCoordinates
+     * @method getFixRelativePosition
      * @param fixName {string}
      * @return {array<number>}
      */
-    getFixPositionCoordinates(fixName) {
-        return FixCollection.getFixPositionCoordinates(fixName);
+    getFixRelativePosition(fixName) {
+        return FixCollection.getFixRelativePosition(fixName);
     }
 
     /**
@@ -254,20 +255,22 @@ export default class NavigationLibrary {
     }
 
     /**
-     * Create a `PositionModel` from a provided lat/long
+     * Create a `StaticPositionModel` from a provided lat/long
      *
      * This allows classes that have access to the `NavigationLibrary` to
-     * create a `PositionModel` without needing to know about a
-     * `#referencePosition` or `#magnetic_north`.
+     * create a `StaticPositionModel` without needing to know about a
+     * `#referencePosition` or `#magneticNorth`.
      *
      * @for NavigationLibrary
-     * @method generatePositionModelForLatLong
+     * @method generateStaticPositionModelForLatLong
      * @param latLong {array<number>}
-     * @return positionModel {PositionModel}
+     * @return staticPositionModel {StaticPositionModel}
      */
-    generatePositionModelForLatLong(latLong) {
-        const positionModel = new PositionModel(latLong, this._referencePosition, this._referencePosition.magnetic_north);
+    generateStaticPositionModelForLatLong(latLong) {
+        const staticPositionModel = new StaticPositionModel(latLong,
+            this._referencePosition, this._referencePosition.magneticNorth
+        );
 
-        return positionModel;
+        return staticPositionModel;
     }
 }

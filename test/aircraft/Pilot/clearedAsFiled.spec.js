@@ -21,7 +21,7 @@ ava('.clearedAsFiled() should set mcp altitude, heading and speed modes with val
         speedMode: 'N1',
         altitude: 19000,
         course: -1,
-        heading: 3.3674436372440057,
+        heading: 3.367484597776187,
         speed: 460,
         shouldExpediteAltitudeChange: false
     };

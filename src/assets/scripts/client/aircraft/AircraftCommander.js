@@ -290,15 +290,15 @@ export default class AircraftCommander {
         const turnDirection = data[0];
         const legLength = data[1];
         const holdFix = data[2];
-        let holdFixLocation = aircraft.position;
+        let holdPosition = aircraft.positionModel;
         let inboundHdg = aircraft.heading;
 
         if (holdFix) {
-            holdFixLocation = this._navigationLibrary.getFixPositionCoordinates(holdFix);
-            inboundHdg = bearingToPoint(aircraft.position, holdFixLocation);
+            holdPosition = this._navigationLibrary.getFixRelativePosition(holdFix);
+            inboundHdg = aircraft.positionModel.bearingToPosition(holdPosition);
         }
 
-        return aircraft.pilot.initiateHoldingPattern(inboundHdg, turnDirection, legLength, holdFix, holdFixLocation);
+        return aircraft.pilot.initiateHoldingPattern(inboundHdg, turnDirection, legLength, holdFix, holdPosition);
     }
 
     /**

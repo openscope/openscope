@@ -252,8 +252,6 @@ export default class ModeController {
      * @param course {number}  magnetic course (in radians)
      */
     setCourseFieldValue(course) {
-        // TODO: remove this before merging in to develop
-        console.warn('.setCourseFieldValue(): Is this value in raidans?', course);
         this._setFieldValue(MCP_FIELD_NAME.COURSE, course);
     }
 
@@ -265,8 +263,6 @@ export default class ModeController {
      * @param heading {number}  magnetic heading (in radians)
      */
     setHeadingFieldValue(heading) {
-        // TODO: remove this before merging in to develop
-        console.warn('.setHeadingFieldValue(): Is this value in raidans?', heading);
         this._setFieldValue(MCP_FIELD_NAME.HEADING, heading);
     }
 

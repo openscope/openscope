@@ -9,32 +9,12 @@ import {
     distance_to_poly,
     area_to_poly
 } from './vector';
+import { PHYSICS_CONSTANTS } from '../constants/globalConstants';
 import {
     kn_ms,
     degreesToRadians,
     radiansToDegrees
 } from '../utilities/unitConverters';
-
-/**
- * @property CONSTANTS
- * @type {Object}
- * @final
- */
-const CONSTANTS = {
-    /**
-     * @property
-     * @type {number}
-     * @final
-     */
-    GRAVITATIONAL_MAGNITUDE: 9.81,
-
-    /**
-     * @property EARTH_RADIUS_NM
-     * @type {number}
-     * @final
-     */
-    EARTH_RADIUS_NM: 3440
-};
 
 /**
  * @function calcTurnRadius
@@ -43,7 +23,7 @@ const CONSTANTS = {
  * @return {number}
  */
 export const calcTurnRadius = (speed, bankAngle) => {
-    return (speed * speed) / (CONSTANTS.GRAVITATIONAL_MAGNITUDE * tan(bankAngle));
+    return (speed * speed) / (PHYSICS_CONSTANTS.GRAVITATIONAL_MAGNITUDE * tan(bankAngle));
 };
 
 /**
@@ -69,6 +49,7 @@ export const calcTurnInitiationDistance = (speed, bankAngle, courseChange) => {
 export const bearingToPoint = (startPosition, endPosition) => vradial(vsub(endPosition, startPosition));
 
 // TODO: this may be better suited to live in an Aircraft model somewhere.
+// TODO: This is goofy like this. Should be changed to accept (PositionModel, PositionModel, heading)
 /**
  * Returns an offset array showing how far [fwd/bwd, left/right] 'aircraft' is of 'target'
  *
@@ -87,7 +68,7 @@ export const getOffset = (aircraft, target, headingThruTarget = null) => {
     }
 
     const offset = [0, 0, 0];
-    const vector = vsub(target, aircraft.position); // vector from aircraft pointing to target
+    const vector = vsub(target, aircraft.relativePosition); // vector from aircraft pointing to target
     const bearingToTarget = vradial(vector);
 
     offset[2] = vlen(vector);
@@ -97,6 +78,8 @@ export const getOffset = (aircraft, target, headingThruTarget = null) => {
     return offset;
 };
 
+// TODO: This has been replaced by `DynamicPositionModel.generateDynamicPositionFromBearingAndDistance()`.
+// Please replace all usages of this function with that, and then delete this helper function.
 /**
  * Get new position by fix-radial-distance method
  *
@@ -113,7 +96,7 @@ export const fixRadialDist = (fix, radial, dist) => {
         degreesToRadians(fix[1])
     ];
 
-    const R = CONSTANTS.EARTH_RADIUS_NM;
+    const R = PHYSICS_CONSTANTS.EARTH_RADIUS_NM;
     // TODO: abstract these two calculations to functions
     const lat2 = Math.asin(sin(fix[0]) * cos(dist / R) + cos(fix[0]) * sin(dist / R) * cos(radial));
     const lon2 = fix[1] + Math.atan2(
@@ -141,7 +124,7 @@ export const isWithinAirspace = (airport, pos) => {
         return point_in_area(pos, perim);
     }
 
-    return distance2d(pos, airport.position.position) <= airport.ctr_radius;
+    return distance2d(pos, airport.relativePosition) <= airport.ctr_radius;
 };
 
 /**
@@ -159,8 +142,7 @@ export const calculateDistanceToBoundary = (airport, pos) => {
         return distance_to_poly(pos, area_to_poly(perim));
     }
 
-    // TODO: hmm, `position.position`? that seems fishy
-    return abs(distance2d(pos, airport.position.position) - airport.ctr_radius);
+    return abs(distance2d(pos, airport.relativePosition) - airport.ctr_radius);
 };
 
 
@@ -223,7 +205,7 @@ export const calculateTurnInitiaionDistance = (aircraft, currentWaypointPosition
     }
 
     const nominalNewCourse = _calculateNominalNewCourse(
-        aircraft.fms.getNextWaypointPosition(),
+        aircraft.fms.getNextWaypointPositionModel(),
         currentWaypointPosition
     );
     const courseChange = _calculateCourseChangeInRadians(currentHeading, nominalNewCourse);

@@ -7,10 +7,11 @@ import LegModel from '../../../src/assets/scripts/client/aircraft/FlightManageme
 import WaypointModel from '../../../src/assets/scripts/client/aircraft/FlightManagementSystem/WaypointModel';
 import { navigationLibraryFixture } from '../../fixtures/navigationLibraryFixtures';
 
-import { HOLD_POSITION_MOCK } from '../_mocks/aircraftMocks';
+import { HOLD_AT_PRESENT_LOCATION_MOCK } from '../_mocks/aircraftMocks';
 
 const holdRouteSegmentMock = '@COWBY';
 const directRouteSegmentMock = 'COWBY';
+const cowbyFixFixture = navigationLibraryFixture.findFixByName('COWBY');
 const arrivalProcedureRouteSegmentMock = 'DAG.KEPEC3.KLAS';
 const departureProcedureRouteSegmentMock = 'KLAS.COWBY6.DRK';
 const runwayMock = '19L';
@@ -25,7 +26,7 @@ ava('does not throw when passed valid parameters', (t) => {
     t.notThrows(() => new LegModel(arrivalProcedureRouteSegmentMock, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture));
     t.notThrows(() => new LegModel(directRouteSegmentMock, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture));
     t.notThrows(() => new LegModel(holdRouteSegmentMock, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture));
-    t.notThrows(() => new LegModel(HOLD_POSITION_MOCK.name, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture, HOLD_POSITION_MOCK));
+    t.notThrows(() => new LegModel(HOLD_AT_PRESENT_LOCATION_MOCK.name, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture, HOLD_AT_PRESENT_LOCATION_MOCK));
 });
 
 ava('#currentWaypoint returns the first item in #waypointCollection', (t) => {
@@ -143,8 +144,8 @@ ava('._buildWaypointForHoldingPattern() returns an array with a single instance 
 });
 
 ava('._buildWaypointForHoldingPatternAtPosition() returns an array with a single instance of a WaypointModel with hold properties for GPS', (t) => {
-    const model = new LegModel(HOLD_POSITION_MOCK.name, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture, HOLD_POSITION_MOCK);
-    const result = model._buildWaypointForHoldingPatternAtPosition(HOLD_POSITION_MOCK.name, HOLD_POSITION_MOCK);
+    const model = new LegModel(HOLD_AT_PRESENT_LOCATION_MOCK.name, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture, HOLD_AT_PRESENT_LOCATION_MOCK);
+    const result = model._buildWaypointForHoldingPatternAtPosition(HOLD_AT_PRESENT_LOCATION_MOCK);
 
     t.true(_isArray(result));
     t.true(result[0] instanceof WaypointModel);
@@ -156,16 +157,13 @@ ava('._buildWaypointForHoldingPatternAtPosition() returns an array with a single
     t.true(result[0].timer === -1);
 });
 
-// this test is here because a hold at position will not be able to use a `PositionModel` and the API is,
-// essentially, faked in order to instantiate the `WaypointModel` correctly. This test verifies that the
-// position from a `FixModel` (which will have a `PositionModel`) matches the position from a hold at
-// position waypoint.
 ava('._buildWaypointForHoldingPatternAtPosition() returns the same position for a hold Waypoint at a fix vs position', (t) => {
-    const model = new LegModel(HOLD_POSITION_MOCK.name, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture, HOLD_POSITION_MOCK);
+    const model = new LegModel(HOLD_AT_PRESENT_LOCATION_MOCK.name, runwayMock, arrivalFlightPhaseMock, navigationLibraryFixture, HOLD_AT_PRESENT_LOCATION_MOCK);
     const fixResult = model._buildWaypointForHoldingPattern(holdRouteSegmentMock);
-    const positionResult = model._buildWaypointForHoldingPatternAtPosition(HOLD_POSITION_MOCK.name, HOLD_POSITION_MOCK);
+    const positionalHoldingProps = Object.assign(HOLD_AT_PRESENT_LOCATION_MOCK, { positionModel: cowbyFixFixture.positionModel });
+    const positionResult = model._buildWaypointForHoldingPatternAtPosition(positionalHoldingProps);
 
-    t.true(_isEqual(fixResult[0].position, positionResult[0].position));
+    t.true(_isEqual(fixResult[0].relativePosition, positionResult[0].relativePosition));
 });
 
 ava('._buildWaypointCollectionForProcedureRoute() returns a list of WaypointModels', (t) => {

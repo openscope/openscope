@@ -23,7 +23,7 @@ const MIN_VERTICAL_SEPARATION_FT = 1000;
 export default class AircraftConflict {
     constructor(first, second) {
         this.aircraft = [first, second];
-        this.distance = vlen(vsub(first.position, second.position));
+        this.distance = vlen(vsub(first.relativePosition, second.relativePosition));
         this.distance_delta = 0;
         this.altitude = abs(first.altitude - second.altitude);
 
@@ -95,7 +95,7 @@ export default class AircraftConflict {
      */
     _recalculateLateralAndVerticalDistances() {
         const distanceAtLastUpdate = this.distance;
-        this.distance = vlen(vsub(this.aircraft[0].position, this.aircraft[1].position));
+        this.distance = vlen(vsub(this.aircraft[0].relativePosition, this.aircraft[1].relativePosition));
         this.distance_delta = this.distance - distanceAtLastUpdate;
         this.altitude = abs(this.aircraft[0].altitude - this.aircraft[1].altitude);
     }
@@ -282,8 +282,8 @@ export default class AircraftConflict {
                     // Ray intersection from http://stackoverflow.com/a/2932601
                     const ad = vturn(a1.groundTrack);
                     const bd = vturn(a2.groundTrack);
-                    const dx = a2.position[0] - a1.position[0];
-                    const dy = a2.position[1] - a1.position[1];
+                    const dx = a2.relativePosition[0] - a1.relativePosition[0];
+                    const dy = a2.relativePosition[1] - a1.relativePosition[1];
                     const det = bd[0] * ad[1] - bd[1] * ad[0];
                     const u = (dy * bd[0] - dx * bd[1]) / det;  // a1's distance from point of convergence
                     const v = (dy * ad[0] - dx * ad[1]) / det;  // a2's distance from point of convergence

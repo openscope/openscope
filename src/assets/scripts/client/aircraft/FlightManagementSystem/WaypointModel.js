@@ -29,33 +29,14 @@ export default class WaypointModel {
         this.name = '';
 
         /**
-         * `PositionModel` of the waypoint.
+         * `StaticPositionModel` of the waypoint.
          *
-         * Should almost always be an instance of a `PositionModel`.
-         *
-         * The only case where it won't be is if an instance is created for the purposes of a
-         * holding pattern at a specific position, where no `Fix` currently exists.
-         *
-         * In that case, the data will be received in the shape of:
-         * ```
-         * {
-         *      position: {
-         *          position: [
-         *              aircaft.position.x,
-         *              aircaft.position.y
-         *          ]
-         *      },
-         *      ...waypointProps
-         * }
-         * ```
-         * See `LegModel._buildHoldAtPositionWaypointProps()` for additional inforamtion
-         *
-         * @property _position
-         * @type {PositionModel|object}
+         * @property _positionModel
+         * @type {StaticPositionModel}
          * @default null
          * @private
          */
-        this._position = null;
+        this._positionModel = null;
 
         /**
          * Speed restriction for the waypoint.
@@ -117,16 +98,6 @@ export default class WaypointModel {
     }
 
     /**
-     * Return the x/y position array from `#_position` property.
-     *
-     * @property position
-     * @return {array<number>}
-     */
-    get position() {
-        return this._position.position;
-    }
-
-    /**
      * Provides properties needed for an aircraft to execute a
      * holding pattern.
      *
@@ -139,11 +110,32 @@ export default class WaypointModel {
         return {
             dirTurns: this._turnDirection,
             fixName: this.name,
-            fixPos: this.position,
+            fixPos: this._positionModel,
             inboundHd: null,
             legLength: this._legLength,
             timer: this.timer
         };
+    }
+
+    /**
+     * Provide read-only public access to this._positionModel
+     *
+     * @for SpawnPatternModel
+     * @property positionModel
+     * @type {StaticPositionModel}
+     */
+    get positionModel() {
+        return this._positionModel;
+    }
+
+    /**
+     * Fascade to access relative position
+     *
+     * @for WaypointModel
+     * @return {array<number>} [kilometersNorth, kilometersEast]
+     */
+    get relativePosition() {
+        return this._positionModel.relativePosition;
     }
 
     /**
@@ -157,7 +149,7 @@ export default class WaypointModel {
      */
     init(waypointProps) {
         this.name = waypointProps.name.toLowerCase();
-        this._position = waypointProps.position;
+        this._positionModel = waypointProps.positionModel;
         this.speedRestriction = parseInt(waypointProps.speedRestriction, 10);
         this.altitudeRestriction = parseInt(waypointProps.altitudeRestriction, 10);
 
@@ -175,7 +167,7 @@ export default class WaypointModel {
      */
     destroy() {
         this.name = '';
-        this._position = null;
+        this._positionModel = null;
         this.speedRestriction = -1;
         this.altitudeRestriction = -1;
         this._turnDirection = '';

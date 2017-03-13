@@ -1,7 +1,7 @@
 import _cloneDeep from 'lodash/cloneDeep';
 import _get from 'lodash/get';
 import BaseModel from '../../base/BaseModel';
-import PositionModel from '../../base/PositionModel';
+import StaticPositionModel from '../../base/StaticPositionModel';
 import WaypointModel from '../../aircraft/FlightManagementSystem/WaypointModel';
 
 /**
@@ -18,7 +18,7 @@ export default class FixModel extends BaseModel {
      * @constructor
      * @param fixName {string}
      * @param fixCoordinate {array}
-     * @param referencePosition {PositionModel}
+     * @param referencePosition {StaticPositionModel}
      */
     constructor(fixName, fixCoordinate, referencePosition) {
         super();
@@ -35,11 +35,11 @@ export default class FixModel extends BaseModel {
         /**
          * Coordinates of the fix
          *
-         * @property _fixPosition
-         * @type {PositionModel}
+         * @property _positionModel
+         * @type {StaticPositionModel}
          * @default null
          */
-        this._fixPosition = null;
+        this._positionModel = null;
 
         this.init(fixName, fixCoordinate, referencePosition);
     }
@@ -47,11 +47,21 @@ export default class FixModel extends BaseModel {
     /**
      * Provides access to the position data of the instance
      *
-     * @property position
+     * @property positionModel
      * @return {array}
      */
-    get position() {
-        return this._fixPosition.position;
+    get positionModel() {
+        return this._positionModel;
+    }
+
+    /**
+     * Fascade to access relative position
+     *
+     * @for FixModel
+     * @return {array<number>} [kilometersNorth, kilometersEast]
+     */
+    get relativePosition() {
+        return this._positionModel.relativePosition;
     }
 
     /**
@@ -61,7 +71,7 @@ export default class FixModel extends BaseModel {
      * @method init
      * @param fixName {string}
      * @param fixCoordinate {array}
-     * @param referencePosition {PositionModel}
+     * @param referencePosition {StaticPositionModel}
      * @chainable
      */
     init(fixName, fixCoordinate, referencePosition) {
@@ -71,7 +81,7 @@ export default class FixModel extends BaseModel {
         }
 
         this.name = fixName.toUpperCase();
-        this._fixPosition = new PositionModel(fixCoordinate, referencePosition, referencePosition.magneticNorthInRadians);
+        this._positionModel = new StaticPositionModel(fixCoordinate, referencePosition, referencePosition.magneticNorth);
 
         return this;
     }
@@ -85,26 +95,26 @@ export default class FixModel extends BaseModel {
      */
     reset() {
         this.name = '';
-        this._fixPosition = null;
+        this._positionModel = null;
 
         return this;
     }
 
     /**
-     * Returns a clone of an instance's `_fixPosition` property.
+     * Returns a clone of an instance's `_positionModel` property.
      *
      * It is important to note that this is a _clone_ and not a copy. Any changes made to this instance will
-     * not be reflected in the clone. This creates an entirely new instance of the `_fixPosition` property,
+     * not be reflected in the clone. This creates an entirely new instance of the `_positionModel` property,
      * and after creation is completely independant of this instance.
      *
      * This is used with `StandardRouteWaypointModel` objects to obtain the position of a fix. This method
-     * provides easy access to the `PositionModel` that already exists here.
+     * provides easy access to the `StaticPositionModel` that already exists here.
      *
      * @for FixModel
-     * @return {PositionModel}  a clone of the current `_fixPosition` property
+     * @return {StaticPositionModel}  a clone of the current `_positionModel` property
      */
     clonePosition() {
-        return _cloneDeep(this._fixPosition);
+        return _cloneDeep(this._positionModel);
     }
 
     /**
@@ -129,7 +139,7 @@ export default class FixModel extends BaseModel {
     toWaypointModel(isHold = false, holdProps = {}) {
         let waypointProps = {
             name: this.name,
-            position: this.clonePosition(),
+            positionModel: this.clonePosition(),
             altitudeRestriction: -1,
             speedRestriction: -1
         };

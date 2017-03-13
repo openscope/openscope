@@ -35,3 +35,40 @@ export const REGEX = {
     UNICODE: /[^\u0000-\u00ff]/,
     WHITESPACE: /\s/g
 };
+
+/**
+ * A collection of constant values used in physics calculations
+ *
+ * @property PHYSICS_CONSTANTS
+ * @type {Object}
+ * @final
+ */
+export const PHYSICS_CONSTANTS = {
+    /**
+     * Average radius of simplified earth spheroid, in nautical miles
+     * Note: Calculated from conversion of 3440nm to km
+     *
+     * @property EARTH_RADIUS_NM
+     * @type {number}
+     * @final
+     */
+    EARTH_RADIUS_KM: 6370.88,
+
+    /**
+     * Average radius of simplified earth spheroid, in nautical miles
+     *
+     * @property EARTH_RADIUS_NM
+     * @type {number}
+     * @final
+     */
+    EARTH_RADIUS_NM: 3440,
+
+    /**
+     * Acceleration due to force of gravity, in m/s
+     *
+     * @property GRAVITATIONAL_MAGNITUDE
+     * @type {number}
+     * @final
+     */
+    GRAVITATIONAL_MAGNITUDE: 9.81
+};

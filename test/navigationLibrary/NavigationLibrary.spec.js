@@ -1,7 +1,7 @@
 import ava from 'ava';
 
 import NavigationLibrary from '../../src/assets/scripts/client/navigationLibrary/NavigationLibrary';
-import PositionModel from '../../src/assets/scripts/client/base/PositionModel';
+import DynamicPositionModel from '../../src/assets/scripts/client/base/DynamicPositionModel';
 import { airportPositionFixtureKLAS } from '../fixtures/airportFixtures';
 import { AIRPORT_JSON_KLAS_MOCK } from '../airport/_mocks/airportJsonMock';
 
@@ -30,10 +30,10 @@ ava('.findCollectionNameForProcedureId() returns starCollection when passed STAR
     t.true(result === 'starCollection');
 });
 
-ava('.generatePositionModelForLatLong() returns a PositionModel from a set of latitude and longitude coordinates', (t) => {
+ava('.generateStaticPositionModelForLatLong() returns a DynamicPositionModel from a set of latitude and longitude coordinates', (t) => {
     const latLongMock = [113.4636606631233, 6.12969620221002];
     const navigationLibrary = new NavigationLibrary(AIRPORT_JSON_KLAS_MOCK);
-    const result = navigationLibrary.generatePositionModelForLatLong(latLongMock, airportPositionFixtureKLAS, airportPositionFixtureKLAS.magnetic_north);
+    const result = navigationLibrary.generateStaticPositionModelForLatLong(latLongMock, airportPositionFixtureKLAS, airportPositionFixtureKLAS.magneticNorth);
 
-    t.true(result instanceof PositionModel);
+    t.true(result instanceof DynamicPositionModel);
 });

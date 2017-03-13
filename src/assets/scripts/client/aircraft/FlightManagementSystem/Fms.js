@@ -285,18 +285,18 @@ export default class Fms {
      * @method createLegWithHoldingPattern
      * @param inboundHeading {number}
      * @param turnDirection {string}
-     * @legLength {number}
-     * @holdRouteSegment {string}
-     * @holdFixLocation {array<number>}
+     * @param legLength {number}
+     * @param holdRouteSegment {string}
+     * @param holdPosition {StaticPositionModel}
      */
-    createLegWithHoldingPattern(inboundHeading, turnDirection, legLength, holdRouteSegment, holdFixLocation) {
+    createLegWithHoldingPattern(inboundHeading, turnDirection, legLength, holdRouteSegment, holdPosition) {
         // FIXME: replace with constant
         const isPositionHold = holdRouteSegment === 'GPS';
         const waypointProps = {
             turnDirection,
             legLength,
             name: holdRouteSegment,
-            position: holdFixLocation,
+            positionModel: holdPosition,
             altitudeRestriction: INVALID_VALUE,
             speedRestriction: INVALID_VALUE
         };
@@ -386,20 +386,25 @@ export default class Fms {
      * Currently only Used in `calculateTurnInitiaionDistance()` helper function
      *
      * @for Fms
-     * @method getNextWaypointPosition
-     * @return waypointPosition {array|null}
+     * @method getNextWaypointPositionModel
+     * @return waypointPosition {StaticPositionModel}
      */
-    getNextWaypointPosition() {
+    getNextWaypointPositionModel() {
         let waypointPosition;
 
         if (!this.hasNextWaypoint()) {
+            console.log('has no next waypoint');
             return null;
         }
 
-        waypointPosition = this.currentLeg.nextWaypoint.position;
+        waypointPosition = this.currentLeg.nextWaypoint.positionModel;
+        console.log(this.currentLeg.nextWaypoint);
 
         if (!this.currentLeg.hasNextWaypoint()) {
-            waypointPosition = this.legCollection[1].currentWaypoint.position;
+            // TODO: Is this safe? What if we're on the last waypoint of the last leg?
+            // Wouldn't that mean we could get an out-of-range error?
+            waypointPosition = this.legCollection[1].currentWaypoint.positionModel;
+            // console.log(`amendedPos: ${waypointPosition}`);
         }
 
         return waypointPosition;

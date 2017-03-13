@@ -144,8 +144,9 @@ export default class StandardRouteCollection extends BaseCollection {
     generateFmsWaypointModelsForRoute(icao, entry, exit) {
         const isPreSpawn = false;
         const standardRouteWaypointModels = this.findRouteWaypointsForRouteByEntryAndExit(icao, entry, exit, isPreSpawn);
+        const result = _map(standardRouteWaypointModels, (model) => model.toWaypointModel());
 
-        return _map(standardRouteWaypointModels, (model) => model.toWaypointModel());
+        return result;
     }
 
     /**

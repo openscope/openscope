@@ -63,15 +63,15 @@ ava.serial('.findFixByName() returns null if a FixModel does not exist within th
     t.true(result === null);
 });
 
-ava.serial('.getFixPositionCoordinates() returns the position of a FixModel', t => {
-    const result = FixCollection.getFixPositionCoordinates('BAKRR');
-    const expectedResult = [675.477318026648, -12.012221291734532];
+ava.serial('.getFixRelativePosition() returns the position of a FixModel', t => {
+    const result = FixCollection.getFixRelativePosition('BAKRR');
+    const expectedResult = [432.14550155204154, 519.2919854158829];
 
     t.true(_isEqual(result, expectedResult));
 });
 
-ava.serial('.getFixPositionCoordinates() returns null if a FixModel does not exist within the collection', t => {
-    const result = FixCollection.getFixPositionCoordinates('');
+ava.serial('.getFixRelativePosition() returns null if a FixModel does not exist within the collection', t => {
+    const result = FixCollection.getFixRelativePosition('');
 
     t.true(result === null);
 });
