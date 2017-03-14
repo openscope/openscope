@@ -72,7 +72,7 @@ ava('.toWaypointModel() returns a new WaypointModel instance', (t) => {
     const result = model.toWaypointModel();
 
     t.true(result instanceof WaypointModel);
-    t.true(result.name === FIXNAME_MOCK.toLowerCase());
+    t.true(result._name === FIXNAME_MOCK.toLowerCase());
     t.true(_isArray(result.relativePosition));
     t.true(result.altitudeRestriction === -1);
     t.true(result.speedRestriction === -1);
@@ -83,7 +83,7 @@ ava('.toWaypointModel() returns a new WaypointModel instance with hold propertie
     const result = model.toWaypointModel(true);
 
     t.true(result instanceof WaypointModel);
-    t.true(result.name === FIXNAME_MOCK.toLowerCase());
+    t.true(result._name === FIXNAME_MOCK.toLowerCase());
     t.true(_isArray(result.relativePosition));
     t.true(result.altitudeRestriction === -1);
     t.true(result.speedRestriction === -1);
@@ -101,7 +101,7 @@ ava('.toWaypointModel() returns a new WaypointModel instance with specific hold 
     const result = model.toWaypointModel(true, holdPropsMock);
 
     t.true(result instanceof WaypointModel);
-    t.true(result.name === FIXNAME_MOCK.toLowerCase());
+    t.true(result._name === FIXNAME_MOCK.toLowerCase());
     t.true(_isArray(result.relativePosition));
     t.true(result.altitudeRestriction === -1);
     t.true(result.speedRestriction === -1);
