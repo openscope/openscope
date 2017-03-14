@@ -1,4 +1,21 @@
 import _get from 'lodash/get';
+
+/**
+ * Symbol used to denote an RNAV waypoint
+ *
+ * @property RNAV_WAYPOINT_SYMBOL
+ * @type {string}
+ * @final
+ */
+const RNAV_WAYPOINT_SYMBOL = '_';
+
+/**
+ * @property RNAV_WAYPOINT
+ * @type {string}
+ * @final
+ */
+const RNAV_WAYPOINT = 'RNAV';
+
 /**
  * A representation of navigation point within a flight plan.
  *
@@ -26,7 +43,7 @@ export default class WaypointModel {
          * @type {string}
          * @default ''
          */
-        this.name = '';
+        this._name = '';
 
         /**
          * `StaticPositionModel` of the waypoint.
@@ -98,6 +115,29 @@ export default class WaypointModel {
     }
 
     /**
+     *
+     *
+     * @property name
+     * @type {string}
+     * @return {string}
+     */
+    get name() {
+        if (this._name.indexOf(RNAV_WAYPOINT_SYMBOL) !== -1) {
+            return RNAV_WAYPOINT;
+        }
+
+        return this._name;
+    }
+
+    /**
+     * @property name
+     * @type {string}
+     */
+    set name(nameUpdate) {
+        this._name = name;
+    }
+
+    /**
      * Provides properties needed for an aircraft to execute a
      * holding pattern.
      *
@@ -109,7 +149,7 @@ export default class WaypointModel {
     get hold() {
         return {
             dirTurns: this._turnDirection,
-            fixName: this.name,
+            fixName: this._name,
             fixPos: this._positionModel,
             inboundHd: null,
             legLength: this._legLength,
@@ -148,7 +188,7 @@ export default class WaypointModel {
      * @param waypointProps {object}
      */
     init(waypointProps) {
-        this.name = waypointProps.name.toLowerCase();
+        this._name = waypointProps.name.toLowerCase();
         this._positionModel = waypointProps.positionModel;
         this.speedRestriction = parseInt(waypointProps.speedRestriction, 10);
         this.altitudeRestriction = parseInt(waypointProps.altitudeRestriction, 10);
@@ -166,7 +206,7 @@ export default class WaypointModel {
      * @method destroy
      */
     destroy() {
-        this.name = '';
+        this._name = '';
         this._positionModel = null;
         this.speedRestriction = -1;
         this.altitudeRestriction = -1;

@@ -51,7 +51,7 @@ const UI_OPTION_SELECTOR_TEMPLATE = '<span class="option-selector option-type-se
 /**
  * @class UiController
  */
-export default class UiView {
+export default class UiController {
     /**
      * @constructor
      */

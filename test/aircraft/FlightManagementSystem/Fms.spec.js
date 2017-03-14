@@ -21,11 +21,15 @@ const departureProcedureRouteStringMock = 'KLAS.COWBY6.DRK';
 const runwayAssignmentMock = '19L';
 const isComplexRoute = true;
 
-function buildFmsMock(shouldUseComplexRoute = false) {
+function buildFmsMock(shouldUseComplexRoute = false, customRouteString = '') {
     let fms = new Fms(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, runwayAssignmentMock, AIRCRAFT_DEFINITION_MOCK, navigationLibraryFixture);
 
     if (shouldUseComplexRoute) {
         const aircraftPropsMock = Object.assign({}, ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, { route: complexRouteString });
+
+        fms = new Fms(aircraftPropsMock, runwayAssignmentMock, AIRCRAFT_DEFINITION_MOCK, navigationLibraryFixture);
+    } else if (customRouteString !== '') {
+        const aircraftPropsMock = Object.assign({}, ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK, { route: customRouteString });
 
         fms = new Fms(aircraftPropsMock, runwayAssignmentMock, AIRCRAFT_DEFINITION_MOCK, navigationLibraryFixture);
     }
@@ -52,6 +56,12 @@ ava('#currentWaypoint returns the first waypoint of the first leg in the #legCol
     const fms = buildFmsMock();
 
     t.true(_isEqual(fms.legCollection[0].waypointCollection[0], fms.currentWaypoint));
+});
+
+ava('#currentWaypoint.name returns RNAV when the waypoint begins with an underscore', (t) => {
+    const fms = buildFmsMock(false, '_NAPSE068..DAG');
+
+    t.true(fms.currentWaypoint.name === 'RNAV');
 });
 
 ava('#currentRoute returns a routeString for a procedure route', (t) => {

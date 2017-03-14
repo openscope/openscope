@@ -179,21 +179,6 @@ export default class Aircraft {
     }
 
     /**
-     *
-     *
-     * @method currentMode
-     * @return {object}
-     */
-    get currentMode() {
-        return {
-            altitude: this.mcp.altitudeMode,
-            autopilot: this.mcp.autopilotMode,
-            heading: this.mcp.headingMode,
-            speed: this.mcp.speedMode
-        };
-    }
-
-    /**
      * Fascade to access relative position
      *
      * @for AircraftInstanceModel
@@ -1004,8 +989,11 @@ export default class Aircraft {
         const runwayHeading = radians_normalize(runway.angle);
         const lateralDistanceFromCourse_km = getOffset(this, runway.relativePosition, runwayHeading)[0];
         const angle_diff = angle_offset(runwayHeading, this.heading);
+        // TODO: abstract to helper function
         const turning_time = Math.abs(radiansToDegrees(angle_diff)) / 3; // time to turn angle_diff degrees at 3 deg/s
+        // TODO: abstract to helper function
         const turning_radius = km(this.speed) / 3600 * turning_time; // dist covered in the turn, km
+        // TODO: abstract to helper function
         const dist_to_localizer = lateralDistanceFromCourse_km / sin(angle_diff); // dist from the localizer intercept point, km
         const turn_early_km = 1;    // start turn 1km early, to avoid overshoots from tailwind
         const should_attempt_intercept = (dist_to_localizer > 0 && dist_to_localizer <= turning_radius + turn_early_km);
@@ -1013,6 +1001,7 @@ export default class Aircraft {
 
         // TODO: the logic here should be reversed to return early
         if (should_attempt_intercept || in_the_window) {  // time to begin turn
+            // TODO: abstract to helper function
             const severity_of_correction = 50;  // controls steepness of heading adjustments during localizer tracking
             const tgtHdg = runwayHeading + (this.offset_angle * -severity_of_correction);
             const minHdg = runwayHeading - degreesToRadians(30);
@@ -1056,7 +1045,7 @@ export default class Aircraft {
                 break;
             default:
                 this.target.heading = this.mcp.heading;
-                this.target.turn = this.__fms__.currentWaypoint.turn;
+                // this.target.turn = this.__fms__.currentWaypoint.turn;
 
                 break;
         }
@@ -1098,16 +1087,16 @@ export default class Aircraft {
                 this.heading = runway.angle;
                 this.altitude = runway.elevation;
 
-                if (!this.projected && runway.isAircraftNextInQueue(this) && was_taxi) {
-                    window.uiController.ui_log(`${this.getCallsign()}, holding short of runway ${this.rwy_dep}`);
-
-                    speech_say([
-                        { type: 'callsign', content: this },
-                        { type: 'text', content: `holding short of runway ${radio_runway(this.rwy_dep)}` }
-                    ]);
-
-                    this.updateStrip();
-                }
+                // if (!this.projected && runway.isAircraftNextInQueue(this) && was_taxi) {
+                //     window.uiController.ui_log(`${this.getCallsign()}, holding short of runway ${this.rwy_dep}`);
+                //
+                //     speech_say([
+                //         { type: 'callsign', content: this },
+                //         { type: 'text', content: `holding short of runway ${radio_runway(this.rwy_dep)}` }
+                //     ]);
+                //
+                //     this.updateStrip();
+                // }
 
                 break;
             case FLIGHT_MODES.TAKEOFF:
@@ -1166,9 +1155,12 @@ export default class Aircraft {
     updateTargetPrepareAircraftForLanding() {
         const airport = window.airportController.airport_get();
         const runway  = airport.getRunway(this.rwy_arr);
+        // TODO: abstract to RunwayModel method
         const offset = getOffset(this, runway.relativePosition, runway.angle);
         const offset_angle = vradial(offset);
+        // TODO: abstract to RunwayModel method
         const angle = radians_normalize(runway.angle);
+        // TODO: abstract to RunwayModel method
         const glideslope_altitude = clamp(runway.elevation, runway.getGlideslopeAltitude(offset[1]), this.altitude);
         // const assignedHdg = this.__fms__.currentWaypoint.heading;
         const localizerRange = runway.ils.enabled
@@ -1210,13 +1202,14 @@ export default class Aircraft {
             this.cancelLanding();
 
             const isWarning = true;
-            //TODO: Should be moved to where the output is handled
+            // TODO: Should be moved to where the output is handled
+            window.gameController.events_recordNew(GAME_EVENTS.GO_AROUND);
             window.uiController.ui_log(`${this.getRadioCallsign()} aborting landing, lost ILS`, isWarning);
+
             speech_say([
                 { type: 'callsign', content: this },
                 { type: 'text', content: ' going around' }
             ]);
-            window.gameController.events_recordNew(GAME_EVENTS.GO_AROUND);
         }
     }
 
@@ -1227,6 +1220,7 @@ export default class Aircraft {
      */
     warnInterceptAngle() {
         const isWarning = true;
+
         window.uiController.ui_log(`${this.getCallsign()} approach course intercept angle was greater than 30 degrees`, isWarning);
         window.gameController.events_recordNew(GAME_EVENTS.ILLEGAL_APPROACH_CLEARANCE);
     }
@@ -1243,6 +1237,7 @@ export default class Aircraft {
         const targetHeadinh = angle + (this.offset_angle * -severity_of_correction);
         const minHeading = angle - degreesToRadians(30);
         const maxHeading = angle + degreesToRadians(30);
+
         this.target.heading = clamp(targetHeadinh, minHeading, maxHeading);
     }
 
@@ -1849,6 +1844,7 @@ export default class Aircraft {
 
         this.updateTarget();
         this.updatePhysics();
+        this.updateStrip();
     }
 
     /**
@@ -1920,6 +1916,7 @@ export default class Aircraft {
         }
     }
 
+    // TODO: move these view methods to `AircraftStripView` or a different file
     /**
      * @for AircraftInstanceModel
      * @method updateStrip
@@ -1929,65 +1926,73 @@ export default class Aircraft {
             return;
         }
 
-        // Populate strip fields with default values
         const heading = heading_to_string(this.mcp.heading);
         const altitude = this.mcp.altitude;
         const speed = this.mcp.speed;
 
-        let headingText;
-        let destinationText = !this.mcp.isEnabled
+        let headingDisplay;
+        let destinationDisplay = !this.mcp.isEnabled
             ? this.destination
             : this.fms.getProcedureAndExitName();
-        const altitudeText = this.taxi_next ? 'ready' : null;
-        const hasAltitude = this.mcp.altitude !== -1; // _has(wp, 'altitude');
+        const altitudeText = this.taxi_next
+        ? 'ready'
+        : null;
+        const hasAltitude = this.mcp.altitude !== -1;
 
         this.aircraftStripView.update(heading, altitude, this.destination, speed);
 
         switch (this.mode) {
             case FLIGHT_MODES.APRON:
-                this.aircraftStripView.updateViewForApron(destinationText, hasAltitude);
-                break;
-            case FLIGHT_MODES.WAITING:
-                this.aircraftStripView.updateViewForWaiting(destinationText, this.mcp.isEnabled, hasAltitude);
+                this.aircraftStripView.updateViewForApron(destinationDisplay, hasAltitude);
+
                 break;
             case FLIGHT_MODES.TAXI:
-                this.aircraftStripView.updateViewForTaxi(destinationText, hasAltitude, altitudeText);
+                this.aircraftStripView.updateViewForTaxi(destinationDisplay, hasAltitude, altitudeText);
+
+                break;
+            case FLIGHT_MODES.WAITING:
+                this.aircraftStripView.updateViewForWaiting(destinationDisplay, this.mcp.isEnabled, hasAltitude);
+
                 break;
             case FLIGHT_MODES.TAKEOFF:
-                // When taking off...
-                this.aircraftStripView.updateViewForTakeoff(destinationText);
+                this.aircraftStripView.updateViewForTakeoff(destinationDisplay);
 
                 break;
             case FLIGHT_MODES.CRUISE:
-                const wp = this.__fms__.currentWaypoint;
+                let cruiseNavMode = WAYPOINT_NAV_MODE.FIX;
+                let headingDisplay = this.fms.currentWaypoint.name.toUpperCase();
                 const isFollowingSid = this.fms.isFollowingSid();
                 const isFollowingStar = this.fms.isFollowingStar();
-                // const { fixRestrictions } = this.__fms__.currentWaypoint;
                 const fixRestrictions = {
                     altitude: this.fms.currentWaypoint.altitude !== -1,
                     speed: this.fms.currentWaypoint.speed !== -1
                 };
+                destinationDisplay = this.fms.getProcedureAndExitName();
 
-                // When in normal flight...
-                // if (wp.navmode === WAYPOINT_NAV_MODE.FIX) {
-                //     headingText = wp.fix[0] === '_'
-                //         ? '[RNAV]'
-                //         : wp.fix;
-                //     destinationText = this.__fms__.getFollowingSTARText();
-                // } else if (wp.navmode === WAYPOINT_NAV_MODE.HOLD) {
-                //     headingText = 'holding';
-                // } else if (wp.navmode === WAYPOINT_NAV_MODE.RWY) {
-                    headingText = 'intercept';
-                    destinationText = this.fms.getDestinationAndRunwayName();
-                // }
+                if (this.fms.currentLeg.isHold) {
+                    cruiseNavMode = WAYPOINT_NAV_MODE.HOLD;
+                    headingDisplay = 'holding';
+                } else if (this.mcp.headingMode === MCP_MODE.HEADING.HOLD) {
+                    headingDisplay = this.mcp.headingInDegrees;
+                } else if (this.mcp.headingMode === MCP_MODE.HEADING.VOR_LOC) {
+                    cruiseNavMode = WAYPOINT_NAV_MODE.RUNWAY;
+                    headingDisplay = 'intercept';
+                    destinationDisplay = this.fms.getDestinationAndRunwayName();
+                }
 
-                this.aircraftStripView.updateViewForCruise(wp.navmode, headingText, destinationText, isFollowingSid, isFollowingStar, fixRestrictions);
+                this.aircraftStripView.updateViewForCruise(cruiseNavMode,
+                    headingDisplay,
+                    destinationDisplay,
+                    isFollowingSid,
+                    isFollowingStar,
+                    fixRestrictions
+                );
 
                 break;
             case FLIGHT_MODES.LANDING:
-                destinationText = this.__fms__.getDesinationIcaoWithRunway();
+                destinationDisplay = this.fms.getDestinationAndRunwayName();
 
-                this.aircraftStripView.updateViewForLanding(destinationText);
+                this.aircraftStripView.updateViewForLanding(destinationDisplay);
 
                 break;
             default:

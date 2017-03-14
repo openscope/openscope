@@ -13,7 +13,6 @@ import {
     FLIGHT_CATEGORY
 } from '../constants/aircraftConstants';
 
-
 /**
  * Enum of commands and thier corresponding function.
  *
@@ -439,7 +438,32 @@ export default class AircraftCommander {
         runway.addAircraftToQueue(aircraft);
         aircraft.mode = FLIGHT_MODES.TAXI;
 
+        this._gameController.game_timeout(
+            this._changeFromTaxiToWaiting,
+            aircraft.taxi_time,
+            null,
+            [aircraft, this._uiController]
+        );
+
         return readback;
+    }
+
+    /**
+     * @for AircraftCommander
+     * @method _changeFromTaxiToWaiting
+     * @param args {array}
+     */
+    _changeFromTaxiToWaiting(args) {
+        const aircraft = args[0];
+        const uiController = args[1];
+
+        aircraft.mode = FLIGHT_MODES.WAITING;
+
+        uiController.ui_log(`${aircraft.getCallsign()}, holding short of runway ${aircraft.rwy_dep}`);
+        speech_say([
+            { type: 'callsign', content: aircraft },
+            { type: 'text', content: `holding short of runway ${radio_runway(aircraft.rwy_dep)}` }
+        ]);
     }
 
     /**

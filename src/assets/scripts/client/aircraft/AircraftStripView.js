@@ -287,28 +287,6 @@ export default class AircraftStripView {
 
     /**
      * @for AircraftStripView
-     * @method updateViewForWaiting
-     * @param destinationText {string}
-     * @param hasClearance {boolean}
-     * @param hasAltitude {boolean}
-     */
-    updateViewForWaiting(destinationText, hasClearance, hasAltitude) {
-        this.$heading.addClass(SELECTORS.CLASSNAMES.RUNWAY);
-        this.$heading.text(FLIGHT_MODES.WAITING);
-        this.$speed.addClass(SELECTORS.CLASSNAMES.RUNWAY);
-
-        if (hasClearance) {
-            this.$destination.text(destinationText.toUpperCase());
-            this.$destination.addClass(SELECTORS.CLASSNAMES.RUNWAY);
-        }
-
-        if (hasAltitude) {
-            this.$altitude.addClass(SELECTORS.CLASSNAMES.RUNWAY);
-        }
-    }
-
-    /**
-     * @for AircraftStripView
      * @method updateViewForTaxi
      * @param destinationText {string}
      * @param hasAltitude {boolean}
@@ -327,9 +305,31 @@ export default class AircraftStripView {
             this.$altitude.text(altitudeText);
         }
 
-        if (_isString(destinationText)) {
+        // if (_isString(destinationText)) {
+        //     this.$destination.text(destinationText.toUpperCase());
+        //     this.$destination.addClass(SELECTORS.CLASSNAMES.RUNWAY);
+        // }
+    }
+
+    /**
+     * @for AircraftStripView
+     * @method updateViewForWaiting
+     * @param destinationText {string}
+     * @param hasClearance {boolean}
+     * @param hasAltitude {boolean}
+     */
+    updateViewForWaiting(destinationText, hasClearance, hasAltitude) {
+        this.$heading.addClass(SELECTORS.CLASSNAMES.RUNWAY);
+        this.$heading.text(FLIGHT_MODES.WAITING);
+        this.$speed.addClass(SELECTORS.CLASSNAMES.RUNWAY);
+
+        if (hasClearance) {
             this.$destination.text(destinationText.toUpperCase());
             this.$destination.addClass(SELECTORS.CLASSNAMES.RUNWAY);
+        }
+
+        if (hasAltitude) {
+            this.$altitude.addClass(SELECTORS.CLASSNAMES.RUNWAY);
         }
     }
 
@@ -389,8 +389,8 @@ export default class AircraftStripView {
 
                 if (isFollowingSID) {
                     this.$heading.addClass(SELECTORS.CLASSNAMES.ALL_SET);
-                    this.$altitude.addClass(SELECTORS.CLASSNAMES.ALL_SET);
                     this.$destination.addClass(SELECTORS.CLASSNAMES.ALL_SET);
+                    this.$altitude.addClass(SELECTORS.CLASSNAMES.ALL_SET);
                     this.$speed.addClass(SELECTORS.CLASSNAMES.ALL_SET);
                 }
 
@@ -417,10 +417,11 @@ export default class AircraftStripView {
                 // attempting ILS intercept
                 this.$heading.addClass(SELECTORS.CLASSNAMES.LOOKING_GOOD);
                 this.$heading.text(headingText.toUpperCase());
-                this.$altitude.addClass(SELECTORS.CLASSNAMES.LOOKING_GOOD);
-                this.$speed.addClass(SELECTORS.CLASSNAMES.LOOKING_GOOD);
                 this.$destination.addClass(SELECTORS.CLASSNAMES.LOOKING_GOOD);
                 this.$destination.text(destinationText.toUpperCase());
+                this.$altitude.addClass(SELECTORS.CLASSNAMES.LOOKING_GOOD);
+                this.$speed.addClass(SELECTORS.CLASSNAMES.LOOKING_GOOD);
+
                 break;
             default:
                 break;
