@@ -1972,8 +1972,10 @@ export default class Aircraft {
                 if (this.fms.currentLeg.isHold) {
                     cruiseNavMode = WAYPOINT_NAV_MODE.HOLD;
                     headingDisplay = 'holding';
+                    destinationDisplay = this.fms.getDestinationName();
                 } else if (this.mcp.headingMode === MCP_MODE.HEADING.HOLD) {
                     headingDisplay = this.mcp.headingInDegrees;
+                    destinationDisplay = this.fms.getDestinationName();
                 } else if (this.mcp.headingMode === MCP_MODE.HEADING.VOR_LOC) {
                     cruiseNavMode = WAYPOINT_NAV_MODE.RUNWAY;
                     headingDisplay = 'intercept';
