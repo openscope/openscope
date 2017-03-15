@@ -60,7 +60,7 @@ const FLIGHT_RULES = {
  *
  * @class AircraftInstanceModel
  */
-export default class Aircraft {
+export default class AircraftInstanceModel {
     /**
      * @for AircraftInstanceModel
      * @constructor
