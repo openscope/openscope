@@ -1,21 +1,17 @@
 # Airport Format
 
-* [NOTICE](## NOTICE)
 * [Template](## Template)
-* [Comments](## Comments)
-    * [Property Descriptions](### Property Descriptions)
-        * [Latitude, Longitude, Elevation](#### Latitude, Longitude, Elevation)
-        * [ICAO and IATA identifiers](#### ICAO and IATA identifiers)
+* [Property Descriptions](## Property Descriptions)
 
-## NOTICE
-
-The airport JSON file must be in `assets/airports`; the filename
-should be `icao.json` where `icao` is the lowercase four-letter ICAO
-airport code, such as `ksfo` or `kmsp`.  If this is a new airport, there
-should also be an entry added to [`airportLoadList.js`](../src.assets/scripts/airport/airportLoadList.js) in alphabetical order.
+The airport JSON file must be in "[assets/airports](assets/airports)"; the filename
+should be `icao.json` where "icao" is the lowercase four-letter ICAO
+airport code, such as "ksfo" or "kmsp".  If this is a new airport, there
+should also be an entry added to [airportLoadList.js](../src.assets/scripts/airport/airportLoadList.js) in alphabetical order.
 See the comments for information on the correct structure to use.
 
-## Template
+## Example
+
+_Note: This is an **abbreviated** version of [klas.json](assets/airports/klas.json)._
 ```
 {
     "radio": {
@@ -182,31 +178,60 @@ See the comments for information on the correct structure to use.
 }
 ```
 
-## Comments
-
-### Property Descriptions
+## Property Descriptions
 
 * **radio** ― The radio callsigns for each controller. (`"app"` for "approach", `"dep"` for "departure", and `"twr"` for "tower")
-* **ICAO** ― ICAO identifiers are unique codes used to differentiate airports, fixes, aircraft, etc. (ex: "KSFO" for the San Francisco Airport) (*see [ICAO identifiers](#### ICAO and IATA identifiers) for more information*)
-* **IATA** ― IATA identifiers are unique codes used as a shorthand for ICAO identifiers for mostly airports. (ex: "SFO" for the San Francisco Airport) (*see [IATA identifiers](#### ICAO and IATA identifiers) for more information*)
+* **ICAO** ― ICAO identifiers are unique codes used to differentiate airports, fixes, aircraft, etc. (ex: "KSFO" for the San Francisco Airport) (*see [ICAO identifiers](### ICAO and IATA identifiers) for more information*)
+* **IATA** ― IATA identifiers are unique codes used as a shorthand for ICAO identifiers for mostly airports. (ex: "SFO" for the San Francisco Airport) (*see [IATA identifiers](### ICAO and IATA identifiers) for more information*)
 * **magnetic_north** ― The magnetic declination (variation), which is the angular difference between true north and magnetic north. (in degrees **EAST**!) (*see [this NOAA calculator](https://www.ngdc.noaa.gov/geomag-web/#declination) if you can't find this value*)
 * **ctr_radius** ― The radius around the airport that aircraft are simulated within. Outside of this radius, aircraft are removed, so ensure it is large enough for your airspace. (in kilometers)
 * **ctr_ceiling** ― The ceiling of the airspace. When an "airspace" property is present, its value will take priority over this one. (in feet)
 * **initial_alt** ― The altitude to which all departing aircraft are expected to stop their climb after takeoff, unless otherwise instructed. (in feet)
-* **position** ― The geographical position of the airport. (in latitude, longitude, and elevation: *see [lat, lon, elev](#### Latitude, Longitude, Elevation) for formatting*)
+* **position** ― The geographical position of the airport. (in latitude, longitude, and elevation: *see [lat, lon, elev](### Latitude, Longitude, Elevation) for formatting*)
 * **rr_radius_nm** ― The distance between each range ring within the airspace. (in nautical miles)
-* **rr_center** ― The position at which the range rings are centered. (in latitude, longitude: *see [lat, lon, elev](#### Latitude, Longitude, Elevation) for formatting*)
-* **has_terrain** ― Whether or not the airport has a corresponding `.geoJSON` file in [`assets/airports/terrain`](assets/airports/terrain).
+* **rr_center** ― The position at which the range rings are centered. (in latitude, longitude: *see [lat, lon, elev](### Latitude, Longitude, Elevation) for formatting*)
+* **has_terrain** ― Whether or not the airport has a corresponding `.geoJSON` file in "[assets/airports/terrain](assets/airports/terrain)".
 * **wind** ― The true heading and speed that the wind is coming from. (in degrees and knots, respectively)
-* **airspace** ― The airspace of the airport. (Multiple airspace areas may be defined, and will all be included in the "airspace". This allows for advanced airspace stratification.)
-* **fixes** ― All fixes, navaids, waypoints, intersections, and airport locations. (in latitude, longitude: *see [lat, lon, elev](#### Latitude, Longitude, Elevation) for formatting*)
-* **runways** ― The runways usable by aircraft.
-* **sids** ― "Standard Instument Departure" procedures.
-* **stars** ― "Standard Terminal Arrival Route" procedures.
-* **spawnPatterns** ― Contains the parameters used to determine how and where aircraft are spawned into the simulation. (*see [spawnPatternReadme.md](documentation/spawnPatternReadme.md) for formatting*)
-* **maps** ― Markings on the scope that depict various characteristics of the airspace. When available, this will be an actual Radar Video Map used by the real-world facility.
 
-#### Latitude, Longitude, Elevation
+#### airspace
+The airspace of the airport. (Multiple airspace areas may be defined, and will all be included in the "airspace". This allows for advanced airspace stratification.)
+ ```
+ "airspace": [
+     {
+         "floor": 0,
+         "ceiling": 190,
+         "airspace_class": "B",
+         "poly": [
+             ["N35d57m50.000", "W115d51m15.000"],
+             ["N35d34m30.000", "W115d29m00.000"]
+         ]
+     }
+ ],
+```
+* **floor** ― The altitude at which the airspace begins.
+* **ceiling** ― The altitude at which the airspace ends.
+* **airspace_class** ― The FAA class of the airspace. *(see [this FAA document](https://www.faasafety.gov/gslac/ALC/course_content.aspx?cID=42&sID=505&preview=true) for more details)*
+* **poly** ― The coordinates of the airspace. (in latitude, longitude: *see [lat, lon, elev](### Latitude, Longitude, Elevation) for formatting*)
+
+#### fixes
+All fixes, navaids, waypoints, intersections, and airport locations. (in latitude, longitude: *see [lat, lon, elev](#### Latitude, Longitude, Elevation) for formatting*)
+
+#### runways
+The runways usable by aircraft.
+
+#### sids
+"Standard Instument Departure" procedures.
+
+#### stars
+"Standard Terminal Arrival Route" procedures.
+
+#### spawnPatterns
+Contains the parameters used to determine how and where aircraft are spawned into the simulation. (*see [spawnPatternReadme.md](documentation/spawnPatternReadme.md) for formatting*)
+
+#### maps
+Markings on the scope that depict various characteristics of the airspace. When available, this will be an actual Radar Video Map used by the real-world facility.
+
+### Latitude, Longitude, Elevation
 
 For `lat, lon, elev` values, these formats are acceptable:
 * [40.94684722, -76.61727778, "866ft"]
@@ -216,7 +241,7 @@ For `lat, lon, elev` values, these formats are acceptable:
 
 *Note: For `lat, lon` values, just omit the elevation.*
 
-#### ICAO and IATA identifiers
+### ICAO and IATA identifiers
 
 ICAO (the International Civil Aviation Organization) is an international aviation authority that sets safety and consistency standards that make worldwide travel more standardized. ICAO maintains many lists of things they assign their own identifiers (such as aircraft type designators, airport identifiers, etc). Wherever we have those identifiers stored, they will have the label "icao".
 
