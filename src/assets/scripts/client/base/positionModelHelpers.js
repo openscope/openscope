@@ -12,20 +12,20 @@ export const hasCardinalDirectionInCoordinate = (coordinate) => REGEX.COMPASS_DI
 // TODO: Are these two functions really needed to be separate?
 /**
  * @function calculateDistanceToPointForX
- * @param referencePostion {StaticPositionModel}
+ * @param referencePosition {StaticPositionModel}
  * @param latitude {number}
  * @param longitude {number}
  * @return x {number}
  */
-export const calculateDistanceToPointForX = (referencePostion, latitude, longitude) => {
+export const calculateDistanceToPointForX = (referencePosition, latitude, longitude) => {
     let x = distanceToPoint(
-        referencePostion.latitude,
-        referencePostion.longitude,
+        referencePosition.latitude,
+        referencePosition.longitude,
         latitude,
         longitude
     );
 
-    if (referencePostion.longitude > longitude) {
+    if (referencePosition.longitude > longitude) {
         x *= -1;
     }
 
@@ -37,21 +37,21 @@ export const calculateDistanceToPointForX = (referencePostion, latitude, longitu
  *
  *
  * @function calculateDistanceToPointForY
- * @param referencePostion {StaticPositionModel}
+ * @param referencePosition {StaticPositionModel}
  * @param latitude {number}
  * @param longitude {number}
  * @return y {number}
  */
-export const calculateDistanceToPointForY = (referencePostion, latitude, longitude) => {
+export const calculateDistanceToPointForY = (referencePosition, latitude, longitude) => {
     let y = distanceToPoint(
-        referencePostion.latitude,
-        referencePostion.longitude,
+        referencePosition.latitude,
+        referencePosition.longitude,
         latitude,
         longitude
     );
 
 
-    if (referencePostion.latitude > latitude) {
+    if (referencePosition.latitude > latitude) {
         y *= -1;
     }
 

@@ -311,34 +311,34 @@ export default class DynamicPositionModel {
 }
 
 /**
- * Calculate x/y position from latitude and longitude and a referencePostion
+ * Calculate x/y position from latitude and longitude and a referencePosition
  *
  * Provides a static method to calculate position without instantiating a `DynamicPositionModel` class.
  *
  * @function getPosition
  * @param coordinates {array<string>}
- * @param referencePostion {DynamicPositionModel|StaticPositionModel|null}
+ * @param referencePosition {DynamicPositionModel|StaticPositionModel|null}
  * @param magneticNorth {number}
  * @return {array}
  * @static
  */
-DynamicPositionModel.calculateRelativePosition = (coordinates, referencePostion, magneticNorth) => {
-    if (!coordinates || !referencePostion || !_isNumber(magneticNorth)) {
+DynamicPositionModel.calculateRelativePosition = (coordinates, referencePosition, magneticNorth) => {
+    if (!coordinates || !referencePosition || !_isNumber(magneticNorth)) {
         throw new TypeError('Invalid parameter. DynamicPositionModel.calculateRelativePosition() requires ' +
-        'coordinates, referencePostion and magneticNorth as parameters');
+        'coordinates, referencePosition and magneticNorth as parameters');
     }
 
     const latitude = parseCoordinate(coordinates[GPS_COORDINATE_INDEX.LATITUDE]);
     const longitude = parseCoordinate(coordinates[GPS_COORDINATE_INDEX.LONGITUDE]);
     const canvasPositionX = calculateDistanceToPointForX(
-        referencePostion,
-        referencePostion.latitude,
+        referencePosition,
+        referencePosition.latitude,
         longitude
     );
     const canvasPositionY = calculateDistanceToPointForY(
-        referencePostion,
+        referencePosition,
         latitude,
-        referencePostion.longitude
+        referencePosition.longitude
     );
     const { x, y } = adjustForMagneticNorth(canvasPositionX, canvasPositionY, magneticNorth);
 

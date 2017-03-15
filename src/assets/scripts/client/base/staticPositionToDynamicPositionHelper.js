@@ -9,7 +9,7 @@ import DynamicPositionModel from './DynamicPositionModel';
  */
 export const convertStaticPositionToDynamic = (staticPositionModel) => {
     const dynamicPositionModel = new DynamicPositionModel(staticPositionModel.gps,
-        staticPositionModel.referencePostion, staticPositionModel.magneticNorth
+        staticPositionModel.referencePosition, staticPositionModel.magneticNorth
     );
 
     return dynamicPositionModel;
