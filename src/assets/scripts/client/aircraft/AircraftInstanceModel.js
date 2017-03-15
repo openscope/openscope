@@ -20,6 +20,7 @@ import { distance2d } from '../math/distance';
 import { getOffset, calculateTurnInitiaionDistance } from '../math/flightMath';
 import { MCP_MODE, MCP_MODE_NAME } from './ModeControl/modeControlConstants';
 import {
+    vectorize_2d,
     vlen,
     vradial,
     vsub,
@@ -1646,43 +1647,54 @@ export default class AircraftInstanceModel {
             return this.updateSimpleGroundSpeedPhysics();
         }
 
-        // TODO: this should be abstracted to a helper function
-        // Calculate the true air speed as indicated airspeed * 1.6% per 1000'
-        const scaleSpeed = this.speed * 0.000514444 * window.gameController.game_delta(); // knots to m/s
-        const trueAirSpeed = scaleSpeed * (1 + this.altitude * 0.000016);
+        // TODO: Much of this should be abstracted to helper functions
 
-        // Calculate movement including wind assuming wind speed
-        // increases 2% per 1000'
+        // Calculate true air speed vector
+        const trueAirspeedIncreaseFactorPerFoot = 0.000016; // 0.16% per thousand feet
+        const indicatedAirspeed = this.speed;
+        const trueAirspeed = indicatedAirspeed * (1 + (this.altitude * trueAirspeedIncreaseFactorPerFoot));
+        const flightThroughAirVector = vscale(vectorize_2d(this.heading), trueAirspeed);
+
+        // Calculate wind vector
+        const windIncreaseFactorPerFoot = 0.00002;  // 2.00% per thousand feet
         const wind = window.airportController.airport_get().wind;
-        const angle = this.heading;
-        let vector;
+        const windTravelDirection = wind.angle + Math.PI;
+        const windTravelSpeedAtSurface = wind.speed;
+        const windTravelSpeed = windTravelSpeedAtSurface * (1 + (this.altitude * windIncreaseFactorPerFoot));
+        const windVector = vscale(vectorize_2d(windTravelDirection), windTravelSpeed);
 
-        if (this.isOnGround()) {
-            vector = vscale([sin(angle), cos(angle)], trueAirSpeed);
-        } else {
-            let crab_angle = 0;
 
-            // Compensate for crosswind while tracking a fix or on ILS
-            if (this.__fms__.currentWaypoint.navmode === WAYPOINT_NAV_MODE.FIX || this.mode === FLIGHT_MODES.LANDING) {
-                // TODO: this should be abstracted to a helper function
-                const offset = angle_offset(this.heading, wind.angle + Math.PI);
-                crab_angle = Math.asin((wind.speed * sin(offset)) / this.speed);
-            }
+        // Calculate ground speed and direction
+        const flightPathVector = vadd(flightThroughAirVector, windVector);
+        const groundTrack = vradial(flightPathVector);
+        const groundSpeed = vlen(flightPathVector);
 
-            // TODO: this should be abstracted to a helper function
-            vector = vadd(vscale(
-                vturn(wind.angle + Math.PI),
-                wind.speed * 0.000514444 * window.gameController.game_delta()),
-                vscale(vturn(angle + crab_angle), trueAirSpeed)
-            );
-        }
+        // Calculate new position
+        const hoursElapsed = window.gameController.game_delta() * TIME.ONE_SECOND_IN_HOURS;
+        const distanceTraveled_nm = groundSpeed * hoursElapsed;
 
-        this.ds = vlen(vector);
-        // TODO: this should be abstracted to a helper function
-        this.groundSpeed = this.ds / 0.000514444 / window.gameController.game_delta();
-        this.groundTrack = vradial(vector);
-        // FIXME: This should use new calculations using actual PositionModel
-        // this.positionModel = vadd(this.positionModel, vector);
+        this.positionModel.setCoordinatesByBearingAndDistance(groundTrack, distanceTraveled_nm);
+
+        // FIXME: Fix this to prevent drift (being blown off course)
+        // if (this.isOnGround()) {
+        //     vector = vscale([sin(angle), cos(angle)], trueAirSpeed);
+        // } else {
+        //     let crab_angle = 0;
+        //
+        //     // Compensate for crosswind while tracking a fix or on ILS
+        //     if (this.__fms__.currentWaypoint.navmode === WAYPOINT_NAV_MODE.FIX || this.mode === FLIGHT_MODES.LANDING) {
+        //         // TODO: this should be abstracted to a helper function
+        //         const offset = angle_offset(this.heading, wind.angle + Math.PI);
+        //         crab_angle = Math.asin((wind.speed * sin(offset)) / indicatedAirspeed);
+        //     }
+        //
+        //     // TODO: this should be abstracted to a helper function
+        //     vector = vadd(vscale(
+        //         vturn(wind.angle + Math.PI),
+        //         wind.speed * 0.000514444 * window.gameController.game_delta()),
+        //         vscale(vturn(angle + crab_angle), trueAirSpeed)
+        //     );
+        // }
     }
 
     /**

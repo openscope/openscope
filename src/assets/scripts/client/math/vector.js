@@ -80,7 +80,7 @@ export const vnorm = (v, length) => {
  * Create a 2D vector
  * Pass a heading (rad) and this will return the corresponding unit vector
  */
-const vectorize_2d = (direction) => {
+export const vectorize_2d = (direction) => {
     return [
         sin(direction),
         cos(direction)
