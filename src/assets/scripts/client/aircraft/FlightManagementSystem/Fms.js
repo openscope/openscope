@@ -347,9 +347,7 @@ export default class Fms {
      * @method setDepartureRunway
      * @param runwayName {string}
      */
-    setDepartureRunway(runwayName) {
-
-    }
+    setDepartureRunway = (runwayName) => this._updateRunwayAssignment(runwayName)
 
     /**
      *
@@ -357,9 +355,7 @@ export default class Fms {
      * @method setArrivalRunway
      * @param runwayName {string}
      */
-    setArrivalRunway(runwayName) {
-
-    }
+    setArrivalRunway = (runwayName) => this._updateRunwayAssignment(runwayName);
 
     /**
      * Add a new `LegModel` to the left side of the `#legCollection`
@@ -1163,5 +1159,21 @@ export default class Fms {
 
             this.prependLeg(legModel);
         }
+    }
+
+    /**
+     * Changes the current runway assignment
+     *
+     * Currently used for both departures and arrivals, this may
+     * need to be extended in the future to support dedicated
+     * properties for each departure and arrival runway assignments.
+     *
+     * @for Fms
+     * @method _updateRunwayAssignment
+     * @param runwayName
+     * @private
+     */
+    _updateRunwayAssignment(runwayName) {
+        this._runwayName = runwayName;
     }
 }

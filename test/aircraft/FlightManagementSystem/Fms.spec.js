@@ -97,9 +97,26 @@ ava('.init() calls ._buildLegCollection()', (t) => {
     t.true(_buildLegCollectionSpy.calledWithExactly(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK.route));
 });
 
-ava.todo('.setDepartureRunway() sets a runway name to #_runwayName');
+ava('.setDepartureRunway() sets a runway name to #_runwayName', (t) => {
+    const nextRunwayMock = '19R';
+    const fms = buildFmsMockForDeparture();
+
+    fms.setDepartureRunway(nextRunwayMock);
+
+    t.true(fms._runwayName === nextRunwayMock);
+});
+
 ava.todo('.setDepartureRunway() validates route with changed runway');
-ava.todo('.setArrivalRunway() sets a runway name to #_runwayName');
+
+ava('.setArrivalRunway() sets a runway name to #_runwayName', (t) => {
+    const nextRunwayMock = '19R';
+    const fms = buildFmsMock();
+
+    fms.setArrivalRunway(nextRunwayMock);
+
+    t.true(fms._runwayName === nextRunwayMock);
+});
+
 ava.todo('.setArrivalRunway() validates route with changed runway');
 
 // TODO: these next two skipped tests need a LegModelFixturewhich does not yet exist

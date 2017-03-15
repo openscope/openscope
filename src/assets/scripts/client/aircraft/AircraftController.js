@@ -66,7 +66,6 @@ export default class AircraftController {
          */
         this._navigationLibrary = navigationLibrary;
 
-        // TODO: rename to `AircraftTypeDefinitionCollection`
         /**
          * Reference to an `AircraftTypeDefinitionCollection` instance
          *
