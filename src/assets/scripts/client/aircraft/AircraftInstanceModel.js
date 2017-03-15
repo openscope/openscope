@@ -7,6 +7,7 @@ import _has from 'lodash/has';
 import _isEqual from 'lodash/isEqual';
 import _isNil from 'lodash/isNil';
 import _isString from 'lodash/isString';
+import { TIME } from '../constants/globalConstants';
 import AircraftFlightManagementSystem from './FlightManagementSystem/AircraftFlightManagementSystem';
 import AircraftStripView from './AircraftStripView';
 import Fms from './FlightManagementSystem/Fms';
@@ -1470,10 +1471,7 @@ export default class AircraftInstanceModel {
             this.relativePositionHistory.push([this.positionModel.relativePosition[0], this.positionModel.relativePosition[1], window.gameController.game_time() / window.gameController.game_speedup()]);
         }
 
-        // FIXME: is this ratio correct? is it 0.000514444 or 0.514444?
-        const scaleSpeed = this.speed * 0.000514444 * window.gameController.game_delta(); // knots to m/s
-
-        this.updateGroundSpeedPhysics(scaleSpeed);
+        this.updateGroundSpeedPhysics();
 
         // if (window.gameController.game.option.get('simplifySpeeds') === 'no') {
         //     this.updateGroundSpeedPhysics(scaleSpeed);
@@ -1643,13 +1641,14 @@ export default class AircraftInstanceModel {
      * @method updateVectorPhysics
      * @param scaleSpeed
      */
-    updateGroundSpeedPhysics(scaleSpeed) {
+    updateGroundSpeedPhysics() {
         if (window.gameController.game.option.get('simplifySpeeds') === 'yes') {
-            return this.updateSimpleGroundSpeedPhysics(scaleSpeed);
+            return this.updateSimpleGroundSpeedPhysics();
         }
 
         // TODO: this should be abstracted to a helper function
         // Calculate the true air speed as indicated airspeed * 1.6% per 1000'
+        const scaleSpeed = this.speed * 0.000514444 * window.gameController.game_delta(); // knots to m/s
         const trueAirSpeed = scaleSpeed * (1 + this.altitude * 0.000016);
 
         // Calculate movement including wind assuming wind speed
@@ -1693,14 +1692,15 @@ export default class AircraftInstanceModel {
      * @method updateSimpleGroundSpeedPhysics
      * @param scaleSpeed
      */
-    updateSimpleGroundSpeedPhysics(scaleSpeed) {
-        const angle = this.heading;
+    updateSimpleGroundSpeedPhysics() {
+        const hoursElapsed = window.gameController.game_delta() * TIME.ONE_SECOND_IN_HOURS;
+        const distanceTraveled_nm = this.speed * hoursElapsed;
 
-        this.ds = scaleSpeed;
+        this.positionModel.setCoordinatesByBearingAndDistance(this.heading, distanceTraveled_nm);
+
+        // TODO: Is this nonsense actually needed, or can we remove it?
         this.groundSpeed = this.speed;
         this.groundTrack = this.heading;
-        // FIXME: This should be turned back on, with new calculations with actual PositionModel
-        // this.positionModel = vadd(this.positionModel, vscale([sin(angle), cos(angle)], scaleSpeed));
     }
 
     // TODO: this method needs a lot of love. its much too long with waaay too many nested if/else ifs.
