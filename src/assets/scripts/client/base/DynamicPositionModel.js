@@ -245,7 +245,23 @@ export default class DynamicPositionModel {
     }
 
     /**
-     * Returns a new `DynamicPositionModel` a given bearing/distance from `this`
+     * Returns a new `DynamicPositionModel` a given magnetic bearing/distance from `this`
+     *
+     * @for DynamicPositionModel
+     * @method generateDynamicPositionFromBearingAndDistance
+     * @param bearing {number} magnetic bearing, in radians
+     * @param distance {number} distance, in nautical miles
+     * @return {DynamicPositionModel}
+     */
+    generateDynamicPositionFromBearingAndDistance(bearing, distance) {
+        const [lat, lon] = this.generateCoordinatesFromBearingAndDistance(bearing, distance);
+        const dynamicPositionModel = new DynamicPositionModel([lat, lon], this._referencePosition, this._magneticNorth);
+
+        return dynamicPositionModel;
+    }
+
+    /**
+     * Returns the GPS coordinate pair a given magnetic bearing/distance from `this`
      *
      * Source: Chris Veness, Movable Type Scripts
      * Subject: "Destination point given distance and bearing from start point"
@@ -255,9 +271,9 @@ export default class DynamicPositionModel {
      * @method generateDynamicPositionFromBearingAndDistance
      * @param bearing {number} magnetic bearing, in radians
      * @param distance {number} distance, in nautical miles
-     * @return {DynamicPositionModel}
+     * @return {array} [latitude, longitude]
      */
-    generateDynamicPositionFromBearingAndDistance(bearing, distance) {
+    generateCoordinatesFromBearingAndDistance(bearing, distance) {
         const R = PHYSICS_CONSTANTS.EARTH_RADIUS_NM;
         const θ = bearing + this._magneticNorth;    // true bearing, in radians
         const d = distance;
@@ -268,9 +284,8 @@ export default class DynamicPositionModel {
         const λ2 = λ1 + Math.atan2(Math.sin(θ) * Math.sin(δ) * Math.cos(φ1), Math.cos(δ) - Math.sin(φ1) * Math.sin(φ2));
         const lat = radiansToDegrees(φ2);
         const lon = radiansToDegrees(λ2);
-        const dynamicPositionModel = new DynamicPositionModel([lat, lon], this._referencePosition, this._magneticNorth);
 
-        return dynamicPositionModel;
+        return [lat, lon];
     }
 
     /**
@@ -288,6 +303,20 @@ export default class DynamicPositionModel {
 
         this.latitude = gpsCoordinates[GPS_COORDINATE_INDEX.LATITUDE];
         this.longitude = gpsCoordinates[GPS_COORDINATE_INDEX.LONGITUDE];
+    }
+
+    /**
+     * Change the lat/lon coordinates of `this` by providing the distance to move along a given magnetic heading
+     *
+     * @for DynamicPositionModel
+     * @method setCoordinates
+     * @param bearing {number} magnetic bearing, in radians
+     * @param distance {number} distance, in nautical miles
+     */
+    setCoordinatesByBearingAndDistance(bearing, distance) {
+        const nextCoordinates = this.generateCoordinatesFromBearingAndDistance(bearing, distance);
+
+        this.setCoordinates(nextCoordinates);
     }
 
     /**
