@@ -55,6 +55,8 @@ export default class DynamicPositionModel {
         this._id = _uniqueId('position-model-');
 
         /**
+         * Latitudinal coordinate, in degrees
+         *
          * @property latitude
          * @type {number}
          * @default 0
@@ -62,6 +64,8 @@ export default class DynamicPositionModel {
         this.latitude = 0;
 
         /**
+         * Longitudinal coordinate, in degrees
+         *
          * @property longitude
          * @type {number}
          * @default 0
@@ -69,6 +73,8 @@ export default class DynamicPositionModel {
         this.longitude = 0;
 
         /**
+         * Altitude of this position, above MSL (mean sea level), in feet
+         *
          * @property elevation
          * @type {number}
          * @default 0
@@ -76,12 +82,16 @@ export default class DynamicPositionModel {
         this.elevation = 0;
 
         /**
+         * PositionModel this position is magnetically rotated in reference to
+         *
          * @property _referencePosition
          * @type {DynamicPositionModel|null}
          */
         this._referencePosition = reference;
 
         /**
+         * Magnetic declination, in radians east
+         *
          * @property _magneticNorth
          * @type {number}
          */
@@ -93,6 +103,7 @@ export default class DynamicPositionModel {
     /**
      * GPS coordinates in [latitude, longitude] order
      * For reverse order, see `DynamicPositionModel.gpsXY`
+     *
      * @property gps
      * @return {array}
      */
@@ -106,6 +117,7 @@ export default class DynamicPositionModel {
     /**
      * GPS coordinates in [x,y] order
      * For reverse order, see `DynamicPositionModel.gps`
+     *
      * @property gpsXY
      * @return {array}
      */
@@ -117,8 +129,6 @@ export default class DynamicPositionModel {
     }
 
     /**
-     * Magnetic declination, in radians east
-     *
      * @for DynamicPositionModel
      * @property magneticNorth
      * @return {number}

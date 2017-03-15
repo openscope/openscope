@@ -7,6 +7,7 @@ import _isObject from 'lodash/isObject';
 import _random from 'lodash/random';
 import _round from 'lodash/round';
 import BaseModel from '../base/BaseModel';
+import StaticPositionModel from '../base/StaticPositionModel';
 import RouteModel from '../navigationLibrary/Route/RouteModel';
 import { spawnPatternModelJsonValidator } from './spawnPatternModelJsonValidator';
 import { buildPreSpawnAircraft } from './buildPreSpawnAircraft';
@@ -452,7 +453,7 @@ export default class SpawnPatternModel extends BaseModel {
         this.routeString = spawnPatternJson.route;
         this.cycleStartTime = 0;
         this.period = TIME.ONE_HOUR_IN_SECONDS / 2;
-        this._positionModel = this._airportController.airport_get().positionModel;
+        this._positionModel = this._generateSelfReferencedAirportPositionModel();
         this.speed = this._extractSpeedFromJson(spawnPatternJson);
         this._minimumDelay = this._calculateMinimumDelayFromSpeed();
         this._maximumDelay = this._calculateMaximumDelayFromSpawnRate();
@@ -999,6 +1000,15 @@ export default class SpawnPatternModel extends BaseModel {
         );
 
         return waypointModelList;
+    }
+
+    _generateSelfReferencedAirportPositionModel() {
+        const airportPosition = this._airportController.airport_get().positionModel;
+        const selfReferencingPosition = new StaticPositionModel(airportPosition.gps,
+            airportPosition, airportPosition.magneticNorth
+        );
+
+        return selfReferencingPosition;
     }
 
     /**

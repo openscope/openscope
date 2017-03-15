@@ -47,6 +47,15 @@ export default class StaticPositionModel extends DynamicPositionModel {
     }
 
     /**
+     * @for StaticPositionModel
+     * @property relativePosition
+     * @return {array<number>} [kilometersNorth, kilometersEast]
+     */
+    get referencePosition() {
+        return this._referencePosition;
+    }
+
+    /**
      * Relative position, in km offset from the airport
      *
      * @for StaticPositionModel
@@ -86,7 +95,9 @@ export default class StaticPositionModel extends DynamicPositionModel {
      * @for StaticPositionModel
      * @method setCoordinates
      */
-    setCoordinates() {
+    setCoordinates(...args) {
+        console.warn(`Unexpected attempt to modify a StaticPositionModel, via .setCoordinates(${args});`);
+
         return; // do nothing, because `StaticPositionModel`s cannot be changed
     }
 
