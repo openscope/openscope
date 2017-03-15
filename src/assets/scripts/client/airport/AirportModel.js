@@ -255,8 +255,9 @@ export default class AirportModel {
         }
 
         _forEach(runways, (runway) => {
+            // TODO: This should not be happening here, but rather during creation of the runway's `StaticPositionModel`
             runway.relative_position = this._positionModel;
-            runway._magneticNorth = this._magneticNorth;
+            runway._magneticNorth = this.magneticNorth;
 
             // TODO: what do the 0 and 1 mean? magic numbers should be enumerated
 
@@ -313,7 +314,7 @@ export default class AirportModel {
             obj.height = parseElevation(area.height);
             // TODO: Remove _map, move relativePosition value to const, then return that const
             obj.coordinates = $.map(area.coordinates, (v) => {
-                return [(DynamicPositionModel.calculateRelativePosition(v, this._positionModel, this._magneticNorth))];
+                return [(DynamicPositionModel.calculateRelativePosition(v, this._positionModel, this.magneticNorth))];
             });
 
             // TODO: is this right? max and min are getting set to the same value?
@@ -519,7 +520,7 @@ export default class AirportModel {
                     return [
                         $.map(line_string, (pt) => {
                             pt.reverse();   // `StaticPositionModel` requires [lat,lon] order
-                            const pos = new StaticPositionModel(pt, apt.positionModel, apt._magneticNorth);
+                            const pos = new StaticPositionModel(pt, apt.positionModel, apt.magneticNorth);
 
                             return [pos.relativePosition];
                         })
