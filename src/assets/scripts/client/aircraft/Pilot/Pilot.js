@@ -540,17 +540,16 @@ export default class Pilot {
             this.flyPresentHeading();
         }
 
+        this._fms.setArrivalRunway(runway.name);
+
         const datum = runway.positionModel;
         const course = runway.angle;
         const descentAngle = runway.ils.gs_gradient;
-
-        // TODO: This method may not exist yet
-        this._fms.setArrivalRunway(runway.name);
-
-        const lateralGuidance = this.interceptCourse(datum, course)[0];
+        // TODO: split these two method calls and the corresponding ifs to a new method
+        const lateralGuidance = this.interceptCourse(datum, course);
         const verticalGuidance = this.interceptGlidepath(datum, course, descentAngle, interceptAltitude)[0];
 
-        if (!lateralGuidance) {
+        if (!lateralGuidance[0]) {
             return lateralGuidance;
         }
 
@@ -794,7 +793,7 @@ export default class Pilot {
             return [false, 'unable to taxi'];
         }
 
-        // this._fms.setDepartureRunway(taxiDestination);
+        this._fms.setDepartureRunway(taxiDestination);
 
         const readback = {};
         readback.log = `taxi to runway ${taxiDestination}`;

@@ -250,6 +250,66 @@ export default class Fms {
     }
 
     /**
+     * Return the name of the current procedure, if following a procedure
+     *
+     * @for fms
+     * @method getProcedureName
+     * @return {string}
+     */
+    getProcedureName() {
+        if (!this.isFollowingProcedure()) {
+            return null;
+        }
+
+        return this.currentLeg.procedureName;
+    }
+
+    /**
+     * Return the name and exit point of the current procedure, if following a procedure
+     *
+     * @for fms
+     * @method getProcedureAndExitName
+     * @return {string}
+     */
+    getProcedureAndExitName() {
+        if (!this.isFollowingProcedure()) {
+            return null;
+        }
+
+        return this.currentLeg.procedureAndExitName;
+    }
+
+    /**
+     * Return the name of the airport and the assigned runway, if following an arrival procedure
+     *
+     * @for Fms
+     * @method getDestinationAndRunwayName
+     * @return {string}
+     */
+    getDestinationAndRunwayName() {
+        if (!this.isFollowingStar()) {
+            return null;
+        }
+
+        return `${this.currentLeg.exitName} ${this._runwayName}`;
+    }
+
+    /**
+     * Return the name of the airport, if following an arrival procedure
+     *
+     * @for Fms
+     * @method getDestinationName
+     * @return {string}
+     */
+    getDestinationName() {
+        if (!this.isFollowingStar()) {
+            return null;
+        }
+
+        return this.currentLeg.exitName;
+    }
+
+    /**
      * Collects the `.getProcedureTopAltitude()` value from each `LegModel`
      * in the `#legCollection`, then finds and returns the highest value
      *
@@ -279,6 +339,26 @@ export default class Fms {
         );
 
         return Math.min(...minAltitudeFromLegs);
+    }
+
+    /**
+     *
+     * @for fms
+     * @method setDepartureRunway
+     * @param runwayName {string}
+     */
+    setDepartureRunway(runwayName) {
+
+    }
+
+    /**
+     *
+     * @for fms
+     * @method setArrivalRunway
+     * @param runwayName {string}
+     */
+    setArrivalRunway(runwayName) {
+
     }
 
     /**
@@ -676,66 +756,6 @@ export default class Fms {
         }
 
         return isValid;
-    }
-
-    /**
-     * Return the name of the current procedure, if following a procedure
-     *
-     * @for fms
-     * @method getProcedureName
-     * @return {string}
-     */
-    getProcedureName() {
-        if (!this.isFollowingProcedure()) {
-            return null;
-        }
-
-        return this.currentLeg.procedureName;
-    }
-
-    /**
-     * Return the name and exit point of the current procedure, if following a procedure
-     *
-     * @for fms
-     * @method getProcedureAndExitName
-     * @return {string}
-     */
-    getProcedureAndExitName() {
-        if (!this.isFollowingProcedure()) {
-            return null;
-        }
-
-        return this.currentLeg.procedureAndExitName;
-    }
-
-    /**
-     * Return the name of the airport and the assigned runway, if following an arrival procedure
-     *
-     * @for Fms
-     * @method getDestinationAndRunwayName
-     * @return {string}
-     */
-    getDestinationAndRunwayName() {
-        if (!this.isFollowingStar()) {
-            return null;
-        }
-
-        return `${this.currentLeg.exitName} ${this._runwayName}`;
-    }
-
-    /**
-     * Return the name of the airport, if following an arrival procedure
-     *
-     * @for Fms
-     * @method getDestinationName
-     * @return {string}
-     */
-    getDestinationName() {
-        if (!this.isFollowingStar()) {
-            return null;
-        }
-
-        return this.currentLeg.exitName;
     }
 
     /**
