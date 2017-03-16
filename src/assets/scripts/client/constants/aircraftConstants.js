@@ -71,3 +71,39 @@ export const PROCEDURE_TYPE = {
     SID: 'SID',
     STAR: 'STAR'
 };
+
+/**
+ * Enumerations for various performance constants
+ *
+ * @property PERFORMANCE
+ * @type {Object}
+ * @final
+ */
+export const PERFORMANCE = {
+    /**
+     * Rate of turn, in radians per second
+     *
+     * @property TURN_RATE
+     * @type {number}
+     * @final
+     */
+    TURN_RATE: 0.0523598776,    // 3 degrees
+
+    /**
+     * Proportion of the maximum capable descent rate that aircraft will use by default
+     *
+     * @property TYPICAL_DESCENT_FACTOR
+     * @type {number}
+     * @final
+     */
+    TYPICAL_DESCENT_FACTOR: 0.7,
+
+    /**
+     * Proportion of the maximum capable climb rate that aircraft will use by default
+     *
+     * @property TYPICAL_CLIMB_FACTOR
+     * @type {number}
+     * @final
+     */
+    TYPICAL_CLIMB_FACTOR: 0.7
+};

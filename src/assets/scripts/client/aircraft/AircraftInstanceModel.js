@@ -7,12 +7,12 @@ import _has from 'lodash/has';
 import _isEqual from 'lodash/isEqual';
 import _isNil from 'lodash/isNil';
 import _isString from 'lodash/isString';
-import { TIME } from '../constants/globalConstants';
 import AircraftFlightManagementSystem from './FlightManagementSystem/AircraftFlightManagementSystem';
 import AircraftStripView from './AircraftStripView';
 import Fms from './FlightManagementSystem/Fms';
 import ModeController from './ModeControl/ModeController';
 import Pilot from './Pilot/Pilot';
+import { TIME } from '../constants/globalConstants';
 import { speech_say } from '../speech';
 import { tau, radians_normalize, angle_offset } from '../math/circle';
 import { round, abs, sin, cos, extrapolate_range_clamp, clamp } from '../math/core';
@@ -41,8 +41,9 @@ import { km, radiansToDegrees, degreesToRadians, heading_to_string } from '../ut
 import {
     FLIGHT_MODES,
     FLIGHT_CATEGORY,
-    WAYPOINT_NAV_MODE,
-    FP_LEG_TYPE
+    FP_LEG_TYPE,
+    PERFORMANCE,
+    WAYPOINT_NAV_MODE
 } from '../constants/aircraftConstants';
 import { SELECTORS } from '../constants/selectors';
 import { GAME_EVENTS } from '../game/GameController';
@@ -1502,25 +1503,20 @@ export default class AircraftInstanceModel {
      * @method updateAircraftTurnPhysics
      */
     updateAircraftTurnPhysics() {
-        // Exits eary if the airplane is on the ground or at its destenation
-        if (this.isOnGround() && this.heading === this.target.heading) {
+        if (this.isOnGround() || this.heading === this.target.heading) {
             return;
         }
-        // TURNING
-        // this.target.heading = radians_normalize(this.target.heading);
-        // Perform standard turns 3 deg/s or 25 deg bank, whichever
-        // requires less bank angle.
-        // Formula based on http://aviation.stackexchange.com/a/8013
-        const turn_rate = clamp(0, 1 / (this.speed / 8.883031), 0.0523598776);
-        const turn_amount = turn_rate * window.gameController.game_delta();
-        const offset = angle_offset(this.target.heading, this.heading);
 
-        if (abs(offset) < turn_amount) {
+        const secondsElapsed = window.gameController.game_delta();
+        const angle_diff = angle_offset(this.target.heading, this.heading);
+        const angle_change = PERFORMANCE.TURN_RATE * secondsElapsed;
+
+        if (abs(angle_diff) <= angle_change) {
             this.heading = this.target.heading;
-        } else if ((offset < 0 && this.target.turn === null) || this.target.turn === 'left') {
-            this.heading -= turn_amount;
-        } else if ((offset > 0 && this.target.turn === null) || this.target.turn === 'right') {
-            this.heading += turn_amount;
+        } else if (angle_diff < 0 && this.target.turn !== 'right') {
+            this.heading -= angle_change;
+        } else if (angle_diff > 0 && this.target.turn !== 'left') {
+            this.heading += angle_change;
         }
     }
 
@@ -1547,28 +1543,23 @@ export default class AircraftInstanceModel {
     * @method decreaseAircraftAltitude
     */
     decreaseAircraftAltitude() {
-        let distance = -this.model.rate.descent / 60 * window.gameController.game_delta();
-        const expedite_factor = 1.5;
+        const altitude_diff = this.altitude - this.target.altitude;
+        let descentRate = this.model.rate.descent * PERFORMANCE.TYPICAL_DESCENT_FACTOR;
 
-        if (this.mode === FLIGHT_MODES.LANDING) {
-            distance *= 3;
+        if (this.target.expedite) {
+            descentRate = this.model.rate.descent;
+        }
+
+        const feetPerSecond = descentRate * TIME.ONE_SECOND_IN_MINUTES;
+        const feetDescended = feetPerSecond * window.gameController.game_delta();
+
+        if (abs(altitude_diff) < feetDescended) {
+            this.altitude = this.target.altitude;
+        } else {
+            this.altitude -= feetDescended;
         }
 
         this.trend -= 1;
-        // TODO: This might be able to become its own function since it is repeated again in the increaseAircraftAltitude()
-        if (distance) {
-            if (this.target.expedite) {
-                distance *= expedite_factor;
-            }
-
-            const offset = this.altitude - this.target.altitude;
-
-            if (abs(offset) < abs(distance)) {
-                this.altitude = this.target.altitude;
-            } else {
-                this.altitude += distance;
-            }
-        }
     }
 
     /**
@@ -1578,29 +1569,24 @@ export default class AircraftInstanceModel {
     * @method increaseAircraftAltitude
     */
     increaseAircraftAltitude() {
-        const climbrate = this.getClimbRate();
-        const expedite_factor = 1.5;
-        let distance = climbrate / 60 * window.gameController.game_delta();
+        const altitude_diff = this.altitude - this.target.altitude;
+        let climbRate = this.getClimbRate() * PERFORMANCE.TYPICAL_CLIMB_FACTOR;
 
-        if (this.mode === FLIGHT_MODES.LANDING) {
-            distance *= 1.5;
+        if (this.target.expedite) {
+            climbRate = this.model.rate.climb;
+        }
+
+        const feetPerSecond = climbRate * TIME.ONE_SECOND_IN_MINUTES;
+        const feetClimbed = feetPerSecond * window.gameController.game_delta();
+
+
+        if (abs(altitude_diff) < abs(feetClimbed)) {
+            this.altitude = this.target.altitude;
+        } else {
+            this.altitude += feetClimbed;
         }
 
         this.trend = 1;
-        // TODO: This might be able to become its own function since it is repeated  in the decreaseAircraftAltitude() Also I think the  outer If() might not be needed
-        if (distance) {
-            if (this.target.expedite) {
-                distance *= expedite_factor;
-            }
-
-            const offset = this.altitude - this.target.altitude;
-
-            if (abs(offset) < abs(distance)) {
-                this.altitude = this.target.altitude;
-            } else {
-                this.altitude += distance;
-            }
-        }
     }
 
     /**
