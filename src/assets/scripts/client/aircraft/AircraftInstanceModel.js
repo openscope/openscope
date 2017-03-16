@@ -73,7 +73,7 @@ export default class AircraftInstanceModel {
         /* eslint-disable no-multi-spaces*/
         this._navigationLibrary = navigationLibrary;
         this.eid          = global.prop.aircraft.list.length;  // entity ID
-        this.positionModel= null;       // Aircraft Position
+        this.positionModel = null;       // Aircraft Position
         this.model        = null;       // Aircraft type
         this.airlineId      = '';         // Airline Identifier (eg. 'AAL')
         this.airlineCallsign = '';
@@ -969,8 +969,8 @@ export default class AircraftInstanceModel {
      */
     _calculateTargetedAltitudeToInterceptGlidepath() {
         const runway = window.airportController.airport_get().getRunway(this.rwy_arr);
-        const distanceFromThreshold_km = getOffset(this.positionModel.relativePosition, runway.relativePosition, runway.angle)[1];
-        const glideslopeAltitude = runway.getGlideslopeAltitude(distanceFromThreshold_km);
+        const distanceFromThreshold_km = getOffset(this.positionModel, runway.relativePosition, runway.angle);
+        const glideslopeAltitude = runway.getGlideslopeAltitude(distanceFromThreshold_km[1]);
         const targetAltitude = clamp(runway.elevation, glideslopeAltitude, this.altitude);
 
         return targetAltitude;
@@ -1976,8 +1976,8 @@ export default class AircraftInstanceModel {
                 const isFollowingSid = this.fms.isFollowingSid();
                 const isFollowingStar = this.fms.isFollowingStar();
                 const fixRestrictions = {
-                    altitude: this.fms.currentWaypoint.altitude !== -1,
-                    speed: this.fms.currentWaypoint.speed !== -1
+                    altitude: this.fms.currentWaypoint.altitudeRestriction !== -1,
+                    speed: this.fms.currentWaypoint.speedRestriction !== -1
                 };
                 destinationDisplay = this.fms.getProcedureAndExitName();
 
@@ -1989,12 +1989,13 @@ export default class AircraftInstanceModel {
                     headingDisplay = this.mcp.headingInDegrees;
                     destinationDisplay = this.fms.getDestinationName();
                 } else if (this.mcp.headingMode === MCP_MODE.HEADING.VOR_LOC) {
-                    cruiseNavMode = WAYPOINT_NAV_MODE.RUNWAY;
+                    cruiseNavMode = WAYPOINT_NAV_MODE.RWY;
                     headingDisplay = 'intercept';
                     destinationDisplay = this.fms.getDestinationAndRunwayName();
                 }
 
-                this.aircraftStripView.updateViewForCruise(cruiseNavMode,
+                this.aircraftStripView.updateViewForCruise(
+                    cruiseNavMode,
                     headingDisplay,
                     destinationDisplay,
                     isFollowingSid,

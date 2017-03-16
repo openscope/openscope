@@ -53,14 +53,14 @@ export const bearingToPoint = (startPosition, endPosition) => vradial(vsub(endPo
 /**
  * Returns an offset array showing how far [fwd/bwd, left/right] 'aircraft' is of 'target'
  *
- * @param aircraft {Aircraft}           the aircraft in question
- * @param target {array}                positional array of the targeted position [x,y]
- * @param headingThruTarget {number}    (optional) The heading the aircraft should
- *                                      be established on when passing the target.
- *                                      Default value is the aircraft's heading.
- * @returns {array} with two elements:  retval[0] is the lateral offset, in km
- *                                      retval[1] is the longitudinal offset, in km
- *                                      retval[2] is the hypotenuse (straight-line distance), in km
+ * @param aircraft {AircraftInstanceModel}      the aircraft in question
+ * @param target {array}                        positional array of the targeted position [x,y]
+ * @param headingThruTarget {number} (optional) The heading the aircraft should
+ *                                              be established on when passing the target.
+ *                                              Default value is the aircraft's heading.
+ * @returns {array}                             [0] is the lateral offset, in km
+ *                                              [1] is the longitudinal offset, in km
+ *                                              [2] is the hypotenuse (straight-line distance), in km
  */
 export const getOffset = (aircraft, target, headingThruTarget = null) => {
     if (!headingThruTarget) {
