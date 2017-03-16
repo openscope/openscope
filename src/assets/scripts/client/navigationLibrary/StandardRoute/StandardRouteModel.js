@@ -423,11 +423,11 @@ export default class StandardRouteModel extends BaseModel {
             const entrySegment = this._entryCollection.findSegmentByName(entry);
 
             if (typeof entrySegment === 'undefined') {
-                throw new TypeError(`Expected 'entry' to exist in the RouteSegmentCollection, but ${this.icao} ` +
+                console.error(`Expected 'entry' to exist in the RouteSegmentCollection, but ${this.icao} ` +
                 `does not have an entry of ${entry}`);
             }
 
-            entrySegmentItems = entrySegment.items;
+            entrySegmentItems = _get(entrySegment, 'items', []);
         }
 
         // FIXME: this if is overly defensive. every route should have an entry, body and exit
@@ -435,11 +435,11 @@ export default class StandardRouteModel extends BaseModel {
             const exitSegment = this._exitCollection.findSegmentByName(exit);
 
             if (typeof exitSegment === 'undefined') {
-                throw new TypeError(`Expected 'exit' to exist in the RouteSegmentCollection, but ${this.icao} ` +
+                console.error(`Expected 'exit' to exist in the RouteSegmentCollection, but ${this.icao} ` +
                 `does not have an exit of ${exit}`);
             }
 
-            exitSegmentItems = exitSegment.items;
+            exitSegmentItems = _get(exitSegment, 'items', []);
         }
 
         return this._generateFixList(
@@ -465,7 +465,10 @@ export default class StandardRouteModel extends BaseModel {
                 previousWaypoint = waypoint;
             }
 
-            const distance = this.calculateDistanceBetweenWaypoints(waypoint.relativePosition, previousWaypoint.relativePosition);
+            const distance = this.calculateDistanceBetweenWaypoints(
+                waypoint.relativePosition,
+                previousWaypoint.relativePosition
+            );
             waypoint.distanceFromPreviousWaypoint = distance;
             waypoint.previousStandardWaypointName = previousWaypoint.name;
         });

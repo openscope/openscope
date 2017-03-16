@@ -2,7 +2,6 @@ import sinon from 'sinon';
 
 import AirportController from '../../src/assets/scripts/client/airport/AirportController';
 import AirportModel from '../../src/assets/scripts/client/airport/AirportModel';
-import AirspaceModel from '../../src/assets/scripts/client/airport/AirspaceModel';
 import StaticPositionModel from '../../src/assets/scripts/client/base/StaticPositionModel';
 import { navigationLibraryFixture } from '../fixtures/navigationLibraryFixtures';
 import { AIRPORT_JSON_KLAS_MOCK } from '../airport/_mocks/airportJsonMock';
@@ -25,12 +24,6 @@ export const airportModelFixture = new AirportModel(
     onAirportChangeStub,
     navigationLibraryFixture
 );
-
-// export const airspaceModelFixture = new AirspaceModel(
-//     AIRPORT_JSON_KLAS_MOCK.airspace[0],
-//     airportModelFixture.relativePosition,
-//     airportModelFixture.magneticNorth
-// );
 
 // airport position for KSFO
 export const airportPositionFixtureKSFO = new StaticPositionModel(['N37.6195', 'W122.3738333', '13ft'], null, 13.7);

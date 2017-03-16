@@ -154,13 +154,13 @@ ava('._buildEntryAndExitCollections() maps rwy fixes to _entryCollection when ex
     t.true(_isEqual(segmentModelNames, _keys(SID_WITHOUT_EXIT_MOCK.TRALR6.rwy)));
 });
 
-ava('._findStandardWaypointModelsForRoute() throws if entry does not exist within the collection', t => {
+ava.skip('._findStandardWaypointModelsForRoute() throws if entry does not exist within the collection', t => {
     const model = new StandardRouteModel(STAR_MOCK);
 
     t.throws(() => model._findStandardWaypointModelsForRoute('threeve', '25R'));
 });
 
-ava('._findStandardWaypointModelsForRoute() throws if exit does not exist within the collection', t => {
+ava.skip('._findStandardWaypointModelsForRoute() throws if exit does not exist within the collection', t => {
     const model = new StandardRouteModel(STAR_MOCK);
 
     t.throws(() => model._findStandardWaypointModelsForRoute('DRK', 'threeve'));

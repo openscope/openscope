@@ -463,13 +463,14 @@ export default class Pilot {
      * Intercept a radial course or localizer (horizontal guidance)
      *
      * @for Pilot
-     * @method interceptCourse
-     * @param {Position} datum - the position the course is based upon
-     * @param {Number} course - the heading inbound to the datum
-     * @return {Array} [success of operation, readback]
+     * @method _interceptCourse
+     * @param datum {StaticPositionModel}  the position the course is based upon
+     * @param course {number}              the heading inbound to the datum
+     * @return {array}                     [success of operation, readback]
+     * @private
      */
-    interceptCourse(datum, course) {
-        this._setNav1Datum(datum);
+    _interceptCourse(datum, course) {
+        this._mcp.setNav1Datum(datum);
         this._mcp.setCourseFieldValue(course);
         this._mcp.setHeadingVorLoc();
 
@@ -484,15 +485,16 @@ export default class Pilot {
      * Intercept a glidepath or glideslop (vertical guidance)
      *
      * @for Pilot
-     * @method interceptGlidepath
-     * @param {Position} datum - the position the glidepath is projected from
-     * @param {Number} course - the heading inbound to the datum
-     * @param {Number} descentAngle - the angle of descent along the glidepath
-     * @param {Number} interceptAltitude - the altitude to which the aircraft can descend without yet
+     * @method _interceptGlidepath
+     * @param datum {StaticPositionModel}  the position the glidepath is projected from
+     * @param course {number}              the heading inbound to the datum
+     * @param descentAngle {number}        the angle of descent along the glidepath
+     * @param interceptAltitude {number}   the altitude to which the aircraft can descend without yet
      *                                     being established on the glidepath
-     * @return {Array} [success of operation, readback]
+     * @return {array}                     [success of operation, readback]
+     * @private
      */
-    interceptGlidepath(datum, course, descentAngle, interceptAltitude) {
+    _interceptGlidepath(datum, course, descentAngle, interceptAltitude) {
         // TODO: I feel like our description of lateral/vertical guidance should be done with its
         // own class rather than like this by storing all sorts of irrelevant stuff in the pilot/MCP.
         if (this._mcp.nav1Datum !== datum) {
@@ -507,7 +509,7 @@ export default class Pilot {
         }
 
         // TODO: the descentAngle is a part of the ILS system itself, and should not be owned by the MCP
-        this._mcp.descentAngle = descentAngle;
+        this._mcp.setDescentAngle(descentAngle);
         this._mcp.setAltitudeFieldValue(interceptAltitude);
         this._mcp.setAltitudeApproach();
 
@@ -525,41 +527,43 @@ export default class Pilot {
      *
      * @for pilot
      * @method conductInstrumentApproach
-     * @param {String} approachType - the type of instrument approach (eg 'ILS', 'RNAV', 'VOR', etc)
-     * @param {Runway} runway - the runway the approach ends at
-     * @param {Number} interceptAltitude - the altitude to maintain until established on the localizer
-     * @return {Array} [success of operation, readback]
+     * @param approachType {string}       the type of instrument approach (eg 'ILS', 'RNAV', 'VOR', etc)
+     * @param runway {RunwayModel}        the runway the approach ends at
+     * @param interceptAltitude {number}  the altitude to maintain until established on the localizer
+     * @param heading {number}            current aircraft heading (in radians)
+     * @return {array}                    [success of operation, readback]
      */
-    conductInstrumentApproach(approachType, runway, interceptAltitude) {
-        if (_isNil(runway)) {
-            return [false, 'the specified runway does not exist'];
+    conductInstrumentApproach(approachType, runwayModel, interceptAltitude, heading) {
+        if (_isNil(runwayModel)) {
+            return [false, 'the specified runwayModel does not exist'];
         }
 
-        // TODO: #flyPresentHeading requires a value we can't get, unless we pass it, which seems sloppy
         if (this._mcp.headingMode !== MCP_MODE.HEADING.HOLD) {
-            this.flyPresentHeading();
+            this.maintainPresentHeading(heading);
         }
 
-        this._fms.setArrivalRunway(runway.name);
+        this._fms.setArrivalRunway(runwayModel.name);
 
-        const datum = runway.positionModel;
-        const course = runway.angle;
-        const descentAngle = runway.ils.gs_gradient;
         // TODO: split these two method calls and the corresponding ifs to a new method
-        const lateralGuidance = this.interceptCourse(datum, course);
-        const verticalGuidance = this.interceptGlidepath(datum, course, descentAngle, interceptAltitude)[0];
+        const datum = runwayModel.positionModel;
+        const course = runwayModel.angle;
+        const descentAngle = runwayModel.ils.gs_gradient;
+        const lateralGuidance = this._interceptCourse(datum, course);
+        const verticalGuidance = this._interceptGlidepath(datum, course, descentAngle, interceptAltitude);
 
-        if (!lateralGuidance[0]) {
-            return lateralGuidance;
-        }
+        // TODO: this may need to be implemented in the future. as written, `._interceptCourse()` will always
+        // return true
+        // if (!lateralGuidance[0]) {
+        //     return lateralGuidance;
+        // }
 
-        if (!verticalGuidance) {
+        if (!verticalGuidance[0]) {
             return verticalGuidance;
         }
 
         const readback = {};
-        readback.log = `cleared ${approachType.toUpperCase()} runway ${runway.name} approach`;
-        readback.say = `cleared ${approachType.toUpperCase()} runway ${radio_runway(runway.name)} approach`;
+        readback.log = `cleared ${approachType.toUpperCase()} runway ${runwayModel.name} approach`;
+        readback.say = `cleared ${approachType.toUpperCase()} runway ${radio_runway(runwayModel.name)} approach`;
 
         return [true, readback];
     }
@@ -576,7 +580,7 @@ export default class Pilot {
      * @param fixName {string|null}                      name of the fix to hold at, only `null` if holding at
      *                                                   current position
      * @param holdPosition {StaticPositionModel}         StaticPositionModel of the position to hold over
-     * @return {Array} [success of operation, readback]
+     * @return {array} [success of operation, readback]
      */
     initiateHoldingPattern(
         inboundHeading,

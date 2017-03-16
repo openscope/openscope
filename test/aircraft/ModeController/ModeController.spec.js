@@ -24,6 +24,14 @@ ava('#isEnabled is false on instantiation', (t) => {
     t.false(mcp.isEnabled);
 });
 
+ava('.#headingInDegrees returns a whole number', (t) => {
+    const mcp = new ModeController();
+
+    mcp.heading = 3.839724354387525;
+
+    t.true(mcp.headingInDegrees === 220);
+});
+
 ava('.enable() sets #isEnabled to true', (t) => {
     const mcp = new ModeController();
 

@@ -528,15 +528,15 @@ export default class AircraftCommander {
     /**
      * @for AircraftCommander
      * @method runLanding
-     * @param data
+     * @param aircraft {AircraftInstanceModel}
+     * @param data {array}
      */
     runLanding(aircraft, data) {
         const approachType = 'ils';
-        // TODO: Is this .toUpperCase() really necessary??
         const runwayName = data[1].toUpperCase();
         const runway = this._airportController.airport_get().getRunway(runwayName);
 
-        return aircraft.pilot.conductInstrumentApproach(approachType, runway);
+        return aircraft.pilot.conductInstrumentApproach(approachType, runway, aircraft.altitude, aircraft.heading);
     }
 
     /**

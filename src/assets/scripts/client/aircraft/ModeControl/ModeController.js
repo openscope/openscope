@@ -156,7 +156,7 @@ export default class ModeController {
      * @return {number}
      */
     get headingInDegrees() {
-        return radiansToDegrees(this.heading);
+        return Math.floor(radiansToDegrees(this.heading));
     }
 
     /**
@@ -200,6 +200,29 @@ export default class ModeController {
         }
 
         this.isEnabled = false;
+    }
+
+    /**
+     *
+     *
+     * @for ModeController
+     * @method setNav1Datum
+     * @param nav1Datum {number}
+     */
+    setNav1Datum(datum) {
+        this.nav1Datum = datum;
+    }
+
+    // TODO: the descentAngle is a part of the ILS system itself, and should not be owned by the MCP
+    /**
+     *
+     *
+     * @for ModeController
+     * @method setDescentAngle
+     * @param descentAngle {number}
+     */
+    setDescentAngle(descentAngle) {
+        this.descentAngle = descentAngle;
     }
 
     /**
