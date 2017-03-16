@@ -3,10 +3,8 @@ import $ from 'jquery';
 import _defaultTo from 'lodash/defaultTo';
 import _forEach from 'lodash/forEach';
 import _get from 'lodash/get';
-import _has from 'lodash/has';
 import _isEqual from 'lodash/isEqual';
 import _isNil from 'lodash/isNil';
-import _isString from 'lodash/isString';
 import AircraftFlightManagementSystem from './FlightManagementSystem/AircraftFlightManagementSystem';
 import AircraftStripView from './AircraftStripView';
 import Fms from './FlightManagementSystem/Fms';
@@ -26,7 +24,6 @@ import {
     vsub,
     vadd,
     vscale,
-    vturn,
     distance_to_poly,
     point_to_mpoly,
     point_in_poly,
@@ -34,10 +31,16 @@ import {
 } from '../math/vector';
 import {
     digits_decimal,
-    radio_runway,
-    radio_altitude
+    groupNumbers,
+    radio_altitude,
+    radio_spellOut
 } from '../utilities/radioUtilities';
-import { km, radiansToDegrees, degreesToRadians, heading_to_string } from '../utilities/unitConverters';
+import {
+    km,
+    radiansToDegrees,
+    degreesToRadians,
+    heading_to_string
+} from '../utilities/unitConverters';
 import {
     FLIGHT_MODES,
     FLIGHT_CATEGORY,
@@ -1085,6 +1088,7 @@ export default class AircraftInstanceModel {
                 runway = airport.getRunway(this.rwy_dep);
                 position = runway.relativePosition;
 
+                // FIXME: if this still needs to happen, this should happen via method and not direct property assignment
                 this.positionModel.relativePosition[0] = position[0];
                 this.positionModel.relativePosition[1] = position[1];
                 this.heading = runway.angle;
@@ -1244,7 +1248,7 @@ export default class AircraftInstanceModel {
         this.target.heading = clamp(targetHeadinh, minHeading, maxHeading);
     }
 
-    //TODO: More Simplification of this function should be done, abstract warings to their own functions
+    // TODO: More Simplification of this function should be done, abstract warings to their own functions
     /**
      * Updates the aircraft status to landing and wil also send out a waring if the change in angle is greater than 30 degrees.
      *
@@ -1928,13 +1932,12 @@ export default class AircraftInstanceModel {
         const altitude = this.mcp.altitude;
         const speed = this.mcp.speed;
 
-        let headingDisplay;
         let destinationDisplay = !this.mcp.isEnabled
             ? this.destination
             : this.fms.getProcedureAndExitName();
         const altitudeText = this.taxi_next
-        ? 'ready'
-        : null;
+            ? 'ready'
+            : null;
         const hasAltitude = this.mcp.altitude !== -1;
 
         this.aircraftStripView.update(heading, altitude, this.destination, speed);
