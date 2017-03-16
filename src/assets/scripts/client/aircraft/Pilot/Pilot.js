@@ -16,7 +16,6 @@ import {
 } from '../../utilities/radioUtilities';
 import {
     degreesToRadians,
-    radiansToDegrees,
     heading_to_string
 } from '../../utilities/unitConverters';
 import { radians_normalize } from '../../math/circle';
@@ -63,6 +62,32 @@ export default class Pilot {
          * @private
          */
         this._fms = fms;
+
+        /**
+         *
+         * @property hasLandingClearance
+         * @type {boolean}
+         * @default false
+         */
+        this.hasLandingClearance = false;
+    }
+
+    /**
+     * @for Pilot
+     * @method enable
+     */
+    enable() {
+        return;
+    }
+
+    /**
+     * @for Pilot
+     * @method destroy
+     */
+    destroy() {
+        this._mcp = null;
+        this._fms = null;
+        this.hasLandingClearance = false;
     }
 
     /**
@@ -542,8 +567,6 @@ export default class Pilot {
             this.maintainPresentHeading(heading);
         }
 
-        this._fms.setArrivalRunway(runwayModel.name);
-
         // TODO: split these two method calls and the corresponding ifs to a new method
         const datum = runwayModel.positionModel;
         const course = runwayModel.angle;
@@ -560,6 +583,9 @@ export default class Pilot {
         if (!verticalGuidance[0]) {
             return verticalGuidance;
         }
+
+        this._fms.setArrivalRunway(runwayModel.name);
+        this.hasLandingClearance = true;
 
         const readback = {};
         readback.log = `cleared ${approachType.toUpperCase()} runway ${runwayModel.name} approach`;

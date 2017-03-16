@@ -1119,7 +1119,7 @@ export default class ConvasController {
             // width of colored bar
             const bar_width = 3;
             const bar_width2 = bar_width / 2;
-            const ILS_enabled = aircraft.__fms__.currentWaypoint.runway && aircraft.category === FLIGHT_CATEGORY.ARRIVAL;
+            const ILS_enabled = aircraft.pilot.hasLandingClearance; // aircraft.__fms__.currentWaypoint.runway && aircraft.category === FLIGHT_CATEGORY.ARRIVAL;
             const lock_size = height / 3;
             const lock_offset = lock_size / 8;
             const pi = Math.PI;
