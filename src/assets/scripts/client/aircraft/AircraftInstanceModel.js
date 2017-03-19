@@ -586,6 +586,17 @@ export default class AircraftInstanceModel {
     }
 
     /**
+     * Return whether the aircraft is off the ground
+     *
+     * @for AircraftInstanceModel
+     * @method isAirborne
+     * @return {boolean}
+     */
+    isAirborne() {
+        return !this.isOnGround();
+    }
+
+    /**
      * Aircraft is established on FINAL APPROACH COURSE
      * @for AircraftInstanceModel
      * @method runTakeoff
@@ -661,6 +672,19 @@ export default class AircraftInstanceModel {
     }
 
     /**
+     * Return whether the aircraft is in flight AND below its stall speed
+     *
+     * @for AircraftInstanceModel
+     * @method isStalling
+     * @return {boolean}
+     */
+    isStalling() {
+        const isStalling = this.speed < this.model.speed.min && this.isAirborne();
+
+        return isStalling;
+    }
+
+    /**
      * @for AircraftInstanceModel
      * @method isTaxiing
      */
@@ -671,6 +695,8 @@ export default class AircraftInstanceModel {
     }
 
     /**
+     * Returns whether the aircraft is currently taking off
+     *
      * @for AircraftInstanceModel
      * @method isTakeoff
      */
