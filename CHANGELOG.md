@@ -14,6 +14,9 @@
 
 ### Features
 - Adds the ability to call an airplane by its callsign [#40](https://github.com/openscope/openscope/issues/40)
+=======
+- Enumerate magic number in RunwayModel [#269](https://github.com/openscope/openscope/issues/269)
+
 
 
 
@@ -26,8 +29,7 @@
 
 ### Bugfixes
 - Standardized indentation in all json files [#256](https://github.com/openscope/openscope/issues/256)
-
-
+    - followed up and corrected 2 mistakenly cleared out aircraft files [#259](https://github.com/openscope/openscope/issues/259)
 
 
 

@@ -4,7 +4,7 @@ import BaseModel from '../base/BaseModel';
 import PositionModel from '../base/PositionModel';
 import { abs, tan } from '../math/core';
 import { radians_normalize } from '../math/circle';
-import { km, degreesToRadians } from '../utilities/unitConverters';
+import { km, km_ft, degreesToRadians } from '../utilities/unitConverters';
 import { vlen, vradial, vsub, vadd, vscale } from '../math/vector';
 
 /**
@@ -145,8 +145,8 @@ export default class RunwayModel extends BaseModel {
     *
     * @for RunwayModel
     * @method getGlideslopeAltitude
-    * @param {Number} distance - the distance from the runway threshold, in (units???)
-    * @param {Number} gs_gradient - the gradient of the glideslope, in degrees (typically 3.0)
+    * @param {Number} distance - the distance from the runway threshold, in kilometers
+    * @param {Number} gs_gradient - the gradient of the glideslope, in radians (typically equivalent to 3.0 degrees)
     */
     getGlideslopeAltitude(distance, /* optional */ gs_gradient) {
         if (!gs_gradient) {
@@ -157,8 +157,7 @@ export default class RunwayModel extends BaseModel {
         const rise = tan(abs(gs_gradient));
 
         // TODO: this logic could be abstracted to a helper.
-        // TODO: what does 3280 mean? enumerate the magic number
-        return this.elevation + (rise * distance * 3280);
+        return this.elevation + (rise * km_ft(distance));
     }
 
     /**

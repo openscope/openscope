@@ -32,6 +32,8 @@ function _buildResultList(source, outputFilename) {
             return;
         }
 
+        gutil.log(fileSource);
+
         // read the file as a string and JSON.parse() the contents.
         const fileData = JSON.parse(fs.readFileSync(fileSource, 'utf8'));
 
