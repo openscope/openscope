@@ -1049,11 +1049,14 @@ export default class AircraftInstanceModel {
     // TODO: In these methods are various housekeeping items (like updating the strip views) that
     //       are not truly a part of the target calculations and updates, and thus they should be
     //       moved elsewhere.
+     // TODO: This probably doesn't belong in the aircraft. More thought needed.
     /**
+     * Update the FMS's flight phase
+     *
      * @for AircraftInstanceModel
-     * @method updateTarget
+     * @method updateFlightPhase
      */
-    updateTarget_old() {
+    updateFlightPhase() {
         let airport = window.airportController.airport_get();
         let runway = null;
         let offset = null;
@@ -1062,6 +1065,78 @@ export default class AircraftInstanceModel {
         let angle = null;
         let position;
 
+        switch (this.mode) {
+            case FLIGHT_MODES.TAXI: {
+                const elapsed = window.gameController.game_time() - this.taxi_start;
+
+                if (elapsed > this.taxi_time) {
+                    this.mode = FLIGHT_MODES.WAITING;
+
+                    this.updateStrip();
+                }
+
+                break;
+            }
+
+            case FLIGHT_MODES.WAITING: {
+                runway = airport.getRunway(this.rwy_dep);
+                position = runway.relativePosition;
+
+                // FIXME: if this still needs to happen, this should happen via method and not direct property assignment
+                this.positionModel.relativePosition[0] = position[0];
+                this.positionModel.relativePosition[1] = position[1];
+                this.heading = runway.angle;
+                this.altitude = runway.elevation;
+
+                break;
+            }
+
+            case FLIGHT_MODES.TAKEOFF: {
+                runway = airport.getRunway(this.rwy_dep);
+
+                // Altitude Control
+                this.target.altitude = this.pilot.sayTargetedAltitude();
+
+                if (this.speed < this.model.speed.min) {
+                    this.target.altitude = runway.elevation;
+                }
+
+                // Heading Control
+                const runwayHeading = runway.angle;
+
+                if ((this.altitude - runway.elevation) < 400) {
+                    this.target.heading = runwayHeading;
+                } else {
+                    // if (!this.__fms__.followCheck().sid && this.__fms__.currentWaypoint.heading === null) {
+                    if (this.mcp.heading === -999) {
+                        // if no directional instructions available after takeoff
+                        // fly runway heading
+                        this.fms.setHeadingHold(runwayHeading);
+                        // this.__fms__.setCurrent({ heading: runwayHeading });
+                    }
+
+                    this.mode = FLIGHT_MODES.CRUISE;
+                    this.updateStrip();
+                }
+
+                // Speed Control
+                // go fast!
+                this.target.speed = this.model.speed.cruise;
+
+                break;
+            }
+
+            default:
+                break;
+
+        }
+    }
+
+    /**
+     * @for AircraftInstanceModel
+     * @method updateTarget
+     */
+    updateTarget_old() {
         switch (this.__fms__.currentWaypoint.navmode) {
             case WAYPOINT_NAV_MODE.RWY:
                 this.updateTargetPrepareAircraftForLanding();
@@ -1097,78 +1172,6 @@ export default class AircraftInstanceModel {
 
         // finally, taxi overrides everything
         let was_taxi = false;
-
-        switch (this.mode) {
-            case FLIGHT_MODES.TAXI:
-                const elapsed = window.gameController.game_time() - this.taxi_start;
-
-                if (elapsed > this.taxi_time) {
-                    this.mode = FLIGHT_MODES.WAITING;
-                    was_taxi = true;
-
-                    this.updateStrip();
-                }
-
-                break;
-            case FLIGHT_MODES.WAITING:
-                runway = airport.getRunway(this.rwy_dep);
-                position = runway.relativePosition;
-
-                // FIXME: if this still needs to happen, this should happen via method and not direct property assignment
-                this.positionModel.relativePosition[0] = position[0];
-                this.positionModel.relativePosition[1] = position[1];
-                this.heading = runway.angle;
-                this.altitude = runway.elevation;
-
-                // if (!this.projected && runway.isAircraftNextInQueue(this) && was_taxi) {
-                //     window.uiController.ui_log(`${this.getCallsign()}, holding short of runway ${this.rwy_dep}`);
-                //
-                //     speech_say([
-                //         { type: 'callsign', content: this },
-                //         { type: 'text', content: `holding short of runway ${radio_runway(this.rwy_dep)}` }
-                //     ]);
-                //
-                //     this.updateStrip();
-                // }
-
-                break;
-            case FLIGHT_MODES.TAKEOFF:
-                runway = airport.getRunway(this.rwy_dep);
-
-                // Altitude Control
-                this.target.altitude = this.pilot.sayTargetedAltitude();
-
-                if (this.speed < this.model.speed.min) {
-                    this.target.altitude = runway.elevation;
-                }
-
-                // Heading Control
-                const runwayHeading = runway.angle;
-
-                if ((this.altitude - runway.elevation) < 400) {
-                    this.target.heading = runwayHeading;
-                } else {
-                    // if (!this.__fms__.followCheck().sid && this.__fms__.currentWaypoint.heading === null) {
-                    if (this.mcp.heading === -999) {
-                        // if no directional instructions available after takeoff
-                        // fly runway heading
-                        this.fms.setHeadingHold(runwayHeading);
-                        // this.__fms__.setCurrent({ heading: runwayHeading });
-                    }
-
-                    this.mode = FLIGHT_MODES.CRUISE;
-                    this.updateStrip();
-                }
-
-                // Speed Control
-                // go fast!
-                this.target.speed = this.model.speed.cruise;
-
-                break;
-            default:
-                break;
-
-        }
 
         // Limit speed to 250 knots while under 10,000 feet MSL (it's the law!)
         if (this.altitude > 10000) {
@@ -1870,6 +1873,7 @@ export default class AircraftInstanceModel {
             this.updateAuto();
         }
 
+        this.updateFlightPhase();
         this.updateTarget();
         this.updatePhysics();
         this.updateStrip();
