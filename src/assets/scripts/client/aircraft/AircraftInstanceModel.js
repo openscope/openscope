@@ -378,12 +378,10 @@ export default class AircraftInstanceModel {
      * @param callsign {string}
      */
     matchCallsign(callsignToMatch) {
-        if (callsignToMatch === '*') {
-            return true;
-        }
+        const shouldMatchAnyCallsign = callsignToMatch === '*';
 
         // checks to see if the given call sign matches the airline Id + flight number
-        if (_isEqual(callsignToMatch.toUpperCase(), this.callsign)) {
+        if (shouldMatchAnyCallsign || _isEqual(callsignToMatch.toUpperCase(), this.callsign)) {
             return true;
         }
 
