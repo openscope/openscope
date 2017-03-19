@@ -65,11 +65,11 @@ ava('.conductInstrumentApproach() calls ._interceptGlidepath() with the correct 
     ));
 });
 
-ava('.conductInstrumentApproach() sets #hasLandingClearance to true', (t) => {
+ava('.conductInstrumentApproach() sets #hasApproachClearance to true', (t) => {
     const pilot = new Pilot(modeControllerFixture, fmsArrivalFixture);
     pilot.conductInstrumentApproach(approachTypeMock, runwayModelMock, altitudeMock, headingMock);
 
-    t.true(pilot.hasLandingClearance);
+    t.true(pilot.hasApproachClearance);
 });
 
 ava('.conductInstrumentApproach() returns a success message', (t) => {

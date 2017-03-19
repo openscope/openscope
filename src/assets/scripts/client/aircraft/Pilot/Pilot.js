@@ -65,11 +65,11 @@ export default class Pilot {
 
         /**
          *
-         * @property hasLandingClearance
+         * @property hasApproachClearance
          * @type {boolean}
          * @default false
          */
-        this.hasLandingClearance = false;
+        this.hasApproachClearance = false;
     }
 
     /**
@@ -87,7 +87,7 @@ export default class Pilot {
     destroy() {
         this._mcp = null;
         this._fms = null;
-        this.hasLandingClearance = false;
+        this.hasApproachClearance = false;
     }
 
     /**
@@ -585,7 +585,7 @@ export default class Pilot {
         }
 
         this._fms.setArrivalRunway(runwayModel.name);
-        this.hasLandingClearance = true;
+        this.hasApproachClearance = true;
 
         const readback = {};
         readback.log = `cleared ${approachType.toUpperCase()} runway ${runwayModel.name} approach`;
