@@ -40,6 +40,25 @@ export const FLIGHT_CATEGORY = {
 };
 
 /**
+ * Enumeration for the phases of flight
+ *
+ * @property FLIGHT_PHASE
+ * @type {object}
+ * @final
+ */
+export const FLIGHT_PHASE = {
+    APRON: 'APRON',
+    TAXI: 'TAXI',
+    WAITING: 'WAITING',
+    TAKEOFF: 'TAKEOFF',
+    CLIMB: 'CLIMB',
+    CRUISE: 'CRUISE',
+    DESCENT: 'DESCENT',
+    APPROACH: 'APPROACH',
+    LANDING: 'LANDING'
+};
+
+/**
  * @property WAYPOINT_NAV_MODE
  * @type {Object}
  * @final

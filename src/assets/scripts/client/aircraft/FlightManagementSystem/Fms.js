@@ -1,6 +1,7 @@
 import _drop from 'lodash/drop';
 import _find from 'lodash/find';
 import _findIndex from 'lodash/findIndex';
+import _has from 'lodash/has';
 import _isEmpty from 'lodash/isEmpty';
 import _isNil from 'lodash/isNil';
 import _isObject from 'lodash/isObject';
@@ -14,6 +15,7 @@ import {
 } from '../../navigationLibrary/Route/routeStringFormatHelper';
 import {
     FLIGHT_CATEGORY,
+    FLIGHT_PHASE,
     PROCEDURE_TYPE
 } from '../../constants/aircraftConstants';
 
@@ -356,6 +358,21 @@ export default class Fms {
      * @param runwayName {string}
      */
     setArrivalRunway = (runwayName) => this._updateRunwayAssignment(runwayName);
+
+    /**
+     * Set the phase
+     *
+     * @for Fms
+     * @method setFlightPhase
+     * @param phase {string}
+     */
+    setFlightPhase(phase) {
+        if (!_has(FLIGHT_PHASE, phase)) {
+            return new TypeError(`Expected known flight phase, but received '${phase}'`);
+        }
+
+        this.currentPhase = phase;
+    }
 
     /**
      * Add a new `LegModel` to the left side of the `#legCollection`
