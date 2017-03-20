@@ -42,8 +42,9 @@ import {
     heading_to_string
 } from '../utilities/unitConverters';
 import {
-    FLIGHT_MODES,
     FLIGHT_CATEGORY,
+    FLIGHT_MODES,
+    FLIGHT_PHASE,
     FP_LEG_TYPE,
     PERFORMANCE,
     WAYPOINT_NAV_MODE
@@ -1049,7 +1050,82 @@ export default class AircraftInstanceModel {
     // TODO: In these methods are various housekeeping items (like updating the strip views) that
     //       are not truly a part of the target calculations and updates, and thus they should be
     //       moved elsewhere.
-     // TODO: This probably doesn't belong in the aircraft. More thought needed.
+    /**
+     * @for AircraftInstanceModel
+     * @method overrideTarget
+     */
+    overrideTarget() {
+        switch (this.fms.currentPhase) {
+            case FLIGHT_PHASE.APRON:
+                this.target.altitude = this.altitude;
+                this.target.expedite = false;
+                this.target.heading = this.heading;
+                this.target.speed = 0;
+
+                break;
+
+            case FLIGHT_PHASE.TAXI:
+                this.target.altitude = this.altitude;
+                this.target.expedite = false;
+                this.target.heading = this.heading;
+                this.target.speed = 0;
+
+                break;
+
+            case FLIGHT_PHASE.WAITING:
+                this.target.altitude = this.altitude;
+                this.target.expedite = false;
+                this.target.heading = this.heading;
+                this.target.speed = 0;
+
+                break;
+
+            case FLIGHT_PHASE.TAKEOFF:
+                this.target.expedite = false;
+                this.target.heading = this.heading;
+                this.target.speed = this.model.speed.min;
+
+                break;
+
+            case FLIGHT_PHASE.CLIMB:
+                break;
+
+            case FLIGHT_PHASE.CRUISE:
+                break;
+
+            case FLIGHT_PHASE.DESCENT:
+                break;
+
+            case FLIGHT_PHASE.APPROACH: {
+                // FIXME: this is wrong
+                this.target.expedite = this.__fms__.currentWaypoint.expedite;
+                this.target.altitude = Math.max(1000, this.pilot.sayTargetedAltitude());
+                // this.target.speed = _get(this, 'fms.currentWaypoint.speed', this.speed);
+                this.target.speed = clamp(this.model.speed.min, this.pilot.sayTargetedSpeed(), this.model.speed.max);
+
+                break;
+            }
+
+            case FLIGHT_PHASE.LANDING:
+                break;
+
+            default:
+                break;
+        }
+
+        // If stalling, make like a meteorite and fall to the earth!
+        if (this.isStalling()) {
+            this.target.altitude = Math.min(0, this.target.altitude);
+        }
+
+        // Limit speed to 250 knots while under 10,000 feet MSL (it's the law!)
+        if (this.altitude < 10000) {
+            this.target.speed = Math.min(this.target.speed, 250);
+        }
+    }
+
+    // TODO: This probably doesn't belong in the aircraft. More thought needed.
+    // FIXME: This is filled with nonsensical jibber jabber! :(
     /**
      * Update the FMS's flight phase
      *
@@ -1057,12 +1133,8 @@ export default class AircraftInstanceModel {
      * @method updateFlightPhase
      */
     updateFlightPhase() {
-        let airport = window.airportController.airport_get();
+        const airport = window.airportController.airport_get();
         let runway = null;
-        let offset = null;
-        let offset_angle = null;
-        let glideslope_altitude = null;
-        let angle = null;
         let position;
 
         switch (this.mode) {
@@ -1133,61 +1205,11 @@ export default class AircraftInstanceModel {
     }
 
     /**
+     * Prepares the aircraft for landing
+     *
      * @for AircraftInstanceModel
-     * @method updateTarget
+     * @method updateTargetPrepareAircraftForLanding
      */
-    updateTarget_old() {
-        switch (this.__fms__.currentWaypoint.navmode) {
-            case WAYPOINT_NAV_MODE.RWY:
-                this.updateTargetPrepareAircraftForLanding();
-
-                break;
-            case WAYPOINT_NAV_MODE.FIX:
-                this.updateTargetTowardsNextFix();
-
-                break;
-            case WAYPOINT_NAV_MODE.HOLD:
-                this.updateTargetPrepareAircraftForHold();
-
-                break;
-            default:
-                this.target.heading = this.mcp.heading;
-                // this.target.turn = this.__fms__.currentWaypoint.turn;
-
-                break;
-        }
-
-        if (this.mode !== FLIGHT_MODES.LANDING) {
-            // FIXME: this is wrong
-            this.target.expedite = this.__fms__.currentWaypoint.expedite;
-            this.target.altitude = Math.max(1000, this.pilot.sayTargetedAltitude());
-            // this.target.speed = _get(this, 'fms.currentWaypoint.speed', this.speed);
-            this.target.speed = clamp(this.model.speed.min, this.pilot.sayTargetedSpeed(), this.model.speed.max);
-        }
-
-        // If stalling, make like a meteorite and fall to the earth!
-        if (this.speed < this.model.speed.min && !this.isOnGround()) {
-            this.target.altitude = Math.min(0, this.target.altitude);
-        }
-
-        // finally, taxi overrides everything
-        let was_taxi = false;
-
-        // Limit speed to 250 knots while under 10,000 feet MSL (it's the law!)
-        if (this.altitude > 10000) {
-            return;
-        }
-
-        let nextSpeed = Math.min(this.mcp.speed, 250);
-
-        if (this.isPrecisionGuided()) {
-            // btwn 0 and 250
-            nextSpeed = Math.min(this.target.speed, 250);
-        }
-
-        this.target.speed = nextSpeed;
-    }
-
     updateTargetPrepareAircraftForLanding() {
         const airport = window.airportController.airport_get();
         const runway  = airport.getRunway(this.rwy_arr);
@@ -1927,7 +1949,6 @@ export default class AircraftInstanceModel {
     removeConflict(conflictingAircraft) {
         delete this.conflicts[conflictingAircraft.getCallsign()];
     }
-
 
     /**
      * Create the aircraft's flight strip and add to strip bay
