@@ -169,6 +169,14 @@ export default class AircraftInstanceModel {
         this.mcp = new ModeController();
         this.pilot = new Pilot(this.mcp, this.fms);
 
+        // TODO: There are better ways to ensure the autopilot is on for aircraft spawning inflight...
+        if (options.category === FLIGHT_CATEGORY.ARRIVAL) {
+            // FIXME: No cheating by accessing private methods!!!
+            const bottomAltitude = this.fms.getBottomAltitude();
+
+            this.mcp._initializeForAirborneFlight(bottomAltitude, this.heading, this.speed);
+        }
+
         this.createStrip();
         this.updateStrip();
     }
@@ -1084,7 +1092,7 @@ export default class AircraftInstanceModel {
      * @private
      */
     _calculateTargetedHeading() {
-        if (this.mcp.autopilotMode !== MCP_MODE.AUTOPILOT.OFF) {
+        if (this.mcp.autopilotMode !== MCP_MODE.AUTOPILOT.ON) {
             return;
         }
 
@@ -1095,8 +1103,13 @@ export default class AircraftInstanceModel {
             case MCP_MODE.HEADING.HOLD:
                 return this.mcp.heading;
 
-            case MCP_MODE.HEADING.LNAV:
-                return this.fms.currentWaypoint.heading;
+            case MCP_MODE.HEADING.LNAV: {
+                // return this.fms.currentWaypoint.heading;
+                const waypointPosition = this.fms.currentWaypoint.positionModel;
+                const headingToWaypoint = this.positionModel.bearingToPosition(waypointPosition);
+
+                return headingToWaypoint;
+            }
 
             case MCP_MODE.HEADING.VOR_LOC:
                 // TODO: fill out this function
@@ -1117,7 +1130,7 @@ export default class AircraftInstanceModel {
      * @private
      */
     _calculateTargetedSpeed() {
-        if (this.mcp.autopilotMode !== MCP_MODE.AUTOPILOT.OFF) {
+        if (this.mcp.autopilotMode !== MCP_MODE.AUTOPILOT.ON) {
             return;
         }
 
@@ -1135,8 +1148,17 @@ export default class AircraftInstanceModel {
             case MCP_MODE.SPEED.N1:
                 return this.model.speed.max;
 
-            case MCP_MODE.SPEED.VNAV:
-                return this.fms.currentWaypoint.speed;
+            case MCP_MODE.SPEED.VNAV: {
+                const maxSpeed = this.mcp.speed;
+                const waypointSpeed = this.fms.currentWaypoint.speedRestriction;
+                const waypointHasSpeed = waypointSpeed !== -1;
+
+                if (waypointHasSpeed) {
+                    return waypointSpeed;
+                }
+
+                return maxSpeed;
+            }
 
             default:
                 console.warn('Expected MCP speed mode of "OFF", "HOLD", "LEVEL_CHANGE", "N1", or "VNAV", but ' +
@@ -1153,7 +1175,7 @@ export default class AircraftInstanceModel {
      * @private
      */
     _calculateTargetedAltitude() {
-        if (this.mcp.autopilotMode !== MCP_MODE.AUTOPILOT.OFF) {
+        if (this.mcp.autopilotMode !== MCP_MODE.AUTOPILOT.ON) {
             return;
         }
 
@@ -1175,8 +1197,26 @@ export default class AircraftInstanceModel {
             // case MCP_MODE.ALTITUDE.VERTICAL_SPEED:
             //     return;
 
-            case MCP_MODE.ALTITUDE.VNAV:
-                return this.fms.currentWaypoint.altitude;
+            case MCP_MODE.ALTITUDE.VNAV: {
+                const waypointAltitude = this.fms.currentWaypoint.altitudeRestriction;
+                const waypointHasAltitude = waypointAltitude !== -1;
+                const endingAltitude = this.mcp.altitude;
+                const flightPhase = this.flightPhase;
+
+                if (!waypointHasAltitude) {
+                    return endingAltitude;
+                }
+
+                if (flightPhase === FLIGHT_PHASE.CLIMB) {
+                    return Math.min(waypointAltitude, endingAltitude);
+                }
+
+                if (flightPhase === FLIGHT_PHASE.DESCENT) {
+                    return Math.max(waypointAltitude, endingAltitude);
+                }
+
+                break;
+            }
 
             default:
                 console.warn('Expected MCP altitude mode of "OFF", "HOLD", "APPROACH", "LEVEL_CHANGE", ' +

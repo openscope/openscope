@@ -174,6 +174,8 @@ export default class ModeController {
         // this._initializeForAirborneFlight();
     }
 
+    // TODO: I thought the point of `mcp.enable()` and `mcp.disable()` was to replace the autopilot on/off switch?
+
     /**
      * Sets `#isEnabled` flag to `true`
      *
@@ -186,6 +188,7 @@ export default class ModeController {
         }
 
         this.isEnabled = true;
+        this._setModeSelectorMode(MCP_MODE_NAME.AUTOPILOT, MCP_MODE.AUTOPILOT.ON);
     }
 
     /**
@@ -200,6 +203,7 @@ export default class ModeController {
         }
 
         this.isEnabled = false;
+        this._setModeSelectorMode(MCP_MODE_NAME.AUTOPILOT, MCP_MODE.AUTOPILOT.OFF);
     }
 
     /**
@@ -366,12 +370,16 @@ export default class ModeController {
      * @method _initializeForAirborneFlight
      * @private
      */
-    _initializeForAirborneFlight() {
+    _initializeForAirborneFlight(bottomAltitude, currentHeading, currentSpeed) {
         // TODO: We will need to set the altitude field to the lowest restriction on the STAR,
         // if applicable, or otherwise to the spawn altitude.
+        this.setAltitudeFieldValue(bottomAltitude);
+        this.setHeadingFieldValue(currentHeading);
+        this.setSpeedFieldValue(currentSpeed);
         this.setAltitudeVnav();
         this.setHeadingLnav();
         this.setSpeedVnav();
+        this.enable();
     }
 
     /**
