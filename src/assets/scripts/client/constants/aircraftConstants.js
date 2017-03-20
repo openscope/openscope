@@ -100,6 +100,26 @@ export const PROCEDURE_TYPE = {
  */
 export const PERFORMANCE = {
     /**
+    * Maximum distance from the current waypoint to allow us to proceed to the next waypoint
+    * due to a tight turn, without requiring us to continue toward the current waypoint.
+    *
+    * @property MAXIMUM_DISTANCE_TO_FLY_BY_WAYPOINT_NM
+    * @type {number}
+    * @final
+    */
+    MAXIMUM_DISTANCE_TO_FLY_BY_WAYPOINT_NM: 5,
+
+    /**
+     * Maximum distance from the current waypoint to consider it to have been passed over,
+     * allowing us to proceed to the next fix.
+     *
+     * @property MAXIMUM_DISTANCE_TO_PASS_WAYPOINT_NM
+     * @type {number}
+     * @final
+     */
+    MAXIMUM_DISTANCE_TO_PASS_WAYPOINT_NM: 0.5,
+
+    /**
      * Altitude above the runway to which aircraft may descend on an instrument approach.
      * Note: Below this altitude, the aircraft is in landing mode
      *

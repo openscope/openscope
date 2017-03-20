@@ -36,10 +36,11 @@ import {
     radio_spellOut
 } from '../utilities/radioUtilities';
 import {
-    km,
-    radiansToDegrees,
     degreesToRadians,
-    heading_to_string
+    heading_to_string,
+    km,
+    nm,
+    radiansToDegrees
 } from '../utilities/unitConverters';
 import {
     FLIGHT_CATEGORY,
@@ -1104,11 +1105,7 @@ export default class AircraftInstanceModel {
                 return this.mcp.heading;
 
             case MCP_MODE.HEADING.LNAV: {
-                // return this.fms.currentWaypoint.heading;
-                const waypointPosition = this.fms.currentWaypoint.positionModel;
-                const headingToWaypoint = this.positionModel.bearingToPosition(waypointPosition);
-
-                return headingToWaypoint;
+                return this._calculateTargetedHeadingLnav();
             }
 
             case MCP_MODE.HEADING.VOR_LOC:
@@ -1456,37 +1453,27 @@ export default class AircraftInstanceModel {
      * This will update the FIX for the aircraft and will change the aircraft's heading
      *
      * @for AircraftInstanceModel
-     * @method updateFixTarget
+     * @method _calculateTargetedHeadingLnav
      */
-    updateTargetTowardsNextFix() {
+    _calculateTargetedHeadingLnav() {
         if (!this.fms.currentWaypoint) {
-            return;
+            return new Error('Unable to utilize LNAV, because there are no waypoints in the FMS');
         }
 
-        const currentWaypointPosition = this.fms.currentWaypoint.relativePosition;
-        const vectorToFix = vsub(this.positionModel.relativePosition, currentWaypointPosition);
-        const distanceToFix = distance2d(this.positionModel.relativePosition, currentWaypointPosition);
-        const isFixLessThanTurnInitiation = distanceToFix < calculateTurnInitiaionDistance(this, currentWaypointPosition);
+        const waypointPosition = this.fms.currentWaypoint.positionModel;
+        const distanceToWaypoint = this.positionModel.distanceToPosition(waypointPosition);
+        const headingToWaypoint = this.positionModel.bearingToPosition(waypointPosition);
+        const isTimeToStartTurning = distanceToWaypoint < nm(calculateTurnInitiaionDistance(this, waypointPosition));
+        const closeToBeingOverFix = distanceToWaypoint < PERFORMANCE.MAXIMUM_DISTANCE_TO_PASS_WAYPOINT_NM;
+        const closeEnoughToFlyByFix = distanceToWaypoint < PERFORMANCE.MAXIMUM_DISTANCE_TO_FLY_BY_WAYPOINT_NM;
+        const shouldMoveToNextFix = closeToBeingOverFix || (closeEnoughToFlyByFix && isTimeToStartTurning);
 
-        if (
-            distanceToFix < 1 ||
-            (distanceToFix < 10 && isFixLessThanTurnInitiation)
-        ) {
-            // // if there are more waypoints available
-            // if (!this.__fms__.atLastWaypoint()) {
-            //     this.__fms__.nextWaypoint();
-            // } else {
-            //     this.cancelFix();
-            // }
-
+        if (shouldMoveToNextFix) {
             this.fms.nextWaypoint();
             this.updateStrip();
-
-            return;
         }
 
-        this.target.heading = vradial(vectorToFix) - Math.PI;
-        this.target.turn = null;
+        return headingToWaypoint;
     }
 
     /**
