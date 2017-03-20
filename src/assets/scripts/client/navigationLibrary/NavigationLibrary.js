@@ -4,6 +4,7 @@ import RouteModel from './Route/RouteModel';
 import FixCollection from './Fix/FixCollection';
 import StandardRouteCollection from './StandardRoute/StandardRouteCollection';
 import { degreesToRadians } from '../utilities/unitConverters';
+import { FLIGHT_PHASE } from '../constants/aircraftConstants';
 
 /**
  *
@@ -230,14 +231,15 @@ export default class NavigationLibrary {
      * @method buildWaypointModelsForProcedure
      * @param procedureRouteSegment {string}  of the shape `ENTRY.PROCEDURE_NAME.EXIT`
      * @param runway {string}                 assigned runway
-     * @param category {string}               arrival or departure
+     * @param flightPhase {string}            current phase of flight
      * @return {array<WaypointModel>}
      */
-    buildWaypointModelsForProcedure(procedureRouteSegment, runway, category) {
+    buildWaypointModelsForProcedure(procedureRouteSegment, runway, flightPhase) {
         const routeModel = new RouteModel(procedureRouteSegment);
         let standardRouteWaypointModelList;
 
-        if (category === 'departure') {
+        // TODO: As amended, this may be an unsafe assumption. Needs to be reexaimed.
+        if (flightPhase === FLIGHT_PHASE.APRON) {
             standardRouteWaypointModelList = this._sidCollection.generateFmsWaypointModelsForRoute(
                 routeModel.procedure,
                 runway,

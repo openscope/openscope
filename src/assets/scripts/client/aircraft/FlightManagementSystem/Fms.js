@@ -229,7 +229,7 @@ export default class Fms {
     init({ category, model, route }) {
         this.flightPlanRoute = route.toLowerCase();
         this.flightPlanAltitude = model.ceiling;
-        this.currentPhase = category;
+        this._setCurrentPhaseFromCategory(category);
         // TODO: For aircraft not yet in flight, this should not happen until we are cleared on
         // this (or an amended) route by ATC.
         this.legCollection = this._buildLegCollection(route);
@@ -935,6 +935,8 @@ export default class Fms {
      * @private
      */
     _buildLegModelFromRouteSegment(routeSegment) {
+        // FIXME: The third argument is called 'flightPhase`, but is USED like `category` (since
+        // that used to be its value). This leads to failing tests because the strings don't match.
         return new LegModel(routeSegment, this._runwayName, this.currentPhase, this._navigationLibrary);
     }
 
@@ -1117,6 +1119,31 @@ export default class Fms {
 
         legModel.destroy();
         legModel.init(routeString, this._runwayName, this.currentPhase);
+    }
+
+    /**
+     * Set the currentPhase with the appropriate value, based on the spawn category
+     *
+     * @for Fms
+     * @method _setCurrentPhaseFromCategory
+     * @param category {string}
+     * @private
+     */
+    _setCurrentPhaseFromCategory(category) {
+        switch (category) {
+            case FLIGHT_CATEGORY.ARRIVAL:
+                this.setFlightPhase(FLIGHT_PHASE.CRUISE);
+
+                break;
+
+            case FLIGHT_CATEGORY.DEPARTURE:
+                this.setFlightPhase(FLIGHT_PHASE.APRON);
+
+                break;
+
+            default:
+                break;
+        }
     }
 
     /**

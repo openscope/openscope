@@ -15,8 +15,8 @@ const cowbyFixFixture = navigationLibraryFixture.findFixByName('COWBY');
 const arrivalProcedureRouteSegmentMock = 'DAG.KEPEC3.KLAS';
 const departureProcedureRouteSegmentMock = 'KLAS.COWBY6.DRK';
 const runwayMock = '19L';
-const arrivalFlightPhaseMock = 'arrival';
-const departureFlightPhaseMock = 'departure';
+const arrivalFlightPhaseMock = 'CRUISE';
+const departureFlightPhaseMock = 'APRON';
 
 ava('throws when passed invalid parameters', (t) => {
     t.throws(() => new LegModel());

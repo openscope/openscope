@@ -100,6 +100,24 @@ export const PROCEDURE_TYPE = {
  */
 export const PERFORMANCE = {
     /**
+     * Altitude above the runway to which aircraft may descend on an instrument approach.
+     * Note: Below this altitude, the aircraft is in landing mode
+     *
+     * @property INSTRUMENT_APPROACH_MINIMUM_DESCENT_ALTITUDE
+     * @type {number}
+     * @final
+     */
+    INSTRUMENT_APPROACH_MINIMUM_DESCENT_ALTITUDE: 200,
+    /**
+     * Altitude above the runway at which aircraft begin their on-course turn, in feet
+     *
+     * @property TAKEOFF_TURN_ALTITUDE
+     * @type {number}
+     * @final
+     */
+    TAKEOFF_TURN_ALTITUDE: 400,
+
+    /**
      * Rate of turn, in radians per second
      *
      * @property TURN_RATE

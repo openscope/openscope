@@ -186,6 +186,17 @@ export default class AircraftInstanceModel {
     }
 
     /**
+     * Current flight phase
+     *
+     * @for AircraftInstanceModel
+     * @property flightPhase
+     * @type {string}
+     */
+    get flightPhase() {
+        return this.fms.currentPhase;
+    }
+
+    /**
      * Fascade to access relative position
      *
      * @for AircraftInstanceModel
@@ -756,6 +767,19 @@ export default class AircraftInstanceModel {
     }
 
     /**
+     * Reposition the aircraft to the location of the specified runway
+     *
+     * @for AircraftInstanceModel
+     * @method moveToRunway
+     * @param runwayModel {RunwayModel}
+     */
+    moveToRunway(runwayModel) {
+        this.positionModel.setCoordinates(runwayModel.positionModel.gps);
+        this.heading = runwayModel.angle;
+        this.altitude = runwayModel.elevation;
+    }
+
+    /**
      * @for AircraftInstanceModel
      * @method radioCall
      * @param msg {string}
@@ -887,7 +911,7 @@ export default class AircraftInstanceModel {
      * @method overrideTarget
      */
     overrideTarget() {
-        switch (this.fms.currentPhase) {
+        switch (this.flightPhase) {
             case FLIGHT_PHASE.APRON:
                 this.target.altitude = this.altitude;
                 this.target.expedite = false;
@@ -912,12 +936,24 @@ export default class AircraftInstanceModel {
 
                 break;
 
-            case FLIGHT_PHASE.TAKEOFF:
+            case FLIGHT_PHASE.TAKEOFF: {
+                this.target.altitude = this.altitude;
+
+                if (this.speed > this.model.speed.min) {
+                    this.target.altitude = this.model.ceiling;
+                }
+
                 this.target.expedite = false;
                 this.target.heading = this.heading;
                 this.target.speed = this.model.speed.min;
 
+                // TODO: Enumerate the '-999' invalid value
+                if (this.mcp.heading === -999) {
+                    console.warn(`${this.getCallsign()} took off with no directional instructions!`);
+                }
+
                 break;
+            }
 
             case FLIGHT_PHASE.CLIMB:
                 break;
@@ -929,11 +965,11 @@ export default class AircraftInstanceModel {
                 break;
 
             case FLIGHT_PHASE.APPROACH: {
-                // FIXME: this is wrong
-                this.target.expedite = this.__fms__.currentWaypoint.expedite;
-                this.target.altitude = Math.max(1000, this.pilot.sayTargetedAltitude());
-                // this.target.speed = _get(this, 'fms.currentWaypoint.speed', this.speed);
-                this.target.speed = clamp(this.model.speed.min, this.pilot.sayTargetedSpeed(), this.model.speed.max);
+                // // FIXME: this is wrong
+                // this.target.expedite = this.__fms__.currentWaypoint.expedite;
+                // this.target.altitude = Math.max(1000, this.pilot.sayTargetedAltitude());
+                // // this.target.speed = _get(this, 'fms.currentWaypoint.speed', this.speed);
+                // this.target.speed = clamp(this.model.speed.min, this.pilot.sayTargetedSpeed(), this.model.speed.max);
 
                 break;
             }
@@ -956,6 +992,18 @@ export default class AircraftInstanceModel {
         }
     }
 
+    /**
+     * Fascade to set the fms's flight phase
+     *
+     * @for AircraftInstanceModel
+     * @method setFlightPhase
+     * @param phase {string}
+     */
+    setFlightPhase(phase) {
+        this.fms.setFlightPhase(phase);
+        this.updateStrip();
+    }
+
     // TODO: This probably doesn't belong in the aircraft. More thought needed.
     // FIXME: This is filled with nonsensical jibber jabber! :(
     /**
@@ -965,70 +1013,62 @@ export default class AircraftInstanceModel {
      * @method updateFlightPhase
      */
     updateFlightPhase() {
-        const airport = window.airportController.airport_get();
-        let runway = null;
-        let position;
+        const airportModel = window.airportController.airport_get();
+        const runwayModel = airportModel.getRunway(this.rwy_dep);
 
-        switch (this.mode) {
-            case FLIGHT_MODES.TAXI: {
+        switch (this.flightPhase) {
+            case FLIGHT_PHASE.TAXI: {
                 const elapsed = window.gameController.game_time() - this.taxi_start;
 
                 if (elapsed > this.taxi_time) {
-                    this.mode = FLIGHT_MODES.WAITING;
-
-                    this.updateStrip();
+                    this.setFlightPhase(FLIGHT_PHASE.WAITING);
+                    this.moveToRunway(runwayModel);
                 }
 
                 break;
             }
 
-            case FLIGHT_MODES.WAITING: {
-                runway = airport.getRunway(this.rwy_dep);
-                position = runway.relativePosition;
+            case FLIGHT_PHASE.WAITING:
+                break;
 
-                // FIXME: if this still needs to happen, this should happen via method and not direct property assignment
-                this.positionModel.relativePosition[0] = position[0];
-                this.positionModel.relativePosition[1] = position[1];
-                this.heading = runway.angle;
-                this.altitude = runway.elevation;
+            case FLIGHT_PHASE.TAKEOFF:
+                if ((this.altitude - runwayModel.elevation) > PERFORMANCE.TAKEOFF_TURN_ALTITUDE) {
+                    this.setFlightPhase(FLIGHT_PHASE.CLIMB);
+                }
+
+                break;
+
+            case FLIGHT_PHASE.CLIMB:
+                if (this.altitude === this.fms.flightPlanAltitude) {
+                    this.setFlightPhase(FLIGHT_PHASE.CRUISE);
+                }
+
+                break;
+
+            case FLIGHT_PHASE.CRUISE:
+                if (this.altitude < this.fms.flightPlanAltitude) {
+                    this.setFlightPhase(FLIGHT_PHASE.DESCENT);
+                }
+
+                break;
+
+            case FLIGHT_PHASE.DESCENT:
+                if (this.pilot.hasApproachClearance) {
+                    this.setFlightPhase(FLIGHT_PHASE.APPROACH);
+                }
+
+                break;
+
+            case FLIGHT_PHASE.APPROACH: {
+                if (this.altitude < PERFORMANCE.INSTRUMENT_APPROACH_MINIMUM_DESCENT_ALTITUDE) {
+                    this.setFlightPhase(FLIGHT_PHASE.LANDING);
+                }
 
                 break;
             }
 
-            case FLIGHT_MODES.TAKEOFF: {
-                runway = airport.getRunway(this.rwy_dep);
-
-                // Altitude Control
-                this.target.altitude = this.pilot.sayTargetedAltitude();
-
-                if (this.speed < this.model.speed.min) {
-                    this.target.altitude = runway.elevation;
-                }
-
-                // Heading Control
-                const runwayHeading = runway.angle;
-
-                if ((this.altitude - runway.elevation) < 400) {
-                    this.target.heading = runwayHeading;
-                } else {
-                    // if (!this.__fms__.followCheck().sid && this.__fms__.currentWaypoint.heading === null) {
-                    if (this.mcp.heading === -999) {
-                        // if no directional instructions available after takeoff
-                        // fly runway heading
-                        this.fms.setHeadingHold(runwayHeading);
-                        // this.__fms__.setCurrent({ heading: runwayHeading });
-                    }
-
-                    this.mode = FLIGHT_MODES.CRUISE;
-                    this.updateStrip();
-                }
-
-                // Speed Control
-                // go fast!
-                this.target.speed = this.model.speed.cruise;
-
+            case FLIGHT_PHASE.LANDING:
                 break;
-            }
 
             default:
                 break;

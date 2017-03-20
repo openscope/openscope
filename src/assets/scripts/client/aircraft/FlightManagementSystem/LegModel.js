@@ -5,7 +5,7 @@ import RouteModel from '../../navigationLibrary/Route/RouteModel';
 import WaypointModel from './WaypointModel';
 import { extractFixnameFromHoldSegment } from '../../navigationLibrary/Route/routeStringFormatHelper';
 import {
-    FLIGHT_CATEGORY,
+    FLIGHT_PHASE,
     PROCEDURE_TYPE
 } from '../../constants/aircraftConstants';
 
@@ -491,10 +491,11 @@ export default class LegModel {
             return '';
         }
 
-        let procedureType = PROCEDURE_TYPE.SID;
+        // TODO: As amended, the following is probably an unsafe assumption, and should be reexamined.
+        let procedureType = PROCEDURE_TYPE.STAR;
 
-        if (flightPhase === FLIGHT_CATEGORY.ARRIVAL) {
-            procedureType = PROCEDURE_TYPE.STAR;
+        if (flightPhase === FLIGHT_PHASE.APRON) {
+            procedureType = PROCEDURE_TYPE.SID;
         }
 
         return procedureType;
