@@ -113,14 +113,12 @@ export default class App {
     initiateDataLoad(airportLoadList, initialAirportToLoad) {
         // This is provides a way to get async data from several sources in the app before anything else runs
         // FIXME: this is wrong. move this and make it less bad!
-        console.log('when');
         $.when(
-            $.ajax(`assets/airports/${initialAirportToLoad.toLowerCase()}.json`),
+            $.ajax(`assets/airports/${initialAirportToLoad}.json`),
             $.ajax('assets/airlines/airlines.json'),
             $.ajax('assets/aircraft/aircraft.json')
         )
             .done((airportResponse, airlineResponse, aircraftResponse) => {
-                console.log('done');
                 this.setupChildren(
                     airportLoadList,
                     airportResponse[0],
@@ -128,7 +126,6 @@ export default class App {
                     aircraftResponse[0].aircraft
                 );
                 this.enable();
-                console.log('done  enable ');
             })
             .fail((jqXHR, textStatus, errorThrown) => {
                 console.error(textStatus);
