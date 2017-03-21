@@ -151,6 +151,7 @@ export default class App {
      * @param aircraftTypeDefinitionList {array}  List of all Aircraft definitions
      */
     setupChildren(airportLoadList, initialAirportData, airlineList, aircraftTypeDefinitionList) {
+        console.log('star of setupChildren');
         // FIXME: this entire method needs to be re-written. this is a temporary implemenation used to
         // get things working in a more cohesive manner. soon, all this instantiation should happen
         // in a different class and the window methods should disappear.
