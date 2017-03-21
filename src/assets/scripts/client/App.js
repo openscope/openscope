@@ -115,9 +115,10 @@ export default class App {
         // FIXME: this is wrong. move this and make it less bad!
         console.log('when');
         $.when(
-            $.ajax(`assets/airports/${initialAirportToLoad.toLowerCase()}.json`),
+
             $.ajax('assets/airlines/airlines.json'),
-            $.ajax('assets/aircraft/aircraft.json')
+            $.ajax('assets/aircraft/aircraft.json'),
+            $.ajax(`assets/airports/${initialAirportToLoad.toLowerCase()}.json`)
         )
             .done((airportResponse, airlineResponse, aircraftResponse) => {
                 console.log(airlineResponse);
