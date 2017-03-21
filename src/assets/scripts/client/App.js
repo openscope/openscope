@@ -176,6 +176,8 @@ export default class App {
         this.spawnScheduler = new SpawnScheduler(this.spawnPatternCollection, this.aircraftController, this.gameController);
 
         this.canvasController = new CanvasController(this.$element, this.navigationLibrary);
+        console.log('canvas loaded');
+        console.log(canvasController);
         this.tutorialView = new TutorialView(this.$element);
         this.uiController = new UiController(this.$element);
         this.aircraftCommander = new AircraftCommander(this.airportController, this.navigationLibrary, this.gameController, this.uiController);
@@ -202,7 +204,7 @@ export default class App {
         window.tutorialView = this.tutorialView;
         window.inputController = this.inputController;
         window.uiController = this.uiController;
-        window.canvasController = this.canvasController;
+        // window.canvasController = this.canvasController;
 
         log(`Version ${this.prop.version_string}`);
 
