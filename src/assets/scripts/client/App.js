@@ -114,21 +114,17 @@ export default class App {
         // This is provides a way to get async data from several sources in the app before anything else runs
         // FIXME: this is wrong. move this and make it less bad!
         console.log('when');
-        /*
-        const getAirportToLoadData = $.ajax({
-            url:`assets/airports/${initialAirportToLoad.toLowerCase()}.json`,
-            async: false
-        });
-        const getAirlinesData = $.ajax({
-            url:'assets/airlines/airlines.json',
-            async: false
-        });
-                */
         $.when(
-            $.ajax(`assets/airports/${initialAirportToLoad.toLowerCase()}.json`),
-            $.ajax('assets/airlines/airlines.json'),
             $.ajax({
-                url:'assets/aircraft/aircraft.json',
+                url: `assets/airports/${initialAirportToLoad.toLowerCase()}.json`,
+                async: false
+            }),
+            $.ajax({
+                url: 'assets/airlines/airlines.json',
+                async: false
+            }),
+            $.ajax({
+                url: 'assets/aircraft/aircraft.json',
                 async: false
             })
         )
