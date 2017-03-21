@@ -94,7 +94,7 @@ export default class AirportController {
         console.log(initialAirportData);
         console.log(airportName);
 
-        if (airportName !== initialAirportData.icao.toLowerCase()) {
+        if (airportName !== initialAirportData.icao) {
             this.airport_set(airportName);
         }
 
