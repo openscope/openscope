@@ -115,18 +115,9 @@ export default class App {
         // FIXME: this is wrong. move this and make it less bad!
         console.log('when');
         $.when(
-            $.ajax({
-                url: `assets/airports/${initialAirportToLoad.toLowerCase()}.json`,
-                async: false
-            }),
-            $.ajax({
-                url: 'assets/airlines/airlines.json',
-                async: false
-            }),
-            $.ajax({
-                url: 'assets/aircraft/aircraft.json',
-                async: false
-            })
+            $.ajax(`assets/airports/${initialAirportToLoad.toLowerCase()}.json`),
+            $.ajax('assets/airlines/airlines.json'),
+            $.ajax('assets/aircraft/aircraft.json')
         )
             .done((airportResponse, airlineResponse, aircraftResponse) => {
                 console.log('done');
@@ -163,7 +154,6 @@ export default class App {
      * @param aircraftTypeDefinitionList {array}  List of all Aircraft definitions
      */
     setupChildren(airportLoadList, initialAirportData, airlineList, aircraftTypeDefinitionList) {
-        console.log('start of setupChildren');
         // FIXME: this entire method needs to be re-written. this is a temporary implemenation used to
         // get things working in a more cohesive manner. soon, all this instantiation should happen
         // in a different class and the window methods should disappear.
@@ -179,18 +169,15 @@ export default class App {
         this.airportController = new AirportController(initialAirportData, airportLoadList, this.updateRun, this.onAirportChange, this.navigationLibrary);
         // FIXME: Temporary
         window.airportController = this.airportController;
-        console.log('airlineList');
-        console.log(airlineList);
+
         this.airlineController = new AirlineController(airlineList);
         this.aircraftController = new AircraftController(aircraftTypeDefinitionList, this.airlineController, this.navigationLibrary);
         // FIXME: Temporary
         window.aircraftController = this.aircraftController;
-        console.log(this.airlineController);
+
         this.spawnPatternCollection = new SpawnPatternCollection(initialAirportData, this.navigationLibrary, this.airportController);
         this.spawnScheduler = new SpawnScheduler(this.spawnPatternCollection, this.aircraftController, this.gameController);
-        console.log(this.$element);
         this.canvasController = new CanvasController(this.$element, this.navigationLibrary);
-        console.log('canvas loaded');
         this.tutorialView = new TutorialView(this.$element);
         this.uiController = new UiController(this.$element);
         this.aircraftCommander = new AircraftCommander(this.airportController, this.navigationLibrary, this.gameController, this.uiController);
