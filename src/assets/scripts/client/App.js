@@ -202,7 +202,7 @@ export default class App {
         window.tutorialView = this.tutorialView;
         window.inputController = this.inputController;
         window.uiController = this.uiController;
-        // window.canvasController = this.canvasController;
+        window.canvasController = this.canvasController;
 
         log(`Version ${this.prop.version_string}`);
 
