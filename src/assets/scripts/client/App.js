@@ -170,12 +170,13 @@ export default class App {
         this.airportController = new AirportController(initialAirportData, airportLoadList, this.updateRun, this.onAirportChange, this.navigationLibrary);
         // FIXME: Temporary
         window.airportController = this.airportController;
-
+        console.log('airlineList');
+        console.log(airlineList);
         this.airlineController = new AirlineController(airlineList);
         this.aircraftController = new AircraftController(aircraftTypeDefinitionList, this.airlineController, this.navigationLibrary);
         // FIXME: Temporary
         window.aircraftController = this.aircraftController;
-
+        console.log(this.airlineController);
         this.spawnPatternCollection = new SpawnPatternCollection(initialAirportData, this.navigationLibrary, this.airportController);
         this.spawnScheduler = new SpawnScheduler(this.spawnPatternCollection, this.aircraftController, this.gameController);
         console.log(this.$element);
