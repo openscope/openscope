@@ -1467,8 +1467,14 @@ export default class AircraftInstanceModel {
         const shouldMoveToNextFix = closeToBeingOverFix || (closeEnoughToFlyByFix && isTimeToStartTurning);
 
         if (shouldMoveToNextFix) {
+            if (!this.fms.hasNextWaypoint()) {
+                // we've hit this block becuase and aircraft is about to fly over the last waypoint in its flightPlan
+                this.pilot.maintainPresentHeading(this.heading);
+
+                return headingToWaypoint;
+            }
+
             this.fms.nextWaypoint();
-            this.updateStrip();
         }
 
         return headingToWaypoint;
