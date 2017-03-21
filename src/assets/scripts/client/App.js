@@ -161,7 +161,7 @@ export default class App {
         this.gameController = new GameController(this.getDeltaTime);
         // FIXME: Temporary
         window.gameController = this.gameController;
-
+        console.log(initialAirportData);
         this.navigationLibrary = new NavigationLibrary(initialAirportData);
         this.airportController = new AirportController(initialAirportData, airportLoadList, this.updateRun, this.onAirportChange, this.navigationLibrary);
         // FIXME: Temporary
