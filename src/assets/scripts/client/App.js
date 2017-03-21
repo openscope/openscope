@@ -117,8 +117,10 @@ export default class App {
             $.ajax(`assets/airports/${initialAirportToLoad.toLowerCase()}.json`),
             $.ajax('assets/airlines/airlines.json'),
             $.ajax('assets/aircraft/aircraft.json')
+            console.log('when');
         )
             .done((airportResponse, airlineResponse, aircraftResponse) => {
+                console.log('done ');
                 this.setupChildren(
                     airportLoadList,
                     airportResponse[0],
@@ -126,6 +128,7 @@ export default class App {
                     aircraftResponse[0].aircraft
                 );
                 this.enable();
+                console.log('done / enable ');
             })
             .fail((jqXHR, textStatus, errorThrown) => {
                 console.error(textStatus);
