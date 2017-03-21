@@ -178,7 +178,7 @@ export default class App {
 
         this.spawnPatternCollection = new SpawnPatternCollection(initialAirportData, this.navigationLibrary, this.airportController);
         this.spawnScheduler = new SpawnScheduler(this.spawnPatternCollection, this.aircraftController, this.gameController);
-
+        console.log(this.$element);
         this.canvasController = new CanvasController(this.$element, this.navigationLibrary);
         console.log('canvas loaded');
         this.tutorialView = new TutorialView(this.$element);
