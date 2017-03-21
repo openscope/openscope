@@ -178,7 +178,6 @@ export default class App {
 
         this.canvasController = new CanvasController(this.$element, this.navigationLibrary);
         console.log('canvas loaded');
-        console.log(canvasController);
         this.tutorialView = new TutorialView(this.$element);
         this.uiController = new UiController(this.$element);
         this.aircraftCommander = new AircraftCommander(this.airportController, this.navigationLibrary, this.gameController, this.uiController);
