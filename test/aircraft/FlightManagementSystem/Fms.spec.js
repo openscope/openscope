@@ -97,24 +97,24 @@ ava('.init() calls ._buildLegCollection()', (t) => {
     t.true(_buildLegCollectionSpy.calledWithExactly(ARRIVAL_AIRCRAFT_INIT_PROPS_MOCK.route));
 });
 
-ava('.setDepartureRunway() sets a runway name to #_runwayName', (t) => {
+ava('.setDepartureRunway() sets a runway name to #currentRunwayName', (t) => {
     const nextRunwayMock = '19R';
     const fms = buildFmsMockForDeparture();
 
     fms.setDepartureRunway(nextRunwayMock);
 
-    t.true(fms._runwayName === nextRunwayMock);
+    t.true(fms.currentRunwayName === nextRunwayMock);
 });
 
 ava.todo('.setDepartureRunway() validates route with changed runway');
 
-ava('.setArrivalRunway() sets a runway name to #_runwayName', (t) => {
+ava('.setArrivalRunway() sets a runway name to #currentRunwayName', (t) => {
     const nextRunwayMock = '19R';
     const fms = buildFmsMock();
 
     fms.setArrivalRunway(nextRunwayMock);
 
-    t.true(fms._runwayName === nextRunwayMock);
+    t.true(fms.currentRunwayName === nextRunwayMock);
 });
 
 ava.todo('.setArrivalRunway() validates route with changed runway');

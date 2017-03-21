@@ -117,7 +117,7 @@ export default class Fms {
          *
          * This value is likely to change as an aircraft moves through the airspace.
          *
-         * @property _runway
+         * @property _runwayName
          * @type {string}
          * @private
          */
@@ -162,6 +162,20 @@ export default class Fms {
         this.legCollection = [];
 
         this.init(aircraftInitProps);
+    }
+
+    /**
+     * The name of the currently assigned runway
+     *
+     * // TODO: this may need to be moved to a function in the event
+     *          both departure and arrival runways are supported for
+     *          a single aircraft
+     *
+     * @property currentRunway
+     * @return {string}
+     */
+    get currentRunwayName() {
+        return this._runwayName;
     }
 
     /**
@@ -580,6 +594,7 @@ export default class Fms {
             return;
         }
 
+        // TODO: we may need to update the runway in this method
         const procedureLegIndex = this._findLegIndexForProcedureType(PROCEDURE_TYPE.STAR);
 
         // a procedure does not exist in the flight plan, so we must create a new one
@@ -606,6 +621,7 @@ export default class Fms {
      * @param runway {string}
      */
     replaceFlightPlanWithNewRoute(routeString, runway) {
+        // TODO: we may need to update the runway in this method
         this._destroyLegCollection();
 
         this.flightPlanRoute = routeString;
@@ -1214,7 +1230,7 @@ export default class Fms {
      *
      * @for Fms
      * @method _updateRunwayAssignment
-     * @param runwayName
+     * @param runwayName {string}
      * @private
      */
     _updateRunwayAssignment(runwayName) {

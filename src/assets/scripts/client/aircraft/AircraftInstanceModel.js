@@ -14,14 +14,12 @@ import { TIME } from '../constants/globalConstants';
 import { speech_say } from '../speech';
 import { tau, radians_normalize, angle_offset } from '../math/circle';
 import { round, abs, sin, cos, extrapolate_range_clamp, clamp } from '../math/core';
-import { distance2d } from '../math/distance';
 import { getOffset, calculateTurnInitiaionDistance } from '../math/flightMath';
 import { MCP_MODE, MCP_MODE_NAME } from './ModeControl/modeControlConstants';
 import {
     vectorize_2d,
     vlen,
     vradial,
-    vsub,
     vadd,
     vscale,
     distance_to_poly,
