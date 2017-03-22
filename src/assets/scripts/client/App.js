@@ -119,6 +119,10 @@ export default class App {
             $.ajax('assets/aircraft/aircraft.json')
         )
             .done((airportResponse, airlineResponse, aircraftResponse) => {
+                console.log('done');
+                console.log(airlineResponse);
+                console.log(airlineResponse[0].airlines);
+
                 this.setupChildren(
                     airportLoadList,
                     airportResponse[0],
