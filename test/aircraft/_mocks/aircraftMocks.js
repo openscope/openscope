@@ -119,6 +119,7 @@ export const HOLD_WAYPOINT_MOCK = {
 };
 
 export const HOLD_AT_PRESENT_LOCATION_MOCK = {
+    isHold: true,
     turnDirection: 'left',
     legLength: '3min',
     name: 'GPS',

@@ -53,6 +53,7 @@ export const FLIGHT_PHASE = {
     TAKEOFF: 'TAKEOFF',
     CLIMB: 'CLIMB',
     CRUISE: 'CRUISE',
+    HOLD: 'HOLD',
     DESCENT: 'DESCENT',
     APPROACH: 'APPROACH',
     LANDING: 'LANDING'

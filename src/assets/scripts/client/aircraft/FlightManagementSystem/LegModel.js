@@ -71,11 +71,18 @@ export default class LegModel {
         /**
          * Indicates the leg is for a holding pattern
          *
-         * @property isHold
+         * This property should only be used internally for easier
+         * switching on routeStrings.
+         *
+         * The `WaypointModel` also has an `#isHold` property
+         * that should be used to determine if a waypoint is
+         * for a holding pattern.
+         *
+         * @property _isHold
          * @type {boolean}
          * @private
          */
-        this.isHold = false;
+        this._isHold = false;
 
         /**
          * When a leg is a procedure, this property describes what type of procedure
@@ -209,7 +216,7 @@ export default class LegModel {
     init(routeSegment, runway, flightPhase, holdWaypointProps) {
         this.isProcedure = RouteModel.isProcedureRouteString(routeSegment);
         // TODO: replace with constant
-        this.isHold = RouteModel.isHoldRouteString(routeSegment) || routeSegment === 'GPS';
+        this._isHold = RouteModel.isHoldRouteString(routeSegment) || routeSegment === 'GPS';
 
         this.routeString = routeSegment.toLowerCase();
         this._procedureRouteModel = this._buildProcedureRouteModel(routeSegment);
@@ -227,7 +234,7 @@ export default class LegModel {
         this._destroyWaypointCollection();
 
         this.isProcedure = false;
-        this.isHold = false;
+        this._isHold = false;
         this.procedureType = '';
         this.routeString = '';
         this.waypointCollection = [];
@@ -371,7 +378,7 @@ export default class LegModel {
     _buildWaypointCollection(routeSegment, runway, flightPhase, holdWaypointProps) {
         if (this.isProcedure) {
             return this._buildWaypointCollectionForProcedureRoute(routeSegment, runway, flightPhase);
-        } else if (this.isHold) {
+        } else if (this._isHold) {
             return this._buildWaypointForHoldingPattern(routeSegment, holdWaypointProps);
         }
 

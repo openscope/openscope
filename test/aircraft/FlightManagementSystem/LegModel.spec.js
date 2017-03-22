@@ -135,12 +135,13 @@ ava('._buildWaypointForHoldingPattern() returns an array with a single instance 
 
     t.true(_isArray(result));
     t.true(result[0] instanceof WaypointModel);
+    t.true(result[0].isHold);
     t.true(result[0].name === 'cowby');
     t.true(result[0].altitudeRestriction === -1);
     t.true(result[0].speedRestriction === -1);
     t.true(result[0]._turnDirection === 'right');
     t.true(result[0]._legLength === '1min');
-    t.true(result[0].timer === -1);
+    t.true(result[0].timer === -999);
 });
 
 ava('._buildWaypointForHoldingPatternAtPosition() returns an array with a single instance of a WaypointModel with hold properties for GPS', (t) => {
@@ -149,12 +150,13 @@ ava('._buildWaypointForHoldingPatternAtPosition() returns an array with a single
 
     t.true(_isArray(result));
     t.true(result[0] instanceof WaypointModel);
+    t.true(result[0].isHold);
     t.true(result[0].name === 'gps');
     t.true(result[0].altitudeRestriction === -1);
     t.true(result[0].speedRestriction === -1);
     t.true(result[0]._turnDirection === 'left');
     t.true(result[0]._legLength === '3min');
-    t.true(result[0].timer === -1);
+    t.true(result[0].timer === -999);
 });
 
 ava('._buildWaypointForHoldingPatternAtPosition() returns the same position for a hold Waypoint at a fix vs position', (t) => {

@@ -107,15 +107,31 @@ export default class WaypointModel {
          *
          * @property timer
          * @type {number}
+         * @default -999
          * @private
          */
-        this.timer = -1;
+        this.timer = -999;
+
+        /**
+         * Flag used to determine if a waypoint is for a holding pattern
+         *
+         * Typically used from the fms as `fms#currentWaypoint`
+         *
+         * @property
+         * @type {boolean}
+         * @default false
+         */
+        this.isHold = false;
 
         this.init(waypointProps);
     }
 
     /**
+     * Returns the name of the waypoint
      *
+     * Will return `RNAV` if the waypoint is a specific point in space
+     * and not a named fixed. These waypoints are prefixed with a
+     * `_` symbol.
      *
      * @property name
      * @type {string}
@@ -150,7 +166,7 @@ export default class WaypointModel {
         return {
             dirTurns: this._turnDirection,
             fixName: this._name,
-            fixPos: this._positionModel,
+            fixPos: this._positionModel.relativePosition,
             inboundHd: null,
             legLength: this._legLength,
             timer: this.timer
@@ -194,6 +210,7 @@ export default class WaypointModel {
         this.altitudeRestriction = parseInt(waypointProps.altitudeRestriction, 10);
 
         // these properties will only be available for holding pattern waypoints
+        this.isHold = _get(waypointProps, 'isHold', this.isHold);
         this._turnDirection = _get(waypointProps, 'turnDirection', this._turnDirection);
         this._legLength = _get(waypointProps, 'legLength', this._legLength);
         this.timer = _get(waypointProps, 'timer', this.timer);
@@ -207,12 +224,14 @@ export default class WaypointModel {
      */
     destroy() {
         this._name = '';
-        this._positionModel = null;
-        this.speedRestriction = -1;
-        this.altitudeRestriction = -1;
         this._turnDirection = '';
         this._legLength = '';
-        this.timer = -1;
+        this._positionModel = null;
+
+        this.isHold = false;
+        this.speedRestriction = -1;
+        this.altitudeRestriction = -1;
+        this.timer = -999;
     }
 
     /**
@@ -224,6 +243,7 @@ export default class WaypointModel {
      * @param legLength {string}
      */
     updateWaypointWithHoldProps(turnDirection, legLength) {
+        this.isHold = true;
         this._turnDirection = turnDirection;
         this._legLength = legLength;
     }

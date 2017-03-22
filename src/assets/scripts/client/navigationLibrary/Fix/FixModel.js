@@ -137,7 +137,7 @@ export default class FixModel extends BaseModel {
      * @return {WaypointModel}
      */
     toWaypointModel(isHold = false, holdProps = {}) {
-        let waypointProps = {
+        const waypointProps = {
             name: this.name,
             positionModel: this.clonePosition(),
             altitudeRestriction: -1,
@@ -145,9 +145,10 @@ export default class FixModel extends BaseModel {
         };
 
         if (isHold) {
+            waypointProps.isHold = true;
             waypointProps.turnDirection = _get(holdProps, 'turnDirection', 'right');
             waypointProps.legLength = _get(holdProps, 'legLength', '1min');
-            waypointProps.timer = -1;
+            waypointProps.timer = -999;
         }
 
         return new WaypointModel(waypointProps);

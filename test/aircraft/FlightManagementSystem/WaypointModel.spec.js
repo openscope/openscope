@@ -34,6 +34,7 @@ ava('.updateWaypointWithHoldProps() sets parameters as hold-specific properties'
     const model = new WaypointModel(waypointMock);
     model.updateWaypointWithHoldProps('left', '2min');
 
+    t.true(model.isHold === true);
     t.true(model._turnDirection === 'left');
     t.true(model._legLength === '2min');
 });

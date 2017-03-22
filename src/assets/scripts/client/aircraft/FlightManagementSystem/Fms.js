@@ -428,6 +428,7 @@ export default class Fms {
         const waypointProps = {
             turnDirection,
             legLength,
+            isHold: true,
             name: holdRouteSegment,
             positionModel: holdPosition,
             altitudeRestriction: INVALID_VALUE,
