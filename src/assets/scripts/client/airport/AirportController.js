@@ -89,7 +89,7 @@ export default class AirportController {
         console.log(initialAirportData);
         const airportDataType = typeof initialAirportData;
         console.log(airportDataType);
-        initialAirportData = JSON.parse(initialAirportData);
+        //initialAirportData = JSON.parse(initialAirportData);
         console.log(initialAirportData);
         console.log(typeof initialAirportData);
         console.log(initialAirportData.icao);
