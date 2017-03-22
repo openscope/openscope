@@ -119,8 +119,9 @@ export default class App {
             $.ajax('assets/aircraft/aircraft.json')
         )
             .done((airportResponse, airlineResponse, aircraftResponse) => {
-                console.log('done');
+                console.log('airlineResponse');
                 console.log(airlineResponse);
+                console.log('airlineResponse[0].airlines');
                 console.log(airlineResponse[0].airlines);
 
                 this.setupChildren(
@@ -165,7 +166,7 @@ export default class App {
         this.gameController = new GameController(this.getDeltaTime);
         // FIXME: Temporary
         window.gameController = this.gameController;
-        console.log(initialAirportData);
+
         this.navigationLibrary = new NavigationLibrary(initialAirportData);
         this.airportController = new AirportController(initialAirportData, airportLoadList, this.updateRun, this.onAirportChange, this.navigationLibrary);
         // FIXME: Temporary
