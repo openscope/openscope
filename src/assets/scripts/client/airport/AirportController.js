@@ -85,25 +85,16 @@ export default class AirportController {
      */
     ready(initialAirportData) {
         let airportName = DEFAULT_AIRPORT_ICAO;
-        console.log('initialAirportData in AirportController Ready');
-        console.log(initialAirportData);
-        const airportDataType = typeof initialAirportData;
-        console.log(airportDataType);
-        //initialAirportData = JSON.parse(initialAirportData);
-        console.log(initialAirportData);
-        console.log(typeof initialAirportData);
-        console.log(initialAirportData.icao);
+
         if (_has(localStorage, STORAGE_KEY.ATC_LAST_AIRPORT) ||
             _has(this.airport.airports, _lowerCase(localStorage[STORAGE_KEY.ATC_LAST_AIRPORT]))
         ) {
             airportName = _lowerCase(localStorage[STORAGE_KEY.ATC_LAST_AIRPORT]);
         }
 
-
         if (airportName !== initialAirportData.icao.toLowerCase()) {
             this.airport_set(airportName);
         }
-
 
         this.airport_set(airportName, initialAirportData);
 
