@@ -351,7 +351,7 @@ export default class AircraftInstanceModel {
      */
     onAirspaceExit() {
         if (this.category === FLIGHT_CATEGORY.ARRIVAL) {
-            this.arrivalExit();
+            return this.arrivalExit();
         }
 
         // Leaving the facility's airspace
