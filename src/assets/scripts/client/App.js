@@ -121,8 +121,8 @@ export default class App {
             .done((airportResponse, airlineResponse, aircraftResponse) => {
                 console.log('airlineResponse');
                 console.log(airlineResponse);
-                console.log('airlineResponse[0].airlines');
-                console.log(airlineResponse[0].airlines);
+                console.log('airlineResponse.airlines');
+                console.log(airlineResponse.airlines);
 
                 this.setupChildren(
                     airportLoadList,
