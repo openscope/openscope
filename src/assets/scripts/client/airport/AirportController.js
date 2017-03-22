@@ -89,7 +89,8 @@ export default class AirportController {
         console.log(initialAirportData);
         const airportDataType = typeof initialAirportData;
         console.log(airportDataType);
-
+        initialAirportData = JSON.parse(initialAirportData);
+        console.log(typeof initialAirportData);
         if (_has(localStorage, STORAGE_KEY.ATC_LAST_AIRPORT) ||
             _has(this.airport.airports, _lowerCase(localStorage[STORAGE_KEY.ATC_LAST_AIRPORT]))
         ) {
