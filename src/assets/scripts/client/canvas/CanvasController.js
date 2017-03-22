@@ -369,10 +369,8 @@ export default class ConvasController {
      * @param name {string}
      */
     canvas_add(name) {
-        console.log('console canvas_add start')
         $(SELECTORS.DOM_SELECTORS.CANVASES).append(`<canvas id='${name}-canvas'></canvas>`);
         this.canvas.contexts[name] = $(`#${name}-canvas`).get(0).getContext('2d');
-        console.log('console canvas_add End')
     }
 
 

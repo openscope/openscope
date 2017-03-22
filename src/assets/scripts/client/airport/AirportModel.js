@@ -514,9 +514,7 @@ export default class AirportModel {
         .done((data) => {
             try {
                 // eslint-disable-next-line no-undef
-                log('Parsing terrain');
                 this.parseTerrain(data);
-                log('Parsing terrain complete');
             } catch (e) {
                 throw new Error(e.message);
             }
