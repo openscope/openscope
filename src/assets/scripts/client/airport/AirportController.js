@@ -38,7 +38,8 @@ export default class AirportController {
         this._airportListToLoad = airportLoadList;
         // eslint-disable-next-line no-undef
         prop.airport = airport;
-
+        console.log('initialAirportData in AirportController Constructor');
+        console.log(initialAirportData);
         return this.init()
                    .ready(initialAirportData);
     }
@@ -84,6 +85,8 @@ export default class AirportController {
      */
     ready(initialAirportData) {
         let airportName = DEFAULT_AIRPORT_ICAO;
+        console.log('initialAirportData in AirportController Ready');
+        console.log(initialAirportData);
 
         if (_has(localStorage, STORAGE_KEY.ATC_LAST_AIRPORT) ||
             _has(this.airport.airports, _lowerCase(localStorage[STORAGE_KEY.ATC_LAST_AIRPORT]))
