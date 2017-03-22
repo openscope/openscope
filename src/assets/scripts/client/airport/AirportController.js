@@ -94,7 +94,7 @@ export default class AirportController {
             airportName = _lowerCase(localStorage[STORAGE_KEY.ATC_LAST_AIRPORT]);
         }
 
-        if (airportName !== initialAirportData.icao.toLowerCase()) {
+        if (airportName != initialAirportData.icao.toLowerCase()) {
             this.airport_set(airportName);
         }
 
