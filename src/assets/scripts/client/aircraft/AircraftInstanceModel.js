@@ -455,10 +455,11 @@ export default class AircraftInstanceModel {
     /**
      * @for AircraftInstanceModel
      * @method getRadioCallsign
-     * @param condensed
+     * @return cs {string}
      */
-    getRadioCallsign(condensed) {
-        let heavy = '';
+    getRadioCallsign() {
+        let heavy;
+        let radioCallsign;
 
         if (this.model.weightclass === 'H') {
             heavy = ' heavy';
@@ -468,22 +469,13 @@ export default class AircraftInstanceModel {
             heavy = ' super';
         }
 
-        let flightNumber = this.callsign;
-        if (condensed) {
-            const length = 2;
-            flightNumber = flightNumber.substr(flightNumber.length - length);
-        }
-
-        // TODO: this may not be needed any longer
-        let cs = window.airlineController.airline_get(this.airline).callsign;
-
-        if (cs === 'November') {
-           cs += ` ${radio_spellOut(callsign)} ${heavy}`;
+        if (this.airlineCallsign !== 'November') {
+            radioCallsign += ` ${radio_spellOut(this.airlineCallsign)} ${heavy}`;
         } else {
-           cs += ` ${groupNumbers(callsign, this.airline)} ${heavy}`;
+            radioCallsign += ` ${groupNumbers(this.flightNumber, this.airlineCallsign)} ${heavy}`;
         }
 
-        return cs;
+        return radioCallsign;
     }
 
     // TODO: this method should move to the `AircraftTypeDefinitionModel`
@@ -968,6 +960,9 @@ export default class AircraftInstanceModel {
             case FLIGHT_PHASE.CRUISE:
                 break;
 
+            case FLIGHT_PHASE.HOLD:
+                break;
+
             case FLIGHT_PHASE.DESCENT:
                 break;
 
@@ -1008,7 +1003,6 @@ export default class AircraftInstanceModel {
      */
     setFlightPhase(phase) {
         this.fms.setFlightPhase(phase);
-        this.updateStrip();
     }
 
     // TODO: This probably doesn't belong in the aircraft. More thought needed.
@@ -1022,6 +1016,13 @@ export default class AircraftInstanceModel {
     updateFlightPhase() {
         const airportModel = window.airportController.airport_get();
         const runwayModel = airportModel.getRunway(this.rwy_dep);
+
+        // TODO: abstract boolean logic to class method
+        if (this.flightPhase !== FLIGHT_PHASE.HOLD && this.fms.currentWaypoint.isHold) {
+            this.setFlightPhase(FLIGHT_PHASE.HOLD);
+
+            return;
+        }
 
         switch (this.flightPhase) {
             case FLIGHT_PHASE.TAXI: {
@@ -1092,6 +1093,12 @@ export default class AircraftInstanceModel {
      */
     _calculateTargetedHeading() {
         if (this.mcp.autopilotMode !== MCP_MODE.AUTOPILOT.ON) {
+            return;
+        }
+
+        if (this.fms.currentWaypoint.isHold) {
+            this.updateTargetPrepareAircraftForHold();
+
             return;
         }
 
@@ -1487,35 +1494,41 @@ export default class AircraftInstanceModel {
      * @method updateTargetPrepareAircraftForHold
      */
     updateTargetPrepareAircraftForHold() {
-        const hold = this.__fms__.currentWaypoint.hold;
-        const angle_off_of_leg_hdg = abs(angle_offset(this.heading, this.target.heading));
+        const invalidTimerValue = -999;
+        const hold = this.fms.currentWaypoint.hold;
+        const angle_off_of_leg_hdg = abs(angle_offset(this.heading, this.mcp.heading));
+        const offset = getOffset(this, hold.fixPos);
+        const shouldEnterHold = hold.timer === invalidTimerValue && offset[1] < 0 && offset[2] < 2;
+        const holdLegDurationInSeconds = hold.timer + parseInt(hold.legLength.replace('min', ''), 10) * TIME.ONE_MINUTE_IN_SECONDS;
 
+        // TODO: only enter hold if near fix
+
+        // TODO: early return
         // within ~2° of upwd/dnwd
         if (angle_off_of_leg_hdg < 0.035) {
-            const offset = getOffset(this, hold.fixPos);
-
             // entering hold, just passed the fix
-            if (hold.timer === null && offset[1] < 0 && offset[2] < 2) {
+            if (shouldEnterHold) {
                 // Force aircraft to enter the hold immediately
-                hold.timer = -999;
+                this.fms.currentWaypoint.timer = invalidTimerValue;
             }
 
+            // TODO: add class property that converts hold time to correct unit
+            // TODO: remove `includes`, this should be handled by the CommandParser
             // Holding Logic
             // time-based hold legs
-            if (hold.timer && hold.legLength.includes('min')) {
-                if (hold.timer === -1) {
+            // if (hold.timer && hold.legLength.includes('min')) {
+                if (hold.timer === invalidTimerValue) {
                     // save the time
-                    hold.timer = window.gameController.game.time;
-                } else if (window.gameController.game.time >= hold.timer + parseInt(hold.legLength.replace('min', ''), 10) * 60) {
-                    // time to turn
-                    this.target.heading += Math.PI;   // turn to other leg
+                    this.fms.currentWaypoint.timer = window.gameController.game.time;
+                } else if (window.gameController.game.time >= holdLegDurationInSeconds) {
+                    // turn to other leg
+                    this.target.heading += Math.PI;
                     this.target.turn = hold.dirTurns;
-                    hold.timer = -1; // reset the timer
-                } else if (hold.legLength.includes('nm')) {
-                    // distance-based hold legs
-                    // not yet implemented
+                    // reset the timer
+                    this.fms.currentWaypoint.timer = invalidTimerValue;
                 }
-            }
+                // TODO: add distance based hold
+            // }
         }
     }
     /* ^^^^^^^^^^^ THESE SHOULD BE EXAMINED AND EITHER REMOVED OR MOVED ELSEWHERE ^^^^^^^^^^^ */
