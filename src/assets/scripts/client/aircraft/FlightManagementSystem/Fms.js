@@ -350,7 +350,7 @@ export default class Fms {
     getBottomAltitude() {
         const valueToExclude = -1;
         const minAltitudeFromLegs = _without(
-            _map(this.legCollection, (leg) => leg.getProcedureTopAltitude()),
+            _map(this.legCollection, (leg) => leg.getProcedureBottomAltitude()),
             valueToExclude
         );
 

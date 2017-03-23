@@ -10,7 +10,7 @@ import { distance2d } from '../math/distance';
 import { vscale, vturn, positive_intersection_with_rect } from '../math/vector';
 import { SELECTORS } from '../constants/selectors';
 import { LOG } from '../constants/logLevel';
-import { FLIGHT_MODES, FLIGHT_CATEGORY } from '../constants/aircraftConstants';
+import { FLIGHT_PHASE, FLIGHT_CATEGORY } from '../constants/aircraftConstants';
 
 // Temporary const declaration here to attach to the window AND use as internal property
 const canvas = {};
@@ -1013,9 +1013,7 @@ export default class ConvasController {
         for (let i = 0; i < 60; i++) {
             twin.update();
 
-            ils_locked = twin.isPrecisionGuided() &&
-                twin.category === FLIGHT_CATEGORY.ARRIVAL &&
-                twin.mode === FLIGHT_MODES.LANDING;
+            ils_locked = twin.isEstablished() && twin.fms.currentPhase === FLIGHT_PHASE.APPROACH;
 
             future_track.push([twin.relativePosition[0], twin.relativePosition[1], ils_locked]);
 
@@ -1233,7 +1231,7 @@ export default class ConvasController {
                 cc.lineTo(0, height2);
                 cc.stroke();  // bottom arc end
 
-                if (aircraft.mode === FLIGHT_MODES.LANDING) {
+                if (aircraft.isEstablished()) {
                     // Localizer Capture Indicator
                     cc.fillStyle = white;
                     cc.beginPath();

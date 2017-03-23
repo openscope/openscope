@@ -365,7 +365,7 @@ export default class AircraftInstanceModel {
      */
     onAirspaceExit() {
         if (this.category === FLIGHT_CATEGORY.ARRIVAL) {
-            this.arrivalExit();
+            return this.arrivalExit();
         }
 
         // Leaving the facility's airspace
@@ -628,13 +628,15 @@ export default class AircraftInstanceModel {
      * @method runTakeoff
      */
     isEstablished() {
-        if (this.mode !== FLIGHT_MODES.LANDING) {
-            return false;
-        }
+        const runway = window.airportController.airport_get().getRunway(this.fms.currentRunwayName);
+        const runwayHeading = runway.angle;
+        const approachOffset = getOffset(this, runway.relativePosition, runwayHeading);
+        const lateralDistanceFromCourse_nm = abs(nm(approachOffset[0]));
+        const onApproachCourse = lateralDistanceFromCourse_nm <= PERFORMANCE.MAXIMUM_DISTANCE_CONSIDERED_ESTABLISHED_ON_APPROACH_COURSE_NM;
+        const heading_diff = abs(angle_offset(this.heading, runwayHeading));
+        const onCorrectHeading = heading_diff < PERFORMANCE.MAXIMUM_ANGLE_CONSIDERED_ESTABLISHED_ON_APPROACH_COURSE;
 
-        // TODO: why 48m?  whats the significance of that number?
-        // 160 feet or 48 meters
-        return this.approachOffset <= 0.048;
+        return onApproachCourse && onCorrectHeading;
     }
 
     /**
@@ -673,6 +675,7 @@ export default class AircraftInstanceModel {
         return nearRunwayAltitude || nearAirportAltitude;
     }
 
+    // TODO: Possible duplicate
     /**
      * Aircraft is actively following an instrument approach and is elegible for reduced separation
      *
@@ -685,7 +688,7 @@ export default class AircraftInstanceModel {
      * @method runTakeoff
      */
     isPrecisionGuided() {
-        return this.mode === FLIGHT_MODES.LANDING;
+        return this.isEstablished();
     }
 
     /**
@@ -1271,25 +1274,28 @@ export default class AircraftInstanceModel {
         // TODO: abstract this to be not specific to ILS interception, but interception of a 'course' to a 'datum'
 
         // Guide aircraft onto the localizer
-        const runway = window.airportController.airport_get().getRunway(this.rwy_arr);
+        const runway = window.airportController.airport_get().getRunway(this.fms.currentRunwayName);
         const runwayHeading = radians_normalize(runway.angle);
-        const lateralDistanceFromCourse_km = getOffset(this, runway.relativePosition, runwayHeading)[0];
+        const approachOffset = getOffset(this, runway.relativePosition, runwayHeading);
+        const lateralDistanceFromCourse_nm = nm(approachOffset[0]);
         const angle_diff = angle_offset(runwayHeading, this.heading);
+        const bearingFromAircaftToRunway = this.positionModel.bearingToPosition(runway.positionModel);
+        const angleAwayFromLocalizer = runwayHeading - bearingFromAircaftToRunway;
         // TODO: abstract to helper function
-        const turning_time = Math.abs(radiansToDegrees(angle_diff)) / 3; // time to turn angle_diff degrees at 3 deg/s
+        const turning_time = Math.abs(radiansToDegrees(angle_diff / PERFORMANCE.TURN_RATE));    // time to turn angle_diff degrees at 3 deg/s
         // TODO: abstract to helper function
-        const turning_radius = km(this.speed) / 3600 * turning_time; // dist covered in the turn, km
+        const turning_radius = (this.speed * TIME.ONE_HOUR_IN_SECONDS) * turning_time;  // dist covered in the turn, nm
         // TODO: abstract to helper function
-        const dist_to_localizer = lateralDistanceFromCourse_km / sin(angle_diff); // dist from the localizer intercept point, km
-        const turn_early_km = 1;    // start turn 1km early, to avoid overshoots from tailwind
-        const should_attempt_intercept = (dist_to_localizer > 0 && dist_to_localizer <= turning_radius + turn_early_km);
-        const in_the_window = abs(this.offset_angle) < degreesToRadians(1.5);  // if true, aircraft will move to localizer, regardless of assigned heading
+        const dist_to_localizer = lateralDistanceFromCourse_nm / sin(angle_diff); // dist from the localizer intercept point, nm
+        const turn_early_nm = 0.5;    // start turn early, to avoid overshoots from tailwind
+        const should_attempt_intercept = (dist_to_localizer > 0 && dist_to_localizer <= turning_radius + turn_early_nm);
+        const in_the_window = abs(angleAwayFromLocalizer) < degreesToRadians(1.5);  // if true, aircraft will move to localizer, regardless of assigned heading
 
         // TODO: the logic here should be reversed to return early
         if (should_attempt_intercept || in_the_window) {  // time to begin turn
             // TODO: abstract to helper function
-            const severity_of_correction = 50;  // controls steepness of heading adjustments during localizer tracking
-            const tgtHdg = runwayHeading + (this.offset_angle * -severity_of_correction);
+            const severity_of_correction = 25.0;  // controls steepness of heading adjustments during localizer tracking
+            const tgtHdg = runwayHeading + (angleAwayFromLocalizer * -severity_of_correction);
             const minHdg = runwayHeading - degreesToRadians(30);
             const maxHdg = runwayHeading + degreesToRadians(30);
             const targetHeading = clamp(tgtHdg, minHdg, maxHdg);
