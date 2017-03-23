@@ -17,6 +17,15 @@ ava('throws when instantiated without parameters', (t) => {
     t.throws(() => new WaypointModel());
 });
 
+ava('#hold returns properties for a holding pattern', (t) => {
+    const waypointHoldMock = Object.assign({}, waypointMock, { legLength: '3min', turnDirection: 'right' });
+    const model = new WaypointModel(waypointHoldMock);
+
+    t.true(model.hold.dirTurns === 'right');
+    t.true(model.hold.legLength === 3);
+    t.true(model.hold.timer === -999);
+});
+
 ava('returns waypoint name when requesting the name of a waypoint that does not begin with an underscore', (t) => {
     const model = new WaypointModel(waypointMock);
 

@@ -168,7 +168,7 @@ export default class WaypointModel {
             fixName: this._name,
             fixPos: this._positionModel.relativePosition,
             inboundHd: null,
-            legLength: this._legLength,
+            legLength: parseInt(this._legLength.replace('min', ''), 10),
             timer: this.timer
         };
     }

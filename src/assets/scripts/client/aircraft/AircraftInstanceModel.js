@@ -1,4 +1,4 @@
-/* eslint-disable max-len */
+/* eslint-disable max-len, no-undef */
 import $ from 'jquery';
 import _defaultTo from 'lodash/defaultTo';
 import _forEach from 'lodash/forEach';
@@ -111,6 +111,20 @@ export default class AircraftInstanceModel {
         this.datablockDir = -1;         // Direction the data block points (-1 means to ignore)
         this.conflicts    = {};         // List of aircraft that MAY be in conflict (bounding box)
         this.terrain_ranges = false;
+        /**
+         * Flag used to determine if an aircraft is established on a holding pattern
+         *
+         * This is switched to true after the first turn of a holding pattern is made.
+         * This allows for offset calculations to be performed on the legLength to
+         * account for the time it takes to make a turn from one leg to the next
+         * in a holding pattern.
+         *
+         * @property _isEstablishedOnHoldingPattern
+         * @type {boolean}
+         * @default false
+         * @private
+         */
+        this._isEstablishedOnHoldingPattern = false;
         // FIXME: change name, and update refs in `InputController`. perhaps change to be a ref to the AircraftStripView class instead of directly accessing the html?
         this.aircraftStripView = null;
         this.$html = null;
@@ -469,7 +483,7 @@ export default class AircraftInstanceModel {
             heavy = ' super';
         }
 
-        if (this.airlineCallsign !== 'November') {
+        if (this.airlineCallsign === 'November') {
             radioCallsign += ` ${radio_spellOut(this.airlineCallsign)} ${heavy}`;
         } else {
             radioCallsign += ` ${groupNumbers(this.flightNumber, this.airlineCallsign)} ${heavy}`;
@@ -580,6 +594,7 @@ export default class AircraftInstanceModel {
      * @method pushHistory
      */
     pushHistory() {
+        // TODO: this should use just positionModel.relativePosition
         this.history.push([this.positionModel.relativePosition[0], this.positionModel.relativePosition[1]]);
 
         if (this.history.length > 10) {
@@ -1017,8 +1032,7 @@ export default class AircraftInstanceModel {
         const airportModel = window.airportController.airport_get();
         const runwayModel = airportModel.getRunway(this.rwy_dep);
 
-        // TODO: abstract boolean logic to class method
-        if (this.flightPhase !== FLIGHT_PHASE.HOLD && this.fms.currentWaypoint.isHold) {
+        if (this._shouldEnterHoldingPattern()) {
             this.setFlightPhase(FLIGHT_PHASE.HOLD);
 
             return;
@@ -1051,6 +1065,9 @@ export default class AircraftInstanceModel {
                     this.setFlightPhase(FLIGHT_PHASE.CRUISE);
                 }
 
+                break;
+
+            case FLIGHT_PHASE.HOLD:
                 break;
 
             case FLIGHT_PHASE.CRUISE:
@@ -1096,7 +1113,7 @@ export default class AircraftInstanceModel {
             return;
         }
 
-        if (this.fms.currentWaypoint.isHold) {
+        if (this.flightPhase === FLIGHT_PHASE.HOLD) {
             this.updateTargetPrepareAircraftForHold();
 
             return;
@@ -1495,41 +1512,35 @@ export default class AircraftInstanceModel {
      */
     updateTargetPrepareAircraftForHold() {
         const invalidTimerValue = -999;
-        const hold = this.fms.currentWaypoint.hold;
-        const angle_off_of_leg_hdg = abs(angle_offset(this.heading, this.mcp.heading));
+        const { hold } = this.fms.currentWaypoint;
         const offset = getOffset(this, hold.fixPos);
         const shouldEnterHold = hold.timer === invalidTimerValue && offset[1] < 0 && offset[2] < 2;
-        const holdLegDurationInSeconds = hold.timer + parseInt(hold.legLength.replace('min', ''), 10) * TIME.ONE_MINUTE_IN_SECONDS;
+        let holdLegDurationInSeconds = hold.legLength * TIME.ONE_MINUTE_IN_SECONDS;
 
-        // TODO: only enter hold if near fix
+        // entering hold, just passed the fix
+        if (shouldEnterHold) {
+            // Force aircraft to enter the hold immediately
+            this.fms.currentWaypoint.timer = invalidTimerValue;
+        }
 
-        // TODO: early return
-        // within ~2° of upwd/dnwd
-        if (angle_off_of_leg_hdg < 0.035) {
-            // entering hold, just passed the fix
-            if (shouldEnterHold) {
-                // Force aircraft to enter the hold immediately
-                this.fms.currentWaypoint.timer = invalidTimerValue;
+        // time-based hold legs
+        if (hold.timer === invalidTimerValue) {
+            if (this._isEstablishedOnHoldingPattern) {
+                const turningTimeOffset = 30; // seconds
+                // TODO: this is the wrong way to do it. get it working first
+                holdLegDurationInSeconds = hold.legLength * (TIME.ONE_MINUTE_IN_SECONDS + turningTimeOffset);
             }
 
-            // TODO: add class property that converts hold time to correct unit
-            // TODO: remove `includes`, this should be handled by the CommandParser
-            // Holding Logic
-            // time-based hold legs
-            // if (hold.timer && hold.legLength.includes('min')) {
-                if (hold.timer === invalidTimerValue) {
-                    // save the time
-                    this.fms.currentWaypoint.timer = window.gameController.game.time;
-                } else if (window.gameController.game.time >= holdLegDurationInSeconds) {
-                    // turn to other leg
-                    this.target.heading += Math.PI;
-                    this.target.turn = hold.dirTurns;
-                    // reset the timer
-                    this.fms.currentWaypoint.timer = invalidTimerValue;
-                }
-                // TODO: add distance based hold
-            // }
+            this.fms.currentWaypoint.timer = window.gameController.game.time + holdLegDurationInSeconds;
+        } else if (window.gameController.game.time >= hold.timer) {
+            this._isEstablishedOnHoldingPattern = true;
+            // turn to other leg
+            this.target.heading += Math.PI;
+            this.target.turn = hold.dirTurns;
+            // reset the timer
+            this.fms.currentWaypoint.timer = invalidTimerValue;
         }
+        // TODO: add distance based hold
     }
     /* ^^^^^^^^^^^ THESE SHOULD BE EXAMINED AND EITHER REMOVED OR MOVED ELSEWHERE ^^^^^^^^^^^ */
 
@@ -1959,6 +1970,37 @@ export default class AircraftInstanceModel {
         }
 
         this.warning = warning;
+    }
+
+    /**
+     * Encapsulation of boolean logic used to determine when the `#flightPhase` should be
+     * changed to `HOLD`
+     *
+     * @method _shouldEnterHoldingPattern
+     * @return {boolean}
+     * @private
+     */
+    _shouldEnterHoldingPattern() {
+        if (!this.fms.currentWaypoint.isHold) {
+            return false;
+        }
+
+        let shouldEnterHold = this.flightPhase !== FLIGHT_PHASE.HOLD;
+        const distanceToHoldPosition = this.positionModel.distanceToPosition(this.fms.currentWaypoint.positionModel);
+        // within ~2° of upwd/dnwd
+        const angleOffOfLegHeading = abs(angle_offset(this.heading, this.mcp.heading));
+        // TODO: there may already be a constant for this value
+        const maximumHeadingAngleDifference = 0.035;
+        // TODO: may need to be MAXIMUM_DISTANCE_TO_PASS_WAYPOINT_NM
+        const maximumDistanceToHold = 3; // in nm;
+        const isWithinHeadingAngleDifference = angleOffOfLegHeading < maximumHeadingAngleDifference;
+        const isWithinMaximumDistanceToHold = distanceToHoldPosition < maximumDistanceToHold;
+
+        if (shouldEnterHold && !isWithinHeadingAngleDifference || !isWithinMaximumDistanceToHold) {
+            shouldEnterHold = false;
+        }
+
+        return shouldEnterHold;
     }
 
     /**
