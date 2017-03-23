@@ -121,6 +121,28 @@ export const PERFORMANCE = {
     MAXIMUM_DISTANCE_TO_PASS_WAYPOINT_NM: 0.5,
 
     /**
+     * Maximum lateral offset from the approach course to consider the aircraft close enough
+     * to be "established on the approach course", which is an important condition for applying
+     * rules of separation.
+     *
+     * @property MAXIMUM_DISTANCE_CONSIDERED_ESTABLISHED_ON_APPROACH_COURSE_NM
+     * @type {number}
+     * @final
+     */
+    MAXIMUM_DISTANCE_CONSIDERED_ESTABLISHED_ON_APPROACH_COURSE_NM: 0.0246868,   // appx. 150 feet
+
+    /**
+     * Maximum angular differce from the approach course heading to consider the aircraft close
+     * to be "established on the approach course", which is an important condition for applying
+     * rules of separation.
+     *
+     * @property MAXIMUM_ANGLE_CONSIDERED_ESTABLISHED_ON_APPROACH_COURSE
+     * @type {number}
+     * @final
+     */
+    MAXIMUM_ANGLE_CONSIDERED_ESTABLISHED_ON_APPROACH_COURSE: 0.0174533, // appx. 1 degree
+
+    /**
      * Altitude above the runway to which aircraft may descend on an instrument approach.
      * Note: Below this altitude, the aircraft is in landing mode
      *
@@ -129,6 +151,7 @@ export const PERFORMANCE = {
      * @final
      */
     INSTRUMENT_APPROACH_MINIMUM_DESCENT_ALTITUDE: 200,
+
     /**
      * Altitude above the runway at which aircraft begin their on-course turn, in feet
      *

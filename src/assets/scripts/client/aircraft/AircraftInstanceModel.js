@@ -613,13 +613,15 @@ export default class AircraftInstanceModel {
      * @method runTakeoff
      */
     isEstablished() {
-        if (this.mode !== FLIGHT_MODES.LANDING) {
-            return false;
-        }
+        const runway = window.airportController.airport_get().getRunway(this.fms.currentRunwayName);
+        const runwayHeading = runway.angle;
+        const approachOffset = getOffset(this, runway.relativePosition, runwayHeading);
+        const lateralDistanceFromCourse_nm = abs(nm(approachOffset[0]));
+        const onApproachCourse = lateralDistanceFromCourse_nm <= PERFORMANCE.MAXIMUM_DISTANCE_CONSIDERED_ESTABLISHED_ON_APPROACH_COURSE_NM;
+        const heading_diff = abs(angle_offset(this.heading, runwayHeading));
+        const onCorrectHeading = heading_diff < PERFORMANCE.MAXIMUM_ANGLE_CONSIDERED_ESTABLISHED_ON_APPROACH_COURSE;
 
-        // TODO: why 48m?  whats the significance of that number?
-        // 160 feet or 48 meters
-        return this.approachOffset <= 0.048;
+        return onApproachCourse && onCorrectHeading;
     }
 
     /**
@@ -658,6 +660,7 @@ export default class AircraftInstanceModel {
         return nearRunwayAltitude || nearAirportAltitude;
     }
 
+    // TODO: Possible duplicate
     /**
      * Aircraft is actively following an instrument approach and is elegible for reduced separation
      *
@@ -670,7 +673,7 @@ export default class AircraftInstanceModel {
      * @method runTakeoff
      */
     isPrecisionGuided() {
-        return this.mode === FLIGHT_MODES.LANDING;
+        return this.isEstablished();
     }
 
     /**
