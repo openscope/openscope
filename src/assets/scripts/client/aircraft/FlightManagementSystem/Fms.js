@@ -524,21 +524,19 @@ export default class Fms {
      * @return waypointPosition {StaticPositionModel}
      */
     getNextWaypointPositionModel() {
-        let waypointPosition;
-
         if (!this.hasNextWaypoint()) {
             console.log('has no next waypoint');
 
             return null;
         }
 
-        waypointPosition = this.currentLeg.nextWaypoint.positionModel;
+        let waypointPosition = this.currentLeg.nextWaypoint;
 
         if (!this.currentLeg.hasNextWaypoint()) {
-            waypointPosition = this.legCollection[1].currentWaypoint.positionModel;
+            waypointPosition = this.legCollection[1].currentWaypoint;
         }
 
-        return waypointPosition;
+        return waypointPosition.positionModel;
     }
 
     /**
