@@ -1675,9 +1675,15 @@ export default class AircraftInstanceModel {
 
         if (abs(angle_diff) <= angle_change) {
             this.heading = this.target.heading;
-        } else if (angle_diff < 0 && this.target.turn !== 'right') {
+        } else if (this.target.turn) {
+            if (this.target.turn === 'left') {
+                this.heading -= angle_change;
+            } else if (this.target.turn === 'right') {
+                this.heading += angle_change;
+            }
+        } else if (angle_diff <= 0) {
             this.heading -= angle_change;
-        } else if (angle_diff > 0 && this.target.turn !== 'left') {
+        } else if (angle_diff > 0) {
             this.heading += angle_change;
         }
     }
