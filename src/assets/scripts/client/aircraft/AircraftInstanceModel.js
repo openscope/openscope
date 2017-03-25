@@ -1523,60 +1523,39 @@ export default class AircraftInstanceModel {
         const { hold } = this.fms.currentWaypoint;
         const inboundHeading = hold.inboundHeading;
         const outboundHeading = inboundHeading + Math.PI;
-        const directionOfTurns = hold.dirTurns || 'right';
         const offset = getOffset(this, hold.fixPos);
-        const isTimerRunning = hold.timer === invalidTimerValue;
-        const isPastFix = offset[1] < 0 && offset[2] < 2;
-        const shouldTurnToOutboundLeg = isTimerRunning && isPastFix;
         const holdLegDurationInSeconds = hold.legLength * TIME.ONE_MINUTE_IN_SECONDS;
         const bearingToHoldFix = vradial(vsub(hold.fixPos, this.relativePosition));
         const gameTime = window.gameController.game.time;
+        const isPastFix = offset[1] < 1 && offset[2] < 2;
+        const isTimerRunning = hold.timer !== invalidTimerValue;
+        // const shouldTurnToOutboundLeg = isTimerRunning && isPastFix;
+        let nextHeading = inboundHeading;
 
-        this.target.turn = directionOfTurns;
+        // this is defaulted to `right` by the commandParser
+        this.target.turn = hold.dirTurns;
 
-        // // entering hold, just passed the fix
-        // if (shouldTurnToOutboundLeg) {  // outbound turn
-        //     this.target.heading = outboundHeading;
-        //     return;
-        // }
-        //
-        // if (this.heading === outboundHeading) { // established on the outbound leg
-        //     hold.timer = window.gameController.game.time + holdLegDurationInSeconds;
-        // }
-        //
-        // if (isTimerRunning) {
-        //     if (window.gameController.game.time < hold.timer) { // outbound leg
-        //         this.target.heading = outboundHeading;
-        //     } else {    // inbound turn
-        //         this.target.heading = inboundHeading;
-        //         hold.timer = invalidTimerValue;
-        //     }
-        // } else {
-        //     const bearingToHoldFix = vradial(vsub(hold.fixPos, this.relativePosition));
-        //
-        //     this.target.heading = bearingToHoldFix;
-        // }
-
-        if (isPastFix) {
-            this.target.heading = outboundHeading;
-        } else {
-            this.target.heading = bearingToHoldFix;
+        if (!this._isEstablishedOnHoldingPattern && isPastFix) {
+            nextHeading = outboundHeading;
+            this._isEstablishedOnHoldingPattern = true;
         }
 
         if (this.heading === outboundHeading) {
             if (hold.timer === invalidTimerValue) {
-                hold.timer = window.gameController.game.time + holdLegDurationInSeconds;
+                hold.timer = gameTime + holdLegDurationInSeconds;
             }
 
-            this.target.heading = outboundHeading;
+            nextHeading = outboundHeading;
         }
 
-        if (gameTime > hold.timer) {
+        if (gameTime > hold.timer && hold.timer !== invalidTimerValue) {
             hold.timer = invalidTimerValue;
-            this.target.heading = bearingToHoldFix;
+            nextHeading = bearingToHoldFix;
         }
 
         // TODO: add distance based hold
+
+        this.target.heading = nextHeading;
     }
     /* ^^^^^^^^^^^ THESE SHOULD BE EXAMINED AND EITHER REMOVED OR MOVED ELSEWHERE ^^^^^^^^^^^ */
 

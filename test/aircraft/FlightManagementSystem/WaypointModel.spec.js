@@ -41,9 +41,10 @@ ava('returns RNAV when requesting the name of a waypoint that begins with an und
 
 ava('.updateWaypointWithHoldProps() sets parameters as hold-specific properties', (t) => {
     const model = new WaypointModel(waypointMock);
-    model.updateWaypointWithHoldProps('left', '2min');
+    model.updateWaypointWithHoldProps(0, 'left', '2min');
 
     t.true(model.isHold === true);
+    t.true(model._holdingPatternInboundHeading === 0);
     t.true(model._turnDirection === 'left');
     t.true(model._legLength === '2min');
 });
