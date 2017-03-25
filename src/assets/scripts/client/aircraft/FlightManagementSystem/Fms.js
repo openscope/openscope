@@ -429,6 +429,7 @@ export default class Fms {
             turnDirection,
             legLength,
             isHold: true,
+            inboundHeading,
             name: holdRouteSegment,
             positionModel: holdPosition,
             altitudeRestriction: INVALID_VALUE,
@@ -448,7 +449,7 @@ export default class Fms {
 
         if (waypointIndex !== INVALID_VALUE) {
             this.skipToWaypoint(waypointNameToFind);
-            this.currentWaypoint.updateWaypointWithHoldProps(turnDirection, legLength);
+            this.currentWaypoint.updateWaypointWithHoldProps(inboundHeading, turnDirection, legLength);
 
             return;
         }

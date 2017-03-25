@@ -82,7 +82,7 @@ export default class Waypoint {
             dirTurns: null,
             fixName: null,
             fixPos: null,
-            inboundHd: null,
+            inboundHeading: null,
             legLength: null,
             timer: 0
         };

@@ -291,14 +291,14 @@ export default class AircraftCommander {
         const holdFix = data[2];
         const fixModel = this._navigationLibrary.findFixByName(holdFix);
         let holdPosition = aircraft.positionModel;
-        let inboundHdg = aircraft.heading;
+        let inboundHeading = aircraft.heading;
 
         if (fixModel) {
             holdPosition = fixModel.relativePosition;
-            inboundHdg = aircraft.positionModel.bearingToPosition(fixModel.positionModel);
+            inboundHeading = aircraft.positionModel.bearingToPosition(fixModel.positionModel);
         }
 
-        return aircraft.pilot.initiateHoldingPattern(inboundHdg, turnDirection, legLength, holdFix, holdPosition);
+        return aircraft.pilot.initiateHoldingPattern(inboundHeading, turnDirection, legLength, holdFix, holdPosition);
     }
 
     /**

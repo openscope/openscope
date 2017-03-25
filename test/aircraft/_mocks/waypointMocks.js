@@ -28,7 +28,7 @@ export const EXPANDED_WAYPOINT_MOCK = {
         fixPos: [37.28695678169094, -42.26087965200279],
         dirTurns: 'right',
         legLength: '1min',
-        inboundHdg: 2.697288004800421,
+        inboundHeading: 2.697288004800421,
         timer: null
     }
 };

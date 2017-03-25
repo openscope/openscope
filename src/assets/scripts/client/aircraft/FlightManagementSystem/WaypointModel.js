@@ -78,6 +78,14 @@ export default class WaypointModel {
         this.altitudeRestriction = -1;
 
         /**
+         * Heading to fly during the inbound leg of a holding pattern at this fix
+         * @for WaypointModel
+         * @member _holdingPatternInboundHeading
+         * @type number
+         */
+        this._holdingPatternInboundHeading = null;
+
+        /**
          * Direction to turn for a holding pattern
          *
          * Used only when waypoint is a holding pattern
@@ -167,7 +175,7 @@ export default class WaypointModel {
             dirTurns: this._turnDirection,
             fixName: this._name,
             fixPos: this._positionModel.relativePosition,
-            inboundHd: null,
+            inboundHeading: this._holdingPatternInboundHeading,
             legLength: parseInt(this._legLength.replace('min', ''), 10),
             timer: this.timer
         };
@@ -242,8 +250,10 @@ export default class WaypointModel {
      * @param turnDirection {string}
      * @param legLength {string}
      */
-    updateWaypointWithHoldProps(turnDirection, legLength) {
+    updateWaypointWithHoldProps(inboundHeading, turnDirection, legLength) {
         this.isHold = true;
+        // FIXME: I assume there is somewhere else we want to do this, where all the other properties are set
+        this._holdingPatternInboundHeading = inboundHeading;
         this._turnDirection = turnDirection;
         this._legLength = legLength;
     }
