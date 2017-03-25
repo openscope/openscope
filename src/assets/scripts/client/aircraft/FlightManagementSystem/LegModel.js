@@ -431,6 +431,11 @@ export default class LegModel {
         const holdRouteSegment = extractFixnameFromHoldSegment(routeString);
         const fixModel = this._navigationLibrary.findFixByName(holdRouteSegment);
 
+        if (!fixModel) {
+            // FIXME: Do something more helpful than this, that ends up telling the user their mistake
+            return new Error(`Requested fix of '${holdRouteSegment}' could not be found!`);
+        }
+
         return [
             fixModel.toWaypointModel(isHold, holdWaypointProps)
         ];
