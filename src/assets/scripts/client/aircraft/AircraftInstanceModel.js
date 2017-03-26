@@ -1546,12 +1546,12 @@ export default class AircraftInstanceModel {
 
         if (!isTimerRunning && this.heading === outboundHeading) {
             // FIXME: Cannot set `hold.timer` because `#hold` is a getter!
-            hold.timer = gameTime + holdLegDurationInSeconds;   // set timer
+            this.fms.currentWaypoint.timer = gameTime + holdLegDurationInSeconds;   // set timer
         }
 
         if (isTimerRunning && gameTime > hold.timer) {
             // FIXME: Cannot set `hold.timer` because `#hold` is a getter!
-            hold.timer = invalidTimerValue; // reset timer
+            this.fms.currentWaypoint.timer = invalidTimerValue; // reset timer
             nextHeading = bearingToHoldFix;
         }
 
