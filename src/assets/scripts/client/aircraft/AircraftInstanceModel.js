@@ -49,6 +49,7 @@ import {
     PERFORMANCE,
     WAYPOINT_NAV_MODE
 } from '../constants/aircraftConstants';
+import { AIRPORT_CONTROL_POSITION_NAME } from '../constants/airportConstants';
 import { SELECTORS } from '../constants/selectors';
 import { GAME_EVENTS } from '../game/GameController';
 
@@ -376,13 +377,13 @@ export default class AircraftInstanceModel {
         if (this.mcp.headingMode === MCP_MODE.HEADING.HOLD) {
             // an aircraft was given a radial  clearance
             if (!this.isHeadingInsideDepartureWindow()) {
-                this.radioCall('leaving radar coverage outside departure window', 'dep', true);
+                this.radioCall('leaving radar coverage outside departure window', AIRPORT_CONTROL_POSITION_NAME.DEPARTURE, true);
                 window.gameController.events_recordNew(GAME_EVENTS.NOT_CLEARED_ON_ROUTE);
 
                 return;
             }
 
-            this.radioCall('switching to center, good day', 'dep');
+            this.radioCall('switching to center, good day', AIRPORT_CONTROL_POSITION_NAME.DEPARTURE);
             window.gameController.events_recordNew(GAME_EVENTS.DEPARTURE);
 
             return;
@@ -390,13 +391,15 @@ export default class AircraftInstanceModel {
 
         // TODO: this seems redundant. if its already in the leg its in the fms.
         if (this.mcp.headingMode !== MCP_MODE.HEADING.LNAV || !this.fms.hasWaypoint(this.fms.currentLeg.exitName)) {
-            this.radioCall(`leaving radar coverage without being cleared to ${this.fms.currentLeg.exitName}`, 'dep', true);
+            this.radioCall(`leaving radar coverage without being cleared to ${this.fms.currentLeg.exitName}`,
+                AIRPORT_CONTROL_POSITION_NAME.DEPARTURE, true
+            );
             window.gameController.events_recordNew(GAME_EVENTS.NOT_CLEARED_ON_ROUTE);
 
             return;
         }
 
-        this.radioCall('switching to center, good day', 'dep');
+        this.radioCall('switching to center, good day', AIRPORT_CONTROL_POSITION_NAME.DEPARTURE);
         window.gameController.events_recordNew(GAME_EVENTS.DEPARTURE);
     }
 
@@ -407,7 +410,7 @@ export default class AircraftInstanceModel {
      * @method arrivalExit
      */
     arrivalExit() {
-        this.radioCall('leaving radar coverage as arrival', 'app', true);
+        this.radioCall('leaving radar coverage as arrival', AIRPORT_CONTROL_POSITION_NAME.APPROACH, true);
         window.gameController.events_recordNew(GAME_EVENTS.AIRSPACE_BUST);
     }
 

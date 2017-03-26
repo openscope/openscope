@@ -32,3 +32,36 @@ export const AIRPORT_CONSTANTS = {
      */
     MIN_ENTRAIL_DISTANCE_NM: 5.5
 };
+
+/**
+ * List of control positions at the airport, used to differentiate which ATC callsign to used
+ *
+ * @property AIRPORT_CONTROL_POSITION_NAME
+ * @type {object}
+ * @final
+ */
+export const AIRPORT_CONTROL_POSITION_NAME = {
+    /**
+    * Provides approach control services
+    *
+    * @property APPROACH
+    * @type {String}
+    */
+    APPROACH: 'app',
+
+    /**
+    * Provides departure control services
+    *
+    * @property TOWER
+    * @type {String}
+    */
+    DEPARTURE: 'dep',
+
+    /**
+    * Provides Air Traffic Control Tower (ATCT) services for surface and runway movements
+    *
+    * @property TOWER
+    * @type {String}
+    */
+    TOWER: 'twr'
+};
