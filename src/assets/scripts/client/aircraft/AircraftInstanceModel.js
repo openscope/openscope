@@ -1505,11 +1505,8 @@ export default class AircraftInstanceModel {
         const bearingToHoldFix = vradial(vsub(hold.fixPos, this.relativePosition));
         const gameTime = window.gameController.game.time;
         const isPastFix = offset[1] < 1 && offset[2] < 2;
-        const isTimerRunning = hold.timer !== invalidTimerValue;
-        // const shouldTurnToOutboundLeg = isTimerRunning && isPastFix;
-
-        // this is defaulted to `right` by the commandParser
-        this.target.turn = hold.dirTurns;
+        const isTimerSet = hold.timer !== invalidTimerValue;
+        const isTimerExpired = isTimerSet && gameTime > this.fms.currentWaypoint.timer;
 
         if (isPastFix && !this._isEstablishedOnHoldingPattern) {
             this._isEstablishedOnHoldingPattern = true;
@@ -1521,20 +1518,26 @@ export default class AircraftInstanceModel {
             return;
         }
 
-        let nextHeading = outboundHeading;
+        let nextTargetHeading = outboundHeading;
 
-        if (!isTimerRunning && this.heading === outboundHeading) {
+        if (this.heading === outboundHeading && !isTimerSet) {
             // set timer
             this.fms.currentWaypoint.timer = gameTime + holdLegDurationInSeconds;
         }
 
-        if (isTimerRunning && gameTime > hold.timer) {
-            // reset timer
-            this.fms.currentWaypoint.timer = invalidTimerValue;
-            nextHeading = bearingToHoldFix;
+        if (isTimerExpired) {
+            nextTargetHeading = bearingToHoldFix;
+
+            if (isPastFix) {
+                this.fms.currentWaypoint.timer = invalidTimerValue;
+                nextTargetHeading = outboundHeading;
+            }
         }
 
-        this.target.heading = nextHeading;
+        // turn direction is defaulted to `right` by the commandParser
+        this.target.turn = hold.dirTurns;
+        this.target.heading = nextTargetHeading;
+
         // TODO: add distance based hold
     }
     /* ^^^^^^^^^^^ THESE SHOULD BE EXAMINED AND EITHER REMOVED OR MOVED ELSEWHERE ^^^^^^^^^^^ */
