@@ -82,8 +82,7 @@ export default class AircraftInstanceModel {
         this.model        = null;       // Aircraft type
         this.airlineId      = '';         // Airline Identifier (eg. 'AAL')
         this.airlineCallsign = '';
-        // FIXME: change this to`flightNumber`
-        this.callsign     = '';         // Flight Number ONLY (eg. '551')
+        this.flightNumber = '';         // Flight Number ONLY (eg. '551')
         this.heading      = 0;          // Magnetic Heading
         this.altitude     = 0;          // Altitude, ft MSL
         this.speed        = 0;          // Indicated Airspeed (IAS), knots
@@ -300,7 +299,7 @@ export default class AircraftInstanceModel {
         this.model = _get(data, 'model', this.model);
         this.airlineId = _get(data, 'airline', this.airlineId);
         this.airlineCallsign = _get(data, 'airlineCallsign', this.airlineCallsign);
-        this.callsign = _get(data, 'callsign', this.callsign);
+        this.flightNumber = _get(data, 'callsign', this.flightNumber);
         this.category = _get(data, 'category', this.category);
         this.heading = _get(data, 'heading', this.heading);
         this.altitude = _get(data, 'altitude', this.altitude);
@@ -460,7 +459,7 @@ export default class AircraftInstanceModel {
     getCallsign() {
         // TODO: this should be an instance property. however, it seems callsign is used in places where it should be
         // flightnumber and visa versa. this needs to be ironed out first before making a class property.
-        return `${this.airlineId.toUpperCase()}${this.callsign.toUpperCase()}`;
+        return `${this.airlineId.toUpperCase()}${this.flightNumber.toUpperCase()}`;
     }
 
     /**
@@ -469,9 +468,10 @@ export default class AircraftInstanceModel {
      * @return cs {string}
      */
     getRadioCallsign() {
-        let heavy;
-        let radioCallsign;
+        let heavy = '';
+        let radioCallsign = this.airlineCallsign;
 
+        // TODO: Move the weight qualifiers to a getter, and call it here to get the value of `heavy`
         if (this.model.weightclass === 'H') {
             heavy = ' heavy';
         }
@@ -481,9 +481,9 @@ export default class AircraftInstanceModel {
         }
 
         if (this.airlineCallsign === 'November') {
-            radioCallsign += ` ${radio_spellOut(this.airlineCallsign)} ${heavy}`;
+            radioCallsign += ` radio_spellOut(${this.flightNumber})${heavy}`;
         } else {
-            radioCallsign += ` ${groupNumbers(this.flightNumber, this.airlineCallsign)} ${heavy}`;
+            radioCallsign += ` ${groupNumbers(this.flightNumber)}${heavy}`;
         }
 
         return radioCallsign;
