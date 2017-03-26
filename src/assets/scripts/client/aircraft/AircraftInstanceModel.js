@@ -362,57 +362,33 @@ export default class AircraftInstanceModel {
             return this.arrivalExit();
         }
 
-        // Leaving the facility's airspace
         this.hideStrip();
 
-        // TODO: is this supposed to be `typeof === 'number'` or is destination a literal string 'number' here?
-        if (this.destination === 'number') {
+        if (this.mcp.headingMode === MCP_MODE.HEADING.HOLD) {
             // an aircraft was given a radial  clearance
-            if (this.isHeadingInsideDepartureWindow()) {
-                this.radioCall('switching to center, good day', 'dep');
-                window.gameController.events_recordNew(GAME_EVENTS.DEPARTURE);
-            } else {
+            if (!this.isHeadingInsideDepartureWindow()) {
                 this.radioCall('leaving radar coverage outside departure window', 'dep', true);
                 window.gameController.events_recordNew(GAME_EVENTS.NOT_CLEARED_ON_ROUTE);
+
+                return;
             }
-        } else {
-            // TODO: use fms.getLastWaypoint() here instead or use procedureRouteModel
 
-            // following a Standard Instrument Departure procedure
-            // Find the desired SID exitPoint
-            let exit;
+            this.radioCall('switching to center, good day', 'dep');
+            window.gameController.events_recordNew(GAME_EVENTS.DEPARTURE);
 
-            // TODO: if we just need the last fix in the list, why loop through all the legs?
-            _forEach(this.__fms__.legs, (leg) => {
-                if (leg.type === FP_LEG_TYPE.SID) {
-                    // TODO: use lodash `_last()` here
-                    exit = leg.waypoints[leg.waypoints.length - 1].fix;
-                    return;
-                }
-            });
-
-            // Verify aircraft was cleared to departure fix
-            const ok = this.__fms__.hasWaypoint(exit);
-
-            if (ok) {
-                this.radioCall('switching to center, good day', 'dep');
-                window.gameController.events_recordNew(GAME_EVENTS.DEPARTURE);
-            } else {
-                // TODO: this is a temporary fix for `release/3.0.0`. this will need to be refactored
-                const fmsDestination = this.__fms__.fp.route[1].indexOf('.') !== -1
-                    ? this.__fms__.fp.route[1].split('.')[1]
-                    : this.__fms__.fp.route[1];
-
-                // TODO: add helper method to FMS class for this
-                this.radioCall(`leaving radar coverage without being cleared to ${fmsDestination}`, 'dep', true);
-                window.gameController.events_recordNew(GAME_EVENTS.NOT_CLEARED_ON_ROUTE);
-            }
+            return;
         }
 
-        // this.__fms__.setCurrent({
-        //     altitude: this.__fms__.fp.altitude,
-        //     speed: this.model.speed.cruise
-        // });
+        // TODO: this seems redundant. if its already in the leg its in the fms.
+        if (this.mcp.headingMode !== MCP_MODE.HEADING.LNAV || !this.fms.hasWaypoint(this.fms.currentLeg.exitName)) {
+            this.radioCall(`leaving radar coverage without being cleared to ${this.fms.currentLeg.exitName}`, 'dep', true);
+            window.gameController.events_recordNew(GAME_EVENTS.NOT_CLEARED_ON_ROUTE);
+
+            return;
+        }
+
+        this.radioCall('switching to center, good day', 'dep');
+        window.gameController.events_recordNew(GAME_EVENTS.DEPARTURE);
     }
 
     /**
