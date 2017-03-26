@@ -218,6 +218,15 @@ export default class AircraftInstanceModel {
     }
 
     /**
+     * @for AircraftInstanceModel
+     * @property callsign
+     * @return {string}
+     */
+    get callsign() {
+        return `${this.airlineId.toUpperCase()}${this.flightNumber.toUpperCase()}`;
+    }
+
+    /**
      * Fascade to access relative position
      *
      * @for AircraftInstanceModel
@@ -425,17 +434,6 @@ export default class AircraftInstanceModel {
         }
 
         return _isEqual(callsignToMatch.toUpperCase(), this.getCallsign());
-    }
-
-    /**
-     * @for AircraftInstanceModel
-     * @method getCallsign
-     * @return {string}
-     */
-    getCallsign() {
-        // TODO: this should be an instance property. however, it seems callsign is used in places where it should be
-        // flightnumber and visa versa. this needs to be ironed out first before making a class property.
-        return `${this.airlineId.toUpperCase()}${this.flightNumber.toUpperCase()}`;
     }
 
     /**
