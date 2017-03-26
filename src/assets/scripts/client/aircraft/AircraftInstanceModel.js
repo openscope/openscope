@@ -1521,41 +1521,42 @@ export default class AircraftInstanceModel {
     updateTargetPrepareAircraftForHold() {
         const invalidTimerValue = -999;
         const { hold } = this.fms.currentWaypoint;
-        const inboundHeading = hold.inboundHeading;
-        const outboundHeading = inboundHeading + Math.PI;
-        const offset = getOffset(this, hold.fixPos);
+        const outboundHeading = radians_normalize(hold.inboundHeading + Math.PI);
+        const offset = getOffset(this, hold.fixPos, hold.inboundHeading);
         const holdLegDurationInSeconds = hold.legLength * TIME.ONE_MINUTE_IN_SECONDS;
         const bearingToHoldFix = vradial(vsub(hold.fixPos, this.relativePosition));
         const gameTime = window.gameController.game.time;
         const isPastFix = offset[1] < 1 && offset[2] < 2;
         const isTimerRunning = hold.timer !== invalidTimerValue;
         // const shouldTurnToOutboundLeg = isTimerRunning && isPastFix;
-        let nextHeading = inboundHeading;
 
         // this is defaulted to `right` by the commandParser
         this.target.turn = hold.dirTurns;
 
-        if (!this._isEstablishedOnHoldingPattern && isPastFix) {
-            nextHeading = outboundHeading;
+        if (isPastFix && !this._isEstablishedOnHoldingPattern) {
             this._isEstablishedOnHoldingPattern = true;
         }
 
-        if (this.heading === outboundHeading) {
-            if (hold.timer === invalidTimerValue) {
-                hold.timer = gameTime + holdLegDurationInSeconds;
-            }
-
-            nextHeading = outboundHeading;
+        if (!this._isEstablishedOnHoldingPattern) {
+            this.target.heading = bearingToHoldFix;
+            return;
         }
 
-        if (gameTime > hold.timer && hold.timer !== invalidTimerValue) {
-            hold.timer = invalidTimerValue;
+        let nextHeading = outboundHeading;
+
+        if (!isTimerRunning && this.heading === outboundHeading) {
+            // FIXME: Cannot set `hold.timer` because `#hold` is a getter!
+            hold.timer = gameTime + holdLegDurationInSeconds;   // set timer
+        }
+
+        if (isTimerRunning && gameTime > hold.timer) {
+            // FIXME: Cannot set `hold.timer` because `#hold` is a getter!
+            hold.timer = invalidTimerValue; // reset timer
             nextHeading = bearingToHoldFix;
         }
 
-        // TODO: add distance based hold
-
         this.target.heading = nextHeading;
+        // TODO: add distance based hold
     }
     /* ^^^^^^^^^^^ THESE SHOULD BE EXAMINED AND EITHER REMOVED OR MOVED ELSEWHERE ^^^^^^^^^^^ */
 
@@ -1672,6 +1673,10 @@ export default class AircraftInstanceModel {
         const secondsElapsed = window.gameController.game_delta();
         const angle_diff = angle_offset(this.target.heading, this.heading);
         const angle_change = PERFORMANCE.TURN_RATE * secondsElapsed;
+
+        if (this.flightPhase === 'HOLD' && abs(angle_change) > 0) {
+            console.log('');
+        }
 
         if (abs(angle_diff) <= angle_change) {
             this.heading = this.target.heading;
