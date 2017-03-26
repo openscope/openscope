@@ -288,7 +288,7 @@ export default class InputController {
 
             if (nearest[0]) {
                 if (nearest[1] < window.uiController.px_to_km(80)) {
-                    this.input.callsign = nearest[0].getCallsign().toUpperCase();
+                    this.input.callsign = nearest[0].callsign.toUpperCase();
 
                     this.input_select(this.input.callsign);
                 } else {
@@ -641,7 +641,7 @@ export default class InputController {
         }
 
         matches = _map(aircrafts, (aircraft) => {
-            return aircraft.getCallsign();
+            return aircraft.callsign;
         });
 
         if (aircrafts.length === 1 && (prop.input.data || val[val.length - 1] === ' ')) {

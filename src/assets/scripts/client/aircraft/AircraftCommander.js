@@ -145,7 +145,7 @@ export default class AircraftCommander {
             const r_log = _map(response, (r) => r.log).join(', ');
             const r_say = _map(response, (r) => r.say).join(', ');
 
-            this._uiController.ui_log(`${aircraft.getCallsign()}, ${r_log} ${response_end}`);
+            this._uiController.ui_log(`${aircraft.callsign}, ${r_log} ${response_end}`);
             speech_say([
                 { type: 'callsign', content: aircraft },
                 { type: 'text', content: `${r_say} ${response_end}` }
@@ -460,7 +460,7 @@ export default class AircraftCommander {
 
         aircraft.mode = FLIGHT_MODES.WAITING;
 
-        uiController.ui_log(`${aircraft.getCallsign()}, holding short of runway ${aircraft.rwy_dep}`);
+        uiController.ui_log(`${aircraft.callsign}, holding short of runway ${aircraft.rwy_dep}`);
         speech_say([
             { type: 'callsign', content: aircraft },
             { type: 'text', content: `holding short of runway ${radio_runway(aircraft.rwy_dep)}` }
@@ -520,7 +520,7 @@ export default class AircraftCommander {
             return [true, readback];
         }
 
-        readback.log = `number ${spotInQueue} behind ${aircraftAhead.getCallsign()}`;
+        readback.log = `number ${spotInQueue} behind ${aircraftAhead.callsign}`;
         readback.say = `number ${spotInQueue} behind ${aircraftAhead.getRadioCallsign()}`;
 
         return [false, readback];

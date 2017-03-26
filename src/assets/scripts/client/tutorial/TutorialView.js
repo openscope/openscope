@@ -202,7 +202,7 @@ export default class TutorialView {
                     return t;
                 }
 
-                return t.replace('{CALLSIGN}', prop.aircraft.list[0].getCallsign());
+                return t.replace('{CALLSIGN}', prop.aircraft.list[0].callsign);
             },
             side: 'left',
             position: tutorial_position
@@ -309,7 +309,7 @@ export default class TutorialView {
                     return t;
                 }
 
-                return t.replace('{CALLSIGN}', prop.aircraft.list[0].getCallsign())
+                return t.replace('{CALLSIGN}', prop.aircraft.list[0].callsign)
                         .replace('{INIT_ALT}', window.airportController.airport_get().initial_alt)
                         .replace('{SID_NAME}', prop.aircraft.list[0].destination);
             },
@@ -329,7 +329,7 @@ export default class TutorialView {
                     return t;
                 }
 
-                return t.replace('{CALLSIGN}', prop.aircraft.list[0].getCallsign());
+                return t.replace('{CALLSIGN}', prop.aircraft.list[0].callsign);
             },
             side: 'left',
             position: tutorial_position
@@ -348,7 +348,7 @@ export default class TutorialView {
                     return t;
                 }
 
-                return t.replace('{CALLSIGN}', prop.aircraft.list[0].getCallsign());
+                return t.replace('{CALLSIGN}', prop.aircraft.list[0].callsign);
             },
             side: 'left',
             position: tutorial_position
@@ -396,7 +396,7 @@ export default class TutorialView {
                     return t;
                 }
 
-                return t.replace('{CALLSIGN}', prop.aircraft.list[0].getCallsign());
+                return t.replace('{CALLSIGN}', prop.aircraft.list[0].callsign);
             },
             side: 'left',
             position: tutorial_position

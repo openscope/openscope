@@ -291,7 +291,7 @@ export default class AircraftController {
             if (aircraft.isStopped() && aircraft.category === 'arrival') {
                 aircraft.scoreWind('landed');
 
-                window.uiController.ui_log(`${aircraft.getCallsign()} switching to ground, good day`);
+                window.uiController.ui_log(`${aircraft.callsign} switching to ground, good day`);
                 speech_say([
                     { type: 'callsign', content: aircraft },
                     { type: 'text', content: ', switching to ground, good day' }
@@ -302,7 +302,7 @@ export default class AircraftController {
             }
 
             if (aircraft.hit && aircraft.isOnGround()) {
-                window.uiController.ui_log(`Lost radar contact with ${aircraft.getCallsign()}`);
+                window.uiController.ui_log(`Lost radar contact with ${aircraft.callsign}`);
                 speech_say([
                     { type: 'callsign', content: aircraft },
                     { type: 'text', content: ', radar contact lost' }

@@ -52,7 +52,7 @@ export default class AircraftStripView {
         this.$speed = null;
 
         this.height = AIRCRAFT_STRIP_HEIGHT;
-        this.callsign = aircraftInstanceModel.getCallsign();
+        this.callsign = aircraftInstanceModel.callsign;
         this.icao = aircraftInstanceModel.model.icao;
         this.destination = aircraftInstanceModel.destination;
         this.weightclass = aircraftInstanceModel.model.weightclass;

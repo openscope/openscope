@@ -1107,7 +1107,7 @@ export default class ConvasController {
             // Initial Setup
             cc.save();
 
-            const cs = aircraft.getCallsign();
+            const cs = aircraft.callsign;
             const paddingLR = 5;
             // width of datablock (scales to fit callsign)
             const width = clamp(1, 5.8 * cs.length) + (paddingLR * 2);
@@ -1756,7 +1756,7 @@ export default class ConvasController {
 
         // Get the selected aircraft.
         const aircraft = prop.aircraft.list.filter((p) => {
-            return p.isVisible() && p.getCallsign().toUpperCase() === callsign;
+            return p.isVisible() && p.callsign.toUpperCase() === callsign;
         })[0];
 
         if (!aircraft) {

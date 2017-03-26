@@ -33,8 +33,8 @@ export default class AircraftConflict {
         this.violations = {};
 
         if (this.isAlreadyKnown()) {
-            console.warn(`Duplicate conflict between ${this.aircraft[0].getCallsign()} `
-                + `and ${this.aircraft[1].getCallsign()}! Scoring may be inaccurate!`);
+            console.warn(`Duplicate conflict between ${this.aircraft[0].callsign} `
+                + `and ${this.aircraft[1].callsign}! Scoring may be inaccurate!`);
             return;
         }
 
@@ -152,7 +152,7 @@ export default class AircraftConflict {
         ) {
             this.collided = true;
             const isWarning = true;
-            window.uiController.ui_log(`${this.aircraft[0].getCallsign()} collided with ${this.aircraft[1].getCallsign()}`, isWarning);
+            window.uiController.ui_log(`${this.aircraft[0].callsign} collided with ${this.aircraft[1].callsign}`, isWarning);
 
             window.gameController.events_recordNew(GAME_EVENTS.COLLISION);
             this.aircraft[0].hit = true;
@@ -183,8 +183,8 @@ export default class AircraftConflict {
             if (!this.conflicts.runwayCollision) {
                 this.conflicts.runwayCollision = true;
                 window.uiController.ui_log(
-                    `${this.aircraft[0].getCallsign()} appears on a collision course with` +
-                    ` ${this.aircraft[1].getCallsign()} on the same runway"`,
+                    `${this.aircraft[0].callsign} appears on a collision course with` +
+                    ` ${this.aircraft[1].callsign} on the same runway"`,
                     isWarning
                 );
             }

@@ -166,7 +166,7 @@ export default class Leg {
             const isWarning = true;
 
             window.uiController.ui_log(
-                `${fms.my_aircraft.getCallsign()} unable to fly SID, we haven't been assigned a departure runway!`,
+                `${fms.my_aircraft.callsign} unable to fly SID, we haven't been assigned a departure runway!`,
                 isWarning
             );
 

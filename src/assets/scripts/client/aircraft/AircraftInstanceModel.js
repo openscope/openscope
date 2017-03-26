@@ -433,7 +433,7 @@ export default class AircraftInstanceModel {
             return true;
         }
 
-        return _isEqual(callsignToMatch.toUpperCase(), this.getCallsign());
+        return _isEqual(callsignToMatch.toUpperCase(), this.callsign);
     }
 
     /**
@@ -763,14 +763,14 @@ export default class AircraftInstanceModel {
 
         // var is unused
         let call = '';
-        const callsign_L = this.getCallsign();
+        const callsign_L = this.callsign;
         const callsign_S = this.getRadioCallsign();
 
         if (sectorType) {
             call += window.airportController.airport_get().radio[sectorType];
         }
 
-        // call += ", " + this.getCallsign() + " " + msg;
+        // call += ", " + this.callsign + " " + msg;
 
         // TODO: quick abstraction, this doesn't belong here.
         const logMessage = (callsign) => `${window.airportController.airport_get().radio[sectorType]}, ${callsign} ${msg}`;
@@ -813,7 +813,7 @@ export default class AircraftInstanceModel {
                 alt_say = `at ${radio_altitude(alt)}`;
             }
 
-            window.uiController.ui_log(`${window.airportController.airport_get().radio.app}, ${this.getCallsign()} with you ${alt_log}`);
+            window.uiController.ui_log(`${window.airportController.airport_get().radio.app}, ${this.callsign} with you ${alt_log}`);
             speech_say([
                 { type: 'text', content: `${window.airportController.airport_get().radio.app}, ` },
                 { type: 'callsign', content: this },
@@ -822,7 +822,7 @@ export default class AircraftInstanceModel {
         }
 
         if (this.category === FLIGHT_CATEGORY.DEPARTURE) {
-            window.uiController.ui_log(`${window.airportController.airport_get().radio.twr}, ${this.getCallsign()}, ready to taxi`);
+            window.uiController.ui_log(`${window.airportController.airport_get().radio.twr}, ${this.callsign}, ready to taxi`);
             speech_say([
                 { type: 'text', content: window.airportController.airport_get().radio.twr },
                 { type: 'callsign', content: this },
@@ -845,18 +845,18 @@ export default class AircraftInstanceModel {
         // TODO: these two if blocks could be done in a single switch statement
         if (components.cross >= 20) {
             window.gameController.events_recordNew(GAME_EVENTS.EXTREME_CROSSWIND_OPERATION);
-            window.uiController.ui_log(`${this.getCallsign()} ${action} with major crosswind'`, isWarning);
+            window.uiController.ui_log(`${this.callsign} ${action} with major crosswind'`, isWarning);
         } else if (components.cross >= 10) {
             window.gameController.events_recordNew(GAME_EVENTS.HIGH_CROSSWIND_OPERATION);
-            window.uiController.ui_log(`${this.getCallsign()} ${action} with crosswind'`, isWarning);
+            window.uiController.ui_log(`${this.callsign} ${action} with crosswind'`, isWarning);
         }
 
         if (components.head <= -10) {
             window.gameController.events_recordNew(GAME_EVENTS.EXTREME_TAILWIND_OPERATION);
-            window.uiController.ui_log(`${this.getCallsign()} ${action} with major tailwind'`, isWarning);
+            window.uiController.ui_log(`${this.callsign} ${action} with major tailwind'`, isWarning);
         } else if (components.head <= -1) {
             window.gameController.events_recordNew(GAME_EVENTS.HIGH_TAILWIND_OPERATION);
-            window.uiController.ui_log(`${this.getCallsign()} ${action} with tailwind'`, isWarning);
+            window.uiController.ui_log(`${this.callsign} ${action} with tailwind'`, isWarning);
         }
 
         return score;
@@ -919,7 +919,7 @@ export default class AircraftInstanceModel {
 
                 // TODO: Enumerate the '-999' invalid value
                 if (this.mcp.heading === -999) {
-                    console.warn(`${this.getCallsign()} took off with no directional instructions!`);
+                    console.warn(`${this.callsign} took off with no directional instructions!`);
                 }
 
                 break;
@@ -1334,7 +1334,7 @@ export default class AircraftInstanceModel {
     warnInterceptAngle() {
         const isWarning = true;
 
-        window.uiController.ui_log(`${this.getCallsign()} approach course intercept angle was greater than 30 degrees`, isWarning);
+        window.uiController.ui_log(`${this.callsign} approach course intercept angle was greater than 30 degrees`, isWarning);
         window.gameController.events_recordNew(GAME_EVENTS.ILLEGAL_APPROACH_CLEARANCE);
     }
 
@@ -1935,7 +1935,7 @@ export default class AircraftInstanceModel {
 
                             console.log('hit terrain');
                             const isWarning = true;
-                            window.uiController.ui_log(`${this.getCallsign()} collided with terrain in controlled flight`, isWarning);
+                            window.uiController.ui_log(`${this.callsign} collided with terrain in controlled flight`, isWarning);
                             speech_say([
                                 { type: 'callsign', content: this },
                                 { type: 'text', content: ', we\'re going down!' }
@@ -1945,7 +1945,7 @@ export default class AircraftInstanceModel {
                         }
                     } else {
                         curr_ranges[id] = Math.max(0.2, status.distance);
-                        // console.log(this.getCallsign(), 'in', curr_ranges[id], 'km from', id, area[0].length);
+                        // console.log(this.callsign, 'in', curr_ranges[id], 'km from', id, area[0].length);
                     }
                 }
             }
@@ -2013,7 +2013,7 @@ export default class AircraftInstanceModel {
      * @param {Aircraft} conflictingAircraft
      */
     addConflict(conflict, conflictingAircraft) {
-        this.conflicts[conflictingAircraft.getCallsign()] = conflict;
+        this.conflicts[conflictingAircraft.callsign] = conflict;
     }
 
     /**
@@ -2022,8 +2022,8 @@ export default class AircraftInstanceModel {
      * @param {Aircraft} conflictingAircraft
      */
     checkConflict(conflictingAircraft) {
-        if (this.conflicts[conflictingAircraft.getCallsign()]) {
-            this.conflicts[conflictingAircraft.getCallsign()].update();
+        if (this.conflicts[conflictingAircraft.callsign]) {
+            this.conflicts[conflictingAircraft.callsign].update();
             return true;
         }
 
@@ -2052,7 +2052,7 @@ export default class AircraftInstanceModel {
      * @param {Aircraft} conflictingAircraft
      */
     removeConflict(conflictingAircraft) {
-        delete this.conflicts[conflictingAircraft.getCallsign()];
+        delete this.conflicts[conflictingAircraft.callsign];
     }
 
     /**
