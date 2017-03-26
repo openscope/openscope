@@ -374,21 +374,6 @@ export default class AircraftInstanceModel {
 
         this.hideStrip();
 
-        if (this.mcp.headingMode === MCP_MODE.HEADING.HOLD) {
-            // an aircraft was given a radial  clearance
-            if (!this.isHeadingInsideDepartureWindow()) {
-                this.radioCall('leaving radar coverage outside departure window', AIRPORT_CONTROL_POSITION_NAME.DEPARTURE, true);
-                window.gameController.events_recordNew(GAME_EVENTS.NOT_CLEARED_ON_ROUTE);
-
-                return;
-            }
-
-            this.radioCall('switching to center, good day', AIRPORT_CONTROL_POSITION_NAME.DEPARTURE);
-            window.gameController.events_recordNew(GAME_EVENTS.DEPARTURE);
-
-            return;
-        }
-
         // TODO: this seems redundant. if its already in the leg its in the fms.
         if (this.mcp.headingMode !== MCP_MODE.HEADING.LNAV || !this.fms.hasWaypoint(this.fms.currentLeg.exitName)) {
             this.radioCall(`leaving radar coverage without being cleared to ${this.fms.currentLeg.exitName}`,
@@ -412,18 +397,6 @@ export default class AircraftInstanceModel {
     arrivalExit() {
         this.radioCall('leaving radar coverage as arrival', AIRPORT_CONTROL_POSITION_NAME.APPROACH, true);
         window.gameController.events_recordNew(GAME_EVENTS.AIRSPACE_BUST);
-    }
-
-    /**
-     * Is an aircraft's current heading within a specific range
-     *
-     * @for AircraftInstanceModel
-     * @method isHeadingInsideDepartureWindow
-     */
-    isHeadingInsideDepartureWindow() {
-        // TODO: enumerate the magic number
-        // Within 5 degrees of destination heading
-        return abs(this.radial - this.destination) < 0.08726;
     }
 
     /**
@@ -1637,6 +1610,7 @@ export default class AircraftInstanceModel {
             console.log('');
         }
 
+        // TODO: clean this up if possible, there is a lot of branching logic here
         if (abs(angle_diff) <= angle_change) {
             this.heading = this.target.heading;
         } else if (this.target.turn) {
@@ -2101,6 +2075,7 @@ export default class AircraftInstanceModel {
 
         this.aircraftStripView.update(heading, altitude, this.destination, speed);
 
+        // TODO: update to look at `#flightPhase`
         switch (this.mode) {
             case FLIGHT_MODES.APRON:
                 this.aircraftStripView.updateViewForApron(destinationDisplay, hasAltitude);
@@ -2129,7 +2104,7 @@ export default class AircraftInstanceModel {
                 };
                 destinationDisplay = this.fms.getProcedureAndExitName();
 
-                if (this.fms.currentLeg.isHold) {
+                if (this.fms.currentWaypoint.isHold) {
                     cruiseNavMode = WAYPOINT_NAV_MODE.HOLD;
                     headingDisplay = 'holding';
                     destinationDisplay = this.fms.getDestinationName();
