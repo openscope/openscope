@@ -450,7 +450,7 @@ export default class AircraftController {
             callsign: flightNumber,
             category: spawnPatternModel.category,
             airline: airlineModel.icao,
-            airlineCallsign: airlineModel.callsign,
+            airlineCallsign: airlineModel.radioName,
             altitude: spawnPatternModel.altitude,
             speed: spawnPatternModel.speed,
             heading: spawnPatternModel.heading,
