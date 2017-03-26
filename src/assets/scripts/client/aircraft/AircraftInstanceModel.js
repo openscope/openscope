@@ -311,7 +311,6 @@ export default class AircraftInstanceModel {
 
     initFms(data) {
         this.fms = new Fms(data, this.initialRunwayAssignment, this.model, this._navigationLibrary);
-        console.log('::: FMS', this.fms);
 
         if (this.category === FLIGHT_CATEGORY.DEPARTURE) {
             const airport = window.airportController.airport_get();
@@ -324,11 +323,6 @@ export default class AircraftInstanceModel {
         } else if (this.category !== FLIGHT_CATEGORY.ARRIVAL) {
             throw new Error('Invalid #category found in AircraftInstanceModel');
         }
-
-        // FIXME: this should probably move
-        // this.fms.setHeadingHold(data.heading);
-        // this.fms.setAltitudeHold(data.altitude);
-        // this.fms.setSpeedHold(data.speed);
 
         if (data.nextFix) {
             this.fms.skipToWaypoint(data.nextFix);
@@ -383,6 +377,8 @@ export default class AircraftInstanceModel {
                 window.gameController.events_recordNew(GAME_EVENTS.NOT_CLEARED_ON_ROUTE);
             }
         } else {
+            // TODO: use fms.getLastWaypoint() here instead or use procedureRouteModel
+
             // following a Standard Instrument Departure procedure
             // Find the desired SID exitPoint
             let exit;
@@ -404,7 +400,7 @@ export default class AircraftInstanceModel {
                 window.gameController.events_recordNew(GAME_EVENTS.DEPARTURE);
             } else {
                 // TODO: this is a temporary fix for `release/3.0.0`. this will need to be refactored
-                let fmsDestination = this.__fms__.fp.route[1].indexOf('.') !== -1
+                const fmsDestination = this.__fms__.fp.route[1].indexOf('.') !== -1
                     ? this.__fms__.fp.route[1].split('.')[1]
                     : this.__fms__.fp.route[1];
 
@@ -414,10 +410,10 @@ export default class AircraftInstanceModel {
             }
         }
 
-        this.__fms__.setCurrent({
-            altitude: this.__fms__.fp.altitude,
-            speed: this.model.speed.cruise
-        });
+        // this.__fms__.setCurrent({
+        //     altitude: this.__fms__.fp.altitude,
+        //     speed: this.model.speed.cruise
+        // });
     }
 
     /**
@@ -536,24 +532,6 @@ export default class AircraftInstanceModel {
      */
     cancelFix() {
         this.fms.cancelFix();
-
-        // if (this.__fms__.currentWaypoint.navmode !== WAYPOINT_NAV_MODE.FIX) {
-        //     return false;
-        // }
-        //
-        // const curr = this.__fms__.currentWaypoint;
-        //
-        // this.__fms__.appendLeg({
-        //     altitude: curr.altitude,
-        //     navmode: WAYPOINT_NAV_MODE.HEADING,
-        //     heading: this.heading,
-        //     speed: curr.speed
-        // });
-        //
-        // this.__fms__.nextLeg();
-        this.updateStrip();
-
-        // return true;
     }
 
     /**
@@ -562,29 +540,29 @@ export default class AircraftInstanceModel {
      */
     cancelLanding() {
         // TODO: this logic could be simplified. do an early return instead of wrapping the entire function in an if.
-        if (this.__fms__.currentWaypoint.navmode !== WAYPOINT_NAV_MODE.RWY) {
-            this.__fms__.setCurrent({ runway: null });
+        // if (this.__fms__.currentWaypoint.navmode !== WAYPOINT_NAV_MODE.RWY) {
+        //     this.__fms__.setCurrent({ runway: null });
+        //
+        //     return false;
+        // }
+        //
+        // const runway = window.airportController.airport_get().getRunway(this.rwy_arr);
+        //
+        // if (this.mode === FLIGHT_MODES.LANDING) {
+        //     // TODO: enumerate the magic numbers
+        //     this.__fms__.setCurrent({
+        //         altitude: Math.max(2000, round((this.altitude / 1000)) * 1000),
+        //         heading: runway.angle
+        //     });
+        // }
+        //
+        // this.__fms__.setCurrent({
+        //     navmode: WAYPOINT_NAV_MODE.HEADING,
+        //     runway: null
+        // });
 
-            return false;
-        }
-
-        const runway = window.airportController.airport_get().getRunway(this.rwy_arr);
-
-        if (this.mode === FLIGHT_MODES.LANDING) {
-            // TODO: enumerate the magic numbers
-            this.__fms__.setCurrent({
-                altitude: Math.max(2000, round((this.altitude / 1000)) * 1000),
-                heading: runway.angle
-            });
-        }
-
-        this.__fms__.setCurrent({
-            navmode: WAYPOINT_NAV_MODE.HEADING,
-            runway: null
-        });
-
+        // TODO: add fms.clearRunwayAssignment()?
         this.mode = FLIGHT_MODES.CRUISE;
-        this.updateStrip();
 
         return true;
     }
@@ -1539,19 +1517,20 @@ export default class AircraftInstanceModel {
 
         if (!this._isEstablishedOnHoldingPattern) {
             this.target.heading = bearingToHoldFix;
+
             return;
         }
 
         let nextHeading = outboundHeading;
 
         if (!isTimerRunning && this.heading === outboundHeading) {
-            // FIXME: Cannot set `hold.timer` because `#hold` is a getter!
-            this.fms.currentWaypoint.timer = gameTime + holdLegDurationInSeconds;   // set timer
+            // set timer
+            this.fms.currentWaypoint.timer = gameTime + holdLegDurationInSeconds;
         }
 
         if (isTimerRunning && gameTime > hold.timer) {
-            // FIXME: Cannot set `hold.timer` because `#hold` is a getter!
-            this.fms.currentWaypoint.timer = invalidTimerValue; // reset timer
+            // reset timer
+            this.fms.currentWaypoint.timer = invalidTimerValue;
             nextHeading = bearingToHoldFix;
         }
 
