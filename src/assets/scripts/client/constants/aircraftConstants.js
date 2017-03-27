@@ -1,4 +1,7 @@
 /**
+ * @deprecated
+ * `FLIGHT_PHASE should be used instead of this property`
+ *
  * @property FLIGHT_MODES
  * @type {Object}
  * @final
@@ -47,15 +50,83 @@ export const FLIGHT_CATEGORY = {
  * @final
  */
 export const FLIGHT_PHASE = {
+    /**
+     * initial status of a new departing aircraft. After the aircraft is issued the 'taxi' command,
+     * the aircraft transitions to 'taxi' mode
+     *
+     * @memberof FLIGHT_PHASE
+     * @property
+     * @type {string}
+     */
     APRON: 'APRON',
+    /**
+     * the process of getting ready for takeoff. After a delay, the aircraft becomes ready and
+     * transitions into 'waiting' mode
+     *
+     * @memberof FLIGHT_PHASE
+     * @property TAXI
+     * @type {string}
+     */
     TAXI: 'TAXI',
+    /**
+     * the aircraft is ready for takeoff and awaits clearence to take off
+     *
+     * @memberof FLIGHT_PHASE
+     * @property WAITING
+     * @type {string}
+     */
     WAITING: 'WAITING',
+    /**
+     * is assigned to an aircraft in the process of taking off. The aircraft are still on the
+     * ground or have not yet reached the minimum altitude
+     *
+     * @memberof FLIGHT_PHASE
+     * @property TAKEOFF
+     * @type {string}
+     */
     TAKEOFF: 'TAKEOFF',
+    /**
+     * @memberof FLIGHT_PHASE
+     * @property CLIMB
+     * @type {string}
+     */
     CLIMB: 'CLIMB',
+    /**
+     * describes an aircraft currently in flight and not following an ILS path. Aircraft entering
+     * controlled airspace also have this state. If an ILS path is picked up, the aircraft
+     * will transition to 'landing'
+     *
+     * @memberof FLIGHT_PHASE
+     * @property CRUISE
+     * @type {string}
+     */
     CRUISE: 'CRUISE',
+    /**
+     * @memberof FLIGHT_PHASE
+     * @property HOLD
+     * @type {string}
+     */
     HOLD: 'HOLD',
+    /**
+     * @memberof FLIGHT_PHASE
+     * @property DESCENT
+     * @type {string}
+     */
     DESCENT: 'DESCENT',
+    /**
+     * @memberof FLIGHT_PHASE
+     * @property APPROACH
+     * @type {string}
+     */
     APPROACH: 'APPROACH',
+    /**
+     * aircraft following an ILS path or is on the runway in the process of stopping.
+     * If an ILS approach or a landing is aborted, the aircraft re-enters 'cruise' mode
+     *
+     * @memberof FLIGHT_PHASE
+     * @property LANDING
+     * @type {string}
+     */
     LANDING: 'LANDING'
 };
 
