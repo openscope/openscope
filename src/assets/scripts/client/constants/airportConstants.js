@@ -29,6 +29,16 @@ export const AIRPORT_CONSTANTS = {
     DEFAULT_SPAWN_AIRCRAFT_SPEED_KTS: 250,
 
     /**
+     * Maximum allowable indicated airspeed for aircraft below 10,000 feet MSL
+     *
+     * @memberof AIRPORT_CONSTANTS
+     * @property MAX_SPEED_BELOW_10K_FEET
+     * @type {Number}
+     * @final
+     */
+    MAX_SPEED_BELOW_10K_FEET: 250,
+
+    /**
      * @memberof AIRPORT_CONSTANTS
      * @property MIN_ENTRAIL_DISTANCE_NM
      * @type {number}
