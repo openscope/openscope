@@ -171,7 +171,7 @@ export default class ModeController {
         //     return;
         // }
 
-        // this._initializeForAirborneFlight();
+        // this.initializeForAirborneFlight();
     }
 
     // TODO: I thought the point of `mcp.enable()` and `mcp.disable()` was to replace the autopilot on/off switch?
@@ -367,10 +367,9 @@ export default class ModeController {
      * Set the appropriate values in the MCP when spawning an aircraft that's already in flight
      *
      * @for ModeController
-     * @method _initializeForAirborneFlight
-     * @private
+     * @method initializeForAirborneFlight
      */
-    _initializeForAirborneFlight(bottomAltitude, currentHeading, currentSpeed) {
+    initializeForAirborneFlight(bottomAltitude, currentHeading, currentSpeed) {
         // TODO: We will need to set the altitude field to the lowest restriction on the STAR,
         // if applicable, or otherwise to the spawn altitude.
         this.setAltitudeFieldValue(bottomAltitude);

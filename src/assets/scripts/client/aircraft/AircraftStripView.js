@@ -365,6 +365,7 @@ export default class AircraftStripView {
         this.$destination.text(destinationText.toUpperCase());
     }
 
+    // TODO: remove this switch and split up to be inline with `aircraft.flightPhase`
     /**
      * @for AircraftStripView
      * @method updateViewForCruise

@@ -3,13 +3,13 @@ import _map from 'lodash/map';
 import { speech_say } from '../speech';
 import { radiansToDegrees } from '../utilities/unitConverters';
 import { round } from '../math/core';
-import { bearingToPoint } from '../math/flightMath';
 import {
     radio_runway,
     radio_spellOut
 } from '../utilities/radioUtilities';
 import {
     FLIGHT_MODES,
+    FLIGHT_PHASE,
     FLIGHT_CATEGORY
 } from '../constants/aircraftConstants';
 
@@ -509,6 +509,7 @@ export default class AircraftCommander {
             aircraft.mode = FLIGHT_MODES.TAKEOFF;
             aircraft.takeoffTime = this._gameController.game_time();
 
+            aircraft.setFlightPhase(FLIGHT_PHASE.TAKEOFF);
             aircraft.scoreWind('taking off');
             aircraft.pilot.initiateTakeoff();
 
