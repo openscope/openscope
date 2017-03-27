@@ -1937,20 +1937,9 @@ export default class AircraftInstanceModel {
             return false;
         }
 
-        let shouldEnterHold = this.flightPhase !== FLIGHT_PHASE.HOLD;
         const distanceToHoldPosition = this.positionModel.distanceToPosition(this.fms.currentWaypoint.positionModel);
-        // within ~2° of upwd/dnwd
-        const angleOffOfLegHeading = abs(angle_offset(this.heading, this.mcp.heading));
-        // TODO: there may already be a constant for this value
-        const maximumHeadingAngleDifference = 0.035;
-        // TODO: may need to be MAXIMUM_DISTANCE_TO_PASS_WAYPOINT_NM
-        const maximumDistanceToHold = 3; // in nm;
-        const isWithinHeadingAngleDifference = angleOffOfLegHeading < maximumHeadingAngleDifference;
-        const isWithinMaximumDistanceToHold = distanceToHoldPosition < maximumDistanceToHold;
-
-        if (shouldEnterHold && !isWithinHeadingAngleDifference || !isWithinMaximumDistanceToHold) {
-            shouldEnterHold = false;
-        }
+        const maximumAcceptableDistance = 3;    // in nm
+        const shouldEnterHold = distanceToHoldPosition <= maximumAcceptableDistance;
 
         return shouldEnterHold;
     }

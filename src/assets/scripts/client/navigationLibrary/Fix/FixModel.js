@@ -144,11 +144,13 @@ export default class FixModel extends BaseModel {
             speedRestriction: -1
         };
 
+        // TODO: Move these default behaviors to a constants file
         if (isHold) {
+            waypointProps._holdingPatternInboundHeading = _get(holdProps, 'inboundHeading', 0);
             waypointProps.isHold = true;
-            waypointProps.turnDirection = _get(holdProps, 'turnDirection', 'right');
             waypointProps.legLength = _get(holdProps, 'legLength', '1min');
             waypointProps.timer = -999;
+            waypointProps.turnDirection = _get(holdProps, 'turnDirection', 'right');
         }
 
         return new WaypointModel(waypointProps);

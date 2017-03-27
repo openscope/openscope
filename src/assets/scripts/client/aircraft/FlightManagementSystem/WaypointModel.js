@@ -219,9 +219,12 @@ export default class WaypointModel {
 
         // these properties will only be available for holding pattern waypoints
         this.isHold = _get(waypointProps, 'isHold', this.isHold);
-        this._turnDirection = _get(waypointProps, 'turnDirection', this._turnDirection);
-        this._legLength = _get(waypointProps, 'legLength', this._legLength);
         this.timer = _get(waypointProps, 'timer', this.timer);
+        this._holdingPatternInboundHeading = _get(waypointProps, '_holdingPatternInboundHeading',
+            this._holdingPatternInboundHeading
+        );
+        this._legLength = _get(waypointProps, 'legLength', this._legLength);
+        this._turnDirection = _get(waypointProps, 'turnDirection', this._turnDirection);
     }
 
     /**
