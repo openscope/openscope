@@ -1,10 +1,11 @@
 /**
- * @property AIRPORT_CONSTANTS
- * @type {Object}
+ * @enum AIRPORT_CONSTANTS {object}
+ * @type {object}
  * @final
  */
 export const AIRPORT_CONSTANTS = {
     /**
+     * @memberof AIRPORT_CONSTANTS
      * @property DEFAULT_SPAWN_ALTITUDE_MIN
      * @type {number}
      * @final
@@ -12,6 +13,7 @@ export const AIRPORT_CONSTANTS = {
     DEFAULT_SPAWN_ALTITUDE_MIN: 10000,
 
     /**
+     * @memberof AIRPORT_CONSTANTS
      * @property DEFAULT_SPAWN_ALTITUDE_MAX
      * @type {number}
      * @final
@@ -19,6 +21,7 @@ export const AIRPORT_CONSTANTS = {
     DEFAULT_SPAWN_ALTITUDE_MAX: 10000,
 
     /**
+     * @memberof AIRPORT_CONSTANTS
      * @property DEFAULT_SPAWN_AIRCRAFT_SPEED_KTS
      * @type {number}
      * @final
@@ -26,6 +29,7 @@ export const AIRPORT_CONSTANTS = {
     DEFAULT_SPAWN_AIRCRAFT_SPEED_KTS: 250,
 
     /**
+     * @memberof AIRPORT_CONSTANTS
      * @property MIN_ENTRAIL_DISTANCE_NM
      * @type {number}
      * @final
@@ -36,7 +40,7 @@ export const AIRPORT_CONSTANTS = {
 /**
  * List of control positions at the airport, used to differentiate which ATC callsign to used
  *
- * @property AIRPORT_CONTROL_POSITION_NAME
+ * @enum AIRPORT_CONTROL_POSITION_NAME
  * @type {object}
  * @final
  */
@@ -44,24 +48,30 @@ export const AIRPORT_CONTROL_POSITION_NAME = {
     /**
     * Provides approach control services
     *
+    * @memberof AIRPORT_CONTROL_POSITION_NAME
     * @property APPROACH
-    * @type {String}
+    * @type {string}
+    * @final
     */
     APPROACH: 'app',
 
     /**
     * Provides departure control services
     *
+    * @memberof AIRPORT_CONTROL_POSITION_NAME
     * @property TOWER
-    * @type {String}
+    * @type {string}
+    * @final
     */
     DEPARTURE: 'dep',
 
     /**
     * Provides Air Traffic Control Tower (ATCT) services for surface and runway movements
     *
+    * @memberof AIRPORT_CONTROL_POSITION_NAME
     * @property TOWER
-    * @type {String}
+    * @type {string}
+    * @final
     */
     TOWER: 'twr'
 };
