@@ -295,7 +295,7 @@ export default class AircraftCommander {
 
         if (fixModel) {
             holdPosition = fixModel.relativePosition;
-            inboundHeading = aircraft.positionModel.bearingToPosition(fixModel.positionModel);
+            inboundHeading = fixModel.positionModel.bearingFromPosition(aircraft.positionModel);
         }
 
         return aircraft.pilot.initiateHoldingPattern(inboundHeading, turnDirection, legLength, holdFix, holdPosition);
