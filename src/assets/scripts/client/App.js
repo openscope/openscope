@@ -114,7 +114,7 @@ export default class App {
         // This is provides a way to get async data from several sources in the app before anything else runs
         // FIXME: this is wrong. move this and make it less bad!
         $.when(
-            $.getJSON(`assets/airports/${initialAirportToLoad}.json`),
+            $.getJSON(`assets/airports/${initialAirportToLoad.toLowerCase()}.json`),
             $.getJSON('assets/airlines/airlines.json'),
             $.getJSON('assets/aircraft/aircraft.json')
         )
