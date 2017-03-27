@@ -1599,10 +1599,6 @@ export default class AircraftInstanceModel {
         const angle_diff = angle_offset(this.target.heading, this.heading);
         const angle_change = PERFORMANCE.TURN_RATE * secondsElapsed;
 
-        if (this.flightPhase === 'HOLD' && abs(angle_change) > 0) {
-            console.log('');
-        }
-
         // TODO: clean this up if possible, there is a lot of branching logic here
         if (abs(angle_diff) <= angle_change) {
             this.heading = this.target.heading;
