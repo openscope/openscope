@@ -5,6 +5,7 @@ import _forEach from 'lodash/forEach';
 import _get from 'lodash/get';
 import _isEqual from 'lodash/isEqual';
 import _isNil from 'lodash/isNil';
+import _uniqueId from 'lodash/uniqueId';
 import AircraftFlightManagementSystem from './FlightManagementSystem/AircraftFlightManagementSystem';
 import AircraftStripView from './AircraftStripView';
 import Fms from './FlightManagementSystem/Fms';
@@ -75,6 +76,7 @@ export default class AircraftInstanceModel {
      */
     constructor(options = {}, navigationLibrary) {
         /* eslint-disable no-multi-spaces*/
+        this._id = _uniqueId('aircraft-');
         this._navigationLibrary = navigationLibrary;
         this.eid          = global.prop.aircraft.list.length;  // entity ID
         this.positionModel = null;       // Aircraft Position
