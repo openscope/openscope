@@ -312,14 +312,8 @@ export default class AircraftController {
             }
 
             // Clean up the screen from aircraft that are too far
-            if (
-                (!this.aircraft_visible(aircraft, 2) && !aircraft.inside_ctr) &&
-                aircraft.__fms__.currentWaypoint.navmode === 'heading'
-            ) {
-                if (aircraft.category === 'arrival' || aircraft.category === 'departure') {
-                    // FIXME: This needs to be reenabled without removing ALL arrivals
-                    // remove = true;
-                }
+            if (!this.aircraft_visible(aircraft, 2) && !aircraft.inside_ctr) {
+                remove = true;
             }
 
             if (remove) {
