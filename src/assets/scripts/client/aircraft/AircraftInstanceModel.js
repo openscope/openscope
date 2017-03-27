@@ -45,7 +45,7 @@ import {
     PERFORMANCE,
     WAYPOINT_NAV_MODE
 } from '../constants/aircraftConstants';
-import { AIRPORT_CONTROL_POSITION_NAME } from '../constants/airportConstants';
+import { AIRPORT_CONSTANTS, AIRPORT_CONTROL_POSITION_NAME } from '../constants/airportConstants';
 import { SELECTORS } from '../constants/selectors';
 import { GAME_EVENTS } from '../game/GameController';
 import { MCP_MODE, MCP_MODE_NAME } from './ModeControl/modeControlConstants';
