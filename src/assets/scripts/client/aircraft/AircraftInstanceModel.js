@@ -907,8 +907,9 @@ export default class AircraftInstanceModel {
         }
 
         // Limit speed to 250 knots while under 10,000 feet MSL (it's the law!)
+        // TODO: Isn't this covered by `this._calculateLegalSpeed()`?
         if (this.altitude < 10000) {
-            this.target.speed = Math.min(this.target.speed, 250);
+            this.target.speed = Math.min(this.target.speed, AIRPORT_CONSTANTS.MAX_SPEED_BELOW_10K_FEET);
         }
     }
 
@@ -1060,17 +1061,17 @@ export default class AircraftInstanceModel {
 
         switch (this.mcp.speedMode) {
             case MCP_MODE.SPEED.OFF:
-                return this._selectTargetSpeedForTransitionAltitude(this.speed);
+                return this._calculateLegalSpeed(this.speed);
 
             case MCP_MODE.SPEED.HOLD:
-                return this._selectTargetSpeedForTransitionAltitude(this.mcp.speed);
+                return this._calculateLegalSpeed(this.mcp.speed);
 
             // future functionality
             // case MCP_MODE.SPEED.LEVEL_CHANGE:
             //     return;
 
             case MCP_MODE.SPEED.N1:
-                return this._selectTargetSpeedForTransitionAltitude(this.model.speed.max);
+                return this._calculateLegalSpeed(this.model.speed.max);
 
             case MCP_MODE.SPEED.VNAV: {
                 const maxSpeed = this.mcp.speed;
@@ -1078,42 +1079,34 @@ export default class AircraftInstanceModel {
                 const waypointHasSpeed = waypointSpeed !== -1;
 
                 if (waypointHasSpeed) {
-                    return this._selectTargetSpeedForTransitionAltitude(waypointSpeed);
+                    return this._calculateLegalSpeed(waypointSpeed);
                 }
 
-                return this._selectTargetSpeedForTransitionAltitude(maxSpeed);
+                return this._calculateLegalSpeed(maxSpeed);
             }
 
             default:
                 console.warn('Expected MCP speed mode of "OFF", "HOLD", "LEVEL_CHANGE", "N1", or "VNAV", but ' +
                     `received "${this.mcp[MCP_MODE_NAME.SPEED]}"`);
-                return this._selectTargetSpeedForTransitionAltitude(this.speed);
+                return this._calculateLegalSpeed(this.speed);
         }
     }
 
     /**
-     * Maximum speed for aircraft is 250kts when below 10,000 feet
-     *
-     * This method abstracts the logic of choosing between a or b and
-     * simply returns the appropriate speed based on the current altitude.
+     * This method limits the aircraft's speed to a maximum of a specific speed
+     * while below 10,000 feet MSL, to comply with regulations.
      *
      * @for AircraftInstanceModel
-     * @method _selectTargetSpeedForTransitionAltitude
-     * @param speed {number}       desired nextSpeed
-     * @return nextSpeed {number}  actual nextSpeed to use, will be 250kts
-     *                             if altitude is < 10k feet
+     * @method _calculateLegalSpeed
+     * @param speed {number} desired speed
+     * @return {number}      permitted speed
      */
-    _selectTargetSpeedForTransitionAltitude(speed) {
-        let nextSpeed = speed;
-        const isBelowTransitionAltitude = this.altitude < 10000;
-        // TODO: this may need to be a constant stored elsewhere
-        const maxSpeedBelowTransitionAltitude = 250;
-
-        if (isBelowTransitionAltitude) {
-            nextSpeed = maxSpeedBelowTransitionAltitude;
+    _calculateLegalSpeed(speed) {
+        if (this.altitude < 10000) {
+            return Math.min(speed, AIRPORT_CONSTANTS.MAX_SPEED_BELOW_10K_FEET);
         }
 
-        return nextSpeed;
+        return speed;
     }
 
     /**
