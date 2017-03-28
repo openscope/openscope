@@ -265,7 +265,7 @@ window.AIRPORT_LOAD_LIST = (function() { // eslint-disable-line wrap-iife
         // },
         {
             icao: 'mdsd',
-            level: 'easy',
+            level: 'medium',
             name: 'Aeropuerto Internacional Las Américas',
             wip: true
         },
