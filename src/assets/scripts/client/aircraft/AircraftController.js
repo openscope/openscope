@@ -12,10 +12,8 @@ import { convertStaticPositionToDynamic } from '../base/staticPositionToDynamicP
 import { speech_say } from '../speech';
 import { abs } from '../math/core';
 import { distance2d } from '../math/distance';
-import { vlen, vradial, vsub } from '../math/vector';
-import { km, kn_ms, radiansToDegrees, degreesToRadians } from '../utilities/unitConverters';
-import { calcTurnInitiationDistance } from '../math/flightMath';
-import { tau } from '../math/circle';
+import { vlen } from '../math/vector';
+import { km } from '../utilities/unitConverters';
 import { GAME_EVENTS } from '../game/GameController';
 
 // Temporary const declaration here to attach to the window AND use as internal property
@@ -256,13 +254,16 @@ export default class AircraftController {
      */
     aircraft_update() {
         for (let i = 0; i < this.aircraft.list.length; i++) {
-            this.aircraft.list[i].update();
-            this.aircraft.list[i].updateWarning();
+            const aircraft = this.aircraft.list[i];
+            aircraft.update();
+            aircraft.updateWarning();
+
+            if (aircraft.isTaxiing()) {
+                continue;
+            }
 
             // TODO: move this InnerLoop thing to a function so we can get rid of the continue InnerLoop thing.
             for (let j = i + 1; j < this.aircraft.list.length; j++) {
-                // TODO: need better names here. what is `that`?  what is `other`?
-                const aircraft = this.aircraft.list[i];
                 const otherAircraft = this.aircraft.list[j];
 
                 if (aircraft.checkConflict(otherAircraft)) {
