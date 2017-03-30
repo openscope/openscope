@@ -112,6 +112,7 @@ export default class AircraftInstanceModel {
         this.datablockDir = -1;         // Direction the data block points (-1 means to ignore)
         this.conflicts    = {};         // List of aircraft that MAY be in conflict (bounding box)
         this.terrain_ranges = false;
+
         /**
          * Flag used to determine if an aircraft is established on a holding pattern
          *
@@ -126,6 +127,19 @@ export default class AircraftInstanceModel {
          * @private
          */
         this._isEstablishedOnHoldingPattern = false;
+
+        /**
+         * Flag used to determine if an aircraft can be removed from the sim.
+         *
+         * This tells the `AircraftController` that this instance is safe to remove.
+         * This property should only be changed via the `.setIsRemovable()` method.
+         *
+         * @property isRemovable
+         * @type {boolean}
+         * @default false
+         */
+        this.isRemovable = false;
+
         // FIXME: change name, and update refs in `InputController`. perhaps change to be a ref to the AircraftStripView class instead of directly accessing the html?
         this.aircraftStripView = null;
         this.$html = null;
@@ -375,11 +389,14 @@ export default class AircraftInstanceModel {
         }
 
         this.hideStrip();
+        this.setIsRemovable();
 
         // TODO: this seems redundant. if its already in the leg its in the fms.
         if (this.mcp.headingMode !== MCP_MODE.HEADING.LNAV || !this.fms.hasWaypoint(this.fms.currentLeg.exitName)) {
-            this.radioCall(`leaving radar coverage without being cleared to ${this.fms.currentLeg.exitName}`,
-                AIRPORT_CONTROL_POSITION_NAME.DEPARTURE, true
+            this.radioCall(
+                `leaving radar coverage without being cleared to ${this.fms.currentLeg.exitName}`,
+                AIRPORT_CONTROL_POSITION_NAME.DEPARTURE,
+                true
             );
             window.gameController.events_recordNew(GAME_EVENTS.NOT_CLEARED_ON_ROUTE);
 
@@ -397,6 +414,7 @@ export default class AircraftInstanceModel {
      * @method arrivalExit
      */
     arrivalExit() {
+        this.setIsRemovable();
         this.radioCall('leaving radar coverage as arrival', AIRPORT_CONTROL_POSITION_NAME.APPROACH, true);
         window.gameController.events_recordNew(GAME_EVENTS.AIRSPACE_BUST);
     }
@@ -656,6 +674,18 @@ export default class AircraftInstanceModel {
         }
 
         return true;
+    }
+
+    /**
+     * Sets `#isRemovable` to true
+     *
+     * Provides a single source to change the value of `#isRemovable`.
+     *
+     * @for AircraftInstanceModel
+     * @method setIsRemovable
+     */
+    setIsRemovable() {
+        this.isRemovable = true;
     }
 
     // TODO: this should be a method in the `AirportModel`
@@ -2009,6 +2039,8 @@ export default class AircraftInstanceModel {
     removeConflict(conflictingAircraft) {
         delete this.conflicts[conflictingAircraft.callsign];
     }
+
+    // TODO: aircraft strip methods below will be abstracted and de-coupled from this model
 
     /**
      * Create the aircraft's flight strip and add to strip bay

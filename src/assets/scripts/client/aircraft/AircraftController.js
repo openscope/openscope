@@ -286,7 +286,6 @@ export default class AircraftController {
         }
 
         for (let i = this.aircraft.list.length - 1; i >= 0; i--) {
-            let remove = false;
             const aircraft = this.aircraft.list[i];
             // let is_visible = aircraft_visible(aircraft);
 
@@ -300,25 +299,21 @@ export default class AircraftController {
                 ]);
 
                 window.gameController.events_recordNew(GAME_EVENTS.ARRIVAL);
-                remove = true;
+                aircraft.setIsRemovable();
             }
 
             if (aircraft.hit && aircraft.isOnGround()) {
                 window.uiController.ui_log(`Lost radar contact with ${aircraft.callsign}`);
+                aircraft.setIsRemovable();
+
                 speech_say([
                     { type: 'callsign', content: aircraft },
                     { type: 'text', content: ', radar contact lost' }
                 ]);
-
-                remove = true;
             }
 
             // Clean up the screen from aircraft that are too far
-            if (!this.aircraft_visible(aircraft, 2) && !aircraft.inside_ctr) {
-                remove = true;
-            }
-
-            if (remove) {
+            if (!this.aircraft_visible(aircraft, 2) && !aircraft.inside_ctr && aircraft.isRemovable) {
                 this.aircraft_remove(aircraft);
                 i -= 1;
             }
