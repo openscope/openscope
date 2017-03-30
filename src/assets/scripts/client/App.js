@@ -114,9 +114,9 @@ export default class App {
         // This is provides a way to get async data from several sources in the app before anything else runs
         // FIXME: this is wrong. move this and make it less bad!
         $.when(
-            $.ajax(`assets/airports/${initialAirportToLoad.toLowerCase()}.json`),
-            $.ajax('assets/airlines/airlines.json'),
-            $.ajax('assets/aircraft/aircraft.json')
+            $.getJSON(`assets/airports/${initialAirportToLoad.toLowerCase()}.json`),
+            $.getJSON('assets/airlines/airlines.json'),
+            $.getJSON('assets/aircraft/aircraft.json')
         )
             .done((airportResponse, airlineResponse, aircraftResponse) => {
                 this.setupChildren(
@@ -174,7 +174,6 @@ export default class App {
 
         this.spawnPatternCollection = new SpawnPatternCollection(initialAirportData, this.navigationLibrary, this.airportController);
         this.spawnScheduler = new SpawnScheduler(this.spawnPatternCollection, this.aircraftController, this.gameController);
-
         this.canvasController = new CanvasController(this.$element, this.navigationLibrary);
         this.tutorialView = new TutorialView(this.$element);
         this.uiController = new UiController(this.$element);

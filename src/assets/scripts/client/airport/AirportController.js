@@ -38,7 +38,6 @@ export default class AirportController {
         this._airportListToLoad = airportLoadList;
         // eslint-disable-next-line no-undef
         prop.airport = airport;
-
         return this.init()
                    .ready(initialAirportData);
     }
