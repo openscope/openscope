@@ -262,11 +262,12 @@ export default class AircraftController {
                 continue;
             }
 
-            // TODO: move this InnerLoop thing to a function so we can get rid of the continue InnerLoop thing.
+            // TODO: this section eats up a lot of resources when there are more than 30 aircraft and we
+            //       don't check for taxiing aircraft
             for (let j = i + 1; j < this.aircraft.list.length; j++) {
                 const otherAircraft = this.aircraft.list[j];
 
-                if (aircraft.checkConflict(otherAircraft)) {
+                if (aircraft.checkConflict(otherAircraft) || otherAircraft.isTaxiing()) {
                     continue;
                 }
 
