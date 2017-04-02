@@ -435,9 +435,13 @@ export default class AircraftCommander {
 
         const readback = aircraft.pilot.taxiToRunway(runway.name, isDeparture, flightPhase);
 
+        // TODO: this may need to live in a method on the aircraft somewhere
+        aircraft.rwy_dep = runway.name;
         aircraft.taxi_start = this._gameController.game_time();
-        runway.addAircraftToQueue(aircraft);
         aircraft.mode = FLIGHT_MODES.TAXI;
+
+        runway.addAircraftToQueue(aircraft);
+        aircraft.setFlightPhase(FLIGHT_PHASE.TAXI);
 
         this._gameController.game_timeout(
             this._changeFromTaxiToWaiting,

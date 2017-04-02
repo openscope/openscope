@@ -608,7 +608,7 @@ export default class AircraftInstanceModel {
      * @return {boolean}
      */
     isPrecisionGuided() {
-        return this.isEstablished();
+        return this.isEstablished() && this.flightPhase === FLIGHT_PHASE.LANDING;
     }
 
     /**
@@ -1174,19 +1174,17 @@ export default class AircraftInstanceModel {
             case MCP_MODE.ALTITUDE.VNAV: {
                 const waypointAltitude = this.fms.currentWaypoint.altitudeRestriction;
                 const waypointHasAltitude = waypointAltitude !== -1;
-                const endingAltitude = this.mcp.altitude;
-                const flightPhase = this.flightPhase;
 
                 if (!waypointHasAltitude) {
-                    return endingAltitude;
+                    return this.mcp.altitude;
                 }
 
-                if (flightPhase === FLIGHT_PHASE.CLIMB) {
-                    return Math.min(waypointAltitude, endingAltitude);
+                if (this.flightPhase === FLIGHT_PHASE.CLIMB) {
+                    return Math.min(waypointAltitude, this.mcp.altitude);
                 }
 
-                if (flightPhase === FLIGHT_PHASE.DESCENT) {
-                    return Math.max(waypointAltitude, endingAltitude);
+                if (this.flightPhase === FLIGHT_PHASE.DESCENT) {
+                    return Math.max(waypointAltitude, this.mcp.altitude);
                 }
 
                 break;
@@ -1195,7 +1193,7 @@ export default class AircraftInstanceModel {
             default:
                 console.warn('Expected MCP altitude mode of "OFF", "HOLD", "APPROACH", "LEVEL_CHANGE", ' +
                     `"VERTICAL_SPEED", or "VNAV", but received "${this.mcp[MCP_MODE_NAME.ALTITUDE]}"`);
-                return;
+                break;
         }
     }
 
@@ -1654,6 +1652,10 @@ export default class AircraftInstanceModel {
     updateAltitudePhysics() {
         this.trend = 0;
 
+        if (this.isOnGround() && this.mcp.speedMode === MCP_MODE.SPEED.N1 && this.speed <= this.model.speed.min) {
+            return;
+        }
+
         if (this.target.altitude < this.altitude) {
             this.decreaseAircraftAltitude();
         } else if (this.target.altitude > this.altitude) {
@@ -1669,6 +1671,7 @@ export default class AircraftInstanceModel {
     */
     decreaseAircraftAltitude() {
         const altitude_diff = this.altitude - this.target.altitude;
+        // TODO: this should be an available property on the `AircraftTypeDefinitionModel`
         let descentRate = this.model.rate.descent * PERFORMANCE.TYPICAL_DESCENT_FACTOR;
 
         if (this.target.expedite) {

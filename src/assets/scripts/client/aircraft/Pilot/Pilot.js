@@ -643,6 +643,7 @@ export default class Pilot {
      */
     initiateTakeoff() {
         this._mcp.setSpeedN1();
+        this._mcp.enable();
     }
 
     /**

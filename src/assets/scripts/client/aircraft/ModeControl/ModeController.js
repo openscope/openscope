@@ -160,21 +160,14 @@ export default class ModeController {
     }
 
     /**
-     * Initialization tasks
+     * Initialize the instance
      *
      * @for ModeController
      * @method init
-     * @private
      */
     init() {
-        // if (!isAircraftAirborne) {
-        //     return;
-        // }
-
-        // this.initializeForAirborneFlight();
+        return this;
     }
-
-    // TODO: I thought the point of `mcp.enable()` and `mcp.disable()` was to replace the autopilot on/off switch?
 
     /**
      * Sets `#isEnabled` flag to `true`
