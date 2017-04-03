@@ -345,8 +345,17 @@ export default class AircraftCommander {
         const sidId = data[0];
         const departureRunway = aircraft.rwy_dep;
         const { icao: airportIcao } = this._airportController.airport_get();
+        const response = aircraft.pilot.applyDepartureProcedure(sidId, departureRunway, airportIcao);
 
-        return aircraft.pilot.applyDepartureProcedure(sidId, departureRunway, airportIcao);
+        if (!response[0]) {
+            return response;
+        }
+
+        // TODO: toUpperCase might be overly defensive here
+        // update the aircraft destination so the strip display reflects the change of procedure
+        aircraft.destination = sidId.toUpperCase();
+
+        return response;
     }
 
     /**
