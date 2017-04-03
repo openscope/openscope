@@ -1179,7 +1179,7 @@ export default class AircraftInstanceModel {
                     return this.mcp.altitude;
                 }
 
-                if (this.flightPhase === FLIGHT_PHASE.CLIMB) {
+                if (this.flightPhase === FLIGHT_PHASE.TAKEOFF || this.flightPhase === FLIGHT_PHASE.CLIMB) {
                     return Math.min(waypointAltitude, this.mcp.altitude);
                 }
 
@@ -1652,7 +1652,8 @@ export default class AircraftInstanceModel {
     updateAltitudePhysics() {
         this.trend = 0;
 
-        if (this.isOnGround() && this.mcp.speedMode === MCP_MODE.SPEED.N1 && this.speed <= this.model.speed.min) {
+        // TODO: abstract to class method
+        if (this.speed <= this.model.speed.min && this.mcp.speedMode === MCP_MODE.SPEED.N1) {
             return;
         }
 
