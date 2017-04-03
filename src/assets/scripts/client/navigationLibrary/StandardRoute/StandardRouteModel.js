@@ -11,7 +11,7 @@ import RouteSegmentCollection from './RouteSegmentCollection';
 import RouteSegmentModel from './RouteSegmentModel';
 import { distance2d } from '../../math/distance';
 import { nm } from '../../utilities/unitConverters';
-import { isObjectAndNotArray } from '../../utilities/validatorUtilities';
+import { isObjectEmptyAndNotArray } from '../../utilities/validatorUtilities';
 
 /**
  * Accepts a single route belonging to a SID or STAR and provides methods to reason about its contents.
@@ -60,7 +60,7 @@ export default class StandardRouteModel extends BaseModel {
     constructor(standardRoute) {
         super();
 
-        if (isObjectAndNotArray(standardRoute)) {
+        if (isObjectEmptyAndNotArray(standardRoute)) {
             throw new TypeError(`Expected standardRoute to be an object, instead received ${typeof standardRoute}`);
         }
 
