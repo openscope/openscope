@@ -60,8 +60,7 @@ export default class BaseModel {
      */
     _buildIdPrefix(modelName) {
         if (!_isString(modelName)) {
-            console.error('BaseModel#constructor expects a string for its first paramert but a string was not given');
-            return 'BaseModel-';
+            throw new TypeError('BaseModel#constructor expects a string for its first paramert but a string was not given');
         }
 
         // Default option since it is an optional parameter

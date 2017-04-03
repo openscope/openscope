@@ -29,7 +29,7 @@ export default class AirlineModel extends BaseModel {
      */
     /* istanbul ignore next */
     constructor(airlineDefinition) {
-        super(airlineDefinition);
+        super();
 
         if (!_isObject(airlineDefinition) || _isArray(airlineDefinition) || _isEmpty(airlineDefinition)) {
             // eslint-disable-next-line max-len
