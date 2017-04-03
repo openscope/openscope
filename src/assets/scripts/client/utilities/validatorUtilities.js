@@ -23,3 +23,14 @@ export const isObjectEmpty = (value) => {
 export const isObjectEmptyAndNotArray = (value) => {
     return !_isObject(value) || _isEmpty(value)  || _isArray(value);
 };
+
+/**
+ * This will return true if it is an object or an array
+ *
+ * @funtion isObjectOrArray
+ * @param input {object}
+ * @return {boolean}
+ */
+export const isObjectAndNotArray = (value) => {
+    return !_isObject(value) || _isArray(value);
+};
