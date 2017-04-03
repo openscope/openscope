@@ -89,7 +89,6 @@ export default class AircraftInstanceModel {
         this.speed        = 0;          // Indicated Airspeed (IAS), knots
         this.groundSpeed  = 0;          // Groundspeed (GS), knots
         this.groundTrack  = 0;          //
-        this.ds           = 0;          //
         this.takeoffTime  = 0;          //
         this.rwy_dep      = null;       // Departure Runway (to use, currently using, or used)
         this.rwy_arr      = null;       // Arrival Runway (to use, currently using, or used)
@@ -1875,7 +1874,7 @@ export default class AircraftInstanceModel {
 
                 // count distance untill the next check
                 if (area.range) {
-                    area.range -= this.ds;
+                    area.range -= this.groundSpeed;
                 }
 
                 // recalculate for new areas or those that should be checked
@@ -1920,7 +1919,7 @@ export default class AircraftInstanceModel {
             }
 
             for (const id in curr_ranges) {
-                curr_ranges[id] -= this.ds;
+                curr_ranges[id] -= this.groundSpeed;
                 // console.log(curr_ranges[id]);
 
                 if (curr_ranges[id] < 0 || curr_ranges[id] === Infinity) {
