@@ -9,7 +9,7 @@ import _isObject from 'lodash/isObject';
  * @param input {object}
  * @return {boolean}
  */
-export const isObjectEmpty = (value) => {
+export const isEmptyObject = (value) => {
     return !_isObject(value) || _isEmpty(value);
 };
 
@@ -20,7 +20,7 @@ export const isObjectEmpty = (value) => {
  * @param input {object}
  * @return {boolean}
  */
-export const isObjectEmptyAndNotArray = (value) => {
+export const isEmptyObjectAndNotArray = (value) => {
     return !_isObject(value) || _isEmpty(value) || _isArray(value);
 };
 
