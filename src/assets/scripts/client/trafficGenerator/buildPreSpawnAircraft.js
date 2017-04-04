@@ -11,7 +11,7 @@ import {
     bearingToPoint
 } from '../math/flightMath';
 import { nm } from '../utilities/unitConverters';
-import { isEmptyObject } from '../utilities/validatorUtilities';
+import { isObjectComplete } from '../utilities/validatorUtilities';
 
 /**
  * Loop through `waypointModelList` and determine where along the route an
@@ -191,7 +191,7 @@ const _preSpawn = (spawnPatternJson, navigationLibrary, airport) => {
  * @return {array<object>}
  */
 export const buildPreSpawnAircraft = (spawnPatternJson, navigationLibrary, currentAirport) => {
-    if (isEmptyObject(spawnPatternJson)) {
+    if (!isObjectComplete(spawnPatternJson)) {
         // eslint-disable-next-line max-len
         throw new TypeError('Invalid parameter passed to buildPreSpawnAircraft. Expected spawnPatternJson to be an object');
     }
