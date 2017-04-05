@@ -5,6 +5,7 @@ import _map from 'lodash/map';
 import BaseCollection from '../base/BaseCollection';
 import AircraftTypeDefinitionModel from './AircraftTypeDefinitionModel';
 import { airlineNameAndFleetHelper } from '../airline/airlineHelpers';
+import { isEmptyOrNotArray } from '../utilities/validatorUtilities';
 
 /**
  * Collection of `AircraftInstanceModel` objects
@@ -28,7 +29,7 @@ export default class AircraftTypeDefinitionCollection extends BaseCollection {
     constructor(aircraftTypeDefinitionList) {
         super();
 
-        if (!_isArray(aircraftTypeDefinitionList) || _isEmpty(aircraftTypeDefinitionList)) {
+        if (isEmptyOrNotArray(aircraftTypeDefinitionList)) {
             // eslint-disable-next-line max-len
             throw new TypeError('Invalid aircraftTypeDefinitionList passed to AircraftTypeDefinitionCollection. Expected and array but ' +
                 `received ${typeof aircraftTypeDefinitionList}`);

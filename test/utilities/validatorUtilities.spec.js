@@ -1,10 +1,11 @@
 /* eslint-disable arrow-parens, max-len, import/no-extraneous-dependencies*/
 import ava from 'ava';
 import { isEmptyObject,
-         isEmptyObjectOrArray
+         isEmptyObjectOrArray,
+         isEmptyOrNotArray
  } from '../../src/assets/scripts/client/utilities/validatorUtilities';
 
-ava('.isEmptyObject() returns false when passed an non object', (t) => {
+ava('.isEmptyObject() returns true when passed an non object', (t) => {
     t.true(isEmptyObject('threeve'));
     t.true(isEmptyObject(false));
     t.true(isEmptyObject(true));
@@ -49,4 +50,31 @@ ava('.isEmptyObjectOrArray() returns true when passed an empty object that is no
 
 ava('.isEmptyObjectOrArray() returns true when passed an array that is not empty', (t) => {
     t.true(isEmptyObjectOrArray([1, 2, 3]));
+});
+
+ava('.isEmptyOrNotArray() returns true when passed an non Array', (t) => {
+    t.true(isEmptyOrNotArray('threeve'));
+    t.true(isEmptyOrNotArray(false));
+    t.true(isEmptyOrNotArray(true));
+    t.true(isEmptyOrNotArray(42));
+    t.true(isEmptyOrNotArray(undefined));
+    t.true(isEmptyOrNotArray({}));
+});
+
+ava('.isEmptyOrNotArray returns true when passed an empty object', (t) =>{
+    t.true(isEmptyOrNotArray({}));
+    t.true(isEmptyObject([]));
+    t.true(isEmptyObject(null));
+});
+
+ava('.isEmptyOrNotArray return false when passed an array with arguments', (t) =>{
+    t.false(isEmptyOrNotArray([1, 2, 3]));
+});
+
+ava('.isEmptyOrNotArray() returns true when passed an object with properties', (t) => {
+    t.true(isEmptyOrNotArray({
+        a: 'threeve',
+        b: 42,
+        c: false
+    }));
 });

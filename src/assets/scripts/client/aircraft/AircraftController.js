@@ -13,6 +13,7 @@ import { abs } from '../math/core';
 import { distance2d } from '../math/distance';
 import { vlen, vradial, vsub } from '../math/vector';
 import { km, kn_ms, radiansToDegrees, degreesToRadians } from '../utilities/unitConverters';
+import { isEmptyOrNotArray } from '../utilities/validatorUtilities';
 import { calcTurnInitiationDistance } from '../math/flightMath';
 import { tau } from '../math/circle';
 import { GAME_EVENTS } from '../game/GameController';
@@ -34,7 +35,7 @@ export default class AircraftController {
      * @param navigationLibrary {NavigationLibrary}
      */
     constructor(aircraftTypeDefinitionList, airlineController, navigationLibrary) {
-        if (!_isArray(aircraftTypeDefinitionList) || _isEmpty(aircraftTypeDefinitionList)) {
+        if (isEmptyOrNotArray(aircraftTypeDefinitionList)) {
             // eslint-disable-next-line max-len
             throw new TypeError('Invalid aircraftTypeDefinitionList passed to AircraftTypeDefinitionCollection. Expected and array but ' +
                 `received ${typeof aircraftTypeDefinitionList}`);
