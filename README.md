@@ -18,7 +18,7 @@ Page hits are tracked with Google Analytics, so feel free to use an adblocker. T
 
 ## Contributing
 
-We use an [GitFlow Branching Model](http://nvie.com/posts/a-successful-git-branching-model) when adding features. If you would like to contribute, please [contact us](https://slack.openscope.co/) and we'll help as soon as we can! Thank you!
+We use an [GitFlow Branching Model](http://nvie.com/posts/a-successful-git-branching-model) when adding features. If you would like to contribute, please [contact us](http://slack.openscope.co/) and we'll help as soon as we can! Thank you!
 
 ## License
 
