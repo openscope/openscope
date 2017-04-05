@@ -12,11 +12,14 @@ import RouteModel from '../navigationLibrary/Route/RouteModel';
 import { airlineNameAndFleetHelper } from '../airline/airlineHelpers';
 import { convertStaticPositionToDynamic } from '../base/staticPositionToDynamicPositionHelper';
 import { speech_say } from '../speech';
+import { tau } from '../math/circle';
 import { abs } from '../math/core';
 import { distance2d } from '../math/distance';
-import { vlen } from '../math/vector';
-import { km } from '../utilities/unitConverters';
+import { calcTurnInitiationDistance } from '../math/flightMath';
+import { vlen, vradial, vsub } from '../math/vector';
+import { km, kn_ms, radiansToDegrees, degreesToRadians } from '../utilities/unitConverters';
 import { FLIGHT_CATEGORY } from '../constants/aircraftConstants';
+import { isEmptyOrNotArray } from '../utilities/validatorUtilities';
 import { GAME_EVENTS } from '../game/GameController';
 
 // Temporary const declaration here to attach to the window AND use as internal property
@@ -36,7 +39,7 @@ export default class AircraftController {
      * @param navigationLibrary {NavigationLibrary}
      */
     constructor(aircraftTypeDefinitionList, airlineController, navigationLibrary) {
-        if (!_isArray(aircraftTypeDefinitionList) || _isEmpty(aircraftTypeDefinitionList)) {
+        if (isEmptyOrNotArray(aircraftTypeDefinitionList)) {
             // eslint-disable-next-line max-len
             throw new TypeError('Invalid aircraftTypeDefinitionList passed to AircraftTypeDefinitionCollection. ' +
                 `Expected and array but received ${typeof aircraftTypeDefinitionList}`);
