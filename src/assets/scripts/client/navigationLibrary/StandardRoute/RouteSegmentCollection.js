@@ -5,7 +5,7 @@ import _isObject from 'lodash/isObject';
 import _map from 'lodash/map';
 import BaseCollection from '../../base/BaseCollection';
 import RouteSegmentModel from './RouteSegmentModel';
-import { isObjectCompleteAndNotArray } from '../../utilities/validatorUtilities';
+import { isEmptyObjectOrArray } from '../../utilities/validatorUtilities';
 
 /**
  * A collection of `RouteSegment`s.
@@ -37,7 +37,7 @@ export default class RouteSegmentCollection extends BaseCollection {
     constructor(routeSegments) {
         super();
 
-        if (!isObjectCompleteAndNotArray(routeSegments)) {
+        if (isEmptyObjectOrArray(routeSegments)) {
             throw new TypeError(`Expected routeSegments to be an object. Instead received ${typeof routeSegments}`);
         }
 
