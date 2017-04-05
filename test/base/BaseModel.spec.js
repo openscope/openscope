@@ -4,27 +4,27 @@ import _isString from 'lodash/isString';
 import BaseModel from '../../src/assets/scripts/client/base/BaseModel';
 import ExtendedBaseModelFixture from './_fixtures/ExtendedBaseModelFixture';
 
-ava('sets the #_id when passed invalid parameters', (t) => {
-    const modelojb = new BaseModel({});
-    t.true(modelojb._id.indexOf('BaseModel') !== -1);
-
-    const modelArray = new BaseModel([]);
-    t.true(modelArray._id.indexOf('BaseModel') !== -1);
-
-    const modelInt = new BaseModel(42);
+ava('sets the #_id when passed valid parameters', (t) => {
+    const modelInt = new BaseModel();
     t.true(modelInt._id.indexOf('BaseModel') !== -1);
 
-    const modelBool = new BaseModel(false);
-    t.true(modelBool._id.indexOf('BaseModel') !== -1);
+    const modelBool = new BaseModel('string');
+    t.true(modelBool._id.indexOf('string') !== -1);
+    console.log(modelBool._id);
 });
 
-ava('makes sure the model in instantiates with any data type', t => {
+ava('makes sure the model fails to instantiate with any incorrect', t => {
     t.notThrows(() => new BaseModel());
-    t.notThrows(() => new BaseModel([]));
-    t.notThrows(() => new BaseModel({}));
-    t.notThrows(() => new BaseModel(42));
+    t.throws(() => new BaseModel([]));
+    t.throws(() => new BaseModel({}));
+    t.throws(() => new BaseModel(42));
     t.notThrows(() => new BaseModel('string'));
-    t.notThrows(() => new BaseModel(false));
+    t.throws(() => new BaseModel(false));
+});
+
+ava('makes sure the model in instantiates with the correct data type', t => {
+    t.notThrows(() => new BaseModel());
+    t.notThrows(() => new BaseModel('string'));
 });
 
 ava('instantiates with an _id property', t => {
