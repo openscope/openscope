@@ -104,9 +104,7 @@
         "RNGRR": ["N40.230333", "W74.205833"],
         "SBJ": ["N40.583167", "W74.741833"],
         "PWL": ["N41.769771", "W73.600551"],
-        "LOVES": ["N41.538789", "W73.488094"],
         "BDR": ["N41.160693", "W73.124497"],
-        "BELTT": ["N41.063503", "W72.987089"],
         "DPK": ["N40.791762", "W73.303678"],
         "DEEZZ": ["N41.11145", "W73.777833"],
         "HEERO": ["N41.168833", "W74.1155"],
@@ -115,7 +113,11 @@
         "JUDDS": ["N41.6345", "W73.108167"],
         "COATE": ["N41.136333", "W74.695167"],
         "YAHOO": ["N41.069167", "W69.746167"],
-        "ARD": ["N40.253333", "W74.907667"]
+        "ARD": ["N40.253333", "W74.907667"],
+        "ENE": ["N43.4256722", "W70.6135256"],
+        "PVD": ["N41.7243442", "W71.4296386"],
+        "TRAIT": ["N41.2846528", "W71.9175972"],
+        "ASPEN": ["N42.8159861", "W70.9114972"]
     },
     "runways":[
         {
@@ -214,6 +216,27 @@
             "draw": [["_315I243SKORR", "SKORR"], ["_315I238SKORR", "SKORR"], ["SKORR", "METSS", "RNGRR*"], ["SKORR", "CESID", "YNKEE*"]]
         }
     },
+    "stars": {
+        "ROBER2": {
+            "icao": "ROBER2",
+            "name": "ROBER TWO",
+            "entryPoints": {
+              "ENE": ["ENE", "ASPEN", "PVD", ["TRAIT", "A240"]],
+              "SEY": ["SEY"],
+              },
+            "body": ["PARCH", ["CCC", "A120|S250"], ["ROBER", "A090"], "JFK"],
+            "rwy": {
+              "04L": [],
+              "04R": [],
+              "13L": [],
+              "13R": [],
+              "22L": [],
+              "22R": [],
+              "31L": [],
+              "31R": [],
+              }
+        }
+    },
     "spawnPatterns": [
         {
             "origin": "kjfk",
@@ -273,13 +296,12 @@
             ]
         },
         {
-            "_name": "CAMRN FOUR",
             "origin": "",
             "destination": "kjfk",
-            "category": "departure",
-            "route": "HOGGS..PANZE..KARRS..CAMRN",
-            "altitude": 11000,
-            "speed": 250,
+            "category": "arrival",
+            "route": "ENE.ROBER2.KJFK",
+            "altitude": 32000,
+            "speed": 300,
             "method": "random",
             "rate": 8,
             "airlines": [
@@ -294,105 +316,6 @@
                 ["vrd", 2],
                 ["lan/long", 2],
                 ["tam/long", 1],
-                ["ual", 1]
-            ]
-        },
-        {
-            "_name": "KINGSTON ONE",
-            "origin": "",
-            "destination": "kjfk",
-            "category": "departure",
-            "route": "IGN..LOLLY..DOORE..LENDY..LGA",
-            "altitude": 15000,
-            "speed": 250,
-            "method": "random",
-            "rate": 8,
-            "airlines": [
-                ["dal", 12],
-                ["aal", 8],
-                ["jbu", 6],
-                ["baw/long", 3],
-                ["dlh/long", 2],
-                ["aca", 2],
-                ["ual", 1],
-                ["ein/long", 1],
-                ["klm/long", 1],
-                ["tam", 1]
-            ]
-        },
-        {
-            "_name": "LENDY SIX",
-            "origin": "",
-            "destination": "kjfk",
-            "category": "departure",
-            "route": "HARTY..STW..LENDY..LGA",
-            "altitude": 17000,
-            "speed": 250,
-            "method": "cyclic",
-            "rate": 20,
-            "offset": 25,
-            "airlines": [
-                ["dal", 14],
-                ["aal", 10],
-                ["jbu", 6],
-                ["vrd", 6],
-                ["eva/long", 1]
-            ]
-        }
-    ],
-    "arrivals": [
-        {
-            "_name": "PAWLING TWO",
-            "origin": "",
-            "destination": "kjfk",
-            "category": "departure",
-            "route": "PWL..LOVES..BDR..BELTT..DPK",
-            "altitude": 9000,
-            "speed": 250,
-            "method": "cyclic",
-            "rate": 8,
-            "offset": 45,
-            "airlines": [
-                ["dal", 8],
-                ["aal", 8],
-                ["baw/long", 3],
-                ["ual", 1]
-            ]
-        },
-        {
-            "_name": "ROBER ONE",
-            "radial": 81,
-            "speed": 250,
-            "altitude": 11000,
-            "method": "cyclic",
-            "offset": 35,
-            "rate": 6,
-            "airlines": [
-                ["aal", 15],
-                ["dal", 12],
-                ["jbu", 9],
-                ["baw/long", 6],
-                ["ual", 5],
-                ["dlh/long", 3],
-                ["ber/long", 2],
-                ["etd/long", 1],
-                ["ein/long", 1],
-                ["afl/long", 1],
-                ["arg", 1]
-            ]
-        },
-        {
-            "name": "PARCH ONE",
-            "radial": 81,
-            "altitude": 6000,
-            "speed": 250,
-            "method": "cyclic",
-            "offset": 55,
-            "rate": 6,
-            "airlines": [
-                ["dal", 12],
-                ["aal", 7],
-                ["baw/long", 1],
                 ["ual", 1]
             ]
         }
