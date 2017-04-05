@@ -17,7 +17,7 @@ import { convertMinutesToSeconds } from '../utilities/unitConverters';
 import { AIRPORT_CONSTANTS } from '../constants/airportConstants';
 import { FLIGHT_CATEGORY } from '../constants/aircraftConstants';
 import { TIME } from '../constants/globalConstants';
-import { isObjectComplete } from '../utilities/validatorUtilities';
+import { isEmptyObject } from '../utilities/validatorUtilities';
 
 // TODO: this may need to live somewhere else
 /**
@@ -428,15 +428,15 @@ export default class SpawnPatternModel extends BaseModel {
      * @param airportController {AirportController}
      */
     init(spawnPatternJson, navigationLibrary, airportController) {
-        if (!isObjectComplete(spawnPatternJson)) {
+        if (isEmptyObject(spawnPatternJson)) {
             return;
         }
 
-        if (!isObjectComplete(navigationLibrary)) {
+        if (isEmptyObject(navigationLibrary)) {
             throw new TypeError('Invalid NavigationLibrary passed to SpawnPatternModel');
         }
 
-        if (!isObjectComplete(airportController)) {
+        if (isEmptyObject(airportController)) {
             throw new TypeError('Invalid AirportController passed to SpawnPatternModel');
         }
 
