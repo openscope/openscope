@@ -61,13 +61,13 @@ ava('.isEmptyOrNotArray() returns true when passed an non Array', (t) => {
     t.true(isEmptyOrNotArray({}));
 });
 
-ava('.isEmptyOrNotArray returns true when passed an empty object', (t) =>{
+ava('.isEmptyOrNotArray returns true when passed an empty object', (t) => {
     t.true(isEmptyOrNotArray({}));
     t.true(isEmptyObject([]));
     t.true(isEmptyObject(null));
 });
 
-ava('.isEmptyOrNotArray return false when passed an array with arguments', (t) =>{
+ava('.isEmptyOrNotArray return false when passed an array with arguments', (t) => {
     t.false(isEmptyOrNotArray([1, 2, 3]));
 });
 
