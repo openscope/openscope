@@ -80,7 +80,8 @@ export default class AirportController {
     ready(initialAirportData) {
         let airportName = DEFAULT_AIRPORT_ICAO;
 
-        if (_has(localStorage, STORAGE_KEY.ATC_LAST_AIRPORT) ||
+        if (
+            _has(localStorage, STORAGE_KEY.ATC_LAST_AIRPORT) ||
             _has(this.airport.airports, _lowerCase(localStorage[STORAGE_KEY.ATC_LAST_AIRPORT]))
         ) {
             airportName = _lowerCase(localStorage[STORAGE_KEY.ATC_LAST_AIRPORT]);

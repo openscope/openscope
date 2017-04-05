@@ -3,9 +3,7 @@ import _without from 'lodash/without';
 import BaseModel from '../base/BaseModel';
 import StaticPositionModel from '../base/StaticPositionModel';
 import { abs, tan } from '../math/core';
-import { radians_normalize } from '../math/circle';
 import { km, km_ft, degreesToRadians } from '../utilities/unitConverters';
-import { vlen, vradial, vsub, vadd, vscale } from '../math/vector';
 
 /**
  * @class RunwayModel
@@ -16,17 +14,14 @@ export default class RunwayModel extends BaseModel {
      * @constructor
      * @param options {object}
      * @param end
-     * @param airport {AirportModel}
+     * @param airportModel {AirportModel}
      */
-    constructor(options = {}, end, airport) {
+    constructor(options = {}, end, airportModel) {
         super();
 
-        options.airport = airport;
         this.airport = null;
         this.angle = null;
-        this.elevation = 0;
         this.delay = 2;
-        this.gps = [];
         this.ils = {
             // TODO: what do these numbers mean? enumerate the magic numbers
             enabled: true,
@@ -41,7 +36,7 @@ export default class RunwayModel extends BaseModel {
         this.queue = [];
         this.sepFromAdjacent = km(3);
 
-        this.parse(options, end);
+        this.parse(options, end, airportModel);
     }
 
     /**
@@ -67,35 +62,54 @@ export default class RunwayModel extends BaseModel {
     }
 
     /**
+     * Provide gps coordinates for the runway
+     *
+     * @for RunwayModel
+     * @property gps
+     * @return {array<number>} gps coordinates of the runway
+     */
+    get gps() {
+        return this._positionModel.gps;
+    }
+
+    /**
+     * @for RunwayModel
+     * @method elevation
+     * @return {number}
+     */
+    get elevation() {
+        return this._positionModel.elevation || this.airportModel.elevation;
+    }
+
+    /**
      * @for RunwayModel
      * @method parse
      * @param data
      * @param end
+     * @param airportModel {AirportModel}
      */
-    parse(data, end) {
-        this.airport = data.airport;
+    parse(data, end, airportModel) {
+        this.airport = airportModel;
+        this.name = data.name[end];
 
         if (data.delay) {
             this.delay = data.delay[end];
         }
 
         if (data.end) {
-            const thisSide = new StaticPositionModel(data.end[end], this.airport.positionModel, this.airport.magneticNorth);
-            // FIXME: ressignment of an argument with an inline ternary? this line needs some work.
-            const farSide = new StaticPositionModel(data.end[(end === 0) ? 1 : 0], this.airport.positionModel, this.airport.magneticNorth);
-
-            // TODO: `gps` and `elevation` are available from the `StaticPositionModel` and should be pulled from there
-            // instead of setting direct properties. If direct properties are needed, use getters instead.
-            // GPS latitude and longitude position
-            this.gps = [thisSide.latitude, thisSide.longitude];
-
-            if (thisSide.elevation != null) {
-                this.elevation = thisSide.elevation;
-            }
-
-            if ((this.elevation === 0) && (this.airport.elevation !== 0)) {
-                this.elevation = this.airport.elevation;
-            }
+            const farSideIndex = end === 0
+                ? 1
+                : 0;
+            const thisSide = new StaticPositionModel(
+                data.end[end],
+                this.airport.positionModel,
+                this.airport.magneticNorth
+            );
+            const farSide = new StaticPositionModel(
+                data.end[farSideIndex],
+                this.airport.positionModel,
+                this.airport.magneticNorth
+            );
 
             // relative position, based on center of map
             this._positionModel = thisSide;
@@ -121,10 +135,6 @@ export default class RunwayModel extends BaseModel {
 
         if (data.name_offset) {
             this.labelPos = data.name_offset[end];
-        }
-
-        if (data.name) {
-            this.name = data.name[end];
         }
 
         if (data.sepFromAdjacent) {
@@ -164,10 +174,12 @@ export default class RunwayModel extends BaseModel {
     *
     * @for RunwayModel
     * @method getGlideslopeAltitude
-    * @param {Number} distance - the distance from the runway threshold, in kilometers
-    * @param {Number} gs_gradient - the gradient of the glideslope, in radians (typically equivalent to 3.0 degrees)
+    * @param distance {number}                distance from the runway threshold, in kilometers
+    * @param gs_gradient {number} [optional]  gradient of the glideslope in radians
+    *                                         (typically equivalent to 3.0 degrees)
+    * @return {number}
     */
-    getGlideslopeAltitude(distance, /* optional */ gs_gradient) {
+    getGlideslopeAltitude(distance, gs_gradient) {
         if (!gs_gradient) {
             gs_gradient = this.ils.gs_gradient;
         }
@@ -180,11 +192,12 @@ export default class RunwayModel extends BaseModel {
     }
 
     /**
-     *
+     * Boolean helper used to determine if a specific aircraft instance is currently in the queue
      *
      * @for RunwayModel
      * @method isAircraftInQueue
-     * @param {Aircraft}
+     * @param aircraft {AircraftInstanceModel}
+     * @return {boolean}
      */
     isAircraftInQueue(aircraft) {
         return this.positionOfAircraftInQueue(aircraft) !== -1;
@@ -195,7 +208,7 @@ export default class RunwayModel extends BaseModel {
      *
      * @for RunwayModel
      * @method isAircraftNextInQueue
-     * @param  {Aircraft}
+     * @param  aircraft {AircraftInstanceModel}
      * @return {Boolean}
      */
     isAircraftNextInQueue(aircraft) {
@@ -207,7 +220,7 @@ export default class RunwayModel extends BaseModel {
      *
      * @for RunwayModel
      * @method removeAircraftFromQueue
-     * @param {Aircraft}
+     * @param aircraft {AircraftInstanceModel}
      */
     removeAircraftFromQueue(aircraft) {
         this.queue = _without(this.queue, aircraft);
@@ -218,8 +231,8 @@ export default class RunwayModel extends BaseModel {
      *
      * @for RunwayModel
      * @method positionOfAircraftInQueue
-     * @param  {Aircraft}
-     * @return {Number}
+     * @param  aircraft {AircraftInstanceModel}
+     * @return {number}
      */
     positionOfAircraftInQueue(aircraft) {
         return this.queue.indexOf(aircraft);

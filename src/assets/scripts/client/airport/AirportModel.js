@@ -254,6 +254,7 @@ export default class AirportModel {
             return;
         }
 
+        // TODO: move this to a `RunwayCollection` class
         _forEach(runways, (runway) => {
             // TODO: This should not be happening here, but rather during creation of the runway's `StaticPositionModel`
             runway.relative_position = this._positionModel;
@@ -358,7 +359,7 @@ export default class AirportModel {
      * @method buildRunwayMetaData
      */
     buildRunwayMetaData() {
-        // TODO: translate these to _forEach()
+        // TODO: move this logic to a `RunwayController` class
         for (const rwy1 in this.runways) {
             for (const rwy1end in this.runways[rwy1]) {
                 // setup primary runway object
@@ -658,6 +659,7 @@ export default class AirportModel {
             return null;
         }
 
+        // TODO: move below to a `RunwayCollection` class
         name = name.toLowerCase();
 
         for (let i = 0; i < this.runways.length; i++) {
