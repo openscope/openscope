@@ -89,7 +89,7 @@
         "STW": ["N40.995820", "W74.869019"],
         "COL": ["N40.311633", "W74.159736"],
         "SKORR": ["N40.61", "W73.897"],
-        "CANDR": ["N40.970833", "W74.959833"],
+        "CANDR": ["N40.970986", "W74.959827"],
         "WHITE": ["N40.006833", "W74.251333"],
         "ACK": ["N41.281667", "W70.0265"],
         "PARCH": ["N41.099228", "W72.120739"],
@@ -109,7 +109,7 @@
         "DEEZZ": ["N41.11145", "W73.777833"],
         "HEERO": ["N41.168833", "W74.1155"],
         "KURNL": ["N41.201333", "W74.4585"],
-        "TOWIN": ["N40.970833", "W74.959833"],
+        "TOWIN": ["N40.535211", "W75.400377"],
         "JUDDS": ["N41.6345", "W73.108167"],
         "COATE": ["N41.136333", "W74.695167"],
         "YAHOO": ["N41.069167", "W69.746167"],
@@ -117,7 +117,8 @@
         "ENE": ["N43.4256722", "W70.6135256"],
         "PVD": ["N41.7243442", "W71.4296386"],
         "TRAIT": ["N41.2846528", "W71.9175972"],
-        "ASPEN": ["N42.8159861", "W70.9114972"]
+        "ASPEN": ["N42.8159861", "W70.9114972"],
+        "SEY": ["N41.1674356", "W71.5760856"]
     },
     "runways":[
         {
@@ -158,7 +159,7 @@
                 "13R": ["_RWY13RDEP"],
                 "22L": ["_RWY22LDEP"],
                 "22R": ["_RWY22RDEP"]
-            },
+        },
             "exitPoints": {
                 "SAX": ["SAX"],
                 "COATE": ["COATE"],
@@ -181,7 +182,11 @@
                 "SBJ": ["SBJ"],
                 "LANNA": ["LANNA"]
             },
-            "draw": [["CRI", "OGY"], ["CRI", "_CRI3"], ["_RWY4L3", "_RWY4L3to100"], ["JFK", "SAX*"], ["JFK", "COATE*"], ["JFK", "NEION*"], ["JFK","HAAYS*"], ["JFK", "GAYEL*"], ["JFK", "GREKI*"], ["JFK", "MERIT*"], ["JFK", "BAYYS*"], ["JFK", "BDR*"], ["JFK", "BETTE*"], ["JFK", "HAPIE*"], ["JFK", "SHIPP*"], ["JFK", "WAVEY*"], ["JFK", "WHITE*"], ["JFK", "DIXIE*"], ["JFK", "RNGRR*"], ["JFK", "RBV*"], ["JFK", "ARD*"], ["JFK", "SBJ*"], ["JFK", "LANNA*"]]
+            "draw": [["CRI", "OGY"], ["CRI", "_CRI3"], ["_RWY4L3", "_RWY4L3to100"],
+                    ["SAX*"], ["COATE*"], ["HAAYS*"], ["GAYEL*"], ["GREKI*"],
+                    ["MERIT*"], ["BAYYS*"], ["BDR*"], ["BETTE*"], ["HAPIE*"],
+                    ["SHIPP*"], ["WAVEY*"], ["WHITE*"], ["DIXIE*"], ["RNGRR*"],
+                    ["RBV*"], ["ARD*"], ["SBJ*"], ["LANNA*"]]
         },
         "DEEZZ4": {
             "icao": "DEEZZ4",
@@ -198,9 +203,9 @@
             },
             "exitPoints": {
                 "CANDR": ["DEEZZ", ["HEERO", "A50+"], "KURNL", "CANDR"],
-                "TOWIN": ["DEEZZ", ["HEERO", "A50+"], "KURNL", "TOWIN"]
+                "TOWIN": ["DEEZZ", ["HEERO", "A50+"], "KURNL", "CANDR", "TOWIN"]
             },
-            "draw": [["SKORR", "CESID", "YNKEE"], ["DEEZZ", "HEERO", "KURNL", "CANDR*"], ["DEEZZ", "HEERO", "KURNL", "TOWIN*"]]
+            "draw": [["SKORR", "CESID", "YNKEE"], ["DEEZZ", "HEERO", "KURNL", "CANDR*"], ["DEEZZ", "HEERO", "KURNL", "CANDR", "TOWIN*"]]
         },
         "SKORR3": {
             "icao": "SKORR3",
@@ -217,13 +222,67 @@
         }
     },
     "stars": {
+        "CAMRN4": {
+            "icao": "CAMRN4",
+            "name": "CAMRN FOUR",
+            "entryPoints": {
+              "SIE": ["SIE"]
+            },
+            "body": ["BOTON", ["HOGGS", "A180"], "PANZE", "KARRS", ["CAMRN", "A110|S250"]],
+            "rwy": {
+              "04L": [],
+              "04R": [],
+              "13L": [],
+              "13R": [],
+              "22L": [],
+              "22R": [],
+              "31L": [],
+              "31R": []
+              }
+        },
+        "IGN1": {
+            "icao": "IGN1",
+            "name": "KINGSTON ONE",
+            "entryPoints": {
+              "IGN": ["IGN"]
+            },
+            "body": [["LOLLY", "A200"], "DOORE", ["LENDY", "A190|S250"], "LGA"],
+            "rwy": {
+              "04L": [],
+              "04R": [],
+              "13L": [],
+              "13R": [],
+              "22L": [],
+              "22R": [],
+              "31L": [],
+              "31R": []
+              }
+        },
+        "LENDY6": {
+            "icao": "LENDY6",
+            "name": "LENDY SIX",
+            "entryPoints": {
+              "LVZ": ["LVZ"]
+            },
+            "body": [["JENNO", "A230"], "HARTY", "STW", ["LENDY", "A190|S250"], "LGA"],
+            "rwy": {
+              "04L": [],
+              "04R": [],
+              "13L": [],
+              "13R": [],
+              "22L": [],
+              "22R": [],
+              "31L": [],
+              "31R": []
+              }
+        },
         "ROBER2": {
             "icao": "ROBER2",
             "name": "ROBER TWO",
             "entryPoints": {
               "ENE": ["ENE", "ASPEN", "PVD", ["TRAIT", "A240"]],
-              "SEY": ["SEY"],
-              },
+              "SEY": ["SEY"]
+            },
             "body": ["PARCH", ["CCC", "A120|S250"], ["ROBER", "A090"], "JFK"],
             "rwy": {
               "04L": [],
@@ -308,14 +367,6 @@
                 ["edv", 8],
                 ["dal", 8],
                 ["gjs", 6],
-                ["rpa", 6],
-                ["eny", 5],
-                ["jbu", 4],
-                ["aal", 4],
-                ["asq", 3],
-                ["vrd", 2],
-                ["lan/long", 2],
-                ["tam/long", 1],
                 ["ual", 1]
             ]
         }
