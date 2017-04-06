@@ -538,15 +538,15 @@ export default class AircraftInstanceModel {
      * @return {boolean}
      */
     isEstablishedOnCourse() {
-        const runway = window.airportController.airport_get().getRunway(this.fms.currentRunwayName);
-        const runwayHeading = runway.angle;
-        const approachOffset = getOffset(this, runway.relativePosition, runwayHeading);
-        const lateralDistanceFromCourse_nm = abs(nm(approachOffset[0]));
-        const onApproachCourse = lateralDistanceFromCourse_nm <= PERFORMANCE.MAXIMUM_DISTANCE_CONSIDERED_ESTABLISHED_ON_APPROACH_COURSE_NM;
-        const heading_diff = abs(angle_offset(this.heading, runwayHeading));
-        const onCorrectHeading = heading_diff < PERFORMANCE.MAXIMUM_ANGLE_CONSIDERED_ESTABLISHED_ON_APPROACH_COURSE;
+        const courseDatum = this.mcp.nav1Datum;
+        const course = this.mcp.course;
+        const courseOffset = getOffset(this, courseDatum.relativePosition, course);
+        const lateralDistanceFromCourse_nm = abs(nm(courseOffset[0]));
+        const isAlignedWithCourse = lateralDistanceFromCourse_nm <= PERFORMANCE.MAXIMUM_DISTANCE_CONSIDERED_ESTABLISHED_ON_APPROACH_COURSE_NM;
+        const heading_diff = abs(angle_offset(this.heading, course));
+        const isOnCourseHeading = heading_diff < PERFORMANCE.MAXIMUM_ANGLE_CONSIDERED_ESTABLISHED_ON_APPROACH_COURSE;
 
-        return onApproachCourse && onCorrectHeading;
+        return isAlignedWithCourse && isOnCourseHeading;
     }
 
     /**
