@@ -29,7 +29,7 @@
 - Standardized indentation in all json files [#256](https://github.com/openscope/openscope/issues/256)
     - followed up and corrected 2 mistakenly cleared out aircraft files [#259](https://github.com/openscope/openscope/issues/259)
 - Fixes Firefox compatibility issue by changing ajax to getJSON  [#263](https://github.com/openscope/openscope/issues/259)
-
+- Fixes bug with departures at SAME
 
 
 
