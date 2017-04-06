@@ -1004,7 +1004,6 @@ export default class ConvasController {
         const twin = _cloneDeep(aircraft);
 
         twin.fms = fms_twin;
-        twin.__fms__.aircraft = twin;
         twin.projected = true;
         window.gameController.game.delta = 5;
 
@@ -1013,7 +1012,7 @@ export default class ConvasController {
 
             ils_locked = twin.isEstablished() && twin.fms.currentPhase === FLIGHT_PHASE.APPROACH;
 
-            future_track.push([twin.relativePosition[0], twin.relativePosition[1], ils_locked]);
+            future_track.push([...twin.relativePosition, ils_locked]);
 
             if (ils_locked && twin.altitude < 500) {
                 break;
