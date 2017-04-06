@@ -78,7 +78,6 @@ export default class AircraftInstanceModel {
         /* eslint-disable no-multi-spaces*/
         this._id = _uniqueId('aircraft-');
         this._navigationLibrary = navigationLibrary;
-        this.eid          = global.prop.aircraft.list.length;  // entity ID
         this.positionModel = null;       // Aircraft Position
         this.model        = null;       // Aircraft type
         this.airlineId      = '';         // Airline Identifier (eg. 'AAL')
@@ -1279,14 +1278,14 @@ export default class AircraftInstanceModel {
         this.approachOffset = abs(offset[0]);
         this.approachDistance = offset[1];
         this.target.heading = this.mcp.heading;
-        this.target.turn = this.__fms__.currentWaypoint.turn;
-        this.target.altitude = this.__fms__.currentWaypoint.altitude;
-        this.target.speed = this.__fms__.currentWaypoint.speed;
+        // this.target.turn = this.__fms__.currentWaypoint.turn;
+        this.target.altitude = this.fms.currentWaypoint.altitudeRestriction;
+        this.target.speed = this.fms.currentWaypoint.speedRestriction;
 
         // Established on ILS
         if (this.mode === FLIGHT_MODES.LANDING) {
-            this.updateLandingFinalApproachHeading(angle);
-            this.target.altitude = Math.min(this.__fms__.currentWaypoint.altitude, glideslope_altitude);
+            this.updateFinalApproachHeading(angle);
+            this.target.altitude = Math.min(this.fms.currentWaypoint.altitudeRestriction, glideslope_altitude);
             this.updateLandingFinalSpeedControl(runway, offset);
 
             if (abs(offset[0]) > 0.100) {
@@ -1338,16 +1337,18 @@ export default class AircraftInstanceModel {
      * Updates the heading for a landing aircraft
      *
      * @for AircraftInstanceModel
-     * @method updateLandingFinalApproachHeading
+     * @method updateFinalApproachHeading
+     * @param angle {number}
      */
-    updateLandingFinalApproachHeading(angle) {
+    updateFinalApproachHeading(angle) {
         // Final Approach Heading Control
+        // TODO: these may be a constant for this
         const severity_of_correction = 25;  // controls steepness of heading adjustments during localizer tracking
-        const targetHeadinh = angle + (this.offset_angle * -severity_of_correction);
+        const targetHeading = angle + (this.offset_angle * -severity_of_correction);
         const minHeading = angle - degreesToRadians(30);
         const maxHeading = angle + degreesToRadians(30);
 
-        this.target.heading = clamp(targetHeadinh, minHeading, maxHeading);
+        this.target.heading = clamp(targetHeading, minHeading, maxHeading);
     }
 
     // TODO: More Simplification of this function should be done, abstract warings to their own functions
@@ -1521,8 +1522,9 @@ export default class AircraftInstanceModel {
      */
     updateLandingFinalSpeedControl(runway, offset) {
         // Final Approach Speed Control
-        if (this.__fms__.currentWaypoint.speed > 0)  {
-            this.__fms__.setCurrent({ start_speed: this.__fms__.currentWaypoint.speed });
+        let startSpeed = null;
+        if (this.fms.currentWaypoint.speedRestriction > 0)  {
+            startSpeed = this.fms.currentWaypoint.speedRestriction;
         }
 
         if (this.isOnGround()) {
@@ -1534,11 +1536,12 @@ export default class AircraftInstanceModel {
 
         const dist_final_app_spd = 3.5; // 3.5km ~= 2nm
         const dist_assigned_spd = 9.5;  // 9.5km ~= 5nm
+
         this.target.speed = extrapolate_range_clamp(
             dist_final_app_spd, offset[1],
             dist_assigned_spd,
             this.model.speed.landing,
-            this.__fms__.currentWaypoint.start_speed
+            startSpeed
         );
     }
     /* ^^^^^^^ THESE HAVE ELEMENTS THAT SHOULD BE MOVED INTO THE PHYSICS CALCULATIONS ^^^^^^^ */

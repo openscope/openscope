@@ -320,6 +320,7 @@ export default class AircraftController {
         }
     }
 
+    // FIXME: DEPRECATE
     /**
      * @for AircraftController
      * @method aircraft_get
@@ -395,22 +396,6 @@ export default class AircraftController {
         conflict.aircraft[1].removeConflict(conflict.aircraft[0]);
 
         this.conflicts = _without(this.conflicts, conflict);
-    }
-
-    // TODO: what is an `eid` and why would it beed to be updated?
-    /**
-     * Adjust all aircraft's eid values
-     *
-     * @for AircraftController
-     * @method update_aircraft_eids
-     */
-    update_aircraft_eids() {
-        for (let i = 0; i < this.aircraft.list.length; i++) {
-            // update eid in aircraft
-            this.aircraft.list[i].eid = i;
-            // update eid in aircraft's fms
-            this.aircraft.list[i].__fms__.my_aircrafts_eid = i;
-        }
     }
 
     /**

@@ -88,6 +88,13 @@ ava('#flightPlan returns an empty string when no #_previousRouteSegments exist',
     t.true(_isEqual(fms.flightPlan, expectedResult));
 });
 
+ava('#waypoints returns a single array of all the WaypointModels in the flightPlan', (t) => {
+    const fms = buildFmsMock(isComplexRoute);
+    const result = fms.waypoints;
+
+    t.true(result.length === 14);
+});
+
 ava('.init() calls ._buildLegCollection()', (t) => {
     const fms = buildFmsMock();
     const _buildLegCollectionSpy = sinon.spy(fms, '_buildLegCollection');

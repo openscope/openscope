@@ -961,7 +961,9 @@ export default class ConvasController {
      * @param future_track
      */
     canvas_draw_future_track_fixes(cc, aircraft, future_track) {
-        if (aircraft.__fms__.waypoints.length < 1) {
+        const waypointList = aircraft.fms.waypoints;
+
+        if (waypointList.length === 0) {
             return;
         }
 
@@ -973,14 +975,10 @@ export default class ConvasController {
         cc.moveTo(x, y);
         cc.setLineDash([3, 10]);
 
-        for (let i = 0; i < aircraft.__fms__.waypoints.length; i++) {
-            if (!aircraft.__fms__.waypoints[i].location) {
-                break;
-            }
-
-            const fix = aircraft.__fms__.waypoints[i].location;
-            const fx = window.uiController.km_to_px(fix[0]) + this.canvas.panX;
-            const fy = -window.uiController.km_to_px(fix[1]) + this.canvas.panY;
+        for (let i = 0; i < waypointList.length; i++) {
+            const [x, y] = waypointList[i].relativePosition;
+            const fx = window.uiController.km_to_px(x) + this.canvas.panX;
+            const fy = -window.uiController.km_to_px(y) + this.canvas.panY;
 
             cc.lineTo(fx, fy);
         }

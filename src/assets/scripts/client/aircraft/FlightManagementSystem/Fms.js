@@ -1,6 +1,7 @@
 import _drop from 'lodash/drop';
 import _find from 'lodash/find';
 import _findIndex from 'lodash/findIndex';
+import _flatten from 'lodash/flatten';
 import _has from 'lodash/has';
 import _isEmpty from 'lodash/isEmpty';
 import _isNil from 'lodash/isNil';
@@ -231,6 +232,28 @@ export default class Fms {
             altitude: this.flightPlanAltitude,
             route: this.flightPlanRoute
         };
+    }
+
+    // TODO: this should move to a class method
+    /**
+     * Returns a flattened array of each `WaypointModel` in the flightPlan
+     *
+     * This is used only in the `CanvasController` when drawing the projected
+     * aircraft path.
+     *
+     * Using a getter here to stay in line with the previous api.
+     *
+     * @property waypoints
+     * @return {array<WaypointModel>}
+     */
+    get waypoints() {
+        const waypointList = _map(this.legCollection, (legModel) => {
+            return [
+                ...legModel.waypointCollection
+            ];
+        });
+
+        return _flatten(waypointList);
     }
 
     /**
