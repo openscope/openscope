@@ -531,12 +531,13 @@ export default class AircraftInstanceModel {
     }
 
     /**
-     * Aircraft is established on FINAL APPROACH COURSE
+     * Aircraft is established on the course tuned into the nav radio and course buildCurrentTerrainRanges
+     *
      * @for AircraftInstanceModel
      * @method isEstablished
      * @return {boolean}
      */
-    isEstablished() {
+    isEstablishedOnCourse() {
         const runway = window.airportController.airport_get().getRunway(this.fms.currentRunwayName);
         const runwayHeading = runway.angle;
         const approachOffset = getOffset(this, runway.relativePosition, runwayHeading);
@@ -582,23 +583,6 @@ export default class AircraftInstanceModel {
         const nearAirportAltitude = abs(this.altitude - airport.positionModel.elevation) < errorAllowanceInFeet;
 
         return nearRunwayAltitude || nearAirportAltitude;
-    }
-
-    // TODO: Possible duplicate
-    /**
-     * Aircraft is actively following an instrument approach and is elegible for reduced separation
-     *
-     * If the game ever distinguishes between ILS/MLS/LAAS
-     * approaches and visual/localizer/VOR/etc. this should
-     * distinguish between them.  Until then, presume landing is via
-     * ILS with appropriate procedures in place.
-     *
-     * @for AircraftInstanceModel
-     * @method isPrecisionGuided
-     * @return {boolean}
-     */
-    isPrecisionGuided() {
-        return this.isEstablished() && this.flightPhase === FLIGHT_PHASE.LANDING;
     }
 
     /**

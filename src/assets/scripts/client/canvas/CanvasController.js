@@ -860,7 +860,7 @@ export default class ConvasController {
             aircraft.relativePositionHistory = aircraft.relativePositionHistory.slice(aircraft.relativePositionHistory.length - trailling_length, aircraft.relativePositionHistory.length);
         }
 
-        if (aircraft.isPrecisionGuided()) {
+        if (aircraft.isEstablishedOnCourse()) {
             cc.save();
             this.canvas_draw_separation_indicator(cc, aircraft);
             cc.restore();
@@ -1010,7 +1010,7 @@ export default class ConvasController {
         for (let i = 0; i < 60; i++) {
             twin.update();
 
-            ils_locked = twin.isEstablished() && twin.fms.currentPhase === FLIGHT_PHASE.APPROACH;
+            ils_locked = twin.isEstablishedOnCourse() && twin.fms.currentPhase === FLIGHT_PHASE.APPROACH;
 
             future_track.push([...twin.relativePosition, ils_locked]);
 
@@ -1228,7 +1228,7 @@ export default class ConvasController {
                 cc.lineTo(0, height2);
                 cc.stroke();  // bottom arc end
 
-                if (aircraft.isEstablished()) {
+                if (aircraft.isEstablishedOnCourse()) {
                     // Localizer Capture Indicator
                     cc.fillStyle = white;
                     cc.beginPath();
