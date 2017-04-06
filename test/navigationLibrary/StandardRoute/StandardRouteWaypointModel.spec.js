@@ -4,7 +4,6 @@ import _isArray from 'lodash/isArray';
 
 import StandardRouteWaypointModel from '../../../src/assets/scripts/client/navigationLibrary/StandardRoute/StandardRouteWaypointModel';
 import FixCollection from '../../../src/assets/scripts/client/navigationLibrary/Fix/FixCollection';
-import Waypoint from '../../../src/assets/scripts/client/aircraft/FlightManagementSystem/Waypoint';
 import WaypointModel from '../../../src/assets/scripts/client/aircraft/FlightManagementSystem/WaypointModel';
 
 import {
@@ -60,16 +59,6 @@ ava('calls ._parseWaypointRestrictions() when provided and array', t => {
     model._init(ROUTE_WAYPOINT_MOCK);
 
     t.true(spy.callCount === 1);
-});
-
-ava('.generateFmsWaypoint() returns a new instance of an FMS Waypoint object', t => {
-    const model = new StandardRouteWaypointModel(ROUTE_WAYPOINT_MOCK);
-    const result = model.generateFmsWaypoint(airportModelFixture);
-
-    t.true(result instanceof Waypoint);
-    t.true(model.name === result.fix);
-    t.true(model._altitude.toString() === result.fixRestrictions.alt);
-    t.true(model._speed.toString() === result.fixRestrictions.spd);
 });
 
 ava('.toWaypointModel() returns a new instance of a WaypointModel', t => {

@@ -1,7 +1,6 @@
 import _isNil from 'lodash/isNil';
 import BaseModel from '../../base/BaseModel';
 import FixCollection from '../Fix/FixCollection';
-import Waypoint from '../../aircraft/FlightManagementSystem/Waypoint';
 import WaypointModel from '../../aircraft/FlightManagementSystem/WaypointModel';
 import { REGEX } from '../../constants/globalConstants';
 
@@ -348,29 +347,6 @@ export default class StandardRouteWaypointModel extends BaseModel {
         this._positionModel = fixModel.clonePosition();
 
         return this;
-    }
-
-    // TODO: this should be removed at the conclusion of feature/139
-    /**
-     * @for StandardRouteWaypointModel
-     * @method generateFmsWaypoint
-     * @param airport {AirportInstanceModel}
-     * @return {Waypoint}
-     */
-    generateFmsWaypoint(airport) {
-        // the two shames below are because these values are now numbers and not strings,
-        // using .toString() here to keep this in line with the previous api.
-        const fmsWaypoint = {
-            fix: this.name,
-            fixRestrictions: {
-                // shame
-                alt: this._altitude.toString(),
-                // shame
-                spd: this._speed.toString()
-            }
-        };
-
-        return new Waypoint(fmsWaypoint, airport);
     }
 
     /**

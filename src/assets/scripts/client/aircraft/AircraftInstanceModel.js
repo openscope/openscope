@@ -6,7 +6,6 @@ import _get from 'lodash/get';
 import _isEqual from 'lodash/isEqual';
 import _isNil from 'lodash/isNil';
 import _uniqueId from 'lodash/uniqueId';
-import AircraftFlightManagementSystem from './FlightManagementSystem/AircraftFlightManagementSystem';
 import AircraftStripView from './AircraftStripView';
 import Fms from './FlightManagementSystem/Fms';
 import ModeController from './ModeControl/ModeController';
@@ -162,13 +161,6 @@ export default class AircraftInstanceModel {
          * new planes with                      new planes with
          * category 'departure'                 category 'arrival'
          */
-
-        // Initialize the FMS
-        this.__fms__ = new AircraftFlightManagementSystem({
-            aircraft: this,
-            model: options.model,
-            navigationLibrary: this._navigationLibrary
-        });
 
         // target represents what the pilot makes of the tower's commands. It is
         // most important when the plane is in a 'guided' situation, that is it is
