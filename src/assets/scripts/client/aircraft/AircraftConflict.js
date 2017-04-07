@@ -216,7 +216,7 @@ export default class AircraftConflict {
 
 
         // Established on precision guided approaches && both are following different instrument approaches
-        if ((a1.isPrecisionGuided() && a2.isPrecisionGuided()) && (a1.rwy_arr !== a2.rwy_arr)) {
+        if ((a1.isEstablishedOnCourse() && a2.isEstablishedOnCourse()) && (a1.rwy_arr !== a2.rwy_arr)) {
             const runwayRelationship = window.airportController.airport_get().metadata.rwy[a1.rwy_arr][a2.rwy_arr];
 
             // Determine applicable lateral separation minima for conducting

@@ -531,21 +531,22 @@ export default class AircraftInstanceModel {
     }
 
     /**
-     * Aircraft is established on FINAL APPROACH COURSE
+     * Aircraft is established on the course tuned into the nav radio and course buildCurrentTerrainRanges
+     *
      * @for AircraftInstanceModel
      * @method isEstablished
      * @return {boolean}
      */
-    isEstablished() {
-        const runway = window.airportController.airport_get().getRunway(this.fms.currentRunwayName);
-        const runwayHeading = runway.angle;
-        const approachOffset = getOffset(this, runway.relativePosition, runwayHeading);
-        const lateralDistanceFromCourse_nm = abs(nm(approachOffset[0]));
-        const onApproachCourse = lateralDistanceFromCourse_nm <= PERFORMANCE.MAXIMUM_DISTANCE_CONSIDERED_ESTABLISHED_ON_APPROACH_COURSE_NM;
-        const heading_diff = abs(angle_offset(this.heading, runwayHeading));
-        const onCorrectHeading = heading_diff < PERFORMANCE.MAXIMUM_ANGLE_CONSIDERED_ESTABLISHED_ON_APPROACH_COURSE;
+    isEstablishedOnCourse() {
+        const courseDatum = this.mcp.nav1Datum;
+        const course = this.mcp.course;
+        const courseOffset = getOffset(this, courseDatum.relativePosition, course);
+        const lateralDistanceFromCourse_nm = abs(nm(courseOffset[0]));
+        const isAlignedWithCourse = lateralDistanceFromCourse_nm <= PERFORMANCE.MAXIMUM_DISTANCE_CONSIDERED_ESTABLISHED_ON_APPROACH_COURSE_NM;
+        const heading_diff = abs(angle_offset(this.heading, course));
+        const isOnCourseHeading = heading_diff < PERFORMANCE.MAXIMUM_ANGLE_CONSIDERED_ESTABLISHED_ON_APPROACH_COURSE;
 
-        return onApproachCourse && onCorrectHeading;
+        return isAlignedWithCourse && isOnCourseHeading;
     }
 
     /**
@@ -582,23 +583,6 @@ export default class AircraftInstanceModel {
         const nearAirportAltitude = abs(this.altitude - airport.positionModel.elevation) < errorAllowanceInFeet;
 
         return nearRunwayAltitude || nearAirportAltitude;
-    }
-
-    // TODO: Possible duplicate
-    /**
-     * Aircraft is actively following an instrument approach and is elegible for reduced separation
-     *
-     * If the game ever distinguishes between ILS/MLS/LAAS
-     * approaches and visual/localizer/VOR/etc. this should
-     * distinguish between them.  Until then, presume landing is via
-     * ILS with appropriate procedures in place.
-     *
-     * @for AircraftInstanceModel
-     * @method isPrecisionGuided
-     * @return {boolean}
-     */
-    isPrecisionGuided() {
-        return this.isEstablished() && this.flightPhase === FLIGHT_PHASE.LANDING;
     }
 
     /**

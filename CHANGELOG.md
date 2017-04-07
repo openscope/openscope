@@ -16,10 +16,13 @@
         - create RouteBuilder class and smooth out RouteModel [#144](https://github.com/openscope/openscope/issues/144)
         - Implied holding in route strings [#114](https://github.com/openscope/openscope/issues/114)
         - `aircraftInstanceModel.fms` has a circular dependency with `aircraftInstanceModel.fms.my_aircraft.fms` [#57](https://github.com/openscope/openscope/issues/57)
+        - Using STAR command to change aircraft's assigned STAR throws errors [#73](https://github.com/openscope/openscope/issues/73)
         - Abstract current waypoint altitude and speed setting [#77](https://github.com/openscope/openscope/issues/77)
         - Add Leg to modelSourcePool [#78](https://github.com/openscope/openscope/issues/78)
         - Refactor fms param out of Leg [#79](https://github.com/openscope/openscope/issues/79)
+        - Rerouting aircraft causes it to climb to unassigned altitude [#86](https://github.com/openscope/openscope/issues/86)
         - deprecate aircraft eid [#87](https://github.com/openscope/openscope/issues/87)
+        - Route amendments will stop altitude changes [#197](https://github.com/openscope/openscope/issues/197)
 
 
 
