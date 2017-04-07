@@ -10,7 +10,7 @@ import _isObject from 'lodash/isObject';
  * @return {boolean}
  */
 export const isEmptyObject = (value) => {
-    return !_isObject(value) || _isEmpty(value);
+    return _isObject(value) && _isEmpty(value);
 };
 
 /**
