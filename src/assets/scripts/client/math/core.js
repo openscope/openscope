@@ -67,16 +67,27 @@ export const s = (i) => {
     return (i === 1) ? '' : 's';
 };
 
-// TODO: rename to isWithin
 /**
- * @function within
- * @param n
- * @param c
- * @param r
- * @return {number}
+ * Checks whether or not a given value is between (inclusive) two given values
+ *
+ * Note: The more efficient order is to pass (value, minimum, maximum), but if the
+ * relative values are not known, the function will still conduct the comparison
+ * correctly.
+ *
+ * @function isWithin
+ * @param value {number} the value in question
+ * @param limit1 {number} constraining value (inclusive)
+ * @param limit2 {number} constraining value (inclusive)
+ * @return {boolean}
  */
-export const within = (n, c, r) => {
-    return n > (c + r) || n < (c - r);
+export const isWithin = (value, limit1, limit2) => {
+    if (limit1 > limit2) {
+        const oldLimit1 = limit1;
+        limit1 = limit2;
+        limit2 = oldLimit1;
+    }
+
+    return limit1 <= value && value >= limit2;
 };
 
 // TODO: add a divisor paramater that dfaults to `2`
@@ -106,8 +117,10 @@ export const mod = (firstValue, secondValue) => {
     return ((firstValue % secondValue) + secondValue) % secondValue;
 };
 
+// TODO: Reorder as (valueToClamp, min, max) to maintain uniformity with the lodash equivalent
 /**
  * Clamp a value to be within a certain range
+ * Note: For the opposite, see `spread()`
  *
  * @function clamp
  * @param min {number}
@@ -145,6 +158,30 @@ export const clamp = (min, valueToClamp, max = Infinity) => {
     }
 
     return valueToClamp;
+};
+
+/**
+ * Spread a value to be OUTSIDE OF a certain range
+ * Note: For the opposite, see `clamp()`
+ *
+ * @function spread
+ * @param value {number} the value in question
+ * @param lowerLimit {number} the minimum value that is considered unacceptable
+ * @param upperLimit {number} the maximum value that is considered unacceptable
+ * @return {number}
+ */
+export const spread = (value, lowerLimit, upperLimit) => {
+    const averageOfLimits = (lowerLimit + upperLimit) / 2;
+
+    if (value <= lowerLimit || value >= upperLimit) {
+        return value;
+    }
+
+    if (value < averageOfLimits) {
+        return lowerLimit;
+    }
+
+    return upperLimit;
 };
 
 /**
