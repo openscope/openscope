@@ -21,7 +21,7 @@ export const isEmptyObject = (value) => {
  * @return {boolean}
  */
 export const isEmptyObjectOrArray = (value) => {
-    return !_isObject(value) || _isEmpty(value) || _isArray(value);
+    return (_isObject(value) && _isEmpty(value)) || _isArray(value);
 };
 
 /**
