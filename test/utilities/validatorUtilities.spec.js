@@ -10,7 +10,6 @@ ava('.isEmptyObject() returns false when passed an non object', (t) => {
     t.false(isEmptyObject(true));
     t.false(isEmptyObject(42));
     t.false(isEmptyObject(undefined));
-    t.false(isEmptyObject(null));
 });
 
 ava('.isEmptyObject() returns false when passed an object with properties', (t) => {
@@ -26,19 +25,19 @@ ava('.isEmptyObject() returns true when passed an empty object', (t) => {
     t.true(isEmptyObject([]));
 });
 
-ava('.isEmptyOrNotArray() returns false when passed an non Array', (t) => {
-    t.false(isEmptyOrNotArray('threeve'));
-    t.false(isEmptyOrNotArray(false));
-    t.false(isEmptyOrNotArray(true));
-    t.false(isEmptyOrNotArray(42));
-    t.false(isEmptyOrNotArray(undefined));
-    t.false(isEmptyOrNotArray({}));
+ava('.isEmptyOrNotArray() returns true when passed an non Array', (t) => {
+    t.true(isEmptyOrNotArray('threeve'));
+    t.true(isEmptyOrNotArray(false));
+    t.true(isEmptyOrNotArray(true));
+    t.true(isEmptyOrNotArray(42));
+    t.true(isEmptyOrNotArray(undefined));
+    t.true(isEmptyOrNotArray({}));
 });
 
 ava('.isEmptyOrNotArray returns true when passed an empty object', (t) => {
     t.true(isEmptyOrNotArray({}));
-    t.true(isEmptyObject([]));
-    t.true(isEmptyObject(null));
+    t.true(isEmptyOrNotArray([]));
+    t.true(isEmptyOrNotArray(null));
 });
 
 ava('.isEmptyOrNotArray return false when passed an array with arguments', (t) => {
