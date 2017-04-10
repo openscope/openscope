@@ -1,5 +1,6 @@
 /* eslint-disable max-len, no-undef */
 import $ from 'jquery';
+import _clamp from 'lodash/clamp';
 import _defaultTo from 'lodash/defaultTo';
 import _forEach from 'lodash/forEach';
 import _get from 'lodash/get';
@@ -12,7 +13,7 @@ import ModeController from './ModeControl/ModeController';
 import Pilot from './Pilot/Pilot';
 import { speech_say } from '../speech';
 import { tau, radians_normalize, angle_offset } from '../math/circle';
-import { abs, sin, cos, extrapolate_range_clamp, clamp } from '../math/core';
+import { abs, clamp, cos, extrapolate_range_clamp, sin, spread } from '../math/core';
 import { getOffset, calculateTurnInitiaionDistance } from '../math/flightMath';
 import {
     distance_to_poly,
@@ -1206,35 +1207,49 @@ export default class AircraftInstanceModel {
      */
     _calculateTargetedHeadingToInterceptCourse() {
         // TODO: abstract this to be not specific to ILS interception, but interception of a 'course' to a 'datum'
-
         // Guide aircraft onto the localizer
         const runway = window.airportController.airport_get().getRunway(this.fms.currentRunwayName);
         const runwayHeading = radians_normalize(runway.angle);
         const approachOffset = getOffset(this, runway.relativePosition, runwayHeading);
         const lateralDistanceFromCourse_nm = nm(approachOffset[0]);
-        const angle_diff = angle_offset(runwayHeading, this.heading);
+        const headingDifference = angle_offset(runwayHeading, this.heading);
         const bearingFromAircaftToRunway = this.positionModel.bearingToPosition(runway.positionModel);
         const angleAwayFromLocalizer = runwayHeading - bearingFromAircaftToRunway;
-        // TODO: abstract to helper function
-        const turning_time = Math.abs(radiansToDegrees(angle_diff / PERFORMANCE.TURN_RATE));    // time to turn angle_diff degrees at 3 deg/s
-        // TODO: abstract to helper function
-        const turning_radius = (this.speed * TIME.ONE_HOUR_IN_SECONDS) * turning_time;  // dist covered in the turn, nm
-        // TODO: abstract to helper function
-        const dist_to_localizer = lateralDistanceFromCourse_nm / sin(angle_diff); // dist from the localizer intercept point, nm
-        const turn_early_nm = 0.5;    // start turn early, to avoid overshoots from tailwind
-        const should_attempt_intercept = (dist_to_localizer > 0 && dist_to_localizer <= turning_radius + turn_early_nm);
-        const in_the_window = abs(angleAwayFromLocalizer) < degreesToRadians(1.5);  // if true, aircraft will move to localizer, regardless of assigned heading
+        const turnTimeInSeconds = abs(headingDifference) / PERFORMANCE.TURN_RATE;    // time to turn headingDifference degrees
+        const turning_radius = this.speed * (turnTimeInSeconds * TIME.ONE_SECOND_IN_HOURS);  // dist covered in the turn, nm
+        const distanceCoveredDuringTurn = turning_radius * abs(headingDifference);
+        const distanceToLocalizer = lateralDistanceFromCourse_nm / sin(headingDifference); // dist from the localizer intercept point, nm
+        const distanceEarly = 0.5;    // start turn early, to avoid overshoots from tailwind
+        const shouldAttemptIntercept = (distanceToLocalizer > 0 && distanceToLocalizer <= distanceCoveredDuringTurn + distanceEarly);
+        const inTheWindow = abs(angleAwayFromLocalizer) < degreesToRadians(1.5);  // if true, aircraft will move to localizer, regardless of assigned heading
 
-        // TODO: the logic here should be reversed to return early
-        if (should_attempt_intercept || in_the_window) {  // time to begin turn
-            // TODO: abstract to helper function
-            const severity_of_correction = 25.0;  // controls steepness of heading adjustments during localizer tracking
-            const tgtHdg = runwayHeading + (angleAwayFromLocalizer * -severity_of_correction);
-            const minHdg = runwayHeading - degreesToRadians(30);
-            const maxHdg = runwayHeading + degreesToRadians(30);
-            const targetHeading = clamp(tgtHdg, minHdg, maxHdg);
+        if (!(shouldAttemptIntercept || inTheWindow)) {
+            return this.mcp.heading;
+        }
 
-            return targetHeading;
+        const severity_of_correction = 50;  // controls steepness of heading adjustments during localizer tracking
+        let interceptAngle = angleAwayFromLocalizer * -severity_of_correction;
+        const minimumInterceptAngle = degreesToRadians(10);
+        const interceptAngleIsShallow = abs(interceptAngle) < minimumInterceptAngle;
+        const isAlignedWithCourse = abs(lateralDistanceFromCourse_nm) <= PERFORMANCE.MAXIMUM_DISTANCE_CONSIDERED_ESTABLISHED_ON_APPROACH_COURSE_NM;
+
+        // TODO: This is a patch fix, and it stinks. This whole method needs to be improved greatly.
+        if (isAlignedWithCourse) {
+            return runwayHeading + interceptAngle;
+        }
+
+        interceptAngle = spread(interceptAngle, -minimumInterceptAngle, minimumInterceptAngle);
+        const interceptHeading = runwayHeading + interceptAngle;
+
+        // TODO: This should be abstracted
+        if (this.mcp.heading < this.mcp.course) {
+            const headingToFly = Math.max(interceptHeading, this.mcp.heading);
+
+            return headingToFly;
+        } else if (this.mcp.heading > this.mcp.course) {
+            const headingToFly = Math.min(interceptHeading, this.mcp.heading);
+
+            return headingToFly;
         }
     }
     /* ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ THESE SHOULD STAY ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ */
@@ -1327,6 +1342,7 @@ export default class AircraftInstanceModel {
      * @param angle {number}
      */
     updateFinalApproachHeading(angle) {
+        return this.updateTargetHeadingForLanding(angle, getOffset(this, this.nav1Datum, this.course));
         // Final Approach Heading Control
         // TODO: these may be a constant for this
         const severity_of_correction = 25;  // controls steepness of heading adjustments during localizer tracking
@@ -1401,15 +1417,31 @@ export default class AircraftInstanceModel {
         const dist_to_localizer = offset[0] / sin(angle_diff); // dist from the localizer intercept point, km
         const turn_early_km = 1;    // start turn 1km early, to avoid overshoots from tailwind
         const should_attempt_intercept = (dist_to_localizer > 0 && dist_to_localizer <= turning_radius + turn_early_km);
-        const in_the_window = abs(this.offset_angle) < degreesToRadians(1.5);  // if true, aircraft will move to localizer, regardless of assigned heading
+        const inTheWindow = abs(this.offset_angle) < degreesToRadians(1.5);  // if true, aircraft will move to localizer, regardless of assigned heading
 
-        if (should_attempt_intercept || in_the_window) {  // time to begin turn
+        if (should_attempt_intercept || inTheWindow) {  // time to begin turn
             const severity_of_correction = 50;  // controls steepness of heading adjustments during localizer tracking
-            const tgtHdg = angle + (this.offset_angle * -severity_of_correction);
+
+            // TODO: This is a patch fix, and it stinks. This whole method needs to be improved greatly.
+            let angleAdjustment = this.offset_angle * -severity_of_correction;
+            if (abs(offset[0]) < PERFORMANCE.MAXIMUM_DISTANCE_CONSIDERED_ESTABLISHED_ON_APPROACH_COURSE_NM) {
+                const minimumInterceptAngleWhileJoiningCourse = degreesToRadians(5);
+                angleAdjustment += (minimumInterceptAngleWhileJoiningCourse * Math.sign(this.offset_angle));
+            }
+
+            const tgtHdg = angle + angleAdjustment;
             const minHdg = angle - degreesToRadians(30);
             const maxHdg = angle + degreesToRadians(30);
 
-            this.target.heading = clamp(tgtHdg, minHdg, maxHdg);
+            // this.target.heading = clamp(tgtHdg, minHdg, maxHdg);
+            const desiredHeading = clamp(tgtHdg, minHdg, maxHdg);
+
+            // TODO: This should be abstracted
+            if (this.mcp.heading < this.mcp.course) {
+                this.target.heading = Math.max(desiredHeading, this.mcp.heading);
+            } else if (this.mcp.heading > this.mcp.course) {
+                this.target.heading = Math.min(desiredHeading, this.mcp.heading);
+            }
         }
     }
 

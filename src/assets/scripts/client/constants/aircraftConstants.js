@@ -200,7 +200,7 @@ export const PERFORMANCE = {
      * @type {number}
      * @final
      */
-    MAXIMUM_DISTANCE_CONSIDERED_ESTABLISHED_ON_APPROACH_COURSE_NM: 0.0246868,   // appx. 150 feet
+    MAXIMUM_DISTANCE_CONSIDERED_ESTABLISHED_ON_APPROACH_COURSE_NM: 0.0822894,   // appx. 500 feet
 
     /**
      * Maximum angular differce from the approach course heading to consider the aircraft close
@@ -211,7 +211,7 @@ export const PERFORMANCE = {
      * @type {number}
      * @final
      */
-    MAXIMUM_ANGLE_CONSIDERED_ESTABLISHED_ON_APPROACH_COURSE: 0.0174533, // appx. 1 degree
+    MAXIMUM_ANGLE_CONSIDERED_ESTABLISHED_ON_APPROACH_COURSE: 0.0872665, // appx. 5 degrees
 
     /**
      * Altitude above the runway to which aircraft may descend on an instrument approach.
