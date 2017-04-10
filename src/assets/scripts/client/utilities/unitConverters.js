@@ -19,6 +19,14 @@ const DECIMAL_RADIX = 10;
  */
 export const UNIT_CONVERSION_CONSTANTS = {
     /**
+    * nautical miles to feet
+    *
+    * @property NM_FT
+    * @type {Number}
+    * @final
+    */
+    NM_FT: 6076.115485564,
+    /**
      * nautical mile per kilometer ratio
      *
      * @property NM_KM

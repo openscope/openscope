@@ -37,7 +37,8 @@ import {
     heading_to_string,
     km,
     nm,
-    radiansToDegrees
+    radiansToDegrees,
+    UNIT_CONVERSION_CONSTANTS
 } from '../utilities/unitConverters';
 import {
     FLIGHT_CATEGORY,
@@ -1190,12 +1191,14 @@ export default class AircraftInstanceModel {
      * @private
      */
     _calculateTargetedAltitudeToInterceptGlidepath() {
-        const runway = window.airportController.airport_get().getRunway(this.rwy_arr);
-        const distanceFromThreshold_km = getOffset(this.positionModel, runway.relativePosition, runway.angle);
-        const glideslopeAltitude = runway.getGlideslopeAltitude(distanceFromThreshold_km[1]);
-        const targetAltitude = clamp(runway.elevation, glideslopeAltitude, this.altitude);
+        const glideDatum = this.mcp.nav1Datum;
+        const distanceFromDatum_nm = this.positionModel.distanceToPosition(glideDatum);
+        const slope = Math.tan(degreesToRadians(3));
+        const distanceFromDatum_ft = distanceFromDatum_nm * UNIT_CONVERSION_CONSTANTS.NM_FT;
+        const glideslopeAltitude = glideDatum.elevation + (slope * (distanceFromDatum_ft));
+        const altitudeToTarget = _clamp(glideslopeAltitude, glideDatum.elevation, this.altitude);
 
-        return targetAltitude;
+        return altitudeToTarget;
     }
 
     /**
@@ -1256,49 +1259,6 @@ export default class AircraftInstanceModel {
 
     /* vvvvvvvvvvv THESE SHOULD BE EXAMINED AND EITHER REMOVED OR MOVED ELSEWHERE vvvvvvvvvvv */
     /**
-     * Prepares the aircraft for landing
-     *
-     * @for AircraftInstanceModel
-     * @method updateTargetPrepareAircraftForLanding
-     */
-    updateTargetPrepareAircraftForLanding() {
-        const airport = window.airportController.airport_get();
-        const runway  = airport.getRunway(this.rwy_arr);
-        // TODO: abstract to RunwayModel method
-        const offset = getOffset(this, runway.relativePosition, runway.angle);
-        const offset_angle = vradial(offset);
-        // TODO: abstract to RunwayModel method
-        const angle = radians_normalize(runway.angle);
-        // TODO: abstract to RunwayModel method
-        const glideslope_altitude = clamp(runway.elevation, runway.getGlideslopeAltitude(offset[1]), this.altitude);
-        // const assignedHdg = this.__fms__.currentWaypoint.heading;
-        const localizerRange = runway.ils.enabled
-            ? runway.ils.loc_maxDist :
-            40;
-        this.offset_angle = offset_angle;
-        this.approachOffset = abs(offset[0]);
-        this.approachDistance = offset[1];
-        this.target.heading = this.mcp.heading;
-        // this.target.turn = this.__fms__.currentWaypoint.turn;
-        this.target.altitude = this.fms.currentWaypoint.altitudeRestriction;
-        this.target.speed = this.fms.currentWaypoint.speedRestriction;
-
-        // Established on ILS
-        if (this.mode === FLIGHT_MODES.LANDING) {
-            this.updateFinalApproachHeading(angle);
-            this.target.altitude = Math.min(this.fms.currentWaypoint.altitudeRestriction, glideslope_altitude);
-            this.updateLandingFinalSpeedControl(runway, offset);
-
-            if (abs(offset[0]) > 0.100) {
-                this.updateLandingFailedLanding();
-            }
-        } else if (offset[1] < localizerRange) {
-            this.updateInterceptLocalizer(angle, offset, glideslope_altitude);
-            this.updateTargetHeadingForLanding(angle, offset);
-        }
-    }
-
-    /**
      * Cancels the landing and disaply message
      *
      * @for AircraftInstanceModel
@@ -1332,117 +1292,6 @@ export default class AircraftInstanceModel {
 
         window.uiController.ui_log(`${this.callsign} approach course intercept angle was greater than 30 degrees`, isWarning);
         window.gameController.events_recordNew(GAME_EVENTS.ILLEGAL_APPROACH_CLEARANCE);
-    }
-
-    /**
-     * Updates the heading for a landing aircraft
-     *
-     * @for AircraftInstanceModel
-     * @method updateFinalApproachHeading
-     * @param angle {number}
-     */
-    updateFinalApproachHeading(angle) {
-        return this.updateTargetHeadingForLanding(angle, getOffset(this, this.nav1Datum, this.course));
-        // Final Approach Heading Control
-        // TODO: these may be a constant for this
-        const severity_of_correction = 25;  // controls steepness of heading adjustments during localizer tracking
-        const targetHeading = angle + (this.offset_angle * -severity_of_correction);
-        const minHeading = angle - degreesToRadians(30);
-        const maxHeading = angle + degreesToRadians(30);
-
-        this.target.heading = clamp(targetHeading, minHeading, maxHeading);
-    }
-
-    // TODO: More Simplification of this function should be done, abstract warings to their own functions
-    /**
-     * Updates the aircraft status to landing and wil also send out a waring if the change in angle is greater than 30 degrees.
-     *
-     * @for AircraftInstanceModel
-     * @method updateFixTarget
-     * @param offset
-     * @param angle
-     * @param glideslope_altitude
-     */
-    updateInterceptLocalizer(angle, offset, glideslope_altitude) {
-        // Joining the ILS
-        // Check if aircraft has just become established on the localizer
-        const alignedWithRunway = abs(offset[0]) < 0.050;  // within 50m
-        const onRunwayHeading = abs(this.heading - angle) < degreesToRadians(5);
-        const runwayNominalHeading = degreesToRadians(parseInt(this.rwy_arr.substr(0, 2), 10) * 10, 10);
-        const maxInterceptAngle = degreesToRadians(30);
-        const maxAboveGlideslope = 250;
-        const interceptAngle = abs(angle_offset(this.target.heading, runwayNominalHeading));
-        const courseDifference = abs(angle_offset(this.heading, runwayNominalHeading));
-
-        if (alignedWithRunway && onRunwayHeading && this.mode !== FLIGHT_MODES.LANDING) {
-            this.mode = FLIGHT_MODES.LANDING;
-            this.target.heading = angle;
-
-            // Check legality of localizer interception
-            if (!this.projected) {  // do not give penalty during a future projection
-                // Intercept Angle
-                if (!this.target.heading && courseDifference > maxInterceptAngle) { // intercept via fixes
-                    this.warnInterceptAngle();
-                } else if (interceptAngle > maxInterceptAngle) {    // intercept via vectors
-                    this.warnInterceptAngle();
-                }
-
-                // Glideslope intercept
-                if (this.altitude > glideslope_altitude + maxAboveGlideslope) {
-                    const isWarning = true;
-                    window.uiController.ui_log(`${this.getRadioCallsign()} joined localizer above glideslope altitude`, isWarning);
-                    window.gameController.events_recordNew(GAME_EVENTS.ILLEGAL_APPROACH_CLEARANCE);
-                }
-            }
-
-            this.updateStrip();
-            this.target.turn = null;
-        }
-    }
-
-    /**
-     * Updates the heading to the runway for the aircraft to land if the change in flight is less than 30 degrees
-     *
-     * @for AircraftInstanceModel
-     * @method updateTargetHeadingForLanding
-     * @param  angle
-     * @param  offset
-     */
-    updateTargetHeadingForLanding(angle, offset) {
-        // TODO: this math section should be absctracted to a helper function
-        // Guide aircraft onto the localizer
-        const angle_diff = angle_offset(angle, this.heading);
-        const turning_time = Math.abs(radiansToDegrees(angle_diff)) / 3; // time to turn angle_diff degrees at 3 deg/s
-        const turning_radius = km(this.speed) / 3600 * turning_time; // dist covered in the turn, km
-        const dist_to_localizer = offset[0] / sin(angle_diff); // dist from the localizer intercept point, km
-        const turn_early_km = 1;    // start turn 1km early, to avoid overshoots from tailwind
-        const should_attempt_intercept = (dist_to_localizer > 0 && dist_to_localizer <= turning_radius + turn_early_km);
-        const inTheWindow = abs(this.offset_angle) < degreesToRadians(1.5);  // if true, aircraft will move to localizer, regardless of assigned heading
-
-        if (should_attempt_intercept || inTheWindow) {  // time to begin turn
-            const severity_of_correction = 50;  // controls steepness of heading adjustments during localizer tracking
-
-            // TODO: This is a patch fix, and it stinks. This whole method needs to be improved greatly.
-            let angleAdjustment = this.offset_angle * -severity_of_correction;
-            if (abs(offset[0]) < PERFORMANCE.MAXIMUM_DISTANCE_CONSIDERED_ESTABLISHED_ON_APPROACH_COURSE_NM) {
-                const minimumInterceptAngleWhileJoiningCourse = degreesToRadians(5);
-                angleAdjustment += (minimumInterceptAngleWhileJoiningCourse * Math.sign(this.offset_angle));
-            }
-
-            const tgtHdg = angle + angleAdjustment;
-            const minHdg = angle - degreesToRadians(30);
-            const maxHdg = angle + degreesToRadians(30);
-
-            // this.target.heading = clamp(tgtHdg, minHdg, maxHdg);
-            const desiredHeading = clamp(tgtHdg, minHdg, maxHdg);
-
-            // TODO: This should be abstracted
-            if (this.mcp.heading < this.mcp.course) {
-                this.target.heading = Math.max(desiredHeading, this.mcp.heading);
-            } else if (this.mcp.heading > this.mcp.course) {
-                this.target.heading = Math.min(desiredHeading, this.mcp.heading);
-            }
-        }
     }
 
     /**
