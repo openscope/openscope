@@ -963,7 +963,7 @@ export default class ConvasController {
     canvas_draw_future_track_fixes(cc, aircraft, future_track) {
         const waypointList = aircraft.fms.waypoints;
 
-        if (waypointList.length === 0) {
+        if (waypointList.length <= 1) {
             return;
         }
 
