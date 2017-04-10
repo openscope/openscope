@@ -394,12 +394,13 @@ export default class AircraftCommander {
      * @for AircraftCommander
      * @method runRoute
      * @param data
+     * @return {array}   [success of operation, readback]
      */
     runRoute(aircraft, data) {
         // TODO: is this .toUpperCase() necessary??
         const routeString = data[0].toUpperCase();
 
-        aircraft.pilot.applyPartialRouteAmendment(routeString);
+        return aircraft.pilot.applyPartialRouteAmendment(routeString);
     }
 
     /**
@@ -412,12 +413,13 @@ export default class AircraftCommander {
       * @for AircraftCommander
       * @method runReroute
       * @param data
+      * @return {array}   [success of operation, readback]
       */
     runReroute(aircraft, data) {
         // TODO: is this .toUpperCase() necessary??
         const routeString = data[0].toUpperCase();
 
-        aircraft.pilot.applyNewRoute(routeString);
+        return aircraft.pilot.applyNewRoute(routeString, aircraft.initialRunwayAssignment);
     }
 
     /**

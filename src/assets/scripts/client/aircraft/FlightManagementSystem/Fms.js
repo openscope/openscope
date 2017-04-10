@@ -713,7 +713,6 @@ export default class Fms {
                 const fixName = extractFixnameFromHoldSegment(segment);
 
                 isValid = this._navigationLibrary.hasFix(fixName);
-
             } else {
                 isValid = this._navigationLibrary.hasFix(segment);
             }
@@ -773,10 +772,14 @@ export default class Fms {
         }
 
         if (flightPhase === FLIGHT_CATEGORY.ARRIVAL) {
-            return procedureModel.hasFixName(routeStringModel.entry) && procedureModel.hasFixName(runway);
+            // TODO: this is too aggressive at the moment because of inconsistencies in airport files. this should be
+            // reimplemented as soon as possible.
+            return procedureModel.hasFixName(routeStringModel.entry); // && procedureModel.hasFixName(runway);
         }
 
-        return procedureModel.hasFixName(routeStringModel.exit) && procedureModel.hasFixName(runway);
+        // TODO: this is too aggressive at the moment because of inconsistencies in airport files. this should be
+        // reimplemented as soon as possible.
+        return procedureModel.hasFixName(routeStringModel.exit); // && procedureModel.hasFixName(runway);
     }
 
     /**
