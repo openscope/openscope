@@ -9,12 +9,12 @@ import { spawnPatternModelArrivalFixture } from '../fixtures/trafficGeneratorFix
 import { AIRPORT_JSON_FOR_SPAWN_MOCK } from './_mocks/spawnPatternMocks';
 
 ava('throws when called with invalid parameters', (t) => {
-    //t.notThrows(() => new SpawnPatternCollection());
+    t.throws(() => new SpawnPatternCollection());
     t.throws(() => new SpawnPatternCollection([]));
     t.throws(() => new SpawnPatternCollection({}));
     t.notThrows(() => new SpawnPatternCollection(42));
-    //t.throws(() => new SpawnPatternCollection('threeve'));
-    //t.throws(() => new SpawnPatternCollection(false));
+    t.notThrows(() => new SpawnPatternCollection('threeve'));
+    t.notThrows(() => new SpawnPatternCollection(false));
 
     t.throws(() => new SpawnPatternCollection(AIRPORT_JSON_FOR_SPAWN_MOCK));
     t.throws(() => new SpawnPatternCollection(AIRPORT_JSON_FOR_SPAWN_MOCK, []));
