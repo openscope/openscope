@@ -591,4 +591,21 @@ export default class AircraftCommander {
     runDelete(aircraft) {
         window.aircraftController.aircraft_remove(aircraft);
     }
+
+    /**
+     * This command has been deprecated and this method is used only to display a warning to users
+     *
+     * @deprecated
+     * @for AircraftCommander
+     * @method runFix
+     * @return {array}   [success of operation, readback]
+     */
+    runFix() {
+        const isWarning = true;
+
+        this._uiController.ui_log(
+            'The fix command has been deprecated. Please use rr, pd or fh instead of fix',
+            isWarning
+        );
+    }
 }

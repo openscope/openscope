@@ -725,7 +725,7 @@ export default class ConvasController {
         const runwayName = aircraft.fms.currentRunwayName;
         const rwy = window.airportController.airport_get().getRunway(runwayName);
 
-        if (!rwy) {
+        if (aircraft.category === FLIGHT_CATEGORY.DEPARTURE) {
             return;
         }
 
@@ -961,12 +961,15 @@ export default class ConvasController {
      * @param future_track
      */
     canvas_draw_future_track_fixes(cc, aircraft, future_track) {
+        // this is currently not working correctly and not in use
+        return;
+
         const waypointList = aircraft.fms.waypoints;
 
         if (waypointList.length <= 1) {
             return;
         }
-
+k
         const start = future_track.length - 1;
         const x = window.uiController.km_to_px(future_track[start][0]) + this.canvas.panX;
         const y = -window.uiController.km_to_px(future_track[start][1]) + this.canvas.panY;

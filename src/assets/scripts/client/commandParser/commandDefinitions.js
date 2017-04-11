@@ -9,10 +9,7 @@
  *
  * @fileoverview
  */
-import {
-    convertToThousands,
-    convertStringToNumber
-} from '../utilities/unitConverters';
+import { convertStringToNumber } from '../utilities/unitConverters';
 import {
     zeroArgumentsValidator,
     singleArgumentValidator,
