@@ -525,8 +525,8 @@ export default class AircraftCommander {
             aircraft.takeoffTime = this._gameController.game_time();
 
             aircraft.setFlightPhase(FLIGHT_PHASE.TAKEOFF);
-            aircraft.scoreWind('taking off');
             aircraft.pilot.initiateTakeoff();
+            aircraft.scoreWind('taking off');
 
             readback.log = `wind ${roundedWindAngleInDegrees} at ${roundedWindSpeed}, runway ${aircraft.rwy_dep}, ` +
                 'cleared for takeoff';

@@ -685,13 +685,9 @@ export default class AircraftInstanceModel {
             head: 0
         };
 
-        if (!this.rwy_dep) {
-            return;
-        }
-
         const airport = window.airportController.airport_get();
         const wind = airport.wind;
-        const runway = airport.getRunway(this.rwy_dep);
+        const runway = airport.getRunway(this.initialRunwayAssignment);
         const angle =  abs(angle_offset(runway.angle, wind.angle));
 
         // TODO: these two bits of math should be abstracted to helper functions
@@ -1077,6 +1073,10 @@ export default class AircraftInstanceModel {
             return;
         }
 
+        if (this.flightPhase === FLIGHT_PHASE.LANDING) {
+            return this.updateLandingFinalSpeedControl();
+        }
+
         switch (this.mcp.speedMode) {
             case MCP_MODE.SPEED.OFF:
                 return this._calculateLegalSpeed(this.speed);
@@ -1387,29 +1387,35 @@ export default class AircraftInstanceModel {
      * @for AircraftInstanceModel
      * @method updateLandingFinalSpeedControl
      */
-    updateLandingFinalSpeedControl(runway, offset) {
+    updateLandingFinalSpeedControl() {
+        let nextSpeed = this.speed;
+        const runway  = window.airportController.airport_get().getRunway(this.rwy_arr);
+        const offset = getOffset(this, runway.relativePosition, runway.angle);
         // Final Approach Speed Control
         let startSpeed = null;
+
         if (this.fms.currentWaypoint.speedRestriction > 0)  {
             startSpeed = this.fms.currentWaypoint.speedRestriction;
         }
 
         if (this.isOnGround()) {
-            this.target.altitude = runway.elevation;
-            this.target.speed = 0;
+            nextSpeed = 0;
 
-            return;
+            return nextSpeed;
         }
 
         const dist_final_app_spd = 3.5; // 3.5km ~= 2nm
         const dist_assigned_spd = 9.5;  // 9.5km ~= 5nm
 
-        this.target.speed = extrapolate_range_clamp(
-            dist_final_app_spd, offset[1],
+        nextSpeed = extrapolate_range_clamp(
+            dist_final_app_spd,
+            offset[1],
             dist_assigned_spd,
             this.model.speed.landing,
             startSpeed
         );
+
+        return nextSpeed;
     }
     /* ^^^^^^^ THESE HAVE ELEMENTS THAT SHOULD BE MOVED INTO THE PHYSICS CALCULATIONS ^^^^^^^ */
 

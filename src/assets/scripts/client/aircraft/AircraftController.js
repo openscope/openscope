@@ -1,3 +1,4 @@
+/* eslint-disable no-continue */
 import _get from 'lodash/get';
 import _isArray from 'lodash/isArray';
 import _isEmpty from 'lodash/isEmpty';
@@ -14,6 +15,7 @@ import { abs } from '../math/core';
 import { distance2d } from '../math/distance';
 import { vlen } from '../math/vector';
 import { km } from '../utilities/unitConverters';
+import { FLIGHT_CATEGORY } from '../constants/aircraftConstants';
 import { GAME_EVENTS } from '../game/GameController';
 
 // Temporary const declaration here to attach to the window AND use as internal property
@@ -287,9 +289,11 @@ export default class AircraftController {
 
         for (let i = this.aircraft.list.length - 1; i >= 0; i--) {
             const aircraft = this.aircraft.list[i];
-            // let is_visible = aircraft_visible(aircraft);
 
-            if (aircraft.isStopped() && aircraft.category === 'arrival') {
+            // TODO: these next 3 logic blocks could use some cleaning/abstraction
+            if (aircraft.category === FLIGHT_CATEGORY.ARRIVAL && aircraft.isStopped()) {
+                // TODO: move this to the GAME_EVENTS constant
+                // TODO: move this out of the aircraft model
                 aircraft.scoreWind('landed');
 
                 window.uiController.ui_log(`${aircraft.callsign} switching to ground, good day`);
@@ -300,6 +304,9 @@ export default class AircraftController {
 
                 window.gameController.events_recordNew(GAME_EVENTS.ARRIVAL);
                 aircraft.setIsRemovable();
+                this.aircraft_remove(aircraft);
+
+                continue;
             }
 
             if (aircraft.hit && aircraft.isOnGround()) {
