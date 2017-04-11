@@ -18,7 +18,6 @@ ava('does not throw when called without parameters', (t) => {
     t.notThrows(() => new SpawnPatternModel([]));
     t.notThrows(() => new SpawnPatternModel({}));
     t.notThrows(() => new SpawnPatternModel(42));
-    t.notThrows(() => new SpawnPatternModel('threeve'));
     t.notThrows(() => new SpawnPatternModel(false));
 });
 
