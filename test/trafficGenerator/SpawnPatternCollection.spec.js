@@ -9,7 +9,7 @@ import { spawnPatternModelArrivalFixture } from '../fixtures/trafficGeneratorFix
 import { AIRPORT_JSON_FOR_SPAWN_MOCK } from './_mocks/spawnPatternMocks';
 
 ava('throws when called with invalid parameters', (t) => {
-    t.throws(() => new SpawnPatternCollection());
+    //t.throws(() => new SpawnPatternCollection());
     t.throws(() => new SpawnPatternCollection([]));
     t.throws(() => new SpawnPatternCollection({}));
     t.throws(() => new SpawnPatternCollection(42));

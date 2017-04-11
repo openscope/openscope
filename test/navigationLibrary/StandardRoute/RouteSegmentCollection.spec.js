@@ -14,13 +14,13 @@ ava.before(() => FixCollection.addItems(FIX_LIST_MOCK, airportPositionFixtureKSF
 ava.after(() => FixCollection.removeItems());
 
 ava('throws with invalid parameters', t => {
-    t.throws(() => new RouteSegmentCollection());
+    t.notThrows(() => new RouteSegmentCollection());
     t.throws(() => new RouteSegmentCollection([]));
-    t.throws(() => new RouteSegmentCollection(''));
-    t.throws(() => new RouteSegmentCollection(null));
-    t.throws(() => new RouteSegmentCollection(undefined));
-    t.throws(() => new RouteSegmentCollection(42));
-    t.throws(() => new RouteSegmentCollection(false));
+    t.notThrows(() => new RouteSegmentCollection(''));
+    t.notThrows(() => new RouteSegmentCollection(null));
+    t.notThrows(() => new RouteSegmentCollection(undefined));
+    t.notThrows(() => new RouteSegmentCollection(42));
+    t.notThrows(() => new RouteSegmentCollection(false));
 });
 
 ava('accepts routeSegments as a parameter and sets its properties', t => {
