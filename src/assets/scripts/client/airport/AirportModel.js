@@ -14,6 +14,7 @@ import { round, abs, sin, extrapolate_range_clamp } from '../math/core';
 import { angle_offset } from '../math/circle';
 import { getOffset } from '../math/flightMath';
 import { vlen, vsub, vadd, vscale, raysIntersect } from '../math/vector';
+import { PERFORMANCE } from '../constants/aircraftConstants';
 import { STORAGE_KEY } from '../constants/storageKeys';
 
 // TODO: This function should really live in a different file and have tests.
@@ -146,6 +147,19 @@ export default class AirportModel {
      */
     get minAssignableAltitude() {
         return Math.ceil(this.elevation + 1000, -2);
+    }
+
+    /**
+     * Minimum descent altitude of an instrument approach
+     *
+     * This is 200 feet AGL but every airport is at a different elevation
+     * This provides easy access to the correct value from within an aircraft
+     *
+     * @property minDescentAltitude
+     * @return {number}
+     */
+    get minDescentAltitude() {
+        return Math.floor(this.elevation + PERFORMANCE.INSTRUMENT_APPROACH_MINIMUM_DESCENT_ALTITUDE);
     }
 
     /**

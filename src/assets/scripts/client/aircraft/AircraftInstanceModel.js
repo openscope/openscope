@@ -590,7 +590,7 @@ export default class AircraftInstanceModel {
         const airport = window.airportController.airport_get();
         const runway = airport.getRunway(this.initialRunwayAssignment);
         const nearRunwayAltitude = abs(this.altitude - runway.elevation) < errorAllowanceInFeet;
-        const nearAirportAltitude = abs(this.altitude - airport.positionModel.elevation) < errorAllowanceInFeet;
+        const nearAirportAltitude = abs(this.altitude - airport.elevation) < errorAllowanceInFeet;
 
         return nearRunwayAltitude || nearAirportAltitude;
     }
@@ -1003,7 +1003,7 @@ export default class AircraftInstanceModel {
                 break;
 
             case FLIGHT_PHASE.APPROACH: {
-                if (this.altitude < PERFORMANCE.INSTRUMENT_APPROACH_MINIMUM_DESCENT_ALTITUDE) {
+                if (this.altitude < airportModel.minDescentAltitude) {
                     this.setFlightPhase(FLIGHT_PHASE.LANDING);
                 }
 
