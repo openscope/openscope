@@ -18,6 +18,15 @@ ava('.maintainHeading() sets the #mco with the correct modes and values', (t) =>
     t.true(pilot._mcp.heading === 3.141592653589793);
 });
 
+ava('.maintainHeading() returns to the correct flightPhase after a hold', (t) => {
+    const pilot = new Pilot(modeControllerFixture, fmsArrivalFixture);
+    pilot._fms.setFlightPhase('HOLD');
+
+    pilot.maintainHeading();
+
+    t.true(pilot._fms.currentPhase === 'CRUISE');
+});
+
 ava('.maintainHeading() returns a success message when incremental is false and no direction is provided', (t) => {
     const expectedResult = [
         true,

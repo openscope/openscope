@@ -1,8 +1,5 @@
 import ava from 'ava';
-import sinon from 'sinon';
-import _isArray from 'lodash/isArray';
 import _isEqual from 'lodash/isEqual';
-import _isObject from 'lodash/isObject';
 
 import Pilot from '../../../src/assets/scripts/client/aircraft/Pilot/Pilot';
 import {
@@ -13,7 +10,6 @@ import {
 const invalidRouteString = 'a..b.c.d';
 const complexRouteString = 'COWBY..BIKKR..DAG.KEPEC3.KLAS';
 const amendRouteString = 'HITME..HOLDM..BIKKR';
-const runwayMock = '19L';;
 
 function buildPilotWithComplexRoute() {
     const pilot = new Pilot(modeControllerFixture, fmsArrivalFixture);
@@ -36,6 +32,15 @@ ava('.applyPartialRouteAmendment() returns an error with passed a routeString wi
     const result = pilot.applyPartialRouteAmendment('HITME..HOLDM');
 
     t.true(_isEqual(result, expectedResult));
+});
+
+ava('.applyPartialRouteAmendment() returns to the correct flightPhase after a hold', (t) => {
+    const pilot = buildPilotWithComplexRoute();
+    pilot._fms.setFlightPhase('HOLD');
+
+    pilot.applyPartialRouteAmendment(amendRouteString);
+
+    t.true(pilot._fms.currentPhase === 'CRUISE');
 });
 
 ava('.applyPartialRouteAmendment() returns a success message when complete', (t) => {

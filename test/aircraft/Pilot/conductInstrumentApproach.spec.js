@@ -65,6 +65,15 @@ ava('.conductInstrumentApproach() calls ._interceptGlidepath() with the correct 
     ));
 });
 
+ava('.conductInstrumentApproach() returns to the correct flightPhase after a hold', (t) => {
+    const pilot = new Pilot(modeControllerFixture, fmsArrivalFixture);
+    pilot._fms.setFlightPhase('HOLD');
+
+    pilot.conductInstrumentApproach(approachTypeMock, runwayModelMock, altitudeMock, headingMock);
+
+    t.true(pilot._fms.currentPhase === 'CRUISE');
+});
+
 ava('.conductInstrumentApproach() sets #hasApproachClearance to true', (t) => {
     const pilot = new Pilot(modeControllerFixture, fmsArrivalFixture);
     pilot.conductInstrumentApproach(approachTypeMock, runwayModelMock, altitudeMock, headingMock);

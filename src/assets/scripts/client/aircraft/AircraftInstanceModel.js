@@ -834,7 +834,8 @@ export default class AircraftInstanceModel {
         this.target.heading = _defaultTo(this._calculateTargetedHeading(), this.target.heading);
         this.target.speed = _defaultTo(this._calculateTargetedSpeed(), this.target.speed);
 
-        this.overrideTarget();
+        // TODO: this method may not be needed but could be leveraged for housekeeping if deemed appropriate
+        // this.overrideTarget();
     }
 
     /**
@@ -1902,6 +1903,7 @@ export default class AircraftInstanceModel {
     hasAlerts() {
         const a = [false, false];
         let c = null;
+
         for (const i in this.conflicts) {
             c = this.conflicts[i].hasAlerts();
             a[0] = (a[0] || c[0]);
