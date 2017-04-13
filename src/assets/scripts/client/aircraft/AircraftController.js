@@ -1,4 +1,5 @@
 /* eslint-disable no-continue */
+import _find from 'lodash/find';
 import _get from 'lodash/get';
 import _isArray from 'lodash/isArray';
 import _isEmpty from 'lodash/isEmpty';
@@ -325,6 +326,29 @@ export default class AircraftController {
                 i -= 1;
             }
         }
+    }
+
+    /**
+     * @method debug
+     * @param  {string} [callsign='']
+     * @return {AircraftInstanceModel|null}
+     */
+    debug(callsign = '') {
+        return this.findAircraftByCallsign(callsign);
+    }
+
+    /**
+     * @method _findAircraftByCallsign
+     * @param  {string} [callsign='']
+     * @return {AircraftInstanceModel|null}
+     * @private
+     */
+    _findAircraftByCallsign(callsign = '') {
+        if (callsign === '') {
+            return null;
+        }
+
+        return _find(this.aircraft.list, (aircraft) => aircraft.callsign.toLowerCase() === callsign.toLowerCase());
     }
 
     // FIXME: DEPRECATE

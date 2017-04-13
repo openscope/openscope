@@ -13,7 +13,7 @@ import ModeController from './ModeControl/ModeController';
 import Pilot from './Pilot/Pilot';
 import { speech_say } from '../speech';
 import { tau, radians_normalize, angle_offset } from '../math/circle';
-import { abs, clamp, cos, extrapolate_range_clamp, sin, spread } from '../math/core';
+import { abs, cos, extrapolate_range_clamp, sin, spread } from '../math/core';
 import { getOffset, calculateTurnInitiaionDistance } from '../math/flightMath';
 import {
     distance_to_poly,
@@ -35,9 +35,7 @@ import {
 import {
     degreesToRadians,
     heading_to_string,
-    km,
     nm,
-    radiansToDegrees,
     UNIT_CONVERSION_CONSTANTS
 } from '../utilities/unitConverters';
 import {
