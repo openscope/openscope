@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import _isString from 'lodash/isString';
+import _round from 'lodash/round';
 import _uniqueId from 'lodash/uniqueId';
 import { round } from '../math/core';
 import {
@@ -254,14 +255,12 @@ export default class AircraftStripView {
      * @param speed {string}
      */
     updateAircraftTelemetryText(heading, altitude, destination, speed) {
-        // TODO: the `Math.ceil` calls here are temporary and should be removed. this is
-        // masking a larger problem but is being used as a quick fix
         const altitudeDisplay = altitude !== -1
-            ? Math.ceil(altitude)
+            ? _round(altitude, -2)
             : '-';
 
         const speedDisplay = speed !== -1
-            ? Math.ceil(speed)
+            ? _round(speed, 0)
             : '-';
 
         this.$altitude.text(altitudeDisplay);
