@@ -432,7 +432,7 @@ export default class LegModel {
         const fixModel = this._navigationLibrary.findFixByName(holdRouteSegment);
 
         if (!fixModel) {
-            // FIXME: Do something more helpful than this, that ends up telling the user their mistake
+            // TODO: Do something more helpful than this, that ends up telling the user their mistake
             return new Error(`Requested fix of '${holdRouteSegment}' could not be found!`);
         }
 
@@ -533,32 +533,5 @@ export default class LegModel {
         const positiveValueRestrictionList = _without(altitudeRestrictionList, -1);
 
         return Math.min(...positiveValueRestrictionList);
-    }
-
-    // FIXME: refactor something somewhere so we don't have to do this! This is naughty!!
-    /**
-     * Create an object that can be sent to the `WaypointModel`.
-     *
-     * When setting up a hold at a position, we will not have access to `.toWaypointModel()`
-     * from either a `FixModel` or `StandardRouteWaypointModel`. This is becuase we are creating,
-     * in essence, a temporary fix for the purposes of a hold.
-     *
-     * The `WaypointModel` expects a `#position` property that is an instance of a,
-     * `PositionModel` though it doesn't actually use the `PositionModel`. We cheat
-     * a little bit here so the `WaypointModel` will instantiate correctly.
-     *
-     * @for LegModel
-     * @method _buildHoldAtPositionWaypointProps
-     * @return {object}
-     * @private
-     */
-    _buildHoldAtPositionWaypointProps(waypointProps) {
-        return Object.assign(
-            {},
-            waypointProps,
-            {
-                positionModel: waypointProps.positionModel
-            }
-        );
     }
 }

@@ -330,25 +330,6 @@ export default class AircraftController {
         return _find(this.aircraft.list, (aircraft) => aircraft.callsign.toLowerCase() === callsign.toLowerCase());
     }
 
-    // FIXME: DEPRECATE
-    /**
-     * @for AircraftController
-     * @method aircraft_get
-     * @param eid
-     */
-    aircraft_get(eid = null) {
-        if (eid === null) {
-            return null;
-        }
-
-        // prevent out-of-range error
-        if (this.aircraft.list.length > eid && eid >= 0) {
-            return this.aircraft.list[eid];
-        }
-
-        return null;
-    }
-
     /**
      * Remove the specified aircraft from `AircraftController.aircraft`
      *

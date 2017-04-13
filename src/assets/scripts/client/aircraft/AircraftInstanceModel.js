@@ -309,7 +309,7 @@ export default class AircraftInstanceModel {
     }
 
     parse(data) {
-        // FIXME: these _gets can likely be removed
+        // TODO: these _gets can likely be removed
         this.positionModel = _get(data, 'positionModel', this.positionModel);
         this.model = _get(data, 'model', this.model);
         this.airlineId = _get(data, 'airline', this.airlineId);
@@ -941,8 +941,6 @@ export default class AircraftInstanceModel {
         this.fms.setFlightPhase(phase);
     }
 
-    // TODO: This probably doesn't belong in the aircraft. More thought needed.
-    // FIXME: This is filled with nonsensical jibber jabber! :(
     /**
      * Update the FMS's flight phase
      *
@@ -1667,7 +1665,8 @@ export default class AircraftInstanceModel {
 
         this.positionModel.setCoordinatesByBearingAndDistance(groundTrack, distanceTraveled_nm);
 
-        // FIXME: Fix this to prevent drift (being blown off course)
+        // TODO: is this needed anymore?
+        // TODO: Fix this to prevent drift (being blown off course)
         // if (this.isOnGround()) {
         //     vector = vscale([sin(angle), cos(angle)], trueAirSpeed);
         // } else {

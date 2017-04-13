@@ -173,7 +173,7 @@ export default class Pilot {
         if (incremental) {
             readback.log = `turn ${degrees} degrees ${direction}`;
             readback.say = `turn ${groupNumbers(degrees)} degrees ${direction}`;
-        // FIXME: Im not sure this block is needed or even used
+        // TODO: Im not sure this block is needed or even used
         // } else if (direction) {
         //     readback.log = `turn ${direction} heading ${headingReadback}`;
         //     readback.say = `turn ${direction} heading ${radio_heading(headingReadback)}`;
@@ -338,8 +338,10 @@ export default class Pilot {
         }
 
         if (!this._fms.isValidRouteAmendment(routeString)) {
-            // FIXME: this is not a good message
-            return [false, `requested route of "${routeString}" is invalid, it must contain a Waypoint in the current route`];
+            return [
+                false,
+                `requested route of "${routeString}" is invalid, it must contain a Waypoint in the current route`
+            ];
         }
 
         this._fms.replaceRouteUpToSharedRouteSegment(routeString);
@@ -797,7 +799,7 @@ export default class Pilot {
      * @return {Array} [success of operation, readback]
      */
     stopWaitingInRunwayQueueAndReturnToGate() {
-        // FIXME: this will likely need to be called from somewhere other than the `AircraftCommander`
+        // TODO: this will likely need to be called from somewhere other than the `AircraftCommander`
         // TODO: remove aircraft from the runway queue (`Runway.removeQueue()`)
         this._fms.flightPhase = FLIGHT_MODES.APRON;
 

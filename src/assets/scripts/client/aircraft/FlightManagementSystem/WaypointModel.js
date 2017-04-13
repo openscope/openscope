@@ -250,12 +250,12 @@ export default class WaypointModel {
      *
      * @for WaypointModel
      * @method updateWaypointWithHoldProps
-     * @param turnDirection {string}
-     * @param legLength {string}
+     * @param inboundHeading {number}  in radians
+     * @param turnDirection {string}   either left or right
+     * @param legLength {string}       length of the hold leg in minutes or nm
      */
     updateWaypointWithHoldProps(inboundHeading, turnDirection, legLength) {
         this.isHold = true;
-        // FIXME: I assume there is somewhere else we want to do this, where all the other properties are set
         this._holdingPatternInboundHeading = inboundHeading;
         this._turnDirection = turnDirection;
         this._legLength = legLength;

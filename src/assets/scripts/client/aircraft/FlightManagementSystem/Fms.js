@@ -462,7 +462,7 @@ export default class Fms {
      * @param holdPosition {StaticPositionModel}
      */
     createLegWithHoldingPattern(inboundHeading, turnDirection, legLength, holdRouteSegment, holdPosition) {
-        // FIXME: replace with constant
+        // TODO: replace with constant
         const isPositionHold = holdRouteSegment === 'GPS';
         const waypointProps = {
             turnDirection,
@@ -1020,8 +1020,6 @@ export default class Fms {
      * @private
      */
     _buildLegModelFromRouteSegment(routeSegment) {
-        // FIXME: The third argument is called 'flightPhase`, but is USED like `category` (since
-        // that used to be its value). This leads to failing tests because the strings don't match.
         return new LegModel(routeSegment, this._runwayName, this.currentPhase, this._navigationLibrary);
     }
 
@@ -1267,7 +1265,7 @@ export default class Fms {
         this.legCollection = this.legCollection.slice(legIndex);
     }
 
-    // FIXME: simplify this and abstract it away from `.prependLeg()`
+    // TODO: simplify this and abstract it away from `.prependLeg()`
     /**
      * Given an array of `routeSegments`, prepend each to the left of the `#legCollection`
      *
