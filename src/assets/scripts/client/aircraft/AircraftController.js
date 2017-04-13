@@ -173,27 +173,6 @@ export default class AircraftController {
     }
 
     /**
-     * Add a new `AircraftConflict` instance to the list of existing conflicts
-     *
-     * @for AircraftController
-     * @method addConflict
-     * @param  {Aircraft} aircraft      aircraft 1
-     * @param  {Aircraft} otherAircraft aircraft 2
-     */
-    addConflict(aircraft, otherAircraft) {
-        const conflict = new AircraftConflict(aircraft, otherAircraft);
-
-        if (conflict.shouldBeRemoved()) {
-            conflict.destroy();
-            return;
-        }
-
-        this.conflicts.push(conflict);
-        aircraft.addConflict(conflict, otherAircraft);
-        otherAircraft.addConflict(conflict, aircraft);
-    }
-
-    /**
      * @for AircraftController
      * @method aircraft_get_nearest
      * @param position
@@ -382,6 +361,41 @@ export default class AircraftController {
     }
 
     /**
+     * Add a new `AircraftConflict` instance to the list of existing conflicts
+     *
+     * @for AircraftController
+     * @method addConflict
+     * @param  {Aircraft} aircraft      aircraft 1
+     * @param  {Aircraft} otherAircraft aircraft 2
+     */
+    addConflict(aircraft, otherAircraft) {
+        const conflict = new AircraftConflict(aircraft, otherAircraft);
+
+        if (conflict.shouldBeRemoved()) {
+            conflict.destroy();
+            return;
+        }
+
+        this.conflicts.push(conflict);
+        aircraft.addConflict(conflict, otherAircraft);
+        otherAircraft.addConflict(conflict, aircraft);
+    }
+
+    /**
+     * Remove an `AircraftConflict` instance from the list of existing conflicts
+     *
+     * @for AircraftController
+     * @method removeConflict
+     * @param  conflict {AircraftConflict} the conflict instance to remove
+     */
+    removeConflict(conflict) {
+        conflict.aircraft[0].removeConflict(conflict.aircraft[1]);
+        conflict.aircraft[1].removeConflict(conflict.aircraft[0]);
+
+        this.conflicts = _without(this.conflicts, conflict);
+    }
+
+    /**
      * Remove any conflicts that involve the specified aircraft
      *
      * @for AircraftController
@@ -413,20 +427,6 @@ export default class AircraftController {
      */
     removeFlightNumberFromList({ airlineId, callsign }) {
         this._airlineController.removeFlightNumberFromList(airlineId, callsign);
-    }
-
-    /**
-     * Remove an `AircraftConflict` instance from the list of existing conflicts
-     *
-     * @for AircraftController
-     * @method removeConflict
-     * @param  {AircraftConflict} conflict - the conflict instance to remove
-     */
-    removeConflict(conflict) {
-        conflict.aircraft[0].removeConflict(conflict.aircraft[1]);
-        conflict.aircraft[1].removeConflict(conflict.aircraft[0]);
-
-        this.conflicts = _without(this.conflicts, conflict);
     }
 
     /**

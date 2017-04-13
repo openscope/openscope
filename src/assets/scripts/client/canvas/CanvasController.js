@@ -751,10 +751,12 @@ export default class ConvasController {
      * @param aircraft
      */
     canvas_draw_aircraft_rings(cc, aircraft) {
+        const aircraftAlerts = aircraft.hasAlerts();
+
         cc.save();
 
-        if (aircraft.hasAlerts()[0]) {
-            if (aircraft.hasAlerts()[1]) {
+        if (aircraftAlerts[0]) {
+            if (aircraftAlerts[1]) {
                 // red violation circle
                 cc.strokeStyle = COLORS.RED;
             } else {
@@ -857,7 +859,9 @@ export default class ConvasController {
         cc.restore();
 
         if (aircraft.relativePositionHistory.length > trailling_length) {
-            aircraft.relativePositionHistory = aircraft.relativePositionHistory.slice(aircraft.relativePositionHistory.length - trailling_length, aircraft.relativePositionHistory.length);
+            aircraft.relativePositionHistory = aircraft.relativePositionHistory.slice(
+                aircraft.relativePositionHistory.length - trailling_length, aircraft.relativePositionHistory.length
+            );
         }
 
         if (aircraft.isEstablishedOnCourse()) {

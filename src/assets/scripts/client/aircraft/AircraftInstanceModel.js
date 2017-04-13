@@ -1890,6 +1890,7 @@ export default class AircraftInstanceModel {
     checkConflict(conflictingAircraft) {
         if (this.conflicts[conflictingAircraft.callsign]) {
             this.conflicts[conflictingAircraft.callsign].update();
+
             return true;
         }
 
@@ -1901,16 +1902,16 @@ export default class AircraftInstanceModel {
      * @method hasAlerts
      */
     hasAlerts() {
-        const a = [false, false];
-        let c = null;
+        const alert = [false, false];
 
         for (const i in this.conflicts) {
-            c = this.conflicts[i].hasAlerts();
-            a[0] = (a[0] || c[0]);
-            a[1] = (a[1] || c[1]);
+            const conflict = this.conflicts[i].hasAlerts();
+
+            alert[0] = (alert[0] || conflict[0]);
+            alert[1] = (alert[1] || conflict[1]);
         }
 
-        return a;
+        return alert;
     }
 
     /**

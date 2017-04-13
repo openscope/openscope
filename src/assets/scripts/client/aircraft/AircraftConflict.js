@@ -1,4 +1,4 @@
-/* eslint-disable camelcase, no-underscore-dangle, no-mixed-operators, func-names, object-shorthand, no-param-reassign, no-undef */
+/* eslint-disable camelcase, no-mixed-operators, func-names, object-shorthand, no-param-reassign */
 import _includes from 'lodash/includes';
 import _filter from 'lodash/filter';
 import { abs } from '../math/core';
@@ -26,9 +26,7 @@ export default class AircraftConflict {
         this.distance = vlen(vsub(first.relativePosition, second.relativePosition));
         this.distance_delta = 0;
         this.altitude = abs(first.altitude - second.altitude);
-
         this.collided = false;
-
         this.conflicts = {};
         this.violations = {};
 
@@ -147,12 +145,16 @@ export default class AircraftConflict {
         // Collide within 160 feet
         const airport = window.airportController.airport_get();
 
-        if (((this.distance < 0.05) && (this.altitude < 160)) &&
+        if (
+            ((this.distance < 0.05) && (this.altitude < 160)) &&
             (this.aircraft[0].isInsideAirspace(airport) && this.aircraft[1].isInsideAirspace(airport))
         ) {
             this.collided = true;
             const isWarning = true;
-            window.uiController.ui_log(`${this.aircraft[0].callsign} collided with ${this.aircraft[1].callsign}`, isWarning);
+            window.uiController.ui_log(
+                `${this.aircraft[0].callsign} collided with ${this.aircraft[1].callsign}`,
+                isWarning
+            );
 
             window.gameController.events_recordNew(GAME_EVENTS.COLLISION);
             this.aircraft[0].hit = true;
@@ -174,14 +176,17 @@ export default class AircraftConflict {
 
         // TODO: this logic block needs its own method.
         // Check for the same runway, different ends and under about 6 miles
-        if ((!this.aircraft[0].isTaxiing() && !this.aircraft[1].isTaxiing()) &&
+        if (
+            (!this.aircraft[0].isTaxiing() && !this.aircraft[1].isTaxiing()) &&
             (this.aircraft[0].rwy_dep !== null) &&
             (this.aircraft[0].rwy_dep !== this.aircraft[1].rwy_dep) &&
             (airport.getRunway(this.aircraft[1].rwy_dep) === airport.getRunway(this.aircraft[0].rwy_dep)) &&
             (this.distance < 10)
         ) {
             if (!this.conflicts.runwayCollision) {
+                const isWarning = true;
                 this.conflicts.runwayCollision = true;
+
                 window.uiController.ui_log(
                     `${this.aircraft[0].callsign} appears on a collision course with` +
                     ` ${this.aircraft[1].callsign} on the same runway"`,
@@ -302,6 +307,9 @@ export default class AircraftConflict {
                 }
             }
         }
+
+        // TODO: if conflict and violation both return booleans, remove the if/else blocks below and
+        // set with those values
 
         // Update Conflicts
         if (conflict) {
