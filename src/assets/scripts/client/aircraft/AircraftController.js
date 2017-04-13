@@ -334,7 +334,7 @@ export default class AircraftController {
      * @return {AircraftInstanceModel|null}
      */
     debug(callsign = '') {
-        return this.findAircraftByCallsign(callsign);
+        return this._findAircraftByCallsign(callsign);
     }
 
     /**
